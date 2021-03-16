@@ -35,7 +35,7 @@
         line-height: 1.5;
         font-family: 'Roboto', sans-serif;
         color: $color-primary-4;
-        background-image: linear-gradient(to right, $color-primary-1, $color-primary-2);
+        background-image: linear-gradient(to right, $color-primary-1, rgba($color-primary-1, 75%));
     }
 
     #root {

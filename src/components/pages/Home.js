@@ -11,7 +11,7 @@ class Home extends React.Component {
   }
   render() {
     return (
-      <div>Home</div>
+      <section className="home">Home</section>
     );
   }
 }

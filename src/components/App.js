@@ -15,15 +15,22 @@ import "../css/style.css";
 const App = () => {
 	return (
         <Router history={history}>
-            <Nav/>
-            <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/projects" exact component={Projects} />
-                <Route path="/about" exact component={About} />
-                <Route path="/resume" exact component={Resume} />
-                <Route path="/contact" exact component={Contact} />
+            <header>
+                <Nav/>
+            </header>
+            <main>
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/projects" exact component={Projects} />
+                    <Route path="/about" exact component={About} />
+                    <Route path="/resume" exact component={Resume} />
+                    <Route path="/contact" exact component={Contact} />
 
-            </Switch>
+                </Switch>
+            </main>
+            <footer>
+                Footer here
+            </footer>
         </Router>
     );
 }

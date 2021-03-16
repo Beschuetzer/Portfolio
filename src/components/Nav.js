@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 
 class Nav extends React.Component {
   constructor(props) {
@@ -11,28 +12,29 @@ class Nav extends React.Component {
     this.imageRef = React.createRef();
   }
   render() {
-    return (
+    return ReactDOM.createPortal(
       <nav className="navbar">
-        <ul className="navbar__list">
-          <li className="navbar__item">
-            <Link className="navbar__link" to="/">
-              <img className="navbar__logo" src="../../img/logo.jpg" alt="Logo"/>
-            </Link>
-          </li>
-          <li className="navbar__item">
-            <Link className="navbar__link" to="/about">About</Link>
-          </li>
-          <li className="navbar__item">
-            <Link className="navbar__link" to="/projects">Projects</Link>
-          </li>
-          <li className="navbar__item">
-            <Link className="navbar__link" to="/resume">Resume</Link>
-          </li>
-          <li className="navbar__item">
-            <Link className="navbar__link" to="/contact">Contact</Link>
-          </li>
-        </ul>
-      </nav>
+        <Link className="navbar__button" to="/">
+          <img className="navbar__logo" src="../../img/logo.jpg" alt="Logo"/>
+        </Link>
+        <div className="navbar__content">
+          <ul className="navbar__list">
+            <li className="navbar__item">
+              <Link className="navbar__link" to="/about">About</Link>
+            </li>
+            <li className="navbar__item">
+              <Link className="navbar__link" to="/projects">Projects</Link>
+            </li>
+            <li className="navbar__item">
+              <Link className="navbar__link" to="/resume">Resume</Link>
+            </li>
+            <li className="navbar__item">
+              <Link className="navbar__link" to="/contact">Contact</Link>
+            </li>
+          </ul>
+        </div>
+      </nav>,
+      document.querySelector('#header')
     );
   }
 }
