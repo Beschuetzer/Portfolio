@@ -1,0 +1,205 @@
+/* global reset;  box-sizing is set on body and set to inherit on all other elements */
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* 62.5% of the browser supplied font-size is usually 16px */
+  /* bad practice to declarer px font-size here as it removes users ability to set font-size in browser */
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+@media only screen and (min-width: 112.5em) {
+  html {
+    font-size: 75%;
+  }
+}
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+@media only screen and (max-width: 56.25em) {
+  html {
+    font-size: 43.75%;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  html {
+    font-size: 37.5%;
+  }
+}
+@media only screen and (max-width: 25em) {
+  html {
+    font-size: 1.5038vmin;
+  }
+}
+
+/* everything related to font goes in body */
+body {
+  font-family: Open Sans, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+body {
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+}
+
+.u-center-text {
+  text-align: center;
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 1.6rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .u-margin-bottom-small {
+    margin-bottom: 0.8rem;
+  }
+}
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .u-margin-bottom-medium {
+    margin-bottom: 2rem;
+  }
+}
+
+.u-margin-bottom-large {
+  margin-bottom: 8rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .u-margin-bottom-large {
+    margin-bottom: 4rem;
+  }
+}
+
+.u-margin-bottom-huge {
+  margin-bottom: 9.6rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .u-margin-bottom-huge {
+    margin-bottom: 4.8rem;
+  }
+}
+
+.u-margin-top-small {
+  margin-top: 1.6rem !important;
+}
+@media only screen and (max-width: 56.25em) {
+  .u-margin-top-small {
+    margin-top: 1.6rem !important;
+  }
+}
+
+.u-margin-top-medium {
+  margin-top: 4rem !important;
+}
+@media only screen and (max-width: 56.25em) {
+  .u-margin-top-medium {
+    margin-top: 2rem !important;
+  }
+}
+
+.u-margin-top-large {
+  margin-top: 8rem !important;
+}
+@media only screen and (max-width: 56.25em) {
+  .u-margin-top-large {
+    margin-top: 4rem !important;
+  }
+}
+
+.u-margin-top-huge {
+  margin-top: 9.6rem !important;
+}
+@media only screen and (max-width: 56.25em) {
+  .u-margin-top-huge {
+    margin-top: 4.8rem !important;
+  }
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.h-100 {
+  height: 100% !important;
+}
+
+.text-align-center {
+  text-align: center !important;
+}
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto;
+}
+.row::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+@media only screen and (max-width: 56.25em) {
+  .row {
+    max-width: 85.6rem;
+    padding: 0 3rem;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .row {
+    margin: 0;
+    max-width: 100%;
+  }
+}
+.row:not(:last-child) {
+  margin-bottom: 8rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .row:not(:last-child) {
+    margin-bottom: 6rem;
+  }
+}
+.row [class^=col-] {
+  float: left;
+}
+.row [class^=col-]:not(:last-child) {
+  margin-right: 6rem;
+}
+@media only screen and (max-width: 56.25em) {
+  .row [class^=col-]:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 4rem;
+  }
+}
+@media only screen and (max-width: 56.25em) {
+  .row [class^=col-] {
+    width: 100% !important;
+  }
+}
+.row .col-1-of-2 {
+  width: calc((100% - 1 * 6rem) / 2);
+}
+.row .col-1-of-3 {
+  width: calc((100% - 2 * 6rem) / 3);
+}
+.row .col-1-of-4 {
+  width: calc((100% - 3 * 6rem) / 4);
+}
+.row .col-2-of-3 {
+  width: calc((2 * (100% - 2 * 6rem) / 3) + 6rem);
+}
+.row .col-2-of-4 {
+  width: calc((100% - 1 * 6rem) / 2);
+}
+.row .col-3-of-4 {
+  width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem);
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3Nhc3MvYmFzZS9fYmFzZS5zY3NzIiwic3R5bGUuY29tcC5jc3MiLCIuLi8uLi9zYXNzL2Fic3RyYWN0cy9fbWl4aW5zLnNjc3MiLCIuLi8uLi9zYXNzL2Jhc2UvX3R5cG9ncmFwaHkuc2NzcyIsIi4uLy4uL3Nhc3MvYmFzZS9fdXRpbGl0aWVzLnNjc3MiLCIuLi8uLi9zYXNzL2Fic3RyYWN0cy9fdmFyaWFibGVzLnNjc3MiLCIuLi8uLi9zYXNzL2xheW91dC9fZ3JpZC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNJLHNGQUFBO0FBQ0E7RUFDSSxTQUFBO0VBQ0EsVUFBQTtFQUNBLG1CQUFBO0FDQVI7O0FERUk7RUFDSSw0REFBQTtFQUNBLHVHQUFBO0VBQ0EsZ0JBQUE7RUFnQkEsc0JBQUE7QUNkUjtBQ3dDWTtFRjdDUjtJQUtRLGNBQUE7RUNJVjtBQUNGO0FDZ0NZO0VGMUNSO0lBUVEsaUJBQUE7RUNNVjtBQUNGO0FDd0JZO0VGdkNSO0lBV1EsaUJBQUE7RUNRVjtBQUNGO0FDZ0JZO0VGcENSO0lBY1EsZ0JBQUE7RUNVVjtBQUNGO0FDUVk7RUZqQ1I7SUFpQlEscUJBQUE7RUNZVjtBQUNGOztBRE5JLDRDQUFBO0FBQ0E7RUFDSSxrQ0FBQTtFQUNBLGdCQUFBO0VBQ0EsZ0JBQUE7QUNTUjs7QUUzQ0k7RUFFSSw2QkFBQTtFQUNBLGdCQUFBO0FGNkNSOztBR2hESTtFQUFnQixrQkFBQTtBSG9EcEI7O0FHbkRJO0VBQ0kscUJDRGdCO0FKdUR4QjtBQ1hZO0VFNUNSO0lBR1EscUJBQUE7RUh3RFY7QUFDRjs7QUd0REk7RUFDSSxtQkFBQTtBSHlEUjtBQ3BCWTtFRXRDUjtJQUdRLG1CQUFBO0VIMkRWO0FBQ0Y7O0FHekRJO0VBQ0ksbUJBQUE7QUg0RFI7QUM3Qlk7RUVoQ1I7SUFHUSxtQkFBQTtFSDhEVjtBQUNGOztBRzVESTtFQUNJLHFCQUFBO0FIK0RSO0FDdENZO0VFMUJSO0lBR1EscUJBQUE7RUhpRVY7QUFDRjs7QUc5REk7RUFDSSw2QkFBQTtBSGlFUjtBQy9DWTtFRW5CUjtJQUdRLDZCQUFBO0VIbUVWO0FBQ0Y7O0FHakVJO0VBQ0ksMkJBQUE7QUhvRVI7QUN4RFk7RUViUjtJQUdRLDJCQUFBO0VIc0VWO0FBQ0Y7O0FHcEVJO0VBQ0ksMkJBQUE7QUh1RVI7QUNqRVk7RUVQUjtJQUdRLDJCQUFBO0VIeUVWO0FBQ0Y7O0FHdkVJO0VBQ0ksNkJBQUE7QUgwRVI7QUMxRVk7RUVEUjtJQUdRLDZCQUFBO0VINEVWO0FBQ0Y7O0FHMUVJO0VBQ0ksc0JBQUE7QUg2RVI7O0FHM0VJO0VBQ0ksdUJBQUE7QUg4RVI7O0FHNUVJO0VBQ0ksNkJBQUE7QUgrRVI7O0FLeElJO0VBRUksaUJERVM7RUNEVCxjQUFBO0FMMElSO0FDNUlRO0VBQ0ksY0FBQTtFQUNBLFdBQUE7RUFDQSxXQUFBO0FEOElaO0FDckdZO0VJN0NSO0lBT1Esa0JBQUE7SUFDQSxlQUFBO0VMK0lWO0FBQ0Y7QUM5R1k7RUkxQ1I7SUFXUSxTQUFBO0lBQ0EsZUFBQTtFTGlKVjtBQUNGO0FLL0lRO0VBQ0ksbUJEWFU7QUo0SnRCO0FDcEhZO0VJOUJKO0lBR1EsbUJEWlk7RUorSjFCO0FBQ0Y7QUtoSlE7RUFDSSxXQUFBO0FMa0paO0FLakpZO0VBQ0ksa0JEbEJRO0FKcUt4QjtBQy9IWTtFSXJCQTtJQUlRLGVBQUE7SUFDQSxtQkFBQTtFTG9KbEI7QUFDRjtBQ3JJWTtFSXZCSjtJQVlRLHNCQUFBO0VMb0pkO0FBQ0Y7QUtqSlE7RUFDSSxrQ0FBQTtBTG1KWjtBS2pKUTtFQUNJLGtDQUFBO0FMbUpaO0FLakpRO0VBQ0ksa0NBQUE7QUxtSlo7QUtqSlE7RUFDSSwrQ0FBQTtBTG1KWjtBS2pKUTtFQUNJLGtDQUFBO0FMbUpaO0FLakpRO0VBQ0ksbURBQUE7QUxtSloiLCJmaWxlIjoic3R5bGUucHJlZml4LmNzcyJ9 */
