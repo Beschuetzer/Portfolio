@@ -1,11 +1,22 @@
-
-.heading-one {
-
-}
-.heading-two {
-
-}
-.heading-three {
-
+.heading{
+    font-family: 'Cinzel', serif;
+    &--one {
+        font-size: $default-font-size * 3;
+    }
+    &--two {
+        font-size: $default-font-size * 2;
+    }
+    &--three {
+        font-size: $default-font-size * 1.5;
+    }
+    &--four {
+        font-size: $default-font-size * 1.25;
+    }
+    &--five {
+        font-size: $default-font-size * 1;
+    }
+    &--six {
+        font-size: $default-font-size * .85;
+    }
 }
     
