@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Personal from './pages/Personal';
 import Projects from './pages/Projects';
 import Resume from './pages/Resume';
+import Nav from './Nav';
 import "../css/style.css";
 
 
@@ -14,6 +15,7 @@ const App = () => {
 	return (
         <div className="grid">
         <Router history={history}>
+            <Nav/>
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/projects" exact component={Projects} />

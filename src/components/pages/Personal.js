@@ -1,8 +1,8 @@
 import React from 'react';
 
 class Personal extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       //initializing props to keep track of here
     };
