@@ -4,7 +4,8 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from '../history';
 
 import Home from './pages/Home';
-import Personal from './pages/About';
+import About from './pages/About';
+import Contact from './pages/Contact';
 import Projects from './pages/Projects';
 import Resume from './pages/Resume';
 import Nav from './Nav';
@@ -19,8 +20,10 @@ const App = () => {
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/projects" exact component={Projects} />
-                <Route path="/personal" exact component={Personal} />
+                <Route path="/about" exact component={About} />
                 <Route path="/resume" exact component={Resume} />
+                <Route path="/contact" exact component={Contact} />
+
             </Switch>
         </Router>
         </div>

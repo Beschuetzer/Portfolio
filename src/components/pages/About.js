@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Personal extends React.Component {
+class About extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,9 +11,9 @@ class Personal extends React.Component {
   }
   render() {
     return (
-      <div>Personal</div>
+      <div>About</div>
     );
   }
 }
 
-export default Personal;
+export default About;

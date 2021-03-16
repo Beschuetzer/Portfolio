@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Nav extends React.Component {
   constructor(props) {
@@ -11,7 +12,25 @@ class Nav extends React.Component {
   }
   render() {
     return (
-      <div>Nav</div>
+      <nav className="navbar">
+        <ul className="navbar__list">
+          <li className="navbar__item">
+            <Link className="navbar__link" to="/">Home</Link>
+          </li>
+          <li className="navbar__item">
+            <Link className="navbar__link" to="/about">About</Link>
+          </li>
+          <li className="navbar__item">
+            <Link className="navbar__link" to="/projects">Projects</Link>
+          </li>
+          <li className="navbar__item">
+            <Link className="navbar__link" to="/resume">Resume</Link>
+          </li>
+          <li className="navbar__item">
+            <Link className="navbar__link" to="/contact">Contact</Link>
+          </li>
+        </ul>
+      </nav>
     );
   }
 }
