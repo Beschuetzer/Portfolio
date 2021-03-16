@@ -14,7 +14,6 @@ import "../css/style.css";
 
 const App = () => {
 	return (
-        <div className="grid">
         <Router history={history}>
             <Nav/>
             <Switch>
@@ -26,7 +25,6 @@ const App = () => {
 
             </Switch>
         </Router>
-        </div>
     );
 }
 
