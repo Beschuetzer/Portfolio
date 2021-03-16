@@ -4,7 +4,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from '../history';
 
 import Home from './pages/Home';
-import Personal from './pages/Personal';
+import Personal from './pages/About';
 import Projects from './pages/Projects';
 import Resume from './pages/Resume';
 import Nav from './Nav';
