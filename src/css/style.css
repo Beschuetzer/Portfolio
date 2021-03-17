@@ -162,6 +162,27 @@ body {
   text-align: center !important;
 }
 
+.flex {
+  display: flex !important;
+}
+
+.align-center {
+  align-items: center !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.triangle-down {
+  margin-left: 0.8rem;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 1.2rem 0.6rem 0 0.6rem;
+  border-color: #8ac4d0 transparent transparent transparent;
+}
+
 .row {
   max-width: 114rem;
   margin: 0 auto;

@@ -32,8 +32,8 @@ $animation-navbar: $animation-duration $animation-easing;
     width: 100%;
     transform: translateX(-115%);
     transition: 
-                visibility $animation-navbar,
-                transform $animation-navbar
+      visibility $animation-navbar,
+      transform $animation-navbar
     ;
   }
 
@@ -59,6 +59,8 @@ $animation-navbar: $animation-duration $animation-easing;
     &:hover {
       transform: translateY(-$default-font-size * .2)
     }
+  
+
     &:not(:last-child){
       margin-right: $default-font-size * .2;
     }
@@ -93,6 +95,7 @@ $animation-navbar: $animation-duration $animation-easing;
     display: flex;
     justify-content: center;
     align-items: center;
+
   }
 
   &__button {
