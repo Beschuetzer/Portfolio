@@ -128,35 +128,46 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
     height: 0;
     list-style: none;
 
-    transition: all $animation-duration $animation-easing;
+    transition: 
+      transform $animation-duration $animation-easing;
 
     & .navbar__item {
       border: none;
       border-top: $navbar__item-divider;
+      transform-origin: top;
+      // transform: scale(0);
 
       &:last-child {
         border-radius: 0 0 $navbar__item-border-radius $navbar__item-border-radius;
       }
 
       &:hover {
-        transform: translateX($navbar__item-divided-width)
+        transform: translateX($navbar__item-divided-width) scale(1) !important;
       }
     }
   }
 
   &__dropdown-container {
-    transition: transform $animation-duration $animation-easing;
-  }
+    transition: 
+        // transform $animation-duration $animation-easing $animation-duration,
+        height $animation-duration /10 $animation-easing
+    ;
 
-  &__dropdown-container:hover {
-    // overflow: visible;
+    &:hover {
+      transform: translate(0);
+    }
   }
 
   &__dropdown-container:hover &__dropdown, &__dropdown &__item:hover &__dropdown {
     visibility: visible;
     opacity: 1;
-    transform: translateY(0%) scale(1);
+    transform: translateY(0%);
+    // transform: translateY(0%) scale(1);
     height: 100%;
+  }
+
+  &__dropdown-container:hover &__dropdown &__item {
+    // transform: scale(1);
   }
 
   &:hover &__content {
