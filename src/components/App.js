@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import Projects from './pages/Projects';
 import Resume from './pages/Resume';
 import Nav from './Nav';
+import Footer from './Footer';
 import "../css/style.css";
 
 
@@ -28,9 +29,7 @@ const App = () => {
 
                 </Switch>
             </main>
-            <footer>
-                Footer here
-            </footer>
+            <Footer/>
         </Router>
     );
 }
