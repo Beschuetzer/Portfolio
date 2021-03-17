@@ -1,12 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
-
-
-
+import NavListItem from './NavListItem';
 
 class Nav extends React.Component {
-
   constructor(props) {
     super(props);
     this.navRef = React.createRef();
@@ -30,11 +26,16 @@ class Nav extends React.Component {
 
   onNavClick = (e) => {
     e.stopPropagation();
-    let waitDuration =  this.navRef?.current?.classList?.contains('overflow--hidden') ? 500 : 0;
+    let waitDuration =  this.navRef?.current?.classList?.contains('overflow--hidden') ? 1000 : 0;
     this.navRef?.current?.classList?.toggle(this.navbarActiveClassname);
     setTimeout(() => {
-      this.navRef?.current?.classList?.toggle('overflow--hidden');
+      // this.navRef?.current?.classList?.toggle('overflow--hidden');
     }, waitDuration);
+  }
+
+  onMouseEnter = (e) => {
+    console.log('enter------------------------------------------------');
+    this.navRef.current.classList.remove('overflow--hidden');
   }
 
   render() {
@@ -47,33 +48,23 @@ class Nav extends React.Component {
         </div>
         <div className="navbar__content">
           <ul className="navbar__list">
-            <li className="navbar__item">
-              <Link className="navbar__link" to="/about">About</Link>
-            </li>
-            <li className="navbar__item navbar__dropdown-container flex align-center justify-content-center">
-              <Link className="navbar__link" to="/work">Examples</Link>
+            <NavListItem to="/about" label="About" onMouseEnter={this.onMouseEnter}/>
+            <NavListItem 
+              to="/about" 
+              label="About" 
+              onMouseEnter={this.onMouseEnter}
+              className="navbar__item navbar__dropdown-container flex align-center justify-content-center"
+            >
               <div className="triangle-down"></div>
               <ul className="navbar__dropdown">
-                <li className="navbar__item">
-                  <Link className="navbar__link" to="/work/bridge">Bridge</Link>
-                </li>
-                <li className="navbar__item">
-                  <Link className="navbar__link" to="/work/csharp">C#</Link>
-                </li>
-                <li className="navbar__item">
-                  <Link className="navbar__link" to="/work/python">Python</Link>
-                </li>
-                <li className="navbar__item">
-                  <Link className="navbar__link" to="/work/All">All</Link>
-                </li>
+                <NavListItem to="/work/bridge" label="Bridge" onMouseEnter={this.onMouseEnter}/>
+                <NavListItem to="/work/csharp" label="C#" onMouseEnter={this.onMouseEnter}/>
+                <NavListItem to="/work/python" label="Python" onMouseEnter={this.onMouseEnter}/>
+                <NavListItem to="/work/all" label="All" onMouseEnter={this.onMouseEnter}/>
               </ul>
-            </li>
-            <li data-a className="navbar__item">
-              <Link className="navbar__link" to="/resume">Resume</Link>
-            </li>
-            <li className="navbar__item">
-              <Link className="navbar__link" to="/contact">Contact</Link>
-            </li>
+            </NavListItem>
+            <NavListItem to="/resume" label="Resume" onMouseEnter={this.onMouseEnter}/>
+            <NavListItem to="/contact" label="Contact" onMouseEnter={this.onMouseEnter}/>
           </ul>
         </div>
       </nav>,
