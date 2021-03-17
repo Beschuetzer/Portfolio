@@ -2,7 +2,7 @@
 
 .navbar{
   width: $navbar__logo-width * 1.2;
-  // overflow: hidden;
+  overflow: hidden;
   // grid-column: 1 / -1;
   border: $default-font-size * .2 solid transparent;
   border-radius: $default-font-size * 10;
@@ -33,6 +33,7 @@
   }
 
   &__item {
+    background-color: $color-primary-4;
     padding: 0;
     cursor: pointer;
     height: 100%;
@@ -46,16 +47,13 @@
     &:hover {
       transform: translateY(-$default-font-size * .2);
     }
-    &[data-a] {
-      background-color: green;
-    }
   }
 
   &__link:link, &__link:visited {
     height: 100%;
     width: 100%;
     text-decoration: none;
-    color: $color-primary-4;
+    color: $color-primary-1;
 
     display: flex;
     justify-content: center;

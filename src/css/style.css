@@ -229,6 +229,7 @@ body {
 
 .navbar {
   width: 9.6rem;
+  overflow: hidden;
   border: 0.32rem solid transparent;
   border-radius: 16rem;
   position: fixed;
@@ -253,6 +254,7 @@ body {
   list-style: none;
 }
 .navbar__item {
+  background-color: #fbeeac;
   padding: 0;
   cursor: pointer;
   height: 100%;
@@ -262,14 +264,11 @@ body {
 .navbar__item:hover {
   transform: translateY(-0.32rem);
 }
-.navbar__item[data-a] {
-  background-color: green;
-}
 .navbar__link:link, .navbar__link:visited {
   height: 100%;
   width: 100%;
   text-decoration: none;
-  color: #fbeeac;
+  color: #28527a;
   display: flex;
   justify-content: center;
   align-items: center;
