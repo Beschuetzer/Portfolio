@@ -126,18 +126,20 @@ $navbar-box-shadow-color: rgba($color-black, .2);
     & .navbar__item:nth-child(n+1) {
       margin-left: $default-font-size * .2;
     }
+
+    & .navbar__dropdown .navbar__item {
+      margin-left: 0;
+    }
   }
 
   &__item {
     position: relative;
     background-color: $color-primary-4;
-    padding: $default-font-size * $paddingFactor 0;
     cursor: pointer;
     height: 100%;
     width: 100%;
     transition: 
       transform $animation-duration * .25 $animation-easing,
-      padding $animation-duration * 1 $animation-easing,
     ;
 
     & .triangle-down {
@@ -179,6 +181,7 @@ $navbar-box-shadow-color: rgba($color-black, .2);
   }
 
   &__link:link, &__link:visited {
+    padding: $default-font-size * $paddingFactor 0;
     font-size: 3.2rem;
     height: 100%;
     width: 100%;
@@ -188,6 +191,10 @@ $navbar-box-shadow-color: rgba($color-black, .2);
     justify-content: center;
     align-items: center;
     font-weight: 300;
+
+    transition: 
+      padding $animation-duration * 1 $animation-easing,
+    ;
   }
 
   &__button {
@@ -218,7 +225,6 @@ $navbar-box-shadow-color: rgba($color-black, .2);
 
     & .navbar__item {
       opacity: 0;
-      padding: 0;
       height: 0;
       border: none;
       margin-top: $navbar__item-divider-width;
@@ -239,6 +245,11 @@ $navbar-box-shadow-color: rgba($color-black, .2);
         transform: translateX($navbar__item-divider-width) !important;
         box-shadow: $default-font-size * .5 0 $default-font-size * 2 $navbar-box-shadow-color;
       }
+
+    }
+
+    & .navbar__link:link, & .navbar__link:visited {
+      padding: 0;
     }
   }
 
@@ -261,9 +272,12 @@ $navbar-box-shadow-color: rgba($color-black, .2);
 
   //Styling dropdown items on dropdown-container hover
   &__dropdown-container:hover &__dropdown &__item {
-    padding: $default-font-size * $paddingFactor $default-font-size * 2;
     height: 100%;
     opacity: 1;
+  }
+
+  &__dropdown-container:hover &__dropdown &__link {
+    padding: $default-font-size * $paddingFactor $default-font-size * 2;
   }
 
   //when navbar is open
@@ -291,7 +305,7 @@ $navbar-box-shadow-color: rgba($color-black, .2);
       }
     }
   
-    & .navbar__item:not(&__dropdown &__item) {
+    & .navbar__link:not(&__dropdown &__link) {
       padding: $default-font-size * $paddingFactor $default-font-size * 2;
     }
 

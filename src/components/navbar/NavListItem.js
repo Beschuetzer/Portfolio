@@ -22,8 +22,8 @@ class NavItem extends React.Component {
           to={to}
         >
           {label}
+          {children}
         </Link>
-        {children}
       </li>
     );
   }
