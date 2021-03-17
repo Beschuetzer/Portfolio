@@ -311,6 +311,24 @@ $navbar-box-shadow-color: rgba($color-black, .2);
 
     
   }
+
+  //Handling Bug where leaving button after clicking causes overflow hidden to change
+  &.navbar--isAnimating * {
+    pointer-events: none;
+  }
+
+  & * {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+  }
 }
 
 

@@ -5,9 +5,13 @@ import NavListItem from './NavListItem';
 class Nav extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isAnimating: false,
+    }
     this.navRef = React.createRef();
     this.navbarActiveClassname = 'navbar--active';
     this.navbarMenuClassname = 'navbar__menu';
+    this.animationDuration = 500;
   }
 
   hide = () => {
@@ -16,6 +20,18 @@ class Nav extends React.Component {
 
   componentDidMount() {
     document.body.addEventListener('click', this.onBodyClick);
+  }
+
+  componentDidUpdate() {
+    console.log('update------------------------------------------------');
+    const resetAnimatingId = setTimeout(() => {
+      this.navRef.current?.classList?.remove('navbar--isAnimating');
+    }, this.animationDuration);
+    
+    return (() => {
+      console.log('clearing timeout------------------------------------------------');
+      clearTimeout(resetAnimatingId);
+    });
   }
 
   onBodyClick = (e) => {
@@ -30,18 +46,23 @@ class Nav extends React.Component {
   onNavClick = (e) => {
     const navBar = this.navRef.current;
     e.stopPropagation();
-    navBar?.classList?.toggle(this.navbarActiveClassname);
+    if (!navBar) return;
+    navBar.classList?.toggle(this.navbarActiveClassname);
 
-    if (!navBar?.classList?.contains(this.navbarActiveClassname)) navBar.classList.add('overflow--hidden');
+    if (!navBar.classList?.contains(this.navbarActiveClassname)) navBar.classList.add('overflow--hidden');
  
+    navBar.classList.add('navbar--isAnimating');
+    this.setState({isAnimating: true});
   }
 
   onNavItemClick = (e) => {
     // e.stopPropagation();
+    console.log('click------------------------------------------------');
     this.hide();
   }
 
   onMouseEnter = (e) => {
+    console.log('enter------------------------------------------------');
     this.navRef.current.classList.remove('overflow--hidden');
   }
 
