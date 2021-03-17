@@ -21,6 +21,15 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 
   transition: all .1s 10s ease;
 
+  // &::before {
+  //   content: '';
+  //   width: $default-font-size * 5;
+  //   height: 100%;
+  //   background-color: $color-primary-1;
+  //   position: absolute;
+  //   z-index: 90;
+  // }
+
   &__menu {
     width: $navbar__logo-width;
     height: $navbar__logo-width;
@@ -111,6 +120,9 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
     justify-content: space-between;
     align-items: center;
     list-style: none;
+    & .navbar__item:first-child {
+      border-radius:  $default-font-size * .5 0 0 $default-font-size * .5;
+    }
   }
 
   &__item {
@@ -210,7 +222,9 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
         padding $animation-duration $animation-easing,
         opacity $animation-duration $animation-easing,
       ;
-
+      &:first-child {
+        border-radius:  $default-font-size * .5 $default-font-size * .5 0 0;
+      }
       &:last-child {
         border-radius: 0 0 $navbar__item-border-radius $navbar__item-border-radius;
       }
@@ -254,7 +268,7 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
     }
 
     & .navbar__button {
-      border-radius: 16rem 0 0 16rem;
+      border-radius:  $default-font-size * 10 $default-font-size * 1 $default-font-size * 1 $default-font-size * 10;
     }
   
     & .navbar__item:not(&__dropdown &__item) {

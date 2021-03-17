@@ -322,6 +322,9 @@ body {
   align-items: center;
   list-style: none;
 }
+.navbar__list .navbar__item:first-child {
+  border-radius: 0.8rem 0 0 0.8rem;
+}
 .navbar__item {
   position: relative;
   background-color: #fbeeac;
@@ -390,6 +393,9 @@ body {
   transform-origin: top;
   transition: height 0.5s ease, padding 0.5s ease, opacity 0.5s ease;
 }
+.navbar__dropdown .navbar__item:first-child {
+  border-radius: 0.8rem 0.8rem 0 0;
+}
 .navbar__dropdown .navbar__item:last-child {
   border-radius: 0 0 16rem 16rem;
 }
@@ -420,7 +426,7 @@ body {
   transform: translateX(0%);
 }
 .navbar.navbar--active .navbar__button {
-  border-radius: 16rem 0 0 16rem;
+  border-radius: 16rem 1.6rem 1.6rem 16rem;
 }
 .navbar.navbar--active .navbar__item:not(.navbar.navbar--active__dropdown .navbar.navbar--active__item) {
   padding: 2.25rem 3.2rem;
