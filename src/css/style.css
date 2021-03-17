@@ -238,6 +238,7 @@ body {
   text-align: center;
   display: flex;
   align-items: center;
+  transition: all 0.1s 10s ease;
 }
 .navbar:hover {
   overflow: visible;
@@ -270,11 +271,14 @@ body {
   width: 100%;
   transition: transform 0.125s ease, padding 0.5s ease;
 }
-.navbar__item:not(:first-child):hover {
+.navbar__item:hover {
   transform: translateY(-0.32rem);
 }
 .navbar__item:not(:last-child) {
   margin-right: 0.32rem;
+}
+.navbar__item:first-child {
+  margin-left: 0.32rem;
 }
 .navbar__item:last-child {
   border-radius: 0 10rem 10rem 0;
@@ -305,7 +309,7 @@ body {
   border-radius: 16rem;
   display: flex;
   align-items: center;
-  transition: border-radius 0.5s ease;
+  transition: border-radius 0.05s ease;
 }
 .navbar:hover .navbar__content {
   visibility: visible;
@@ -314,7 +318,7 @@ body {
   transform: translateX(0%);
 }
 .navbar:hover .navbar__button {
-  border-radius: 0;
+  border-radius: 16rem 0 0 16rem;
 }
 .navbar:hover .navbar__item {
   padding: 2.2rem 3.2rem;
