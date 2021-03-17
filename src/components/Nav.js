@@ -31,15 +31,6 @@ class Nav extends React.Component {
   onNavClick = (e) => {
     e.stopPropagation();
     let waitDuration =  this.navRef?.current?.classList?.contains('overflow--hidden') ? 500 : 0;
-    // const isClosing = 
-
-    // if (isClosing) {
-
-    // }
-    // else {
-    //   waitDuration = this.animationDuration;
-    // }
-
     this.navRef?.current?.classList?.toggle(this.navbarActiveClassname);
     setTimeout(() => {
       this.navRef?.current?.classList?.toggle('overflow--hidden');
@@ -50,7 +41,6 @@ class Nav extends React.Component {
     return ReactDOM.createPortal(
       <nav ref={this.navRef} className="navbar overflow--hidden" onClick={this.onNavClick}>
         <div className="navbar__button" to="/">
-          {/* <img className="navbar__logo" src="../../img/logo.jpg" alt="Logo"/> */}
           <div className="navbar__menu">
             <div className="navbar__menu-bar"></div>
           </div>

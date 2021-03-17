@@ -267,9 +267,43 @@ body {
 .navbar__menu {
   width: 8rem;
   height: 8rem;
+  position: relative;
+}
+.navbar__menu-bar, .navbar__menu-bar::before, .navbar__menu-bar::after {
+  background-color: #28527a;
+  height: 0.4rem;
+  width: 3.2rem;
 }
 .navbar__menu-bar {
-  background-color: #28527a;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.navbar__menu-bar::before, .navbar__menu-bar::after {
+  content: "";
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  transition: transform 0.25s ease;
+}
+.navbar__menu-bar::before {
+  transform: translate(-50%, calc(-.8rem - 50%));
+}
+.navbar__menu-bar::after {
+  transform: translate(-50%, calc(+.8rem + 50%));
+}
+.navbar__menu:hover .navbar__menu-bar::before {
+  transform: translate(-50%, calc(-1.2rem - 50%));
+}
+.navbar__menu:hover .navbar__menu-bar::after {
+  transform: translate(-50%, calc(+1.2rem + 50%));
+}
+.navbar.navbar--active .navbar__menu-bar::before {
+  transform: translate(-50%, calc(-1.2rem - 50%)) rotate(45deg);
+}
+.navbar.navbar--active .navbar__menu-bar::after {
+  transform: translate(-50%, calc(+1.2rem + 50%)) rotate(45deg);
 }
 .navbar__content {
   visibility: hidden;

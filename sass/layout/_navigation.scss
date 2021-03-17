@@ -21,24 +21,56 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 
   transition: all .1s 10s ease;
 
-  // &:hover {
-  //   overflow: visible;
-
-  // }
-
-  // &__logo {
-  //   width: $navbar__logo-width;
-  //   border-radius: 50%;
-  //   border: .2rem solid $color-primary-4;
-  //   z-index: 10000;
-  // }
-
   &__menu {
     width: $navbar__logo-width;
     height: $navbar__logo-width;
+    position: relative;
+  
+
+    &-bar, &-bar::before, &-bar::after {
+      background-color: $color-primary-1;
+      height: $default-font-size * .25;
+      width: $default-font-size * 2;
+    }
 
     &-bar {
-      background-color: $color-primary-1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        transition: transform $animation-duration * .5 $animation-easing;
+
+      }
+
+      &::before {
+        transform: translate(-50%, calc(-.8rem - 50%));
+      }
+
+      &::after {
+        transform: translate(-50%, calc(+.8rem + 50%));
+      }
+    }
+
+    //Spread Menu bars on hover
+    &:hover &-bar::before {
+      transform: translate(-50%, calc(-1.2rem - 50%));
+    }
+    &:hover &-bar::after {
+      transform: translate(-50%, calc(+1.2rem + 50%));
+    }
+
+    //Change menu bars to 'A' on click
+    .navbar.navbar--active &-bar::before {
+      transform: translate(-50%, calc(-1.2rem - 50%)) rotate(45deg);
+    }
+    .navbar.navbar--active &-bar::after {
+      transform: translate(-50%, calc(+1.2rem + 50%)) rotate(45deg);
     }
   }
 
@@ -93,6 +125,7 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
       border-radius: 0 10rem 10rem 0;
     }
 
+    //TODO: need to finish hover effect
       // &::before {
       //   content: '';
       //   position: absolute;
@@ -169,7 +202,6 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 
   &__dropdown-container {
     transition: 
-        // transform $animation-duration $animation-easing $animation-duration,
         height $animation-duration /10 $animation-easing
     ;
 
@@ -182,7 +214,6 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
     visibility: visible;
     opacity: 1;
     transform: translateY(0%);
-    // transform: translateY(0%) scale(1);
     height: 100%;
   }
 
@@ -192,19 +223,6 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
     opacity: 1;
 
   }
-
-  // &:hover &__content {
-  //   visibility: visible;
-  //   opacity: 1;
-  //   width: 100%;
-  //   transform: translateX(0%);
-  // }
-  // &:hover &__button {
-  //   border-radius: 16rem 0 0 16rem;
-  // }
-  // &:hover &__item:not(&__dropdown &__item) {
-  //   padding: $default-font-size * $paddingFactor $default-font-size * 2;
-  // }
 
   &.navbar--active {
     & .navbar__content {
