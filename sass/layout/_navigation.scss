@@ -10,7 +10,6 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 
 .navbar{
   z-index: 10000;
-  // border-left: .2rem solid $color-primary-4;
   border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
   overflow: hidden;
   position: fixed;
@@ -47,7 +46,7 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
   &__content {
     visibility: hidden;
     width: 100%;
-    transform: translateX(-115%);
+    transform: translateX(-125%);
     transition: 
       visibility $animation-navbar,
       transform $animation-navbar
@@ -162,7 +161,7 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
       }
 
       &:hover {
-        transform: translateX($navbar__item-divided-width) scale(1) !important;
+        transform: translateX($navbar__item-divided-width) !important;
       }
     }
   }
@@ -193,16 +192,35 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 
   }
 
-  &:hover &__content {
-    visibility: visible;
-    opacity: 1;
-    width: 100%;
-    transform: translateX(0%);
-  }
-  &:hover &__button {
-    border-radius: 16rem 0 0 16rem;
-  }
-  &:hover &__item:not(&__dropdown &__item) {
-    padding: $default-font-size * $paddingFactor $default-font-size * 2;
+  // &:hover &__content {
+  //   visibility: visible;
+  //   opacity: 1;
+  //   width: 100%;
+  //   transform: translateX(0%);
+  // }
+  // &:hover &__button {
+  //   border-radius: 16rem 0 0 16rem;
+  // }
+  // &:hover &__item:not(&__dropdown &__item) {
+  //   padding: $default-font-size * $paddingFactor $default-font-size * 2;
+  // }
+
+  &.navbar--active {
+    & .navbar__content {
+      visibility: visible;
+      opacity: 1;
+      width: 100%;
+      transform: translateX(0%);
+    }
+
+    & .navbar__button {
+      border-radius: 16rem 0 0 16rem;
+    }
+  
+    & .navbar__item:not(&__dropdown &__item) {
+      padding: $default-font-size * $paddingFactor $default-font-size * 2;
+    }
   }
 }
+
+

@@ -274,7 +274,7 @@ body {
 .navbar__content {
   visibility: hidden;
   width: 100%;
-  transform: translateX(-115%);
+  transform: translateX(-125%);
   transition: visibility 0.5s ease, transform 0.5s ease;
 }
 .navbar__list {
@@ -351,7 +351,7 @@ body {
   border-radius: 0 0 16rem 16rem;
 }
 .navbar__dropdown .navbar__item:hover {
-  transform: translateX(0.32rem) scale(1) !important;
+  transform: translateX(0.32rem) !important;
 }
 .navbar__dropdown-container {
   transition: height 0.05s ease;
@@ -370,16 +370,16 @@ body {
   height: 100%;
   opacity: 1;
 }
-.navbar:hover .navbar__content {
+.navbar.navbar--active .navbar__content {
   visibility: visible;
   opacity: 1;
   width: 100%;
   transform: translateX(0%);
 }
-.navbar:hover .navbar__button {
+.navbar.navbar--active .navbar__button {
   border-radius: 16rem 0 0 16rem;
 }
-.navbar:hover .navbar__item:not(.navbar__dropdown .navbar__item) {
+.navbar.navbar--active .navbar__item:not(.navbar.navbar--active__dropdown .navbar.navbar--active__item) {
   padding: 2.25rem 3.2rem;
 }
 
