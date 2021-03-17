@@ -284,7 +284,6 @@ body {
 }
 .navbar__item {
   position: relative;
-  overflow: hidden;
   background-color: #fbeeac;
   padding: 2.2rem 0;
   cursor: pointer;
@@ -310,18 +309,6 @@ body {
 .navbar__item:last-child {
   border-radius: 0 10rem 10rem 0;
 }
-.navbar__item::before {
-  content: "";
-  position: absolute;
-  bottom: 0.5rem;
-  left: 0%;
-  top: 0%;
-  transform: translate(0%, -100%);
-  width: 90%;
-  height: 50%;
-  background-color: #8ac4d0;
-  z-index: -19;
-}
 .navbar__link:link, .navbar__link:visited {
   height: 100%;
   width: 100%;
@@ -337,6 +324,23 @@ body {
   display: flex;
   align-items: center;
   transition: border-radius 0.05s ease;
+}
+.navbar__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  width: 100%;
+  list-style: none;
+}
+.navbar__dropdown .navbar__item {
+  margin-left: 0;
+  margin-top: 0.32rem;
+}
+.navbar__dropdown .navbar__item:last-child {
+  border-radius: 0 0 16rem 16rem;
+}
+.navbar__dropdown .navbar__item:hover {
+  transform: translateX(0.32rem);
 }
 .navbar:hover .navbar__content {
   visibility: visible;

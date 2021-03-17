@@ -2,9 +2,12 @@ $animation-duration: .5s;
 $animation-easing: ease;
 $animation-navbar: $animation-duration $animation-easing;
 
+$navbar__item_border-radius: $default-font-size * 10;
+$navbar__item_divider: $default-font-size * .2;
+
 .navbar{
   border-left: .2rem solid $color-primary-4;
-  border-radius: $default-font-size * 10 0 0 $default-font-size * 10;
+  border-radius: $navbar__item_border-radius 0 0 $navbar__item_border-radius;
   overflow: hidden;
   position: fixed;
   top: $default-font-size * 2;
@@ -46,7 +49,7 @@ $animation-navbar: $animation-duration $animation-easing;
 
   &__item {
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
     background-color: $color-primary-4;
     padding: $default-font-size * 1.375 0;
     cursor: pointer;
@@ -62,35 +65,35 @@ $animation-navbar: $animation-duration $animation-easing;
     }
 
     &:hover {
-      transform: translateY(-$default-font-size * .2)
+      transform: translateY(-$navbar__item_divider)
     }
     &:hover .triangle-down {
       transform: rotate(90deg);
     }
 
     &:not(:last-child){
-      margin-right: $default-font-size * .2;
+      margin-right: $navbar__item_divider;
     }
     &:first-child{
-      margin-left: $default-font-size * .2;
+      margin-left: $navbar__item_divider;
     }
     &:last-child {
       border-radius: 0 10rem 10rem 0;
     }
 
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: .5rem;
-      left: 0%;
-      top: 0%;
-      // border-radius: 0 0 5rem 5rem;
-      transform: translate(0%, -100%);
-      width: 90%;
-      height: 50%;
-      background-color: $color-primary-2;
-      z-index: -19;
-    }
+      // &::before {
+      //   content: '';
+      //   position: absolute;
+      //   bottom: .5rem;
+      //   left: 0%;
+      //   top: 0%;
+      //   // border-radius: 0 0 5rem 5rem;
+      //   transform: translate(0%, -100%);
+      //   width: 90%;
+      //   height: 50%;
+      //   background-color: $color-primary-2;
+      //   z-index: -19;
+      // }
   }
 
   &__link:link, &__link:visited {
@@ -107,10 +110,35 @@ $animation-navbar: $animation-duration $animation-easing;
 
   &__button {
     background-color: $color-primary-4;
-    border-radius: $default-font-size * 10;
+    border-radius: $navbar__item_border-radius;
     display: flex;
     align-items: center;
     transition: border-radius $animation-duration * .1 $animation-easing;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    width: 100%;
+    list-style: none;
+
+    & .navbar__item {
+      margin-left: 0;
+      margin-top: $navbar__item_divider;
+
+      &:last-child {
+        border-radius: 0 0 $navbar__item_border-radius $navbar__item_border-radius;
+      }
+
+      &:hover {
+        transform: translateX($navbar__item_divider)
+      }
+    }
+  }
+
+  &__dropdown-container:hover  {
+
   }
 
   &:hover &__content {

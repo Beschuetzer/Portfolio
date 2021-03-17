@@ -22,9 +22,20 @@ class Nav extends React.Component {
             <li className="navbar__item">
               <Link className="navbar__link" to="/about">About</Link>
             </li>
-            <li className="navbar__item flex align-center justify-content-center">
+            <li className="navbar__item navbar_dropdown-container flex align-center justify-content-center">
               <Link className="navbar__link" to="/projects">Projects</Link>
               <div className="triangle-down"></div>
+              <ul className="navbar__dropdown">
+                <li className="navbar__item">
+                  <Link className="navbar__link" to="/projects/1">Bridge</Link>
+                </li>
+                <li className="navbar__item">
+                  <Link className="navbar__link" to="/projects/2">Python</Link>
+                </li>
+                <li className="navbar__item">
+                  <Link className="navbar__link" to="/projects/3">C#</Link>
+                </li>
+              </ul>
             </li>
             <li data-a className="navbar__item">
               <Link className="navbar__link" to="/resume">Resume</Link>
