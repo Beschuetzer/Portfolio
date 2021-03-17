@@ -12,6 +12,7 @@ class Nav extends React.Component {
     this.navRef = React.createRef();
     this.navbarActiveClassname = 'navbar--active';
     this.navbarMenuClassname = 'navbar__menu';
+    this.animationDuration = 500;
   }
 
   componentDidMount() {
@@ -23,17 +24,31 @@ class Nav extends React.Component {
     const isNavClick = e.target?.classList?.contains(this.navbarActiveClassname) ? true : false;
     if (!isNavClick) {
       this.navRef?.current?.classList?.remove(this.navbarActiveClassname);
+      this.navRef?.current?.classList?.add('overflow--hidden');
     }
   }
 
   onNavClick = (e) => {
     e.stopPropagation();
+    let waitDuration =  this.navRef?.current?.classList?.contains('overflow--hidden') ? 500 : 0;
+    // const isClosing = 
+
+    // if (isClosing) {
+
+    // }
+    // else {
+    //   waitDuration = this.animationDuration;
+    // }
+
     this.navRef?.current?.classList?.toggle(this.navbarActiveClassname);
+    setTimeout(() => {
+      this.navRef?.current?.classList?.toggle('overflow--hidden');
+    }, waitDuration);
   }
 
   render() {
     return ReactDOM.createPortal(
-      <nav ref={this.navRef} className="navbar" onClick={this.onNavClick}>
+      <nav ref={this.navRef} className="navbar overflow--hidden" onClick={this.onNavClick}>
         <div className="navbar__button" to="/">
           {/* <img className="navbar__logo" src="../../img/logo.jpg" alt="Logo"/> */}
           <div className="navbar__menu">

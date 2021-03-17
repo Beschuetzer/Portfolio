@@ -11,7 +11,6 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 .navbar{
   z-index: 10000;
   border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
-  overflow: hidden;
   position: fixed;
   top: $default-font-size * 2;
   left: $default-font-size * 2;
@@ -224,5 +223,7 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
     }
   }
 }
+
+
 
 
