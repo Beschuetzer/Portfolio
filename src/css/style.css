@@ -280,12 +280,14 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.navbar__menu-bar, .navbar__menu-bar::before, .navbar__menu-bar::after {
+  transition: transform 0.25s ease, width 0.25s ease;
+}
 .navbar__menu-bar::before, .navbar__menu-bar::after {
   content: "";
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
-  transition: transform 0.25s ease;
 }
 .navbar__menu-bar::before {
   transform: translate(-50%, calc(-.8rem - 50%));
@@ -300,10 +302,13 @@ body {
   transform: translate(-50%, calc(+1.2rem + 50%));
 }
 .navbar.navbar--active .navbar__menu-bar::before {
-  transform: translate(-50%, calc(-1.2rem - 50%)) rotate(45deg);
+  transform: rotate(105deg) translate(0.2rem, 2.2rem);
+}
+.navbar.navbar--active .navbar__menu-bar {
+  width: 20%;
 }
 .navbar.navbar--active .navbar__menu-bar::after {
-  transform: translate(-50%, calc(+1.2rem + 50%)) rotate(45deg);
+  transform: rotate(-105deg) translate(0rem, -0.8rem);
 }
 .navbar__content {
   visibility: hidden;

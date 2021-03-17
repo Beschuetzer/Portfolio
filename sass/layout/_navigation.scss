@@ -39,13 +39,18 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
       left: 50%;
       transform: translate(-50%, -50%);
 
+      &, &::before, &::after {
+        transition: 
+          transform $animation-duration * .5 $animation-easing,
+          width $animation-duration * .5 $animation-easing,
+        ;
+      }
+
       &::before, &::after {
         content: '';
         position: absolute;
         transform: translate(-50%, -50%);
         left: 50%;
-        transition: transform $animation-duration * .5 $animation-easing;
-
       }
 
       &::before {
@@ -67,10 +72,27 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 
     //Change menu bars to 'A' on click
     .navbar.navbar--active &-bar::before {
-      transform: translate(-50%, calc(-1.2rem - 50%)) rotate(45deg);
+      transform: 
+        rotate(105deg) 
+        // translate(calc(+1.2rem - 50%), calc(-1.2rem - 50%)) 
+        // translate(calc(+1.8rem - 50%), calc(-1rem + 50%))
+        // translate(calc(+2.2rem - 50%), calc(2rem + 50%))
+        // translate($default-font-size * .5, $default-font-size * 2)
+        translate($default-font-size * .125, $default-font-size * 1.375)
+      ;
+    }
+    .navbar.navbar--active &-bar {
+      width:  20%;
     }
     .navbar.navbar--active &-bar::after {
-      transform: translate(-50%, calc(+1.2rem + 50%)) rotate(45deg);
+      transform: 
+        rotate(-105deg) 
+        // translate(calc(+1.8rem - 50%), calc(-1rem + 50%))
+        translate(0rem, -$default-font-size * .5)
+      ;
+    }
+    .navbar.navbar--active &-bar::after,  .navbar.navbar--active &-bar::before {
+      // width: $default-font-size * 2.85;
     }
   }
 
@@ -93,7 +115,6 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 
   &__item {
     position: relative;
-    // overflow: hidden;
     background-color: $color-primary-4;
     padding: $default-font-size * $paddingFactor 0;
     cursor: pointer;
