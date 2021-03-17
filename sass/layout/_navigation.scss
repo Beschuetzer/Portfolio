@@ -132,10 +132,17 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
       transform $animation-duration $animation-easing;
 
     & .navbar__item {
+      opacity: 0;
+      padding: 0;
+      height: 0;
       border: none;
       border-top: $navbar__item-divider;
       transform-origin: top;
-      // transform: scale(0);
+      transition: 
+        height $animation-duration $animation-easing,
+        padding $animation-duration $animation-easing,
+        opacity $animation-duration $animation-easing,
+      ;
 
       &:last-child {
         border-radius: 0 0 $navbar__item-border-radius $navbar__item-border-radius;
@@ -167,7 +174,10 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
   }
 
   &__dropdown-container:hover &__dropdown &__item {
-    // transform: scale(1);
+    padding: $default-font-size * 1.375 $default-font-size * 2;
+    height: 100%;
+    opacity: 1;
+
   }
 
   &:hover &__content {
@@ -179,7 +189,7 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
   &:hover &__button {
     border-radius: 16rem 0 0 16rem;
   }
-  &:hover &__item {
+  &:hover &__item:not(&__dropdown &__item) {
     padding: $default-font-size * 1.375 $default-font-size * 2;
   }
 }

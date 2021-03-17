@@ -337,9 +337,13 @@ body {
   transition: transform 0.5s ease;
 }
 .navbar__dropdown .navbar__item {
+  opacity: 0;
+  padding: 0;
+  height: 0;
   border: none;
   border-top: 0.32rem solid #28527a;
   transform-origin: top;
+  transition: height 0.5s ease, padding 0.5s ease, opacity 0.5s ease;
 }
 .navbar__dropdown .navbar__item:last-child {
   border-radius: 0 0 16rem 16rem;
@@ -359,6 +363,11 @@ body {
   transform: translateY(0%);
   height: 100%;
 }
+.navbar__dropdown-container:hover .navbar__dropdown .navbar__item {
+  padding: 2.2rem 3.2rem;
+  height: 100%;
+  opacity: 1;
+}
 .navbar:hover .navbar__content {
   visibility: visible;
   opacity: 1;
@@ -368,7 +377,7 @@ body {
 .navbar:hover .navbar__button {
   border-radius: 16rem 0 0 16rem;
 }
-.navbar:hover .navbar__item {
+.navbar:hover .navbar__item:not(.navbar__dropdown .navbar__item) {
   padding: 2.2rem 3.2rem;
 }
 
