@@ -3,12 +3,8 @@ $animation-easing: ease;
 $animation-navbar: $animation-duration $animation-easing;
 
 .navbar{
-  width: $default-font-size * 40;
+  border-radius: $default-font-size * 10 0 0 $default-font-size * 10;
   overflow: hidden;
-  // grid-column: 1 / -1;
-  border: $default-font-size * .2 solid transparent;
-  border-radius: $default-font-size * 10;
-
   position: fixed;
   top: $default-font-size * 2;
   left: $default-font-size * 2;
@@ -16,9 +12,6 @@ $animation-navbar: $animation-duration $animation-easing;
   text-align: center;
   display: flex;
   align-items: center;
-
-  // transition: width 5s
-  // ;
 
   &__logo {
     width: $navbar__logo-width;
@@ -37,7 +30,6 @@ $animation-navbar: $animation-duration $animation-easing;
   }
 
   &__list {
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,18 +42,19 @@ $animation-navbar: $animation-duration $animation-easing;
     cursor: pointer;
     height: 100%;
     width: 100%;
-    // transform: translateX(-60rem);
     transition: 
-      transform $animation-duration * .5 $animation-easing,
+      transform $animation-duration * .25 $animation-easing,
       padding $animation-duration * 1 $animation-easing,
     ;
+    &:not(:first-child):hover {
+      transform: translateY(-$default-font-size * .2)
 
-    &:hover {
-      // transform: translate(0, -$default-font-size * .2);
     }
-
     &:not(:last-child){
       margin-right: $default-font-size * .2;
+    }
+    &:last-child {
+      border-radius: 0 10rem 10rem 0;
     }
   }
 
@@ -84,11 +77,6 @@ $animation-navbar: $animation-duration $animation-easing;
     transition: border-radius .5s $animation-easing;
   }
 
-  &:hover {
-    border: $default-font-size * .2 solid $color-primary-3;
-    width: auto;
-  }
-
   &:hover &__content {
     visibility: visible;
     opacity: 1;
@@ -100,6 +88,5 @@ $animation-navbar: $animation-duration $animation-easing;
   }
   &:hover &__item {
     padding: $default-font-size * 1.375 $default-font-size * 2;
-    // transform: translate(0, 0);
   }
 }
