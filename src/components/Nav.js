@@ -25,7 +25,7 @@ class Nav extends React.Component {
             <li className="navbar__item">
               <Link className="navbar__link" to="/projects">Projects</Link>
             </li>
-            <li className="navbar__item">
+            <li data-a className="navbar__item">
               <Link className="navbar__link" to="/resume">Resume</Link>
             </li>
             <li className="navbar__item">

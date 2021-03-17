@@ -262,6 +262,9 @@ body {
 .navbar__item:hover {
   transform: translateY(-0.32rem);
 }
+.navbar__item[data-a] {
+  background-color: green;
+}
 .navbar__link:link, .navbar__link:visited {
   height: 100%;
   width: 100%;
@@ -295,7 +298,7 @@ body {
   width: 100%;
 }
 .navbar:hover .navbar__item {
-  padding: 0.8rem 3.2rem;
+  padding: 2.2rem 3.2rem;
 }
 
 .home {

@@ -46,6 +46,9 @@
     &:hover {
       transform: translateY(-$default-font-size * .2);
     }
+    &[data-a] {
+      background-color: green;
+    }
   }
 
   &__link:link, &__link:visited {
@@ -89,6 +92,6 @@
     width: 100%
   }
   &:hover &__item {
-    padding: $default-font-size * .5 $default-font-size * 2;
+    padding: $default-font-size * 1.375 $default-font-size * 2;
   }
 }
