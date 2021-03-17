@@ -438,10 +438,13 @@ body {
   border-radius: 16rem 1.6rem 1.6rem 16rem;
 }
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::before {
-  transform: rotate(105deg) translate(-0.9rem, 2.2rem);
+  transform: rotate(135deg) translate(1.1rem, 1.1rem);
 }
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::after {
-  transform: rotate(-105deg) translate(-1.2rem, -0.8rem);
+  transform: rotate(-135deg) translate(1.1rem, -1.1rem);
+}
+.navbar.navbar--active .navbar__button:hover .navbar__menu-bar {
+  width: 0;
 }
 .navbar.navbar--active .navbar__item:not(.navbar.navbar--active__dropdown .navbar.navbar--active__item) {
   padding: 2.25rem 3.2rem;
