@@ -7,12 +7,22 @@ class NavItem extends React.Component {
     linkClassName: "navbar__link",
   } 
   render() {
-    const { onMouseEnter, to, label, children, className } = this.props;
+    const { onMouseEnter, onMouseLeave, onClick, to, label, children, className } = this.props;
     const classNamesToUse = className ? className : this.defaults.liClassName;
 
     return (
-      <li onMouseEnter={onMouseEnter} className={classNamesToUse}>
-        <Link className={this.defaults.linkClassName} to={to}>{label}</Link>
+      <li 
+        onMouseEnter={onMouseEnter} 
+        onMouseLeave={onMouseLeave} 
+        onClick={onClick} 
+        className={classNamesToUse}
+      >
+        <Link 
+          className={this.defaults.linkClassName} 
+          to={to}
+        >
+          {label}
+        </Link>
         {children}
       </li>
     );
