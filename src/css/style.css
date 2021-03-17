@@ -300,10 +300,10 @@ body {
   transform: rotate(90deg);
 }
 .navbar__item:not(:last-child) {
-  margin-right: 0.32rem;
+  border-right: 0.32rem solid #28527a;
 }
 .navbar__item:first-child {
-  margin-left: 0.32rem;
+  border-left: 0.32rem solid #28527a;
 }
 .navbar__item:last-child {
   border-radius: 0 10rem 10rem 0;
@@ -336,8 +336,8 @@ body {
   transition: transform 0.5s ease;
 }
 .navbar__dropdown .navbar__item {
-  margin-left: 0;
-  margin-top: 0.32rem;
+  border: none;
+  border-top: 0.32rem solid #28527a;
 }
 .navbar__dropdown .navbar__item:last-child {
   border-radius: 0 0 16rem 16rem;
@@ -345,7 +345,7 @@ body {
 .navbar__dropdown .navbar__item:hover {
   transform: translateX(0.32rem);
 }
-.navbar__dropdown-container:hover .navbar__dropdown {
+.navbar__dropdown-container:hover .navbar__dropdown, .navbar__dropdown .navbar__item:hover .navbar__dropdown {
   visibility: visible;
   opacity: 1;
   transform: translateY(0%);

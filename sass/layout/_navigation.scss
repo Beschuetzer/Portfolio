@@ -2,12 +2,13 @@ $animation-duration: .5s;
 $animation-easing: ease;
 $animation-navbar: $animation-duration $animation-easing;
 
-$navbar__item_border-radius: $default-font-size * 10;
-$navbar__item_divider: $default-font-size * .2;
+$navbar__item-border-radius: $default-font-size * 10;
+$navbar__item-divided-width: $default-font-size * .2;
+$navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 
 .navbar{
   // border-left: .2rem solid $color-primary-4;
-  border-radius: $navbar__item_border-radius 0 0 $navbar__item_border-radius;
+  border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
   overflow: hidden;
   position: fixed;
   top: $default-font-size * 2;
@@ -65,17 +66,17 @@ $navbar__item_divider: $default-font-size * .2;
     }
 
     &:hover {
-      transform: translateY(-$navbar__item_divider)
+      transform: translateY(-$navbar__item-divided-width)
     }
     &:hover .triangle-down {
       transform: rotate(90deg);
     }
 
     &:not(:last-child){
-      margin-right: $navbar__item_divider;
+      border-right: $navbar__item-divider;
     }
     &:first-child{
-      margin-left: $navbar__item_divider;
+      border-left: $navbar__item-divider;
     }
     &:last-child {
       border-radius: 0 10rem 10rem 0;
@@ -110,7 +111,7 @@ $navbar__item_divider: $default-font-size * .2;
 
   &__button {
     background-color: $color-primary-4;
-    border-radius: $navbar__item_border-radius;
+    border-radius: $navbar__item-border-radius;
     display: flex;
     align-items: center;
     transition: border-radius $animation-duration * .1 $animation-easing;
@@ -130,15 +131,15 @@ $navbar__item_divider: $default-font-size * .2;
     transition: transform $animation-duration $animation-easing;
 
     & .navbar__item {
-      margin-left: 0;
-      margin-top: $navbar__item_divider;
+      border: none;
+      border-top: $navbar__item-divider;
 
       &:last-child {
-        border-radius: 0 0 $navbar__item_border-radius $navbar__item_border-radius;
+        border-radius: 0 0 $navbar__item-border-radius $navbar__item-border-radius;
       }
 
       &:hover {
-        transform: translateX($navbar__item_divider)
+        transform: translateX($navbar__item-divided-width)
       }
     }
   }
@@ -151,12 +152,11 @@ $navbar__item_divider: $default-font-size * .2;
     // overflow: visible;
   }
 
-  &__dropdown-container:hover &__dropdown {
+  &__dropdown-container:hover &__dropdown, &__dropdown &__item:hover &__dropdown {
     visibility: visible;
     opacity: 1;
     transform: translateY(0%);
     height: 100%;
-
   }
 
   &:hover &__content {
