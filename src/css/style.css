@@ -46,7 +46,7 @@ html {
 body {
   font-weight: 400;
   line-height: 1.5;
-  font-family: "Roboto", sans-serif;
+  font-family: "Cinzel", sans-serif;
   color: #fbeeac;
   background-image: linear-gradient(to right, #28527a, rgba(40, 82, 122, 0.75));
 }
@@ -342,8 +342,9 @@ body {
 .navbar__item .triangle-down {
   transition: transform 0.25s ease;
 }
-.navbar__item:hover {
+.navbar__item:not(.navbar__dropdown-container):hover {
   transform: translateY(-0.32rem);
+  box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.2);
 }
 .navbar__item:hover .triangle-down {
   transform: rotate(90deg);
@@ -406,6 +407,7 @@ body {
 }
 .navbar__dropdown .navbar__item:hover {
   transform: translateX(0.32rem) !important;
+  box-shadow: 0.8rem 0 3.2rem rgba(0, 0, 0, 0.2);
 }
 .navbar__dropdown-container {
   transition: height 0.05s ease;
@@ -440,6 +442,10 @@ body {
 .home {
   height: 100vh;
   width: 100vw;
+  background-image: linear-gradient(to right, rgba(40, 82, 122, 0.95) 0%, rgba(40, 82, 122, 0.75) 50%, rgba(40, 82, 122, 0.15) 50%), url("imgs/background-1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: color-burn;
 }
 .home__portrait {
   position: absolute;

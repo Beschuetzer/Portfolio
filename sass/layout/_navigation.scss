@@ -8,6 +8,8 @@ $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divided-width: $default-font-size * .2;
 $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 
+$navbar-box-shadow-color: rgba($color-black, .2);
+
 .navbar{
   z-index: 10000;
   border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
@@ -141,8 +143,9 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
       transition: transform $animation-duration * .5 $animation-easing;
     }
 
-    &:hover {
-      transform: translateY(-$navbar__item-divided-width)
+    &:not(.navbar__dropdown-container):hover {
+      transform: translateY(-$navbar__item-divided-width);
+      box-shadow: 0 $default-font-size * .5 $default-font-size * 2 $navbar-box-shadow-color;
     }
     &:hover .triangle-down {
       transform: rotate(90deg);
@@ -231,6 +234,7 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 
       &:hover {
         transform: translateX($navbar__item-divided-width) !important;
+        box-shadow: $default-font-size * .5 0 $default-font-size * 2 $navbar-box-shadow-color;
       }
     }
   }
