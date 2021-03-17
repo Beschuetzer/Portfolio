@@ -56,10 +56,17 @@ $animation-navbar: $animation-duration $animation-easing;
       transform $animation-duration * .25 $animation-easing,
       padding $animation-duration * 1 $animation-easing,
     ;
+
+    & .triangle-down {
+      transition: transform $animation-duration * .5 $animation-easing;
+    }
+
     &:hover {
       transform: translateY(-$default-font-size * .2)
     }
-  
+    &:hover .triangle-down {
+      transform: rotate(90deg);
+    }
 
     &:not(:last-child){
       margin-right: $default-font-size * .2;
