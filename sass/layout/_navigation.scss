@@ -1,7 +1,9 @@
-
+$animation-duration: .5s;
+$animation-easing: ease;
+$animation-navbar: $animation-duration $animation-easing;
 
 .navbar{
-  width: $navbar__logo-width * 1.2;
+  width: $default-font-size * 40;
   overflow: hidden;
   // grid-column: 1 / -1;
   border: $default-font-size * .2 solid transparent;
@@ -15,8 +17,8 @@
   display: flex;
   align-items: center;
 
-  transition: width 5s
-  ;
+  // transition: width 5s
+  // ;
 
   &__logo {
     width: $navbar__logo-width;
@@ -24,8 +26,18 @@
     border: .2rem solid $color-primary-4;
     z-index: 10000;
   }
+  &__content {
+    visibility: hidden;
+    width: 100%;
+    transform: translateX(-115%);
+    transition: 
+                visibility $animation-navbar,
+                transform $animation-navbar
+    ;
+  }
 
   &__list {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,18 +46,22 @@
 
   &__item {
     background-color: $color-primary-4;
-    padding: 0;
+    padding: $default-font-size * 1.375 0;
     cursor: pointer;
     height: 100%;
-    width: 0%;
+    width: 100%;
+    // transform: translateX(-60rem);
     transition: 
-      transform .2s ease,
-      padding .2s .2s ease,
-      width 2s ease,
+      transform $animation-duration * .5 $animation-easing,
+      padding $animation-duration * 1 $animation-easing,
     ;
 
     &:hover {
-      transform: translateY(-$default-font-size * .2);
+      // transform: translate(0, -$default-font-size * .2);
+    }
+
+    &:not(:last-child){
+      margin-right: $default-font-size * .2;
     }
   }
 
@@ -61,21 +77,13 @@
   }
 
   &__button {
-    width: auto;
+    background-color: $color-primary-4;
+    border-radius: $default-font-size * 10;
     display: flex;
     align-items: center;
+    transition: border-radius .5s $animation-easing;
   }
 
-  &__content {
-    visibility: hidden;
-    opacity: 0;
-    width: 0%;
-    transition: opacity .4s cubic-bezier(1,0,0,1),
-                visibility .4s cubic-bezier(1,0,0,1),
-                width .4s cubic-bezier(1,0,0,1)
-    ;
-  }
-  
   &:hover {
     border: $default-font-size * .2 solid $color-primary-3;
     width: auto;
@@ -84,12 +92,14 @@
   &:hover &__content {
     visibility: visible;
     opacity: 1;
-    width: 100%
+    width: 100%;
+    transform: translateX(0%);
   }
-  &:hover &__item, &:hover &__link {
-    width: 100%
+  &:hover &__button {
+    border-radius: 0;
   }
   &:hover &__item {
     padding: $default-font-size * 1.375 $default-font-size * 2;
+    // transform: translate(0, 0);
   }
 }

@@ -228,7 +228,7 @@ body {
 }
 
 .navbar {
-  width: 9.6rem;
+  width: 64rem;
   overflow: hidden;
   border: 0.32rem solid transparent;
   border-radius: 16rem;
@@ -239,13 +239,18 @@ body {
   text-align: center;
   display: flex;
   align-items: center;
-  transition: width 5s;
 }
 .navbar__logo {
   width: 8rem;
   border-radius: 50%;
   border: 0.2rem solid #fbeeac;
   z-index: 10000;
+}
+.navbar__content {
+  visibility: hidden;
+  width: 100%;
+  transform: translateX(-115%);
+  transition: visibility 0.5s ease, transform 0.5s ease;
 }
 .navbar__list {
   display: flex;
@@ -255,14 +260,14 @@ body {
 }
 .navbar__item {
   background-color: #fbeeac;
-  padding: 0;
+  padding: 2.2rem 0;
   cursor: pointer;
   height: 100%;
-  width: 0%;
-  transition: transform 0.2s ease, padding 0.2s 0.2s ease, width 2s ease;
+  width: 100%;
+  transition: transform 0.25s ease, padding 0.5s ease;
 }
-.navbar__item:hover {
-  transform: translateY(-0.32rem);
+.navbar__item:not(:last-child) {
+  margin-right: 0.32rem;
 }
 .navbar__link:link, .navbar__link:visited {
   height: 100%;
@@ -274,15 +279,11 @@ body {
   align-items: center;
 }
 .navbar__button {
-  width: auto;
+  background-color: #fbeeac;
+  border-radius: 16rem;
   display: flex;
   align-items: center;
-}
-.navbar__content {
-  visibility: hidden;
-  opacity: 0;
-  width: 0%;
-  transition: opacity 0.4s cubic-bezier(1, 0, 0, 1), visibility 0.4s cubic-bezier(1, 0, 0, 1), width 0.4s cubic-bezier(1, 0, 0, 1);
+  transition: border-radius 0.5s ease;
 }
 .navbar:hover {
   border: 0.32rem solid #f4d160;
@@ -292,9 +293,10 @@ body {
   visibility: visible;
   opacity: 1;
   width: 100%;
+  transform: translateX(0%);
 }
-.navbar:hover .navbar__item, .navbar:hover .navbar__link {
-  width: 100%;
+.navbar:hover .navbar__button {
+  border-radius: 0;
 }
 .navbar:hover .navbar__item {
   padding: 2.2rem 3.2rem;

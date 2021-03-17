@@ -15,9 +15,9 @@ import "../css/style.css";
 const App = () => {
 	return (
         <Router history={history}>
-            <header>
+            {/* <header> */}
                 <Nav/>
-            </header>
+            {/* </header> */}
             <main>
                 <Switch>
                     <Route path="/" exact component={Home} />
