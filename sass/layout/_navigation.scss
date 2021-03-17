@@ -3,6 +3,7 @@ $animation-easing: ease;
 $animation-navbar: $animation-duration $animation-easing;
 
 .navbar{
+  border-left: .2rem solid $color-primary-4;
   border-radius: $default-font-size * 10 0 0 $default-font-size * 10;
   overflow: hidden;
   position: fixed;
@@ -12,6 +13,13 @@ $animation-navbar: $animation-duration $animation-easing;
   text-align: center;
   display: flex;
   align-items: center;
+
+  // transition: all .1s 1s ease;
+
+  &:hover {
+    overflow: visible;
+
+  }
 
   &__logo {
     width: $navbar__logo-width;
@@ -37,6 +45,7 @@ $animation-navbar: $animation-duration $animation-easing;
   }
 
   &__item {
+    position: relative;
     overflow: hidden;
     background-color: $color-primary-4;
     padding: $default-font-size * 1.375 0;
@@ -66,7 +75,7 @@ $animation-navbar: $animation-duration $animation-easing;
       top: 0%;
       // border-radius: 0 0 5rem 5rem;
       transform: translate(0%, -100%);
-      width: 120%;
+      width: 90%;
       height: 50%;
       background-color: $color-primary-2;
       z-index: -19;

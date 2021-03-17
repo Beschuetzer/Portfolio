@@ -228,6 +228,7 @@ body {
 }
 
 .navbar {
+  border-left: 0.2rem solid #fbeeac;
   border-radius: 16rem 0 0 16rem;
   overflow: hidden;
   position: fixed;
@@ -237,6 +238,9 @@ body {
   text-align: center;
   display: flex;
   align-items: center;
+}
+.navbar:hover {
+  overflow: visible;
 }
 .navbar__logo {
   width: 8rem;
@@ -257,6 +261,7 @@ body {
   list-style: none;
 }
 .navbar__item {
+  position: relative;
   overflow: hidden;
   background-color: #fbeeac;
   padding: 2.2rem 0;
@@ -281,7 +286,7 @@ body {
   left: 0%;
   top: 0%;
   transform: translate(0%, -100%);
-  width: 120%;
+  width: 90%;
   height: 50%;
   background-color: #8ac4d0;
   z-index: -19;
