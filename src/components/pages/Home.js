@@ -13,7 +13,7 @@ class Home extends React.Component {
     return (
       <section className="home">
         <div className="home__portrait">
-          <img src='../../img/self-2.png' alt="Adam Major"/>
+          {/* <img src='../../img/self-2.png' alt="Adam Major"/> */}
         </div>
       </section>
     );

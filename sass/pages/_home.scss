@@ -4,27 +4,33 @@
   
   background-image: 
     linear-gradient(to right,
-      rgba($color-primary-1, .95) 0%,
-      rgba($color-primary-1, .75) 50%,
-      rgba($color-primary-1, .15) 50%,
+      rgba($color-primary-2, .75) 0%,
+      rgba($color-primary-2, .75) 50%,
+      rgba($color-primary-2, .75) 50%,
     ),
-    url('imgs/background-1.jpg');
+    url('imgs/background-2.jpg');
   background-position: center;
   background-size: cover;
   background-blend-mode: color-burn;
 
   &__portrait {
     position: absolute;
-    top: 50%;
+    bottom: 0%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50%;
-    object-fit: cover;
-    
-    & img {
-      width: 100%;
-      filter: saturate(0);
-    }
+ 
+    background-image: 
+      linear-gradient(to right,
+      rgba($color-primary-1, .75) 0%,
+      rgba($color-primary-1, .75) 50%,
+      rgba($color-primary-1, .15) 50%,
+    ),
+    url('imgs/background-1.jpg');
+    // & img {
+    //   width: 100%;
+    //   filter: saturate(0);
+    // }
   }
   
 }

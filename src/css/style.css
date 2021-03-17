@@ -330,6 +330,9 @@ body {
 .navbar__list .navbar__item:first-child {
   border-radius: 0.8rem 0 0 0.8rem;
 }
+.navbar__list .navbar__item:nth-child(n+1) {
+  margin-left: 0.32rem;
+}
 .navbar__item {
   position: relative;
   background-color: #fbeeac;
@@ -350,10 +353,10 @@ body {
   transform: rotate(90deg);
 }
 .navbar__item:not(:last-child) {
-  border-right: 0.32rem solid #28527a;
+  margin-right: 0.32rem solid #28527a;
 }
 .navbar__item:first-child {
-  border-left: 0.32rem solid #28527a;
+  margin-left: 0.32rem solid #28527a;
 }
 .navbar__item:last-child {
   border-radius: 0 10rem 10rem 0;
@@ -386,8 +389,10 @@ body {
   top: 100%;
   left: 0%;
   width: 100%;
-  height: 0;
+  height: auto;
   list-style: none;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.5s ease;
 }
 .navbar__dropdown .navbar__item {
@@ -395,7 +400,7 @@ body {
   padding: 0;
   height: 0;
   border: none;
-  border-top: 0.32rem solid #28527a;
+  margin-top: 0.32rem;
   transform-origin: top;
   transition: height 0.5s ease, padding 0.5s ease, opacity 0.5s ease;
 }
@@ -419,7 +424,6 @@ body {
   visibility: visible;
   opacity: 1;
   transform: translateY(0%);
-  height: 100%;
 }
 .navbar__dropdown-container:hover .navbar__dropdown .navbar__item {
   padding: 2.25rem 3.2rem;
@@ -442,22 +446,18 @@ body {
 .home {
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(to right, rgba(40, 82, 122, 0.95) 0%, rgba(40, 82, 122, 0.75) 50%, rgba(40, 82, 122, 0.15) 50%), url("imgs/background-1.jpg");
+  background-image: linear-gradient(to right, rgba(138, 196, 208, 0.75) 0%, rgba(138, 196, 208, 0.75) 50%, rgba(138, 196, 208, 0.75) 50%), url("imgs/background-2.jpg");
   background-position: center;
   background-size: cover;
   background-blend-mode: color-burn;
 }
 .home__portrait {
   position: absolute;
-  top: 50%;
+  bottom: 0%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  object-fit: cover;
-}
-.home__portrait img {
-  width: 100%;
-  filter: saturate(0);
+  background-image: linear-gradient(to right, rgba(40, 82, 122, 0.75) 0%, rgba(40, 82, 122, 0.75) 50%, rgba(40, 82, 122, 0.15) 50%), url("imgs/background-1.jpg");
 }
 
 /*# sourceMappingURL=style.css.map */
