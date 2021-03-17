@@ -31,9 +31,14 @@ html {
     font-size: 37.5%;
   }
 }
-@media only screen and (max-width: 25em) {
+@media only screen and (max-width: 30.625em) {
   html {
-    font-size: 1.5038vmin;
+    font-size: 31.25%;
+  }
+}
+@media only screen and (max-width: 26.25em) {
+  html {
+    font-size: 1.18vmin;
   }
 }
 
