@@ -4,6 +4,11 @@ $animation-duration: .5s;
 $animation-easing: ease;
 $animation-navbar: $animation-duration $animation-easing;
 
+$navbar__button-bar-before-rotation: rotate(105deg);
+$navbar__button-bar-before-transform: $navbar__button-bar-before-rotation translate($default-font-size * .125, $default-font-size * 1.375);
+$navbar__button-bar-after-rotation: rotate(-105deg);
+$navbar__button-bar-after-transform:  $navbar__button-bar-after-rotation translate(0rem, -$default-font-size * .5);
+
 $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divider-width: $default-font-size * .2;
 $navbar__item-divider: $navbar__item-divider-width solid $color-primary-1;
@@ -81,26 +86,17 @@ $navbar-box-shadow-color: rgba($color-black, .2);
       transform: translate(-50%, calc(+1.2rem + 50%));
     }
 
+
+
     //Change menu bars to 'A' on click
     .navbar.navbar--active &-bar::before {
-      transform: 
-        rotate(105deg) 
-        // translate(calc(+1.2rem - 50%), calc(-1.2rem - 50%)) 
-        // translate(calc(+1.8rem - 50%), calc(-1rem + 50%))
-        // translate(calc(+2.2rem - 50%), calc(2rem + 50%))
-        // translate($default-font-size * .5, $default-font-size * 2)
-        translate($default-font-size * .125, $default-font-size * 1.375)
-      ;
+      transform: $navbar__button-bar-before-transform;
     }
     .navbar.navbar--active &-bar {
       width:  20%;
     }
     .navbar.navbar--active &-bar::after {
-      transform: 
-        rotate(-105deg) 
-        // translate(calc(+1.8rem - 50%), calc(-1rem + 50%))
-        translate(0rem, -$default-font-size * .5)
-      ;
+      transform: $navbar__button-bar-after-transform;
     }
     .navbar.navbar--active &-bar::after,  .navbar.navbar--active &-bar::before {
       // width: $default-font-size * 2.85;
@@ -256,19 +252,21 @@ $navbar-box-shadow-color: rgba($color-black, .2);
     }
   }
 
+  //Showing dropdown when dropdown-container or any dropdown item is hovered
   &__dropdown-container:hover &__dropdown, &__dropdown &__item:hover &__dropdown {
     visibility: visible;
     opacity: 1;
     transform: translateY(0%);
   }
 
+  //Styling dropdown items on dropdown-container hover
   &__dropdown-container:hover &__dropdown &__item {
     padding: $default-font-size * $paddingFactor $default-font-size * 2;
     height: 100%;
     opacity: 1;
-
   }
 
+  //when navbar is open
   &.navbar--active {
     & .navbar__content {
       visibility: visible;
@@ -279,11 +277,21 @@ $navbar-box-shadow-color: rgba($color-black, .2);
 
     & .navbar__button {
       border-radius:  $default-font-size * 10 $default-font-size * 1 $default-font-size * 1 $default-font-size * 10;
+      //A hover styling
+      &:hover .navbar__menu-bar::before {
+        transform: $navbar__button-bar-before-rotation translate(-$default-font-size * .5625, $default-font-size * 1.375);
+        // rotate(105deg) translate(-0.7rem, 2.7rem)
+      }
+      &:hover .navbar__menu-bar::after {
+        transform: $navbar__button-bar-after-rotation translate(-$default-font-size * .75, -$default-font-size * .5);
+      }
     }
   
     & .navbar__item:not(&__dropdown &__item) {
       padding: $default-font-size * $paddingFactor $default-font-size * 2;
     }
+
+    
   }
 }
 
