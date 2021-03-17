@@ -257,6 +257,7 @@ body {
   list-style: none;
 }
 .navbar__item {
+  overflow: hidden;
   background-color: #fbeeac;
   padding: 2.2rem 0;
   cursor: pointer;
@@ -272,6 +273,18 @@ body {
 }
 .navbar__item:last-child {
   border-radius: 0 10rem 10rem 0;
+}
+.navbar__item::before {
+  content: "";
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0%;
+  top: 0%;
+  transform: translate(0%, -100%);
+  width: 120%;
+  height: 50%;
+  background-color: #8ac4d0;
+  z-index: -19;
 }
 .navbar__link:link, .navbar__link:visited {
   height: 100%;
