@@ -2,24 +2,44 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 
+
+
+
 class Nav extends React.Component {
+
   constructor(props) {
     super(props);
-    this.state = {
-      //initializing props to keep track of here
-    };
-    //you have to create a ref for each element you are planning to interact with in the DOM for each component
-    this.imageRef = React.createRef();
+    this.navRef = React.createRef();
+    this.navbarActiveClassname = 'navbar--active';
+    this.navbarMenuClassname = 'navbar__menu';
   }
+
+  componentDidMount() {
+    document.body.addEventListener('click', this.onBodyClick);
+  }
+
+  onBodyClick = (e) => {
+    console.dir(e.target);
+    const isNavClick = e.target?.classList?.contains(this.navbarActiveClassname) ? true : false;
+    if (!isNavClick) {
+      this.navRef?.current?.classList?.remove(this.navbarActiveClassname);
+    }
+  }
+
+  onNavClick = (e) => {
+    e.stopPropagation();
+    this.navRef?.current?.classList?.toggle(this.navbarActiveClassname);
+  }
+
   render() {
     return ReactDOM.createPortal(
-      <nav className="navbar">
-        <Link className="navbar__button" to="/">
+      <nav ref={this.navRef} className="navbar" onClick={this.onNavClick}>
+        <div className="navbar__button" to="/">
           {/* <img className="navbar__logo" src="../../img/logo.jpg" alt="Logo"/> */}
           <div className="navbar__menu">
             <div className="navbar__menu-bar"></div>
           </div>
-        </Link>
+        </div>
         <div className="navbar__content">
           <ul className="navbar__list">
             <li className="navbar__item">

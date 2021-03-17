@@ -22,10 +22,10 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
 
   transition: all .1s 10s ease;
 
-  &:hover {
-    overflow: visible;
+  // &:hover {
+  //   overflow: visible;
 
-  }
+  // }
 
   // &__logo {
   //   width: $navbar__logo-width;
@@ -122,11 +122,13 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
   }
 
   &__button {
+    cursor: pointer;
+    z-index: 100;
     background-color: $color-primary-4;
     border-radius: $navbar__item-border-radius;
     display: flex;
     align-items: center;
-    transition: border-radius $animation-duration * .1 $animation-easing;
+    transition: border-radius $animation-duration * 1 $animation-easing;
   }
 
   &__dropdown {

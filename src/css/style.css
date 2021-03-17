@@ -261,9 +261,6 @@ body {
   align-items: center;
   transition: all 0.1s 10s ease;
 }
-.navbar:hover {
-  overflow: visible;
-}
 .navbar__menu {
   width: 8rem;
   height: 8rem;
@@ -320,11 +317,13 @@ body {
   align-items: center;
 }
 .navbar__button {
+  cursor: pointer;
+  z-index: 100;
   background-color: #fbeeac;
   border-radius: 16rem;
   display: flex;
   align-items: center;
-  transition: border-radius 0.05s ease;
+  transition: border-radius 0.5s ease;
 }
 .navbar__dropdown {
   visibility: hidden;
@@ -384,6 +383,7 @@ body {
 }
 
 .home {
+  height: 100vh;
   width: 100vw;
 }
 .home__portrait {
