@@ -46,7 +46,7 @@ class Nav extends React.Component {
   }
 
   onMouseLeave = (e) => {
-    this.hide();
+    // this.hide();
   }
 
   render() {
@@ -57,7 +57,7 @@ class Nav extends React.Component {
             <div className="navbar__menu-bar"></div>
           </div>
         </div>
-        <div onmo className="navbar__content">
+        <div className="navbar__content">
           <ul className="navbar__list">
             <NavListItem to="/about" label="About" onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onClick={this.onNavItemClick}/>
             <NavListItem 
