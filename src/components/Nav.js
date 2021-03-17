@@ -15,7 +15,10 @@ class Nav extends React.Component {
     return ReactDOM.createPortal(
       <nav className="navbar">
         <Link className="navbar__button" to="/">
-          <img className="navbar__logo" src="../../img/logo.jpg" alt="Logo"/>
+          {/* <img className="navbar__logo" src="../../img/logo.jpg" alt="Logo"/> */}
+          <div className="navbar__menu">
+            <div className="navbar__menu-bar"></div>
+          </div>
         </Link>
         <div className="navbar__content">
           <ul className="navbar__list">

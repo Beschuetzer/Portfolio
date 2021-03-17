@@ -264,11 +264,12 @@ body {
 .navbar:hover {
   overflow: visible;
 }
-.navbar__logo {
+.navbar__menu {
   width: 8rem;
-  border-radius: 50%;
-  border: 0.2rem solid #fbeeac;
-  z-index: 10000;
+  height: 8rem;
+}
+.navbar__menu-bar {
+  background-color: #28527a;
 }
 .navbar__content {
   visibility: hidden;
@@ -285,7 +286,7 @@ body {
 .navbar__item {
   position: relative;
   background-color: #fbeeac;
-  padding: 2.2rem 0;
+  padding: 2.25rem 0;
   cursor: pointer;
   height: 100%;
   width: 100%;
@@ -365,7 +366,7 @@ body {
   height: 100%;
 }
 .navbar__dropdown-container:hover .navbar__dropdown .navbar__item {
-  padding: 2.2rem 3.2rem;
+  padding: 2.25rem 3.2rem;
   height: 100%;
   opacity: 1;
 }
@@ -379,7 +380,7 @@ body {
   border-radius: 16rem 0 0 16rem;
 }
 .navbar:hover .navbar__item:not(.navbar__dropdown .navbar__item) {
-  padding: 2.2rem 3.2rem;
+  padding: 2.25rem 3.2rem;
 }
 
 .home {
