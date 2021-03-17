@@ -11,7 +11,11 @@ class Home extends React.Component {
   }
   render() {
     return (
-      <section className="home">Home</section>
+      <section className="home">
+        <div className="home__portrait">
+          <img src='../../img/self-2.png' alt="Adam Major"/>
+        </div>
+      </section>
     );
   }
 }

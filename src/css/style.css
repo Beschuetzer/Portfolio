@@ -249,6 +249,7 @@ body {
 }
 
 .navbar {
+  z-index: 10000;
   border-radius: 16rem 0 0 16rem;
   overflow: hidden;
   position: fixed;
@@ -382,7 +383,19 @@ body {
 }
 
 .home {
-  height: 200vh;
+  width: 100vw;
+}
+.home__portrait {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  object-fit: cover;
+}
+.home__portrait img {
+  width: 100%;
+  filter: saturate(0);
 }
 
 /*# sourceMappingURL=style.css.map */
