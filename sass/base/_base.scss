@@ -25,7 +25,7 @@
             font-size: 31.25%;
         }
         @include respond(small-font) {
-            font-size: 1.18vmin;
+            font-size: 1.03vmin;
         }
         box-sizing: border-box;
 
@@ -44,7 +44,7 @@
 
     #root {
         display: grid;
-        grid-template-rows: max-content min-content 40vw repeat(3, min-content);
+        // grid-template-rows: max-content min-content 40vw repeat(3, min-content);
         grid-template-columns: 
             [sidebar-start] 8rem 
             [sidebar-end full-start] minmax(6rem, 1fr) 

@@ -1,1 +1,3 @@
 -fix navbar animation glitch when clicking to close right after opening
+-add hover effect for nav button when it is A
+-work on changing nav button direction to open down below ~685px

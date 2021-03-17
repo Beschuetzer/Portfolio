@@ -15,13 +15,13 @@ $navbar-box-shadow-color: rgba($color-black, .2);
   border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
   position: fixed;
   top: $default-font-size * 2;
-  left: $default-font-size * 2;
+  left: $default-font-size * 2.5;
   font-size: $default-font-size * 1.5;
   text-align: center;
   display: flex;
   align-items: center;
 
-  transition: all .1s 10s ease;
+  // transition: all .1s 10s ease;
 
   // &::before {
   //   content: '';
