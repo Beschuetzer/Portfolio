@@ -6,7 +6,7 @@ $navbar__item_border-radius: $default-font-size * 10;
 $navbar__item_divider: $default-font-size * .2;
 
 .navbar{
-  border-left: .2rem solid $color-primary-4;
+  // border-left: .2rem solid $color-primary-4;
   border-radius: $navbar__item_border-radius 0 0 $navbar__item_border-radius;
   overflow: hidden;
   position: fixed;
@@ -117,11 +117,17 @@ $navbar__item_divider: $default-font-size * .2;
   }
 
   &__dropdown {
+    visibility: hidden;
+    opacity: 0;
+    // transform: scale(.1);
     position: absolute;
     top: 100%;
     left: 0%;
     width: 100%;
+    height: 0;
     list-style: none;
+
+    transition: transform $animation-duration $animation-easing;
 
     & .navbar__item {
       margin-left: 0;
@@ -137,7 +143,19 @@ $navbar__item_divider: $default-font-size * .2;
     }
   }
 
-  &__dropdown-container:hover  {
+  &__dropdown-container {
+    // overflow: hidden;
+  }
+
+  &__dropdown-container:hover {
+    // overflow: visible;
+  }
+
+  &__dropdown-container:hover &__dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0%);
+    height: 100%;
 
   }
 

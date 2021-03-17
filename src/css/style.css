@@ -249,7 +249,6 @@ body {
 }
 
 .navbar {
-  border-left: 0.2rem solid #fbeeac;
   border-radius: 16rem 0 0 16rem;
   overflow: hidden;
   position: fixed;
@@ -326,11 +325,15 @@ body {
   transition: border-radius 0.05s ease;
 }
 .navbar__dropdown {
+  visibility: hidden;
+  opacity: 0;
   position: absolute;
   top: 100%;
   left: 0%;
   width: 100%;
+  height: 0;
   list-style: none;
+  transition: transform 0.5s ease;
 }
 .navbar__dropdown .navbar__item {
   margin-left: 0;
@@ -341,6 +344,12 @@ body {
 }
 .navbar__dropdown .navbar__item:hover {
   transform: translateX(0.32rem);
+}
+.navbar__dropdown-container:hover .navbar__dropdown {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0%);
+  height: 100%;
 }
 .navbar:hover .navbar__content {
   visibility: visible;
