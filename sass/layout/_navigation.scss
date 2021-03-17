@@ -120,7 +120,7 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
   &__dropdown {
     visibility: hidden;
     opacity: 0;
-    // transform: scale(.1);
+    transform: translateY(-0%);
     position: absolute;
     top: 100%;
     left: 0%;
@@ -128,7 +128,7 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
     height: 0;
     list-style: none;
 
-    transition: transform $animation-duration $animation-easing;
+    transition: all $animation-duration $animation-easing;
 
     & .navbar__item {
       border: none;
@@ -145,7 +145,7 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
   }
 
   &__dropdown-container {
-    // overflow: hidden;
+    transition: transform $animation-duration $animation-easing;
   }
 
   &__dropdown-container:hover {
@@ -155,7 +155,7 @@ $navbar__item-divider: $navbar__item-divided-width solid $color-primary-1;
   &__dropdown-container:hover &__dropdown, &__dropdown &__item:hover &__dropdown {
     visibility: visible;
     opacity: 1;
-    transform: translateY(0%);
+    transform: translateY(0%) scale(1);
     height: 100%;
   }
 

@@ -327,13 +327,14 @@ body {
 .navbar__dropdown {
   visibility: hidden;
   opacity: 0;
+  transform: translateY(0%);
   position: absolute;
   top: 100%;
   left: 0%;
   width: 100%;
   height: 0;
   list-style: none;
-  transition: transform 0.5s ease;
+  transition: all 0.5s ease;
 }
 .navbar__dropdown .navbar__item {
   border: none;
@@ -345,10 +346,13 @@ body {
 .navbar__dropdown .navbar__item:hover {
   transform: translateX(0.32rem);
 }
+.navbar__dropdown-container {
+  transition: transform 0.5s ease;
+}
 .navbar__dropdown-container:hover .navbar__dropdown, .navbar__dropdown .navbar__item:hover .navbar__dropdown {
   visibility: visible;
   opacity: 1;
-  transform: translateY(0%);
+  transform: translateY(0%) scale(1);
   height: 100%;
 }
 .navbar:hover .navbar__content {
