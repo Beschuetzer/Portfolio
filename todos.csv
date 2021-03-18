@@ -4,4 +4,3 @@
 
 -need to figure out how to clear timeout to remove isAnimating for class based components (you can use useEffect for function-based)
 
--remove all pieces of state and add to redux store instead

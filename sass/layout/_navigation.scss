@@ -140,12 +140,16 @@ $navbar-box-shadow-color: rgba($color-black, .2);
     width: 100%;
     transition: 
       transform $animation-duration * .25 $animation-easing,
+      background-color $animation-duration *.25 $animation-easing,
     ;
 
     & .triangle-down {
       transition: transform $animation-duration * .5 $animation-easing;
     }
 
+    &:hover {
+      background-color: $color-primary-1;
+    }
     &:not(.navbar__dropdown-container):hover {
       transform: translateY(-$navbar__item-divider-width);
       box-shadow: 0 $default-font-size * .5 $default-font-size * 2 $navbar-box-shadow-color;
@@ -154,30 +158,44 @@ $navbar-box-shadow-color: rgba($color-black, .2);
       transform: rotate(90deg);
     }
 
-    &:not(:last-child){
-      margin-right: $navbar__item-divider;
-    }
-    &:first-child{
-      margin-left: $navbar__item-divider;
-    }
+    // &:not(:last-child){
+    //   margin-right: $navbar__item-divider;
+    // }
+    // &:first-child{
+    //   margin-left: $navbar__item-divider;
+    // }
     &:last-child {
       border-radius: 0 10rem 10rem 0;
     }
-
+    
     //TODO: need to finish hover effect
-      // &::before {
-      //   content: '';
-      //   position: absolute;
-      //   bottom: .5rem;
-      //   left: 0%;
-      //   top: 0%;
-      //   // border-radius: 0 0 5rem 5rem;
-      //   transform: translate(0%, -100%);
-      //   width: 90%;
-      //   height: 50%;
-      //   background-color: $color-primary-2;
-      //   z-index: -19;
-      // }
+    // &::before, .navbar__dropdown &::before {
+    //   content: "";
+    //   position: absolute;
+    //   bottom: 0rem;
+    //   left: 0%;
+    //   background-color: $color-primary-3;
+    //   z-index: 99999;
+    //   transition:
+    //     width $animation-duration cubic-bezier(1,0,0,1);
+    //   ;
+    // }
+
+    // &::before {
+    //   width: 0%;
+    //   height: 100%;
+    // }
+
+    // .navbar__dropdown &::before {
+    //   height: 0%;
+    //   width: 100%;
+    // }
+
+    // &:hover &::before {
+    //   // z-index: 100000000;
+    //   // width: 100%;
+    //   // height: 100%;
+    // }
   }
 
   &__link:link, &__link:visited {
@@ -186,7 +204,7 @@ $navbar-box-shadow-color: rgba($color-black, .2);
     height: 100%;
     width: 100%;
     text-decoration: none;
-    color: #28527a;
+    color: $color-primary-1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,6 +213,11 @@ $navbar-box-shadow-color: rgba($color-black, .2);
     transition: 
       padding $animation-duration * 1 $animation-easing,
     ;
+    
+    &:hover {
+      color: $color-primary-4;
+    }
+
   }
 
   &__button {
@@ -233,6 +256,8 @@ $navbar-box-shadow-color: rgba($color-black, .2);
         height $animation-duration $animation-easing,
         padding $animation-duration $animation-easing,
         opacity $animation-duration $animation-easing,
+        transform $animation-duration * .25 $animation-easing,
+        background-color $animation-duration *.25 $animation-easing,
       ;
       &:first-child {
         border-radius:  $default-font-size * .5 $default-font-size * .5 0 0;
@@ -329,6 +354,12 @@ $navbar-box-shadow-color: rgba($color-black, .2);
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
   }
+
+  // &__item:hover::before {
+  //   // z-index: 100000000;
+  //   width: 100%;
+  //   height: 100%;
+  // }
 }
 
 
