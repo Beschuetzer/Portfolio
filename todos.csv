@@ -4,3 +4,15 @@
 
 -need to figure out how to clear timeout to remove isAnimating for class based components (you can use useEffect for function-based)
 
+-on root route:
+  artistically place multiple words that mean something and then have a description of their importance in the coding when show up as a unique pop up/slide in effect: 
+    -what is an Adam Major (click a word to find out more)?
+    -curiosity
+    -driven
+    -excellence
+    -listening
+    -
+
+
+-porfolio challenges:
+  *figuring out how to get the navbar animation to behave exactly as it does (overflow-hidden issue mainly)

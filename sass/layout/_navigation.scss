@@ -1,4 +1,4 @@
-$paddingFactor: 1.40625;
+$paddingFactor: 1.25;
 
 $animation-duration: .5s;
 $animation-easing: ease;
@@ -134,6 +134,7 @@ $hover-color-change-amount: 15%;
   }
 
   &__item {
+    border: $default-font-size * .1 solid $color-primary-1;
     position: relative;
     background-color: $color-primary-4;
     cursor: pointer;
@@ -336,7 +337,7 @@ $hover-color-change-amount: 15%;
     }
   
     & .navbar__link:not(&__dropdown &__link) {
-      padding: $default-font-size * $paddingFactor $default-font-size * 2;
+      padding: $default-font-size * $paddingFactor $default-font-size * 1.5;
     }
 
     
