@@ -11,22 +11,22 @@ import Resume from './pages/Resume';
 import Nav from './navbar/Nav';
 import Footer from './Footer';
 import "../css/style.css";
+import GithubButton from "./GithubButton";
 
 
 const App = () => {
 	return (
         <Router history={history}>
             <Nav/>
-            <main>
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/works" exact component={Projects} />
-                    <Route path="/about" exact component={About} />
-                    <Route path="/resume" exact component={Resume} />
-                    <Route path="/contact" exact component={Contact} />
+            <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/works" exact component={Projects} />
+                <Route path="/about" exact component={About} />
+                <Route path="/resume" exact component={Resume} />
+                <Route path="/contact" exact component={Contact} />
 
-                </Switch>
-            </main>
+            </Switch>
+            <GithubButton/>
             {/* <Footer/> */}
         </Router>
     );

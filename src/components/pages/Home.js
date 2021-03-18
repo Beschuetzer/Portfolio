@@ -1,4 +1,5 @@
 import React from 'react';
+import BackgroundVideo from '../BackgroundVideo';
 
 class Home extends React.Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class Home extends React.Component {
   render() {
     return (
       <section className="home">
+        <BackgroundVideo/>
+
         <div className="home__portrait">
           {/* <img src='../../img/self-2.png' alt="Adam Major"/> */}
         </div>
