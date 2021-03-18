@@ -3,3 +3,6 @@
 -work on changing nav button direction to open down below ~685px
 
 -need to figure out how to clear timeout to remove isAnimating for class based components (you can use useEffect for function-based)
+
+-remove all pieces of state and add to redux store instead
+-convert Nav to function components

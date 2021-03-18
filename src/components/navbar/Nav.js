@@ -7,6 +7,7 @@ class Nav extends React.Component {
     super(props);
     this.state = {
       isAnimating: false,
+      animationId: null,
     }
     this.navRef = React.createRef();
     this.navbarActiveClassname = 'navbar--active';
@@ -24,14 +25,7 @@ class Nav extends React.Component {
 
   componentDidUpdate() {
     console.log('update------------------------------------------------');
-    const resetAnimatingId = setTimeout(() => {
-      this.navRef.current?.classList?.remove('navbar--isAnimating');
-    }, this.animationDuration);
-    
-    return (() => {
-      console.log('clearing timeout------------------------------------------------');
-      clearTimeout(resetAnimatingId);
-    });
+    clearTimeout(this.state.animationId);
   }
 
   onBodyClick = (e) => {
@@ -51,8 +45,12 @@ class Nav extends React.Component {
 
     if (!navBar.classList?.contains(this.navbarActiveClassname)) navBar.classList.add('overflow--hidden');
  
+    const resetAnimatingId = setTimeout(() => {
+      this.navRef.current?.classList?.remove('navbar--isAnimating');
+    }, this.animationDuration);
     navBar.classList.add('navbar--isAnimating');
-    this.setState({isAnimating: true});
+
+    this.setState({isAnimating: true, animationId: resetAnimatingId});
   }
 
   onNavItemClick = (e) => {
