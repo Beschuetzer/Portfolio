@@ -7,7 +7,7 @@ class GithubButton extends React.Component {
       ReactDOM.createPortal(
         <React.Fragment>
           <a target="_blank" rel="noreferrer" className="github__link" href="https://github.com/Beschuetzer">
-            {/* <span className="github__text github__text-top">View</span> */}
+            <span className="github__text github__text-top">View</span>
             {/* <span className="github__text github__text-middle">My</span> */}
             <span className="github__text github__text-bottom">GitHub</span>
             <svg className="github__svg">
