@@ -346,7 +346,7 @@ body {
   transition: transform 0.25s ease;
 }
 .navbar__item:hover {
-  background-color: #28527a;
+  background-color: #fffdf5;
 }
 .navbar__item:not(.navbar__dropdown-container):hover {
   transform: translateY(-0.32rem);
@@ -372,7 +372,7 @@ body {
   transition: padding 0.5s ease;
 }
 .navbar__link:link:hover, .navbar__link:visited:hover {
-  color: #fbeeac;
+  color: #152b40;
 }
 .navbar__button {
   cursor: pointer;
@@ -382,6 +382,9 @@ body {
   display: flex;
   align-items: center;
   transition: border-radius 0.5s ease;
+}
+.navbar__button:hover {
+  background-color: #fffdf5;
 }
 .navbar__dropdown {
   visibility: hidden;

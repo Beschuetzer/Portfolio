@@ -14,6 +14,7 @@ $navbar__item-divider-width: $default-font-size * .2;
 $navbar__item-divider: $navbar__item-divider-width solid $color-primary-1;
 
 $navbar-box-shadow-color: rgba($color-black, .2);
+$hover-color-change-amount: 15%;
 
 .navbar{
   z-index: 10000;
@@ -148,7 +149,7 @@ $navbar-box-shadow-color: rgba($color-black, .2);
     }
 
     &:hover {
-      background-color: $color-primary-1;
+      background-color: lighten($color-primary-4, $hover-color-change-amount);
     }
     &:not(.navbar__dropdown-container):hover {
       transform: translateY(-$navbar__item-divider-width);
@@ -215,7 +216,7 @@ $navbar-box-shadow-color: rgba($color-black, .2);
     ;
     
     &:hover {
-      color: $color-primary-4;
+      color: darken($color-primary-1, $hover-color-change-amount);
     }
 
   }
@@ -228,6 +229,10 @@ $navbar-box-shadow-color: rgba($color-black, .2);
     display: flex;
     align-items: center;
     transition: border-radius $animation-duration * 1 $animation-easing;
+
+    &:hover {
+      background-color: lighten($color-primary-4, $hover-color-change-amount);
+    }
   }
 
   &__dropdown {
