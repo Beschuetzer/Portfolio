@@ -4,11 +4,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: 95%;
+  max-width: calc(100% - 2rem);
   margin:  auto;
   margin: $default-font-size * 7 auto 0 auto;
 
   &__section {
+    background-color: $color-primary-4;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 800px 1fr;
@@ -49,10 +50,13 @@
     padding: $default-font-size $default-font-size $default-font-size * 2;
   }
   &__card {
+    margin: $default-font-size * 2;
+    color: $color-primary-1;
+    background-color: $color-primary-4;
     grid-column: 2 / 3;
     padding: 0 $default-font-size * 2;
     border: 2px solid $color-primary-3;
     border-radius: $default-font-size;
-    box-shadow: 0 $default-font-size * 1.5 $default-font-size *3 rgba($color-black, .4);
+    box-shadow: 0 0 0rem 2rem rgba($color-primary-2, .2);
   }
 }

@@ -56,6 +56,11 @@ body {
   grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end grid-end];
 }
 
+::selection {
+  background-color: #28527a;
+  color: #fff;
+}
+
 .heading {
   font-family: "Cinzel", serif;
 }
@@ -574,11 +579,12 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: 95%;
+  max-width: calc(100% - 2rem);
   margin: auto;
   margin: 11.2rem auto 0 auto;
 }
 .resume__section {
+  background-color: #fbeeac;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 800px 1fr;
@@ -595,11 +601,14 @@ body {
   padding: 1.6rem 1.6rem 3.2rem;
 }
 .resume__card {
+  margin: 3.2rem;
+  color: #28527a;
+  background-color: #fbeeac;
   grid-column: 2/3;
   padding: 0 3.2rem;
   border: 2px solid #f4d160;
   border-radius: 1.6rem;
-  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0rem 2rem rgba(138, 196, 208, 0.2);
 }
 
 /*# sourceMappingURL=style.css.map */

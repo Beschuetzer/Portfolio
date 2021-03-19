@@ -3,7 +3,7 @@ import {useEffect, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 import NavListItem from './NavListItem';
 
-const Nav = (props) => {
+const SiteNav = (props) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const navRef = useRef();
@@ -95,4 +95,4 @@ const Nav = (props) => {
   );
 }
 
-export default Nav;
+export default SiteNav;

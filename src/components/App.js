@@ -8,7 +8,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Projects from './pages/Projects';
 import Resume from './pages/Resume';
-import Nav from './navbar/Nav';
+import SiteNav from './navbar/SiteNav';
 import Footer from './Footer';
 import "../css/style.css";
 import GithubButton from "./GithubButton";
@@ -17,7 +17,7 @@ import GithubButton from "./GithubButton";
 const App = () => {
 	return (
         <Router history={history}>
-            <Nav/>
+            <SiteNav/>
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/works" exact component={Projects} />
