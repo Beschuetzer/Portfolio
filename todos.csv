@@ -19,3 +19,7 @@
 
   -add github hover effect (inverse colors)
   -center fix items to be in center of columns by putting the navbar and github stuff inside of nav element/div then create a 3 column grid 1fr minmax(min-content, 75ch) 1fr
+  -add three sections that can collapse on click for each type of skill set:
+    1. Human Skills
+    2. IT Support Skills
+    3. Web Development Skills

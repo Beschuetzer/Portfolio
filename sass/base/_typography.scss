@@ -22,7 +22,7 @@
     
 .paragraph {
     font-family: 'Roboto', sans-serif;
-
+    margin-top: $default-font-size;
     &--one {
         font-size: $default-font-size * 2;
     }

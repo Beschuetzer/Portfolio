@@ -1,82 +1,82 @@
 import React from 'react';
 import ResumeSection from './ResumeSection';
-
+import Paragraph from '../../typography/Paragraph';
 
 const content = {
   summary: 
-    <p className="paragraph paragraph--four">
-      Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.
-    </p>
+    <React.Fragment>
+      <Paragraph size="four">
+        I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<a className="resume__link" href='/works'>what I have been building</a>&nbsp;since I embarked on this journey.
+      </Paragraph>
+    </React.Fragment>
   ,
+  skills:
+    <React.Fragment>
+      <Paragraph size="four">
+        I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<a className="resume__link" href='/works'>what I have been building</a>&nbsp;since I embarked on this journey.
+      </Paragraph>
+    </React.Fragment>
+  ,
+  workHistory:
+    <React.Fragment>
+      <Paragraph size="four">
+        I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<a className="resume__link" href='/works'>what I have been building</a>&nbsp;since I embarked on this journey.
+      </Paragraph>
+    </React.Fragment>
+  ,
+  education:
+    <React.Fragment>
+      <Paragraph size="four">
+        I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<a className="resume__link" href='/works'>what I have been building</a>&nbsp;since I embarked on this journey.
+      </Paragraph>
+    </React.Fragment>
+  ,
+  references:
+    <React.Fragment>
+      <Paragraph size="four">
+        I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<a className="resume__link" href='/works'>what I have been building</a>&nbsp;since I embarked on this journey.
+      </Paragraph>
+    </React.Fragment>
+  ,
+};
 
+const headerSideContent = {
+  summary: "Put Photo Here",
 }
 
 class Resume extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      //initializing props to keep track of here
-    };
-    //you have to create a ref for each element you are planning to interact with in the DOM for each component
-    this.imageRef = React.createRef();
-  }
   render() {
     return (
       <section className="resume">
         <h2 className="heading heading--two">Resume</h2>
         <ResumeSection
           name="summary"
-          headerSideContent="Put Photo Here"
+          headerSideContent={headerSideContent.summary}
         >
           {content.summary}
         </ResumeSection>
+        <ResumeSection
+          name="skills"
+        >
+          {content.skills}
+        </ResumeSection>
 
+        <ResumeSection
+          name="work-history"
+        >
+          {content.workHistory}
+        </ResumeSection>
 
-       
-
-        <div className="resume__section resume__section-skills">
-          <div className="resume__card">
-            <div className="resume__content">
-              <div className="resume__header">
-                <h3 className="heading--three resume__header-title">Skills</h3>
-                <div>Put thumbnail photo here</div>
-              </div>
-              <p className="paragraph paragraph--four">
-                Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="resume__section resume__section-work-history">
-          <div className="resume__card">
-            <div className="resume__content">
-              <div className="resume__header">
-                <h3 className="heading--three resume__header-title">Work History</h3>
-                <div>Put thumbnail photo here</div>
-              </div>
-              <p className="paragraph paragraph--four">
-                Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.
-              </p>
-            </div>
-          </div>
-        </div>
-    
-    
-        <div className="resume__section resume__section-education">
-          <div className="resume__card">
-            <div className="resume__content">
-              <div className="resume__header">
-                <h3 className="heading--three resume__header-title">Education</h3>
-                <div>Put thumbnail photo here</div>
-              </div>
-              <p className="paragraph paragraph--four">
-                Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.
-              </p>
-            </div>
-          </div>
-        </div>
-            
+        <ResumeSection
+          name="education"
+        >
+          {content.education}
+        </ResumeSection>
+        <ResumeSection
+          name="references"
+        >
+          {content.references}
+        </ResumeSection>
       </section>
     );
   }
