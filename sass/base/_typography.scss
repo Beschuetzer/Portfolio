@@ -1,10 +1,31 @@
 .heading{
     font-family: 'Cinzel', serif;
     &--one {
-        font-size: $default-font-size * 3;
+        font-size: $default-font-size * 6;
     }
     &--two {
+        font-size: $default-font-size * 4;
+    }
+    &--three {
         font-size: $default-font-size * 2;
+    }
+    &--four {
+        font-size: $default-font-size * 1.5;
+    }
+    &--five {
+        font-size: $default-font-size * 1.25;
+    }
+    &--six {
+        font-size: $default-font-size * 1;
+    }
+}
+    
+.paragraph {
+    &--one {
+        font-size: $default-font-size * 2;
+    }
+    &--two {
+        font-size: $default-font-size * 1.75;
     }
     &--three {
         font-size: $default-font-size * 1.5;
@@ -19,4 +40,3 @@
         font-size: $default-font-size * .85;
     }
 }
-    
