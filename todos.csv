@@ -2,7 +2,7 @@
 -add hover effect for nav button when it is A
 -work on changing nav button direction to open down below ~685px
 
--need to figure out how to clear timeout to remove isAnimating for class based components (you can use useEffect for function-based)
+
 
 -on root route:
   artistically place multiple words that mean something and then have a description of their importance in the coding when show up as a unique pop up/slide in effect: 
@@ -16,3 +16,5 @@
 
 -porfolio challenges:
   *figuring out how to get the navbar animation to behave exactly as it does (overflow-hidden issue mainly)
+
+  -add github hover effect (inverse colors)
