@@ -18,3 +18,4 @@
   *figuring out how to get the navbar animation to behave exactly as it does (overflow-hidden issue mainly)
 
   -add github hover effect (inverse colors)
+  -center fix items to be in center of columns by putting the navbar and github stuff inside of nav element/div then create a 3 column grid 1fr minmax(min-content, 75ch) 1fr

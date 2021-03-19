@@ -1,7 +1,7 @@
 .github {
   font-family: 'Robot', sans-serif;
   font-size: $default-font-size * .66;
-  position: absolute;
+  position: fixed;
   top: $default-font-size * .625;
   right: $default-font-size * .625;
   display: flex;

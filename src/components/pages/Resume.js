@@ -17,7 +17,7 @@ class Resume extends React.Component {
           <div className="resume__card">
             <div className="resume__content">
               <div className="resume__header">
-                <h3 className="heading--two resume__header-title">Summary</h3>
+                <h3 className="heading--three resume__header-title">Summary</h3>
                 <div>Put thumbnail photo here</div>
               </div>
               <p className="paragraph paragraph--four">
@@ -31,7 +31,7 @@ class Resume extends React.Component {
           <div className="resume__card">
             <div className="resume__content">
               <div className="resume__header">
-                <h3 className="heading--two resume__header-title">Skills</h3>
+                <h3 className="heading--three resume__header-title">Skills</h3>
                 <div>Put thumbnail photo here</div>
               </div>
               <p className="paragraph paragraph--four">
@@ -45,7 +45,7 @@ class Resume extends React.Component {
           <div className="resume__card">
             <div className="resume__content">
               <div className="resume__header">
-                <h3 className="heading--two resume__header-title">Work History</h3>
+                <h3 className="heading--three resume__header-title">Work History</h3>
                 <div>Put thumbnail photo here</div>
               </div>
               <p className="paragraph paragraph--four">
@@ -59,7 +59,7 @@ class Resume extends React.Component {
           <div className="resume__card">
             <div className="resume__content">
               <div className="resume__header">
-                <h3 className="heading--two resume__header-title">Education</h3>
+                <h3 className="heading--three resume__header-title">Education</h3>
                 <div>Put thumbnail photo here</div>
               </div>
               <p className="paragraph paragraph--four">
