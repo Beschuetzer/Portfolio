@@ -1,14 +1,9 @@
 import React from 'react';
 
 class About extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      //initializing props to keep track of here
-    };
-    //you have to create a ref for each element you are planning to interact with in the DOM for each component
-    this.imageRef = React.createRef();
-  }
+  //This page should have the following:
+  //   details on what the design philosophy for the portfolio page is (e.g. using React and all custom CSS to illustrate what I have learned)
+  //   details of me as an individual (hobbies, upbringing, stuff you'd share in more casual conversations)
   render() {
     return (
       <div>About</div>
