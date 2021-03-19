@@ -584,15 +584,20 @@ body {
   margin: 11.2rem auto 0 auto;
 }
 .resume__section {
-  background-color: #fbeeac;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 800px 1fr;
+  grid-template-columns: 1fr minmax(min-content, 800px) 1fr;
   grid-auto-rows: minmax(min-content, max-content);
+  border-radius: 1.6rem;
   grid-row-gap: 3.2rem;
 }
 .resume__section-summary {
   grid-column: 1/-1;
+}
+.resume__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .resume__header-summary {
   grid-column: 1/-1;
@@ -606,9 +611,9 @@ body {
   background-color: #fbeeac;
   grid-column: 2/3;
   padding: 0 3.2rem;
-  border: 2px solid #f4d160;
+  border: 3px solid #28527a;
   border-radius: 1.6rem;
-  box-shadow: 0 0 0rem 2rem rgba(138, 196, 208, 0.2);
+  box-shadow: 0 0 1.6rem 1.6rem rgba(40, 82, 122, 0.2);
 }
 
 /*# sourceMappingURL=style.css.map */

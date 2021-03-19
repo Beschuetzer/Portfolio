@@ -9,11 +9,11 @@
   margin: $default-font-size * 7 auto 0 auto;
 
   &__section {
-    background-color: $color-primary-4;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 800px 1fr;
+    grid-template-columns: 1fr minmax(min-content, 800px) 1fr;
     grid-auto-rows: minmax(min-content, max-content);
+    border-radius: $default-font-size;
    
     grid-row-gap: $default-font-size * 2;
 
@@ -32,18 +32,15 @@
   }
 
   &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     
     &-summary {
       grid-column: 1 / -1;
     }
-    &-skills {
-      
-    }
-    &-work-history {
-      
-    }
-    &-education {
-      
+    &-title{
+
     }
   }  
   &__content {
@@ -55,8 +52,8 @@
     background-color: $color-primary-4;
     grid-column: 2 / 3;
     padding: 0 $default-font-size * 2;
-    border: 2px solid $color-primary-3;
+    border: 3px solid $color-primary-1;
     border-radius: $default-font-size;
-    box-shadow: 0 0 0rem 2rem rgba($color-primary-2, .2);
+    box-shadow: 0 0 $default-font-size $default-font-size rgba($color-primary-1, .2);
   }
 }
