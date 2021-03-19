@@ -37,13 +37,12 @@ const SiteNav = (props) => {
     if (!isNavClick) {
       navRef?.current?.classList?.remove(navbarActiveClassname);
       navRef?.current?.classList?.add('overflow--hidden');
-      root.classList?.remove(navbarActiveClassname);
     }
+    root.classList?.remove(navbarActiveClassname);
   }
 
   const onNavClick = (e) => {
     const navBar = navRef.current;
-    e.stopPropagation();
     if (!navBar) return;
     root.classList?.toggle(navbarActiveClassname);
     navBar.classList?.toggle(navbarActiveClassname);
@@ -51,8 +50,10 @@ const SiteNav = (props) => {
     if (!navBar.classList?.contains(navbarActiveClassname)) {
       navBar.classList.add('overflow--hidden');
       setIsAnimating(true);
+
     }
     else {
+      e.stopPropagation();
       setIsAnimating(false);
     }
   }
