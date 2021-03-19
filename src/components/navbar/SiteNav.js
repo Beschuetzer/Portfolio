@@ -45,8 +45,8 @@ const SiteNav = (props) => {
     const navBar = navRef.current;
     e.stopPropagation();
     if (!navBar) return;
-    navBar.classList?.toggle(navbarActiveClassname);
     root.classList?.toggle(navbarActiveClassname);
+    navBar.classList?.toggle(navbarActiveClassname);
 
     if (!navBar.classList?.contains(navbarActiveClassname)) {
       navBar.classList.add('overflow--hidden');
