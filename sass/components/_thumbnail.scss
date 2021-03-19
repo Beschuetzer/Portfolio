@@ -1,11 +1,33 @@
+$thumbnail-transition: 
+  transform $animation-duration * .66 $animation-easing $animation-duration,
+  filter $animation-duration * .25 $animation-easing,
+  color $animation-duration $animation-easing,
+  background $animation-duration $animation-easing,
+;
+
+
 .thumbnail {
+  background-color: $color-primary-1;
   width: $default-font-size * 3;
   height: $default-font-size * 3;
   overflow: hidden;
   border-radius: 50%;
   border: $default-font-size * .1 solid $color-primary-1;
-  
+  transition: $thumbnail-transition;
+
   & img {
     width: 100%;
+    transition: $thumbnail-transition;
+    z-index: 10000;
+  }
+
+  &:hover {
+    animation: black-hole-background 1 2s;
+    background-color: $color-black;
+  }
+  &:hover > img {
+    animation: black-hole 1 2s;
+    transform: translateY(-150%);
+    filter: saturate(1);
   }
 }

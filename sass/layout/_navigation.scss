@@ -1,21 +1,3 @@
-$paddingFactor: 1.25;
-
-$animation-duration: .5s;
-$animation-easing: ease;
-$animation-navbar: $animation-duration $animation-easing;
-
-$navbar__button-bar-before-rotation: rotate(105deg);
-$navbar__button-bar-before-transform: $navbar__button-bar-before-rotation translate($default-font-size * .125, $default-font-size * 1.375);
-$navbar__button-bar-after-rotation: rotate(-105deg);
-$navbar__button-bar-after-transform:  $navbar__button-bar-after-rotation translate(0rem, -$default-font-size * .5);
-
-$navbar__item-border-radius: $default-font-size * 10;
-$navbar__item-divider-width: $default-font-size * .2;
-$navbar__item-divider: $navbar__item-divider-width solid $color-primary-1;
-
-$navbar-box-shadow-color: rgba($color-black, .2);
-$hover-color-change-amount: 15%;
-
 .navbar{
   z-index: 10000;
   border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
