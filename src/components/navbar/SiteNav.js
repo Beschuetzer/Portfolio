@@ -78,7 +78,7 @@ const SiteNav = (props) => {
           <NavListItem to="/about" label="About" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
           <NavListItem 
             to="/works" 
-            label="Experiences" 
+            label="Examples" 
             onMouseEnter={onMouseEnter} onClick={onNavItemClick}
             className="navbar__item navbar__dropdown-container flex align-center justify-content-center"
           >

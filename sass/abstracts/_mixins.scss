@@ -38,16 +38,16 @@
     @mixin respond($breakpoint) {
         //the only screen condition prevents styles from applying if user prints out something
         @if $breakpoint == small-font {
-            @media only screen and (max-width: 30.5em){@content;}   //400px
+            @media only screen and (max-width: 30.5625em){@content;}   //400px
         }
         @if $breakpoint == nav-break {
-            @media only screen and (max-width: 36.9375em){@content;}   //591px
+            @media only screen and (max-width: 36.5625em){@content;}   //591px
         }
         @if $breakpoint == phone {
-            @media only screen and (max-width: 42.8125em){@content;}   //685px
+            @media only screen and (max-width: 42.625em){@content;}   //685px
         }
         @if $breakpoint == tab-port {
-            @media only screen and (max-width: 56.25em){@content;}  //900px
+            @media only screen and (max-width: 54.9375em){@content;}  //900px
         }
         @if $breakpoint == tab-land {
             @media only screen and (max-width: 75em){@content;}       //1200px

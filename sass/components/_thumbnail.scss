@@ -12,7 +12,7 @@ $thumbnail-transition:
   height: $default-font-size * 3;
   overflow: hidden;
   border-radius: 50%;
-  border: $default-font-size * .1 solid $color-primary-1;
+  border: $default-font-size * .1 solid $color-primary-4;
   transition: $thumbnail-transition;
 
   & img {
