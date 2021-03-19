@@ -6,7 +6,7 @@
   flex-direction: column;
   max-width: calc(100% - 2rem);
   margin:  auto;
-  margin: $default-font-size * 7 auto 0 auto;
+  margin: $component-margin-amount auto 0 auto;
 
   &__section {
     width: 100%;
@@ -56,4 +56,5 @@
     border-radius: $default-font-size;
     box-shadow: 0 0 $default-font-size $default-font-size rgba($color-primary-1, .2);
   }
+
 }

@@ -58,7 +58,11 @@ body {
 
 ::selection {
   background-color: #28527a;
-  color: #fff;
+  color: #fbeeac;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #28527a;
 }
 
 .heading {
@@ -564,6 +568,14 @@ body {
   /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
+#root {
+  transition: filter 0.5s ease;
+}
+
+#root.navbar--active {
+  filter: blur(0.8rem) brightness(0.75) drop-shadow(0px 1.6rem 3.2rem rgba(204, 204, 204, 0.2));
+}
+
 .home {
   height: 100vh;
   width: 100vw;
@@ -581,7 +593,7 @@ body {
   flex-direction: column;
   max-width: calc(100% - 2rem);
   margin: auto;
-  margin: 11.2rem auto 0 auto;
+  margin: 12.8rem auto 0 auto;
 }
 .resume__section {
   width: 100%;

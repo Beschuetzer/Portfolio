@@ -9,6 +9,7 @@ const SiteNav = (props) => {
   const navRef = useRef();
   const navbarActiveClassname = 'navbar--active';
   const animationDuration = 500;
+  const root = document.querySelector('#root');
 
   useEffect(() => {
     document.body.addEventListener('click', onBodyClick);
@@ -36,6 +37,7 @@ const SiteNav = (props) => {
     if (!isNavClick) {
       navRef?.current?.classList?.remove(navbarActiveClassname);
       navRef?.current?.classList?.add('overflow--hidden');
+      root.classList?.remove(navbarActiveClassname);
     }
   }
 
@@ -44,6 +46,7 @@ const SiteNav = (props) => {
     e.stopPropagation();
     if (!navBar) return;
     navBar.classList?.toggle(navbarActiveClassname);
+    root.classList?.toggle(navbarActiveClassname);
 
     if (!navBar.classList?.contains(navbarActiveClassname)) {
       navBar.classList.add('overflow--hidden');

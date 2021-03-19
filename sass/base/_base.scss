@@ -56,6 +56,10 @@
     //Style selected text
     ::selection {
         background-color: $color-primary-1;
-        color: $color-white;
+        color: $color-primary-4;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: $color-primary-1;
     }
     

@@ -12,6 +12,7 @@ class Resume extends React.Component {
   render() {
     return (
       <section className="resume">
+        <h2 className="heading heading--two">Resume</h2>
         <div className="resume__section resume__section-summary">
           <div className="resume__card">
             <div className="resume__content">
