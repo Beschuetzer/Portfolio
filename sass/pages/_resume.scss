@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: calc(100% - 12.8rem);
+  width: 100%;
   margin:  auto;
   margin: $component-margin-amount auto 0 auto;
 
@@ -47,7 +47,9 @@
     padding: $default-font-size * 2 $default-font-size $default-font-size * 2;
   }
   &__card {
-    margin: $default-font-size * 2;
+    max-width: calc(100% - 19.2rem);
+
+    margin: $default-font-size * 2 auto;
     color: $color-primary-1;
     background-color: $color-primary-3;
     grid-column: 2 / 3;

@@ -272,6 +272,24 @@ body {
   box-shadow: 0 3.2rem 4.8rem rgba(40, 82, 122, 0.2);
 }
 
+.thumbnail {
+  width: 4.8rem;
+  height: 4.8rem;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 0.16rem solid #28527a;
+}
+.thumbnail img {
+  width: 100%;
+}
+
+.link:link, .link:visited {
+  text-decoration: none;
+  border-bottom: 0.16rem solid #28527a;
+  color: #224567;
+  transform: scale(1.4);
+}
+
 .row {
   max-width: 114rem;
   margin: 0 auto;
@@ -605,7 +623,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: calc(100% - 12.8rem);
+  width: 100%;
   margin: auto;
   margin: 12.8rem auto 0 auto;
 }
@@ -632,7 +650,8 @@ body {
   padding: 3.2rem 1.6rem 3.2rem;
 }
 .resume__card {
-  margin: 3.2rem;
+  max-width: calc(100% - 19.2rem);
+  margin: 3.2rem auto;
   color: #28527a;
   background-color: #f4d160;
   grid-column: 2/3;

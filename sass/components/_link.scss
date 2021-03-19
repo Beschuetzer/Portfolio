@@ -1,0 +1,6 @@
+.link:link, .link:visited {
+  text-decoration: none;
+  border-bottom: $default-font-size * .1 solid $color-primary-1;
+  color: darken($color-primary-1, 5%);
+  transform: scale(1.4);
+}

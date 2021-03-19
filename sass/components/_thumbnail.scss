@@ -1,0 +1,11 @@
+.thumbnail {
+  width: $default-font-size * 3;
+  height: $default-font-size * 3;
+  overflow: hidden;
+  border-radius: 50%;
+  border: $default-font-size * .1 solid $color-primary-1;
+  
+  & img {
+    width: 100%;
+  }
+}
