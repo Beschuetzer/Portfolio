@@ -42,3 +42,13 @@
         font-size: $default-font-size * .85;
     }
 }
+
+.code {
+    background: #111;
+    box-shadow: 0 0 10px #08c, inset 0 0 10px #000;
+    border: 0;
+    border-radius: 9px;
+    color: #fff !important;
+}
+
+// <pre class="code"><span class="lightblue">npm</span> install -g <span class="gold">browserify</span></pre>

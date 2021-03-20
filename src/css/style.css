@@ -119,6 +119,14 @@ body {
   font-size: 1.36rem;
 }
 
+.code {
+  background: #111;
+  box-shadow: 0 0 10px #08c, inset 0 0 10px #000;
+  border: 0;
+  border-radius: 9px;
+  color: #fff !important;
+}
+
 .u-center-text {
   text-align: center;
 }
