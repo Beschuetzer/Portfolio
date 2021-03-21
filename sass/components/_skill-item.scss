@@ -1,0 +1,33 @@
+.skills {
+  font-size: $default-font-size;
+  font-family: 'Roboto', sans-serif;
+  list-style: none;
+  &__item {
+    list-style: none;
+    // text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $default-font-size 0;
+    width: 100%;
+    max-width: $default-font-size * 50;
+
+  }
+  &__title {
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 50%;
+  }
+  &__percent {
+    &-outer {
+      background-color: $color-primary-4;
+      width: 50%;
+    }
+    &-inner {
+      background-color: $color-primary-1;
+      height: $default-font-size;
+    }
+  }
+  
+  
+}

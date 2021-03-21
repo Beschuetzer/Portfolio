@@ -11,23 +11,6 @@ const SiteNav = (props) => {
   const animationDuration = 500;
   const root = document.querySelector('#root');
 
-  useEffect(() => {
-    document.body.addEventListener('click', onBodyClick);
-  }, []);
-
-  useEffect(() => {
-    const resetAnimatingId = setTimeout(() => {
-      navRef.current?.classList?.remove('navbar--isAnimating');
-    }, animationDuration);
-    navRef.current?.classList?.add('navbar--isAnimating');
-
-    return (() => {
-      console.log('reset timeout------------------------------------------------');
-      clearTimeout(resetAnimatingId);
-    });
-
-  }, [isAnimating])
-
   const hide = () => {
     navRef.current.classList.add('overflow--hidden');
   }
@@ -65,6 +48,23 @@ const SiteNav = (props) => {
   const onMouseEnter = (e) => {
     navRef.current.classList.remove('overflow--hidden');
   }
+
+  useEffect(() => {
+    document.body.addEventListener('click', onBodyClick);
+  }, [onBodyClick]);
+
+  useEffect(() => {
+    const resetAnimatingId = setTimeout(() => {
+      navRef.current?.classList?.remove('navbar--isAnimating');
+    }, animationDuration);
+    navRef.current?.classList?.add('navbar--isAnimating');
+
+    return (() => {
+      console.log('reset timeout------------------------------------------------');
+      clearTimeout(resetAnimatingId);
+    });
+
+  }, [isAnimating])
   
   return ReactDOM.createPortal(
     <nav ref={navRef} className="navbar overflow--hidden" onClick={onNavClick}>

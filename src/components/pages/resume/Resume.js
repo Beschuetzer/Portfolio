@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ResumeSection from './ResumeSection';
 import Paragraph from '../../typography/Paragraph';
+import SkillsItem from './SkillsItem';
 
 const content = {
   summary: 
@@ -10,15 +11,15 @@ const content = {
         I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out&nbsp;<Link className="link" to='/works'>what I have been building</Link>&nbsp;since I decided to change careers.  
       </Paragraph>
       <Paragraph size="four">
-        There you will find a detailed description of my progression and growing familiarity with all of the various web development technologies I have used.
+        There you will find code examples, projects, and demos highlighting my journey to become a web developer.
       </Paragraph>
     </React.Fragment>
   ,
   skills:
     <React.Fragment>
-      <Paragraph size="four">
-        I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<Link className="link" to='/works'>what I have been building</Link>&nbsp;since I embarked on this journey.
-      </Paragraph>
+      <ul className="skills">
+        <SkillsItem title="HTML5" percent="66"/>
+      </ul>
     </React.Fragment>
   ,
   workHistory:
@@ -36,6 +37,13 @@ const content = {
     </React.Fragment>
   ,
   references:
+    <React.Fragment>
+      <Paragraph size="four">
+        I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<Link className="link" to='/works'>what I have been building</Link>&nbsp;since I embarked on this journey.
+      </Paragraph>
+    </React.Fragment>
+  ,
+  certifications:
     <React.Fragment>
       <Paragraph size="four">
         I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<Link className="link" to='/works'>what I have been building</Link>&nbsp;since I embarked on this journey.
@@ -84,6 +92,12 @@ class Resume extends React.Component {
           name="references"
         >
           {content.references}
+        </ResumeSection>
+
+        <ResumeSection
+          name="certifications"
+        >
+          {content.certifications}
         </ResumeSection>
       </section>
     );

@@ -7,6 +7,9 @@
   }
 }
 @keyframes black-hole-background {
+  0% {
+    background-color: #28527a;
+  }
   100% {
     background-color: #000;
   }
@@ -322,6 +325,34 @@ body {
   border-bottom: 0.16rem solid #28527a;
   color: #224567;
   transform: scale(1.4);
+}
+
+.skills {
+  font-size: 1.6rem;
+  font-family: "Roboto", sans-serif;
+  list-style: none;
+}
+.skills__item {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.6rem 0;
+  width: 100%;
+  max-width: 80rem;
+}
+.skills__title {
+  text-transform: uppercase;
+  font-weight: 500;
+  width: 50%;
+}
+.skills__percent-outer {
+  background-color: #fbeeac;
+  width: 50%;
+}
+.skills__percent-inner {
+  background-color: #28527a;
+  height: 1.6rem;
 }
 
 .row {
@@ -685,6 +716,7 @@ body {
 }
 .resume__card {
   max-width: calc(100% - 19.2rem);
+  width: 80rem;
   margin: 3.2rem auto;
   color: #28527a;
   background-color: #f4d160;

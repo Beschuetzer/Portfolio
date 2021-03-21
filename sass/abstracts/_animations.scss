@@ -8,6 +8,9 @@
 }
 
 @keyframes black-hole-background {
+  0%{
+    background-color: $color-primary-1;
+  }
   100%{
     background-color: $color-black;
   }
