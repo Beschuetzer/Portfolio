@@ -3,6 +3,8 @@ import {useEffect, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 import NavListItem from './NavListItem';
 
+import { checkForParentOfType } from '../../helpers';
+
 const SiteNav = (props) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -20,24 +22,27 @@ const SiteNav = (props) => {
   const onNavClick = (e) => {
     e.stopPropagation();
     const navBar = navRef.current;
-    // let docStyle = getComputedStyle(document.documentElement);
-    // const navRightSide = 9 * parseInt(docStyle.fontSize);
-    // const isChildOfNavBar = checkForParentOfType(e.target, 'nav', 'navbar');
+    let docStyle = getComputedStyle(document.documentElement);
+    const isValid = e.clientX <= (9 * parseInt(docStyle.fontSize));
+    const isChildOfNavBar = checkForParentOfType(e.target, 'nav', 'navbar');
 
-    root.classList?.toggle(navbarActiveClassname);
-    navBar.classList?.toggle(navbarActiveClassname);
+    console.log('isValid =', isValid);
+    console.log('isChildOfNavBar =', isChildOfNavBar);
+    console.log('!navBar.classList?.contains(navbarActiveClassname) =', !navBar.classList?.contains(navbarActiveClassname));
+    
     
     if (!navBar) return;
-    root.classList?.toggle(navbarActiveClassname);
-    navBar.classList?.toggle(navbarActiveClassname);
 
-    if (!navBar.classList?.contains(navbarActiveClassname)) {
+    if (!navBar.classList?.contains(navbarActiveClassname) && isChildOfNavBar && isValid ) {
       navBar.classList.add('overflow--hidden');
+      root.classList?.add(navbarActiveClassname);
+      navBar.classList?.add(navbarActiveClassname);
       setIsAnimating(true);
-
     }
     else {
       e.stopPropagation();
+      root.classList?.remove(navbarActiveClassname);
+      navBar.classList?.remove(navbarActiveClassname);
       setIsAnimating(false);
     }
   }
