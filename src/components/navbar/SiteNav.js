@@ -18,7 +18,15 @@ const SiteNav = (props) => {
   
 
   const onNavClick = (e) => {
+    e.stopPropagation();
     const navBar = navRef.current;
+    // let docStyle = getComputedStyle(document.documentElement);
+    // const navRightSide = 9 * parseInt(docStyle.fontSize);
+    // const isChildOfNavBar = checkForParentOfType(e.target, 'nav', 'navbar');
+
+    root.classList?.toggle(navbarActiveClassname);
+    navBar.classList?.toggle(navbarActiveClassname);
+    
     if (!navBar) return;
     root.classList?.toggle(navbarActiveClassname);
     navBar.classList?.toggle(navbarActiveClassname);
