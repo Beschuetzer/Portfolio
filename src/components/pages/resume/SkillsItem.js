@@ -11,12 +11,17 @@ const SkillsItem = ({ title, percent }) => {
   }, [percentDiv, percent])
 
   return (
-    <li className='skills__item'>
-      <div className="skills__title">{title}:</div>
+    <React.Fragment>
+      <li className='skills__item'>
+        <div className="skills__title">{title}:</div>
+      </li>
       <div  className="skills__percent-outer">
-        <div ref={percentDiv} className="skills__percent-inner"></div>
-      </div>
-    </li>
+      <div className="skills__percent-outer-left"></div>
+      <div className="skills__percent-outer-center"></div>
+      <div className="skills__percent-outer-right"></div>
+      <div ref={percentDiv} className="skills__percent-inner"></div>
+    </div>
+   </React.Fragment>
   );
 }
 

@@ -328,27 +328,67 @@ body {
 }
 
 .skills {
+  padding-top: 1.6rem;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-row-gap: 0.2rem;
+  grid-column-gap: 0.8rem;
+  grid-auto-rows: min-content;
+  align-items: center;
   font-size: 1.6rem;
   font-family: "Roboto", sans-serif;
   list-style: none;
+  position: relative;
+}
+.skills__labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 .skills__item {
   list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.6rem 0;
   width: 100%;
   max-width: 80rem;
 }
 .skills__title {
-  text-transform: uppercase;
   font-weight: 500;
   width: 50%;
 }
 .skills__percent-outer {
+  position: relative;
   background-color: #fbeeac;
-  width: 50%;
+  width: 100%;
+  height: 1.6rem;
+}
+.skills__percent-outer-left {
+  background-color: #000;
+  width: 0.16rem;
+  height: 1.6rem;
+  position: absolute;
+  top: 0;
+  left: 0%;
+  transform: translate(-50%, 0%);
+}
+.skills__percent-outer-center {
+  background-color: #000;
+  width: 0.16rem;
+  height: 1.6rem;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+.skills__percent-outer-right {
+  background-color: #000;
+  width: 0.16rem;
+  height: 1.6rem;
+  position: absolute;
+  bottom: 0;
+  right: 0%;
+  transform: translate(0%, 0%);
 }
 .skills__percent-inner {
   background-color: #28527a;

@@ -1,0 +1,90 @@
+.skills {
+  padding-top: $default-font-size;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-row-gap: $default-font-size * .125;
+  grid-column-gap: $default-font-size * .5;
+  grid-auto-rows: min-content;
+  align-items: center;
+  font-size: $default-font-size;
+  font-family: 'Roboto', sans-serif;
+  list-style: none;
+  position: relative;
+
+  &__labels { 
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__label {
+   
+
+    &-left {
+      
+    }
+    &-middle {
+    
+    }
+    &-right {
+     
+    }
+  }
+  
+  &__item {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: $default-font-size * 50;
+
+  }
+  &__title {
+    // text-transform: uppercase;
+    font-weight: 500;
+    width: 50%;
+  }
+  &__percent {
+    &-outer {
+      position: relative;
+      background-color: $color-primary-4;
+      width: 100%;
+      height: $default-font-size;
+
+      &-left {
+        background-color: $color-black;
+        width: $default-font-size * .1;
+        height: $default-font-size;
+        position: absolute;
+        top: 0;
+        left: 0%;
+        transform: translate(-50%, 0%);
+      }
+      &-center {
+        background-color: $color-black;
+        width: $default-font-size * .1;
+        height: $default-font-size;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0%);
+      }
+      &-right {
+        background-color: $color-black;
+        width: $default-font-size * .1;
+        height: $default-font-size;
+        position: absolute;
+        bottom: 0;
+        right: 0%;
+        transform: translate(0%, 0%);
+      }
+    }
+    &-inner {
+      background-color: $color-primary-1;
+      height: $default-font-size;
+    }
+  }
+  
+  
+}
