@@ -15,14 +15,7 @@ const SiteNav = (props) => {
     navRef.current.classList.add('overflow--hidden');
   }
 
-  const onBodyClick = (e) => {
-    const isNavClick = e.target?.classList?.contains(navbarActiveClassname) ? true : false;
-    if (!isNavClick) {
-      navRef?.current?.classList?.remove(navbarActiveClassname);
-      navRef?.current?.classList?.add('overflow--hidden');
-    }
-    root.classList?.remove(navbarActiveClassname);
-  }
+  
 
   const onNavClick = (e) => {
     const navBar = navRef.current;
@@ -50,8 +43,16 @@ const SiteNav = (props) => {
   }
 
   useEffect(() => {
+    const onBodyClick = (e) => {
+      const isNavClick = e.target?.classList?.contains(navbarActiveClassname) ? true : false;
+      if (!isNavClick) {
+        navRef?.current?.classList?.remove(navbarActiveClassname);
+        navRef?.current?.classList?.add('overflow--hidden');
+      }
+      root.classList?.remove(navbarActiveClassname);
+    }
     document.body.addEventListener('click', onBodyClick);
-  }, [onBodyClick]);
+  });
 
   useEffect(() => {
     const resetAnimatingId = setTimeout(() => {
