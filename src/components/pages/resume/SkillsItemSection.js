@@ -2,7 +2,7 @@ import React from 'react';
 
 class SkillsItemSection extends React.Component {
   static timeOutDifferential = 50;
-  static openClassName = 'skills__section--open'
+  static openClassName = 'skills__section--open';
 
   onTitleClick = (e) => {
     e.stopPropagation();
@@ -26,7 +26,12 @@ class SkillsItemSection extends React.Component {
     const { children, title } = this.props;
     return (
       <React.Fragment>
-        <div onClick={this.onTitleClick} className="skills__section-title">{title}:</div>
+        <div onClick={this.onTitleClick} className="skills__section-title">
+          {title}:
+          <svg className="skills__section-title-svg">
+              <use xlinkHref="/sprite.svg#icon-angle-right"></use>
+            </svg>
+        </div>
         <div className="skills__section-content">
           {children}
         </div>
