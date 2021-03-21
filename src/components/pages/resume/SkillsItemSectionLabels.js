@@ -16,7 +16,7 @@ class SkillsItemSectionLabels extends React.Component {
         <div></div>
         <div className="skills__labels">
           <span className="skills__label skills__label-left">{left}</span>
-          <span className="skills__label skills__label-middle">{center}</span>
+          <span className="skills__label skills__label-center">{center}</span>
           <span className="skills__label skills__label-right">{right}</span>
         </div>
       </React.Fragment>

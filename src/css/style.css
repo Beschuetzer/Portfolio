@@ -331,7 +331,6 @@ body {
   padding-top: 1.6rem;
   font-size: 1.6rem;
   font-family: "Roboto", sans-serif;
-  list-style: none;
   position: relative;
 }
 .skills__section {
@@ -344,14 +343,26 @@ body {
 }
 .skills__section-title {
   grid-column: 1/-1;
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+.skills__section > *:nth-child(2n+2) {
+  margin-left: 3.2rem;
 }
 .skills__labels {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: flex-end;
+  justify-items: center;
+  transform: translateY(33%);
+}
+.skills__labels > span:first-child {
+  justify-self: flex-start;
+}
+.skills__labels > span:last-child {
+  justify-self: flex-end;
 }
 .skills__item {
-  list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;

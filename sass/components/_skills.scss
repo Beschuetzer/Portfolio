@@ -2,8 +2,10 @@
   padding-top: $default-font-size;
   font-size: $default-font-size;
   font-family: 'Roboto', sans-serif;
-  list-style: none;
+  // list-style: none;
   position: relative;
+
+  
 
   &__section {
     display: grid;
@@ -14,31 +16,32 @@
     align-items: center;
     &-title {
       grid-column: 1/-1;
+      font-size: $default-font-size * 1.5;
+      font-weight: 300;
+    }
+
+    & > *:nth-child(2n+2){
+      margin-left: $default-font-size * 2;
     }
   }
 
   &__labels { 
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     align-items: flex-end;
+    justify-items: center;
+    transform: translateY(33%);
+
+    &>span:first-child {
+      justify-self: flex-start;
+    }
+    &>span:last-child {
+      justify-self: flex-end;
+    }
   }
 
-  &__label {
-   
-
-    &-left {
-      
-    }
-    &-middle {
-    
-    }
-    &-right {
-     
-    }
-  }
-  
   &__item {
-    list-style: none;
+    // list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
