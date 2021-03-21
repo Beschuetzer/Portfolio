@@ -354,17 +354,27 @@ body {
 .skills__section-title {
   user-select: none;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   border-bottom: 0.16rem solid #28527a;
   grid-column: 1/-1;
   font-size: 2.4rem;
   font-weight: 300;
   transition: transform 0.25s ease, color 0.5s ease;
 }
+.skills__section-title-svg {
+  fill: rgba(40, 82, 122, 0.5);
+  height: 2.4rem;
+  width: 2.4rem;
+  transition: fill 0.5s ease;
+}
 .skills__section-title:hover {
   transform: translateX(0.8rem);
   font-weight: 500;
   color: #23486c;
+}
+.skills__section-title:hover .skills__section-title-svg {
+  fill: #28527a;
 }
 .skills__section-svg {
   margin-right: 0.8rem;

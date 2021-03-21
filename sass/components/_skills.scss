@@ -30,7 +30,8 @@
     &-title {
       user-select: none;
       cursor: pointer;
-      display: inline-block;
+      display: flex;
+      align-items: center;
       border-bottom:$default-font-size * .1 solid $color-primary-1;
       grid-column: 1/-1;
       font-size: $default-font-size * 1.5;
@@ -40,10 +41,25 @@
         transform $animation-duration * .5 $animation-easing,
         color $animation-duration * 1 $animation-easing,
       ;
+
+      &-svg {
+        fill: rgba($color-primary-1,.5);
+        height: $default-font-size * 1.5;
+        width: $default-font-size * 1.5;
+        // margin-left: $default-font-size * .25;
+        transition:
+          fill $animation-duration * 1 $animation-easing,
+        ;
+      }
+
       &:hover {
         transform: translateX($default-font-size * .5);
         font-weight: 500;
         color: darken($color-primary-1, $hover-color-change-amount / 4);
+      }
+
+      &:hover &-svg {
+        fill: $color-primary-1;
       }
     }
 

@@ -12,13 +12,14 @@ class SkillsItemSection extends React.Component {
 
   toggleItem = (e, isOpening) => {
     const clickedSection = e.target;
+    if (!clickedSection.nextSibling) return;
+
     const items = clickedSection.nextSibling.querySelectorAll('.skills__percent-outer');
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
       setTimeout(() => {
         item.style.width = isOpening ? '100%' : '0%';
       }, SkillsItemSection.timeOutDifferential * i);
-      
     }
   }
 
@@ -27,7 +28,7 @@ class SkillsItemSection extends React.Component {
     return (
       <React.Fragment>
         <div onClick={this.onTitleClick} className="skills__section-title">
-          {title}:
+          {title}
           <svg className="skills__section-title-svg">
               <use xlinkHref="/sprite.svg#icon-angle-right"></use>
             </svg>
