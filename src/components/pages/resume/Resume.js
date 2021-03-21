@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ResumeSection from './ResumeSection';
 import Paragraph from '../../typography/Paragraph';
+import SkillsItemSection from './SkillsItemSection';
 import SkillsItem from './SkillsItem';
 
 const content = {
@@ -18,24 +19,26 @@ const content = {
   skills:
     <React.Fragment>
       <ul className="skills">
-        <div></div>
-        <div className="skills__labels">
-          <span className="skills__label skills__label-left">Novice</span>
-          <span className="skills__label skills__label-middle">Proficient</span>
-          <span className="skills__label skills__label-right">Master</span>
-        </div>
-        <SkillsItem title="HTML5" percent="50"/>
-        <SkillsItem title="CSS3" percent="65"/>
-        <SkillsItem title="SCSS" percent="51"/>
-        <SkillsItem title="Javascript" percent="67"/>
-        <SkillsItem title="PaperJS" percent="44"/>
-        <SkillsItem title="ThreeJS" percent="13"/>
-        <SkillsItem title="NodeJS" percent="59"/>
-        <SkillsItem title="React" percent="55"/>
-        <SkillsItem title="Redux" percent="36"/>
-        <SkillsItem title="Python" percent="37"/>
-        <SkillsItem title="Ruby" percent="25"/>
-        <SkillsItem title="C#" percent="35"/>
+        <SkillsItemSection title="Web Development">
+          <div></div>
+          <div className="skills__labels">
+            <span className="skills__label skills__label-left">Novice</span>
+            <span className="skills__label skills__label-middle">Proficient</span>
+            <span className="skills__label skills__label-right">Master</span>
+          </div>
+          <SkillsItem title="HTML5" percent="50"/>
+          <SkillsItem title="CSS3" percent="65"/>
+          <SkillsItem title="SCSS" percent="51"/>
+          <SkillsItem title="Javascript" percent="67"/>
+          <SkillsItem title="PaperJS" percent="44"/>
+          <SkillsItem title="ThreeJS" percent="13"/>
+          <SkillsItem title="NodeJS" percent="59"/>
+          <SkillsItem title="React" percent="55"/>
+          <SkillsItem title="Redux" percent="36"/>
+          <SkillsItem title="Python" percent="37"/>
+          <SkillsItem title="Ruby" percent="25"/>
+          <SkillsItem title="C#" percent="35"/>
+        </SkillsItemSection>
 
       </ul>
     </React.Fragment>

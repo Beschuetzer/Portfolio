@@ -1,15 +1,21 @@
 .skills {
   padding-top: $default-font-size;
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  grid-row-gap: $default-font-size * .125;
-  grid-column-gap: $default-font-size * .5;
-  grid-auto-rows: min-content;
-  align-items: center;
   font-size: $default-font-size;
   font-family: 'Roboto', sans-serif;
   list-style: none;
   position: relative;
+
+  &__section {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-row-gap: $default-font-size * .125;
+    grid-column-gap: $default-font-size * .5;
+    grid-auto-rows: min-content;
+    align-items: center;
+    &-title {
+      grid-column: 1/-1;
+    }
+  }
 
   &__labels { 
     display: flex;
