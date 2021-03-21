@@ -23,9 +23,16 @@ const SiteNav = (props) => {
     e.stopPropagation();
     const navBar = navRef.current;
     let docStyle = getComputedStyle(document.documentElement);
-    const isValid = e.clientX <= (9 * parseInt(docStyle.fontSize));
+    const isValid = e.clientX <= (11 * parseInt(docStyle.fontSize));
     const isChildOfNavBar = checkForParentOfType(e.target, 'nav', 'navbar');
 
+
+    console.log('!navBar.classList?.contains(navbarActiveClassname) =', !navBar.
+    classList?.contains(navbarActiveClassname));
+    console.log('isChildOfNavBar =', isChildOfNavBar);
+    
+    console.log('isValid =', isValid);
+    
     if (!navBar) return;
 
     if (!navBar.classList?.contains(navbarActiveClassname) && isChildOfNavBar && isValid ) {
