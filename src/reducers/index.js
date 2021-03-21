@@ -1,5 +1,6 @@
 
 import {combineReducers} from "redux";
+import repositoriesReducer from './repositoriesReducer';
 
 //Reducers accept an "Action Creator Function" as last arg
 //const selectedSongReducer = (selectedSong = null, action) => {
@@ -8,7 +9,7 @@ import {combineReducers} from "redux";
 //}
 
 export default combineReducers({
-    deleteMe: () => 5,
+    repositories: repositoriesReducer,
 })
 
     

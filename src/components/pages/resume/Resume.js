@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ResumeSection from './ResumeSection';
 import Paragraph from '../../typography/Paragraph';
 import SkillsItemSection from './SkillsItemSection';
 import SkillsItemSectionLabels from './SkillsItemSectionLabels';
 import SkillsItem from './SkillsItem';
+
+import { getRespositories } from '../../../actions';
 
 const content = {
   summary: 
@@ -110,8 +113,13 @@ const headerSideContent = {
     </div>
   ,
 }
-
 class Resume extends React.Component {
+  componentDidMount() {
+    console.log('this.props =', this.props);
+    // this.props.getRespositories();
+  }
+
+
   render() {
     return (
       <section className="resume">
@@ -155,4 +163,6 @@ class Resume extends React.Component {
   }
 }
 
-export default Resume;
+export default connect(null, {
+  getRespositories,
+})(Resume);
