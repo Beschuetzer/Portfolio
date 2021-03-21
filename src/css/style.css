@@ -366,7 +366,7 @@ body {
   fill: rgba(40, 82, 122, 0.5);
   height: 2.4rem;
   width: 2.4rem;
-  transition: fill 0.5s ease;
+  transition: fill 0.5s ease, transform 0.125s ease;
 }
 .skills__section-title:hover {
   transform: translateX(0.8rem);
@@ -387,6 +387,9 @@ body {
   visibility: visible;
   opacity: 1;
   margin-bottom: 1.6rem;
+}
+.skills__section--open svg {
+  transform: rotate(90deg);
 }
 .skills__section--open + .skills__section-content .skills__percent-inner {
   opacity: 1;

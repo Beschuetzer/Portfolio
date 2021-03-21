@@ -49,6 +49,7 @@
         // margin-left: $default-font-size * .25;
         transition:
           fill $animation-duration * 1 $animation-easing,
+          transform $animation-duration * .25 $animation-easing,
         ;
       }
 
@@ -68,6 +69,7 @@
       width: $default-font-size * .5;
       height: $default-font-size * .5;  
       fill: $color-primary-1;
+      
     }
     
     //Click Title Open Animation
@@ -76,6 +78,10 @@
       visibility: visible;
       opacity: 1;
       margin-bottom: $default-font-size;
+    }
+
+    &--open svg {
+      transform: rotate(90deg);
     }
 
     //Click Title Width Animation
