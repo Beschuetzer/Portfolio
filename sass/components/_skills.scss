@@ -63,9 +63,9 @@
     }
 
     //Click Title Width Animation
-    &--open + &-content .skills__percent-outer {
-      width: 100%;
-    }
+    // &--open + &-content .skills__percent-outer {
+    //   width: 100%;
+    // }
     &--open + &-content .skills__percent-inner {
       opacity: 1;
     }
@@ -119,32 +119,28 @@
       height: $default-font-size;
       width: 0;
       transition: 
-        width $animation-duration $animation-easing $animation-duration,
+        width $animation-duration * 2 cubic-bezier(0.68, -0.6, 0.32, 1.6),
       ;
 
-      &-left {
+      &-left, &-center, &-right {
+        z-index: 10000;
+        position: absolute;
         background-color: $color-black;
         width: $default-font-size * .1;
         height: $default-font-size;
-        position: absolute;
+      }
+
+      &-left {
         top: 0;
         left: 0%;
         transform: translate(-50%, 0%);
       }
       &-center {
-        background-color: $color-black;
-        width: $default-font-size * .1;
-        height: $default-font-size;
-        position: absolute;
         bottom: 0;
         left: 50%;
         transform: translate(-50%, 0%);
       }
       &-right {
-        background-color: $color-black;
-        width: $default-font-size * .1;
-        height: $default-font-size;
-        position: absolute;
         bottom: 0;
         right: 0%;
         transform: translate(0%, 0%);

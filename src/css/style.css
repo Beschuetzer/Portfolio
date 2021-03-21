@@ -378,9 +378,6 @@ body {
   opacity: 1;
   margin-bottom: 1.6rem;
 }
-.skills__section--open + .skills__section-content .skills__percent-outer {
-  width: 100%;
-}
 .skills__section--open + .skills__section-content .skills__percent-inner {
   opacity: 1;
 }
@@ -423,31 +420,26 @@ body {
   background-color: #fbeeac;
   height: 1.6rem;
   width: 0;
-  transition: width 0.5s ease 0.5s;
+  transition: width 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
-.skills__percent-outer-left {
+.skills__percent-outer-left, .skills__percent-outer-center, .skills__percent-outer-right {
+  z-index: 10000;
+  position: absolute;
   background-color: #000;
   width: 0.16rem;
   height: 1.6rem;
-  position: absolute;
+}
+.skills__percent-outer-left {
   top: 0;
   left: 0%;
   transform: translate(-50%, 0%);
 }
 .skills__percent-outer-center {
-  background-color: #000;
-  width: 0.16rem;
-  height: 1.6rem;
-  position: absolute;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 0%);
 }
 .skills__percent-outer-right {
-  background-color: #000;
-  width: 0.16rem;
-  height: 1.6rem;
-  position: absolute;
   bottom: 0;
   right: 0%;
   transform: translate(0%, 0%);

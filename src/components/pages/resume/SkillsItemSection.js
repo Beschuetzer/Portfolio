@@ -1,8 +1,25 @@
 import React from 'react';
 
 class SkillsItemSection extends React.Component {
+  static timeOutDifferential = 50;
+  static openClassName = 'skills__section--open'
+
   onTitleClick = (e) => {
-    e.target?.classList?.toggle('skills__section--open')
+    e.stopPropagation();
+    this.toggleItem(e, !e.target?.classList?.contains(SkillsItemSection.openClassName));
+    e.target?.classList?.toggle(SkillsItemSection.openClassName);
+  }
+
+  toggleItem = (e, isOpening) => {
+    const clickedSection = e.target;
+    const items = clickedSection.nextSibling.querySelectorAll('.skills__percent-outer');
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      setTimeout(() => {
+        item.style.width = isOpening ? '100%' : '0%';
+      }, SkillsItemSection.timeOutDifferential * i);
+      
+    }
   }
 
   render() {

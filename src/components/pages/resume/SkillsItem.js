@@ -19,11 +19,11 @@ const SkillsItem = ({ title, percent, href, to }) => {
         </svg>
         {to ?
           <Link className="skills__title" to={to}>
-            <div className="">{title}:</div>
+            <h3 className="">{title}:</h3>
           </Link>
         :
           <a target="_blank" rel="noreferrer" className="skills__title" href={href}>
-            <div className="">{title}:</div>
+            <p className="">{title}:</p>
           </a>
         }
         
