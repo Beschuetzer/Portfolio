@@ -28,12 +28,7 @@
       align-items: center;
     }
     &-title {
-      -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/
-      -khtml-user-select: none; /* Konqueror HTML */
-      -moz-user-select: none; /* Old versions of Firefox */
-      -ms-user-select: none; /* Internet Explorer/Edge */
-      user-select: none; /* Non-prefixed version, currently supported by Chrme, Opera and Firefox */
+      user-select: none;
       cursor: pointer;
       display: inline-block;
       border-bottom:$default-font-size * .1 solid $color-primary-1;
@@ -59,11 +54,20 @@
       fill: $color-primary-1;
     }
     
+    //Click Title Open Animation
     &--open + &-content{
       height: auto;
       visibility: visible;
       opacity: 1;
       margin-bottom: $default-font-size;
+    }
+
+    //Click Title Width Animation
+    &--open + &-content .skills__percent-outer {
+      width: 100%;
+    }
+    &--open + &-content .skills__percent-inner {
+      opacity: 1;
     }
 
     & > *:nth-child(2n+2){
@@ -105,7 +109,6 @@
     &:hover {
       color: darken($color-primary-1, 15%);
       border-bottom:$default-font-size * .1 solid darken($color-primary-1, 15%);
-
     }
   }
   &__percent {
@@ -114,6 +117,10 @@
       background-color: $color-primary-4;
       // width: 100%;
       height: $default-font-size;
+      width: 0;
+      transition: 
+        width $animation-duration $animation-easing $animation-duration,
+      ;
 
       &-left {
         background-color: $color-black;
@@ -146,6 +153,10 @@
     &-inner {
       background-color: $color-primary-1;
       height: $default-font-size;
+      opacity: 0;
+      transition: 
+        opacity $animation-duration * 4 $animation-easing $animation-duration * 1;
+      ;
     }
   }
   

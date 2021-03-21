@@ -352,18 +352,7 @@ body {
   align-items: center;
 }
 .skills__section-title {
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: text;
-  /* Safari 'none' or 'text' here 'all' has issues*/
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
   user-select: none;
-  /* Non-prefixed version, currently supported by Chrme, Opera and Firefox */
   cursor: pointer;
   display: inline-block;
   border-bottom: 0.16rem solid #28527a;
@@ -388,6 +377,12 @@ body {
   visibility: visible;
   opacity: 1;
   margin-bottom: 1.6rem;
+}
+.skills__section--open + .skills__section-content .skills__percent-outer {
+  width: 100%;
+}
+.skills__section--open + .skills__section-content .skills__percent-inner {
+  opacity: 1;
 }
 .skills__section > *:nth-child(2n+2) {
   margin-left: 3.2rem;
@@ -427,6 +422,8 @@ body {
   position: relative;
   background-color: #fbeeac;
   height: 1.6rem;
+  width: 0;
+  transition: width 0.5s ease 0.5s;
 }
 .skills__percent-outer-left {
   background-color: #000;
@@ -458,6 +455,8 @@ body {
 .skills__percent-inner {
   background-color: #28527a;
   height: 1.6rem;
+  opacity: 0;
+  transition: opacity 2s ease 0.5s;
 }
 
 .row {
