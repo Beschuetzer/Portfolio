@@ -39,6 +39,7 @@ const content = {
           <SkillsItem title="Python" percent="33"/>
           <SkillsItem title="Ruby" percent="25"/>
           <SkillsItem title="C#" percent="30"/>
+          <SkillsItem title="Mongoose" percent="35"/>
         </SkillsItemSection>
 
         <SkillsItemSection title="IT Support">
@@ -49,10 +50,25 @@ const content = {
           />
           <SkillsItem title="A+" percent="100"/>
           <SkillsItem title="Network+" percent="100"/>
-          <SkillsItem title="Google IT Support Certificate" percent="100"/>
-          <SkillsItem title="Add All of Udemy Courses Here and link to certs for each" percent="67"/>
+          <SkillsItem href="https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ" title="Google IT Support Specialist" percent="100"/>
+          <SkillsItem title="Add Udemy Courses link to certs" percent="67"/>
           
         </SkillsItemSection>
+
+        <SkillsItemSection title="Human Skills">
+          <SkillsItemSectionLabels 
+            left="Adept"
+            center="Advanced"
+            right="Master"
+          />
+          <SkillsItem title="Empathy" percent="68"/>
+          <SkillsItem title="Written Communication" percent="85"/>
+          <SkillsItem title="Oral Communication" percent="75"/>
+          <SkillsItem title="Self-Starter" percent="75"/>
+          <SkillsItem title="Team Player" percent="75"/>
+          
+        </SkillsItemSection>
+        
 
       </ul>
     </React.Fragment>

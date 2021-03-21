@@ -4,10 +4,12 @@ class SkillsItemSection extends React.Component {
   render() {
     const { children, title } = this.props;
     return (
-      <div className="skills__section">
-        <span className="skills__section-title">{title}:</span>
-        {children}
-      </div>
+      <React.Fragment>
+        <div className="skills__section-title">{title}:</div>
+        <div className="skills__section">
+          {children}
+        </div>
+      </React.Fragment>
     );
   }
 }

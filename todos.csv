@@ -31,4 +31,4 @@
   -Resume HARMONY ABE - Support learners throughout the registration process; support teachers and other administrators by creating reports, manipulating data, providing recommendations, creating documents, etc;
 
 -fix SiteNav opening if clicking to the right of the button (return early if click event is too far right)
--add event handlers to collapse skills sections on click (have '>' when closed and down-triangle when open
+-add event handlers to collapse skills sections on click (have '>' when closed and  rotate to down-triangle when clicking on section

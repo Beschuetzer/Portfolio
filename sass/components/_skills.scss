@@ -14,8 +14,9 @@
     grid-auto-rows: min-content;
     align-items: center;
     &-title {
+      display: inline-block;
+      border-bottom:$default-font-size * .1 solid $color-primary-1;
       margin-top: $default-font-size;
-
       grid-column: 1/-1;
       font-size: $default-font-size * 1.5;
       font-weight: 300;
@@ -56,9 +57,11 @@
     align-items: center;
     width: 100%;
     max-width: $default-font-size * 50;
+    margin-left: $default-font-size * 2;
 
   }
   &__title:link, &__title:visited {
+    display: inline-block;
     text-decoration: none;
     border-bottom:$default-font-size * .1 solid $color-primary-1;
     color: $color-primary-1;
@@ -73,7 +76,7 @@
     &-outer {
       position: relative;
       background-color: $color-primary-4;
-      width: 100%;
+      // width: 100%;
       height: $default-font-size;
 
       &-left {
