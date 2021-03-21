@@ -2,6 +2,8 @@ import React from 'react';
 import { capitalize } from '../../../helpers';
 
 class ResumeSection extends React.Component {
+  
+
   render () {
     const { name, children, headerSideContent } = this.props;
     return (

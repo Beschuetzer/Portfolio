@@ -336,7 +336,17 @@ body {
   position: relative;
 }
 .skills__section {
-  padding-bottom: 1.6rem;
+  cursor: pointer;
+  margin: 3.2rem 0;
+}
+.skills__section:first-child {
+  margin: 0.8rem 0;
+}
+.skills__section-content {
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: height 1s ease, opacity 0.5s ease;
   font-weight: 500;
   display: grid;
   grid-template-columns: max-content 1fr;
@@ -348,7 +358,6 @@ body {
 .skills__section-title {
   display: inline-block;
   border-bottom: 0.16rem solid #28527a;
-  margin-top: 1.6rem;
   grid-column: 1/-1;
   font-size: 2.4rem;
   font-weight: 300;
@@ -358,6 +367,11 @@ body {
   width: 0.8rem;
   height: 0.8rem;
   fill: #28527a;
+}
+.skills__section--open + .skills__section-content {
+  height: auto;
+  visibility: visible;
+  opacity: 1;
 }
 .skills__section > *:nth-child(2n+2) {
   margin-left: 3.2rem;
