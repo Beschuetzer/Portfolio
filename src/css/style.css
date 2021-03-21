@@ -278,6 +278,9 @@ body {
   height: 9.4rem;
   fill: #fbeeac;
 }
+.github__svg:hover {
+  fill: #fffdf5;
+}
 .github__text {
   position: absolute;
   left: 50%;

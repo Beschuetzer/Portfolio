@@ -5,6 +5,7 @@
 
 
 -on root route:
+  -have words orbiting a planet with a work on it?
   artistically place multiple words that mean something and then have a description of their importance in the coding when show up as a unique pop up/slide in effect: 
     -what is an Adam Major (click a word to find out more)?
     -curiosity
@@ -14,10 +15,9 @@
     -
 
 
--porfolio challenges:
+-porfolio challenges (have a section in portfolio?):
   *figuring out how to get the navbar animation to behave exactly as it does (overflow-hidden issue mainly)
 
-  -add github hover effect (inverse colors)
   -center fix items to be in center of columns by putting the navbar and github stuff inside of nav element/div then create a 3 column grid 1fr minmax(min-content, 75ch) 1fr
   -add three sections that can collapse on click for each type of skill set:
     1. Human Skills

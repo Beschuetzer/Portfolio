@@ -19,6 +19,9 @@
     width: 100%;
     height: $default-font-size * 5.875;
     fill: $color-primary-4;
+    &:hover {
+      fill: lighten($color-primary-4, $hover-color-change-amount);
+    }
   }
   &__text {
     position: absolute;
@@ -40,4 +43,5 @@
     }
   }
 
+  
 }
