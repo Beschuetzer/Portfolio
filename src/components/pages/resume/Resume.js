@@ -26,7 +26,6 @@ const content = {
             center="Proficient"
             right="Advanced"
           />
-          
           <SkillsItem title="HTML5" percent="50"/>
           <SkillsItem title="CSS3" percent="65"/>
           <SkillsItem title="SCSS" percent="51"/>
@@ -40,6 +39,19 @@ const content = {
           <SkillsItem title="Python" percent="33"/>
           <SkillsItem title="Ruby" percent="25"/>
           <SkillsItem title="C#" percent="30"/>
+        </SkillsItemSection>
+
+        <SkillsItemSection title="IT Support">
+          <SkillsItemSectionLabels 
+            left="Novice"
+            center="Proficient"
+            right="Advanced"
+          />
+          <SkillsItem title="A+" percent="100"/>
+          <SkillsItem title="Network+" percent="100"/>
+          <SkillsItem title="Google IT Support Certificate" percent="100"/>
+          <SkillsItem title="Add All of Udemy Courses Here and link to certs for each" percent="67"/>
+          
         </SkillsItemSection>
 
       </ul>

@@ -331,12 +331,12 @@ body {
 }
 
 .skills {
-  padding-top: 1.6rem;
   font-size: 1.6rem;
   font-family: "Roboto", sans-serif;
   position: relative;
 }
 .skills__section {
+  padding-bottom: 1.6rem;
   font-weight: 500;
   display: grid;
   grid-template-columns: max-content 1fr;
@@ -346,6 +346,7 @@ body {
   align-items: center;
 }
 .skills__section-title {
+  margin-top: 1.6rem;
   grid-column: 1/-1;
   font-size: 2.4rem;
   font-weight: 300;
