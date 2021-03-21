@@ -26,21 +26,17 @@ const SiteNav = (props) => {
     const isValid = e.clientX <= (9 * parseInt(docStyle.fontSize));
     const isChildOfNavBar = checkForParentOfType(e.target, 'nav', 'navbar');
 
-    console.log('isValid =', isValid);
-    console.log('isChildOfNavBar =', isChildOfNavBar);
-    console.log('!navBar.classList?.contains(navbarActiveClassname) =', !navBar.classList?.contains(navbarActiveClassname));
-    
-    
     if (!navBar) return;
 
     if (!navBar.classList?.contains(navbarActiveClassname) && isChildOfNavBar && isValid ) {
+      console.log('add------------------------------------------------');
       navBar.classList.add('overflow--hidden');
       root.classList?.add(navbarActiveClassname);
       navBar.classList?.add(navbarActiveClassname);
       setIsAnimating(true);
     }
     else {
-      e.stopPropagation();
+      console.log('remove------------------------------------------------');
       root.classList?.remove(navbarActiveClassname);
       navBar.classList?.remove(navbarActiveClassname);
       setIsAnimating(false);
@@ -52,7 +48,8 @@ const SiteNav = (props) => {
   }
 
   const onMouseEnter = (e) => {
-    navRef.current.classList.remove('overflow--hidden');
+    console.log('navRef.Current =', navRef.Current);
+    navRef.current?.classList.remove('overflow--hidden');
   }
 
   useEffect(() => {
@@ -70,7 +67,7 @@ const SiteNav = (props) => {
   useEffect(() => {
     const resetAnimatingId = setTimeout(() => {
       navRef.current?.classList?.remove('navbar--isAnimating');
-    }, animationDuration);
+    }, animationDuration * .7);
     navRef.current?.classList?.add('navbar--isAnimating');
 
     return (() => {
