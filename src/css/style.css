@@ -335,10 +335,6 @@ body {
   font-family: "Roboto", sans-serif;
   position: relative;
 }
-.skills__section {
-  cursor: pointer;
-  margin: 3.2rem 0;
-}
 .skills__section:first-child {
   margin: 0.8rem 0;
 }
@@ -356,11 +352,30 @@ body {
   align-items: center;
 }
 .skills__section-title {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: text;
+  /* Safari 'none' or 'text' here 'all' has issues*/
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrme, Opera and Firefox */
+  cursor: pointer;
   display: inline-block;
   border-bottom: 0.16rem solid #28527a;
   grid-column: 1/-1;
   font-size: 2.4rem;
   font-weight: 300;
+  transition: transform 0.25s ease, color 0.5s ease;
+}
+.skills__section-title:hover {
+  transform: translateX(0.8rem);
+  font-weight: 500;
+  color: #23486c;
 }
 .skills__section-svg {
   margin-right: 0.8rem;
@@ -372,6 +387,7 @@ body {
   height: auto;
   visibility: visible;
   opacity: 1;
+  margin-bottom: 1.6rem;
 }
 .skills__section > *:nth-child(2n+2) {
   margin-left: 3.2rem;
