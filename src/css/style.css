@@ -334,10 +334,11 @@ body {
   position: relative;
 }
 .skills__section {
+  font-weight: 500;
   display: grid;
   grid-template-columns: max-content 1fr;
   grid-row-gap: 0.2rem;
-  grid-column-gap: 0.8rem;
+  grid-column-gap: 1.6rem;
   grid-auto-rows: min-content;
   align-items: center;
 }
@@ -345,6 +346,12 @@ body {
   grid-column: 1/-1;
   font-size: 2.4rem;
   font-weight: 300;
+}
+.skills__section-svg {
+  margin-right: 0.8rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  fill: #28527a;
 }
 .skills__section > *:nth-child(2n+2) {
   margin-left: 3.2rem;
@@ -364,14 +371,19 @@ body {
 }
 .skills__item {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   max-width: 80rem;
 }
-.skills__title {
-  font-weight: 500;
-  width: 50%;
+.skills__title:link, .skills__title:visited {
+  text-decoration: none;
+  border-bottom: 0.16rem solid #28527a;
+  color: #28527a;
+}
+.skills__title:link:hover, .skills__title:visited:hover {
+  color: #152b40;
+  border-bottom: 0.16rem solid #152b40;
 }
 .skills__percent-outer {
   position: relative;

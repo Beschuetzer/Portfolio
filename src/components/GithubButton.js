@@ -11,7 +11,7 @@ class GithubButton extends React.Component {
             {/* <span className="github__text github__text-middle">My</span> */}
             <span className="github__text github__text-bottom">GitHub</span>
             <svg className="github__svg">
-            <use xlinkHref="/sprite.svg#icon-github-square"></use>
+              <use xlinkHref="/sprite.svg#icon-github-square"></use>
             </svg>
           </a>
 

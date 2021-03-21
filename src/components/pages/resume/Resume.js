@@ -37,9 +37,9 @@ const content = {
           <SkillsItem title="socket.io" percent="47.5"/>
           <SkillsItem title="React" percent="55"/>
           <SkillsItem title="Redux" percent="36"/>
-          <SkillsItem title="Python" percent="37"/>
+          <SkillsItem title="Python" percent="33"/>
           <SkillsItem title="Ruby" percent="25"/>
-          <SkillsItem title="C#" percent="35"/>
+          <SkillsItem title="C#" percent="30"/>
         </SkillsItemSection>
 
       </ul>
