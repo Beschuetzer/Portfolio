@@ -35,9 +35,4 @@
     *list of projects that use that skill as links to github page
     *estimated # of hours spent writing code in that language/package/skill
 
--how do i go from repos to:
- projects: {
-  name:
-  url:
-  skills: [html5, css3, ...]
- }
+-figure out GraphQL in React client to get repos by topic from Github GraphQL API
