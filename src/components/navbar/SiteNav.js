@@ -10,6 +10,7 @@ const SiteNav = (props) => {
 
   const navRef = useRef();
   const navbarActiveClassname = 'navbar--active';
+  const navbarDoneClassname = 'navbar--done';
   const navbarIsAnimatingClassname = 'navbar--isAnimating';
   const animationDuration = 500;
   const root = document.querySelector('#root');
@@ -28,10 +29,10 @@ const SiteNav = (props) => {
     const isChildOfNavBar = checkForParentOfType(e.target, 'nav', 'navbar');
 
     if (!navBar) return;
+    navBar.classList.add('overflow--hidden');
 
     if (!navBar.classList?.contains(navbarActiveClassname) && isChildOfNavBar && isValid ) {
       console.log('add overflow------------------------------------------------');
-      navBar.classList.add('overflow--hidden');
       root.classList?.add(navbarActiveClassname);
       navBar.classList?.add(navbarActiveClassname);
       setIsAnimating(true);
@@ -50,7 +51,7 @@ const SiteNav = (props) => {
 
   const onMouseEnter = (e) => {
     e.stopPropagation();
-    console.log('navRef.current =', navRef.current);
+    console.log('navRef.current =', navRef.current.classList);
     if (!navRef.current || !navRef.current?.classList.contains(navbarActiveClassname)
     ) { 
       console.log('return early------------------------------------------------');
@@ -58,8 +59,8 @@ const SiteNav = (props) => {
 
       return;
     }
-    else if (navRef.current.classList.contains(navbarIsAnimatingClassname)) {
-      console.log('not returning------------------------------------------------');
+    else if (navRef.current.classList.contains(navbarIsAnimatingClassname) ||navRef.current.classList.contains(navbarDoneClassname)) {
+      console.log('removing overflow: hidden on hover');
       navRef.current?.classList.remove('overflow--hidden');
     }
   }
@@ -77,16 +78,26 @@ const SiteNav = (props) => {
   });
 
   useEffect(() => {
+    const navBar = navRef.current;
     const resetAnimatingId = setTimeout(() => {
-      navRef.current?.classList?.remove('navbar--isAnimating');
+      navBar?.classList?.remove('navbar--isAnimating');
+      if (isAnimating) {
+        root.classList?.add(navbarDoneClassname);
+        navBar.classList?.add(navbarDoneClassname);
+      }
+      else {
+        root.classList?.remove(navbarDoneClassname);
+        navBar.classList?.remove(navbarDoneClassname);
+      }
     }, animationDuration * .7);
-    navRef.current?.classList?.add('navbar--isAnimating');
+    navBar?.classList?.add('navbar--isAnimating');
 
     return (() => {
       clearTimeout(resetAnimatingId);
     });
 
-  }, [isAnimating])
+  }, [isAnimating, root])
+  
   
   return ReactDOM.createPortal(
     <nav ref={navRef} className="navbar overflow--hidden" onClick={onNavClick}>

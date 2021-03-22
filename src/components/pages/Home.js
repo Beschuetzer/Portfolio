@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getRepositories } from '../../actions';
 import BackgroundVideo from '../BackgroundVideo';
 
 class Home extends React.Component {
@@ -10,6 +12,12 @@ class Home extends React.Component {
     //you have to create a ref for each element you are planning to interact with in the DOM for each component
     this.imageRef = React.createRef();
   }
+
+  componentDidMount() {
+    if (this.props.repos?.length > 0) return;
+    this.props.getRepositories();
+  }
+
   render() {
     return (
       <section className="home">
@@ -23,4 +31,12 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    repos: state.repos,
+  }
+}
+
+export default connect(mapStateToProps, {
+  getRepositories,
+})(Home);

@@ -34,5 +34,3 @@
 -for each web development skill, add a popup that displays the following info:
     *list of projects that use that skill as links to github page
     *estimated # of hours spent writing code in that language/package/skill
-
--troubleshoot projects loading (url issue)
