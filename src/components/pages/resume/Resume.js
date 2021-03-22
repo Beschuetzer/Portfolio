@@ -69,7 +69,6 @@ class Resume extends React.Component {
             <SkillsItem title="Add Udemy Courses link to certs" percent="67"/>
             
           </SkillsItemSection>
-  
           <SkillsItemSection title="Human Skills">
             <SkillsItemSectionLabels 
               left="Adept"
@@ -80,11 +79,8 @@ class Resume extends React.Component {
             <SkillsItem title="Written Communication" percent="85"/>
             <SkillsItem title="Oral Communication" percent="75"/>
             <SkillsItem title="Self-Starter" percent="75"/>
-            <SkillsItem title="Team Player" percent="75"/>
-            
+            <SkillsItem title="Team Player" percent="85"/>
           </SkillsItemSection>
-          
-  
         </ul>
       </React.Fragment>
     ],
