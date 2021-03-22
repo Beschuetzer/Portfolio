@@ -7,7 +7,7 @@ import SkillsItemSection from './SkillsItemSection';
 import SkillsItemSectionLabels from './SkillsItemSectionLabels';
 import SkillsItem from './SkillsItem';
 
-import { getRespositories } from '../../../actions';
+import { getRepositories } from '../../../actions';
 
 const content = {
   summary: 
@@ -116,7 +116,9 @@ const headerSideContent = {
 class Resume extends React.Component {
   componentDidMount() {
     console.log('this.props =', this.props);
-    // this.props.getRespositories();
+    if (this.props.repos?.length > 0) return;
+    this.props.getRepositories();
+    
   }
 
 
@@ -163,6 +165,12 @@ class Resume extends React.Component {
   }
 }
 
-export default connect(null, {
-  getRespositories,
+const mapStateToProps = (state, ownProps) => {
+  return {
+    repos: state.repos,
+  }
+}
+
+export default connect(mapStateToProps, {
+  getRepositories,
 })(Resume);

@@ -10,9 +10,8 @@ import {
 //    }
 //}
     
-export const getRespositories = async (dispatch, getStore) => {
-  const response = await github.get('/repositories');
-  debugger;
+export const getRepositories = () => async (dispatch, getStore) => {
+  const response = await github.get('');
 
   dispatch({
     type: GET_REPOSITORIES,

@@ -9,7 +9,7 @@ import repositoriesReducer from './repositoriesReducer';
 //}
 
 export default combineReducers({
-    repositories: repositoriesReducer,
+    repos: repositoriesReducer,
 })
 
     

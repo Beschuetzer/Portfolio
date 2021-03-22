@@ -35,4 +35,4 @@
     *list of projects that use that skill as links to github page
     *estimated # of hours spent writing code in that language/package/skill
 
--get projects from github and store in store
+-troubleshoot projects loading (url issue)
