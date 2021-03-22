@@ -16,5 +16,8 @@ export const getRepositories = () => async (dispatch, getStore) => {
   dispatch({
     type: GET_REPOSITORIES,
     payload: response.data,
-  })
+  });
+
+  //TODO: figure out how to sort repos by skills used (create a skills obj then reference those skill in a repos obj)
+  //created_at, description, name, updated_at
 }
