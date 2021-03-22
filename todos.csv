@@ -35,4 +35,5 @@
     *list of projects that use that skill as links to github page
     *estimated # of hours spent writing code in that language/package/skill
 
--figure out GraphQL in React client to get repos by topic from Github GraphQL API
+-start work on SkillsPopup (be sure to add error handling in case API down)
+-verify graphQL data gets into store properly and calls are made on resume when refreshed
