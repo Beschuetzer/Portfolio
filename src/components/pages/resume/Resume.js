@@ -43,6 +43,7 @@ const content = {
           <SkillsItem title="Ruby" percent="25"/>
           <SkillsItem title="C#" percent="30"/>
           <SkillsItem title="Mongoose" percent="35"/>
+          <SkillsItem title="GraphQL" percent="23"/>
         </SkillsItemSection>
 
         <SkillsItemSection title="IT Support">
