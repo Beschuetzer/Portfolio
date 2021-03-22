@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-imprt {}
 
 class SkillsPopup extends React.Component {
 
-  componentDidMount() {
-
+  renderProjects = (skill) => {
+    //TODO: calculate the projects but first need to run calculations after fetching in async action creator
   }
   
   render() {
@@ -13,17 +12,18 @@ class SkillsPopup extends React.Component {
     return (
       <div className={`skills-popup skills-popup${position}`}>
         <div className='skills-popup__title'>{skill}</div>
-        {projects}
-
+        {this.renderProjects(skill)}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  skills: state.projects.skills[ownProps.skill],
+  return {
+    skills: state.projects.skills[ownProps.skill],
+  }
 }
 
 export default connect(mapStateToProps, {
 
-}(SkillsPopup);
+})(SkillsPopup);
