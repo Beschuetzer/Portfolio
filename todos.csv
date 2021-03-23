@@ -36,4 +36,5 @@
     *estimated # of hours spent writing code in that language/package/skill
 
 -start work on SkillsPopup (be sure to add error handling in case API down)
--verify graphQL data gets into store properly and calls are made on resume when refreshed
+  *get hover item and store in redux (then display corresponding repositories based on hovered skill
+  *get each SkillItem to cause popup 
