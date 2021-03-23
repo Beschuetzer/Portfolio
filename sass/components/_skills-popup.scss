@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   font-size: $default-font-size * 1;
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(10px) brightness(.5);
   width: 100vw;
   height: 100vh;
   opacity: 0;
@@ -17,16 +17,18 @@
   &__content {
     overflow-y: auto;
     overflow-x: hidden;
-    width: auto;
-    max-width: 95vw;
-    max-height: 100vh;
+    width: 75vw;
+    max-width: 75vw;
+    max-height: 75vh;
+    height: 75vh;
     background-color: $color-primary-4;
-    padding: $default-font-size * 2 $default-font-size * 4;
-
+    padding: $default-font-size * 2;
+    border: $default-font-size * .25 solid lighten($color-primary-1, 15%);
+    box-shadow: 0 $default-font-size $default-font-size * 2 0 $navbar-box-shadow-color;
     position: absolute;
-    bottom: 0%;
-    left: 2.5%;
-    transform: translate(0%, 200%) ;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 200%) ;
     border-radius: $default-font-size * .5;
     transition: 
       transform $animation-duration * .66 $animation-easing,
@@ -34,24 +36,32 @@
   }
   
   &__header {
-    font-size: 3.2rem;
+    font-size: $default-font-size * 2;
     font-weight: 100;
     text-align: center;
+    margin-bottom: $default-font-size * 1.5;
+    position: relative;
     &-skill {
       font-weight: 700;
     }
   }
   &__table {
     display: grid;
-    grid-template-columns: min-content minmax(40rem, 1fr) repeat(3, min-content);
-    grid-column-gap: $default-font-size * 2;
-    grid-row-gap: $default-font-size * 1;
+    grid-template-columns: min-content minmax(25rem, 1fr) repeat(2, min-content) min-content;
     &-header {
       font-weight: 700;
     }
-    &__item {
+    &-item {
       font-weight: 400;
       font-family: $font-family-text;
+      border-bottom: $default-font-size * .1 dashed $color-primary-1;
+      display: flex;
+      align-items: center;
+      padding:$default-font-size $default-font-size * 2 $default-font-size 0;
+      
+      &:nth-child(5n+5) {
+        padding-right: 0;
+      }
     }
   }
 
@@ -91,7 +101,7 @@
     visibility: visible;
 
     & .skills-popup__content {
-      transform: translate(-0%, -0%) ;
+      transform: translate(-50%, -50%) ;
     }
   }
 }

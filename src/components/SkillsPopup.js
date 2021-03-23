@@ -52,7 +52,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
     // homepageUrl(pin):"https://beschuetzer.github.io/PaperRockScissors/"
     // url(pin):"https://github.com/Beschuetzer/PaperRockScissors"
     console.log('reposToDisplay =', reposToDisplay);
-    const keys = ["name", 'description', 'createdAt', ' updatedAt','url'];
+    const keys = ["name", 'description', 'createdAt', 'updatedAt','url'];
     return reposToDisplay.map(repo => {
       return keys.map(key => {
         switch (key) {
@@ -110,13 +110,14 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   return (
     ReactDOM.createPortal(
       <div className='skills-popup__content'>
-        <svg onClick={onCloseClick} className='skills-popup__close'>
-          <use xlinkHref="/sprite.svg#icon-close"></use>
-        </svg>
+        
         <div className='skills-popup__header'>
-          Projects that use '
+          Highlighted Projects that use '
           <span className="skills-popup__header-skill">{clickedSkill}</span>
           ':
+          <svg onClick={onCloseClick} className='skills-popup__close'>
+            <use xlinkHref="/sprite.svg#icon-close"></use>
+          </svg>
         </div>
         <div className='skills-popup__table'>
           {renderTableHeaders()}

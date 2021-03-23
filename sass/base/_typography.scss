@@ -1,5 +1,5 @@
 .heading{
-    font-family: 'Cinzel', serif;
+    font-family: $font-family-headers;
     &--one {
         font-size: $default-font-size * 6;
     }
@@ -22,7 +22,7 @@
 }
     
 .paragraph {
-    font-family: 'Roboto', sans-serif;
+    font-family: $font-family-text;
     margin-top: $default-font-size;
     &--one {
         font-size: $default-font-size * 2;

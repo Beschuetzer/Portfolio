@@ -371,13 +371,15 @@
   background: $color-primary-1;
 }
   ::-webkit-scrollbar-thumb {
-    background: $color-primary-2;
-    border: 9px solid $color-primary-4;
+    background: lighten($color-primary-4, $hover-color-change-amount);
+    border-left: 4px dashed $color-primary-1;
+    border-right: 4px dashed $color-primary-1;
     -webkit-border-radius: 0;
     border-radius: 0;
+
 }
   ::-webkit-scrollbar-corner {
-  background: $color-primary-4;
+  background: lighten($color-primary-4, $hover-color-change-amount);
 }
 
 
