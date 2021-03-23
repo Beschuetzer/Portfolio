@@ -10,16 +10,15 @@
   display: flex;
   align-items: center;
 
-  // transition: all .1s 10s ease;
-
-  // &::before {
-  //   content: '';
-  //   width: $default-font-size * 5;
-  //   height: 100%;
-  //   background-color: $color-primary-1;
-  //   position: absolute;
-  //   z-index: 90;
-  // }
+  &__background {
+    position: fixed;
+    top: 10.1rem;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    visibility: hidden;
+    z-index: -1;
+  }
 
   &__menu {
     width: $navbar__logo-width;
@@ -323,7 +322,9 @@
       padding: $default-font-size * $paddingFactor $default-font-size * 1.5;
     }
 
-    
+    & .navbar__background {
+      visibility: visible;
+    }
   }
 
   //Handling Bug where leaving button after clicking causes overflow hidden to change

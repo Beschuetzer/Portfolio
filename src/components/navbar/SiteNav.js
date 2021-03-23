@@ -100,34 +100,36 @@ const SiteNav = (props) => {
   
   
   return ReactDOM.createPortal(
-    <nav ref={navRef} className="navbar overflow--hidden" onClick={onNavClick}>
-      <div className="navbar__button" to="/">
-        <div className="navbar__menu">
-          <div className="navbar__menu-bar"></div>
+      <nav ref={navRef} className="navbar overflow--hidden" onClick={onNavClick}>
+        <div className="navbar__button" to="/">
+          <div className="navbar__menu">
+            <div className="navbar__menu-bar"></div>
+          </div>
         </div>
-      </div>
-      <div className="navbar__content">
-        <ul className="navbar__list">
-          <NavListItem to="/about" label="About" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
-          <NavListItem 
-            to="/works" 
-            label="Examples" 
-            onMouseEnter={onMouseEnter} onClick={onNavItemClick}
-            className="navbar__item navbar__dropdown-container flex align-center justify-content-center"
-          >
-            <div className="triangle-down"></div>
-            <ul className="navbar__dropdown">
-              <NavListItem to="/works/bridge" label="Bridge" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
-              <NavListItem to="/works/csharp" label="C#" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
-              <NavListItem to="/works/python" label="Python" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
-              <NavListItem to="/works" label="All" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
-            </ul>
-          </NavListItem>
-          <NavListItem to="/resume" label="Resume" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
-          <NavListItem to="/contact" label="Contact" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
-        </ul>
-      </div>
-    </nav>,
+        <div className="navbar__content">
+          <ul className="navbar__list">
+            <NavListItem to="/about" label="About" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
+            <NavListItem 
+              to="/works" 
+              label="Examples" 
+              onMouseEnter={onMouseEnter} onClick={onNavItemClick}
+              className="navbar__item navbar__dropdown-container flex align-center justify-content-center"
+            >
+              <div className="triangle-down"></div>
+              <ul className="navbar__dropdown">
+                <NavListItem to="/works/bridge" label="Bridge" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
+                <NavListItem to="/works/csharp" label="C#" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
+                <NavListItem to="/works/python" label="Python" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
+                <NavListItem to="/works" label="All" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
+              </ul>
+            </NavListItem>
+            <NavListItem to="/resume" label="Resume" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
+            <NavListItem to="/contact" label="Contact" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
+          </ul>
+        </div>
+        <div class='navbar__background'></div>
+      </nav>
+    ,
     document.querySelector('#header')
   );
 }

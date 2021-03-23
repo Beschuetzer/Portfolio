@@ -602,6 +602,15 @@ body {
   display: flex;
   align-items: center;
 }
+.navbar__background {
+  position: fixed;
+  top: 10.1rem;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  visibility: hidden;
+  z-index: -1;
+}
 .navbar__menu {
   width: 8rem;
   height: 8rem;
@@ -795,6 +804,9 @@ body {
 }
 .navbar.navbar--active .navbar__link:not(.navbar.navbar--active__dropdown .navbar.navbar--active__link) {
   padding: 2rem 2.4rem;
+}
+.navbar.navbar--active .navbar__background {
+  visibility: visible;
 }
 .navbar.navbar--isAnimating * {
   pointer-events: none;

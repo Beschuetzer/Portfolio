@@ -37,5 +37,7 @@
 
 -start work on SkillsPopup (be sure to add error handling in case API down)
   *figure out how to get desired repositories from clickedSkill into SkillsPopup
+
+-add navbar__background div that changes from visibility: hidden to visible depending on whether navbar--active is present (prevent clicking on other items)
   
 
