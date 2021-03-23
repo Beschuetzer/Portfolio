@@ -6,17 +6,17 @@ class SkillsPopup extends React.Component {
 
   componentDidMount() {
     //TODO: Filter
-    nodes {
-      createdAt: "2020-06-16T05:21:24Z"
-      description: "This was a module in The Odin Project."
-      homepageUrl: ""
-      name: "git_test"
-      repositoryTopics: {nodes: [{topic: {name: "git"}}]}
-      nodes: [{topic: {name: "git"}}]
-      0: {topic: {name: "git"}}
-      updatedAt: "2021-03-15T18:03:40Z"
-      url: "https://github.com/Beschuetzer/git_test"
-    }
+    // nodes {
+    //   createdAt: "2020-06-16T05:21:24Z"
+    //   description: "This was a module in The Odin Project."
+    //   homepageUrl: ""
+    //   name: "git_test"
+    //   repositoryTopics: {nodes: [{topic: {name: "git"}}]}
+    //   nodes: [{topic: {name: "git"}}]
+    //   0: {topic: {name: "git"}}
+    //   updatedAt: "2021-03-15T18:03:40Z"
+    //   url: "https://github.com/Beschuetzer/git_test"
+    // }
 
 
     this.relevantProjects = this.props.projects.filter(project => project.)

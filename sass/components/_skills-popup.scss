@@ -1,8 +1,16 @@
 .skills-popup {
+  position: absolute;
+  top: -$default-font-size * 10;
+  z-index: 100000000;
+  
   &__header {
     
   }
   &__table {
-    
+
+  }
+  &--active {
+    opacity: 1;
+    visibility: visible;
   }
 }

@@ -3,8 +3,27 @@ import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const SkillsItem = ({ title, percent, href, to }) => {
+  const skillsPopupDiv = document.querySelector('#skillsPopup');
   const percentDiv = useRef();
   const [isDivSet, setIsDivSet] = useState(false);
+
+  const onMouseEnter = (e) => {
+    const yCoordinate = e.clientY;
+    const maxHeight = window.innerHeight / 2;
+    let classToAdd = 'top';
+    if (yCoordinate <= maxHeight - 50) classToAdd = 'bottom';
+    if (skillsPopupDiv) {
+      skillsPopupDiv.className = "skills-popup skills-popup--active";
+      skillsPopupDiv.classList.add(classToAdd);
+    }
+
+    skillsPopupDiv.style.bottom = `${e.clientY - 20}px`;
+    skillsPopupDiv.style.left = `${e.clientX}px`;
+  }
+
+  const onMouseLeave = (e) => {
+    skillsPopupDiv.className = "skills-popup";
+  }
 
   useEffect(() => {
     percentDiv.current.style.width = `${percent}%`;
@@ -13,7 +32,7 @@ const SkillsItem = ({ title, percent, href, to }) => {
 
   return (
     <React.Fragment>
-      <li className='skills__item'>
+      <li className='skills__item' >
         <svg className="skills__section-svg">
           <use xlinkHref="/sprite.svg#icon-circle"></use>
         </svg>
@@ -23,7 +42,10 @@ const SkillsItem = ({ title, percent, href, to }) => {
           </Link>
         :
           <a target="_blank" rel="noreferrer" className="skills__title" href={href}>
-            <p className="">{title}:</p>
+            <p 
+              onMouseEnter={onMouseEnter} 
+              onMouseLeave={onMouseLeave} 
+              className="">{title}:</p>
           </a>
         }
         
