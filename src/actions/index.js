@@ -2,6 +2,7 @@ import github from '../apis/github';
 import {
   GET_REPOSITORIES,
   CLICK_SKILL,
+  ADD_REPO,
 } from './types';
 //Example Action Creator
 //export const selectSong = (song) => {
@@ -188,5 +189,12 @@ export const clickSkill = (target) => {
   return {
     type: CLICK_SKILL,
     payload: skill,
+  }
+}
+
+export const addRepoToReposToDisplay = (repo) => {
+  return {
+    type: ADD_REPO,
+    payload: repo,
   }
 }

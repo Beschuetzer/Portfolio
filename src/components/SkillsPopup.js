@@ -1,13 +1,12 @@
 import React from 'react';
-import {useEffect} from 'react';
+import {useEffect, useMemo} from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { checkForParentOfType } from '../helpers';
-import { clickSkill } from '../actions';
+import { clickSkill, addRepoToReposToDisplay } from '../actions';
 
-const SkillsPopup = ({clickSkill, skill, repos, clickedSkill }) => {
+const SkillsPopup = ({clickSkill, skill, repos, clickedSkill, addRepoToReposToDisplay }) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
-  let reposToDisplay = [];
 
   //on initial load
   useEffect(() => {
@@ -17,32 +16,26 @@ const SkillsPopup = ({clickSkill, skill, repos, clickedSkill }) => {
       if (isBodyClick) {
         skillsPopupDiv?.classList?.remove('skills-popup--active');
         clickSkill(null);
+        addRepoToReposToDisplay([]);
       }
     }
     skillsPopupDiv.addEventListener('click', handleClickBody);
-  }, [clickSkill, skillsPopupDiv]) 
+  }, [clickSkill, skillsPopupDiv, addRepoToReposToDisplay]) 
 
   //when clickedSkillUpdate
   useEffect(() => {
-    console.log('repos =', repos);
-    console.log('clickedSkill =', clickedSkill);
-    //TODO: add logic to get only repos with topics that match clickedSkill
     for (let i = 0; i < repos.length; i++) {
       const repo = repos[i];
-      // console.log('repo =', repo);
       for (let j = 0; j < repo.repositoryTopics.nodes?.length; j++) {
         const node = repo.repositoryTopics.nodes[j];
-        // console.log('node?.topic?.name =', node?.topic?.name);
-        // console.log('clickedSkill =', clickedSkill);
         if (clickedSkill && node?.topic?.name === clickedSkill) {
-          reposToDisplay.push(repos[i]);
-          continue;
+          addRepoToReposToDisplay(repos[i]);
+          break;
         }
       }
     }
-    console.log('reposToDisplay =', reposToDisplay);
 
-  }, [clickedSkill, repos, reposToDisplay]);
+  }, [clickedSkill, repos, addRepoToReposToDisplay]);
 
   const onCloseClick = (e) => {
     skillsPopupDiv?.classList?.remove('skills-popup--active');
@@ -84,6 +77,7 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
   clickSkill,
+  addRepoToReposToDisplay,
 })(SkillsPopup);
 
 
