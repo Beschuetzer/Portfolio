@@ -27,7 +27,7 @@ const SkillsItem = ({ title, percent, href, clickSkill }) => {
         </svg>
         {href ?
           <a target="_blank" rel="noreferrer" className="skills__title" href={href}>
-            <p>{title}:</p>
+            {title}:
           </a>
         :
           <div onClick={onParagraphClick} className="skills__title">

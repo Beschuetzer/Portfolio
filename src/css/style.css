@@ -436,13 +436,13 @@ body {
   border-bottom: 0.16rem solid #152b40;
   transform: scale(1.025);
 }
-.skills__title--animating {
-  background: linear-gradient(to right, #28527a 0%, #3b79b4 50%, #28527a 100%);
+.skills__title--animating, .skills__title--animating:link, .skills__title--animating:visited {
+  background: linear-gradient(to left, #28527a 0%, #fffdf5 5%, #28527a 10%, #28527a 100%);
   background-size: 200% auto;
   background-clip: text;
   display: inline-block;
   color: transparent;
-  animation: animate-skills infinite 5s;
+  animation: animate-skills infinite 10s;
 }
 .skills__percent-outer {
   position: relative;

@@ -139,13 +139,13 @@
       transform: scale($scale-amount - .025);
     }
   }
-  &__title--animating {
+  &__title--animating, &__title--animating:link, &__title--animating:visited {
     background: $skills-linear-gradient-original;
     background-size: 200% auto;
     background-clip: text;
     display: inline-block;
     color: transparent;
-    animation: animate-skills infinite 5s;
+    animation: animate-skills infinite 10s;
   }
 
   &__percent {
