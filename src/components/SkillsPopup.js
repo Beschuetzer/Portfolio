@@ -6,6 +6,7 @@ import history from '../history';
 
 class SkillsPopup extends React.Component {
   relevantProjects = []
+  skillsPopupDiv = document.querySelector('#skillsPopup');
 
   componentDidMount() {
     //TODO: Filter
@@ -28,10 +29,10 @@ class SkillsPopup extends React.Component {
       e.stopPropagation();
       const isBodyClick = !checkForParentOfType(e.target, 'div', 'skills-popup');
       console.log('isBodyClick =', isBodyClick);
-      if (isBodyClick) history.push('/resume')
+      if (isBodyClick) this.skillsPopupDiv?.classList?.toggle('skills-popup--active');
     }
 
-    document.querySelector('#skills-popup').addEventListener('click', handleClickBody);
+    this.skillsPopupDiv.addEventListener('click', handleClickBody);
   }
 
   renderProjects = (skill) => {
@@ -54,7 +55,7 @@ class SkillsPopup extends React.Component {
           </div>
         </div>
         ,
-        document.querySelector('#skills-popup')
+        document.querySelector('#skillsPopup')
       )
     );
   }

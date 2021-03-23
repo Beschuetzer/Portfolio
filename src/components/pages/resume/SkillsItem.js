@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom';
 import history from '../../../history';
 
 const SkillsItem = ({ title, percent, href, to }) => {
-  const skillsPopupDiv = document.querySelector('#skills-popup');
+  const skillsPopupDiv = document.querySelector('#skillsPopup');
   const percentDiv = useRef();
   const [isDivSet, setIsDivSet] = useState(false);
 
   const onParagraphClick = (e) => {
-    debugger;
-    history.push('/resume#skills-popup')
+    skillsPopupDiv?.classList?.toggle('skills-popup--active')
   }
 
   useEffect(() => {

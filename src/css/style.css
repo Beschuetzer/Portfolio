@@ -481,20 +481,20 @@ body {
   background-color: #fbeeac;
   padding: 3.2rem 6.4rem;
   position: absolute;
-  top: 50%;
+  bottom: 0%;
   left: 50%;
-  transform: translate(-50%, 30rem);
+  transform: translate(-50%, 200%);
   width: 90%;
   max-width: 70rem;
   border-radius: 0.8rem;
-  transition: transform 0.5s ease;
+  transition: transform 0.33s ease;
 }
-.skills-popup:target {
+.skills-popup--active {
   opacity: 1;
   visibility: visible;
 }
-.skills-popup:target .skills-popup__content {
-  transform: translate(-50%, -50%);
+.skills-popup--active .skills-popup__content {
+  transform: translate(-50%, 0%);
 }
 
 .row {

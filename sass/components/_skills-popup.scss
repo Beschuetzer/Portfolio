@@ -12,21 +12,20 @@
   transition: 
     opacity $animation-duration $animation-easing,
   ;
-
   
   &__content {
     background-color: $color-primary-4;
     padding: $default-font-size * 2 $default-font-size * 4;
 
     position: absolute;
-    top: 50%;
+    bottom: 0%;
     left: 50%;
-    transform: translate(-50%, 30rem) ;
+    transform: translate(-50%, 200%) ;
     width: 90%;
     max-width: 70rem;
     border-radius: $default-font-size * .5;
     transition: 
-      transform $animation-duration $animation-easing,
+      transform $animation-duration * .66 $animation-easing,
     ;
   }
   
@@ -36,12 +35,12 @@
   &__table {
 
   }
-  &:target {
+  &--active {
     opacity: 1;
     visibility: visible;
 
     & .skills-popup__content {
-      transform: translate(-50%, -50%) ;
+      transform: translate(-50%, -0%) ;
     }
   }
 }
