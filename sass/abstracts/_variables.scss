@@ -26,6 +26,7 @@
     $color-primary-4: #fbeeac;
 
     //sizes
+    $scale-amount: 1.05;
     $navbar__logo-width: $default-font-size * 5;
 
     $component-margin-amount: $default-font-size * 8;
@@ -49,4 +50,9 @@
 
     $navbar-box-shadow-color: rgba($color-black, .2);
     $hover-color-change-amount: 15%;
+
+    //skills
+    $skills-linear-gradient-original: linear-gradient(to right, $color-primary-1, lighten($color-primary-1, $hover-color-change-amount));
+    $skills-linear-gradient-hover: linear-gradient(to right, lighten($color-primary-1, $hover-color-change-amount) , $color-primary-1);
+
     

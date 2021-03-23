@@ -16,16 +16,13 @@
 }
 @keyframes animate-skills {
   0% {
-    opacity: 1;
-    transform: scale(0);
+    background-image: linear-gradient(to right, #28527a, #8ac4d0);
   }
-  20% {
-    transform: scale(1);
-    opacity: 0;
+  5% {
+    background-image: linear-gradient(to right, #8ac4d0, #28527a);
   }
   100% {
-    transform: scale(0);
-    opacity: 0;
+    background-image: linear-gradient(to right, #28527a, #28527a);
   }
 }
 /* global reset;  box-sizing is set on body and set to inherit on all other elements */
@@ -441,16 +438,15 @@ body {
   color: #28527a;
 }
 .skills__title:link:hover, .skills__title:visited:hover, .skills__title:hover {
-  color: #152b40;
+  background-image: linear-gradient(to right, #3b79b4, #28527a);
   border-bottom: 0.16rem solid #152b40;
+  transform: scale(1.025);
 }
-.skills__title--animating::before {
-  content: "";
-  position: absolute;
-  background-color: #fbeeac;
-  height: 100%;
-  width: 100%;
-  animation: animate-skills infinite 10s;
+.skills__title--animating {
+  background-image: linear-gradient(to right, #28527a, #3b79b4);
+  background-clip: text;
+  display: inline-block;
+  color: transparent;
 }
 .skills__percent-outer {
   position: relative;

@@ -31,7 +31,7 @@ const SkillsItem = ({ title, percent, href, clickSkill }) => {
           </a>
         :
           <div onClick={onParagraphClick} className="skills__title">
-            {title}:
+            <p>{title}:</p>
           </div>
         }
         
