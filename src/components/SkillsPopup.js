@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { checkForParentOfType } from '../helpers';
 import { clickSkill, addRepoToReposToDisplay } from '../actions';
 
-const SkillsPopup = ({clickSkill, skill, repos, clickedSkill, addRepoToReposToDisplay }) => {
+const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDisplay, clickSkill }) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
 
   //on initial load
@@ -42,12 +42,61 @@ const SkillsPopup = ({clickSkill, skill, repos, clickedSkill, addRepoToReposToDi
     clickSkill(null);
   }
 
-  const renderProjects = (skill) => {
+  const renderProjects = () => {
     //TODO: calculate the projects but first need to run calculations after fetching in async action creator
+
+    // createdAt(pin):"2020-06-24T17:39:45Z"
+    // description(pin):"This was a project that I completed for The Odin Project. My first time using Javascript along with HTML5 and CSS3"
+    // name(pin):"PaperRockScissors"
+    // updatedAt(pin):"2021-03-15T18:11:05Z"
+    // homepageUrl(pin):"https://beschuetzer.github.io/PaperRockScissors/"
+    // url(pin):"https://github.com/Beschuetzer/PaperRockScissors"
+    console.log('reposToDisplay =', reposToDisplay);
+    const keys = ["name", 'description', 'createdAt', ' updatedAt','url'];
+    return reposToDisplay.map(repo => {
+      return keys.map(key => {
+        switch (key) {
+          case 'name':
+            if (repo['homepageUrl']) {
+              return (
+                <a href={repo['homepageUrl']} key={key} className=  {`skills-popup__table-item skills-popup__${key} link`}>
+                  {repo[key]}
+                </a>
+              )
+            }
+
+            return (
+              <div key={key} className={`skills-popup__table-item skills-popup__${key}`}>
+                {repo[key]}
+              </div>
+            );
+            
+          case 'url':
+            return (
+              <div key={key} className={`skills-popup__table-item skills-popup__${key}`}>
+                {repo[key]}
+              </div>
+            );
+          default:
+            return (
+              <div key={key} className={`skills-popup__table-item skills-popup__${key}`}>
+                {repo[key]}
+              </div>
+            );
+        }
+        
+      })
+    })
   }
 
   const renderTableHeaders = () => {
-    //TODO
+    //TODO: name description created updated URL
+    const headers = ['Name', 'Description', 'Created', 'Updated', 'URL'];
+    return headers.map(header => {
+      return (
+        <div className="skills-popup__table-header">{header}</div>
+      );
+    })
   }
   
   return (
@@ -56,10 +105,14 @@ const SkillsPopup = ({clickSkill, skill, repos, clickedSkill, addRepoToReposToDi
         <svg onClick={onCloseClick} className='skills-popup__close'>
           <use xlinkHref="/sprite.svg#icon-close"></use>
         </svg>
-        <div className='skills-popup__header'>'{skill}' Projects:</div>
+        <div className='skills-popup__header'>
+          Projects that use '
+          <span className="skills-popup__header-skill">{clickedSkill}</span>
+          ':
+        </div>
         <div className='skills-popup__table'>
           {renderTableHeaders()}
-          {renderProjects(skill)}
+          {renderProjects()}
         </div>
       </div>
       ,
@@ -71,6 +124,7 @@ const SkillsPopup = ({clickSkill, skill, repos, clickedSkill, addRepoToReposToDi
 const mapStateToProps = (state, ownProps) => {
   return {
     repos: state.repos,
+    reposToDisplay: state.reposToDisplay,
     clickedSkill: state.clickedSkill,
   }
 }
@@ -79,17 +133,3 @@ export default connect(mapStateToProps, {
   clickSkill,
   addRepoToReposToDisplay,
 })(SkillsPopup);
-
-
-//TODO: Filter
-    // nodes {
-    //   createdAt: "2020-06-16T05:21:24Z"
-    //   description: "This was a module in The Odin Project."
-    //   homepageUrl: ""
-    //   name: "git_test"
-    //   repositoryTopics: {nodes: [{topic: {name: "git"}}]}
-    //   nodes: [{topic: {name: "git"}}]
-    //   0: {topic: {name: "git"}}
-    //   updatedAt: "2021-03-15T18:03:40Z"
-    //   url: "https://github.com/Beschuetzer/git_test"
-    // }

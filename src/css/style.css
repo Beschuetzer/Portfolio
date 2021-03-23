@@ -479,6 +479,7 @@ body {
 }
 
 .skills-popup {
+  color: #28527a;
   position: fixed;
   top: 0;
   left: 0;
@@ -492,6 +493,9 @@ body {
   transition: opacity 0.5s ease;
 }
 .skills-popup__content {
+  width: auto;
+  max-width: 100vw;
+  max-height: 100vh;
   background-color: #fbeeac;
   padding: 3.2rem 6.4rem;
   position: absolute;
@@ -502,6 +506,18 @@ body {
   max-width: 70rem;
   border-radius: 0.8rem;
   transition: transform 0.33s ease;
+}
+.skills-popup__header {
+  font-size: 3.2rem;
+  font-weight: 100;
+  text-align: center;
+}
+.skills-popup__header-skill {
+  font-weight: 700;
+}
+.skills-popup__table {
+  display: grid;
+  grid-template-columns: min-content 1fr repeat(3, min-content);
 }
 .skills-popup__close {
   cursor: pointer;
