@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const SkillsItem = ({ title, percent, href, to }) => {
-  const skillsPopupDiv = document.querySelector('#skillsPopup');
+  const skillsPopupDiv = document.querySelector('#skills-popup');
   const percentDiv = useRef();
   const [isDivSet, setIsDivSet] = useState(false);
 
@@ -20,6 +20,7 @@ const SkillsItem = ({ title, percent, href, to }) => {
     }
 
     skillsPopupDiv.style.top = `${window.scrollY + borderRectOfSkill.top}px`;
+    // skillsPopupDiv.style.left = `${borderRectOfSkill.x + borderRectOfSkill.width / 2}px`;
     skillsPopupDiv.style.left = `${borderRectOfSkill.x}px`;
   }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
 class SkillsPopup extends React.Component {
@@ -19,7 +20,7 @@ class SkillsPopup extends React.Component {
     // }
 
 
-    this.relevantProjects = this.props.projects.filter(project => project.)
+    // this.relevantProjects = this.props.projects.filter(project => project.)
   }
 
   renderProjects = (skill) => {
@@ -31,15 +32,19 @@ class SkillsPopup extends React.Component {
   }
   
   render() {
-    const { position, skill } = this.props;
+    const { skill } = this.props;
     return (
-      <div className={`skills-popup skills-popup${position}`}>
-        <div className='skills-popup__header'>'{skill}' Projects:</div>
-        <div className='skills-popup__table'>
-          {this.renderTableHeaders()}
-          {this.renderProjects(skill)}
-        </div>
-      </div>
+      ReactDOM.createPortal(
+        <React.Fragment>
+          <div className='skills-popup__header'>'{skill}' Projects:</div>
+          <div className='skills-popup__table'>
+            {this.renderTableHeaders()}
+            {this.renderProjects(skill)}
+          </div>
+        </React.Fragment>
+        ,
+        document.querySelector('#skills-popup')
+      )
     );
   }
 }

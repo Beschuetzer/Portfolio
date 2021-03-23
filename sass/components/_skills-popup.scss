@@ -1,10 +1,14 @@
 .skills-popup {
-  height: $default-font-size * 10;
-  width: $default-font-size * 10;
-  background-color: orangered;
-  transform: translate(0, -100%);
+  // height: auto;
+  // width: $default-font-size * 10;
+  border-radius: $default-font-size * .5;
+  font-size: $default-font-size * .9;
+  background-color: $color-primary-2;
+  transform: translate(-0%, -100%);
+  max-height:$default-font-size * 20;
+  overflow-y: auto;
 
-  padding: $default-font-size * 2;
+  padding: $default-font-size * 2 $default-font-size * 4;
   opacity: 0;
   visibility: hidden;
   position: absolute;
@@ -20,6 +24,10 @@
 
   }
   &--active {
+    opacity: 1;
+    visibility: visible;
+  }
+  &:hover {
     opacity: 1;
     visibility: visible;
   }

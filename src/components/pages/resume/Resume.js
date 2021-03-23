@@ -8,6 +8,7 @@ import SkillsItemSectionLabels from './SkillsItemSectionLabels';
 import SkillsItem from './SkillsItem';
 
 import { getRepositories } from '../../../actions';
+import SkillsPopup from '../../SkillsPopup';
 
 
 class Resume extends React.Component {
@@ -153,10 +154,13 @@ class Resume extends React.Component {
 
   render() {
     return (
-      <section className="resume">
-        <h2 className="heading heading--two">Resume</h2>
-        {this.renderSections()}
-      </section>
+      <React.Fragment>
+        <section className="resume">
+          <h2 className="heading heading--two">Resume</h2>
+          {this.renderSections()}
+        </section>
+        <SkillsPopup/>
+      </React.Fragment>
     );
   }
 }
