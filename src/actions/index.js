@@ -177,12 +177,13 @@ export const getRepositories = () => async (dispatch, getStore) => {
 export const clickSkill = (target) => {
   const skillsToReplace = {
     'c#': 'csharp',
+  };
+  let skill = null;
+
+  if (target) {
+    skill = target.textContent.replace(':', '').toLowerCase();
+    if (skillsToReplace[skill]) skill = skillsToReplace[skill];
   }
-  
-  let skill = target.textContent.replace(':', '').toLowerCase();
-
-  if (skillsToReplace[skill]) skill = skillsToReplace[skill];
-
   return {
     type: CLICK_SKILL,
     payload: skill,
