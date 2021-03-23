@@ -15,14 +15,8 @@
   }
 }
 @keyframes animate-skills {
-  0% {
-    background-image: linear-gradient(to right, #28527a, #8ac4d0);
-  }
-  5% {
-    background-image: linear-gradient(to right, #8ac4d0, #28527a);
-  }
   100% {
-    background-image: linear-gradient(to right, #28527a, #28527a);
+    background-position: 200% center;
   }
 }
 /* global reset;  box-sizing is set on body and set to inherit on all other elements */
@@ -443,10 +437,12 @@ body {
   transform: scale(1.025);
 }
 .skills__title--animating {
-  background-image: linear-gradient(to right, #28527a, #3b79b4);
+  background: linear-gradient(to right, #28527a 0%, #3b79b4 50%, #28527a 100%);
+  background-size: 200% auto;
   background-clip: text;
   display: inline-block;
   color: transparent;
+  animation: animate-skills infinite 5s;
 }
 .skills__percent-outer {
   position: relative;

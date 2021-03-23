@@ -140,16 +140,12 @@
     }
   }
   &__title--animating {
-    // content: '';
-    // position: absolute;
-    // height: 100%;
-    // width: 100%;
-    background-image: $skills-linear-gradient-original;
+    background: $skills-linear-gradient-original;
+    background-size: 200% auto;
     background-clip: text;
     display: inline-block;
     color: transparent;
-    // background-blend-mode: darken;
-    // animation: animate-skills infinite 10s;
+    animation: animate-skills infinite 5s;
   }
 
   &__percent {
