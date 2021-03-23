@@ -1,34 +1,47 @@
 .skills-popup {
-  // height: auto;
-  // width: $default-font-size * 10;
-  border-radius: $default-font-size * .5;
-  font-size: $default-font-size * .9;
-  background-color: $color-primary-2;
-  transform: translate(-0%, -100%);
-  max-height:$default-font-size * 20;
-  overflow-y: auto;
-
-  padding: $default-font-size * 2 $default-font-size * 4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: $default-font-size * 1;
+  backdrop-filter: blur(1px);
+  width: 100vw;
+  height: 100vh;
   opacity: 0;
   visibility: hidden;
-  position: absolute;
   z-index: 100000000;
   transition: 
     opacity $animation-duration $animation-easing,
-  
   ;
+
+  
+  &__content {
+    background-color: $color-primary-4;
+    padding: $default-font-size * 2 $default-font-size * 4;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 30rem) ;
+    width: 90%;
+    max-width: 70rem;
+    border-radius: $default-font-size * .5;
+    transition: 
+      transform $animation-duration $animation-easing,
+    ;
+  }
+  
   &__header {
     
   }
   &__table {
 
   }
-  &--active {
+  &:target {
     opacity: 1;
     visibility: visible;
-  }
-  &:hover {
-    opacity: 1;
-    visibility: visible;
+
+    & .skills-popup__content {
+      transform: translate(-50%, -50%) ;
+    }
   }
 }

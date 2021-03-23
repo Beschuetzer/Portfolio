@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import { checkForParentOfType } from '../helpers';
+import history from '../history';
 
 class SkillsPopup extends React.Component {
   relevantProjects = []
@@ -21,6 +23,15 @@ class SkillsPopup extends React.Component {
 
 
     // this.relevantProjects = this.props.projects.filter(project => project.)
+
+    const handleClickBody = (e) => {
+      e.stopPropagation();
+      const isBodyClick = !checkForParentOfType(e.target, 'div', 'skills-popup');
+      console.log('isBodyClick =', isBodyClick);
+      if (isBodyClick) history.push('/resume')
+    }
+
+    document.querySelector('#skills-popup').addEventListener('click', handleClickBody);
   }
 
   renderProjects = (skill) => {
@@ -35,13 +46,13 @@ class SkillsPopup extends React.Component {
     const { skill } = this.props;
     return (
       ReactDOM.createPortal(
-        <React.Fragment>
+        <div className='skills-popup__content'>
           <div className='skills-popup__header'>'{skill}' Projects:</div>
           <div className='skills-popup__table'>
             {this.renderTableHeaders()}
             {this.renderProjects(skill)}
           </div>
-        </React.Fragment>
+        </div>
         ,
         document.querySelector('#skills-popup')
       )
