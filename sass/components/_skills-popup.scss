@@ -55,6 +55,17 @@
     }
   }
 
+  &__url {
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    & svg {
+      fill: $color-primary-1;
+      height: $default-font-size * 2;
+      width: $default-font-size * 2;
+    }
+  }
+
   &__close {
     cursor: pointer;
     fill: $color-primary-1;

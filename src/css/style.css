@@ -528,6 +528,15 @@ body {
   font-weight: 400;
   font-family: "Roboto", sans-serif;
 }
+.skills-popup__url {
+  display: flex;
+  justify-content: center;
+}
+.skills-popup__url svg {
+  fill: #28527a;
+  height: 3.2rem;
+  width: 3.2rem;
+}
 .skills-popup__close {
   cursor: pointer;
   fill: #28527a;

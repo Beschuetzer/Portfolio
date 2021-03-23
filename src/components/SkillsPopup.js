@@ -73,9 +73,17 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
 
           case 'url':
             return (
-              <div key={key} className={`skills-popup__table-item skills-popup__${key}`}>
-                {repo[key]}
-              </div>
+              <a 
+                key={key} 
+                rel="noreferrer" 
+                target="_blank" 
+                href={repo[key]}
+                className={`skills-popup__table-item skills-popup__${key}`}
+              >
+                <svg>
+                  <use xlinkHref="/sprite.svg#icon-chain"></use>
+                </svg>
+              </a>
             );
           default:
             return (
@@ -91,7 +99,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
 
   const renderTableHeaders = () => {
     //TODO: name description created updated URL
-    const headers = ['Name', 'Description', 'Created', 'Updated', 'URL'];
+    const headers = ['Name', 'Description', 'Created', 'Updated', 'Repository'];
     return headers.map(header => {
       return (
         <div className="skills-popup__table-header">{header}</div>
