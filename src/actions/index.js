@@ -177,6 +177,7 @@ export const getRepositories = () => async (dispatch, getStore) => {
 export const clickSkill = (target) => {
   const skillsToReplace = {
     'c#': 'csharp',
+    'socket.io': 'socketio'
   };
   let skill = null;
 
