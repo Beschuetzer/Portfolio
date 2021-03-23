@@ -8,17 +8,19 @@ const SkillsItem = ({ title, percent, href, to }) => {
   const [isDivSet, setIsDivSet] = useState(false);
 
   const onMouseEnter = (e) => {
+    const borderRectOfSkill = e.target.getBoundingClientRect();
+    console.log('borderRectOfSkill =', borderRectOfSkill);
     const yCoordinate = e.clientY;
     const maxHeight = window.innerHeight / 2;
     let classToAdd = 'top';
-    if (yCoordinate <= maxHeight - 50) classToAdd = 'bottom';
+    if (yCoordinate <= maxHeight) classToAdd = 'bottom';
     if (skillsPopupDiv) {
       skillsPopupDiv.className = "skills-popup skills-popup--active";
       skillsPopupDiv.classList.add(classToAdd);
     }
 
-    skillsPopupDiv.style.bottom = `${e.clientY - 20}px`;
-    skillsPopupDiv.style.left = `${e.clientX}px`;
+    skillsPopupDiv.style.top = `${window.scrollY + borderRectOfSkill.top}px`;
+    skillsPopupDiv.style.left = `${borderRectOfSkill.x}px`;
   }
 
   const onMouseLeave = (e) => {

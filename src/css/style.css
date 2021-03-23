@@ -464,6 +464,23 @@ body {
   transition: opacity 2s ease 0.5s;
 }
 
+.skills-popup {
+  height: 16rem;
+  width: 16rem;
+  background-color: orangered;
+  transform: translate(0, -100%);
+  padding: 3.2rem;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  z-index: 100000000;
+  transition: opacity 0.5s ease;
+}
+.skills-popup--active {
+  opacity: 1;
+  visibility: visible;
+}
+
 .row {
   max-width: 114rem;
   margin: 0 auto;

@@ -1,8 +1,18 @@
 .skills-popup {
+  height: $default-font-size * 10;
+  width: $default-font-size * 10;
+  background-color: orangered;
+  transform: translate(0, -100%);
+
+  padding: $default-font-size * 2;
+  opacity: 0;
+  visibility: hidden;
   position: absolute;
-  top: -$default-font-size * 10;
   z-index: 100000000;
+  transition: 
+    opacity $animation-duration $animation-easing,
   
+  ;
   &__header {
     
   }
