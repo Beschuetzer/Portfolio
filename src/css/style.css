@@ -418,13 +418,14 @@ body {
   max-width: 80rem;
   margin-left: 3.2rem;
 }
-.skills__title:link, .skills__title:visited {
+.skills__title:link, .skills__title:visited, .skills__title {
+  cursor: pointer;
   display: inline-block;
   text-decoration: none;
   border-bottom: 0.16rem solid #28527a;
   color: #28527a;
 }
-.skills__title:link:hover, .skills__title:visited:hover {
+.skills__title:link:hover, .skills__title:visited:hover, .skills__title:hover {
   color: #152b40;
   border-bottom: 0.16rem solid #152b40;
 }

@@ -27,7 +27,6 @@ class SkillsPopup extends React.Component {
     const handleClickBody = (e) => {
       e.stopPropagation();
       const isBodyClick = !checkForParentOfType(e.target, 'div', 'skills-popup');
-      console.log('isBodyClick =', isBodyClick);
       if (isBodyClick) this.skillsPopupDiv?.classList?.toggle('skills-popup--active');
     }
 

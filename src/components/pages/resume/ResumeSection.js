@@ -7,7 +7,7 @@ class ResumeSection extends React.Component {
   render () {
     const { name, children, headerSideContent } = this.props;
     return (
-      <div className={`resume__section resume__section-${name}`}>
+      <section className={`resume__section resume__section-${name}`}>
           <div className="resume__card">
             <div className="resume__content">
               <div className="resume__header">
@@ -22,7 +22,7 @@ class ResumeSection extends React.Component {
               {children}
             </div>
           </div>
-        </div>
+        </section>
     );
   }
 }

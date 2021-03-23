@@ -1,6 +1,7 @@
 import github from '../apis/github';
 import {
   GET_REPOSITORIES,
+  CLICK_SKILL,
 } from './types';
 //Example Action Creator
 //export const selectSong = (song) => {
@@ -71,8 +72,6 @@ export const getRepositories = () => async (dispatch, getStore) => {
     payload: response.viewer.repositories.nodes,
   });
 }
-
-
 
 
 //Github Graph QL Repository 
@@ -174,3 +173,18 @@ export const getRepositories = () => async (dispatch, getStore) => {
 // 95: {name: "viewerSubscription"}
 // 96: {name: "vulnerabilityAlerts"}
 // 97: {name: "watchers"}
+
+export const clickSkill = (target) => {
+  const skillsToReplace = {
+    'c#': 'csharp',
+  }
+  
+  let skill = target.textContent.replace(':', '').toLowerCase();
+
+  if (skillsToReplace[skill]) skill = skillsToReplace[skill];
+
+  return {
+    type: CLICK_SKILL,
+    payload: skill,
+  }
+}

@@ -1,14 +1,17 @@
 import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { clickSkill } from '../../../actions';
 
-const SkillsItem = ({ title, percent, href, to }) => {
+const SkillsItem = ({ title, percent, href, clickSkill }) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
   const percentDiv = useRef();
   const [isDivSet, setIsDivSet] = useState(false);
 
   const onParagraphClick = (e) => {
-    skillsPopupDiv?.classList?.toggle('skills-popup--active')
+    skillsPopupDiv?.classList?.toggle('skills-popup--active');
+    clickSkill(e.target);
   }
 
   useEffect(() => {
@@ -22,16 +25,14 @@ const SkillsItem = ({ title, percent, href, to }) => {
         <svg className="skills__section-svg">
           <use xlinkHref="/sprite.svg#icon-circle"></use>
         </svg>
-        {to ?
-          <Link className="skills__title" to={to}>
-            <h3 className="">{title}:</h3>
-          </Link>
-        :
+        {href ?
           <a target="_blank" rel="noreferrer" className="skills__title" href={href}>
-            <p 
-              onClick={onParagraphClick} 
-              className="">{title}:</p>
+            <p>{title}:</p>
           </a>
+        :
+          <div onClick={onParagraphClick} className="skills__title">
+            {title}:
+          </div>
         }
         
       </li>
@@ -45,4 +46,6 @@ const SkillsItem = ({ title, percent, href, to }) => {
   );
 }
 
-export default SkillsItem;
+export default connect(null, {
+  clickSkill,
+})(SkillsItem);

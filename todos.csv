@@ -37,5 +37,5 @@
 
 -start work on SkillsPopup (be sure to add error handling in case API down)
   *get hover item and store in redux (then display corresponding repositories based on hovered skill
-  *create portal inside SkillsPop to populate something
+  *change SkillsItem to take a prop that links to external
 
