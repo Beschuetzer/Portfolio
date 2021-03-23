@@ -14,6 +14,20 @@
     background-color: #000;
   }
 }
+@keyframes animate-skills {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  20% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
 /* global reset;  box-sizing is set on body and set to inherit on all other elements */
 *, *::after, *::before {
   margin: 0;
@@ -419,6 +433,7 @@ body {
   margin-left: 3.2rem;
 }
 .skills__title:link, .skills__title:visited, .skills__title {
+  position: relative;
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
@@ -428,6 +443,14 @@ body {
 .skills__title:link:hover, .skills__title:visited:hover, .skills__title:hover {
   color: #152b40;
   border-bottom: 0.16rem solid #152b40;
+}
+.skills__title--animating::before {
+  content: "";
+  position: absolute;
+  background-color: #fbeeac;
+  height: 100%;
+  width: 100%;
+  animation: animate-skills infinite 10s;
 }
 .skills__percent-outer {
   position: relative;
