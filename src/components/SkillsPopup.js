@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { checkForParentOfType } from '../helpers';
-import history from '../history';
 
 class SkillsPopup extends React.Component {
   relevantProjects = []
@@ -35,6 +34,10 @@ class SkillsPopup extends React.Component {
     this.skillsPopupDiv.addEventListener('click', handleClickBody);
   }
 
+  onCloseClick = (e) => {
+    this.skillsPopupDiv?.classList?.remove('skills-popup--active');
+  }
+
   renderProjects = (skill) => {
     //TODO: calculate the projects but first need to run calculations after fetching in async action creator
   }
@@ -48,6 +51,9 @@ class SkillsPopup extends React.Component {
     return (
       ReactDOM.createPortal(
         <div className='skills-popup__content'>
+          <svg onClick={this.onCloseClick} className='skills-popup__close'>
+            <use xlinkHref="/sprite.svg#icon-close"></use>
+          </svg>
           <div className='skills-popup__header'>'{skill}' Projects:</div>
           <div className='skills-popup__table'>
             {this.renderTableHeaders()}

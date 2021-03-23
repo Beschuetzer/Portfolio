@@ -35,6 +35,27 @@
   &__table {
 
   }
+
+  &__close {
+    cursor: pointer;
+    fill: $color-primary-1;
+    height: $default-font-size;
+    width: $default-font-size;
+    position: absolute;
+    top: $default-font-size * .5;
+    right: $default-font-size * .5;
+    // top: 0;
+    // right: 0;
+    // transform: translate(50%, -50%);
+    // background-color: $color-primary-4;
+    // border-radius: 50%;
+    
+
+    &:hover {
+      fill: $color-primary-2;
+    }
+  }
+  
   &--active {
     opacity: 1;
     visibility: visible;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import history from '../../../history';
 
 const SkillsItem = ({ title, percent, href, to }) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');

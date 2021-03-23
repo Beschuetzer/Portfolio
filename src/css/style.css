@@ -489,6 +489,18 @@ body {
   border-radius: 0.8rem;
   transition: transform 0.33s ease;
 }
+.skills-popup__close {
+  cursor: pointer;
+  fill: #28527a;
+  height: 1.6rem;
+  width: 1.6rem;
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+}
+.skills-popup__close:hover {
+  fill: #8ac4d0;
+}
 .skills-popup--active {
   opacity: 1;
   visibility: visible;
