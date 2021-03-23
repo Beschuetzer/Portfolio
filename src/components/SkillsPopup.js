@@ -59,7 +59,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
           case 'name':
             if (repo['homepageUrl']) {
               return (
-                <a href={repo['homepageUrl']} key={key} className=  {`skills-popup__table-item skills-popup__${key} link`}>
+                <a href={repo['homepageUrl']} key={key} className=  {`skills-popup__table-item skills-popup__${key} skills-popup__link`}>
                   {repo[key]}
                 </a>
               )
@@ -70,7 +70,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
                 {repo[key]}
               </div>
             );
-            
+
           case 'url':
             return (
               <div key={key} className={`skills-popup__table-item skills-popup__${key}`}>

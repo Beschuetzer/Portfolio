@@ -15,18 +15,18 @@
   ;
   
   &__content {
+    overflow-y: auto;
+    overflow-x: hidden;
     width: auto;
-    max-width: 100vw;
+    max-width: 95vw;
     max-height: 100vh;
     background-color: $color-primary-4;
     padding: $default-font-size * 2 $default-font-size * 4;
 
     position: absolute;
     bottom: 0%;
-    left: 50%;
-    transform: translate(-50%, 200%) ;
-    width: 90%;
-    max-width: 70rem;
+    left: 2.5%;
+    transform: translate(0%, 200%) ;
     border-radius: $default-font-size * .5;
     transition: 
       transform $animation-duration * .66 $animation-easing,
@@ -43,7 +43,16 @@
   }
   &__table {
     display: grid;
-    grid-template-columns: min-content 1fr repeat(3, min-content);
+    grid-template-columns: min-content minmax(40rem, 1fr) repeat(3, min-content);
+    grid-column-gap: $default-font-size * 2;
+    grid-row-gap: $default-font-size * 1;
+    &-header {
+      font-weight: 700;
+    }
+    &__item {
+      font-weight: 400;
+      font-family: $font-family-text;
+    }
   }
 
   &__close {
@@ -71,7 +80,7 @@
     visibility: visible;
 
     & .skills-popup__content {
-      transform: translate(-50%, -0%) ;
+      transform: translate(-0%, -0%) ;
     }
   }
 }
