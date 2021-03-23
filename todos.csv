@@ -26,7 +26,6 @@
 
   -for the Bridge work - have separate links that having working demos for each part of the site (preferences, bidding, playing, summary)
 
-  -add button listeners to SiteNav to allow for keyboard shortcuts
 
   -Resume HARMONY ABE - Support learners throughout the registration process; support teachers and other administrators by creating reports, manipulating data, providing recommendations, creating documents, etc;
 
@@ -38,6 +37,7 @@
 -start work on SkillsPopup (be sure to add error handling in case API down)
   *figure out how to get desired repositories from clickedSkill into SkillsPopup
 
--add navbar__background div that changes from visibility: hidden to visible depending on whether navbar--active is present (prevent clicking on other items)
+-add button listeners to SiteNav to allow for keyboard shortcuts
+
   
 

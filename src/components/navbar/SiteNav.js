@@ -19,8 +19,6 @@ const SiteNav = (props) => {
     navRef.current.classList.add('overflow--hidden');
   }
 
-  
-
   const onNavClick = (e) => {
     e.stopPropagation();
     const navBar = navRef.current;
@@ -32,13 +30,11 @@ const SiteNav = (props) => {
     navBar.classList.add('overflow--hidden');
 
     if (!navBar.classList?.contains(navbarActiveClassname) && isChildOfNavBar && isValid ) {
-      console.log('add overflow------------------------------------------------');
       root.classList?.add(navbarActiveClassname);
       navBar.classList?.add(navbarActiveClassname);
       setIsAnimating(true);
     }
     else {
-      console.log('remove overflow------------------------------------------------');
       root.classList?.remove(navbarActiveClassname);
       navBar.classList?.remove(navbarActiveClassname);
       setIsAnimating(false);
@@ -51,16 +47,12 @@ const SiteNav = (props) => {
 
   const onMouseEnter = (e) => {
     e.stopPropagation();
-    console.log('navRef.current =', navRef.current.classList);
     if (!navRef.current || !navRef.current?.classList.contains(navbarActiveClassname)
     ) { 
-      console.log('return early------------------------------------------------');
       navRef.current?.classList.add('overflow--hidden');
-
       return;
     }
     else if (navRef.current.classList.contains(navbarIsAnimatingClassname) ||navRef.current.classList.contains(navbarDoneClassname)) {
-      console.log('removing overflow: hidden on hover');
       navRef.current?.classList.remove('overflow--hidden');
     }
   }
