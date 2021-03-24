@@ -472,10 +472,16 @@ body {
   transform: translate(0%, 0%);
 }
 .skills__percent-inner {
+  backface-visibility: hidden;
+  box-shadow: 0 0rem 3.2rem 0 rgba(40, 82, 122, 0.5);
   background-color: #28527a;
   height: 1.6rem;
   opacity: 0;
-  transition: opacity 2s ease 0.5s;
+  border: 0.16rem solid #fbeeac;
+  transition: opacity 2s ease 0.5s, transform 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+.skills__percent-inner:hover {
+  transform: scaleY(1.66);
 }
 
 .skills-popup {
@@ -555,12 +561,12 @@ body {
   height: 3.2rem;
   width: 3.2rem;
   margin-left: auto;
-  transform-origin: left;
-  transition: fill 0.375s ease, transform 2s cubic-bezier(1, 0.2, 0, 1) 0.375s;
+  backface-visibility: hidden;
+  transition: fill 0.375s ease, transform 0.375s ease;
 }
 .skills-popup__close:hover {
   fill: #8ac4d0;
-  transform: scale(1.05) rotate(360deg);
+  transform: scale(1.155);
 }
 .skills-popup--active {
   opacity: 1;
@@ -682,10 +688,10 @@ body {
   left: 50%;
 }
 .navbar__menu-bar::before {
-  transform: translate(-50%, calc(-.8rem - 50%));
+  transform: translate(-50%, calc(-0.8rem - 50%));
 }
 .navbar__menu-bar::after {
-  transform: translate(-50%, calc(+.8rem + 50%));
+  transform: translate(-50%, calc(+0.8rem + 50%));
 }
 .navbar__menu:hover .navbar__menu-bar::before {
   transform: translate(-50%, calc(-1.2rem - 50%));
@@ -951,8 +957,8 @@ body {
   grid-column: 2/3;
   padding: 0 3.2rem;
   border: 3px solid #28527a;
-  border-radius: 1.6rem;
-  box-shadow: 0 0 1.6rem 1.6rem rgba(40, 82, 122, 0.2);
+  border-radius: 0.8rem;
+  box-shadow: 0 1.6rem 3.2rem rgba(251, 238, 172, 0.25);
 }
 .resume .heading {
   color: #f4d160;

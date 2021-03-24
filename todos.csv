@@ -39,5 +39,6 @@
 -add option to click SkillsPopup Header and have it ascending/descending sort by that header?
 -convert date to mm/dd/yy format and make smaller
 -add styling for skills-popup__link
+-when hovering skill bar, display the exact number for that skill with a fade in
   
 

@@ -1,193 +1,194 @@
 .skills {
-  font-size: $default-font-size;
-  font-family: $font-family-text;
-  // list-style: none;
-  position: relative;  
+	font-size: $default-font-size;
+	font-family: $font-family-text;
+	// list-style: none;
+	position: relative;
 
-  &__section {
-    &:first-child{
-      margin: $default-font-size * .5 0;
-    }
+	&__section {
+		&:first-child {
+			margin: $default-font-size * 0.5 0;
+		}
 
-    &-content{
-      height: 0;
-      visibility: hidden;
-      opacity: 0;
-      transition:
-        height $animation-duration * 2 $animation-easing,
-        opacity $animation-duration $animation-easing,
+		&-content {
+			height: 0;
+			visibility: hidden;
+			opacity: 0;
+			transition: height $animation-duration * 2 $animation-easing-standard,
+				opacity $animation-duration $animation-easing-standard;
 
-      ;
+			font-weight: 500;
+			display: grid;
+			grid-template-columns: max-content 1fr;
+			grid-row-gap: $default-font-size * 0.125;
+			grid-column-gap: $default-font-size * 1;
+			grid-auto-rows: min-content;
+			align-items: center;
+		}
+		&-title {
+			user-select: none;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			border-bottom: $default-font-size * 0.1 solid $color-primary-1;
+			grid-column: 1/-1;
+			font-size: $default-font-size * 1.5;
+			font-weight: 300;
 
-      font-weight: 500;
-      display: grid;
-      grid-template-columns: max-content 1fr;
-      grid-row-gap: $default-font-size * .125;
-      grid-column-gap: $default-font-size * 1;
-      grid-auto-rows: min-content;
-      align-items: center;
-    }
-    &-title {
-      user-select: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      border-bottom:$default-font-size * .1 solid $color-primary-1;
-      grid-column: 1/-1;
-      font-size: $default-font-size * 1.5;
-      font-weight: 300;
+			transition: transform $animation-duration * 0.5 $animation-easing-standard,
+				color $animation-duration * 1 $animation-easing-standard;
 
-      transition:
-        transform $animation-duration * .5 $animation-easing,
-        color $animation-duration * 1 $animation-easing,
-      ;
+			&-svg {
+				fill: rgba($color-primary-1, 0.5);
+				height: $default-font-size * 1.5;
+				width: $default-font-size * 1.5;
+				// margin-left: $default-font-size * .25;
+				transition: fill $animation-duration * 1 $animation-easing-standard,
+					transform $animation-duration * 0.25 $animation-easing-standard;
+			}
 
-      &-svg {
-        fill: rgba($color-primary-1,.5);
-        height: $default-font-size * 1.5;
-        width: $default-font-size * 1.5;
-        // margin-left: $default-font-size * .25;
-        transition:
-          fill $animation-duration * 1 $animation-easing,
-          transform $animation-duration * .25 $animation-easing,
-        ;
-      }
+			&:hover {
+				transform: translateX($default-font-size * 0.5);
+				font-weight: 500;
+				color: darken($color-primary-1, $hover-color-change-amount / 4);
+			}
 
-      &:hover {
-        transform: translateX($default-font-size * .5);
-        font-weight: 500;
-        color: darken($color-primary-1, $hover-color-change-amount / 4);
-      }
+			&:hover &-svg {
+				fill: $color-primary-1;
+			}
+		}
 
-      &:hover &-svg {
-        fill: $color-primary-1;
-      }
-    }
+		&-svg {
+			margin-right: $default-font-size * 0.5;
+			width: $default-font-size * 0.5;
+			height: $default-font-size * 0.5;
+			fill: $color-primary-1;
+		}
 
-    &-svg {
-      margin-right: $default-font-size * .5;
-      width: $default-font-size * .5;
-      height: $default-font-size * .5;  
-      fill: $color-primary-1;
-      
-    }
-    
-    //Click Title Open Animation
-    &--open + &-content{
-      height: auto;
-      visibility: visible;
-      opacity: 1;
-      margin-bottom: $default-font-size;
-    }
+		//Click Title Open Animation
+		&--open + &-content {
+			height: auto;
+			visibility: visible;
+			opacity: 1;
+			margin-bottom: $default-font-size;
+		}
 
-    &--open svg {
-      transform: rotate(90deg);
-    }
+		&--open svg {
+			transform: rotate(90deg);
+		}
 
-    //Click Title Width Animation
-    // &--open + &-content .skills__percent-outer {
-    //   width: 100%;
-    // }
-    &--open + &-content .skills__percent-inner {
-      opacity: 1;
-    }
+		//Click Title Width Animation
+		// &--open + &-content .skills__percent-outer {
+		//   width: 100%;
+		// }
+		&--open + &-content .skills__percent-inner {
+			opacity: 1;
+		}
 
-    & > *:nth-child(2n+2){
-      margin-left: $default-font-size * 2;
-    }
-  }
+		& > *:nth-child(2n + 2) {
+			margin-left: $default-font-size * 2;
+		}
+	}
 
-  &__labels { 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: flex-end;
-    justify-items: center;
-    transform: translateY(33%);
+	&__labels {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		align-items: flex-end;
+		justify-items: center;
+		transform: translateY(33%);
 
-    &>span:first-child {
-      justify-self: flex-start;
-    }
-    &>span:last-child {
-      justify-self: flex-end;
-    }
-  }
+		& > span:first-child {
+			justify-self: flex-start;
+		}
+		& > span:last-child {
+			justify-self: flex-end;
+		}
+	}
 
-  &__item {
-    // list-style: none;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    max-width: $default-font-size * 50;
-    margin-left: $default-font-size * 2;
+	&__item {
+		// list-style: none;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+		max-width: $default-font-size * 50;
+		margin-left: $default-font-size * 2;
+	}
 
-  }
+	&__title:link,
+	&__title:visited,
+	&__title {
+		position: relative;
+		cursor: pointer;
+		display: inline-block;
+		text-decoration: none;
+		border-bottom: $default-font-size * 0.1 solid $color-primary-1;
+		color: $color-primary-1;
 
-  &__title:link, &__title:visited, &__title {
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    text-decoration: none;
-    border-bottom:$default-font-size * .1 solid $color-primary-1;
-    color: $color-primary-1;
-    
-    &:hover {
-      transform: scale($scale-amount);
-    }
-  }
-  &__title--animating, &__title--animating:link, &__title--animating:visited {
-    background: $skills-linear-gradient-original;
-    background-size: 200% auto;
-    background-clip: text;
-    display: inline-block;
-    color: transparent;
-    animation: animate-skills infinite 7.5s;
-  }
+		&:hover {
+			transform: scale($scale-amount);
+		}
+	}
+	&__title--animating,
+	&__title--animating:link,
+	&__title--animating:visited {
+		background: $skills-linear-gradient-original;
+		background-size: 200% auto;
+		background-clip: text;
+		display: inline-block;
+		color: transparent;
+		animation: animate-skills infinite 7.5s;
+	}
 
-  &__percent {
-    &-outer {
-      position: relative;
-      background-color: $color-primary-4;
-      // width: 100%;
-      height: $default-font-size;
-      width: 0;
-      transition: 
-        width $animation-duration * 2 cubic-bezier(0.68, -0.6, 0.32, 1.6),
-      ;
+	&__percent {
+		&-outer {
+			position: relative;
+			background-color: $color-primary-4;
+			// width: 100%;
+			height: $default-font-size;
+			width: 0;
+			transition: width $animation-duration * 2
+				cubic-bezier(0.68, -0.6, 0.32, 1.6);
 
-      &-left, &-center, &-right {
-        z-index: 10000;
-        position: absolute;
-        background-color: $color-black;
-        width: $default-font-size * .1;
-        height: $default-font-size;
-      }
+			&-left,
+			&-center,
+			&-right {
+				z-index: 10000;
+				position: absolute;
+				background-color: $color-black;
+				width: $default-font-size * 0.1;
+				height: $default-font-size;
+			}
 
-      &-left {
-        top: 0;
-        left: 0%;
-        transform: translate(-50%, 0%);
-      }
-      &-center {
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, 0%);
-      }
-      &-right {
-        bottom: 0;
-        right: 0%;
-        transform: translate(0%, 0%);
-      }
-    }
-    &-inner {
-      background-color: $color-primary-1;
-      height: $default-font-size;
-      opacity: 0;
-      transition: 
-        opacity $animation-duration * 4 $animation-easing $animation-duration * 1;
-      ;
-    }
-  }
-  
-  
+			&-left {
+				top: 0;
+				left: 0%;
+				transform: translate(-50%, 0%);
+			}
+			&-center {
+				bottom: 0;
+				left: 50%;
+				transform: translate(-50%, 0%);
+			}
+			&-right {
+				bottom: 0;
+				right: 0%;
+				transform: translate(0%, 0%);
+			}
+		}
+		&-inner {
+			backface-visibility: hidden;
+			box-shadow: 0 0rem $default-font-size * 2 0 rgba($color-primary-1, 0.5);
+			background-color: $color-primary-1;
+			height: $default-font-size;
+			opacity: 0;
+			border: $default-font-size * 0.1 solid $color-primary-4;
+			transition: opacity $animation-duration * 4 $animation-easing-standard
+					$animation-duration * 1,
+				transform $animation-duration * 2
+					$animation-easing-standard-easeInOutBack;
+			&:hover {
+				transform: scaleY(1.66);
+			}
+		}
+	}
 }

@@ -1,385 +1,375 @@
-.navbar{
-  z-index: 10000;
-  border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
-  position: fixed;
-  top: $default-font-size * .25;
-  top: $default-font-size * .625;
-  left: $default-font-size * .625;
-  font-size: $default-font-size * 1.5;
-  text-align: center;
-  display: flex;
-  align-items: center;
+.navbar {
+	z-index: 10000;
+	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
+	position: fixed;
+	top: $default-font-size * 0.25;
+	top: $default-font-size * 0.625;
+	left: $default-font-size * 0.625;
+	font-size: $default-font-size * 1.5;
+	text-align: center;
+	display: flex;
+	align-items: center;
 
-  &__background {
-    position: fixed;
-    top: 10.1rem;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    visibility: hidden;
-    z-index: -1;
-  }
+	&__background {
+		position: fixed;
+		top: 10.1rem;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		visibility: hidden;
+		z-index: -1;
+	}
 
-  &__menu {
-    width: $navbar__logo-width;
-    height: $navbar__logo-width;
-    position: relative;
-  
+	&__menu {
+		width: $navbar__logo-width;
+		height: $navbar__logo-width;
+		position: relative;
 
-    &-bar, &-bar::before, &-bar::after {
-      background-color: $color-primary-1;
-      height: $default-font-size * .25;
-      width: $default-font-size * 2;
-    }
+		&-bar,
+		&-bar::before,
+		&-bar::after {
+			background-color: $color-primary-1;
+			height: $default-font-size * 0.25;
+			width: $default-font-size * 2;
+		}
 
-    &-bar {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+		&-bar {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 
-      &, &::before, &::after {
-        transition: 
-          transform $animation-duration * .5 $animation-easing,
-          width $animation-duration * .5 $animation-easing,
-        ;
-      }
+			&,
+			&::before,
+			&::after {
+				transition: transform $animation-duration * 0.5
+						$animation-easing-standard,
+					width $animation-duration * 0.5 $animation-easing-standard;
+			}
 
-      &::before, &::after {
-        content: '';
-        position: absolute;
-        transform: translate(-50%, -50%);
-        left: 50%;
-      }
+			&::before,
+			&::after {
+				content: "";
+				position: absolute;
+				transform: translate(-50%, -50%);
+				left: 50%;
+			}
 
-      &::before {
-        transform: translate(-50%, calc(-.8rem - 50%));
-      }
+			&::before {
+				transform: translate(-50%, calc(-0.8rem - 50%));
+			}
 
-      &::after {
-        transform: translate(-50%, calc(+.8rem + 50%));
-      }
-    }
+			&::after {
+				transform: translate(-50%, calc(+0.8rem + 50%));
+			}
+		}
 
-    //Spread Menu bars on hover
-    &:hover &-bar::before {
-      transform: translate(-50%, calc(-1.2rem - 50%));
-    }
-    &:hover &-bar::after {
-      transform: translate(-50%, calc(+1.2rem + 50%));
-    }
+		//Spread Menu bars on hover
+		&:hover &-bar::before {
+			transform: translate(-50%, calc(-1.2rem - 50%));
+		}
+		&:hover &-bar::after {
+			transform: translate(-50%, calc(+1.2rem + 50%));
+		}
 
+		//Change menu bars to 'A' on click
+		.navbar.navbar--active &-bar::before {
+			transform: $navbar__button-bar-before-transform;
+		}
+		.navbar.navbar--active &-bar {
+			width: 20%;
+		}
+		.navbar.navbar--active &-bar::after {
+			transform: $navbar__button-bar-after-transform;
+		}
+		.navbar.navbar--active &-bar::after,
+		.navbar.navbar--active &-bar::before {
+			// width: $default-font-size * 2.85;
+		}
+	}
 
+	&__content {
+		visibility: hidden;
+		width: 100%;
+		transform: translateX(-125%);
+		transition: visibility $animation-navbar, transform $animation-navbar;
+	}
 
-    //Change menu bars to 'A' on click
-    .navbar.navbar--active &-bar::before {
-      transform: $navbar__button-bar-before-transform;
-    }
-    .navbar.navbar--active &-bar {
-      width:  20%;
-    }
-    .navbar.navbar--active &-bar::after {
-      transform: $navbar__button-bar-after-transform;
-    }
-    .navbar.navbar--active &-bar::after,  .navbar.navbar--active &-bar::before {
-      // width: $default-font-size * 2.85;
-    }
-  }
+	&__list {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		list-style: none;
 
-  &__content {
-    visibility: hidden;
-    width: 100%;
-    transform: translateX(-125%);
-    transition: 
-      visibility $animation-navbar,
-      transform $animation-navbar
-    ;
-  }
+		& .navbar__item:first-child {
+			border-radius: $default-font-size * 0.5 0 0 $default-font-size * 0.5;
+		}
 
-  &__list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-    
-    & .navbar__item:first-child {
-      border-radius:  $default-font-size * .5 0 0 $default-font-size * .5;
-    }
-    
-    & .navbar__item:nth-child(n+1) {
-      margin-left: $default-font-size * .2;
-    }
+		& .navbar__item:nth-child(n + 1) {
+			margin-left: $default-font-size * 0.2;
+		}
 
-    & .navbar__dropdown .navbar__item {
-      margin-left: 0;
-    }
-  }
+		& .navbar__dropdown .navbar__item {
+			margin-left: 0;
+		}
+	}
 
-  &__item {
-    border: $default-font-size * .1 solid $color-primary-1;
-    position: relative;
-    background-color: $color-primary-4;
-    cursor: pointer;
-    height: 100%;
-    width: 100%;
-    transition: 
-      transform $animation-duration * .25 $animation-easing,
-      background-color $animation-duration *.25 $animation-easing,
-    ;
+	&__item {
+		border: $default-font-size * 0.1 solid $color-primary-1;
+		position: relative;
+		background-color: $color-primary-4;
+		cursor: pointer;
+		height: 100%;
+		width: 100%;
+		transition: transform $animation-duration * 0.25 $animation-easing-standard,
+			background-color $animation-duration * 0.25 $animation-easing-standard;
 
-    & .triangle-down {
-      transition: transform $animation-duration * .5 $animation-easing;
-    }
+		& .triangle-down {
+			transition: transform $animation-duration * 0.5 $animation-easing-standard;
+		}
 
-    &:hover {
-      background-color: lighten($color-primary-4, $hover-color-change-amount);
-    }
-    &:not(.navbar__dropdown-container):hover {
-      transform: translateY(-$navbar__item-divider-width);
-      box-shadow: 0 $default-font-size * .5 $default-font-size * 2 $navbar-box-shadow-color;
-    }
-    &:hover .triangle-down {
-      transform: rotate(90deg);
-    }
+		&:hover {
+			background-color: lighten($color-primary-4, $hover-color-change-amount);
+		}
+		&:not(.navbar__dropdown-container):hover {
+			transform: translateY(-$navbar__item-divider-width);
+			box-shadow: 0 $default-font-size * 0.5 $default-font-size * 2
+				$navbar-box-shadow-color;
+		}
+		&:hover .triangle-down {
+			transform: rotate(90deg);
+		}
 
-    // &:not(:last-child){
-    //   margin-right: $navbar__item-divider;
-    // }
-    // &:first-child{
-    //   margin-left: $navbar__item-divider;
-    // }
-    &:last-child {
-      border-radius: 0 10rem 10rem 0;
-    }
-    
-    //TODO: need to finish hover effect
-    // &::before, .navbar__dropdown &::before {
-    //   content: "";
-    //   position: absolute;
-    //   bottom: 0rem;
-    //   left: 0%;
-    //   background-color: $color-primary-3;
-    //   z-index: 99999;
-    //   transition:
-    //     width $animation-duration cubic-bezier(1,0,0,1);
-    //   ;
-    // }
+		// &:not(:last-child){
+		//   margin-right: $navbar__item-divider;
+		// }
+		// &:first-child{
+		//   margin-left: $navbar__item-divider;
+		// }
+		&:last-child {
+			border-radius: 0 10rem 10rem 0;
+		}
 
-    // &::before {
-    //   width: 0%;
-    //   height: 100%;
-    // }
+		//TODO: need to finish hover effect
+		// &::before, .navbar__dropdown &::before {
+		//   content: "";
+		//   position: absolute;
+		//   bottom: 0rem;
+		//   left: 0%;
+		//   background-color: $color-primary-3;
+		//   z-index: 99999;
+		//   transition:
+		//     width $animation-duration cubic-bezier(1,0,0,1);
+		//   ;
+		// }
 
-    // .navbar__dropdown &::before {
-    //   height: 0%;
-    //   width: 100%;
-    // }
+		// &::before {
+		//   width: 0%;
+		//   height: 100%;
+		// }
 
-    // &:hover &::before {
-    //   // z-index: 100000000;
-    //   // width: 100%;
-    //   // height: 100%;
-    // }
-  }
+		// .navbar__dropdown &::before {
+		//   height: 0%;
+		//   width: 100%;
+		// }
 
-  &__link:link, &__link:visited {
-    padding: $default-font-size * $paddingFactor 0;
-    font-size: 3.2rem;
-    height: 100%;
-    width: 100%;
-    text-decoration: none;
-    color: $color-primary-1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 300;
+		// &:hover &::before {
+		//   // z-index: 100000000;
+		//   // width: 100%;
+		//   // height: 100%;
+		// }
+	}
 
-    transition: 
-      padding $animation-duration * 1 $animation-easing,
-    ;
-    
-    &:hover {
-      color: darken($color-primary-1, $hover-color-change-amount);
-    }
+	&__link:link,
+	&__link:visited {
+		padding: $default-font-size * $paddingFactor 0;
+		font-size: 3.2rem;
+		height: 100%;
+		width: 100%;
+		text-decoration: none;
+		color: $color-primary-1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-weight: 300;
 
-  }
+		transition: padding $animation-duration * 1 $animation-easing-standard;
 
-  &__button {
-    cursor: pointer;
-    z-index: 100;
-    background-color: $color-primary-4;
-    border-radius: $navbar__item-border-radius;
-    display: flex;
-    align-items: center;
-    transition: border-radius $animation-duration * 1 $animation-easing;
+		&:hover {
+			color: darken($color-primary-1, $hover-color-change-amount);
+		}
+	}
 
-    &:hover {
-      background-color: lighten($color-primary-4, $hover-color-change-amount);
-    }
-  }
+	&__button {
+		cursor: pointer;
+		z-index: 100;
+		background-color: $color-primary-4;
+		border-radius: $navbar__item-border-radius;
+		display: flex;
+		align-items: center;
+		transition: border-radius $animation-duration * 1 $animation-easing-standard;
 
-  &__dropdown {
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(0%);
-    position: absolute;
-    top: 100%;
-    left: 0%;
-    width: 100%;
-    height: auto;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
+		&:hover {
+			background-color: lighten($color-primary-4, $hover-color-change-amount);
+		}
+	}
 
-    transition: 
-      transform $animation-duration $animation-easing;
+	&__dropdown {
+		visibility: hidden;
+		opacity: 0;
+		transform: translateY(0%);
+		position: absolute;
+		top: 100%;
+		left: 0%;
+		width: 100%;
+		height: auto;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
 
-    & .navbar__item {
-      opacity: 0;
-      height: 0;
-      border: none;
-      margin-top: $navbar__item-divider-width;
-      transform-origin: top;
-      transition: 
-        height $animation-duration $animation-easing,
-        padding $animation-duration $animation-easing,
-        opacity $animation-duration $animation-easing,
-        transform $animation-duration * .25 $animation-easing,
-        background-color $animation-duration *.25 $animation-easing,
-      ;
-      &:first-child {
-        border-radius:  $default-font-size * .5 $default-font-size * .5 0 0;
-      }
-      &:last-child {
-        border-radius: 0 0 $navbar__item-border-radius $navbar__item-border-radius;
-      }
+		transition: transform $animation-duration $animation-easing-standard;
 
-      &:hover {
-        transform: translateX($navbar__item-divider-width) !important;
-        box-shadow: $default-font-size * .5 0 $default-font-size * 2 $navbar-box-shadow-color;
-      }
+		& .navbar__item {
+			opacity: 0;
+			height: 0;
+			border: none;
+			margin-top: $navbar__item-divider-width;
+			transform-origin: top;
+			transition: height $animation-duration $animation-easing-standard,
+				padding $animation-duration $animation-easing-standard,
+				opacity $animation-duration $animation-easing-standard,
+				transform $animation-duration * 0.25 $animation-easing-standard,
+				background-color $animation-duration * 0.25 $animation-easing-standard;
+			&:first-child {
+				border-radius: $default-font-size * 0.5 $default-font-size * 0.5 0 0;
+			}
+			&:last-child {
+				border-radius: 0 0 $navbar__item-border-radius
+					$navbar__item-border-radius;
+			}
 
-    }
+			&:hover {
+				transform: translateX($navbar__item-divider-width) !important;
+				box-shadow: $default-font-size * 0.5 0 $default-font-size * 2
+					$navbar-box-shadow-color;
+			}
+		}
 
-    & .navbar__link:link, & .navbar__link:visited {
-      padding: 0;
-    }
-  }
+		& .navbar__link:link,
+		& .navbar__link:visited {
+			padding: 0;
+		}
+	}
 
-  &__dropdown-container {
-    transition: 
-        height $animation-duration /10 $animation-easing
-    ;
+	&__dropdown-container {
+		transition: height $animation-duration / 10 $animation-easing-standard;
 
-    &:hover {
-      transform: translate(0);
-    }
-  }
+		&:hover {
+			transform: translate(0);
+		}
+	}
 
-  //Showing dropdown when dropdown-container or any dropdown item is hovered
-  &__dropdown-container:hover &__dropdown, &__dropdown &__item:hover &__dropdown {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0%);
-  }
+	//Showing dropdown when dropdown-container or any dropdown item is hovered
+	&__dropdown-container:hover &__dropdown,
+	&__dropdown &__item:hover &__dropdown {
+		visibility: visible;
+		opacity: 1;
+		transform: translateY(0%);
+	}
 
-  //Styling dropdown items on dropdown-container hover
-  &__dropdown-container:hover &__dropdown &__item {
-    height: 100%;
-    opacity: 1;
-  }
+	//Styling dropdown items on dropdown-container hover
+	&__dropdown-container:hover &__dropdown &__item {
+		height: 100%;
+		opacity: 1;
+	}
 
-  &__dropdown-container:hover &__dropdown &__link {
-    padding: $default-font-size * $paddingFactor $default-font-size * 2;
-  }
+	&__dropdown-container:hover &__dropdown &__link {
+		padding: $default-font-size * $paddingFactor $default-font-size * 2;
+	}
 
-  //when navbar is open
-  &.navbar--active {
-    & .navbar__content {
-      visibility: visible;
-      opacity: 1;
-      width: 100%;
-      transform: translateX(0%);
-    }
+	//when navbar is open
+	&.navbar--active {
+		& .navbar__content {
+			visibility: visible;
+			opacity: 1;
+			width: 100%;
+			transform: translateX(0%);
+		}
 
-    & .navbar__button {
-      border-radius:  $default-font-size * 10 $default-font-size * 1 $default-font-size * 1 $default-font-size * 10;
-      //A hover styling
-      &:hover .navbar__menu-bar::before {
-        // transform: $navbar__button-bar-before-rotation translate(-$default-font-size * .5625, $default-font-size * 1.375);
-        transform: rotate(135deg) translate(1.1rem, 1.1rem);
-      }
-      &:hover .navbar__menu-bar::after {
-        // transform: $navbar__button-bar-after-rotation translate(-$default-font-size * .75, -$default-font-size * .5);
-        transform: rotate(-135deg) translate(1.1rem, -1.1rem);
-      }
-      &:hover .navbar__menu-bar {
-        width: 0;
-      }
-    }
-  
-    & .navbar__link:not(&__dropdown &__link) {
-      padding: $default-font-size * $paddingFactor $default-font-size * 1.5;
-    }
+		& .navbar__button {
+			border-radius: $default-font-size * 10 $default-font-size * 1
+				$default-font-size * 1 $default-font-size * 10;
+			//A hover styling
+			&:hover .navbar__menu-bar::before {
+				// transform: $navbar__button-bar-before-rotation translate(-$default-font-size * .5625, $default-font-size * 1.375);
+				transform: rotate(135deg) translate(1.1rem, 1.1rem);
+			}
+			&:hover .navbar__menu-bar::after {
+				// transform: $navbar__button-bar-after-rotation translate(-$default-font-size * .75, -$default-font-size * .5);
+				transform: rotate(-135deg) translate(1.1rem, -1.1rem);
+			}
+			&:hover .navbar__menu-bar {
+				width: 0;
+			}
+		}
 
-    & .navbar__background {
-      visibility: visible;
-    }
-  }
+		& .navbar__link:not(&__dropdown &__link) {
+			padding: $default-font-size * $paddingFactor $default-font-size * 1.5;
+		}
 
-  //Handling Bug where leaving button after clicking causes overflow hidden to change
-  &.navbar--isAnimating * {
-    pointer-events: none;
-  }
+		& .navbar__background {
+			visibility: visible;
+		}
+	}
 
-  & * {
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
-  }
+	//Handling Bug where leaving button after clicking causes overflow hidden to change
+	&.navbar--isAnimating * {
+		pointer-events: none;
+	}
 
-  // &__item:hover::before {
-  //   // z-index: 100000000;
-  //   width: 100%;
-  //   height: 100%;
-  // }
-  
+	& * {
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+		-webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/
+		-khtml-user-select: none; /* Konqueror HTML */
+		-moz-user-select: none; /* Old versions of Firefox */
+		-ms-user-select: none; /* Internet Explorer/Edge */
+		user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+	}
+
+	// &__item:hover::before {
+	//   // z-index: 100000000;
+	//   width: 100%;
+	//   height: 100%;
+	// }
 }
 
 #root {
-  transition: filter $animation-duration $animation-easing;
+	transition: filter $animation-duration $animation-easing-standard;
 }
 #root.navbar--active {
-  filter: 
-    blur($default-font-size * .5) 
-    brightness(.75)
-    drop-shadow(0px $default-font-size * 1 $default-font-size * 2 rgba($color-grey-light-4, .2));
-  ;
+	filter: blur($default-font-size * 0.5) brightness(0.75)
+		drop-shadow(
+			0px $default-font-size * 1 $default-font-size * 2
+				rgba($color-grey-light-4, 0.2)
+		);
 }
-
 
 ::-webkit-scrollbar {
-  height: $default-font-size;
-  width: $default-font-size;
-  background: $color-primary-1;
+	height: $default-font-size;
+	width: $default-font-size;
+	background: $color-primary-1;
 }
-  ::-webkit-scrollbar-thumb {
-    background: $color-primary-4;
-    border-left: 4px dashed $color-primary-1;
-    border-right: 4px dashed $color-primary-1;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-
+::-webkit-scrollbar-thumb {
+	background: $color-primary-4;
+	border-left: 4px dashed $color-primary-1;
+	border-right: 4px dashed $color-primary-1;
+	-webkit-border-radius: 0;
+	border-radius: 0;
 }
-  ::-webkit-scrollbar-corner {
-  background: $color-primary-4;
+::-webkit-scrollbar-corner {
+	background: $color-primary-4;
 }
-
-

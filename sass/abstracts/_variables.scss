@@ -1,60 +1,69 @@
+//font
+$font-family-text: "Roboto", sans-serif;
+$font-family-headers: "Cinzel", sans-serif;
+$default-font-size: 1.6rem;
 
-    //font
-    $font-family-text: 'Roboto', sans-serif;
-    $font-family-headers: 'Cinzel', sans-serif;
-    $default-font-size: 1.6rem;
+//grid variables
+$grid-width: 114rem;
+$gutter-vertical: 8rem;
+$gutter-vertical-small: 6rem;
+$gutter-horizontal: 6rem;
 
-    //grid variables
-    $grid-width: 114rem;
-    $gutter-vertical: 8rem;
-    $gutter-vertical-small: 6rem;
-    $gutter-horizontal: 6rem;
+//colors
+$color-grey-light-1: #faf9f9;
+$color-grey-light-2: #f4f2f2;
+$color-grey-light-3: #f0eeee;
+$color-grey-light-4: #ccc;
+$color-grey-dark-1: #333;
+$color-grey-dark-2: #777;
+$color-grey-dark-3: #999;
 
-    //colors
-    $color-grey-light-1: #faf9f9;
-    $color-grey-light-2: #f4f2f2;
-    $color-grey-light-3: #f0eeee;
-    $color-grey-light-4: #ccc;
-    $color-grey-dark-1: #333;
-    $color-grey-dark-2: #777;
-    $color-grey-dark-3: #999;
+$color-white: #fff;
+$color-black: #000;
 
-    $color-white: #fff;
-    $color-black: #000;
+$color-primary-1: #28527a;
+$color-primary-2: #8ac4d0;
+$color-primary-3: #f4d160;
+$color-primary-4: #fbeeac;
 
-    $color-primary-1: #28527a;
-    $color-primary-2: #8ac4d0;
-    $color-primary-3: #f4d160;
-    $color-primary-4: #fbeeac;
+//sizes
+$scale-amount: 1.05;
+$navbar__logo-width: $default-font-size * 5;
 
-    //sizes
-    $scale-amount: 1.05;
-    $navbar__logo-width: $default-font-size * 5;
+$component-margin-amount: $default-font-size * 8;
 
-    $component-margin-amount: $default-font-size * 8;
+//navbar stuff
+$paddingFactor: 1.25;
 
+$animation-duration: 0.5s;
+$animation-easing-standard: ease;
+$animation-easing-standard-easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+$animation-navbar: $animation-duration $animation-easing-standard;
 
-    //navbar stuff
-    $paddingFactor: 1.25;
+$navbar__button-bar-before-rotation: rotate(105deg);
+$navbar__button-bar-before-transform: $navbar__button-bar-before-rotation
+	translate($default-font-size * 0.125, $default-font-size * 1.375);
+$navbar__button-bar-after-rotation: rotate(-105deg);
+$navbar__button-bar-after-transform: $navbar__button-bar-after-rotation
+	translate(0rem, -$default-font-size * 0.5);
 
-    $animation-duration: .5s;
-    $animation-easing: ease;
-    $animation-navbar: $animation-duration $animation-easing;
+$navbar__item-border-radius: $default-font-size * 10;
+$navbar__item-divider-width: $default-font-size * 0.2;
+$navbar__item-divider: $navbar__item-divider-width solid $color-primary-1;
 
-    $navbar__button-bar-before-rotation: rotate(105deg);
-    $navbar__button-bar-before-transform: $navbar__button-bar-before-rotation translate($default-font-size * .125, $default-font-size * 1.375);
-    $navbar__button-bar-after-rotation: rotate(-105deg);
-    $navbar__button-bar-after-transform:  $navbar__button-bar-after-rotation translate(0rem, -$default-font-size * .5);
+$navbar-box-shadow-color: rgba($color-black, 0.2);
+$hover-color-change-amount: 15%;
 
-    $navbar__item-border-radius: $default-font-size * 10;
-    $navbar__item-divider-width: $default-font-size * .2;
-    $navbar__item-divider: $navbar__item-divider-width solid $color-primary-1;
-
-    $navbar-box-shadow-color: rgba($color-black, .2);
-    $hover-color-change-amount: 15%;
-
-    //skills
-    $skills-linear-gradient-original: linear-gradient(to left, $color-primary-1 0%, lighten($color-primary-4, $hover-color-change-amount) 5%, $color-primary-1 10%, $color-primary-1 100%);
-    $skills-linear-gradient-hover: linear-gradient(to right, lighten($color-primary-1, $hover-color-change-amount) , $color-primary-1);
-
-    
+//skills
+$skills-linear-gradient-original: linear-gradient(
+	to left,
+	$color-primary-1 0%,
+	lighten($color-primary-4, $hover-color-change-amount) 5%,
+	$color-primary-1 10%,
+	$color-primary-1 100%
+);
+$skills-linear-gradient-hover: linear-gradient(
+	to right,
+	lighten($color-primary-1, $hover-color-change-amount),
+	$color-primary-1
+);
