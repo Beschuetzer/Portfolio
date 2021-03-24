@@ -12,9 +12,7 @@ class Projects extends React.Component {
   }
 
   componentDidMount = async () => {
-    console.log('mount------------------------------------------------');
-    const response = await github.get('');
-    console.log('response =', response);
+   
   }
 
   render() {

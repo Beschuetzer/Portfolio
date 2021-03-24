@@ -770,9 +770,6 @@ body {
   font-weight: 300;
   transition: padding 0.5s ease;
 }
-.navbar__link:link:hover, .navbar__link:visited:hover {
-  color: #152b40;
-}
 .navbar__button {
   cursor: pointer;
   z-index: 100;
