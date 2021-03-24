@@ -24,7 +24,7 @@
     background-color: $color-primary-4;
     padding: $default-font-size * 2;
     border: $default-font-size * .25 solid lighten($color-primary-1, 15%);
-    box-shadow: 0 $default-font-size $default-font-size * 2 0 $navbar-box-shadow-color;
+    box-shadow: 0 $default-font-size $default-font-size * 2 0 rgba($color-primary-2, .5);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -40,7 +40,9 @@
     font-weight: 100;
     text-align: center;
     margin-bottom: $default-font-size * 1.5;
-    position: relative;
+    display: flex;
+    align-items: center;
+
     &-skill {
       font-weight: 700;
     }
@@ -50,11 +52,12 @@
     grid-template-columns: min-content minmax(25rem, 1fr) repeat(2, min-content) min-content;
     &-header {
       font-weight: 700;
+      border-bottom: $default-font-size * .1 solid rgba($color-primary-1, .5);
     }
     &-item {
       font-weight: 400;
       font-family: $font-family-text;
-      border-bottom: $default-font-size * .1 dashed $color-primary-1;
+      border-bottom: 1px solid rgba($color-primary-1, .25);
       display: flex;
       align-items: center;
       padding:$default-font-size $default-font-size * 2 $default-font-size 0;
@@ -79,20 +82,18 @@
   &__close {
     cursor: pointer;
     fill: $color-primary-1;
-    height: $default-font-size;
-    width: $default-font-size;
-    position: absolute;
-    top: $default-font-size * .5;
-    right: $default-font-size * .5;
-    // top: 0;
-    // right: 0;
-    // transform: translate(50%, -50%);
-    // background-color: $color-primary-4;
-    // border-radius: 50%;
-    
+    height: $default-font-size * 2;
+    width: $default-font-size * 2;
+    margin-left: auto;
+    transform-origin: left;
+    transition: 
+      fill $animation-duration * .75 $animation-easing,
+      transform $animation-duration * 4 cubic-bezier(1,.2,0,1) $animation-duration * .75,
 
+    ;
     &:hover {
       fill: $color-primary-2;
+      transform: scale($scale-amount) rotate(360deg);
     }
   }
   

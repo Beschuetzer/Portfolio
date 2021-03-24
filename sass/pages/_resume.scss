@@ -59,5 +59,7 @@
     border-radius: $default-font-size;
     box-shadow: 0 0 $default-font-size $default-font-size rgba($color-primary-1, .2);
   }
-
+  & .heading {
+    color: $color-primary-3;
+  }
 }

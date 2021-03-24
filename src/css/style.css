@@ -502,7 +502,7 @@ body {
   background-color: #fbeeac;
   padding: 3.2rem;
   border: 0.4rem solid #3b79b4;
-  box-shadow: 0 1.6rem 3.2rem 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1.6rem 3.2rem 0 rgba(138, 196, 208, 0.5);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -515,7 +515,8 @@ body {
   font-weight: 100;
   text-align: center;
   margin-bottom: 2.4rem;
-  position: relative;
+  display: flex;
+  align-items: center;
 }
 .skills-popup__header-skill {
   font-weight: 700;
@@ -526,11 +527,12 @@ body {
 }
 .skills-popup__table-header {
   font-weight: 700;
+  border-bottom: 0.16rem solid rgba(40, 82, 122, 0.5);
 }
 .skills-popup__table-item {
   font-weight: 400;
   font-family: "Roboto", sans-serif;
-  border-bottom: 0.16rem dashed #28527a;
+  border-bottom: 1px solid rgba(40, 82, 122, 0.25);
   display: flex;
   align-items: center;
   padding: 1.6rem 3.2rem 1.6rem 0;
@@ -550,14 +552,15 @@ body {
 .skills-popup__close {
   cursor: pointer;
   fill: #28527a;
-  height: 1.6rem;
-  width: 1.6rem;
-  position: absolute;
-  top: 0.8rem;
-  right: 0.8rem;
+  height: 3.2rem;
+  width: 3.2rem;
+  margin-left: auto;
+  transform-origin: left;
+  transition: fill 0.375s ease, transform 2s cubic-bezier(1, 0.2, 0, 1) 0.375s;
 }
 .skills-popup__close:hover {
   fill: #8ac4d0;
+  transform: scale(1.05) rotate(360deg);
 }
 .skills-popup--active {
   opacity: 1;
@@ -887,7 +890,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #fffdf5;
+  background: #fbeeac;
   border-left: 4px dashed #28527a;
   border-right: 4px dashed #28527a;
   -webkit-border-radius: 0;
@@ -895,7 +898,7 @@ body {
 }
 
 ::-webkit-scrollbar-corner {
-  background: #fffdf5;
+  background: #fbeeac;
 }
 
 .home {
@@ -950,6 +953,9 @@ body {
   border: 3px solid #28527a;
   border-radius: 1.6rem;
   box-shadow: 0 0 1.6rem 1.6rem rgba(40, 82, 122, 0.2);
+}
+.resume .heading {
+  color: #f4d160;
 }
 
 /*# sourceMappingURL=style.css.map */

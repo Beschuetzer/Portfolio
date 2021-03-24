@@ -371,7 +371,7 @@
   background: $color-primary-1;
 }
   ::-webkit-scrollbar-thumb {
-    background: lighten($color-primary-4, $hover-color-change-amount);
+    background: $color-primary-4;
     border-left: 4px dashed $color-primary-1;
     border-right: 4px dashed $color-primary-1;
     -webkit-border-radius: 0;
@@ -379,7 +379,7 @@
 
 }
   ::-webkit-scrollbar-corner {
-  background: lighten($color-primary-4, $hover-color-change-amount);
+  background: $color-primary-4;
 }
 
 
