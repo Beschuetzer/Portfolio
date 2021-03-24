@@ -70,6 +70,7 @@ const SiteNav = (props) => {
   });
 
   useEffect(() => {
+    console.log('something------------------------------------------------');
     const navBar = navRef.current;
     const resetAnimatingId = setTimeout(() => {
       navBar?.classList?.remove('navbar--isAnimating');
@@ -119,7 +120,7 @@ const SiteNav = (props) => {
             <NavListItem to="/contact" label="Contact" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
           </ul>
         </div>
-        <div className='navbar__background'></div>
+        <div onClick={onNavClick} className='navbar__background'></div>
       </nav>
     ,
     document.querySelector('#header')
