@@ -363,19 +363,3 @@
 				rgba($color-grey-light-4, 0.2)
 		);
 }
-
-::-webkit-scrollbar {
-	height: $default-font-size;
-	width: $default-font-size;
-	background: $color-primary-1;
-}
-::-webkit-scrollbar-thumb {
-	background: $color-primary-4;
-	border-left: 4px dashed $color-primary-1;
-	border-right: 4px dashed $color-primary-1;
-	-webkit-border-radius: 0;
-	border-radius: 0;
-}
-::-webkit-scrollbar-corner {
-	background: $color-primary-4;
-}

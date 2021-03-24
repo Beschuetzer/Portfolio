@@ -42,6 +42,7 @@ $paddingFactor: 1.25;
 $animation-duration: 0.5s;
 $animation-easing-standard: ease;
 $animation-easing-standard-easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+$animation-easing-standard-easeInOutBack-smaller: cubic-bezier(0.68, -0.2, 0.32, 1.2);
 $animation-navbar: $animation-duration $animation-easing-standard;
 
 $navbar__button-bar-before-rotation: rotate(105deg);

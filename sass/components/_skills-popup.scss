@@ -9,9 +9,10 @@
   height: 100vh;
   opacity: 0;
   visibility: hidden;
-  z-index: 100000000;
+  z-index: 10000;
   transition: 
-    opacity $animation-duration $animation-easing-standard,
+    opacity $animation-duration * 1.5 $animation-easing-standard-easeInOutBack-smaller,
+    visibility $animation-duration * 1.5 $animation-easing-standard-easeInOutBack-smaller,
   ;
   
   &__content {
@@ -23,15 +24,15 @@
     height: 75vh;
     background-color: $color-primary-4;
     padding: $default-font-size * 2;
-    border: $default-font-size * .25 solid lighten($color-primary-1, 15%);
-    box-shadow: 0 $default-font-size $default-font-size * 2 0 rgba($color-primary-2, .5);
+    border: $default-font-size * .15 solid $color-primary-1;
+    box-shadow: 0 0 $default-font-size * 1.5 0 rgba($color-primary-1, .5);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, 200%) ;
     border-radius: $default-font-size * .5;
     transition: 
-      transform $animation-duration * .66 $animation-easing-standard,
+      transform $animation-duration * 1.5 $animation-easing-standard-easeInOutBack-smaller,
     ;
   }
   

@@ -54,9 +54,9 @@
     background-color: $color-primary-3;
     grid-column: 2 / 3;
     padding: 0 $default-font-size * 2;
-    border: 3px solid $color-primary-1;
+    // border: 3px solid $color-primary-1;
     border-radius: $default-font-size * .5;
-    box-shadow: 0 $default-font-size $default-font-size * 2 rgba($color-primary-4, .25);
+    box-shadow: 0 0 $default-font-size * 1.5 rgba($color-primary-4, .2);
   }
   & .heading {
     color: $color-primary-3;

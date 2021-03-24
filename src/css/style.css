@@ -505,8 +505,8 @@ body {
   height: 100vh;
   opacity: 0;
   visibility: hidden;
-  z-index: 100000000;
-  transition: opacity 0.5s ease;
+  z-index: 10000;
+  transition: opacity 0.75s cubic-bezier(0.68, -0.2, 0.32, 1.2), visibility 0.75s cubic-bezier(0.68, -0.2, 0.32, 1.2);
 }
 .skills-popup__content {
   overflow-y: auto;
@@ -517,14 +517,14 @@ body {
   height: 75vh;
   background-color: #fbeeac;
   padding: 3.2rem;
-  border: 0.4rem solid #3b79b4;
-  box-shadow: 0 1.6rem 3.2rem 0 rgba(138, 196, 208, 0.5);
+  border: 0.24rem solid #28527a;
+  box-shadow: 0 0 2.4rem 0 rgba(40, 82, 122, 0.5);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, 200%);
   border-radius: 0.8rem;
-  transition: transform 0.33s ease;
+  transition: transform 0.75s cubic-bezier(0.68, -0.2, 0.32, 1.2);
 }
 .skills-popup__header {
   font-size: 3.2rem;
@@ -904,8 +904,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: #fbeeac;
-  border-left: 4px dashed #28527a;
-  border-right: 4px dashed #28527a;
+  border: 0.4rem solid #28527a;
   -webkit-border-radius: 0;
   border-radius: 0;
 }
@@ -963,9 +962,8 @@ body {
   background-color: #f4d160;
   grid-column: 2/3;
   padding: 0 3.2rem;
-  border: 3px solid #28527a;
   border-radius: 0.8rem;
-  box-shadow: 0 1.6rem 3.2rem rgba(251, 238, 172, 0.25);
+  box-shadow: 0 0 2.4rem rgba(251, 238, 172, 0.2);
 }
 .resume .heading {
   color: #f4d160;
