@@ -93,7 +93,7 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
   }, [isAnimating, root])
   
   return ReactDOM.createPortal(
-      <nav ref={navRef} className="navbar overflow--hidden" onClick={onNavClick}>
+      <nav ref={navRef} className="z-index-navbar navbar overflow--hidden" onClick={onNavClick}>
         <div className="navbar__button" to="/">
           <div className="navbar__menu">
             <div className="navbar__menu-bar"></div>

@@ -8,7 +8,7 @@ class ResumeSection extends React.Component {
     const { name, children, headerSideContent } = this.props;
     return (
       <section className={`resume__section resume__section-${name}`}>
-          <div className="resume__card">
+          <div className="resume__card z-index-content">
             <div className="resume__content">
               <div className="resume__header">
                 <h3 className="heading--three resume__header-title">{capitalize(name)?.replace('-', ' ')}</h3>

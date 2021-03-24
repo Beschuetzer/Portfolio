@@ -239,6 +239,14 @@ body {
   overflow: hidden !important;
 }
 
+.z-index-navbar {
+  z-index: 1 !important;
+}
+
+.z-index-content {
+  z-index: 2 !important;
+}
+
 .triangle-down {
   margin-left: 0.8rem;
   width: 0;
@@ -643,7 +651,6 @@ body {
 }
 
 .navbar {
-  z-index: 1;
   border-radius: 16rem 0 0 16rem;
   position: fixed;
   top: 1rem;
@@ -958,7 +965,6 @@ body {
   border: 3px solid #28527a;
   border-radius: 0.8rem;
   box-shadow: 0 1.6rem 3.2rem rgba(251, 238, 172, 0.25);
-  z-index: 2;
 }
 .resume .heading {
   color: #f4d160;

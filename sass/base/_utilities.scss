@@ -73,3 +73,12 @@
     .overflow--hidden {
         overflow: hidden !important;
     }
+
+    //Dealing with SiteNav glitch
+    .z-index-navbar {
+        z-index: 1 !important;
+    }
+    //content must be higher than navbar for click event to work properly
+    .z-index-content {
+        z-index: 2 !important;
+    }
