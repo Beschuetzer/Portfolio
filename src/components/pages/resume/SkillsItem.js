@@ -37,10 +37,10 @@ const SkillsItem = ({ title, percent, href, clickSkill }) => {
         
       </li>
       <div  className="skills__percent-outer">
+        <div ref={percentDiv} className="skills__percent-inner"></div>
         <div className="skills__percent-outer-left"></div>
         <div className="skills__percent-outer-center"></div>
         <div className="skills__percent-outer-right"></div>
-        <div ref={percentDiv} className="skills__percent-inner"></div>
       </div>
    </React.Fragment>
   );

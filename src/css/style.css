@@ -416,6 +416,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   align-items: flex-end;
   justify-items: center;
+  z-index: 10;
   transform: translateY(33%);
 }
 .skills__labels > span:first-child {
@@ -482,8 +483,8 @@ body {
 }
 .skills__percent-inner {
   backface-visibility: hidden;
-  box-shadow: 0 0rem 3.2rem 0 rgba(40, 82, 122, 0.5);
-  background-color: #28527a;
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(40, 82, 122, 0.2);
+  background-color: #8ac4d0;
   height: 1.6rem;
   opacity: 0;
   border: 0.16rem solid #fbeeac;

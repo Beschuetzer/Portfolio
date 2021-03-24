@@ -94,6 +94,7 @@
 		grid-template-columns: repeat(3, 1fr);
 		align-items: flex-end;
 		justify-items: center;
+		z-index: 10;
 		transform: translateY(33%);
 
 		& > span:first-child {
@@ -177,8 +178,8 @@
 		}
 		&-inner {
 			backface-visibility: hidden;
-			box-shadow: 0 0rem $default-font-size * 2 0 rgba($color-primary-1, 0.5);
-			background-color: $color-primary-1;
+			box-shadow: 0 $default-font-size * .5 $default-font-size * 1 0 rgba($color-primary-1, 0.2);
+			background-color: $color-primary-2;
 			height: $default-font-size;
 			opacity: 0;
 			border: $default-font-size * 0.1 solid $color-primary-4;
