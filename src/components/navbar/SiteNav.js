@@ -1,12 +1,13 @@
 import React from 'react';
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef} from 'react';
+import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import NavListItem from './NavListItem';
 
+import { setIsAnimating } from '../../actions';
 import { checkForParentOfType } from '../../helpers';
 
-const SiteNav = (props) => {
-  const [isAnimating, setIsAnimating] = useState(false);
+const SiteNav = ({isAnimating, setIsAnimating}) => {
 
   const navRef = useRef();
   const navbarActiveClassname = 'navbar--active';
@@ -55,7 +56,7 @@ const SiteNav = (props) => {
     else if (navRef.current.classList.contains(navbarIsAnimatingClassname) ||navRef.current.classList.contains(navbarDoneClassname)) {
       navRef.current?.classList.remove('overflow--hidden');
     }
-  }
+  } 
 
   useEffect(() => {
     const onBodyClick = (e) => {
@@ -90,7 +91,6 @@ const SiteNav = (props) => {
     });
 
   }, [isAnimating, root])
-  
   
   return ReactDOM.createPortal(
       <nav ref={navRef} className="navbar overflow--hidden" onClick={onNavClick}>
@@ -127,4 +127,12 @@ const SiteNav = (props) => {
   );
 }
 
-export default SiteNav;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isAnimating: state.isAnimating,
+  }
+}
+
+export default connect(mapStateToProps, {
+  setIsAnimating,
+})(SiteNav);

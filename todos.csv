@@ -40,5 +40,6 @@
 -convert date to mm/dd/yy format and make smaller
 -add styling for skills-popup__link
 -when hovering skill bar, display the exact number for that skill with a fade in
-  
+
+-fix bug where clicking nav to open then click off screen right away to close, causes navbar--done to remain on element  
 
