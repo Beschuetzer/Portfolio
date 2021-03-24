@@ -272,6 +272,7 @@ body {
   align-items: center;
   width: 8rem;
   height: auto;
+  z-index: 10000;
 }
 .github__link:link, .github__link:visited {
   text-decoration: none;
@@ -658,7 +659,7 @@ body {
 }
 .navbar__background {
   position: fixed;
-  top: 10.1rem;
+  top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -712,6 +713,8 @@ body {
   transform: rotate(-105deg) translate(0rem, -0.8rem);
 }
 .navbar__content {
+  position: relative;
+  z-index: 10;
   visibility: hidden;
   width: 100%;
   transform: translateX(-125%);

@@ -16,7 +16,8 @@
 
 	&__background {
 		position: fixed;
-		top: 10.1rem;
+		// top: 10.1rem;
+		top: 0;
 		left: 0;
 		width: 100vw;
 		height: 100vh;
@@ -93,6 +94,8 @@
 	}
 
 	&__content {
+		position: relative;
+		z-index: 10;
 		visibility: hidden;
 		width: 100%;
 		transform: translateX(-125%);

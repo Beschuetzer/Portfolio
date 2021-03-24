@@ -8,6 +8,7 @@
   align-items: center;
   width: $default-font-size * 5;
   height: auto;
+  z-index: 10000;
 
   &__link:link, &__link:visited {
     text-decoration: none;
