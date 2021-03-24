@@ -40,6 +40,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   const onCloseClick = (e) => {
     skillsPopupDiv?.classList?.remove('skills-popup--active');
     clickSkill(null);
+    addRepoToReposToDisplay([]);
   }
 
   const renderProjects = () => {
@@ -104,7 +105,6 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   }
 
   const renderTableHeaders = () => {
-    //TODO: name description created updated URL
     const headers = ['Name', 'Description', 'Created', 'Updated', 'Repository'];
     return headers.map(header => {
       return (

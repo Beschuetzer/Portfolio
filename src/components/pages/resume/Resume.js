@@ -50,7 +50,7 @@ class Resume extends React.Component {
             <SkillsItem title="SCSS" percent="51"/>
             <SkillsItem title="Javascript" percent="67"/>
             <SkillsItem title="PaperJS" percent="44"/>
-            <SkillsItem title="ThreeJS" percent="13"/>
+            <SkillsItem title="ThreeJS" percent="40"/>
             <SkillsItem title="Express" percent="59"/>
             <SkillsItem title="socket.io" percent="47.5"/>
             <SkillsItem title="React" percent="55"/>
