@@ -38,6 +38,7 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
     else {
       root.classList?.remove(navbarActiveClassname);
       navBar.classList?.remove(navbarActiveClassname);
+      navBar.classList?.remove(navbarDoneClassname);
       setIsAnimating(false);
     }
   }
@@ -71,11 +72,10 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
   });
 
   useEffect(() => {
-    console.log('something------------------------------------------------');
     const navBar = navRef.current;
     const resetAnimatingId = setTimeout(() => {
       navBar?.classList?.remove('navbar--isAnimating');
-      if (isAnimating) {
+      if (isAnimating && navBar.classList?.contains(navbarActiveClassname)) {
         root.classList?.add(navbarDoneClassname);
         navBar.classList?.add(navbarDoneClassname);
       }
