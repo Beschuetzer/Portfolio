@@ -67,7 +67,7 @@ html {
 body {
   font-weight: 400;
   line-height: 1.5;
-  font-family: "Cinzel", sans-serif;
+  font-family: "Merriweather", serif;
   color: #fbeeac;
   background-image: linear-gradient(to right, #28527a, #28527a);
 }
@@ -83,7 +83,7 @@ body {
 }
 
 .heading {
-  font-family: "Cinzel", sans-serif;
+  font-family: "Merriweather", serif;
 }
 .heading--one {
   font-size: 9.6rem;
@@ -105,7 +105,7 @@ body {
 }
 
 .paragraph {
-  font-family: "Roboto", sans-serif;
+  font-family: "Open Sans", sans-serif;
   margin-top: 1.6rem;
 }
 .paragraph--one {
@@ -263,7 +263,7 @@ body {
 }
 
 .github {
-  font-family: "Roboto", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1.056rem;
   position: fixed;
   top: 1rem;
@@ -337,7 +337,7 @@ body {
 
 .skills {
   font-size: 1.6rem;
-  font-family: "Roboto", sans-serif;
+  font-family: "Open Sans", sans-serif;
   position: relative;
 }
 .skills__section:first-child {
@@ -537,7 +537,7 @@ body {
 }
 .skills-popup__table-item {
   font-weight: 400;
-  font-family: "Roboto", sans-serif;
+  font-family: "Open Sans", sans-serif;
   border-bottom: 1px solid rgba(40, 82, 122, 0.25);
   display: flex;
   align-items: center;
@@ -642,16 +642,19 @@ body {
 }
 
 .navbar {
+  width: 8rem;
   z-index: 10000;
   border-radius: 16rem 0 0 16rem;
   position: fixed;
-  top: 0.4rem;
   top: 1rem;
   left: 1rem;
   font-size: 2.4rem;
   text-align: center;
   display: flex;
   align-items: center;
+}
+.navbar.navbar--active, .navbar.navbar--isAnimating {
+  width: auto;
 }
 .navbar__background {
   position: fixed;

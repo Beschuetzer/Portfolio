@@ -14,12 +14,9 @@ import SkillsPopup from '../../SkillsPopup';
 
 class Resume extends React.Component {
   componentDidMount() {
-    this.renderTHREE();
-
-    console.log('this.props =', this.props);
+    // this.renderTHREE();
     if (this.props.repos?.length > 0) return;
     this.props.getRepositories();
-    
   }
   
   popupUrl = '/resume#skillsPopup';

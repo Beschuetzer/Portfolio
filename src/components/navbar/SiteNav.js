@@ -81,7 +81,7 @@ const SiteNav = (props) => {
         root.classList?.remove(navbarDoneClassname);
         navBar.classList?.remove(navbarDoneClassname);
       }
-    }, animationDuration * .7);
+    }, animationDuration * 1.1);
     navBar?.classList?.add('navbar--isAnimating');
 
     return (() => {
@@ -119,7 +119,7 @@ const SiteNav = (props) => {
             <NavListItem to="/contact" label="Contact" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
           </ul>
         </div>
-        <div class='navbar__background'></div>
+        <div className='navbar__background'></div>
       </nav>
     ,
     document.querySelector('#header')

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useEffect, useMemo} from 'react';
+import {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { checkForParentOfType } from '../helpers';
@@ -108,7 +108,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
     const headers = ['Name', 'Description', 'Created', 'Updated', 'Repository'];
     return headers.map(header => {
       return (
-        <div className="skills-popup__table-header">{header}</div>
+        <div key={header} className="skills-popup__table-header">{header}</div>
       );
     })
   }
