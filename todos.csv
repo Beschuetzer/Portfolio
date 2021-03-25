@@ -34,6 +34,7 @@
     *list of projects that use that skill as links to github page
     *estimated # of hours spent writing code in that language/package/skill
 
+-link up udemy certs
 -start work on SkillsPopup (be sure to add error handling in case API down)
 -add button listeners to SiteNav to allow for keyboard shortcuts
 -add option to click SkillsPopup Header and have it ascending/descending sort by that header?
@@ -41,5 +42,4 @@
 -add styling for skills-popup__link
 -when hovering skill bar, display the exact number for that skill with a fade in
 
--fix bug where clicking nav to open then click off screen right away to close, causes navbar--done to remain on element  
 

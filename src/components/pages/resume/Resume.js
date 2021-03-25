@@ -55,39 +55,45 @@ class Resume extends React.Component {
             <SkillsItem title="Python" percent="33"/>
             <SkillsItem title="Ruby" percent="25"/>
             <SkillsItem title="C#" percent="30"/>
-            <SkillsItem title="Mongoose" percent="35"/>
+            <SkillsItem title="Mongoose" percent="38"/>
             <SkillsItem title="GraphQL" percent="32"/>
             <SkillsItem title="EJS" percent="48"/>
             <SkillsItem title="BEM" percent="42"/>
+            <SkillsItem title="SQL" percent="20"/>
           </SkillsItemSection>
   
           <SkillsItemSection title="IT Support">
             <SkillsItemSectionLabels 
-              left="Novice"
-              center="Proficient"
-              right="Advanced"
+              left="Familiar"
+              center="Knowledgeable"
+              right="Expert"
             />
             <SkillsItem title="A+" percent="100"/>
             <SkillsItem title="Network+" percent="100"/>
-            <SkillsItem href="https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ" title="Google IT Support Specialist" percent="100"/>
-            <SkillsItem title="Add Udemy Courses link to certs" percent="67"/>
+            <SkillsItem href="https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ" title="Google IT Support" percent="100"/>
+            <SkillsItem title="Window's Server 2016" percent="40"/>
+            <SkillsItem title="SCCM" percent="35"/>
+            <SkillsItem title="Group Policy" percent="38"/>
+            <SkillsItem title="Powershell" percent="50"/>
+
+
             
           </SkillsItemSection>
           <SkillsItemSection title="Human Skills">
             <SkillsItemSectionLabels 
-              left="Adept"
-              center="Advanced"
-              right="Master"
+              left="None"
+              center="Average"
+              right="Excels"
             />
             {/* https://www.youtube.com/watch?v=p0zB-aw-vQg */}
             <SkillsItem title="Listening" percent="85"/>
-            <SkillsItem title="Give Feedback" percent="58"/>
-            <SkillsItem title="Receive Feedback" percent="66"/>
-            <SkillsItem title="Empathy" percent="68"/>
-            <SkillsItem title="Having Difficult Conversations" percent="53"/>
+            <SkillsItem title="Giving Feedback" percent="48"/>
+            <SkillsItem title="Receiving Feedback" percent="66"/>
+            <SkillsItem title="Empathizing" percent="68"/>
+            <SkillsItem title="Having Difficult Conversations" percent="75"/>
             <SkillsItem title="Written Communication" percent="85"/>
             <SkillsItem title="Oral Communication" percent="75"/>
-            <SkillsItem title="Self-Starter" percent="75"/>
+            <SkillsItem title="Self-Starter" percent="78"/>
           </SkillsItemSection>
         </ul>
       </React.Fragment>

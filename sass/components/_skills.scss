@@ -94,9 +94,10 @@
 		grid-template-columns: repeat(3, 1fr);
 		align-items: flex-end;
 		justify-items: center;
+		align-items: center;
 		z-index: 10;
 		transform: translateY(33%);
-
+		line-height: 1;
 		& > span:first-child {
 			justify-self: flex-start;
 		}
@@ -112,7 +113,7 @@
 		align-items: center;
 		width: 100%;
 		max-width: $default-font-size * 50;
-		margin-left: $default-font-size * 2;
+		margin-left: $default-font-size * 1;
 	}
 
 	&__title:link,

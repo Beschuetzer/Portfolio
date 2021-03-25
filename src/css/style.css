@@ -416,8 +416,10 @@ body {
   grid-template-columns: repeat(3, 1fr);
   align-items: flex-end;
   justify-items: center;
+  align-items: center;
   z-index: 10;
   transform: translateY(33%);
+  line-height: 1;
 }
 .skills__labels > span:first-child {
   justify-self: flex-start;
@@ -431,7 +433,7 @@ body {
   align-items: center;
   width: 100%;
   max-width: 80rem;
-  margin-left: 3.2rem;
+  margin-left: 1.6rem;
 }
 .skills__title:link, .skills__title:visited, .skills__title {
   position: relative;
