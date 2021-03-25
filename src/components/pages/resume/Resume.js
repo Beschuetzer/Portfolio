@@ -79,11 +79,15 @@ class Resume extends React.Component {
               center="Advanced"
               right="Master"
             />
+            {/* https://www.youtube.com/watch?v=p0zB-aw-vQg */}
+            <SkillsItem title="Listening" percent="85"/>
+            <SkillsItem title="Give Feedback" percent="58"/>
+            <SkillsItem title="Receive Feedback" percent="66"/>
             <SkillsItem title="Empathy" percent="68"/>
+            <SkillsItem title="Having Difficult Conversations" percent="53"/>
             <SkillsItem title="Written Communication" percent="85"/>
             <SkillsItem title="Oral Communication" percent="75"/>
             <SkillsItem title="Self-Starter" percent="75"/>
-            <SkillsItem title="Team Player" percent="85"/>
           </SkillsItemSection>
         </ul>
       </React.Fragment>
