@@ -555,7 +555,7 @@ body {
 }
 .skills-popup__table {
   display: grid;
-  grid-template-columns: min-content minmax(25rem, 1fr) repeat(2, minmax(10rem, min-content)) min-content;
+  grid-template-columns: minmax(10rem, max-content) minmax(25rem, 1fr) repeat(2, minmax(10rem, min-content)) min-content;
 }
 .skills-popup__table-header {
   font-weight: 700;

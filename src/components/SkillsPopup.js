@@ -96,6 +96,9 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   }
 
   const returnDate = (key, repo) => {
+    const date = new Date(repo[key]).toLocaleString();
+    const index = date.lastIndexOf(':');
+    const dateToShow = date.slice(0, index) + ' ' + date.slice(index + 4);
     return (
       <div 
         key={key} 
@@ -103,7 +106,9 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
         onMouseEnter={onTableItemMouseEvent}
         onMouseLeave={onTableItemMouseEvent}
       >
-        {new Date(repo[key]).toLocaleString()}
+        {
+          dateToShow
+        }
       </div>
     );
   }
@@ -134,6 +139,9 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
                   </div>
                 </a>
               )
+            }
+            else if (repo["name"].match(/playlist.*sync/i)) {
+              console.log('repo["name"] =', repo["name"]);
             }
 
             return (
