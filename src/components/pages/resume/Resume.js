@@ -59,7 +59,7 @@ class Resume extends React.Component {
             <SkillsItem title="GraphQL" percent="32"/>
             <SkillsItem title="EJS" percent="48"/>
             <SkillsItem title="BEM" percent="42"/>
-            <SkillsItem title="SQL" percent="20"/>
+            <SkillsItem href='/certs/sql.png' title="SQL" percent="20"/>
           </SkillsItemSection>
   
           <SkillsItemSection title="IT Support">
@@ -68,16 +68,13 @@ class Resume extends React.Component {
               center="Knowledgeable"
               right="Expert"
             />
-            <SkillsItem title="A+" percent="100"/>
-            <SkillsItem title="Network+" percent="100"/>
+            <SkillsItem href='/certs/a-plus.png' title="A+" percent="100"/>
+            <SkillsItem href='/certs/network-plus.png' title="Network+" percent="100"/>
             <SkillsItem href="https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ" title="Google IT Support" percent="100"/>
-            <SkillsItem title="Window's Server 2016" percent="40"/>
-            <SkillsItem title="SCCM" percent="35"/>
-            <SkillsItem title="Group Policy" percent="38"/>
-            <SkillsItem title="Powershell" percent="50"/>
-
-
-            
+            <SkillsItem href='/certs/server2016.png' title="Window's Server 2016" percent="40" />
+            <SkillsItem href='/certs/sccm.jpg' title="SCCM" percent="35"/>
+            <SkillsItem href='/certs/group-policy.jpg' title="Group Policy" percent="38"/>
+            <SkillsItem href='/certs/powershell-active-directory-admin.jpg' title="Powershell" percent="50"/>
           </SkillsItemSection>
           <SkillsItemSection title="Human Skills">
             <SkillsItemSectionLabels 
