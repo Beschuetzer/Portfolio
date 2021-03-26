@@ -11,32 +11,49 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   const getIndexOfItem = (target, items) => {
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
-      if (target === item) return i;
+      if (target.innerText === item.innerText) return i;
     }
   }
 
-  const onTitleEnter = (e) => {
+  const onTableItemMouseEvent = (e) => {
+    const table = document.querySelector('.skills-popup__table')
     const skillsPopupItems = document.querySelectorAll('.skills-popup__table-item');
     const indexOfTarget = getIndexOfItem(e.target, skillsPopupItems);
-    // skills-popup__name/description/createdAt/updatedAt/url
     const classNameToAdd = 'skills-popup__item-js--hover';
-    
+    const headerCount = document.querySelectorAll('.skills-popup__table-header').length;
+    const classList = e.target.classList;
+
     let min = -1;
     let max = -1;
-    if (e.target.classList?.contains('skills-popup__name')) {
-      console.log('name')      ;
+    if (classList?.contains('skills-popup__link-text') || classList?.contains('skills-popup__name')) {
+      min = headerCount + indexOfTarget + 0;
+      max = headerCount + indexOfTarget + 4;
     }
-    else if (e.target.classList?.contains('skills-popup__description')) {
-          console.log('description');
+    else if (classList?.contains('skills-popup__description')) {
+      min = headerCount + indexOfTarget + -1;
+      max = headerCount + indexOfTarget + 3;
     }
-    else if (e.target.classList?.contains('skills-popup__createdAt')) {
-          console.log('createdAt');
+    else if (classList?.contains('skills-popup__createdAt')) {
+      min = headerCount + indexOfTarget + -2;
+      max = headerCount + indexOfTarget + 2;
     }
-    else if (e.target.classList?.contains('skills-popup__updatedAt')) {
-          console.log('updatedAt');
+    else if (classList?.contains('skills-popup__updatedAt')) {
+      min = headerCount + indexOfTarget + -3;
+      max = headerCount + indexOfTarget + 1;
     }
-    else if (e.target.classList?.contains('skills-popup__url')) {
-          console.log('url');
+    else if (classList?.contains('skills-popup__url')) {
+      console.log('indexOfTarget =', indexOfTarget);
+      min = headerCount + indexOfTarget + -4;
+      max = headerCount + indexOfTarget + 0;
+    }
+
+    for (let i = min; i <= max; i++) {
+      if (e.type === 'mouseleave') {
+        table.children[i]?.classList.remove(classNameToAdd)
+      }
+      else {
+        table.children[i]?.classList.add(classNameToAdd);
+      }
     }
   }
 
@@ -80,7 +97,8 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
       <div 
         key={key} 
         className={`skills-popup__table-item skills-popup__${key}`}
-        onMouseEnter={onTitleEnter}
+        onMouseEnter={onTableItemMouseEvent}
+        onMouseLeave={onTableItemMouseEvent}
       >
         {new Date(repo[key]).toLocaleString()}
       </div>
@@ -101,10 +119,12 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
                   className=  {`skills-popup__table-item skills-popup__${key} skills-popup__link skills__title--animating`}
                   target="_blank"
                   rel="noreferrer"
-                  onMouseEnter={onTitleEnter} 
+                  onMouseEnter={onTableItemMouseEvent} 
+                  onMouseLeave={onTableItemMouseEvent} 
                 >
                   <div 
-                    onMouseEnter={onTitleEnter} 
+                    onMouseEnter={onTableItemMouseEvent} 
+                    onMouseLeave={onTableItemMouseEvent} 
                     className="skills-popup__link-text"
                   >
                     {repo[key]}
@@ -116,7 +136,8 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
             return (
               <div 
                 key={key} 
-                onMouseEnter={onTitleEnter} 
+                onMouseEnter={onTableItemMouseEvent} 
+                onMouseLeave={onTableItemMouseEvent} 
                 className={`skills-popup__table-item skills-popup__${key}`}
               >
                 {repo[key]}
@@ -131,7 +152,8 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
                 target="_blank" 
                 href={repo[key]}
                 className={`skills-popup__table-item skills-popup__${key}`}
-                onMouseEnter={onTitleEnter}
+                onMouseEnter={onTableItemMouseEvent}
+                onMouseLeave={onTableItemMouseEvent}
               >
                 <svg>
                   <use xlinkHref="/sprite.svg#icon-chain"></use>
@@ -146,7 +168,8 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
             return (
               <div 
                 key={key} 
-                onMouseEnter={onTitleEnter} 
+                onMouseEnter={onTableItemMouseEvent} 
+                onMouseLeave={onTableItemMouseEvent} 
                 className={`skills-popup__table-item skills-popup__${key}`}
               >
                 {repo[key]}

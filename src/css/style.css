@@ -1,3 +1,4 @@
+/* ------------------------------------------------------------------------------------------------- */
 @keyframes black-hole {
   0% {
     transform: scale(1) rotate(0deg);
@@ -626,12 +627,6 @@ body {
   z-index: -1;
   transition: opacity 0.375s cubic-bezier(1, 0, 0.5, 0.55) 0.125s, height 0.25s cubic-bezier(1, 0, 0, 1) 0.25s, width 0.25s cubic-bezier(1, 0, 0, 1), border-radius 0.25s ease 0.25s;
 }
-.skills-popup__link:hover {
-  background-color: #f4d160;
-  border-bottom: 1px solid #28527a;
-  transform: translateY(-0.2rem);
-  box-shadow: 0 1.6rem 1.6rem 0 rgba(40, 82, 122, 0.15);
-}
 .skills-popup__link:hover .skills-popup__link-text::before {
   height: 100%;
   width: 100%;
@@ -651,10 +646,9 @@ body {
   transform: translate(-50%, -50%);
 }
 .skills-popup__item-js--hover {
-  background-color: #f4d160;
+  background-color: #fbeeac;
   border-bottom: 1px solid #28527a;
-  transform: translateY(-0.2rem);
-  box-shadow: 0 1.6rem 1.6rem 0 rgba(40, 82, 122, 0.15);
+  box-shadow: 0 0 0rem 0 rgba(40, 82, 122, 0.15);
 }
 
 .row {
