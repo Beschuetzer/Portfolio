@@ -11,7 +11,10 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   const getIndexOfItem = (target, items) => {
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
-      if (target.innerText === item.innerText) return i;
+      if (target.localName === 'a' && item.localName === 'a')  {
+        if (target.href === item.href) return i;
+      }
+      else if (target.innerText === item.innerText) return i;
     }
   }
 
