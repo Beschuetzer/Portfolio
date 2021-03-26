@@ -100,22 +100,50 @@
   &__link {
     cursor: pointer;
     text-decoration: none;
-    &-span {
+    position: relative;
+
+    &-text {
       border-bottom-width: $default-font-size * .1;
       border-bottom-style: solid;
       border-image: linear-gradient(to right, $color-primary-4 0%, $color-primary-1 50%, $color-primary-1 50%, $color-primary-4 100%);
       border-image-slice: 1;
       transition: 
-        border $animation-duration * .5 $animation-easing-standard,
-        color $animation-duration * .5 $animation-easing-standard,
+        border $animation-duration * .5 $animation-easing-modern,
+        color $animation-duration * .5 $animation-easing-modern,
       ;
+
+      &::before {
+        background-image: 
+          linear-gradient(to bottom, $color-primary-2 0%, $color-primary-4 20%, $color-primary-4 80%, $color-primary-2 100%);
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        opacity: 0;
+        width: 1px;
+        height: $default-font-size * 2;
+        transform: translate(0%, -50%);
+        z-index: -1;
+        transition: 
+          opacity  $animation-duration * 2 $animation-easing-standard, 
+          height $animation-duration * .5 $animation-easing-modern $animation-duration * .5,
+          width $animation-duration * .5 $animation-easing-modern,
+        ;
+      }
     }
 
     &:hover {
       background-color: $color-primary-3;
     }
 
-    &:hover &-span{
+    &:hover &-text::before {
+      // height: 23.4%;
+      height: 100%;
+      width: 85.5%;
+      opacity: 1;
+    }
+
+    &:hover &-text{
       color: $color-primary-2;
       border-image: linear-gradient(to right, $color-primary-2 0%, $color-primary-3 50%, $color-primary-3 50%, $color-primary-2 100%);
       border-image-slice: 1;

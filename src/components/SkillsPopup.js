@@ -66,7 +66,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <span className="skills-popup__link-span">{repo[key]}</span>
+                  <div className="skills-popup__link-text">{repo[key]}</div>
                 </a>
               )
             }
