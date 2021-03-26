@@ -40,12 +40,13 @@ class Resume extends React.Component {
             <SkillsItemSectionLabels 
               left="Novice"
               center="Proficient"
-              right="Advanced"
+              right="Master"
             />
             <SkillsItem title="HTML5" percent="50"/>
             <SkillsItem title="CSS3" percent="65"/>
             <SkillsItem title="SCSS" percent="51"/>
             <SkillsItem title="Javascript" percent="67"/>
+            <SkillsItem title="jQuery" percent="31"/>
             <SkillsItem title="PaperJS" percent="44"/>
             <SkillsItem title="ThreeJS" percent="40"/>
             <SkillsItem title="Express" percent="59"/>
