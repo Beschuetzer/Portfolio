@@ -366,6 +366,7 @@ body {
   align-items: center;
 }
 .skills__section-title {
+  backface-visibility: hidden;
   user-select: none;
   cursor: pointer;
   display: flex;
@@ -377,6 +378,7 @@ body {
   transition: transform 0.25s ease, color 0.5s ease;
 }
 .skills__section-title-svg {
+  backface-visibility: hidden;
   fill: rgba(40, 82, 122, 0.5);
   height: 2.4rem;
   width: 2.4rem;
@@ -436,6 +438,7 @@ body {
   margin-left: 1.6rem;
 }
 .skills__title:link, .skills__title:visited, .skills__title {
+  backface-visibility: hidden;
   position: relative;
   cursor: pointer;
   display: inline-block;
@@ -457,7 +460,11 @@ body {
 .skills-popup__link.skills__title--animating:link, .skills-popup__link.skills__title--animating:visited {
   display: flex;
 }
+.skills__title--animating.skills__section--open {
+  animation: none;
+}
 .skills__percent-outer {
+  backface-visibility: hidden;
   position: relative;
   background-color: #fbeeac;
   height: 1.6rem;
@@ -488,7 +495,7 @@ body {
 }
 .skills__percent-inner {
   backface-visibility: hidden;
-  box-shadow: 0 0.8rem 1.6rem 0 rgba(40, 82, 122, 0.2);
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(40, 82, 122, 0.125);
   background-color: #8ac4d0;
   height: 1.6rem;
   opacity: 0;
@@ -563,6 +570,7 @@ body {
   padding-right: 0;
 }
 .skills-popup__url {
+  backface-visibility: hidden;
   display: flex;
   justify-content: center;
 }
@@ -570,6 +578,11 @@ body {
   fill: #28527a;
   height: 3.2rem;
   width: 3.2rem;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.skills-popup__url:hover svg {
+  fill: #8ac4d0;
+  transform: scale(1.15);
 }
 .skills-popup__close {
   cursor: pointer;
@@ -605,7 +618,8 @@ body {
   left: 0%;
   opacity: 0;
   width: 1px;
-  height: 3.6rem;
+  height: 6.4rem;
+  max-height: 100%;
   transform: translate(0%, -50%);
   z-index: -1;
   transition: opacity 0.5s cubic-bezier(1, 0, 0.5, 0.55), height 0.25s cubic-bezier(1, 0, 0, 1) 0.25s, width 0.25s cubic-bezier(1, 0, 0, 1), border-radius 0.25s ease 0.25s;

@@ -29,7 +29,7 @@ class SkillsItemSection extends React.Component {
     const { children, title } = this.props;
     return (
       <React.Fragment>
-        <div onClick={this.onTitleClick} className="skills__section-title">
+        <div onClick={this.onTitleClick} className="skills__section-title skills__title--animating">
           {title}
           <svg className="skills__section-title-svg">
               <use xlinkHref="/sprite.svg#icon-angle-right"></use>

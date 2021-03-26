@@ -25,6 +25,8 @@
 			align-items: center;
 		}
 		&-title {
+			backface-visibility: hidden;
+
 			user-select: none;
 			cursor: pointer;
 			display: flex;
@@ -38,6 +40,8 @@
 				color $animation-duration * 1 $animation-easing-standard;
 
 			&-svg {
+				backface-visibility: hidden;
+
 				fill: rgba($color-primary-1, 0.5);
 				height: $default-font-size * 1.5;
 				width: $default-font-size * 1.5;
@@ -119,6 +123,7 @@
 	&__title:link,
 	&__title:visited,
 	&__title {
+		backface-visibility: hidden;
 		position: relative;
 		cursor: pointer;
 		display: inline-block;
@@ -145,8 +150,15 @@
 		display: flex;
 	}
 
+	&__title--animating.skills__section--open {
+		animation: none;
+	}
+	
+
 	&__percent {
 		&-outer {
+			backface-visibility: hidden;
+
 			position: relative;
 			background-color: $color-primary-4;
 			// width: 100%;
@@ -183,7 +195,7 @@
 		}
 		&-inner {
 			backface-visibility: hidden;
-			box-shadow: 0 $default-font-size * .5 $default-font-size * 1 0 rgba($color-primary-1, 0.2);
+			box-shadow: 0 $default-font-size * .5 $default-font-size * 1 0 rgba($color-primary-1, 0.125);
 			background-color: $color-primary-2;
 			height: $default-font-size;
 			opacity: 0;
