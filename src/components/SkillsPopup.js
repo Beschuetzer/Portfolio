@@ -108,7 +108,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   const renderProjects = () => {
     const keys = ["name", 'description', 'createdAt', 'updatedAt','url'];
     return reposToDisplay.map(repo => {
-      return keys.map(key => {
+      return keys.map((key, index) => {
         switch (key) {
           case 'name':
             if (repo['homepageUrl']) {

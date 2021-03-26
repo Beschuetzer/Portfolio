@@ -648,7 +648,7 @@ body {
 .skills-popup__item-js--hover {
   background-color: #fbeeac;
   border-bottom: 1px solid #28527a;
-  box-shadow: 0 0 0rem 0 rgba(40, 82, 122, 0.15);
+  box-shadow: 0 1.6rem 3.2rem -3.2rem rgba(40, 82, 122, 0.5);
 }
 
 .row {
