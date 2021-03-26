@@ -69,7 +69,14 @@
       transition:  
         border $animation-duration * .5 $animation-easing-standard,
       ;
+      &.skills-popup__description {
+        display: inline;
 
+        & a {
+          color: darken($color-primary-1, 15%);
+
+        }
+      }
 
       // &:nth-child(5n+1) {
       //   padding-left: $default-font-size * 2;

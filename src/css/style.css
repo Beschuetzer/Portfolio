@@ -570,6 +570,12 @@ body {
   padding: 1.6rem 2.4rem 1.6rem 0;
   transition: border 0.25s ease;
 }
+.skills-popup__table-item.skills-popup__description {
+  display: inline;
+}
+.skills-popup__table-item.skills-popup__description a {
+  color: #152b40;
+}
 .skills-popup__table-item:nth-child(5n+5) {
   padding-right: 0;
 }

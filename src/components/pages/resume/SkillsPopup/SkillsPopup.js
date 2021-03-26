@@ -170,7 +170,6 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
                 {repo[key]}
               </div>
             );
-
           case 'url':
             return (
               <a 
@@ -191,17 +190,20 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
             return returnDate(key, repo);
           case 'updatedAt':
             return returnDate(key, repo);
-          default:
+          case 'description':
             return (
               <div 
                 key={key} 
                 onMouseEnter={onTableItemMouseEvent} 
                 onMouseLeave={onTableItemMouseEvent} 
                 className={`skills-popup__table-item skills-popup__${key}`}
+                dangerouslySetInnerHTML={{__html: repo[key]}}
+                
               >
-                {repo[key]}
               </div>
             );
+          default:
+            return null;
         }
         
       })
