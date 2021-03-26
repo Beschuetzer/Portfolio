@@ -9,7 +9,7 @@ import SkillsItemSectionLabels from './SkillsItemSectionLabels';
 import SkillsItem from './SkillsItem';
 
 import { getRepositories } from '../../../actions';
-import SkillsPopup from '../../SkillsPopup';
+import SkillsPopup from './SkillsPopup/SkillsPopup';
 
 
 class Resume extends React.Component {
@@ -69,9 +69,9 @@ class Resume extends React.Component {
               center="Knowledgeable"
               right="Expert"
             />
-            <SkillsItem href='/certs/a-plus.png' title="A+" percent="100"/>
-            <SkillsItem href='/certs/network-plus.png' title="Network+" percent="100"/>
-            <SkillsItem href="https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ" title="Google IT Support" percent="100"/>
+            <SkillsItem href='/certs/a-plus.png' title="A+" percent="80"/>
+            <SkillsItem href='/certs/network-plus.png' title="Network+" percent="70"/>
+            <SkillsItem href="https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ" title="Google IT Support" percent="66"/>
             <SkillsItem href='/certs/server2016.png' title="Window's Server 2016" percent="40" />
             <SkillsItem href='/certs/sccm.jpg' title="SCCM" percent="35"/>
             <SkillsItem href='/certs/group-policy.jpg' title="Group Policy" percent="38"/>
@@ -79,8 +79,8 @@ class Resume extends React.Component {
           </SkillsItemSection>
           <SkillsItemSection title="Human Skills">
             <SkillsItemSectionLabels 
-              left="None"
-              center="Average"
+              left="Lacks"
+              center=""
               right="Excels"
             />
             {/* https://www.youtube.com/watch?v=p0zB-aw-vQg */}

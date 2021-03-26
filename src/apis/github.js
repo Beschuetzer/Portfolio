@@ -10,6 +10,5 @@ export default async function github(queryAsInterpolatedString) {
   })
 
   const data = await graphQLClient.request(gql`${queryAsInterpolatedString}`)
-  console.log(JSON.stringify(data, undefined, 2))
   return data;
 }

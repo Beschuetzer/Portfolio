@@ -475,7 +475,7 @@ body {
 .skills__percent-outer-left, .skills__percent-outer-center, .skills__percent-outer-right {
   z-index: 10000;
   position: absolute;
-  background-color: #000;
+  background-color: #28527a;
   width: 0.16rem;
   height: 1.6rem;
 }

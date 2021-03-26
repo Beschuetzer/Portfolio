@@ -2,8 +2,9 @@ import React from 'react';
 import {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { checkForParentOfType } from '../helpers';
-import { clickSkill, addRepoToReposToDisplay } from '../actions';
+import { checkForParentOfType } from '../../../../helpers';
+import { clickSkill, addRepoToReposToDisplay } from '../../../../actions';
+import SkillsPopupName from './SkillsPopupName';
 
 const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDisplay, clickSkill }) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
@@ -45,7 +46,6 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
       max = headerCount + indexOfTarget + 1;
     }
     else if (classList?.contains('skills-popup__url')) {
-      console.log('indexOfTarget =', indexOfTarget);
       min = headerCount + indexOfTarget + -4;
       max = headerCount + indexOfTarget + 0;
     }
@@ -121,27 +121,24 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
           case 'name':
             if (repo['homepageUrl']) {
               return (
-                <a 
+                <SkillsPopupName
                   key={key}
-                  href={repo['homepageUrl']}  
-                  className=  {`skills-popup__table-item skills-popup__${key} skills-popup__link skills__title--animating`}
-                  target="_blank"
-                  rel="noreferrer"
-                  onMouseEnter={onTableItemMouseEvent} 
-                  onMouseLeave={onTableItemMouseEvent} 
-                >
-                  <div 
-                    onMouseEnter={onTableItemMouseEvent} 
-                    onMouseLeave={onTableItemMouseEvent} 
-                    className="skills-popup__link-text"
-                  >
-                    {repo[key]}
-                  </div>
-                </a>
+                  href={repo['homepageUrl']}
+                  repo={repo}
+                  onTableItemMouseEvent={onTableItemMouseEvent}
+                />
               )
             }
-            else if (repo["name"].match(/playlist.*sync/i)) {
-              console.log('repo["name"] =', repo["name"]);
+            else if (repo["name"].match(/playlist.*sync/i) || repo["name"].match(/downloader/i)) {
+              //TODO: add c# links to works/csharp
+              return (
+                <SkillsPopupName
+                  key={key}
+                  href={`/works/csharp#${repo['name'].replace('-','')}`}
+                  repo={repo}
+                  onTableItemMouseEvent={onTableItemMouseEvent}
+                />
+              )
             }
 
             return (
