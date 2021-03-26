@@ -541,7 +541,7 @@ body {
 }
 .skills-popup__table {
   display: grid;
-  grid-template-columns: min-content minmax(25rem, 1fr) repeat(2, min-content) min-content;
+  grid-template-columns: min-content minmax(25rem, 1fr) repeat(2, minmax(13rem, min-content)) min-content;
 }
 .skills-popup__table-header {
   font-weight: 700;
@@ -553,7 +553,7 @@ body {
   border-bottom: 1px solid rgba(40, 82, 122, 0.25);
   display: flex;
   align-items: center;
-  padding: 1.6rem 3.2rem 1.6rem 0;
+  padding: 1.6rem 2.4rem 1.6rem 0;
 }
 .skills-popup__table-item:nth-child(5n+5) {
   padding-right: 0;

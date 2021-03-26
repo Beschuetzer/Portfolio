@@ -43,16 +43,15 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
     addRepoToReposToDisplay([]);
   }
 
-  const renderProjects = () => {
-    //TODO: calculate the projects but first need to run calculations after fetching in async action creator
+  const returnDate = (key, repo) => {
+    return (
+      <div key={key} className={`skills-popup__table-item skills-popup__${key}`}>
+        {new Date(repo[key]).toLocaleString()}
+      </div>
+    );
+  }
 
-    // createdAt(pin):"2020-06-24T17:39:45Z"
-    // description(pin):"This was a project that I completed for The Odin Project. My first time using Javascript along with HTML5 and CSS3"
-    // name(pin):"PaperRockScissors"
-    // updatedAt(pin):"2021-03-15T18:11:05Z"
-    // homepageUrl(pin):"https://beschuetzer.github.io/PaperRockScissors/"
-    // url(pin):"https://github.com/Beschuetzer/PaperRockScissors"
-    console.log('reposToDisplay =', reposToDisplay);
+  const renderProjects = () => {
     const keys = ["name", 'description', 'createdAt', 'updatedAt','url'];
     return reposToDisplay.map(repo => {
       return keys.map(key => {
@@ -92,6 +91,10 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
                 </svg>
               </a>
             );
+          case 'createdAt':
+            return returnDate(key, repo);
+          case 'updatedAt':
+            return returnDate(key, repo);
           default:
             return (
               <div key={key} className={`skills-popup__table-item skills-popup__${key}`}>
@@ -103,6 +106,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
       })
     })
   }
+
 
   const renderTableHeaders = () => {
     const headers = ['Name', 'Description', 'Created', 'Updated', 'Repository'];
