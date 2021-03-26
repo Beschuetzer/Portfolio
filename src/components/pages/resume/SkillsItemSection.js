@@ -10,6 +10,10 @@ class SkillsItemSection extends React.Component {
     e.target?.classList?.toggle(SkillsItemSection.openClassName);
   }
 
+  onTitleEnter = (e) => {
+    console.log('e =', e);
+  }
+
   toggleItem = (e, isOpening) => {
     const clickedSection = e.target;
     if (!clickedSection.nextSibling) return;
@@ -29,7 +33,7 @@ class SkillsItemSection extends React.Component {
     const { children, title } = this.props;
     return (
       <React.Fragment>
-        <div onClick={this.onTitleClick} className="skills__section-title skills__title--animating">
+        <div onClick={this.onTitleClick} onMouseEnter={this.onTitleEnter} className="skills__section-title skills__title--animating">
           {title}
           <svg className="skills__section-title-svg">
               <use xlinkHref="/sprite.svg#icon-angle-right"></use>

@@ -619,18 +619,20 @@ body {
   opacity: 0;
   width: 1px;
   height: 6.4rem;
-  max-height: 100%;
+  max-height: calc(100% - .8rem);
   transform: translate(0%, -50%);
   z-index: -1;
-  transition: opacity 0.5s cubic-bezier(1, 0, 0.5, 0.55), height 0.25s cubic-bezier(1, 0, 0, 1) 0.25s, width 0.25s cubic-bezier(1, 0, 0, 1), border-radius 0.25s ease 0.25s;
+  transition: opacity 0.375s cubic-bezier(1, 0, 0.5, 0.55) 0.125s, height 0.25s cubic-bezier(1, 0, 0, 1) 0.25s, width 0.25s cubic-bezier(1, 0, 0, 1), border-radius 0.25s ease 0.25s;
 }
 .skills-popup__link:hover {
   background-color: #f4d160;
+  border-bottom: 1px solid #28527a;
 }
 .skills-popup__link:hover .skills-popup__link-text::before {
+  height: 100%;
   width: 85.5%;
   opacity: 1;
-  border-radius: 0 8rem 8rem 0;
+  border-radius: 0.4rem;
 }
 .skills-popup__link:hover .skills-popup__link-text {
   color: #8ac4d0;
