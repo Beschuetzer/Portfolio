@@ -650,6 +650,12 @@ body {
   border-bottom: 1px solid #28527a;
   box-shadow: 0 1.6rem 3.2rem -3.2rem rgba(40, 82, 122, 0.5);
 }
+.skills-popup__link-js--hover > div::before {
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  border-radius: 0;
+}
 
 .row {
   max-width: 114rem;

@@ -163,13 +163,7 @@
     }
 
     &:hover &-text::before {
-      // height: 23.4%;
-      height: 100%;
-      // width: 85.5%;
-      width: 100%;
-      opacity: 1;
-      // border-radius: 0 $default-font-size * 5 $default-font-size * 5 0;
-      border-radius: 0;
+      @include skills-popup-link-hover;
     }
 
     &:hover &-text{
@@ -195,5 +189,8 @@
   //JS 
   &__item-js--hover {
     @include skills-popup-item-hover;
+  }
+  &__link-js--hover > div::before {
+    @include skills-popup-link-hover;
   }
 }
