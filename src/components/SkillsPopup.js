@@ -122,9 +122,11 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
       <div className='skills-popup__content'>
         
         <div className='skills-popup__header'>
-          Highlighted Projects that use '
-          <span className="skills-popup__header-skill">{clickedSkill}</span>
-          ':
+          <span className='skills-popup__header-text'>
+            Highlighted Projects that use '
+            <span className="skills-popup__header-skill">{clickedSkill}</span>
+            ':
+          </span>
           <svg onClick={onCloseClick} className='skills-popup__close'>
             <use xlinkHref="/sprite.svg#icon-close"></use>
           </svg>

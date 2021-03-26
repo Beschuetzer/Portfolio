@@ -46,6 +46,7 @@
 
     &-skill {
       font-weight: 700;
+      margin-right: $default-font-size * 1.5;
     }
   }
   &__table {
@@ -108,11 +109,12 @@
       border-image: linear-gradient(to right, $color-primary-4 0%, $color-primary-1 50%, $color-primary-1 50%, $color-primary-4 100%);
       border-image-slice: 1;
       transition: 
-        border $animation-duration * .5 $animation-easing-modern,
+        border $animation-duration * .5 $animation-easing-standard,
         color $animation-duration * .5 $animation-easing-modern,
       ;
 
       &::before {
+        border-radius: 100%;
         background-image: 
           linear-gradient(to bottom, $color-primary-2 0%, $color-primary-4 20%, $color-primary-4 80%, $color-primary-2 100%);
         content: '';
@@ -121,13 +123,14 @@
         left: 0%;
         opacity: 0;
         width: 1px;
-        height: $default-font-size * 2;
+        height: $default-font-size * 2.25;
         transform: translate(0%, -50%);
         z-index: -1;
         transition: 
-          opacity  $animation-duration * 2 $animation-easing-standard, 
+          opacity  $animation-duration * 1 cubic-bezier(1,0, 0.5, 0.55),
           height $animation-duration * .5 $animation-easing-modern $animation-duration * .5,
           width $animation-duration * .5 $animation-easing-modern,
+          border-radius $animation-duration * .5 $animation-easing-standard $animation-duration * .5,
         ;
       }
     }
@@ -138,14 +141,18 @@
 
     &:hover &-text::before {
       // height: 23.4%;
-      height: 100%;
+      // height: 100%;
       width: 85.5%;
       opacity: 1;
+      border-radius: 0 $default-font-size * 5 $default-font-size * 5 0;
     }
 
     &:hover &-text{
       color: $color-primary-2;
-      border-image: linear-gradient(to right, $color-primary-2 0%, $color-primary-3 50%, $color-primary-3 50%, $color-primary-2 100%);
+      // border-image: linear-gradient(to right, $color-primary-2 0%, $color-primary-3 50%, $color-primary-3 50%, $color-primary-2 100%);
+      // border-bottom: 1px solid rgba(0,0,0,0);
+      border-image: 
+      linear-gradient(to bottom, rgba($color-primary-4, 0), rgba($color-primary-4, 0));
       border-image-slice: 1;
     }
   }
