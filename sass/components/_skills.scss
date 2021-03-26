@@ -141,6 +141,10 @@
 		animation: animate-skills infinite 7.5s;
 	}
 
+	&-popup__link.skills__title--animating:link, &-popup__link.skills__title--animating:visited {
+		display: flex;
+	}
+
 	&__percent {
 		&-outer {
 			position: relative;

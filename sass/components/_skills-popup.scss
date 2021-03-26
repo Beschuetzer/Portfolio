@@ -72,7 +72,6 @@
   &__url {
     display: flex;
     justify-content: center;
-    // align-items: center;
     & svg {
       fill: $color-primary-1;
       height: $default-font-size * 2;
@@ -95,6 +94,31 @@
     &:hover {
       fill: $color-primary-2;
       transform: scale($scale-amount * 1.1);
+    }
+  }
+
+  &__link {
+    cursor: pointer;
+    text-decoration: none;
+    &-span {
+      border-bottom-width: $default-font-size * .1;
+      border-bottom-style: solid;
+      border-image: linear-gradient(to right, $color-primary-4 0%, $color-primary-1 50%, $color-primary-1 50%, $color-primary-4 100%);
+      border-image-slice: 1;
+      transition: 
+        border $animation-duration * .5 $animation-easing-standard,
+        color $animation-duration * .5 $animation-easing-standard,
+      ;
+    }
+
+    &:hover {
+      background-color: $color-primary-3;
+    }
+
+    &:hover &-span{
+      color: $color-primary-2;
+      border-image: linear-gradient(to right, $color-primary-2 0%, $color-primary-3 50%, $color-primary-3 50%, $color-primary-2 100%);
+      border-image-slice: 1;
     }
   }
   

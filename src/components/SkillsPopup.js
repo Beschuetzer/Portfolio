@@ -62,11 +62,11 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
                 <a 
                   key={key}
                   href={repo['homepageUrl']}  
-                  className=  {`skills-popup__table-item skills-popup__${key} skills-popup__link`}
+                  className=  {`skills-popup__table-item skills-popup__${key} skills-popup__link skills__title--animating`}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {repo[key]}
+                  <span className="skills-popup__link-span">{repo[key]}</span>
                 </a>
               )
             }

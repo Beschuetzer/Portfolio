@@ -454,6 +454,9 @@ body {
   color: transparent;
   animation: animate-skills infinite 7.5s;
 }
+.skills-popup__link.skills__title--animating:link, .skills-popup__link.skills__title--animating:visited {
+  display: flex;
+}
 .skills__percent-outer {
   position: relative;
   background-color: #fbeeac;
@@ -579,6 +582,25 @@ body {
 .skills-popup__close:hover {
   fill: #8ac4d0;
   transform: scale(1.155);
+}
+.skills-popup__link {
+  cursor: pointer;
+  text-decoration: none;
+}
+.skills-popup__link-span {
+  border-bottom-width: 0.16rem;
+  border-bottom-style: solid;
+  border-image: linear-gradient(to right, #fbeeac 0%, #28527a 50%, #28527a 50%, #fbeeac 100%);
+  border-image-slice: 1;
+  transition: border 0.25s ease, color 0.25s ease;
+}
+.skills-popup__link:hover {
+  background-color: #f4d160;
+}
+.skills-popup__link:hover .skills-popup__link-span {
+  color: #8ac4d0;
+  border-image: linear-gradient(to right, #8ac4d0 0%, #f4d160 50%, #f4d160 50%, #8ac4d0 100%);
+  border-image-slice: 1;
 }
 .skills-popup--active {
   opacity: 1;
