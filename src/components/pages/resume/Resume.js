@@ -44,6 +44,9 @@ class Resume extends React.Component {
             />
             <SkillsItem title="HTML5" percent="50"/>
             <SkillsItem title="CSS3" percent="65"/>
+            <SkillsItem title="Bootstrap" percent="34"/>
+            <SkillsItem title="Semantic-UI" percent="28"/>
+            <SkillsItem title="CSS3" percent="65"/>
             <SkillsItem title="SCSS" percent="51"/>
             <SkillsItem title="Javascript" percent="67"/>
             <SkillsItem title="jQuery" percent="31"/>
