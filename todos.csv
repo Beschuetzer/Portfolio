@@ -41,3 +41,4 @@
 
 
 -when hovering skill bar, display the exact number for that skill with a fade in
+-trigger green hover effect when hovering over non title cells in SkillsPopup table

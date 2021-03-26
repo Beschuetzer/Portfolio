@@ -18,10 +18,10 @@
   &__content {
     overflow-y: auto;
     overflow-x: hidden;
-    width: 75vw;
-    max-width: 75vw;
-    max-height: 75vh;
-    height: 75vh;
+    width: $default-font-size * 62.5;
+    max-width: 90vw;
+    max-height: 90vh;
+    height: 100%;
     background-color: $color-primary-4;
     padding: $default-font-size * 2;
     border: $default-font-size * .15 solid $color-primary-1;
@@ -64,7 +64,11 @@
       display: flex;
       align-items: center;
       padding:$default-font-size $default-font-size * 1.5 $default-font-size 0;
-      
+      transition:  
+        border $animation-duration * .5 $animation-easing-standard,
+      ;
+
+
       &:nth-child(5n+1) {
         padding-left: $default-font-size * 2;
       }
@@ -163,7 +167,7 @@
       width: 100%;
       opacity: 1;
       // border-radius: 0 $default-font-size * 5 $default-font-size * 5 0;
-      border-radius: $default-font-size * .25;
+      border-radius: 0;
     }
 
     &:hover &-text{
