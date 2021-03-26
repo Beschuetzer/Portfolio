@@ -8,6 +8,38 @@ import { clickSkill, addRepoToReposToDisplay } from '../actions';
 const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDisplay, clickSkill }) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
 
+  const getIndexOfItem = (target, items) => {
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (target === item) return i;
+    }
+  }
+
+  const onTitleEnter = (e) => {
+    const skillsPopupItems = document.querySelectorAll('.skills-popup__table-item');
+    const indexOfTarget = getIndexOfItem(e.target, skillsPopupItems);
+    // skills-popup__name/description/createdAt/updatedAt/url
+    const classNameToAdd = 'skills-popup__item-js--hover';
+    
+    let min = -1;
+    let max = -1;
+    if (e.target.classList?.contains('skills-popup__name')) {
+      console.log('name')      ;
+    }
+    else if (e.target.classList?.contains('skills-popup__description')) {
+          console.log('description');
+    }
+    else if (e.target.classList?.contains('skills-popup__createdAt')) {
+          console.log('createdAt');
+    }
+    else if (e.target.classList?.contains('skills-popup__updatedAt')) {
+          console.log('updatedAt');
+    }
+    else if (e.target.classList?.contains('skills-popup__url')) {
+          console.log('url');
+    }
+  }
+
   //on initial load
   useEffect(() => {
     const handleClickBody = (e) => {
@@ -45,7 +77,11 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
 
   const returnDate = (key, repo) => {
     return (
-      <div key={key} className={`skills-popup__table-item skills-popup__${key}`}>
+      <div 
+        key={key} 
+        className={`skills-popup__table-item skills-popup__${key}`}
+        onMouseEnter={onTitleEnter}
+      >
         {new Date(repo[key]).toLocaleString()}
       </div>
     );
@@ -65,14 +101,24 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
                   className=  {`skills-popup__table-item skills-popup__${key} skills-popup__link skills__title--animating`}
                   target="_blank"
                   rel="noreferrer"
+                  onMouseEnter={onTitleEnter} 
                 >
-                  <div className="skills-popup__link-text">{repo[key]}</div>
+                  <div 
+                    onMouseEnter={onTitleEnter} 
+                    className="skills-popup__link-text"
+                  >
+                    {repo[key]}
+                  </div>
                 </a>
               )
             }
 
             return (
-              <div key={key} className={`skills-popup__table-item skills-popup__${key}`}>
+              <div 
+                key={key} 
+                onMouseEnter={onTitleEnter} 
+                className={`skills-popup__table-item skills-popup__${key}`}
+              >
                 {repo[key]}
               </div>
             );
@@ -85,6 +131,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
                 target="_blank" 
                 href={repo[key]}
                 className={`skills-popup__table-item skills-popup__${key}`}
+                onMouseEnter={onTitleEnter}
               >
                 <svg>
                   <use xlinkHref="/sprite.svg#icon-chain"></use>
@@ -97,7 +144,11 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
             return returnDate(key, repo);
           default:
             return (
-              <div key={key} className={`skills-popup__table-item skills-popup__${key}`}>
+              <div 
+                key={key} 
+                onMouseEnter={onTitleEnter} 
+                className={`skills-popup__table-item skills-popup__${key}`}
+              >
                 {repo[key]}
               </div>
             );
