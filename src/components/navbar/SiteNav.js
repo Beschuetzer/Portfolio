@@ -6,14 +6,16 @@ import NavListItem from './NavListItem';
 
 import { setIsAnimating } from '../../actions';
 import { checkForParentOfType } from '../../helpers';
+import {
+  NAVBAR_ACTIVE_CLASSNAME,
+  NAVBAR_DONE_CLASSNAME,
+  NAVBAR_IS_ANIMATING_CLASSNAME,
+  ANIMATION_DURATION,
+} from '../constants';
 
 const SiteNav = ({isAnimating, setIsAnimating}) => {
 
   const navRef = useRef();
-  const navbarActiveClassname = 'navbar--active';
-  const navbarDoneClassname = 'navbar--done';
-  const navbarIsAnimatingClassname = 'navbar--isAnimating';
-  const animationDuration = 500;
   const root = document.querySelector('#root');
 
   const hide = () => {
@@ -30,15 +32,15 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
     if (!navBar) return;
     navBar.classList.add('overflow--hidden');
 
-    if (!navBar.classList?.contains(navbarActiveClassname) && isChildOfNavBar && isValid ) {
-      root.classList?.add(navbarActiveClassname);
-      navBar.classList?.add(navbarActiveClassname);
+    if (!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) && isChildOfNavBar && isValid ) {
+      root.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
+      navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
       setIsAnimating(true);
     }
     else {
-      root.classList?.remove(navbarActiveClassname);
-      navBar.classList?.remove(navbarActiveClassname);
-      navBar.classList?.remove(navbarDoneClassname);
+      root.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+      navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+      navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
       setIsAnimating(false);
     }
   }
@@ -49,41 +51,42 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
 
   const onMouseEnter = (e) => {
     e.stopPropagation();
-    if (!navRef.current || !navRef.current?.classList.contains(navbarActiveClassname)
+    if (!navRef.current || !navRef.current?.classList.contains(NAVBAR_ACTIVE_CLASSNAME)
     ) { 
       navRef.current?.classList.add('overflow--hidden');
       return;
     }
-    else if (navRef.current.classList.contains(navbarIsAnimatingClassname) ||navRef.current.classList.contains(navbarDoneClassname)) {
+    else if (navRef.current.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME) ||navRef.current.classList.contains(NAVBAR_DONE_CLASSNAME)) {
       navRef.current?.classList.remove('overflow--hidden');
     }
   } 
 
   useEffect(() => {
     const onBodyClick = (e) => {
-      const isNavClick = e.target?.classList?.contains(navbarActiveClassname) ? true : false;
+      const isNavClick = e.target?.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) ? true : false;
       if (!isNavClick) {
-        navRef?.current?.classList?.remove(navbarActiveClassname);
+        navRef?.current?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
         navRef?.current?.classList?.add('overflow--hidden');
       }
-      root.classList?.remove(navbarActiveClassname);
+      root.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
     }
     document.body.addEventListener('click', onBodyClick);
   });
 
   useEffect(() => {
+    console.log('isAnimating change------------------------------------------------');
     const navBar = navRef.current;
     const resetAnimatingId = setTimeout(() => {
       navBar?.classList?.remove('navbar--isAnimating');
-      if (isAnimating && navBar.classList?.contains(navbarActiveClassname)) {
-        root.classList?.add(navbarDoneClassname);
-        navBar.classList?.add(navbarDoneClassname);
+      if (isAnimating && navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME)) {
+        root.classList?.add(NAVBAR_DONE_CLASSNAME);
+        navBar.classList?.add(NAVBAR_DONE_CLASSNAME);
       }
       else {
-        root.classList?.remove(navbarDoneClassname);
-        navBar.classList?.remove(navbarDoneClassname);
+        root.classList?.remove(NAVBAR_DONE_CLASSNAME);
+        navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
       }
-    }, animationDuration * 1.1);
+    }, ANIMATION_DURATION * 1.1);
     navBar?.classList?.add('navbar--isAnimating');
 
     return (() => {

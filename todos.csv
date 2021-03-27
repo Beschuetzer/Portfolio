@@ -39,6 +39,3 @@
 -add option to click SkillsPopup Header and have it ascending/descending sort by that header?
 
 
--when hovering skill bar, display the exact number for that skill with a fade in
--trigger green hover effect when hovering over non title cells in SkillsPopup table (add cursor:pointer too)
--add links to all of the github descriptions for each repo that references a course
