@@ -495,6 +495,7 @@ body {
   transform: translate(0%, 0%);
 }
 .skills__percent-inner {
+  position: relative;
   backface-visibility: hidden;
   box-shadow: 0 0.8rem 1.6rem 0 rgba(40, 82, 122, 0.125);
   background-color: #8ac4d0;
@@ -504,7 +505,25 @@ body {
   transition: opacity 2s ease 0.5s, transform 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 .skills__percent-inner:hover {
-  transform: scaleY(1.66);
+  transform: scaleY(calc(5/3));
+}
+.skills__percent-inner:hover .skills__hours {
+  transform: translate(-50%, -50%) scaleY(calc(3/5));
+  opacity: 1;
+}
+.skills__hours {
+  backface-visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 1.6rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
 }
 
 .skills-popup {

@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { clickSkill } from '../../../actions';
 
-const SkillsItem = ({ title, percent, href, clickSkill }) => {
+const SkillsItem = ({ title, percent, href, clickSkill, hours }) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
   const percentDiv = useRef();
   const [isDivSet, setIsDivSet] = useState(false);
@@ -36,10 +36,18 @@ const SkillsItem = ({ title, percent, href, clickSkill }) => {
         
       </li>
       <div  className="skills__percent-outer">
-        <div ref={percentDiv} className="skills__percent-inner"></div>
+        <div ref={percentDiv} className="skills__percent-inner">
+          <div className="skills__hours">
+            {hours ? 
+              `~ ${hours} hours` :
+              null
+            }
+          </div>
+        </div>
         <div className="skills__percent-outer-left"></div>
         <div className="skills__percent-outer-center"></div>
         <div className="skills__percent-outer-right"></div>
+       
       </div>
    </React.Fragment>
   );

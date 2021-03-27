@@ -30,12 +30,9 @@
   -Resume HARMONY ABE - Support learners throughout the registration process; support teachers and other administrators by creating reports, manipulating data, providing recommendations, creating documents, etc;
 
 
--for each web development skill, add a popup that displays the following info:
-    *list of projects that use that skill as links to github page
-    *estimated # of hours spent writing code in that language/package/skill
+
 
 -start work on SkillsPopup (be sure to add error handling in case API down)
--add button listeners to SiteNav to allow for keyboard shortcuts
 -add option to click SkillsPopup Header and have it ascending/descending sort by that header?
 
-
+-for each web development skill,add estimated # of hours spent writing code in that language/package/skill

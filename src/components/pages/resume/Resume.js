@@ -42,27 +42,26 @@ class Resume extends React.Component {
               center="Proficient"
               right="Master"
             />
-            <SkillsItem title="HTML5" percent="50"/>
-            <SkillsItem title="CSS3" percent="65"/>
-            <SkillsItem title="Bootstrap" percent="34"/>
-            <SkillsItem title="Semantic-UI" percent="28"/>
-            <SkillsItem title="CSS3" percent="65"/>
-            <SkillsItem title="SCSS" percent="51"/>
-            <SkillsItem title="Javascript" percent="67"/>
-            <SkillsItem title="jQuery" percent="31"/>
-            <SkillsItem title="PaperJS" percent="44"/>
-            <SkillsItem title="ThreeJS" percent="40"/>
-            <SkillsItem title="Express" percent="59"/>
-            <SkillsItem title="socket.io" percent="47.5"/>
-            <SkillsItem title="React" percent="55"/>
-            <SkillsItem title="Redux" percent="36"/>
-            <SkillsItem title="Python" percent="33"/>
-            <SkillsItem title="Ruby" percent="25"/>
-            <SkillsItem title="C#" percent="30"/>
-            <SkillsItem title="Mongoose" percent="38"/>
-            <SkillsItem title="GraphQL" percent="32"/>
-            <SkillsItem title="EJS" percent="48"/>
-            <SkillsItem title="BEM" percent="42"/>
+            <SkillsItem title="HTML5" percent="50" hours="1200"/>
+            <SkillsItem title="CSS3" percent="65" hours="1400"/>
+            <SkillsItem title="Bootstrap" percent="34" hours="700"/>
+            <SkillsItem title="Semantic-UI" percent="28" hours="100"/>
+            <SkillsItem title="SCSS" percent="51" hours="300"/>
+            <SkillsItem title="Javascript" percent="67" hours="1400"/>
+            <SkillsItem title="jQuery" percent="31" hours="100"/>
+            <SkillsItem title="PaperJS" percent="44" hours="600"/>
+            <SkillsItem title="ThreeJS" percent="40" hours="90"/>
+            <SkillsItem title="Express" percent="59" hours="200"/>
+            <SkillsItem title="socket.io" percent="47.5" hours="350"/>
+            <SkillsItem title="React" percent="55" hours="300"/>
+            <SkillsItem title="Redux" percent="36" hours="250"/>
+            <SkillsItem title="Python" percent="33" hours="200"/>
+            <SkillsItem title="Ruby" percent="25" hours="120"/>
+            <SkillsItem title="C#" percent="30" hours="800"/>
+            <SkillsItem title="Mongoose" percent="38" hours="180"/>
+            <SkillsItem title="GraphQL" percent="32" hours="20"/>
+            <SkillsItem title="EJS" percent="48" hours="80"/>
+            <SkillsItem title="BEM" percent="42" hours="300"/>
             <SkillsItem href='/certs/sql.png' title="SQL" percent="20"/>
           </SkillsItemSection>
   
