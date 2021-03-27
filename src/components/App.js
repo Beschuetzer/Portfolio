@@ -21,14 +21,18 @@ class App extends React.Component {
 			switch (e.key) {
 				case 'a':
 					const navbar = document.querySelector('.navbar');
+					const root = document.querySelector('#root');
 					this.props.setIsAnimating(!this.props.isAnimating);
 					if (this.props.isAnimating) {
-						navbar?.classList?.add('navbar--active');
+						navbar?.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
+						root?.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 					}
 					else {
 						navbar?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 						navbar?.classList?.remove(NAVBAR_DONE_CLASSNAME);
 						navbar?.classList?.add('overflow--hidden');
+						root?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+
 					}
           break;
 				case 'b':
