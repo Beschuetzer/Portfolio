@@ -13,7 +13,7 @@ import Footer from "./Footer";
 import "../css/style.css";
 import GithubButton from "./GithubButton";
 import { setIsAnimating } from "../actions";
-import { NAVBAR_ACTIVE_CLASSNAME } from './constants';
+import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from './constants';
 
 class App extends React.Component {
 	componentDidMount() {
@@ -22,9 +22,17 @@ class App extends React.Component {
 				case 'a':
 					const navbar = document.querySelector('.navbar');
 					const root = document.querySelector('#root');
-					if (this.props.isAnimating) navbar?.classList?.add('navbar--active');
-					else navbar?.classList?.remove('navbar--active');
 					this.props.setIsAnimating(!this.props.isAnimating);
+					if (this.props.isAnimating) {
+						console.log('true------------------------------------------------');
+						navbar?.classList?.add('navbar--active');
+					}
+					else {
+						console.log('false------------------------------------------------');
+						navbar?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+						navbar?.classList?.remove(NAVBAR_DONE_CLASSNAME);
+						navbar?.classList?.add('overflow--hidden');
+					}
           break;
 				default:
 					break;
