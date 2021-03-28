@@ -73,14 +73,14 @@
         display: inline;
 
         & a {
-          color: darken($color-primary-1, 15%);
-
+          text-decoration: none;
+          &:hover {
+            border-image:  none;
+            // color: $color-primary-2;
+          }
         }
       }
 
-      // &:nth-child(5n+1) {
-      //   padding-left: $default-font-size * 2;
-      // }
       &:nth-child(5n+5) {
         padding-right: 0;
       }
@@ -184,6 +184,13 @@
     }
   }
   
+  &__error { 
+    grid-column: 1 /-1;
+    justify-self: center;
+    margin-top: 30vh;
+    font-size: $default-font-size * 2;
+  }
+
   &--active {
     opacity: 1;
     visibility: visible;

@@ -35,4 +35,3 @@
 -start work on SkillsPopup (be sure to add error handling in case API down)
 -add option to click SkillsPopup Header and have it ascending/descending sort by that header?
 
--for each web development skill,add estimated # of hours spent writing code in that language/package/skill

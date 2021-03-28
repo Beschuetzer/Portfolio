@@ -100,7 +100,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
 
     //Adding or Removing class to trigger link animation when hovering over a row with a link name element
     rowsNameElement = skillsPopupItems[indexOfTarget - indexOffset];
-    isRowsNameElementALink = rowsNameElement.classList?.contains('skills-popup__link') ? true : false;
+    isRowsNameElementALink = rowsNameElement?.classList?.contains('skills-popup__link') ? true : false;
 
     if (isRowsNameElementALink) {
       if (e.type === 'mouseenter') rowsNameElement.classList?.add(classNameToAddToLinks)
@@ -134,6 +134,13 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
 
   const renderProjects = () => {
     const keys = ["name", 'description', 'createdAt', 'updatedAt','url'];
+    if (!reposToDisplay || reposToDisplay.length === 0) {
+      return (
+        <div className="skills-popup__error">
+          Unable to Load Repos from Github :(
+        </div>
+      )
+    }
     return reposToDisplay.map(repo => {
       return keys.map((key, index) => {
         switch (key) {
