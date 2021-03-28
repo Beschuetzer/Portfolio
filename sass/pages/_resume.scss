@@ -11,12 +11,14 @@
   &__section {
     // background-image: linear-gradient(to left, $color-primary-1, $color-primary-2);
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr minmax(min-content, 800px) 1fr;
-    grid-auto-rows: minmax(min-content, max-content);
-    border-radius: $default-font-size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // grid-template-columns: 1fr minmax(min-content, 800px) 1fr;
+    // grid-auto-rows: minmax(min-content, max-content);
+    // border-radius: $default-font-size;
    
-    grid-row-gap: $default-font-size * 2;
+    // grid-row-gap: $default-font-size * 2;
 
     &-summary {
       grid-column: 1 / -1;
@@ -48,12 +50,12 @@
     padding: $default-font-size * 2 $default-font-size $default-font-size * 2;
   }
   &__card {
-    max-width: calc(100% - 19.2rem);
-    width: $default-font-size * 50;
+    max-width: calc(100% - 20.8rem);
+    width: $default-font-size * 56.25;
     margin: $default-font-size * 2 auto;
     color: $color-primary-1;
     background-color: $color-primary-3;
-    grid-column: 2 / 3;
+    // grid-column: 2 / 3;
     padding: 0 $default-font-size * 2;
     // border: 3px solid $color-primary-1;
     border-radius: $default-font-size * .5;
