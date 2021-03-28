@@ -694,7 +694,19 @@ body {
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
-  grid-gap: 1.6rem;
+  padding-bottom: 2.4rem;
+}
+.work-history__item:nth-child(n+2) {
+  border-top: 0.16rem solid #28527a;
+}
+.work-history__item-section {
+  margin-left: 1.6rem;
+}
+.work-history__item-section h6 {
+  margin-top: 1.2rem;
+}
+.work-history__item-section-list {
+  margin-left: 1.6rem;
 }
 .work-history__item-section-list li {
   margin-left: 2.4rem;
@@ -703,20 +715,26 @@ body {
 .work-history__item-section-list li:first-child {
   margin-top: 0.4rem;
 }
+.work-history__item-number {
+  font-family: ui-sans-serif;
+  font-weight: 300;
+  margin-right: 0.8rem;
+}
 .work-history__title {
-  margin-top: 1.6rem;
+  margin-top: 2rem;
+}
+.work-history__title > h6:nth-of-type(n+2) {
+  border-top: 1px solid gray;
 }
 .work-history__title-header {
   font-size: 1.6rem;
   font-style: italic;
 }
-.work-history__title-header:nth-of-type(n+2) {
-  border-top: 1px solid gray;
-}
 .work-history__title-dates {
-  font-size: 1.36rem;
+  font-size: 1.44rem;
   display: flex;
   align-items: center;
+  font-weight: 300;
 }
 .work-history__title-dates > div:nth-child(2) {
   margin: 0.4rem;

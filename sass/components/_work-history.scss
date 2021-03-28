@@ -3,11 +3,22 @@
     font-size: $default-font-size;
     display: flex;
     flex-direction: column;
+    padding-bottom: $default-font-size * 1.5;
+
+    &:nth-child(n+2) {
+      border-top:$default-font-size * .1 solid $color-primary-1;
+
+    }
     // grid-template-columns: min-content minmax(min-content, 1fr);
-    grid-gap: $default-font-size;
+    // grid-gap: $default-font-size;
     &-section {
-      
+      margin-left: $default-font-size * 1;
+      & h6 {
+        margin-top: $default-font-size * .75;
+      }
       &-list {
+        margin-left: $default-font-size * 1;
+
         // text-decoration: none;
         // list-style: none;
 
@@ -22,13 +33,25 @@
         }
       }
     }
+
+    &-number {
+      font-family: ui-sans-serif;
+      font-weight: 300;
+      margin-right: $default-font-size * .5;
+    }
+    
     
     
   }
   
  
   &__title {
-    margin-top: $default-font-size;
+    margin-top: $default-font-size * 1.25;
+
+    &>h6:nth-of-type(n+2) {
+      border-top: 1px solid gray;
+    }
+    
     &-header {
       font-size: $default-font-size * 1;
       font-style: italic;
@@ -36,16 +59,15 @@
       // & a {
       //   text-decoration: none;
       // }
-      &:nth-of-type(n+2) {
-        border-top: 1px solid gray
-      }
+      
     }
     
     // text-align: center;
     &-dates {
-      font-size: $default-font-size * .85;
+      font-size: $default-font-size * .9;
       display: flex;
       align-items: center;
+      font-weight: 300;
       
       &>div:nth-child(2) {
         margin: $default-font-size * .25;
