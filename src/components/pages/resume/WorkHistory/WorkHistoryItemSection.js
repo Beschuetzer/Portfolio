@@ -5,7 +5,7 @@ class WorkHistoryItemSection extends React.Component {
     const { title, children } = this.props;
     return (
       <div className="work-history__item-section">
-        <h5 className="heading--five">{title}</h5>
+        <h6 className="heading--six">{title}:</h6>
         <ul className="work-history__item-section-list">
           {children}
         </ul>

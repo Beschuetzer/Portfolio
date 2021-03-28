@@ -3,9 +3,9 @@ import WorkHistoryItemSection from './WorkHistoryItemSection';
 
 class WorkHistoryItem extends React.Component {
   renderSections = () => {
-    return this.props.sections.map(section => {
+    return this.props.sections.map((section, index) => {
       return (
-        <WorkHistoryItemSection title={section.title}>
+        <WorkHistoryItemSection key={index} title={section.title}>
           {this.renderItemSectionBullets(section.bullets)}
         </WorkHistoryItemSection>
       );
@@ -13,9 +13,9 @@ class WorkHistoryItem extends React.Component {
   }
 
   renderItemSectionBullets = (bullets) => {
-    return bullets.map(bullet => {
+    return bullets.map((bullet,index) => {
       return (
-        <li className="work-history__item-section-bullet">
+        <li key={index} className="work-history__item-section-bullet">
           <p>{bullet}</p>
         </li>
       );
@@ -26,12 +26,15 @@ class WorkHistoryItem extends React.Component {
     const { startDate, endDate, title } = this.props
     return (
       <div className="work-history__item">
-        <div className="work-history__dates">
-          <div>{startDate}</div>
-          <div>to</div>
-          <div>{endDate}</div>
+        <div className="work-history__title">
+          <h6 className="work-history__title-header heading--six" dangerouslySetInnerHTML={{__html: title}}></h6>
+          <div className="work-history__title-dates">
+            <div> {startDate} </div>
+            <div> &ndash; </div>
+            <div> {endDate} </div>
+          </div>
         </div>
-        <h6 className="work-history__title heading--six">{title}</h6>
+       
         {this.renderSections()}    
       </div>        
     );

@@ -126,13 +126,13 @@ class Resume extends React.Component {
           <WorkHistoryItem
             startDate="07/2019"
             endDate="06/2020"
-            title="Technology Services Support Rep I. TS Field Support at Ricoh Ltd."
+            title="Technology Services Support Representative at <a class='skills-popup__link-text skills__title--animating' href='ricoh-usa.com/en'> Ricoh Ltd </a>:"
             sections={
               [
                 {
                   title: "Responsibilities",
                   bullets: [
-                    "Worked with clients to resolve issues related to their multi-function device.",
+                    "Worked with clients to resolve issues related to their multi-function devices.",
                     "Configured, troubleshot, installed, and repaired multi-function devices.",      
                   ]
                 },
