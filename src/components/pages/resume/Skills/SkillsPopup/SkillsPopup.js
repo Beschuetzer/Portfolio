@@ -2,8 +2,8 @@ import React from 'react';
 import {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { checkForParentOfType } from '../../../../helpers';
-import { clickSkill, addRepoToReposToDisplay } from '../../../../actions';
+import { checkForParentOfType } from '../../../../../helpers';
+import { clickSkill, addRepoToReposToDisplay } from '../../../../../actions';
 import SkillsPopupName from './SkillsPopupName';
 
 const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDisplay, clickSkill }) => {

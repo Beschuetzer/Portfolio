@@ -9,6 +9,7 @@
   margin: $component-margin-amount auto 0 auto;
 
   &__section {
+    // background-image: linear-gradient(to left, $color-primary-1, $color-primary-2);
     width: 100%;
     display: grid;
     grid-template-columns: 1fr minmax(min-content, 800px) 1fr;

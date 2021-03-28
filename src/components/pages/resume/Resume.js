@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ResumeSection from './ResumeSection';
 import Paragraph from '../../typography/Paragraph';
-import SkillsItemSection from './SkillsItemSection';
-import SkillsItemSectionLabels from './SkillsItemSectionLabels';
-import SkillsItem from './SkillsItem';
+import SkillsItemSection from './Skills/SkillsItemSection';
+import SkillsItemSectionLabels from './Skills/SkillsItemSectionLabels';
+import SkillsItem from './Skills/SkillsItem';
 
 import { getRepositories } from '../../../actions';
-import SkillsPopup from './SkillsPopup/SkillsPopup';
+import SkillsPopup from './Skills/SkillsPopup/SkillsPopup';
+import WorkHistoryItem from './WorkHistory/WorkHistoryItem';
 
 
 class Resume extends React.Component {
@@ -121,9 +122,32 @@ class Resume extends React.Component {
     [
       'work History', 
       <React.Fragment>
-        <Paragraph size="four">
-          I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<Link className="link" to='/works'>what I have been building</Link>&nbsp;since I embarked on this journey.
-        </Paragraph>
+        <div className="work-history">
+          <WorkHistoryItem
+            startDate="07/2019"
+            endDate="06/2020"
+            title="Technology Services Support Rep I. TS Field Support at Ricoh Ltd."
+            sections={
+              [
+                {
+                  title: "Responsibilities",
+                  bullets: [
+                    "Worked with clients to resolve issues related to their multi-function device.",
+                    "Configured, troubleshot, installed, and repaired multi-function devices.",      
+                  ]
+                },
+                {
+                  title: "Achievements",
+                  bullets: [
+                    "Secured two contracts with clients by going the extra mile to ensure customer satisfaction.",
+                    "Increased productivity by 10% by automating repetitive tasks.",
+                  ]
+                },
+              ]
+            }
+          />
+        </div>
+        
       </React.Fragment>
     ],
     [
