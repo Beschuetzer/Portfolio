@@ -126,7 +126,8 @@ class Resume extends React.Component {
           <WorkHistoryItem
             startDate="07/2019"
             endDate="06/2020"
-            title="<span class='work-history__item-number'>01.</span>Technology Services Support Representative at <a class='skills-popup__link-text skills__title--animating' href='ricoh-usa.com/en'> Ricoh Ltd </a>:"
+            title="<span class='work-history__item-number'>01.</span>Technology Services Support Representative at <a target='_blank' rel='noreferrer'
+            class='skills-popup__link-text skills__title--animating' href='https://www.ricoh-usa.com/en'> Ricoh Ltd </a>:"
             sections={
               [
                 {
@@ -150,21 +151,24 @@ class Resume extends React.Component {
           <WorkHistoryItem
             startDate="07/2019"
             endDate="06/2020"
-            title="02. Technology Services Support Representative at <a class='skills-popup__link-text skills__title--animating' href='ricoh-usa.com/en'> Ricoh Ltd </a>:"
+            title="02. PearsonVue Test Admin / Office Admin at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.isd622.org/'> ISD622 </a>:"
             sections={
               [
                 {
                   title: "Responsibilities",
                   bullets: [
-                    "Worked with clients to resolve issues related to their multi-function devices.",
-                    "Configured, troubleshot, installed, and repaired multi-function devices.",      
+                    "Support learners throughout the registration process; support teachers and other administrators by creating reports, manipulating data, providing recommendations, creating documents, etc.",
+                    "Served a uniquely-diverse set of individuals including seniors learning how to read, single-parent mothers, incarcerated youth earning their G.E.D., refugees learning English, and professionals earning certifications.",
+                    "Administered G.E.D. tests in a minimum-security correctional facility for 4 years.",
                   ]
                 },
                 {
                   title: "Achievements",
                   bullets: [
-                    "Secured two contracts with clients by going the extra mile to ensure customer satisfaction.",
-                    "Increased productivity by 10% by automating repetitive tasks.",
+                    "Created VBA macros to automate report generation, reducing the time-to-complete by more than 80%",
+                    "Created Excel UserForms to reduce test correction duration by 75%.",
+                    "Created a testing database to meet teacher needs, preventing the purchase of dedicated software",
+                    "Offered technical support to teachers regarding software, hardware, and printing issues",
                   ]
                 },
               ]

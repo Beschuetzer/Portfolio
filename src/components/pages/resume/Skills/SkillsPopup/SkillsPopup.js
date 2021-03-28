@@ -8,6 +8,7 @@ import SkillsPopupName from './SkillsPopupName';
 
 const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDisplay, clickSkill }) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
+  const resetReposDelay = 500;
 
   //on initial load
   useEffect(() => {
@@ -17,7 +18,9 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
       if (isBodyClick) {
         skillsPopupDiv?.classList?.remove('skills-popup--active');
         clickSkill(null);
-        addRepoToReposToDisplay([]);
+        setTimeout(() => {
+          addRepoToReposToDisplay([]);
+        }, resetReposDelay)
       }
     }
     skillsPopupDiv.addEventListener('click', handleClickBody);
@@ -111,7 +114,9 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   const onCloseClick = (e) => {
     skillsPopupDiv?.classList?.remove('skills-popup--active');
     clickSkill(null);
-    addRepoToReposToDisplay([]);
+    setTimeout(() => {
+      addRepoToReposToDisplay([]);
+    }, resetReposDelay)
   }
 
   const returnDate = (key, repo) => {
