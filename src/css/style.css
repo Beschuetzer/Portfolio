@@ -700,7 +700,7 @@ body {
   border-top: 0.16rem solid #28527a;
 }
 .work-history__item-section {
-  margin-left: 1.6rem;
+  margin-left: 3.2rem;
 }
 .work-history__item-section h6 {
   margin-top: 1.2rem;
@@ -735,9 +735,10 @@ body {
   display: flex;
   align-items: center;
   font-weight: 300;
+  margin-left: 3.2rem;
 }
 .work-history__title-dates > div:nth-child(2) {
-  margin: 0.4rem;
+  margin: 0 0.4rem;
 }
 
 .navbar {
