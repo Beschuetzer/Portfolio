@@ -16,7 +16,7 @@ class WorkHistoryItem extends React.Component {
     return bullets.map((bullet,index) => {
       return (
         <li key={index} className="work-history__item-section-bullet">
-          <p>{bullet}</p>
+          <p dangerouslySetInnerHTML={{__html: bullet}}></p>
         </li>
       );
     })

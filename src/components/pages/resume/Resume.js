@@ -149,9 +149,9 @@ class Resume extends React.Component {
           />
 
           <WorkHistoryItem
-            startDate="07/2019"
-            endDate="06/2020"
-            title="02. PearsonVue Test Admin / Office Admin at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.isd622.org/'> ISD622 </a>:"
+            startDate="07/2007"
+            endDate="07/2018"
+            title="<span class='work-history__item-number'>02.</span> PearsonVue Test Admin / Office Admin at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.isd622.org/'> ISD622 </a>:"
             sections={
               [
                 {
@@ -166,7 +166,7 @@ class Resume extends React.Component {
                   title: "Achievements",
                   bullets: [
                     "Created VBA macros to automate report generation, reducing the time-to-complete by more than 80%",
-                    "Created Excel UserForms to reduce test correction duration by 75%.",
+                    "Created <a class='skills-popup__link-text skills__title--animating' href='/macroExampleScoring.xlsm'>custom grading forms</a> using Excel userForms and macros in order to reduce the time it took to grade assessment tests by 75%.",
                     "Created a testing database to meet teacher needs, preventing the purchase of dedicated software",
                     "Offered technical support to teachers regarding software, hardware, and printing issues",
                   ]

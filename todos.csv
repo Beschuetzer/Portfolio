@@ -15,21 +15,9 @@
     -
 
 
--porfolio challenges (have a section in portfolio?):
-  *figuring out how to get the navbar animation to behave exactly as it does (overflow-hidden issue mainly)
-
-  -center fix items to be in center of columns by putting the navbar and github stuff inside of nav element/div then create a 3 column grid 1fr minmax(min-content, 75ch) 1fr
-  -add three sections that can collapse on click for each type of skill set:
-    1. Human Skills
-    2. IT Support Skills
-    3. Web Development Skills
-
   -for the Bridge work - have separate links that having working demos for each part of the site (preferences, bidding, playing, summary)
+-add hover popup for references that pops up a card with image, quote (recommendation from ziprecruiter, and letter of recommendation from scott?), more detailed info about relationship with reference;  add personal references?
 
 
-
-
-
-
--add option to click SkillsPopup Header and have it ascending/descending sort by that header?
+-finish adding content to the resume page
 
