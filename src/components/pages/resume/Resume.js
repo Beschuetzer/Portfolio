@@ -149,26 +149,50 @@ class Resume extends React.Component {
           />
 
           <WorkHistoryItem
+            startDate="07/2018"
+            endDate="06/2019"
+            title="<span class='work-history__item-number'>02.</span> Second Grade Education Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> Kualapuu Charter School </a> on Moloka&lsquo;i:"
+            sections={
+              [
+                {
+                  title: "Note",
+                  bullets: [
+                    "I wasn't officially employed by the school, rather I assisted my fiance who was the second grade teacher by volunteering in her classroom and assisting with grading.",
+                  ]
+                },
+                {
+                  title: "Achievements",
+                  bullets: [
+                    "Created <a class='skills-popup__link-text skills__title--animating' href='/macroexamples/macroExampleMathGrader.xlsm'> a grading tool</a> to facilitate grading of math assessments.",
+                    "Created a <a class='skills-popup__link-text skills__title--animating' href='/macroexamples/macroExampleBookTrust.xlsm'>Book Trust tool</a> to facilitate monthly <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.booktrust.org'>Book Trust </a> ordering process.",
+                    "Used my time to study Bash, Powershell, Windows Active Directory, get the Google IT Support Specialist Certificate, and other IT Support related skills (IT support was the direction I wanted to go in at that point in time)."
+                  ]
+                },
+              ]
+            }
+          />
+          <WorkHistoryItem
             startDate="07/2007"
             endDate="07/2018"
-            title="<span class='work-history__item-number'>02.</span> PearsonVue Test Admin / Office Admin at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.isd622.org/'> ISD622 </a>:"
+            title="<span class='work-history__item-number'>03.</span> PearsonVue Test Admin / Office Admin at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.isd622.org/'> ISD622 </a>:"
             sections={
               [
                 {
                   title: "Responsibilities",
                   bullets: [
-                    "Support learners throughout the registration process; support teachers and other administrators by creating reports, manipulating data, providing recommendations, creating documents, etc.",
-                    "Served a uniquely-diverse set of individuals including seniors learning how to read, single-parent mothers, incarcerated youth earning their G.E.D., refugees learning English, and professionals earning certifications.",
+                    "Offered technical support to teachers and other staff members.",
+                    "Guide learners throughout the registration process.",
+                    "Created reports and documents, provided recommendations, etc.",
+                    "Served a diverse set of individuals including seniors learning how to read, single-parent mothers, incarcerated youth earning their G.E.D., refugees learning English, and professionals looking to earn certifications.",
                     "Administered G.E.D. tests in a minimum-security correctional facility for 4 years.",
                   ]
                 },
                 {
                   title: "Achievements",
                   bullets: [
-                    "Created VBA macros to automate report generation, reducing the time-to-complete by more than 80%",
-                    "Created <a class='skills-popup__link-text skills__title--animating' href='/macroExampleScoring.xlsm'>custom grading forms</a> using Excel userForms and macros in order to reduce the time it took to grade assessment tests by 75%.",
-                    "Created a testing database to meet teacher needs, preventing the purchase of dedicated software",
-                    "Offered technical support to teachers regarding software, hardware, and printing issues",
+                    "Created VBA macros to automate report generation, reducing the time-to-complete by more than 80%.",
+                    "Created <a class='skills-popup__link-text skills__title--animating' href='/macroexamples/macroExampleScoring.xlsm'>custom grading forms</a> using Excel userForms and macros in order to reduce the time it took to grade assessment tests by 75%.",
+                    "Created a tool that used testing data to produce reports that the teachers could use to understand the areas in which their students were having difficulties, preventing the purchase of dedicated software.",                    
                   ]
                 },
               ]
