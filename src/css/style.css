@@ -455,7 +455,7 @@ body {
   background-size: 200% auto;
   background-clip: text;
   color: transparent;
-  animation: animate-skills infinite 7.5s;
+  animation: animate-skills infinite 10s;
 }
 .skills-popup__link.skills__title--animating:link, .skills-popup__link.skills__title--animating:visited {
   display: flex;
@@ -469,7 +469,7 @@ body {
   background-color: #fbeeac;
   height: 1.6rem;
   width: 0;
-  transition: width 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  transition: width 1s cubic-bezier(0.68, -0.33, 0.32, 1.33);
 }
 .skills__percent-outer-left, .skills__percent-outer-center, .skills__percent-outer-right {
   z-index: 10000;
@@ -1044,7 +1044,7 @@ body {
 }
 .resume__card {
   max-width: calc(100% - 20.8rem);
-  width: 90rem;
+  width: 85rem;
   margin: 3.2rem auto;
   color: #28527a;
   background-color: #f4d160;
