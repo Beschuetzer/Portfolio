@@ -22,4 +22,6 @@
 -troubleshoot issues where switching from mobile to desktop in device toolbar causes github button to disappear and other layout oddities
 -finish adding content to the resume page
 -change Skillspop and entire skills section layout for mobile
+-add label-show-inside-blue-bar-on-hover functionality:
+  *have it dynamically set the inner label via js?
 

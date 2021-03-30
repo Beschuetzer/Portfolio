@@ -107,6 +107,11 @@
 		z-index: 10;
 		transform: translateY(33%);
 		line-height: 1;
+
+		@include respond(phone) {
+			display: none;
+		}
+
 		& > span:first-child {
 			justify-self: flex-start;
 		}
@@ -200,6 +205,30 @@
 				right: 0%;
 				transform: translate(0%, 0%);
 			}
+
+			//Styling skills labels
+			& .skills__labels {
+				opacity: 0;
+				display: grid;
+				transform: translate(0);
+				position: absolute;
+				top:0;
+				left:0;
+				line-height: 1;
+				height: 100%;
+				width: 100%;
+				padding: 0rem $default-font-size * .25;
+				transition: 
+					opacity $animation-duration * 1 $animation-easing-standard $animation-duration,
+				;
+
+				&:hover {
+					opacity: .5;
+				}
+				&:hover + .skills__percent-inner {
+					transform: scaleY(calc(5/3));
+				}
+			}
 		}
 		&-inner {
 			position: relative;
@@ -213,9 +242,8 @@
 					$animation-duration * 1,
 				transform $animation-duration * 2
 					$animation-easing-standard-easeInOutBack;
-			&:hover {
-				transform: scaleY(calc(5/3));
-			}
+			// &:hover {
+			// }
 			&:hover .skills__hours {
 				transform: translate(-50%, -50%) scaleY(calc(3/5));
 				opacity: 1;

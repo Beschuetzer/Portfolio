@@ -58,74 +58,74 @@ class Resume extends React.Component {
             <SkillsItemSectionLabels 
               labels={this.skillsLabels.web}
             />
-            <SkillsItem title="HTML5" percent="50" /> {//hours="800"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="HTML5" percent="50" /> {//hours="800"/> 
                                                       }
-            <SkillsItem title="CSS3" percent="65" /> {//hours="900"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="CSS3" percent="65" /> {//hours="900"/> 
                                                       }
-            <SkillsItem title="Bootstrap" percent="34" /> {//hours="200"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="Bootstrap" percent="34" /> {//hours="200"/> 
                                                       }
-            <SkillsItem title="Semantic-UI" percent="28" /> {//hours="30"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="Semantic-UI" percent="28" /> {//hours="30"/> 
                                                       }
-            <SkillsItem title="SCSS" percent="51" /> {//hours="250"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="SCSS" percent="51" /> {//hours="250"/> 
                                                       }
-            <SkillsItem title="Javascript" percent="67" /> {//hours="900"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="Javascript" percent="67" /> {//hours="900"/> 
                                                       }
-            <SkillsItem title="jQuery" percent="31" /> {//hours="40"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="jQuery" percent="31" /> {//hours="40"/> 
                                                       }
-            <SkillsItem title="PaperJS" percent="44" /> {//hours="600"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="PaperJS" percent="44" /> {//hours="600"/> 
                                                       }
-            <SkillsItem title="ThreeJS" percent="40" /> {//hours="90"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="ThreeJS" percent="40" /> {//hours="90"/> 
                                                       }
-            <SkillsItem title="Express" percent="59" /> {//hours="120"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="Express" percent="59" /> {//hours="120"/> 
                                                       }
-            <SkillsItem title="socket.io" percent="47.5" /> {//hours="200"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="socket.io" percent="47.5" /> {//hours="200"/> 
                                                       }
-            <SkillsItem title="React" percent="55" /> {//hours="200"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="React" percent="55" /> {//hours="200"/> 
                                                       }
-            <SkillsItem title="Redux" percent="36" /> {//hours="150"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="Redux" percent="36" /> {//hours="150"/> 
                                                       }
-            <SkillsItem title="Python" percent="33" /> {//hours="175"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="Python" percent="33" /> {//hours="175"/> 
                                                       }
-            <SkillsItem title="Ruby" percent="25" /> {//hours="80"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="Ruby" percent="25" /> {//hours="80"/> 
                                                       }
-            <SkillsItem title="C#" percent="30" /> {//hours="400"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="C#" percent="30" /> {//hours="400"/> 
                                                       }
-            <SkillsItem title="Mongoose" percent="38" /> {//hours="80"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="Mongoose" percent="38" /> {//hours="80"/> 
                                                       }
-            <SkillsItem title="GraphQL" percent="32" /> {//hours="10"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="GraphQL" percent="32" /> {//hours="10"/> 
                                                       }
-            <SkillsItem title="EJS" percent="48" /> {//hours="80"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="EJS" percent="48" /> {//hours="80"/> 
                                                       }
-            <SkillsItem title="BEM" percent="42" /> {//hours="250"/> 
+            <SkillsItem labels={this.skillsLabels.web} title="BEM" percent="42" /> {//hours="250"/> 
                                                       }
-            <SkillsItem href='/certs/sql.png' title="SQL" percent="20"/>
+            <SkillsItem labels={this.skillsLabels.web} href='/certs/sql.png' title="SQL" percent="20"/>
           </SkillsItemSection>
   
           <SkillsItemSection title="IT Support">
             <SkillsItemSectionLabels 
               labels={this.skillsLabels.it}
             />
-            <SkillsItem href='/certs/a-plus.png' title="A+" percent="80"/>
-            <SkillsItem href='/certs/network-plus.png' title="Network+" percent="70"/>
-            <SkillsItem href="https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ" title="Google IT Support" percent="66"/>
-            <SkillsItem href='/certs/server2016.png' title="Window's Server 2016" percent="40" />
-            <SkillsItem href='/certs/sccm.jpg' title="SCCM" percent="35"/>
-            <SkillsItem href='/certs/group-policy.jpg' title="Group Policy" percent="38"/>
-            <SkillsItem href='/certs/powershell-active-directory-admin.jpg' title="Powershell" percent="50"/>
+            <SkillsItem labels={this.skillsLabels.it} href='/certs/a-plus.png' title="A+" percent="80"/>
+            <SkillsItem labels={this.skillsLabels.it} href='/certs/network-plus.png' title="Network+" percent="70"/>
+            <SkillsItem labels={this.skillsLabels.it} href="https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ" title="Google IT Support" percent="66"/>
+            <SkillsItem labels={this.skillsLabels.it} href='/certs/server2016.png' title="Window's Server 2016" percent="40" />
+            <SkillsItem labels={this.skillsLabels.it} href='/certs/sccm.jpg' title="SCCM" percent="35"/>
+            <SkillsItem labels={this.skillsLabels.it} href='/certs/group-policy.jpg' title="Group Policy" percent="38"/>
+            <SkillsItem labels={this.skillsLabels.it} href='/certs/powershell-active-directory-admin.jpg' title="Powershell" percent="50"/>
           </SkillsItemSection>
           <SkillsItemSection title="Human Skills">
             <SkillsItemSectionLabels 
               labels={this.skillsLabels.human}
             />
             {/* https://www.youtube.com/watch?v=p0zB-aw-vQg */}
-            <SkillsItem title="Listening" percent="85"/>
-            <SkillsItem title="Giving Feedback" percent="48"/>
-            <SkillsItem title="Receiving Feedback" percent="66"/>
-            <SkillsItem title="Empathizing" percent="68"/>
-            <SkillsItem title="Having Difficult Conversations" percent="75"/>
-            <SkillsItem title="Written Communication" percent="85"/>
-            <SkillsItem title="Oral Communication" percent="75"/>
-            <SkillsItem title="Self-Starter" percent="78"/>
+            <SkillsItem labels={this.skillsLabels.human} title="Listening" percent="85"/>
+            <SkillsItem labels={this.skillsLabels.human} title="Giving Feedback" percent="48"/>
+            <SkillsItem labels={this.skillsLabels.human} title="Receiving Feedback" percent="66"/>
+            <SkillsItem labels={this.skillsLabels.human} title="Empathizing" percent="68"/>
+            <SkillsItem labels={this.skillsLabels.human} title="Having Difficult Conversations" percent="75"/>
+            <SkillsItem labels={this.skillsLabels.human} title="Written Communication" percent="85"/>
+            <SkillsItem labels={this.skillsLabels.human} title="Oral Communication" percent="75"/>
+            <SkillsItem labels={this.skillsLabels.human} title="Self-Starter" percent="78"/>
           </SkillsItemSection>
         </ul>
       </React.Fragment>

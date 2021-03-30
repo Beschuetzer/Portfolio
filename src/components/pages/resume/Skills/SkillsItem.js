@@ -37,6 +37,9 @@ const SkillsItem = ({ title, percent, href, clickSkill, hours, labels }) => {
         
       </li>
       <div  className="skills__percent-outer">
+        <SkillsItemSectionLabels 
+            labels={labels}
+        />
         <div ref={percentDiv} className="skills__percent-inner">
           <div className="skills__hours">
             {hours ? 
@@ -48,9 +51,6 @@ const SkillsItem = ({ title, percent, href, clickSkill, hours, labels }) => {
         <div className="skills__percent-outer-left"></div>
         <div className="skills__percent-outer-center"></div>
         <div className="skills__percent-outer-right"></div>
-        <SkillsItemSectionLabels 
-          labels={labels}
-        />
       </div>
    </React.Fragment>
   );
