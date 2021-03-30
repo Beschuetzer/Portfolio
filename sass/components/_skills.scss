@@ -108,7 +108,7 @@
 		transform: translateY(33%);
 		line-height: 1;
 
-		@include respond(phone) {
+		@include respond(nav-break) {
 			display: none;
 		}
 
@@ -223,7 +223,9 @@
 				;
 
 				&:hover {
-					opacity: .5;
+					@include respond(nav-break) {
+						opacity: .5;
+					}
 				}
 				&:hover + .skills__percent-inner {
 					transform: scaleY(calc(5/3));

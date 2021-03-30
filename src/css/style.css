@@ -415,7 +415,7 @@ body {
   transform: translateY(33%);
   line-height: 1;
 }
-@media only screen and (max-width: 40.9375em) {
+@media only screen and (max-width: 35.0625em) {
   .skills__labels {
     display: none;
   }
@@ -506,8 +506,10 @@ body {
   padding: 0rem 0.4rem;
   transition: opacity 0.5s ease 0.5s;
 }
-.skills__percent-outer .skills__labels:hover {
-  opacity: 0.5;
+@media only screen and (max-width: 35.0625em) {
+  .skills__percent-outer .skills__labels:hover {
+    opacity: 0.5;
+  }
 }
 .skills__percent-outer .skills__labels:hover + .skills__percent-inner {
   transform: scaleY(calc(5/3));
