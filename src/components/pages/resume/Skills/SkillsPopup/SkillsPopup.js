@@ -1,5 +1,5 @@
 import React from 'react';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { checkForParentOfType } from '../../../../../helpers';
@@ -9,6 +9,29 @@ import SkillsPopupName from './SkillsPopupName';
 const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDisplay, clickSkill }) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
   const resetReposDelay = 500;
+  const mobileBreakPointWidth = 843;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileBreakPointWidth);
+  console.log('isMobile =', isMobile);
+  
+
+  //setup window resize listener
+  useEffect(() => {
+    const windowResize = (e) => {
+      console.log('mobileBreakPointWidth =', mobileBreakPointWidth);
+      console.log('isMobile =', isMobile);
+      console.log('window.innerWidth =', window.innerWidth);
+      if (window.innerWidth <= mobileBreakPointWidth && !isMobile){
+        setIsMobile(true);
+      }
+      else if (window.innerWidth > mobileBreakPointWidth && isMobile){
+        setIsMobile(false);
+      }
+    }
+    window.addEventListener('resize', windowResize);
+    return (() => {
+      window.removeEventListener('resize', windowResize);
+    })
+  }, [isMobile]);
 
   //on initial load
   useEffect(() => {
@@ -226,7 +249,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   }
 
   const renderTableHeaders = () => {
-    const headers = ['Name', 'Description', 'Created', 'Updated', 'Repository'];
+    const headers = ['Name', 'Description', 'Created', 'Updated', 'Repo'];
     return (
       <div className="skills-popup__table-headers">
         {
@@ -239,11 +262,10 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
       </div>
     );
   }
-  
+  console.log('render------------------------------------------------');
   return (
     ReactDOM.createPortal(
       <div className='skills-popup__content'>
-        
         <div className='skills-popup__header'>
           <span className='skills-popup__header-text'>
             Github Projects that use '<span className="skills-popup__header-skill">{clickedSkill}</span>':
