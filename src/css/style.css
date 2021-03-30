@@ -553,7 +553,7 @@ body {
 }
 .skills-popup__table {
   display: grid;
-  grid-template-columns: minmax(10rem, max-content) minmax(25rem, 1fr) repeat(2, minmax(10rem, min-content)) min-content;
+  grid-template-columns: minmax(10rem, max-content) minmax(20rem, 1fr) repeat(2, minmax(10rem, min-content)) min-content;
 }
 .skills-popup__table-header {
   font-weight: 700;
@@ -738,8 +738,6 @@ body {
   .navbar {
     top: 1rem;
     left: 1rem;
-    right: 0;
-    bottom: 0;
     align-items: flex-start;
     border-radius: 0;
   }
@@ -811,7 +809,7 @@ body {
   .navbar__content {
     transform: translateY(-6rem);
     position: absolute;
-    top: 10rem;
+    top: 9.8rem;
     left: -1px;
     display: flex;
     overflow: visible !important;
@@ -824,7 +822,7 @@ body {
   justify-content: space-between;
   align-items: center;
   list-style: none;
-  transition: opacity 0.25s ease, width 0.25s ease 0.25s;
+  transition: opacity 0.375s ease, width 0.25s ease 0.25s;
 }
 @media only screen and (max-width: 52.6875em) {
   .navbar__list {
@@ -838,7 +836,8 @@ body {
 }
 @media only screen and (max-width: 52.6875em) {
   .navbar__list .navbar__item:first-child {
-    border-radius: 0;
+    border-radius: 0 0 3.2rem 3.2rem;
+    overflow: hidden;
   }
 }
 .navbar__list .navbar__item:nth-child(n+1) {
@@ -867,11 +866,6 @@ body {
 .navbar__item:hover {
   background-color: #fffdf5;
 }
-@media only screen and (max-width: 52.6875em) {
-  .navbar__item:hover {
-    background-color: #fbeeac;
-  }
-}
 .navbar__item:not(.navbar__dropdown-container):hover {
   transform: translateY(-0.32rem);
   box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.15);
@@ -898,13 +892,14 @@ body {
   justify-content: center;
   align-items: center;
   font-weight: 300;
-  transition: padding 0.5s ease;
+  transition: padding 0.5s ease, opacity 0.25s ease 0.25s;
 }
 @media only screen and (max-width: 52.6875em) {
   .navbar__link:link, .navbar__link:visited {
     flex-direction: column;
     position: relative;
     z-index: 10000;
+    opacity: 0;
   }
 }
 .navbar__button {
@@ -1010,6 +1005,15 @@ body {
 }
 .navbar__dropdown-container:hover .navbar__dropdown .navbar__link {
   padding: 2rem 3.2rem;
+}
+@media only screen and (max-width: 52.6875em) {
+  .navbar.navbar--active {
+    right: 0;
+    bottom: 0;
+  }
+}
+.navbar.navbar--active .navbar__link, .navbar.navbar--active .navbar__link:link, .navbar.navbar--active .navbar__link:visited {
+  opacity: 1;
 }
 .navbar.navbar--active .navbar__list {
   opacity: 1;

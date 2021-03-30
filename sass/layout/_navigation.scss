@@ -12,8 +12,6 @@
 	@include respond(tab-port) {
 		top: 1rem;
 		left: 1rem;
-		right: 0;
-		bottom: 0;
 		align-items: flex-start;
 		border-radius: 0;
 	}
@@ -112,7 +110,7 @@
 		@include respond(tab-port) {
 			transform: translateY(-6rem);
 			position: absolute;
-			top: 10rem;
+			top: $default-font-size * 6.125;
     	left: -1px;
 			display: flex;
 			overflow: visible !important;
@@ -127,7 +125,7 @@
 		align-items: center;
 		list-style: none;
 		transition: 
-			opacity $animation-duration * .5 $animation-easing-standard,
+			opacity $animation-duration * .75 $animation-easing-standard,
 			width $animation-duration * .5 $animation-easing-standard $animation-duration * .5,
 		;
 
@@ -141,7 +139,8 @@
 		& .navbar__item:first-child {
 			border-radius: $default-font-size * 0.5 0 0 $default-font-size * 0.5;
 			@include respond(tab-port) {
-				border-radius: 0;
+				border-radius: 0 0 $default-font-size * 2 $default-font-size * 2;
+				overflow: hidden;
 			}
 		}
 
@@ -164,8 +163,10 @@
 		cursor: pointer;
 		height: 100%;
 		width: 100%;
-		transition: transform $animation-duration * 0.25 $animation-easing-standard,
-			background-color $animation-duration * 0.25 $animation-easing-standard;
+		transition: 
+			transform $animation-duration * .25 $animation-easing-standard,
+			background-color $animation-duration * 0.25 $animation-easing-standard,
+		;
 
 		& .triangle-down {
 			transition: transform $animation-duration * 0.5 $animation-easing-standard;
@@ -173,9 +174,9 @@
 
 		&:hover {
 			background-color: lighten($color-primary-4, $hover-color-change-amount);
-			@include respond(tab-port) {
-				background-color: $color-primary-4;
-			}
+			// @include respond(tab-port) {
+			// 	background-color: $color-primary-4;
+			// }
 		}
 		&:not(.navbar__dropdown-container):hover {
 			transform: translateY(-$navbar__item-divider-width);
@@ -242,12 +243,16 @@
 		align-items: center;
 		font-weight: 300;
 
-		transition: padding $animation-duration * 1 $animation-easing-standard;
+		transition: 
+			padding $animation-duration * 1 $animation-easing-standard,
+			opacity $animation-duration * 0.5 $animation-easing-standard $animation-duration * .5,
+		;
 
 		@include respond(tab-port) {
 			flex-direction: column;
 			position: relative;
 			z-index: 10000;
+			opacity: 0;
 		}
 
 		&:hover {
@@ -384,6 +389,13 @@
 
 	//when navbar is open
 	&.navbar--active {
+		@include respond(tab-port) {
+			right: 0;
+			bottom: 0;
+		}
+		& .navbar__link, & .navbar__link:link, & .navbar__link:visited {
+			opacity: 1;
+		}
 		& .navbar__list {
 			opacity: 1;
 			width: 100%;
@@ -418,6 +430,7 @@
 			&:hover .navbar__menu-bar {
 				width: 0;
 			}
+			
 		}
 
 		& .navbar__link:not(&__dropdown &__link) {

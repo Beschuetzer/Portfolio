@@ -54,7 +54,7 @@
   
   &__table {
     display: grid;
-    grid-template-columns: minmax($default-font-size * 6.25, max-content) minmax($default-font-size * 15.625, 1fr) repeat(2, minmax($default-font-size * 6.25, min-content)) min-content;
+    grid-template-columns: minmax($default-font-size * 6.25, max-content) minmax($default-font-size * 12.5, 1fr) repeat(2, minmax($default-font-size * 6.25, min-content)) min-content;
     &-header {
       font-weight: 700;
       border-bottom: $default-font-size * .1 solid rgba($color-primary-1, .5);
