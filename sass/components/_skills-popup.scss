@@ -70,10 +70,6 @@
     &-repo {
       position: relative;
       grid-column: 1/-1;
-      
-      &:first-child a:first-child{
-        padding-top: 0;
-      }
     }
 
     &-header {
@@ -112,6 +108,11 @@
           top: $default-font-size * .75;
           right: 0;
         }
+      }
+
+      & span {
+        margin-right: $default-font-size * .5;
+        font-style: italic;
       }
 
       &.skills-popup__description {
@@ -208,7 +209,7 @@
           border-radius $animation-duration * .5 $animation-easing-standard $animation-duration * .5,
         ;
       }
-    }
+    }  
 
     &:hover {
       // @include skills-popup-item-hover;
@@ -229,6 +230,10 @@
     }
   }
   
+  &__name {
+    font-size: $default-font-size * 1.25;
+  }
+
   &__error { 
     grid-column: 1 /-1;
     justify-self: center;

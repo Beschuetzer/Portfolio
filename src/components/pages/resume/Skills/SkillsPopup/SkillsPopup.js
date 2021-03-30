@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { checkForParentOfType } from '../../../../../helpers';
 import { clickSkill, addRepoToReposToDisplay, setIsMobile } from '../../../../../actions';
 import SkillsPopupName from './SkillsPopupName';
+import { capitalize } from '../../../../../helpers';
 import { KeepStencilOp } from 'three';
 
 const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDisplay, clickSkill, isMobile , setIsMobile}) => {
@@ -30,7 +31,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
     return (() => {
       window.removeEventListener('resize', windowResize);
     })
-  }, [isMobile]);
+  }, [isMobile, setIsMobile]);
 
   //on initial load
   useEffect(() => {
@@ -191,6 +192,11 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
             onMouseLeave={onTableItemMouseEvent} 
             className={`skills-popup__table-item skills-popup__${key}`}
           >
+            {isMobile ?
+              <span className={`skills-popup__${key}-title`}>{capitalize(key)}:</span>
+              :
+              null
+            }
             {repo[key]}
           </div>
         );

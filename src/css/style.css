@@ -613,9 +613,6 @@ body {
   position: relative;
   grid-column: 1/-1;
 }
-.skills-popup__table-repo:first-child a:first-child {
-  padding-top: 0;
-}
 .skills-popup__table-header {
   font-weight: 700;
   border-bottom: 0.16rem solid rgba(40, 82, 122, 0.5);
@@ -650,6 +647,10 @@ body {
     top: 1.2rem;
     right: 0;
   }
+}
+.skills-popup__table-item span {
+  margin-right: 0.8rem;
+  font-style: italic;
 }
 .skills-popup__table-item.skills-popup__description {
   display: inline;
@@ -727,6 +728,9 @@ body {
   color: #8ac4d0;
   border-image: linear-gradient(to bottom, rgba(251, 238, 172, 0), rgba(251, 238, 172, 0));
   border-image-slice: 1;
+}
+.skills-popup__name {
+  font-size: 2rem;
 }
 .skills-popup__error {
   grid-column: 1/-1;
