@@ -275,7 +275,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 1.056rem;
   position: fixed;
-  top: 1rem;
+  top: 0.4rem;
   right: 1rem;
   display: flex;
   align-items: center;
@@ -703,10 +703,11 @@ body {
   margin-left: 3.2rem;
 }
 .work-history__item-section h6 {
-  margin-top: 1.2rem;
+  margin-top: 1.6rem;
 }
 .work-history__item-section-list {
   margin-left: 1.6rem;
+  margin-top: -0.4rem;
 }
 .work-history__item-section-list li {
   margin-left: 2.4rem;
@@ -744,7 +745,7 @@ body {
 .navbar {
   border-radius: 16rem 0 0 16rem;
   position: fixed;
-  top: 1rem;
+  top: 0.4rem;
   left: 1rem;
   font-size: 2.4rem;
   text-align: center;
@@ -986,6 +987,19 @@ body {
   filter: blur(0.8rem) brightness(0.75) drop-shadow(0px 1.6rem 3.2rem rgba(204, 204, 204, 0.2));
 }
 
+#header {
+  width: 100vw;
+  position: fixed;
+  height: 10rem;
+  z-index: 10;
+}
+@media only screen and (max-width: 54.9375em) {
+  #header {
+    background-color: #28527a;
+    border-bottom: 0.16rem solid #fbeeac;
+  }
+}
+
 ::-webkit-scrollbar {
   height: 1.6rem;
   width: 1.6rem;
@@ -1051,6 +1065,12 @@ body {
   padding: 0 3.2rem;
   border-radius: 0.8rem;
   box-shadow: 0 0 2.4rem rgba(251, 238, 172, 0.2);
+}
+@media only screen and (max-width: 54.9375em) {
+  .resume__card {
+    max-width: 95%;
+    width: 100%;
+  }
 }
 .resume .heading {
   color: #f4d160;

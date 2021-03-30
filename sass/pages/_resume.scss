@@ -60,6 +60,11 @@
     // border: 3px solid $color-primary-1;
     border-radius: $default-font-size * .5;
     box-shadow: 0 0 $default-font-size * 1.5 rgba($color-primary-4, .2);
+
+    @include respond(tab-port) {
+      max-width: 95%;
+      width: 100%;
+    }
   }
   & .heading {
     color: $color-primary-3;

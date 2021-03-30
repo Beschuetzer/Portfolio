@@ -2,7 +2,7 @@
 	// width: 8rem;
 	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
 	position: fixed;
-	top: $default-font-size * 0.625;
+	top: $default-font-size * 0.25;
 	left: $default-font-size * 0.625;
 	font-size: $default-font-size * 1.5;
 	text-align: center;
@@ -362,4 +362,16 @@
 			0px $default-font-size * 1 $default-font-size * 2
 				rgba($color-grey-light-4, 0.2)
 		);
+}
+
+#header {
+	width: 100vw;
+	position: fixed;
+	height: $default-font-size * 6.25;
+	z-index: 10;
+
+	@include respond(tab-port) {
+		background-color: $color-primary-1;
+		border-bottom: $default-font-size * .1 solid $color-primary-4;
+	}
 }

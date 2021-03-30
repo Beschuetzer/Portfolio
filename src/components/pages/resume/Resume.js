@@ -102,8 +102,8 @@ class Resume extends React.Component {
           </SkillsItemSection>
           <SkillsItemSection title="Human Skills">
             <SkillsItemSectionLabels 
-              left="Lacks"
-              center=""
+              left="Needs Work"
+              center="Average"
               right="Excels"
             />
             {/* https://www.youtube.com/watch?v=p0zB-aw-vQg */}
@@ -138,7 +138,7 @@ class Resume extends React.Component {
                   ]
                 },
                 {
-                  title: "Achievements",
+                  title: "Highlights",
                   bullets: [
                     "Secured two contracts with clients by going the extra mile to ensure customer satisfaction.",
                     "Increased productivity by 10% by <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://github.com/Beschuetzer/PowerShell'> automating repetitive tasks.</a> ",
@@ -151,7 +151,7 @@ class Resume extends React.Component {
           <WorkHistoryItem
             startDate="07/2018"
             endDate="06/2019"
-            title="<span class='work-history__item-number'>02.</span> Second Grade Education Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> Kualapuu Charter School </a> on Moloka&lsquo;i:"
+            title="<span class='work-history__item-number'>02.</span> Second Grade Education Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> Kualapuu Charter School </a>:"
             sections={
               [
                 {
@@ -161,7 +161,7 @@ class Resume extends React.Component {
                   ]
                 },
                 {
-                  title: "Achievements",
+                  title: "Highlights",
                   bullets: [
                     "Created a <a class='skills-popup__link-text skills__title--animating' href='/macroexamples/macroExampleMathGrader.xlsm'> grading tool</a> to facilitate grading of math assessments.",
                     "Created a <a class='skills-popup__link-text skills__title--animating' href='/macroexamples/macroExampleBookTrust.xlsm'>Book Trust tool</a> to facilitate monthly <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.booktrust.org'>Book Trust </a> ordering process.",
@@ -188,7 +188,7 @@ class Resume extends React.Component {
                   ]
                 },
                 {
-                  title: "Achievements",
+                  title: "Highlights",
                   bullets: [
                     "Created VBA macros to automate report generation, reducing the time-to-complete by more than 80%.",
                     "Created <a class='skills-popup__link-text skills__title--animating' href='/macroexamples/macroExampleScoring.xlsm'>custom grading forms</a> using Excel userForms and macros in order to reduce the time it took to grade assessment tests by 75%.",

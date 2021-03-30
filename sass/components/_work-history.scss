@@ -14,10 +14,11 @@
     &-section {
       margin-left: $default-font-size * 2;
       & h6 {
-        margin-top: $default-font-size * .75;
+        margin-top: $default-font-size * 1;
       }
       &-list {
         margin-left: $default-font-size * 1;
+        margin-top: -$default-font-size * .25;
 
         // text-decoration: none;
         // list-style: none;
