@@ -33,7 +33,7 @@ class Resume extends React.Component {
       right:"Expert",
     },
     human: {
-      left:"Needs Work",
+      left:"Lacks",
       center:"Average",
       right:"Excels",
     },
