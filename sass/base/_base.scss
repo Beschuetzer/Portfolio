@@ -21,12 +21,12 @@
         @include respond(phone) {
             font-size: 37.5%;
         }
-        @include respond(nav-break) {
-            font-size: 31.25%;
-        }
-        @include respond(small-font) {
-            font-size: 1.016vmin;
-        }
+        // @include respond(nav-break) {
+        //     font-size: 31.25%;
+        // }
+        // @include respond(small-font) {
+        //     font-size: 1.06vmin;
+        // }
         box-sizing: border-box;
 
         //order to add media queries:

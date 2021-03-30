@@ -38,29 +38,19 @@ html {
     font-size: 75%;
   }
 }
-@media only screen and (max-width: 75em) {
+@media only screen and (max-width: 58.5625em) {
   html {
     font-size: 56.25%;
   }
 }
-@media only screen and (max-width: 54.9375em) {
+@media only screen and (max-width: 52.6875em) {
   html {
     font-size: 43.75%;
   }
 }
-@media only screen and (max-width: 42.625em) {
+@media only screen and (max-width: 40.9375em) {
   html {
     font-size: 37.5%;
-  }
-}
-@media only screen and (max-width: 36.5625em) {
-  html {
-    font-size: 31.25%;
-  }
-}
-@media only screen and (max-width: 30.5625em) {
-  html {
-    font-size: 1.016vmin;
   }
 }
 
@@ -143,7 +133,7 @@ body {
 .u-margin-bottom-small {
   margin-bottom: 1.6rem;
 }
-@media only screen and (max-width: 54.9375em) {
+@media only screen and (max-width: 52.6875em) {
   .u-margin-bottom-small {
     margin-bottom: 0.8rem;
   }
@@ -152,7 +142,7 @@ body {
 .u-margin-bottom-medium {
   margin-bottom: 4rem;
 }
-@media only screen and (max-width: 54.9375em) {
+@media only screen and (max-width: 52.6875em) {
   .u-margin-bottom-medium {
     margin-bottom: 2rem;
   }
@@ -161,7 +151,7 @@ body {
 .u-margin-bottom-large {
   margin-bottom: 8rem;
 }
-@media only screen and (max-width: 54.9375em) {
+@media only screen and (max-width: 52.6875em) {
   .u-margin-bottom-large {
     margin-bottom: 4rem;
   }
@@ -170,7 +160,7 @@ body {
 .u-margin-bottom-huge {
   margin-bottom: 9.6rem;
 }
-@media only screen and (max-width: 54.9375em) {
+@media only screen and (max-width: 52.6875em) {
   .u-margin-bottom-huge {
     margin-bottom: 4.8rem;
   }
@@ -179,7 +169,7 @@ body {
 .u-margin-top-small {
   margin-top: 1.6rem !important;
 }
-@media only screen and (max-width: 54.9375em) {
+@media only screen and (max-width: 52.6875em) {
   .u-margin-top-small {
     margin-top: 1.6rem !important;
   }
@@ -188,7 +178,7 @@ body {
 .u-margin-top-medium {
   margin-top: 4rem !important;
 }
-@media only screen and (max-width: 54.9375em) {
+@media only screen and (max-width: 52.6875em) {
   .u-margin-top-medium {
     margin-top: 2rem !important;
   }
@@ -197,7 +187,7 @@ body {
 .u-margin-top-large {
   margin-top: 8rem !important;
 }
-@media only screen and (max-width: 54.9375em) {
+@media only screen and (max-width: 52.6875em) {
   .u-margin-top-large {
     margin-top: 4rem !important;
   }
@@ -206,7 +196,7 @@ body {
 .u-margin-top-huge {
   margin-top: 9.6rem !important;
 }
-@media only screen and (max-width: 54.9375em) {
+@media only screen and (max-width: 52.6875em) {
   .u-margin-top-huge {
     margin-top: 4.8rem !important;
   }
@@ -752,6 +742,16 @@ body {
   display: flex;
   align-items: center;
 }
+@media only screen and (max-width: 35.0625em) {
+  .navbar {
+    font-size: 1.6rem;
+  }
+}
+@media only screen and (max-width: 29.3125em) {
+  .navbar {
+    font-size: 1.6rem;
+  }
+}
 .navbar__background {
   position: fixed;
   top: 0;
@@ -993,7 +993,7 @@ body {
   height: 10rem;
   z-index: 10;
 }
-@media only screen and (max-width: 54.9375em) {
+@media only screen and (max-width: 52.6875em) {
   #header {
     background-color: #28527a;
     border-bottom: 0.16rem solid #fbeeac;
@@ -1066,7 +1066,7 @@ body {
   border-radius: 0.8rem;
   box-shadow: 0 0 2.4rem rgba(251, 238, 172, 0.2);
 }
-@media only screen and (max-width: 54.9375em) {
+@media only screen and (max-width: 52.6875em) {
   .resume__card {
     max-width: 95%;
     width: 100%;
