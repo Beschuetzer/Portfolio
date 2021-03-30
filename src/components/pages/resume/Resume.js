@@ -218,14 +218,6 @@ class Resume extends React.Component {
         </Paragraph>
       </React.Fragment>
     ],
-    [
-      'certifications', 
-      <React.Fragment>
-        <Paragraph size="four">
-          I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<Link className="link" to='/works'>what I have been building</Link>&nbsp;since I embarked on this journey.
-        </Paragraph>
-      </React.Fragment>
-    ],
   ];
   
   headerSideContent = {
