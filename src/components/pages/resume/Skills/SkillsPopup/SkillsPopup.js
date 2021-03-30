@@ -147,88 +147,97 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
       )
     }
     return reposToDisplay.map(repo => {
-      return keys.map((key, index) => {
-        switch (key) {
-          case 'name':
-            if (repo['homepageUrl']) {
-              return (
-                <SkillsPopupName
-                  key={key}
-                  href={repo['homepageUrl']}
-                  repo={repo}
-                  onTableItemMouseEvent={onTableItemMouseEvent}
-                />
-              )
-            }
-            else if (repo["name"].match(/playlist.*sync/i) || repo["name"].match(/downloader/i)) {
-              //TODO: add c# links to works/csharp
-              return (
-                <SkillsPopupName
-                  key={key}
-                  href={`/works/csharp#${repo['name'].replace('-','')}`}
-                  repo={repo}
-                  onTableItemMouseEvent={onTableItemMouseEvent}
-                />
-              )
-            }
+      return (
+        <article className="skills-popup__table-repo">
+          {keys.map((key, index) => {
+            switch (key) {
+              case 'name':
+                if (repo['homepageUrl']) {
+                  return (
+                    <SkillsPopupName
+                      key={key}
+                      href={repo['homepageUrl']}
+                      repo={repo}
+                      onTableItemMouseEvent={onTableItemMouseEvent}
+                    />
+                  )
+                }
+                else if (repo["name"].match(/playlist.*sync/i) || repo["name"].match(/downloader/i)) {
+                  return (
+                    <SkillsPopupName
+                      key={key}
+                      href={`/works/csharp#${repo['name'].replace('-','')}`}
+                      repo={repo}
+                      onTableItemMouseEvent={onTableItemMouseEvent}
+                    />
+                  )
+                }
 
-            return (
-              <div 
-                key={key} 
-                onMouseEnter={onTableItemMouseEvent} 
-                onMouseLeave={onTableItemMouseEvent} 
-                className={`skills-popup__table-item skills-popup__${key}`}
-              >
-                {repo[key]}
-              </div>
-            );
-          case 'url':
-            return (
-              <a 
-                key={key} 
-                rel="noreferrer" 
-                target="_blank" 
-                href={repo[key]}
-                className={`skills-popup__table-item skills-popup__${key}`}
-                onMouseEnter={onTableItemMouseEvent}
-                onMouseLeave={onTableItemMouseEvent}
-              >
-                <svg>
-                  <use xlinkHref="/sprite.svg#icon-chain"></use>
-                </svg>
-              </a>
-            );
-          case 'createdAt':
-            return returnDate(key, repo);
-          case 'updatedAt':
-            return returnDate(key, repo);
-          case 'description':
-            return (
-              <div 
-                key={key} 
-                onMouseEnter={onTableItemMouseEvent} 
-                onMouseLeave={onTableItemMouseEvent} 
-                className={`skills-popup__table-item skills-popup__${key}`}
-                dangerouslySetInnerHTML={{__html: repo[key]}}
-                
-              >
-              </div>
-            );
-          default:
-            return null;
+                return (
+                  <div 
+                    key={key} 
+                    onMouseEnter={onTableItemMouseEvent} 
+                    onMouseLeave={onTableItemMouseEvent} 
+                    className={`skills-popup__table-item skills-popup__${key}`}
+                  >
+                    {repo[key]}
+                  </div>
+                );
+              case 'url':
+                return (
+                  <a 
+                    key={key} 
+                    rel="noreferrer" 
+                    target="_blank" 
+                    href={repo[key]}
+                    className={`skills-popup__table-item skills-popup__${key}`}
+                    onMouseEnter={onTableItemMouseEvent}
+                    onMouseLeave={onTableItemMouseEvent}
+                  >
+                    <svg>
+                      <use xlinkHref="/sprite.svg#icon-chain"></use>
+                    </svg>
+                  </a>
+                );
+              case 'createdAt':
+                return returnDate(key, repo);
+              case 'updatedAt':
+                return returnDate(key, repo);
+              case 'description':
+                return (
+                  <div 
+                    key={key} 
+                    onMouseEnter={onTableItemMouseEvent} 
+                    onMouseLeave={onTableItemMouseEvent} 
+                    className={`skills-popup__table-item skills-popup__${key}`}
+                    dangerouslySetInnerHTML={{__html: repo[key]}}
+                    
+                  >
+                  </div>
+                );
+              default:
+                return null;
+            }
+          })
         }
-        
-      })
+        </article>
+      )
     })
   }
 
   const renderTableHeaders = () => {
     const headers = ['Name', 'Description', 'Created', 'Updated', 'Repository'];
-    return headers.map(header => {
-      return (
-        <div key={header} className="skills-popup__table-header">{header}</div>
-      );
-    })
+    return (
+      <div className="skills-popup__table-headers">
+        {
+          headers.map(header => {
+            return (
+              <div key={header} className="skills-popup__table-header">{header}</div>
+            );
+          })
+        }
+      </div>
+    );
   }
   
   return (
