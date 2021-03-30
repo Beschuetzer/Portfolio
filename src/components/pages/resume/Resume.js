@@ -141,7 +141,7 @@ class Resume extends React.Component {
                   title: "Achievements",
                   bullets: [
                     "Secured two contracts with clients by going the extra mile to ensure customer satisfaction.",
-                    "Increased productivity by 10% by automating repetitive tasks.",
+                    "Increased productivity by 10% by <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://github.com/Beschuetzer/PowerShell'> automating repetitive tasks.</a> ",
                   ]
                 },
               ]
