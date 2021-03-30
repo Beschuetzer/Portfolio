@@ -382,8 +382,7 @@ body {
   color: #23486c;
 }
 .skills__section-title.skills__section--open:hover {
-  transform: translateX(0);
-  font-weight: 300;
+  color: #8ac4d0;
 }
 .skills__section-title:hover .skills__section-title-svg {
   fill: #28527a;
@@ -1139,6 +1138,7 @@ body {
 }
 @media only screen and (max-width: 52.6875em) {
   #header {
+    z-index: 10;
     background-color: #28527a;
     border-bottom: 0.16rem solid #fbeeac;
   }

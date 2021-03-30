@@ -62,9 +62,7 @@
 			}
 
 			&.skills__section--open:hover {
-				transform: translateX(0);
-
-				font-weight: 300;
+				color: $color-primary-2;
 			}
 
 			&:hover &-svg {

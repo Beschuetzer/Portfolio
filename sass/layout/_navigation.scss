@@ -490,6 +490,7 @@
 	z-index: 1;
 
 	@include respond(tab-port) {
+		z-index: 10;
 		background-color: $color-primary-1;
 		border-bottom: $default-font-size * 0.1 solid $color-primary-4;
 	}
