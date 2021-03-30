@@ -10,12 +10,16 @@
 	align-items: center;
 
 
-	@include respond(nav-break) {
-		font-size: $default-font-size * 1;
+	@include respond(tab-port) {
+		top: 1rem;
+		left: 1rem;
+		right: 0;
+		bottom: 0;
+		align-items: flex-start;
+		border-radius: 0;
 	}
-	@include respond(small-font) {
-		font-size: $default-font-size * 1;
-	}
+	
+
 	// &.navbar--isAnimating {
 	// 	width: auto;
 	// }
@@ -106,6 +110,9 @@
 		width: 100%;
 		transform: translateX(-125%);
 		transition: visibility $animation-navbar, transform $animation-navbar;
+
+		
+		
 	}
 
 	&__list {
@@ -116,10 +123,18 @@
 
 		& .navbar__item:first-child {
 			border-radius: $default-font-size * 0.5 0 0 $default-font-size * 0.5;
+			@include respond(tab-port) {
+				border-radius: 0;
+				
+			}
 		}
 
 		& .navbar__item:nth-child(n + 1) {
 			margin-left: $default-font-size * 0.2;
+			@include respond(tab-port) {
+				margin-left: 0;
+				
+			}
 		}
 
 		& .navbar__dropdown .navbar__item {
@@ -161,6 +176,9 @@
 		// }
 		&:last-child {
 			border-radius: 0 10rem 10rem 0;
+			@include respond(tab-port) {
+				border-radius: 0;
+			}
 		}
 
 		//TODO: need to finish hover effect
@@ -221,6 +239,7 @@
 		display: flex;
 		align-items: center;
 		transition: border-radius $animation-duration * 1 $animation-easing-standard;
+
 
 		&:hover {
 			background-color: lighten($color-primary-4, $hover-color-change-amount);
@@ -307,11 +326,24 @@
 			opacity: 1;
 			width: 100%;
 			transform: translateX(0%);
+
+			@include respond(tab-port) {
+				position: absolute;
+				top: 10rem;
+				left: 0;
+				display: flex;
+				overflow: visible !important;
+				flex-direction: column;
+			}
 		}
 
 		& .navbar__button {
 			border-radius: $default-font-size * 10 $default-font-size * 1
 				$default-font-size * 1 $default-font-size * 10;
+			@include respond(tab-port) {
+				border-radius: $default-font-size * 10 $default-font-size * 10  $default-font-size * 1
+				$default-font-size * 1;
+			}
 			//A hover styling
 			&:hover .navbar__menu-bar::before {
 				// transform: $navbar__button-bar-before-rotation translate(-$default-font-size * .5625, $default-font-size * 1.375);

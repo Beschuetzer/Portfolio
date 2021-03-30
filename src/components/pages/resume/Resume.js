@@ -126,8 +126,8 @@ class Resume extends React.Component {
           <WorkHistoryItem
             startDate="07/2019"
             endDate="06/2020"
-            title="<span class='work-history__item-number'>01.</span>Technology Services Support Representative at <a target='_blank' rel='noreferrer'
-            class='skills-popup__link-text skills__title--animating' href='https://www.ricoh-usa.com/en'> Ricoh Ltd </a>:"
+            title="<span class='work-history__item-number'>01.</span><span>Technology Services Support Representative at <a target='_blank' rel='noreferrer'
+            class='skills-popup__link-text skills__title--animating' href='https://www.ricoh-usa.com/en'> Ricoh Ltd </a>:</span>"
             sections={
               [
                 {
@@ -151,7 +151,7 @@ class Resume extends React.Component {
           <WorkHistoryItem
             startDate="07/2018"
             endDate="06/2019"
-            title="<span class='work-history__item-number'>02.</span> Second Grade Education Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> Kualapuu Charter School </a>:"
+            title="<span class='work-history__item-number'>02.</span><span>Second Grade Education Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> Kualapuu Charter School </a>:</span>"
             sections={
               [
                 {
@@ -174,7 +174,7 @@ class Resume extends React.Component {
           <WorkHistoryItem
             startDate="07/2007"
             endDate="07/2018"
-            title="<span class='work-history__item-number'>03.</span> PearsonVue Test Admin / Office Admin at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.isd622.org/'> ISD622 </a>:"
+            title="<span class='work-history__item-number'>03.</span><span>PearsonVue Test Admin / Office Admin at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.isd622.org/'> ISD622 </a>:</span>"
             sections={
               [
                 {

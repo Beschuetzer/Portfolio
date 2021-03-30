@@ -43,16 +43,6 @@ html {
     font-size: 56.25%;
   }
 }
-@media only screen and (max-width: 52.6875em) {
-  html {
-    font-size: 43.75%;
-  }
-}
-@media only screen and (max-width: 40.9375em) {
-  html {
-    font-size: 37.5%;
-  }
-}
 
 /* everything related to font goes in body */
 body {
@@ -720,6 +710,8 @@ body {
 .work-history__title-header {
   font-size: 1.6rem;
   font-style: italic;
+  display: grid;
+  grid-template-columns: min-content 1fr;
 }
 .work-history__title-dates {
   font-size: 1.44rem;
@@ -742,14 +734,14 @@ body {
   display: flex;
   align-items: center;
 }
-@media only screen and (max-width: 35.0625em) {
+@media only screen and (max-width: 52.6875em) {
   .navbar {
-    font-size: 1.6rem;
-  }
-}
-@media only screen and (max-width: 29.3125em) {
-  .navbar {
-    font-size: 1.6rem;
+    top: 1rem;
+    left: 1rem;
+    right: 0;
+    bottom: 0;
+    align-items: flex-start;
+    border-radius: 0;
   }
 }
 .navbar__background {
@@ -824,8 +816,18 @@ body {
 .navbar__list .navbar__item:first-child {
   border-radius: 0.8rem 0 0 0.8rem;
 }
+@media only screen and (max-width: 52.6875em) {
+  .navbar__list .navbar__item:first-child {
+    border-radius: 0;
+  }
+}
 .navbar__list .navbar__item:nth-child(n+1) {
   margin-left: 0.32rem;
+}
+@media only screen and (max-width: 52.6875em) {
+  .navbar__list .navbar__item:nth-child(n+1) {
+    margin-left: 0;
+  }
 }
 .navbar__list .navbar__dropdown .navbar__item {
   margin-left: 0;
@@ -854,6 +856,11 @@ body {
 }
 .navbar__item:last-child {
   border-radius: 0 10rem 10rem 0;
+}
+@media only screen and (max-width: 52.6875em) {
+  .navbar__item:last-child {
+    border-radius: 0;
+  }
 }
 .navbar__link:link, .navbar__link:visited {
   padding: 2rem 0;
@@ -939,8 +946,23 @@ body {
   width: 100%;
   transform: translateX(0%);
 }
+@media only screen and (max-width: 52.6875em) {
+  .navbar.navbar--active .navbar__content {
+    position: absolute;
+    top: 10rem;
+    left: 0;
+    display: flex;
+    overflow: visible !important;
+    flex-direction: column;
+  }
+}
 .navbar.navbar--active .navbar__button {
   border-radius: 16rem 1.6rem 1.6rem 16rem;
+}
+@media only screen and (max-width: 52.6875em) {
+  .navbar.navbar--active .navbar__button {
+    border-radius: 16rem 16rem 1.6rem 1.6rem;
+  }
 }
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::before {
   transform: rotate(135deg) translate(1.1rem, 1.1rem);
@@ -1070,6 +1092,7 @@ body {
   .resume__card {
     max-width: 95%;
     width: 100%;
+    margin: 1.6rem;
   }
 }
 .resume .heading {

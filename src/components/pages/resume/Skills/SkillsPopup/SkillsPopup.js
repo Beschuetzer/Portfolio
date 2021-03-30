@@ -17,8 +17,8 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
       const isBodyClick = !checkForParentOfType(e.target, 'div', 'skills-popup');
       if (isBodyClick) {
         skillsPopupDiv?.classList?.remove('skills-popup--active');
-        clickSkill(null);
         setTimeout(() => {
+          clickSkill(null);
           addRepoToReposToDisplay([]);
         }, resetReposDelay)
       }
@@ -113,8 +113,8 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
 
   const onCloseClick = (e) => {
     skillsPopupDiv?.classList?.remove('skills-popup--active');
-    clickSkill(null);
     setTimeout(() => {
+      clickSkill(null);
       addRepoToReposToDisplay([]);
     }, resetReposDelay)
   }
