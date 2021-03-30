@@ -17,9 +17,6 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   //setup window resize listener
   useEffect(() => {
     const windowResize = (e) => {
-      console.log('mobileBreakPointWidth =', mobileBreakPointWidth);
-      console.log('isMobile =', isMobile);
-      console.log('window.innerWidth =', window.innerWidth);
       if (window.innerWidth <= mobileBreakPointWidth && !isMobile){
         setIsMobile(true);
       }
@@ -160,6 +157,77 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
     );
   }
 
+  const getProjectContent = (repo, key, index) => {
+    switch (key) {
+      case 'name':
+        if (repo['homepageUrl']) {
+          return (
+            <SkillsPopupName
+              key={key}
+              href={repo['homepageUrl']}
+              repo={repo}
+              onTableItemMouseEvent={onTableItemMouseEvent}
+            />
+          )
+        }
+        else if (repo["name"].match(/playlist.*sync/i) || repo["name"].match(/downloader/i)) {
+          return (
+            <SkillsPopupName
+              key={key}
+              href={`/works/csharp#${repo['name'].replace('-','')}`}
+              repo={repo}
+              onTableItemMouseEvent={onTableItemMouseEvent}
+            />
+          )
+        }
+
+        return (
+          <div 
+            key={key} 
+            onMouseEnter={onTableItemMouseEvent} 
+            onMouseLeave={onTableItemMouseEvent} 
+            className={`skills-popup__table-item skills-popup__${key}`}
+          >
+            {repo[key]}
+          </div>
+        );
+      case 'url':
+        return (
+          <a 
+            key={key} 
+            rel="noreferrer" 
+            target="_blank" 
+            href={repo[key]}
+            className={`skills-popup__table-item skills-popup__${key}`}
+            onMouseEnter={onTableItemMouseEvent}
+            onMouseLeave={onTableItemMouseEvent}
+          >
+            <svg>
+              <use xlinkHref="/sprite.svg#icon-chain"></use>
+            </svg>
+          </a>
+        );
+      case 'createdAt':
+        return returnDate(key, repo);
+      case 'updatedAt':
+        return returnDate(key, repo);
+      case 'description':
+        return (
+          <div 
+            key={key} 
+            onMouseEnter={onTableItemMouseEvent} 
+            onMouseLeave={onTableItemMouseEvent} 
+            className={`skills-popup__table-item skills-popup__${key}`}
+            dangerouslySetInnerHTML={{__html: repo[key]}}
+            
+          >
+          </div>
+        );
+      default:
+        return null;
+    }
+  }
+
   const renderProjects = () => {
     const keys = ["name", 'description', 'createdAt', 'updatedAt','url'];
     if (!reposToDisplay || reposToDisplay.length === 0) {
@@ -170,81 +238,25 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
       )
     }
     return reposToDisplay.map(repo => {
-      return (
-        <article className="skills-popup__table-repo">
-          {keys.map((key, index) => {
-            switch (key) {
-              case 'name':
-                if (repo['homepageUrl']) {
-                  return (
-                    <SkillsPopupName
-                      key={key}
-                      href={repo['homepageUrl']}
-                      repo={repo}
-                      onTableItemMouseEvent={onTableItemMouseEvent}
-                    />
-                  )
-                }
-                else if (repo["name"].match(/playlist.*sync/i) || repo["name"].match(/downloader/i)) {
-                  return (
-                    <SkillsPopupName
-                      key={key}
-                      href={`/works/csharp#${repo['name'].replace('-','')}`}
-                      repo={repo}
-                      onTableItemMouseEvent={onTableItemMouseEvent}
-                    />
-                  )
-                }
-
-                return (
-                  <div 
-                    key={key} 
-                    onMouseEnter={onTableItemMouseEvent} 
-                    onMouseLeave={onTableItemMouseEvent} 
-                    className={`skills-popup__table-item skills-popup__${key}`}
-                  >
-                    {repo[key]}
-                  </div>
-                );
-              case 'url':
-                return (
-                  <a 
-                    key={key} 
-                    rel="noreferrer" 
-                    target="_blank" 
-                    href={repo[key]}
-                    className={`skills-popup__table-item skills-popup__${key}`}
-                    onMouseEnter={onTableItemMouseEvent}
-                    onMouseLeave={onTableItemMouseEvent}
-                  >
-                    <svg>
-                      <use xlinkHref="/sprite.svg#icon-chain"></use>
-                    </svg>
-                  </a>
-                );
-              case 'createdAt':
-                return returnDate(key, repo);
-              case 'updatedAt':
-                return returnDate(key, repo);
-              case 'description':
-                return (
-                  <div 
-                    key={key} 
-                    onMouseEnter={onTableItemMouseEvent} 
-                    onMouseLeave={onTableItemMouseEvent} 
-                    className={`skills-popup__table-item skills-popup__${key}`}
-                    dangerouslySetInnerHTML={{__html: repo[key]}}
-                    
-                  >
-                  </div>
-                );
-              default:
-                return null;
-            }
+      console.log('isMobile------------------------------------------------');
+      if (isMobile) {
+        return (
+          <article className="skills-popup__table-repo">
+            {keys.map((key, index) => {
+              return getProjectContent(repo, key, index)
+            })
+          }
+          </article>
+        )
+      }
+      else {
+        return (
+          keys.map((key, index) => {
+            return getProjectContent(repo, key, index)
           })
-        }
-        </article>
-      )
+        )
+      }
+
     })
   }
 
