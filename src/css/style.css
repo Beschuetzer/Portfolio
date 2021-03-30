@@ -598,6 +598,11 @@ body {
   display: grid;
   grid-template-columns: minmax(10rem, max-content) minmax(20rem, 1fr) repeat(2, minmax(10rem, min-content)) min-content;
 }
+.skills-popup__table-headers, .skills-popup__table-repo {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: minmax(10rem, 1fr) minmax(20rem, 3fr) repeat(2, minmax(10rem, min-content)) min-content;
+}
 .skills-popup__table-header {
   font-weight: 700;
   border-bottom: 0.16rem solid rgba(40, 82, 122, 0.5);
