@@ -103,15 +103,14 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
           </div>
         </div>
         <div className="navbar__content">
-          <ul className="navbar__list">
-            <NavListItem to="/about" label="About" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
+          <ul className="navbar__list">           
             <NavListItem 
               to="/works" 
               label="Examples" 
               onMouseEnter={onMouseEnter} onClick={onNavItemClick}
               className="navbar__item navbar__dropdown-container flex align-center justify-content-center"
+              triangle={<div className="triangle-down"></div>}
             >
-              <div className="triangle-down"></div>
               <ul className="navbar__dropdown">
                 <NavListItem to="/works/bridge" label="Bridge" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
                 <NavListItem to="/works/csharp" label="C#" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
@@ -121,6 +120,7 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
             </NavListItem>
             <NavListItem to="/resume" label="Resume" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
             <NavListItem to="/contact" label="Contact" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
+            <NavListItem to="/about" label="About" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
           </ul>
         </div>
         <div onClick={onNavClick} className='navbar__background'></div>

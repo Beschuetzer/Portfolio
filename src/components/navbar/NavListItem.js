@@ -7,7 +7,7 @@ class NavItem extends React.Component {
     linkClassName: "navbar__link",
   } 
   render() {
-    const { onMouseEnter, onClick, to, label, children, className } = this.props;
+    const { onMouseEnter, onClick, to, label, children, className, triangle } = this.props;
     const classNamesToUse = className ? className : this.defaults.liClassName;
 
     return (
@@ -20,8 +20,20 @@ class NavItem extends React.Component {
           className={this.defaults.linkClassName} 
           to={to}
         >
-          {label}
-          {children}
+          {triangle ?
+            <React.Fragment>
+              <div className="navbar__dropdown-group">
+                {label}
+                {triangle}
+              </div>
+              {children}
+            </React.Fragment>
+          :
+            <React.Fragment>
+              {label}
+              {children}
+            </React.Fragment>
+          }
         </Link>
       </li>
     );

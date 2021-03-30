@@ -110,6 +110,7 @@
 		transition: visibility $animation-navbar, transform $animation-navbar;
 
 		@include respond(tab-port) {
+			transform: translateY(-125%);
 			position: absolute;
 			top: 10rem;
 			left: 0;
@@ -124,9 +125,12 @@
 		justify-content: space-between;
 		align-items: center;
 		list-style: none;
+		transition: opacity $animation-duration * .5 $animation-easing-standard;
+
 
 		@include respond(tab-port) {
-			flex-direction: column;
+			flex-direction: column-reverse;
+			opacity: 0;
 		}
 
 		& .navbar__item:first-child {
@@ -275,8 +279,18 @@
 
 		transition: transform $animation-duration $animation-easing-standard;
 
+	
+		
+
 		@include respond(tab-port) {
 			position: relative;
+			height: 0;
+			transform: translateY(0%) scale(0);
+		}
+
+		&-group {
+			display: flex;
+    	align-items: center;	
 		}
 
 		& .navbar__item {
@@ -293,7 +307,10 @@
 			;
 
 			@include respond(tab-port) {
-				border: 1px solid rgba($color-primary-1, .5);
+				border-top: $default-font-size * .1 solid transparent;
+				border-bottom: $default-font-size * .1 solid rgba($color-primary-1, .5);
+				border-left: $default-font-size * .1 solid rgba($color-primary-1, .5);
+				border-right: $default-font-size * .1 solid rgba($color-primary-1, .5);
 				margin-top: 0;
 				width: 75%;
 				align-self: center;
@@ -302,19 +319,27 @@
 
 			&:first-child {
 				border-radius: $default-font-size * 0.5 $default-font-size * 0.5 0 0;
+				@include respond(tab-port) {
+					border-top: $default-font-size * .1 solid rgba($color-primary-1, .5);
+					margin-top: $default-font-size * .75;
+				}
 			}
 			&:last-child {
 				border-radius: 0 0 $navbar__item-border-radius $navbar__item-border-radius;
 				@include respond(tab-port) {
-					border-radius: 0;
+					border-radius: 0 0 $default-font-size * .5 $default-font-size * .5;
+
 				}
 			}
 
 			&:hover {
 				transform: translateX($navbar__item-divider-width) !important;
-				box-shadow: $default-font-size * 0.5 0 $default-font-size * 2	$navbar-box-shadow-color;
-				@include respond(tab-port) {
-					transform: translateY(-$navbar__item-divider-width) !important;
+				box-shadow: -$default-font-size * 1 0 $default-font-size * 2	$navbar-box-shadow-color;
+			}
+
+			@include respond(tab-port) {
+				&:hover, &:hover + li {
+					border-top: $default-font-size * .1 solid rgba($color-primary-1, .5);
 				}
 			}
 		}
@@ -338,9 +363,8 @@
 	&__dropdown &__item:hover &__dropdown {
 		visibility: visible;
 		opacity: 1;
-		transform: translateY(0%);
-
-		
+		height:auto;
+		transform: translateY(0%) scale(1);
 	}
 
 	//Styling dropdown items on dropdown-container hover
@@ -355,6 +379,9 @@
 
 	//when navbar is open
 	&.navbar--active {
+		& .navbar__list {
+			opacity: 1;
+		}
 		& .navbar__content {
 			visibility: visible;
 			opacity: 1;
