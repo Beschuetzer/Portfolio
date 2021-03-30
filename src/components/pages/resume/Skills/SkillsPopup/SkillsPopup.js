@@ -74,6 +74,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   }
 
   const onTableItemMouseEvent = (e) => {
+    if (isMobile) return;
     const table = document.querySelector('.skills-popup__table')
     const skillsPopupItems = document.querySelectorAll('.skills-popup__table-item');
     const indexOfTarget = getIndexOfItem(e.target, skillsPopupItems);
