@@ -381,6 +381,10 @@ body {
   font-weight: 500;
   color: #23486c;
 }
+.skills__section-title.skills__section--open:hover {
+  transform: translateX(0);
+  font-weight: 300;
+}
 .skills__section-title:hover .skills__section-title-svg {
   fill: #28527a;
 }
@@ -462,6 +466,8 @@ body {
 }
 .skills__title--animating.skills__section--open {
   animation: none;
+  transform: translateX(1.6rem);
+  font-weight: 700;
 }
 .skills__percent-outer {
   backface-visibility: hidden;
@@ -1129,7 +1135,7 @@ body {
   width: 100%;
   position: fixed;
   height: 10rem;
-  z-index: 10;
+  z-index: 1;
 }
 @media only screen and (max-width: 52.6875em) {
   #header {

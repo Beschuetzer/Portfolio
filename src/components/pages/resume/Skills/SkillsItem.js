@@ -5,6 +5,23 @@ import { clickSkill } from '../../../../actions';
 import SkillsItemSectionLabels from './SkillsItemSectionLabels';
 
 const SkillsItem = ({ title, percent, href, clickSkill, hours, labels }) => {
+  const skillsLabel = {
+    web: {
+      left:"Novice",
+      center:"Proficient",
+      right:"Master",
+    },
+    it: {
+      left:"Familiar",
+      center:"Knowledgeable",
+      right:"Expert",
+    },
+    human: {
+      left:"Lacks",
+      center:"Average",
+      right:"Excels",
+    },
+  }
   const skillsPopupDiv = document.querySelector('#skillsPopup');
   const percentDiv = useRef();
   const [isDivSet, setIsDivSet] = useState(false);

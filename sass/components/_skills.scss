@@ -61,6 +61,12 @@
 				color: darken($color-primary-1, $hover-color-change-amount / 4);
 			}
 
+			&.skills__section--open:hover {
+				transform: translateX(0);
+
+				font-weight: 300;
+			}
+
 			&:hover &-svg {
 				fill: $color-primary-1;
 			}
@@ -166,6 +172,8 @@
 
 	&__title--animating.skills__section--open {
 		animation: none;
+		transform: translateX($default-font-size);
+    font-weight: 700;
 	}
 
 	&__percent {
