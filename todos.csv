@@ -25,6 +25,5 @@
 -add label-show-inside-blue-bar-on-hover functionality:
   *have it dynamically set the inner label via js?
 
--conditinally render skills-popup__table-headers
 
 

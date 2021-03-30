@@ -263,15 +263,22 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   const renderTableHeaders = () => {
     const headers = ['Name', 'Description', 'Created', 'Updated', 'Repo'];
     return (
-      <div className="skills-popup__table-headers">
-        {
-          headers.map(header => {
-            return (
-              <div key={header} className="skills-popup__table-header">{header}</div>
-            );
-          })
-        }
-      </div>
+      isMobile ? 
+        <div className="skills-popup__table-headers">
+          {
+            headers.map(header => {
+              return (
+                <div key={header} className="skills-popup__table-header">{header}</div>
+              );
+            })
+          }
+        </div>
+      :
+        headers.map(header => {
+          return (
+            <div key={header} className="skills-popup__table-header">{header}</div>
+          );
+        })
     );
   }
   console.log('render------------------------------------------------');
