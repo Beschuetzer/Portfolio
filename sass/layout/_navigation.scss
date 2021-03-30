@@ -110,13 +110,14 @@
 		transition: visibility $animation-navbar, transform $animation-navbar;
 
 		@include respond(tab-port) {
-			transform: translateY(-125%);
+			transform: translateY(-6rem);
 			position: absolute;
 			top: 10rem;
-			left: 0;
+    	left: -1px;
 			display: flex;
 			overflow: visible !important;
 			flex-direction: column;
+    	max-width: calc(100% - 1rem);
 		}
 	}
 
@@ -125,12 +126,16 @@
 		justify-content: space-between;
 		align-items: center;
 		list-style: none;
-		transition: opacity $animation-duration * .5 $animation-easing-standard;
+		transition: 
+			opacity $animation-duration * .5 $animation-easing-standard,
+			width $animation-duration * .5 $animation-easing-standard $animation-duration * .5,
+		;
 
 
 		@include respond(tab-port) {
 			flex-direction: column-reverse;
 			opacity: 0;
+			width: $default-font-size * 5;
 		}
 
 		& .navbar__item:first-child {
@@ -381,6 +386,7 @@
 	&.navbar--active {
 		& .navbar__list {
 			opacity: 1;
+			width: 100%;
 		}
 		& .navbar__content {
 			visibility: visible;

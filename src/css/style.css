@@ -809,13 +809,14 @@ body {
 }
 @media only screen and (max-width: 52.6875em) {
   .navbar__content {
-    transform: translateY(-125%);
+    transform: translateY(-6rem);
     position: absolute;
     top: 10rem;
-    left: 0;
+    left: -1px;
     display: flex;
     overflow: visible !important;
     flex-direction: column;
+    max-width: calc(100% - 1rem);
   }
 }
 .navbar__list {
@@ -823,12 +824,13 @@ body {
   justify-content: space-between;
   align-items: center;
   list-style: none;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease, width 0.25s ease 0.25s;
 }
 @media only screen and (max-width: 52.6875em) {
   .navbar__list {
     flex-direction: column-reverse;
     opacity: 0;
+    width: 8rem;
   }
 }
 .navbar__list .navbar__item:first-child {
@@ -1011,6 +1013,7 @@ body {
 }
 .navbar.navbar--active .navbar__list {
   opacity: 1;
+  width: 100%;
 }
 .navbar.navbar--active .navbar__content {
   visibility: visible;
