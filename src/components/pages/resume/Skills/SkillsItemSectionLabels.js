@@ -10,14 +10,14 @@ class SkillsItemSectionLabels extends React.Component {
     this.imageRef = React.createRef();
   }
   render() {
-    const { left, center, right } = this.props;
+    const { labels } = this.props;
     return (
       <React.Fragment>
         <div></div>
         <div className="skills__labels">
-          <span className="skills__label skills__label-left">{left}</span>
-          <span className="skills__label skills__label-center">{center}</span>
-          <span className="skills__label skills__label-right">{right}</span>
+          <span className="skills__label skills__label-left">{labels?.left}</span>
+          <span className="skills__label skills__label-center">{labels?.center}</span>
+          <span className="skills__label skills__label-right">{labels?.right}</span>
         </div>
       </React.Fragment>
     );

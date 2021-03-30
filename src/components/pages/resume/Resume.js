@@ -21,6 +21,23 @@ class Resume extends React.Component {
   }
   
   popupUrl = '/resume#skillsPopup';
+  skillsLabels = {
+    web: {
+      left:"Novice",
+      center:"Proficient",
+      right:"Master",
+    },
+    it: {
+      left:"Familiar",
+      center:"Knowledgeable",
+      right:"Expert",
+    },
+    human: {
+      left:"Needs Work",
+      center:"Average",
+      right:"Excels",
+    },
+  }
   content = [
     [
       'summary', 
@@ -39,9 +56,7 @@ class Resume extends React.Component {
         <ul className="skills">
           <SkillsItemSection title="Web Development">
             <SkillsItemSectionLabels 
-              left="Novice"
-              center="Proficient"
-              right="Master"
+              labels={this.skillsLabels.web}
             />
             <SkillsItem title="HTML5" percent="50" /> {//hours="800"/> 
                                                       }
@@ -88,9 +103,7 @@ class Resume extends React.Component {
   
           <SkillsItemSection title="IT Support">
             <SkillsItemSectionLabels 
-              left="Familiar"
-              center="Knowledgeable"
-              right="Expert"
+              labels={this.skillsLabels.it}
             />
             <SkillsItem href='/certs/a-plus.png' title="A+" percent="80"/>
             <SkillsItem href='/certs/network-plus.png' title="Network+" percent="70"/>
@@ -102,9 +115,7 @@ class Resume extends React.Component {
           </SkillsItemSection>
           <SkillsItemSection title="Human Skills">
             <SkillsItemSectionLabels 
-              left="Needs Work"
-              center="Average"
-              right="Excels"
+              labels={this.skillsLabels.human}
             />
             {/* https://www.youtube.com/watch?v=p0zB-aw-vQg */}
             <SkillsItem title="Listening" percent="85"/>

@@ -23,6 +23,11 @@
 			grid-column-gap: $default-font-size * 1;
 			grid-auto-rows: min-content;
 			align-items: center;
+			margin-left: $default-font-size;
+
+			@include respond(nav-break) {
+				grid-template-columns: 1fr;
+			}
 		}
 		&-title {
 			backface-visibility: hidden;
@@ -117,7 +122,11 @@
 		align-items: center;
 		width: 100%;
 		max-width: $default-font-size * 50;
-		margin-left: $default-font-size * 1;
+		// margin-left: $default-font-size * 1;
+
+		@include respond(nav-break) {
+	    margin: $default-font-size * .5 0 $default-font-size * .1 0;
+		}
 	}
 
 	&__title:link,
