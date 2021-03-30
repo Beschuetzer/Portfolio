@@ -55,8 +55,16 @@
   &__table {
     display: grid;
     grid-template-columns: minmax($default-font-size * 6.25, max-content) minmax($default-font-size * 12.5, 1fr) repeat(2, minmax($default-font-size * 6.25, min-content)) min-content;
+
+    @include respond(tab-port) {
+      display: flex;
+      flex-direction: column;
+      // justify-content: center;
+      // align-items: center;
+    }
    
     &-headers, &-repo {
+      position: relative;
       grid-column: 1/-1;
       // display: grid;
       // grid-template-columns: minmax($default-font-size * 6.25, 1fr) minmax($default-font-size * 12.5, 1fr) repeat(2, minmax($default-font-size * 6.25, min-content)) min-content;
@@ -76,6 +84,24 @@
       transition:  
         border $animation-duration * .5 $animation-easing-standard,
       ;
+
+      @include respond(tab-port) {
+        border:none;
+
+        &:nth-child(n+3) {
+          padding:0;
+        }
+
+        &:nth-last-child(2){
+          border-bottom: 1px solid rgba($color-primary-1, .25);
+        }
+        &:last-child{
+          position: absolute;
+          top: $default-font-size * .5;
+          right: 0;
+        }
+      }
+
       &.skills-popup__description {
         display: inline;
 

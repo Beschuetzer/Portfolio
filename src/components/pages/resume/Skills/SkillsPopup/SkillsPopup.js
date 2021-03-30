@@ -10,6 +10,7 @@ import { KeepStencilOp } from 'three';
 const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDisplay, clickSkill, isMobile , setIsMobile}) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
   const resetReposDelay = 500;
+  // const mobileBreakPointWidth = 740;
   const mobileBreakPointWidth = 843;
   console.log('window.innerWidth <= mobileBreakPointWidth =', window.innerWidth <= mobileBreakPointWidth);
   setIsMobile(window.innerWidth <= mobileBreakPointWidth);
@@ -261,18 +262,19 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   }
 
   const renderTableHeaders = () => {
-    const headers = ['Name', 'Description', 'Created', 'Updated', 'Repo'];
+    const headers = ['Name', 'Description', 'Created', 'Updated', 'Repo Url'];
     return (
       isMobile ? 
-        <div className="skills-popup__table-headers">
-          {
-            headers.map(header => {
-              return (
-                <div key={header} className="skills-popup__table-header">{header}</div>
-              );
-            })
-          }
-        </div>
+        // <div className="skills-popup__table-headers">
+        //   {
+        //     headers.map(header => {
+        //       return (
+        //         <div key={header} className="skills-popup__table-header">{header}</div>
+        //       );
+        //     })
+        //   }
+        // </div>
+        null
       :
         headers.map(header => {
           return (
