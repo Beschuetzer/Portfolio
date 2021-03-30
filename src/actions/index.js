@@ -3,7 +3,8 @@ import {
   GET_REPOSITORIES,
   CLICK_SKILL,
   ADD_REPO,
-  SET_IS_ANIMATING
+  SET_IS_ANIMATING,
+  SET_IS_MOBILE
 } from './types';
 //Example Action Creator
 //export const selectSong = (song) => {
@@ -203,6 +204,13 @@ export const addRepoToReposToDisplay = (repo) => {
 export const setIsAnimating = (value) => {
   return {
     type: SET_IS_ANIMATING,
+    payload: value,
+  }
+}
+
+export const setIsMobile = (value) => {
+  return {
+    type: SET_IS_MOBILE,
     payload: value,
   }
 }

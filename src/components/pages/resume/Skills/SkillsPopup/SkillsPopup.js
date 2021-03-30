@@ -1,17 +1,18 @@
 import React from 'react';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { checkForParentOfType } from '../../../../../helpers';
-import { clickSkill, addRepoToReposToDisplay } from '../../../../../actions';
+import { clickSkill, addRepoToReposToDisplay, setIsMobile } from '../../../../../actions';
 import SkillsPopupName from './SkillsPopupName';
+import { KeepStencilOp } from 'three';
 
-const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDisplay, clickSkill }) => {
+const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDisplay, clickSkill, isMobile , setIsMobile}) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
   const resetReposDelay = 500;
   const mobileBreakPointWidth = 843;
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileBreakPointWidth);
-  console.log('isMobile =', isMobile);
+  console.log('window.innerWidth <= mobileBreakPointWidth =', window.innerWidth <= mobileBreakPointWidth);
+  setIsMobile(window.innerWidth <= mobileBreakPointWidth);
   
 
   //setup window resize listener
@@ -238,10 +239,9 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
       )
     }
     return reposToDisplay.map(repo => {
-      console.log('isMobile------------------------------------------------');
       if (isMobile) {
         return (
-          <article className="skills-popup__table-repo">
+          <article key={repo.name} className="skills-popup__table-repo">
             {keys.map((key, index) => {
               return getProjectContent(repo, key, index)
             })
@@ -302,10 +302,12 @@ const mapStateToProps = (state, ownProps) => {
     repos: state.repos,
     reposToDisplay: state.reposToDisplay,
     clickedSkill: state.clickedSkill,
+    isMobile: state.isMobile,
   }
 }
 
 export default connect(mapStateToProps, {
   clickSkill,
   addRepoToReposToDisplay,
+  setIsMobile,
 })(SkillsPopup);

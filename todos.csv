@@ -26,5 +26,5 @@
   *have it dynamically set the inner label via js?
 
 -conditinally render skills-popup__table-headers
--remove isMobile from state and add to redux store
+
 

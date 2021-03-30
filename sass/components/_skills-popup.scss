@@ -58,8 +58,8 @@
    
     &-headers, &-repo {
       grid-column: 1/-1;
-      display: grid;
-      grid-template-columns: minmax($default-font-size * 6.25, 1fr) minmax($default-font-size * 12.5, 3fr) repeat(2, minmax($default-font-size * 6.25, min-content)) min-content;
+      // display: grid;
+      // grid-template-columns: minmax($default-font-size * 6.25, 1fr) minmax($default-font-size * 12.5, 1fr) repeat(2, minmax($default-font-size * 6.25, min-content)) min-content;
     }
 
     &-header {
