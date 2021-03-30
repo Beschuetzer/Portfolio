@@ -9,7 +9,6 @@
 	display: flex;
 	align-items: center;
 
-
 	@include respond(tab-port) {
 		top: 1rem;
 		left: 1rem;
@@ -18,7 +17,6 @@
 		align-items: flex-start;
 		border-radius: 0;
 	}
-	
 
 	// &.navbar--isAnimating {
 	// 	width: auto;
@@ -111,8 +109,14 @@
 		transform: translateX(-125%);
 		transition: visibility $animation-navbar, transform $animation-navbar;
 
-		
-		
+		@include respond(tab-port) {
+			position: absolute;
+			top: 10rem;
+			left: 0;
+			display: flex;
+			overflow: visible !important;
+			flex-direction: column;
+		}
 	}
 
 	&__list {
@@ -121,11 +125,14 @@
 		align-items: center;
 		list-style: none;
 
+		@include respond(tab-port) {
+			flex-direction: column;
+		}
+
 		& .navbar__item:first-child {
 			border-radius: $default-font-size * 0.5 0 0 $default-font-size * 0.5;
 			@include respond(tab-port) {
 				border-radius: 0;
-				
 			}
 		}
 
@@ -133,7 +140,6 @@
 			margin-left: $default-font-size * 0.2;
 			@include respond(tab-port) {
 				margin-left: 0;
-				
 			}
 		}
 
@@ -158,6 +164,9 @@
 
 		&:hover {
 			background-color: lighten($color-primary-4, $hover-color-change-amount);
+			@include respond(tab-port) {
+				background-color: $color-primary-4;
+			}
 		}
 		&:not(.navbar__dropdown-container):hover {
 			transform: translateY(-$navbar__item-divider-width);
@@ -226,6 +235,12 @@
 
 		transition: padding $animation-duration * 1 $animation-easing-standard;
 
+		@include respond(tab-port) {
+			flex-direction: column;
+			position: relative;
+			z-index: 10000;
+		}
+
 		&:hover {
 			// color: darken($color-primary-1, $hover-color-change-amount);
 		}
@@ -239,7 +254,6 @@
 		display: flex;
 		align-items: center;
 		transition: border-radius $animation-duration * 1 $animation-easing-standard;
-
 
 		&:hover {
 			background-color: lighten($color-primary-4, $hover-color-change-amount);
@@ -261,6 +275,10 @@
 
 		transition: transform $animation-duration $animation-easing-standard;
 
+		@include respond(tab-port) {
+			position: relative;
+		}
+
 		& .navbar__item {
 			opacity: 0;
 			height: 0;
@@ -271,19 +289,33 @@
 				padding $animation-duration $animation-easing-standard,
 				opacity $animation-duration $animation-easing-standard,
 				transform $animation-duration * 0.25 $animation-easing-standard,
-				background-color $animation-duration * 0.25 $animation-easing-standard;
+				background-color $animation-duration * 0.25 $animation-easing-standard
+			;
+
+			@include respond(tab-port) {
+				border: 1px solid rgba($color-primary-1, .5);
+				margin-top: 0;
+				width: 75%;
+				align-self: center;
+			}
+
+
 			&:first-child {
 				border-radius: $default-font-size * 0.5 $default-font-size * 0.5 0 0;
 			}
 			&:last-child {
-				border-radius: 0 0 $navbar__item-border-radius
-					$navbar__item-border-radius;
+				border-radius: 0 0 $navbar__item-border-radius $navbar__item-border-radius;
+				@include respond(tab-port) {
+					border-radius: 0;
+				}
 			}
 
 			&:hover {
 				transform: translateX($navbar__item-divider-width) !important;
-				box-shadow: $default-font-size * 0.5 0 $default-font-size * 2
-					$navbar-box-shadow-color;
+				box-shadow: $default-font-size * 0.5 0 $default-font-size * 2	$navbar-box-shadow-color;
+				@include respond(tab-port) {
+					transform: translateY(-$navbar__item-divider-width) !important;
+				}
 			}
 		}
 
@@ -307,6 +339,8 @@
 		visibility: visible;
 		opacity: 1;
 		transform: translateY(0%);
+
+		
 	}
 
 	//Styling dropdown items on dropdown-container hover
@@ -324,16 +358,11 @@
 		& .navbar__content {
 			visibility: visible;
 			opacity: 1;
-			width: 100%;
 			transform: translateX(0%);
 
 			@include respond(tab-port) {
-				position: absolute;
-				top: 10rem;
-				left: 0;
-				display: flex;
-				overflow: visible !important;
-				flex-direction: column;
+				width: $navbar-mobile-width;
+				
 			}
 		}
 
@@ -341,8 +370,8 @@
 			border-radius: $default-font-size * 10 $default-font-size * 1
 				$default-font-size * 1 $default-font-size * 10;
 			@include respond(tab-port) {
-				border-radius: $default-font-size * 10 $default-font-size * 10  $default-font-size * 1
-				$default-font-size * 1;
+				border-radius: $default-font-size * 10 $default-font-size * 10
+					$default-font-size * 1 $default-font-size * 1;
 			}
 			//A hover styling
 			&:hover .navbar__menu-bar::before {
@@ -360,6 +389,10 @@
 
 		& .navbar__link:not(&__dropdown &__link) {
 			padding: $default-font-size * $paddingFactor $default-font-size * 1.5;
+
+			@include respond(tab-port) {
+				padding: $default-font-size 0;
+			}
 		}
 
 		& .navbar__background {
@@ -411,6 +444,6 @@
 
 	@include respond(tab-port) {
 		background-color: $color-primary-1;
-		border-bottom: $default-font-size * .1 solid $color-primary-4;
+		border-bottom: $default-font-size * 0.1 solid $color-primary-4;
 	}
 }

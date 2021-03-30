@@ -47,6 +47,7 @@ $navbar__button-bar-before-transform: $navbar__button-bar-before-rotation
 $navbar__button-bar-after-rotation: rotate(-105deg);
 $navbar__button-bar-after-transform: $navbar__button-bar-after-rotation
 	translate(0rem, -$default-font-size * 0.5);
+$navbar-mobile-width: 97.5vw;
 
 $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divider-width: $default-font-size * 0.2;
