@@ -151,7 +151,7 @@ class Resume extends React.Component {
           <WorkHistoryItem
             startDate="07/2018"
             endDate="06/2019"
-            title="<span class='work-history__item-number'>02.</span><span>Second Grade Education Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> Kualapuu Charter School </a>:</span>"
+            title="<span class='work-history__item-number'>02.</span><span>Second Grade Education Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> <span>Kualapuu Charter School <span></a>:</span>"
             sections={
               [
                 {

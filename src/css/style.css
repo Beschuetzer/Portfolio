@@ -263,6 +263,11 @@ body {
   height: auto;
   z-index: 10000;
 }
+@media only screen and (max-width: 52.6875em) {
+  .github {
+    right: 2rem;
+  }
+}
 .github__link:link, .github__link:visited {
   text-decoration: none;
   color: #28527a;
@@ -737,7 +742,7 @@ body {
 @media only screen and (max-width: 52.6875em) {
   .navbar {
     top: 1rem;
-    left: 1rem;
+    left: 2rem;
     align-items: flex-start;
     border-radius: 0;
   }
@@ -1088,7 +1093,7 @@ body {
 }
 
 #header {
-  width: 100vw;
+  width: 100%;
   position: fixed;
   height: 10rem;
   z-index: 10;
@@ -1136,6 +1141,11 @@ body {
   margin: auto;
   margin: 12.8rem auto 0 auto;
 }
+@media only screen and (max-width: 52.6875em) {
+  .resume {
+    margin: 11.2rem auto 0 auto;
+  }
+}
 .resume__section {
   width: 100%;
   display: flex;
@@ -1156,6 +1166,11 @@ body {
 .resume__content {
   padding: 4.8rem 1.6rem 5.6rem;
 }
+@media only screen and (max-width: 40.9375em) {
+  .resume__content {
+    padding: 5vmin 7.5vmin;
+  }
+}
 .resume__card {
   max-width: calc(100% - 20.8rem);
   width: 85rem;
@@ -1170,7 +1185,12 @@ body {
   .resume__card {
     max-width: 95%;
     width: 100%;
-    margin: 1.6rem;
+    margin: 1.6rem auto;
+  }
+}
+@media only screen and (max-width: 40.9375em) {
+  .resume__card {
+    padding: 0;
   }
 }
 .resume .heading {

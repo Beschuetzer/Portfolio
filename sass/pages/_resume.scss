@@ -8,6 +8,10 @@
   margin:  auto;
   margin: $component-margin-amount auto 0 auto;
 
+  @include respond(tab-port) {
+    margin: $component-margin-amount - $default-font-size auto 0 auto;
+  }
+
   &__section {
     // background-image: linear-gradient(to left, $color-primary-1, $color-primary-2);
     width: 100%;
@@ -48,6 +52,10 @@
   }  
   &__content {
     padding: $default-font-size * 3 $default-font-size $default-font-size * 3.5;
+
+    @include respond(phone) {
+      padding: $content-padding-mobile;
+    }
   }
   &__card {
     max-width: calc(100% - 20.8rem);
@@ -64,7 +72,10 @@
     @include respond(tab-port) {
       max-width: 95%;
       width: 100%;
-      margin: $default-font-size;
+      margin: $default-font-size auto;
+    }
+    @include respond(phone) {
+      padding: 0;
     }
   }
   & .heading {

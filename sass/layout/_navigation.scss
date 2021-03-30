@@ -10,8 +10,9 @@
 	align-items: center;
 
 	@include respond(tab-port) {
-		top: 1rem;
-		left: 1rem;
+		top: $default-font-size * 0.625;
+		left: $default-font-size * 1.25;
+		
 		align-items: flex-start;
 		border-radius: 0;
 	}
@@ -483,7 +484,7 @@
 }
 
 #header {
-	width: 100vw;
+	width: 100%;
 	position: fixed;
 	height: $default-font-size * 6.25;
 	z-index: 10;
