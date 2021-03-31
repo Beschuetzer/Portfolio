@@ -143,7 +143,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
     }, resetReposDelay)
   }
 
-  const returnDate = (key, repo) => {
+  const returnDate = (key, repo, title) => {
     const date = new Date(repo[key]).toLocaleString();
     const index = date.lastIndexOf(':');
     const dateToShow = date.slice(0, index) + ' ' + date.slice(index + 4);
@@ -154,9 +154,12 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
         onMouseEnter={onTableItemMouseEvent}
         onMouseLeave={onTableItemMouseEvent}
       >
-        {
-          dateToShow
+        {isMobile ?
+            <span className={`skills-popup__${key}-title`}>{title}:</span>
+            :
+            null
         }
+        <span>{dateToShow}</span>
       </div>
     );
   }
@@ -217,9 +220,9 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
           </a>
         );
       case 'createdAt':
-        return returnDate(key, repo);
+        return returnDate(key, repo, 'Created');
       case 'updatedAt':
-        return returnDate(key, repo);
+        return returnDate(key, repo, 'Updated');
       case 'description':
         return (
           <div 

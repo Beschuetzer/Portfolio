@@ -92,6 +92,7 @@
 
       @include respond(tab-port) {
         border:none;
+        padding: $default-font-size 0;
 
         &:nth-child(n+4) {
           padding-top:0;

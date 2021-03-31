@@ -38,12 +38,11 @@ html {
     font-size: 75%;
   }
 }
-@media only screen and (max-width: 58.5625em) {
+@media only screen and (max-width: 35.0625em) {
   html {
-    font-size: 56.25%;
+    font-size: 50%;
   }
 }
-
 /* everything related to font goes in body */
 body {
   font-weight: 400;
@@ -632,6 +631,7 @@ body {
 @media only screen and (max-width: 52.6875em) {
   .skills-popup__table-item {
     border: none;
+    padding: 1.6rem 0;
   }
   .skills-popup__table-item:nth-child(n+4) {
     padding-top: 0;
@@ -785,7 +785,7 @@ body {
 }
 .work-history__item-section-list li {
   margin-left: 2.4rem;
-  font-size: 1.44rem;
+  font-size: 1.6rem;
 }
 .work-history__item-section-list li:first-child {
   margin-top: 0.8rem;
