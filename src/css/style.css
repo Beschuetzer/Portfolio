@@ -358,6 +358,7 @@ body {
 }
 .skills__section-title {
   backface-visibility: hidden;
+  margin: 0 0 1.6rem 0;
   user-select: none;
   cursor: pointer;
   display: flex;
@@ -367,6 +368,11 @@ body {
   font-size: 2.4rem;
   font-weight: 300;
   transition: transform 0.25s ease, color 0.5s ease;
+}
+@media only screen and (max-width: 29.3125em) {
+  .skills__section-title {
+    margin-bottom: 1.2rem;
+  }
 }
 .skills__section-title-svg {
   backface-visibility: hidden;
@@ -437,7 +443,7 @@ body {
 }
 @media only screen and (max-width: 35.0625em) {
   .skills__item {
-    margin: 0.8rem 0 0.16rem 0;
+    margin: 0 0 0.4rem 0;
   }
 }
 .skills__title:link, .skills__title:visited, .skills__title {
@@ -466,6 +472,7 @@ body {
   animation: none;
   transform: translateX(1.6rem);
   font-weight: 700;
+  max-width: calc(100% - 1.6rem);
 }
 .skills__percent-outer {
   backface-visibility: hidden;
@@ -624,7 +631,7 @@ body {
 .skills-popup__table-repo {
   position: relative;
   grid-column: 1/-1;
-  padding-right: 3.2rem;
+  padding-right: 4.8rem;
 }
 .skills-popup__table-repo:nth-last-child(n+2) {
   border-bottom: 0.16rem solid rgba(40, 82, 122, 0.25);
@@ -642,7 +649,7 @@ body {
   border-bottom: 1px solid rgba(40, 82, 122, 0.25);
   display: flex;
   align-items: center;
-  padding: 1.6rem 2.4rem 1.6rem 0;
+  padding: 1.6rem 3.2rem 1.6rem 0;
   transition: border 0.25s ease;
 }
 @media only screen and (max-width: 52.6875em) {
@@ -690,6 +697,9 @@ body {
 }
 .skills-popup__table-item.skills-popup__description a:hover {
   border-image: none;
+}
+.skills-popup__table-item:nth-child(5n+3), .skills-popup__table-item:nth-child(5n+4) {
+  padding-right: 1.6rem;
 }
 .skills-popup__table-item:nth-child(5n+5) {
   padding-right: 0;
@@ -1277,6 +1287,17 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2.4rem;
+}
+@media only screen and (max-width: 52.6875em) {
+  .resume__header {
+    margin-bottom: 1.2rem;
+  }
+}
+@media only screen and (max-width: 29.3125em) {
+  .resume__header {
+    margin-bottom: 0;
+  }
 }
 .resume__header-summary {
   grid-column: 1/-1;

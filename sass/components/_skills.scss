@@ -31,7 +31,7 @@
 		}
 		&-title {
 			backface-visibility: hidden;
-
+			margin: 0 0 $default-font-size 0;
 			user-select: none;
 			cursor: pointer;
 			display: flex;
@@ -42,7 +42,12 @@
 			font-weight: 300;
 
 			transition: transform $animation-duration * 0.5 $animation-easing-standard,
-				color $animation-duration * 1 $animation-easing-standard;
+				color $animation-duration * 1 $animation-easing-standard
+			;
+
+			@include respond(small-font) {
+				margin-bottom: $default-font-size * .75;
+			}
 
 			&-svg {
 				backface-visibility: hidden;
@@ -134,7 +139,7 @@
 		// margin-left: $default-font-size * 1;
 
 		@include respond(nav-break) {
-	    margin: $default-font-size * .5 0 $default-font-size * .1 0;
+	    margin: 0 0 $default-font-size * .25 0;
 		}
 	}
 
@@ -172,6 +177,7 @@
 		animation: none;
 		transform: translateX($default-font-size);
     font-weight: 700;
+    max-width: calc(100% - 1.6rem);
 	}
 
 	&__percent {

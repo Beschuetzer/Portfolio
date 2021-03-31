@@ -42,7 +42,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+    margin-bottom: $default-font-size * 1.5;
+
+    @include respond(tab-port) {
+      margin-bottom: $default-font-size * .75;
+    }
+    @include respond(small-font) {
+      margin-bottom: 0;
+    }
     &-summary {
       grid-column: 1 / -1;
     }
