@@ -26,5 +26,4 @@
   *have it dynamically set the inner label via js?
 
 -fix bug with skillspopup hover effect not working for html5 (works for ruby)
--disable skills-popup__link hover effect for mobile
 

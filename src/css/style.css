@@ -754,6 +754,11 @@ body {
   opacity: 1;
   border-radius: 0;
 }
+@media only screen and (max-width: 52.6875em) {
+  .skills-popup__link:hover .skills-popup__link-text::before {
+    opacity: 0;
+  }
+}
 .skills-popup__link:hover .skills-popup__link-text {
   color: #8ac4d0;
   border-image: linear-gradient(to bottom, rgba(251, 238, 172, 0), rgba(251, 238, 172, 0));
