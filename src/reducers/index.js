@@ -5,6 +5,7 @@ import clickSkillReducer from './clickSkillReducer';
 import reposToDisplayReducer from './reposToDisplayReducer';
 import isAnimatingReducer from './isAnimatingReducer';
 import isMobileReducer from './isMobileReducer';
+import sectionsToSkipAnimationReducer from './sectionsToSkipAnimationReducer';
 
 export default combineReducers({
     repos: repositoriesReducer,
@@ -12,6 +13,7 @@ export default combineReducers({
     reposToDisplay: reposToDisplayReducer,
     isAnimating: isAnimatingReducer,
     isMobile: isMobileReducer,
+    sectionsToSkipAnimation: sectionsToSkipAnimationReducer,
 })
 
 

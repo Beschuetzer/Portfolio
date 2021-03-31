@@ -4,15 +4,9 @@ import {
   CLICK_SKILL,
   ADD_REPO,
   SET_IS_ANIMATING,
-  SET_IS_MOBILE
+  SET_IS_MOBILE,
+  SET_SECTIONS_TO_SKIP_ANIMATION,
 } from './types';
-//Example Action Creator
-//export const selectSong = (song) => {
-//    return {
-//        type: "SONG_SELECTED",
-//        payload: song,
-//    }
-//}
     
 export const getRepositories = () => async (dispatch, getStore) => {
   const schema = `
@@ -211,6 +205,13 @@ export const setIsAnimating = (value) => {
 export const setIsMobile = (value) => {
   return {
     type: SET_IS_MOBILE,
+    payload: value,
+  }
+}
+
+export const setSectionsToSkipAnimation = (value) => {
+  return {
+    type: SET_SECTIONS_TO_SKIP_ANIMATION,
     payload: value,
   }
 }

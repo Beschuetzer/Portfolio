@@ -20,7 +20,7 @@ class SkillsItemSection extends React.Component {
       setTimeout(() => {
         item.style.width = isOpening ? '100%' : '0%';
 
-        // debugger
+        debugger
         //TODO: check if section is in skipsections
         // if (clickedSection.textContext === 'Human Skills') 
         

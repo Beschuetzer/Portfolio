@@ -3,4 +3,6 @@ export const CLICK_SKILL = 'CLICK_SKILL';
 export const ADD_REPO = 'ADD_REPO';
 export const SET_IS_ANIMATING = 'SET_IS_ANIMATING';
 export const SET_IS_MOBILE = 'SET_IS_MOBILE';
+export const SET_SECTIONS_TO_SKIP_ANIMATION = 'SET_SECTIONS_TO_SKIP_ANIMATION';
+
 

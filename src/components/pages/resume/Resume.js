@@ -8,10 +8,9 @@ import SkillsItemSection from './Skills/SkillsItemSection';
 import SkillsItemSectionLabels from './Skills/SkillsItemSectionLabels';
 import SkillsItem from './Skills/SkillsItem';
 
-import { getRepositories } from '../../../actions';
+import { getRepositories, setSectionsToSkipAnimation } from '../../../actions';
 import SkillsPopup from './Skills/SkillsPopup/SkillsPopup';
 import WorkHistoryItem from './WorkHistory/WorkHistoryItem';
-
 
 class Resume extends React.Component { 
   static popupUrl = '/resume#skillsPopup';
@@ -38,7 +37,6 @@ class Resume extends React.Component {
       right:"Excels",
     },
   }
-
   static content = [
     [
       'summary', 
@@ -118,14 +116,14 @@ class Resume extends React.Component {
             <SkillsItemSectionLabels 
               labels={Resume.skillsLabels.human}
             />
-            <SkillsItem href={null} labels={Resume.skillsLabels.human} title="Listening" percent="85"/>
-            <SkillsItem href={null} labels={Resume.skillsLabels.human} title="Giving Feedback" percent="48"/>
-            <SkillsItem href={null} labels={Resume.skillsLabels.human} title="Receiving Feedback" percent="66"/>
-            <SkillsItem href={null} labels={Resume.skillsLabels.human} title="Empathizing" percent="68"/>
-            <SkillsItem href={null} labels={Resume.skillsLabels.human} title="Having Difficult Conversations" percent="75"/>
-            <SkillsItem href={null} labels={Resume.skillsLabels.human} title="Written Communication" percent="85"/>
-            <SkillsItem href={null} labels={Resume.skillsLabels.human} title="Oral Communication" percent="75"/>
-            <SkillsItem href={null} labels={Resume.skillsLabels.human} title="Self-Starter" percent="78"/>
+            <SkillsItem labels={Resume.skillsLabels.human} title="Listening" percent="85"/>
+            <SkillsItem labels={Resume.skillsLabels.human} title="Giving Feedback" percent="48"/>
+            <SkillsItem labels={Resume.skillsLabels.human} title="Receiving Feedback" percent="66"/>
+            <SkillsItem labels={Resume.skillsLabels.human} title="Empathizing" percent="68"/>
+            <SkillsItem labels={Resume.skillsLabels.human} title="Having Difficult Conversations" percent="75"/>
+            <SkillsItem labels={Resume.skillsLabels.human} title="Written Communication" percent="85"/>
+            <SkillsItem labels={Resume.skillsLabels.human} title="Oral Communication" percent="75"/>
+            <SkillsItem labels={Resume.skillsLabels.human} title="Self-Starter" percent="78"/>
           </SkillsItemSection>
         </ul>
       </React.Fragment>
@@ -242,6 +240,7 @@ class Resume extends React.Component {
     // this.renderTHREE();
     if (this.props.repos?.length > 0) return;
     this.props.getRepositories();
+    this.props.setSectionsToSkipAnimation(Resume.sectionsToSkipAnimation);
   }
 
   renderTHREE = () => {
@@ -312,4 +311,7 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
   getRepositories,
+  setSectionsToSkipAnimation,
 })(Resume);
+
+
