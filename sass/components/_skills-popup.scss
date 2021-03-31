@@ -37,6 +37,10 @@
     @include respond(tab-port) {
       padding: $default-font-size * 1 $default-font-size * 1.5;
     }
+    @include respond(small-font) {
+      max-width: 95vw;
+      max-height: 95vh;
+    }
   }
   
   &__header {
@@ -75,6 +79,11 @@
     &-repo {
       position: relative;
       grid-column: 1/-1;
+      padding-right: $default-font-size * 2;
+
+      &:nth-last-child(n+2) {
+        border-bottom: $default-font-size * .1 solid rgba(40, 82, 122, 0.25);
+      }
     }
 
     &-header {
@@ -103,15 +112,17 @@
           padding-top:0;
         }
 
-        &:nth-child(2n+3) {
-          padding-bottom: 0;
-        }
-        &:nth-last-child(2){
-          border-bottom: 1px solid rgba($color-primary-1, .25);
+        &:nth-child(3) {
+          display: grid;
+          grid-template-columns: max-content 1fr;
+          grid-column-gap: $default-font-size;
         }
 
         .skills-popup__table-repo > &:first-child{
           font-size: $default-font-size * 1.1;
+          display: grid;
+          grid-template-columns: max-content 1fr;
+          grid-column-gap: $default-font-size;
         }
 
         .skills-popup__table-repo > &:last-child{
@@ -127,12 +138,11 @@
       }
 
       & span {
-        margin-right: $default-font-size * .75;
         border-bottom: $default-font-size * .1 solid transparent;
         font-style: normal;
 
         @include respond(tab-port) {
-          &:first-child {
+          &:nth-child(2n+1) {
             font-weight: 700;
           }
         }
@@ -140,7 +150,6 @@
 
       &.skills-popup__description {
         display: inline;
-
         & a {
           text-decoration: none;
           &:hover {

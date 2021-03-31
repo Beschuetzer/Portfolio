@@ -143,10 +143,22 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
     }, resetReposDelay)
   }
 
-  const returnDate = (key, repo, title) => {
+  const returnDate = (key, repo, title, onlySpans=false) => {
     const date = new Date(repo[key]).toLocaleString();
     const index = date.lastIndexOf(':');
     const dateToShow = date.slice(0, index) + ' ' + date.slice(index + 4);
+    if (onlySpans) {
+      if (isMobile) {
+        return (
+          <React.Fragment>
+            <span className={`skills-popup__${key}-title`}>{title}:</span>
+            <span>{dateToShow}</span>
+          </React.Fragment>
+        )
+      }
+      <span>{dateToShow}</span>
+    }
+
     return (
       <div 
         key={key} 
@@ -220,8 +232,22 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
           </a>
         );
       case 'createdAt':
+        if (isMobile) {
+          return (
+            <div
+              key={key} 
+              className={`skills-popup__table-item skills-popup__dates`}
+              onMouseEnter={onTableItemMouseEvent}
+              onMouseLeave={onTableItemMouseEvent}
+            >
+              {returnDate(key, repo, 'Created', true)}
+              {returnDate('updatedAt', repo, 'Updated', true)}
+            </div>
+          )
+        }
         return returnDate(key, repo, 'Created');
       case 'updatedAt':
+        if (isMobile) return null;
         return returnDate(key, repo, 'Updated');
       case 'description':
         return (
