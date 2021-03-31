@@ -79,7 +79,7 @@
       align-items: center;
       text-align: center;
     }
-    &-item {
+    &-item{
       font-weight: 400;
       font-family: $font-family-text;
       border-bottom: 1px solid rgba($color-primary-1, .25);
@@ -103,16 +103,28 @@
         &:nth-last-child(2){
           border-bottom: 1px solid rgba($color-primary-1, .25);
         }
-        &:last-child{
+
+        .skills-popup__table-repo > &:first-child{
+          font-size: $default-font-size * 1.1;
+        }
+
+        .skills-popup__table-repo > &:last-child{
           position: absolute;
           top: $default-font-size * .75;
           right: 0;
         }
+
+        & .skills-popup__table-item {
+          padding: 0;
+        }
+    
       }
 
       & span {
-        margin-right: $default-font-size * .5;
-        font-style: italic;
+        margin-right: $default-font-size * .75;
+        border-bottom: $default-font-size * .1 solid transparent;
+        font-style: normal;
+
       }
 
       &.skills-popup__description {
@@ -230,10 +242,6 @@
     }
   }
   
-  &__name {
-    font-size: $default-font-size * 1.25;
-  }
-
   &__error { 
     grid-column: 1 /-1;
     justify-self: center;
@@ -256,5 +264,10 @@
   }
   &__link-js--hover > div::before {
     @include skills-popup-link-hover;
+  }
+
+  //This has to go at the end to override a previous style
+  &__table-item.skills-popup__link  {
+    border-bottom: none;
   }
 }

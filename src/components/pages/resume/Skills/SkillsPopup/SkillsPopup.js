@@ -197,7 +197,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
               :
               null
             }
-            {repo[key]}
+            <span>{repo[key]}</span>
           </div>
         );
       case 'url':
