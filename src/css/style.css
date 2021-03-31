@@ -579,24 +579,31 @@ body {
   border-radius: 0.8rem;
   transition: transform 0.75s cubic-bezier(0.68, -0.2, 0.32, 1.2);
 }
+@media only screen and (max-width: 52.6875em) {
+  .skills-popup__content {
+    padding: 1.6rem 2.4rem;
+  }
+}
 .skills-popup__header {
   font-size: 3.2rem;
   font-weight: 100;
   text-align: center;
   margin-bottom: 2.4rem;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr min-content;
 }
 @media only screen and (max-width: 52.6875em) {
   .skills-popup__header {
+    border-bottom: 0.16rem solid #28527a;
     margin-bottom: 0.8rem;
+    font-size: 2.4rem;
   }
 }
 .skills-popup__header-text {
   margin-right: 2.4rem;
 }
 .skills-popup__header-skill {
-  font-weight: 700;
+  font-weight: 400;
 }
 .skills-popup__table {
   display: grid;
@@ -658,6 +665,11 @@ body {
   margin-right: 1.2rem;
   border-bottom: 0.16rem solid transparent;
   font-style: normal;
+}
+@media only screen and (max-width: 52.6875em) {
+  .skills-popup__table-item span:first-child {
+    font-weight: 700;
+  }
 }
 .skills-popup__table-item.skills-popup__description {
   display: inline;

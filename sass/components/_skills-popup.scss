@@ -34,6 +34,9 @@
     transition: 
       transform $animation-duration * 1.5 $animation-easing-standard-easeInOutBack-smaller,
     ;
+    @include respond(tab-port) {
+      padding: $default-font-size * 1 $default-font-size * 1.5;
+    }
   }
   
   &__header {
@@ -41,18 +44,20 @@
     font-weight: 100;
     text-align: center;
     margin-bottom: $default-font-size * 1.5;
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr min-content;
 
     @include respond(tab-port) {
+      border-bottom: $default-font-size * .1 solid $color-primary-1;
       margin-bottom: $default-font-size * .5;
+      font-size: $default-font-size * 1.5;
     }
 
     &-text {
       margin-right: $default-font-size * 1.5;
     }
     &-skill {
-      font-weight: 700;
+      font-weight: 400;
     }
   }
   
@@ -126,6 +131,11 @@
         border-bottom: $default-font-size * .1 solid transparent;
         font-style: normal;
 
+        @include respond(tab-port) {
+          &:first-child {
+            font-weight: 700;
+          }
+        }
       }
 
       &.skills-popup__description {
