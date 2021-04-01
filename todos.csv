@@ -25,7 +25,7 @@ BUGS/TO ADD-----------------------------------------------------------
 -fix alignment of header buttons on smaller viewports
 -have skillspopup table header fixed to top and repos overflow?
 
-
--troubleshoot issues where switching from mobile to desktop in device toolbar causes github button to disappear and other layout oddities
 -finish adding content to the resume page
+-fix NavToggler
+-fix Human skills link issue
 
