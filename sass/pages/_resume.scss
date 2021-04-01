@@ -47,7 +47,7 @@
     @include respond(tab-port) {
       margin-bottom: $default-font-size * .75;
     }
-    
+
     &-summary {
       grid-column: 1 / -1;
     }
@@ -56,6 +56,7 @@
   }  
   &__content {
     padding: $default-font-size * 3 $default-font-size $default-font-size * 3.5;
+    font-size: $default-font-size;
 
     @include respond(phone) {
       padding: $content-padding-mobile;
@@ -85,4 +86,28 @@
   & .heading {
     color: $color-primary-3;
   }
+}
+
+.education {
+  &__date, &__gpa {
+    font-weight: 700;
+  }
+
+  &__date {
+    margin-right: $default-font-size * .5;
+  }
+  &__degree {
+    
+  }
+  &__location {
+    
+  }
+  &__gpa {
+    
+  }
+  
+  &__item {
+    margin-left: 1.6rem;
+  }
+  
 }

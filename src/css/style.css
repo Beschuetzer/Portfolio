@@ -1335,6 +1335,7 @@ body {
 }
 .resume__content {
   padding: 4.8rem 1.6rem 5.6rem;
+  font-size: 1.6rem;
 }
 @media only screen and (max-width: 40.9375em) {
   .resume__content {
@@ -1365,6 +1366,16 @@ body {
 }
 .resume .heading {
   color: #f4d160;
+}
+
+.education__date, .education__gpa {
+  font-weight: 700;
+}
+.education__date {
+  margin-right: 0.8rem;
+}
+.education__item {
+  margin-left: 1.6rem;
 }
 
 /*# sourceMappingURL=style.css.map */

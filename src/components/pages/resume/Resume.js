@@ -214,9 +214,21 @@ class Resume extends React.Component {
     [
       'education', 
       <React.Fragment>
-        <Paragraph size="four">
-          I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<Link className="link" to='/works'>what I have been building</Link>&nbsp;since I embarked on this journey.
-        </Paragraph>
+        <ul className="education">
+          <li className="education__item">
+            <span className='education__date'> Dec. of 2010: </span>
+            <a 
+              href='/transcript.pdf' 
+              className='education__degree skills-popup__link-text skills__title--animating'
+              target='_blank'
+              rel='noreferrer'
+            > 
+              B.A. in Linguistics 
+            </a>
+            <span className='education__location'> from the University of Minnesota Twin Cities  </span>
+            <span className='education__gpa'> (3.701 GPA). </span>
+          </li>
+        </ul>
       </React.Fragment>
     ],
     [
