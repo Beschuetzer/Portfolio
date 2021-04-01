@@ -1378,6 +1378,7 @@ body {
   margin-right: 0.8rem;
 }
 .references {
+  font-size: 1.44rem;
   display: grid;
   grid-template-columns: minmax(6.4rem, 16rem) 1fr repeat(2, max-content);
   grid-column-gap: 1.6rem;

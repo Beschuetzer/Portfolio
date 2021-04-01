@@ -238,7 +238,7 @@ class Resume extends React.Component {
         <div className='references'>
           <ReferenceItem
             name="Scott Helland"
-            relation="Former Supervisor"
+            relation="Former Supervisor Charge of Laun"
             phone="651-325-5416"
             email="shelland@isd622.org"
             href='/letterOfRecommendationScott.pdf'

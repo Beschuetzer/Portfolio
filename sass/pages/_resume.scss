@@ -110,7 +110,7 @@
 }
 
 .references {
-  // font-size: $default-font-size * .9;
+  font-size: $default-font-size * .9;
   display: grid;
   grid-template-columns: minmax($default-font-size * 4, $default-font-size * 10) 1fr repeat(2, max-content);
   grid-column-gap: $default-font-size;
