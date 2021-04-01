@@ -449,21 +449,21 @@ body {
 .skills__title:link, .skills__title:visited, .skills__title {
   backface-visibility: hidden;
   position: relative;
-  cursor: pointer;
   display: inline-block;
   text-decoration: none;
-  border-bottom: 0.16rem solid #28527a;
   color: #28527a;
 }
-.skills__title:link:hover, .skills__title:visited:hover, .skills__title:hover {
-  transform: scale(1.05);
-}
 .skills__title--animating, .skills__title--animating:link, .skills__title--animating:visited {
+  border-bottom: 0.16rem solid #28527a;
+  cursor: pointer;
   background: linear-gradient(to left, #28527a 0%, #fffdf5 5%, #28527a 10%, #28527a 100%);
   background-size: 200% auto;
   background-clip: text;
   color: transparent;
   animation: animate-skills infinite 10s;
+}
+.skills__title--animating:hover, .skills__title--animating:link:hover, .skills__title--animating:visited:hover {
+  transform: scale(1.05);
 }
 .skills-popup__link.skills__title--animating:link, .skills-popup__link.skills__title--animating:visited {
   display: flex;

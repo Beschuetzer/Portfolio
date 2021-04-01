@@ -148,25 +148,25 @@
 	&__title {
 		backface-visibility: hidden;
 		position: relative;
-		cursor: pointer;
 		display: inline-block;
 		text-decoration: none;
-		border-bottom: $default-font-size * 0.1 solid $color-primary-1;
 		color: $color-primary-1;
-
-		&:hover {
-			transform: scale($scale-amount);
-		}
 	}
 
 	&__title--animating,
 	&__title--animating:link,
 	&__title--animating:visited {
+		border-bottom: $default-font-size * 0.1 solid $color-primary-1;
+		cursor: pointer;
 		background: $skills-linear-gradient-original;
 		background-size: 200% auto;
 		background-clip: text;
 		color: transparent;
 		animation: animate-skills infinite 10s;
+
+		&:hover {
+			transform: scale($scale-amount);
+		}
 	}
 
 	&-popup__link.skills__title--animating:link, &-popup__link.skills__title--animating:visited {

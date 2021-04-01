@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class SkillsItemSection extends React.Component {
   static timeOutDifferential = 50;
@@ -21,7 +22,8 @@ class SkillsItemSection extends React.Component {
         item.style.width = isOpening ? '100%' : '0%';
 
         //TODO: check if section is in skipsections
-        // if (clickedSection.textContext === 'Human Skills') 
+        debugger
+        if (this.props.sectionsToSkipAnimation.indexOf(clickedSection.textContent) !== -1) return;
         
         const previousElementChildren = item.previousElementSibling?.children;
         previousElementChildren[previousElementChildren.length - 1]?.classList?.add('skills__title--animating')
@@ -48,4 +50,13 @@ class SkillsItemSection extends React.Component {
   }
 }
 
-export default SkillsItemSection;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    sectionsToSkipAnimation: state.resume.sectionsToSkipAnimation,
+  }
+}
+
+export default connect(mapStateToProps,
+{
+
+})(SkillsItemSection);
