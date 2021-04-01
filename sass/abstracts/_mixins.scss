@@ -50,7 +50,20 @@
 	opacity: 1;
 	border-radius: 0;
 }
-
+@mixin link-line {
+	border-bottom-width: $default-font-size * .1;
+	border-bottom-style: solid;
+	border-image: linear-gradient(to right, $color-primary-4 0%, $color-primary-1 50%, $color-primary-1 50%, $color-primary-4 100%);
+	border-image-slice: 1;
+}
+@mixin link-animating {
+	cursor: pointer;
+	background: $skills-linear-gradient-original;
+	background-size: 200% auto;
+	background-clip: text;
+	color: transparent;
+	animation: animate-skills infinite 10s;
+}
 
 /* ------------------------------------------------------------------------------------------------- */
 //Media Query Manager

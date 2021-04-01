@@ -1377,5 +1377,29 @@ body {
 .education__date {
   margin-right: 0.8rem;
 }
+.references {
+  display: grid;
+  grid-template-columns: minmax(6.4rem, 16rem) 1fr repeat(2, max-content);
+  grid-column-gap: 1.6rem;
+  grid-auto-rows: minmax(min-content, 4.8rem);
+  align-items: center;
+  justify-items: flex-start;
+}
+.references__name--link:link, .references__name--link:visited {
+  border-bottom-width: 0.16rem;
+  border-bottom-style: solid;
+  border-image: linear-gradient(to right, #fbeeac 0%, #28527a 50%, #28527a 50%, #fbeeac 100%);
+  border-image-slice: 1;
+  cursor: pointer;
+  background: linear-gradient(to left, #28527a 0%, #fffdf5 5%, #28527a 10%, #28527a 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  color: transparent;
+  animation: animate-skills infinite 10s;
+  display: inline;
+}
+.references__email {
+  justify-self: flex-end;
+}
 
 /*# sourceMappingURL=style.css.map */

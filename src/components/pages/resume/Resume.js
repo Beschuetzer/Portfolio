@@ -7,6 +7,7 @@ import Paragraph from '../../typography/Paragraph';
 import SkillsItemSection from './Skills/SkillsItemSection';
 import SkillsItemSectionLabels from './Skills/SkillsItemSectionLabels';
 import SkillsItem from './Skills/SkillsItem';
+import ReferenceItem from './ReferenceItem';
 
 import { getRepositories, setSectionsToSkipAnimation } from '../../../actions';
 import SkillsPopup from './Skills/SkillsPopup/SkillsPopup';
@@ -234,9 +235,34 @@ class Resume extends React.Component {
     [
       'references', 
       <React.Fragment>
-        <Paragraph size="four">
-          I have created this website to highlight the reasons I believe I would be an excellent canditate for one of the web development programs at Revature.  If you have not yet had the chance, I highly encourage you check out &nbsp;<Link className="link" to='/works'>what I have been building</Link>&nbsp;since I embarked on this journey.
-        </Paragraph>
+        <div className='references'>
+          <ReferenceItem
+            name="Scott Helland"
+            relation="Former Supervisor"
+            phone="651-325-5416"
+            email="shelland@isd622.org"
+            href='/letterOfRecommendationScott.pdf'
+          />
+          <ReferenceItem
+            name="Rita Bulger"
+            relation="Former Co-worker"
+            phone="651-325-7633"
+            email="rbulger@isd622.org"
+            href='/letterOfRecommendationRita.pdf'
+          />
+          <ReferenceItem
+            name="Helen Dougherty-Wakeman"
+            relation="Former Co-worker"
+            phone="651-748-6223"
+            email="hdougherty-wakeman@isd622.org"
+          />
+          <ReferenceItem
+            name="Andrew Cleland"
+            relation="Friend"
+            phone="612-388-8986"
+            email="clel0011@umn.edu"
+          />
+        </div>
       </React.Fragment>
     ],
   ];

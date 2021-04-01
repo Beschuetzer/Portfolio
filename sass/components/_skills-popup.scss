@@ -215,10 +215,7 @@
     position: relative;
 
     &-text {
-      border-bottom-width: $default-font-size * .1;
-      border-bottom-style: solid;
-      border-image: linear-gradient(to right, $color-primary-4 0%, $color-primary-1 50%, $color-primary-1 50%, $color-primary-4 100%);
-      border-image-slice: 1;
+      @include link-line;
       transition: 
         border $animation-duration * .5 $animation-easing-standard,
         color $animation-duration * .5 $animation-easing-modern,

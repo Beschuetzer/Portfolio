@@ -108,3 +108,34 @@
     
   }
 }
+
+.references {
+  // font-size: $default-font-size * .9;
+  display: grid;
+  grid-template-columns: minmax($default-font-size * 4, $default-font-size * 10) 1fr repeat(2, max-content);
+  grid-column-gap: $default-font-size;
+  grid-auto-rows: minmax(min-content, $default-font-size * 3);
+  align-items: center;
+  justify-items: flex-start;
+
+  &__name {
+
+    &--link:link, &--link:visited
+    {
+      @include link-line;
+      @include link-animating;
+      display: inline;
+    }
+  }
+  &__relation {
+    
+  }
+  &__phone {
+    
+  }
+  &__email {
+    justify-self: flex-end;
+    
+  }
+  
+}
