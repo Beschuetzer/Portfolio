@@ -42,7 +42,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: $default-font-size * 2;
+    margin-bottom: $default-font-size * .5;
 
     @include respond(tab-port) {
       margin-bottom: $default-font-size * .75;
@@ -110,15 +110,18 @@
 }
 
 .references {
-  font-size: $default-font-size * .9;
+  font-size: $default-font-size * 1;
   display: grid;
-  grid-template-columns: minmax(min-content, max-content) 1fr max-content 1fr;
-  // grid-gap: $default-font-size;
-  // grid-auto-rows: minmax(min-content, $default-font-size * 4);
+  grid-template-columns: repeat(2,minmax(min-content, max-content)) max-content 1fr;
+  grid-auto-rows: minmax($default-font-size * 4, $default-font-size * 6);
   align-items: center;
 
   & > * {
-    padding: 0 $default-font-size * 2 $default-font-size 0;
+    padding: $default-font-size * .5 $default-font-size * 1 $default-font-size* .5 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    border-bottom: $default-font-size * .1 solid $color-primary-1;
   }
 
   @include respond(tab-port) {
@@ -130,6 +133,7 @@
       margin-left: $default-font-size * 3;
       // font-size: $default-font-size;
       padding: 0;
+      border: none;
     }
 
     & > *:nth-child(4n+1) {
@@ -139,21 +143,12 @@
   }
 
   &__name {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
     @include respond(tab-port) {
       font-size: $default-font-size * 1;
       margin: $default-font-size 0;
-      // font-weight: 300;
-      
     }
 
     &-text {
-      // @include respond(tab-port) {
-      //   grid-column: 1 / -1;
-      // }
     }
 
     &-link:link, &-link:visited
@@ -162,6 +157,13 @@
       @include link-animating;
       display: inline;
     }
+
+    @include respond(nav-break) {
+      &:nth-child(1) {
+        margin-top: $default-font-size * .5;
+      }
+    }
+
   }
   &__relation {
   }
@@ -173,13 +175,17 @@
     }
   }
   &__email {
-    // justify-self: flex-end;
-    column-count: 2;
-    width: 100%;
+    padding-right: 0;
+    // display: inline-block;
     @include respond(tab-port) {
       column-count: auto;
       width: auto;
       margin-bottom: $default-font-size;
+    }
+
+    @include respond(nav-break) {
+      display: inline-block;
+      padding-top: $default-font-size * .5;
     }
 
     & a {
@@ -205,4 +211,9 @@
     
   }
   
+}
+
+div.references__name{
+  display: flex;
+  align-items: center;
 }

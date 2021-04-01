@@ -1323,7 +1323,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3.2rem;
+  margin-bottom: 0.8rem;
 }
 @media only screen and (max-width: 52.6875em) {
   .resume__header {
@@ -1378,13 +1378,18 @@ body {
   margin-right: 0.8rem;
 }
 .references {
-  font-size: 1.44rem;
+  font-size: 1.6rem;
   display: grid;
-  grid-template-columns: minmax(min-content, max-content) 1fr max-content 1fr;
+  grid-template-columns: repeat(2, minmax(min-content, max-content)) max-content 1fr;
+  grid-auto-rows: minmax(6.4rem, 9.6rem);
   align-items: center;
 }
 .references > * {
-  padding: 0 3.2rem 1.6rem 0;
+  padding: 0.8rem 1.6rem 0.8rem 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border-bottom: 0.16rem solid #28527a;
 }
 @media only screen and (max-width: 52.6875em) {
   .references {
@@ -1395,15 +1400,11 @@ body {
   .references > * {
     margin-left: 4.8rem;
     padding: 0;
+    border: none;
   }
   .references > *:nth-child(4n+1) {
     margin-left: 0;
   }
-}
-.references__name {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
 }
 @media only screen and (max-width: 52.6875em) {
   .references__name {
@@ -1424,6 +1425,11 @@ body {
   animation: animate-skills infinite 10s;
   display: inline;
 }
+@media only screen and (max-width: 35.0625em) {
+  .references__name:nth-child(1) {
+    margin-top: 0.8rem;
+  }
+}
 .references__number {
   display: none;
 }
@@ -1436,14 +1442,19 @@ body {
   }
 }
 .references__email {
-  column-count: 2;
-  width: 100%;
+  padding-right: 0;
 }
 @media only screen and (max-width: 52.6875em) {
   .references__email {
     column-count: auto;
     width: auto;
     margin-bottom: 1.6rem;
+  }
+}
+@media only screen and (max-width: 35.0625em) {
+  .references__email {
+    display: inline-block;
+    padding-top: 0.8rem;
   }
 }
 .references__email a {
@@ -1472,6 +1483,11 @@ body {
   .references__email, .references__relation, .references__phone, .references__name {
     grid-column: 1/-1;
   }
+}
+
+div.references__name {
+  display: flex;
+  align-items: center;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -11,16 +11,18 @@ const ReferenceItem = ({number, name, phone, email, relation, href}) => {
             {name}:
           </a>
         :
-          <div className='references__name-text'>{name}:</div>
+          <div className='references__name-text'>
+            {name}:
+          </div>
         }
       </div>
       <div className='references__relation'>
         <span className='references__tag'>Relation:</span>
-        {relation}
+        <span>{relation}</span>
       </div>
       <div className='references__phone'>
         <span className='references__tag'>Phone:</span>
-        {phone}
+        <span>{phone}</span>
       </div>
       <div className='references__email'>
         <span className='references__tag'>Email:</span>
