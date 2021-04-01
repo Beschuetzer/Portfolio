@@ -345,8 +345,8 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
 const mapStateToProps = (state, ownProps) => {
   return {
     repos: state.repos,
-    reposToDisplay: state.reposToDisplay,
-    clickedSkill: state.clickedSkill,
+    reposToDisplay: state.resume.reposToDisplay,
+    clickedSkill: state.resume.clickedSkill,
     isMobile: state.isMobile,
   }
 }
