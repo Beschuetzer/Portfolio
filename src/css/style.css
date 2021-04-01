@@ -1446,6 +1446,18 @@ body {
     margin-bottom: 1.6rem;
   }
 }
+.references__email a {
+  border-bottom-width: 0.16rem;
+  border-bottom-style: solid;
+  border-image: linear-gradient(to right, #fbeeac 0%, #28527a 50%, #28527a 50%, #fbeeac 100%);
+  border-image-slice: 1;
+  cursor: pointer;
+  background: linear-gradient(to left, #28527a 0%, #fffdf5 5%, #28527a 10%, #28527a 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  color: transparent;
+  animation: animate-skills infinite 10s;
+}
 .references__tag {
   display: none;
   margin-right: 0.8rem;

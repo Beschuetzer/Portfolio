@@ -181,6 +181,11 @@
       width: auto;
       margin-bottom: $default-font-size;
     }
+
+    & a {
+      @include link-line;
+      @include link-animating;
+    }
   }
 
   &__tag {

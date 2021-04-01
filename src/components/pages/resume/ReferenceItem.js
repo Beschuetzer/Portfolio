@@ -24,7 +24,7 @@ const ReferenceItem = ({number, name, phone, email, relation, href}) => {
       </div>
       <div className='references__email'>
         <span className='references__tag'>Email:</span>
-        {email}
+        <a href={`mailto:${email}`}>{email}</a>
       </div>
     </React.Fragment>
   );
