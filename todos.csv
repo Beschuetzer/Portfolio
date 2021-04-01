@@ -1,31 +1,31 @@
+IDEAS-----------------------------------------------------------
+
+  -on root route:
+    -have words orbiting a planet with a work on it?
+    artistically place multiple words that mean something and then have a description of their importance in the coding when show up as a unique pop up/slide in effect: 
+      -what is an Adam Major (click a word to find out more)?
+      -curiosity
+      -driven
+      -excellence
+      -listening
+      -
+
+
+    -for the Bridge work - have separate links that having working demos for each part of the site (preferences, bidding, playing, summary)
+  -add hover popup for references that pops up a card with image, quote (recommendation from ziprecruiter, and letter of recommendation from scott?), more detailed info about relationship with reference;  add personal references?
+
+
+BUGS/TO ADD-----------------------------------------------------------
 -fix navbar animation glitch when clicking to close right after opening
 -add hover effect for nav button when it is A
 -work on changing nav button direction to open down below ~685px
-
-
-
--on root route:
-  -have words orbiting a planet with a work on it?
-  artistically place multiple words that mean something and then have a description of their importance in the coding when show up as a unique pop up/slide in effect: 
-    -what is an Adam Major (click a word to find out more)?
-    -curiosity
-    -driven
-    -excellence
-    -listening
-    -
-
-
-  -for the Bridge work - have separate links that having working demos for each part of the site (preferences, bidding, playing, summary)
--add hover popup for references that pops up a card with image, quote (recommendation from ziprecruiter, and letter of recommendation from scott?), more detailed info about relationship with reference;  add personal references?
-
-
--troubleshoot issues where switching from mobile to desktop in device toolbar causes github button to disappear and other layout oddities
--finish adding content to the resume page
--change Skillspop and entire skills section layout for mobile
 -add label-show-inside-blue-bar-on-hover functionality:
   *have it dynamically set the inner label via js?
 
 -fix alignment of header buttons on smaller viewports
 -have skillspopup table header fixed to top and repos overflow?
 
+
+-troubleshoot issues where switching from mobile to desktop in device toolbar causes github button to disappear and other layout oddities
+-finish adding content to the resume page
 
