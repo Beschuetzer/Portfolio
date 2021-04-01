@@ -112,20 +112,23 @@
 .references {
   font-size: $default-font-size * .9;
   display: grid;
-  // grid-template-columns: repeat(4 , 1fr);
-  grid-template-columns: minmax($default-font-size * 4, $default-font-size * 10) 1fr repeat(2, minmax($default-font-size * 5, max-content));
-  grid-gap: $default-font-size;
-  grid-auto-rows: minmax(min-content, $default-font-size * 4);
+  grid-template-columns: minmax(min-content, max-content) 1fr repeat(2, minmax(min-content, max-content));
+  // grid-gap: $default-font-size;
+  // grid-auto-rows: minmax(min-content, $default-font-size * 4);
   align-items: center;
-  justify-items: flex-start;
+  // justify-items: flex-start;
+
+  & > * {
+    padding: $default-font-size;
+  }
 
   @include respond(nav-break) {
     grid-gap: 0;
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: minmax(min-content, $default-font-size * 2);
+    grid-auto-rows: min-content;
 
     & > * {
-      margin-left: $default-font-size * 1;
+      margin-left: $default-font-size * 2;
     }
 
     & > *:nth-child(4n+1) {
@@ -135,26 +138,30 @@
   }
 
   &__name {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
     @include respond(nav-break) {
-      grid-column: 1 / -1;
+      font-size: $default-font-size * 1;
+      font-weight: 300;
+      
     }
 
-    &--link:link, &--link:visited
+    &-text {
+      // @include respond(nav-break) {
+      //   grid-column: 1 / -1;
+      // }
+    }
+
+    &-link:link, &-link:visited
     {
       @include link-line;
       @include link-animating;
       display: inline;
     }
-
   }
   &__relation {
-    @include respond(nav-break) {
-      grid-column: 1/-1;
-    }
-  }
-  &__phone {
-    
   }
   &__number {
     display: none;
@@ -170,7 +177,19 @@
     @include respond(nav-break) {
       column-count: auto;
       width: auto;
+      margin-bottom: $default-font-size;
     }
+  }
+
+  &__tag {
+    margin-right: $default-font-size * .5;
+  }
+
+  @include respond(nav-break) {
+    &__email, &__relation, &__phone, &__name {
+      grid-column: 1 / -1;
+    }
+    
   }
   
 }
