@@ -1,26 +1,27 @@
 import React from 'react';
 
-const ReferenceItem = ({name, phone, email, relation, href}) => {
+const ReferenceItem = ({number, name, phone, email, relation, href}) => {
 
   const relationWords = relation.split(' ');
-  const relationIsMultipleWords = relationWords.length > 1;
-  const relationMiddleIndex = Math.ceil(relationWords.length / 2);
+  const relationIsMultipleWords = false;
+  // const relationIsMultipleWords = relationWords.length > 1;
+  // const relationMiddleIndex = Math.ceil(relationWords.length / 2);
 
-  const proposedRelationTopRowOne = relationWords.slice(0, (relationMiddleIndex)).join(' ')
-  const proposedRelationBottomRowOne = relationWords.slice(relationMiddleIndex).join(' ')
-  const differenceInCharacterLengthOne = Math.abs(proposedRelationTopRowOne - proposedRelationBottomRowOne).length;
+  // const proposedRelationTopRowOne = relationWords.slice(0, (relationMiddleIndex)).join(' ')
+  // const proposedRelationBottomRowOne = relationWords.slice(relationMiddleIndex).join(' ')
+  // const differenceInCharacterLengthOne = Math.abs(proposedRelationTopRowOne - proposedRelationBottomRowOne).length;
 
-  const proposedRelationTopRowTwo = relationWords.slice(0, (relationMiddleIndex)).join(' ')
-  const proposedRelationBottomRowTwo = relationWords.slice(relationMiddleIndex).join(' ')
-  const differenceInCharacterLengthTwo = Math.abs(proposedRelationTopRowTwo - proposedRelationBottomRowTwo).length;
+  // const proposedRelationTopRowTwo = relationWords.slice(0, (relationMiddleIndex)).join(' ')
+  // const proposedRelationBottomRowTwo = relationWords.slice(relationMiddleIndex).join(' ')
+  // const differenceInCharacterLengthTwo = Math.abs(proposedRelationTopRowTwo - proposedRelationBottomRowTwo).length;
 
-  let topRowToUse = proposedRelationTopRowOne;
-  let bottomRowToUse = proposedRelationBottomRowOne;
+  // let topRowToUse = proposedRelationTopRowOne;
+  // let bottomRowToUse = proposedRelationBottomRowOne;
 
-  if (differenceInCharacterLengthOne > differenceInCharacterLengthTwo) {
-    topRowToUse = proposedRelationTopRowOne;
-    bottomRowToUse = proposedRelationBottomRowOne;
-  }
+  // if (differenceInCharacterLengthOne > differenceInCharacterLengthTwo) {
+  //   topRowToUse = proposedRelationTopRowOne;
+  //   bottomRowToUse = proposedRelationBottomRowOne;
+  // }
 
   //TODO: test this component with different length relations
 
@@ -29,21 +30,24 @@ const ReferenceItem = ({name, phone, email, relation, href}) => {
   return (
     <React.Fragment>
       {href ?
-        <a target="_blank" rel='noreferrer' href={href} className='references__name--link'>{name}</a>
+        <a target="_blank" rel='noreferrer' href={href} className='references__name references__name--link'>
+          <span className='references__number'>{number}.</span>
+          {name}:
+        </a>
       :
-        <span className='references__name'>{name}</span>
+        <div className='references__name'>{name}:</div>
       }
       {relationIsMultipleWords ?
-        
-        <div className='references__relation-words'>
-          <div className='references__relation-word-one'>{topRowToUse}</div>
-          <div className='references__relation-word-rest'>{bottomRowToUse}</div>
-        </div>
+        null
+        // <div className='references__relation-words'>
+        //   <div className='references__relation-word-one'>{topRowToUse}</div>
+        //   <div className='references__relation-word-rest'>{bottomRowToUse}</div>
+        // </div>
       : 
-        <span className='references__relation'>{relation}</span>
+        <div className='references__relation'>{relation}</div>
       }
-      <span className='references__phone'>{phone}</span>
-      <span className='references__email'>{email}</span>
+      <div className='references__phone'>{phone}</div>
+      <div className='references__email'>{email}</div>
     </React.Fragment>
   );
 }

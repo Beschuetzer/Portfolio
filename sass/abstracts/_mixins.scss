@@ -50,6 +50,11 @@
 	opacity: 1;
 	border-radius: 0;
 }
+@mixin item-number {
+	font-family: ui-sans-serif;
+	font-weight: 300;
+	margin-right: 0.8rem;
+}
 @mixin link-line {
 	border-bottom-width: $default-font-size * .1;
 	border-bottom-style: solid;

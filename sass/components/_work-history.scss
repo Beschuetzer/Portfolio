@@ -40,12 +40,8 @@
     }
 
     &-number {
-      font-family: ui-sans-serif;
-      font-weight: 300;
-      margin-right: $default-font-size * .5;
-    }
-    
-    
+      @include item-number;
+    }    
     
   }
   

@@ -237,13 +237,15 @@ class Resume extends React.Component {
       <React.Fragment>
         <div className='references'>
           <ReferenceItem
+            number='01'
             name="Scott Helland"
-            relation="Former Supervisor Charge of Laun"
+            relation="Former Supervisor"
             phone="651-325-5416"
             email="shelland@isd622.org"
             href='/letterOfRecommendationScott.pdf'
           />
           <ReferenceItem
+            number='02'
             name="Rita Bulger"
             relation="Former Co-worker"
             phone="651-325-7633"
@@ -251,12 +253,14 @@ class Resume extends React.Component {
             href='/letterOfRecommendationRita.pdf'
           />
           <ReferenceItem
+            number='03'
             name="Helen Dougherty-Wakeman"
             relation="Former Co-worker"
             phone="651-748-6223"
             email="hdougherty-wakeman@isd622.org"
           />
           <ReferenceItem
+            number='04'
             name="Andrew Cleland"
             relation="Friend"
             phone="612-388-8986"
