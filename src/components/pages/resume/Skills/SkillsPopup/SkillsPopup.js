@@ -13,7 +13,6 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   const resetReposDelay = 500;
   // const mobileBreakPointWidth = 740;
   const mobileBreakPointWidth = 843;
-  console.log('window.innerWidth <= mobileBreakPointWidth =', window.innerWidth <= mobileBreakPointWidth);
   setIsMobile(window.innerWidth <= mobileBreakPointWidth);
   
 
@@ -319,7 +318,6 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
         })
     );
   }
-  console.log('render------------------------------------------------');
   return (
     ReactDOM.createPortal(
       <div className='skills-popup__content'>

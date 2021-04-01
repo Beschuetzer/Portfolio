@@ -62,7 +62,6 @@ export const getRepositories = () => async (dispatch, getStore) => {
   }`
 
   const response = await github(query);
-  console.log('response =', response);
 
   dispatch({
     type: GET_REPOSITORIES,
@@ -189,7 +188,6 @@ export const clickSkill = (target) => {
 }
 
 export const addRepoToReposToDisplay = (repo) => {
-  console.log('repo =', repo);
   return {
     type: ADD_REPO,
     payload: repo,

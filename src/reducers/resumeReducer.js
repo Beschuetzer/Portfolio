@@ -11,8 +11,6 @@ const resumeReducer = (state = INITIAL_STATE, action) => {
     case SET_SECTIONS_TO_SKIP_ANIMATION:
       return {...state, sectionsToSkipAnimation: action.payload};
     case ADD_REPO:
-      console.log('action =', action);
-      console.log('state =', state);
       if (action.payload?.length === 0) return {...state, reposToDisplay: []};
       
       const reposToDisplayNew = [...state.reposToDisplay, action.payload];

@@ -74,7 +74,6 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
   });
 
   useEffect(() => {
-    console.log('isAnimating change------------------------------------------------');
     const navBar = navRef.current;
     const resetAnimatingId = setTimeout(() => {
       navBar?.classList?.remove('navbar--isAnimating');

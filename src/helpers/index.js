@@ -12,7 +12,6 @@ export function checkForParentOfType(element, parentType, classPresent='') {
       return checkForParentOfType(parent, parentType, classPresent);
   }
   catch (error) {
-      console.log('error =', error);
       return false;
   }
 }

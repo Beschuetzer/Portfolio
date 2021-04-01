@@ -5,8 +5,8 @@ class NavToggler extends React.Component {
   render () {
     return (
       ReactDOM.createPortal(
-        <div class='header-toggle'>
-          <svg class="header-toggle__svg">
+        <div className='header-toggle'>
+          <svg className="header-toggle__svg">
             <use xlinkHref="sprite.svg#icon-angle-double-down"></use>
           </svg>
         </div>
