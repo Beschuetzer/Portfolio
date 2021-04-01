@@ -1368,14 +1368,14 @@ body {
   color: #f4d160;
 }
 
+.education__item {
+  margin-left: 1.6rem;
+}
 .education__date, .education__gpa {
   font-weight: 700;
 }
 .education__date {
   margin-right: 0.8rem;
-}
-.education__item {
-  margin-left: 1.6rem;
 }
 
 /*# sourceMappingURL=style.css.map */

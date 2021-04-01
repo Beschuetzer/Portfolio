@@ -26,5 +26,7 @@ BUGS/TO ADD-----------------------------------------------------------
 -have skillspopup table header fixed to top and repos overflow?
 
 -finish adding content to the resume page
--fix NavToggler
+-add PageNav (use data-section-name attribute to grab all of the visible sections and add clickable links to top for easy page navigation (desktop version moves to side under SiteNav?
+-finish NavToggler
 
+-add letters of reference for rita and scott

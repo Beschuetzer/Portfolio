@@ -89,10 +89,12 @@
 }
 
 .education {
+  &__item {
+    margin-left: 1.6rem;
+  }
   &__date, &__gpa {
     font-weight: 700;
   }
-
   &__date {
     margin-right: $default-font-size * .5;
   }
@@ -105,9 +107,4 @@
   &__gpa {
     
   }
-  
-  &__item {
-    margin-left: 1.6rem;
-  }
-  
 }
