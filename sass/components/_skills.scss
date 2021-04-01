@@ -151,22 +151,18 @@
 		display: inline-block;
 		text-decoration: none;
 		color: $color-primary-1;
+		border-bottom: $default-font-size * 0.1 solid $color-primary-1;
 	}
 
 	&__title--animating,
 	&__title--animating:link,
 	&__title--animating:visited {
-		border-bottom: $default-font-size * 0.1 solid $color-primary-1;
 		cursor: pointer;
 		background: $skills-linear-gradient-original;
 		background-size: 200% auto;
 		background-clip: text;
 		color: transparent;
 		animation: animate-skills infinite 10s;
-
-		&:hover {
-			transform: scale($scale-amount);
-		}
 	}
 
 	&-popup__link.skills__title--animating:link, &-popup__link.skills__title--animating:visited {
@@ -191,6 +187,10 @@
 			width: 0;
 			transition: width $animation-duration * 2
 				cubic-bezier(0.68, -0.33, 0.32, 1.33);
+
+			@include respond(nav-break) {
+				margin-left: $default-font-size;
+			}
 
 			&-left,
 			&-center,

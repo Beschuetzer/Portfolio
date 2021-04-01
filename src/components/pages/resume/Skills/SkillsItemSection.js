@@ -21,13 +21,10 @@ class SkillsItemSection extends React.Component {
       setTimeout(() => {
         item.style.width = isOpening ? '100%' : '0%';
 
-        //TODO: check if section is in skipsections
-        debugger
         if (this.props.sectionsToSkipAnimation.indexOf(clickedSection.textContent) !== -1) return;
-        
+
         const previousElementChildren = item.previousElementSibling?.children;
         previousElementChildren[previousElementChildren.length - 1]?.classList?.add('skills__title--animating')
-
       }, SkillsItemSection.timeOutDifferential * i);
     }
   }

@@ -8,8 +8,10 @@ const SkillsItem = ({ title, percent, href, clickSkill, hours, labels }) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
   const percentDiv = useRef();
   const [isDivSet, setIsDivSet] = useState(false);
+  const linkClass = 'skills__title--animating'
 
   const onParagraphClick = (e) => {
+    if (!e.target.classList.contains(linkClass)) return;
     skillsPopupDiv?.classList?.toggle('skills-popup--active');
     clickSkill(e.target);
   }
