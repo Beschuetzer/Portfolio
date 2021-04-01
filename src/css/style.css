@@ -1237,19 +1237,24 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-left: 0.16rem solid #8ac4d0;
-  border-bottom: 0.16rem solid #8ac4d0;
-  border-right: 0.16rem solid #8ac4d0;
+  border-left: 0.24rem solid #fbeeac;
+  border-bottom: 0.24rem solid #fbeeac;
+  border-right: 0.24rem solid #fbeeac;
   border-radius: 0 0 50% 50%;
   position: fixed;
   right: 0;
-  top: 0;
+  top: 10rem;
   z-index: 5;
   background-color: #28527a;
   opacity: 0;
-  transition: opacity 0.5s ease;
+}
+@media only screen and (max-width: 52.6875em) {
+  .header-toggle {
+    opacity: 1;
+  }
 }
 .header-toggle__svg {
+  transform: rotate(180deg);
   fill: #fbeeac;
   width: 4rem;
   height: 4rem;

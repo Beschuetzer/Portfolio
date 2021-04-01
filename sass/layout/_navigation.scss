@@ -484,10 +484,9 @@
 }
 
 .header {
-	
 	width: 100%;
 	position: fixed;
-	height: $default-font-size * 6.25;
+	height: $header-height;
 	z-index: 1;
 	transition: 
 		opacity $animation-duration $animation-easing-standard,
@@ -496,7 +495,7 @@
 	@include respond(tab-port) {
 		z-index: 10;
 		background-color: $color-primary-1;
-		border-bottom: $default-font-size * 0.1 solid $color-primary-4;
+		border-bottom: $default-font-size * .1 solid $color-primary-4;
 		// opacity: 0;
 		// visibility: hidden;
 	}
@@ -505,25 +504,27 @@
 		display:flex;
 		justify-content: center;
 		align-items: center;
-		border-left: $default-font-size * .1 solid $color-primary-2;
-		border-bottom: $default-font-size * .1 solid $color-primary-2;
-		border-right: $default-font-size * .1 solid $color-primary-2;
+		border-left: $default-font-size * .15 solid $color-primary-4;
+		border-bottom: $default-font-size * .15 solid $color-primary-4;
+		border-right: $default-font-size * .15 solid $color-primary-4;
 		border-radius: 0 0 50% 50%;
 		position: fixed;
 		right: 0;
-		top: 0;
+		top: $header-height;
 		z-index: 5;
 		background-color: $color-primary-1;
 		opacity: 0;
-		transition: 
-			opacity $animation-duration $animation-easing-standard,
-		;
+		// transition: 
+			// opacity $animation-duration $animation-easing-standard,
+		// ;
 
 		@include respond(tab-port) {
-			// opacity: 0;
+			opacity: 1;
 		}
 
 		&__svg {
+			transform: rotate(180deg);
+
 			fill: $color-primary-4;
 			width: $header-toggle-width;
 			height: $header-toggle-width;
