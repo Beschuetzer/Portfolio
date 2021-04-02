@@ -95,7 +95,7 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
   }, [isAnimating, root])
   
   return ReactDOM.createPortal(
-      <nav ref={navRef} className="z-index-navbar navbar overflow--hidden" onClick={onNavClick}>
+      <nav ref={navRef} className="navbar z-index-navbar overflow--hidden" onClick={onNavClick}>
         <div className="navbar__button" to="/">
           <div className="navbar__menu">
             <div className="navbar__menu-bar"></div>
@@ -125,7 +125,7 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
         <div onClick={onNavClick} className='navbar__background'></div>
       </nav>
     ,
-    document.querySelector('.header__inner')
+    document.querySelector('.site-nav')
   );
 }
 

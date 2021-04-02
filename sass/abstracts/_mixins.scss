@@ -100,7 +100,8 @@
 		} //1200px
 	}
 	@if $breakpoint == nav-switch {
-		@media only screen and (max-width: 67.1875em) {			
+		// @media only screen and (max-width: 67.1875em) {			
+			@media only screen and (max-width: 71em) {			
 			@content;
 		} //1200px
 	}

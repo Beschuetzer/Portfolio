@@ -59,9 +59,6 @@ class App extends React.Component {
 	render() {
 		return (
 			<Router history={history}>
-				<Route path="*" exact component={PageNav} />
-				<Route path="*" exact component={SiteNav} />
-				<Route path="*" exact component={NavToggler} />
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/works" exact component={Projects} />
@@ -69,7 +66,10 @@ class App extends React.Component {
 					<Route path="/resume" exact component={Resume} />
 					<Route path="/contact" exact component={Contact} />
 				</Switch>
-				<GithubButton />
+				<Route path="*" exact component={NavToggler} />
+				<Route path="*" exact component={PageNav} />
+				<Route path="*" exact component={SiteNav} />
+				<Route path="*" exact component={GithubButton} />
 				{/* <Footer/> */}
 			</Router>
 		);
