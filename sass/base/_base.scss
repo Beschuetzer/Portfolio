@@ -15,9 +15,10 @@
         @include respond(tab-land) {
             // font-size: 56.25%;
         }
-        // @include respond(tab-port) {
-        //     font-size: 43.75%;
-        // }
+        @include respond(tab-port) {
+            // font-size: 43.75%;
+            font-size: 56.25%;
+        }
         // @include respond(phone) {
         //     font-size: 37.5%;
         // }

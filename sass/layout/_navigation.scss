@@ -492,7 +492,7 @@
 		opacity $animation-duration $animation-easing-standard,
 	;
 
-	@include respond(tab-port) {
+	@include respond(nav-switch) {
 		z-index: 10;
 		background-color: $color-primary-1;
 		border-bottom: $default-font-size * .1 solid $color-primary-4;
@@ -518,7 +518,7 @@
 			// opacity $animation-duration $animation-easing-standard,
 		// ;
 
-		@include respond(tab-port) {
+		@include respond(nav-switch) {
 			opacity: 1;
 		}
 
