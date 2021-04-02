@@ -38,7 +38,7 @@ class SkillsPopupName extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isMobile: state.isMobile,
+    isMobile: state.general.isMobile,
   }
 }
 

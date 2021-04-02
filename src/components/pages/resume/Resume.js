@@ -346,7 +346,7 @@ class Resume extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    repos: state.repos,
+    repos: state.general.repos,
   }
 }
 

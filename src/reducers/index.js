@@ -1,14 +1,10 @@
 
 import {combineReducers} from "redux";
-import repositoriesReducer from './repositoriesReducer';
-import isAnimatingReducer from './isAnimatingReducer';
-import isMobileReducer from './isMobileReducer';
 import resumeReducer from './resumeReducer';
+import generalReducer from "./generalReducer";
 
 export default combineReducers({
-    repos: repositoriesReducer,
-    isAnimating: isAnimatingReducer,
-    isMobile: isMobileReducer,
+    general: generalReducer,
     resume: resumeReducer,    
 })
 

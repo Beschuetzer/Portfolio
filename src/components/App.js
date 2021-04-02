@@ -78,7 +78,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		isAnimating: state.isAnimating,
+		isAnimating: state.general.isAnimating,
 	}
 }
 

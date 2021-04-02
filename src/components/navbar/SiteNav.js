@@ -131,7 +131,7 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isAnimating: state.isAnimating,
+    isAnimating: state.general.isAnimating,
   }
 }
 
