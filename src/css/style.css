@@ -453,6 +453,7 @@ body {
   }
 }
 .skills__title:link, .skills__title:visited, .skills__title {
+  cursor: pointer;
   backface-visibility: hidden;
   position: relative;
   display: inline-block;

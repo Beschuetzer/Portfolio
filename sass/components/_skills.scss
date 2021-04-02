@@ -146,6 +146,7 @@
 	&__title:link,
 	&__title:visited,
 	&__title {
+		cursor: pointer;
 		backface-visibility: hidden;
 		position: relative;
 		display: inline-block;
