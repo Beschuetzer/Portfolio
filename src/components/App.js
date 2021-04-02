@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import Projects from "./pages/Projects";
 import Resume from "./pages/resume/Resume";
 import SiteNav from "./navbar/SiteNav";
+import PageNav from "./navbar/PageNav";
 import NavToggler from "./navbar/NavToggler";
 import Footer from "./Footer";
 import "../css/style.css";
@@ -58,8 +59,9 @@ class App extends React.Component {
 	render() {
 		return (
 			<Router history={history}>
-				<SiteNav />
-				<NavToggler/>
+				<Route path="*" exact component={PageNav} />
+				<Route path="*" exact component={SiteNav} />
+				<Route path="*" exact component={NavToggler} />
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/works" exact component={Projects} />
