@@ -30,11 +30,16 @@
     &-skills {
       
     }
-    &-work-history {
-      
+    &-work-History {
+      line-height: $line-height * 1.1;
     }
     &-education {
       
+    }
+    &-references{
+      & .resume__header {
+        margin-bottom: $default-font-size * .5;
+      }
     }
   }
 
@@ -42,10 +47,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: $default-font-size * .5;
+    margin-bottom: $default-font-size * 2;
 
     @include respond(tab-port) {
       margin-bottom: $default-font-size * .75;
+    }
+
+    &:last-child {
+      margin-bottom: $default-font-size * .5;
     }
 
     &-summary {
@@ -121,7 +130,11 @@
     display: flex;
     align-items: center;
     height: 100%;
-    border-bottom: $default-font-size * .1 solid $color-primary-1;
+    border-bottom: $default-font-size * .1 solid rgba($color-primary-1, .25);
+
+    &:nth-last-child(n+13) {
+      padding-top: 0;
+    }
   }
 
   @include respond(tab-port) {
@@ -145,10 +158,21 @@
   &__name {
     @include respond(tab-port) {
       font-size: $default-font-size * 1;
-      margin: $default-font-size 0;
-    }
+      margin: $default-font-size 0 $default-font-size * .5 0;
 
+      & *:nth-child(2) {
+        // font-size: $default-font-size * 1.15;
+      }
+
+      &:nth-child(n+2) {
+        border-top: $default-font-size * .1 solid rgba($color-primary-1, .25);
+
+      }
+    }
     &-text {
+      // border-top-width: 0.32rem; 
+      // border-color: transparent;
+      // border-bottom-style: solid;
     }
 
     &-link:link, &-link:visited
@@ -169,6 +193,11 @@
   }
   &__number {
     display: none;
+
+    &--no-link {
+      border-top: $default-font-size * .1875 solid transparent;
+    }
+
     @include respond(tab-port) {
       @include item-number;
       display: inline-block;
@@ -180,12 +209,12 @@
     @include respond(tab-port) {
       column-count: auto;
       width: auto;
-      margin-bottom: $default-font-size;
+      padding-bottom: $default-font-size * 1;
     }
 
     @include respond(nav-break) {
       display: inline-block;
-      padding-top: $default-font-size * .5;
+      // padding-top: 0;
     }
 
     & a {

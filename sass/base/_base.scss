@@ -37,7 +37,7 @@
     /* everything related to font goes in body */
     body {
         font-weight: 400;
-        line-height: 1.5;
+        line-height: $line-height;
         font-family: $font-family-headers;
         color: $color-primary-4;
         background-image: linear-gradient(to right, rgba($color-primary-1, 1), rgba($color-primary-1, 1));

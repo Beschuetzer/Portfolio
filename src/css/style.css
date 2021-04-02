@@ -1319,16 +1319,25 @@ body {
 .resume__section-summary {
   grid-column: 1/-1;
 }
+.resume__section-work-History {
+  line-height: 1.65;
+}
+.resume__section-references .resume__header {
+  margin-bottom: 0.8rem;
+}
 .resume__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.8rem;
+  margin-bottom: 3.2rem;
 }
 @media only screen and (max-width: 52.6875em) {
   .resume__header {
     margin-bottom: 1.2rem;
   }
+}
+.resume__header:last-child {
+  margin-bottom: 0.8rem;
 }
 .resume__header-summary {
   grid-column: 1/-1;
@@ -1389,7 +1398,10 @@ body {
   display: flex;
   align-items: center;
   height: 100%;
-  border-bottom: 0.16rem solid #28527a;
+  border-bottom: 0.16rem solid rgba(40, 82, 122, 0.25);
+}
+.references > *:nth-last-child(n+13) {
+  padding-top: 0;
 }
 @media only screen and (max-width: 52.6875em) {
   .references {
@@ -1409,7 +1421,10 @@ body {
 @media only screen and (max-width: 52.6875em) {
   .references__name {
     font-size: 1.6rem;
-    margin: 1.6rem 0;
+    margin: 1.6rem 0 0.8rem 0;
+  }
+  .references__name:nth-child(n+2) {
+    border-top: 0.16rem solid rgba(40, 82, 122, 0.25);
   }
 }
 .references__name-link:link, .references__name-link:visited {
@@ -1433,6 +1448,9 @@ body {
 .references__number {
   display: none;
 }
+.references__number--no-link {
+  border-top: 0.3rem solid transparent;
+}
 @media only screen and (max-width: 52.6875em) {
   .references__number {
     font-family: ui-sans-serif;
@@ -1448,13 +1466,12 @@ body {
   .references__email {
     column-count: auto;
     width: auto;
-    margin-bottom: 1.6rem;
+    padding-bottom: 1.6rem;
   }
 }
 @media only screen and (max-width: 35.0625em) {
   .references__email {
     display: inline-block;
-    padding-top: 0.8rem;
   }
 }
 .references__email a {

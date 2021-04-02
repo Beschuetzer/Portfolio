@@ -130,7 +130,7 @@ class Resume extends React.Component {
       </React.Fragment>
     ],
     [
-      'work History', 
+      'work-History', 
       <React.Fragment>
         <div className="work-history">
           <WorkHistoryItem
@@ -321,7 +321,6 @@ class Resume extends React.Component {
         );
       }
 
-      //no headerSideContent for this section
       return (
         <ResumeSection key={index}
           name={contentArray[0]}
