@@ -2,16 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class NavToggler extends React.Component {
+  handleOnClick = (e) => {
+    console.log('e.target =', e.target);
+    e.currentTarget.parentNode?.classList?.toggle('header-toggler--active')
+  }
+
   render () {
     return (
       ReactDOM.createPortal(
-        <div className='header-toggle'>
-          <svg className="header-toggle__svg">
-            <use xlinkHref="sprite.svg#icon-angle-double-down"></use>
-          </svg>
-        </div>
+        <svg 
+          onClick={this.handleOnClick}  
+          className="header-toggler__svg"
+        >
+          <use xlinkHref="sprite.svg#icon-angle-double-down"></use>
+        </svg>
       ,
-        document.body
+        document.body.querySelector('.header-toggler')
       )
     );
   }

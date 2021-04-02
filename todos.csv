@@ -23,10 +23,4 @@ BUGS/TO ADD-----------------------------------------------------------
   *have it dynamically set the inner label via js?
 
 -fix alignment of header buttons on smaller viewports
--have skillspopup table header fixed to top and repos overflow?
-
--finish adding content to the resume page
 -add PageNav (use data-section-name attribute to grab all of the visible sections and add clickable links to top for easy page navigation (desktop version moves to side under SiteNav?
--finish NavToggler
-
--add letters of reference for rita and scott

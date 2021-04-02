@@ -1259,7 +1259,7 @@ body {
   position: fixed;
   height: 10rem;
   z-index: 1;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 @media only screen and (max-width: 67.1875em) {
   .header {
@@ -1268,31 +1268,44 @@ body {
     border-bottom: 0.16rem solid #fbeeac;
   }
 }
-.header-toggle {
+.header-toggler {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  height: 14rem;
   border-left: 0.24rem solid #fbeeac;
   border-bottom: 0.24rem solid #fbeeac;
   border-right: 0.24rem solid #fbeeac;
-  border-radius: 0 0 50% 50%;
+  border-radius: 0 0 1000px 1000px;
   position: fixed;
   right: 0;
-  top: 10rem;
+  top: 0;
   z-index: 5;
   background-color: #28527a;
   opacity: 0;
+  transition: top 0.5s cubic-bezier(0.68, -0.2, 0.32, 1.2);
 }
 @media only screen and (max-width: 67.1875em) {
-  .header-toggle {
+  .header-toggler {
     opacity: 1;
   }
 }
-.header-toggle__svg {
+.header-toggler__svg {
+  cursor: pointer;
   transform: rotate(180deg);
   fill: #fbeeac;
   width: 4rem;
   height: 4rem;
+  transition: transform 0.5s cubic-bezier(1, 0, 0, 1) 0.25s;
+}
+.header-toggler--active {
+  top: -10rem;
+}
+.header-toggler--active svg {
+  transform: rotate(0deg);
+}
+.header-toggler--active + .header {
+  transform: translateY(-10rem);
 }
 
 ::-webkit-scrollbar {
@@ -1419,9 +1432,8 @@ body {
   margin-right: 0.8rem;
 }
 .references {
-  font-size: 1.44rem;
   display: grid;
-  grid-template-columns: repeat(2, minmax(min-content, max-content)) max-content 1fr;
+  grid-template-columns: repeat(2, minmax(min-content, 20rem)) max-content 1fr;
   grid-auto-rows: minmax(6.4rem, 9.6rem);
   align-items: center;
 }
