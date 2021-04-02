@@ -340,8 +340,9 @@ body {
   font-family: "Open Sans", sans-serif;
   position: relative;
 }
-.skills__section:first-child {
-  margin: 0.8rem 0;
+.skills__section:nth-child(3) .skills__title {
+  cursor: none;
+  border: 0.16rem solid transparent;
 }
 .skills__section-content {
   height: 0;

@@ -37,7 +37,7 @@ class SkillsItemSection extends React.Component {
   render() {
     const { children, title } = this.props;
     return (
-      <React.Fragment>
+      <div className='skills__section'>
         <div onClick={this.onTitleClick} className="skills__section-title skills__title--animating">
           {title}
           <svg className="skills__section-title-svg">
@@ -47,7 +47,7 @@ class SkillsItemSection extends React.Component {
         <div className="skills__section-content">
           {children}
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
