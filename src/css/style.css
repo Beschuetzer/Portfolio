@@ -1332,6 +1332,9 @@ body {
   transform: translateY(-10rem);
 }
 
+.page-nav {
+  font-size: 1.2rem;
+}
 ::-webkit-scrollbar {
   height: 1.6rem;
   width: 1.6rem;

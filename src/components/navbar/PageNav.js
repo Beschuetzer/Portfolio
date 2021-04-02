@@ -9,19 +9,9 @@ import { capitalize } from '../../helpers';
 class PageNav extends React.Component {
   static cssClass = 'page-nav';
 
-  componentDidMount () {
-    const { previousUrl } = this.props;
-    const currentUrl = this.props.match?.url;
-    
-    console.log('previousUrl =', previousUrl);
-  }
-
   renderSections = () => {
-    console.log('render------------------------------------------------');
     const { previousUrl } = this.props;
     const currentUrl = this.props.match?.url;
-
-    // if (previousUrl === currentUrl) return;
 
     if (!previousUrl || previousUrl !== currentUrl) this.props.setPreviousUrl(currentUrl);
 
@@ -31,20 +21,21 @@ class PageNav extends React.Component {
     for (let i = 0; i < sections.length; i++) {
       const section = sections[i];
       const capitalized = capitalize(section.dataset.section);
-      // debugger
       sectionNames.push(capitalized?.replace('-', ' '))
     }
     
     return sectionNames.map((sectionName, index, array) => {
       return (
-        <span key={index} className={`${PageNav.cssClass}__section ${PageNav.cssClass}__section-${sectionName}`}>
+        <a href={`${this.props.match.url}#${sectionName?.toLowerCase()}`} key={index} className={`${PageNav.cssClass}__section ${PageNav.cssClass}__section-${sectionName}`}>
           {sectionName}
+          &nbsp;
           {index < (array.length - 1) ?
             '/'  
           : 
             null
           }
-        </span>
+          &nbsp;
+        </a>
       );
     });
   }
