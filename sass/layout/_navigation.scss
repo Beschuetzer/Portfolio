@@ -427,9 +427,20 @@
 			@include respond(nav-switch) {
 				width: $navbar-mobile-width;
 				position: absolute;
-				// top: 100%;
-				width: 93.5vw;
+				width: 93.4vw;
 				z-index: 100;
+			}
+	
+			@include respond(tab-land) {
+				width: 93vw;
+			}
+
+			@include respond(phone) {
+				width: 92.5vw;
+			}
+
+			@include respond(small-font) {
+				width: 92vw;
 			}
 		}
 

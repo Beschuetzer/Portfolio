@@ -1171,8 +1171,23 @@ body {
   .navbar.navbar--active .navbar__content {
     width: 97.5vw;
     position: absolute;
-    width: 93.5vw;
+    width: 93.4vw;
     z-index: 100;
+  }
+}
+@media only screen and (max-width: 58.5625em) {
+  .navbar.navbar--active .navbar__content {
+    width: 93vw;
+  }
+}
+@media only screen and (max-width: 40.9375em) {
+  .navbar.navbar--active .navbar__content {
+    width: 92.5vw;
+  }
+}
+@media only screen and (max-width: 29.3125em) {
+  .navbar.navbar--active .navbar__content {
+    width: 92vw;
   }
 }
 .navbar.navbar--active .navbar__button {
