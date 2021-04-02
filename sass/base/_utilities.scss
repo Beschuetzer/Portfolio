@@ -72,6 +72,10 @@
     
     .overflow--hidden {
         overflow: hidden !important;
+
+        @include respond(nav-switch) {
+            overflow: visible !important;
+        }
     }
 
     //Dealing with SiteNav glitch

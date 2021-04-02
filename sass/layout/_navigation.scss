@@ -1,21 +1,25 @@
 .navbar {
 	// width: 8rem;
 	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
-	position: fixed;
-	top: $default-font-size * 0.25;
-	left: $default-font-size * 0.625;
+	position: relative;
+	// top: $default-font-size * 0.25;
+	// left: $default-font-size * 0.625;
 	font-size: $default-font-size * 1.5;
 	text-align: center;
 	display: flex;
 	align-items: center;
 
-	@include respond(tab-port) {
-		top: $default-font-size * 0.625;
+	@include respond(mobile-switch) {
+		// top: $default-font-size * 0.625;
 		// left: $default-font-size * 1.25;
-		left: 2vmin;
+		// left: 2vmin;
 		
 		align-items: flex-start;
 		border-radius: 0;
+
+		&.overflow--hidden.navbar.navbar--active {
+			overflow: visible !important;
+		}
 	}
 
 	// &.navbar--isAnimating {
@@ -109,7 +113,7 @@
 		transform: translateX(-125%);
 		transition: visibility $animation-navbar, transform $animation-navbar;
 
-		@include respond(tab-port) {
+		@include respond(nav-switch) {
 			transform: translateY(-6rem);
 			position: absolute;
 			top: $default-font-size * 6.125;
@@ -117,7 +121,7 @@
 			display: flex;
 			overflow: visible !important;
 			flex-direction: column;
-    	max-width: calc(100% - 1rem);
+    	// max-width: calc(100% - 1rem);
 		}
 	}
 
@@ -132,24 +136,31 @@
 		;
 
 
-		@include respond(tab-port) {
+		@include respond(nav-switch) {
 			flex-direction: column-reverse;
 			opacity: 0;
 			width: $default-font-size * 5;
 		}
 
 		& .navbar__item:first-child {
+			transition: 
+				border-radius $animation-duration $animation-easing-standard,
+			;
 			border-radius: $default-font-size * 0.5 0 0 $default-font-size * 0.5;
-			@include respond(tab-port) {
+			@include respond(nav-switch) {
 				border-radius: 0 0 $default-font-size * 2 $default-font-size * 2;
-				overflow: hidden;
+
+				&:hover {
+					// border-radius: 0;
+				}
+				// overflow: hidden;
 			}
 		}
 
 		& .navbar__item:nth-child(n + 1) {
 			margin-left: $default-font-size * 0.2;
-			@include respond(tab-port) {
-				margin-left: 0;
+			@include respond(nav-switch) {
+				// margin-left: 0;
 			}
 		}
 
@@ -176,7 +187,7 @@
 
 		&:hover {
 			background-color: lighten($color-primary-4, $hover-color-change-amount);
-			// @include respond(tab-port) {
+			// @include respond(nav-switch) {
 			// 	background-color: $color-primary-4;
 			// }
 		}
@@ -195,9 +206,9 @@
 		// &:first-child{
 		//   margin-left: $navbar__item-divider;
 		// }
-		&:last-child {
+		&:last-child, &:first-child {
 			border-radius: 0 10rem 10rem 0;
-			@include respond(tab-port) {
+			@include respond(nav-switch) {
 				border-radius: 0;
 			}
 		}
@@ -250,7 +261,7 @@
 			opacity $animation-duration * 0.5 $animation-easing-standard $animation-duration * .5,
 		;
 
-		@include respond(tab-port) {
+		@include respond(nav-switch) {
 			flex-direction: column;
 			position: relative;
 			z-index: 10000;
@@ -294,7 +305,7 @@
 	
 		
 
-		@include respond(tab-port) {
+		@include respond(nav-switch) {
 			position: relative;
 			height: 0;
 			transform: translateY(0%) scale(0);
@@ -318,7 +329,7 @@
 				background-color $animation-duration * 0.25 $animation-easing-standard
 			;
 
-			@include respond(tab-port) {
+			@include respond(nav-switch) {
 				border-top: $default-font-size * .1 solid transparent;
 				border-bottom: $default-font-size * .1 solid rgba($color-primary-1, .5);
 				border-left: $default-font-size * .1 solid rgba($color-primary-1, .5);
@@ -330,15 +341,16 @@
 
 
 			&:first-child {
-				border-radius: $default-font-size * 0.5 $default-font-size * 0.5 0 0;
-				@include respond(tab-port) {
+				// border-radius: $default-font-size * 0.5 $default-font-size * 0.5 0 0;
+				border-radius: 0;
+				@include respond(nav-switch) {
 					border-top: $default-font-size * .1 solid rgba($color-primary-1, .5);
 					margin-top: $default-font-size * .75;
 				}
 			}
 			&:last-child {
 				border-radius: 0 0 $navbar__item-border-radius $navbar__item-border-radius;
-				@include respond(tab-port) {
+				@include respond(nav-switch) {
 					border-radius: 0 0 $default-font-size * .5 $default-font-size * .5;
 
 				}
@@ -349,7 +361,7 @@
 				box-shadow: -$default-font-size * 1 0 $default-font-size * 2	$navbar-box-shadow-color;
 			}
 
-			@include respond(tab-port) {
+			@include respond(nav-switch) {
 				&:hover, &:hover + li {
 					border-top: $default-font-size * .1 solid rgba($color-primary-1, .5);
 				}
@@ -391,9 +403,9 @@
 
 	//when navbar is open
 	&.navbar--active {
-		@include respond(tab-port) {
-			right: 0;
-			bottom: 0;
+		@include respond(nav-switch) {
+			// right: 0;
+			// bottom: 0;
 		}
 		& .navbar__link, & .navbar__link:link, & .navbar__link:visited {
 			opacity: 1;
@@ -401,22 +413,30 @@
 		& .navbar__list {
 			opacity: 1;
 			width: 100%;
+			
+			@include respond(mobile-switch) {
+				// width: 93.5vw;
+			}
+
 		}
 		& .navbar__content {
 			visibility: visible;
 			opacity: 1;
 			transform: translateX(0%);
 
-			@include respond(tab-port) {
+			@include respond(nav-switch) {
 				width: $navbar-mobile-width;
-				
+				position: absolute;
+				// top: 100%;
+				width: 93.5vw;
+				z-index: 100;
 			}
 		}
 
 		& .navbar__button {
 			border-radius: $default-font-size * 10 $default-font-size * 1
 				$default-font-size * 1 $default-font-size * 10;
-			@include respond(tab-port) {
+			@include respond(nav-switch) {
 				border-radius: $default-font-size * 10 $default-font-size * 10
 					$default-font-size * 1 $default-font-size * 1;
 			}
@@ -438,7 +458,7 @@
 		& .navbar__link:not(&__dropdown &__link) {
 			padding: $default-font-size * $paddingFactor $default-font-size * 1.5;
 
-			@include respond(tab-port) {
+			@include respond(nav-switch) {
 				padding: $default-font-size 0;
 			}
 		}
@@ -487,7 +507,7 @@
 .header {
 	width: 100%;
 	position: fixed;
-	height: $header-height;
+	// height: $header-height;
 	z-index: 1;
 	transition: 
 		opacity $animation-duration $animation-easing-standard,
@@ -500,6 +520,19 @@
 		border-bottom: $default-font-size * .1 solid $color-primary-4;
 		// opacity: 0;
 		// visibility: hidden;
+	}
+
+	&__inner {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		align-items: center;
+		width: 95%;
+		margin: 0 auto;
+
+		@include respond(nav-switch) {
+			// width: 100%;
+		}
 	}
 
 	&-toggler {

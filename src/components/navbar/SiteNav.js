@@ -125,7 +125,7 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
         <div onClick={onNavClick} className='navbar__background'></div>
       </nav>
     ,
-    document.querySelector('#header')
+    document.querySelector('.header__inner')
   );
 }
 
