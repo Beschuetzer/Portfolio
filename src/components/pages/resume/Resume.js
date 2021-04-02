@@ -191,7 +191,7 @@ class Resume extends React.Component {
                   title: "Responsibilities",
                   bullets: [
                     "Offered technical support to teachers and other staff members.",
-                    "Guide learners throughout the registration process.",
+                    "Guided learners throughout the registration process.",
                     "Created reports and documents, provided recommendations, etc.",
                     "Served a diverse set of individuals including seniors learning how to read, single-parent mothers, incarcerated youth earning their G.E.D., refugees learning English, and professionals looking to earn certifications.",
                     "Administered G.E.D. tests in a minimum-security correctional facility for 4 years.",

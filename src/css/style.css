@@ -809,7 +809,7 @@ body {
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
-  padding-bottom: 2.4rem;
+  padding-bottom: 4.8rem;
 }
 .work-history__item:nth-of-type(1) .work-history__title {
   margin-top: 0;
@@ -827,8 +827,7 @@ body {
   margin-top: 1.6rem;
 }
 .work-history__item-section-list {
-  margin-left: 1.6rem;
-  margin-top: -0.4rem;
+  margin: 1.6rem 4.8rem 0rem 1.6rem;
 }
 .work-history__item-section-list li {
   margin-left: 2.4rem;
@@ -843,7 +842,7 @@ body {
   margin-right: 0.8rem;
 }
 .work-history__title {
-  margin-top: 2rem;
+  margin-top: 4.4rem;
 }
 .work-history__title > h6:nth-of-type(n+2) {
   border-top: 1px solid gray;
@@ -1320,7 +1319,7 @@ body {
   grid-column: 1/-1;
 }
 .resume__section-work-History {
-  line-height: 1.65;
+  line-height: 1.5;
 }
 .resume__section-references .resume__header {
   margin-bottom: 0.8rem;
@@ -1348,7 +1347,7 @@ body {
 }
 @media only screen and (max-width: 40.9375em) {
   .resume__content {
-    padding: 5vmin 7.5vmin;
+    padding: 5vmin;
   }
 }
 .resume__card {
