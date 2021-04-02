@@ -11,8 +11,8 @@
   z-index: 10000;
 
   @include respond(tab-port) {
-    right: $default-font-size * 1.25;
-    
+    // right: $default-font-size * 1.25;
+    right: 2vmin; 
   }
 
   &__link:link, &__link:visited {

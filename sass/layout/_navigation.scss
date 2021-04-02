@@ -11,7 +11,8 @@
 
 	@include respond(tab-port) {
 		top: $default-font-size * 0.625;
-		left: $default-font-size * 1.25;
+		// left: $default-font-size * 1.25;
+		left: 2vmin;
 		
 		align-items: flex-start;
 		border-radius: 0;

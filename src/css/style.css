@@ -270,7 +270,7 @@ body {
 }
 @media only screen and (max-width: 52.6875em) {
   .github {
-    right: 2rem;
+    right: 2vmin;
   }
 }
 .github__link:link, .github__link:visited {
@@ -904,7 +904,7 @@ body {
 @media only screen and (max-width: 52.6875em) {
   .navbar {
     top: 1rem;
-    left: 2rem;
+    left: 2vmin;
     align-items: flex-start;
     border-radius: 0;
   }
