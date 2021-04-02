@@ -6,6 +6,7 @@ import {
   SET_IS_ANIMATING,
   SET_IS_MOBILE,
   SET_SECTIONS_TO_SKIP_ANIMATION,
+  SET_SECTIONS_TO_ADD_TO_PAGE_NAV,
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
@@ -68,7 +69,6 @@ export const getRepositories = () => async (dispatch, getStore) => {
     payload: response.viewer.repositories.nodes,
   });
 }
-
 
 //Github Graph QL Repository 
 // 0: {name: "assignableUsers"}
@@ -212,5 +212,12 @@ export const setSectionsToSkipAnimation = (value) => {
   return {
     type: SET_SECTIONS_TO_SKIP_ANIMATION,
     payload: value,
+  }
+}
+
+export const setSectionsToAddToPageNav = (sections) =>{
+  return {
+    type: SET_SECTIONS_TO_ADD_TO_PAGE_NAV,
+    payload: sections,
   }
 }
