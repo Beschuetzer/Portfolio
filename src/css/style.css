@@ -962,14 +962,29 @@ body {
 }
 @media only screen and (max-width: 67.1875em) {
   .navbar__content {
-    transform: translateY(-6rem);
+    transform: translateY(-2.4rem);
     position: absolute;
     top: 9.8rem;
     left: -1px;
     display: flex;
     overflow: visible !important;
     flex-direction: column;
-    width: 93.5vw;
+    width: 93.4vw;
+  }
+}
+@media only screen and (max-width: 58.5625em) {
+  .navbar__content {
+    width: 93vw;
+  }
+}
+@media only screen and (max-width: 40.9375em) {
+  .navbar__content {
+    width: 92.5vw;
+  }
+}
+@media only screen and (max-width: 29.3125em) {
+  .navbar__content {
+    width: 92vw;
   }
 }
 .navbar__list {
@@ -977,13 +992,16 @@ body {
   justify-content: space-between;
   align-items: center;
   list-style: none;
-  transition: opacity 0.375s ease, width 0.25s ease 0.25s;
+  backface-visibility: hidden;
+  transform-origin: top left;
+  transition: transform 0.25s ease, opacity 0.375s ease, width 0.25s cubic-bezier(1, 0, 0, 1) 0.25s;
 }
 @media only screen and (max-width: 67.1875em) {
   .navbar__list {
     flex-direction: column-reverse;
     opacity: 0;
     width: 8rem;
+    transform: scale(0);
   }
 }
 .navbar__list .navbar__item:first-child {
@@ -1060,6 +1078,11 @@ body {
   display: flex;
   align-items: center;
   transition: border-radius 0.5s ease;
+}
+@media only screen and (max-width: 67.1875em) {
+  .navbar__button {
+    transition: border-radius 0.25s ease;
+  }
 }
 .navbar__button:hover {
   background-color: #fffdf5;
@@ -1162,6 +1185,7 @@ body {
 .navbar.navbar--active .navbar__list {
   opacity: 1;
   width: 100%;
+  transform: scale(1);
 }
 .navbar.navbar--active .navbar__content {
   visibility: visible;
@@ -1170,9 +1194,8 @@ body {
 }
 @media only screen and (max-width: 67.1875em) {
   .navbar.navbar--active .navbar__content {
-    width: 97.5vw;
-    position: absolute;
     width: 93.4vw;
+    position: absolute;
     z-index: 100;
   }
 }

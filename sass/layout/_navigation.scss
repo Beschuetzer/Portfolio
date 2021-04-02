@@ -1,34 +1,21 @@
 .navbar {
-	// width: 8rem;
 	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
 	position: relative;
-	// top: $default-font-size * 0.25;
-	// left: $default-font-size * 0.625;
 	font-size: $default-font-size * 1.5;
 	text-align: center;
 	display: flex;
 	align-items: center;
 
 	@include respond(mobile-switch) {
-		// top: $default-font-size * 0.625;
-		// left: $default-font-size * 1.25;
-		// left: 2vmin;
-		
 		align-items: flex-start;
 		border-radius: 0;
-
 		&.overflow--hidden.navbar.navbar--active {
 			overflow: visible !important;
 		}
 	}
 
-	// &.navbar--isAnimating {
-	// 	width: auto;
-	// }
-
 	&__background {
 		position: fixed;
-		// top: 10.1rem;
 		top: 0;
 		left: 0;
 		width: 100vw;
@@ -114,16 +101,23 @@
 		transition: visibility $animation-navbar, transform $animation-navbar;
 
 		@include respond(nav-switch) {
-			transform: translateY(-6rem);
+			transform: translateY(-$default-font-size * 1.5);
 			position: absolute;
 			top: $default-font-size * 6.125;
     	left: -1px;
 			display: flex;
 			overflow: visible !important;
 			flex-direction: column;
-			width: 93.5vw;
-
-    	// max-width: calc(100% - 1rem);
+			width: $header-mobile-width-nav-switch;
+		}
+		@include respond(tab-land) {
+			width: $header-mobile-width-tab-land;
+		}
+		@include respond(phone) {
+			width: $header-mobile-width-phone;
+		}
+		@include respond(small-font) {
+			width: $header-mobile-width-small-font;
 		}
 	}
 
@@ -132,16 +126,25 @@
 		justify-content: space-between;
 		align-items: center;
 		list-style: none;
+		backface-visibility: hidden;
+		transform-origin: top left;
 		transition: 
+			transform $animation-duration * .5 $animation-easing-standard,
 			opacity $animation-duration * .75 $animation-easing-standard,
-			width $animation-duration * .5 $animation-easing-standard $animation-duration * .5,
+			width $animation-duration * .5 $animation-easing-modern $animation-duration * .5,
 		;
+		// transition: 
+		// 	transform $animation-duration * .5 $animation-easing-modern,
+		// 	opacity $animation-duration * 1 $animation-easing-standard,
+		// 	width $animation-duration * .25 $animation-easing-standard $animation-duration * .125,
+		// ;
 
 
 		@include respond(nav-switch) {
 			flex-direction: column-reverse;
 			opacity: 0;
 			width: $default-font-size * 5;
+			transform: scale(0);
 		}
 
 		& .navbar__item:first-child {
@@ -151,18 +154,12 @@
 			border-radius: $default-font-size * 0.5 0 0 $default-font-size * 0.5;
 			@include respond(nav-switch) {
 				border-radius: 0 0 $default-font-size * 2 $default-font-size * 2;
-
-				&:hover {
-					// border-radius: 0;
-				}
-				// overflow: hidden;
 			}
 		}
 
 		& .navbar__item:nth-child(n + 1) {
 			margin-left: $default-font-size * 0.2;
 			@include respond(nav-switch) {
-				// margin-left: 0;
 			}
 		}
 
@@ -189,9 +186,6 @@
 
 		&:hover {
 			background-color: lighten($color-primary-4, $hover-color-change-amount);
-			// @include respond(nav-switch) {
-			// 	background-color: $color-primary-4;
-			// }
 		}
 		&:not(.navbar__dropdown-container):hover {
 			transform: translateY(-$navbar__item-divider-width);
@@ -201,48 +195,12 @@
 		&:hover .triangle-down {
 			transform: rotate(90deg);
 		}
-
-		// &:not(:last-child){
-		//   margin-right: $navbar__item-divider;
-		// }
-		// &:first-child{
-		//   margin-left: $navbar__item-divider;
-		// }
 		&:last-child, &:first-child {
 			border-radius: 0 10rem 10rem 0;
 			@include respond(nav-switch) {
 				border-radius: 0;
 			}
 		}
-
-		//TODO: need to finish hover effect
-		// &::before, .navbar__dropdown &::before {
-		//   content: "";
-		//   position: absolute;
-		//   bottom: 0rem;
-		//   left: 0%;
-		//   background-color: $color-primary-3;
-		//   z-index: 99999;
-		//   transition:
-		//     width $animation-duration cubic-bezier(1,0,0,1);
-		//   ;
-		// }
-
-		// &::before {
-		//   width: 0%;
-		//   height: 100%;
-		// }
-
-		// .navbar__dropdown &::before {
-		//   height: 0%;
-		//   width: 100%;
-		// }
-
-		// &:hover &::before {
-		//   // z-index: 100000000;
-		//   // width: 100%;
-		//   // height: 100%;
-		// }
 	}
 
 	&__link:link,
@@ -269,10 +227,6 @@
 			z-index: 10000;
 			opacity: 0;
 		}
-
-		&:hover {
-			// color: darken($color-primary-1, $hover-color-change-amount);
-		}
 	}
 
 	&__button {
@@ -283,6 +237,10 @@
 		display: flex;
 		align-items: center;
 		transition: border-radius $animation-duration * 1 $animation-easing-standard;
+
+		@include respond(nav-switch) {
+			transition: border-radius $animation-duration * .5 $animation-easing-standard;
+		}
 
 		&:hover {
 			background-color: lighten($color-primary-4, $hover-color-change-amount);
@@ -301,11 +259,7 @@
 		list-style: none;
 		display: flex;
 		flex-direction: column;
-
 		transition: transform $animation-duration $animation-easing-standard;
-
-	
-		
 
 		@include respond(nav-switch) {
 			position: relative;
@@ -343,7 +297,6 @@
 
 
 			&:first-child {
-				// border-radius: $default-font-size * 0.5 $default-font-size * 0.5 0 0;
 				border-radius: 0;
 				@include respond(nav-switch) {
 					border-top: $default-font-size * .1 solid rgba($color-primary-1, .5);
@@ -405,21 +358,14 @@
 
 	//when navbar is open
 	&.navbar--active {
-		@include respond(nav-switch) {
-			// right: 0;
-			// bottom: 0;
-		}
 		& .navbar__link, & .navbar__link:link, & .navbar__link:visited {
 			opacity: 1;
 		}
 		& .navbar__list {
 			opacity: 1;
 			width: 100%;
-			
-			@include respond(mobile-switch) {
-				// width: 93.5vw;
-			}
-
+   		transform: scale(1);
+		
 		}
 		& .navbar__content {
 			visibility: visible;
@@ -427,22 +373,21 @@
 			transform: translateX(0%);
 
 			@include respond(nav-switch) {
-				width: $navbar-mobile-width;
+				width: $header-mobile-width-nav-switch;
 				position: absolute;
-				width: 93.4vw;
 				z-index: 100;
 			}
 	
 			@include respond(tab-land) {
-				width: 93vw;
+				width: $header-mobile-width-tab-land;
 			}
 
 			@include respond(phone) {
-				width: 92.5vw;
+				width: $header-mobile-width-phone;
 			}
 
 			@include respond(small-font) {
-				width: 92vw;
+				width: $header-mobile-width-small-font;
 			}
 		}
 
@@ -455,11 +400,9 @@
 			}
 			//A hover styling
 			&:hover .navbar__menu-bar::before {
-				// transform: $navbar__button-bar-before-rotation translate(-$default-font-size * .5625, $default-font-size * 1.375);
 				transform: rotate(135deg) translate(1.1rem, 1.1rem);
 			}
 			&:hover .navbar__menu-bar::after {
-				// transform: $navbar__button-bar-after-rotation translate(-$default-font-size * .75, -$default-font-size * .5);
 				transform: rotate(-135deg) translate(1.1rem, -1.1rem);
 			}
 			&:hover .navbar__menu-bar {
@@ -498,12 +441,6 @@
 		-ms-user-select: none; /* Internet Explorer/Edge */
 		user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 	}
-
-	// &__item:hover::before {
-	//   // z-index: 100000000;
-	//   width: 100%;
-	//   height: 100%;
-	// }
 }
 
 #root {
@@ -520,7 +457,6 @@
 .header {
 	width: 100%;
 	position: fixed;
-	// height: $header-height;
 	z-index: 1;
 	transition: 
 		opacity $animation-duration $animation-easing-standard,
@@ -531,8 +467,6 @@
 		z-index: 10;
 		background-color: $color-primary-1;
 		border-bottom: $default-font-size * .1 solid $color-primary-4;
-		// opacity: 0;
-		// visibility: hidden;
 	}
 
 	&__inner {
@@ -542,10 +476,6 @@
 		align-items: center;
 		width: 95%;
 		margin: 0 auto;
-
-		@include respond(nav-switch) {
-			// width: 100%;
-		}
 	}
 
 	&-toggler {
@@ -563,7 +493,6 @@
 		z-index: 5;
 		background-color: $color-primary-1;
 		opacity: 0;
-
 		transition: 
 			top $animation-duration * 1 $animation-easing-standard-easeInOutBack-smaller,
 		;
