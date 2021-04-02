@@ -969,6 +969,7 @@ body {
     display: flex;
     overflow: visible !important;
     flex-direction: column;
+    width: 93.5vw;
   }
 }
 .navbar__list {
