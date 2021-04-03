@@ -26,7 +26,8 @@ $color-primary-4: #fbeeac;
 
 //sizes
 $scale-amount: 1.05;
-$navbar__logo-width: $default-font-size * 5;
+$navbar__logo-width-desktop: 9vw;
+$navbar__logo-width-mobile: $default-font-size * 5;
 $content-padding-mobile: 5vmin;
 $component-margin-amount: $default-font-size * 8;
 

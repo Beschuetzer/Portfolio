@@ -31,16 +31,26 @@
 	}
 
 	&__menu {
-		width: $navbar__logo-width;
-		height: $navbar__logo-width;
+		width: $navbar__logo-width-desktop;
+		height: $navbar__logo-width-desktop;
 		position: relative;
+
+		@include respond(nav-switch) {
+			width: $navbar__logo-width-mobile;
+			height: $navbar__logo-width-mobile;
+		}
 
 		&-bar,
 		&-bar::before,
 		&-bar::after {
 			background-color: $color-primary-1;
-			height: $default-font-size * 0.25;
-			width: $default-font-size * 2;
+			height: 0.5vw;
+    	width: 4vw;
+
+			@include respond(nav-switch) {
+				height: $default-font-size * 0.25;
+				width: $default-font-size * 2;
+			}
 		}
 
 		&-bar {
@@ -84,13 +94,23 @@
 
 		//Change menu bars to 'A' on click
 		.navbar.navbar--active &-bar::before {
-			transform: $navbar__button-bar-before-transform;
+			transform: rotate(105deg) translate(0.4vw, 2.7vw);
+
+			@include respond(nav-switch) {
+				transform: $navbar__button-bar-before-transform;
+			}
 		}
 		.navbar.navbar--active &-bar {
-			width: 20%;
+			width: 2vw;
+			@include respond(nav-switch) {
+				width: $default-font-size;
+			}
 		}
 		.navbar.navbar--active &-bar::after {
-			transform: $navbar__button-bar-after-transform;
+			transform: rotate(-105deg) translate(0, -.8vw);
+			@include respond(nav-switch) {
+				transform: $navbar__button-bar-after-transform;
+			}
 		}
 		.navbar.navbar--active &-bar::after,
 		.navbar.navbar--active &-bar::before {
@@ -490,7 +510,8 @@
 		// flex-direction: row-reverse;
 		justify-content: space-between;
 		align-items: center;
-		width: calc(85rem + ((100vw - 85rem) / 2) + 8rem);
+		width: calc(85rem + ((100vw - 85rem) / 2) + 8.5vw);
+		// width: calc(85rem + ((100vw - 85rem) / 2) + 8rem);
 		margin: 0 auto;
 
 		@include respond(nav-switch) {
@@ -557,7 +578,7 @@
 	// left: calc(((100% - 85rem) / 4) - 2rem);
 	// width: calc(((100% - 85rem) / 4) + 2rem);
 
-	font-size: $default-font-size * 1;	
+	font-size: 1vw;	
 	display: grid;
 	justify-items: center;
 	grid-auto-rows: minmax(min-content, 1fr);

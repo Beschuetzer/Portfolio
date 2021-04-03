@@ -267,8 +267,13 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  width: 8rem;
+  width: 9vw;
   z-index: 10000;
+}
+@media only screen and (max-width: 71.875em) {
+  .github {
+    width: 8rem;
+  }
 }
 .github__link:link, .github__link:visited {
   text-decoration: none;
@@ -277,8 +282,12 @@ body {
 }
 .github__svg {
   width: 100%;
-  height: 9.4rem;
   fill: #fbeeac;
+}
+@media only screen and (max-width: 71.875em) {
+  .github__svg {
+    height: 9.4rem;
+  }
 }
 .github__svg:hover {
   fill: #fffdf5;
@@ -290,16 +299,23 @@ body {
 }
 .github__text-top {
   transform: translate(-50%, 0%);
-  top: 0.7rem;
-}
-.github__text-middle {
-  transform: translate(-50%, -68%);
-  font-weight: 300;
+  top: 2.4rem;
 }
 .github__text-bottom {
   transform: translate(-50%, 0%);
-  bottom: 0.8rem;
+  bottom: 2.4rem;
   box-shadow: 0 3.2rem 4.8rem rgba(40, 82, 122, 0.2);
+}
+@media only screen and (max-width: 71.875em) {
+  .github__text-top {
+    transform: translate(-50%, 0%);
+    top: 0.7rem;
+  }
+  .github__text-bottom {
+    transform: translate(-50%, 0%);
+    bottom: 0.8rem;
+    box-shadow: 0 3.2rem 4.8rem rgba(40, 82, 122, 0.2);
+  }
 }
 
 .thumbnail {
@@ -912,14 +928,26 @@ body {
   z-index: -1;
 }
 .navbar__menu {
-  width: 8rem;
-  height: 8rem;
+  width: 9vw;
+  height: 9vw;
   position: relative;
+}
+@media only screen and (max-width: 71.875em) {
+  .navbar__menu {
+    width: 8rem;
+    height: 8rem;
+  }
 }
 .navbar__menu-bar, .navbar__menu-bar::before, .navbar__menu-bar::after {
   background-color: #28527a;
-  height: 0.4rem;
-  width: 3.2rem;
+  height: 0.5vw;
+  width: 4vw;
+}
+@media only screen and (max-width: 71.875em) {
+  .navbar__menu-bar, .navbar__menu-bar::before, .navbar__menu-bar::after {
+    height: 0.4rem;
+    width: 3.2rem;
+  }
 }
 .navbar__menu-bar {
   position: absolute;
@@ -949,13 +977,28 @@ body {
   transform: translate(-50%, calc(+1.2rem + 50%));
 }
 .navbar.navbar--active .navbar__menu-bar::before {
-  transform: rotate(105deg) translate(0.2rem, 2.2rem);
+  transform: rotate(105deg) translate(0.4vw, 2.7vw);
+}
+@media only screen and (max-width: 71.875em) {
+  .navbar.navbar--active .navbar__menu-bar::before {
+    transform: rotate(105deg) translate(0.2rem, 2.2rem);
+  }
 }
 .navbar.navbar--active .navbar__menu-bar {
-  width: 20%;
+  width: 2vw;
+}
+@media only screen and (max-width: 71.875em) {
+  .navbar.navbar--active .navbar__menu-bar {
+    width: 1.6rem;
+  }
 }
 .navbar.navbar--active .navbar__menu-bar::after {
-  transform: rotate(-105deg) translate(0rem, -0.8rem);
+  transform: rotate(-105deg) translate(0, -0.8vw);
+}
+@media only screen and (max-width: 71.875em) {
+  .navbar.navbar--active .navbar__menu-bar::after {
+    transform: rotate(-105deg) translate(0rem, -0.8rem);
+  }
 }
 .navbar__content {
   position: relative;
@@ -1302,7 +1345,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc(85rem + ((100vw - 85rem) / 2) + 8rem);
+  width: calc(85rem + ((100vw - 85rem) / 2) + 8.5vw);
   margin: 0 auto;
 }
 @media only screen and (max-width: 71.875em) {
@@ -1356,7 +1399,7 @@ body {
   top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 8rem)) / 2) + 7rem);
   left: 0;
   width: calc((100% - 85rem) / 2);
-  font-size: 1.6rem;
+  font-size: 1vw;
   display: grid;
   justify-items: center;
   grid-auto-rows: minmax(min-content, 1fr);

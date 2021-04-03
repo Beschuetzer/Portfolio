@@ -4,14 +4,11 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: $default-font-size * 5;
-  // top: $default-font-size * .25;
-  // right: $default-font-size * .625;
+  width: $navbar__logo-width-desktop;
   z-index: 10000;
 
-  @include respond(tab-port) {
-    // right: $default-font-size * 1.25;
-    // right: 2vmin; 
+  @include respond(nav-switch) {
+    width: $navbar__logo-width-mobile;
   }
 
   &__link:link, &__link:visited {
@@ -22,11 +19,19 @@
 
   &__svg {
     width: 100%;
-    height: $default-font-size * 5.875;
+    // height: $default-font-size * 5.875;
     fill: $color-primary-4;
+    
+    @include respond(nav-switch) {
+      height: $default-font-size * 5.875;
+      
+    }
+    
     &:hover {
       fill: lighten($color-primary-4, $hover-color-change-amount);
     }
+
+
   }
   &__text {
     position: absolute;
@@ -36,16 +41,25 @@
 
     &-top {
       transform: translate(-50%, 0%);
-      top: $default-font-size * .4375;
+      top: $default-font-size * 1.5
     }
-    &-middle {
-      transform: translate(-50%, -68%);
-      font-weight: 300;
-    }
+   
     &-bottom {
       transform: translate(-50%, 0%);
-      bottom: $default-font-size * .5;
+      bottom: $default-font-size * 1.5;
       box-shadow: 0 $default-font-size * 2 $default-font-size * 3 rgba($color-primary-1, .2);
+    }
+
+    @include respond(nav-switch) {
+      &-top {
+        transform: translate(-50%, 0%);
+        top: $default-font-size * .4375;
+      }
+      &-bottom {
+        transform: translate(-50%, 0%);
+        bottom: $default-font-size * .5;
+        box-shadow: 0 $default-font-size * 2 $default-font-size * 3 rgba($color-primary-1, .2);
+      }
     }
   }
 
