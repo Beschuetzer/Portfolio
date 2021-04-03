@@ -21,7 +21,7 @@ class PageNav extends React.Component {
     for (let i = 0; i < sections.length; i++) {
       const section = sections[i];
       const capitalized = capitalize(section.dataset.section);
-      sectionNames.push(capitalized?.replace('-', ' '))
+      sectionNames.push(capitalized)
     }
     
     return sectionNames.map((sectionName, index, array) => {

@@ -7,7 +7,7 @@ class ResumeSection extends React.Component {
   render () {
     const { name, children, headerSideContent } = this.props;
     return (
-      <section id={name} data-section={name} className={`resume__section resume__section-${name}`}>
+      <section id={name.toLowerCase()} data-section={name.toLowerCase()} className={`resume__section resume__section-${name.toLowerCase()}`}>
           <article className="resume__card z-index-content">
             <div className="resume__content">
               <div className="resume__header">
