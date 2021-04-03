@@ -25,6 +25,7 @@ BUGS/TO ADD-----------------------------------------------------------
 -fix alignment of header buttons on smaller viewports
 -add PageNav (use data-section-name attribute to grab all of the visible sections and add clickable links to top for easy page navigation (desktop version moves to side under SiteNav?
 
+-have pagenav be a linear gradient that changes the boundary based on scrollheight?
 
 
 

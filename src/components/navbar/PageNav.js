@@ -8,8 +8,26 @@ import { capitalize } from '../../helpers';
 
 class PageNav extends React.Component {
   static cssClass = 'page-nav';
+  static gradientVarName = '--site-nav-linear-gradient';
+  static mainColor = '#28527a';
+  static progressColor = '#8ac4d0';
+  static progressPercent = '10%';
+
+  setScrollProgress = () => {
+    
+    debugger
+    const newGradient = `
+      linear-gradient(to right, 
+        ${PageNav.progressColor} 0%, 
+        ${PageNav.progressColor} ${PageNav.progressPercent},
+        ${PageNav.mainColor} ${PageNav.progressPercent},
+        ${PageNav.mainColor} 100%)`
+    ;
+    document.documentElement.style.setProperty(PageNav.gradientVarName, newGradient);
+  }
 
   renderSections = () => {
+    this.setScrollProgress();
     const { previousUrl } = this.props;
     const currentUrl = this.props.match?.url;
 
@@ -20,6 +38,9 @@ class PageNav extends React.Component {
 
     for (let i = 0; i < sections.length; i++) {
       const section = sections[i];
+      
+
+
       const capitalized = capitalize(section.dataset.section);
       sectionNames.push(capitalized)
     }

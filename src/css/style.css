@@ -889,6 +889,10 @@ body {
   margin: 0 0.4rem;
 }
 
+:root {
+  --site-nav-linear-gradient: linear-gradient(to right, $color-primary-2 0%, $color-primary-2 1%, $color-primary-1 1%, $color-primary-1 100%);
+}
+
 .navbar {
   border-radius: 16rem 0 0 16rem;
   position: relative;
@@ -1334,6 +1338,7 @@ body {
 
 .page-nav {
   font-size: 1.2rem;
+  background-image: var(--site-nav-linear-gradient);
 }
 ::-webkit-scrollbar {
   height: 1.6rem;
