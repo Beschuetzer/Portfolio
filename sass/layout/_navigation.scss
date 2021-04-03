@@ -92,10 +92,10 @@
 
 		//Spread Menu bars on hover
 		&:hover &-bar::before {
-			transform: translate(-50%, calc(-1.2rem - 50%));
+			transform: translate(-50%, calc(-1.5vw - 50%));
 		}
 		&:hover &-bar::after {
-			transform: translate(-50%, calc(+1.2rem + 50%));
+			transform: translate(-50%, calc(+1.5vw + 50%));
 		}
 
 		//Change menu bars to 'A' on click

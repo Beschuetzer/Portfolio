@@ -981,10 +981,10 @@ body {
   }
 }
 .navbar__menu:hover .navbar__menu-bar::before {
-  transform: translate(-50%, calc(-1.2rem - 50%));
+  transform: translate(-50%, calc(-1.5vw - 50%));
 }
 .navbar__menu:hover .navbar__menu-bar::after {
-  transform: translate(-50%, calc(+1.2rem + 50%));
+  transform: translate(-50%, calc(+1.5vw + 50%));
 }
 .navbar.navbar--active .navbar__menu-bar::before {
   transform: rotate(105deg) translate(0.6vw, 2.9vw);
