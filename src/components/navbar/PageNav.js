@@ -31,22 +31,25 @@ class PageNav extends React.Component {
     const scrollY = window.scrollY;
     const maxScrollY = document.body.scrollHeight - window.innerHeight;
     const isEnd = scrollY >= maxScrollY;
+    const boundingRects = [];
+    const sections = document.querySelectorAll('[data-section]');
 
-    //get the binding rects for each section
     let currentSection = null;
     let indexOfCurrentSection = -1;
     let percentThroughSection = '';
-    const boundingRects = [];
-    const sections = document.querySelectorAll('[data-section]');
+
     for (let i = 0; i < sections.length; i++) {
       const section = sections[i];
       const boundingRect = section.getBoundingClientRect();
       boundingRects.push(boundingRect);
       indexOfCurrentSection = i - 1;
 
+      console.log('i =', i);
+      console.log('boundingRect =', boundingRect);
+
       if (boundingRect.top >= 0) {
         if (i === 0) { 
-          currentSection = sections[0];
+          currentSection = null;
         } else {
           currentSection = sections[indexOfCurrentSection];
         }
@@ -59,8 +62,6 @@ class PageNav extends React.Component {
   }
 
   setGradientPercent = (sections, currentSection, percentThroughSection, isEnd, indexOfCurrentSection) => {
-    console.log('isEnd =', isEnd);
-    console.log('indexOfCurrentSection =', indexOfCurrentSection);
     const selectedGradient = this.getLinearGradient(percentThroughSection);
     const isEndGradient = this.getLinearGradient(100);
     const normalGradient = this.getLinearGradient(0);
@@ -75,7 +76,7 @@ class PageNav extends React.Component {
       if (isEnd && i >= indexOfCurrentSection) {
         gradientToUse = isEndGradient;
       }
-      else if (!currentSection.className.match(new RegExp(pageNavSectionName, 'ig'))) {
+      else if (!currentSection?.className.match(new RegExp(pageNavSectionName, 'ig'))) {
         gradientToUse = normalGradient;
       }
       
