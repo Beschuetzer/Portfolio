@@ -25,14 +25,12 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
   const onNavClick = (e) => {
     e.stopPropagation();
     const navBar = navRef.current;
-    let docStyle = getComputedStyle(document.documentElement);
-    const isValid = e.clientX <= (11 * parseInt(docStyle.fontSize));
     const isChildOfNavBar = checkForParentOfType(e.target, 'nav', 'navbar');
 
     if (!navBar) return;
     navBar.classList.add('overflow--hidden');
 
-    if (!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) && isChildOfNavBar && isValid ) {
+    if (!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) && isChildOfNavBar) {
       root.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
       navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
       setIsAnimating(true);
@@ -102,7 +100,10 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
           </div>
         </div>
         <div className="navbar__content">
-          <ul className="navbar__list">           
+          <ul className="navbar__list">     
+            <NavListItem to="/about" label="About" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>      
+            
+            <NavListItem to="/resume" label="Resume" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
             <NavListItem 
               to="/works" 
               label="Examples" 
@@ -117,9 +118,7 @@ const SiteNav = ({isAnimating, setIsAnimating}) => {
                 <NavListItem to="/works" label="All" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
               </ul>
             </NavListItem>
-            <NavListItem to="/resume" label="Resume" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
             <NavListItem to="/contact" label="Contact" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
-            <NavListItem to="/about" label="About" onMouseEnter={onMouseEnter} onClick={onNavItemClick}/>
           </ul>
         </div>
         <div onClick={onNavClick} className='navbar__background'></div>

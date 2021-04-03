@@ -1002,7 +1002,7 @@ body {
 }
 @media only screen and (max-width: 71.875em) {
   .navbar__list {
-    flex-direction: column-reverse;
+    flex-direction: column;
     opacity: 0;
     width: 8rem;
     transform: scale(0);
@@ -1014,7 +1014,7 @@ body {
 }
 @media only screen and (max-width: 71.875em) {
   .navbar__list .navbar__item:first-child {
-    border-radius: 0 0 3.2rem 3.2rem;
+    border-radius: 0;
   }
 }
 .navbar__list .navbar__item:nth-child(n+1) {
@@ -1031,6 +1031,12 @@ body {
   height: 100%;
   width: 100%;
   transition: transform 0.125s ease, background-color 0.125s ease;
+}
+@media only screen and (max-width: 71.875em) {
+  .navbar__item:nth-of-type(3) {
+    order: 1;
+    border-radius: 0 0 3.2rem 3.2rem;
+  }
 }
 .navbar__item .triangle-down {
   transition: transform 0.25s ease;
@@ -1277,6 +1283,7 @@ body {
 }
 
 .header {
+  top: calc((100vw - (85rem + ((100vw - 85rem) / 2) + 8rem) - 8rem));
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -1284,6 +1291,7 @@ body {
 }
 @media only screen and (max-width: 71.875em) {
   .header {
+    top: 0;
     z-index: 10;
     background-color: #28527a;
     border-bottom: 0.16rem solid #fbeeac;
@@ -1342,6 +1350,7 @@ body {
 }
 
 .page-nav {
+  z-index: 1;
   position: absolute;
   top: 10rem;
   left: 0;
@@ -1379,6 +1388,11 @@ body {
 @media only screen and (max-width: 71.875em) {
   .page-nav__section-group {
     padding: 0.4rem 0;
+  }
+}
+@media only screen and (max-width: 29.3125em) {
+  .page-nav__section-group {
+    padding: 0;
   }
 }
 ::-webkit-scrollbar {
