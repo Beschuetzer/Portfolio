@@ -1339,6 +1339,12 @@ body {
 .page-nav {
   font-size: 1.2rem;
   background-image: var(--site-nav-linear-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  display: inline-block;
+}
+.page-nav__section {
+  color: transparent;
 }
 ::-webkit-scrollbar {
   height: 1.6rem;

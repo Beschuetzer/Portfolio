@@ -9,13 +9,22 @@ import { capitalize } from '../../helpers';
 class PageNav extends React.Component {
   static cssClass = 'page-nav';
   static gradientVarName = '--site-nav-linear-gradient';
-  static mainColor = '#28527a';
+  static mainColor = '#f4d160';
   static progressColor = '#8ac4d0';
-  static progressPercent = '10%';
+  static progressPercent = '22.5%';
+
+  componentDidMount() {
+    document.addEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = (e) => {
+    const scrollY = window.scrollY;
+    const maxScrollY = document.body.scrollHeight - window.innerHeight;
+    console.log('scrollY =', scrollY);
+    console.log('maxScrollY =', maxScrollY);
+  }
 
   setScrollProgress = () => {
-    
-    debugger
     const newGradient = `
       linear-gradient(to right, 
         ${PageNav.progressColor} 0%, 
@@ -35,12 +44,8 @@ class PageNav extends React.Component {
 
     let sectionNames = [];
     const sections = document.querySelectorAll('[data-section]');
-
     for (let i = 0; i < sections.length; i++) {
       const section = sections[i];
-      
-
-
       const capitalized = capitalize(section.dataset.section);
       sectionNames.push(capitalized)
     }

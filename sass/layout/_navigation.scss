@@ -534,7 +534,12 @@
 .page-nav {
 	font-size: $default-font-size * .75;	
 	background-image: var(--site-nav-linear-gradient);
+	-webkit-background-clip: text;
+	background-clip: text;
+	display: inline-block;
+
 	&__section {
+		color: transparent;
 	}
 	
 	&__inner {
