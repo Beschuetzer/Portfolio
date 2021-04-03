@@ -9,6 +9,8 @@ import { capitalize } from '../../helpers';
 class PageNav extends React.Component {
   static cssClass = 'page-nav';
   static gradientVarName = '--site-nav-linear-gradient';
+  static activeScaleVarName = '--site-nav-active-scale-amount';
+  static activeScaleRange = {min: 1, max: 1.5};
   static mainColor = '#f4d160';
   static progressColor = '#8ac4d0';
   static progressPercent = '0%';
@@ -45,9 +47,6 @@ class PageNav extends React.Component {
       boundingRects.push(boundingRect);
       indexOfCurrentSection = i - 1;
 
-      console.log('i =', i);
-      console.log('boundingRect =', boundingRect);
-
       if (boundingRect.top >= 0) {
         if (i === 0) { 
           currentSection = null;
@@ -73,9 +72,10 @@ class PageNav extends React.Component {
       const section = sections[i];
       const pageNavSectionName = capitalize(section.dataset.section);
       const pageNavSectionElement = document.querySelector(`.page-nav__section-${pageNavSectionName}`)
+      const shouldSetEnd = isEnd && i >= indexOfCurrentSection;
 
 
-      if (isEnd && i >= indexOfCurrentSection) {
+      if (shouldSetEnd) {
         gradientToUse = isEndGradient;
       }
       else if (!currentSection?.className.match(new RegExp(pageNavSectionName, 'ig'))) {
@@ -85,8 +85,21 @@ class PageNav extends React.Component {
 
       pageNavSectionElement.style.backgroundImage = gradientToUse;
 
-      if (shouldAddActiveClass) pageNavSectionElement.parentNode?.classList?.add(PageNav.selectedClass)
+      if (shouldAddActiveClass) {
+        pageNavSectionElement.parentNode?.classList?.add(PageNav.selectedClass);
+
+        let amountToScale = PageNav.activeScaleRange.max;
+        if (!shouldSetEnd) {
+          amountToScale = PageNav.activeScaleRange.min + ((PageNav.activeScaleRange.max - PageNav.activeScaleRange.min) * percentThroughSection / 100);
+        }
+
+        const newValue = `${PageNav.activeScaleVarName}: ${amountToScale}`;
+        document.documentElement.style.cssText += newValue;
+
+      }
       else pageNavSectionElement.parentNode?.classList?.remove(PageNav.selectedClass);
+
+      
     }
   }
 

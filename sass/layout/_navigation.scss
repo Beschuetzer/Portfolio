@@ -1,5 +1,6 @@
 :root{
 	--site-nav-linear-gradient: linear-gradient(to right, $color-primary-2 0%, $color-primary-2 0%, $color-primary-1 0%, $color-primary-1 100%);
+	--site-nav-active-scale-amount: 1;
 }
 
 
@@ -556,13 +557,15 @@
 	// left: calc(((100% - 85rem) / 4) - 2rem);
 	// width: calc(((100% - 85rem) / 4) + 2rem);
 
-	font-size: $default-font-size * .75;	
+	font-size: $default-font-size * 1;	
 	display: grid;
 	justify-items: center;
 	grid-auto-rows: minmax(min-content, 1fr);
 
 	@include respond(nav-switch) {
 		// display: grid;
+		font-size: $default-font-size * .75;	
+
 		position: static;
 		width: calc(95% - 16rem);
 		grid-template-rows: auto;
@@ -578,10 +581,11 @@
 		background-clip: text;
 		
 		&-group {
+			backface-visibility: hidden;
 			list-style: none;
 			padding: $default-font-size 0;
 			transition: 
-				transform $animation-duration $animation-easing-modern,
+				transform $animation-duration $animation-easing-standard,
 			;
 		
 			&:nth-of-type(1){
@@ -606,8 +610,8 @@
 	}
 	
 	&--active {
-		transform: scale(1.15);
-		animation: selected-section infinite 2s alternate-reverse;
+		transform: scale(var(--site-nav-active-scale-amount));
+		// animation: selected-section infinite 5s forwards;
 	}
 	
 }

@@ -25,18 +25,21 @@
   }
 }
 
-@keyframes selected-section {
-  0% {
-    transform: scale(1.05) rotate(0);
-  }
-  33% {
-    transform: scale(1.11666667) rotate(2.5deg);
+// @keyframes selected-section {
+//   0% {
+//     transform: scale(1.05) rotate(0);
+//   }
+//   16.667% {
+//     transform: scale(1.11666667) rotate(1.25deg);
     
-  }
-  66% {
-    transform: scale(1.18336667) rotate(-2.5deg);
-  }
-  100% {
-    transform: scale(1.25) rotate(0);
-  }
-}
+//   }
+//   33% {
+//     transform: scale(1.18336667) rotate(-1.25deg);
+//   }
+//   50% {
+//     transform: scale(1.33) rotate(0);
+//   }
+//   100% {
+//     transform: scale(1.05) rotate(0);
+//   }
+// }

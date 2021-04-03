@@ -25,11 +25,7 @@ BUGS/TO ADD-----------------------------------------------------------
 -fix alignment of header buttons on smaller viewports
 -add PageNav (use data-section-name attribute to grab all of the visible sections and add clickable links to top for easy page navigation (desktop version moves to side under SiteNav?
 
--have pagenav be a linear gradient that changes the boundary based on scrollheight?
-
--add setScrollPercent to actions
--need to figure out clientBoudingRect for each section in pagenav
--need to figure out where each section is in body scroll wise (min and max so clientBoundingRect too)
+-figure out why clicking on a section sets the previous section to 100%
 
 
 
