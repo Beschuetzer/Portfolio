@@ -468,8 +468,7 @@
 }
 
 .header {
-	// width: calc(85rem + ((100% - 85rem) / 2) + 8rem);
-	top: calc((100vw - (85rem + ((100vw - 85rem) / 2) + 8rem) - 8rem));
+	top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 8rem)) / 2) - 1rem);
 	width: 100%;
 	position: fixed;
 	z-index: 1;
@@ -490,7 +489,7 @@
 		// flex-direction: row-reverse;
 		justify-content: space-between;
 		align-items: center;
-		width: calc(85rem + ((100% - 85rem) / 2) + 8rem);
+		width: calc(85rem + ((100vw - 85rem) / 2) + 8rem);
 		margin: 0 auto;
 
 		@include respond(nav-switch) {
@@ -549,10 +548,13 @@
 .page-nav {
 	z-index: 1;
 	position: absolute;
-	top: $header-height;
+	top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 8rem)) / 2) + 7rem);
 	left: 0;
 	width: calc((100% - 85rem) / 2);
-	// width: calc(5% + 8rem);
+
+	// top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 8rem)) / 2) + 7rem);
+	// left: calc(((100% - 85rem) / 4) - 2rem);
+	// width: calc(((100% - 85rem) / 4) + 2rem);
 
 	font-size: $default-font-size * .75;	
 	display: grid;
@@ -565,7 +567,7 @@
 		width: calc(95% - 16rem);
 		grid-template-rows: auto;
 		grid-template-columns: repeat(auto-fill, minmax($default-font-size * 8.96875, 1fr));
-
+		justify-items: center;
 	}
 
 	&__section {
@@ -574,15 +576,14 @@
 		background-image: var(--site-nav-linear-gradient);
 		-webkit-background-clip: text;
 		background-clip: text;
-
+		
 		&-group {
+			list-style: none;
 			padding: $default-font-size 0;
-			list-style: circle;
 		
 			&:nth-of-type(1){
 				@include respond(nav-switch) {
 					margin-left: 0;
-					list-style: none;
 				}
 			}
 

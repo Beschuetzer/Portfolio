@@ -92,7 +92,7 @@ class PageNav extends React.Component {
     
     return sectionNames.map((sectionName, index, array) => {
       return (
-        <ul 
+        <li 
           key={sectionName} 
           className={`${PageNav.cssClass}__section-group`}
         >
@@ -109,7 +109,7 @@ class PageNav extends React.Component {
             null
           } */}
           &nbsp;
-        </ul>
+        </li>
       );
     });
   }
