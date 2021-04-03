@@ -10,7 +10,7 @@ class PageNav extends React.Component {
   static cssClass = 'page-nav';
   static gradientVarName = '--site-nav-linear-gradient';
   static activeScaleVarName = '--site-nav-active-scale-amount';
-  static activeScaleRange = {min: 1, max: 1.5};
+  static activeScaleRange = {min: 1.5, max: 1};
   static mainColor = '#f4d160';
   static progressColor = '#8ac4d0';
   static progressPercent = '0%';
@@ -47,7 +47,7 @@ class PageNav extends React.Component {
       boundingRects.push(boundingRect);
       indexOfCurrentSection = i - 1;
 
-      if (boundingRect.top >= 0) {
+      if (boundingRect.top > 1) {
         if (i === 0) { 
           currentSection = null;
         } else {
