@@ -8,6 +8,7 @@ import {
   SET_SECTIONS_TO_SKIP_ANIMATION,
   SET_SECTIONS_TO_ADD_TO_PAGE_NAV,
   SET_PREVIOUS_URL,
+  SET_SCROLL_PERCENT,
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
@@ -220,5 +221,12 @@ export const setPreviousUrl = (url) =>{
   return {
     type: SET_PREVIOUS_URL,
     payload: url,
+  }
+}
+
+export const setScrollPercent = (percentAsString) => {
+  return {
+    type: SET_SCROLL_PERCENT,
+    payload: percentAsString,
   }
 }

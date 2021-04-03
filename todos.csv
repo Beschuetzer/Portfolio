@@ -27,5 +27,10 @@ BUGS/TO ADD-----------------------------------------------------------
 
 -have pagenav be a linear gradient that changes the boundary based on scrollheight?
 
+-add setScrollPercent to actions
+-need to figure out clientBoudingRect for each section in pagenav
+-need to figure out where each section is in body scroll wise (min and max so clientBoundingRect too)
+
+
 
 

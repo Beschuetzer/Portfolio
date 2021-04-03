@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { setPreviousUrl } from '../../actions';
+import { setPreviousUrl, setScrollPercent } from '../../actions';
 import { capitalize } from '../../helpers';
 
 class PageNav extends React.Component {
@@ -12,19 +12,59 @@ class PageNav extends React.Component {
   static mainColor = '#f4d160';
   static progressColor = '#8ac4d0';
   static progressPercent = '22.5%';
+  // static sectionsBounds = {};
 
   componentDidMount() {
     document.addEventListener('scroll', this.handleScroll);
+
+    
   }
 
   handleScroll = (e) => {
     const scrollY = window.scrollY;
     const maxScrollY = document.body.scrollHeight - window.innerHeight;
-    console.log('scrollY =', scrollY);
-    console.log('maxScrollY =', maxScrollY);
+    const scrollPercent = `${scrollY / maxScrollY * 100}%`;
+    // console.log('window.pageYOffset || document.documentElement.scrollTop =', window.pageYOffset || document.documentElement.scrollTop);
+    // console.log('scrollPercent =', scrollPercent);
+    // console.log('scrollY =', scrollY);
+    // console.log('sectionsBounds =', PageNav.sectionsBounds);
+
+    //get the binding rects for each section
+    let currentSection = null;
+    let percentThroughSection = '';
+    const boundingRects = [];
+    const sections = document.querySelectorAll('[data-section]');
+    // const sectionsBounds = {};
+    for (let i = 0; i < sections.length; i++) {
+      const section = sections[i];
+      const boundingRect = section.getBoundingClientRect();
+      boundingRects.push(boundingRect);
+
+      if (boundingRect.top >= 0) {
+        if (i === 0) { 
+          currentSection = sections[0];
+        } else {
+          currentSection = sections[i - 1];
+        }
+        const boundingRectToUse = boundingRects[i === 0 ? 0 : i - 1];
+        percentThroughSection = Math.abs(boundingRectToUse.top) / (Math.abs(boundingRectToUse.top) + Math.abs(boundingRectToUse.bottom))  * 100;
+        console.log('currentSection =', currentSection.dataset.section);
+        console.log('Math.abs(boundingRectToUse.top) =', Math.abs(boundingRectToUse.top));
+        console.log('Math.abs(boundingRectToUse.bottom) =', Math.abs(boundingRectToUse.bottom));
+        console.log('percentThroughSection =', percentThroughSection);
+        break;
+      }
+      
+      // sectionsBounds[section.dataset.section] = boundingRect;
+    }
+
+  
+
+
+    // PageNav.sectionsBounds = sectionsBounds;
   }
 
-  setScrollProgress = () => {
+  setGradientPercent = () => {
     const newGradient = `
       linear-gradient(to right, 
         ${PageNav.progressColor} 0%, 
@@ -36,7 +76,7 @@ class PageNav extends React.Component {
   }
 
   renderSections = () => {
-    this.setScrollProgress();
+    this.setGradientPercent();
     const { previousUrl } = this.props;
     const currentUrl = this.props.match?.url;
 
@@ -88,4 +128,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
   setPreviousUrl,
+  setScrollPercent,
 })(PageNav);
