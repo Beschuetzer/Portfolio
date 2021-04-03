@@ -12,6 +12,7 @@ class PageNav extends React.Component {
   static mainColor = '#f4d160';
   static progressColor = '#8ac4d0';
   static progressPercent = '0%';
+  static selectedClass = 'page-nav--active';
 
   componentDidMount() {
     document.addEventListener('scroll', this.handleScroll);
@@ -68,6 +69,7 @@ class PageNav extends React.Component {
     
     for (let i = 0; i < sections.length; i++) {
       let gradientToUse = selectedGradient;
+      let shouldAddActiveClass = true;
       const section = sections[i];
       const pageNavSectionName = capitalize(section.dataset.section);
       const pageNavSectionElement = document.querySelector(`.page-nav__section-${pageNavSectionName}`)
@@ -78,9 +80,13 @@ class PageNav extends React.Component {
       }
       else if (!currentSection?.className.match(new RegExp(pageNavSectionName, 'ig'))) {
         gradientToUse = normalGradient;
+        shouldAddActiveClass = false;
       }
-      
+
       pageNavSectionElement.style.backgroundImage = gradientToUse;
+
+      if (shouldAddActiveClass) pageNavSectionElement.parentNode?.classList?.add(PageNav.selectedClass)
+      else pageNavSectionElement.parentNode?.classList?.remove(PageNav.selectedClass);
     }
   }
 
