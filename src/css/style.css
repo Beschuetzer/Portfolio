@@ -224,7 +224,7 @@ body {
 .overflow--hidden {
   overflow: hidden !important;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .overflow--hidden {
     overflow: visible !important;
   }
@@ -964,7 +964,7 @@ body {
   transform: translateX(-125%);
   transition: visibility 0.5s ease, transform 0.5s ease;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar__content {
     transform: translateY(-2.4rem);
     position: absolute;
@@ -1000,7 +1000,7 @@ body {
   transform-origin: top left;
   transition: transform 0.25s ease, opacity 0.375s ease, width 0.25s cubic-bezier(1, 0, 0, 1) 0.25s;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar__list {
     flex-direction: column-reverse;
     opacity: 0;
@@ -1012,7 +1012,7 @@ body {
   transition: border-radius 0.5s ease;
   border-radius: 0.8rem 0 0 0.8rem;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar__list .navbar__item:first-child {
     border-radius: 0 0 3.2rem 3.2rem;
   }
@@ -1048,7 +1048,7 @@ body {
 .navbar__item:last-child, .navbar__item:first-child {
   border-radius: 0 10rem 10rem 0;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar__item:last-child, .navbar__item:first-child {
     border-radius: 0;
   }
@@ -1066,7 +1066,7 @@ body {
   font-weight: 300;
   transition: padding 0.5s ease, opacity 0.25s ease 0.25s;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar__link:link, .navbar__link:visited {
     flex-direction: column;
     position: relative;
@@ -1083,7 +1083,7 @@ body {
   align-items: center;
   transition: border-radius 0.5s ease;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar__button {
     transition: border-radius 0.25s ease;
   }
@@ -1105,7 +1105,7 @@ body {
   flex-direction: column;
   transition: transform 0.5s ease;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar__dropdown {
     position: relative;
     height: 0;
@@ -1124,7 +1124,7 @@ body {
   transform-origin: top;
   transition: height 0.5s ease, padding 0.5s ease, opacity 0.5s ease, transform 0.125s ease, background-color 0.125s ease;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar__dropdown .navbar__item {
     border-top: 0.16rem solid transparent;
     border-bottom: 0.16rem solid rgba(40, 82, 122, 0.5);
@@ -1138,7 +1138,7 @@ body {
 .navbar__dropdown .navbar__item:first-child {
   border-radius: 0;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar__dropdown .navbar__item:first-child {
     border-top: 0.16rem solid rgba(40, 82, 122, 0.5);
     margin-top: 1.2rem;
@@ -1147,7 +1147,7 @@ body {
 .navbar__dropdown .navbar__item:last-child {
   border-radius: 0 0 16rem 16rem;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar__dropdown .navbar__item:last-child {
     border-radius: 0 0 0.8rem 0.8rem;
   }
@@ -1156,7 +1156,7 @@ body {
   transform: translateX(0.32rem) !important;
   box-shadow: -1.6rem 0 3.2rem rgba(0, 0, 0, 0.15);
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar__dropdown .navbar__item:hover, .navbar__dropdown .navbar__item:hover + li {
     border-top: 0.16rem solid rgba(40, 82, 122, 0.5);
   }
@@ -1196,7 +1196,7 @@ body {
   opacity: 1;
   transform: translateX(0%);
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__content {
     width: 93.4vw;
     position: absolute;
@@ -1221,7 +1221,7 @@ body {
 .navbar.navbar--active .navbar__button {
   border-radius: 16rem 1.6rem 1.6rem 16rem;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__button {
     border-radius: 16rem 16rem 1.6rem 1.6rem;
   }
@@ -1238,7 +1238,7 @@ body {
 .navbar.navbar--active .navbar__link:not(.navbar.navbar--active__dropdown .navbar.navbar--active__link) {
   padding: 2rem 2.4rem;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__link:not(.navbar.navbar--active__dropdown .navbar.navbar--active__link) {
     padding: 1.6rem 0;
   }
@@ -1282,7 +1282,7 @@ body {
   z-index: 1;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .header {
     z-index: 10;
     background-color: #28527a;
@@ -1293,8 +1293,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 95%;
+  width: calc(85rem + ((100% - 85rem) / 2) + 8rem);
   margin: 0 auto;
+}
+@media only screen and (max-width: 71.875em) {
+  .header__inner {
+    width: 95%;
+  }
 }
 .header-toggler {
   display: flex;
@@ -1313,7 +1318,7 @@ body {
   opacity: 0;
   transition: top 0.5s cubic-bezier(0.68, -0.2, 0.32, 1.2);
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .header-toggler {
     opacity: 1;
   }
@@ -1337,14 +1342,44 @@ body {
 }
 
 .page-nav {
+  position: absolute;
+  top: 10rem;
+  left: 0;
+  width: calc((100% - 85rem) / 2);
   font-size: 1.2rem;
+  display: grid;
+  justify-items: center;
+  grid-auto-rows: minmax(min-content, 1fr);
+}
+@media only screen and (max-width: 71.875em) {
+  .page-nav {
+    position: static;
+    width: calc(95% - 16rem);
+    grid-template-rows: auto;
+    grid-template-columns: repeat(auto-fill, minmax(14.35rem, 1fr));
+  }
+}
+.page-nav__section {
+  list-style: decimal;
+  color: transparent;
   background-image: var(--site-nav-linear-gradient);
   -webkit-background-clip: text;
   background-clip: text;
-  display: inline-block;
 }
-.page-nav__section {
-  color: transparent;
+.page-nav__section-group {
+  padding: 1.6rem 0;
+  list-style: circle;
+}
+@media only screen and (max-width: 71.875em) {
+  .page-nav__section-group:nth-of-type(1) {
+    margin-left: 0;
+    list-style: none;
+  }
+}
+@media only screen and (max-width: 71.875em) {
+  .page-nav__section-group {
+    padding: 0.4rem 0;
+  }
 }
 ::-webkit-scrollbar {
   height: 1.6rem;
@@ -1438,7 +1473,7 @@ body {
   border-radius: 0.8rem;
   box-shadow: 0 0 2.4rem rgba(251, 238, 172, 0.2);
 }
-@media only screen and (max-width: 71em) {
+@media only screen and (max-width: 71.875em) {
   .resume__card {
     max-width: 100%;
     width: 95%;

@@ -92,16 +92,24 @@ class PageNav extends React.Component {
     
     return sectionNames.map((sectionName, index, array) => {
       return (
-        <a href={`${this.props.match.url}#${sectionName?.toLowerCase()}`} key={index} className={`${PageNav.cssClass}__section ${PageNav.cssClass}__section-${sectionName}`}>
-          {sectionName}
-          &nbsp;
-          {index < (array.length - 1) ?
-            '/'  
+        <ul 
+          key={sectionName} 
+          className={`${PageNav.cssClass}__section-group`}
+        >
+          <a 
+            href={`${this.props.match.url}#${sectionName?.toLowerCase()}`} 
+            className={`${PageNav.cssClass}__section ${PageNav.cssClass}__section-${sectionName}`}
+          >
+            {sectionName}
+            &nbsp;
+          </a>
+          {/* {index < (array.length - 1) ?
+            <span>/</span>
           : 
             null
-          }
+          } */}
           &nbsp;
-        </a>
+        </ul>
       );
     });
   }
