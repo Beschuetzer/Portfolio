@@ -965,10 +965,20 @@ body {
   left: 50%;
 }
 .navbar__menu-bar::before {
-  transform: translate(-50%, calc(-0.8rem - 50%));
+  transform: translate(-50%, calc(-1vw - 50%));
+}
+@media only screen and (max-width: 71.875em) {
+  .navbar__menu-bar::before {
+    transform: translate(-50%, calc(-0.8rem - 50%));
+  }
 }
 .navbar__menu-bar::after {
-  transform: translate(-50%, calc(+0.8rem + 50%));
+  transform: translate(-50%, calc(1vw + 50%));
+}
+@media only screen and (max-width: 71.875em) {
+  .navbar__menu-bar::after {
+    transform: translate(-50%, calc(+0.8rem + 50%));
+  }
 }
 .navbar__menu:hover .navbar__menu-bar::before {
   transform: translate(-50%, calc(-1.2rem - 50%));
@@ -977,7 +987,7 @@ body {
   transform: translate(-50%, calc(+1.2rem + 50%));
 }
 .navbar.navbar--active .navbar__menu-bar::before {
-  transform: rotate(105deg) translate(0.4vw, 2.7vw);
+  transform: rotate(105deg) translate(0.6vw, 2.9vw);
 }
 @media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__menu-bar::before {
@@ -986,14 +996,16 @@ body {
 }
 .navbar.navbar--active .navbar__menu-bar {
   width: 2vw;
+  transform: translate(-33%, -50%);
 }
 @media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__menu-bar {
     width: 1.6rem;
+    transform: translate(-50%, -50%);
   }
 }
 .navbar.navbar--active .navbar__menu-bar::after {
-  transform: rotate(-105deg) translate(0, -0.8vw);
+  transform: rotate(-105deg) translate(0, -1vw);
 }
 @media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__menu-bar::after {
@@ -1277,10 +1289,20 @@ body {
   }
 }
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::before {
-  transform: rotate(135deg) translate(1.1rem, 1.1rem);
+  transform: rotate(135deg) translate(1.1vw, 1.1vw);
+}
+@media only screen and (max-width: 71.875em) {
+  .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::before {
+    transform: rotate(135deg) translate(1.1rem, 1.1rem);
+  }
 }
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::after {
-  transform: rotate(-135deg) translate(1.1rem, -1.1rem);
+  transform: rotate(-135deg) translate(1.1vw, -1.1vw);
+}
+@media only screen and (max-width: 71.875em) {
+  .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::after {
+    transform: rotate(-135deg) translate(1.1rem, -1.1rem);
+  }
 }
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar {
   width: 0;

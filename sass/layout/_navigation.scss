@@ -62,9 +62,9 @@
 			&,
 			&::before,
 			&::after {
-				transition: transform $animation-duration * 0.5
-						$animation-easing-standard,
-					width $animation-duration * 0.5 $animation-easing-standard;
+				transition: 
+						transform $animation-duration * 0.5 $animation-easing-standard,
+						width $animation-duration * 0.5 $animation-easing-standard;
 			}
 
 			&::before,
@@ -76,11 +76,17 @@
 			}
 
 			&::before {
-				transform: translate(-50%, calc(-0.8rem - 50%));
+				transform: translate(-50%, calc(-1vw - 50%));
+				@include respond(nav-switch) {
+					transform: translate(-50%, calc(-0.8rem - 50%));
+				}
 			}
 
 			&::after {
-				transform: translate(-50%, calc(+0.8rem + 50%));
+				transform: translate(-50%, calc(1vw + 50%));				
+				@include respond(nav-switch) {
+					transform: translate(-50%, calc(+0.8rem + 50%));
+				}
 			}
 		}
 
@@ -94,7 +100,7 @@
 
 		//Change menu bars to 'A' on click
 		.navbar.navbar--active &-bar::before {
-			transform: rotate(105deg) translate(0.4vw, 2.7vw);
+			transform: rotate(105deg) translate(0.6vw, 2.9vw);
 
 			@include respond(nav-switch) {
 				transform: $navbar__button-bar-before-transform;
@@ -102,12 +108,16 @@
 		}
 		.navbar.navbar--active &-bar {
 			width: 2vw;
+			transform: translate(-33%, -50%);
+
 			@include respond(nav-switch) {
 				width: $default-font-size;
+				transform: translate(-50%, -50%);
+
 			}
 		}
 		.navbar.navbar--active &-bar::after {
-			transform: rotate(-105deg) translate(0, -.8vw);
+			transform: rotate(-105deg) translate(0, -1vw);
 			@include respond(nav-switch) {
 				transform: $navbar__button-bar-after-transform;
 			}
@@ -434,10 +444,16 @@
 			}
 			//A hover styling
 			&:hover .navbar__menu-bar::before {
-				transform: rotate(135deg) translate(1.1rem, 1.1rem);
+				transform: rotate(135deg) translate(1.1vw, 1.1vw);
+				@include respond(nav-switch) {
+					transform: rotate(135deg) translate(1.1rem, 1.1rem);
+				}
 			}
 			&:hover .navbar__menu-bar::after {
-				transform: rotate(-135deg) translate(1.1rem, -1.1rem);
+				transform: rotate(-135deg) translate(1.1vw, -1.1vw);
+				@include respond(nav-switch) {
+					transform: rotate(-135deg) translate(1.1rem, -1.1rem);
+				}
 			}
 			&:hover .navbar__menu-bar {
 				width: 0;
