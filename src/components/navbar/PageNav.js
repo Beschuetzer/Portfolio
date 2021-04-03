@@ -12,89 +12,73 @@ class PageNav extends React.Component {
   static mainColor = '#f4d160';
   static progressColor = '#8ac4d0';
   static progressPercent = '0%';
-  // static sectionsBounds = {};
 
   componentDidMount() {
     document.addEventListener('scroll', this.handleScroll);
+  }
 
-    
+  getLinearGradient = (percent) => {
+    return `
+      linear-gradient(to right, 
+        ${PageNav.progressColor} 0%, 
+        ${PageNav.progressColor} ${percent}%,
+        ${PageNav.mainColor} ${percent}%,
+        ${PageNav.mainColor} 100%)`
+      ;
   }
 
   handleScroll = (e) => {
     const scrollY = window.scrollY;
     const maxScrollY = document.body.scrollHeight - window.innerHeight;
-    // PageNav.progressPercent = `${scrollY / maxScrollY * 100}%`;
-    // console.log('window.pageYOffset || document.documentElement.scrollTop =', window.pageYOffset || document.documentElement.scrollTop);
-    // console.log('scrollPercent =', scrollPercent);
-    // console.log('scrollY =', scrollY);
-    // console.log('sectionsBounds =', PageNav.sectionsBounds);
+    const isEnd = scrollY >= maxScrollY;
 
     //get the binding rects for each section
     let currentSection = null;
+    let indexOfCurrentSection = -1;
     let percentThroughSection = '';
     const boundingRects = [];
     const sections = document.querySelectorAll('[data-section]');
-    // const sectionsBounds = {};
     for (let i = 0; i < sections.length; i++) {
       const section = sections[i];
       const boundingRect = section.getBoundingClientRect();
       boundingRects.push(boundingRect);
+      indexOfCurrentSection = i - 1;
 
       if (boundingRect.top >= 0) {
         if (i === 0) { 
           currentSection = sections[0];
         } else {
-          currentSection = sections[i - 1];
+          currentSection = sections[indexOfCurrentSection];
         }
-        const boundingRectToUse = boundingRects[i === 0 ? 0 : i - 1];
+        const boundingRectToUse = boundingRects[i === 0 ? 0 : indexOfCurrentSection];
         percentThroughSection = Math.abs(boundingRectToUse.top) / (Math.abs(boundingRectToUse.top) + Math.abs(boundingRectToUse.bottom))  * 100;
-        // console.log('currentSection =', currentSection.dataset.section);
-        // console.log('Math.abs(boundingRectToUse.top) =', Math.abs(boundingRectToUse.top));
-        // console.log('Math.abs(boundingRectToUse.bottom) =', Math.abs(boundingRectToUse.bottom));
-        // console.log('percentThroughSection =', percentThroughSection);
         break;
       }
-      
-      // sectionsBounds[section.dataset.section] = boundingRect;
     }
-    this.setGradientPercent(sections, currentSection, percentThroughSection);
-    // PageNav.sectionsBounds = sectionsBounds;
+    this.setGradientPercent(sections, currentSection, percentThroughSection, isEnd, indexOfCurrentSection);
   }
 
-  setGradientPercent = (sections, currentSection, percentThroughSection) => {
-    console.log('sections =', sections);
-    console.log('currentSection =', currentSection);
-    console.log('percentThroughSection =', percentThroughSection);
-
-    const selectedGradient = `
-      linear-gradient(to right, 
-        ${PageNav.progressColor} 0%, 
-        ${PageNav.progressColor} ${percentThroughSection}%,
-        ${PageNav.mainColor} ${percentThroughSection}%,
-        ${PageNav.mainColor} 100%)`
-    ;
-
-    const normalGradient = `
-      linear-gradient(to right, 
-        ${PageNav.progressColor} 0%, 
-        ${PageNav.progressColor} 0%,
-        ${PageNav.mainColor} 0%,
-        ${PageNav.mainColor} 100%)`
-    ;
-    // document.documentElement.style.setProperty(PageNav.gradientVarName, newGradient);
-    
+  setGradientPercent = (sections, currentSection, percentThroughSection, isEnd, indexOfCurrentSection) => {
+    console.log('isEnd =', isEnd);
+    console.log('indexOfCurrentSection =', indexOfCurrentSection);
+    const selectedGradient = this.getLinearGradient(percentThroughSection);
+    const isEndGradient = this.getLinearGradient(100);
+    const normalGradient = this.getLinearGradient(0);
     
     for (let i = 0; i < sections.length; i++) {
       let gradientToUse = selectedGradient;
       const section = sections[i];
       const pageNavSectionName = capitalize(section.dataset.section);
       const pageNavSectionElement = document.querySelector(`.page-nav__section-${pageNavSectionName}`)
-      
-      if (!currentSection.className.match(new RegExp(pageNavSectionName, 'ig'))) {
+
+
+      if (isEnd && i >= indexOfCurrentSection) {
+        gradientToUse = isEndGradient;
+      }
+      else if (!currentSection.className.match(new RegExp(pageNavSectionName, 'ig'))) {
         gradientToUse = normalGradient;
       }
       
-      console.log('gradientToUse =', gradientToUse);
       pageNavSectionElement.style.backgroundImage = gradientToUse;
     }
   }

@@ -890,7 +890,7 @@ body {
 }
 
 :root {
-  --site-nav-linear-gradient: linear-gradient(to right, $color-primary-2 0%, $color-primary-2 1%, $color-primary-1 1%, $color-primary-1 100%);
+  --site-nav-linear-gradient: linear-gradient(to right, $color-primary-2 0%, $color-primary-2 0%, $color-primary-1 0%, $color-primary-1 100%);
 }
 
 .navbar {
