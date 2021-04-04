@@ -180,7 +180,7 @@
 
 		@include respond(nav-switch) {
 			display: grid;
-    	grid-template-columns: repeat(auto-fill, minmax($default-font-size * 20.375, 1fr));
+    	grid-template-columns: repeat(auto-fill, minmax($default-font-size * 16.8125, 1fr));
 			flex-direction: column;
 			opacity: 0;
 			width: $default-font-size * 5;
@@ -221,11 +221,9 @@
 		;
 
 		&:nth-of-type(3) {
+
 			@include respond(nav-switch) {
 				order: 1;
-				// border-radius: 0 $default-font-size * 2;
-			}
-			@include respond(small-font) {
 				border-radius: 0 0 $default-font-size * 2 $default-font-size * 2;
 			}
 		}
@@ -382,6 +380,7 @@
 
 	&__dropdown-container {
 		transition: height $animation-duration / 10 $animation-easing-standard;
+		grid-column: 1 / -1;
 
 		&:hover {
 			transform: translate(0);
