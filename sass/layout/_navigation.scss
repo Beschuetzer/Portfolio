@@ -198,7 +198,7 @@
 		}
 
 		& .navbar__item:nth-child(n + 1) {
-			margin-left: $default-font-size * 0.2;
+			margin-left: $default-font-size * 0.1;
 			@include respond(nav-switch) {
 			}
 		}

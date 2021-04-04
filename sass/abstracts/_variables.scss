@@ -81,10 +81,15 @@ $skills-linear-gradient-hover: linear-gradient(
 $header-top-desktop: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
-$header-mobile-width-nav-switch: 93.4vw;
-$header-mobile-width-tab-land: 93.4vw;
-$header-mobile-width-phone: 93vw;
-$header-mobile-width-small-font: 92.3vw;
+$header-mobile-width-nav-switch: 92.2vw;
+$header-mobile-width-tab-land: 91.5vw;
+$header-mobile-width-phone: 91.1vw;
+$header-mobile-width-small-font: 90vw;
+
+// $header-mobile-width-nav-switch: 92vw;
+// $header-mobile-width-tab-land: 91.3vw;
+// $header-mobile-width-phone: 90.6vw;
+// $header-mobile-width-small-font: 88.5vw;
 
 //page-nav
 $page-nav-top:  calc(100% + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 1.4vw);

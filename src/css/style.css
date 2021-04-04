@@ -1042,22 +1042,22 @@ body {
     display: flex;
     overflow: visible !important;
     flex-direction: column;
-    width: 93.4vw;
+    width: 92.2vw;
   }
 }
 @media only screen and (max-width: 58.5625em) {
   .navbar__content {
-    width: 93.4vw;
+    width: 91.5vw;
   }
 }
 @media only screen and (max-width: 40.9375em) {
   .navbar__content {
-    width: 93vw;
+    width: 91.1vw;
   }
 }
 @media only screen and (max-width: 29.3125em) {
   .navbar__content {
-    width: 92.3vw;
+    width: 90vw;
   }
 }
 .navbar__list {
@@ -1089,7 +1089,7 @@ body {
   }
 }
 .navbar__list .navbar__item:nth-child(n+1) {
-  margin-left: 0.32rem;
+  margin-left: 0.16rem;
 }
 .navbar__list .navbar__dropdown .navbar__item {
   margin-left: 0;
@@ -1277,24 +1277,24 @@ body {
 }
 @media only screen and (max-width: 71.8756em) {
   .navbar.navbar--active .navbar__content {
-    width: 93.4vw;
+    width: 92.2vw;
     position: absolute;
     z-index: 100;
   }
 }
 @media only screen and (max-width: 58.5625em) {
   .navbar.navbar--active .navbar__content {
-    width: 93.4vw;
+    width: 91.5vw;
   }
 }
 @media only screen and (max-width: 40.9375em) {
   .navbar.navbar--active .navbar__content {
-    width: 93vw;
+    width: 91.1vw;
   }
 }
 @media only screen and (max-width: 29.3125em) {
   .navbar.navbar--active .navbar__content {
-    width: 92.3vw;
+    width: 90vw;
   }
 }
 .navbar.navbar--active .navbar__button {
