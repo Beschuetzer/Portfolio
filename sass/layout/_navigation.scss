@@ -72,14 +72,14 @@
 			}
 
 			&::before {
-				transform: translate(-50%, calc(-1vw - 50%));
+				transform: translate(-50%, calc(-.8vw - 50%));
 				@include respond(nav-switch) {
 					transform: translate(-50%, calc(-0.8rem - 50%));
 				}
 			}
 
 			&::after {
-				transform: translate(-50%, calc(1vw + 50%));				
+				transform: translate(-50%, calc(.8vw + 50%));				
 				@include respond(nav-switch) {
 					transform: translate(-50%, calc(+0.8rem + 50%));
 				}
@@ -88,13 +88,13 @@
 
 		//Spread Menu bars on hover
 		&:hover &-bar::before {
-			transform: translate(-50%, calc(-1.5vw - 50%));
+			transform: translate(-50%, calc(-1.2vw - 50%));
 			@include respond(nav-switch) {
 				transform: translate(-50%, calc(-1.2rem - 50%));
 			}
 		}
 		&:hover &-bar::after {
-			transform: translate(-50%, calc(+1.5vw + 50%));
+			transform: translate(-50%, calc(+1.2vw + 50%));
 			@include respond(nav-switch) {
 				transform: translate(-50%, calc(+1.2rem + 50%));
 			}

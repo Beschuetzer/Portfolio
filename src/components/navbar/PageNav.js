@@ -18,12 +18,10 @@ class PageNav extends React.Component {
   };
   static mainColor = '#fbeeac';
   static progressColor = '138, 196, 208';
-  // static progressColor = '40, 82, 122';
   static progressPercent = '0%';
   static selectedClass = 'page-nav--active';
 
   componentDidMount() {
-    console.log('PageNav.progressColor =', PageNav.progressColor);
     document.addEventListener('scroll', this.handleScroll);
     this.updateActiveScaleRange();
   }
