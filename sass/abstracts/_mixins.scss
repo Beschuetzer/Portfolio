@@ -101,7 +101,7 @@
 	}
 	@if $breakpoint == nav-switch {
 		// @media only screen and (max-width: 67.1875em) {			
-			@media only screen and (max-width: 71.875em) {			
+			@media only screen and (max-width: $nav-switch-width) {			
 			@content;
 		} //1200px
 	}

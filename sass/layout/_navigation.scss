@@ -1,9 +1,3 @@
-:root{
-	--site-nav-linear-gradient: linear-gradient(to right, $color-primary-2 0%, $color-primary-2 0%, $color-primary-1 0%, $color-primary-1 100%);
-	--site-nav-active-scale-amount: 1;
-}
-
-
 .navbar {
 	margin-left: .645vw;
 	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;

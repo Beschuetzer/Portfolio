@@ -4,7 +4,7 @@
 $line-height: 1.5;
 $font-family-text: "Open Sans", sans-serif;
 $font-family-headers: "Merriweather", serif;
-
+$nav-switch-width: 71.875em;
 $default-font-size: 1.6rem;
 
 //colors
@@ -36,18 +36,18 @@ $github__logo-width-desktop: 9vw;
 $navbar__logo-width-mobile: $default-font-size * 5;
 $content-padding-mobile: 5vmin;
 $component-margin-amount: $default-font-size * 8;
-
-//navbar stuff
 $paddingFactor: 1.25;
 
+
+//animation
 $animation-duration: 0.5s;
 $animation-easing-standard: ease;
 $animation-easing-standard-easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 $animation-easing-standard-easeInOutBack-smaller: cubic-bezier(0.68, -0.2, 0.32, 1.2);
 $animation-easing-modern: cubic-bezier(1,0,0,1);
-
 $animation-navbar: $animation-duration $animation-easing-standard;
 
+//navbar stuff
 $navbar__button-bar-before-rotation: rotate(105deg);
 $navbar__button-bar-before-transform: $navbar__button-bar-before-rotation
 	translate($default-font-size * 0.125, $default-font-size * 1.5);
@@ -87,4 +87,11 @@ $header-mobile-width-tab-land: 93vw;
 $header-mobile-width-phone: 92.5vw;
 $header-mobile-width-small-font: 92vw;
 
+//page-nav
 $page-nav-top:  calc(100% + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7.7vw)) / 2) - 1vw) * 1) - 1.4vw);
+
+:root {
+	--nav-switch-width: $nav-switch-width;
+	--site-nav-linear-gradient: linear-gradient(to right, $color-primary-2 0%, $color-primary-2 0%, $color-primary-1 0%, $color-primary-1 100%);
+	--site-nav-active-scale-amount: 1;
+}

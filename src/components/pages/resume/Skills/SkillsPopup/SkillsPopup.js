@@ -11,11 +11,11 @@ import { KeepStencilOp } from 'three';
 const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDisplay, clickSkill, isMobile , setIsMobile}) => {
   const skillsPopupDiv = document.querySelector('#skillsPopup');
   const resetReposDelay = 500;
-  // const mobileBreakPointWidth = 740;
-  const mobileBreakPointWidth = 843;
+  
+  let docStyle = getComputedStyle(document.documentElement);
+  const mobileBreakPointWidth = docStyle.getPropertyValue('--nav-switch-width')
   setIsMobile(window.innerWidth <= mobileBreakPointWidth);
   
-
   //setup window resize listener
   useEffect(() => {
     const windowResize = (e) => {
@@ -30,7 +30,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
     return (() => {
       window.removeEventListener('resize', windowResize);
     })
-  }, [isMobile, setIsMobile]);
+  }, [isMobile, setIsMobile, mobileBreakPointWidth]);
 
   //on initial load
   useEffect(() => {

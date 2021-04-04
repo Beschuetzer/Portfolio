@@ -1,4 +1,10 @@
 /* ------------------------------------------------------------------------------------------------- */
+:root {
+  --nav-switch-width: $nav-switch-width;
+  --site-nav-linear-gradient: linear-gradient(to right, $color-primary-2 0%, $color-primary-2 0%, $color-primary-1 0%, $color-primary-1 100%);
+  --site-nav-active-scale-amount: 1;
+}
+
 @keyframes black-hole {
   0% {
     transform: scale(1) rotate(0deg);
@@ -904,11 +910,6 @@ body {
 }
 .work-history__title-dates > div:nth-child(2) {
   margin: 0 0.4rem;
-}
-
-:root {
-  --site-nav-linear-gradient: linear-gradient(to right, $color-primary-2 0%, $color-primary-2 0%, $color-primary-1 0%, $color-primary-1 100%);
-  --site-nav-active-scale-amount: 1;
 }
 
 .navbar {
