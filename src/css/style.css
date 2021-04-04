@@ -943,13 +943,13 @@ body {
 }
 .navbar__menu-bar, .navbar__menu-bar::before, .navbar__menu-bar::after {
   background-color: #28527a;
-  height: 0.75vw;
-  width: 4vw;
+  height: 0.7vw;
+  width: 3.5vw;
 }
 @media only screen and (max-width: 71.875em) {
   .navbar__menu-bar, .navbar__menu-bar::before, .navbar__menu-bar::after {
     height: 0.8rem;
-    width: 3.2rem;
+    width: 4rem;
   }
 }
 .navbar__menu-bar {
@@ -1000,11 +1000,11 @@ body {
   }
 }
 .navbar.navbar--active .navbar__menu-bar::before {
-  transform: rotate(105deg) translate(0.6vw, 2.9vw);
+  transform: rotate(105deg) translate(0.6vw, 2.75vw);
 }
 @media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__menu-bar::before {
-    transform: rotate(105deg) translate(0.2rem, 2.4rem);
+    transform: rotate(105deg) translate(0.4rem, 3rem);
   }
 }
 .navbar.navbar--active .navbar__menu-bar {
@@ -1013,7 +1013,7 @@ body {
 }
 @media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__menu-bar {
-    width: 1.6rem;
+    width: 2.4rem;
     transform: translate(-50%, -50%);
   }
 }
@@ -1022,7 +1022,7 @@ body {
 }
 @media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__menu-bar::after {
-    transform: rotate(-105deg) translate(0rem, -0.6rem);
+    transform: rotate(-105deg) translate(-0.12rem, -0.8rem);
   }
 }
 .navbar__content {
@@ -1306,7 +1306,7 @@ body {
 }
 @media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::before {
-    transform: rotate(135deg) translate(1.1rem, 1.1rem);
+    transform: rotate(135deg) translate(1.4rem, 1.4rem);
   }
 }
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::after {
@@ -1314,7 +1314,7 @@ body {
 }
 @media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::after {
-    transform: rotate(-135deg) translate(1.1rem, -1.1rem);
+    transform: rotate(-135deg) translate(1.4rem, -1.4rem);
   }
 }
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar {

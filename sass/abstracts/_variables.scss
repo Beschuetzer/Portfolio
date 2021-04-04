@@ -49,11 +49,10 @@ $animation-navbar: $animation-duration $animation-easing-standard;
 
 //navbar stuff
 $navbar__button-bar-before-rotation: rotate(105deg);
-$navbar__button-bar-before-transform: $navbar__button-bar-before-rotation
-	translate($default-font-size * 0.125, $default-font-size * 1.5);
+$navbar__button-bar-before-transform: $navbar__button-bar-before-rotation translate($default-font-size * 0.25, $default-font-size * 1.875);
 $navbar__button-bar-after-rotation: rotate(-105deg);
 $navbar__button-bar-after-transform: $navbar__button-bar-after-rotation
-	translate(0rem, -$default-font-size * .375);
+	translate(-$default-font-size * 0.075, -$default-font-size * .5);
 $navbar-mobile-width: 97.5vw;
 
 $navbar__item-border-radius: $default-font-size * 10;

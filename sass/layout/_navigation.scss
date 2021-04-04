@@ -40,12 +40,12 @@
 		&-bar::before,
 		&-bar::after {
 			background-color: $color-primary-1;
-			height: 0.75vw;
-    	width: 4vw;
+			height: $navbar__logo-width-desktop * .1;
+			width: $navbar__logo-width-desktop * .5;
 
 			@include respond(nav-switch) {
 				height: $default-font-size * 0.5;
-				width: $default-font-size * 2;
+				width: $default-font-size * 2.5;
 			}
 		}
 
@@ -102,7 +102,7 @@
 
 		//Change menu bars to 'A' on click
 		.navbar.navbar--active &-bar::before {
-			transform: rotate(105deg) translate(0.6vw, 2.9vw);
+			transform: rotate(105deg) translate(0.6vw, 2.75vw);
 
 			@include respond(nav-switch) {
 				transform: $navbar__button-bar-before-transform;
@@ -113,7 +113,7 @@
 			transform: translate(-33%, -50%);
 
 			@include respond(nav-switch) {
-				width: $default-font-size;
+				width: $default-font-size * 1.5;
 				transform: translate(-50%, -50%);
 
 			}
@@ -448,13 +448,13 @@
 			&:hover .navbar__menu-bar::before {
 				transform: rotate(135deg) translate(1.1vw, 1.1vw);
 				@include respond(nav-switch) {
-					transform: rotate(135deg) translate(1.1rem, 1.1rem);
+					transform: rotate(135deg) translate(1.4rem, 1.4rem);
 				}
 			}
 			&:hover .navbar__menu-bar::after {
 				transform: rotate(-135deg) translate(1.1vw, -1.1vw);
 				@include respond(nav-switch) {
-					transform: rotate(-135deg) translate(1.1rem, -1.1rem);
+					transform: rotate(-135deg) translate(1.4rem, -1.4rem);
 				}
 			}
 			&:hover .navbar__menu-bar {
