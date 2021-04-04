@@ -31,8 +31,8 @@ $color-primary-4-rgb: rgb(251, 238, 172);
 
 //sizes
 $scale-amount: 1.05;
-$navbar__logo-width-desktop: 7.7vw;
-$github__logo-width-desktop: 9vw;
+$navbar__logo-width-desktop: 7vw;
+$github__logo-width-desktop: $navbar__logo-width-desktop * 1.1666666667;
 $navbar__logo-width-mobile: $default-font-size * 5;
 $content-padding-mobile: 5vmin;
 $component-margin-amount: $default-font-size * 8;
@@ -79,7 +79,7 @@ $skills-linear-gradient-hover: linear-gradient(
 
 
 //header
-$header-top-desktop: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 7.7vw)) / 2) - 1vw);
+$header-top-desktop: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
 $header-mobile-width-nav-switch: 93.4vw;
@@ -88,7 +88,7 @@ $header-mobile-width-phone: 92.5vw;
 $header-mobile-width-small-font: 92vw;
 
 //page-nav
-$page-nav-top:  calc(100% + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7.7vw)) / 2) - 1vw) * 1) - 1.4vw);
+$page-nav-top:  calc(100% + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 1.4vw);
 
 :root {
 	--nav-switch-width: $nav-switch-width;

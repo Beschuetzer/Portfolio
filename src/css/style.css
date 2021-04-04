@@ -286,8 +286,8 @@ body {
   font-weight: 700;
 }
 .github__svg {
-  height: 9vw;
-  width: 9vw;
+  height: 8.1666666669vw;
+  width: 8.1666666669vw;
   fill: #fbeeac;
 }
 @media only screen and (max-width: 71.875em) {
@@ -913,7 +913,7 @@ body {
 }
 
 .navbar {
-  margin-left: 0.645vw;
+  margin-left: 0.582999998vw;
   border-radius: 16rem 0 0 16rem;
   position: relative;
   font-size: 2.4rem;
@@ -931,8 +931,8 @@ body {
   z-index: -1;
 }
 .navbar__menu {
-  width: 7.7vw;
-  height: 7.7vw;
+  width: 7vw;
+  height: 7vw;
   position: relative;
 }
 @media only screen and (max-width: 71.875em) {
@@ -1362,7 +1362,7 @@ body {
 }
 
 .header {
-  top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 7.7vw)) / 2) - 1vw);
+  top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw);
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -1380,7 +1380,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc(85rem + ((100vw - 85rem) / 2) + 8.5vw);
+  width: calc(85rem + ((100vw - 85rem) / 2) + 7.5vw);
   margin: 0 auto;
 }
 @media only screen and (max-width: 71.875em) {
@@ -1431,7 +1431,7 @@ body {
 .page-nav {
   z-index: 1;
   position: absolute;
-  top: calc(100% + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7.7vw)) / 2) - 1vw) * 1) - 1.4vw);
+  top: calc(100% + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 1.4vw);
   left: 0;
   width: calc((100% - 85rem) / 2);
   font-size: 1vw;

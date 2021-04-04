@@ -1,5 +1,6 @@
 .navbar {
-	margin-left: .645vw;
+	// margin-left: 0.583vw;
+	margin-left: .083285714 * $navbar__logo-width-desktop;
 	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
 	position: relative;
 	font-size: $default-font-size * 1.5;
@@ -527,7 +528,7 @@
 		// flex-direction: row-reverse;
 		justify-content: space-between;
 		align-items: center;
-		width: calc(85rem + ((100vw - 85rem) / 2) + 8.5vw);
+		width: calc(85rem + ((100vw - 85rem) / 2) + 7.5vw);
 		// width: calc(85rem + ((100vw - 85rem) / 2) + 8rem);
 		margin: 0 auto;
 
