@@ -604,7 +604,10 @@
 	font-size: 1vw;	
 	display: grid;
 	justify-items: center;
-	grid-auto-rows: minmax(min-content, 1fr);
+	align-items: center;
+	// grid-auto-rows: minmax(min-content, 1fr);
+	grid-auto-rows: 1fr;
+	height: 200%;
 
 	@include respond(nav-switch) {
 		// display: grid;
@@ -618,16 +621,29 @@
 	}
 
 	&__section {
+		text-decoration: none;
 		list-style: decimal;
 		color: transparent;
 		background-image: var(--site-nav-linear-gradient);
 		-webkit-background-clip: text;
 		background-clip: text;
+		padding: 1vw 0;
+
+		transition:
+			color $animation-duration $animation-easing-standard,
+		;
+
+		@include respond(nav-switch) {
+			padding: $default-font-size * .25 0;
+		}
+
+		@include respond(small-font) {
+			padding: 0;
+		}
 		
 		&-group {
 			backface-visibility: hidden;
 			list-style: none;
-			padding: 1vw 0;
 			transition: 
 				transform $animation-duration $animation-easing-standard,
 			;
@@ -638,15 +654,19 @@
 				}
 			}
 
-			@include respond(nav-switch) {
-				padding: $default-font-size * .25 0;
+			&:hover {
+				transform: translateY(-.25vw);
+	
+				@include respond(nav-switch) {
+					transform: translateY(-$default-font-size * .25)
+				}
 			}
 
-			@include respond(small-font) {
-				padding: 0;
+			&:hover > a {
+				color: $color-primary-2;
 			}
+			
 		}
-
 	}
 	
 	&__inner {

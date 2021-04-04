@@ -10,21 +10,30 @@ class PageNav extends React.Component {
   static cssClass = 'page-nav';
   static gradientVarName = '--site-nav-linear-gradient';
   static activeScaleVarName = '--site-nav-active-scale-amount';
-  static activeScaleRange = {min: 1.5, max: 1};
-  static mainColor = '#f4d160';
-  static progressColor = '#8ac4d0';
+  static activeScaleRange = {min: 1.5, max: 1.75};
+  static mainColor = '#fbeeac';
+  static progressColor = '138, 196, 208';
+  // static progressColor = '40, 82, 122';
   static progressPercent = '0%';
   static selectedClass = 'page-nav--active';
 
   componentDidMount() {
+    console.log('PageNav.progressColor =', PageNav.progressColor);
     document.addEventListener('scroll', this.handleScroll);
   }
 
   getLinearGradient = (percent) => {
+    const valueRange = {
+      min: .5,
+      max: 1,
+    }
+
+    const percentToUse = valueRange.min + ((valueRange.max - valueRange.min) * (percent / 100))
+
     return `
       linear-gradient(to right, 
-        ${PageNav.progressColor} 0%, 
-        ${PageNav.progressColor} ${percent}%,
+        rgba(${PageNav.progressColor}, ${percentToUse}) 0%, 
+        rgba(${PageNav.progressColor}, ${percentToUse}) ${percent}%,
         ${PageNav.mainColor} ${percent}%,
         ${PageNav.mainColor} 100%)`
       ;
