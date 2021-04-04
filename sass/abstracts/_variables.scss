@@ -74,9 +74,12 @@ $skills-linear-gradient-hover: linear-gradient(
 
 
 //header
+$header-top-desktop: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 7.7vw)) / 2) - 1vw);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
 $header-mobile-width-nav-switch: 93.4vw;
 $header-mobile-width-tab-land: 93vw;
 $header-mobile-width-phone: 92.5vw;
 $header-mobile-width-small-font: 92vw;
+
+$page-nav-top:  calc(100% + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7.7vw)) / 2) - 1vw) * 1) - 1.4vw);

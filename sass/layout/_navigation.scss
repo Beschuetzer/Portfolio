@@ -5,7 +5,7 @@
 
 
 .navbar {
-	padding-left: .645vw;
+	margin-left: .645vw;
 	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
 	position: relative;
 	font-size: $default-font-size * 1.5;
@@ -512,7 +512,7 @@
 }
 
 .header {
-	top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 7.7vw)) / 2) - 1vw);
+	top: $header-top-desktop;
 	width: 100%;
 	position: fixed;
 	z-index: 1;
@@ -593,7 +593,7 @@
 .page-nav {
 	z-index: 1;
 	position: absolute;
-	top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 8rem)) / 2) + 7rem);
+	top: $page-nav-top;
 	left: 0;
 	width: calc((100% - 85rem) / 2);
 
@@ -627,7 +627,7 @@
 		&-group {
 			backface-visibility: hidden;
 			list-style: none;
-			padding: $default-font-size 0;
+			padding: 1vw 0;
 			transition: 
 				transform $animation-duration $animation-easing-standard,
 			;
