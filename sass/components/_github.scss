@@ -4,7 +4,6 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: $navbar__logo-width-desktop;
   z-index: 10000;
 
   @include respond(nav-switch) {
@@ -18,8 +17,10 @@
   }
 
   &__svg {
-    width: 100%;
+    // width: 100%;
     // height: $default-font-size * 5.875;
+    height: $navbar__logo-width-desktop;
+    width: $navbar__logo-width-desktop;
     fill: $color-primary-4;
     
     @include respond(nav-switch) {
