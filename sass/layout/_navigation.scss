@@ -179,6 +179,8 @@
 
 
 		@include respond(nav-switch) {
+			display: grid;
+    	grid-template-columns: repeat(auto-fill, minmax($default-font-size * 20.375, 1fr));
 			flex-direction: column;
 			opacity: 0;
 			width: $default-font-size * 5;
@@ -218,11 +220,13 @@
 			background-color $animation-duration * 0.25 $animation-easing-standard,
 		;
 
-		@include respond(nav-switch) {
-			&:nth-of-type(3) {
+		&:nth-of-type(3) {
+			@include respond(nav-switch) {
 				order: 1;
+				// border-radius: 0 $default-font-size * 2;
+			}
+			@include respond(small-font) {
 				border-radius: 0 0 $default-font-size * 2 $default-font-size * 2;
-
 			}
 		}
 
@@ -311,6 +315,7 @@
 			position: relative;
 			height: 0;
 			transform: translateY(0%) scale(0);
+			top: 0;
 		}
 
 		&-group {
@@ -606,8 +611,7 @@
 
 	@include respond(nav-switch) {
 		// display: grid;
-		font-size: $default-font-size * .75;	
-
+		font-size: $default-font-size * .85;	
 		position: static;
 		width: calc(95% - 16rem);
 		grid-template-rows: auto;
