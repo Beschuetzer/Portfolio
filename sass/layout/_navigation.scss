@@ -48,7 +48,7 @@
     	width: 4vw;
 
 			@include respond(nav-switch) {
-				height: $default-font-size * 0.33;
+				height: $default-font-size * 0.5;
 				width: $default-font-size * 2;
 			}
 		}
@@ -93,9 +93,15 @@
 		//Spread Menu bars on hover
 		&:hover &-bar::before {
 			transform: translate(-50%, calc(-1.5vw - 50%));
+			@include respond(nav-switch) {
+				transform: translate(-50%, calc(-1.2rem - 50%));
+			}
 		}
 		&:hover &-bar::after {
 			transform: translate(-50%, calc(+1.5vw + 50%));
+			@include respond(nav-switch) {
+				transform: translate(-50%, calc(+1.2rem + 50%));
+			}
 		}
 
 		//Change menu bars to 'A' on click

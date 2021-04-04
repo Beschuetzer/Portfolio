@@ -945,7 +945,7 @@ body {
 }
 @media only screen and (max-width: 71.875em) {
   .navbar__menu-bar, .navbar__menu-bar::before, .navbar__menu-bar::after {
-    height: 0.528rem;
+    height: 0.8rem;
     width: 3.2rem;
   }
 }
@@ -983,15 +983,25 @@ body {
 .navbar__menu:hover .navbar__menu-bar::before {
   transform: translate(-50%, calc(-1.5vw - 50%));
 }
+@media only screen and (max-width: 71.875em) {
+  .navbar__menu:hover .navbar__menu-bar::before {
+    transform: translate(-50%, calc(-1.2rem - 50%));
+  }
+}
 .navbar__menu:hover .navbar__menu-bar::after {
   transform: translate(-50%, calc(+1.5vw + 50%));
+}
+@media only screen and (max-width: 71.875em) {
+  .navbar__menu:hover .navbar__menu-bar::after {
+    transform: translate(-50%, calc(+1.2rem + 50%));
+  }
 }
 .navbar.navbar--active .navbar__menu-bar::before {
   transform: rotate(105deg) translate(0.6vw, 2.9vw);
 }
 @media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__menu-bar::before {
-    transform: rotate(105deg) translate(0.2rem, 2.2rem);
+    transform: rotate(105deg) translate(0.2rem, 2.4rem);
   }
 }
 .navbar.navbar--active .navbar__menu-bar {
@@ -1009,7 +1019,7 @@ body {
 }
 @media only screen and (max-width: 71.875em) {
   .navbar.navbar--active .navbar__menu-bar::after {
-    transform: rotate(-105deg) translate(0rem, -0.8rem);
+    transform: rotate(-105deg) translate(0rem, -0.6rem);
   }
 }
 .navbar__content {
