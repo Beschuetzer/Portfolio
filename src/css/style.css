@@ -940,12 +940,12 @@ body {
 }
 .navbar__menu-bar, .navbar__menu-bar::before, .navbar__menu-bar::after {
   background-color: #28527a;
-  height: 0.5vw;
+  height: 0.75vw;
   width: 4vw;
 }
 @media only screen and (max-width: 71.875em) {
   .navbar__menu-bar, .navbar__menu-bar::before, .navbar__menu-bar::after {
-    height: 0.4rem;
+    height: 0.528rem;
     width: 3.2rem;
   }
 }
@@ -995,7 +995,7 @@ body {
   }
 }
 .navbar.navbar--active .navbar__menu-bar {
-  width: 2vw;
+  width: 1.66vw;
   transform: translate(-33%, -50%);
 }
 @media only screen and (max-width: 71.875em) {

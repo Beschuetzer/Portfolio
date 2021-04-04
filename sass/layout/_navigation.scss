@@ -44,11 +44,11 @@
 		&-bar::before,
 		&-bar::after {
 			background-color: $color-primary-1;
-			height: 0.5vw;
+			height: 0.75vw;
     	width: 4vw;
 
 			@include respond(nav-switch) {
-				height: $default-font-size * 0.25;
+				height: $default-font-size * 0.33;
 				width: $default-font-size * 2;
 			}
 		}
@@ -107,7 +107,7 @@
 			}
 		}
 		.navbar.navbar--active &-bar {
-			width: 2vw;
+			width: 1.66vw;
 			transform: translate(-33%, -50%);
 
 			@include respond(nav-switch) {
