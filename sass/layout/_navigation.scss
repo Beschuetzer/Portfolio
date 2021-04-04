@@ -642,6 +642,9 @@
 		}
 		
 		&-group {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			backface-visibility: hidden;
 			list-style: none;
 			transition: 
@@ -658,7 +661,7 @@
 				transform: translateY(-.25vw);
 	
 				@include respond(nav-switch) {
-					transform: translateY(-$default-font-size * .25)
+					transform: translateY(-$default-font-size * .1)
 				}
 			}
 

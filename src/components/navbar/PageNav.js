@@ -10,7 +10,12 @@ class PageNav extends React.Component {
   static cssClass = 'page-nav';
   static gradientVarName = '--site-nav-linear-gradient';
   static activeScaleVarName = '--site-nav-active-scale-amount';
-  static activeScaleRange = {min: 1.5, max: 1.75};
+  static activeScaleRange = {
+    desktop: {min: 1.5, max: 1.75},
+    mobile: {min: 1.25, max: 1.5},
+    min: 1.5,
+    max: 1.75,
+  };
   static mainColor = '#fbeeac';
   static progressColor = '138, 196, 208';
   // static progressColor = '40, 82, 122';
@@ -20,6 +25,22 @@ class PageNav extends React.Component {
   componentDidMount() {
     console.log('PageNav.progressColor =', PageNav.progressColor);
     document.addEventListener('scroll', this.handleScroll);
+    this.updateActiveScaleRange();
+  }
+
+  componentDidUpdate () {
+    this.updateActiveScaleRange();
+  }
+
+  updateActiveScaleRange = () => {
+    if (this.props.isMobile) {
+      PageNav.activeScaleRange.min = PageNav.activeScaleRange.mobile.min;
+      PageNav.activeScaleRange.max = PageNav.activeScaleRange.mobile.max;
+    } 
+    else { 
+      PageNav.activeScaleRange.min = PageNav.activeScaleRange.desktop.min;
+      PageNav.activeScaleRange.max = PageNav.activeScaleRange.desktop.max;
+    }
   }
 
   getLinearGradient = (percent) => {
@@ -137,14 +158,7 @@ class PageNav extends React.Component {
             className={`${PageNav.cssClass}__section ${PageNav.cssClass}__section-${sectionName}`}
           >
             {sectionName}
-            &nbsp;
           </a>
-          {/* {index < (array.length - 1) ?
-            <span>/</span>
-          : 
-            null
-          } */}
-          &nbsp;
         </li>
       );
     });
@@ -166,7 +180,8 @@ class PageNav extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return { 
-    previousUrl: state.general.previousUrl
+    previousUrl: state.general.previousUrl,
+    isMobile: state.general.isMobile,
   }
 }
 

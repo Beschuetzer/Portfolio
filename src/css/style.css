@@ -1471,6 +1471,9 @@ body {
   }
 }
 .page-nav__section-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   backface-visibility: hidden;
   list-style: none;
   transition: transform 0.5s ease;
@@ -1485,7 +1488,7 @@ body {
 }
 @media only screen and (max-width: 71.875em) {
   .page-nav__section-group:hover {
-    transform: translateY(-0.4rem);
+    transform: translateY(-0.16rem);
   }
 }
 .page-nav__section-group:hover > a {
@@ -1590,6 +1593,10 @@ body {
 @media only screen and (max-width: 71.875em) {
   .resume__card {
     max-width: 100%;
+  }
+}
+@media only screen and (max-width: 58.5625em) {
+  .resume__card {
     width: 95%;
   }
 }
