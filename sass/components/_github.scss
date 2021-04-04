@@ -6,9 +6,9 @@
   align-items: center;
   z-index: 10000;
 
-  @include respond(nav-switch) {
-    width: $navbar__logo-width-mobile;
-  }
+  // @include respond(nav-switch) {
+  //   width: $navbar__logo-width-mobile;
+  // }
 
   &__link:link, &__link:visited {
     text-decoration: none;
@@ -19,8 +19,8 @@
   &__svg {
     // width: 100%;
     // height: $default-font-size * 5.875;
-    height: $navbar__logo-width-desktop;
-    width: $navbar__logo-width-desktop;
+    height: $github__logo-width-desktop;
+    width: $github__logo-width-desktop;
     fill: $color-primary-4;
     
     @include respond(nav-switch) {

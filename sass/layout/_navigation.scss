@@ -5,6 +5,7 @@
 
 
 .navbar {
+	padding-left: .645vw;
 	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
 	position: relative;
 	font-size: $default-font-size * 1.5;
@@ -511,7 +512,7 @@
 }
 
 .header {
-	top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 8rem)) / 2) - 1rem);
+	top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 7.7vw)) / 2) - 1vw);
 	width: 100%;
 	position: fixed;
 	z-index: 1;

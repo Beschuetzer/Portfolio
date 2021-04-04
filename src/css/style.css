@@ -269,11 +269,6 @@ body {
   align-items: center;
   z-index: 10000;
 }
-@media only screen and (max-width: 71.875em) {
-  .github {
-    width: 8rem;
-  }
-}
 .github__link:link, .github__link:visited {
   text-decoration: none;
   color: #28527a;
@@ -911,6 +906,7 @@ body {
 }
 
 .navbar {
+  padding-left: 0.645vw;
   border-radius: 16rem 0 0 16rem;
   position: relative;
   font-size: 2.4rem;
@@ -928,8 +924,8 @@ body {
   z-index: -1;
 }
 .navbar__menu {
-  width: 9vw;
-  height: 9vw;
+  width: 7.7vw;
+  height: 7.7vw;
   position: relative;
 }
 @media only screen and (max-width: 71.875em) {
@@ -1359,7 +1355,7 @@ body {
 }
 
 .header {
-  top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 8rem)) / 2) - 1rem);
+  top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 7.7vw)) / 2) - 1vw);
   width: 100%;
   position: fixed;
   z-index: 1;
