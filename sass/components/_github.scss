@@ -1,14 +1,14 @@
 .github {
   font-family: $font-family-text;
-  font-size: $default-font-size * .66;
+  font-size: 1vw;
   position: relative;
   display: flex;
   align-items: center;
   z-index: 10000;
 
-  // @include respond(nav-switch) {
-  //   width: $navbar__logo-width-mobile;
-  // }
+  @include respond(nav-switch) {
+    font-size: $default-font-size * .66;
+  }
 
   &__link:link, &__link:visited {
     text-decoration: none;
@@ -25,7 +25,7 @@
     
     @include respond(nav-switch) {
       height: $default-font-size * 5.875;
-      
+      width: $default-font-size * 5.875;
     }
     
     &:hover {
@@ -42,12 +42,12 @@
 
     &-top {
       transform: translate(-50%, 0%);
-      top: $default-font-size * 1.5
+      top: .5vw
     }
    
     &-bottom {
       transform: translate(-50%, 0%);
-      bottom: $default-font-size * 1.5;
+      bottom: 1vw;
       box-shadow: 0 $default-font-size * 2 $default-font-size * 3 rgba($color-primary-1, .2);
     }
 
