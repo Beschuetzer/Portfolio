@@ -14,7 +14,6 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   
   let docStyle = getComputedStyle(document.documentElement);
   const mobileBreakPointWidth = docStyle.getPropertyValue('--nav-switch-width')
-  console.log('mobileBreakPointWidth =', mobileBreakPointWidth);
   setIsMobile(window.innerWidth <= mobileBreakPointWidth);
   
   //setup window resize listener
