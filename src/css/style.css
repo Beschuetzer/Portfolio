@@ -973,7 +973,7 @@ body {
   left: 50%;
 }
 .navbar__menu-bar::before {
-  transform: translate(-50%, calc(-.8vw - 50%));
+  transform: translate(-50%, calc(-0.8vw - 50%));
 }
 @media only screen and (max-width: 71.8756em) {
   .navbar__menu-bar::before {
@@ -981,7 +981,7 @@ body {
   }
 }
 .navbar__menu-bar::after {
-  transform: translate(-50%, calc(.8vw + 50%));
+  transform: translate(-50%, calc(0.8vw + 50%));
 }
 @media only screen and (max-width: 71.8756em) {
   .navbar__menu-bar::after {
@@ -1389,7 +1389,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc(85rem + ((100vw - 85rem) / 2) + 7.5vw);
+  width: calc( 			85rem + ((100vw - 85rem) / 2) + 7.5vw 		);
   margin: 0 auto;
 }
 @media only screen and (max-width: 71.8756em) {

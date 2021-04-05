@@ -1,6 +1,6 @@
 .navbar {
 	// margin-left: 0.583vw;
-	margin-left: .083285714 * $navbar__logo-width-desktop;
+	margin-left: 0.083285714 * $navbar__logo-width-desktop;
 	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
 	position: relative;
 	font-size: $default-font-size * 1.5;
@@ -40,8 +40,8 @@
 		&-bar::before,
 		&-bar::after {
 			background-color: $color-primary-1;
-			height: $navbar__logo-width-desktop * .1;
-			width: $navbar__logo-width-desktop * .5;
+			height: $navbar__logo-width-desktop * 0.1;
+			width: $navbar__logo-width-desktop * 0.5;
 
 			@include respond(nav-switch) {
 				height: $default-font-size * 0.5;
@@ -58,9 +58,9 @@
 			&,
 			&::before,
 			&::after {
-				transition: 
-						transform $animation-duration * 0.5 $animation-easing-standard,
-						width $animation-duration * 0.5 $animation-easing-standard;
+				transition: transform $animation-duration * 0.5
+						$animation-easing-standard,
+					width $animation-duration * 0.5 $animation-easing-standard;
 			}
 
 			&::before,
@@ -72,14 +72,14 @@
 			}
 
 			&::before {
-				transform: translate(-50%, calc(-.8vw - 50%));
+				transform: translate(-50%, calc(-0.8vw - 50%));
 				@include respond(nav-switch) {
 					transform: translate(-50%, calc(-0.8rem - 50%));
 				}
 			}
 
 			&::after {
-				transform: translate(-50%, calc(.8vw + 50%));				
+				transform: translate(-50%, calc(0.8vw + 50%));
 				@include respond(nav-switch) {
 					transform: translate(-50%, calc(+0.8rem + 50%));
 				}
@@ -115,7 +115,6 @@
 			@include respond(nav-switch) {
 				width: $default-font-size * 1.5;
 				transform: translate(-50%, -50%);
-
 			}
 		}
 		.navbar.navbar--active &-bar::after {
@@ -142,7 +141,7 @@
 			transform: translateY(-$default-font-size * 1.5);
 			position: absolute;
 			top: $default-font-size * 6.125;
-    	left: -1px;
+			left: -1px;
 			display: flex;
 			overflow: visible !important;
 			flex-direction: column;
@@ -166,21 +165,22 @@
 		list-style: none;
 		backface-visibility: hidden;
 		transform-origin: top left;
-		transition: 
-			transform $animation-duration * .5 $animation-easing-standard,
-			opacity $animation-duration * .75 $animation-easing-standard,
-			width $animation-duration * .5 $animation-easing-modern $animation-duration * .5,
-		;
-		// transition: 
+		transition: transform $animation-duration * 0.5 $animation-easing-standard,
+			opacity $animation-duration * 0.75 $animation-easing-standard,
+			width $animation-duration * 0.5 $animation-easing-modern
+				$animation-duration * 0.5;
+		// transition:
 		// 	transform $animation-duration * .5 $animation-easing-modern,
 		// 	opacity $animation-duration * 1 $animation-easing-standard,
 		// 	width $animation-duration * .25 $animation-easing-standard $animation-duration * .125,
 		// ;
 
-
 		@include respond(nav-switch) {
 			display: grid;
-    	grid-template-columns: repeat(auto-fill, minmax($default-font-size * 16.8125, 1fr));
+			grid-template-columns: repeat(
+				auto-fill,
+				minmax($default-font-size * 16.8125, 1fr)
+			);
 			flex-direction: column;
 			opacity: 0;
 			width: $default-font-size * 5;
@@ -188,9 +188,7 @@
 		}
 
 		& .navbar__item:first-child {
-			transition: 
-				border-radius $animation-duration $animation-easing-standard,
-			;
+			transition: border-radius $animation-duration $animation-easing-standard;
 			border-radius: $default-font-size * 0.5 0 0 $default-font-size * 0.5;
 			@include respond(nav-switch) {
 				border-radius: 0;
@@ -215,13 +213,10 @@
 		cursor: pointer;
 		height: 100%;
 		width: 100%;
-		transition: 
-			transform $animation-duration * .25 $animation-easing-standard,
-			background-color $animation-duration * 0.25 $animation-easing-standard,
-		;
+		transition: transform $animation-duration * 0.25 $animation-easing-standard,
+			background-color $animation-duration * 0.25 $animation-easing-standard;
 
 		&:nth-of-type(3) {
-
 			@include respond(nav-switch) {
 				order: 1;
 				border-radius: 0 0 $default-font-size * 2 $default-font-size * 2;
@@ -243,7 +238,8 @@
 		&:hover .triangle-down {
 			transform: rotate(90deg);
 		}
-		&:last-child, &:first-child {
+		&:last-child,
+		&:first-child {
 			border-radius: 0 10rem 10rem 0;
 			@include respond(nav-switch) {
 				border-radius: 0;
@@ -264,10 +260,9 @@
 		align-items: center;
 		font-weight: 300;
 
-		transition: 
-			padding $animation-duration * 1 $animation-easing-standard,
-			opacity $animation-duration * 0.5 $animation-easing-standard $animation-duration * .5,
-		;
+		transition: padding $animation-duration * 1 $animation-easing-standard,
+			opacity $animation-duration * 0.5 $animation-easing-standard
+				$animation-duration * 0.5;
 
 		@include respond(nav-switch) {
 			flex-direction: column;
@@ -287,7 +282,8 @@
 		transition: border-radius $animation-duration * 1 $animation-easing-standard;
 
 		@include respond(nav-switch) {
-			transition: border-radius $animation-duration * .5 $animation-easing-standard;
+			transition: border-radius $animation-duration * 0.5
+				$animation-easing-standard;
 		}
 
 		&:hover {
@@ -318,7 +314,7 @@
 
 		&-group {
 			display: flex;
-    	align-items: center;	
+			align-items: center;
 		}
 
 		& .navbar__item {
@@ -331,43 +327,44 @@
 				padding $animation-duration $animation-easing-standard,
 				opacity $animation-duration $animation-easing-standard,
 				transform $animation-duration * 0.25 $animation-easing-standard,
-				background-color $animation-duration * 0.25 $animation-easing-standard
-			;
+				background-color $animation-duration * 0.25 $animation-easing-standard;
 
 			@include respond(nav-switch) {
-				border-top: $default-font-size * .1 solid transparent;
-				border-bottom: $default-font-size * .1 solid rgba($color-primary-1, .5);
-				border-left: $default-font-size * .1 solid rgba($color-primary-1, .5);
-				border-right: $default-font-size * .1 solid rgba($color-primary-1, .5);
+				border-top: $default-font-size * 0.1 solid transparent;
+				border-bottom: $default-font-size * 0.1 solid
+					rgba($color-primary-1, 0.5);
+				border-left: $default-font-size * 0.1 solid rgba($color-primary-1, 0.5);
+				border-right: $default-font-size * 0.1 solid rgba($color-primary-1, 0.5);
 				margin-top: 0;
 				width: 75%;
 				align-self: center;
 			}
 
-
 			&:first-child {
 				border-radius: 0;
 				@include respond(nav-switch) {
-					border-top: $default-font-size * .1 solid rgba($color-primary-1, .5);
-					margin-top: $default-font-size * .75;
+					border-top: $default-font-size * 0.1 solid rgba($color-primary-1, 0.5);
+					margin-top: $default-font-size * 0.75;
 				}
 			}
 			&:last-child {
-				border-radius: 0 0 $navbar__item-border-radius $navbar__item-border-radius;
+				border-radius: 0 0 $navbar__item-border-radius
+					$navbar__item-border-radius;
 				@include respond(nav-switch) {
-					border-radius: 0 0 $default-font-size * .5 $default-font-size * .5;
-
+					border-radius: 0 0 $default-font-size * 0.5 $default-font-size * 0.5;
 				}
 			}
 
 			&:hover {
 				transform: translateX($navbar__item-divider-width) !important;
-				box-shadow: -$default-font-size * 1 0 $default-font-size * 2	$navbar-box-shadow-color;
+				box-shadow: -$default-font-size * 1 0 $default-font-size * 2
+					$navbar-box-shadow-color;
 			}
 
 			@include respond(nav-switch) {
-				&:hover, &:hover + li {
-					border-top: $default-font-size * .1 solid rgba($color-primary-1, .5);
+				&:hover,
+				&:hover + li {
+					border-top: $default-font-size * 0.1 solid rgba($color-primary-1, 0.5);
 				}
 			}
 		}
@@ -392,7 +389,7 @@
 	&__dropdown &__item:hover &__dropdown {
 		visibility: visible;
 		opacity: 1;
-		height:auto;
+		height: auto;
 		transform: translateY(0%) scale(1);
 	}
 
@@ -408,14 +405,15 @@
 
 	//when navbar is open
 	&.navbar--active {
-		& .navbar__link, & .navbar__link:link, & .navbar__link:visited {
+		& .navbar__link,
+		& .navbar__link:link,
+		& .navbar__link:visited {
 			opacity: 1;
 		}
 		& .navbar__list {
 			opacity: 1;
 			width: 100%;
-   		transform: scale(1);
-		
+			transform: scale(1);
 		}
 		& .navbar__content {
 			visibility: visible;
@@ -427,7 +425,7 @@
 				position: absolute;
 				z-index: 100;
 			}
-	
+
 			@include respond(tab-land) {
 				width: $header-mobile-width-tab-land;
 			}
@@ -464,7 +462,6 @@
 			&:hover .navbar__menu-bar {
 				width: 0;
 			}
-			
 		}
 
 		& .navbar__link:not(&__dropdown &__link) {
@@ -515,16 +512,14 @@
 	width: 100%;
 	position: fixed;
 	z-index: 1;
-	transition: 
-		opacity $animation-duration $animation-easing-standard,
-		transform $animation-duration $animation-easing-standard,
-	;
+	transition: opacity $animation-duration $animation-easing-standard,
+		transform $animation-duration $animation-easing-standard;
 
 	@include respond(nav-switch) {
 		top: 0;
 		z-index: 10;
 		background-color: $color-primary-1;
-		border-bottom: $default-font-size * .1 solid $color-primary-4;
+		border-bottom: $default-font-size * 0.1 solid $color-primary-4;
 	}
 
 	&__inner {
@@ -532,8 +527,10 @@
 		// flex-direction: row-reverse;
 		justify-content: space-between;
 		align-items: center;
-		width: calc(85rem + ((100vw - 85rem) / 2) + 7.5vw);
-		// width: calc(85rem + ((100vw - 85rem) / 2) + 8rem);
+		width: calc(
+			#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 7.5vw
+		);
+		// width: calc(#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 8rem);
 		margin: 0 auto;
 
 		@include respond(nav-switch) {
@@ -542,13 +539,13 @@
 	}
 
 	&-toggler {
-		display:flex;
+		display: flex;
 		justify-content: center;
 		align-items: flex-end;
 		height: $header-height + $header-toggler-width;
-		border-left: $default-font-size * .15 solid $color-primary-4;
-		border-bottom: $default-font-size * .15 solid $color-primary-4;
-		border-right: $default-font-size * .15 solid $color-primary-4;
+		border-left: $default-font-size * 0.15 solid $color-primary-4;
+		border-bottom: $default-font-size * 0.15 solid $color-primary-4;
+		border-right: $default-font-size * 0.15 solid $color-primary-4;
 		border-radius: 0 0 1000px 1000px;
 		position: fixed;
 		right: 0;
@@ -556,9 +553,8 @@
 		z-index: 5;
 		background-color: $color-primary-1;
 		opacity: 0;
-		transition: 
-			top $animation-duration * 1 $animation-easing-standard-easeInOutBack-smaller,
-		;
+		transition: top $animation-duration * 1
+			$animation-easing-standard-easeInOutBack-smaller;
 
 		@include respond(nav-switch) {
 			opacity: 1;
@@ -570,9 +566,8 @@
 			fill: $color-primary-4;
 			width: $header-toggler-width;
 			height: $header-toggler-width;
-			transition: 
-				transform $animation-duration $animation-easing-modern $animation-duration * .5
-			;
+			transition: transform $animation-duration $animation-easing-modern
+				$animation-duration * 0.5;
 		}
 
 		&--active {
@@ -594,13 +589,13 @@
 	position: absolute;
 	top: $page-nav-top;
 	left: 0;
-	width: calc((100% - 85rem) / 2);
+	width: calc((100% - #{$resume-card-width-full}) / 2);
 
-	// top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 8rem)) / 2) + 7rem);
-	// left: calc(((100% - 85rem) / 4) - 2rem);
-	// width: calc(((100% - 85rem) / 4) + 2rem);
+	// top: calc(((100vw - (#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 8rem)) / 2) + 7rem);
+	// left: calc(((100% - #{$resume-card-width-full}) / 4) - 2rem);
+	// width: calc(((100% - #{$resume-card-width-full}) / 4) + 2rem);
 
-	font-size: 1vw;	
+	font-size: 1vw;
 	display: grid;
 	justify-items: center;
 	align-items: center;
@@ -610,11 +605,14 @@
 
 	@include respond(nav-switch) {
 		// display: grid;
-		font-size: $default-font-size * .85;	
+		font-size: $default-font-size * 0.85;
 		position: static;
 		width: calc(95% - 16rem);
 		grid-template-rows: auto;
-		grid-template-columns: repeat(auto-fill, minmax($default-font-size * 8.96875, 1fr));
+		grid-template-columns: repeat(
+			auto-fill,
+			minmax($default-font-size * 8.96875, 1fr)
+		);
 		justify-items: center;
 	}
 
@@ -627,56 +625,49 @@
 		background-clip: text;
 		padding: 1vw 0;
 
-		transition:
-			color $animation-duration $animation-easing-standard,
-		;
+		transition: color $animation-duration $animation-easing-standard;
 
 		@include respond(nav-switch) {
-			padding: $default-font-size * .25 0;
+			padding: $default-font-size * 0.25 0;
 		}
 
 		@include respond(small-font) {
 			padding: 0;
 		}
-		
+
 		&-group {
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			backface-visibility: hidden;
 			list-style: none;
-			transition: 
-				transform $animation-duration $animation-easing-standard,
-			;
-		
-			&:nth-of-type(1){
+			transition: transform $animation-duration $animation-easing-standard;
+
+			&:nth-of-type(1) {
 				@include respond(nav-switch) {
 					margin-left: 0;
 				}
 			}
 
 			&:hover {
-				transform: translateY(-.25vw);
-	
+				transform: translateY(-0.25vw);
+
 				@include respond(nav-switch) {
-					transform: translateY(-$default-font-size * .1)
+					transform: translateY(-$default-font-size * 0.1);
 				}
 			}
 
 			&:hover > a {
 				color: $color-primary-2;
 			}
-			
 		}
 	}
-	
+
 	&__inner {
-		
 	}
-	
+
 	&--active {
 		transform: scale(var(--site-nav-active-scale-amount));
 		// animation: selected-section infinite 5s forwards;
 	}
-	
 }
