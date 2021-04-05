@@ -641,7 +641,7 @@
 			align-items: center;
 			backface-visibility: hidden;
 			list-style: none;
-			transition: transform $animation-duration $animation-easing-standard;
+			transition: transform $animation-duration * .25 $animation-easing-standard;
 
 			&:nth-of-type(1) {
 				@include respond(nav-switch) {

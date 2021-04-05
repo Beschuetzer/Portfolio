@@ -1,8 +1,13 @@
 /* ------------------------------------------------------------------------------------------------- */
 :root {
   --nav-switch-width: $nav-switch-width;
-  --site-nav-linear-gradient: linear-gradient(to right,
-  #28527a 0%, #28527a 0%, #fbeeac 0%, #fbeeac 100%);
+  --site-nav-linear-gradient: linear-gradient(
+  	to right,
+  	#28527a 0%,
+  	#28527a 0%,
+  	#fbeeac 0%,
+  	#fbeeac 100%
+  );
   --site-nav-active-scale-amount: 1;
   --color-primary-1: $color-primary-1;
   --color-primary-2: $color-primary-2;
@@ -1371,7 +1376,7 @@ body {
 }
 
 .header {
-  top: calc(((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw);
+  top: calc( 	( 			( 					100vw - 						( 							85rem + ( 									(100vw - 85rem) / 2 								) + 7vw 						) 				) / 2 		) - 1vw );
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -1440,7 +1445,7 @@ body {
 .page-nav {
   z-index: 1;
   position: absolute;
-  top: calc(100% + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 1.4vw);
+  top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											85rem + ( 													(100vw - 85rem) / 2 												) + 7vw 										) 								) / 2 						) - 1vw 				) * 1 		) - 1.4vw );
   left: 0;
   width: calc((100% - 85rem) / 2);
   font-size: 1vw;
@@ -1486,7 +1491,7 @@ body {
   align-items: center;
   backface-visibility: hidden;
   list-style: none;
-  transition: transform 0.5s ease;
+  transition: transform 0.125s ease;
 }
 @media only screen and (max-width: 71.8756em) {
   .page-nav__section-group:nth-of-type(1) {

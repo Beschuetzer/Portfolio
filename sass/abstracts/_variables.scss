@@ -38,21 +38,26 @@ $content-padding-mobile: 5vmin;
 $component-margin-amount: $default-font-size * 8;
 $paddingFactor: 1.25;
 
-
 //animation
 $animation-duration: 0.5s;
 $animation-easing-standard: ease;
 $animation-easing-standard-easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
-$animation-easing-standard-easeInOutBack-smaller: cubic-bezier(0.68, -0.2, 0.32, 1.2);
-$animation-easing-modern: cubic-bezier(1,0,0,1);
+$animation-easing-standard-easeInOutBack-smaller: cubic-bezier(
+	0.68,
+	-0.2,
+	0.32,
+	1.2
+);
+$animation-easing-modern: cubic-bezier(1, 0, 0, 1);
 $animation-navbar: $animation-duration $animation-easing-standard;
 
 //navbar stuff
 $navbar__button-bar-before-rotation: rotate(105deg);
-$navbar__button-bar-before-transform: $navbar__button-bar-before-rotation translate($default-font-size * 0.25, $default-font-size * 1.875);
+$navbar__button-bar-before-transform: $navbar__button-bar-before-rotation
+	translate($default-font-size * 0.25, $default-font-size * 1.875);
 $navbar__button-bar-after-rotation: rotate(-105deg);
 $navbar__button-bar-after-transform: $navbar__button-bar-after-rotation
-	translate(-$default-font-size * 0.075, -$default-font-size * .5);
+	translate(-$default-font-size * 0.075, -$default-font-size * 0.5);
 $navbar-mobile-width: 97.5vw;
 
 $navbar__item-border-radius: $default-font-size * 10;
@@ -79,9 +84,19 @@ $skills-linear-gradient-hover: linear-gradient(
 //resume
 $resume-card-width-full: $default-font-size * 53.125;
 
-
 //header
-$header-top-desktop: calc(((100vw - (#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 7vw)) / 2) - 1vw);
+$header-top-desktop: calc(
+	(
+			(
+					100vw -
+						(
+							#{$resume-card-width-full} + (
+									(100vw - #{$resume-card-width-full}) / 2
+								) + #{$navbar__logo-width-desktop}
+						)
+				) / 2
+		) - 1vw
+);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
 $header-mobile-width-nav-switch: 92.2vw;
@@ -95,12 +110,33 @@ $header-mobile-width-small-font: 90vw;
 // $header-mobile-width-small-font: 88.5vw;
 
 //page-nav
-$page-nav-top:  calc(100% + ((((100vw - (#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 7vw)) / 2) - 1vw) * 1) - 1.4vw);
+$page-nav-top: calc(
+	100% +
+		(
+			(
+					(
+							(
+									100vw -
+										(
+											#{$resume-card-width-full} + (
+													(100vw - #{$resume-card-width-full}) / 2
+												) + #{$navbar__logo-width-desktop}
+										)
+								) / 2
+						) - 1vw
+				) * 1
+		) - 1.4vw
+);
 
 :root {
 	--nav-switch-width: $nav-switch-width;
-	--site-nav-linear-gradient: linear-gradient(to right, 
-	#{$color-primary-1} 0%, #{$color-primary-1} 0%, #{$color-primary-4} 0%, #{$color-primary-4} 100%);
+	--site-nav-linear-gradient: linear-gradient(
+		to right,
+		#{$color-primary-1} 0%,
+		#{$color-primary-1} 0%,
+		#{$color-primary-4} 0%,
+		#{$color-primary-4} 100%
+	);
 	--site-nav-active-scale-amount: 1;
 	--color-primary-1: $color-primary-1;
 	--color-primary-2: $color-primary-2;
