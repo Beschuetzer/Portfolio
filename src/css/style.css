@@ -1052,22 +1052,22 @@ body {
     display: flex;
     overflow: visible !important;
     flex-direction: column;
-    width: 92.2vw;
+    width: 93.1vw;
   }
 }
 @media only screen and (max-width: 58.5625em) {
   .navbar__content {
-    width: 91.5vw;
+    width: 92.5vw;
   }
 }
 @media only screen and (max-width: 40.9375em) {
   .navbar__content {
-    width: 91.1vw;
+    width: 91.7vw;
   }
 }
 @media only screen and (max-width: 29.3125em) {
   .navbar__content {
-    width: 90vw;
+    width: 89.7vw;
   }
 }
 .navbar__list {
@@ -1287,24 +1287,24 @@ body {
 }
 @media only screen and (max-width: 71.8756em) {
   .navbar.navbar--active .navbar__content {
-    width: 92.2vw;
+    width: 93.1vw;
     position: absolute;
     z-index: 100;
   }
 }
 @media only screen and (max-width: 58.5625em) {
   .navbar.navbar--active .navbar__content {
-    width: 91.5vw;
+    width: 92.5vw;
   }
 }
 @media only screen and (max-width: 40.9375em) {
   .navbar.navbar--active .navbar__content {
-    width: 91.1vw;
+    width: 91.7vw;
   }
 }
 @media only screen and (max-width: 29.3125em) {
   .navbar.navbar--active .navbar__content {
-    width: 90vw;
+    width: 89.7vw;
   }
 }
 .navbar.navbar--active .navbar__button {
@@ -1399,7 +1399,7 @@ body {
 }
 @media only screen and (max-width: 71.8756em) {
   .header__inner {
-    width: 95%;
+    width: 96%;
   }
 }
 .header-toggler {
