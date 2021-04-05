@@ -2,7 +2,7 @@
 :root {
   --nav-switch-width: $nav-switch-width;
   --site-nav-linear-gradient: linear-gradient(to right,
-  rgba(138, 196, 208, 0.5) 0%, rgba(138, 196, 208, 0.5) 0%, $color-primary-4 0%, $color-primary-4 100%);
+  #28527a 0%, #28527a 0%, #fbeeac 0%, #fbeeac 100%);
   --site-nav-active-scale-amount: 1;
   --color-primary-1: $color-primary-1;
   --color-primary-2: $color-primary-2;
