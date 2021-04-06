@@ -6,8 +6,8 @@ export function capitalize(str) {
 
 export function checkForParentOfType(element, parentType, classPresent='') {
   try {
-      if (element.parentNode.localName === parentType && element.parentNode.className.match(classPresent)) return true;
-      if (element.parentNode.localName.match(/html/i)) return false;
+      if (element.parentNode.localName === parentType && element.parentNode.className.search(classPresent) !== -1) return true;
+      if (element.parentNode.localName.search(/html/i) !== -1) return false;
       const parent = element.parentNode;
       return checkForParentOfType(parent, parentType, classPresent);
   }

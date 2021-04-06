@@ -7,7 +7,7 @@
 	&__section {
 
 		&:nth-child(3) .skills__title {
-			cursor: none;
+			cursor: auto;
 			border: $default-font-size * .1 solid transparent;
 		}
 

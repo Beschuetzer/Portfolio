@@ -168,7 +168,7 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
             />
           )
         }
-        else if (repo["name"].match(/playlist.*sync/i) || repo["name"].match(/downloader/i)) {
+        else if (repo["name"].search(/playlist.*sync/i) !== -1 || repo["name"].search(/downloader/i) !== -1) {
           return (
             <SkillsPopupName
               key={key}

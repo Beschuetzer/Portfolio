@@ -372,7 +372,7 @@ body {
   position: relative;
 }
 .skills__section:nth-child(3) .skills__title {
-  cursor: none;
+  cursor: auto;
   border: 0.16rem solid transparent;
 }
 .skills__section-content {
