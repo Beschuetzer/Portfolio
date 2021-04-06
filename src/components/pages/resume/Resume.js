@@ -209,9 +209,24 @@ class Resume extends React.Component {
             }
           />
           <WorkHistoryItem
+            startDate="09/06"
+            endDate="12/06"
+            title="<span class='work-history__item-number'>04.</span><span>Overnight Stocker at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.toysrus.com/'> Toy's &ldquo;R&rdquo; Us </a>:</span>"
+            sections={
+              [
+                {
+                  title: "Responsibilities",
+                  bullets: [
+                    "Stocked shelves and generally made sure the store was ready to open.",
+                  ]
+                },
+              ]
+            }
+          />
+          <WorkHistoryItem
             startDate="09/05"
             endDate="07/06"
-            title="<span class='work-history__item-number'>04.</span><span>English Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.lietz-schulen.de/en/haubinda/boarding-school-village/'> Herman-Lietz Schule Haubinda </a>:</span>"
+            title="<span class='work-history__item-number'>05.</span><span>English Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.lietz-schulen.de/en/haubinda/boarding-school-village/'> Herman-Lietz Schule Haubinda </a>:</span>"
             sections={
               [
                 {
