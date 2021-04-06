@@ -19,7 +19,7 @@ import { setIsAnimating, setIsMobile } from "../actions";
 import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from './constants';
 
 const App = ({isMobile, setIsMobile, isAnimating, setIsAnimating}) => {
-  const mobileBreakPointWidth = 1150;
+  const mobileBreakPointWidth = 1100;
   setIsMobile(window.innerWidth <= mobileBreakPointWidth);
   
   //setup window resize listener
