@@ -8,6 +8,7 @@ import SkillsItemSection from './Skills/SkillsItemSection';
 import SkillsItemSectionLabels from './Skills/SkillsItemSectionLabels';
 import SkillsItem from './Skills/SkillsItem';
 import ReferenceItem from './ReferenceItem';
+import EducationItem from '../resume/EducationItem';
 
 import { getRepositories, setSectionsToSkipAnimation } from '../../../actions';
 import SkillsPopup from './Skills/SkillsPopup/SkillsPopup';
@@ -216,19 +217,21 @@ class Resume extends React.Component {
       'education', 
       <React.Fragment>
         <ul className="education">
-          <li className="education__item">
-            <span className='education__date'> Dec. of 2010: </span>
-            <a 
-              href='/transcript.pdf' 
-              className='education__degree skills-popup__link-text skills__title--animating'
-              target='_blank'
-              rel='noreferrer'
-            > 
-              B.A. in Linguistics 
-            </a>
-            <span className='education__location'> from the University of Minnesota Twin Cities  </span>
-            <span className='education__gpa'> (3.701 GPA). </span>
-          </li>
+          <EducationItem
+            startDate="12/10"
+            location="University of Minnesota Twin Cities"
+            degree="B.A. in Linguistics "
+            gpa="3.701"
+            href="/transcript.pdf"
+          />
+          <EducationItem
+            startDate="09/03"
+            endDate="08/05"
+            location="Century College"
+            degree="Minnesota Transfer Curriculum (PSEO)"
+            gpa="3.86"
+            href="/transcriptPSEO.pdf"
+          />
         </ul>
       </React.Fragment>
     ],

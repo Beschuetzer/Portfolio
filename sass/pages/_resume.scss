@@ -34,7 +34,7 @@
       line-height: 1.5;
     }
     &-education {
-      
+
     }
     &-references{
       & .resume__header {
@@ -106,11 +106,23 @@
 .education {
   &__item {
     margin-left: 1.6rem;
+    &:nth-of-type(n+2) {
+      margin-top: $default-font-size;
+    }
+
+    @include respond(small-font) {
+      
+      &:last-of-type {
+        margin-bottom: $default-font-size * .5;
+      }
+    }
+
   }
   &__date, &__gpa {
-    font-weight: 700;
+    font-weight: 500;
   }
   &__date {
+    font-size: $default-font-size * .9;
     margin-right: $default-font-size * .5;
   }
   &__degree {

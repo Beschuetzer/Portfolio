@@ -1636,10 +1636,19 @@ body {
 .education__item {
   margin-left: 1.6rem;
 }
+.education__item:nth-of-type(n+2) {
+  margin-top: 1.6rem;
+}
+@media only screen and (max-width: 29.3125em) {
+  .education__item:last-of-type {
+    margin-bottom: 0.8rem;
+  }
+}
 .education__date, .education__gpa {
-  font-weight: 700;
+  font-weight: 500;
 }
 .education__date {
+  font-size: 1.44rem;
   margin-right: 0.8rem;
 }
 .references {
