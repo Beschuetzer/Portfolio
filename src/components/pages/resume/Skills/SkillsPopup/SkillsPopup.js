@@ -12,26 +12,6 @@ const SkillsPopup = ({reposToDisplay, repos, clickedSkill, addRepoToReposToDispl
   const skillsPopupDiv = document.querySelector('#skillsPopup');
   const resetReposDelay = 500;
   
-  let docStyle = getComputedStyle(document.documentElement);
-  const mobileBreakPointWidth = docStyle.getPropertyValue('--nav-switch-width')
-  setIsMobile(window.innerWidth <= mobileBreakPointWidth);
-  
-  //setup window resize listener
-  useEffect(() => {
-    const windowResize = (e) => {
-      if (window.innerWidth <= mobileBreakPointWidth && !isMobile){
-        setIsMobile(true);
-      }
-      else if (window.innerWidth > mobileBreakPointWidth && isMobile){
-        setIsMobile(false);
-      }
-    }
-    window.addEventListener('resize', windowResize);
-    return (() => {
-      window.removeEventListener('resize', windowResize);
-    })
-  }, [isMobile, setIsMobile, mobileBreakPointWidth]);
-
   //on initial load
   useEffect(() => {
     const handleClickBody = (e) => {

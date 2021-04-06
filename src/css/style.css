@@ -1488,7 +1488,6 @@ body {
   }
 }
 .page-nav__section-group {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1502,8 +1501,6 @@ body {
   }
 }
 .page-nav__section-group:hover {
-  border-radius: 0 0.8rem 0.8rem 0;
-  box-shadow: 0 0 3.2rem 0 rgba(244, 209, 96, 0.5);
   transform: translateY(-0.25vw);
 }
 @media only screen and (max-width: 71.8756em) {

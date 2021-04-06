@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from 'react';
 import { Router, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
 import history from "../history";
@@ -14,18 +15,31 @@ import NavToggler from "./navbar/NavToggler";
 import Footer from "./Footer";
 import "../css/style.css";
 import GithubButton from "./GithubButton";
-import { setIsAnimating } from "../actions";
+import { setIsAnimating, setIsMobile } from "../actions";
 import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from './constants';
 
-class App extends React.Component {
-	componentDidMount() {
+const App = ({isMobile, setIsMobile, isAnimating, setIsAnimating}) => {
+  const mobileBreakPointWidth = 1150;
+  setIsMobile(window.innerWidth <= mobileBreakPointWidth);
+  
+  //setup window resize listener
+  useEffect(() => {
+		const windowResize = (e) => {
+      if (window.innerWidth <= mobileBreakPointWidth && !isMobile){
+        setIsMobile(true);
+      }
+      else if (window.innerWidth > mobileBreakPointWidth && isMobile){
+        setIsMobile(false);
+      }
+    }
+  
 		const keypressHandler = (e) => {
 			switch (e.key) {
 				case 'a':
 					const navbar = document.querySelector('.navbar');
 					const root = document.querySelector('#root');
-					this.props.setIsAnimating(!this.props.isAnimating);
-					if (this.props.isAnimating) {
+					setIsAnimating(!isAnimating);
+					if (isAnimating) {
 						navbar?.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 						root?.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 					}
@@ -53,35 +67,43 @@ class App extends React.Component {
 					break;
 			}
 		};
-		window.addEventListener("keydown", keypressHandler);
-	}
 
-	render() {
-		return (
-			<Router history={history}>
-				<Switch>
-					<Route path="/" exact component={Home} />
-					<Route path="/works" exact component={Projects} />
-					<Route path="/about" exact component={About} />
-					<Route path="/resume" exact component={Resume} />
-					<Route path="/contact" exact component={Contact} />
-				</Switch>
-				<Route path="*" exact component={NavToggler} />
-				<Route path="*" exact component={PageNav} />
-				<Route path="*" exact component={SiteNav} />
-				<Route path="*" exact component={GithubButton} />
-				{/* <Footer/> */}
-			</Router>
-		);
-	}
+    window.addEventListener('resize', windowResize);
+		window.addEventListener("keydown", keypressHandler);
+
+		return (() => {
+      window.removeEventListener('resize', windowResize);
+      window.removeEventListener('keydown', keypressHandler);
+    });
+
+  }, [isMobile, setIsMobile, mobileBreakPointWidth, isAnimating, setIsAnimating]);
+
+	return (
+		<Router history={history}>
+			<Switch>
+				<Route path="/" exact component={Home} />
+				<Route path="/works" exact component={Projects} />
+				<Route path="/about" exact component={About} />
+				<Route path="/resume" exact component={Resume} />
+				<Route path="/contact" exact component={Contact} />
+			</Switch>
+			<Route path="*" exact component={NavToggler} />
+			<Route path="*" exact component={PageNav} />
+			<Route path="*" exact component={SiteNav} />
+			<Route path="*" exact component={GithubButton} />
+			{/* <Footer/> */}
+		</Router>
+	);
 }
 
 const mapStateToProps = (state, ownProps) => {
 	return {
 		isAnimating: state.general.isAnimating,
+		isMobile: state.general.isMobile,
 	}
 }
 
 export default connect(mapStateToProps, {
 	setIsAnimating,
+	setIsMobile,
 })(App);
