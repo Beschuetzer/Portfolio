@@ -107,7 +107,7 @@
   &__item {
     margin-left: 1.6rem;
     &:nth-of-type(n+2) {
-      margin-top: $default-font-size;
+      margin-top: $default-font-size * .5;
     }
 
     @include respond(small-font) {
@@ -120,9 +120,9 @@
   }
   &__date, &__gpa {
     font-weight: 500;
+    font-size: $default-font-size * .9;
   }
   &__date {
-    font-size: $default-font-size * .9;
     margin-right: $default-font-size * .5;
   }
   &__degree {

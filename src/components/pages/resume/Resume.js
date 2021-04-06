@@ -135,8 +135,8 @@ class Resume extends React.Component {
       <React.Fragment>
         <div className="work-history">
           <WorkHistoryItem
-            startDate="07/2019"
-            endDate="06/2020"
+            startDate="07/19"
+            endDate="06/20"
             title="<span class='work-history__item-number'>01.</span><span>Technology Services Support Representative at <a target='_blank' rel='noreferrer'
             class='skills-popup__link-text skills__title--animating' href='https://www.ricoh-usa.com/en'> Ricoh Ltd </a>:</span>"
             sections={
@@ -158,10 +158,9 @@ class Resume extends React.Component {
               ]
             }
           />
-
           <WorkHistoryItem
-            startDate="07/2018"
-            endDate="06/2019"
+            startDate="07/18"
+            endDate="06/19"
             title="<span class='work-history__item-number'>02.</span><span>Second Grade Education Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> <span>Kualapuu Charter School <span></a>:</span>"
             sections={
               [
@@ -183,8 +182,8 @@ class Resume extends React.Component {
             }
           />
           <WorkHistoryItem
-            startDate="07/2007"
-            endDate="07/2018"
+            startDate="07/07"
+            endDate="07/18"
             title="<span class='work-history__item-number'>03.</span><span>PearsonVue Test Admin / Office Admin at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.isd622.org/'> ISD622 </a>:</span>"
             sections={
               [
@@ -204,6 +203,23 @@ class Resume extends React.Component {
                     "Created VBA macros to automate report generation, reducing the time-to-complete by more than 80%.",
                     "Created <a class='skills-popup__link-text skills__title--animating' href='/macroexamples/macroExampleScoring.xlsm'>custom grading forms</a> using Excel userForms and macros in order to reduce the time it took to grade assessment tests by 75%.",
                     "Created a tool that used testing data to produce reports that the teachers could use to understand the areas in which their students were having difficulties, preventing the purchase of dedicated software.",                    
+                  ]
+                },
+              ]
+            }
+          />
+          <WorkHistoryItem
+            startDate="09/05"
+            endDate="07/06"
+            title="<span class='work-history__item-number'>04.</span><span>English Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.lietz-schulen.de/en/haubinda/boarding-school-village/'> Herman-Lietz Schule Haubinda </a>:</span>"
+            sections={
+              [
+                {
+                  title: "Responsibilities",
+                  bullets: [
+                    "Assisted English language teachers during class.",
+                    "Led small group sessions with 5-8 students.",
+                    "Conducted remedial 1-on-1 tutoring sessions with students struggling in English.",
                   ]
                 },
               ]

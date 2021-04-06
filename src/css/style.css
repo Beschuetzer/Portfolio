@@ -1637,7 +1637,7 @@ body {
   margin-left: 1.6rem;
 }
 .education__item:nth-of-type(n+2) {
-  margin-top: 1.6rem;
+  margin-top: 0.8rem;
 }
 @media only screen and (max-width: 29.3125em) {
   .education__item:last-of-type {
@@ -1646,9 +1646,9 @@ body {
 }
 .education__date, .education__gpa {
   font-weight: 500;
+  font-size: 1.44rem;
 }
 .education__date {
-  font-size: 1.44rem;
   margin-right: 0.8rem;
 }
 .references {
