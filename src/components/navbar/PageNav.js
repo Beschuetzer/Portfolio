@@ -12,7 +12,7 @@ class PageNav extends React.Component {
   static activeScaleVarName = '--site-nav-active-scale-amount';
   static activeScaleRange = {
     desktop: {min: 1.5, max: 1.75},
-    mobile: {min: 1.25, max: 1.5},
+    mobile: {min: 1.05, max: 1.25},
     min: 1.5,
     max: 1.75,
   };

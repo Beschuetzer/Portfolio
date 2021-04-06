@@ -1,4 +1,5 @@
 IDEAS-----------------------------------------------------------
+  -add hover popup for references that pops up a card with image, quote (recommendation from ziprecruiter, and letter of recommendation from scott?), more detailed info about relationship with reference;  add personal references?
 
   -on root route:
     -have words orbiting a planet with a work on it?
@@ -12,22 +13,10 @@ IDEAS-----------------------------------------------------------
 
 
     -for the Bridge work - have separate links that having working demos for each part of the site (preferences, bidding, playing, summary)
-  -add hover popup for references that pops up a card with image, quote (recommendation from ziprecruiter, and letter of recommendation from scott?), more detailed info about relationship with reference;  add personal references?
 
 
-BUGS/TO ADD-----------------------------------------------------------
--fix navbar animation glitch when clicking to close right after opening
--add hover effect for nav button when it is A
--work on changing nav button direction to open down below ~685px
--add label-show-inside-blue-bar-on-hover functionality:
-  *have it dynamically set the inner label via js?
 
--fix alignment of header buttons on smaller viewports
--add PageNav (use data-section-name attribute to grab all of the visible sections and add clickable links to top for easy page navigation (desktop version moves to side under SiteNav?
 
--look at top for PageNav
--look at top for SiteNav button
--figure out why github button not scaling
 
 
 
