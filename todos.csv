@@ -15,7 +15,8 @@ IDEAS-----------------------------------------------------------
     -for the Bridge work - have separate links that having working demos for each part of the site (preferences, bidding, playing, summary)
 
 
-
+-creat OBS videos of bidding, playing, and game summary?
+-have each project page load a different color pallette shortly after component render completes first time (need to add setTimeOut to componentDidMount and have color-primary-x css vars)
 
 
 
