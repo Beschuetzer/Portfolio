@@ -19,6 +19,19 @@ IDEAS-----------------------------------------------------------
 -have each project page load a different color pallette shortly after component render completes first time (need to add setTimeOut to componentDidMount and have color-primary-x css vars)
 
 
+-videos to do:
+  intro to website with registration
+  how to create a lobby
+  how to join a lobby
+  resume a game
+  bidding screen overview
+  playing screen overview
+  summary screen overview
+  preferences overview
+  color theme change
+  navigating the menu
+
+
 
 
 
