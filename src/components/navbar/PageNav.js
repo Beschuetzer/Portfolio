@@ -16,6 +16,9 @@ class PageNav extends React.Component {
     min: 1.5,
     max: 1.75,
   };
+	static scrollRefreshLimit = 50;
+	static maxScrollOffsetPercent = 1;
+	static shouldHandleScroll = true;
   static progressPercent = '0%';
   static selectedClass = 'page-nav--active';
 
@@ -64,10 +67,13 @@ class PageNav extends React.Component {
   }
 
   handleScroll = (e) => {
-		console.log('e.target =', e.target);
+		if (!PageNav.shouldHandleScroll) return;
+		PageNav.shouldHandleScroll = false;
+		console.log('handle scroll------------------------------------------------');
     const scrollY = window.scrollY;
     const maxScrollY = document.body.scrollHeight - window.innerHeight;
-    const isEnd = scrollY >= maxScrollY;
+		const maxScrollOffset = document.body.scrollHeight * PageNav.maxScrollOffsetPercent / 100;
+    const isEnd = scrollY >= maxScrollY - maxScrollOffset;
     const boundingRects = [];
     const sections = document.querySelectorAll('[data-section]');
 
@@ -93,6 +99,9 @@ class PageNav extends React.Component {
       }
     }
     this.setGradientPercent(sections, currentSection, percentThroughSection, isEnd, indexOfCurrentSection);
+		setTimeout(() => {
+			PageNav.shouldHandleScroll = true;
+		}, PageNav.scrollRefreshLimit);
   }
 
   setGradientPercent = (sections, currentSection, percentThroughSection, isEnd, indexOfCurrentSection) => {
