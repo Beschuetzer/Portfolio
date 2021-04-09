@@ -15,8 +15,9 @@ IDEAS-----------------------------------------------------------
 
 
 
--creat OBS videos of bidding, playing, and game summary?
 -have each project page load a different color pallette shortly after component render completes first time (need to add setTimeOut to componentDidMount and have color-primary-x css vars)
+-figure out bridge color pallette
+-how to change navbar colors for each page?
 
 
 -videos to do:
@@ -27,6 +28,8 @@ IDEAS-----------------------------------------------------------
 
 
 -figure out how to create a bash script to get all of the .js files in a dir and its sub-dirs and then create .ts files in the same location with the contents of the respective .js file
+
+
 
 
 
