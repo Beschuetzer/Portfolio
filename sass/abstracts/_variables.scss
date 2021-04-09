@@ -120,7 +120,7 @@ $page-nav-top: calc(
 	--site-nav-active-scale-amount: 1;
 	--body-background: linear-gradient(
 		to left,
-		#{rgba(var(--color-primary-1), 0.975)},
-		#{rgba(var(--color-primary-1), 0.95)}
+		#{alpha(var(--color-primary-1), 0.975)},
+		#{alpha(var(--color-primary-1), 0.95)}
 	);
 }

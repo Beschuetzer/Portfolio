@@ -1,17 +1,57 @@
+/* ------------------------------------------------------------------------------------------------- */
 :root {
   --color-grey-light-1: hsl(0, 9%, 98%);
+  --color-grey-light-1-h: 0;
+  --color-grey-light-1-s: 9%;
+  --color-grey-light-1-l: 98%;
   --color-grey-light-2: hsl(0, 8%, 95%);
+  --color-grey-light-2-h: 0;
+  --color-grey-light-2-s: 8%;
+  --color-grey-light-2-l: 95%;
   --color-grey-light-3: hsl(0, 6%, 94%);
+  --color-grey-light-3-h: 0;
+  --color-grey-light-3-s: 6%;
+  --color-grey-light-3-l: 94%;
   --color-black: hsl(0, 0%, 0%);
+  --color-black-h: 0;
+  --color-black-s: 0%;
+  --color-black-l: 0%;
   --color-grey-20: hsl(0, 0%, 20%);
+  --color-grey-20-h: 0;
+  --color-grey-20-s: 0%;
+  --color-grey-20-l: 20%;
   --color-grey-40: hsl(0, 0%, 40%);
+  --color-grey-40-h: 0;
+  --color-grey-40-s: 0%;
+  --color-grey-40-l: 40%;
   --color-grey-60: hsl(0, 0%, 60%);
+  --color-grey-60-h: 0;
+  --color-grey-60-s: 0%;
+  --color-grey-60-l: 60%;
   --color-grey-80: hsl(0, 0%, 80%);
+  --color-grey-80-h: 0;
+  --color-grey-80-s: 0%;
+  --color-grey-80-l: 80%;
   --color-white: hsl(0, 0%, 100%);
+  --color-white-h: 0;
+  --color-white-s: 0%;
+  --color-white-l: 100%;
   --color-primary-1: hsl(209, 51%, 32%);
+  --color-primary-1-h: 209;
+  --color-primary-1-s: 51%;
+  --color-primary-1-l: 32%;
   --color-primary-2: hsl(190, 43%, 68%);
+  --color-primary-2-h: 190;
+  --color-primary-2-s: 43%;
+  --color-primary-2-l: 68%;
   --color-primary-3: hsl(46, 87%, 67%);
+  --color-primary-3-h: 46;
+  --color-primary-3-s: 87%;
+  --color-primary-3-l: 67%;
   --color-primary-4: hsl(50, 91%, 83%);
+  --color-primary-4-h: 50;
+  --color-primary-4-s: 91%;
+  --color-primary-4-l: 83%;
 }
 
 :root {
@@ -26,12 +66,11 @@
   --site-nav-active-scale-amount: 1;
   --body-background: linear-gradient(
   	to left,
-  	rgba(var(--color-primary-1), 0.975),
-  	rgba(var(--color-primary-1), 0.95)
+  	hsla(var(--color-primary-1-h), var(--color-primary-1-s), var(--color-primary-1-l), 0.975),
+  	hsla(var(--color-primary-1-h), var(--color-primary-1-s), var(--color-primary-1-l), 0.95)
   );
 }
 
-/* ------------------------------------------------------------------------------------------------- */
 @keyframes black-hole {
   0% {
     transform: scale(1) rotate(0deg);
