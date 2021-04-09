@@ -518,7 +518,7 @@
 	@include respond(nav-switch) {
 		top: 0;
 		z-index: 10;
-		background-color: $color-primary-1;
+		background-image: var(--body-background);
 		border-bottom: $default-font-size * 0.1 solid $color-primary-4;
 	}
 

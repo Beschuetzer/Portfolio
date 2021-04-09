@@ -144,4 +144,5 @@ $page-nav-top: calc(
 	--color-primary-2: $color-primary-2;
 	--color-primary-3: $color-primary-3;
 	--color-primary-4: $color-primary-4;
+	--body-background: linear-gradient(to left, #{rgba($color-primary-1, .975)}, #{rgba($color-primary-1, .95)});
 }

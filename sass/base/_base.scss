@@ -41,7 +41,11 @@
         line-height: $line-height;
         font-family: $font-family-headers;
         color: $color-primary-4;
-        background-image: linear-gradient(to right, rgba($color-primary-1, 1), rgba($color-primary-1, 1));
+        
+    }
+
+    .body-background {
+        background-image: var(--body-background);
     }
 
     #root {

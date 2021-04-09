@@ -1,4 +1,3 @@
-/* ------------------------------------------------------------------------------------------------- */
 :root {
   --nav-switch-width: $nav-switch-width;
   --site-nav-linear-gradient: linear-gradient(
@@ -13,8 +12,10 @@
   --color-primary-2: $color-primary-2;
   --color-primary-3: $color-primary-3;
   --color-primary-4: $color-primary-4;
+  --body-background: linear-gradient(to left, rgba(40, 82, 122, 0.975), rgba(40, 82, 122, 0.95));
 }
 
+/* ------------------------------------------------------------------------------------------------- */
 @keyframes black-hole {
   0% {
     transform: scale(1) rotate(0deg);
@@ -70,7 +71,10 @@ body {
   line-height: 1.5;
   font-family: "Merriweather", serif;
   color: #fbeeac;
-  background-image: linear-gradient(to right, #28527a, #28527a);
+}
+
+.body-background {
+  background-image: var(--body-background);
 }
 
 #root {
@@ -1388,7 +1392,7 @@ body {
   .header {
     top: 0;
     z-index: 10;
-    background-color: #28527a;
+    background-image: var(--body-background);
     border-bottom: 0.16rem solid #fbeeac;
   }
 }
