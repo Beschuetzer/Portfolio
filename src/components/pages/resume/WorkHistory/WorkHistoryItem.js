@@ -32,15 +32,15 @@ class WorkHistoryItem extends React.Component {
     const { startDate, endDate, title, number } = this.props
     return (
       <div className="work-history__item">
-        <div className="work-history__title">
-          <span class='work-history__item-number'>{number}.</span>
+        {/* <div className="work-history__title"> */}
+          <span className='work-history__item-number'>{number}.</span>
           <h6 className="work-history__title-header heading--six" dangerouslySetInnerHTML={this.createTitle(title)}></h6>
           <div className="work-history__title-dates">
             <div> {startDate} </div>
             <div> &ndash; </div>
             <div> {endDate} </div>
           </div>
-        </div>
+        {/* </div> */}
        
         {this.renderSections()}    
       </div>        

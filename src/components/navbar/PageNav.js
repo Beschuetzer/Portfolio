@@ -24,6 +24,10 @@ class PageNav extends React.Component {
     this.updateActiveScaleRange();
   }
 
+	componentWillUnmount() {
+    document.removeEventListener('scroll', this.handleScroll);
+	}
+
   componentDidUpdate () {
     this.updateActiveScaleRange();
   }
@@ -60,6 +64,7 @@ class PageNav extends React.Component {
   }
 
   handleScroll = (e) => {
+		console.log('e.target =', e.target);
     const scrollY = window.scrollY;
     const maxScrollY = document.body.scrollHeight - window.innerHeight;
     const isEnd = scrollY >= maxScrollY;

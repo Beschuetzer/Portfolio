@@ -1,15 +1,16 @@
 .work-history {
 	&__item {
+		display: grid;
+    grid-template-columns: min-content 1fr;
 		font-size: $default-font-size;
-		display: flex;
-		flex-direction: column;
-		padding-bottom: $default-font-size * 3;
+		padding: $default-font-size * 2 0;
 
 		@include respond(tab-port) {
 			padding-bottom: $default-font-size * 1;
 		}
 
-		&:nth-of-type(1) .work-history__title {
+		&:nth-of-type(1) {
+			padding-top: 0;
 			margin-top: 0;
 		}
 
@@ -18,12 +19,13 @@
 		}
 
 		&:nth-child(n + 2) {
-			border-top: $default-font-size * 0.1 solid var(--color-primary-1);
+			border-top: $default-font-size * 0.1 solid alpha(var(--color-primary-1), .25);
 		}
 		// grid-template-columns: min-content minmax(min-content, 1fr);
 		// grid-gap: $default-font-size;
 		&-section {
-			margin-left: $default-font-size * 2;
+			grid-column: 2/-1;
+
 			& h6 {
 				margin-top: $default-font-size * 1;
 
@@ -59,17 +61,15 @@
 	}
 
 	&__title {
-		display: grid;
-    grid-template-columns: min-content 1fr;
-		margin-top: $default-font-size * 2.75;
+		// margin-top: $default-font-size * 2.75;
 
-		@include respond(tab-port) {
-			margin-top: $default-font-size * 1;
-		}
+		// @include respond(tab-port) {
+		// 	margin-top: $default-font-size * 1;
+		// }
 
-		& > h6:nth-of-type(n + 2) {
-			border-top: 1px solid gray;
-		}
+		// & > h6:nth-of-type(n + 2) {
+		// 	border-top: 1px solid gray;
+		// }
 
 		&-header {
 			font-size: $default-font-size * 1;
