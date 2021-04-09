@@ -1,57 +1,65 @@
-
 // replace substring with another string
 // credits: https://css-tricks.com/snippets/sass/str-replace-function/
-@function str-replace($string, $search, $replace: '') {
-  $index: str-index($string, $search);
-  @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
-  }
-  @return $string;
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace +
+			str-replace(
+				str-slice($string, $index + str-length($search)),
+				$search,
+				$replace
+			);
+	}
+	@return $string;
 }
 
 // return css color variable with different opacity value
-@function alpha($color, $opacity){
-  $color: str-replace($color, 'var(');
-  $color: str-replace($color, ')');
-  $color-h: var(#{$color+'-h'});
-  $color-s: var(#{$color+'-s'});
-  $color-l: var(#{$color+'-l'});
-  @return hsla($color-h, $color-s, $color-l, $opacity);
+@function alpha($color, $opacity) {
+	$color: str-replace($color, "var(");
+	$color: str-replace($color, ")");
+	$color-h: var(#{$color + "-h"});
+	$color-s: var(#{$color + "-s"});
+	$color-l: var(#{$color + "-l"});
+	@return hsla($color-h, $color-s, $color-l, $opacity);
 }
 
 // .component {
 //   background-color: alpha(var(--color-primary), 0.2); // it works 🎉
 // }
 
-@function lighten($color, $lightnessMultiplier){
-  $color: str-replace($color, 'var(');
-  $color: str-replace($color, ')');
-  $color-h: var(#{$color+'-h'});
-  $color-s: var(#{$color+'-s'});
-  $color-l: var(#{$color+'-l'});
-  @return hsl($color-h, $color-s, calc(#{$color-l} * #{$lightnessMultiplier}));
+@function lighten($color, $lightnessMultiplier) {
+	$color: str-replace($color, "var(");
+	$color: str-replace($color, ")");
+	$color-h: var(#{$color + "-h"});
+	$color-s: var(#{$color + "-s"});
+	$color-l: var(#{$color + "-l"});
+	@return hsl(
+		$color-h,
+		$color-s,
+		calc(#{$color-l} * 1 / #{$lightnessMultiplier})
+	);
 }
 
-@function darken($color, $multiplier){
-  $color: str-replace($color, 'var(');
-  $color: str-replace($color, ')');
-  $color-h: var(#{$color+'-h'});
-  $color-s: var(#{$color+'-s'});
-  $color-l: var(#{$color+'-l'});
-  @return hsl($color-h, $color-s, calc(#{$color-l} * (1 / #{$multiplier})));
+@function darken($color, $multiplier) {
+	$color: str-replace($color, "var(");
+	$color: str-replace($color, ")");
+	$color-h: var(#{$color + "-h"});
+	$color-s: var(#{$color + "-s"});
+	$color-l: var(#{$color + "-l"});
+	@return hsl($color-h, $color-s, calc(#{$color-l} * (1 - #{$multiplier})));
 }
 
 // .component {
-//   background-color: lightness(var(--color-primary), 1.2);
+//   background-color: lighten(var(--color-primary), 1.2);
 // }
 
-@function saturation($color, $saturationMultiplier){
-  $color: str-replace($color, 'var(');
-  $color: str-replace($color, ')');
-  $color-h: var(#{$color+'-h'});
-  $color-s: var(#{$color+'-s'});
-  $color-l: var(#{$color+'-l'});
-  @return hsl($color-h, calc(#{$color-s} * #{$saturationMultiplier}), $color-l);
+@function saturation($color, $saturationMultiplier) {
+	$color: str-replace($color, "var(");
+	$color: str-replace($color, ")");
+	$color-h: var(#{$color + "-h"});
+	$color-s: var(#{$color + "-s"});
+	$color-l: var(#{$color + "-l"});
+	@return hsl($color-h, calc(#{$color-s} * #{$saturationMultiplier}), $color-l);
 }
 
 // .component {

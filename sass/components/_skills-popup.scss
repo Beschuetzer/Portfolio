@@ -25,7 +25,8 @@
 		background-color: var(--color-primary-4);
 		padding: $default-font-size * 2;
 		border: $default-font-size * 0.15 solid var(--color-primary-1);
-		box-shadow: 0 0 $default-font-size * 1.5 0 rgba(var(--color-primary-1), 0.5);
+		box-shadow: 0 0 $default-font-size * 1.5 0
+			alpha(var(--color-primary-1), 0.5);
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -86,14 +87,14 @@
 			padding-right: $default-font-size * 3;
 
 			&:nth-last-child(n + 2) {
-				border-bottom: $default-font-size * 0.1 solid rgba(40, 82, 122, 0.25);
+				border-bottom: $default-font-size * 0.1 solid alpha(var(--color-primary-1), 0.25);
 			}
 		}
 
 		&-header {
 			font-weight: 700;
 			border-bottom: $default-font-size * 0.1 solid
-				rgba(var(--color-primary-1), 0.5);
+				alpha(var(--color-primary-1), 0.5);
 			display: flex;
 			align-items: center;
 			text-align: center;
@@ -101,7 +102,7 @@
 		&-item {
 			font-weight: 400;
 			font-family: $font-family-text;
-			border-bottom: 1px solid rgba(var(--color-primary-1), 0.25);
+			border-bottom: 1px solid alpha(var(--color-primary-1), 0.25);
 			display: flex;
 			align-items: center;
 			padding: $default-font-size $default-font-size * 2 $default-font-size 0;
@@ -259,11 +260,11 @@
 		&:hover &-text {
 			color: var(--color-primary-2);
 			// border-image: linear-gradient(to right, var(--color-primary-2) 0%, var(--color-primary-3) 50%, var(--color-primary-3) 50%, var(--color-primary-2) 100%);
-			// border-bottom: 1px solid rgba(0,0,0,0);
+			// border-bottom: 1px solid alpha(0,0,0,0);
 			border-image: linear-gradient(
 				to bottom,
-				rgba(var(--color-primary-4), 0),
-				rgba(var(--color-primary-4), 0)
+				alpha(var(--color-primary-4), 0),
+				alpha(var(--color-primary-4), 0)
 			);
 			border-image-slice: 1;
 		}
