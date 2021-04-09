@@ -31,11 +31,10 @@ $color-primary-4-rgb: rgb(251, 238, 172);
 
 //sizes
 $scale-amount: 1.05;
-$navbar__logo-width-desktop: 7vw;
-$github__logo-width-desktop: $navbar__logo-width-desktop * 1.1666666667;
-$navbar__logo-width-mobile: $default-font-size * 5;
-$content-padding-mobile: 5vmin;
-$component-margin-amount: $default-font-size * 8;
+$navbar__logo-width: 7vw;
+$github__logo-width: $navbar__logo-width * 1.1666666667;
+$navbar__logo-width-nav-switch: $default-font-size * 5;
+$content-padding-nav-switch: 5vmin;
 $paddingFactor: 1.25;
 
 //animation
@@ -58,7 +57,7 @@ $navbar__button-bar-before-transform: $navbar__button-bar-before-rotation
 $navbar__button-bar-after-rotation: rotate(-105deg);
 $navbar__button-bar-after-transform: $navbar__button-bar-after-rotation
 	translate(-$default-font-size * 0.075, -$default-font-size * 0.5);
-$navbar-mobile-width: 97.5vw;
+$navbar-width-nav-switch: 97.5vw;
 
 $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divider-width: $default-font-size * 0.2;
@@ -85,29 +84,32 @@ $skills-linear-gradient-hover: linear-gradient(
 $resume-card-width-full: $default-font-size * 53.125;
 
 //header
-$header-top-desktop: calc(
+$header-top-inner: calc(
 	(
-			(
-					100vw -
-						(
-							#{$resume-card-width-full} + (
-									(100vw - #{$resume-card-width-full}) / 2
-								) + #{$navbar__logo-width-desktop}
-						)
-				) / 2
-		) - .75vw
+		(
+				100vw -
+					(
+						#{$resume-card-width-full} + (
+								(100vw - #{$resume-card-width-full}) / 2
+							) + #{$navbar__logo-width}
+					)
+			) / 2
+	)
 );
+$page-margin-top-amount: calc(#{$header-top-inner});
+$page-margin-top-amount-nav-switch: $default-font-size * 8;
+$header-top: calc(#{$header-top-inner} - 0.75vw);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
-$header-mobile-width-nav-switch: 93.1vw;
-$header-mobile-width-tab-land: 92.5vw;
-$header-mobile-width-phone: 91.7vw;
-$header-mobile-width-small-font: 89.7vw;
+$header-width-nav-switch: 93.1vw;
+$header-width-tab-land: 92.5vw;
+$header-width-phone: 91.7vw;
+$header-width-small-font: 89.7vw;
 
-// $header-mobile-width-nav-switch: 92vw;
-// $header-mobile-width-tab-land: 91.3vw;
-// $header-mobile-width-phone: 90.6vw;
-// $header-mobile-width-small-font: 88.5vw;
+// $header-width-nav-switch: 92vw;
+// $header-width-tab-land: 91.3vw;
+// $header-width-phone: 90.6vw;
+// $header-width-small-font: 88.5vw;
 
 //page-nav
 $page-nav-top: calc(
@@ -120,7 +122,7 @@ $page-nav-top: calc(
 										(
 											#{$resume-card-width-full} + (
 													(100vw - #{$resume-card-width-full}) / 2
-												) + #{$navbar__logo-width-desktop}
+												) + #{$navbar__logo-width}
 										)
 								) / 2
 						) - 1vw

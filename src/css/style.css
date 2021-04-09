@@ -1378,7 +1378,7 @@ body {
 }
 
 .header {
-  top: calc( 	( 			( 					100vw - 						( 							85rem + ( 									(100vw - 85rem) / 2 								) + 7vw 						) 				) / 2 		) - .75vw );
+  top: calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.75vw);
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -1465,6 +1465,7 @@ body {
     grid-template-rows: auto;
     grid-template-columns: repeat(auto-fill, minmax(14.35rem, 1fr));
     justify-items: center;
+    margin-left: 0.4rem;
   }
 }
 .page-nav__section {
@@ -1550,12 +1551,11 @@ body {
   align-items: center;
   flex-direction: column;
   width: 100%;
-  margin: auto;
-  margin: 12.8rem auto 0 auto;
+  margin: calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) )) auto 0 auto;
 }
-@media only screen and (max-width: 52.6875em) {
+@media only screen and (max-width: 68.75em) {
   .resume {
-    margin: 11.2rem auto 0 auto;
+    margin-top: 12.8rem;
   }
 }
 .resume__section {
@@ -1638,7 +1638,7 @@ body {
 .education__item {
   margin-left: 1.6rem;
 }
-.education__item:nth-of-type(n+2) {
+.education__item:nth-of-type(n + 2) {
   margin-top: 0.8rem;
 }
 @media only screen and (max-width: 29.3125em) {

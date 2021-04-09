@@ -1,70 +1,69 @@
 .github {
-  font-family: $font-family-text;
-  font-size: 1vw;
-  position: relative;
-  display: flex;
-  align-items: center;
-  z-index: 10000;
+	font-family: $font-family-text;
+	font-size: 1vw;
+	position: relative;
+	display: flex;
+	align-items: center;
+	z-index: 10000;
 
-  @include respond(nav-switch) {
-    font-size: $default-font-size * .66;
-  }
+	@include respond(nav-switch) {
+		font-size: $default-font-size * 0.66;
+	}
 
-  &__link:link, &__link:visited {
-    text-decoration: none;
-    color: $color-primary-1;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-  }
+	&__link:link,
+	&__link:visited {
+		text-decoration: none;
+		color: $color-primary-1;
+		font-weight: 700;
+		display: flex;
+		align-items: center;
+	}
 
-  &__svg {
-    // width: 100%;
-    // height: $default-font-size * 5.875;
-    height: $github__logo-width-desktop;
-    width: $github__logo-width-desktop;
-    fill: $color-primary-4;
-    
-    @include respond(nav-switch) {
-      height: $default-font-size * 5.875;
-      width: $default-font-size * 5.875;
-    }
-    
-    &:hover {
-      fill: lighten($color-primary-4, $hover-color-change-amount);
-    }
+	&__svg {
+		// width: 100%;
+		// height: $default-font-size * 5.875;
+		height: $github__logo-width;
+		width: $github__logo-width;
+		fill: $color-primary-4;
 
+		@include respond(nav-switch) {
+			height: $default-font-size * 5.875;
+			width: $default-font-size * 5.875;
+		}
 
-  }
-  &__text {
-    position: absolute;
-    left:50%;
-    // top:50%;
-    z-index: 1;
+		&:hover {
+			fill: lighten($color-primary-4, $hover-color-change-amount);
+		}
+	}
+	&__text {
+		position: absolute;
+		left: 50%;
+		// top:50%;
+		z-index: 1;
 
-    &-top {
-      transform: translate(-50%, 0%);
-      top: .5vw
-    }
-   
-    &-bottom {
-      transform: translate(-50%, 0%);
-      bottom: .5vw;
-      box-shadow: 0 $default-font-size * 2 $default-font-size * 3 rgba($color-primary-1, .2);
-    }
+		&-top {
+			transform: translate(-50%, 0%);
+			top: 0.5vw;
+		}
 
-    @include respond(nav-switch) {
-      &-top {
-        transform: translate(-50%, 0%);
-        top: $default-font-size * .4375;
-      }
-      &-bottom {
-        transform: translate(-50%, 0%);
-        bottom: $default-font-size * .5;
-        box-shadow: 0 $default-font-size * 2 $default-font-size * 3 rgba($color-primary-1, .2);
-      }
-    }
-  }
+		&-bottom {
+			transform: translate(-50%, 0%);
+			bottom: 0.5vw;
+			box-shadow: 0 $default-font-size * 2 $default-font-size * 3
+				rgba($color-primary-1, 0.2);
+		}
 
-  
+		@include respond(nav-switch) {
+			&-top {
+				transform: translate(-50%, 0%);
+				top: $default-font-size * 0.4375;
+			}
+			&-bottom {
+				transform: translate(-50%, 0%);
+				bottom: $default-font-size * 0.5;
+				box-shadow: 0 $default-font-size * 2 $default-font-size * 3
+					rgba($color-primary-1, 0.2);
+			}
+		}
+	}
 }
