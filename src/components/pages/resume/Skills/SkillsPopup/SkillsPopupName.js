@@ -7,10 +7,9 @@ class SkillsPopupName extends React.Component {
     const { repo, onTableItemMouseEvent, href, isMobile } = this.props
     return (
       <div className="skills-popup__table-item skills-popup__name">
-        {
-          isMobile ?
-            <span className={`skills-popup__name-title`}>Name:</span>
-            :
+        {isMobile ?
+          <span className={`skills-popup__name-title`}>Name:</span>
+          :
           null
         }
         <a 
@@ -21,13 +20,11 @@ class SkillsPopupName extends React.Component {
           onMouseEnter={onTableItemMouseEvent} 
           onMouseLeave={onTableItemMouseEvent} 
         >
-        
           <div 
             onMouseEnter={onTableItemMouseEvent} 
             onMouseLeave={onTableItemMouseEvent} 
             className="skills-popup__link-text"
           >
-          
             {repo['name']}
           </div>
         </a>
