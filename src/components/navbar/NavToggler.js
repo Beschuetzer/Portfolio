@@ -14,7 +14,7 @@ class NavToggler extends React.Component {
           onClick={this.handleOnClick}  
           className="header-toggler__svg"
         >
-          <use xlinkHref="sprite.svg#icon-angle-double-down"></use>
+          <use xlinkHref="/sprite.svg#icon-angle-double-down"></use>
         </svg>
       ,
         document.body.querySelector('.header-toggler')
