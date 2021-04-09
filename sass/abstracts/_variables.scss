@@ -75,7 +75,7 @@ $header-top-inner: calc(
 	)
 );
 $page-margin-top-amount: calc(#{$header-top-inner});
-$page-margin-top-amount-nav-switch: $default-font-size * 8;
+$page-margin-top-amount-nav-switch: $default-font-size * 7.5;
 $header-top: calc(#{$header-top-inner} - 0.75vw);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;

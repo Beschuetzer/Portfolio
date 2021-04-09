@@ -1617,7 +1617,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .resume {
-    margin-top: 12.8rem;
+    margin-top: 12rem;
   }
 }
 .resume__section {
