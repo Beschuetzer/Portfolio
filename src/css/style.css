@@ -1,13 +1,13 @@
 :root {
-  --color-grey-light-1: #faf9f9;
-  --color-grey-light-2: #f4f2f2;
-  --color-grey-light-3: #f0eeee;
-  --color-grey-light-4: #ccc;
-  --color-grey-dark-1: #333;
-  --color-grey-dark-2: #777;
-  --color-grey-dark-3: #999;
-  --color-white: #fff;
-  --color-black: #000;
+  --color-grey-light-1: hsl(0, 9%, 98%);
+  --color-grey-light-2: hsl(0, 8%, 95%);
+  --color-grey-light-3: hsl(0, 6%, 94%);
+  --color-black: hsl(0, 0%, 0%);
+  --color-grey-20: hsl(0, 0%, 20%);
+  --color-grey-40: hsl(0, 0%, 40%);
+  --color-grey-60: hsl(0, 0%, 60%);
+  --color-grey-80: hsl(0, 0%, 80%);
+  --color-white: hsl(0, 0%, 100%);
   --color-primary-1: hsl(209, 51%, 32%);
   --color-primary-2: hsl(190, 43%, 68%);
   --color-primary-3: hsl(46, 87%, 67%);
@@ -1397,7 +1397,7 @@ body {
 }
 
 #root.navbar--active {
-  filter: blur(0.8rem) brightness(0.75) drop-shadow(0px 1.6rem 3.2rem rgba(var(--color-grey-light-4), 0.2));
+  filter: blur(0.8rem) brightness(0.75) drop-shadow(0px 1.6rem 3.2rem rgba(var(--color-grey-80), 0.2));
 }
 
 .header {
