@@ -1,4 +1,15 @@
 :root {
+  --color-primary-1: hsl(209, 51%, 32%);
+  --color-primary-2: hsl(190, 43%, 68%);
+  --color-primary-3: hsl(46, 87%, 67%);
+  --color-primary-4: hsl(50, 91%, 83%);
+}
+
+.component {
+  background-color: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.2);
+}
+
+:root {
   --nav-switch-width: $nav-switch-width;
   --site-nav-linear-gradient: linear-gradient(
   	to right,
@@ -8,10 +19,6 @@
   	#fbeeac 100%
   );
   --site-nav-active-scale-amount: 1;
-  --color-primary-1: $color-primary-1;
-  --color-primary-2: $color-primary-2;
-  --color-primary-3: $color-primary-3;
-  --color-primary-4: $color-primary-4;
   --body-background: linear-gradient(to left, rgba(40, 82, 122, 0.975), rgba(40, 82, 122, 0.95));
 }
 
