@@ -7,28 +7,6 @@ $font-family-headers: "Merriweather", serif;
 $nav-switch-width: 68.75em;
 $default-font-size: 1.6rem;
 
-//colors
-$color-grey-light-1: #faf9f9;
-$color-grey-light-2: #f4f2f2;
-$color-grey-light-3: #f0eeee;
-$color-grey-light-4: #ccc;
-$color-grey-dark-1: #333;
-$color-grey-dark-2: #777;
-$color-grey-dark-3: #999;
-
-$color-white: #fff;
-$color-black: #000;
-
-$color-primary-1: #28527a;
-$color-primary-2: #8ac4d0;
-$color-primary-3: #f4d160;
-$color-primary-4: #fbeeac;
-
-$color-primary-1: rgb(40, 82, 122);
-$color-primary-2-rgb: rgb(138, 196, 208);
-$color-primary-3-rgb: rgb(244, 209, 96);
-$color-primary-4-rgb: rgb(251, 238, 172);
-
 //sizes
 $scale-amount: 1.05;
 $navbar__logo-width: 7vw;
@@ -61,23 +39,23 @@ $navbar-width-nav-switch: 97.5vw;
 
 $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divider-width: $default-font-size * 0.2;
-$navbar__item-divider: $navbar__item-divider-width solid $color-primary-1;
+$navbar__item-divider: $navbar__item-divider-width solid var(--color-primary-1);
 
-$navbar-box-shadow-color: rgba($color-black, 0.15);
+$navbar-box-shadow-color: rgba(var(--color-black), 0.15);
 $hover-color-change-amount: 15%;
 
 //skills
 $skills-linear-gradient-original: linear-gradient(
 	to left,
-	$color-primary-1 0%,
-	lighten($color-primary-4, $hover-color-change-amount) 5%,
-	$color-primary-1 10%,
-	$color-primary-1 100%
+	var(--color-primary-1) 0%,
+	lighten(var(--color-primary-4), $hover-color-change-amount) 5%,
+	var(--color-primary-1) 10%,
+	var(--color-primary-1) 100%
 );
 $skills-linear-gradient-hover: linear-gradient(
 	to right,
-	lighten($color-primary-1, $hover-color-change-amount),
-	$color-primary-1
+	lighten(var(--color-primary-1), $hover-color-change-amount),
+	var(--color-primary-1)
 );
 
 //resume
@@ -134,11 +112,15 @@ $page-nav-top: calc(
 	--nav-switch-width: $nav-switch-width;
 	--site-nav-linear-gradient: linear-gradient(
 		to right,
-		#{$color-primary-1} 0%,
-		#{$color-primary-1} 0%,
-		#{$color-primary-4} 0%,
-		#{$color-primary-4} 100%
+		#{var(--color-primary-1)} 0%,
+		#{var(--color-primary-1)} 0%,
+		#{var(--color-primary-4)} 0%,
+		#{var(--color-primary-4)} 100%
 	);
 	--site-nav-active-scale-amount: 1;
-	--body-background: linear-gradient(to left, #{rgba($color-primary-1, .975)}, #{rgba($color-primary-1, .95)});
+	--body-background: linear-gradient(
+		to left,
+		#{rgba(var(--color-primary-1), 0.975)},
+		#{rgba(var(--color-primary-1), 0.95)}
+	);
 }

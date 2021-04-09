@@ -1,298 +1,300 @@
 .skills-popup {
-  color: $color-primary-1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  font-size: $default-font-size * 1;
-  backdrop-filter: blur(10px) brightness(.5);
-  width: 100vw;
-  height: 100vh;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 10000;
-  transition: 
-    opacity $animation-duration * 1.5 $animation-easing-standard-easeInOutBack-smaller,
-    visibility $animation-duration * 1.5 $animation-easing-standard-easeInOutBack-smaller,
-  ;
-  
-  &__content {
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: $default-font-size * 62.5;
-    max-width: 90vw;
-    max-height: 90vh;
-    height: 100%;
-    background-color: $color-primary-4;
-    padding: $default-font-size * 2;
-    border: $default-font-size * .15 solid $color-primary-1;
-    box-shadow: 0 0 $default-font-size * 1.5 0 rgba($color-primary-1, .5);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 200%) ;
-    border-radius: $default-font-size * .5;
-    transition: 
-      transform $animation-duration * 1.5 $animation-easing-standard-easeInOutBack-smaller,
-    ;
-    @include respond(nav-switch) {
-      padding: $default-font-size * 1 $default-font-size * 1.5;
-    }
-    @include respond(small-font) {
-      max-width: 95vw;
-      max-height: 95vh;
-    }
-  }
-  
-  &__header {
-    font-size: $default-font-size * 2;
-    font-weight: 100;
-    text-align: center;
-    margin-bottom: $default-font-size * 1.5;
-    display: grid;
-    grid-template-columns: 1fr min-content;
+	color: var(--color-primary-1);
+	position: fixed;
+	top: 0;
+	left: 0;
+	font-size: $default-font-size * 1;
+	backdrop-filter: blur(10px) brightness(0.5);
+	width: 100vw;
+	height: 100vh;
+	opacity: 0;
+	visibility: hidden;
+	z-index: 10000;
+	transition: opacity $animation-duration * 1.5
+			$animation-easing-standard-easeInOutBack-smaller,
+		visibility $animation-duration * 1.5
+			$animation-easing-standard-easeInOutBack-smaller;
 
-    @include respond(nav-switch) {
-      border-bottom: $default-font-size * .1 solid $color-primary-1;
-      margin-bottom: $default-font-size * .5;
-      font-size: $default-font-size * 1.5;
-    }
+	&__content {
+		overflow-y: auto;
+		overflow-x: hidden;
+		width: $default-font-size * 62.5;
+		max-width: 90vw;
+		max-height: 90vh;
+		height: 100%;
+		background-color: var(--color-primary-4);
+		padding: $default-font-size * 2;
+		border: $default-font-size * 0.15 solid var(--color-primary-1);
+		box-shadow: 0 0 $default-font-size * 1.5 0 rgba(var(--color-primary-1), 0.5);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, 200%);
+		border-radius: $default-font-size * 0.5;
+		transition: transform $animation-duration * 1.5
+			$animation-easing-standard-easeInOutBack-smaller;
+		@include respond(nav-switch) {
+			padding: $default-font-size * 1 $default-font-size * 1.5;
+		}
+		@include respond(small-font) {
+			max-width: 95vw;
+			max-height: 95vh;
+		}
+	}
 
-    &-text {
-      margin-right: $default-font-size * 1.5;
-    }
-    &-skill {
-      font-weight: 400;
-    }
-  }
-  
-  &__table {
-    display: grid;
-    grid-template-columns: minmax($default-font-size * 6.25, max-content) minmax($default-font-size * 12.5, 1fr) repeat(2, minmax($default-font-size * 6.25, min-content)) min-content;
+	&__header {
+		font-size: $default-font-size * 2;
+		font-weight: 100;
+		text-align: center;
+		margin-bottom: $default-font-size * 1.5;
+		display: grid;
+		grid-template-columns: 1fr min-content;
 
-    @include respond(nav-switch) {
-      display: flex;
-      flex-direction: column;
-      // justify-content: center;
-      // align-items: center;
-    }
-   
-    &-repo {
-      position: relative;
-      grid-column: 1/-1;
-      padding-right: $default-font-size * 3;
+		@include respond(nav-switch) {
+			border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
+			margin-bottom: $default-font-size * 0.5;
+			font-size: $default-font-size * 1.5;
+		}
 
-      &:nth-last-child(n+2) {
-        border-bottom: $default-font-size * .1 solid rgba(40, 82, 122, 0.25);
-      }
-    }
+		&-text {
+			margin-right: $default-font-size * 1.5;
+		}
+		&-skill {
+			font-weight: 400;
+		}
+	}
 
-    &-header {
-      font-weight: 700;
-      border-bottom: $default-font-size * .1 solid rgba($color-primary-1, .5);
-      display: flex;
-      align-items: center;
-      text-align: center;
-    }
-    &-item{
-      font-weight: 400;
-      font-family: $font-family-text;
-      border-bottom: 1px solid rgba($color-primary-1, .25);
-      display: flex;
-      align-items: center;
-      padding:$default-font-size $default-font-size * 2 $default-font-size 0;
-      transition:  
-        border $animation-duration * .5 $animation-easing-standard,
-      ;
+	&__table {
+		display: grid;
+		grid-template-columns:
+			minmax($default-font-size * 6.25, max-content) minmax(
+				$default-font-size * 12.5,
+				1fr
+			)
+			repeat(2, minmax($default-font-size * 6.25, min-content)) min-content;
 
-      @include respond(nav-switch) {
-        border:none;
-        padding: $default-font-size 0;
+		@include respond(nav-switch) {
+			display: flex;
+			flex-direction: column;
+			// justify-content: center;
+			// align-items: center;
+		}
 
-        &:nth-child(n+4) {
-          padding-top:0;
-        }
+		&-repo {
+			position: relative;
+			grid-column: 1/-1;
+			padding-right: $default-font-size * 3;
 
-        &:nth-child(3) {
-          display: grid;
-          grid-template-columns: max-content 1fr;
-          grid-column-gap: $default-font-size;
-        }
+			&:nth-last-child(n + 2) {
+				border-bottom: $default-font-size * 0.1 solid rgba(40, 82, 122, 0.25);
+			}
+		}
 
-        .skills-popup__table-repo > &:first-child{
-          font-size: $default-font-size * 1.1;
-          display: grid;
-          grid-template-columns: max-content 1fr;
-          grid-column-gap: $default-font-size;
-        }
+		&-header {
+			font-weight: 700;
+			border-bottom: $default-font-size * 0.1 solid
+				rgba(var(--color-primary-1), 0.5);
+			display: flex;
+			align-items: center;
+			text-align: center;
+		}
+		&-item {
+			font-weight: 400;
+			font-family: $font-family-text;
+			border-bottom: 1px solid rgba(var(--color-primary-1), 0.25);
+			display: flex;
+			align-items: center;
+			padding: $default-font-size $default-font-size * 2 $default-font-size 0;
+			transition: border $animation-duration * 0.5 $animation-easing-standard;
 
-        .skills-popup__table-repo > &:last-child{
-          position: absolute;
-          top: $default-font-size * .75;
-          right: 0;
-        }
+			@include respond(nav-switch) {
+				border: none;
+				padding: $default-font-size 0;
 
-        & .skills-popup__table-item {
-          padding: 0;
-        }
-    
-      }
+				&:nth-child(n + 4) {
+					padding-top: 0;
+				}
 
-      & span {
-        border-bottom: $default-font-size * .1 solid transparent;
-        font-style: normal;
+				&:nth-child(3) {
+					display: grid;
+					grid-template-columns: max-content 1fr;
+					grid-column-gap: $default-font-size;
+				}
 
-        @include respond(nav-switch) {
-          &:nth-child(2n+1) {
-            font-weight: 700;
-          }
-        }
-      }
+				.skills-popup__table-repo > &:first-child {
+					font-size: $default-font-size * 1.1;
+					display: grid;
+					grid-template-columns: max-content 1fr;
+					grid-column-gap: $default-font-size;
+				}
 
-      &.skills-popup__description {
-        display: inline;
-        & a {
-          text-decoration: none;
-          &:hover {
-            border-image:  none;
-            // color: $color-primary-2;
-          }
-        }
-      }
+				.skills-popup__table-repo > &:last-child {
+					position: absolute;
+					top: $default-font-size * 0.75;
+					right: 0;
+				}
 
-      &:nth-child(5n+3), &:nth-child(5n+4) {
-        padding-right: $default-font-size;
-      }
+				& .skills-popup__table-item {
+					padding: 0;
+				}
+			}
 
-      &:nth-child(5n+5) {
-        padding-right: 0;
-      }
-    }
-  }
+			& span {
+				border-bottom: $default-font-size * 0.1 solid transparent;
+				font-style: normal;
 
-  &__url {
-    backface-visibility: hidden;
-    display: flex;
-    justify-content: center;
-    & svg {
-      fill: $color-primary-1;
-      height: $default-font-size * 2;
-      width: $default-font-size * 2;
-      
-      transition: 
-        color $animation-duration * .5 $animation-easing-standard,
-        transform $animation-duration * .5 $animation-easing-standard,
-      ;
-      
-    }
-    &:hover svg{
-      fill: $color-primary-2;
-      transform: scale(1.15);
-    }
-    
-  }
+				@include respond(nav-switch) {
+					&:nth-child(2n + 1) {
+						font-weight: 700;
+					}
+				}
+			}
 
-  &__close {
-    cursor: pointer;
-    fill: $color-primary-1;
-    height: $default-font-size * 2;
-    width: $default-font-size * 2;
-    margin-left: auto;
-    backface-visibility: hidden;
-    transition: 
-      fill $animation-duration * .75 $animation-easing-standard,
-      transform $animation-duration * .75 $animation-easing-standard,
+			&.skills-popup__description {
+				display: inline;
+				& a {
+					text-decoration: none;
+					&:hover {
+						border-image: none;
+						// color: var(--color-primary-2);
+					}
+				}
+			}
 
-    ;
-    &:hover {
-      fill: $color-primary-2;
-      transform: scale($scale-amount * 1.1);
-    }
-  }
+			&:nth-child(5n + 3),
+			&:nth-child(5n + 4) {
+				padding-right: $default-font-size;
+			}
 
-  &__link {
-    cursor: pointer;
-    text-decoration: none;
-    position: relative;
+			&:nth-child(5n + 5) {
+				padding-right: 0;
+			}
+		}
+	}
 
-    &-text {
-      @include link-line;
-      transition: 
-        border $animation-duration * .5 $animation-easing-standard,
-        color $animation-duration * .5 $animation-easing-modern,
-      ;
+	&__url {
+		backface-visibility: hidden;
+		display: flex;
+		justify-content: center;
+		& svg {
+			fill: var(--color-primary-1);
+			height: $default-font-size * 2;
+			width: $default-font-size * 2;
 
-      &::before {
-        border-radius: 100%;
-        background-image: 
-          linear-gradient(to bottom, $color-primary-2 0%, $color-primary-4 5%, $color-primary-4 95%, $color-primary-2 100%);
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 0%;
-        opacity: 0;
-        width: 1px;
-        height: 100%;
-        // max-height: calc(100% - .8rem);
-        transform: translate(0%, -50%);
-        z-index: -1;
-        transition: 
-          opacity  $animation-duration * .75 cubic-bezier(1,0, 0.5, 0.55) $animation-duration * .25,
-          height $animation-duration * .5 $animation-easing-modern $animation-duration * .5,
-          width $animation-duration * .5 $animation-easing-modern,
-          border-radius $animation-duration * .5 $animation-easing-standard $animation-duration * .5,
-        ;
-      }
-    }  
+			transition: color $animation-duration * 0.5 $animation-easing-standard,
+				transform $animation-duration * 0.5 $animation-easing-standard;
+		}
+		&:hover svg {
+			fill: var(--color-primary-2);
+			transform: scale(1.15);
+		}
+	}
 
-    &:hover {
-      // @include skills-popup-item-hover;
-    }
+	&__close {
+		cursor: pointer;
+		fill: var(--color-primary-1);
+		height: $default-font-size * 2;
+		width: $default-font-size * 2;
+		margin-left: auto;
+		backface-visibility: hidden;
+		transition: fill $animation-duration * 0.75 $animation-easing-standard,
+			transform $animation-duration * 0.75 $animation-easing-standard;
+		&:hover {
+			fill: var(--color-primary-2);
+			transform: scale($scale-amount * 1.1);
+		}
+	}
 
-    &:hover &-text::before {
-      @include skills-popup-link-hover;
+	&__link {
+		cursor: pointer;
+		text-decoration: none;
+		position: relative;
 
-      @include respond(nav-switch) {
-        opacity: 0;
-      }
-    }
+		&-text {
+			@include link-line;
+			transition: border $animation-duration * 0.5 $animation-easing-standard,
+				color $animation-duration * 0.5 $animation-easing-modern;
 
-    &:hover &-text{
-      color: $color-primary-2;
-      // border-image: linear-gradient(to right, $color-primary-2 0%, $color-primary-3 50%, $color-primary-3 50%, $color-primary-2 100%);
-      // border-bottom: 1px solid rgba(0,0,0,0);
-      border-image: 
-      linear-gradient(to bottom, rgba($color-primary-4, 0), rgba($color-primary-4, 0));
-      border-image-slice: 1;
-      
-    }
-  }
-  
-  &__error { 
-    grid-column: 1 /-1;
-    justify-self: center;
-    margin-top: 30vh;
-    font-size: $default-font-size * 2;
-  }
+			&::before {
+				border-radius: 100%;
+				background-image: linear-gradient(
+					to bottom,
+					var(--color-primary-2) 0%,
+					var(--color-primary-4) 5%,
+					var(--color-primary-4) 95%,
+					var(--color-primary-2) 100%
+				);
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 0%;
+				opacity: 0;
+				width: 1px;
+				height: 100%;
+				// max-height: calc(100% - .8rem);
+				transform: translate(0%, -50%);
+				z-index: -1;
+				transition: opacity $animation-duration * 0.75
+						cubic-bezier(1, 0, 0.5, 0.55) $animation-duration * 0.25,
+					height $animation-duration * 0.5 $animation-easing-modern
+						$animation-duration * 0.5,
+					width $animation-duration * 0.5 $animation-easing-modern,
+					border-radius $animation-duration * 0.5 $animation-easing-standard
+						$animation-duration * 0.5;
+			}
+		}
 
-  &--active {
-    opacity: 1;
-    visibility: visible;
+		&:hover {
+			// @include skills-popup-item-hover;
+		}
 
-    & .skills-popup__content {
-      transform: translate(-50%, -50%) ;
-    }
-  }
+		&:hover &-text::before {
+			@include skills-popup-link-hover;
 
-  //JS 
-  &__item-js--hover {
-    @include skills-popup-item-hover;
-  }
-  &__link-js--hover > div::before {
-    @include skills-popup-link-hover;
-  }
+			@include respond(nav-switch) {
+				opacity: 0;
+			}
+		}
 
-  //This has to go at the end to override a previous style
-  &__table-item.skills-popup__link  {
-    border-bottom: none;
-  }
+		&:hover &-text {
+			color: var(--color-primary-2);
+			// border-image: linear-gradient(to right, var(--color-primary-2) 0%, var(--color-primary-3) 50%, var(--color-primary-3) 50%, var(--color-primary-2) 100%);
+			// border-bottom: 1px solid rgba(0,0,0,0);
+			border-image: linear-gradient(
+				to bottom,
+				rgba(var(--color-primary-4), 0),
+				rgba(var(--color-primary-4), 0)
+			);
+			border-image-slice: 1;
+		}
+	}
+
+	&__error {
+		grid-column: 1 /-1;
+		justify-self: center;
+		margin-top: 30vh;
+		font-size: $default-font-size * 2;
+	}
+
+	&--active {
+		opacity: 1;
+		visibility: visible;
+
+		& .skills-popup__content {
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	//JS
+	&__item-js--hover {
+		@include skills-popup-item-hover;
+	}
+	&__link-js--hover > div::before {
+		@include skills-popup-link-hover;
+	}
+
+	//This has to go at the end to override a previous style
+	&__table-item.skills-popup__link {
+		border-bottom: none;
+	}
 }

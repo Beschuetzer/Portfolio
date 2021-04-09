@@ -16,7 +16,7 @@
 	}
 
 	&__section {
-		// background-image: linear-gradient(to left, $color-primary-1, $color-primary-2);
+		// background-image: linear-gradient(to left, var(--color-primary-1), var(--color-primary-2));
 		width: 100%;
 		display: flex;
 		justify-content: center;
@@ -76,13 +76,13 @@
 		max-width: calc(100% - 20.8rem);
 		width: $resume-card-width-full;
 		margin: $default-font-size * 2 auto;
-		color: $color-primary-1;
-		background-color: $color-primary-3;
+		color: var(--color-primary-1);
+		background-color: var(--color-primary-3);
 		// grid-column: 2 / 3;
 		padding: 0 $default-font-size * 2;
-		// border: 3px solid $color-primary-1;
+		// border: 3px solid var(--color-primary-1);
 		border-radius: $default-font-size * 0.5;
-		box-shadow: 0 0 $default-font-size * 1.5 rgba($color-primary-4, 0.2);
+		box-shadow: 0 0 $default-font-size * 1.5 rgba(var(--color-primary-4), 0.2);
 
 		@include respond(nav-switch) {
 			max-width: 100%;
@@ -100,7 +100,7 @@
 		}
 	}
 	& .heading {
-		color: $color-primary-3;
+		color: var(--color-primary-3);
 	}
 }
 
@@ -148,7 +148,8 @@
 		display: flex;
 		align-items: center;
 		height: 100%;
-		border-bottom: $default-font-size * 0.1 solid rgba($color-primary-1, 0.25);
+		border-bottom: $default-font-size * 0.1 solid
+			rgba(var(--color-primary-1), 0.25);
 
 		&:nth-last-child(n + 13) {
 			padding-top: 0;
@@ -186,7 +187,8 @@
 			}
 
 			&:nth-child(n + 2) {
-				border-top: $default-font-size * 0.1 solid rgba($color-primary-1, 0.25);
+				border-top: $default-font-size * 0.1 solid
+					rgba(var(--color-primary-1), 0.25);
 			}
 		}
 		&-text {

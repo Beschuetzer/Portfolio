@@ -5,12 +5,12 @@ $thumbnail-transition: transform $animation-duration * 0.66
 	background $animation-duration $animation-easing-standard;
 
 .thumbnail {
-	background-color: $color-primary-1;
+	background-color: var(--color-primary-1);
 	width: $default-font-size * 3;
 	height: $default-font-size * 3;
 	overflow: hidden;
 	border-radius: 50%;
-	border: $default-font-size * 0.1 solid $color-primary-4;
+	border: $default-font-size * 0.1 solid var(--color-primary-4);
 	transition: $thumbnail-transition;
 
 	& img {
@@ -21,7 +21,7 @@ $thumbnail-transition: transform $animation-duration * 0.66
 
 	&:hover {
 		animation: black-hole-background 1 2s;
-		background-color: $color-black;
+		background-color: var(--color-black);
 	}
 	&:hover > img {
 		animation: black-hole 1 2s;

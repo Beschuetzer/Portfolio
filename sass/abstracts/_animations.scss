@@ -1,28 +1,28 @@
-@keyframes black-hole{
-  0%{
-    transform: scale(1) rotate(0deg);
-  }
-  100%{
-    transform: scale(0) rotate(720deg);
-  }
+@keyframes black-hole {
+	0% {
+		transform: scale(1) rotate(0deg);
+	}
+	100% {
+		transform: scale(0) rotate(720deg);
+	}
 }
 
 @keyframes black-hole-background {
-  0%{
-    background-color: $color-primary-1;
-  }
-  100%{
-    background-color: $color-black;
-  }
+	0% {
+		background-color: var(--color-primary-1);
+	}
+	100% {
+		background-color: var(--color-black);
+	}
 }
 
 @keyframes animate-skills {
-  // 50% {
-    // background-position: 150% center;
-  // }
-  100%{
-    background-position: 200% center;
-  }
+	// 50% {
+	// background-position: 150% center;
+	// }
+	100% {
+		background-position: 200% center;
+	}
 }
 
 // @keyframes selected-section {
@@ -31,7 +31,7 @@
 //   }
 //   16.667% {
 //     transform: scale(1.11666667) rotate(1.25deg);
-    
+
 //   }
 //   33% {
 //     transform: scale(1.18336667) rotate(-1.25deg);

@@ -13,7 +13,7 @@
 	&__link:link,
 	&__link:visited {
 		text-decoration: none;
-		color: $color-primary-1;
+		color: var(--color-primary-1);
 		font-weight: 700;
 		display: flex;
 		align-items: center;
@@ -24,7 +24,7 @@
 		// height: $default-font-size * 5.875;
 		height: $github__logo-width;
 		width: $github__logo-width;
-		fill: $color-primary-4;
+		fill: var(--color-primary-4);
 
 		@include respond(nav-switch) {
 			height: $default-font-size * 5.875;
@@ -32,7 +32,7 @@
 		}
 
 		&:hover {
-			fill: lighten($color-primary-4, $hover-color-change-amount);
+			fill: lighten(var(--color-primary-4), $hover-color-change-amount);
 		}
 	}
 	&__text {
@@ -50,7 +50,7 @@
 			transform: translate(-50%, 0%);
 			bottom: 0.5vw;
 			box-shadow: 0 $default-font-size * 2 $default-font-size * 3
-				rgba($color-primary-1, 0.2);
+				rgba(var(--color-primary-1), 0.2);
 		}
 
 		@include respond(nav-switch) {
@@ -62,7 +62,7 @@
 				transform: translate(-50%, 0%);
 				bottom: $default-font-size * 0.5;
 				box-shadow: 0 $default-font-size * 2 $default-font-size * 3
-					rgba($color-primary-1, 0.2);
+					rgba(var(--color-primary-1), 0.2);
 			}
 		}
 	}

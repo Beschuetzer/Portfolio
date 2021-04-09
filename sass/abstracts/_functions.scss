@@ -18,6 +18,10 @@
   @return hsla($color-h, $color-s, $color-l, $opacity);
 }
 
+// .component {
+//   background-color: alpha(var(--color-primary), 0.2); // it works 🎉
+// }
+
 @mixin defineColorHSL($color, $hue, $saturation, $lightness){
   #{$color}: unquote("hsl(#{$hue}, #{$saturation}, #{$lightness})");#{$color}-h: #{$hue};#{$color}-s: #{$saturation};#{$color}-l: #{$lightness};
 }
@@ -36,6 +40,39 @@
 //   @include defineColorHSL(--color-contrast-higher, 240, 8%, 12%);
 // }
 
-.component {
-  background-color: alpha(var(--color-primary), 0.2); // it works 🎉
+// 
+
+@function lighten($color, $lightnessMultiplier){
+  $color: str-replace($color, 'var(');
+  $color: str-replace($color, ')');
+  $color-h: var(#{$color+'-h'});
+  $color-s: var(#{$color+'-s'});
+  $color-l: var(#{$color+'-l'});
+  @return hsl($color-h, $color-s, calc(#{$color-l} * #{$lightnessMultiplier}));
 }
+
+@function darken($color, $multiplier){
+  $color: str-replace($color, 'var(');
+  $color: str-replace($color, ')');
+  $color-h: var(#{$color+'-h'});
+  $color-s: var(#{$color+'-s'});
+  $color-l: var(#{$color+'-l'});
+  @return hsl($color-h, $color-s, calc(#{$color-l} * (1 / #{$multiplier})));
+}
+
+// .component {
+//   background-color: lightness(var(--color-primary), 1.2);
+// }
+
+@function saturation($color, $saturationMultiplier){
+  $color: str-replace($color, 'var(');
+  $color: str-replace($color, ')');
+  $color-h: var(#{$color+'-h'});
+  $color-s: var(#{$color+'-s'});
+  $color-l: var(#{$color+'-l'});
+  @return hsl($color-h, calc(#{$color-s} * #{$saturationMultiplier}), $color-l);
+}
+
+// .component {
+//   background-color: saturation(var(--color-primary), 1.2);
+// }

@@ -35,10 +35,10 @@
 }
 
 @mixin skills-popup-item-hover {
-	background-color: $color-primary-4;
-	border-bottom: 1px solid $color-primary-1;
+	background-color: var(--color-primary-4);
+	border-bottom: 1px solid var(--color-primary-1);
 	// transform: translateY(-.2rem);
-	box-shadow: 0 1.6rem 3.2rem -3.2rem rgba($color-primary-1, 0.5);
+	box-shadow: 0 1.6rem 3.2rem -3.2rem rgba(var(--color-primary-1), 0.5);
 }
 @mixin skills-popup-link-hover {
 	// height: 23.4%;
@@ -56,9 +56,15 @@
 	margin-right: 0.8rem;
 }
 @mixin link-line {
-	border-bottom-width: $default-font-size * .1;
+	border-bottom-width: $default-font-size * 0.1;
 	border-bottom-style: solid;
-	border-image: linear-gradient(to right, $color-primary-4 0%, $color-primary-1 50%, $color-primary-1 50%, $color-primary-4 100%);
+	border-image: linear-gradient(
+		to right,
+		var(--color-primary-4) 0%,
+		var(--color-primary-1) 50%,
+		var(--color-primary-1) 50%,
+		var(--color-primary-4) 100%
+	);
 	border-image-slice: 1;
 }
 @mixin link-animating {
@@ -100,8 +106,8 @@
 		} //1200px
 	}
 	@if $breakpoint == nav-switch {
-		// @media only screen and (max-width: 67.1875em) {			
-			@media only screen and (max-width: $nav-switch-width) {			
+		// @media only screen and (max-width: 67.1875em) {
+		@media only screen and (max-width: $nav-switch-width) {
 			@content;
 		} //1200px
 	}

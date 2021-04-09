@@ -5,10 +5,9 @@
 	position: relative;
 
 	&__section {
-
 		&:nth-child(3) .skills__title {
 			cursor: auto;
-			border: $default-font-size * .1 solid transparent;
+			border: $default-font-size * 0.1 solid transparent;
 		}
 
 		&-content {
@@ -38,23 +37,22 @@
 			cursor: pointer;
 			display: flex;
 			align-items: center;
-			border-bottom: $default-font-size * 0.1 solid $color-primary-1;
+			border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
 			grid-column: 1/-1;
 			font-size: $default-font-size * 1.5;
 			font-weight: 300;
 
 			transition: transform $animation-duration * 0.5 $animation-easing-standard,
-				color $animation-duration * 1 $animation-easing-standard
-			;
+				color $animation-duration * 1 $animation-easing-standard;
 
 			@include respond(small-font) {
-				margin-bottom: $default-font-size * .75;
+				margin-bottom: $default-font-size * 0.75;
 			}
 
 			&-svg {
 				backface-visibility: hidden;
 
-				fill: rgba($color-primary-1, 0.5);
+				fill: rgba(var(--color-primary-1), 0.5);
 				height: $default-font-size * 1.5;
 				width: $default-font-size * 1.5;
 				// margin-left: $default-font-size * .25;
@@ -65,15 +63,15 @@
 			&:hover {
 				transform: translateX($default-font-size * 0.5);
 				font-weight: 500;
-				color: darken($color-primary-1, $hover-color-change-amount / 4);
+				color: darken(var(--color-primary-1), $hover-color-change-amount / 4);
 			}
 
 			&.skills__section--open:hover {
-				color: $color-primary-2;
+				color: var(--color-primary-2);
 			}
 
 			&:hover &-svg {
-				fill: $color-primary-1;
+				fill: var(--color-primary-1);
 			}
 		}
 
@@ -81,7 +79,7 @@
 			margin-right: $default-font-size * 0.5;
 			width: $default-font-size * 0.5;
 			height: $default-font-size * 0.5;
-			fill: $color-primary-1;
+			fill: var(--color-primary-1);
 		}
 
 		//Click Title Open Animation
@@ -141,7 +139,7 @@
 		// margin-left: $default-font-size * 1;
 
 		@include respond(nav-break) {
-	    margin: 0 0 $default-font-size * .25 0;
+			margin: 0 0 $default-font-size * 0.25 0;
 		}
 	}
 
@@ -153,8 +151,8 @@
 		position: relative;
 		display: inline-block;
 		text-decoration: none;
-		color: $color-primary-1;
-		border-bottom: $default-font-size * 0.1 solid $color-primary-1;
+		color: var(--color-primary-1);
+		border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
 	}
 
 	&__title--animating,
@@ -163,15 +161,16 @@
 		@include link-animating;
 	}
 
-	&-popup__link.skills__title--animating:link, &-popup__link.skills__title--animating:visited {
+	&-popup__link.skills__title--animating:link,
+	&-popup__link.skills__title--animating:visited {
 		display: flex;
 	}
 
 	&__title--animating.skills__section--open {
 		animation: none;
 		transform: translateX($default-font-size);
-    font-weight: 700;
-    max-width: calc(100% - 1.6rem);
+		font-weight: 700;
+		max-width: calc(100% - 1.6rem);
 	}
 
 	&__percent {
@@ -179,7 +178,7 @@
 			backface-visibility: hidden;
 
 			position: relative;
-			background-color: $color-primary-4;
+			background-color: var(--color-primary-4);
 			// width: 100%;
 			height: $default-font-size;
 			width: 0;
@@ -195,7 +194,7 @@
 			&-right {
 				z-index: 10000;
 				position: absolute;
-				background-color: $color-primary-1;
+				background-color: var(--color-primary-1);
 				width: $default-font-size * 0.1;
 				height: $default-font-size;
 			}
@@ -222,34 +221,34 @@
 				display: grid;
 				transform: translate(0);
 				position: absolute;
-				top:0;
-				left:0;
+				top: 0;
+				left: 0;
 				line-height: 1;
 				height: 100%;
 				width: 100%;
-				padding: 0rem $default-font-size * .25;
-				transition: 
-					opacity $animation-duration * 1 $animation-easing-standard $animation-duration,
-				;
+				padding: 0rem $default-font-size * 0.25;
+				transition: opacity $animation-duration * 1 $animation-easing-standard
+					$animation-duration;
 
 				&:hover {
 					@include respond(nav-break) {
-						opacity: .5;
+						opacity: 0.5;
 					}
 				}
 				&:hover + .skills__percent-inner {
-					transform: scaleY(calc(5/3));
+					transform: scaleY(calc(5 / 3));
 				}
 			}
 		}
 		&-inner {
 			position: relative;
 			backface-visibility: hidden;
-			box-shadow: 0 $default-font-size * .5 $default-font-size * 1 0 rgba($color-primary-1, 0.125);
-			background-color: $color-primary-2;
+			box-shadow: 0 $default-font-size * 0.5 $default-font-size * 1 0
+				rgba(var(--color-primary-1), 0.125);
+			background-color: var(--color-primary-2);
 			height: $default-font-size;
 			opacity: 0;
-			border: $default-font-size * 0.1 solid $color-primary-4;
+			border: $default-font-size * 0.1 solid var(--color-primary-4);
 			transition: opacity $animation-duration * 4 $animation-easing-standard
 					$animation-duration * 1,
 				transform $animation-duration * 2
@@ -257,7 +256,7 @@
 			// &:hover {
 			// }
 			&:hover .skills__hours {
-				transform: translate(-50%, -50%) scaleY(calc(3/5));
+				transform: translate(-50%, -50%) scaleY(calc(3 / 5));
 				opacity: 1;
 			}
 		}
@@ -275,9 +274,9 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		transition:
-			opacity $animation-duration $animation-easing-standard $animation-duration * 1,
-			transform $animation-duration $animation-easing-standard $animation-duration * 1,
-		;
+		transition: opacity $animation-duration $animation-easing-standard
+				$animation-duration * 1,
+			transform $animation-duration $animation-easing-standard
+				$animation-duration * 1;
 	}
 }
