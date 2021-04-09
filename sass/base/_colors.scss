@@ -2,12 +2,14 @@
 	@include defineColorHSL(--color-grey-light-1, 0, 9%, 98%);
 	@include defineColorHSL(--color-grey-light-2, 0, 8%, 95%);
 	@include defineColorHSL(--color-grey-light-3, 0, 6%, 94%);
+  
 	@include defineColorHSL(--color-black, 0, 0%, 0%);
   @include defineColorHSL(--color-grey-20, 0, 0%, 20%);
 	@include defineColorHSL(--color-grey-40, 0, 0%, 40%);
 	@include defineColorHSL(--color-grey-60, 0, 0%, 60%);
 	@include defineColorHSL(--color-grey-80, 0, 0%, 80%);
 	@include defineColorHSL(--color-white, 0, 0%, 100%);
+
 	@include defineColorHSL(--color-primary-1, 209, 51%, 32%);
 	@include defineColorHSL(--color-primary-2, 190, 43%, 68%);
 	@include defineColorHSL(--color-primary-3, 46, 87%, 67%);

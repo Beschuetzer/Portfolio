@@ -16,9 +16,6 @@ class PageNav extends React.Component {
 		min: 1.5,
 		max: 1.75,
 	};
-	static mainColor = "#fbeeac";
-	static progressColor = "138, 196, 208";
-	static progressPercent = "0%";
 	static selectedClass = "page-nav--active";
 
 	componentDidMount() {
@@ -40,7 +37,9 @@ class PageNav extends React.Component {
 		}
 	};
 
-	getLinearGradient = (percent) => {
+	getLinearGradient = (percent, docStyle) => {
+		const mainColor = docStyle.getPropertyValue('--color-primary-1');
+		const progressColor = docStyle.getPropertyValue('--color-primary-2')
 		const valueRange = {
 			min: 0.5,
 			max: 1,
@@ -51,10 +50,10 @@ class PageNav extends React.Component {
 
 		return `
       linear-gradient(to right, 
-        alpha(${PageNav.progressColor}, ${percentToUse}) 0%, 
-        alpha(${PageNav.progressColor}, ${percentToUse}) ${percent}%,
-        ${PageNav.mainColor} ${percent}%,
-        ${PageNav.mainColor} 100%)`;
+        #{alpha(${progressColor}, ${percentToUse})} 0%, 
+        #{alpha(${progressColor}, ${percentToUse})} ${percent}%,
+        ${mainColor} ${percent}%,
+        ${mainColor} 100%)`;
 	};
 
 	handleScroll = (e) => {
@@ -106,9 +105,12 @@ class PageNav extends React.Component {
 		isEnd,
 		indexOfCurrentSection,
 	) => {
-		const selectedGradient = this.getLinearGradient(percentThroughSection);
-		const isEndGradient = this.getLinearGradient(100);
-		const normalGradient = this.getLinearGradient(0);
+		let docStyle = getComputedStyle(document.documentElement);
+		const selectedGradient = this.getLinearGradient(percentThroughSection, docStyle);
+		const isEndGradient = this.getLinearGradient(100, docStyle);
+		const normalGradient = this.getLinearGradient(0, docStyle);
+
+		// debugger
 
 		for (let i = 0; i < sections.length; i++) {
 			let gradientToUse = selectedGradient;
