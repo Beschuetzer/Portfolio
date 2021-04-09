@@ -939,11 +939,11 @@ body {
   }
 }
 .work-history__item-section-list {
-  margin: 1.6rem 4.8rem 0rem 1.6rem;
+  margin: -0.8rem 4.8rem 0rem 1.6rem;
 }
 @media only screen and (max-width: 52.6875em) {
   .work-history__item-section-list {
-    margin: 0.8rem 2.4rem 0 0.8rem;
+    margin: -0.8rem 2.4rem 0 0.8rem;
   }
 }
 .work-history__item-section-list li {
@@ -959,6 +959,8 @@ body {
   margin-right: 0.8rem;
 }
 .work-history__title {
+  display: grid;
+  grid-template-columns: min-content 1fr;
   margin-top: 4.4rem;
 }
 @media only screen and (max-width: 52.6875em) {
@@ -972,15 +974,13 @@ body {
 .work-history__title-header {
   font-size: 1.6rem;
   font-style: italic;
-  display: grid;
-  grid-template-columns: min-content 1fr;
 }
 .work-history__title-dates {
   font-size: 1.44rem;
   display: flex;
   align-items: center;
   font-weight: 300;
-  margin-left: 3.2rem;
+  grid-column: 2/-1;
 }
 .work-history__title-dates > div:nth-child(2) {
   margin: 0 0.4rem;

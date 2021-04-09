@@ -22,12 +22,19 @@ class WorkHistoryItem extends React.Component {
     })
   }
 
+  createTitle = (title) => {
+    return {
+      __html: `${title}:`
+    }
+  }
+
   render (){
-    const { startDate, endDate, title } = this.props
+    const { startDate, endDate, title, number } = this.props
     return (
       <div className="work-history__item">
         <div className="work-history__title">
-          <h6 className="work-history__title-header heading--six" dangerouslySetInnerHTML={{__html: title}}></h6>
+          <span class='work-history__item-number'>{number}.</span>
+          <h6 className="work-history__title-header heading--six" dangerouslySetInnerHTML={this.createTitle(title)}></h6>
           <div className="work-history__title-dates">
             <div> {startDate} </div>
             <div> &ndash; </div>
