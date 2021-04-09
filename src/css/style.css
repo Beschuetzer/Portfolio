@@ -1378,7 +1378,7 @@ body {
 }
 
 .header {
-  top: calc( 	( 			( 					100vw - 						( 							85rem + ( 									(100vw - 85rem) / 2 								) + 7vw 						) 				) / 2 		) - 0vw );
+  top: calc( 	( 			( 					100vw - 						( 							85rem + ( 									(100vw - 85rem) / 2 								) + 7vw 						) 				) / 2 		) - .75vw );
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -1447,7 +1447,7 @@ body {
 .page-nav {
   z-index: 1;
   position: absolute;
-  top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											85rem + ( 													(100vw - 85rem) / 2 												) + 7vw 										) 								) / 2 						) - 1vw 				) * 1 		) - 1.4vw );
+  top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											85rem + ( 													(100vw - 85rem) / 2 												) + 7vw 										) 								) / 2 						) - 1vw 				) * 1 		) - 1.2vw );
   left: 0;
   width: calc((100% - 85rem) / 2);
   font-size: 1vw;
