@@ -12,7 +12,7 @@ IDEAS-----------------------------------------------------------
       -
 
 
-    -for the Bridge work - have separate links that having working demos for each part of the site (preferences, bidding, playing, summary)
+
 
 
 -creat OBS videos of bidding, playing, and game summary?
@@ -24,6 +24,11 @@ IDEAS-----------------------------------------------------------
   responsiveness
   claim some feature in detail
   handling errors (just refresh)
+
+
+-figure out how to create a bash script to get all of the .js files in a dir and its sub-dirs and then create .ts files in the same location with the contents of the respective .js file
+
+
 
 
 A#Maj Bridge - Preferences 1. Overview  - Play Contract Bridge Free Online

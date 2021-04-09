@@ -1,13 +1,15 @@
 import React from "react";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import history from "../history";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Projects from "./pages/Projects";
+import Examples from "./pages/examples/Examples";
+import CSharp from "./pages/examples/CSharp";
+import Bridge from "./pages/examples/Bridge/Bridge";
 import Resume from "./pages/resume/Resume";
 import SiteNav from "./navbar/SiteNav";
 import PageNav from "./navbar/PageNav";
@@ -16,73 +18,78 @@ import Footer from "./Footer";
 import "../css/style.css";
 import GithubButton from "./GithubButton";
 import { setIsAnimating, setIsMobile } from "../actions";
-import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from './constants';
+import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./constants";
 
-const App = ({isMobile, setIsMobile, isAnimating, setIsAnimating}) => {
-  const mobileBreakPointWidth = 1100;
-  setIsMobile(window.innerWidth <= mobileBreakPointWidth);
-  
-  //setup window resize listener
-  useEffect(() => {
+const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating }) => {
+	const mobileBreakPointWidth = 1100;
+	setIsMobile(window.innerWidth <= mobileBreakPointWidth);
+
+	//setup window resize listener
+	useEffect(() => {
 		const windowResize = (e) => {
-      if (window.innerWidth <= mobileBreakPointWidth && !isMobile){
-        setIsMobile(true);
-      }
-      else if (window.innerWidth > mobileBreakPointWidth && isMobile){
-        setIsMobile(false);
-      }
-    }
-  
+			if (window.innerWidth <= mobileBreakPointWidth && !isMobile) {
+				setIsMobile(true);
+			} else if (window.innerWidth > mobileBreakPointWidth && isMobile) {
+				setIsMobile(false);
+			}
+		};
+
 		const keypressHandler = (e) => {
 			switch (e.key) {
-				case 'a':
-					const navbar = document.querySelector('.navbar');
-					const root = document.querySelector('#root');
+				case "a":
+					const navbar = document.querySelector(".navbar");
+					const root = document.querySelector("#root");
 					setIsAnimating(!isAnimating);
 					if (isAnimating) {
 						navbar?.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 						root?.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
-					}
-					else {
+					} else {
 						navbar?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 						navbar?.classList?.remove(NAVBAR_DONE_CLASSNAME);
-						navbar?.classList?.add('overflow--hidden');
+						navbar?.classList?.add("overflow--hidden");
 						root?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-
 					}
-          break;
-				case 'b':
-					history.push('/about');
 					break;
-				case 'c': 
-					history.push('/contact');
+				case "b":
+					history.push("/about");
 					break;
-				case 'e': case 'w':
-					history.push('/works');
+				case "c":
+					history.push("/contact");
 					break;
-				case 'r':
-					history.push('/resume');
+				case "e":
+				case "w":
+					history.push("/examples");
+					break;
+				case "r":
+					history.push("/resume");
 					break;
 				default:
 					break;
 			}
 		};
 
-    window.addEventListener('resize', windowResize);
+		window.addEventListener("resize", windowResize);
 		window.addEventListener("keydown", keypressHandler);
 
-		return (() => {
-      window.removeEventListener('resize', windowResize);
-      window.removeEventListener('keydown', keypressHandler);
-    });
-
-  }, [isMobile, setIsMobile, mobileBreakPointWidth, isAnimating, setIsAnimating]);
+		return () => {
+			window.removeEventListener("resize", windowResize);
+			window.removeEventListener("keydown", keypressHandler);
+		};
+	}, [
+		isMobile,
+		setIsMobile,
+		mobileBreakPointWidth,
+		isAnimating,
+		setIsAnimating,
+	]);
 
 	return (
 		<Router history={history}>
 			<Switch>
 				<Route path="/" exact component={Home} />
-				<Route path="/works" exact component={Projects} />
+				<Route path="/examples" exact component={Examples} />
+				<Route path="/examples/bridge" exact component={Bridge} />
+				<Route path="/examples/csharp" exact component={CSharp} />
 				<Route path="/about" exact component={About} />
 				<Route path="/resume" exact component={Resume} />
 				<Route path="/contact" exact component={Contact} />
@@ -94,14 +101,14 @@ const App = ({isMobile, setIsMobile, isAnimating, setIsAnimating}) => {
 			{/* <Footer/> */}
 		</Router>
 	);
-}
+};
 
 const mapStateToProps = (state, ownProps) => {
 	return {
 		isAnimating: state.general.isAnimating,
 		isMobile: state.general.isMobile,
-	}
-}
+	};
+};
 
 export default connect(mapStateToProps, {
 	setIsAnimating,

@@ -294,6 +294,8 @@ body {
   text-decoration: none;
   color: #28527a;
   font-weight: 700;
+  display: flex;
+  align-items: center;
 }
 .github__svg {
   height: 8.1666666669vw;
@@ -320,7 +322,7 @@ body {
 }
 .github__text-bottom {
   transform: translate(-50%, 0%);
-  bottom: 1vw;
+  bottom: 0.5vw;
   box-shadow: 0 3.2rem 4.8rem rgba(40, 82, 122, 0.2);
 }
 @media only screen and (max-width: 68.75em) {
@@ -1376,7 +1378,7 @@ body {
 }
 
 .header {
-  top: calc( 	( 			( 					100vw - 						( 							85rem + ( 									(100vw - 85rem) / 2 								) + 7vw 						) 				) / 2 		) - 1vw );
+  top: calc( 	( 			( 					100vw - 						( 							85rem + ( 									(100vw - 85rem) / 2 								) + 7vw 						) 				) / 2 		) - 0vw );
   width: 100%;
   position: fixed;
   z-index: 1;

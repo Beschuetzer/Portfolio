@@ -95,7 +95,7 @@ $header-top-desktop: calc(
 								) + #{$navbar__logo-width-desktop}
 						)
 				) / 2
-		) - 1vw
+		) - 0vw
 );
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
