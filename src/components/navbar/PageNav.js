@@ -17,7 +17,7 @@ class PageNav extends React.Component {
     max: 1.75,
   };
 	static scrollSectionDelimiterOffset = window.innerHeight / 6;
-	static previousSectionEnd = null;
+	static previousSectionBottom = 0;
 	static scrollRefreshLimit = 50;
 	static maxScrollOffsetPercent = 1;
 	static shouldHandleScroll = true;
@@ -82,6 +82,9 @@ class PageNav extends React.Component {
     let indexOfCurrentSection = -1;
     let percentThroughSection = '';
 
+    //Reseting the top to 0
+    if (scrollY < 10) PageNav.previousSectionBottom = 0;
+
     for (let i = 0; i < sections.length; i++) {
       const section = sections[i];
       const boundingRect = section.getBoundingClientRect();
@@ -97,15 +100,15 @@ class PageNav extends React.Component {
         let boundingRectToUse = boundingRects[i < 1 ? 0 : indexOfCurrentSection];
 				
 				
-				if (boundingRectToUse.bottom <= PageNav.scrollSectionDelimiterOffset && i > 0) {
+				if ((boundingRectToUse.bottom <= PageNav.scrollSectionDelimiterOffset && i > 0) || i === 0) {
 					currentSection = sections[indexOfCurrentSection + 1];
-					if (!PageNav.previousSectionEnd) PageNav.previousSectionEnd = window.scrollY;
+					if (!PageNav.previousSectionBottom) PageNav.previousSectionBottom = window.scrollY;
 					
 					let boundingRectNext = boundingRects[i < 1 ? 0 : indexOfCurrentSection + 1]
 					
 					const addedPercent = PageNav.scrollSectionDelimiterOffset / Math.abs(boundingRectNext.bottom - boundingRectNext.top) * 100;
 
-					const amountProgressed = window.scrollY - PageNav.previousSectionEnd;
+					const amountProgressed = window.scrollY - PageNav.previousSectionBottom;
 					const endAmount = PageNav.scrollSectionDelimiterOffset;
 					
 					//TODO: here the percent through section is not correct when going backwards
@@ -115,7 +118,7 @@ class PageNav extends React.Component {
 					if (percentThroughSection >= addedPercent)  percentThroughSection = addedPercent;
 
 				} else {
-					PageNav.previousSectionEnd = null;
+					PageNav.previousSectionBottom = null;
 					const addedPercent = PageNav.scrollSectionDelimiterOffset / Math.abs(boundingRectToUse.bottom - boundingRectToUse.top) * 100;
 
 					percentThroughSection = Math.abs(boundingRectToUse.top) / (Math.abs(boundingRectToUse.top) + Math.abs(boundingRectToUse.bottom))  * 100;
