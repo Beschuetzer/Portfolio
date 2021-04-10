@@ -88,7 +88,7 @@
   }
 }
 @keyframes animate-skills {
-  100% {
+  0% {
     background-position: 200% center;
   }
 }
@@ -564,6 +564,11 @@ body {
   background-clip: text;
   color: transparent;
   animation: animate-skills infinite 10s;
+  transition: border 0.5s ease;
+}
+.skills__title--animating:link:hover, .skills__title--animating:visited:hover, .skills__title--animating:hover, .skills__title--animating:link:link:hover, .skills__title--animating:link:visited:hover, .skills__title--animating:link:hover, .skills__title--animating:visited:link:hover, .skills__title--animating:visited:visited:hover, .skills__title--animating:visited:hover {
+  color: hsl(var(--color-primary-1-h), var(--color-primary-1-s), calc(var(--color-primary-1-l) * (1 - 0.05)));
+  text-decoration: none;
 }
 .skills-popup__link.skills__title--animating:link, .skills-popup__link.skills__title--animating:visited {
   display: flex;
@@ -1607,6 +1612,11 @@ body {
 @media only screen and (max-width: 68.75em) {
   .resume {
     margin-top: 12rem;
+  }
+}
+@media only screen and (max-width: 52.6875em) {
+  .resume {
+    margin-top: calc(12rem - 1.6rem);
   }
 }
 .resume__section {

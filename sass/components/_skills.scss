@@ -159,6 +159,12 @@
 	&__title--animating:link,
 	&__title--animating:visited {
 		@include link-animating;
+		transition: border $animation-duration $animation-easing-standard;
+
+		&:link:hover, &:visited:hover, &:hover {
+			color: darken(var(--color-primary-1), .05);
+			text-decoration: none;
+		}
 	}
 
 	&-popup__link.skills__title--animating:link,
