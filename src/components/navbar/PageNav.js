@@ -16,7 +16,8 @@ class PageNav extends React.Component {
     min: 1.5,
     max: 1.75,
   };
-	static scrollSectionDelimiterOffset = window.innerHeight / 5;
+	static scrollSectionDelimiterOffset = window.innerHeight / 6;
+	static previousSectionEnd = null;
 	static scrollRefreshLimit = 50;
 	static maxScrollOffsetPercent = 1;
 	static shouldHandleScroll = true;
@@ -70,7 +71,6 @@ class PageNav extends React.Component {
   handleScroll = (e) => {
 		if (!PageNav.shouldHandleScroll) return;
 		PageNav.shouldHandleScroll = false;
-		console.log('handle scroll------------------------------------------------');
     const scrollY = window.scrollY;
     const maxScrollY = document.body.scrollHeight - window.innerHeight;
 		const maxScrollOffset = document.body.scrollHeight * PageNav.maxScrollOffsetPercent / 100;
@@ -94,30 +94,35 @@ class PageNav extends React.Component {
         } else {
           currentSection = sections[indexOfCurrentSection];
         }
-        let boundingRectToUse = boundingRects[i === 0 ? 0 : indexOfCurrentSection];
-				let boundingRectCurrent = boundingRects[i < 1 ? 0 : indexOfCurrentSection]
-
-        percentThroughSection = Math.abs(boundingRectToUse.top) / (Math.abs(boundingRectToUse.top) + Math.abs(boundingRectToUse.bottom))  * 100;
-
-
-				// debugger
-				// if (percentThroughSection >= 75 && i > 1) {
-				console.log('boundingRectCurrent.bottom =', boundingRectCurrent.bottom);
-				console.log('PageNav.scrollSectionDelimiterOffset =', PageNav.scrollSectionDelimiterOffset);
-				if (boundingRectCurrent.bottom <= PageNav.scrollSectionDelimiterOffset && i > 1) {
-					console.log('here------------------------------------------------');
-					// boundingRectToUse = boundingRects[i === 0 ? 1 : indexOfCurrentSection + 1];
-					// percentThroughSection = 25 - (100 - percentThroughSection);
+        let boundingRectToUse = boundingRects[i < 1 ? 0 : indexOfCurrentSection];
+				
+				
+				if (boundingRectToUse.bottom <= PageNav.scrollSectionDelimiterOffset && i > 0) {
 					currentSection = sections[indexOfCurrentSection + 1];
-					percentThroughSection = Math.abs(100 - (Math.abs(boundingRectToUse.top) + PageNav.scrollSectionDelimiterOffset) / (Math.abs(boundingRectToUse.top) + Math.abs(boundingRectToUse.bottom))  * 100);
+					if (!PageNav.previousSectionEnd) PageNav.previousSectionEnd = window.scrollY;
+					
+					let boundingRectNext = boundingRects[i < 1 ? 0 : indexOfCurrentSection + 1]
+					
+					const addedPercent = PageNav.scrollSectionDelimiterOffset / Math.abs(boundingRectNext.bottom - boundingRectNext.top) * 100;
+
+					const amountProgressed = window.scrollY - PageNav.previousSectionEnd;
+					const endAmount = PageNav.scrollSectionDelimiterOffset;
+					
+					//TODO: here the percent through section is not correct when going backwards
+					percentThroughSection = amountProgressed / endAmount * addedPercent
+
+					// console.log('percentThroughSection =', percentThroughSection);
+					if (percentThroughSection >= addedPercent)  percentThroughSection = addedPercent;
 
 				} else {
+					PageNav.previousSectionEnd = null;
 					const addedPercent = PageNav.scrollSectionDelimiterOffset / Math.abs(boundingRectToUse.bottom - boundingRectToUse.top) * 100;
+
+					percentThroughSection = Math.abs(boundingRectToUse.top) / (Math.abs(boundingRectToUse.top) + Math.abs(boundingRectToUse.bottom))  * 100;
+
 					percentThroughSection += addedPercent;
-					console.log('addedPercent =', addedPercent);
 				}
-				console.log('percentThroughSection =', percentThroughSection);
-        break;
+				break;
       }
     }
     this.setGradientPercent(sections, currentSection, percentThroughSection, isEnd, indexOfCurrentSection);
