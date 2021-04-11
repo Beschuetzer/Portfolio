@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
+const routes = require('./routes/gitHubRoute');
 require('dotenv').config();
 
-app.get('/githubkey', (req, res) => {
-  res.send(process.env.REACT_APP_GITHUB)
-})
+
+app.use('/repos', routes)
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {console.log('running server on port: ' + PORT)})
