@@ -60,8 +60,7 @@ export const getRepositories = () => async (dispatch, getStore) => {
         }
       }
     }
-
-  }`
+  }`;
 
   const response = await github(query);
 
