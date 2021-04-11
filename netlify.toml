@@ -1,1 +1,7 @@
-/repos  https://adammajor.herokuapp.com/repos/:splat  200
+[[redirects]]
+  from = "/repos/"
+  to = "https://adammajor.herokuapp.com/repos/:splat"
+  status = 200
+  force = true
+  [redirects.headers]
+    X-From = "Netlify"
