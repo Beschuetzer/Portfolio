@@ -1,8 +1,9 @@
 import React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import ReactDOM from "react-dom";
 import NavListItem from "./NavListItem";
+
 
 import { setIsAnimating } from "../../actions";
 import { checkForParentOfType } from "../../helpers";
@@ -13,7 +14,8 @@ import {
 	ANIMATION_DURATION,
 } from "../constants";
 
-const SiteNav = ({ isAnimating, setIsAnimating }) => {
+const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl }) => {
+	const [ currentUrl, setCurrentUrl ] = useState(null);
 	const navRef = useRef();
 	const root = document.querySelector("#root");
 
@@ -65,6 +67,42 @@ const SiteNav = ({ isAnimating, setIsAnimating }) => {
 	};
 
 	useEffect(() => {
+		console.log('currentUrl =', currentUrl);
+		if (!currentUrl) return; 
+
+		let docStyle = getComputedStyle(document.documentElement);
+		const colorVarRoot = '--color-primary';
+		const colorVarPages = ['', '/bridge'];
+		const colorVarNumbers = ['-1','-2','-3','-4'];
+		const colorVarHSL = ['-h', '-s', '-l'];
+
+		//TODO: change css vars --color-primary-pageName-number and --color-primary-pageName-number-HSL to their respective values on each section page load
+
+		//if the current url is in colorVarPages use that value minus the first char otherwise default to index 0 ('')
+		const temp = colorVarPages.indexOf(currentUrl.slice(currentUrl.lastIndexOf('/')));
+		const index = temp !== -1 ? temp : 0;
+		const colorVarSuffix = colorVarPages[index].slice(1);
+
+		debugger
+		for (let i = 0; i < colorVarNumbers.length; i++) {
+			const colorVarNumber = colorVarNumbers[i];
+			const colorVarTochange = `${colorVarRoot}${colorVarNumber}`;
+			const colorVarTarget = `${colorVarRoot}${colorVarSuffix !== '' ? `-${colorVarSuffix}` : ''}${colorVarNumber}`;
+			const targetValue = docStyle.getPropertyValue(colorVarTarget);
+			document.documentElement.style.setProperty(colorVarTochange, targetValue);
+		}
+	}, [currentUrl])
+
+
+	//When url changes
+	useEffect(() => {
+		if (!currentUrl || currentUrl !== match.url) {
+			setCurrentUrl(match.url);
+		}
+	}, [match, currentUrl, previousUrl])
+
+	//initial
+	useEffect(() => {
 		const onBodyClick = (e) => {
 			const isNavClick = e.target?.classList?.contains(NAVBAR_ACTIVE_CLASSNAME)
 				? true
@@ -76,7 +114,11 @@ const SiteNav = ({ isAnimating, setIsAnimating }) => {
 			root.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 		};
 		document.body.addEventListener("click", onBodyClick);
-	});
+
+		return (() => {
+			document.body.removeEventListener("click", onBodyClick);
+		})
+	}, [root]);
 
 	useEffect(() => {
 		const navBar = navRef.current;
@@ -173,6 +215,7 @@ const SiteNav = ({ isAnimating, setIsAnimating }) => {
 const mapStateToProps = (state, ownProps) => {
 	return {
 		isAnimating: state.general.isAnimating,
+		previousUrl: state.general.previousUrl,
 	};
 };
 

@@ -15,9 +15,8 @@
 	@include defineColorHSL(--color-primary-3, 46, 87%, 67%);
 	@include defineColorHSL(--color-primary-4, 50, 91%, 83%);
 
-
 	@include defineColorHSL(--color-primary-bridge-1, 220, 10%, 11%);
-	@include defineColorHSL(--color-primary-bridge-2, 34 100%, 41%);
+	@include defineColorHSL(--color-primary-bridge-2, 34, 100%, 41%);
 	@include defineColorHSL(--color-primary-bridge-3, 41, 100%, 47%);
 	@include defineColorHSL(--color-primary-bridge-4, 0, 0%, 96%);
 }

@@ -591,6 +591,10 @@
 				transform: translateY(-$header-height);
 			}
 		}
+
+		&:hover svg {
+			fill: lighten(var(--color-primary-4), .15);
+		}
 	}
 }
 
