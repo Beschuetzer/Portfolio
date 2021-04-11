@@ -36,7 +36,7 @@ exports.githubController = async (req, res) => {
   })
 
   try {
-    const data = await graphQLClient.request(gql`${req.params.query}`)
+    const data = await graphQLClient.request(gql`${query}`)
     res.send(data);
   }
   catch (err) {

@@ -63,10 +63,9 @@ export const getRepositories = () => async (dispatch, getStore) => {
   }`;
 
   const response = await github(query);
-
   dispatch({
     type: GET_REPOSITORIES,
-    payload: response.viewer.repositories.nodes,
+    payload: response.data.viewer.repositories.nodes,
   });
 }
 
