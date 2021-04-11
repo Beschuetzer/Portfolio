@@ -1,0 +1,288 @@
+.skills {
+	font-size: $default-font-size;
+	font-family: $font-family-text;
+	// list-style: none;
+	position: relative;
+
+	&__section {
+		&:nth-child(3) .skills__title {
+			cursor: auto;
+			border: $default-font-size * 0.1 solid transparent;
+		}
+
+		&-content {
+			height: 0;
+			visibility: hidden;
+			opacity: 0;
+			transition: height $animation-duration * 2 $animation-easing-standard,
+				opacity $animation-duration $animation-easing-standard;
+
+			font-weight: 500;
+			display: grid;
+			grid-template-columns: max-content 1fr;
+			grid-row-gap: $default-font-size * 0.125;
+			grid-column-gap: $default-font-size * 1;
+			grid-auto-rows: min-content;
+			align-items: center;
+			margin-left: $default-font-size;
+
+			@include respond(nav-break) {
+				grid-template-columns: 1fr;
+			}
+		}
+		&-title {
+			backface-visibility: hidden;
+			margin: 0 0 $default-font-size 0;
+			user-select: none;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
+			grid-column: 1/-1;
+			font-size: $default-font-size * 1.5;
+			font-weight: 300;
+
+			transition: transform $animation-duration * 0.5 $animation-easing-standard,
+				color $animation-duration * 1 $animation-easing-standard;
+
+			@include respond(small-font) {
+				margin-bottom: $default-font-size * 0.75;
+			}
+
+			&-svg {
+				backface-visibility: hidden;
+
+				fill: alpha(var(--color-primary-1), 0.5);
+				height: $default-font-size * 1.5;
+				width: $default-font-size * 1.5;
+				// margin-left: $default-font-size * .25;
+				transition: fill $animation-duration * 1 $animation-easing-standard,
+					transform $animation-duration * 0.25 $animation-easing-standard;
+			}
+
+			&:hover {
+				transform: translateX($default-font-size * 0.5);
+				font-weight: 500;
+				color: darken(var(--color-primary-1), $hover-color-change-amount / 4);
+			}
+
+			&.skills__section--open:hover {
+				color: var(--color-primary-2);
+			}
+
+			&:hover &-svg {
+				fill: var(--color-primary-1);
+			}
+		}
+
+		&-svg {
+			margin-right: $default-font-size * 0.5;
+			width: $default-font-size * 0.5;
+			height: $default-font-size * 0.5;
+			fill: var(--color-primary-1);
+		}
+
+		//Click Title Open Animation
+		&--open + &-content {
+			height: auto;
+			visibility: visible;
+			opacity: 1;
+			margin-bottom: $default-font-size;
+		}
+
+		&--open svg {
+			transform: rotate(90deg);
+		}
+
+		//Click Title Width Animation
+		// &--open + &-content .skills__percent-outer {
+		//   width: 100%;
+		// }
+		&--open + &-content .skills__percent-inner {
+			opacity: 1;
+		}
+
+		& > *:nth-child(2n + 2) {
+			margin-left: $default-font-size * 2;
+		}
+	}
+
+	&__labels {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		align-items: flex-end;
+		justify-items: center;
+		align-items: center;
+		z-index: 10;
+		transform: translateY(33%);
+		line-height: 1;
+
+		@include respond(nav-break) {
+			display: none;
+		}
+
+		& > span:first-child {
+			justify-self: flex-start;
+		}
+		& > span:last-child {
+			justify-self: flex-end;
+		}
+	}
+
+	&__item {
+		// list-style: none;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+		max-width: $default-font-size * 50;
+		// margin-left: $default-font-size * 1;
+
+		@include respond(nav-break) {
+			margin: 0 0 $default-font-size * 0.25 0;
+		}
+	}
+
+	&__title:link,
+	&__title:visited,
+	&__title {
+		cursor: pointer;
+		backface-visibility: hidden;
+		position: relative;
+		display: inline-block;
+		text-decoration: none;
+		color: var(--color-primary-1);
+		border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
+	}
+
+	&__title--animating,
+	&__title--animating:link,
+	&__title--animating:visited {
+		@include link-animating;
+		transition: border $animation-duration $animation-easing-standard;
+
+		&:link:hover, &:visited:hover, &:hover {
+			color: darken(var(--color-primary-1), .05);
+			text-decoration: none;
+		}
+	}
+
+	&-popup__link.skills__title--animating:link,
+	&-popup__link.skills__title--animating:visited {
+		display: flex;
+	}
+
+	&__title--animating.skills__section--open {
+		animation: none;
+		transform: translateX($default-font-size);
+		font-weight: 700;
+		max-width: calc(100% - 1.6rem);
+	}
+
+	&__percent {
+		&-outer {
+			backface-visibility: hidden;
+
+			position: relative;
+			background-color: var(--color-primary-4);
+			// width: 100%;
+			height: $default-font-size;
+			width: 0;
+			transition: width $animation-duration * 2
+				cubic-bezier(0.68, -0.33, 0.32, 1.33);
+
+			@include respond(nav-break) {
+				margin-left: $default-font-size;
+			}
+
+			&-left,
+			&-center,
+			&-right {
+				z-index: 10000;
+				position: absolute;
+				background-color: var(--color-primary-1);
+				width: $default-font-size * 0.1;
+				height: $default-font-size;
+			}
+
+			&-left {
+				top: 0;
+				left: 0%;
+				transform: translate(-50%, 0%);
+			}
+			&-center {
+				bottom: 0;
+				left: 50%;
+				transform: translate(-50%, 0%);
+			}
+			&-right {
+				bottom: 0;
+				right: 0%;
+				transform: translate(0%, 0%);
+			}
+
+			//Styling skills labels
+			& .skills__labels {
+				opacity: 0;
+				display: grid;
+				transform: translate(0);
+				position: absolute;
+				top: 0;
+				left: 0;
+				line-height: 1;
+				height: 100%;
+				width: 100%;
+				padding: 0rem $default-font-size * 0.25;
+				transition: opacity $animation-duration * 1 $animation-easing-standard
+					$animation-duration;
+
+				&:hover {
+					@include respond(nav-break) {
+						opacity: 0.5;
+					}
+				}
+				&:hover + .skills__percent-inner {
+					transform: scaleY(calc(5 / 3));
+				}
+			}
+		}
+		&-inner {
+			position: relative;
+			backface-visibility: hidden;
+			box-shadow: 0 $default-font-size * 0.5 $default-font-size * 1 0
+				alpha(var(--color-primary-1), 0.125);
+			background-color: var(--color-primary-2);
+			height: $default-font-size;
+			opacity: 0;
+			border: $default-font-size * 0.1 solid var(--color-primary-4);
+			transition: opacity $animation-duration * 4 $animation-easing-standard
+					$animation-duration * 1,
+				transform $animation-duration * 2
+					$animation-easing-standard-easeInOutBack;
+			// &:hover {
+			// }
+			&:hover .skills__hours {
+				transform: translate(-50%, -50%) scaleY(calc(3 / 5));
+				opacity: 1;
+			}
+		}
+	}
+
+	&__hours {
+		backface-visibility: hidden;
+		opacity: 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: $default-font-size;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: opacity $animation-duration $animation-easing-standard
+				$animation-duration * 1,
+			transform $animation-duration $animation-easing-standard
+				$animation-duration * 1;
+	}
+}
