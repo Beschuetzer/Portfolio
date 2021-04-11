@@ -11,33 +11,33 @@ import {
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
-  const schema = `
-    query {
-      __schema {
-        types {
-          name
-          kind
-          description
-          fields {
-            name
-          }
-        }
-      }
-    }
-  `;
+  // const schema = `
+  //   query {
+  //     __schema {
+  //       types {
+  //         name
+  //         kind
+  //         description
+  //         fields {
+  //           name
+  //         }
+  //       }
+  //     }
+  //   }
+  // `;
 
-  const individualObjIntrospection = `
-    query {
-      __type(name: "Repository") {
-        name
-        kind
-        description
-        fields {
-          name
-        }
-      }
-    }
-  `;
+  // const individualObjIntrospection = `
+  //   query {
+  //     __type(name: "Repository") {
+  //       name
+  //       kind
+  //       description
+  //       fields {
+  //         name
+  //       }
+  //     }
+  //   }
+  // `;
 
   const query = 
   `query {

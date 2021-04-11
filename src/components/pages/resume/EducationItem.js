@@ -1,5 +1,4 @@
 import React from 'react';
-import react from 'react';
 
 const EducationItem = ({startDate, endDate, degree, location, gpa, href, note}) => {
 

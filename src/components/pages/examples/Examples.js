@@ -1,5 +1,4 @@
 import React from 'react';
-import github from '../../../apis/github';
 
 class Projects extends React.Component {
   constructor(props) {

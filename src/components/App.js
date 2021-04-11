@@ -14,7 +14,6 @@ import Resume from "./pages/resume/Resume";
 import SiteNav from "./navbar/SiteNav";
 import PageNav from "./navbar/PageNav";
 import NavToggler from "./navbar/NavToggler";
-import Footer from "./Footer";
 import "../css/style.css";
 import GithubButton from "./GithubButton";
 import { setIsAnimating, setIsMobile } from "../actions";

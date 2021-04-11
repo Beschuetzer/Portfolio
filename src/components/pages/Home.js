@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getRepositories } from '../../actions';
-import BackgroundVideo from '../BackgroundVideo';
 
 class Home extends React.Component {
   constructor(props) {

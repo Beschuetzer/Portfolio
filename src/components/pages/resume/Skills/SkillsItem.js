@@ -20,7 +20,7 @@ const SkillsItem = ({ title, percent, href, clickSkill, hours, labels }) => {
   useEffect(() => {
     percentDiv.current.style.width = `${percent}%`;
     setIsDivSet(true);
-  }, [percentDiv, percent])
+  }, [percentDiv, percent, isDivSet])
 
   return (
     <React.Fragment>

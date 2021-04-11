@@ -10,7 +10,7 @@ import {
 } from "../../../../../actions";
 import SkillsPopupName from "./SkillsPopupName";
 import { capitalize } from "../../../../../helpers";
-import { KeepStencilOp } from "three";
+// import { KeepStencilOp } from "three";
 
 const SkillsPopup = ({
 	reposToDisplay,
