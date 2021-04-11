@@ -86,10 +86,21 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl }) => {
 		debugger
 		for (let i = 0; i < colorVarNumbers.length; i++) {
 			const colorVarNumber = colorVarNumbers[i];
-			const colorVarTochange = `${colorVarRoot}${colorVarNumber}`;
+			const colorVarToChange = `${colorVarRoot}${colorVarNumber}`;
 			const colorVarTarget = `${colorVarRoot}${colorVarSuffix !== '' ? `-${colorVarSuffix}` : ''}${colorVarNumber}`;
 			const targetValue = docStyle.getPropertyValue(colorVarTarget);
-			document.documentElement.style.setProperty(colorVarTochange, targetValue);
+			document.documentElement.style.setProperty(colorVarToChange, targetValue);
+
+			for (let j = 0; j < colorVarHSL.length; j++) {
+				const hslSuffix = colorVarHSL[j];
+				const colorVarWithSuffixToChange = colorVarToChange + hslSuffix;
+				const targetSuffix = targetValue + hslSuffix;
+				
+				let newValue = ;
+
+
+				document.documentElement.style.setProperty(colorVarWithSuffixToChange, newValue);
+			}
 		}
 	}, [currentUrl])
 

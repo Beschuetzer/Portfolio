@@ -52,22 +52,22 @@
   --color-primary-4-h: 50;
   --color-primary-4-s: 91%;
   --color-primary-4-l: 83%;
-  --color-primary-bridge-1: hsl(220, 10%, 11%);
-  --color-primary-bridge-1-h: 220;
-  --color-primary-bridge-1-s: 10%;
-  --color-primary-bridge-1-l: 11%;
-  --color-primary-bridge-2: hsl(34, 100%, 41%);
-  --color-primary-bridge-2-h: 34;
+  --color-primary-bridge-1: hsl(34, 100%, 41%);
+  --color-primary-bridge-1-h: 34;
+  --color-primary-bridge-1-s: 100%;
+  --color-primary-bridge-1-l: 41%;
+  --color-primary-bridge-2: hsl(41, 100%, 47%);
+  --color-primary-bridge-2-h: 41;
   --color-primary-bridge-2-s: 100%;
-  --color-primary-bridge-2-l: 41%;
-  --color-primary-bridge-3: hsl(41, 100%, 47%);
-  --color-primary-bridge-3-h: 41;
-  --color-primary-bridge-3-s: 100%;
-  --color-primary-bridge-3-l: 47%;
-  --color-primary-bridge-4: hsl(0, 0%, 96%);
-  --color-primary-bridge-4-h: 0;
-  --color-primary-bridge-4-s: 0%;
-  --color-primary-bridge-4-l: 96%;
+  --color-primary-bridge-2-l: 47%;
+  --color-primary-bridge-3: hsl(0, 0%, 96%);
+  --color-primary-bridge-3-h: 0;
+  --color-primary-bridge-3-s: 0%;
+  --color-primary-bridge-3-l: 96%;
+  --color-primary-bridge-4: hsl(220, 10%, 11%);
+  --color-primary-bridge-4-h: 220;
+  --color-primary-bridge-4-s: 10%;
+  --color-primary-bridge-4-l: 11%;
 }
 
 :root {
