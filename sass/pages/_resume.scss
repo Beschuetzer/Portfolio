@@ -238,7 +238,7 @@
 		}
 
 		& a {
-			@include link-line;
+			// @include link-line;
 			@include link-animating;
 		}
 	}

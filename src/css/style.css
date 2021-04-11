@@ -52,6 +52,22 @@
   --color-primary-4-h: 50;
   --color-primary-4-s: 91%;
   --color-primary-4-l: 83%;
+  --color-primary-resume-1: hsl(209, 51%, 32%);
+  --color-primary-resume-1-h: 209;
+  --color-primary-resume-1-s: 51%;
+  --color-primary-resume-1-l: 32%;
+  --color-primary-resume-2: hsl(190, 43%, 68%);
+  --color-primary-resume-2-h: 190;
+  --color-primary-resume-2-s: 43%;
+  --color-primary-resume-2-l: 68%;
+  --color-primary-resume-3: hsl(46, 87%, 67%);
+  --color-primary-resume-3-h: 46;
+  --color-primary-resume-3-s: 87%;
+  --color-primary-resume-3-l: 67%;
+  --color-primary-resume-4: hsl(50, 91%, 83%);
+  --color-primary-resume-4-h: 50;
+  --color-primary-resume-4-s: 91%;
+  --color-primary-resume-4-l: 83%;
   --color-primary-bridge-1: hsl(34, 100%, 41%);
   --color-primary-bridge-1-h: 34;
   --color-primary-bridge-1-s: 100%;
@@ -1821,10 +1837,6 @@ body {
   }
 }
 .references__email a {
-  border-bottom-width: 0.16rem;
-  border-bottom-style: solid;
-  border-image: linear-gradient(to right, var(--color-primary-4) 0%, var(--color-primary-1) 50%, var(--color-primary-1) 50%, var(--color-primary-4) 100%);
-  border-image-slice: 1;
   cursor: pointer;
   background: linear-gradient(to left, var(--color-primary-1) 0%, hsl(var(--color-primary-4-h), var(--color-primary-4-s), calc(var(--color-primary-4-l) * 1 / 0.15)) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
   background-size: 200% auto;

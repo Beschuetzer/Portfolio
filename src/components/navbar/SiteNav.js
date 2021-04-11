@@ -67,23 +67,19 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl }) => {
 	};
 
 	useEffect(() => {
-		console.log('currentUrl =', currentUrl);
 		if (!currentUrl) return; 
+		console.log('currentUrl =', currentUrl);
 
 		let docStyle = getComputedStyle(document.documentElement);
 		const colorVarRoot = '--color-primary';
-		const colorVarPages = ['', '/bridge'];
+		const colorVarPages = ['', '/bridge', '/resume'];
 		const colorVarNumbers = ['-1','-2','-3','-4'];
 		const colorVarHSL = ['-h', '-s', '-l'];
 
-		//TODO: change css vars --color-primary-pageName-number and --color-primary-pageName-number-HSL to their respective values on each section page load
-
-		//if the current url is in colorVarPages use that value minus the first char otherwise default to index 0 ('')
 		const temp = colorVarPages.indexOf(currentUrl.slice(currentUrl.lastIndexOf('/')));
 		const index = temp !== -1 ? temp : 0;
 		const colorVarSuffix = colorVarPages[index].slice(1);
 
-		debugger
 		for (let i = 0; i < colorVarNumbers.length; i++) {
 			const colorVarNumber = colorVarNumbers[i];
 			const colorVarToChange = `${colorVarRoot}${colorVarNumber}`;
@@ -91,15 +87,11 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl }) => {
 			const targetValue = docStyle.getPropertyValue(colorVarTarget);
 			document.documentElement.style.setProperty(colorVarToChange, targetValue);
 
+			let targetHSLValues =  targetValue.replace('hsl(', '').replace(')', '').trim().split(', ');
 			for (let j = 0; j < colorVarHSL.length; j++) {
 				const hslSuffix = colorVarHSL[j];
-				const colorVarWithSuffixToChange = colorVarToChange + hslSuffix;
-				const targetSuffix = targetValue + hslSuffix;
-				
-				let newValue = ;
-
-
-				document.documentElement.style.setProperty(colorVarWithSuffixToChange, newValue);
+				const colorVarToChangeWithSuffix = colorVarToChange + hslSuffix;
+				document.documentElement.style.setProperty(colorVarToChangeWithSuffix, targetHSLValues[j]);
 			}
 		}
 	}, [currentUrl])
