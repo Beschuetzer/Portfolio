@@ -22,36 +22,36 @@ $color-primary-resume-2: hsl(190, 43%, 68%);
 $color-primary-resume-3: hsl(46, 87%, 67%);
 $color-primary-resume-4: hsl(50, 91%, 83%);
 
-$color-primary-bridge-4: hsl(34, 100%, 41%);
-$color-primary-bridge-2: hsl(41, 100%, 47%);
-$color-primary-bridge-3: hsl(0, 0%, 96%);
-$color-primary-bridge-1: hsl(220, 10%, 11%);
+$color-primary-bridge-2: #e3dfc8;
+$color-primary-bridge-4: #f5f1da;
+$color-primary-bridge-1: #00416d;
+$color-primary-bridge-3: #f8bd7f;
 
 :root {
-	@include defineColorHSL(--color-grey-light-1, 0, 9%, 98%);
-	@include defineColorHSL(--color-grey-light-2, 0, 8%, 95%);
-	@include defineColorHSL(--color-grey-light-3, 0, 6%, 94%);
+	--color-grey-light-1: #{$color-grey-light-1};
+	--color-grey-light-2: #{$color-grey-light-2};
+	--color-grey-light-3: #{$color-grey-light-3};
 
-	@include defineColorHSL(--color-black, 0, 0%, 0%);
-  @include defineColorHSL(--color-grey-20, 0, 0%, 20%);
-	@include defineColorHSL(--color-grey-40, 0, 0%, 40%);
-	@include defineColorHSL(--color-grey-60, 0, 0%, 60%);
-	@include defineColorHSL(--color-grey-80, 0, 0%, 80%);
-	@include defineColorHSL(--color-white, 0, 0%, 100%);
+	--color-black: 	#{$color-black};
+  --color-grey-20: #{$color-grey-20};
+	--color-grey-40: #{$color-grey-40};
+	--color-grey-60: #{$color-grey-60};
+	--color-grey-80: #{$color-grey-80};
+	--color-white: 	#{$color-white};
 
-	@include defineColorHSL(--color-primary-1, 209, 51%, 32%);
-	@include defineColorHSL(--color-primary-1-light, 209, 0%, 60%);
-	@include defineColorHSL(--color-primary-2, 190, 43%, 68%);
-	@include defineColorHSL(--color-primary-3, 46, 87%, 67%);
-	@include defineColorHSL(--color-primary-4, 50, 91%, 83%);
+	--color-primary-1: #{$color-primary-1};
+	--color-primary-1-light: #{$color-primary-1-light};
+	--color-primary-2: #{$color-primary-2};
+	--color-primary-3: #{$color-primary-3};
+	--color-primary-4: #{$color-primary-4};
 
-	@include defineColorHSL(--color-primary-resume-1, 209, 51%, 32%);
-	@include defineColorHSL(--color-primary-resume-2, 190, 43%, 68%);
-	@include defineColorHSL(--color-primary-resume-3, 46, 87%, 67%);
-	@include defineColorHSL(--color-primary-resume-4, 50, 91%, 83%);
+	--color-primary-resume-1: #{$color-primary-resume-1};
+	--color-primary-resume-2: #{$color-primary-resume-2};
+	--color-primary-resume-3: #{$color-primary-resume-3};
+	--color-primary-resume-4: #{$color-primary-resume-4};
 
-	@include defineColorHSL(--color-primary-bridge-2, 34, 100%, 41%);
-	@include defineColorHSL(--color-primary-bridge-4, 41, 100%, 47%);
-	@include defineColorHSL(--color-primary-bridge-3, 0, 0%, 96%);
-	@include defineColorHSL(--color-primary-bridge-1, 220, 10%, 11%);
+	--color-primary-bridge-2: #{$color-primary-bridge-2};
+	--color-primary-bridge-4: #{$color-primary-bridge-4};
+	--color-primary-bridge-3: #{$color-primary-bridge-3};
+	--color-primary-bridge-1: #{$color-primary-bridge-1};
 }

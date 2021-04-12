@@ -1,93 +1,27 @@
 /* ------------------------------------------------------------------------------------------------- */
 :root {
-  --color-grey-light-1: hsl(0, 9%, 98%);
-  --color-grey-light-1-h: 0;
-  --color-grey-light-1-s: 9%;
-  --color-grey-light-1-l: 98%;
-  --color-grey-light-2: hsl(0, 8%, 95%);
-  --color-grey-light-2-h: 0;
-  --color-grey-light-2-s: 8%;
-  --color-grey-light-2-l: 95%;
-  --color-grey-light-3: hsl(0, 6%, 94%);
-  --color-grey-light-3-h: 0;
-  --color-grey-light-3-s: 6%;
-  --color-grey-light-3-l: 94%;
-  --color-black: hsl(0, 0%, 0%);
-  --color-black-h: 0;
-  --color-black-s: 0%;
-  --color-black-l: 0%;
-  --color-grey-20: hsl(0, 0%, 20%);
-  --color-grey-20-h: 0;
-  --color-grey-20-s: 0%;
-  --color-grey-20-l: 20%;
-  --color-grey-40: hsl(0, 0%, 40%);
-  --color-grey-40-h: 0;
-  --color-grey-40-s: 0%;
-  --color-grey-40-l: 40%;
-  --color-grey-60: hsl(0, 0%, 60%);
-  --color-grey-60-h: 0;
-  --color-grey-60-s: 0%;
-  --color-grey-60-l: 60%;
-  --color-grey-80: hsl(0, 0%, 80%);
-  --color-grey-80-h: 0;
-  --color-grey-80-s: 0%;
-  --color-grey-80-l: 80%;
-  --color-white: hsl(0, 0%, 100%);
-  --color-white-h: 0;
-  --color-white-s: 0%;
-  --color-white-l: 100%;
-  --color-primary-1: hsl(209, 51%, 32%);
-  --color-primary-1-h: 209;
-  --color-primary-1-s: 51%;
-  --color-primary-1-l: 32%;
-  --color-primary-1-light: hsl(209, 0%, 60%);
-  --color-primary-1-light-h: 209;
-  --color-primary-1-light-s: 0%;
-  --color-primary-1-light-l: 60%;
-  --color-primary-2: hsl(190, 43%, 68%);
-  --color-primary-2-h: 190;
-  --color-primary-2-s: 43%;
-  --color-primary-2-l: 68%;
-  --color-primary-3: hsl(46, 87%, 67%);
-  --color-primary-3-h: 46;
-  --color-primary-3-s: 87%;
-  --color-primary-3-l: 67%;
-  --color-primary-4: hsl(50, 91%, 83%);
-  --color-primary-4-h: 50;
-  --color-primary-4-s: 91%;
-  --color-primary-4-l: 83%;
-  --color-primary-resume-1: hsl(209, 51%, 32%);
-  --color-primary-resume-1-h: 209;
-  --color-primary-resume-1-s: 51%;
-  --color-primary-resume-1-l: 32%;
-  --color-primary-resume-2: hsl(190, 43%, 68%);
-  --color-primary-resume-2-h: 190;
-  --color-primary-resume-2-s: 43%;
-  --color-primary-resume-2-l: 68%;
-  --color-primary-resume-3: hsl(46, 87%, 67%);
-  --color-primary-resume-3-h: 46;
-  --color-primary-resume-3-s: 87%;
-  --color-primary-resume-3-l: 67%;
-  --color-primary-resume-4: hsl(50, 91%, 83%);
-  --color-primary-resume-4-h: 50;
-  --color-primary-resume-4-s: 91%;
-  --color-primary-resume-4-l: 83%;
-  --color-primary-bridge-2: hsl(34, 100%, 41%);
-  --color-primary-bridge-2-h: 34;
-  --color-primary-bridge-2-s: 100%;
-  --color-primary-bridge-2-l: 41%;
-  --color-primary-bridge-4: hsl(41, 100%, 47%);
-  --color-primary-bridge-4-h: 41;
-  --color-primary-bridge-4-s: 100%;
-  --color-primary-bridge-4-l: 47%;
-  --color-primary-bridge-3: hsl(0, 0%, 96%);
-  --color-primary-bridge-3-h: 0;
-  --color-primary-bridge-3-s: 0%;
-  --color-primary-bridge-3-l: 96%;
-  --color-primary-bridge-1: hsl(220, 10%, 11%);
-  --color-primary-bridge-1-h: 220;
-  --color-primary-bridge-1-s: 10%;
-  --color-primary-bridge-1-l: 11%;
+  --color-grey-light-1: #faf9f9;
+  --color-grey-light-2: #f3f1f1;
+  --color-grey-light-3: #f1efef;
+  --color-black:	black;
+  --color-grey-20: #333333;
+  --color-grey-40: #666666;
+  --color-grey-60: #999999;
+  --color-grey-80: #cccccc;
+  --color-white:	white;
+  --color-primary-1: #28537b;
+  --color-primary-1-light: #999999;
+  --color-primary-2: #8ac6d0;
+  --color-primary-3: #f4d262;
+  --color-primary-4: #fbeeac;
+  --color-primary-resume-1: #28537b;
+  --color-primary-resume-2: #8ac5d0;
+  --color-primary-resume-3: #f4d262;
+  --color-primary-resume-4: #fbeeac;
+  --color-primary-bridge-2: #e3dfc8;
+  --color-primary-bridge-4: #f5f1da;
+  --color-primary-bridge-3: #f8bd7f;
+  --color-primary-bridge-1: #00416d;
 }
 
 :root {
@@ -420,8 +354,7 @@ body {
 }
 .github__text-bottom {
   transform: translate(-50%, 0%);
-  bottom: 0.5vw;
-  box-shadow: 0 3.2rem 4.8rem var(--color-primary-1);
+  bottom: 0.4vw;
 }
 @media only screen and (max-width: 68.75em) {
   .github__text-top {
@@ -430,8 +363,7 @@ body {
   }
   .github__text-bottom {
     transform: translate(-50%, 0%);
-    bottom: 0.8rem;
-    box-shadow: 0 3.2rem 4.8rem var(--color-primary-1);
+    bottom: 0.528rem;
   }
 }
 

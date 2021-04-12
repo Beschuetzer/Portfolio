@@ -48,9 +48,7 @@
 
 		&-bottom {
 			transform: translate(-50%, 0%);
-			bottom: 0.5vw;
-			box-shadow: 0 $default-font-size * 2 $default-font-size * 3
-				var(--color-primary-1);
+			bottom: 0.4vw;
 		}
 
 		@include respond(nav-switch) {
@@ -60,9 +58,7 @@
 			}
 			&-bottom {
 				transform: translate(-50%, 0%);
-				bottom: $default-font-size * 0.5;
-				box-shadow: 0 $default-font-size * 2 $default-font-size * 3
-					var(--color-primary-1);
+				bottom: $default-font-size * 0.33;
 			}
 		}
 	}
