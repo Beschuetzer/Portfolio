@@ -398,7 +398,7 @@ body {
   }
 }
 .github__svg:hover {
-  fill: hsl(var(--color-primary-4-h), var(--color-primary-4-s), calc(var(--color-primary-4-l) * 1 / 0.15));
+  fill: var(--color-primary-3);
 }
 .github__text {
   position: absolute;
@@ -454,7 +454,7 @@ body {
 .link:visited {
   text-decoration: none;
   border-bottom: 0.16rem solid var(--color-primary-1);
-  color: hsl(var(--color-primary-1-h), var(--color-primary-1-s), calc(var(--color-primary-1-l) * (1 - 0.05)));
+  color: var(--color-primary-2);
   transform: scale(1.4);
 }
 
@@ -514,7 +514,7 @@ body {
 .skills__section-title:hover {
   transform: translateX(0.8rem);
   font-weight: 500;
-  color: hsl(var(--color-primary-1-h), var(--color-primary-1-s), calc(var(--color-primary-1-l) * (1 - 0.0375)));
+  color: var(--color-primary-2);
 }
 .skills__section-title.skills__section--open:hover {
   color: var(--color-primary-2);
@@ -587,7 +587,7 @@ body {
 }
 .skills__title--animating, .skills__title--animating:link, .skills__title--animating:visited {
   cursor: pointer;
-  background: linear-gradient(to left, var(--color-primary-1) 0%, hsl(var(--color-primary-4-h), var(--color-primary-4-s), calc(var(--color-primary-4-l) * 1 / 0.15)) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
+  background: linear-gradient(to left, var(--color-primary-1) 0%, var(--color-primary-4) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
   background-size: 200% auto;
   background-clip: text;
   color: transparent;
@@ -595,7 +595,7 @@ body {
   transition: border 0.5s ease;
 }
 .skills__title--animating:link:hover, .skills__title--animating:visited:hover, .skills__title--animating:hover, .skills__title--animating:link:link:hover, .skills__title--animating:link:visited:hover, .skills__title--animating:link:hover, .skills__title--animating:visited:link:hover, .skills__title--animating:visited:visited:hover, .skills__title--animating:visited:hover {
-  color: hsl(var(--color-primary-1-h), var(--color-primary-1-s), calc(var(--color-primary-1-l) * (1 - 0.05)));
+  color: var(--color-primary-2);
   text-decoration: none;
 }
 .skills-popup__link.skills__title--animating:link, .skills-popup__link.skills__title--animating:visited {
@@ -784,7 +784,7 @@ body {
 .skills-popup__table-item {
   font-weight: 400;
   font-family: "Open Sans", sans-serif;
-  border-bottom: 1px solid hsla(var(--color-primary-1-h), var(--color-primary-1-s), var(--color-primary-1-l), 0.25);
+  border-bottom: 1px solid transparent;
   display: flex;
   align-items: center;
   padding: 1.6rem 3.2rem 1.6rem 0;
@@ -1209,7 +1209,7 @@ body {
   transition: transform 0.25s ease;
 }
 .navbar__item:hover {
-  background-color: hsl(var(--color-primary-4-h), var(--color-primary-4-s), calc(var(--color-primary-4-l) * 1 / 0.15));
+  background-color: var(--color-primary-3);
 }
 .navbar__item:not(.navbar__dropdown-container):hover {
   transform: translateY(-0.32rem);
@@ -1262,7 +1262,7 @@ body {
   }
 }
 .navbar__button:hover {
-  background-color: hsl(var(--color-primary-4-h), var(--color-primary-4-s), calc(var(--color-primary-4-l) * 1 / 0.15));
+  background-color: var(--color-primary-3);
 }
 .navbar__dropdown {
   visibility: hidden;
@@ -1528,7 +1528,7 @@ body {
   transform: translateY(-10rem);
 }
 .header-toggler:hover svg {
-  fill: hsl(var(--color-primary-4-h), var(--color-primary-4-s), calc(var(--color-primary-4-l) * 1 / 0.15));
+  fill: var(--color-primary-3);
 }
 
 .page-nav {
@@ -1791,7 +1791,7 @@ body {
   border-image: linear-gradient(to right, var(--color-primary-4) 0%, var(--color-primary-1) 50%, var(--color-primary-1) 50%, var(--color-primary-4) 100%);
   border-image-slice: 1;
   cursor: pointer;
-  background: linear-gradient(to left, var(--color-primary-1) 0%, hsl(var(--color-primary-4-h), var(--color-primary-4-s), calc(var(--color-primary-4-l) * 1 / 0.15)) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
+  background: linear-gradient(to left, var(--color-primary-1) 0%, var(--color-primary-4) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
   background-size: 200% auto;
   background-clip: text;
   color: transparent;
@@ -1834,7 +1834,7 @@ body {
 }
 .references__email a {
   cursor: pointer;
-  background: linear-gradient(to left, var(--color-primary-1) 0%, hsl(var(--color-primary-4-h), var(--color-primary-4-s), calc(var(--color-primary-4-l) * 1 / 0.15)) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
+  background: linear-gradient(to left, var(--color-primary-1) 0%, var(--color-primary-4) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
   background-size: 200% auto;
   background-clip: text;
   color: transparent;

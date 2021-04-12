@@ -63,7 +63,7 @@
 			&:hover {
 				transform: translateX($default-font-size * 0.5);
 				font-weight: 500;
-				color: darken(var(--color-primary-1), $hover-color-change-amount / 4);
+				color: var(--color-primary-2);
 			}
 
 			&.skills__section--open:hover {
@@ -162,7 +162,7 @@
 		transition: border $animation-duration $animation-easing-standard;
 
 		&:link:hover, &:visited:hover, &:hover {
-			color: darken(var(--color-primary-1), .05);
+			color: var(--color-primary-2);
 			text-decoration: none;
 		}
 	}

@@ -48,13 +48,13 @@ $hover-color-change-amount: 0.15;
 $skills-linear-gradient-original: linear-gradient(
 	to left,
 	var(--color-primary-1) 0%,
-	lighten(var(--color-primary-4), $hover-color-change-amount) 5%,
+	var(--color-primary-4) 5%,
 	var(--color-primary-1) 10%,
 	var(--color-primary-1) 100%
 );
 $skills-linear-gradient-hover: linear-gradient(
 	to right,
-	lighten(var(--color-primary-1), $hover-color-change-amount),
+	rgba(var(--color-primary-1), .1),
 	var(--color-primary-1)
 );
 

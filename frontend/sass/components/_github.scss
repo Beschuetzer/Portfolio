@@ -32,7 +32,7 @@
 		}
 
 		&:hover {
-			fill: lighten(var(--color-primary-4), $hover-color-change-amount);
+			fill: var(--color-primary-3);
 		}
 	}
 	&__text {
