@@ -24,7 +24,7 @@
 }
 
 // .component {
-//   background-color: alpha(var(--color-primary), 0.2); // it works 🎉
+//   background-color: rgba($color-primary, 0.2); // it works 🎉
 // }
 
 @function lighten($color, $lightnessMultiplier) {
@@ -46,7 +46,11 @@
 	$color-h: var(#{$color + "-h"});
 	$color-s: var(#{$color + "-s"});
 	$color-l: var(#{$color + "-l"});
-	@return hsl(#{$color-h}, #{$color-s}, calc(#{$color-l} * (1 - #{$multiplier})));
+	@return hsl(
+		#{$color-h},
+		#{$color-s},
+		calc(#{$color-l} * (1 - #{$multiplier}))
+	);
 }
 
 // .component {

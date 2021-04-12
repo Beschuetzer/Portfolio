@@ -41,7 +41,7 @@ $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divider-width: $default-font-size * 0.2;
 $navbar__item-divider: $navbar__item-divider-width solid var(--color-primary-1);
 
-$navbar-box-shadow-color: alpha(var(--color-black), 0.15);
+$navbar-box-shadow-color: rgba($color-black, 0.15);
 $hover-color-change-amount: 0.15;
 
 //skills
@@ -120,7 +120,7 @@ $page-nav-top: calc(
 	--site-nav-active-scale-amount: 1;
 	--body-background: linear-gradient(
 		to left,
-		#{alpha(var(--color-primary-1), 0.975)},
-		#{alpha(var(--color-primary-1), 0.95)}
+		#{rgba($color-primary-1, 0.975)},
+		#{rgba($color-primary-1, 0.95)}
 	);
 }
