@@ -118,9 +118,5 @@ $page-nav-top: calc(
 		#{var(--color-primary-4)} 100%
 	);
 	--site-nav-active-scale-amount: 1;
-	--body-background: linear-gradient(
-		to left,
-		#{alpha(var(--color-primary-1), 0.975)},
-		#{alpha(var(--color-primary-1), 0.95)}
-	);
+	--body-background: linear-gradient(to left, var(--color-primary-1), var(--color-primary-1));
 }

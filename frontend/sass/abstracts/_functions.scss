@@ -1,5 +1,16 @@
 // replace substring with another string
 // credits: https://css-tricks.com/snippets/sass/str-replace-function/
+
+// return css color variable with different opacity value
+@function alpha($color, $opacity) {
+	$color: str-replace($color, "var(");
+	$color: str-replace($color, ")");
+	$color-h: var(#{$color + "-h"});
+	$color-s: var(#{$color + "-s"});
+	$color-l: var(#{$color + "-l"});
+	@return hsla($color-h, $color-s, $color-l, $opacity);
+}
+
 @function str-replace($string, $search, $replace: "") {
 	$index: str-index($string, $search);
 	@if $index {
@@ -12,20 +23,6 @@
 	}
 	@return $string;
 }
-
-// return css color variable with different opacity value
-@function alpha($color, $opacity) {
-	$color: str-replace($color, "var(");
-	$color: str-replace($color, ")");
-	$color-h: var(#{$color + "-h"});
-	$color-s: var(#{$color + "-s"});
-	$color-l: var(#{$color + "-l"});
-	@return hsla($color-h, $color-s, $color-l, $opacity);
-}
-
-// .component {
-//   background-color: alpha(var(--color-primary), 0.2); // it works 🎉
-// }
 
 @function lighten($color, $lightnessMultiplier) {
 	$color: str-replace($color, "var(");
