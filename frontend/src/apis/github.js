@@ -1,8 +1,14 @@
 const axios = require('axios');
 
 export default async function github(queryAsInterpolatedString) {
-  const repos = await axios.get('http://adammajor.herokuapp.com/repos', { params: { query: queryAsInterpolatedString } });  
+  try {
 
-  console.log('repos =', repos);
-  return repos;
+    const repos = await axios.get('/repos', { params: { query: queryAsInterpolatedString } });  
+    console.log('repos =', repos);
+    return repos;
+  }
+  catch (err) {
+    console.log('error in github------------------------------------------------');
+    console.log('err =', err);
+  }
 }
