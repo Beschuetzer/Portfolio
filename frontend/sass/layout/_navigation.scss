@@ -8,7 +8,8 @@
 	display: flex;
 	align-items: center;
 
-	@include respond(mobile-switch) {
+	@include respond(nav-switch) {
+		margin-left: $default-font-size * .4375;
 		align-items: flex-start;
 		border-radius: 0;
 		&.overflow--hidden.navbar.navbar--active {
@@ -541,7 +542,7 @@
 		margin: 0 auto;
 
 		@include respond(nav-switch) {
-			width: 96%;
+			width: 100%;
 		}
 	}
 
@@ -691,5 +692,19 @@
 	&--active {
 		transform: scale(var(--site-nav-active-scale-amount));
 		// animation: selected-section infinite 5s forwards;
+	}
+}
+
+.navbar-bridge {
+	& .header {
+		top: 0;
+
+		&__inner {
+			width: calc(100% - $default-font-size * 2);
+		}
+	}
+	
+	&.navbar__button {
+
 	}
 }

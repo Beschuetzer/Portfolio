@@ -89,11 +89,11 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl }) => {
 			document.documentElement.style.setProperty(colorVarToChange, targetValue);
 
 			let targetHSLValues =  targetValue.replace('hsl(', '').replace(')', '').trim().split(', ');
-			for (let j = 0; j < colorVarHSL.length; j++) {
-				const hslSuffix = colorVarHSL[j];
-				const colorVarToChangeWithSuffix = colorVarToChange + hslSuffix;
-				document.documentElement.style.setProperty(colorVarToChangeWithSuffix, targetHSLValues[j]);
-			}
+			// for (let j = 0; j < colorVarHSL.length; j++) {
+			// 	const hslSuffix = colorVarHSL[j];
+			// 	const colorVarToChangeWithSuffix = colorVarToChange + hslSuffix;
+			// 	document.documentElement.style.setProperty(colorVarToChangeWithSuffix, targetHSLValues[j]);
+			// }
 		}
 	}, [currentUrl])
 

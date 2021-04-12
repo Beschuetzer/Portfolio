@@ -949,6 +949,16 @@ body {
   display: flex;
   align-items: center;
 }
+@media only screen and (max-width: 68.75em) {
+  .navbar {
+    margin-left: 0.7rem;
+    align-items: flex-start;
+    border-radius: 0;
+  }
+  .navbar.overflow--hidden.navbar.navbar--active {
+    overflow: visible !important;
+  }
+}
 .navbar__background {
   position: fixed;
   top: 0;
@@ -1070,22 +1080,22 @@ body {
     display: flex;
     overflow: visible !important;
     flex-direction: column;
-    width: 94.7vw;
+    width: calc(100vw - 2.9rem);
   }
 }
 @media only screen and (max-width: 58.5625em) {
   .navbar__content {
-    width: 94.5vw;
+    width: calc(100vw - 2.9rem);
   }
 }
 @media only screen and (max-width: 40.9375em) {
   .navbar__content {
-    width: 94.3vw;
+    width: calc(100vw - 2.6rem);
   }
 }
 @media only screen and (max-width: 29.3125em) {
   .navbar__content {
-    width: 94vw;
+    width: calc(100vw - 2.4rem);
   }
 }
 .navbar__list {
@@ -1309,24 +1319,24 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__content {
-    width: 94.7vw;
+    width: calc(100vw - 2.9rem);
     position: absolute;
     z-index: 100;
   }
 }
 @media only screen and (max-width: 58.5625em) {
   .navbar.navbar--active .navbar__content {
-    width: 94.5vw;
+    width: calc(100vw - 2.9rem);
   }
 }
 @media only screen and (max-width: 40.9375em) {
   .navbar.navbar--active .navbar__content {
-    width: 94.3vw;
+    width: calc(100vw - 2.6rem);
   }
 }
 @media only screen and (max-width: 29.3125em) {
   .navbar.navbar--active .navbar__content {
-    width: 94vw;
+    width: calc(100vw - 2.4rem);
   }
 }
 .navbar.navbar--active .navbar__button {
@@ -1421,7 +1431,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .header__inner {
-    width: 96%;
+    width: 100%;
   }
 }
 .header-toggler {
@@ -1541,6 +1551,12 @@ body {
   transform: scale(var(--site-nav-active-scale-amount));
 }
 
+.navbar-bridge .header {
+  top: 0;
+}
+.navbar-bridge .header__inner {
+  width: calc(100% - $default-font-size * 2);
+}
 ::-webkit-scrollbar {
   height: 1.6rem;
   width: 1.6rem;
