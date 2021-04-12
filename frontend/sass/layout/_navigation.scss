@@ -214,14 +214,18 @@
 	}
 
 	&__item {
-		border: $default-font-size * 0.1 solid var(--color-primary-1);
+		// border: $default-font-size * 0.1 solid var(--color-primary-1)
+		border: $default-font-size * .1 solid transparent;
+		;
 		position: relative;
 		background-color: var(--color-primary-4);
 		cursor: pointer;
 		height: 100%;
 		width: 100%;
-		transition: transform $animation-duration * 0.25 $animation-easing-standard,
-			background-color $animation-duration * 0.25 $animation-easing-standard;
+		transition: 
+			transform $animation-duration * 0.25 $animation-easing-standard,
+			background-color $animation-duration * 0.25 $animation-easing-standard,
+		;
 
 		& .triangle-down {
 			transition: transform $animation-duration * 0.5 $animation-easing-standard;
@@ -272,9 +276,14 @@
 		}
 	}
 
+	&--done &__button, &--done &__item {
+		border: $default-font-size * .1 solid var(--color-primary-1);
+	}
+
 	&__button {
 		cursor: pointer;
 		z-index: 100;
+		border: $default-font-size * .1 solid transparent;
 		background-color: var(--color-primary-4);
 		border-radius: $navbar__item-border-radius;
 		display: flex;
