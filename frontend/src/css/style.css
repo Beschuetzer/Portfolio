@@ -525,9 +525,6 @@ body {
   font-weight: 500;
   color: var(--color-primary-2);
 }
-.skills__section-title.skills__section--open:hover {
-  color: var(--color-primary-2);
-}
 .skills__section-title:hover .skills__section-title-svg {
   fill: var(--color-primary-1);
 }
@@ -601,7 +598,7 @@ body {
   background-clip: text;
   color: transparent;
   animation: animate-skills infinite 10s;
-  transition: border 0.5s ease;
+  transition: border 0.25s ease, transform 0.5s ease;
 }
 .skills__title--animating:link:hover, .skills__title--animating:visited:hover, .skills__title--animating:hover, .skills__title--animating:link:link:hover, .skills__title--animating:link:visited:hover, .skills__title--animating:link:hover, .skills__title--animating:visited:link:hover, .skills__title--animating:visited:visited:hover, .skills__title--animating:visited:hover {
   color: var(--color-primary-1);

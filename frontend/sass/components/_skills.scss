@@ -67,7 +67,7 @@
 			}
 
 			&.skills__section--open:hover {
-				color: var(--color-primary-2);
+				// color: var(--color-primary-2);
 			}
 
 			&:hover &-svg {
@@ -159,7 +159,10 @@
 	&__title--animating:link,
 	&__title--animating:visited {
 		@include link-animating;
-		transition: border $animation-duration $animation-easing-standard;
+		transition: 
+			border $animation-duration * .5 $animation-easing-standard,
+			transform $animation-duration $animation-easing-standard,
+		;
 
 		&:link:hover,
 		&:visited:hover,
