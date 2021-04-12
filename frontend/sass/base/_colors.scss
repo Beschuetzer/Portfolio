@@ -22,10 +22,10 @@ $color-primary-resume-2: hsl(190, 43%, 68%);
 $color-primary-resume-3: hsl(46, 87%, 67%);
 $color-primary-resume-4: hsl(50, 91%, 83%);
 
-$color-primary-bridge-1: hsl(34, 100%, 41%);
+$color-primary-bridge-4: hsl(34, 100%, 41%);
 $color-primary-bridge-2: hsl(41, 100%, 47%);
 $color-primary-bridge-3: hsl(0, 0%, 96%);
-$color-primary-bridge-4: hsl(220, 10%, 11%);
+$color-primary-bridge-1: hsl(220, 10%, 11%);
 
 :root {
 	@include defineColorHSL(--color-grey-light-1, 0, 9%, 98%);
@@ -50,8 +50,8 @@ $color-primary-bridge-4: hsl(220, 10%, 11%);
 	@include defineColorHSL(--color-primary-resume-3, 46, 87%, 67%);
 	@include defineColorHSL(--color-primary-resume-4, 50, 91%, 83%);
 
-	@include defineColorHSL(--color-primary-bridge-1, 34, 100%, 41%);
-	@include defineColorHSL(--color-primary-bridge-2, 41, 100%, 47%);
+	@include defineColorHSL(--color-primary-bridge-2, 34, 100%, 41%);
+	@include defineColorHSL(--color-primary-bridge-4, 41, 100%, 47%);
 	@include defineColorHSL(--color-primary-bridge-3, 0, 0%, 96%);
-	@include defineColorHSL(--color-primary-bridge-4, 220, 10%, 11%);
+	@include defineColorHSL(--color-primary-bridge-1, 220, 10%, 11%);
 }
