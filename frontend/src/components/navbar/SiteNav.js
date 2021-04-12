@@ -80,6 +80,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl }) => {
 		const index = temp !== -1 ? temp : 0;
 		const colorVarSuffix = colorVarPages[index].slice(1);
 
+	
 		for (let i = 0; i < colorVarNumbers.length; i++) {
 			const colorVarNumber = colorVarNumbers[i];
 			const colorVarToChange = `${colorVarRoot}${colorVarNumber}`;

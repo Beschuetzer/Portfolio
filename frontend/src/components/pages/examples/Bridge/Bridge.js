@@ -4,7 +4,7 @@ import { useEffect } from "react";
 const Bridge = () => {
 	useEffect(() => {
 		const newLinearGradient = `
-      linear-gradient(to right, var(--color-primary-1), 1), rgba(var(--color-primary-1);
+      linear-gradient(to right, var(--color-primary-1), var(--color-primary-1));
     `;
 		document.documentElement.style.setProperty(
 			"--body-background",
