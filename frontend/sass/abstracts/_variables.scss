@@ -41,7 +41,7 @@ $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divider-width: $default-font-size * 0.2;
 $navbar__item-divider: $navbar__item-divider-width solid var(--color-primary-1);
 
-$navbar-box-shadow-color: var(--color-black);
+$navbar-box-shadow-color: rgba($color-black, .15);
 $hover-color-change-amount: 0.15;
 
 //skills

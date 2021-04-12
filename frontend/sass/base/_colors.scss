@@ -1,8 +1,20 @@
-$color-primary-1: #28537b;
-$color-primary-1-light: #cccccc;
-$color-primary-2: #8ac5d0;
-$color-primary-3: #f4d262;
-$color-primary-4: #fbeeac;
+$color-grey-light-1: hsl(0, 9%, 98%);
+$color-grey-light-2: hsl(0, 8%, 95%);
+$color-grey-light-3: hsl(0, 6%, 94%);
+
+$color-black: hsl(0, 0%, 0%);
+$color-grey-20: hsl(0, 0%, 20%);
+$color-grey-40: hsl(0, 0%, 40%);
+$color-grey-60: hsl(0, 0%, 60%);
+$color-grey-80: hsl(0, 0%, 80%);
+$color-white: hsl(0, 0%, 100%);
+
+
+$color-primary-1: hsl(209, 51%, 32%);
+$color-primary-1-light: hsl(0, 0%, 60%);
+$color-primary-2: hsl(189, 43%, 68%);
+$color-primary-3: hsl(46, 87%, 67%);
+$color-primary-4: hsl(50, 91%, 83%);
 
 $color-primary-resume-1: hsl(209, 51%, 32%);
 $color-primary-resume-2: hsl(190, 43%, 68%);
@@ -27,7 +39,7 @@ $color-primary-bridge-4: hsl(220, 10%, 11%);
 	@include defineColorHSL(--color-white, 0, 0%, 100%);
 
 	@include defineColorHSL(--color-primary-1, 209, 51%, 32%);
-	@include defineColorHSL(--color-primary-1-light, 209, 0%, 80%);
+	@include defineColorHSL(--color-primary-1-light, 209, 0%, 60%);
 	@include defineColorHSL(--color-primary-2, 190, 43%, 68%);
 	@include defineColorHSL(--color-primary-3, 46, 87%, 67%);
 	@include defineColorHSL(--color-primary-4, 50, 91%, 83%);

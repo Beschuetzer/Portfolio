@@ -251,8 +251,7 @@
 		&-inner {
 			position: relative;
 			backface-visibility: hidden;
-			box-shadow: 0 $default-font-size * 0.5 $default-font-size * 1 0
-				var(--color-primary-1);
+			box-shadow: 0 $default-font-size * 0.5 $default-font-size * 1 0 $navbar-box-shadow-color;
 			background-color: var(--color-primary-2);
 			height: $default-font-size;
 			opacity: 0;

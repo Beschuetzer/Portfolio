@@ -86,7 +86,7 @@
 			padding-right: $default-font-size * 3;
 
 			&:nth-last-child(n + 2) {
-				border-bottom: $default-font-size * 0.1 solid var(--color-grey-80);
+				border-bottom: $default-font-size * 0.1 solid var(--color-primary-1-light);
 			}
 		}
 
