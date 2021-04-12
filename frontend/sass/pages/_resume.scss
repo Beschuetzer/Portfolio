@@ -14,9 +14,11 @@
 	@include respond(nav-switch) {
 		margin-top: $page-margin-top-amount-nav-switch;
 	}
-  @include respond(tab-port) {
-		margin-top: calc(#{$page-margin-top-amount-nav-switch} - #{$default-font-size * 1});
-  }
+	@include respond(tab-port) {
+		margin-top: calc(
+			#{$page-margin-top-amount-nav-switch} - #{$default-font-size * 1}
+		);
+	}
 
 	&__section {
 		// background-image: linear-gradient(to left, var(--color-primary-1), var(--color-primary-2));
@@ -85,7 +87,7 @@
 		padding: 0 $default-font-size * 2;
 		// border: 3px solid var(--color-primary-1);
 		border-radius: $default-font-size * 0.5;
-		box-shadow: 0 0 $default-font-size * 1.5 alpha(var(--color-primary-4), 0.2);
+		box-shadow: 0 0 $default-font-size * 1.5 rgba(var(--color-primary-4), 0.2);
 
 		@include respond(nav-switch) {
 			max-width: 100%;
@@ -152,7 +154,7 @@
 		align-items: center;
 		height: 100%;
 		border-bottom: $default-font-size * 0.1 solid
-			alpha(var(--color-primary-1), 0.25);
+			rgba(var(--color-primary-1), 0.25);
 
 		&:nth-last-child(n + 13) {
 			padding-top: 0;
@@ -187,7 +189,7 @@
 
 			&:nth-child(n + 2) {
 				border-top: $default-font-size * 0.1 solid
-					alpha(var(--color-primary-1), 0.25);
+					rgba(var(--color-primary-1), 0.25);
 			}
 		}
 		&-text {

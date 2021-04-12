@@ -1,7 +1,7 @@
 .work-history {
 	&__item {
 		display: grid;
-    grid-template-columns: min-content 1fr;
+		grid-template-columns: min-content 1fr;
 		font-size: $default-font-size;
 		padding: $default-font-size * 2 0;
 
@@ -20,7 +20,8 @@
 		}
 
 		&:nth-child(n + 2) {
-			border-top: $default-font-size * 0.1 solid alpha(var(--color-primary-1), .25);
+			border-top: $default-font-size * 0.1 solid
+				rgba(var(--color-primary-1), 0.25);
 		}
 		// grid-template-columns: min-content minmax(min-content, 1fr);
 		// grid-gap: $default-font-size;
@@ -37,7 +38,7 @@
 			&-list {
 				// margin-left: $default-font-size * 1;
 				// margin-top: -$default-font-size * .25;
-				margin: -$default-font-size * .5 $default-font-size * 3 0rem
+				margin: -$default-font-size * 0.5 $default-font-size * 3 0rem
 					$default-font-size;
 
 				@include respond(tab-port) {

@@ -52,7 +52,7 @@
 			&-svg {
 				backface-visibility: hidden;
 
-				fill: alpha(var(--color-primary-1), 0.5);
+				fill: rgba(var(--color-primary-1), 0.5);
 				height: $default-font-size * 1.5;
 				width: $default-font-size * 1.5;
 				// margin-left: $default-font-size * .25;
@@ -161,7 +161,9 @@
 		@include link-animating;
 		transition: border $animation-duration $animation-easing-standard;
 
-		&:link:hover, &:visited:hover, &:hover {
+		&:link:hover,
+		&:visited:hover,
+		&:hover {
 			color: var(--color-primary-2);
 			text-decoration: none;
 		}
@@ -250,7 +252,7 @@
 			position: relative;
 			backface-visibility: hidden;
 			box-shadow: 0 $default-font-size * 0.5 $default-font-size * 1 0
-				alpha(var(--color-primary-1), 0.125);
+				rgba(var(--color-primary-1), 0.125);
 			background-color: var(--color-primary-2);
 			height: $default-font-size;
 			opacity: 0;

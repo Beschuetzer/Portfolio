@@ -71,13 +71,13 @@ body {
 
 #root {
 	display: grid;
-	grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(
-			6rem,
-			1fr
-		) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(
-			6rem,
-			1fr
-		) [full-end grid-end];
+	grid-template-columns:
+		[sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr)
+		[center-start] repeat(
+			8,
+			[col-start] minmax(min-content, 14rem) [col-end]
+		) [center-end] minmax(6rem, 1fr)
+		[full-end grid-end];
 }
 
 ::selection {
@@ -305,7 +305,7 @@ body {
 .github__text-bottom {
 	transform: translate(-50%, 0%);
 	bottom: 0.8rem;
-	box-shadow: 0 3.2rem 4.8rem alpha(40, 82, 122, 0.2);
+	box-shadow: 0 3.2rem 4.8rem rgba(40, 82, 122, 0.2);
 }
 
 .thumbnail {
@@ -631,7 +631,7 @@ body {
 }
 .navbar__item:not(.navbar__dropdown-container):hover {
 	transform: translateY(-0.32rem);
-	box-shadow: 0 0.8rem 3.2rem alpha(0, 0, 0, 0.2);
+	box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.2);
 }
 .navbar__item:hover .triangle-down {
 	transform: rotate(90deg);
@@ -700,7 +700,7 @@ body {
 }
 .navbar__dropdown .navbar__item:hover {
 	transform: translateX(0.32rem) !important;
-	box-shadow: 0.8rem 0 3.2rem alpha(0, 0, 0, 0.2);
+	box-shadow: 0.8rem 0 3.2rem rgba(0, 0, 0, 0.2);
 }
 .navbar__dropdown .navbar__link:link,
 .navbar__dropdown .navbar__link:visited {
@@ -776,7 +776,7 @@ body {
 
 #root.navbar--active {
 	filter: blur(0.8rem) brightness(0.75)
-		drop-shadow(0px 1.6rem 3.2rem alpha(204, 204, 204, 0.2));
+		drop-shadow(0px 1.6rem 3.2rem rgba(204, 204, 204, 0.2));
 }
 
 ::-webkit-scrollbar {
@@ -801,9 +801,9 @@ body {
 	width: 100vw;
 	background-image: linear-gradient(
 			to right,
-			alpha(244, 209, 96, 0.75) 0%,
-			alpha(244, 209, 96, 0.75) 50%,
-			alpha(244, 209, 96, 0.75) 50%
+			rgba(244, 209, 96, 0.75) 0%,
+			rgba(244, 209, 96, 0.75) 50%,
+			rgba(244, 209, 96, 0.75) 50%
 		),
 		url("imgs/background-2.jpg");
 	background-position: center;
@@ -853,7 +853,7 @@ body {
 	padding: 0 3.2rem;
 	border: 3px solid #28527a;
 	border-radius: 1.6rem;
-	box-shadow: 0 0 1.6rem 1.6rem alpha(40, 82, 122, 0.2);
+	box-shadow: 0 0 1.6rem 1.6rem rgba(40, 82, 122, 0.2);
 }
 
 /*# sourceMappingURL=style.comp.css.map */

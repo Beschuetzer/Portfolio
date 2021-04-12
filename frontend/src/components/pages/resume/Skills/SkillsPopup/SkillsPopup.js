@@ -68,6 +68,7 @@ const SkillsPopup = ({
 	};
 
 	const onTableItemMouseEvent = (e) => {
+		return;
 		if (isMobile) return;
 		const table = document.querySelector(".skills-popup__table");
 		const skillsPopupItems = document.querySelectorAll(
