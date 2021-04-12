@@ -331,12 +331,9 @@
 
 			@include respond(nav-switch) {
 				border-top: $default-font-size * 0.1 solid transparent;
-				border-bottom: $default-font-size * 0.1 solid
-					rgba(var(--color-primary-1), 0.5);
-				border-left: $default-font-size * 0.1 solid
-					rgba(var(--color-primary-1), 0.5);
-				border-right: $default-font-size * 0.1 solid
-					rgba(var(--color-primary-1), 0.5);
+				border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
+				border-left: $default-font-size * 0.1 solid var(--color-primary-1);
+				border-right: $default-font-size * 0.1 solid var(--color-primary-1);
 				margin-top: 0;
 				width: 75%;
 				align-self: center;
@@ -345,8 +342,7 @@
 			&:first-child {
 				border-radius: $default-font-size * 0.5 $default-font-size * 0.5 0 0;
 				@include respond(nav-switch) {
-					border-top: $default-font-size * 0.1 solid
-						rgba(var(--color-primary-1), 0.5);
+					border-top: $default-font-size * 0.1 solid var(--color-primary-1);
 					margin-top: $default-font-size * 0.75;
 				}
 			}
@@ -367,8 +363,7 @@
 			@include respond(nav-switch) {
 				&:hover,
 				&:hover + li {
-					border-top: $default-font-size * 0.1 solid
-						rgba(var(--color-primary-1), 0.5);
+					border-top: $default-font-size * 0.1 solid var(--color-primary-1);
 				}
 			}
 		}
@@ -506,8 +501,7 @@
 #root.navbar--active {
 	filter: blur($default-font-size * 0.5) brightness(0.75)
 		drop-shadow(
-			0px $default-font-size * 1 $default-font-size * 2
-				rgba(var(--color-grey-80), 0.2)
+			0px $default-font-size * 1 $default-font-size * 2 var(--color-grey-80)
 		);
 }
 
@@ -667,7 +661,7 @@
 
 			&:hover {
 				// border-radius: 0 $default-font-size * .5 $default-font-size * .5 0;
-				// box-shadow: 0 0 $default-font-size * 2 0 rgba(var(--color-primary-3), .5);
+				// box-shadow: 0 0 $default-font-size * 2 0 var(--color-primary-3);
 				// background-color: var(--color-primary-3);
 				transform: translateY(-0.25vw);
 

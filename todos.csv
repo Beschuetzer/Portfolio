@@ -17,7 +17,7 @@ IDEAS-----------------------------------------------------------
 
 -have each project page load a different color pallette shortly after component render completes first time (need to add setTimeOut to componentDidMount and have color-primary-x css vars)
 -figure out bridge color pallette
--how to change navbar colors for each page?
+-need to fix changing from bridge to resume
 
 
 -videos to do:

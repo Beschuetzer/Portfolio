@@ -1,1 +1,4 @@
 change PageNav scroll section behavior on 04/09 evening
+
+
+commit 9829c4a2a006bbc45a69bdda18c323acea026ab6 on apr 11, 2021 is the last working with all of the sass functions

@@ -41,7 +41,7 @@ $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divider-width: $default-font-size * 0.2;
 $navbar__item-divider: $navbar__item-divider-width solid var(--color-primary-1);
 
-$navbar-box-shadow-color: rgba(var(--color-black), .15);
+$navbar-box-shadow-color: var(--color-black);
 $hover-color-change-amount: 0.15;
 
 //skills
@@ -54,7 +54,7 @@ $skills-linear-gradient-original: linear-gradient(
 );
 $skills-linear-gradient-hover: linear-gradient(
 	to right,
-	rgba(var(--color-primary-1), .1),
+	var(--color-primary-1),
 	var(--color-primary-1)
 );
 
@@ -118,5 +118,9 @@ $page-nav-top: calc(
 		#{var(--color-primary-4)} 100%
 	);
 	--site-nav-active-scale-amount: 1;
-	--body-background: linear-gradient(to left, var(--color-primary-1), var(--color-primary-1));
+	--body-background: linear-gradient(
+		to left,
+		var(--color-primary-1),
+		var(--color-primary-1)
+	);
 }

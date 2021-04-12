@@ -4,9 +4,9 @@
 
 	background-image: linear-gradient(
 			to right,
-			rgba(var(--color-primary-3), 0.75) 0%,
-			rgba(var(--color-primary-3), 0.75) 50%,
-			rgba(var(--color-primary-3), 0.75) 50%
+			var(--color-primary-3) 0%,
+			var(--color-primary-3) 50%,
+			var(--color-primary-3) 50%
 		),
 		url("imgs/background-2.jpg");
 	background-position: center;
@@ -23,9 +23,9 @@
 
 	//   background-image:
 	//   //   linear-gradient(to right,
-	//   //   rgba(var(--color-primary-1), .75) 0%,
-	//   //   rgba(var(--color-primary-2), .75) 50%,
-	//   //   rgba(var(--color-primary-3), .15) 50%,
+	//   //   var(--color-primary-1) 0%,
+	//   //   var(--color-primary-2) 50%,
+	//   //   var(--color-primary-3) 50%,
 	//   // ),
 	//   url('imgs/self-2.png');
 	//   filter: saturate(0%);
