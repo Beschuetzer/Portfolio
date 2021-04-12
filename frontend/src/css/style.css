@@ -18,9 +18,9 @@
   --color-primary-resume-2: #8ac5d0;
   --color-primary-resume-3: #f4d262;
   --color-primary-resume-4: #fbeeac;
-  --color-primary-bridge-2: #e3dfc8;
+  --color-primary-bridge-2: #F59229;
   --color-primary-bridge-4: #f5f1da;
-  --color-primary-bridge-3: #f8bd7f;
+  --color-primary-bridge-3: #e3dfc8;
   --color-primary-bridge-1: #00416d;
 }
 
@@ -1070,22 +1070,22 @@ body {
     display: flex;
     overflow: visible !important;
     flex-direction: column;
-    width: 93.1vw;
+    width: 94.7vw;
   }
 }
 @media only screen and (max-width: 58.5625em) {
   .navbar__content {
-    width: 92.5vw;
+    width: 94.5vw;
   }
 }
 @media only screen and (max-width: 40.9375em) {
   .navbar__content {
-    width: 91.7vw;
+    width: 94.3vw;
   }
 }
 @media only screen and (max-width: 29.3125em) {
   .navbar__content {
-    width: 89.7vw;
+    width: 94vw;
   }
 }
 .navbar__list {
@@ -1145,7 +1145,7 @@ body {
 }
 .navbar__item:not(.navbar__dropdown-container):hover {
   transform: translateY(-0.32rem);
-  box-shadow: 0 0.8rem 3.2rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.15);
 }
 .navbar__item:hover .triangle-down {
   transform: rotate(90deg);
@@ -1264,7 +1264,7 @@ body {
 }
 .navbar__dropdown .navbar__item:hover {
   transform: translateX(0.32rem) !important;
-  box-shadow: -1.6rem 0 3.2rem rgba(0, 0, 0, 0.15);
+  box-shadow: -1.6rem 0 2.4rem rgba(0, 0, 0, 0.15);
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__dropdown .navbar__item:hover, .navbar__dropdown .navbar__item:hover + li {
@@ -1309,24 +1309,24 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__content {
-    width: 93.1vw;
+    width: 94.7vw;
     position: absolute;
     z-index: 100;
   }
 }
 @media only screen and (max-width: 58.5625em) {
   .navbar.navbar--active .navbar__content {
-    width: 92.5vw;
+    width: 94.5vw;
   }
 }
 @media only screen and (max-width: 40.9375em) {
   .navbar.navbar--active .navbar__content {
-    width: 91.7vw;
+    width: 94.3vw;
   }
 }
 @media only screen and (max-width: 29.3125em) {
   .navbar.navbar--active .navbar__content {
-    width: 89.7vw;
+    width: 94vw;
   }
 }
 .navbar.navbar--active .navbar__button {
