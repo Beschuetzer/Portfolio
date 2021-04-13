@@ -700,7 +700,7 @@
 		top: 0;
 
 		&__inner {
-			width: calc(100% - $default-font-size * 2);
+			width: calc(100% - #{$default-font-size * 2});
 		}
 	}
 	
