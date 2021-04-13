@@ -14,7 +14,7 @@ import {
 	ANIMATION_DURATION,
 } from "../constants";
 
-const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl }) => {
+const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidth }) => {
 	const [ currentUrl, setCurrentUrl ] = useState(null);
 	const navRef = useRef();
 	const root = document.querySelector("#root");
@@ -66,9 +66,18 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl }) => {
 		}
 	};
 
-	const handleViewPortChange = (e) => {
-		
-	}
+	useEffect(() => {
+		console.log('setting width------------------------------------------------');
+		const navbarContent = document.querySelector('.navbar__content');
+		const header = document.querySelector('.header');
+		const headerBoundingRect = header.getBoundingClientRect();
+
+		let newTop = `calc(${headerBoundingRect.height}px)`;
+		if (viewPortWidth > 1100) {
+			newTop = 'auto';
+		}
+		navbarContent.style.top = newTop;
+	}, [viewPortWidth])
 
 	useEffect(() => {
 		if (!currentUrl) return; 
@@ -223,6 +232,7 @@ const mapStateToProps = (state, ownProps) => {
 	return {
 		isAnimating: state.general.isAnimating,
 		previousUrl: state.general.previousUrl,
+		viewPortWidth: state.general.viewPortWidth,
 	};
 };
 
