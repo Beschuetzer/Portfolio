@@ -80,10 +80,10 @@ $header-top: calc(#{$header-top-inner} - 0.75vw);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
 
-$header-width-nav-switch: calc(100vw - #{$default-font-size * 1.9125});
-$header-width-tab-land: calc(100vw - #{$default-font-size * 1.8125});
-$header-width-phone: calc(100vw - #{$default-font-size * 1.825});
-$header-width-small-font: calc(100vw - #{$default-font-size * 1.78});
+$header-width-nav-switch: calc(100vw - #{$default-font-size * 2.75});
+$header-width-tab-land: calc(100vw - #{$default-font-size * 2.75});
+$header-width-phone: calc(100vw - #{$default-font-size * 2.5});
+$header-width-small-font: calc(100vw - #{$default-font-size * 2});
 
 // $header-width-nav-switch: 92vw;
 // $header-width-tab-land: 91.3vw;

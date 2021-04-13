@@ -2,7 +2,7 @@ import * as THREE from "three";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import ResumeSection from "./ResumeSection";
+import Section from "./Section";
 import Paragraph from "../../typography/Paragraph";
 import SkillsItemSection from "./Skills/SkillsItemSection";
 import SkillsItemSectionLabels from "./Skills/SkillsItemSectionLabels";
@@ -541,19 +541,19 @@ class Resume extends React.Component {
 			//Returning if there is headerSideContent for this section
 			if (Resume.headerSideContent[contentArray[0]]) {
 				return (
-					<ResumeSection
+					<Section
 						key={index}
 						name={contentArray[0]}
 						headerSideContent={Resume.headerSideContent[contentArray[0]]}>
 						{contentArray[1]}
-					</ResumeSection>
+					</Section>
 				);
 			}
 
 			return (
-				<ResumeSection key={index} name={contentArray[0]}>
+				<Section key={index} name={contentArray[0]}>
 					{contentArray[1]}
-				</ResumeSection>
+				</Section>
 			);
 		});
 	};
