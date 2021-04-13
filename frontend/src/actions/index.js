@@ -8,6 +8,7 @@ import {
   SET_SECTIONS_TO_SKIP_ANIMATION,
   SET_PREVIOUS_URL,
   SET_SCROLL_PERCENT,
+  SET_VIEW_PORT_WIDTH,
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
@@ -200,9 +201,16 @@ export const setIsAnimating = (value) => {
   }
 }
 
-export const setIsMobile = (value) => {
+export const setIsMobile = (isMobile, viewPortWidth) => {
   return {
     type: SET_IS_MOBILE,
+    payload: {isMobile, viewPortWidth},
+  }
+}
+
+export const setViewPortWidth = (value) => {
+  return {
+    type: SET_VIEW_PORT_WIDTH,
     payload: value,
   }
 }

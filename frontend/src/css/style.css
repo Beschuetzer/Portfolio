@@ -1075,7 +1075,7 @@ body {
   .navbar__content {
     transform: translateY(-2.4rem);
     position: absolute;
-    top: calc(10rem);
+    top: calc(10rem - 0.4rem);
     left: -1px;
     display: flex;
     overflow: visible !important;

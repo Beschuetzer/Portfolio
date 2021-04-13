@@ -4,10 +4,12 @@ import {
   SET_IS_MOBILE,
   SET_PREVIOUS_URL,
   SET_SCROLL_PERCENT,
+  SET_VIEW_PORT_WIDTH
 } from '../actions/types';
 
 const INITIAL_STATE = {
   isMobile: null,
+  viewPortWidth: null,
   isAnimating: false,
   repos: [],
   previousUrl: null,
@@ -17,7 +19,9 @@ const INITIAL_STATE = {
 const generalReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_IS_MOBILE:
-      return {...state, isMobile: action.payload};  
+      return {...state, isMobile: action.payload.isMobile, viewPortWidth: action.payload.viewPortWidth};  
+    case SET_VIEW_PORT_WIDTH:
+      return {...state, viewPortWidth: action.payload}
     case SET_IS_ANIMATING:
       return {...state, isAnimating: action.payload};  
     case GET_REPOSITORIES:

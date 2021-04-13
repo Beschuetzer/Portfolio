@@ -66,6 +66,10 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl }) => {
 		}
 	};
 
+	const handleViewPortChange = (e) => {
+		
+	}
+
 	useEffect(() => {
 		if (!currentUrl) return; 
 		console.log('currentUrl =', currentUrl);
@@ -96,7 +100,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl }) => {
 			// }
 		}
 	}, [currentUrl])
-
 
 	//When url changes
 	useEffect(() => {

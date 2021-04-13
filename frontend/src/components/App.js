@@ -16,21 +16,22 @@ import PageNav from "./navbar/PageNav";
 import NavToggler from "./navbar/NavToggler";
 import "../css/style.css";
 import GithubButton from "./GithubButton";
-import { setIsAnimating, setIsMobile } from "../actions";
+import { setIsAnimating, setIsMobile, setViewPortWidth } from "../actions";
 import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./constants";
 
-const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating }) => {
+const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWidth }) => {
 	const mobileBreakPointWidth = 1100;
-	setIsMobile(window.innerWidth <= mobileBreakPointWidth);
+	setIsMobile(window.innerWidth <= mobileBreakPointWidth, window.innerWidth);
 
 	//setup window resize listener
 	useEffect(() => {
 		const windowResize = (e) => {
 			if (window.innerWidth <= mobileBreakPointWidth && !isMobile) {
-				setIsMobile(true);
+				return setIsMobile(true, window.innerWidth);
 			} else if (window.innerWidth > mobileBreakPointWidth && isMobile) {
-				setIsMobile(false);
+				return setIsMobile(false, window.innerWidth);
 			}
+			return setViewPortWidth(window.innerWidth);
 		};
 
 		const keypressHandler = (e) => {
@@ -112,4 +113,5 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
 	setIsAnimating,
 	setIsMobile,
+	setViewPortWidth,
 })(App);

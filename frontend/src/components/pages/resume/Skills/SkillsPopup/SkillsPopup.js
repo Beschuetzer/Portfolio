@@ -6,7 +6,6 @@ import { checkForParentOfType } from "../../../../../helpers";
 import {
 	clickSkill,
 	addRepoToReposToDisplay,
-	setIsMobile,
 } from "../../../../../actions";
 import SkillsPopupName from "./SkillsPopupName";
 import { capitalize } from "../../../../../helpers";
@@ -19,7 +18,6 @@ const SkillsPopup = ({
 	addRepoToReposToDisplay,
 	clickSkill,
 	isMobile,
-	setIsMobile,
 }) => {
 	const skillsPopupDiv = document.querySelector("#skillsPopup");
 	const resetReposDelay = 500;
@@ -338,5 +336,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
 	clickSkill,
 	addRepoToReposToDisplay,
-	setIsMobile,
 })(SkillsPopup);
