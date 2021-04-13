@@ -141,7 +141,7 @@
 		@include respond(nav-switch) {
 			transform: translateY(-$default-font-size * 1.5);
 			position: absolute;
-			top: $default-font-size * 6.125;
+			top: calc(#{$header-height});
 			left: -1px;
 			display: flex;
 			overflow: visible !important;
@@ -556,7 +556,7 @@
 		border-right: $default-font-size * 0.15 solid var(--color-primary-4);
 		border-radius: 0 0 1000px 1000px;
 		position: fixed;
-		right: 0;
+		right: $default-font-size * .5;
 		top: 0;
 		z-index: 5;
 		background-color: var(--color-primary-1);
@@ -623,7 +623,7 @@
 		grid-template-rows: auto;
 		grid-template-columns: repeat(
 			auto-fill,
-			minmax($default-font-size * 8.96875, 1fr)
+			minmax($default-font-size * 9.067, 1fr)
 		);
 		justify-items: center;
 		margin-left: $default-font-size * 0.25;

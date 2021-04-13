@@ -1075,7 +1075,7 @@ body {
   .navbar__content {
     transform: translateY(-2.4rem);
     position: absolute;
-    top: 9.8rem;
+    top: calc(10rem);
     left: -1px;
     display: flex;
     overflow: visible !important;
@@ -1444,7 +1444,7 @@ body {
   border-right: 0.24rem solid var(--color-primary-4);
   border-radius: 0 0 1000px 1000px;
   position: fixed;
-  right: 0;
+  right: 0.8rem;
   top: 0;
   z-index: 5;
   background-color: var(--color-primary-1);
@@ -1496,7 +1496,7 @@ body {
     position: static;
     width: calc(95% - 16rem);
     grid-template-rows: auto;
-    grid-template-columns: repeat(auto-fill, minmax(14.35rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(14.5072rem, 1fr));
     justify-items: center;
     margin-left: 0.4rem;
   }
@@ -1603,7 +1603,7 @@ body {
   }
 }
 .resume__section {
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
