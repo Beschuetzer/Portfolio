@@ -510,10 +510,10 @@
 	}
 }
 
-#root {
+.root {
 	transition: filter $animation-duration $animation-easing-standard;
 }
-#root.navbar--active {
+.root.navbar--active {
 	filter: blur($default-font-size * 0.5) brightness(0.75)
 		drop-shadow(
 			0px $default-font-size * 1 $default-font-size * 2 var(--color-grey-80)

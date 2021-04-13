@@ -1,6 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
 
+import BridgeHero from './BridgeHero';
+import BackgroundVideo from '../../../BackgroundVideo';
+import preferences from '../../../../clips/preferences.mp4';
+
 const Bridge = () => {
 	useEffect(() => {
 		const newLinearGradient = `
@@ -12,7 +16,19 @@ const Bridge = () => {
 		);
 	}, []);
 
-	return <div className="bridge">Bridge page</div>;
+	return (
+		<section className="bridge">
+			<BridgeHero
+				name="Bridge"
+				pageName="bridge"
+			/>
+			{/* <BackgroundVideo
+				src={preferences}
+				type='mp4'
+			/> */}
+
+		</section>
+	);
 };
 
 export default Bridge;
