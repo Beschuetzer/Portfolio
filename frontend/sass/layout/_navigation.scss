@@ -10,6 +10,8 @@
 
 	@include respond(nav-switch) {
 		margin-left: $default-font-size * .4375;
+		margin-top: $default-font-size * .4375;
+		margin-bottom: $default-font-size * .4375;
 		align-items: flex-start;
 		border-radius: 0;
 		&.overflow--hidden.navbar.navbar--active {
@@ -205,7 +207,7 @@
 		& > .navbar__item:nth-of-type(3) {
 			@include respond(nav-switch) {
 				order: 1;
-				border-radius: 0 0 $default-font-size * 2 $default-font-size * 2;
+				border-radius: 0 0 $default-font-size * 1 $default-font-size * 1;
 			}
 		}
 
@@ -277,14 +279,14 @@
 		}
 	}
 
-	&--done &__button, &--done &__item {
+	&--done &__item {
 		border: $default-font-size * .1 solid var(--color-primary-1);
 	}
 
 	&__button {
 		cursor: pointer;
 		z-index: 100;
-		border: $default-font-size * .1 solid transparent;
+		// border: $default-font-size * .1 solid transparent;
 		background-color: var(--color-primary-4);
 		border-radius: $navbar__item-border-radius;
 		display: flex;
@@ -292,6 +294,8 @@
 		transition: border-radius $animation-duration * 1 $animation-easing-standard;
 
 		@include respond(nav-switch) {
+			border-radius: $default-font-size;
+
 			transition: border-radius $animation-duration * 0.5
 				$animation-easing-standard;
 		}
@@ -452,8 +456,8 @@
 			border-radius: $default-font-size * 10 $default-font-size * 1
 				$default-font-size * 1 $default-font-size * 10;
 			@include respond(nav-switch) {
-				border-radius: $default-font-size * 10 $default-font-size * 10
-					$default-font-size * 1 $default-font-size * 1;
+				border-radius: $default-font-size * 1 $default-font-size * 1
+					$default-font-size * 0 $default-font-size * 0;
 			}
 			//A hover styling
 			&:hover .navbar__menu-bar::before {
@@ -695,7 +699,7 @@
 	}
 }
 
-.bridge, .csharp {
+.bridge-page, .csharp-page {
 	//Changing header sizes
 	@include respond(larger-than-nav-switch) {
 		& .header {

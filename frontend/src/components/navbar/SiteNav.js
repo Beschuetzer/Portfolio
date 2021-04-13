@@ -70,7 +70,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 		if (page === '') document.body.className = "body-background";
 		else {
-			document.body.className = `body-background ${page.slice(1)}`;
+			document.body.className = `body-background ${page.slice(1)}-page`;
 		}
 	}
 

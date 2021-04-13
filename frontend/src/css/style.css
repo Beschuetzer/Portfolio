@@ -952,6 +952,8 @@ body {
 @media only screen and (max-width: 68.75em) {
   .navbar {
     margin-left: 0.7rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
     align-items: flex-start;
     border-radius: 0;
   }
@@ -1132,7 +1134,7 @@ body {
 @media only screen and (max-width: 68.75em) {
   .navbar__list > .navbar__item:nth-of-type(3) {
     order: 1;
-    border-radius: 0 0 3.2rem 3.2rem;
+    border-radius: 0 0 1.6rem 1.6rem;
   }
 }
 .navbar__list .navbar__dropdown .navbar__item {
@@ -1189,13 +1191,12 @@ body {
     opacity: 0;
   }
 }
-.navbar--done .navbar__button, .navbar--done .navbar__item {
+.navbar--done .navbar__item {
   border: 0.16rem solid var(--color-primary-1);
 }
 .navbar__button {
   cursor: pointer;
   z-index: 100;
-  border: 0.16rem solid transparent;
   background-color: var(--color-primary-4);
   border-radius: 16rem;
   display: flex;
@@ -1204,6 +1205,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__button {
+    border-radius: 1.6rem;
     transition: border-radius 0.25s ease;
   }
 }
@@ -1344,7 +1346,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__button {
-    border-radius: 16rem 16rem 1.6rem 1.6rem;
+    border-radius: 1.6rem 1.6rem 0rem 0rem;
   }
 }
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::before {
@@ -1552,23 +1554,23 @@ body {
 }
 
 @media only screen and (min-width: 68.8125em) {
-  .bridge .header, .csharp .header {
+  .bridge-page .header, .csharp-page .header {
     top: 1.6rem;
   }
-  .bridge .header__inner, .csharp .header__inner {
+  .bridge-page .header__inner, .csharp-page .header__inner {
     width: calc(100% - 3.2rem);
   }
-  .bridge .site-nav, .bridge .github, .csharp .site-nav, .csharp .github {
+  .bridge-page .site-nav, .bridge-page .github, .csharp-page .site-nav, .csharp-page .github {
     transform: scale(0.75);
     transition: transform 0.5s ease 0.375s;
   }
-  .bridge .site-nav, .csharp .site-nav {
+  .bridge-page .site-nav, .csharp-page .site-nav {
     transform-origin: top left;
   }
-  .bridge .github, .csharp .github {
+  .bridge-page .github, .csharp-page .github {
     transform-origin: top right;
   }
-  .bridge .github:hover, .bridge .site-nav:hover, .csharp .github:hover, .csharp .site-nav:hover {
+  .bridge-page .github:hover, .bridge-page .site-nav:hover, .csharp-page .github:hover, .csharp-page .site-nav:hover {
     transform: scale(1);
   }
 }
