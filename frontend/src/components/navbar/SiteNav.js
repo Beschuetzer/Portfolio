@@ -92,7 +92,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 		let docStyle = getComputedStyle(document.documentElement);
 		const colorVarRoot = '--color-primary';
-		const colorVarPages = ['', '/bridge', '/resume'];
+		const colorVarPages = ['', '/bridge', '/resume', '/csharp'];
 		const colorVarNumbers = ['-1','-2','-3','-4'];
 		const colorVarHSL = ['-h', '-s', '-l'];
 

@@ -1551,24 +1551,26 @@ body {
   transform: scale(var(--site-nav-active-scale-amount));
 }
 
-.bridge .header {
-  top: 1.6rem;
-}
-.bridge .header__inner {
-  width: calc(100% - 3.2rem);
-}
-.bridge .site-nav, .bridge .github {
-  transform: scale(0.75);
-  transition: transform 0.5s ease 0.375s;
-}
-.bridge .site-nav {
-  transform-origin: top left;
-}
-.bridge .github {
-  transform-origin: top right;
-}
-.bridge .github:hover, .bridge .site-nav:hover {
-  transform: scale(1);
+@media only screen and (min-width: 68.8125em) {
+  .bridge .header, .csharp .header {
+    top: 1.6rem;
+  }
+  .bridge .header__inner, .csharp .header__inner {
+    width: calc(100% - 3.2rem);
+  }
+  .bridge .site-nav, .bridge .github, .csharp .site-nav, .csharp .github {
+    transform: scale(0.75);
+    transition: transform 0.5s ease 0.375s;
+  }
+  .bridge .site-nav, .csharp .site-nav {
+    transform-origin: top left;
+  }
+  .bridge .github, .csharp .github {
+    transform-origin: top right;
+  }
+  .bridge .github:hover, .bridge .site-nav:hover, .csharp .github:hover, .csharp .site-nav:hover {
+    transform: scale(1);
+  }
 }
 
 ::-webkit-scrollbar {

@@ -695,33 +695,36 @@
 	}
 }
 
-.bridge {
-	& .header {
-		top: $default-font-size;
+.bridge, .csharp {
+	//Changing header sizes
+	@include respond(larger-than-nav-switch) {
+		& .header {
+			top: $default-font-size;
 
-		&__inner {
-			width: calc(100% - #{$default-font-size * 2});
+			&__inner {
+				width: calc(100% - #{$default-font-size * 2});
+			}
+		}
+
+		& .site-nav, & .github {
+			transform: scale(0.75);
+			transition: 
+				transform $animation-duration $animation-easing-standard $animation-duration * .75,
+			;
+		}
+
+		& .site-nav {
+			transform-origin: top left;
+		}
+		
+		& .github {
+			transform-origin: top right;
+		}
+
+		& .github:hover, & .site-nav:hover{
+			transform: scale(1);
 		}
 	}
 
-	//Changing header sizes
-	& .site-nav, & .github {
-		transform: scale(0.75);
-		transition: 
-			transform $animation-duration $animation-easing-standard $animation-duration * .75,
-		;
-	}
-
-	& .site-nav {
-    transform-origin: top left;
-	}
-	
-	& .github {
-    transform-origin: top right;
-	}
-
-	& .github:hover, & .site-nav:hover{
-		transform: scale(1);
-	}
 
 }
