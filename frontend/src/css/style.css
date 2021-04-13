@@ -1551,12 +1551,26 @@ body {
   transform: scale(var(--site-nav-active-scale-amount));
 }
 
-.navbar-bridge .header {
-  top: 0;
+.bridge .header {
+  top: 1.6rem;
 }
-.navbar-bridge .header__inner {
+.bridge .header__inner {
   width: calc(100% - 3.2rem);
 }
+.bridge .site-nav, .bridge .github {
+  transform: scale(0.75);
+  transition: transform 0.5s ease 0.375s;
+}
+.bridge .site-nav {
+  transform-origin: top left;
+}
+.bridge .github {
+  transform-origin: top right;
+}
+.bridge .github:hover, .bridge .site-nav:hover {
+  transform: scale(1);
+}
+
 ::-webkit-scrollbar {
   height: 1.6rem;
   width: 1.6rem;

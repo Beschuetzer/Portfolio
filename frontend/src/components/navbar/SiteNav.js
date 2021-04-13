@@ -66,6 +66,14 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		}
 	};
 
+	const setBodyStyle = (page) => {
+
+		if (page === '') document.body.className = "body-background";
+		else {
+			document.body.className = `body-background ${page.slice(1)}`;
+		}
+	}
+
 	useEffect(() => {
 		console.log('setting width------------------------------------------------');
 		const navbarContent = document.querySelector('.navbar__content');
@@ -81,7 +89,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 	useEffect(() => {
 		if (!currentUrl) return; 
-		console.log('currentUrl =', currentUrl);
 
 		let docStyle = getComputedStyle(document.documentElement);
 		const colorVarRoot = '--color-primary';
@@ -91,8 +98,8 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 		const temp = colorVarPages.indexOf(currentUrl.slice(currentUrl.lastIndexOf('/')));
 		const index = temp !== -1 ? temp : 0;
+		setBodyStyle(colorVarPages[index]);
 		const colorVarSuffix = colorVarPages[index].slice(1);
-
 	
 		for (let i = 0; i < colorVarNumbers.length; i++) {
 			const colorVarNumber = colorVarNumbers[i];
@@ -108,6 +115,8 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 			// 	document.documentElement.style.setProperty(colorVarToChangeWithSuffix, targetHSLValues[j]);
 			// }
 		}
+
+		
 	}, [currentUrl])
 
 	//When url changes
