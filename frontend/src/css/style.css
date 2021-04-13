@@ -1842,9 +1842,39 @@ div.references__name {
 }
 
 .bridge {
+  position: relative;
   width: 100%;
   background-color: var(--color-primary-1);
   padding: 1.6rem;
+}
+.bridge__hero {
+  height: 85vh;
+  width: calc(100% - 1.44rem);
+  margin: 14.4rem auto 0 auto;
+}
+.bridge__hero-heading {
+  z-index: 10;
+  background-color: transparent;
+}
+.bridge__hero-heading:first-of-type {
+  position: absolute;
+  top: 25vw;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+.bridge__diamond {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 75vh 0 75vh 75vw;
+  border-color: transparent transparent transparent rgba(251, 238, 172, 0.25);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(0%, -50%);
+}
+.bridge__diamond-right {
+  transform: translate(-100%, -50%) rotate(180deg);
 }
 
 /*# sourceMappingURL=style.css.map */
