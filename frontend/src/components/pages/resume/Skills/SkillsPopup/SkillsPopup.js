@@ -67,70 +67,70 @@ const SkillsPopup = ({
 
 	const onTableItemMouseEvent = (e) => {
 		return;
-		if (isMobile) return;
-		const table = document.querySelector(".skills-popup__table");
-		const skillsPopupItems = document.querySelectorAll(
-			".skills-popup__table-item",
-		);
-		const indexOfTarget = getIndexOfItem(e.target, skillsPopupItems);
-		const classNameToAddToItems = "skills-popup__item-js--hover";
-		const classNameToAddToLinks = "skills-popup__link-js--hover";
-		const headerCount = document.querySelectorAll(".skills-popup__table-header")
-			.length;
-		const classList = e.target.classList;
+		// if (isMobile) return;
+		// const table = document.querySelector(".skills-popup__table");
+		// const skillsPopupItems = document.querySelectorAll(
+		// 	".skills-popup__table-item",
+		// );
+		// const indexOfTarget = getIndexOfItem(e.target, skillsPopupItems);
+		// const classNameToAddToItems = "skills-popup__item-js--hover";
+		// const classNameToAddToLinks = "skills-popup__link-js--hover";
+		// const headerCount = document.querySelectorAll(".skills-popup__table-header")
+		// 	.length;
+		// const classList = e.target.classList;
 
-		let rowsNameElement = null;
-		let min = -1;
-		let max = -1;
-		let isRowsNameElementALink = false;
-		let indexOffset = 0;
+		// let rowsNameElement = null;
+		// let min = -1;
+		// let max = -1;
+		// let isRowsNameElementALink = false;
+		// let indexOffset = 0;
 
-		if (
-			classList?.contains("skills-popup__link-text") ||
-			classList?.contains("skills-popup__name")
-		) {
-			min = headerCount + indexOfTarget + 0;
-			max = headerCount + indexOfTarget + 4;
-		} else if (classList?.contains("skills-popup__description")) {
-			min = headerCount + indexOfTarget + -1;
-			max = headerCount + indexOfTarget + 3;
-			indexOffset = 1;
-		} else if (classList?.contains("skills-popup__createdAt")) {
-			min = headerCount + indexOfTarget + -2;
-			max = headerCount + indexOfTarget + 2;
-			indexOffset = 2;
-		} else if (classList?.contains("skills-popup__updatedAt")) {
-			min = headerCount + indexOfTarget + -3;
-			max = headerCount + indexOfTarget + 1;
-			indexOffset = 3;
-		} else if (classList?.contains("skills-popup__url")) {
-			min = headerCount + indexOfTarget + -4;
-			max = headerCount + indexOfTarget + 0;
-			indexOffset = 4;
-		}
+		// if (
+		// 	classList?.contains("skills-popup__link-text") ||
+		// 	classList?.contains("skills-popup__name")
+		// ) {
+		// 	min = headerCount + indexOfTarget + 0;
+		// 	max = headerCount + indexOfTarget + 4;
+		// } else if (classList?.contains("skills-popup__description")) {
+		// 	min = headerCount + indexOfTarget + -1;
+		// 	max = headerCount + indexOfTarget + 3;
+		// 	indexOffset = 1;
+		// } else if (classList?.contains("skills-popup__createdAt")) {
+		// 	min = headerCount + indexOfTarget + -2;
+		// 	max = headerCount + indexOfTarget + 2;
+		// 	indexOffset = 2;
+		// } else if (classList?.contains("skills-popup__updatedAt")) {
+		// 	min = headerCount + indexOfTarget + -3;
+		// 	max = headerCount + indexOfTarget + 1;
+		// 	indexOffset = 3;
+		// } else if (classList?.contains("skills-popup__url")) {
+		// 	min = headerCount + indexOfTarget + -4;
+		// 	max = headerCount + indexOfTarget + 0;
+		// 	indexOffset = 4;
+		// }
 
-		//Removing or Adding css class to get border-bottom and box-shadow
-		for (let i = min; i <= max; i++) {
-			if (e.type === "mouseleave") {
-				table.children[i]?.classList.remove(classNameToAddToItems);
-			} else {
-				table.children[i]?.classList.add(classNameToAddToItems);
-			}
-		}
+		// //Removing or Adding css class to get border-bottom and box-shadow
+		// for (let i = min; i <= max; i++) {
+		// 	if (e.type === "mouseleave") {
+		// 		table.children[i]?.classList.remove(classNameToAddToItems);
+		// 	} else {
+		// 		table.children[i]?.classList.add(classNameToAddToItems);
+		// 	}
+		// }
 
-		//Adding or Removing class to trigger link animation when hovering over a row with a link name element
-		rowsNameElement = skillsPopupItems[indexOfTarget - indexOffset];
-		isRowsNameElementALink = rowsNameElement?.classList?.contains(
-			"skills-popup__link",
-		)
-			? true
-			: false;
+		// //Adding or Removing class to trigger link animation when hovering over a row with a link name element
+		// rowsNameElement = skillsPopupItems[indexOfTarget - indexOffset];
+		// isRowsNameElementALink = rowsNameElement?.classList?.contains(
+		// 	"skills-popup__link",
+		// )
+		// 	? true
+		// 	: false;
 
-		if (isRowsNameElementALink) {
-			if (e.type === "mouseenter")
-				rowsNameElement.classList?.add(classNameToAddToLinks);
-			else rowsNameElement.classList?.remove(classNameToAddToLinks);
-		}
+		// if (isRowsNameElementALink) {
+		// 	if (e.type === "mouseenter")
+		// 		rowsNameElement.classList?.add(classNameToAddToLinks);
+		// 	else rowsNameElement.classList?.remove(classNameToAddToLinks);
+		// }
 	};
 
 	const onCloseClick = (e) => {
@@ -262,7 +262,7 @@ const SkillsPopup = ({
 		if (!reposToDisplay || reposToDisplay.length === 0) {
 			return (
 				<div className="skills-popup__error">
-					Unable to Load Repos from Github :(
+					Unable to load repositories from Github.  Try refreshing...
 				</div>
 			);
 		}
