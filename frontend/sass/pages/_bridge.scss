@@ -2,12 +2,11 @@
   position: relative;
   width: 100%;
   background-color: var(--color-primary-1);
-  padding: $default-font-size;
 
   &__hero {
     height: 85vh;
     width: calc(100% - #{$default-font-size * .9});
-    margin: $default-font-size * 9 auto 0 auto;
+    // margin: $default-font-size * 9 auto 0 auto;
     // background: var(--color-primary-1);
 
     &-heading {
@@ -23,21 +22,8 @@
     }
   }
 
-  &__diamond {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    //top right bottom left (2 are the same length one is 0 and the 3rd is 2x the first 2;  the longest side is the base
-    border-width: 75vh 0 75vh 75vw;
-    //three are transparent and the longest side is the desired color
-    border-color: transparent transparent transparent rgba($color-primary-4, .25);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-0%, -50%);
+  &__content {
+    padding: $default-font-size;
 
-    &-right {
-      transform: translate(-100%, -50%) rotate(180deg);
-    }
   }
 }

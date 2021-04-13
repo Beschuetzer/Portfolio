@@ -511,6 +511,7 @@
 }
 
 .root {
+	overflow: hidden;
 	transition: filter $animation-duration $animation-easing-standard;
 }
 .root.navbar--active {

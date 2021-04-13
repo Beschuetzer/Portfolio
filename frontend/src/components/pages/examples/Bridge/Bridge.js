@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import BridgeHero from './BridgeHero';
 import BackgroundVideo from '../../../BackgroundVideo';
-import preferences from '../../../../clips/preferences.mp4';
+import bgVideo from '../../../../clips/animation-roundEnd-other-player.mp4';
 
 const Bridge = () => {
 	useEffect(() => {
@@ -22,10 +22,10 @@ const Bridge = () => {
 				name="Bridge"
 				pageName="bridge"
 			/>
-			{/* <BackgroundVideo
-				src={preferences}
+			<BackgroundVideo
+				src={bgVideo}
 				type='mp4'
-			/> */}
+			/>
 
 		</section>
 	);
