@@ -128,11 +128,11 @@ $page-nav-top: calc(
 	);
 
 	//shapes stuff
-	--square-animation-duration: 120s;
+	--diamond-fractal-animation-duration: 120s;
+	--diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
 	--aspect-ratio-factor: calc(16 / 9);
-	--square-length: calc(20vw * var(--aspect-ratio-factor));
-	--diamond-rotation: 45deg;
+	--diamond-fractal-rotation: 45deg;
 	--translate-center: translate(-50%, -50%);
 	--square-root-of-two: 0.707106781;
-	--square-outer-opacity: 0.05;
+	--diamond-outer-opacity: 0.05;
 }

@@ -1,41 +1,68 @@
 .bridge {
-  position: relative;
-  width: 100%;
-  background-color: var(--color-primary-4);
+	position: relative;
+	width: 100%;
+	background-color: var(--color-primary-4);
 
-  &__hero {
-    height: 100vh;
+	&__hero {
+		height: 85vh;
 
+		&-heading {
+			mix-blend-mode: difference;
+		  z-index: 10;
+		  color: var(--color-primary-2);
+			position: absolute;
 
-    
-    // &-heading {
-    //   z-index: 10;
-    //   background-color: transparent;
+		  &:first-of-type {
+		    top: 25%;
+		    left: 50%;
+		    transform: translate(-50%,-50%);
+		  }
 
-    //   &:first-of-type {
-    //     position: absolute;
-    //     top:25vw;
-    //     left: 50%;
-    //     transform: translate(-50%, 0%);
-    //   }
-    // }
-    &-text {
-      height: 100%;
-      width: 100%;
-      text-align: center;
-      display:flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      position: relative;
-      z-index: 1;
-      color: var(--color-primary-1);
-      transform: rotate(calc(var(--diamond-rotation) * -1));
-    }
-  }
+			&:nth-of-type(2) {
+				mix-blend-mode: darken;
+		    top: 50%;
+		    left: 25%;
+		    transform: translate(-50%,-50%);
+		  }
+			&:nth-of-type(3) {
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%,-50%);
+		  }
+			&:nth-of-type(4) {
+				mix-blend-mode: darken;
+		    top: 50%;
+		    left: 75%;
+		    transform: translate(-50%,-50%);
+		  }
+			&:nth-of-type(5) {
+		    top: 75%;
+		    left: 50%;
+		    transform: translate(-50%,-50%);
+		  }
+		}
+		// &-text {
+		// 	height: var(--diamond-fractal-length);
+		// 	width: var(--diamond-fractal-length);
+		// 	text-align: center;
+		// 	display: flex;
+		// 	justify-content: center;
+		// 	align-items: space-between;
+		// 	flex-direction: column;
+		// 	position: relative;
+		// 	// z-index: 1;
+		// 	color: var(--color-primary-1);
+		// 	// transform: rotate(calc(var(--diamond-fractal-rotation) * -1));
+		// }
 
-  &__content {
-    padding: $default-font-size;
+		&-middle {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+		}
+	}
 
-  }
+	&__content {
+		padding: $default-font-size;
+	}
 }
