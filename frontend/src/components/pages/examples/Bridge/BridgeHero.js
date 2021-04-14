@@ -5,14 +5,14 @@ const BridgeHero = () => {
   return (
     <article className="bridge__hero">
       <div className="diamond">
-        <div className="diamond__left"></div>
-        <div className="diamond__right"></div>
+        <div className="bridge__hero-text">
+          <h2 className="bridge__hero-heading heading--one">A</h2>
+          <h2 className="bridge__hero-heading heading--one">#</h2>
+          <h2 className="bridge__hero-heading heading--two">Maj</h2>
+          <h2 className="bridge__hero-heading heading--two">Bridge</h2>
+        </div>
       </div>
-     
-      <h2 className="bridge__hero-heading heading--one">A</h2>
-      <h2 className="bridge__hero-heading heading--one">#</h2>
-      <h2 className="bridge__hero-heading heading--two">Maj</h2>
-      <h2 className="bridge__hero-heading heading--two">Bridge</h2>
+      <div className="line"></div>
     </article>
   );
 }

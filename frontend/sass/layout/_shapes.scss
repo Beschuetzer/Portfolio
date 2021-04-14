@@ -1,26 +1,33 @@
+:root {
+  --diamond-length: 10vmin;
+  --diamond-rotation: 45deg;
+}
+
+
 .diamond {
-  position: relative;
-  height: 100vh;
-  width: 100vw;
+  position: absolute;
+  height: var(--diamond-length);
+  width: var(--diamond-length);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(var(--diamond-rotation));
+  background-color: var(--color-primary-1);
+  box-shadow: 
+    // 0 0 0 calc(var(--diamond-length) * 1) var(--color-primary-2),
+    0 0 0 calc(var(--diamond-length) * 2) var(--color-primary-3),
+    0 0 0 calc(var(--diamond-length) * 3) var(--color-primary-4),
+    0 0 0 calc(var(--diamond-length) * 4) var(--color-primary-1)
+  ;
+}
 
-  &__left, &__right {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    //top right bottom left (2 are the same length one is 0 and the 3rd is 2x the first 2;  the longest side is the base
-    border-width: 75vh 0 75vh 75vw;
-    //three are transparent and the longest side is the desired color
-    border-color: transparent transparent transparent rgba($color-primary-4, .25);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  }
-
-  &__left {
-    transform: translate(-0%, -0%);
-  }
-
-  &__right {
-    transform: translate(-100%, 0%) rotate(180deg);
-  }
+.line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-primary-1);
+  width: calc(var(--diamond-length) * 10);
+  height: calc(var(--diamond-length) * 6);
+  border-radius: 1000px;
 }

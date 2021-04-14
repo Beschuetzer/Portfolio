@@ -22,10 +22,10 @@ const Bridge = () => {
 				name="Bridge"
 				pageName="bridge"
 			/>
-			<BackgroundVideo
+			{/* <BackgroundVideo
 				src={bgVideo}
 				type='mp4'
-			/>
+			/> */}
 
 		</section>
 	);
