@@ -110,6 +110,8 @@ $page-nav-top: calc(
 );
 
 :root {
+	scroll-behavior: smooth;
+	scroll-padding-top: $header-height * 1.55;
 	--nav-switch-width: $nav-switch-width;
 	--site-nav-linear-gradient: linear-gradient(
 		to right,

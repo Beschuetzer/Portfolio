@@ -298,4 +298,18 @@
 	&__table-item.skills-popup__link {
 		border-bottom: none;
 	}
+
+	&__content::-webkit-scrollbar {
+			width: $default-font-size;
+	}
+
+	&__content::-webkit-scrollbar-track {
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+			border-radius: $default-font-size;
+	}
+
+	&__content::-webkit-scrollbar-thumb {
+			border-radius: $default-font-size;
+			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+	}
 }
