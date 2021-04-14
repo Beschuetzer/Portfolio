@@ -1624,8 +1624,11 @@ body {
 }
 
 :root {
-  --diamond-length: 10vmin;
+  --diamond-length: 70vh;
   --diamond-rotation: 45deg;
+  --translate-center: translate(-50%, -50%);
+  --square-root-of-two: 0.707106781;
+  --square-outer-opacity: .25;
 }
 
 .diamond {
@@ -1638,6 +1641,47 @@ body {
   transform: translate(-50%, -50%) rotate(var(--diamond-rotation));
   background-color: var(--color-primary-1);
   box-shadow: 0 0 0 calc(var(--diamond-length) * 2) var(--color-primary-3), 0 0 0 calc(var(--diamond-length) * 3) var(--color-primary-4), 0 0 0 calc(var(--diamond-length) * 4) var(--color-primary-1);
+}
+
+.square {
+  opacity: var(--square-outer-opacity);
+  background-color: var(--color-primary-1);
+  position: absolute;
+  height: var(--diamond-length);
+  width: var(--diamond-length);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: var(--translate-center) rotate(var(--diamond-rotation));
+}
+.square-inner-odd {
+  opacity: calc(var(--square-outer-opacity) * var(--square-root-of-two));
+  transform: var(--translate-center) rotate(0);
+  background-color: var(--color-primary-4);
+}
+.square-inner-even {
+  opacity: calc(var(--square-outer-opacity) / 2);
+  background-color: var(--color-primary-1);
+}
+.square-outer {
+  height: calc(var(--diamond-length));
+  width: calc(var(--diamond-length));
+}
+.square-inner1 {
+  height: calc(var(--diamond-length) * var(--square-root-of-two));
+  width: calc(var(--diamond-length) * var(--square-root-of-two));
+}
+.square-inner2 {
+  height: calc(var(--diamond-length) / 2);
+  width: calc(var(--diamond-length) / 2);
+}
+.square-inner3 {
+  height: calc(var(--diamond-length) / 2 * var(--square-root-of-two));
+  width: calc(var(--diamond-length) / 2 * var(--square-root-of-two));
+}
+.square-inner4 {
+  height: calc(var(--diamond-length) / 4);
+  width: calc(var(--diamond-length) / 4);
 }
 
 .line {
