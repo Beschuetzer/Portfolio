@@ -26,7 +26,7 @@
 
 :root {
   scroll-behavior: smooth;
-  scroll-padding-top: 14rem;
+  scroll-padding-top: 12rem;
   --nav-switch-width: $nav-switch-width;
   --site-nav-linear-gradient: linear-gradient(
   	to right,
