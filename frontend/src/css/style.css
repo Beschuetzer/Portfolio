@@ -1647,15 +1647,26 @@ body {
 }
 
 .square {
-  opacity: var(--square-outer-opacity);
-  background-color: var(--color-primary-1);
+  background-color: var(--color-primary-2);
   position: absolute;
   height: var(--square-length);
   width: var(--square-length);
+  max-height: 100vh;
+  max-width: 100vw;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: var(--translate-center) rotate(var(--diamond-rotation));
+}
+.square-text {
+  z-index: 10000;
+  opacity: 1;
+  font-size: 12.8rem;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translate(-25%, -25%);
+  color: var(--color-primary-2);
 }
 .square-inner-odd {
   opacity: calc(var(--square-outer-opacity) * var(--square-root-of-two));
@@ -1666,6 +1677,8 @@ body {
   background-color: var(--color-primary-1);
 }
 .square-outer {
+  min-height: 100vh;
+  min-width: 100vw;
   height: calc(var(--square-length));
   width: calc(var(--square-length));
 }

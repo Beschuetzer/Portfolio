@@ -1,11 +1,14 @@
 import React from 'react';
 
-const SquareFractal = () => {
+const SquareFractal = ({topLeftWord}) => {
   return (
-    <div className='square-container'>
+    <div className='diamond-fractal'>
         <div className="square square-outer"> 
         </div>
-        <div className="circle circle-1"></div>
+        <div className="circle circle-1">
+          <p className="square__text square__text--top-left">{topLeftWord}</p>
+
+        </div>
         <div className="square square-inner1 square-inner-odd"> </div>
         <div className="circle circle-2"></div>
         <div className="square square-inner2 square-inner-even"> </div>

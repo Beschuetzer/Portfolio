@@ -6,13 +6,15 @@ const BridgeHero = () => {
   return (
     <article className="bridge__hero">
       {/* <div className="diamond"> */}
-      <div className="bridge__hero-text">
+      {/* <div className="bridge__hero-text">
         <h2 className="bridge__hero-heading heading--one">A</h2>
         <h2 className="bridge__hero-heading heading--one">#</h2>
         <h2 className="bridge__hero-heading heading--two">Maj</h2>
         <h2 className="bridge__hero-heading heading--two">Bridge</h2>
-      </div>
-      <SquareFractal/>
+      </div> */}
+      <SquareFractal
+        topLeftWord="Making"
+      />
     </article>
   );
 }
