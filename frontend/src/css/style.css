@@ -43,11 +43,11 @@
   );
   --square-animation-duration: 120s;
   --aspect-ratio-factor: calc(16 / 9);
-  --diamond-length: calc(20vw * var(--aspect-ratio-factor));
+  --square-length: calc(20vw * var(--aspect-ratio-factor));
   --diamond-rotation: 45deg;
   --translate-center: translate(-50%, -50%);
   --square-root-of-two: 0.707106781;
-  --square-outer-opacity: .075;
+  --square-outer-opacity: 0.05;
 }
 
 @keyframes black-hole {
@@ -1646,24 +1646,12 @@ body {
   -webkit-box-shadow: inset 0 0 0.8rem rgba(0, 0, 0, 0.5);
 }
 
-.diamond {
-  position: absolute;
-  height: var(--diamond-length);
-  width: var(--diamond-length);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(var(--diamond-rotation));
-  background-color: var(--color-primary-1);
-  box-shadow: 0 0 0 calc(var(--diamond-length) * 2) var(--color-primary-3), 0 0 0 calc(var(--diamond-length) * 3) var(--color-primary-4), 0 0 0 calc(var(--diamond-length) * 4) var(--color-primary-1);
-}
-
 .square {
   opacity: var(--square-outer-opacity);
   background-color: var(--color-primary-1);
   position: absolute;
-  height: var(--diamond-length);
-  width: var(--diamond-length);
+  height: var(--square-length);
+  width: var(--square-length);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1678,48 +1666,48 @@ body {
   background-color: var(--color-primary-1);
 }
 .square-outer {
-  height: calc(var(--diamond-length));
-  width: calc(var(--diamond-length));
+  height: calc(var(--square-length));
+  width: calc(var(--square-length));
 }
 .square-inner1 {
   animation: square-odd var(--square-animation-duration) infinite linear;
-  height: calc(var(--diamond-length) * var(--square-root-of-two));
-  width: calc(var(--diamond-length) * var(--square-root-of-two));
+  height: calc(var(--square-length) * var(--square-root-of-two));
+  width: calc(var(--square-length) * var(--square-root-of-two));
 }
 .square-inner2 {
   animation: square-even var(--square-animation-duration) infinite linear;
-  height: calc(var(--diamond-length) / 2);
-  width: calc(var(--diamond-length) / 2);
+  height: calc(var(--square-length) / 2);
+  width: calc(var(--square-length) / 2);
 }
 .square-inner3 {
   animation: square-odd calc(var(--square-animation-duration) / 2) infinite linear;
-  height: calc(var(--diamond-length) / 2 * var(--square-root-of-two));
-  width: calc(var(--diamond-length) / 2 * var(--square-root-of-two));
+  height: calc(var(--square-length) / 2 * var(--square-root-of-two));
+  width: calc(var(--square-length) / 2 * var(--square-root-of-two));
 }
 .square-inner4 {
   animation: square-even calc(var(--square-animation-duration) / 2) infinite linear;
-  height: calc(var(--diamond-length) / 4);
-  width: calc(var(--diamond-length) / 4);
+  height: calc(var(--square-length) / 4);
+  width: calc(var(--square-length) / 4);
 }
 .square-inner5 {
   animation: square-even calc(var(--square-animation-duration) / 4) infinite linear;
-  height: calc(var(--diamond-length) / 4 * var(--square-root-of-two));
-  width: calc(var(--diamond-length) / 4 * var(--square-root-of-two));
+  height: calc(var(--square-length) / 4 * var(--square-root-of-two));
+  width: calc(var(--square-length) / 4 * var(--square-root-of-two));
 }
 .square-inner6 {
   animation: square-even calc(var(--square-animation-duration) / 8) infinite linear;
-  height: calc(var(--diamond-length) / 8);
-  width: calc(var(--diamond-length) / 8);
+  height: calc(var(--square-length) / 8);
+  width: calc(var(--square-length) / 8);
 }
 .square-inner7 {
   animation: square-even calc(var(--square-animation-duration) / 8) infinite linear;
-  height: calc(var(--diamond-length) / 8 * var(--square-root-of-two));
-  width: calc(var(--diamond-length) / 8 * var(--square-root-of-two));
+  height: calc(var(--square-length) / 8 * var(--square-root-of-two));
+  width: calc(var(--square-length) / 8 * var(--square-root-of-two));
 }
 .square-inner8 {
   animation: square-even calc(var(--square-animation-duration) / 16) infinite linear;
-  height: calc(var(--diamond-length) / 16);
-  width: calc(var(--diamond-length) / 16);
+  height: calc(var(--square-length) / 16);
+  width: calc(var(--square-length) / 16);
 }
 
 .circle {
@@ -1731,40 +1719,40 @@ body {
   border-radius: 1000px;
 }
 .circle-1 {
-  width: calc(var(--diamond-length));
-  height: calc(var(--diamond-length));
+  width: calc(var(--square-length));
+  height: calc(var(--square-length));
 }
 .circle-2 {
-  width: calc(var(--diamond-length) * var(--square-root-of-two));
-  height: calc(var(--diamond-length) * var(--square-root-of-two));
+  width: calc(var(--square-length) * var(--square-root-of-two));
+  height: calc(var(--square-length) * var(--square-root-of-two));
 }
 .circle-3 {
-  width: calc(var(--diamond-length) / 2);
-  height: calc(var(--diamond-length) / 2);
+  width: calc(var(--square-length) / 2);
+  height: calc(var(--square-length) / 2);
 }
 .circle-4 {
-  width: calc(var(--diamond-length) * var(--square-root-of-two) / 2);
-  height: calc(var(--diamond-length) * var(--square-root-of-two) / 2);
+  width: calc(var(--square-length) * var(--square-root-of-two) / 2);
+  height: calc(var(--square-length) * var(--square-root-of-two) / 2);
 }
 .circle-5 {
-  width: calc(var(--diamond-length) / 4);
-  height: calc(var(--diamond-length) / 4);
+  width: calc(var(--square-length) / 4);
+  height: calc(var(--square-length) / 4);
 }
 .circle-6 {
-  width: calc(var(--diamond-length) * var(--square-root-of-two) / 4);
-  height: calc(var(--diamond-length) * var(--square-root-of-two) / 4);
+  width: calc(var(--square-length) * var(--square-root-of-two) / 4);
+  height: calc(var(--square-length) * var(--square-root-of-two) / 4);
 }
 .circle-7 {
-  width: calc(var(--diamond-length) / 8);
-  height: calc(var(--diamond-length) / 8);
+  width: calc(var(--square-length) / 8);
+  height: calc(var(--square-length) / 8);
 }
 .circle-8 {
-  width: calc(var(--diamond-length) * var(--square-root-of-two) / 8);
-  height: calc(var(--diamond-length) * var(--square-root-of-two) / 8);
+  width: calc(var(--square-length) * var(--square-root-of-two) / 8);
+  height: calc(var(--square-length) * var(--square-root-of-two) / 8);
 }
 .circle-9 {
-  width: calc(var(--diamond-length) / 16);
-  height: calc(var(--diamond-length) / 16);
+  width: calc(var(--square-length) / 16);
+  height: calc(var(--square-length) / 16);
 }
 
 .home {

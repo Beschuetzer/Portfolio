@@ -41,7 +41,7 @@ $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divider-width: $default-font-size * 0.2;
 $navbar__item-divider: $navbar__item-divider-width solid var(--color-primary-1);
 
-$navbar-box-shadow-color: rgba($color-black, .15);
+$navbar-box-shadow-color: rgba($color-black, 0.15);
 $hover-color-change-amount: 0.15;
 
 //skills
@@ -130,9 +130,9 @@ $page-nav-top: calc(
 	//shapes stuff
 	--square-animation-duration: 120s;
 	--aspect-ratio-factor: calc(16 / 9);
-  --diamond-length: calc(20vw * var(--aspect-ratio-factor));
-  --diamond-rotation: 45deg;
-  --translate-center: translate(-50%, -50%);
-  --square-root-of-two: 0.707106781;
-  --square-outer-opacity: .075;
+	--square-length: calc(20vw * var(--aspect-ratio-factor));
+	--diamond-rotation: 45deg;
+	--translate-center: translate(-50%, -50%);
+	--square-root-of-two: 0.707106781;
+	--square-outer-opacity: 0.05;
 }
