@@ -126,4 +126,13 @@ $page-nav-top: calc(
 		var(--color-primary-1),
 		var(--color-primary-1)
 	);
+
+	//shapes stuff
+	--square-animation-duration: 120s;
+	--aspect-ratio-factor: calc(16 / 9);
+  --diamond-length: calc(20vw * var(--aspect-ratio-factor));
+  --diamond-rotation: 45deg;
+  --translate-center: translate(-50%, -50%);
+  --square-root-of-two: 0.707106781;
+  --square-outer-opacity: .075;
 }

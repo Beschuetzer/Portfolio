@@ -1,12 +1,3 @@
-:root {
-  --diamond-length: 70vh;
-  --diamond-rotation: 45deg;
-  --translate-center: translate(-50%, -50%);
-  --square-root-of-two: 0.707106781;
-  --square-outer-opacity: .25;
-}
-
-
 .diamond {
   position: absolute;
   height: var(--diamond-length);
@@ -41,9 +32,10 @@
     &-odd {
       opacity: calc(var(--square-outer-opacity) * var(--square-root-of-two));
       transform: var(--translate-center) rotate(0);
-      background-color: var(--color-primary-4);
+      // background-color: var(--color-primary-4);
     }
     &-even {
+      // animation: square-even var(--square-animation-duration) infinite linear;
       opacity: calc(var(--square-outer-opacity) / 2);
       background-color: var(--color-primary-1);
     }
@@ -53,37 +45,105 @@
     width: calc(var(--diamond-length));
   }
   &-inner1 {
-
-    // background-color: var(--color-primary-2);
+    // mix-blend-mode: color;
+    // background-color: var(--color-primary-3);
+    animation: square-odd var(--square-animation-duration) infinite linear;
     height: calc(var(--diamond-length) * var(--square-root-of-two));
     width: calc(var(--diamond-length) * var(--square-root-of-two));
   }
   &-inner2 {
+    animation: square-even var(--square-animation-duration) infinite linear;
 
     height: calc(var(--diamond-length) / 2);
     width: calc(var(--diamond-length) / 2);
   }
 
   &-inner3 {
-
+    animation: square-odd calc(var(--square-animation-duration) / 2) infinite linear;
     height: calc(var(--diamond-length) / 2 * var(--square-root-of-two));
     width: calc(var(--diamond-length) / 2 * var(--square-root-of-two));
   }
   &-inner4 {
-
+    animation: square-even calc(var(--square-animation-duration) / 2) infinite linear;
     height: calc(var(--diamond-length) / 4);
     width: calc(var(--diamond-length) / 4);
+  }
+  &-inner5 {
+    animation: square-even calc(var(--square-animation-duration) / 4) infinite linear;
+    height: calc(var(--diamond-length) / 4 * var(--square-root-of-two));
+    width: calc(var(--diamond-length) / 4 * var(--square-root-of-two));
+  }
+  &-inner6 {
+    animation: square-even calc(var(--square-animation-duration) / 8) infinite linear;
+    height: calc(var(--diamond-length) / 8);
+    width: calc(var(--diamond-length) / 8);
+  }
+  &-inner7 {
+    animation: square-even calc(var(--square-animation-duration) / 8) infinite linear;
+    height: calc(var(--diamond-length) / 8 * var(--square-root-of-two));
+    width: calc(var(--diamond-length) / 8 * var(--square-root-of-two));
+  }
+  &-inner8 {
+    animation: square-even calc(var(--square-animation-duration) / 16) infinite linear;
+    height: calc(var(--diamond-length) / 16);
+    width: calc(var(--diamond-length) / 16);
   }
 }
 
 
-.line {
+.circle {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--color-primary-1);
-  width: calc(var(--diamond-length) * 10);
-  height: calc(var(--diamond-length) * 6);
+  transform: var(--translate-center);
+  background-color: var(--color-primary-4);
+  
   border-radius: 1000px;
+
+  &-1 {
+    width: calc(var(--diamond-length));
+    height: calc(var(--diamond-length));
+  }
+  &-2 {
+    width: calc(var(--diamond-length) * var(--square-root-of-two));
+    height: calc(var(--diamond-length) * var(--square-root-of-two));
+  }
+  &-3 {
+    width: calc(var(--diamond-length) / 2);
+    height: calc(var(--diamond-length) / 2);
+  }
+  &-4 {
+    width: calc(var(--diamond-length) * var(--square-root-of-two) / 2);
+    height: calc(var(--diamond-length) * var(--square-root-of-two) / 2);
+  }
+  &-5{
+    width: calc(var(--diamond-length) / 4);
+    height: calc(var(--diamond-length) / 4);
+  }
+  &-6 {
+    width: calc(var(--diamond-length) * var(--square-root-of-two) / 4);
+    height: calc(var(--diamond-length) * var(--square-root-of-two) / 4);
+  }
+  &-7{
+    width: calc(var(--diamond-length) / 8);
+    height: calc(var(--diamond-length) / 8);
+  }
+  &-8 {
+    width: calc(var(--diamond-length) * var(--square-root-of-two) / 8);
+    height: calc(var(--diamond-length) * var(--square-root-of-two) / 8);
+  }
+  &-9{
+    width: calc(var(--diamond-length) / 16);
+    height: calc(var(--diamond-length) / 16);
+  }
+
+  // .line:nth-of-type(2), .square:nth-of-type(2) {
+  //   height: calc(var(--diamond-length));
+  //   width: calc(var(--diamond-length));
+  //   background-color: green;
+  // }
+  // .line:nth-of-type(2), .square:nth-of-type(2) {
+  //   width: calc(var(--diamond-length) * var(--square-root-of-two));
+  //   height: calc(var(--diamond-length) * var(--square-root-of-two));
+  // }
 }

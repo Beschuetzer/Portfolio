@@ -41,6 +41,13 @@
   	var(--color-primary-1),
   	var(--color-primary-1)
   );
+  --square-animation-duration: 120s;
+  --aspect-ratio-factor: calc(16 / 9);
+  --diamond-length: calc(20vw * var(--aspect-ratio-factor));
+  --diamond-rotation: 45deg;
+  --translate-center: translate(-50%, -50%);
+  --square-root-of-two: 0.707106781;
+  --square-outer-opacity: .075;
 }
 
 @keyframes black-hole {
@@ -62,6 +69,22 @@
 @keyframes animate-skills {
   0% {
     background-position: 200% center;
+  }
+}
+@keyframes square-even {
+  0% {
+    transform: var(--translate-center) rotate(0deg);
+  }
+  100% {
+    transform: var(--translate-center) rotate(360deg);
+  }
+}
+@keyframes square-odd {
+  0% {
+    transform: var(--translate-center) rotate(0deg);
+  }
+  100% {
+    transform: var(--translate-center) rotate(-360deg);
   }
 }
 /* global reset;  box-sizing is set on body and set to inherit on all other elements */
@@ -1623,14 +1646,6 @@ body {
   -webkit-box-shadow: inset 0 0 0.8rem rgba(0, 0, 0, 0.5);
 }
 
-:root {
-  --diamond-length: 70vh;
-  --diamond-rotation: 45deg;
-  --translate-center: translate(-50%, -50%);
-  --square-root-of-two: 0.707106781;
-  --square-outer-opacity: .25;
-}
-
 .diamond {
   position: absolute;
   height: var(--diamond-length);
@@ -1657,7 +1672,6 @@ body {
 .square-inner-odd {
   opacity: calc(var(--square-outer-opacity) * var(--square-root-of-two));
   transform: var(--translate-center) rotate(0);
-  background-color: var(--color-primary-4);
 }
 .square-inner-even {
   opacity: calc(var(--square-outer-opacity) / 2);
@@ -1668,31 +1682,89 @@ body {
   width: calc(var(--diamond-length));
 }
 .square-inner1 {
+  animation: square-odd var(--square-animation-duration) infinite linear;
   height: calc(var(--diamond-length) * var(--square-root-of-two));
   width: calc(var(--diamond-length) * var(--square-root-of-two));
 }
 .square-inner2 {
+  animation: square-even var(--square-animation-duration) infinite linear;
   height: calc(var(--diamond-length) / 2);
   width: calc(var(--diamond-length) / 2);
 }
 .square-inner3 {
+  animation: square-odd calc(var(--square-animation-duration) / 2) infinite linear;
   height: calc(var(--diamond-length) / 2 * var(--square-root-of-two));
   width: calc(var(--diamond-length) / 2 * var(--square-root-of-two));
 }
 .square-inner4 {
+  animation: square-even calc(var(--square-animation-duration) / 2) infinite linear;
   height: calc(var(--diamond-length) / 4);
   width: calc(var(--diamond-length) / 4);
 }
+.square-inner5 {
+  animation: square-even calc(var(--square-animation-duration) / 4) infinite linear;
+  height: calc(var(--diamond-length) / 4 * var(--square-root-of-two));
+  width: calc(var(--diamond-length) / 4 * var(--square-root-of-two));
+}
+.square-inner6 {
+  animation: square-even calc(var(--square-animation-duration) / 8) infinite linear;
+  height: calc(var(--diamond-length) / 8);
+  width: calc(var(--diamond-length) / 8);
+}
+.square-inner7 {
+  animation: square-even calc(var(--square-animation-duration) / 8) infinite linear;
+  height: calc(var(--diamond-length) / 8 * var(--square-root-of-two));
+  width: calc(var(--diamond-length) / 8 * var(--square-root-of-two));
+}
+.square-inner8 {
+  animation: square-even calc(var(--square-animation-duration) / 16) infinite linear;
+  height: calc(var(--diamond-length) / 16);
+  width: calc(var(--diamond-length) / 16);
+}
 
-.line {
+.circle {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--color-primary-1);
-  width: calc(var(--diamond-length) * 10);
-  height: calc(var(--diamond-length) * 6);
+  transform: var(--translate-center);
+  background-color: var(--color-primary-4);
   border-radius: 1000px;
+}
+.circle-1 {
+  width: calc(var(--diamond-length));
+  height: calc(var(--diamond-length));
+}
+.circle-2 {
+  width: calc(var(--diamond-length) * var(--square-root-of-two));
+  height: calc(var(--diamond-length) * var(--square-root-of-two));
+}
+.circle-3 {
+  width: calc(var(--diamond-length) / 2);
+  height: calc(var(--diamond-length) / 2);
+}
+.circle-4 {
+  width: calc(var(--diamond-length) * var(--square-root-of-two) / 2);
+  height: calc(var(--diamond-length) * var(--square-root-of-two) / 2);
+}
+.circle-5 {
+  width: calc(var(--diamond-length) / 4);
+  height: calc(var(--diamond-length) / 4);
+}
+.circle-6 {
+  width: calc(var(--diamond-length) * var(--square-root-of-two) / 4);
+  height: calc(var(--diamond-length) * var(--square-root-of-two) / 4);
+}
+.circle-7 {
+  width: calc(var(--diamond-length) / 8);
+  height: calc(var(--diamond-length) / 8);
+}
+.circle-8 {
+  width: calc(var(--diamond-length) * var(--square-root-of-two) / 8);
+  height: calc(var(--diamond-length) * var(--square-root-of-two) / 8);
+}
+.circle-9 {
+  width: calc(var(--diamond-length) / 16);
+  height: calc(var(--diamond-length) / 16);
 }
 
 .home {

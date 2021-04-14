@@ -17,12 +17,25 @@ const BridgeHero = () => {
           </div>
 
         </div>
+        <div className="circle circle-1"></div>
         <div className="square square-inner1 square-inner-odd"> </div>
+        <div className="circle circle-2"></div>
         <div className="square square-inner2 square-inner-even"> </div>
+        <div className="circle circle-3"></div>
         <div className="square square-inner3 square-inner-odd"> </div>
+        <div className="circle circle-4"></div>
         <div className="square square-inner4 square-inner-even"> </div>
+        <div className="circle circle-5"></div>
+        <div className="square square-inner5 square-inner-even"> </div>
+        <div className="circle circle-6"></div>
+        <div className="square square-inner6 square-inner-even"> </div>
+        <div className="circle circle-7"></div>
+        <div className="square square-inner7 square-inner-even"> </div>
+        <div className="circle circle-8"></div>
+        <div className="square square-inner8 square-inner-even"> </div>
+        <div className="circle circle-9"></div>
+
       </div>
-      {/* <div className="line"></div> */}
     </article>
   );
 }

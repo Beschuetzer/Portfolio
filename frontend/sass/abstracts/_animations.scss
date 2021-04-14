@@ -25,6 +25,24 @@
 	}
 }
 
+@keyframes square-even {
+	0% {
+		transform: var(--translate-center) rotate(0deg);
+	}
+	100% {
+		transform: var(--translate-center) rotate(360deg);
+	}
+}
+
+@keyframes square-odd {
+	0% {
+		transform: var(--translate-center) rotate(0deg);
+	}
+	100% {
+		transform: var(--translate-center) rotate(-360deg);
+	}
+}
+
 // @keyframes selected-section {
 //   0% {
 //     transform: scale(1.05) rotate(0);
