@@ -229,6 +229,8 @@
 			transform $animation-duration * 0.25 $animation-easing-standard,
 			background-color $animation-duration * 0.25 $animation-easing-standard,
 		;
+		box-shadow: $navbar-box-shadow;
+
 
 		& .triangle-down {
 			transition: transform $animation-duration * 0.5 $animation-easing-standard;
@@ -293,6 +295,7 @@
 		display: flex;
 		align-items: center;
 		transition: border-radius $animation-duration * 1 $animation-easing-standard;
+		box-shadow: $navbar-box-shadow;
 
 		@include respond(nav-switch) {
 			border-radius: $default-font-size;
@@ -630,6 +633,7 @@
 	}
 
 	&__section {
+		text-shadow: 0 $default-font-size $default-font-size * 2 var(--page-nav-shadow-hover);
 		width: 100%;
 		text-align: center;
 		text-decoration: none;
@@ -683,6 +687,7 @@
 				// box-shadow: 0 0 $default-font-size * 2 0 var(--color-primary-3);
 				// background-color: var(--color-primary-3);
 				transform: translateY(-0.25vw);
+				--page-nav-shadow-hover: rgba($color-black, .15);
 
 				@include respond(nav-switch) {
 					transform: translateY(-$default-font-size * 0.1);

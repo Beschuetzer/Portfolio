@@ -41,6 +41,7 @@
   	var(--color-primary-1),
   	var(--color-primary-1)
   );
+  --page-nav-shadow-hover: #f5f1da;
   --diamond-fractal-animation-duration: 120s;
   --diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
   --aspect-ratio-factor: calc(16 / 9);
@@ -1178,6 +1179,7 @@ body {
   height: 100%;
   width: 100%;
   transition: transform 0.125s ease, background-color 0.125s ease;
+  box-shadow: 0 1.6rem 3.2rem rgba(251, 238, 172, 0.2);
 }
 .navbar__item .triangle-down {
   transition: transform 0.25s ease;
@@ -1233,6 +1235,7 @@ body {
   display: flex;
   align-items: center;
   transition: border-radius 0.5s ease;
+  box-shadow: 0 1.6rem 3.2rem rgba(251, 238, 172, 0.2);
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__button {
@@ -1537,6 +1540,7 @@ body {
   }
 }
 .page-nav__section {
+  text-shadow: 0 1.6rem 3.2rem var(--page-nav-shadow-hover);
   width: 100%;
   text-align: center;
   text-decoration: none;
@@ -1583,6 +1587,7 @@ body {
 }
 .page-nav__section-group:hover {
   transform: translateY(-0.25vw);
+  --page-nav-shadow-hover: rgba($color-black, .15);
 }
 @media only screen and (max-width: 68.75em) {
   .page-nav__section-group:hover {

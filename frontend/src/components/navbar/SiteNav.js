@@ -149,6 +149,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		const navBar = navRef.current;
 		const resetAnimatingId = setTimeout(() => {
 			navBar?.classList?.remove("navbar--isAnimating");
+			navBar?.classList?.remove("overflow--hidden");
 			if (isAnimating && navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME)) {
 				root.classList?.add(NAVBAR_DONE_CLASSNAME);
 				navBar.classList?.add(NAVBAR_DONE_CLASSNAME);
@@ -167,7 +168,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	return ReactDOM.createPortal(
 		<nav
 			ref={navRef}
-			className="navbar z-index-navbar overflow--hidden"
+			className="navbar z-index-navbar"
 			onClick={onNavClick}>
 			<div className="navbar__button" to="/">
 				<div className="navbar__menu">
