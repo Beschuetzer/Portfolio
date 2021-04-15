@@ -634,7 +634,7 @@
 	}
 
 	&__section {
-		text-shadow: 0 $default-font-size $default-font-size * 2 var(--page-nav-shadow-hover);
+		text-shadow: getTextShadow(glowing, $color-primary-resume-4);
 		width: 100%;
 		text-align: center;
 		text-decoration: none;

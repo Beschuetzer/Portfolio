@@ -109,6 +109,7 @@
 		}
 	}
 	& .heading {
+		text-shadow: getTextShadow(glowing, $color-grey-20);
 		color: var(--color-primary-3);
 	}
 }

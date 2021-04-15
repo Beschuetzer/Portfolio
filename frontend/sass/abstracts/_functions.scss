@@ -62,3 +62,45 @@
 // .component {
 //   background-color: saturation(var(--color-primary), 1.2);
 // }
+
+
+@function getTextShadow($type, $color, $color2: #000) {
+	@if $type == simple {
+		@return 2px 2px 3px rgba($color, 0.1);
+	}
+	@if $type == hard {
+		@return 6px 6px 0px rgba($color,0.2);
+	}
+	@if $type == double {
+		@return 4px 3px 0px rgba($color, .2), 9px 8px 0px rgba($color2, .15);
+	}
+	@if $type == distant {
+		@return 0px 3px 0px $color, 0px 14px 10px rgba($color2 ,0.15), 0px 24px 2px rgba($color2 ,0.1), 0px 34px 30px rgba($color2 ,0.1);
+	}
+	@if $type == close {
+		@return 0px 4px 3px rgba($color ,0.4),
+		0px 8px 13px rgba($color ,0.1),
+		0px 18px 23px rgba($color ,0.1);
+	}
+	@if $type == 3d {
+		@return 
+		0 1px 0 #ccc, 
+		0 2px 0 #c9c9c9,
+		0 3px 0 #bbb,
+		0 4px 0 #b9b9b9,
+		0 5px 0 #aaa,
+		0 6px 1px rgba($color2, .1),
+		0 0 5px rgba($color2, .1),
+		0 1px 3px rgba($color2, .3),
+		0 3px 5px rgba($color2, .2),
+		0 5px 10px rgba($color2, .25),
+		0 10px 10px rgba($color2, .2),
+		0 20px 20px rgba($color2, .15);
+	}
+	@if $type == inset {
+		@return rgba($color, 0.5) 0px 3px 3px;
+	}
+	@if $type == glowing {
+		@return 0px 0px 6px rgba($color, 0.7);
+	}
+}
