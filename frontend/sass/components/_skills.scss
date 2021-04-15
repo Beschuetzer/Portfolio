@@ -159,10 +159,8 @@
 	&__title--animating:link,
 	&__title--animating:visited {
 		@include link-animating;
-		transition: 
-			border $animation-duration * .5 $animation-easing-standard,
-			transform $animation-duration $animation-easing-standard,
-		;
+		transition: border $animation-duration * 0.5 $animation-easing-standard,
+			transform $animation-duration $animation-easing-standard;
 
 		&:link:hover,
 		&:visited:hover,
@@ -254,7 +252,8 @@
 		&-inner {
 			position: relative;
 			backface-visibility: hidden;
-			box-shadow: 0 $default-font-size * 0.5 $default-font-size * 1 0 $navbar-box-shadow-color;
+			box-shadow: 0 $default-font-size * 0.5 $default-font-size * 1 0
+				$navbar-box-shadow-resume-color;
 			background-color: var(--color-primary-2);
 			height: $default-font-size;
 			opacity: 0;

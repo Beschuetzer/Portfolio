@@ -41,8 +41,9 @@ $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divider-width: $default-font-size * 0.2;
 $navbar__item-divider: $navbar__item-divider-width solid var(--color-primary-1);
 
-$navbar-box-shadow-color: rgba($color-black, 0.15);
-$navbar-box-shadow: 0 $default-font-size $default-font-size * 2 rgba($color-primary-resume-4, .2);
+$navbar-box-shadow-resume-color: rgba($color-black, 0.15);
+$navbar-box-shadow-resume: 0 $default-font-size $default-font-size * 2
+	rgba($color-primary-resume-2, 0.2);
 $hover-color-change-amount: 0.15;
 
 //skills
@@ -128,7 +129,6 @@ $page-nav-top: calc(
 		var(--color-primary-1)
 	);
 
-
 	--page-nav-shadow-hover: #{$color-primary-bridge-4};
 
 	//shapes stuff
@@ -139,6 +139,4 @@ $page-nav-top: calc(
 	--translate-center: translate(-50%, -50%);
 	--square-root-of-two: 0.707106781;
 	--diamond-outer-opacity: 0.05;
-
 }
-

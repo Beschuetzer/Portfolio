@@ -157,7 +157,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 				root.classList?.remove(NAVBAR_DONE_CLASSNAME);
 				navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 			}
-		}, ANIMATION_DURATION * 1.15);
+		}, ANIMATION_DURATION * 1.2);
 		navBar?.classList?.add("navbar--isAnimating");
 
 		return () => {

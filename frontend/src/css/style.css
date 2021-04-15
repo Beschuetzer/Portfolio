@@ -1179,7 +1179,7 @@ body {
   height: 100%;
   width: 100%;
   transition: transform 0.125s ease, background-color 0.125s ease;
-  box-shadow: 0 1.6rem 3.2rem rgba(251, 238, 172, 0.2);
+  box-shadow: 0 1.6rem 3.2rem rgba(138, 197, 208, 0.2);
 }
 .navbar__item .triangle-down {
   transition: transform 0.25s ease;
@@ -1235,7 +1235,7 @@ body {
   display: flex;
   align-items: center;
   transition: border-radius 0.5s ease;
-  box-shadow: 0 1.6rem 3.2rem rgba(251, 238, 172, 0.2);
+  box-shadow: 0 1.6rem 3.2rem rgba(138, 197, 208, 0.2);
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__button {
@@ -1588,7 +1588,7 @@ body {
 }
 .page-nav__section-group:hover {
   transform: translateY(-0.25vw);
-  --page-nav-shadow-hover: rgba($color-black, .15);
+  --page-nav-shadow-hover: rgba($color-black, 0.15);
 }
 @media only screen and (max-width: 68.75em) {
   .page-nav__section-group:hover {
@@ -1603,23 +1603,31 @@ body {
 }
 
 @media only screen and (min-width: 68.8125em) {
-  .bridge-page .header, .csharp-page .header {
+  .bridge-page .header,
+.csharp-page .header {
     top: 1.6rem;
   }
-  .bridge-page .header__inner, .csharp-page .header__inner {
+  .bridge-page .header__inner,
+.csharp-page .header__inner {
     width: calc(100% - 3.2rem);
   }
-  .bridge-page .site-nav, .bridge-page .github, .csharp-page .site-nav, .csharp-page .github {
+  .bridge-page .site-nav, .bridge-page .github,
+.csharp-page .site-nav,
+.csharp-page .github {
     transform: scale(0.75);
     transition: transform 0.5s ease 0.375s;
   }
-  .bridge-page .site-nav, .csharp-page .site-nav {
+  .bridge-page .site-nav,
+.csharp-page .site-nav {
     transform-origin: top left;
   }
-  .bridge-page .github, .csharp-page .github {
+  .bridge-page .github,
+.csharp-page .github {
     transform-origin: top right;
   }
-  .bridge-page .github:hover, .bridge-page .site-nav:hover, .csharp-page .github:hover, .csharp-page .site-nav:hover {
+  .bridge-page .github:hover, .bridge-page .site-nav:hover,
+.csharp-page .github:hover,
+.csharp-page .site-nav:hover {
     transform: scale(1);
   }
 }
