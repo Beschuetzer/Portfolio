@@ -1744,7 +1744,6 @@ body {
   left: 50%;
   transform: var(--translate-center);
   background-color: var(--color-primary-4);
-  border-radius: 3.2rem;
 }
 .circle-1 {
   width: calc(var(--diamond-fractal-length));

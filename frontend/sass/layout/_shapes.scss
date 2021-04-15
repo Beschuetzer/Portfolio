@@ -136,7 +136,7 @@
 	left: 50%;
 	transform: var(--translate-center);
 	background-color: var(--color-primary-4);
-	border-radius: $default-font-size * 2;
+	// border-radius: $default-font-size * 2;
 
 	&-1 {
 		width: calc(var(--diamond-fractal-length));
