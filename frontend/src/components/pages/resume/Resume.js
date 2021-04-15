@@ -563,7 +563,7 @@ class Resume extends React.Component {
 		return (
 			<React.Fragment>
 				<section className="resume">
-					<h2 className="heading heading--two">Resume</h2>
+					<h2 className="heading heading--two">R&eacute;sum&eacute;</h2>
 					{this.renderSections()}
 				</section>
 				<SkillsPopup />

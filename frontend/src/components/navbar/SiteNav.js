@@ -186,7 +186,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 					<NavListItem
 						to="/resume"
-						label="Resume"
+						label="R&eacute;sum&eacute;"
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
 					/>
