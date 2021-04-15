@@ -28,7 +28,13 @@ IDEAS-----------------------------------------------------------
 
 -figure out how to create a bash script to get all of the .js files in a dir and its sub-dirs and then create .ts files in the same location with the contents of the respective .js file
 
--figure out how to add styles for SiteNav for each page
+
+
+-finish csharp and autobid.txt
+
+-fix glitch where changing from bridge to resume using SiteNav causes overflow glitch on resume page when it loads
+-change SiteNav box shadow to none when --isAnimating is true
+
 
 
 
