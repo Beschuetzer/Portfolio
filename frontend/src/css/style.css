@@ -1646,6 +1646,12 @@ body {
   -webkit-box-shadow: inset 0 0 0.8rem rgba(0, 0, 0, 0.5);
 }
 
+.diamond-fractal {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
 .square {
   opacity: calc(var(--diamond-outer-opacity) * var(--square-root-of-two));
   mix-blend-mode: difference;
@@ -2001,11 +2007,14 @@ div.references__name {
 }
 
 .bridge {
+  display: grid;
+  grid-template-rows: 85vh 15vh;
   position: relative;
   width: 100%;
   background-color: var(--color-primary-4);
 }
 .bridge__hero {
+  position: relative;
   height: 85vh;
 }
 .bridge__hero-heading {
@@ -2015,7 +2024,7 @@ div.references__name {
   position: absolute;
 }
 .bridge__hero-heading:first-of-type {
-  top: 25%;
+  top: 33%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -2026,18 +2035,13 @@ div.references__name {
   transform: translate(-50%, -50%);
 }
 .bridge__hero-heading:nth-of-type(3) {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.bridge__hero-heading:nth-of-type(4) {
   mix-blend-mode: darken;
   top: 50%;
   left: 75%;
   transform: translate(-50%, -50%);
 }
-.bridge__hero-heading:nth-of-type(5) {
-  top: 75%;
+.bridge__hero-heading:nth-of-type(4) {
+  top: 66%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -2045,6 +2049,10 @@ div.references__name {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+}
+.bridge__section {
+  background-color: var(--color-primary-2);
+  color: var(--color-primary-1);
 }
 .bridge__content {
   padding: 1.6rem;

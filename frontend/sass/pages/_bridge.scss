@@ -1,9 +1,13 @@
 .bridge {
+	display: grid;
+	grid-template-rows: 85vh 15vh;
+	// grid-template-columns: repeat(8, 1fr);
 	position: relative;
 	width: 100%;
 	background-color: var(--color-primary-4);
 
 	&__hero {
+		position: relative;
 		height: 85vh;
 
 		&-heading {
@@ -13,7 +17,7 @@
 			position: absolute;
 
 		  &:first-of-type {
-		    top: 25%;
+		    top: 33%;
 		    left: 50%;
 		    transform: translate(-50%,-50%);
 		  }
@@ -25,18 +29,13 @@
 		    transform: translate(-50%,-50%);
 		  }
 			&:nth-of-type(3) {
-		    top: 50%;
-		    left: 50%;
-		    transform: translate(-50%,-50%);
-		  }
-			&:nth-of-type(4) {
 				mix-blend-mode: darken;
 		    top: 50%;
 		    left: 75%;
 		    transform: translate(-50%,-50%);
 		  }
-			&:nth-of-type(5) {
-		    top: 75%;
+			&:nth-of-type(4) {
+		    top: 66%;
 		    left: 50%;
 		    transform: translate(-50%,-50%);
 		  }
@@ -60,6 +59,12 @@
 			align-items: center;
 			justify-content: space-evenly;
 		}
+	}
+
+	&__section {
+		// padding: $default-font-size * 10;
+		background-color: var(--color-primary-2);
+		color: var(--color-primary-1);
 	}
 
 	&__content {

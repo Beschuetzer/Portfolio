@@ -1,4 +1,10 @@
 
+.diamond-fractal {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
 .square {
   opacity: calc(var(--diamond-outer-opacity) * var(--square-root-of-two));
 

@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 
 import BridgeHero from './BridgeHero';
+import Section from './../../../Section';
+
 import BackgroundVideo from '../../../BackgroundVideo';
 import bgVideo from '../../../../clips/animation-roundEnd-other-player.mp4';
 
@@ -17,7 +19,8 @@ const Bridge = () => {
 	}, []);
 
 	return (
-		<section className="bridge">
+		<React.Fragment>
+		<div className="bridge">
 			<BridgeHero
 				name="Bridge"
 				pageName="bridge"
@@ -26,8 +29,15 @@ const Bridge = () => {
 				src={bgVideo}
 				type='mp4'
 			/> */}
+			
+			<Section
+				pageName='bridge'
+				name='Summary'
+			>
+			</Section>
+		</div>
 
-		</section>
+	</React.Fragment>
 	);
 };
 
