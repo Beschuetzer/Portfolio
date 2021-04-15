@@ -1,6 +1,7 @@
 .bridge {
 	display: grid;
-	grid-template-rows: 85vh 15vh;
+	grid-template-rows: 100vh;
+	// grid-auto-rows: 1fr;
 	// grid-template-columns: repeat(8, 1fr);
 	position: relative;
 	width: 100%;
@@ -8,13 +9,17 @@
 
 	&__hero {
 		position: relative;
-		height: 85vh;
+		// height: 85vh;
+
+	
 
 		&-heading {
 			mix-blend-mode: difference;
 		  z-index: 10;
 		  color: var(--color-primary-2);
 			position: absolute;
+			font-weight: 100;
+			font-size: $default-font-size * 6;
 
 		  &:first-of-type {
 		    top: 33%;
@@ -23,18 +28,20 @@
 		  }
 
 			&:nth-of-type(2) {
-				mix-blend-mode: darken;
+				mix-blend-mode: difference;
 		    top: 50%;
-		    left: 25%;
+		    left: 15%;
 		    transform: translate(-50%,-50%);
 		  }
 			&:nth-of-type(3) {
-				mix-blend-mode: darken;
+				mix-blend-mode: difference;
 		    top: 50%;
-		    left: 75%;
-		    transform: translate(-50%,-50%);
+		    right: 15%;
+		    transform: translate(50%,-50%);
 		  }
 			&:nth-of-type(4) {
+				mix-blend-mode: difference;
+
 		    top: 66%;
 		    left: 50%;
 		    transform: translate(-50%,-50%);

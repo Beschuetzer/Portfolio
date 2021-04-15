@@ -1646,10 +1646,17 @@ body {
   -webkit-box-shadow: inset 0 0 0.8rem rgba(0, 0, 0, 0.5);
 }
 
+:root {
+  --diamond-clip-low: 31.8%;
+  --diamond-clip-high: 68.2%;
+}
+
 .diamond-fractal {
+  background: var(--color-primary-1);
   height: 100%;
   width: 100%;
   position: relative;
+  clip-path: polygon(0 0, 100% 0%, var(--diamond-clip-high) var(--diamond-clip-low), var(--diamond-clip-high) var(--diamond-clip-high), 100% 100%, 0 100%, var(--diamond-clip-low) var(--diamond-clip-high), var(--diamond-clip-low) var(--diamond-clip-low), 0 0);
 }
 
 .square {
@@ -1723,7 +1730,7 @@ body {
   left: 50%;
   transform: var(--translate-center);
   background-color: var(--color-primary-4);
-  border-radius: 0;
+  border-radius: 3.2rem;
 }
 .circle-1 {
   width: calc(var(--diamond-fractal-length));
@@ -2008,20 +2015,21 @@ div.references__name {
 
 .bridge {
   display: grid;
-  grid-template-rows: 85vh 15vh;
+  grid-template-rows: 100vh;
   position: relative;
   width: 100%;
   background-color: var(--color-primary-4);
 }
 .bridge__hero {
   position: relative;
-  height: 85vh;
 }
 .bridge__hero-heading {
   mix-blend-mode: difference;
   z-index: 10;
   color: var(--color-primary-2);
   position: absolute;
+  font-weight: 100;
+  font-size: 9.6rem;
 }
 .bridge__hero-heading:first-of-type {
   top: 33%;
@@ -2029,18 +2037,19 @@ div.references__name {
   transform: translate(-50%, -50%);
 }
 .bridge__hero-heading:nth-of-type(2) {
-  mix-blend-mode: darken;
+  mix-blend-mode: difference;
   top: 50%;
-  left: 25%;
+  left: 15%;
   transform: translate(-50%, -50%);
 }
 .bridge__hero-heading:nth-of-type(3) {
-  mix-blend-mode: darken;
+  mix-blend-mode: difference;
   top: 50%;
-  left: 75%;
-  transform: translate(-50%, -50%);
+  right: 15%;
+  transform: translate(50%, -50%);
 }
 .bridge__hero-heading:nth-of-type(4) {
+  mix-blend-mode: difference;
   top: 66%;
   left: 50%;
   transform: translate(-50%, -50%);

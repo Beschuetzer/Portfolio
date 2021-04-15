@@ -1,8 +1,26 @@
 
+:root{
+  --diamond-clip-low: 31.8%;
+  --diamond-clip-high: 68.2%;
+}
+
 .diamond-fractal {
+  background: var(--color-primary-1);
   height: 100%;
   width: 100%;
   position: relative;
+
+  clip-path: polygon(
+    0 0,
+    100% 0%,
+    var(--diamond-clip-high) var(--diamond-clip-low),
+    var(--diamond-clip-high) var(--diamond-clip-high),
+    100% 100%,
+    0 100%,
+    var(--diamond-clip-low) var(--diamond-clip-high),
+    var(--diamond-clip-low) var(--diamond-clip-low),
+    0 0,
+  ); 
 }
 
 .square {
@@ -118,7 +136,7 @@
 	left: 50%;
 	transform: var(--translate-center);
 	background-color: var(--color-primary-4);
-	border-radius: 0;
+	border-radius: $default-font-size * 2;
 
 	&-1 {
 		width: calc(var(--diamond-fractal-length));
