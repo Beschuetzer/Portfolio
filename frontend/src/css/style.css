@@ -1415,6 +1415,7 @@ body {
 }
 .navbar.navbar--isAnimating * {
   pointer-events: none;
+  box-shadow: none;
 }
 .navbar * {
   -webkit-user-drag: none;

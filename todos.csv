@@ -33,7 +33,6 @@ IDEAS-----------------------------------------------------------
 -finish csharp and autobid.txt
 
 -fix glitch where changing from bridge to resume using SiteNav causes overflow glitch on resume page when it loads
--change SiteNav box shadow to none when --isAnimating is true
 
 
 

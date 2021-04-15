@@ -497,6 +497,7 @@
 	//Handling Bug where leaving button after clicking causes overflow hidden to change
 	&.navbar--isAnimating * {
 		pointer-events: none;
+		box-shadow: none;
 	}
 
 	& * {
