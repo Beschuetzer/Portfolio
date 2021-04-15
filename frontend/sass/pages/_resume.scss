@@ -58,6 +58,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: $default-font-size * 2;
+		text-shadow: getTextShadow(soft-emboss, $color-primary-resume-3, $color-primary-resume-2);
 
 		@include respond(tab-port) {
 			margin-bottom: $default-font-size * 0.75;
@@ -109,7 +110,8 @@
 		}
 	}
 	& .heading {
-		text-shadow: getTextShadow(glowing, $color-grey-20);
+		text-shadow: getTextShadow(distant, $color-grey-20, $color-black);
+		// text-shadow: getTextShadow(soft-emboss, $color-primary-3);
 		color: var(--color-primary-3);
 	}
 }

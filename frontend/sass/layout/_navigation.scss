@@ -634,7 +634,8 @@
 	}
 
 	&__section {
-		text-shadow: getTextShadow(glowing, $color-primary-resume-4);
+		// text-shadow: getTextShadow(glowing, $color-primary-resume-4);
+		text-shadow: getTextShadow(soft-emboss, $color-primary-resume-4);
 		width: 100%;
 		text-align: center;
 		text-decoration: none;
