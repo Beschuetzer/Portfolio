@@ -10,6 +10,7 @@ import Contact from "./pages/Contact";
 import Examples from "./pages/examples/Examples";
 import CSharp from "./pages/examples/CSharp";
 import Bridge from "./pages/examples/Bridge/Bridge";
+import Autobid from "./pages/examples/Autobid";
 import Resume from "./pages/resume/Resume";
 import SiteNav from "./navbar/SiteNav";
 import PageNav from "./navbar/PageNav";
@@ -81,6 +82,7 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 		mobileBreakPointWidth,
 		isAnimating,
 		setIsAnimating,
+		setViewPortWidth,
 	]);
 
 	return (
@@ -90,6 +92,7 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 				<Route path="/examples" exact component={Examples} />
 				<Route path="/examples/bridge" exact component={Bridge} />
 				<Route path="/examples/csharp" exact component={CSharp} />
+				<Route path="/examples/autobid" exact component={Autobid} />
 				<Route path="/about" exact component={About} />
 				<Route path="/resume" exact component={Resume} />
 				<Route path="/contact" exact component={Contact} />

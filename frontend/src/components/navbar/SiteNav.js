@@ -199,20 +199,21 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 						triangle={<div className="triangle-down"></div>}>
 						<ul className="navbar__dropdown">
 							<NavListItem
+								to="/examples/csharp"
+								label="Downloader"
+								label2="Playlist Syncer"
+								onMouseEnter={onMouseEnter}
+								onClick={onNavItemClick}
+							/>
+							<NavListItem
 								to="/examples/bridge"
 								label="Bridge"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
 							<NavListItem
-								to="/examples/csharp"
-								label="C#"
-								onMouseEnter={onMouseEnter}
-								onClick={onNavItemClick}
-							/>
-							<NavListItem
-								to="/examples/python"
-								label="Python"
+								to="/examples/autobid"
+								label="Auto Bid"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
