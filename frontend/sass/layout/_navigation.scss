@@ -287,15 +287,18 @@
 		z-index: 100;
 		// border: $default-font-size * .1 solid transparent;
 		background-color: var(--color-primary-4);
+		border: 1px dashed var(--color-primary-1);
 		border-radius: $navbar__item-border-radius;
 		display: flex;
 		align-items: center;
-		transition: border-radius $animation-duration * 1 $animation-easing-standard;
-		box-shadow: $navbar-box-shadow-resume;
+		transition: 
+			border $animation-duration * 1 $animation-easing-standard;
+			box-shadow: $navbar-box-shadow-resume
+		;
 
 		@include respond(nav-switch) {
 			border-radius: $default-font-size;
-
+			border: none;
 			transition: border-radius $animation-duration * 0.5
 				$animation-easing-standard;
 		}

@@ -7,68 +7,9 @@
 	width: 100%;
 	background-color: var(--color-primary-4);
 
-	&__hero {
-		position: relative;
-		// height: 85vh;
-
-	
-
-		&-heading {
-			mix-blend-mode: difference;
-		  z-index: 10;
-		  color: var(--color-primary-2);
-			position: absolute;
-			font-weight: 100;
-			font-size: $default-font-size * 6;
-
-		  &:first-of-type {
-		    top: 33%;
-		    left: 50%;
-		    transform: translate(-50%,-50%);
-		  }
-
-			&:nth-of-type(2) {
-				mix-blend-mode: difference;
-		    top: 50%;
-		    left: 15%;
-		    transform: translate(-50%,-50%);
-		  }
-			&:nth-of-type(3) {
-				mix-blend-mode: difference;
-		    top: 50%;
-		    right: 15%;
-		    transform: translate(50%,-50%);
-		  }
-			&:nth-of-type(4) {
-				mix-blend-mode: difference;
-
-		    top: 66%;
-		    left: 50%;
-		    transform: translate(-50%,-50%);
-		  }
-		}
-		// &-text {
-		// 	height: var(--diamond-fractal-length);
-		// 	width: var(--diamond-fractal-length);
-		// 	text-align: center;
-		// 	display: flex;
-		// 	justify-content: center;
-		// 	align-items: space-between;
-		// 	flex-direction: column;
-		// 	position: relative;
-		// 	// z-index: 1;
-		// 	color: var(--color-primary-1);
-		// 	// transform: rotate(calc(var(--diamond-fractal-rotation) * -1));
-		// }
-
-		&-middle {
-			display: flex;
-			align-items: center;
-			justify-content: space-evenly;
-		}
-	}
-
 	&__section {
+		z-index: 1;
+		position: relative;
 		// padding: $default-font-size * 10;
 		background-color: var(--color-primary-2);
 		color: var(--color-primary-1);
@@ -76,5 +17,64 @@
 
 	&__content {
 		padding: $default-font-size;
+	}
+}
+
+.hero {
+	position: relative;
+	// height: 85vh;
+
+	&-heading {
+		mix-blend-mode: difference;
+		z-index: 10;
+		color: var(--color-primary-2);
+		position: absolute;
+		font-weight: 100;
+		font-size: $default-font-size * 6;
+
+		&:first-of-type {
+			top: 33%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+
+		&:nth-of-type(2) {
+			mix-blend-mode: difference;
+			top: 50%;
+			left: 15%;
+			transform: translate(-50%,-50%);
+		}
+		&:nth-of-type(3) {
+			mix-blend-mode: difference;
+			top: 50%;
+			right: 15%;
+			transform: translate(50%,-50%);
+		}
+		&:nth-of-type(4) {
+			mix-blend-mode: difference;
+
+			top: 66%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+	}
+	// &-text {
+	// 	height: var(--diamond-fractal-length);
+	// 	width: var(--diamond-fractal-length);
+	// 	text-align: center;
+	// 	display: flex;
+	// 	justify-content: center;
+	// 	align-items: space-between;
+	// 	flex-direction: column;
+	// 	position: relative;
+	// 	// z-index: 1;
+	// 	color: var(--color-primary-1);
+	// 	// transform: rotate(calc(var(--diamond-fractal-rotation) * -1));
+	// }
+
+	&-middle {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
 	}
 }

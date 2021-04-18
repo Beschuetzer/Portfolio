@@ -321,6 +321,12 @@ body {
 
 .bg-video {
   opacity: 0.075;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  clip-path: polygon(10% 0%, 10% 100%);
 }
 .bg-video video {
   height: 100%;
@@ -1179,7 +1185,7 @@ body {
   height: 100%;
   width: 100%;
   transition: transform 0.125s ease, background-color 0.125s ease;
-  box-shadow: 0 1.6rem 3.2rem rgba(138, 197, 208, 0.2);
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.15);
 }
 .navbar__item .triangle-down {
   transition: transform 0.25s ease;
@@ -1231,15 +1237,17 @@ body {
   cursor: pointer;
   z-index: 100;
   background-color: var(--color-primary-4);
+  border: 1px dashed var(--color-primary-1);
   border-radius: 16rem;
   display: flex;
   align-items: center;
-  transition: border-radius 0.5s ease;
-  box-shadow: 0 1.6rem 3.2rem rgba(138, 197, 208, 0.2);
+  transition: border 0.5s ease;
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.15);
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__button {
     border-radius: 1.6rem;
+    border: none;
     transition: border-radius 0.25s ease;
   }
 }
@@ -2035,10 +2043,20 @@ div.references__name {
   width: 100%;
   background-color: var(--color-primary-4);
 }
-.bridge__hero {
+.bridge__section {
+  z-index: 1;
+  position: relative;
+  background-color: var(--color-primary-2);
+  color: var(--color-primary-1);
+}
+.bridge__content {
+  padding: 1.6rem;
+}
+
+.hero {
   position: relative;
 }
-.bridge__hero-heading {
+.hero-heading {
   mix-blend-mode: difference;
   z-index: 10;
   color: var(--color-primary-2);
@@ -2046,40 +2064,33 @@ div.references__name {
   font-weight: 100;
   font-size: 9.6rem;
 }
-.bridge__hero-heading:first-of-type {
+.hero-heading:first-of-type {
   top: 33%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.bridge__hero-heading:nth-of-type(2) {
+.hero-heading:nth-of-type(2) {
   mix-blend-mode: difference;
   top: 50%;
   left: 15%;
   transform: translate(-50%, -50%);
 }
-.bridge__hero-heading:nth-of-type(3) {
+.hero-heading:nth-of-type(3) {
   mix-blend-mode: difference;
   top: 50%;
   right: 15%;
   transform: translate(50%, -50%);
 }
-.bridge__hero-heading:nth-of-type(4) {
+.hero-heading:nth-of-type(4) {
   mix-blend-mode: difference;
   top: 66%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.bridge__hero-middle {
+.hero-middle {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-}
-.bridge__section {
-  background-color: var(--color-primary-2);
-  color: var(--color-primary-1);
-}
-.bridge__content {
-  padding: 1.6rem;
 }
 
 /*# sourceMappingURL=style.css.map */
