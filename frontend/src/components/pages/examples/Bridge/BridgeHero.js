@@ -12,15 +12,6 @@ const BridgeHero = () => {
 
 	return (
     <div className="hero">
-      {/* <div className="diamond"> */}
-      {/* <span className="hero__heading heading--one">Making</span>
-      <span className="hero__heading heading--one">A#</span>
-      <span className="hero__heading heading--one">&nbsp;Maj</span>
-      <span className="hero__heading heading--one">Bridge</span> */}
-      {/* <DiamondFractal topLeftWord="Making" /> */}
-
-
-
       <input id='hero__more-checkbox' type='checkbox'></input>
       <div onClick={handleMoreClick} className="hero__more">
         <label for='hero__more-checkbox'>
@@ -35,6 +26,12 @@ const BridgeHero = () => {
 				src={bgVideo}
 				type='mp4'
 			/>
+       {/* <div className="diamond"> */}
+      <span className="hero__heading heading--one">Making</span>
+      <span className="hero__heading heading--one">A#</span>
+      <span className="hero__heading heading--one">&nbsp;Maj</span>
+      <span className="hero__heading heading--one">Bridge</span>
+      {/* <DiamondFractal topLeftWord="Making" /> */}
     </div>
 	);
 };

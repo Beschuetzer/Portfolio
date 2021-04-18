@@ -25,12 +25,18 @@
 	// height: 85vh;
 
 	&__heading {
+		opacity: 0;
+		visibility: hidden;
 		mix-blend-mode: difference;
 		z-index: 10;
 		color: var(--color-primary-2);
 		position: absolute;
 		font-weight: 100;
 		font-size: $default-font-size * 6;
+
+		transition: 
+			opacity $animation-duration $animation-easing-standard $animation-duration,
+		;
 
 		&:first-of-type {
 			top: 33%;
@@ -124,6 +130,7 @@
 }
 
 #hero__more-checkbox {
+	display: none;
 	&:checked + .hero__more{
 		opacity: 0;
 		visibility: hidden;
@@ -131,5 +138,10 @@
 
 	&:checked ~ .bg-video{
 		clip-path: $animation-bridge-windshield-two-end;
+	}
+
+	&:checked ~ .hero__heading{
+		opacity: 1;
+		visibility: visible;
 	}
 }

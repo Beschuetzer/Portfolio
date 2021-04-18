@@ -120,14 +120,12 @@ $header-top: calc(#{$header-top-inner} - 0.2vw);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
 
-$header-width-nav-switch: calc(100vw - #{$default-font-size * 2.75});
-$header-width-tab-land: calc(100vw - #{$default-font-size * 2.75});
-$header-width-phone: calc(100vw - #{$default-font-size * 2.5});
-$header-width-small-font: calc(100vw - #{$default-font-size * 2});
-// $header-width-nav-switch: 92vw;
-// $header-width-tab-land: 91.3vw;
-// $header-width-phone: 90.6vw;
-// $header-width-small-font: 88.5vw;
+$header-width-nav-switch: calc(100vw - #{$default-font-size * 2});
+// $header-width-tab-land: calc(100vw - #{$default-font-size * 2});
+// $header-width-phone: calc(100vw - #{$default-font-size * 2});
+// $header-width-small-font: calc(100vw - #{$default-font-size * 2});
+
+
 
 
 //page-nav
@@ -168,6 +166,15 @@ $page-nav-top: calc(
 	);
 
 	--page-nav-shadow-hover: #{$color-primary-bridge-4};
+
+
+	//misc
+	--header-toggler-svg-rotation: 180deg;
+	--header-toggler-translate-x: 0;
+	--header-toggler-translate-y: 0;
+
+
+	--header-inner-width-nav-switch: 100%;
 
 
 

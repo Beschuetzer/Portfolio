@@ -42,6 +42,10 @@
   	var(--color-primary-1)
   );
   --page-nav-shadow-hover: #f5f1da;
+  --header-toggler-svg-rotation: 180deg;
+  --header-toggler-translate-x: 0;
+  --header-toggler-translate-y: 0;
+  --header-inner-width-nav-switch: 100%;
   --diamond-fractal-animation-duration: 120s;
   --diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
   --aspect-ratio-factor: calc(16 / 9);
@@ -1143,21 +1147,6 @@ body {
     display: flex;
     overflow: visible !important;
     flex-direction: column;
-    width: calc(100vw - 4.4rem);
-  }
-}
-@media only screen and (max-width: 58.5625em) {
-  .navbar__content {
-    width: calc(100vw - 4.4rem);
-  }
-}
-@media only screen and (max-width: 40.9375em) {
-  .navbar__content {
-    width: calc(100vw - 4rem);
-  }
-}
-@media only screen and (max-width: 29.3125em) {
-  .navbar__content {
     width: calc(100vw - 3.2rem);
   }
 }
@@ -1386,24 +1375,9 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__content {
-    width: calc(100vw - 4.4rem);
+    width: calc(100vw - 3.2rem);
     position: absolute;
     z-index: 100;
-  }
-}
-@media only screen and (max-width: 58.5625em) {
-  .navbar.navbar--active .navbar__content {
-    width: calc(100vw - 4.4rem);
-  }
-}
-@media only screen and (max-width: 40.9375em) {
-  .navbar.navbar--active .navbar__content {
-    width: calc(100vw - 4rem);
-  }
-}
-@media only screen and (max-width: 29.3125em) {
-  .navbar.navbar--active .navbar__content {
-    width: calc(100vw - 3.2rem);
   }
 }
 .navbar.navbar--active .navbar__button {
@@ -1477,6 +1451,7 @@ body {
 }
 
 .header {
+  padding: 0.8rem;
   top: calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.2vw);
   width: 100%;
   position: fixed;
@@ -1501,7 +1476,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .header__inner {
-    width: 100%;
+    width: var(--header-inner-width-nav-switch);
   }
 }
 .header-toggler {
@@ -1529,7 +1504,7 @@ body {
 }
 .header-toggler__svg {
   cursor: pointer;
-  transform: rotate(180deg);
+  transform: rotate(var(--header-toggler-svg-rotation)) translate(var(--header-toggler-translate-x), var(--header-toggler-translate-y));
   fill: var(--color-primary-4);
   width: 4rem;
   height: 4rem;
@@ -1539,12 +1514,13 @@ body {
   top: -10rem;
 }
 .header-toggler--active svg {
-  transform: rotate(0deg);
+  --header-toggler-svg-rotation: 0deg;
 }
 .header-toggler--active + .header {
-  transform: translateY(-10rem);
+  --header-toggler-translate-y: -$header-height;
 }
 .header-toggler:hover svg {
+  --header-toggler-translate-y: -$header-height;
   fill: var(--color-primary-3);
 }
 
@@ -1566,9 +1542,9 @@ body {
     z-index: 0;
     font-size: 1.36rem;
     position: static;
-    width: calc(95% - 16rem);
+    width: calc(var(--header-inner-width-nav-switch) - 16rem);
     grid-template-rows: auto;
-    grid-template-columns: repeat(auto-fill, minmax(14.5072rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15.26rem, 1fr));
     justify-items: center;
     margin-left: 0.4rem;
   }
@@ -1616,7 +1592,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .page-nav__section-group:last-of-type {
-    padding-bottom: 0.8rem;
+    padding-bottom: 0;
   }
 }
 .page-nav__section-group:hover {
@@ -2082,12 +2058,15 @@ div.references__name {
   position: relative;
 }
 .hero__heading {
+  opacity: 0;
+  visibility: hidden;
   mix-blend-mode: difference;
   z-index: 10;
   color: var(--color-primary-2);
   position: absolute;
   font-weight: 100;
   font-size: 9.6rem;
+  transition: opacity 0.5s ease 0.5s;
 }
 .hero__heading:first-of-type {
   top: 33%;
@@ -2148,12 +2127,19 @@ div.references__name {
   fill: var(--color-primary-1);
 }
 
+#hero__more-checkbox {
+  display: none;
+}
 #hero__more-checkbox:checked + .hero__more {
   opacity: 0;
   visibility: hidden;
 }
 #hero__more-checkbox:checked ~ .bg-video {
   clip-path: polygon(20% 100%, 20% 0, 100% 1px, 200% 100%, 100% 0%, 20% 0);
+}
+#hero__more-checkbox:checked ~ .hero__heading {
+  opacity: 1;
+  visibility: visible;
 }
 
 /*# sourceMappingURL=style.css.map */
