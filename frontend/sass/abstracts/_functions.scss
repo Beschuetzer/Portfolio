@@ -77,6 +77,9 @@
 	@if $type == distant {
 		@return 0px 3px 0px $color, 0px 14px 10px rgba($color2 ,0.15), 0px 24px 2px rgba($color2 ,0.1), 0px 34px 30px rgba($color2 ,0.1);
 	}
+	@if $type == outline {
+		@return 0px 3px 0px rgba($color, .5), 0px 0px 6px rgba($color2, 0.3);
+	}
 	@if $type == close {
 		@return 0px 4px 3px rgba($color ,0.4),
 		0px 8px 13px rgba($color ,0.1),
