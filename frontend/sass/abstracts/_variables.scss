@@ -10,7 +10,7 @@ $default-font-size: 1.6rem;
 //sizes
 $scale-amount: 1.05;
 $navbar__logo-width: 7vw;
-$github__logo-width: $navbar__logo-width * 1.1666666667;
+$github__logo-width: $navbar__logo-width;
 $navbar__logo-width-nav-switch: $default-font-size * 5;
 $content-padding-nav-switch: 5vmin;
 $paddingFactor: 1.25;
@@ -78,7 +78,7 @@ $header-top-inner: calc(
 );
 $page-margin-top-amount: calc(#{$header-top-inner});
 $page-margin-top-amount-nav-switch: $default-font-size * 7.5;
-$header-top: calc(#{$header-top-inner} - 0.75vw);
+$header-top: calc(#{$header-top-inner} - 0.2vw);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
 
@@ -108,7 +108,7 @@ $page-nav-top: calc(
 								) / 2
 						) - 1vw
 				) * 1
-		) - 1.2vw
+		) - .6vw
 );
 
 :root {

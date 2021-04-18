@@ -1,6 +1,5 @@
 .navbar {
 	// margin-left: 0.583vw;
-	margin-left: 0.083285714 * $navbar__logo-width;
 	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
 	position: relative;
 	font-size: $default-font-size * 1.5;
@@ -545,7 +544,7 @@
 		justify-content: space-between;
 		align-items: center;
 		width: calc(
-			#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 7.5vw
+			#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 6.6vw
 		);
 		// width: calc(#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 8rem);
 		margin: 0 auto;

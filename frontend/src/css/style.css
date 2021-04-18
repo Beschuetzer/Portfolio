@@ -358,8 +358,8 @@ body {
   align-items: center;
 }
 .github__svg {
-  height: 8.1666666669vw;
-  width: 8.1666666669vw;
+  height: 7vw;
+  width: 7vw;
   fill: var(--color-primary-4);
 }
 @media only screen and (max-width: 68.75em) {
@@ -981,7 +981,6 @@ body {
 }
 
 .navbar {
-  margin-left: 0.582999998vw;
   border-radius: 16rem 0 0 16rem;
   position: relative;
   font-size: 2.4rem;
@@ -1457,7 +1456,7 @@ body {
 }
 
 .header {
-  top: calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.75vw);
+  top: calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.2vw);
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -1475,7 +1474,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc( 			85rem + ((100vw - 85rem) / 2) + 7.5vw 		);
+  width: calc( 			85rem + ((100vw - 85rem) / 2) + 6.6vw 		);
   margin: 0 auto;
 }
 @media only screen and (max-width: 68.75em) {
@@ -1529,7 +1528,7 @@ body {
 .page-nav {
   z-index: 1;
   position: absolute;
-  top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											85rem + ( 													(100vw - 85rem) / 2 												) + 7vw 										) 								) / 2 						) - 1vw 				) * 1 		) - 1.2vw );
+  top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											85rem + ( 													(100vw - 85rem) / 2 												) + 7vw 										) 								) / 2 						) - 1vw 				) * 1 		) - .6vw );
   left: 0;
   width: calc((100% - 85rem) / 2);
   font-size: 1vw;
