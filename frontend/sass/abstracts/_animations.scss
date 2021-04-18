@@ -43,6 +43,60 @@
 	}
 }
 
+$width: 20%;
+$animation-bridge-windshield-start: polygon(
+	$width 100%,
+	$width 0,
+	100% 100%,
+	100% 0%);
+$animation-bridge-windshield-end: polygon(
+	$width 100%,
+	100% 100%,
+	$width 0,
+	100% 0%);
+@keyframes bridge-hero-windshield {
+	0%{ 
+		clip-path: $animation-bridge-windshield-start;
+	}
+	50% {
+		clip-path: $animation-bridge-windshield-end;
+	}
+	100%{ 
+		clip-path: $animation-bridge-windshield-start;
+	}
+}
+
+
+
+@keyframes bridge-hero-windshield {
+	//this is the sides visible
+	0%{ 
+		clip-path: polygon(
+			$width 100%,
+			$width 0,
+			100% 100%,
+			100% 0%
+		);
+	}
+	50% {
+		//top and bottom visible
+		clip-path: polygon(
+			$width 100%,
+			100% 100%,
+			$width 0,
+			100% 0%
+		);
+	}
+	100%{ 
+		clip-path: polygon(
+			$width 100%,
+			$width 0,
+			100% 100%,
+			100% 0%
+		);
+	}
+}
+
 // @keyframes selected-section {
 //   0% {
 //     transform: scale(1.05) rotate(0);

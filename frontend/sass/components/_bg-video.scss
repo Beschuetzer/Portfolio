@@ -1,3 +1,4 @@
+
 .bg-video {
   opacity: 0.075;
   position: fixed;
@@ -5,10 +6,24 @@
   bottom: 0;
   left: 0;
   right: 0;
+  // animation: 10s bridge-hero-windshield infinite;
 
   clip-path: polygon(
-    10% 0%,
-    10% 100%,
+    $width 100%,
+    $width 0,
+    calc(#{$width} + 10px) 100%,
+    100% 100%,
+    100% 0%,
+    $width 0,
+  );
+
+  clip-path: polygon(
+    $width 100%,
+    $width 0,
+    calc(#{$width} + 10px) 100%,
+    100% 100%,
+    100% 0%,
+    $width 0,
   );
 
   & video {
