@@ -1496,7 +1496,7 @@ body {
   z-index: 5;
   background-color: var(--color-primary-1);
   opacity: 0;
-  transition: top 0.5s cubic-bezier(0.68, -0.2, 0.32, 1.2);
+  transition: top 0.5s cubic-bezier(0.68, -0.2, 0.32, 1.2), transform 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .header-toggler {
@@ -1509,7 +1509,7 @@ body {
   fill: var(--color-primary-4);
   width: 4rem;
   height: 4rem;
-  transition: transform 0.5s cubic-bezier(1, 0, 0, 1) 0.25s;
+  transition: transform 0.5s ease;
 }
 .header-toggler--active {
   top: -10rem;
@@ -1518,10 +1518,18 @@ body {
   --header-toggler-svg-rotation: 0deg;
 }
 .header-toggler--active + .header {
-  --header-toggler-translate-y: -$header-height;
+  transform: translateY(-10rem);
+}
+.header-toggler:hover {
+  transform: translateY(1.6rem);
 }
 .header-toggler:hover svg {
-  --header-toggler-translate-y: -$header-height;
+  --header-toggler-translate-y: 0.8rem;
+}
+.header-toggler--active:hover svg {
+  --header-toggler-translate-y: -0.8rem;
+}
+.header-toggler:hover svg {
   fill: var(--color-primary-3);
 }
 

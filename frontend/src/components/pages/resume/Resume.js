@@ -68,7 +68,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="HTML5"
-							percent="50"
+							percent="65"
 						/>{" "}
 						{
 							//hours="800"/>
@@ -76,7 +76,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="CSS3"
-							percent="65"
+							percent="78"
 						/>{" "}
 						{
 							//hours="900"/>
@@ -84,7 +84,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="Bootstrap"
-							percent="34"
+							percent="49"
 						/>{" "}
 						{
 							//hours="200"/>
@@ -92,7 +92,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="Semantic-UI"
-							percent="28"
+							percent="43"
 						/>{" "}
 						{
 							//hours="30"/>
@@ -100,7 +100,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="SCSS"
-							percent="51"
+							percent="66"
 						/>{" "}
 						{
 							//hours="250"/>
@@ -108,7 +108,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="Javascript"
-							percent="67"
+							percent="78"
 						/>{" "}
 						{
 							//hours="900"/>
@@ -116,7 +116,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="jQuery"
-							percent="31"
+							percent="46"
 						/>{" "}
 						{
 							//hours="40"/>
@@ -124,7 +124,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="PaperJS"
-							percent="44"
+							percent="59"
 						/>{" "}
 						{
 							//hours="600"/>
@@ -140,7 +140,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="Express"
-							percent="59"
+							percent="70"
 						/>{" "}
 						{
 							//hours="120"/>
@@ -148,7 +148,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="socket.io"
-							percent="47.5"
+							percent="62.5"
 						/>{" "}
 						{
 							//hours="200"/>
@@ -156,7 +156,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="React"
-							percent="55"
+							percent="65"
 						/>{" "}
 						{
 							//hours="200"/>
@@ -164,7 +164,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="Redux"
-							percent="36"
+							percent="51"
 						/>{" "}
 						{
 							//hours="150"/>
@@ -172,7 +172,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="Python"
-							percent="33"
+							percent="50"
 						/>{" "}
 						{
 							//hours="175"/>
@@ -188,7 +188,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="C#"
-							percent="30"
+							percent="35"
 						/>{" "}
 						{
 							//hours="400"/>
@@ -196,7 +196,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="Mongoose"
-							percent="38"
+							percent="52"
 						/>{" "}
 						{
 							//hours="80"/>
@@ -204,7 +204,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="GraphQL"
-							percent="32"
+							percent="45"
 						/>{" "}
 						{
 							//hours="10"/>
@@ -212,7 +212,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="EJS"
-							percent="48"
+							percent="59"
 						/>{" "}
 						{
 							//hours="80"/>
@@ -220,7 +220,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="BEM"
-							percent="42"
+							percent="57"
 						/>{" "}
 						{
 							//hours="250"/>
@@ -229,7 +229,7 @@ class Resume extends React.Component {
 							labels={Resume.skillsLabels.web}
 							href="/certs/sql.png"
 							title="SQL"
-							percent="20"
+							percent="24"
 						/>
 					</SkillsItemSection>
 

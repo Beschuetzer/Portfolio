@@ -570,8 +570,10 @@
 		z-index: 5;
 		background-color: var(--color-primary-1);
 		opacity: 0;
-		transition: top $animation-duration * 1
-			$animation-easing-standard-easeInOutBack-smaller;
+		transition: 
+			top $animation-duration * 1 $animation-easing-standard-easeInOutBack-smaller,
+			transform $animation-duration * 1 $animation-easing-standard,
+		;
 
 		@include respond(nav-switch) {
 			opacity: 1;
@@ -583,8 +585,9 @@
 			fill: var(--color-primary-4);
 			width: $header-toggler-width;
 			height: $header-toggler-width;
-			transition: transform $animation-duration $animation-easing-modern
-				$animation-duration * 0.5;
+			transition: 
+				transform $animation-duration $animation-easing-standard,
+			;
 		}
 
 		&--active {
@@ -595,12 +598,22 @@
 			}
 
 			& + .header {
-				--header-toggler-translate-y: -$header-height;
+				transform: translateY(#{-$header-height})	;
 			}
 		}
 
+		&:hover {
+			transform:  translateY($default-font-size);
+			& svg{ 
+				--header-toggler-translate-y: #{$default-font-size / 2};
+			}
+		}
+
+		&--active:hover svg{ 
+			--header-toggler-translate-y: #{-$default-font-size / 2};
+		}
+
 		&:hover svg {
-			--header-toggler-translate-y: -$header-height;
 			fill: var(--color-primary-3);
 		}
 	}
