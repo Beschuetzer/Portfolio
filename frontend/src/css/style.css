@@ -351,9 +351,6 @@ body {
   clip-path: polygon(20% 100%, 20% 0, calc(20% + 1px) 1000%, 200% 100%, 100% 0%, 20% 0);
   transition: clip-path 0.5s ease;
 }
-.bg-video:hover {
-  clip-path: polygon(20% 100%, 20% 0, 100% 1px, 200% 100%, 100% 0%, 20% 0);
-}
 .bg-video video {
   height: 100%;
   width: 100%;
@@ -2084,7 +2081,7 @@ div.references__name {
 .hero {
   position: relative;
 }
-.hero-heading {
+.hero__heading {
   mix-blend-mode: difference;
   z-index: 10;
   color: var(--color-primary-2);
@@ -2092,33 +2089,50 @@ div.references__name {
   font-weight: 100;
   font-size: 9.6rem;
 }
-.hero-heading:first-of-type {
+.hero__heading:first-of-type {
   top: 33%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.hero-heading:nth-of-type(2) {
+.hero__heading:nth-of-type(2) {
   mix-blend-mode: difference;
   top: 50%;
   left: 15%;
   transform: translate(-50%, -50%);
 }
-.hero-heading:nth-of-type(3) {
+.hero__heading:nth-of-type(3) {
   mix-blend-mode: difference;
   top: 50%;
   right: 15%;
   transform: translate(50%, -50%);
 }
-.hero-heading:nth-of-type(4) {
+.hero__heading:nth-of-type(4) {
   mix-blend-mode: difference;
   top: 66%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.hero-middle {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+.hero__more {
+  font-size: 4.8rem;
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  color: var(--color-primary-2);
+  padding: 3.2rem 6.4rem;
+  border-radius: 3.2rem;
+  transition: background-color 0.5s ease;
+}
+.hero__more svg {
+  cursor: pointer;
+  fill: var(--color-primary-2);
+}
+.hero__more:hover {
+  background-color: var(--color-primary-2);
+}
+.hero__more:hover svg {
+  fill: var(--color-primary-1);
 }
 
 /*# sourceMappingURL=style.css.map */
