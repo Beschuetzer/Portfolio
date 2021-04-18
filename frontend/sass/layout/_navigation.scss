@@ -577,44 +577,44 @@
 
 		@include respond(nav-switch) {
 			opacity: 1;
-		}
 
-		&__svg {
-			cursor: pointer;
-			transform: rotate(var(--header-toggler-svg-rotation)) translate(var(--header-toggler-translate-x), var(--header-toggler-translate-y));
-			fill: var(--color-primary-4);
-			width: $header-toggler-width;
-			height: $header-toggler-width;
-			transition: 
-				transform $animation-duration $animation-easing-standard,
-			;
-		}
-
-		&--active {
-			top: -($header-height);
-
-			& svg {
-				--header-toggler-svg-rotation: 0deg;
+			&__svg {
+				cursor: pointer;
+				transform: rotate(var(--header-toggler-svg-rotation)) translate(var(--header-toggler-translate-x), var(--header-toggler-translate-y));
+				fill: var(--color-primary-4);
+				width: $header-toggler-width;
+				height: $header-toggler-width;
+				transition: 
+					transform $animation-duration $animation-easing-standard,
+				;
 			}
 
-			& + .header {
-				transform: translateY(#{-$header-height})	;
+			&--active {
+				top: -($header-height);
+
+				& svg {
+					--header-toggler-svg-rotation: 0deg;
+				}
+
+				& + .header {
+					transform: translateY(#{-$header-height})	;
+				}
 			}
-		}
 
-		&:hover {
-			transform:  translateY($default-font-size);
-			& svg{ 
-				--header-toggler-translate-y: #{$default-font-size / 2};
+			&:hover {
+				transform:  translateY($default-font-size);
+				& svg{ 
+					--header-toggler-translate-y: #{$default-font-size / 2};
+				}
 			}
-		}
 
-		&--active:hover svg{ 
-			--header-toggler-translate-y: #{-$default-font-size / 2};
-		}
+			&--active:hover svg{ 
+				--header-toggler-translate-y: #{-$default-font-size / 2};
+			}
 
-		&:hover svg {
-			fill: var(--color-primary-3);
+			&:hover svg {
+				fill: var(--color-primary-3);
+			}
 		}
 	}
 }

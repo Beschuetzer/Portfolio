@@ -1502,35 +1502,35 @@ body {
   .header-toggler {
     opacity: 1;
   }
-}
-.header-toggler__svg {
-  cursor: pointer;
-  transform: rotate(var(--header-toggler-svg-rotation)) translate(var(--header-toggler-translate-x), var(--header-toggler-translate-y));
-  fill: var(--color-primary-4);
-  width: 4rem;
-  height: 4rem;
-  transition: transform 0.5s ease;
-}
-.header-toggler--active {
-  top: -10rem;
-}
-.header-toggler--active svg {
-  --header-toggler-svg-rotation: 0deg;
-}
-.header-toggler--active + .header {
-  transform: translateY(-10rem);
-}
-.header-toggler:hover {
-  transform: translateY(1.6rem);
-}
-.header-toggler:hover svg {
-  --header-toggler-translate-y: 0.8rem;
-}
-.header-toggler--active:hover svg {
-  --header-toggler-translate-y: -0.8rem;
-}
-.header-toggler:hover svg {
-  fill: var(--color-primary-3);
+  .header-toggler__svg {
+    cursor: pointer;
+    transform: rotate(var(--header-toggler-svg-rotation)) translate(var(--header-toggler-translate-x), var(--header-toggler-translate-y));
+    fill: var(--color-primary-4);
+    width: 4rem;
+    height: 4rem;
+    transition: transform 0.5s ease;
+  }
+  .header-toggler--active {
+    top: -10rem;
+  }
+  .header-toggler--active svg {
+    --header-toggler-svg-rotation: 0deg;
+  }
+  .header-toggler--active + .header {
+    transform: translateY(-10rem);
+  }
+  .header-toggler:hover {
+    transform: translateY(1.6rem);
+  }
+  .header-toggler:hover svg {
+    --header-toggler-translate-y: 0.8rem;
+  }
+  .header-toggler--active:hover svg {
+    --header-toggler-translate-y: -0.8rem;
+  }
+  .header-toggler:hover svg {
+    fill: var(--color-primary-3);
+  }
 }
 
 .page-nav {
