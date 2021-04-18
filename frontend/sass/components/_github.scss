@@ -10,7 +10,7 @@
 	z-index: 10000;
 
 	@include respond(nav-switch) {
-		font-size: $default-font-size * 0.66;
+		font-size: $default-font-size * 0.85;
 	}
 
 	&__top {
@@ -36,8 +36,8 @@
 		
 
 		@include respond(nav-switch) {
-			height: $default-font-size * 5.875;
-			width: $default-font-size * 5.875;
+			height: $default-font-size * 5;
+			width: $default-font-size * 5;
 		}
 
 		&:hover {

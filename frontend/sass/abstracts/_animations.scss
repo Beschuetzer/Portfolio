@@ -43,17 +43,6 @@
 	}
 }
 
-$width: 20%;
-$animation-bridge-windshield-start: polygon(
-	$width 100%,
-	$width 0,
-	100% 100%,
-	100% 0%);
-$animation-bridge-windshield-end: polygon(
-	$width 100%,
-	100% 100%,
-	$width 0,
-	100% 0%);
 @keyframes bridge-hero-windshield {
 	0%{ 
 		clip-path: $animation-bridge-windshield-start;
@@ -66,34 +55,15 @@ $animation-bridge-windshield-end: polygon(
 	}
 }
 
-
-
-@keyframes bridge-hero-windshield {
-	//this is the sides visible
+@keyframes bridge-hero-windshield-two {
 	0%{ 
-		clip-path: polygon(
-			$width 100%,
-			$width 0,
-			100% 100%,
-			100% 0%
-		);
+		clip-path: $animation-bridge-windshield-two-start;
 	}
 	50% {
-		//top and bottom visible
-		clip-path: polygon(
-			$width 100%,
-			100% 100%,
-			$width 0,
-			100% 0%
-		);
+		clip-path: $animation-bridge-windshield-two-end;
 	}
 	100%{ 
-		clip-path: polygon(
-			$width 100%,
-			$width 0,
-			100% 100%,
-			100% 0%
-		);
+		clip-path: $animation-bridge-windshield-two-start;
 	}
 }
 

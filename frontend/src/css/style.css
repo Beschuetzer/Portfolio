@@ -99,15 +99,15 @@
     clip-path: polygon(20% 100%, 20% 0, 100% 100%, 100% 0%);
   }
 }
-@keyframes bridge-hero-windshield {
+@keyframes bridge-hero-windshield-two {
   0% {
-    clip-path: polygon(20% 100%, 20% 0, 100% 100%, 100% 0%);
+    clip-path: polygon(20% 100%, 20% 0, calc(20% + 1px) 1000%, 200% 100%, 100% 0%, 20% 0);
   }
   50% {
-    clip-path: polygon(20% 100%, 100% 100%, 20% 0, 100% 0%);
+    clip-path: polygon(20% 100%, 20% 0, 100% 1px, 200% 100%, 100% 0%, 20% 0);
   }
   100% {
-    clip-path: polygon(20% 100%, 20% 0, 100% 100%, 100% 0%);
+    clip-path: polygon(20% 100%, 20% 0, calc(20% + 1px) 1000%, 200% 100%, 100% 0%, 20% 0);
   }
 }
 /* global reset;  box-sizing is set on body and set to inherit on all other elements */
@@ -348,8 +348,11 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  clip-path: polygon(20% 100%, 20% 0, calc(20% + 10px) 100%, 100% 100%, 100% 0%, 20% 0);
-  clip-path: polygon(20% 100%, 20% 0, calc(20% + 10px) 100%, 100% 100%, 100% 0%, 20% 0);
+  clip-path: polygon(20% 100%, 20% 0, calc(20% + 1px) 1000%, 200% 100%, 100% 0%, 20% 0);
+  transition: clip-path 0.5s ease;
+}
+.bg-video:hover {
+  clip-path: polygon(20% 100%, 20% 0, 100% 1px, 200% 100%, 100% 0%, 20% 0);
 }
 .bg-video video {
   height: 100%;
@@ -369,7 +372,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .github {
-    font-size: 1.056rem;
+    font-size: 1.36rem;
   }
 }
 .github__top {
@@ -389,8 +392,8 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .github__svg {
-    height: 9.4rem;
-    width: 9.4rem;
+    height: 8rem;
+    width: 8rem;
   }
 }
 .github__svg:hover {
@@ -1015,9 +1018,6 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .navbar {
-    margin-left: 0.7rem;
-    margin-top: 0.7rem;
-    margin-bottom: 0.7rem;
     align-items: flex-start;
     border-radius: 0;
   }
@@ -1488,6 +1488,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .header {
+    box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
     top: 0;
     z-index: 10;
     background-image: var(--body-background);
@@ -1503,10 +1504,11 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .header__inner {
-    width: 98.6%;
+    width: 100%;
   }
 }
 .header-toggler {
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
   display: flex;
   justify-content: center;
   align-items: flex-end;

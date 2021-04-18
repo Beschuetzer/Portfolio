@@ -8,9 +8,6 @@
 	align-items: center;
 
 	@include respond(nav-switch) {
-		margin-left: $default-font-size * 0.4375;
-		margin-top: $default-font-size * 0.4375;
-		margin-bottom: $default-font-size * 0.4375;
 		align-items: flex-start;
 		border-radius: 0;
 		&.overflow--hidden.navbar.navbar--active {
@@ -532,6 +529,7 @@
 		transform $animation-duration $animation-easing-standard;
 
 	@include respond(nav-switch) {
+		box-shadow: $navbar-box-shadow-resume;
 		top: 0;
 		z-index: 10;
 		background-image: var(--body-background);
@@ -550,11 +548,13 @@
 		margin: 0 auto;
 
 		@include respond(nav-switch) {
-			width: 98.6%;
+			width: 100%;
 		}
 	}
 
 	&-toggler {
+		box-shadow: $navbar-box-shadow-resume;
+
 		display: flex;
 		justify-content: center;
 		align-items: flex-end;

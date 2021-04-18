@@ -6,25 +6,14 @@
   bottom: 0;
   left: 0;
   right: 0;
-  // animation: 10s bridge-hero-windshield infinite;
+  // animation: 5s bridge-hero-windshield 1;
+  // animation: 5s bridge-hero-windshield-two infinite;
+  clip-path: $animation-bridge-windshield-two-start;
+  transition: clip-path $animation-duration  $animation-easing-standard;
+  &:hover {
+    clip-path: $animation-bridge-windshield-two-end;
 
-  clip-path: polygon(
-    $width 100%,
-    $width 0,
-    calc(#{$width} + 10px) 100%,
-    100% 100%,
-    100% 0%,
-    $width 0,
-  );
-
-  clip-path: polygon(
-    $width 100%,
-    $width 0,
-    calc(#{$width} + 10px) 100%,
-    100% 100%,
-    100% 0%,
-    $width 0,
-  );
+  }
 
   & video {
       height: 100%;

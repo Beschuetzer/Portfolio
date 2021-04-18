@@ -7,6 +7,8 @@ $font-family-headers: "Merriweather", serif;
 $nav-switch-width: 68.75em;
 $default-font-size: 1.6rem;
 
+
+
 //sizes
 $scale-amount: 1.05;
 $navbar__logo-width: 7vw;
@@ -14,6 +16,8 @@ $github__logo-width: $navbar__logo-width;
 $navbar__logo-width-nav-switch: $default-font-size * 5;
 $content-padding-nav-switch: 5vmin;
 $paddingFactor: 1.25;
+
+
 
 //animation
 $animation-duration: 0.5s;
@@ -27,6 +31,36 @@ $animation-easing-standard-easeInOutBack-smaller: cubic-bezier(
 );
 $animation-easing-modern: cubic-bezier(1, 0, 0, 1);
 $animation-navbar: $animation-duration $animation-easing-standard;
+$animation-bridge-width: 20%;
+$animation-bridge-windshield-start: polygon(
+	$animation-bridge-width 100%,
+	$animation-bridge-width 0,
+	100% 100%,
+	100% 0%);
+$animation-bridge-windshield-end: polygon(
+	$animation-bridge-width 100%,
+	100% 100%,
+	$animation-bridge-width 0,
+	100% 0%);
+
+$animation-bridge-windshield-two-start: polygon(
+	$animation-bridge-width 100%,
+	$animation-bridge-width 0,
+	calc(#{$animation-bridge-width} + 1px) 1000%,
+	200% 100%,
+	100% 0%,
+	$animation-bridge-width 0,
+);
+$animation-bridge-windshield-two-end: polygon(
+	$animation-bridge-width 100%,
+	$animation-bridge-width 0,
+	100% 1px,
+	200% 100%,
+	100% 0%,
+	$animation-bridge-width 0
+);
+
+
 
 //navbar stuff
 $navbar__button-bar-before-rotation: rotate(105deg);
@@ -60,8 +94,12 @@ $skills-linear-gradient-hover: linear-gradient(
 	var(--color-primary-1)
 );
 
+
+
 //resume
 $resume-card-width-full: $default-font-size * 53.125;
+
+
 
 //header
 $header-top-inner: calc(
@@ -86,11 +124,11 @@ $header-width-nav-switch: calc(100vw - #{$default-font-size * 2.75});
 $header-width-tab-land: calc(100vw - #{$default-font-size * 2.75});
 $header-width-phone: calc(100vw - #{$default-font-size * 2.5});
 $header-width-small-font: calc(100vw - #{$default-font-size * 2});
-
 // $header-width-nav-switch: 92vw;
 // $header-width-tab-land: 91.3vw;
 // $header-width-phone: 90.6vw;
 // $header-width-small-font: 88.5vw;
+
 
 //page-nav
 $page-nav-top: calc(
@@ -130,6 +168,8 @@ $page-nav-top: calc(
 	);
 
 	--page-nav-shadow-hover: #{$color-primary-bridge-4};
+
+
 
 	//shapes stuff
 	--diamond-fractal-animation-duration: 120s;
