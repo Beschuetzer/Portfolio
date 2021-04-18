@@ -347,6 +347,9 @@ body {
     font-size: 1.056rem;
   }
 }
+.github__top {
+  transition: 0.5s cubic-bezier(0.68, -0.2, 0.32, 1.2);
+}
 .github__link:link, .github__link:visited {
   text-decoration: none;
   color: var(--color-primary-1);

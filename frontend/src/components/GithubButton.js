@@ -10,9 +10,9 @@ class GithubButton extends React.Component {
             <span className="github__text github__text-top">View</span>
             {/* <span className="github__text github__text-middle">My</span> */}
             <span className="github__text github__text-bottom">GitHub</span>
-            <iframe title='Github Button' src="/sprite.svg#icon-github-square"></iframe>
             <svg className="github__svg">
-              <use xlinkHref="/sprite.svg#icon-github-square"></use>
+              <use className="github__top" xlinkHref="/sprite.svg#icon-github-with-circle"></use>
+              <use className='github__bottom' xlinkHref="/sprite.svg#icon-github"></use>
             </svg>
           </a>
 
