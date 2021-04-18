@@ -5,6 +5,7 @@ $thumbnail-transition: transform $animation-duration * 0.66
 	background $animation-duration $animation-easing-standard;
 
 .thumbnail {
+	box-shadow: $navbar-box-shadow-resume;
 	background-color: var(--color-primary-1);
 	width: $default-font-size * 3;
 	height: $default-font-size * 3;

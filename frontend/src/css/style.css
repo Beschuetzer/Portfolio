@@ -426,6 +426,7 @@ body {
 }
 
 .thumbnail {
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
   background-color: var(--color-primary-1);
   width: 4.8rem;
   height: 4.8rem;
