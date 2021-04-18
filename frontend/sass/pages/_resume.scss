@@ -208,6 +208,11 @@
 			@include link-line;
 			@include link-animating;
 			display: inline;
+
+			&:hover {
+				border-bottom: $default-font-size * .1 solid var(--color-primary-1);
+				border-image: none;
+			}
 		}
 
 		@include respond(nav-break) {

@@ -594,6 +594,7 @@ body {
 .skills__title--animating:link:hover, .skills__title--animating:visited:hover, .skills__title--animating:hover, .skills__title--animating:link:link:hover, .skills__title--animating:link:visited:hover, .skills__title--animating:link:hover, .skills__title--animating:visited:link:hover, .skills__title--animating:visited:visited:hover, .skills__title--animating:visited:hover {
   color: var(--color-primary-1);
   text-decoration: none;
+  border-image: none;
 }
 .skills-popup__link.skills__title--animating:link, .skills-popup__link.skills__title--animating:visited {
   display: flex;
@@ -905,7 +906,7 @@ body {
 }
 .skills-popup__link:hover .skills-popup__link-text {
   color: var(--color-primary-1);
-  border-image: linear-gradient(to bottom, var(--color-primary-4), var(--color-primary-4));
+  border-image: none;
   border-image-slice: 1;
 }
 .skills-popup__error {
@@ -1978,6 +1979,10 @@ body {
   color: transparent;
   animation: animate-skills infinite 10s;
   display: inline;
+}
+.references__name-link:link:hover, .references__name-link:visited:hover {
+  border-bottom: 0.16rem solid var(--color-primary-1);
+  border-image: none;
 }
 @media only screen and (max-width: 35.0625em) {
   .references__name:nth-child(1) {
