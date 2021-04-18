@@ -335,6 +335,8 @@ body {
 }
 
 .github {
+  border-radius: 50%;
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
   font-family: "Open Sans", sans-serif;
   font-size: 1vw;
   position: relative;
@@ -1187,7 +1189,7 @@ body {
   height: 100%;
   width: 100%;
   transition: transform 0.125s ease, background-color 0.125s ease;
-  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
 }
 .navbar__item .triangle-down {
   transition: transform 0.25s ease;
@@ -1239,12 +1241,11 @@ body {
   cursor: pointer;
   z-index: 100;
   background-color: var(--color-primary-4);
-  border: 1px dashed var(--color-primary-1);
   border-radius: 16rem;
   display: flex;
   align-items: center;
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
   transition: border 0.5s ease;
-  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.15);
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__button {

@@ -286,13 +286,13 @@
 		z-index: 100;
 		// border: $default-font-size * .1 solid transparent;
 		background-color: var(--color-primary-4);
-		border: 1px dashed var(--color-primary-1);
 		border-radius: $navbar__item-border-radius;
 		display: flex;
 		align-items: center;
+		box-shadow: $navbar-box-shadow-resume;
+
 		transition: 
 			border $animation-duration * 1 $animation-easing-standard;
-			box-shadow: $navbar-box-shadow-resume
 		;
 
 		@include respond(nav-switch) {

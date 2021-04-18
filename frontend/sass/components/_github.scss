@@ -1,4 +1,7 @@
 .github {
+	border-radius: 50%;
+	box-shadow: 0 $default-font-size $default-font-size * 2 rgb($color-black, .33);
+
 	font-family: $font-family-text;
 	font-size: 1vw;
 	position: relative;
