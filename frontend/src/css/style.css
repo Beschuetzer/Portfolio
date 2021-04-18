@@ -1527,7 +1527,7 @@ body {
 .page-nav {
   z-index: 1;
   position: absolute;
-  top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											85rem + ( 													(100vw - 85rem) / 2 												) + 7vw 										) 								) / 2 						) - 1vw 				) * 1 		) - .6vw );
+  top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											85rem + ( 													(100vw - 85rem) / 2 												) + 7vw 										) 								) / 2 						) - 1vw 				) * 1 		) - 1.1vw );
   left: 0;
   width: calc((100% - 85rem) / 2);
   font-size: 1vw;
@@ -1581,13 +1581,9 @@ body {
   list-style: none;
   transition: transform 0.125s ease;
 }
-.page-nav__section-group:nth-of-type(1) {
-  padding-top: 0;
-}
 @media only screen and (max-width: 68.75em) {
   .page-nav__section-group:nth-of-type(1) {
     margin-left: 0;
-    padding-top: 0.8rem;
   }
 }
 @media only screen and (max-width: 68.75em) {
@@ -1874,7 +1870,7 @@ body {
   background-color: var(--color-primary-3);
   padding: 0 3.2rem;
   border-radius: 0.8rem;
-  box-shadow: 0 0 8rem rgba(251, 238, 172, 0.2);
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
 }
 @media only screen and (max-width: 68.75em) {
   .resume__card {
