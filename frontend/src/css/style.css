@@ -2113,6 +2113,11 @@ div.references__name {
   transform: translate(-50%, -50%);
 }
 .hero__more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24rem;
+  width: 24rem;
   font-size: 4.8rem;
   z-index: 100;
   position: absolute;
@@ -2120,19 +2125,35 @@ div.references__name {
   left: 60%;
   transform: translate(-50%, -50%);
   color: var(--color-primary-2);
-  padding: 3.2rem 6.4rem;
-  border-radius: 3.2rem;
+  border-radius: 320rem;
   transition: background-color 0.5s ease;
 }
-.hero__more svg {
+.hero__more input {
+  display: none;
+}
+.hero__more label {
+  margin: 0;
+  padding: 0;
+  height: 66%;
   cursor: pointer;
+}
+.hero__more svg {
   fill: var(--color-primary-2);
+  transition: fill 0.5s ease;
 }
 .hero__more:hover {
   background-color: var(--color-primary-2);
 }
 .hero__more:hover svg {
   fill: var(--color-primary-1);
+}
+
+#hero__more-checkbox:checked + .hero__more {
+  opacity: 0;
+  visibility: hidden;
+}
+#hero__more-checkbox:checked ~ .bg-video {
+  clip-path: polygon(20% 100%, 20% 0, 100% 1px, 200% 100%, 100% 0%, 20% 0);
 }
 
 /*# sourceMappingURL=style.css.map */

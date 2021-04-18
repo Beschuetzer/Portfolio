@@ -60,6 +60,11 @@
 	}
 	
 	&__more {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: $default-font-size * 15;
+		width: $default-font-size * 15;
 		font-size: $default-font-size * 3;
 		z-index: 100;
 		position: absolute;
@@ -68,17 +73,28 @@
 		transform: translate(-50%, -50%);
 		// background-color: var(--color-primary-3);
 		color: var(--color-primary-2);
-		padding: $default-font-size * 2 $default-font-size * 4;
-		border-radius: $default-font-size * 2;
+		// padding: $default-font-size * 2 $default-font-size * 4;
+		border-radius: $default-font-size * 200;
 		transition: 	
 			background-color $animation-duration $animation-easing-standard,
 		;
+
+		& input {
+			display: none;
+		}
+
+		& label {
+			margin: 0;
+			padding: 0;
+			height: 66%;
+			cursor: pointer;
+		}
 		
 		& svg {
-			cursor: pointer;
 			fill: var(--color-primary-2);
-			
- 			
+			transition: 	
+				fill $animation-duration $animation-easing-standard,
+			;
 		}
 
 		&:hover {
@@ -87,8 +103,11 @@
 				fill: var(--color-primary-1);
 			}
 		}
+
+		
 	}
 
+	
 	// &-text {
 	// 	height: var(--diamond-fractal-length);
 	// 	width: var(--diamond-fractal-length);
@@ -102,5 +121,15 @@
 	// 	color: var(--color-primary-1);
 	// 	// transform: rotate(calc(var(--diamond-fractal-rotation) * -1));
 	// }
+}
 
+#hero__more-checkbox {
+	&:checked + .hero__more{
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	&:checked ~ .bg-video{
+		clip-path: $animation-bridge-windshield-two-end;
+	}
 }
