@@ -99,7 +99,8 @@ $skills-linear-gradient-hover: linear-gradient(
 //resume
 $resume-card-width-full: $default-font-size * 53.125;
 
-
+//bridge
+$bridge-hero-animation-duration: $animation-duration * 2;
 
 //header
 $header-top-inner: calc(
@@ -175,8 +176,7 @@ $page-nav-top: calc(
 
 
 	--header-inner-width-nav-switch: 100%;
-
-
+	--bridge-hero-arrow-rotation: 0;
 
 	//shapes stuff
 	--diamond-fractal-animation-duration: 120s;

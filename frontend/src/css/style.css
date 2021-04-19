@@ -46,6 +46,7 @@
   --header-toggler-translate-x: 0;
   --header-toggler-translate-y: 0;
   --header-inner-width-nav-switch: 100%;
+  --bridge-hero-arrow-rotation: 0;
   --diamond-fractal-animation-duration: 120s;
   --diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
   --aspect-ratio-factor: calc(16 / 9);
@@ -353,7 +354,7 @@ body {
   left: 0;
   right: 0;
   clip-path: polygon(20% 100%, 20% 0, calc(20% + 1px) 1000%, 200% 100%, 100% 0%, 20% 0);
-  transition: clip-path 0.5s ease;
+  transition: clip-path 1s ease;
 }
 .bg-video video {
   height: 100%;
@@ -2061,6 +2062,7 @@ div.references__name {
 }
 
 .hero {
+  background-image: none;
   position: relative;
 }
 .hero__heading {
@@ -2093,9 +2095,9 @@ div.references__name {
 }
 .hero__heading:nth-of-type(4) {
   mix-blend-mode: difference;
-  top: -10%;
+  bottom: -10%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 50%);
 }
 .hero__more {
   display: flex;
@@ -2111,6 +2113,7 @@ div.references__name {
   transform: translate(-50%, -50%);
   color: var(--color-primary-2);
   border-radius: 320rem;
+  transition: left 1s ease;
 }
 .hero__more input {
   display: none;
@@ -2124,8 +2127,9 @@ div.references__name {
   justify-content: center;
 }
 .hero__more svg {
+  transform: rotate(var(--bridge-hero-arrow-rotation));
+  transition: transform 1s ease, fill 0.5s ease;
   fill: var(--color-primary-1);
-  transition: fill 0.5s ease;
 }
 .hero__more svg:hover {
   fill: var(--color-primary-2);
@@ -2134,28 +2138,30 @@ div.references__name {
 #hero__more-checkbox {
   display: none;
 }
-#hero__more-checkbox:checked + .hero__more {
-  opacity: 0;
-  visibility: hidden;
+#hero__more-checkbox:checked ~ .hero .hero__more {
+  left: 50%;
 }
-#hero__more-checkbox:checked ~ .bg-video {
+#hero__more-checkbox:checked ~ .hero .hero__more svg {
+  --bridge-hero-arrow-rotation: 180deg;
+}
+#hero__more-checkbox:checked ~ .hero .bg-video {
   clip-path: polygon(20% 100%, 20% 0, 100% 1px, 200% 100%, 100% 0%, 20% 0);
 }
-#hero__more-checkbox:checked ~ .hero__heading {
+#hero__more-checkbox:checked ~ .hero .hero__heading {
   opacity: 1;
   visibility: visible;
 }
-#hero__more-checkbox:checked ~ .hero__heading:first-of-type {
-  top: 15%;
+#hero__more-checkbox:checked ~ .hero .hero__heading:first-of-type {
+  top: 25%;
 }
-#hero__more-checkbox:checked ~ .hero__heading:nth-of-type(2) {
-  left: 15%;
+#hero__more-checkbox:checked ~ .hero .hero__heading:nth-of-type(2) {
+  left: 25%;
 }
-#hero__more-checkbox:checked ~ .hero__heading:nth-of-type(3) {
-  right: 15%;
+#hero__more-checkbox:checked ~ .hero .hero__heading:nth-of-type(3) {
+  right: 25%;
 }
-#hero__more-checkbox:checked ~ .hero__heading:nth-of-type(4) {
-  top: 85%;
+#hero__more-checkbox:checked ~ .hero .hero__heading:nth-of-type(4) {
+  bottom: 25%;
 }
 
 /*# sourceMappingURL=style.css.map */

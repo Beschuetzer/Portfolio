@@ -9,7 +9,7 @@
   // animation: 5s bridge-hero-windshield 1;
   // animation: 5s bridge-hero-windshield-two infinite;
   clip-path: $animation-bridge-windshield-two-start;
-  transition: clip-path $animation-duration  $animation-easing-standard;
+  transition: clip-path $bridge-hero-animation-duration  $animation-easing-standard;
   
   // &:hover {
   //   clip-path: $animation-bridge-windshield-two-end;
