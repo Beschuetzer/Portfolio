@@ -554,11 +554,8 @@
 	}
 
 	&-toggler {
+		display: none;
 		box-shadow: $navbar-box-shadow-resume;
-
-		display: flex;
-		justify-content: center;
-		align-items: flex-end;
 		height: $header-height + $header-toggler-width;
 		border-left: $default-font-size * 0.15 solid var(--color-primary-4);
 		border-bottom: $default-font-size * 0.15 solid var(--color-primary-4);
@@ -577,7 +574,10 @@
 
 		@include respond(nav-switch) {
 			opacity: 1;
-
+			display: flex;
+			justify-content: center;
+			align-items: flex-end;
+			
 			&__svg {
 				cursor: pointer;
 				transform: rotate(var(--header-toggler-svg-rotation)) translate(var(--header-toggler-translate-x), var(--header-toggler-translate-y));

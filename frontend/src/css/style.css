@@ -1482,10 +1482,8 @@ body {
   }
 }
 .header-toggler {
+  display: none;
   box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
   height: 14rem;
   border-left: 0.24rem solid var(--color-primary-4);
   border-bottom: 0.24rem solid var(--color-primary-4);
@@ -1502,6 +1500,9 @@ body {
 @media only screen and (max-width: 68.75em) {
   .header-toggler {
     opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
   }
   .header-toggler__svg {
     cursor: pointer;
