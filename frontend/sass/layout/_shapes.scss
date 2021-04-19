@@ -36,7 +36,8 @@
 }
 
 .square {
-  opacity: calc(var(--diamond-outer-opacity) * var(--square-root-of-two));
+  opacity: .5;
+  // opacity: calc(var(--diamond-outer-opacity) * var(--square-root-of-two));
 
   mix-blend-mode: difference;
 	// opacity: var(--diamond-outer-opacity);
@@ -187,13 +188,4 @@
 		height: calc(var(--diamond-fractal-length) / 16);
 	}
 
-	// .line:nth-of-type(2), .square:nth-of-type(2) {
-	//   height: calc(var(--diamond-fractal-length));
-	//   width: calc(var(--diamond-fractal-length));
-	//   background-color: green;
-	// }
-	// .line:nth-of-type(2), .square:nth-of-type(2) {
-	//   width: calc(var(--diamond-fractal-length) * var(--square-root-of-two));
-	//   height: calc(var(--diamond-fractal-length) * var(--square-root-of-two));
-	// }
 }

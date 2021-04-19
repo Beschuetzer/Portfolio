@@ -1694,7 +1694,7 @@ body {
 }
 
 .square {
-  opacity: calc(var(--diamond-outer-opacity) * var(--square-root-of-two));
+  opacity: 0.5;
   mix-blend-mode: difference;
   background-color: var(--color-primary-2);
   position: absolute;
@@ -2123,8 +2123,8 @@ div.references__name {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 24rem;
-  width: 24rem;
+  height: 16rem;
+  width: 16rem;
   font-size: 4.8rem;
   z-index: 1;
   position: fixed;
@@ -2156,7 +2156,7 @@ div.references__name {
   z-index: 1;
 }
 .hero__more:hover .hero__bridge-logo {
-  opacity: 1;
+  opacity: 0.5;
   background-color: var(--color-primary-1);
 }
 .hero__bridge-logo {
@@ -2165,19 +2165,20 @@ div.references__name {
   position: fixed;
   top: 50%;
   left: 50%;
-  height: 20rem;
-  width: 20rem;
+  height: 15rem;
+  width: 15rem;
   border-radius: 100px;
   transform: translate(-50%, -50%);
   background-size: cover;
   opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 #hero__more-checkbox {
   display: none;
 }
 #hero__more-checkbox:checked ~ .hero .hero__bridge-logo {
-  opacity: 0.25;
+  opacity: 0.0625;
   z-index: 0;
 }
 #hero__more-checkbox:checked ~ .hero .hero__more {
