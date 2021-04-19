@@ -2140,12 +2140,35 @@ div.references__name {
   transition: transform 1s ease, fill 0.5s ease;
   fill: var(--color-primary-1);
 }
-.hero__more svg:hover {
+.hero__more:hover svg {
   fill: var(--color-primary-2);
+  z-index: 1;
+}
+.hero__more:hover .hero__bridge-logo {
+  opacity: 1;
+  background-color: var(--color-primary-1);
+}
+.hero__bridge-logo {
+  pointer-events: none;
+  background-image: url("../imgs/bridge-logo.svg");
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 20rem;
+  width: 20rem;
+  border-radius: 100px;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+  opacity: 0;
+  z-index: 1;
 }
 
 #hero__more-checkbox {
   display: none;
+}
+#hero__more-checkbox:checked ~ .hero .hero__bridge-logo {
+  opacity: 0.25;
+  z-index: 0;
 }
 #hero__more-checkbox:checked ~ .hero .hero__more {
   left: 50%;

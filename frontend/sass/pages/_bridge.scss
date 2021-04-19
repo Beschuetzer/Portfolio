@@ -118,11 +118,35 @@
 				fill $animation-duration $animation-easing-standard,
 			;
 			fill: var(--color-primary-1);
+		}
 
-			&:hover {
+		&:hover {
+			
+			& svg {
 				fill: var(--color-primary-2);
+				z-index: 1;
+			}
+
+			& .hero__bridge-logo {
+				opacity: 1;
+				background-color: var(--color-primary-1);
 			}
 		}
+	}
+
+	&__bridge-logo {
+		pointer-events: none;
+		background-image: url('../imgs/bridge-logo.svg');
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 20rem;
+    width: 20rem;
+    border-radius: 100px;
+    transform: translate(-50%, -50%);
+    background-size: cover;
+		opacity: 0;
+		z-index: 1;
 	}
 }
 
@@ -130,6 +154,11 @@
 
 #hero__more-checkbox {
 	display: none;
+
+	&:checked ~ .hero .hero__bridge-logo {
+		opacity: .25;
+		z-index: 0;
+	}
 	
 	&:checked ~ .hero .hero__more{
 		// opacity: 0;

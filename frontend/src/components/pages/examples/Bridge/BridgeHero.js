@@ -14,6 +14,7 @@ const BridgeHero = () => {
     <React.Fragment>
       <link rel="preconnect" href="https://fonts.gstatic.com"></link>
       <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@200;400;800&display=swap" rel="stylesheet"></link>
+      
       <input id='hero__more-checkbox' type='checkbox'></input>
       <div className="hero">
         <div onClick={handleMoreClick} className="hero__more">
@@ -22,6 +23,7 @@ const BridgeHero = () => {
               <use xlinkHref="/sprite.svg#icon-arrow-outline-right"></use>
             </svg>
           </label>
+          <div className="hero__bridge-logo"></div>
         </div>
 
         <div className="hero__background">Background layer</div>
