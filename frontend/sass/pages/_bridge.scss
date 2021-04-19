@@ -26,6 +26,7 @@
 	// height: 85vh;
 
 	&__heading {
+		font-family: 'Spectral', serif;
 		opacity: 0;
 		visibility: hidden;
 		mix-blend-mode: difference;
@@ -42,6 +43,16 @@
 			left $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
 			right $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
 		;
+
+		&:first-of-type, &:nth-of-type(4) {
+			font-size: $default-font-size * 10;
+			font-weight: 200;
+		}
+
+		&:nth-of-type(2), &:nth-of-type(3) {
+			font-size: $default-font-size * 5;
+			font-weight: 700;
+		}
 
 		&:first-of-type {
 			top: -10%;

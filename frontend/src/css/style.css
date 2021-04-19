@@ -2066,6 +2066,7 @@ div.references__name {
   position: relative;
 }
 .hero__heading {
+  font-family: "Spectral", serif;
   opacity: 0;
   visibility: hidden;
   mix-blend-mode: difference;
@@ -2075,6 +2076,14 @@ div.references__name {
   font-weight: 100;
   font-size: 9.6rem;
   transition: opacity 0.5s ease 0.5s, top 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s, bottom 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s, left 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s, right 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s;
+}
+.hero__heading:first-of-type, .hero__heading:nth-of-type(4) {
+  font-size: 16rem;
+  font-weight: 200;
+}
+.hero__heading:nth-of-type(2), .hero__heading:nth-of-type(3) {
+  font-size: 8rem;
+  font-weight: 700;
 }
 .hero__heading:first-of-type {
   top: -10%;
