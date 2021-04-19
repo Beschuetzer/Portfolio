@@ -35,6 +35,16 @@ IDEAS-----------------------------------------------------------
 -trouble shoot SiteNave layering with header
 -remove filter effect on bridge page for navbar--active
 
+-bridge vision:
+  1. add sound fx (door open and close for BridgeHero effect)
+  2. have each section be a separate 'card'
+  3. a card is a title (10vh?) and content(90vh)
+    3.1 title is and content are inside a SectionContainer (contains the js data attribute stuff)
+    3.11 SectionContainer has a background image of a suit
+    3.12 Transitioning between section containers happens by clicking one of two buttons (arrows at the left and right of section).
+    3.13 SectionContainers flow color-wise from left-right and right-left
+    3.2 content is a linear gradient to right and an svg of a card suit
+
 
 
 
