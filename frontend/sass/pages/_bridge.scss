@@ -1,3 +1,6 @@
+$hero-background-image-alpha: .33;
+$hero-blend-mode: hard-light;
+
 .bridge {
 	display: grid;
 	grid-template-rows: 100vh;
@@ -21,7 +24,12 @@
 }
 
 .hero {
-	background-image: none;
+	background-image: linear-gradient(to right, 
+		rgba($color-primary-bridge-2, $hero-background-image-alpha) 0%, 
+		rgba($color-primary-bridge-1, $hero-background-image-alpha) 25%, 
+		rgba($color-primary-bridge-1, $hero-background-image-alpha) 75%, 
+		rgba($color-primary-bridge-2, $hero-background-image-alpha) 100%
+	);
 	position: relative;
 	// height: 85vh;
 
@@ -29,9 +37,9 @@
 		font-family: 'Spectral', serif;
 		opacity: 0;
 		visibility: hidden;
-		mix-blend-mode: difference;
+		mix-blend-mode: $hero-blend-mode;
 		z-index: 10;
-		color: var(--color-primary-2);
+		color: var(--color-primary-3);
 		position: fixed;
 		font-weight: 100;
 		font-size: $default-font-size * 6;
@@ -61,19 +69,19 @@
 		}
 
 		&:nth-of-type(2) {
-			mix-blend-mode: difference;
+			mix-blend-mode: $hero-blend-mode;
 			top: 50%;
 			left: -10%;
 			transform: translate(-50%,-50%);
 		}
 		&:nth-of-type(3) {
-			mix-blend-mode: difference;
+			mix-blend-mode: $hero-blend-mode;
 			top: 50%;
 			right: -10%;
 			transform: translate(50%,-50%);
 		}
 		&:nth-of-type(4) {
-			mix-blend-mode: difference;
+			mix-blend-mode: $hero-blend-mode;
 			bottom: -10%;
 			left: 50%;
 			transform: translate(-50%, 50%);
@@ -95,7 +103,7 @@
 		color: var(--color-primary-2);
 		border-radius: $default-font-size * 200;
 		transition:
-			left $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard ,
+			left $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard-easeInOutBack ,
 		;
 
 		& input {
@@ -146,7 +154,7 @@
     transform: translate(-50%, -50%);
     background-size: cover;
 		opacity: 0;
-		z-index: 1;
+		// z-index: 1;
 	}
 }
 

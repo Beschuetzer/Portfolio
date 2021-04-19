@@ -2062,16 +2062,16 @@ div.references__name {
 }
 
 .hero {
-  background-image: none;
+  background-image: linear-gradient(to right, rgba(245, 146, 41, 0.33) 0%, rgba(0, 65, 109, 0.33) 25%, rgba(0, 65, 109, 0.33) 75%, rgba(245, 146, 41, 0.33) 100%);
   position: relative;
 }
 .hero__heading {
   font-family: "Spectral", serif;
   opacity: 0;
   visibility: hidden;
-  mix-blend-mode: difference;
+  mix-blend-mode: hard-light;
   z-index: 10;
-  color: var(--color-primary-2);
+  color: var(--color-primary-3);
   position: fixed;
   font-weight: 100;
   font-size: 9.6rem;
@@ -2091,19 +2091,19 @@ div.references__name {
   transform: translate(-50%, -50%);
 }
 .hero__heading:nth-of-type(2) {
-  mix-blend-mode: difference;
+  mix-blend-mode: hard-light;
   top: 50%;
   left: -10%;
   transform: translate(-50%, -50%);
 }
 .hero__heading:nth-of-type(3) {
-  mix-blend-mode: difference;
+  mix-blend-mode: hard-light;
   top: 50%;
   right: -10%;
   transform: translate(50%, -50%);
 }
 .hero__heading:nth-of-type(4) {
-  mix-blend-mode: difference;
+  mix-blend-mode: hard-light;
   bottom: -10%;
   left: 50%;
   transform: translate(-50%, 50%);
@@ -2122,7 +2122,7 @@ div.references__name {
   transform: translate(-50%, -50%);
   color: var(--color-primary-2);
   border-radius: 320rem;
-  transition: left 1s ease;
+  transition: left 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 .hero__more input {
   display: none;
@@ -2160,7 +2160,6 @@ div.references__name {
   transform: translate(-50%, -50%);
   background-size: cover;
   opacity: 0;
-  z-index: 1;
 }
 
 #hero__more-checkbox {
