@@ -31,7 +31,7 @@
 		mix-blend-mode: difference;
 		z-index: 10;
 		color: var(--color-primary-2);
-		position: absolute;
+		position: fixed;
 		font-weight: 100;
 		font-size: $default-font-size * 6;
 
@@ -76,8 +76,8 @@
 		height: $default-font-size * 15;
 		width: $default-font-size * 15;
 		font-size: $default-font-size * 3;
-		z-index: 100;
-		position: absolute;
+		z-index: 1;
+		position: fixed;
 		top: 50%;
 		left: 60%;
 		transform: translate(-50%, -50%);

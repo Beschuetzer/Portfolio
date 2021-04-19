@@ -11,7 +11,7 @@ const BridgeHero = () => {
   }
 
 	return (
-      <React.Fragment>
+    <React.Fragment>
       <input id='hero__more-checkbox' type='checkbox'></input>
       <div className="hero">
         <div onClick={handleMoreClick} className="hero__more">

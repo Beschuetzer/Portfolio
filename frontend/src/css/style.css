@@ -2071,7 +2071,7 @@ div.references__name {
   mix-blend-mode: difference;
   z-index: 10;
   color: var(--color-primary-2);
-  position: absolute;
+  position: fixed;
   font-weight: 100;
   font-size: 9.6rem;
   transition: opacity 0.5s ease 0.5s, top 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s, bottom 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s, left 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s, right 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s;
@@ -2106,8 +2106,8 @@ div.references__name {
   height: 24rem;
   width: 24rem;
   font-size: 4.8rem;
-  z-index: 100;
-  position: absolute;
+  z-index: 1;
+  position: fixed;
   top: 50%;
   left: 60%;
   transform: translate(-50%, -50%);
