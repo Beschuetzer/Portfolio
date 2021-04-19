@@ -577,7 +577,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: flex-end;
-			
+
 			&__svg {
 				cursor: pointer;
 				transform: rotate(var(--header-toggler-svg-rotation)) translate(var(--header-toggler-translate-x), var(--header-toggler-translate-y));
@@ -691,7 +691,7 @@
 
 			&:last-of-type {
 				@include respond(nav-switch) {
-					padding-bottom: 0;
+					// padding-bottom: 0;
 				}
 			}
 

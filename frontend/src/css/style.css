@@ -1597,11 +1597,6 @@ body {
     margin-left: 0;
   }
 }
-@media only screen and (max-width: 68.75em) {
-  .page-nav__section-group:last-of-type {
-    padding-bottom: 0;
-  }
-}
 .page-nav__section-group:hover {
   transform: translateY(-0.25vw);
   --page-nav-shadow-hover: rgba($color-black, 0.15);
@@ -2116,7 +2111,6 @@ div.references__name {
   transform: translate(-50%, -50%);
   color: var(--color-primary-2);
   border-radius: 320rem;
-  transition: background-color 0.5s ease;
 }
 .hero__more input {
   display: none;
@@ -2124,17 +2118,16 @@ div.references__name {
 .hero__more label {
   margin: 0;
   padding: 0;
-  height: 66%;
+  height: 100%;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 .hero__more svg {
   fill: var(--color-primary-2);
   transition: fill 0.5s ease;
 }
-.hero__more:hover {
-  background-color: var(--color-primary-2);
-}
-.hero__more:hover svg {
+.hero__more svg:hover {
   fill: var(--color-primary-1);
 }
 

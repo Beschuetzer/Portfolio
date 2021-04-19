@@ -81,9 +81,9 @@
 		color: var(--color-primary-2);
 		// padding: $default-font-size * 2 $default-font-size * 4;
 		border-radius: $default-font-size * 200;
-		transition: 	
-			background-color $animation-duration $animation-easing-standard,
-		;
+		// transition: 	
+		 	// background-color $animation-duration $animation-easing-standard,
+		// ;
 
 		& input {
 			display: none;
@@ -92,8 +92,10 @@
 		& label {
 			margin: 0;
 			padding: 0;
-			height: 66%;
+			height: 100%;
 			cursor: pointer;
+			display: flex;
+			justify-content: center;
 		}
 		
 		& svg {
@@ -101,18 +103,11 @@
 			transition: 	
 				fill $animation-duration $animation-easing-standard,
 			;
-		}
-
-		&:hover {
-			background-color: var(--color-primary-2);
-			& svg {
+			&:hover {
 				fill: var(--color-primary-1);
 			}
 		}
-
-		
 	}
-
 	
 	// &-text {
 	// 	height: var(--diamond-fractal-length);

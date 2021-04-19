@@ -16,7 +16,7 @@ const BridgeHero = () => {
       <div onClick={handleMoreClick} className="hero__more">
         <label for='hero__more-checkbox'>
           <svg>
-            <use xlinkHref="/sprite.svg#icon-help"></use>
+            <use xlinkHref="/sprite.svg#icon-arrow-outline-right"></use>
           </svg>
         </label>
       </div>
