@@ -2072,28 +2072,28 @@ div.references__name {
   position: absolute;
   font-weight: 100;
   font-size: 9.6rem;
-  transition: opacity 0.5s ease 0.5s;
+  transition: opacity 0.5s ease 0.5s, top 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s, bottom 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s, left 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s, right 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s;
 }
 .hero__heading:first-of-type {
-  top: 33%;
+  top: -10%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 .hero__heading:nth-of-type(2) {
   mix-blend-mode: difference;
   top: 50%;
-  left: 15%;
+  left: -10%;
   transform: translate(-50%, -50%);
 }
 .hero__heading:nth-of-type(3) {
   mix-blend-mode: difference;
   top: 50%;
-  right: 15%;
+  right: -10%;
   transform: translate(50%, -50%);
 }
 .hero__heading:nth-of-type(4) {
   mix-blend-mode: difference;
-  top: 66%;
+  top: -10%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -2124,11 +2124,11 @@ div.references__name {
   justify-content: center;
 }
 .hero__more svg {
-  fill: var(--color-primary-2);
+  fill: var(--color-primary-1);
   transition: fill 0.5s ease;
 }
 .hero__more svg:hover {
-  fill: var(--color-primary-1);
+  fill: var(--color-primary-2);
 }
 
 #hero__more-checkbox {
@@ -2144,6 +2144,18 @@ div.references__name {
 #hero__more-checkbox:checked ~ .hero__heading {
   opacity: 1;
   visibility: visible;
+}
+#hero__more-checkbox:checked ~ .hero__heading:first-of-type {
+  top: 15%;
+}
+#hero__more-checkbox:checked ~ .hero__heading:nth-of-type(2) {
+  left: 15%;
+}
+#hero__more-checkbox:checked ~ .hero__heading:nth-of-type(3) {
+  right: 15%;
+}
+#hero__more-checkbox:checked ~ .hero__heading:nth-of-type(4) {
+  top: 85%;
 }
 
 /*# sourceMappingURL=style.css.map */

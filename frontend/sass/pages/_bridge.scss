@@ -36,10 +36,14 @@
 
 		transition: 
 			opacity $animation-duration $animation-easing-standard $animation-duration,
+			top $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
+			bottom $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
+			left $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
+			right $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
 		;
 
 		&:first-of-type {
-			top: 33%;
+			top: -10%;
 			left: 50%;
 			transform: translate(-50%,-50%);
 		}
@@ -47,19 +51,18 @@
 		&:nth-of-type(2) {
 			mix-blend-mode: difference;
 			top: 50%;
-			left: 15%;
+			left: -10%;
 			transform: translate(-50%,-50%);
 		}
 		&:nth-of-type(3) {
 			mix-blend-mode: difference;
 			top: 50%;
-			right: 15%;
+			right: -10%;
 			transform: translate(50%,-50%);
 		}
 		&:nth-of-type(4) {
 			mix-blend-mode: difference;
-
-			top: 66%;
+			top: -10%;
 			left: 50%;
 			transform: translate(-50%,-50%);
 		}
@@ -77,13 +80,8 @@
 		top: 50%;
 		left: 60%;
 		transform: translate(-50%, -50%);
-		// background-color: var(--color-primary-3);
 		color: var(--color-primary-2);
-		// padding: $default-font-size * 2 $default-font-size * 4;
 		border-radius: $default-font-size * 200;
-		// transition: 	
-		 	// background-color $animation-duration $animation-easing-standard,
-		// ;
 
 		& input {
 			display: none;
@@ -99,29 +97,15 @@
 		}
 		
 		& svg {
-			fill: var(--color-primary-2);
+			fill: var(--color-primary-1);
 			transition: 	
 				fill $animation-duration $animation-easing-standard,
 			;
 			&:hover {
-				fill: var(--color-primary-1);
+				fill: var(--color-primary-2);
 			}
 		}
 	}
-	
-	// &-text {
-	// 	height: var(--diamond-fractal-length);
-	// 	width: var(--diamond-fractal-length);
-	// 	text-align: center;
-	// 	display: flex;
-	// 	justify-content: center;
-	// 	align-items: space-between;
-	// 	flex-direction: column;
-	// 	position: relative;
-	// 	// z-index: 1;
-	// 	color: var(--color-primary-1);
-	// 	// transform: rotate(calc(var(--diamond-fractal-rotation) * -1));
-	// }
 }
 
 #hero__more-checkbox {
@@ -138,5 +122,18 @@
 	&:checked ~ .hero__heading{
 		opacity: 1;
 		visibility: visible;
+
+		&:first-of-type {
+			top: 15%;
+		}
+		&:nth-of-type(2) {
+			left: 15%;
+		}
+		&:nth-of-type(3) {
+			right: 15%;
+		}
+		&:nth-of-type(4) {
+			top: 85%;
+		}
 	}
 }
