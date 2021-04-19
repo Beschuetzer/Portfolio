@@ -10,6 +10,12 @@ $hero-blend-mode: hard-light;
 	width: 100%;
 	background-color: var(--color-primary-4);
 
+		
+	& .root.navbar--active { 
+		filter: none;
+	}
+
+
 	&__section {
 		z-index: 1;
 		position: relative;
@@ -198,5 +204,10 @@ $hero-blend-mode: hard-light;
 		&:nth-of-type(4) {
 			bottom: 25%;
 		}
+	}
+
+	&:checked ~ .hero .diamond-fractal {
+		left: 0;
+		opacity: .05;
 	}
 }

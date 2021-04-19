@@ -5,10 +5,12 @@
 }
 
 .diamond-fractal {
+	opacity: .0;
   background: var(--color-primary-1);
-  height: 100%;
-  width: 100%;
-  position: relative;
+	
+  // height: 100%;
+  // width: 100%;
+  // position: relative;
 
   clip-path: polygon(
     0 0,
@@ -21,6 +23,16 @@
     var(--diamond-clip-low) var(--diamond-clip-low),
     0 0,
   ); 
+
+	position: fixed;
+	top: 0;
+	left: 20%;
+	bottom: 0;
+	right: 0;
+	transition:
+		left $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard-easeInOutBack ,
+		opacity $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard-easeInOutBack ,
+		;
 }
 
 .square {

@@ -337,6 +337,10 @@ body {
   z-index: 2 !important;
 }
 
+.no-filter {
+  filter: none !important;
+}
+
 .triangle-down {
   margin-left: 0.8rem;
   width: 0;
@@ -1678,11 +1682,15 @@ body {
 }
 
 .diamond-fractal {
+  opacity: 0;
   background: var(--color-primary-1);
-  height: 100%;
-  width: 100%;
-  position: relative;
   clip-path: polygon(0 0, 100% 0%, var(--diamond-clip-high) var(--diamond-clip-low), var(--diamond-clip-high) var(--diamond-clip-high), 100% 100%, 0 100%, var(--diamond-clip-low) var(--diamond-clip-high), var(--diamond-clip-low) var(--diamond-clip-low), 0 0);
+  position: fixed;
+  top: 0;
+  left: 20%;
+  bottom: 0;
+  right: 0;
+  transition: left 1s cubic-bezier(0.68, -0.6, 0.32, 1.6), opacity 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 
 .square {
@@ -2051,6 +2059,9 @@ div.references__name {
   width: 100%;
   background-color: var(--color-primary-4);
 }
+.bridge .root.navbar--active {
+  filter: none;
+}
 .bridge__section {
   z-index: 1;
   position: relative;
@@ -2193,6 +2204,10 @@ div.references__name {
 }
 #hero__more-checkbox:checked ~ .hero .hero__heading:nth-of-type(4) {
   bottom: 25%;
+}
+#hero__more-checkbox:checked ~ .hero .diamond-fractal {
+  left: 0;
+  opacity: 0.05;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -122,10 +122,6 @@
 				transform: $navbar__button-bar-after-transform;
 			}
 		}
-		.navbar.navbar--active &-bar::after,
-		.navbar.navbar--active &-bar::before {
-			// width: $default-font-size * 2.85;
-		}
 	}
 
 	&__content {
