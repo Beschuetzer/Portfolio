@@ -12,7 +12,6 @@ const SkillsItem = ({ title, percent, href, clickSkill, hours, labels }) => {
   const onParagraphClick = (e) => {
     if (e.target.parentNode.parentNode.previousElementSibling?.textContent.search(/human/i) !== -1) return;
 
-    console.log('click------------------------------------------------');
     skillsPopupDiv?.classList?.toggle('skills-popup--active');
     clickSkill(e.target);
   }

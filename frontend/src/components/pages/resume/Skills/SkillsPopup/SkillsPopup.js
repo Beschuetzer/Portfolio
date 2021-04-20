@@ -48,7 +48,7 @@ const SkillsPopup = ({
 			const repo = repos[i];
 			for (let j = 0; j < repo.repositoryTopics.nodes?.length; j++) {
 				const node = repo.repositoryTopics.nodes[j];
-				if (clickedSkill && node?.topic?.name === clickedSkill) {
+				if (clickedSkill && node?.topic?.name === clickedSkill?.trim().replace(' ', '-')) {
 					addRepoToReposToDisplay(repos[i]);
 					break;
 				}
@@ -56,14 +56,14 @@ const SkillsPopup = ({
 		}
 	}, [clickedSkill, repos, addRepoToReposToDisplay]);
 
-	const getIndexOfItem = (target, items) => {
-		for (let i = 0; i < items.length; i++) {
-			const item = items[i];
-			if (target.localName === "a" && item.localName === "a") {
-				if (target.href === item.href) return i;
-			} else if (target.innerText === item.innerText) return i;
-		}
-	};
+	// const getIndexOfItem = (target, items) => {
+	// 	for (let i = 0; i < items.length; i++) {
+	// 		const item = items[i];
+	// 		if (target.localName === "a" && item.localName === "a") {
+	// 			if (target.href === item.href) return i;
+	// 		} else if (target.innerText === item.innerText) return i;
+	// 	}
+	// };
 
 	const onTableItemMouseEvent = (e) => {
 		return;
@@ -308,7 +308,7 @@ const SkillsPopup = ({
 		<div className="skills-popup__content">
 			<div className="skills-popup__header">
 				<span className="skills-popup__header-text">
-					Github Projects that use '
+					Github Projects with tag '
 					<span className="skills-popup__header-skill">{clickedSkill}</span>':
 				</span>
 				<svg onClick={onCloseClick} className="skills-popup__close">

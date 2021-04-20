@@ -44,13 +44,13 @@ export const getRepositories = () => async (dispatch, getStore) => {
   const query = 
   `query {
     viewer {
-      repositories(first:50) {
+      repositories(first:100) {
         nodes {
           createdAt
           description
           name
           updatedAt
-          repositoryTopics(first:50) {
+          repositoryTopics(first:100) {
             nodes {
               topic {
                 name
@@ -174,10 +174,10 @@ export const getRepositories = () => async (dispatch, getStore) => {
 export const clickSkill = (target) => {
   const skillsToReplace = {
     'c#': 'csharp',
-    'socket.io': 'socketio'
+    'socket.io': 'socketio',
+    'dsa': 'data-structures-and-algorithms',
   };
   let skill = null;
-
   if (target) {
     skill = target.textContent.replace(':', '').toLowerCase();
     if (skillsToReplace[skill]) skill = skillsToReplace[skill];
