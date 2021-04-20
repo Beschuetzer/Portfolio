@@ -9,6 +9,7 @@ import {
   SET_PREVIOUS_URL,
   SET_SCROLL_PERCENT,
   SET_VIEW_PORT_WIDTH,
+  SET_SOUNDS,
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
@@ -233,5 +234,12 @@ export const setScrollPercent = (percentAsString) => {
   return {
     type: SET_SCROLL_PERCENT,
     payload: percentAsString,
+  }
+}
+
+export const setSounds = (sounds) => {
+  return {
+    type: SET_SOUNDS,
+    payload: sounds,
   }
 }

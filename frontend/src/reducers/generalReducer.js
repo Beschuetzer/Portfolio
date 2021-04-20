@@ -4,7 +4,7 @@ import {
   SET_IS_MOBILE,
   SET_PREVIOUS_URL,
   SET_SCROLL_PERCENT,
-  SET_VIEW_PORT_WIDTH
+  SET_VIEW_PORT_WIDTH,
 } from '../actions/types';
 
 const INITIAL_STATE = {

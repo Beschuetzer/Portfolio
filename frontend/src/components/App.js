@@ -18,12 +18,12 @@ import PageNav from "./navbar/PageNav";
 import NavToggler from "./navbar/NavToggler";
 import "../css/style.css";
 import GithubButton from "./GithubButton";
-import { setIsAnimating, setIsMobile, setViewPortWidth } from "../actions";
+import { setIsAnimating, setIsMobile, setViewPortWidth, setSounds } from "../actions";
 import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./constants";
 import doorSpriteMp3 from '../sounds/doorSprite.mp3'
 import doorSpriteOgg from '../sounds/doorSprite.ogg'
 
-const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWidth }) => {
+const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWidth, setSounds }) => {
 	const mobileBreakPointWidth = 1100;
 	setIsMobile(window.innerWidth <= mobileBreakPointWidth, window.innerWidth);
 
@@ -91,14 +91,14 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 	//Loading Sounds
 	useEffect(() => {
 		const sounds = new Howl({
-			loop: true,
       src: [doorSpriteMp3, doorSpriteOgg],
       sprite: {
         doorFast: [0, 1000],
         doorNormal: [1000, 2000],
       }
-		})
-		sounds.play('doorNormal');
+		});
+		setSounds(sounds);
+
 	}, [])
 
 	return (
@@ -133,4 +133,5 @@ export default connect(mapStateToProps, {
 	setIsAnimating,
 	setIsMobile,
 	setViewPortWidth,
+	setSounds,
 })(App);
