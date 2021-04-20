@@ -14,7 +14,7 @@ import {
 	ANIMATION_DURATION,
 } from "../constants";
 
-const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidth }) => {
+const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidth, sounds }) => {
 	const [ currentUrl, setCurrentUrl ] = useState(null);
 	const navRef = useRef();
 	const root = document.querySelector("#root");
@@ -32,6 +32,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 	const onNavClick = (e) => {
 		e.stopPropagation();
+		sounds.play('sonicBoom');
 		handleFilterBug(e);
 		const navBar = navRef.current;
 		const isChildOfNavBar = checkForParentOfType(e.target, "nav", "navbar");
@@ -252,6 +253,7 @@ const mapStateToProps = (state, ownProps) => {
 		isAnimating: state.general.isAnimating,
 		previousUrl: state.general.previousUrl,
 		viewPortWidth: state.general.viewPortWidth,
+		sounds: state.sounds,
 	};
 };
 
