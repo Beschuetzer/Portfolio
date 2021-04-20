@@ -29,7 +29,7 @@ IDEAS-----------------------------------------------------------
 -figure out how to create a bash script to get all of the .js files in a dir and its sub-dirs and then create .ts files in the same location with the contents of the respective .js file
 
 
-
+-add 'howler' tag to github portfolio project
 -finish csharp and autobid.txt
 -finish BridgeHero
 -trouble shoot SiteNave layering with header

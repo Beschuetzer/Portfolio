@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import history from "../history";
-import Howler from 'howler';
+import {Howl} from 'howler';
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -20,8 +20,8 @@ import "../css/style.css";
 import GithubButton from "./GithubButton";
 import { setIsAnimating, setIsMobile, setViewPortWidth } from "../actions";
 import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./constants";
-import doorSpriteMp3 from '../../sounds/doorSprite.mp3'
-import doorSpriteOgg from '../../sounds/doorSprite.ogg'
+import doorSpriteMp3 from '../sounds/doorSprite.mp3'
+import doorSpriteOgg from '../sounds/doorSprite.ogg'
 
 const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWidth }) => {
 	const mobileBreakPointWidth = 1100;
@@ -90,13 +90,15 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 
 	//Loading Sounds
 	useEffect(() => {
-		const Howl = new Howler();
-		sounds = new Howl({
+		const sounds = new Howl({
+			loop: true,
       src: [doorSpriteMp3, doorSpriteOgg],
       sprite: {
-        doorNormal: [0, 1063],
-        doorFast: [2000, 1063],
+        doorFast: [0, 1000],
+        doorNormal: [1000, 2000],
       }
+		})
+		sounds.play('doorNormal');
 	}, [])
 
 	return (
