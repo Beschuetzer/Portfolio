@@ -10,8 +10,8 @@
       "loop": false
     },
     "doorFast": {
-      "start": 2,
-      "end": 3,
+      "start": 1,
+      "end": 2,
       "loop": false
     }
   }
