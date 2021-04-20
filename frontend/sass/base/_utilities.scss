@@ -80,11 +80,11 @@
 
     //Dealing with SiteNav glitch
     .z-index-navbar {
-        z-index: 1 !important;
+        z-index: 5 !important;
     }
     //content must be higher than navbar for click event to work properly
     .z-index-content {
-        z-index: 2 !important;
+        z-index: 6 !important;
     }
 
     //Dealing with SiteNav filter bug on pages like '/bridge'

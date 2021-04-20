@@ -45,7 +45,7 @@ $bridge-logo-opacity: .5;
 		opacity: 0;
 		visibility: hidden;
 		mix-blend-mode: $hero-blend-mode;
-		z-index: 10;
+		// z-index: 10;
 		color: var(--color-primary-3);
 		position: fixed;
 		font-weight: 100;

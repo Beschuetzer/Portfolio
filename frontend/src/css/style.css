@@ -330,11 +330,11 @@ body {
 }
 
 .z-index-navbar {
-  z-index: 1 !important;
+  z-index: 5 !important;
 }
 
 .z-index-content {
-  z-index: 2 !important;
+  z-index: 6 !important;
 }
 
 .no-filter {
@@ -2081,7 +2081,6 @@ div.references__name {
   opacity: 0;
   visibility: hidden;
   mix-blend-mode: hard-light;
-  z-index: 10;
   color: var(--color-primary-3);
   position: fixed;
   font-weight: 100;
