@@ -25,8 +25,11 @@ const BridgeHero = ({sounds}) => {
       <div className="hero">
         <div onClick={handleMoreClick} className="hero__more">
           <label htmlFor='hero__more-checkbox'>
-            <svg>
-              <use xlinkHref="/sprite.svg#icon-arrow-with-circle-up"></use>
+            <svg className="hero__svg1">
+              <use xlinkHref="/sprite.svg#icon-help"></use>
+            </svg>
+            <svg className="hero__svg2">
+              <use xlinkHref="/sprite.svg#icon-arrow-with-circle-down"></use>
             </svg>
           </label>
           <div className="hero__bridge-logo"></div>

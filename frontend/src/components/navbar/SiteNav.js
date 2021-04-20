@@ -30,15 +30,24 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		else root.classList.remove('no-filter')
 	}
 
+	const handleSound = (e) => {
+		const isActive = e.currentTarget.className.match(/--active/i);
+		const isMenu = e.target?.className?.match(/navbar__menu/i);
+		const isNavbar = e.target.classList.contains('navbar');
+
+		if (!isActive && isMenu) sounds.play('siteNavOpen');
+		else if ((!isActive && !isNavbar) || (isActive && isMenu)) sounds.play('siteNavClose');
+	}
+
 	const onNavClick = (e) => {
 		e.stopPropagation();
-		sounds.play('sonicBoom');
 		handleFilterBug(e);
 		const navBar = navRef.current;
 		const isChildOfNavBar = checkForParentOfType(e.target, "nav", "navbar");
 
 		if (!navBar) return;
 		navBar.classList.add("overflow--hidden");
+		handleSound(e);
 
 		if (
 			!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&

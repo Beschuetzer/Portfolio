@@ -1,6 +1,6 @@
 $hero-background-image-alpha: .33;
 $hero-blend-mode: hard-light;
-$bridge-logo-opacity: .5;
+$bridge-logo-opacity: .25;
 
 .bridge {
 	display: grid;
@@ -127,12 +127,25 @@ $bridge-logo-opacity: .5;
 		}
 		
 		& svg {
-			transform: rotate(var(--bridge-hero-arrow-rotation));
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 			transition: 
 				transform $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard ,
+				opacity $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard ,
 				fill $animation-duration $animation-easing-standard,
 			;
 			fill: var(--color-primary-1);
+
+			&:nth-of-type(1) {
+				opacity: 1;
+			}
+
+			&:nth-of-type(2) {
+				opacity: 0;
+			}
+		
 		}
 
 		&:hover {
@@ -155,8 +168,8 @@ $bridge-logo-opacity: .5;
     position: fixed;
     top: 50%;
     left: 50%;
-    height: 15rem;
-    width: 15rem;
+    height: $default-font-size * 9;
+    width: $default-font-size * 9;
     border-radius: 100px;
     transform: translate(-50%, -50%);
     background-size: cover;
@@ -174,6 +187,16 @@ $bridge-logo-opacity: .5;
 #hero__more-checkbox {
 	display: none;
 
+	&:checked ~ .hero svg {
+		&:first-of-type {
+			opacity: 0;
+		}
+
+		&:nth-of-type(2) {
+			opacity: 1;
+		}
+	}
+
 	&:checked ~ .hero .hero__bridge-logo {
 		opacity: $bridge-logo-opacity / 8;
 		z-index: 0;
@@ -183,10 +206,6 @@ $bridge-logo-opacity: .5;
 		// opacity: 0;
 		// visibility: hidden;
 		left: 50%;
-
-		& svg {
-			--bridge-hero-arrow-rotation: 180deg;
-		}
 	}
 
 	&:checked ~ .hero .bg-video{
