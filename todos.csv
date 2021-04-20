@@ -29,14 +29,10 @@ IDEAS-----------------------------------------------------------
 -figure out how to create a bash script to get all of the .js files in a dir and its sub-dirs and then create .ts files in the same location with the contents of the respective .js file
 
 
--add 'howler' tag to github portfolio project
 -finish csharp and autobid.txt
--finish BridgeHero
--trouble shoot SiteNave layering with header
--remove filter effect on bridge page for navbar--active
 
+-finish BridgeHero
 -bridge vision:
-  1. add sound fx (door open and close for BridgeHero effect)
   2. have each section be a separate 'card'
   3. a card is a title (10vh?) and content(90vh)
     3.1 title is and content are inside a SectionContainer (contains the js data attribute stuff)
@@ -44,6 +40,11 @@ IDEAS-----------------------------------------------------------
     3.12 Transitioning between section containers happens by clicking one of two buttons (arrows at the left and right of section).
     3.13 SectionContainers flow color-wise from left-right and right-left
     3.2 content is a linear gradient to right and an svg of a card suit
+
+-trouble shoot SiteNave layering with header
+-add 'howler' tag to github portfolio project
+
+  
 
 
 

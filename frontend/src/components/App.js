@@ -54,9 +54,7 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 						root?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 					}
 					break;
-				case "b":
-					history.push("/about");
-					break;
+				
 				case "c":
 					history.push("/contact");
 					break;
@@ -64,8 +62,20 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 				case "w":
 					history.push("/examples");
 					break;
+				case "b":
+					history.push("/examples/bridge");
+					break;
+				case "s":
+					history.push("/examples/csharp");
+					break;
+				case "u":
+					history.push("/examples/autoBid");
+					break;
 				case "r":
 					history.push("/resume");
+					break;
+				case "t":
+					history.push("/about");
 					break;
 				default:
 					break;
@@ -88,7 +98,7 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 		setViewPortWidth,
 	]);
 
-	//Loading Sounds
+	//Loading Sounds, etc
 	useEffect(() => {
 		const sounds = new Howl({
       src: [doorSpriteMp3, doorSpriteOgg],
@@ -99,7 +109,7 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 		});
 		setSounds(sounds);
 
-	}, [])
+	}, [setSounds])
 
 	return (
 		<Router history={history}>
