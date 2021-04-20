@@ -20,8 +20,8 @@ import "../css/style.css";
 import GithubButton from "./GithubButton";
 import { setIsAnimating, setIsMobile, setViewPortWidth, setSounds } from "../actions";
 import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./constants";
-import doorSpriteMp3 from '../sounds/doorSprite.mp3'
-import doorSpriteOgg from '../sounds/doorSprite.ogg'
+import soundsSpriteMp3 from '../sounds/soundsSprite.mp3';
+import soundsSpriteOgg from '../sounds/soundSprite.ogg';
 
 const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWidth, setSounds }) => {
 	const mobileBreakPointWidth = 1100;
@@ -101,10 +101,11 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 	//Loading Sounds, etc
 	useEffect(() => {
 		const sounds = new Howl({
-      src: [doorSpriteMp3, doorSpriteOgg],
+      src: [soundsSpriteMp3, soundsSpriteOgg],
       sprite: {
         doorFast: [0, 1500],
-        doorNormal: [1500, 2500],
+        doorNormal: [1500, 1000],
+        sonicBoom: [2500, 1000],
       },
 		});
 		setSounds(sounds);
