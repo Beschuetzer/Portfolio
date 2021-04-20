@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "6.14/linux64" 1618877085
+<REAPER_PROJECT 0.1 "6.14/linux64" 1618877386
   RIPPLE 0
   GROUPOVERRIDE 0 0 0
   AUTOXFADE 1
@@ -15,7 +15,7 @@
   VIDEO_CONFIG 0 0 256
   PANMODE 3
   CURSOR 1.5
-  ZOOM 100 0 0
+  ZOOM 278.86532047290086 0 0
   VZOOMEX 6 1
   USE_REC_CFG 0
   RECMODE 1
@@ -28,8 +28,8 @@
   <APPLYFX_CFG
   >
   RENDER_FILE ""
-  RENDER_PATTERN ""
-  RENDER_FMT 0 2 0
+  RENDER_PATTERN doorNormal
+  RENDER_FMT 0 2 44100
   RENDER_1X 0
   RENDER_RANGE 2 0 0.82 18 1000
   RENDER_RESAMPLE 3 0 1
@@ -43,6 +43,7 @@
   TAKELANE 1
   SAMPLERATE 44100 0 0
   <RENDER_CFG
+    bDNwbaAAAAAAAAAAAAAAAP////8EAAAAoAAAAAAAAAA=
   >
   LOCK 1
   <METRONOME 6 2
@@ -55,8 +56,8 @@
   GLOBAL_AUTO -1
   TEMPO 120 4 4
   PLAYRATE 1 0 0.25 4
-  SELECTION 0 0
-  SELECTION2 0 0
+  SELECTION 1 0
+  SELECTION2 1 0
   MASTERAUTOMODE 0
   MASTERTRACKHEIGHT 0 0
   MASTERPEAKCOL 16576
@@ -91,7 +92,7 @@
     BEAT -1
     AUTOMODE 0
     VOLPAN 1 0 -1 -1 1
-    MUTESOLO 1 0 0
+    MUTESOLO 0 0 0
     IPHASE 0
     PLAYOFFS 0 1
     ISBUS 0 0
@@ -121,14 +122,14 @@
       SEL 0
       IGUID {CD7D52B9-57EA-F469-EE48-0D00D2EE7E84}
       IID 1
-      NAME 15419__pagancow__dorm-door-opening.wav
+      NAME raw.wav
       VOLPAN 1 0 1 -1
       SOFFS 0.43055373323786
       PLAYRATE 1 1 0 -1 0 0.0025
       CHANMODE 0
       GUID {B52426E5-BCD3-1079-C226-46E901E34544}
       <SOURCE WAVE
-        FILE "/home/adam/Desktop/Sound FX/15419__pagancow__dorm-door-opening.wav"
+        FILE "raw.wav"
       >
     >
     <ITEM
@@ -143,14 +144,14 @@
       SEL 0
       IGUID {0B2E5F86-3B03-F535-EFE3-15E09619793C}
       IID 4
-      NAME 15419__pagancow__dorm-door-opening.wav
+      NAME raw.wav
       VOLPAN 1 0 1 -1
       SOFFS 0.97027164499597
       PLAYRATE 1 1 0 -1 0 0.0025
       CHANMODE 0
       GUID {597D8C5E-1CB7-F1E6-0B17-A0B56BAAE59A}
       <SOURCE WAVE
-        FILE "/home/adam/Desktop/Sound FX/15419__pagancow__dorm-door-opening.wav"
+        FILE "raw.wav"
       >
     >
   >
@@ -167,7 +168,7 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 -1 -1 -1
     FREEMODE 0
-    SEL 0
+    SEL 1
     REC 0 0 1 0 0 0 0
     VU 2
     TRACKHEIGHT 0 0 0 0 -1 0
@@ -190,14 +191,14 @@
       SEL 0
       IGUID {B8C49B6B-4035-28A5-908F-27EB28E92C20}
       IID 1
-      NAME 15419__pagancow__dorm-door-opening.wav
+      NAME raw.wav
       VOLPAN 1 0 1 -1
       SOFFS 0.43055373323786
       PLAYRATE 1 1 0 -1 0 0.0025
       CHANMODE 0
       GUID {BE438E18-77A1-D2B0-A7BF-DD1889D0B8FF}
       <SOURCE WAVE
-        FILE "/home/adam/Desktop/Sound FX/15419__pagancow__dorm-door-opening.wav"
+        FILE "raw.wav"
       >
     >
     <ITEM
@@ -212,14 +213,14 @@
       SEL 0
       IGUID {256B548E-B68F-DB5D-9B66-5AE319E62BAC}
       IID 4
-      NAME 15419__pagancow__dorm-door-opening.wav
+      NAME raw.wav
       VOLPAN 1 0 1 -1
       SOFFS 0.9662364135536
       PLAYRATE 1 1 0 -1 0 0.0025
       CHANMODE 0
       GUID {963407F2-7A06-A468-5F14-FB7A7F18CBB1}
       <SOURCE WAVE
-        FILE "/home/adam/Desktop/Sound FX/15419__pagancow__dorm-door-opening.wav"
+        FILE "raw.wav"
       >
     >
   >

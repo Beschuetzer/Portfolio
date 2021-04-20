@@ -93,9 +93,9 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 		const sounds = new Howl({
       src: [doorSpriteMp3, doorSpriteOgg],
       sprite: {
-        doorFast: [0, 1000],
-        doorNormal: [1000, 2000],
-      }
+        doorFast: [0, 1500],
+        doorNormal: [1500, 2500],
+      },
 		});
 		setSounds(sounds);
 
