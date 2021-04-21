@@ -723,10 +723,10 @@
 	//Changing header sizes
 	@include respond(larger-than-nav-switch) {
 		& .header {
-			top: $default-font-size;
+			top: $default-font-size / 2;
 
 			&__inner {
-				width: calc(100% - #{$default-font-size * 2});
+				width: calc(100% - #{$default-font-size * 3});
 			}
 		}
 
@@ -738,11 +738,11 @@
 		}
 
 		& .site-nav {
-			transform-origin: top left;
+			transform-origin: left;
 		}
 
 		& .github {
-			transform-origin: top right;
+			transform-origin: right;
 		}
 
 		& .github:hover,
