@@ -33,7 +33,12 @@ const Bridge = () => {
 			>
 				<h2 className='heading--two bridge__section-title'>Background</h2>
 				<div className='bridge__section-content'>
-
+					<div className='card'>
+						<img alt='Ace of Clubs' src='/ace-of-clubs.svg'/>
+						<h4 className='card-title'>Header</h4>
+						<p className='card-text'>Some Text</p>
+					</div>
+		
 				</div>
 
 				<ArrowButton
