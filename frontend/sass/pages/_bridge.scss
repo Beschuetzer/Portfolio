@@ -37,7 +37,9 @@ $bridge-logo-opacity: .25;
 		}
 		
 		&-content {
-
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 
 		&-background {
@@ -343,6 +345,46 @@ $padding-nav-switch: $default-font-size * .5;
 
 }
 
+
+$card-height: $default-font-size * 10;
+$card-header-height: $card-height / 3.333333333333;
 .card {
-	
+	backface-visibility: hidden;
+	color: var(--color-primary-1);
+	position: relative;
+	height: $card-height;
+	width: $card-height * 2 / 3;
+	display: grid;
+	grid-template-rows: $card-header-height 1fr;
+	align-items: center;
+	justify-items: center;
+	transition: 
+		transform $animation-duration $animation-easing-standard-easeInOutBack,
+	;
+
+	&__children { 
+		padding: 0 $default-font-size * 2;
+	}
+
+	&__image {
+		width: 100%;
+		position: absolute;
+    // opacity: .3;
+		z-index: -1;
+	}
+	&__title {
+		height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: $default-font-size * .1 dashed var(--color-primary-1);
+	}
+	&__text {
+		
+	}
+
+	&:hover {
+		transform: scale(1.5);
+	}
 }

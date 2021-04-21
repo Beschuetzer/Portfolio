@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 
 import BridgeHero from './BridgeHero';
+import Card from '../../../Card';
 import ArrowButton from '../../../ArrowButton';
 import SectionContainer from './../../../SectionContainer';
 
@@ -33,11 +34,14 @@ const Bridge = () => {
 			>
 				<h2 className='heading--two bridge__section-title'>Background</h2>
 				<div className='bridge__section-content'>
-					<div className='card'>
-						<img alt='Ace of Clubs' src='/ace-of-clubs.svg'/>
-						<h4 className='card-title'>Header</h4>
-						<p className='card-text'>Some Text</p>
-					</div>
+					<Card
+						cardName='ace-of-clubs'
+						title='Title Here'
+					>
+						<p className='card__text'></p>
+					</Card>
+					
+					
 		
 				</div>
 
