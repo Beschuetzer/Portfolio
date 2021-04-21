@@ -1,3 +1,6 @@
+Temporary things to do---------------------------------
+  add select A# Maj Bridge source code to a public repository for resume
+
 IDEAS-----------------------------------------------------------
   -add hover popup for references that pops up a card with image, quote (recommendation from ziprecruiter, and letter of recommendation from scott?), more detailed info about relationship with reference;  add personal references?
 
@@ -15,14 +18,10 @@ IDEAS-----------------------------------------------------------
 
 
 
--have each project page load a different color pallette shortly after component render completes first time (need to add setTimeOut to componentDidMount and have color-primary-x css vars)
--figure out bridge color pallette
--need to fix changing from bridge to resume
 
 
 -videos to do:
   navigating the menu
-  claim some feature in detail
   handling errors (just refresh)
 
 
