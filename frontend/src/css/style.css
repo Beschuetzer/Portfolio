@@ -2064,8 +2064,6 @@ div.references__name {
   filter: none;
 }
 .bridge__section {
-  display: grid;
-  grid-template-rows: 25vh 75vh;
   z-index: 2;
   position: relative;
   background-color: var(--color-primary-2);
@@ -2084,10 +2082,14 @@ div.references__name {
 .bridge__section-content {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 .bridge__section-background {
   background-image: linear-gradient(to right, rgba(245, 146, 41, 0.75), rgba(245, 241, 218, 0.75));
+}
+.bridge__inner {
+  margin: 3.2rem;
+  display: grid;
+  grid-template-rows: 25vh 50vh 25vh;
 }
 .bridge__content {
   padding: 1.6rem;
@@ -2321,10 +2323,10 @@ div.references__name {
   backface-visibility: hidden;
   color: var(--color-primary-1);
   position: relative;
-  height: 16rem;
-  width: 10.6666666667rem;
+  height: 40rem;
+  width: 26.6666666667rem;
   display: grid;
-  grid-template-rows: 4.8rem 1fr;
+  grid-template-rows: 12rem 1fr;
   align-items: center;
   justify-items: center;
   transition: transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
@@ -2338,12 +2340,12 @@ div.references__name {
   z-index: -1;
 }
 .card__title {
+  font-size: 3.2rem;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  border-bottom: 0.16rem dashed var(--color-primary-1);
 }
 .card:hover {
   transform: scale(1.5);

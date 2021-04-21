@@ -26,39 +26,38 @@ const Bridge = () => {
 				name="Bridge"
 				pageName="bridge"
 			/>
-			
-			<div className="transition">Transition</div>
+			{/* <p>
+					Contract bridge, or simply bridge, is a trick-taking card game using a standard 52-card deck. In its basic format, it is played by four players in two competing partnerships, with partners sitting opposite each other around a table.
+				</p> */}
+			{/* <div className="transition">Transition</div> */}
 			<SectionContainer
 				pageName='bridge'
 				name='why'
 			>
-				<h2 className='heading--two bridge__section-title'>Why Bridge?</h2>
-				<div className='bridge__section-content'>
-					<p>
-						Contract bridge, or simply bridge, is a trick-taking card game using a standard 52-card deck. In its basic format, it is played by four players in two competing partnerships, with partners sitting opposite each other around a table.
-					</p>
-					<Card
-						cardName='ace-of-clubs'
-						title='Why?'
-					>
-					</Card>
-					<Card
-						cardName='ace-of-diamonds'
-						title='How?'
-					>
-					</Card>
-					<Card
-						cardName='ace-of-hearts'
-						title='Challenges'
-					>
-					</Card>
-					<Card
-						cardName='ace-of-spades'
-						title='Lessons Learned'
-					>
-					</Card>
-					
-		
+				<div className="bridge__inner">
+					<h2 className='heading--two bridge__section-title'>Why Bridge?</h2>
+					<div className='bridge__section-content'>
+						<Card
+							cardName='ace-of-clubs'
+							title='Why?'
+						>
+						</Card>
+						<Card
+							cardName='ace-of-diamonds'
+							title='How?'
+						>
+						</Card>
+						<Card
+							cardName='ace-of-hearts'
+							title='Challenges'
+						>
+						</Card>
+						<Card
+							cardName='ace-of-spades'
+							title='Lessons Learned'
+						>
+						</Card>
+					</div>
 				</div>
 
 				<ArrowButton
