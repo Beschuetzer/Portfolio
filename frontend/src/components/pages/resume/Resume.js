@@ -99,7 +99,7 @@ class Resume extends React.Component {
 						}
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
-							title="SCSS"
+							title="SASS"
 							percent="66"
 						/>
 						{
