@@ -1,14 +1,16 @@
 import React from "react";
+
+import SectionContainer from '../components/SectionContainer';
 import { capitalize } from "../helpers";
 
 class Section extends React.Component {
 	render() {
 		const { name, pageName, children, headerSideContent } = this.props;
 		return (
-			<section
-				id={name.toLowerCase()}
-				data-section={name.toLowerCase()}
-				className={`${pageName}__section ${pageName}__section-${name.toLowerCase()}`}>
+			<SectionContainer
+				name={name}
+				pageName={pageName}
+			>
 				<article className={`${pageName}__card z-index-content`}>
 					<div className={`${pageName}__content`}>
 						<div className={`${pageName}__header`}>
@@ -20,7 +22,7 @@ class Section extends React.Component {
 						{children}
 					</div>
 				</article>
-			</section>
+			</SectionContainer>
 		);
 	}
 }

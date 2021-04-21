@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 
 import BridgeHero from './BridgeHero';
-import Section from './../../../Section';
+import SectionContainer from './../../../SectionContainer';
 
 
 
@@ -25,12 +25,17 @@ const Bridge = () => {
 				pageName="bridge"
 			/>
 			
-			
-			<Section
+			<div className="transition">Transition</div>
+			<SectionContainer
 				pageName='bridge'
-				name='Summary'
+				name='background'
 			>
-			</Section>
+				<h2 className='heading--two bridge__section-title'>Background</h2>
+				<div className='bridge__section-content'>
+
+				</div>
+
+			</SectionContainer>
 		</div>
 
 	</React.Fragment>

@@ -18,11 +18,35 @@ $bridge-logo-opacity: .25;
 
 
 	&__section {
-		z-index: 1;
+		display: grid;
+		grid-template-rows: 25vh 75vh;
+		z-index: 2;
 		position: relative;
 		// padding: $default-font-size * 10;
 		background-color: var(--color-primary-2);
-		color: var(--color-primary-1);
+		color: var(--color-primary-4);
+
+		&-title {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			@include respond(nav-switch) {
+				align-items: flex-end;
+			}
+		}
+		
+		&-content {
+
+		}
+
+		&-background {
+			background-image: linear-gradient(
+				to right,
+				rgba($color-primary-bridge-2, .75),
+				rgba($color-primary-bridge-4, .75),
+			);
+		}
 	}
 
 	&__content {
@@ -182,8 +206,6 @@ $bridge-logo-opacity: .25;
 	}
 }
 
-
-
 #hero__more-checkbox {
 	display: none;
 
@@ -234,4 +256,14 @@ $bridge-logo-opacity: .25;
 		left: 0;
 		opacity: .05;
 	}
+}
+
+.transition {
+	height: 10vh;
+	background-image: linear-gradient(
+		to bottom,
+		var(--color-primary-1),
+		var(--color-primary-2)
+
+	);
 }
