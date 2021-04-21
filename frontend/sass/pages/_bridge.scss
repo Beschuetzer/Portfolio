@@ -278,8 +278,13 @@ $padding-nav-switch: $default-font-size * .5;
 	top: 50%;
 
 	& svg {
-		width: $default-font-size * 6;
-		height: $default-font-size * 6;
+		width: 7vw;
+		height: 7vw;
+
+		@include respond(nav-switch) {
+			width: $default-font-size * 5;
+		height: $default-font-size * 5;
+		}
 	}
 
 	&__left {

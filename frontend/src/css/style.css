@@ -2251,8 +2251,14 @@ div.references__name {
   top: 50%;
 }
 .arrow-button svg {
-  width: 9.6rem;
-  height: 9.6rem;
+  width: 7vw;
+  height: 7vw;
+}
+@media only screen and (max-width: 68.75em) {
+  .arrow-button svg {
+    width: 8rem;
+    height: 8rem;
+  }
 }
 .arrow-button__left {
   padding-left: 2.4rem;
