@@ -136,6 +136,7 @@
     }
 	}
 	&__outer {
+		background: var(--color-primary-bridge-1);
 		height: calc(var(--diamond-fractal-length) * 1);
 		width: calc(var(--diamond-fractal-length) * 1);
 	}

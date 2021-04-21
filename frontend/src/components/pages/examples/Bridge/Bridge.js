@@ -37,7 +37,7 @@ const Bridge = () => {
 				<div className="bridge__inner">
 					<h2 className='heading--two bridge__section-title'>Why Bridge?</h2>
 					<div className='bridge__section-content'>
-						<Card
+						{/* <Card
 							cardName='ace-of-clubs'
 							title='Why?'
 						>
@@ -56,7 +56,7 @@ const Bridge = () => {
 							cardName='ace-of-spades'
 							title='Lessons Learned'
 						>
-						</Card>
+						</Card> */}
 					</div>
 				</div>
 

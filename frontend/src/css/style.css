@@ -1755,6 +1755,7 @@ body {
   width: calc(var(--diamond-fractal-length) / 16);
 }
 .square__outer {
+  background: var(--color-primary-bridge-1);
   height: calc(var(--diamond-fractal-length) * 1);
   width: calc(var(--diamond-fractal-length) * 1);
 }
@@ -2064,10 +2065,12 @@ div.references__name {
   filter: none;
 }
 .bridge__section {
+  padding: 2.4rem;
   z-index: 2;
   position: relative;
-  background-color: var(--color-primary-2);
-  color: var(--color-primary-4);
+  height: 100vh;
+  background-color: var(--color-primary-4);
+  color: var(--color-primary-1);
 }
 .bridge__section-title {
   display: flex;
@@ -2087,9 +2090,14 @@ div.references__name {
   background-image: linear-gradient(to right, rgba(245, 146, 41, 0.75), rgba(245, 241, 218, 0.75));
 }
 .bridge__inner {
-  margin: 3.2rem;
+  box-shadow: 0 0rem 3.2rem 0.8rem rgba(0, 0, 0, 0.15);
+  max-width: 85rem;
+  margin: 0 auto;
+  height: 100%;
+  border-radius: 3.2rem;
   display: grid;
-  grid-template-rows: 25vh 50vh 25vh;
+  grid-template-rows: 25% 50% 25%;
+  background-image: linear-gradient(to right, rgba(245, 241, 218, 0.75) 10%, rgba(245, 146, 41, 0.75) 25%, rgba(245, 146, 41, 0.75) 50%, rgba(245, 241, 218, 0.75) 100%);
 }
 .bridge__content {
   padding: 1.6rem;
