@@ -46,6 +46,8 @@
   --header-toggler-translate-x: 0;
   --header-toggler-translate-y: 0;
   --header-inner-width-nav-switch: 100%;
+  --arrow-button-fill: var(--color-primary-bridge-1);
+  --arrow-button-fill-hover: var(--color-primary-bridge-2);
   --diamond-fractal-animation-duration: 120s;
   --diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
   --aspect-ratio-factor: calc(16 / 9);
@@ -2239,6 +2241,69 @@ div.references__name {
 .transition {
   height: 10vh;
   background-image: linear-gradient(to bottom, var(--color-primary-1), var(--color-primary-2));
+}
+
+.arrow-button {
+  fill: var(--arrow-button-fill);
+  cursor: pointer;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+}
+.arrow-button svg {
+  width: 9.6rem;
+  height: 9.6rem;
+}
+.arrow-button__left {
+  padding-left: 2.4rem;
+  left: 0%;
+}
+.arrow-button__left svg {
+  transform: rotate(90deg);
+}
+@media only screen and (max-width: 68.75em) {
+  .arrow-button__left {
+    padding-left: 0.8rem;
+  }
+}
+.arrow-button__right {
+  padding-right: 2.4rem;
+  right: 0;
+}
+.arrow-button__right svg {
+  transform: rotate(-90deg);
+}
+@media only screen and (max-width: 68.75em) {
+  .arrow-button__right {
+    padding-right: 0.8rem;
+  }
+}
+.arrow-button:hover {
+  fill: var(--arrow-button-fill-hover);
+}
+.arrow-button__fill-1 {
+  fill: var(--color-primary-bridge-1);
+}
+.arrow-button__fill-2 {
+  fill: var(--color-primary-bridge-2);
+}
+.arrow-button__fill-3 {
+  fill: var(--color-primary-bridge-3);
+}
+.arrow-button__fill-4 {
+  fill: var(--color-primary-bridge-4);
+}
+.arrow-button__hover-fill-1:hover {
+  fill: var(--color-primary-bridge-1);
+}
+.arrow-button__hover-fill-2:hover {
+  fill: var(--color-primary-bridge-2);
+}
+.arrow-button__hover-fill-3:hover {
+  fill: var(--color-primary-bridge-3);
+}
+.arrow-button__hover-fill-4:hover {
+  fill: var(--color-primary-bridge-4);
 }
 
 /*# sourceMappingURL=style.css.map */

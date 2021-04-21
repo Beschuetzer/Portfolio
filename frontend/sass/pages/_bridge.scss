@@ -267,3 +267,73 @@ $bridge-logo-opacity: .25;
 
 	);
 }
+
+$padding-full: $default-font-size * 1.5;
+$padding-nav-switch: $default-font-size * .5;
+.arrow-button {
+	fill: var(--arrow-button-fill);
+	cursor: pointer;
+	position: absolute;
+	transform: translateY(-50%);
+	top: 50%;
+
+	& svg {
+		width: $default-font-size * 6;
+		height: $default-font-size * 6;
+	}
+
+	&__left {
+		padding-left: $padding-full;
+		left: 0%;
+		& svg {
+			transform: rotate(90deg);
+		}
+
+		@include respond(nav-switch) {
+			padding-left: $padding-nav-switch;
+		}
+	}
+
+	&__right {
+		padding-right: $padding-full;
+		right: 0;
+		& svg {
+			transform: rotate(-90deg);
+		}
+
+		@include respond(nav-switch) {
+			padding-right: $padding-nav-switch;
+		}
+	}
+
+	&:hover {
+		fill: var(--arrow-button-fill-hover);
+	}
+
+	&__fill-1 {
+		fill: var(--color-primary-bridge-1);
+	}
+	&__fill-2 {
+		fill: var(--color-primary-bridge-2);
+	}
+	&__fill-3 {
+		fill: var(--color-primary-bridge-3);
+	}
+	&__fill-4 {
+		fill: var(--color-primary-bridge-4);
+	}
+
+	&__hover-fill-1:hover {
+		fill: var(--color-primary-bridge-1);
+	}
+	&__hover-fill-2:hover {
+			fill: var(--color-primary-bridge-2);
+		}
+	&__hover-fill-3:hover {
+			fill: var(--color-primary-bridge-3);
+		}
+	&__hover-fill-4:hover {
+			fill: var(--color-primary-bridge-4);
+		}
+
+}

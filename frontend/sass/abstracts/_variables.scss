@@ -177,6 +177,10 @@ $page-nav-top: calc(
 
 	--header-inner-width-nav-switch: 100%;
 
+	//bridge page
+	--arrow-button-fill: var(--color-primary-bridge-1);
+	--arrow-button-fill-hover: var(--color-primary-bridge-2);
+
 	//shapes stuff
 	--diamond-fractal-animation-duration: 120s;
 	--diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));

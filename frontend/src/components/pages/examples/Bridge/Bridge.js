@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 
 import BridgeHero from './BridgeHero';
+import ArrowButton from '../../../ArrowButton';
 import SectionContainer from './../../../SectionContainer';
 
 
@@ -35,6 +36,16 @@ const Bridge = () => {
 
 				</div>
 
+				<ArrowButton
+					direction='left'
+					fillNumber='1'
+					hoverFillNumber='3'
+				/>
+				<ArrowButton
+					direction='right'
+					fillNumber='1'
+					hoverFillNumber='4'
+				/>
 			</SectionContainer>
 		</div>
 
