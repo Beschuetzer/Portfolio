@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 import BridgeHero from './BridgeHero';
 import BridgeCard from './BridgeCard';
@@ -24,15 +25,14 @@ const Bridge = () => {
 						title='An App is Born'
 					>
 						<p>
-							A# Maj Bridge started as an idea my friend had in May of 2020.  The COVID-19 pandemic was in full swing and he was missing the opportunity to play 
-							<a href="https://en.wikipedia.org/wiki/Contract_bridge" className="bridge__link">contract bridge.</a>  
-							I had just finished 
-							<a href="/examples/Downloader" className="bridge__link">contract bridge.</a>  
-							<a href="https://en.wikipedia.org/wiki/Contract_bridge" className="bridge__link">contract bridge.</a>  
-
-							
-							
-							the name of an app I wrote between June and December of 2020.  It allows users to play Bridge online with other humans.
+							The COVID-19 pandemic was in full swing and he was missing the opportunity to play &nbsp; 
+							<a target="_blank" rel="noreferrer" href="https://en.wikipedia.org/wiki/Contract_bridge" className="bridge__link">contract bridge.</a>  
+							&nbsp; I had just finished the &nbsp;
+							<Link to="/examples/downloader" className="bridge__link">downloader</Link>  
+							&nbsp; and &nbsp;
+							<Link to="/examples/playlist-syncer" className="bridge__link">music syncing</Link> apps when he proposed the idea of playing bridge online with the old group. &nbsp; 
+							<a target="_blank" rel="noreferrer" href="https://still-bayou-51404.herokuapp.com" className="bridge__link">A# Maj Bridge.</a>  
+							&nbsp; is the result of that idea.
 						</p>
 					</BridgeCardSection>
 				
@@ -127,7 +127,12 @@ const Bridge = () => {
 	}, []);
 
 	const renderSections = () => {
-		return sectionContents.map(item => item);
+		return sectionContents.map((item, index) => {
+			return (
+				<React.Fragment key={index}>
+					{item}
+				</React.Fragment>	
+			)});
 	}
 
 	return (

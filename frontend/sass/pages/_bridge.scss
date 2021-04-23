@@ -73,12 +73,20 @@ $bridge-logo-opacity: .25;
 			rgba($color-primary-bridge-3, 1) 100%,
 		);
 
+		& h3 {
+			// margin-top: $default-font-size * 1;
+			margin-bottom: $default-font-size * 1;
+
+			// &:first-of-type {
+			// 	margin-top: 0;
+			// }
+			// &:last-of-type {
+			// 	margin-bottom: 0;
+			// }
+		}
+
 		& p {
 			margin-bottom: $default-font-size;
-
-			&:first-of-type{
-				margin-top: $default-font-size;
-			}
 		}
 	}
 
