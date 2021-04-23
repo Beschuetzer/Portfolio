@@ -2073,6 +2073,7 @@ div.references__name {
   color: var(--color-primary-1);
 }
 .bridge__section-title {
+  padding: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2084,7 +2085,7 @@ div.references__name {
 }
 .bridge__section-content {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
 }
 .bridge__section-background {
@@ -2099,8 +2100,14 @@ div.references__name {
   height: 100%;
   border-radius: 3.2rem;
   display: grid;
-  grid-template-rows: 25% 50% 25%;
+  grid-template-rows: min-content 1fr;
   background-image: linear-gradient(to right, #e3dfc8 0%, #f5f1da 25%, #f5f1da 75%, #e3dfc8 100%);
+}
+.bridge__inner p {
+  margin-bottom: 1.6rem;
+}
+.bridge__inner p:first-of-type {
+  margin-top: 1.6rem;
 }
 .hero {
   background-image: linear-gradient(to right, rgba(245, 146, 41, 0.33) 0%, rgba(0, 65, 109, 0.33) 25%, rgba(0, 65, 109, 0.33) 75%, rgba(245, 146, 41, 0.33) 100%);

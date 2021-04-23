@@ -15,12 +15,17 @@ const Bridge = () => {
 				name='summary'
 				pageName='bridge'
 			>
-				<p>
-					The outbreak of the COVID-19 Pandemic provided me with a lot of time to reflect on my career choices and where I want to be in 10 years time.  
-				</p>
-				<p>
-					After much careful reflection, I realized that I would not be able to live a self-realized life, if I did not at least try to become a professional coder. 
-				</p>
+				<BridgeCard
+					titleSize='two'
+					titleContent='Form and Vision'
+				>
+					<h3>How to Connect without Really Trying</h3>
+					<p>
+						A# Maj Bridge is the name of an app I wrote between June and December of 2020.  It allows users to play Bridge online with other humans.  
+					</p>
+					
+				
+				</BridgeCard>
 			</SectionContainer>
 		,
 			<SectionContainer
@@ -42,7 +47,7 @@ const Bridge = () => {
 								My current position at Ricoh was not panning out as I had expected. 
 							</li>
 							<li className='bridge__reasons-item'>
-								I have always been enamored with the idea of becoming a computer programmer (my dad was a programmer for a company called Deluxe in MN.  However, I saw how much my dad’s new position as a project manager caused him a lot of stress, which eventually to a heart attack.  I naively attributed his heart attack to coding in my mind and decided to pursue other things, even though I had a thing for programming.), and I finally realized that this may be my last chance to become a programmer.  I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
+								I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
 							</li>
 						</ul>
 
