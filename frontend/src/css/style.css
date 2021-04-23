@@ -2068,7 +2068,7 @@ div.references__name {
   padding: 2.4rem;
   z-index: 2;
   position: relative;
-  height: 91.5vh;
+  height: 100vh;
   background-color: var(--color-primary-3);
   color: var(--color-primary-1);
 }
@@ -2085,11 +2085,14 @@ div.references__name {
 .bridge__section-content {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 .bridge__section-background {
   background-image: linear-gradient(to right, rgba(245, 146, 41, 0.75), rgba(245, 241, 218, 0.75));
 }
 .bridge__inner {
+  font-size: 1.6rem;
+  padding: 0 6.4rem 3.2rem;
   box-shadow: 0 0rem 3.2rem 0.8rem rgba(0, 0, 0, 0.15);
   max-width: 85rem;
   margin: 0 auto;
@@ -2099,10 +2102,6 @@ div.references__name {
   grid-template-rows: 25% 50% 25%;
   background-image: linear-gradient(to right, #e3dfc8 0%, #f5f1da 25%, #f5f1da 75%, #e3dfc8 100%);
 }
-.bridge__content {
-  padding: 1.6rem;
-}
-
 .hero {
   background-image: linear-gradient(to right, rgba(245, 146, 41, 0.33) 0%, rgba(0, 65, 109, 0.33) 25%, rgba(0, 65, 109, 0.33) 75%, rgba(245, 146, 41, 0.33) 100%);
   position: relative;

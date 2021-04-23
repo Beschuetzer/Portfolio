@@ -21,7 +21,7 @@ $bridge-logo-opacity: .25;
 		padding: $default-font-size * 1.5;
 		z-index: 2;
 		position: relative;
-		height: 91.5vh;
+		height: 100vh;
 		// height: 83.5vh;
 		// padding: $default-font-size * 10;
 		background-color: var(--color-primary-3);
@@ -40,6 +40,7 @@ $bridge-logo-opacity: .25;
 		&-content {
 			display: flex;
 			justify-content: center;
+			flex-direction: column;
 			// align-items: center;
 		}
 
@@ -50,9 +51,12 @@ $bridge-logo-opacity: .25;
 				rgba($color-primary-bridge-4, .75),
 			);
 		}
+
 	}
 
 	&__inner {
+		font-size: $default-font-size;
+		padding: 0 $default-font-size * 4 $default-font-size * 2;
 		box-shadow: 0 0rem $default-font-size * 2 $default-font-size * .5 \rgba($color-black, .15);
     max-width: $resume-card-width-full;
     margin: 0 auto;
@@ -68,9 +72,15 @@ $bridge-logo-opacity: .25;
 			rgba($color-primary-bridge-3, 1) 100%,
 		);
 	}
-	&__content {
-		padding: $default-font-size;
+
+	&__reasons{
+	
+
+		&-item {
+
+		}
 	}
+
 }
 
 .hero {
