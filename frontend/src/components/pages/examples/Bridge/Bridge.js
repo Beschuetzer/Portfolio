@@ -3,6 +3,7 @@ import { useEffect } from "react";
 
 import BridgeHero from './BridgeHero';
 import BridgeCard from './BridgeCard';
+import BridgeCardSection from './BridgeCardSection';
 import SectionContainer from './../../../SectionContainer';
 import Card from '../../../Card';
 import ArrowButton from '../../../ArrowButton';
@@ -17,14 +18,34 @@ const Bridge = () => {
 			>
 				<BridgeCard
 					titleSize='two'
-					titleContent='Form and Vision'
+					titleContent='What and Why'
 				>
-					<h3>How to Connect without Really Trying</h3>
-					<p>
-						A# Maj Bridge is the name of an app I wrote between June and December of 2020.  It allows users to play Bridge online with other humans.  
-					</p>
-					
+					<BridgeCardSection
+						title='A Challenge Emerges'
+					>
+						<p>
+							A# Maj Bridge is the name of an app I wrote between June and December of 2020.  It allows users to play Bridge online with other humans.
+						</p>
+					</BridgeCardSection>
 				
+					<BridgeCardSection
+						title='You did what?'
+					>
+						<ul className='bridge__reasons'>
+							<li className='bridge__reasons-item'>
+								There was no free online bridge resource in May of 2020. 
+							</li>
+							<li className='bridge__reasons-item'>
+								A good friend from MN mentioned how much he missed playing Bridge now that he couldn’t play Bridge in person due to the COVID 19 pandemic. 
+							</li>
+							<li className='bridge__reasons-item'>
+								My current position at Ricoh was not panning out as I had expected. 
+							</li>
+							<li className='bridge__reasons-item'>
+								I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
+							</li>
+						</ul>
+					</BridgeCardSection>
 				</BridgeCard>
 			</SectionContainer>
 		,
