@@ -7,8 +7,29 @@ class NavItem extends React.Component {
     linkClassName: "navbar__link",
   } 
   render() {
-    const { onMouseEnter, onClick, to, label, label2, children, className, triangle } = this.props;
+    const { isLink=true, onMouseEnter, onClick, to, label, label2, children, className, triangle } = this.props;
     const classNamesToUse = className ? className : this.defaults.liClassName;
+
+    const getContent = () => {
+      let content =  
+      <React.Fragment>
+        <div className="navbar__dropdown-group">
+          {label}
+          {triangle}
+        </div>
+        {children}
+      </React.Fragment>
+
+      if (!triangle) {
+        content = 
+        <React.Fragment>
+          {label}
+          {children}
+        </React.Fragment>
+      }
+
+      return content;
+    }
 
     return (
       <li 
@@ -16,25 +37,18 @@ class NavItem extends React.Component {
         onClick={onClick} 
         className={classNamesToUse}
       >
-        <Link 
-          className={this.defaults.linkClassName} 
-          to={to}
-        >
-          {triangle ?
-            <React.Fragment>
-              <div className="navbar__dropdown-group">
-                {label}
-                {triangle}
-              </div>
-              {children}
-            </React.Fragment>
-          :
-            <React.Fragment>
-              {label}
-              {children}
-            </React.Fragment>
-          }
-        </Link>
+        {isLink ? 
+          <Link 
+            className={this.defaults.linkClassName} 
+            to={to}
+          >
+            {getContent()}
+          </Link>
+        :
+          <div className={this.defaults.linkClassName}>
+            {getContent()}
+          </div>
+        }
       </li>
     );
   }

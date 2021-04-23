@@ -245,7 +245,11 @@
 		}
 	}
 
-	&__link:link,
+	div.navbar__link {
+		cursor: auto;
+	}
+
+	&__link, &__link:link,
 	&__link:visited {
 		padding: $default-font-size * $paddingFactor 0;
 		font-size: 3.2rem;
