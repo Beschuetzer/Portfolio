@@ -209,6 +209,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 						onClick={onNavItemClick}
 					/>
 					<NavListItem
+						isLink={false}
 						to="/examples"
 						label="Examples"
 						onMouseEnter={onMouseEnter}
@@ -217,9 +218,14 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 						triangle={<div className="triangle-down"></div>}>
 						<ul className="navbar__dropdown">
 							<NavListItem
-								to="/examples/csharp"
+								to="/examples/downloader"
 								label="Downloader"
-								label2="Playlist Syncer"
+								onMouseEnter={onMouseEnter}
+								onClick={onNavItemClick}
+							/>
+							<NavListItem
+								to="/examples/playlist-syncer"
+								label="Syncer"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
@@ -235,12 +241,12 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
-							<NavListItem
+							{/* <NavListItem
 								to="/examples"
 								label="All"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
-							/>
+							/> */}
 						</ul>
 					</NavListItem>
 					<NavListItem

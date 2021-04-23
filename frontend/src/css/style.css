@@ -2091,7 +2091,7 @@ div.references__name {
 .bridge__section-background {
   background-image: linear-gradient(to right, rgba(245, 146, 41, 0.75), rgba(245, 241, 218, 0.75));
 }
-.bridge__inner {
+.bridge__card {
   font-size: 1.6rem;
   padding: 0 6.4rem 3.2rem;
   box-shadow: 0 0rem 3.2rem 0.8rem rgba(0, 0, 0, 0.15);
@@ -2103,12 +2103,25 @@ div.references__name {
   grid-template-rows: min-content 1fr;
   background-image: linear-gradient(to right, #e3dfc8 0%, #f5f1da 25%, #f5f1da 75%, #e3dfc8 100%);
 }
-.bridge__inner p {
+.bridge__card p {
   margin-bottom: 1.6rem;
 }
-.bridge__inner p:first-of-type {
+.bridge__card p:first-of-type {
   margin-top: 1.6rem;
 }
+.bridge__link {
+  cursor: pointer;
+  background: linear-gradient(to left, var(--color-primary-1) 0%, var(--color-primary-4) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  color: transparent;
+  animation: animate-skills infinite 10s;
+  border-bottom-width: 0.16rem;
+  border-bottom-style: solid;
+  border-image: linear-gradient(to right, var(--color-primary-4) 0%, var(--color-primary-1) 50%, var(--color-primary-1) 50%, var(--color-primary-4) 100%);
+  border-image-slice: 1;
+}
+
 .hero {
   background-image: linear-gradient(to right, rgba(245, 146, 41, 0.33) 0%, rgba(0, 65, 109, 0.33) 25%, rgba(0, 65, 109, 0.33) 75%, rgba(245, 146, 41, 0.33) 100%);
   position: relative;

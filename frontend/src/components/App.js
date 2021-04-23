@@ -9,7 +9,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Examples from "./pages/examples/Examples";
-import CSharp from "./pages/examples/CSharp";
+import PlaylistSyncer from "./pages/examples/PlaylistSyncer";
+import Downloader from "./pages/examples/Downloader";
 import Bridge from "./pages/examples/Bridge/Bridge";
 import Autobid from "./pages/examples/Autobid";
 import Resume from "./pages/resume/Resume";
@@ -121,7 +122,8 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 				<Route path="/" exact component={Home} />
 				<Route path="/examples" exact component={Examples} />
 				<Route path="/examples/bridge" exact component={Bridge} />
-				<Route path="/examples/csharp" exact component={CSharp} />
+				<Route path="/examples/downloader" exact component={Downloader} />
+				<Route path="/examples/playlist-syncer" exact component={PlaylistSyncer} />
 				<Route path="/examples/autobid" exact component={Autobid} />
 				<Route path="/about" exact component={About} />
 				<Route path="/resume" exact component={Resume} />

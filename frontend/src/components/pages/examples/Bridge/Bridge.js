@@ -21,10 +21,18 @@ const Bridge = () => {
 					titleContent='What and Why'
 				>
 					<BridgeCardSection
-						title='A Challenge Emerges'
+						title='An App is Born'
 					>
 						<p>
-							A# Maj Bridge is the name of an app I wrote between June and December of 2020.  It allows users to play Bridge online with other humans.
+							A# Maj Bridge started as an idea my friend had in May of 2020.  The COVID-19 pandemic was in full swing and he was missing the opportunity to play 
+							<a href="https://en.wikipedia.org/wiki/Contract_bridge" className="bridge__link">contract bridge.</a>  
+							I had just finished 
+							<a href="/examples/Downloader" className="bridge__link">contract bridge.</a>  
+							<a href="https://en.wikipedia.org/wiki/Contract_bridge" className="bridge__link">contract bridge.</a>  
+
+							
+							
+							the name of an app I wrote between June and December of 2020.  It allows users to play Bridge online with other humans.
 						</p>
 					</BridgeCardSection>
 				
