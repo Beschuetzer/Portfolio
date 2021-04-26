@@ -2076,8 +2076,6 @@ div.references__name {
   color: var(--color-primary-1);
 }
 .bridge__section-title {
-  background-color: var(--color-primary-1);
-  color: var(--color-primary-4);
   padding: 1.6rem;
   display: flex;
   align-items: center;
@@ -2097,6 +2095,12 @@ div.references__name {
 }
 .bridge__section-background {
   background-image: linear-gradient(to right, rgba(245, 146, 41, 0.75), rgba(245, 241, 218, 0.75));
+}
+.bridge__section:nth-of-type(1) .bridge__section-title {
+  background-image: linear-gradient(to top right, #00416d, rgba(0, 65, 109, 0.75)), url("/src/imgs/bridge-section-1.jpg");
+  background-position: top;
+  background-size: cover;
+  color: var(--color-primary-4);
 }
 .bridge__card {
   font-size: 1.6rem;
