@@ -28,6 +28,8 @@ $bridge-logo-opacity: .25;
 		color: var(--color-primary-1);
 
 		&-title {
+			background-color: var(--color-primary-1);
+			color: var(--color-primary-4);
 			padding: $default-font-size * 1;
 			display: flex;
 			align-items: center;
@@ -39,6 +41,7 @@ $bridge-logo-opacity: .25;
 		}
 		
 		&-content {
+			padding: $default-font-size * 2 $default-font-size * 4;
 			display: flex;
 			justify-content: flex-start;
 			flex-direction: column;
@@ -57,8 +60,8 @@ $bridge-logo-opacity: .25;
 
 	&__card {
 		font-size: $default-font-size;
-		padding: 0 $default-font-size * 4 $default-font-size * 2;
-		box-shadow: 0 0rem $default-font-size * 2 $default-font-size * .5 \rgba($color-black, .15);
+		overflow: hidden;
+		box-shadow: 0 0rem $default-font-size * 2 -$default-font-size * .5 rgba($color-black, .15);
     max-width: $resume-card-width-full;
     margin: 0 auto;
 		height: 100%;

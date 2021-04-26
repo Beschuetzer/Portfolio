@@ -2076,6 +2076,8 @@ div.references__name {
   color: var(--color-primary-1);
 }
 .bridge__section-title {
+  background-color: var(--color-primary-1);
+  color: var(--color-primary-4);
   padding: 1.6rem;
   display: flex;
   align-items: center;
@@ -2087,6 +2089,7 @@ div.references__name {
   }
 }
 .bridge__section-content {
+  padding: 3.2rem 6.4rem;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -2096,8 +2099,8 @@ div.references__name {
 }
 .bridge__card {
   font-size: 1.6rem;
-  padding: 0 6.4rem 3.2rem;
-  box-shadow: 0 0rem 3.2rem 0.8rem rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  box-shadow: 0 0rem 2.4rem rgba(0, 0, 0, 0.15);
   max-width: 85rem;
   margin: 0 auto;
   height: 100%;

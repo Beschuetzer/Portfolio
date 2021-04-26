@@ -103,7 +103,7 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 	useEffect(() => {
 		const sounds = new Howl({
       src: [soundsSpriteMp3, soundsSpriteOgg],
-			volume: .75,
+			volume: .25,
       sprite: {
         doorFast: [0, 1500],
         doorNormal: [1500, 1000],

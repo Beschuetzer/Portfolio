@@ -115,6 +115,11 @@ class Resume extends React.Component {
 						}
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
+							title="Typescript"
+							percent="48"
+						/>
+						<SkillsItem
+							labels={Resume.skillsLabels.web}
 							title="jQuery"
 							percent="46"
 						/>
