@@ -2089,6 +2089,7 @@ div.references__name {
   }
 }
 .bridge__section-content {
+  overflow-y: auto;
   padding: 3.2rem 6.4rem;
   display: flex;
   justify-content: flex-start;

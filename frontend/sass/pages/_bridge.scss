@@ -41,6 +41,7 @@ $bridge-logo-opacity: .25;
 		}
 		
 		&-content {
+			overflow-y: auto;
 			padding: $default-font-size * 2 $default-font-size * 4;
 			display: flex;
 			justify-content: flex-start;

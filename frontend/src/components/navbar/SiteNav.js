@@ -231,7 +231,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 							/>
 							<NavListItem
 								to="/examples/bridge"
-								label="Bridge"
+								label="A# Maj Bridge"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>

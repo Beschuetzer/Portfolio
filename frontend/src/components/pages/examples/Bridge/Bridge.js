@@ -19,21 +19,42 @@ const Bridge = () => {
 			>
 				<BridgeCard
 					titleSize='two'
-					titleContent='What and Why'
+					titleContent='Awaken'
 				>
 					<BridgeCardSection
 						title='An App is Born'
 					>
 						<p>
-							The COVID-19 pandemic was in full swing and he was missing the opportunity to play &nbsp; 
-							<a target="_blank" rel="noreferrer" href="https://en.wikipedia.org/wiki/Contract_bridge" className="bridge__link">contract bridge.</a>  
-							&nbsp; I had just finished the &nbsp;
-							<Link to="/examples/downloader" className="bridge__link">downloader</Link>  
-							&nbsp; and &nbsp;
-							<Link to="/examples/playlist-syncer" className="bridge__link">music syncing</Link> apps when he proposed the idea of playing bridge online with the old group. &nbsp; 
-							<a target="_blank" rel="noreferrer" href="https://still-bayou-51404.herokuapp.com" className="bridge__link">A# Maj Bridge.</a>  
-							&nbsp; is the result of that idea.
+							A#Maj is an website I created between June of 2020 and February of 2021, where users can play 
+							&nbsp;<a target="_blank" rel="noreferrer" href="https://en.wikipedia.org/wiki/Contract_bridge" className="bridge__link">contract bridge</a>&nbsp;for free.  The COVID-19 pandemic was in full swing and Andrew, a good friend of mine, had been mentioned how much he missed playing bridge (something which none of the members of our regular bridge group had done for many months at that point).  
 						</p>
+						<p>
+							Initially, we looked for free, online apps but were unable to find any at the time.  I had told Andrew about the&nbsp;
+							<Link to="/examples/downloader" className="bridge__link">downloader</Link>
+							&nbsp;and&nbsp;
+							<Link to="/examples/playlist-syncer" className="bridge__link">music syncing</Link> apps that I had recently finished, and he jokingly remarked that I should make an app to play bridge online.  Initially, I wasn't very interested in making my own bridge app because I figured there had to be a free online version somewhere that we could use.  After looking for multiple hours though and only finding pay-to-play apps, I decided to entertain the idea.
+						</p>
+						<p>
+							I started out by trying to create a simple chat room app using C#, but soon realized it would be rather challenging to create the bridge app I had envisioned using C#.  I knew there had to be an easier way...  Off to YouTube and google to find it!  The most promising technology I could find was called 'socket.io'.  After watching a tutorial video on YouTube, I was sold.  socket.io would have to be part of the stack I would use, if i decided to create the app.
+						</p>
+						<p>
+							The only problem was I had no idea how to integrate socket.io into a working web application or how to create web applications at all for that matter!  After googling some more, I found an exquisite resource called
+							&nbsp; <a target="_blank" rel="noreferrer" href="https://www.theodinproject.com/" className="bridge__link">The Odin Project</a> &nbsp;  I followed the curriculum there to learn the basics of HTML, CSS, and JS.  However, once I hit the Ruby part of the curriculum, it quickly became apparent that I would need further resources.  
+						</p>
+						<p>
+							This is when I began to look into Web Developer boot camps.  I carefully considered a few specific boot camps for a few weeks, but ultimately, reasoned that the better approach for me would be take the self-taught path for three reasons:  One, I've always been a very self-motivated person.   and found it difficult to justify paying 15-20k for information that I could get for free or for much less than 15k.  Also, the pandemic was just getting started at this point, and I had no idea was kind of impact it would have on the bootcamp experience.  Lastly, I liked the idea of getting my toes wet first before fully committing to something I wasn't completely sure I would be good at).  
+						</p>
+						<p>
+							With a strategy in place, I began looking for web bootcamps on sites like Udemy and YouTube.  Eventually, I decided on Colte Steele's Udemy bootcamp
+							&nbsp;<a target="_blank" rel="noreferrer" href="https://www.udemy.com/course/the-web-developer-bootcamp/" className="bridge__link">The Web Developer Bootcamp 2015</a> &nbsp; (which has since been updated) to use as the foundation for my web development skills.		
+						</p>
+						<p>
+							All throughout my youth, I had taken a keen interest in computer programming.  I figured that this was the last chance I would get to realize that interest.  
+						</p>
+						<p>
+							<a target="_blank" rel="noreferrer" href="https://still-bayou-51404.herokuapp.com" className="bridge__link">A# Maj Bridge</a>  
+							&nbsp; is the result of that idea.
+							</p>
 					</BridgeCardSection>
 				
 					<BridgeCardSection
