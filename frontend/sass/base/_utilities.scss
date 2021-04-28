@@ -77,14 +77,16 @@
             overflow: visible !important;
         }
     }
-
     //Dealing with SiteNav glitch
     .z-index-navbar {
-        z-index: 5 !important;
+        z-index: $navbar-full-z-index !important;
+        @include respond(nav-switch) {
+            z-index: $navbar-full-z-index + 2 !important
+        }
     }
     //content must be higher than navbar for click event to work properly
     .z-index-content {
-        z-index: 6 !important;
+        z-index: $navbar-full-z-index + 1 !important;
     }
 
     //Dealing with SiteNav filter bug on pages like '/bridge'

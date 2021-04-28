@@ -63,6 +63,7 @@ $animation-bridge-windshield-two-end: polygon(
 
 
 //navbar stuff
+$navbar-full-z-index: 5;
 $navbar__button-bar-before-rotation: rotate(105deg);
 $navbar__button-bar-before-transform: $navbar__button-bar-before-rotation
 	translate($default-font-size * 0.25, $default-font-size * 1.875);
