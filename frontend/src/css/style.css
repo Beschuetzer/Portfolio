@@ -2245,10 +2245,14 @@ div.references__name {
   transition: opacity 0.5s ease;
 }
 .hero__background {
-  background-image: linear-gradient(to right, rgba(245, 146, 41, 0.75), rgba(245, 241, 218, 0.75)), url("/src/imgs/bridge-section-hero.png");
+  opacity: 0;
+  background-image: linear-gradient(to right, rgba(0, 65, 109, 0.5), rgba(245, 146, 41, 0.5)), url("/src/imgs/bridge-section-hero.png");
   position: fixed;
   width: 100vw;
   height: 100vh;
+  background-position: center;
+  background-size: cover;
+  transition: opacity 0.5s ease;
 }
 
 #hero__more-checkbox {

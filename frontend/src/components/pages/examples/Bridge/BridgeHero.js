@@ -11,8 +11,12 @@ const BridgeHero = ({sounds}) => {
   const checkBoxRef = useRef();
 
   const handleMoreClick = (e) => {
-    if (!checkBoxRef.current?.checked) sounds.play('doorFast');
-    else sounds.play('doorNormal');
+    if (!checkBoxRef.current?.checked) {
+      sounds.play('doorFast');
+    }
+    else {
+      sounds.play('doorNormal');
+    }
     // e.target.className = 'hero__more hero__more--open';
   }
 
