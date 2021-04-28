@@ -2098,9 +2098,6 @@ div.references__name {
   justify-content: flex-start;
   flex-direction: column;
 }
-.bridge__section-background {
-  background-image: linear-gradient(to right, rgba(245, 146, 41, 0.75), rgba(245, 241, 218, 0.75));
-}
 .bridge__section:nth-of-type(1) .bridge__section-title {
   background-image: linear-gradient(to top right, #00416d, rgba(0, 65, 109, 0.75)), url("/src/imgs/bridge-section-1.jpg");
   background-position: top;
@@ -2246,6 +2243,12 @@ div.references__name {
   background-size: cover;
   opacity: 0;
   transition: opacity 0.5s ease;
+}
+.hero__background {
+  background-image: linear-gradient(to right, rgba(245, 146, 41, 0.75), rgba(245, 241, 218, 0.75)), url("/src/imgs/bridge-section-hero.png");
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
 }
 
 #hero__more-checkbox {

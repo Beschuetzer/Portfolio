@@ -34,6 +34,8 @@ const BridgeHero = ({sounds}) => {
           </label>
           <div className="hero__bridge-logo"></div>
         </div>
+        <div className="hero__background"></div>
+
         <BackgroundVideo
           src={bgVideo}
           type='mp4'
@@ -43,7 +45,7 @@ const BridgeHero = ({sounds}) => {
         <span className="hero__heading heading--one">A#</span>
         <span className="hero__heading heading--one">Maj</span>
         <span className="hero__heading heading--one">Bridge</span>
-        <DiamondFractal topLeftWord="Making" />
+        {/* <DiamondFractal topLeftWord="Making" /> */}
       </div>
     </React.Fragment>
 	);
