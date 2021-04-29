@@ -2118,7 +2118,8 @@ div.references__name {
 .bridge__card {
   font-size: 1.6rem;
   overflow: hidden;
-  box-shadow: 0 0rem 2.4rem rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--color-primary-4);
+  box-shadow: 0 0rem 2.4rem rgba(245, 241, 218, 0.5);
   max-width: 85rem;
   margin: 0 auto;
   margin-right: calc(((100% - 85rem) / 2) + ((100vw - 100%) / 6));
