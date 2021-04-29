@@ -24,11 +24,11 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		navRef.current.classList.add("overflow--hidden");
 	};
 
-	const handleFilterBug = (e) => {
-		const page = currentUrl.slice([currentUrl.lastIndexOf('/')]);
-		if (noFilterPages.indexOf(page) !== -1) root.classList.add('no-filter');
-		else root.classList.remove('no-filter')
-	}
+	// const handleFilterBug = (e) => {
+	// 	const page = currentUrl.slice([currentUrl.lastIndexOf('/')]);
+	// 	if (noFilterPages.indexOf(page) !== -1) root.classList.add('no-filter');
+	// 	else root.classList.remove('no-filter')
+	// }
 
 	const handleSound = (e) => {
 		const isActive = e.currentTarget.className.match(/--active/i);
@@ -41,7 +41,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 	const onNavClick = (e) => {
 		e.stopPropagation();
-		handleFilterBug(e);
+		// handleFilterBug(e);
 		const navBar = navRef.current;
 		const isChildOfNavBar = checkForParentOfType(e.target, "nav", "navbar");
 

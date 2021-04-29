@@ -156,7 +156,8 @@ $page-nav-top: calc(
 :root {
 	scroll-behavior: smooth;
 	scroll-padding-top: $header-height * 1.2;
-	--nav-switch-width: $nav-switch-width;
+	--default-font-size: #{$default-font-size};
+	--nav-switch-width: #{$nav-switch-width};
 	--site-nav-linear-gradient: linear-gradient(
 		to right,
 		#{var(--color-primary-1)} 0%,
@@ -183,7 +184,8 @@ $page-nav-top: calc(
 	--header-inner-width-nav-switch: 100%;
 
 	//bridge page
-	--bridge-section-display: none;
+	--bridge-section-height: 1px;
+	--bridge-section-padding: 0;
 	--arrow-button-fill: var(--color-primary-bridge-1);
 	--arrow-button-fill-hover: var(--color-primary-bridge-2);
 

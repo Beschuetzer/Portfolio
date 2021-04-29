@@ -13,16 +13,18 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
   const checkBoxRef = useRef();
   const backgroundRef = useRef();
   const headerHeight = document.querySelector('#header').getBoundingClientRect().height;
-  const hero = document.querySelector('.hero');
-
 
   const handleMoreClick = (e) => {
     if(!hasClickedBridgeInfoButton) {
+      let docStyle = getComputedStyle(document.documentElement);
+      const defaultFontSize = docStyle.getPropertyValue('--default-font-size')
+      const defaultFontSizeFloat = parseFloat(defaultFontSize);
+      
+      document.documentElement.style.setProperty('--bridge-section-height', '100vh');
+      document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
+      
       setHasClickedBridgeInfoButton(true);
     }
-    document.documentElement.style.setProperty('--bridge-section-display', 'block');
-    
-
 
     if (!checkBoxRef.current?.checked) {
       sounds.play('doorFast');

@@ -27,7 +27,8 @@
 :root {
   scroll-behavior: smooth;
   scroll-padding-top: 12rem;
-  --nav-switch-width: $nav-switch-width;
+  --default-font-size: 1.6rem;
+  --nav-switch-width: 68.75em;
   --site-nav-linear-gradient: linear-gradient(
   	to right,
   	var(--color-primary-1) 0%,
@@ -47,7 +48,8 @@
   --header-toggler-translate-y: 0;
   --header-height: 10rem;
   --header-inner-width-nav-switch: 100%;
-  --bridge-section-display: none;
+  --bridge-section-height: 1px;
+  --bridge-section-padding: 0;
   --arrow-button-fill: var(--color-primary-bridge-1);
   --arrow-button-fill-hover: var(--color-primary-bridge-2);
   --diamond-fractal-animation-duration: 120s;
@@ -357,10 +359,6 @@ body {
 
 .z-index-content {
   z-index: 6 !important;
-}
-
-.no-filter {
-  filter: none !important;
 }
 
 .triangle-down {
@@ -2055,15 +2053,11 @@ div.references__name {
   width: 100%;
   background-color: var(--color-primary-4);
 }
-.bridge .root.navbar--active {
-  filter: none;
-}
 .bridge__section {
-  display: var(--bridge-section-display);
-  padding: 2.4rem;
+  height: var(--bridge-section-height);
+  padding: var(--bridge-section-padding);
   z-index: 2;
   position: relative;
-  height: 100vh;
   width: 100vw;
   background-color: var(--color-primary-3);
   color: var(--color-primary-1);
@@ -2177,39 +2171,37 @@ div.references__name {
   font-weight: 700;
 }
 .hero__heading:first-of-type {
-  top: -10%;
-  left: 50%;
+  top: -10vw;
+  left: 50vw;
   transform: translate(-50%, -50%);
 }
 .hero__heading:nth-of-type(2) {
   mix-blend-mode: hard-light;
-  top: 50%;
-  left: -10%;
+  top: 50vh;
+  left: -10vh;
   transform: translate(-50%, -50%);
 }
 .hero__heading:nth-of-type(3) {
   mix-blend-mode: hard-light;
-  top: 50%;
-  right: -10%;
+  top: 50vh;
+  right: -10vh;
   transform: translate(50%, -50%);
 }
 .hero__heading:nth-of-type(4) {
   mix-blend-mode: hard-light;
-  bottom: -10%;
-  left: 50%;
+  top: 100vh;
+  left: 50vw;
   transform: translate(-50%, 50%);
 }
 .hero__more {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 16rem;
-  width: 16rem;
   font-size: 4.8rem;
   z-index: 1;
   position: fixed;
-  top: 50%;
-  left: 60%;
+  top: 50vh;
+  left: 60vw;
   transform: translate(-50%, -50%);
   color: var(--color-primary-2);
   border-radius: 320rem;
@@ -2227,12 +2219,20 @@ div.references__name {
   justify-content: center;
 }
 .hero__more svg {
+  width: 14vw;
+  height: 14vw;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: transform 1s ease, opacity 1s ease, fill 0.5s ease;
   fill: var(--color-primary-1);
+}
+@media only screen and (max-width: 68.75em) {
+  .hero__more svg {
+    width: 16rem;
+    height: 16rem;
+  }
 }
 .hero__more svg:nth-of-type(1) {
   opacity: 1;
@@ -2297,16 +2297,16 @@ div.references__name {
   visibility: visible;
 }
 #hero__more-checkbox:checked ~ .hero .hero__heading:first-of-type {
-  top: 25%;
+  top: 25vh;
 }
 #hero__more-checkbox:checked ~ .hero .hero__heading:nth-of-type(2) {
-  left: 25%;
+  left: 25vw;
 }
 #hero__more-checkbox:checked ~ .hero .hero__heading:nth-of-type(3) {
-  right: 25%;
+  right: 25vw;
 }
 #hero__more-checkbox:checked ~ .hero .hero__heading:nth-of-type(4) {
-  bottom: 25%;
+  top: 40vh;
 }
 #hero__more-checkbox:checked ~ .hero .diamond-fractal {
   left: 0;
