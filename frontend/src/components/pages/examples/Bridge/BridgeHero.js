@@ -12,6 +12,8 @@ const BridgeHero = ({sounds}) => {
   const backgroundRef = useRef();
 
   const handleMoreClick = (e) => {
+    document.documentElement.style.setProperty('--bridge-section-display', 'block');
+
     if (!checkBoxRef.current?.checked) {
       sounds.play('doorFast');
 

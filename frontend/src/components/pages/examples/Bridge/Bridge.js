@@ -19,7 +19,7 @@ const Bridge = () => {
 			>
 				<BridgeCard
 					titleSize='two'
-					titleContent='Awaken'
+					titleContent='Background'
 				>
 					<BridgeCardSection
 						title='An App is Born'
