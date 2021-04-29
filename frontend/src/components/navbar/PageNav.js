@@ -22,6 +22,7 @@ class PageNav extends React.Component {
 	static shouldHandleScroll = true;
   static progressPercent = '0%';
   static selectedClass = 'page-nav--active';
+  static pageNav = document.querySelector('.page-nav');
 
   componentDidMount() {
     document.addEventListener('scroll', this.handleScroll);
@@ -34,6 +35,10 @@ class PageNav extends React.Component {
 
   componentDidUpdate () {
     this.updateActiveScaleRange();
+    const url = this.props.match.url;
+    const pageName = url.slice(url.lastIndexOf('/') + 1);
+    PageNav.pageNav.classList = PageNav.cssClass;
+    PageNav.pageNav.classList.add(`${PageNav.cssClass}-${pageName}`);
   }
 
   updateActiveScaleRange = () => {
@@ -215,7 +220,7 @@ class PageNav extends React.Component {
           {this.renderSections()}
         </React.Fragment>
       ,
-        document.querySelector('.page-nav')
+        PageNav.pageNav
       )
     );
   }

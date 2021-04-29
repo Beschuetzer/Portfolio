@@ -2,6 +2,7 @@
 // $font-family-text: "Roboto", sans-serif;
 // $font-family-headers: "Cinzel", sans-serif;
 $line-height: 1.5;
+$font-family-fancy-bridge: 'New Tegomin', serif;
 $font-family-text: "Open Sans", sans-serif;
 $font-family-headers: "Merriweather", serif;
 $nav-switch-width: 68.75em;
@@ -16,49 +17,6 @@ $github__logo-width: $navbar__logo-width;
 $navbar__logo-width-nav-switch: $default-font-size * 5;
 $content-padding-nav-switch: 5vmin;
 $paddingFactor: 1.25;
-
-
-
-//animation
-$animation-duration: 0.5s;
-$animation-easing-standard: ease;
-$animation-easing-standard-easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
-$animation-easing-standard-easeInOutBack-smaller: cubic-bezier(
-	0.68,
-	-0.2,
-	0.32,
-	1.2
-);
-$animation-easing-modern: cubic-bezier(1, 0, 0, 1);
-$animation-navbar: $animation-duration $animation-easing-standard;
-$animation-bridge-width: 20%;
-$animation-bridge-windshield-start: polygon(
-	$animation-bridge-width 100%,
-	$animation-bridge-width 0,
-	100% 100%,
-	100% 0%);
-$animation-bridge-windshield-end: polygon(
-	$animation-bridge-width 100%,
-	100% 100%,
-	$animation-bridge-width 0,
-	100% 0%);
-
-$animation-bridge-windshield-two-start: polygon(
-	$animation-bridge-width 100%,
-	$animation-bridge-width 0,
-	calc(#{$animation-bridge-width} + 1px) 1000%,
-	200% 100%,
-	100% 0%,
-	$animation-bridge-width 0,
-);
-$animation-bridge-windshield-two-end: polygon(
-	$animation-bridge-width 100%,
-	$animation-bridge-width 0,
-	100% 1px,
-	200% 100%,
-	100% 0%,
-	$animation-bridge-width 0
-);
 
 
 
@@ -81,6 +39,8 @@ $navbar-box-shadow-resume: 0 $default-font-size $default-font-size * 2
 	rgba($color-black, 0.33);
 $hover-color-change-amount: 0.15;
 
+
+
 //skills
 $skills-linear-gradient-original: linear-gradient(
 	to left,
@@ -96,13 +56,9 @@ $skills-linear-gradient-hover: linear-gradient(
 );
 
 
-
 //resume
 $resume-card-width-full: $default-font-size * 53.125;
 
-//bridge
-$bridge-hero-animation-duration: $animation-duration * 2;
-$hero-background-opacity: .76;
 
 //header
 $header-top-inner: calc(
@@ -132,7 +88,51 @@ $header-width-nav-switch: calc(100vw - #{$default-font-size * 2});
 // $header-width-small-font: calc(100vw - #{$default-font-size * 2});
 
 
+//animation
+$animation-duration: 0.5s;
+$animation-easing-standard: ease;
+$animation-easing-standard-easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+$animation-easing-standard-easeInOutBack-smaller: cubic-bezier(
+	0.68,
+	-0.2,
+	0.32,
+	1.2
+);
+$animation-easing-modern: cubic-bezier(1, 0, 0, 1);
+$animation-navbar: $animation-duration $animation-easing-standard;
+$animation-bridge-width: calc(#{$header-top-inner} * 2 + #{$navbar__logo-width} - .5vw);
+$animation-bridge-windshield-start: polygon(
+	$animation-bridge-width 100%,
+	$animation-bridge-width 0,
+	100% 100%,
+	100% 0%);
+$animation-bridge-windshield-end: polygon(
+	$animation-bridge-width 100%,
+	100% 100%,
+	$animation-bridge-width 0,
+	100% 0%);
 
+$animation-bridge-windshield-two-start: polygon(
+	$animation-bridge-width 100%,
+	$animation-bridge-width 0,
+	calc(#{$animation-bridge-width} + 1px) 1000%,
+	200% 100%,
+	100% 0%,
+	$animation-bridge-width 0,
+);
+$animation-bridge-windshield-two-end: polygon(
+	$animation-bridge-width 100%,
+	$animation-bridge-width 0,
+	100% 1px,
+	200% 100%,
+	100% 0%,
+	$animation-bridge-width 0
+);
+
+
+//bridge
+$bridge-hero-animation-duration: $animation-duration * 2;
+$hero-background-opacity: .76;
 
 //page-nav
 $page-nav-top: calc(

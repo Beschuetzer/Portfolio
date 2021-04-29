@@ -36,6 +36,7 @@ $bridge-logo-opacity: .25;
 		}
 
 		&-title {
+			font-family: $font-family-fancy-bridge;
 			padding: $default-font-size * 1;
 			display: flex;
 			align-items: center;
@@ -150,7 +151,8 @@ $bridge-logo-opacity: .25;
 	// height: 85vh;
 
 	&__heading {
-		font-family: 'Spectral', serif;
+		font-family: $font-family-fancy-bridge;
+		// font-family: 'Spectral', serif;
 		opacity: 0;
 		visibility: hidden;
 		mix-blend-mode: $hero-blend-mode;
@@ -499,4 +501,9 @@ $card-header-height: $card-height / 3.333333333333;
 
 .reverse-ease{
 	transition: opacity $animation-duration cubic-bezier(0.4, 0, 1, 1) $animation-duration * 1.25;
+}
+
+
+.page-nav-bridge{
+	display: none;
 }

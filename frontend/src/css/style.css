@@ -98,24 +98,24 @@
 }
 @keyframes bridge-hero-windshield {
   0% {
-    clip-path: polygon(20% 100%, 20% 0, 100% 100%, 100% 0%);
+    clip-path: polygon(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 100%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0, 100% 100%, 100% 0%);
   }
   50% {
-    clip-path: polygon(20% 100%, 100% 100%, 20% 0, 100% 0%);
+    clip-path: polygon(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 100%, 100% 100%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0, 100% 0%);
   }
   100% {
-    clip-path: polygon(20% 100%, 20% 0, 100% 100%, 100% 0%);
+    clip-path: polygon(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 100%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0, 100% 100%, 100% 0%);
   }
 }
 @keyframes bridge-hero-windshield-two {
   0% {
-    clip-path: polygon(20% 100%, 20% 0, calc(20% + 1px) 1000%, 200% 100%, 100% 0%, 20% 0);
+    clip-path: polygon(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 100%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0, calc(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) + 1px) 1000%, 200% 100%, 100% 0%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0);
   }
   50% {
-    clip-path: polygon(20% 100%, 20% 0, 100% 1px, 200% 100%, 100% 0%, 20% 0);
+    clip-path: polygon(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 100%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0, 100% 1px, 200% 100%, 100% 0%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0);
   }
   100% {
-    clip-path: polygon(20% 100%, 20% 0, calc(20% + 1px) 1000%, 200% 100%, 100% 0%, 20% 0);
+    clip-path: polygon(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 100%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0, calc(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) + 1px) 1000%, 200% 100%, 100% 0%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0);
   }
 }
 /* global reset;  box-sizing is set on body and set to inherit on all other elements */
@@ -370,7 +370,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  clip-path: polygon(20% 100%, 20% 0, calc(20% + 1px) 1000%, 200% 100%, 100% 0%, 20% 0);
+  clip-path: polygon(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 100%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0, calc(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) + 1px) 1000%, 200% 100%, 100% 0%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0);
   transition: clip-path 1s ease;
 }
 .bg-video video {
@@ -2067,6 +2067,7 @@ div.references__name {
   }
 }
 .bridge__section-title {
+  font-family: "New Tegomin", serif;
   padding: 1.6rem;
   display: flex;
   align-items: center;
@@ -2147,7 +2148,7 @@ div.references__name {
   position: relative;
 }
 .hero__heading {
-  font-family: "Spectral", serif;
+  font-family: "New Tegomin", serif;
   opacity: 0;
   visibility: hidden;
   mix-blend-mode: hard-light;
@@ -2279,7 +2280,7 @@ div.references__name {
   left: 50%;
 }
 #hero__more-checkbox:checked ~ .hero .bg-video {
-  clip-path: polygon(20% 100%, 20% 0, 100% 1px, 200% 100%, 100% 0%, 20% 0);
+  clip-path: polygon(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 100%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0, 100% 1px, 200% 100%, 100% 0%, calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - .5vw) 0);
 }
 #hero__more-checkbox:checked ~ .hero .hero__heading {
   opacity: 1;
@@ -2416,6 +2417,10 @@ div.references__name {
 
 .reverse-ease {
   transition: opacity 0.5s cubic-bezier(0.4, 0, 1, 1) 0.625s;
+}
+
+.page-nav-bridge {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */
