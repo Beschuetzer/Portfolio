@@ -2081,7 +2081,6 @@ div.references__name {
   }
 }
 .bridge__section-title {
-  font-family: "New Tegomin", serif;
   padding: 1.6rem;
   display: flex;
   align-items: center;
@@ -2109,7 +2108,7 @@ div.references__name {
   background-image: linear-gradient(to right, rgba(0, 65, 109, 0.5), rgba(245, 146, 41, 0.5));
 }
 .bridge__section:nth-of-type(1) .bridge__section-title {
-  background-image: linear-gradient(to top right, #00416d, rgba(0, 65, 109, 0.75)), url("/src/imgs/bridge-section-1.jpg");
+  background-image: linear-gradient(to top right, #00416d, rgba(0, 65, 109, 0.75)), url("/src/imgs/bridge-section-3.jpg");
   background-position: top;
   background-size: cover;
   color: var(--color-primary-4);
@@ -2287,7 +2286,7 @@ div.references__name {
 }
 .hero__background {
   opacity: 0;
-  background-image: linear-gradient(to bottom, rgba(245, 146, 41, 0.76), rgba(0, 65, 109, 0.76)), url("/src/imgs/bridge-background.jpg");
+  background-image: linear-gradient(to bottom, rgba(245, 146, 41, 0.66), #00416d), url("/src/imgs/bridge-background.jpg");
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -2346,7 +2345,7 @@ div.references__name {
   cursor: pointer;
   position: absolute;
   transform: translateY(-50%);
-  top: 150vh;
+  top: 50vh;
   z-index: 10;
 }
 @media only screen and (max-width: 68.75em) {
@@ -2364,25 +2363,25 @@ div.references__name {
     height: 8rem;
   }
 }
-.arrow-button__left {
+.arrow-button--left {
   left: calc((100vw - calc( 		85rem + ((100vw - 85rem) / 2) + 6.4vw 	) - 1vw) / 2);
 }
-.arrow-button__left svg {
+.arrow-button--left svg {
   transform: rotate(90deg);
 }
 @media only screen and (max-width: 68.75em) {
-  .arrow-button__left {
+  .arrow-button--left {
     padding-left: 0.8rem;
   }
 }
-.arrow-button__right {
-  right: calc((100vw - calc( 85rem + ((100vw - 85rem) / 2) + 8vw )) / 2);
+.arrow-button--right {
+  right: calc((100vw - calc( 85rem + ((100vw - 85rem) / 2) + 7vw )) / 2);
 }
-.arrow-button__right svg {
+.arrow-button--right svg {
   transform: rotate(-90deg);
 }
 @media only screen and (max-width: 68.75em) {
-  .arrow-button__right {
+  .arrow-button--right {
     padding-right: 0.8rem;
   }
 }

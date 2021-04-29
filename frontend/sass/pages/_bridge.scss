@@ -35,7 +35,7 @@ $bridge-logo-opacity: .25;
 		}
 
 		&-title {
-			font-family: $font-family-fancy-bridge;
+			// font-family: $font-family-fancy-bridge;
 			padding: $default-font-size * 1;
 			display: flex;
 			align-items: center;
@@ -69,7 +69,7 @@ $bridge-logo-opacity: .25;
 					$color-primary-bridge-1,
 					rgba($color-primary-bridge-1, .75)
 				), 
-				url('/src/imgs/bridge-section-1.jpg');
+				url('/src/imgs/bridge-section-3.jpg');
 				background-position: top;
 				background-size: cover;
 				color: var(--color-primary-4);
@@ -318,7 +318,7 @@ $bridge-logo-opacity: .25;
 		linear-gradient(
 			to bottom,
 			rgba($color-primary-bridge-2, $hero-background-opacity),
-			rgba($color-primary-bridge-1, $hero-background-opacity),
+			rgba($color-primary-bridge-1, 1),
 		),
 		url('/src/imgs/bridge-background.jpg')
 		;
@@ -402,7 +402,7 @@ $padding-nav-switch: $default-font-size * .5;
 	cursor: pointer;
 	position: absolute;
 	transform: translateY(-50%);
-	top: 150vh;
+	top: 50vh;
 	z-index: 10;
 
 	@include respond(nav-switch) {
@@ -419,7 +419,7 @@ $padding-nav-switch: $default-font-size * .5;
 		}
 	}
 
-	&__left {
+	&--left {
 		// padding-left: $padding-full;
 		// left: 0%;
 		left: calc((100vw - #{$header-inner-width} - 1vw) / 2);
@@ -433,7 +433,7 @@ $padding-nav-switch: $default-font-size * .5;
 		}
 	}
 
-	&__right {
+	&--right {
 		// padding-right: $padding-full;
 		right: $arrow-button-position;
 		& svg {
