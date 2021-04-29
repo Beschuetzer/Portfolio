@@ -330,6 +330,11 @@ body {
   }
 }
 
+.visible {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 .z-index-navbar {
   z-index: 5 !important;
 }
@@ -2399,6 +2404,10 @@ div.references__name {
 }
 .card:hover {
   transform: scale(1.5);
+}
+
+.reverse-ease {
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 1, 1) 0.625s;
 }
 
 /*# sourceMappingURL=style.css.map */

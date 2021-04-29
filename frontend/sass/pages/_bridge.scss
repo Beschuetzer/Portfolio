@@ -463,3 +463,7 @@ $card-header-height: $card-height / 3.333333333333;
 		transform: scale(1.5);
 	}
 }
+
+.reverse-ease{
+	transition: opacity $animation-duration cubic-bezier(0.4, 0, 1, 1) $animation-duration * 1.25;
+}

@@ -77,6 +77,12 @@
             overflow: visible !important;
         }
     }
+
+    .visible {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
     //Dealing with SiteNav glitch
     .z-index-navbar {
         z-index: $navbar-full-z-index !important;

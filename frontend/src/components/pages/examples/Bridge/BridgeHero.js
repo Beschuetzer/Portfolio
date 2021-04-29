@@ -9,13 +9,22 @@ import DiamondFractal from "./DiamondFractal";
 const BridgeHero = ({sounds}) => {
 	//my idea here is to have a centered diamond background that has has the section or A # Maj Bridge words around the four corners.  Inside the diamond, there are other suits and a background video?
   const checkBoxRef = useRef();
+  const backgroundRef = useRef();
 
   const handleMoreClick = (e) => {
     if (!checkBoxRef.current?.checked) {
       sounds.play('doorFast');
+
+      if (!backgroundRef.current) return;
+      backgroundRef.current?.classList.add('visible');
+      backgroundRef.current?.classList.add('reverse-ease');
     }
     else {
       sounds.play('doorNormal');
+      
+      if (!backgroundRef.current) return;
+      backgroundRef.current?.classList.remove('visible');
+      backgroundRef.current?.classList.remove('reverse-ease');
     }
     // e.target.className = 'hero__more hero__more--open';
   }
@@ -38,7 +47,7 @@ const BridgeHero = ({sounds}) => {
           </label>
           <div className="hero__bridge-logo"></div>
         </div>
-        <div className="hero__background"></div>
+        <div className="hero__background" ref={backgroundRef}></div>
 
         <BackgroundVideo
           src={bgVideo}
