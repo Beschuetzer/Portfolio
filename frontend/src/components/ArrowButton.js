@@ -39,7 +39,6 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
   }, [currentBridgeSection, bridgeSections])
   
   const handleClick = (e) => {
-    console.log('currentBridgeSection =', currentBridgeSection);
     if (e.currentTarget?.className.match(/left/i)) {
       if (rightArrow && currentBridgeSection < bridgeSections.length) rightArrow.classList.remove('d-none');
 

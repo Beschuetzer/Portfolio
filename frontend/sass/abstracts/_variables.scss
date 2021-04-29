@@ -134,6 +134,9 @@ $animation-bridge-windshield-two-end: polygon(
 $bridge-hero-animation-duration: $animation-duration * 2;
 $hero-background-opacity: .66;
 $arrow-button-position: calc((100vw - calc( #{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + #{$navbar__logo-width} )) / 2);
+$bridge-card-box-shadow-size: 0 0rem $default-font-size * 2 -$default-font-size * .5;
+$bridge-card-border-size: 2px solid;
+
 //page-nav
 $page-nav-top: calc(
 	100% +

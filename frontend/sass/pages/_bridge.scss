@@ -74,11 +74,68 @@ $bridge-logo-opacity: .25;
 				background-size: cover;
 				color: var(--color-primary-4);
 			}
+
+			& .bridge__section-content {
+				background-image: linear-gradient(
+					to right,
+					rgba($color-primary-bridge-3, 1) 0%,
+					rgba($color-primary-bridge-4, 1) 25%,
+					rgba($color-primary-bridge-4, 1) 75%,
+					rgba($color-primary-bridge-3, 1) 100%,
+				);
+			}
+		}
+
+		&:nth-of-type(2) {
+			background-image: linear-gradient(to right, rgba($color-primary-bridge-2, .5), rgba($color-primary-bridge-3, .5));
+
+			& .bridge__section-title {
+				background-image: linear-gradient(
+					to top right,
+					$color-primary-bridge-2,
+					rgba($color-primary-bridge-2, .75)
+				), 
+				url('/src/imgs/bridge-section-2.jpg');
+				background-position: top;
+				background-size: cover;
+				color: var(--color-primary-4);
+			}
+
+			& .bridge__section-content {
+				color: var(--color-primary-4);
+				background-image: linear-gradient(
+					to right,
+					rgba($color-primary-bridge-1, 1) 0%,
+					rgba($color-primary-bridge-1, 1) 100%,
+				);
+			}
+
+			& .bridge__card {
+				border: $bridge-card-border-size var(--color-primary-2);
+				box-shadow: $bridge-card-box-shadow-size rgba($color-primary-bridge-1, .5);
+
+			}
+		}
+
+		&:nth-of-type(3) {
+			background-image: linear-gradient(to right, rgba($color-primary-bridge-3, .5), rgba($color-primary-bridge-1, .5));
+
+			& .bridge__section-title {
+				background-image: linear-gradient(
+					to top right,
+					$color-primary-bridge-4,
+					rgba($color-primary-bridge-4, .75)
+				), 
+				url('/src/imgs/bridge-section-1.jpg');
+				background-position: top;
+				background-size: cover;
+				color: var(--color-primary-1);
+			}
 		}
 
 		&:nth-of-type(n + 2) {
 			position: absolute;
-			top: 100vh;
+			// top: 100vh;
 			left: 100vw;
 
 			@include respond(nav-switch) {
@@ -93,8 +150,8 @@ $bridge-logo-opacity: .25;
 	&__card {
 		font-size: $default-font-size;
 		overflow: hidden;
-		border: 2px solid var(--color-primary-4);
-		box-shadow: 0 0rem $default-font-size * 2 -$default-font-size * .5 rgba($color-primary-bridge-4, .5);
+		border: $bridge-card-border-size var(--color-primary-4);
+		box-shadow: $bridge-card-box-shadow-size rgba($color-primary-bridge-4, .5);
     max-width: $resume-card-width-full;
     margin: 0 auto;
 		margin-right: calc(((100% - #{$resume-card-width-full}) / 2) + ((100vw - 100%) / 6));;
@@ -102,13 +159,6 @@ $bridge-logo-opacity: .25;
     border-radius: $default-font-size * 2;
 		display: grid;
     grid-template-rows: min-content 1fr;
-    background-image: linear-gradient(
-			to right,
-			rgba($color-primary-bridge-3, 1) 0%,
-			rgba($color-primary-bridge-4, 1) 25%,
-			rgba($color-primary-bridge-4, 1) 75%,
-			rgba($color-primary-bridge-3, 1) 100%,
-		);
 
 		& h3 {
 			// margin-top: $default-font-size * 1;
@@ -383,16 +433,6 @@ $bridge-logo-opacity: .25;
 		left: 0;
 		opacity: .05;
 	}
-}
-
-.transition {
-	height: 10vh;
-	background-image: linear-gradient(
-		to bottom,
-		var(--color-primary-1),
-		var(--color-primary-2)
-
-	);
 }
 
 $padding-full: $default-font-size * 1.5;
