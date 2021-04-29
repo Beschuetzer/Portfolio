@@ -161,7 +161,7 @@ const Bridge = () => {
 			{renderSections()}
 			<ArrowButton
 				direction='left'
-				fillNumber='1'
+				fillNumber='2'
 				hoverFillNumber='3'
 			/>
 			<ArrowButton

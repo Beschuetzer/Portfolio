@@ -2,8 +2,6 @@ import React from 'react';
 
 const ArrowButton = ({direction, fillNumber, hoverFillNumber}) => {
   const handleClick = (e) => {
-    debugger;
-    console.log(this)
     console.log(e.currentTarget)
   }
 

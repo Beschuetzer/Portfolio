@@ -2,11 +2,13 @@ import React from "react";
 import { useRef } from 'react';
 import { connect } from 'react-redux';
 
+import { setHasClickedBridgeInfoButton } from '../../../../actions';
+
 import BackgroundVideo from '../../../BackgroundVideo';
 import bgVideo from '../../../../clips/animation-roundEndDummy.mp4';
 import DiamondFractal from "./DiamondFractal";
 
-const BridgeHero = ({sounds, isMobile}) => {
+const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClickedBridgeInfoButton}) => {
 	//my idea here is to have a centered diamond background that has has the section or A # Maj Bridge words around the four corners.  Inside the diamond, there are other suits and a background video?
   const checkBoxRef = useRef();
   const backgroundRef = useRef();
@@ -14,7 +16,9 @@ const BridgeHero = ({sounds, isMobile}) => {
 
 
   const handleMoreClick = (e) => {
+    if(!hasClickedBridgeInfoButton) setHasClickedBridgeInfoButton(true);
     document.documentElement.style.setProperty('--bridge-section-display', 'block');
+
 
     if (!checkBoxRef.current?.checked) {
       sounds.play('doorFast');
@@ -25,7 +29,6 @@ const BridgeHero = ({sounds, isMobile}) => {
     }
     else {
       sounds.play('doorNormal');
-      debugger
       window.scroll({
         top: isMobile ? window.innerHeight - headerHeight : window.innerHeight, 
         left: 0, 
@@ -78,10 +81,11 @@ const mapStateToProps = (state, ownProps) => {
   return {
     sounds: state.sounds,
     isMobile: state.general.isMobile,
+    hasClickedBridgeInfoButton: state.general.hasClickedBridgeInfoButton,
   }
 }
 
 export default connect(mapStateToProps,
 {
-
+  setHasClickedBridgeInfoButton,
 })(BridgeHero);

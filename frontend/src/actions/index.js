@@ -10,6 +10,7 @@ import {
   SET_SCROLL_PERCENT,
   SET_VIEW_PORT_WIDTH,
   SET_SOUNDS,
+  SET_HAS_CLICKED_BRIDGE_INFO_BUTTON,
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
@@ -243,3 +244,10 @@ export const setSounds = (sounds) => {
     payload: sounds,
   }
 }
+
+export const setHasClickedBridgeInfoButton = (value) => {
+  return {
+    type: SET_HAS_CLICKED_BRIDGE_INFO_BUTTON,
+    payload: value,
+  }
+} 

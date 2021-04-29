@@ -2088,6 +2088,13 @@ div.references__name {
   width: 100vw;
   background-color: var(--color-primary-3);
   color: var(--color-primary-1);
+  left: 100vw;
+  transition: left 0.75s ease;
+}
+@media only screen and (max-width: 68.75em) {
+  .bridge__section {
+    height: auto;
+  }
 }
 .bridge__section-title {
   padding: 1.6rem;
@@ -2107,8 +2114,14 @@ div.references__name {
   justify-content: flex-start;
   flex-direction: column;
 }
+@media only screen and (max-width: 68.75em) {
+  .bridge__section-content {
+    overflow: visible;
+  }
+}
 .bridge__section:nth-of-type(1) {
   left: 0;
+  background-image: linear-gradient(to right, rgba(0, 65, 109, 0.5), rgba(245, 146, 41, 0.5));
 }
 .bridge__section:nth-of-type(1) .bridge__section-title {
   background-image: linear-gradient(to top right, #00416d, rgba(0, 65, 109, 0.75)), url("/src/imgs/bridge-section-1.jpg");
@@ -2329,7 +2342,13 @@ div.references__name {
   cursor: pointer;
   position: absolute;
   transform: translateY(-50%);
-  top: 50%;
+  top: 150vh;
+  z-index: 10;
+}
+@media only screen and (max-width: 68.75em) {
+  .arrow-button {
+    display: none;
+  }
 }
 .arrow-button svg {
   width: 7vw;

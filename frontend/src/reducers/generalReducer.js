@@ -5,6 +5,7 @@ import {
   SET_PREVIOUS_URL,
   SET_SCROLL_PERCENT,
   SET_VIEW_PORT_WIDTH,
+  SET_HAS_CLICKED_BRIDGE_INFO_BUTTON,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -14,6 +15,7 @@ const INITIAL_STATE = {
   repos: [],
   previousUrl: null,
   scrollPercent: "0%",
+  hasClickedBridgeInfoButton: false,
 }
 
 const generalReducer = (state = INITIAL_STATE, action) => {
@@ -30,6 +32,8 @@ const generalReducer = (state = INITIAL_STATE, action) => {
       return {...state, previousUrl: action.payload};  
     case SET_SCROLL_PERCENT:
       return {...state, scrollPercent: action.payload}; 
+    case SET_HAS_CLICKED_BRIDGE_INFO_BUTTON:
+      return {...state, hasClickedBridgeInfoButton: action.payload};
     default:
       return state;
   }
