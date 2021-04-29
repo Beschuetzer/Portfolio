@@ -266,11 +266,11 @@ $bridge-logo-opacity: .25;
 		opacity: 0;
 		background-image: 
 		linear-gradient(
-			to right,
-			rgba($color-primary-bridge-1, .5),
-			rgba($color-primary-bridge-2, .5),
+			to bottom,
+			rgba($color-primary-bridge-2, $hero-background-opacity),
+			rgba($color-primary-bridge-1, $hero-background-opacity),
 		),
-		url('/src/imgs/bridge-section-hero.png')
+		url('/src/imgs/bridge-background.jpg')
 		;
 		position: fixed;
     width: 100vw;

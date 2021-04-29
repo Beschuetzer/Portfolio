@@ -2251,7 +2251,7 @@ div.references__name {
 }
 .hero__background {
   opacity: 0;
-  background-image: linear-gradient(to right, rgba(0, 65, 109, 0.5), rgba(245, 146, 41, 0.5)), url("/src/imgs/bridge-section-hero.png");
+  background-image: linear-gradient(to bottom, rgba(245, 146, 41, 0.76), rgba(0, 65, 109, 0.76)), url("/src/imgs/bridge-background.jpg");
   position: fixed;
   width: 100vw;
   height: 100vh;
