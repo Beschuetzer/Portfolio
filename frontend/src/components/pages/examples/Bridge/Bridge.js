@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import BridgeHero from './BridgeHero';
 import BridgeCard from './BridgeCard';
@@ -11,7 +12,7 @@ import ArrowButton from '../../../ArrowButton';
 
 
 
-const Bridge = () => {
+const Bridge = ({hasClickedBridgeInfoButton}) => {
 	const sectionContents = [
 			<SectionContainer
 				name='summary'
@@ -148,16 +149,12 @@ const Bridge = () => {
 	}
 
 	return (
-		<React.Fragment>
 		<div className="bridge">
 			<BridgeHero
 				name="Bridge"
 				pageName="bridge"
 			/>
-			{/* <p>
-					Contract bridge, or simply bridge, is a trick-taking card game using a standard 52-card deck. In its basic format, it is played by four players in two competing partnerships, with partners sitting opposite each other around a table.
-				</p> */}
-			{/* <div className="transition">Transition</div> */}
+
 			{renderSections()}
 			<ArrowButton
 				direction='left'
@@ -170,12 +167,25 @@ const Bridge = () => {
 				hoverFillNumber='4'
 			/>
 		</div>
-
-	</React.Fragment>
 	);
 };
 
-export default Bridge;
+const mapStateToProps = (state, ownProps) => {
+	return {
+		hasClickedBridgeInfoButton: state.general.hasClickedBridgeInfoButton,
+	}
+}
+
+export default connect(mapStateToProps, {
+
+})(Bridge);
+
+
+
+/* <p>
+		Contract bridge, or simply bridge, is a trick-taking card game using a standard 52-card deck. In its basic format, it is played by four players in two competing partnerships, with partners sitting opposite each other around a table.
+	</p> */
+
 
 // -bridge page sections:
 //   1. history/background

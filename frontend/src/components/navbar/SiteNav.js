@@ -46,13 +46,16 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		const isChildOfNavBar = checkForParentOfType(e.target, "nav", "navbar");
 
 		if (!navBar) return;
-		navBar.classList.add("overflow--hidden");
 		handleSound(e);
 
+
+		if (isChildOfNavBar) navBar.classList.add("overflow--hidden");
+		
 		if (
 			!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&
 			isChildOfNavBar
 		) {
+			navBar.classList.add("overflow--hidden");
 			root.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 			setIsAnimating(true);
@@ -152,7 +155,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 				: false;
 			if (!isNavClick) {
 				navRef?.current?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-				navRef?.current?.classList?.add("overflow--hidden");
+				// navRef?.current?.classList?.add("overflow--hidden");
 			}
 			root.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 		};

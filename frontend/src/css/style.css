@@ -337,6 +337,15 @@ body {
   opacity: 1 !important;
 }
 
+.hidden {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+.d-none {
+  display: none !important;
+}
+
 .z-index-navbar {
   z-index: 5 !important;
 }

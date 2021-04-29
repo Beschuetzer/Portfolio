@@ -83,6 +83,15 @@
         opacity: 1 !important;
     }
 
+    .hidden {
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+
+    .d-none {
+        display: none !important;
+    }
+
     //Dealing with SiteNav glitch
     .z-index-navbar {
         z-index: $navbar-full-z-index !important;
