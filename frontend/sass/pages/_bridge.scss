@@ -505,7 +505,48 @@ $card-header-height: $card-height / 3.333333333333;
 	transition: opacity $animation-duration cubic-bezier(0.4, 0, 1, 1) $animation-duration * 1.25;
 }
 
-
 .page-nav-bridge{
 	display: none;
 }
+
+.slide-left {
+	left: -100vw;
+}
+
+.slide-right {
+	left: 100vw;
+}
+
+// .bridge-page,
+// .csharp-page {
+// 	//Changing header sizes
+// 	@include respond(larger-than-nav-switch) {
+// 		& .header {
+// 			top: $default-font-size / 2;
+
+// 			&__inner {
+// 				// width: calc(100% - #{$default-font-size * 3});
+// 			}
+// 		}
+
+// 		& .site-nav,
+// 		& .github {
+// 			transform: scale(0.75);
+// 			transition: transform $animation-duration $animation-easing-standard
+// 				$animation-duration * 0.75;
+// 		}
+
+// 		& .site-nav {
+// 			transform-origin: left;
+// 		}
+
+// 		& .github {
+// 			transform-origin: right;
+// 		}
+
+// 		& .github:hover,
+// 		& .site-nav:hover {
+// 			transform: scale(1);
+// 		}
+// 	}
+// }

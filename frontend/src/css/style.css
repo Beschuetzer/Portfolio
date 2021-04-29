@@ -2430,4 +2430,12 @@ div.references__name {
   display: none;
 }
 
+.slide-left {
+  left: -100vw;
+}
+
+.slide-right {
+  left: 100vw;
+}
+
 /*# sourceMappingURL=style.css.map */

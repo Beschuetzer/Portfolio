@@ -46,7 +46,11 @@ IDEAS-----------------------------------------------------------
 -add currentSelection select to signify currently selected Bridge Section (left: 0)
 -use left property to transform each card depending on which arrow is pressed and which section has the currentSelection class
 
-  
+-if the currentSection is <=0 then don't show left arrow
+-if the currentSection is >= (sections.length - 1) then don't show left arrow
+-if you click right arrow, currentSelection goes to the left
+-if you click left arrow, currentSelection goes to the right
+
 
 
 

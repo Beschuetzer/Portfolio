@@ -15,7 +15,7 @@ import ArrowButton from '../../../ArrowButton';
 const Bridge = ({hasClickedBridgeInfoButton}) => {
 	const sectionContents = [
 			<SectionContainer
-				name='summary'
+				name='Background'
 				pageName='bridge'
 			>
 				<BridgeCard
@@ -80,6 +80,53 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 			</SectionContainer>
 		,
 			<SectionContainer
+				name='Features'
+				pageName='bridge'
+			>
+				<BridgeCard
+					titleSize='two'
+					titleContent='Why Bridge?'
+				>
+					<ul className='bridge__reasons'>
+							<li className='bridge__reasons-item'>
+								There was no free online bridge resource in May of 2020. 
+							</li>
+							<li className='bridge__reasons-item'>
+								A good friend from MN mentioned how much he missed playing Bridge now that he couldn’t play Bridge in person due to the COVID 19 pandemic. 
+							</li>
+							<li className='bridge__reasons-item'>
+								My current position at Ricoh was not panning out as I had expected. 
+							</li>
+							<li className='bridge__reasons-item'>
+								I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
+							</li>
+						</ul>
+
+					{/* <Card
+						cardName='ace-of-clubs'
+						title='Why?'
+					>
+					</Card>
+					<Card
+						cardName='ace-of-diamonds'
+						title='How?'
+					>
+					</Card>
+					<Card
+						cardName='ace-of-hearts'
+						title='Challenges'
+					>
+					</Card>
+					<Card
+						cardName='ace-of-spades'
+						title='Lessons Learned'
+					>
+					</Card> */}
+				</BridgeCard>
+		
+			</SectionContainer>
+			,
+			<SectionContainer
 				name='motivation'
 				pageName='bridge'
 			>
@@ -125,9 +172,8 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 				</BridgeCard>
 		
 			</SectionContainer>
-	]
-
-
+			
+	];
 
 	useEffect(() => {
 		const newLinearGradient = `
