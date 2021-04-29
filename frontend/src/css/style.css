@@ -1474,8 +1474,7 @@ body {
 }
 
 .header {
-  padding: 0.8rem;
-  top: calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.2vw);
+  top: calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.4vw);
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -1483,6 +1482,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .header {
+    padding: 0.8rem;
     box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
     top: 0;
     z-index: 10;
@@ -1494,7 +1494,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc( 			85rem + ((100vw - 85rem) / 2) + 6.6vw 		);
+  width: calc( 		85rem + ((100vw - 85rem) / 2) + 6.4vw 	);
   margin: 0 auto;
 }
 @media only screen and (max-width: 68.75em) {
@@ -1559,7 +1559,7 @@ body {
 .page-nav {
   z-index: 1;
   position: absolute;
-  top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											85rem + ( 													(100vw - 85rem) / 2 												) + 7vw 										) 								) / 2 						) - 1vw 				) * 1 		) - 1.1vw );
+  top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											85rem + ( 													(100vw - 85rem) / 2 												) + 7vw 										) 								) / 2 						) - 1vw 				) * 1 		) - .9vw );
   left: 0;
   width: calc((100% - 85rem) / 2);
   font-size: 1vw;

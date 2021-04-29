@@ -521,15 +521,16 @@
 }
 
 .header {
-	padding: $default-font-size * .5;
 	top: $header-top;
 	width: 100%;
 	position: fixed;
 	z-index: 1;
 	transition: opacity $animation-duration $animation-easing-standard,
-		transform $animation-duration $animation-easing-standard;
+	transform $animation-duration $animation-easing-standard;
+
 
 	@include respond(nav-switch) {
+		padding: $default-font-size * .5;
 		box-shadow: $navbar-box-shadow-resume;
 		top: 0;
 		z-index: 10;
@@ -542,9 +543,7 @@
 		// flex-direction: row-reverse;
 		justify-content: space-between;
 		align-items: center;
-		width: calc(
-			#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 6.6vw
-		);
+		width: $header-inner-width;
 		// width: calc(#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 8rem);
 		margin: 0 auto;
 
