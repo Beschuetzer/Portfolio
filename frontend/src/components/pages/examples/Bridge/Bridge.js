@@ -122,16 +122,7 @@ const Bridge = () => {
 					>
 					</Card> */}
 				</BridgeCard>
-				{/* <ArrowButton
-					direction='left'
-					fillNumber='1'
-					hoverFillNumber='3'
-				/>
-				<ArrowButton
-					direction='right'
-					fillNumber='1'
-					hoverFillNumber='4'
-				/> */}
+		
 			</SectionContainer>
 	]
 
@@ -168,6 +159,16 @@ const Bridge = () => {
 				</p> */}
 			{/* <div className="transition">Transition</div> */}
 			{renderSections()}
+			<ArrowButton
+				direction='left'
+				fillNumber='1'
+				hoverFillNumber='3'
+			/>
+			<ArrowButton
+				direction='right'
+				fillNumber='1'
+				hoverFillNumber='4'
+			/>
 		</div>
 
 	</React.Fragment>

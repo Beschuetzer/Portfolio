@@ -6,10 +6,12 @@ import BackgroundVideo from '../../../BackgroundVideo';
 import bgVideo from '../../../../clips/animation-roundEndDummy.mp4';
 import DiamondFractal from "./DiamondFractal";
 
-const BridgeHero = ({sounds}) => {
+const BridgeHero = ({sounds, isMobile}) => {
 	//my idea here is to have a centered diamond background that has has the section or A # Maj Bridge words around the four corners.  Inside the diamond, there are other suits and a background video?
   const checkBoxRef = useRef();
   const backgroundRef = useRef();
+  const headerHeight = document.querySelector('#header').getBoundingClientRect().height;
+
 
   const handleMoreClick = (e) => {
     document.documentElement.style.setProperty('--bridge-section-display', 'block');
@@ -23,6 +25,12 @@ const BridgeHero = ({sounds}) => {
     }
     else {
       sounds.play('doorNormal');
+      debugger
+      window.scroll({
+        top: isMobile ? window.innerHeight - headerHeight : window.innerHeight, 
+        left: 0, 
+        behavior: 'smooth' 
+      });
       
       if (!backgroundRef.current) return;
       backgroundRef.current?.classList.remove('visible');
@@ -69,6 +77,7 @@ const BridgeHero = ({sounds}) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     sounds: state.sounds,
+    isMobile: state.general.isMobile,
   }
 }
 

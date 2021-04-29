@@ -45,6 +45,7 @@
   --header-toggler-svg-rotation: 180deg;
   --header-toggler-translate-x: 0;
   --header-toggler-translate-y: 0;
+  --header-height: 10rem;
   --header-inner-width-nav-switch: 100%;
   --bridge-section-display: none;
   --arrow-button-fill: var(--color-primary-bridge-1);
@@ -2119,6 +2120,13 @@ div.references__name {
   position: absolute;
   top: 100vh;
   left: 100vw;
+}
+@media only screen and (max-width: 68.75em) {
+  .bridge__section:nth-of-type(n + 2) {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
 }
 .bridge__card {
   font-size: 1.6rem;
