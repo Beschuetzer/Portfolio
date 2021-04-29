@@ -520,7 +520,7 @@ class Resume extends React.Component {
 	static headerSideContent = {
 		summary: (
 			<div className="thumbnail">
-				<img src="/self-2.png" alt="Adam Major" />
+				<img src="/self-small.png" alt="Adam Major" />
 			</div>
 		),
 	};

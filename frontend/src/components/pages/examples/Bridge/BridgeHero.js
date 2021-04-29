@@ -13,6 +13,7 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
   const checkBoxRef = useRef();
   const backgroundRef = useRef();
   const headerHeight = document.querySelector('#header').getBoundingClientRect().height;
+  const heroMore = document.querySelector('.hero__more');
 
   const handleMoreClick = (e) => {
     if(!hasClickedBridgeInfoButton) {
@@ -23,7 +24,11 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
       document.documentElement.style.setProperty('--bridge-section-height', '100vh');
       document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
       
+      heroMore?.classList.add('hero__more--clicked');
       setHasClickedBridgeInfoButton(true);
+    }
+    else {
+      heroMore?.classList.remove('hero__more--clicked');
     }
 
     if (!checkBoxRef.current?.checked) {

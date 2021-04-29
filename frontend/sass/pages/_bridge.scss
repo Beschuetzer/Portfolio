@@ -216,13 +216,17 @@ $bridge-logo-opacity: .25;
 		font-size: $default-font-size * 3;
 		z-index: 1;
 		position: fixed;
-		top: 50vh;
-		left: 60vw;
+		// top: 50vh;
+		// left: 60vw;
+		top: 66vh;
+    left: 49vw;
 		transform: translate(-50%, -50%);
 		color: var(--color-primary-2);
 		border-radius: $default-font-size * 200;
+		animation: bridge-more 2.5s infinite;
 		transition:
-			left $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard-easeInOutBack ,
+			top $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard-easeInOutBack,
+			left $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard-easeInOutBack,
 		;
 
 		& input {
@@ -264,7 +268,6 @@ $bridge-logo-opacity: .25;
 			&:nth-of-type(2) {
 				opacity: 0;
 			}
-		
 		}
 
 		&:hover {
@@ -279,6 +282,11 @@ $bridge-logo-opacity: .25;
 				background-color: var(--color-primary-1);
 			}
 		}
+
+		&--clicked {
+			top: 50vh;
+			animation: none;
+		}
 	}
 
 	&__bridge-logo {
@@ -287,9 +295,9 @@ $bridge-logo-opacity: .25;
     position: fixed;
     top: 50%;
     left: 50%;
-    height: $default-font-size * 9;
-    width: $default-font-size * 9;
-    border-radius: 100px;
+    height: calc(#{$navbar__logo-width} * 2 - .5vw);
+    width: calc(#{$navbar__logo-width} * 2 - .5vw);
+    border-radius: 50%;
     transform: translate(-50%, -50%);
     background-size: cover;
 		opacity: 0;
@@ -297,6 +305,10 @@ $bridge-logo-opacity: .25;
 			opacity $animation-duration $animation-easing-standard,
 		;
 
+		@include respond(nav-switch) {
+			height: calc(#{$navbar__logo-width-nav-switch} * 2 - .5rem);
+			width: calc(#{$navbar__logo-width-nav-switch} * 2 - .5rem);
+		}
 		// z-index: 1;
 	}
 
