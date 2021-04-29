@@ -712,45 +712,42 @@
 		}
 	}
 
-	&__inner {
-	}
-
 	&--active {
 		transform: scale(var(--site-nav-active-scale-amount));
 		// animation: selected-section infinite 5s forwards;
 	}
 }
 
-.bridge-page,
-.csharp-page {
-	//Changing header sizes
-	@include respond(larger-than-nav-switch) {
-		& .header {
-			top: $default-font-size / 2;
+// .bridge-page,
+// .csharp-page {
+// 	//Changing header sizes
+// 	@include respond(larger-than-nav-switch) {
+// 		& .header {
+// 			top: $default-font-size / 2;
 
-			&__inner {
-				width: calc(100% - #{$default-font-size * 3});
-			}
-		}
+// 			&__inner {
+// 				// width: calc(100% - #{$default-font-size * 3});
+// 			}
+// 		}
 
-		& .site-nav,
-		& .github {
-			transform: scale(0.75);
-			transition: transform $animation-duration $animation-easing-standard
-				$animation-duration * 0.75;
-		}
+// 		& .site-nav,
+// 		& .github {
+// 			transform: scale(0.75);
+// 			transition: transform $animation-duration $animation-easing-standard
+// 				$animation-duration * 0.75;
+// 		}
 
-		& .site-nav {
-			transform-origin: left;
-		}
+// 		& .site-nav {
+// 			transform-origin: left;
+// 		}
 
-		& .github {
-			transform-origin: right;
-		}
+// 		& .github {
+// 			transform-origin: right;
+// 		}
 
-		& .github:hover,
-		& .site-nav:hover {
-			transform: scale(1);
-		}
-	}
-}
+// 		& .github:hover,
+// 		& .site-nav:hover {
+// 			transform: scale(1);
+// 		}
+// 	}
+// }

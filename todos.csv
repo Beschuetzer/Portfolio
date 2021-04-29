@@ -42,6 +42,10 @@ IDEAS-----------------------------------------------------------
   -make sure that SkillsPopup links to examples on site are Links not anchor tags
 
 
+-have bridge-hero disappear after scrolling down to the bottom
+-add currentSelection select to signify currently selected Bridge Section (left: 0)
+-use left property to transform each card depending on which arrow is pressed and which section has the currentSelection class
+
   
 
 
