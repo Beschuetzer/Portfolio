@@ -2331,8 +2331,8 @@ div.references__name {
   }
 }
 .arrow-button svg {
-  width: 7vw;
-  height: 7vw;
+  width: calc(7vw + .29vw);
+  height: calc(7vw + .29vw);
 }
 @media only screen and (max-width: 68.75em) {
   .arrow-button svg {
@@ -2341,8 +2341,7 @@ div.references__name {
   }
 }
 .arrow-button__left {
-  padding-left: 2.4rem;
-  left: 0%;
+  left: calc((100vw - calc( 		85rem + ((100vw - 85rem) / 2) + 6.4vw 	) - 1vw) / 2);
 }
 .arrow-button__left svg {
   transform: rotate(90deg);
@@ -2353,8 +2352,7 @@ div.references__name {
   }
 }
 .arrow-button__right {
-  padding-right: 2.4rem;
-  right: 0;
+  right: calc((100vw - calc( 		85rem + ((100vw - 85rem) / 2) + 6.4vw 	) - 1vw) / 2);
 }
 .arrow-button__right svg {
   transform: rotate(-90deg);

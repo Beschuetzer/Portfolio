@@ -390,18 +390,20 @@ $padding-nav-switch: $default-font-size * .5;
 	}
 
 	& svg {
-		width: $navbar__logo-width;
-		height: $navbar__logo-width;
+		width: calc(#{$navbar__logo-width} + .29vw);
+		height: calc(#{$navbar__logo-width} + .29vw);
 
 		@include respond(nav-switch) {
 			width: $default-font-size * 5;
-		height: $default-font-size * 5;
+			height: $default-font-size * 5;
 		}
 	}
 
 	&__left {
-		padding-left: $padding-full;
-		left: 0%;
+		// padding-left: $padding-full;
+		// left: 0%;
+		left: calc((100vw - #{$header-inner-width} - 1vw) / 2);
+
 		& svg {
 			transform: rotate(90deg);
 		}
@@ -412,8 +414,8 @@ $padding-nav-switch: $default-font-size * .5;
 	}
 
 	&__right {
-		padding-right: $padding-full;
-		right: 0;
+		// padding-right: $padding-full;
+		right: calc((100vw - #{$header-inner-width} - 1vw) / 2);
 		& svg {
 			transform: rotate(-90deg);
 		}

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 class NavToggler extends React.Component {
   handleOnClick = (e) => {
-    console.log('e.target =', e.target);
     e.currentTarget.parentNode?.classList?.toggle('header-toggler--active')
   }
 

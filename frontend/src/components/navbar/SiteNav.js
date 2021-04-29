@@ -96,7 +96,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	}
 
 	useEffect(() => {
-		console.log('setting width------------------------------------------------');
 		const navbarContent = document.querySelector('.navbar__content');
 		const header = document.querySelector('.header');
 		const headerBoundingRect = header.getBoundingClientRect();
