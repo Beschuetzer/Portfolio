@@ -12,6 +12,7 @@ import {
   SET_SOUNDS,
   SET_HAS_CLICKED_BRIDGE_INFO_BUTTON,
   SET_CURRENT_BRIDGE_SECTION,
+  SET_BRIDGE_SECTIONS,
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
@@ -256,6 +257,13 @@ export const setHasClickedBridgeInfoButton = (value) => {
 export const setCurrentBridgeSection = (value) => {
   return {
     type: SET_CURRENT_BRIDGE_SECTION,
+    payload: value,
+  }
+}
+
+export const setBridgeSections = (value) => {
+  return {
+    type: SET_BRIDGE_SECTIONS,
     payload: value,
   }
 }

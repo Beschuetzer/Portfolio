@@ -133,7 +133,7 @@ $animation-bridge-windshield-two-end: polygon(
 //bridge
 $bridge-hero-animation-duration: $animation-duration * 2;
 $hero-background-opacity: .76;
-
+$arrow-button-position: calc((100vw - calc( #{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 8vw )) / 2);
 //page-nav
 $page-nav-top: calc(
 	100% +

@@ -7,6 +7,7 @@ import {
   SET_VIEW_PORT_WIDTH,
   SET_HAS_CLICKED_BRIDGE_INFO_BUTTON,
   SET_CURRENT_BRIDGE_SECTION,
+  SET_BRIDGE_SECTIONS,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -18,6 +19,7 @@ const INITIAL_STATE = {
   scrollPercent: "0%",
   hasClickedBridgeInfoButton: false,
   currentBridgeSection: 0,
+  bridgeSections: null,
 }
 
 const generalReducer = (state = INITIAL_STATE, action) => {
@@ -38,6 +40,8 @@ const generalReducer = (state = INITIAL_STATE, action) => {
       return {...state, hasClickedBridgeInfoButton: action.payload};
     case SET_CURRENT_BRIDGE_SECTION:
       return {...state, currentBridgeSection: action.payload};
+    case SET_BRIDGE_SECTIONS:
+      return {...state, bridgeSections: action.payload};
     default:
       return state;
   }

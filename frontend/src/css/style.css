@@ -2064,7 +2064,7 @@ div.references__name {
   z-index: 2;
   position: relative;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   background-color: var(--color-primary-3);
   color: var(--color-primary-1);
   left: 100vw;
@@ -2127,6 +2127,7 @@ div.references__name {
   box-shadow: 0 0rem 2.4rem rgba(0, 0, 0, 0.15);
   max-width: 85rem;
   margin: 0 auto;
+  margin-right: calc(((100% - 85rem) / 2) + ((100vw - 100%) / 6));
   height: 100%;
   border-radius: 3.2rem;
   display: grid;
@@ -2352,7 +2353,7 @@ div.references__name {
   }
 }
 .arrow-button__right {
-  right: calc((100vw - calc( 		85rem + ((100vw - 85rem) / 2) + 6.4vw 	) - 1vw) / 2);
+  right: calc((100vw - calc( 85rem + ((100vw - 85rem) / 2) + 8vw )) / 2);
 }
 .arrow-button__right svg {
   transform: rotate(-90deg);
@@ -2431,11 +2432,15 @@ div.references__name {
 }
 
 .slide-left {
-  left: -100vw;
+  left: -100vw !important;
 }
 
 .slide-right {
-  left: 100vw;
+  left: 100vw !important;
+}
+
+.current-section {
+  left: 0 !important;
 }
 
 /*# sourceMappingURL=style.css.map */

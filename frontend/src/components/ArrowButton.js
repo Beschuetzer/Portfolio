@@ -2,28 +2,47 @@ import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { setCurrentBridgeSection } from '../actions';
+import { setCurrentBridgeSection, setBridgeSections } from '../actions';
 
-const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSection, currentBridgeSection}) => {
-  // useEffect(() => {
-  //may not be needed --->   //TODO: set currentBridgeSection to 0 (first section)
+const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSection, currentBridgeSection, bridgeSections, setBridgeSections}) => {
+  useEffect(() => {
+    if (bridgeSections) return;
 
-  // }, [])
+    const sections = document.querySelectorAll('.bridge__section');
+    setBridgeSections(sections);
+  }, [setBridgeSections, bridgeSections])
+
+  useEffect(() => {
+    if (!bridgeSections) return;
+    for (let i = 0; i < bridgeSections.length; i++) {
+      const section = bridgeSections[i];
+      if (!section) return;
+
+      if (i !== currentBridgeSection) section.classList.remove('current-section')
+
+      if (i < currentBridgeSection) {
+        section.classList.add('slide-left')
+      }
+      else if (i === currentBridgeSection) {
+        section.classList.add('current-section')
+      }
+      else {
+        section.classList.remove('slide-left')
+      };
+    }
+  }, [currentBridgeSection, bridgeSections])
   
   const handleClick = (e) => {
-    const sections = document.querySelectorAll('.bridge__section');
     //todo: every click changes the currentBridgeSection  then add/remove classes to shift them
     console.log('currentBridgeSection =', currentBridgeSection);
     if (e.currentTarget?.className.match(/left/i)) {
       console.log('left arrow------------------------------------------------');
-      if (currentBridgeSection > 0) setCurrentBridgeSection(currentBridgeSection - 1)
+      if (currentBridgeSection > 0) return setCurrentBridgeSection(currentBridgeSection - 1)
     }
     else {
       console.log('right arrow------------------------------------------------');
-      if (currentBridgeSection < (sections.length - 1)) setCurrentBridgeSection(currentBridgeSection + 1)
-
+      if (currentBridgeSection < (bridgeSections.length - 1)) return setCurrentBridgeSection(currentBridgeSection + 1)
     }
-    console.log('sections =', sections);
   }
 
   return (
@@ -38,9 +57,11 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
 const mapStateToProps = (state, ownProps) => {
   return {
     currentBridgeSection: state.general.currentBridgeSection,
+    bridgeSections: state.general.bridgeSections,
   }
 }
 
 export default connect(mapStateToProps, {
   setCurrentBridgeSection,
+  setBridgeSections,
 })(ArrowButton);

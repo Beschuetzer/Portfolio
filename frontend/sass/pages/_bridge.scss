@@ -23,7 +23,7 @@ $bridge-logo-opacity: .25;
 		z-index: 2;
 		position: relative;
 		height: 100vh;
-		width: 100%;
+		width: 100vw;
 		background-color: var(--color-primary-3);
 		color: var(--color-primary-1);
 		left: 100vw;
@@ -97,6 +97,7 @@ $bridge-logo-opacity: .25;
 		box-shadow: 0 0rem $default-font-size * 2 -$default-font-size * .5 rgba($color-black, .15);
     max-width: $resume-card-width-full;
     margin: 0 auto;
+		margin-right: calc(((100% - #{$resume-card-width-full}) / 2) + ((100vw - 100%) / 6));;
 		height: 100%;
     border-radius: $default-font-size * 2;
 		display: grid;
@@ -415,7 +416,7 @@ $padding-nav-switch: $default-font-size * .5;
 
 	&__right {
 		// padding-right: $padding-full;
-		right: calc((100vw - #{$header-inner-width} - 1vw) / 2);
+		right: $arrow-button-position;
 		& svg {
 			transform: rotate(-90deg);
 		}
@@ -510,11 +511,15 @@ $card-header-height: $card-height / 3.333333333333;
 }
 
 .slide-left {
-	left: -100vw;
+	left: -100vw !important;
 }
 
 .slide-right {
-	left: 100vw;
+	left: 100vw !important;
+}
+
+.current-section {
+	left: 0 !important;
 }
 
 // .bridge-page,
