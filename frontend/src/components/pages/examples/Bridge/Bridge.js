@@ -23,7 +23,8 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					titleContent='Background'
 				>
 					<BridgeCardSection
-						title='An App is Born'
+						title='The Journey Begins'
+						// title='An App is Born'
 					>
 						<p>
 							A#Maj is an website I created between June of 2020 and February of 2021, where users can play 
@@ -35,30 +36,51 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 							&nbsp;and&nbsp;
 							<Link to="/examples/playlist-syncer" className="bridge__link">music syncing</Link> apps that I had recently finished, and he jokingly remarked that I should make an app to play bridge online.   &nbsp;&nbsp;Initially, I wasn't very interested in making my own bridge app because I figured there had to be a free online version somewhere that we could use. &nbsp;&nbsp;  After looking for multiple hours though and only finding pay-to-play apps, I decided to entertain the idea.
 						</p>
-						<p>
+					</BridgeCardSection>
+					<BridgeCardSection
+						title='The Process'
+					>
+					<p>
 							I started out by trying to create a simple chat room app using C#, but soon realized it would be rather challenging to create the bridge app I had envisioned using C#.   &nbsp;&nbsp;I knew there had to be an easier way...   &nbsp;&nbsp;Off to YouTube and google to find it!   &nbsp;&nbsp;The most promising technology I could find was called 'socket.io'.   &nbsp;&nbsp;After watching a tutorial video on YouTube, I was sold.   &nbsp;&nbsp;socket.io would have to be part of the stack I would use, if i decided to create the app.
 						</p>
 						<p>
 							The only problem was I had no idea how to integrate socket.io into a working web application or how to create web applications at all for that matter!  After googling some more, I found an exquisite resource called
-							&nbsp; <a target="_blank" rel="noreferrer" href="https://www.theodinproject.com/" className="bridge__link">The Odin Project</a> &nbsp;  I followed the curriculum there to learn the basics of HTML, CSS, and JS.  However, once I hit the Ruby part of the curriculum, it quickly became apparent that I would need further resources.  
+							&nbsp; <a target="_blank" rel="noreferrer" href="https://www.theodinproject.com/" className="bridge__link">The Odin Project.</a> &nbsp;  I followed the curriculum there to learn the basics of HTML, CSS, and JS.  However, once I hit the Ruby part of the curriculum, it quickly became apparent that I would need further resources.  
 						</p>
 						<p>
-							This is when I began to look into Web Developer boot camps.   &nbsp;&nbsp;I carefully considered a few specific boot camps for a few weeks, but ultimately, reasoned that the better approach for me would be take the self-taught path for three reasons.   &nbsp;&nbsp;One, I've always been a very self-motivated person and found it difficult to justify paying 15-20k for information that I could get for free or for much less than 15k.   &nbsp;&nbsp;Two, the pandemic was just getting started at this point, and I had no idea was kind of impact it would have on the bootcamp experience.   &nbsp;&nbsp;Third, I liked the idea of getting my toes wet first before fully committing to something I wasn't completely sure I would be good at).  
-						</p>
-						<p>
-							With a strategy in place, I began looking for web bootcamps on sites like Udemy and YouTube.   &nbsp;&nbsp;Eventually, I decided on Colte Steele's Udemy bootcamp
-							&nbsp;<a target="_blank" rel="noreferrer" href="https://www.udemy.com/course/the-web-developer-bootcamp/" className="bridge__link">The Web Developer Bootcamp 2015</a> &nbsp; (which has since been updated) to use as the foundation for my web development skills.		
-						</p>
-						<p>
-							All throughout my youth, I had taken a keen interest in computer programming.   &nbsp;&nbsp;I figured that this was the last chance I would get to realize that interest.  
-						</p>
-						<p>
-							<a target="_blank" rel="noreferrer" href="https://still-bayou-51404.herokuapp.com" className="bridge__link">A# Maj Bridge</a>  
-							&nbsp; is the result of that idea.
-							</p>
+							This is when I began to look into Web Developer boot camps.   &nbsp;&nbsp;I carefully considered a few specific boot camps for a few weeks, but ultimately, reasoned that the better approach for me would be take the self-taught path for three reasons.   &nbsp;&nbsp;One, I've always been a very self-motivated person and found it difficult to justify paying 15-20k for information that I could get for free or for much less than 15k.   &nbsp;&nbsp;Two, the pandemic was just getting started at this point, and I had no idea what kind of impact it would have on the bootcamp experience.   &nbsp;&nbsp;Third, going at my own pace would allow me to move more quickly through the areas which I find easy while being able to spend more time on the areas that I find difficult.  
+						</p>						
 					</BridgeCardSection>
-				
 					<BridgeCardSection
+						title='Deciding on the Technology to Use'
+					>
+					<p>
+							My first goal was figure out what I needed to learn.&nbsp; I researched popular web development technologies and came across many different stacks.&nbsp; Admittedly, it was a bit overwhelming at first, but eventually I came to the conclusion to stick the basics first then expand out from there.&nbsp; I figured, if I want to become a web developer, I will need to have fundamentally, solid understanding of HTML5, CSS3, and JS, right?  It is was thought and the fact that I wanted to get something up and running asap that I arrived at the decision to develop 
+							&nbsp;<a target="_blank" rel="noreferrer" href="https://still-bayou-51404.herokuapp.com" className="bridge__link">A# Maj Bridge</a>&nbsp;
+							using vanilla HTML5, CSS3, and JS (I did rely on Bootstrap4 for a few things, though). 	
+						</p>
+						<BridgeCardSection
+							title='Picking the Right Curriculum'
+						>
+							<p>
+								With a technology decision for the client-side in place, I began looking at server-side technologies that I could use.  It didn't take long for me to find NodeJS.  Knowing what I would use for my server-side code made searching for bootcamps on sites like Udemy and YouTube much easier.&nbsp;After careful consideration, I decided on Colte Steele's
+								&nbsp;<a target="_blank" rel="noreferrer" href="https://www.udemy.com/course/the-web-developer-bootcamp/" className="bridge__link">The Web Developer Bootcamp 2015</a>&nbsp;
+								(which has since been updated) to use as the foundation for learning how to build a complete application using HTML5, CSS3, and JS.	 
+							</p>
+						</BridgeCardSection>
+						<BridgeCardSection
+							title='The Results are in.'
+						>
+							<p>
+								The rest is hard work, will power, luck, and curiosity.  
+								&nbsp;<a target="_blank" rel="noreferrer" href="https://still-bayou-51404.herokuapp.com" className="bridge__link">A# Maj Bridge</a>  
+								&nbsp; took roughly 6 months to fully implement.  I haven't been able to test more than three simultaneous games, but it likely is able to run 100s if not 1000s of simultaneous games before the less-than-optimal code would slow down a high-end server.  Checkout out some of the interesting features in the 
+								&nbsp;<Link className="bridge__link" to='/examples/bridge#features'>feature's section.</Link>&nbsp;
+							</p>
+						</BridgeCardSection>
+					</BridgeCardSection>
+
+					{/* <BridgeCardSection
 						title='You did what?'
 					>
 						<ul className='bridge__reasons'>
@@ -73,14 +95,15 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 							</li>
 							<li className='bridge__reasons-item'>
 								I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
-							</li>
+							</li>							
 						</ul>
-					</BridgeCardSection>
+						All throughout my youth, I had taken a keen interest in computer programming.   &nbsp;&nbsp;I figured that this was the last chance I would get to realize that interest. 
+					</BridgeCardSection> */}
 				</BridgeCard>
 			</SectionContainer>
 		,
 			<SectionContainer
-				name='Features'
+				name='features'
 				pageName='bridge'
 			>
 				<BridgeCard
