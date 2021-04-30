@@ -55,7 +55,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 						title='Deciding on the Technology to Use'
 					>
 					<p>
-							My first goal was figure out what I needed to learn.&nbsp; I researched popular web development technologies and came across many different stacks.&nbsp; Admittedly, it was a bit overwhelming at first, but eventually I came to the conclusion to stick the basics first then expand out from there.&nbsp; I figured, if I want to become a web developer, I will need to have fundamentally, solid understanding of HTML5, CSS3, and JS, right?  It is was thought and the fact that I wanted to get something up and running asap that I arrived at the decision to develop 
+							My first goal was figure out what I needed to learn.&nbsp; I researched popular web development technologies and came across many different stacks.&nbsp; Admittedly, it was a bit overwhelming at first, but eventually I came to the conclusion to stick the basics first then expand out from there.&nbsp; I figured, if I want to become a web developer, I will need to have fundamentally, solid understanding of HTML5, CSS3, and JS, right?&nbsp; It is was thought and the fact that I wanted to get something up and running asap that I arrived at the decision to develop 
 							&nbsp;<a target="_blank" rel="noreferrer" href="https://still-bayou-51404.herokuapp.com" className="bridge__link">A# Maj Bridge</a>&nbsp;
 							using vanilla HTML5, CSS3, and JS (I did rely on Bootstrap4 for a few things, though). 	
 						</p>
@@ -63,18 +63,17 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 							title='Picking the Right Curriculum'
 						>
 							<p>
-								With a technology decision for the client-side in place, I began looking at server-side technologies that I could use.  It didn't take long for me to find NodeJS.  Knowing what I would use for my server-side code made searching for bootcamps on sites like Udemy and YouTube much easier.&nbsp;After careful consideration, I decided on Colte Steele's
-								&nbsp;<a target="_blank" rel="noreferrer" href="https://www.udemy.com/course/the-web-developer-bootcamp/" className="bridge__link">The Web Developer Bootcamp 2015</a>&nbsp;
-								(which has since been updated) to use as the foundation for learning how to build a complete application using HTML5, CSS3, and JS.	 
+								With a technology decision for the client-side in place, I began looking at server-side technologies that I could use.&nbsp;  It didn't take long for me to find NodeJS.&nbsp;  Knowing what I would use for my server-side code made searching for bootcamps on sites like Udemy and YouTube much easier.&nbsp;After careful consideration, I decided on Colte Steele's
+								&nbsp;<a target="_blank" rel="noreferrer" href="https://www.udemy.com/course/the-web-developer-bootcamp/" className="bridge__link">Web Developer Bootcamp</a>&nbsp;
+								(which has since been updated) to use as the foundation for learning how to build a complete application using HTML5, CSS3, and JS.&nbsp;  The rest is hard work, will power, luck, and curiosity.  
 							</p>
 						</BridgeCardSection>
 						<BridgeCardSection
 							title='The Results are in.'
 						>
 							<p>
-								The rest is hard work, will power, luck, and curiosity.  
 								&nbsp;<a target="_blank" rel="noreferrer" href="https://still-bayou-51404.herokuapp.com" className="bridge__link">A# Maj Bridge</a>  
-								&nbsp; took roughly 6 months to fully implement.  I haven't been able to test more than three simultaneous games, but it likely is able to run 100s if not 1000s of simultaneous games before the less-than-optimal code would slow down a high-end server.  Checkout out some of the interesting features in the 
+								&nbsp; took roughly 6 months to fully implement.  I haven't been able to test more than three simultaneous games, but it likely is able to run 100s if not 1000s of simultaneous games before the less-than-optimal code would bring a high-end server to a halt.  Checkout out some of the interesting features in the 
 								&nbsp;<Link className="bridge__link" to='/examples/bridge#features'>feature's section.</Link>&nbsp;
 							</p>
 						</BridgeCardSection>
@@ -101,7 +100,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					</BridgeCardSection> */}
 				</BridgeCard>
 			</SectionContainer>
-		,
+			,
 			<SectionContainer
 				name='features'
 				pageName='bridge'
@@ -110,22 +109,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					titleSize='two'
 					titleContent='Why Bridge?'
 				>
-					<ul className='bridge__reasons'>
-							<li className='bridge__reasons-item'>
-								There was no free online bridge resource in May of 2020. 
-							</li>
-							<li className='bridge__reasons-item'>
-								A good friend from MN mentioned how much he missed playing Bridge now that he couldn’t play Bridge in person due to the COVID 19 pandemic. 
-							</li>
-							<li className='bridge__reasons-item'>
-								My current position at Ricoh was not panning out as I had expected. 
-							</li>
-							<li className='bridge__reasons-item'>
-								I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
-							</li>
-						</ul>
-
-					{/* <Card
+					<Card
 						cardName='ace-of-clubs'
 						title='Why?'
 					>
@@ -144,7 +128,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 						cardName='ace-of-spades'
 						title='Lessons Learned'
 					>
-					</Card> */}
+					</Card>
 				</BridgeCard>
 		
 			</SectionContainer>
@@ -195,7 +179,6 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 				</BridgeCard>
 		
 			</SectionContainer>
-			
 	];
 
 	useEffect(() => {
