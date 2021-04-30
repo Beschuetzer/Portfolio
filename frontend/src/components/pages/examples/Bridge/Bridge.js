@@ -9,6 +9,7 @@ import BridgeCardSection from './BridgeCardSection';
 import SectionContainer from './../../../SectionContainer';
 import Card from '../../../Card';
 import ArrowButton from '../../../ArrowButton';
+import BridgeSectionLink from "./BridgeSectionLink";
 
 
 
@@ -74,7 +75,13 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 							<p>
 								&nbsp;<a target="_blank" rel="noreferrer" href="https://still-bayou-51404.herokuapp.com" className="bridge__link">A# Maj Bridge</a>  
 								&nbsp; took roughly 6 months to fully implement.  I haven't been able to test more than three simultaneous games, but it likely is able to run 100s if not 1000s of simultaneous games before the less-than-optimal code would bring a high-end server to a halt.  Checkout out some of the interesting features in the 
-								&nbsp;<Link className="bridge__link" to='/examples/bridge#features'>feature's section.</Link>&nbsp;
+								&nbsp;
+								<BridgeSectionLink
+									content="feature's section"
+									numberOfSkips='2'
+									skipDirection='right'
+								></BridgeSectionLink>
+								&nbsp;
 							</p>
 						</BridgeCardSection>
 					</BridgeCardSection>
