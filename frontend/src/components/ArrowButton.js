@@ -2,22 +2,40 @@ import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { setCurrentBridgeSection, setBridgeSections } from '../actions';
+import { setCurrentBridgeSection, setBridgeSections, setHasClickedBridgeInfoButton } from '../actions';
 
-const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSection, currentBridgeSection, bridgeSections, setBridgeSections}) => {
+const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSection, currentBridgeSection, bridgeSections, setBridgeSections, hasClickedBridgeInfoButton}) => {
+
   const leftArrow = document.querySelector('.arrow-button--left');
   const rightArrow = document.querySelector('.arrow-button--right');
 
+  //Initial setup, storing sections
   useEffect(() => {
     if (bridgeSections) return;
-
     const sections = document.querySelectorAll('.bridge__section');
     setBridgeSections(sections);
   }, [setBridgeSections, bridgeSections])
 
+  //Handling Updates
   useEffect(() => {
     if (!bridgeSections) return;
-    console.log('change!------------------------------------------------');
+
+    const handleDisplay = (arrowElement) => {
+      if (arrowElement?.className.match(/left/i)) {
+        if (rightArrow && currentBridgeSection < bridgeSections.length - 1 && hasClickedBridgeInfoButton) rightArrow.classList.remove('d-none');
+  
+        if(leftArrow && currentBridgeSection === 0) leftArrow.classList.add('d-none');
+      }
+      else {
+        if (leftArrow && currentBridgeSection > 1) leftArrow.classList.remove('d-none');
+  
+        if(rightArrow && (currentBridgeSection === bridgeSections.length - 1 || currentBridgeSection === 0)) rightArrow.classList.add('d-none');
+      }
+    }
+
+    handleDisplay(rightArrow);
+    handleDisplay(leftArrow);
+
     for (let i = 0; i < bridgeSections.length; i++) {
       const section = bridgeSections[i];
       if (!section) return;
@@ -34,14 +52,10 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
         section.classList.remove('slide-left')
       };
     }
-  }, [currentBridgeSection, bridgeSections])
+  }, [currentBridgeSection, bridgeSections, leftArrow, rightArrow])
   
   const handleClick = (e) => {
     if (e.currentTarget?.className.match(/left/i)) {
-      if (rightArrow && currentBridgeSection < bridgeSections.length) rightArrow.classList.remove('d-none');
-
-      if(leftArrow && currentBridgeSection === 1) leftArrow.classList.add('d-none');
-
       if (currentBridgeSection > 0) {
         return setCurrentBridgeSection(currentBridgeSection - 1)
       }
@@ -50,10 +64,6 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
       if (currentBridgeSection < (bridgeSections.length - 1)) {
         setCurrentBridgeSection(currentBridgeSection + 1)
       }
-
-      if (leftArrow && currentBridgeSection >= 0) leftArrow.classList.remove('d-none');
-
-      if(rightArrow && currentBridgeSection === bridgeSections.length - 2) rightArrow.classList.add('d-none');
     }
   }
 
@@ -70,6 +80,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentBridgeSection: state.general.currentBridgeSection,
     bridgeSections: state.general.bridgeSections,
+    hasClickedBridgeInfoButton: state.general.hasClickedBridgeInfoButton,
   }
 }
 
