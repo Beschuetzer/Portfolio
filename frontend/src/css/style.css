@@ -2126,6 +2126,9 @@ div.references__name {
   color: var(--color-primary-4);
 }
 .bridge__section:nth-of-type(2) .bridge__section-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  align-items: center;
   color: var(--color-primary-4);
   background-image: linear-gradient(to right, #00416d 0%, #00416d 100%);
 }
@@ -2436,16 +2439,15 @@ div.references__name {
 }
 
 .card {
+  z-index: 1;
   backface-visibility: hidden;
   color: var(--color-primary-1);
   position: relative;
-  height: 40rem;
-  width: 26.6666666667rem;
   display: grid;
-  grid-template-rows: 12rem 1fr;
+  grid-template-rows: 24rem 1fr;
   align-items: center;
   justify-items: center;
-  transition: transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  transition: transform 0.5s ease;
 }
 .card__children {
   padding: 0 3.2rem;
@@ -2464,7 +2466,8 @@ div.references__name {
   width: 100%;
 }
 .card:hover {
-  transform: scale(1.5);
+  transform: scale(15);
+  z-index: 2;
 }
 
 .reverse-ease {

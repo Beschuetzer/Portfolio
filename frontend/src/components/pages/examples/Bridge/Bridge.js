@@ -112,7 +112,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 			>
 				<BridgeCard
 					titleSize='two'
-					titleContent='Why Bridge?'
+					titleContent='Features'
 				>
 					<Card
 						cardName='ace-of-clubs'
@@ -139,12 +139,12 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 			</SectionContainer>
 			,
 			<SectionContainer
-				name='motivation'
+				name='features'
 				pageName='bridge'
 			>
 				<BridgeCard
 					titleSize='two'
-					titleContent='Why Bridge?'
+					titleContent='Features?'
 				>
 					<ul className='bridge__reasons'>
 							<li className='bridge__reasons-item'>

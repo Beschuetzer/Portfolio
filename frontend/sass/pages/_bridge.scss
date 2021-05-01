@@ -1,6 +1,7 @@
 $hero-background-image-alpha: .33;
 $hero-blend-mode: hard-light;
 $bridge-logo-opacity: .25;
+$card-z-index: 1;
 
 .bridge {
 	display: grid;
@@ -102,6 +103,9 @@ $bridge-logo-opacity: .25;
 			}
 
 			& .bridge__section-content {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+				align-items: center;
 				color: var(--color-primary-4);
 				background-image: linear-gradient(
 					to right,
@@ -518,20 +522,22 @@ $padding-nav-switch: $default-font-size * .5;
 }
 
 
-$card-height: $default-font-size * 25;
+$card-height: $default-font-size * 50;
 $card-header-height: $card-height / 3.333333333333;
+
 .card {
+	z-index: $card-z-index;
 	backface-visibility: hidden;
 	color: var(--color-primary-1);
 	position: relative;
-	height: $card-height;
-	width: $card-height * 2 / 3;
+	// height: $card-height;
+	// width: $card-height * 2 / 3;
 	display: grid;
 	grid-template-rows: $card-header-height 1fr;
 	align-items: center;
 	justify-items: center;
 	transition: 
-		transform $animation-duration $animation-easing-standard-easeInOutBack,
+		transform $animation-duration $animation-easing-standard,
 	;
 
 	&__children { 
@@ -557,7 +563,8 @@ $card-header-height: $card-height / 3.333333333333;
 	}
 
 	&:hover {
-		transform: scale(1.5);
+		transform: scale(15);
+		z-index: $card-z-index + 1;
 	}
 }
 

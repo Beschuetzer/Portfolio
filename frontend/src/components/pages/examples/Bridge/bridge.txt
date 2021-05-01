@@ -33,3 +33,14 @@ Bridge
         I. My way of thinking was not optimal.  Rather than thinking like ‘X is better than Y’, a better way of thinking is “What is the best technology/approach for what I am trying to achieve?”. Depending on the project requirements and deadlines, the answer will change.
         II. Frameworks like SASS and React really make project organization much more convenient (there are multiple 5000+ line files in A#Maj)
         III. Read the docs before diving in!  I spent 1 month learning how to draw a deck of cards in paper.js then eventually read the docs (for an unrelated issue) and found out you can just import Raster images...
+
+    5. Features
+        I. Undo Feature
+        II. Claim some
+        III. Claim all
+        IV. dynamic resizing 
+        V. card play animations
+        VI. round end animations
+        VI. Different Themes
+        VII. User Preferences
+        VIII. Color Themes
