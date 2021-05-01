@@ -526,6 +526,7 @@ $card-height: $default-font-size * 50;
 $card-header-height: $card-height / 3.333333333333;
 
 .card {
+	cursor: pointer;
 	z-index: $card-z-index;
 	backface-visibility: hidden;
 	color: var(--color-primary-1);
@@ -553,14 +554,13 @@ $card-header-height: $card-height / 3.333333333333;
 		z-index: -1;
 	}
 	&__title {
+		grid-column: 1/-1;
 		backface-visibility: hidden;
-
-		font-size: $default-font-size * 2;
+		text-align: center;
+		font-size: $default-font-size * 1.5;
 		height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
+		padding: $default-font-size;
 	}
 	&__text {
 		
@@ -582,6 +582,12 @@ $card-header-height: $card-height / 3.333333333333;
 			fill $animation-duration $animation-easing-standard,
 		;
 
+	}
+
+	&__content {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 80% 20%;
 	}
 
 	&__play {
@@ -608,6 +614,7 @@ $card-header-height: $card-height / 3.333333333333;
 	&--hoverable{
 		&:hover {
 			transform: scale(1.5);
+			// transform: perspective(#{$default-font-size * 3}) translate3d(0,#{$default-font-size},#{$default-font-size * 1}) ;
 			z-index: $card-z-index + 1;
 		}
 

@@ -50,7 +50,8 @@ IDEAS-----------------------------------------------------------
 -re-record videos in bridge.txt
 -need to get king cards made in svg format
 -figure out how to get play, pause, and stop svgs to display at the correct moments during playback by assigning 
--when clicking to play remove card--hoverable and maxizie the window to the section__content (or maybe have a side bar with text?)
+-when clicking to play remove card--hoverable and maxizize the window to the section__content (or maybe have a side bar with text?)
+-make card__content a grid with video on left 3/4 and right 1/4 being a description of the video that becomes visible when the play button is clicked
 
 
 

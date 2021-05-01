@@ -2453,6 +2453,7 @@ div.references__name {
 }
 
 .card {
+  cursor: pointer;
   z-index: 1;
   backface-visibility: hidden;
   color: var(--color-primary-1);
@@ -2474,13 +2475,13 @@ div.references__name {
   z-index: -1;
 }
 .card__title {
+  grid-column: 1/-1;
   backface-visibility: hidden;
-  font-size: 3.2rem;
+  text-align: center;
+  font-size: 2.4rem;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
+  padding: 1.6rem;
 }
 .card svg {
   z-index: 10;
@@ -2492,6 +2493,11 @@ div.references__name {
   width: 50%;
   fill: rgba(0, 64, 107, 0.5);
   transition: opacity 0.5s ease, fill 0.5s ease;
+}
+.card__content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 80% 20%;
 }
 .card__play {
   opacity: 0;

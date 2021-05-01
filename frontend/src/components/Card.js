@@ -14,8 +14,22 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     else video.play();
   }
 
+  const handleMouseEnter = (e) => {
+    console.log('adding------------------------------------------------');
+    e.currentTarget?.classList.add('z-index-content')
+  }
+
+  const handleMouseLeave = (e) => {
+    const target = e.currentTarget;
+    setTimeout(() => {
+      console.log('removing------------------------------------------------');
+      console.log('target =', target);
+      target?.classList.remove('z-index-content');
+    }, 250);
+  }
+
   return (
-    <article onClick={handleClick} className='card card--hoverable'>
+    <article onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} onClick={handleClick} className='card card--hoverable'>
       <svg className="card__play card__current-svg">
         <use xlinkHref="/sprite.svg#icon-play"></use>
       </svg>
