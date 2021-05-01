@@ -10,7 +10,7 @@ import {
   SET_SCROLL_PERCENT,
   SET_VIEW_PORT_WIDTH,
   SET_SOUNDS,
-  SET_HAS_CLICKED_BRIDGE_INFO_BUTTON,
+  SET_CLICKED_BRIDGE_INFO_BUTTON_COUNT,
   SET_CURRENT_BRIDGE_SECTION,
   SET_BRIDGE_SECTIONS,
 } from './types';
@@ -247,9 +247,9 @@ export const setSounds = (sounds) => {
   }
 }
 
-export const setHasClickedBridgeInfoButton = (value) => {
+export const setClickedBridgeInfoButtonCount = (value) => {
   return {
-    type: SET_HAS_CLICKED_BRIDGE_INFO_BUTTON,
+    type: SET_CLICKED_BRIDGE_INFO_BUTTON_COUNT,
     payload: value,
   }
 } 

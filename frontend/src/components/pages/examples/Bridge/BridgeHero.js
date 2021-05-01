@@ -2,12 +2,12 @@ import React from "react";
 import { useRef } from 'react';
 import { connect } from 'react-redux';
 
-import { setHasClickedBridgeInfoButton } from '../../../../actions';
+import { setClickedBridgeInfoButtonCount } from '../../../../actions';
 
 import Video from '../../../Video';
 import bgVideo from '../../../../clips/animation-roundEndDummy.mp4';
 
-const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClickedBridgeInfoButton}) => {
+const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount}) => {
 	//my idea here is to have a centered diamond background that has has the section or A # Maj Bridge words around the four corners.  Inside the diamond, there are other suits and a background video?
   const checkBoxRef = useRef();
   const backgroundRef = useRef();
@@ -16,7 +16,7 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
   const headerHeight = document.querySelector('#header').getBoundingClientRect().height;
 
   const handleMoreClick = (e) => {
-    if(!hasClickedBridgeInfoButton) {
+    if(clickedBridgeInfoButtonCount === 0) {
       let docStyle = getComputedStyle(document.documentElement);
       const defaultFontSize = docStyle.getPropertyValue('--default-font-size')
       const defaultFontSizeFloat = parseFloat(defaultFontSize);
@@ -25,9 +25,8 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
       document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
       
       heroMore.current?.classList.add('hero__more--clicked');
-      setHasClickedBridgeInfoButton(true);
     }
-    else {
+    else if (clickedBridgeInfoButtonCount > 0){
       heroMore.current?.classList.remove('hero__more--clicked');
       setTimeout(() => {
         const arrowButtonRight = document.querySelector('.arrow-button--right');
@@ -35,6 +34,7 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
         arrowButtonRight.classList.remove('d-none');
       }, 500)
     }
+
 
     if (!checkBoxRef.current?.checked) {
       sounds.play('doorFast');
@@ -52,11 +52,15 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
         behavior: 'smooth' 
       });
 
-      if (!backgroundRef.current) return;
-      backgroundRef.current?.classList.remove('visible');
-      backgroundRef.current?.classList.remove('reverse-ease');
+      if (backgroundRef.current)  {
+        backgroundRef.current?.classList.remove('visible');
+        backgroundRef.current?.classList.remove('reverse-ease');
+      }
     }
-    // e.target.className = 'hero__more hero__more--open';
+
+    setClickedBridgeInfoButtonCount(clickedBridgeInfoButtonCount + 1);
+    console.log('clickedBridgeInfoButtonCount =', clickedBridgeInfoButtonCount);
+
   }
 
 	return (
@@ -101,11 +105,11 @@ const mapStateToProps = (state, ownProps) => {
   return {
     sounds: state.sounds,
     isMobile: state.general.isMobile,
-    hasClickedBridgeInfoButton: state.general.hasClickedBridgeInfoButton,
+    clickedBridgeInfoButtonCount: state.general.clickedBridgeInfoButtonCount,
   }
 }
 
 export default connect(mapStateToProps,
 {
-  setHasClickedBridgeInfoButton,
+  setClickedBridgeInfoButtonCount,
 })(BridgeHero);

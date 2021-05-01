@@ -27,7 +27,7 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
         if(leftArrow && currentBridgeSection === 0) leftArrow.classList.add('d-none');
       }
       else {
-        if (leftArrow && currentBridgeSection > 1) leftArrow.classList.remove('d-none');
+        if (leftArrow && currentBridgeSection > 0) leftArrow.classList.remove('d-none');
   
         if(rightArrow && (currentBridgeSection === bridgeSections.length - 1 || currentBridgeSection === 0)) rightArrow.classList.add('d-none');
       }
@@ -52,7 +52,7 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
         section.classList.remove('slide-left')
       };
     }
-  }, [currentBridgeSection, bridgeSections, leftArrow, rightArrow])
+  }, [currentBridgeSection, bridgeSections, leftArrow, rightArrow, hasClickedBridgeInfoButton])
   
   const handleClick = (e) => {
     if (e.currentTarget?.className.match(/left/i)) {
