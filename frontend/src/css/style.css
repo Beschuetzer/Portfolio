@@ -2485,6 +2485,7 @@ div.references__name {
 
 .current-section {
   left: 0 !important;
+  z-index: 4;
 }
 
 /*# sourceMappingURL=style.css.map */

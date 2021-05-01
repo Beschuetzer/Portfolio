@@ -6,16 +6,14 @@ import { setHasClickedBridgeInfoButton } from '../../../../actions';
 
 import BackgroundVideo from '../../../BackgroundVideo';
 import bgVideo from '../../../../clips/animation-roundEndDummy.mp4';
-import DiamondFractal from "./DiamondFractal";
 
 const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClickedBridgeInfoButton}) => {
 	//my idea here is to have a centered diamond background that has has the section or A # Maj Bridge words around the four corners.  Inside the diamond, there are other suits and a background video?
   const checkBoxRef = useRef();
   const backgroundRef = useRef();
+  const hero = useRef();
+  const heroMore = useRef();
   const headerHeight = document.querySelector('#header').getBoundingClientRect().height;
-  const hero = document.querySelector('.hero');
-  const heroMore = document.querySelector('.hero__more');
-  const arrowButtonRight = document.querySelector('.arrow-button--right');
 
   const handleMoreClick = (e) => {
     if(!hasClickedBridgeInfoButton) {
@@ -26,13 +24,14 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
       document.documentElement.style.setProperty('--bridge-section-height', '100vh');
       document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
       
-      heroMore?.classList.add('hero__more--clicked');
+      heroMore.current?.classList.add('hero__more--clicked');
       setHasClickedBridgeInfoButton(true);
     }
     else {
-      heroMore?.classList.remove('hero__more--clicked');
+      heroMore.current?.classList.remove('hero__more--clicked');
       setTimeout(() => {
-        hero.classList.add('d-none');
+        const arrowButtonRight = document.querySelector('.arrow-button--right');
+        hero.current?.classList.add('d-none');
         arrowButtonRight.classList.remove('d-none');
       }, 500)
     }
@@ -41,6 +40,7 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
       sounds.play('doorFast');
 
       if (!backgroundRef.current) return;
+      console.log('backgroundRef exists!------------------------------------------------');
       backgroundRef.current?.classList.add('visible');
       backgroundRef.current?.classList.add('reverse-ease');
     }
@@ -69,8 +69,8 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
 
       
       <input ref={checkBoxRef} id='hero__more-checkbox' type='checkbox'></input>
-      <div className="hero">
-        <div onClick={handleMoreClick} className="hero__more">
+      <div className="hero" ref={hero}>
+        <div onClick={handleMoreClick} className="hero__more" ref={heroMore}>
           <label htmlFor='hero__more-checkbox'>
             <svg className="hero__svg1">
               <use xlinkHref="/sprite.svg#icon-help"></use>
@@ -87,12 +87,10 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
           src={bgVideo}
           type='mp4'
         />
-        {/* <div className="diamond"> */}
         <span className="hero__heading heading--one">Making</span>
         <span className="hero__heading heading--one">A#</span>
         <span className="hero__heading heading--one">Maj</span>
         <span className="hero__heading heading--one">Bridge</span>
-        {/* <DiamondFractal topLeftWord="Making" /> */}
       </div>
     </React.Fragment>
 	);

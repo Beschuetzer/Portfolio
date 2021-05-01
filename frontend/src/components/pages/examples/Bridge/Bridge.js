@@ -11,8 +11,6 @@ import Card from '../../../Card';
 import ArrowButton from '../../../ArrowButton';
 import BridgeSectionLink from "./BridgeSectionLink";
 
-
-
 const Bridge = ({hasClickedBridgeInfoButton}) => {
 	const sectionContents = [
 			<SectionContainer
@@ -238,8 +236,6 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
 
 })(Bridge);
-
-
 
 /* <p>
 		Contract bridge, or simply bridge, is a trick-taking card game using a standard 52-card deck. In its basic format, it is played by four players in two competing partnerships, with partners sitting opposite each other around a table.
