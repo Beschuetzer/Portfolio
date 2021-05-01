@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { setHasClickedBridgeInfoButton } from '../../../../actions';
 
-import BackgroundVideo from '../../../BackgroundVideo';
+import Video from '../../../Video';
 import bgVideo from '../../../../clips/animation-roundEndDummy.mp4';
 
 const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClickedBridgeInfoButton}) => {
@@ -83,9 +83,10 @@ const BridgeHero = ({sounds, isMobile, setHasClickedBridgeInfoButton, hasClicked
         </div>
         <div className="hero__background" ref={backgroundRef}></div>
 
-        <BackgroundVideo
+        <Video
           src={bgVideo}
           type='mp4'
+          className="bg-video"
         />
         <span className="hero__heading heading--one">Making</span>
         <span className="hero__heading heading--one">A#</span>

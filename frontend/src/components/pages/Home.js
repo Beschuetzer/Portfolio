@@ -20,8 +20,6 @@ class Home extends React.Component {
 	render() {
 		return (
 			<section className="home">
-				{/* <BackgroundVideo/> */}
-
 				<div className="home__portrait">
 					{/* <img src='../../img/self-small.png' alt="Adam Major"/> */}
 				</div>

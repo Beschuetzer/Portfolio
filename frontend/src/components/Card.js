@@ -1,15 +1,33 @@
 import React from 'react';
+import { useRef } from 'react';
 
+import Video from '../components/Video';
 import { capitalize } from '../helpers'
 
-const Card = ({title, cardName, children}) => {
+const Card = ({title, cardName, children, video}) => {
+  const videoRef = useRef();
+
+  const handleClick = (e) => {
+    console.dir(videoRef.current);
+    if (videoRef.currentTime > 0 && !videoRef.paused && !videoRef.ended && videoRef.readyState > 2) videoRef.current.stop();
+    else videoRef.current.play();
+  }
+
   return (
-    <article className='card'>
+    <article onClick={handleClick} className='card'>
       <img className='card__image' alt={capitalize(cardName.replace('-', ' '))} src={`/${cardName}.svg`}/>
       <h4 className='card__title'>{title}</h4>
       <div className='card__children'>
         {children}
       </div>
+      <Video
+        className='fg-video'
+        type="mp4"
+        src={video}
+        autoPlay={false}
+        loop={false}
+        reference={videoRef}
+      />
     </article>
   );
 }

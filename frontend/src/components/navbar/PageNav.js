@@ -198,7 +198,7 @@ class PageNav extends React.Component {
     return sectionNames.map((sectionName, index, array) => {
       return (
         <li 
-          key={sectionName} 
+          key={index} 
           className={`${PageNav.cssClass}__section-group`}
         >
           <a 

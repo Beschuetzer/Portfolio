@@ -397,6 +397,20 @@ body {
   object-fit: cover;
 }
 
+.fg-video {
+  opacity: 0.075;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.fg-video video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 .github {
   border-radius: 50%;
   box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
@@ -2450,6 +2464,7 @@ div.references__name {
   transition: transform 0.5s ease;
 }
 .card__children {
+  transform: scale(0);
   padding: 0 3.2rem;
 }
 .card__image {
@@ -2466,7 +2481,7 @@ div.references__name {
   width: 100%;
 }
 .card:hover {
-  transform: scale(15);
+  transform: scale(1.5);
   z-index: 2;
 }
 

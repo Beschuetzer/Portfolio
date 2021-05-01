@@ -541,6 +541,7 @@ $card-header-height: $card-height / 3.333333333333;
 	;
 
 	&__children { 
+		transform: scale(0);
 		padding: 0 $default-font-size * 2;
 	}
 
@@ -563,7 +564,7 @@ $card-header-height: $card-height / 3.333333333333;
 	}
 
 	&:hover {
-		transform: scale(15);
+		transform: scale(1.5);
 		z-index: $card-z-index + 1;
 	}
 }

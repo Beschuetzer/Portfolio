@@ -11,6 +11,16 @@ import Card from '../../../Card';
 import ArrowButton from '../../../ArrowButton';
 import BridgeSectionLink from "./BridgeSectionLink";
 
+import dealSummaryVideo from '../../../../clips/dealSummary.mp4';
+// import undoVideo from '../../../../clips/undoBidding.mp4';
+import claimSomeVideo from '../../../../clips/claim-some-declarer-initial.mp4';
+import claimAllVideo from '../../../../clips/claim-all.mp4';
+// import resizingVideo from '../../../../clips/resizing-all.mp4';
+import cardPlayVideo from '../../../../clips/animation-roundEnd.mp4';
+import roundEndVideo from '../../../../clips/animation-roundEndDummy.mp4';
+import preferencesVideo from '../../../../clips/preferences.mp4';
+import themesVideo from '../../../../clips/themes.mp4';
+
 const Bridge = ({hasClickedBridgeInfoButton}) => {
 	const sectionContents = [
 			<SectionContainer
@@ -115,23 +125,31 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					titleContent='Features'
 				>
 					<Card
+						
 						cardName='ace-of-clubs'
-						title='Why?'
+						title='Claim All'
+						video={claimAllVideo}
 					>
+						<p>
+							Claim All Allows players to claim the rest of the tricks rather than play them out. &nbsp;It shows the claimer's cards to the two defensive opponents and they can either agree or reject the claim.  &nbsp;If they agree, the claimer gets the rest of the tricks and game moves to the deal summary screen.
+						</p>
 					</Card>
 					<Card
+						video={claimSomeVideo}
 						cardName='ace-of-diamonds'
-						title='How?'
+						title='Claim Some'
 					>
 					</Card>
 					<Card
+						video={dealSummaryVideo}
 						cardName='ace-of-hearts'
-						title='Challenges'
+						title='Deal Summary'
 					>
 					</Card>
 					<Card
+						video={preferencesVideo}
 						cardName='ace-of-spades'
-						title='Lessons Learned'
+						title='Preferences'
 					>
 					</Card>
 				</BridgeCard>
