@@ -9,7 +9,7 @@ const Card = ({title, cardName, children, video}) => {
 
   const handleClick = (e) => {
     console.dir(videoRef.current);
-    if (videoRef.currentTime > 0 && !videoRef.paused && !videoRef.ended && videoRef.readyState > 2) videoRef.current.stop();
+    if (videoRef.current.currentTime > 0 && !videoRef.current.paused && !videoRef.current.ended && videoRef.current.readyState > 2) videoRef.current.pause();
     else videoRef.current.play();
   }
 

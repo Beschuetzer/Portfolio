@@ -16,8 +16,8 @@ import dealSummaryVideo from '../../../../clips/dealSummary.mp4';
 import claimSomeVideo from '../../../../clips/claim-some-declarer-initial.mp4';
 import claimAllVideo from '../../../../clips/claim-all.mp4';
 // import resizingVideo from '../../../../clips/resizing-all.mp4';
-import cardPlayVideo from '../../../../clips/animation-roundEnd.mp4';
-import roundEndVideo from '../../../../clips/animation-roundEndDummy.mp4';
+import dragAndDropVideo from '../../../../clips/animation-roundEnd.mp4';
+import cardPlayAndRoundEndVideo from '../../../../clips/animation-roundEndDummy.mp4';
 import preferencesVideo from '../../../../clips/preferences.mp4';
 import themesVideo from '../../../../clips/themes.mp4';
 

@@ -41,6 +41,6 @@ Bridge
         III. Claim all
         IV. dynamic resizing (redo this video.  keep it under 5 seconds and get 60fps)
         V. card play animations
-        VI. round end animations
-        VII. User Preferences
-        VIII. Color Themes
+        VI. User Preferences
+        VII. Color Themes
+        VIII. drag and drop playing
