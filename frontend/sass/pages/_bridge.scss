@@ -541,7 +541,8 @@ $card-header-height: $card-height / 3.333333333333;
 	;
 
 	&__children { 
-		transform: scale(0);
+		display: none;
+		opacity: 0;
 		padding: 0 $default-font-size * 2;
 	}
 
@@ -561,6 +562,27 @@ $card-header-height: $card-height / 3.333333333333;
 	}
 	&__text {
 		
+	}
+
+	& svg {
+		z-index: 10;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: 50%;
+		width:50%;
+		fill: $color-grey-60;
+		opacity: .5;
+		transition: 
+			opacity $animation-duration $animation-easing-standard,
+			fill $animation-duration $animation-easing-standard,
+		;
+
+		&:hover {
+			opacity: 1;
+			fill: $color-grey-40;
+		}
 	}
 
 	&:hover {

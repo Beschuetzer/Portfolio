@@ -8,13 +8,24 @@ const Card = ({title, cardName, children, video}) => {
   const videoRef = useRef();
 
   const handleClick = (e) => {
-    console.dir(videoRef.current);
-    if (videoRef.current.currentTime > 0 && !videoRef.current.paused && !videoRef.current.ended && videoRef.current.readyState > 2) videoRef.current.pause();
-    else videoRef.current.play();
+    
+    const video = videoRef?.current;
+    if (!video) return;
+    if (video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2) video.pause();
+    else video.play();
   }
 
   return (
     <article onClick={handleClick} className='card'>
+      <svg className="card__play">
+        <use xlinkHref="/sprite.svg#icon-play"></use>
+      </svg>
+      <svg className="card__stop">
+        <use xlinkHref="/sprite.svg#icon-stop"></use>
+      </svg>
+      <svg className="card__pause">
+        <use xlinkHref="/sprite.svg#icon-pause"></use>
+      </svg>
       <img className='card__image' alt={capitalize(cardName.replace('-', ' '))} src={`/${cardName}.svg`}/>
       <h4 className='card__title'>{title}</h4>
       <div className='card__children'>

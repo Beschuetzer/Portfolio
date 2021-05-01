@@ -2464,7 +2464,8 @@ div.references__name {
   transition: transform 0.5s ease;
 }
 .card__children {
-  transform: scale(0);
+  display: none;
+  opacity: 0;
   padding: 0 3.2rem;
 }
 .card__image {
@@ -2479,6 +2480,22 @@ div.references__name {
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+.card svg {
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50%;
+  width: 50%;
+  fill: #999999;
+  opacity: 0.5;
+  transition: opacity 0.5s ease, fill 0.5s ease;
+}
+.card svg:hover {
+  opacity: 1;
+  fill: #666666;
 }
 .card:hover {
   transform: scale(1.5);
