@@ -3,21 +3,36 @@ import { connect } from 'react-redux';
 
 import { setCurrentBridgeSection } from '../../../../actions';
 
-const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBridgeSection, numberOfSkips, skipDirection, content}) => {
+const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content}) => {
 
-  const handleClick = (e) => {
-    if (skipDirection.match(/match/i)) {
+  const getSkipDirectionAndSkips = (e) => {
+    let skipToSectionNumber = -1;
+    for (let i = 0; i < bridgeSections.length; i++) {
+      const bridgeSection = bridgeSections[i];
+      if (bridgeSection.id === sectionToSkipTo) {
+        skipToSectionNumber = i;
+        break;
+      }
+    }
+    return (skipToSectionNumber - currentBridgeSection);
+  }
+
+  const navigateToSection = (e) => {
+    const numberOfSkips = getSkipDirectionAndSkips(e);
+
+    if (numberOfSkips < 0) {
       const valueToUse = currentBridgeSection - numberOfSkips;
       setCurrentBridgeSection(valueToUse >= 0 ? valueToUse : 0)
     }
-    else {
+    else if (numberOfSkips > 0) {
       const valueToUse = currentBridgeSection + numberOfSkips;
       setCurrentBridgeSection(valueToUse < bridgeSections.length  ? valueToUse : (bridgeSections.length - 1))
     }
+
   }
 
   return (
-    <span onClick={handleClick} className="bridge__link">{content}</span>
+    <span onClick={navigateToSection} className="bridge__link">{content}</span>
   );
 }
 

@@ -86,8 +86,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 								&nbsp;
 								<BridgeSectionLink
 									content="feature's section"
-									numberOfSkips='2'
-									skipDirection='right'
+									sectionToSkipTo='features'
 								></BridgeSectionLink>
 								&nbsp;
 							</p>
