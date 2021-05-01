@@ -8,7 +8,6 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
   const videoRef = useRef();
 
   const handleClick = (e) => {
-    
     const video = videoRef?.current;
     if (!video) return;
     if (video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2) video.pause();
@@ -27,18 +26,20 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
         <use xlinkHref="/sprite.svg#icon-pause"></use>
       </svg>
       <img className='card__image' alt={capitalize(cardName.replace('-', ' '))} src={`/${cardName}.${fileType}`}/>
-      <h4 className='card__title'>{title}</h4>
-      <div className='card__children'>
-        {children}
+      <div className='card__content'>
+        <h4 className='card__title'>{title}</h4>
+        <div className='card__children'>
+          {children}
+        </div>
+        <Video
+          className='fg-video'
+          type="mp4"
+          src={video}
+          autoPlay={false}
+          loop={false}
+          reference={videoRef}
+        />
       </div>
-      <Video
-        className='fg-video'
-        type="mp4"
-        src={video}
-        autoPlay={false}
-        loop={false}
-        reference={videoRef}
-      />
     </article>
   );
 }

@@ -2,9 +2,9 @@ import React from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { setCurrentBridgeSection, setBridgeSections, setHasClickedBridgeInfoButton } from '../actions';
+import { setCurrentBridgeSection, setBridgeSections } from '../actions';
 
-const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSection, currentBridgeSection, bridgeSections, setBridgeSections, hasClickedBridgeInfoButton}) => {
+const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSection, currentBridgeSection, bridgeSections, setBridgeSections, clickedBridgeInfoButtonCount}) => {
 
   const leftArrow = document.querySelector('.arrow-button--left');
   const rightArrow = document.querySelector('.arrow-button--right');
@@ -22,14 +22,14 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
 
     const handleDisplay = (arrowElement) => {
       if (arrowElement?.className.match(/left/i)) {
-        if (rightArrow && currentBridgeSection < bridgeSections.length - 1 && hasClickedBridgeInfoButton) rightArrow.classList.remove('d-none');
+        if (rightArrow && currentBridgeSection < bridgeSections.length - 1 && clickedBridgeInfoButtonCount > 1) rightArrow.classList.remove('d-none');
   
         if(leftArrow && currentBridgeSection === 0) leftArrow.classList.add('d-none');
       }
       else {
         if (leftArrow && currentBridgeSection > 0) leftArrow.classList.remove('d-none');
   
-        if(rightArrow && (currentBridgeSection === bridgeSections.length - 1 || currentBridgeSection === 0)) rightArrow.classList.add('d-none');
+        if(rightArrow && ((currentBridgeSection === bridgeSections.length - 1) || (clickedBridgeInfoButtonCount > 1 && currentBridgeSection === 0))) rightArrow.classList.add('d-none');
       }
     }
 
@@ -52,7 +52,7 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
         section.classList.remove('slide-left')
       };
     }
-  }, [currentBridgeSection, bridgeSections, leftArrow, rightArrow, hasClickedBridgeInfoButton])
+  }, [currentBridgeSection, bridgeSections, leftArrow, rightArrow, clickedBridgeInfoButtonCount])
   
   const handleClick = (e) => {
     if (e.currentTarget?.className.match(/left/i)) {
@@ -80,7 +80,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentBridgeSection: state.general.currentBridgeSection,
     bridgeSections: state.general.bridgeSections,
-    hasClickedBridgeInfoButton: state.general.hasClickedBridgeInfoButton,
+    clickedBridgeInfoButtonCount: state.general.clickedBridgeInfoButtonCount,
   }
 }
 

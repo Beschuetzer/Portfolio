@@ -20,6 +20,7 @@ import dragAndDropVideo from '../../../../clips/animation-roundEnd.mp4';
 import cardPlayAndRoundEndVideo from '../../../../clips/animation-roundEndDummy.mp4';
 import preferencesVideo from '../../../../clips/preferences.mp4';
 import themesVideo from '../../../../clips/themes.mp4';
+// import saveGameVideo from '../../../../clips/saveGame.mp4';
 
 const Bridge = ({hasClickedBridgeInfoButton}) => {
 	const sectionContents = [

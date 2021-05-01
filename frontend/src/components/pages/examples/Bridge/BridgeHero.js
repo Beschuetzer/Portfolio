@@ -40,7 +40,6 @@ const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedB
       sounds.play('doorFast');
 
       if (!backgroundRef.current) return;
-      console.log('backgroundRef exists!------------------------------------------------');
       backgroundRef.current?.classList.add('visible');
       backgroundRef.current?.classList.add('reverse-ease');
     }

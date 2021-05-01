@@ -553,6 +553,8 @@ $card-header-height: $card-height / 3.333333333333;
 		z-index: -1;
 	}
 	&__title {
+		backface-visibility: hidden;
+
 		font-size: $default-font-size * 2;
 		height: 100%;
     display: flex;
@@ -565,6 +567,7 @@ $card-header-height: $card-height / 3.333333333333;
 	}
 
 	& svg {
+
 		z-index: 10;
 		position: absolute;
 		top: 50%;
@@ -596,6 +599,10 @@ $card-header-height: $card-height / 3.333333333333;
 	&__current-svg {
 		z-index: 10;
 		opacity: .5;
+	}
+
+	& * {
+		backface-visibility: hidden;
 	}
 
 	&--hoverable{
