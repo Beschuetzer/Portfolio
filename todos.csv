@@ -46,6 +46,7 @@ IDEAS-----------------------------------------------------------
 -add currentSelection select to signify currently selected Bridge Section (left: 0)
 -use left property to transform each card depending on which arrow is pressed and which section has the currentSelection class
 
+-re-record videos in bridge.txt
 -need to get king cards made in svg format
 -need icons for pause, stop, and play for Cards
 
