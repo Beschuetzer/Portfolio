@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import Video from '../components/Video';
 import { capitalize } from '../helpers'
 
-const Card = ({title, cardName, children, video}) => {
+const Card = ({title, cardName, fileType = 'svg', children, video}) => {
   const videoRef = useRef();
 
   const handleClick = (e) => {
@@ -26,7 +26,7 @@ const Card = ({title, cardName, children, video}) => {
       <svg className="card__pause">
         <use xlinkHref="/sprite.svg#icon-pause"></use>
       </svg>
-      <img className='card__image' alt={capitalize(cardName.replace('-', ' '))} src={`/${cardName}.svg`}/>
+      <img className='card__image' alt={capitalize(cardName.replace('-', ' '))} src={`/${cardName}.${fileType}`}/>
       <h4 className='card__title'>{title}</h4>
       <div className='card__children'>
         {children}

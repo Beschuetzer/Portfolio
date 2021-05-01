@@ -18,10 +18,10 @@
   --color-primary-resume-2: #8ac5d0;
   --color-primary-resume-3: #f4d262;
   --color-primary-resume-4: #fbeeac;
-  --color-primary-bridge-2: #F59229;
-  --color-primary-bridge-4: #f5f1da;
-  --color-primary-bridge-3: #e3dfc8;
-  --color-primary-bridge-1: #00416d;
+  --color-primary-bridge-2: #f59229;
+  --color-primary-bridge-4: #f5f1db;
+  --color-primary-bridge-3: #e4e0c9;
+  --color-primary-bridge-1: #00406b;
 }
 
 :root {
@@ -42,7 +42,7 @@
   	var(--color-primary-1),
   	var(--color-primary-1)
   );
-  --page-nav-shadow-hover: #f5f1da;
+  --page-nav-shadow-hover: #f5f1db;
   --header-toggler-svg-rotation: 180deg;
   --header-toggler-translate-x: 0;
   --header-toggler-translate-y: 0;
@@ -2119,22 +2119,22 @@ div.references__name {
 }
 .bridge__section:nth-of-type(1) {
   left: 0;
-  background-image: linear-gradient(to right, rgba(0, 65, 109, 0.5), rgba(245, 146, 41, 0.5));
+  background-image: linear-gradient(to right, rgba(0, 64, 107, 0.5), rgba(245, 146, 41, 0.5));
 }
 .bridge__section:nth-of-type(1) .bridge__section-title {
-  background-image: linear-gradient(to top right, #00416d, rgba(0, 65, 109, 0.75)), url("/src/imgs/bridge-section-3.jpg");
+  background-image: linear-gradient(to top right, #00406b, rgba(0, 64, 107, 0.75)), url("/src/imgs/bridge-section-3.jpg");
   background-position: top;
   background-size: cover;
   color: var(--color-primary-4);
 }
 .bridge__section:nth-of-type(1) .bridge__section-content {
-  background-image: linear-gradient(to right, #e3dfc8 0%, #f5f1da 25%, #f5f1da 75%, #e3dfc8 100%);
+  background-image: linear-gradient(to right, #e4e0c9 0%, #f5f1db 25%, #f5f1db 75%, #e4e0c9 100%);
 }
 .bridge__section:nth-of-type(2) {
-  background-image: linear-gradient(to right, rgba(245, 146, 41, 0.5), rgba(227, 223, 200, 0.5));
+  background-image: linear-gradient(to right, rgba(245, 146, 41, 0.5), rgba(228, 224, 201, 0.5));
 }
 .bridge__section:nth-of-type(2) .bridge__section-title {
-  background-image: linear-gradient(to top right, #F59229, rgba(245, 146, 41, 0.75)), url("/src/imgs/bridge-section-2.jpg");
+  background-image: linear-gradient(to top right, #f59229, rgba(245, 146, 41, 0.75)), url("/src/imgs/bridge-section-2.jpg");
   background-position: top;
   background-size: cover;
   color: var(--color-primary-4);
@@ -2144,17 +2144,17 @@ div.references__name {
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   align-items: center;
   color: var(--color-primary-4);
-  background-image: linear-gradient(to right, #00416d 0%, #00416d 100%);
+  background-image: linear-gradient(to right, #00406b 0%, #00406b 100%);
 }
 .bridge__section:nth-of-type(2) .bridge__card {
   border: 2px solid var(--color-primary-2);
-  box-shadow: 0 0rem 2.4rem rgba(0, 65, 109, 0.5);
+  box-shadow: 0 0rem 2.4rem rgba(0, 64, 107, 0.5);
 }
 .bridge__section:nth-of-type(3) {
-  background-image: linear-gradient(to right, rgba(227, 223, 200, 0.5), rgba(0, 65, 109, 0.5));
+  background-image: linear-gradient(to right, rgba(228, 224, 201, 0.5), rgba(0, 64, 107, 0.5));
 }
 .bridge__section:nth-of-type(3) .bridge__section-title {
-  background-image: linear-gradient(to top right, #f5f1da, rgba(245, 241, 218, 0.75)), url("/src/imgs/bridge-section-1.jpg");
+  background-image: linear-gradient(to top right, #f5f1db, rgba(245, 241, 219, 0.75)), url("/src/imgs/bridge-section-1.jpg");
   background-position: top;
   background-size: cover;
   color: var(--color-primary-1);
@@ -2174,7 +2174,7 @@ div.references__name {
   font-size: 1.6rem;
   overflow: hidden;
   border: 2px solid var(--color-primary-4);
-  box-shadow: 0 0rem 2.4rem rgba(245, 241, 218, 0.5);
+  box-shadow: 0 0rem 2.4rem rgba(245, 241, 219, 0.5);
   max-width: 85rem;
   margin: 0 auto;
   margin-right: calc(((100% - 85rem) / 2) + ((100vw - 100%) / 6));
@@ -2203,7 +2203,7 @@ div.references__name {
 }
 
 .hero {
-  background-image: linear-gradient(to right, rgba(245, 146, 41, 0.33) 0%, rgba(0, 65, 109, 0.33) 25%, rgba(0, 65, 109, 0.33) 75%, rgba(245, 146, 41, 0.33) 100%);
+  background-image: linear-gradient(to right, rgba(245, 146, 41, 0.33) 0%, rgba(0, 64, 107, 0.33) 25%, rgba(0, 64, 107, 0.33) 75%, rgba(245, 146, 41, 0.33) 100%);
   position: relative;
 }
 .hero__heading {
@@ -2330,7 +2330,7 @@ div.references__name {
 }
 .hero__background {
   opacity: 0;
-  background-image: linear-gradient(to bottom, rgba(245, 146, 41, 0.66), #00416d), url("/src/imgs/bridge-background.jpg");
+  background-image: linear-gradient(to bottom, rgba(245, 146, 41, 0.66), #00406b), url("/src/imgs/bridge-background.jpg");
   position: fixed;
   width: 100vw;
   height: 100vh;
