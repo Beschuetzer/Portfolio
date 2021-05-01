@@ -46,9 +46,11 @@ IDEAS-----------------------------------------------------------
 -add currentSelection select to signify currently selected Bridge Section (left: 0)
 -use left property to transform each card depending on which arrow is pressed and which section has the currentSelection class
 
+-have each card's transform-origin depend on nth item (e.g. 1st from top left and last from bottom right)
 -re-record videos in bridge.txt
 -need to get king cards made in svg format
--figure out how to get play, pause, and stop svgs to display at the correct moments during playback
+-figure out how to get play, pause, and stop svgs to display at the correct moments during playback by assigning 
+-when clicking to play remove card--hoverable and maxizie the window to the section__content (or maybe have a side bar with text?)
 
 
 

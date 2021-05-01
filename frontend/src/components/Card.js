@@ -16,8 +16,8 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
   }
 
   return (
-    <article onClick={handleClick} className='card'>
-      <svg className="card__play">
+    <article onClick={handleClick} className='card card--hoverable'>
+      <svg className="card__play card__current-svg">
         <use xlinkHref="/sprite.svg#icon-play"></use>
       </svg>
       <svg className="card__stop">

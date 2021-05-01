@@ -572,23 +572,44 @@ $card-header-height: $card-height / 3.333333333333;
 		transform: translate(-50%, -50%);
 		height: 50%;
 		width:50%;
-		fill: $color-grey-60;
-		opacity: .5;
+		fill: rgba($color-primary-bridge-1, .5);
+
 		transition: 
 			opacity $animation-duration $animation-easing-standard,
 			fill $animation-duration $animation-easing-standard,
 		;
 
+	}
+
+	&__play {
+		opacity: 0;
+	}
+	
+	&__pause {
+		opacity: 0;
+	}
+	
+	&__stop {
+		opacity: 0;
+	}
+
+	&__current-svg {
+		z-index: 10;
+		opacity: .5;
+	}
+
+	&--hoverable{
 		&:hover {
+			transform: scale(1.5);
+			z-index: $card-z-index + 1;
+		}
+
+		&:hover &__current-svg {
 			opacity: 1;
-			fill: $color-grey-40;
+			fill: rgba($color-primary-bridge-1, 1);
 		}
 	}
 
-	&:hover {
-		transform: scale(1.5);
-		z-index: $card-z-index + 1;
-	}
 }
 
 .reverse-ease{

@@ -2489,17 +2489,29 @@ div.references__name {
   transform: translate(-50%, -50%);
   height: 50%;
   width: 50%;
-  fill: #999999;
-  opacity: 0.5;
+  fill: rgba(0, 64, 107, 0.5);
   transition: opacity 0.5s ease, fill 0.5s ease;
 }
-.card svg:hover {
-  opacity: 1;
-  fill: #666666;
+.card__play {
+  opacity: 0;
 }
-.card:hover {
+.card__pause {
+  opacity: 0;
+}
+.card__stop {
+  opacity: 0;
+}
+.card__current-svg {
+  z-index: 10;
+  opacity: 0.5;
+}
+.card--hoverable:hover {
   transform: scale(1.5);
   z-index: 2;
+}
+.card--hoverable:hover .card--hoverable__current-svg {
+  opacity: 1;
+  fill: #00406b;
 }
 
 .reverse-ease {
