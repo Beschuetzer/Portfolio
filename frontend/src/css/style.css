@@ -28,7 +28,6 @@
   scroll-behavior: smooth;
   scroll-padding-top: 12rem;
   --default-font-size: 1.6rem;
-  --nav-switch-width: 68.75em;
   --site-nav-linear-gradient: linear-gradient(
   	to right,
   	var(--color-primary-1) 0%,
@@ -42,11 +41,20 @@
   	var(--color-primary-1),
   	var(--color-primary-1)
   );
+  --small-font-max-width:$small-font-max-width;
+  --nav-break-max-width:$nav-break-max-width;
+  --phone-max-width: $phone-max-width;
+  --tab-port-max-width:$tab-port-max-width;
+  --tab-land-max-width:$tab-land-max-width;
+  --big-desktop-min-width:$big-desktop-min-width;
+  --nav-switch-width: $nav-switch-width;
+  --larger-than-nav-switch:$larger-than-nav-switch;
   --page-nav-shadow-hover: #f5f1db;
   --header-toggler-svg-rotation: 180deg;
   --header-toggler-translate-x: 0;
   --header-toggler-translate-y: 0;
   --header-height: 10rem;
+  --header-toggler-height: 14rem;
   --header-inner-width-nav-switch: 100%;
   --bridge-section-height: 1px;
   --bridge-section-padding: 0;
@@ -1541,7 +1549,7 @@ body {
 .header-toggler {
   display: none;
   box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
-  height: 14rem;
+  height: var(--header-toggler-height);
   border-left: 0.24rem solid var(--color-primary-4);
   border-bottom: 0.24rem solid var(--color-primary-4);
   border-right: 0.24rem solid var(--color-primary-4);

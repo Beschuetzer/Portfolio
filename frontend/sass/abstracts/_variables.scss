@@ -1,3 +1,13 @@
+//media query breakpoints
+$small-font-max-width: 29.3125em;
+$nav-break-max-width: 35.0625em;
+$phone-max-width: 40.9375em;
+$tab-port-max-width: 52.6875em;
+$tab-land-max-width: 58.5625em;
+$nav-switch-width: 68.75em;
+$larger-than-nav-switch: 68.8125em;
+$big-desktop-min-width: 112.5em;	
+
 //font
 // $font-family-text: "Roboto", sans-serif;
 // $font-family-headers: "Cinzel", sans-serif;
@@ -5,7 +15,6 @@ $line-height: 1.5;
 $font-family-fancy-bridge: 'New Tegomin', serif;
 $font-family-text: "Open Sans", sans-serif;
 $font-family-headers: "Merriweather", serif;
-$nav-switch-width: 68.75em;
 $default-font-size: 1.6rem;
 
 
@@ -159,8 +168,8 @@ $page-nav-top: calc(
 :root {
 	scroll-behavior: smooth;
 	scroll-padding-top: $header-height * 1.2;
+
 	--default-font-size: #{$default-font-size};
-	--nav-switch-width: #{$nav-switch-width};
 	--site-nav-linear-gradient: linear-gradient(
 		to right,
 		#{var(--color-primary-1)} 0%,
@@ -175,6 +184,19 @@ $page-nav-top: calc(
 		var(--color-primary-1)
 	);
 
+
+	//setting media query custom properties
+	--small-font-max-width:$small-font-max-width;
+	--nav-break-max-width:$nav-break-max-width;
+	--phone-max-width: $phone-max-width;
+	--tab-port-max-width:$tab-port-max-width;
+	--tab-land-max-width:$tab-land-max-width;
+	--big-desktop-min-width:$big-desktop-min-width;
+	--nav-switch-width: $nav-switch-width;
+	--larger-than-nav-switch:$larger-than-nav-switch;
+
+
+	//page-nav
 	--page-nav-shadow-hover: #{$color-primary-bridge-4};
 
 
@@ -183,6 +205,7 @@ $page-nav-top: calc(
 	--header-toggler-translate-x: 0;
 	--header-toggler-translate-y: 0;
 	--header-height: #{$header-height};
+	--header-toggler-height: #{$header-height + $header-toggler-width};
 
 	--header-inner-width-nav-switch: 100%;
 

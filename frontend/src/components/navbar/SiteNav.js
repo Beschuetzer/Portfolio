@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import NavListItem from "./NavListItem";
 
 
-import { setIsAnimating } from "../../actions";
+import { setHeaderHeight, setIsAnimating } from "../../actions";
 import { checkForParentOfType } from "../../helpers";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
@@ -15,7 +15,7 @@ import {
 	MOBILE_BREAK_POINT_WIDTH,
 } from "../constants";
 
-const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidth, sounds }) => {
+const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidth, sounds, setHeaderHeight }) => {
 	const [ currentUrl, setCurrentUrl ] = useState(null);
 	const navRef = useRef();
 	const root = document.querySelector("#root");
@@ -106,7 +106,10 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 			newTop = 'auto';
 		}
 		navbarContent.style.top = newTop;
-	}, [viewPortWidth])
+
+		const headerHeight = document.querySelector('#header').getBoundingClientRect().height;
+		setHeaderHeight(headerHeight);
+	}, [viewPortWidth, setHeaderHeight])
 
 	useEffect(() => {
 		if (!currentUrl) return; 
@@ -161,10 +164,18 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		};
 		document.body.addEventListener("click", onBodyClick);
 
+		console.log('initial------------------------------------------------')
+		;
+
+		setTimeout(() => {
+			const headerHeight = document.querySelector('#header').getBoundingClientRect().height;
+			setHeaderHeight(headerHeight);
+		}, 100)
+
 		return (() => {
 			document.body.removeEventListener("click", onBodyClick);
 		})
-	}, [root]);
+	}, [root, setHeaderHeight]);
 
 	useEffect(() => {
 		const navBar = navRef.current;
@@ -277,4 +288,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(mapStateToProps, {
 	setIsAnimating,
+	setHeaderHeight,
 })(SiteNav);

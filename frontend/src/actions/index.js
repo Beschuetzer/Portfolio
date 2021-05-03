@@ -13,6 +13,7 @@ import {
   SET_CLICKED_BRIDGE_INFO_BUTTON_COUNT,
   SET_CURRENT_BRIDGE_SECTION,
   SET_BRIDGE_SECTIONS,
+  SET_HEADER_HEIGHT
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
@@ -264,6 +265,13 @@ export const setCurrentBridgeSection = (value) => {
 export const setBridgeSections = (value) => {
   return {
     type: SET_BRIDGE_SECTIONS,
+    payload: value,
+  }
+}
+
+export const setHeaderHeight = (value) => {
+  return {
+    type: SET_HEADER_HEIGHT,
     payload: value,
   }
 }

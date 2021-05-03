@@ -8,6 +8,7 @@ import {
   SET_CLICKED_BRIDGE_INFO_BUTTON_COUNT,
   SET_CURRENT_BRIDGE_SECTION,
   SET_BRIDGE_SECTIONS,
+  SET_HEADER_HEIGHT,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -20,6 +21,7 @@ const INITIAL_STATE = {
   clickedBridgeInfoButtonCount: 0,
   currentBridgeSection: 0,
   bridgeSections: null,
+  headerHeight: null,
 }
 
 const generalReducer = (state = INITIAL_STATE, action) => {
@@ -42,6 +44,8 @@ const generalReducer = (state = INITIAL_STATE, action) => {
       return {...state, currentBridgeSection: action.payload};
     case SET_BRIDGE_SECTIONS:
       return {...state, bridgeSections: action.payload};
+    case SET_HEADER_HEIGHT:
+      return {...state, headerHeight: action.payload};
     default:
       return state;
   }
