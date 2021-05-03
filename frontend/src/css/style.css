@@ -41,14 +41,14 @@
   	var(--color-primary-1),
   	var(--color-primary-1)
   );
-  --small-font-max-width:$small-font-max-width;
-  --nav-break-max-width:$nav-break-max-width;
-  --phone-max-width: $phone-max-width;
-  --tab-port-max-width:$tab-port-max-width;
-  --tab-land-max-width:$tab-land-max-width;
-  --big-desktop-min-width:$big-desktop-min-width;
-  --nav-switch-width: $nav-switch-width;
-  --larger-than-nav-switch:$larger-than-nav-switch;
+  --small-font-max-width: 29.3125em;
+  --nav-break-max-width: 35.0625em;
+  --phone-max-width: 40.9375em;
+  --tab-port-max-width: 52.6875em;
+  --tab-land-max-width: 58.5625em;
+  --big-desktop-min-width: 112.5em;
+  --nav-switch-width: 68.75em;
+  --larger-than-nav-switch: 68.8125em;
   --page-nav-shadow-hover: #f5f1db;
   --header-toggler-svg-rotation: 180deg;
   --header-toggler-translate-x: 0;

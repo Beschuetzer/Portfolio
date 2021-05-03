@@ -5,32 +5,7 @@ import { connect } from 'react-redux';
 
 const NavToggler = ({headerHeight}) => {
   //This is how many pixels 1rem equals at given viewport width
-  const bigDesktopPixelMin = 1800;
-  const normalPixelMin = 1201;
-  const tabPortPixelMin = 843;
-  const navBreakPixelMin = 561;
-  const viewPorts = {
-    wide: {
-      pixelsToRem: 12,
-      min: bigDesktopPixelMin,
-      max: 10000,
-    },
-    full: {
-      pixelsToRem: 10,
-      min: normalPixelMin,
-      max: bigDesktopPixelMin - 1,
-    },
-    tabPort: {
-      pixelsToRem: 9,
-      min: tabPortPixelMin,
-      max: normalPixelMin - 1,
-    },
-    navBreak: {
-      pixelsToRem: 8,
-      min: navBreakPixelMin,
-      max: 0,
-    },
-  }
+  
 
   useEffect(() => {
     const headerHeightInRem = headerHeight / 10;
