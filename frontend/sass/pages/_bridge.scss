@@ -219,10 +219,11 @@ $card-z-index: 1;
 
 		transition: 
 			opacity $animation-duration $animation-easing-standard $animation-duration,
-			top $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
-			bottom $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
-			left $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
-			right $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
+			transform $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
+			// top $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
+			// bottom $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
+			// left $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
+			// right $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
 		;
 
 		&:first-of-type, &:nth-of-type(4) {
@@ -236,28 +237,28 @@ $card-z-index: 1;
 		}
 
 		&:first-of-type {
-			top: -10vw;
+			top: 25vh;
 			left: 50vw;
-			transform: translate(-50%,-50%);
+			transform: translate(-50%, calc(-50% - 50vh));
 		}
 
 		&:nth-of-type(2) {
 			mix-blend-mode: $hero-blend-mode;
 			top: 50vh;
-			left: -10vh;
-			transform: translate(-50%,-50%);
+			left: 25vw;
+			transform: translate(calc(-50% - 50vw),-50%);
 		}
 		&:nth-of-type(3) {
 			mix-blend-mode: $hero-blend-mode;
 			top: 50vh;
-			right: -10vh;
-			transform: translate(50%,-50%);
+			left: 75vw;
+			transform: translate(calc(50% + 50vw),-50%);
 		}
 		&:nth-of-type(4) {
 			mix-blend-mode: $hero-blend-mode;
-			top: 100vh;
+			top: 75vh;
 			left: 50vw;
-			transform: translate(-50%, 50%);
+			transform: translate(-50%, calc(50% + 50vh));
 		}
 	}
 	
@@ -418,19 +419,22 @@ $card-z-index: 1;
 	&:checked ~ .hero .hero__heading{
 		opacity: 1;
 		visibility: visible;
+		transform: translate(-50%,-50%);
 
-		&:first-of-type {
-			top: 25vh;
-		}
-		&:nth-of-type(2) {
-			left: 25vw;
-		}
-		&:nth-of-type(3) {
-			right: 25vw;
-		}
-		&:nth-of-type(4) {
-			top: 40vh;
-		}
+		// &:first-of-type {
+		// }
+		// &:nth-of-type(2) {
+		// 	// left: 25vw;
+		// 	transform: translate(0);
+		// }
+		// &:nth-of-type(3) {
+		// 	// right: 25vw;
+		// 	transform: translate(0);
+		// }
+		// &:nth-of-type(4) {
+		// 	// top: 40vh;
+		// 	transform: translate(0);
+		// }
 	}
 
 	&:checked ~ .hero .diamond-fractal {
