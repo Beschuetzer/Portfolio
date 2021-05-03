@@ -186,14 +186,16 @@
 	&__percent {
 		&-outer {
 			backface-visibility: hidden;
-
 			position: relative;
 			background-color: var(--color-primary-4);
-			// width: 100%;
+			width: 100%;
 			height: $default-font-size;
-			width: 0;
-			transition: width $animation-duration * 2
-				cubic-bezier(0.68, -0.33, 0.32, 1.33);
+			transform: scale(0);
+			transform-origin: left;
+			transition: 
+				transform $animation-duration * 2
+				cubic-bezier(0.68, -0.33, 0.32, 1.33)
+			;
 
 			@include respond(nav-break) {
 				margin-left: $default-font-size;

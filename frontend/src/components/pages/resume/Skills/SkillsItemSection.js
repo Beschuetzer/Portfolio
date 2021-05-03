@@ -19,16 +19,12 @@ class SkillsItemSection extends React.Component {
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
       setTimeout(() => {
-        item.style.width = isOpening ? '100%' : '0%';
+        item.classList.toggle('scale-1');
 
         if (this.props.sectionsToSkipAnimation.indexOf(clickedSection.textContent) === -1) {
           const previousElementChildren = item.previousElementSibling?.children;
           previousElementChildren[previousElementChildren.length - 1]?.classList?.add('skills__title--animating')
         }
-
-        setTimeout(() => {
-          item.style.width = isOpening ? 'auto' : '0%';
-        }, 1000)
 
       }, SkillsItemSection.timeOutDifferential * i);
     }

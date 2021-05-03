@@ -6,6 +6,7 @@ import { capitalize } from '../helpers'
 
 const Card = ({title, cardName, fileType = 'svg', children, video}) => {
   const videoRef = useRef();
+  const mouseLeaveIndexSwitchDuration = 250;
 
   const handleClick = (e) => {
     const video = videoRef?.current;
@@ -15,17 +16,14 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
   }
 
   const handleMouseEnter = (e) => {
-    console.log('adding------------------------------------------------');
     e.currentTarget?.classList.add('z-index-content')
   }
 
   const handleMouseLeave = (e) => {
     const target = e.currentTarget;
     setTimeout(() => {
-      console.log('removing------------------------------------------------');
-      console.log('target =', target);
       target?.classList.remove('z-index-content');
-    }, 250);
+    }, mouseLeaveIndexSwitchDuration);
   }
 
   return (

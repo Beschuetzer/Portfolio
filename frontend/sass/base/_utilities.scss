@@ -104,5 +104,8 @@
         z-index: $navbar-full-z-index + 1 !important;
     }
 
+    .scale-1 {
+        transform: scale(1) !important;
+    }
     //Dealing with SiteNav filter bug on pages like '/bridge'
     // .no-filter {filter: none !important}
