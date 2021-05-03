@@ -1578,13 +1578,13 @@ body {
     transition: transform 0.5s ease;
   }
   .header-toggler--active {
-    top: -10rem;
+    top: calc((var(--header-toggler-height) * -1) + var(--header-toggler-width));
   }
   .header-toggler--active svg {
     --header-toggler-svg-rotation: 0deg;
   }
   .header-toggler--active + .header {
-    transform: translateY(-10rem);
+    transform: translateY(calc(var(--header-toggler-height) * -1));
   }
   .header-toggler:hover {
     transform: translateY(1.6rem);

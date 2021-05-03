@@ -591,14 +591,14 @@
 			}
 
 			&--active {
-				top: -($header-height);
+				top: calc((var(--header-toggler-height) * -1) + var(--header-toggler-width));
 
 				& svg {
 					--header-toggler-svg-rotation: 0deg;
 				}
 
 				& + .header {
-					transform: translateY(#{-$header-height})	;
+					transform: translateY(calc(var(--header-toggler-height) * -1))	;
 				}
 			}
 
