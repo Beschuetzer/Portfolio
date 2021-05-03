@@ -145,6 +145,13 @@ $hero-background-opacity: .66;
 $arrow-button-position: calc((100vw - calc( #{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + #{$navbar__logo-width} )) / 2);
 $bridge-card-box-shadow-size: 0 0rem $default-font-size * 2 -$default-font-size * .5;
 $bridge-card-border-size: 2px solid;
+$hero-background-image-alpha: .33;
+$hero-blend-mode: hard-light;
+$bridge-logo-opacity: .25;
+$card-z-index: 1;
+$card-height: $default-font-size * 50;
+$card-header-height: $card-height / 3.333333333333;
+
 
 //page-nav
 $page-nav-top: calc(
@@ -214,6 +221,7 @@ $page-nav-top: calc(
 	--bridge-section-padding: 0;
 	--arrow-button-fill: var(--color-primary-bridge-1);
 	--arrow-button-fill-hover: var(--color-primary-bridge-2);
+	
 
 	//shapes stuff
 	--diamond-fractal-animation-duration: 120s;

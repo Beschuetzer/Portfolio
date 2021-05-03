@@ -3,6 +3,7 @@ export const NAVBAR_DONE_CLASSNAME = 'navbar--done';
 export const NAVBAR_IS_ANIMATING_CLASSNAME = 'navbar--isAnimating';
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
+export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION = 250;
 
 export const headerTogglerWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-toggler-width'));
 export const smallFontMaxWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--small-font-max-width'));

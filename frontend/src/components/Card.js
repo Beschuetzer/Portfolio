@@ -1,18 +1,47 @@
 import React from 'react';
 import { useRef } from 'react';
 
+import { 
+  CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION
+} from './constants';
 import Video from '../components/Video';
 import { capitalize } from '../helpers'
 
 const Card = ({title, cardName, fileType = 'svg', children, video}) => {
   const videoRef = useRef();
-  const mouseLeaveIndexSwitchDuration = 250;
+  const checkboxRef = useRef();
+
+  const getIsVideoPlaying = (video) => {
+    return video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2;
+  }
+
+  const toggleCheckbox = () => {
+    const checkbox = checkboxRef.current;
+    if (!checkbox) checkbox.checked = false;
+    checkbox.checked = !checkbox.checked;
+  }
+
+  const handleVideoEnd = (e) => {
+    console.log('end------------------------------------------------');
+    const video = e.currentTarget;
+    const checkbox = checkboxRef.current
+    checkbox.checked = false;
+    video.removeEventListener('ended', handleVideoEnd);
+  }
 
   const handleClick = (e) => {
+    toggleCheckbox();
     const video = videoRef?.current;
+    video.addEventListener('ended', handleVideoEnd);
+
+    const isVideoPlaying = getIsVideoPlaying(video);
     if (!video) return;
-    if (video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2) video.pause();
-    else video.play();
+    if (isVideoPlaying) {
+      video.pause();
+    }
+    else {
+      video.play();
+    }
   }
 
   const handleMouseEnter = (e) => {
@@ -23,11 +52,12 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     const target = e.currentTarget;
     setTimeout(() => {
       target?.classList.remove('z-index-content');
-    }, mouseLeaveIndexSwitchDuration);
+    }, CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION);
   }
 
   return (
     <article onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} onClick={handleClick} className='card card--hoverable'>
+      <input ref={checkboxRef} className="card__checkbox" type="checkbox"/>
       <svg className="card__play card__current-svg">
         <use xlinkHref="/sprite.svg#icon-play"></use>
       </svg>

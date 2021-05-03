@@ -53,7 +53,6 @@ IDEAS-----------------------------------------------------------
 -when clicking to play remove card--hoverable and maxizize the window to the section__content (or maybe have a side bar with text?)
 -make card__content a grid with video on left 3/4 and right 1/4 being a description of the video that becomes visible when the play button is clicked
 
--need to dynamically adjust header-toggler height whenever SiteNav (#header) height changes
 
 
 

@@ -9,20 +9,21 @@
     @import "base/typography";
     @import "base/utilities";
 
+    @import "layout/header";
+    @import "layout/footer";
+    @import "layout/navigation";
+    @import "layout/scrollbar";
+    @import "layout/shapes";
+
     @import "components/triangles";
     @import "components/video";
+    @import "components/card";
     @import "components/github";
     @import "components/thumbnail";
     @import "components/link";
     @import "components/skills";
     @import "components/skills-popup";
     @import "components/work-history";
-
-    @import "layout/header";
-    @import "layout/footer";
-    @import "layout/navigation";
-    @import "layout/scrollbar";
-    @import "layout/shapes";
 
     @import "pages/home";
     @import "pages/resume";
