@@ -1359,7 +1359,7 @@ body {
   border: none;
   margin-top: 0.32rem;
   transform-origin: top;
-  transition: height 0.5s ease, padding 0.5s ease, opacity 0.5s ease, transform 0.125s ease, background-color 0.125s ease;
+  transition: padding 0.5s ease, opacity 0.5s ease, transform 0.125s ease, background-color 0.125s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__dropdown .navbar__item {
@@ -1402,7 +1402,6 @@ body {
   padding: 0;
 }
 .navbar__dropdown-container {
-  transition: height 0.05s ease;
   grid-column: 1/-1;
 }
 .navbar__dropdown-container:hover {
@@ -2093,7 +2092,7 @@ div.references__name {
   background-color: var(--color-primary-3);
   color: var(--color-primary-1);
   left: 100vw;
-  transition: left 0.75s ease;
+  transition: transform 0.75s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .bridge__section {
@@ -2167,7 +2166,8 @@ div.references__name {
 }
 .bridge__section:nth-of-type(n + 2) {
   position: absolute;
-  left: 100vw;
+  left: 0;
+  transform: translateX(100vw);
 }
 @media only screen and (max-width: 68.75em) {
   .bridge__section:nth-of-type(n + 2) {
@@ -2539,15 +2539,15 @@ div.references__name {
 }
 
 .slide-left {
-  left: -100vw !important;
+  transform: translateX(-100vw) !important;
 }
 
 .slide-right {
-  left: 100vw !important;
+  transform: translateX(100vw) !important;
 }
 
 .current-section {
-  left: 0 !important;
+  transform: translateX(0) !important;
   z-index: 4;
 }
 

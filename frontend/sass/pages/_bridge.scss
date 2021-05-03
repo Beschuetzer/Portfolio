@@ -28,7 +28,7 @@ $card-z-index: 1;
 		color: var(--color-primary-1);
 		left: 100vw;
 		transition: 
-			left $animation-duration * 1.5 $animation-easing-standard
+			transform $animation-duration * 1.5 $animation-easing-standard,
 		;
 
 		@include respond(nav-switch) {
@@ -140,14 +140,14 @@ $card-z-index: 1;
 		&:nth-of-type(n + 2) {
 			position: absolute;
 			// top: 100vh;
-			left: 100vw;
+			left: 0;
+			transform: translateX(100vw);
 
 			@include respond(nav-switch) {
 				position: relative;
 				top: 0;
 				left: 0;
 			}
-			// transform: translate(-50%, -50%);
 		}
 	}
 
@@ -635,15 +635,15 @@ $card-header-height: $card-height / 3.333333333333;
 }
 
 .slide-left {
-	left: -100vw !important;
+	transform: translateX(-100vw) !important;
 }
 
 .slide-right {
-	left: 100vw !important;
+	transform: translateX(100vw) !important;
 }
 
 .current-section {
-	left: 0 !important;
+	transform: translateX(0) !important;
 	z-index: $navbar-full-z-index - 1;
 }
 

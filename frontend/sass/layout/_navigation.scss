@@ -160,10 +160,11 @@
 		list-style: none;
 		backface-visibility: hidden;
 		transform-origin: top left;
-		transition: transform $animation-duration * 0.5 $animation-easing-standard,
+		transition: 
+			transform $animation-duration * .5 $animation-easing-standard,
 			opacity $animation-duration * 0.75 $animation-easing-standard,
-			width $animation-duration * 0.5 $animation-easing-modern
-				$animation-duration * 0.5;
+			width $animation-duration * 0.5 $animation-easing-modern	$animation-duration * 0.5
+		;
 		// transition:
 		// 	transform $animation-duration * .5 $animation-easing-modern,
 		// 	opacity $animation-duration * 1 $animation-easing-standard,
@@ -336,11 +337,13 @@
 			border: none;
 			margin-top: $navbar__item-divider-width;
 			transform-origin: top;
-			transition: height $animation-duration $animation-easing-standard,
+			transition: 
+				// height $animation-duration $animation-easing-standard,
 				padding $animation-duration $animation-easing-standard,
 				opacity $animation-duration $animation-easing-standard,
 				transform $animation-duration * 0.25 $animation-easing-standard,
-				background-color $animation-duration * 0.25 $animation-easing-standard;
+				background-color $animation-duration * 0.25 $animation-easing-standard
+			;
 
 			@include respond(nav-switch) {
 				border-top: $default-font-size * 0.1 solid transparent;
@@ -388,7 +391,7 @@
 	}
 
 	&__dropdown-container {
-		transition: height $animation-duration / 10 $animation-easing-standard;
+		// transition: height $animation-duration / 10 $animation-easing-standard;
 		grid-column: 1 / -1;
 
 		&:hover {
