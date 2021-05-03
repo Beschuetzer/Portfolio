@@ -175,7 +175,7 @@ $page-nav-top: calc(
 :root {
 	scroll-behavior: smooth;
 	scroll-padding-top: $header-height * 1.2;
-
+	--scrollbar-width: #{$default-font-size * .5};
 	--default-font-size: #{$default-font-size};
 	--site-nav-linear-gradient: linear-gradient(
 		to right,

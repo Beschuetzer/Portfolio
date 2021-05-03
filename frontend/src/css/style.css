@@ -27,6 +27,7 @@
 :root {
   scroll-behavior: smooth;
   scroll-padding-top: 12rem;
+  --scrollbar-width: 0.8rem;
   --default-font-size: 1.6rem;
   --site-nav-linear-gradient: linear-gradient(
   	to right,
@@ -1004,7 +1005,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 1.6rem;
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
 }
 
 ::-webkit-scrollbar-track {
@@ -1261,6 +1263,8 @@ body {
 }
 .card--playing {
   transform: var(--card-playing-transform);
+  width: calc(85rem - var(--scrollbar-width));
+  z-index: 2;
 }
 
 .github {

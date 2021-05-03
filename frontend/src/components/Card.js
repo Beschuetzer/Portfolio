@@ -40,8 +40,8 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     const sectionDimensions = card.parentNode.getBoundingClientRect();
     const cardDimensions = card.getBoundingClientRect();
     // debugger
-    const translateLeftAmount = Math.abs(cardDimensions.left - (cardDimensions.width * 2 / 6) - sectionDimensions.left);
-    const translateUpAmount = Math.abs(cardDimensions.top - sectionDimensions.top);
+    const translateLeftAmount = Math.abs((cardDimensions.left + cardDimensions.width * 1 / 6) - sectionDimensions.left);
+    const translateUpAmount = Math.abs((cardDimensions.top + cardDimensions.height * 1 / 6) - sectionDimensions.top);
     const scaleXFactor = (sectionDimensions.width - cardDimensions.width) / cardDimensions.width * 1.5;
     const scaleYFactor = (sectionDimensions.height - cardDimensions.height) / cardDimensions.height * 1.5;
 
@@ -51,7 +51,11 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     console.log('scaleYFactor =', scaleYFactor);
 
     const newTransform = `
-      translateX(${-translateLeftAmount}px) translateY(${-translateUpAmount}px) scaleX(${scaleXFactor}) scaleY(${scaleYFactor});
+      translateX(${-translateLeftAmount}px) 
+      translateY(${-translateUpAmount}px) 
+      scaleX(${1}) 
+      scaleY(${1})
+      ;
     `;
 
     const newValue = `--card-playing-transform: ${newTransform}`;

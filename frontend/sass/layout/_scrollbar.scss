@@ -15,7 +15,8 @@
 }
 
 ::-webkit-scrollbar {
-	width: $default-font-size;
+	width: var(--scrollbar-width);
+	height: var(--scrollbar-width);
 }
 
 ::-webkit-scrollbar-track {
