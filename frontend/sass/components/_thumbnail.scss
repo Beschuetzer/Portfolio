@@ -1,8 +1,6 @@
-$thumbnail-transition: transform $animation-duration * 0.66
-		$animation-easing-standard $animation-duration,
-	filter $animation-duration * 0.25 $animation-easing-standard,
-	color $animation-duration $animation-easing-standard,
-	background $animation-duration $animation-easing-standard;
+$thumbnail-transition: 
+		transform $animation-duration * 0.66 $animation-easing-standard $animation-duration,
+;
 
 .thumbnail {
 	box-shadow: $navbar-box-shadow-resume;

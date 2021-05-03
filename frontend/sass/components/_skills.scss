@@ -14,8 +14,9 @@
 			height: 0;
 			visibility: hidden;
 			opacity: 0;
-			transition: height $animation-duration * 2 $animation-easing-standard,
-				opacity $animation-duration $animation-easing-standard;
+			transition: 
+				opacity $animation-duration $animation-easing-standard,
+			;
 
 			font-weight: 500;
 			display: grid;
