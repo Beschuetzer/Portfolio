@@ -12,6 +12,7 @@ import {
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
 	ANIMATION_DURATION,
+	MOBILE_BREAK_POINT_WIDTH,
 } from "../constants";
 
 const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidth, sounds }) => {
@@ -101,7 +102,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		const headerBoundingRect = header.getBoundingClientRect();
 
 		let newTop = `calc(${headerBoundingRect.height}px)`;
-		if (viewPortWidth > 1100) {
+		if (viewPortWidth > MOBILE_BREAK_POINT_WIDTH) {
 			newTop = 'auto';
 		}
 		navbarContent.style.top = newTop;

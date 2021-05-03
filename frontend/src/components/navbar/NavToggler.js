@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class NavToggler extends React.Component {
+  // const headerHeight
+  static headerTogglerWidth = '4rem';
+
   handleOnClick = (e) => {
     e.currentTarget.parentNode?.classList?.toggle('header-toggler--active')
   }

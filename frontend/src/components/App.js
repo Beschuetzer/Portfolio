@@ -5,6 +5,10 @@ import { connect } from "react-redux";
 import history from "../history";
 import {Howl} from 'howler';
 
+import {
+	MOBILE_BREAK_POINT_WIDTH,
+} from './constants';
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -25,7 +29,7 @@ import soundsSpriteMp3 from '../sounds/soundsSprite.mp3';
 import soundsSpriteOgg from '../sounds/soundsSprite.ogg';
 
 const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWidth, setSounds }) => {
-	const mobileBreakPointWidth = 1100;
+	const mobileBreakPointWidth = MOBILE_BREAK_POINT_WIDTH;
 	setIsMobile(window.innerWidth <= mobileBreakPointWidth, window.innerWidth);
 
 	//setup window resize listener
