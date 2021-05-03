@@ -3,15 +3,27 @@ import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
-const NavToggler = ({headerHeight}) => {
-  //This is how many pixels 1rem equals at given viewport width
-  
+import { viewPortPixelToRem, headerTogglerWidth } from '../constants';
 
+const NavToggler = ({headerHeight, viewPortWidth}) => {
+  
+  //Adjusting NavToggler height to match header height as it changes on resizes
   useEffect(() => {
-    const headerHeightInRem = headerHeight / 10;
-    const newWidth = `${headerHeightInRem + 5}rem`;
+    const getPixelToRemConversionToUse = () => {
+      let pixelToRemConversionToUse = viewPortPixelToRem.full.pixelsToRem;
+      for (const [key, value] of Object.entries(viewPortPixelToRem)) {
+        if (viewPortWidth >= viewPortPixelToRem[key].min && viewPortWidth <= viewPortPixelToRem[key].max) return viewPortPixelToRem[key].pixelsToRem;
+
+      }
+      return pixelToRemConversionToUse;
+    }
+
+    // debugger
+    const pixelToRemConversionToUse = getPixelToRemConversionToUse();
+    const headerHeightInRem = headerHeight / pixelToRemConversionToUse;
+    const newWidth = `${headerHeightInRem + parseFloat(headerTogglerWidth)}rem`;
     document.documentElement.style.setProperty('--header-toggler-height', newWidth);
-  }, [headerHeight])
+  }, [headerHeight, viewPortWidth])
 
   const handleOnClick = (e) => {
     e.currentTarget.parentNode?.classList?.toggle('header-toggler--active')
@@ -34,6 +46,7 @@ const NavToggler = ({headerHeight}) => {
 const mapStateToProps = (state, ownProps) => {
   return {
     headerHeight: state.general.headerHeight,
+    viewPortWidth: state.general.viewPortWidth,
   }
 }
 

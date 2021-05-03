@@ -4,6 +4,7 @@ export const NAVBAR_IS_ANIMATING_CLASSNAME = 'navbar--isAnimating';
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
 
+export const headerTogglerWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-toggler-width'));
 export const smallFontMaxWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--small-font-max-width'));
 export const navBreakMaxWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-break-max-width'));
 export const phoneMaxWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--phone-max-width'));
@@ -36,5 +37,4 @@ export const viewPortPixelToRem = {
     min: 0,
   },
 }
-debugger
-
+console.log('constants------------------------------------------------');

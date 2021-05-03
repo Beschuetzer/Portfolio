@@ -206,7 +206,7 @@ $page-nav-top: calc(
 	--header-toggler-translate-y: 0;
 	--header-height: #{$header-height};
 	--header-toggler-height: #{$header-height + $header-toggler-width};
-
+	--header-toggler-width: #{$header-toggler-width};
 	--header-inner-width-nav-switch: 100%;
 
 	//bridge page
