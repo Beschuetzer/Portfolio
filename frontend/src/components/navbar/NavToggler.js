@@ -18,7 +18,6 @@ const NavToggler = ({headerHeight, viewPortWidth}) => {
       return pixelToRemConversionToUse;
     }
 
-    // debugger
     const pixelToRemConversionToUse = getPixelToRemConversionToUse();
     const headerHeightInRem = headerHeight / pixelToRemConversionToUse;
     const newWidth = `${headerHeightInRem + parseFloat(headerTogglerWidth)}rem`;

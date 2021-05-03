@@ -37,4 +37,3 @@ export const viewPortPixelToRem = {
     min: 0,
   },
 }
-console.log('constants------------------------------------------------');

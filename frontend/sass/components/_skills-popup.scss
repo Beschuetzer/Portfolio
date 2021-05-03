@@ -198,8 +198,9 @@
 		width: $default-font-size * 2;
 		margin-left: auto;
 		backface-visibility: hidden;
-		transition: fill $animation-duration * 0.75 $animation-easing-standard,
-			transform $animation-duration * 0.75 $animation-easing-standard;
+		transition: 
+			fill $animation-duration * 0.25 $animation-easing-standard,
+			transform $animation-duration * 0.25 $animation-easing-standard;
 		&:hover {
 			fill: var(--color-primary-2);
 			transform: scale($scale-amount * 1.1);

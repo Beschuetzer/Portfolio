@@ -926,7 +926,7 @@ body {
   width: 3.2rem;
   margin-left: auto;
   backface-visibility: hidden;
-  transition: fill 0.375s ease, transform 0.375s ease;
+  transition: fill 0.125s ease, transform 0.125s ease;
 }
 .skills-popup__close:hover {
   fill: var(--color-primary-2);
