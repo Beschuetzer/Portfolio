@@ -43,6 +43,7 @@
 		}
 		
 		&-content {
+			position: relative;
 			overflow-y: auto;
 			padding: $default-font-size * 2 $default-font-size * 4;
 			display: flex;
@@ -112,6 +113,10 @@
 			& .bridge__card {
 				border: $bridge-card-border-size var(--color-primary-2);
 				box-shadow: $bridge-card-box-shadow-size rgba($color-primary-bridge-1, .5);
+
+				@include respond(nav-switch) {
+					min-height: calc(100vh - var(--header-height));
+				}
 
 			}
 		}

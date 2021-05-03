@@ -9,6 +9,7 @@ import { capitalize } from '../helpers'
 
 const Card = ({title, cardName, fileType = 'svg', children, video}) => {
   const videoRef = useRef();
+  const cardRef = useRef();
   const checkboxRef = useRef();
 
   const getIsVideoPlaying = (video) => {
@@ -26,7 +27,36 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     const video = e.currentTarget;
     const checkbox = checkboxRef.current
     checkbox.checked = false;
+    cardRef.current?.classList.remove('card--playing');
     video.removeEventListener('ended', handleVideoEnd);
+  }
+
+  const centerCard = (e) => {
+    //idea is to get the bridge__section-content dimensions and the cards dimensions, then to change the cards dimensions via a translate class to get it to be positioned in the center of the content box
+    const card = cardRef.current;
+    if (!card) return;
+
+    console.log('card.parentNode =', card.parentNode);
+    const sectionDimensions = card.parentNode.getBoundingClientRect();
+    const cardDimensions = card.getBoundingClientRect();
+    // debugger
+    const translateLeftAmount = Math.abs(cardDimensions.left - (cardDimensions.width * 2 / 6) - sectionDimensions.left);
+    const translateUpAmount = Math.abs(cardDimensions.top - sectionDimensions.top);
+    const scaleXFactor = (sectionDimensions.width - cardDimensions.width) / cardDimensions.width * 1.5;
+    const scaleYFactor = (sectionDimensions.height - cardDimensions.height) / cardDimensions.height * 1.5;
+
+    console.log('translateLeftAmount =', translateLeftAmount);
+    console.log('translateUpAmount =', translateUpAmount);
+    console.log('scaleXFactor =', scaleXFactor);
+    console.log('scaleYFactor =', scaleYFactor);
+
+    const newTransform = `
+      translateX(${-translateLeftAmount}px) translateY(${-translateUpAmount}px) scaleX(${scaleXFactor}) scaleY(${scaleYFactor});
+    `;
+
+    const newValue = `--card-playing-transform: ${newTransform}`;
+
+    document.documentElement.style.cssText += newValue;
   }
 
   const handleClick = (e) => {
@@ -38,9 +68,12 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     if (!video) return;
     if (isVideoPlaying) {
       video.pause();
+      e.currentTarget.classList.remove('card--playing');
     }
     else {
+      centerCard(e);
       video.play();
+      e.currentTarget.classList.add('card--playing');
     }
   }
 
@@ -56,7 +89,7 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
   }
 
   return (
-    <article onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} onClick={handleClick} className='card card--hoverable'>
+    <article ref={cardRef} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} onClick={handleClick} className='card card--hoverable'>
       <input ref={checkboxRef} className="card__checkbox" type="checkbox"/>
       <svg className="card__play card__current-svg">
         <use xlinkHref="/sprite.svg#icon-play"></use>

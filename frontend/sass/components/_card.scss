@@ -10,6 +10,7 @@
 	grid-template-rows: $card-header-height 1fr;
 	align-items: center;
 	justify-items: center;
+  transform: scale(var(--card-scale-amount));
 	transition: 
 		transform $animation-duration $animation-easing-standard,
 	;
@@ -90,7 +91,7 @@
 
 	&--hoverable{
 		&:hover {
-			transform: scale(1.5);
+			--card-scale-amount: 1.5;
 			// transform: perspective(#{$default-font-size * 3}) translate3d(0,#{$default-font-size},#{$default-font-size * 1}) ;
 			z-index: $card-z-index + 1;
 		}
@@ -100,5 +101,9 @@
 			fill: rgba($color-primary-bridge-1, 1);
 		}
 	}
+
+  &--playing {
+    transform: var(--card-playing-transform);
+  }
 
 }

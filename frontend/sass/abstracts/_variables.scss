@@ -221,6 +221,8 @@ $page-nav-top: calc(
 	--bridge-section-padding: 0;
 	--arrow-button-fill: var(--color-primary-bridge-1);
 	--arrow-button-fill-hover: var(--color-primary-bridge-2);
+	--card-scale-amount: 1;
+	--card-playing-transform: translate(0,0) scale(1);
 	
 
 	//shapes stuff
