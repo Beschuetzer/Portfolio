@@ -231,8 +231,7 @@
 		}
 
 		& .card__children {
-			opacity: 1;
-			z-index: 100;
+			@include card-description-visible;
 		}
 
 		& .card__pause{
@@ -247,6 +246,10 @@
 	}
 
 	&--stopped {
+		& .card__children {
+			@include card-description-visible;
+		}
+		
 		&:hover :is(.card__play) {
 			opacity: $card-initial-opacity * 2;
 			top: $card-pause-and-stop-top;

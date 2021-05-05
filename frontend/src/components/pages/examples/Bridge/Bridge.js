@@ -149,7 +149,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 						title='Deal Summary'
 					>
 						<p>
-							The Deal Summary screen is interesting because it reviews the bidding and playing from the last deal.&nbsp; It also shows which cards each player had in their hand at the beginning of each trick.&nbsp; Such information is nice when you want to work out how the trick claiming phase may have gone had you played a different card for a given trick.
+							The Deal Summary screen allows players to reviews the bidding and playing from the last deal.&nbsp; It shows which cards each player had in their hand at the beginning of each trick.&nbsp; Such information is nice when you want to work out how the trick claiming phase may have gone had you played a different card for a given trick.
 						</p>
 					</Card>
 					<Card
@@ -157,6 +157,9 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 						cardName='ace-of-spades'
 						title='Preferences'
 					>
+						<p>
+							Preferences allow each player to customize the experience of the game.&nbsp; Card sorting order, sounds, animation toggling, color themes, card back image, and other preferences are all customizable via the preferences page.
+						</p>
 					</Card>
 				</BridgeCard>
 		

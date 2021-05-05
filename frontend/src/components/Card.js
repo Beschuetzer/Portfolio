@@ -175,7 +175,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 
 	const handlePlayVideo = (e) => {
 		const card = cardRef.current;
-		if (card?.classList.contains('card--open'))	e.stopPropagation();
+		if (card?.classList.contains('card--stopped'))	e.stopPropagation();
 		playVideo(videoRef.current, card);
 	}
 
