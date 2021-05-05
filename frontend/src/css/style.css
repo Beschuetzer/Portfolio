@@ -1268,7 +1268,18 @@ body {
   position: absolute;
   transition: opacity 0.5s ease, fill 0.5s ease;
 }
-.card :is(.card__pause, .card__stop, .card__restart, .card__play, .card__close) :is(:active, :focus) {
+.card__play-parent, .card__pause-parent, .card__close-parent, .card__stop-parent, .card__restart-parent {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50%;
+  width: 50%;
+  position: absolute;
+}
+.card :is(.card__pause, .card__stop, .card__restart, .card__play, .card__close):is(:active, :focus) {
+  fill: var(--color-primary-4);
+}
+.card :is(.card__stop-parent, .card__pause-parent, .card__restart-parent, .card__play-parent, .card__close-parent):is(:active, :focus) svg {
   fill: var(--color-primary-4);
 }
 .card__pause {
@@ -1317,6 +1328,15 @@ body {
   transform: var(--card-playing-transform);
   z-index: 2;
   grid-template-rows: auto;
+  cursor: auto;
+}
+.card--open :is(.card__play-parent, .card__pause-parent, .card__close-parent, .card__stop-parent, .card__restart-parent) {
+  height: auto;
+  width: auto;
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
 }
 .card--open .card__content {
   height: 100%;
@@ -1361,7 +1381,6 @@ body {
 }
 .card--done.card--open {
   grid-template-rows: auto;
-  cursor: auto;
 }
 .card--done .card__close {
   z-index: 11;

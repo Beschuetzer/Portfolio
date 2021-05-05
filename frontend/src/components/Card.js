@@ -195,7 +195,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 		e.stopPropagation();
 		const card = cardRef.current;
 		const video = videoRef?.current;
-		if (card?.classList.contains("card--done")) return;
+		if (card?.classList.contains("card--done") || card?.classList.contains('card--open')) return;
 		toggleCheckbox();
 		openCard(video, card);
 	};
@@ -218,28 +218,45 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 			onMouseEnter={handleMouseEnter}
 			onClick={handleCardClick}
 			className="card card--hoverable">
+			
 			<input ref={checkboxRef} className="card__checkbox" type="checkbox" />
-			<svg onClick={handleStopVideo} className="card__stop">
-				<use xlinkHref="/sprite.svg#icon-stop"></use>
-			</svg>
-			<svg onClick={handlePauseVideo} className="card__pause">
-				<use xlinkHref="/sprite.svg#icon-pause"></use>
-			</svg>
-			<svg onClick={handleRestartVideo} className="card__restart">
-				<use xlinkHref="/sprite.svg#icon-restart"></use>
-			</svg>
+
+			<div onClick={handleStopVideo} className="card__stop-parent">
+				<svg className="card__stop">
+					<use xlinkHref="/sprite.svg#icon-stop"></use>
+				</svg>
+			</div>
+
+			<div onClick={handlePauseVideo} className="card__pause-parent">
+				<svg className="card__pause">
+					<use xlinkHref="/sprite.svg#icon-pause"></use>
+				</svg>
+			</div>
+		
+			<div onClick={handleRestartVideo} className="card__restart-parent">
+				<svg className="card__restart">
+					<use xlinkHref="/sprite.svg#icon-restart"></use>
+				</svg>
+			</div>
+
 			<img
 				className="card__image"
 				alt={capitalize(cardName.replace("-", " "))}
 				src={`/${cardName}.${fileType}`}
 			/>
 			<div className="card__content">
-        <svg onClick={handleCloseVideo} className="card__close">
-          <use xlinkHref="/sprite.svg#icon-close"></use>
-        </svg>
-        <svg onClick={handlePlayVideo} className="card__play">
-          <use xlinkHref="/sprite.svg#icon-play"></use>
-        </svg>
+				<div onClick={handleCloseVideo} className="card__close-parent">
+					<svg className="card__close">
+						<use xlinkHref="/sprite.svg#icon-close"></use>
+					</svg>
+				</div>
+
+				<div onClick={handlePlayVideo} className="card__play-parent">
+					<svg className="card__play">
+						<use xlinkHref="/sprite.svg#icon-play"></use>
+        	</svg>
+				</div>
+
 				<h4 className="card__title">{title}</h4>
 				<Video
 					className="fg-video"

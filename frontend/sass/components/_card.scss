@@ -97,12 +97,26 @@
 		position: absolute;
 		transition: opacity $animation-duration $animation-easing-standard,
 			fill $animation-duration $animation-easing-standard
-		;
-
-		
+		;		
 	}
-	& :is(.card__pause, .card__stop, .card__restart, .card__play, .card__close) :is(:active, :focus) {
+
+	&__play-parent, &__pause-parent, &__close-parent, &__stop-parent,	&__restart-parent {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: 50%;
+		width: 50%;
+		position: absolute;
+	}
+
+
+	& :is(.card__pause, .card__stop, .card__restart, .card__play, .card__close):is(:active, :focus) {
 		fill: var(--color-primary-4);
+	}
+
+	& :is(.card__stop-parent, .card__pause-parent, .card__restart-parent, .card__play-parent, .card__close-parent):is(:active, :focus) svg {
+		fill: var(--color-primary-4);
+
 	}
 
 	&__pause {
@@ -167,6 +181,16 @@
 		// width: calc(#{$resume-card-width-full} - var(--scrollbar-width));
 		z-index: 2;
 		grid-template-rows: auto;
+		cursor: auto;
+
+		& :is(.card__play-parent, .card__pause-parent, .card__close-parent, .card__stop-parent,	.card__restart-parent) {
+			height: auto;
+			width: auto;
+			position: static;
+			top: auto;
+			left: auto;
+			transform: none;
+		}
 
 		& .card__content {
 			// height: 67%;
@@ -231,7 +255,6 @@
 	&--done {
 		&.card--open {
 			grid-template-rows: auto;
-			cursor: auto;
 		}
 
 		& .card__close {
