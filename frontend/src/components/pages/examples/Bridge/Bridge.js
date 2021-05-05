@@ -139,12 +139,18 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 						cardName='ace-of-diamonds'
 						title='Claim Some'
 					>
+						<p>
+							Like Claim All, Claim Some allows players to claim tricks.&nbsp;  However, rather than claiming all of the tricks, Claim Some allows the declarer (person playing the contract) to claim X number of tricks where X is less than or equal to the number of tricks remaining.&nbsp; The video shows the initial screen the declarer sees when picking which tricks to claim.
+						</p>
 					</Card>
 					<Card
 						video={dealSummaryVideo}
 						cardName='ace-of-hearts'
 						title='Deal Summary'
 					>
+						<p>
+							The Deal Summary screen is interesting because it reviews the bidding and playing from the last deal.&nbsp; It also shows which cards each player had in their hand at the beginning of each trick.&nbsp; Such information is nice when you want to work out how the trick claiming phase may have gone had you played a different card for a given trick.
+						</p>
 					</Card>
 					<Card
 						video={preferencesVideo}

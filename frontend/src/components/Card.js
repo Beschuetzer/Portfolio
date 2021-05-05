@@ -184,7 +184,12 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 					loop={false}
 					reference={videoRef}
 				>
-          <div className="card__children">{children}</div>
+          <div className="card__children">
+            {/* <svg className="card__children-toggler">
+              <use xlinkHref="/sprite.svg#icon-angle-double-down"></use>
+            </svg> */}
+            {children}
+          </div>
         </Video>
 			</div>
 		</article>
