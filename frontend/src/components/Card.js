@@ -153,6 +153,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 		if (!card) return;
 		if (card.classList.contains('card--done')) video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove('card--done');
+		card.classList.remove("card--stopped");
 	}
 
 	const handleRestartVideo = (e) => {

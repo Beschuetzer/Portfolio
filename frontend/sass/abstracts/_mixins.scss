@@ -99,10 +99,10 @@
 
 @mixin card-description-visible {
 	opacity: 1;
+	visibility: visible;
 	z-index: 100;
 }
-
-/* ------------------------------------------------------------------------------------------------- */
+	/* ------------------------------------------------------------------------------------------------- */
 //Media Query Manager
 @mixin respond($breakpoint) {
 	@if $breakpoint == small-font {

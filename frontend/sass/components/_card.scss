@@ -26,6 +26,7 @@
 
 	&__children {
 		opacity: 0;
+		visibility: hidden;
 		position: absolute;
     left: 50%;
     // top: 47%;
@@ -40,7 +41,7 @@
     justify-content: center;
     align-items: center;
 		transition:
-			opacity $animation-duration * 3 $animation-easing-standard,
+			opacity $animation-duration * 2 $animation-easing-standard,
 			transform $animation-duration $animation-easing-standard-easeInOutBack,
 		;		
 
@@ -85,6 +86,7 @@
 	&__play, &__pause, &__close, &__stop,	&__restart {
 		cursor: pointer;
 		opacity: 0;
+		visibility: hidden;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
@@ -125,6 +127,7 @@
 	&__current-svg {
 		z-index: 10;
 		opacity: $card-initial-opacity;
+		visibility: visible;
 	}
 
 	& * {
@@ -144,11 +147,13 @@
 
 		&:not(.card--done, .card--open):hover .card__play {
 			opacity: $card-initial-opacity * 2;
+			visibility: visible;
 			fill: rgba($color-primary-bridge-1, 1);
 		}
 
 		&:is(.card--open, .card--done):hover .card__close {
 			opacity: .5;
+			visibility: visible;
 		}
 	}
 
@@ -173,6 +178,7 @@
 		}
 		& .fg-video {
 			opacity: 1;
+			visibility: visible;
 			grid-column: 1/-1;
 			position: relative;
 
@@ -183,10 +189,12 @@
 
 		& .card__current-svg {
 			opacity: 0;
+			visibility: hidden;
 		}
 
 		& .card__play {
 			opacity: 0;
+			visibility: hidden;
 		}
 
 		& .card__stop,
@@ -195,16 +203,19 @@
 			fill: var(--color-primary-2);
 		}
 
-		& .card__close:hover {
+		& :is(.card__close, .card__pause, .card__stop, .card__restart):hover {
 			opacity: 1 !important;
+			visibility: visible;
 		}
 
 		&:hover .card__close {
 			opacity: 1;
+			visibility: visible;
 		}
 
 		&:hover :is(.card__pause, .card__stop, .card__restart) {
 			opacity: $card-initial-opacity * 2;
+			visibility: visible;
 		}
 
 		// &:hover .card__stop {
@@ -223,6 +234,7 @@
 			
 			&:hover {
 				opacity: 1 !important;
+				visibility: visible;
 			}
 		}
 
@@ -236,12 +248,12 @@
 
 		& .card__pause{
 			opacity: 0;
-
-			
+			visibility: hidden;			
 		}
 
 		&:hover :is(.card__pause, .card__stop) {
 			opacity: 0;
+			visibility: hidden;
 		}
 	}
 
@@ -249,9 +261,10 @@
 		& .card__children {
 			@include card-description-visible;
 		}
-		
+
 		&:hover :is(.card__play) {
 			opacity: $card-initial-opacity * 2;
+			visibility: visible;
 			top: $card-pause-and-stop-top;
 			left: 25%;
 			width: $card-pause-and-stop-width;
@@ -260,6 +273,12 @@
 
 		&:hover :is(.card__pause) {
 			opacity: 0;
+			visibility: hidden;
+		}
+
+		& .card__play:hover {
+			opacity: 1;
+			visibility: visible;
 		}
 	}
 }
