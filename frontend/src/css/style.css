@@ -1257,13 +1257,22 @@ body {
   --card-scale-amount: 1.5;
   z-index: 2;
 }
-.card--hoverable:hover .card--hoverable__current-svg {
+.card--hoverable:hover .card__current-svg {
   opacity: 1;
   fill: #00406b;
 }
 .card--playing {
   transform: var(--card-playing-transform);
   z-index: 2;
+}
+.card--playing .fg-video {
+  opacity: 1;
+}
+.card--playing .fg-video video {
+  object-fit: contain;
+}
+.card--playing .card__current-svg {
+  opacity: 0;
 }
 
 .github {
@@ -2237,6 +2246,7 @@ div.references__name {
   color: var(--color-primary-4);
 }
 .bridge__section:nth-of-type(2) .bridge__section-content {
+  overflow: hidden;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   align-items: center;

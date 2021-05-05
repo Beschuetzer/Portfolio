@@ -53,7 +53,9 @@ IDEAS-----------------------------------------------------------
 -when clicking to play remove card--hoverable and maxizize the window to the section__content (or maybe have a side bar with text?)
 -make card__content a grid with video on left 3/4 and right 1/4 being a description of the video that becomes visible when the play button is clicked
 
-
+-have the feature name move to the top
+-have the play icon fade out on click
+-have the pause and stop buttons at the buttom and fade in on click
 
 
 
