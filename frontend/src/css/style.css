@@ -1232,7 +1232,6 @@ body {
   font-size: 2.4rem;
   height: 100%;
   width: 100%;
-  padding: 1.6rem;
 }
 .card__content {
   width: 100%;
@@ -1285,15 +1284,21 @@ body {
 .card--playing {
   transform: var(--card-playing-transform);
   z-index: 2;
+  grid-template-rows: auto;
 }
 .card--playing .card__content {
-  height: 67%;
+  height: 100%;
+}
+.card--playing .card__image__image {
+  width: 102%;
 }
 .card--playing .card__title {
   font-size: 0.8rem;
 }
 .card--playing .fg-video {
   opacity: 1;
+  grid-column: 1/-1;
+  position: relative;
 }
 .card--playing .fg-video video {
   object-fit: contain;
@@ -1315,10 +1320,15 @@ body {
   opacity: 0.5;
 }
 .card--done {
+  grid-template-rows: auto;
   cursor: auto;
 }
 .card--done .card__close {
   opacity: 1;
+  z-index: 11;
+}
+.card--done .card__image__image {
+  width: 102%;
 }
 
 .github {
