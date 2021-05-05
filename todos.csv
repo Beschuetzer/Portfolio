@@ -57,7 +57,8 @@ IDEAS-----------------------------------------------------------
 -have the play icon fade out on click
 -have the pause and stop buttons at the buttom and fade in on click
 
--need to have a close button that 
+-need to reset video to start on closeVideo() calls
+-why does clicking play button not activate openVideo()?
 
 
 
