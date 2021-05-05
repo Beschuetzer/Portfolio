@@ -41,6 +41,7 @@ IDEAS-----------------------------------------------------------
 
   -make sure that SkillsPopup links to examples on site are Links not anchor tags
 
+-add click to seek on progress bar?
 -firefox is quite sluggish (seems to have to do with SiteNav)
 -mobile bridge------------
   -first section doesn't expand content all the way (height auto not working)
