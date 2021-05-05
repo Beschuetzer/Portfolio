@@ -1,11 +1,15 @@
 import React from "react";
 import { useRef } from "react";
+import { connect } from 'react-redux';
 
-import { CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION } from "./constants";
+import { 
+	CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION, 
+	MOBILE_BREAK_POINT_WIDTH,
+} from "./constants";
 import Video from "../components/Video";
 import { capitalize } from "../helpers";
 
-const Card = ({ title, cardName, fileType = "svg", children, video }) => {
+const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth }) => {
 	const videoRef = useRef();
 	const cardRef = useRef();
 	const checkboxRef = useRef();
@@ -16,21 +20,25 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 		const sectionDimensions = card.parentNode.getBoundingClientRect();
 		const cardDimensions = card.getBoundingClientRect();
 
-		const cardLeftOriginal =
-			cardDimensions.left + (cardDimensions.width * 1) / 6;
-		const cardRightOriginal =
-			cardDimensions.right - (cardDimensions.width * 1) / 6;
+		let cardLeftOriginal = cardDimensions.left;
+		let cardRightOriginal = cardDimensions.right;
+		let cardTopOriginal = cardDimensions.top;
+		let cardBottomOriginal = cardDimensions.bottom;
+		let cardCenterXOriginal =	(cardRightOriginal - cardLeftOriginal) / 2 + cardLeftOriginal;
+		let cardCenterYOriginal = (cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal;
 
-		const cardTopOriginal =
-			cardDimensions.top + (cardDimensions.height * 1) / 6;
-		const cardBottomOriginal =
-			cardDimensions.bottom - (cardDimensions.height * 1) / 6;
+		if (viewPortWidth > MOBILE_BREAK_POINT_WIDTH) {
+			cardLeftOriginal = cardDimensions.left + (cardDimensions.width * 1) / 6;
+			cardRightOriginal = cardDimensions.right - (cardDimensions.width * 1) / 6;
 
-		const cardCenterXOriginal =
-			(cardRightOriginal - cardLeftOriginal) / 2 + cardLeftOriginal;
-		const cardCenterYOriginal =
-			(cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal;
+			cardTopOriginal = cardDimensions.top + (cardDimensions.height * 1) / 6;
+			cardBottomOriginal = cardDimensions.bottom - (cardDimensions.height * 1) / 6;
 
+			cardCenterXOriginal = (cardRightOriginal - cardLeftOriginal) / 2 + cardLeftOriginal;
+			cardCenterYOriginal = (cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal;
+		}
+
+	
 		const containerCenterX =
 			(sectionDimensions.right - sectionDimensions.left) / 2 +
 			sectionDimensions.left;
@@ -278,4 +286,12 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 	);
 };
 
-export default Card;
+const mapStateToProps = (state, ownProps) => {
+	return {
+		viewPortWidth: state.general.viewPortWidth,
+	}
+}
+
+export default connect(mapStateToProps, {
+
+})(Card);

@@ -41,10 +41,14 @@ IDEAS-----------------------------------------------------------
 
   -make sure that SkillsPopup links to examples on site are Links not anchor tags
 
--mobile bridge page...
+-mobile bridge------------
+  -first section doesn't expand content all the way (height auto not working)
+  -videos off
 -re-record videos in bridge.txt
 -adjust colors for Arrows on each section
 -add progress bar for videos
+-add bridge source code (take sub sections of each file and add to Bridge repo)
+-create new public repo called Bridge with same tags and description as private version.
 
 
 
