@@ -49,7 +49,7 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     const cardCenterYOriginal = (cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal
 
     const containerCenterX = (sectionDimensions.right - sectionDimensions.left) / 2 + sectionDimensions.left
-    const containerCenterY = (sectionDimensions.bottom - sectionDimensions.top) / 2 + sectionDimensions.left
+    const containerCenterY = (sectionDimensions.bottom - sectionDimensions.top) / 2 + sectionDimensions.top
 
     const translateLeftAmount = Math.abs(cardCenterXOriginal - containerCenterX);
     const translateUpAmount = Math.abs(cardCenterYOriginal - containerCenterY);
@@ -76,7 +76,6 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     const newTransform = `
       translateX(${-translateLeftAmount}px) 
       translateY(${-translateUpAmount}px) 
-     
       ;
     `;
 
