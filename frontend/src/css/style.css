@@ -1253,7 +1253,7 @@ body {
   display: grid;
   grid-template-columns: 80% 20%;
 }
-.card__play, .card__pause, .card__close, .card__stop {
+.card__play, .card__pause, .card__close, .card__stop, .card__restart {
   cursor: pointer;
   opacity: 0;
   top: 50%;
@@ -1267,16 +1267,22 @@ body {
   transition: opacity 0.5s ease, fill 0.5s ease;
 }
 .card__pause {
-  top: 76.5%;
-  left: 33%;
-  width: 10%;
-  height: 10%;
+  top: 85%;
+  left: 25%;
+  width: 25%;
+  height: 25%;
 }
 .card__stop {
-  top: 76.5%;
-  left: 66%;
-  width: 10%;
-  height: 10%;
+  top: 85%;
+  left: 75%;
+  width: 25%;
+  height: 25%;
+}
+.card__restart {
+  top: 85%;
+  left: 50%;
+  width: 18.75%;
+  height: 18.75%;
 }
 .card__current-svg {
   z-index: 10;
@@ -1328,16 +1334,15 @@ body {
   opacity: 0;
 }
 .card--open .card__stop, .card--open .card__pause {
-  opacity: 0.5;
   fill: var(--color-primary-2);
 }
 .card--open .card__close:hover {
   opacity: 1 !important;
 }
-.card--open:hover :is(.card__close, .card__pause) {
+.card--open:hover .card__close {
   opacity: 1;
 }
-.card--open:hover .card__stop {
+.card--open:hover :is(.card__pause, .card__stop, .card__restart) {
   opacity: 0.5;
 }
 .card--done {
@@ -1356,6 +1361,12 @@ body {
 .card--done .card__children {
   opacity: 1;
   z-index: 100;
+}
+.card--done .card__pause {
+  opacity: 0;
+}
+.card--done:hover :is(.card__pause, .card__stop) {
+  opacity: 0;
 }
 
 .github {
@@ -2267,6 +2278,7 @@ div.references__name {
   background-color: var(--color-primary-4);
 }
 .bridge__section {
+  backface-visibility: hidden;
   height: var(--bridge-section-height);
   padding: var(--bridge-section-padding);
   z-index: 2;

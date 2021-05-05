@@ -152,7 +152,8 @@ $card-z-index: 1;
 $card-height: $default-font-size * 50;
 $card-header-height: $card-height / 3.333333333333;
 $card-initial-opacity: .25;
-
+$card-pause-and-stop-top: 85%;
+$card-pause-and-stop-width: 25%;
 
 //page-nav
 $page-nav-top: calc(

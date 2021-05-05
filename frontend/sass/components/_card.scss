@@ -82,10 +82,7 @@
 		grid-template-columns: 80% 20%;
 	}
 
-	&__play,
-	&__pause,
-	&__close,
-	&__stop {
+	&__play, &__pause, &__close, &__stop,	&__restart {
 		cursor: pointer;
 		opacity: 0;
 		top: 50%;
@@ -97,24 +94,32 @@
 		z-index: 10;
 		position: absolute;
 		transition: opacity $animation-duration $animation-easing-standard,
-			fill $animation-duration $animation-easing-standard;
+			fill $animation-duration $animation-easing-standard
+		;
 	}
 
 	&__pause {
-		top: 76.5%;
-		left: 33%;
-		width: 10%;
-		height: 10%;
+		top: $card-pause-and-stop-top;
+		left: 25%;
+		width: $card-pause-and-stop-width;
+		height: $card-pause-and-stop-width;
 	}
 
 	&__stop {
-		top: 76.5%;
-		left: 66%;
-		width: 10%;
-		height: 10%;
+		top: $card-pause-and-stop-top;
+		left: 75%;
+		width: $card-pause-and-stop-width;
+		height: $card-pause-and-stop-width;
 	}
 
 	&__close {
+	}
+
+	&__restart {
+		top: $card-pause-and-stop-top;
+		left: 50%;
+		width: $card-pause-and-stop-width * .75;
+		height: $card-pause-and-stop-width * .75;
 	}
 
 	&__current-svg {
@@ -186,7 +191,7 @@
 
 		& .card__stop,
 		& .card__pause {
-			opacity: $card-initial-opacity * 2;
+			// opacity: $card-initial-opacity * 2;
 			fill: var(--color-primary-2);
 		}
 
@@ -194,13 +199,17 @@
 			opacity: 1 !important;
 		}
 
-		&:hover :is(.card__close, .card__pause) {
+		&:hover .card__close {
 			opacity: 1;
 		}
 
-		&:hover .card__stop {
+		&:hover :is(.card__pause, .card__stop, .card__restart) {
 			opacity: $card-initial-opacity * 2;
 		}
+
+		// &:hover .card__stop {
+		// 	opacity: $card-initial-opacity * 2;
+		// }
 	}
 
 	&--done {
@@ -222,6 +231,16 @@
 		& .card__children {
 			opacity: 1;
 			z-index: 100;
+		}
+
+		& .card__pause{
+			opacity: 0;
+
+			
+		}
+
+		&:hover :is(.card__pause, .card__stop) {
+			opacity: 0;
 		}
 	}
 }

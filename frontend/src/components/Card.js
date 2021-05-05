@@ -35,6 +35,21 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 		card.classList.remove("card--done");
 	};
 
+	const pauseVideo = (e) => {
+		console.log('pause------------------------------------------------');
+		e.stopPropagation();
+	}
+
+	const stopVideo = (e) => {
+		console.log('stop------------------------------------------------');
+		e.stopPropagation();
+	}
+
+	const restartVideo = (e) => {
+		console.log('restart------------------------------------------------');
+		e.stopPropagation();
+	}
+
 	const handleCloseVideo = (e) => {
 		console.log("close------------------------------------------------");
 		e.stopPropagation();
@@ -157,11 +172,14 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 			onClick={openVideo}
 			className="card card--hoverable">
 			<input ref={checkboxRef} className="card__checkbox" type="checkbox" />
-			<svg className="card__stop">
+			<svg onClick={stopVideo} className="card__stop">
 				<use xlinkHref="/sprite.svg#icon-stop"></use>
 			</svg>
-			<svg className="card__pause">
+			<svg onClick={pauseVideo} className="card__pause">
 				<use xlinkHref="/sprite.svg#icon-pause"></use>
+			</svg>
+			<svg onClick={restartVideo} className="card__restart">
+				<use xlinkHref="/sprite.svg#icon-restart"></use>
 			</svg>
 			<img
 				className="card__image"

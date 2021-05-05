@@ -14,6 +14,7 @@
 
 
 	&__section {
+		backface-visibility: hidden;
 		height: var(--bridge-section-height);
 		padding: var(--bridge-section-padding);
 		z-index: 2;
