@@ -13,6 +13,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	const videoRef = useRef();
 	const cardRef = useRef();
 	const checkboxRef = useRef();
+	let hasProgressEventListener = false;
 
 	const centerCard = (card) => {
 		if (!card) return;
@@ -87,6 +88,14 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		document.documentElement.style.cssText += newValue;
 	};
 
+	const attachProgressListener = (video) => {
+		if(!video) return;
+		if (!hasProgressEventListener) {
+			video.addEventListener('progress', handleVideoProgress);
+			hasProgressEventListener = true;
+		} 
+	}
+
 	const getIsVideoPlaying = (video) => {
 		return (
 			video.currentTime > 0 &&
@@ -130,6 +139,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 	const playVideo = (video, card) => {
 		console.log('play------------------------------------------------');
+		attachProgressListener(video);
 		video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove("card--done");
 		card.classList.remove("card--stopped");
@@ -156,6 +166,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		video.currentTime = 0;
 		if (!getIsVideoPlaying(video)) {
 			video.play();
+			attachProgressListener(video);
 		}
 		
 		if (!card) return;
@@ -174,6 +185,11 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		e.stopPropagation();
 		closeVideo(videoRef.current, cardRef.current);
 	};
+
+	const handleVideoProgress = (e) => {
+		console.log('progress------------------------------------------------');
+		console.dir(e);
+	}
 
 	const handleVideoEnd = (e) => {
 		console.log("end------------------------------------------------");
@@ -281,6 +297,8 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
             {children}
           </div>
         </Video>
+				<progress value='.5' className="card__progress">
+				</progress>
 			</div>
 		</article>
 	);

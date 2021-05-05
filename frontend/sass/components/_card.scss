@@ -20,6 +20,45 @@
 	transform: scale(var(--card-scale-amount));
 	transition: transform $animation-duration $animation-easing-standard;
 
+	& * {
+		backface-visibility: hidden;
+	}
+
+	&__progress {
+		width: 100%;
+		height: 3px;
+		position: absolute;
+		bottom: 0;
+		left:0;
+		/* Reset the default appearance */
+		-webkit-appearance: none;
+				-moz-appearance: none;
+						appearance: none;
+		border: none;
+			
+		&::-webkit-progress-bar {
+			background-color: var(--color-primary-4);
+			border-radius: 1px;
+			box-shadow: 0 2px 5px rgba($color-primary-bridge-2, 0.25) inset;
+		}
+
+		&::-webkit-progress-value {
+			background-image:
+				 -webkit-linear-gradient(-45deg, 
+																 transparent 33%, rgba($color-primary-bridge-1, .1) 33%, 
+																 rgba($color-primary-bridge-1, .1) 66%, transparent 66%),
+				 -webkit-linear-gradient(top, 
+																 rgba($color-primary-bridge-4, .25), 
+																 rgba($color-primary-bridge-1, .25)),
+				 -webkit-linear-gradient(left,var(--color-primary-1),var(--color-primary-2))
+				;
+		
+				border-radius: 2px; 
+				background-size: 35px 20px, 100% 100%, 100% 100%;
+				animation: animate-stripes 5s linear infinite;
+		}
+	}
+
 	&__checkbox {
 		display: none;
 	}
@@ -152,10 +191,6 @@
 		z-index: 10;
 		opacity: $card-initial-opacity;
 		visibility: visible;
-	}
-
-	& * {
-		backface-visibility: hidden;
 	}
 
 	&--hoverable {
