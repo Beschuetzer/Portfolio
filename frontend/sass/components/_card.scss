@@ -44,45 +44,50 @@
 		
 	}
 
-	& svg {
-
-		z-index: 10;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		height: 50%;
-		width:50%;
-		fill: rgba($color-primary-bridge-1, .5);
-
-		transition: 
-			opacity $animation-duration $animation-easing-standard,
-			fill $animation-duration $animation-easing-standard,
-		;
-
-	}
-
 	&__content {
 		width: 100%;
     display: grid;
     grid-template-columns: 80% 20%;
 	}
 
-	&__play {
+	&__play, &__pause, &__close, &__stop {
+		cursor: pointer;
 		opacity: 0;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: 50%;
+		width:50%;
+		fill: rgba($color-primary-bridge-1, .5);
+		z-index: 10;
+		position: absolute;
+		transition: 
+			opacity $animation-duration $animation-easing-standard,
+			fill $animation-duration $animation-easing-standard,
+		;
 	}
 	
-	&__pause {
-		opacity: 0;
+	&__pause{
+		top: 76.5%;
+    left: 33%;
+    width: 10%;
+    height: 10%;
 	}
 	
-	&__stop {
-		opacity: 0;
+	&__stop{
+		top: 76.5%;
+    left: 66%;
+    width: 10%;
+    height: 10%;
+	}
+
+	&__close{
+	
 	}
 
 	&__current-svg {
 		z-index: 10;
-		opacity: .5;
+		opacity: $card-initial-opacity;
 	}
 
 	& * {
@@ -96,8 +101,8 @@
 			z-index: $card-z-index + 1;
 		}
 
-		&:hover .card__current-svg {
-			opacity: 1;
+		&:hover .card__play {
+			opacity: $card-initial-opacity * 2;
 			fill: rgba($color-primary-bridge-1, 1);
 		}
 	}
@@ -131,8 +136,20 @@
 		}
 
 		& .card__stop, & .card__pause {
+			opacity: $card-initial-opacity * 2;
+			fill: var(--color-primary-2);
+		}
+
+		& :is(.card__close, .card__pause, .card__stop):hover {
 			opacity: 1;
 		}
   }
+
+	&--done {
+		cursor: auto;
+		& .card__close {
+			opacity: 1;
+		}
+	}
 
 }

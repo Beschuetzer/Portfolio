@@ -22,12 +22,26 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     checkbox.checked = !checkbox.checked;
   }
 
-  const handleVideoEnd = (e) => {
-    console.log('end------------------------------------------------');
-    const video = e.currentTarget;
+  const closeVideo = () => {
     const checkbox = checkboxRef.current
     checkbox.checked = false;
-    cardRef.current?.classList.remove('card--playing');
+
+    const card = cardRef.current;
+    if (!card) return;
+    card.classList.remove('card--playing');
+    card.classList.remove('card--done');
+
+  }
+
+  const handleCloseVideo = (e) => {
+    e.stopPropagation();
+    closeVideo();
+  }
+
+  const handleVideoEnd = (e) => {
+    console.log('end------------------------------------------------');
+    cardRef.current?.classList.add('card--done');
+    const video = e.currentTarget;
     video.removeEventListener('ended', handleVideoEnd);
   }
 
@@ -90,7 +104,9 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     document.documentElement.style.cssText += newValue;
   }
 
-  const handleClick = (e) => {
+  const openVideo = (e) => {
+    e.stopPropagation();
+    if (cardRef.current?.classList.contains('card--done')) return;
     toggleCheckbox();
     const video = videoRef?.current;
     video.addEventListener('ended', handleVideoEnd);
@@ -120,9 +136,9 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
   }
 
   return (
-    <article ref={cardRef} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} onClick={handleClick} className='card card--hoverable'>
+    <article ref={cardRef} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} onClick={openVideo} className='card card--hoverable'>
       <input ref={checkboxRef} className="card__checkbox" type="checkbox"/>
-      <svg className="card__play card__current-svg">
+      <svg className="card__play">
         <use xlinkHref="/sprite.svg#icon-play"></use>
       </svg>
       <svg className="card__stop">
@@ -130,6 +146,9 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
       </svg>
       <svg className="card__pause">
         <use xlinkHref="/sprite.svg#icon-pause"></use>
+      </svg>
+      <svg onClick={handleCloseVideo} className="card__close">
+        <use xlinkHref="/sprite.svg#icon-close"></use>
       </svg>
       <img className='card__image' alt={capitalize(cardName.replace('-', ' '))} src={`/${cardName}.${fileType}`}/>
       <div className='card__content'>

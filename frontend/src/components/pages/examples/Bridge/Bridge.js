@@ -123,6 +123,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 				<BridgeCard
 					titleSize='two'
 					titleContent='Features'
+					titleSubtitle="Pick a Card any Card..."
 				>
 					<Card
 						
