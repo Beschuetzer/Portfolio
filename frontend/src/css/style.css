@@ -1263,7 +1263,6 @@ body {
 }
 .card--playing {
   transform: var(--card-playing-transform);
-  width: calc(85rem - var(--scrollbar-width));
   z-index: 2;
 }
 

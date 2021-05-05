@@ -104,7 +104,7 @@
 
   &--playing {
     transform: var(--card-playing-transform);
-    width: calc(#{$resume-card-width-full} - var(--scrollbar-width));
+    // width: calc(#{$resume-card-width-full} - var(--scrollbar-width));
     z-index: 2;
   }
 

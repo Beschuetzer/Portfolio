@@ -35,32 +35,48 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     //idea is to get the bridge__section-content dimensions and the cards dimensions, then to change the cards dimensions via a translate class to get it to be positioned in the center of the content box
     const card = cardRef.current;
     if (!card) return;
-
-    console.log('card.parentNode =', card.parentNode);
+    
     const sectionDimensions = card.parentNode.getBoundingClientRect();
     const cardDimensions = card.getBoundingClientRect();
-    // debugger
 
     const cardLeftOriginal = (cardDimensions.left + cardDimensions.width * 1 / 6);
+    const cardRightOriginal = (cardDimensions.right - cardDimensions.width * 1 / 6);
+
     const cardTopOriginal = (cardDimensions.top + cardDimensions.height * 1 / 6);
+    const cardBottomOriginal = (cardDimensions.bottom - cardDimensions.height * 1 / 6);
 
-    //TODO: try another approach;  center the card in the content box then scale it 
+    const cardCenterXOriginal = (cardRightOriginal - cardLeftOriginal) / 2 + cardLeftOriginal
+    const cardCenterYOriginal = (cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal
 
-    const translateLeftAmount = Math.abs(cardLeftOriginal - sectionDimensions.left);
-    const translateUpAmount = Math.abs(cardTopOriginal - sectionDimensions.top);
+    const containerCenterX = (sectionDimensions.right - sectionDimensions.left) / 2 + sectionDimensions.left
+    const containerCenterY = (sectionDimensions.bottom - sectionDimensions.top) / 2 + sectionDimensions.left
+
+    const translateLeftAmount = Math.abs(cardCenterXOriginal - containerCenterX);
+    const translateUpAmount = Math.abs(cardCenterYOriginal - containerCenterY);
     const scaleXFactor = (sectionDimensions.width - cardDimensions.width) / cardDimensions.width * 1.5;
     const scaleYFactor = (sectionDimensions.height - cardDimensions.height) / cardDimensions.height * 1.5;
 
+    console.log('------------------------------------------------');
+    console.log('card =', card);
+    console.log('card.parentNode =', card.parentNode);
+    console.log('cardLeftOriginal =', cardLeftOriginal);
+    console.log('cardRightOriginal =', cardRightOriginal);
+    console.log('cardDimensions =', cardDimensions);
+    console.log('sectionDimensions =', sectionDimensions);
+    console.log('containerCenterX =', containerCenterX);
+    console.log('cardCenterXOriginal =', cardCenterXOriginal);
+    console.log('containerCenterY =', containerCenterY);
+    console.log('cardCenterYOriginal =', cardCenterYOriginal);
     console.log('translateLeftAmount =', translateLeftAmount);
     console.log('translateUpAmount =', translateUpAmount);
     console.log('scaleXFactor =', scaleXFactor);
     console.log('scaleYFactor =', scaleYFactor);
+    console.log('------------------------------------------------');
 
     const newTransform = `
       translateX(${-translateLeftAmount}px) 
       translateY(${-translateUpAmount}px) 
-      scaleX(${1}) 
-      scaleY(${1})
+     
       ;
     `;
 
