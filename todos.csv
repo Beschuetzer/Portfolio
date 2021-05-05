@@ -42,23 +42,11 @@ IDEAS-----------------------------------------------------------
   -make sure that SkillsPopup links to examples on site are Links not anchor tags
 
 
--have bridge-hero disappear after scrolling down to the bottom
--add currentSelection select to signify currently selected Bridge Section (left: 0)
--use left property to transform each card depending on which arrow is pressed and which section has the currentSelection class
-
--have each card's transform-origin depend on nth item (e.g. 1st from top left and last from bottom right)
 -re-record videos in bridge.txt
--need to get king cards made in svg format
--figure out how to get play, pause, and stop svgs to display at the correct moments during playback by assigning 
--when clicking to play remove card--hoverable and maxizize the window to the section__content (or maybe have a side bar with text?)
--make card__content a grid with video on left 3/4 and right 1/4 being a description of the video that becomes visible when the play button is clicked
-
--have the feature name move to the top
--have the play icon fade out on click
 -have the pause and stop buttons at the buttom and fade in on click
-
 -need to reset video to start on closeVideo() calls
--why does clicking play button not activate openVideo()?
+-move pause and stop buttons (and add functionality)
+-add text description to right side of video
 
 
 
