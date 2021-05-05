@@ -1268,6 +1268,9 @@ body {
   position: absolute;
   transition: opacity 0.5s ease, fill 0.5s ease;
 }
+.card :is(.card__pause, .card__stop, .card__restart, .card__play, .card__close) :is(:active, :focus) {
+  fill: var(--color-primary-4);
+}
 .card__pause {
   top: 85%;
   left: 25%;

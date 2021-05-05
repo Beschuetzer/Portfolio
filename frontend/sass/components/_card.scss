@@ -98,6 +98,11 @@
 		transition: opacity $animation-duration $animation-easing-standard,
 			fill $animation-duration $animation-easing-standard
 		;
+
+		
+	}
+	& :is(.card__pause, .card__stop, .card__restart, .card__play, .card__close) :is(:active, :focus) {
+		fill: var(--color-primary-4);
 	}
 
 	&__pause {
