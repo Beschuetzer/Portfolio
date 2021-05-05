@@ -174,16 +174,7 @@ const SkillsPopup = ({
 	const getProjectContent = (repo, key, index) => {
 		switch (key) {
 			case "name":
-				if (repo["homepageUrl"]) {
-					return (
-						<SkillsPopupName
-							key={key}
-							href={repo["homepageUrl"]}
-							repo={repo}
-							onTableItemMouseEvent={onTableItemMouseEvent}
-						/>
-					);
-				} else if (
+				if (
 					repo["name"].search(/playlist.*sync/i) !== -1 ||
 					repo["name"].search(/downloader/i) !== -1
 				) {
@@ -191,6 +182,30 @@ const SkillsPopup = ({
 						<SkillsPopupName
 							key={key}
 							href={`/examples/csharp#${repo["name"].replace("-", "")}`}
+							repo={repo}
+							onTableItemMouseEvent={onTableItemMouseEvent}
+						/>
+					);
+				}
+
+				else if (
+					repo["name"].search(/autobid/i) !== -1
+				) {
+					return (
+						<SkillsPopupName
+							key={key}
+							href={`/examples/autobid`}
+							repo={repo}
+							onTableItemMouseEvent={onTableItemMouseEvent}
+						/>
+					);
+				}
+
+				else if (repo["homepageUrl"]) {
+					return (
+						<SkillsPopupName
+							key={key}
+							href={repo["homepageUrl"]}
 							repo={repo}
 							onTableItemMouseEvent={onTableItemMouseEvent}
 						/>
