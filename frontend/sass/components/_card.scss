@@ -64,8 +64,8 @@
 
 	&__content {
 		width: 100%;
-		display: grid;
-		grid-template-columns: 80% 20%;
+    display: grid;
+    grid-template-columns: 80% 20%;
 	}
 
 	&__play {
@@ -107,6 +107,13 @@
     // width: calc(#{$resume-card-width-full} - var(--scrollbar-width));
     z-index: 2;
 
+		& .card__content {
+			height: 67%;
+		}
+
+		& .card__title{
+			font-size: $default-font-size * .5;
+		}
 		& .fg-video {
 			opacity: 1;
 
@@ -115,9 +122,16 @@
 			}
 		} 
 
-
 		& .card__current-svg {
 			opacity: 0;
+		}
+
+		& .card__play {
+			opacity: 0;
+		}
+
+		& .card__stop, & .card__pause {
+			opacity: 1;
 		}
   }
 

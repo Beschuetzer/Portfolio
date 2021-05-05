@@ -1179,6 +1179,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  transition: opacity 0.5s ease;
 }
 .fg-video video {
   height: 100%;
@@ -1265,6 +1266,12 @@ body {
   transform: var(--card-playing-transform);
   z-index: 2;
 }
+.card--playing .card__content {
+  height: 67%;
+}
+.card--playing .card__title {
+  font-size: 0.8rem;
+}
 .card--playing .fg-video {
   opacity: 1;
 }
@@ -1273,6 +1280,12 @@ body {
 }
 .card--playing .card__current-svg {
   opacity: 0;
+}
+.card--playing .card__play {
+  opacity: 0;
+}
+.card--playing .card__stop, .card--playing .card__pause {
+  opacity: 1;
 }
 
 .github {
