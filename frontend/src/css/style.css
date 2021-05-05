@@ -143,11 +143,6 @@
     transform: scale(1);
   }
 }
-@keyframes animate-stripes {
-  100% {
-    background-position: -100px 0px;
-  }
-}
 /* global reset;  box-sizing is set on body and set to inherit on all other elements */
 *,
 *::after,
@@ -1224,6 +1219,7 @@ body {
   backface-visibility: hidden;
 }
 .card__progress {
+  opacity: 0;
   width: 100%;
   height: 3px;
   position: absolute;
@@ -1244,7 +1240,6 @@ body {
   background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 64, 107, 0.1) 33%, rgba(0, 64, 107, 0.1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(245, 241, 219, 0.25), rgba(0, 64, 107, 0.25)), -webkit-linear-gradient(left, var(--color-primary-1), var(--color-primary-2));
   border-radius: 2px;
   background-size: 35px 20px, 100% 100%, 100% 100%;
-  animation: animate-stripes 5s linear infinite;
 }
 .card__checkbox {
   display: none;
@@ -1361,6 +1356,9 @@ body {
   z-index: 2;
   grid-template-rows: auto;
   cursor: auto;
+}
+.card--open .card__progress {
+  opacity: 1;
 }
 .card--open :is(.card__play-parent, .card__pause-parent, .card__close-parent, .card__stop-parent, .card__restart-parent) {
   height: auto;

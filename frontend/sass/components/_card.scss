@@ -25,6 +25,7 @@
 	}
 
 	&__progress {
+		opacity: 0;
 		width: 100%;
 		height: 3px;
 		position: absolute;
@@ -55,7 +56,6 @@
 		
 				border-radius: 2px; 
 				background-size: 35px 20px, 100% 100%, 100% 100%;
-				animation: animate-stripes 5s linear infinite;
 		}
 	}
 
@@ -222,6 +222,10 @@
 		z-index: 2;
 		grid-template-rows: auto;
 		cursor: auto;
+
+		& .card__progress {
+			opacity: 1;
+		}
 
 		& :is(.card__play-parent, .card__pause-parent, .card__close-parent, .card__stop-parent,	.card__restart-parent) {
 			height: auto;

@@ -13,6 +13,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	const videoRef = useRef();
 	const cardRef = useRef();
 	const checkboxRef = useRef();
+	const progressBarRef = useRef();
 	let hasProgressEventListener = false;
 
 	const centerCard = (card) => {
@@ -91,7 +92,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	const attachProgressListener = (video) => {
 		if(!video) return;
 		if (!hasProgressEventListener) {
-			video.addEventListener('progress', handleVideoProgress);
+			video.addEventListener('timeupdate', handleVideoProgress);
 			hasProgressEventListener = true;
 		} 
 	}
@@ -187,8 +188,10 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	};
 
 	const handleVideoProgress = (e) => {
-		console.log('progress------------------------------------------------');
-		console.dir(e);
+		const video = videoRef.current;
+		if (!video) return;
+		const percent = video.currentTime / video.duration;
+		progressBarRef.current.value = percent;
 	}
 
 	const handleVideoEnd = (e) => {
@@ -297,7 +300,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
             {children}
           </div>
         </Video>
-				<progress value='.5' className="card__progress">
+				<progress ref={progressBarRef} value='0' className="card__progress">
 				</progress>
 			</div>
 		</article>

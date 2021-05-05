@@ -41,12 +41,12 @@ IDEAS-----------------------------------------------------------
 
   -make sure that SkillsPopup links to examples on site are Links not anchor tags
 
+-firefox is quite sluggish (seems to have to do with SiteNav)
 -mobile bridge------------
   -first section doesn't expand content all the way (height auto not working)
   -videos off
 -re-record videos in bridge.txt
 -adjust colors for Arrows on each section
--add progress bar for videos
 
 
 
