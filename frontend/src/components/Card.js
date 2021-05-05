@@ -51,10 +51,12 @@ const Card = ({title, cardName, fileType = 'svg', children, video}) => {
     const containerCenterX = (sectionDimensions.right - sectionDimensions.left) / 2 + sectionDimensions.left
     const containerCenterY = (sectionDimensions.bottom - sectionDimensions.top) / 2 + sectionDimensions.top
 
-    const translateLeftAmount = Math.abs(cardCenterXOriginal - containerCenterX);
-    const translateUpAmount = Math.abs(cardCenterYOriginal - containerCenterY);
+    let translateLeftAmount = Math.abs(cardCenterXOriginal - containerCenterX);
+    let translateUpAmount = Math.abs(cardCenterYOriginal - containerCenterY);
     const scaleXFactor = (sectionDimensions.width - cardDimensions.width) / cardDimensions.width * 1.5;
     const scaleYFactor = (sectionDimensions.height - cardDimensions.height) / cardDimensions.height * 1.5;
+
+    if (cardCenterXOriginal < containerCenterX) translateLeftAmount = -translateLeftAmount
 
     console.log('------------------------------------------------');
     console.log('card =', card);
