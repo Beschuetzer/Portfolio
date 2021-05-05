@@ -29,6 +29,7 @@
 
 		@include respond(nav-switch) {
 			height: auto;
+			min-height: calc(100vh - #{$header-height});
 		}
 
 		&-titles {
@@ -40,7 +41,7 @@
 			justify-content: center;
 
 			@include respond(nav-switch) {
-				align-items: flex-end;
+				// align-items: flex-end;
 			}
 		}
 		
@@ -150,6 +151,7 @@
 				position: relative;
 				top: 0;
 				left: 0;
+				transform: translateX(0);
 			}
 		}
 	}

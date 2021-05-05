@@ -119,6 +119,11 @@
 
 	}
 
+	&__play {
+		width: 100%;
+		height: 100%;
+	}
+
 	&__pause {
 		top: $card-pause-and-stop-top;
 		left: 25%;
