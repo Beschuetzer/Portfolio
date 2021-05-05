@@ -17,17 +17,14 @@
 	grid-template-rows: $card-header-height 1fr;
 	align-items: center;
 	justify-items: center;
-  transform: scale(var(--card-scale-amount));
-	transition: 
-		transform $animation-duration $animation-easing-standard,
-	;
+	transform: scale(var(--card-scale-amount));
+	transition: transform $animation-duration $animation-easing-standard;
 
+	&__checkbox {
+		display: none;
+	}
 
-  &__checkbox {
-    display: none;
-  }
-
-	&__children { 
+	&__children {
 		display: none;
 		opacity: 0;
 		padding: 0 $default-font-size * 2;
@@ -36,7 +33,7 @@
 	&__image {
 		width: 100%;
 		position: absolute;
-    // opacity: .3;
+		// opacity: .3;
 		z-index: -1;
 	}
 	&__title {
@@ -45,51 +42,51 @@
 		text-align: center;
 		font-size: $default-font-size * 1.5;
 		height: 100%;
-    width: 100%;
+		width: 100%;
 		// padding: $default-font-size;
 	}
 	&__text {
-		
 	}
 
 	&__content {
 		width: 100%;
-    display: grid;
-    grid-template-columns: 80% 20%;
+		display: grid;
+		grid-template-columns: 80% 20%;
 	}
 
-	&__play, &__pause, &__close, &__stop {
+	&__play,
+	&__pause,
+	&__close,
+	&__stop {
 		cursor: pointer;
 		opacity: 0;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		height: 50%;
-		width:50%;
-		fill: rgba($color-primary-bridge-1, .5);
+		width: 50%;
+		fill: rgba($color-primary-bridge-1, 0.5);
 		z-index: 10;
 		position: absolute;
-		transition: 
-			opacity $animation-duration $animation-easing-standard,
-			fill $animation-duration $animation-easing-standard,
-		;
-	}
-	
-	&__pause{
-		top: 76.5%;
-    left: 33%;
-    width: 10%;
-    height: 10%;
-	}
-	
-	&__stop{
-		top: 76.5%;
-    left: 66%;
-    width: 10%;
-    height: 10%;
+		transition: opacity $animation-duration $animation-easing-standard,
+			fill $animation-duration $animation-easing-standard;
 	}
 
-	&__close{
+	&__pause {
+		top: 76.5%;
+		left: 33%;
+		width: 10%;
+		height: 10%;
+	}
+
+	&__stop {
+		top: 76.5%;
+		left: 66%;
+		width: 10%;
+		height: 10%;
+	}
+
+	&__close {
 	}
 
 	&__current-svg {
@@ -101,29 +98,28 @@
 		backface-visibility: hidden;
 	}
 
-	&--hoverable{
+	&--hoverable {
 		&:hover {
 			--card-scale-amount: 1.5;
 			// transform: perspective(#{$default-font-size * 3}) translate3d(0,#{$default-font-size},#{$default-font-size * 1}) ;
 			z-index: $card-z-index + 1;
 		}
 
-		&:not(.card--done, .card--playing):hover .card__play {
+		&:not(.card--done, .card--open):hover .card__play {
 			opacity: $card-initial-opacity * 2;
 			fill: rgba($color-primary-bridge-1, 1);
 		}
 
-		&:is(.card--playing, .card--done) hover .card__close {
+		&:is(.card--open, .card--done) hover .card__close {
 			opacity: 1;
 		}
 	}
 
-  &--playing {
-    transform: var(--card-playing-transform);
-    // width: calc(#{$resume-card-width-full} - var(--scrollbar-width));
-    z-index: 2;
+	&--open {
+		transform: var(--card-playing-transform);
+		// width: calc(#{$resume-card-width-full} - var(--scrollbar-width));
+		z-index: 2;
 		grid-template-rows: auto;
-
 
 		& .card__content {
 			// height: 67%;
@@ -132,23 +128,21 @@
 		}
 
 		& .card__image {
-			&__image {
 				width: 102%;
-			}
 		}
 
-		& .card__title{
-			font-size: $default-font-size * .5;
+		& .card__title {
+			font-size: $default-font-size * 0.5;
 		}
 		& .fg-video {
 			opacity: 1;
 			grid-column: 1/-1;
 			position: relative;
 
-			& video{
+			& video {
 				object-fit: contain;
 			}
-		} 
+		}
 
 		& .card__current-svg {
 			opacity: 0;
@@ -158,7 +152,8 @@
 			opacity: 0;
 		}
 
-		& .card__stop, & .card__pause {
+		& .card__stop,
+		& .card__pause {
 			opacity: $card-initial-opacity * 2;
 			fill: var(--color-primary-2);
 		}
@@ -170,7 +165,7 @@
 		&:hover .card__stop {
 			opacity: $card-initial-opacity * 2;
 		}
-  }
+	}
 
 	&--done {
 		grid-template-rows: auto;
@@ -179,13 +174,10 @@
 		& .card__close {
 			opacity: 1;
 			z-index: $card-z-index + 10;
-
 		}
 
 		& .card__image {
-			&__image {
-				width: 102%;
-			}
+			width: 102%;
 		}
 	}
 }
