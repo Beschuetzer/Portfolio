@@ -1345,7 +1345,7 @@ body {
 .card--open:hover :is(.card__pause, .card__stop, .card__restart) {
   opacity: 0.5;
 }
-.card--done {
+.card--done.card--open {
   grid-template-rows: auto;
   cursor: auto;
 }
@@ -1366,6 +1366,16 @@ body {
   opacity: 0;
 }
 .card--done:hover :is(.card__pause, .card__stop) {
+  opacity: 0;
+}
+.card--stopped:hover :is(.card__play) {
+  opacity: 0.5;
+  top: 85%;
+  left: 25%;
+  width: 25%;
+  height: 25%;
+}
+.card--stopped:hover :is(.card__pause) {
   opacity: 0;
 }
 

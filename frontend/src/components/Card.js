@@ -10,8 +10,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 	const cardRef = useRef();
 	const checkboxRef = useRef();
 
-	const centerCard = () => {
-		const card = cardRef.current;
+	const centerCard = (card) => {
 		if (!card) return;
 
 		const sectionDimensions = card.parentNode.getBoundingClientRect();
@@ -105,30 +104,46 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 		if (!card) return;
 		card.classList.remove("card--open");
 		card.classList.remove("card--done");
+		card.classList.remove("card--stopped");
 	};
+
+	const openCard = (video, card) => {
+		console.log('open card------------------------------------------------');
+		centerCard(card);
+		// playVideo(video, card);
+		const isVideoPlaying = getIsVideoPlaying(video);
+		if (!video) return;
+		if (isVideoPlaying || card.classList.contains('card--open'))	closeVideo(video, card)
+		else {
+			playVideo(video, card)
+			card.classList.add("card--open");
+		}
+	}
 
 	const playVideo = (video, card) => {
 		console.log('play------------------------------------------------');
-		centerCard();
 		video.addEventListener("ended", handleVideoEnd);
-		video.play();
-		card.classList.add("card--open");
 		card.classList.remove("card--done");
+		card.classList.remove("card--stopped");
+		video.play();
 	}
 
 	const pauseVideo = (video, card) => {
 		video?.pause();
+		if (!card) return;
 		card.classList.remove("card--done");
+		card.classList.add("card--stopped");
 	}
 
-	const stopVideo = (e) => {
+	const stopVideo = (video) => {
 		console.log('stop------------------------------------------------');
+		if (!video) return;
+		video.currentTime = 0;
+		pauseVideo(video, cardRef.current);
 	}
 
 	const restartVideo = (video, card) => {
 		console.log('restart------------------------------------------------');
-		
-		
 		if (!video) return;
 		video.currentTime = 0;
 		if (!getIsVideoPlaying(video)) {
@@ -138,13 +153,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 		if (!card) return;
 		if (card.classList.contains('card--done')) video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove('card--done');
-	}
-
-	const openVideo = (video, card) => {
-		const isVideoPlaying = getIsVideoPlaying(video);
-		if (!video) return;
-		if (isVideoPlaying || card.classList.contains('card--open'))	closeVideo(video, card)
-		else playVideo(video, card)
 	}
 
 	const handleRestartVideo = (e) => {
@@ -165,6 +173,12 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 		video.removeEventListener("ended", handleVideoEnd);
 	};
 
+	const handlePlayVideo = (e) => {
+		const card = cardRef.current;
+		if (card?.classList.contains('card--open'))	e.stopPropagation();
+		playVideo(videoRef.current, card);
+	}
+
 	const handlePauseVideo = (e) => {
 		e.stopPropagation();
 		pauseVideo(videoRef.current, cardRef.current);
@@ -182,7 +196,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 		const video = videoRef?.current;
 		if (card?.classList.contains("card--done")) return;
 		toggleCheckbox();
-		openVideo(video, card)
+		openCard(video, card);
 	};
 
 	const handleMouseEnter = (e) => {
@@ -222,7 +236,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
         <svg onClick={handleCloseVideo} className="card__close">
           <use xlinkHref="/sprite.svg#icon-close"></use>
         </svg>
-        <svg className="card__play">
+        <svg onClick={handlePlayVideo} className="card__play">
           <use xlinkHref="/sprite.svg#icon-play"></use>
         </svg>
 				<h4 className="card__title">{title}</h4>

@@ -213,8 +213,10 @@
 	}
 
 	&--done {
-		grid-template-rows: auto;
-		cursor: auto;
+		&.card--open {
+			grid-template-rows: auto;
+			cursor: auto;
+		}
 
 		& .card__close {
 			z-index: $card-z-index + 10;
@@ -240,6 +242,20 @@
 		}
 
 		&:hover :is(.card__pause, .card__stop) {
+			opacity: 0;
+		}
+	}
+
+	&--stopped {
+		&:hover :is(.card__play) {
+			opacity: $card-initial-opacity * 2;
+			top: $card-pause-and-stop-top;
+			left: 25%;
+			width: $card-pause-and-stop-width;
+			height: $card-pause-and-stop-width;
+		}
+
+		&:hover :is(.card__pause) {
 			opacity: 0;
 		}
 	}
