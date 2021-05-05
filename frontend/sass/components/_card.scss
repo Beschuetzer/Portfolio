@@ -1,4 +1,11 @@
 .card {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+
 	cursor: pointer;
 	z-index: $card-z-index;
 	backface-visibility: hidden;
@@ -101,9 +108,13 @@
 			z-index: $card-z-index + 1;
 		}
 
-		&:hover .card__play {
+		&:not(.card--done, .card--playing):hover .card__play {
 			opacity: $card-initial-opacity * 2;
 			fill: rgba($color-primary-bridge-1, 1);
+		}
+
+		&:is(.card--playing, .card--done) hover .card__close {
+			opacity: 1;
 		}
 	}
 
@@ -140,8 +151,12 @@
 			fill: var(--color-primary-2);
 		}
 
-		& :is(.card__close, .card__pause, .card__stop):hover {
+		&:hover :is(.card__close, .card__pause) {
 			opacity: 1;
+		}
+
+		&:hover .card__stop {
+			opacity: $card-initial-opacity * 2;
 		}
   }
 

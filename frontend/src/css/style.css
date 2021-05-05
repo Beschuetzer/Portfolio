@@ -1188,6 +1188,18 @@ body {
 }
 
 .card {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: text;
+  /* Safari 'none' or 'text' here 'all' has issues*/
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
   cursor: pointer;
   z-index: 1;
   backface-visibility: hidden;
@@ -1263,9 +1275,12 @@ body {
   --card-scale-amount: 1.5;
   z-index: 2;
 }
-.card--hoverable:hover .card__play {
+.card--hoverable:not(.card--done, .card--playing):hover .card__play {
   opacity: 0.5;
   fill: #00406b;
+}
+.card--hoverable:is(.card--playing, .card--done) hover .card__close {
+  opacity: 1;
 }
 .card--playing {
   transform: var(--card-playing-transform);
@@ -1293,8 +1308,11 @@ body {
   opacity: 0.5;
   fill: var(--color-primary-2);
 }
-.card--playing :is(.card__close, .card__pause, .card__stop):hover {
+.card--playing:hover :is(.card__close, .card__pause) {
   opacity: 1;
+}
+.card--playing:hover .card__stop {
+  opacity: 0.5;
 }
 .card--done {
   cursor: auto;
