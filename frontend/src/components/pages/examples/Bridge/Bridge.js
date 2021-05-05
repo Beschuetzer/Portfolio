@@ -126,7 +126,6 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					titleSubtitle="Pick a Card any Card..."
 				>
 					<Card
-						
 						cardName='ace-of-clubs'
 						title='Claim All'
 						video={claimAllVideo}

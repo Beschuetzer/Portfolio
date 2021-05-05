@@ -1186,6 +1186,9 @@ body {
   width: 100%;
   object-fit: cover;
 }
+.fg-video__children .card__children p {
+  margin: 0;
+}
 
 .card {
   -webkit-touch-callout: none;
@@ -1216,9 +1219,22 @@ body {
   display: none;
 }
 .card__children {
-  display: none;
   opacity: 0;
-  padding: 0 3.2rem;
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  transform: translate(-50%, -50%);
+  font-size: 0.4rem;
+  background-color: var(--color-primary-4);
+  border: 0.1px solid var(--color-primary-1);
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1.5s ease;
+}
+.card__children p {
+  padding: 0.4rem;
 }
 .card__image {
   width: 100%;
@@ -1234,7 +1250,6 @@ body {
   width: 100%;
 }
 .card__content {
-  width: 100%;
   display: grid;
   grid-template-columns: 80% 20%;
 }
@@ -1274,12 +1289,15 @@ body {
   --card-scale-amount: 1.5;
   z-index: 2;
 }
+.card--hoverable:hover .card__children {
+  z-index: 1;
+}
 .card--hoverable:not(.card--done, .card--open):hover .card__play {
   opacity: 0.5;
   fill: #00406b;
 }
-.card--hoverable:is(.card--open, .card--done) hover .card__close {
-  opacity: 1;
+.card--hoverable:is(.card--open, .card--done):hover .card__close {
+  opacity: 0.5;
 }
 .card--open {
   transform: var(--card-playing-transform);
@@ -1313,6 +1331,9 @@ body {
   opacity: 0.5;
   fill: var(--color-primary-2);
 }
+.card--open .card__close:hover {
+  opacity: 1 !important;
+}
 .card--open:hover :is(.card__close, .card__pause) {
   opacity: 1;
 }
@@ -1324,11 +1345,17 @@ body {
   cursor: auto;
 }
 .card--done .card__close {
-  opacity: 1;
   z-index: 11;
+}
+.card--done .card__close:hover {
+  opacity: 1 !important;
 }
 .card--done .card__image {
   width: 102%;
+}
+.card--done .card__children {
+  opacity: 1;
+  z-index: 100;
 }
 
 .github {

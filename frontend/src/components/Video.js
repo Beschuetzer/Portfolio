@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 
 class Video extends React.Component {
   render() {
@@ -8,6 +8,9 @@ class Video extends React.Component {
           <video ref={reference} autoPlay={autoPlay} muted={muted} loop={loop}>
               <source src={src} type={`video/${type}`}/>
           </video>
+          <div className={`${className}__children`}>
+            {this.props.children}
+          </div>
       </div>
     );
   }

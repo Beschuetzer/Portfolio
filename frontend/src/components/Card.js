@@ -157,12 +157,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 			onClick={openVideo}
 			className="card card--hoverable">
 			<input ref={checkboxRef} className="card__checkbox" type="checkbox" />
-			<svg onClick={handleCloseVideo} className="card__close">
-				<use xlinkHref="/sprite.svg#icon-close"></use>
-			</svg>
-			<svg className="card__play">
-				<use xlinkHref="/sprite.svg#icon-play"></use>
-			</svg>
 			<svg className="card__stop">
 				<use xlinkHref="/sprite.svg#icon-stop"></use>
 			</svg>
@@ -175,8 +169,13 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 				src={`/${cardName}.${fileType}`}
 			/>
 			<div className="card__content">
+        <svg onClick={handleCloseVideo} className="card__close">
+          <use xlinkHref="/sprite.svg#icon-close"></use>
+        </svg>
+        <svg className="card__play">
+          <use xlinkHref="/sprite.svg#icon-play"></use>
+        </svg>
 				<h4 className="card__title">{title}</h4>
-				<div className="card__children">{children}</div>
 				<Video
 					className="fg-video"
 					type="mp4"
@@ -184,7 +183,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 					autoPlay={false}
 					loop={false}
 					reference={videoRef}
-				/>
+				>
+          <div className="card__children">{children}</div>
+        </Video>
 			</div>
 		</article>
 	);
