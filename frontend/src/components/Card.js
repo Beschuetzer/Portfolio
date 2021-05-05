@@ -113,10 +113,12 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 		video.addEventListener("ended", handleVideoEnd);
 		video.play();
 		card.classList.add("card--open");
+		card.classList.remove("card--done");
 	}
 
 	const pauseVideo = (video, card) => {
 		video?.pause();
+		card.classList.remove("card--done");
 	}
 
 	const stopVideo = (e) => {
@@ -125,23 +127,35 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 
 	const restartVideo = (video, card) => {
 		console.log('restart------------------------------------------------');
+		
+		
 		if (!video) return;
 		video.currentTime = 0;
-		if (!getIsVideoPlaying(video)) video.play();
-
+		if (!getIsVideoPlaying(video)) {
+			video.play();
+		}
+		
 		if (!card) return;
+		if (card.classList.contains('card--done')) video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove('card--done');
+	}
+
+	const openVideo = (video, card) => {
+		const isVideoPlaying = getIsVideoPlaying(video);
+		if (!video) return;
+		if (isVideoPlaying || card.classList.contains('card--open'))	closeVideo(video, card)
+		else playVideo(video, card)
 	}
 
 	const handleRestartVideo = (e) => {
 		e.stopPropagation();
-		restartVideo(videoRef.current, e.currentTarget);
+		restartVideo(videoRef.current, cardRef.current);
 	}
 
 	const handleCloseVideo = (e) => {
 		console.log("close------------------------------------------------");
 		e.stopPropagation();
-		closeVideo(videoRef.current, e.currentTarget);
+		closeVideo(videoRef.current, cardRef.current);
 	};
 
 	const handleVideoEnd = (e) => {
@@ -164,14 +178,11 @@ const Card = ({ title, cardName, fileType = "svg", children, video }) => {
 	const handleCardClick = (e) => {
 		console.log("open------------------------------------------------");
 		e.stopPropagation();
-		if (cardRef.current?.classList.contains("card--done")) return;
-		toggleCheckbox();
+		const card = cardRef.current;
 		const video = videoRef?.current;
-
-		const isVideoPlaying = getIsVideoPlaying(video);
-		if (!video) return;
-		if (isVideoPlaying)	closeVideo(video, e.currentTarget)
-		else playVideo(video, e.currentTarget)
+		if (card?.classList.contains("card--done")) return;
+		toggleCheckbox();
+		openVideo(video, card)
 	};
 
 	const handleMouseEnter = (e) => {
