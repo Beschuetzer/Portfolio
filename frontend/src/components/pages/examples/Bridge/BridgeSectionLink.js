@@ -38,8 +38,8 @@ const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBrid
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    currentBridgeSection: state.general.currentBridgeSection,
-    bridgeSections: state.general.bridgeSections,
+    currentBridgeSection: state.bridge.currentBridgeSection,
+    bridgeSections: state.bridge.bridgeSections,
     numberOfSkips: parseInt(ownProps.numberOfSkips),
   }
 }

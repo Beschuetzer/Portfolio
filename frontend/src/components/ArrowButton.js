@@ -132,9 +132,9 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    currentBridgeSection: state.general.currentBridgeSection,
-    bridgeSections: state.general.bridgeSections,
-    clickedBridgeInfoButtonCount: state.general.clickedBridgeInfoButtonCount,
+    currentBridgeSection: state.bridge.currentBridgeSection,
+    bridgeSections: state.bridge.bridgeSections,
+    clickedBridgeInfoButtonCount: state.bridge.clickedBridgeInfoButtonCount,
   }
 }
 

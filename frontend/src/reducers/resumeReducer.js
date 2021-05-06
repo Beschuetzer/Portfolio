@@ -12,7 +12,6 @@ const resumeReducer = (state = INITIAL_STATE, action) => {
       return {...state, sectionsToSkipAnimation: action.payload};
     case ADD_REPO:
       if (action.payload?.length === 0) return {...state, reposToDisplay: []};
-      
       const reposToDisplayNew = [...state.reposToDisplay, action.payload];
       return {...state, reposToDisplay: reposToDisplayNew};
     case CLICK_SKILL:

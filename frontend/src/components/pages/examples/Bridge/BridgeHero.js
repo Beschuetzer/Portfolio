@@ -104,7 +104,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     sounds: state.sounds,
     isMobile: state.general.isMobile,
-    clickedBridgeInfoButtonCount: state.general.clickedBridgeInfoButtonCount,
+    clickedBridgeInfoButtonCount: state.bridge.clickedBridgeInfoButtonCount,
   }
 }
 
