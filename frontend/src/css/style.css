@@ -801,6 +801,8 @@ body {
 }
 .navbar.navbar--active .navbar__background {
   visibility: visible;
+  transition: filter 0.5s ease;
+  backdrop-filter: blur(0.8rem) brightness(0.75) drop-shadow(0px 1.6rem 3.2rem var(--color-grey-80));
 }
 .navbar.navbar--isAnimating * {
   pointer-events: none;
@@ -825,13 +827,8 @@ body {
   /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
-.root {
+#root {
   overflow: hidden;
-  transition: filter 0.5s ease;
-}
-
-.root.navbar--active {
-  filter: blur(0.8rem) brightness(0.75) drop-shadow(0px 1.6rem 3.2rem var(--color-grey-80));
 }
 
 .header {
