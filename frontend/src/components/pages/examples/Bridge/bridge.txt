@@ -35,13 +35,13 @@ Bridge
         III. Read the docs before diving in!  I spent 1 month learning how to draw a deck of cards in paper.js then eventually read the docs (for an unrelated issue) and found out you can just import Raster images...
 
     5. Features
-        0. Deal Summary
-        I. Undo Feature
-        II. Claim some
-        III. Claim all
+        I. card play animations
+        II. Undo Feature
+        III. Save Games (need to capture)
         IV. dynamic resizing
-        VIII. drag and drop playing
-        V. card play animations
-        VI. User Preferences
-        VII. Color Themes
-        IV. Save Games (need to capture)
+        V. User Preferences
+        VI. Color Themes
+        VII. Deal Summary
+        VIII. Claim some
+        IV. Claim all
+        X. drag and drop playing

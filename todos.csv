@@ -46,8 +46,9 @@ IDEAS-----------------------------------------------------------
 -mobile bridge------------
   -first section doesn't expand content all the way (height auto not working)
   -videos off
+
+-fix height issue with cards (no y adjustment)
 -add the rest of the cards
--re-record videos in bridge.txt
 
 
 

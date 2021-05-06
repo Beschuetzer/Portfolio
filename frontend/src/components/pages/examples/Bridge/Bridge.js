@@ -130,7 +130,16 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					titleSubtitle="Pick a Card any Card..."
 				>
 					<Card
+						video={cardPlayAndRoundEndVideo}
 						cardName='ace-of-clubs'
+						title='Animations'
+					>
+						<p>
+							There are two optional animations.&nbsp; One, when someone else plays a card, the card is animated such that it appears the player is throwing into the middle of the table.&nbsp; Two, when four cards have been played, the cards 'blast off' of the table.
+						</p>
+					</Card>
+					<Card
+						cardName='king-of-clubs'
 						title='Claim All'
 						video={claimAllVideo}
 					>
@@ -140,7 +149,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					</Card>
 					<Card
 						video={claimSomeVideo}
-						cardName='ace-of-diamonds'
+						cardName='king-of-diamonds'
 						title='Claim Some'
 					>
 						<p>
@@ -149,7 +158,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					</Card>
 					<Card
 						video={dealSummaryVideo}
-						cardName='ace-of-hearts'
+						cardName='king-of-hearts'
 						title='Deal Summary'
 					>
 						<p>
@@ -158,13 +167,14 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					</Card>
 					<Card
 						video={preferencesVideo}
-						cardName='ace-of-spades'
+						cardName='king-of-spades'
 						title='Preferences'
 					>
 						<p>
 							Preferences allow each player to customize the experience of the game.&nbsp; Card sorting order, sounds, animation toggling, color themes, card back image, and other preferences are all customizable via the preferences page.
 						</p>
 					</Card>
+					
 				</BridgeCard>
 		
 			</SectionContainer>
