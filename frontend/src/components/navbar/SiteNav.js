@@ -49,13 +49,11 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 			!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&
 			isChildOfNavBar
 		) {
-			console.log('open------------------------------------------------');
 			navBar.classList.add("overflow--hidden");
 			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 			document.querySelector('#header').classList.add('z-index-highest')
 			setIsAnimating(true);
 		} else {
-			console.log('close------------------------------------------------');
 			navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 
@@ -97,7 +95,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	}
 
 	useEffect(() => {
-		console.log('1------------------------------------------------');
 		const navbarContent = document.querySelector('.navbar__content');
 		const header = document.querySelector('.header');
 		const headerBoundingRect = header.getBoundingClientRect();
@@ -113,7 +110,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	}, [viewPortWidth, setHeaderHeight])
 
 	useEffect(() => {
-		console.log('2------------------------------------------------');
 
 		if (!currentUrl) return; 
 
@@ -139,7 +135,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 	//When url changes
 	useEffect(() => {
-		console.log('3------------------------------------------------');
 		if (!currentUrl || currentUrl !== match.url) {
 			setCurrentUrl(match.url);
 		}
@@ -147,7 +142,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 	//initial
 	useEffect(() => {
-		console.log('4------------------------------------------------');
 		const onBodyClick = (e) => {
 			const isNavClick = e.target?.classList?.contains(NAVBAR_ACTIVE_CLASSNAME)
 				? true
@@ -160,7 +154,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		};
 		document.body.addEventListener("click", onBodyClick);
 
-		console.log('initial------------------------------------------------')
 		;
 
 		setTimeout(() => {
@@ -174,7 +167,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	}, [setHeaderHeight]);
 
 	useEffect(() => {
-		console.log('5------------------------------------------------');
 		const navBar = navRef.current;
 		const resetAnimatingId = setTimeout(() => {
 			navBar?.classList?.remove("navbar--isAnimating");
