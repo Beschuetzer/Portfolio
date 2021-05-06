@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 
 import { setLastSecondRowCardNumber } from '../actions';
@@ -7,26 +7,37 @@ import { setLastSecondRowCardNumber } from '../actions';
 //Responsible for changing transform origin on cards if the rows change due to viewport width
 const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber, setLastSecondRowCardNumber}) => {
 
+  const memoizedCheckForChanges = useCallback(() => {
+    const checkForChanges = () => {
+      const cards = document.querySelectorAll('.card');
+      const secondRowCardNumber = getSecondRowStartCardNumber(cards);
+  
+      console.log('secondRowCardNumber =', secondRowCardNumber);
+      console.log('lastSecondRowCardNumber =', lastSecondRowCardNumber);
+      //only change transform origins if start of 2nd row is not 5th card
+      if (secondRowCardNumber !== lastSecondRowCardNumber) {
+        console.log('setting new card------------------------------------------------');
+        setLastSecondRowCardNumber(secondRowCardNumber);
+      }
+    }
+    checkForChanges();
+  }, [lastSecondRowCardNumber, setLastSecondRowCardNumber])
+
+
 //Initial Load Check if need to change transform origins
   useEffect(() => {
     console.log('initial load------------------------------------------------');
-    const cards = document.querySelectorAll('.card');
-    const secondRowCardNumber = getSecondRowStartCardNumber(cards);
-
-    console.log('secondRowCardNumber =', secondRowCardNumber);
-    console.log('lastSecondRowCardNumber =', lastSecondRowCardNumber);
-    //only change transform origins if start of 2nd row is not 5th card
-    if (secondRowCardNumber !== lastSecondRowCardNumber) {
-      console.log('setting new card------------------------------------------------');
-      setLastSecondRowCardNumber(secondRowCardNumber);
-    }
-  }, [lastSecondRowCardNumber, setLastSecondRowCardNumber])
+    memoizedCheckForChanges();
+  }, [memoizedCheckForChanges])
 
   useEffect(() => {
     console.log('view port change------------------------------------------------');
     if (!isMobile) return;
+    memoizedCheckForChanges();
     console.log('is mobile------------------------------------------------');
-  }, [viewPortWidth, isMobile])
+  }, [viewPortWidth, isMobile, memoizedCheckForChanges])
+
+  
 
   const getSecondRowStartCardNumber = (cards) => {
 		if (!cards) return;
@@ -35,7 +46,13 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
 		for (let i = 0; i < cards.length; i++) {
 			const card = cards[i];
 			const currentTop = card.getBoundingClientRect().top;
-			if (previousTop === -1 || previousTop !== currentTop);
+      console.log('previousTop =', previousTop);
+      console.log('currentTop =', currentTop);
+			if (previousTop === -1) {
+        previousTop = currentTop;
+        continue
+      }
+      if ( previousTop !== currentTop) return i;
 			// console.log('card =', card);
 		}
 

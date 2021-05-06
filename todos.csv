@@ -47,10 +47,11 @@ IDEAS-----------------------------------------------------------
   -first section doesn't expand content all the way (height auto not working)
   -videos off
 
+-SiteNav examples for non-touch devices should be expanded
 -change "Features" main title to the title of clicked video on play and reset on close
 -how can one dynamically change transform-origin based on where an item is in the grid (for Cards at smaller viewports)?
   -one possible idea is to iterate through each card whenever the viewport changes and assign transform origins based on the x and y coordinates of the cards keeping track of the x coordinate and then finding all the instance where x coordinates are the same for the first and last item in the first row
-  
+
 
 
 
