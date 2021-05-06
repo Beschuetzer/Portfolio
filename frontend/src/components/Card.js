@@ -47,13 +47,15 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		const yValueToMatch = cardDimensions.height / cardScaleOnHoverAmount;
 		const xCondition = Math.abs(yTransformOffset - xValueToMatch) < 1;
 		const yCondition = Math.abs(xTransformOffset - yValueToMatch) < 1;
+		const xConditionHalf = Math.abs(yTransformOffset * 2 - xValueToMatch) < 1;
+		const yConditionHalf = Math.abs(xTransformOffset * 2 - yValueToMatch) < 1;
 
 		const isTransformOriginTopLeft = xTransformOffset === 0 && yTransformOffset === 0;
 		const isTransformOriginTopRight = xTransformOffset === 0 && xCondition;
 		const isTransformOriginBottomLeft = yCondition && yTransformOffset === 0;
 		const isTransformOriginBottomRight = yCondition && xCondition;
-		const isTransformOriginTop = null;
-		const isTransformOriginBottom = null;
+		const isTransformOriginTop = xTransformOffset === 0 && xConditionHalf ;
+		const isTransformOriginBottom = yCondition && xConditionHalf;
 
 		//TODO: remove this when done
 		const cards = document.querySelectorAll('.card');
@@ -73,6 +75,11 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		console.log('yValueToMatch =', yValueToMatch);
 		console.log('xCondition =', xCondition);
 		console.log('yCondition =', yCondition);
+		console.log('xConditionHalf =', xConditionHalf);
+		console.log('yConditionHalf =', yConditionHalf);
+		console.log('isTransformOriginTop =', isTransformOriginTop);
+		console.log('isTransformOriginBottom =', isTransformOriginBottom);
+
 		console.log('Math.abs(yTransformOffset - valueToMatch) =', Math.abs(yTransformOffset - xValueToMatch));
 
 		if (isTransformOriginTopLeft || isTransformOriginTopRight) {
@@ -89,8 +96,8 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 			cardCenterXOriginal = cardCenterXOriginal - (cardDimensions.width * xCornerOffset);
 		} 
 
-		else if (nthCard >= 1 && nthCard <= 3) cardCenterYOriginal += yTransformOffset * cardScaleOnHoverAmount;
-		else if (nthCard >= 6 && nthCard <= 8) cardCenterYOriginal -= yTransformOffset * cardScaleOnHoverAmount;
+		else if (isTransformOriginTop) cardCenterYOriginal += yTransformOffset * cardScaleOnHoverAmount;
+		else if (isTransformOriginBottom) cardCenterYOriginal -= yTransformOffset * cardScaleOnHoverAmount;
 		// cardCenterXOriginal += xOffset;
 
 		return {

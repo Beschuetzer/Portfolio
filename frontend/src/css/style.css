@@ -1218,7 +1218,7 @@ body {
   align-items: center;
   justify-items: center;
   transform: scale(var(--card-scale-amount));
-  transition: transform 0.25s ease;
+  transition: transform 0.1666666667s ease;
 }
 .card * {
   backface-visibility: hidden;

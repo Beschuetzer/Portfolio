@@ -48,7 +48,7 @@ IDEAS-----------------------------------------------------------
   -videos off
 
 -change "Features" main title to the title of clicked video on play and reset on close
--change transform-origin for each Card
+-how can one dynamically change transform-origin based on where an item is in the grid (for Cards at smaller viewports)?
 
 
 
