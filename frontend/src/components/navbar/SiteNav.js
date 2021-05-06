@@ -18,18 +18,11 @@ import {
 const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidth, sounds, setHeaderHeight }) => {
 	const [ currentUrl, setCurrentUrl ] = useState(null);
 	const navRef = useRef();
-	const root = document.querySelector("#root");
 	const noFilterPages = ['/bridge'];
 
 	const hide = () => {
 		navRef.current.classList.add("overflow--hidden");
 	};
-
-	// const handleFilterBug = (e) => {
-	// 	const page = currentUrl.slice([currentUrl.lastIndexOf('/')]);
-	// 	if (noFilterPages.indexOf(page) !== -1) root.classList.add('no-filter');
-	// 	else root.classList.remove('no-filter')
-	// }
 
 	const handleSound = (e) => {
 		const isActive = e.currentTarget.className.match(/--active/i);
@@ -42,7 +35,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 	const onNavClick = (e) => {
 		e.stopPropagation();
-		// handleFilterBug(e);
 		const navBar = navRef.current;
 		const isChildOfNavBar = checkForParentOfType(e.target, "nav", "navbar");
 
@@ -57,11 +49,11 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 			isChildOfNavBar
 		) {
 			navBar.classList.add("overflow--hidden");
-			root.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
+			// root.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 			setIsAnimating(true);
 		} else {
-			root.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+			// root.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 			navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 			setIsAnimating(false);
@@ -160,7 +152,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 				navRef?.current?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 				// navRef?.current?.classList?.add("overflow--hidden");
 			}
-			root.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+			// root.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 		};
 		document.body.addEventListener("click", onBodyClick);
 
@@ -175,7 +167,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		return (() => {
 			document.body.removeEventListener("click", onBodyClick);
 		})
-	}, [root, setHeaderHeight]);
+	}, [setHeaderHeight]);
 
 	useEffect(() => {
 		const navBar = navRef.current;
@@ -183,10 +175,10 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 			navBar?.classList?.remove("navbar--isAnimating");
 			navBar?.classList?.remove("overflow--hidden");
 			if (isAnimating && navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME)) {
-				root.classList?.add(NAVBAR_DONE_CLASSNAME);
+				// root.classList?.add(NAVBAR_DONE_CLASSNAME);
 				navBar.classList?.add(NAVBAR_DONE_CLASSNAME);
 			} else {
-				root.classList?.remove(NAVBAR_DONE_CLASSNAME);
+				// root.classList?.remove(NAVBAR_DONE_CLASSNAME);
 				navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 			}
 		}, ANIMATION_DURATION * 1.2);
@@ -195,7 +187,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		return () => {
 			clearTimeout(resetAnimatingId);
 		};
-	}, [isAnimating, root]);
+	}, [isAnimating]);
 
 	return ReactDOM.createPortal(
 		<nav
