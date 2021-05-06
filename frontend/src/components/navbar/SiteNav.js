@@ -48,12 +48,17 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 			!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&
 			isChildOfNavBar
 		) {
+			console.log('open------------------------------------------------');
+			document.querySelector('#header').classList.add('z-index-highest')
 			navBar.classList.add("overflow--hidden");
 			// root.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 			setIsAnimating(true);
 		} else {
+			
+			console.log('close------------------------------------------------');
 			// root.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+			document.querySelector('#header').classList.remove('z-index-highest')
 			navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 			setIsAnimating(false);
@@ -123,16 +128,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 			const colorVarTarget = `${colorVarRoot}${colorVarSuffix !== '' ? `-${colorVarSuffix}` : ''}${colorVarNumber}`;
 			const targetValue = docStyle.getPropertyValue(colorVarTarget);
 			document.documentElement.style.setProperty(colorVarToChange, targetValue);
-
-			let targetHSLValues =  targetValue.replace('hsl(', '').replace(')', '').trim().split(', ');
-			// for (let j = 0; j < colorVarHSL.length; j++) {
-			// 	const hslSuffix = colorVarHSL[j];
-			// 	const colorVarToChangeWithSuffix = colorVarToChange + hslSuffix;
-			// 	document.documentElement.style.setProperty(colorVarToChangeWithSuffix, targetHSLValues[j]);
-			// }
 		}
-
-		
 	}, [currentUrl])
 
 	//When url changes

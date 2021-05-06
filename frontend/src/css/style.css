@@ -387,6 +387,10 @@ body {
   z-index: 6 !important;
 }
 
+.z-index-highest {
+  z-index: 105 !important;
+}
+
 .scale-1 {
   transform: scale(1) !important;
 }

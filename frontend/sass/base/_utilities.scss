@@ -104,6 +104,10 @@
         z-index: $navbar-full-z-index + 1 !important;
     }
 
+    .z-index-highest {
+        z-index: $navbar-full-z-index + 100 !important;
+    }
+
     .scale-1 {
         transform: scale(1) !important;
     }
