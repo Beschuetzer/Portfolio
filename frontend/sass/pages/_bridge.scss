@@ -48,8 +48,7 @@
 		&-content {
 			position: relative;
 			overflow-y: auto;
-			// padding: $default-font-size * .5;
-			padding: 0;
+			padding: $default-font-size * 2 $default-font-size * 4;
 			display: flex;
 			justify-content: flex-start;
 			flex-direction: column;
@@ -103,6 +102,7 @@
 			}
 
 			& .bridge__section-content {
+				padding: 0;
 				overflow: hidden;
 				display: grid;
 				grid-template-columns: repeat(auto-fill, minmax($default-font-size * 9, 1fr));

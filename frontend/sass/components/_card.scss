@@ -18,7 +18,7 @@
 	align-items: center;
 	justify-items: center;
 	transform: scale(var(--card-scale-amount));
-	transition: transform $animation-duration $animation-easing-standard;
+	transition: transform $animation-duration / 2 $animation-easing-standard;
 
 	& * {
 		backface-visibility: hidden;

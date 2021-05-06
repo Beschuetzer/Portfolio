@@ -1218,7 +1218,7 @@ body {
   align-items: center;
   justify-items: center;
   transform: scale(var(--card-scale-amount));
-  transition: transform 0.5s ease;
+  transition: transform 0.25s ease;
 }
 .card * {
   backface-visibility: hidden;
@@ -2420,7 +2420,7 @@ div.references__name {
 .bridge__section-content {
   position: relative;
   overflow-y: auto;
-  padding: 0;
+  padding: 3.2rem 6.4rem;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -2453,6 +2453,7 @@ div.references__name {
   color: var(--color-primary-4);
 }
 .bridge__section:nth-of-type(2) .bridge__section-content {
+  padding: 0;
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(14.4rem, 1fr));

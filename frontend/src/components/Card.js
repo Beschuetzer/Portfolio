@@ -16,11 +16,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	const progressBarRef = useRef();
 	let hasProgressEventListener = false;
 
-	const centerCard = (card) => {
-		if (!card) return;
-
-		const sectionDimensions = card.parentNode.getBoundingClientRect();
-		const cardDimensions = card.getBoundingClientRect();
+	const getCardCoordinates = (card, cardDimensions) => {
 
 		let cardLeftOriginal = cardDimensions.left;
 		let cardRightOriginal = cardDimensions.right;
@@ -40,7 +36,51 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 			cardCenterYOriginal = (cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal;
 		}
 
-	
+		const transformOrigin = getComputedStyle(card)['transformOrigin'];
+		const split = transformOrigin.split(' ');
+		const yOffset = parseFloat(split[0]);
+		const xOffset = parseFloat(split[1]);
+		console.log('xOffset =', xOffset);
+		console.log('yOffset =', yOffset);
+
+		const cards = document.querySelectorAll('.card');
+		let nthCard = -1;
+		for (let i = 0; i < cards.length; i++) {
+			const cardLocal = cards[i];
+			if (cardLocal === card) {
+				nthCard = i;
+				break;
+			}
+		}
+
+		console.log('nthCard =', nthCard);
+		const cardScaleOnHoverAmount = 3 / 2;
+		if (nthCard === 0) {
+			// cardCenterYOriginal = cardCenterYOriginal + (cardDimensions.height * cardScaleOnHoverAmount);
+			// cardCenterXOriginal += cardDimensions.width ;
+		}
+		else if (nthCard >= 1 && nthCard <= 3) cardCenterYOriginal += yOffset * cardScaleOnHoverAmount;
+		else if (nthCard >= 6 && nthCard <= 8) cardCenterYOriginal -= yOffset * cardScaleOnHoverAmount;
+		// cardCenterXOriginal += xOffset;
+
+		return {
+			cardCenterXOriginal,
+			cardCenterYOriginal,
+		}
+	}
+
+	const centerCard = (card) => {
+		if (!card) return;
+		
+		const cardDimensions = card.getBoundingClientRect();
+
+		const {
+			cardCenterXOriginal,
+			cardCenterYOriginal,
+		} = getCardCoordinates(card, cardDimensions);
+
+		const sectionDimensions = card.parentNode.getBoundingClientRect();
+
 		const containerCenterX =
 			(sectionDimensions.right - sectionDimensions.left) / 2 +
 			sectionDimensions.left;
