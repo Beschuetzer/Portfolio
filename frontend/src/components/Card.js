@@ -56,17 +56,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		const isTransformOriginBottomRight = yCondition && xCondition;
 		const isTransformOriginTop = xTransformOffset === 0 && xConditionHalf ;
 		const isTransformOriginBottom = yCondition && xConditionHalf;
+		const isTransformOriginLeft = yTransformOffset === 0 && yConditionHalf;
+		const isTransformOriginRight = xCondition && yConditionHalf;
 
-		//TODO: remove this when done
-		const cards = document.querySelectorAll('.card');
-		let nthCard = -1;
-		for (let i = 0; i < cards.length; i++) {
-			const cardLocal = cards[i];
-			if (cardLocal === card) {
-				nthCard = i;
-				break;
-			}
-		}
 
 		console.log('xTransformOffset =', xTransformOffset);
 		console.log('yTransformOffset =', yTransformOffset);
@@ -77,8 +69,14 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		console.log('yCondition =', yCondition);
 		console.log('xConditionHalf =', xConditionHalf);
 		console.log('yConditionHalf =', yConditionHalf);
+		console.log('isTransformOriginTopLeft =', isTransformOriginTopLeft);
+		console.log('isTransformOriginTopRight =', isTransformOriginTopRight);
+		console.log('isTransformOriginBottomLeft =', isTransformOriginBottomLeft);
+		console.log('isTransformOriginBottomRight =', isTransformOriginBottomRight);
 		console.log('isTransformOriginTop =', isTransformOriginTop);
 		console.log('isTransformOriginBottom =', isTransformOriginBottom);
+		console.log('isTransformOriginLeft =', isTransformOriginLeft);
+		console.log('isTransformOriginRight =', isTransformOriginRight);
 
 		console.log('Math.abs(yTransformOffset - valueToMatch) =', Math.abs(yTransformOffset - xValueToMatch));
 
