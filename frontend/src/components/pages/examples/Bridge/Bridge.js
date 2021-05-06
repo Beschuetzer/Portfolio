@@ -165,7 +165,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 						   The playing screen dynamically adjusts to the viewport, allowing users to play on their Android phone or with the window only taking up a fraction of the screen.
 						</p>
 					</Card>
-					<Card
+					{/* <Card
 						cardName='king-of-clubs'
 						title='Claim All'
 						video={claimAllVideo}
@@ -225,9 +225,8 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 						</p>
 						
 					</Card>
-					
+					 */}
 				</BridgeCard>
-		
 			</SectionContainer>
 			,
 			<SectionContainer

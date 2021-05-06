@@ -59,6 +59,8 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		if (cardCenterXOriginal < containerCenterX)
 			translateLeftAmount = -translateLeftAmount;
 
+		if (cardCenterYOriginal < containerCenterY)
+			translateUpAmount = -translateUpAmount;
 		// console.log('------------------------------------------------');
 		// console.log('card =', card);
 		// console.log('card.parentNode =', card.parentNode);
