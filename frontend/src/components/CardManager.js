@@ -12,8 +12,8 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
       const cards = document.querySelectorAll('.card');
       const secondRowCardNumber = getSecondRowStartCardNumber(cards);
   
-      console.log('secondRowCardNumber =', secondRowCardNumber);
-      console.log('lastSecondRowCardNumber =', lastSecondRowCardNumber);
+      // console.log('secondRowCardNumber =', secondRowCardNumber);
+      // console.log('lastSecondRowCardNumber =', lastSecondRowCardNumber);
       //only change transform origins if start of 2nd row is not 5th card
       if (secondRowCardNumber !== lastSecondRowCardNumber) {
         console.log('setting new card------------------------------------------------');
@@ -46,8 +46,8 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
 		for (let i = 0; i < cards.length; i++) {
 			const card = cards[i];
 			const currentTop = card.getBoundingClientRect().top;
-      console.log('previousTop =', previousTop);
-      console.log('currentTop =', currentTop);
+      // console.log('previousTop =', previousTop);
+      // console.log('currentTop =', currentTop);
 			if (previousTop === -1) {
         previousTop = currentTop;
         continue

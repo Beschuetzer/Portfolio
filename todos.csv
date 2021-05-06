@@ -47,6 +47,7 @@ IDEAS-----------------------------------------------------------
   -first section doesn't expand content all the way (height auto not working)
   -videos off
 
+-Go through every component and check for cases where I could use useCallback or useMemo?"
 -SiteNav examples for non-touch devices should be expanded
 -change "Features" main title to the title of clicked video on play and reset on close
 -how can one dynamically change transform-origin based on where an item is in the grid (for Cards at smaller viewports)?

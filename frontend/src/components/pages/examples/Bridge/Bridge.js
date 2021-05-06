@@ -22,6 +22,7 @@ import preferencesVideo from '../../../../clips/preferences.mp4';
 import themesVideo from '../../../../clips/themes.mp4';
 import saveGameVideo from '../../../../clips/saveGame.mp4';
 import CardManager from "../../../CardManager";
+import { onRenderCallback } from "../../../constants";
 
 const Bridge = ({hasClickedBridgeInfoButton}) => {
 	const sectionContents = [
