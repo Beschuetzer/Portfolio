@@ -36,12 +36,12 @@ Bridge
 
     5. Features
         0. Deal Summary
-        I. Undo Feature (need to capture this one)
+        I. Undo Feature
         II. Claim some
         III. Claim all
-        IV. dynamic resizing (redo this video.  keep it under 5 seconds and get 60fps)
+        IV. dynamic resizing
+        VIII. drag and drop playing
         V. card play animations
         VI. User Preferences
         VII. Color Themes
-        VIII. drag and drop playing
         IV. Save Games (need to capture)
