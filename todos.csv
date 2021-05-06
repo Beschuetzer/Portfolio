@@ -47,8 +47,8 @@ IDEAS-----------------------------------------------------------
   -first section doesn't expand content all the way (height auto not working)
   -videos off
 
--fix height issue with cards (no y adjustment)
-
+-change "Features" main title to the title of clicked video on play and reset on close
+-change transform-origin for each Card
 
 
 

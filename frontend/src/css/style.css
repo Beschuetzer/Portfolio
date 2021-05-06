@@ -1465,6 +1465,24 @@ body {
   opacity: 1;
   visibility: visible;
 }
+.card:first-of-type {
+  transform-origin: top left;
+}
+.card:nth-of-type(2), .card:nth-of-type(3), .card:nth-of-type(4) {
+  transform-origin: top;
+}
+.card:nth-of-type(5) {
+  transform-origin: top right;
+}
+.card:nth-of-type(6) {
+  transform-origin: bottom left;
+}
+.card:nth-of-type(7), .card:nth-of-type(8), .card:nth-of-type(9) {
+  transform-origin: bottom;
+}
+.card:last-of-type {
+  transform-origin: bottom right;
+}
 
 .github {
   border-radius: 50%;
