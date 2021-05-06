@@ -39,9 +39,9 @@ Bridge
         II. Undo Feature
         III. Save Games (need to capture)
         IV. dynamic resizing
+        IV. Claim all
+        VIII. Claim some
+        VII. Deal Summary
         V. User Preferences
         VI. Color Themes
-        VII. Deal Summary
-        VIII. Claim some
-        IV. Claim all
         X. drag and drop playing

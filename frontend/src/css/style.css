@@ -1266,6 +1266,10 @@ body {
 .card__children p {
   padding: 0.4rem;
 }
+.card__children ul {
+  list-style: decimal;
+  padding-left: 0.8rem;
+}
 .card__image {
   width: 100%;
   position: absolute;

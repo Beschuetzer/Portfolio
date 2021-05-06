@@ -88,6 +88,15 @@
 			padding: $default-font-size * .25;
 		}
 
+		& ul {
+			list-style: decimal;
+			padding-left: $default-font-size * .5;
+		}
+
+		& li {
+			// margin-left: $default-font-size * .5;
+		}
+
 		&-toggler {
 			// position: absolute;
 			// left: 0;

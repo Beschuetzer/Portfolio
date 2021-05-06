@@ -16,7 +16,7 @@ import undoVideo from '../../../../clips/undo.mp4';
 import claimSomeVideo from '../../../../clips/claim-some-declarer-initial.mp4';
 import claimAllVideo from '../../../../clips/claim-all.mp4';
 import resizingVideo from '../../../../clips/resizing.mp4';
-import dragAndDropVideo from '../../../../clips/animation-roundEnd.mp4';
+import playingACardVideo from '../../../../clips/cardPlayOptions.mp4';
 import cardPlayAndRoundEndVideo from '../../../../clips/animation-roundEndDummy.mp4';
 import preferencesVideo from '../../../../clips/preferences.mp4';
 import themesVideo from '../../../../clips/themes.mp4';
@@ -139,6 +139,33 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 						</p>
 					</Card>
 					<Card
+						video={undoVideo}
+						cardName='ace-of-diamonds'
+						title='Undo'
+					>
+						<p>
+							Players are able to undo during the bidding phase as well as the playing phase.
+						</p>
+					</Card>
+					<Card
+						video={saveGameVideo}
+						cardName='ace-of-hearts'
+						title='Save Games'
+					>
+						<p>
+						   The server saves each play and bid automatically, allowing players to resume playing at a later time without having to worry about losing the game state.
+						</p>
+					</Card>
+					<Card
+						video={resizingVideo}
+						cardName='ace-of-spades'
+						title='Dynamic Resizing'
+					>
+						<p>
+						   The playing screen dynamically adjusts to the viewport, allowing users to play on their Android phone or with the window only taking up a fraction of the screen.
+						</p>
+					</Card>
+					<Card
 						cardName='king-of-clubs'
 						title='Claim All'
 						video={claimAllVideo}
@@ -173,6 +200,30 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 						<p>
 							Preferences allow each player to customize the experience of the game.&nbsp; Card sorting order, sounds, animation toggling, color themes, card back image, and other preferences are all customizable via the preferences page.
 						</p>
+					</Card>
+					<Card
+						video={themesVideo}
+						cardName='queen-of-clubs'
+						title='Themes'
+					>
+						<p>
+							There are 8 different color themes available.  Some are intentionally strange, while others are meant to impress.  
+						</p>
+					</Card>
+					<Card
+						video={playingACardVideo}
+						cardName='queen-of-diamonds'
+						title='Drag and Drop'
+					>
+						<p>
+							When it is your turn to play a card, you have three ways to play a card: 
+							<ul>
+								<li>double click the card</li>
+								<li>drag and drop the card</li>
+								<li>use the keyboard shortcut for that card</li>
+							</ul>
+						</p>
+						
 					</Card>
 					
 				</BridgeCard>
