@@ -9,7 +9,7 @@ import {
 import Video from "../components/Video";
 import { capitalize } from "../helpers";
 
-const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth }) => {
+const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile }) => {
 	const videoRef = useRef();
 	const cardRef = useRef();
 	const checkboxRef = useRef();
@@ -38,10 +38,16 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 		const transformOrigin = getComputedStyle(card)['transformOrigin'];
 		const split = transformOrigin.split(' ');
-		const yOffset = parseFloat(split[0]);
-		const xOffset = parseFloat(split[1]);
-		console.log('xOffset =', xOffset);
-		console.log('yOffset =', yOffset);
+		const cardWidth = cardDimensions.width;
+		const yTransformOffset = parseFloat(split[0]);
+		const xTransformOffset = parseFloat(split[1]);
+		const yCornerOffset = isMobile ? 1.75 : 1.85;
+		const xCornerOffset = 1.1675;
+		const cardScaleOnHoverAmount = 3 / 2;
+
+		console.log('xTransformOffset =', xTransformOffset);
+		console.log('yTransformOffset =', yTransformOffset);
+		console.log('cardDimensions =', cardDimensions);
 
 		const cards = document.querySelectorAll('.card');
 		let nthCard = -1;
@@ -53,14 +59,22 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 			}
 		}
 
-		console.log('nthCard =', nthCard);
-		const cardScaleOnHoverAmount = 3 / 2;
-		if (nthCard === 0) {
-			// cardCenterYOriginal = cardCenterYOriginal + (cardDimensions.height * cardScaleOnHoverAmount);
-			// cardCenterXOriginal += cardDimensions.width ;
+		if (nthCard === 0 || nthCard === 4 ) {
+			cardCenterYOriginal = cardCenterYOriginal + (cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset);
 		}
-		else if (nthCard >= 1 && nthCard <= 3) cardCenterYOriginal += yOffset * cardScaleOnHoverAmount;
-		else if (nthCard >= 6 && nthCard <= 8) cardCenterYOriginal -= yOffset * cardScaleOnHoverAmount;
+		else if (nthCard === 5 || nthCard === 9) {
+			cardCenterYOriginal = cardCenterYOriginal - (cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset);
+		}
+
+		if (nthCard === 0 || nthCard === 5) {
+			cardCenterXOriginal = cardCenterXOriginal + (cardDimensions.width * xCornerOffset);
+		} 
+		else if (nthCard === 4 || nthCard === 9) {
+			cardCenterXOriginal = cardCenterXOriginal - (cardDimensions.width * xCornerOffset);
+		} 
+
+		else if (nthCard >= 1 && nthCard <= 3) cardCenterYOriginal += yTransformOffset * cardScaleOnHoverAmount;
+		else if (nthCard >= 6 && nthCard <= 8) cardCenterYOriginal -= yTransformOffset * cardScaleOnHoverAmount;
 		// cardCenterXOriginal += xOffset;
 
 		return {
@@ -352,6 +366,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 const mapStateToProps = (state, ownProps) => {
 	return {
 		viewPortWidth: state.general.viewPortWidth,
+		isMobile: state.general.isMobile,
 	}
 }
 

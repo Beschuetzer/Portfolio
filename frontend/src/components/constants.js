@@ -3,7 +3,7 @@ export const NAVBAR_DONE_CLASSNAME = 'navbar--done';
 export const NAVBAR_IS_ANIMATING_CLASSNAME = 'navbar--isAnimating';
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
-export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION = 125;
+export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION =  125;
 
 export const COLOR_PRIMARY_1 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-1');
 export const COLOR_PRIMARY_2 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-2');
