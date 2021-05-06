@@ -2408,6 +2408,7 @@ div.references__name {
   .bridge__section {
     height: auto;
     min-height: calc(100vh - 10rem);
+    padding: var(--bridge-section-padding) 0;
   }
 }
 .bridge__section-titles {
@@ -2505,11 +2506,20 @@ div.references__name {
   display: grid;
   grid-template-rows: min-content 1fr;
 }
+@media only screen and (max-width: 68.75em) {
+  .bridge__card {
+    margin: 0 auto;
+    width: 97.5%;
+  }
+}
 .bridge__card h3 {
   margin-bottom: 1.6rem;
 }
 .bridge__card div {
   width: 100%;
+}
+.bridge__card p {
+  margin-bottom: 1.6rem;
 }
 .bridge__link {
   cursor: pointer;

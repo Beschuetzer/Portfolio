@@ -30,6 +30,8 @@
 		@include respond(nav-switch) {
 			height: auto;
 			min-height: calc(100vh - #{$header-height});
+			padding: var(--bridge-section-padding) 0;
+
 		}
 
 		&-titles {
@@ -170,6 +172,11 @@
 		display: grid;
     grid-template-rows: min-content 1fr;
 
+		@include respond(nav-switch) {
+			margin: 0 auto;
+			width: 97.5%;
+		}
+
 		& h3 {
 			// margin-top: $default-font-size * 1;
 			margin-bottom: $default-font-size * 1;
@@ -183,8 +190,10 @@
 		}
 
 		& div {
-			// margin-bottom: $default-font-size;
 			width: 100%;
+		}
+		& p{
+			margin-bottom: $default-font-size;
 		}
 	}
 

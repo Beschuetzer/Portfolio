@@ -182,7 +182,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					>
 						<div>
 							<p>
-								Claim All Allows players to claim the rest of the tricks rather than play them out. &nbsp;It shows the claimer's cards to the two defensive opponents and they can either agree or reject the claim.  &nbsp;If they agree, the claimer gets the rest of the tricks and game moves to the deal summary screen.
+								'Claim All' allows players to claim the rest of the tricks rather than play them out. &nbsp;It shows the claimer's cards to the two defensive opponents and they can either agree or reject the claim.  &nbsp;If they agree, the claimer gets the rest of the tricks and game moves to the deal summary screen.
 							</p>
 							</div>
 					</Card>
@@ -193,7 +193,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					>
 						<div>
 							<p>
-								Like Claim All, Claim Some allows players to claim tricks.&nbsp;  However, rather than claiming all of the tricks, Claim Some allows the declarer (person playing the contract) to claim X number of tricks where X is less than or equal to the number of tricks remaining.&nbsp; The video shows the initial screen the declarer sees when picking which tricks to claim.
+								'Claim Some' allows the declarer (person playing the contract) to claim some number of trick less than or equal to the number of tricks remaining.&nbsp; As a card is selected, the valid cards in the other hand are highlighted, allowing for easier selections.
 							</p>
 						</div>
 					</Card>
@@ -233,13 +233,13 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					<Card
 						video={playingACardVideo}
 						cardName='queen-of-hearts'
-						title='Drag and Drop'
+						title='Card Play Options'
 					>
 						<div>
 							<p>When it is your turn to play a card, you have three ways to play a card: </p>
 							<ul>
-								<li>double click the card</li>
 								<li>drag and drop the card</li>
+								<li>double click the card</li>
 								<li>use the keyboard shortcut for that card</li>
 							</ul>
 						</div>
