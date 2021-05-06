@@ -554,9 +554,6 @@ $padding-nav-switch: $default-font-size * .5;
 
 .current-section {
 	transform: translateX(0) !important;
-	@include respond(nav-switch) {
-		transform: translateX(0) !important;
-	}
 	z-index: $navbar-full-z-index - 1;
 }
 

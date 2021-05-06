@@ -3,11 +3,32 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { setCurrentBridgeSection, setBridgeSections } from '../actions';
+import {
+  COLOR_PRIMARY_1,
+  COLOR_PRIMARY_2,
+  COLOR_PRIMARY_3,
+  COLOR_PRIMARY_4,
+} from './constants';
 
 const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSection, currentBridgeSection, bridgeSections, setBridgeSections, clickedBridgeInfoButtonCount}) => {
 
   const leftArrow = document.querySelector('.arrow-button--left');
   const rightArrow = document.querySelector('.arrow-button--right');
+
+  const arrowColors = {
+    0: {
+      left: null,
+      right: COLOR_PRIMARY_1,
+    },
+    1: {
+      left: COLOR_PRIMARY_1,
+      right: COLOR_PRIMARY_2,
+    },
+    2: {
+      left: COLOR_PRIMARY_1,
+      right: COLOR_PRIMARY_2,
+    },
+  }
 
   //Initial setup, storing sections
   useEffect(() => {
@@ -33,25 +54,34 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
       }
     }
 
+    const handleSliding = () => {
+      for (let i = 0; i < bridgeSections.length; i++) {
+        const section = bridgeSections[i];
+        if (!section) return;
+  
+        if (i !== currentBridgeSection) section.classList.remove('current-section')
+  
+        if (i < currentBridgeSection) {
+          section.classList.add('slide-left')
+        }
+        else if (i === currentBridgeSection) {
+          section.classList.add('current-section')
+        }
+        else {
+          section.classList.remove('slide-left')
+        };
+      }
+    }
+
+    const handleArrowColors = (leftArrow, rightArrow) => {
+      
+    }
+
     handleDisplay(rightArrow);
     handleDisplay(leftArrow);
-
-    for (let i = 0; i < bridgeSections.length; i++) {
-      const section = bridgeSections[i];
-      if (!section) return;
-
-      if (i !== currentBridgeSection) section.classList.remove('current-section')
-
-      if (i < currentBridgeSection) {
-        section.classList.add('slide-left')
-      }
-      else if (i === currentBridgeSection) {
-        section.classList.add('current-section')
-      }
-      else {
-        section.classList.remove('slide-left')
-      };
-    }
+    handleArrowColors(leftArrow, rightArrow);
+    handleSliding();
+    
   }, [currentBridgeSection, bridgeSections, leftArrow, rightArrow, clickedBridgeInfoButtonCount])
   
   const handleClick = (e) => {

@@ -5,6 +5,13 @@ export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION = 250;
 
+export const COLOR_PRIMARY_1 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-1');
+export const COLOR_PRIMARY_2 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-2');
+export const COLOR_PRIMARY_3 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-3');
+export const COLOR_PRIMARY_4 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-4');
+
+
+
 export const headerTogglerWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-toggler-width'));
 export const smallFontMaxWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--small-font-max-width'));
 export const navBreakMaxWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-break-max-width'));

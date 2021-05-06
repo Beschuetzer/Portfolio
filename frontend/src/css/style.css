@@ -2765,10 +2765,5 @@ div.references__name {
   transform: translateX(0) !important;
   z-index: 4;
 }
-@media only screen and (max-width: 68.75em) {
-  .current-section {
-    transform: translateX(0) !important;
-  }
-}
 
 /*# sourceMappingURL=style.css.map */
