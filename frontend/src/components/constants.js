@@ -9,6 +9,10 @@ export const COLOR_PRIMARY_1 = getComputedStyle(document.documentElement).getPro
 export const COLOR_PRIMARY_2 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-2');
 export const COLOR_PRIMARY_3 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-3');
 export const COLOR_PRIMARY_4 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-4');
+export const COLOR_PRIMARY_BRIDGE_1 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-bridge-1');
+export const COLOR_PRIMARY_BRIDGE_2 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-bridge-2');
+export const COLOR_PRIMARY_BRIDGE_3 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-bridge-3');
+export const COLOR_PRIMARY_BRIDGE_4 = getComputedStyle(document.documentElement).getPropertyValue('--color-primary-bridge-4');
 
 
 

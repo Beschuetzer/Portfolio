@@ -1,34 +1,19 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
 
 import { setCurrentBridgeSection, setBridgeSections } from '../actions';
 import {
-  COLOR_PRIMARY_1,
-  COLOR_PRIMARY_2,
-  COLOR_PRIMARY_3,
-  COLOR_PRIMARY_4,
+  COLOR_PRIMARY_BRIDGE_1,
+  COLOR_PRIMARY_BRIDGE_2,
+  COLOR_PRIMARY_BRIDGE_3,
+  COLOR_PRIMARY_BRIDGE_4,
 } from './constants';
 
 const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSection, currentBridgeSection, bridgeSections, setBridgeSections, clickedBridgeInfoButtonCount}) => {
 
   const leftArrow = document.querySelector('.arrow-button--left');
-  const rightArrow = document.querySelector('.arrow-button--right');
-
-  const arrowColors = {
-    0: {
-      left: null,
-      right: COLOR_PRIMARY_1,
-    },
-    1: {
-      left: COLOR_PRIMARY_1,
-      right: COLOR_PRIMARY_2,
-    },
-    2: {
-      left: COLOR_PRIMARY_1,
-      right: COLOR_PRIMARY_2,
-    },
-  }
+  const rightArrow = document.querySelector('.arrow-button--right'); 
 
   //Initial setup, storing sections
   useEffect(() => {
@@ -74,7 +59,43 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
     }
 
     const handleArrowColors = (leftArrow, rightArrow) => {
-      
+      const arrowColors = {
+        0: {
+          normal: {
+            left: null,
+            right: COLOR_PRIMARY_BRIDGE_1,
+          },
+          hover: {
+            left: null,
+            right: COLOR_PRIMARY_BRIDGE_4,
+          }
+        },
+        1: {
+          normal: {
+            left: COLOR_PRIMARY_BRIDGE_1,
+            right: COLOR_PRIMARY_BRIDGE_2,
+          },
+          hover: {
+            left: COLOR_PRIMARY_BRIDGE_4,
+            right: COLOR_PRIMARY_BRIDGE_1,
+          }
+        },
+        2: {
+          normal: {
+            left: COLOR_PRIMARY_BRIDGE_1,
+            right: COLOR_PRIMARY_BRIDGE_3,
+          },
+          hover: {
+            left: COLOR_PRIMARY_BRIDGE_2,
+            right: COLOR_PRIMARY_BRIDGE_4,
+          }
+        },
+      }
+
+      document.documentElement.style.setProperty('--arrow-button-left-fill', arrowColors[currentBridgeSection].normal.left);
+      document.documentElement.style.setProperty('--arrow-button-right-fill', arrowColors[currentBridgeSection].normal.right);
+      document.documentElement.style.setProperty('--arrow-button-left-fill-hover', arrowColors[currentBridgeSection].hover.left);
+      document.documentElement.style.setProperty('--arrow-button-right-fill-hover', arrowColors[currentBridgeSection].hover.right);
     }
 
     handleDisplay(rightArrow);
@@ -99,9 +120,12 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
 
   return (
     <div onClick={handleClick} className={`d-none arrow-button arrow-button--${direction}`}>
-      <svg className={`arrow-button__fill-${fillNumber} arrow-button__hover-fill-${hoverFillNumber}`}>
+      <svg> 
         <use xlinkHref="/sprite.svg#icon-arrow-with-circle-down"></use>
       </svg>
+      {/* <svg className={`arrow-button__fill-${fillNumber} arrow-button__hover-fill-${hoverFillNumber}`}>
+        <use xlinkHref="/sprite.svg#icon-arrow-with-circle-down"></use>
+      </svg> */}
     </div>
   );
 }

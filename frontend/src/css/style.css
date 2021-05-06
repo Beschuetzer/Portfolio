@@ -60,8 +60,11 @@
   --header-inner-width-nav-switch: 100%;
   --bridge-section-height: 1px;
   --bridge-section-padding: 0;
-  --arrow-button-fill: var(--color-primary-bridge-1);
+  --arrow-button-fill-left: var(--color-primary-bridge-1);
+  --arrow-button-fill-right: var(--color-primary-bridge-1);
   --arrow-button-fill-hover: var(--color-primary-bridge-2);
+  --arrow-button-right-fill-hover: var(--color-primary-bridge-2);
+  --arrow-button-left-fill-hover: var(--color-primary-bridge-2);
   --card-scale-amount: 1;
   --card-playing-transform: translate(0,0) scale(1);
   --diamond-fractal-animation-duration: 120s;
@@ -2663,7 +2666,6 @@ div.references__name {
 }
 
 .arrow-button {
-  fill: var(--arrow-button-fill);
   cursor: pointer;
   position: absolute;
   transform: translateY(-50%);
@@ -2688,51 +2690,32 @@ div.references__name {
 .arrow-button--left {
   left: calc((100vw - calc( 		85rem + ((100vw - 85rem) / 2) + 6.4vw 	) - 1vw) / 2);
 }
-.arrow-button--left svg {
-  transform: rotate(90deg);
-}
 @media only screen and (max-width: 68.75em) {
   .arrow-button--left {
     padding-left: 0.8rem;
   }
 }
+.arrow-button--left svg {
+  fill: var(--arrow-button-left-fill);
+  transform: rotate(90deg);
+}
+.arrow-button--left:hover svg {
+  fill: var(--arrow-button-left-fill-hover);
+}
 .arrow-button--right {
   right: calc((100vw - calc( 85rem + ((100vw - 85rem) / 2) + 7vw )) / 2);
-}
-.arrow-button--right svg {
-  transform: rotate(-90deg);
 }
 @media only screen and (max-width: 68.75em) {
   .arrow-button--right {
     padding-right: 0.8rem;
   }
 }
-.arrow-button:hover {
-  fill: var(--arrow-button-fill-hover);
+.arrow-button--right svg {
+  fill: var(--arrow-button-right-fill);
+  transform: rotate(-90deg);
 }
-.arrow-button__fill-1 {
-  fill: var(--color-primary-bridge-1);
-}
-.arrow-button__fill-2 {
-  fill: var(--color-primary-bridge-2);
-}
-.arrow-button__fill-3 {
-  fill: var(--color-primary-bridge-3);
-}
-.arrow-button__fill-4 {
-  fill: var(--color-primary-bridge-4);
-}
-.arrow-button__hover-fill-1:hover {
-  fill: var(--color-primary-bridge-1);
-}
-.arrow-button__hover-fill-2:hover {
-  fill: var(--color-primary-bridge-2);
-}
-.arrow-button__hover-fill-3:hover {
-  fill: var(--color-primary-bridge-3);
-}
-.arrow-button__hover-fill-4:hover {
-  fill: var(--color-primary-bridge-4);
+.arrow-button--right:hover svg {
+  fill: var(--arrow-button-right-fill-hover);
 }
 
 .reverse-ease {

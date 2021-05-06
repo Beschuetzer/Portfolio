@@ -451,7 +451,6 @@
 $padding-full: $default-font-size * 1.5;
 $padding-nav-switch: $default-font-size * .5;
 .arrow-button {
-	fill: var(--arrow-button-fill);
 	cursor: pointer;
 	position: absolute;
 	transform: translateY(-50%);
@@ -477,56 +476,66 @@ $padding-nav-switch: $default-font-size * .5;
 		// left: 0%;
 		left: calc((100vw - #{$header-inner-width} - 1vw) / 2);
 
+		@include respond(nav-switch) {
+			padding-left: $padding-nav-switch;
+		}
+		
 		& svg {
+			fill: var(--arrow-button-left-fill);
 			transform: rotate(90deg);
 		}
 
-		@include respond(nav-switch) {
-			padding-left: $padding-nav-switch;
+		&:hover svg{
+			fill: var(--arrow-button-left-fill-hover);
 		}
 	}
 
 	&--right {
-		// padding-right: $padding-full;
 		right: $arrow-button-position;
-		& svg {
-			transform: rotate(-90deg);
-		}
 
 		@include respond(nav-switch) {
 			padding-right: $padding-nav-switch;
 		}
+
+		& svg {
+			fill: var(--arrow-button-right-fill);
+			transform: rotate(-90deg);
+		}
+
+		&:hover svg {
+			fill: var(--arrow-button-right-fill-hover);
+		}
 	}
 
-	&:hover {
-		fill: var(--arrow-button-fill-hover);
-	}
+	// &:hover {
+	// 	fill: var(--arrow-button-fill-hover);
+	// }
 
-	&__fill-1 {
-		fill: var(--color-primary-bridge-1);
-	}
-	&__fill-2 {
-		fill: var(--color-primary-bridge-2);
-	}
-	&__fill-3 {
-		fill: var(--color-primary-bridge-3);
-	}
-	&__fill-4 {
-		fill: var(--color-primary-bridge-4);
-	}
+	// &__fill-1 {
+	// 	fill: var(--color-primary-bridge-1);
+	// }
+	// &__fill-2 {
+	// 	fill: var(--color-primary-bridge-2);
+	// }
+	// &__fill-3 {
+	// 	fill: var(--color-primary-bridge-3);
+	// }
+	// &__fill-4 {
+	// 	fill: var(--color-primary-bridge-4);
+	// }
 
-	&__hover-fill-1:hover {
-		fill: var(--color-primary-bridge-1);
-	}
-	&__hover-fill-2:hover {
-			fill: var(--color-primary-bridge-2);
-		}
-	&__hover-fill-3:hover {
-			fill: var(--color-primary-bridge-3);
-		}
-	&__hover-fill-4:hover {
-			fill: var(--color-primary-bridge-4);
-		}
+	// &__hover-fill-1:hover {
+	// 	fill: var(--color-primary-bridge-1);
+	// }
+	// &__hover-fill-2:hover {
+	// 		fill: var(--color-primary-bridge-2);
+	// 	}
+	// &__hover-fill-3:hover {
+	// 		fill: var(--color-primary-bridge-3);
+	// 	}
+	// &__hover-fill-4:hover {
+	// 		fill: var(--color-primary-bridge-4);
+	// 	}
 
 }
 
