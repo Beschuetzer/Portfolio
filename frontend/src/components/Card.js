@@ -38,17 +38,24 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 		const transformOrigin = getComputedStyle(card)['transformOrigin'];
 		const split = transformOrigin.split(' ');
-		const cardWidth = cardDimensions.width;
-		const yTransformOffset = parseFloat(split[0]);
-		const xTransformOffset = parseFloat(split[1]);
 		const yCornerOffset = isMobile ? 1.75 : 1.85;
 		const xCornerOffset = 1.1675;
 		const cardScaleOnHoverAmount = 3 / 2;
+		const yTransformOffset = parseFloat(split[0]);
+		const xTransformOffset = parseFloat(split[1]);
+		const xValueToMatch = cardDimensions.width / cardScaleOnHoverAmount;
+		const yValueToMatch = cardDimensions.height / cardScaleOnHoverAmount;
+		const xCondition = Math.abs(yTransformOffset - xValueToMatch) < 1;
+		const yCondition = Math.abs(xTransformOffset - yValueToMatch) < 1;
 
-		console.log('xTransformOffset =', xTransformOffset);
-		console.log('yTransformOffset =', yTransformOffset);
-		console.log('cardDimensions =', cardDimensions);
+		const isTransformOriginTopLeft = xTransformOffset === 0 && yTransformOffset === 0;
+		const isTransformOriginTopRight = xTransformOffset === 0 && xCondition;
+		const isTransformOriginBottomLeft = yCondition && yTransformOffset === 0;
+		const isTransformOriginBottomRight = yCondition && xCondition;
+		const isTransformOriginTop = null;
+		const isTransformOriginBottom = null;
 
+		//TODO: remove this when done
 		const cards = document.querySelectorAll('.card');
 		let nthCard = -1;
 		for (let i = 0; i < cards.length; i++) {
@@ -59,17 +66,26 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 			}
 		}
 
-		if (nthCard === 0 || nthCard === 4 ) {
+		console.log('xTransformOffset =', xTransformOffset);
+		console.log('yTransformOffset =', yTransformOffset);
+		console.log('cardDimensions =', cardDimensions);
+		console.log('xValueToMatch =', xValueToMatch);
+		console.log('yValueToMatch =', yValueToMatch);
+		console.log('xCondition =', xCondition);
+		console.log('yCondition =', yCondition);
+		console.log('Math.abs(yTransformOffset - valueToMatch) =', Math.abs(yTransformOffset - xValueToMatch));
+
+		if (isTransformOriginTopLeft || isTransformOriginTopRight) {
 			cardCenterYOriginal = cardCenterYOriginal + (cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset);
 		}
-		else if (nthCard === 5 || nthCard === 9) {
+		else if (isTransformOriginBottomLeft || isTransformOriginBottomRight) {
 			cardCenterYOriginal = cardCenterYOriginal - (cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset);
 		}
 
-		if (nthCard === 0 || nthCard === 5) {
+		if (isTransformOriginTopLeft || isTransformOriginBottomLeft) {
 			cardCenterXOriginal = cardCenterXOriginal + (cardDimensions.width * xCornerOffset);
 		} 
-		else if (nthCard === 4 || nthCard === 9) {
+		else if (isTransformOriginTopRight || isTransformOriginBottomRight) {
 			cardCenterXOriginal = cardCenterXOriginal - (cardDimensions.width * xCornerOffset);
 		} 
 
