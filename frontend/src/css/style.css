@@ -1176,6 +1176,8 @@ body {
 }
 
 .fg-video {
+  display: flex;
+  align-items: center;
   opacity: 0.075;
   position: absolute;
   top: 0;
@@ -1185,7 +1187,7 @@ body {
   transition: opacity 0.5s ease;
 }
 .fg-video video {
-  height: 100%;
+  height: 95%;
   width: 100%;
   object-fit: cover;
 }
@@ -1252,8 +1254,8 @@ body {
   visibility: hidden;
   position: absolute;
   left: 50%;
-  top: 5%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  transform: translate(-50%, 0%);
   font-size: 0.4rem;
   background-color: var(--color-primary-4);
   border: 0.1px solid var(--color-primary-1);
@@ -1263,12 +1265,13 @@ body {
   align-items: center;
   transition: opacity 1s ease, transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
-.card__children p {
+.card__children div {
   padding: 0.4rem;
 }
 .card__children ul {
   list-style: decimal;
   padding-left: 0.8rem;
+  font-size: 0.32rem;
 }
 .card__image {
   width: 100%;
@@ -1279,13 +1282,10 @@ body {
   grid-column: 1/-1;
   backface-visibility: hidden;
   text-align: center;
-  font-size: 2.4rem;
+  font-size: 2rem;
+  padding: 0.4rem;
   height: 100%;
   width: 100%;
-}
-.card__content {
-  display: grid;
-  grid-template-columns: 80% 20%;
 }
 .card__play, .card__pause, .card__close, .card__stop, .card__restart {
   cursor: pointer;
@@ -1383,6 +1383,8 @@ body {
 }
 .card--open .card__title {
   font-size: 0.8rem;
+  padding: 0;
+  display: none;
 }
 .card--open .fg-video {
   opacity: 1;
@@ -2400,7 +2402,7 @@ div.references__name {
 .bridge__section-content {
   position: relative;
   overflow-y: auto;
-  padding: 3.2rem 6.4rem;
+  padding: 0;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -2435,7 +2437,7 @@ div.references__name {
 .bridge__section:nth-of-type(2) .bridge__section-content {
   overflow: hidden;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(14.4rem, 1fr));
   align-items: center;
   color: var(--color-primary-4);
   background-image: linear-gradient(to right, #00406b 0%, #00406b 100%);
@@ -2487,8 +2489,8 @@ div.references__name {
 .bridge__card h3 {
   margin-bottom: 1.6rem;
 }
-.bridge__card p {
-  margin-bottom: 1.6rem;
+.bridge__card div {
+  width: 100%;
 }
 .bridge__link {
   cursor: pointer;

@@ -69,8 +69,8 @@
 		position: absolute;
     left: 50%;
     // top: 47%;
-    top: 5%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    transform: translate(-50%, -0%);
     font-size: $default-font-size * .25;
     background-color: var(--color-primary-4);
     border: .1px solid var(--color-primary-1);
@@ -84,13 +84,14 @@
 			transform $animation-duration $animation-easing-standard-easeInOutBack,
 		;		
 
-		& p {
+		& div {
 			padding: $default-font-size * .25;
 		}
 
 		& ul {
 			list-style: decimal;
 			padding-left: $default-font-size * .5;
+			font-size: $default-font-size * .2;
 		}
 
 		& li {
@@ -117,9 +118,10 @@
 		grid-column: 1/-1;
 		backface-visibility: hidden;
 		text-align: center;
-		font-size: $default-font-size * 1.5;
-		height: 100%;
-		width: 100%;
+		font-size: $default-font-size * 1.25;
+    padding: $default-font-size * .25;
+    height: 100%;
+    width: 100%;
 		// padding: $default-font-size;
 	}
 	&__text {
@@ -127,8 +129,8 @@
 
 	&__content {
 		// width: 85%;
-		display: grid;
-		grid-template-columns: 80% 20%;
+		// display: grid;
+		// grid-template-columns: 80% 20%;
 	}
 
 	&__play, &__pause, &__close, &__stop,	&__restart {
@@ -257,6 +259,8 @@
 
 		& .card__title {
 			font-size: $default-font-size * 0.5;
+			padding: 0;
+			display: none;
 		}
 		& .fg-video {
 			opacity: 1;

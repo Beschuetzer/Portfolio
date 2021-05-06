@@ -131,101 +131,120 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 				>
 					<Card
 						video={cardPlayAndRoundEndVideo}
-						cardName='ace-of-clubs'
+						cardName='ace-of-spades'
 						title='Animations'
 					>
-						<p>
-							There are two optional animations.&nbsp; One, when someone else plays a card, the card is animated such that it appears the player is throwing into the middle of the table.&nbsp; Two, when four cards have been played, the cards 'blast off' of the table.
-						</p>
+						<div>
+							There are two optional animations:
+							<ul>
+								<li>Card Play - mimicks a perfectly thrown card when opponents play</li>
+								<li>Round End - mimicks a rocket 'blasting off' of the table.</li>
+							</ul>
+						</div>
 					</Card>
 					<Card
 						video={undoVideo}
-						cardName='ace-of-diamonds'
+						cardName='ace-of-hearts'
 						title='Undo'
 					>
-						<p>
-							Players are able to undo during the bidding phase as well as the playing phase.
-						</p>
+						<div>
+							<p>
+								Players are able to undo during the bidding phase as well as the playing phase.
+							</p>
+						</div>
 					</Card>
 					<Card
 						video={saveGameVideo}
-						cardName='ace-of-hearts'
+						cardName='ace-of-diamonds'
 						title='Save Games'
 					>
-						<p>
-						   The server saves each play and bid automatically, allowing players to resume playing at a later time without having to worry about losing the game state.
-						</p>
+						<div>
+							<p>
+								The server saves each play and bid automatically, allowing players to resume playing at a later time without having to worry about losing the game state.
+							</p>
+						</div>
 					</Card>
 					<Card
 						video={resizingVideo}
-						cardName='ace-of-spades'
+						cardName='ace-of-clubs'
 						title='Dynamic Resizing'
 					>
-						<p>
-						   The playing screen dynamically adjusts to the viewport, allowing users to play on their Android phone or with the window only taking up a fraction of the screen.
-						</p>
+						<div>
+							<p>
+								The playing screen dynamically adjusts to the viewport, allowing users to play on their Android phone or with the window only taking up a fraction of the screen.
+							</p>
+						</div>
 					</Card>
-					{/* <Card
-						cardName='king-of-clubs'
+					<Card
+						cardName='king-of-spades'
 						title='Claim All'
 						video={claimAllVideo}
 					>
-						<p>
-							Claim All Allows players to claim the rest of the tricks rather than play them out. &nbsp;It shows the claimer's cards to the two defensive opponents and they can either agree or reject the claim.  &nbsp;If they agree, the claimer gets the rest of the tricks and game moves to the deal summary screen.
-						</p>
+						<div>
+							<p>
+								Claim All Allows players to claim the rest of the tricks rather than play them out. &nbsp;It shows the claimer's cards to the two defensive opponents and they can either agree or reject the claim.  &nbsp;If they agree, the claimer gets the rest of the tricks and game moves to the deal summary screen.
+							</p>
+							</div>
 					</Card>
 					<Card
 						video={claimSomeVideo}
-						cardName='king-of-diamonds'
+						cardName='king-of-hearts'
 						title='Claim Some'
 					>
-						<p>
-							Like Claim All, Claim Some allows players to claim tricks.&nbsp;  However, rather than claiming all of the tricks, Claim Some allows the declarer (person playing the contract) to claim X number of tricks where X is less than or equal to the number of tricks remaining.&nbsp; The video shows the initial screen the declarer sees when picking which tricks to claim.
-						</p>
+						<div>
+							<p>
+								Like Claim All, Claim Some allows players to claim tricks.&nbsp;  However, rather than claiming all of the tricks, Claim Some allows the declarer (person playing the contract) to claim X number of tricks where X is less than or equal to the number of tricks remaining.&nbsp; The video shows the initial screen the declarer sees when picking which tricks to claim.
+							</p>
+						</div>
 					</Card>
 					<Card
 						video={dealSummaryVideo}
-						cardName='king-of-hearts'
+						cardName='king-of-diamonds'
 						title='Deal Summary'
 					>
-						<p>
-							The Deal Summary screen allows players to reviews the bidding and playing from the last deal.&nbsp; It shows which cards each player had in their hand at the beginning of each trick.&nbsp; Such information is nice when you want to work out how the trick claiming phase may have gone had you played a different card for a given trick.
-						</p>
+						<div>
+							<p>
+								The Deal Summary screen allows players to reviews the bidding and playing from the last deal.&nbsp; It shows which cards each player had in their hand at the beginning of each trick.&nbsp; Such information is nice when you want to work out how the trick claiming phase may have gone had you played a different card for a given trick.
+							</p>
+						</div>
 					</Card>
 					<Card
 						video={preferencesVideo}
-						cardName='king-of-spades'
+						cardName='king-of-clubs'
 						title='Preferences'
 					>
-						<p>
-							Preferences allow each player to customize the experience of the game.&nbsp; Card sorting order, sounds, animation toggling, color themes, card back image, and other preferences are all customizable via the preferences page.
-						</p>
+						<div>
+							<p>
+								Preferences allow each player to customize the experience of the game.&nbsp; Card sorting order, sounds, animation toggling, color themes, card back image, and other preferences are all customizable via the preferences page.
+							</p>
+						</div>
 					</Card>
 					<Card
 						video={themesVideo}
-						cardName='queen-of-clubs'
+						cardName='queen-of-spades'
 						title='Themes'
 					>
-						<p>
-							There are 8 different color themes available.  Some are intentionally strange, while others are meant to impress.  
-						</p>
+						<div>
+							<p>
+								There are 8 different color themes available.  Some are intentionally strange, while others are meant to impress.  
+							</p>
+						</div>
 					</Card>
 					<Card
 						video={playingACardVideo}
-						cardName='queen-of-diamonds'
+						cardName='queen-of-hearts'
 						title='Drag and Drop'
 					>
-						<p>
-							When it is your turn to play a card, you have three ways to play a card: 
+						<div>
+							<p>When it is your turn to play a card, you have three ways to play a card: </p>
 							<ul>
 								<li>double click the card</li>
 								<li>drag and drop the card</li>
 								<li>use the keyboard shortcut for that card</li>
 							</ul>
-						</p>
+						</div>
 						
 					</Card>
-					 */}
 				</BridgeCard>
 			</SectionContainer>
 			,
