@@ -43,24 +43,27 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 
 		if (isChildOfNavBar) navBar.classList.add("overflow--hidden");
+			// navBar.classList?.toggle(NAVBAR_ACTIVE_CLASSNAME);
 		
 		if (
 			!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&
 			isChildOfNavBar
 		) {
 			console.log('open------------------------------------------------');
-			document.querySelector('#header').classList.add('z-index-highest')
 			navBar.classList.add("overflow--hidden");
-			// root.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
+			document.querySelector('#header').classList.add('z-index-highest')
 			setIsAnimating(true);
 		} else {
-			
 			console.log('close------------------------------------------------');
-			// root.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-			document.querySelector('#header').classList.remove('z-index-highest')
 			navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
+
+			setTimeout(() => {
+				document.querySelector('#header').classList.remove('z-index-highest')
+
+			}, ANIMATION_DURATION);
+
 			setIsAnimating(false);
 		}
 	};
@@ -94,6 +97,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	}
 
 	useEffect(() => {
+		console.log('1------------------------------------------------');
 		const navbarContent = document.querySelector('.navbar__content');
 		const header = document.querySelector('.header');
 		const headerBoundingRect = header.getBoundingClientRect();
@@ -109,6 +113,8 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	}, [viewPortWidth, setHeaderHeight])
 
 	useEffect(() => {
+		console.log('2------------------------------------------------');
+
 		if (!currentUrl) return; 
 
 		let docStyle = getComputedStyle(document.documentElement);
@@ -133,6 +139,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 	//When url changes
 	useEffect(() => {
+		console.log('3------------------------------------------------');
 		if (!currentUrl || currentUrl !== match.url) {
 			setCurrentUrl(match.url);
 		}
@@ -140,6 +147,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 	//initial
 	useEffect(() => {
+		console.log('4------------------------------------------------');
 		const onBodyClick = (e) => {
 			const isNavClick = e.target?.classList?.contains(NAVBAR_ACTIVE_CLASSNAME)
 				? true
@@ -166,6 +174,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	}, [setHeaderHeight]);
 
 	useEffect(() => {
+		console.log('5------------------------------------------------');
 		const navBar = navRef.current;
 		const resetAnimatingId = setTimeout(() => {
 			navBar?.classList?.remove("navbar--isAnimating");
