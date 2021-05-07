@@ -24,7 +24,7 @@
 		color: var(--color-primary-1);
 		left: 100vw;
 		transition: 
-			transform $animation-duration * 1.5 $animation-easing-standard,
+			transform $animation-duration * .5 linear,
 		;
 
 		@include respond(nav-switch) {
