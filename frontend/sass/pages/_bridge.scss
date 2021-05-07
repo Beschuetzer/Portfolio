@@ -26,6 +26,9 @@
 		transition: 
 			transform $animation-duration * .5 linear,
 		;
+		@-moz-document url-prefix() {
+			transition: none;
+		}
 
 		@include respond(nav-switch) {
 			height: auto;
@@ -95,7 +98,7 @@
 				background-image: linear-gradient(
 					to top right,
 					$color-primary-bridge-2,
-					rgba($color-primary-bridge-2, .75)
+					rgba($color-primary-bridge-2, .85)
 				), 
 				url('/src/imgs/bridge-section-2.jpg');
 				background-position: top;

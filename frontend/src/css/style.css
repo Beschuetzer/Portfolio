@@ -2388,6 +2388,11 @@ div.references__name {
   left: 100vw;
   transition: transform 0.25s linear;
 }
+@-moz-document url-prefix() {
+  .bridge__section {
+    transition: none;
+  }
+}
 @media only screen and (max-width: 68.75em) {
   .bridge__section {
     height: auto;
@@ -2432,7 +2437,7 @@ div.references__name {
   background-image: linear-gradient(to right, rgba(245, 146, 41, 0.5), rgba(228, 224, 201, 0.5));
 }
 .bridge__section:nth-of-type(2) .bridge__section-titles {
-  background-image: linear-gradient(to top right, #f59229, rgba(245, 146, 41, 0.75)), url("/src/imgs/bridge-section-2.jpg");
+  background-image: linear-gradient(to top right, #f59229, rgba(245, 146, 41, 0.85)), url("/src/imgs/bridge-section-2.jpg");
   background-position: top;
   background-size: cover;
   color: var(--color-primary-4);

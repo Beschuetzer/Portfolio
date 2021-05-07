@@ -48,13 +48,12 @@ IDEAS-----------------------------------------------------------
   -videos off
 
 -firefox issues:
-  1) BridgeHero animation
-  
+  1) BridgeHero (animation) seems to slow whole page down
+
 -Go through every component and check for cases where I could use useCallback or useMemo?"
 -SiteNav examples for non-touch devices should be expanded
+-bridge mobile linear gradients and spacing between sections
 -change "Features" main title to the title of clicked video on play and reset on close
--how can one dynamically change transform-origin based on where an item is in the grid (for Cards at smaller viewports)?
-  -one possible idea is to iterate through each card whenever the viewport changes and assign transform origins based on the x and y coordinates of the cards keeping track of the x coordinate and then finding all the instance where x coordinates are the same for the first and last item in the first row
 
 
 
