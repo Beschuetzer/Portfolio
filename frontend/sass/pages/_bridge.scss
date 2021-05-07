@@ -12,6 +12,16 @@
 	// 	filter: none;
 	// }
 
+	&__subsection {
+
+		&-content {
+			& ul {
+				list-style: decimal;
+				padding-bottom:$default-font-size * 1;
+				margin-left: $default-font-size * 2;
+			}
+		}
+	}
 
 	&__section {
 		backface-visibility: hidden;

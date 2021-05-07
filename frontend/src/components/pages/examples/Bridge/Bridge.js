@@ -64,30 +64,60 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 						title='A Tough Decision'
 					>
 						<p>
-							Before I had found the Odin Project, I had only ever dreamt of becoming a software/web developer.&nbsp; I had always imagined that you needed to have a Computer Science degree.&nbsp; After reading the experiences others had had on the Odin Project website, a hope, nay, a determination awakened inside of me that had lain dormant for many years.&nbsp; Maybe I was wrong about needing a Computer Science degree?
+							Before I had found the Odin Project, I had only ever dreamt of becoming a software/web developer.&nbsp; I was under the impression that one needed to have a Computer Science degree.&nbsp; After reading the experiences others had had on the Odin Project website, a hope, nay, a determination awakened inside of me that had lain dormant for many years.&nbsp; Maybe I was wrong?
 						</p>
 						<p>
-							It was at that moment that I realized what I had to do.&nbsp;  Would I look back 10 years from now and regret now having tried to become that which I had previously only dreamt of becoming? I decided, then and there, to give it my best effort.  I was prepared to do whatever it takes to realize this goal.&nbsp;	My first step was to leave my &nbsp;
-							<a 
-								className='bridge__link'
-								href='/resume#work-history'
-								target="_blank"
-								rel='noreferrer'
-							>
-								service technician position at Ricoh
-							</a>   and dedicate the next year of my life to realizing my aspiration.  If after one year, it wasn't looking like I was going to make it, I could stop and at least say that I gave it my best and not regret having not tried.
+							It was at that moment that I realized what I had to do.&nbsp;  Would I look back 10 years from now and regret not having tried to become that which I had previously only dreamt of becoming?&nbsp; I decided, then and there, to give it my best effort.&nbsp; I was prepared to do whatever it takes to realize this goal.&nbsp; My biggest fear at this point was to die having not tried.&nbsp;
 						</p>
+						
 						{/* <p>
 							Do I have what it takes?  Will I be able to find a job during the pandemic?  These were questions that I was scared to face, but, to me, scarier was not pursing something that I have enjoyed doing since I was a kid.
 						</p> */}
 					</BridgeCardSection>
 					<BridgeCardSection
 						title='The Process'
+					>						
+						<p>
+							First, I needed some sort of test that was sufficiently complex and representative enough of actual real-world applications, such that if I could pass it, I would know I am on the right track.&nbsp;
+						</p>
+						<p>
+							This is where A# Maj Bridge became my full-time endeavor.&nbsp; If I could create a scalable, multiplayer bridge app, I was convinced I have what it takes.&nbsp; I decided that I would set aside one year to build the best bridge website I could.&nbsp; If after one year, it wasn't looking like I was going to make it, I could stop, knowing that I had given it my best effort.&nbsp;
+						</p>
+						<p>
+							Second, I left my &nbsp;
+							<a 
+								className='bridge__link'
+								href='/resume#work-history'
+								target="_blank"
+								rel='noreferrer'
+							>
+								service technician position
+							</a> at Ricoh in order to free up the time and energy needed to whole-heartily devote myself to this endeavor.&nbsp;
+						</p>
+					</BridgeCardSection>
+					<BridgeCardSection
+						title='The Little Matter of How'
 					>
 						<p>
-							I followed the curriculum there to learn the basics of HTML, CSS, and JS.  However, once I hit the Ruby part of the curriculum, it quickly became apparent that I would need further resources.&nbsp;
-							This is when I began to look into Web Developer boot camps.   &nbsp;&nbsp;I carefully considered a few specific boot camps for a few weeks, but ultimately, reasoned that the better approach for me would be take the self-taught path for three reasons.   &nbsp;&nbsp;One, I've always been a very self-motivated person and found it difficult to justify paying 15-20k for information that I could get for free or for much less than 15k.   &nbsp;&nbsp;Two, the pandemic was just getting started at this point, and I had no idea what kind of impact it would have on the bootcamp experience.   &nbsp;&nbsp;Third, going at my own pace would allow me to move more quickly through the areas which I find easy while being able to spend more time on the areas that I find difficult.  
+							I started the learning process by following the curriculum on the Odin Project's website.&nbsp; I learned the basics of HTML5, CSS3, and JS.&nbsp; However, once I hit the Ruby part of the curriculum, it quickly became apparent that I would need further resources.&nbsp; 
 						</p>	
+						<p>
+							At this point, I had a fixed budget of $17k. &nbsp; I carefully looked into Web Developer boot camps. &nbsp; A few caught my eye, but there were no guarantees that I would land a job at the end.&nbsp; Ultimately, I decided that the best use of my budget would be to take the self-taught path.&nbsp;The main reasons were:				
+						</p>
+						<ul>
+							<li>
+								I've always been a very self-motivated person.  I didn't to make a large financial commitment to a program in order to wake up and get learning/coding.
+							</li>
+							<li>
+								It was hard to justify paying $15-20k for information that I could get for free or for much less than $15k. 
+							</li>
+							<li>
+								I figured most of the benefits of a bootcamp come from the face-to-face interactions.  With the pandemic in full swing at this point (June 2020), bootcamps were moving to online only.
+							</li>
+							<li>
+								Going at my own pace would allow me to move more quickly through the areas which I find easy while being able to spend more time on the areas that I find difficult.  
+							</li>
+						</ul>
 					</BridgeCardSection>
 					<BridgeCardSection
 						title='Deciding on the Technology to Use'
