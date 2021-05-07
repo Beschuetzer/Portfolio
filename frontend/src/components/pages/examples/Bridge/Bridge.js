@@ -40,28 +40,54 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 					>
 						<p>
 							A#Maj is an website I created between June of 2020 and February of 2021, where users can play 
-							&nbsp;<a target="_blank" rel="noreferrer" href="https://en.wikipedia.org/wiki/Contract_bridge" className="bridge__link">contract bridge</a>&nbsp;for free.  &nbsp;&nbsp;The COVID-19 pandemic was in full swing and Andrew, a good friend of mine, had been mentioned how much he missed playing bridge (something which none of the members of our regular bridge group had done for many months at that point).  
+							&nbsp;<a target="_blank" rel="noreferrer" href="https://en.wikipedia.org/wiki/Contract_bridge" className="bridge__link">contract bridge</a>&nbsp;for free.  &nbsp;&nbsp;The COVID-19 pandemic was in full swing.&nbsp; Andrew, a good friend of mine, had been mentioned how much he missed playing bridge (something which none of the members of our regular bridge group had done for many months at that point).  
 						</p>
 						<p>
 							Initially, we looked for free, online apps but were unable to find any at the time.   &nbsp;&nbsp;I had told Andrew about the&nbsp;
 							<Link to="/examples/downloader" className="bridge__link">downloader</Link>
 							&nbsp;and&nbsp;
-							<Link to="/examples/playlist-syncer" className="bridge__link">music syncing</Link> apps that I had recently finished, and he jokingly remarked that I should make an app to play bridge online.   &nbsp;&nbsp;Initially, I wasn't very interested in making my own bridge app because I figured there had to be a free online version somewhere that we could use. &nbsp;&nbsp;  After looking for multiple hours though and only finding pay-to-play apps, I decided to entertain the idea.
+							<Link to="/examples/playlist-syncer" className="bridge__link">music syncing</Link> apps that I had recently finished, and he jokingly remarked that I should make an app to play bridge online.   &nbsp;&nbsp;Initially, I wasn't very interested in making my own bridge app because I figured there had to be a free online version somewhere that we could use. &nbsp;&nbsp;  After looking for multiple hours though and only finding pay-to-play apps, I decided to invest some time into figuring out how one would do such a thing.
 						</p>
+					</BridgeCardSection>
+					<BridgeCardSection
+						title='Research'
+					>
+					<p>
+							I started out by trying to create a simple chat room app using C#, but soon realized it would be rather challenging to create the bridge app I had envisioned using C#.   &nbsp;&nbsp;I knew there had to be an easier way...   &nbsp;&nbsp;off to YouTube/Google to find it!   &nbsp;&nbsp;  This is where I was introduced to something called 'socket.io'.   &nbsp;&nbsp;After watching a quick implementation video on YouTube, I was convinced:&nbsp; socket.io would be a part of the stack, if i was going to do this thing.
+						</p>
+						<p>
+							The only problem was I had no idea how to create a web application at all!&nbsp; After googling some more, I found an exquisite resource called
+							&nbsp; <a target="_blank" rel="noreferrer" href="https://www.theodinproject.com/" className="bridge__link">The Odin Project.</a> &nbsp;
+						</p>					
+					</BridgeCardSection>
+					<BridgeCardSection
+						title='A Tough Decision'
+					>
+						<p>
+							Before I had found the Odin Project, I had only ever dreamt of becoming a software/web developer.&nbsp; I had always imagined that you needed to have a Computer Science degree.&nbsp; After reading the experiences others had had on the Odin Project website, a hope, nay, a determination awakened inside of me that had lain dormant for many years.&nbsp; Maybe I was wrong about needing a Computer Science degree?
+						</p>
+						<p>
+							It was at that moment that I realized what I had to do.&nbsp;  Would I look back 10 years from now and regret now having tried to become that which I had previously only dreamt of becoming? I decided, then and there, to give it my best effort.  I was prepared to do whatever it takes to realize this goal.&nbsp;	My first step was to leave my &nbsp;
+							<a 
+								className='bridge__link'
+								href='/resume#work-history'
+								target="_blank"
+								rel='noreferrer'
+							>
+								service technician position at Ricoh
+							</a>   and dedicate the next year of my life to realizing my aspiration.  If after one year, it wasn't looking like I was going to make it, I could stop and at least say that I gave it my best and not regret having not tried.
+						</p>
+						{/* <p>
+							Do I have what it takes?  Will I be able to find a job during the pandemic?  These were questions that I was scared to face, but, to me, scarier was not pursing something that I have enjoyed doing since I was a kid.
+						</p> */}
 					</BridgeCardSection>
 					<BridgeCardSection
 						title='The Process'
 					>
-					<p>
-							I started out by trying to create a simple chat room app using C#, but soon realized it would be rather challenging to create the bridge app I had envisioned using C#.   &nbsp;&nbsp;I knew there had to be an easier way...   &nbsp;&nbsp;Off to YouTube and google to find it!   &nbsp;&nbsp;The most promising technology I could find was called 'socket.io'.   &nbsp;&nbsp;After watching a tutorial video on YouTube, I was sold.   &nbsp;&nbsp;socket.io would have to be part of the stack I would use, if i decided to create the app.
-						</p>
 						<p>
-							The only problem was I had no idea how to integrate socket.io into a working web application or how to create web applications at all for that matter!  After googling some more, I found an exquisite resource called
-							&nbsp; <a target="_blank" rel="noreferrer" href="https://www.theodinproject.com/" className="bridge__link">The Odin Project.</a> &nbsp;  I followed the curriculum there to learn the basics of HTML, CSS, and JS.  However, once I hit the Ruby part of the curriculum, it quickly became apparent that I would need further resources.  
-						</p>
-						<p>
+							I followed the curriculum there to learn the basics of HTML, CSS, and JS.  However, once I hit the Ruby part of the curriculum, it quickly became apparent that I would need further resources.&nbsp;
 							This is when I began to look into Web Developer boot camps.   &nbsp;&nbsp;I carefully considered a few specific boot camps for a few weeks, but ultimately, reasoned that the better approach for me would be take the self-taught path for three reasons.   &nbsp;&nbsp;One, I've always been a very self-motivated person and found it difficult to justify paying 15-20k for information that I could get for free or for much less than 15k.   &nbsp;&nbsp;Two, the pandemic was just getting started at this point, and I had no idea what kind of impact it would have on the bootcamp experience.   &nbsp;&nbsp;Third, going at my own pace would allow me to move more quickly through the areas which I find easy while being able to spend more time on the areas that I find difficult.  
-						</p>						
+						</p>	
 					</BridgeCardSection>
 					<BridgeCardSection
 						title='Deciding on the Technology to Use'
