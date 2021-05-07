@@ -413,7 +413,7 @@
 	}
 
 	&:checked ~ .hero .hero__bridge-logo {
-		opacity: $bridge-logo-opacity / 8;
+		opacity: 0;
 		z-index: 0;
 	}
 	

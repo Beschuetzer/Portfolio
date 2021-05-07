@@ -258,8 +258,22 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 			>
 				<BridgeCard
 					titleSize='two'
-					titleContent='Features?'
+					titleContent='Lessons'
 				>
+					<BridgeCardSection
+						title="No One Technology is 'Better'"
+					>
+						<p>
+							It's easy to think in the absolute terms of 'good', 'better', and 'best'.&nbsp; My experience coding A# Maj Bridge has illustrated to me that when it comes to web development thinking in these terms doesn't cut it.&nbsp;
+						</p>
+					</BridgeCardSection>
+					<BridgeCardSection
+						title="A 'Better' Approach"
+					>
+						<p>
+							How soon does it need to be finished?&nbsp; Does it need to be able to scale up to millions of users?&nbsp; What types of browser support does it need to have?&nbsp; These are all crucial considerations to take into account before dashing off the starting line and potentially taking a wrong turn somewhere from which you may need to backtrack.
+						</p>
+					</BridgeCardSection>
 					<ul className='bridge__reasons'>
 							<li className='bridge__reasons-item'>
 								There was no free online bridge resource in May of 2020. 

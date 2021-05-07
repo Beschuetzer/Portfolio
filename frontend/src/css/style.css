@@ -2666,7 +2666,7 @@ div.references__name {
   opacity: 1;
 }
 #hero__more-checkbox:checked ~ .hero .hero__bridge-logo {
-  opacity: 0.03125;
+  opacity: 0;
   z-index: 0;
 }
 #hero__more-checkbox:checked ~ .hero .hero__more {
