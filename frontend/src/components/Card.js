@@ -59,25 +59,25 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		const isTransformOriginLeft = yTransformOffset === 0 && yConditionHalf;
 		const isTransformOriginRight = xCondition && yConditionHalf;
 
-		console.log('xTransformOffset =', xTransformOffset);
-		console.log('yTransformOffset =', yTransformOffset);
-		console.log('cardDimensions =', cardDimensions);
-		console.log('xValueToMatch =', xValueToMatch);
-		console.log('yValueToMatch =', yValueToMatch);
-		console.log('xCondition =', xCondition);
-		console.log('yCondition =', yCondition);
-		console.log('xConditionHalf =', xConditionHalf);
-		console.log('yConditionHalf =', yConditionHalf);
-		console.log('something------------------------------------------------');
-		console.log('isTransformOriginTopLeft =', isTransformOriginTopLeft);
-		console.log('isTransformOriginTopRight =', isTransformOriginTopRight);
-		console.log('isTransformOriginBottomLeft =', isTransformOriginBottomLeft);
-		console.log('isTransformOriginBottomRight =', isTransformOriginBottomRight);
-		console.log('isTransformOriginTop =', isTransformOriginTop);
-		console.log('isTransformOriginBottom =', isTransformOriginBottom);
-		console.log('isTransformOriginLeft =', isTransformOriginLeft);
-		console.log('isTransformOriginRight =', isTransformOriginRight);
-		console.log('Math.abs(yTransformOffset - valueToMatch) =', Math.abs(yTransformOffset - xValueToMatch));
+		// console.log('xTransformOffset =', xTransformOffset);
+		// console.log('yTransformOffset =', yTransformOffset);
+		// console.log('cardDimensions =', cardDimensions);
+		// console.log('xValueToMatch =', xValueToMatch);
+		// console.log('yValueToMatch =', yValueToMatch);
+		// console.log('xCondition =', xCondition);
+		// console.log('yCondition =', yCondition);
+		// console.log('xConditionHalf =', xConditionHalf);
+		// console.log('yConditionHalf =', yConditionHalf);
+		// console.log('something------------------------------------------------');
+		// console.log('isTransformOriginTopLeft =', isTransformOriginTopLeft);
+		// console.log('isTransformOriginTopRight =', isTransformOriginTopRight);
+		// console.log('isTransformOriginBottomLeft =', isTransformOriginBottomLeft);
+		// console.log('isTransformOriginBottomRight =', isTransformOriginBottomRight);
+		// console.log('isTransformOriginTop =', isTransformOriginTop);
+		// console.log('isTransformOriginBottom =', isTransformOriginBottom);
+		// console.log('isTransformOriginLeft =', isTransformOriginLeft);
+		// console.log('isTransformOriginRight =', isTransformOriginRight);
+		// console.log('Math.abs(yTransformOffset - valueToMatch) =', Math.abs(yTransformOffset - xValueToMatch));
 
 		if (isTransformOriginTopLeft || isTransformOriginTopRight) {
 			cardCenterYOriginal = cardCenterYOriginal + (cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset);
@@ -192,7 +192,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	};
 
 	const closeVideo = (video, card) => {
-		console.log('close------------------------------------------------');
 		const checkbox = checkboxRef.current;
 		checkbox.checked = false;
 
@@ -205,7 +204,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	};
 
 	const openCard = (video, card) => {
-		console.log('open card------------------------------------------------');
 		centerCard(card);
 		// playVideo(video, card);
 		const isVideoPlaying = getIsVideoPlaying(video);
@@ -218,7 +216,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	}
 
 	const playVideo = (video, card) => {
-		console.log('play------------------------------------------------');
 		attachProgressListener(video);
 		video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove("card--done");
@@ -234,14 +231,12 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	}
 
 	const stopVideo = (video) => {
-		console.log('stop------------------------------------------------');
 		if (!video) return;
 		video.currentTime = 0;
 		pauseVideo(video, cardRef.current);
 	}
 
 	const restartVideo = (video, card) => {
-		console.log('restart------------------------------------------------');
 		if (!video) return;
 		video.currentTime = 0;
 		if (!getIsVideoPlaying(video)) {
@@ -261,7 +256,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	}
 
 	const handleCloseVideo = (e) => {
-		console.log("close------------------------------------------------");
 		e.stopPropagation();
 		closeVideo(videoRef.current, cardRef.current);
 	};
@@ -274,7 +268,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	}
 
 	const handleVideoEnd = (e) => {
-		console.log("end------------------------------------------------");
 		cardRef.current?.classList.add("card--done");
 		const video = e.currentTarget;
 		video.removeEventListener("ended", handleVideoEnd);
@@ -297,7 +290,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	}
 
 	const handleCardClick = (e) => {
-		console.log("open------------------------------------------------");
 		e.stopPropagation();
 		const card = cardRef.current;
 		const video = videoRef?.current;
