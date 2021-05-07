@@ -2517,9 +2517,6 @@ div.references__name {
 .bridge__card h3 {
   margin-bottom: 1.6rem;
 }
-.bridge__card div {
-  width: 100%;
-}
 .bridge__card p {
   margin-bottom: 1.6rem;
 }
@@ -2595,7 +2592,6 @@ div.references__name {
   color: var(--color-primary-2);
   border-radius: 320rem;
   animation: bridge-more 2.5s infinite;
-  transition: top 1s cubic-bezier(0.68, -0.6, 0.32, 1.6), left 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 .hero__more input {
   display: none;
@@ -2614,7 +2610,7 @@ div.references__name {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, var(--hero-more-y-translate, -50%));
+  transform: translate(-50%, var(--hero-more-y-translate));
   transition: transform 1s ease, opacity 1s ease, fill 0.5s ease;
   fill: var(--color-primary-1);
 }

@@ -190,7 +190,7 @@
 		}
 
 		& div {
-			width: 100%;
+			// width: 100%;
 		}
 		& p{
 			margin-bottom: $default-font-size;
@@ -291,10 +291,6 @@
 		color: var(--color-primary-2);
 		border-radius: $default-font-size * 200;
 		animation: bridge-more 2.5s infinite;
-		transition:
-			top $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard-easeInOutBack,
-			left $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard-easeInOutBack,
-		;
 
 		& input {
 			display: none;
@@ -315,7 +311,7 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, var(--hero-more-y-translate, -50%));
+			transform: translate(-50%, var(--hero-more-y-translate));
 			transition: 
 				transform $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard ,
 				opacity $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard ,
