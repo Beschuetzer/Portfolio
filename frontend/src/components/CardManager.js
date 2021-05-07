@@ -42,13 +42,13 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
     const setTransformOrigins = () => {
       const rowLength = lastSecondRowCardNumber;
       const numberOfRows = Math.ceil(bridgeCards.length / rowLength);
-      console.log('');
-      console.log('lastSEcondRowCardNumber =', lastSecondRowCardNumber);
-      console.log('bridgeCards =', bridgeCards);
-      console.log('bridgeCards.length =', bridgeCards.length);
-      console.log('rowLength =', rowLength);
-      console.log('numberOfRows =', numberOfRows);
-      console.log('');
+      // console.log('');
+      // console.log('lastSEcondRowCardNumber =', lastSecondRowCardNumber);
+      // console.log('bridgeCards =', bridgeCards);
+      // console.log('bridgeCards.length =', bridgeCards.length);
+      // console.log('rowLength =', rowLength);
+      // console.log('numberOfRows =', numberOfRows);
+      // console.log('');
 
       const transformOriginOptions = {
         center: "center",
@@ -63,33 +63,24 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
       }
 
       for (let i = 0; i < bridgeCards.length; i++) {
-        const card = bridgeCards[i];
-
-        //NOTE: this will get things to work as is, but not ideal
-        // if (numberOfRows > 2)  {
-        //   card.style.transformOrigin = transformOriginOptions.center;
-        //   continue;
-        // }
         // if (i === 7) debugger
+        const card = bridgeCards[i];
         const isTopRow = i < lastSecondRowCardNumber;
         const isBottomRow = i > (rowLength * (numberOfRows - 1) - 1);
         const isFirstInRow = i === 0 || i % rowLength === 0;
         const isLastInRow = (i + 1) % rowLength  === 0;
-
-        console.log('i =', i);
-        console.log('isTopRow =', isTopRow);
-        console.log('isBottomRow =', isBottomRow);
-        console.log('isFirstInRow =', isFirstInRow);
-        console.log('isLastInRow =', isLastInRow);
 
         let transformOriginToUse = transformOriginOptions.topLeft;
         if (isTopRow) {
           //1st: top left
           //middle: top
           //last: top right
+          if (numberOfRows > 2) {
+            card.style.transformOrigin = transformOriginOptions.top;
+            continue;
+          }
           if (isFirstInRow) {
-            //Note: this is the only one that doesn't need to change
-            // card.style.transformOrigin = transformOriginOptions.topLeft
+            continue;
           }
           else if (isLastInRow) transformOriginToUse = transformOriginOptions.topRight;
           else transformOriginToUse = transformOriginOptions.top;
@@ -99,6 +90,10 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
           //1st: bottom left
           //middle: bottom
           //last: bottom right
+          if (numberOfRows > 2) {
+            card.style.transformOrigin = transformOriginOptions.bottom;
+            continue;
+          }
           if (isFirstInRow) transformOriginToUse = transformOriginOptions.bottomLeft;
           else if (isLastInRow) transformOriginToUse = transformOriginOptions.bottomRight;
           else transformOriginToUse = transformOriginOptions.bottom;
@@ -108,20 +103,18 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
           //1st: left
           //middle: top if middle row or above otherwise bottom
           //last: right    
+          if (numberOfRows > 2) {
+            card.style.transformOrigin = transformOriginOptions.center;
+            continue;
+          }
           if (isFirstInRow) transformOriginToUse = transformOriginOptions.left;
           else if (isLastInRow) transformOriginToUse = transformOriginOptions.right;
-          else {
-            if (numberOfRows > 2) transformOriginToUse = transformOriginOptions.center;
-            else {
-              const middleRow = Math.ceil(numberOfRows / 2);
-              const cutoffIndex = middleRow * rowLength - 1;
+          else {           
+            const middleRow = Math.ceil(numberOfRows / 2);
+            const cutoffIndex = middleRow * rowLength - 1;
 
-              console.log('middleRow =', middleRow);
-              console.log('cutoffIndex =', cutoffIndex);
-
-              if (i <= cutoffIndex) transformOriginToUse = transformOriginOptions.top;
-              else transformOriginToUse = transformOriginOptions.bottom;
-            }
+            if (i <= cutoffIndex) transformOriginToUse = transformOriginOptions.top;
+            else transformOriginToUse = transformOriginOptions.bottom;          
           }
         }
       

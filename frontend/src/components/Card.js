@@ -95,6 +95,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 		else if (isTransformOriginTop) cardCenterYOriginal += yTransformOffset * cardScaleOnHoverAmount;
 		else if (isTransformOriginBottom) cardCenterYOriginal -= yTransformOffset * cardScaleOnHoverAmount;
+		else if (isTransformOriginLeft) cardCenterXOriginal += xTransformOffset * cardScaleOnHoverAmount;
+		else if (isTransformOriginRight) cardCenterXOriginal -= xTransformOffset * cardScaleOnHoverAmount;
+		
 		// cardCenterXOriginal += xOffset;
 
 		return {
