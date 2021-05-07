@@ -282,13 +282,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		// height: $default-font-size * 10;
-		// width: $default-font-size * 10;
 		font-size: $default-font-size * 3;
 		z-index: 1;
 		position: fixed;
-		// top: 50vh;
-		// left: 60vw;
 		top: 66vh;
     left: 49vw;
 		transform: translate(-50%, -50%);
@@ -319,7 +315,7 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);
+			transform: translate(-50%, var(--hero-more-y-translate, -50%));
 			transition: 
 				transform $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard ,
 				opacity $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard ,
@@ -355,7 +351,7 @@
 		}
 
 		&--clicked {
-			top: 50vh;
+			--hero-more-y-translate: calc(-50% - #{$default-font-size * 7});
 			animation: none;
 		}
 	}

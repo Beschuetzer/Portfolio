@@ -58,6 +58,7 @@
   --header-toggler-height: 14rem;
   --header-toggler-width: 4rem;
   --header-inner-width-nav-switch: 100%;
+  --hero-more-y-translate: -50%;
   --bridge-section-height: 1px;
   --bridge-section-padding: 0;
   --arrow-button-fill-left: var(--color-primary-bridge-1);
@@ -2613,7 +2614,7 @@ div.references__name {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, var(--hero-more-y-translate, -50%));
   transition: transform 1s ease, opacity 1s ease, fill 0.5s ease;
   fill: var(--color-primary-1);
 }
@@ -2638,7 +2639,7 @@ div.references__name {
   background-color: var(--color-primary-1);
 }
 .hero__more--clicked {
-  top: 50vh;
+  --hero-more-y-translate: calc(-50% - 11.2rem);
   animation: none;
 }
 .hero__bridge-logo {
