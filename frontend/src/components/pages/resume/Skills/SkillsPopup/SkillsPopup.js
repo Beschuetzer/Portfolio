@@ -161,8 +161,7 @@ const SkillsPopup = ({
 			<div
 				key={key}
 				className={`skills-popup__table-item skills-popup__${key}`}
-				onMouseEnter={onTableItemMouseEvent}
-				onMouseLeave={onTableItemMouseEvent}>
+			>
 				{isMobile ? (
 					<span className={`skills-popup__${key}-title`}>{title}:</span>
 				) : null}
@@ -183,7 +182,6 @@ const SkillsPopup = ({
 							key={key}
 							href={`/examples/csharp#${repo["name"].replace("-", "")}`}
 							repo={repo}
-							onTableItemMouseEvent={onTableItemMouseEvent}
 						/>
 					);
 				}
@@ -196,7 +194,6 @@ const SkillsPopup = ({
 							key={key}
 							href={`/examples/autobid`}
 							repo={repo}
-							onTableItemMouseEvent={onTableItemMouseEvent}
 						/>
 					);
 				}
@@ -207,7 +204,6 @@ const SkillsPopup = ({
 							key={key}
 							href={repo["homepageUrl"]}
 							repo={repo}
-							onTableItemMouseEvent={onTableItemMouseEvent}
 						/>
 					);
 				}
@@ -215,8 +211,6 @@ const SkillsPopup = ({
 				return (
 					<div
 						key={key}
-						onMouseEnter={onTableItemMouseEvent}
-						onMouseLeave={onTableItemMouseEvent}
 						className={`skills-popup__table-item skills-popup__${key}`}>
 						{isMobile ? (
 							<span className={`skills-popup__${key}-title`}>
@@ -234,8 +228,7 @@ const SkillsPopup = ({
 						target="_blank"
 						href={repo[key]}
 						className={`skills-popup__table-item skills-popup__${key}`}
-						onMouseEnter={onTableItemMouseEvent}
-						onMouseLeave={onTableItemMouseEvent}>
+					>
 						<svg>
 							<use xlinkHref="/sprite.svg#icon-chain"></use>
 						</svg>
@@ -247,8 +240,7 @@ const SkillsPopup = ({
 						<div
 							key={key}
 							className={`skills-popup__table-item skills-popup__dates`}
-							onMouseEnter={onTableItemMouseEvent}
-							onMouseLeave={onTableItemMouseEvent}>
+						>
 							{returnDate(key, repo, "Created", true)}
 							{returnDate("updatedAt", repo, "Updated", true)}
 						</div>
@@ -262,8 +254,6 @@ const SkillsPopup = ({
 				return (
 					<div
 						key={key}
-						onMouseEnter={onTableItemMouseEvent}
-						onMouseLeave={onTableItemMouseEvent}
 						className={`skills-popup__table-item skills-popup__${key}`}
 						dangerouslySetInnerHTML={{ __html: repo[key] }}></div>
 				);

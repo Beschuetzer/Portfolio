@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Beschuetzer/Portfolio#readme",
   "dependencies": {
+    "@types/react-redux": "^7.1.16",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

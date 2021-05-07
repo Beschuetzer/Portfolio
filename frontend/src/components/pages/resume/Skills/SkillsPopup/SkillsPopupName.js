@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class SkillsPopupName extends React.Component {
   
   render() {
-    const { repo, onTableItemMouseEvent, href, isMobile } = this.props
+    const { repo, href, isMobile } = this.props
     return (
       <div className="skills-popup__table-item skills-popup__name">
         {isMobile ?
@@ -17,12 +17,8 @@ class SkillsPopupName extends React.Component {
           className=  {`skills-popup__link skills__title--animating`}
           target="_blank"
           rel="noreferrer"
-          onMouseEnter={onTableItemMouseEvent} 
-          onMouseLeave={onTableItemMouseEvent} 
         >
           <div 
-            onMouseEnter={onTableItemMouseEvent} 
-            onMouseLeave={onTableItemMouseEvent} 
             className="skills-popup__link-text"
           >
             {repo['name']}
