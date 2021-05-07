@@ -11,9 +11,10 @@
 	visibility: hidden;
 	z-index: 10000;
 	transition: opacity $animation-duration * 1.5
-			$animation-easing-standard-easeInOutBack-smaller,
+		$animation-easing-standard,
 		visibility $animation-duration * 1.5
-			$animation-easing-standard-easeInOutBack-smaller;
+		$animation-easing-standard
+	;
 
 	&__content {
 		overflow-y: auto;

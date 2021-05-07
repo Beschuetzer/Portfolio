@@ -1827,7 +1827,7 @@ body {
   opacity: 0;
   visibility: hidden;
   z-index: 10000;
-  transition: opacity 0.75s cubic-bezier(0.68, -0.2, 0.32, 1.2), visibility 0.75s cubic-bezier(0.68, -0.2, 0.32, 1.2);
+  transition: opacity 0.75s ease, visibility 0.75s ease;
 }
 .skills-popup__content {
   overflow-y: auto;
