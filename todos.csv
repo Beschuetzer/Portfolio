@@ -53,8 +53,8 @@ IDEAS-----------------------------------------------------------
 -Go through every component and check for cases where I could use useCallback or useMemo?"
 -SiteNav examples for non-touch devices should be expanded
 -bridge mobile linear gradients and spacing between sections
--change "Features" main title to the title of clicked video on play and reset on close
 
-
+-can remove checkbox stuff in Card?
+-memoize Card functions?
 
 

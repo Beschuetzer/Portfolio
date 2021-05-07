@@ -10,10 +10,11 @@ import Video from "../components/Video";
 import { capitalize } from "../helpers";
 
 const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile }) => {
-	const videoRef = useRef();
-	const cardRef = useRef();
-	const checkboxRef = useRef();
-	const progressBarRef = useRef();
+	const videoRef = useRef(null);
+	const titleRef = useRef(null);
+	const cardRef = useRef(null);
+	const checkboxRef = useRef(null);
+	const progressBarRef = useRef(null);
 	let hasProgressEventListener = false;
 
 	const getCardCoordinates = (card, cardDimensions) => {
@@ -192,11 +193,13 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	};
 
 	const closeVideo = (video, card) => {
+		changeSectionTitle(false);
 		const checkbox = checkboxRef.current;
 		checkbox.checked = false;
 
 		video.pause();
 		video.currentTime = 0;
+
 		if (!card) return;
 		card.classList.remove("card--open");
 		card.classList.remove("card--done");
@@ -250,6 +253,29 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		card.classList.remove("card--stopped");
 	}
 
+	const changeSectionTitle = (isOpen = true) => {
+		const originalMsgTitle = 'Features';
+		const originalMsgSubTitle = 'Pick a Card any Card';
+
+		const sections = document.querySelectorAll('.bridge__section');
+		for (let i = 0; i < sections.length; i++) {
+			const section = sections[i];
+			if (section.id.match(/feature/i)) {
+				const title = section.querySelector('.bridge__section-title');
+
+				let msgTitleToUse = originalMsgTitle;
+				let msgSubTitleToUse = originalMsgSubTitle;
+				if (isOpen) {
+					msgTitleToUse = titleRef.current?.textContent;
+					msgSubTitleToUse = "";
+				}
+				title.textContent = msgTitleToUse;
+				title.nextElementSibling.textContent = msgSubTitleToUse;
+				break;
+			}
+		}
+	}
+
 	const handleRestartVideo = (e) => {
 		e.stopPropagation();
 		restartVideo(videoRef.current, cardRef.current);
@@ -296,6 +322,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		if (card?.classList.contains("card--done") || card?.classList.contains('card--open')) return;
 		toggleCheckbox();
 		openCard(video, card);
+		changeSectionTitle();
 	};
 
 	const handleMouseEnter = (e) => {
@@ -357,7 +384,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
         	</svg>
 				</div>
 
-				<h4 className="card__title">{title}</h4>
+				<h4 ref={titleRef} className="card__title">{title}</h4>
 				<Video
 					className="fg-video"
 					type="mp4"
