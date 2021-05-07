@@ -15,6 +15,7 @@ import {
   SET_BRIDGE_SECTIONS,
   SET_HEADER_HEIGHT,
   SET_LAST_SECOND_ROW_CARD_NUMBER,
+  SET_BRIDGE_CARDS,
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
@@ -280,6 +281,13 @@ export const setHeaderHeight = (value) => {
 export const setLastSecondRowCardNumber = (value) => {
   return {
     type: SET_LAST_SECOND_ROW_CARD_NUMBER,
+    payload: value,
+  }
+}
+
+export const setBridgeCards = (value) => {
+  return {
+    type: SET_BRIDGE_CARDS,
     payload: value,
   }
 }
