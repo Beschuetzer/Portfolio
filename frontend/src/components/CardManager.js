@@ -66,13 +66,13 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
         const card = bridgeCards[i];
 
         //NOTE: this will get things to work as is, but not ideal
-        if (numberOfRows > 2)  {
-          card.style.transformOrigin = transformOriginOptions.center;
-          continue;
-        }
-        // if (i === 5) debugger
+        // if (numberOfRows > 2)  {
+        //   card.style.transformOrigin = transformOriginOptions.center;
+        //   continue;
+        // }
+        // if (i === 7) debugger
         const isTopRow = i < lastSecondRowCardNumber;
-        const isBottomRow = i >= (rowLength * (numberOfRows - 1) - 1);
+        const isBottomRow = i > (rowLength * (numberOfRows - 1) - 1);
         const isFirstInRow = i === 0 || i % rowLength === 0;
         const isLastInRow = (i + 1) % rowLength  === 0;
 

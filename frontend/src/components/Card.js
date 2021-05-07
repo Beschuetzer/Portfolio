@@ -59,24 +59,25 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		const isTransformOriginLeft = yTransformOffset === 0 && yConditionHalf;
 		const isTransformOriginRight = xCondition && yConditionHalf;
 
-		// console.log('xTransformOffset =', xTransformOffset);
-		// console.log('yTransformOffset =', yTransformOffset);
-		// console.log('cardDimensions =', cardDimensions);
-		// console.log('xValueToMatch =', xValueToMatch);
-		// console.log('yValueToMatch =', yValueToMatch);
-		// console.log('xCondition =', xCondition);
-		// console.log('yCondition =', yCondition);
-		// console.log('xConditionHalf =', xConditionHalf);
-		// console.log('yConditionHalf =', yConditionHalf);
-		// console.log('isTransformOriginTopLeft =', isTransformOriginTopLeft);
-		// console.log('isTransformOriginTopRight =', isTransformOriginTopRight);
-		// console.log('isTransformOriginBottomLeft =', isTransformOriginBottomLeft);
-		// console.log('isTransformOriginBottomRight =', isTransformOriginBottomRight);
-		// console.log('isTransformOriginTop =', isTransformOriginTop);
-		// console.log('isTransformOriginBottom =', isTransformOriginBottom);
-		// console.log('isTransformOriginLeft =', isTransformOriginLeft);
-		// console.log('isTransformOriginRight =', isTransformOriginRight);
-		// console.log('Math.abs(yTransformOffset - valueToMatch) =', Math.abs(yTransformOffset - xValueToMatch));
+		console.log('xTransformOffset =', xTransformOffset);
+		console.log('yTransformOffset =', yTransformOffset);
+		console.log('cardDimensions =', cardDimensions);
+		console.log('xValueToMatch =', xValueToMatch);
+		console.log('yValueToMatch =', yValueToMatch);
+		console.log('xCondition =', xCondition);
+		console.log('yCondition =', yCondition);
+		console.log('xConditionHalf =', xConditionHalf);
+		console.log('yConditionHalf =', yConditionHalf);
+		console.log('something------------------------------------------------');
+		console.log('isTransformOriginTopLeft =', isTransformOriginTopLeft);
+		console.log('isTransformOriginTopRight =', isTransformOriginTopRight);
+		console.log('isTransformOriginBottomLeft =', isTransformOriginBottomLeft);
+		console.log('isTransformOriginBottomRight =', isTransformOriginBottomRight);
+		console.log('isTransformOriginTop =', isTransformOriginTop);
+		console.log('isTransformOriginBottom =', isTransformOriginBottom);
+		console.log('isTransformOriginLeft =', isTransformOriginLeft);
+		console.log('isTransformOriginRight =', isTransformOriginRight);
+		console.log('Math.abs(yTransformOffset - valueToMatch) =', Math.abs(yTransformOffset - xValueToMatch));
 
 		if (isTransformOriginTopLeft || isTransformOriginTopRight) {
 			cardCenterYOriginal = cardCenterYOriginal + (cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset);
