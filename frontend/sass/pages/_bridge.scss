@@ -276,14 +276,14 @@
 		&:first-of-type {
 			top: 25vh;
 			left: 50vw;
-			transform: translate(-50%, calc(-50% - 50vh));
+			transform: var(--bridge-hero-translate-heading-1);
 		}
 
 		&:nth-of-type(2) {
 			mix-blend-mode: $hero-blend-mode;
 			top: 50vh;
 			left: 25vw;
-			transform: translate(calc(-50% - 50vw),-50%);
+			transform: var(--bridge-hero-translate-heading-2);
 
 			@include respond(small-font) {
 				left: 50vw;
@@ -294,7 +294,7 @@
 			mix-blend-mode: $hero-blend-mode;
 			top: 50vh;
 			left: 75vw;
-			transform: translate(calc(50% + 50vw),-50%);
+			transform: var(--bridge-hero-translate-heading-3);
 
 			@include respond(small-font) {
 				left: 50vw;
@@ -305,7 +305,11 @@
 			mix-blend-mode: $hero-blend-mode;
 			top: 75vh;
 			left: 50vw;
-			transform: translate(-50%, calc(50% + 50vh));
+			transform: var(--bridge-hero-translate-heading-4);
+		}
+
+		&:hover {
+			animation: bridge-hero-hover 5s infinite;
 		}
 	}
 	
