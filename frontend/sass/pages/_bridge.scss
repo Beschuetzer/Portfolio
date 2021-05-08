@@ -276,14 +276,12 @@
 		&:first-of-type {
 			top: 25vh;
 			left: 50vw;
-			transform: var(--bridge-hero-translate-heading-1);
 		}
 
 		&:nth-of-type(2) {
 			mix-blend-mode: $hero-blend-mode;
 			top: 50vh;
 			left: 25vw;
-			transform: var(--bridge-hero-translate-heading-2);
 
 			@include respond(small-font) {
 				left: 50vw;
@@ -294,7 +292,6 @@
 			mix-blend-mode: $hero-blend-mode;
 			top: 50vh;
 			left: 75vw;
-			transform: var(--bridge-hero-translate-heading-3);
 
 			@include respond(small-font) {
 				left: 50vw;
@@ -305,11 +302,6 @@
 			mix-blend-mode: $hero-blend-mode;
 			top: 75vh;
 			left: 50vw;
-			transform: var(--bridge-hero-translate-heading-4);
-		}
-
-		&:hover {
-			animation: bridge-hero-hover 5s infinite;
 		}
 	}
 	
@@ -468,20 +460,18 @@
 		visibility: visible;
 		transform: translate(-50%,-50%);
 
-		// &:first-of-type {
-		// }
-		// &:nth-of-type(2) {
-		// 	// left: 25vw;
-		// 	transform: translate(0);
-		// }
-		// &:nth-of-type(3) {
-		// 	// right: 25vw;
-		// 	transform: translate(0);
-		// }
-		// &:nth-of-type(4) {
-		// 	// top: 40vh;
-		// 	transform: translate(0);
-		// }
+		&:first-of-type {
+			animation: bridge-hero-hover 10s infinite;
+		}
+		&:nth-of-type(2) {
+			animation: bridge-hero-hover 10s infinite;
+		}
+		&:nth-of-type(3) {
+			animation: bridge-hero-hover 10s infinite;
+		}
+		&:nth-of-type(4) {
+			animation: bridge-hero-hover 10s infinite;
+		}
 	}
 
 	&:checked ~ .hero .diamond-fractal {

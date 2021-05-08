@@ -81,9 +81,42 @@
 	}
 }
 
+$translate-centering: translate(-50%, -50%);
+$starting-degrees: 0deg;
+$max-degrees: 5deg;
 @keyframes bridge-hero-hover {
+	0%{
+		transform: $translate-centering rotate($starting-degrees);
+	}
+	10%{
+		transform: $translate-centering rotate($max-degrees);
+	}
+	25%{
+		transform: $translate-centering rotate(-$max-degrees);
+	}
+	// 30%{
+	// 	transform: $translate-centering rotate($max-degrees);
+	// }
+	40%{
+		transform: $translate-centering rotate($max-degrees);
+	}
+	// 50%{
+		// transform: $translate-centering rotate(2deg);
+	// }
+	60%{
+		transform: $translate-centering rotate($starting-degrees);
+	}
+	75%{
+		transform: $translate-centering rotate($max-degrees);
+	}
+	// 80%{
+	// 	transform: $translate-centering rotate($max-degrees);
+	// }
+	// 90%{
+	// 	transform: $translate-centering rotate($max-degrees);
+	// }
 	100%{
-		transform: 
+		transform: $translate-centering rotate($starting-degrees);
 	}
 }
 

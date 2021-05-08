@@ -219,10 +219,10 @@ $page-nav-top: calc(
 	--header-inner-width-nav-switch: 100%;
 
 	//bridge page
-	--bridge-hero-translate-heading-1: translate(-50%, calc(-50% - 50vh));
-	--bridge-hero-translate-heading-2: translate(calc(-50% - 50vw),-50%);
-	--bridge-hero-translate-heading-3: translate(calc(50% + 50vw),-50%);
-	--bridge-hero-translate-heading-4: translate(-50%, calc(50% + 50vh));
+	--bridge-hero-translate-heading-1: (-50%, calc(-50% - 50vh));
+	--bridge-hero-translate-heading-2: (calc(-50% - 50vw),-50%);
+	--bridge-hero-translate-heading-3: (calc(50% + 50vw),-50%);
+	--bridge-hero-translate-heading-4: (-50%, calc(50% + 50vh));
 	--bridge-hero-rotate-heading-1: 0deg;
 	--bridge-hero-rotate-heading-2: 0deg;
 	--bridge-hero-rotate-heading-3: 0deg;
