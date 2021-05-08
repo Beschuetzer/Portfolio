@@ -2544,9 +2544,19 @@ div.references__name {
   font-size: 16rem;
   font-weight: 200;
 }
+@media only screen and (max-width: 35.0625em) {
+  .hero__heading:first-of-type, .hero__heading:nth-of-type(4) {
+    font-size: 9.6rem;
+  }
+}
 .hero__heading:nth-of-type(2), .hero__heading:nth-of-type(3) {
   font-size: 8rem;
   font-weight: 700;
+}
+@media only screen and (max-width: 29.3125em) {
+  .hero__heading:nth-of-type(2), .hero__heading:nth-of-type(3) {
+    font-size: 6.4rem;
+  }
 }
 .hero__heading:first-of-type {
   top: 25vh;
@@ -2559,11 +2569,23 @@ div.references__name {
   left: 25vw;
   transform: translate(calc(-50% - 50vw), -50%);
 }
+@media only screen and (max-width: 29.3125em) {
+  .hero__heading:nth-of-type(2) {
+    left: 50vw;
+    top: 36vh;
+  }
+}
 .hero__heading:nth-of-type(3) {
   mix-blend-mode: hard-light;
   top: 50vh;
   left: 75vw;
   transform: translate(calc(50% + 50vw), -50%);
+}
+@media only screen and (max-width: 29.3125em) {
+  .hero__heading:nth-of-type(3) {
+    left: 50vw;
+    top: 65vh;
+  }
 }
 .hero__heading:nth-of-type(4) {
   mix-blend-mode: hard-light;
@@ -2610,6 +2632,11 @@ div.references__name {
   .hero__more svg {
     width: 16rem;
     height: 16rem;
+  }
+}
+@media only screen and (max-width: 52.6875em) {
+  .hero__more svg {
+    --hero-more-y-translate: calc(-50% - 14.4rem);
   }
 }
 .hero__more svg:nth-of-type(1) {
