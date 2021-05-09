@@ -57,4 +57,5 @@ IDEAS-----------------------------------------------------------
 -finish BridgeHero header animation
 -SiteNav examples for non-touch devices should be expanded
 -Add images to SiteNav examples links
--Add pageNav to bridge
+-Change styling for pageNav
+-Change it so that pageNav only shows after first click of hero__more
