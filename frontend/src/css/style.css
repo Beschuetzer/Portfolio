@@ -2424,11 +2424,6 @@ div.references__name {
   left: 100vw;
   transition: transform 0.25s linear;
 }
-@-moz-document url-prefix() {
-  .bridge__section {
-    transition: none;
-  }
-}
 @media only screen and (max-width: 68.75em) {
   .bridge__section {
     height: auto;
@@ -2729,13 +2724,21 @@ div.references__name {
   width: 7vw;
   height: 7vw;
   fill: var(--color-primary-4);
+  opacity: 0.15;
+  transition: fill 0.125s cubic-bezier(1, 0, 0, 1);
 }
 .hero__source-label {
-  color: var(--color-primary-4);
-  font-size: 3.2rem;
-}
-.hero__source:hover * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: var(--color-primary-1);
+  font-size: 1.6rem;
+  transition: transform 0.125s cubic-bezier(1, 0, 0, 1);
+}
+.hero__source:hover .hero__source-label {
+  color: var(--color-primary-1);
+  transform: rotate(2.5deg);
 }
 .hero__source:hover svg {
   fill: var(--color-primary-1);

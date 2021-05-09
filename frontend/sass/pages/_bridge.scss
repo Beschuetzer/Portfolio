@@ -36,9 +36,9 @@
 		transition: 
 			transform $animation-duration * .5 linear,
 		;
-		@-moz-document url-prefix() {
-			transition: none;
-		}
+		// @-moz-document url-prefix() {
+		// 	transition: none;
+		// }
 
 		@include respond(nav-switch) {
 			height: auto;
@@ -428,7 +428,7 @@
 
 	&__source {
     position: absolute;
-    z-index: 5;
+    z-index: $navbar-full-z-index;
     display: inline-flex;
 		justify-content: center;
 		align-items: center;
@@ -441,16 +441,29 @@
 			width: $navbar__logo-width;
 			height: $navbar__logo-width;
 			fill: var(--color-primary-4);
+			opacity: .15;
+			transition:  
+				fill $animation-duration * .25 $animation-easing-modern,
+			;
 		}
 
 		&-label {
-			color: var(--color-primary-4);
-			font-size: $default-font-size * 2;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: var(--color-primary-1);
+			font-size: $default-font-size * 1;
+			transition:  
+				transform $animation-duration * .25 $animation-easing-modern,
+			;
 		}
 
-		&:hover * {
+		&:hover &-label {
 			color: var(--color-primary-1);
+			transform: rotate(2.5deg);
 		}
+
 
 		&:hover svg {
 			fill: var(--color-primary-1);

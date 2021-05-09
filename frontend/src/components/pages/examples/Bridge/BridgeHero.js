@@ -92,7 +92,7 @@ const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedB
           className="bg-video"
         />
         <a target="_blank" rel="noreferrer" href="https://github.com/Beschuetzer/Bridge" className="hero__source">
-          {/* <span className="hero__source-label bridge__link">Source: </span> */}
+          <span className="hero__source-label">Code</span>
           <svg className="hero__source-svg">
             <use xlinkHref="/sprite.svg#icon-code"></use>
           </svg>
