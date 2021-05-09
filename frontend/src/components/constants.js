@@ -86,6 +86,17 @@ export const toggleSecondInfoButtonClick = (hero, heroMore) => {
   }, SECOND_INFO_BUTTON_DELAY)
 }
 
+export const showBridgeHero = (heroMore) => {
+  let docStyle = getComputedStyle(document.documentElement);
+  const defaultFontSize = docStyle.getPropertyValue('--default-font-size')
+  const defaultFontSizeFloat = parseFloat(defaultFontSize);
+  
+  document.documentElement.style.setProperty('--bridge-section-height', '100vh');
+  document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
+  
+  heroMore.current?.classList.add('hero__more--clicked');
+}
+
 export const handleBridgeHeroSounds = (checkBoxRef, backgroundRef, sounds, isMobile, headerHeight) => {
   if (!checkBoxRef?.checked) {
     sounds.play('doorFast');

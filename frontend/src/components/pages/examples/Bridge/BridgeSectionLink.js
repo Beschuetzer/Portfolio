@@ -1,10 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setCurrentBridgeSection } from '../../../../actions';
-import { toggleSecondInfoButtonClick } from '../../../constants';
+import { 
+  setCurrentBridgeSection, 
+  setClickedBridgeInfoButtonCount,
+  setHasClickedALink,
+} from '../../../../actions';
+import { 
+  toggleSecondInfoButtonClick,
+  handleBridgeHeroSounds,
+  showBridgeHero,
+} from '../../../constants';
 
-const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content, match}) => {
+const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content, match, sounds, isMobile, headerHeight, setClickedBridgeInfoButtonCount, setHasClickedALink, hasClickedALink}) => {
 
   const getSkipDirectionAndSkips = (e) => {
     let skipToSectionNumber = -1;
@@ -32,9 +40,18 @@ const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBrid
     if (match && match.url.match(/bridge/i)) {
       const hero = document.querySelector('.hero');
       const heroMore = document.querySelector('.hero__more');
-      toggleSecondInfoButtonClick(hero, heroMore);
-    }
+      const checkBoxRef = document.querySelector('#hero__more-checkbox')
+      const backgroundRef = document.querySelector('.hero__background')
 
+      showBridgeHero(heroMore);
+      toggleSecondInfoButtonClick(hero, heroMore);
+      setClickedBridgeInfoButtonCount(2);
+
+      if (!hasClickedALink) {
+        handleBridgeHeroSounds(checkBoxRef, backgroundRef, sounds, isMobile, headerHeight);
+        setHasClickedALink(true);
+      }
+    }
   }
 
   return (
@@ -46,10 +63,16 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentBridgeSection: state.bridge.currentBridgeSection,
     bridgeSections: state.bridge.bridgeSections,
+    hasClickedALink: state.bridge.hasClickedALink,
+    headerHeight: state.general.headerHeight,
+    isMobile: state.general.isMobile,
+    sounds: state.sounds,
     numberOfSkips: parseInt(ownProps.numberOfSkips),
   }
 }
 
 export default connect(mapStateToProps, {
   setCurrentBridgeSection,
+  setClickedBridgeInfoButtonCount,
+  setHasClickedALink,
 })(BridgeSectionLink);

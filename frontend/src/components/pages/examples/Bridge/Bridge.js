@@ -3,6 +3,10 @@ import { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import {
+	setHasClickedALink,
+} from '../../../../actions';
+
 import { bridgeSections } from '../../../constants';
 import BridgeHero from './BridgeHero';
 import BridgeCard from './BridgeCard';
@@ -25,7 +29,7 @@ import saveGameVideo from '../../../../clips/saveGame.mp4';
 import CardManager from "../../../CardManager";
 import { onRenderCallback } from "../../../constants";
 
-const Bridge = ({hasClickedBridgeInfoButton}) => {
+const Bridge = ({hasClickedBridgeInfoButton, setHasClickedALink}) => {
 	const sectionContents = [
 			<SectionContainer
 				name={bridgeSections[0]}
@@ -379,7 +383,8 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 			"--body-background",
 			newLinearGradient,
 		);
-	}, []);
+		setHasClickedALink(false);
+	}, [setHasClickedALink]);
 
 	const renderSections = () => {
 		return sectionContents.map((item, index) => {
@@ -415,11 +420,12 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 const mapStateToProps = (state, ownProps) => {
 	return {
 		hasClickedBridgeInfoButton: state.general.hasClickedBridgeInfoButton,
+		hasClickedALink: state.bridge.hasClickedALink,
 	}
 }
 
 export default connect(mapStateToProps, {
-
+	setHasClickedALink,
 })(Bridge);
 
 /* <p>

@@ -7,6 +7,7 @@ import { setClickedBridgeInfoButtonCount } from '../../../../actions';
 import {
   toggleSecondInfoButtonClick,
   handleBridgeHeroSounds,
+  showBridgeHero,
 } from '../../../constants';
 
 import Video from '../../../Video';
@@ -22,14 +23,7 @@ const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedB
 
   const handleMoreClick = (e) => {
     if(clickedBridgeInfoButtonCount === 0) {
-      let docStyle = getComputedStyle(document.documentElement);
-      const defaultFontSize = docStyle.getPropertyValue('--default-font-size')
-      const defaultFontSizeFloat = parseFloat(defaultFontSize);
-      
-      document.documentElement.style.setProperty('--bridge-section-height', '100vh');
-      document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
-      
-      heroMore.current?.classList.add('hero__more--clicked');
+      showBridgeHero(heroMore);
     }
     else if (clickedBridgeInfoButtonCount > 0){
       toggleSecondInfoButtonClick(hero, heroMore);
@@ -38,8 +32,6 @@ const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedB
     handleBridgeHeroSounds(checkBoxRef.current, backgroundRef.current, sounds, isMobile, headerHeight);
 
     setClickedBridgeInfoButtonCount(clickedBridgeInfoButtonCount + 1);
-    console.log('clickedBridgeInfoButtonCount =', clickedBridgeInfoButtonCount);
-
   }
 
 	return (

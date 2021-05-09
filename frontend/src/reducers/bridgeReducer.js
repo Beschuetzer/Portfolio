@@ -4,6 +4,7 @@ import {
   SET_CURRENT_BRIDGE_SECTION,
   SET_BRIDGE_SECTIONS,
   SET_BRIDGE_CARDS,
+  SET_HAS_CLICKED_A_LINK,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -12,6 +13,7 @@ const INITIAL_STATE = {
   currentBridgeSection: 0,
   bridgeSections: null,
   bridgeCards: null,
+  hasClickedALink: null,
 }
 
 const resumeReducer = (state = INITIAL_STATE, action) => {
@@ -26,6 +28,9 @@ const resumeReducer = (state = INITIAL_STATE, action) => {
       return {...state, bridgeSections: action.payload};
     case SET_BRIDGE_CARDS:
       return {...state, bridgeCards: action.payload};
+    case SET_HAS_CLICKED_A_LINK:
+      console.log('has clicked------------------------------------------------');
+      return {...state, hasClickedALink: action.payload};
     default:
       return state;
   }

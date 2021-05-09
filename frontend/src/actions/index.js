@@ -16,6 +16,7 @@ import {
   SET_HEADER_HEIGHT,
   SET_LAST_SECOND_ROW_CARD_NUMBER,
   SET_BRIDGE_CARDS,
+  SET_HAS_CLICKED_A_LINK,
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
@@ -288,6 +289,13 @@ export const setLastSecondRowCardNumber = (value) => {
 export const setBridgeCards = (value) => {
   return {
     type: SET_BRIDGE_CARDS,
+    payload: value,
+  }
+}
+
+export const setHasClickedALink = (value) => {
+  return {
+    type: SET_HAS_CLICKED_A_LINK,
     payload: value,
   }
 }
