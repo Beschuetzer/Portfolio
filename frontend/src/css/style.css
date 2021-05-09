@@ -961,6 +961,7 @@ body {
   align-items: center;
   grid-auto-rows: 1fr;
   height: 200%;
+  transition: opacity 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .page-nav {
@@ -2550,6 +2551,21 @@ div.references__name {
   border-image: linear-gradient(to right, var(--color-primary-4) 0%, var(--color-primary-1) 50%, var(--color-primary-1) 50%, var(--color-primary-4) 100%);
   border-image-slice: 1;
 }
+.bridge__page-nav-link {
+  cursor: pointer;
+  background: linear-gradient(to left, var(--color-primary-1) 0%, var(--color-primary-4) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  color: transparent;
+  animation: animate-skills infinite 10s;
+  font-size: 1.6rem;
+  color: var(--color-primary-4);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.bridge__page-nav-link:hover {
+  color: var(--color-primary-1);
+  transform: translateY(-0.16rem) scale(1.05);
+}
 
 .hero {
   background-image: linear-gradient(to right, rgba(245, 146, 41, 0.33) 0%, rgba(0, 64, 107, 0.33) 25%, rgba(0, 64, 107, 0.33) 75%, rgba(245, 146, 41, 0.33) 100%);
@@ -2732,7 +2748,7 @@ div.references__name {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: var(--color-primary-1);
+  color: var(--color-primary-4);
   font-size: 1.6rem;
   transition: transform 0.125s cubic-bezier(1, 0, 0, 1);
 }
@@ -2840,6 +2856,11 @@ div.references__name {
 
 .reverse-ease {
   transition: opacity 0.5s cubic-bezier(0.4, 0, 1, 1) 0.625s;
+}
+
+.page-nav-bridge {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .slide-left {

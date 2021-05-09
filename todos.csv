@@ -58,4 +58,7 @@ IDEAS-----------------------------------------------------------
 -SiteNav examples for non-touch devices should be expanded
 -Add images to SiteNav examples links
 -Change styling for pageNav
--Change it so that pageNav only shows after first click of hero__more
+-clicking hero___more then scrolling down doesn't show right arrow
+-pageNav color needs to change for each page
+-bug when clicking on last item in pageNav (shows right arrow)
+-clicking on SiteNav in bridge page adds page-nav-bridge

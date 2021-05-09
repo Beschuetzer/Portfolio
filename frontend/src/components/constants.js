@@ -79,7 +79,6 @@ export function onRenderCallback(
 //#region shared functions
 export const toggleSecondInfoButtonClick = (hero, heroMore, shouldWaitToHideHero = true) => {
   heroMore?.classList.remove('hero__more--clicked');
-
   if (shouldWaitToHideHero) {
     setTimeout(() => {
       hero?.classList.add('d-none');
@@ -100,6 +99,7 @@ export const showBridgeHero = (heroMore) => {
   const defaultFontSize = docStyle.getPropertyValue('--default-font-size')
   const defaultFontSizeFloat = parseFloat(defaultFontSize);
   
+  document.querySelector('.page-nav').classList?.remove('page-nav-bridge');
   document.documentElement.style.setProperty('--bridge-section-height', '100vh');
   document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
   

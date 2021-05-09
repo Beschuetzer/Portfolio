@@ -55,7 +55,7 @@ const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBrid
   }
 
   return (
-    <span onClick={navigateToSection} className="bridge__link">{content}</span>
+    <span onClick={navigateToSection} className="bridge__page-nav-link page-nav__section">{content}</span>
   );
 }
 

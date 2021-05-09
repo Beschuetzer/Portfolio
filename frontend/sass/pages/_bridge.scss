@@ -222,6 +222,19 @@
 		@include link-animating;
 		@include link-line;
 	}
+	&__page-nav-link {
+		@include link-animating;
+		font-size: $default-font-size * 1;
+		color: var(--color-primary-4);
+		transition: 
+			color $animation-duration / 2 $animation-easing-standard,
+			transform $animation-duration /2 $animation-easing-standard,
+		;
+		&:hover {
+			color: var(--color-primary-1);
+			transform: translateY(-$default-font-size * .1) scale(1.05);
+		}
+	}
 }
 
 .hero {
@@ -452,7 +465,7 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			color: var(--color-primary-1);
+			color: var(--color-primary-4);
 			font-size: $default-font-size * 1;
 			transition:  
 				transform $animation-duration * .25 $animation-easing-modern,
@@ -621,7 +634,8 @@ $padding-nav-switch: $default-font-size * .5;
 }
 
 .page-nav-bridge{
-	// position: fixed;
+	opacity: 0;
+	visibility: hidden;
 }
 
 .slide-left {
