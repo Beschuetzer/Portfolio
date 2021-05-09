@@ -34,6 +34,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	}
 
 	const onNavClick = (e) => {
+		console.log('nav click------------------------------------------------');
 		e.stopPropagation();
 		const navBar = navRef.current;
 		const isChildOfNavBar = checkForParentOfType(e.target, "nav", "navbar");
@@ -43,7 +44,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 
 		if (isChildOfNavBar) navBar.classList.add("overflow--hidden");
-			// navBar.classList?.toggle(NAVBAR_ACTIVE_CLASSNAME);
 		
 		if (
 			!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&

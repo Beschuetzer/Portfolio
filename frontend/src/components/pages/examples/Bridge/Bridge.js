@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import {
+	setClickedBridgeInfoButtonCount,
 	setHasClickedALink,
 } from '../../../../actions';
 
@@ -29,7 +30,7 @@ import saveGameVideo from '../../../../clips/saveGame.mp4';
 import CardManager from "../../../CardManager";
 import { onRenderCallback } from "../../../constants";
 
-const Bridge = ({hasClickedBridgeInfoButton, setHasClickedALink}) => {
+const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount}) => {
 	const sectionContents = [
 			<SectionContainer
 				name={bridgeSections[0]}
@@ -386,6 +387,13 @@ const Bridge = ({hasClickedBridgeInfoButton, setHasClickedALink}) => {
 		setHasClickedALink(false);
 	}, [setHasClickedALink]);
 
+	//Resetting clickedBridgeInfoButtonCount on unload
+	useEffect (() => {
+		return (() => {
+			setClickedBridgeInfoButtonCount(0);
+		})
+	}, [setClickedBridgeInfoButtonCount])
+
 	const renderSections = () => {
 		return sectionContents.map((item, index) => {
 			return (
@@ -419,13 +427,14 @@ const Bridge = ({hasClickedBridgeInfoButton, setHasClickedALink}) => {
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		hasClickedBridgeInfoButton: state.general.hasClickedBridgeInfoButton,
+		clickedBridgeInfoButtonCount: state.general.clickedBridgeInfoButtonCount,
 		hasClickedALink: state.bridge.hasClickedALink,
 	}
 }
 
 export default connect(mapStateToProps, {
 	setHasClickedALink,
+	setClickedBridgeInfoButtonCount,
 })(Bridge);
 
 /* <p>

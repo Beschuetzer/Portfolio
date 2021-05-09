@@ -41,6 +41,9 @@ class PageNav extends React.Component {
     const pageName = url.slice(url.lastIndexOf('/') + 1);
     PageNav.pageNav.classList = PageNav.cssClass;
     PageNav.pageNav.classList.add(`${PageNav.cssClass}-${pageName}`);
+
+    console.log('this.props.clickedBridgeInfoButtonCount =', this.props.clickedBridgeInfoButtonCount);
+    if (this.props.clickedBridgeInfoButtonCount <= 0 && url.match(/bridge/i)) PageNav.pageNav.classList.add('hidden');
   }
 
   updateActiveScaleRange = () => {
@@ -240,9 +243,7 @@ class PageNav extends React.Component {
 
   render() {
     const { match } = this.props;
-    console.log('match =', match);
     const isBridgePage = match.url.match(/bridge/i);
-    console.log('isBridgePage =', isBridgePage);
     
     return (
       ReactDOM.createPortal(
@@ -265,6 +266,8 @@ const mapStateToProps = (state, ownProps) => {
   return { 
     previousUrl: state.general.previousUrl,
     isMobile: state.general.isMobile,
+    hasClickedALink: state.bridge.hasClickedALink,
+    clickedBridgeInfoButtonCount: state.bridge.clickedBridgeInfoButtonCount,
   }
 }
 

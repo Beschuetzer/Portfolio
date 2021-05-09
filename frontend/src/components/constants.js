@@ -99,7 +99,7 @@ export const showBridgeHero = (heroMore) => {
   const defaultFontSize = docStyle.getPropertyValue('--default-font-size')
   const defaultFontSizeFloat = parseFloat(defaultFontSize);
   
-  document.querySelector('.page-nav').classList?.remove('page-nav-bridge');
+  document.querySelector('.page-nav').classList?.remove('hidden');
   document.documentElement.style.setProperty('--bridge-section-height', '100vh');
   document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
   

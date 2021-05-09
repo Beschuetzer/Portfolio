@@ -2858,11 +2858,6 @@ div.references__name {
   transition: opacity 0.5s cubic-bezier(0.4, 0, 1, 1) 0.625s;
 }
 
-.page-nav-bridge {
-  opacity: 0;
-  visibility: hidden;
-}
-
 .slide-left {
   transform: translateX(-100vw) !important;
 }
