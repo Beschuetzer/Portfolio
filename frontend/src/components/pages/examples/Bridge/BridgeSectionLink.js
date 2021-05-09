@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { setCurrentBridgeSection } from '../../../../actions';
+import { toggleSecondInfoButtonClick } from '../../../constants';
 
-const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content}) => {
+const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content, match}) => {
 
   const getSkipDirectionAndSkips = (e) => {
     let skipToSectionNumber = -1;
@@ -27,6 +28,13 @@ const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBrid
       const valueToUse = currentBridgeSection + numberOfSkips;
       setCurrentBridgeSection(valueToUse < bridgeSections.length  ? valueToUse : (bridgeSections.length - 1))
     }
+
+    if (match && match.url.match(/bridge/i)) {
+      const hero = document.querySelector('.hero');
+      const heroMore = document.querySelector('.hero__more');
+      toggleSecondInfoButtonClick(hero, heroMore);
+    }
+
   }
 
   return (

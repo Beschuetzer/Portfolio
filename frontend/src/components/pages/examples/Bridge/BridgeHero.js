@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 
 import { setClickedBridgeInfoButtonCount } from '../../../../actions';
 
+import {
+  toggleSecondInfoButtonClick,
+  handleBridgeHeroSounds,
+} from '../../../constants';
+
 import Video from '../../../Video';
 import bgVideo from '../../../../clips/animation-roundEndDummy.mp4';
 
@@ -27,35 +32,10 @@ const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedB
       heroMore.current?.classList.add('hero__more--clicked');
     }
     else if (clickedBridgeInfoButtonCount > 0){
-      heroMore.current?.classList.remove('hero__more--clicked');
-      setTimeout(() => {
-        const arrowButtonRight = document.querySelector('.arrow-button--right');
-        hero.current?.classList.add('d-none');
-        arrowButtonRight.classList.remove('d-none');
-      }, 500)
+      toggleSecondInfoButtonClick(hero, heroMore);
     }
 
-
-    if (!checkBoxRef.current?.checked) {
-      sounds.play('doorFast');
-
-      if (!backgroundRef.current) return;
-      backgroundRef.current?.classList.add('visible');
-      backgroundRef.current?.classList.add('reverse-ease');
-    }
-    else {
-      sounds.play('doorNormal');
-      window.scroll({
-        top: isMobile ? window.innerHeight - headerHeight : window.innerHeight, 
-        left: 0, 
-        behavior: 'smooth' 
-      });
-
-      if (backgroundRef.current)  {
-        backgroundRef.current?.classList.remove('visible');
-        backgroundRef.current?.classList.remove('reverse-ease');
-      }
-    }
+    handleBridgeHeroSounds(checkBoxRef.current, backgroundRef.current, sounds, isMobile, headerHeight);
 
     setClickedBridgeInfoButtonCount(clickedBridgeInfoButtonCount + 1);
     console.log('clickedBridgeInfoButtonCount =', clickedBridgeInfoButtonCount);

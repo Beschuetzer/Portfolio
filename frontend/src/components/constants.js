@@ -4,7 +4,7 @@ export const NAVBAR_IS_ANIMATING_CLASSNAME = 'navbar--isAnimating';
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION =  75;
-
+export const SECOND_INFO_BUTTON_DELAY = 500;
 
 export const bridgeSections = [
   "Background",
@@ -75,3 +75,37 @@ export function onRenderCallback(
   // console.log('commitTime =', commitTime);
   // console.log('interactions =', interactions);
 }
+
+//#region shared functions
+export const toggleSecondInfoButtonClick = (hero, heroMore) => {
+  heroMore.current?.classList.remove('hero__more--clicked');
+  setTimeout(() => {
+    const arrowButtonRight = document.querySelector('.arrow-button--right');
+    hero.current?.classList.add('d-none');
+    arrowButtonRight.classList.remove('d-none');
+  }, SECOND_INFO_BUTTON_DELAY)
+}
+
+export const handleBridgeHeroSounds = (checkBoxRef, backgroundRef, sounds, isMobile, headerHeight) => {
+  if (!checkBoxRef?.checked) {
+    sounds.play('doorFast');
+
+    if (!backgroundRef) return;
+    backgroundRef?.classList.add('visible');
+    backgroundRef?.classList.add('reverse-ease');
+  }
+  else {
+    sounds.play('doorNormal');
+    window.scroll({
+      top: isMobile ? window.innerHeight - headerHeight : window.innerHeight, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
+
+    if (backgroundRef)  {
+      backgroundRef?.classList.remove('visible');
+      backgroundRef?.classList.remove('reverse-ease');
+    }
+  }
+}
+//#endregion

@@ -204,7 +204,6 @@ class PageNav extends React.Component {
 
   renderBridgeSections = () => {
     this.checkShouldSetPreviousUrl();
-    const sectionNames = this.getSectionNames();
 
     return bridgeSections.map((sectionName, index, array) => {
       return (
@@ -212,9 +211,8 @@ class PageNav extends React.Component {
           key={index} 
           content={bridgeSections[index]}
           sectionToSkipTo={bridgeSections[index]}
-        >
-        
-        </BridgeSectionLink>
+          match={this.props.match}
+        />
       );
     });
   }
