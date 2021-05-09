@@ -309,7 +309,7 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 			</SectionContainer>
 			,
 			<SectionContainer
-				name='features'
+				name='Lessons'
 				pageName='bridge'
 			>
 				<BridgeCard

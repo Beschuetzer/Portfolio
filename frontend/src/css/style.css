@@ -2843,7 +2843,7 @@ div.references__name {
 }
 
 .page-nav-bridge {
-  display: none;
+  position: fixed;
 }
 
 .slide-left {

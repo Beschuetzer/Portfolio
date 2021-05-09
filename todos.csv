@@ -47,16 +47,15 @@ IDEAS-----------------------------------------------------------
   -first section doesn't expand content all the way (height auto not working)
   -videos off
 
--firefox issues:
-  1) BridgeHero (animation) seems to slow whole page down
 
 -Go through every component and check for cases where I could use useCallback or useMemo?"
--SiteNav examples for non-touch devices should be expanded
 -bridge mobile linear gradients and spacing between sections
 
 -can remove checkbox stuff in Card?
 -memoize Card functions?
 -add Responsive Web Design tags to git hub projects and add as skill (bridge, resume, and Advanced CSS course projects)?
 -finish BridgeHero header animation
+-SiteNav examples for non-touch devices should be expanded
+-Add images to SiteNav examples links
 -Add pageNav to bridge
 

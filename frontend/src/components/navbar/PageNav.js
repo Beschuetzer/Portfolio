@@ -181,19 +181,48 @@ class PageNav extends React.Component {
     }
   }
 
-  renderSections = () => {
+  checkShouldSetPreviousUrl = () => {
     const { previousUrl } = this.props;
     const currentUrl = this.props.match?.url;
 
     if (!previousUrl || previousUrl !== currentUrl) this.props.setPreviousUrl(currentUrl);
+  }
 
-    let sectionNames = [];
+  getSectionNames = () => {
+    const sectionNames = [];
     const sections = document.querySelectorAll('[data-section]');
     for (let i = 0; i < sections.length; i++) {
       const section = sections[i];
       const capitalized = capitalize(section.dataset.section);
       sectionNames.push(capitalized)
     }
+    return sectionNames;
+  }
+
+  renderBridgeSections = () => {
+    this.checkShouldSetPreviousUrl();
+    const sectionNames = this.getSectionNames();
+
+    return sectionNames.map((sectionName, index, array) => {
+      return (
+        <li 
+          key={index} 
+          className={`${PageNav.cssClass}__section-group`}
+        >
+          <a 
+            href={`${this.props.match.url}#${sectionName?.toLowerCase()}`} 
+            className={`${PageNav.cssClass}__section ${PageNav.cssClass}__section-${sectionName}`}
+          >
+            {sectionName}
+          </a>
+        </li>
+      );
+    });
+  }
+
+  renderSections = () => {
+    this.checkShouldSetPreviousUrl();
+    const sectionNames = this.getSectionNames();
     
     return sectionNames.map((sectionName, index, array) => {
       return (
@@ -213,11 +242,20 @@ class PageNav extends React.Component {
   }
 
   render() {
+    const { match } = this.props;
+    console.log('match =', match);
+    const isBridgePage = match.url.match(/bridge/i);
+    console.log('isBridgePage =', isBridgePage);
+    
     return (
       ReactDOM.createPortal(
         //The idea behind this component is to have a nav element that has quick links  to the sections of each page
         <React.Fragment>
-          {this.renderSections()}
+          {isBridgePage ?
+            this.renderBridgeSections()
+          :
+            this.renderSections()
+          }
         </React.Fragment>
       ,
         PageNav.pageNav

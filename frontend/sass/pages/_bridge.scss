@@ -621,7 +621,7 @@ $padding-nav-switch: $default-font-size * .5;
 }
 
 .page-nav-bridge{
-	display: none;
+	position: fixed;
 }
 
 .slide-left {
