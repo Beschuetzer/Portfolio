@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { setPreviousUrl, setScrollPercent } from '../../actions';
 import { capitalize } from '../../helpers';
+import { bridgeSections } from '../constants';
+import BridgeSectionLink from '../pages/examples/Bridge/BridgeSectionLink';
 
 class PageNav extends React.Component {
   static cssClass = 'page-nav';
@@ -161,6 +163,7 @@ class PageNav extends React.Component {
         shouldAddActiveClass = false;
       }
 
+      if (!pageNavSectionElement) return;
       pageNavSectionElement.style.backgroundImage = gradientToUse;
 
       if (shouldAddActiveClass) {
@@ -203,19 +206,15 @@ class PageNav extends React.Component {
     this.checkShouldSetPreviousUrl();
     const sectionNames = this.getSectionNames();
 
-    return sectionNames.map((sectionName, index, array) => {
+    return bridgeSections.map((sectionName, index, array) => {
       return (
-        <li 
+        <BridgeSectionLink
           key={index} 
-          className={`${PageNav.cssClass}__section-group`}
+          content={bridgeSections[index]}
+          sectionToSkipTo={bridgeSections[index]}
         >
-          <a 
-            href={`${this.props.match.url}#${sectionName?.toLowerCase()}`} 
-            className={`${PageNav.cssClass}__section ${PageNav.cssClass}__section-${sectionName}`}
-          >
-            {sectionName}
-          </a>
-        </li>
+        
+        </BridgeSectionLink>
       );
     });
   }

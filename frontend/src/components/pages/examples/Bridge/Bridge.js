@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { bridgeSections } from '../../../constants';
 import BridgeHero from './BridgeHero';
 import BridgeCard from './BridgeCard';
 import BridgeCardSection from './BridgeCardSection';
@@ -27,12 +28,12 @@ import { onRenderCallback } from "../../../constants";
 const Bridge = ({hasClickedBridgeInfoButton}) => {
 	const sectionContents = [
 			<SectionContainer
-				name='Background'
+				name={bridgeSections[0]}
 				pageName='bridge'
 			>
 				<BridgeCard
 					titleSize='two'
-					titleContent='Background'
+					titleContent={bridgeSections[0]}
 				>
 					<BridgeCardSection
 						title='The Journey Begins'
@@ -179,12 +180,12 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 			</SectionContainer>
 			,
 			<SectionContainer
-				name='features'
+				name={bridgeSections[1]}
 				pageName='bridge'
 			>
 				<BridgeCard
 					titleSize='two'
-					titleContent='Features'
+					titleContent={bridgeSections[1]}
 					titleSubtitle="Pick a Card any Card..."
 				>
 					<CardManager>
@@ -309,12 +310,12 @@ const Bridge = ({hasClickedBridgeInfoButton}) => {
 			</SectionContainer>
 			,
 			<SectionContainer
-				name='Lessons'
+				name={bridgeSections[2]}
 				pageName='bridge'
 			>
 				<BridgeCard
 					titleSize='two'
-					titleContent='Lessons'
+					titleContent={bridgeSections[2]}
 				>
 					<BridgeCardSection
 						title="No One Technology is 'Better'"

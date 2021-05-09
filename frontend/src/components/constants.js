@@ -5,6 +5,13 @@ export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION =  75;
 
+
+export const bridgeSections = [
+  "Background",
+  "Features",
+  "Lessons",
+];
+
 let computedStyle = getComputedStyle(document.documentElement);
 export const COLOR_PRIMARY_1 = computedStyle.getPropertyValue('--color-primary-1');
 export const COLOR_PRIMARY_2 = computedStyle.getPropertyValue('--color-primary-2');

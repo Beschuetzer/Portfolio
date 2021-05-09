@@ -92,6 +92,7 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
         },
       }
 
+      console.log('currentBridgeSection =', currentBridgeSection);
       document.documentElement.style.setProperty('--arrow-button-left-fill', arrowColors[currentBridgeSection].normal.left);
       document.documentElement.style.setProperty('--arrow-button-right-fill', arrowColors[currentBridgeSection].normal.right);
       document.documentElement.style.setProperty('--arrow-button-left-fill-hover', arrowColors[currentBridgeSection].hover.left);
