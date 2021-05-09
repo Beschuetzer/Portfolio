@@ -83,21 +83,21 @@
 
 $translate-centering: translate(-50%, -50%);
 $starting-degrees: 0deg;
-$max-degrees: 5deg;
+$max-degrees: 2.5deg;
 @keyframes bridge-hero-hover {
 	0%{
 		transform: $translate-centering rotate($starting-degrees);
 	}
-	10%{
+	17%{
 		transform: $translate-centering rotate($max-degrees);
 	}
-	25%{
+	33%{
 		transform: $translate-centering rotate(-$max-degrees);
 	}
 	// 30%{
 	// 	transform: $translate-centering rotate($max-degrees);
 	// }
-	40%{
+	50%{
 		transform: $translate-centering rotate($max-degrees);
 	}
 	// 50%{
@@ -106,7 +106,7 @@ $max-degrees: 5deg;
 	60%{
 		transform: $translate-centering rotate($starting-degrees);
 	}
-	75%{
+	85%{
 		transform: $translate-centering rotate($max-degrees);
 	}
 	// 80%{

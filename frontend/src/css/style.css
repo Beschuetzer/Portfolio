@@ -159,20 +159,20 @@
   0% {
     transform: translate(-50%, -50%) rotate(0deg);
   }
-  10% {
-    transform: translate(-50%, -50%) rotate(5deg);
+  17% {
+    transform: translate(-50%, -50%) rotate(2.5deg);
   }
-  25% {
-    transform: translate(-50%, -50%) rotate(-5deg);
+  33% {
+    transform: translate(-50%, -50%) rotate(-2.5deg);
   }
-  40% {
-    transform: translate(-50%, -50%) rotate(5deg);
+  50% {
+    transform: translate(-50%, -50%) rotate(2.5deg);
   }
   60% {
     transform: translate(-50%, -50%) rotate(0deg);
   }
-  75% {
-    transform: translate(-50%, -50%) rotate(5deg);
+  85% {
+    transform: translate(-50%, -50%) rotate(2.5deg);
   }
   100% {
     transform: translate(-50%, -50%) rotate(0deg);
@@ -2714,14 +2714,40 @@ div.references__name {
   background-size: cover;
   transition: opacity 0.5s ease;
 }
+.hero__source {
+  position: absolute;
+  z-index: 5;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  top: calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) );
+  left: 50%;
+  transform: translate(-50%, 0%);
+  text-decoration: none;
+}
+.hero__source-svg {
+  width: 7vw;
+  height: 7vw;
+  fill: var(--color-primary-4);
+}
+.hero__source-label {
+  color: var(--color-primary-4);
+  font-size: 3.2rem;
+}
+.hero__source:hover * {
+  color: var(--color-primary-1);
+}
+.hero__source:hover svg {
+  fill: var(--color-primary-1);
+}
 
 #hero__more-checkbox {
   display: none;
 }
-#hero__more-checkbox:checked ~ .hero svg:first-of-type {
+#hero__more-checkbox:checked ~ .hero svg:not(.hero__source-svg):first-of-type {
   opacity: 0;
 }
-#hero__more-checkbox:checked ~ .hero svg:nth-of-type(2) {
+#hero__more-checkbox:checked ~ .hero svg:not(.hero__source-svg):nth-of-type(2) {
   opacity: 1;
 }
 #hero__more-checkbox:checked ~ .hero .hero__bridge-logo {

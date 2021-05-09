@@ -425,12 +425,44 @@
 			opacity $animation-duration $animation-easing-standard,
 		;
 	}
+
+	&__source {
+    position: absolute;
+    z-index: 5;
+    display: inline-flex;
+		justify-content: center;
+		align-items: center;
+    top: $header-top-inner;
+    left: 50%;
+    transform: translate(-50%, 0%);
+		text-decoration: none;
+
+		&-svg {
+			width: $navbar__logo-width;
+			height: $navbar__logo-width;
+			fill: var(--color-primary-4);
+		}
+
+		&-label {
+			color: var(--color-primary-4);
+			font-size: $default-font-size * 2;
+		}
+
+		&:hover * {
+			color: var(--color-primary-1);
+		}
+
+		&:hover svg {
+			fill: var(--color-primary-1);
+
+		}
+	}
 }
 
 #hero__more-checkbox {
 	display: none;
 
-	&:checked ~ .hero svg {
+	&:checked ~ .hero svg:not(.hero__source-svg) {
 		&:first-of-type {
 			opacity: 0;
 		}
