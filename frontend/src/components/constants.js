@@ -77,11 +77,20 @@ export function onRenderCallback(
 }
 
 //#region shared functions
-export const toggleSecondInfoButtonClick = (hero, heroMore) => {
-  heroMore.current?.classList.remove('hero__more--clicked');
+export const toggleSecondInfoButtonClick = (hero, heroMore, shouldWaitToHideHero = true) => {
+  heroMore?.classList.remove('hero__more--clicked');
+
+  if (shouldWaitToHideHero) {
+    setTimeout(() => {
+      hero?.classList.add('d-none');
+    }, SECOND_INFO_BUTTON_DELAY)
+  }
+  else {
+    hero?.classList.add('d-none');
+  }
+
   setTimeout(() => {
     const arrowButtonRight = document.querySelector('.arrow-button--right');
-    hero.current?.classList.add('d-none');
     arrowButtonRight.classList.remove('d-none');
   }, SECOND_INFO_BUTTON_DELAY)
 }

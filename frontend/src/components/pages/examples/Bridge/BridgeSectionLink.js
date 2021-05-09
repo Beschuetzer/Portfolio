@@ -44,7 +44,7 @@ const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBrid
       const backgroundRef = document.querySelector('.hero__background')
 
       showBridgeHero(heroMore);
-      toggleSecondInfoButtonClick(hero, heroMore);
+      toggleSecondInfoButtonClick(hero, heroMore, false);
       setClickedBridgeInfoButtonCount(2);
 
       if (!hasClickedALink) {

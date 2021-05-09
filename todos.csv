@@ -58,6 +58,3 @@ IDEAS-----------------------------------------------------------
 -SiteNav examples for non-touch devices should be expanded
 -Add images to SiteNav examples links
 -Add pageNav to bridge
-
-
--call setHasClickedALink(false) when bridge page loads
