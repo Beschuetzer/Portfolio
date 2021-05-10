@@ -224,6 +224,7 @@
 	}
 	&__page-nav-link {
 		@include link-animating;
+		opacity: .75;
 		font-size: $default-font-size * 1;
 		color: var(--color-primary-4);
 		transition: 
@@ -233,6 +234,15 @@
 		&:hover {
 			color: var(--color-primary-1);
 			transform: translateY(-$default-font-size * .1) scale(1.05);
+		}
+	}
+	&__current-section {
+		opacity: 1;
+		transform: scale(1.05);
+
+		&:hover {
+			transform: scale(1.05) translate(0,0);
+			color: currentColor;
 		}
 	}
 }

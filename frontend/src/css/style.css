@@ -2562,6 +2562,7 @@ div.references__name {
   background-clip: text;
   color: transparent;
   animation: animate-skills infinite 10s;
+  opacity: 0.75;
   font-size: 1.6rem;
   color: var(--color-primary-4);
   transition: color 0.25s ease, transform 0.25s ease;
@@ -2569,6 +2570,14 @@ div.references__name {
 .bridge__page-nav-link:hover {
   color: var(--color-primary-1);
   transform: translateY(-0.16rem) scale(1.05);
+}
+.bridge__current-section {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.bridge__current-section:hover {
+  transform: scale(1.05) translate(0, 0);
+  color: currentColor;
 }
 
 .hero {

@@ -211,12 +211,24 @@ class PageNav extends React.Component {
 
   setBridgeColors = () => {
     //get the currentBridgeSection and run through all of the 
-    debugger;
     const sectionNames = document.querySelectorAll(`.${BRIDGE_PAGE_NAV_LINK_CLASSNAME}`);
+    
+    //Setting BRIDGE_CURRENT_SECTION_CLASSNAME CSS class
     for (let i = 0; i < sectionNames.length; i++) {
       const sectionName = sectionNames[i];
-      if (i == this.props.currentBridgeSection) sectionName?.classList.add(BRIDGE_CURRENT_SECTION_CLASSNAME)
+      if (!sectionName) return;
+
+      if (this.props.clickedBridgeInfoButtonCount >= 2) {
+        sectionName.classList.remove('visible');
+        if (i === this.props.currentBridgeSection) sectionName.classList.add(BRIDGE_CURRENT_SECTION_CLASSNAME)
+        else sectionName.classList.remove(BRIDGE_CURRENT_SECTION_CLASSNAME)
+      }
+      else {
+        sectionName.classList.add('visible');
+      }
     }
+
+    //change CSS color var depending on currentBridgeSection
   }
 
   renderBridgeSections = () => {
@@ -284,7 +296,6 @@ const mapStateToProps = (state, ownProps) => {
     hasClickedALink: state.bridge.hasClickedALink,
     clickedBridgeInfoButtonCount: state.bridge.clickedBridgeInfoButtonCount,
     currentBridgeSection: state.bridge.currentBridgeSection,
-    
   }
 }
 
