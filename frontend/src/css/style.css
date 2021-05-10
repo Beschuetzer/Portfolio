@@ -744,7 +744,7 @@ body {
   }
 }
 .navbar__dropdown .navbar__item:last-child {
-  border-radius: 0 0 16rem 16rem;
+  border-radius: 0 0 1.6rem 1.6rem;
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__dropdown .navbar__item:last-child {

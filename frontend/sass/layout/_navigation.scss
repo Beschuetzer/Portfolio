@@ -363,8 +363,8 @@
 				}
 			}
 			&:last-child {
-				border-radius: 0 0 $navbar__item-border-radius
-					$navbar__item-border-radius;
+				border-radius: 0 0 $navbar__item-border-radius / 10
+					$navbar__item-border-radius / 10;
 				@include respond(nav-switch) {
 					border-radius: 0 0 $default-font-size * 0.5 $default-font-size * 0.5;
 				}
