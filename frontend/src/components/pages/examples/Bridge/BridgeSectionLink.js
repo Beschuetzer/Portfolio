@@ -13,7 +13,7 @@ import {
   showBridgeHero,
 } from '../../../constants';
 
-const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content, match, sounds, isMobile, headerHeight, setClickedBridgeInfoButtonCount, setHasClickedALink, hasClickedALink}) => {
+const BridgeSectionLink = ({isEmbeddedLink = false, bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content, match, sounds, isMobile, headerHeight, setClickedBridgeInfoButtonCount, setHasClickedALink, hasClickedALink}) => {
   const spanRef = useRef(null);
 
   const getSkipDirectionAndSkips = (e) => {
@@ -57,8 +57,11 @@ const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBrid
     }
   }
 
+  let classToUse = 'bridge__page-nav-link page-nav__section';
+  if (isEmbeddedLink) classToUse = 'bridge__link';
+
   return (
-    <span ref={spanRef} onClick={navigateToSection} className="bridge__page-nav-link page-nav__section">{content}</span>
+    <span ref={spanRef} onClick={navigateToSection} className={classToUse}>{content}</span>
   );
 }
 

@@ -6,12 +6,17 @@ export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION =  75;
 export const SECOND_INFO_BUTTON_DELAY = 500;
 
+//#region bridge stuff
+export const BRIDGE_CURRENT_SECTION_CLASSNAME = 'bridge__current-section';
+export const BRIDGE_PAGE_NAV_LINK_CLASSNAME = 'bridge__page-nav-link';
+
 export const bridgeSections = [
   "Background",
   "Features",
   "Lessons",
 ];
 
+//#region colors
 let computedStyle = getComputedStyle(document.documentElement);
 export const COLOR_PRIMARY_1 = computedStyle.getPropertyValue('--color-primary-1');
 export const COLOR_PRIMARY_2 = computedStyle.getPropertyValue('--color-primary-2');
@@ -21,9 +26,8 @@ export const COLOR_PRIMARY_BRIDGE_1 = computedStyle.getPropertyValue('--color-pr
 export const COLOR_PRIMARY_BRIDGE_2 = computedStyle.getPropertyValue('--color-primary-bridge-2');
 export const COLOR_PRIMARY_BRIDGE_3 = computedStyle.getPropertyValue('--color-primary-bridge-3');
 export const COLOR_PRIMARY_BRIDGE_4 = computedStyle.getPropertyValue('--color-primary-bridge-4');
-
-
-
+//#endregion
+//#region breakpoints and breakpoint stuff
 export const headerTogglerWidth = parseFloat(computedStyle.getPropertyValue('--header-toggler-width'));
 export const smallFontMaxWidth = parseFloat(computedStyle.getPropertyValue('--small-font-max-width'));
 export const navBreakMaxWidth = parseFloat(computedStyle.getPropertyValue('--nav-break-max-width'));
@@ -57,6 +61,7 @@ export const viewPortPixelToRem = {
     min: 0,
   },
 }
+//#endregion
 
 export function onRenderCallback(
   id, // the "id" prop of the Profiler tree that has just committed

@@ -150,6 +150,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 								&nbsp; took roughly 6 months to fully implement.  I haven't been able to test more than three simultaneous games, but it likely is able to run 100s if not 1000s of simultaneous games before the less-than-optimal code would bring a high-end server to a halt.&nbsp; Have a look at the interesting features in the 
 								&nbsp;
 								<BridgeSectionLink
+									isEmbeddedLink={true}
 									content="feature's section"
 									sectionToSkipTo='features'
 								></BridgeSectionLink>

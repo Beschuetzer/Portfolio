@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 
 import { setPreviousUrl, setScrollPercent } from '../../actions';
 import { capitalize } from '../../helpers';
-import { bridgeSections } from '../constants';
+import { 
+  bridgeSections,
+  BRIDGE_CURRENT_SECTION_CLASSNAME,
+  BRIDGE_PAGE_NAV_LINK_CLASSNAME,
+} from '../constants';
 import BridgeSectionLink from '../pages/examples/Bridge/BridgeSectionLink';
 
 class PageNav extends React.Component {
@@ -205,8 +209,19 @@ class PageNav extends React.Component {
     return sectionNames;
   }
 
+  setBridgeColors = () => {
+    //get the currentBridgeSection and run through all of the 
+    debugger;
+    const sectionNames = document.querySelectorAll(`.${BRIDGE_PAGE_NAV_LINK_CLASSNAME}`);
+    for (let i = 0; i < sectionNames.length; i++) {
+      const sectionName = sectionNames[i];
+      if (i == this.props.currentBridgeSection) sectionName?.classList.add(BRIDGE_CURRENT_SECTION_CLASSNAME)
+    }
+  }
+
   renderBridgeSections = () => {
     this.checkShouldSetPreviousUrl();
+    this.setBridgeColors()
 
     return bridgeSections.map((sectionName, index, array) => {
       return (
@@ -268,6 +283,8 @@ const mapStateToProps = (state, ownProps) => {
     isMobile: state.general.isMobile,
     hasClickedALink: state.bridge.hasClickedALink,
     clickedBridgeInfoButtonCount: state.bridge.clickedBridgeInfoButtonCount,
+    currentBridgeSection: state.bridge.currentBridgeSection,
+    
   }
 }
 
