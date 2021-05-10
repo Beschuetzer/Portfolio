@@ -157,6 +157,11 @@ class Resume extends React.Component {
 						}
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
+							title="NestJS"
+							percent="35"
+						/>
+						<SkillsItem
+							labels={Resume.skillsLabels.web}
 							title="socket.io"
 							percent="62.5"
 						/>
