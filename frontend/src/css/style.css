@@ -1256,6 +1256,10 @@ body {
 }
 .card * {
   backface-visibility: hidden;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
 }
 .card__progress {
   opacity: 0;

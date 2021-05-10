@@ -59,4 +59,4 @@ IDEAS-----------------------------------------------------------
 -Add images to SiteNav examples links
 -Change styling for pageNav
 -clicking hero___more then scrolling down doesn't show right arrow
--pageNav color needs to change for each page
+-pageNav color needs to change for each page (set the opacity for the currently page to 1 and the other to like .75 and have hover change to 1)

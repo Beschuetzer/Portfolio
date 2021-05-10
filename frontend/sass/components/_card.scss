@@ -5,6 +5,7 @@
 	-moz-user-select: none; /* Old versions of Firefox */
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+	
 
 	cursor: pointer;
 	z-index: $card-z-index;
@@ -22,6 +23,10 @@
 
 	& * {
 		backface-visibility: hidden;
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
 	}
 
 	&__progress {

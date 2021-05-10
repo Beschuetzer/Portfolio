@@ -88,7 +88,7 @@ export const toggleSecondInfoButtonClick = (hero, heroMore, shouldWaitToHideHero
     hero?.classList.add('d-none');
   }
 
-  if (span.textContent !== bridgeSections[bridgeSections.length - 1]){
+  if (span?.textContent !== bridgeSections[bridgeSections.length - 1]){
     setTimeout(() => {
       const arrowButtonRight = document.querySelector('.arrow-button--right');
       arrowButtonRight.classList.remove('d-none');
