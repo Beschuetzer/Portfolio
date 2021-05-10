@@ -77,7 +77,7 @@ export function onRenderCallback(
 }
 
 //#region shared functions
-export const toggleSecondInfoButtonClick = (hero, heroMore, shouldWaitToHideHero = true) => {
+export const toggleSecondInfoButtonClick = (hero, heroMore, shouldWaitToHideHero = true, span = null) => {
   heroMore?.classList.remove('hero__more--clicked');
   if (shouldWaitToHideHero) {
     setTimeout(() => {
@@ -88,10 +88,12 @@ export const toggleSecondInfoButtonClick = (hero, heroMore, shouldWaitToHideHero
     hero?.classList.add('d-none');
   }
 
-  setTimeout(() => {
-    const arrowButtonRight = document.querySelector('.arrow-button--right');
-    arrowButtonRight.classList.remove('d-none');
-  }, SECOND_INFO_BUTTON_DELAY)
+  if (span.textContent !== bridgeSections[bridgeSections.length - 1]){
+    setTimeout(() => {
+      const arrowButtonRight = document.querySelector('.arrow-button--right');
+      arrowButtonRight.classList.remove('d-none');
+    }, SECOND_INFO_BUTTON_DELAY)
+  }
 }
 
 export const showBridgeHero = (heroMore) => {

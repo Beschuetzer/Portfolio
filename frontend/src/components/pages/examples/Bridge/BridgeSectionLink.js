@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRef } from 'react';
 import { connect } from 'react-redux';
 
 import { 
@@ -13,6 +14,7 @@ import {
 } from '../../../constants';
 
 const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content, match, sounds, isMobile, headerHeight, setClickedBridgeInfoButtonCount, setHasClickedALink, hasClickedALink}) => {
+  const spanRef = useRef(null);
 
   const getSkipDirectionAndSkips = (e) => {
     let skipToSectionNumber = -1;
@@ -44,7 +46,8 @@ const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBrid
       const backgroundRef = document.querySelector('.hero__background')
 
       showBridgeHero(heroMore);
-      toggleSecondInfoButtonClick(hero, heroMore, false);
+
+      toggleSecondInfoButtonClick(hero, heroMore, false, spanRef.current);
       setClickedBridgeInfoButtonCount(2);
 
       if (!hasClickedALink) {
@@ -55,7 +58,7 @@ const BridgeSectionLink = ({bridgeSections, currentBridgeSection, setCurrentBrid
   }
 
   return (
-    <span onClick={navigateToSection} className="bridge__page-nav-link page-nav__section">{content}</span>
+    <span ref={spanRef} onClick={navigateToSection} className="bridge__page-nav-link page-nav__section">{content}</span>
   );
 }
 
