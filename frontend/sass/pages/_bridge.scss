@@ -223,26 +223,27 @@
 		@include link-line;
 	}
 	&__page-nav-link {
-		@include link-animating;
-		opacity: .75;
+		// @include link-animating;
+		cursor: pointer;
+		opacity: .66;
 		font-size: $default-font-size * 1;
-		color: var(--color-primary-4);
+		color: var(--bridge-page-nav-link-color);
 		transition: 
 			color $animation-duration / 2 $animation-easing-standard,
 			transform $animation-duration /2 $animation-easing-standard,
 		;
 		&:hover {
-			color: var(--color-primary-1);
-			transform: translateY(-$default-font-size * .1) scale(1.05);
+			opacity: 1;
+			color: var(--bridge-page-nav-link-color-hover);
+			transform: translateY(-$default-font-size * .1) scale($bridge-page-nav-link-scale-amount);
 		}
 	}
 	&__current-section {
 		opacity: 1;
-		transform: scale(1.05);
+		transform: scale($bridge-page-nav-link-scale-amount);
 
 		&:hover {
-			transform: scale(1.05) translate(0,0);
-			color: currentColor;
+			transform: scale($bridge-page-nav-link-scale-amount) translate(0,0);
 		}
 	}
 }
@@ -554,7 +555,7 @@ $padding-nav-switch: $default-font-size * .5;
 	cursor: pointer;
 	position: absolute;
 	transform: translateY(-50%);
-	top: 50vh;
+	bottom: 0;
 	z-index: 10;
 
 	@include respond(nav-switch) {

@@ -8,6 +8,7 @@ import {
   bridgeSections,
   BRIDGE_CURRENT_SECTION_CLASSNAME,
   BRIDGE_PAGE_NAV_LINK_CLASSNAME,
+  BRIDGE_PAGE_NAV_LINKS_COLORS,
 } from '../constants';
 import BridgeSectionLink from '../pages/examples/Bridge/BridgeSectionLink';
 
@@ -229,6 +230,15 @@ class PageNav extends React.Component {
     }
 
     //change CSS color var depending on currentBridgeSection
+    const newNormalValue = `--bridge-page-nav-link-color: ${BRIDGE_PAGE_NAV_LINKS_COLORS[this.props.currentBridgeSection].normal}`;
+    document.documentElement.style.cssText += newNormalValue;
+
+    const newHoverValue = `--bridge-page-nav-link-color-hover: ${BRIDGE_PAGE_NAV_LINKS_COLORS[this.props.currentBridgeSection].hover}`;
+    document.documentElement.style.cssText += newHoverValue;
+
+
+    // document.documentElement.style.setProperty('--bridge-page-nav-link-color', BRIDGE_PAGE_NAV_LINKS_COLORS[this.props.currentBridgeSection]);
+
   }
 
   renderBridgeSections = () => {

@@ -140,6 +140,7 @@ $animation-bridge-windshield-two-end: polygon(
 
 
 //bridge
+$bridge-page-nav-link-scale-amount: 1.1;
 $bridge-hero-animation-duration: $animation-duration * 2;
 $hero-background-opacity: .66;
 $arrow-button-position: calc((100vw - calc( #{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + #{$navbar__logo-width} )) / 2);
@@ -219,6 +220,8 @@ $page-nav-top: calc(
 	--header-inner-width-nav-switch: 100%;
 
 	//bridge page
+	--bridge-page-nav-link-color: var(--color-primary-4);
+	--bridge-page-nav-link-color-hover: var(--color-primary-1);
 	--bridge-hero-translate-heading-1: (-50%, calc(-50% - 50vh));
 	--bridge-hero-translate-heading-2: (calc(-50% - 50vw),-50%);
 	--bridge-hero-translate-heading-3: (calc(50% + 50vw),-50%);

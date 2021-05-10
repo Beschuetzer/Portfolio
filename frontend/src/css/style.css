@@ -58,6 +58,8 @@
   --header-toggler-height: 14rem;
   --header-toggler-width: 4rem;
   --header-inner-width-nav-switch: 100%;
+  --bridge-page-nav-link-color: var(--color-primary-4);
+  --bridge-page-nav-link-color-hover: var(--color-primary-1);
   --bridge-hero-translate-heading-1: (-50%, calc(-50% - 50vh));
   --bridge-hero-translate-heading-2: (calc(-50% - 50vw),-50%);
   --bridge-hero-translate-heading-3: (calc(50% + 50vw),-50%);
@@ -2557,27 +2559,22 @@ div.references__name {
 }
 .bridge__page-nav-link {
   cursor: pointer;
-  background: linear-gradient(to left, var(--color-primary-1) 0%, var(--color-primary-4) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
-  background-size: 200% auto;
-  background-clip: text;
-  color: transparent;
-  animation: animate-skills infinite 10s;
-  opacity: 0.75;
+  opacity: 0.66;
   font-size: 1.6rem;
-  color: var(--color-primary-4);
+  color: var(--bridge-page-nav-link-color);
   transition: color 0.25s ease, transform 0.25s ease;
 }
 .bridge__page-nav-link:hover {
-  color: var(--color-primary-1);
-  transform: translateY(-0.16rem) scale(1.05);
+  opacity: 1;
+  color: var(--bridge-page-nav-link-color-hover);
+  transform: translateY(-0.16rem) scale(1.1);
 }
 .bridge__current-section {
   opacity: 1;
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 .bridge__current-section:hover {
-  transform: scale(1.05) translate(0, 0);
-  color: currentColor;
+  transform: scale(1.1) translate(0, 0);
 }
 
 .hero {
@@ -2818,7 +2815,7 @@ div.references__name {
   cursor: pointer;
   position: absolute;
   transform: translateY(-50%);
-  top: 50vh;
+  bottom: 0;
   z-index: 10;
 }
 @media only screen and (max-width: 68.75em) {
