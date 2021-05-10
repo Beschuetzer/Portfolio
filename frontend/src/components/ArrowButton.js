@@ -12,18 +12,17 @@ import {
 
 const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSection, currentBridgeSection, bridgeSections, setBridgeSections, clickedBridgeInfoButtonCount}) => {
 
-  const leftArrow = document.querySelector('.arrow-button--left');
-  const rightArrow = document.querySelector('.arrow-button--right'); 
-
   //Initial setup, storing sections
   useEffect(() => {
-    if (bridgeSections) return;
+    // if (bridgeSections) return;
     const sections = document.querySelectorAll('.bridge__section');
     setBridgeSections(sections);
-  }, [setBridgeSections, bridgeSections])
+  }, [setBridgeSections])
 
   //Handling Updates
   useEffect(() => {
+    const leftArrow = document.querySelector('.arrow-button--left');
+    const rightArrow = document.querySelector('.arrow-button--right'); 
     if (!bridgeSections) return;
 
     const handleDisplay = (arrowElement) => {
@@ -98,12 +97,12 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
       document.documentElement.style.setProperty('--arrow-button-right-fill-hover', arrowColors[currentBridgeSection].hover.right);
     }
 
-    handleDisplay(rightArrow);
-    handleDisplay(leftArrow);
-    handleArrowColors(leftArrow, rightArrow);
+    handleDisplay();
+    handleDisplay();
+    handleArrowColors();
     handleSliding();
     
-  }, [currentBridgeSection, bridgeSections, leftArrow, rightArrow, clickedBridgeInfoButtonCount])
+  }, [currentBridgeSection, bridgeSections, clickedBridgeInfoButtonCount])
   
   const handleClick = (e) => {
     if (e.currentTarget?.className.match(/left/i)) {
