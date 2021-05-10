@@ -59,3 +59,4 @@ IDEAS-----------------------------------------------------------
 -Add images to SiteNav examples links
 -Change styling for pageNav
 -clicking hero___more then scrolling down doesn't show right arrow
+-clicking arrow right then going to resume then going back to bridge causes the right arrows not to apply 'current-section' to any of the sections (actually it gets applied but it gets removed somehone after handleSliding();)

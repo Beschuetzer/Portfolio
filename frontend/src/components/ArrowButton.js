@@ -47,13 +47,13 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
         if (i !== currentBridgeSection) section.classList.remove('current-section')
   
         if (i < currentBridgeSection) {
-          section.classList.add('slide-left')
+          section.classList.add('slide-left');
         }
         else if (i === currentBridgeSection) {
-          section.classList.add('current-section')
+          section.classList.add('current-section');
         }
         else {
-          section.classList.remove('slide-left')
+          section.classList.remove('slide-left');
         };
       }
     }

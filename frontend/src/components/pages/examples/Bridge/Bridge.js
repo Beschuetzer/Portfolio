@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import {
 	setClickedBridgeInfoButtonCount,
+	setCurrentBridgeSection,
 	setHasClickedALink,
 } from '../../../../actions';
 
@@ -30,7 +31,7 @@ import saveGameVideo from '../../../../clips/saveGame.mp4';
 import CardManager from "../../../CardManager";
 import { onRenderCallback } from "../../../constants";
 
-const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount}) => {
+const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection}) => {
 	const sectionContents = [
 			<SectionContainer
 				name={bridgeSections[0]}
@@ -392,8 +393,9 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 	useEffect (() => {
 		return (() => {
 			setClickedBridgeInfoButtonCount(0);
+			setCurrentBridgeSection(0);
 		})
-	}, [setClickedBridgeInfoButtonCount])
+	}, [setClickedBridgeInfoButtonCount, setCurrentBridgeSection])
 
 	const renderSections = () => {
 		return sectionContents.map((item, index) => {
@@ -436,6 +438,7 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
 	setHasClickedALink,
 	setClickedBridgeInfoButtonCount,
+	setCurrentBridgeSection,
 })(Bridge);
 
 /* <p>
