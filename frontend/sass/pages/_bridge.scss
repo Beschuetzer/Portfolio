@@ -477,7 +477,22 @@
 		;
 	}
 
+	&.d-none ~ &__source {
+		& svg {
+			opacity: 1;
+
+			&:hover ~ .hero__source-label { 
+				color: var(--arrow-button-fill-right);
+			}
+		}
+		& span {
+			font-weight: 1000;
+			color: var(--bridge-page-nav-link-color);
+		}
+	}
+
 	&__source {
+		font-family: $font-family-fancy-bridge;
     position: fixed;
     z-index: $navbar-full-z-index;
     display: inline-flex;
@@ -487,10 +502,16 @@
 		text-decoration: none;
 		right: calc((100vw - #{$header-inner-width}) / 1.9);
 
+		@include respond(nav-switch) {
+			top: 12.5vh;
+			transform: translateX(50%);
+			right: 50%;
+		}
+
 		&-svg {
 			width: $navbar__logo-width;
 			height: $navbar__logo-width;
-			fill: var(--arrow-button-right-fill);
+			fill: var(--arrow-button-left-fill-hover);
 			opacity: .15;
 			transition:  
 				fill $animation-duration * .25 $animation-easing-modern,
@@ -498,6 +519,13 @@
 		}
 
 		&-label {
+			-webkit-touch-callout: none; /* iOS Safari */
+			-webkit-user-select: none; /* Safari 'none' or 'text' here 'all' has issues*/
+			-khtml-user-select: none; /* Konqueror HTML */
+			-moz-user-select: none; /* Old versions of Firefox */
+			-ms-user-select: none; /* Internet Explorer/Edge */
+			user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+			text-shadow: getTextShadow(soft-emboss, $color-primary-resume-4);
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -516,7 +544,7 @@
 
 
 		&:hover svg {
-			fill: var(--arrow-button-right-fill-hover);
+			fill: var(--arrow-button-right-fill);
 		}
 	}
 }

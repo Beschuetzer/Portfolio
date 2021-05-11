@@ -41,20 +41,13 @@ IDEAS-----------------------------------------------------------
 
   -make sure that SkillsPopup links to examples on site are Links not anchor tags
 
--add click to seek on progress bar?
--firefox is quite sluggish (seems to have to do with SiteNav)
--mobile bridge------------
-  -first section doesn't expand content all the way (height auto not working)
-  -videos off
 
-
--Go through every component and check for cases where I could use useCallback or useMemo?"
--bridge mobile linear gradients and spacing between sections
-
--can remove checkbox stuff in Card?
--memoize Card functions?
--add Responsive Web Design tags to git hub projects and add as skill (bridge, resume, and Advanced CSS course projects)?
--finish BridgeHero header animation
 -SiteNav examples for non-touch devices should be expanded
 -Add images to SiteNav examples links
--bug when clicking arrow to far right then left
+-memoize Card functions?
+
+-Go through every component and check for cases where I could use useCallback or useMemo?"
+-add Responsive Web Design tags to git hub projects and add as skill (bridge, resume, and Advanced CSS course projects)?
+-finish BridgeHero header animation
+-can remove checkbox stuff in Card?
+-add click to seek on progress bar?

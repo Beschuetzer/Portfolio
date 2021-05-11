@@ -972,6 +972,18 @@ body {
 }
 
 .page-nav {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari 'none' or 'text' here 'all' has issues*/
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
   z-index: 1;
   position: absolute;
   top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											85rem + ( 													(100vw - 85rem) / 2 												) + 7vw 										) 								) / 2 						) - 1vw 				) * 1 		) - .9vw );
@@ -2804,7 +2816,18 @@ div.references__name {
   background-size: cover;
   transition: opacity 0.5s ease;
 }
+.hero.d-none ~ .hero__source svg {
+  opacity: 1;
+}
+.hero.d-none ~ .hero__source svg:hover ~ .hero__source-label {
+  color: var(--arrow-button-fill-right);
+}
+.hero.d-none ~ .hero__source span {
+  font-weight: 1000;
+  color: var(--bridge-page-nav-link-color);
+}
 .hero__source {
+  font-family: "New Tegomin", serif;
   position: fixed;
   z-index: 5;
   display: inline-flex;
@@ -2814,14 +2837,34 @@ div.references__name {
   text-decoration: none;
   right: calc((100vw - calc( 		85rem + ((100vw - 85rem) / 2) + 6.4vw 	)) / 1.9);
 }
+@media only screen and (max-width: 68.75em) {
+  .hero__source {
+    top: 12.5vh;
+    transform: translateX(50%);
+    right: 50%;
+  }
+}
 .hero__source-svg {
   width: 7vw;
   height: 7vw;
-  fill: var(--arrow-button-right-fill);
+  fill: var(--arrow-button-left-fill-hover);
   opacity: 0.15;
   transition: fill 0.125s cubic-bezier(1, 0, 0, 1);
 }
 .hero__source-label {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari 'none' or 'text' here 'all' has issues*/
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2835,7 +2878,7 @@ div.references__name {
   transform: rotate(2.5deg);
 }
 .hero__source:hover svg {
-  fill: var(--arrow-button-right-fill-hover);
+  fill: var(--arrow-button-right-fill);
 }
 
 #hero__more-checkbox {

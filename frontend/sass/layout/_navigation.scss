@@ -620,6 +620,12 @@
 }
 
 .page-nav {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari 'none' or 'text' here 'all' has issues*/
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 	z-index: 1;
 	position: absolute;
 	top: $page-nav-top;
