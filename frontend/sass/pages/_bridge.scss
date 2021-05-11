@@ -46,8 +46,8 @@
 
 		@include respond(nav-switch) {
 			height: auto;
-			min-height: calc(100vh - #{$header-height});
-			padding: calc(var(--bridge-section-padding) * 4) 0;
+			// min-height: calc(100vh - #{$header-height});
+			padding: $default-font-size * 4 0;
 
 		}
 
@@ -80,7 +80,7 @@
 
 		&:nth-of-type(1) {
 			left: 0;
-			background-image: linear-gradient(to right, rgba($color-primary-bridge-1, .5), rgba($color-primary-bridge-2, .5));
+			background-image: linear-gradient(var(--bridge-gradient-direction), rgba($color-primary-bridge-1, .5), rgba($color-primary-bridge-2, .5));
 
 			& .bridge__section-titles {
 				background-image: linear-gradient(
@@ -96,7 +96,7 @@
 
 			& .bridge__section-content {
 				background-image: linear-gradient(
-					to right,
+					var(--bridge-gradient-direction),
 					rgba($color-primary-bridge-3, 1) 0%,
 					rgba($color-primary-bridge-4, 1) 25%,
 					rgba($color-primary-bridge-4, 1) 75%,
@@ -106,7 +106,7 @@
 		}
 
 		&:nth-of-type(2) {
-			background-image: linear-gradient(to right, rgba($color-primary-bridge-2, .5), rgba($color-primary-bridge-3, .5));
+			background-image: linear-gradient(var(--bridge-gradient-direction), rgba($color-primary-bridge-2, .5), rgba($color-primary-bridge-3, .5));
 
 			& .bridge__section-titles {
 				background-image: linear-gradient(
@@ -128,7 +128,7 @@
 				align-items: center;
 				color: var(--color-primary-4);
 				background-image: linear-gradient(
-					to right,
+					var(--bridge-gradient-direction),
 					rgba($color-primary-bridge-1, 1) 0%,
 					rgba($color-primary-bridge-1, 1) 100%,
 				);
@@ -146,7 +146,7 @@
 		}
 
 		&:nth-of-type(3) {
-			background-image: linear-gradient(to right, rgba($color-primary-bridge-3, .5), rgba($color-primary-bridge-1, .5));
+			background-image: linear-gradient(var(--bridge-gradient-direction), rgba($color-primary-bridge-3, .5), rgba($color-primary-bridge-1, .5));
 
 			& .bridge__section-titles {
 				background-image: linear-gradient(
@@ -192,7 +192,8 @@
 		@include respond(nav-switch) {
 			margin: 0 auto;
 			width: 97.5%;
-			overflow: auto;
+			// overflow: auto;
+			height: auto;
 		}
 
 		& h3 {
@@ -258,7 +259,7 @@
 }
 
 .hero {
-	background-image: linear-gradient(to right, 
+	background-image: linear-gradient(var(--bridge-gradient-direction), 
 		rgba($color-primary-bridge-2, $hero-background-image-alpha) 0%, 
 		rgba($color-primary-bridge-1, $hero-background-image-alpha) 25%, 
 		rgba($color-primary-bridge-1, $hero-background-image-alpha) 75%, 
@@ -266,6 +267,10 @@
 	);
 	position: relative;
 	// height: 85vh;
+
+	@include respond(nav-switch) {
+		height: 100vh;
+	}
 
 	&__heading {
 		font-family: $font-family-fancy-bridge;

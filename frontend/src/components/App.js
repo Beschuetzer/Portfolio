@@ -36,8 +36,12 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 	useEffect(() => {
 		const windowResize = (e) => {
 			if (window.innerWidth <= mobileBreakPointWidth && !isMobile) {
+				const newValue = `--bridge-gradient-direction: to bottom`;
+				document.documentElement.style.cssText += newValue;
 				return setIsMobile(true, window.innerWidth);
 			} else if (window.innerWidth > mobileBreakPointWidth && isMobile) {
+				const newValue = `--bridge-gradient-direction: to right`;
+				document.documentElement.style.cssText += newValue;
 				return setIsMobile(false, window.innerWidth);
 			}
 			return setViewPortWidth(window.innerWidth);

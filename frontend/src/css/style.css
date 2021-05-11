@@ -58,6 +58,7 @@
   --header-toggler-height: 14rem;
   --header-toggler-width: 4rem;
   --header-inner-width-nav-switch: 100%;
+  --bridge-gradient-direction: to right;
   --bridge-page-nav-link-color: var(--color-primary-4);
   --bridge-page-nav-link-color-hover: var(--color-primary-1);
   --bridge-hero-translate-heading-1: (-50%, calc(-50% - 50vh));
@@ -2449,8 +2450,7 @@ div.references__name {
 @media only screen and (max-width: 68.75em) {
   .bridge__section {
     height: auto;
-    min-height: calc(100vh - 10rem);
-    padding: calc(var(--bridge-section-padding) * 4) 0;
+    padding: 6.4rem 0;
   }
 }
 .bridge__section-titles {
@@ -2475,7 +2475,7 @@ div.references__name {
 }
 .bridge__section:nth-of-type(1) {
   left: 0;
-  background-image: linear-gradient(to right, rgba(0, 64, 107, 0.5), rgba(245, 146, 41, 0.5));
+  background-image: linear-gradient(var(--bridge-gradient-direction), rgba(0, 64, 107, 0.5), rgba(245, 146, 41, 0.5));
 }
 .bridge__section:nth-of-type(1) .bridge__section-titles {
   background-image: linear-gradient(to top right, #00406b, rgba(0, 64, 107, 0.75)), url("/src/imgs/bridge-section-3.jpg");
@@ -2484,10 +2484,10 @@ div.references__name {
   color: var(--color-primary-4);
 }
 .bridge__section:nth-of-type(1) .bridge__section-content {
-  background-image: linear-gradient(to right, #e4e0c9 0%, #f5f1db 25%, #f5f1db 75%, #e4e0c9 100%);
+  background-image: linear-gradient(var(--bridge-gradient-direction), #e4e0c9 0%, #f5f1db 25%, #f5f1db 75%, #e4e0c9 100%);
 }
 .bridge__section:nth-of-type(2) {
-  background-image: linear-gradient(to right, rgba(245, 146, 41, 0.5), rgba(228, 224, 201, 0.5));
+  background-image: linear-gradient(var(--bridge-gradient-direction), rgba(245, 146, 41, 0.5), rgba(228, 224, 201, 0.5));
 }
 .bridge__section:nth-of-type(2) .bridge__section-titles {
   background-image: linear-gradient(to top right, #f59229, rgba(245, 146, 41, 0.85)), url("/src/imgs/bridge-section-2.jpg");
@@ -2502,7 +2502,7 @@ div.references__name {
   grid-template-columns: repeat(auto-fill, minmax(14.4rem, 1fr));
   align-items: center;
   color: var(--color-primary-4);
-  background-image: linear-gradient(to right, #00406b 0%, #00406b 100%);
+  background-image: linear-gradient(var(--bridge-gradient-direction), #00406b 0%, #00406b 100%);
 }
 .bridge__section:nth-of-type(2) .bridge__card {
   border: 2px solid var(--color-primary-2);
@@ -2514,7 +2514,7 @@ div.references__name {
   }
 }
 .bridge__section:nth-of-type(3) {
-  background-image: linear-gradient(to right, rgba(228, 224, 201, 0.5), rgba(0, 64, 107, 0.5));
+  background-image: linear-gradient(var(--bridge-gradient-direction), rgba(228, 224, 201, 0.5), rgba(0, 64, 107, 0.5));
 }
 .bridge__section:nth-of-type(3) .bridge__section-titles {
   background-image: linear-gradient(to top right, #f5f1db, rgba(245, 241, 219, 0.75)), url("/src/imgs/bridge-section-1.jpg");
@@ -2552,7 +2552,7 @@ div.references__name {
   .bridge__card {
     margin: 0 auto;
     width: 97.5%;
-    overflow: auto;
+    height: auto;
   }
 }
 .bridge__card h3 {
@@ -2599,8 +2599,13 @@ div.references__name {
 }
 
 .hero {
-  background-image: linear-gradient(to right, rgba(245, 146, 41, 0.33) 0%, rgba(0, 64, 107, 0.33) 25%, rgba(0, 64, 107, 0.33) 75%, rgba(245, 146, 41, 0.33) 100%);
+  background-image: linear-gradient(var(--bridge-gradient-direction), rgba(245, 146, 41, 0.33) 0%, rgba(0, 64, 107, 0.33) 25%, rgba(0, 64, 107, 0.33) 75%, rgba(245, 146, 41, 0.33) 100%);
   position: relative;
+}
+@media only screen and (max-width: 68.75em) {
+  .hero {
+    height: 100vh;
+  }
 }
 .hero__heading {
   font-family: "New Tegomin", serif;
