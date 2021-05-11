@@ -120,6 +120,21 @@ $max-degrees: 2.5deg;
 	}
 }
 
+@keyframes bridge-color-change {
+	0% {
+		fill: var(--color-primary-bridge-1);
+	}
+	33% {
+		fill: var(--color-primary-bridge-2);
+	}
+	66% {
+		fill: var(--color-primary-bridge-4);
+	}
+	100% {
+		fill: var(--color-primary-bridge-1);
+	}
+}
+
 // @keyframes selected-section {
 //   0% {
 //     transform: scale(1.05) rotate(0);

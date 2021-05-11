@@ -386,7 +386,7 @@
 				opacity $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard ,
 				fill $animation-duration $animation-easing-standard,
 			;
-			fill: var(--color-primary-1);
+			fill: var(--color-primary-2);
 
 			@include respond(nav-switch) {
 				width: $navbar__logo-width-nav-switch * 2;
@@ -409,7 +409,8 @@
 		&:hover {
 			
 			& svg {
-				fill: var(--color-primary-2);
+				fill: var(--color-primary-4);
+				animation: none;
 				z-index: 1;
 			}
 
@@ -421,7 +422,15 @@
 
 		&--clicked {
 			--hero-more-y-translate: calc(-50% - #{$default-font-size * 7});
-			animation: none;
+			animation: 
+				bridge-hero-hover 10s infinite,
+			;
+
+			& svg {
+				animation: 
+					bridge-color-change 10s infinite,
+				;
+			}
 		}
 	}
 
