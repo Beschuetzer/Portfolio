@@ -478,20 +478,19 @@
 	}
 
 	&__source {
-    position: absolute;
+    position: fixed;
     z-index: $navbar-full-z-index;
     display: inline-flex;
 		justify-content: center;
 		align-items: center;
-    top: $header-top-inner;
-    left: 50%;
-    transform: translate(-50%, 0%);
+		top: calc(    14vw +     (      (        (          (            100vw -             (              85rem + (                (100vw - 85rem) / 2               ) + 7vw             )           ) / 2         ) - 1vw       ) * 1     ) - .9vw   );
 		text-decoration: none;
+		right: calc((100vw - #{$header-inner-width}) / 1.9);
 
 		&-svg {
 			width: $navbar__logo-width;
 			height: $navbar__logo-width;
-			fill: var(--color-primary-4);
+			fill: var(--arrow-button-right-fill);
 			opacity: .15;
 			transition:  
 				fill $animation-duration * .25 $animation-easing-modern,
@@ -503,7 +502,7 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			color: var(--color-primary-4);
+			color: var(--arrow-button-right-fill);
 			font-size: $default-font-size * 1;
 			transition:  
 				transform $animation-duration * .25 $animation-easing-modern,
@@ -511,14 +510,13 @@
 		}
 
 		&:hover &-label {
-			color: var(--color-primary-1);
+			color: var(--arrow-button-right-fill-hover);
 			transform: rotate(2.5deg);
 		}
 
 
 		&:hover svg {
-			fill: var(--color-primary-1);
-
+			fill: var(--arrow-button-right-fill-hover);
 		}
 	}
 }

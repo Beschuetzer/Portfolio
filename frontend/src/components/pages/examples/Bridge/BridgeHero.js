@@ -42,7 +42,7 @@ const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedB
       <link rel="preconnect" href="https://fonts.gstatic.com"/>
       <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet"/>
 
-      
+     
       <input ref={checkBoxRef} id='hero__more-checkbox' type='checkbox'></input>
       <div className="hero" ref={hero}>
         <div onClick={handleMoreClick} className="hero__more" ref={heroMore}>
@@ -63,12 +63,6 @@ const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedB
           type='mp4'
           className="bg-video"
         />
-        <a target="_blank" rel="noreferrer" href="https://github.com/Beschuetzer/Bridge" className="hero__source">
-          <span className="hero__source-label">Code</span>
-          <svg className="hero__source-svg">
-            <use xlinkHref="/sprite.svg#icon-code"></use>
-          </svg>
-        </a>
         <span className="hero__heading heading--one">Making</span>
         <span className="hero__heading heading--one">A#</span>
         <span className="hero__heading heading--one">Maj</span>

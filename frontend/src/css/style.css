@@ -2805,20 +2805,19 @@ div.references__name {
   transition: opacity 0.5s ease;
 }
 .hero__source {
-  position: absolute;
+  position: fixed;
   z-index: 5;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  top: calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) );
-  left: 50%;
-  transform: translate(-50%, 0%);
+  top: calc( 14vw + ( ( ( ( 100vw - ( 85rem + ( (100vw - 85rem) / 2 ) + 7vw ) ) / 2 ) - 1vw ) * 1 ) - .9vw );
   text-decoration: none;
+  right: calc((100vw - calc( 		85rem + ((100vw - 85rem) / 2) + 6.4vw 	)) / 1.9);
 }
 .hero__source-svg {
   width: 7vw;
   height: 7vw;
-  fill: var(--color-primary-4);
+  fill: var(--arrow-button-right-fill);
   opacity: 0.15;
   transition: fill 0.125s cubic-bezier(1, 0, 0, 1);
 }
@@ -2827,16 +2826,16 @@ div.references__name {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: var(--color-primary-4);
+  color: var(--arrow-button-right-fill);
   font-size: 1.6rem;
   transition: transform 0.125s cubic-bezier(1, 0, 0, 1);
 }
 .hero__source:hover .hero__source-label {
-  color: var(--color-primary-1);
+  color: var(--arrow-button-right-fill-hover);
   transform: rotate(2.5deg);
 }
 .hero__source:hover svg {
-  fill: var(--color-primary-1);
+  fill: var(--arrow-button-right-fill-hover);
 }
 
 #hero__more-checkbox {

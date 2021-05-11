@@ -432,6 +432,13 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 				pageName="bridge"
 			/>
 
+			<a target="_blank" rel="noreferrer" href="https://github.com/Beschuetzer/Bridge" className="hero__source">
+        <span className="hero__source-label">Code</span>
+        <svg className="hero__source-svg">
+          <use xlinkHref="/sprite.svg#icon-code"></use>
+        </svg>
+      </a>
+
 			{renderSections()}
 			<ArrowButton
 				direction='left'
