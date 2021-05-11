@@ -24,7 +24,7 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
     const leftArrow = document.querySelector('.arrow-button--left');
     const rightArrow = document.querySelector('.arrow-button--right'); 
     if (!bridgeSections) return;
-
+    
     const handleDisplay = (arrowElement) => {
       if (arrowElement?.className.match(/left/i)) {
         if (rightArrow && currentBridgeSection < bridgeSections.length - 1 && clickedBridgeInfoButtonCount > 1) rightArrow.classList.remove('d-none');
@@ -97,8 +97,9 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
       document.documentElement.style.setProperty('--arrow-button-right-fill-hover', arrowColors[currentBridgeSection].hover.right);
     }
 
-    handleDisplay();
-    handleDisplay();
+    //NOTE: handleDisplay(rightArrow) must come before handleDisplay(leftArrow) 
+    handleDisplay(rightArrow);
+    handleDisplay(leftArrow);
     handleArrowColors();
     handleSliding();
     
