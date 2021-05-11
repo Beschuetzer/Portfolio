@@ -271,18 +271,7 @@ class PageNav extends React.Component {
   }
 
   renderMobileBridge = () => {
-    return bridgeSections.map((sectionName, index) => {
-      return (
-        <Link
-          onClick={this.handleMobileBridgeLinkClick}
-          to={`/examples/bridge#${sectionName?.toLowerCase()}`}
-          key={index} 
-          className={BRIDGE_PAGE_NAV_LINK_CLASSNAMES}
-        >
-          {bridgeSections[index]}
-        </Link>
-      );
-    });
+    return this.renderSections();
   }
 
   renderBridgeSections = () => {
