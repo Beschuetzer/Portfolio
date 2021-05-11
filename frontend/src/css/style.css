@@ -1305,6 +1305,11 @@ body {
   align-items: center;
   transition: opacity 1s ease, transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
+@media only screen and (max-width: 35.0625em) {
+  .card__children {
+    font-size: 0.8rem;
+  }
+}
 .card__children div {
   padding: 0.4rem;
 }
@@ -1312,6 +1317,11 @@ body {
   list-style: decimal;
   padding-left: 0.8rem;
   font-size: 0.32rem;
+}
+@media only screen and (max-width: 35.0625em) {
+  .card__children ul {
+    font-size: 0.64rem;
+  }
 }
 .card__image {
   width: 100%;
@@ -2414,6 +2424,11 @@ div.references__name {
   width: 100%;
   background-color: var(--color-primary-4);
 }
+@media only screen and (max-width: 68.75em) {
+  .bridge {
+    grid-template-rows: auto;
+  }
+}
 .bridge__subsection-content ul {
   list-style: decimal;
   padding-bottom: 1.6rem;
@@ -2435,7 +2450,7 @@ div.references__name {
   .bridge__section {
     height: auto;
     min-height: calc(100vh - 10rem);
-    padding: var(--bridge-section-padding) 0;
+    padding: calc(var(--bridge-section-padding) * 4) 0;
   }
 }
 .bridge__section-titles {
@@ -2537,6 +2552,7 @@ div.references__name {
   .bridge__card {
     margin: 0 auto;
     width: 97.5%;
+    overflow: auto;
   }
 }
 .bridge__card h3 {
@@ -2568,6 +2584,11 @@ div.references__name {
   opacity: 1;
   color: var(--bridge-page-nav-link-color-hover);
   transform: translateY(-0.16rem) scale(1.1);
+}
+@media only screen and (max-width: 68.75em) {
+  .bridge__page-nav-link {
+    opacity: 1;
+  }
 }
 .bridge__current-section {
   opacity: 1;

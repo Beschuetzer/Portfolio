@@ -12,6 +12,10 @@
 	// 	filter: none;
 	// }
 
+	@include respond(nav-switch) {
+		grid-template-rows: auto;
+	}
+
 	&__subsection {
 
 		&-content {
@@ -43,7 +47,7 @@
 		@include respond(nav-switch) {
 			height: auto;
 			min-height: calc(100vh - #{$header-height});
-			padding: var(--bridge-section-padding) 0;
+			padding: calc(var(--bridge-section-padding) * 4) 0;
 
 		}
 
@@ -188,6 +192,7 @@
 		@include respond(nav-switch) {
 			margin: 0 auto;
 			width: 97.5%;
+			overflow: auto;
 		}
 
 		& h3 {
@@ -236,6 +241,10 @@
 			opacity: 1;
 			color: var(--bridge-page-nav-link-color-hover);
 			transform: translateY(-$default-font-size * .1) scale($bridge-page-nav-link-scale-amount);
+		}
+
+		@include respond(nav-switch) {
+			opacity: 1;
 		}
 	}
 	&__current-section {

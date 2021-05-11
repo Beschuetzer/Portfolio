@@ -241,9 +241,8 @@ class PageNav extends React.Component {
 
   }
 
-  renderBridgeSections = () => {
-    this.checkShouldSetPreviousUrl();
-    this.setBridgeColors()
+  renderFullBridge = () => {
+    this.setBridgeColors();
 
     return bridgeSections.map((sectionName, index, array) => {
       return (
@@ -255,6 +254,25 @@ class PageNav extends React.Component {
         />
       );
     });
+  }
+
+  renderMobileBridge = () => {
+    return bridgeSections.map((sectionName, index, array) => {
+      return (
+        <BridgeSectionLink
+          key={index} 
+          content={bridgeSections[index]}
+          sectionToSkipTo={bridgeSections[index]}
+          match={this.props.match}
+        />
+      );
+    });
+  }
+
+  renderBridgeSections = () => {
+    this.checkShouldSetPreviousUrl();
+    if (this.props.isMobile) return this.renderMobileBridge();
+    else return this.renderFullBridge();
   }
 
   renderSections = () => {
