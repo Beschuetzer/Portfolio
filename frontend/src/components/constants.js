@@ -97,11 +97,11 @@ export function onRenderCallback(
 }
 
 //#region shared functions
-export const toggleSecondInfoButtonClick = (hero, heroMore, shouldWaitToHideHero = true, span = null) => {
+export const toggleSecondInfoButtonClick = (hero, heroMore, isMobile, shouldWaitToHideHero = true, span = null) => {
   heroMore?.classList.remove('hero__more--clicked');
   if (shouldWaitToHideHero) {
     setTimeout(() => {
-      hero?.classList.add('d-none');
+      if (!isMobile) hero?.classList.add('d-none');
     }, SECOND_INFO_BUTTON_DELAY)
   }
   else {
@@ -139,7 +139,7 @@ export const handleBridgeHeroSounds = (checkBoxRef, backgroundRef, sounds, isMob
   else {
     sounds.play('doorNormal');
     window.scroll({
-      top: isMobile ? window.innerHeight - headerHeight : window.innerHeight, 
+      top: isMobile ? window.innerHeight - (headerHeight / 2) : window.innerHeight, 
       left: 0, 
       behavior: 'smooth' 
     });

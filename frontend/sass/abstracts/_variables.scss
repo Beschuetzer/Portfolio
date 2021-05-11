@@ -221,6 +221,9 @@ $page-nav-top: calc(
 
 	//bridge page
 	--bridge-gradient-direction: to right;
+	@include respond(nav-switch) {
+		--bridge-gradient-direction: to bottom;
+	}
 	--bridge-page-nav-link-color: var(--color-primary-4);
 	--bridge-page-nav-link-color-hover: var(--color-primary-1);
 	--bridge-hero-translate-heading-1: (-50%, calc(-50% - 50vh));

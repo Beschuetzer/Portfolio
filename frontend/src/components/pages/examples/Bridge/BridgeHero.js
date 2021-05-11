@@ -26,7 +26,7 @@ const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedB
       showBridgeHero(heroMore);
     }
     else if (clickedBridgeInfoButtonCount > 0){
-      toggleSecondInfoButtonClick(hero.current, heroMore.current);
+      toggleSecondInfoButtonClick(hero.current, heroMore.current, isMobile);
     }
 
     handleBridgeHeroSounds(checkBoxRef.current, backgroundRef.current, sounds, isMobile, headerHeight);

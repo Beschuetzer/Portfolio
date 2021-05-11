@@ -47,7 +47,7 @@ const BridgeSectionLink = ({isEmbeddedLink = false, bridgeSections, currentBridg
 
       showBridgeHero(heroMore);
 
-      toggleSecondInfoButtonClick(hero, heroMore, false, spanRef.current);
+      toggleSecondInfoButtonClick(hero, heroMore, isMobile, false, spanRef.current);
       setClickedBridgeInfoButtonCount(2);
 
       if (!hasClickedALink) {

@@ -125,7 +125,6 @@ class PageNav extends React.Component {
 					const amountProgressed = window.scrollY - PageNav.previousSectionBottom;
 					const endAmount = PageNav.scrollSectionDelimiterOffset;
 					
-					//TODO: here the percent through section is not correct when going backwards
 					percentThroughSection = amountProgressed / endAmount * addedPercent
 
 					// console.log('percentThroughSection =', percentThroughSection);

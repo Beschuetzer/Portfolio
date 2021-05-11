@@ -40,9 +40,13 @@
 		transition: 
 			transform $animation-duration * .5 linear,
 		;
-		// @-moz-document url-prefix() {
-		// 	transition: none;
-		// }
+		
+		&-title {
+			text-align: center;
+			@include respond(small-font) {
+				font-size: $default-font-size * 3;
+			}
+		}
 
 		@include respond(nav-switch) {
 			height: auto;
@@ -75,6 +79,14 @@
 
 			@include respond(nav-switch) {
 				overflow: visible;
+			}
+
+			@include respond(phone) {
+				padding: $default-font-size * 1 $default-font-size * 2;
+			}
+
+			@include respond(small-font) {
+				padding: $default-font-size * 1;
 			}
 		}
 
@@ -196,23 +208,15 @@
 			height: auto;
 		}
 
-		& h3 {
-			// margin-top: $default-font-size * 1;
-			margin-bottom: $default-font-size * 1;
-
-			// &:first-of-type {
-			// 	margin-top: 0;
-			// }
-			// &:last-of-type {
-			// 	margin-bottom: 0;
-			// }
-		}
-
 		& div {
 			// width: 100%;
 		}
-		& p{
+		& p, & h3{
 			margin-bottom: $default-font-size;
+
+			@include respond(phone) {
+				margin-bottom:  $default-font-size * .75;
+			}
 		}
 	}
 
