@@ -481,9 +481,9 @@
 		& svg {
 			opacity: 1;
 
-			&:hover ~ .hero__source-label { 
-				color: var(--arrow-button-fill-right);
-			}
+			// &:hover ~ .hero__source-label { 
+			// 	color: var(--bridge-page-nav-link-color);
+			// }
 		}
 		& span {
 			font-weight: 1000;

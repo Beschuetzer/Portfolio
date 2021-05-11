@@ -2819,9 +2819,6 @@ div.references__name {
 .hero.d-none ~ .hero__source svg {
   opacity: 1;
 }
-.hero.d-none ~ .hero__source svg:hover ~ .hero__source-label {
-  color: var(--arrow-button-fill-right);
-}
 .hero.d-none ~ .hero__source span {
   font-weight: 1000;
   color: var(--bridge-page-nav-link-color);

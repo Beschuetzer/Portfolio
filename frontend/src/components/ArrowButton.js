@@ -57,7 +57,7 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
       }
     }
 
-    const handleArrowColors = (leftArrow, rightArrow) => {
+    const handleArrowColors = () => {
       const arrowColors = {
         0: {
           normal: {
