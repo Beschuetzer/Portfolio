@@ -397,6 +397,23 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 		})
 	}, [setClickedBridgeInfoButtonCount, setCurrentBridgeSection])
 
+	//adding scroll listener
+	useEffect(() => {
+		const handleScroll = (e) => {
+			if (window.scrollY >= window.innerHeight / 2) {
+				document.querySelector('.arrow-button--right')?.classList.remove('d-none');
+			}
+			if (window.scrollY >= window.innerHeight) {
+				document.querySelector('.hero')?.classList.add('d-none');
+			}
+		}
+		window.addEventListener('scroll', handleScroll);
+
+		return (() => {
+			window.removeEventListener('scroll', handleScroll);
+		})
+	}, [])
+
 	const renderSections = () => {
 		return sectionContents.map((item, index) => {
 			return (
@@ -405,6 +422,8 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 				</React.Fragment>	
 			)});
 	}
+
+	
 
 	return (
 		<div className="bridge">
