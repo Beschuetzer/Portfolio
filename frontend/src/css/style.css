@@ -573,7 +573,7 @@ body {
     display: flex;
     overflow: visible !important;
     flex-direction: column;
-    width: calc(100vw - 3.2rem);
+    width: calc(100vw - 1.6rem);
   }
 }
 .navbar__list {
@@ -803,7 +803,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__content {
-    width: calc(100vw - 3.2rem);
+    width: calc(100vw - 1.6rem);
     position: absolute;
     z-index: 100;
   }

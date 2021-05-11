@@ -50,7 +50,7 @@ class PageNav extends React.Component {
     PageNav.pageNav.classList.add(`${PageNav.cssClass}-${pageName}`);
 
     console.log('this.props.clickedBridgeInfoButtonCount =', this.props.clickedBridgeInfoButtonCount);
-    if (this.props.clickedBridgeInfoButtonCount <= 0 && url.match(/bridge/i)) PageNav.pageNav.classList.add('hidden');
+    if (!this.props.isMobile && this.props.clickedBridgeInfoButtonCount <= 0 && url.match(/bridge/i)) PageNav.pageNav.classList.add('hidden');
   }
 
   updateActiveScaleRange = () => {

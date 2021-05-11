@@ -91,7 +91,7 @@ $header-inner-width:
 	calc(
 		#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 6.4vw
 	);
-$header-width-nav-switch: calc(100vw - #{$default-font-size * 2});
+$header-width-nav-switch: calc(100vw - #{$default-font-size * 1});
 // $header-width-tab-land: calc(100vw - #{$default-font-size * 2});
 // $header-width-phone: calc(100vw - #{$default-font-size * 2});
 // $header-width-small-font: calc(100vw - #{$default-font-size * 2});
