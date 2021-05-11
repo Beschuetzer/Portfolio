@@ -60,3 +60,4 @@ IDEAS-----------------------------------------------------------
 -Change styling for pageNav
 -clicking hero___more then scrolling down doesn't show right arrow
 -change how PageNav renders for isMobile Bridge page
+-show page-nav in bridge when isMobile (even without clicking more?)

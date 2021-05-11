@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { setPreviousUrl, setScrollPercent } from '../../actions';
@@ -8,6 +9,7 @@ import {
   bridgeSections,
   BRIDGE_CURRENT_SECTION_CLASSNAME,
   BRIDGE_PAGE_NAV_LINK_CLASSNAME,
+  BRIDGE_PAGE_NAV_LINK_CLASSNAMES,
   BRIDGE_PAGE_NAV_LINKS_COLORS,
 } from '../constants';
 import BridgeSectionLink from '../pages/examples/Bridge/BridgeSectionLink';
@@ -240,6 +242,19 @@ class PageNav extends React.Component {
 
   }
 
+  handleMobileBridgeLinkClick = (e) => {
+    const sectionName = e.currentTarget?.textContent.toLowerCase();
+    if (!sectionName) return;
+    const scrollY = window.scrollY;
+    const sectionToNavigateTo = document.querySelector(`#${sectionName}`);
+    const top = sectionToNavigateTo.getBoundingClientRect().top;
+    window.scroll({
+      top: scrollY + top - (this.props.headerHeight / 2), 
+      left: 0, 
+      behavior: 'smooth' 
+    });
+  }
+
   renderFullBridge = () => {
     this.setBridgeColors();
 
@@ -256,14 +271,16 @@ class PageNav extends React.Component {
   }
 
   renderMobileBridge = () => {
-    return bridgeSections.map((sectionName, index, array) => {
+    return bridgeSections.map((sectionName, index) => {
       return (
-        <BridgeSectionLink
+        <Link
+          onClick={this.handleMobileBridgeLinkClick}
+          to={`/examples/bridge#${sectionName?.toLowerCase()}`}
           key={index} 
-          content={bridgeSections[index]}
-          sectionToSkipTo={bridgeSections[index]}
-          match={this.props.match}
-        />
+          className={BRIDGE_PAGE_NAV_LINK_CLASSNAMES}
+        >
+          {bridgeSections[index]}
+        </Link>
       );
     });
   }
@@ -323,6 +340,7 @@ const mapStateToProps = (state, ownProps) => {
     hasClickedALink: state.bridge.hasClickedALink,
     clickedBridgeInfoButtonCount: state.bridge.clickedBridgeInfoButtonCount,
     currentBridgeSection: state.bridge.currentBridgeSection,
+    headerHeight: state.general.headerHeight,
   }
 }
 

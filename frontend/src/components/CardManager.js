@@ -129,18 +129,15 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
 
   //Initial Load Check if need to change transform origins
   useEffect(() => {
-    console.log('initial load------------------------------------------------');
     memoizedCheckForChanges();
   }, [memoizedCheckForChanges])
 
   useEffect(() => {
-    console.log('setBridgeCards------------------------------------------------');
     setBridgeCards(document.querySelectorAll('.card'));
   }, [setBridgeCards])
 
   //check if need to change transform origins when viewPortWidth changes
   useEffect(() => {
-    console.log('view port change------------------------------------------------');
     if (!isMobile) return;
     memoizedCheckForChanges();
   }, [viewPortWidth, isMobile, memoizedCheckForChanges])
