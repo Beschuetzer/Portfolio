@@ -13,7 +13,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	const videoRef = useRef(null);
 	const titleRef = useRef(null);
 	const cardRef = useRef(null);
-	const checkboxRef = useRef(null);
 	const progressBarRef = useRef(null);
 	let hasProgressEventListener = false;
 
@@ -186,16 +185,8 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		);
 	};
 
-	const toggleCheckbox = () => {
-		const checkbox = checkboxRef.current;
-		if (!checkbox) checkbox.checked = false;
-		checkbox.checked = !checkbox.checked;
-	};
-
 	const closeVideo = (video, card) => {
 		changeSectionTitle(false);
-		const checkbox = checkboxRef.current;
-		checkbox.checked = false;
 
 		video.pause();
 		video.currentTime = 0;
@@ -320,7 +311,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		const card = cardRef.current;
 		const video = videoRef?.current;
 		if (card?.classList.contains("card--done") || card?.classList.contains('card--open')) return;
-		toggleCheckbox();
 		openCard(video, card);
 		changeSectionTitle();
 	};
@@ -345,6 +335,18 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		return percent;
 	}
 
+	const handleProgressBarDragStart = (e) => {
+		console.log('drag start------------------------------------------------');
+	}
+
+	const handleProgressBarDragEnd = (e) => {
+		console.log('drag End------------------------------------------------');
+	}
+
+	const handleProgressBarDrag = (e) => {
+		console.log('drag ------------------------------------------------');
+	}
+
 	const handleProgressBarClick = (e) => {
 		const clientX = e.clientX;
 		const progressBar = e.currentTarget;
@@ -366,8 +368,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 			onClick={handleCardClick}
 			className="card card--hoverable">
 			
-			<input ref={checkboxRef} className="card__checkbox" type="checkbox" />
-
 			<div onClick={handleStopVideo} className="card__stop-parent">
 				<svg className="card__stop">
 					<use xlinkHref="/sprite.svg#icon-stop"></use>
@@ -420,7 +420,11 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
             {children}
           </div>
         </Video>
-				<progress  onClick={handleProgressBarClick} ref={progressBarRef} value='0' className="card__progress">
+				<progress 
+					onClick={handleProgressBarClick} 
+					ref={progressBarRef} 
+					value='0' 
+					className="card__progress">
 				</progress>
 			</div>
 		</article>
