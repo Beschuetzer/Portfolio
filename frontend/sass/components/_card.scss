@@ -368,6 +368,10 @@
 			left: 25%;
 			width: $card-pause-and-stop-width;
 			height: $card-pause-and-stop-width;
+
+			@include respond(breakpoint-name) {
+				
+			}
 		}
 
 		&:hover :is(.card__pause) {

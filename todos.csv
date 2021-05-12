@@ -24,8 +24,8 @@ OPTIMIZATIONS:
 
 -figure out how to create a bash script to get all of the .js files in a dir and its sub-dirs and then create .ts files in the same location with the contents of the respective .js file
 
-
 -finish csharp and autobid.txt
 
 -Add images to SiteNav examples links
 -Need to figure out how to handle Bridge Card Videos not displaying due to lack of hover (how to check if device is touch screen in React?)
+-remove hover effect on card when mobile input after close?

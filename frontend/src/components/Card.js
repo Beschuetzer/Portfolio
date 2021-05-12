@@ -6,6 +6,8 @@ import {
 	CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION, 
 	MOBILE_BREAK_POINT_WIDTH,
 	ANIMATION_DURATION,
+	CARD_HOVER_SCALE_AMOUNT,
+	bridgeSections,
 } from "./constants";
 import Video from "../components/Video";
 import { capitalize } from "../helpers";
@@ -16,6 +18,14 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	const cardRef = useRef(null);
 	const progressBarRef = useRef(null);
 	let hasProgressEventListener = false;
+
+	const getGapAmount = (video, card, cardDimensions) => {
+		const features = document.querySelector(`#${bridgeSections[1].toLowerCase()}`);
+		const bridgeSectionTitles = features.querySelector('.bridge__section-titles');
+		const bridgeSectionBounds = bridgeSectionTitles.getBoundingClientRect();
+		const videoBounds = video.getBoundingClientRect();
+		return (videoBounds.top - bridgeSectionBounds.bottom);
+	}
 
 	const getCardScaleOnHoverAmount = (card, cardDimensions) => {
 		let cardToUseAsReference = document.querySelector('.card');
@@ -120,17 +130,43 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		}
 	}
 
-	const centerCard = (card) => {
+	const adjustCardYPosition = (video, card, cardDimensions) => {
+		//calls getGapAmount then change the css translate var based on that
+		const gapAmount = getGapAmount(video, card, cardDimensions);
+		const cardPlayingTransform = document.documentElement.style.getPropertyValue('--card-playing-transform');
+		const split = cardPlayingTransform.split(' ');
+		
+		let translateY = split[2];
+		let translateYIndex = 2;
+		if (!translateY.match(/Y/)) {
+			for (let i = 0; i < split.length; i++) {
+				const splitString = split[i];
+				if (splitString.match(/Y/)) {
+					translateY = splitString;
+					translateYIndex = i;
+				}
+			}
+		}
+		const startParenthIndex = translateY.indexOf('(');
+		const endParenthIndex = translateY.indexOf(')');
+		const currentValue = translateY.slice(startParenthIndex + 1, endParenthIndex - 2);
+		debugger;
+
+		split[translateYIndex] = `translateY(-${currentValue + gapAmount}px)`;
+		const newString = split.join(' ');
+		console.log('gapAmount =', gapAmount);
+
+		document.documentElement.style.setProperty('--card-playing-transform', newString);
+	}
+
+	const centerCard = (card, cardDimensions) => {
 		if (!card) return;
 		
-		const cardDimensions = card.getBoundingClientRect();
-
+		const sectionDimensions = card.parentNode.getBoundingClientRect();
 		const {
 			cardCenterXOriginal,
 			cardCenterYOriginal,
 		} = getCardCoordinates(card, cardDimensions);
-
-		const sectionDimensions = card.parentNode.getBoundingClientRect();
 
 		const containerCenterX =
 			(sectionDimensions.right - sectionDimensions.left) / 2 +
@@ -212,17 +248,18 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	};
 
 	const openCard = (video, card) => {
+		const cardDimensions = card.getBoundingClientRect();
+		centerCard(card, cardDimensions);
+		// playVideo(video, card);
+		const isVideoPlaying = getIsVideoPlaying(video);
+		if (!video) return;
+		if (isVideoPlaying || card.classList.contains('card--open'))	closeVideo(video, card)
+		else {
+			playVideo(video, card)
+			card.classList.add("card--open");
+		}
 		setTimeout(() => {
-
-			centerCard(card);
-			// playVideo(video, card);
-			const isVideoPlaying = getIsVideoPlaying(video);
-			if (!video) return;
-			if (isVideoPlaying || card.classList.contains('card--open'))	closeVideo(video, card)
-			else {
-				playVideo(video, card)
-				card.classList.add("card--open");
-			}
+			adjustCardYPosition(video, card, cardDimensions);
 		}, ANIMATION_DURATION / 2);
 	}
 
@@ -328,8 +365,11 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		const card = cardRef.current;
 		const video = videoRef?.current;
 		if (card?.classList.contains("card--done") || card?.classList.contains('card--open')) return;
-		openCard(video, card);
-		changeSectionTitle();
+
+		setTimeout(() => {
+			changeSectionTitle();
+			openCard(video, card);
+		}, ANIMATION_DURATION / 2);
 	};
 
 	const handleMouseEnter = (e) => {
