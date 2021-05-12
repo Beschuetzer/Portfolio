@@ -319,7 +319,7 @@
 		flex-direction: column;
 		transition: transform $animation-duration $animation-easing-standard;
 
-		@media (hover: none) {
+		@include respond(mobile) {
 			visibility: visible;
 			opacity: 1;
 			height: auto;
@@ -415,7 +415,7 @@
 	//expanding SiteNav 'examples' menu if mobile device
 	&__dropdown-container &__dropdown,
 	&__dropdown &__item &__dropdown, &__dropdown &__item {
-		@media (hover: none) {
+		@include respond(mobile) {
 			@include site-nav-examples-expanded;
 		}
 	}
@@ -729,7 +729,9 @@
 			}
 
 			&:hover > a {
-				color: var(--color-primary-2);
+				@include respond(hover) {
+					color: var(--color-primary-2);
+				}
 			}
 		}
 	}

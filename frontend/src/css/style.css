@@ -723,7 +723,7 @@ body {
   flex-direction: column;
   transition: transform 0.5s ease;
 }
-@media (hover: none) {
+@media only screen and (hover: none) {
   .navbar__dropdown {
     visibility: visible;
     opacity: 1;
@@ -803,7 +803,7 @@ body {
   height: auto;
   transform: translateY(0%) scale(1);
 }
-@media (hover: none) {
+@media only screen and (hover: none) {
   .navbar__dropdown-container .navbar__dropdown, .navbar__dropdown .navbar__item .navbar__dropdown, .navbar__dropdown .navbar__item {
     visibility: visible;
     opacity: 1;
@@ -1071,8 +1071,10 @@ body {
     transform: translateY(-0.16rem);
   }
 }
-.page-nav__section-group:hover > a {
-  color: var(--color-primary-2);
+@media only screen and (hover) {
+  .page-nav__section-group:hover > a {
+    color: var(--color-primary-2);
+  }
 }
 .page-nav--active {
   transform: scale(var(--site-nav-active-scale-amount));
