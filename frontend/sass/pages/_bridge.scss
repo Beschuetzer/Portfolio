@@ -43,7 +43,7 @@
 
 		@include respond(nav-switch) {
 			height: auto;
-			padding: $default-font-size * 4 0;
+			padding: $default-font-size * 2 0;
 		}
 
 		@include respond(phone) {

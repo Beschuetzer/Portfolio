@@ -11,6 +11,7 @@ import {
   BRIDGE_PAGE_NAV_LINK_CLASSNAME,
   BRIDGE_PAGE_NAV_LINK_CLASSNAMES,
   BRIDGE_PAGE_NAV_LINKS_COLORS,
+  scrollToSection,
 } from '../constants';
 import BridgeSectionLink from '../pages/examples/Bridge/BridgeSectionLink';
 
@@ -280,6 +281,10 @@ class PageNav extends React.Component {
     else return this.renderFullBridge();
   }
 
+  handleSectionClick = (e) => {
+    scrollToSection(document.getElementById(e.currentTarget?.textContent.toLowerCase()), this.props.headerHeight)
+  }
+
   renderSections = () => {
     this.checkShouldSetPreviousUrl();
     const sectionNames = this.getSectionNames();
@@ -290,12 +295,12 @@ class PageNav extends React.Component {
           key={index} 
           className={`${PageNav.cssClass}__section-group`}
         >
-          <a 
-            href={`${this.props.match.url}#${sectionName?.toLowerCase()}`} 
+          <span 
+            onClick={this.handleSectionClick}
             className={`${PageNav.cssClass}__section ${PageNav.cssClass}__section-${sectionName}`}
           >
             {sectionName}
-          </a>
+          </span>
         </li>
       );
     });

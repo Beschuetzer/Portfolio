@@ -30,4 +30,3 @@ OPTIMIZATIONS:
 -Need to figure out how to handle Bridge Card Videos not displaying due to lack of hover (how to check if device is touch screen in React?)
 -remove hover effect on card when mobile input after close?
 -move card player button positions for all vports
--use scrollToSection for PageNav bridge mobile render case

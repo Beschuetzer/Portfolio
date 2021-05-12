@@ -373,7 +373,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		setTimeout(() => {
 			changeSectionTitle();
 			openCard(video, card);
-			scrollToSection(document.querySelector(`#${bridgeSections[1].toLowerCase()}`), headerHeight, window.scrollY);
+			scrollToSection(document.querySelector(`#${bridgeSections[1].toLowerCase()}`), headerHeight);
 		}, ANIMATION_DURATION / 2);
 	};
 

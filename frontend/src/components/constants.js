@@ -102,8 +102,8 @@ export function onRenderCallback(
 }
 
 //#region shared functions
-export const scrollToSection = (sectionToScrollTo, headerHeight, scrollY) => {
-  const topScrollAmount =  scrollY + sectionToScrollTo.getBoundingClientRect().top - headerHeight;
+export const scrollToSection = (sectionToScrollTo, headerHeight) => {
+  const topScrollAmount =  window.scrollY + sectionToScrollTo.getBoundingClientRect().top - headerHeight;
   window.scroll({
     top: topScrollAmount,
     left: 0, 
