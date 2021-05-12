@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { 
 	CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION, 
 	MOBILE_BREAK_POINT_WIDTH,
+	ANIMATION_DURATION,
 } from "./constants";
 import Video from "../components/Video";
 import { capitalize } from "../helpers";
@@ -15,6 +16,19 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	const cardRef = useRef(null);
 	const progressBarRef = useRef(null);
 	let hasProgressEventListener = false;
+
+	const getCardScaleOnHoverAmount = (card, cardDimensions) => {
+		let cardToUseAsReference = document.querySelector('.card');
+
+		if (cardToUseAsReference === card) {
+			const cards = document.querySelectorAll('.card');
+			cardToUseAsReference = cards[cards.length - 1];
+		}
+
+		const cardToUseAsReferenceDimensions = cardToUseAsReference.getBoundingClientRect();
+		const valueToReturn = cardDimensions.height / cardToUseAsReferenceDimensions.height;
+		return valueToReturn;
+	}
 
 	const getCardCoordinates = (card, cardDimensions) => {
 
@@ -40,7 +54,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		const split = transformOrigin.split(' ');
 		const yCornerOffset = isMobile ? 1.75 : 1.85;
 		const xCornerOffset = 1.1675;
-		const cardScaleOnHoverAmount = 3 / 2;
+		const cardScaleOnHoverAmount = getCardScaleOnHoverAmount(card, cardDimensions);
 		const yTransformOffset = parseFloat(split[0]);
 		const xTransformOffset = parseFloat(split[1]);
 		const xValueToMatch = cardDimensions.width / cardScaleOnHoverAmount;
@@ -198,15 +212,18 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	};
 
 	const openCard = (video, card) => {
-		centerCard(card);
-		// playVideo(video, card);
-		const isVideoPlaying = getIsVideoPlaying(video);
-		if (!video) return;
-		if (isVideoPlaying || card.classList.contains('card--open'))	closeVideo(video, card)
-		else {
-			playVideo(video, card)
-			card.classList.add("card--open");
-		}
+		setTimeout(() => {
+
+			centerCard(card);
+			// playVideo(video, card);
+			const isVideoPlaying = getIsVideoPlaying(video);
+			if (!video) return;
+			if (isVideoPlaying || card.classList.contains('card--open'))	closeVideo(video, card)
+			else {
+				playVideo(video, card)
+				card.classList.add("card--open");
+			}
+		}, ANIMATION_DURATION / 2);
 	}
 
 	const playVideo = (video, card) => {
@@ -333,18 +350,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		const amountPastLeft = (clientX - progressBarLeftX);
 		const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
 		return percent;
-	}
-
-	const handleProgressBarDragStart = (e) => {
-		console.log('drag start------------------------------------------------');
-	}
-
-	const handleProgressBarDragEnd = (e) => {
-		console.log('drag End------------------------------------------------');
-	}
-
-	const handleProgressBarDrag = (e) => {
-		console.log('drag ------------------------------------------------');
 	}
 
 	const handleProgressBarClick = (e) => {
