@@ -336,7 +336,26 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		}, CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION);
 	};
 
-	
+	const handleProgressBarClick = (e) => {
+		const clientX = e.clientX;
+		const card = e.currentTarget;
+		if (!card) return;
+		console.log('video =', card);
+
+		//get percent value
+		const progressBarBoundingRect = card.getBoundingClientRect();
+		console.log('progressBarBoundingRect =', progressBarBoundingRect);
+		const progressBarLeftX = progressBarBoundingRect.left;
+		const progressBarRightX = progressBarBoundingRect.right;
+		const amountPastLeft = (clientX - progressBarLeftX);
+		const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
+		console.log('percent =', percent);
+		
+		//set new percent value
+		const video = videoRef.current;
+		if (!video) return;
+		video.currentTime = percent * video.duration;
+	}
 
 	return (
 		<article
@@ -400,7 +419,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
             {children}
           </div>
         </Video>
-				<progress ref={progressBarRef} value='0' className="card__progress">
+				<progress onClick={handleProgressBarClick} ref={progressBarRef} value='0' className="card__progress">
 				</progress>
 			</div>
 		</article>
