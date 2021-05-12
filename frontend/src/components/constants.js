@@ -102,6 +102,15 @@ export function onRenderCallback(
 }
 
 //#region shared functions
+export const scrollToSection = (sectionToScrollTo, headerHeight, scrollY) => {
+  const topScrollAmount =  scrollY + sectionToScrollTo.getBoundingClientRect().top - headerHeight;
+  window.scroll({
+    top: topScrollAmount,
+    left: 0, 
+    behavior: 'smooth' 
+  });
+}
+
 export const toggleSecondInfoButtonClick = (hero, heroMore, isMobile, shouldWaitToHideHero = true, span = null) => {
   heroMore?.classList.remove('hero__more--clicked');
   if (shouldWaitToHideHero) {

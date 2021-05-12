@@ -8,6 +8,7 @@ import {
 	MOBILE_BREAK_POINT_WIDTH,
 	ANIMATION_DURATION,
 	CARD_HOVER_SCALE_AMOUNT,
+	scrollToSection,
 	bridgeSections,
 } from "./constants";
 import Video from "../components/Video";
@@ -372,18 +373,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		setTimeout(() => {
 			changeSectionTitle();
 			openCard(video, card);
-			scrollToSection(document.querySelector(`#${bridgeSections[1].toLowerCase()}`));
+			scrollToSection(document.querySelector(`#${bridgeSections[1].toLowerCase()}`), headerHeight, window.scrollY);
 		}, ANIMATION_DURATION / 2);
 	};
-
-	const scrollToSection = (sectionToScrollTo) => {
-		const topScrollAmount =  window.scrollY + sectionToScrollTo.getBoundingClientRect().top - headerHeight;
-		window.scroll({
-			top: topScrollAmount,
-			left: 0, 
-			behavior: 'smooth' 
-		});
-	}
 
 	const handleMouseEnter = (e) => {
 		e.currentTarget?.classList.add("z-index-content");

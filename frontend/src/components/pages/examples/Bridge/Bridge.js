@@ -31,7 +31,7 @@ import saveGameVideo from '../../../../clips/saveGame.mp4';
 import CardManager from "../../../CardManager";
 import { onRenderCallback } from "../../../constants";
 
-const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection}) => {
+const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection, isMobile}) => {
 	const sectionContents = [
 			<SectionContainer
 				name={bridgeSections[0]}
@@ -400,11 +400,13 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 	//adding scroll listener
 	useEffect(() => {
 		const handleScroll = (e) => {
+			console.log('handleScroll------------------------------------------------');
+			if (isMobile) document.querySelector('.hero')?.classList.remove('d-none');
 			if (window.scrollY >= window.innerHeight / 2) {
 				document.querySelector('.arrow-button--right')?.classList.remove('d-none');
 			}
 			if (window.scrollY >= window.innerHeight) {
-				document.querySelector('.hero')?.classList.add('d-none');
+				if (!isMobile) document.querySelector('.hero')?.classList.add('d-none');
 			}
 		}
 		window.addEventListener('scroll', handleScroll);
@@ -412,7 +414,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 		return (() => {
 			window.removeEventListener('scroll', handleScroll);
 		})
-	}, [])
+	}, [isMobile])
 
 	const renderSections = () => {
 		return sectionContents.map((item, index) => {
@@ -456,6 +458,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 
 const mapStateToProps = (state, ownProps) => {
 	return {
+		isMobile: state.general.isMobile,
 		clickedBridgeInfoButtonCount: state.general.clickedBridgeInfoButtonCount,
 		hasClickedALink: state.bridge.hasClickedALink,
 	}
