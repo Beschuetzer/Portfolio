@@ -9,6 +9,9 @@ import {
 } from "../../../../../actions";
 import SkillsPopupName from "./SkillsPopupName";
 import { capitalize } from "../../../../../helpers";
+import {
+	addSpaceAfterPunctuationMarks,
+} from '../../../../constants';
 // import { KeepStencilOp } from "three";
 
 const SkillsPopup = ({
@@ -255,7 +258,7 @@ const SkillsPopup = ({
 					<div
 						key={key}
 						className={`skills-popup__table-item skills-popup__${key}`}
-						dangerouslySetInnerHTML={{ __html: repo[key] }}></div>
+						dangerouslySetInnerHTML={{ __html: addSpaceAfterPunctuationMarks(repo[key]) }}></div>
 				);
 			default:
 				return null;
