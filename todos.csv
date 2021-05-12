@@ -28,4 +28,5 @@ OPTIMIZATIONS:
 -finish csharp and autobid.txt
 
 -Add images to SiteNav examples links
-
+-Need to figure out how to handle Bridge Card Videos not displaying due to lack of hover (how to check if device is touch screen in React?)
+-Need to show and move controls for videos when mobile

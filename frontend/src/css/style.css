@@ -2497,18 +2497,28 @@ div.references__name {
   left: 100vw;
   transition: transform 0.25s linear;
 }
+@media only screen and (max-width: 68.75em) {
+  .bridge__section {
+    height: auto;
+    padding: 6.4rem 0;
+  }
+}
+@media only screen and (max-width: 40.9375em) {
+  .bridge__section {
+    padding: 3.2rem 0;
+  }
+}
+@media only screen and (max-width: 29.3125em) {
+  .bridge__section {
+    padding: 1.6rem 0;
+  }
+}
 .bridge__section-title {
   text-align: center;
 }
 @media only screen and (max-width: 29.3125em) {
   .bridge__section-title {
     font-size: 4.8rem;
-  }
-}
-@media only screen and (max-width: 68.75em) {
-  .bridge__section {
-    height: auto;
-    padding: 6.4rem 0;
   }
 }
 .bridge__section-titles {

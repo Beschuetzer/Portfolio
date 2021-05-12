@@ -40,6 +40,19 @@
 		transition: 
 			transform $animation-duration * .5 linear,
 		;
+
+		@include respond(nav-switch) {
+			height: auto;
+			padding: $default-font-size * 4 0;
+		}
+
+		@include respond(phone) {
+			padding: $default-font-size * 2 0;
+		}
+
+		@include respond(small-font) {
+			padding: $default-font-size * 1 0;
+		}
 		
 		&-title {
 			text-align: center;
@@ -48,12 +61,7 @@
 			}
 		}
 
-		@include respond(nav-switch) {
-			height: auto;
-			// min-height: calc(100vh - #{$header-height});
-			padding: $default-font-size * 4 0;
-
-		}
+	
 
 		&-titles {
 			// font-family: $font-family-fancy-bridge;
