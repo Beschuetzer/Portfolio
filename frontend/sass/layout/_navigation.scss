@@ -319,6 +319,13 @@
 		flex-direction: column;
 		transition: transform $animation-duration $animation-easing-standard;
 
+		@media (hover: none) {
+			visibility: visible;
+			opacity: 1;
+			height: auto;
+			transform: translateY(0%) scale(1);
+		}
+
 		@include respond(nav-switch) {
 			position: relative;
 			height: 0;
@@ -402,10 +409,15 @@
 	//Showing dropdown when dropdown-container or any dropdown item is hovered
 	&__dropdown-container:hover &__dropdown,
 	&__dropdown &__item:hover &__dropdown {
-		visibility: visible;
-		opacity: 1;
-		height: auto;
-		transform: translateY(0%) scale(1);
+		@include site-nav-examples-expanded;
+	}
+
+	//expanding SiteNav 'examples' menu if mobile device
+	&__dropdown-container &__dropdown,
+	&__dropdown &__item &__dropdown, &__dropdown &__item {
+		@media (hover: none) {
+			@include site-nav-examples-expanded;
+		}
 	}
 
 	//Styling dropdown items on dropdown-container hover

@@ -723,6 +723,14 @@ body {
   flex-direction: column;
   transition: transform 0.5s ease;
 }
+@media (hover: none) {
+  .navbar__dropdown {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    transform: translateY(0%) scale(1);
+  }
+}
 @media only screen and (max-width: 68.75em) {
   .navbar__dropdown {
     position: relative;
@@ -794,6 +802,14 @@ body {
   opacity: 1;
   height: auto;
   transform: translateY(0%) scale(1);
+}
+@media (hover: none) {
+  .navbar__dropdown-container .navbar__dropdown, .navbar__dropdown .navbar__item .navbar__dropdown, .navbar__dropdown .navbar__item {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    transform: translateY(0%) scale(1);
+  }
 }
 .navbar__dropdown-container:hover .navbar__dropdown .navbar__item {
   height: 100%;

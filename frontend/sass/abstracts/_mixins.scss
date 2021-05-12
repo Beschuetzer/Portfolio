@@ -102,6 +102,13 @@
 	visibility: visible;
 	z-index: 100;
 }
+
+@mixin site-nav-examples-expanded {
+	visibility: visible;
+	opacity: 1;
+	height: auto;
+	transform: translateY(0%) scale(1);
+}
 	/* ------------------------------------------------------------------------------------------------- */
 //Media Query Manager
 @mixin respond($breakpoint) {

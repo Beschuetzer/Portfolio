@@ -15,14 +15,11 @@ IDEAS-----------------------------------------------------------
       -
 
 
+OPTIMIZATIONS:
+  -memoize Card functions?
+  -Go through every component and check for cases where I could use useCallback or useMemo?"
 
 
-
-
-
--videos to do:
-  navigating the menu
-  handling errors (just refresh)
 
 
 -figure out how to create a bash script to get all of the .js files in a dir and its sub-dirs and then create .ts files in the same location with the contents of the respective .js file
@@ -30,22 +27,5 @@ IDEAS-----------------------------------------------------------
 
 -finish csharp and autobid.txt
 
--finish BridgeHero
--bridge vision:
-  2. have each section be a separate 'card'
-    3.11 SectionContainer has a background image of a suit
-    3.12 Transitioning between section containers happens by clicking one of two buttons (arrows at the left and right of section).
-    3.13 SectionContainers flow color-wise from left-right and right-left
-    3.2 content is a linear gradient to right and an svg of a card suit
-
-
-  -make sure that SkillsPopup links to examples on site are Links not anchor tags
-
-
--SiteNav examples for non-touch devices should be expanded
 -Add images to SiteNav examples links
--memoize Card functions?
 
--Go through every component and check for cases where I could use useCallback or useMemo?"
--add Responsive Web Design tags to git hub projects and add as skill (bridge, resume, and Advanced CSS course projects)?
--add a function that adds '&nbsp;' after every period in a string
