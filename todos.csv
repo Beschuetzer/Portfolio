@@ -48,4 +48,4 @@ IDEAS-----------------------------------------------------------
 
 -Go through every component and check for cases where I could use useCallback or useMemo?"
 -add Responsive Web Design tags to git hub projects and add as skill (bridge, resume, and Advanced CSS course projects)?
--finish BridgeHero header animation
+-add a function that adds '&nbsp;' after every period in a string
