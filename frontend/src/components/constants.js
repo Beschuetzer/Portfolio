@@ -9,6 +9,7 @@ export const SECOND_INFO_BUTTON_DELAY = 500;
 //#region bridge stuff
 export const BRIDGE_CURRENT_SECTION_CLASSNAME = 'bridge__current-section';
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAME = 'bridge__page-nav-link';
+export const BRIDGE_SECTION_TITLES_CLASSNAME = 'bridge__section-titles';
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAMES = `${BRIDGE_PAGE_NAV_LINK_CLASSNAME} page-nav__section`;
 
 export const bridgeSections = [

@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { connect } from 'react-redux';
 
 import { 
+	BRIDGE_SECTION_TITLES_CLASSNAME,
 	CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION, 
 	MOBILE_BREAK_POINT_WIDTH,
 	ANIMATION_DURATION,
@@ -12,17 +13,21 @@ import {
 import Video from "../components/Video";
 import { capitalize } from "../helpers";
 
-const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile }) => {
+const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight }) => {
 	const videoRef = useRef(null);
 	const titleRef = useRef(null);
 	const cardRef = useRef(null);
 	const progressBarRef = useRef(null);
 	let hasProgressEventListener = false;
 
-	const getGapAmount = (video, card, cardDimensions) => {
+	const getFeaturesBridgeSectionTitles = () => {
 		const features = document.querySelector(`#${bridgeSections[1].toLowerCase()}`);
-		const bridgeSectionTitles = features.querySelector('.bridge__section-titles');
-		const bridgeSectionBounds = bridgeSectionTitles.getBoundingClientRect();
+		return features.querySelector(`.${BRIDGE_SECTION_TITLES_CLASSNAME}`);
+	}
+
+	const getGapAmount = (video, card, cardDimensions) => {
+		const featuresBridgeSectionTitles = getFeaturesBridgeSectionTitles();
+		const bridgeSectionBounds = featuresBridgeSectionTitles.getBoundingClientRect();
 		const videoBounds = video.getBoundingClientRect();
 		return (videoBounds.top - bridgeSectionBounds.bottom);
 	}
@@ -150,11 +155,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		const startParenthIndex = translateY.indexOf('(');
 		const endParenthIndex = translateY.indexOf(')');
 		const currentValue = translateY.slice(startParenthIndex + 1, endParenthIndex - 2);
-		debugger;
 
-		split[translateYIndex] = `translateY(-${currentValue + gapAmount}px)`;
+		split[translateYIndex] = `translateY(-${gapAmount - parseFloat(currentValue)}px)`;
 		const newString = split.join(' ');
-		console.log('gapAmount =', gapAmount);
 
 		document.documentElement.style.setProperty('--card-playing-transform', newString);
 	}
@@ -369,8 +372,18 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		setTimeout(() => {
 			changeSectionTitle();
 			openCard(video, card);
+			scrollToSection(document.querySelector(`#${bridgeSections[1].toLowerCase()}`));
 		}, ANIMATION_DURATION / 2);
 	};
+
+	const scrollToSection = (sectionToScrollTo) => {
+		const topScrollAmount =  window.scrollY + sectionToScrollTo.getBoundingClientRect().top - headerHeight;
+		window.scroll({
+			top: topScrollAmount,
+			left: 0, 
+			behavior: 'smooth' 
+		});
+	}
 
 	const handleMouseEnter = (e) => {
 		e.currentTarget?.classList.add("z-index-content");
@@ -480,6 +493,7 @@ const mapStateToProps = (state, ownProps) => {
 	return {
 		viewPortWidth: state.general.viewPortWidth,
 		isMobile: state.general.isMobile,
+		headerHeight: state.general.headerHeight,
 	}
 }
 
