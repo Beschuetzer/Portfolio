@@ -154,6 +154,21 @@ export const handleBridgeHeroSounds = (checkBoxRef, backgroundRef, sounds, isMob
 
 export const addSpaceAfterPunctuationMarks = (string) => {
   const puncuationMarks = ['.', '?', '!']
-  return "This is it."
+  let shouldAdd = false;
+  let newString = '';
+  for (let i = 0; i < string.length; i++) {
+    const char = string[i];
+
+    if (shouldAdd && !puncuationMarks.includes(char)) {
+      //add &nbsp here in front of current char
+      shouldAdd = false;
+      if (char === '<') newString += char;
+      else newString += '&nbsp' + char;
+      continue;
+    }
+    if (puncuationMarks.includes(char)) shouldAdd = true;  
+    newString += char;
+  }
+  return newString;
 }
 //#endregion

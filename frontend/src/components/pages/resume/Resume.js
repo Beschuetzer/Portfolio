@@ -142,7 +142,7 @@ class Resume extends React.Component {
 						<SkillsItem
 							labels={Resume.skillsLabels.web}
 							title="ThreeJS"
-							percent="40"
+							percent="35"
 						/>
 						{
 							//hours="90"/>
