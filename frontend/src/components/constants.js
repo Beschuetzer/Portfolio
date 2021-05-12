@@ -152,12 +152,7 @@ export const handleBridgeHeroSounds = (checkBoxRef, backgroundRef, sounds, isMob
   }
   else {
     sounds.play('doorNormal');
-    window.scroll({
-      top: isMobile ? window.innerHeight - (headerHeight / 2) : window.innerHeight, 
-      left: 0, 
-      behavior: 'smooth' 
-    });
-
+    scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()), headerHeight)
     if (backgroundRef)  {
       backgroundRef?.classList.remove('visible');
       backgroundRef?.classList.remove('reverse-ease');

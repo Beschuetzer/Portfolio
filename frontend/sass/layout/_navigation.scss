@@ -690,6 +690,12 @@
 			padding: 0;
 		}
 
+		@include respond(mobile) {
+			&:hover {
+				transform: scale(1.25);
+			}
+		}
+
 		&-group {
 			// width: 100%;
 			padding: $default-font-size * 0.25 0;

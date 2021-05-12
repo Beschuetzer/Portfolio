@@ -243,18 +243,18 @@ class PageNav extends React.Component {
 
   }
 
-  handleMobileBridgeLinkClick = (e) => {
-    const sectionName = e.currentTarget?.textContent.toLowerCase();
-    if (!sectionName) return;
-    const scrollY = window.scrollY;
-    const sectionToNavigateTo = document.querySelector(`#${sectionName}`);
-    const top = sectionToNavigateTo.getBoundingClientRect().top;
-    window.scroll({
-      top: scrollY + top - (this.props.headerHeight / 2), 
-      left: 0, 
-      behavior: 'smooth' 
-    });
-  }
+  // handleMobileBridgeLinkClick = (e) => {
+  //   const sectionName = e.currentTarget?.textContent.toLowerCase();
+  //   if (!sectionName) return;
+  //   const scrollY = window.scrollY;
+  //   const sectionToNavigateTo = document.querySelector(`#${sectionName}`);
+  //   const top = sectionToNavigateTo.getBoundingClientRect().top;
+  //   window.scroll({
+  //     top: scrollY + top - (this.props.headerHeight / 2), 
+  //     left: 0, 
+  //     behavior: 'smooth' 
+  //   });
+  // }
 
   renderFullBridge = () => {
     this.setBridgeColors();

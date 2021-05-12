@@ -1049,6 +1049,11 @@ body {
     padding: 0;
   }
 }
+@media only screen and (hover: none) {
+  .page-nav__section:hover {
+    transform: scale(1.25);
+  }
+}
 .page-nav__section-group {
   padding: 0.4rem 0;
   display: flex;
