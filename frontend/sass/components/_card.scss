@@ -74,9 +74,9 @@
 		visibility: hidden;
 		position: absolute;
     left: 50%;
-    // top: 47%;
-    top: 0;
-    transform: translate(-50%, -0%);
+    top: 50%;
+    // top: 0;
+    transform: translate(-50%, -50%);
     font-size: $default-font-size * .25;
     background-color: var(--color-primary-4);
     border: .1px solid var(--color-primary-1);
@@ -91,7 +91,7 @@
 		;		
 
 		@include respond(nav-break) {
-			font-size: $default-font-size * .5;
+			font-size: $default-font-size * .4125;
 		}
 
 		& div {
@@ -236,7 +236,7 @@
 		}
 
 		&:is(.card--open, .card--done):hover .card__close {
-			opacity: .5;
+			opacity: $bridge-card-hover-button-opacity;
 			visibility: visible;
 		}
 	}
@@ -314,7 +314,7 @@
 		}
 
 		&:hover :is(.card__pause, .card__stop, .card__restart) {
-			opacity: $card-initial-opacity * 2;
+			opacity: $bridge-card-hover-button-opacity;
 			visibility: visible;
 		}
 
@@ -362,7 +362,7 @@
 		}
 
 		&:hover :is(.card__play) {
-			opacity: $card-initial-opacity * 2;
+			opacity: $bridge-card-hover-button-opacity;
 			visibility: visible;
 			top: $card-pause-and-stop-top;
 			left: 25%;

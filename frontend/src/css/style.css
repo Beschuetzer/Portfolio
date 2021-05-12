@@ -1351,8 +1351,8 @@ body {
   visibility: hidden;
   position: absolute;
   left: 50%;
-  top: 0;
-  transform: translate(-50%, 0%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-size: 0.4rem;
   background-color: var(--color-primary-4);
   border: 0.1px solid var(--color-primary-1);
@@ -1364,7 +1364,7 @@ body {
 }
 @media only screen and (max-width: 35.0625em) {
   .card__children {
-    font-size: 0.8rem;
+    font-size: 0.66rem;
   }
 }
 .card__children div {
