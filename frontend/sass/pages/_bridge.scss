@@ -393,10 +393,6 @@
 				height: $navbar__logo-width-nav-switch * 2;
 			}
 
-			@include respond(tab-port) {
-				--hero-more-y-translate: calc(-50% - #{$default-font-size * 9});
-			}
-
 			&:nth-of-type(1) {
 				opacity: 1;
 			}
@@ -425,6 +421,14 @@
 			animation: 
 				bridge-hero-hover 10s infinite,
 			;
+
+			@include respond(phone) {
+				--hero-more-y-translate: calc(-50% - #{$default-font-size * 8});
+			}
+
+			@include respond(nav-break) {
+				--hero-more-y-translate: calc(-50% - #{$default-font-size * 9});
+			}
 
 			& svg {
 				animation: 
@@ -503,9 +507,10 @@
 		right: calc((100vw - #{$header-inner-width}) / 1.9);
 
 		@include respond(nav-switch) {
-			top: 12.5vh;
+			top: 87.5vh;
 			transform: translateX(50%);
 			right: 50%;
+			position: absolute;
 		}
 
 		&-svg {

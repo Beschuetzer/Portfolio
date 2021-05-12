@@ -2759,11 +2759,6 @@ div.references__name {
     height: 16rem;
   }
 }
-@media only screen and (max-width: 52.6875em) {
-  .hero__more svg {
-    --hero-more-y-translate: calc(-50% - 14.4rem);
-  }
-}
 .hero__more svg:nth-of-type(1) {
   opacity: 1;
 }
@@ -2782,6 +2777,16 @@ div.references__name {
 .hero__more--clicked {
   --hero-more-y-translate: calc(-50% - 11.2rem);
   animation: bridge-hero-hover 10s infinite;
+}
+@media only screen and (max-width: 40.9375em) {
+  .hero__more--clicked {
+    --hero-more-y-translate: calc(-50% - 12.8rem);
+  }
+}
+@media only screen and (max-width: 35.0625em) {
+  .hero__more--clicked {
+    --hero-more-y-translate: calc(-50% - 14.4rem);
+  }
 }
 .hero__more--clicked svg {
   animation: bridge-color-change 10s infinite;
@@ -2836,9 +2841,10 @@ div.references__name {
 }
 @media only screen and (max-width: 68.75em) {
   .hero__source {
-    top: 12.5vh;
+    top: 87.5vh;
     transform: translateX(50%);
     right: 50%;
+    position: absolute;
   }
 }
 .hero__source-svg {
