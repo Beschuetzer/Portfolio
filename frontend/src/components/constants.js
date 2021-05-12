@@ -162,7 +162,7 @@ export const addSpaceAfterPunctuationMarks = (string) => {
     if (shouldAdd && !puncuationMarks.includes(char)) {
       //add &nbsp here in front of current char
       shouldAdd = false;
-      if (char === '<') newString += char;
+      if (char === '<' || string[i+1] !== '') newString += char;
       else newString += '&nbsp' + char;
       continue;
     }
