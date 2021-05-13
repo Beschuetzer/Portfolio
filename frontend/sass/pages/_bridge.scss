@@ -623,15 +623,24 @@ $padding-nav-switch: $default-font-size * .5;
 	transform: translateY(-50%);
 	bottom: 0;
 	z-index: 10;
+	border-radius: 50%;
+	box-shadow: $navbar-box-shadow-resume;
+	width: calc((#{$navbar__logo-width} + .29vw) / var(--bridge-arrow-hover-scale-amount));
+	height: calc( (#{$navbar__logo-width} + .29vw) / var(--bridge-arrow-hover-scale-amount));
+	transition: 
+		transform $animation-duration $animation-easing-standard,
+	;
 
 	@include respond(nav-switch) {
 		display: none;
 	}
 
 	& svg {
-		width: calc(#{$navbar__logo-width} + .29vw);
-		height: calc(#{$navbar__logo-width} + .29vw);
-
+		width: 100%;
+		height: 100%;
+		transition: 
+			transform $animation-duration $animation-easing-standard,
+		;
 		@include respond(nav-switch) {
 			width: $default-font-size * 5;
 			height: $default-font-size * 5;
@@ -642,6 +651,7 @@ $padding-nav-switch: $default-font-size * .5;
 		// padding-left: $padding-full;
 		// left: 0%;
 		left: calc((100vw - #{$header-inner-width} - 1vw) / 2);
+		// border: $default-font-size * .1 solid var(--arrow-button-left-fill);
 
 		@include respond(nav-switch) {
 			padding-left: $padding-nav-switch;
@@ -649,16 +659,20 @@ $padding-nav-switch: $default-font-size * .5;
 		
 		& svg {
 			fill: var(--arrow-button-left-fill);
-			transform: rotate(90deg);
+			// transform: translateY(.05vw) rotate(90deg);
+			transform: rotate(90deg) scale(var(--bridge-arrow-hover-scale-amount));
 		}
 
 		&:hover svg{
 			fill: var(--arrow-button-left-fill-hover);
+			
 		}
 	}
 
 	&--right {
 		right: $arrow-button-position;
+		// border: $default-font-size * .1 solid var(--arrow-button-right-fill);
+
 
 		@include respond(nav-switch) {
 			padding-right: $padding-nav-switch;
@@ -666,12 +680,18 @@ $padding-nav-switch: $default-font-size * .5;
 
 		& svg {
 			fill: var(--arrow-button-right-fill);
-			transform: rotate(-90deg);
+			// transform: translateX(-.025vw) rotate(-90deg);
+			transform: rotate(-90deg) scale(var(--bridge-arrow-hover-scale-amount));
 		}
 
 		&:hover svg {
 			fill: var(--arrow-button-right-fill-hover);
+			// transform: translate(-$default-font-size * .15, ) rotate(-90deg);
 		}
+	}
+
+	&:hover{
+		transform: translateY(calc(-50% - #{$default-font-size * .1}));
 	}
 
 	// &:hover {

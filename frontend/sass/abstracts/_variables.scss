@@ -140,6 +140,7 @@ $animation-bridge-windshield-two-end: polygon(
 
 
 //bridge
+$bridge-arrow-hover-scale-amount: 1.1;
 $bridge-card-hover-button-opacity: .5;
 $bridge-page-nav-link-scale-amount: 1.1;
 $bridge-hero-animation-duration: $animation-duration * 2;
@@ -221,6 +222,7 @@ $page-nav-top: calc(
 	--header-inner-width-nav-switch: 100%;
 
 	//bridge page
+	--bridge-arrow-hover-scale-amount: 1.1;
 	--bridge-gradient-direction: to right;
 	@include respond(nav-switch) {
 		--bridge-gradient-direction: to bottom;

@@ -383,6 +383,18 @@
 		}
 	}
 
+	&--stopped .card__close, &--closed .card__close {
+		animation: 
+			bridge-color-change 6s infinite,
+			bridge-more 2s infinite,
+		;
+
+		&:hover {
+			animation: none;
+			transition: transform $animation-duration $animation-easing-standard;
+		}
+	}
+
 	// &:first-of-type {
 	// 	transform-origin: top left;
 	// }
