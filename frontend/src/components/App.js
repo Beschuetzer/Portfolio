@@ -48,6 +48,7 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 		};
 
 		const keypressHandler = (e) => {
+			if (!e.altKey || !e.ctrlKey) return;
 			switch (e.key) {
 				case "a":
 					const navbar = document.querySelector(".navbar");
