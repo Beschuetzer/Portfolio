@@ -9,7 +9,7 @@
 
 	cursor: pointer;
 	z-index: $card-z-index;
-	backface-visibility: hidden;
+	// backface-visibility: hidden;
 	color: var(--color-primary-1);
 	position: relative;
 	// height: $card-height;
@@ -22,7 +22,7 @@
 	transition: transform $animation-duration / 3 $animation-easing-standard;
 
 	& * {
-		backface-visibility: hidden;
+		// backface-visibility: hidden;
 		-webkit-user-drag: none;
 		-khtml-user-drag: none;
 		-moz-user-drag: none;
@@ -71,7 +71,7 @@
 
 	&__children {
 		opacity: 0;
-		visibility: hidden;
+		// visibility: hidden;
 		position: absolute;
     left: 50%;
     top: 50%;
@@ -130,7 +130,7 @@
 	}
 	&__title {
 		grid-column: 1/-1;
-		backface-visibility: hidden;
+		// backface-visibility: hidden;
 		text-align: center;
 		font-size: $default-font-size * 1.25;
     padding: $default-font-size * .25;
@@ -150,18 +150,22 @@
 	&__play, &__pause, &__close, &__stop,	&__restart {
 		cursor: pointer;
 		opacity: 0;
-		visibility: hidden;
-		top: 50%;
+		// visibility: hidden;
+		top: $card-pause-and-stop-width / 2;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		height: 50%;
-		width: 50%;
+		height: $card-pause-and-stop-width;
+		width: $card-pause-and-stop-width;
 		fill: rgba($color-primary-bridge-2, 1);
 		z-index: 10;
 		position: absolute;
 		transition: opacity $animation-duration $animation-easing-standard,
 			fill $animation-duration $animation-easing-standard
 		;		
+	}
+
+	&__play {
+		top: 50%;
 	}
 
 	&__play-parent, &__pause-parent, &__close-parent, &__stop-parent,	&__restart-parent {
@@ -179,6 +183,7 @@
 	}
 
 	& :is(.card__stop-parent, .card__pause-parent, .card__restart-parent, .card__play-parent, .card__close-parent):is(:active, :focus) svg {
+		visibility: visible;
 		fill: var(--color-primary-4);
 		transition:
 			opacity $animation-duration $animation-easing-standard,
@@ -217,7 +222,7 @@
 	&__current-svg {
 		z-index: 10;
 		opacity: $card-initial-opacity;
-		visibility: visible;
+		// visibility: visible;
 	}
 
 	&--hoverable {
@@ -233,13 +238,13 @@
 
 		&:not(.card--done, .card--open):hover .card__play {
 			opacity: $card-initial-opacity * 2;
-			visibility: visible;
+			// visibility: visible;
 			fill: rgba($color-primary-bridge-1, 1);
 		}
 
 		&:is(.card--open .card__content, .card--done .card__content):hover .card__close {
 			opacity: $bridge-card-hover-button-opacity;
-			visibility: visible;
+			// visibility: visible;
 		}
 	}
 
@@ -280,7 +285,7 @@
 		}
 		& .fg-video {
 			opacity: 1;
-			visibility: visible;
+			// visibility: visible;
 			grid-column: 1/-1;
 			position: relative;
 
@@ -307,12 +312,12 @@
 
 		& :is(.card__close, .card__pause, .card__stop, .card__restart):hover {
 			opacity: 1 !important;
-			visibility: visible;
+			// visibility: visible;
 		}
 
 		& .card__content:hover :is(.card__pause, .card__stop, .card__restart, .card__close) {
 			opacity: $bridge-card-hover-button-opacity;
-			visibility: visible;
+			// visibility: visible;
 		}
 
 		// &:hover .card__stop {
@@ -330,7 +335,7 @@
 			
 			&:hover {
 				opacity: 1 !important;
-				visibility: visible;
+				// visibility: visible;
 			}
 		}
 
@@ -342,14 +347,14 @@
 			@include card-description-visible;
 		}
 
-		& .card__pause{
+		& :is(.card__pause, .card__stop){
 			opacity: 0;
 			visibility: hidden;			
 		}
 
 		&:hover :is(.card__pause, .card__stop) {
 			opacity: 0;
-			visibility: hidden;
+			// visibility: hidden;
 		}
 	}
 
@@ -368,13 +373,13 @@
 		}
 
 		& .card__content:hover :is(.card__pause) {
-			opacity: 0;
-			visibility: hidden;
+			opacity: 0 ;
+			// visibility: hidden;
 		}
 
 		& .card__play:hover {
-			opacity: 1;
-			visibility: visible;
+			opacity: 1 !important;
+			// visibility: visible;
 		}
 	}
 

@@ -1302,7 +1302,6 @@ body {
   /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
   cursor: pointer;
   z-index: 1;
-  backface-visibility: hidden;
   color: var(--color-primary-1);
   position: relative;
   display: grid;
@@ -1313,7 +1312,6 @@ body {
   transition: transform 0.1666666667s ease;
 }
 .card * {
-  backface-visibility: hidden;
   -webkit-user-drag: none;
   -khtml-user-drag: none;
   -moz-user-drag: none;
@@ -1348,7 +1346,6 @@ body {
 }
 .card__children {
   opacity: 0;
-  visibility: hidden;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -1387,7 +1384,6 @@ body {
 }
 .card__title {
   grid-column: 1/-1;
-  backface-visibility: hidden;
   text-align: center;
   font-size: 2rem;
   padding: 0.4rem;
@@ -1397,16 +1393,18 @@ body {
 .card__play, .card__pause, .card__close, .card__stop, .card__restart {
   cursor: pointer;
   opacity: 0;
-  visibility: hidden;
-  top: 50%;
+  top: 12.5%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 50%;
-  width: 50%;
+  height: 25%;
+  width: 25%;
   fill: #f59229;
   z-index: 10;
   position: absolute;
   transition: opacity 0.5s ease, fill 0.5s ease;
+}
+.card__play {
+  top: 50%;
 }
 .card__play-parent, .card__pause-parent, .card__close-parent, .card__stop-parent, .card__restart-parent {
   top: 50%;
@@ -1420,6 +1418,7 @@ body {
   fill: var(--color-primary-4);
 }
 .card :is(.card__stop-parent, .card__pause-parent, .card__restart-parent, .card__play-parent, .card__close-parent):is(:active, :focus) svg {
+  visibility: visible;
   fill: var(--color-primary-4);
   transition: opacity 0.5s ease;
 }
@@ -1448,7 +1447,6 @@ body {
 .card__current-svg {
   z-index: 10;
   opacity: 0.25;
-  visibility: visible;
 }
 .card--hoverable:hover {
   --card-scale-amount: 1.5;
@@ -1459,12 +1457,10 @@ body {
 }
 .card--hoverable:not(.card--done, .card--open):hover .card__play {
   opacity: 0.5;
-  visibility: visible;
   fill: #00406b;
 }
 .card--hoverable:is(.card--open .card__content, .card--done .card__content):hover .card__close {
   opacity: 0.5;
-  visibility: visible;
 }
 .card--open {
   transform: var(--card-playing-transform);
@@ -1496,7 +1492,6 @@ body {
 }
 .card--open .fg-video {
   opacity: 1;
-  visibility: visible;
   grid-column: 1/-1;
   position: relative;
 }
@@ -1516,11 +1511,9 @@ body {
 }
 .card--open :is(.card__close, .card__pause, .card__stop, .card__restart):hover {
   opacity: 1 !important;
-  visibility: visible;
 }
 .card--open .card__content:hover :is(.card__pause, .card__stop, .card__restart, .card__close) {
   opacity: 0.5;
-  visibility: visible;
 }
 .card--done.card--open {
   grid-template-rows: auto;
@@ -1530,7 +1523,6 @@ body {
 }
 .card--done .card__close:hover {
   opacity: 1 !important;
-  visibility: visible;
 }
 .card--done .card__image {
   width: 102%;
@@ -1540,13 +1532,12 @@ body {
   visibility: visible;
   z-index: 100;
 }
-.card--done .card__pause {
+.card--done :is(.card__pause, .card__stop) {
   opacity: 0;
   visibility: hidden;
 }
 .card--done:hover :is(.card__pause, .card__stop) {
   opacity: 0;
-  visibility: hidden;
 }
 .card--stopped .card__children {
   opacity: 1;
@@ -1563,11 +1554,9 @@ body {
 }
 .card--stopped .card__content:hover :is(.card__pause) {
   opacity: 0;
-  visibility: hidden;
 }
 .card--stopped .card__play:hover {
-  opacity: 1;
-  visibility: visible;
+  opacity: 1 !important;
 }
 
 .github {
