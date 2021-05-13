@@ -1546,13 +1546,16 @@ body {
   visibility: visible;
   z-index: 100;
 }
-.card--stopped .card__content:hover :is(.card__play) {
-  opacity: 0.5;
-  visibility: visible;
+.card--stopped .card__play {
   top: 85%;
   left: 25%;
   width: 25%;
   height: 25%;
+  visibility: visible;
+}
+.card--stopped .card__content:hover :is(.card__play) {
+  opacity: 0.5;
+  visibility: visible;
 }
 .card--stopped .card__content:hover :is(.card__pause) {
   opacity: 0;

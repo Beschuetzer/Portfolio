@@ -363,13 +363,17 @@
 			@include card-description-visible;
 		}
 
-		& .card__content:hover :is(.card__play) {
-			opacity: $bridge-card-hover-button-opacity;
-			visibility: visible;
+		& .card__play {
 			top: $card-pause-and-stop-top;
 			left: 25%;
 			width: $card-pause-and-stop-width;
 			height: $card-pause-and-stop-width;
+			visibility: visible;
+		}
+
+		& .card__content:hover :is(.card__play) {
+			opacity: $bridge-card-hover-button-opacity;
+			visibility: visible;
 		}
 
 		& .card__content:hover :is(.card__pause) {
