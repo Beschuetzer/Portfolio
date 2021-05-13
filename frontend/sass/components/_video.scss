@@ -1,6 +1,6 @@
 
 .bg-video {
-  opacity: 0.075;
+  opacity: $bg-video-opacity;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -27,7 +27,7 @@
 .fg-video {
   display: flex;
   align-items: center;
-  opacity: .075;
+  opacity: $bg-video-opacity;
   position: absolute;
   top: 0;
   bottom: 0;

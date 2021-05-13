@@ -4,6 +4,14 @@ import { connect } from "react-redux";
 import ReactDOM from "react-dom";
 import NavListItem from "./NavListItem";
 
+import aboutImage from '../../imgs/site-nav-about.jpg';
+import autoBidImage from '../../imgs/site-nav-autobid.jpg';
+import bridgeImage from '../../imgs/bridge-section-6.jpg';
+import contactImage from '../../imgs/site-nav-contact.jpg';
+import downloaderImage from '../../imgs/site-nav-downloader.jpg';
+import resumeImage from '../../imgs/site-nav-resume.jpg';
+import syncerImage from '../../imgs/site-nav-syncer.jpg';
+
 
 import { setHeaderHeight, setIsAnimating } from "../../actions";
 import { checkForParentOfType } from "../../helpers";
@@ -199,6 +207,8 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 			<div className="navbar__content">
 				<ul className="navbar__list">
 					<NavListItem
+						imageSource={aboutImage}
+						imageAlt="About"
 						to="/about"
 						label="About"
 						onMouseEnter={onMouseEnter}
@@ -206,6 +216,8 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 					/>
 
 					<NavListItem
+						imageSource={resumeImage}
+						imageAlt="Resume"
 						to="/resume"
 						label="R&eacute;sum&eacute;"
 						onMouseEnter={onMouseEnter}
@@ -221,24 +233,32 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 						triangle={<div className="triangle-down"></div>}>
 						<ul className="navbar__dropdown">
 							<NavListItem
+								imageSource={downloaderImage}
+								imageAlt="Downloader"
 								to="/examples/downloader"
 								label="Downloader"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
 							<NavListItem
+								imageSource={syncerImage}
+								imageAlt="Syncer"
 								to="/examples/playlist-syncer"
 								label="Syncer"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
 							<NavListItem
+								imageSource={bridgeImage}
+								imageAlt="Bridge"
 								to="/examples/bridge"
 								label="A# Maj Bridge"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
 							<NavListItem
+								imageSource={autoBidImage}
+								imageAlt="autoBid"
 								to="/examples/autobid"
 								label="Auto Bid"
 								onMouseEnter={onMouseEnter}
@@ -253,6 +273,8 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 						</ul>
 					</NavListItem>
 					<NavListItem
+						imageSource={contactImage}
+						imageAlt="Contact"
 						to="/contact"
 						label="Contact"
 						onMouseEnter={onMouseEnter}

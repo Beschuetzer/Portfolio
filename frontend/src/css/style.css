@@ -415,6 +415,10 @@ body {
   }
 }
 
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
 .visible {
   visibility: visible !important;
   opacity: 1 !important;
@@ -652,6 +656,13 @@ body {
   z-index: 10000;
   transform: translateY(-0.32rem);
   box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.15);
+}
+.navbar__item:not(.navbar__dropdown-container) img {
+  width: 100%;
+  opacity: 0.1125;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .navbar__item:hover .triangle-down {
   transform: rotate(90deg);

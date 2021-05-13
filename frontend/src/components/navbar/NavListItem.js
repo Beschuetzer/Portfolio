@@ -5,6 +5,7 @@ class NavItem extends React.Component {
   defaults = {
     liClassName: "navbar__item",
     linkClassName: "navbar__link",
+    imageClassName: "navbar__link-image",
   } 
   render() {
     const { isLink=true, onMouseEnter, onClick, to, label, label2, children, className, triangle, imageAlt = 'A picture', imageSource = '' } = this.props;
@@ -35,10 +36,10 @@ class NavItem extends React.Component {
       <li 
         onMouseEnter={onMouseEnter} 
         onClick={onClick} 
-        className={classNamesToUse}
+        className={`${classNamesToUse}  ${imageSource ? 'overflow-hidden' : ''}`}
       >
         {imageSource ?
-          <img src={imageSource} alt={imageAlt}/>
+          <img className={this.defaults.imageClassName} src={imageSource} alt={imageAlt}/>
         :
           null
         }
