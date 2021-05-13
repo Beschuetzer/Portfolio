@@ -139,6 +139,7 @@ export const showBridgeHero = (heroMore) => {
   document.documentElement.style.setProperty('--bridge-section-height', '100vh');
   document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
   
+  console.log('add heromore clicked------------------------------------------------');
   heroMore.current?.classList.add('hero__more--clicked');
 }
 

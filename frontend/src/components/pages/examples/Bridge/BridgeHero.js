@@ -22,7 +22,7 @@ const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedB
   const headerHeight = document.querySelector('#header').getBoundingClientRect().height;
 
   const handleMoreClick = (e) => {
-    if(clickedBridgeInfoButtonCount === 0) {
+    if(clickedBridgeInfoButtonCount % 2 === 0) {
       showBridgeHero(heroMore);
     }
     else if (clickedBridgeInfoButtonCount > 0){
