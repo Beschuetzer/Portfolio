@@ -214,7 +214,14 @@
 		// border: $default-font-size * 0.1 solid var(--color-primary-1)
 		border: $default-font-size * 0.1 solid transparent;
 		position: relative;
-		background-color: var(--color-primary-4);
+		// background-color: var(--color-primary-4);
+		background: linear-gradient(
+			var(--site-nav-item-gradient-direction),
+			var(--color-primary-4),
+			var(--color-primary-4) 50%,
+			var(--color-primary-3) 50%,
+			var(--color-primary-3) 100%,
+		);
 		cursor: pointer;
 		height: 100%;
 		width: 100%;
@@ -227,7 +234,17 @@
 		}
 
 		&:hover {
-			background-color: var(--color-primary-3);
+			// background-color: var(--color-primary-3);
+			background: linear-gradient(
+				var(--site-nav-item-gradient-direction),
+				var(--color-primary-3),
+				var(--color-primary-3) 50%,
+				var(--color-primary-4) 50%,
+				var(--color-primary-4) 100%,
+			);
+			transition: 
+				background-image $animation-duration $animation-easing-modern,
+			;
 		}
 		&:not(.navbar__dropdown-container):hover {
 			z-index: 10000;
@@ -237,6 +254,7 @@
 		}
 		&:not(.navbar__dropdown-container){
 			& img {
+				pointer-events: none;				
 				width: 100%;
 				opacity: $bg-video-opacity * 1.5;
 				position: absolute;
@@ -283,6 +301,8 @@
 			z-index: 10000;
 			opacity: 0;
 		}
+
+		
 	}
 
 	&--done &__item {

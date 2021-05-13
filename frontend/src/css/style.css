@@ -29,6 +29,7 @@
   scroll-padding-top: 12rem;
   --scrollbar-width: 0.8rem;
   --default-font-size: 1.6rem;
+  --site-nav-item-gradient-direction: to right;
   --site-nav-linear-gradient: linear-gradient(
   	to right,
   	var(--color-primary-1) 0%,
@@ -639,7 +640,7 @@ body {
 .navbar__item {
   border: 0.16rem solid transparent;
   position: relative;
-  background-color: var(--color-primary-4);
+  background: linear-gradient(var(--site-nav-item-gradient-direction), var(--color-primary-4), var(--color-primary-4) 50%, var(--color-primary-3) 50%, var(--color-primary-3) 100%);
   cursor: pointer;
   height: 100%;
   width: 100%;
@@ -650,7 +651,8 @@ body {
   transition: transform 0.25s ease;
 }
 .navbar__item:hover {
-  background-color: var(--color-primary-3);
+  background: linear-gradient(var(--site-nav-item-gradient-direction), var(--color-primary-3), var(--color-primary-3) 50%, var(--color-primary-4) 50%, var(--color-primary-4) 100%);
+  transition: background-image 0.5s cubic-bezier(1, 0, 0, 1);
 }
 .navbar__item:not(.navbar__dropdown-container):hover {
   z-index: 10000;
@@ -658,6 +660,7 @@ body {
   box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.15);
 }
 .navbar__item:not(.navbar__dropdown-container) img {
+  pointer-events: none;
   width: 100%;
   opacity: 0.1125;
   position: absolute;
