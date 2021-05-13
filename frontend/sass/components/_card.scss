@@ -180,8 +180,10 @@
 
 	& :is(.card__stop-parent, .card__pause-parent, .card__restart-parent, .card__play-parent, .card__close-parent):is(:active, :focus) svg {
 		fill: var(--color-primary-4);
-
-	}
+		transition:
+			opacity $animation-duration $animation-easing-standard,
+		;
+	}	
 
 	&__play {
 		width: 100%;
@@ -235,7 +237,7 @@
 			fill: rgba($color-primary-bridge-1, 1);
 		}
 
-		&:is(.card--open, .card--done):hover .card__close {
+		&:is(.card--open .card__content, .card--done .card__content):hover .card__close {
 			opacity: $bridge-card-hover-button-opacity;
 			visibility: visible;
 		}
@@ -308,12 +310,7 @@
 			visibility: visible;
 		}
 
-		&:hover .card__close {
-			opacity: 1;
-			visibility: visible;
-		}
-
-		&:hover :is(.card__pause, .card__stop, .card__restart) {
+		& .card__content:hover :is(.card__pause, .card__stop, .card__restart, .card__close) {
 			opacity: $bridge-card-hover-button-opacity;
 			visibility: visible;
 		}
@@ -361,7 +358,7 @@
 			@include card-description-visible;
 		}
 
-		&:hover :is(.card__play) {
+		& .card__content:hover :is(.card__play) {
 			opacity: $bridge-card-hover-button-opacity;
 			visibility: visible;
 			top: $card-pause-and-stop-top;
@@ -370,7 +367,7 @@
 			height: $card-pause-and-stop-width;
 		}
 
-		&:hover :is(.card__pause) {
+		& .card__content:hover :is(.card__pause) {
 			opacity: 0;
 			visibility: hidden;
 		}

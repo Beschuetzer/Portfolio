@@ -1421,6 +1421,7 @@ body {
 }
 .card :is(.card__stop-parent, .card__pause-parent, .card__restart-parent, .card__play-parent, .card__close-parent):is(:active, :focus) svg {
   fill: var(--color-primary-4);
+  transition: opacity 0.5s ease;
 }
 .card__play {
   width: 100%;
@@ -1461,7 +1462,7 @@ body {
   visibility: visible;
   fill: #00406b;
 }
-.card--hoverable:is(.card--open, .card--done):hover .card__close {
+.card--hoverable:is(.card--open .card__content, .card--done .card__content):hover .card__close {
   opacity: 0.5;
   visibility: visible;
 }
@@ -1517,11 +1518,7 @@ body {
   opacity: 1 !important;
   visibility: visible;
 }
-.card--open:hover .card__close {
-  opacity: 1;
-  visibility: visible;
-}
-.card--open:hover :is(.card__pause, .card__stop, .card__restart) {
+.card--open .card__content:hover :is(.card__pause, .card__stop, .card__restart, .card__close) {
   opacity: 0.5;
   visibility: visible;
 }
@@ -1556,7 +1553,7 @@ body {
   visibility: visible;
   z-index: 100;
 }
-.card--stopped:hover :is(.card__play) {
+.card--stopped .card__content:hover :is(.card__play) {
   opacity: 0.5;
   visibility: visible;
   top: 85%;
@@ -1564,7 +1561,7 @@ body {
   width: 25%;
   height: 25%;
 }
-.card--stopped:hover :is(.card__pause) {
+.card--stopped .card__content:hover :is(.card__pause) {
   opacity: 0;
   visibility: hidden;
 }

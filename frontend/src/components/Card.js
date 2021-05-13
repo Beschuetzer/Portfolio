@@ -417,31 +417,30 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 			onMouseEnter={handleMouseEnter}
 			onClick={handleCardClick}
 			className="card card--hoverable">
-			
-			<div onClick={handleStopVideo} className="card__stop-parent">
-				<svg className="card__stop">
-					<use xlinkHref="/sprite.svg#icon-stop"></use>
-				</svg>
-			</div>
-
-			<div onClick={handlePauseVideo} className="card__pause-parent">
-				<svg className="card__pause">
-					<use xlinkHref="/sprite.svg#icon-pause"></use>
-				</svg>
-			</div>
-		
-			<div onClick={handleRestartVideo} className="card__restart-parent">
-				<svg className="card__restart">
-					<use xlinkHref="/sprite.svg#icon-restart"></use>
-				</svg>
-			</div>
-
 			<img
 				className="card__image"
 				alt={capitalize(cardName.replace("-", " "))}
 				src={`/${cardName}.${fileType}`}
 			/>
 			<div className="card__content">
+				<div onClick={handleStopVideo} className="card__stop-parent">
+					<svg className="card__stop">
+						<use xlinkHref="/sprite.svg#icon-stop"></use>
+					</svg>
+				</div>
+
+				<div onClick={handlePauseVideo} className="card__pause-parent">
+					<svg className="card__pause">
+						<use xlinkHref="/sprite.svg#icon-pause"></use>
+					</svg>
+				</div>
+			
+				<div onClick={handleRestartVideo} className="card__restart-parent">
+					<svg className="card__restart">
+						<use xlinkHref="/sprite.svg#icon-restart"></use>
+					</svg>
+				</div>
+				
 				<div onClick={handleCloseVideo} className="card__close-parent">
 					<svg className="card__close">
 						<use xlinkHref="/sprite.svg#icon-close"></use>
