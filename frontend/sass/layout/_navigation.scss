@@ -363,7 +363,9 @@
 			}
 
 			&:first-child {
-				border-radius: $default-font-size * 0.5 $default-font-size * 0.5 0 0;
+				border-radius: 0;
+				margin-top: $default-font-size * .25;
+				// border-radius: $default-font-size * 0.5 $default-font-size * 0.5 0 0;
 				@include respond(nav-switch) {
 					border-top: $default-font-size * 0.1 solid var(--color-primary-1);
 					margin-top: $default-font-size * 0.75;
