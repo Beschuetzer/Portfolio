@@ -10,6 +10,9 @@ import {
 	CARD_HOVER_SCALE_AMOUNT,
 	scrollToSection,
 	bridgeSections,
+	CARD_DONE_CLASSNAME,
+	CARD_STOPPED_CLASSNAME,
+	CARD_OPEN_CLASSNAME,
 } from "./constants";
 import Video from "../components/Video";
 import { capitalize } from "../helpers";
@@ -246,9 +249,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		video.currentTime = 0;
 
 		if (!card) return;
-		card.classList.remove("card--open");
-		card.classList.remove("card--done");
-		card.classList.remove("card--stopped");
+		card.classList.remove(CARD_OPEN_CLASSNAME);
+		card.classList.remove(CARD_DONE_CLASSNAME);
+		card.classList.remove(CARD_STOPPED_CLASSNAME);
 	};
 
 	const openCard = (video, card) => {
@@ -257,10 +260,10 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		// playVideo(video, card);
 		const isVideoPlaying = getIsVideoPlaying(video);
 		if (!video) return;
-		if (isVideoPlaying || card.classList.contains('card--open'))	closeVideo(video, card)
+		if (isVideoPlaying || card.classList.contains(CARD_OPEN_CLASSNAME))	closeVideo(video, card)
 		else {
 			playVideo(video, card)
-			card.classList.add("card--open");
+			card.classList.add(CARD_OPEN_CLASSNAME);
 		}
 		setTimeout(() => {
 			adjustCardYPosition(video, card, cardDimensions);
@@ -270,16 +273,16 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	const playVideo = (video, card) => {
 		attachProgressListener(video);
 		video.addEventListener("ended", handleVideoEnd);
-		card.classList.remove("card--done");
-		card.classList.remove("card--stopped");
+		card.classList.remove(CARD_DONE_CLASSNAME);
+		card.classList.remove(CARD_STOPPED_CLASSNAME);
 		video.play();
 	}
 
 	const pauseVideo = (video, card) => {
 		video?.pause();
 		if (!card) return;
-		card.classList.remove("card--done");
-		card.classList.add("card--stopped");
+		card.classList.remove(CARD_DONE_CLASSNAME);
+		card.classList.add(CARD_STOPPED_CLASSNAME);
 	}
 
 	const stopVideo = (video) => {
@@ -297,9 +300,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		}
 		
 		if (!card) return;
-		if (card.classList.contains('card--done')) video.addEventListener("ended", handleVideoEnd);
-		card.classList.remove('card--done');
-		card.classList.remove("card--stopped");
+		if (card.classList.contains(CARD_DONE_CLASSNAME)) video.addEventListener("ended", handleVideoEnd);
+		card.classList.remove(CARD_DONE_CLASSNAME);
+		card.classList.remove(CARD_STOPPED_CLASSNAME);
 	}
 
 	const changeSectionTitle = (isOpen = true) => {
@@ -325,6 +328,15 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		}
 	}
 
+	const getPercentOfProgressBar = (progressBar, clientX) => {
+		const progressBarBoundingRect = progressBar.getBoundingClientRect();
+		const progressBarLeftX = progressBarBoundingRect.left;
+		const progressBarRightX = progressBarBoundingRect.right;
+		const amountPastLeft = (clientX - progressBarLeftX);
+		const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
+		return percent;
+	}
+
 	const handleRestartVideo = (e) => {
 		e.stopPropagation();
 		restartVideo(videoRef.current, cardRef.current);
@@ -343,14 +355,14 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	}
 
 	const handleVideoEnd = (e) => {
-		cardRef.current?.classList.add("card--done");
+		cardRef.current?.classList.add(CARD_DONE_CLASSNAME);
 		const video = e.currentTarget;
 		video.removeEventListener("ended", handleVideoEnd);
 	};
 
 	const handlePlayVideo = (e) => {
 		const card = cardRef.current;
-		if (card?.classList.contains('card--stopped'))	e.stopPropagation();
+		if (card?.classList.contains(CARD_STOPPED_CLASSNAME))	e.stopPropagation();
 		playVideo(videoRef.current, card);
 	}
 
@@ -368,7 +380,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		e.stopPropagation();
 		const card = cardRef.current;
 		const video = videoRef?.current;
-		if (card?.classList.contains("card--done") || card?.classList.contains('card--open')) return;
+		if (card?.classList.contains(CARD_DONE_CLASSNAME) || card?.classList.contains(CARD_OPEN_CLASSNAME)) return;
 
 		setTimeout(() => {
 			changeSectionTitle();
@@ -388,15 +400,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		}, CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION);
 	};
 
-	const getPercentOfProgressBar = (progressBar, clientX) => {
-		const progressBarBoundingRect = progressBar.getBoundingClientRect();
-		const progressBarLeftX = progressBarBoundingRect.left;
-		const progressBarRightX = progressBarBoundingRect.right;
-		const amountPastLeft = (clientX - progressBarLeftX);
-		const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
-		return percent;
-	}
-
 	const handleProgressBarClick = (e) => {
 		const clientX = e.clientX;
 		const progressBar = e.currentTarget;
@@ -404,10 +407,15 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 		const percent = getPercentOfProgressBar(progressBar, clientX);
 		
-		//set new percent value
 		const video = videoRef.current;
 		if (!video) return;
 		video.currentTime = percent * video.duration;
+
+		const card = cardRef.current;
+		if (!card) return;
+		card.classList.add(CARD_STOPPED_CLASSNAME);
+		if (percent < 1) card.classList.remove(CARD_DONE_CLASSNAME);
+		else card.classList.add(CARD_DONE_CLASSNAME);
 	}
 
 	return (

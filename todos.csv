@@ -1,3 +1,7 @@
+BUGS------------------------------------
+  -bug with PageNav and no mouse where the scroll scaling doesn't apply to the last clicked item as it has :hover (is there a way to trigger a touch/click event in JS? so as to clear the :hover state) (remove hover effect on card when mobile input after close?)
+
+
 Temporary things to do---------------------------------
   add select A# Maj Bridge source code to a public repository for resume
 
@@ -25,8 +29,3 @@ OPTIMIZATIONS:
 -figure out how to create a bash script to get all of the .js files in a dir and its sub-dirs and then create .ts files in the same location with the contents of the respective .js file
 
 -finish csharp and autobid.txt
-
--Add scroll down hide SiteNav when isMobile?
--Add images to SiteNav examples links
--bug with PageNav and no mouse where the scroll scaling doesn't apply to the last clicked item as it has :hover (is there a way to trigger a touch/click event in JS? so as to clear the :hover state),
--remove hover effect on card when mobile input after close?
