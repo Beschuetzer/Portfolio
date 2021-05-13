@@ -13,6 +13,7 @@ import {
 	CARD_DONE_CLASSNAME,
 	CARD_STOPPED_CLASSNAME,
 	CARD_OPEN_CLASSNAME,
+	CARD_PLAYING_CLASSNAME,
 } from "./constants";
 import Video from "../components/Video";
 import { capitalize } from "../helpers";
@@ -274,6 +275,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		attachProgressListener(video);
 		video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove(CARD_DONE_CLASSNAME);
+		card.classList.add(CARD_PLAYING_CLASSNAME);
 		card.classList.remove(CARD_STOPPED_CLASSNAME);
 		video.play();
 	}
@@ -283,6 +285,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		if (!card) return;
 		card.classList.remove(CARD_DONE_CLASSNAME);
 		card.classList.add(CARD_STOPPED_CLASSNAME);
+		card.classList.remove(CARD_PLAYING_CLASSNAME);
 	}
 
 	const stopVideo = (video) => {
@@ -296,6 +299,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		video.currentTime = 0;
 		if (!getIsVideoPlaying(video)) {
 			video.play();
+			card.classList.add(CARD_PLAYING_CLASSNAME);
 			attachProgressListener(video);
 		}
 		
@@ -356,6 +360,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 	const handleVideoEnd = (e) => {
 		cardRef.current?.classList.add(CARD_DONE_CLASSNAME);
+		cardRef.current?.classList.remove(CARD_PLAYING_CLASSNAME);
 		const video = e.currentTarget;
 		video.removeEventListener("ended", handleVideoEnd);
 	};
@@ -413,7 +418,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 		const card = cardRef.current;
 		if (!card) return;
-		card.classList.add(CARD_STOPPED_CLASSNAME);
+		if (!card.classList.contains(CARD_PLAYING_CLASSNAME)) card.classList.add(CARD_STOPPED_CLASSNAME);
 		if (percent < 1) card.classList.remove(CARD_DONE_CLASSNAME);
 		else card.classList.add(CARD_DONE_CLASSNAME);
 	}
