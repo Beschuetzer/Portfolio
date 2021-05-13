@@ -9,6 +9,7 @@ import autoBidImage from '../../imgs/site-nav-autobid.jpg';
 import bridgeImage from '../../imgs/bridge-section-6.jpg';
 import contactImage from '../../imgs/site-nav-contact.jpg';
 import downloaderImage from '../../imgs/site-nav-downloader.jpg';
+import examplesImage from '../../imgs/site-nav-examples.jpg';
 import resumeImage from '../../imgs/site-nav-resume.jpg';
 import syncerImage from '../../imgs/site-nav-syncer.jpg';
 
@@ -224,6 +225,8 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 						onClick={onNavItemClick}
 					/>
 					<NavListItem
+						imageSource={examplesImage}
+						imageAlt="Examples"
 						isLink={false}
 						to="/examples"
 						label="Examples"

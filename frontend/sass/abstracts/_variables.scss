@@ -187,7 +187,7 @@ $page-nav-top: calc(
 	scroll-padding-top: $header-height * 1.2;
 	--scrollbar-width: #{$default-font-size * .5};
 	--default-font-size: #{$default-font-size};
-	--site-nav-item-gradient-direction: to right;
+	--site-nav-item-gradient-direction: 45deg;
 	--site-nav-linear-gradient: linear-gradient(
 		to right,
 		#{var(--color-primary-1)} 0%,

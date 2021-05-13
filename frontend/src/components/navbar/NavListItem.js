@@ -36,9 +36,9 @@ class NavItem extends React.Component {
       <li 
         onMouseEnter={onMouseEnter} 
         onClick={onClick} 
-        className={`${classNamesToUse}  ${imageSource ? 'overflow-hidden' : ''}`}
+        className={`${classNamesToUse}  ${isLink && imageSource ? 'overflow-hidden' : ''}`}
       >
-        {imageSource ?
+        {isLink && imageSource ?
           <img className={this.defaults.imageClassName} src={imageSource} alt={imageAlt}/>
         :
           null
@@ -51,7 +51,12 @@ class NavItem extends React.Component {
             {getContent()}
           </Link>
         :
-          <div className={this.defaults.linkClassName}>
+          <div className={`${this.defaults.linkClassName} ${!isLink && imageSource ? 'overflow-hidden' : ''}`}>
+            {!isLink && imageSource ?
+              <img className={this.defaults.imageClassName} src={imageSource} alt={imageAlt}/>
+            :
+              null
+            }
             {getContent()}
           </div>
         }
