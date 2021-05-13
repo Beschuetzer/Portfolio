@@ -122,6 +122,7 @@ $max-degrees: 2.5deg;
 
 @keyframes bridge-color-change {
 	0% {
+		opacity: 1;
 		fill: var(--color-primary-bridge-1);
 	}
 	33% {
@@ -132,6 +133,7 @@ $max-degrees: 2.5deg;
 	}
 	100% {
 		fill: var(--color-primary-bridge-1);
+		opacity: 1;
 	}
 }
 

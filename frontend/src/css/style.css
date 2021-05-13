@@ -190,6 +190,7 @@
 }
 @keyframes bridge-color-change {
   0% {
+    opacity: 1;
     fill: var(--color-primary-bridge-1);
   }
   33% {
@@ -200,6 +201,7 @@
   }
   100% {
     fill: var(--color-primary-bridge-1);
+    opacity: 1;
   }
 }
 /* global reset;  box-sizing is set on body and set to inherit on all other elements */
