@@ -201,6 +201,7 @@
 			@include respond(nav-switch) {
 				order: 1;
 				border-radius: 0 0 $default-font-size * 1 $default-font-size * 1;
+				z-index: 10;
 			}
 		}
 

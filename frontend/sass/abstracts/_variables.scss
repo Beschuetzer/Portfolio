@@ -45,7 +45,7 @@ $navbar__item-divider: $navbar__item-divider-width solid var(--color-primary-1);
 
 $navbar-box-shadow-resume-color: rgba($color-black, 0.15);
 $navbar-box-shadow-resume: 0 $default-font-size $default-font-size * 2
-	rgba($color-black, 0.33);
+	rgba($color-black, 0.15);
 $hover-color-change-amount: 0.15;
 
 
@@ -91,7 +91,7 @@ $header-inner-width:
 	calc(
 		#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 6.4vw
 	);
-$header-width-nav-switch: calc(100vw - #{$default-font-size * 1});
+$header-width-nav-switch: calc(100vw - #{$default-font-size * 1.33});
 // $header-width-tab-land: calc(100vw - #{$default-font-size * 2});
 // $header-width-phone: calc(100vw - #{$default-font-size * 2});
 // $header-width-small-font: calc(100vw - #{$default-font-size * 2});

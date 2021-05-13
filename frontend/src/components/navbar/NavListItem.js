@@ -7,7 +7,7 @@ class NavItem extends React.Component {
     linkClassName: "navbar__link",
   } 
   render() {
-    const { isLink=true, onMouseEnter, onClick, to, label, label2, children, className, triangle } = this.props;
+    const { isLink=true, onMouseEnter, onClick, to, label, label2, children, className, triangle, imageAlt = 'A picture', imageSource = '' } = this.props;
     const classNamesToUse = className ? className : this.defaults.liClassName;
 
     const getContent = () => {
@@ -37,6 +37,11 @@ class NavItem extends React.Component {
         onClick={onClick} 
         className={classNamesToUse}
       >
+        {imageSource ?
+          <img src={imageSource} alt={imageAlt}/>
+        :
+          null
+        }
         {isLink ? 
           <Link 
             className={this.defaults.linkClassName} 

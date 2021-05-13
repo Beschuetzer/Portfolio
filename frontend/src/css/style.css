@@ -588,7 +588,7 @@ body {
     display: flex;
     overflow: visible !important;
     flex-direction: column;
-    width: calc(100vw - 1.6rem);
+    width: calc(100vw - 2.128rem);
   }
 }
 .navbar__list {
@@ -626,6 +626,7 @@ body {
   .navbar__list > .navbar__item:nth-of-type(3) {
     order: 1;
     border-radius: 0 0 1.6rem 1.6rem;
+    z-index: 10;
   }
 }
 .navbar__list .navbar__dropdown .navbar__item {
@@ -639,7 +640,7 @@ body {
   height: 100%;
   width: 100%;
   transition: transform 0.125s ease, background-color 0.125s ease;
-  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.15);
 }
 .navbar__item .triangle-down {
   transition: transform 0.25s ease;
@@ -697,7 +698,7 @@ body {
   border-radius: 16rem;
   display: flex;
   align-items: center;
-  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.15);
   transition: border 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
@@ -835,7 +836,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__content {
-    width: calc(100vw - 1.6rem);
+    width: calc(100vw - 2.128rem);
     position: absolute;
     z-index: 100;
   }
@@ -917,7 +918,7 @@ body {
 @media only screen and (max-width: 68.75em) {
   .header {
     padding: 0.8rem;
-    box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
+    box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.15);
     top: 0;
     z-index: 10;
     background-image: var(--body-background);
@@ -938,7 +939,7 @@ body {
 }
 .header-toggler {
   display: none;
-  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.15);
   height: var(--header-toggler-height);
   border-left: 0.24rem solid var(--color-primary-4);
   border-bottom: 0.24rem solid var(--color-primary-4);
@@ -1651,7 +1652,7 @@ body {
 }
 
 .thumbnail {
-  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.15);
   background-color: var(--color-primary-1);
   width: 4.8rem;
   height: 4.8rem;
@@ -2320,7 +2321,7 @@ body {
   background-color: var(--color-primary-3);
   padding: 0 3.2rem;
   border-radius: 0.8rem;
-  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.15);
 }
 @media only screen and (max-width: 68.75em) {
   .resume__card {
@@ -2980,7 +2981,7 @@ div.references__name {
   bottom: 0;
   z-index: 10;
   border-radius: 50%;
-  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.15);
   width: calc((7vw + .29vw) / var(--bridge-arrow-hover-scale-amount));
   height: calc( (7vw + .29vw) / var(--bridge-arrow-hover-scale-amount));
   transition: transform 0.5s ease;
