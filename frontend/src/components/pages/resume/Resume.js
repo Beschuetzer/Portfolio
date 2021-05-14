@@ -39,17 +39,17 @@ class Resume extends React.Component {
 			right: "Excels",
 		},
 	};
-	static webDevSubSkillsLabel = {
-		basics: 'Basics',
-		libraries: 'Libraries',
-		frameworks: 'Frameworks',
-		methodologies: 'Methodologies',
-		databases: 'Databases',
+	static webDevSubSkillsLabels = [
+		'Basics',
+		'Libraries',
+		'Frameworks',
+		'Methodologies',
+		'Databases',
+	];
 
-	}
 	static skills = {
 		[Resume.skillsItemSectionLabels[0]]: {
-			[this.webDevSubSkillsLabel.basics]: [
+			[Resume.webDevSubSkillsLabels[0]]: [
 				{
 					title: 'CSS3',
 					percent: 78,
@@ -106,7 +106,7 @@ class Resume extends React.Component {
 					order: 12,
 				},
 			],
-			[this.webDevSubSkillsLabel.libraries]: [
+			[Resume.webDevSubSkillsLabels[1]]: [
 				{
 					title: 'Howler',
 					percent: 55,
@@ -124,7 +124,7 @@ class Resume extends React.Component {
 					percent: 35,
 				},
 			],
-			[this.webDevSubSkillsLabel.frameworks]: [
+			[Resume.webDevSubSkillsLabels[2]]: [
 				{
 					title: 'Angular',
 					percent: 55,
@@ -154,7 +154,7 @@ class Resume extends React.Component {
 					percent: 43,
 				},			
 			],
-			[this.webDevSubSkillsLabel.methodologies]: [
+			[Resume.webDevSubSkillsLabels[3]]: [
 				{
 					title: 'BEM',
 					percent: 57,
@@ -176,7 +176,7 @@ class Resume extends React.Component {
 					percent: 52.5,
 				},
 			],
-			[this.webDevSubSkillsLabel.databases]: [
+			[Resume.webDevSubSkillsLabels[4]]: [
 				{
 					title: 'MongoDB / Mongoose',
 					percent: 57,
@@ -284,76 +284,26 @@ class Resume extends React.Component {
 			"skills",
 			<React.Fragment>
 				<ul className="skills">
-					{
-
-					}
-
 					<SkillsItemSection title={Resume.skillsItemSectionLabels[0]}>
-						<SkillsItemSection title={Resume.webDevSubSkillsLabel.basics}>
-							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
-							{Resume.skills[Resume.skillsItemSectionLabels[0]][this.webDevSubSkillsLabel.basics].map(skill => {
-								return (
-									<SkillsItem
-										labels={Resume.skillsLabels.web}
-										title={skill.title}
-										percent={skill.percent}
-									/>
-								)
-							})}
-						</SkillsItemSection>
-
-						<SkillsItemSection title={Resume.webDevSubSkillsLabel.libraries}>		
-							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
-							{Resume.skills[Resume.skillsItemSectionLabels[0]][this.webDevSubSkillsLabel.libraries].map(skill => {
-								return (
-									<SkillsItem
-										labels={Resume.skillsLabels.web}
-										title={skill.title}
-										percent={skill.percent}
-									/>
-								)
-							})}	
-						</SkillsItemSection>
-
-						<SkillsItemSection title={Resume.webDevSubSkillsLabel.frameworks}>
-							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
-							{Resume.skills[Resume.skillsItemSectionLabels[0]][this.webDevSubSkillsLabel.frameworks].map(skill => {
-								return (
-									<SkillsItem
-										labels={Resume.skillsLabels.web}
-										title={skill.title}
-										percent={skill.percent}
-									/>
-								)
-							})}	
-						</SkillsItemSection>
-
-						<SkillsItemSection title={Resume.webDevSubSkillsLabel.methodologies}>
-							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
-							{Resume.skills[Resume.skillsItemSectionLabels[0]][this.webDevSubSkillsLabel.methodologies].map(skill => {
-								return (
-									<SkillsItem
-										labels={Resume.skillsLabels.web}
-										title={skill.title}
-										percent={skill.percent}
-									/>
-								)
-							})}	
-						</SkillsItemSection>
-
-						<SkillsItemSection title={Resume.webDevSubSkillsLabel.databases}>
-							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
-							{Resume.skills[Resume.skillsItemSectionLabels[0]][this.webDevSubSkillsLabel.databases].map(skill => {
-								return (
-									<SkillsItem
-										labels={Resume.skillsLabels.web}
-										title={skill.title}
-										percent={skill.percent}
-										href={skill.href ? skill.href : ''}
-									/>
-								)
-							})}	
-						</SkillsItemSection>
+					{
+						Resume.webDevSubSkillsLabels.map(subskill => {
+							return (
+								<SkillsItemSection title={subskill}>
+								<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
+									{Resume.skills[Resume.skillsItemSectionLabels[0]][subskill].map(skill => {
+										return (
+											<SkillsItem
+												labels={Resume.skillsLabels.web}
+												title={skill.title}
+												percent={skill.percent}
+												href={skill.href ? skill.href : ''}
+											/>
+										)
+									})}	
+								</SkillsItemSection>
+							)
+						})
+					}
 					</SkillsItemSection>
 
 					<SkillsItemSection title={Resume.skillsItemSectionLabels[1]}>
