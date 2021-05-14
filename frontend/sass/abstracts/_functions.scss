@@ -14,8 +14,10 @@
 @function get-resume-card-gradient($opacity) {
 	@return linear-gradient(
 		to bottom,
-		rgba($color-primary-4,$opacity) 0,
-		rgba($color-primary-3,$opacity) 100%
+		rgba($color-primary-3, $opacity) 0%,
+		rgba($color-primary-4, $opacity) 25%,
+		rgba($color-primary-4, $opacity) 75%,
+		rgba($color-primary-3, $opacity) 100%,
 	);
 }
 
