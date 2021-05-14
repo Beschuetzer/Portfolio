@@ -182,7 +182,7 @@ class Resume extends React.Component {
 					percent: 57,
 				},
 				{
-					title: 'SQL',
+					title: 'PostgresSQL',
 					percent: 24,
 					href:"/certs/sql.png",
 				},
