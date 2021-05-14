@@ -47,6 +47,146 @@ class Resume extends React.Component {
 		databases: 'Databases',
 
 	}
+	static skills = {
+		[this.webDevSubSkillsLabel.basics]: [
+			{
+				title: 'CSS3',
+				percent: 78,
+				order: 1,
+			},
+			{
+				title: 'C#',
+				percent: 35,
+				order: 2,
+			},
+			{
+				title: 'Express',
+				percent: 70,
+				order: 4,
+			},
+			{
+				title: 'GraphQL',
+				percent: 45,
+				order: 5,
+			},
+			{
+				title: 'HTML5',
+				percent: 65,
+				order: 6,
+			},
+			{
+				title: 'Javascript',
+				percent: 78,
+				order: 7,
+			},
+			{
+				title: 'jQuery',
+				percent: 46,
+				order: 8,
+			},
+			{
+				title: 'Python',
+				percent: 50,
+				order: 9,
+			},
+			{
+				title: 'Ruby',
+				percent: 25,
+				order: 10,
+			},
+			{
+				title: 'SASS',
+				percent: 62,
+				order: 11,
+			},
+			{
+				title: 'Typescript',
+				percent: 51,
+				order: 12,
+			},
+		],
+		[this.webDevSubSkillsLabel.libraries]: [
+			{
+				title: 'Howler',
+				percent: 55,
+			},
+			{
+				title: 'PaperJS',
+				percent: 59,
+			},
+			{
+				title: 'socket.io',
+				percent: 62.5,
+			},
+			{
+				title: 'ThreeJS',
+				percent: 35,
+			},
+		],
+		[this.webDevSubSkillsLabel.frameworks]: [
+			{
+				title: 'Angular',
+				percent: 55,
+			},
+			{
+				title: 'Bootstrap',
+				percent: 55,
+			},
+			{
+				title: 'NestJS',
+				percent: 35,
+			},
+			{
+				title: 'NextJS',
+				percent: 33,
+			},
+			{
+				title: 'React',
+				percent: 65,
+			},
+			{
+				title: 'Redux',
+				percent: 51,
+			},
+			{
+				title: 'Semantic-UI',
+				percent: 43,
+			},			
+		],
+		[this.webDevSubSkillsLabel.methodologies]: [
+			{
+				title: 'BEM',
+				percent: 57,
+			},
+			{
+				title: 'DSA',
+				percent: 48,
+			},
+			{
+				title: 'Dynamic Programming',
+				percent: 50,
+			},
+			{
+				title: 'Responsive Design',
+				percent: 68,
+			},
+			{
+				title: 'TDD',
+				percent: 52.5,
+			},
+		],
+		[this.webDevSubSkillsLabel.databases]: [
+			{
+				title: 'MongoDB / Mongoose',
+				percent: 57,
+			},
+			{
+				title: 'SQL',
+				percent: 24,
+				href:"/certs/sql.png",
+			},
+		],
+	}
 	static content = [
 		[
 			"summary",
@@ -73,192 +213,67 @@ class Resume extends React.Component {
 				<ul className="skills">
 					<SkillsItemSection title={Resume.skillsItemSectionLabels[0]}>
 						<SkillsItemSection title={Resume.webDevSubSkillsLabel.basics}>
-							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />		
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="CSS3"
-								percent="78"
-								//hours="900"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="C#"
-								percent="35"
-								//hours="400"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="EJS"
-								percent="59"
-								//hours="80"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Express"
-								percent="70"
-								//hours="120"/>
-							/>	
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="GraphQL"
-								percent="45"
-								//hours="10"/>
-							/>			
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="HTML5"
-								percent="65"
-								//hours="800"/>
-							/>							
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Javascript"
-								percent="78"
-								//hours="900"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="jQuery"
-								percent="46"
-							/>										
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Python"
-								percent="50"
-								//hours="175"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Ruby"
-								percent="25"
-								//hours="80"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="SASS"
-								percent="62"
-								//hours="250"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Typescript"
-								percent="51"
-							/>
+							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
+							{Resume.skills[this.webDevSubSkillsLabel.basics].map(skill => {
+								return (
+									<SkillsItem
+										labels={Resume.skillsLabels.web}
+										title={skill.title}
+										percent={skill.percent}
+									/>
+								)
+							})}
 						</SkillsItemSection>
 
-						<SkillsItemSection title={Resume.webDevSubSkillsLabel.libraries}>							
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Howler"
-								percent="55"
-							/>	
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="PaperJS"
-								percent="59"
-								//hours="600"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="socket.io"
-								percent="62.5"
-								//hours="200"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="ThreeJS"
-								percent="35"
-								//hours="90"/>
-							/>													
+						<SkillsItemSection title={Resume.webDevSubSkillsLabel.libraries}>						
+							{Resume.skills[this.webDevSubSkillsLabel.libraries].map(skill => {
+								return (
+									<SkillsItem
+										labels={Resume.skillsLabels.web}
+										title={skill.title}
+										percent={skill.percent}
+									/>
+								)
+							})}	
 						</SkillsItemSection>
 
 						<SkillsItemSection title={Resume.webDevSubSkillsLabel.frameworks}>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Angular"
-								percent="55"
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Bootstrap"
-								percent="55"
-								//hours="200"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="NestJS"
-								percent="35"
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="NextJS"
-								percent="33"
-							/>													
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="React"
-								percent="65"
-								//hours="200"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Redux"
-								percent="51"
-								//hours="150"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Semantic-UI"
-								percent="43"
-								//hours="30"/>
-							/>								
+							{Resume.skills[this.webDevSubSkillsLabel.frameworks].map(skill => {
+								return (
+									<SkillsItem
+										labels={Resume.skillsLabels.web}
+										title={skill.title}
+										percent={skill.percent}
+									/>
+								)
+							})}	
 						</SkillsItemSection>
 
 						<SkillsItemSection title={Resume.webDevSubSkillsLabel.methodologies}>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="BEM"
-								percent="57"
-								//hours="250"/>
-							/>						
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="DSA"
-								percent="48"
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Dynamic Programming"
-								percent="50"
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="Responsive Design"
-								percent="68"
-							/>							
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="TDD"
-								percent="52.5"
-							/>
+							{Resume.skills[this.webDevSubSkillsLabel.methodologies].map(skill => {
+								return (
+									<SkillsItem
+										labels={Resume.skillsLabels.web}
+										title={skill.title}
+										percent={skill.percent}
+									/>
+								)
+							})}	
 						</SkillsItemSection>
 
 						<SkillsItemSection title={Resume.webDevSubSkillsLabel.databases}>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								title="MongoDB / Mongoose"
-								percent="52"
-								//hours="80"/>
-							/>
-							<SkillsItem
-								labels={Resume.skillsLabels.web}
-								href="/certs/sql.png"
-								title="SQL"
-								percent="24"
-							/>
+							{Resume.skills[this.webDevSubSkillsLabel.databases].map(skill => {
+								return (
+									<SkillsItem
+										labels={Resume.skillsLabels.web}
+										title={skill.title}
+										percent={skill.percent}
+										href={skill.href ? skill.href : ''}
+									/>
+								)
+							})}	
 						</SkillsItemSection>
 					</SkillsItemSection>
-
 					<SkillsItemSection title={Resume.skillsItemSectionLabels[1]}>
 						<SkillsItemSectionLabels labels={Resume.skillsLabels.it} />
 						<SkillsItem
@@ -525,6 +540,7 @@ class Resume extends React.Component {
 			</div>
 		),
 	};
+	
 
 	componentDidMount() {
 		// this.renderTHREE();

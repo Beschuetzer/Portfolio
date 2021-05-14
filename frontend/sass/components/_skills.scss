@@ -55,6 +55,7 @@
 			}
 
 			&-svg {
+				pointer-events: none;
 				backface-visibility: hidden;
 
 				fill: var(--color-primary-1);

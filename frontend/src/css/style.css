@@ -1750,6 +1750,7 @@ body {
   }
 }
 .skills__section-title-svg {
+  pointer-events: none;
   backface-visibility: hidden;
   fill: var(--color-primary-1);
   height: 2.4rem;
