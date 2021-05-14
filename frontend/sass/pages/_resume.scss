@@ -40,6 +40,9 @@
 			grid-column: 1 / -1;
 		}
 		&-skills {
+			&__resume-card {
+				background-image: url('../../src//imgs/resume-background-1.jpg');
+			}
 		}
 		&-work-History {
 			line-height: 1.5;

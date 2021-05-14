@@ -46,7 +46,6 @@ class Resume extends React.Component {
 		'Methodologies',
 		'Databases',
 	];
-
 	static skills = {
 		[Resume.skillsItemSectionLabels[0]]: {
 			[Resume.webDevSubSkillsLabels[0]]: [
@@ -286,13 +285,14 @@ class Resume extends React.Component {
 				<ul className="skills">
 					<SkillsItemSection title={Resume.skillsItemSectionLabels[0]}>
 					{
-						Resume.webDevSubSkillsLabels.map(subskill => {
+						Resume.webDevSubSkillsLabels.map((subskill, index) => {
 							return (
-								<SkillsItemSection title={subskill}>
+								<SkillsItemSection key={index} title={subskill}>
 								<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
-									{Resume.skills[Resume.skillsItemSectionLabels[0]][subskill].map(skill => {
+									{Resume.skills[Resume.skillsItemSectionLabels[0]][subskill].map((skill, index2) => {
 										return (
 											<SkillsItem
+												key={index2}
 												labels={Resume.skillsLabels.web}
 												title={skill.title}
 												percent={skill.percent}
@@ -309,9 +309,10 @@ class Resume extends React.Component {
 					<SkillsItemSection title={Resume.skillsItemSectionLabels[1]}>
 						<SkillsItemSectionLabels labels={Resume.skillsLabels.it} />
 						{
-							Resume.skills[Resume.skillsItemSectionLabels[1]].map(skill => {
+							Resume.skills[Resume.skillsItemSectionLabels[1]].map((skill, index) => {
 								return (
 									<SkillsItem
+										key={index}
 										labels={Resume.skillsLabels.it}
 										href={skill.href ? skill.href : ''}
 										title={skill.title}
@@ -325,9 +326,10 @@ class Resume extends React.Component {
 					<SkillsItemSection title={Resume.skillsItemSectionLabels[2]}>
 						<SkillsItemSectionLabels labels={Resume.skillsLabels.human} />
 						{
-							Resume.skills[Resume.skillsItemSectionLabels[2]].map(skill => {
+							Resume.skills[Resume.skillsItemSectionLabels[2]].map((skill, index) => {
 								return (
 									<SkillsItem
+										key={index}
 										labels={Resume.skillsLabels.it}
 										href={skill.href ? skill.href : ''}
 										title={skill.title}

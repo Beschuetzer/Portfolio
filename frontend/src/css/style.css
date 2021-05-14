@@ -2304,6 +2304,9 @@ body {
 .resume__section-summary {
   grid-column: 1/-1;
 }
+.resume__section-skills__resume-card {
+  background-image: url("../../src//imgs/resume-background-1.jpg");
+}
 .resume__section-work-History {
   line-height: 1.5;
 }
