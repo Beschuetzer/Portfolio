@@ -40,8 +40,18 @@
 			grid-column: 1 / -1;
 		}
 		&-skills {
-			&__resume-card {
-				background-image: url('../../src//imgs/resume-background-1.jpg');
+			& .resume__card {
+				// background-image: 
+				// 	linear-gradient(
+				// 		to bottom,
+				// 		rgba($color-primary-2,.1),
+				// 		rgba($color-primary-3,.1),
+				// 	),
+				// 	url('../imgs/resume-background-1.jpg'),
+
+				// ;
+				// background-position: top;
+				// background-size: auto;
 			}
 		}
 		&-work-History {
@@ -91,9 +101,7 @@
 		margin: $default-font-size * 2 auto;
 		color: var(--color-primary-1);
 		background-color: var(--color-primary-3);
-		// grid-column: 2 / 3;
 		padding: 0 $default-font-size * 2;
-		// border: 3px solid var(--color-primary-1);
 		border-radius: $default-font-size * 0.5;
 		box-shadow: $navbar-box-shadow-resume;
 
