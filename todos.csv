@@ -30,4 +30,5 @@ OPTIMIZATIONS:
 
 -finish csharp and autobid.txt
 
--alphabetize skills (or create an object that dynamically generates and alphabetizes the skills for each section and subsection)
+-alphabetize skills (or create an object that dynamically generates and alphabetizes the skills for each section and subsection?)
+-add pics to the back of each section on Resume?
