@@ -1761,6 +1761,10 @@ body {
   font-weight: 500;
   color: var(--color-primary-2);
 }
+.skills__section-title:not(.skills__section--open) + .skills__section-content .skills__section-content {
+  visibility: hidden;
+  display: none;
+}
 .skills__section-title:hover .skills__section-title-svg {
   fill: var(--color-primary-1);
 }

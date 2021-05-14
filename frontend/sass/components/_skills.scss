@@ -75,6 +75,11 @@
 				// color: var(--color-primary-2);
 			}
 
+			&:not(.skills__section--open) + .skills__section-content .skills__section-content{
+				visibility: hidden;
+				display: none;
+			}
+				
 			&:hover &-svg {
 				fill: var(--color-primary-1);
 			}
