@@ -170,7 +170,8 @@
 	&__title--animating:visited, &__section &__section .skills__title {
 		@include link-animating;
 		transition: border $animation-duration * 0.5 $animation-easing-standard,
-			transform $animation-duration $animation-easing-standard;
+			transform $animation-duration $animation-easing-standard
+		;
 
 		&:link:hover,
 		&:visited:hover,
