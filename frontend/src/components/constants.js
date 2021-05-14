@@ -9,6 +9,8 @@ export const CARD_DONE_CLASSNAME = 'card--done';
 export const CARD_STOPPED_CLASSNAME = 'card--stopped';
 export const CARD_OPEN_CLASSNAME = 'card--open';
 export const CARD_PLAYING_CLASSNAME = 'card--playing';
+export const SKILLS_SECTION_CLASSNAME = 'skills__section';
+
 
 //#region bridge stuff
 export const BRIDGE_CURRENT_SECTION_CLASSNAME = 'bridge__current-section';

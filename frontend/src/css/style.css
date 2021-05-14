@@ -1723,6 +1723,9 @@ body {
   align-items: center;
   margin-left: 1.6rem;
 }
+.skills__section-content .skills__section {
+  grid-column: 1/-1;
+}
 @media only screen and (max-width: 35.0625em) {
   .skills__section-content {
     grid-template-columns: 1fr;

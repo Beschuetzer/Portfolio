@@ -29,3 +29,6 @@ OPTIMIZATIONS:
 -figure out how to create a bash script to get all of the .js files in a dir and its sub-dirs and then create .ts files in the same location with the contents of the respective .js file
 
 -finish csharp and autobid.txt
+
+-alphabetize skills
+-subskills need to have their sections closed when main skill is closed
