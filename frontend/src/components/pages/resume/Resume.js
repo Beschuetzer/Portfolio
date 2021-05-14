@@ -48,144 +48,217 @@ class Resume extends React.Component {
 
 	}
 	static skills = {
-		[this.webDevSubSkillsLabel.basics]: [
+		[Resume.skillsItemSectionLabels[0]]: {
+			[this.webDevSubSkillsLabel.basics]: [
+				{
+					title: 'CSS3',
+					percent: 78,
+					order: 1,
+				},
+				{
+					title: 'C#',
+					percent: 35,
+					order: 2,
+				},
+				{
+					title: 'Express',
+					percent: 70,
+					order: 4,
+				},
+				{
+					title: 'GraphQL',
+					percent: 45,
+					order: 5,
+				},
+				{
+					title: 'HTML5',
+					percent: 65,
+					order: 6,
+				},
+				{
+					title: 'Javascript',
+					percent: 78,
+					order: 7,
+				},
+				{
+					title: 'jQuery',
+					percent: 46,
+					order: 8,
+				},
+				{
+					title: 'Python',
+					percent: 50,
+					order: 9,
+				},
+				{
+					title: 'Ruby',
+					percent: 25,
+					order: 10,
+				},
+				{
+					title: 'SASS',
+					percent: 62,
+					order: 11,
+				},
+				{
+					title: 'Typescript',
+					percent: 51,
+					order: 12,
+				},
+			],
+			[this.webDevSubSkillsLabel.libraries]: [
+				{
+					title: 'Howler',
+					percent: 55,
+				},
+				{
+					title: 'PaperJS',
+					percent: 59,
+				},
+				{
+					title: 'socket.io',
+					percent: 62.5,
+				},
+				{
+					title: 'ThreeJS',
+					percent: 35,
+				},
+			],
+			[this.webDevSubSkillsLabel.frameworks]: [
+				{
+					title: 'Angular',
+					percent: 55,
+				},
+				{
+					title: 'Bootstrap',
+					percent: 55,
+				},
+				{
+					title: 'NestJS',
+					percent: 35,
+				},
+				{
+					title: 'NextJS',
+					percent: 33,
+				},
+				{
+					title: 'React',
+					percent: 65,
+				},
+				{
+					title: 'Redux',
+					percent: 51,
+				},
+				{
+					title: 'Semantic-UI',
+					percent: 43,
+				},			
+			],
+			[this.webDevSubSkillsLabel.methodologies]: [
+				{
+					title: 'BEM',
+					percent: 57,
+				},
+				{
+					title: 'DSA',
+					percent: 48,
+				},
+				{
+					title: 'Dynamic Programming',
+					percent: 50,
+				},
+				{
+					title: 'Responsive Design',
+					percent: 68,
+				},
+				{
+					title: 'TDD',
+					percent: 52.5,
+				},
+			],
+			[this.webDevSubSkillsLabel.databases]: [
+				{
+					title: 'MongoDB / Mongoose',
+					percent: 57,
+				},
+				{
+					title: 'SQL',
+					percent: 24,
+					href:"/certs/sql.png",
+				},
+			],
+		},
+		[Resume.skillsItemSectionLabels[1]]: [
 			{
-				title: 'CSS3',
-				percent: 78,
-				order: 1,
+				title: 'A+',
+				percent: 80,
+				href:"/certs/a-plus.png",
 			},
 			{
-				title: 'C#',
-				percent: 35,
-				order: 2,
+				title: 'Google IT Support',
+				percent: 66,
+				href:"https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ",
 			},
 			{
-				title: 'Express',
+				title: 'Group Policy',
+				percent: 38,
+				href:"/certs/group-policy.jpg",
+			},
+			{
+				title: 'Network+',
 				percent: 70,
-				order: 4,
+				href:"/certs/network-plus.png",
 			},
 			{
-				title: 'GraphQL',
-				percent: 45,
-				order: 5,
-			},
-			{
-				title: 'HTML5',
-				percent: 65,
-				order: 6,
-			},
-			{
-				title: 'Javascript',
-				percent: 78,
-				order: 7,
-			},
-			{
-				title: 'jQuery',
-				percent: 46,
-				order: 8,
-			},
-			{
-				title: 'Python',
+				title: 'Powershell',
 				percent: 50,
-				order: 9,
+				href:"/certs/powershell-active-directory-admin.jpg",
 			},
 			{
-				title: 'Ruby',
-				percent: 25,
-				order: 10,
-			},
-			{
-				title: 'SASS',
-				percent: 62,
-				order: 11,
-			},
-			{
-				title: 'Typescript',
-				percent: 51,
-				order: 12,
-			},
-		],
-		[this.webDevSubSkillsLabel.libraries]: [
-			{
-				title: 'Howler',
-				percent: 55,
-			},
-			{
-				title: 'PaperJS',
-				percent: 59,
-			},
-			{
-				title: 'socket.io',
-				percent: 62.5,
-			},
-			{
-				title: 'ThreeJS',
+				title: 'SCCM',
 				percent: 35,
+				href:"/certs/sccm.jpg",
+			},
+			{
+				title: "Window's Server 2016",
+				percent: 40,
+				href:"/certs/server2016.png",
 			},
 		],
-		[this.webDevSubSkillsLabel.frameworks]: [
+		[Resume.skillsItemSectionLabels[2]]: [
 			{
-				title: 'Angular',
-				percent: 55,
-			},
-			{
-				title: 'Bootstrap',
-				percent: 55,
-			},
-			{
-				title: 'NestJS',
-				percent: 35,
-			},
-			{
-				title: 'NextJS',
-				percent: 33,
-			},
-			{
-				title: 'React',
-				percent: 65,
-			},
-			{
-				title: 'Redux',
-				percent: 51,
-			},
-			{
-				title: 'Semantic-UI',
-				percent: 43,
-			},			
-		],
-		[this.webDevSubSkillsLabel.methodologies]: [
-			{
-				title: 'BEM',
-				percent: 57,
-			},
-			{
-				title: 'DSA',
-				percent: 48,
-			},
-			{
-				title: 'Dynamic Programming',
-				percent: 50,
-			},
-			{
-				title: 'Responsive Design',
+				title: "Empathizing",
 				percent: 68,
 			},
 			{
-				title: 'TDD',
-				percent: 52.5,
-			},
-		],
-		[this.webDevSubSkillsLabel.databases]: [
-			{
-				title: 'MongoDB / Mongoose',
-				percent: 57,
+				title: "Giving Feedback",
+				percent: 48,
 			},
 			{
-				title: 'SQL',
-				percent: 24,
-				href:"/certs/sql.png",
+				title: "Having Difficult Conversations",
+				percent: 75,
 			},
-		],
+			{
+				title: "Listening",
+				percent: 85,
+			},
+			{
+				title: "Oral Communication",
+				percent: 75,
+			},
+			{
+				title: "Receiving Feedback",
+				percent: 66,
+			},
+			{
+				title: "Self-Starter",
+				percent: 78,
+			},
+			{
+				title: "Written Communication",
+				percent: 85,
+			},
+		]
 	}
 	static content = [
 		[
@@ -193,7 +266,7 @@ class Resume extends React.Component {
 			<React.Fragment>
 				<Paragraph size="four">
 					I have created this website to highlight the reasons I believe I would
-					be an excellent canditate for one of the web development programs at
+					be an excellent candidate for one of the web development programs at
 					Revature. If you have not yet had the chance, I highly encourage you
 					check out&nbsp;
 					<Link className="link" to="/examples">
@@ -211,10 +284,14 @@ class Resume extends React.Component {
 			"skills",
 			<React.Fragment>
 				<ul className="skills">
+					{
+
+					}
+
 					<SkillsItemSection title={Resume.skillsItemSectionLabels[0]}>
 						<SkillsItemSection title={Resume.webDevSubSkillsLabel.basics}>
 							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
-							{Resume.skills[this.webDevSubSkillsLabel.basics].map(skill => {
+							{Resume.skills[Resume.skillsItemSectionLabels[0]][this.webDevSubSkillsLabel.basics].map(skill => {
 								return (
 									<SkillsItem
 										labels={Resume.skillsLabels.web}
@@ -225,8 +302,9 @@ class Resume extends React.Component {
 							})}
 						</SkillsItemSection>
 
-						<SkillsItemSection title={Resume.webDevSubSkillsLabel.libraries}>						
-							{Resume.skills[this.webDevSubSkillsLabel.libraries].map(skill => {
+						<SkillsItemSection title={Resume.webDevSubSkillsLabel.libraries}>		
+							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
+							{Resume.skills[Resume.skillsItemSectionLabels[0]][this.webDevSubSkillsLabel.libraries].map(skill => {
 								return (
 									<SkillsItem
 										labels={Resume.skillsLabels.web}
@@ -238,7 +316,8 @@ class Resume extends React.Component {
 						</SkillsItemSection>
 
 						<SkillsItemSection title={Resume.webDevSubSkillsLabel.frameworks}>
-							{Resume.skills[this.webDevSubSkillsLabel.frameworks].map(skill => {
+							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
+							{Resume.skills[Resume.skillsItemSectionLabels[0]][this.webDevSubSkillsLabel.frameworks].map(skill => {
 								return (
 									<SkillsItem
 										labels={Resume.skillsLabels.web}
@@ -250,7 +329,8 @@ class Resume extends React.Component {
 						</SkillsItemSection>
 
 						<SkillsItemSection title={Resume.webDevSubSkillsLabel.methodologies}>
-							{Resume.skills[this.webDevSubSkillsLabel.methodologies].map(skill => {
+							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
+							{Resume.skills[Resume.skillsItemSectionLabels[0]][this.webDevSubSkillsLabel.methodologies].map(skill => {
 								return (
 									<SkillsItem
 										labels={Resume.skillsLabels.web}
@@ -262,7 +342,8 @@ class Resume extends React.Component {
 						</SkillsItemSection>
 
 						<SkillsItemSection title={Resume.webDevSubSkillsLabel.databases}>
-							{Resume.skills[this.webDevSubSkillsLabel.databases].map(skill => {
+							<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
+							{Resume.skills[Resume.skillsItemSectionLabels[0]][this.webDevSubSkillsLabel.databases].map(skill => {
 								return (
 									<SkillsItem
 										labels={Resume.skillsLabels.web}
@@ -274,93 +355,37 @@ class Resume extends React.Component {
 							})}	
 						</SkillsItemSection>
 					</SkillsItemSection>
+
 					<SkillsItemSection title={Resume.skillsItemSectionLabels[1]}>
 						<SkillsItemSectionLabels labels={Resume.skillsLabels.it} />
-						<SkillsItem
-							labels={Resume.skillsLabels.it}
-							href="/certs/a-plus.png"
-							title="A+"
-							percent="80"
-						/>
-						<SkillsItem
-							labels={Resume.skillsLabels.it}
-							href="https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ"
-							title="Google IT Support"
-							percent="66"
-						/>				
-						<SkillsItem
-							labels={Resume.skillsLabels.it}
-							href="/certs/group-policy.jpg"
-							title="Group Policy"
-							percent="38"
-						/>		
-						<SkillsItem
-							labels={Resume.skillsLabels.it}
-							href="/certs/network-plus.png"
-							title="Network+"
-							percent="70"
-						/>
-						<SkillsItem
-							labels={Resume.skillsLabels.it}
-							href="/certs/powershell-active-directory-admin.jpg"
-							title="Powershell"
-							percent="50"
-						/>
-						<SkillsItem
-							labels={Resume.skillsLabels.it}
-							href="/certs/sccm.jpg"
-							title="SCCM"
-							percent="35"
-						/>	
-						<SkillsItem
-							labels={Resume.skillsLabels.it}
-							href="/certs/server2016.png"
-							title="Window's Server 2016"
-							percent="40"
-						/>
+						{
+							Resume.skills[Resume.skillsItemSectionLabels[1]].map(skill => {
+								return (
+									<SkillsItem
+										labels={Resume.skillsLabels.it}
+										href={skill.href ? skill.href : ''}
+										title={skill.title}
+										percent={skill.percent}
+									/>
+								)
+							})
+						}
 					</SkillsItemSection>
+					
 					<SkillsItemSection title={Resume.skillsItemSectionLabels[2]}>
 						<SkillsItemSectionLabels labels={Resume.skillsLabels.human} />
-						<SkillsItem
-							labels={Resume.skillsLabels.human}
-							title="Empathizing"
-							percent="68"
-						/>
-						<SkillsItem
-							labels={Resume.skillsLabels.human}
-							title="Giving Feedback"
-							percent="48"
-						/>
-						<SkillsItem
-							labels={Resume.skillsLabels.human}
-							title="Having Difficult Conversations"
-							percent="75"
-						/>
-						<SkillsItem
-							labels={Resume.skillsLabels.human}
-							title="Listening"
-							percent="85"
-						/>
-						<SkillsItem
-							labels={Resume.skillsLabels.human}
-							title="Oral Communication"
-							percent="75"
-						/>
-						<SkillsItem
-							labels={Resume.skillsLabels.human}
-							title="Receiving Feedback"
-							percent="66"
-						/>
-						<SkillsItem
-							labels={Resume.skillsLabels.human}
-							title="Self-Starter"
-							percent="78"
-						/>
-						<SkillsItem
-							labels={Resume.skillsLabels.human}
-							title="Written Communication"
-							percent="85"
-						/>
+						{
+							Resume.skills[Resume.skillsItemSectionLabels[2]].map(skill => {
+								return (
+									<SkillsItem
+										labels={Resume.skillsLabels.it}
+										href={skill.href ? skill.href : ''}
+										title={skill.title}
+										percent={skill.percent}
+									/>
+								)
+							})
+						}
 					</SkillsItemSection>
 				</ul>
 			</React.Fragment>,
