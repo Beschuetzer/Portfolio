@@ -1822,7 +1822,7 @@ body {
     margin: 0 0 0.4rem 0;
   }
 }
-.skills__title:link, .skills__title:visited, .skills__title {
+.skills__title:link, .skills__title:visited, .skills__title, .skills__section .skills__section .skills__title {
   cursor: pointer;
   backface-visibility: hidden;
   position: relative;
@@ -1831,7 +1831,7 @@ body {
   color: var(--color-primary-1);
   border-bottom: 0.16rem solid var(--color-primary-1);
 }
-.skills__title--animating, .skills__title--animating:link, .skills__title--animating:visited {
+.skills__title--animating, .skills__title--animating:link, .skills__title--animating:visited, .skills__section .skills__section .skills__title {
   cursor: pointer;
   background: linear-gradient(to left, var(--color-primary-1) 0%, var(--color-primary-4) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
   background-size: 200% auto;
@@ -1840,7 +1840,7 @@ body {
   animation: animate-skills infinite 10s;
   transition: border 0.25s ease, transform 0.5s ease;
 }
-.skills__title--animating:link:hover, .skills__title--animating:visited:hover, .skills__title--animating:hover, .skills__title--animating:link:link:hover, .skills__title--animating:link:visited:hover, .skills__title--animating:link:hover, .skills__title--animating:visited:link:hover, .skills__title--animating:visited:visited:hover, .skills__title--animating:visited:hover {
+.skills__title--animating:link:hover, .skills__title--animating:visited:hover, .skills__title--animating:hover, .skills__title--animating:link:link:hover, .skills__title--animating:link:visited:hover, .skills__title--animating:link:hover, .skills__title--animating:visited:link:hover, .skills__title--animating:visited:visited:hover, .skills__title--animating:visited:hover, .skills__section .skills__section .skills__title:link:hover, .skills__section .skills__section .skills__title:visited:hover, .skills__section .skills__section .skills__title:hover {
   color: var(--color-primary-1);
   text-decoration: none;
   border-image: none;

@@ -155,7 +155,7 @@
 
 	&__title:link,
 	&__title:visited,
-	&__title {
+	&__title,  &__section &__section .skills__title {
 		cursor: pointer;
 		backface-visibility: hidden;
 		position: relative;
@@ -167,7 +167,7 @@
 
 	&__title--animating,
 	&__title--animating:link,
-	&__title--animating:visited {
+	&__title--animating:visited, &__section &__section .skills__title {
 		@include link-animating;
 		transition: border $animation-duration * 0.5 $animation-easing-standard,
 			transform $animation-duration $animation-easing-standard;
