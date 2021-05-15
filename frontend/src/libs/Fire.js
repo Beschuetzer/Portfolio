@@ -5,15 +5,14 @@
 //  */
 
 import * as THREE from 'three';
-import FireShader from './FireShader';
 
-const Fire = function ( fireTex, color ) {
+THREE.Fire = function ( fireTex, color ) {
 
 	var fireMaterial = new THREE.ShaderMaterial( {
-        defines         : FireShader.defines,
-        uniforms        : THREE.UniformsUtils.clone( FireShader.uniforms ),
-        vertexShader    : FireShader.vertexShader,
-        fragmentShader  : FireShader.fragmentShader,
+        defines         : THREE.FireShader.defines,
+        uniforms        : THREE.UniformsUtils.clone( THREE.FireShader.uniforms ),
+        vertexShader    : THREE.FireShader.vertexShader,
+        fragmentShader  : THREE.FireShader.fragmentShader,
 		transparent     : true,
 		depthWrite      : false,
         depthTest       : false
@@ -33,10 +32,10 @@ const Fire = function ( fireTex, color ) {
 	THREE.Mesh.call( this, new THREE.BoxGeometry( 1.0, 1.0, 1.0 ), fireMaterial );
 };
 
-Fire.prototype = Object.create( THREE.Mesh.prototype );
-Fire.prototype.constructor = Fire;
+THREE.Fire.prototype = Object.create( THREE.Mesh.prototype );
+THREE.Fire.prototype.constructor = THREE.Fire;
 
-Fire.prototype.update = function ( time ) {
+THREE.Fire.prototype.update = function ( time ) {
 
     var invModelMatrix = this.material.uniforms.invModelMatrix.value;
 
@@ -52,5 +51,3 @@ Fire.prototype.update = function ( time ) {
     this.material.uniforms.scale.value = this.scale;
 
 };
-
-export default Fire;

@@ -13,7 +13,7 @@ import EducationItem from "../resume/EducationItem";
 import { getRepositories, setSectionsToSkipAnimation } from "../../../actions";
 import SkillsPopup from "./Skills/SkillsPopup/SkillsPopup";
 import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
-import fire from '../../../libs/Fire';
+import Fire from '../../../libs/Fire';
 import FireShader from '../../../libs/FireShader';
 
 class Resume extends React.Component {
@@ -529,11 +529,14 @@ class Resume extends React.Component {
 	}
 
 	renderTHREE = () => {
-		let camera, scene, renderer;
-		let mesh;
-		let clock, controller, fire;
+		var camera, scene, renderer;
+		var mesh;
+		var clock, controller, fire;
+
+		init();
 
 		function init() {
+
 				camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.001, 1000);
 				camera.position.z = 2;
 
@@ -544,19 +547,19 @@ class Resume extends React.Component {
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
-				let loader = new THREE.TextureLoader();
+				var loader = new THREE.TextureLoader();
 				loader.crossOrigin = '';
 
-				let fireTex = loader.load("../../../libs/Fire.png");
+				var fireTex = loader.load("https://s3-us-west-2.amazonaws.com/s.cdpn.io/212131/Fire.png");
 
-				let wireframeMat = new THREE.MeshBasicMaterial({
+				var wireframeMat = new THREE.MeshBasicMaterial({
 						color : new THREE.Color(0xffffff),
 						wireframe : true
 				});
 
-				fire = new fire.THREE.Fire(fireTex);
+				fire = new THREE.Fire(fireTex);
 
-				let wireframe = new THREE.Mesh(fire.geometry, wireframeMat.clone());
+				var wireframe = new THREE.Mesh(fire.geometry, wireframeMat.clone());
 				fire.add(wireframe);
 				wireframe.visible = true;
 				wireframe.visible = false;
@@ -584,16 +587,14 @@ class Resume extends React.Component {
 		(function loop() {
 				requestAnimationFrame(loop);
 
-				let delta = clock.getDelta();
+				var delta = clock.getDelta();
 
-				//let t = clock.elapsedTime * controller.speed;
-				let t = clock.elapsedTime;
+				//var t = clock.elapsedTime * controller.speed;
+				var t = clock.elapsedTime;
 				fire.update(t);
 				
 				renderer.render(scene, camera);
 		})();
-
-		init();
 	};
 
 	renderSections = () => {
@@ -622,6 +623,10 @@ class Resume extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
+				<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js"></script>
+				<script defer src="https://cdn.rawgit.com/mattatz/THREE.Fire/master/FireShader.js"></script>
+				<script defer src="https://cdn.rawgit.com/mattatz/THREE.Fire/master/Fire.js"></script>
+				
 				<section className="resume">
 					<h2 className="heading heading--two">R&eacute;sum&eacute;</h2>
 					{this.renderSections()}
