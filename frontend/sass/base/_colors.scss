@@ -22,10 +22,10 @@ $color-primary-resume-2: hsl(190, 43%, 68%);
 $color-primary-resume-3: hsl(46, 87%, 67%);
 $color-primary-resume-4: hsl(50, 91%, 83%);
 
-$color-primary-bridge-1: hsl(204, 100%, 21%);
-$color-primary-bridge-2: hsl(31, 91%, 56%);
-$color-primary-bridge-3: hsl(51, 33%, 84%);
-$color-primary-bridge-4: hsl(51, 57%, 91%);
+$color-primary-bridge-1: rgb(0, 64, 107);
+$color-primary-bridge-2: #f59229;
+$color-primary-bridge-3: #e4e0c9;
+$color-primary-bridge-4: #f5f1db;
 
 :root {
 	--color-grey-light-1: #{$color-grey-light-1};

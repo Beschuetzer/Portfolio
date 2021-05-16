@@ -30,4 +30,5 @@ OPTIMIZATIONS:
 
 -finish csharp and autobid.txt
 
--add pics to the back of each section on Resume?
+-add pics to the back of each section on bridge?
+-bug on features page, where card__close obscured by header
