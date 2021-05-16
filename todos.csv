@@ -31,4 +31,5 @@ OPTIMIZATIONS:
 -finish csharp and autobid.txt
 
 -add pics to the back of each section on bridge?
--bug on features page, where card__close obscured by header
+-embedded  .bridge__links don't work if isMobile
+-add click on anything but fg-video in bridge and it closes all card (remove card--open (and other classes?)

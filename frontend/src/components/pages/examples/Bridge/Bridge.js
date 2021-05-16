@@ -338,7 +338,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 							How soon does it need to be finished?&nbsp; Does it need to be able to scale up to millions of users?&nbsp; What types of browser support does it need to have?&nbsp; These are all crucial considerations to take into account before dashing off the starting line and potentially taking a wrong turn somewhere from which you may need to backtrack.
 						</p>
 					</BridgeCardSection>
-					<ul className='bridge__reasons'>
+					{/* <ul className='bridge__reasons'>
 							<li className='bridge__reasons-item'>
 								There was no free online bridge resource in May of 2020. 
 							</li>
@@ -351,7 +351,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 							<li className='bridge__reasons-item'>
 								I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
 							</li>
-						</ul>
+						</ul> */}
 
 					{/* <Card
 						cardName='ace-of-clubs'

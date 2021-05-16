@@ -61,11 +61,11 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
       const arrowColors = {
         0: {
           normal: {
-            left: null,
+            left: COLOR_PRIMARY_BRIDGE_1,
             right: COLOR_PRIMARY_BRIDGE_1,
           },
           hover: {
-            left: null,
+            left: COLOR_PRIMARY_BRIDGE_4,
             right: COLOR_PRIMARY_BRIDGE_4,
           }
         },
