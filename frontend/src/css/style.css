@@ -2867,15 +2867,6 @@ div.references__name {
 .hero__more svg:nth-of-type(2) {
   opacity: 0;
 }
-.hero__more:hover svg {
-  fill: var(--color-primary-4);
-  animation: none;
-  z-index: 1;
-}
-.hero__more:hover .hero__bridge-logo {
-  opacity: 0.25;
-  background-color: var(--color-primary-1);
-}
 .hero__more--clicked {
   --hero-more-y-translate: calc(-50% - 11.2rem);
   animation: bridge-hero-hover 10s infinite;
@@ -2890,8 +2881,17 @@ div.references__name {
     --hero-more-y-translate: calc(-50% - 14.4rem);
   }
 }
-.hero__more--clicked svg {
+.hero__more--clicked svg:nth-child(2) {
   animation: bridge-color-change 10s infinite;
+}
+.hero__more:hover svg {
+  fill: var(--color-primary-4);
+  animation: none;
+  z-index: 1;
+}
+.hero__more:hover .hero__bridge-logo {
+  opacity: 0.25;
+  background-color: var(--color-primary-1);
 }
 .hero__bridge-logo {
   pointer-events: none;
