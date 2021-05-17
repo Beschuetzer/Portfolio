@@ -5,17 +5,22 @@
 	align-items: center;
 	flex-direction: column;
 	width: 100%;
-	margin: $page-margin-top-amount auto 0 auto;
-
+	margin: 0 auto;
+	padding-top: $page-margin-top-amount;
+	background-image: url($resume-background-1);
+	background-size: cover;
+	// background-attachment: fixed;
 	// @include respond(tab-port) {
 	//   margin: $page-margin-top-amount - $default-font-size auto 0 auto;
 	// }
 
 	@include respond(nav-switch) {
-		margin-top: $page-margin-top-amount-nav-switch;
+		padding-top: $page-margin-top-amount-nav-switch;
+		background-image: none;
+
 	}
 	@include respond(tab-port) {
-		margin-top: calc(
+		padding-top: calc(
 			#{$page-margin-top-amount-nav-switch} - #{$default-font-size * 1}
 		);
 	}
