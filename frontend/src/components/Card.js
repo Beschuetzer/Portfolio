@@ -14,11 +14,16 @@ import {
 	CARD_STOPPED_CLASSNAME,
 	CARD_OPEN_CLASSNAME,
 	CARD_PLAYING_CLASSNAME,
+	CARD_DEFAULT_CLASSNAME,
 } from "./constants";
+import {
+	setIsCardVideoOpen,
+} from '../actions';
+
 import Video from "../components/Video";
 import { capitalize } from "../helpers";
 
-const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight }) => {
+const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight, setIsCardVideoOpen }) => {
 	const videoRef = useRef(null);
 	const titleRef = useRef(null);
 	const cardRef = useRef(null);
@@ -245,10 +250,11 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 	const closeVideo = (video, card) => {
 		changeSectionTitle(false);
-
+		setIsCardVideoOpen(false)
+		
 		video.pause();
 		video.currentTime = 0;
-
+		
 		if (!card) return;
 		card.classList.remove(CARD_OPEN_CLASSNAME);
 		card.classList.remove(CARD_DONE_CLASSNAME);
@@ -269,6 +275,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		setTimeout(() => {
 			adjustCardYPosition(video, card, cardDimensions);
 		}, ANIMATION_DURATION / 2);
+		setIsCardVideoOpen(true);
 	}
 
 	const playVideo = (video, card) => {
@@ -429,7 +436,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 			onMouseLeave={handleMouseLeave}
 			onMouseEnter={handleMouseEnter}
 			onClick={handleCardClick}
-			className="card card--hoverable">
+			className={CARD_DEFAULT_CLASSNAME}>
 			<img
 				className="card__image"
 				alt={capitalize(cardName.replace("-", " "))}
@@ -502,5 +509,5 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default connect(mapStateToProps, {
-
+	setIsCardVideoOpen,
 })(Card);

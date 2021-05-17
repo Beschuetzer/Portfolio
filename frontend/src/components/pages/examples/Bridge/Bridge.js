@@ -7,9 +7,12 @@ import {
 	setClickedBridgeInfoButtonCount,
 	setCurrentBridgeSection,
 	setHasClickedALink,
+	setIsCardVideoOpen,
 } from '../../../../actions';
 
-import { bridgeSections } from '../../../constants';
+
+
+import { bridgeSections, CARD_OPEN_CLASSNAME } from '../../../constants';
 import BridgeHero from './BridgeHero';
 import BridgeCard from './BridgeCard';
 import BridgeCardSection from './BridgeCardSection';
@@ -31,7 +34,7 @@ import saveGameVideo from '../../../../clips/saveGame.mp4';
 import CardManager from "../../../CardManager";
 import { onRenderCallback } from "../../../constants";
 
-const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection, isMobile}) => {
+const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection, isMobile, isCardVideoOpen, setIsCardVideoOpen}) => {
 	const sectionContents = [
 			<SectionContainer
 				name={bridgeSections[0]}
@@ -409,6 +412,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 				if (!isMobile) document.querySelector('.hero')?.classList.add('d-none');
 			}
 		}
+
 		window.addEventListener('scroll', handleScroll);
 
 		return (() => {
@@ -422,10 +426,9 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 				<React.Fragment key={index}>
 					{item}
 				</React.Fragment>	
-			)});
+			)
+		});
 	}
-
-	
 
 	return (
 		<div className="bridge">
@@ -461,6 +464,7 @@ const mapStateToProps = (state, ownProps) => {
 		isMobile: state.general.isMobile,
 		clickedBridgeInfoButtonCount: state.general.clickedBridgeInfoButtonCount,
 		hasClickedALink: state.bridge.hasClickedALink,
+		isCardVideoOpen: state.bridge.isCardVideoOpen,
 	}
 }
 
@@ -468,6 +472,7 @@ export default connect(mapStateToProps, {
 	setHasClickedALink,
 	setClickedBridgeInfoButtonCount,
 	setCurrentBridgeSection,
+	setIsCardVideoOpen,
 })(Bridge);
 
 /* <p>

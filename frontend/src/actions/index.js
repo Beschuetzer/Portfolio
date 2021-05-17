@@ -17,6 +17,7 @@ import {
   SET_LAST_SECOND_ROW_CARD_NUMBER,
   SET_BRIDGE_CARDS,
   SET_HAS_CLICKED_A_LINK,
+  SET_IS_CARD_VIDEO_OPEN,
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
@@ -296,6 +297,14 @@ export const setBridgeCards = (value) => {
 export const setHasClickedALink = (value) => {
   return {
     type: SET_HAS_CLICKED_A_LINK,
+    payload: value,
+  }
+}
+
+export const setIsCardVideoOpen = (value) => {
+  console.log('setIsCardVideoOpen------------------------------------------------');
+  return {
+    type: SET_IS_CARD_VIDEO_OPEN,
     payload: value,
   }
 }

@@ -5,10 +5,19 @@ import { connect } from 'react-redux';
 import { 
   setLastSecondRowCardNumber,
   setBridgeCards,
+  setIsCardVideoOpen
 } from '../actions';
 
+import {
+	checkForParentOfType,
+} from '../helpers';
+
+import {
+  CARD_DEFAULT_CLASSNAME,
+} from './constants';
+
 //Responsible for changing transform origin on cards if the rows change due to viewport width
-const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber, setLastSecondRowCardNumber, bridgeCards, setBridgeCards}) => {
+const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber, setLastSecondRowCardNumber, bridgeCards, setBridgeCards, isCardVideoOpen, setIsCardVideoOpen}) => {
 
   const memoizedCheckForChanges = useCallback(() => {
     const getSecondRowStartCardNumber = () => {
@@ -142,6 +151,29 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
     memoizedCheckForChanges();
   }, [viewPortWidth, isMobile, memoizedCheckForChanges])
 
+  useEffect(() => {
+		const handleClick = (e) => {
+			if (!isCardVideoOpen) return;
+			const isFgVideoClick = checkForParentOfType(e.target, 'video', 'fg-video');
+			if (!isFgVideoClick) {
+				const cards = document.querySelectorAll('.card');
+				for (let i = 0; i < cards.length; i++) {
+					const card = cards[i];
+          if (!card) continue;
+					card.className = CARD_DEFAULT_CLASSNAME;
+				}
+				setIsCardVideoOpen(false);
+			}
+		}
+
+		window.addEventListener('click', handleClick);
+
+		return (() => {
+			window.removeEventListener('click', handleClick);
+
+		})
+	}, [isCardVideoOpen, setIsCardVideoOpen])
+
   return (
     <React.Fragment>
       {children}
@@ -155,10 +187,12 @@ const mapStateToProps = (state, ownProps) => {
     isMobile: state.general.isMobile,
     lastSecondRowCardNumber: state.bridge.lastSecondRowCardNumber,
     bridgeCards: state.bridge.bridgeCards,
+    isCardVideoOpen: state.bridge.isCardVideoOpen,
   }
 }
 
 export default connect(mapStateToProps, {
   setLastSecondRowCardNumber,
   setBridgeCards,
+  setIsCardVideoOpen,
 })(CardManager);

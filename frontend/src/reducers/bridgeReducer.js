@@ -5,6 +5,7 @@ import {
   SET_BRIDGE_SECTIONS,
   SET_BRIDGE_CARDS,
   SET_HAS_CLICKED_A_LINK,
+  SET_IS_CARD_VIDEO_OPEN,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -14,6 +15,7 @@ const INITIAL_STATE = {
   bridgeSections: null,
   bridgeCards: null,
   hasClickedALink: null,
+  isCardVideoOpen: false,
 }
 
 const resumeReducer = (state = INITIAL_STATE, action) => {
@@ -31,6 +33,8 @@ const resumeReducer = (state = INITIAL_STATE, action) => {
     case SET_HAS_CLICKED_A_LINK:
       console.log('has clicked------------------------------------------------');
       return {...state, hasClickedALink: action.payload};
+    case SET_IS_CARD_VIDEO_OPEN:
+      return {...state, isCardVideoOpen: action.payload}
     default:
       return state;
   }

@@ -4,11 +4,11 @@ export function capitalize(str) {
       .join(" ");
 }
 
-export function checkForParentOfType(element, parentType, classPresent='') {
+export function checkForParentOfType(clickedElement, parentType, classPresent='') {
   try {
-      if (element.parentNode.localName === parentType && element.parentNode.className.search(classPresent) !== -1) return true;
-      if (element.parentNode.localName.search(/html/i) !== -1) return false;
-      const parent = element.parentNode;
+      if (clickedElement.parentNode.localName === parentType && clickedElement.parentNode.className.search(classPresent) !== -1) return true;
+      if (clickedElement.parentNode.localName.search(/html/i) !== -1) return false;
+      const parent = clickedElement.parentNode;
       return checkForParentOfType(parent, parentType, classPresent);
   }
   catch (error) {

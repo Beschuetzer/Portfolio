@@ -32,4 +32,3 @@ OPTIMIZATIONS:
 
 -add pics to the back of each section on bridge?
 -embedded  .bridge__links don't work if isMobile
--add click on anything but fg-video in bridge and it closes all card (remove card--open (and other classes?)
