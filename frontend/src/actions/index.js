@@ -18,6 +18,7 @@ import {
   SET_BRIDGE_CARDS,
   SET_HAS_CLICKED_A_LINK,
   SET_IS_CARD_VIDEO_OPEN,
+  SET_CARD_TO_CLOSE,
 } from './types';
     
 export const getRepositories = () => async (dispatch, getStore) => {
@@ -302,9 +303,17 @@ export const setHasClickedALink = (value) => {
 }
 
 export const setIsCardVideoOpen = (value) => {
-  console.log('setIsCardVideoOpen------------------------------------------------');
   return {
     type: SET_IS_CARD_VIDEO_OPEN,
     payload: value,
   }
 }
+
+export const setCardToClose = (value) => {
+  return {
+    type: SET_CARD_TO_CLOSE,
+    payload: value,
+  }
+}
+
+

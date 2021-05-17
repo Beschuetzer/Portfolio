@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { 
   setLastSecondRowCardNumber,
   setBridgeCards,
-  setIsCardVideoOpen
+  setIsCardVideoOpen,
+  setCardToClose,
 } from '../actions';
 
 import {
@@ -13,11 +14,11 @@ import {
 } from '../helpers';
 
 import {
-  CARD_DEFAULT_CLASSNAME,
+  CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME,
 } from './constants';
 
 //Responsible for changing transform origin on cards if the rows change due to viewport width
-const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber, setLastSecondRowCardNumber, bridgeCards, setBridgeCards, isCardVideoOpen, setIsCardVideoOpen}) => {
+const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber, setLastSecondRowCardNumber, bridgeCards, setBridgeCards, isCardVideoOpen, setIsCardVideoOpen, setCardToClose}) => {
 
   const memoizedCheckForChanges = useCallback(() => {
     const getSecondRowStartCardNumber = () => {
@@ -156,13 +157,19 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
 			if (!isCardVideoOpen) return;
 			const isFgVideoClick = checkForParentOfType(e.target, 'video', 'fg-video');
 			if (!isFgVideoClick) {
+        let openCardAsNthCard = -1;
 				const cards = document.querySelectorAll('.card');
 				for (let i = 0; i < cards.length; i++) {
 					const card = cards[i];
           if (!card) continue;
-					card.className = CARD_DEFAULT_CLASSNAME;
+          if (card.classList.contains(CARD_OPEN_CLASSNAME)) {
+            openCardAsNthCard = card
+					  card.className = CARD_DEFAULT_CLASSNAME;
+            break;
+          }
 				}
 				setIsCardVideoOpen(false);
+        setCardToClose(openCardAsNthCard)
 			}
 		}
 
@@ -172,7 +179,8 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
 			window.removeEventListener('click', handleClick);
 
 		})
-	}, [isCardVideoOpen, setIsCardVideoOpen])
+    //TODO: should be able to delete setCardToClose
+	}, [isCardVideoOpen, setIsCardVideoOpen, setCardToClose])
 
   return (
     <React.Fragment>
@@ -195,4 +203,5 @@ export default connect(mapStateToProps, {
   setLastSecondRowCardNumber,
   setBridgeCards,
   setIsCardVideoOpen,
+  setCardToClose,
 })(CardManager);
