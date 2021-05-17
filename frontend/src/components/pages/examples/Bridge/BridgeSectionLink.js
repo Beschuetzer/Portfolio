@@ -12,6 +12,7 @@ import {
   handleBridgeHeroSounds,
   showBridgeHero,
   BRIDGE_PAGE_NAV_LINK_CLASSNAMES,
+  scrollToSection,
 } from '../../../constants';
 
 const BridgeSectionLink = ({isEmbeddedLink = false, bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content, match, sounds, isMobile, headerHeight, setClickedBridgeInfoButtonCount, setHasClickedALink, hasClickedALink}) => {
@@ -31,13 +32,15 @@ const BridgeSectionLink = ({isEmbeddedLink = false, bridgeSections, currentBridg
 
   const navigateToSection = (e) => {
     const numberOfSkips = getSkipDirectionAndSkips(e);
-    if (numberOfSkips < 0) {
-      const valueToUse = currentBridgeSection + numberOfSkips;
-      setCurrentBridgeSection(valueToUse >= 0 ? valueToUse : 0)
+    let valueToUse = currentBridgeSection + numberOfSkips;
+    if (numberOfSkips < 0) valueToUse = valueToUse >= 0 ? valueToUse : 0;
+    else if (numberOfSkips > 0) valueToUse = valueToUse < bridgeSections.length  ? valueToUse : (bridgeSections.length - 1);
+
+    if (isMobile) {
+      scrollToSection(bridgeSections[valueToUse], headerHeight);
     }
-    else if (numberOfSkips > 0) {
-      const valueToUse = currentBridgeSection + numberOfSkips;
-      setCurrentBridgeSection(valueToUse < bridgeSections.length  ? valueToUse : (bridgeSections.length - 1))
+    else {
+      setCurrentBridgeSection(valueToUse);
     }
 
     if (match && match.url.match(/bridge/i)) {
