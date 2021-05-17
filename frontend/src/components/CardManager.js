@@ -6,7 +6,6 @@ import {
   setLastSecondRowCardNumber,
   setBridgeCards,
   setIsCardVideoOpen,
-  setCardToClose,
 } from '../actions';
 
 import {
@@ -18,7 +17,7 @@ import {
 } from './constants';
 
 //Responsible for changing transform origin on cards if the rows change due to viewport width
-const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber, setLastSecondRowCardNumber, bridgeCards, setBridgeCards, isCardVideoOpen, setIsCardVideoOpen, setCardToClose}) => {
+const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber, setLastSecondRowCardNumber, bridgeCards, setBridgeCards, isCardVideoOpen, setIsCardVideoOpen}) => {
 
   const memoizedCheckForChanges = useCallback(() => {
     const getSecondRowStartCardNumber = () => {
@@ -157,19 +156,20 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
 			if (!isCardVideoOpen) return;
 			const isFgVideoClick = checkForParentOfType(e.target, 'video', 'fg-video');
 			if (!isFgVideoClick) {
-        let openCardAsNthCard = -1;
 				const cards = document.querySelectorAll('.card');
 				for (let i = 0; i < cards.length; i++) {
 					const card = cards[i];
           if (!card) continue;
           if (card.classList.contains(CARD_OPEN_CLASSNAME)) {
-            openCardAsNthCard = card
 					  card.className = CARD_DEFAULT_CLASSNAME;
+            const video = card.querySelector('video');
+            if (!video) break;
+            video.currentTime = 0;
+            video.pause();
             break;
           }
 				}
 				setIsCardVideoOpen(false);
-        setCardToClose(openCardAsNthCard)
 			}
 		}
 
@@ -179,8 +179,7 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
 			window.removeEventListener('click', handleClick);
 
 		})
-    //TODO: should be able to delete setCardToClose
-	}, [isCardVideoOpen, setIsCardVideoOpen, setCardToClose])
+	}, [isCardVideoOpen, setIsCardVideoOpen])
 
   return (
     <React.Fragment>
@@ -203,5 +202,4 @@ export default connect(mapStateToProps, {
   setLastSecondRowCardNumber,
   setBridgeCards,
   setIsCardVideoOpen,
-  setCardToClose,
 })(CardManager);

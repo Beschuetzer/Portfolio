@@ -32,5 +32,3 @@ OPTIMIZATIONS:
 
 -add pics to the back of each section on bridge?
 -embedded  .bridge__links don't work if isMobile
-
--clicking off card doesn't pause the video it just changes className

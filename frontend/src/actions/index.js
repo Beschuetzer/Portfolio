@@ -309,11 +309,4 @@ export const setIsCardVideoOpen = (value) => {
   }
 }
 
-export const setCardToClose = (value) => {
-  return {
-    type: SET_CARD_TO_CLOSE,
-    payload: value,
-  }
-}
-
 
