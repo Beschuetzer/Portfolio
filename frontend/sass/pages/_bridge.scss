@@ -273,6 +273,10 @@
 	&__link {
 		@include link-animating;
 		@include link-line;
+		
+		&:hover {
+			@include link-hover;
+		}
 	}
 	&__page-nav-link {
 		// @include link-animating;

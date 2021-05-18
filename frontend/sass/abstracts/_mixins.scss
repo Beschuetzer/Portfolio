@@ -97,6 +97,12 @@
 	animation: animate-skills infinite 10s;
 }
 
+@mixin link-hover {
+	color: var(--color-primary-1);
+	text-decoration: none;
+	border-image: none;
+}
+
 @mixin card-description-visible {
 	opacity: 1;
 	visibility: visible;

@@ -2749,6 +2749,11 @@ div.references__name {
   border-image: linear-gradient(to right, var(--color-primary-4) 0%, var(--color-primary-1) 50%, var(--color-primary-1) 50%, var(--color-primary-4) 100%);
   border-image-slice: 1;
 }
+.bridge__link:hover {
+  color: var(--color-primary-1);
+  text-decoration: none;
+  border-image: none;
+}
 .bridge__page-nav-link {
   cursor: pointer;
   opacity: 0.66;
