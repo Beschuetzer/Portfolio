@@ -27,7 +27,7 @@ import {
 const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidth, sounds, setHeaderHeight }) => {
 	const [ currentUrl, setCurrentUrl ] = useState(null);
 	const navRef = useRef();
-	const noFilterPages = ['/bridge'];
+	// const noFilterPages = ['/bridge'];
 
 	const hide = () => {
 		navRef.current.classList.add("overflow--hidden");
@@ -126,7 +126,7 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		const colorVarRoot = '--color-primary';
 		const colorVarPages = ['', '/bridge', '/resume', '/csharp'];
 		const colorVarNumbers = ['-1','-2','-3','-4'];
-		const colorVarHSL = ['-h', '-s', '-l'];
+		// const colorVarHSL = ['-h', '-s', '-l'];
 
 		const temp = colorVarPages.indexOf(currentUrl.slice(currentUrl.lastIndexOf('/')));
 		const index = temp !== -1 ? temp : 0;

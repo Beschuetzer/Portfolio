@@ -4,7 +4,6 @@ class SectionContainer extends React.Component {
 
   render() {
     const { name, pageName, children } = this.props;
-    console.log(`RE-RENDERING SECTION CONTAINER FOR ${name}------------------------------------------------`);
     return (
       <section
         id={name.toLowerCase()}

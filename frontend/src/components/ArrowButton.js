@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { setCurrentBridgeSection, setBridgeSections } from '../actions';

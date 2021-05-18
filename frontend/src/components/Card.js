@@ -7,7 +7,6 @@ import {
 	CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION, 
 	MOBILE_BREAK_POINT_WIDTH,
 	ANIMATION_DURATION,
-	CARD_HOVER_SCALE_AMOUNT,
 	scrollToSection,
 	bridgeSections,
 	CARD_DONE_CLASSNAME,
@@ -192,9 +191,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		let translateUpAmount = Math.abs(cardCenterYOriginal - containerCenterY);
 
 		const cardOriginalWidth = (cardDimensions.width * 2) / 3;
-		const cardOriginalHeight = (cardDimensions.height * 2) / 3;
+		// const cardOriginalHeight = (cardDimensions.height * 2) / 3;
 		const scaleXFactor = sectionDimensions.width / cardOriginalWidth;
-		const scaleYFactor = sectionDimensions.height / cardOriginalHeight;
+		// const scaleYFactor = sectionDimensions.height / cardOriginalHeight;
 
 		if (cardCenterXOriginal < containerCenterX)
 			translateLeftAmount = -translateLeftAmount;

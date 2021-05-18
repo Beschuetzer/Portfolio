@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { setPreviousUrl, setScrollPercent } from '../../actions';
@@ -9,7 +8,6 @@ import {
   bridgeSections,
   BRIDGE_CURRENT_SECTION_CLASSNAME,
   BRIDGE_PAGE_NAV_LINK_CLASSNAME,
-  BRIDGE_PAGE_NAV_LINK_CLASSNAMES,
   BRIDGE_PAGE_NAV_LINKS_COLORS,
   scrollToSection,
 } from '../constants';

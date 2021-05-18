@@ -12,7 +12,7 @@ import {
 
 
 
-import { bridgeSections, CARD_OPEN_CLASSNAME } from '../../../constants';
+import { bridgeSections } from '../../../constants';
 import BridgeHero from './BridgeHero';
 import BridgeCard from './BridgeCard';
 import BridgeCardSection from './BridgeCardSection';
@@ -32,7 +32,7 @@ import preferencesVideo from '../../../../clips/preferences.mp4';
 import themesVideo from '../../../../clips/themes.mp4';
 import saveGameVideo from '../../../../clips/saveGame.mp4';
 import CardManager from "../../../CardManager";
-import { onRenderCallback } from "../../../constants";
+// import { onRenderCallback } from "../../../constants";
 
 const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection, isMobile, isCardVideoOpen, setIsCardVideoOpen}) => {
 	const sectionContents = [
@@ -45,28 +45,28 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 					titleContent={bridgeSections[0]}
 				>
 					<BridgeCardSection
-						title='The Journey Begins'
+						title='Motivation'
 						// title='An App is Born'
 					>
 						<p>
 							A#Maj is an website I created between June of 2020 and February of 2021, where users can play 
-							&nbsp;<a target="_blank" rel="noreferrer" href="https://en.wikipedia.org/wiki/Contract_bridge" className="bridge__link">contract bridge</a>&nbsp;for free.  &nbsp;&nbsp;The COVID-19 pandemic was in full swing.&nbsp; Andrew, a good friend of mine, had been mentioned how much he missed playing bridge (something which none of the members of our regular bridge group had done for many months at that point).  
+							&nbsp;<a target="_blank" rel="noreferrer" href="https://en.wikipedia.org/wiki/Contract_bridge" className="bridge__link">contract bridge</a>&nbsp;for free.  &nbsp;The COVID-19 pandemic was in full swing.&nbsp; Andrew, a good friend of mine, had been mentioned how much he missed playing bridge (something which none of the members of our regular bridge group had done for many months at that point).  
 						</p>
 						<p>
-							Initially, we looked for free, online apps but were unable to find any at the time.   &nbsp;&nbsp;I had told Andrew about the&nbsp;
+							Initially, we looked for free, online apps but were unable to find any at the time.   &nbsp;I had told Andrew about the&nbsp;
 							<Link to="/examples/downloader" className="bridge__link">downloader</Link>
 							&nbsp;and&nbsp;
-							<Link to="/examples/playlist-syncer" className="bridge__link">music syncing</Link> apps that I had recently finished, and he jokingly remarked that I should make an app to play bridge online.   &nbsp;&nbsp;Initially, I wasn't very interested in making my own bridge app because I figured there had to be a free online version somewhere that we could use. &nbsp;&nbsp;  After looking for multiple hours though and only finding pay-to-play apps, I decided to invest some time into figuring out how one would do such a thing.
+							<Link to="/examples/playlist-syncer" className="bridge__link">music syncing</Link> apps that I had recently finished, and he playfully remarked that I should make an app to play bridge online.   &nbsp;At that point, I wasn't very interested in making my own bridge app.&nbsp; I figured there had to be a free way we could play online. &nbsp;  However, after spending an hour, to no avail, looking for a free app/website, I decided to invest some time into figuring out how one would do such a thing.
 						</p>
 					</BridgeCardSection>
 					<BridgeCardSection
 						title='Research'
 					>
 					<p>
-							I started out by trying to create a simple chat room app using C#, but soon realized it would be rather challenging to create the bridge app I had envisioned using C#.   &nbsp;&nbsp;I knew there had to be an easier way...   &nbsp;&nbsp;off to YouTube/Google to find it!   &nbsp;&nbsp;  This is where I was introduced to something called 'socket.io'.   &nbsp;&nbsp;After watching a quick implementation video on YouTube, I was convinced:&nbsp; socket.io would be a part of the stack, if i was going to do this thing.
+							I started out by trying to create a simple chat room app using C#, but soon realized it would be rather challenging to create the bridge app I had envisioned using C#.   &nbsp;I knew there had to be an easier way...   &nbsp;off to YouTube/Google to find it!   &nbsp;  This is where I first encountered 'socket.io'.   &nbsp;After watching a quick implementation video on YouTube, I was convinced:&nbsp; socket.io would be a part of the stack, if i was going to do this thing.
 						</p>
 						<p>
-							The only problem was I had no idea how to create a web application at all!&nbsp; After googling some more, I found an exquisite resource called
+							The only problem was I had no idea how to create a web application at all.&nbsp; After googling some more, I found an exquisite resource called
 							&nbsp; <a target="_blank" rel="noreferrer" href="https://www.theodinproject.com/" className="bridge__link">The Odin Project.</a> &nbsp;
 						</p>					
 					</BridgeCardSection>
@@ -74,10 +74,10 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						title='A Tough Decision'
 					>
 						<p>
-							Before I had found the Odin Project, I had only ever dreamt of becoming a software/web developer.&nbsp; I was under the impression that one needed to have a Computer Science degree.&nbsp; After reading the experiences others had had on the Odin Project website, a hope, nay, a determination awakened inside of me that had lain dormant for many years.&nbsp; Maybe I was wrong?
+							Before I had found the Odin Project, I had been under the impression that one needed to have a Computer Science degree in order to become a web developer.&nbsp; That assumption was shattered upon reading about some of the experiences others had had with the Odin Project. Then and there, a hope, nay, a determination awakened inside of me that had lain dormant for many years.&nbsp; Maybe I too could become a web developer?
 						</p>
 						<p>
-							It was at that moment that I realized what I had to do.&nbsp;  Would I look back 10 years from now and regret not having tried to become that which I had previously only dreamt of becoming?&nbsp; I decided, then and there, to give it my best effort.&nbsp; I was prepared to do whatever it takes to realize this goal.&nbsp; My biggest fear at this point was to die having not tried.&nbsp;
+							Could I live with myself knowing that 10 years from now I would likely regret not having tried to become that which I had previously only dreamt of becoming?&nbsp; I decided, then and there, to put everything I had into realizing this goal.&nbsp; I was prepared to do whatever it takes to realize this goal.&nbsp; My biggest fear at this point was to die having not tried.&nbsp;
 						</p>
 						
 						{/* <p>
@@ -184,7 +184,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 								I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
 							</li>							
 						</ul>
-						All throughout my youth, I had taken a keen interest in computer programming.   &nbsp;&nbsp;I figured that this was the last chance I would get to realize that interest. 
+						All throughout my youth, I had taken a keen interest in computer programming.   &nbsp;I figured that this was the last chance I would get to realize that interest. 
 					</BridgeCardSection> */}
 				</BridgeCard>
 			</SectionContainer>

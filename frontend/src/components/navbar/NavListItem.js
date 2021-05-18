@@ -8,7 +8,7 @@ class NavItem extends React.Component {
     imageClassName: "navbar__link-image",
   } 
   render() {
-    const { isLink=true, onMouseEnter, onClick, to, label, label2, children, className, triangle, imageAlt = 'A picture', imageSource = '' } = this.props;
+    const { isLink=true, onMouseEnter, onClick, to, label, children, className, triangle, imageAlt = 'A picture', imageSource = '' } = this.props;
     const classNamesToUse = className ? className : this.defaults.liClassName;
 
     const getContent = () => {

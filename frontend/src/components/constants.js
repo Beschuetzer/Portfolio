@@ -21,7 +21,7 @@ export const BRIDGE_SECTION_TITLES_CLASSNAME = 'bridge__section-titles';
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAMES = `${BRIDGE_PAGE_NAV_LINK_CLASSNAME} page-nav__section`;
 
 export const bridgeSections = [
-  "Background",
+  "Story",
   "Features",
   "Lessons",
 ];

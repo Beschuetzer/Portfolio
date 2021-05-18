@@ -68,8 +68,8 @@ const SkillsPopup = ({
 	// 	}
 	// };
 
-	const onTableItemMouseEvent = (e) => {
-		return;
+	// const onTableItemMouseEvent = (e) => {
+		// return;
 		// if (isMobile) return;
 		// const table = document.querySelector(".skills-popup__table");
 		// const skillsPopupItems = document.querySelectorAll(
@@ -134,7 +134,7 @@ const SkillsPopup = ({
 		// 		rowsNameElement.classList?.add(classNameToAddToLinks);
 		// 	else rowsNameElement.classList?.remove(classNameToAddToLinks);
 		// }
-	};
+	// };
 
 	const onCloseClick = (e) => {
 		skillsPopupDiv?.classList?.remove("skills-popup--active");

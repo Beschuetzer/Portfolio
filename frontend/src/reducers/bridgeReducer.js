@@ -33,7 +33,6 @@ const resumeReducer = (state = INITIAL_STATE, action) => {
     case SET_BRIDGE_CARDS:
       return {...state, bridgeCards: action.payload};
     case SET_HAS_CLICKED_A_LINK:
-      console.log('has clicked------------------------------------------------');
       return {...state, hasClickedALink: action.payload};
     case SET_IS_CARD_VIDEO_OPEN:
       return {...state, isCardVideoOpen: action.payload};
