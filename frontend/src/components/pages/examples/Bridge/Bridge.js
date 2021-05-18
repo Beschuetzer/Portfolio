@@ -92,7 +92,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 							First, I needed some sort of test that was sufficiently complex and representative enough of actual real-world applications, such that if I could pass it, I would know I am on the right track.&nbsp;
 						</p>
 						<p>
-							This is where <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> became my full-time endeavor.&nbsp; If I could create a scalable, multiplayer bridge app, I was convinced I would have what it takes.&nbsp; I decided that I would set aside one year to build the best bridge website I could.&nbsp; If after one year I hadn't completed the website, I could stop, knowing that I had given it my best effort.&nbsp;
+							This is when <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> became a full-time endeavor.&nbsp; If I could create a scalable, multiplayer bridge app, I was convinced I would have what it takes.&nbsp; I decided that I would set aside one year to build the best bridge website I could.&nbsp; If after one year I hadn't completed the website, I could stop, knowing that I had given it my best effort.&nbsp;
 						</p>
 						<p>
 							Second, I left my &nbsp;
@@ -103,7 +103,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 								rel='noreferrer'
 							>
 								service technician position
-							</a> at Ricoh in order to free up the time and energy needed to whole-heartily devote myself to this endeavor.&nbsp;
+							</a> at Ricoh in order to free up the time and energy needed to whole-heartily devote myself to becoming a web developer.
 						</p>
 					</BridgeCardSection>
 					<BridgeCardSection
@@ -113,22 +113,26 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 							I started the learning process by following the curriculum on the <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink> website.&nbsp; I learned the basics of HTML5, CSS3, and JS.&nbsp; However, once I hit the Ruby part of the curriculum, it quickly became apparent that I would need further resources.&nbsp; 
 						</p>	
 						<p>
-							At this point, I had a fixed budget of $17k. &nbsp; I carefully looked into Web Developer boot camps. &nbsp; A few caught my eye, but there were no guarantees that I would land a job at the end.&nbsp; Ultimately, I decided that the best use of my budget would be to take the self-taught path.&nbsp;The main reasons were:				
+							This is when I started looking into Web Developer Bootcamps. I had a fixed budget of $17k. &nbsp; A few caught my eye, but there were no guarantees that I would land a job at the end.&nbsp; Ultimately, I decided that the best use of my budget would be to take the self-taught path.&nbsp;The main reasons were:				
 						</p>
-						<ul>
-							<li>
-								I've always been a very self-motivated person.  I didn't to make a large financial commitment to a program in order to wake up and get learning/coding.
-							</li>
-							<li>
-								It was hard to justify paying $15-20k for information that I could get for free or for much less than $15k. 
-							</li>
-							<li>
+						<div className="bridge__subsection-grid">
+							<span>1).</span>
+							<span>
+								I've always been a very self-motivated person who doesn't need to make a large financial commitment in order to stay motivated.&nbsp; If I decide to do something, I do it.
+							</span>
+							<span>2).</span>
+							<span>
+								It was hard to justify paying $15-$20k for information that I could get for free or for much less than $15k. 
+							</span>
+							<span>3).</span>
+							<span>
 								I figured most of the benefits of a bootcamp come from the face-to-face interactions.  With the pandemic in full swing at this point (June 2020), bootcamps were moving to online only.
-							</li>
-							<li>
+							</span>
+							<span>4).</span>
+							<span>
 								Going at my own pace would allow me to move more quickly through the areas which I find easy while being able to spend more time on the areas that I find difficult.  
-							</li>
-						</ul>
+							</span>
+						</div>
 					</BridgeCardSection>
 					<BridgeCardSection
 						title='Deciding on the Technology to Use'

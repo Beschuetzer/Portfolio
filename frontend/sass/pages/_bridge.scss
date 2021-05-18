@@ -18,12 +18,23 @@
 
 	&__subsection {
 
-		&-content {
-			& ul {
-				list-style: decimal;
-				padding-bottom:$default-font-size * 1;
-				margin-left: $default-font-size * 2;
+		&-grid {
+			display: grid;
+			grid-template-columns: min-content 1fr;
+			padding-bottom:$default-font-size * 1;
+			align-items: center;
+			justify-items: center;
+			grid-row-gap: $default-font-size * .5;
+			// margin-left: $default-font-size * 2;
+
+			& span:nth-of-type(2n+1) {
+				padding: 0 $default-font-size;
+				align-self: flex-start;
 			}
+		}
+
+		&-content {
+				
 		}
 	}
 

@@ -2558,10 +2558,17 @@ div.references__name {
     grid-template-rows: auto;
   }
 }
-.bridge__subsection-content ul {
-  list-style: decimal;
+.bridge__subsection-grid {
+  display: grid;
+  grid-template-columns: min-content 1fr;
   padding-bottom: 1.6rem;
-  margin-left: 3.2rem;
+  align-items: center;
+  justify-items: center;
+  grid-row-gap: 0.8rem;
+}
+.bridge__subsection-grid span:nth-of-type(2n+1) {
+  padding: 0 1.6rem;
+  align-self: flex-start;
 }
 .bridge__section {
   backface-visibility: hidden;
