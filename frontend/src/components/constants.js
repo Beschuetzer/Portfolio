@@ -15,6 +15,7 @@ export const SKILLS_SECTION_CLASSNAME = 'skills__section';
 
 
 //#region bridge stuff
+export const BRIDGE_CARD_SECTION_CLASSNAME = 'bridge__card-section';
 export const BRIDGE_CURRENT_SECTION_CLASSNAME = 'bridge__current-section';
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAME = 'bridge__page-nav-link';
 export const BRIDGE_SECTION_TITLES_CLASSNAME = 'bridge__section-titles';

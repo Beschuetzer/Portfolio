@@ -74,11 +74,13 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						title='A Tough Decision'
 					>
 						<p>
-							Before I had found the Odin Project, I had been under the impression that one needed to have a Computer Science degree in order to become a web developer.&nbsp; That assumption was shattered upon reading about some of the experiences others had had with the Odin Project. Then and there, a hope, nay, a determination awakened inside of me that had lain dormant for many years.&nbsp; Maybe I too could become a web developer?
+							Before I had found the Odin Project, I had been under the impression that one needed to have a Computer Science degree in order to become a web developer.&nbsp; That assumption was shattered upon reading about some of the experiences others had had with the Odin Project. Then and there, a hope, nay, a determination awakened inside of me that had lain dormant for many years.&nbsp; Maybe I too could become a web developer?  
 						</p>
 						<p>
-							Could I live with myself knowing that 10 years from now I would likely regret not having tried to become that which I had previously only dreamt of becoming?&nbsp; I decided, then and there, to put everything I had into realizing this goal.&nbsp; I was prepared to do whatever it takes to realize this goal.&nbsp; My biggest fear at this point was to die having not tried.&nbsp;
+							If I decided to continue down the IT support path, would I look at my life 10 years from now and ask what if I had completely devoted my energy to becoming a web developer?  I couldn't imagine a scenario where I would be ok with just giving up on something that I enjoyed so much.&nbsp; With the pandemic looking like it was just getting started, I decided to take a leap of faith in myself: I decided to become a web developer.
 						</p>
+
+						{/* I decided, then and there, to put everything I had into realizing this goal.&nbsp; I was prepared to do whatever it takes to realize this goal.&nbsp; My biggest fear at this point was to die having not tried.&nbsp; */}
 						
 						{/* <p>
 							Do I have what it takes?  Will I be able to find a job during the pandemic?  These were questions that I was scared to face, but, to me, scarier was not pursing something that I have enjoyed doing since I was a kid.
@@ -91,7 +93,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 							First, I needed some sort of test that was sufficiently complex and representative enough of actual real-world applications, such that if I could pass it, I would know I am on the right track.&nbsp;
 						</p>
 						<p>
-							This is where A# Maj Bridge became my full-time endeavor.&nbsp; If I could create a scalable, multiplayer bridge app, I was convinced I have what it takes.&nbsp; I decided that I would set aside one year to build the best bridge website I could.&nbsp; If after one year, it wasn't looking like I was going to make it, I could stop, knowing that I had given it my best effort.&nbsp;
+							This is where A# Maj Bridge became my full-time endeavor.&nbsp; If I could create a scalable, multiplayer bridge app, I was convinced I would have what it takes.&nbsp; I decided that I would set aside one year to build the best bridge website I could.&nbsp; If after one year I hadn't completed the website, I could stop, knowing that I had given it my best effort.&nbsp;
 						</p>
 						<p>
 							Second, I left my &nbsp;
