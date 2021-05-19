@@ -207,8 +207,8 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 							<div>
 								There are two optional animations:
 								<ul>
-									<li>Card Play - mimicks a perfectly thrown card when opponents play</li>
-									<li>Round End - mimicks a rocket 'blasting off' of the table.</li>
+									<li>Card Play - mimics a perfectly thrown card when others play</li>
+									<li>Round End - mimics a rocket 'blasting off' of the table.</li>
 								</ul>
 							</div>
 						</Card>
@@ -252,7 +252,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						>
 							<div>
 								<p>
-									'Claim All' allows players to claim the rest of the tricks rather than play them out. &nbsp;It shows the claimer's cards to the two defensive opponents and they can either agree or reject the claim.  &nbsp;If they agree, the claimer gets the rest of the tricks and game moves to the deal summary screen.
+									'Claim All' allows players to claim the rest of the tricks rather than play them out. &nbsp;It does this by showing he claimer's cards to the two defensive players.&nbsp; If both players accept the claim, the claimer gets the rest of the tricks and the game moves to the deal summary screen.
 								</p>
 								</div>
 						</Card>
@@ -263,7 +263,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						>
 							<div>
 								<p>
-									'Claim Some' allows the declarer (person playing the contract) to claim some number of trick less than or equal to the number of tricks remaining.&nbsp; As a card is selected, the valid cards in the other hand are highlighted, allowing for easier selections.
+									'Claim Some' allows the declarer (person playing the contract) to claim some number of tricks less than or equal to the number of tricks remaining.&nbsp; The UI guides players through the selection process, by graying out cards that are invalid and displaying the selected cards in a table, allowing for a smooth user experience.
 								</p>
 							</div>
 						</Card>
@@ -274,7 +274,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						>
 							<div>
 								<p>
-									The Deal Summary screen allows players to reviews the bidding and playing from the last deal.&nbsp; It shows which cards each player had in their hand at the beginning of each trick.&nbsp; Such information is nice when you want to work out how the trick claiming phase may have gone had you played a different card for a given trick.
+									The Deal Summary screen allows players to review the bidding and playing phases of the last deal.&nbsp; It does this by displaying the bidding order (who bid what when) and which cards each player had in their hand at the beginning of each trick.&nbsp; Such information is useful for self-improvement and providing feedback to others.
 								</p>
 							</div>
 						</Card>
