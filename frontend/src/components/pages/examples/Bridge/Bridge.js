@@ -144,33 +144,37 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						title='Deciding on the Technology to Use'
 					>
 					<p>
-							My first goal was figure out what I needed to learn.&nbsp; I researched popular web development technologies and came across many different stacks.&nbsp; Admittedly, it was a bit overwhelming at first, but eventually I came to the conclusion to stick the basics first then expand out from there.&nbsp; I figured, if I want to become a web developer, I will need to have fundamentally, solid understanding of HTML5, CSS3, and JS, right?&nbsp; It is was thought and the fact that I wanted to get something up and running asap that I arrived at the decision to develop <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> using vanilla HTML5, CSS3, and JS (I did rely on Bootstrap4 for a few things, though). 	
+						I knew I would pave my own path, but were would I start?&nbsp; I researched popular web development technologies and came across many different stacks.&nbsp; Admittedly, it was a bit overwhelming at first figuring out where to start, but eventually I came to the conclusion that sticking to the bread and butter of web development and then expanding out from there would be the best approach.&nbsp; 
+					</p>
+					<p>
+						If I wanted to become a web developer, I figured, I would need to have a solid understanding of HTML5, CSS3, and JS.&nbsp;  What better way to learn the basics than to build a web-based multiplayer bridge app? &nbsp; This line of thinking is what led me to develop <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> using primarily vanilla HTML5, CSS3, and JS. 	
+					</p>
+					<BridgeCardSection
+						title='Picking the Right Curriculum'
+					>
+						<p>
+							With a technology decision for the client-side in place, I began looking at server-side technologies that I could use.&nbsp;  It didn't take long for me to find NodeJS.&nbsp;  Knowing what I would use for my server-side code made searching for bootcamps on sites like Udemy and YouTube much easier.&nbsp;After careful consideration, I decided on Colte Steele's
+							&nbsp;<a target="_blank" rel="noreferrer" href="https://www.udemy.com/course/the-web-developer-bootcamp/" className="bridge__link">Web Developer Bootcamp</a>&nbsp;
+							(which has since been updated) to use as the foundation for learning how to build a complete application using HTML5, CSS3, and JS.&nbsp;  The rest is hard work, will power, luck, and curiosity.  
 						</p>
-						<BridgeCardSection
-							title='Picking the Right Curriculum'
-						>
-							<p>
-								With a technology decision for the client-side in place, I began looking at server-side technologies that I could use.&nbsp;  It didn't take long for me to find NodeJS.&nbsp;  Knowing what I would use for my server-side code made searching for bootcamps on sites like Udemy and YouTube much easier.&nbsp;After careful consideration, I decided on Colte Steele's
-								&nbsp;<a target="_blank" rel="noreferrer" href="https://www.udemy.com/course/the-web-developer-bootcamp/" className="bridge__link">Web Developer Bootcamp</a>&nbsp;
-								(which has since been updated) to use as the foundation for learning how to build a complete application using HTML5, CSS3, and JS.&nbsp;  The rest is hard work, will power, luck, and curiosity.  
-							</p>
-						</BridgeCardSection>
-						<BridgeCardSection
-							title='The Results are in.'
-						>
-							<p>
-							<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> took roughly 8 months to fully implement.&nbsp; I haven't been able to test more than three simultaneous games, but it likely is able to run hundreds if not thousands of simultaneous games before the less-than-optimal code would bring a high-end server to a halt.&nbsp; Have a look at the features in the 
-								&nbsp;
-								<BridgeSectionLink
-									isEmbeddedLink={true}
-									content="feature's section"
-									sectionToSkipTo='features'
-								></BridgeSectionLink>
-								.&nbsp;
-								Or check out some of the 
-								<EmbeddedLink href="https://github.com/Beschuetzer/Bridge">source code.</EmbeddedLink>
-							</p>
-						</BridgeCardSection>
+					</BridgeCardSection>
+					<BridgeCardSection
+						title='The Results are in.'
+					>
+						<p>
+						<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> took roughly 8 months to complete.&nbsp; It runs smoothly on Android 10+, Firefox 70+, and Chrome 70+ (but not on mobile iOS devices due to paperJS issues that I couldn't resolve due to the fact that I don't have access to an iOS device). &nbsp; It can host multiple simultaneous games, but is unlikely to run more a thousand simultaneous games in its current state.&nbsp; </p>
+						<h4>Have a look at some of the fun features in the &nbsp;
+							<BridgeSectionLink
+								isEmbeddedLink={true}
+								content="feature's section"
+								sectionToSkipTo='features'
+							></BridgeSectionLink>
+						</h4>
+						<h4>
+							Check out some of the 
+							<EmbeddedLink href="https://github.com/Beschuetzer/Bridge">source code.</EmbeddedLink>
+						</h4>
+					</BridgeCardSection>
 					</BridgeCardSection>
 
 					{/* <BridgeCardSection

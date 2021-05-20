@@ -49,6 +49,7 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
           section.classList.add('slide-left');
         }
         else if (i === currentBridgeSection) {
+          section.classList.remove('slide-left');
           section.classList.add('current-section');
         }
         else {
