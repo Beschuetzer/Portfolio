@@ -36,3 +36,4 @@ OPTIMIZATIONS:
 -mobile doesn't work with SiteNav showing examples expanded
 
 -consider a different bridge animation like fade in
+-troubleshoot scrolling choppiness issue (seems to be SiteNav or global listeners as it happens on bridge and resume pages) 
