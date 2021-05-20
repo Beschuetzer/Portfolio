@@ -23,7 +23,7 @@
 			grid-template-columns: min-content 1fr;
 			padding-bottom:$default-font-size * 1;
 			align-items: center;
-			justify-items: center;
+			justify-items: flex-start;
 			grid-row-gap: $default-font-size * .5;
 			// margin-left: $default-font-size * 2;
 

@@ -2563,7 +2563,7 @@ div.references__name {
   grid-template-columns: min-content 1fr;
   padding-bottom: 1.6rem;
   align-items: center;
-  justify-items: center;
+  justify-items: flex-start;
   grid-row-gap: 0.8rem;
 }
 .bridge__subsection-grid span:nth-of-type(2n+1) {
