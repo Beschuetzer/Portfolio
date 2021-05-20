@@ -114,6 +114,10 @@ class Resume extends React.Component {
 					percent: 59,
 				},
 				{
+					title: 'rxjs',
+					percent: 30,
+				},
+				{
 					title: 'socket.io',
 					percent: 62.5,
 				},
@@ -146,7 +150,7 @@ class Resume extends React.Component {
 				{
 					title: 'Redux',
 					percent: 51,
-				},
+				},				
 				{
 					title: 'Semantic-UI',
 					percent: 43,
