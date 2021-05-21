@@ -539,7 +539,7 @@
 
 	&.d-none ~ &__source {
 		& svg {
-			opacity: 1;
+			opacity: .33;
 
 			// &:hover ~ .hero__source-label { 
 			// 	color: var(--bridge-page-nav-link-color);

@@ -2959,7 +2959,7 @@ div.references__name {
   transition: opacity 0.5s ease;
 }
 .hero.d-none ~ .hero__source svg {
-  opacity: 1;
+  opacity: 0.33;
 }
 .hero.d-none ~ .hero__source span {
   font-weight: 1000;
