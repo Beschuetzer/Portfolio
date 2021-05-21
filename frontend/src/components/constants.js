@@ -148,7 +148,6 @@ export const showBridgeHero = (heroMore) => {
   document.documentElement.style.setProperty('--bridge-section-height', '100vh');
   document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
   
-  console.log('add heromore clicked------------------------------------------------');
   heroMore.current?.classList.add('hero__more--clicked');
 }
 
@@ -162,7 +161,7 @@ export const handleBridgeHeroSounds = (checkBoxRef, backgroundRef, sounds, isMob
   }
   else {
     sounds.play('doorNormal');
-    scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()), headerHeight)
+    scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()), !isMobile ? 0 : headerHeight)
     if (backgroundRef)  {
       backgroundRef?.classList.remove('visible');
       backgroundRef?.classList.remove('reverse-ease');

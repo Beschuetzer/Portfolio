@@ -48,9 +48,9 @@
 		background-color: var(--color-primary-3);
 		color: var(--color-primary-1);
 		left: 100vw;
-		transition: 
-			transform $animation-duration * .5 linear,
-		;
+		// transition: 
+			// transform $animation-duration * .5 linear,
+		// ;
 
 		@include respond(nav-switch) {
 			height: auto;
