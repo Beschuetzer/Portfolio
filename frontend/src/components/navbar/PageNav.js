@@ -31,6 +31,7 @@ class PageNav extends React.Component {
   static progressPercent = '0%';
   static selectedClass = 'page-nav--active';
   static pageNav = document.querySelector('.page-nav');
+  static docStyle = getComputedStyle(document.documentElement);
 
   componentDidMount() {
     document.addEventListener('scroll', this.handleScroll);
@@ -42,6 +43,7 @@ class PageNav extends React.Component {
 	}
 
   componentDidUpdate () {
+    console.log('componentDidUpdate------------------------------------------------');
     this.updateActiveScaleRange();
     const url = this.props.match.url;
     const pageName = url.slice(url.lastIndexOf('/') + 1);
@@ -83,7 +85,7 @@ class PageNav extends React.Component {
   }
 
   handleScroll = (e) => {
-		if (!PageNav.shouldHandleScroll) return;
+    if (!PageNav.shouldHandleScroll) return;
 		PageNav.shouldHandleScroll = false;
     const scrollY = window.scrollY;
     const maxScrollY = document.body.scrollHeight - window.innerHeight;
@@ -148,46 +150,40 @@ class PageNav extends React.Component {
   }
 
   setGradientPercent = (sections, currentSection, percentThroughSection, isEnd, indexOfCurrentSection) => {
-		let docStyle = getComputedStyle(document.documentElement);
-    const selectedGradient = this.getLinearGradient(percentThroughSection, docStyle);
-    const isEndGradient = this.getLinearGradient(100, docStyle);
-    const normalGradient = this.getLinearGradient(0, docStyle);
     
     for (let i = 0; i < sections.length; i++) {
-      let gradientToUse = selectedGradient;
+      let gradientToUse = this.getLinearGradient(percentThroughSection, PageNav.docStyle);;
       let shouldAddActiveClass = true;
       const section = sections[i];
       const pageNavSectionName = capitalize(section.dataset.section);
-      const pageNavSectionElement = document.querySelector(`.page-nav__section-${pageNavSectionName}`)
+      const pageNavSectionElement = document.querySelector(`.page-nav__section-${pageNavSectionName}`);
+
+      if (!pageNavSectionElement || !pageNavSectionElement.parentNode) return;
+
       const shouldSetEnd = isEnd && i >= indexOfCurrentSection;
-
-
       if (shouldSetEnd) {
-        gradientToUse = isEndGradient;
+        gradientToUse = this.getLinearGradient(100, PageNav.docStyle);
       }
       else if (!currentSection?.className.match(new RegExp(pageNavSectionName, 'ig'))) {
-        gradientToUse = normalGradient;
+        gradientToUse = this.getLinearGradient(0, PageNav.docStyle);
         shouldAddActiveClass = false;
       }
 
-      if (!pageNavSectionElement) return;
       pageNavSectionElement.style.backgroundImage = gradientToUse;
 
       if (shouldAddActiveClass) {
-        pageNavSectionElement.parentNode?.classList?.add(PageNav.selectedClass);
+        pageNavSectionElement.parentNode.classList.add(PageNav.selectedClass);
 
-        let amountToScale = PageNav.activeScaleRange.max;
-        if (!shouldSetEnd) {
-          amountToScale = PageNav.activeScaleRange.min + ((PageNav.activeScaleRange.max - PageNav.activeScaleRange.min) * percentThroughSection / 100);
-        }
+        // let amountToScale = PageNav.activeScaleRange.max;
+        // if (!shouldSetEnd) {
+        //   amountToScale = PageNav.activeScaleRange.min + ((PageNav.activeScaleRange.max - PageNav.activeScaleRange.min) * percentThroughSection / 100);
+        // }
 
-        const newValue = `${PageNav.activeScaleVarName}: ${amountToScale}`;
-        document.documentElement.style.cssText += newValue;
+        // const newValue = `${PageNav.activeScaleVarName}: ${amountToScale}`;
+        // document.documentElement.style.cssText += newValue;
 
       }
-      else pageNavSectionElement.parentNode?.classList?.remove(PageNav.selectedClass);
-
-      
+      else pageNavSectionElement.parentNode.classList.remove(PageNav.selectedClass);      
     }
   }
 
@@ -273,9 +269,12 @@ class PageNav extends React.Component {
   }
 
   renderBridgeSections = () => {
-    this.checkShouldSetPreviousUrl();
     if (this.props.isMobile) return this.renderMobileBridge();
-    else return this.renderFullBridge();
+    else {
+      this.checkShouldSetPreviousUrl();
+      
+      return this.renderFullBridge();
+    }
   }
 
   handleSectionClick = (e) => {

@@ -413,7 +413,6 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 	//adding scroll listener
 	useEffect(() => {
 		const handleScroll = (e) => {
-			console.log('handleScroll------------------------------------------------');
 			if (isMobile) document.querySelector('.hero')?.classList.remove('d-none');
 			if (window.scrollY >= window.innerHeight / 2) {
 				document.querySelector('.arrow-button--right')?.classList.remove('d-none');
