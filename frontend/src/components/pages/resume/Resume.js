@@ -115,7 +115,7 @@ class Resume extends React.Component {
 				},
 				{
 					title: 'rxjs',
-					percent: 30,
+					percent: 25,
 				},
 				{
 					title: 'socket.io',

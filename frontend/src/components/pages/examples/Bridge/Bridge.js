@@ -163,17 +163,15 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 					>
 						<p>
 						<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> took roughly 8 months to complete.&nbsp; It runs smoothly on Android 10+, Firefox 70+, and Chrome 70+ (but not on mobile iOS devices due to paperJS issues that I couldn't resolve due to the fact that I don't have access to an iOS device). &nbsp; It can host multiple simultaneous games, but is unlikely to run more a thousand simultaneous games in its current state.&nbsp; </p>
-						<h4>Have a look at some of the fun features in the &nbsp;
+						<p>Have a look at some of the fun features in the &nbsp;
 							<BridgeSectionLink
 								isEmbeddedLink={true}
 								content="feature's section"
 								sectionToSkipTo='features'
-							></BridgeSectionLink>
-						</h4>
-						<h4>
-							Check out some of the 
+							></BridgeSectionLink>&nbsp;
+							or check out some of the 
 							<EmbeddedLink href="https://github.com/Beschuetzer/Bridge">source code.</EmbeddedLink>
-						</h4>
+						</p>
 					</BridgeCardSection>
 					</BridgeCardSection>
 

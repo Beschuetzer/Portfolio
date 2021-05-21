@@ -74,6 +74,7 @@
   --hero-more-y-translate: -50%;
   --bridge-section-height: 1px;
   --bridge-section-padding: 0;
+  --arrow-button-rotation: 180deg;
   --arrow-button-fill-left: var(--color-primary-bridge-1);
   --arrow-button-fill-right: var(--color-primary-bridge-1);
   --arrow-button-fill-hover: var(--color-primary-bridge-2);
@@ -3099,7 +3100,7 @@ div.references__name {
 }
 .arrow-button--left svg {
   fill: var(--arrow-button-left-fill);
-  transform: rotate(90deg) scale(var(--bridge-arrow-hover-scale-amount));
+  transform: rotate(var(--arrow-button-rotation)) scale(var(--bridge-arrow-hover-scale-amount));
 }
 .arrow-button--left:hover svg {
   fill: var(--arrow-button-left-fill-hover);
@@ -3114,7 +3115,7 @@ div.references__name {
 }
 .arrow-button--right svg {
   fill: var(--arrow-button-right-fill);
-  transform: rotate(-90deg) scale(var(--bridge-arrow-hover-scale-amount));
+  transform: rotate(0) scale(var(--bridge-arrow-hover-scale-amount));
 }
 .arrow-button--right:hover svg {
   fill: var(--arrow-button-right-fill-hover);

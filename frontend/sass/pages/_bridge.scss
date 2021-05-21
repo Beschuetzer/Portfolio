@@ -708,7 +708,7 @@ $padding-nav-switch: $default-font-size * .5;
 		& svg {
 			fill: var(--arrow-button-left-fill);
 			// transform: translateY(.05vw) rotate(90deg);
-			transform: rotate(90deg) scale(var(--bridge-arrow-hover-scale-amount));
+			transform: rotate(var(--arrow-button-rotation)) scale(var(--bridge-arrow-hover-scale-amount));
 		}
 
 		&:hover svg{
@@ -729,7 +729,7 @@ $padding-nav-switch: $default-font-size * .5;
 		& svg {
 			fill: var(--arrow-button-right-fill);
 			// transform: translateX(-.025vw) rotate(-90deg);
-			transform: rotate(-90deg) scale(var(--bridge-arrow-hover-scale-amount));
+			transform: rotate(0) scale(var(--bridge-arrow-hover-scale-amount));
 		}
 
 		&:hover svg {
