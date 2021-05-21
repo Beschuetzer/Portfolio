@@ -406,9 +406,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 	const handleMouseLeave = (e) => {
 		const target = e.currentTarget;
-		setTimeout(() => {
+		// setTimeout(() => {
 			target?.classList.remove("z-index-content");
-		}, CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION);
+		// }, CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION);
 	};
 
 	const handleProgressBarClick = (e) => {

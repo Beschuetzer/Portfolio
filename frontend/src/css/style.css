@@ -2344,8 +2344,8 @@ body {
 }
 @media only screen and (max-width: 52.6875em) {
   .resume__section-work-history .resume__card {
-    background-color: var(--color-primary-3);
     background-image: var(--color-primary-3);
+    background-color: var(--color-primary-3);
   }
 }
 .resume__section-education .resume__card {

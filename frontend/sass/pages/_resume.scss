@@ -97,8 +97,8 @@
 				// background-size: cover;
 			
 				@include respond(tab-port) {
-					background-color: var(--color-primary-3);
 					background-image: var(--color-primary-3);
+					background-color: var(--color-primary-3);
 				}
 			}
 		}
