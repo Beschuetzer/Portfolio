@@ -9,7 +9,7 @@ import {
 	MOBILE_BREAK_POINT_WIDTH,
 } from './constants';
 
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Examples from "./pages/examples/Examples";
