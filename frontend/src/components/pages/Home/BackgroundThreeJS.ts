@@ -7,8 +7,12 @@
 // Add the refractionRatio property to your Material
 
 import * as THREE from 'three'
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+
+import img from '../../../imgs/bridge-background-2.jpg';
 // import Stats from 'three/examples/jsm/libs/stats.module'
+// import { GUI } from 'three/examples/jsm/libs/dat.gui.module'
+
 
 const scene: THREE.Scene = new THREE.Scene()
 scene.background = new THREE.Color(0x87ceeb)
@@ -36,12 +40,14 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.shadowMap.enabled = true
 document.body.appendChild(renderer.domElement)
 
-// const orbitControls = new OrbitControls(camera, renderer.domElement)
-// orbitControls.dampingFactor = .1
-// orbitControls.enableDamping = true
+const orbitControls = new OrbitControls(camera, renderer.domElement)
+orbitControls.dampingFactor = .1
+orbitControls.enableDamping = true;
+orbitControls.enableZoom = false;
+orbitControls.enableKeys = false;
 
 const planeGeometry: THREE.PlaneGeometry = new THREE.PlaneGeometry(25, 25)
-const texture = new THREE.TextureLoader().load("img/grid.png")
+const texture = new THREE.TextureLoader().load(img)
 const plane: THREE.Mesh = new THREE.Mesh(planeGeometry, new THREE.MeshPhongMaterial({ map: texture }))
 plane.rotateX(-Math.PI / 2)
 plane.receiveShadow = true
@@ -69,9 +75,62 @@ scene.add(pivot2);
 const pivot3 = new THREE.Object3D();
 scene.add(pivot3);
 
-const [ball1, ball2, ball3] = setupBalls();
+const material1 = new THREE.MeshPhongMaterial({
+    shininess: 100,
+    color: 0xffffff,
+    specular: 0xffffff,
+    envMap: cubeRenderTarget1.texture,
+    refractionRatio: .5,
+    transparent: true,
+    side: THREE.BackSide,
+    combine: THREE.MixOperation
+});
+const material2 = new THREE.MeshPhongMaterial({
+    shininess: 100,
+    color: 0xffffff,
+    specular: 0xffffff,
+    envMap: cubeRenderTarget2.texture,
+    refractionRatio: .5,
+    transparent: true,
+    side: THREE.BackSide,
+    combine: THREE.MixOperation
+});
+const material3 = new THREE.MeshPhongMaterial({
+    shininess: 100,
+    color: 0xffffff,
+    specular: 0xffffff,
+    envMap: cubeRenderTarget3.texture,
+    refractionRatio: .5,
+    transparent: true,
+    side: THREE.BackSide,
+    combine: THREE.MixOperation
+});
 
-// const data = { refractionRatio: 0 }
+cubeRenderTarget1.texture.mapping = THREE.CubeRefractionMapping
+cubeRenderTarget2.texture.mapping = THREE.CubeRefractionMapping
+cubeRenderTarget3.texture.mapping = THREE.CubeRefractionMapping
+
+const ball1 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), material1);
+ball1.position.set(1, 1.1, 0);
+ball1.castShadow = true;
+ball1.receiveShadow = true;
+ball1.add(cubeCamera1);
+pivot1.add(ball1);
+
+const ball2 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), material2);
+ball2.position.set(3.1, 1.1, 0);
+ball2.castShadow = true;
+ball2.receiveShadow = true;
+ball2.add(cubeCamera2);
+pivot2.add(ball2);
+
+const ball3 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), material3);
+ball3.position.set(5.2, 1.1, 0);
+ball3.castShadow = true;
+ball3.receiveShadow = true;
+ball3.add(cubeCamera3);
+pivot3.add(ball3);
+
 
 // const gui = new GUI()
 // const refractionFolder = gui.addFolder('Refraction')
@@ -117,65 +176,4 @@ function render() {
     ball3.visible = true
 
     renderer.render(scene, camera)
-}
-
-function setupBalls() {
-    const material1 = new THREE.MeshPhongMaterial({
-        shininess: 100,
-        color: 0xffffff,
-        specular: 0xffffff,
-        envMap: cubeRenderTarget1.texture,
-        refractionRatio: .5,
-        transparent: true,
-        side: THREE.FrontSide,
-        combine: THREE.MixOperation
-    });
-    const material2 = new THREE.MeshPhongMaterial({
-        shininess: 100,
-        color: 0xffffff,
-        specular: 0xffffff,
-        envMap: cubeRenderTarget2.texture,
-        refractionRatio: .5,
-        transparent: true,
-        side: THREE.FrontSide,
-        combine: THREE.MixOperation
-    });
-    const material3 = new THREE.MeshPhongMaterial({
-        shininess: 100,
-        color: 0xffffff,
-        specular: 0xffffff,
-        envMap: cubeRenderTarget3.texture,
-        refractionRatio: .5,
-        transparent: true,
-        side: THREE.FrontSide,
-        combine: THREE.MixOperation
-    });
-    
-    cubeRenderTarget1.texture.mapping = THREE.CubeRefractionMapping
-    cubeRenderTarget2.texture.mapping = THREE.CubeRefractionMapping
-    cubeRenderTarget3.texture.mapping = THREE.CubeRefractionMapping
-    
-    const ball1 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), material1);
-    ball1.position.set(1, 1.1, 0);
-    ball1.castShadow = true;
-    ball1.receiveShadow = true;
-    ball1.add(cubeCamera1);
-    pivot1.add(ball1);
-    
-    const ball2 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), material2);
-    ball2.position.set(3.1, 1.1, 0);
-    ball2.castShadow = true;
-    ball2.receiveShadow = true;
-    ball2.add(cubeCamera2);
-    pivot2.add(ball2);
-    
-    const ball3 = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), material3);
-    ball3.position.set(5.2, 1.1, 0);
-    ball3.castShadow = true;
-    ball3.receiveShadow = true;
-    ball3.add(cubeCamera3);
-    pivot3.add(ball3);
-
-    const balls = [ball1, ball2, ball3]
-    return balls;
 }

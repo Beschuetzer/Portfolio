@@ -17,9 +17,11 @@ const Home = ({repos, getRepositories}) => {
 	}, [])
 
 	return (
-		<section className="home">
+		<React.Fragment>
+			<section className="home">
+			</section>
 			<canvas className={HOME_CANVAS_CLASSNAME}></canvas>
-		</section>
+		</React.Fragment>
 	);
 }
 
