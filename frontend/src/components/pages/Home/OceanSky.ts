@@ -2,15 +2,19 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
-// import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
+import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Water } from 'three/examples/jsm/objects/Water.js';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
 
 import waterNormals from '../../../imgs/waterNormals.jpg';
+import bumpMap from '../../../imgs/bridge-background-2.jpg';
 
 let camera: any, scene: any, renderer: any;
 let controls, water: any, sun: any, mesh: any;
+
+const sunColor = 0xaabb00;
+const waterColor = 0x341e3f;
 
 init();
 // animate();
@@ -29,14 +33,17 @@ function init() {
   //
 
   scene = new THREE.Scene();
-
   camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
   camera.position.set( 0, 0, 100 );
 
-  //
 
-  sun = new THREE.Vector3();
-
+  //light
+  var light = new THREE.PointLight(waterColor, 100);
+  light.position.y = 2;
+  scene.add(light);
+  
+  var helper = new THREE.PointLightHelper(light);
+  scene.add(helper);
   // Water
 
   const waterGeometry = new THREE.PlaneGeometry( 5000, 10000 );
@@ -50,8 +57,8 @@ function init() {
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
       } ),
       sunDirection: new THREE.Vector3(),
-      sunColor: 0xaabb00,
-      waterColor: 0x341e3f,
+      sunColor,
+      waterColor,
       distortionScale: 3.7,
       fog: scene.fog !== undefined
     }
@@ -64,7 +71,7 @@ function init() {
   // Skybox
 
   const sky = new Sky();
-  sky.scale.setScalar( 10000 );
+  sky.scale.setScalar( 500 );
   scene.add( sky );
 
   const skyUniforms = sky.material.uniforms;
@@ -80,11 +87,15 @@ function init() {
   skyUniforms[ 'mieDirectionalG' ].value = 0.8;
 
   const parameters = {
-    elevation: 2,
+    elevation: 4,
     azimuth: 180
   };
 
+  if (document.body) document.body.lastElementChild?.classList.add('home__canvas');
+
   const pmremGenerator = new THREE.PMREMGenerator( renderer );
+
+  sun = new THREE.Vector3();
 
   function updateSun() {
 
@@ -96,8 +107,7 @@ function init() {
     sky.material.uniforms[ 'sunPosition' ].value.copy( sun );
     water.material.uniforms[ 'sunDirection' ].value.copy( sun ).normalize();
 
-    // scene.environment = pmremGenerator.fromScene( sky as any ).texture;
-
+    scene.environment = pmremGenerator.fromScene( sky as any ).texture;
   }
 
   updateSun();
@@ -105,7 +115,9 @@ function init() {
   //
 
   const geometry = new THREE.BoxGeometry( 30, 30, 30 );
-  const material = new THREE.MeshStandardMaterial( { roughness: 0 } );
+  const material = new THREE.MeshPhongMaterial(  );
+  const bumpTexture = new THREE.TextureLoader().load(bumpMap)
+  material.map = bumpTexture;
 
   mesh = new THREE.Mesh( geometry, material );
   scene.add( mesh );
