@@ -125,26 +125,26 @@ function init() {
 
 
   //
-//   var materials = [
-//     new THREE.MeshPhongMaterial({
-//       map: new THREE.TextureLoader().load(cubeMap1)
-//     }),
-//     new THREE.MeshPhongMaterial({
-//       map: new THREE.TextureLoader().load(cubeMap2)
-//     }),
-//     new THREE.MeshPhongMaterial({
-//       map: new THREE.TextureLoader().load(cubeMap3)
-//     }),
-//     new THREE.MeshPhongMaterial({
-//       map: new THREE.TextureLoader().load(cubeMap4)
-//     }),
-//     new THREE.MeshPhongMaterial({
-//       map: new THREE.TextureLoader().load(cubeMap5)
-//     }),
-//     new THREE.MeshPhongMaterial({
-//       map: new THREE.TextureLoader().load(cubeMap6)
-//     }),
-//  ];
+  const materials = [
+    new THREE.MeshPhongMaterial({
+      map: new THREE.TextureLoader().load(cubeMap1)
+    }),
+    new THREE.MeshPhongMaterial({
+      map: new THREE.TextureLoader().load(cubeMap2)
+    }),
+    new THREE.MeshPhongMaterial({
+      map: new THREE.TextureLoader().load(cubeMap3)
+    }),
+    new THREE.MeshPhongMaterial({
+      map: new THREE.TextureLoader().load(cubeMap4)
+    }),
+    new THREE.MeshPhongMaterial({
+      map: new THREE.TextureLoader().load(cubeMap5)
+    }),
+    new THREE.MeshPhongMaterial({
+      map: new THREE.TextureLoader().load(cubeMap6)
+    }),
+ ];
 
   const geometry = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize);
   const material = new THREE.MeshPhongMaterial({
@@ -153,21 +153,8 @@ function init() {
   });
   const bumpTexture = new THREE.TextureLoader().load(bumpMap)
   material.map = bumpTexture;
-  const envTexture = new THREE.CubeTextureLoader().load([
-    cubeMap1,
-    cubeMap2,
-    cubeMap3,
-    cubeMap4,
-    cubeMap5,
-    cubeMap6,
-    cubeMap7,
-    cubeMap8,
-  ])
-  // envTexture.mapping = THREE.CubeReflectionMapping
-  envTexture.mapping = THREE.CubeRefractionMapping
-  material.envMap = envTexture
 
-  mesh = new THREE.Mesh( geometry, material );
+  mesh = new THREE.Mesh( geometry, materials );
   scene.add( mesh );
 
   //
@@ -220,7 +207,7 @@ function render() {
 
   mesh.position.y = Math.sin( time ) * 25;
   mesh.rotation.x = time * 0.5;
-  mesh.rotation.z = time * 0.51;
+  mesh.rotation.z = time * 0.5;
 
   water.material.uniforms[ 'time' ].value += waterAnimationSpeed / 60.0;
 
