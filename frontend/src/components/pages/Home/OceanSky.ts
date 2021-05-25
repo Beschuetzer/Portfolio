@@ -2,19 +2,21 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
-import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
+// import { gui } from 'three/examples/jsm/libs/dat.gui.module.js';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Water } from 'three/examples/jsm/objects/Water.js';
 import { Sky } from 'three/examples/jsm/objects/Sky.js';
 
 import waterNormals from '../../../imgs/waterNormals.jpg';
 import bumpMap from '../../../imgs/bridge-background-2.jpg';
+import { SpotLight } from 'three';
 
 let camera: any, scene: any, renderer: any;
 let controls, water: any, sun: any, mesh: any;
 
-const sunColor = 0xaabb00;
+const sunColor = 0xaa9800;
 const waterColor = 0x341e3f;
+const spotLightStrengh = 1;
 
 init();
 // animate();
@@ -38,12 +40,10 @@ function init() {
 
 
   //light
-  var light = new THREE.PointLight(waterColor, 100);
-  light.position.y = 2;
-  scene.add(light);
+  var spotLight = new THREE.SpotLight(sunColor, spotLightStrengh);
+  spotLight.position.set(0,100, 100);
+  scene.add(spotLight);
   
-  var helper = new THREE.PointLightHelper(light);
-  scene.add(helper);
   // Water
 
   const waterGeometry = new THREE.PlaneGeometry( 5000, 10000 );
@@ -115,7 +115,10 @@ function init() {
   //
 
   const geometry = new THREE.BoxGeometry( 30, 30, 30 );
-  const material = new THREE.MeshPhongMaterial(  );
+  const material = new THREE.MeshPhongMaterial({
+    reflectivity: 0,
+    refractionRatio: 0,
+  });
   const bumpTexture = new THREE.TextureLoader().load(bumpMap)
   material.map = bumpTexture;
 
