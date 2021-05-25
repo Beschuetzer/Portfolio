@@ -8,9 +8,22 @@
 			import { Sky } from 'three/examples/jsm/objects/Sky.js';
 
       import waterNormals from '../../../imgs/waterNormals.jpg';
+      import { Vector3 } from 'three';
 
 			let camera: any, scene: any, renderer: any;
-			let controls, water: any, sun: any, mesh: any;
+			let controls, water: any, sun: Vector3, mesh: any;
+      let sky = new Sky();
+
+      const parameters = {
+        elevation: {
+          initial: 25,
+          end: 20,
+        },
+        azimuth: 180,
+      };
+
+      const phi = THREE.MathUtils.degToRad( 90 - parameters.elevation.initial );
+      const theta = THREE.MathUtils.degToRad( parameters.azimuth );
 
 			init();
 			// animate();
@@ -53,7 +66,7 @@
 						} ),
 						sunDirection: new THREE.Vector3(),
 						sunColor: 0xffffff,
-						waterColor: 0x001e0f,
+						waterColor: 0xffffff,
 						distortionScale: 3.7,
 						fog: scene.fog !== undefined
 					}
@@ -65,49 +78,29 @@
 
 				// Skybox
 
-				const sky = new Sky();
 				sky.scale.setScalar( 10000 );
 				scene.add( sky );
 
 				const skyUniforms = sky.material.uniforms;
 
-				skyUniforms[ 'turbidity' ].value = 10;
-				skyUniforms[ 'rayleigh' ].value = 2;
-				skyUniforms[ 'mieCoefficient' ].value = 0.005;
+				// skyUniforms[ 'turbidity' ].value = 10;
+				// skyUniforms[ 'rayleigh' ].value = 2;
+				// skyUniforms[ 'mieCoefficient' ].value = 0.005;
+				// skyUniforms[ 'mieDirectionalG' ].value = 0.8;
+
+        skyUniforms[ 'turbidity' ].value = 10;
+				skyUniforms[ 'rayleigh' ].value = 5;
+				skyUniforms[ 'mieCoefficient' ].value = 0.001;
 				skyUniforms[ 'mieDirectionalG' ].value = 0.8;
 
-				const parameters = {
-					elevation: 2,
-					azimuth: 180
-				};
+				
 
-				const pmremGenerator = new THREE.PMREMGenerator( renderer );
 
-				function updateSun() {
-
-					const phi = THREE.MathUtils.degToRad( 90 - parameters.elevation );
-					const theta = THREE.MathUtils.degToRad( parameters.azimuth );
-
-					sun.setFromSphericalCoords( 1, phi, theta );
-
-					sky.material.uniforms[ 'sunPosition' ].value.copy( sun );
-					water.material.uniforms[ 'sunDirection' ].value.copy( sun ).normalize();
-
-					// scene.environment = pmremGenerator.fromScene( sky ).texture;
-
-				}
+        const lastChildOfBody = document.body.lastElementChild;
+        if (lastChildOfBody) lastChildOfBody.classList.add('home__canvas');
+				
 
 				updateSun();
-
-				//
-
-				const geometry = new THREE.BoxGeometry( 30, 30, 30 );
-				const material = new THREE.MeshStandardMaterial( { roughness: 0 } );
-
-				mesh = new THREE.Mesh( geometry, material );
-				scene.add( mesh );
-
-				//
 
 				controls = new OrbitControls( camera, renderer.domElement );
 				controls.maxPolarAngle = Math.PI * 0.495;
@@ -116,11 +109,15 @@
 				controls.maxDistance = 200.0;
 				controls.update();
 
+				//
 
-
+				// stats = new Stats();
+				// container.appendChild( stats.dom );
 				window.addEventListener( 'resize', onWindowResize );
 
 			}
+
+      
 
 			function onWindowResize() {
 
@@ -139,16 +136,24 @@
 
 			}
 
+      let i = 0;
 			function render() {
+        i+=.0025;
+        // updateSun(i);
+				// const time = performance.now() * 0.001;
+				// mesh.rotation.z = time * 0.51;
 
-				const time = performance.now() * 0.001;
-
-				mesh.position.y = Math.sin( time ) * 20 + 5;
-				mesh.rotation.x = time * 0.5;
-				mesh.rotation.z = time * 0.51;
-
-				water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
+				water.material.uniforms[ 'time' ].value += 1 / 60.0;
 
 				renderer.render( scene, camera );
 
 			}
+
+      function updateSun(phiChange = 0) {
+        if (phiChange < .425) sun.setFromSphericalCoords( 1, phi + phiChange, theta );
+        sky.material.uniforms[ 'sunPosition' ].value.copy( sun );
+        water.material.uniforms[ 'sunDirection' ].value.copy( sun ).normalize();
+
+        // const pmremGenerator = new THREE.PMREMGenerator( renderer );
+        // scene.environment = pmremGenerator.fromScene( sky as any ).texture;
+      }
