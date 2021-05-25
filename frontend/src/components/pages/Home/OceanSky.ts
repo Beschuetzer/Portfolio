@@ -9,21 +9,30 @@ import { Sky } from 'three/examples/jsm/objects/Sky.js';
 
 import waterNormals from '../../../imgs/waterNormals.jpg';
 import bumpMap from '../../../imgs/bridge-background-2.jpg';
-import { SpotLight } from 'three';
+import cubeMap1 from '../../../imgs/bridge-background.jpg';
+import cubeMap2 from '../../../imgs/bridge-section-1.jpg';
+import cubeMap3 from '../../../imgs/bridge-section-2.jpg';
+import cubeMap4 from '../../../imgs/bridge-section-3.jpg';
+import cubeMap5 from '../../../imgs/bridge-section-4.jpg';
+import cubeMap6 from '../../../imgs/bridge-section-5.jpg';
+import cubeMap7 from '../../../imgs/bridge-section-6.jpg';
+import cubeMap8 from '../../../imgs/resume-background-1.jpg';
 
 let camera: any, scene: any, renderer: any;
-let controls, water: any, sun: any, mesh: any;
+let orbitControls, water: any, sun: any, mesh: any;
 
 const sunColor = 0xaa9800;
 const waterColor = 0x341e3f;
 const spotLightStrengh = 1;
+const cubeSize = 33;
+const cubeAnimationSpeed = 0.00075;
+const waterAnimationSpeed = .75;
+const orbitControlsMaxPolarAngleFactor = 0.495;
 
 init();
 // animate();
 
 function init() {
-
-
   //
 
   renderer = new THREE.WebGLRenderer();
@@ -112,27 +121,75 @@ function init() {
 
   updateSun();
 
-  //
 
-  const geometry = new THREE.BoxGeometry( 30, 30, 30 );
+
+
+  //
+//   var materials = [
+//     new THREE.MeshPhongMaterial({
+//       map: new THREE.TextureLoader().load(cubeMap1)
+//     }),
+//     new THREE.MeshPhongMaterial({
+//       map: new THREE.TextureLoader().load(cubeMap2)
+//     }),
+//     new THREE.MeshPhongMaterial({
+//       map: new THREE.TextureLoader().load(cubeMap3)
+//     }),
+//     new THREE.MeshPhongMaterial({
+//       map: new THREE.TextureLoader().load(cubeMap4)
+//     }),
+//     new THREE.MeshPhongMaterial({
+//       map: new THREE.TextureLoader().load(cubeMap5)
+//     }),
+//     new THREE.MeshPhongMaterial({
+//       map: new THREE.TextureLoader().load(cubeMap6)
+//     }),
+//  ];
+
+  const geometry = new THREE.BoxGeometry( cubeSize, cubeSize, cubeSize);
   const material = new THREE.MeshPhongMaterial({
     reflectivity: 0,
     refractionRatio: 0,
   });
   const bumpTexture = new THREE.TextureLoader().load(bumpMap)
   material.map = bumpTexture;
+  const envTexture = new THREE.CubeTextureLoader().load([
+    cubeMap1,
+    cubeMap2,
+    cubeMap3,
+    cubeMap4,
+    cubeMap5,
+    cubeMap6,
+    cubeMap7,
+    cubeMap8,
+  ])
+  // envTexture.mapping = THREE.CubeReflectionMapping
+  envTexture.mapping = THREE.CubeRefractionMapping
+  material.envMap = envTexture
 
   mesh = new THREE.Mesh( geometry, material );
   scene.add( mesh );
 
   //
 
-  controls = new OrbitControls( camera, renderer.domElement );
-  controls.maxPolarAngle = Math.PI * 0.495;
-  controls.target.set( 0, 10, 0 );
-  controls.minDistance = 40.0;
-  controls.maxDistance = 200.0;
-  controls.update();
+  orbitControls = new OrbitControls( camera, renderer.domElement );
+  orbitControls.target.set( 0, 10, 0 );
+  orbitControls.minDistance = 100;
+  orbitControls.maxDistance = 100;
+  orbitControls.minAzimuthAngle = 0;
+  orbitControls.maxAzimuthAngle = 0;
+  orbitControls.maxPolarAngle = Math.PI * orbitControlsMaxPolarAngleFactor;
+  orbitControls.minPolarAngle = orbitControls.maxPolarAngle;
+  orbitControls.mouseButtons = {
+    LEFT: THREE.MOUSE.ROTATE,
+    MIDDLE: THREE.MOUSE.ROTATE,
+    RIGHT: THREE.MOUSE.ROTATE,  
+  }
+  orbitControls.touches = {
+      ONE: THREE.TOUCH.ROTATE,
+      TWO: THREE.TOUCH.ROTATE,  
+  }
+  orbitControls.update();
 
 
 
@@ -159,13 +216,13 @@ export function animate() {
 
 function render() {
 
-  const time = performance.now() * 0.001;
+  const time = performance.now() * cubeAnimationSpeed;
 
-  mesh.position.y = Math.sin( time ) * 20 + 5;
+  mesh.position.y = Math.sin( time ) * 25;
   mesh.rotation.x = time * 0.5;
   mesh.rotation.z = time * 0.51;
 
-  water.material.uniforms[ 'time' ].value += .75 / 60.0;
+  water.material.uniforms[ 'time' ].value += waterAnimationSpeed / 60.0;
 
   renderer.render( scene, camera );
 
