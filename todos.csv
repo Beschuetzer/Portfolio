@@ -40,3 +40,4 @@ OPTIMIZATIONS:
 -add mouse listener that moves sun up and down when moving mouse up and down
 -add clouds to home animation?
 -maybe alternate the rotation speed of cube based on user mouse interactions?
+-add cube bobbing fx (research first)?

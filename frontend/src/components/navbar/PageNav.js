@@ -43,7 +43,6 @@ class PageNav extends React.Component {
 	}
 
   componentDidUpdate () {
-    console.log('componentDidUpdate------------------------------------------------');
     this.updateActiveScaleRange();
     const url = this.props.match.url;
     const pageName = url.slice(url.lastIndexOf('/') + 1);

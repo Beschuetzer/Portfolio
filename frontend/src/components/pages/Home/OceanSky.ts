@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import Stats from "three/examples/jsm/libs/stats.module.js";
-
+// import Stats from "three/examples/jsm/libs/stats.module.js";
 // import { gui } from 'three/examples/jsm/libs/dat.gui.module.js';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Water } from "three/examples/jsm/objects/Water.js";
@@ -20,6 +19,13 @@ import cubeMap6Rotated from "../../../imgs/cube-6-rotated.jpg";
 let camera: any, scene: any, renderer: any, lastClientY: number;
 let orbitControls, water: any, sun: any, mesh: any;
 let id: number;
+
+let canRotateY = false;
+let canRotateX = true;
+let canReset = false;
+let timeOutIdX: any;
+let timeOutIdY: any;
+let i = 0;
 
 const cubeMaterial1 =	new THREE.MeshPhongMaterial({
 	map: new THREE.TextureLoader().load(cubeMap1),
@@ -40,16 +46,38 @@ const cubeMaterial6 =	new THREE.MeshPhongMaterial({
 	map: new THREE.TextureLoader().load(cubeMap6Rotated),
 });
 
+const parameters = {
+	elevation: 1,
+	azimuth: 180,
+};
+
 const sunColor = 0xaa9800;
+const skyTurbidity = 10;   //(10)
+const skyRayleigh = 5 //(2)
+const skyMieCoefficient = .0025; //(.005)
+const skyMieDirectionalG = .8; //(.8)
+
+
+const spotLightStrength = 1;
+const spotLightX = 0;
+const spotLightY = 100;
+const spotLightZ = 300;
+
 const waterColor = 0x341e1f;
-const spotLightStrengh = .9;
-const cubeSize = 33;
+const waterWidthSegments = 10000;
+const waterHeightSegments = waterWidthSegments;
 const waterAnimationSpeed = 0.75;
+
 const orbitControlsMaxPolarAngleFactor = 0.495;
 
-const cubeStartingHeight = 10;
+const cubeSize = 33;
 const cubeRotationSpeed = .0066;
 const cubeRotationDirectionTransitionTime = 250;
+const cubeStartingHeight = 15;
+const cubeMaxHeight = 17.5;
+const cubeMinHeight = 12.5;
+const cubeBobbingDirectionIsUp = true;
+const cubeBobbingSpeed = Math.abs(cubeStartingHeight - cubeMaxHeight) / 90;
 
 export function init() {
 	//
@@ -72,13 +100,13 @@ export function init() {
 	camera.position.set(0, 0, 100);
 
 	//light
-	var spotLight = new THREE.SpotLight(sunColor, spotLightStrengh);
-	spotLight.position.set(0, 100, 100);
+	var spotLight = new THREE.SpotLight(sunColor, spotLightStrength);
+	spotLight.position.set(spotLightX, spotLightY, spotLightZ);
 	scene.add(spotLight);
 
 	// Water
 
-	const waterGeometry = new THREE.PlaneGeometry(5000, 10000);
+	const waterGeometry = new THREE.PlaneGeometry(waterWidthSegments, waterHeightSegments);
 
 	water = new Water(waterGeometry, {
 		textureWidth: 512,
@@ -108,20 +136,10 @@ export function init() {
 
 	const skyUniforms = sky.material.uniforms;
 
-	// skyUniforms[ 'turbidity' ].value = 10;
-	// skyUniforms[ 'rayleigh' ].value = 2;
-	// skyUniforms[ 'mieCoefficient' ].value = 0.005;
-	// skyUniforms[ 'mieDirectionalG' ].value = 0.8;
-
-	skyUniforms["turbidity"].value = 10;
-	skyUniforms["rayleigh"].value = 5;
-	skyUniforms["mieCoefficient"].value = 0.001;
-	skyUniforms["mieDirectionalG"].value = 0.8;
-
-	const parameters = {
-		elevation: .5,
-		azimuth: 180,
-	};
+	skyUniforms["turbidity"].value = skyTurbidity;
+	skyUniforms["rayleigh"].value = skyRayleigh;
+	skyUniforms["mieCoefficient"].value = skyMieCoefficient;
+	skyUniforms["mieDirectionalG"].value = skyMieDirectionalG;
 
 	if (document.body)
 		document.body.lastElementChild?.classList.add("home__canvas");
@@ -214,16 +232,24 @@ export function stopKey() {
 	cancelAnimationFrame(id);
 }
 
-let canRotateY = false;
-let canRotateX = true;
-let canReset = false;
-let timeOutIdX: any;
-let timeOutIdY: any;
-let i = 0;
-
 function render() {
 	const time = i += cubeRotationSpeed;
-  if (mesh.rotation.x < Math.PI * 2 && canRotateX) {
+  handleCubeRotation(time);
+	// handleCubeBobbing(time);
+
+	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
+
+	renderer.render(scene, camera);
+}
+
+function handleCubeBobbing(time: number) {
+	if (mesh.position.y < cubeMaxHeight && cubeBobbingDirectionIsUp) mesh.position.y += cubeBobbingSpeed;
+	else {
+	}
+}
+
+function handleCubeRotation(time: number) {
+	if (mesh.rotation.x < Math.PI * 2 && canRotateX) {
     mesh.rotation.x = time;
     clearTimeout(timeOutIdX);
     timeOutIdX = setTimeout(() => {
@@ -252,8 +278,4 @@ function render() {
     canReset = false;
 		i = 0;
   }
-
-	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
-
-	renderer.render(scene, camera);
 }
