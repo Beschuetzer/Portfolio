@@ -40,4 +40,3 @@ OPTIMIZATIONS:
 -add mouse listener that moves sun up and down when moving mouse up and down
 -add clouds to home animation?
 -find image for 6 words to put on cube
--stop animation when going to another page (make sure it stops)

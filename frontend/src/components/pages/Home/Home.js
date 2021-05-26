@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getRepositories } from "../../../actions";
 
-import { animate as animateSky, stopKey as stopSky } from './OceanSky';
+import { animate as animateSky, init, stopKey as stopSky } from './OceanSky';
 
 const Home = ({repos, getRepositories}) => {
 	const HOME_CANVAS_CLASSNAME = 'home__canvas';
@@ -13,12 +13,16 @@ const Home = ({repos, getRepositories}) => {
 
 	//Starting ThreeJS animation
 	useEffect(() => {
+		init();
 		animateSky();
 
 		return (() => {
 			stopSky();
-			document.body.removeChild(document.querySelector(`.${HOME_CANVAS_CLASSNAME}`))
-			document.body.removeChild(document.querySelector(`.${HOME_CANVAS_CLASSNAME}`))
+			let canvasElement = document.querySelector(`.${HOME_CANVAS_CLASSNAME}`);
+			if (canvasElement) document.body?.removeChild(canvasElement);
+
+			canvasElement = document.querySelector(`.${HOME_CANVAS_CLASSNAME}`);
+			if (canvasElement) document.body?.removeChild(canvasElement);
 		})
 	}, [])
 

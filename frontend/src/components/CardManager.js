@@ -27,21 +27,17 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
       for (let i = 0; i < bridgeCards.length; i++) {
         const card = bridgeCards[i];
         const currentTop = card.getBoundingClientRect().top;
-        // console.log('previousTop =', previousTop);
-        // console.log('currentTop =', currentTop);
         if (previousTop === -1) {
           previousTop = currentTop;
           continue
         }
         if ( previousTop !== currentTop) return i;
-        // console.log('card =', card);
       }
       return cardNumberToReturn
     }
 
     const secondRowCardNumber = getSecondRowStartCardNumber();
     if (secondRowCardNumber !== lastSecondRowCardNumber) {
-      console.log('setting new card------------------------------------------------');
       setLastSecondRowCardNumber(secondRowCardNumber);
     }
   }, [lastSecondRowCardNumber, setLastSecondRowCardNumber, bridgeCards])
@@ -131,7 +127,6 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
       }
     }
     
-    console.log('changing transform origins------------------------------------------------');
     if (!bridgeCards) return;
     setTransformOrigins();     
   }, [lastSecondRowCardNumber, bridgeCards])
