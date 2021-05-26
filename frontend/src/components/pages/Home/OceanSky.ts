@@ -24,11 +24,10 @@ const sunColor = 0xaa9800;
 const waterColor = 0x341e1f;
 const spotLightStrengh = 1;
 const cubeSize = 33;
-const cubeAnimationSpeed = 0.00075;
 const waterAnimationSpeed = 0.75;
 const orbitControlsMaxPolarAngleFactor = 0.495;
-const cubeRotationSpeed = .5;
-const cubeXStopPoint = 6.2;
+const cubeRotationSpeed = .0066;
+const cubeRotationDirectionTransitionTime = 250;
 
 export function init() {
 	//
@@ -218,35 +217,33 @@ let timeOutIdY: any;
 let i = 0;
 
 function render() {
-	const time = i += .0066;
-  if (mesh.rotation.x <= cubeXStopPoint && canRotateX) {
+	const time = i += cubeRotationSpeed;
+  if (mesh.rotation.x < Math.PI * 2 && canRotateX) {
     mesh.rotation.x = time;
-    console.log('x------------------------------------------------');
     clearTimeout(timeOutIdX);
     timeOutIdX = setTimeout(() => {
       canRotateY = true;
-    }, 250);
+			canRotateX = false;
+			i = 0;
+    }, cubeRotationDirectionTransitionTime);
   }
 
-  if (canRotateY && mesh.rotation.y <= 1.5 * cubeXStopPoint)  {
-    mesh.rotation.y = time * cubeRotationSpeed;
-    console.log('y------------------------------------------------');
+  if (canRotateY && mesh.rotation.y < (Math.PI * 2))  {
+    mesh.rotation.y = time;
     clearTimeout(timeOutIdY);
     timeOutIdY = setTimeout(() => {
+			canRotateY = false;
       canReset = true;
-    }, 250);
+    }, cubeRotationDirectionTransitionTime);
   }
 
   if (canReset) {
-    console.log('resetting------------------------------------------------');
-    canRotateY = false;
-    canRotateX = true;
     mesh.rotation.x = 0;
     mesh.rotation.y = 0;
+    canRotateY = false;
+    canRotateX = true;
     canReset = false;
-    performance.clearMarks();
-    performance.clearMeasures();
-    performance.clearResourceTimings();
+		i = 0;
   }
 
 	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
