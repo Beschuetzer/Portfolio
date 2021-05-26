@@ -20,12 +20,12 @@ let camera: any, scene: any, renderer: any, lastClientY: number;
 let orbitControls, water: any, sun: any, mesh: any;
 let id: number;
 
-let canRotateY = false;
-let canRotateX = true;
-let canReset = false;
-let timeOutIdX: any;
-let timeOutIdY: any;
 let i = 0;
+let cubeCanRotateY = false;
+let cubeCanRotateX = true;
+let cubeCanReset = false;
+let cubeTimeOutIdX: any;
+let cubeTimeOutIdY: any;
 
 const cubeMaterial1 =	new THREE.MeshPhongMaterial({
 	map: new THREE.TextureLoader().load(cubeMap1),
@@ -249,33 +249,33 @@ function handleCubeBobbing(time: number) {
 }
 
 function handleCubeRotation(time: number) {
-	if (mesh.rotation.x < Math.PI * 2 && canRotateX) {
+	if (mesh.rotation.x < Math.PI * 2 && cubeCanRotateX) {
     mesh.rotation.x = time;
-    clearTimeout(timeOutIdX);
-    timeOutIdX = setTimeout(() => {
-      canRotateY = true;
-			canRotateX = false;
+    clearTimeout(cubeTimeOutIdX);
+    cubeTimeOutIdX = setTimeout(() => {
+      cubeCanRotateY = true;
+			cubeCanRotateX = false;
 			cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6);
 			i = 0;
     }, cubeRotationDirectionTransitionTime);
   }
 
-  if (canRotateY && mesh.rotation.y > -(Math.PI * 2))  {
+  if (cubeCanRotateY && mesh.rotation.y > -(Math.PI * 2))  {
     mesh.rotation.y = -time;
-    clearTimeout(timeOutIdY);
-    timeOutIdY = setTimeout(() => {
-			canRotateY = false;
-      canReset = true;
+    clearTimeout(cubeTimeOutIdY);
+    cubeTimeOutIdY = setTimeout(() => {
+			cubeCanRotateY = false;
+      cubeCanReset = true;
     }, cubeRotationDirectionTransitionTime);
   }
 
-  if (canReset) {
+  if (cubeCanReset) {
 		cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6Rotated);
 		mesh.rotation.x = 0;
     mesh.rotation.y = 0;
-    canRotateY = false;
-    canRotateX = true;
-    canReset = false;
+    cubeCanRotateY = false;
+    cubeCanRotateX = true;
+    cubeCanReset = false;
 		i = 0;
   }
 }
