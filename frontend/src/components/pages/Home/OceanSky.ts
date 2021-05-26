@@ -15,17 +15,39 @@ import cubeMap3 from "../../../imgs/cube-3.jpeg";
 import cubeMap4 from "../../../imgs/cube-4.jpg";
 import cubeMap5 from "../../../imgs/cube-5.jpg";
 import cubeMap6 from "../../../imgs/cube-6.jpg";
+import cubeMap6Rotated from "../../../imgs/cube-6-rotated.jpg";
 
 let camera: any, scene: any, renderer: any, lastClientY: number;
 let orbitControls, water: any, sun: any, mesh: any;
 let id: number;
 
+const cubeMaterial1 =	new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap1),
+});
+const cubeMaterial2 =	new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap2),
+});
+const cubeMaterial3 =	new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap3),
+});
+const cubeMaterial4 =	new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap4),
+});
+const cubeMaterial5 =	new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap5),
+});
+const cubeMaterial6 =	new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap6Rotated),
+});
+
 const sunColor = 0xaa9800;
 const waterColor = 0x341e1f;
-const spotLightStrengh = 1;
+const spotLightStrengh = .9;
 const cubeSize = 33;
 const waterAnimationSpeed = 0.75;
 const orbitControlsMaxPolarAngleFactor = 0.495;
+
+const cubeStartingHeight = 10;
 const cubeRotationSpeed = .0066;
 const cubeRotationDirectionTransitionTime = 250;
 
@@ -123,26 +145,8 @@ export function init() {
 	updateSun();
 
 	//
-	const materials = [
-		new THREE.MeshPhongMaterial({
-			map: new THREE.TextureLoader().load(cubeMap1),
-		}),
-		new THREE.MeshPhongMaterial({
-			map: new THREE.TextureLoader().load(cubeMap2),
-		}),
-		new THREE.MeshPhongMaterial({
-			map: new THREE.TextureLoader().load(cubeMap3),
-		}),
-		new THREE.MeshPhongMaterial({
-			map: new THREE.TextureLoader().load(cubeMap4),
-		}),
-		new THREE.MeshPhongMaterial({
-			map: new THREE.TextureLoader().load(cubeMap5),
-		}),
-		new THREE.MeshPhongMaterial({
-			map: new THREE.TextureLoader().load(cubeMap6),
-		}),
-	];
+
+	const materials = [cubeMaterial1, cubeMaterial2, cubeMaterial3, cubeMaterial4, cubeMaterial5, cubeMaterial6];
 
 	const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
 	const material = new THREE.MeshPhongMaterial({
@@ -153,6 +157,7 @@ export function init() {
 	material.map = bumpTexture;
 
 	mesh = new THREE.Mesh(geometry, materials);
+	mesh.position.y = cubeStartingHeight;
 	scene.add(mesh);
 
 	//
@@ -224,12 +229,13 @@ function render() {
     timeOutIdX = setTimeout(() => {
       canRotateY = true;
 			canRotateX = false;
+			cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6);
 			i = 0;
     }, cubeRotationDirectionTransitionTime);
   }
 
-  if (canRotateY && mesh.rotation.y < (Math.PI * 2))  {
-    mesh.rotation.y = time;
+  if (canRotateY && mesh.rotation.y > -(Math.PI * 2))  {
+    mesh.rotation.y = -time;
     clearTimeout(timeOutIdY);
     timeOutIdY = setTimeout(() => {
 			canRotateY = false;
@@ -238,7 +244,8 @@ function render() {
   }
 
   if (canReset) {
-    mesh.rotation.x = 0;
+		cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6Rotated);
+		mesh.rotation.x = 0;
     mesh.rotation.y = 0;
     canRotateY = false;
     canRotateX = true;
