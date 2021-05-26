@@ -180,7 +180,7 @@ class Resume extends React.Component {
 			],
 			[Resume.webDevSubSkillsLabels[4]]: [
 				{
-					title: 'MongoDB / Mongoose',
+					title: 'Mongoose',
 					percent: 57,
 				},
 				{

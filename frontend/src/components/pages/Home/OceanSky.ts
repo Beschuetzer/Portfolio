@@ -15,19 +15,20 @@ import cubeMap3 from '../../../imgs/bridge-section-2.jpg';
 import cubeMap4 from '../../../imgs/bridge-section-3.jpg';
 import cubeMap5 from '../../../imgs/bridge-section-4.jpg';
 import cubeMap6 from '../../../imgs/bridge-section-5.jpg';
-import cubeMap7 from '../../../imgs/bridge-section-6.jpg';
-import cubeMap8 from '../../../imgs/resume-background-1.jpg';
+import { updateSourceFileNode } from 'typescript';
 
-let camera: any, scene: any, renderer: any;
+let camera: any, scene: any, renderer: any, lastClientY: number;
 let orbitControls, water: any, sun: any, mesh: any;
+let id: number;
 
 const sunColor = 0xaa9800;
-const waterColor = 0x341e3f;
+const waterColor = 0x341e1f;
 const spotLightStrengh = 1;
 const cubeSize = 33;
 const cubeAnimationSpeed = 0.00075;
 const waterAnimationSpeed = .75;
 const orbitControlsMaxPolarAngleFactor = 0.495;
+
 
 init();
 // animate();
@@ -96,7 +97,7 @@ function init() {
   skyUniforms[ 'mieDirectionalG' ].value = 0.8;
 
   const parameters = {
-    elevation: 4,
+    elevation: 3,
     azimuth: 180
   };
 
@@ -181,7 +182,22 @@ function init() {
 
 
   window.addEventListener( 'resize', onWindowResize );
+  window.addEventListener('mousemove', onMouseMove);
 
+}
+
+function onMouseMove(e: MouseEvent) {
+  const currentY = e.clientY;
+  let mouseWasMovedUp = false;
+
+  if (currentY < lastClientY) mouseWasMovedUp = true;
+
+  if (mouseWasMovedUp) {
+  } else {
+    
+  }
+
+  lastClientY = e.clientY;
 }
 
 function onWindowResize() {
@@ -195,10 +211,13 @@ function onWindowResize() {
 
 export function animate() {
 
-  requestAnimationFrame( animate );
+  id = requestAnimationFrame( animate );
   render();
-  // stats.update();
+  
+}
 
+export function stopKey() {
+  cancelAnimationFrame( id );
 }
 
 function render() {
