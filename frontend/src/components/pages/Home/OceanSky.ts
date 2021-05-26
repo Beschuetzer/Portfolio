@@ -9,12 +9,12 @@ import { Sky } from "three/examples/jsm/objects/Sky.js";
 
 import waterNormals from "../../../imgs/waterNormals.jpg";
 import bumpMap from "../../../imgs/bridge-background-2.jpg";
-import cubeMap1 from "../../../imgs/bridge-background.jpg";
-import cubeMap2 from "../../../imgs/bridge-section-1.jpg";
-import cubeMap3 from "../../../imgs/bridge-section-2.jpg";
-import cubeMap4 from "../../../imgs/bridge-section-3.jpg";
-import cubeMap5 from "../../../imgs/bridge-section-4.jpg";
-import cubeMap6 from "../../../imgs/bridge-section-5.jpg";
+import cubeMap1 from "../../../imgs/cube-1.jpg";
+import cubeMap2 from "../../../imgs/cube-2.jpg";
+import cubeMap3 from "../../../imgs/cube-3.jpeg";
+import cubeMap4 from "../../../imgs/cube-4.jpg";
+import cubeMap5 from "../../../imgs/cube-5.jpg";
+import cubeMap6 from "../../../imgs/cube-6.jpg";
 
 let camera: any, scene: any, renderer: any, lastClientY: number;
 let orbitControls, water: any, sun: any, mesh: any;
@@ -27,6 +27,8 @@ const cubeSize = 33;
 const cubeAnimationSpeed = 0.00075;
 const waterAnimationSpeed = 0.75;
 const orbitControlsMaxPolarAngleFactor = 0.495;
+const cubeRotationSpeed = .5;
+const cubeXStopPoint = 6.2;
 
 export function init() {
 	//
@@ -96,7 +98,7 @@ export function init() {
 	skyUniforms["mieDirectionalG"].value = 0.8;
 
 	const parameters = {
-		elevation: 3,
+		elevation: .5,
 		azimuth: 180,
 	};
 
@@ -208,12 +210,44 @@ export function stopKey() {
 	cancelAnimationFrame(id);
 }
 
-function render() {
-	const time = performance.now() * cubeAnimationSpeed;
+let canRotateY = false;
+let canRotateX = true;
+let canReset = false;
+let timeOutIdX: any;
+let timeOutIdY: any;
+let i = 0;
 
-	mesh.position.y = Math.sin(time) * 25;
-	mesh.rotation.x = time * 0.5;
-	mesh.rotation.z = time * 0.5;
+function render() {
+	const time = i += .0066;
+  if (mesh.rotation.x <= cubeXStopPoint && canRotateX) {
+    mesh.rotation.x = time;
+    console.log('x------------------------------------------------');
+    clearTimeout(timeOutIdX);
+    timeOutIdX = setTimeout(() => {
+      canRotateY = true;
+    }, 250);
+  }
+
+  if (canRotateY && mesh.rotation.y <= 1.5 * cubeXStopPoint)  {
+    mesh.rotation.y = time * cubeRotationSpeed;
+    console.log('y------------------------------------------------');
+    clearTimeout(timeOutIdY);
+    timeOutIdY = setTimeout(() => {
+      canReset = true;
+    }, 250);
+  }
+
+  if (canReset) {
+    console.log('resetting------------------------------------------------');
+    canRotateY = false;
+    canRotateX = true;
+    mesh.rotation.x = 0;
+    mesh.rotation.y = 0;
+    canReset = false;
+    performance.clearMarks();
+    performance.clearMeasures();
+    performance.clearResourceTimings();
+  }
 
 	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
 
