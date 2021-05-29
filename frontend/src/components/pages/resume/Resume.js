@@ -268,10 +268,13 @@ class Resume extends React.Component {
 			<React.Fragment>
 				<Paragraph size="four">
 					Below you will find the following:
+				</Paragraph>
+
+				<div>
 					<div className="bridge__subsection-grid">
 						<span>1).</span>
 						<span>
-							The skills I know (click headers to open section and then click on individual skills to view projects using that skill) 
+							A summary of the  I possess and example projects highlighting those skills (click headers to open section and then click on individual skills to view projects using that skill). 
 						</span>
 						<span>2).</span>
 						<span>
@@ -286,20 +289,20 @@ class Resume extends React.Component {
 							References and letters of recommendation (click the name of the reference to download)
 						</span>
 					</div>		
+				</div>
 
-				</Paragraph>
-				<Paragraph size="four">
-					If you haven't yet, I highly encourage you
+				{/* <Paragraph size="four">
+					If you want  haven't yet, I highly encourage you
 					check out the page I created dedicated to the making the multiplayer&nbsp;<Link className="link" to="/examples/bridge">Bridge app</Link> I recently created.
 					&nbsp;
-				</Paragraph>
+				</Paragraph> */}
 			</React.Fragment>,
 		],
 		[
 			"skills",
 			<React.Fragment>
 				<ul className="skills">
-					<SkillsItemSection title={Resume.skillsItemSectionLabels[0]}>
+					<SkillsItemSection title={`${Resume.skillsItemSectionLabels[0]} `}>
 					{
 						Resume.webDevSubSkillsLabels.map((subskill, index) => {
 							return (
@@ -535,75 +538,6 @@ class Resume extends React.Component {
 		this.props.getRepositories();
 		this.props.setSectionsToSkipAnimation(Resume.sectionsToSkipAnimation);
 	}
-
-	renderTHREE = () => {
-		// var camera, scene, renderer;
-		// var mesh;
-		// var clock, controller, fire;
-
-		// init();
-
-		// function init() {
-
-		// 		camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.001, 1000);
-		// 		camera.position.z = 2;
-
-		// 		scene = new THREE.Scene();
-
-		// 		renderer = new THREE.WebGLRenderer();
-		// 		renderer.setPixelRatio( window.devicePixelRatio );
-		// 		renderer.setSize( window.innerWidth, window.innerHeight );
-		// 		document.body.appendChild( renderer.domElement );
-
-		// 		var loader = new THREE.TextureLoader();
-		// 		loader.crossOrigin = '';
-
-		// 		var fireTex = loader.load("https://s3-us-west-2.amazonaws.com/s.cdpn.io/212131/Fire.png");
-
-		// 		var wireframeMat = new THREE.MeshBasicMaterial({
-		// 				color : new THREE.Color(0xffffff),
-		// 				wireframe : true
-		// 		});
-
-		// 		fire = new THREE.Fire(fireTex);
-
-		// 		var wireframe = new THREE.Mesh(fire.geometry, wireframeMat.clone());
-		// 		fire.add(wireframe);
-		// 		wireframe.visible = true;
-		// 		wireframe.visible = false;
-				
-		// 		console.log(fire);
-		// 		fire.position.set(0, 0, 0);
-		// 		fire.position.set(0, 0.25, 1.3);
-		// 		scene.add(fire);
-
-		// 		clock = new THREE.Clock();
-
-		// 		window.addEventListener( 'resize', onWindowResize, false );
-
-		// }
-
-		// function onWindowResize() {
-
-		// 		camera.aspect = window.innerWidth / window.innerHeight;
-		// 		camera.updateProjectionMatrix();
-
-		// 		renderer.setSize( window.innerWidth, window.innerHeight );
-
-		// }
-
-		// (function loop() {
-		// 		requestAnimationFrame(loop);
-
-		// 		var delta = clock.getDelta();
-
-		// 		//var t = clock.elapsedTime * controller.speed;
-		// 		var t = clock.elapsedTime;
-		// 		fire.update(t);
-				
-		// 		renderer.render(scene, camera);
-		// })();
-	};
 
 	renderSections = () => {
 		return Resume.content.map((contentArray, index) => {
