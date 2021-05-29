@@ -668,7 +668,7 @@
 	top: $page-nav-top;
 	left: 0;
 	width: calc((100% - #{$resume-card-width-full}) / 2);
-	font-size: 1vw;
+	font-size: 1.25vw;
 	display: grid;
 	justify-items: center;
 	align-items: center;
@@ -680,7 +680,7 @@
 
 	@include respond(nav-switch) {
 		z-index: 0;
-		font-size: $default-font-size * 0.85;
+		font-size: $default-font-size * 1;
 		position: static;
 		width: calc(var(--header-inner-width-nav-switch) - 16rem);
 		grid-template-rows: auto;

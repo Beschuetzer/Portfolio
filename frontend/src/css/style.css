@@ -1026,7 +1026,7 @@ body {
   top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											85rem + ( 													(100vw - 85rem) / 2 												) + 7vw 										) 								) / 2 						) - 1vw 				) * 1 		) - .9vw );
   left: 0;
   width: calc((100% - 85rem) / 2);
-  font-size: 1vw;
+  font-size: 1.25vw;
   display: grid;
   justify-items: center;
   align-items: center;
@@ -1037,7 +1037,7 @@ body {
 @media only screen and (max-width: 68.75em) {
   .page-nav {
     z-index: 0;
-    font-size: 1.36rem;
+    font-size: 1.6rem;
     position: static;
     width: calc(var(--header-inner-width-nav-switch) - 16rem);
     grid-template-rows: auto;
