@@ -46,7 +46,7 @@
 		position: relative;
 		width: 100vw;
 		background-color: var(--color-primary-3);
-		color: var(--color-primary-1);
+		color: rgba($color-primary-bridge-1, $resume-color-opacity);
 		left: 100vw;
 		// transition: 
 			// transform $animation-duration * .5 linear,
