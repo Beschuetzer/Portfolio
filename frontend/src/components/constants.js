@@ -22,8 +22,9 @@ export const BRIDGE_SECTION_TITLES_CLASSNAME = 'bridge__section-titles';
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAMES = `${BRIDGE_PAGE_NAV_LINK_CLASSNAME} page-nav__section`;
 
 export const bridgeSections = [
-  "Story",
+  "Why",
   "Features",
+  "How",
   "Lessons",
 ];
 
@@ -50,6 +51,10 @@ export const BRIDGE_PAGE_NAV_LINKS_COLORS = {
   2: {
     normal: COLOR_PRIMARY_BRIDGE_1,
     hover: COLOR_PRIMARY_BRIDGE_1,
+  },
+  3: {
+    normal: COLOR_PRIMARY_BRIDGE_4,
+    hover: COLOR_PRIMARY_BRIDGE_4,
   },
 }
 //#endregion

@@ -39,6 +39,7 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
     }
 
     const handleSliding = () => {
+      console.log('currentBridgeSection =', currentBridgeSection);
       for (let i = 0; i < bridgeSections.length; i++) {
         const section = bridgeSections[i];
         if (!section) return;
@@ -87,6 +88,16 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
           },
           hover: {
             left: COLOR_PRIMARY_BRIDGE_2,
+            right: COLOR_PRIMARY_BRIDGE_4,
+          }
+        },
+        3: {
+          normal: {
+            left: COLOR_PRIMARY_BRIDGE_1,
+            right: COLOR_PRIMARY_BRIDGE_1,
+          },
+          hover: {
+            left: COLOR_PRIMARY_BRIDGE_4,
             right: COLOR_PRIMARY_BRIDGE_4,
           }
         },

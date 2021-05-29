@@ -59,141 +59,6 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 							<Link to="/examples/playlist-syncer" className="bridge__link">music syncing</Link> apps that I had recently finished, and he playfully remarked that I should make an app to play bridge online.   &nbsp;At that point, I wasn't very interested in making my own bridge app.&nbsp; I figured there had to be a free way we could play online. &nbsp;  However, after spending an hour, to no avail, looking for a free app/website, I decided to invest some time into figuring out how one would do such a thing.
 						</p>
 					</BridgeCardSection>
-					<BridgeCardSection
-						title='Research'
-					>
-					<p>
-							I started out by trying to create a simple chat room app using C#, but soon realized it would be rather challenging to create the bridge app I had envisioned using C#.   &nbsp;I knew there had to be an easier way...   &nbsp;off to YouTube/Google to find it!   &nbsp;  This is where I first encountered 'socket.io'.   &nbsp;After watching a quick implementation video on YouTube, I was convinced:&nbsp; socket.io would be a part of the stack, if i was going to do this thing.
-						</p>
-						<p>
-							The only problem was I had no idea how to create a web application at all.&nbsp; After googling some more, I found an exquisite resource called <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>
-						</p>					
-					</BridgeCardSection>
-					<BridgeCardSection
-						title='A Tough Decision'
-					>
-						<p>
-							Before I had found the <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>, I had been under the impression that one needed to have a Computer Science degree in order to become a web developer.&nbsp; That assumption was shattered upon reading about some of the experiences others had had with the <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>. Then and there, a hope, nay, a determination awakened inside of me that had lain dormant for many years.&nbsp; Maybe I too could become a web developer?&nbsp; I was determined to find out once and for all, if I have what it takes to become a web developer.&nbsp; Hence, I fully committed myself to making the <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> project.
-						</p>
-						{/* <p>
-							Ultimately my decision to become a web developer came down to the fact that I knew I would regret it in the future if I didn't give it an honest effort to become a web developer.  &nbsp;With the COVID-19 pandemic in full swing, I knew I would have time to explore my potential.
-						</p> 
-						<p>
-							I had taken MOOC courses in the past on EdX about computer programming, but I lacked the motivation to complete them because I told myself it wouldn't amount to anything.  &nbsp;Knowing now, that there was a chance to become a web developer, &nbsp;I couldn't see how I wouldn't regret not trying to become a web developer.&nbsp; Hence the reason I dove into the <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> project. */}
-{/* 							
-							 I look at my life 10 years from now and ask what if I had completely devoted my energy to becoming a web developer?  I couldn't imagine a scenario where I would be ok with just giving up on something that I enjoyed so much.&nbsp; With the pandemic looking like it was just getting started, I decided to take a leap of faith in myself: I decided to become a web developer. */}
-						{/* </p> */}
-
-						{/* I decided, then and there, to put everything I had into realizing this goal.&nbsp; I was prepared to do whatever it takes to realize this goal.&nbsp; My biggest fear at this point was to die having not tried.&nbsp; */}
-						
-						{/* <p>
-							Do I have what it takes?  Will I be able to find a job during the pandemic?  These were questions that I was scared to face, but, to me, scarier was not pursing something that I have enjoyed doing since I was a kid.
-						</p> */}
-					</BridgeCardSection>
-					<BridgeCardSection
-						title='The Process'
-					>						
-						{/* <p>
-							First, I needed some sort of test that was sufficiently complex and representative enough of actual real-world applications, such that if I could pass it, I would know I am on the right track.&nbsp;
-
-							This is when <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> became a full-time endeavor.&nbsp; 
-						</p> */}
-						<p>
-							If I could create a some-what scalable, web-based multiplayer bridge app, I was convinced I would have what it takes.&nbsp; I decided that I would set aside one year to build the best web-based multiplayer bridge app I could.&nbsp; If after one year I hadn't completed the website, I could stop, knowing that I had given it an honest and highly-motivated effort.&nbsp;
-						</p>
-						<p>
-							To that end, I left my &nbsp;
-							<a 
-								className='bridge__link'
-								href='/resume#work-history'
-								target="_blank"
-								rel='noreferrer'
-							>
-								service technician position
-							</a> at Ricoh in order to free up the time and energy needed to whole-heartily devote myself to the project.
-						</p>
-					</BridgeCardSection>
-					<BridgeCardSection
-						title='The Little Matter of How'
-					>
-						<p>
-							I started the learning process by following the curriculum on the <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink> website.&nbsp; There I learned the basics of HTML5, CSS3, and JS.&nbsp; However, after completing most of the Ruby part of the curriculum, I realized I would need further resources.&nbsp; 
-						</p>	
-						<p>
-							This is when I started looking into Web Developer Bootcamps. &nbsp; A few caught my eye, but there were no guarantees that I would land a job at the end.&nbsp; Ultimately, I decided that the best approach would be to take the self-taught path.&nbsp;The main reasons were:		
-						</p>
-						<div className="bridge__subsection-grid">
-							<span>1).</span>
-							<span>
-								I could go my own pace, which would allow me to move more quickly through the areas that I find easy while being able to spend more time on the areas that I find difficult.  
-							</span>
-							<span>2).</span>
-							<span>
-								Paying $15-$20K for information that it is available for free or for much less than $15k is hardly worth it unless you are getting something to make the expenditure worth it. 
-							</span>
-							<span>3).</span>
-							<span>
-								At the time (June 2020), the COVID-19 pandemic was in full swing, and bootcamps were moving to online only, making it even less appealing to pay $15-20K, when I wouldn't even get the face-to-face interactions an in-person bootcamp provides.
-							</span>
-							<span>4).</span>
-							<span>I have so much internal drive to become a web developer that spending $15-20K wouldn't have motivated me much more to complete the project.
-							</span>
-						</div>
-					</BridgeCardSection>
-					<BridgeCardSection
-						title='Deciding on the Technology to Use'
-					>
-					<p>
-						I knew I would pave my own path, but were would I start?&nbsp; I researched popular web development technologies and came across many different stacks.&nbsp; Admittedly, it was a bit overwhelming at first figuring out where to start, but eventually I came to the conclusion that sticking to the bread and butter of web development and then expanding out from there would be the best approach.&nbsp; 
-					</p>
-					<p>
-						If I wanted to become a web developer, I figured, I would need to have a solid understanding of HTML5, CSS3, and JS.&nbsp;  What better way to learn the basics than to build a web-based multiplayer bridge app? &nbsp; This line of thinking is what led me to develop <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> using primarily vanilla HTML5, CSS3, and JS. 	
-					</p>
-					<BridgeCardSection
-						title='Picking the Right Curriculum'
-					>
-						<p>
-							With a technology decision for the client-side in place, I began looking at server-side technologies that I could use.&nbsp;  It didn't take long for me to find NodeJS.&nbsp;  Knowing what I would use for my server-side code made searching for bootcamps on sites like Udemy and YouTube much easier.&nbsp;After careful consideration, I decided on Colte Steele's
-							&nbsp;<a target="_blank" rel="noreferrer" href="https://www.udemy.com/course/the-web-developer-bootcamp/" className="bridge__link">Web Developer Bootcamp</a>&nbsp;
-							(which has since been updated) to use as the foundation for learning how to build a complete application using HTML5, CSS3, and JS.&nbsp;  The rest is hard work, will power, luck, and curiosity.  
-						</p>
-					</BridgeCardSection>
-					<BridgeCardSection
-						title='The Results are in.'
-					>
-						<p>
-						<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> took roughly 8 months to complete.&nbsp; It runs smoothly on Android 10+, Firefox 70+, and Chrome 70+ (but not on mobile iOS devices due to paperJS issues that I couldn't resolve due to the fact that I don't have access to an iOS device). &nbsp; It can host multiple simultaneous games, but is unlikely to run more a thousand simultaneous games in its current state.&nbsp; </p>
-						<p>Have a look at some of the fun features in the &nbsp;
-							<BridgeSectionLink
-								isEmbeddedLink={true}
-								content="feature's section"
-								sectionToSkipTo='features'
-							></BridgeSectionLink>&nbsp;
-							or check out some of the 
-							<EmbeddedLink href="https://github.com/Beschuetzer/Bridge">source code.</EmbeddedLink>
-						</p>
-					</BridgeCardSection>
-					</BridgeCardSection>
-
-					{/* <BridgeCardSection
-						title='You did what?'
-					>
-						<ul className='bridge__reasons'>
-							<li className='bridge__reasons-item'>
-								There was no free online bridge resource in May of 2020. 
-							</li>
-							<li className='bridge__reasons-item'>
-								A good friend from MN mentioned how much he missed playing Bridge now that he couldn’t play Bridge in person due to the COVID 19 pandemic. 
-							</li>
-							<li className='bridge__reasons-item'>
-								My current position at Ricoh was not panning out as I had expected. 
-							</li>
-							<li className='bridge__reasons-item'>
-								I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
-							</li>							
-						</ul>
-						All throughout my youth, I had taken a keen interest in computer programming.   &nbsp;I figured that this was the last chance I would get to realize that interest. 
-					</BridgeCardSection> */}
 				</BridgeCard>
 			</SectionContainer>
 			,
@@ -334,6 +199,152 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 				<BridgeCard
 					titleSize='two'
 					titleContent={bridgeSections[2]}
+				>
+					<BridgeCardSection
+						title='Research'
+					>
+					<p>
+							I started out by trying to create a simple chat room app using C#, but soon realized it would be rather challenging to create the bridge app I had envisioned using C#.   &nbsp;I knew there had to be an easier way...   &nbsp;off to YouTube/Google to find it!   &nbsp;  This is where I first encountered 'socket.io'.   &nbsp;After watching a quick implementation video on YouTube, I was convinced:&nbsp; socket.io would be a part of the stack, if i was going to do this thing.
+						</p>
+						<p>
+							The only problem was I had no idea how to create a web application at all.&nbsp; After googling some more, I found an exquisite resource called <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>
+						</p>					
+					</BridgeCardSection>
+					<BridgeCardSection
+						title='A Tough Decision'
+					>
+						<p>
+							Before I had found the <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>, I had been under the impression that one needed to have a Computer Science degree in order to become a web developer.&nbsp; That assumption was shattered upon reading about some of the experiences others had had with the <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>. Then and there, a hope, nay, a determination awakened inside of me that had lain dormant for many years.&nbsp; Maybe I too could become a web developer?&nbsp; I was determined to find out once and for all, if I have what it takes to become a web developer.&nbsp; Hence, I fully committed myself to making the <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> project.
+						</p>
+						{/* <p>
+							Ultimately my decision to become a web developer came down to the fact that I knew I would regret it in the future if I didn't give it an honest effort to become a web developer.  &nbsp;With the COVID-19 pandemic in full swing, I knew I would have time to explore my potential.
+						</p> 
+						<p>
+							I had taken MOOC courses in the past on EdX about computer programming, but I lacked the motivation to complete them because I told myself it wouldn't amount to anything.  &nbsp;Knowing now, that there was a chance to become a web developer, &nbsp;I couldn't see how I wouldn't regret not trying to become a web developer.&nbsp; Hence the reason I dove into the <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> project. */}
+{/* 							
+							 I look at my life 10 years from now and ask what if I had completely devoted my energy to becoming a web developer?  I couldn't imagine a scenario where I would be ok with just giving up on something that I enjoyed so much.&nbsp; With the pandemic looking like it was just getting started, I decided to take a leap of faith in myself: I decided to become a web developer. */}
+						{/* </p> */}
+
+						{/* I decided, then and there, to put everything I had into realizing this goal.&nbsp; I was prepared to do whatever it takes to realize this goal.&nbsp; My biggest fear at this point was to die having not tried.&nbsp; */}
+						
+						{/* <p>
+							Do I have what it takes?  Will I be able to find a job during the pandemic?  These were questions that I was scared to face, but, to me, scarier was not pursing something that I have enjoyed doing since I was a kid.
+						</p> */}
+					</BridgeCardSection>
+					<BridgeCardSection
+						title='The Process'
+					>						
+						{/* <p>
+							First, I needed some sort of test that was sufficiently complex and representative enough of actual real-world applications, such that if I could pass it, I would know I am on the right track.&nbsp;
+
+							This is when <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> became a full-time endeavor.&nbsp; 
+						</p> */}
+						<p>
+							If I could create a some-what scalable, web-based multiplayer bridge app, I was convinced I would have what it takes.&nbsp; I decided that I would set aside one year to build the best web-based multiplayer bridge app I could.&nbsp; If after one year I hadn't completed the website, I could stop, knowing that I had given it an honest and highly-motivated effort.&nbsp;
+						</p>
+						<p>
+							To that end, I left my &nbsp;
+							<a 
+								className='bridge__link'
+								href='/resume#work-history'
+								target="_blank"
+								rel='noreferrer'
+							>
+								service technician position
+							</a> at Ricoh in order to free up the time and energy needed to whole-heartily devote myself to the project.
+						</p>
+					</BridgeCardSection>
+					<BridgeCardSection
+						title='The Little Matter of How'
+					>
+						<p>
+							I started the learning process by following the curriculum on the <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink> website.&nbsp; There I learned the basics of HTML5, CSS3, and JS.&nbsp; However, after completing most of the Ruby part of the curriculum, I realized I would need further resources.&nbsp; 
+						</p>	
+						<p>
+							This is when I started looking into Web Developer Bootcamps. &nbsp; A few caught my eye, but there were no guarantees that I would land a job at the end.&nbsp; Ultimately, I decided that the best approach would be to take the self-taught path.&nbsp;The main reasons were:		
+						</p>
+						<div className="bridge__subsection-grid">
+							<span>1).</span>
+							<span>
+								I could go my own pace, which would allow me to move more quickly through the areas that I find easy while being able to spend more time on the areas that I find difficult.  
+							</span>
+							<span>2).</span>
+							<span>
+								Paying $15-$20K for information that it is available for free or for much less than $15k is hardly worth it unless you are getting something to make the expenditure worth it. 
+							</span>
+							<span>3).</span>
+							<span>
+								At the time (June 2020), the COVID-19 pandemic was in full swing, and bootcamps were moving to online only, making it even less appealing to pay $15-20K, when I wouldn't even get the face-to-face interactions an in-person bootcamp provides.
+							</span>
+							<span>4).</span>
+							<span>I have so much internal drive to become a web developer that spending $15-20K wouldn't have motivated me much more to complete the project.
+							</span>
+						</div>
+					</BridgeCardSection>
+					<BridgeCardSection
+						title='Deciding on the Technology to Use'
+					>
+					<p>
+						I knew I would pave my own path, but were would I start?&nbsp; I researched popular web development technologies and came across many different stacks.&nbsp; Admittedly, it was a bit overwhelming at first figuring out where to start, but eventually I came to the conclusion that sticking to the bread and butter of web development and then expanding out from there would be the best approach.&nbsp; 
+					</p>
+					<p>
+						If I wanted to become a web developer, I figured, I would need to have a solid understanding of HTML5, CSS3, and JS.&nbsp;  What better way to learn the basics than to build a web-based multiplayer bridge app? &nbsp; This line of thinking is what led me to develop <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> using primarily vanilla HTML5, CSS3, and JS. 	
+					</p>
+					<BridgeCardSection
+						title='Picking the Right Curriculum'
+					>
+						<p>
+							With a technology decision for the client-side in place, I began looking at server-side technologies that I could use.&nbsp;  It didn't take long for me to find NodeJS.&nbsp;  Knowing what I would use for my server-side code made searching for bootcamps on sites like Udemy and YouTube much easier.&nbsp;After careful consideration, I decided on Colte Steele's
+							&nbsp;<a target="_blank" rel="noreferrer" href="https://www.udemy.com/course/the-web-developer-bootcamp/" className="bridge__link">Web Developer Bootcamp</a>&nbsp;
+							(which has since been updated) to use as the foundation for learning how to build a complete application using HTML5, CSS3, and JS.&nbsp;  The rest is hard work, will power, luck, and curiosity.  
+						</p>
+					</BridgeCardSection>
+					<BridgeCardSection
+						title='The Results are in.'
+					>
+						<p>
+						<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> took roughly 8 months to complete.&nbsp; It runs smoothly on Android 10+, Firefox 70+, and Chrome 70+ (but not on mobile iOS devices due to paperJS issues that I couldn't resolve due to the fact that I don't have access to an iOS device). &nbsp; It can host multiple simultaneous games, but is unlikely to run more a thousand simultaneous games in its current state.&nbsp; </p>
+						<p>Have a look at some of the fun features in the &nbsp;
+							<BridgeSectionLink
+								isEmbeddedLink={true}
+								content="feature's section"
+								sectionToSkipTo='features'
+							></BridgeSectionLink>&nbsp;
+							or check out some of the 
+							<EmbeddedLink href="https://github.com/Beschuetzer/Bridge">source code.</EmbeddedLink>
+						</p>
+					</BridgeCardSection>
+					</BridgeCardSection>
+
+					{/* <BridgeCardSection
+						title='You did what?'
+					>
+						<ul className='bridge__reasons'>
+							<li className='bridge__reasons-item'>
+								There was no free online bridge resource in May of 2020. 
+							</li>
+							<li className='bridge__reasons-item'>
+								A good friend from MN mentioned how much he missed playing Bridge now that he couldn’t play Bridge in person due to the COVID 19 pandemic. 
+							</li>
+							<li className='bridge__reasons-item'>
+								My current position at Ricoh was not panning out as I had expected. 
+							</li>
+							<li className='bridge__reasons-item'>
+								I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
+							</li>							
+						</ul>
+						All throughout my youth, I had taken a keen interest in computer programming.   &nbsp;I figured that this was the last chance I would get to realize that interest. 
+					</BridgeCardSection> */}
+				</BridgeCard>
+			</SectionContainer>
+			,
+			<SectionContainer
+				name={bridgeSections[3]}
+				pageName='bridge'
+			>
+				<BridgeCard
+					titleSize='two'
+					titleContent={bridgeSections[3]}
 				>
 					<BridgeCardSection
 						title="No One Technology is 'Better'"
