@@ -74,7 +74,7 @@
   --hero-more-y-translate: -50%;
   --bridge-section-height: 1px;
   --bridge-section-padding: 0;
-  --arrow-button-rotation: 180deg;
+  --arrow-button-rotation: 90deg;
   --arrow-button-fill-left: var(--color-primary-bridge-1);
   --arrow-button-fill-right: var(--color-primary-bridge-1);
   --arrow-button-fill-hover: var(--color-primary-bridge-2);
@@ -2609,7 +2609,7 @@ div.references__name {
   width: 100vw;
   background-color: var(--color-primary-3);
   color: rgba(0, 64, 107, 0.875);
-  left: 100vw;
+  transition: transform 0.25s linear;
 }
 @media only screen and (max-width: 68.75em) {
   .bridge__section {
@@ -2666,7 +2666,6 @@ div.references__name {
   }
 }
 .bridge__section:nth-of-type(1) {
-  left: 0;
   background-image: linear-gradient(var(--bridge-gradient-direction), rgba(0, 64, 107, 0.5), rgba(245, 146, 41, 0.5)), url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg clip-path='url(%26quot%3b%23SvgjsClipPath1002%26quot%3b)' fill='none'%3e%3ccircle r='93.335' cx='-82.24' cy='-88.01' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='93.335' cx='419.45' cy='355.06' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='93.335' cx='811.96' cy='674.42' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='56.85' cx='1247.9' cy='228.67' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='174.835' cx='1386.58' cy='412.52' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='84.605' cx='652.14' cy='412.28' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='63.295' cx='1048.73' cy='491.58' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='85.795' cx='217.82' cy='310.87' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='142.845' cx='1362.24' cy='407.74' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='98.82' cx='1433.2' cy='447.98' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='56.415' cx='1208.65' cy='186.76' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='154.06' cx='538.58' cy='386.89' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='137.505' cx='1201.71' cy='492.54' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='116.93' cx='1015' cy='122.3' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='142.815' cx='1339.67' cy='481.35' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='114.195' cx='1376.45' cy='530.25' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='137.75' cx='114.27' cy='143.22' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='115.945' cx='1125.78' cy='416.12' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='87.69' cx='1328.54' cy='57.9' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='80.97' cx='210.74' cy='370.57' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='87.505' cx='988.49' cy='551.98' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='180.28' cx='1007.71' cy='264.27' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='171.43' cx='281.66' cy='22.42' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='122.36' cx='455.9' cy='426.66' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='127.06' cx='167.58' cy='234.47' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='168.79' cx='1387.78' cy='403.21' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='66.86' cx='481.59' cy='219.57' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='81.97' cx='933.04' cy='374.37' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='78.39' cx='888.17' cy='24.78' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='133.39' cx='531.01' cy='396.2' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='107.97' cx='632.49' cy='207.5' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='95' cx='715.37' cy='370.37' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='138.555' cx='557.23' cy='508.61' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='137.53' cx='1298.71' cy='129.77' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='181.545' cx='1150.12' cy='60.98' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='81.44' cx='1345.15' cy='246.1' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='185.11' cx='897.78' cy='541.06' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='69.875' cx='1355.52' cy='492.21' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='154.97' cx='1235.2' cy='288.31' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3ccircle r='57.975' cx='586.61' cy='10.25' stroke='%23f5f1db' stroke-opacity='1' stroke-width='2'%3e%3c/circle%3e%3c/g%3e%3cdefs%3e%3cclipPath id='SvgjsClipPath1002'%3e%3crect width='1440' height='560' x='0' y='0'%3e%3c/rect%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e");
 }
 @media only screen and (max-width: 58.5625em) {
@@ -3144,7 +3143,7 @@ div.references__name {
 }
 .arrow-button--right svg {
   fill: var(--arrow-button-right-fill);
-  transform: rotate(0) scale(var(--bridge-arrow-hover-scale-amount));
+  transform: rotate(calc(var(--arrow-button-rotation) * -1)) scale(var(--bridge-arrow-hover-scale-amount));
 }
 .arrow-button--right:hover svg {
   fill: var(--arrow-button-right-fill-hover);
