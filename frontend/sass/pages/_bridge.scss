@@ -677,6 +677,7 @@ $padding-nav-switch: $default-font-size * .5;
 	height: calc( (#{$navbar__logo-width} + .29vw) / var(--bridge-arrow-hover-scale-amount));
 	transition: 
 		transform $animation-duration $animation-easing-standard,
+		opacity $animation-duration * 1.5 $animation-easing-standard,
 	;
 
 	@include respond(nav-switch) {

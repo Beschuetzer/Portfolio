@@ -3100,7 +3100,7 @@ div.references__name {
   box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.25);
   width: calc((7vw + .29vw) / var(--bridge-arrow-hover-scale-amount));
   height: calc( (7vw + .29vw) / var(--bridge-arrow-hover-scale-amount));
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, opacity 0.75s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .arrow-button {

@@ -27,14 +27,14 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
     
     const handleDisplay = (arrowElement) => {
       if (arrowElement?.className.match(/left/i)) {
-        if (rightArrow && currentBridgeSection < bridgeSections.length - 1 && clickedBridgeInfoButtonCount > 1) rightArrow.classList.remove('d-none');
+        if (rightArrow && currentBridgeSection < bridgeSections.length - 1 && clickedBridgeInfoButtonCount > 1) rightArrow.classList.remove('hidden');
   
-        if(leftArrow && currentBridgeSection === 0) leftArrow.classList.add('d-none');
+        if(leftArrow && currentBridgeSection === 0) leftArrow.classList.add('hidden');
       }
       else {
-        if (leftArrow && currentBridgeSection > 0) leftArrow.classList.remove('d-none');
+        if (leftArrow && currentBridgeSection > 0) leftArrow.classList.remove('hidden');
   
-        if(rightArrow && ((currentBridgeSection === bridgeSections.length - 1) || (clickedBridgeInfoButtonCount > 1 && currentBridgeSection === 0))) rightArrow.classList.add('d-none');
+        if(rightArrow && ((currentBridgeSection === bridgeSections.length - 1) || (clickedBridgeInfoButtonCount > 1 && currentBridgeSection === 0))) rightArrow.classList.add('hidden');
       }
     }
 
@@ -120,7 +120,7 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
   }
 
   return (
-    <div onClick={handleClick} className={`d-none arrow-button arrow-button--${direction}`}>
+    <div onClick={handleClick} className={`hidden arrow-button arrow-button--${direction}`}>
       <svg> 
         <use xlinkHref="/sprite.svg#icon-arrow-with-circle-down"></use>
       </svg>
