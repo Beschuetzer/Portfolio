@@ -264,21 +264,34 @@ class Resume extends React.Component {
 	}
 	static content = [
 		[
-			"summary",
+			"overview",
 			<React.Fragment>
 				<Paragraph size="four">
-					I have created this website to highlight the reasons I believe I would
-					be an excellent candidate for one of the web development programs at
-					Revature. If you have not yet had the chance, I highly encourage you
-					check out&nbsp;
-					<Link className="link" to="/examples">
-						what I have been building
-					</Link>
-					&nbsp;since I decided to change careers.
+					Below you will find the following:
+					<div className="bridge__subsection-grid">
+						<span>1).</span>
+						<span>
+							The skills I know (click headers to open section and then click on individual skills to view projects using that skill) 
+						</span>
+						<span>2).</span>
+						<span>
+							Full work history 
+						</span>
+						<span>3).</span>
+						<span>
+							Full post-secondary education history including transcripts (click links to view)
+						</span>
+						<span>4).</span>
+						<span>
+							References and letters of recommendation (click the name of the reference to download)
+						</span>
+					</div>		
+
 				</Paragraph>
 				<Paragraph size="four">
-					There you will find code examples, projects, and demos highlighting my
-					journey to become a web developer.
+					If you haven't yet, I highly encourage you
+					check out the page I created dedicated to the making the multiplayer&nbsp;<Link className="link" to="/examples/bridge">Bridge app</Link> I recently created.
+					&nbsp;
 				</Paragraph>
 			</React.Fragment>,
 		],
@@ -376,14 +389,8 @@ class Resume extends React.Component {
 						startDate="07/18"
 						endDate="06/19"
 						number="02"
-						title="Second Grade Education Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> <span>Kualapuu Charter School <span></a>"
+						title="Second Grade Education Assistant Volunteer at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> <span>Kualapuu Charter School <span></a>"
 						sections={[
-							{
-								title: "Note",
-								bullets: [
-									"I wasn't officially employed by the school, rather I assisted my fiance who was the second grade teacher by volunteering in her classroom and assisting with grading.",
-								],
-							},
 							{
 								title: "Highlights",
 								bullets: [
@@ -514,7 +521,7 @@ class Resume extends React.Component {
 		],
 	];
 	static headerSideContent = {
-		summary: (
+		overview: (
 			<div className="thumbnail">
 				<img src="/self-small.png" alt="Adam Major" />
 			</div>
