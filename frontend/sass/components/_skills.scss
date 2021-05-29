@@ -256,8 +256,11 @@
 						opacity: 0.5;
 					}
 				}
-				&:hover + .skills__percent-inner {
-					transform: scaleY(calc(5 / 3));
+
+				@include respond(nav-switch) {
+					&:hover + .skills__percent-inner {
+						transform: scaleY(calc(5 / 3));
+					}
 				}
 			}
 		}

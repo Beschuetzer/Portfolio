@@ -45,7 +45,6 @@
 			grid-column: 1 / -1;
 			& .resume__card {
 				background-color: var(--color-primary-3);
-				background-color: #f4d262;
 				background-image: 
 					get-resume-card-gradient(.975)
 					,
@@ -169,7 +168,7 @@
 		max-width: calc(100% - 20.8rem);
 		width: $resume-card-width-full;
 		margin: $default-font-size * 2 auto;
-		color: var(--color-primary-1);
+		color: rgba($color-primary-resume-1, $resume-color-opacity);
 		background-color: var(--color-primary-3);
 		padding: 0 $default-font-size * 2;
 		border-radius: $default-font-size * 0.5;
