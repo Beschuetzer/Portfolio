@@ -1,3 +1,9 @@
+@keyframes translateToZero {
+	100% {
+		transform: translate(0, 0);
+	}
+}
+
 @keyframes black-hole {
 	0% {
 		transform: scale(1) rotate(0deg);

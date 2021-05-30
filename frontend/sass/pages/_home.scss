@@ -46,29 +46,40 @@
     height: 100vh;
 	}
 
-	&__first-name, &__last-name, &__third-word {
+	&__name {
 		position: absolute;
 		transform: translate(-50%, -50%);	
 		z-index: 10;
-    font-size: $default-font-size * 8;
-		// font-family: $font-family-text;
-		// color: var(--color-primary-4)
+    font-size: $default-font-size * 6;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100vw;
 	}
 	
-	&__first-name {
-		top: 20%;
+	&__name {
 		left: 50%;
+		top: 12.5%;
+	}
+	&__name-first {
+		transform: translate(-$default-font-size * 50, 0);
+		animation: 1.5s 1 translateToZero forwards $animation-easing-standard-easeInOutBack;
 	}
 
-	&__last-name {
-		top: 80%;
-		left: 50%;
+	&__name-last {
+		transform: translate($default-font-size * 50, 0);
+		animation: 1.5s 1 translateToZero forwards $animation-easing-standard-easeInOutBack;
 	}
 
 	&__third-word {
-		left: 25%;
-		top: 50%;
-    font-size: $default-font-size * 4;
+		// position: absolute;
+		// transform: translate(-50%, -50%);	
+		// z-index: 10;
+		// left: 50%;
+		// top: 25%;
+    font-size: $default-font-size * 3;
+		transform: translate(0, $default-font-size * 50);
+		animation: 1.5s 1 translateToZero forwards $animation-easing-standard-easeInOutBack;
 
 	}
 	
