@@ -120,7 +120,7 @@ export function init() {
 		),
 		sunDirection: new THREE.Vector3(),
 		sunColor,
-		waterColor,
+		waterColor: 0x8ac6d0,
 		distortionScale: 3.7,
 		fog: scene.fog !== undefined,
 	});

@@ -392,7 +392,7 @@ class Resume extends React.Component {
 						startDate="07/18"
 						endDate="06/19"
 						number="02"
-						title="Second Grade Education Assistant Volunteer at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> <span>Kualapuu Charter School <span></a>"
+						title="Second Grade Classroom Volunteer at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> <span>Kualapuu Charter School <span></a>"
 						sections={[
 							{
 								title: "Highlights",
@@ -453,7 +453,7 @@ class Resume extends React.Component {
 							{
 								title: "Responsibilities",
 								bullets: [
-									"Assisted English language teachers during class.",
+									"Collaborated with English language teacher to enhance lessons.",
 									"Led small group sessions with 5-8 students.",
 									"Conducted remedial 1-on-1 tutoring sessions with students struggling in English.",
 								],
