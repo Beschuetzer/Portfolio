@@ -51,7 +51,7 @@ const parameters = {
 	azimuth: 180,
 };
 
-const sunColor = 0xaa9800;
+const sunColor = 0xf4d262;
 const skyTurbidity = 10;   //(10)
 const skyRayleigh = 5 //(2)
 const skyMieCoefficient = .0025; //(.005)
