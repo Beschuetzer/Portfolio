@@ -2315,8 +2315,8 @@ body {
   }
 }
 .home__name > * {
-  font-weight: 300;
-  text-shadow: 0px 4px 3px rgba(var(--color-primary-1), 0.4), 0px 8px 13px rgba(var(--color-primary-1), 0.1), 0px 18px 23px rgba(var(--color-primary-1), 0.1);
+  font-weight: 400;
+  text-shadow: 0px 4px 3px rgba(40, 83, 123, 0.4), 0px 8px 13px rgba(40, 83, 123, 0.1), 0px 18px 23px rgba(40, 83, 123, 0.1);
 }
 .home__name-first {
   justify-self: flex-end;

@@ -70,8 +70,8 @@
 		}
 
 		& > * {
-			font-weight: 300;
-			text-shadow: getTextShadow('close', var(--color-primary-1), var(--color-primary-2));
+			font-weight: 400;
+			text-shadow: getTextShadow('close', $color-primary-1, $color-primary-2);
 		}
 	}
 	
@@ -93,7 +93,5 @@
     font-size: $default-font-size * 1.5;
 		transform: translate(0, $default-font-size * 50);
 		animation: 1.5s 1 translateToZero forwards $animation-easing-standard-easeInOutBack;
-
 	}
-	
 }
