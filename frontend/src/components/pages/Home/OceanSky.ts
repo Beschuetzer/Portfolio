@@ -8,13 +8,13 @@ import { Sky } from "three/examples/jsm/objects/Sky.js";
 
 import waterNormals from "../../../imgs/waterNormals.jpg";
 import bumpMap from "../../../imgs/bridge-background-2.jpg";
-import cubeMap1 from "../../../imgs/cube-1.jpg";
-import cubeMap2 from "../../../imgs/cube-2.jpg";
-import cubeMap3 from "../../../imgs/cube-3.jpeg";
-import cubeMap4 from "../../../imgs/cube-4.jpg";
-import cubeMap5 from "../../../imgs/cube-5.jpg";
-import cubeMap6 from "../../../imgs/cube-6.jpg";
-import cubeMap6Rotated from "../../../imgs/cube-6-rotated.jpg";
+import cubeMap5 from "../../../imgs/cube-integrity.jpeg";
+import cubeMap3 from "../../../imgs/cube-hard-work.jpg";
+import cubeMap6 from "../../../imgs/cube-learning.jpg";
+import cubeMap6Rotated from "../../../imgs/cube-learning-rotated.jpg";
+import cubeMap4 from "../../../imgs/cube-communication.jpg";
+import cubeMap1 from "../../../imgs/cube-determination.jpg";
+import cubeMap2 from "../../../imgs/cube-passion.jpg";
 
 let camera: any, scene: any, renderer: any, lastClientY: number;
 let orbitControls, water: any, sun: any, mesh: any;
@@ -64,7 +64,7 @@ const spotLightY = 100;
 const spotLightZ = 300;
 const spotLightColor = 0xaa9834;
 
-const waterColor = 0x341e1f;
+const waterColor = 0x49001f;
 const waterWidthSegments = 10000;
 const waterHeightSegments = waterWidthSegments;
 const waterAnimationSpeed = 0.75;

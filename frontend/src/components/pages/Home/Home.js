@@ -20,6 +20,9 @@ const Home = ({repos, getRepositories}) => {
 					<div className="home__name-last">&nbsp;Major&nbsp;</div>
 					<h5 className="home__third-word">embodies</h5>
 				</div>
+				<div className="home__footer">
+					text
+				</div>
 			</section>
 		</React.Fragment>
 	);
