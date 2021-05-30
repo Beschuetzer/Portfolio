@@ -49,35 +49,48 @@
 	&__name {
 		position: absolute;
 		transform: translate(-50%, -50%);	
-		z-index: 10;
-    font-size: $default-font-size * 6;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		z-index: 1;
+    font-size: $default-font-size * 5;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		justify-items: center;
+		align-items: flex-end;
 		width: 100vw;
+		left: 50%;
+		top: 15%;
+
+		@include respond(phone) {
+			top: 20%;
+			font-size: $default-font-size * 4;
+		}
+
+		@include respond(small-font) {
+			top: 20%;
+			font-size: $default-font-size * 3;
+		}
+
+		& > * {
+			font-weight: 300;
+			text-shadow: getTextShadow('close', var(--color-primary-1), var(--color-primary-2));
+		}
 	}
 	
-	&__name {
-		left: 50%;
-		top: 12.5%;
-	}
 	&__name-first {
+		justify-self: flex-end;
 		transform: translate(-$default-font-size * 50, 0);
 		animation: 1.5s 1 translateToZero forwards $animation-easing-standard-easeInOutBack;
 	}
 
 	&__name-last {
+		justify-self: flex-start;
 		transform: translate($default-font-size * 50, 0);
 		animation: 1.5s 1 translateToZero forwards $animation-easing-standard-easeInOutBack;
 	}
 
 	&__third-word {
-		// position: absolute;
-		// transform: translate(-50%, -50%);	
-		// z-index: 10;
-		// left: 50%;
-		// top: 25%;
-    font-size: $default-font-size * 3;
+		font-weight: 900;
+		grid-column: 1/-1;
+    font-size: $default-font-size * 1.5;
 		transform: translate(0, $default-font-size * 50);
 		animation: 1.5s 1 translateToZero forwards $animation-easing-standard-easeInOutBack;
 

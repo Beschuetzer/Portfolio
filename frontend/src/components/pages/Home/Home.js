@@ -16,11 +16,9 @@ const Home = ({repos, getRepositories}) => {
 		<React.Fragment>
 			<section className="home">
 				<div className="home__name">
-					<div className="home__name-first">Adam</div>
-					&nbsp;
-					<div className="home__name-last">Major</div>
-					<br></br>
-					<div className="home__third-word">brings</div>
+					<div className="home__name-first">Adam &nbsp;</div>
+					<div className="home__name-last">&nbsp; Major</div>
+					<h5 className="home__third-word">embodies</h5>
 				</div>
 			</section>
 		</React.Fragment>
