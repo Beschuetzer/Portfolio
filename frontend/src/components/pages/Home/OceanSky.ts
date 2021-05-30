@@ -181,7 +181,7 @@ export function init() {
 	//
 
 	orbitControls = new OrbitControls(camera, renderer.domElement);
-	orbitControls.target.set(0, 10, 0);
+	orbitControls.target.set(0, 15, 0);
 	orbitControls.minDistance = 100;
 	orbitControls.maxDistance = 100;
 	orbitControls.minAzimuthAngle = 0;
