@@ -58,11 +58,11 @@ const skyMieCoefficient = .0025; //(.005)
 const skyMieDirectionalG = .8; //(.8)
 
 
-const spotLightStrength = 1;
+const spotLightStrength = .8;
 const spotLightX = 0;
 const spotLightY = 100;
 const spotLightZ = 300;
-const spotLightColor = 0xaa9834;
+const spotLightColor = 0xf4d262;
 
 const waterColor = 0x49001f;
 const waterWidthSegments = 10000;
