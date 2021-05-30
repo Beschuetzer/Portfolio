@@ -2,29 +2,15 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getRepositories } from "../../../actions";
 
-import { animate as animateSky, init, stopKey as stopSky } from './OceanSky';
+import useSky from './useSky.ts';
 
 const Home = ({repos, getRepositories}) => {
-	const HOME_CANVAS_CLASSNAME = 'home__canvas';
 	//Getting Repos
 	useEffect(() => {
 		if (!repos || repos.length === 0) getRepositories();
 	}, [repos, getRepositories]);
 
-	//Starting ThreeJS animation
-	useEffect(() => {
-		init();
-		animateSky();
-
-		return (() => {
-			stopSky();
-			let canvasElement = document.querySelector(`.${HOME_CANVAS_CLASSNAME}`);
-			if (canvasElement) document.body?.removeChild(canvasElement);
-
-			canvasElement = document.querySelector(`.${HOME_CANVAS_CLASSNAME}`);
-			if (canvasElement) document.body?.removeChild(canvasElement);
-		})
-	}, [])
+	useSky();
 
 	return (
 		<React.Fragment>

@@ -62,6 +62,7 @@ const spotLightStrength = 1;
 const spotLightX = 0;
 const spotLightY = 100;
 const spotLightZ = 300;
+const spotLightColor = 0xaa9834;
 
 const waterColor = 0x341e1f;
 const waterWidthSegments = 10000;
@@ -100,7 +101,7 @@ export function init() {
 	camera.position.set(0, 0, 100);
 
 	//light
-	var spotLight = new THREE.SpotLight(sunColor, spotLightStrength);
+	var spotLight = new THREE.SpotLight(spotLightColor, spotLightStrength);
 	spotLight.position.set(spotLightX, spotLightY, spotLightZ);
 	scene.add(spotLight);
 
