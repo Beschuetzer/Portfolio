@@ -43,3 +43,5 @@ OPTIMIZATIONS:
 -add cube bobbing fx (research first)?
 -change resume summary section to have a legend or asterisk about clicking links and opening skills (
 -add background to 4th section in bridge (and colors gradient for mobile
+-hide header-toggler for home
+-make header transparent for home

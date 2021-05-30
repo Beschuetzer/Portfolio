@@ -45,4 +45,31 @@
     width: 100vw;
     height: 100vh;
 	}
+
+	&__first-name, &__last-name, &__third-word {
+		position: absolute;
+		transform: translate(-50%, -50%);	
+		z-index: 10;
+    font-size: $default-font-size * 8;
+		// font-family: $font-family-text;
+		// color: var(--color-primary-4)
+	}
+	
+	&__first-name {
+		top: 20%;
+		left: 50%;
+	}
+
+	&__last-name {
+		top: 80%;
+		left: 50%;
+	}
+
+	&__third-word {
+		left: 25%;
+		top: 50%;
+    font-size: $default-font-size * 4;
+
+	}
+	
 }

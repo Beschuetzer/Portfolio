@@ -51,7 +51,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		if (!navBar) return;
 		handleSound(e);
 
-
 		if (isChildOfNavBar) navBar.classList.add("overflow--hidden");
 		
 		if (
@@ -96,7 +95,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	};
 
 	const setBodyStyle = (page) => {
-
 		if (page === '') document.body.className = "body-background";
 		else {
 			document.body.className = `body-background ${page.slice(1)}-page`;
@@ -119,7 +117,6 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	}, [viewPortWidth, setHeaderHeight])
 
 	useEffect(() => {
-
 		if (!currentUrl) return; 
 
 		let docStyle = getComputedStyle(document.documentElement);
@@ -163,16 +160,14 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 		};
 		document.body.addEventListener("click", onBodyClick);
 
-		;
-
 		setTimeout(() => {
 			const headerHeight = document.querySelector('#header').getBoundingClientRect().height;
 			setHeaderHeight(headerHeight);
-		}, 100)
+		}, 100);
 
 		return (() => {
 			document.body.removeEventListener("click", onBodyClick);
-		})
+		});
 	}, [setHeaderHeight]);
 
 	useEffect(() => {
