@@ -117,6 +117,20 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 	}, [viewPortWidth, setHeaderHeight])
 
 	useEffect(() => {
+		console.log('currentUrl =', currentUrl);
+		const headerElement = document.querySelector('#header');
+		const headerTogglerElement = document.querySelector('.header-toggler');
+		if (!headerElement || !headerTogglerElement) return;
+		if (currentUrl === '/') {
+			headerElement.classList.add('transparent');
+			headerTogglerElement.classList.add('d-none');
+		} else {
+			headerElement.classList.remove('transparent');
+			headerTogglerElement.classList.remove('d-none');
+		}
+	}, [currentUrl])
+
+	useEffect(() => {
 		if (!currentUrl) return; 
 
 		let docStyle = getComputedStyle(document.documentElement);

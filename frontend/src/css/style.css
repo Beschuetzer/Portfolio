@@ -411,6 +411,12 @@ body {
   justify-content: center !important;
 }
 
+.transparent {
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+}
+
 .overflow--hidden {
   overflow: hidden !important;
 }
