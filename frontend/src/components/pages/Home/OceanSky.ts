@@ -15,10 +15,12 @@ import cubeMap6Rotated from "../../../imgs/cube-learning-rotated.jpg";
 import cubeMap4 from "../../../imgs/cube-communication.jpg";
 import cubeMap1 from "../../../imgs/cube-determination.jpg";
 import cubeMap2 from "../../../imgs/cube-passion.jpg";
+import cloud from "../../../imgs/cloud.png";
 
 let camera: any, scene: any, renderer: any, lastClientY: number;
 let orbitControls, water: any, sun: any, mesh: any;
 let id: number;
+let clouds: any[];
 
 let i = 0;
 let cubeCanRotateY = false;
@@ -51,7 +53,10 @@ const parameters = {
 	azimuth: 180,
 };
 
-const sunColor = 0xf4d262;
+const sunColor = new THREE.Color(0xf4d262);
+const cloudColor = new THREE.Color(0xfbeeac);
+const waterColor = new THREE.Color(0xaad6f0);
+const cloudTransparency = .55;
 const skyTurbidity = 10;   //(10)
 const skyRayleigh = 5 //(2)
 const skyMieCoefficient = .0025; //(.005)
@@ -62,9 +67,8 @@ const spotLightStrength = .8;
 const spotLightX = 0;
 const spotLightY = 100;
 const spotLightZ = 300;
-const spotLightColor = 0xf4d262;
+const spotLightColor = sunColor;
 
-const waterColor = 0x49001f;
 const waterWidthSegments = 10000;
 const waterHeightSegments = waterWidthSegments;
 const waterAnimationSpeed = 0.75;
@@ -120,7 +124,7 @@ export function init() {
 		),
 		sunDirection: new THREE.Vector3(),
 		sunColor,
-		waterColor: 0x8ac6d0,
+		waterColor: waterColor,
 		distortionScale: 3.7,
 		fog: scene.fog !== undefined,
 	});
@@ -178,6 +182,8 @@ export function init() {
 	mesh = new THREE.Mesh(geometry, materials);
 	mesh.position.y = cubeStartingHeight;
 	scene.add(mesh);
+
+	clouds = addCloud();
 
 	//
 
@@ -279,4 +285,37 @@ function handleCubeRotation(time: number) {
     cubeCanReset = false;
 		i = 0;
   }
+}
+
+function addCloud() {
+	let clouds: any[] = [];
+	let cloudLoader = new THREE.TextureLoader()
+	cloudLoader.load(cloud, function(texture) {
+		const cloudGeo = new THREE.PlaneGeometry(5000, 5000);
+		const cloudMaterial = new THREE.MeshBasicMaterial({
+			map: texture,
+			transparent: true,
+			color: cloudColor,
+		});
+
+		for (let p=0; p < 50; p++) {
+			let cloud = new THREE.Mesh(cloudGeo, cloudMaterial);
+			cloud.position.set(
+				// 0,
+				// 400,
+				// -1000,
+				Math.random()*800 -400,
+    1300,
+    Math.random()*500-500
+			)
+			cloud.rotation.x = 1.16;
+			cloud.rotation.y = 0.12;
+			cloud.rotation.z = Math.random()*2*Math.PI;
+			cloud.material.opacity = cloudTransparency;
+			scene.add(cloud);
+			clouds.push(cloud);
+		}
+		return clouds;
+	})
+
 }
