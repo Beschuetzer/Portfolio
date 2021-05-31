@@ -144,12 +144,13 @@
 			grid-column: 1 / -1;
 		}
 		&-title {
+			font-family: $font-family-headers;
 		}
 	}
 	&__content {
 		padding: $default-font-size * 3 $default-font-size $default-font-size * 3.5;
 		font-size: $default-font-size;
-		font-family: $font-family-fancy-bridge;
+		font-family: $font-family-text;
 
 		& .bridge__subsection-grid {
 			margin-top: $default-font-size * 2;
