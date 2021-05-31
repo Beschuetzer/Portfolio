@@ -266,7 +266,7 @@ class Resume extends React.Component {
 		[
 			"overview",
 			<React.Fragment>
-				<Paragraph size="four">
+				<Paragraph size="five">
 					Below you will find the following:
 				</Paragraph>
 
@@ -274,7 +274,7 @@ class Resume extends React.Component {
 					<div className="bridge__subsection-grid">
 						<span>1).</span>
 						<span>
-							A summary of the  I possess and example projects highlighting those skills (click headers to open section and then click on individual skills to view projects using that skill). 
+							A summary of the skills I possess and example projects highlighting those skills (click headers to open section and then click on individual skills to view projects using that skill). 
 						</span>
 						<span>2).</span>
 						<span>

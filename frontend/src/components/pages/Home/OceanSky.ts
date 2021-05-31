@@ -55,7 +55,7 @@ const parameters = {
 
 const sunColor = new THREE.Color(0xf4d262);
 const cloudColor = new THREE.Color(0xfbeeac);
-const waterColor = new THREE.Color(0xaad6f0);
+const waterColor = new THREE.Color(0x8ac6d0);
 const cloudTransparency = .55;
 const skyTurbidity = 10;   //(10)
 const skyRayleigh = 5 //(2)
@@ -84,7 +84,7 @@ const cubeMinHeight = 12.5;
 const cubeBobbingDirectionIsUp = true;
 const cubeBobbingSpeed = Math.abs(cubeStartingHeight - cubeMaxHeight) / 90;
 
-export function init() {
+export function  init() {
 	//
 
 	renderer = new THREE.WebGLRenderer();
@@ -243,6 +243,10 @@ function render() {
 	const time = i += cubeRotationSpeed;
   handleCubeRotation(time);
 	// handleCubeBobbing(time);
+	if (clouds) clouds.forEach(cloud => {
+		cloud.rotation.z += .0005;
+		cloud.position.z -= .5;
+	})
 
 	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
 
@@ -315,7 +319,6 @@ function addCloud() {
 			scene.add(cloud);
 			clouds.push(cloud);
 		}
-		return clouds;
 	})
-
+	return clouds;
 }

@@ -2463,6 +2463,10 @@ body {
 .resume__content {
   padding: 4.8rem 1.6rem 5.6rem;
   font-size: 1.6rem;
+  font-family: "New Tegomin", serif;
+}
+.resume__content .bridge__subsection-grid {
+  margin-top: 3.2rem;
 }
 @media only screen and (max-width: 40.9375em) {
   .resume__content {
