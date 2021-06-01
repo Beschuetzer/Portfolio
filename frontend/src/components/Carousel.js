@@ -5,9 +5,14 @@ const Carousel = ({images, alts}) => {
   const renderImages = () => {
     return images.map((image, index) => {
       return (
-        <article key={index} className="carousel__item">
-          <img src={image} className="carousel__image" alt={alts[index]}/>
-        </article>
+        // <article key={index} className="carousel__item">
+          <img 
+            src={image}
+            className="carousel__image" 
+            alt={alts[index]}
+            key={index}
+          />
+        // </article>
       )
     })
   }

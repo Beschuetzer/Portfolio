@@ -7,23 +7,39 @@ import img4 from '../../../../imgs/bridge-section-4.jpg';
 import img5 from '../../../../imgs/bridge-section-5.jpg';
 import img6 from '../../../../imgs/bridge-section-6.jpg';
 import Carousel from '../../../Carousel';
+import SlickCarousel from '../../../SlickCarousel';
 
 const Downloader = () => {
   return (
     <div className="downloader">
-      <Carousel
-        images={[img1,img2,img3,img4,img5,img6]}
-        alts={
-          [
-            "Image 1 Alt",
-            "Image 2 Alt",
-            "Image 3 Alt",
-            "Image 4 Alt",
-            "Image 5 Alt",
-            "Image 6 Alt",
-          ]
-        }
-      />
+      <div className="downloader__carousel">
+        <Carousel
+          images={[img1,img2,img3,img4,img5,img6]}
+          alts={
+            [
+              "Image 1 Alt",
+              "Image 2 Alt",
+              "Image 3 Alt",
+              "Image 4 Alt",
+              "Image 5 Alt",
+              "Image 6 Alt",
+            ]
+          }
+        />
+        {/* <SlickCarousel
+           images={[img1,img2,img3,img4,img5,img6]}
+           alts={
+             [
+               "Image 1 Alt",
+               "Image 2 Alt",
+               "Image 3 Alt",
+               "Image 4 Alt",
+               "Image 5 Alt",
+               "Image 6 Alt",
+             ]
+           }
+        /> */}
+      </div>
     </div>
   );
 }
