@@ -2294,9 +2294,17 @@ body {
   height: 50vh;
   display: grid;
   grid-column-gap: 1.6rem;
-  grid-template-columns: repeat(auto-fill, minmax(16.6666666667vw, 8rem));
+  grid-template-columns: repeat(auto-fill, minmax(16.6666666667vw, 1.6rem));
+  justify-items: flex-start;
   align-items: flex-start;
   overflow: hidden;
+}
+@media only screen and (max-width: 68.75em) {
+  .carousel {
+    width: 100%;
+    grid-column-gap: 0.8rem;
+    grid-template-columns: repeat(auto-fill, minmax(calc(100vw / 3), 1.6rem));
+  }
 }
 .carousel__image {
   border: 0.16rem solid var(--color-primary-4);
@@ -2311,6 +2319,11 @@ body {
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
+}
+@media only screen and (max-width: 68.75em) {
+  .carousel__image {
+    width: 100%;
+  }
 }
 
 .home {
@@ -3299,6 +3312,11 @@ div.references__name {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media only screen and (max-width: 68.75em) {
+  .downloader__carousel {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

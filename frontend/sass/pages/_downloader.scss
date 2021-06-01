@@ -8,6 +8,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include respond(nav-switch) {
+      width: 100%;
+    }
   }
 
 }
