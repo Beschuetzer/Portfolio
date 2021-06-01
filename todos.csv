@@ -38,9 +38,10 @@ OPTIMIZATIONS:
 -consider a different bridge animation like fade in
 
 -add mouse listener that moves sun up and down when moving mouse up and down
--add clouds to home animation?
 -maybe alternate the rotation speed of cube based on user mouse interactions?
--add cube bobbing fx (research first)?
--change resume summary section to have a legend or asterisk about clicking links and opening skills (
 -add background to 4th section in bridge (and colors gradient for mobile
 -change name section to grid
+
+-add sections to downloads (for PageNav)
+-add arrows to carousel
+-add subtitles

@@ -2,6 +2,14 @@ import React from 'react';
 
 const Carousel = ({images, alts}) => {
 
+  const handleClick = (e) => {
+    console.log('e =', e);
+    const image = e.currentTarget;
+    if (!image) return;
+    e.preventDefault();
+    image.classList.toggle('full-screen');
+  }
+
   const renderImages = () => {
     return images.map((image, index) => {
       return (
@@ -11,6 +19,7 @@ const Carousel = ({images, alts}) => {
             className="carousel__image" 
             alt={alts[index]}
             key={index}
+            onClick={handleClick}
           />
         // </article>
       )
