@@ -30,6 +30,7 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     const currentCount = +numberOfImagesInCarouselAtOneTime + (currentTranslationFactor * +numberOfImagesToScrollOnClick) - 1
 
     console.log('currentCount =', currentCount);
+    console.log('minImageCount =', minImageCount);
     if (currentCount <= minImageCount) leftArrow.classList.add('hidden');
     if (currentCount >= maxImageCount) rightArrow.classList.add('hidden');
   }
@@ -66,7 +67,7 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
       return currentTranslationFactor = Math.floor(maxImageCount / numberOfImagesToScrollOnClick);
     }
 
-    setArrowButtonsHiddenClass(minImageCount, images.length - 1, currentTranslationFactor);
+    setArrowButtonsHiddenClass(numberOfImagesInCarouselAtOneTime - 1, images.length - 1, currentTranslationFactor);
     
     const amountToTranslateImages = imagesWidthRef.current * currentTranslationFactor * numberOfImagesToScrollOnClick;
     const newValue = `--carousel-image-translation-x: -${amountToTranslateImages}px`;
