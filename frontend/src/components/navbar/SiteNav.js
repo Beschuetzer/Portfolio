@@ -135,15 +135,19 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 		let docStyle = getComputedStyle(document.documentElement);
 		const colorVarRoot = '--color-primary';
-		const colorVarPages = ['', '/bridge', '/resume', '/csharp'];
+		const colorVarPages = ['', '/bridge', '/resume', '/downloader', '/playlist-syncer'];
 		const colorVarNumbers = ['-1','-2','-3','-4'];
 		// const colorVarHSL = ['-h', '-s', '-l'];
 
-		const temp = colorVarPages.indexOf(currentUrl.slice(currentUrl.lastIndexOf('/')));
+		const lastIndexOfSlash = currentUrl.lastIndexOf('/');
+		const pageName = currentUrl.slice(lastIndexOfSlash);
+		const temp = colorVarPages.indexOf(pageName);
 		const index = temp !== -1 ? temp : 0;
 		setBodyStyle(colorVarPages[index]);
 		const colorVarSuffix = colorVarPages[index].slice(1);
 	
+
+		debugger
 		for (let i = 0; i < colorVarNumbers.length; i++) {
 			const colorVarNumber = colorVarNumbers[i];
 			const colorVarToChange = `${colorVarRoot}${colorVarNumber}`;

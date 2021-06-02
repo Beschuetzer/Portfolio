@@ -22,6 +22,10 @@
   --color-primary-bridge-4: #f5f1db;
   --color-primary-bridge-3: #e4e0c9;
   --color-primary-bridge-1: #00406b;
+  --color-primary-downloader-1: #f9f7f7;
+  --color-primary-downloader-3: #3f72af;
+  --color-primary-downloader-2: #dbe2ef;
+  --color-primary-downloader-4: #112d4e;
 }
 
 :root {
@@ -3304,6 +3308,7 @@ div.references__name {
 
 .downloader {
   width: 100vw;
+  background-color: var(--color-primary-2);
 }
 .downloader__carousel {
   height: 100vh;
@@ -3315,7 +3320,7 @@ div.references__name {
 }
 @media only screen and (max-width: 68.75em) {
   .downloader__carousel {
-    width: 100%;
+    width: calc(100% - 1.6rem * 1);
   }
 }
 

@@ -1,5 +1,6 @@
 .downloader {
   width: 100vw;
+  background-color: var(--color-primary-2);
   
   &__carousel {
     height: 100vh;
@@ -10,7 +11,7 @@
     align-items: center;
 
     @include respond(nav-switch) {
-      width: 100%;
+      width: calc(100% - #{$default-font-size} * 1);
     }
   }
 

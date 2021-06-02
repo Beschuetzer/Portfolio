@@ -28,6 +28,11 @@ $color-primary-bridge-2: #f59229;
 $color-primary-bridge-3: #e4e0c9;
 $color-primary-bridge-4: #f5f1db;
 
+$color-primary-downloader-4: #112d4e;
+$color-primary-downloader-3: #3f72af;
+$color-primary-downloader-2: #dbe2ef;
+$color-primary-downloader-1: #f9f7f7;
+
 :root {
 	--color-grey-light-1: #{$color-grey-light-1};
 	--color-grey-light-2: #{$color-grey-light-2};
@@ -55,4 +60,9 @@ $color-primary-bridge-4: #f5f1db;
 	--color-primary-bridge-4: #{$color-primary-bridge-4};
 	--color-primary-bridge-3: #{$color-primary-bridge-3};
 	--color-primary-bridge-1: #{$color-primary-bridge-1};
+
+	--color-primary-downloader-1: #{$color-primary-downloader-1};
+	--color-primary-downloader-3: #{$color-primary-downloader-3};
+	--color-primary-downloader-2: #{$color-primary-downloader-2};
+	--color-primary-downloader-4: #{$color-primary-downloader-4};
 }
