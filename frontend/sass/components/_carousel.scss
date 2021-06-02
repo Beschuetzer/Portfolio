@@ -29,6 +29,43 @@ $carousel-grid-width: calc((#{$resume-card-width-full} - 2 * #{$carousel-grid-co
 
   // }
 
+  &__arrow-button {
+    position: relative;
+    z-index: 100;
+    // transform: none;
+    justify-self: center;
+    align-self: center;
+    cursor: pointer;
+
+    
+    &--left {
+      grid-column: 1 / span 1;
+      grid-row: 1 / span 1;
+      transform: rotate(90deg);
+    }
+
+    &--right {
+      grid-column: 3 / span 1;
+      grid-row: 1 / span 1;
+      transform: rotate(-90deg);
+
+    }
+
+    & svg {
+      width: $navbar__logo-width;
+      height: $navbar__logo-width;
+      fill: var(--color-primary-4);
+
+      &:hover,
+      &:active,
+      &:focus {
+        fill: var(--color-primary-3);
+      }
+    }
+
+    
+  }
+
   &__image {
     border: $default-font-size * .1 solid var(--color-primary-4);
     // box-shadow: $navbar-box-shadow-resume;

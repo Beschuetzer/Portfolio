@@ -2311,6 +2311,31 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(calc(100vw / 3 - 1.6rem * .875), 1.6rem));
   }
 }
+.carousel__arrow-button {
+  position: relative;
+  z-index: 100;
+  justify-self: center;
+  align-self: center;
+  cursor: pointer;
+}
+.carousel__arrow-button--left {
+  grid-column: 1/span 1;
+  grid-row: 1/span 1;
+  transform: rotate(90deg);
+}
+.carousel__arrow-button--right {
+  grid-column: 3/span 1;
+  grid-row: 1/span 1;
+  transform: rotate(-90deg);
+}
+.carousel__arrow-button svg {
+  width: 7vw;
+  height: 7vw;
+  fill: var(--color-primary-4);
+}
+.carousel__arrow-button svg:hover, .carousel__arrow-button svg:active, .carousel__arrow-button svg:focus {
+  fill: var(--color-primary-3);
+}
 .carousel__image {
   border: 0.16rem solid var(--color-primary-4);
   border-radius: 3.2rem;
