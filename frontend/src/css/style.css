@@ -2337,7 +2337,7 @@ body {
   fill: var(--color-primary-4);
 }
 .carousel__dot--active {
-  fill: var(--color-primary-1) !important;
+  fill: var(--color-primary-2) !important;
 }
 .carousel__arrow-button {
   position: relative;
@@ -3390,7 +3390,7 @@ div.references__name {
 .csharp {
   overflow: hidden;
   width: 100vw;
-  background-color: var(--color-primary-2);
+  background-color: var(--color-primary-1);
 }
 @media only screen and (max-width: 68.75em) {
   .csharp {

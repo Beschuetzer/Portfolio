@@ -44,5 +44,6 @@ OPTIMIZATIONS:
 -change name section to grid
 
 -add subtitles to images
--add sections to downloads (for PageNav)
--move carousel arrows below images (make it 3 columns inside the 85rem part instead of 2)
+-add pop on hover with alt being displayed?
+
+-add svg with csharp primary color 2 as secondary color to downloader

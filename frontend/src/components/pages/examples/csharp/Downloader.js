@@ -7,16 +7,27 @@ import img4 from '../../../../imgs/bridge-section-4.jpg';
 import img5 from '../../../../imgs/bridge-section-5.jpg';
 import img6 from '../../../../imgs/bridge-section-6.jpg';
 import Carousel from '../../../Carousel';
+import Section from '../../../Section';
 import SectionContainer from '../../../SectionContainer';
 
 const Downloader = () => {
+  const PAGE_NAME = "downloader";
+
   const sections = [
     {
       name: "Why",
-      pageName: "downloader",
+      pageName: PAGE_NAME,
       children: [
-        <p>Test1</p>,
-        <p>Test2</p>,
+        <p>Why1</p>,
+        <p>Why2</p>,
+      ]
+    },
+    {
+      name: "Features",
+      pageName: PAGE_NAME,
+      children: [
+        <p>Features1</p>,
+        <p>Features2</p>,
       ]
     },
   ]
@@ -24,36 +35,41 @@ const Downloader = () => {
   function renderSections () {
     return sections.map((section, index) => {
       return (
-        <SectionContainer
+        <Section
           name={section.name}
           pageName={section.pageName}
         >
           {section.children.map(child => child)}
-        </SectionContainer>
+        </Section>
       )
     })
   }
 
   return (
     <div className="csharp">
-      <div className="csharp__title">Downloader</div>
-      <section className="csharp__carousel">
-        <Carousel
-          images={[img1,img2,img3,img4,img5,img6]}
-          alts={
-            [
-              "Image 1 Alt",
-              "Image 2 Alt",
-              "Image 3 Alt",
-              "Image 4 Alt",
-              "Image 5 Alt",
-              "Image 6 Alt",
-            ]
-          }
-          numberOfImagesInCarouselAtOneTime="3"
-          numberOfImagesToScrollOnClick="3"
-        />
-      </section>
+      <SectionContainer
+        name="Images"
+        pageName={PAGE_NAME}
+      >
+        <div className="csharp__title">Downloader</div>
+        <section className="csharp__carousel">
+          <Carousel
+            images={[img1,img2,img3,img4,img5,img6]}
+            alts={
+              [
+                "Image 1 Alt",
+                "Image 2 Alt",
+                "Image 3 Alt",
+                "Image 4 Alt",
+                "Image 5 Alt",
+                "Image 6 Alt",
+              ]
+            }
+            numberOfImagesInCarouselAtOneTime="3"
+            numberOfImagesToScrollOnClick="3"
+          />
+        </section>
+      </SectionContainer>
       {renderSections()}
     </div>
   );

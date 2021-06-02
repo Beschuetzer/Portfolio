@@ -1,7 +1,7 @@
 .csharp {
   overflow: hidden;
   width: 100vw;
-  background-color: var(--color-primary-2);
+  background-color: var(--color-primary-1);
   
   @include respond(nav-switch) {
     padding-top: $default-font-size * 8;
