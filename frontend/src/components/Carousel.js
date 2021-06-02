@@ -81,19 +81,25 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   }
 
   const handleDotClick = (e) => {
-    debugger
-    const dots = document.querySelectorAll('.carousel__dot');
+    let currentDot = -1;
+    let dotToMoveTo = -1;
 
+    const dots = document.querySelectorAll('.carousel__dot');
     const clickedOnDot = e.currentTarget;
-    for (let i = 0; i < imagesRef.current.length; i++) {
-      const imageElement = imagesRef.current[i];
-      
+
+    for (let i = 0; i < dots.length; i++) {
+      const dot = dots[i];
+      if (dot === clickedOnDot) dotToMoveTo = i;
+      else if (dot?.classList.contains('carousel__dot--active')) currentDot = i;
+
+      if (currentDot !== -1 && dotToMoveTo !== -1) break;
     }
 
-    const differenceInCards = 1;
+    const amountToTranslateImages = imagesWidthRef.current * dotToMoveTo;
 
-    const amountToTranslateImages = imagesWidthRef.current * differenceInCards;
     setTranslationAmount(amountToTranslateImages)
+    dots[dotToMoveTo]?.classList.add('carousel__dot--active');
+    dots[currentDot]?.classList.remove('carousel__dot--active');
   }
 
   const handleImageClick = (e) => {
