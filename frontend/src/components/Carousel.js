@@ -81,25 +81,29 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   }
 
   const handleDotClick = (e) => {
-    let currentDot = -1;
-    let dotToMoveTo = -1;
+    let indexOfCurrentDot = -1;
+    let indexOfDotToMoveTo = -1;
 
     const dots = document.querySelectorAll('.carousel__dot');
     const clickedOnDot = e.currentTarget;
 
     for (let i = 0; i < dots.length; i++) {
       const dot = dots[i];
-      if (dot === clickedOnDot) dotToMoveTo = i;
-      else if (dot?.classList.contains('carousel__dot--active')) currentDot = i;
+      if (dot === clickedOnDot) indexOfDotToMoveTo = i;
+      else if (dot?.classList.contains('carousel__dot--active')) indexOfCurrentDot = i;
 
-      if (currentDot !== -1 && dotToMoveTo !== -1) break;
+      if (indexOfCurrentDot !== -1 && indexOfDotToMoveTo !== -1) break;
     }
 
-    const amountToTranslateImages = imagesWidthRef.current * dotToMoveTo;
+    const amountToTranslateImages = imagesWidthRef.current * indexOfDotToMoveTo;
+
+    currentTranslationFactor = indexOfDotToMoveTo / numberOfImagesToScrollOnClick;
+
+    setArrowButtonsHiddenClass(numberOfImagesInCarouselAtOneTime - 1, images.length - 1, currentTranslationFactor);
 
     setTranslationAmount(amountToTranslateImages)
-    dots[dotToMoveTo]?.classList.add('carousel__dot--active');
-    dots[currentDot]?.classList.remove('carousel__dot--active');
+    dots[indexOfDotToMoveTo]?.classList.add('carousel__dot--active');
+    dots[indexOfCurrentDot]?.classList.remove('carousel__dot--active');
   }
 
   const handleImageClick = (e) => {

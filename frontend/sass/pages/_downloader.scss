@@ -2,12 +2,20 @@
   overflow: hidden;
   width: 100vw;
   background-color: var(--color-primary-2);
+  
 
   @include respond(nav-switch) {
     padding-top: $default-font-size * 8;
   }
   
   &__title {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+
     font-size: $default-font-size * 4;
     text-align: center;
     width: 100vw;
