@@ -1,107 +1,143 @@
-$carousel-width:50vw;
+$carousel-width: 50vw;
 $carousel-grid-column-gap: $default-font-size;
-$carousel-grid-width: calc((#{$resume-card-width-full} - 2 * #{$carousel-grid-column-gap}) / 3);
+$carousel-grid-width: calc(
+	(#{$resume-card-width-full} - 2 * #{$carousel-grid-column-gap}) / 3
+);
 // $carousel-height: 50vh;
 
 .carousel {
-  // width: $carousel-width;
-  // height: $carousel-height;
-  grid-column: 2 / span 1;
-  display: grid;
-  grid-column-gap: $carousel-grid-column-gap;
-  grid-template-columns: repeat(auto-fill, minmax($carousel-grid-width, $default-font-size));
-  // grid-template-rows: $carousel-height;
-  justify-items: flex-start;
-  align-items: flex-start;
-  overflow: hidden;
+	// width: $carousel-width;
+	// height: $carousel-height;
+	grid-column: 2 / span 2;
+	display: grid;
+	grid-column-gap: $carousel-grid-column-gap;
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax($carousel-grid-width, $default-font-size)
+	);
+	// grid-template-rows: $carousel-height;
+	justify-items: flex-start;
+	align-items: flex-start;
+	overflow: hidden;
 
-  @include respond(nav-switch) {
-    width: 100%;
-    grid-column-gap: $default-font-size / 2;
-    grid-template-columns: repeat(auto-fill, minmax(calc(100vw / 3 - #{$default-font-size} * .875), $default-font-size));
+	@include respond(nav-switch) {
+		width: 100%;
+    justify-content: center;
+		grid-column-gap: $default-font-size / 2;
+		grid-template-columns: repeat(
+			auto-fit,
+			minmax(
+				$default-font-size *5,
+        $default-font-size * 21
+			)
+		);
 
-  }
-  // &__item{
-  //   border: 1px solid black;
-  //   border-radius: $default-font-size * 2;
-  //   width: calc(#{$carousel-width} / 3 - (#{$default-font-size} * 2));
-  //   overflow: hidden;
+    // minmax(
+		// 		calc(100vw / 3 - #{$default-font-size} * 0.875),
+		// 		// calc((100vw - #{$carousel-grid-column-gap} * 2) / 3)
+    //     $default-font-size * 21
+		// 	)
+	}
+	// &__item{
+	//   border: 1px solid black;
+	//   border-radius: $default-font-size * 2;
+	//   width: calc(#{$carousel-width} / 3 - (#{$default-font-size} * 2));
+	//   overflow: hidden;
 
-  // }
+	// }
 
-  &__arrow-button {
-    position: relative;
-    z-index: 100;
-    // transform: none;
-    justify-self: center;
-    align-self: center;
-    cursor: pointer;
-
-    
-    &--left {
-      grid-column: 1 / span 1;
-      grid-row: 1 / span 1;
-      transform: rotate(90deg);
-    }
-
-    &--right {
-      grid-column: 3 / span 1;
-      grid-row: 1 / span 1;
-      transform: rotate(-90deg);
-
-    }
-
-    & svg {
-      width: $navbar__logo-width;
-      height: $navbar__logo-width;
-      fill: var(--color-primary-4);
-
-      &:hover,
-      &:active,
-      &:focus {
-        fill: var(--color-primary-3);
-      }
-    }
-
-    
-  }
-
-  &__image {
-    border: $default-font-size * .1 solid var(--color-primary-4);
-    border-radius: $default-font-size * 2;
-    // width: calc(#{$carousel-width} / 3 - (#{$default-font-size} * 2));
-    width: 100%;
-    height: 100%; 
-    object-fit: cover;
-    z-index: 10;
-    position: relative;
-    transform: translateX(var(--carousel-image-translation-x));
-    transition: 
-      transform $animation-duration / 2 $animation-easing-standard,
-      filter $animation-duration / 2 $animation-easing-standard,
-    ;
-
-    cursor: pointer;
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+	&__arrow-button {
+		position: relative;
+		z-index: 100;
+		// transform: none;
+		justify-self: center;
+		align-self: center;
+		cursor: pointer;
 
     @include respond(nav-switch) {
-      width: 100%;
+      display: none;
     }
 
-    &:not(.full-screen):hover, 
-    &:not(.full-screen)focus,
-    &:not(.full-screen)active {
-      filter: sepia(.75);
-    }
-  }
+		&--left {
+			grid-column: 1 / span 1;
+			grid-row: 1 / span 1;
+			transform: rotate(90deg);
+
+			// @include respond(nav-switch) {
+			// 	padding-top: $default-font-size;
+			// 	grid-column: 2 / span 1;
+			// 	grid-row: 2 / span 1;
+			// 	align-self: center;
+			// 	justify-self: center;
+			// }
+		}
+
+		&--right {
+			grid-column: 4 / span 1;
+			grid-row: 1 / span 1;
+			transform: rotate(-90deg);
+
+			// @include respond(nav-switch) {
+			// 	padding-top: $default-font-size;
+			// 	grid-column: 3 / span 1;
+			// 	grid-row: 2 / span 1;
+			// 	align-self: center;
+			// 	justify-self: center;
+			// }
+		}
+
+		& svg {
+			width: $navbar__logo-width;
+			height: $navbar__logo-width;
+			fit: var(--color-primary-4);
+
+			@include respond(nav-switch) {
+				width: $default-font-size * 5;
+				height: $default-font-size * 5;
+			}
+
+			&:hover,
+			&:active,
+			&:focus {
+				fit: var(--color-primary-3);
+			}
+		}
+	}
+
+	&__image {
+		border: $default-font-size * 0.1 solid var(--color-primary-4);
+		border-radius: $default-font-size * 2;
+		// width: calc(#{$carousel-width} / 3 - (#{$default-font-size} * 2));
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: 6;
+		position: relative;
+		transform: translateX(var(--carousel-image-translation-x));
+		transition: transform $animation-duration / 2 $animation-easing-standard,
+			filter $animation-duration / 2 $animation-easing-standard;
+
+		cursor: pointer;
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+
+		-webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/
+		-khtml-user-select: none; /* Konqueror HTML */
+		-moz-user-select: none; /* Old versions of Firefox */
+		-ms-user-select: none; /* Internet Explorer/Edge */
+		user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+
+		@include respond(nav-switch) {
+			width: 100%;
+		}
+
+		&:not(.full-screen):hover,
+		&:not(.full-screen)focus,
+		&:not(.full-screen)active {
+			filter: sepia(0.75);
+		}
+	}
 }

@@ -41,6 +41,7 @@ body {
 	line-height: $line-height;
 	font-family: $font-family-headers;
 	color: var(--color-primary-4);
+	overflow-x: hidden;
 }
 
 .body-background {

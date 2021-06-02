@@ -252,6 +252,7 @@ body {
   line-height: 1.5;
   font-family: "Merriweather", serif;
   color: var(--color-primary-4);
+  overflow-x: hidden;
 }
 
 .body-background {
@@ -2299,10 +2300,10 @@ body {
 }
 
 .carousel {
-  grid-column: 2/span 1;
+  grid-column: 2/span 2;
   display: grid;
   grid-column-gap: 1.6rem;
-  grid-template-columns: repeat(auto-fill, minmax(calc((85rem - 2 * 1.6rem) / 3), 1.6rem));
+  grid-template-columns: repeat(auto-fit, minmax(calc( 	(85rem - 2 * 1.6rem) / 3 ), 1.6rem));
   justify-items: flex-start;
   align-items: flex-start;
   overflow: hidden;
@@ -2310,8 +2311,9 @@ body {
 @media only screen and (max-width: 68.75em) {
   .carousel {
     width: 100%;
+    justify-content: center;
     grid-column-gap: 0.8rem;
-    grid-template-columns: repeat(auto-fill, minmax(calc(100vw / 3 - 1.6rem * .875), 1.6rem));
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 33.6rem));
   }
 }
 .carousel__arrow-button {
@@ -2321,23 +2323,34 @@ body {
   align-self: center;
   cursor: pointer;
 }
+@media only screen and (max-width: 68.75em) {
+  .carousel__arrow-button {
+    display: none;
+  }
+}
 .carousel__arrow-button--left {
   grid-column: 1/span 1;
   grid-row: 1/span 1;
   transform: rotate(90deg);
 }
 .carousel__arrow-button--right {
-  grid-column: 3/span 1;
+  grid-column: 4/span 1;
   grid-row: 1/span 1;
   transform: rotate(-90deg);
 }
 .carousel__arrow-button svg {
   width: 7vw;
   height: 7vw;
-  fill: var(--color-primary-4);
+  fit: var(--color-primary-4);
+}
+@media only screen and (max-width: 68.75em) {
+  .carousel__arrow-button svg {
+    width: 8rem;
+    height: 8rem;
+  }
 }
 .carousel__arrow-button svg:hover, .carousel__arrow-button svg:active, .carousel__arrow-button svg:focus {
-  fill: var(--color-primary-3);
+  fit: var(--color-primary-3);
 }
 .carousel__image {
   border: 0.16rem solid var(--color-primary-4);
@@ -2345,7 +2358,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 10;
+  z-index: 6;
   position: relative;
   transform: translateX(var(--carousel-image-translation-x));
   transition: transform 0.25s ease, filter 0.25s ease;
@@ -3371,13 +3384,15 @@ div.references__name {
 .csharp__carousel {
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 85rem 1fr;
+  grid-template-columns: 1fr 42.5rem 42.5rem 1fr;
   justify-content: center;
   padding: 3.2rem 0 11.2rem 0;
 }
 @media only screen and (max-width: 68.75em) {
   .csharp__carousel {
     width: calc(100% - 1.6rem * 1);
+    display: flex;
+    flex-direction: row;
   }
 }
 
