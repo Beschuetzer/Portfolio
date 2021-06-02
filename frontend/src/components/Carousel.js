@@ -1,9 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Carousel = ({images, alts}) => {
   const minImageCount = 0;
   const numberOfImagesInCarousel = 3;
   let currentTranslationFactor = minImageCount;
+  let imageElements;
+  let imagesRef = useRef();
+
+  useEffect(() => {
+    imagesRef.current = document.querySelectorAll('.carousel__image');
+  }, [])
 
   const handleImageClick = (e) => {
     console.log('e =', e);
@@ -14,7 +20,6 @@ const Carousel = ({images, alts}) => {
   }
 
   const handleArrowClick = (e) => {
-    const images = document.querySelectorAll('.carousel__image');
     const maxImageCount = images.length - numberOfImagesInCarousel;
 
     let hasClickedLeftArrow = false;
@@ -30,8 +35,8 @@ const Carousel = ({images, alts}) => {
       return currentTranslationFactor = maxImageCount;
     }
 
-    const image1Left = images[0].getBoundingClientRect().left;
-    const image2Left = images[1].getBoundingClientRect().left;
+    const image1Left = imagesRef.current[0].getBoundingClientRect().left;
+    const image2Left = imagesRef.current[1].getBoundingClientRect().left;
     const imageWidth = Math.abs(image1Left - image2Left);
     const amountToTranslateImages = imageWidth * currentTranslationFactor;
     console.log('e =', e);
@@ -59,6 +64,10 @@ const Carousel = ({images, alts}) => {
     })
   }
 
+  const renderCarouselButton = () => {
+
+  }
+
   return (
     <React.Fragment>
       <article className="carousel">
@@ -73,6 +82,9 @@ const Carousel = ({images, alts}) => {
         <svg> 
           <use xlinkHref="/sprite.svg#icon-arrow-with-circle-down"></use>
         </svg>
+      </div>
+      <div className="carousel__buttons">
+        {renderCarouselButton()}
       </div>
     </React.Fragment>
   );

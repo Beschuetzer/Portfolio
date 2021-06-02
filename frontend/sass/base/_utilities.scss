@@ -110,6 +110,8 @@
         border-radius: 0 !important;
         object-fit: contain !important;
         backdrop-filter: blur($default-font-size) sepia(0) brightness(0.25);
+        transform: translate(0,0) !important;
+        transition: none !important;
     }
 
     .d-none {

@@ -68,7 +68,6 @@ $carousel-grid-width: calc((#{$resume-card-width-full} - 2 * #{$carousel-grid-co
 
   &__image {
     border: $default-font-size * .1 solid var(--color-primary-4);
-    // box-shadow: $navbar-box-shadow-resume;
     border-radius: $default-font-size * 2;
     // width: calc(#{$carousel-width} / 3 - (#{$default-font-size} * 2));
     width: 100%;
@@ -76,18 +75,24 @@ $carousel-grid-width: calc((#{$resume-card-width-full} - 2 * #{$carousel-grid-co
     object-fit: cover;
     z-index: 10;
     position: relative;
+    transform: translateX(var(--carousel-image-translation-x));
     transition: 
-      transform $animation-duration $animation-easing-modern,
+      transform $animation-duration / 2 $animation-easing-standard,
       filter $animation-duration / 2 $animation-easing-standard,
     ;
 
-    transform: translateX(var(--carousel-image-translation-x));
-    
     cursor: pointer;
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 
     @include respond(nav-switch) {
       width: 100%;

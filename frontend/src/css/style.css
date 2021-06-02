@@ -462,6 +462,8 @@ body {
   border-radius: 0 !important;
   object-fit: contain !important;
   backdrop-filter: blur(1.6rem) sepia(0) brightness(0.25);
+  transform: translate(0, 0) !important;
+  transition: none !important;
 }
 
 .d-none {
@@ -2345,13 +2347,25 @@ body {
   object-fit: cover;
   z-index: 10;
   position: relative;
-  transition: transform 0.5s cubic-bezier(1, 0, 0, 1), filter 0.25s ease;
   transform: translateX(var(--carousel-image-translation-x));
+  transition: transform 0.25s ease, filter 0.25s ease;
   cursor: pointer;
   -webkit-user-drag: none;
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: text;
+  /* Safari 'none' or 'text' here 'all' has issues*/
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 @media only screen and (max-width: 68.75em) {
   .carousel__image {
