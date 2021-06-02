@@ -86,6 +86,7 @@
   --arrow-button-left-fill-hover: var(--color-primary-bridge-2);
   --card-scale-amount: 1;
   --card-playing-transform: translate(0,0) scale(1);
+  --carousel-image-translation-x: 0;
   --diamond-fractal-animation-duration: 120s;
   --diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
   --aspect-ratio-factor: calc(16 / 9);
@@ -2345,6 +2346,7 @@ body {
   z-index: 10;
   position: relative;
   transition: transform 0.5s cubic-bezier(1, 0, 0, 1), filter 0.25s ease;
+  transform: translateX(var(--carousel-image-translation-x));
   cursor: pointer;
   -webkit-user-drag: none;
   -khtml-user-drag: none;

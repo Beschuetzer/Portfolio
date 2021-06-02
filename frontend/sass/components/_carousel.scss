@@ -80,6 +80,8 @@ $carousel-grid-width: calc((#{$resume-card-width-full} - 2 * #{$carousel-grid-co
       transform $animation-duration $animation-easing-modern,
       filter $animation-duration / 2 $animation-easing-standard,
     ;
+
+    transform: translateX(var(--carousel-image-translation-x));
     
     cursor: pointer;
     -webkit-user-drag: none;

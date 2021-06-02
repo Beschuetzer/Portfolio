@@ -260,6 +260,11 @@ $page-nav-top: calc(
 	--card-playing-transform: translate(0,0) scale(1);
 	
 	
+	
+	//csharp-like pages
+	--carousel-image-translation-x: 0;
+
+
 	//shapes stuff
 	--diamond-fractal-animation-duration: 120s;
 	--diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));

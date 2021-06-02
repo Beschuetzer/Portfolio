@@ -1,7 +1,9 @@
-import React from 'react';
-import ArrowButton from './ArrowButton';
+import React, { useEffect } from 'react';
 
 const Carousel = ({images, alts}) => {
+  const minImageCount = 0;
+  const numberOfImagesInCarousel = 3;
+  let currentTranslationFactor = minImageCount;
 
   const handleImageClick = (e) => {
     console.log('e =', e);
@@ -12,7 +14,33 @@ const Carousel = ({images, alts}) => {
   }
 
   const handleArrowClick = (e) => {
+    const images = document.querySelectorAll('.carousel__image');
+    const maxImageCount = images.length - numberOfImagesInCarousel;
 
+    let hasClickedLeftArrow = false;
+    if (e.currentTarget?.classList.contains('carousel__arrow-button--left')) hasClickedLeftArrow = true;
+
+    if (hasClickedLeftArrow) currentTranslationFactor -=1;
+    else currentTranslationFactor += 1;
+
+    if (currentTranslationFactor < minImageCount) {
+      return currentTranslationFactor = minImageCount;
+    }
+    else if (currentTranslationFactor > maxImageCount) {
+      return currentTranslationFactor = maxImageCount;
+    }
+
+    const image1Left = images[0].getBoundingClientRect().left;
+    const image2Left = images[1].getBoundingClientRect().left;
+    const imageWidth = Math.abs(image1Left - image2Left);
+    const amountToTranslateImages = imageWidth * currentTranslationFactor;
+    console.log('e =', e);
+    console.log('currentImage =', currentTranslationFactor);
+    console.log('imageWidth =', imageWidth);
+    console.log('amountToTranslateImages =', amountToTranslateImages);
+
+    const newValue = `--carousel-image-translation-x: -${amountToTranslateImages}px`;
+    document.documentElement.style.cssText += newValue;
   }
 
   const renderImages = () => {
@@ -36,7 +64,7 @@ const Carousel = ({images, alts}) => {
       <article className="carousel">
         {renderImages()}
       </article>
-      <div onClick={handleArrowClick} className={`hidden  carousel__arrow-button carousel__arrow-button--left`}>
+      <div onClick={handleArrowClick} className={` carousel__arrow-button carousel__arrow-button--left`}>
         <svg> 
           <use xlinkHref="/sprite.svg#icon-arrow-with-circle-down"></use>
         </svg>
