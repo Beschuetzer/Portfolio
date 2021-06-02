@@ -46,6 +46,23 @@ $carousel-grid-width: calc(
 
 	// }
 
+  &__buttons {
+    padding-top: $default-font-size * 2;
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & svg {
+      position: relative;
+      z-index: 6;
+      cursor: pointer;
+      width: $navbar__logo-width / 2;
+      height: $navbar__logo-width / 2;
+      fill: var(--color-primary-4);
+    }
+  }
+
 	&__arrow-button {
 		position: relative;
 		z-index: 100;
@@ -89,7 +106,7 @@ $carousel-grid-width: calc(
 		& svg {
 			width: $navbar__logo-width;
 			height: $navbar__logo-width;
-			fit: var(--color-primary-4);
+			fill: var(--color-primary-4);
 
 			@include respond(nav-switch) {
 				width: $default-font-size * 5;
@@ -99,7 +116,7 @@ $carousel-grid-width: calc(
 			&:hover,
 			&:active,
 			&:focus {
-				fit: var(--color-primary-3);
+				fill: var(--color-primary-3);
 			}
 		}
 	}

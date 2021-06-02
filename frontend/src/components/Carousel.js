@@ -35,13 +35,6 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     if (currentCount >= maxImageCount) rightArrow.classList.add('hidden');
   }
 
-  const handleImageClick = (e) => {
-    const image = e.currentTarget;
-    if (!image) return;
-    e.preventDefault();
-    image.classList.toggle('full-screen');
-  }
-
   const handleArrowClick = (e) => {
     const maxImageCount = +numberOfImagesToScrollOnClick === 1 ? (images.length - numberOfImagesInCarouselAtOneTime) : images.length - 1;
 
@@ -74,6 +67,16 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     document.documentElement.style.cssText += newValue;
   }
 
+  const handleDotClick = (e) => {
+    console.log('e =', e);
+  }
+
+  const handleImageClick = (e) => {
+    const image = e.currentTarget;
+    if (!image) return;
+    e.preventDefault();
+    image.classList.toggle('full-screen');
+  }
 
   const renderImages = () => {
     return images.map((image, index) => {
@@ -91,8 +94,18 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     })
   }
 
-  const renderCarouselButton = () => {
-
+  const renderCarouselButtons = () => {
+    return images.map((image, index) => {
+      return (
+          <svg 
+            key={index} 
+            className={`carousel__dot-image-${index}`}
+            onClick={handleDotClick}
+          > 
+            <use xlinkHref="/sprite.svg#icon-dot-single"></use>
+          </svg>
+      )
+    });
   }
 
   return (
@@ -111,7 +124,7 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
         </svg>
       </div>
       <div className="carousel__buttons">
-        {renderCarouselButton()}
+        {renderCarouselButtons()}
       </div>
     </React.Fragment>
   );

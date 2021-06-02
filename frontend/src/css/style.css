@@ -2316,6 +2316,21 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(8rem, 33.6rem));
   }
 }
+.carousel__buttons {
+  padding-top: 3.2rem;
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.carousel__buttons svg {
+  position: relative;
+  z-index: 6;
+  cursor: pointer;
+  width: 3.5vw;
+  height: 3.5vw;
+  fill: var(--color-primary-4);
+}
 .carousel__arrow-button {
   position: relative;
   z-index: 100;
@@ -2341,7 +2356,7 @@ body {
 .carousel__arrow-button svg {
   width: 7vw;
   height: 7vw;
-  fit: var(--color-primary-4);
+  fill: var(--color-primary-4);
 }
 @media only screen and (max-width: 68.75em) {
   .carousel__arrow-button svg {
@@ -2350,7 +2365,7 @@ body {
   }
 }
 .carousel__arrow-button svg:hover, .carousel__arrow-button svg:active, .carousel__arrow-button svg:focus {
-  fit: var(--color-primary-3);
+  fill: var(--color-primary-3);
 }
 .carousel__image {
   border: 0.16rem solid var(--color-primary-4);
