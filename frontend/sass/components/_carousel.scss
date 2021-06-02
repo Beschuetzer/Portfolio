@@ -51,16 +51,16 @@ $carousel-grid-width: calc(
     grid-column: 1 / -1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
+  }
 
-    & svg {
-      position: relative;
-      z-index: 6;
-      cursor: pointer;
-      width: $navbar__logo-width / 2;
-      height: $navbar__logo-width / 2;
-      fill: var(--color-primary-4);
-    }
+  &__dot {
+    position: relative;
+    z-index: 6;
+    cursor: pointer;
+    width: $navbar__logo-width / 2;
+    height: $navbar__logo-width / 2;
+    fill: var(--color-primary-4);
 
     &--active {
       fill: var(--color-primary-1) !important;

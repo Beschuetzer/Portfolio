@@ -2323,7 +2323,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-.carousel__buttons svg {
+.carousel__dot {
   position: relative;
   z-index: 6;
   cursor: pointer;
@@ -2331,7 +2331,7 @@ body {
   height: 3.5vw;
   fill: var(--color-primary-4);
 }
-.carousel__buttons--active {
+.carousel__dot--active {
   fill: var(--color-primary-1) !important;
 }
 .carousel__arrow-button {

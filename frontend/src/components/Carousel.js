@@ -36,12 +36,11 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   }
 
   function setCurrentActiveButton (indexOfActiveDot) {
-    const dots = document.querySelectorAll('.carousel__buttons-dot');
-
+    const dots = document.querySelectorAll('.carousel__dot');
     for (let i = 0; i < dots.length; i++) {
       const dot = dots[i];
-      if (i !== indexOfActiveDot) dot?.classList.remove('carousel__buttons--active');
-      else dot?.classList.add('carousel__buttons--active');
+      if (i !== indexOfActiveDot) dot?.classList.remove('carousel__dot--active');
+      else dot?.classList.add('carousel__dot--active');
     }
   }
 
@@ -53,7 +52,6 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   const handleArrowClick = (e) => {
     const maxImageCount = +numberOfImagesToScrollOnClick === 1 ? (images.length - numberOfImagesInCarouselAtOneTime) : images.length - 1;
 
-
     let hasClickedLeftArrow = false;
     if (e.currentTarget?.classList.contains('carousel__arrow-button--left')) hasClickedLeftArrow = true;
 
@@ -62,13 +60,12 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
 
     setCurrentActiveButton(currentTranslationFactor * numberOfImagesToScrollOnClick);
 
-    console.log('currentTranslationFactor =', 
-    currentTranslationFactor);
-    console.log('numberOfImagesInCarouselAtOneTime =', numberOfImagesInCarouselAtOneTime);
-    console.log('numberOfImagesToScrollOnClick =', 
-    numberOfImagesToScrollOnClick);
-    console.log('maxImageCount =', maxImageCount);
-    
+    // console.log('currentTranslationFactor =', 
+    // currentTranslationFactor);
+    // console.log('numberOfImagesInCarouselAtOneTime =', numberOfImagesInCarouselAtOneTime);
+    // console.log('numberOfImagesToScrollOnClick =', 
+    // numberOfImagesToScrollOnClick);
+    // console.log('maxImageCount =', maxImageCount);
 
     if (currentTranslationFactor * numberOfImagesToScrollOnClick < minImageCount) {
       return currentTranslationFactor = minImageCount;
@@ -84,7 +81,19 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   }
 
   const handleDotClick = (e) => {
-    console.log('e =', e);
+    debugger
+    const dots = document.querySelectorAll('.carousel__dot');
+
+    const clickedOnDot = e.currentTarget;
+    for (let i = 0; i < imagesRef.current.length; i++) {
+      const imageElement = imagesRef.current[i];
+      
+    }
+
+    const differenceInCards = 1;
+
+    const amountToTranslateImages = imagesWidthRef.current * differenceInCards;
+    setTranslationAmount(amountToTranslateImages)
   }
 
   const handleImageClick = (e) => {
@@ -116,9 +125,9 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
           <svg 
             key={index} 
             className={`
-              carousel__buttons-dot
-              carousel__buttons-dot-${index}
-              ${index === 0 ? 'carousel__buttons--active' : ''}
+              carousel__dot
+              carousel__dot-${index}
+              ${index === 0 ? 'carousel__dot--active' : ''}
             `}
             onClick={handleDotClick}
           > 
