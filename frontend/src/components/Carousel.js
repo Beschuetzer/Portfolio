@@ -45,6 +45,11 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     }
   }
 
+  function setTranslationAmount(amountToTranslateImages) {
+    const newValue = `--carousel-image-translation-x: -${amountToTranslateImages}px`;
+    document.documentElement.style.cssText += newValue;
+  }
+
   const handleArrowClick = (e) => {
     const maxImageCount = +numberOfImagesToScrollOnClick === 1 ? (images.length - numberOfImagesInCarouselAtOneTime) : images.length - 1;
 
@@ -73,10 +78,9 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     }
 
     setArrowButtonsHiddenClass(numberOfImagesInCarouselAtOneTime - 1, images.length - 1, currentTranslationFactor);
-    
+
     const amountToTranslateImages = imagesWidthRef.current * currentTranslationFactor * numberOfImagesToScrollOnClick;
-    const newValue = `--carousel-image-translation-x: -${amountToTranslateImages}px`;
-    document.documentElement.style.cssText += newValue;
+    setTranslationAmount(amountToTranslateImages)
   }
 
   const handleDotClick = (e) => {
