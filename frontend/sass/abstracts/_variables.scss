@@ -67,7 +67,7 @@ $skills-linear-gradient-hover: linear-gradient(
 
 //resume
 $resume-card-width-full: $default-font-size * 53.125;
-
+$resume-header-text-shadow: getTextShadow(soft-emboss, $color-primary-resume-3, $color-primary-resume-2);
 
 //header
 $header-top-inner: calc(

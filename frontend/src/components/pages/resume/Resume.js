@@ -565,10 +565,6 @@ class Resume extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js"></script>
-				<script defer src="https://cdn.rawgit.com/mattatz/THREE.Fire/master/FireShader.js"></script>
-				<script defer src="https://cdn.rawgit.com/mattatz/THREE.Fire/master/Fire.js"></script>
-				
 				<section className="resume">
 					<h2 className="heading heading--two">R&eacute;sum&eacute;</h2>
 					{this.renderSections()}

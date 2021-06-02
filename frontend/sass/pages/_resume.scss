@@ -1,5 +1,4 @@
 .resume {
-	grid-column: 1 / -1;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -130,7 +129,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: $default-font-size * 2;
-		text-shadow: getTextShadow(soft-emboss, $color-primary-resume-3, $color-primary-resume-2);
+		text-shadow: $resume-header-text-shadow;
 
 		@include respond(tab-port) {
 			margin-bottom: $default-font-size * 0.75;

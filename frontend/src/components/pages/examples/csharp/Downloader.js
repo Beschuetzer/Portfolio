@@ -11,8 +11,9 @@ import SlickCarousel from '../../../SlickCarousel';
 
 const Downloader = () => {
   return (
-    <div className="downloader">
-      <div className="downloader__carousel">
+    <section className="csharp">
+      <div className="csharp__title">Downloader</div>
+      <div className="csharp__carousel">
         <Carousel
           images={[img1,img2,img3,img4,img5,img6]}
           alts={
@@ -26,21 +27,8 @@ const Downloader = () => {
             ]
           }
         />
-        {/* <SlickCarousel
-           images={[img1,img2,img3,img4,img5,img6]}
-           alts={
-             [
-               "Image 1 Alt",
-               "Image 2 Alt",
-               "Image 3 Alt",
-               "Image 4 Alt",
-               "Image 5 Alt",
-               "Image 6 Alt",
-             ]
-           }
-        /> */}
       </div>
-    </div>
+    </section>
   );
 }
 

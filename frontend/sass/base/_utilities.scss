@@ -108,6 +108,8 @@
         z-index: 100 !important;
         border: none !important;
         border-radius: 0 !important;
+        object-fit: contain !important;
+        backdrop-filter: blur($default-font-size);
     }
 
     .d-none {
