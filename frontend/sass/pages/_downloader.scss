@@ -3,19 +3,19 @@
   width: 100vw;
   background-color: var(--color-primary-2);
   
-  background-image: 
-    get-resume-card-gradient(.95)
-    ,
-    url($resume-card-background-work-history);
-  background-attachment: fixed;
-
   @include respond(nav-switch) {
     padding-top: $default-font-size * 8;
   }
 
-  @include respond(tab-port) {
-    background-image: var(--color-primary-2);
-  }
+  // background-image: 
+  //   get-resume-card-gradient(.95)
+  //   ,
+  //   url($resume-card-background-work-history);
+  // background-attachment: fixed;
+
+  // @include respond(tab-port) {
+  //   background-image: var(--color-primary-2);
+  // }
   
   &__title {
     -webkit-touch-callout: none; /* iOS Safari */
@@ -39,10 +39,10 @@
     // width: $resume-card-width-full;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr $resume-card-width-full / 2 $resume-card-width-full / 2 1fr;
+    grid-row-gap: $default-font-size * 2;
+    grid-template-columns: 1fr $resume-card-width-full / 3 $resume-card-width-full / 3 $resume-card-width-full / 3 1fr;
     justify-content: center;
     padding: $default-font-size * 2 0 $default-font-size * 7 0;
-    
 
     @include respond(nav-switch) {
       width: calc(100% - #{$default-font-size} * 1);
