@@ -7,7 +7,6 @@ import img4 from '../../../../imgs/bridge-section-4.jpg';
 import img5 from '../../../../imgs/bridge-section-5.jpg';
 import img6 from '../../../../imgs/bridge-section-6.jpg';
 import Carousel from '../../../Carousel';
-import SlickCarousel from '../../../SlickCarousel';
 
 const Downloader = () => {
   return (
@@ -26,6 +25,8 @@ const Downloader = () => {
               "Image 6 Alt",
             ]
           }
+          numberOfImagesInCarouselAtOneTime="3"
+          numberOfImagesToScrollOnClick="3"
         />
       </div>
     </section>
