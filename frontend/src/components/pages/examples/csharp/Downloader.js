@@ -7,12 +7,37 @@ import img4 from '../../../../imgs/bridge-section-4.jpg';
 import img5 from '../../../../imgs/bridge-section-5.jpg';
 import img6 from '../../../../imgs/bridge-section-6.jpg';
 import Carousel from '../../../Carousel';
+import SectionContainer from '../../../SectionContainer';
 
 const Downloader = () => {
+  const sections = [
+    {
+      name: "Why",
+      pageName: "downloader",
+      children: [
+        <p>Test1</p>,
+        <p>Test2</p>,
+      ]
+    },
+  ]
+
+  function renderSections () {
+    return sections.map((section, index) => {
+      return (
+        <SectionContainer
+          name={section.name}
+          pageName={section.pageName}
+        >
+          {section.children.map(child => child)}
+        </SectionContainer>
+      )
+    })
+  }
+
   return (
-    <section className="csharp">
+    <div className="csharp">
       <div className="csharp__title">Downloader</div>
-      <div className="csharp__carousel">
+      <section className="csharp__carousel">
         <Carousel
           images={[img1,img2,img3,img4,img5,img6]}
           alts={
@@ -28,8 +53,9 @@ const Downloader = () => {
           numberOfImagesInCarouselAtOneTime="3"
           numberOfImagesToScrollOnClick="3"
         />
-      </div>
-    </section>
+      </section>
+      {renderSections()}
+    </div>
   );
 }
 
