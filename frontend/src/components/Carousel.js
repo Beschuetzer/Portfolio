@@ -1,15 +1,20 @@
 import React, { useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
 
-const Carousel = ({images, alts}) => {
+const Carousel = ({images, alts, viewPortWidth}) => {
   const minImageCount = 0;
   const numberOfImagesInCarousel = 3;
   let currentTranslationFactor = minImageCount;
-  let imageElements;
   let imagesRef = useRef();
+  let imagesWidth = useRef();
 
   useEffect(() => {
+    console.log('something------------------------------------------------');
     imagesRef.current = document.querySelectorAll('.carousel__image');
-  }, [])
+    const image1Left = imagesRef.current[0].getBoundingClientRect().left;
+    const image2Left = imagesRef.current[1].getBoundingClientRect().left;
+    imagesWidth.current = Math.abs(image1Left - image2Left);
+  }, [viewPortWidth])
 
   const handleImageClick = (e) => {
     console.log('e =', e);
@@ -35,13 +40,11 @@ const Carousel = ({images, alts}) => {
       return currentTranslationFactor = maxImageCount;
     }
 
-    const image1Left = imagesRef.current[0].getBoundingClientRect().left;
-    const image2Left = imagesRef.current[1].getBoundingClientRect().left;
-    const imageWidth = Math.abs(image1Left - image2Left);
-    const amountToTranslateImages = imageWidth * currentTranslationFactor;
+    
+    const amountToTranslateImages = imagesWidth.current * currentTranslationFactor;
     console.log('e =', e);
     console.log('currentImage =', currentTranslationFactor);
-    console.log('imageWidth =', imageWidth);
+    console.log('imagesWidth.current =', imagesWidth.current);
     console.log('amountToTranslateImages =', amountToTranslateImages);
 
     const newValue = `--carousel-image-translation-x: -${amountToTranslateImages}px`;
@@ -90,4 +93,12 @@ const Carousel = ({images, alts}) => {
   );
 }
 
-export default Carousel;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    viewPortWidth: state.general.viewPortWidth,
+  }
+}
+
+export default connect(mapStateToProps, {
+
+})(Carousel);

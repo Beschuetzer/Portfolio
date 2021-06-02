@@ -46,3 +46,5 @@ OPTIMIZATIONS:
 -add subtitles to images
 -add sections to downloads (for PageNav)
 -add little circular buttons at bottom of carousel
+-change arrow location for nav-switch and below
+-hide arrow buttons when appropriate
