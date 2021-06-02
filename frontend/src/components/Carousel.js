@@ -2,6 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
 const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTime, numberOfImagesToScrollOnClick}) => {
+  const FULLSCREEN_CLASSNAME = 'full-screen';
+  const CSS_TRANSLATION_AMOUNT_VAR_NAME = '--carousel-image-translation-x';
+  const IMAGE_CLASSNAME = 'carousel__image';
+  const DOT_CLASSNAME = 'carousel__dot';
+  const DOT_ACTIVE_CLASSNAME = `${DOT_CLASSNAME}--active`;
+  const ARROW_BUTTONS_CLASSNAME = 'carousel__arrow-button';
+  const ARROW_BUTTON_LEFT_CLASSNAME = `${ARROW_BUTTONS_CLASSNAME}--left`;
+  const ARROW_BUTTON_RIGHT_CLASSNAME = `${ARROW_BUTTONS_CLASSNAME}--right`;
   const minImageCount = 0;
   let currentTranslationFactor = minImageCount;
   let imagesRef = useRef();
@@ -10,9 +18,9 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   let rightArrowRef = useRef();
 
   useEffect(() => {
-    leftArrowRef.current = document.querySelectorAll('.carousel__arrow-button--left');
-    rightArrowRef.current = document.querySelectorAll('.carousel__arrow-button--right');
-    imagesRef.current = document.querySelectorAll('.carousel__image');
+    leftArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_LEFT_CLASSNAME}`);
+    rightArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_RIGHT_CLASSNAME}`);
+    imagesRef.current = document.querySelectorAll(`.${IMAGE_CLASSNAME}`);
     const image1Left = imagesRef.current[0].getBoundingClientRect().left;
     const image2Left = imagesRef.current[1].getBoundingClientRect().left;
     imagesWidthRef.current = Math.abs(image1Left - image2Left);
@@ -34,16 +42,16 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   }
 
   function setCurrentActiveButton (indexOfActiveDot) {
-    const dots = document.querySelectorAll('.carousel__dot');
+    const dots = document.querySelectorAll(`.${DOT_CLASSNAME}`);
     for (let i = 0; i < dots.length; i++) {
       const dot = dots[i];
-      if (i !== indexOfActiveDot) dot?.classList.remove('carousel__dot--active');
-      else dot?.classList.add('carousel__dot--active');
+      if (i !== indexOfActiveDot) dot?.classList.remove(DOT_ACTIVE_CLASSNAME);
+      else dot?.classList.add(DOT_ACTIVE_CLASSNAME);
     }
   }
 
   function setTranslationAmount(amountToTranslateImages) {
-    const newValue = `--carousel-image-translation-x: -${amountToTranslateImages}px`;
+    const newValue = `${CSS_TRANSLATION_AMOUNT_VAR_NAME}: -${amountToTranslateImages}px`;
     document.documentElement.style.cssText += newValue;
   }
 
@@ -52,7 +60,7 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     const maxImageCount = +numberOfImagesToScrollOnClick === 1 ? (images.length - numberOfImagesInCarouselAtOneTime) : images.length - 1;
 
     let hasClickedLeftArrow = false;
-    if (e.currentTarget?.classList.contains('carousel__arrow-button--left')) hasClickedLeftArrow = true;
+    if (e.currentTarget?.classList.contains(ARROW_BUTTON_LEFT_CLASSNAME)) hasClickedLeftArrow = true;
 
     if (hasClickedLeftArrow) {
       if (!Number.isInteger(currentTranslationFactor)) currentTranslationFactor = Math.floor(currentTranslationFactor);
@@ -87,13 +95,13 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     let indexOfCurrentDot = -1;
     let indexOfDotToMoveTo = -1;
 
-    const dots = document.querySelectorAll('.carousel__dot');
+    const dots = document.querySelectorAll(`.${DOT_CLASSNAME}`);
     const clickedOnDot = e.currentTarget;
 
     for (let i = 0; i < dots.length; i++) {
       const dot = dots[i];
       if (dot === clickedOnDot) indexOfDotToMoveTo = i;
-      else if (dot?.classList.contains('carousel__dot--active')) indexOfCurrentDot = i;
+      else if (dot?.classList.contains(DOT_ACTIVE_CLASSNAME)) indexOfCurrentDot = i;
 
       if (indexOfCurrentDot !== -1 && indexOfDotToMoveTo !== -1) break;
     }
@@ -105,15 +113,15 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     setArrowButtonsHiddenClass(0, images.length - 1, currentTranslationFactor);
 
     setTranslationAmount(amountToTranslateImages)
-    dots[indexOfDotToMoveTo]?.classList.add('carousel__dot--active');
-    dots[indexOfCurrentDot]?.classList.remove('carousel__dot--active');
+    dots[indexOfDotToMoveTo]?.classList.add(DOT_ACTIVE_CLASSNAME);
+    dots[indexOfCurrentDot]?.classList.remove(DOT_ACTIVE_CLASSNAME);
   }
 
   const handleImageClick = (e) => {
     const image = e.currentTarget;
     if (!image) return;
     e.preventDefault();
-    image.classList.toggle('full-screen');
+    image.classList.toggle(FULLSCREEN_CLASSNAME);
   }
 
   const renderImages = () => {
@@ -122,7 +130,7 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
         // <article key={index} className="carousel__item">
           <img 
             src={image}
-            className="carousel__image" 
+            className={`${IMAGE_CLASSNAME}`} 
             alt={alts[index]}
             key={index}
             onClick={handleImageClick}
@@ -138,9 +146,9 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
           <svg 
             key={index} 
             className={`
-              carousel__dot
-              carousel__dot-${index}
-              ${index === 0 ? 'carousel__dot--active' : ''}
+              ${DOT_CLASSNAME}
+              ${DOT_CLASSNAME}-${index}
+              ${index === 0 ? DOT_ACTIVE_CLASSNAME : ''}
             `}
             onClick={handleDotClick}
           > 
@@ -155,17 +163,23 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
       <article className="carousel">
         {renderImages()}
       </article>
-      <div onClick={handleArrowClick} className={` hidden carousel__arrow-button carousel__arrow-button--left`}>
+      <div 
+        onClick={handleArrowClick} 
+        className={`hidden ${ARROW_BUTTONS_CLASSNAME} ${ARROW_BUTTON_LEFT_CLASSNAME}`}
+      >
         <svg> 
           <use xlinkHref="/sprite.svg#icon-arrow-with-circle-down"></use>
         </svg>
       </div>
-      <div onClick={handleArrowClick} className={` carousel__arrow-button carousel__arrow-button--right `}>
+      <div 
+        onClick={handleArrowClick} 
+        className={` ${ARROW_BUTTONS_CLASSNAME} ${ARROW_BUTTON_RIGHT_CLASSNAME} `}
+      >
         <svg> 
           <use xlinkHref="/sprite.svg#icon-arrow-with-circle-down"></use>
         </svg>
       </div>
-      <div className="carousel__buttons">
+      <div className="carousel__dots">
         {renderCarouselButtons()}
       </div>
     </React.Fragment>

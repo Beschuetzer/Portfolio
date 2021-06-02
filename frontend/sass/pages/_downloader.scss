@@ -3,9 +3,18 @@
   width: 100vw;
   background-color: var(--color-primary-2);
   
+  background-image: 
+    get-resume-card-gradient(.95)
+    ,
+    url($resume-card-background-work-history);
+  background-attachment: fixed;
 
   @include respond(nav-switch) {
     padding-top: $default-font-size * 8;
+  }
+
+  @include respond(tab-port) {
+    background-image: var(--color-primary-2);
   }
   
   &__title {
