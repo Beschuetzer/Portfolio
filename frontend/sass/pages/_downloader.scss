@@ -19,9 +19,10 @@
   }
 
   &__carousel {
-    width: $resume-card-width-full;
+    // width: $resume-card-width-full;
     margin: 0 auto;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr $resume-card-width-full 1fr;
     justify-content: center;
     padding: $default-font-size * 2 0 $default-font-size * 7 0;
     
