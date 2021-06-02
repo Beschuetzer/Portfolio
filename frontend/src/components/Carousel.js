@@ -35,6 +35,16 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     if (currentCount >= maxImageCount) rightArrow.classList.add('hidden');
   }
 
+  function setCurrentActiveButton (indexOfActiveDot) {
+    const dots = document.querySelectorAll('.carousel__buttons-dot');
+
+    for (let i = 0; i < dots.length; i++) {
+      const dot = dots[i];
+      if (i !== indexOfActiveDot) dot?.classList.remove('carousel__buttons--active');
+      else dot?.classList.add('carousel__buttons--active');
+    }
+  }
+
   const handleArrowClick = (e) => {
     const maxImageCount = +numberOfImagesToScrollOnClick === 1 ? (images.length - numberOfImagesInCarouselAtOneTime) : images.length - 1;
 
@@ -44,6 +54,8 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
 
     if (hasClickedLeftArrow) currentTranslationFactor -= 1;
     else currentTranslationFactor += 1;
+
+    setCurrentActiveButton(currentTranslationFactor * numberOfImagesToScrollOnClick);
 
     console.log('currentTranslationFactor =', 
     currentTranslationFactor);
@@ -99,7 +111,11 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
       return (
           <svg 
             key={index} 
-            className={`carousel__dot-image-${index}`}
+            className={`
+              carousel__buttons-dot
+              carousel__buttons-dot-${index}
+              ${index === 0 ? 'carousel__buttons--active' : ''}
+            `}
             onClick={handleDotClick}
           > 
             <use xlinkHref="/sprite.svg#icon-dot-single"></use>

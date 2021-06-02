@@ -2331,6 +2331,9 @@ body {
   height: 3.5vw;
   fill: var(--color-primary-4);
 }
+.carousel__buttons--active {
+  fill: var(--color-primary-1) !important;
+}
 .carousel__arrow-button {
   position: relative;
   z-index: 100;

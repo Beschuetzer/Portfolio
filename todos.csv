@@ -45,4 +45,5 @@ OPTIMIZATIONS:
 
 -add subtitles to images
 -add sections to downloads (for PageNav)
--add little circular buttons at bottom of carousel
+-figure out how to handle click of dots in carousel
+-change currently active dot (one on left of screen) to different color
