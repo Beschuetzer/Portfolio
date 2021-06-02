@@ -27,9 +27,9 @@ const Carousel = ({images, alts}) => {
   }
 
   return (
-    <section className="carousel">
+    <article className="carousel">
       {renderImages()}
-    </section>
+    </article>
   );
 }
 
