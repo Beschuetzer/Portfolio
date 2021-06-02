@@ -26,7 +26,7 @@ const Downloader = () => {
             ]
           }
           numberOfImagesInCarouselAtOneTime="3"
-          numberOfImagesToScrollOnClick="2"
+          numberOfImagesToScrollOnClick="3"
         />
       </div>
     </section>

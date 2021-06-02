@@ -29,8 +29,6 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
 
     const currentCount = +numberOfImagesInCarouselAtOneTime + (currentTranslationFactor * +numberOfImagesToScrollOnClick) - 1
 
-    console.log('currentCount =', currentCount);
-    console.log('minImageCount =', minImageCount);
     if (currentCount <= minImageCount) leftArrow.classList.add('hidden');
     if (currentCount >= maxImageCount) rightArrow.classList.add('hidden');
   }
@@ -50,18 +48,23 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   }
 
   const handleArrowClick = (e) => {
+
     const maxImageCount = +numberOfImagesToScrollOnClick === 1 ? (images.length - numberOfImagesInCarouselAtOneTime) : images.length - 1;
 
     let hasClickedLeftArrow = false;
     if (e.currentTarget?.classList.contains('carousel__arrow-button--left')) hasClickedLeftArrow = true;
 
-    if (hasClickedLeftArrow) currentTranslationFactor -= 1;
-    else currentTranslationFactor += 1;
+    if (hasClickedLeftArrow) {
+      if (!Number.isInteger(currentTranslationFactor)) currentTranslationFactor = Math.floor(currentTranslationFactor);
+      else currentTranslationFactor -= 1;
+    }
+    else {
+      if (!Number.isInteger(currentTranslationFactor)) currentTranslationFactor = Math.ceil(currentTranslationFactor);
+      else currentTranslationFactor += 1;
+    }
 
     setCurrentActiveButton(currentTranslationFactor * numberOfImagesToScrollOnClick);
 
-    // console.log('currentTranslationFactor =', 
-    // currentTranslationFactor);
     // console.log('numberOfImagesInCarouselAtOneTime =', numberOfImagesInCarouselAtOneTime);
     // console.log('numberOfImagesToScrollOnClick =', 
     // numberOfImagesToScrollOnClick);
@@ -99,7 +102,7 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
 
     currentTranslationFactor = indexOfDotToMoveTo / numberOfImagesToScrollOnClick;
 
-    setArrowButtonsHiddenClass(numberOfImagesInCarouselAtOneTime - 1, images.length - 1, currentTranslationFactor);
+    setArrowButtonsHiddenClass(0, images.length - 1, currentTranslationFactor);
 
     setTranslationAmount(amountToTranslateImages)
     dots[indexOfDotToMoveTo]?.classList.add('carousel__dot--active');
