@@ -45,3 +45,5 @@ OPTIMIZATIONS:
 
 downloader:
   -add video somewhere?
+
+re-factor cr
