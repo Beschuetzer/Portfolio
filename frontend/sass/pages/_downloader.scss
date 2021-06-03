@@ -1,8 +1,9 @@
 .csharp {
-  font-size: $default-font-size;
+  font-size: $default-font-size * 1.25;
   overflow: hidden;
   width: 100vw;
   background-color: var(--color-primary-1);
+
   
   @include respond(nav-switch) {
     padding-top: $default-font-size * 8;
@@ -19,33 +20,54 @@
   // }
   
   &__card {
+    border-radius: $default-font-size / 2;
+    // border: $default-font-size * .3 solid var(--color-primary-2);
+    box-shadow: $navbar-box-shadow-resume;
     width: $resume-card-width-full;
     background-color: var(--color-primary-4);
-    color: var(--color-primary-1);
-    margin: 0 auto;
-    padding: $default-font-size * 2;
+    color: rgba($color-primary-downloader-1, $resume-color-opacity);
+    margin: $default-font-size auto;
+
+    @include respond(tab-land) {
+      width: calc(100% - #{$default-font-size} * 1);
+    }
   }
 
   &__content {
-    
+    & > * {
+      padding: 0 $default-font-size * 2 $default-font-size / 2 $default-font-size * 2;
+    }
+
+    & > *:last-child(){
+      padding-bottom: $default-font-size;
+
+    }
   }
   
   &__header {
-    
+    padding: $default-font-size * 2 $default-font-size * 2 $default-font-size * 2 $default-font-size * 2 ;
+    color: $color-primary-downloader-1;
+    border-bottom: $default-font-size * .15 solid var(--color-primary-2);
   }
   
   &__card-section {
     &-title {
-      
+      color: $color-primary-downloader-1;
+      font-size: $default-font-size * 1.35;
+      padding: $default-font-size 0;
     }
 
-    &-content {
-      
-    }
     
+    
+    &:last-of-type {
+      padding-bottom: $default-font-size * 2;
+    }
       
   }
   
+  &__section-content {
+    font-family: $font-family-text !important;
+  }
 
 
   &__title {

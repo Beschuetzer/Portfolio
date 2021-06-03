@@ -22,14 +22,14 @@ const Downloader = () => {
       children: [
         <React.Fragment>
           <CSharpCardSection
-            title="Why"
+            title="Purpose"
           >
-            Websites like <EmbeddedLink href="https://www.ocremix.org">OCRemix</EmbeddedLink> and <EmbeddedLink href="https://www.ocremix.org">Kingdom Hearts Insider</EmbeddedLink> offer mp3 files for downloading.&nbsp;&nbsp;It can be tedious downloading each file by hand, so I decided to create a c# app that takes in a Regular Expression and recursively downloads files that match the expression given.
+            Websites like <EmbeddedLink href="https://www.ocremix.org">OCRemix</EmbeddedLink> and <EmbeddedLink href="https://downloads.khinsider.com">Kingdom Hearts Insider</EmbeddedLink> offer mp3 files for downloading.&nbsp;&nbsp;It can be tedious downloading each file by hand, so I decided to create a c# app that takes in a Regular Expression and recursively downloads files that match the expression given.
           </CSharpCardSection>
           <CSharpCardSection
             title="How"
           >
-          &nbsp; The app finds any links that are on the url provided and recursively crawls any sub-links until it runs out of links. &nbsp;On each page, it looks for download links that match the Regular Expression and adds them to a cue.  &nbsp;It works best on sites like <EmbeddedLink href="https://www.ocremix.org">Kingdom Hearts Insider</EmbeddedLink> where each album page only has links to that specific album.  
+          The app finds any links that are on the url provided and recursively crawls any sub-links until it runs out of links. &nbsp;On each page, it looks for download links that match the Regular Expression and adds them to a download queue.  &nbsp;It works best on sites like <EmbeddedLink href="https://www.ocremix.org">Kingdom Hearts Insider</EmbeddedLink> where each album page only has links to that specific album.  
           </CSharpCardSection>
         </React.Fragment>
       ]

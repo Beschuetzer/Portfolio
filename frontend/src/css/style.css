@@ -3388,7 +3388,7 @@ div.references__name {
 }
 
 .csharp {
-  font-size: 1.6rem;
+  font-size: 2rem;
   overflow: hidden;
   width: 100vw;
   background-color: var(--color-primary-1);
@@ -3399,11 +3399,39 @@ div.references__name {
   }
 }
 .csharp__card {
+  border-radius: 0.8rem;
+  box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.25);
   width: 85rem;
   background-color: var(--color-primary-4);
-  color: var(--color-primary-1);
-  margin: 0 auto;
-  padding: 3.2rem;
+  color: rgba(249, 247, 247, 0.875);
+  margin: 1.6rem auto;
+}
+@media only screen and (max-width: 58.5625em) {
+  .csharp__card {
+    width: calc(100% - 1.6rem * 1);
+  }
+}
+.csharp__content > * {
+  padding: 0 3.2rem 0.8rem 3.2rem;
+}
+.csharp__content > *:last-child() {
+  padding-bottom: 1.6rem;
+}
+.csharp__header {
+  padding: 3.2rem 3.2rem 3.2rem 3.2rem;
+  color: #f9f7f7;
+  border-bottom: 0.24rem solid var(--color-primary-2);
+}
+.csharp__card-section-title {
+  color: #f9f7f7;
+  font-size: 2.16rem;
+  padding: 1.6rem 0;
+}
+.csharp__card-section:last-of-type {
+  padding-bottom: 3.2rem;
+}
+.csharp__section-content {
+  font-family: "Open Sans", sans-serif !important;
 }
 .csharp__title {
   -webkit-touch-callout: none;
