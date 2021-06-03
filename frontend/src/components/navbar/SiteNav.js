@@ -22,6 +22,7 @@ import {
 	NAVBAR_IS_ANIMATING_CLASSNAME,
 	ANIMATION_DURATION,
 	MOBILE_BREAK_POINT_WIDTH,
+	CAROUSEL_TRANSLATION_CSS_CLASSNAME,
 } from "../constants";
 
 const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidth, sounds, setHeaderHeight }) => {
@@ -118,6 +119,11 @@ const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidt
 
 	useEffect(() => {
 		console.log('currentUrl =', currentUrl);
+
+		//resetting Carousel scrolling
+		const newValue = `${CAROUSEL_TRANSLATION_CSS_CLASSNAME}: 0px`;
+		document.documentElement.style.cssText += newValue;
+
 		const headerElement = document.querySelector('#header');
 		const headerTogglerElement = document.querySelector('.header-toggler');
 		if (!headerElement || !headerTogglerElement) return;

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from './constants';
 
 const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
   const FULLSCREEN_CLASSNAME = 'full-screen';
   const FULLSCREEN_PARENT_CLASSNAME = 'carousel__item--full-screen'
-  const CSS_TRANSLATION_AMOUNT_VAR_NAME = '--carousel-item-translation-x';
   const IMAGE_CLASSNAME = 'carousel__image';
   const ITEM_CLASSNAME = 'carousel__item';
   const DESCRIPTION_CLASSNAME = `${IMAGE_CLASSNAME}-description`;
@@ -55,7 +55,7 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
   }
 
   function setTranslationAmount(amountToTranslateImages) {
-    const newValue = `${CSS_TRANSLATION_AMOUNT_VAR_NAME}: -${amountToTranslateImages}px`;
+    const newValue = `${CAROUSEL_TRANSLATION_CSS_CLASSNAME}: -${amountToTranslateImages}px`;
     document.documentElement.style.cssText += newValue;
   }
 
