@@ -64,6 +64,7 @@ const PlaylistSyncer = () => {
           items={[video1,img1,img2,img3,img4,img5]}
           alts={
             [
+              "Video Demonstration",
               "The complete user interface",
               "Left-side of UI",
               "Playlists available section of UI",
