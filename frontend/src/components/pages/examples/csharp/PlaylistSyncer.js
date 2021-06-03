@@ -66,10 +66,9 @@ const PlaylistSyncer = () => {
             [
               "The complete user interface",
               "Left-side of UI",
-              "Full-screen user interface when downloading",
-              "Integrated file-renaming tool used to standardize file names of downloads",
-              "A list of songs from OCRemix.org",
-              "Songs downloaded from OCRemix.org (including sub-linked songs)",
+              "Playlists available section of UI",
+              "Transfer section of UI after transfer",
+              "Transfer section of UI during transfer",
             ]
           }
           numberOfImagesInCarouselAtOneTime="3"

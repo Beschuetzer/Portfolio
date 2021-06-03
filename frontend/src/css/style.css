@@ -2398,6 +2398,8 @@ body {
   z-index: 100000;
   transform: translate(0, 0);
   transition: none;
+  border: none;
+  border-radius: 0;
 }
 .carousel__item--full-screen .carousel__image-description {
   display: flex;
@@ -2446,6 +2448,8 @@ body {
 }
 .carousel__image-description {
   display: none;
+  justify-content: center;
+  align-items: center;
   font-size: 1.6rem;
   text-align: center;
   left: 0;

@@ -43,8 +43,8 @@ OPTIMIZATIONS:
 -add background to 4th section in bridge (and colors gradient for mobile
 -change name section to grid
 
-downloader:
-  -add video somewhere?
+downloader and playlist-sync:
+  -add videos to carousel
 
 playlist-sync:
   -find a color pallette for playlist-syncer

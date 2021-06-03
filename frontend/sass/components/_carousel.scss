@@ -123,6 +123,8 @@ $carousel-grid-width: calc(
 			z-index: 100000;
     	transform: translate(0,0);
 			transition: none;
+			border: none;
+			border-radius: 0;
 
 
 			& .carousel__image-description {
@@ -177,6 +179,8 @@ $carousel-grid-width: calc(
 
 		&-description {		
 			display: none;
+			justify-content: center;
+    	align-items: center;
 			font-size: $default-font-size * 1;
 			text-align: center;
 			left: 0;
