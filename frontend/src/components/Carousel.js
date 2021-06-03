@@ -125,11 +125,9 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
   const handleVideoProgress = (e) => {
 		const video = e.target;
     const item = video.parentNode;
-    debugger
 		if (!video || !item) return;
 
 		const percent = video.currentTime / video.duration;
-    console.log('percent =', percent);
 		// progressBarRef.current.value = percent;
 	}
 

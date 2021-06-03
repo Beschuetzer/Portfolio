@@ -1,0 +1,110 @@
+diff --git a/frontend/src/components/Card.js b/frontend/src/components/Card.js
+index 7c3e9ef6..4bc1b7a3 100644
+--- a/frontend/src/components/Card.js
++++ b/frontend/src/components/Card.js
+@@ -473,6 +473,10 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
+ 					autoPlay={false}
+ 					loop={false}
+ 					reference={videoRef}
++					progressBarRef={progressBarRef}
++					progressBarOnClick={handleProgressBarClick}
++					progressBarStartingValue="0"
++					progressBarClassname="card__progress"
+ 				>
+           <div className="card__children">
+             {/* <svg className="card__children-toggler">
+@@ -481,12 +485,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
+             {children}
+           </div>
+         </Video>
+-				<progress 
+-					onClick={handleProgressBarClick} 
+-					ref={progressBarRef} 
+-					value='0' 
+-					className="card__progress">
+-				</progress>
++				
+ 			</div>
+ 		</article>
+ 	);
+diff --git a/frontend/src/components/Carousel.js b/frontend/src/components/Carousel.js
+index dc177656..de0a4a3f 100644
+--- a/frontend/src/components/Carousel.js
++++ b/frontend/src/components/Carousel.js
+@@ -125,7 +125,6 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
+   const handleVideoProgress = (e) => {
+ 		const video = e.target;
+     const item = video.parentNode;
+-    debugger
+ 		if (!video || !item) return;
+ 
+ 		const percent = video.currentTime / video.duration;
+diff --git a/frontend/src/components/Video.js b/frontend/src/components/Video.js
+index 56bd1cd1..a5c0c1f8 100644
+--- a/frontend/src/components/Video.js
++++ b/frontend/src/components/Video.js
+@@ -1,23 +1,44 @@
+-import React from 'react';
++import React from "react";
+ 
+ class Video extends React.Component {
+-  render() {
+-    const { className, src, type, autoPlay = true, muted = true, loop = true, reference = null, onClick = null } = this.props;
+-    return (
+-      <div className={className} onClick={onClick}>
+-          <video ref={reference} autoPlay={autoPlay} muted={muted} loop={loop}>
+-              <source src={src} type={`video/${type}`}/>
+-          </video>
+-          {this.props.children ? 
+-            <div className={`${className}__children`}>
+-              {this.props.children}
+-            </div>
+-          :
+-            null
+-          }
+-      </div>
+-    );
+-  }
++	render() {
++		const {
++			className,
++			src,
++			type,
++			autoPlay = true,
++			muted = true,
++			loop = true,
++			reference = null,
++			onClick = null,
++      progressBarOnClick = null,
++      progressBarRef = null,
++      progressBarClassname = 'progress',
++      progressBarStartingValue= "0",
++		} = this.props;
++		return (
++			<React.Fragment>
++				<div className={className} onClick={onClick}>
++					<video ref={reference} autoPlay={autoPlay} muted={muted} loop={loop}>
++						<source src={src} type={`video/${type}`} />
++					</video>
++					{this.props.children ? (
++						<div className={`${className}__children`}>
++							{this.props.children}
++						</div>
++					) : null}
++				</div>
++
++				<progress
++					onClick={progressBarOnClick}
++					ref={progressBarRef}
++					value={progressBarStartingValue}
++					className={progressBarClassname}
++        >  
++        </progress>
++			</React.Fragment>
++		);
++	}
+ }
+ 
+-export default Video;
+\ No newline at end of file
++export default Video;
