@@ -33,6 +33,7 @@ import preferencesVideo from '../../../../clips/preferences.mp4';
 import themesVideo from '../../../../clips/themes.mp4';
 import saveGameVideo from '../../../../clips/saveGame.mp4';
 import CardManager from "../../../CardManager";
+import SourceCodeLink from "../../../SourceCodeLink";
 // import { onRenderCallback } from "../../../constants";
 
 const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection, isMobile, isCardVideoOpen, setIsCardVideoOpen}) => {
@@ -455,12 +456,10 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 				pageName="bridge"
 			/>
 
-			<a target="_blank" rel="noreferrer" href="https://github.com/Beschuetzer/Bridge" className="hero__source">
-        <svg className="hero__source-svg">
-          <use xlinkHref="/sprite.svg#icon-code"></use>
-        </svg>
-        <span className="hero__source-label">Code</span>
-      </a>
+			<SourceCodeLink
+				href="https://github.com/Beschuetzer/Bridge"
+				blockName="hero"
+			/>
 
 			{renderSections()}
 			<ArrowButton

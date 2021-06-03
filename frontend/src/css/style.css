@@ -3275,6 +3275,7 @@ div.references__name {
   transition: fill 0.125s cubic-bezier(1, 0, 0, 1);
 }
 .hero__source-label {
+  text-align: center;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;

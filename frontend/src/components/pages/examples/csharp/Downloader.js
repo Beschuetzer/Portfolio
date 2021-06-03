@@ -11,6 +11,7 @@ import Carousel from '../../../Carousel';
 import EmbeddedLink from '../../../EmbeddedLink';
 import Section from '../../../Section';
 import SectionContainer from '../../../SectionContainer';
+import SourceCodeLink from '../../../SourceCodeLink';
 import CSharpCardSection from './CSharpCardSection';
 
 const Downloader = () => {
@@ -64,6 +65,11 @@ const Downloader = () => {
         name="Images"
         pageName={PAGE_NAME}
       >
+        <SourceCodeLink
+          href="https://github.com/Beschuetzer/Downloader"
+          blockName="hero"
+          msg="Source Code"
+        />
         <div className="csharp__title">Downloader</div>
         <section className="csharp__carousel">
           <Carousel
