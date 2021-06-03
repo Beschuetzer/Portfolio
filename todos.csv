@@ -43,5 +43,6 @@ OPTIMIZATIONS:
 -add background to 4th section in bridge (and colors gradient for mobile
 -change name section to grid
 
--add subtitles to images
--add pop on hover with alt being displayed?
+downloader:
+  -add linear gradient to background
+  -finish features section

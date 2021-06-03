@@ -51,13 +51,11 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						// title='An App is Born'
 					>
 						<p>
-							<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>  is a website I created between June of 2020 and February of 2021, where users can play <EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">contract bridge</EmbeddedLink>for free.&nbsp; The COVID-19 pandemic was in full swing, and a good friend of mine had mentioned how much he missed playing bridge (something which none of the members of our regular bridge group had done for many months at that point).  
+							<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>  is a website I created between June of 2020 and February of 2021, where users can play<EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">contract bridge</EmbeddedLink>for free.&nbsp; The COVID-19 pandemic was in full swing, and a good friend of mine had mentioned how much he missed playing bridge (something which none of the members of our regular bridge group had done for many months at that point).  
 						</p>
 						<p>
-							Initially, we looked for free, online apps but were unable to find any at the time.   &nbsp;I had told Andrew about the&nbsp;
-							<Link to="/examples/downloader" className="bridge__link">downloader</Link>
-							&nbsp;and&nbsp;
-							<Link to="/examples/playlist-syncer" className="bridge__link">music syncing</Link> apps that I had recently finished, and he playfully remarked that I should make an app to play bridge online.   &nbsp;At that point, I wasn't very interested in making my own bridge app.&nbsp; I figured there had to be a free way we could play online. &nbsp;  However, after spending an hour, to no avail, looking for a free app/website, I decided to invest some time into figuring out how one would do such a thing.
+							Initially, we looked for free, online apps but were unable to find any at the time.   &nbsp;I had told Andrew about the<EmbeddedLink to="/examples/downloader">downloader</EmbeddedLink>
+							and<EmbeddedLink to="/examples/playlist-syncer">music syncing</EmbeddedLink>apps that I had recently finished, and he playfully remarked that I should make an app to play bridge online.   &nbsp;At that point, I wasn't very interested in making my own bridge app.&nbsp; I figured there had to be a free way we could play online. &nbsp;  However, after spending an hour, to no avail, looking for a free app/website, I decided to invest some time into figuring out how one would do such a thing.
 						</p>
 					</BridgeCardSection>
 				</BridgeCard>

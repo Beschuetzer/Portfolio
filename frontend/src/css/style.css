@@ -3460,6 +3460,10 @@ div.references__name {
     width: calc(100% - 1.6rem * 1);
   }
 }
+.csharp__content {
+  z-index: 5;
+  position: relative;
+}
 .csharp__content > * {
   padding: 0 3.2rem 0.8rem 3.2rem;
 }
