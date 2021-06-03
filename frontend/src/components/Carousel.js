@@ -25,7 +25,7 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     const image1Left = imagesRef.current[0].getBoundingClientRect().left;
     const image2Left = imagesRef.current[1].getBoundingClientRect().left;
     imagesWidthRef.current = Math.abs(image1Left - image2Left);
-  }, [viewPortWidth])
+  }, [viewPortWidth, ARROW_BUTTON_LEFT_CLASSNAME, ARROW_BUTTON_RIGHT_CLASSNAME])
 
   function setArrowButtonsHiddenClass (minImageCount, maxImageCount, currentTranslationFactor) {
     const leftArrow = leftArrowRef.current[0];
@@ -57,7 +57,6 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   }
 
   const handleArrowClick = (e) => {
-
     const maxImageCount = +numberOfImagesToScrollOnClick === 1 ? (images.length - numberOfImagesInCarouselAtOneTime) : images.length - 1;
 
     let hasClickedLeftArrow = false;
