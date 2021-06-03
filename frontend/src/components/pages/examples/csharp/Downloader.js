@@ -70,10 +70,10 @@ const Downloader = () => {
             images={[img1,img2,img3,img4,img5,img6]}
             alts={
               [
-                "The Simple User Interface",
-                "Options Available",
+                "The User interface",
+                "Options available",
                 "Full-screen user interface when downloading",
-                "File-renaming tool often used after downloading to standardize file names",
+                "Integrated file-renaming tool used to standardize file names of downloads",
                 "A list of songs from OCRemix.org",
                 "Songs downloaded from OCRemix.org (including sub-linked songs)",
               ]

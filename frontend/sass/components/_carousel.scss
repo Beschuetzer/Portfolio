@@ -98,9 +98,42 @@ $carousel-grid-width: calc(
 		}
 	}
 
-	&__image {
+	&__item {
+		position: relative;
+		font-size: $default-font-size;
+		width: 100%;
+		height: 100%;
+
 		border: $default-font-size * 0.1 solid var(--color-primary-4);
-		border-radius: $default-font-size * 2;
+		border-radius: $default-font-size * .5;
+		overflow: hidden;
+
+		&--full-screen{
+			width: 100vw;
+			height: $downloader-image-full-screen-height;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 100000;
+
+			& .carousel__image-description {
+				display: flex;
+				font-size: $default-font-size * 2;
+				justify-content: center;
+				align-items: center;
+				position: fixed;
+				min-height: calc(100vh - #{$downloader-image-full-screen-height});
+				background: var(--color-primary-4);
+
+				@include respond(nav-switch) {
+					font-size: $default-font-size * 1.5;					
+				}
+			}
+		}
+	}
+
+	&__image {
+		
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
@@ -132,5 +165,31 @@ $carousel-grid-width: calc(
 		&:not(.full-screen)active {
 			filter: sepia(0.75);
 		}
+
+		&-description {		
+			display: none;
+			font-size: $default-font-size * 1;
+			text-align: center;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			position: absolute;
+			color: var(--color-primary-1);
+			z-index: 10000;
+			background: rgba($color-primary-downloader-4, .5);
+			padding: $default-font-size;
+			// display: none;	
+			// height: 100vh;
+			// border: none;
+			// border-radius: 0;
+			// object-fit: contain;
+			// backdrop-filter: blur($default-font-size) sepia(0) brightness(0.25);
+			// transform: translate(0,0);
+			// transition: none;	
+		}		
+	}
+
+	&__item:hover &__image-description, &__item:active &__image-description, &__item:focus &__image-description {
+		display: block;
 	}
 }

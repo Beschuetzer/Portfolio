@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTime, numberOfImagesToScrollOnClick}) => {
   const FULLSCREEN_CLASSNAME = 'full-screen';
+  const FULLSCREEN_PARENT_CLASSNAME = 'carousel__item--full-screen'
   const CSS_TRANSLATION_AMOUNT_VAR_NAME = '--carousel-image-translation-x';
   const IMAGE_CLASSNAME = 'carousel__image';
   const DOT_CLASSNAME = 'carousel__dot';
@@ -122,12 +123,13 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     if (!image) return;
     e.preventDefault();
     image.classList.toggle(FULLSCREEN_CLASSNAME);
+    image.parentNode?.classList.toggle(FULLSCREEN_PARENT_CLASSNAME)
   }
 
   const renderImages = () => {
     return images.map((image, index) => {
       return (
-        // <article key={index} className="carousel__item">
+        <article key={index} className="carousel__item">
           <img 
             src={image}
             className={`${IMAGE_CLASSNAME}`} 
@@ -135,7 +137,10 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
             key={index}
             onClick={handleImageClick}
           />
-        // </article>
+          <p className="carousel__image-description">
+            {alts[index]}
+          </p>
+        </article>
       )
     })
   }
