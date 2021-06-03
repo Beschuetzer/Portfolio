@@ -3436,6 +3436,10 @@ div.references__name {
   z-index: 4;
 }
 
+.downloader {
+  background-image: linear-gradient(to right, var(--color-primary-1) 0%, var(--color-primary-2) 100%);
+}
+
 .csharp {
   font-size: 2rem;
   overflow: hidden;

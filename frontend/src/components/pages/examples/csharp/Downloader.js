@@ -79,7 +79,7 @@ const Downloader = () => {
   }
 
   return (
-    <div className="csharp">
+    <div className="csharp downloader">
       <SectionContainer
         name="Images"
         pageName={PAGE_NAME}
