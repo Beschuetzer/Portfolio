@@ -64,8 +64,8 @@ const PlaylistSyncer = () => {
           images={[img1,img2,img3,img4,img5]}
           alts={
             [
-              "The User interface",
-              "Options available",
+              "The complete user interface",
+              "Left-side of UI",
               "Full-screen user interface when downloading",
               "Integrated file-renaming tool used to standardize file names of downloads",
               "A list of songs from OCRemix.org",

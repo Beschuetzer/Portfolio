@@ -103,7 +103,7 @@ $carousel-grid-width: calc(
 		z-index: 6;
 		font-size: $default-font-size;
 		width: 100%;
-		height: 100%;
+		height: $default-font-size * 20;
 
 		border: $default-font-size * 0.1 solid var(--color-primary-4);
 		border-radius: $default-font-size * .5;
@@ -117,12 +117,13 @@ $carousel-grid-width: calc(
 		&--full-screen{
 			width: 100vw;
 			height: 100vh;
-			position: absolute;
+			position: fixed;
 			top: 0;
 			left: 0;
 			z-index: 100000;
     	transform: translate(0,0);
 			transition: none;
+
 
 			& .carousel__image-description {
 				display: flex;
@@ -145,6 +146,7 @@ $carousel-grid-width: calc(
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		object-position: top left;
 	
 		// transition: 
 		// 	filter $animation-duration / 2 $animation-easing-standard
@@ -197,6 +199,6 @@ $carousel-grid-width: calc(
 	}
 
 	&__item:hover &__image-description, &__item:active &__image-description, &__item:focus &__image-description {
-		display: block;
+		display: flex;
 	}
 }
