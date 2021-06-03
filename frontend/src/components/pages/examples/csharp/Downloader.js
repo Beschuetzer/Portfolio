@@ -62,7 +62,7 @@ const Downloader = () => {
     >
       <section className="csharp__carousel">
         <Carousel
-          images={[img1,img2,img3,img4,img5,img6]}
+          images={[video1,img1,img2,img3,img4,img5,img6]}
           alts={
             [
               "The User interface",

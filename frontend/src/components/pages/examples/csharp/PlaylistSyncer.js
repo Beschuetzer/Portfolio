@@ -61,7 +61,7 @@ const PlaylistSyncer = () => {
     >
       <section className="csharp__carousel">
         <Carousel
-          images={[img1,img2,img3,img4,img5]}
+          images={[video1,img1,img2,img3,img4,img5]}
           alts={
             [
               "The complete user interface",

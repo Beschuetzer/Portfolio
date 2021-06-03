@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from './constants';
+import Video from './Video';
 
 const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
   const FULLSCREEN_CLASSNAME = 'full-screen';
   const FULLSCREEN_PARENT_CLASSNAME = 'carousel__item--full-screen'
   const IMAGE_CLASSNAME = 'carousel__image';
+  const VIDEO_CLASSNAME = 'carousel__video';
   const ITEM_CLASSNAME = 'carousel__item';
   const DESCRIPTION_CLASSNAME = `${IMAGE_CLASSNAME}-description`;
   
@@ -24,9 +26,10 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
   useEffect(() => {
     leftArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_LEFT_CLASSNAME}`);
     rightArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_RIGHT_CLASSNAME}`);
-    itemsRef.current = document.querySelectorAll(`.${IMAGE_CLASSNAME}`);
-    const image1Left = itemsRef.current[0].getBoundingClientRect().left;
-    const image2Left = itemsRef.current[1].getBoundingClientRect().left;
+    itemsRef.current = document.querySelectorAll(`.${ITEM_CLASSNAME}`);
+    debugger
+    const image1Left = itemsRef.current[0]?.children[0]?.getBoundingClientRect().left;
+    const image2Left = itemsRef.current[1]?.children[0]?.getBoundingClientRect().left;
     itemsWidthRef.current = Math.abs(image1Left - image2Left);
   }, [viewPortWidth, ARROW_BUTTON_LEFT_CLASSNAME, ARROW_BUTTON_RIGHT_CLASSNAME])
 
@@ -128,17 +131,38 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
     image.parentNode?.classList.toggle(FULLSCREEN_PARENT_CLASSNAME)
   }
 
-  const renderImages = () => {
-    return items.map((image, index) => {
+  const renderItems = () => {
+    return items.map((item, index) => {
+      let mediaToAdd = 
+      <img 
+        src={item}
+        className={`${IMAGE_CLASSNAME}`} 
+        alt={alts[index]}
+        key={index}
+        onClick={handleImageClick}
+      />;
+
+      if (item.match(/.+\.mp4$/i)) {
+        mediaToAdd = 
+        <Video
+					type="mp4"
+					src={item}
+					autoPlay={false}
+					loop={false}
+          className={`${VIDEO_CLASSNAME} fg-video`} 
+          key={index}
+          onClick={handleImageClick}
+				/>;
+        // <video 
+          
+        // >
+
+        // </video>;
+      }
+
       return (
         <article key={index} className={ITEM_CLASSNAME}>
-          <img 
-            src={image}
-            className={`${IMAGE_CLASSNAME}`} 
-            alt={alts[index]}
-            key={index}
-            onClick={handleImageClick}
-          />
+          {mediaToAdd}
           <p className={DESCRIPTION_CLASSNAME}>
             {alts[index]}
           </p>
@@ -168,7 +192,7 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
   return (
     <React.Fragment>
       <article className="carousel">
-        {renderImages()}
+        {renderItems()}
       </article>
       <div 
         onClick={handleArrowClick} 

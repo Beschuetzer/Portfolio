@@ -46,6 +46,10 @@ OPTIMIZATIONS:
 downloader and playlist-sync:
   -add videos to carousel
 
+
 playlist-sync:
   -find a color pallette for playlist-syncer
-  -change alts
+
+carousel videos:
+  -conditionally load video if video item is video (add classname too)
+  -add styles for video

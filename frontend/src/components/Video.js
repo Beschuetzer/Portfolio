@@ -8,9 +8,13 @@ class Video extends React.Component {
           <video ref={reference} autoPlay={autoPlay} muted={muted} loop={loop}>
               <source src={src} type={`video/${type}`}/>
           </video>
-          <div className={`${className}__children`}>
-            {this.props.children}
-          </div>
+          {this.props.children ? 
+            <div className={`${className}__children`}>
+              {this.props.children}
+            </div>
+          :
+            null
+          }
       </div>
     );
   }
