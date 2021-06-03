@@ -109,7 +109,7 @@ $carousel-grid-width: calc(
 		border-radius: $default-font-size * .5;
 		overflow: hidden;
 
-		transform: translateX(var(--carousel-image-translation-x));
+		transform: translateX(var(--carousel-item-translation-x));
 		transition: 
 			transform $animation-duration / 2 $animation-easing-standard
 		;

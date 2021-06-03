@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
-const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTime, numberOfImagesToScrollOnClick}) => {
+const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
   const FULLSCREEN_CLASSNAME = 'full-screen';
   const FULLSCREEN_PARENT_CLASSNAME = 'carousel__item--full-screen'
-  const CSS_TRANSLATION_AMOUNT_VAR_NAME = '--carousel-image-translation-x';
+  const CSS_TRANSLATION_AMOUNT_VAR_NAME = '--carousel-item-translation-x';
   const IMAGE_CLASSNAME = 'carousel__image';
+  const ITEM_CLASSNAME = 'carousel__item';
+  const DESCRIPTION_CLASSNAME = `${IMAGE_CLASSNAME}-description`;
+  
   const DOT_CLASSNAME = 'carousel__dot';
   const DOT_ACTIVE_CLASSNAME = `${DOT_CLASSNAME}--active`;
   const ARROW_BUTTONS_CLASSNAME = 'carousel__arrow-button';
@@ -13,18 +16,18 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   const ARROW_BUTTON_RIGHT_CLASSNAME = `${ARROW_BUTTONS_CLASSNAME}--right`;
   const minImageCount = 0;
   let currentTranslationFactor = minImageCount;
-  let imagesRef = useRef();
-  let imagesWidthRef = useRef();
+  let itemsRef = useRef();
+  let itemsWidthRef = useRef();
   let leftArrowRef = useRef();
   let rightArrowRef = useRef();
 
   useEffect(() => {
     leftArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_LEFT_CLASSNAME}`);
     rightArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_RIGHT_CLASSNAME}`);
-    imagesRef.current = document.querySelectorAll(`.${IMAGE_CLASSNAME}`);
-    const image1Left = imagesRef.current[0].getBoundingClientRect().left;
-    const image2Left = imagesRef.current[1].getBoundingClientRect().left;
-    imagesWidthRef.current = Math.abs(image1Left - image2Left);
+    itemsRef.current = document.querySelectorAll(`.${IMAGE_CLASSNAME}`);
+    const image1Left = itemsRef.current[0].getBoundingClientRect().left;
+    const image2Left = itemsRef.current[1].getBoundingClientRect().left;
+    itemsWidthRef.current = Math.abs(image1Left - image2Left);
   }, [viewPortWidth, ARROW_BUTTON_LEFT_CLASSNAME, ARROW_BUTTON_RIGHT_CLASSNAME])
 
   function setArrowButtonsHiddenClass (minImageCount, maxImageCount, currentTranslationFactor) {
@@ -36,7 +39,7 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
     leftArrow.classList.remove('hidden');
     rightArrow.classList.remove('hidden');
 
-    const currentCount = +numberOfImagesInCarouselAtOneTime + (currentTranslationFactor * +numberOfImagesToScrollOnClick) - 1
+    const currentCount = +numberOfItemsInCarouselAtOneTime + (currentTranslationFactor * +numberOfItemsToScrollOnClick) - 1
 
     if (currentCount <= minImageCount) leftArrow.classList.add('hidden');
     if (currentCount >= maxImageCount) rightArrow.classList.add('hidden');
@@ -57,7 +60,7 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   }
 
   const handleArrowClick = (e) => {
-    const maxImageCount = +numberOfImagesToScrollOnClick === 1 ? (images.length - numberOfImagesInCarouselAtOneTime) : images.length - 1;
+    const maxImageCount = +numberOfItemsToScrollOnClick === 1 ? (items.length - numberOfItemsInCarouselAtOneTime) : items.length - 1;
 
     let hasClickedLeftArrow = false;
     if (e.currentTarget?.classList.contains(ARROW_BUTTON_LEFT_CLASSNAME)) hasClickedLeftArrow = true;
@@ -71,23 +74,23 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
       else currentTranslationFactor += 1;
     }
 
-    setCurrentActiveButton(currentTranslationFactor * numberOfImagesToScrollOnClick);
+    setCurrentActiveButton(currentTranslationFactor * numberOfItemsToScrollOnClick);
 
     // console.log('numberOfImagesInCarouselAtOneTime =', numberOfImagesInCarouselAtOneTime);
     // console.log('numberOfImagesToScrollOnClick =', 
     // numberOfImagesToScrollOnClick);
     // console.log('maxImageCount =', maxImageCount);
 
-    if (currentTranslationFactor * numberOfImagesToScrollOnClick < minImageCount) {
+    if (currentTranslationFactor * numberOfItemsToScrollOnClick < minImageCount) {
       return currentTranslationFactor = minImageCount;
     }
-    else if (currentTranslationFactor * numberOfImagesToScrollOnClick > maxImageCount) {
-      return currentTranslationFactor = Math.floor(maxImageCount / numberOfImagesToScrollOnClick);
+    else if (currentTranslationFactor * numberOfItemsToScrollOnClick > maxImageCount) {
+      return currentTranslationFactor = Math.floor(maxImageCount / numberOfItemsToScrollOnClick);
     }
 
-    setArrowButtonsHiddenClass(numberOfImagesInCarouselAtOneTime - 1, images.length - 1, currentTranslationFactor);
+    setArrowButtonsHiddenClass(numberOfItemsInCarouselAtOneTime - 1, items.length - 1, currentTranslationFactor);
 
-    const amountToTranslateImages = imagesWidthRef.current * currentTranslationFactor * numberOfImagesToScrollOnClick;
+    const amountToTranslateImages = itemsWidthRef.current * currentTranslationFactor * numberOfItemsToScrollOnClick;
     setTranslationAmount(amountToTranslateImages)
   }
 
@@ -106,11 +109,11 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
       if (indexOfCurrentDot !== -1 && indexOfDotToMoveTo !== -1) break;
     }
 
-    const amountToTranslateImages = imagesWidthRef.current * indexOfDotToMoveTo;
+    const amountToTranslateImages = itemsWidthRef.current * indexOfDotToMoveTo;
 
-    currentTranslationFactor = indexOfDotToMoveTo / numberOfImagesToScrollOnClick;
+    currentTranslationFactor = indexOfDotToMoveTo / numberOfItemsToScrollOnClick;
 
-    setArrowButtonsHiddenClass(0, images.length - 1, currentTranslationFactor);
+    setArrowButtonsHiddenClass(0, items.length - 1, currentTranslationFactor);
 
     setTranslationAmount(amountToTranslateImages)
     dots[indexOfDotToMoveTo]?.classList.add(DOT_ACTIVE_CLASSNAME);
@@ -126,9 +129,9 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   }
 
   const renderImages = () => {
-    return images.map((image, index) => {
+    return items.map((image, index) => {
       return (
-        <article key={index} className="carousel__item">
+        <article key={index} className={ITEM_CLASSNAME}>
           <img 
             src={image}
             className={`${IMAGE_CLASSNAME}`} 
@@ -136,7 +139,7 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
             key={index}
             onClick={handleImageClick}
           />
-          <p className="carousel__image-description">
+          <p className={DESCRIPTION_CLASSNAME}>
             {alts[index]}
           </p>
         </article>
@@ -145,7 +148,7 @@ const Carousel = ({images, alts, viewPortWidth, numberOfImagesInCarouselAtOneTim
   }
 
   const renderCarouselButtons = () => {
-    return images.map((image, index) => {
+    return items.map((image, index) => {
       return (
           <svg 
             key={index} 

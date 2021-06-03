@@ -71,8 +71,8 @@ const PlaylistSyncer = () => {
               "Transfer section of UI during transfer",
             ]
           }
-          numberOfImagesInCarouselAtOneTime="3"
-          numberOfImagesToScrollOnClick="3"
+          numberOfItemsInCarouselAtOneTime="3"
+          numberOfItemsToScrollOnClick="3"
         />
       </section>
     </CSharpLayout>

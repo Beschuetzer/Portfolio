@@ -73,8 +73,8 @@ const Downloader = () => {
               "Songs downloaded from OCRemix.org (including sub-linked songs)",
             ]
           }
-          numberOfImagesInCarouselAtOneTime="3"
-          numberOfImagesToScrollOnClick="3"
+          numberOfItemsInCarouselAtOneTime="3"
+          numberOfItemsToScrollOnClick="3"
         />
       </section>
     </CSharpLayout>

@@ -86,7 +86,7 @@
   --arrow-button-left-fill-hover: var(--color-primary-bridge-2);
   --card-scale-amount: 1;
   --card-playing-transform: translate(0,0) scale(1);
-  --carousel-image-translation-x: 0;
+  --carousel-item-translation-x: 0;
   --diamond-fractal-animation-duration: 120s;
   --diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
   --aspect-ratio-factor: calc(16 / 9);
@@ -2386,7 +2386,7 @@ body {
   border: 0.16rem solid var(--color-primary-4);
   border-radius: 0.8rem;
   overflow: hidden;
-  transform: translateX(var(--carousel-image-translation-x));
+  transform: translateX(var(--carousel-item-translation-x));
   transition: transform 0.25s ease;
 }
 .carousel__item--full-screen {
