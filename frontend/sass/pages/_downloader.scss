@@ -1,4 +1,5 @@
 .csharp {
+  font-size: $default-font-size;
   overflow: hidden;
   width: 100vw;
   background-color: var(--color-primary-1);
@@ -17,6 +18,36 @@
   //   background-image: var(--color-primary-2);
   // }
   
+  &__card {
+    width: $resume-card-width-full;
+    background-color: var(--color-primary-4);
+    color: var(--color-primary-1);
+    margin: 0 auto;
+    padding: $default-font-size * 2;
+  }
+
+  &__content {
+    
+  }
+  
+  &__header {
+    
+  }
+  
+  &__card-section {
+    &-title {
+      
+    }
+
+    &-content {
+      
+    }
+    
+      
+  }
+  
+
+
   &__title {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/

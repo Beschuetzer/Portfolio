@@ -3388,6 +3388,7 @@ div.references__name {
 }
 
 .csharp {
+  font-size: 1.6rem;
   overflow: hidden;
   width: 100vw;
   background-color: var(--color-primary-1);
@@ -3396,6 +3397,13 @@ div.references__name {
   .csharp {
     padding-top: 12.8rem;
   }
+}
+.csharp__card {
+  width: 85rem;
+  background-color: var(--color-primary-4);
+  color: var(--color-primary-1);
+  margin: 0 auto;
+  padding: 3.2rem;
 }
 .csharp__title {
   -webkit-touch-callout: none;

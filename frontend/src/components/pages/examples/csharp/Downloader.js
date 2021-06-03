@@ -7,19 +7,31 @@ import img4 from '../../../../imgs/bridge-section-4.jpg';
 import img5 from '../../../../imgs/bridge-section-5.jpg';
 import img6 from '../../../../imgs/bridge-section-6.jpg';
 import Carousel from '../../../Carousel';
+import EmbeddedLink from '../../../EmbeddedLink';
 import Section from '../../../Section';
 import SectionContainer from '../../../SectionContainer';
+import CSharpCardSection from './CSharpCardSection';
 
 const Downloader = () => {
-  const PAGE_NAME = "downloader";
+  const PAGE_NAME = "csharp";
 
   const sections = [
     {
-      name: "Why",
+      name: "Description",
       pageName: PAGE_NAME,
       children: [
-        <p>Why1</p>,
-        <p>Why2</p>,
+        <React.Fragment>
+          <CSharpCardSection
+            title="Why"
+          >
+            Websites like <EmbeddedLink href="https://www.ocremix.org">OCRemix</EmbeddedLink> and <EmbeddedLink href="https://www.ocremix.org">Kingdom Hearts Insider</EmbeddedLink> offer mp3 files for downloading.&nbsp;&nbsp;It can be tedious downloading each file by hand, so I decided to create a c# app that takes in a Regular Expression and recursively downloads files that match the expression given.
+          </CSharpCardSection>
+          <CSharpCardSection
+            title="How"
+          >
+          &nbsp; The app finds any links that are on the url provided and recursively crawls any sub-links until it runs out of links. &nbsp;On each page, it looks for download links that match the Regular Expression and adds them to a cue.  &nbsp;It works best on sites like <EmbeddedLink href="https://www.ocremix.org">Kingdom Hearts Insider</EmbeddedLink> where each album page only has links to that specific album.  
+          </CSharpCardSection>
+        </React.Fragment>
       ]
     },
     {
