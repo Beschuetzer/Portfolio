@@ -3458,13 +3458,14 @@ div.references__name {
   grid-row-gap: 3.2rem;
   grid-template-columns: 1fr 28.3333333333rem 28.3333333333rem 28.3333333333rem 1fr;
   justify-content: center;
-  padding: 3.2rem 0 11.2rem 0;
+  padding: 3.2rem 0 16rem 0;
 }
 @media only screen and (max-width: 68.75em) {
   .csharp__carousel {
     width: calc(100% - 1.6rem * 1);
     display: flex;
     flex-direction: row;
+    padding-bottom: 1.6rem;
   }
 }
 

@@ -95,12 +95,13 @@
     grid-row-gap: $default-font-size * 2;
     grid-template-columns: 1fr $resume-card-width-full / 3 $resume-card-width-full / 3 $resume-card-width-full / 3 1fr;
     justify-content: center;
-    padding: $default-font-size * 2 0 $default-font-size * 7 0;
+    padding: $default-font-size * 2 0 $default-font-size * 10 0;
 
     @include respond(nav-switch) {
       width: calc(100% - #{$default-font-size} * 1);
       display: flex;
       flex-direction: row;
+      padding-bottom: $default-font-size;
     }
   }
 
