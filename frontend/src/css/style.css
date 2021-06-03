@@ -2396,6 +2396,7 @@ body {
   left: 0;
   z-index: 100000;
   transform: translate(0, 0);
+  transition: none;
 }
 .carousel__item--full-screen .carousel__image-description {
   display: flex;
