@@ -468,6 +468,10 @@ body {
   transition: none !important;
 }
 
+.carousel-transition {
+  transition: transform 0.25s ease !important;
+}
+
 .d-none {
   display: none !important;
 }
@@ -2388,7 +2392,6 @@ body {
   border-radius: 0.8rem;
   overflow: hidden;
   transform: translateX(var(--carousel-item-translation-x));
-  transition: transform 0.25s ease;
 }
 .carousel__item--full-screen {
   width: 100vw;
@@ -3488,7 +3491,7 @@ div.references__name {
   width: 85rem;
   background-color: var(--color-primary-4);
   color: rgba(249, 247, 247, 0.875);
-  margin: 1.6rem auto;
+  margin: 3.2rem auto;
 }
 @media only screen and (max-width: 58.5625em) {
   .csharp__card {

@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { CAROUSEL_TRANSLATION_CSS_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME, getIsVideoPlaying } from './constants';
+import { ANIMATION_DURATION, CAROUSEL_TRANSLATION_CSS_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME, getIsVideoPlaying } from './constants';
 import Video from './Video';
 
-const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
+const Carousel = ({items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
   const FULLSCREEN_CLASSNAME = 'full-screen';
   const FULLSCREEN_PARENT_CLASSNAME = 'carousel__item--full-screen'
   const IMAGE_CLASSNAME = 'carousel__image';
   const VIDEO_CLASSNAME = 'carousel__video';
   const ITEM_CLASSNAME = 'carousel__item';
+  const TRANSITION_CLASSNAME = 'carousel-transition';
   const DESCRIPTION_CLASSNAME = `${IMAGE_CLASSNAME}-description`;
   
   const DOT_CLASSNAME = 'carousel__dot';
@@ -22,6 +23,7 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
   let itemsWidthRef = useRef();
   let leftArrowRef = useRef();
   let rightArrowRef = useRef();
+  let removeTransitionTimeout;
 
   useEffect(() => {
     leftArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_LEFT_CLASSNAME}`);
@@ -57,8 +59,23 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
   }
 
   function setTranslationAmount(amountToTranslateImages) {
+    clearInterval(removeTransitionTimeout);
+    
+    const itemElements = itemsRef.current;
+    for (let i = 0; i < itemElements.length; i++) {
+      const item = itemElements[i];
+      item?.classList.add(TRANSITION_CLASSNAME);
+    }
+
     const newValue = `${CAROUSEL_TRANSLATION_CSS_CLASSNAME}: -${amountToTranslateImages}px`;
     document.documentElement.style.cssText += newValue;
+
+    removeTransitionTimeout = setTimeout(() => {
+      for (let i = 0; i < itemElements.length; i++) {
+        const item = itemElements[i];
+        item?.classList.remove(TRANSITION_CLASSNAME);
+      }
+    }, ANIMATION_DURATION / 2);
   }
 
   const handleArrowClick = (e) => {

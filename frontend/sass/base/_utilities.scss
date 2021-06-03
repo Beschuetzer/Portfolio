@@ -115,6 +115,13 @@
         transition: none !important;
     }
 
+    .carousel-transition {
+        transition: 
+            transform $animation-duration / 2 $animation-easing-standard
+            !important
+        ;
+    }
+
     .d-none {
         display: none !important;
     }

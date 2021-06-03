@@ -115,10 +115,7 @@ $carousel-grid-width: calc(
 		overflow: hidden;
 
 		transform: translateX(var(--carousel-item-translation-x));
-		transition: 
-			transform $animation-duration / 2 $animation-easing-standard
-		;
-
+		
 		&--full-screen{
 			width: 100vw;
 			height: 100vh;

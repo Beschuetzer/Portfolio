@@ -34,7 +34,7 @@
     width: $resume-card-width-full;
     background-color: var(--color-primary-4);
     color: rgba($color-primary-downloader-1, $resume-color-opacity);
-    margin: $default-font-size auto;
+    margin: $default-font-size * 2 auto;
 
     @include respond(tab-land) {
       width: calc(100% - #{$default-font-size} * 1);

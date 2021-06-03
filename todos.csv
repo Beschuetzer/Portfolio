@@ -56,4 +56,3 @@ carousel videos:
   -add progress bar
 
 -refactor Video to include progressbar?
--carousel__item's transition property causes strange bug when opening an image and immediately moving cursor to second item (third item disappears)
