@@ -458,7 +458,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 
 			<SourceCodeLink
 				href="https://github.com/Beschuetzer/Bridge"
-				blockName="hero"
+				// blockName="hero"
 			/>
 
 			{renderSections()}

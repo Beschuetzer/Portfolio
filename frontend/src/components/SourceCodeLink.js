@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SourceCodeLink = ({href, blockName, msg = "Code"}) => {
+const SourceCodeLink = ({href, blockName = "source-link", msg = "Code"}) => {
   return (
     <a 
       target="_blank" 

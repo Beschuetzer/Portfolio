@@ -50,10 +50,19 @@ const Downloader = () => {
     return sections.map((section, index) => {
       return (
         <Section
+          key={index}
           name={section.name}
           pageName={section.pageName}
         >
-          {section.children.map(child => child)}
+          {
+            section.children.map((child, index) => {
+              return (
+                <React.Fragment key={index}>
+                  {child}
+                </React.Fragment>
+              )
+            })
+          }
         </Section>
       )
     })
@@ -67,8 +76,7 @@ const Downloader = () => {
       >
         <SourceCodeLink
           href="https://github.com/Beschuetzer/Downloader"
-          blockName="hero"
-          msg="Source Code"
+          msg="Code"
         />
         <div className="csharp__title">Downloader</div>
         <section className="csharp__carousel">
