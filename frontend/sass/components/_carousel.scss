@@ -28,6 +28,7 @@ $carousel-grid-width: calc(
         $default-font-size * 21
 			)
 		);
+		grid-row-gap: $default-font-size * .5;
 	}
 
   &__dots {

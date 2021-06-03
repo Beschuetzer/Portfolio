@@ -1,11 +1,12 @@
 import React from 'react';
 
-import img1 from '../../../../imgs/bridge-section-1.jpg';
-import img2 from '../../../../imgs/bridge-section-2.jpg';
-import img3 from '../../../../imgs/bridge-section-3.jpg';
-import img4 from '../../../../imgs/bridge-section-4.jpg';
-import img5 from '../../../../imgs/bridge-section-5.jpg';
-import img6 from '../../../../imgs/bridge-section-6.jpg';
+import img1 from '../../../../imgs/downloader/img1.png';
+import img2 from '../../../../imgs/downloader/img2.png';
+import img3 from '../../../../imgs/downloader/img3.png';
+import img4 from '../../../../imgs/downloader/img4.png';
+import img5 from '../../../../imgs/downloader/img5.png';
+import img6 from '../../../../imgs/downloader/img6.png';
+import video1 from '../../../../imgs/downloader/video1.mp4';
 import Carousel from '../../../Carousel';
 import EmbeddedLink from '../../../EmbeddedLink';
 import Section from '../../../Section';
@@ -69,12 +70,12 @@ const Downloader = () => {
             images={[img1,img2,img3,img4,img5,img6]}
             alts={
               [
-                "Image 1 Alt",
-                "Image 2 Alt",
-                "Image 3 Alt",
-                "Image 4 Alt",
-                "Image 5 Alt",
-                "Image 6 Alt",
+                "The Simple User Interface",
+                "Options Available",
+                "Full-screen user interface when downloading",
+                "File-renaming tool often used after downloading to standardize file names",
+                "A list of songs from OCRemix.org",
+                "Songs downloaded from OCRemix.org (including sub-linked songs)",
               ]
             }
             numberOfImagesInCarouselAtOneTime="3"
