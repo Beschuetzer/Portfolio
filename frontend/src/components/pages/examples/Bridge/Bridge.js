@@ -51,11 +51,11 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						// title='An App is Born'
 					>
 						<p>
-							<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>  is a website I created between June of 2020 and February of 2021, where users can play<EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">contract bridge</EmbeddedLink>for free.&nbsp; The COVID-19 pandemic was in full swing, and a good friend of mine had mentioned how much he missed playing bridge (something which none of the members of our regular bridge group had done for many months at that point).  
+							<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>is a website I created between June of 2020 and February of 2021, where users can play<EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">contract bridge</EmbeddedLink>for free.&nbsp; The COVID-19 pandemic was in full swing, and a good friend of mine had mentioned how much he missed playing bridge (something which none of the members of our regular bridge group had done for many months at that point).  
 						</p>
 						<p>
-							Initially, we looked for free, online apps but were unable to find any at the time.   &nbsp;I had told Andrew about the<EmbeddedLink to="/examples/downloader">downloader</EmbeddedLink>
-							and<EmbeddedLink to="/examples/playlist-syncer">music syncing</EmbeddedLink>apps that I had recently finished, and he playfully remarked that I should make an app to play bridge online.   &nbsp;At that point, I wasn't very interested in making my own bridge app.&nbsp; I figured there had to be a free way we could play online. &nbsp;  However, after spending an hour, to no avail, looking for a free app/website, I decided to invest some time into figuring out how one would do such a thing.
+							Initially, we looked for free, online apps but were unable to find any at the time.   &nbsp;I had told Andrew about the<EmbeddedLink isLocal={true} href="/examples/downloader">downloader</EmbeddedLink>
+							and<EmbeddedLink href="/examples/playlist-syncer" isLocal={true}>music syncing</EmbeddedLink>apps that I had recently finished, and he playfully remarked that I should make an app to play bridge online.   &nbsp;At that point, I wasn't very interested in making my own bridge app.&nbsp; I figured there had to be a free way we could play online. &nbsp;  However, after spending an hour, to no avail, looking for a free app/website, I decided to invest some time into figuring out how one would do such a thing.
 						</p>
 					</BridgeCardSection>
 				</BridgeCard>
@@ -206,20 +206,20 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 							I started out by trying to create a simple chat room app using C#, but soon realized it would be rather challenging to create the bridge app I had envisioned using C#.   &nbsp;I knew there had to be an easier way...   &nbsp;off to YouTube/Google to find it!   &nbsp;  This is where I first encountered 'socket.io'.   &nbsp;After watching a quick implementation video on YouTube, I was convinced:&nbsp; socket.io would be a part of the stack, if i was going to do this thing.
 						</p>
 						<p>
-							The only problem was I had no idea how to create a web application at all.&nbsp; After googling some more, I found an exquisite resource called <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>
+							The only problem was I had no idea how to create a web application at all.&nbsp; After googling some more, I found an exquisite resource called<EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>
 						</p>					
 					</BridgeCardSection>
 					<BridgeCardSection
 						title='A Tough Decision'
 					>
 						<p>
-							Before I had found the <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>, I had been under the impression that one needed to have a Computer Science degree in order to become a web developer.&nbsp; That assumption was shattered upon reading about some of the experiences others had had with the <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>. Then and there, a hope, nay, a determination awakened inside of me that had lain dormant for many years.&nbsp; Maybe I too could become a web developer?&nbsp; I was determined to find out once and for all, if I have what it takes to become a web developer.&nbsp; Hence, I fully committed myself to making the <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> project.
+							Before I had found the<EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>, I had been under the impression that one needed to have a Computer Science degree in order to become a web developer.&nbsp; That assumption was shattered upon reading about some of the experiences others had had with the<EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>. Then and there, a hope, nay, a determination awakened inside of me that had lain dormant for many years.&nbsp; Maybe I too could become a web developer?&nbsp; I was determined to find out once and for all, if I have what it takes to become a web developer.&nbsp; Hence, I fully committed myself to making the<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>project.
 						</p>
 						{/* <p>
 							Ultimately my decision to become a web developer came down to the fact that I knew I would regret it in the future if I didn't give it an honest effort to become a web developer.  &nbsp;With the COVID-19 pandemic in full swing, I knew I would have time to explore my potential.
 						</p> 
 						<p>
-							I had taken MOOC courses in the past on EdX about computer programming, but I lacked the motivation to complete them because I told myself it wouldn't amount to anything.  &nbsp;Knowing now, that there was a chance to become a web developer, &nbsp;I couldn't see how I wouldn't regret not trying to become a web developer.&nbsp; Hence the reason I dove into the <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> project. */}
+							I had taken MOOC courses in the past on EdX about computer programming, but I lacked the motivation to complete them because I told myself it wouldn't amount to anything.  &nbsp;Knowing now, that there was a chance to become a web developer, &nbsp;I couldn't see how I wouldn't regret not trying to become a web developer.&nbsp; Hence the reason I dove into the<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>project. */}
 {/* 							
 							 I look at my life 10 years from now and ask what if I had completely devoted my energy to becoming a web developer?  I couldn't imagine a scenario where I would be ok with just giving up on something that I enjoyed so much.&nbsp; With the pandemic looking like it was just getting started, I decided to take a leap of faith in myself: I decided to become a web developer. */}
 						{/* </p> */}
@@ -236,7 +236,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						{/* <p>
 							First, I needed some sort of test that was sufficiently complex and representative enough of actual real-world applications, such that if I could pass it, I would know I am on the right track.&nbsp;
 
-							This is when <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> became a full-time endeavor.&nbsp; 
+							This is when<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>became a full-time endeavor.&nbsp; 
 						</p> */}
 						<p>
 							If I could create a some-what scalable, web-based multiplayer bridge app, I was convinced I would have what it takes.&nbsp; I decided that I would set aside one year to build the best web-based multiplayer bridge app I could.&nbsp; If after one year I hadn't completed the website, I could stop, knowing that I had given it an honest and highly-motivated effort.&nbsp;
@@ -257,7 +257,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						title='The Little Matter of How'
 					>
 						<p>
-							I started the learning process by following the curriculum on the <EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink> website.&nbsp; There I learned the basics of HTML5, CSS3, and JS.&nbsp; However, after completing most of the Ruby part of the curriculum, I realized I would need further resources.&nbsp; 
+							I started the learning process by following the curriculum on the<EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>website.&nbsp; There I learned the basics of HTML5, CSS3, and JS.&nbsp; However, after completing most of the Ruby part of the curriculum, I realized I would need further resources.&nbsp; 
 						</p>	
 						<p>
 							This is when I started looking into Web Developer Bootcamps. &nbsp; A few caught my eye, but there were no guarantees that I would land a job at the end.&nbsp; Ultimately, I decided that the best approach would be to take the self-taught path.&nbsp;The main reasons were:		
@@ -287,7 +287,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						I knew I would pave my own path, but were would I start?&nbsp; I researched popular web development technologies and came across many different stacks.&nbsp; Admittedly, it was a bit overwhelming at first figuring out where to start, but eventually I came to the conclusion that sticking to the bread and butter of web development and then expanding out from there would be the best approach.&nbsp; 
 					</p>
 					<p>
-						If I wanted to become a web developer, I figured, I would need to have a solid understanding of HTML5, CSS3, and JS.&nbsp;  What better way to learn the basics than to build a web-based multiplayer bridge app? &nbsp; This line of thinking is what led me to develop <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> using primarily vanilla HTML5, CSS3, and JS. 	
+						If I wanted to become a web developer, I figured, I would need to have a solid understanding of HTML5, CSS3, and JS.&nbsp;  What better way to learn the basics than to build a web-based multiplayer bridge app? &nbsp; This line of thinking is what led me to develop<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>using primarily vanilla HTML5, CSS3, and JS. 	
 					</p>
 					<BridgeCardSection
 						title='Picking the Right Curriculum'
@@ -302,7 +302,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						title='The Results are in.'
 					>
 						<p>
-						<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> took roughly 8 months to complete.&nbsp; It runs smoothly on Android 10+, Firefox 70+, and Chrome 70+ (but not on mobile iOS devices due to paperJS issues that I couldn't resolve due to the fact that I don't have access to an iOS device). &nbsp; It can host multiple simultaneous games, but is unlikely to run more a thousand simultaneous games in its current state.&nbsp; </p>
+						<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>took roughly 8 months to complete.&nbsp; It runs smoothly on Android 10+, Firefox 70+, and Chrome 70+ (but not on mobile iOS devices due to paperJS issues that I couldn't resolve due to the fact that I don't have access to an iOS device). &nbsp; It can host multiple simultaneous games, but is unlikely to run more a thousand simultaneous games in its current state.&nbsp; </p>
 						<p>Have a look at some of the fun features in the &nbsp;
 							<BridgeSectionLink
 								isEmbeddedLink={true}
@@ -349,7 +349,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 						title="No One Technology is 'Better'"
 					>
 						<p>
-							It's easy to think in the absolute terms of 'good', 'better', and 'best'.&nbsp; My experience coding <EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink> has illustrated to me that when it comes to web development thinking in these terms doesn't cut it.&nbsp;
+							It's easy to think in the absolute terms of 'good', 'better', and 'best'.&nbsp; My experience coding<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>has illustrated to me that when it comes to web development thinking in these terms doesn't cut it.&nbsp;
 						</p>
 					</BridgeCardSection>
 					<BridgeCardSection

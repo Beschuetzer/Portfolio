@@ -44,5 +44,5 @@ OPTIMIZATIONS:
 -change name section to grid
 
 downloader:
+  -add video somewhere?
   -add linear gradient to background
-  -finish features section
