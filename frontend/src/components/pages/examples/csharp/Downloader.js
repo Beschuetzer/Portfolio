@@ -8,17 +8,17 @@ import img5 from '../../../../imgs/downloader/img5.png';
 import img6 from '../../../../imgs/downloader/img6.png';
 import video1 from '../../../../imgs/downloader/video1.mp4';
 import Carousel from '../../../Carousel';
+import { C_SHARP_LAYOUT_CSS_NAME } from '../../../constants';
 import CSharpLayout from '../../../CSharpLayout';
 import EmbeddedLink from '../../../EmbeddedLink';
 import CSharpCardSection from './CSharpCardSection';
 
 const Downloader = () => {
-  const PAGE_NAME = "csharp";
 
   const sections = [
     {
       name: "Description",
-      pageName: PAGE_NAME,
+      pageName: C_SHARP_LAYOUT_CSS_NAME,
       children: [
         <React.Fragment>
           <CSharpCardSection
@@ -36,7 +36,7 @@ const Downloader = () => {
     },
     {
       name: "Notes",
-      pageName: PAGE_NAME,
+      pageName: C_SHARP_LAYOUT_CSS_NAME,
       children: [
         <React.Fragment>
           <CSharpCardSection

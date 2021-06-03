@@ -46,4 +46,6 @@ OPTIMIZATIONS:
 downloader:
   -add video somewhere?
 
-re-factor cr
+playlist-sync:
+  -find a color pallette for playlist-syncer
+  -change alts

@@ -1,5 +1,6 @@
 import React from "react";
 import { capitalize } from "../helpers";
+import { C_SHARP_LAYOUT_CSS_NAME } from "./constants";
 import Section from "./Section";
 import SectionContainer from "./SectionContainer";
 import SourceCodeLink from "./SourceCodeLink";
@@ -11,7 +12,6 @@ const CSharpLayout = ({
 	sourceCodeMsg = "Code",
 	children,
 }) => {
-  const CSS_NAME = "csharp";
 
 	function renderSections() {
 		return sections.map((section, index) => {
@@ -26,15 +26,15 @@ const CSharpLayout = ({
 	}
 
 	return (
-		<div className={`${CSS_NAME} ${pageName}`}>
-			<SectionContainer name="Images" pageName={CSS_NAME}>
+		<div className={`${C_SHARP_LAYOUT_CSS_NAME} ${pageName}`}>
+			<SectionContainer name="Images" pageName={C_SHARP_LAYOUT_CSS_NAME}>
         {
           sourceCodeLink ? 
     				<SourceCodeLink href={sourceCodeLink} msg={sourceCodeMsg} />
           : 
             null
         }
-				<div className={`${CSS_NAME}__title`}>{capitalize(pageName)}</div>
+				<div className={`${C_SHARP_LAYOUT_CSS_NAME}__title`}>{capitalize(pageName)}</div>
 				{children}
 			</SectionContainer>
 			{renderSections()}

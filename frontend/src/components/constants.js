@@ -12,7 +12,7 @@ export const CARD_PLAYING_CLASSNAME = 'card--playing';
 export const CARD_DEFAULT_CLASSNAME = 'card card--hoverable';
 
 export const SKILLS_SECTION_CLASSNAME = 'skills__section';
-
+export const C_SHARP_LAYOUT_CSS_NAME = "csharp";
 
 //#region bridge stuff
 export const BRIDGE_CARD_SECTION_CLASSNAME = 'bridge__card-section';
