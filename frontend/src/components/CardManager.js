@@ -13,7 +13,7 @@ import {
 } from '../helpers';
 
 import {
-  CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME,
+  CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME,
 } from './constants';
 
 //Responsible for changing transform origin on cards if the rows change due to viewport width
@@ -149,7 +149,7 @@ const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber
   useEffect(() => {
 		const handleClick = (e) => {
 			if (!isCardVideoOpen) return;
-			const isFgVideoClick = checkForParentOfType(e.target, 'video', 'fg-video');
+			const isFgVideoClick = checkForParentOfType(e.target, 'video', FOREGROUND_VIDEO_CLASSNAME);
 			if (!isFgVideoClick) {
 				const cards = document.querySelectorAll('.card');
 				for (let i = 0; i < cards.length; i++) {

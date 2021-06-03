@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from './constants';
+import { CAROUSEL_TRANSLATION_CSS_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME, getIsVideoPlaying } from './constants';
 import Video from './Video';
 
 const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
@@ -122,13 +122,40 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
     dots[indexOfCurrentDot]?.classList.remove(DOT_ACTIVE_CLASSNAME);
   }
 
+  const handleVideoProgress = (e) => {
+		const video = e.target;
+    const item = video.parentNode;
+    debugger
+		if (!video || !item) return;
+
+		const percent = video.currentTime / video.duration;
+    console.log('percent =', percent);
+		// progressBarRef.current.value = percent;
+	}
+
   const handleItemClick = (e) => {
-    console.log('something------------------------------------------------');
-    const image = e.currentTarget;
-    if (!image) return;
+    const item = e.currentTarget;
+    if (!item) return;
     e.preventDefault();
-    image.classList.toggle(FULLSCREEN_CLASSNAME);
-    image.parentNode?.classList.toggle(FULLSCREEN_PARENT_CLASSNAME)
+    
+    item.classList.toggle(FULLSCREEN_CLASSNAME);
+    item.parentNode?.classList.toggle(FULLSCREEN_PARENT_CLASSNAME)
+
+    if (item.classList.contains(FOREGROUND_VIDEO_CLASSNAME)) {
+      //TODO: figure out how to play video (or pause if already playing)
+      // and change play symbol to a pause 
+      const video = item.querySelector('video');
+      const isPlaying = getIsVideoPlaying(video);
+      if (isPlaying) {
+        video.currentTime = 0;
+        video.pause();
+  			video.removeEventListener('timeupdate', handleVideoProgress);
+      }
+      else {
+        video.play();
+  			video.addEventListener('timeupdate', handleVideoProgress);
+      }
+    }
   }
 
   const renderItems = () => {
@@ -150,7 +177,7 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
             src={item}
             autoPlay={false}
             loop={false}
-            className={`${VIDEO_CLASSNAME} fg-video`} 
+            className={`${VIDEO_CLASSNAME} ${FOREGROUND_VIDEO_CLASSNAME}`} 
             key={index}
             onClick={handleItemClick}
           />;

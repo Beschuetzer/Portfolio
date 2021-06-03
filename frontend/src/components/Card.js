@@ -14,6 +14,8 @@ import {
 	CARD_OPEN_CLASSNAME,
 	CARD_PLAYING_CLASSNAME,
 	CARD_DEFAULT_CLASSNAME,
+	FOREGROUND_VIDEO_CLASSNAME,
+	getIsVideoPlaying,
 } from "./constants";
 import {
 	setIsCardVideoOpen,
@@ -237,15 +239,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 			hasProgressEventListener = true;
 		} 
 	}
-
-	const getIsVideoPlaying = (video) => {
-		return (
-			video.currentTime > 0 &&
-			!video.paused &&
-			!video.ended &&
-			video.readyState > 2
-		);
-	};
 
 	const closeVideo = (video, card) => {
 		changeSectionTitle(false);
@@ -474,7 +467,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 				<h4 ref={titleRef} className="card__title">{title}</h4>
 				<Video
-					className="fg-video"
+					className={FOREGROUND_VIDEO_CLASSNAME}
 					type="mp4"
 					src={video}
 					autoPlay={false}

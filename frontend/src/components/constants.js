@@ -14,6 +14,7 @@ export const CARD_DEFAULT_CLASSNAME = 'card card--hoverable';
 export const SKILLS_SECTION_CLASSNAME = 'skills__section';
 export const C_SHARP_LAYOUT_CSS_NAME = "csharp";
 export const CAROUSEL_TRANSLATION_CSS_CLASSNAME = '--carousel-item-translation-x';
+export const FOREGROUND_VIDEO_CLASSNAME = 'fg-video';
 
 
 //#region bridge stuff
@@ -100,6 +101,15 @@ export const viewPortPixelToRem = {
 
 
 //#endregion
+export const getIsVideoPlaying = (video) => {
+  return (
+    video.currentTime > 0 &&
+    !video.paused &&
+    !video.ended &&
+    video.readyState > 2
+  );
+};
+
 export function onRenderCallback(
   id, // the "id" prop of the Profiler tree that has just committed
   phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
