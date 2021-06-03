@@ -2304,7 +2304,8 @@ body {
   grid-column: 2/span 3;
   display: grid;
   grid-column-gap: 1.6rem;
-  grid-template-columns: repeat(auto-fit, minmax(calc( 	(85rem - 2 * 1.6rem) / 3 ), 1.6rem));
+  grid-template-columns: repeat(auto-fit, minmax(calc( 	( 		85rem 		- 2 * 1.6rem 		- .3rem 	) / 3 ), 1.6rem));
+  padding: 0 0 0 0.2rem;
   justify-items: flex-start;
   align-items: flex-start;
   overflow: hidden;
@@ -2415,11 +2416,35 @@ body {
     font-size: 2.4rem;
   }
 }
+.carousel__video {
+  cursor: pointer;
+}
+.carousel__video.fg-video {
+  opacity: 1;
+}
+.carousel__video.fg-video video {
+  height: 100%;
+  object-position: top left;
+}
+.carousel__video-svg {
+  pointer-events: none;
+  width: 9.6rem;
+  height: 9.6rem;
+  fill: var(--color-primary-4);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: fill 0.125s ease;
+}
+.carousel__video:hover + .carousel__video-svg {
+  fill: var(--color-primary-3);
+}
 .carousel__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top left;
+  object-position: top;
   cursor: pointer;
   -webkit-user-drag: none;
   -khtml-user-drag: none;

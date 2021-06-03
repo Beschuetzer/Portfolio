@@ -1,7 +1,11 @@
 $carousel-width: 50vw;
 $carousel-grid-column-gap: $default-font-size;
 $carousel-grid-width: calc(
-	(#{$resume-card-width-full} - 2 * #{$carousel-grid-column-gap}) / 3
+	(
+		#{$resume-card-width-full} 
+		- 2 * #{$carousel-grid-column-gap}
+		- .3rem
+	) / 3
 );
 
 .carousel {
@@ -11,7 +15,8 @@ $carousel-grid-width: calc(
 	grid-template-columns: repeat(
 		auto-fit,
 		minmax($carousel-grid-width, $default-font-size)
-	);
+		);
+	padding: 0 0 0 .2rem;
 	justify-items: flex-start;
 	align-items: flex-start;
 	overflow: hidden;
@@ -143,12 +148,41 @@ $carousel-grid-width: calc(
 		}
 	}
 
+	&__video {
+		cursor: pointer;
+		&.fg-video {
+			opacity: 1;
+			video {
+				height: 100%;
+				object-position: top left;
+			}
+		}
+
+		&-svg {
+			pointer-events: none;
+			width: $default-font-size * 6;
+			height: $default-font-size * 6;
+			fill: var(--color-primary-4);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			transition:  
+				fill $animation-duration / 4 $animation-easing-standard,
+			;
+		}
+
+		&:hover + &-svg {
+			fill: var(--color-primary-3);
+		}
+	}
+
 	&__image {
 		
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: top left;
+		object-position: top;
 	
 		// transition: 
 		// 	filter $animation-duration / 2 $animation-easing-standard

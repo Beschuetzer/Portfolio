@@ -65,6 +65,7 @@ const Downloader = () => {
           images={[video1,img1,img2,img3,img4,img5,img6]}
           alts={
             [
+              "Video Demonstration",
               "The User interface",
               "Options available",
               "Full-screen user interface when downloading",

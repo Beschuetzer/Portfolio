@@ -27,7 +27,6 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
     leftArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_LEFT_CLASSNAME}`);
     rightArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_RIGHT_CLASSNAME}`);
     itemsRef.current = document.querySelectorAll(`.${ITEM_CLASSNAME}`);
-    debugger
     const image1Left = itemsRef.current[0]?.children[0]?.getBoundingClientRect().left;
     const image2Left = itemsRef.current[1]?.children[0]?.getBoundingClientRect().left;
     itemsWidthRef.current = Math.abs(image1Left - image2Left);
@@ -123,7 +122,8 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
     dots[indexOfCurrentDot]?.classList.remove(DOT_ACTIVE_CLASSNAME);
   }
 
-  const handleImageClick = (e) => {
+  const handleItemClick = (e) => {
+    console.log('something------------------------------------------------');
     const image = e.currentTarget;
     if (!image) return;
     e.preventDefault();
@@ -139,25 +139,25 @@ const Carousel = ({images: items, alts, viewPortWidth, numberOfItemsInCarouselAt
         className={`${IMAGE_CLASSNAME}`} 
         alt={alts[index]}
         key={index}
-        onClick={handleImageClick}
+        onClick={handleItemClick}
       />;
 
       if (item.match(/.+\.mp4$/i)) {
         mediaToAdd = 
-        <Video
-					type="mp4"
-					src={item}
-					autoPlay={false}
-					loop={false}
-          className={`${VIDEO_CLASSNAME} fg-video`} 
-          key={index}
-          onClick={handleImageClick}
-				/>;
-        // <video 
-          
-        // >
-
-        // </video>;
+        <React.Fragment>
+          <Video
+            type="mp4"
+            src={item}
+            autoPlay={false}
+            loop={false}
+            className={`${VIDEO_CLASSNAME} fg-video`} 
+            key={index}
+            onClick={handleItemClick}
+          />;
+          <svg className="carousel__video-svg">
+            <use xlinkHref="/sprite.svg#icon-play"></use>
+          </svg>
+        </React.Fragment>
       }
 
       return (
