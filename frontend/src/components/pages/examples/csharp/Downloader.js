@@ -8,10 +8,8 @@ import img5 from '../../../../imgs/downloader/img5.png';
 import img6 from '../../../../imgs/downloader/img6.png';
 import video1 from '../../../../imgs/downloader/video1.mp4';
 import Carousel from '../../../Carousel';
+import CSharpLayout from '../../../CSharpLayout';
 import EmbeddedLink from '../../../EmbeddedLink';
-import Section from '../../../Section';
-import SectionContainer from '../../../SectionContainer';
-import SourceCodeLink from '../../../SourceCodeLink';
 import CSharpCardSection from './CSharpCardSection';
 
 const Downloader = () => {
@@ -56,59 +54,30 @@ const Downloader = () => {
     },
   ]
 
-  function renderSections () {
-    return sections.map((section, index) => {
-      return (
-        <Section
-          key={index}
-          name={section.name}
-          pageName={section.pageName}
-        >
-          {
-            section.children.map((child, index) => {
-              return (
-                <React.Fragment key={index}>
-                  {child}
-                </React.Fragment>
-              )
-            })
-          }
-        </Section>
-      )
-    })
-  }
-
   return (
-    <div className="csharp downloader">
-      <SectionContainer
-        name="Images"
-        pageName={PAGE_NAME}
-      >
-        <SourceCodeLink
-          href="https://github.com/Beschuetzer/Downloader"
-          msg="Code"
+    <CSharpLayout
+      sections={sections}
+      pageName="downloader"
+      sourceCodeLink="https://github.com/Beschuetzer/Downloader"
+    >
+      <section className="csharp__carousel">
+        <Carousel
+          images={[img1,img2,img3,img4,img5,img6]}
+          alts={
+            [
+              "The User interface",
+              "Options available",
+              "Full-screen user interface when downloading",
+              "Integrated file-renaming tool used to standardize file names of downloads",
+              "A list of songs from OCRemix.org",
+              "Songs downloaded from OCRemix.org (including sub-linked songs)",
+            ]
+          }
+          numberOfImagesInCarouselAtOneTime="3"
+          numberOfImagesToScrollOnClick="3"
         />
-        <div className="csharp__title">Downloader</div>
-        <section className="csharp__carousel">
-          <Carousel
-            images={[img1,img2,img3,img4,img5,img6]}
-            alts={
-              [
-                "The User interface",
-                "Options available",
-                "Full-screen user interface when downloading",
-                "Integrated file-renaming tool used to standardize file names of downloads",
-                "A list of songs from OCRemix.org",
-                "Songs downloaded from OCRemix.org (including sub-linked songs)",
-              ]
-            }
-            numberOfImagesInCarouselAtOneTime="3"
-            numberOfImagesToScrollOnClick="3"
-          />
-        </section>
-      </SectionContainer>
-      {renderSections()}
-    </div>
+      </section>
+    </CSharpLayout>
   );
 }
 

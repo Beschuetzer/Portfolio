@@ -1,11 +1,12 @@
 import React from "react";
+import { capitalize } from "../helpers";
 import Section from "./Section";
 import SectionContainer from "./SectionContainer";
 import SourceCodeLink from "./SourceCodeLink";
 
 const CSharpLayout = ({
 	sections,
-	pageNameSecondary: pageName,
+	pageName,
 	sourceCodeLink,
 	sourceCodeMsg = "Code",
 	children,
@@ -27,8 +28,13 @@ const CSharpLayout = ({
 	return (
 		<div className={`${CSS_NAME} ${pageName}`}>
 			<SectionContainer name="Images" pageName={CSS_NAME}>
-				<SourceCodeLink href={sourceCodeLink} msg={sourceCodeMsg} />
-				<div className={`${CSS_NAME}__title`}>{pageName.toUpperCase()}</div>
+        {
+          sourceCodeLink ? 
+    				<SourceCodeLink href={sourceCodeLink} msg={sourceCodeMsg} />
+          : 
+            null
+        }
+				<div className={`${CSS_NAME}__title`}>{capitalize(pageName)}</div>
 				{children}
 			</SectionContainer>
 			{renderSections()}
