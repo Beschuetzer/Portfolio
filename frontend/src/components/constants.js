@@ -101,6 +101,17 @@ export const viewPortPixelToRem = {
 
 
 //#endregion
+
+
+export const attachProgressListener = (video, hasProgressEventListener, handleVideoProgress) => {
+  if(!video) return;
+  if (!hasProgressEventListener) {
+    video.addEventListener('timeupdate', handleVideoProgress);
+    return true;
+  } 
+  return false;
+}
+
 export const getPercentOfProgressBar = (progressBar, clientX) => {
   const progressBarBoundingRect = progressBar.getBoundingClientRect();
   const progressBarLeftX = progressBarBoundingRect.left;

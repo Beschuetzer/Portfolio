@@ -16,6 +16,7 @@ import {
 	FOREGROUND_VIDEO_CLASSNAME,
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
+	attachProgressListener,
 } from "./constants";
 import {
 	setIsCardVideoOpen,
@@ -25,6 +26,7 @@ import Video from "./VideoPlayer/Video";
 import { capitalize } from "../helpers";
 import PauseControl from "./VideoPlayer/PauseControl";
 import StopControl from "./VideoPlayer/StopControl";
+import PlayControl from "./VideoPlayer/PlayControl";
 
 const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight, setIsCardVideoOpen }) => {
 	const videoRef = useRef(null);
@@ -234,14 +236,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		document.documentElement.style.cssText += newValue;
 	};
 
-	const attachProgressListener = (video) => {
-		if(!video) return;
-		if (!hasProgressEventListener) {
-			video.addEventListener('timeupdate', handleVideoProgress);
-			hasProgressEventListener = true;
-		} 
-	}
-
 	const closeVideo = (video, card) => {
 		changeSectionTitle(false);
 		setIsCardVideoOpen(false)
@@ -273,7 +267,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	}
 
 	const playVideo = (video, card) => {
-		attachProgressListener(video);
+		hasProgressEventListener = attachProgressListener(video, hasProgressEventListener, handleVideoProgress );
 		video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove(CARD_DONE_CLASSNAME);
 		card.classList.add(CARD_PLAYING_CLASSNAME);
@@ -287,7 +281,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		if (!getIsVideoPlaying(video)) {
 			video.play();
 			card.classList.add(CARD_PLAYING_CLASSNAME);
-			attachProgressListener(video);
+			attachProgressListener(video, hasProgressEventListener, handleVideoProgress);
 		}
 		
 		if (!card) return;
@@ -342,12 +336,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		const video = e.currentTarget;
 		video.removeEventListener("ended", handleVideoEnd);
 	};
-
-	const handlePlayVideo = (e) => {
-		const card = cardRef.current;
-		if (card?.classList.contains(CARD_STOPPED_CLASSNAME))	e.stopPropagation();
-		playVideo(videoRef.current, card);
-	}
 
 	const handleCardClick = (e) => {
 		e.stopPropagation();
@@ -430,11 +418,13 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 					</svg>
 				</div>
 
-				<div onClick={handlePlayVideo} className="card__play-parent">
-					<svg className="card__play">
-						<use xlinkHref="/sprite.svg#icon-play"></use>
-        	</svg>
-				</div>
+				<PlayControl
+					className="card__play"
+					xlinkHref="/sprite.svg#icon-play"
+					videoRef={videoRef}
+					progressBarRef={progressBarRef}
+					cardRef={cardRef}
+				/>
 
 				<h4 ref={titleRef} className="card__title">{title}</h4>
 				<Video
