@@ -4,7 +4,7 @@ import {
 	CARD_PLAYING_CLASSNAME,
 } from "../constants";
 
-const PauseControl = ({className, xlinkHref, videoRef, cardRef = null}) => {
+const PauseControl = ({className = 'card__pause', xlinkHref, videoRef, cardRef = null}) => {
   const handlePauseVideo = (e) => {
 		e.stopPropagation();
 		pauseVideo(videoRef.current, cardRef ? cardRef.current : null);

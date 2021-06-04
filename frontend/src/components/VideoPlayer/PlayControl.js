@@ -5,7 +5,7 @@ import {
   attachProgressListener,
 } from "../constants";
 
-const PlayControl = ({className, xlinkHref, videoRef, progressBarRef, cardRef = null}) => {
+const PlayControl = ({className = 'card__play', xlinkHref, videoRef, progressBarRef, cardRef = null}) => {
   let hasProgressEventListener = false;
 
   const handlePlayVideo = (e) => {

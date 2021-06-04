@@ -6,7 +6,7 @@ import {
 	getIsVideoPlaying,
 } from "../constants";
 
-const RestartControl = ({className, xlinkHref, videoRef, progressBarRef, cardRef = null}) => {
+const RestartControl = ({className = 'card__restart', xlinkHref, videoRef, progressBarRef, cardRef = null}) => {
   let hasProgressEventListener = false;
 
 	const handleRestartVideo = (e) => {

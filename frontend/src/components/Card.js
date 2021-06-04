@@ -350,21 +350,18 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 			/>
 			<div className="card__content">
 				<StopControl
-					className="card__stop"
 					xlinkHref="/sprite.svg#icon-stop"
 					videoRef={videoRef}
 					cardRef={cardRef}
 				/>
 
 				<PauseControl
-					className="card__pause"
 					xlinkHref="/sprite.svg#icon-pause"
 					videoRef={videoRef}
 					cardRef={cardRef}
 				/>
 
 				<RestartControl
-					className="card__restart"
 					xlinkHref="/sprite.svg#icon-restart"
 					videoRef={videoRef}
 					cardRef={cardRef}
@@ -372,7 +369,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 				/>
 
 				<CloseControl
-					className="card__close"
 					xlinkHref="/sprite.svg#icon-close"
 					videoRef={videoRef}
 					titleRef={titleRef}
@@ -385,7 +381,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 				/>
 			
 				<PlayControl
-					className="card__play"
 					xlinkHref="/sprite.svg#icon-play"
 					videoRef={videoRef}
 					progressBarRef={progressBarRef}

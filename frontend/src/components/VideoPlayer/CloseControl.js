@@ -6,7 +6,7 @@ import {
 	closeVideo,
 } from "../constants";
 
-const CloseControl = ({className, xlinkHref, videoRef, containerRef = null, titleRef = null, setIsCardVideoOpen, classNamesToRemove}) => {
+const CloseControl = ({className = 'card__close', xlinkHref, videoRef, containerRef = null, titleRef = null, setIsCardVideoOpen, classNamesToRemove}) => {
  
 	const handleCloseVideo = (e) => {
 		e.stopPropagation();
