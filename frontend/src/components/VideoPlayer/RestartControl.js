@@ -4,28 +4,35 @@ import {
 	CARD_STOPPED_CLASSNAME,
 	CARD_PLAYING_CLASSNAME,
   attachProgressListener,
+	getIsVideoPlaying,
 } from "../constants";
 
-const PlayControl = ({className, xlinkHref, videoRef, progressBarRef, cardRef = null}) => {
+const RestartControl = ({className, xlinkHref, videoRef, progressBarRef, cardRef = null}) => {
   let hasProgressEventListener = false;
 
-  const handlePlayVideo = (e) => {
-		const card = cardRef.current;
-		if (card?.classList.contains(CARD_STOPPED_CLASSNAME))	e.stopPropagation();
-		playVideo(videoRef.current, card);
+	const handleRestartVideo = (e) => {
+		e.stopPropagation();
+		restartVideo(videoRef.current, cardRef.current);
 	}
 
-  const playVideo = (video, card) => {
-		hasProgressEventListener = attachProgressListener(video, hasProgressEventListener, handleVideoProgress );
-		video.addEventListener("ended", handleVideoEnd);
+	const restartVideo = (video, card) => {
+		if (!video) return;
+		video.currentTime = 0;
+		if (!getIsVideoPlaying(video)) {
+			video.play();
+			card.classList.add(CARD_PLAYING_CLASSNAME);
+			attachProgressListener(video, hasProgressEventListener, handleVideoProgress);
+		}
+		
+		if (!card) return;
+		if (card.classList.contains(CARD_DONE_CLASSNAME)) video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove(CARD_DONE_CLASSNAME);
-		card.classList.add(CARD_PLAYING_CLASSNAME);
 		card.classList.remove(CARD_STOPPED_CLASSNAME);
-		video.play();
 	}
 
   const handleVideoProgress = (e) => {
-		console.log('handleprogress1------------------------------------------------');
+		console.log('handleprogress2------------------------------------------------');
+
 		const video = videoRef.current;
 		if (!video) return;
 		const percent = video.currentTime / video.duration;
@@ -40,7 +47,7 @@ const PlayControl = ({className, xlinkHref, videoRef, progressBarRef, cardRef = 
 	};
 
   return (
-    <div onClick={handlePlayVideo} className={`${className}-parent`}>
+    <div onClick={handleRestartVideo} className={`${className}-parent`}>
       <svg className={`${className}`}>
         <use xlinkHref={xlinkHref}></use>
       </svg>
@@ -48,4 +55,4 @@ const PlayControl = ({className, xlinkHref, videoRef, progressBarRef, cardRef = 
   );
 }
 
-export default PlayControl;
+export default RestartControl;

@@ -27,6 +27,7 @@ import { capitalize } from "../helpers";
 import PauseControl from "./VideoPlayer/PauseControl";
 import StopControl from "./VideoPlayer/StopControl";
 import PlayControl from "./VideoPlayer/PlayControl";
+import RestartControl from "./VideoPlayer/RestartControl";
 
 const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight, setIsCardVideoOpen }) => {
 	const videoRef = useRef(null);
@@ -275,21 +276,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		video.play();
 	}
 
-	const restartVideo = (video, card) => {
-		if (!video) return;
-		video.currentTime = 0;
-		if (!getIsVideoPlaying(video)) {
-			video.play();
-			card.classList.add(CARD_PLAYING_CLASSNAME);
-			attachProgressListener(video, hasProgressEventListener, handleVideoProgress);
-		}
-		
-		if (!card) return;
-		if (card.classList.contains(CARD_DONE_CLASSNAME)) video.addEventListener("ended", handleVideoEnd);
-		card.classList.remove(CARD_DONE_CLASSNAME);
-		card.classList.remove(CARD_STOPPED_CLASSNAME);
-	}
-
 	const changeSectionTitle = (isOpen = true) => {
 		const originalMsgTitle = 'Features';
 		const originalMsgSubTitle = 'Pick a Card any Card';
@@ -313,10 +299,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		}
 	}
 
-	const handleRestartVideo = (e) => {
-		e.stopPropagation();
-		restartVideo(videoRef.current, cardRef.current);
-	}
+	
 
 	const handleCloseVideo = (e) => {
 		e.stopPropagation();
@@ -405,13 +388,15 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 					videoRef={videoRef}
 					cardRef={cardRef}
 				/>
+
+				<RestartControl
+					className="card__restart"
+					xlinkHref="/sprite.svg#icon-restart"
+					videoRef={videoRef}
+					cardRef={cardRef}
+					progressBarRef={progressBarRef}
+				/>
 			
-				<div onClick={handleRestartVideo} className="card__restart-parent">
-					<svg className="card__restart">
-						<use xlinkHref="/sprite.svg#icon-restart"></use>
-					</svg>
-				</div>
-				
 				<div onClick={handleCloseVideo} className="card__close-parent">
 					<svg className="card__close">
 						<use xlinkHref="/sprite.svg#icon-close"></use>
