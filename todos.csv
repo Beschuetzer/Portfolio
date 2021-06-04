@@ -57,3 +57,4 @@ carousel videos:
 
 -refactor Video to include progressbar?
 -redo playlist-sync video to get better mp3 stuff at end
+-finish VideoControl refactors

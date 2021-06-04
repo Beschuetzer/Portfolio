@@ -10,7 +10,7 @@ import {
   showBridgeHero,
 } from '../../../constants';
 
-import Video from '../../../Video';
+import Video from '../../../VideoPlayer/Video';
 import bgVideo from '../../../../clips/animation-roundEndDummy.mp4';
 
 const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount}) => {

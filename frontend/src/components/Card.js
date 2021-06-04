@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { 
 	BRIDGE_SECTION_TITLES_CLASSNAME,
-	CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION, 
 	MOBILE_BREAK_POINT_WIDTH,
 	ANIMATION_DURATION,
 	scrollToSection,
@@ -22,8 +21,10 @@ import {
 	setIsCardVideoOpen,
 } from '../actions';
 
-import Video from "../components/Video";
+import Video from "./VideoPlayer/Video";
 import { capitalize } from "../helpers";
+import PauseControl from "./VideoPlayer/PauseControl";
+import StopControl from "./VideoPlayer/StopControl";
 
 const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight, setIsCardVideoOpen }) => {
 	const videoRef = useRef(null);
@@ -280,20 +281,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		video.play();
 	}
 
-	const pauseVideo = (video, card) => {
-		video?.pause();
-		if (!card) return;
-		card.classList.remove(CARD_DONE_CLASSNAME);
-		card.classList.add(CARD_STOPPED_CLASSNAME);
-		card.classList.remove(CARD_PLAYING_CLASSNAME);
-	}
-
-	const stopVideo = (video) => {
-		if (!video) return;
-		video.currentTime = 0;
-		pauseVideo(video, cardRef.current);
-	}
-
 	const restartVideo = (video, card) => {
 		if (!video) return;
 		video.currentTime = 0;
@@ -362,16 +349,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		playVideo(videoRef.current, card);
 	}
 
-	const handlePauseVideo = (e) => {
-		e.stopPropagation();
-		pauseVideo(videoRef.current, cardRef.current);
-	}
-
-	const handleStopVideo = (e) => {
-		e.stopPropagation();
-		stopVideo(videoRef.current);
-	}
-
 	const handleCardClick = (e) => {
 		e.stopPropagation();
 		const card = cardRef.current;
@@ -427,17 +404,19 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 				src={`/${cardName}.${fileType}`}
 			/>
 			<div className="card__content">
-				<div onClick={handleStopVideo} className="card__stop-parent">
-					<svg className="card__stop">
-						<use xlinkHref="/sprite.svg#icon-stop"></use>
-					</svg>
-				</div>
+				<StopControl
+					className="card__stop"
+					xlinkHref="/sprite.svg#icon-stop"
+					videoRef={videoRef}
+					cardRef={cardRef}
+				/>
 
-				<div onClick={handlePauseVideo} className="card__pause-parent">
-					<svg className="card__pause">
-						<use xlinkHref="/sprite.svg#icon-pause"></use>
-					</svg>
-				</div>
+				<PauseControl
+					className="card__pause"
+					xlinkHref="/sprite.svg#icon-pause"
+					videoRef={videoRef}
+					cardRef={cardRef}
+				/>
 			
 				<div onClick={handleRestartVideo} className="card__restart-parent">
 					<svg className="card__restart">
