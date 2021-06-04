@@ -191,7 +191,7 @@ $carousel-grid-width: calc(
 			transition: fill $animation-duration / 4 $animation-easing-standard;
 		}
 
-		&:hover + &-svg {
+		&:hover ~ &-svg {
 			fill: var(--color-primary-3);
 		}
 	}

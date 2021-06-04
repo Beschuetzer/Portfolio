@@ -2459,7 +2459,7 @@ body {
   transform: translate(-50%, -50%);
   transition: fill 0.125s ease;
 }
-.carousel__video:hover + .carousel__video-svg {
+.carousel__video:hover ~ .carousel__video-svg {
   fill: var(--color-primary-3);
 }
 .carousel__image {
