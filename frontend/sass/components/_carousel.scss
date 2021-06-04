@@ -1,11 +1,7 @@
 $carousel-width: 50vw;
 $carousel-grid-column-gap: $default-font-size;
 $carousel-grid-width: calc(
-	(
-		#{$resume-card-width-full} 
-		- 2 * #{$carousel-grid-column-gap}
-		- .3rem
-	) / 3
+	(#{$resume-card-width-full} - 2 * #{$carousel-grid-column-gap} - 0.3rem) / 3
 );
 
 .carousel {
@@ -15,51 +11,47 @@ $carousel-grid-width: calc(
 	grid-template-columns: repeat(
 		auto-fit,
 		minmax($carousel-grid-width, $default-font-size)
-		);
-	padding: 0 0 0 .2rem;
+	);
+	padding: 0 0 0 0.2rem;
 	justify-items: flex-start;
 	align-items: flex-start;
 	overflow: hidden;
-  
 
 	@include respond(nav-switch) {
 		width: 100%;
-    justify-content: center;
+		justify-content: center;
 		grid-column-gap: $default-font-size / 2;
 		grid-template-columns: repeat(
 			auto-fit,
-			minmax(
-				$default-font-size *5,
-        $default-font-size * 21
-			)
+			minmax($default-font-size * 5, $default-font-size * 21)
 		);
-		grid-row-gap: $default-font-size * .5;
+		grid-row-gap: $default-font-size * 0.5;
 	}
 
-  &__dots {
-    grid-column: 3 / span 1;
-    grid-row: 2 / span 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;    
+	&__dots {
+		grid-column: 3 / span 1;
+		grid-row: 2 / span 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-    @include respond(nav-switch) {
-      display: none;
-    }
-  }
+		@include respond(nav-switch) {
+			display: none;
+		}
+	}
 
-  &__dot {
-    position: relative;
-    z-index: 6;
-    cursor: pointer;
-    width: $navbar__logo-width / 2;
-    height: $navbar__logo-width / 2;
-    fill: var(--color-primary-4);
+	&__dot {
+		position: relative;
+		z-index: 6;
+		cursor: pointer;
+		width: $navbar__logo-width / 2;
+		height: $navbar__logo-width / 2;
+		fill: var(--color-primary-4);
 
-    &--active {
-      fill: var(--color-primary-2) !important;
-    }
-  }
+		&--active {
+			fill: var(--color-primary-2) !important;
+		}
+	}
 
 	&__arrow-button {
 		position: relative;
@@ -69,9 +61,9 @@ $carousel-grid-width: calc(
 		align-self: center;
 		cursor: pointer;
 
-    @include respond(nav-switch) {
-      display: none;
-    }
+		@include respond(nav-switch) {
+			display: none;
+		}
 
 		&--left {
 			grid-column: 2 / span 1;
@@ -111,23 +103,46 @@ $carousel-grid-width: calc(
 		height: $default-font-size * 20;
 
 		border: $default-font-size * 0.1 solid var(--color-primary-4);
-		border-radius: $default-font-size * .5;
+		border-radius: $default-font-size * 0.5;
 		overflow: hidden;
 
 		transform: translateX(var(--carousel-item-translation-x));
-		
-		&--full-screen{
+
+		& .card__progress {
+			z-index: 100000;
+			bottom: calc(100vh - #{$carousel-full-screen-image-height});
+			opacity: 0;
+			height: $carousel-progress-bar-height;
+			position: fixed;
+			// cursor: pointer;
+			// width: 100%;
+			// left: 0;
+			// -webkit-appearance: none;
+			// appearance: none;
+			// border: none;
+		}
+
+		&--full-screen {
 			width: 100vw;
 			height: 100vh;
 			position: fixed;
 			top: 0;
 			left: 0;
 			z-index: 100000;
-    	transform: translate(0,0);
+			transform: translate(0, 0);
 			transition: none;
 			border: none;
 			border-radius: 0;
 
+			& .card__progress {
+				opacity: 1;
+
+				&::-webkit-progress-bar {
+					background-color: var(--color-primary-1);
+					box-shadow: 0 3px 16px rgba(0,0,0,.25);
+					border: 1px solid var(--color-primary-4);
+				}
+			}
 
 			& .carousel__image-description {
 				display: flex;
@@ -135,11 +150,11 @@ $carousel-grid-width: calc(
 				justify-content: center;
 				align-items: center;
 				position: fixed;
-				min-height: calc(100vh - #{$downloader-image-full-screen-height});
+				min-height: calc(100vh - #{$carousel-full-screen-image-height});
 				background: var(--color-primary-4);
 
 				@include respond(nav-switch) {
-					font-size: $default-font-size * 1.5;					
+					font-size: $default-font-size * 1.5;
 				}
 			}
 		}
@@ -150,8 +165,17 @@ $carousel-grid-width: calc(
 		&.fg-video {
 			opacity: 1;
 			video {
-				height: 100%;
 				object-position: top left;
+				top: 0;
+				position: fixed;
+			}
+
+			&.full-screen {
+				video {
+					height: calc(
+						#{$carousel-full-screen-image-height} - #{$carousel-progress-bar-height}
+					);
+				}
 			}
 		}
 
@@ -164,9 +188,7 @@ $carousel-grid-width: calc(
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			transition:  
-				fill $animation-duration / 4 $animation-easing-standard,
-			;
+			transition: fill $animation-duration / 4 $animation-easing-standard;
 		}
 
 		&:hover + &-svg {
@@ -175,13 +197,12 @@ $carousel-grid-width: calc(
 	}
 
 	&__image {
-		
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		object-position: top;
-	
-		// transition: 
+
+		// transition:
 		// 	filter $animation-duration / 2 $animation-easing-standard
 		// ;
 
@@ -208,10 +229,10 @@ $carousel-grid-width: calc(
 			filter: sepia(0.15);
 		}
 
-		&-description {		
+		&-description {
 			display: none;
 			justify-content: center;
-    	align-items: center;
+			align-items: center;
 			font-size: $default-font-size * 1;
 			text-align: center;
 			left: 0;
@@ -220,20 +241,22 @@ $carousel-grid-width: calc(
 			position: absolute;
 			color: var(--color-primary-1);
 			z-index: 10000;
-			background: rgba($color-primary-downloader-4, .5);
+			background: rgba($color-primary-downloader-4, 0.5);
 			padding: $default-font-size;
-			// display: none;	
+			// display: none;
 			// height: 100vh;
 			// border: none;
 			// border-radius: 0;
 			// object-fit: contain;
 			// backdrop-filter: blur($default-font-size) sepia(0) brightness(0.25);
 			// transform: translate(0,0);
-			// transition: none;	
-		}		
+			// transition: none;
+		}
 	}
 
-	&__item:hover &__image-description, &__item:active &__image-description, &__item:focus &__image-description {
+	&__item:hover &__image-description,
+	&__item:active &__image-description,
+	&__item:focus &__image-description {
 		display: flex;
 	}
 }

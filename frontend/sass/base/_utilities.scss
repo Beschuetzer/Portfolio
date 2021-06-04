@@ -1,149 +1,148 @@
+.u-center-text {
+	text-align: center;
+}
+.u-margin-bottom-small {
+	margin-bottom: $default-font-size;
+	@include respond(tab-port) {
+		margin-bottom: $default-font-size / 2;
+	}
+}
+.u-margin-bottom-medium {
+	margin-bottom: $default-font-size * 2.5;
+	@include respond(tab-port) {
+		margin-bottom: $default-font-size * 2.5 / 2;
+	}
+}
+.u-margin-bottom-large {
+	margin-bottom: $default-font-size * 5;
+	@include respond(tab-port) {
+		margin-bottom: $default-font-size * 5 / 2;
+	}
+}
+.u-margin-bottom-huge {
+	margin-bottom: $default-font-size * 6;
+	@include respond(tab-port) {
+		margin-bottom: $default-font-size * 6 / 2;
+	}
+}
 
-    .u-center-text {text-align: center;}
-    .u-margin-bottom-small {
-        margin-bottom: $default-font-size;
-        @include respond(tab-port) {
-            margin-bottom: $default-font-size / 2;
-        }
-    }
-    .u-margin-bottom-medium {
-        margin-bottom: $default-font-size * 2.5;
-        @include respond(tab-port) {
-            margin-bottom: $default-font-size * 2.5 / 2;
-        }
-    }
-    .u-margin-bottom-large {
-        margin-bottom: $default-font-size * 5;
-        @include respond(tab-port) {
-            margin-bottom: $default-font-size * 5 / 2;
-        }
-    }
-    .u-margin-bottom-huge {
-        margin-bottom: $default-font-size * 6;
-        @include respond(tab-port) {
-            margin-bottom: $default-font-size * 6 / 2;
-        }
-    }
+.u-margin-top-small {
+	margin-top: $default-font-size !important;
+	@include respond(tab-port) {
+		margin-top: $default-font-size !important;
+	}
+}
+.u-margin-top-medium {
+	margin-top: $default-font-size * 2.5 !important;
+	@include respond(tab-port) {
+		margin-top: $default-font-size * 1.25 !important;
+	}
+}
+.u-margin-top-large {
+	margin-top: $default-font-size * 5 !important;
+	@include respond(tab-port) {
+		margin-top: $default-font-size * 2.5 !important;
+	}
+}
+.u-margin-top-huge {
+	margin-top: $default-font-size * 6 !important;
+	@include respond(tab-port) {
+		margin-top: $default-font-size * 3 !important;
+	}
+}
+.w-100 {
+	width: 100% !important;
+}
+.h-100 {
+	height: 100% !important;
+}
+.text-align-center {
+	text-align: center !important;
+}
 
-    .u-margin-top-small {
-        margin-top: $default-font-size !important;
-        @include respond(tab-port) {
-            margin-top: $default-font-size !important;
-        }
-    }
-    .u-margin-top-medium {
-        margin-top: $default-font-size * 2.5 !important;
-        @include respond(tab-port) {
-            margin-top: $default-font-size * 1.25 !important;
-        }
-    }
-    .u-margin-top-large {
-        margin-top: $default-font-size * 5 !important;
-        @include respond(tab-port) {
-            margin-top: $default-font-size * 2.5 !important;
-        }
-    }
-    .u-margin-top-huge {
-        margin-top: $default-font-size * 6 !important;
-        @include respond(tab-port) {
-            margin-top: $default-font-size * 3 !important;
-        }
-    }
-    .w-100 {
-        width: 100% !important;
-    }
-    .h-100 {
-        height: 100% !important;
-    }
-    .text-align-center {
-        text-align: center !important;
-    }
-    
-    //flexbox
-    .flex {
-        display: flex !important;
-    }
-    .align-center {
-        align-items: center !important;
-    }
-    .justify-content-center {
-        justify-content: center !important;
-    }
+//flexbox
+.flex {
+	display: flex !important;
+}
+.align-center {
+	align-items: center !important;
+}
+.justify-content-center {
+	justify-content: center !important;
+}
 
-    //misc
-    .transparent {
-        background-color: transparent !important;
-        background-image: none !important;
-        border: none !important;
-        box-shadow: none !important;
-    }
-    .overflow--hidden {
-        overflow: hidden !important;
+//misc
+.transparent {
+	background-color: transparent !important;
+	background-image: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+.overflow--hidden {
+	overflow: hidden !important;
 
-        @include respond(nav-switch) {
-            overflow: visible !important;
-        }
-    }
+	@include respond(nav-switch) {
+		overflow: visible !important;
+	}
+}
 
-    .overflow-hidden {
-        overflow: hidden !important;
-    }
+.overflow-hidden {
+	overflow: hidden !important;
+}
 
-    .visible {
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
+.visible {
+	visibility: visible !important;
+	opacity: 1 !important;
+}
 
-    .hidden {
-        visibility: hidden !important;
-        opacity: 0 !important;
-    }
+.hidden {
+	visibility: hidden !important;
+	opacity: 0 !important;
+}
 
-    .full-screen {
-        position: fixed !important;
-        left: 0 !important;
-        top: 0 !important;
-        width:  100vw !important;
-        height: $downloader-image-full-screen-height !important;
-        z-index: 10000 !important;
-        border: none !important;
-        border-radius: 0 !important;
-        object-fit: contain !important;
-        object-position: center !important;
-        backdrop-filter: blur($default-font-size) sepia(0) brightness(0.25);
-        transform: translate(0,0) !important;
-        transition: none !important;
-    }
+.full-screen {
+	position: fixed !important;
+	left: 0 !important;
+	top: 0 !important;
+	width: 100vw !important;
+	height: $carousel-full-screen-image-height !important;
+	z-index: 10000 !important;
+	border: none !important;
+	border-radius: 0 !important;
+	object-fit: contain !important;
+	object-position: center !important;
+	backdrop-filter: blur($default-font-size) sepia(0) brightness(0.25);
+	transform: translate(0, 0) !important;
+	transition: none !important;
+}
 
-    .carousel-transition {
-        transition: 
-            transform $animation-duration / 2 $animation-easing-standard
-            !important
+.carousel-transition {
+	transition: transform $animation-duration / 2 $animation-easing-standard !important
         ;
-    }
+}
 
-    .d-none {
-        display: none !important;
-    }
+.d-none {
+	display: none !important;
+}
 
-    //Dealing with SiteNav glitch
-    .z-index-navbar {
-        z-index: $navbar-full-z-index !important;
-        @include respond(nav-switch) {
-            z-index: $navbar-full-z-index + 2 !important
-        }
-    }
-    //content must be higher than navbar for click event to work properly
-    .z-index-content {
-        z-index: $navbar-full-z-index + 1 !important;
-    }
+//Dealing with SiteNav glitch
+.z-index-navbar {
+	z-index: $navbar-full-z-index !important;
+	@include respond(nav-switch) {
+		z-index: $navbar-full-z-index + 2 !important;
+	}
+}
+//content must be higher than navbar for click event to work properly
+.z-index-content {
+	z-index: $navbar-full-z-index + 1 !important;
+}
 
-    .z-index-highest {
-        z-index: $navbar-full-z-index + 100 !important;
-    }
+.z-index-highest {
+	z-index: $navbar-full-z-index + 100 !important;
+}
 
-    .scale-1 {
-        transform: scale(1) !important;
-    }
-    //Dealing with SiteNav filter bug on pages like '/bridge'
-    // .no-filter {filter: none !important}
+.scale-1 {
+	transform: scale(1) !important;
+}
+//Dealing with SiteNav filter bug on pages like '/bridge'
+// .no-filter {filter: none !important}

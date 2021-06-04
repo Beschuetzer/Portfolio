@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { ANIMATION_DURATION, CAROUSEL_TRANSLATION_CSS_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME, getIsVideoPlaying } from './constants';
+import { ANIMATION_DURATION, CAROUSEL_TRANSLATION_CSS_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME, getIsVideoPlaying, getPercentOfProgressBar } from './constants';
 import Video from './Video';
 
 const Carousel = ({items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
@@ -23,6 +23,9 @@ const Carousel = ({items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime,
   let itemsWidthRef = useRef();
   let leftArrowRef = useRef();
   let rightArrowRef = useRef();
+  let progressBarRef = useRef();
+  let videoRef = useRef();
+  
   let removeTransitionTimeout;
 
   useEffect(() => {
@@ -145,8 +148,20 @@ const Carousel = ({items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime,
 		if (!video || !item) return;
 
 		const percent = video.currentTime / video.duration;
-		// progressBarRef.current.value = percent;
+		progressBarRef.current.value = percent;
 	}
+
+  const handleProgressBarClick = (e) => {
+    const clientX = e.clientX;
+    const progressBar = e.currentTarget;
+    if (!progressBar) return;
+  
+    const percent = getPercentOfProgressBar(progressBar, clientX);
+    
+    const video = videoRef.current;
+    if (!video) return;
+    video.currentTime = percent * video.duration;
+  }
 
   const handleItemClick = (e) => {
     const item = e.currentTarget;
@@ -195,6 +210,9 @@ const Carousel = ({items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime,
             className={`${VIDEO_CLASSNAME} ${FOREGROUND_VIDEO_CLASSNAME}`} 
             key={index}
             onClick={handleItemClick}
+            reference={videoRef}
+            progressBarRef={progressBarRef}
+            progressBarOnClick={handleProgressBarClick}
           />;
           <svg className="carousel__video-svg">
             <use xlinkHref="/sprite.svg#icon-play"></use>

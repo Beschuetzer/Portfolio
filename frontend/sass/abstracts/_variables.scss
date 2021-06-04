@@ -6,18 +6,16 @@ $tab-port-max-width: 52.6875em;
 $tab-land-max-width: 58.5625em;
 $nav-switch-width: 68.75em;
 $larger-than-nav-switch: 68.8125em;
-$big-desktop-min-width: 112.5em;	
+$big-desktop-min-width: 112.5em;
 
 //font
 // $font-family-text: "Roboto", sans-serif;
 // $font-family-headers: "Cinzel", sans-serif;
 $line-height: 1.5;
-$font-family-fancy-bridge: 'New Tegomin', serif;
+$font-family-fancy-bridge: "New Tegomin", serif;
 $font-family-text: "Open Sans", sans-serif;
 $font-family-headers: "Merriweather", serif;
 $default-font-size: 1.6rem;
-
-
 
 //sizes
 $scale-amount: 1.05;
@@ -26,8 +24,6 @@ $github__logo-width: $navbar__logo-width;
 $navbar__logo-width-nav-switch: $default-font-size * 5;
 $content-padding-nav-switch: 5vmin;
 $paddingFactor: 1.25;
-
-
 
 //navbar stuff
 $navbar-full-z-index: 5;
@@ -48,8 +44,6 @@ $navbar-box-shadow-resume: 0 $default-font-size $default-font-size * 2
 	rgba($color-black, 0.25);
 $hover-color-change-amount: 0.15;
 
-
-
 //skills
 $skills-linear-gradient-original: linear-gradient(
 	to left,
@@ -64,10 +58,13 @@ $skills-linear-gradient-hover: linear-gradient(
 	var(--color-primary-1)
 );
 
-
 //resume
 $resume-card-width-full: $default-font-size * 53.125;
-$resume-header-text-shadow: getTextShadow(soft-emboss, $color-primary-resume-3, $color-primary-resume-2);
+$resume-header-text-shadow: getTextShadow(
+	soft-emboss,
+	$color-primary-resume-3,
+	$color-primary-resume-2
+);
 
 //header
 $header-top-inner: calc(
@@ -87,15 +84,13 @@ $page-margin-top-amount-nav-switch: $default-font-size * 7.5;
 $header-top: calc(#{$header-top-inner} - 0.4vw);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
-$header-inner-width: 
-	calc(
-		#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 6.4vw
-	);
+$header-inner-width: calc(
+	#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 6.4vw
+);
 $header-width-nav-switch: calc(100vw - #{$default-font-size * 1.33});
 // $header-width-tab-land: calc(100vw - #{$default-font-size * 2});
 // $header-width-phone: calc(100vw - #{$default-font-size * 2});
 // $header-width-small-font: calc(100vw - #{$default-font-size * 2});
-
 
 //animation
 $animation-duration: 0.5s;
@@ -109,17 +104,21 @@ $animation-easing-standard-easeInOutBack-smaller: cubic-bezier(
 );
 $animation-easing-modern: cubic-bezier(1, 0, 0, 1);
 $animation-navbar: $animation-duration $animation-easing-standard;
-$animation-bridge-width: calc(#{$header-top-inner} * 2 + #{$navbar__logo-width} - .5vw);
+$animation-bridge-width: calc(
+	#{$header-top-inner} * 2 + #{$navbar__logo-width} - 0.5vw
+);
 $animation-bridge-windshield-start: polygon(
 	$animation-bridge-width 100%,
 	$animation-bridge-width 0,
 	100% 100%,
-	100% 0%);
+	100% 0%
+);
 $animation-bridge-windshield-end: polygon(
 	$animation-bridge-width 100%,
 	100% 100%,
 	$animation-bridge-width 0,
-	100% 0%);
+	100% 0%
+);
 
 $animation-bridge-windshield-two-start: polygon(
 	$animation-bridge-width 100%,
@@ -127,7 +126,7 @@ $animation-bridge-windshield-two-start: polygon(
 	calc(#{$animation-bridge-width} + 1px) 1000%,
 	200% 100%,
 	100% 0%,
-	$animation-bridge-width 0,
+	$animation-bridge-width 0
 );
 $animation-bridge-windshield-two-end: polygon(
 	$animation-bridge-width 100%,
@@ -138,38 +137,56 @@ $animation-bridge-windshield-two-end: polygon(
 	$animation-bridge-width 0
 );
 
-
 //misc
-$bg-video-opacity: .075;
-
-
+$bg-video-opacity: 0.075;
 
 //bridge
-$bridge-card-section-1-gradient: linear-gradient(#{var(--bridge-gradient-direction)}, rgba($color-primary-bridge-1, .5), rgba($color-primary-bridge-2, .5));
-$bridge-card-section-2-gradient: linear-gradient(#{var(--bridge-gradient-direction)}, rgba($color-primary-bridge-2, .5), rgba($color-primary-bridge-3, .5));
-$bridge-card-section-3-gradient: linear-gradient(var(--bridge-gradient-direction), rgba($color-primary-bridge-3, .5), rgba($color-primary-bridge-1, .5));
+$bridge-card-section-1-gradient: linear-gradient(
+	#{var(--bridge-gradient-direction)},
+	rgba($color-primary-bridge-1, 0.5),
+	rgba($color-primary-bridge-2, 0.5)
+);
+$bridge-card-section-2-gradient: linear-gradient(
+	#{var(--bridge-gradient-direction)},
+	rgba($color-primary-bridge-2, 0.5),
+	rgba($color-primary-bridge-3, 0.5)
+);
+$bridge-card-section-3-gradient: linear-gradient(
+	var(--bridge-gradient-direction),
+	rgba($color-primary-bridge-3, 0.5),
+	rgba($color-primary-bridge-1, 0.5)
+);
 $bridge-arrow-hover-scale-amount: 1.1;
-$bridge-card-hover-button-opacity: .5;
+$bridge-card-hover-button-opacity: 0.5;
 $bridge-page-nav-link-scale-amount: 1.1;
 $bridge-hero-animation-duration: $animation-duration * 2;
-$hero-background-opacity: .66;
-$arrow-button-position: calc((100vw - calc( #{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + #{$navbar__logo-width} )) / 2);
-$bridge-card-box-shadow-size: 0 0rem $default-font-size * 2 -$default-font-size * .5;
+$hero-background-opacity: 0.66;
+$arrow-button-position: calc(
+	(
+			100vw -
+				calc(
+					#{$resume-card-width-full} + (
+							(100vw - #{$resume-card-width-full}) / 2
+						) + #{$navbar__logo-width}
+				)
+		) / 2
+);
+$bridge-card-box-shadow-size: 0 0rem $default-font-size * 2 -$default-font-size *
+	0.5;
 $bridge-card-border-size: 2px solid;
-$hero-background-image-alpha: .33;
+$hero-background-image-alpha: 0.33;
 $hero-blend-mode: hard-light;
-$bridge-logo-opacity: .25;
+$bridge-logo-opacity: 0.25;
 $card-z-index: 1;
 $card-height: $default-font-size * 50;
 $card-header-height: $card-height / 3.333333333333;
-$card-initial-opacity: .25;
+$card-initial-opacity: 0.25;
 $card-pause-and-stop-top: 85%;
 $card-pause-and-stop-width: 25%;
 
-
 //csharp
-$downloader-image-full-screen-height: 90vh;
-
+$carousel-full-screen-image-height: 90vh;
+$carousel-progress-bar-height: 2.5vh;
 
 //page-nav
 $page-nav-top: calc(
@@ -187,13 +204,13 @@ $page-nav-top: calc(
 								) / 2
 						) - 1vw
 				) * 1
-		) - .9vw
+		) - 0.9vw
 );
 
 :root {
 	scroll-behavior: smooth;
 	scroll-padding-top: $header-height * 1.2;
-	--scrollbar-width: #{$default-font-size * .5};
+	--scrollbar-width: #{$default-font-size * 0.5};
 	--default-font-size: #{$default-font-size};
 	--site-nav-item-gradient-direction: 45deg;
 	--site-nav-linear-gradient: linear-gradient(
@@ -210,21 +227,18 @@ $page-nav-top: calc(
 		var(--color-primary-1)
 	);
 
-
 	//setting media query custom properties
 	--small-font-max-width: #{$small-font-max-width};
 	--nav-break-max-width: #{$nav-break-max-width};
-	--phone-max-width: #{ $phone-max-width};
+	--phone-max-width: #{$phone-max-width};
 	--tab-port-max-width: #{$tab-port-max-width};
 	--tab-land-max-width: #{$tab-land-max-width};
 	--big-desktop-min-width: #{$big-desktop-min-width};
-	--nav-switch-width: #{ $nav-switch-width};
+	--nav-switch-width: #{$nav-switch-width};
 	--larger-than-nav-switch: #{$larger-than-nav-switch};
-
 
 	//page-nav
 	--page-nav-shadow-hover: #{$color-primary-bridge-4};
-
 
 	//misc
 	--header-toggler-svg-rotation: 180deg;
@@ -245,8 +259,8 @@ $page-nav-top: calc(
 	--bridge-page-nav-link-color: var(--color-primary-4);
 	--bridge-page-nav-link-color-hover: var(--color-primary-1);
 	--bridge-hero-translate-heading-1: (-50%, calc(-50% - 50vh));
-	--bridge-hero-translate-heading-2: (calc(-50% - 50vw),-50%);
-	--bridge-hero-translate-heading-3: (calc(50% + 50vw),-50%);
+	--bridge-hero-translate-heading-2: (calc(-50% - 50vw), -50%);
+	--bridge-hero-translate-heading-3: (calc(50% + 50vw), -50%);
 	--bridge-hero-translate-heading-4: (-50%, calc(50% + 50vh));
 	--bridge-hero-rotate-heading-1: 0deg;
 	--bridge-hero-rotate-heading-2: 0deg;
@@ -262,13 +276,10 @@ $page-nav-top: calc(
 	--arrow-button-right-fill-hover: var(--color-primary-bridge-2);
 	--arrow-button-left-fill-hover: var(--color-primary-bridge-2);
 	--card-scale-amount: 1;
-	--card-playing-transform: translate(0,0) scale(1);
-	
-	
-	
+	--card-playing-transform: translate(0, 0) scale(1);
+
 	//csharp layout pages
 	--carousel-item-translation-x: 0;
-
 
 	//shapes stuff
 	--diamond-fractal-animation-duration: 120s;
@@ -278,7 +289,4 @@ $page-nav-top: calc(
 	--translate-center: translate(-50%, -50%);
 	--square-root-of-two: 0.707106781;
 	--diamond-outer-opacity: 0.05;
-
-
 }
-

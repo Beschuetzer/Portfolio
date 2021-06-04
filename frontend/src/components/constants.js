@@ -101,6 +101,15 @@ export const viewPortPixelToRem = {
 
 
 //#endregion
+export const getPercentOfProgressBar = (progressBar, clientX) => {
+  const progressBarBoundingRect = progressBar.getBoundingClientRect();
+  const progressBarLeftX = progressBarBoundingRect.left;
+  const progressBarRightX = progressBarBoundingRect.right;
+  const amountPastLeft = (clientX - progressBarLeftX);
+  const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
+  return percent;
+}
+
 export const getIsVideoPlaying = (video) => {
   return (
     video.currentTime > 0 &&

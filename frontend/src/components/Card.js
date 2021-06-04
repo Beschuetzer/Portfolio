@@ -16,6 +16,7 @@ import {
 	CARD_DEFAULT_CLASSNAME,
 	FOREGROUND_VIDEO_CLASSNAME,
 	getIsVideoPlaying,
+	getPercentOfProgressBar,
 } from "./constants";
 import {
 	setIsCardVideoOpen,
@@ -331,15 +332,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		}
 	}
 
-	const getPercentOfProgressBar = (progressBar, clientX) => {
-		const progressBarBoundingRect = progressBar.getBoundingClientRect();
-		const progressBarLeftX = progressBarBoundingRect.left;
-		const progressBarRightX = progressBarBoundingRect.right;
-		const amountPastLeft = (clientX - progressBarLeftX);
-		const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
-		return percent;
-	}
-
 	const handleRestartVideo = (e) => {
 		e.stopPropagation();
 		restartVideo(videoRef.current, cardRef.current);
@@ -473,6 +465,8 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 					autoPlay={false}
 					loop={false}
 					reference={videoRef}
+					progressBarRef={progressBarRef}
+					progressBarOnClick={handleProgressBarClick}
 				>
           <div className="card__children">
             {/* <svg className="card__children-toggler">
@@ -481,12 +475,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
             {children}
           </div>
         </Video>
-				<progress 
-					onClick={handleProgressBarClick} 
-					ref={progressBarRef} 
-					value='0' 
-					className="card__progress">
-				</progress>
+			
 			</div>
 		</article>
 	);
