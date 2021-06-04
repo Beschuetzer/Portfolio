@@ -102,6 +102,29 @@ export const viewPortPixelToRem = {
 
 //#endregion
 
+export const changeSectionTitle = (titleRef, isOpen = true) => {
+  if (!titleRef) return;
+  const originalMsgTitle = 'Features';
+  const originalMsgSubTitle = 'Pick a Card any Card';
+
+  const sections = document.querySelectorAll('.bridge__section');
+  for (let i = 0; i < sections.length; i++) {
+    const section = sections[i];
+    if (section.id.match(/feature/i)) {
+      const title = section.querySelector('.bridge__section-title');
+
+      let msgTitleToUse = originalMsgTitle;
+      let msgSubTitleToUse = originalMsgSubTitle;
+      if (isOpen) {
+        msgTitleToUse = titleRef.current?.textContent;
+        msgSubTitleToUse = "";
+      }
+      title.textContent = msgTitleToUse;
+      title.nextElementSibling.textContent = msgSubTitleToUse;
+      break;
+    }
+  }
+}	
 
 export const attachProgressListener = (video, hasProgressEventListener, handleVideoProgress) => {
   if(!video) return;
@@ -120,6 +143,11 @@ export const getPercentOfProgressBar = (progressBar, clientX) => {
   const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
   return percent;
 }
+
+export const closeVideo = (video) => {
+  video.pause();
+  video.currentTime = 0;
+};
 
 export const getIsVideoPlaying = (video) => {
   return (

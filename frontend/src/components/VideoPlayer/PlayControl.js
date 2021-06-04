@@ -25,7 +25,6 @@ const PlayControl = ({className, xlinkHref, videoRef, progressBarRef, cardRef = 
 	}
 
   const handleVideoProgress = (e) => {
-		console.log('handleprogress1------------------------------------------------');
 		const video = videoRef.current;
 		if (!video) return;
 		const percent = video.currentTime / video.duration;

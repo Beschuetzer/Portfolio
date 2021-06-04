@@ -1,5 +1,6 @@
 BUGS------------------------------------
   -bug with PageNav and no mouse where the scroll scaling doesn't apply to the last clicked item as it has :hover (is there a way to trigger a touch/click event in JS? so as to clear the :hover state) (remove hover effect on card when mobile input after close?)
+  -PlayControl and RestartControl handleVideoProgress listeners can be run at the same time (doesn't seem to affect performance though)
 
 
 Temporary things to do---------------------------------

@@ -17,6 +17,7 @@ import {
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
 	attachProgressListener,
+	changeSectionTitle,
 } from "./constants";
 import {
 	setIsCardVideoOpen,
@@ -28,6 +29,7 @@ import PauseControl from "./VideoPlayer/PauseControl";
 import StopControl from "./VideoPlayer/StopControl";
 import PlayControl from "./VideoPlayer/PlayControl";
 import RestartControl from "./VideoPlayer/RestartControl";
+import CloseControl from "./VideoPlayer/CloseControl";
 
 const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight, setIsCardVideoOpen }) => {
 	const videoRef = useRef(null);
@@ -237,18 +239,19 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		document.documentElement.style.cssText += newValue;
 	};
 
-	const closeVideo = (video, card) => {
-		changeSectionTitle(false);
-		setIsCardVideoOpen(false)
-		
-		video.pause();
-		video.currentTime = 0;
-		
+	const closeCard = (video, card) => {
+		closeVideo(video);
+				
+		if (!titleRef) return;
+		changeSectionTitle(titleRef, false);
+		setIsCardVideoOpen(false);
+
 		if (!card) return;
 		card.classList.remove(CARD_OPEN_CLASSNAME);
 		card.classList.remove(CARD_DONE_CLASSNAME);
 		card.classList.remove(CARD_STOPPED_CLASSNAME);
-	};
+	}
+	
 
 	const openCard = (video, card) => {
 		const cardDimensions = card.getBoundingClientRect();
@@ -256,7 +259,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		// playVideo(video, card);
 		const isVideoPlaying = getIsVideoPlaying(video);
 		if (!video) return;
-		if (isVideoPlaying || card.classList.contains(CARD_OPEN_CLASSNAME))	closeVideo(video, card)
+		if (isVideoPlaying || card.classList.contains(CARD_OPEN_CLASSNAME))	closeCard(video, card);
 		else {
 			playVideo(video, card)
 			card.classList.add(CARD_OPEN_CLASSNAME);
@@ -275,36 +278,6 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		card.classList.remove(CARD_STOPPED_CLASSNAME);
 		video.play();
 	}
-
-	const changeSectionTitle = (isOpen = true) => {
-		const originalMsgTitle = 'Features';
-		const originalMsgSubTitle = 'Pick a Card any Card';
-
-		const sections = document.querySelectorAll('.bridge__section');
-		for (let i = 0; i < sections.length; i++) {
-			const section = sections[i];
-			if (section.id.match(/feature/i)) {
-				const title = section.querySelector('.bridge__section-title');
-
-				let msgTitleToUse = originalMsgTitle;
-				let msgSubTitleToUse = originalMsgSubTitle;
-				if (isOpen) {
-					msgTitleToUse = titleRef.current?.textContent;
-					msgSubTitleToUse = "";
-				}
-				title.textContent = msgTitleToUse;
-				title.nextElementSibling.textContent = msgSubTitleToUse;
-				break;
-			}
-		}
-	}
-
-	
-
-	const handleCloseVideo = (e) => {
-		e.stopPropagation();
-		closeVideo(videoRef.current, cardRef.current);
-	};
 
 	const handleVideoProgress = (e) => {
 		const video = videoRef.current;
@@ -327,7 +300,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		if (card?.classList.contains(CARD_DONE_CLASSNAME) || card?.classList.contains(CARD_OPEN_CLASSNAME)) return;
 
 		setTimeout(() => {
-			changeSectionTitle();
+			changeSectionTitle(titleRef);
 			openCard(video, card);
 			scrollToSection(document.querySelector(`#${bridgeSections[1].toLowerCase()}`), headerHeight);
 		}, ANIMATION_DURATION / 2);
@@ -396,13 +369,15 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 					cardRef={cardRef}
 					progressBarRef={progressBarRef}
 				/>
-			
-				<div onClick={handleCloseVideo} className="card__close-parent">
-					<svg className="card__close">
-						<use xlinkHref="/sprite.svg#icon-close"></use>
-					</svg>
-				</div>
 
+				<CloseControl
+					className="card__close"
+					xlinkHref="/sprite.svg#icon-close"
+					videoRef={videoRef}
+					cardRef={cardRef}
+					titleRef={titleRef}
+				/>
+			
 				<PlayControl
 					className="card__play"
 					xlinkHref="/sprite.svg#icon-play"
