@@ -18,6 +18,7 @@ import {
 	getPercentOfProgressBar,
 	attachProgressListener,
 	changeSectionTitle,
+	closeVideo,
 } from "./constants";
 import {
 	setIsCardVideoOpen,
@@ -374,8 +375,13 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 					className="card__close"
 					xlinkHref="/sprite.svg#icon-close"
 					videoRef={videoRef}
-					cardRef={cardRef}
 					titleRef={titleRef}
+					containerRef={cardRef}
+					classNamesToRemove={[
+						CARD_DONE_CLASSNAME,
+						CARD_OPEN_CLASSNAME,
+						CARD_STOPPED_CLASSNAME,
+					]}
 				/>
 			
 				<PlayControl

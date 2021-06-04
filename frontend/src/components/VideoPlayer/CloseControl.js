@@ -1,20 +1,33 @@
-import React from 'react';
 import { connect } from 'react-redux';
 
 import { setIsCardVideoOpen } from '../../actions';
 import { 
-	CARD_DONE_CLASSNAME,
-	CARD_STOPPED_CLASSNAME,
 	changeSectionTitle,
 	closeVideo,
 } from "../constants";
 
-const CloseControl = ({className, xlinkHref, videoRef, cardRef = null, titleRef = null, setIsCardVideoOpen}) => {
+const CloseControl = ({className, xlinkHref, videoRef, containerRef = null, titleRef = null, setIsCardVideoOpen, classNamesToRemove}) => {
  
 	const handleCloseVideo = (e) => {
 		e.stopPropagation();
-		closeVideo(videoRef.current, cardRef.current);
+		closeVideo(videoRef.current, containerRef.current);
+
+		if (titleRef) {
+			changeSectionTitle(titleRef, false);
+			setIsCardVideoOpen(false);
+		}
+
+		if (containerRef && containerRef.current) {
+			const container = containerRef.current;
+
+			for (let i = 0; i < classNamesToRemove.length; i++) {
+				const classNameToRemove = classNamesToRemove[i];
+				container.classList.remove(classNameToRemove);
+			}
+		} 
 	};
+
+	
 
   return (
     <div onClick={handleCloseVideo} className={`${className}-parent`}>

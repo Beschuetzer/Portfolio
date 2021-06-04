@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
 	CARD_DONE_CLASSNAME,
 	CARD_STOPPED_CLASSNAME,
