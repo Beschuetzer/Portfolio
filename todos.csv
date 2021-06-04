@@ -58,3 +58,4 @@ carousel videos:
 -refactor Video to include progressbar?
 -redo playlist-sync video to get better mp3 stuff at end
 -finish VideoControl refactors (also move scss classes to new file called video-controls
+-NEED TO MAKE SURE THAT PLAY AND RESTART CONTROLS DON'T DOUBLE ADD EVENT LISTENERS
