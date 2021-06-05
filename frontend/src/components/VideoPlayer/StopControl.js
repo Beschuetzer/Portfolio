@@ -1,3 +1,4 @@
+import { removeClassFromAllChildren } from "../constants";
 
 const StopControl = ({
 	className = 'card__stop', 
@@ -25,6 +26,7 @@ const StopControl = ({
 		container.classList.remove(doneClassname);
 		container.classList.add(stoppedClassname);
 		container.classList.remove(playingClassname);
+		removeClassFromAllChildren(container, playingClassname)
 	}
 
   return (

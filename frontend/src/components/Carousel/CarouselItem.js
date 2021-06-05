@@ -1,12 +1,13 @@
 import React, { useRef } from "react";
 
-import { getIsVideoPlaying, getPercentOfProgressBar } from "../constants";
+import { CAROUSEL_VIDEO_CLASSNAME, getIsVideoPlaying, getPercentOfProgressBar } from "../constants";
 import PlayControl from "../VideoPlayer/PlayControl";
 import StopControl from "../VideoPlayer/StopControl";
 import PauseControl from "../VideoPlayer/PauseControl";
 import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
 import Video from "../VideoPlayer/Video";
+
 
 const FULLSCREEN_CLASSNAME = "full-screen";
 const FULLSCREEN_PARENT_CLASSNAME = "carousel__item--full-screen";
@@ -144,7 +145,7 @@ const CarouselItem = ({
 				<PlayControl
 					xlinkHref={videoPlayControlSvgXLinkHref}
 					videoRef={videoRef}
-					containerRef={containerRef}
+					containerRef={{current: containerRef?.current?.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`)}}
 					progressBarRef={progressBarRef}
 					playingClassname = {PLAYING_CLASSNAME}
 					doneClassname = {DONE_CLASSNAME}
@@ -154,7 +155,7 @@ const CarouselItem = ({
 				<StopControl
 					xlinkHref={videoStopControlSvgXLinkHref}
 					videoRef={videoRef}
-					containerRef={containerRef}
+					containerRef={{current: containerRef?.current?.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`)}}
 					playingClassname = {PLAYING_CLASSNAME}
 					doneClassname = {DONE_CLASSNAME}
 					stoppedClassname = {STOPPED_CLASSNAME}
@@ -163,7 +164,7 @@ const CarouselItem = ({
 				<PauseControl
 					xlinkHref={videoPauseControlSvgXLinkHref}
 					videoRef={videoRef}
-					containerRef={containerRef}
+					containerRef={{current: containerRef?.current?.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`)}}
 					playingClassname = {PLAYING_CLASSNAME}
 					doneClassname = {DONE_CLASSNAME}
 					stoppedClassname = {STOPPED_CLASSNAME}
@@ -172,7 +173,7 @@ const CarouselItem = ({
 				<RestartControl
 					xlinkHref={videoRestartControlSvgXLinkHref}
 					videoRef={videoRef}
-					containerRef={containerRef}
+					containerRef={{current: containerRef?.current?.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`)}}
 					progressBarRef={progressBarRef}
 					playingClassname = {PLAYING_CLASSNAME}
 					doneClassname = {DONE_CLASSNAME}

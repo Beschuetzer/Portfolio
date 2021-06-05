@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import { setIsCardVideoOpen } from "../../actions";
-import { changeSectionTitle, closeVideo } from "../constants";
+import { changeSectionTitle, closeVideo, removeClassFromAllChildren } from "../constants";
 
 const CloseControl = ({
 	className = "card__close",
@@ -27,14 +27,7 @@ const CloseControl = ({
 			for (let i = 0; i < classNamesToRemove.length; i++) {
 				const classNameToRemove = classNamesToRemove[i];
 				container.classList.remove(classNameToRemove);
-				const childrenWithClassname = container.querySelectorAll(
-					`.${classNameToRemove}`,
-				);
-
-				for (let j = 0; j < childrenWithClassname.length; j++) {
-					const childWithClassname = childrenWithClassname[j];
-					childWithClassname.classList.remove(classNameToRemove);
-				}
+				removeClassFromAllChildren(container, classNameToRemove);
 			}
 		}
 	};

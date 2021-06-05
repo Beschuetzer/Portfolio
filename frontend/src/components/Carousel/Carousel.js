@@ -4,6 +4,7 @@ import CarouselItem from "./CarouselItem";
 import {
 	ANIMATION_DURATION,
 	CAROUSEL_TRANSLATION_CSS_CLASSNAME,
+  CAROUSEL_VIDEO_CLASSNAME,
 	FOREGROUND_VIDEO_CLASSNAME,
 } from "../constants";
 import useInit from "./useInit";
@@ -18,7 +19,6 @@ const Carousel = ({
 	numberOfItemsToScrollOnClick,
 }) => {
 	const IMAGE_CLASSNAME = "carousel__image";
-	const VIDEO_CLASSNAME = "carousel__video";
 	const ITEM_CLASSNAME = "carousel__item";
 	const TRANSITION_CLASSNAME = "carousel-transition";
 	const DESCRIPTION_CLASSNAME = `${IMAGE_CLASSNAME}-description`;
@@ -188,7 +188,7 @@ const Carousel = ({
 				descriptionClassname: DESCRIPTION_CLASSNAME,
 				itemClassName: ITEM_CLASSNAME,
 				imageClassname: IMAGE_CLASSNAME,
-				videoClassname: VIDEO_CLASSNAME,
+				videoClassname: CAROUSEL_VIDEO_CLASSNAME,
 				foregroundVideoClassname: FOREGROUND_VIDEO_CLASSNAME,
 				imageAlt: alts[index],
 				itemSrc: item,

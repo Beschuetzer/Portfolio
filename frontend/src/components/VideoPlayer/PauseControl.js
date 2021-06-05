@@ -1,3 +1,4 @@
+import { removeClassFromAllChildren } from "../constants";
 
 
 const PauseControl = ({
@@ -20,6 +21,7 @@ const PauseControl = ({
 		container.classList.remove(playingClassname);
 		container.classList.remove(doneClassname);
 		container.classList.add(stoppedClassname);
+		removeClassFromAllChildren(container, playingClassname);
 	}
 
   return (

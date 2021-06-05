@@ -59,5 +59,3 @@ playlist-sync:
 -fix bug where opening carousel vid, clicking stop, then closing, causes video to play
 
 - add classes to carousel__item for --open, --playing, etc and style (ADD USEREF IN CAROUSELITEM AND SEND REF TO CONTROLS).
-
--remove/add carousel__item--playing for all children inside of pause and stop control.

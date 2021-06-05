@@ -14,6 +14,7 @@ export const CARD_DEFAULT_CLASSNAME = 'card card--hoverable';
 export const SKILLS_SECTION_CLASSNAME = 'skills__section';
 export const C_SHARP_LAYOUT_CSS_NAME = "csharp";
 export const CAROUSEL_TRANSLATION_CSS_CLASSNAME = '--carousel-item-translation-x';
+export const CAROUSEL_VIDEO_CLASSNAME = 'carousel__video';
 export const FOREGROUND_VIDEO_CLASSNAME = 'fg-video';
 
 
@@ -101,6 +102,16 @@ export const viewPortPixelToRem = {
 
 
 //#endregion
+export const removeClassFromAllChildren = (parent, classNameToRemove) => {
+  const childrenWithClassname = parent.querySelectorAll(
+    `.${classNameToRemove}`,
+  );
+
+  for (let j = 0; j < childrenWithClassname.length; j++) {
+    const childWithClassname = childrenWithClassname[j];
+    childWithClassname.classList.remove(classNameToRemove);
+  }
+}
 
 export const changeSectionTitle = (titleRef, isOpen = true) => {
   if (!titleRef) return;
