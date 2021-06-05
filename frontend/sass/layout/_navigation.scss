@@ -694,7 +694,10 @@
 
 	&__section {
 		cursor: pointer;
-		text-shadow: getTextShadow(soft-emboss, $color-primary-resume-4);
+		// text-shadow: getTextShadow(soft-emboss, $color-primary-resume-4);
+		text-shadow: getTextShadow(glowing, $color-primary-resume-3);
+		// text-shadow: getTextShadow(simple, $color-primary-resume-3, $color-primary-resume-2);
+
 		width: 100%;
 		text-align: center;
 		text-decoration: none;
@@ -752,7 +755,12 @@
 				// box-shadow: 0 0 $default-font-size * 2 0 var(--color-primary-3);
 				// background-color: var(--color-primary-3);
 				transform: translateY(-0.25vw);
-				--page-nav-shadow-hover: rgba($color-black, 0.15);
+
+				& span {
+					// text-shadow: getTextShadow(close, $color-primary-resume-3);
+					text-shadow: getTextShadow(soft-emboss, $color-primary-resume-4);
+
+				}
 
 				@include respond(nav-switch) {
 					transform: translateY(-$default-font-size * 0.1);

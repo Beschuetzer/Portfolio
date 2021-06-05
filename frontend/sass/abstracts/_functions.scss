@@ -114,7 +114,7 @@
 		@return rgba($color, 0.5) 0px 3px 3px;
 	}
 	@if $type == glowing {
-		@return 0px 0px 6px rgba($color, 0.7);
+		@return 0px 0px 6px rgba($color, 0.5);
 	}
 	@if $type == super-hero {
 		@return 

@@ -55,7 +55,6 @@
   --big-desktop-min-width: 112.5em;
   --nav-switch-width: 68.75em;
   --larger-than-nav-switch: 68.8125em;
-  --page-nav-shadow-hover: #f5f1db;
   --header-toggler-svg-rotation: 180deg;
   --header-toggler-translate-x: 0;
   --header-toggler-translate-y: 0;
@@ -1086,7 +1085,7 @@ body {
 }
 .page-nav__section {
   cursor: pointer;
-  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
+  text-shadow: 0px 0px 6px rgba(244, 210, 98, 0.5);
   width: 100%;
   text-align: center;
   text-decoration: none;
@@ -1129,7 +1128,9 @@ body {
 }
 .page-nav__section-group:hover {
   transform: translateY(-0.25vw);
-  --page-nav-shadow-hover: rgba($color-black, 0.15);
+}
+.page-nav__section-group:hover span {
+  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
 }
 @media only screen and (max-width: 68.75em) {
   .page-nav__section-group:hover {
