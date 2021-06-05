@@ -1,4 +1,6 @@
 $carousel-width: 50vw;
+$carousel-svg-width: $default-font-size * 6;
+$carousel-svg-parent-width: $carousel-progress-bar-height * 4;
 $carousel-grid-column-gap: $default-font-size;
 $carousel-grid-width: calc(
 	(#{$resume-card-width-full} - 2 * #{$carousel-grid-column-gap} - 0.3rem) / 3
@@ -144,6 +146,15 @@ $carousel-grid-width: calc(
 				}
 			}
 
+			& .carousel__video ~ .carousel__image-description {
+				padding:
+					$default-font-size * 1
+					$carousel-svg-parent-width * 1
+					$default-font-size * 1
+					$carousel-svg-parent-width * 2
+				;
+			}
+
 			& .carousel__image-description {
 				display: flex;
 				font-size: $default-font-size * 2;
@@ -182,8 +193,8 @@ $carousel-grid-width: calc(
 
 		&-svg {
 			pointer-events: none;
-			width: $default-font-size * 6;
-			height: $default-font-size * 6;
+			width: $carousel-svg-width;
+			height: $carousel-svg-width;
 			fill: var(--color-primary-4);
 			position: absolute;
 			top: 50%;
@@ -274,8 +285,8 @@ $carousel-grid-width: calc(
 
 	& :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
 		z-index: -1;
-		width: $carousel-progress-bar-height * 4;
-		height: $carousel-progress-bar-height * 4;
+		width: $carousel-svg-parent-width;
+		height: $carousel-svg-parent-width;
 		top: auto;
 		bottom: 0;
 		transform: translateY(0);
@@ -295,7 +306,7 @@ $carousel-grid-width: calc(
 	}
 
 	& .card__stop-parent {
-		left: $carousel-progress-bar-height * 4;
+		left: $carousel-svg-parent-width;
 	}
 
 	& .card__close-parent {
