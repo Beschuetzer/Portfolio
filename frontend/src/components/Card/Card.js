@@ -222,13 +222,16 @@ const Card = ({
 		);
 	};
 
-	const centerCard = (card, cardDimensions) => {
+	const centerCard = (card, cardDimensions, initialCardDimensions) => {
 		if (!card) return;
+
+		let cardDimensionsToUse = cardDimensions;
+		if (initialCardDimensions.width > cardDimensions.width) cardDimensionsToUse = initialCardDimensions;
 
 		const sectionDimensions = card.parentNode.getBoundingClientRect();
 		const { cardCenterXOriginal, cardCenterYOriginal } = getCardCoordinates(
 			card,
-			cardDimensions,
+			cardDimensionsToUse,
 		);
 
 		const containerCenterX =
@@ -241,7 +244,7 @@ const Card = ({
 		let translateLeftAmount = Math.abs(cardCenterXOriginal - containerCenterX);
 		let translateUpAmount = Math.abs(cardCenterYOriginal - containerCenterY);
 
-		const cardOriginalWidth = (cardDimensions.width * 2) / 3;
+		const cardOriginalWidth = (cardDimensionsToUse.width * 2) / 3;
 		// const cardOriginalHeight = (cardDimensions.height * 2) / 3;
 		const scaleXFactor = sectionDimensions.width / cardOriginalWidth;
 		// const scaleYFactor = sectionDimensions.height / cardOriginalHeight;
@@ -294,11 +297,11 @@ const Card = ({
 		card.classList.remove(CARD_STOPPED_CLASSNAME);
 	};
 
-	const openCard = (video, card, backdrop, cardDimensionsOnClick) => {
+	const openCard = (video, card, backdrop, initialCardDimensions) => {
 		if (!card) return;
 
 		const cardDimensions = card.getBoundingClientRect();
-		centerCard(card, cardDimensions);
+		centerCard(card, cardDimensions, initialCardDimensions);
 
 		const isVideoPlaying = getIsVideoPlaying(video);
 		if (!video) return;
@@ -348,7 +351,7 @@ const Card = ({
 	const handleCardClick = (e) => {
 		const clickedCard = cardRef.current;
 		clickedCard.classList.add('z-index-highest');
-		const clickedCardSize = clickedCard.getBoundingClientRect();
+		const initialCardSize = clickedCard.getBoundingClientRect();
 		const bridgeBackdrop = document.querySelector(`.${BRIDGE_BACKDROP_CLASSNAME}`);
 		bridgeBackdrop?.classList.add("visible");
 
@@ -361,7 +364,7 @@ const Card = ({
 
 		setTimeout(() => {
 			changeSectionTitle(titleRef);
-			openCard(video, clickedCard, bridgeBackdrop, clickedCardSize);
+			openCard(video, clickedCard, bridgeBackdrop, initialCardSize);
 			scrollToSection(
 				document.querySelector(`#${bridgeSections[1].toLowerCase()}`),
 				headerHeight,

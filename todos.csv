@@ -66,3 +66,5 @@ playlist-sync:
 
 -fix bug where you can get the card video to not display properly if you aren't fully hovered when clicking (add something that forces hover on click?)
 
+-compare size of card on initial click and after timeout and use largest one to adjust the card
+
