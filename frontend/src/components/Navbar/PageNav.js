@@ -214,12 +214,12 @@ class PageNav extends React.Component {
       if (!sectionName) return;
 
       if (this.props.clickedBridgeInfoButtonCount >= 2) {
-        sectionName.classList.remove('visible');
+        sectionName.classList.remove('full-opacity');
         if (i === this.props.currentBridgeSection) sectionName.classList.add(BRIDGE_CURRENT_SECTION_CLASSNAME)
         else sectionName.classList.remove(BRIDGE_CURRENT_SECTION_CLASSNAME)
       }
       else {
-        sectionName.classList.add('visible');
+        sectionName.classList.add('full-opacity');
       }
     }
 

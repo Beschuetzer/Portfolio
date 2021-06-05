@@ -451,6 +451,10 @@ body {
   opacity: 0 !important;
 }
 
+.full-opacity {
+  opacity: 1 !important;
+}
+
 .full-screen {
   position: fixed !important;
   left: 0 !important;
@@ -1084,6 +1088,7 @@ body {
   }
 }
 .page-nav__section {
+  backface-visibility: hidden;
   cursor: pointer;
   text-shadow: 0px 0px 6px rgba(244, 210, 98, 0.5);
   width: 100%;
@@ -3201,7 +3206,7 @@ div.references__name {
 }
 .bridge__page-nav-link {
   cursor: pointer;
-  opacity: 0.66;
+  opacity: 0.85;
   font-size: 1.6rem;
   color: var(--bridge-page-nav-link-color);
   transition: color 0.25s ease, transform 0.25s ease;

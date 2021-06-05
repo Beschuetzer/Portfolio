@@ -19,18 +19,18 @@ import {
 	attachProgressListener,
 	changeSectionTitle,
 	closeVideo,
-} from "./constants";
+} from "../constants";
 import {
 	setIsCardVideoOpen,
-} from '../actions';
+} from '../../actions';
 
-import Video from "./VideoPlayer/Video";
-import { capitalize } from "../helpers";
-import PauseControl from "./VideoPlayer/PauseControl";
-import StopControl from "./VideoPlayer/StopControl";
-import PlayControl from "./VideoPlayer/PlayControl";
-import RestartControl from "./VideoPlayer/RestartControl";
-import CloseControl from "./VideoPlayer/CloseControl";
+import Video from "../VideoPlayer/Video";
+import { capitalize } from "../../helpers";
+import PauseControl from "../VideoPlayer/PauseControl";
+import StopControl from "../VideoPlayer/StopControl";
+import PlayControl from "../VideoPlayer/PlayControl";
+import RestartControl from "../VideoPlayer/RestartControl";
+import CloseControl from "../VideoPlayer/CloseControl";
 
 const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight, setIsCardVideoOpen }) => {
 	const videoRef = useRef(null);

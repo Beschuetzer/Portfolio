@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Section from "../../components/Section";
-import Paragraph from "../../components/typography/Paragraph";
+import Paragraph from "../../typography/Paragraph";
 import SkillsItemSection from "./Skills/SkillsItemSection";
 import SkillsItemSectionLabels from "./Skills/SkillsItemSectionLabels";
 import SkillsItem from "./Skills/SkillsItem";

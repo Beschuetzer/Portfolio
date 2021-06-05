@@ -693,6 +693,7 @@
 	}
 
 	&__section {
+		backface-visibility: hidden;
 		cursor: pointer;
 		// text-shadow: getTextShadow(soft-emboss, $color-primary-resume-4);
 		text-shadow: getTextShadow(glowing, $color-primary-resume-3);

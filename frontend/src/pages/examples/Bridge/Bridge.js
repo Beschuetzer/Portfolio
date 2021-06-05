@@ -17,7 +17,7 @@ import BridgeHero from './BridgeHero';
 import BridgeCard from './BridgeCard';
 import BridgeCardSection from './BridgeCardSection';
 import SectionContainer from '../../../components/SectionContainer';
-import Card from '../../../components/Card';
+import Card from '../../../components/Card/Card';
 import ArrowButton from '../../../components/ArrowButton';
 import BridgeSectionLink from "./BridgeSectionLink";
 
@@ -32,7 +32,7 @@ import preferencesVideo from '../../../clips/preferences.mp4';
 import themesVideo from '../../../clips/themes.mp4';
 import saveGameVideo from '../../../clips/saveGame.mp4';
 import SourceCodeLink from "../../../components/SourceCodeLink";
-import CardManager from "../../../components/CardManager";
+import CardManager from "../../../components/Card/CardManager";
 // import { onRenderCallback } from "../../constants";
 
 const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection, isMobile, isCardVideoOpen, setIsCardVideoOpen}) => {

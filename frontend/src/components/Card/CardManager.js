@@ -6,15 +6,15 @@ import {
   setLastSecondRowCardNumber,
   setBridgeCards,
   setIsCardVideoOpen,
-} from '../actions';
+} from '../../actions';
 
 import {
 	checkForParentOfType,
-} from '../helpers';
+} from '../../helpers';
 
 import {
   CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME,
-} from './constants';
+} from '../constants';
 
 //Responsible for changing transform origin on cards if the rows change due to viewport width
 const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber, setLastSecondRowCardNumber, bridgeCards, setBridgeCards, isCardVideoOpen, setIsCardVideoOpen}) => {

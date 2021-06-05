@@ -18,13 +18,13 @@ import Downloader from "../pages/examples/csharp/Downloader";
 import Bridge from "../pages/examples/Bridge/Bridge";
 import Autobid from "../pages/examples/Autobid";
 import Resume from "../pages/resume/Resume";
-import SiteNav from "./navbar/SiteNav";
-import PageNav from "./navbar/PageNav";
-import NavToggler from "./navbar/NavToggler";
+import SiteNav from "./Navbar/SiteNav";
+import PageNav from "./Navbar/PageNav";
+import NavToggler from "./Navbar/NavToggler";
 import "../css/style.css";
 import GithubButton from "./GithubButton";
 import { setIsAnimating, setIsMobile, setViewPortWidth, setSounds } from "../actions";
-import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "../components/navbar/constants";
+import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./Navbar/constants";
 import soundsSpriteMp3 from '../sounds/soundsSprite.mp3';
 import soundsSpriteOgg from '../sounds/soundsSprite.ogg';
 
