@@ -25,7 +25,7 @@ const CloseControl = ({className = 'card__close', xlinkHref, videoRef, container
 				container.classList.remove(classNameToRemove);
 				const childrenWithClassname = container.querySelector(`.${classNameToRemove}`)
 
-				if (!childrenWithClassname) return;
+				if (!childrenWithClassname) continue;
 				for (let j = 0; j < childrenWithClassname.length; j++) {
 					const childWithClassname = childrenWithClassname[j];
 					childWithClassname.classList.remove(classNameToRemove);

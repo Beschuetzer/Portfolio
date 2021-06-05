@@ -57,5 +57,4 @@ playlist-sync:
 -put controls into spots
 
 - add classes to carousel__item for --open, --playing, etc and style (ADD USEREF IN CAROUSELITEM AND SEND REF TO CONTROLS).
--close control doesn't work in cards on bridge page
 -full-screen not being removed from carousel__video onopen and close
