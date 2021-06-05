@@ -6,14 +6,14 @@ import {
   setCurrentBridgeSection, 
   setClickedBridgeInfoButtonCount,
   setHasClickedALink,
-} from '../../../../actions';
+} from '../../../actions';
 import { 
   toggleSecondInfoButtonClick,
   handleBridgeHeroSounds,
   showBridgeHero,
   BRIDGE_PAGE_NAV_LINK_CLASSNAMES,
   scrollToSection,
-} from '../../../constants';
+} from '../../../components/constants';
 
 const BridgeSectionLink = ({isEmbeddedLink = false, bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content, match, sounds, isMobile, headerHeight, setClickedBridgeInfoButtonCount, setHasClickedALink, hasClickedALink}) => {
   const spanRef = useRef(null);

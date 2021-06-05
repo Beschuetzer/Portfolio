@@ -9,15 +9,15 @@ import {
 	MOBILE_BREAK_POINT_WIDTH,
 } from './constants';
 
-import Home from "./pages/Home/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Examples from "./pages/examples/Examples";
-import PlaylistSyncer from "./pages/examples/csharp/PlaylistSyncer";
-import Downloader from "./pages/examples/csharp/Downloader";
-import Bridge from "./pages/examples/Bridge/Bridge";
-import Autobid from "./pages/examples/Autobid";
-import Resume from "./pages/resume/Resume";
+import Home from "../pages/Home/Home";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
+import Examples from "../pages/examples/Examples";
+import PlaylistSyncer from "../pages/examples/csharp/PlaylistSyncer";
+import Downloader from "../pages/examples/csharp/Downloader";
+import Bridge from "../pages/examples/Bridge/Bridge";
+import Autobid from "../pages/examples/Autobid";
+import Resume from "../pages/resume/Resume";
 import SiteNav from "./navbar/SiteNav";
 import PageNav from "./navbar/PageNav";
 import NavToggler from "./navbar/NavToggler";

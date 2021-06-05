@@ -2,15 +2,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Section from "../../Section";
-import Paragraph from "../../typography/Paragraph";
+import Section from "../../components/Section";
+import Paragraph from "../../components/typography/Paragraph";
 import SkillsItemSection from "./Skills/SkillsItemSection";
 import SkillsItemSectionLabels from "./Skills/SkillsItemSectionLabels";
 import SkillsItem from "./Skills/SkillsItem";
 import ReferenceItem from "./ReferenceItem";
-import EducationItem from "../resume/EducationItem";
+import EducationItem from "./EducationItem";
 
-import { getRepositories, setSectionsToSkipAnimation } from "../../../actions";
+import { getRepositories, setSectionsToSkipAnimation } from "../../actions";
 import SkillsPopup from "./Skills/SkillsPopup/SkillsPopup";
 import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
 class Resume extends React.Component {

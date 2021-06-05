@@ -2,16 +2,16 @@ import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
-import { checkForParentOfType } from "../../../../../helpers";
+import { checkForParentOfType } from "../../../../helpers";
 import {
 	clickSkill,
 	addRepoToReposToDisplay,
-} from "../../../../../actions";
+} from "../../../../actions";
 import SkillsPopupName from "./SkillsPopupName";
-import { capitalize } from "../../../../../helpers";
+import { capitalize } from "../../../../helpers";
 import {
 	addSpaceAfterPunctuationMarks,
-} from '../../../../constants';
+} from '../../../../components/constants';
 // import { KeepStencilOp } from "three";
 
 const SkillsPopup = ({

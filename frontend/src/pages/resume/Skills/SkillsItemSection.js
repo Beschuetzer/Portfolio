@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { 
   SKILLS_SECTION_CLASSNAME,
-} from '../../../constants';
+} from '../../../components/constants';
 
 class SkillsItemSection extends React.Component {
   static timeOutDifferential = 50;

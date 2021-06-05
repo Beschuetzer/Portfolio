@@ -1,15 +1,15 @@
 import React from 'react';
+import Carousel from '../../../components/Carousel/Carousel';
+import { C_SHARP_LAYOUT_CSS_NAME } from '../../../components/constants';
+import CSharpLayout from '../../../components/CSharpLayout';
+import EmbeddedLink from '../../../components/EmbeddedLink';
 
-import img1 from '../../../../imgs/playlist-syncer/img1.png';
-import img2 from '../../../../imgs/playlist-syncer/img2.png';
-import img3 from '../../../../imgs/playlist-syncer/img3.png';
-import img4 from '../../../../imgs/playlist-syncer/img4.png';
-import img5 from '../../../../imgs/playlist-syncer/img5.png';
-import video1 from '../../../../imgs/playlist-syncer/video1.mp4';
-import Carousel from '../../../Carousel/Carousel';
-import { C_SHARP_LAYOUT_CSS_NAME } from '../../../constants';
-import CSharpLayout from '../../../CSharpLayout';
-import EmbeddedLink from '../../../EmbeddedLink';
+import img1 from '../../../imgs/playlist-syncer/img1.png';
+import img2 from '../../../imgs/playlist-syncer/img2.png';
+import img3 from '../../../imgs/playlist-syncer/img3.png';
+import img4 from '../../../imgs/playlist-syncer/img4.png';
+import img5 from '../../../imgs/playlist-syncer/img5.png';
+import video1 from '../../../imgs/playlist-syncer/video1.mp4';
 import CSharpCardSection from './CSharpCardSection';
 
 const PlaylistSyncer = () => {

@@ -11,7 +11,7 @@ import {
   BRIDGE_PAGE_NAV_LINKS_COLORS,
   scrollToSection,
 } from '../constants';
-import BridgeSectionLink from '../pages/examples/Bridge/BridgeSectionLink';
+import BridgeSectionLink from '../../pages/examples/Bridge/BridgeSectionLink';
 
 class PageNav extends React.Component {
   static cssClass = 'page-nav';

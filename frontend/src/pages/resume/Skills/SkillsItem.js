@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { clickSkill } from '../../../../actions';
+import { clickSkill } from '../../../actions';
 import SkillsItemSectionLabels from './SkillsItemSectionLabels';
 
 const SkillsItem = ({ title, percent, href, clickSkill, hours, labels }) => {

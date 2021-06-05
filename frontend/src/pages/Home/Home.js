@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getRepositories } from "../../../actions";
+import { getRepositories } from "../../actions";
 
 import useSky from './useSky.ts';
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect } from "react";
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import {
@@ -8,33 +7,33 @@ import {
 	setCurrentBridgeSection,
 	setHasClickedALink,
 	setIsCardVideoOpen,
-} from '../../../../actions';
+} from '../../../actions';
 
 
 
-import { bridgeSections } from '../../../constants';
-import EmbeddedLink from '../../../EmbeddedLink';
+import { bridgeSections } from '../../../components/constants';
+import EmbeddedLink from '../../../components/EmbeddedLink';
 import BridgeHero from './BridgeHero';
 import BridgeCard from './BridgeCard';
 import BridgeCardSection from './BridgeCardSection';
-import SectionContainer from './../../../SectionContainer';
-import Card from '../../../Card';
-import ArrowButton from '../../../ArrowButton';
+import SectionContainer from '../../../components/SectionContainer';
+import Card from '../../../components/Card';
+import ArrowButton from '../../../components/ArrowButton';
 import BridgeSectionLink from "./BridgeSectionLink";
 
-import dealSummaryVideo from '../../../../clips/dealSummary.mp4';
-import undoVideo from '../../../../clips/undo.mp4';
-import claimSomeVideo from '../../../../clips/claim-some-declarer-initial.mp4';
-import claimAllVideo from '../../../../clips/claim-all.mp4';
-import resizingVideo from '../../../../clips/resizing.mp4';
-import playingACardVideo from '../../../../clips/cardPlayOptions.mp4';
-import cardPlayAndRoundEndVideo from '../../../../clips/animation-roundEndDummy.mp4';
-import preferencesVideo from '../../../../clips/preferences.mp4';
-import themesVideo from '../../../../clips/themes.mp4';
-import saveGameVideo from '../../../../clips/saveGame.mp4';
-import CardManager from "../../../CardManager";
-import SourceCodeLink from "../../../SourceCodeLink";
-// import { onRenderCallback } from "../../../constants";
+import dealSummaryVideo from '../../../clips/dealSummary.mp4';
+import undoVideo from '../../../clips/undo.mp4';
+import claimSomeVideo from '../../../clips/claim-some-declarer-initial.mp4';
+import claimAllVideo from '../../../clips/claim-all.mp4';
+import resizingVideo from '../../../clips/resizing.mp4';
+import playingACardVideo from '../../../clips/cardPlayOptions.mp4';
+import cardPlayAndRoundEndVideo from '../../../clips/animation-roundEndDummy.mp4'
+import preferencesVideo from '../../../clips/preferences.mp4';
+import themesVideo from '../../../clips/themes.mp4';
+import saveGameVideo from '../../../clips/saveGame.mp4';
+import SourceCodeLink from "../../../components/SourceCodeLink";
+import CardManager from "../../../components/CardManager";
+// import { onRenderCallback } from "../../constants";
 
 const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection, isMobile, isCardVideoOpen, setIsCardVideoOpen}) => {
 	const sectionContents = [

@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionContainer from '../SectionContainer';
+import SectionContainer from '../components/SectionContainer';
 import BridgeCard from './examples/Bridge/BridgeCard';
 
 class About extends React.Component {

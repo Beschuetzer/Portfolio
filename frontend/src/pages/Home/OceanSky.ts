@@ -6,16 +6,16 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Water } from "three/examples/jsm/objects/Water.js";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 
-import waterNormals from "../../../imgs/waterNormals.jpg";
-import bumpMap from "../../../imgs/bridge-background-2.jpg";
-import cubeMap5 from "../../../imgs/cube-integrity.jpeg";
-import cubeMap3 from "../../../imgs/cube-hard-work.jpg";
-import cubeMap6 from "../../../imgs/cube-learning.jpg";
-import cubeMap6Rotated from "../../../imgs/cube-learning-rotated.jpg";
-import cubeMap4 from "../../../imgs/cube-communication.jpg";
-import cubeMap1 from "../../../imgs/cube-determination.jpg";
-import cubeMap2 from "../../../imgs/cube-passion.jpg";
-import cloud from "../../../imgs/cloud.png";
+import waterNormals from "../../imgs/waterNormals.jpg";
+import bumpMap from "../../imgs/bridge-background-2.jpg";
+import cubeMap5 from "../../imgs/cube-integrity.jpeg";
+import cubeMap3 from "../../imgs/cube-hard-work.jpg";
+import cubeMap6 from "../../imgs/cube-learning.jpg";
+import cubeMap6Rotated from "../../imgs/cube-learning-rotated.jpg";
+import cubeMap4 from "../../imgs/cube-communication.jpg";
+import cubeMap1 from "../../imgs/cube-determination.jpg";
+import cubeMap2 from "../../imgs/cube-passion.jpg";
+import cloud from "../../imgs/cloud.png";
 
 let camera: any, scene: any, renderer: any, lastClientY: number;
 let orbitControls, water: any, sun: any, mesh: any;
