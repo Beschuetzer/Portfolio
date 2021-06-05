@@ -5,13 +5,11 @@ import { connect } from 'react-redux';
 import { setPreviousUrl, setScrollPercent } from '../../actions';
 import { capitalize } from '../../helpers';
 import { 
-  bridgeSections,
-  BRIDGE_CURRENT_SECTION_CLASSNAME,
-  BRIDGE_PAGE_NAV_LINK_CLASSNAME,
   BRIDGE_PAGE_NAV_LINKS_COLORS,
   scrollToSection,
 } from '../constants';
 import BridgeSectionLink from '../../pages/examples/bridge/BridgeSectionLink';
+import { bridgeSections, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAME } from '../../pages/examples/bridge/utils';
 
 class PageNav extends React.Component {
   static cssClass = 'page-nav';

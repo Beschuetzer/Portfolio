@@ -11,10 +11,8 @@ import {
 import {
 	checkForParentOfType,
 } from '../../helpers';
+import { FOREGROUND_VIDEO_CLASSNAME } from '../VideoPlayer/Video';
 
-import {
-  FOREGROUND_VIDEO_CLASSNAME,
-} from '../constants';
 import { CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME } from './util';
 
 //Responsible for changing transform origin on cards if the rows change due to viewport width

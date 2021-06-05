@@ -1,6 +1,5 @@
 import React from 'react';
 import Carousel from '../../../components/Carousel/Carousel';
-import { C_SHARP_LAYOUT_CSS_NAME } from '../../../components/constants';
 import CSharpLayout from './CSharpLayout';
 import EmbeddedLink from '../../../components/EmbeddedLink';
 
@@ -11,6 +10,7 @@ import img4 from '../../../imgs/playlist-syncer/img4.png';
 import img5 from '../../../imgs/playlist-syncer/img5.png';
 import demoVideo from '../../../clips/playlist-syncer/demo.mp4';
 import CSharpCardSection from './CSharpCardSection';
+import { C_SHARP_LAYOUT_CSS_NAME } from './utils';
 
 const PlaylistSyncer = () => {
 

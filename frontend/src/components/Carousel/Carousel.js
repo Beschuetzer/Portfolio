@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import CarouselItem from "./CarouselItem";
 import {
 	ANIMATION_DURATION,
-	CAROUSEL_TRANSLATION_CSS_CLASSNAME,
-  CAROUSEL_VIDEO_CLASSNAME,
-	FOREGROUND_VIDEO_CLASSNAME,
 } from "../constants";
 import useInit from "./useInit";
 import useInterItemWidth from "./useInterItemWidth";
 import CarouselArrow from "./CarouselArrow";
+import { CAROUSEL_TRANSLATION_CSS_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./util";
+import { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 
 const Carousel = ({
 	viewPortWidth,

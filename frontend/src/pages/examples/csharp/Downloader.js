@@ -1,6 +1,5 @@
 import React from 'react';
 import Carousel from '../../../components/Carousel/Carousel';
-import { C_SHARP_LAYOUT_CSS_NAME } from '../../../components/constants';
 import CSharpLayout from './CSharpLayout';
 
 import EmbeddedLink from '../../../components/EmbeddedLink';
@@ -12,6 +11,7 @@ import img5 from '../../../imgs/downloader/img5.png';
 import img6 from '../../../imgs/downloader/img6.png';
 import demoVideo from '../../../clips/downloader/demo.mp4';
 import CSharpCardSection from './CSharpCardSection';
+import { C_SHARP_LAYOUT_CSS_NAME } from './utils';
 
 const Downloader = () => {
 

@@ -3,12 +3,9 @@ import { useRef } from "react";
 import { connect } from 'react-redux';
 
 import { 
-	BRIDGE_SECTION_TITLES_CLASSNAME,
 	MOBILE_BREAK_POINT_WIDTH,
 	ANIMATION_DURATION,
 	scrollToSection,
-	bridgeSections,
-	FOREGROUND_VIDEO_CLASSNAME,
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
 	attachProgressListener,
@@ -19,7 +16,7 @@ import {
 	setIsCardVideoOpen,
 } from '../../actions';
 
-import Video from "../VideoPlayer/Video";
+import Video, { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 import { capitalize } from "../../helpers";
 import PauseControl from "../VideoPlayer/PauseControl";
 import StopControl from "../VideoPlayer/StopControl";
@@ -27,6 +24,7 @@ import PlayControl from "../VideoPlayer/PlayControl";
 import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
 import { CARD_DEFAULT_CLASSNAME, CARD_DONE_CLASSNAME, CARD_OPEN_CLASSNAME, CARD_PLAYING_CLASSNAME, CARD_STOPPED_CLASSNAME } from "./util";
+import { bridgeSections, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
 
 const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight, setIsCardVideoOpen }) => {
 	const videoRef = useRef(null);

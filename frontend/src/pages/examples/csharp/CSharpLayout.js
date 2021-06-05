@@ -1,9 +1,9 @@
 import React from "react";
 import { capitalize } from "../../../helpers";
-import { C_SHARP_LAYOUT_CSS_NAME } from "../../../components/constants";
 import Section from "../../../components/Section";
 import SectionContainer from "../../../components/SectionContainer";
 import SourceCodeLink from "../../../components/SourceCodeLink";
+import { C_SHARP_LAYOUT_CSS_NAME } from "./utils";
 
 const CSharpLayout = ({
 	sections,

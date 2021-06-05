@@ -11,7 +11,6 @@ import {
 
 
 
-import { bridgeSections } from '../../../components/constants';
 import EmbeddedLink from '../../../components/EmbeddedLink';
 import BridgeHero from './BridgeHero';
 import BridgeCard from './BridgeCard';
@@ -33,7 +32,9 @@ import themesVideo from '../../../clips/bridge/themes.mp4';
 import saveGameVideo from '../../../clips/bridge/saveGame.mp4';
 import SourceCodeLink from "../../../components/SourceCodeLink";
 import CardManager from "../../../components/Card/CardManager";
+import { bridgeSections } from "./utils";
 // import { onRenderCallback } from "../../constants";
+
 
 const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection, isMobile, isCardVideoOpen, setIsCardVideoOpen}) => {
 	const sectionContents = [

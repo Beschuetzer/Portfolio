@@ -1,5 +1,7 @@
 import React from "react";
 
+export const FOREGROUND_VIDEO_CLASSNAME = 'fg-video';
+
 class Video extends React.Component {
 	render() {
 		const {

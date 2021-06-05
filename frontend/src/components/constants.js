@@ -1,29 +1,9 @@
+import { bridgeSections } from "../pages/examples/bridge/utils";
 
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
-export const SECOND_INFO_BUTTON_DELAY = 500;
 
-export const C_SHARP_LAYOUT_CSS_NAME = "csharp";
-export const CAROUSEL_TRANSLATION_CSS_CLASSNAME = '--carousel-item-translation-x';
-export const CAROUSEL_VIDEO_CLASSNAME = 'carousel__video';
-export const FOREGROUND_VIDEO_CLASSNAME = 'fg-video';
-
-
-//#region bridge stuff
-export const BRIDGE_CARD_SECTION_CLASSNAME = 'bridge__card-section';
-export const BRIDGE_CURRENT_SECTION_CLASSNAME = 'bridge__current-section';
-export const BRIDGE_PAGE_NAV_LINK_CLASSNAME = 'bridge__page-nav-link';
-export const BRIDGE_SECTION_TITLES_CLASSNAME = 'bridge__section-titles';
-export const BRIDGE_PAGE_NAV_LINK_CLASSNAMES = `${BRIDGE_PAGE_NAV_LINK_CLASSNAME} page-nav__section`;
-
-export const bridgeSections = [
-  "Why",
-  "Features",
-  "How",
-  "Lessons",
-];
-
-//#region colors
+//#region CSS Colors
 let computedStyle = getComputedStyle(document.documentElement);
 export const COLOR_PRIMARY_1 = computedStyle.getPropertyValue('--color-primary-1');
 export const COLOR_PRIMARY_2 = computedStyle.getPropertyValue('--color-primary-2');
@@ -53,7 +33,7 @@ export const BRIDGE_PAGE_NAV_LINKS_COLORS = {
   },
 }
 //#endregion
-//#region breakpoints and breakpoint stuff
+//#region Breakpoint Stuff
 export const headerTogglerWidth = parseFloat(computedStyle.getPropertyValue('--header-toggler-width'));
 export const smallFontMaxWidth = parseFloat(computedStyle.getPropertyValue('--small-font-max-width'));
 export const navBreakMaxWidth = parseFloat(computedStyle.getPropertyValue('--nav-break-max-width'));
@@ -89,8 +69,6 @@ export const viewPortPixelToRem = {
 }
 //#endregion
 //#region Misc CSS Custom Props
-
-
 
 //#endregion
 
@@ -190,25 +168,6 @@ export const scrollToSection = (sectionToScrollTo, headerHeight) => {
     left: 0, 
     behavior: 'smooth' 
   });
-}
-
-export const toggleSecondInfoButtonClick = (hero, heroMore, isMobile, shouldWaitToHideHero = true, span = null) => {
-  heroMore?.classList.remove('hero__more--clicked');
-  if (shouldWaitToHideHero) {
-    setTimeout(() => {
-      if (!isMobile) hero?.classList.add('d-none');
-    }, SECOND_INFO_BUTTON_DELAY)
-  }
-  else {
-    hero?.classList.add('d-none');
-  }
-
-  if (span?.textContent !== bridgeSections[bridgeSections.length - 1]){
-    setTimeout(() => {
-      const arrowButtonRight = document.querySelector('.arrow-button--right');
-      arrowButtonRight.classList.remove('d-none');
-    }, SECOND_INFO_BUTTON_DELAY)
-  }
 }
 
 export const showBridgeHero = (heroMore) => {

@@ -1,7 +1,4 @@
-
-import {
-  BRIDGE_CARD_SECTION_CLASSNAME,
-} from '../../../components/constants.js';
+import { BRIDGE_CARD_SECTION_CLASSNAME } from "./utils";
 
 const BridgeCardSection = ({title, children}) => {
   return (
