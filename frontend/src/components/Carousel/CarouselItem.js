@@ -123,39 +123,47 @@ const CarouselItem = ({
 		);
 	}
 
+	const renderControls = (isVideo) => {
+		if (!isVideo) return;
+		return (
+			<React.Fragment>
+				<PlayControl
+					xlinkHref={videoPlayControlSvgXLinkHref}
+					videoRef={videoRef}
+					progressBarRef={progressBarRef}
+				/>
+
+				<StopControl
+					xlinkHref={videoStopControlSvgXLinkHref}
+					videoRef={videoRef}
+				/>
+
+				<PauseControl
+					xlinkHref={videoPauseControlSvgXLinkHref}
+					videoRef={videoRef}
+				/>
+
+				<RestartControl
+					xlinkHref={videoRestartControlSvgXLinkHref}
+					videoRef={videoRef}
+					progressBarRef={progressBarRef}
+				/>
+
+				<CloseControl
+					xlinkHref={videoCloseControlSvgXLinkHref}
+					videoRef={videoRef}
+					classNamesToRemove={videoCloseControlClassesToRemove}
+					containerRef={containerRef}
+				/>
+			</React.Fragment>
+		)
+	}
+
 	return (
 		<article ref={containerRef} className={itemClassName}>
 			{mediaToAdd}
 			<p className={descriptionClassname}>{imgAlt}</p>
-
-			<PlayControl
-				xlinkHref={videoPlayControlSvgXLinkHref}
-				videoRef={videoRef}
-				progressBarRef={progressBarRef}
-			/>
-
-			<StopControl
-				xlinkHref={videoStopControlSvgXLinkHref}
-				videoRef={videoRef}
-			/>
-
-			<PauseControl
-				xlinkHref={videoPauseControlSvgXLinkHref}
-				videoRef={videoRef}
-			/>
-
-			<RestartControl
-				xlinkHref={videoRestartControlSvgXLinkHref}
-				videoRef={videoRef}
-				progressBarRef={progressBarRef}
-			/>
-
-			<CloseControl
-				xlinkHref={videoCloseControlSvgXLinkHref}
-				videoRef={videoRef}
-				classNamesToRemove={videoCloseControlClassesToRemove}
-				containerRef={containerRef}
-			/>
+			{renderControls(isVideo)}
 		</article>
 	);
 };

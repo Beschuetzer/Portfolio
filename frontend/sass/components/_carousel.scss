@@ -262,7 +262,8 @@ $carousel-grid-width: calc(
 
 	//control styling below here
 	& :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
-		opacity: 1;
+		opacity: 0;
+		visibility: hidden;
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%);
@@ -315,5 +316,11 @@ $carousel-grid-width: calc(
 	}
 
 	& .card__close {
+	}
+
+	//showing controls when is open
+	& .isOpen :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
+		opacity: 1;
+		visibility: visible;
 	}
 }

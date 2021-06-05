@@ -8,6 +8,7 @@ import {
 } from "../constants";
 import useInit from "./useInit";
 import useInterItemWidth from "./useInterItemWidth";
+import CarouselArrow from "./CarouselArrow";
 
 const Carousel = ({
 	viewPortWidth,
@@ -230,21 +231,22 @@ const Carousel = ({
 
 	return (
 		<React.Fragment>
-			<article className="carousel">{renderItems()}</article>
-			<div
-				onClick={handleArrowClick}
-				className={`hidden ${ARROW_BUTTONS_CLASSNAME} ${ARROW_BUTTON_LEFT_CLASSNAME}`}>
-				<svg>
-					<use xlinkHref="/sprite.svg#icon-arrow-with-circle-down"></use>
-				</svg>
-			</div>
-			<div
-				onClick={handleArrowClick}
-				className={` ${ARROW_BUTTONS_CLASSNAME} ${ARROW_BUTTON_RIGHT_CLASSNAME} `}>
-				<svg>
-					<use xlinkHref="/sprite.svg#icon-arrow-with-circle-down"></use>
-				</svg>
-			</div>
+			<article className="carousel">
+        {renderItems()}
+      </article>
+
+      <CarouselArrow
+        onClick={handleArrowClick}
+        className={`hidden ${ARROW_BUTTONS_CLASSNAME} ${ARROW_BUTTON_LEFT_CLASSNAME}`}
+        svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
+      />
+
+      <CarouselArrow
+        onClick={handleArrowClick}
+        className={` ${ARROW_BUTTONS_CLASSNAME} ${ARROW_BUTTON_RIGHT_CLASSNAME} `}
+        svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
+      />
+
 			<div className="carousel__dots">{renderCarouselButtons()}</div>
 		</React.Fragment>
 	);
