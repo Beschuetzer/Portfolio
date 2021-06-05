@@ -155,6 +155,7 @@ const CarouselItem = ({
 					videoRef={videoRef}
 					classNamesToRemove={videoCloseControlClassesToRemove}
 					containerRef={containerRef}
+					
 				/>
 			</React.Fragment>
 		)

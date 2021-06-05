@@ -199,7 +199,7 @@ const Carousel = ({
 				videoRestartControlSvgXLinkHref: "/sprite.svg#icon-restart",
 				videoPauseControlSvgXLinkHref: "/sprite.svg#icon-pause",
 				videoCloseControlSvgXLinkHref: "/sprite.svg#icon-close",
-				videoCloseControlClassesToRemove: [`${ITEM_CLASSNAME}--full-screen`],
+				videoCloseControlClassesToRemove: [`${ITEM_CLASSNAME}--full-screen`, `full-screen`],
 			};
 
 			return (
