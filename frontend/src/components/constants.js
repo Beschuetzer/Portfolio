@@ -71,9 +71,7 @@ export const viewPortPixelToRem = {
 //#region Misc CSS Custom Props
 
 //#endregion
-
-
-
+//#region Helper Functions
 export const removeClassFromAllChildren = (parent, classNameToRemove) => {
   const childrenWithClassname = parent.querySelectorAll(
     `.${classNameToRemove}`,
@@ -85,30 +83,8 @@ export const removeClassFromAllChildren = (parent, classNameToRemove) => {
   }
 }
 
-export const changeSectionTitle = (titleRef, isOpen = true) => {
-  if (!titleRef) return;
-  const originalMsgTitle = 'Features';
-  const originalMsgSubTitle = 'Pick a Card any Card';
 
-  const sections = document.querySelectorAll('.bridge__section');
-  for (let i = 0; i < sections.length; i++) {
-    const section = sections[i];
-    if (section.id.match(/feature/i)) {
-      const title = section.querySelector('.bridge__section-title');
-
-      let msgTitleToUse = originalMsgTitle;
-      let msgSubTitleToUse = originalMsgSubTitle;
-      if (isOpen) {
-        msgTitleToUse = titleRef.current?.textContent;
-        msgSubTitleToUse = "";
-      }
-      title.textContent = msgTitleToUse;
-      title.nextElementSibling.textContent = msgSubTitleToUse;
-      break;
-    }
-  }
-}	
-
+//#endregion
 export const attachProgressListener = (video, hasProgressEventListener, handleVideoProgress) => {
   if(!video) return;
   if (!hasProgressEventListener) {

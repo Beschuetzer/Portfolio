@@ -9,7 +9,6 @@ import {
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
 	attachProgressListener,
-	changeSectionTitle,
 	closeVideo,
 } from "../constants";
 import {
@@ -23,7 +22,7 @@ import StopControl from "../VideoPlayer/StopControl";
 import PlayControl from "../VideoPlayer/PlayControl";
 import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
-import { CARD_DEFAULT_CLASSNAME, CARD_DONE_CLASSNAME, CARD_OPEN_CLASSNAME, CARD_PLAYING_CLASSNAME, CARD_STOPPED_CLASSNAME } from "./util";
+import { CARD_DEFAULT_CLASSNAME, CARD_DONE_CLASSNAME, CARD_OPEN_CLASSNAME, CARD_PLAYING_CLASSNAME, CARD_STOPPED_CLASSNAME, changeSectionTitle } from "./util";
 import { bridgeSections, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
 
 const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight, setIsCardVideoOpen }) => {
