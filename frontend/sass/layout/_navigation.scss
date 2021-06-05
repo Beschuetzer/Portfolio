@@ -696,8 +696,7 @@
 		backface-visibility: hidden;
 		cursor: pointer;
 		// text-shadow: getTextShadow(soft-emboss, $color-primary-resume-4);
-		text-shadow: getTextShadow(glowing, $color-primary-resume-3);
-		// text-shadow: getTextShadow(simple, $color-primary-resume-3, $color-primary-resume-2);
+		text-shadow: getTextShadow(glowing, $color-grey-60);
 
 		width: 100%;
 		text-align: center;

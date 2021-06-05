@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import { setPreviousUrl, setScrollPercent } from '../../actions';
 import { capitalize } from '../../helpers';
 import BridgeSectionLink from '../../pages/examples/bridge/BridgeSectionLink';
-import { bridgeSections, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAME } from '../../pages/examples/bridge/utils';
-import { BRIDGE_PAGE_NAV_LINKS_COLORS } from '../constants';
+import { bridgeSections, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME } from '../../pages/examples/bridge/utils';
 import { scrollToSection } from '../helpers';
 
 class PageNav extends React.Component {

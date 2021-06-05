@@ -8,29 +8,7 @@ export const COLOR_PRIMARY_1 = computedStyle.getPropertyValue('--color-primary-1
 export const COLOR_PRIMARY_2 = computedStyle.getPropertyValue('--color-primary-2');
 export const COLOR_PRIMARY_3 = computedStyle.getPropertyValue('--color-primary-3');
 export const COLOR_PRIMARY_4 = computedStyle.getPropertyValue('--color-primary-4');
-export const COLOR_PRIMARY_BRIDGE_1 = computedStyle.getPropertyValue('--color-primary-bridge-1');
-export const COLOR_PRIMARY_BRIDGE_2 = computedStyle.getPropertyValue('--color-primary-bridge-2');
-export const COLOR_PRIMARY_BRIDGE_3 = computedStyle.getPropertyValue('--color-primary-bridge-3');
-export const COLOR_PRIMARY_BRIDGE_4 = computedStyle.getPropertyValue('--color-primary-bridge-4');
 
-export const BRIDGE_PAGE_NAV_LINKS_COLORS = {
-  0: {
-    normal: COLOR_PRIMARY_BRIDGE_4,
-    hover: COLOR_PRIMARY_BRIDGE_4,
-  },
-  1: {
-    normal: COLOR_PRIMARY_BRIDGE_1,
-    hover: COLOR_PRIMARY_BRIDGE_1,
-  },
-  2: {
-    normal: COLOR_PRIMARY_BRIDGE_1,
-    hover: COLOR_PRIMARY_BRIDGE_1,
-  },
-  3: {
-    normal: COLOR_PRIMARY_BRIDGE_4,
-    hover: COLOR_PRIMARY_BRIDGE_4,
-  },
-}
 //#endregion
 //#region Breakpoint Stuff
 export const headerTogglerWidth = parseFloat(computedStyle.getPropertyValue('--header-toggler-width'));

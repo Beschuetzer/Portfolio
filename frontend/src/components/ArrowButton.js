@@ -3,12 +3,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { setCurrentBridgeSection, setBridgeSections } from '../actions';
-import {
-  COLOR_PRIMARY_BRIDGE_1,
-  COLOR_PRIMARY_BRIDGE_2,
-  COLOR_PRIMARY_BRIDGE_3,
-  COLOR_PRIMARY_BRIDGE_4,
-} from './constants';
+import { COLOR_PRIMARY_BRIDGE_1, COLOR_PRIMARY_BRIDGE_2, COLOR_PRIMARY_BRIDGE_3, COLOR_PRIMARY_BRIDGE_4 } from '../pages/examples/bridge/utils';
 
 const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSection, currentBridgeSection, bridgeSections, setBridgeSections, clickedBridgeInfoButtonCount}) => {
 

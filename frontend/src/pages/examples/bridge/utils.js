@@ -14,6 +14,32 @@ export const bridgeSections = [
   "Lessons",
 ];
 
+let computedStyle = getComputedStyle(document.documentElement);
+export const COLOR_PRIMARY_BRIDGE_1 = computedStyle.getPropertyValue('--color-primary-bridge-1');
+export const COLOR_PRIMARY_BRIDGE_2 = computedStyle.getPropertyValue('--color-primary-bridge-2');
+export const COLOR_PRIMARY_BRIDGE_3 = computedStyle.getPropertyValue('--color-primary-bridge-3');
+export const COLOR_PRIMARY_BRIDGE_4 = computedStyle.getPropertyValue('--color-primary-bridge-4');
+
+export const BRIDGE_PAGE_NAV_LINKS_COLORS = {
+  0: {
+    normal: COLOR_PRIMARY_BRIDGE_4,
+    hover: COLOR_PRIMARY_BRIDGE_4,
+  },
+  1: {
+    normal: COLOR_PRIMARY_BRIDGE_1,
+    hover: COLOR_PRIMARY_BRIDGE_1,
+  },
+  2: {
+    normal: COLOR_PRIMARY_BRIDGE_1,
+    hover: COLOR_PRIMARY_BRIDGE_1,
+  },
+  3: {
+    normal: COLOR_PRIMARY_BRIDGE_4,
+    hover: COLOR_PRIMARY_BRIDGE_4,
+  },
+}
+
+
 export const toggleSecondInfoButtonClick = (hero, heroMore, isMobile, shouldWaitToHideHero = true, span = null) => {
   heroMore?.classList.remove('hero__more--clicked');
   if (shouldWaitToHideHero) {
