@@ -21,16 +21,16 @@ import Card from '../../../components/Card/Card';
 import ArrowButton from '../../../components/ArrowButton';
 import BridgeSectionLink from "./BridgeSectionLink";
 
-import dealSummaryVideo from '../../../clips/dealSummary.mp4';
-import undoVideo from '../../../clips/undo.mp4';
-import claimSomeVideo from '../../../clips/claim-some-declarer-initial.mp4';
-import claimAllVideo from '../../../clips/claim-all.mp4';
-import resizingVideo from '../../../clips/resizing.mp4';
-import playingACardVideo from '../../../clips/cardPlayOptions.mp4';
-import cardPlayAndRoundEndVideo from '../../../clips/animation-roundEndDummy.mp4'
-import preferencesVideo from '../../../clips/preferences.mp4';
-import themesVideo from '../../../clips/themes.mp4';
-import saveGameVideo from '../../../clips/saveGame.mp4';
+import dealSummaryVideo from '../../../clips/bridge/dealSummary.mp4';
+import undoVideo from '../../../clips/bridge/undo.mp4';
+import claimSomeVideo from '../../../clips/bridge/claim-some-declarer-initial.mp4';
+import claimAllVideo from '../../../clips/bridge/claim-all.mp4';
+import resizingVideo from '../../../clips/bridge/resizing.mp4';
+import playingACardVideo from '../../../clips/bridge/cardPlayOptions.mp4';
+import cardPlayAndRoundEndVideo from '../../../clips/bridge/animation-roundEndDummy.mp4'
+import preferencesVideo from '../../../clips/bridge/preferences.mp4';
+import themesVideo from '../../../clips/bridge/themes.mp4';
+import saveGameVideo from '../../../clips/bridge/saveGame.mp4';
 import SourceCodeLink from "../../../components/SourceCodeLink";
 import CardManager from "../../../components/Card/CardManager";
 // import { onRenderCallback } from "../../constants";

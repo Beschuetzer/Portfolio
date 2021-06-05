@@ -10,7 +10,7 @@ import img3 from '../../../imgs/downloader/img3.png';
 import img4 from '../../../imgs/downloader/img4.png';
 import img5 from '../../../imgs/downloader/img5.png';
 import img6 from '../../../imgs/downloader/img6.png';
-import video1 from '../../../imgs/downloader/video1.mp4';
+import demoVideo from '../../../clips/downloader/demo.mp4';
 import CSharpCardSection from './CSharpCardSection';
 
 const Downloader = () => {
@@ -62,7 +62,7 @@ const Downloader = () => {
     >
       <section className="csharp__carousel">
         <Carousel
-          items={[video1,img1,img2,img3,img4,img5,img6]}
+          items={[demoVideo,img1,img2,img3,img4,img5,img6]}
           alts={
             [
               "Video Demonstration",
