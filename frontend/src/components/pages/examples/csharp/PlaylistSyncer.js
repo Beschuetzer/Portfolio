@@ -6,7 +6,7 @@ import img3 from '../../../../imgs/playlist-syncer/img3.png';
 import img4 from '../../../../imgs/playlist-syncer/img4.png';
 import img5 from '../../../../imgs/playlist-syncer/img5.png';
 import video1 from '../../../../imgs/playlist-syncer/video1.mp4';
-import Carousel from '../../../Carousel';
+import Carousel from '../../../Carousel/Carousel';
 import { C_SHARP_LAYOUT_CSS_NAME } from '../../../constants';
 import CSharpLayout from '../../../CSharpLayout';
 import EmbeddedLink from '../../../EmbeddedLink';

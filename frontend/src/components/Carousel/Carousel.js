@@ -1,17 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import CarouselItem from './CarouselItem';
-import { ANIMATION_DURATION, CAROUSEL_TRANSLATION_CSS_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME, getIsVideoPlaying, getPercentOfProgressBar } from './constants';
-import CloseControl from './VideoPlayer/CloseControl';
-import PauseControl from './VideoPlayer/PauseControl';
-import PlayControl from './VideoPlayer/PlayControl';
-import RestartControl from './VideoPlayer/RestartControl';
-import StopControl from './VideoPlayer/StopControl';
-import Video from './VideoPlayer/Video';
+import { ANIMATION_DURATION, CAROUSEL_TRANSLATION_CSS_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME } from '../constants';
+import SetInterItemWidth from './SetInterItemWidth';
 
-const Carousel = ({items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
-  const FULLSCREEN_CLASSNAME = 'full-screen';
-  const FULLSCREEN_PARENT_CLASSNAME = 'carousel__item--full-screen'
+const Carousel = ({items, alts, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
   const IMAGE_CLASSNAME = 'carousel__image';
   const VIDEO_CLASSNAME = 'carousel__video';
   const ITEM_CLASSNAME = 'carousel__item';
@@ -34,14 +27,15 @@ const Carousel = ({items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime,
   
   let removeTransitionTimeout;
 
-  useEffect(() => {
-    leftArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_LEFT_CLASSNAME}`);
-    rightArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_RIGHT_CLASSNAME}`);
-    itemsRef.current = document.querySelectorAll(`.${ITEM_CLASSNAME}`);
-    const image1Left = itemsRef.current[0]?.children[0]?.getBoundingClientRect().left;
-    const image2Left = itemsRef.current[1]?.children[0]?.getBoundingClientRect().left;
-    itemsWidthRef.current = Math.abs(image1Left - image2Left);
-  }, [viewPortWidth, ARROW_BUTTON_LEFT_CLASSNAME, ARROW_BUTTON_RIGHT_CLASSNAME])
+  <SetInterItemWidth 
+    leftArrowRef={leftArrowRef}
+    rightArrowRef={rightArrowRef}
+    itemsRef={itemsRef}
+    itemsWidthRef={itemsWidthRef}
+    arrowButtonRightClassname={ARROW_BUTTON_RIGHT_CLASSNAME}
+    arrowButtonLeftClassname={ARROW_BUTTON_LEFT_CLASSNAME}
+    itemClassname={ITEM_CLASSNAME}
+  />
 
   function setArrowButtonsHiddenClass (minImageCount, maxImageCount, currentTranslationFactor) {
     const leftArrow = leftArrowRef.current[0];
@@ -157,51 +151,24 @@ const Carousel = ({items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime,
 		progressBarRef.current.value = percent;
 	}
 
-  const handleProgressBarClick = (e) => {
-    const clientX = e.clientX;
-    const progressBar = e.currentTarget;
-    if (!progressBar) return;
-  
-    const percent = getPercentOfProgressBar(progressBar, clientX);
-    
-    const video = videoRef.current;
-    if (!video) return;
-    video.currentTime = percent * video.duration;
-  }
-
-  const handleItemClick = (e) => {
-    const item = e.currentTarget;
-    if (!item) return;
-    e.preventDefault();
-    
-    item.classList.toggle(FULLSCREEN_CLASSNAME);
-    item.parentNode?.classList.toggle(FULLSCREEN_PARENT_CLASSNAME)
-
-    if (item.classList.contains(FOREGROUND_VIDEO_CLASSNAME)) {
-      //TODO: figure out how to play video (or pause if already playing)
-      // and change play symbol to a pause 
-      const video = item.querySelector('video');
-      const isPlaying = getIsVideoPlaying(video);
-      if (isPlaying) {
-        video.currentTime = 0;
-        video.pause();
-  			video.removeEventListener('timeupdate', handleVideoProgress);
-      }
-      else {
-        video.play();
-  			video.addEventListener('timeupdate', handleVideoProgress);
-      }
-    }
-  }
-
   const renderItems = () => {
     return items.map((item, index) => {
       const carouselItemProps = {
-        onItemClick: handleItemClick,
+        descriptionClassname: DESCRIPTION_CLASSNAME,
+        itemClassName: ITEM_CLASSNAME,
         imageClassname: IMAGE_CLASSNAME,
+        videoClassname: VIDEO_CLASSNAME,
+        foregroundVideoClassname: FOREGROUND_VIDEO_CLASSNAME,
         imageAlt: alts[index],
         itemSrc: item,
-
+        videoRe: videoRef,
+        videoSvgXLinkHref: '/sprite.svg#icon-play',
+        videoPlayControlSvgXLinkHref: '/sprite.svg#icon-play',
+        videoStopControlSvgXLinkHref: '/sprite.svg#icon-stop',
+        videoRestartControlSvgXLinkHref: '/sprite.svg#icon-restart',
+        videoPauseControlSvgXLinkHref: '/sprite.svg#icon-pause',
+        videoCloseControlSvgXLinkHref: '/sprite.svg#icon-close',
+        videoCloseControlClassesToRemove: ["full-screen"],
       }
 
       return (

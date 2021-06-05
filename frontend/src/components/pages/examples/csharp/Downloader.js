@@ -7,7 +7,7 @@ import img4 from '../../../../imgs/downloader/img4.png';
 import img5 from '../../../../imgs/downloader/img5.png';
 import img6 from '../../../../imgs/downloader/img6.png';
 import video1 from '../../../../imgs/downloader/video1.mp4';
-import Carousel from '../../../Carousel';
+import Carousel from '../../../Carousel/Carousel';
 import { C_SHARP_LAYOUT_CSS_NAME } from '../../../constants';
 import CSharpLayout from '../../../CSharpLayout';
 import EmbeddedLink from '../../../EmbeddedLink';
