@@ -168,6 +168,7 @@ $carousel-grid-width: calc(
 				object-position: top left;
 				top: 0;
 				position: fixed;
+				height: 100%;
 			}
 
 			&.full-screen {
@@ -262,8 +263,8 @@ $carousel-grid-width: calc(
 
 	//control styling below here
 	& :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
-		opacity: 0;
-		visibility: hidden;
+		opacity: 1;
+		visibility: visible;
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%);
@@ -272,7 +273,7 @@ $carousel-grid-width: calc(
 	}
 
 	& :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
-		z-index: 10000;
+		z-index: -1;
 		width: $carousel-progress-bar-height * 4;
 		height: $carousel-progress-bar-height * 4;
 		top: auto;
@@ -319,8 +320,7 @@ $carousel-grid-width: calc(
 	}
 
 	//showing controls when is open
-	& .isOpen :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
-		opacity: 1;
-		visibility: visible;
+	& &__item--full-screen :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent)  {
+		z-index: 10000;
 	}
 }

@@ -34,9 +34,7 @@ const Carousel = ({
 	let itemsWidthRef = useRef();
 	let leftArrowRef = useRef();
 	let rightArrowRef = useRef();
-	let progressBarRef = useRef();
 	let videoRef = useRef();
-
 	let removeTransitionTimeout;
 
 	useInit(
@@ -185,7 +183,7 @@ const Carousel = ({
 	};
 
 	const renderItems = () => {
-		return items.map((item, index) => {
+    return items.map((item, index) => {
 			const carouselItemProps = {
 				descriptionClassname: DESCRIPTION_CLASSNAME,
 				itemClassName: ITEM_CLASSNAME,
@@ -205,6 +203,7 @@ const Carousel = ({
 			};
 
 			return (
+
 				<React.Fragment key={index}>
 					<CarouselItem {...carouselItemProps} />
 				</React.Fragment>

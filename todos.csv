@@ -56,5 +56,6 @@ playlist-sync:
 -have close control take up all of fg-video screen (can remove the normal close click handler for video if it works)
 -put controls into spots
 
--need to figure out how to add classes to carousel__item for --open, --playing, etc (ADD USEREF IN CAROUSELITEM AND SEND REF TO CONTROLS).
--need to figure out isVideo and add a class based on that to container (CarouselItem)
+- add classes to carousel__item for --open, --playing, etc and style (ADD USEREF IN CAROUSELITEM AND SEND REF TO CONTROLS).
+-close control doesn't work in cards on bridge page
+-full-screen not being removed from carousel__video onopen and close

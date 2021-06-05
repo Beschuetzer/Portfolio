@@ -14,7 +14,7 @@ const CarouselItem = ({
 	imageClassname,
 	videoClassname,
 	foregroundVideoClassname,
-	imgAlt,
+	imageAlt,
 	itemSrc,
 	videoType = "mp4",
 	videoAutoPlay = false,
@@ -91,11 +91,12 @@ const CarouselItem = ({
 		}
 	};
 
+	console.log('imgAlt =', imageAlt);
 	let mediaToAdd = (
 		<img
 			src={itemSrc}
 			className={`${imageClassname}`}
-			alt={imgAlt}
+			alt={imageAlt}
 			onClick={onItemClick}
 		/>
 	);
@@ -162,7 +163,7 @@ const CarouselItem = ({
 	return (
 		<article ref={containerRef} className={itemClassName}>
 			{mediaToAdd}
-			<p className={descriptionClassname}>{imgAlt}</p>
+			<p className={descriptionClassname}>{imageAlt}</p>
 			{renderControls(isVideo)}
 		</article>
 	);

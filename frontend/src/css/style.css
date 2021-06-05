@@ -2444,6 +2444,7 @@ body {
   object-position: top left;
   top: 0;
   position: fixed;
+  height: 100%;
 }
 .carousel__video.fg-video.full-screen video {
   height: calc( 						90vh - 2.5vh 					);
@@ -2512,8 +2513,8 @@ body {
   display: flex;
 }
 .carousel :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -2521,7 +2522,7 @@ body {
   height: 100%;
 }
 .carousel :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
-  z-index: 10000;
+  z-index: -1;
   width: 10vh;
   height: 10vh;
   top: auto;
@@ -2548,9 +2549,8 @@ body {
   width: 75%;
   height: 75%;
 }
-.carousel .isOpen :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
-  opacity: 1;
-  visibility: visible;
+.carousel .carousel__item--full-screen :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
+  z-index: 10000;
 }
 
 .source-link__source {
