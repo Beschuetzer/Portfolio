@@ -469,6 +469,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 				fillNumber='1'
 				hoverFillNumber='4'
 			/>
+			<div className="bridge__backdrop"></div>
 		</div>
 	);
 };

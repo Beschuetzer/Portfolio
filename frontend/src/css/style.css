@@ -3003,6 +3003,17 @@ div.references__name {
     grid-template-rows: auto;
   }
 }
+.bridge__backdrop {
+  background-color: yellow;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10000000000;
+}
 .bridge__subsection-grid {
   display: grid;
   grid-template-columns: min-content 1fr;

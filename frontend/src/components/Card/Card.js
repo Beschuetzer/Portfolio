@@ -244,10 +244,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	}
 	
 
-	const openCard = (video, card) => {
-		//TODO: need to add some sort of a background that expands fully, making it impossible to hover or click another video while the video is being loaded/positioned (remove/hide at end of this function)
-
-
+	const openCard = (video, card, backdrop) => {
 		const cardDimensions = card.getBoundingClientRect();
 		centerCard(card, cardDimensions);
 
@@ -261,6 +258,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 		setTimeout(() => {
 			adjustCardYPosition(video, card, cardDimensions);
+			backdrop?.classList.remove('visible');
 		}, ANIMATION_DURATION / 2);
 
 		setIsCardVideoOpen(true);
@@ -290,6 +288,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	};
 
 	const handleCardClick = (e) => {
+		const bridgeBackdrop = document.querySelector('.bridge__backdrop');
+		bridgeBackdrop?.classList.add('visible');
+
 		e.stopPropagation();
 		const card = cardRef.current;
 		const video = videoRef?.current;
@@ -297,7 +298,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 		setTimeout(() => {
 			changeSectionTitle(titleRef);
-			openCard(video, card);
+			openCard(video, card, bridgeBackdrop);
 			scrollToSection(document.querySelector(`#${bridgeSections[1].toLowerCase()}`), headerHeight);
 		}, ANIMATION_DURATION / 2);
 	};
