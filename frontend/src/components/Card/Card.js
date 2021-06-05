@@ -245,9 +245,12 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	
 
 	const openCard = (video, card) => {
+		//TODO: need to add some sort of a background that expands fully, making it impossible to hover or click another video while the video is being loaded/positioned (remove/hide at end of this function)
+
+
 		const cardDimensions = card.getBoundingClientRect();
 		centerCard(card, cardDimensions);
-		// playVideo(video, card);
+
 		const isVideoPlaying = getIsVideoPlaying(video);
 		if (!video) return;
 		if (isVideoPlaying || card.classList.contains(CARD_OPEN_CLASSNAME))	closeCard(video, card);
@@ -255,9 +258,11 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 			playVideo(video, card)
 			card.classList.add(CARD_OPEN_CLASSNAME);
 		}
+
 		setTimeout(() => {
 			adjustCardYPosition(video, card, cardDimensions);
 		}, ANIMATION_DURATION / 2);
+
 		setIsCardVideoOpen(true);
 	}
 

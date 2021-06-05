@@ -1,3 +1,4 @@
+import { computedStyle } from "../../../components/constants";
 import { scrollToSection } from "../../../components/helpers";
 
 export const SECOND_INFO_BUTTON_DELAY = 500;
@@ -14,7 +15,6 @@ export const bridgeSections = [
   "Lessons",
 ];
 
-let computedStyle = getComputedStyle(document.documentElement);
 export const COLOR_PRIMARY_BRIDGE_1 = computedStyle.getPropertyValue('--color-primary-bridge-1');
 export const COLOR_PRIMARY_BRIDGE_2 = computedStyle.getPropertyValue('--color-primary-bridge-2');
 export const COLOR_PRIMARY_BRIDGE_3 = computedStyle.getPropertyValue('--color-primary-bridge-3');

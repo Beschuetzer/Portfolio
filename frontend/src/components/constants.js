@@ -1,13 +1,13 @@
 
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
+export let computedStyle = getComputedStyle(document.documentElement);
 
 //#region CSS Colors
-let computedStyle = getComputedStyle(document.documentElement);
-export const COLOR_PRIMARY_1 = computedStyle.getPropertyValue('--color-primary-1');
-export const COLOR_PRIMARY_2 = computedStyle.getPropertyValue('--color-primary-2');
-export const COLOR_PRIMARY_3 = computedStyle.getPropertyValue('--color-primary-3');
-export const COLOR_PRIMARY_4 = computedStyle.getPropertyValue('--color-primary-4');
+// export const COLOR_PRIMARY_1 = computedStyle.getPropertyValue('--color-primary-1');
+// export const COLOR_PRIMARY_2 = computedStyle.getPropertyValue('--color-primary-2');
+// export const COLOR_PRIMARY_3 = computedStyle.getPropertyValue('--color-primary-3');
+// export const COLOR_PRIMARY_4 = computedStyle.getPropertyValue('--color-primary-4');
 
 //#endregion
 //#region Breakpoint Stuff
@@ -44,7 +44,4 @@ export const viewPortPixelToRem = {
     min: 0,
   },
 }
-//#endregion
-//#region Misc CSS Custom Props
-
 //#endregion

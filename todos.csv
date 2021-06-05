@@ -58,9 +58,11 @@ playlist-sync:
 -put controls into spots
 
 -fix cloud animation bug on main page (reduce z rotation amount)
--fix bug where you can click a bridge video then hover another card and it stays on top (immediately add z-index max when clicking a video)
--fix bug where opening carousel vid, clicking stop, then closing, causes video to play
 -fix bug where changing pages via SiteNav causes PageNav color to be incorrect until scrolling 
 
-- add classes to carousel__item for --open, --playing, etc and style (ADD USEREF IN CAROUSELITEM AND SEND REF TO CONTROLS).
+-finish styling carousel__video controls(may need to add more classes for --done, etc)
+
+-fix bug where opening carousel vid, clicking stop, then closing, causes video to play
+
+-fix bug where you can click a bridge video then hover another card and it stays on top (immediately add z-index max when clicking a video)
 
