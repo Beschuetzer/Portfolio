@@ -1,7 +1,4 @@
-import { 
-  attachProgressListener,
-	getIsVideoPlaying,
-} from "../constants";
+import { attachProgressListener, getIsVideoPlaying } from "./utils";
 
 const RestartControl = ({
 	className = 'card__restart',

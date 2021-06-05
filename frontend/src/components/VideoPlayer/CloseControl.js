@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
+import { removeClassFromAllChildren } from "../helpers";
 
-import { closeVideo, removeClassFromAllChildren } from "../constants";
+import { closeVideo } from "./utils";
 
 const CloseControl = ({
 	className = "card__close",

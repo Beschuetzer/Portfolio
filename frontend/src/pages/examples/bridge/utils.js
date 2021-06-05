@@ -1,3 +1,5 @@
+import { scrollToSection } from "../../../components/helpers";
+
 export const SECOND_INFO_BUTTON_DELAY = 500;
 export const BRIDGE_CARD_SECTION_CLASSNAME = 'bridge__card-section';
 export const BRIDGE_CURRENT_SECTION_CLASSNAME = 'bridge__current-section';
@@ -28,5 +30,35 @@ export const toggleSecondInfoButtonClick = (hero, heroMore, isMobile, shouldWait
       const arrowButtonRight = document.querySelector('.arrow-button--right');
       arrowButtonRight.classList.remove('d-none');
     }, SECOND_INFO_BUTTON_DELAY)
+  }
+}
+
+export const showBridgeHero = (heroMore) => {
+  let docStyle = getComputedStyle(document.documentElement);
+  const defaultFontSize = docStyle.getPropertyValue('--default-font-size')
+  const defaultFontSizeFloat = parseFloat(defaultFontSize);
+  
+  document.querySelector('.page-nav').classList?.remove('hidden');
+  document.documentElement.style.setProperty('--bridge-section-height', '100vh');
+  document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
+  
+  heroMore.current?.classList.add('hero__more--clicked');
+}
+
+export const handleBridgeHeroSounds = (checkBoxRef, backgroundRef, sounds, isMobile, headerHeight) => {
+  if (!checkBoxRef?.checked) {
+    sounds.play('doorFast');
+
+    if (!backgroundRef) return;
+    backgroundRef?.classList.add('visible');
+    backgroundRef?.classList.add('reverse-ease');
+  }
+  else {
+    sounds.play('doorNormal');
+    scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()), !isMobile ? 0 : headerHeight)
+    if (backgroundRef)  {
+      backgroundRef?.classList.remove('visible');
+      backgroundRef?.classList.remove('reverse-ease');
+    }
   }
 }

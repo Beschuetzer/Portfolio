@@ -33,7 +33,6 @@ import saveGameVideo from '../../../clips/bridge/saveGame.mp4';
 import SourceCodeLink from "../../../components/SourceCodeLink";
 import CardManager from "../../../components/Card/CardManager";
 import { bridgeSections } from "./utils";
-// import { onRenderCallback } from "../../constants";
 
 
 const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection, isMobile, isCardVideoOpen, setIsCardVideoOpen}) => {

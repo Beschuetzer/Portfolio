@@ -1,4 +1,4 @@
-import { removeClassFromAllChildren } from "../constants";
+import { removeClassFromAllChildren } from "../helpers";
 
 const StopControl = ({
 	className = 'card__stop', 

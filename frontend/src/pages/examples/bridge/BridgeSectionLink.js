@@ -7,12 +7,8 @@ import {
   setClickedBridgeInfoButtonCount,
   setHasClickedALink,
 } from '../../../actions';
-import { 
-  handleBridgeHeroSounds,
-  showBridgeHero,
-  scrollToSection,
-} from '../../../components/constants';
-import { BRIDGE_PAGE_NAV_LINK_CLASSNAMES, toggleSecondInfoButtonClick } from './utils';
+import { scrollToSection } from '../../../components/helpers';
+import { BRIDGE_PAGE_NAV_LINK_CLASSNAMES, handleBridgeHeroSounds, showBridgeHero, toggleSecondInfoButtonClick } from './utils';
 
 const BridgeSectionLink = ({isEmbeddedLink = false, bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content, match, sounds, isMobile, headerHeight, setClickedBridgeInfoButtonCount, setHasClickedALink, hasClickedALink}) => {
   const spanRef = useRef(null);

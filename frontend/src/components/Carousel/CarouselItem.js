@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 
-import { getIsVideoPlaying, getPercentOfProgressBar } from "../constants";
 import PlayControl from "../VideoPlayer/PlayControl";
 import StopControl from "../VideoPlayer/StopControl";
 import PauseControl from "../VideoPlayer/PauseControl";
@@ -8,6 +7,7 @@ import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
 import Video from "../VideoPlayer/Video";
 import { CAROUSEL_VIDEO_CLASSNAME } from "./util";
+import { getIsVideoPlaying, getPercentOfProgressBar } from "../VideoPlayer/utils";
 
 
 const FULLSCREEN_CLASSNAME = "full-screen";

@@ -9,9 +9,7 @@ import {
 } from "../../../../actions";
 import SkillsPopupName from "./SkillsPopupName";
 import { capitalize } from "../../../../helpers";
-import {
-	addSpaceAfterPunctuationMarks,
-} from '../../../../components/constants';
+import { addSpaceAfterPunctuationMarks } from "../../../../components/helpers";
 // import { KeepStencilOp } from "three";
 
 const SkillsPopup = ({

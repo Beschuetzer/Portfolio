@@ -4,14 +4,9 @@ import { connect } from 'react-redux';
 
 import { setClickedBridgeInfoButtonCount } from '../../../actions';
 
-import {
-  handleBridgeHeroSounds,
-  showBridgeHero,
-} from '../../../components/constants';
-
 import Video from '../../../components/VideoPlayer/Video';
 import bgVideo from '../../../clips/bridge/animation-roundEndDummy.mp4';
-import { toggleSecondInfoButtonClick } from "./utils";
+import { handleBridgeHeroSounds, showBridgeHero, toggleSecondInfoButtonClick } from "./utils";
 
 const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount}) => {
 	//my idea here is to have a centered diamond background that has has the section or A # Maj Bridge words around the four corners.  Inside the diamond, there are other suits and a background video?

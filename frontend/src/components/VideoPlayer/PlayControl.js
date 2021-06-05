@@ -1,6 +1,4 @@
-import { 
-  attachProgressListener,
-} from "../constants";
+import { attachProgressListener } from "./utils";
 
 const PlayControl = ({
 	className = 'card__play', 

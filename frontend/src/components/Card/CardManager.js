@@ -13,7 +13,7 @@ import {
 } from '../../helpers';
 import { FOREGROUND_VIDEO_CLASSNAME } from '../VideoPlayer/Video';
 
-import { CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME } from './util';
+import { CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME } from './utils';
 
 //Responsible for changing transform origin on cards if the rows change due to viewport width
 const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber, setLastSecondRowCardNumber, bridgeCards, setBridgeCards, isCardVideoOpen, setIsCardVideoOpen}) => {
