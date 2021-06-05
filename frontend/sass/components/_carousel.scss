@@ -259,4 +259,61 @@ $carousel-grid-width: calc(
 	&__item:focus &__image-description {
 		display: flex;
 	}
+
+	//control styling below here
+	& :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
+		opacity: 1;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		height: 100%;
+	}
+
+	& :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
+		z-index: 10000;
+		width: $carousel-progress-bar-height * 4;
+		height: $carousel-progress-bar-height * 4;
+		top: auto;
+		bottom: 0;
+		transform: translateY(0);
+	}
+
+	& .card__play-parent {
+		left:0;
+	}
+
+	& .card__pause-parent {
+		left: 0;
+	}
+
+	& .card__restart-parent {
+		right: 0;
+		left: auto;
+	}
+
+	& .card__stop-parent {
+		left: $carousel-progress-bar-height * 4;
+	}
+
+	& .card__close-parent {
+		top: 50vh;
+	}
+
+	& .card__play {
+	}
+
+	& .card__pause {
+	}
+
+	& .card__restart {
+		width: 75%;
+		height: 75%;
+	}
+
+	& .card__stop {
+	}
+
+	& .card__close {
+	}
 }

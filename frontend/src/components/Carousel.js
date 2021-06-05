@@ -1,6 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { ANIMATION_DURATION, CAROUSEL_TRANSLATION_CSS_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME, getIsVideoPlaying, getPercentOfProgressBar } from './constants';
+import CloseControl from './VideoPlayer/CloseControl';
+import PauseControl from './VideoPlayer/PauseControl';
+import PlayControl from './VideoPlayer/PlayControl';
+import RestartControl from './VideoPlayer/RestartControl';
+import StopControl from './VideoPlayer/StopControl';
 import Video from './VideoPlayer/Video';
 
 const Carousel = ({items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
@@ -226,6 +231,34 @@ const Carousel = ({items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime,
           <p className={DESCRIPTION_CLASSNAME}>
             {alts[index]}
           </p>
+          <PlayControl
+            xlinkHref="/sprite.svg#icon-play"
+            videoRef={videoRef}
+            progressBarRef={progressBarRef}
+          />
+          <StopControl
+            xlinkHref="/sprite.svg#icon-stop"
+            videoRef={videoRef}
+          />
+
+          <PauseControl
+            xlinkHref="/sprite.svg#icon-pause"
+            videoRef={videoRef}
+          />
+
+          <RestartControl
+            xlinkHref="/sprite.svg#icon-restart"
+            videoRef={videoRef}
+            progressBarRef={progressBarRef}
+          />
+
+          {/* <CloseControl
+            xlinkHref="/sprite.svg#icon-close"
+            videoRef={videoRef}
+            classNamesToRemove={[
+              "full-screen"
+            ]}
+          /> */}
         </article>
       )
     })

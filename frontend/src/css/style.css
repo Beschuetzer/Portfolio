@@ -2511,7 +2511,42 @@ body {
 .carousel__item:hover .carousel__image-description, .carousel__item:active .carousel__image-description, .carousel__item:focus .carousel__image-description {
   display: flex;
 }
-
+.carousel :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
+  opacity: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+.carousel :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
+  z-index: 10000;
+  width: 10vh;
+  height: 10vh;
+  top: auto;
+  bottom: 0;
+  transform: translateY(0);
+}
+.carousel .card__play-parent {
+  left: 0;
+}
+.carousel .card__pause-parent {
+  left: 0;
+}
+.carousel .card__restart-parent {
+  right: 0;
+  left: auto;
+}
+.carousel .card__stop-parent {
+  left: 10vh;
+}
+.carousel .card__close-parent {
+  top: 50vh;
+}
+.carousel .card__restart {
+  width: 75%;
+  height: 75%;
+}
 .source-link__source {
   font-family: "New Tegomin", serif;
   position: fixed;

@@ -11,7 +11,7 @@ const RestartControl = ({className = 'card__restart', xlinkHref, videoRef, progr
 
 	const handleRestartVideo = (e) => {
 		e.stopPropagation();
-		restartVideo(videoRef.current, cardRef.current);
+		restartVideo(videoRef.current, cardRef ? cardRef.current : null);
 	}
 
 	const restartVideo = (video, card) => {
@@ -19,7 +19,7 @@ const RestartControl = ({className = 'card__restart', xlinkHref, videoRef, progr
 		video.currentTime = 0;
 		if (!getIsVideoPlaying(video)) {
 			video.play();
-			card.classList.add(CARD_PLAYING_CLASSNAME);
+			card?.classList.add(CARD_PLAYING_CLASSNAME);
 			attachProgressListener(video, hasProgressEventListener, handleVideoProgress);
 		}
 		

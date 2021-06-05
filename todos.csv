@@ -51,12 +51,8 @@ downloader and playlist-sync:
 playlist-sync:
   -find a color pallette for playlist-syncer
 
-carousel videos:
-  -conditionally load video if video item is video (add classname too)
-  -add styles for video
-  -add progress bar
-
--refactor Video to include progressbar?
--redo playlist-sync video to get better mp3 stuff at end
--finish VideoControl refactors (also move scss classes to new file called video-controls
--NEED TO MAKE SURE THAT PLAY AND RESTART CONTROLS DON'T DOUBLE ADD EVENT LISTENERS
+-adjust text-max-width for videos
+-add hover fx and fill change fx
+-have close control take up all of fg-video screen (can remove the normal close click handler for video if it works)
+-put controls into spots
+-need to figure out how to add classes to carousel__item for --open, --playing, etc.
