@@ -8,6 +8,15 @@ import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
 import Video from "../VideoPlayer/Video";
 
+const FULLSCREEN_CLASSNAME = "full-screen";
+const FULLSCREEN_PARENT_CLASSNAME = "carousel__item--full-screen";
+const IS_PLAYING_CLASSNAME = "carousel__item--is-playing";
+const CLASSNAMES_TO_REMOVE = [
+	FULLSCREEN_PARENT_CLASSNAME, 
+	FULLSCREEN_CLASSNAME,
+	IS_PLAYING_CLASSNAME,
+];
+
 const CarouselItem = ({
 	descriptionClassname,
 	itemClassName,
@@ -25,14 +34,12 @@ const CarouselItem = ({
 	videoRestartControlSvgXLinkHref = "/sprite.svg#icon-restart",
 	videoPauseControlSvgXLinkHref = "/sprite.svg#icon-pause",
 	videoCloseControlSvgXLinkHref = "/sprite.svg#icon-close",
-	videoCloseControlClassesToRemove,
+	videoCloseControlClassesToRemove = CLASSNAMES_TO_REMOVE,
 	videoExtentions = ["mp4", "ogv", "webm", "ogg"],
 }) => {
 	const videoRef = useRef();
 	const containerRef = useRef();
 	const progressBarRef = useRef();
-	const FULLSCREEN_CLASSNAME = "full-screen";
-	const FULLSCREEN_PARENT_CLASSNAME = "carousel__item--full-screen";
 	const isVideo = itemSrc.match(getRegexStringFromStringArray(videoExtentions));
 
 	function getRegexStringFromStringArray(fileExtensions) {
@@ -81,10 +88,12 @@ const CarouselItem = ({
 			const video = item.querySelector("video");
 			const isPlaying = getIsVideoPlaying(video);
 			if (isPlaying) {
+				item.classList.remove(IS_PLAYING_CLASSNAME);
 				video.currentTime = 0;
 				video.pause();
 				video.removeEventListener("timeupdate", onVideoProgress);
 			} else {
+				item.classList.add(IS_PLAYING_CLASSNAME);
 				video.play();
 				video.addEventListener("timeupdate", onVideoProgress);
 			}
@@ -155,7 +164,7 @@ const CarouselItem = ({
 					videoRef={videoRef}
 					classNamesToRemove={videoCloseControlClassesToRemove}
 					containerRef={containerRef}
-					
+
 				/>
 			</React.Fragment>
 		)
