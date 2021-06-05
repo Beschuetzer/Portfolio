@@ -1,24 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { 
-  SKILLS_SECTION_CLASSNAME,
-} from '../../../components/constants';
-
 class SkillsItemSection extends React.Component {
+  static skillsSectionClassname = 'skills__section';
+  static skillsSectionOpenClassName = 'skills__section--open';
   static timeOutDifferential = 50;
-  static openClassName = 'skills__section--open';
 
   onTitleClick = (e) => {
     e.stopPropagation();
-    this.toggleItem(e, !e.target?.classList?.contains(SkillsItemSection.openClassName));
-    e.target?.classList?.toggle(SkillsItemSection.openClassName);
+    this.toggleItem(e, !e.target?.classList?.contains(SkillsItemSection.skillsSectionOpenClassName));
+    e.target?.classList?.toggle(SkillsItemSection.skillsSectionOpenClassName);
   }
 
   toggleItem = (e, isOpening) => {
     const clickedSection = e.target;
     if (!clickedSection.nextSibling) return;
-    if (clickedSection.parentNode.querySelector(`.${SKILLS_SECTION_CLASSNAME}`)) return;
+    if (clickedSection.parentNode.querySelector(`.${SkillsItemSection.skillsSectionClassname}`)) return;
 
     const items = clickedSection.nextSibling.querySelectorAll('.skills__percent-outer');
     for (let i = 0; i < items.length; i++) {

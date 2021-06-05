@@ -21,7 +21,7 @@ import {
 	MOBILE_BREAK_POINT_WIDTH,
 	CAROUSEL_TRANSLATION_CSS_CLASSNAME,
 } from "../constants";
-import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME, NAVBAR_IS_ANIMATING_CLASSNAME } from "./constants";
+import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME, NAVBAR_IS_ANIMATING_CLASSNAME } from "./util";
 
 const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidth, sounds, setHeaderHeight }) => {
 	const [ currentUrl, setCurrentUrl ] = useState(null);

@@ -13,8 +13,9 @@ import {
 } from '../../helpers';
 
 import {
-  CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME,
+  FOREGROUND_VIDEO_CLASSNAME,
 } from '../constants';
+import { CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME } from './util';
 
 //Responsible for changing transform origin on cards if the rows change due to viewport width
 const CardManager = ({children, isMobile, viewPortWidth, lastSecondRowCardNumber, setLastSecondRowCardNumber, bridgeCards, setBridgeCards, isCardVideoOpen, setIsCardVideoOpen}) => {

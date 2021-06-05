@@ -8,11 +8,6 @@ import {
 	ANIMATION_DURATION,
 	scrollToSection,
 	bridgeSections,
-	CARD_DONE_CLASSNAME,
-	CARD_STOPPED_CLASSNAME,
-	CARD_OPEN_CLASSNAME,
-	CARD_PLAYING_CLASSNAME,
-	CARD_DEFAULT_CLASSNAME,
 	FOREGROUND_VIDEO_CLASSNAME,
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
@@ -31,6 +26,7 @@ import StopControl from "../VideoPlayer/StopControl";
 import PlayControl from "../VideoPlayer/PlayControl";
 import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
+import { CARD_DEFAULT_CLASSNAME, CARD_DONE_CLASSNAME, CARD_OPEN_CLASSNAME, CARD_PLAYING_CLASSNAME, CARD_STOPPED_CLASSNAME } from "./util";
 
 const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight, setIsCardVideoOpen }) => {
 	const videoRef = useRef(null);
