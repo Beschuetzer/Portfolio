@@ -99,7 +99,7 @@ $carousel-grid-width: calc(
 
 	&__item {
 		position: relative;
-		z-index: 6;
+		z-index: 1;
 		font-size: $default-font-size;
 		width: 100%;
 		height: $default-font-size * 20;

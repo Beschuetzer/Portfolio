@@ -1,6 +1,6 @@
 import React from 'react';
-import SectionContainer from '../components/SectionContainer';
-import BridgeCard from './examples/Bridge/BridgeCard';
+import SectionContainer from '../../components/SectionContainer';
+import BridgeCard from '../examples/bridge/BridgeCard';
 
 class About extends React.Component {
   //This page should have the following:

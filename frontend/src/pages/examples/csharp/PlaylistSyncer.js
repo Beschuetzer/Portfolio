@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from '../../../components/Carousel/Carousel';
 import { C_SHARP_LAYOUT_CSS_NAME } from '../../../components/constants';
-import CSharpLayout from '../../../components/CSharpLayout';
+import CSharpLayout from './CSharpLayout';
 import EmbeddedLink from '../../../components/EmbeddedLink';
 
 import img1 from '../../../imgs/playlist-syncer/img1.png';

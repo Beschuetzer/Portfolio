@@ -9,14 +9,13 @@ import {
 	MOBILE_BREAK_POINT_WIDTH,
 } from './constants';
 
-import Home from "../pages/Home/Home";
-import About from "../pages/About";
-import Contact from "../pages/Contact";
-import Examples from "../pages/examples/Examples";
+import Home from "../pages/home/Home";
+import About from "../pages/about/About";
+import Contact from "../pages/contact/Contact";
 import PlaylistSyncer from "../pages/examples/csharp/PlaylistSyncer";
 import Downloader from "../pages/examples/csharp/Downloader";
-import Bridge from "../pages/examples/Bridge/Bridge";
-import Autobid from "../pages/examples/Autobid";
+import Bridge from "../pages/examples/bridge/Bridge";
+import Autobid from "../pages/examples/autobid/Autobid";
 import Resume from "../pages/resume/Resume";
 import SiteNav from "./Navbar/SiteNav";
 import PageNav from "./Navbar/PageNav";
@@ -67,10 +66,6 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 				
 				case "c":
 					history.push("/contact");
-					break;
-				case "e":
-				case "w":
-					history.push("/examples");
 					break;
 				case "b":
 					history.push("/examples/bridge");
@@ -129,7 +124,6 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 		<Router history={history}>
 			<Switch>
 				<Route path="/" exact component={Home} />
-				<Route path="/examples" exact component={Examples} />
 				<Route path="/examples/bridge" exact component={Bridge} />
 				<Route path="/examples/downloader" exact component={Downloader} />
 				<Route path="/examples/playlist-syncer" exact component={PlaylistSyncer} />
