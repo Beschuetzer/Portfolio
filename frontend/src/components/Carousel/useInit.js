@@ -1,14 +1,12 @@
 import { useEffect } from "react";
 
-const useInitValues = (
-	viewPortWidth,
+const useInit = (
 	leftArrowRef,
 	rightArrowRef,
-	itemsRef,
-	itemsWidthRef,
 	arrowButtonRightClassname,
 	arrowButtonLeftClassname,
 	itemClassname,
+	itemsRef,
 ) => {
 	useEffect(() => {
 		leftArrowRef.current = document.querySelectorAll(
@@ -18,17 +16,9 @@ const useInitValues = (
 			`.${arrowButtonRightClassname}`,
 		);
 		itemsRef.current = document.querySelectorAll(`.${itemClassname}`);
-		const image1Left =
-			itemsRef.current[0]?.children[0]?.getBoundingClientRect().left;
-		const image2Left =
-			itemsRef.current[1]?.children[0]?.getBoundingClientRect().left;
-		itemsWidthRef.current = Math.abs(image1Left - image2Left);
 	}, [
-		viewPortWidth,
 		leftArrowRef,
 		rightArrowRef,
-		itemsRef,
-		itemsWidthRef,
 		arrowButtonRightClassname,
 		arrowButtonLeftClassname,
 		itemClassname,
@@ -37,4 +27,4 @@ const useInitValues = (
 	return null;
 };
 
-export default useInitValues;
+export default useInit;
