@@ -5,11 +5,11 @@ import {
   attachProgressListener,
 } from "../constants";
 
-const PlayControl = ({className = 'card__play', xlinkHref, videoRef, progressBarRef, cardRef = null}) => {
+const PlayControl = ({className = 'card__play', xlinkHref, videoRef, progressBarRef, cardRef: containerRef = null}) => {
   let hasProgressEventListener = false;
 
   const handlePlayVideo = (e) => {
-		const card = cardRef.current;
+		const card = containerRef.current;
 		if (card?.classList.contains(CARD_STOPPED_CLASSNAME))	e.stopPropagation();
 		playVideo(videoRef.current, card);
 	}
@@ -31,8 +31,8 @@ const PlayControl = ({className = 'card__play', xlinkHref, videoRef, progressBar
 	}
 
   const handleVideoEnd = (e) => {
-		cardRef.current?.classList.add(CARD_DONE_CLASSNAME);
-		cardRef.current?.classList.remove(CARD_PLAYING_CLASSNAME);
+		containerRef.current?.classList.add(CARD_DONE_CLASSNAME);
+		containerRef.current?.classList.remove(CARD_PLAYING_CLASSNAME);
 		const video = e.currentTarget;
 		video.removeEventListener("ended", handleVideoEnd);
 	};

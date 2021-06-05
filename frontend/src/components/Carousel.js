@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+import CarouselItem from './CarouselItem';
 import { ANIMATION_DURATION, CAROUSEL_TRANSLATION_CSS_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME, getIsVideoPlaying, getPercentOfProgressBar } from './constants';
 import CloseControl from './VideoPlayer/CloseControl';
 import PauseControl from './VideoPlayer/PauseControl';
@@ -195,71 +196,18 @@ const Carousel = ({items, alts, viewPortWidth, numberOfItemsInCarouselAtOneTime,
 
   const renderItems = () => {
     return items.map((item, index) => {
-      let mediaToAdd = 
-      <img 
-        src={item}
-        className={`${IMAGE_CLASSNAME}`} 
-        alt={alts[index]}
-        key={index}
-        onClick={handleItemClick}
-      />;
+      const carouselItemProps = {
+        onItemClick: handleItemClick,
+        imageClassname: IMAGE_CLASSNAME,
+        imageAlt: alts[index],
+        itemSrc: item,
 
-      if (item.match(/.+\.mp4$/i)) {
-        mediaToAdd = 
-        <React.Fragment>
-          <Video
-            type="mp4"
-            src={item}
-            autoPlay={false}
-            loop={false}
-            className={`${VIDEO_CLASSNAME} ${FOREGROUND_VIDEO_CLASSNAME}`} 
-            key={index}
-            onClick={handleItemClick}
-            reference={videoRef}
-            progressBarRef={progressBarRef}
-            progressBarOnClick={handleProgressBarClick}
-          />;
-          <svg className="carousel__video-svg">
-            <use xlinkHref="/sprite.svg#icon-play"></use>
-          </svg>
-        </React.Fragment>
       }
 
       return (
-        <article key={index} className={ITEM_CLASSNAME}>
-          {mediaToAdd}
-          <p className={DESCRIPTION_CLASSNAME}>
-            {alts[index]}
-          </p>
-          <PlayControl
-            xlinkHref="/sprite.svg#icon-play"
-            videoRef={videoRef}
-            progressBarRef={progressBarRef}
-          />
-          <StopControl
-            xlinkHref="/sprite.svg#icon-stop"
-            videoRef={videoRef}
-          />
-
-          <PauseControl
-            xlinkHref="/sprite.svg#icon-pause"
-            videoRef={videoRef}
-          />
-
-          <RestartControl
-            xlinkHref="/sprite.svg#icon-restart"
-            videoRef={videoRef}
-            progressBarRef={progressBarRef}
-          />
-
-          {/* <CloseControl
-            xlinkHref="/sprite.svg#icon-close"
-            videoRef={videoRef}
-            classNamesToRemove={[
-              "full-screen"
-            ]}
-          /> */}
-        </article>
+        <React.Fragment key={index}>
+          <CarouselItem {...carouselItemProps} />
+        </React.Fragment>
       )
     })
   }
