@@ -145,6 +145,7 @@ export const getPercentOfProgressBar = (progressBar, clientX) => {
 }
 
 export const closeVideo = (video) => {
+  if (!video) return;
   video.pause();
   video.currentTime = 0;
 };

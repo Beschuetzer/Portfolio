@@ -183,15 +183,6 @@ const Carousel = ({
 		dots[indexOfCurrentDot]?.classList.remove(DOT_ACTIVE_CLASSNAME);
 	};
 
-	const handleVideoProgress = (e) => {
-		const video = e.target;
-		const item = video.parentNode;
-		if (!video || !item) return;
-
-		const percent = video.currentTime / video.duration;
-		progressBarRef.current.value = percent;
-	};
-
 	const renderItems = () => {
 		return items.map((item, index) => {
 			const carouselItemProps = {
@@ -209,7 +200,7 @@ const Carousel = ({
 				videoRestartControlSvgXLinkHref: "/sprite.svg#icon-restart",
 				videoPauseControlSvgXLinkHref: "/sprite.svg#icon-pause",
 				videoCloseControlSvgXLinkHref: "/sprite.svg#icon-close",
-				videoCloseControlClassesToRemove: ["full-screen"],
+				videoCloseControlClassesToRemove: [`${ITEM_CLASSNAME}--full-screen`],
 			};
 
 			return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import { getIsVideoPlaying, getPercentOfProgressBar } from "../constants";
 import PlayControl from "../VideoPlayer/PlayControl";
@@ -19,9 +19,7 @@ const CarouselItem = ({
 	videoType = "mp4",
 	videoAutoPlay = false,
 	videoLoop = false,
-	videoRef,
 	videoSvgXLinkHref,
-	progressBarRef,
 	videoPlayControlSvgXLinkHref = "/sprite.svg#icon-play",
 	videoStopControlSvgXLinkHref = "/sprite.svg#icon-stop",
 	videoRestartControlSvgXLinkHref = "/sprite.svg#icon-restart",
@@ -29,10 +27,24 @@ const CarouselItem = ({
 	videoCloseControlSvgXLinkHref = "/sprite.svg#icon-close",
 	videoCloseControlClassesToRemove,
 }) => {
+	const videoRef = useRef();
+	const containerRef = useRef();
+	const progressBarRef = useRef();
+
 	const FULLSCREEN_CLASSNAME = "full-screen";
 	const FULLSCREEN_PARENT_CLASSNAME = "carousel__item--full-screen";
 
+	const onVideoProgress = (e) => {
+		const video = e.target;
+		const item = video.parentNode;
+		if (!video || !item) return;
+
+		const percent = video.currentTime / video.duration;
+		progressBarRef.current.value = percent;
+	};
+
 	const onProgressBarClick = (e) => {
+
 		const clientX = e.clientX;
 		const progressBar = e.currentTarget;
 		if (!progressBar) return;
@@ -61,10 +73,10 @@ const CarouselItem = ({
 			if (isPlaying) {
 				video.currentTime = 0;
 				video.pause();
-				video.removeEventListener("timeupdate", onProgressBarClick);
+				video.removeEventListener("timeupdate", onVideoProgress);
 			} else {
 				video.play();
-				video.addEventListener("timeupdate", onProgressBarClick);
+				video.addEventListener("timeupdate", onVideoProgress);
 			}
 		}
 	};
@@ -102,7 +114,7 @@ const CarouselItem = ({
 	}
 
 	return (
-		<article className={itemClassName}>
+		<article ref={containerRef} className={itemClassName}>
 			{mediaToAdd}
 			<p className={descriptionClassname}>{imgAlt}</p>
 
@@ -132,6 +144,7 @@ const CarouselItem = ({
 				xlinkHref={videoCloseControlSvgXLinkHref}
 				videoRef={videoRef}
 				classNamesToRemove={videoCloseControlClassesToRemove}
+				containerRef={containerRef}
 			/>
 		</article>
 	);

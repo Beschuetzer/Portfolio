@@ -55,7 +55,6 @@ playlist-sync:
 -add hover fx and fill change fx
 -have close control take up all of fg-video screen (can remove the normal close click handler for video if it works)
 -put controls into spots
--need to figure out how to add classes to carousel__item for --open, --playing, etc (ADD USEREF IN CAROUSELITEM AND SEND REF TO CONTROLS).
 
 -figure out how to create a regex that matches file types that end in any number of different file formats (generate the regex string from an array of string file extensions)
--finish CarouselItem
+-need to figure out how to add classes to carousel__item for --open, --playing, etc (ADD USEREF IN CAROUSELITEM AND SEND REF TO CONTROLS).
