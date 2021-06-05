@@ -1,13 +1,17 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { setIsCardVideoOpen } from '../../actions';
-import { 
-	changeSectionTitle,
-	closeVideo,
-} from "../constants";
+import { setIsCardVideoOpen } from "../../actions";
+import { changeSectionTitle, closeVideo } from "../constants";
 
-const CloseControl = ({className = 'card__close', xlinkHref, videoRef, containerRef = null, titleRef = null, setIsCardVideoOpen, classNamesToRemove}) => {
- 
+const CloseControl = ({
+	className = "card__close",
+	xlinkHref,
+	videoRef,
+	containerRef = null,
+	titleRef = null,
+	setIsCardVideoOpen,
+	classNamesToRemove,
+}) => {
 	const handleCloseVideo = (e) => {
 		e.stopPropagation();
 		closeVideo(videoRef.current, containerRef.current);
@@ -23,26 +27,26 @@ const CloseControl = ({className = 'card__close', xlinkHref, videoRef, container
 			for (let i = 0; i < classNamesToRemove.length; i++) {
 				const classNameToRemove = classNamesToRemove[i];
 				container.classList.remove(classNameToRemove);
-				const childrenWithClassname = container.querySelectorAll(`.${classNameToRemove}`)
+				const childrenWithClassname = container.querySelectorAll(
+					`.${classNameToRemove}`,
+				);
 
 				for (let j = 0; j < childrenWithClassname.length; j++) {
 					const childWithClassname = childrenWithClassname[j];
 					childWithClassname.classList.remove(classNameToRemove);
 				}
 			}
-		} 
+		}
 	};
 
-	
-
-  return (
-    <div onClick={handleCloseVideo} className={`${className}-parent`}>
-      <svg className={`${className}`}>
-        <use xlinkHref={xlinkHref}></use>
-      </svg>
-    </div>
-  );
-}
+	return (
+		<div onClick={handleCloseVideo} className={`${className}-parent`}>
+			<svg className={`${className}`}>
+				<use xlinkHref={xlinkHref}></use>
+			</svg>
+		</div>
+	);
+};
 
 export default connect(null, {
 	setIsCardVideoOpen,

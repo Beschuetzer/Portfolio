@@ -353,12 +353,18 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 					xlinkHref="/sprite.svg#icon-stop"
 					videoRef={videoRef}
 					cardRef={cardRef}
+					playingClassname={CARD_PLAYING_CLASSNAME}
+					doneClassname={CARD_DONE_CLASSNAME}
+					stoppedClassname={CARD_STOPPED_CLASSNAME}
 				/>
 
 				<PauseControl
 					xlinkHref="/sprite.svg#icon-pause"
 					videoRef={videoRef}
 					cardRef={cardRef}
+					playingClassname={CARD_PLAYING_CLASSNAME}
+					doneClassname={CARD_DONE_CLASSNAME}
+					stoppedClassname={CARD_STOPPED_CLASSNAME}
 				/>
 
 				<RestartControl
@@ -366,6 +372,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 					videoRef={videoRef}
 					cardRef={cardRef}
 					progressBarRef={progressBarRef}
+					playingClassname={CARD_PLAYING_CLASSNAME}
+					doneClassname={CARD_DONE_CLASSNAME}
+					stoppedClassname={CARD_STOPPED_CLASSNAME}
 				/>
 
 				<CloseControl
@@ -385,6 +394,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 					videoRef={videoRef}
 					progressBarRef={progressBarRef}
 					cardRef={cardRef}
+					playingClassname={CARD_PLAYING_CLASSNAME}
+					doneClassname={CARD_DONE_CLASSNAME}
+					stoppedClassname={CARD_STOPPED_CLASSNAME}
 				/>
 
 				<h4 ref={titleRef} className="card__title">{title}</h4>

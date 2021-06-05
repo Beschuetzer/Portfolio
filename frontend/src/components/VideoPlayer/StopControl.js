@@ -1,10 +1,13 @@
-import { 
-	CARD_DONE_CLASSNAME,
-	CARD_STOPPED_CLASSNAME,
-	CARD_PLAYING_CLASSNAME,
-} from "../constants";
 
-const StopControl = ({className = 'card__stop', xlinkHref, videoRef, cardRef = null}) => {
+const StopControl = ({
+	className = 'card__stop', 
+	xlinkHref, 
+	videoRef, 
+	cardRef = null,
+	playingClassname,
+	doneClassname,
+	stoppedClassname,
+}) => {
   const handleStopVideo = (e) => {
 		e.stopPropagation();
 		stopVideo(videoRef.current);
@@ -19,9 +22,9 @@ const StopControl = ({className = 'card__stop', xlinkHref, videoRef, cardRef = n
   const pauseVideo = (video, card) => {
 		video?.pause();
 		if (!card) return;
-		card.classList.remove(CARD_DONE_CLASSNAME);
-		card.classList.add(CARD_STOPPED_CLASSNAME);
-		card.classList.remove(CARD_PLAYING_CLASSNAME);
+		card.classList.remove(doneClassname);
+		card.classList.add(stoppedClassname);
+		card.classList.remove(playingClassname);
 	}
 
   return (

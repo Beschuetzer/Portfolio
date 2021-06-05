@@ -1,12 +1,18 @@
 import { 
-	CARD_DONE_CLASSNAME,
-	CARD_STOPPED_CLASSNAME,
-	CARD_PLAYING_CLASSNAME,
   attachProgressListener,
 	getIsVideoPlaying,
 } from "../constants";
 
-const RestartControl = ({className = 'card__restart', xlinkHref, videoRef, progressBarRef, cardRef = null}) => {
+const RestartControl = ({
+	className = 'card__restart',
+	xlinkHref,
+	videoRef,
+	progressBarRef,
+	cardRef = null,
+	playingClassname,
+	doneClassname,
+	stoppedClassname,
+}) => {
   let hasProgressEventListener = false;
 
 	const handleRestartVideo = (e) => {
@@ -19,14 +25,14 @@ const RestartControl = ({className = 'card__restart', xlinkHref, videoRef, progr
 		video.currentTime = 0;
 		if (!getIsVideoPlaying(video)) {
 			video.play();
-			card?.classList.add(CARD_PLAYING_CLASSNAME);
+			card?.classList.add(playingClassname);
 			attachProgressListener(video, hasProgressEventListener, handleVideoProgress);
 		}
 		
 		if (!card) return;
-		if (card.classList.contains(CARD_DONE_CLASSNAME)) video.addEventListener("ended", handleVideoEnd);
-		card.classList.remove(CARD_DONE_CLASSNAME);
-		card.classList.remove(CARD_STOPPED_CLASSNAME);
+		if (card.classList.contains(doneClassname)) video.addEventListener("ended", handleVideoEnd);
+		card.classList.remove(doneClassname);
+		card.classList.remove(stoppedClassname);
 	}
 
   const handleVideoProgress = (e) => {
@@ -37,8 +43,8 @@ const RestartControl = ({className = 'card__restart', xlinkHref, videoRef, progr
 	}
 
   const handleVideoEnd = (e) => {
-		cardRef.current?.classList.add(CARD_DONE_CLASSNAME);
-		cardRef.current?.classList.remove(CARD_PLAYING_CLASSNAME);
+		cardRef.current?.classList.add(doneClassname);
+		cardRef.current?.classList.remove(playingClassname);
 		const video = e.currentTarget;
 		video.removeEventListener("ended", handleVideoEnd);
 	};
