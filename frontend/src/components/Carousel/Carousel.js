@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import CarouselItem from './CarouselItem';
 import { ANIMATION_DURATION, CAROUSEL_TRANSLATION_CSS_CLASSNAME, FOREGROUND_VIDEO_CLASSNAME } from '../constants';
-import SetInterItemWidth from './SetInterItemWidth';
+import useInitValues from './useInitValues';
 
-const Carousel = ({items, alts, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
+const Carousel = ({viewPortWidth, items, alts, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick}) => {
   const IMAGE_CLASSNAME = 'carousel__image';
   const VIDEO_CLASSNAME = 'carousel__video';
   const ITEM_CLASSNAME = 'carousel__item';
@@ -27,15 +27,26 @@ const Carousel = ({items, alts, numberOfItemsInCarouselAtOneTime, numberOfItemsT
   
   let removeTransitionTimeout;
 
-  <SetInterItemWidth 
-    leftArrowRef={leftArrowRef}
-    rightArrowRef={rightArrowRef}
-    itemsRef={itemsRef}
-    itemsWidthRef={itemsWidthRef}
-    arrowButtonRightClassname={ARROW_BUTTON_RIGHT_CLASSNAME}
-    arrowButtonLeftClassname={ARROW_BUTTON_LEFT_CLASSNAME}
-    itemClassname={ITEM_CLASSNAME}
-  />
+  useInitValues(
+    viewPortWidth,
+    leftArrowRef,
+    rightArrowRef,
+    itemsRef,
+    itemsWidthRef,
+    ARROW_BUTTON_RIGHT_CLASSNAME,
+    ARROW_BUTTON_LEFT_CLASSNAME,
+    ITEM_CLASSNAME,
+  )
+
+  // useEffect(() => {
+  //   console.log('12------------------------------------------------');
+  //   leftArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_LEFT_CLASSNAME}`);
+  //   rightArrowRef.current = document.querySelectorAll(`.${ARROW_BUTTON_RIGHT_CLASSNAME}`);
+  //   itemsRef.current = document.querySelectorAll(`.${ITEM_CLASSNAME}`);
+  //   const image1Left = itemsRef.current[0]?.children[0]?.getBoundingClientRect().left;
+  //   const image2Left = itemsRef.current[1]?.children[0]?.getBoundingClientRect().left;
+  //   itemsWidthRef.current = Math.abs(image1Left - image2Left);
+  // }, [viewPortWidth, ARROW_BUTTON_LEFT_CLASSNAME, ARROW_BUTTON_RIGHT_CLASSNAME])
 
   function setArrowButtonsHiddenClass (minImageCount, maxImageCount, currentTranslationFactor) {
     const leftArrow = leftArrowRef.current[0];

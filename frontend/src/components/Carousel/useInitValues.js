@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { connect } from "react-redux";
 
-const SetInterItemWidth = ({
+const useInitValues = (
+	viewPortWidth,
 	leftArrowRef,
 	rightArrowRef,
 	itemsRef,
@@ -9,8 +9,7 @@ const SetInterItemWidth = ({
 	arrowButtonRightClassname,
 	arrowButtonLeftClassname,
 	itemClassname,
-	viewPortWidth,
-}) => {
+) => {
 	useEffect(() => {
 		leftArrowRef.current = document.querySelectorAll(
 			`.${arrowButtonLeftClassname}`,
@@ -38,10 +37,4 @@ const SetInterItemWidth = ({
 	return null;
 };
 
-const mapStateToProps = (state, ownProps) => {
-	return {
-		viewPortWidth: state.general.viewPortWidth,
-	};
-};
-
-export default connect(mapStateToProps, {})(SetInterItemWidth);
+export default useInitValues;
