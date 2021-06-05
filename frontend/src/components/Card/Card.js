@@ -1,14 +1,9 @@
 import React from "react";
 import { useRef } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { 
-	MOBILE_BREAK_POINT_WIDTH,
-	ANIMATION_DURATION,
-} from "../constants";
-import {
-	setIsCardVideoOpen,
-} from '../../actions';
+import { MOBILE_BREAK_POINT_WIDTH, ANIMATION_DURATION } from "../constants";
+import { setIsCardVideoOpen } from "../../actions";
 
 import Video, { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 import { capitalize } from "../../helpers";
@@ -17,12 +12,38 @@ import StopControl from "../VideoPlayer/StopControl";
 import PlayControl from "../VideoPlayer/PlayControl";
 import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
-import { CARD_DEFAULT_CLASSNAME, CARD_DONE_CLASSNAME, CARD_OPEN_CLASSNAME, CARD_PLAYING_CLASSNAME, CARD_STOPPED_CLASSNAME, changeSectionTitle } from "./utils";
-import { bridgeSections, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
-import { attachProgressListener, closeVideo, getIsVideoPlaying, getPercentOfProgressBar } from "../VideoPlayer/utils";
+import {
+	CARD_DEFAULT_CLASSNAME,
+	CARD_DONE_CLASSNAME,
+	CARD_OPEN_CLASSNAME,
+	CARD_PLAYING_CLASSNAME,
+	CARD_STOPPED_CLASSNAME,
+	changeSectionTitle,
+} from "./utils";
+import {
+	bridgeSections,
+	BRIDGE_BACKDROP_CLASSNAME,
+	BRIDGE_SECTION_TITLES_CLASSNAME,
+} from "../../pages/examples/bridge/utils";
+import {
+	attachProgressListener,
+	closeVideo,
+	getIsVideoPlaying,
+	getPercentOfProgressBar,
+} from "../VideoPlayer/utils";
 import { scrollToSection } from "../helpers";
 
-const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidth, isMobile, headerHeight, setIsCardVideoOpen }) => {
+const Card = ({
+	title,
+	cardName,
+	fileType = "svg",
+	children,
+	video,
+	viewPortWidth,
+	isMobile,
+	headerHeight,
+	setIsCardVideoOpen,
+}) => {
 	const videoRef = useRef(null);
 	const titleRef = useRef(null);
 	const cardRef = useRef(null);
@@ -30,55 +51,67 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	let hasProgressEventListener = false;
 
 	const getFeaturesBridgeSectionTitles = () => {
-		const features = document.querySelector(`#${bridgeSections[1].toLowerCase()}`);
+		const features = document.querySelector(
+			`#${bridgeSections[1].toLowerCase()}`,
+		);
 		return features.querySelector(`.${BRIDGE_SECTION_TITLES_CLASSNAME}`);
-	}
+	};
 
 	const getGapAmount = (video, card, cardDimensions) => {
 		const featuresBridgeSectionTitles = getFeaturesBridgeSectionTitles();
-		const bridgeSectionBounds = featuresBridgeSectionTitles.getBoundingClientRect();
+		const bridgeSectionBounds =
+			featuresBridgeSectionTitles.getBoundingClientRect();
 		const videoBounds = video.getBoundingClientRect();
-		return (videoBounds.top - bridgeSectionBounds.bottom);
-	}
+		return videoBounds.top - bridgeSectionBounds.bottom;
+	};
 
 	const getCardScaleOnHoverAmount = (card, cardDimensions) => {
-		let cardToUseAsReference = document.querySelector('.card');
+		let cardToUseAsReference = document.querySelector(".card");
 
 		if (cardToUseAsReference === card) {
-			const cards = document.querySelectorAll('.card');
+			const cards = document.querySelectorAll(".card");
 			cardToUseAsReference = cards[cards.length - 1];
 		}
 
-		const cardToUseAsReferenceDimensions = cardToUseAsReference.getBoundingClientRect();
-		const valueToReturn = cardDimensions.height / cardToUseAsReferenceDimensions.height;
+		const cardToUseAsReferenceDimensions =
+			cardToUseAsReference.getBoundingClientRect();
+		const valueToReturn =
+			cardDimensions.height / cardToUseAsReferenceDimensions.height;
 		return valueToReturn;
-	}
+	};
 
 	const getCardCoordinates = (card, cardDimensions) => {
-
 		let cardLeftOriginal = cardDimensions.left;
 		let cardRightOriginal = cardDimensions.right;
 		let cardTopOriginal = cardDimensions.top;
 		let cardBottomOriginal = cardDimensions.bottom;
-		let cardCenterXOriginal =	(cardRightOriginal - cardLeftOriginal) / 2 + cardLeftOriginal;
-		let cardCenterYOriginal = (cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal;
+		let cardCenterXOriginal =
+			(cardRightOriginal - cardLeftOriginal) / 2 + cardLeftOriginal;
+		let cardCenterYOriginal =
+			(cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal;
 
 		if (viewPortWidth > MOBILE_BREAK_POINT_WIDTH) {
 			cardLeftOriginal = cardDimensions.left + (cardDimensions.width * 1) / 6;
 			cardRightOriginal = cardDimensions.right - (cardDimensions.width * 1) / 6;
 
 			cardTopOriginal = cardDimensions.top + (cardDimensions.height * 1) / 6;
-			cardBottomOriginal = cardDimensions.bottom - (cardDimensions.height * 1) / 6;
+			cardBottomOriginal =
+				cardDimensions.bottom - (cardDimensions.height * 1) / 6;
 
-			cardCenterXOriginal = (cardRightOriginal - cardLeftOriginal) / 2 + cardLeftOriginal;
-			cardCenterYOriginal = (cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal;
+			cardCenterXOriginal =
+				(cardRightOriginal - cardLeftOriginal) / 2 + cardLeftOriginal;
+			cardCenterYOriginal =
+				(cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal;
 		}
 
-		const transformOrigin = getComputedStyle(card)['transformOrigin'];
-		const split = transformOrigin.split(' ');
+		const transformOrigin = getComputedStyle(card)["transformOrigin"];
+		const split = transformOrigin.split(" ");
 		const yCornerOffset = isMobile ? 1.75 : 1.85;
 		const xCornerOffset = 1.1675;
-		const cardScaleOnHoverAmount = getCardScaleOnHoverAmount(card, cardDimensions);
+		const cardScaleOnHoverAmount = getCardScaleOnHoverAmount(
+			card,
+			cardDimensions,
+		);
 		const yTransformOffset = parseFloat(split[0]);
 		const xTransformOffset = parseFloat(split[1]);
 		const xValueToMatch = cardDimensions.width / cardScaleOnHoverAmount;
@@ -88,11 +121,12 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		const xConditionHalf = Math.abs(yTransformOffset * 2 - xValueToMatch) < 1;
 		const yConditionHalf = Math.abs(xTransformOffset * 2 - yValueToMatch) < 1;
 
-		const isTransformOriginTopLeft = xTransformOffset === 0 && yTransformOffset === 0;
+		const isTransformOriginTopLeft =
+			xTransformOffset === 0 && yTransformOffset === 0;
 		const isTransformOriginTopRight = xTransformOffset === 0 && xCondition;
 		const isTransformOriginBottomLeft = yCondition && yTransformOffset === 0;
 		const isTransformOriginBottomRight = yCondition && xCondition;
-		const isTransformOriginTop = xTransformOffset === 0 && xConditionHalf ;
+		const isTransformOriginTop = xTransformOffset === 0 && xConditionHalf;
 		const isTransformOriginBottom = yCondition && xConditionHalf;
 		const isTransformOriginLeft = yTransformOffset === 0 && yConditionHalf;
 		const isTransformOriginRight = xCondition && yConditionHalf;
@@ -118,38 +152,47 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		// console.log('Math.abs(yTransformOffset - valueToMatch) =', Math.abs(yTransformOffset - xValueToMatch));
 
 		if (isTransformOriginTopLeft || isTransformOriginTopRight) {
-			cardCenterYOriginal = cardCenterYOriginal + (cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset);
-		}
-		else if (isTransformOriginBottomLeft || isTransformOriginBottomRight) {
-			cardCenterYOriginal = cardCenterYOriginal - (cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset);
+			cardCenterYOriginal =
+				cardCenterYOriginal +
+				cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset;
+		} else if (isTransformOriginBottomLeft || isTransformOriginBottomRight) {
+			cardCenterYOriginal =
+				cardCenterYOriginal -
+				cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset;
 		}
 
 		if (isTransformOriginTopLeft || isTransformOriginBottomLeft) {
-			cardCenterXOriginal = cardCenterXOriginal + (cardDimensions.width * xCornerOffset);
-		} 
-		else if (isTransformOriginTopRight || isTransformOriginBottomRight) {
-			cardCenterXOriginal = cardCenterXOriginal - (cardDimensions.width * xCornerOffset);
-		} 
+			cardCenterXOriginal =
+				cardCenterXOriginal + cardDimensions.width * xCornerOffset;
+		} else if (isTransformOriginTopRight || isTransformOriginBottomRight) {
+			cardCenterXOriginal =
+				cardCenterXOriginal - cardDimensions.width * xCornerOffset;
+		} else if (isTransformOriginTop)
+			cardCenterYOriginal += yTransformOffset * cardScaleOnHoverAmount;
+		else if (isTransformOriginBottom)
+			cardCenterYOriginal -= yTransformOffset * cardScaleOnHoverAmount;
+		else if (isTransformOriginLeft)
+			cardCenterXOriginal += xTransformOffset * cardScaleOnHoverAmount;
+		else if (isTransformOriginRight)
+			cardCenterXOriginal -= xTransformOffset * cardScaleOnHoverAmount;
 
-		else if (isTransformOriginTop) cardCenterYOriginal += yTransformOffset * cardScaleOnHoverAmount;
-		else if (isTransformOriginBottom) cardCenterYOriginal -= yTransformOffset * cardScaleOnHoverAmount;
-		else if (isTransformOriginLeft) cardCenterXOriginal += xTransformOffset * cardScaleOnHoverAmount;
-		else if (isTransformOriginRight) cardCenterXOriginal -= xTransformOffset * cardScaleOnHoverAmount;
-		
 		// cardCenterXOriginal += xOffset;
 
 		return {
 			cardCenterXOriginal,
 			cardCenterYOriginal,
-		}
-	}
+		};
+	};
 
 	const adjustCardYPosition = (video, card, cardDimensions) => {
 		//calls getGapAmount then change the css translate var based on that
 		const gapAmount = getGapAmount(video, card, cardDimensions);
-		const cardPlayingTransform = document.documentElement.style.getPropertyValue('--card-playing-transform');
-		const split = cardPlayingTransform.split(' ');
-		
+		const cardPlayingTransform =
+			document.documentElement.style.getPropertyValue(
+				"--card-playing-transform",
+			);
+		const split = cardPlayingTransform.split(" ");
+
 		let translateY = split[2];
 		let translateYIndex = 2;
 		if (!translateY.match(/Y/)) {
@@ -161,24 +204,32 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 				}
 			}
 		}
-		const startParenthIndex = translateY.indexOf('(');
-		const endParenthIndex = translateY.indexOf(')');
-		const currentValue = translateY.slice(startParenthIndex + 1, endParenthIndex - 2);
+		const startParenthIndex = translateY.indexOf("(");
+		const endParenthIndex = translateY.indexOf(")");
+		const currentValue = translateY.slice(
+			startParenthIndex + 1,
+			endParenthIndex - 2,
+		);
 
-		split[translateYIndex] = `translateY(-${gapAmount - parseFloat(currentValue)}px)`;
-		const newString = split.join(' ');
+		split[translateYIndex] = `translateY(-${
+			gapAmount - parseFloat(currentValue)
+		}px)`;
+		const newString = split.join(" ");
 
-		document.documentElement.style.setProperty('--card-playing-transform', newString);
-	}
+		document.documentElement.style.setProperty(
+			"--card-playing-transform",
+			newString,
+		);
+	};
 
 	const centerCard = (card, cardDimensions) => {
 		if (!card) return;
-		
+
 		const sectionDimensions = card.parentNode.getBoundingClientRect();
-		const {
-			cardCenterXOriginal,
-			cardCenterYOriginal,
-		} = getCardCoordinates(card, cardDimensions);
+		const { cardCenterXOriginal, cardCenterYOriginal } = getCardCoordinates(
+			card,
+			cardDimensions,
+		);
 
 		const containerCenterX =
 			(sectionDimensions.right - sectionDimensions.left) / 2 +
@@ -232,7 +283,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 
 	const closeCard = (video, card) => {
 		closeVideo(video);
-				
+
 		if (!titleRef) return;
 		changeSectionTitle(titleRef, false);
 		setIsCardVideoOpen(false);
@@ -241,44 +292,51 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		card.classList.remove(CARD_OPEN_CLASSNAME);
 		card.classList.remove(CARD_DONE_CLASSNAME);
 		card.classList.remove(CARD_STOPPED_CLASSNAME);
-	}
-	
+	};
 
-	const openCard = (video, card, backdrop) => {
+	const openCard = (video, card, backdrop, cardDimensionsOnClick) => {
+		if (!card) return;
+
 		const cardDimensions = card.getBoundingClientRect();
 		centerCard(card, cardDimensions);
 
 		const isVideoPlaying = getIsVideoPlaying(video);
 		if (!video) return;
-		if (isVideoPlaying || card.classList.contains(CARD_OPEN_CLASSNAME))	closeCard(video, card);
+		if (isVideoPlaying || card.classList.contains(CARD_OPEN_CLASSNAME))
+			closeCard(video, card);
 		else {
-			playVideo(video, card)
+			playVideo(video, card);
 			card.classList.add(CARD_OPEN_CLASSNAME);
 		}
 
 		setTimeout(() => {
 			adjustCardYPosition(video, card, cardDimensions);
-			backdrop?.classList.remove('visible');
+			backdrop?.classList.remove("visible");
+			card.classList.remove('z-index-highest');
 		}, ANIMATION_DURATION / 2);
 
 		setIsCardVideoOpen(true);
-	}
+	};
 
 	const playVideo = (video, card) => {
-		hasProgressEventListener = attachProgressListener(video, hasProgressEventListener, handleVideoProgress );
+		hasProgressEventListener = attachProgressListener(
+			video,
+			hasProgressEventListener,
+			handleVideoProgress,
+		);
 		video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove(CARD_DONE_CLASSNAME);
 		card.classList.add(CARD_PLAYING_CLASSNAME);
 		card.classList.remove(CARD_STOPPED_CLASSNAME);
 		video.play();
-	}
+	};
 
 	const handleVideoProgress = (e) => {
 		const video = videoRef.current;
 		if (!video) return;
 		const percent = video.currentTime / video.duration;
 		progressBarRef.current.value = percent;
-	}
+	};
 
 	const handleVideoEnd = (e) => {
 		cardRef.current?.classList.add(CARD_DONE_CLASSNAME);
@@ -288,18 +346,26 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	};
 
 	const handleCardClick = (e) => {
-		const bridgeBackdrop = document.querySelector('.bridge__backdrop');
-		bridgeBackdrop?.classList.add('visible');
+		const clickedCard = cardRef.current;
+		clickedCard.classList.add('z-index-highest');
+		const clickedCardSize = clickedCard.getBoundingClientRect();
+		const bridgeBackdrop = document.querySelector(`.${BRIDGE_BACKDROP_CLASSNAME}`);
+		bridgeBackdrop?.classList.add("visible");
 
 		e.stopPropagation();
-		const card = cardRef.current;
 		const video = videoRef?.current;
-		if (card?.classList.contains(CARD_DONE_CLASSNAME) || card?.classList.contains(CARD_OPEN_CLASSNAME)) return;
+		if (
+			clickedCard?.classList.contains(CARD_DONE_CLASSNAME) ||
+			clickedCard?.classList.contains(CARD_OPEN_CLASSNAME)
+		)	return;
 
 		setTimeout(() => {
 			changeSectionTitle(titleRef);
-			openCard(video, card, bridgeBackdrop);
-			scrollToSection(document.querySelector(`#${bridgeSections[1].toLowerCase()}`), headerHeight);
+			openCard(video, clickedCard, bridgeBackdrop, clickedCardSize);
+			scrollToSection(
+				document.querySelector(`#${bridgeSections[1].toLowerCase()}`),
+				headerHeight,
+			);
 		}, ANIMATION_DURATION / 2);
 	};
 
@@ -310,7 +376,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 	const handleMouseLeave = (e) => {
 		const target = e.currentTarget;
 		// setTimeout(() => {
-			target?.classList.remove("z-index-content");
+		target?.classList.remove("z-index-content");
 		// }, CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION);
 	};
 
@@ -320,17 +386,18 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 		if (!progressBar) return;
 
 		const percent = getPercentOfProgressBar(progressBar, clientX);
-		
+
 		const video = videoRef.current;
 		if (!video) return;
 		video.currentTime = percent * video.duration;
 
 		const card = cardRef.current;
 		if (!card) return;
-		if (!card.classList.contains(CARD_PLAYING_CLASSNAME)) card.classList.add(CARD_STOPPED_CLASSNAME);
+		if (!card.classList.contains(CARD_PLAYING_CLASSNAME))
+			card.classList.add(CARD_STOPPED_CLASSNAME);
 		if (percent < 1) card.classList.remove(CARD_DONE_CLASSNAME);
 		else card.classList.add(CARD_DONE_CLASSNAME);
-	}
+	};
 
 	return (
 		<article
@@ -383,8 +450,18 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 						CARD_OPEN_CLASSNAME,
 						CARD_STOPPED_CLASSNAME,
 					]}
+					classNamesToRemoveFromElement={[
+						[
+							'visible', 
+							document.querySelector(`.${BRIDGE_BACKDROP_CLASSNAME}`)
+						],
+						[
+							'z-index-highest',
+							cardRef.current
+						]
+					]}
 				/>
-			
+
 				<PlayControl
 					xlinkHref="/sprite.svg#icon-play"
 					videoRef={videoRef}
@@ -395,7 +472,9 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 					stoppedClassname={CARD_STOPPED_CLASSNAME}
 				/>
 
-				<h4 ref={titleRef} className="card__title">{title}</h4>
+				<h4 ref={titleRef} className="card__title">
+					{title}
+				</h4>
 				<Video
 					className={FOREGROUND_VIDEO_CLASSNAME}
 					type="mp4"
@@ -404,16 +483,14 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 					loop={false}
 					reference={videoRef}
 					progressBarRef={progressBarRef}
-					progressBarOnClick={handleProgressBarClick}
-				>
-          <div className="card__children">
-            {/* <svg className="card__children-toggler">
+					progressBarOnClick={handleProgressBarClick}>
+					<div className="card__children">
+						{/* <svg className="card__children-toggler">
               <use xlinkHref="/sprite.svg#icon-angle-double-down"></use>
             </svg> */}
-            {children}
-          </div>
-        </Video>
-			
+						{children}
+					</div>
+				</Video>
 			</div>
 		</article>
 	);
@@ -424,8 +501,8 @@ const mapStateToProps = (state, ownProps) => {
 		viewPortWidth: state.general.viewPortWidth,
 		isMobile: state.general.isMobile,
 		headerHeight: state.general.headerHeight,
-	}
-}
+	};
+};
 
 export default connect(mapStateToProps, {
 	setIsCardVideoOpen,

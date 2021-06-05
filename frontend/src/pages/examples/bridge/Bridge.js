@@ -32,7 +32,7 @@ import themesVideo from '../../../clips/bridge/themes.mp4';
 import saveGameVideo from '../../../clips/bridge/saveGame.mp4';
 import SourceCodeLink from "../../../components/SourceCodeLink";
 import CardManager from "../../../components/Card/CardManager";
-import { bridgeSections } from "./utils";
+import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME } from "./utils";
 
 
 const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection, isMobile, isCardVideoOpen, setIsCardVideoOpen}) => {
@@ -187,6 +187,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 							
 						</Card>
 					</CardManager>
+					<div className={BRIDGE_BACKDROP_CLASSNAME}></div>
 				</BridgeCard>
 			</SectionContainer>
 			,
@@ -469,7 +470,6 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 				fillNumber='1'
 				hoverFillNumber='4'
 			/>
-			<div className="bridge__backdrop"></div>
 		</div>
 	);
 };

@@ -9,6 +9,7 @@ const CloseControl = ({
 	videoRef,
 	containerRef = null,
 	classNamesToRemove,
+	classNamesToRemoveFromElement = [],
 }) => {
 	const handleCloseVideo = (e) => {
 		e.stopPropagation();
@@ -21,6 +22,14 @@ const CloseControl = ({
 				const classNameToRemove = classNamesToRemove[i];
 				container.classList.remove(classNameToRemove);
 				removeClassFromAllChildren(container, classNameToRemove);
+			}
+		}
+
+		if (classNamesToRemoveFromElement.length > 0) {
+			for (let i = 0; i < classNamesToRemoveFromElement.length; i++) {
+				const classNameToRemove = classNamesToRemoveFromElement[i][0];
+				const elementToRemoveFrom = classNamesToRemoveFromElement[i][1];
+				if (elementToRemoveFrom) elementToRemoveFrom.classList.remove(classNameToRemove);
 			}
 		}
 	};
