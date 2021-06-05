@@ -96,7 +96,7 @@ const CarouselItem = ({
 				video.currentTime = 0;
 				video.pause();
 				video.removeEventListener("timeupdate", onVideoProgress);
-			} else {
+			} else if (!item.classList.contains(PLAYING_CLASSNAME)) {
 				item.classList.add(PLAYING_CLASSNAME);
 				video.play();
 				video.addEventListener("timeupdate", onVideoProgress);
@@ -144,6 +144,7 @@ const CarouselItem = ({
 				<PlayControl
 					xlinkHref={videoPlayControlSvgXLinkHref}
 					videoRef={videoRef}
+					containerRef={containerRef}
 					progressBarRef={progressBarRef}
 					playingClassname = {PLAYING_CLASSNAME}
 					doneClassname = {DONE_CLASSNAME}
@@ -153,6 +154,7 @@ const CarouselItem = ({
 				<StopControl
 					xlinkHref={videoStopControlSvgXLinkHref}
 					videoRef={videoRef}
+					containerRef={containerRef}
 					playingClassname = {PLAYING_CLASSNAME}
 					doneClassname = {DONE_CLASSNAME}
 					stoppedClassname = {STOPPED_CLASSNAME}
@@ -161,6 +163,7 @@ const CarouselItem = ({
 				<PauseControl
 					xlinkHref={videoPauseControlSvgXLinkHref}
 					videoRef={videoRef}
+					containerRef={containerRef}
 					playingClassname = {PLAYING_CLASSNAME}
 					doneClassname = {DONE_CLASSNAME}
 					stoppedClassname = {STOPPED_CLASSNAME}
@@ -169,6 +172,7 @@ const CarouselItem = ({
 				<RestartControl
 					xlinkHref={videoRestartControlSvgXLinkHref}
 					videoRef={videoRef}
+					containerRef={containerRef}
 					progressBarRef={progressBarRef}
 					playingClassname = {PLAYING_CLASSNAME}
 					doneClassname = {DONE_CLASSNAME}
@@ -178,8 +182,8 @@ const CarouselItem = ({
 				<CloseControl
 					xlinkHref={videoCloseControlSvgXLinkHref}
 					videoRef={videoRef}
-					classNamesToRemove={videoCloseControlClassesToRemove}
 					containerRef={containerRef}
+					classNamesToRemove={videoCloseControlClassesToRemove}
 				/>
 			</React.Fragment>
 		)

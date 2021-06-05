@@ -15,17 +15,21 @@ const PlayControl = ({
   let hasProgressEventListener = false;
 
   const handlePlayVideo = (e) => {
-		const card = containerRef.current;
-		if (card?.classList.contains(stoppedClassname))	e.stopPropagation();
-		playVideo(videoRef.current, card);
+		const container = containerRef?.current;
+		if (container?.classList.contains(stoppedClassname))	e.stopPropagation();
+		playVideo(videoRef.current, container);
 	}
 
-  const playVideo = (video, card) => {
+  const playVideo = (video, container) => {
 		hasProgressEventListener = attachProgressListener(video, hasProgressEventListener, handleVideoProgress );
 		video.addEventListener("ended", handleVideoEnd);
-		card.classList.remove(doneClassname);
-		card.classList.add(playingClassname);
-		card.classList.remove(stoppedClassname);
+
+		if (container) {
+			container.classList.remove(doneClassname);
+			container.classList.add(playingClassname);
+			container.classList.remove(stoppedClassname);
+		}
+		
 		video.play();
 	}
 

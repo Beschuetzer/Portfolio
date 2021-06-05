@@ -352,7 +352,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 				<StopControl
 					xlinkHref="/sprite.svg#icon-stop"
 					videoRef={videoRef}
-					cardRef={cardRef}
+					containerRef={cardRef}
 					playingClassname={CARD_PLAYING_CLASSNAME}
 					doneClassname={CARD_DONE_CLASSNAME}
 					stoppedClassname={CARD_STOPPED_CLASSNAME}
@@ -361,7 +361,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 				<PauseControl
 					xlinkHref="/sprite.svg#icon-pause"
 					videoRef={videoRef}
-					cardRef={cardRef}
+					containerRef={cardRef}
 					playingClassname={CARD_PLAYING_CLASSNAME}
 					doneClassname={CARD_DONE_CLASSNAME}
 					stoppedClassname={CARD_STOPPED_CLASSNAME}
@@ -370,7 +370,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 				<RestartControl
 					xlinkHref="/sprite.svg#icon-restart"
 					videoRef={videoRef}
-					cardRef={cardRef}
+					containerRef={cardRef}
 					progressBarRef={progressBarRef}
 					playingClassname={CARD_PLAYING_CLASSNAME}
 					doneClassname={CARD_DONE_CLASSNAME}
@@ -393,7 +393,7 @@ const Card = ({ title, cardName, fileType = "svg", children, video, viewPortWidt
 					xlinkHref="/sprite.svg#icon-play"
 					videoRef={videoRef}
 					progressBarRef={progressBarRef}
-					cardRef={cardRef}
+					containerRef={cardRef}
 					playingClassname={CARD_PLAYING_CLASSNAME}
 					doneClassname={CARD_DONE_CLASSNAME}
 					stoppedClassname={CARD_STOPPED_CLASSNAME}

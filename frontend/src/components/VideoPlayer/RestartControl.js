@@ -8,7 +8,7 @@ const RestartControl = ({
 	xlinkHref,
 	videoRef,
 	progressBarRef,
-	cardRef = null,
+	containerRef = null,
 	playingClassname,
 	doneClassname,
 	stoppedClassname,
@@ -17,22 +17,22 @@ const RestartControl = ({
 
 	const handleRestartVideo = (e) => {
 		e.stopPropagation();
-		restartVideo(videoRef.current, cardRef ? cardRef.current : null);
+		restartVideo(videoRef.current, containerRef ? containerRef.current : null);
 	}
 
-	const restartVideo = (video, card) => {
+	const restartVideo = (video, container) => {
 		if (!video) return;
 		video.currentTime = 0;
 		if (!getIsVideoPlaying(video)) {
 			video.play();
-			card?.classList.add(playingClassname);
+			container?.classList.add(playingClassname);
 			attachProgressListener(video, hasProgressEventListener, handleVideoProgress);
 		}
 		
-		if (!card) return;
-		if (card.classList.contains(doneClassname)) video.addEventListener("ended", handleVideoEnd);
-		card.classList.remove(doneClassname);
-		card.classList.remove(stoppedClassname);
+		if (!container) return;
+		if (container.classList.contains(doneClassname)) video.addEventListener("ended", handleVideoEnd);
+		container.classList.remove(doneClassname);
+		container.classList.remove(stoppedClassname);
 	}
 
   const handleVideoProgress = (e) => {
@@ -43,8 +43,8 @@ const RestartControl = ({
 	}
 
   const handleVideoEnd = (e) => {
-		cardRef.current?.classList.add(doneClassname);
-		cardRef.current?.classList.remove(playingClassname);
+		containerRef.current?.classList.add(doneClassname);
+		containerRef.current?.classList.remove(playingClassname);
 		const video = e.currentTarget;
 		video.removeEventListener("ended", handleVideoEnd);
 	};

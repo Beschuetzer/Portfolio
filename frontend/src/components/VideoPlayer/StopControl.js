@@ -3,7 +3,7 @@ const StopControl = ({
 	className = 'card__stop', 
 	xlinkHref, 
 	videoRef, 
-	cardRef = null,
+	containerRef = null,
 	playingClassname,
 	doneClassname,
 	stoppedClassname,
@@ -16,15 +16,15 @@ const StopControl = ({
 	const stopVideo = (video) => {
 		if (!video) return;
 		video.currentTime = 0;
-		pauseVideo(video, cardRef ? cardRef.current : null);
+		pauseVideo(video, containerRef ? containerRef.current : null);
 	}
 
-  const pauseVideo = (video, card) => {
+  const pauseVideo = (video, container) => {
 		video?.pause();
-		if (!card) return;
-		card.classList.remove(doneClassname);
-		card.classList.add(stoppedClassname);
-		card.classList.remove(playingClassname);
+		if (!container) return;
+		container.classList.remove(doneClassname);
+		container.classList.add(stoppedClassname);
+		container.classList.remove(playingClassname);
 	}
 
   return (
