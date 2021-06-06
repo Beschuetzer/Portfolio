@@ -77,6 +77,10 @@ const CarouselItem = ({
 		const video = videoRef.current;
 		if (!video) return;
 		video.currentTime = percent * video.duration;
+		if (video.parentNode.classList.contains(DONE_CLASSNAME)) {
+			video.parentNode.classList.remove(DONE_CLASSNAME);
+			video.parentNode.classList.add(STOPPED_CLASSNAME);
+		}
 	};
 
 	const onItemClick = (e) => {
@@ -106,7 +110,6 @@ const CarouselItem = ({
 		}
 	};
 
-	console.log('imgAlt =', imageAlt);
 	let mediaToAdd = (
 		<img
 			src={itemSrc}
@@ -149,7 +152,7 @@ const CarouselItem = ({
 				classNamesToRemove={videoCloseControlClassesToRemove}
 			/>
 		);
-		
+
 		return (
 			<React.Fragment>
 				<PlayControl

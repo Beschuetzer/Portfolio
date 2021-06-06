@@ -2407,6 +2407,7 @@ body {
   z-index: 100000;
   bottom: calc(100vh - 90vh);
   opacity: 0;
+  visibility: hidden;
   height: 2.5vh;
   position: fixed;
 }
@@ -2424,6 +2425,7 @@ body {
 }
 .carousel__item--full-screen .card__progress {
   opacity: 1;
+  visibility: visible;
 }
 .carousel__item--full-screen .card__progress::-webkit-progress-bar {
   background-color: var(--color-primary-1);
@@ -2473,6 +2475,9 @@ body {
   transform: translate(-50%, -50%);
   transition: fill 0.125s ease;
 }
+.carousel__video-svg use {
+  pointer-events: none;
+}
 .carousel__video:hover ~ .carousel__video-svg {
   fill: var(--color-primary-3);
 }
@@ -2508,7 +2513,9 @@ body {
   filter: sepia(0.15);
 }
 .carousel__image-description {
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
   justify-content: center;
   align-items: center;
   font-size: 1.6rem;
@@ -2521,9 +2528,11 @@ body {
   z-index: 10000;
   background: rgba(17, 45, 78, 0.5);
   padding: 1.6rem;
+  transition: opacity 0.5s ease;
 }
-.carousel__item:hover .carousel__image-description, .carousel__item:active .carousel__image-description, .carousel__item:focus .carousel__image-description {
-  display: flex;
+.carousel__item:hover .carousel__image-description, .carousel__item:active .carousel__image-description, .carousel__item:focus .carousel__image-description, .carousel__item--full-screen .carousel__image-description {
+  visibility: visible;
+  opacity: 1;
 }
 .carousel :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
   opacity: 1;
@@ -2542,6 +2551,12 @@ body {
   top: auto;
   bottom: 0;
   transform: translateY(0);
+}
+.carousel :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) svg {
+  fill: var(--color-primary-1);
+}
+.carousel :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) svg:hover {
+  fill: var(--color-primary-2);
 }
 .carousel .card__play-parent {
   left: 0;
@@ -2567,7 +2582,7 @@ body {
   height: 75%;
 }
 .carousel .card__close {
-  transform: translate(5%, 90%);
+  transform: translate(5%, 85%);
   top: 0;
   left: auto;
   right: 0;
@@ -2578,6 +2593,12 @@ body {
 }
 .carousel .card__close-parent:hover .card__close {
   opacity: 1;
+}
+.carousel :is(.carousel__item--stopped, .carousel__item--done) ~ .card__pause-parent {
+  display: none;
+}
+.carousel__item--playing ~ .card__play-parent {
+  display: none;
 }
 .carousel .carousel__item--full-screen :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
   z-index: 10000;

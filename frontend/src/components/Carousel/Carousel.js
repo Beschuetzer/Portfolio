@@ -191,7 +191,6 @@ const Carousel = ({
 				foregroundVideoClassname: FOREGROUND_VIDEO_CLASSNAME,
 				imageAlt: alts[index],
 				itemSrc: item,
-				videoRe: videoRef,
 				videoSvgXLinkHref: "/sprite.svg#icon-play",
 				videoPlayControlSvgXLinkHref: "/sprite.svg#icon-play",
 				videoStopControlSvgXLinkHref: "/sprite.svg#icon-stop",
