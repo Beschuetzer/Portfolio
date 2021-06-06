@@ -52,19 +52,19 @@ playlist-sync:
   -find a color pallette for playlist-syncer
 
 
--add sass function to convert rgba, rgb, hsl and hex to rgb (can accept all as inputs) (use this function to change text-shadow for PageNav to be related to the color theme of the page
 -add hover fx and fill change fx
--have close control take up all of fg-video screen (can remove the normal close click handler for video if it works)
--put controls into spots
 
 -fix cloud animation bug on main page (reduce z rotation amount)
 -fix bug where changing pages via SiteNav causes PageNav color to be incorrect until scrolling 
 
+
+-bridge page is very choppy (can separate out, add hooks and refactor to optimize?)
+
+
+-add sass function to convert rgba, rgb, hsl and hex to rgb (can accept all as inputs) (use this function to change text-shadow for PageNav to be related to the color theme of the page
+
 -finish styling carousel__video controls(may need to add more classes for --done, etc)
+-have close control take up all of fg-video screen (can remove the normal close click handler for video if it works)
 
--fix bug where opening carousel vid, clicking stop, then closing, causes video to play
 
--fix bug where you can get the card video to not display properly if you aren't fully hovered when clicking (add something that forces hover on click?)
-
--compare size of card on initial click and after timeout and use largest one to adjust the card
 

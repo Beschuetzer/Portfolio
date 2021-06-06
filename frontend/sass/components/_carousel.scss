@@ -98,6 +98,7 @@ $carousel-grid-width: calc(
 	}
 
 	&__item {
+		pointer-events: none;
 		position: relative;
 		z-index: 1;
 		font-size: $default-font-size;
@@ -109,6 +110,10 @@ $carousel-grid-width: calc(
 		overflow: hidden;
 
 		transform: translateX(var(--carousel-item-translation-x));
+
+		& * {
+			pointer-events: all;
+		}
 
 		& .card__progress {
 			z-index: 100000;
@@ -217,12 +222,12 @@ $carousel-grid-width: calc(
 		height: 100%;
 		object-fit: cover;
 		object-position: top;
+		cursor: pointer;
 
 		// transition:
 		// 	filter $animation-duration / 2 $animation-easing-standard
 		// ;
 
-		cursor: pointer;
 		-webkit-user-drag: none;
 		-khtml-user-drag: none;
 		-moz-user-drag: none;
@@ -288,6 +293,7 @@ $carousel-grid-width: calc(
 	}
 
 	& :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
+		cursor: pointer;
 		z-index: -1;
 		width: $carousel-svg-parent-width;
 		height: $carousel-svg-parent-width;
@@ -314,7 +320,10 @@ $carousel-grid-width: calc(
 	}
 
 	& .card__close-parent {
-		top: 50vh;
+		left: 0;
+		bottom: 100vh - $carousel-full-screen-image-height;
+		width: 100%;
+		height: 100%;
 	}
 
 	& .card__play {
@@ -329,9 +338,23 @@ $carousel-grid-width: calc(
 	}
 
 	& .card__stop {
+	
 	}
 
 	& .card__close {
+    transform: translate(5%,90%);
+		top: 0;
+    left: auto;
+    right: 0;
+    bottom: auto;
+    height: $carousel-svg-parent-width;
+    width: $carousel-svg-parent-width;
+    opacity: 0;
+	}
+
+	//showing close x when hovering
+	& .card__close-parent:hover .card__close{
+		opacity: 1;
 	}
 
 	//showing controls when is open

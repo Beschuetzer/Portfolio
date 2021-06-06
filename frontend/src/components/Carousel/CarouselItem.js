@@ -140,7 +140,16 @@ const CarouselItem = ({
 	}
 
 	const renderControls = (isVideo) => {
-		if (!isVideo) return;
+		if (!isVideo) 
+		return (
+			<CloseControl
+				xlinkHref={videoCloseControlSvgXLinkHref}
+				videoRef={videoRef}
+				containerRef={containerRef}
+				classNamesToRemove={videoCloseControlClassesToRemove}
+			/>
+		);
+		
 		return (
 			<React.Fragment>
 				<PlayControl
