@@ -9,6 +9,7 @@ import img3 from "../../../imgs/downloader/img3.png";
 import img4 from "../../../imgs/downloader/img4.png";
 import img5 from "../../../imgs/downloader/img5.png";
 import img6 from "../../../imgs/downloader/img6.png";
+import problemVideo from "../../../clips/downloader/problem.mp4";
 import demoVideo from "../../../clips/downloader/demo.mp4";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_LAYOUT_CSS_NAME } from "./utils";
@@ -22,7 +23,9 @@ const Downloader = () => {
 				<React.Fragment>
 					<CSharpCardSection title="Purpose">
 						Websites like
-						<EmbeddedLink href="https://www.ocremix.org">OCRemix</EmbeddedLink>{" "}
+						<EmbeddedLink href="https://www.ocremix.org">
+							OCRemix
+						</EmbeddedLink>{" "}
 						and{" "}
 						<EmbeddedLink href="https://downloads.khinsider.com">
 							Kingdom Hearts Insider
@@ -81,14 +84,15 @@ const Downloader = () => {
 			sourceCodeLink="https://github.com/Beschuetzer/Downloader">
 			<section className="csharp__carousel">
 				<Carousel
-					items={[img5, demoVideo, img1, img2, img3, img4, img6]}
+					items={[problemVideo, demoVideo, img1, img2, img3, img4, img5, img6]}
 					alts={[
-						"A list of songs from ocremix.org. A pain to download manually...",
-						"Video Demonstration",
+            "The manual way of downloading",
+						"The automated way of downloading",
 						"The User interface",
 						"Options available",
 						"Full-screen user interface when downloading",
 						"Integrated file-renaming tool used to standardize file names of downloads",
+						"A list of songs from ocremix.org. A pain to download manually...",
 						"Songs downloaded from OCRemix.org (including sub-linked songs)",
 					]}
 					numberOfItemsInCarouselAtOneTime="3"
