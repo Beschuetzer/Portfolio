@@ -1,5 +1,5 @@
 import React from "react";
-import { capitalize } from "../../../helpers";
+import { capitalize, replaceCharacters } from "../../../helpers";
 import Section from "../../../components/Section";
 import SectionContainer from "../../../components/SectionContainer";
 import SourceCodeLink from "../../../components/SourceCodeLink";
@@ -34,7 +34,7 @@ const CSharpLayout = ({
           : 
             null
         }
-				<div className={`${C_SHARP_LAYOUT_CSS_NAME}__title`}>{capitalize(pageName)}</div>
+				<div className={`${C_SHARP_LAYOUT_CSS_NAME}__title`}>{capitalize(replaceCharacters(pageName))}</div>
 				{children}
 			</SectionContainer>
 			{renderSections()}

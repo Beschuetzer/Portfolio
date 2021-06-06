@@ -44,15 +44,11 @@ OPTIMIZATIONS:
 -add background to 4th section in bridge (and colors gradient for mobile
 -change name section to grid
 
-downloader and playlist-sync:
-  -add videos to carousel
-
-
-playlist-sync:
-  -find a color pallette for playlist-syncer
-
-
 -add hover fx and fill change fx
 -fix bug where changing pages via SiteNav causes PageNav color to be incorrect until scrolling 
 -bridge page is very choppy (can separate out, add hooks and refactor to optimize?)
 -how hard would it be to add a better animation to examples opening up in SiteNav?
+
+-add svgs to csharp layouts
+-create a sass function that can insert colors into the svgs and return data
+-finish syncer content

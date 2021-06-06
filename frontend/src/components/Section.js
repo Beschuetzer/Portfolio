@@ -1,7 +1,7 @@
 import React from "react";
 
 import SectionContainer from '../components/SectionContainer';
-import { capitalize } from "../helpers";
+import { capitalize, replaceCharacters } from "../helpers";
 
 class Section extends React.Component {
 	render() {
@@ -15,7 +15,7 @@ class Section extends React.Component {
 					<div className={`${pageName}__content`}>
 						<div className={`${pageName}__header`}>
 							<h3 className={`heading--three ${pageName}__header-title`}>
-								{capitalize(name, true)}
+								{capitalize(replaceCharacters(name))}
 							</h3>
 							{headerSideContent ? headerSideContent : null}
 						</div>
