@@ -54,7 +54,7 @@ const parameters = {
 };
 
 const sunColor = new THREE.Color(0xf4d262);
-const cloudColor = new THREE.Color(0xfbeeac);
+const cloudColor = new THREE.Color(0xff9999);
 const waterColor = new THREE.Color(0x8ac6d0);
 const cloudTransparency = .55;
 const skyTurbidity = 10;   //(10)
@@ -244,7 +244,7 @@ function render() {
   handleCubeRotation(time);
 	// handleCubeBobbing(time);
 	if (clouds) clouds.forEach(cloud => {
-		cloud.rotation.z += .0005;
+		cloud.rotation.z += .00025;
 		cloud.position.z -= .5;
 	})
 

@@ -54,14 +54,11 @@ playlist-sync:
 
 -add hover fx and fill change fx
 
--fix cloud animation bug on main page (reduce z rotation amount)
 -fix bug where changing pages via SiteNav causes PageNav color to be incorrect until scrolling 
 
 
 -bridge page is very choppy (can separate out, add hooks and refactor to optimize?)
 
-
--add sass function to convert rgba, rgb, hsl and hex to rgb (can accept all as inputs) (use this function to change text-shadow for PageNav to be related to the color theme of the page
 
 -finish styling carousel__video controls(may need to add more classes for --done, etc)
 -have close control take up all of fg-video screen (can remove the normal close click handler for video if it works)
