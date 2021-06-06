@@ -53,14 +53,6 @@ playlist-sync:
 
 
 -add hover fx and fill change fx
-
 -fix bug where changing pages via SiteNav causes PageNav color to be incorrect until scrolling 
-
-
 -bridge page is very choppy (can separate out, add hooks and refactor to optimize?)
-
-
--finish styling carousel__video controls(may need to add more classes for --done, etc)
--have close control take up all of fg-video screen (can remove the normal close click handler for video if it works)
-
-
+-how hard would it be to add a better animation to examples opening up in SiteNav?
