@@ -207,7 +207,7 @@
 			url(getSvgBackground(
 				bridge-section-3,
 				$color-bridge-section-svg-1,
-				$color-bridge-section-svg-2,
+				$color-primary-3,
 			));
 
 			@include respond(tab-land) {
