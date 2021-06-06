@@ -3645,6 +3645,9 @@ div.references__name {
     padding-top: 12.8rem;
   }
 }
+.csharp .paragraph {
+  margin: 0;
+}
 .csharp__card {
   border-radius: 0.8rem;
   box-shadow: 0 1.6rem 3.2rem rgba(var(--color-primary-1-rgb), 0.25);

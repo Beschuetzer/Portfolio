@@ -26,6 +26,10 @@
   // @include respond(tab-port) {
   //   background-image: var(--color-primary-2);
   // }
+
+  & .paragraph {
+    margin: 0;
+  }
   
   &__card {
     border-radius: $default-font-size / 2;

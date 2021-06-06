@@ -7,9 +7,9 @@ const CSharpCardSection = ({title, children}) => {
   return (
     <div className={CARD_SECTION_CLASSNAME}>
       <h3 className={CARD_SECTION_TITLE_CLASSNAME}>{title}</h3>
-      <p className={CARD_SECTION_CONTENT_CLASSNAME}>
+      <div className={CARD_SECTION_CONTENT_CLASSNAME}>
         {children}
-      </p>
+      </div>
     </div>
   );
 }
