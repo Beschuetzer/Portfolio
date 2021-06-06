@@ -11,6 +11,10 @@
 // 	@return hsla($color-h, $color-s, $color-l, $opacity);
 // }
 
+@function hexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
 @function get-resume-card-gradient($opacity) {
 	@return linear-gradient(
 		to bottom,

@@ -3,29 +3,55 @@
   --color-grey-light-1: #faf9f9;
   --color-grey-light-2: #f3f1f1;
   --color-grey-light-3: #f1efef;
-  --color-black:	black;
+  --color-grey-light-1-rgb: 250, 249, 249;
+  --color-grey-light-2-rgb: 243, 241, 241;
+  --color-grey-light-3-rgb: 241, 239, 239;
+  --color-black:	#000000;
   --color-grey-20: #333333;
   --color-grey-40: #666666;
   --color-grey-60: #999999;
   --color-grey-80: #cccccc;
-  --color-white:	white;
+  --color-white:	#ffffff;
+  --color-black:-rgb	0, 0, 0;
+  --color-grey-20-rgb: 51, 51, 51;
+  --color-grey-40-rgb: 102, 102, 102;
+  --color-grey-60-rgb: 153, 153, 153;
+  --color-grey-80-rgb: 204, 204, 204;
+  --color-white:-rgb	255, 255, 255;
   --color-primary-1: #28537b;
   --color-primary-1-light: #999999;
   --color-primary-2: #8ac6d0;
   --color-primary-3: #f4d262;
   --color-primary-4: #fbeeac;
+  --color-primary-1-rgb: 40, 83, 123;
+  --color-primary-1-light-rgb: 153, 153, 153;
+  --color-primary-2-rgb: 138, 198, 208;
+  --color-primary-3-rgb: 244, 210, 98;
+  --color-primary-4-rgb: 251, 238, 172;
   --color-primary-resume-1: #28537b;
   --color-primary-resume-2: #8ac5d0;
   --color-primary-resume-3: #f4d262;
   --color-primary-resume-4: #fbeeac;
+  --color-primary-resume-1-rgb: 40, 83, 123;
+  --color-primary-resume-2-rgb: 138, 197, 208;
+  --color-primary-resume-3-rgb: 244, 210, 98;
+  --color-primary-resume-4-rgb: 251, 238, 172;
   --color-primary-bridge-2: #f59229;
   --color-primary-bridge-4: #f5f1db;
   --color-primary-bridge-3: #e4e0c9;
   --color-primary-bridge-1: #00406b;
+  --color-primary-bridge-2-rgb: 245, 146, 41;
+  --color-primary-bridge-4-rgb: 245, 241, 219;
+  --color-primary-bridge-3-rgb: 228, 224, 201;
+  --color-primary-bridge-1-rgb: 0, 64, 107;
   --color-primary-downloader-1: #f9f7f7;
   --color-primary-downloader-3: #3f72af;
   --color-primary-downloader-2: #dbe2ef;
   --color-primary-downloader-4: #112d4e;
+  --color-primary-downloader-1-rgb: 249, 247, 247;
+  --color-primary-downloader-3-rgb: 63, 114, 175;
+  --color-primary-downloader-2-rgb: 219, 226, 239;
+  --color-primary-downloader-4-rgb: 17, 45, 78;
 }
 
 :root {
@@ -2347,7 +2373,7 @@ body {
   cursor: pointer;
   width: 3.5vw;
   height: 3.5vw;
-  fill: var(--color-primary-4);
+  fill: rgba(var(--color-primary-3-rgb), 0.5);
 }
 .carousel__dot--active {
   fill: var(--color-primary-2) !important;
@@ -2582,7 +2608,7 @@ body {
   height: 75%;
 }
 .carousel .card__close {
-  transform: translate(5%, 85%);
+  transform: translate(5%, 80%);
   top: 0;
   left: auto;
   right: 0;

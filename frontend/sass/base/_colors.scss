@@ -1,26 +1,25 @@
-$color-grey-light-1: hsl(0, 9%, 98%);
-$color-grey-light-2: hsl(0, 8%, 95%);
-$color-grey-light-3: hsl(0, 6%, 94%);
+$color-grey-light-1: #faf9f9;
+$color-grey-light-2: #f3f1f1;
+$color-grey-light-3: #f1efef;
 
-$color-black: hsl(0, 0%, 0%);
-$color-grey-20: hsl(0, 0%, 20%);
-$color-grey-40: hsl(0, 0%, 40%);
-$color-grey-60: hsl(0, 0%, 60%);
-$color-grey-80: hsl(0, 0%, 80%);
-$color-white: hsl(0, 0%, 100%);
-
+$color-black: #000000;
+$color-grey-20: #333333;
+$color-grey-40: #666666;
+$color-grey-60: #999999;
+$color-grey-80: #cccccc;
+$color-white: #ffffff;
 
 $color-primary-1: #28537b;
-$color-primary-1-light: hsl(209, 0%, 60%);
+$color-primary-1-light: #999999;
 
 $color-primary-2: #8ac6d0;
 $color-primary-3: #f4d262;
 $color-primary-4: #fbeeac;
 
-$color-primary-resume-1: hsl(209, 51%, 32%);
-$color-primary-resume-2: hsl(190, 43%, 68%);
-$color-primary-resume-3: hsl(46, 87%, 67%);
-$color-primary-resume-4: hsl(50, 91%, 83%);
+$color-primary-resume-1: #28537b;
+$color-primary-resume-2: #8ac5d0;
+$color-primary-resume-3: #f4d262;
+$color-primary-resume-4: #fbeeac;
 $resume-color-opacity: .875;
 
 $color-primary-bridge-1: #00406b;
@@ -38,6 +37,10 @@ $color-primary-downloader-1: #f9f7f7;
 	--color-grey-light-2: #{$color-grey-light-2};
 	--color-grey-light-3: #{$color-grey-light-3};
 
+	--color-grey-light-1-rgb: #{hexToRGB($color-grey-light-1)};
+	--color-grey-light-2-rgb: #{hexToRGB($color-grey-light-2)};
+	--color-grey-light-3-rgb: #{hexToRGB($color-grey-light-3)};
+
 	--color-black: 	#{$color-black};
   --color-grey-20: #{$color-grey-20};
 	--color-grey-40: #{$color-grey-40};
@@ -45,24 +48,55 @@ $color-primary-downloader-1: #f9f7f7;
 	--color-grey-80: #{$color-grey-80};
 	--color-white: 	#{$color-white};
 
+	--color-black:-rgb 	#{hexToRGB($color-black)};
+  --color-grey-20-rgb: #{hexToRGB($color-grey-20)};
+	--color-grey-40-rgb: #{hexToRGB($color-grey-40)};
+	--color-grey-60-rgb: #{hexToRGB($color-grey-60)};
+	--color-grey-80-rgb: #{hexToRGB($color-grey-80)};
+	--color-white:-rgb 	#{hexToRGB($color-white)};
+
 	--color-primary-1: #{$color-primary-1};
 	--color-primary-1-light: #{$color-primary-1-light};
 	--color-primary-2: #{$color-primary-2};
 	--color-primary-3: #{$color-primary-3};
 	--color-primary-4: #{$color-primary-4};
 
+	--color-primary-1-rgb: #{hexToRGB($color-primary-1)};
+	--color-primary-1-light-rgb: #{hexToRGB($color-primary-1-light)};
+	--color-primary-2-rgb: #{hexToRGB($color-primary-2)};
+	--color-primary-3-rgb: #{hexToRGB($color-primary-3)};
+	--color-primary-4-rgb: #{hexToRGB($color-primary-4)};
+
 	--color-primary-resume-1: #{$color-primary-resume-1};
 	--color-primary-resume-2: #{$color-primary-resume-2};
 	--color-primary-resume-3: #{$color-primary-resume-3};
 	--color-primary-resume-4: #{$color-primary-resume-4};
+
+	--color-primary-resume-1-rgb: #{hexToRGB($color-primary-resume-1)};
+	--color-primary-resume-2-rgb: #{hexToRGB($color-primary-resume-2)};
+	--color-primary-resume-3-rgb: #{hexToRGB($color-primary-resume-3)};
+	--color-primary-resume-4-rgb: #{hexToRGB($color-primary-resume-4)};
 
 	--color-primary-bridge-2: #{$color-primary-bridge-2};
 	--color-primary-bridge-4: #{$color-primary-bridge-4};
 	--color-primary-bridge-3: #{$color-primary-bridge-3};
 	--color-primary-bridge-1: #{$color-primary-bridge-1};
 
+	--color-primary-bridge-2-rgb: #{hexToRGB($color-primary-bridge-2)};
+	--color-primary-bridge-4-rgb: #{hexToRGB($color-primary-bridge-4)};
+	--color-primary-bridge-3-rgb: #{hexToRGB($color-primary-bridge-3)};
+	--color-primary-bridge-1-rgb: #{hexToRGB($color-primary-bridge-1)};
+
 	--color-primary-downloader-1: #{$color-primary-downloader-1};
 	--color-primary-downloader-3: #{$color-primary-downloader-3};
 	--color-primary-downloader-2: #{$color-primary-downloader-2};
 	--color-primary-downloader-4: #{$color-primary-downloader-4};
+	
+	--color-primary-downloader-1-rgb: #{hexToRGB($color-primary-downloader-1)};
+	--color-primary-downloader-3-rgb: #{hexToRGB($color-primary-downloader-3)};
+	--color-primary-downloader-2-rgb: #{hexToRGB($color-primary-downloader-2)};
+	--color-primary-downloader-4-rgb: #{hexToRGB($color-primary-downloader-4)};
+
+
+
 }

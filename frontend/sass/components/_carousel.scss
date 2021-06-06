@@ -48,7 +48,7 @@ $carousel-grid-width: calc(
 		cursor: pointer;
 		width: $navbar__logo-width / 2;
 		height: $navbar__logo-width / 2;
-		fill: var(--color-primary-4);
+		fill: rgba(#{var(--color-primary-3-rgb)}, .5);
 
 		&--active {
 			fill: var(--color-primary-2) !important;
@@ -364,7 +364,7 @@ $carousel-grid-width: calc(
 	}
 
 	& .card__close {
-    transform: translate(5%,85%);
+    transform: translate(5%,80%);
 		top: 0;
     left: auto;
     right: 0;

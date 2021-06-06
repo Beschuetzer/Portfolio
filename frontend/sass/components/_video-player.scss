@@ -8,7 +8,7 @@
 		transform: translate(-50%, -50%);
 		height: $card-pause-and-stop-width;
 		width: $card-pause-and-stop-width;
-		fill: rgba($color-primary-bridge-2, 1);
+		fill: var(--color-primary-2);
 		z-index: 10;
 		position: absolute;
 		transition: opacity $animation-duration $animation-easing-standard,
