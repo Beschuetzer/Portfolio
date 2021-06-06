@@ -56,7 +56,7 @@ const PlaylistSyncer = () => {
   return (
     <CSharpLayout
       sections={sections}
-      pageName="PlaylistSyncer"
+      pageName="playlist-syncer"
       sourceCodeLink="https://github.com/Beschuetzer/Playlist-syncer"
     >
       <section className="csharp__carousel">

@@ -15,7 +15,7 @@ class Section extends React.Component {
 					<div className={`${pageName}__content`}>
 						<div className={`${pageName}__header`}>
 							<h3 className={`heading--three ${pageName}__header-title`}>
-								{capitalize(name)?.replace("-", " ")}
+								{capitalize(name, true)}
 							</h3>
 							{headerSideContent ? headerSideContent : null}
 						</div>
