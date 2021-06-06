@@ -301,7 +301,7 @@
 	&__page-nav-link {
 		// @include link-animating;
 		cursor: pointer;
-		opacity: 0.85;
+		opacity: $resume-color-opacity;
 		font-size: $default-font-size * 1;
 		color: var(--bridge-page-nav-link-color);
 		transition: color $animation-duration / 2 $animation-easing-standard,

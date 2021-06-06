@@ -2564,7 +2564,7 @@ body {
   position: absolute;
   color: var(--color-primary-1);
   z-index: 10000;
-  background: rgba(var(--color-primary-1-rgb), 0.85);
+  background: rgba(var(--color-primary-1-rgb), 0.875);
   padding: 1.6rem;
   transition: opacity 0.5s ease;
 }
@@ -3297,7 +3297,7 @@ div.references__name {
 }
 .bridge__page-nav-link {
   cursor: pointer;
-  opacity: 0.85;
+  opacity: 0.875;
   font-size: 1.6rem;
   color: var(--bridge-page-nav-link-color);
   transition: color 0.25s ease, transform 0.25s ease;

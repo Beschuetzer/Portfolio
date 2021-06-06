@@ -274,7 +274,7 @@ $carousel-grid-width: calc(
 			position: absolute;
 			color: var(--color-primary-1);
 			z-index: 10000;
-			background: rgba(var(--color-primary-1-rgb), 0.85);
+			background: rgba(var(--color-primary-1-rgb), $resume-color-opacity);
 			padding: $default-font-size;
 			transition:     
 				opacity $animation-duration $animation-easing-standard,
