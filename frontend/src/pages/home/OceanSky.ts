@@ -244,8 +244,8 @@ function render() {
   handleCubeRotation(time);
 	// handleCubeBobbing(time);
 	if (clouds) clouds.forEach(cloud => {
-		cloud.rotation.z += .00025;
-		cloud.position.z -= .5;
+		cloud.rotation.z += .0005;
+		cloud.position.z -= .9;
 	})
 
 	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;

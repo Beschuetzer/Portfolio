@@ -48,10 +48,14 @@ $carousel-grid-width: calc(
 		cursor: pointer;
 		width: $navbar__logo-width / 2;
 		height: $navbar__logo-width / 2;
-		fill: rgba(#{var(--color-primary-3-rgb)}, .5);
+		fill: rgba(#{var(--color-primary-1-rgb)}, var(--carousel-dot-alpha, .5));
+
+		&:hover {
+			--carousel-dot-alpha: .75;
+		}
 
 		&--active {
-			fill: var(--color-primary-2) !important;
+			fill: var(--color-primary-4-rgb) !important;
 		}
 	}
 
@@ -82,7 +86,7 @@ $carousel-grid-width: calc(
 		& svg {
 			width: $navbar__logo-width;
 			height: $navbar__logo-width;
-			fill: var(--color-primary-4);
+			fill: rgba(var(--color-primary-1-rgb), .5);
 
 			@include respond(nav-switch) {
 				width: $default-font-size * 5;
@@ -92,7 +96,7 @@ $carousel-grid-width: calc(
 			&:hover,
 			&:active,
 			&:focus {
-				fill: var(--color-primary-3);
+				fill: var(--color-primary-4);
 			}
 		}
 	}
@@ -270,7 +274,7 @@ $carousel-grid-width: calc(
 			position: absolute;
 			color: var(--color-primary-1);
 			z-index: 10000;
-			background: rgba($color-primary-downloader-4, 0.5);
+			background: rgba(var(--color-primary-1-rgb), 0.85);
 			padding: $default-font-size;
 			transition:     
 				opacity $animation-duration $animation-easing-standard,

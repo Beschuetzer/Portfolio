@@ -27,10 +27,15 @@ $color-primary-bridge-2: #f59229;
 $color-primary-bridge-3: #e4e0c9;
 $color-primary-bridge-4: #f5f1db;
 
-$color-primary-downloader-4: #112d4e;
-$color-primary-downloader-3: #3f72af;
-$color-primary-downloader-2: #dbe2ef;
 $color-primary-downloader-1: #f9f7f7;
+$color-primary-downloader-2: #dbe2ef;
+$color-primary-downloader-3: #3f72af;
+$color-primary-downloader-4: #112d4e;
+
+$color-primary-playlist-syncer-1: #ffc996;
+$color-primary-playlist-syncer-2: #ff8474;
+$color-primary-playlist-syncer-3: #9f5f80;
+$color-primary-playlist-syncer-4: #583d72;
 
 :root {
 	--color-grey-light-1: #{$color-grey-light-1};
@@ -97,6 +102,14 @@ $color-primary-downloader-1: #f9f7f7;
 	--color-primary-downloader-2-rgb: #{hexToRGB($color-primary-downloader-2)};
 	--color-primary-downloader-4-rgb: #{hexToRGB($color-primary-downloader-4)};
 
-
+	--color-primary-playlist-syncer-1: #{$color-primary-playlist-syncer-1};
+	--color-primary-playlist-syncer-3: #{$color-primary-playlist-syncer-3};
+	--color-primary-playlist-syncer-2: #{$color-primary-playlist-syncer-2};
+	--color-primary-playlist-syncer-4: #{$color-primary-playlist-syncer-4};
+	
+	--color-primary-playlist-syncer-1-rgb: #{hexToRGB($color-primary-playlist-syncer-1)};
+	--color-primary-playlist-syncer-3-rgb: #{hexToRGB($color-primary-playlist-syncer-3)};
+	--color-primary-playlist-syncer-2-rgb: #{hexToRGB($color-primary-playlist-syncer-2)};
+	--color-primary-playlist-syncer-4-rgb: #{hexToRGB($color-primary-playlist-syncer-4)};
 
 }

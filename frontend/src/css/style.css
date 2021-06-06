@@ -52,6 +52,14 @@
   --color-primary-downloader-3-rgb: 63, 114, 175;
   --color-primary-downloader-2-rgb: 219, 226, 239;
   --color-primary-downloader-4-rgb: 17, 45, 78;
+  --color-primary-playlist-syncer-1: #ffc996;
+  --color-primary-playlist-syncer-3: #9f5f80;
+  --color-primary-playlist-syncer-2: #ff8474;
+  --color-primary-playlist-syncer-4: #583d72;
+  --color-primary-playlist-syncer-1-rgb: 255, 201, 150;
+  --color-primary-playlist-syncer-3-rgb: 159, 95, 128;
+  --color-primary-playlist-syncer-2-rgb: 255, 132, 116;
+  --color-primary-playlist-syncer-4-rgb: 88, 61, 114;
 }
 
 :root {
@@ -2374,10 +2382,13 @@ body {
   cursor: pointer;
   width: 3.5vw;
   height: 3.5vw;
-  fill: rgba(var(--color-primary-3-rgb), 0.5);
+  fill: rgba(var(--color-primary-1-rgb), var(--carousel-dot-alpha, 0.5));
+}
+.carousel__dot:hover {
+  --carousel-dot-alpha: .75;
 }
 .carousel__dot--active {
-  fill: var(--color-primary-2) !important;
+  fill: var(--color-primary-4-rgb) !important;
 }
 .carousel__arrow-button {
   position: relative;
@@ -2404,7 +2415,7 @@ body {
 .carousel__arrow-button svg {
   width: 7vw;
   height: 7vw;
-  fill: var(--color-primary-4);
+  fill: rgba(var(--color-primary-1-rgb), 0.5);
 }
 @media only screen and (max-width: 68.75em) {
   .carousel__arrow-button svg {
@@ -2413,7 +2424,7 @@ body {
   }
 }
 .carousel__arrow-button svg:hover, .carousel__arrow-button svg:active, .carousel__arrow-button svg:focus {
-  fill: var(--color-primary-3);
+  fill: var(--color-primary-4);
 }
 .carousel__item {
   pointer-events: none;
@@ -2553,7 +2564,7 @@ body {
   position: absolute;
   color: var(--color-primary-1);
   z-index: 10000;
-  background: rgba(17, 45, 78, 0.5);
+  background: rgba(var(--color-primary-1-rgb), 0.85);
   padding: 1.6rem;
   transition: opacity 0.5s ease;
 }
