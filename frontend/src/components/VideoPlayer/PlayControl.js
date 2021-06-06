@@ -11,12 +11,18 @@ const PlayControl = ({
 	stoppedClassname,
 	handleVideoEnd,
 	handleVideoProgress,
+	functionToGetContainer,
 }) => {
   let hasProgressEventListener = false;
 
   const handlePlayVideo = (e) => {
-		const container = containerRef?.current;
+
+		let container = containerRef && containerRef.current ? containerRef.current : null;
+		
+		if (!container && functionToGetContainer) container = functionToGetContainer(e);
+
 		if (container?.classList.contains(stoppedClassname))	e.stopPropagation();
+
 		playVideo(videoRef.current, container);
 	}
 

@@ -21,7 +21,6 @@ const StopControl = ({
 
 		let container = containerRef && containerRef.current ? containerRef.current : null;
 		
-		debugger;
 		if (!container && functionToGetContainer) container = functionToGetContainer(e);
 		pauseVideo(video, container);
 	}

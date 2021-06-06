@@ -9,12 +9,18 @@ const RestartControl = ({
 	playingClassname,
 	doneClassname,
 	stoppedClassname,
+	functionToGetContainer,
 }) => {
   let hasProgressEventListener = false;
 
 	const handleRestartVideo = (e) => {
 		e.stopPropagation();
-		restartVideo(videoRef.current, containerRef ? containerRef.current : null);
+
+		let container = containerRef && containerRef.current ? containerRef.current : null;
+		
+		if (!container && functionToGetContainer) container = functionToGetContainer(e);
+
+		restartVideo(videoRef.current, container);
 	}
 
 	const restartVideo = (video, container) => {

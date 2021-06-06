@@ -9,10 +9,16 @@ const PauseControl = ({
 	playingClassname,
 	doneClassname,
 	stoppedClassname,
+	functionToGetContainer,
 }) => {
   const handlePauseVideo = (e) => {
 		e.stopPropagation();
-		pauseVideo(videoRef.current, containerRef ? containerRef.current : null);
+
+		let container = containerRef && containerRef.current ? containerRef.current : null;
+		
+		if (!container && functionToGetContainer) container = functionToGetContainer(e);
+
+		pauseVideo(videoRef.current, container);
 	}
 
   const pauseVideo = (video, container) => {
