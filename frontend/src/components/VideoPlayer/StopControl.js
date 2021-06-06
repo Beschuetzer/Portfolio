@@ -8,16 +8,22 @@ const StopControl = ({
 	playingClassname,
 	doneClassname,
 	stoppedClassname,
+	functionToGetContainer = null,
 }) => {
   const handleStopVideo = (e) => {
 		e.stopPropagation();
-		stopVideo(videoRef.current);
+		stopVideo(videoRef.current, e);
 	}
 
-	const stopVideo = (video) => {
+	const stopVideo = (video, e) => {
 		if (!video) return;
 		video.currentTime = 0;
-		pauseVideo(video, containerRef ? containerRef.current : null);
+
+		let container = containerRef && containerRef.current ? containerRef.current : null;
+		
+		debugger;
+		if (!container && functionToGetContainer) container = functionToGetContainer(e);
+		pauseVideo(video, container);
 	}
 
   const pauseVideo = (video, container) => {

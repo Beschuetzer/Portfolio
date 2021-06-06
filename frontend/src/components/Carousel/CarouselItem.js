@@ -50,6 +50,10 @@ const CarouselItem = ({
 	const progressBarRef = useRef();
 	const isVideo = itemSrc.match(getRegexStringFromStringArray(videoExtentions));
 
+	function functionToGetContainer (e) {
+		return e.currentTarget.parentNode.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`);		
+	}
+
 	function getRegexStringFromStringArray(fileExtensions) {
 		const mapped = fileExtensions.map((ext, index) => {
 			let orChar = "|";
@@ -179,6 +183,7 @@ const CarouselItem = ({
 					stoppedClassname={STOPPED_CLASSNAME}
 					handleVideoEnd={handleVideoEnd}
 					handleVideoProgress={onVideoProgress}
+					functionToGetContainer={functionToGetContainer}
 				/>
 
 				<StopControl
@@ -192,6 +197,7 @@ const CarouselItem = ({
 					playingClassname={PLAYING_CLASSNAME}
 					doneClassname={DONE_CLASSNAME}
 					stoppedClassname={STOPPED_CLASSNAME}
+					functionToGetContainer={functionToGetContainer}
 				/>
 
 				<PauseControl
@@ -205,6 +211,7 @@ const CarouselItem = ({
 					playingClassname={PLAYING_CLASSNAME}
 					doneClassname={DONE_CLASSNAME}
 					stoppedClassname={STOPPED_CLASSNAME}
+					functionToGetContainer={functionToGetContainer}
 				/>
 
 				<RestartControl
@@ -219,6 +226,7 @@ const CarouselItem = ({
 					playingClassname={PLAYING_CLASSNAME}
 					doneClassname={DONE_CLASSNAME}
 					stoppedClassname={STOPPED_CLASSNAME}
+					functionToGetContainer={functionToGetContainer}
 				/>
 
 				<CloseControl

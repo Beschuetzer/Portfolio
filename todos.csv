@@ -67,4 +67,4 @@ playlist-sync:
 -have close control take up all of fg-video screen (can remove the normal close click handler for video if it works)
 
 
-
+-impolement work-around for useRef issue by just getting container erference based on the parentElement of e.curentTarget for pause, stop, and restart controls where necessary
