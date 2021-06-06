@@ -1,3 +1,4 @@
+import { Dispatch } from 'react';
 import github from '../apis/github';
 import {
   GET_REPOSITORIES,
@@ -20,7 +21,7 @@ import {
   SET_IS_CARD_VIDEO_OPEN,
 } from './types';
     
-export const getRepositories = () => async (dispatch, getStore) => {
+export const getRepositories = () => async (dispatch: Dispatch<any>) => {
   // const schema = `
   //   query {
   //     __schema {
@@ -179,15 +180,19 @@ export const getRepositories = () => async (dispatch, getStore) => {
 // 96: {name: "vulnerabilityAlerts"}
 // 97: {name: "watchers"}
 
-export const clickSkill = (target) => {
-  const skillsToReplace = {
+export const clickSkill = (target: HTMLElement) => {
+  interface SkillsToReplaceMap {
+    [key: string]: string,
+  }
+
+  const skillsToReplace: SkillsToReplaceMap = {
     'c#': 'csharp',
     'socket.io': 'socketio',
     'dsa': 'data-structures-and-algorithms',
   };
   let skill = null;
   if (target) {
-    skill = target.textContent.replace(':', '').toLowerCase();
+    skill = (target as any).textContent.replace(':', '').toLowerCase();
     if (skillsToReplace[skill]) skill = skillsToReplace[skill];
   }
   return {
@@ -196,112 +201,112 @@ export const clickSkill = (target) => {
   }
 }
 
-export const addRepoToReposToDisplay = (repo) => {
+export const addRepoToReposToDisplay = (repo: any) => {
   return {
     type: ADD_REPO,
     payload: repo,
   }
 }
 
-export const setIsAnimating = (value) => {
+export const setIsAnimating = (value: boolean) => {
   return {
     type: SET_IS_ANIMATING,
     payload: value,
   }
 }
 
-export const setIsMobile = (isMobile, viewPortWidth) => {
+export const setIsMobile = (isMobile: boolean, viewPortWidth: number) => {
   return {
     type: SET_IS_MOBILE,
     payload: {isMobile, viewPortWidth},
   }
 }
 
-export const setViewPortWidth = (value) => {
+export const setViewPortWidth = (value: boolean) => {
   return {
     type: SET_VIEW_PORT_WIDTH,
     payload: value,
   }
 }
 
-export const setSectionsToSkipAnimation = (value) => {
+export const setSectionsToSkipAnimation = (value: []) => {
   return {
     type: SET_SECTIONS_TO_SKIP_ANIMATION,
     payload: value,
   }
 }
 
-export const setPreviousUrl = (url) =>{
+export const setPreviousUrl = (url: string) =>{
   return {
     type: SET_PREVIOUS_URL,
     payload: url,
   }
 }
 
-export const setScrollPercent = (percentAsString) => {
+export const setScrollPercent = (percent: string) => {
   return {
     type: SET_SCROLL_PERCENT,
-    payload: percentAsString,
+    payload: percent,
   }
 }
 
-export const setSounds = (sounds) => {
+export const setSounds = (sounds: []) => {
   return {
     type: SET_SOUNDS,
     payload: sounds,
   }
 }
 
-export const setClickedBridgeInfoButtonCount = (value) => {
+export const setClickedBridgeInfoButtonCount = (value: number) => {
   return {
     type: SET_CLICKED_BRIDGE_INFO_BUTTON_COUNT,
     payload: value,
   }
 } 
 
-export const setCurrentBridgeSection = (value) => {
+export const setCurrentBridgeSection = (value: number) => {
   return {
     type: SET_CURRENT_BRIDGE_SECTION,
     payload: value,
   }
 }
 
-export const setBridgeSections = (value) => {
+export const setBridgeSections = (value: []) => {
   return {
     type: SET_BRIDGE_SECTIONS,
     payload: value,
   }
 }
 
-export const setHeaderHeight = (value) => {
+export const setHeaderHeight = (value: number) => {
   return {
     type: SET_HEADER_HEIGHT,
     payload: value,
   }
 }
 
-export const setLastSecondRowCardNumber = (value) => {
+export const setLastSecondRowCardNumber = (value: number) => {
   return {
     type: SET_LAST_SECOND_ROW_CARD_NUMBER,
     payload: value,
   }
 }
 
-export const setBridgeCards = (value) => {
+export const setBridgeCards = (value: []) => {
   return {
     type: SET_BRIDGE_CARDS,
     payload: value,
   }
 }
 
-export const setHasClickedALink = (value) => {
+export const setHasClickedALink = (value: boolean) => {
   return {
     type: SET_HAS_CLICKED_A_LINK,
     payload: value,
   }
 }
 
-export const setIsCardVideoOpen = (value) => {
+export const setIsCardVideoOpen = (value: boolean) => {
   return {
     type: SET_IS_CARD_VIDEO_OPEN,
     payload: value,
