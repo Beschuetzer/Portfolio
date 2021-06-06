@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, RootStateOrAny } from "react-redux";
 import { getRepositories } from "../../actions";
+import useSky from './useSky';
 
-import useSky from './useSky.ts';
+interface HomeProps {
+	repos: [];
+	getRepositories: () => void;
+}
 
-const Home = ({repos, getRepositories}) => {
+const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 	//Getting Repos
 	useEffect(() => {
 		if (!repos || repos.length === 0) getRepositories();
@@ -28,7 +32,7 @@ const Home = ({repos, getRepositories}) => {
 	);
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: RootStateOrAny) => {
 	return {
 		repos: state.general.repos,
 	};
