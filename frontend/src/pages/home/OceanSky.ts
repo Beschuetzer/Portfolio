@@ -29,22 +29,22 @@ let cubeCanReset = false;
 let cubeTimeOutIdX: any;
 let cubeTimeOutIdY: any;
 
-const cubeMaterial1 =	new THREE.MeshPhongMaterial({
+const cubeMaterial1 = new THREE.MeshPhongMaterial({
 	map: new THREE.TextureLoader().load(cubeMap1),
 });
-const cubeMaterial2 =	new THREE.MeshPhongMaterial({
+const cubeMaterial2 = new THREE.MeshPhongMaterial({
 	map: new THREE.TextureLoader().load(cubeMap2),
 });
-const cubeMaterial3 =	new THREE.MeshPhongMaterial({
+const cubeMaterial3 = new THREE.MeshPhongMaterial({
 	map: new THREE.TextureLoader().load(cubeMap3),
 });
-const cubeMaterial4 =	new THREE.MeshPhongMaterial({
+const cubeMaterial4 = new THREE.MeshPhongMaterial({
 	map: new THREE.TextureLoader().load(cubeMap4),
 });
-const cubeMaterial5 =	new THREE.MeshPhongMaterial({
+const cubeMaterial5 = new THREE.MeshPhongMaterial({
 	map: new THREE.TextureLoader().load(cubeMap5),
 });
-const cubeMaterial6 =	new THREE.MeshPhongMaterial({
+const cubeMaterial6 = new THREE.MeshPhongMaterial({
 	map: new THREE.TextureLoader().load(cubeMap6Rotated),
 });
 
@@ -54,16 +54,14 @@ const parameters = {
 };
 
 const sunColor = new THREE.Color(0xf4d262);
-const cloudColor = new THREE.Color(0xff9999);
 const waterColor = new THREE.Color(0x8ac6d0);
-const cloudTransparency = .55;
-const skyTurbidity = 10;   //(10)
-const skyRayleigh = 5 //(2)
-const skyMieCoefficient = .0025; //(.005)
-const skyMieDirectionalG = .8; //(.8)
+const cloudTransparency = 0.55;
+const skyTurbidity = 10; //(10)
+const skyRayleigh = 5; //(2)
+const skyMieCoefficient = 0.0025; //(.005)
+const skyMieDirectionalG = 0.8; //(.8)
 
-
-const spotLightStrength = .8;
+const spotLightStrength = 0.8;
 const spotLightX = 0;
 const spotLightY = 100;
 const spotLightZ = 300;
@@ -76,7 +74,7 @@ const waterAnimationSpeed = 0.75;
 const orbitControlsMaxPolarAngleFactor = 0.495;
 
 const cubeSize = 33;
-const cubeRotationSpeed = .0066;
+const cubeRotationSpeed = 0.0066;
 const cubeRotationDirectionTransitionTime = 250;
 const cubeStartingHeight = 15;
 const cubeMaxHeight = 17.5;
@@ -84,7 +82,30 @@ const cubeMinHeight = 12.5;
 const cubeBobbingDirectionIsUp = true;
 const cubeBobbingSpeed = Math.abs(cubeStartingHeight - cubeMaxHeight) / 90;
 
-export function  init() {
+const cloudColor = new THREE.Color(0xff9999);
+const cloudWidthSegments = 5000;
+const cloudXRotationStart = 1.16;
+const cloudYRotationStart = 0.12;
+const cloudZRotationStart = Math.random() * 2 * Math.PI;
+const cloudXPositionMax = 800;
+const cloudXPositionMin = 400;
+const cloudYPosition = 1300;
+const cloudZPositionMax = 500;
+const cloudZPositionMin = 500;
+const cloudZRotationRateChange = 0.0005;
+const cloudZPositionRateChange = 0.9;
+
+function getCloudXPosition() {
+	return Math.random() * cloudXPositionMax - cloudXPositionMin;
+}
+function getCloudYPosition() {
+	return cloudYPosition;
+}
+function getCloudZPosition() {
+	return Math.random() * cloudZPositionMax - cloudZPositionMin;
+}
+
+export function init() {
 	//
 
 	renderer = new THREE.WebGLRenderer();
@@ -111,7 +132,10 @@ export function  init() {
 
 	// Water
 
-	const waterGeometry = new THREE.PlaneGeometry(waterWidthSegments, waterHeightSegments);
+	const waterGeometry = new THREE.PlaneGeometry(
+		waterWidthSegments,
+		waterHeightSegments,
+	);
 
 	water = new Water(waterGeometry, {
 		textureWidth: 512,
@@ -169,7 +193,14 @@ export function  init() {
 
 	//
 
-	const materials = [cubeMaterial1, cubeMaterial2, cubeMaterial3, cubeMaterial4, cubeMaterial5, cubeMaterial6];
+	const materials = [
+		cubeMaterial1,
+		cubeMaterial2,
+		cubeMaterial3,
+		cubeMaterial4,
+		cubeMaterial5,
+		cubeMaterial6,
+	];
 
 	const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
 	const material = new THREE.MeshPhongMaterial({
@@ -240,13 +271,14 @@ export function stopKey() {
 }
 
 function render() {
-	const time = i += cubeRotationSpeed;
-  handleCubeRotation(time);
+	const time = (i += cubeRotationSpeed);
+	handleCubeRotation(time);
 	// handleCubeBobbing(time);
-	if (clouds) clouds.forEach(cloud => {
-		cloud.rotation.z += .0005;
-		cloud.position.z -= .9;
-	})
+	if (clouds)
+		clouds.forEach((cloud) => {
+			cloud.rotation.z += cloudZRotationRateChange;
+			cloud.position.z -= cloudZPositionRateChange;
+		});
 
 	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
 
@@ -254,71 +286,69 @@ function render() {
 }
 
 function handleCubeBobbing(time: number) {
-	if (mesh.position.y < cubeMaxHeight && cubeBobbingDirectionIsUp) mesh.position.y += cubeBobbingSpeed;
+	if (mesh.position.y < cubeMaxHeight && cubeBobbingDirectionIsUp)
+		mesh.position.y += cubeBobbingSpeed;
 	else {
 	}
 }
 
 function handleCubeRotation(time: number) {
 	if (mesh.rotation.x < Math.PI * 2 && cubeCanRotateX) {
-    mesh.rotation.x = time;
-    clearTimeout(cubeTimeOutIdX);
-    cubeTimeOutIdX = setTimeout(() => {
-      cubeCanRotateY = true;
+		mesh.rotation.x = time;
+		clearTimeout(cubeTimeOutIdX);
+		cubeTimeOutIdX = setTimeout(() => {
+			cubeCanRotateY = true;
 			cubeCanRotateX = false;
 			cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6);
 			i = 0;
-    }, cubeRotationDirectionTransitionTime);
-  }
+		}, cubeRotationDirectionTransitionTime);
+	}
 
-  if (cubeCanRotateY && mesh.rotation.y > -(Math.PI * 2))  {
-    mesh.rotation.y = -time;
-    clearTimeout(cubeTimeOutIdY);
-    cubeTimeOutIdY = setTimeout(() => {
+	if (cubeCanRotateY && mesh.rotation.y > -(Math.PI * 2)) {
+		mesh.rotation.y = -time;
+		clearTimeout(cubeTimeOutIdY);
+		cubeTimeOutIdY = setTimeout(() => {
 			cubeCanRotateY = false;
-      cubeCanReset = true;
-    }, cubeRotationDirectionTransitionTime);
-  }
+			cubeCanReset = true;
+		}, cubeRotationDirectionTransitionTime);
+	}
 
-  if (cubeCanReset) {
+	if (cubeCanReset) {
 		cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6Rotated);
 		mesh.rotation.x = 0;
-    mesh.rotation.y = 0;
-    cubeCanRotateY = false;
-    cubeCanRotateX = true;
-    cubeCanReset = false;
+		mesh.rotation.y = 0;
+		cubeCanRotateY = false;
+		cubeCanRotateX = true;
+		cubeCanReset = false;
 		i = 0;
-  }
+	}
 }
 
 function addCloud() {
 	let clouds: any[] = [];
-	let cloudLoader = new THREE.TextureLoader()
-	cloudLoader.load(cloud, function(texture) {
-		const cloudGeo = new THREE.PlaneGeometry(5000, 5000);
+	let cloudLoader = new THREE.TextureLoader();
+	cloudLoader.load(cloud, function (texture) {
+		const cloudGeo = new THREE.PlaneGeometry(cloudWidthSegments, cloudWidthSegments);
 		const cloudMaterial = new THREE.MeshBasicMaterial({
 			map: texture,
 			transparent: true,
 			color: cloudColor,
 		});
 
-		for (let p=0; p < 50; p++) {
+		for (let p = 0; p < 50; p++) {
 			let cloud = new THREE.Mesh(cloudGeo, cloudMaterial);
 			cloud.position.set(
-				// 0,
-				// 400,
-				// -1000,
-				Math.random()*800 -400,
-    1300,
-    Math.random()*500-500
-			)
-			cloud.rotation.x = 1.16;
-			cloud.rotation.y = 0.12;
-			cloud.rotation.z = Math.random()*2*Math.PI;
+				getCloudXPosition(),
+				getCloudYPosition(),
+				getCloudZPosition(),
+			);
+			cloud.rotation.x = cloudXRotationStart;
+			cloud.rotation.y = cloudYRotationStart;
+			cloud.rotation.z = cloudZRotationStart;
 			cloud.material.opacity = cloudTransparency;
 			scene.add(cloud);
 			clouds.push(cloud);
 		}
-	})
+	});
 	return clouds;
 }

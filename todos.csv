@@ -51,5 +51,3 @@ OPTIMIZATIONS:
 
 -add svgs to csharp layouts
 -create a sass function that can insert colors into the svgs and return data
--get more meaningful playlist syncer imgs (like an image of the problem)?
--redo video of downloader
