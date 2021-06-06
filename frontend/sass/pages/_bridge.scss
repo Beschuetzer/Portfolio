@@ -126,7 +126,8 @@
 			background-image: 
 			$bridge-card-section-1-gradient
 			,
-				url($bridge-section-1-background)
+				url(getSvgBackground(bridge-section-1, $color-bridge-section-svg-1, $color-primary-bridge-2));
+				// url($bridge-section-1-background)
 			;
 
 			@include respond(tab-land) {
