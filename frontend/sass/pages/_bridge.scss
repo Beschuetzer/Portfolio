@@ -154,7 +154,7 @@
 				url(getSvgBackground(
 					bridge-section-2,
 					$color-bridge-section-svg-1,
-					$color-primary-bridge-2
+					$color-bridge-section-svg-1,
 				));
 			background-size: cover;
 
@@ -204,7 +204,11 @@
 
 		&:nth-of-type(3) {
 			background-image: $bridge-card-section-3-gradient,
-				url($bridge-section-3-background);
+			url(getSvgBackground(
+				bridge-section-3,
+				$color-bridge-section-svg-1,
+				$color-bridge-section-svg-2,
+			));
 
 			@include respond(tab-land) {
 				background-image: $bridge-card-section-3-gradient;
