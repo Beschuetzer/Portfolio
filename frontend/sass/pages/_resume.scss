@@ -185,9 +185,9 @@
 		}
 	}
 	& .heading {
-		text-shadow: getTextShadow(distant, rgba($color-grey-20,.70), $color-primary-2);
+		text-shadow: getTextShadow(distant, rgba(var(--color-primary-1-rgb),1), var(--color-primary-2-rgb));
 		// text-shadow: getTextShadow(soft-emboss, $color-primary-3);
-		color: var(--color-primary-3);
+		color: var(--color-primary-1);
 	}
 }
 

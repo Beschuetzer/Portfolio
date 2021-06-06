@@ -3,7 +3,7 @@
 	width: 100vw;
 	font-size: $default-font-size * 5;
 	font-weight: 400;
-	text-shadow: getTextShadow('close', $color-primary-1, $color-primary-2);
+	text-shadow: getTextShadow(close, var(--color-primary-1-rgb), var(--color-primary-2-rgb));
 
 	& > * {
 		z-index: 1;
