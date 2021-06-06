@@ -7,8 +7,10 @@ import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
 import Video from "../VideoPlayer/Video";
 import { CAROUSEL_VIDEO_CLASSNAME } from "./util";
-import { getIsVideoPlaying, getPercentOfProgressBar } from "../VideoPlayer/utils";
-
+import {
+	getIsVideoPlaying,
+	getPercentOfProgressBar,
+} from "../VideoPlayer/utils";
 
 const FULLSCREEN_CLASSNAME = "full-screen";
 const FULLSCREEN_PARENT_CLASSNAME = "carousel__item--full-screen";
@@ -16,7 +18,7 @@ const PLAYING_CLASSNAME = "carousel__item--playing";
 const STOPPED_CLASSNAME = "carousel__item--stopped";
 const DONE_CLASSNAME = "carousel__item--done";
 const CLASSNAMES_TO_REMOVE = [
-	FULLSCREEN_PARENT_CLASSNAME, 
+	FULLSCREEN_PARENT_CLASSNAME,
 	FULLSCREEN_CLASSNAME,
 	PLAYING_CLASSNAME,
 	STOPPED_CLASSNAME,
@@ -57,6 +59,14 @@ const CarouselItem = ({
 		const result = ".+" + mapped.join("") + "$";
 		return result;
 	}
+
+	const handleVideoEnd = (e) => {
+		const video = videoRef?.current;
+		if (!video) return;
+		video.parentNode.classList.add(DONE_CLASSNAME);
+		video.parentNode.classList.remove(PLAYING_CLASSNAME);
+		video.removeEventListener("ended", handleVideoEnd);
+	};
 
 	const onVideoProgress = (e) => {
 		const video = e.target;
@@ -105,6 +115,7 @@ const CarouselItem = ({
 			} else if (!item.classList.contains(PLAYING_CLASSNAME)) {
 				item.classList.add(PLAYING_CLASSNAME);
 				video.play();
+				video.addEventListener("ended", handleVideoEnd);
 				video.addEventListener("timeupdate", onVideoProgress);
 			}
 		}
@@ -119,7 +130,6 @@ const CarouselItem = ({
 		/>
 	);
 
-	//TODO: come ack to this line:
 	if (isVideo) {
 		mediaToAdd = (
 			<React.Fragment>
@@ -143,54 +153,72 @@ const CarouselItem = ({
 	}
 
 	const renderControls = (isVideo) => {
-		if (!isVideo) 
-		return (
-			<CloseControl
-				xlinkHref={videoCloseControlSvgXLinkHref}
-				videoRef={videoRef}
-				containerRef={containerRef}
-				classNamesToRemove={videoCloseControlClassesToRemove}
-			/>
-		);
+		if (!isVideo)
+			return (
+				<CloseControl
+					xlinkHref={videoCloseControlSvgXLinkHref}
+					videoRef={videoRef}
+					containerRef={containerRef}
+					classNamesToRemove={videoCloseControlClassesToRemove}
+				/>
+			);
 
 		return (
 			<React.Fragment>
 				<PlayControl
 					xlinkHref={videoPlayControlSvgXLinkHref}
 					videoRef={videoRef}
-					containerRef={{current: containerRef?.current?.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`)}}
+					containerRef={{
+						current: containerRef?.current?.querySelector(
+							`.${CAROUSEL_VIDEO_CLASSNAME}`,
+						),
+					}}
 					progressBarRef={progressBarRef}
-					playingClassname = {PLAYING_CLASSNAME}
-					doneClassname = {DONE_CLASSNAME}
-					stoppedClassname = {STOPPED_CLASSNAME}
+					playingClassname={PLAYING_CLASSNAME}
+					doneClassname={DONE_CLASSNAME}
+					stoppedClassname={STOPPED_CLASSNAME}
+					handleVideoEnd={handleVideoEnd}
+					handleVideoProgress={onVideoProgress}
 				/>
 
 				<StopControl
 					xlinkHref={videoStopControlSvgXLinkHref}
 					videoRef={videoRef}
-					containerRef={{current: containerRef?.current?.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`)}}
-					playingClassname = {PLAYING_CLASSNAME}
-					doneClassname = {DONE_CLASSNAME}
-					stoppedClassname = {STOPPED_CLASSNAME}
+					containerRef={{
+						current: containerRef?.current?.querySelector(
+							`.${CAROUSEL_VIDEO_CLASSNAME}`,
+						),
+					}}
+					playingClassname={PLAYING_CLASSNAME}
+					doneClassname={DONE_CLASSNAME}
+					stoppedClassname={STOPPED_CLASSNAME}
 				/>
 
 				<PauseControl
 					xlinkHref={videoPauseControlSvgXLinkHref}
 					videoRef={videoRef}
-					containerRef={{current: containerRef?.current?.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`)}}
-					playingClassname = {PLAYING_CLASSNAME}
-					doneClassname = {DONE_CLASSNAME}
-					stoppedClassname = {STOPPED_CLASSNAME}
+					containerRef={{
+						current: containerRef?.current?.querySelector(
+							`.${CAROUSEL_VIDEO_CLASSNAME}`,
+						),
+					}}
+					playingClassname={PLAYING_CLASSNAME}
+					doneClassname={DONE_CLASSNAME}
+					stoppedClassname={STOPPED_CLASSNAME}
 				/>
 
 				<RestartControl
 					xlinkHref={videoRestartControlSvgXLinkHref}
 					videoRef={videoRef}
-					containerRef={{current: containerRef?.current?.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`)}}
+					containerRef={{
+						current: containerRef?.current?.querySelector(
+							`.${CAROUSEL_VIDEO_CLASSNAME}`,
+						),
+					}}
 					progressBarRef={progressBarRef}
-					playingClassname = {PLAYING_CLASSNAME}
-					doneClassname = {DONE_CLASSNAME}
-					stoppedClassname = {STOPPED_CLASSNAME}
+					playingClassname={PLAYING_CLASSNAME}
+					doneClassname={DONE_CLASSNAME}
+					stoppedClassname={STOPPED_CLASSNAME}
 				/>
 
 				<CloseControl
@@ -200,8 +228,8 @@ const CarouselItem = ({
 					classNamesToRemove={videoCloseControlClassesToRemove}
 				/>
 			</React.Fragment>
-		)
-	}
+		);
+	};
 
 	return (
 		<article ref={containerRef} className={itemClassName}>

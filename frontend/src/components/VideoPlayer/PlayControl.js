@@ -9,6 +9,8 @@ const PlayControl = ({
 	playingClassname,
 	doneClassname,
 	stoppedClassname,
+	handleVideoEnd,
+	handleVideoProgress,
 }) => {
   let hasProgressEventListener = false;
 
@@ -30,20 +32,6 @@ const PlayControl = ({
 		
 		video.play();
 	}
-
-  const handleVideoProgress = (e) => {
-		const video = videoRef.current;
-		if (!video) return;
-		const percent = video.currentTime / video.duration;
-		progressBarRef.current.value = percent;
-	}
-
-  const handleVideoEnd = (e) => {
-		containerRef.current?.classList.add(doneClassname);
-		containerRef.current?.classList.remove(playingClassname);
-		const video = e.currentTarget;
-		video.removeEventListener("ended", handleVideoEnd);
-	};
 
   return (
     <div onClick={handlePlayVideo} className={`${className}-parent`}>
