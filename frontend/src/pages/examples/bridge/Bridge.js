@@ -33,6 +33,7 @@ import saveGameVideo from '../../../clips/bridge/saveGame.mp4';
 import SourceCodeLink from "../../../components/SourceCodeLink";
 import CardManager from "../../../components/Card/CardManager";
 import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME } from "./utils";
+import { BODY_BACKGROUND_CSS_CLASSNAME, DISPLAY_NONE_CLASSNAME } from "../../../components/constants";
 
 
 const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount, setCurrentBridgeSection, isMobile, isCardVideoOpen, setIsCardVideoOpen}) => {
@@ -404,7 +405,7 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
       linear-gradient(to right, var(--color-primary-1), var(--color-primary-1));
     `;
 		document.documentElement.style.setProperty(
-			"--body-background",
+			BODY_BACKGROUND_CSS_CLASSNAME,
 			newLinearGradient,
 		);
 		setHasClickedALink(false);
@@ -421,12 +422,12 @@ const Bridge = ({setHasClickedALink, setClickedBridgeInfoButtonCount, clickedBri
 	//adding scroll listener
 	useEffect(() => {
 		const handleScroll = (e) => {
-			if (isMobile) document.querySelector('.hero')?.classList.remove('d-none');
+			if (isMobile) document.querySelector('.hero')?.classList.remove(DISPLAY_NONE_CLASSNAME);
 			if (window.scrollY >= window.innerHeight / 2) {
-				document.querySelector('.arrow-button--right')?.classList.remove('d-none');
+				document.querySelector('.arrow-button--right')?.classList.remove(DISPLAY_NONE_CLASSNAME);
 			}
 			if (window.scrollY >= window.innerHeight) {
-				if (!isMobile) document.querySelector('.hero')?.classList.add('d-none');
+				if (!isMobile) document.querySelector('.hero')?.classList.add(DISPLAY_NONE_CLASSNAME);
 			}
 		}
 

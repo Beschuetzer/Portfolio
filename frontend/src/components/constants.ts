@@ -55,13 +55,14 @@ export const viewPortPixelToRem: {
   },
 }
 
+export const Z_INDEX_HIGHEST_CLASSNAME = 'z-index-highest';
 export const OVERFLOW_HIDDEN_CLASSNAME = 'overflow--hidden';
 export const TRANSPARENT_CLASSNAME = 'transparent';
 export const DISPLAY_NONE_CLASSNAME = 'd-none';
 export const BODY_BACKGROUND_CLASSNAME = 'body-background';
-
-
-
+export const BODY_BACKGROUND_CSS_CLASSNAME = "--body-background";
 export const HEADER_ID = "#header";
-export const HEADER_TOGGLER_CLASSNAME = ".header-toggler";
+export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
+export const HEADER_TOGGLER_CSS_CLASSNAME = '--header-toggler-height';
+
 //#endregion

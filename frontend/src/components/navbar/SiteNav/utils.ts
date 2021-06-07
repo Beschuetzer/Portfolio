@@ -14,14 +14,13 @@ import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
-} from "../util";
+} from "../utils";
 
 const SET_ANIMATING_DONE_FACTOR = 1.2;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
 
 const onBodyClick = (navRef: RefObject<HTMLElement>, e: Event) => {
-	console.log("e =", e);
 	const isNavClick = (e.target as any)?.classList?.contains(
 		NAVBAR_ACTIVE_CLASSNAME,
 	)
@@ -77,7 +76,7 @@ export const changePage = (newUrl: string) => {
 	document.documentElement.style.cssText += newValue;
 
 	const headerElement = document.querySelector(HEADER_ID);
-	const headerTogglerElement = document.querySelector(HEADER_TOGGLER_CLASSNAME);
+	const headerTogglerElement = document.querySelector(`.${HEADER_TOGGLER_CLASSNAME}`);
 	if (!headerElement || !headerTogglerElement) return;
 	if (newUrl === "/") {
 		headerElement.classList.add(TRANSPARENT_CLASSNAME);

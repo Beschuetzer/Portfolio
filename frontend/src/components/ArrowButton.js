@@ -34,7 +34,6 @@ const ArrowButton = ({direction, fillNumber, hoverFillNumber, setCurrentBridgeSe
     }
 
     const handleSliding = () => {
-      console.log('currentBridgeSection =', currentBridgeSection);
       for (let i = 0; i < bridgeSections.length; i++) {
         const section = bridgeSections[i];
         if (!section) return;

@@ -23,7 +23,7 @@ import NavToggler from "./navbar/NavToggler";
 import "../css/style.css";
 import GithubButton from "./GithubButton";
 import { setIsAnimating, setIsMobile, setViewPortWidth, setSounds } from "../actions";
-import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./navbar/util";
+import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./navbar/utils";
 import soundsSpriteMp3 from '../sounds/soundsSprite.mp3';
 import soundsSpriteOgg from '../sounds/soundsSprite.ogg';
 

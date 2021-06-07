@@ -15,22 +15,36 @@ import syncerImage from "../../../imgs/site-nav-syncer.jpg";
 
 import { setHeaderHeight, setIsAnimating } from "../../../actions";
 import { checkForParentOfType } from "../../../helpers";
-import { ANIMATION_DURATION, OVERFLOW_HIDDEN_CLASSNAME, Reference } from "../../constants";
+import {
+	ANIMATION_DURATION,
+	HEADER_ID,
+	OVERFLOW_HIDDEN_CLASSNAME,
+	Reference,
+	Z_INDEX_HIGHEST_CLASSNAME,
+} from "../../constants";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
-} from "../util";
-import { changePage, destroy, startAnimating, init, setBodyStyle, setHeaderHeightOnViewPortChange, getResetAnimatingId } from "./utils";
+} from "../utils";
+import {
+	changePage,
+	destroy,
+	startAnimating,
+	init,
+	setBodyStyle,
+	setHeaderHeightOnViewPortChange,
+	getResetAnimatingId,
+} from "./utils";
 
 interface SiteNavProps {
-	isAnimating: boolean,
-	match: {url: string},
-	previousUrl: string,
-	viewPortWidth: number,
-	sounds: {play: (value: string) => void},
-	setIsAnimating: (value: boolean) => void,
-	setHeaderHeight: (value: number) => void,
+	isAnimating: boolean;
+	match: { url: string };
+	previousUrl: string;
+	viewPortWidth: number;
+	sounds: { play: (value: string) => void };
+	setIsAnimating: (value: boolean) => void;
+	setHeaderHeight: (value: number) => void;
 }
 
 const SiteNav: React.FC<SiteNavProps> = ({
@@ -51,8 +65,12 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	};
 
 	const handleSound = (e: MouseEvent) => {
-		const isActive = (e.currentTarget as HTMLElement).className.match(/--active/i) as RegExpMatchArray;
-		const isMenu = (e.target as HTMLElement)?.className?.match(/navbar__menu/i) as RegExpMatchArray;
+		const isActive = (e.currentTarget as HTMLElement).className.match(
+			/--active/i,
+		) as RegExpMatchArray;
+		const isMenu = (e.target as HTMLElement)?.className?.match(
+			/navbar__menu/i,
+		) as RegExpMatchArray;
 		const isNavbar = (e.target as HTMLElement).classList.contains("navbar");
 
 		if (!isActive && isMenu) sounds.play("siteNavOpen");
@@ -61,10 +79,13 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	};
 
 	const onNavClick = (e: MouseEvent) => {
-		console.log("nav click------------------------------------------------");
 		e.stopPropagation();
 		const navBar = navRef.current;
-		const isChildOfNavBar = checkForParentOfType((e.target as HTMLElement), "nav", "navbar");
+		const isChildOfNavBar = checkForParentOfType(
+			e.target as HTMLElement,
+			"nav",
+			"navbar",
+		);
 
 		if (!navBar) return;
 		handleSound(e);
@@ -77,14 +98,18 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		) {
 			navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
-			document.querySelector("#header")!.classList.add("z-index-highest");
+			document
+				.querySelector(HEADER_ID)!
+				.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
 			setIsAnimating(true);
 		} else {
 			navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 
 			setTimeout(() => {
-				document.querySelector("#header")!.classList.remove("z-index-highest");
+				document
+					.querySelector(HEADER_ID)!
+					.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
 			}, ANIMATION_DURATION);
 
 			setIsAnimating(false);
@@ -113,7 +138,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	useEffect(() => {
 		setBodyStyle(currentUrl);
-	}, [currentUrl])
+	}, [currentUrl]);
 
 	useEffect(() => {
 		setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
@@ -147,7 +172,10 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	}, [isAnimating]);
 
 	return ReactDOM.createPortal(
-		<nav ref={navRef} className="navbar z-index-navbar" onClick={(e: any) => onNavClick(e)}>
+		<nav
+			ref={navRef}
+			className="navbar z-index-navbar"
+			onClick={(e: any) => onNavClick(e)}>
 			<div className="navbar__button">
 				<div className="navbar__menu">
 					<div className="navbar__menu-bar"></div>
@@ -233,7 +261,9 @@ const SiteNav: React.FC<SiteNavProps> = ({
 					/>
 				</ul>
 			</div>
-			<div onClick={(e: any) => onNavClick(e)} className="navbar__background"></div>
+			<div
+				onClick={(e: any) => onNavClick(e)}
+				className="navbar__background"></div>
 		</nav>,
 		document.querySelector(".site-nav")!,
 	);
