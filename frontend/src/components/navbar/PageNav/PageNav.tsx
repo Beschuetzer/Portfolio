@@ -2,16 +2,17 @@ import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { connect, RootStateOrAny } from "react-redux";
 
-import { setPreviousUrl, setScrollPercent } from "../../actions";
-import { capitalize } from "../../helpers";
-import BridgeSectionLink from "../../pages/examples/bridge/BridgeSectionLink";
+import { setPreviousUrl, setScrollPercent } from "../../../actions";
+import { capitalize } from "../../../helpers";
+import BridgeSectionLink from "../../../pages/examples/bridge/BridgeSectionLink";
 import {
 	bridgeSections,
 	BRIDGE_CURRENT_SECTION_CLASSNAME,
 	BRIDGE_PAGE_NAV_LINKS_COLORS,
 	BRIDGE_PAGE_NAV_LINK_CLASSNAME,
-} from "../../pages/examples/bridge/utils";
-import { scrollToSection } from "../helpers";
+} from "../../../pages/examples/bridge/utils";
+import { scrollToSection } from "../../helpers";
+import { setGradientPercent } from "./utils";
 
 interface PageNavProps {
   match: {url: string},
@@ -49,61 +50,13 @@ const PageNav: React.FC<PageNavProps> = ({
 	const scrollSectionDelimiterOffset = window.innerHeight / 6;
 	const scrollRefreshLimit = 50;
 	const maxScrollOffsetPercent = 1;
-	const selectedClass = "page-nav--active";
-	const docStyle = getComputedStyle(document.documentElement);
 	const isBridgePage = match.url.match(/bridge/i);
 	
   let pageNavElement = document.querySelector(".page-nav") as any;
 	let previousSectionBottom: number | null = 0;
 	let shouldHandleScroll = useRef(true);
 
-	const getLinearGradient = (percent: number, docStyle: any) => {
-		const mainColor = docStyle.getPropertyValue("--color-primary-4");
-		const progressColor = docStyle.getPropertyValue("--color-primary-2").trim();
-
-		return `
-      linear-gradient(to right, 
-        ${progressColor.trim()} 0%, 
-        ${progressColor.trim()} ${percent}%,
-        ${mainColor} ${percent}%,
-        ${mainColor} 100%)`;
-	};
-
-	const setGradientPercent = (
-		sections: any,
-		currentSection: Element | null,
-		percentThroughSection: number,
-		isEnd: boolean,
-		indexOfCurrentSection: number,
-	) => {
-		for (let i = 0; i < sections.length; i++) {
-			let gradientToUse = getLinearGradient(percentThroughSection, docStyle);
-			let shouldAddActiveClass = true;
-			const section = sections[i];
-			const pageNavSectionName = capitalize(section.dataset.section);
-			const pageNavSectionElement = document.querySelector(
-				`.page-nav__section-${pageNavSectionName}`,
-			) as HTMLElement;
-
-			if (!pageNavSectionElement || !pageNavSectionElement.parentNode) return;
-
-			const shouldSetEnd = isEnd && i >= indexOfCurrentSection;
-			if (shouldSetEnd) {
-				gradientToUse = getLinearGradient(100, docStyle);
-			} else if (
-				!currentSection?.className.match(new RegExp(pageNavSectionName, "ig"))
-			) {
-				gradientToUse = getLinearGradient(0, docStyle);
-				shouldAddActiveClass = false;
-			}
-
-			pageNavSectionElement.style.backgroundImage = gradientToUse;
-
-			if (shouldAddActiveClass) {
-				(pageNavSectionElement.parentNode as any).classList.add(selectedClass);
-			} else (pageNavSectionElement.parentNode as any).classList.remove(selectedClass);
-		}
-	};
+	
 
 	const checkShouldSetPreviousUrl = () => {
 		const currentUrl = match?.url;

@@ -2,26 +2,26 @@ import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import ReactDOM from "react-dom";
-import NavListItem from "./NavListItem";
+import NavListItem from "../NavListItem";
 
-import aboutImage from '../../imgs/site-nav-about.jpg';
-import autoBidImage from '../../imgs/site-nav-autobid.jpg';
-import bridgeImage from '../../imgs/bridge-section-6.jpg';
-import contactImage from '../../imgs/site-nav-contact.jpg';
-import downloaderImage from '../../imgs/site-nav-downloader.jpg';
-import examplesImage from '../../imgs/site-nav-examples.jpg';
-import resumeImage from '../../imgs/site-nav-resume.jpg';
-import syncerImage from '../../imgs/site-nav-syncer.jpg';
+import aboutImage from '../../../imgs/site-nav-about.jpg';
+import autoBidImage from '../../../imgs/site-nav-autobid.jpg';
+import bridgeImage from '../../../imgs/bridge-section-6.jpg';
+import contactImage from '../../../imgs/site-nav-contact.jpg';
+import downloaderImage from '../../../imgs/site-nav-downloader.jpg';
+import examplesImage from '../../../imgs/site-nav-examples.jpg';
+import resumeImage from '../../../imgs/site-nav-resume.jpg';
+import syncerImage from '../../../imgs/site-nav-syncer.jpg';
 
 
-import { setHeaderHeight, setIsAnimating } from "../../actions";
-import { checkForParentOfType } from "../../helpers";
+import { setHeaderHeight, setIsAnimating } from "../../../actions";
+import { checkForParentOfType } from "../../../helpers";
 import {
 	ANIMATION_DURATION,
 	MOBILE_BREAK_POINT_WIDTH,
-} from "../constants";
-import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME, NAVBAR_IS_ANIMATING_CLASSNAME } from "./util";
-import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../Carousel/util";
+} from "../../constants";
+import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_DONE_CLASSNAME, NAVBAR_IS_ANIMATING_CLASSNAME } from "../util";
+import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../../Carousel/util";
 
 const SiteNav = ({ isAnimating, setIsAnimating, match, previousUrl, viewPortWidth, sounds, setHeaderHeight }) => {
 	const [ currentUrl, setCurrentUrl ] = useState(null);
