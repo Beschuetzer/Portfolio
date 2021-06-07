@@ -6,7 +6,7 @@ import history from "../history";
 import {Howl} from 'howler';
 
 import {
-	MOBILE_BREAK_POINT_WIDTH,
+	MOBILE_BREAK_POINT_WIDTH, OVERFLOW_HIDDEN_CLASSNAME,
 } from './constants';
 
 import Home from "../pages/home/Home";
@@ -59,7 +59,7 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 					} else {
 						navbar?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 						navbar?.classList?.remove(NAVBAR_DONE_CLASSNAME);
-						navbar?.classList?.add("overflow--hidden");
+						navbar?.classList?.add(OVERFLOW_HIDDEN_CLASSNAME);
 						root?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 					}
 					break;

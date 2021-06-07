@@ -15,13 +15,13 @@ import syncerImage from "../../../imgs/site-nav-syncer.jpg";
 
 import { setHeaderHeight, setIsAnimating } from "../../../actions";
 import { checkForParentOfType } from "../../../helpers";
-import { ANIMATION_DURATION, Reference } from "../../constants";
+import { ANIMATION_DURATION, OVERFLOW_HIDDEN_CLASSNAME, Reference } from "../../constants";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
 } from "../util";
-import { changePage, destroy, init, setBodyStyle, setHeaderHeightOnViewPortChange } from "./utils";
+import { changePage, destroy, startAnimating, init, setBodyStyle, setHeaderHeightOnViewPortChange, getResetAnimatingId } from "./utils";
 
 interface SiteNavProps {
 	isAnimating: boolean,
@@ -47,7 +47,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	// const noFilterPages = ['/bridge'];
 
 	const hide = () => {
-		(navRef as Reference)?.current.classList.add("overflow--hidden");
+		(navRef as Reference)?.current.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 	};
 
 	const handleSound = (e: MouseEvent) => {
@@ -69,13 +69,13 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		if (!navBar) return;
 		handleSound(e);
 
-		if (isChildOfNavBar) navBar.classList.add("overflow--hidden");
+		if (isChildOfNavBar) navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 
 		if (
 			!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&
 			isChildOfNavBar
 		) {
-			navBar.classList.add("overflow--hidden");
+			navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 			document.querySelector("#header")!.classList.add("z-index-highest");
 			setIsAnimating(true);
@@ -101,13 +101,13 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			!navRef.current ||
 			!navRef.current?.classList.contains(NAVBAR_ACTIVE_CLASSNAME)
 		) {
-			navRef.current?.classList.add("overflow--hidden");
+			navRef.current?.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 			return;
 		} else if (
 			navRef.current.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME) ||
 			navRef.current.classList.contains(NAVBAR_DONE_CLASSNAME)
 		) {
-			navRef.current?.classList.remove("overflow--hidden");
+			navRef.current?.classList.remove(OVERFLOW_HIDDEN_CLASSNAME);
 		}
 	};
 
@@ -139,22 +139,10 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	}, [setHeaderHeight]);
 
 	useEffect(() => {
-		const navBar = (navRef.current as any);
-		const resetAnimatingId = setTimeout(() => {
-			navBar?.classList?.remove("navbar--isAnimating");
-			navBar?.classList?.remove("overflow--hidden");
-			if (isAnimating && navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME)) {
-				// root.classList?.add(NAVBAR_DONE_CLASSNAME);
-				navBar.classList?.add(NAVBAR_DONE_CLASSNAME);
-			} else {
-				// root.classList?.remove(NAVBAR_DONE_CLASSNAME);
-				navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
-			}
-		}, ANIMATION_DURATION * 1.2);
-		navBar?.classList?.add("navbar--isAnimating");
+		startAnimating(navRef, isAnimating);
 
 		return () => {
-			clearTimeout(resetAnimatingId);
+			clearTimeout(getResetAnimatingId());
 		};
 	}, [isAnimating]);
 

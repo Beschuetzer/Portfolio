@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { connect, RootStateOrAny } from 'react-redux';
 
-import { viewPortPixelToRem, headerTogglerWidth } from '../constants';
+import { viewPortPixelToRem, headerTogglerWidth, HEADER_TOGGLER_CLASSNAME } from '../constants';
 
 interface NavTogglerProps {
   headerHeight: number;
@@ -42,7 +42,7 @@ const NavToggler: React.FC<NavTogglerProps> = ({headerHeight, viewPortWidth}) =>
         <use xlinkHref="/sprite.svg#icon-angle-double-down"></use>
       </svg>
     ,
-      document.body.querySelector('.header-toggler')!
+      document.body.querySelector(HEADER_TOGGLER_CLASSNAME)!
     )
   );
 }

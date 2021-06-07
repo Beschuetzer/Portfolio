@@ -54,4 +54,14 @@ export const viewPortPixelToRem: {
     min: 0,
   },
 }
+
+export const OVERFLOW_HIDDEN_CLASSNAME = 'overflow--hidden';
+export const TRANSPARENT_CLASSNAME = 'transparent';
+export const DISPLAY_NONE_CLASSNAME = 'd-none';
+export const BODY_BACKGROUND_CLASSNAME = 'body-background';
+
+
+
+export const HEADER_ID = "#header";
+export const HEADER_TOGGLER_CLASSNAME = ".header-toggler";
 //#endregion
