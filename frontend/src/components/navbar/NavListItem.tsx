@@ -1,13 +1,13 @@
-import React, { ReactChildren } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 
 interface NavListItemProps {
 	isLink?: boolean
   to: string;
   label: string;
-  children: ReactChildren;
-  className: string;
-  triangle: HTMLElement;
+  children?: any;
+  className?: string;
+  triangle?: any;
   imageAlt?: string;
   imageSource?: string;
   onMouseEnter: (e: any) => void;
