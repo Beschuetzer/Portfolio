@@ -1,19 +1,32 @@
+import { RefObject } from "react";
 import { connect } from "react-redux";
 import { removeClassFromAllChildren } from "../helpers";
 
 import { closeVideo } from "./utils";
 
-const CloseControl = ({
-	className = "card__close",
+interface CloseControlProps {
+	className?: string;
+	xlinkHref: string;
+	videoRef: RefObject<HTMLVideoElement>;
+	containerRef?: RefObject<HTMLElement>;
+	classNamesToRemove: string[];
+	classNamesToRemoveFromElement?: [string, HTMLElement | null][];
+	functionToRunOnClose?: () => void;
+}
+
+const CloseControl: React.FC<CloseControlProps> = ({
 	xlinkHref,
 	videoRef,
+	className = "card__close",
 	containerRef = null,
 	classNamesToRemove,
 	classNamesToRemoveFromElement = [],
+	functionToRunOnClose = null,
 }) => {
-	const handleCloseVideo = (e) => {
+	const handleCloseVideo = (e: MouseEvent) => {
 		e.stopPropagation();
-		closeVideo(videoRef.current, containerRef.current);
+		closeVideo(videoRef.current);
+		if (functionToRunOnClose) functionToRunOnClose();
 
 		if (containerRef && containerRef.current) {
 			const container = containerRef.current;
@@ -35,7 +48,7 @@ const CloseControl = ({
 	};
 
 	return (
-		<div onClick={handleCloseVideo} className={`${className}-parent`}>
+		<div onClick={(e: any) => handleCloseVideo(e)} className={`${className}-parent`}>
 			<svg className={`${className}`}>
 				<use xlinkHref={xlinkHref}></use>
 			</svg>

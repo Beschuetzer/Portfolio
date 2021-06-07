@@ -422,6 +422,7 @@ const Card: React.FC<CardProps> = ({
 		else card.classList.add(CARD_DONE_CLASSNAME);
 	};
 
+
 	return (
 		<article
 			ref={cardRef}
@@ -479,6 +480,7 @@ const Card: React.FC<CardProps> = ({
 						],
 						["z-index-highest", cardRef.current],
 					]}
+					functionToRunOnClose={() => changeSectionTitle(titleRef, false)}
 				/>
 
 				<PlayControl

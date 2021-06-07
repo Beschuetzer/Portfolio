@@ -7,7 +7,7 @@ export const CARD_OPEN_CLASSNAME = 'card--open';
 export const CARD_PLAYING_CLASSNAME = 'card--playing';
 export const CARD_DEFAULT_CLASSNAME = 'card card--hoverable';
 
-export const changeSectionTitle = (titleRef: RefObject<HTMLElement>, isOpen = true) => {
+export const changeSectionTitle = (titleRef: RefObject<HTMLElement> | HTMLElement, isOpen = true) => {
   if (!titleRef) return;
   const originalMsgTitle = 'Features';
   const originalMsgSubTitle = 'Pick a Card any Card';
@@ -21,7 +21,7 @@ export const changeSectionTitle = (titleRef: RefObject<HTMLElement>, isOpen = tr
       let msgTitleToUse = originalMsgTitle as string | null | undefined;
       let msgSubTitleToUse = originalMsgSubTitle;
       if (isOpen) {
-        msgTitleToUse = titleRef.current?.textContent;
+        if (titleRef && (titleRef as any).current) msgTitleToUse = (titleRef as any).current?.textContent;
         msgSubTitleToUse = "";
       }
       if (title) {

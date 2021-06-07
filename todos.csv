@@ -52,3 +52,4 @@ OPTIMIZATIONS:
 -add svgs to csharp layouts
 -create a sass function that can insert colors into the svgs and return data
 -convert everything to Typescript!
+-fix bug where closing card doesn't change title back on bridge
