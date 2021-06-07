@@ -7,7 +7,6 @@ import { Howl } from "howler";
 
 import {
 	MOBILE_BREAK_POINT_WIDTH,
-	OVERFLOW_HIDDEN_CLASSNAME,
 } from "./constants";
 
 import Home from "../pages/home/Home";
@@ -29,11 +28,6 @@ import {
 	setViewPortWidth,
 	setSounds,
 } from "../actions";
-import {
-	NAVBAR_ACTIVE_CLASSNAME,
-	NAVBAR_CLASSNAME,
-	NAVBAR_DONE_CLASSNAME,
-} from "./navbar/utils";
 import soundsSpriteMp3 from "../sounds/soundsSprite.mp3";
 import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
 import { keypressHandler } from "./utils";
