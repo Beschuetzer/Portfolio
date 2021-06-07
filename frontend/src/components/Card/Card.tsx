@@ -1,6 +1,6 @@
-import React from "react";
+import React, { MouseEventHandler, ReactChildren } from "react";
 import { useRef } from "react";
-import { connect } from "react-redux";
+import { connect, RootStateOrAny } from "react-redux";
 
 import { MOBILE_BREAK_POINT_WIDTH, ANIMATION_DURATION } from "../constants";
 import { setIsCardVideoOpen } from "../../actions";
@@ -33,7 +33,19 @@ import {
 } from "../VideoPlayer/utils";
 import { scrollToSection } from "../helpers";
 
-const Card = ({
+interface CardProps {
+	title: string;
+	cardName: string;
+	fileType: string;
+	children: ReactChildren;
+	video: string;
+	viewPortWidth: number;
+	isMobile: boolean;
+	headerHeight: number;
+	setIsCardVideoOpen: (value: boolean) => void;
+}
+
+const Card: React.FC<CardProps> = ({
 	title,
 	cardName,
 	fileType = "svg",
@@ -44,29 +56,33 @@ const Card = ({
 	headerHeight,
 	setIsCardVideoOpen,
 }) => {
-	const videoRef = useRef(null);
-	const titleRef = useRef(null);
-	const cardRef = useRef(null);
-	const progressBarRef = useRef(null);
+	const videoRef = useRef<HTMLVideoElement>(null);
+	const titleRef = useRef<HTMLHeadingElement>(null);
+	const cardRef = useRef<HTMLElement>(null);
+	const progressBarRef = useRef<HTMLProgressElement>(null);
 	let hasProgressEventListener = false;
 
 	const getFeaturesBridgeSectionTitles = () => {
 		const features = document.querySelector(
 			`#${bridgeSections[1].toLowerCase()}`,
-		);
+		) as HTMLElement;
 		return features.querySelector(`.${BRIDGE_SECTION_TITLES_CLASSNAME}`);
 	};
 
-	const getGapAmount = (video, card, cardDimensions) => {
-		const featuresBridgeSectionTitles = getFeaturesBridgeSectionTitles();
+	const getGapAmount = (
+		video: HTMLVideoElement,
+		card: HTMLElement,
+		cardDimensions: ClientRect,
+	) => {
+		const featuresBridgeSectionTitles = getFeaturesBridgeSectionTitles() as HTMLElement;
 		const bridgeSectionBounds =
 			featuresBridgeSectionTitles.getBoundingClientRect();
 		const videoBounds = video.getBoundingClientRect();
 		return videoBounds.top - bridgeSectionBounds.bottom;
 	};
 
-	const getCardScaleOnHoverAmount = (card, cardDimensions) => {
-		let cardToUseAsReference = document.querySelector(".card");
+	const getCardScaleOnHoverAmount = (card: HTMLElement, cardDimensions: ClientRect) => {
+		let cardToUseAsReference = document.querySelector(".card")!;
 
 		if (cardToUseAsReference === card) {
 			const cards = document.querySelectorAll(".card");
@@ -80,7 +96,7 @@ const Card = ({
 		return valueToReturn;
 	};
 
-	const getCardCoordinates = (card, cardDimensions) => {
+	const getCardCoordinates = (card: HTMLElement, cardDimensions: ClientRect) => {
 		let cardLeftOriginal = cardDimensions.left;
 		let cardRightOriginal = cardDimensions.right;
 		let cardTopOriginal = cardDimensions.top;
@@ -184,7 +200,7 @@ const Card = ({
 		};
 	};
 
-	const adjustCardYPosition = (video, card, cardDimensions) => {
+	const adjustCardYPosition = (video: HTMLVideoElement, card: HTMLElement, cardDimensions: ClientRect) => {
 		//calls getGapAmount then change the css translate var based on that
 		const gapAmount = getGapAmount(video, card, cardDimensions);
 		const cardPlayingTransform =
@@ -222,13 +238,14 @@ const Card = ({
 		);
 	};
 
-	const centerCard = (card, cardDimensions, initialCardDimensions) => {
+	const centerCard = (card: HTMLElement, cardDimensions: ClientRect, initialCardDimensions: ClientRect) => {
 		if (!card) return;
 
 		let cardDimensionsToUse = cardDimensions;
-		if (initialCardDimensions.width > cardDimensions.width) cardDimensionsToUse = initialCardDimensions;
+		if (initialCardDimensions.width > cardDimensions.width)
+			cardDimensionsToUse = initialCardDimensions;
 
-		const sectionDimensions = card.parentNode.getBoundingClientRect();
+		const sectionDimensions = (card.parentNode as HTMLElement).getBoundingClientRect();
 		const { cardCenterXOriginal, cardCenterYOriginal } = getCardCoordinates(
 			card,
 			cardDimensionsToUse,
@@ -284,7 +301,7 @@ const Card = ({
 		document.documentElement.style.cssText += newValue;
 	};
 
-	const closeCard = (video, card) => {
+	const closeCard = (video: HTMLVideoElement, card: HTMLElement) => {
 		closeVideo(video);
 
 		if (!titleRef) return;
@@ -297,7 +314,7 @@ const Card = ({
 		card.classList.remove(CARD_STOPPED_CLASSNAME);
 	};
 
-	const openCard = (video, card, backdrop, initialCardDimensions) => {
+	const openCard = (video: HTMLVideoElement, card: HTMLElement, backdrop: HTMLElement, initialCardDimensions: ClientRect) => {
 		if (!card) return;
 
 		const cardDimensions = card.getBoundingClientRect();
@@ -315,18 +332,18 @@ const Card = ({
 		setTimeout(() => {
 			adjustCardYPosition(video, card, cardDimensions);
 			backdrop?.classList.remove("visible");
-			card.classList.remove('z-index-highest');
+			card.classList.remove("z-index-highest");
 		}, ANIMATION_DURATION / 2);
 
 		setIsCardVideoOpen(true);
 	};
 
-	const playVideo = (video, card) => {
+	const playVideo = (video: HTMLVideoElement, card: HTMLElement) => {
 		hasProgressEventListener = attachProgressListener(
 			video,
 			hasProgressEventListener,
 			handleVideoProgress,
-		);
+		)!;
 		video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove(CARD_DONE_CLASSNAME);
 		card.classList.add(CARD_PLAYING_CLASSNAME);
@@ -334,33 +351,36 @@ const Card = ({
 		video.play();
 	};
 
-	const handleVideoProgress = (e) => {
+	const handleVideoProgress = (e: ProgressEvent) => {
 		const video = videoRef.current;
 		if (!video) return;
 		const percent = video.currentTime / video.duration;
-		progressBarRef.current.value = percent;
+		((progressBarRef as any).current as HTMLProgressElement).value = percent;
 	};
 
-	const handleVideoEnd = (e) => {
+	const handleVideoEnd = (e: Event) => {
 		cardRef.current?.classList.add(CARD_DONE_CLASSNAME);
 		cardRef.current?.classList.remove(CARD_PLAYING_CLASSNAME);
 		const video = e.currentTarget;
-		video.removeEventListener("ended", handleVideoEnd);
+		if (video) video.removeEventListener("ended", handleVideoEnd);
 	};
 
-	const handleCardClick = (e) => {
-		const clickedCard = cardRef.current;
-		clickedCard.classList.add('z-index-highest');
-		const initialCardSize = clickedCard.getBoundingClientRect();
-		const bridgeBackdrop = document.querySelector(`.${BRIDGE_BACKDROP_CLASSNAME}`);
+	const handleCardClick = (e: MouseEventHandler<HTMLElement>) => {
+		const clickedCard = cardRef.current as HTMLElement;
+		clickedCard?.classList.add("z-index-highest");
+		const initialCardSize = clickedCard?.getBoundingClientRect();
+		const bridgeBackdrop = document.querySelector(
+			`.${BRIDGE_BACKDROP_CLASSNAME}`,
+		) as HTMLElement;
 		bridgeBackdrop?.classList.add("visible");
 
-		e.stopPropagation();
-		const video = videoRef?.current;
+		(e as any).stopPropagation();
+		const video = videoRef?.current as HTMLVideoElement;
 		if (
 			clickedCard?.classList.contains(CARD_DONE_CLASSNAME) ||
 			clickedCard?.classList.contains(CARD_OPEN_CLASSNAME)
-		)	return;
+		)
+			return;
 
 		setTimeout(() => {
 			changeSectionTitle(titleRef);
@@ -372,20 +392,20 @@ const Card = ({
 		}, ANIMATION_DURATION / 2);
 	};
 
-	const handleMouseEnter = (e) => {
-		e.currentTarget?.classList.add("z-index-content");
+	const handleMouseEnter = (e: MouseEventHandler<HTMLElement>) => {
+		((e as any).currentTarget as HTMLElement)?.classList.add("z-index-content");
 	};
 
-	const handleMouseLeave = (e) => {
-		const target = e.currentTarget;
+	const handleMouseLeave = (e: MouseEventHandler<HTMLElement>) => {
+		const target = (e as any).currentTarget as HTMLElement;
 		// setTimeout(() => {
 		target?.classList.remove("z-index-content");
 		// }, CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION);
 	};
 
-	const handleProgressBarClick = (e) => {
-		const clientX = e.clientX;
-		const progressBar = e.currentTarget;
+	const handleProgressBarClick = (e: MouseEventHandler<HTMLElement>) => {
+		const clientX = (e as any).clientX;
+		const progressBar = (e as any).currentTarget;
 		if (!progressBar) return;
 
 		const percent = getPercentOfProgressBar(progressBar, clientX);
@@ -455,13 +475,10 @@ const Card = ({
 					]}
 					classNamesToRemoveFromElement={[
 						[
-							'visible', 
-							document.querySelector(`.${BRIDGE_BACKDROP_CLASSNAME}`)
+							"visible",
+							document.querySelector(`.${BRIDGE_BACKDROP_CLASSNAME}`),
 						],
-						[
-							'z-index-highest',
-							cardRef.current
-						]
+						["z-index-highest", cardRef.current],
 					]}
 				/>
 
@@ -499,7 +516,7 @@ const Card = ({
 	);
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: RootStateOrAny) => {
 	return {
 		viewPortWidth: state.general.viewPortWidth,
 		isMobile: state.general.isMobile,

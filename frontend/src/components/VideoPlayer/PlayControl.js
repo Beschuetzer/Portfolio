@@ -9,9 +9,9 @@ const PlayControl = ({
 	playingClassname,
 	doneClassname,
 	stoppedClassname,
-	handleVideoEnd,
-	handleVideoProgress,
-	functionToGetContainer,
+	handleVideoEnd = null,
+	handleVideoProgress = null,
+	functionToGetContainer = null,
 }) => {
   let hasProgressEventListener = false;
 

@@ -9,7 +9,7 @@ const RestartControl = ({
 	playingClassname,
 	doneClassname,
 	stoppedClassname,
-	functionToGetContainer,
+	functionToGetContainer = null,
 }) => {
   let hasProgressEventListener = false;
 
