@@ -1,6 +1,6 @@
 import { RefObject } from "react";
 import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
-import { MOBILE_BREAK_POINT_WIDTH, Reference } from "../constants";
+import { MOBILE_BREAK_POINT_WIDTH, Reference, Z_INDEX_HIGHEST_CLASSNAME } from "../constants";
 import { closeVideo, getPercentOfProgressBar } from "../VideoPlayer/utils";
 
 export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION = 75;
@@ -319,7 +319,6 @@ export const checkShouldContinueOnClick = (
   cardRef: RefObject<HTMLElement>,
 ) => {
   const clickedCard = cardRef.current as HTMLElement;
-  clickedCard?.classList.add("z-index-highest");
 
   if (
     clickedCard?.classList.contains(CARD_DONE_CLASSNAME) ||
@@ -327,6 +326,7 @@ export const checkShouldContinueOnClick = (
   )
     return [null, null, null, null];
 
+	clickedCard?.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
   const initialCardSize = clickedCard?.getBoundingClientRect();
   const bridgeBackdrop = document.querySelector(
     `.${BRIDGE_BACKDROP_CLASSNAME}`,

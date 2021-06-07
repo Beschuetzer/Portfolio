@@ -5,6 +5,7 @@ import { connect, RootStateOrAny } from "react-redux";
 import {
 	ANIMATION_DURATION,
 	Reference,
+	Z_INDEX_HIGHEST_CLASSNAME,
 } from "../constants";
 import { setIsCardVideoOpen } from "../../actions";
 
@@ -97,7 +98,7 @@ const Card: React.FC<CardProps> = ({
 		setTimeout(() => {
 			adjustCardYPosition(video);
 			backdrop?.classList.remove("visible");
-			card.classList.remove("z-index-highest");
+			card.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
 		}, ANIMATION_DURATION / 2);
 
 		setIsCardVideoOpen(true);
@@ -210,7 +211,7 @@ const Card: React.FC<CardProps> = ({
 							"visible",
 							document.querySelector(`.${BRIDGE_BACKDROP_CLASSNAME}`),
 						],
-						["z-index-highest", cardRef.current],
+						[Z_INDEX_HIGHEST_CLASSNAME, cardRef.current],
 					]}
 					functionToRunOnClose={() => changeSectionTitle(titleRef, false)}
 				/>
