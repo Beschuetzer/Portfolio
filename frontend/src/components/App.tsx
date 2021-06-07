@@ -1,13 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, RootStateOrAny } from "react-redux";
 import history from "../history";
-import {Howl} from 'howler';
+import { Howl } from "howler";
 
 import {
-	MOBILE_BREAK_POINT_WIDTH, OVERFLOW_HIDDEN_CLASSNAME,
-} from './constants';
+	MOBILE_BREAK_POINT_WIDTH,
+	OVERFLOW_HIDDEN_CLASSNAME,
+} from "./constants";
 
 import Home from "../pages/home/Home";
 import About from "../pages/about/About";
@@ -22,18 +23,43 @@ import PageNav from "./navbar/PageNav/PageNav";
 import NavToggler from "./navbar/NavToggler";
 import "../css/style.css";
 import GithubButton from "./GithubButton";
-import { setIsAnimating, setIsMobile, setViewPortWidth, setSounds } from "../actions";
-import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./navbar/utils";
-import soundsSpriteMp3 from '../sounds/soundsSprite.mp3';
-import soundsSpriteOgg from '../sounds/soundsSprite.ogg';
+import {
+	setIsAnimating,
+	setIsMobile,
+	setViewPortWidth,
+	setSounds,
+} from "../actions";
+import {
+	NAVBAR_ACTIVE_CLASSNAME,
+	NAVBAR_CLASSNAME,
+	NAVBAR_DONE_CLASSNAME,
+} from "./navbar/utils";
+import soundsSpriteMp3 from "../sounds/soundsSprite.mp3";
+import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
 
-const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWidth, setSounds }) => {
+interface AppProps {
+	isMobile: boolean,
+	isAnimating: boolean,
+	setIsMobile: (value: boolean, windowWidth: number) => void,
+	setIsAnimating: (value: boolean) => void,
+	setViewPortWidth: (value: number) => void,
+	setSounds: (value: {}) => void,
+}
+
+const App: React.FC<AppProps> = ({
+	isMobile,
+	setIsMobile,
+	isAnimating,
+	setIsAnimating,
+	setViewPortWidth,
+	setSounds,
+}) => {
 	const mobileBreakPointWidth = MOBILE_BREAK_POINT_WIDTH;
 	setIsMobile(window.innerWidth <= mobileBreakPointWidth, window.innerWidth);
 
 	//setup window resize listener
 	useEffect(() => {
-		const windowResize = (e) => {
+		const windowResize = (e: Event) => {
 			if (window.innerWidth <= mobileBreakPointWidth && !isMobile) {
 				const newValue = `--bridge-gradient-direction: to bottom`;
 				document.documentElement.style.cssText += newValue;
@@ -46,7 +72,7 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 			return setViewPortWidth(window.innerWidth);
 		};
 
-		const keypressHandler = (e) => {
+		const keypressHandler = (e: KeyboardEvent) => {
 			if (!e.altKey || !e.ctrlKey) return;
 			switch (e.key) {
 				case "a":
@@ -63,7 +89,7 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 						root?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 					}
 					break;
-				
+
 				case "c":
 					history.push("/contact");
 					break;
@@ -106,19 +132,18 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 	//Loading Sounds, etc
 	useEffect(() => {
 		const sounds = new Howl({
-      src: [soundsSpriteMp3, soundsSpriteOgg],
-			volume: .1,
-      sprite: {
-        doorFast: [0, 1500],
-        doorNormal: [1500, 1000],
-        sonicBoom: [2500, 1000],
-        siteNavOpen: [3500, 1000],
-        siteNavClose: [4500, 1000],
-      },
+			src: [soundsSpriteMp3, soundsSpriteOgg],
+			volume: 0.1,
+			sprite: {
+				doorFast: [0, 1500],
+				doorNormal: [1500, 1000],
+				sonicBoom: [2500, 1000],
+				siteNavOpen: [3500, 1000],
+				siteNavClose: [4500, 1000],
+			},
 		});
 		setSounds(sounds);
-
-	}, [setSounds])
+	}, [setSounds]);
 
 	return (
 		<Router history={history}>
@@ -126,7 +151,11 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 				<Route path="/" exact component={Home} />
 				<Route path="/examples/bridge" exact component={Bridge} />
 				<Route path="/examples/downloader" exact component={Downloader} />
-				<Route path="/examples/playlist-syncer" exact component={PlaylistSyncer} />
+				<Route
+					path="/examples/playlist-syncer"
+					exact
+					component={PlaylistSyncer}
+				/>
 				<Route path="/examples/autobid" exact component={Autobid} />
 				<Route path="/about" exact component={About} />
 				<Route path="/resume" exact component={Resume} />
@@ -141,7 +170,7 @@ const App = ({ isMobile, setIsMobile, isAnimating, setIsAnimating, setViewPortWi
 	);
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: RootStateOrAny) => {
 	return {
 		isAnimating: state.general.isAnimating,
 		isMobile: state.general.isMobile,
@@ -153,4 +182,4 @@ export default connect(mapStateToProps, {
 	setIsMobile,
 	setViewPortWidth,
 	setSounds,
-})(App);
+})(App as any);
