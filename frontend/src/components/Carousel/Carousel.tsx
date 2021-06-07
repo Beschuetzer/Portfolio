@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { connect } from "react-redux";
+import React, { RefObject, useRef } from "react";
+import { connect, RootStateOrAny } from "react-redux";
 import CarouselItem from "./CarouselItem";
 import {
 	ANIMATION_DURATION,
@@ -10,7 +10,15 @@ import CarouselArrow from "./CarouselArrow";
 import { CAROUSEL_TRANSLATION_CSS_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./util";
 import { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 
-const Carousel = ({
+interface CarouselProps {
+	viewPortWidth: number,
+	items: string[],
+	alts: string[],
+	numberOfItemsInCarouselAtOneTime: number,
+	numberOfItemsToScrollOnClick: number,
+}
+
+const Carousel: React.FC<CarouselProps> = ({
 	viewPortWidth,
 	items,
 	alts,
@@ -29,12 +37,11 @@ const Carousel = ({
 	const ARROW_BUTTON_RIGHT_CLASSNAME = `${ARROW_BUTTONS_CLASSNAME}--right`;
 	const minImageCount = 0;
 	let currentTranslationFactor = minImageCount;
-	let itemsRef = useRef();
-	let itemsWidthRef = useRef();
-	let leftArrowRef = useRef();
-	let rightArrowRef = useRef();
-	let videoRef = useRef();
-	let removeTransitionTimeout;
+	let itemsRef = useRef<RefObject<HTMLElement>>(null);
+	let itemsWidthRef = useRef<RefObject<HTMLElement>>(null);
+	let leftArrowRef = useRef<RefObject<HTMLElement>>(null);
+	let rightArrowRef = useRef<RefObject<HTMLElement>>(null);
+	let removeTransitionTimeout: any;
 
 	useInit(
 		leftArrowRef,
@@ -47,12 +54,12 @@ const Carousel = ({
 	useInterItemWidth(viewPortWidth, itemsRef, itemsWidthRef);
 
 	function setArrowButtonsHiddenClass(
-		minImageCount,
-		maxImageCount,
-		currentTranslationFactor,
+		minImageCount: number,
+		maxImageCount: number,
+		currentTranslationFactor: number,
 	) {
-		const leftArrow = leftArrowRef.current[0];
-		const rightArrow = rightArrowRef.current[0];
+		const leftArrow = (leftArrowRef.current as any)[0];
+		const rightArrow = (rightArrowRef.current as any)[0];
 
 		if (!leftArrow || !rightArrow) return;
 
@@ -68,7 +75,7 @@ const Carousel = ({
 		if (currentCount >= maxImageCount) rightArrow.classList.add("hidden");
 	}
 
-	function setCurrentActiveButton(indexOfActiveDot) {
+	function setCurrentActiveButton(indexOfActiveDot: number) {
 		const dots = document.querySelectorAll(`.${DOT_CLASSNAME}`);
 		for (let i = 0; i < dots.length; i++) {
 			const dot = dots[i];
@@ -77,10 +84,10 @@ const Carousel = ({
 		}
 	}
 
-	function setTranslationAmount(amountToTranslateImages) {
+	function setTranslationAmount(amountToTranslateImages: number) {
 		clearInterval(removeTransitionTimeout);
 
-		const itemElements = itemsRef.current;
+		const itemElements = (itemsRef as any).current;
 		for (let i = 0; i < itemElements.length; i++) {
 			const item = itemElements[i];
 			item?.classList.add(TRANSITION_CLASSNAME);
@@ -97,14 +104,14 @@ const Carousel = ({
 		}, ANIMATION_DURATION / 2);
 	}
 
-	const handleArrowClick = (e) => {
+	const handleArrowClick = (e: Event) => {
 		const maxImageCount =
 			+numberOfItemsToScrollOnClick === 1
 				? items.length - numberOfItemsInCarouselAtOneTime
 				: items.length - 1;
 
 		let hasClickedLeftArrow = false;
-		if (e.currentTarget?.classList.contains(ARROW_BUTTON_LEFT_CLASSNAME))
+		if ((e.currentTarget as HTMLElement)?.classList.contains(ARROW_BUTTON_LEFT_CLASSNAME))
 			hasClickedLeftArrow = true;
 
 		if (hasClickedLeftArrow) {
@@ -147,13 +154,13 @@ const Carousel = ({
 		);
 
 		const amountToTranslateImages =
-			itemsWidthRef.current *
+			(itemsWidthRef as any).current *
 			currentTranslationFactor *
 			numberOfItemsToScrollOnClick;
 		setTranslationAmount(amountToTranslateImages);
 	};
 
-	const handleDotClick = (e) => {
+	const handleDotClick = (e: MouseEvent) => {
 		let indexOfCurrentDot = -1;
 		let indexOfDotToMoveTo = -1;
 
@@ -169,7 +176,7 @@ const Carousel = ({
 			if (indexOfCurrentDot !== -1 && indexOfDotToMoveTo !== -1) break;
 		}
 
-		const amountToTranslateImages = itemsWidthRef.current * indexOfDotToMoveTo;
+		const amountToTranslateImages = (itemsWidthRef as any).current * indexOfDotToMoveTo;
 
 		currentTranslationFactor =
 			indexOfDotToMoveTo / numberOfItemsToScrollOnClick;
@@ -218,7 +225,7 @@ const Carousel = ({
               ${DOT_CLASSNAME}-${index}
               ${index === 0 ? DOT_ACTIVE_CLASSNAME : ""}
             `}
-					onClick={handleDotClick}>
+					onClick={(e: any ) => handleDotClick(e)}>
 					<use xlinkHref="/sprite.svg#icon-dot-single"></use>
 				</svg>
 			);
@@ -248,7 +255,7 @@ const Carousel = ({
 	);
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: RootStateOrAny) => {
 	return {
 		viewPortWidth: state.general.viewPortWidth,
 	};
