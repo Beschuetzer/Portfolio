@@ -25,6 +25,7 @@ import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../../Carousel/util";
 import useSetBodyStyle from "./useSetBodyStyle";
 import useSetHeaderHeight from "./useSetHeaderHeight";
 import useChangeCurrentUrl from "./useChangeCurrentUrl";
+import { changePage } from "./utils";
 
 interface SiteNavProps {
 	isAnimating: boolean,
@@ -119,23 +120,8 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	useChangeCurrentUrl({currentUrl, previousUrl, setCurrentUrl, match})
 
 	useEffect(() => {
-		//resetting Carousel scrolling
-		const newValue = `${CAROUSEL_TRANSLATION_CSS_CLASSNAME}: 0px`;
-		document.documentElement.style.cssText += newValue;
-
-		const headerElement = document.querySelector("#header");
-		const headerTogglerElement = document.querySelector(".header-toggler");
-		if (!headerElement || !headerTogglerElement) return;
-		if (currentUrl === "/") {
-			headerElement.classList.add("transparent");
-			headerTogglerElement.classList.add("d-none");
-		} else {
-			headerElement.classList.remove("transparent");
-			headerTogglerElement.classList.remove("d-none");
-		}
+		changePage(currentUrl);
 	}, [currentUrl]);
-
-	
 
 	//initial
 	useEffect(() => {
