@@ -30,6 +30,7 @@ import {
 	getCardCoordinates,
 	getFeaturesBridgeSectionTitles,
 	getGapAmount,
+	handleProgressBarClick,
 } from "./utils";
 import {
 	bridgeSections,
@@ -162,23 +163,8 @@ const Card: React.FC<CardProps> = ({
 		// }, CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION);
 	};
 
-	const handleProgressBarClick = (e: MouseEventHandler<HTMLElement>) => {
-		const clientX = (e as any).clientX;
-		const progressBar = (e as any).currentTarget;
-		if (!progressBar) return;
-
-		const percent = getPercentOfProgressBar(progressBar, clientX);
-
-		const video = videoRef.current;
-		if (!video) return;
-		video.currentTime = percent * video.duration;
-
-		const card = cardRef.current;
-		if (!card) return;
-		if (!card.classList.contains(CARD_PLAYING_CLASSNAME))
-			card.classList.add(CARD_STOPPED_CLASSNAME);
-		if (percent < 1) card.classList.remove(CARD_DONE_CLASSNAME);
-		else card.classList.add(CARD_DONE_CLASSNAME);
+	const onProgressBarClick = (e: MouseEventHandler<HTMLElement>) => {
+		handleProgressBarClick(videoRef, cardRef, e as any);
 	};
 
 	return (
@@ -261,7 +247,7 @@ const Card: React.FC<CardProps> = ({
 					loop={false}
 					reference={videoRef}
 					progressBarRef={progressBarRef}
-					progressBarOnClick={handleProgressBarClick}>
+					progressBarOnClick={onProgressBarClick}>
 					<div className="card__children">
 						{/* <svg className="card__children-toggler">
               <use xlinkHref="/sprite.svg#icon-angle-double-down"></use>

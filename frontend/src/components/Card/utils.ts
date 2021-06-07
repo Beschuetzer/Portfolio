@@ -1,7 +1,7 @@
 import { RefObject } from "react";
 import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
 import { ANIMATION_DURATION, MOBILE_BREAK_POINT_WIDTH, Reference } from "../constants";
-import { closeVideo, getIsVideoPlaying } from "../VideoPlayer/utils";
+import { closeVideo, getIsVideoPlaying, getPercentOfProgressBar } from "../VideoPlayer/utils";
 
 export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION = 75;
 export const CARD_DONE_CLASSNAME = "card--done";
@@ -317,7 +317,6 @@ export const closeCard = (
 export const checkShouldContinueOnClick = (
   videoRef: RefObject<HTMLVideoElement>,
   cardRef: RefObject<HTMLElement>,
-
 ) => {
   const clickedCard = cardRef.current as HTMLElement;
   clickedCard?.classList.add("z-index-highest");
@@ -336,6 +335,29 @@ export const checkShouldContinueOnClick = (
 
   const video = videoRef?.current as HTMLVideoElement;
   return [video, clickedCard, bridgeBackdrop, initialCardSize];
+}
+
+export const handleProgressBarClick = (
+  videoRef: RefObject<HTMLVideoElement>,
+  cardRef: RefObject<HTMLElement>,
+  e: () => void,
+) => {
+  const clientX = (e as any).clientX;
+  const progressBar = (e as any).currentTarget;
+  if (!progressBar) return;
+
+  const percent = getPercentOfProgressBar(progressBar, clientX);
+
+  const video = videoRef.current;
+  if (!video) return;
+  video.currentTime = percent * video.duration;
+
+  const card = cardRef.current;
+  if (!card) return;
+  if (!card.classList.contains(CARD_PLAYING_CLASSNAME))
+    card.classList.add(CARD_STOPPED_CLASSNAME);
+  if (percent < 1) card.classList.remove(CARD_DONE_CLASSNAME);
+  else card.classList.add(CARD_DONE_CLASSNAME);
 }
 
 
