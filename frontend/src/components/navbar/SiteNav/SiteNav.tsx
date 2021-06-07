@@ -24,8 +24,10 @@ import {
 } from "../../constants";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
+	NAVBAR_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
+	NAVBAR_Z_INDEX_CLASSNAME,
 } from "../utils";
 import {
 	changePage,
@@ -71,7 +73,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		const isMenu = (e.target as HTMLElement)?.className?.match(
 			/navbar__menu/i,
 		) as RegExpMatchArray;
-		const isNavbar = (e.target as HTMLElement).classList.contains("navbar");
+		const isNavbar = (e.target as HTMLElement).classList.contains(NAVBAR_CLASSNAME);
 
 		if (!isActive && isMenu) sounds.play("siteNavOpen");
 		else if ((!isActive && !isNavbar) || (isActive && isMenu))
@@ -84,7 +86,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		const isChildOfNavBar = checkForParentOfType(
 			e.target as HTMLElement,
 			"nav",
-			"navbar",
+			NAVBAR_CLASSNAME,
 		);
 
 		if (!navBar) return;
@@ -174,15 +176,15 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	return ReactDOM.createPortal(
 		<nav
 			ref={navRef}
-			className="navbar z-index-navbar"
+			className={`${NAVBAR_CLASSNAME} ${NAVBAR_Z_INDEX_CLASSNAME}`}
 			onClick={(e: any) => onNavClick(e)}>
-			<div className="navbar__button">
-				<div className="navbar__menu">
-					<div className="navbar__menu-bar"></div>
+			<div className={`${NAVBAR_CLASSNAME}__button`}>
+				<div className={`${NAVBAR_CLASSNAME}__menu`}>
+					<div className={`${NAVBAR_CLASSNAME}__menu-bar`}></div>
 				</div>
 			</div>
-			<div className="navbar__content">
-				<ul className="navbar__list">
+			<div className={`${NAVBAR_CLASSNAME}__content`}>
+				<ul className={`${NAVBAR_CLASSNAME}__list`}>
 					<NavListItem
 						imageSource={aboutImage}
 						imageAlt="About"
@@ -208,9 +210,9 @@ const SiteNav: React.FC<SiteNavProps> = ({
 						label="Examples"
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
-						className="navbar__item navbar__dropdown-container flex align-center justify-content-center"
+						className={`${NAVBAR_CLASSNAME}__item ${NAVBAR_CLASSNAME}__dropdown-container flex align-center justify-content-center`}
 						triangle={<div className="triangle-down"></div>}>
-						<ul className="navbar__dropdown">
+						<ul className={`${NAVBAR_CLASSNAME}__dropdown`}>
 							<NavListItem
 								imageSource={downloaderImage}
 								imageAlt="Downloader"
@@ -263,7 +265,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			</div>
 			<div
 				onClick={(e: any) => onNavClick(e)}
-				className="navbar__background"></div>
+				className={`${NAVBAR_CLASSNAME}__background`}></div>
 		</nav>,
 		document.querySelector(".site-nav")!,
 	);

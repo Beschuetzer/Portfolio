@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { NAVBAR_CLASSNAME } from "./utils";
 
 interface NavListItemProps {
 	isLink?: boolean
@@ -28,16 +29,16 @@ const NavListItem: React.FC<NavListItemProps> = ({
 }) => {
 	
   const defaults = {
-		liClassName: "navbar__item",
-		linkClassName: "navbar__link",
-		imageClassName: "navbar__link-image",
+		liClassName: `${NAVBAR_CLASSNAME}__item`,
+		linkClassName: `${NAVBAR_CLASSNAME}__link`,
+		imageClassName: `${NAVBAR_CLASSNAME}__link-image`,
 	};
 
   const classNamesToUse = className ? className : defaults.liClassName;
   const getContent = () => {
     let content = (
       <React.Fragment>
-        <div className="navbar__dropdown-group">
+        <div className={`${NAVBAR_CLASSNAME}__dropdown-group`}>
           {label}
           {triangle}
         </div>
