@@ -15,17 +15,13 @@ import syncerImage from "../../../imgs/site-nav-syncer.jpg";
 
 import { setHeaderHeight, setIsAnimating } from "../../../actions";
 import { checkForParentOfType } from "../../../helpers";
-import { ANIMATION_DURATION, MOBILE_BREAK_POINT_WIDTH, Reference } from "../../constants";
+import { ANIMATION_DURATION, Reference } from "../../constants";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
 } from "../util";
-import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../../Carousel/util";
-import useSetBodyStyle from "./useSetBodyStyle";
-import useSetHeaderHeight from "./useSetHeaderHeight";
-import useChangeCurrentUrl from "./useChangeCurrentUrl";
-import { changePage } from "./utils";
+import { changePage, setBodyStyle, setHeaderHeightOnViewPortChange } from "./utils";
 
 interface SiteNavProps {
 	isAnimating: boolean,
@@ -115,10 +111,20 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		}
 	};
 
-	useSetBodyStyle({currentUrl});
-	useSetHeaderHeight({viewPortWidth, setHeaderHeight});
-	useChangeCurrentUrl({currentUrl, previousUrl, setCurrentUrl, match})
+	useEffect(() => {
+		setBodyStyle(currentUrl);
+	}, [currentUrl])
 
+	useEffect(() => {
+		setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
+	}, [viewPortWidth, setHeaderHeight]);
+
+	useEffect(() => {
+		if (!currentUrl || currentUrl !== match.url) {
+			setCurrentUrl(match.url);
+		}
+	}, [match, currentUrl, previousUrl, setCurrentUrl]);
+	
 	useEffect(() => {
 		changePage(currentUrl);
 	}, [currentUrl]);
