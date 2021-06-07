@@ -18,7 +18,7 @@ class GithubButton extends React.Component {
 
         </React.Fragment>
       ,
-        document.querySelector('#github')
+        document.querySelector('#github')!
       )
     );
   }

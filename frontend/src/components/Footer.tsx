@@ -5,7 +5,7 @@ class Footer extends React.Component {
   render() {
     return ReactDOM.createPortal(
       <div>Footer</div>,
-      document.querySelector('#footer')
+      document.querySelector('#footer')!
     );
   }
 }
