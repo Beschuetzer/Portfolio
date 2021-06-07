@@ -1,7 +1,7 @@
 import React, { ReactChildren } from "react";
 import { Link } from 'react-router-dom';
 
-interface NavItemProps {
+interface NavListItemProps {
 	isLink?: boolean
   to: string;
   label: string;
@@ -14,7 +14,7 @@ interface NavItemProps {
   onClick: (e: any) => void;
 }
 
-const NavItem: React.FC<NavItemProps> = ({
+const NavListItem: React.FC<NavListItemProps> = ({
 	isLink = true,
   onMouseEnter,
   onClick,
@@ -94,4 +94,4 @@ const NavItem: React.FC<NavItemProps> = ({
   );
 }
 
-export default NavItem;
+export default NavListItem;

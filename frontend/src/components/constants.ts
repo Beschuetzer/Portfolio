@@ -22,7 +22,13 @@ export const largerThanNavSwitchWidth = parseFloat(computedStyle.getPropertyValu
 export const bigDesktopPixelMin = parseFloat(computedStyle.getPropertyValue('--big-desktop-min-width'));
 
 const offset = .00000000000001;
-export const viewPortPixelToRem = {
+export const viewPortPixelToRem: {
+  [wide: string]: {
+    pixelsToRem: number,
+    max: number,
+    min: number,
+  }
+} = {
   wide: {
     pixelsToRem: 12,
     max: 10000,
