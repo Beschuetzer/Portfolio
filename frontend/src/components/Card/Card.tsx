@@ -2,7 +2,7 @@ import React, { MouseEventHandler, ReactChildren } from "react";
 import { useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 
-import { MOBILE_BREAK_POINT_WIDTH, ANIMATION_DURATION } from "../constants";
+import { MOBILE_BREAK_POINT_WIDTH, ANIMATION_DURATION, Reference } from "../constants";
 import { setIsCardVideoOpen } from "../../actions";
 
 import Video, { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
@@ -13,12 +13,15 @@ import PlayControl from "../VideoPlayer/PlayControl";
 import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
 import {
+	adjustCardYPosition,
 	CARD_DEFAULT_CLASSNAME,
 	CARD_DONE_CLASSNAME,
 	CARD_OPEN_CLASSNAME,
 	CARD_PLAYING_CLASSNAME,
 	CARD_STOPPED_CLASSNAME,
+	centerCard,
 	changeSectionTitle,
+	closeCard,
 	getCardCoordinates,
 	getFeaturesBridgeSectionTitles,
 	getGapAmount,
@@ -65,143 +68,32 @@ const Card: React.FC<CardProps> = ({
 	const progressBarRef = useRef<HTMLProgressElement>(null);
 	let hasProgressEventListener = false;
 
-	const adjustCardYPosition = (video: HTMLVideoElement) => {
-		//calls getGapAmount then change the css translate var based on that
-		const gapAmount = getGapAmount(video, bridgeSections);
-		const cardPlayingTransform =
-			document.documentElement.style.getPropertyValue(
-				"--card-playing-transform",
-			);
-		const split = cardPlayingTransform.split(" ");
-
-		let translateY = split[2];
-		let translateYIndex = 2;
-		if (!translateY.match(/Y/)) {
-			for (let i = 0; i < split.length; i++) {
-				const splitString = split[i];
-				if (splitString.match(/Y/)) {
-					translateY = splitString;
-					translateYIndex = i;
-				}
-			}
-		}
-		const startParenthIndex = translateY.indexOf("(");
-		const endParenthIndex = translateY.indexOf(")");
-		const currentValue = translateY.slice(
-			startParenthIndex + 1,
-			endParenthIndex - 2,
-		);
-
-		split[translateYIndex] = `translateY(-${
-			gapAmount - parseFloat(currentValue)
-		}px)`;
-		const newString = split.join(" ");
-
-		document.documentElement.style.setProperty(
-			"--card-playing-transform",
-			newString,
-		);
-	};
-
-	const centerCard = (card: HTMLElement, cardDimensions: ClientRect, initialCardDimensions: ClientRect) => {
+	const openCard = (
+		video: HTMLVideoElement,
+		card: HTMLElement,
+		backdrop: HTMLElement,
+		initialCardDimensions: ClientRect,
+	) => {
 		if (!card) return;
-
-		let cardDimensionsToUse = cardDimensions;
-		if (initialCardDimensions.width > cardDimensions.width)
-			cardDimensionsToUse = initialCardDimensions;
-
-		const sectionDimensions = (card.parentNode as HTMLElement).getBoundingClientRect();
-		const { cardCenterXOriginal, cardCenterYOriginal } = getCardCoordinates(
-			card,
-			cardDimensionsToUse,
-			viewPortWidth, 
-			isMobile,
-		);
-
-		const containerCenterX =
-			(sectionDimensions.right - sectionDimensions.left) / 2 +
-			sectionDimensions.left;
-		const containerCenterY =
-			(sectionDimensions.bottom - sectionDimensions.top) / 2 +
-			sectionDimensions.top;
-
-		let translateLeftAmount = Math.abs(cardCenterXOriginal - containerCenterX);
-		let translateUpAmount = Math.abs(cardCenterYOriginal - containerCenterY);
-
-		const cardOriginalWidth = (cardDimensionsToUse.width * 2) / 3;
-		// const cardOriginalHeight = (cardDimensions.height * 2) / 3;
-		const scaleXFactor = sectionDimensions.width / cardOriginalWidth;
-		// const scaleYFactor = sectionDimensions.height / cardOriginalHeight;
-
-		if (cardCenterXOriginal < containerCenterX)
-			translateLeftAmount = -translateLeftAmount;
-
-		if (cardCenterYOriginal < containerCenterY)
-			translateUpAmount = -translateUpAmount;
-		// console.log('------------------------------------------------');
-		// console.log('card =', card);
-		// console.log('card.parentNode =', card.parentNode);
-		// console.log('cardLeftOriginal =', cardLeftOriginal);
-		// console.log('cardRightOriginal =', cardRightOriginal);
-		// console.log('cardDimensions =', cardDimensions);
-		// console.log('sectionDimensions =', sectionDimensions);
-		// console.log('containerCenterX =', containerCenterX);
-		// console.log('cardCenterXOriginal =', cardCenterXOriginal);
-		// console.log('containerCenterY =', containerCenterY);
-		// console.log('cardCenterYOriginal =', cardCenterYOriginal);
-		// console.log('translateLeftAmount =', translateLeftAmount);
-		// console.log('translateUpAmount =', translateUpAmount);
-		// console.log('scaleXFactor =', scaleXFactor);
-		// console.log('scaleYFactor =', scaleYFactor);
-		// console.log('------------------------------------------------');
-
-		const newTransform = `
-      translateX(${-translateLeftAmount}px) 
-      translateY(${-translateUpAmount}px) 
-      scaleX(${scaleXFactor})
-      scaleY(${scaleXFactor})
-      ;
-    `;
-
-		const newValue = `--card-playing-transform: ${newTransform}`;
-
-		document.documentElement.style.cssText += newValue;
-	};
-
-	const closeCard = (video: HTMLVideoElement, card: HTMLElement) => {
-		closeVideo(video);
-
-		if (!titleRef) return;
-		changeSectionTitle(titleRef, false);
-		setIsCardVideoOpen(false);
-
-		if (!card) return;
-		card.classList.remove(CARD_OPEN_CLASSNAME);
-		card.classList.remove(CARD_DONE_CLASSNAME);
-		card.classList.remove(CARD_STOPPED_CLASSNAME);
-	};
-
-	const openCard = (video: HTMLVideoElement, card: HTMLElement, backdrop: HTMLElement, initialCardDimensions: ClientRect) => {
-		if (!card) return;
-
+	
 		const cardDimensions = card.getBoundingClientRect();
-		centerCard(card, cardDimensions, initialCardDimensions);
-
+		centerCard(card, cardDimensions, initialCardDimensions, viewPortWidth, isMobile);
+	
 		const isVideoPlaying = getIsVideoPlaying(video);
 		if (!video) return;
 		if (isVideoPlaying || card.classList.contains(CARD_OPEN_CLASSNAME))
-			closeCard(video, card);
+			return closeCard(video, card, titleRef as Reference, setIsCardVideoOpen);
 		else {
 			playVideo(video, card);
 			card.classList.add(CARD_OPEN_CLASSNAME);
 		}
-
+	
 		setTimeout(() => {
 			adjustCardYPosition(video);
 			backdrop?.classList.remove("visible");
 			card.classList.remove("z-index-highest");
 		}, ANIMATION_DURATION / 2);
-
+	
 		setIsCardVideoOpen(true);
 	};
 

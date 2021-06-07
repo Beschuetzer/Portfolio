@@ -55,3 +55,5 @@ OPTIMIZATIONS:
 -add functionality where when you click a web dev subsection it calls scrollTo() in helpers to make that section at the top
 -convert everything to Typescript!
 -refactor Card (move the useStuff to utils where possible)
+-if Card refactor fails add 'return' to line in openCard()
+		return closeCard(video, card, titleRef, setIsCardVideoOpen);
