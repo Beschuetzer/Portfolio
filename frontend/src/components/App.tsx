@@ -36,6 +36,7 @@ import {
 } from "./navbar/utils";
 import soundsSpriteMp3 from "../sounds/soundsSprite.mp3";
 import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
+import { keypressHandler } from "./utils";
 
 interface AppProps {
 	isMobile: boolean,
@@ -72,53 +73,12 @@ const App: React.FC<AppProps> = ({
 			return setViewPortWidth(window.innerWidth);
 		};
 
-		const keypressHandler = (e: KeyboardEvent) => {
-			if (!e.altKey || !e.ctrlKey) return;
-			switch (e.key) {
-				case "a":
-					const navbar = document.querySelector(`.${NAVBAR_CLASSNAME}`);
-					const root = document.querySelector("#root");
-					setIsAnimating(!isAnimating);
-					if (isAnimating) {
-						navbar?.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
-						root?.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
-					} else {
-						navbar?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-						navbar?.classList?.remove(NAVBAR_DONE_CLASSNAME);
-						navbar?.classList?.add(OVERFLOW_HIDDEN_CLASSNAME);
-						root?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-					}
-					break;
-
-				case "c":
-					history.push("/contact");
-					break;
-				case "b":
-					history.push("/examples/bridge");
-					break;
-				case "s":
-					history.push("/examples/csharp");
-					break;
-				case "u":
-					history.push("/examples/autoBid");
-					break;
-				case "r":
-					history.push("/resume");
-					break;
-				case "t":
-					history.push("/about");
-					break;
-				default:
-					break;
-			}
-		};
-
 		window.addEventListener("resize", windowResize);
-		window.addEventListener("keydown", keypressHandler);
+		window.addEventListener("keydown", keypressHandler.bind(null, isAnimating, setIsAnimating));
 
 		return () => {
 			window.removeEventListener("resize", windowResize);
-			window.removeEventListener("keydown", keypressHandler);
+			window.removeEventListener("keydown", keypressHandler.bind(null, isAnimating, setIsAnimating));
 		};
 	}, [
 		isMobile,

@@ -1,6 +1,6 @@
 import { RefObject } from "react";
 import { Reference } from "../constants";
-import { removeClassFromAllChildren } from "../helpers";
+import { removeClassFromAllChildren } from "../utils";
 
 interface PauseControlProps {
 	className?: string 

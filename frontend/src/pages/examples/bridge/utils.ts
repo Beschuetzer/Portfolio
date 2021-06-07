@@ -1,5 +1,5 @@
 import { computedStyle, Reference } from "../../../components/constants";
-import { scrollToSection } from "../../../components/helpers";
+import { scrollToSection } from "../../../components/utils";
 
 export const SECOND_INFO_BUTTON_DELAY = 500;
 export const BRIDGE_CARD_SECTION_CLASSNAME = 'bridge__card-section';
@@ -86,7 +86,7 @@ export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: H
   }
   else {
     sounds.play('doorNormal');
-    scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()), !isMobile ? 0 : headerHeight)
+    scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()) as HTMLElement, !isMobile ? 0 : headerHeight)
     if (background)  {
       background?.classList.remove('visible');
       background?.classList.remove('reverse-ease');

@@ -11,7 +11,7 @@ import {
 	BRIDGE_PAGE_NAV_LINKS_COLORS,
 	BRIDGE_PAGE_NAV_LINK_CLASSNAME,
 } from "../../../pages/examples/bridge/utils";
-import { scrollToSection } from "../../helpers";
+import { scrollToSection } from "../../utils";
 import { checkShouldSetPreviousUrl, getSectionNames, setBridgeColors, setGradientPercent } from "./utils";
 
 interface PageNavProps {
@@ -20,7 +20,7 @@ interface PageNavProps {
 	isMobile: boolean,
 	clickedBridgeInfoButtonCount: number,
 	currentBridgeSection: number,
-	headerHeight: boolean,
+	headerHeight: number,
 	setPreviousUrl: (value: string) => void,
 }
 
@@ -81,7 +81,7 @@ const PageNav: React.FC<PageNavProps> = ({
 
 	const handleSectionClick = (e: MouseEvent) => {
 		scrollToSection(
-			document.getElementById((e.currentTarget as any)?.textContent.toLowerCase()),
+			document.getElementById((e.currentTarget as any)?.textContent.toLowerCase()) as HTMLElement,
 			headerHeight,
 		);
 	};

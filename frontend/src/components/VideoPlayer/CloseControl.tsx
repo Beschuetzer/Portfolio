@@ -1,6 +1,6 @@
 import { RefObject } from "react";
 import { connect } from "react-redux";
-import { removeClassFromAllChildren } from "../helpers";
+import { removeClassFromAllChildren } from "../utils";
 
 import { closeVideo } from "./utils";
 

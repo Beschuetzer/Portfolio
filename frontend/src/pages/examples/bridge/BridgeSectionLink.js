@@ -7,7 +7,7 @@ import {
   setClickedBridgeInfoButtonCount,
   setHasClickedALink,
 } from '../../../actions';
-import { scrollToSection } from '../../../components/helpers';
+import { scrollToSection } from '../../../components/utils';
 import { BRIDGE_PAGE_NAV_LINK_CLASSNAMES, handleBridgeHeroSounds, showBridgeHero, toggleSecondInfoButtonClick } from './utils';
 
 const BridgeSectionLink = ({isEmbeddedLink = false, bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content, match, sounds, isMobile, headerHeight, setClickedBridgeInfoButtonCount, setHasClickedALink, hasClickedALink}) => {
