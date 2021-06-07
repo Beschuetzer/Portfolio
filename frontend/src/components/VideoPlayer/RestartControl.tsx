@@ -1,6 +1,17 @@
 import { attachProgressListener, getIsVideoPlaying } from "./utils";
+interface RestartControlProps {
+	className?: string,
+	xlinkHref: string,
+	videoRef: any,
+	progressBarRef: any,
+	containerRef?: any,
+	playingClassname: string,
+	doneClassname: string,
+	stoppedClassname: string,
+	functionToGetContainer?: (e: any) => void,
+}
 
-const RestartControl = ({
+const RestartControl: React.FC<RestartControlProps> = ({
 	className = 'card__restart',
 	xlinkHref,
 	videoRef,
@@ -13,7 +24,7 @@ const RestartControl = ({
 }) => {
   let hasProgressEventListener = false;
 
-	const handleRestartVideo = (e) => {
+	const handleRestartVideo = (e: Event) => {
 		e.stopPropagation();
 
 		let container = containerRef && containerRef.current ? containerRef.current : null;
@@ -23,13 +34,13 @@ const RestartControl = ({
 		restartVideo(videoRef.current, container);
 	}
 
-	const restartVideo = (video, container) => {
+	const restartVideo = (video: HTMLVideoElement, container: HTMLElement) => {
 		if (!video) return;
 		video.currentTime = 0;
 		if (!getIsVideoPlaying(video)) {
 			video.play();
 			container?.classList.add(playingClassname);
-			attachProgressListener(video, hasProgressEventListener, handleVideoProgress);
+			attachProgressListener(video, hasProgressEventListener, handleVideoProgress as any);
 		}
 		
 		if (!container) return;
@@ -38,22 +49,22 @@ const RestartControl = ({
 		container.classList.remove(stoppedClassname);
 	}
 
-  const handleVideoProgress = (e) => {
+  const handleVideoProgress = (e: Event) => {
 		const video = videoRef.current;
 		if (!video) return;
 		const percent = video.currentTime / video.duration;
 		progressBarRef.current.value = percent;
 	}
 
-  const handleVideoEnd = (e) => {
+  const handleVideoEnd = (e: Event) => {
 		containerRef.current?.classList.add(doneClassname);
 		containerRef.current?.classList.remove(playingClassname);
 		const video = e.currentTarget;
-		video.removeEventListener("ended", handleVideoEnd);
+		video?.removeEventListener("ended", handleVideoEnd);
 	};
 
   return (
-    <div onClick={handleRestartVideo} className={`${className}-parent`}>
+    <div onClick={(e: any) => handleRestartVideo(e)} className={`${className}-parent`}>
       <svg className={`${className}`}>
         <use xlinkHref={xlinkHref}></use>
       </svg>

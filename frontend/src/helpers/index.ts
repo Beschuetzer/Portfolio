@@ -23,8 +23,6 @@ export const replaceCharacters = (
 		const characterMapping = replacementsToUse[i];
 		strToUse = strToUse.replace(characterMapping[0], characterMapping[1]);
 	}
-	console.log('strToUse =', strToUse);
-
 	return strToUse;
 };
 
