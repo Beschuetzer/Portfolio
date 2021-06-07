@@ -342,7 +342,7 @@ const Card: React.FC<CardProps> = ({
 		hasProgressEventListener = attachProgressListener(
 			video,
 			hasProgressEventListener,
-			handleVideoProgress,
+			(handleVideoProgress as any),
 		)!;
 		video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove(CARD_DONE_CLASSNAME);
@@ -351,7 +351,7 @@ const Card: React.FC<CardProps> = ({
 		video.play();
 	};
 
-	const handleVideoProgress = (e: ProgressEvent) => {
+	const handleVideoProgress = (e: Event) => {
 		const video = videoRef.current;
 		if (!video) return;
 		const percent = video.currentTime / video.duration;
@@ -486,7 +486,6 @@ const Card: React.FC<CardProps> = ({
 				<PlayControl
 					xlinkHref="/sprite.svg#icon-play"
 					videoRef={videoRef}
-					progressBarRef={progressBarRef}
 					containerRef={cardRef}
 					playingClassname={CARD_PLAYING_CLASSNAME}
 					doneClassname={CARD_DONE_CLASSNAME}

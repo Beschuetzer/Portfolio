@@ -1,4 +1,4 @@
-export const attachProgressListener = (video: HTMLVideoElement, hasProgressEventListener: boolean, handleVideoProgress: (e: any) => void) => {
+export const attachProgressListener = (video: HTMLVideoElement, hasProgressEventListener: boolean, handleVideoProgress: () => void) => {
   if(!video) return;
   if (!hasProgressEventListener) {
     video.addEventListener('timeupdate', handleVideoProgress);

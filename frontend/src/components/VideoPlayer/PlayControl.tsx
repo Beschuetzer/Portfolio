@@ -1,10 +1,22 @@
 import { attachProgressListener } from "./utils";
 
-const PlayControl = ({
+interface PlayControlProps {
+	className?: string,
+	xlinkHref: string, 
+	videoRef: any, 
+	containerRef?: any,
+	playingClassname: string,
+	doneClassname: string,
+	stoppedClassname: string,
+	handleVideoEnd?: (e: any) => void,
+	handleVideoProgress?: (e: any) => void,
+	functionToGetContainer?: (e: any) => void,
+}
+
+const PlayControl: React.FC<PlayControlProps> = ({
 	className = 'card__play', 
 	xlinkHref, 
 	videoRef, 
-	progressBarRef, 
 	containerRef = null,
 	playingClassname,
 	doneClassname,
@@ -15,7 +27,7 @@ const PlayControl = ({
 }) => {
   let hasProgressEventListener = false;
 
-  const handlePlayVideo = (e) => {
+  const handlePlayVideo = (e: MouseEvent) => {
 
 		let container = containerRef && containerRef.current ? containerRef.current : null;
 		
@@ -26,9 +38,9 @@ const PlayControl = ({
 		playVideo(videoRef.current, container);
 	}
 
-  const playVideo = (video, container) => {
-		hasProgressEventListener = attachProgressListener(video, hasProgressEventListener, handleVideoProgress );
-		video.addEventListener("ended", handleVideoEnd);
+  const playVideo = (video: HTMLVideoElement, container: HTMLElement) => {
+		hasProgressEventListener = attachProgressListener(video, hasProgressEventListener, (handleVideoProgress as any) ) as boolean;
+		video.addEventListener("ended", (handleVideoEnd as any));
 
 		if (container) {
 			container.classList.remove(doneClassname);
@@ -40,7 +52,7 @@ const PlayControl = ({
 	}
 
   return (
-    <div onClick={handlePlayVideo} className={`${className}-parent`}>
+    <div onClick={(e:any) => handlePlayVideo(e)} className={`${className}-parent`}>
       <svg className={`${className}`}>
         <use xlinkHref={xlinkHref}></use>
       </svg>

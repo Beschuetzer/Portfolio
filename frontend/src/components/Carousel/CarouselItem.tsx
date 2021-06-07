@@ -198,7 +198,6 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 							`.${CAROUSEL_VIDEO_CLASSNAME}`,
 						),
 					}}
-					progressBarRef={progressBarRef}
 					playingClassname={PLAYING_CLASSNAME}
 					doneClassname={DONE_CLASSNAME}
 					stoppedClassname={STOPPED_CLASSNAME}

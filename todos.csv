@@ -54,4 +54,4 @@ OPTIMIZATIONS:
 -remove mapStateToProps and ampDispatchToProps (the function {} after); use newest version of react-redux 
 -add functionality where when you click a web dev subsection it calls scrollTo() in helpers to make that section at the top
 -convert everything to Typescript!
--refactor SiteNav (move the useStuff to utils where possible)
+-refactor Card (move the useStuff to utils where possible)
