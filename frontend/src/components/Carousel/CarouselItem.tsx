@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { RefObject, useRef } from "react";
 
 import PlayControl from "../VideoPlayer/PlayControl";
 import StopControl from "../VideoPlayer/StopControl";
@@ -25,7 +25,28 @@ const CLASSNAMES_TO_REMOVE = [
 	DONE_CLASSNAME,
 ];
 
-const CarouselItem = ({
+interface CarouselItemProps {
+	descriptionClassname: string;
+	itemClassName: string;
+	imageClassname: string;
+	videoClassname: string;
+	foregroundVideoClassname: string;
+	imageAlt: string;
+	itemSrc: string;
+	videoType?: 'mp4' | 'ogv' | 'webm' | 'ogg';
+	videoAutoPlay?: boolean;
+	videoLoop?: boolean;
+	videoSvgXLinkHref: string
+	videoPlayControlSvgXLinkHref?: string;
+	videoStopControlSvgXLinkHref?: string;
+	videoRestartControlSvgXLinkHref?: string;
+	videoPauseControlSvgXLinkHref?: string;
+	videoCloseControlSvgXLinkHref?: string;
+	videoCloseControlClassesToRemove?: string;
+	videoExtentions?: string[],
+}
+
+const CarouselItem: React.FC<CarouselItemProps> = ({
 	descriptionClassname,
 	itemClassName,
 	imageClassname,
@@ -45,16 +66,16 @@ const CarouselItem = ({
 	videoCloseControlClassesToRemove = CLASSNAMES_TO_REMOVE,
 	videoExtentions = ["mp4", "ogv", "webm", "ogg"],
 }) => {
-	const videoRef = useRef();
-	const containerRef = useRef();
-	const progressBarRef = useRef();
+	const videoRef = useRef<HTMLVideoElement>(null);
+	const containerRef = useRef<HTMLElement>(null);
+	const progressBarRef = useRef<HTMLProgressElement>(null);
 	const isVideo = itemSrc.match(getRegexStringFromStringArray(videoExtentions));
 
-	function functionToGetContainer (e) {
-		return e.currentTarget.parentNode.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`);		
+	function functionToGetContainer (e: Event) {
+		return (e.currentTarget as any).parentNode.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`);		
 	}
 
-	function getRegexStringFromStringArray(fileExtensions) {
+	function getRegexStringFromStringArray(fileExtensions: string[]) {
 		const mapped = fileExtensions.map((ext, index) => {
 			let orChar = "|";
 			if (index === 0) orChar = "";
@@ -64,24 +85,24 @@ const CarouselItem = ({
 		return result;
 	}
 
-	const handleVideoEnd = (e) => {
-		const video = videoRef?.current;
+	const handleVideoEnd = (e: Event) => {
+		const video = videoRef?.current as any;
 		if (!video) return;
 		video.parentNode.classList.add(DONE_CLASSNAME);
 		video.parentNode.classList.remove(PLAYING_CLASSNAME);
 		video.removeEventListener("ended", handleVideoEnd);
 	};
 
-	const onVideoProgress = (e) => {
-		const video = e.target;
+	const onVideoProgress = (e: Event) => {
+		const video = e.target as any;
 		const item = video.parentNode;
 		if (!video || !item) return;
 
 		const percent = video.currentTime / video.duration;
-		progressBarRef.current.value = percent;
+		(progressBarRef as any).current.value = percent;
 	};
 
-	const onProgressBarClick = (e) => {
+	const onProgressBarClick = (e: MouseEvent) => {
 		const clientX = e.clientX;
 		const progressBar = e.currentTarget;
 		if (!progressBar) return;
@@ -91,19 +112,19 @@ const CarouselItem = ({
 		const video = videoRef.current;
 		if (!video) return;
 		video.currentTime = percent * video.duration;
-		if (video.parentNode.classList.contains(DONE_CLASSNAME)) {
-			video.parentNode.classList.remove(DONE_CLASSNAME);
-			video.parentNode.classList.add(STOPPED_CLASSNAME);
+		if ((video as any).parentNode.classList.contains(DONE_CLASSNAME)) {
+			(video as any).parentNode.classList.remove(DONE_CLASSNAME);
+			(video as any).parentNode.classList.add(STOPPED_CLASSNAME);
 		}
 	};
 
-	const onItemClick = (e) => {
-		const item = e.currentTarget;
+	const onItemClick = (e: MouseEvent) => {
+		const item = e.currentTarget as any;
 		if (!item) return;
 		e.preventDefault();
 
-		item.classList.toggle(FULLSCREEN_CLASSNAME);
-		item.parentNode?.classList.toggle(FULLSCREEN_PARENT_CLASSNAME);
+		(item).classList.toggle(FULLSCREEN_CLASSNAME);
+		(item).parentNode?.classList.toggle(FULLSCREEN_PARENT_CLASSNAME);
 
 		if (
 			item.classList.contains(videoClassname) ||
@@ -130,7 +151,7 @@ const CarouselItem = ({
 			src={itemSrc}
 			className={`${imageClassname}`}
 			alt={imageAlt}
-			onClick={onItemClick}
+			onClick={(e: any) => onItemClick(e)}
 		/>
 	);
 
@@ -156,7 +177,7 @@ const CarouselItem = ({
 		);
 	}
 
-	const renderControls = (isVideo) => {
+	const renderControls = (isVideo: RegExpMatchArray | null) => {
 		if (!isVideo)
 			return (
 				<CloseControl

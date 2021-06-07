@@ -9,7 +9,7 @@ interface CloseControlProps {
 	xlinkHref: string;
 	videoRef: RefObject<HTMLVideoElement>;
 	containerRef?: RefObject<HTMLElement>;
-	classNamesToRemove: string[];
+	classNamesToRemove: string[] | string;
 	classNamesToRemoveFromElement?: [string, HTMLElement | null][];
 	functionToRunOnClose?: () => void;
 }
