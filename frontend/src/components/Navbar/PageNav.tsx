@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { connect, RootStateOrAny } from "react-redux";
 
@@ -50,11 +50,12 @@ const PageNav: React.FC<PageNavProps> = ({
 	const scrollRefreshLimit = 50;
 	const maxScrollOffsetPercent = 1;
 	const selectedClass = "page-nav--active";
-	const pageNavElement = document.querySelector(".page-nav")!;
 	const docStyle = getComputedStyle(document.documentElement);
 	const isBridgePage = match.url.match(/bridge/i);
-	let previousSectionBottom = 0;
-	let shouldHandleScroll = true;
+	
+  let pageNavElement = document.querySelector(".page-nav") as any;
+	let previousSectionBottom: number | null = 0;
+	let shouldHandleScroll = useRef(true);
 
 	const getLinearGradient = (percent: number, docStyle: any) => {
 		const mainColor = docStyle.getPropertyValue("--color-primary-4");
@@ -76,8 +77,8 @@ const PageNav: React.FC<PageNavProps> = ({
 	};
 
 	const setGradientPercent = (
-		sections: HTMLElement[],
-		currentSection: HTMLElement,
+		sections: any,
+		currentSection: Element | null,
 		percentThroughSection: number,
 		isEnd: boolean,
 		indexOfCurrentSection: number,
@@ -244,8 +245,8 @@ const PageNav: React.FC<PageNavProps> = ({
 
 	useEffect(() => {
     const handleScroll = (e: Event) => {
-      if (!shouldHandleScroll) return;
-      shouldHandleScroll = false;
+      if (!shouldHandleScroll || !shouldHandleScroll.current) return;
+      shouldHandleScroll.current = false;
       const scrollY = window.scrollY;
       const maxScrollY = document.body.scrollHeight - window.innerHeight;
       const maxScrollOffset =
@@ -256,7 +257,7 @@ const PageNav: React.FC<PageNavProps> = ({
   
       let currentSection = null;
       let indexOfCurrentSection = -1;
-      let percentThroughSection = "";
+      let percentThroughSection = 0;
   
       //Reseting the top to 0
       if (scrollY < 10) previousSectionBottom = 0;
@@ -325,7 +326,7 @@ const PageNav: React.FC<PageNavProps> = ({
         indexOfCurrentSection,
       );
       setTimeout(() => {
-        shouldHandleScroll = true;
+        shouldHandleScroll.current = true;
       }, scrollRefreshLimit);
     };
 		document.addEventListener("scroll", handleScroll);
@@ -334,7 +335,7 @@ const PageNav: React.FC<PageNavProps> = ({
 		return () => {
 			document.removeEventListener("scroll", handleScroll);
 		};
-	}, [handleScroll]);
+	}, []);
 
 	useEffect(() => {
 		// updateActiveScaleRange();
