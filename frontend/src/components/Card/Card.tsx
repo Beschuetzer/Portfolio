@@ -396,7 +396,7 @@ const Card: React.FC<CardProps> = ({
 		((e as any).currentTarget as HTMLElement)?.classList.add("z-index-content");
 	};
 
-	const handleMouseLeave = (e: MouseEventHandler<HTMLElement>) => {
+	const handleMouseLeave = (e: MouseEventHandler<HTMLElement>): void => {
 		const target = (e as any).currentTarget as HTMLElement;
 		// setTimeout(() => {
 		target?.classList.remove("z-index-content");
@@ -425,9 +425,9 @@ const Card: React.FC<CardProps> = ({
 	return (
 		<article
 			ref={cardRef}
-			onMouseLeave={handleMouseLeave}
-			onMouseEnter={handleMouseEnter}
-			onClick={handleCardClick}
+			onMouseLeave={(e: any) => handleMouseLeave(e)}
+			onMouseEnter={(e: any) => handleMouseEnter(e)}
+			onClick={(e: any) => handleCardClick(e)}
 			className={CARD_DEFAULT_CLASSNAME}>
 			<img
 				className="card__image"
@@ -466,7 +466,6 @@ const Card: React.FC<CardProps> = ({
 				<CloseControl
 					xlinkHref="/sprite.svg#icon-close"
 					videoRef={videoRef}
-					titleRef={titleRef}
 					containerRef={cardRef}
 					classNamesToRemove={[
 						CARD_DONE_CLASSNAME,
