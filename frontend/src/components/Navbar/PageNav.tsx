@@ -14,16 +14,15 @@ import {
 import { scrollToSection } from "../helpers";
 
 interface PageNavProps {
-  match: {},
-	previousUrl,
-	isMobile,
-	hasClickedALink,
-	clickedBridgeInfoButtonCount,
-	clickedBridgeInfoButtonCount,
-	currentBridgeSection,
-	headerHeight,
-	setPreviousUrl,
-	setScrollPercent,
+  match: {url: string},
+	previousUrl: string,
+	isMobile: boolean,
+	hasClickedALink: boolean,
+	clickedBridgeInfoButtonCount: number,
+	currentBridgeSection: number,
+	headerHeight: boolean,
+	setPreviousUrl: (value: string) => void,
+	setScrollPercent: (value: string) => void,
 }
 
 const PageNav: React.FC<PageNavProps> = ({
@@ -31,7 +30,6 @@ const PageNav: React.FC<PageNavProps> = ({
 	previousUrl,
 	isMobile,
 	hasClickedALink,
-	clickedBridgeInfoButtonCount,
 	clickedBridgeInfoButtonCount,
 	currentBridgeSection,
 	headerHeight,
@@ -58,7 +56,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	let previousSectionBottom = 0;
 	let shouldHandleScroll = true;
 
-	const getLinearGradient = (percent, docStyle) => {
+	const getLinearGradient = (percent: number, docStyle: any) => {
 		const mainColor = docStyle.getPropertyValue("--color-primary-4");
 		const progressColor = docStyle.getPropertyValue("--color-primary-2").trim();
 
@@ -78,11 +76,11 @@ const PageNav: React.FC<PageNavProps> = ({
 	};
 
 	const setGradientPercent = (
-		sections,
-		currentSection,
-		percentThroughSection,
-		isEnd,
-		indexOfCurrentSection,
+		sections: HTMLElement[],
+		currentSection: HTMLElement,
+		percentThroughSection: number,
+		isEnd: boolean,
+		indexOfCurrentSection: number,
 	) => {
 		for (let i = 0; i < sections.length; i++) {
 			let gradientToUse = getLinearGradient(percentThroughSection, docStyle);
@@ -91,7 +89,7 @@ const PageNav: React.FC<PageNavProps> = ({
 			const pageNavSectionName = capitalize(section.dataset.section);
 			const pageNavSectionElement = document.querySelector(
 				`.page-nav__section-${pageNavSectionName}`,
-			);
+			) as HTMLElement;
 
 			if (!pageNavSectionElement || !pageNavSectionElement.parentNode) return;
 
@@ -108,7 +106,7 @@ const PageNav: React.FC<PageNavProps> = ({
 			pageNavSectionElement.style.backgroundImage = gradientToUse;
 
 			if (shouldAddActiveClass) {
-				pageNavSectionElement.parentNode.classList.add(selectedClass);
+				(pageNavSectionElement.parentNode as any).classList.add(selectedClass);
 
 				// let amountToScale = activeScaleRange.max;
 				// if (!shouldSetEnd) {
@@ -117,12 +115,11 @@ const PageNav: React.FC<PageNavProps> = ({
 
 				// const newValue = `${activeScaleVarName}: ${amountToScale}`;
 				// document.documentElement.style.cssText += newValue;
-			} else pageNavSectionElement.parentNode.classList.remove(selectedClass);
+			} else (pageNavSectionElement.parentNode as any).classList.remove(selectedClass);
 		}
 	};
 
 	const checkShouldSetPreviousUrl = () => {
-		const { previousUrl } = props;
 		const currentUrl = match?.url;
 
 		if (!previousUrl || previousUrl !== currentUrl) setPreviousUrl(currentUrl);
@@ -133,7 +130,7 @@ const PageNav: React.FC<PageNavProps> = ({
 		const sections = document.querySelectorAll("[data-section]");
 		for (let i = 0; i < sections.length; i++) {
 			const section = sections[i];
-			const capitalized = capitalize(section.dataset.section);
+			const capitalized = capitalize((section as any).dataset.section);
 			sectionNames.push(capitalized);
 		}
 		return sectionNames;

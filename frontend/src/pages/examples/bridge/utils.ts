@@ -1,4 +1,4 @@
-import { computedStyle } from "../../../components/constants";
+import { computedStyle, Reference } from "../../../components/constants";
 import { scrollToSection } from "../../../components/helpers";
 
 export const SECOND_INFO_BUTTON_DELAY = 500;
@@ -40,7 +40,7 @@ export const BRIDGE_PAGE_NAV_LINKS_COLORS = {
 }
 
 
-export const toggleSecondInfoButtonClick = (hero, heroMore, isMobile, shouldWaitToHideHero = true, span = null) => {
+export const toggleSecondInfoButtonClick = (hero: HTMLElement, heroMore: HTMLElement, isMobile: boolean, shouldWaitToHideHero = true, span: HTMLElement | null = null) => {
   heroMore?.classList.remove('hero__more--clicked');
   if (shouldWaitToHideHero) {
     setTimeout(() => {
@@ -54,37 +54,37 @@ export const toggleSecondInfoButtonClick = (hero, heroMore, isMobile, shouldWait
   if (span?.textContent !== bridgeSections[bridgeSections.length - 1]){
     setTimeout(() => {
       const arrowButtonRight = document.querySelector('.arrow-button--right');
-      arrowButtonRight.classList.remove('d-none');
+      if (arrowButtonRight) arrowButtonRight.classList.remove('d-none');
     }, SECOND_INFO_BUTTON_DELAY)
   }
 }
 
-export const showBridgeHero = (heroMore) => {
+export const showBridgeHero = (heroMore: Reference) => {
   let docStyle = getComputedStyle(document.documentElement);
   const defaultFontSize = docStyle.getPropertyValue('--default-font-size')
   const defaultFontSizeFloat = parseFloat(defaultFontSize);
   
-  document.querySelector('.page-nav').classList?.remove('hidden');
+  document.querySelector('.page-nav')?.classList?.remove('hidden');
   document.documentElement.style.setProperty('--bridge-section-height', '100vh');
   document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
   
   heroMore.current?.classList.add('hero__more--clicked');
 }
 
-export const handleBridgeHeroSounds = (checkBoxRef, backgroundRef, sounds, isMobile, headerHeight) => {
-  if (!checkBoxRef?.checked) {
+export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: HTMLElement, sounds: {play: (name: string) => void}, isMobile: boolean, headerHeight: number) => {
+  if (!checkBox?.checked) {
     sounds.play('doorFast');
 
-    if (!backgroundRef) return;
-    backgroundRef?.classList.add('visible');
-    backgroundRef?.classList.add('reverse-ease');
+    if (!background) return;
+    background?.classList.add('visible');
+    background?.classList.add('reverse-ease');
   }
   else {
     sounds.play('doorNormal');
     scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()), !isMobile ? 0 : headerHeight)
-    if (backgroundRef)  {
-      backgroundRef?.classList.remove('visible');
-      backgroundRef?.classList.remove('reverse-ease');
+    if (background)  {
+      background?.classList.remove('visible');
+      background?.classList.remove('reverse-ease');
     }
   }
 }
