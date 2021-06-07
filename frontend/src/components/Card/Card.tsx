@@ -19,6 +19,9 @@ import {
 	CARD_PLAYING_CLASSNAME,
 	CARD_STOPPED_CLASSNAME,
 	changeSectionTitle,
+	getCardCoordinates,
+	getFeaturesBridgeSectionTitles,
+	getGapAmount,
 } from "./utils";
 import {
 	bridgeSections,
@@ -62,147 +65,9 @@ const Card: React.FC<CardProps> = ({
 	const progressBarRef = useRef<HTMLProgressElement>(null);
 	let hasProgressEventListener = false;
 
-	const getFeaturesBridgeSectionTitles = () => {
-		const features = document.querySelector(
-			`#${bridgeSections[1].toLowerCase()}`,
-		) as HTMLElement;
-		return features.querySelector(`.${BRIDGE_SECTION_TITLES_CLASSNAME}`);
-	};
-
-	const getGapAmount = (
-		video: HTMLVideoElement,
-		card: HTMLElement,
-		cardDimensions: ClientRect,
-	) => {
-		const featuresBridgeSectionTitles = getFeaturesBridgeSectionTitles() as HTMLElement;
-		const bridgeSectionBounds =
-			featuresBridgeSectionTitles.getBoundingClientRect();
-		const videoBounds = video.getBoundingClientRect();
-		return videoBounds.top - bridgeSectionBounds.bottom;
-	};
-
-	const getCardScaleOnHoverAmount = (card: HTMLElement, cardDimensions: ClientRect) => {
-		let cardToUseAsReference = document.querySelector(".card")!;
-
-		if (cardToUseAsReference === card) {
-			const cards = document.querySelectorAll(".card");
-			cardToUseAsReference = cards[cards.length - 1];
-		}
-
-		const cardToUseAsReferenceDimensions =
-			cardToUseAsReference.getBoundingClientRect();
-		const valueToReturn =
-			cardDimensions.height / cardToUseAsReferenceDimensions.height;
-		return valueToReturn;
-	};
-
-	const getCardCoordinates = (card: HTMLElement, cardDimensions: ClientRect) => {
-		let cardLeftOriginal = cardDimensions.left;
-		let cardRightOriginal = cardDimensions.right;
-		let cardTopOriginal = cardDimensions.top;
-		let cardBottomOriginal = cardDimensions.bottom;
-		let cardCenterXOriginal =
-			(cardRightOriginal - cardLeftOriginal) / 2 + cardLeftOriginal;
-		let cardCenterYOriginal =
-			(cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal;
-
-		if (viewPortWidth > MOBILE_BREAK_POINT_WIDTH) {
-			cardLeftOriginal = cardDimensions.left + (cardDimensions.width * 1) / 6;
-			cardRightOriginal = cardDimensions.right - (cardDimensions.width * 1) / 6;
-
-			cardTopOriginal = cardDimensions.top + (cardDimensions.height * 1) / 6;
-			cardBottomOriginal =
-				cardDimensions.bottom - (cardDimensions.height * 1) / 6;
-
-			cardCenterXOriginal =
-				(cardRightOriginal - cardLeftOriginal) / 2 + cardLeftOriginal;
-			cardCenterYOriginal =
-				(cardBottomOriginal - cardTopOriginal) / 2 + cardTopOriginal;
-		}
-
-		const transformOrigin = getComputedStyle(card)["transformOrigin"];
-		const split = transformOrigin.split(" ");
-		const yCornerOffset = isMobile ? 1.75 : 1.85;
-		const xCornerOffset = 1.1675;
-		const cardScaleOnHoverAmount = getCardScaleOnHoverAmount(
-			card,
-			cardDimensions,
-		);
-		const yTransformOffset = parseFloat(split[0]);
-		const xTransformOffset = parseFloat(split[1]);
-		const xValueToMatch = cardDimensions.width / cardScaleOnHoverAmount;
-		const yValueToMatch = cardDimensions.height / cardScaleOnHoverAmount;
-		const xCondition = Math.abs(yTransformOffset - xValueToMatch) < 1;
-		const yCondition = Math.abs(xTransformOffset - yValueToMatch) < 1;
-		const xConditionHalf = Math.abs(yTransformOffset * 2 - xValueToMatch) < 1;
-		const yConditionHalf = Math.abs(xTransformOffset * 2 - yValueToMatch) < 1;
-
-		const isTransformOriginTopLeft =
-			xTransformOffset === 0 && yTransformOffset === 0;
-		const isTransformOriginTopRight = xTransformOffset === 0 && xCondition;
-		const isTransformOriginBottomLeft = yCondition && yTransformOffset === 0;
-		const isTransformOriginBottomRight = yCondition && xCondition;
-		const isTransformOriginTop = xTransformOffset === 0 && xConditionHalf;
-		const isTransformOriginBottom = yCondition && xConditionHalf;
-		const isTransformOriginLeft = yTransformOffset === 0 && yConditionHalf;
-		const isTransformOriginRight = xCondition && yConditionHalf;
-
-		// console.log('xTransformOffset =', xTransformOffset);
-		// console.log('yTransformOffset =', yTransformOffset);
-		// console.log('cardDimensions =', cardDimensions);
-		// console.log('xValueToMatch =', xValueToMatch);
-		// console.log('yValueToMatch =', yValueToMatch);
-		// console.log('xCondition =', xCondition);
-		// console.log('yCondition =', yCondition);
-		// console.log('xConditionHalf =', xConditionHalf);
-		// console.log('yConditionHalf =', yConditionHalf);
-		// console.log('something------------------------------------------------');
-		// console.log('isTransformOriginTopLeft =', isTransformOriginTopLeft);
-		// console.log('isTransformOriginTopRight =', isTransformOriginTopRight);
-		// console.log('isTransformOriginBottomLeft =', isTransformOriginBottomLeft);
-		// console.log('isTransformOriginBottomRight =', isTransformOriginBottomRight);
-		// console.log('isTransformOriginTop =', isTransformOriginTop);
-		// console.log('isTransformOriginBottom =', isTransformOriginBottom);
-		// console.log('isTransformOriginLeft =', isTransformOriginLeft);
-		// console.log('isTransformOriginRight =', isTransformOriginRight);
-		// console.log('Math.abs(yTransformOffset - valueToMatch) =', Math.abs(yTransformOffset - xValueToMatch));
-
-		if (isTransformOriginTopLeft || isTransformOriginTopRight) {
-			cardCenterYOriginal =
-				cardCenterYOriginal +
-				cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset;
-		} else if (isTransformOriginBottomLeft || isTransformOriginBottomRight) {
-			cardCenterYOriginal =
-				cardCenterYOriginal -
-				cardDimensions.height / cardScaleOnHoverAmount / yCornerOffset;
-		}
-
-		if (isTransformOriginTopLeft || isTransformOriginBottomLeft) {
-			cardCenterXOriginal =
-				cardCenterXOriginal + cardDimensions.width * xCornerOffset;
-		} else if (isTransformOriginTopRight || isTransformOriginBottomRight) {
-			cardCenterXOriginal =
-				cardCenterXOriginal - cardDimensions.width * xCornerOffset;
-		} else if (isTransformOriginTop)
-			cardCenterYOriginal += yTransformOffset * cardScaleOnHoverAmount;
-		else if (isTransformOriginBottom)
-			cardCenterYOriginal -= yTransformOffset * cardScaleOnHoverAmount;
-		else if (isTransformOriginLeft)
-			cardCenterXOriginal += xTransformOffset * cardScaleOnHoverAmount;
-		else if (isTransformOriginRight)
-			cardCenterXOriginal -= xTransformOffset * cardScaleOnHoverAmount;
-
-		// cardCenterXOriginal += xOffset;
-
-		return {
-			cardCenterXOriginal,
-			cardCenterYOriginal,
-		};
-	};
-
-	const adjustCardYPosition = (video: HTMLVideoElement, card: HTMLElement, cardDimensions: ClientRect) => {
+	const adjustCardYPosition = (video: HTMLVideoElement) => {
 		//calls getGapAmount then change the css translate var based on that
-		const gapAmount = getGapAmount(video, card, cardDimensions);
+		const gapAmount = getGapAmount(video, bridgeSections);
 		const cardPlayingTransform =
 			document.documentElement.style.getPropertyValue(
 				"--card-playing-transform",
@@ -249,6 +114,8 @@ const Card: React.FC<CardProps> = ({
 		const { cardCenterXOriginal, cardCenterYOriginal } = getCardCoordinates(
 			card,
 			cardDimensionsToUse,
+			viewPortWidth, 
+			isMobile,
 		);
 
 		const containerCenterX =
@@ -330,7 +197,7 @@ const Card: React.FC<CardProps> = ({
 		}
 
 		setTimeout(() => {
-			adjustCardYPosition(video, card, cardDimensions);
+			adjustCardYPosition(video);
 			backdrop?.classList.remove("visible");
 			card.classList.remove("z-index-highest");
 		}, ANIMATION_DURATION / 2);
@@ -421,7 +288,6 @@ const Card: React.FC<CardProps> = ({
 		if (percent < 1) card.classList.remove(CARD_DONE_CLASSNAME);
 		else card.classList.add(CARD_DONE_CLASSNAME);
 	};
-
 
 	return (
 		<article
