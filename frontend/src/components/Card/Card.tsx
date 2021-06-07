@@ -35,6 +35,7 @@ import {
 import {
 	attachProgressListener,
 	getIsVideoPlaying,
+	handleVideoProgress,
 } from "../VideoPlayer/utils";
 import { scrollToSection } from "../utils";
 
@@ -106,7 +107,7 @@ const Card: React.FC<CardProps> = ({
 		hasProgressEventListener = attachProgressListener(
 			video,
 			hasProgressEventListener,
-			handleVideoProgress as any,
+			handleVideoProgress.bind(null, {current: video}, progressBarRef) as any,
 		)!;
 		video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove(CARD_DONE_CLASSNAME);
@@ -115,12 +116,6 @@ const Card: React.FC<CardProps> = ({
 		video.play();
 	};
 
-	const handleVideoProgress = (e: Event) => {
-		const video = videoRef.current;
-		if (!video) return;
-		const percent = video.currentTime / video.duration;
-		((progressBarRef as any).current as HTMLProgressElement).value = percent;
-	};
 
 	const handleVideoEnd = (e: Event) => {
 		cardRef.current?.classList.add(CARD_DONE_CLASSNAME);

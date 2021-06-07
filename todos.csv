@@ -57,3 +57,4 @@ OPTIMIZATIONS:
 -refactor Card (move the useStuff to utils where possible)
 -if Card refactor fails add 'return' to line in openCard()
 		return closeCard(video, card, titleRef, setIsCardVideoOpen);
+-double check that no event listeners don't get cleaned up on page change

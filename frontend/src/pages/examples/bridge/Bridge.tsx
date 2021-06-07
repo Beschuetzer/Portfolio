@@ -509,6 +509,9 @@ const Bridge: React.FC<BridgeProps> = ({
 	setCurrentBridgeSection,
 	isMobile,
 }) => {
+	const leftArrowProps = {direction: 'left'};
+	const rightArrowProps = {direction: 'right'};
+	
 	useEffect(() => {
 		const newLinearGradient = `
       linear-gradient(to right, var(--color-primary-1), var(--color-primary-1));
@@ -560,9 +563,6 @@ const Bridge: React.FC<BridgeProps> = ({
 		});
 	};
 
-
-	const leftArrowProps = {direction: 'left'};
-	const rightArrowProps = {direction: 'right'};
 	return (
 		<div className="bridge">
 			<BridgeHero name="Bridge" pageName="bridge" />

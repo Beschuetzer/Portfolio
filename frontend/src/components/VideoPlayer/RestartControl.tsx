@@ -1,4 +1,4 @@
-import { attachProgressListener, getIsVideoPlaying } from "./utils";
+import { attachProgressListener, getIsVideoPlaying, handleVideoProgress } from "./utils";
 interface RestartControlProps {
 	className?: string,
 	xlinkHref: string,
@@ -40,20 +40,13 @@ const RestartControl: React.FC<RestartControlProps> = ({
 		if (!getIsVideoPlaying(video)) {
 			video.play();
 			container?.classList.add(playingClassname);
-			attachProgressListener(video, hasProgressEventListener, handleVideoProgress as any);
+			attachProgressListener(video, hasProgressEventListener, handleVideoProgress.bind(null, videoRef, progressBarRef) as any);
 		}
 		
 		if (!container) return;
 		if (container.classList.contains(doneClassname)) video.addEventListener("ended", handleVideoEnd);
 		container.classList.remove(doneClassname);
 		container.classList.remove(stoppedClassname);
-	}
-
-  const handleVideoProgress = (e: Event) => {
-		const video = videoRef.current;
-		if (!video) return;
-		const percent = video.currentTime / video.duration;
-		progressBarRef.current.value = percent;
 	}
 
   const handleVideoEnd = (e: Event) => {

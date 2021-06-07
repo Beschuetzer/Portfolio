@@ -1,3 +1,5 @@
+import { RefObject } from "react";
+
 export const attachProgressListener = (video: HTMLVideoElement, hasProgressEventListener: boolean, handleVideoProgress: () => void) => {
   if(!video) return;
   if (!hasProgressEventListener) {
@@ -29,4 +31,11 @@ export const getIsVideoPlaying = (video: HTMLVideoElement) => {
     !video.ended &&
     video.readyState > 2
   );
+};
+
+export const handleVideoProgress = (videoRef: RefObject<HTMLVideoElement>, progressBarRef: RefObject<HTMLProgressElement>, e: Event) => {
+  const video = videoRef.current;
+  if (!video) return;
+  const percent = video.currentTime / video.duration;
+  ((progressBarRef as any).current as HTMLProgressElement).value = percent;
 };
