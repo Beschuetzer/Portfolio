@@ -22,7 +22,7 @@ export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
 export const HEADER_TOGGLER_CSS_CLASSNAME = '--header-toggler-height';
 
 const BODY_BACKGROUND_CLASSNAME = 'body-background';
-const SET_ANIMATING_DONE_FACTOR = 1.2;
+const SET_ANIMATING_DONE_WAIT_FACTOR = 1.2;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
 
@@ -74,7 +74,7 @@ export const startAnimating = (
 		} else {
 			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 		}
-	}, ANIMATION_DURATION * SET_ANIMATING_DONE_FACTOR);
+	}, ANIMATION_DURATION * SET_ANIMATING_DONE_WAIT_FACTOR);
 	navBar?.classList?.add(NAVBAR_IS_ANIMATING_CLASSNAME);
 };
 

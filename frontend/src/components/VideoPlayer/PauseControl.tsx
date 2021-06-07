@@ -1,7 +1,19 @@
+import { RefObject } from "react";
+import { Reference } from "../constants";
 import { removeClassFromAllChildren } from "../helpers";
 
+interface PauseControlProps {
+	className?: string 
+	xlinkHref: string,
+	playingClassname: string,
+	doneClassname: string,
+	stoppedClassname: string,
+	videoRef: RefObject<HTMLElement>,
+	containerRef?: RefObject<HTMLElement>,
+	functionToGetContainer?: (e: MouseEvent) => HTMLElement | null,
+}
 
-const PauseControl = ({
+const PauseControl: React.FC<PauseControlProps> = ({
 	className = 'card__pause',
 	xlinkHref,
 	videoRef,
@@ -11,17 +23,17 @@ const PauseControl = ({
 	stoppedClassname,
 	functionToGetContainer = null,
 }) => {
-  const handlePauseVideo = (e) => {
+  const handlePauseVideo = (e: MouseEvent) => {
 		e.stopPropagation();
 
 		let container = containerRef && containerRef.current ? containerRef.current : null;
 		
 		if (!container && functionToGetContainer) container = functionToGetContainer(e);
 
-		pauseVideo(videoRef.current, container);
+		pauseVideo((videoRef?.current) as HTMLVideoElement, container as HTMLElement);
 	}
 
-  const pauseVideo = (video, container) => {
+  const pauseVideo = (video: HTMLVideoElement, container: HTMLElement) => {
 		video?.pause();
 		if (!container) return;
 		container.classList.remove(playingClassname);
@@ -31,7 +43,7 @@ const PauseControl = ({
 	}
 
   return (
-    <div onClick={handlePauseVideo} className={`${className}-parent`}>
+    <div onClick={(e: any) => handlePauseVideo(e)} className={`${className}-parent`}>
       <svg className={`${className}`}>
         <use xlinkHref={xlinkHref}></use>
       </svg>

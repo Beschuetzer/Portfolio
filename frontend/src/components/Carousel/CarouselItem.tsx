@@ -227,7 +227,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 					containerRef={{
 						current: containerRef?.current?.querySelector(
 							`.${CAROUSEL_VIDEO_CLASSNAME}`,
-						),
+						)!,
 					}}
 					playingClassname={PLAYING_CLASSNAME}
 					doneClassname={DONE_CLASSNAME}
