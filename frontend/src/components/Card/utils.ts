@@ -342,6 +342,7 @@ export const handleProgressBarClick = (
   cardRef: RefObject<HTMLElement>,
   e: () => void,
 ) => {
+	console.log('progress click------------------------------------------------');
   const clientX = (e as any).clientX;
   const progressBar = (e as any).currentTarget;
   if (!progressBar) return;

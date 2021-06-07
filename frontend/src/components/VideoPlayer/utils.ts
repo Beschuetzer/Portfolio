@@ -37,5 +37,5 @@ export const handleVideoProgress = (videoRef: RefObject<HTMLVideoElement>, progr
   const video = videoRef.current;
   if (!video) return;
   const percent = video.currentTime / video.duration;
-  ((progressBarRef as any).current as HTMLProgressElement).value = percent;
+  ((progressBarRef as any)?.current as HTMLProgressElement).value = percent;
 };
