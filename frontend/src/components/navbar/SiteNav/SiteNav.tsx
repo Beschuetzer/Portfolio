@@ -21,7 +21,7 @@ import {
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
 } from "../util";
-import { changePage, setBodyStyle, setHeaderHeightOnViewPortChange } from "./utils";
+import { changePage, destroy, init, setBodyStyle, setHeaderHeightOnViewPortChange } from "./utils";
 
 interface SiteNavProps {
 	isAnimating: boolean,
@@ -124,34 +124,17 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			setCurrentUrl(match.url);
 		}
 	}, [match, currentUrl, previousUrl, setCurrentUrl]);
-	
+
 	useEffect(() => {
 		changePage(currentUrl);
 	}, [currentUrl]);
 
 	//initial
 	useEffect(() => {
-		const onBodyClick = (e: MouseEvent) => {
-			const isNavClick = (e.target as any)?.classList?.contains(NAVBAR_ACTIVE_CLASSNAME)
-				? true
-				: false;
-			if (!isNavClick) {
-				navRef?.current?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-				// navRef?.current?.classList?.add("overflow--hidden");
-			}
-			// root.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-		};
-		document.body.addEventListener("click", onBodyClick);
-
-		setTimeout(() => {
-			const headerHeight = (document
-				.querySelector("#header") as HTMLElement)
-				.getBoundingClientRect().height;
-			setHeaderHeight(headerHeight);
-		}, 100);
+		init(navRef, setHeaderHeight);
 
 		return () => {
-			document.body.removeEventListener("click", onBodyClick);
+			destroy(navRef);
 		};
 	}, [setHeaderHeight]);
 

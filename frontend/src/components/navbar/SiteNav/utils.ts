@@ -1,6 +1,32 @@
-import { setHeaderHeight } from "../../../actions";
+import { RefObject } from "react";
 import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../../Carousel/util";
 import { MOBILE_BREAK_POINT_WIDTH } from "../../constants";
+import { NAVBAR_ACTIVE_CLASSNAME } from "../util";
+
+const onBodyClick = (navRef: RefObject<HTMLElement>, e: Event) => {
+  console.log('e =', e);
+  const isNavClick = (e.target as any)?.classList?.contains(NAVBAR_ACTIVE_CLASSNAME)
+    ? true
+    : false;
+  if (!isNavClick) {
+    navRef?.current?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+  }
+};
+
+export const init = (navRef: RefObject<HTMLElement>, setHeaderHeight: (value: number) => void) => {
+  document.body.addEventListener("click", onBodyClick.bind(null, navRef));
+
+  setTimeout(() => {
+    const headerHeight = (document
+      .querySelector("#header") as HTMLElement)
+      .getBoundingClientRect().height;
+    setHeaderHeight(headerHeight);
+  }, 100);
+}
+
+export const destroy = (navRef: RefObject<HTMLElement>) => {
+  document.body.removeEventListener("click", onBodyClick.bind(null, navRef));
+}
 
 export const changePage = (newUrl: string) => {
   //resetting Carousel scrolling
@@ -77,4 +103,4 @@ export const setHeaderHeightOnViewPortChange = (viewPortWidth: number, setHeader
 
   setHeaderHeight(headerHeight);
 }
-  
+
