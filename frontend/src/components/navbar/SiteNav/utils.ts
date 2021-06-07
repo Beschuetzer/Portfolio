@@ -14,6 +14,7 @@ import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
+  NAVBAR_CONTENT_CLASSNAME,
 } from "../utils";
 
 const SET_ANIMATING_DONE_FACTOR = 1.2;
@@ -130,7 +131,7 @@ export const setHeaderHeightOnViewPortChange = (
 	setHeaderHeight: (value: number) => void,
 ) => {
 	const navbarContent = document.querySelector(
-		".navbar__content",
+		`.${NAVBAR_CONTENT_CLASSNAME}`,
 	) as HTMLElement;
 	const header = document.querySelector(HEADER_ID) as HTMLElement;
 	const headerBoundingRect = header.getBoundingClientRect();
