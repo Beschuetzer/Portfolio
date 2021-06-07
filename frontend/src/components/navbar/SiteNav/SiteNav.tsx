@@ -37,6 +37,9 @@ import {
 	setHeaderHeightOnViewPortChange,
 	getResetAnimatingId,
 	HEADER_ID,
+	hide,
+	NavRef,
+	handleNavClick,
 } from "./utils";
 
 interface SiteNavProps {
@@ -62,64 +65,14 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	const navRef = useRef<HTMLElement>(null);
 	// const noFilterPages = ['/bridge'];
 
-	const hide = () => {
-		(navRef as Reference)?.current.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
-	};
-
-	const handleSound = (e: MouseEvent) => {
-		const isActive = (e.currentTarget as HTMLElement).className.match(
-			/--active/i,
-		) as RegExpMatchArray;
-		const isMenu = (e.target as HTMLElement)?.className?.match(
-			/navbar__menu/i,
-		) as RegExpMatchArray;
-		const isNavbar = (e.target as HTMLElement).classList.contains(NAVBAR_CLASSNAME);
-
-		if (!isActive && isMenu) sounds.play("siteNavOpen");
-		else if ((!isActive && !isNavbar) || (isActive && isMenu))
-			sounds.play("siteNavClose");
-	};
-
+	
 	const onNavClick = (e: MouseEvent) => {
 		e.stopPropagation();
-		const navBar = navRef.current;
-		const isChildOfNavBar = checkForParentOfType(
-			e.target as HTMLElement,
-			"nav",
-			NAVBAR_CLASSNAME,
-		);
-
-		if (!navBar) return;
-		handleSound(e);
-
-		if (isChildOfNavBar) navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
-
-		if (
-			!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&
-			isChildOfNavBar
-		) {
-			navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
-			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
-			document
-				.querySelector(HEADER_ID)!
-				.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
-			setIsAnimating(true);
-		} else {
-			navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
-
-			setTimeout(() => {
-				document
-					.querySelector(HEADER_ID)!
-					.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
-			}, ANIMATION_DURATION);
-
-			setIsAnimating(false);
-		}
+		handleNavClick(navRef, sounds, setIsAnimating, e);
 	};
 
 	const onNavItemClick = (e: MouseEvent) => {
-		hide();
+		hide(navRef);
 	};
 
 	const onMouseEnter = (e: MouseEvent) => {

@@ -1,4 +1,5 @@
 import { RefObject } from "react";
+import { checkForParentOfType } from "../../../helpers";
 import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../../Carousel/util";
 import {
 	ANIMATION_DURATION,
@@ -6,12 +7,14 @@ import {
 	OVERFLOW_HIDDEN_CLASSNAME,
 	TRANSPARENT_CLASSNAME,
   DISPLAY_NONE_CLASSNAME,
+  Z_INDEX_HIGHEST_CLASSNAME,
 } from "../../constants";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
   NAVBAR_CONTENT_CLASSNAME,
+  NAVBAR_CLASSNAME,
 } from "../utils";
 
 export const HEADER_ID = "#header";
@@ -23,7 +26,13 @@ const SET_ANIMATING_DONE_FACTOR = 1.2;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
 
-const onBodyClick = (navRef: RefObject<HTMLElement>, e: Event) => {
+export interface Sounds {
+  play: (sound: string) => void;
+}
+
+export type NavRef = RefObject<HTMLElement>;
+
+const onBodyClick = (navRef: NavRef, e: Event) => {
 	const isNavClick = (e.target as any)?.classList?.contains(
 		NAVBAR_ACTIVE_CLASSNAME,
 	)
@@ -35,7 +44,7 @@ const onBodyClick = (navRef: RefObject<HTMLElement>, e: Event) => {
 };
 
 export const init = (
-	navRef: RefObject<HTMLElement>,
+	navRef: NavRef,
 	setHeaderHeight: (value: number) => void,
 ) => {
 	document.body.addEventListener("click", onBodyClick.bind(null, navRef));
@@ -48,12 +57,12 @@ export const init = (
 	}, SET_INITIAL_HEADER_HEIGHT_DELAY);
 };
 
-export const destroy = (navRef: RefObject<HTMLElement>) => {
+export const destroy = (navRef: NavRef) => {
 	document.body.removeEventListener("click", onBodyClick.bind(null, navRef));
 };
 
 export const startAnimating = (
-	navRef: RefObject<HTMLElement>,
+	navRef: NavRef,
 	isAnimating: boolean,
 ) => {
 	const navBar = navRef.current as any;
@@ -147,3 +156,61 @@ export const setHeaderHeightOnViewPortChange = (
 	const headerHeight = header.getBoundingClientRect().height;
 	setHeaderHeight(headerHeight);
 };
+
+export const hide = (navRef: NavRef) => {
+  navRef.current?.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
+};
+
+const handleSound = (sounds: Sounds, e: MouseEvent) => {
+  const isActive = (e.currentTarget as HTMLElement).className.match(
+    /--active/i,
+  ) as RegExpMatchArray;
+  const isMenu = (e.target as HTMLElement)?.className?.match(
+    /navbar__menu/i,
+  ) as RegExpMatchArray;
+  const isNavbar = (e.target as HTMLElement).classList.contains(NAVBAR_CLASSNAME);
+
+  if (!isActive && isMenu) sounds.play("siteNavOpen");
+  else if ((!isActive && !isNavbar) || (isActive && isMenu))
+    sounds.play("siteNavClose");
+};
+
+
+export const handleNavClick = (navRef: NavRef, sounds: Sounds, setIsAnimating: (value: boolean) => void, e: MouseEvent) => {
+  const navBar = navRef.current;
+		const isChildOfNavBar = checkForParentOfType(
+			e.target as HTMLElement,
+			"nav",
+			NAVBAR_CLASSNAME,
+		);
+
+		if (!navBar) return;
+		handleSound(sounds, e);
+
+		if (isChildOfNavBar) navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
+
+		if (
+			!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&
+			isChildOfNavBar
+		) {
+			navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
+			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
+			document
+				.querySelector(HEADER_ID)!
+				.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
+			setIsAnimating(true);
+		} else {
+			navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
+
+			setTimeout(() => {
+				document
+					.querySelector(HEADER_ID)!
+					.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
+			}, ANIMATION_DURATION);
+
+			setIsAnimating(false);
+		}
+}
+
+
