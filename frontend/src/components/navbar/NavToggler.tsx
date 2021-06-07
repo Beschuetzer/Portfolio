@@ -6,9 +6,8 @@ import { connect, RootStateOrAny } from "react-redux";
 import {
 	viewPortPixelToRem,
 	headerTogglerWidth,
-	HEADER_TOGGLER_CLASSNAME,
-  HEADER_TOGGLER_CSS_CLASSNAME,
 } from "../constants";
+import { HEADER_TOGGLER_CLASSNAME, HEADER_TOGGLER_CSS_CLASSNAME } from "./SiteNav/utils";
 
 interface NavTogglerProps {
 	headerHeight: number;

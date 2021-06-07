@@ -2,13 +2,10 @@ import { RefObject } from "react";
 import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../../Carousel/util";
 import {
 	ANIMATION_DURATION,
-	HEADER_ID,
-	HEADER_TOGGLER_CLASSNAME,
 	MOBILE_BREAK_POINT_WIDTH,
 	OVERFLOW_HIDDEN_CLASSNAME,
 	TRANSPARENT_CLASSNAME,
   DISPLAY_NONE_CLASSNAME,
-  BODY_BACKGROUND_CLASSNAME,
 } from "../../constants";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
@@ -17,6 +14,11 @@ import {
   NAVBAR_CONTENT_CLASSNAME,
 } from "../utils";
 
+export const HEADER_ID = "#header";
+export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
+export const HEADER_TOGGLER_CSS_CLASSNAME = '--header-toggler-height';
+
+const BODY_BACKGROUND_CLASSNAME = 'body-background';
 const SET_ANIMATING_DONE_FACTOR = 1.2;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;

@@ -7,7 +7,7 @@ import { setClickedBridgeInfoButtonCount } from '../../../actions';
 import Video from '../../../components/VideoPlayer/Video';
 import bgVideo from '../../../clips/bridge/animation-roundEndDummy.mp4';
 import { handleBridgeHeroSounds, showBridgeHero, toggleSecondInfoButtonClick } from "./utils";
-import { HEADER_ID } from "../../../components/constants";
+import { HEADER_ID } from "../../../components/navbar/SiteNav/utils";
 
 const BridgeHero = ({sounds, isMobile, setClickedBridgeInfoButtonCount, clickedBridgeInfoButtonCount}) => {
 	//my idea here is to have a centered diamond background that has has the section or A # Maj Bridge words around the four corners.  Inside the diamond, there are other suits and a background video?

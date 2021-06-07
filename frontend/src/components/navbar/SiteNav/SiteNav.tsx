@@ -17,7 +17,6 @@ import { setHeaderHeight, setIsAnimating } from "../../../actions";
 import { checkForParentOfType } from "../../../helpers";
 import {
 	ANIMATION_DURATION,
-	HEADER_ID,
 	OVERFLOW_HIDDEN_CLASSNAME,
 	Reference,
 	Z_INDEX_HIGHEST_CLASSNAME,
@@ -37,6 +36,7 @@ import {
 	setBodyStyle,
 	setHeaderHeightOnViewPortChange,
 	getResetAnimatingId,
+	HEADER_ID,
 } from "./utils";
 
 interface SiteNavProps {
