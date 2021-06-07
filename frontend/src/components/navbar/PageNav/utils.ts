@@ -1,4 +1,5 @@
 import { capitalize } from "../../../helpers";
+import { BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME } from "../../../pages/examples/bridge/utils";
 
 export const selectedClass = "page-nav--active";
 export const docStyle = getComputedStyle(document.documentElement);
@@ -49,4 +50,50 @@ export const setGradientPercent = (
       (pageNavSectionElement.parentNode as any).classList.add(selectedClass);
     } else (pageNavSectionElement.parentNode as any).classList.remove(selectedClass);
   }
+};
+
+export const checkShouldSetPreviousUrl = (match: {url: string}, previousUrl: string, setPreviousUrl: (value: string) => void) => {
+  const currentUrl = match?.url;
+
+  if (!previousUrl || previousUrl !== currentUrl) setPreviousUrl(currentUrl);
+};
+
+export const getSectionNames = () => {
+  const sectionNames = [];
+  const sections = document.querySelectorAll("[data-section]");
+  for (let i = 0; i < sections.length; i++) {
+    const section = sections[i];
+    const capitalized = capitalize((section as any).dataset.section);
+    sectionNames.push(capitalized);
+  }
+  return sectionNames;
+};
+
+export const setBridgeColors = (currentBridgeSection: number, clickedBridgeInfoButtonCount: number) => {
+  //get the currentBridgeSection and run through all of the
+  const sectionNames = document.querySelectorAll(
+    `.${BRIDGE_PAGE_NAV_LINK_CLASSNAME}`,
+  );
+
+  //Setting BRIDGE_CURRENT_SECTION_CLASSNAME CSS class
+  for (let i = 0; i < sectionNames.length; i++) {
+    const sectionName = sectionNames[i];
+    if (!sectionName) return;
+
+    if (clickedBridgeInfoButtonCount >= 2) {
+      sectionName.classList.remove("full-opacity");
+      if (i === currentBridgeSection)
+        sectionName.classList.add(BRIDGE_CURRENT_SECTION_CLASSNAME);
+      else sectionName.classList.remove(BRIDGE_CURRENT_SECTION_CLASSNAME);
+    } else {
+      sectionName.classList.add("full-opacity");
+    }
+  }
+
+  //change CSS color var depending on currentBridgeSection
+  const newNormalValue = `--bridge-page-nav-link-color: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].normal}`;
+  document.documentElement.style.cssText += newNormalValue;
+
+  const newHoverValue = `--bridge-page-nav-link-color-hover: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].hover}`;
+  document.documentElement.style.cssText += newHoverValue;
 };

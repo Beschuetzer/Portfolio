@@ -12,7 +12,7 @@ import {
 	BRIDGE_PAGE_NAV_LINK_CLASSNAME,
 } from "../../../pages/examples/bridge/utils";
 import { scrollToSection } from "../../helpers";
-import { setGradientPercent } from "./utils";
+import { checkShouldSetPreviousUrl, getSectionNames, setBridgeColors, setGradientPercent } from "./utils";
 
 interface PageNavProps {
   match: {url: string},
@@ -56,56 +56,8 @@ const PageNav: React.FC<PageNavProps> = ({
 	let previousSectionBottom: number | null = 0;
 	let shouldHandleScroll = useRef(true);
 
-	
-
-	const checkShouldSetPreviousUrl = () => {
-		const currentUrl = match?.url;
-
-		if (!previousUrl || previousUrl !== currentUrl) setPreviousUrl(currentUrl);
-	};
-
-	const getSectionNames = () => {
-		const sectionNames = [];
-		const sections = document.querySelectorAll("[data-section]");
-		for (let i = 0; i < sections.length; i++) {
-			const section = sections[i];
-			const capitalized = capitalize((section as any).dataset.section);
-			sectionNames.push(capitalized);
-		}
-		return sectionNames;
-	};
-
-	const setBridgeColors = () => {
-		//get the currentBridgeSection and run through all of the
-		const sectionNames = document.querySelectorAll(
-			`.${BRIDGE_PAGE_NAV_LINK_CLASSNAME}`,
-		);
-
-		//Setting BRIDGE_CURRENT_SECTION_CLASSNAME CSS class
-		for (let i = 0; i < sectionNames.length; i++) {
-			const sectionName = sectionNames[i];
-			if (!sectionName) return;
-
-			if (clickedBridgeInfoButtonCount >= 2) {
-				sectionName.classList.remove("full-opacity");
-				if (i === currentBridgeSection)
-					sectionName.classList.add(BRIDGE_CURRENT_SECTION_CLASSNAME);
-				else sectionName.classList.remove(BRIDGE_CURRENT_SECTION_CLASSNAME);
-			} else {
-				sectionName.classList.add("full-opacity");
-			}
-		}
-
-		//change CSS color var depending on currentBridgeSection
-		const newNormalValue = `--bridge-page-nav-link-color: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].normal}`;
-		document.documentElement.style.cssText += newNormalValue;
-
-		const newHoverValue = `--bridge-page-nav-link-color-hover: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].hover}`;
-		document.documentElement.style.cssText += newHoverValue;
-	};
-
 	const renderFullBridge = () => {
-		setBridgeColors();
+		setBridgeColors(currentBridgeSection, clickedBridgeInfoButtonCount);
 
 		return bridgeSections.map((sectionName, index, array) => {
 			return (
@@ -126,8 +78,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	const renderBridgeSections = () => {
 		if (isMobile) return renderMobileBridge();
 		else {
-			checkShouldSetPreviousUrl();
-
+			checkShouldSetPreviousUrl(match, previousUrl, setPreviousUrl);
 			return renderFullBridge();
 		}
 	};
@@ -140,7 +91,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	};
 
 	const renderSections = () => {
-		checkShouldSetPreviousUrl();
+		checkShouldSetPreviousUrl(match, previousUrl, setPreviousUrl);
 		const sectionNames = getSectionNames();
 
 		return sectionNames.map((sectionName, index, array) => {
