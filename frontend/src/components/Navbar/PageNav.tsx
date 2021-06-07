@@ -37,7 +37,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	setScrollPercent,
 }) => {
 	const cssClass = "page-nav";
-	const gradientVarName = "--site-nav-linear-gradient";
+	// const gradientVarName = "--site-nav-linear-gradient";
 	// const activeScaleVarName = "--site-nav-active-scale-amount";
 	// const activeScaleRange = {
 	// 	desktop: { min: 1.75, max: 1.5 },
@@ -60,13 +60,6 @@ const PageNav: React.FC<PageNavProps> = ({
 	const getLinearGradient = (percent: number, docStyle: any) => {
 		const mainColor = docStyle.getPropertyValue("--color-primary-4");
 		const progressColor = docStyle.getPropertyValue("--color-primary-2").trim();
-
-		// const valueRange = {
-		//   min: .5,
-		//   max: 1,
-		// }
-
-		// const percentToUse = valueRange.min + ((valueRange.max - valueRange.min) * (percent / 100))
 
 		return `
       linear-gradient(to right, 
@@ -108,14 +101,6 @@ const PageNav: React.FC<PageNavProps> = ({
 
 			if (shouldAddActiveClass) {
 				(pageNavSectionElement.parentNode as any).classList.add(selectedClass);
-
-				// let amountToScale = activeScaleRange.max;
-				// if (!shouldSetEnd) {
-				//   amountToScale = activeScaleRange.min + ((activeScaleRange.max - activeScaleRange.min) * percentThroughSection / 100);
-				// }
-
-				// const newValue = `${activeScaleVarName}: ${amountToScale}`;
-				// document.documentElement.style.cssText += newValue;
 			} else (pageNavSectionElement.parentNode as any).classList.remove(selectedClass);
 		}
 	};
@@ -164,22 +149,7 @@ const PageNav: React.FC<PageNavProps> = ({
 
 		const newHoverValue = `--bridge-page-nav-link-color-hover: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].hover}`;
 		document.documentElement.style.cssText += newHoverValue;
-
-		// document.documentElement.style.setProperty('--bridge-page-nav-link-color', BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection]);
 	};
-
-	// handleMobileBridgeLinkClick = (e) => {
-	//   const sectionName = e.currentTarget?.textContent.toLowerCase();
-	//   if (!sectionName) return;
-	//   const scrollY = window.scrollY;
-	//   const sectionToNavigateTo = document.querySelector(`#${sectionName}`);
-	//   const top = sectionToNavigateTo.getBoundingClientRect().top;
-	//   window.scroll({
-	//     top: scrollY + top - (headerHeight / 2),
-	//     left: 0,
-	//     behavior: 'smooth'
-	//   });
-	// }
 
 	const renderFullBridge = () => {
 		setBridgeColors();
