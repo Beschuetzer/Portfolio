@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 
 import {
-	MOBILE_BREAK_POINT_WIDTH,
 	ANIMATION_DURATION,
 	Reference,
 } from "../constants";
@@ -27,21 +26,15 @@ import {
 	changeSectionTitle,
 	checkShouldContinueOnClick,
 	closeCard,
-	getCardCoordinates,
-	getFeaturesBridgeSectionTitles,
-	getGapAmount,
 	handleProgressBarClick,
 } from "./utils";
 import {
 	bridgeSections,
 	BRIDGE_BACKDROP_CLASSNAME,
-	BRIDGE_SECTION_TITLES_CLASSNAME,
 } from "../../pages/examples/bridge/utils";
 import {
 	attachProgressListener,
-	closeVideo,
 	getIsVideoPlaying,
-	getPercentOfProgressBar,
 } from "../VideoPlayer/utils";
 import { scrollToSection } from "../helpers";
 

@@ -1,7 +1,7 @@
 import { RefObject } from "react";
 import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
-import { ANIMATION_DURATION, MOBILE_BREAK_POINT_WIDTH, Reference } from "../constants";
-import { closeVideo, getIsVideoPlaying, getPercentOfProgressBar } from "../VideoPlayer/utils";
+import { MOBILE_BREAK_POINT_WIDTH, Reference } from "../constants";
+import { closeVideo, getPercentOfProgressBar } from "../VideoPlayer/utils";
 
 export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION = 75;
 export const CARD_DONE_CLASSNAME = "card--done";
