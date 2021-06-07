@@ -24,6 +24,7 @@ import {
 import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../../Carousel/util";
 import useSetBodyStyle from "./useSetBodyStyle";
 import useSetHeaderHeight from "./useSetHeaderHeight";
+import useChangeCurrentUrl from "./useChangeCurrentUrl";
 
 interface SiteNavProps {
 	isAnimating: boolean,
@@ -115,7 +116,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	useSetBodyStyle({currentUrl});
 	useSetHeaderHeight({viewPortWidth, setHeaderHeight});
-	
+	useChangeCurrentUrl({currentUrl, previousUrl, setCurrentUrl, match})
 
 	useEffect(() => {
 		//resetting Carousel scrolling
@@ -134,12 +135,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		}
 	}, [currentUrl]);
 
-	//When url changes
-	useEffect(() => {
-		if (!currentUrl || currentUrl !== match.url) {
-			setCurrentUrl(match.url);
-		}
-	}, [match, currentUrl, previousUrl]);
+	
 
 	//initial
 	useEffect(() => {
