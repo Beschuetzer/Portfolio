@@ -1,3 +1,5 @@
+import { RefObject } from "react";
+
 export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION =  75;
 export const CARD_DONE_CLASSNAME = 'card--done';
 export const CARD_STOPPED_CLASSNAME = 'card--stopped';
@@ -5,7 +7,7 @@ export const CARD_OPEN_CLASSNAME = 'card--open';
 export const CARD_PLAYING_CLASSNAME = 'card--playing';
 export const CARD_DEFAULT_CLASSNAME = 'card card--hoverable';
 
-export const changeSectionTitle = (titleRef, isOpen = true) => {
+export const changeSectionTitle = (titleRef: RefObject<HTMLElement>, isOpen = true) => {
   if (!titleRef) return;
   const originalMsgTitle = 'Features';
   const originalMsgSubTitle = 'Pick a Card any Card';
@@ -16,14 +18,16 @@ export const changeSectionTitle = (titleRef, isOpen = true) => {
     if (section.id.match(/feature/i)) {
       const title = section.querySelector('.bridge__section-title');
 
-      let msgTitleToUse = originalMsgTitle;
+      let msgTitleToUse = originalMsgTitle as string | null | undefined;
       let msgSubTitleToUse = originalMsgSubTitle;
       if (isOpen) {
         msgTitleToUse = titleRef.current?.textContent;
         msgSubTitleToUse = "";
       }
-      title.textContent = msgTitleToUse;
-      title.nextElementSibling.textContent = msgSubTitleToUse;
+      if (title) {
+        title.textContent  = msgTitleToUse as string;
+        (title.nextElementSibling as any).textContent = msgSubTitleToUse;
+      }
       break;
     }
   }
