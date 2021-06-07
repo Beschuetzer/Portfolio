@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
 const useInterItemWidth = (
-	viewPortWidth,
-	itemsRef,
-	itemsWidthRef,
+	viewPortWidth: number,
+	itemsRef: any,
+	itemsWidthRef: any,
 ) => {
 	useEffect(() => {
 		console.log('123------------------------------------------------');
