@@ -25,7 +25,7 @@ const CloseControl: React.FC<CloseControlProps> = ({
 }) => {
 	const handleCloseVideo = (e: MouseEvent) => {
 		e.stopPropagation();
-		closeVideo(videoRef.current);
+		closeVideo(videoRef.current as HTMLVideoElement);
 		if (functionToRunOnClose) functionToRunOnClose();
 
 		if (containerRef && containerRef.current) {

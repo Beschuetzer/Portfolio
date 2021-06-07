@@ -1,4 +1,4 @@
-export const attachProgressListener = (video, hasProgressEventListener, handleVideoProgress) => {
+export const attachProgressListener = (video: HTMLVideoElement, hasProgressEventListener: boolean, handleVideoProgress: (e: any) => void) => {
   if(!video) return;
   if (!hasProgressEventListener) {
     video.addEventListener('timeupdate', handleVideoProgress);
@@ -7,7 +7,7 @@ export const attachProgressListener = (video, hasProgressEventListener, handleVi
   return false;
 }
 
-export const getPercentOfProgressBar = (progressBar, clientX) => {
+export const getPercentOfProgressBar = (progressBar: HTMLProgressElement, clientX: number) => {
   const progressBarBoundingRect = progressBar.getBoundingClientRect();
   const progressBarLeftX = progressBarBoundingRect.left;
   const progressBarRightX = progressBarBoundingRect.right;
@@ -16,13 +16,13 @@ export const getPercentOfProgressBar = (progressBar, clientX) => {
   return percent;
 }
 
-export const closeVideo = (video) => {
+export const closeVideo = (video: HTMLVideoElement) => {
   if (!video) return;
   video.pause();
   video.currentTime = 0;
 };
 
-export const getIsVideoPlaying = (video) => {
+export const getIsVideoPlaying = (video: HTMLVideoElement) => {
   return (
     video.currentTime > 0 &&
     !video.paused &&

@@ -504,7 +504,8 @@ const Card: React.FC<CardProps> = ({
 					loop={false}
 					reference={videoRef}
 					progressBarRef={progressBarRef}
-					progressBarOnClick={handleProgressBarClick}>
+					progressBarOnClick={handleProgressBarClick}
+				>
 					<div className="card__children">
 						{/* <svg className="card__children-toggler">
               <use xlinkHref="/sprite.svg#icon-angle-double-down"></use>

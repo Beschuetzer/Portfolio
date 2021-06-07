@@ -104,7 +104,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
 	const onProgressBarClick = (e: MouseEvent) => {
 		const clientX = e.clientX;
-		const progressBar = e.currentTarget;
+		const progressBar = e.currentTarget as HTMLProgressElement;
 		if (!progressBar) return;
 
 		const percent = getPercentOfProgressBar(progressBar, clientX);
