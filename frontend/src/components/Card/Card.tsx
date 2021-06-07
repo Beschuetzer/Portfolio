@@ -2,7 +2,11 @@ import React, { MouseEventHandler, ReactChildren } from "react";
 import { useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 
-import { MOBILE_BREAK_POINT_WIDTH, ANIMATION_DURATION, Reference } from "../constants";
+import {
+	MOBILE_BREAK_POINT_WIDTH,
+	ANIMATION_DURATION,
+	Reference,
+} from "../constants";
 import { setIsCardVideoOpen } from "../../actions";
 
 import Video, { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
@@ -21,6 +25,7 @@ import {
 	CARD_STOPPED_CLASSNAME,
 	centerCard,
 	changeSectionTitle,
+	checkShouldContinueOnClick,
 	closeCard,
 	getCardCoordinates,
 	getFeaturesBridgeSectionTitles,
@@ -75,10 +80,16 @@ const Card: React.FC<CardProps> = ({
 		initialCardDimensions: ClientRect,
 	) => {
 		if (!card) return;
-	
+
 		const cardDimensions = card.getBoundingClientRect();
-		centerCard(card, cardDimensions, initialCardDimensions, viewPortWidth, isMobile);
-	
+		centerCard(
+			card,
+			cardDimensions,
+			initialCardDimensions,
+			viewPortWidth,
+			isMobile,
+		);
+
 		const isVideoPlaying = getIsVideoPlaying(video);
 		if (!video) return;
 		if (isVideoPlaying || card.classList.contains(CARD_OPEN_CLASSNAME))
@@ -87,13 +98,13 @@ const Card: React.FC<CardProps> = ({
 			playVideo(video, card);
 			card.classList.add(CARD_OPEN_CLASSNAME);
 		}
-	
+
 		setTimeout(() => {
 			adjustCardYPosition(video);
 			backdrop?.classList.remove("visible");
 			card.classList.remove("z-index-highest");
 		}, ANIMATION_DURATION / 2);
-	
+
 		setIsCardVideoOpen(true);
 	};
 
@@ -101,7 +112,7 @@ const Card: React.FC<CardProps> = ({
 		hasProgressEventListener = attachProgressListener(
 			video,
 			hasProgressEventListener,
-			(handleVideoProgress as any),
+			handleVideoProgress as any,
 		)!;
 		video.addEventListener("ended", handleVideoEnd);
 		card.classList.remove(CARD_DONE_CLASSNAME);
@@ -125,25 +136,14 @@ const Card: React.FC<CardProps> = ({
 	};
 
 	const handleCardClick = (e: MouseEventHandler<HTMLElement>) => {
-		const clickedCard = cardRef.current as HTMLElement;
-		clickedCard?.classList.add("z-index-highest");
-		const initialCardSize = clickedCard?.getBoundingClientRect();
-		const bridgeBackdrop = document.querySelector(
-			`.${BRIDGE_BACKDROP_CLASSNAME}`,
-		) as HTMLElement;
-		bridgeBackdrop?.classList.add("visible");
-
 		(e as any).stopPropagation();
-		const video = videoRef?.current as HTMLVideoElement;
-		if (
-			clickedCard?.classList.contains(CARD_DONE_CLASSNAME) ||
-			clickedCard?.classList.contains(CARD_OPEN_CLASSNAME)
-		)
-			return;
+		const [ video, clickedCard, bridgeBackdrop, initialCardSize ] = checkShouldContinueOnClick(videoRef, cardRef);
+
+		if (!video) return;
 
 		setTimeout(() => {
 			changeSectionTitle(titleRef);
-			openCard(video, clickedCard, bridgeBackdrop, initialCardSize);
+			openCard(video as HTMLVideoElement , clickedCard as HTMLElement, bridgeBackdrop as HTMLElement, initialCardSize as ClientRect);
 			scrollToSection(
 				document.querySelector(`#${bridgeSections[1].toLowerCase()}`),
 				headerHeight,
@@ -261,8 +261,7 @@ const Card: React.FC<CardProps> = ({
 					loop={false}
 					reference={videoRef}
 					progressBarRef={progressBarRef}
-					progressBarOnClick={handleProgressBarClick}
-				>
+					progressBarOnClick={handleProgressBarClick}>
 					<div className="card__children">
 						{/* <svg className="card__children-toggler">
               <use xlinkHref="/sprite.svg#icon-angle-double-down"></use>

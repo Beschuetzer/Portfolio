@@ -1,5 +1,5 @@
 import { RefObject } from "react";
-import { bridgeSections, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
+import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
 import { ANIMATION_DURATION, MOBILE_BREAK_POINT_WIDTH, Reference } from "../constants";
 import { closeVideo, getIsVideoPlaying } from "../VideoPlayer/utils";
 
@@ -313,5 +313,29 @@ export const closeCard = (
 	card.classList.remove(CARD_DONE_CLASSNAME);
 	card.classList.remove(CARD_STOPPED_CLASSNAME);
 };
+
+export const checkShouldContinueOnClick = (
+  videoRef: RefObject<HTMLVideoElement>,
+  cardRef: RefObject<HTMLElement>,
+
+) => {
+  const clickedCard = cardRef.current as HTMLElement;
+  clickedCard?.classList.add("z-index-highest");
+
+  if (
+    clickedCard?.classList.contains(CARD_DONE_CLASSNAME) ||
+    clickedCard?.classList.contains(CARD_OPEN_CLASSNAME)
+  )
+    return [null, null, null, null];
+
+  const initialCardSize = clickedCard?.getBoundingClientRect();
+  const bridgeBackdrop = document.querySelector(
+    `.${BRIDGE_BACKDROP_CLASSNAME}`,
+  ) as HTMLElement;
+  bridgeBackdrop?.classList.add("visible");
+
+  const video = videoRef?.current as HTMLVideoElement;
+  return [video, clickedCard, bridgeBackdrop, initialCardSize];
+}
 
 
