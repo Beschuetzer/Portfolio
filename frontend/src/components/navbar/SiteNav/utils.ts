@@ -175,6 +175,21 @@ const handleSound = (sounds: Sounds, e: MouseEvent) => {
     sounds.play("siteNavClose");
 };
 
+export const handleMouseEnter = (navRef: NavRef) => {
+  if (
+    !navRef.current ||
+    !navRef.current?.classList.contains(NAVBAR_ACTIVE_CLASSNAME)
+  ) {
+    navRef.current?.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
+    return;
+  } else if (
+    navRef.current.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME) ||
+    navRef.current.classList.contains(NAVBAR_DONE_CLASSNAME)
+  ) {
+    navRef.current?.classList.remove(OVERFLOW_HIDDEN_CLASSNAME);
+  }
+}
+
 
 export const handleNavClick = (navRef: NavRef, sounds: Sounds, setIsAnimating: (value: boolean) => void, e: MouseEvent) => {
   const navBar = navRef.current;

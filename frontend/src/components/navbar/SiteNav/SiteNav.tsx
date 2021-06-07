@@ -14,18 +14,8 @@ import resumeImage from "../../../imgs/site-nav-resume.jpg";
 import syncerImage from "../../../imgs/site-nav-syncer.jpg";
 
 import { setHeaderHeight, setIsAnimating } from "../../../actions";
-import { checkForParentOfType } from "../../../helpers";
 import {
-	ANIMATION_DURATION,
-	OVERFLOW_HIDDEN_CLASSNAME,
-	Reference,
-	Z_INDEX_HIGHEST_CLASSNAME,
-} from "../../constants";
-import {
-	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_CLASSNAME,
-	NAVBAR_DONE_CLASSNAME,
-	NAVBAR_IS_ANIMATING_CLASSNAME,
 	NAVBAR_Z_INDEX_CLASSNAME,
 } from "../utils";
 import {
@@ -36,10 +26,9 @@ import {
 	setBodyStyle,
 	setHeaderHeightOnViewPortChange,
 	getResetAnimatingId,
-	HEADER_ID,
 	hide,
-	NavRef,
 	handleNavClick,
+	handleMouseEnter,
 } from "./utils";
 
 interface SiteNavProps {
@@ -63,8 +52,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 }) => {
 	const [currentUrl, setCurrentUrl] = useState<string>("");
 	const navRef = useRef<HTMLElement>(null);
-	// const noFilterPages = ['/bridge'];
-
 	
 	const onNavClick = (e: MouseEvent) => {
 		e.stopPropagation();
@@ -77,18 +64,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	const onMouseEnter = (e: MouseEvent) => {
 		e.stopPropagation();
-		if (
-			!navRef.current ||
-			!navRef.current?.classList.contains(NAVBAR_ACTIVE_CLASSNAME)
-		) {
-			navRef.current?.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
-			return;
-		} else if (
-			navRef.current.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME) ||
-			navRef.current.classList.contains(NAVBAR_DONE_CLASSNAME)
-		) {
-			navRef.current?.classList.remove(OVERFLOW_HIDDEN_CLASSNAME);
-		}
+		handleMouseEnter(navRef);
 	};
 
 	useEffect(() => {
