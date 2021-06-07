@@ -52,4 +52,3 @@ OPTIMIZATIONS:
 -add svgs to csharp layouts
 -create a sass function that can insert colors into the svgs and return data
 -convert everything to Typescript!
--clicking first dot in carousel doesn't hide left arrow

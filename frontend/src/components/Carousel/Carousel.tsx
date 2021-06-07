@@ -60,6 +60,10 @@ const Carousel: React.FC<CarouselProps> = ({
 	) {
 		const leftArrow = (leftArrowRef.current as any)[0];
 		const rightArrow = (rightArrowRef.current as any)[0];
+		if (currentTranslationFactor === 0) {
+			leftArrow.classList.add('hidden');
+			return rightArrow.classList.remove('hidden');
+		}
 
 		if (!leftArrow || !rightArrow) return;
 
@@ -181,7 +185,7 @@ const Carousel: React.FC<CarouselProps> = ({
 		currentTranslationFactor =
 			indexOfDotToMoveTo / numberOfItemsToScrollOnClick;
 
-		setArrowButtonsHiddenClass(0, items.length - 1, currentTranslationFactor);
+		setArrowButtonsHiddenClass(0, items.length - 1, indexOfDotToMoveTo === 0 ? 0 : currentTranslationFactor);
 
 		setTranslationAmount(amountToTranslateImages);
 		dots[indexOfDotToMoveTo]?.classList.add(DOT_ACTIVE_CLASSNAME);
