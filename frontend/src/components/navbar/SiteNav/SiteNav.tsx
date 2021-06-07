@@ -23,6 +23,7 @@ import {
 } from "../util";
 import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../../Carousel/util";
 import useSetBodyStyle from "./useSetBodyStyle";
+import useSetHeaderHeight from "./useSetHeaderHeight";
 
 interface SiteNavProps {
 	isAnimating: boolean,
@@ -113,27 +114,10 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	};
 
 	useSetBodyStyle({currentUrl});
+	useSetHeaderHeight({viewPortWidth, setHeaderHeight});
+	
 
 	useEffect(() => {
-		const navbarContent = document.querySelector(".navbar__content") as HTMLElement;
-		const header = document.querySelector(".header") as HTMLElement;
-		const headerBoundingRect = header.getBoundingClientRect();
-
-		let newTop = `calc(${headerBoundingRect.height}px)`;
-		if (viewPortWidth > MOBILE_BREAK_POINT_WIDTH) {
-			newTop = "auto";
-		}
-		navbarContent.style.top = newTop;
-
-		const headerHeight = (document
-			.querySelector("#header") as HTMLElement)
-			.getBoundingClientRect().height;
-		setHeaderHeight(headerHeight);
-	}, [viewPortWidth, setHeaderHeight]);
-
-	useEffect(() => {
-		console.log("currentUrl =", currentUrl);
-
 		//resetting Carousel scrolling
 		const newValue = `${CAROUSEL_TRANSLATION_CSS_CLASSNAME}: 0px`;
 		document.documentElement.style.cssText += newValue;
