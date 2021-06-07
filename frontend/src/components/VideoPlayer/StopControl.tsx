@@ -1,6 +1,17 @@
 import { removeClassFromAllChildren } from "../helpers";
 
-const StopControl = ({
+interface StopControlProps{
+	className?: string,
+	xlinkHref: string, 
+	videoRef: any,
+	containerRef?: any,
+	playingClassname: string,
+	doneClassname: string,
+	stoppedClassname: string,
+	functionToGetContainer?: (e: any) => void,
+}
+
+const StopControl: React.FC<StopControlProps> = ({
 	className = 'card__stop', 
 	xlinkHref, 
 	videoRef, 
@@ -10,12 +21,12 @@ const StopControl = ({
 	stoppedClassname,
 	functionToGetContainer = null,
 }) => {
-  const handleStopVideo = (e) => {
+  const handleStopVideo = (e: MouseEvent) => {
 		e.stopPropagation();
 		stopVideo(videoRef.current, e);
 	}
 
-	const stopVideo = (video, e) => {
+	const stopVideo = (video: HTMLVideoElement, e: MouseEvent) => {
 		if (!video) return;
 		video.currentTime = 0;
 
@@ -25,7 +36,7 @@ const StopControl = ({
 		pauseVideo(video, container);
 	}
 
-  const pauseVideo = (video, container) => {
+  const pauseVideo = (video: HTMLVideoElement, container: HTMLElement) => {
 		video?.pause();
 		if (!container) return;
 		container.classList.remove(doneClassname);
@@ -35,7 +46,7 @@ const StopControl = ({
 	}
 
   return (
-    <div onClick={handleStopVideo} className={`${className}-parent`}>
+    <div onClick={(e: any) => handleStopVideo(e)} className={`${className}-parent`}>
       <svg className={`${className}`}>
         <use xlinkHref={xlinkHref}></use>
       </svg>
