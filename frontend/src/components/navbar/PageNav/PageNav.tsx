@@ -18,24 +18,20 @@ interface PageNavProps {
   match: {url: string},
 	previousUrl: string,
 	isMobile: boolean,
-	hasClickedALink: boolean,
 	clickedBridgeInfoButtonCount: number,
 	currentBridgeSection: number,
 	headerHeight: boolean,
 	setPreviousUrl: (value: string) => void,
-	setScrollPercent: (value: string) => void,
 }
 
 const PageNav: React.FC<PageNavProps> = ({
 	match,
 	previousUrl,
 	isMobile,
-	hasClickedALink,
 	clickedBridgeInfoButtonCount,
 	currentBridgeSection,
 	headerHeight,
 	setPreviousUrl,
-	setScrollPercent,
 }) => {
 	const cssClass = "page-nav";
 	// const gradientVarName = "--site-nav-linear-gradient";
@@ -240,7 +236,6 @@ const mapStateToProps = (state: RootStateOrAny) => {
 	return {
 		previousUrl: state.general.previousUrl,
 		isMobile: state.general.isMobile,
-		hasClickedALink: state.bridge.hasClickedALink,
 		clickedBridgeInfoButtonCount: state.bridge.clickedBridgeInfoButtonCount,
 		currentBridgeSection: state.bridge.currentBridgeSection,
 		headerHeight: state.general.headerHeight,
@@ -249,5 +244,4 @@ const mapStateToProps = (state: RootStateOrAny) => {
 
 export default connect(mapStateToProps, {
 	setPreviousUrl,
-	setScrollPercent,
 })(PageNav);
