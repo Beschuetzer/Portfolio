@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ReactChildren } from "react";
+import React, { MouseEventHandler } from "react";
 import { useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 
@@ -41,8 +41,8 @@ import { scrollToSection } from "../utils";
 interface CardProps {
 	title: string;
 	cardName: string;
-	fileType: string;
-	children: ReactChildren;
+	fileType?: string;
+	children: any;
 	video: string;
 	viewPortWidth: number;
 	isMobile: boolean;

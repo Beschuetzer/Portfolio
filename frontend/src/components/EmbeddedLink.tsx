@@ -1,11 +1,11 @@
-import React, { ReactChildren } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 interface EmbeddedLinkProps {
 	href: string,
 	className?: string,
 	isLocal?: boolean,
-	children: ReactChildren,
+	children: any,
 }
 
 const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
