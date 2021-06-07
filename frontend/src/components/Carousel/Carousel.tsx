@@ -239,13 +239,13 @@ const Carousel: React.FC<CarouselProps> = ({
       </article>
 
       <CarouselArrow
-        onClick={handleArrowClick}
+        onClick={(e: any) => handleArrowClick(e)}
         className={`hidden ${ARROW_BUTTONS_CLASSNAME} ${ARROW_BUTTON_LEFT_CLASSNAME}`}
         svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
       />
 
       <CarouselArrow
-        onClick={handleArrowClick}
+        onClick={(e: any) => handleArrowClick(e)}
         className={` ${ARROW_BUTTONS_CLASSNAME} ${ARROW_BUTTON_RIGHT_CLASSNAME} `}
         svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
       />
