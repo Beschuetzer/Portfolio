@@ -208,9 +208,9 @@ const PageNav: React.FC<PageNavProps> = ({
 		}
 	};
 
-	const handleSectionClick = (e) => {
+	const handleSectionClick = (e: MouseEvent) => {
 		scrollToSection(
-			document.getElementById(e.currentTarget?.textContent.toLowerCase()),
+			document.getElementById((e.currentTarget as any)?.textContent.toLowerCase()),
 			headerHeight,
 		);
 	};
@@ -223,7 +223,7 @@ const PageNav: React.FC<PageNavProps> = ({
 			return (
 				<li key={index} className={`${cssClass}__section-group`}>
 					<span
-						onClick={handleSectionClick}
+						onClick={(e: any) => handleSectionClick(e)}
 						className={`${cssClass}__section ${cssClass}__section-${sectionName}`}>
 						{sectionName}
 					</span>
@@ -243,7 +243,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	// };
 
 	useEffect(() => {
-    const handleScroll = (e) => {
+    const handleScroll = (e: Event) => {
       if (!shouldHandleScroll) return;
       shouldHandleScroll = false;
       const scrollY = window.scrollY;

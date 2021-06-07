@@ -20,7 +20,12 @@ export const COLOR_PRIMARY_BRIDGE_2 = computedStyle.getPropertyValue('--color-pr
 export const COLOR_PRIMARY_BRIDGE_3 = computedStyle.getPropertyValue('--color-primary-bridge-3');
 export const COLOR_PRIMARY_BRIDGE_4 = computedStyle.getPropertyValue('--color-primary-bridge-4');
 
-export const BRIDGE_PAGE_NAV_LINKS_COLORS = {
+export const BRIDGE_PAGE_NAV_LINKS_COLORS: {
+  [key: string]: {
+    normal: string,
+    hover: string,
+  }
+} = {
   0: {
     normal: COLOR_PRIMARY_BRIDGE_4,
     hover: COLOR_PRIMARY_BRIDGE_4,
