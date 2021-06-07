@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect, RootStateOrAny } from 'react-redux';
+import { RootStateOrAny } from 'react-redux';
 
 interface useSetBodyStyleProps {
   currentUrl: string,
@@ -9,6 +9,7 @@ const useSetBodyStyle: React.FC<useSetBodyStyleProps> = ({
   currentUrl,
 }) => {
   useEffect(() => {
+    console.log('123--------------')
     const setBodyStyle = (page: string) => {
       if (page === "") document.body.className = "body-background";
       else {
@@ -51,10 +52,4 @@ const useSetBodyStyle: React.FC<useSetBodyStyleProps> = ({
   return null;
 }
 
-const mapStateToProps = (state: RootStateOrAny) => {
-  return {
-    currentUrl: state.general.currentUrl,
-  }
-}
-
-export default connect(mapStateToProps, {})(useSetBodyStyle);
+export default useSetBodyStyle;

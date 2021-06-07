@@ -22,6 +22,7 @@ import {
 	NAVBAR_IS_ANIMATING_CLASSNAME,
 } from "../util";
 import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../../Carousel/util";
+import useSetBodyStyle from "./useSetBodyStyle";
 
 interface SiteNavProps {
 	isAnimating: boolean,
@@ -111,6 +112,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		}
 	};
 
+	useSetBodyStyle({currentUrl});
 
 	useEffect(() => {
 		const navbarContent = document.querySelector(".navbar__content") as HTMLElement;
@@ -147,8 +149,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			headerTogglerElement.classList.remove("d-none");
 		}
 	}, [currentUrl]);
-
-	
 
 	//When url changes
 	useEffect(() => {
