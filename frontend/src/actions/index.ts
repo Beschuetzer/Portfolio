@@ -258,6 +258,7 @@ export const setSounds = (sounds: []) => {
 }
 
 export const setClickedBridgeInfoButtonCount = (value: number) => {
+  console.log('setting info button count to ' + value);
   return {
     type: SET_CLICKED_BRIDGE_INFO_BUTTON_COUNT,
     payload: value,
@@ -300,6 +301,7 @@ export const setBridgeCards = (value: []) => {
 }
 
 export const setHasClickedALink = (value: boolean) => {
+  console.log('has clicked a link------------------------------------------------');
   return {
     type: SET_HAS_CLICKED_A_LINK,
     payload: value,

@@ -2,14 +2,10 @@ import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { connect, RootStateOrAny } from "react-redux";
 
-import { setPreviousUrl, setScrollPercent } from "../../../actions";
-import { capitalize } from "../../../helpers";
+import { setPreviousUrl } from "../../../actions";
 import BridgeSectionLink from "../../../pages/examples/bridge/BridgeSectionLink";
 import {
 	bridgeSections,
-	BRIDGE_CURRENT_SECTION_CLASSNAME,
-	BRIDGE_PAGE_NAV_LINKS_COLORS,
-	BRIDGE_PAGE_NAV_LINK_CLASSNAME,
 } from "../../../pages/examples/bridge/utils";
 import { scrollToSection } from "../../utils";
 import { checkShouldSetPreviousUrl, getSectionNames, setBridgeColors, setGradientPercent } from "./utils";
@@ -214,6 +210,8 @@ const PageNav: React.FC<PageNavProps> = ({
 		pageNavElement.classList = cssClass;
 		pageNavElement.classList.add(`${cssClass}-${pageName}`);
 
+		console.log('loading page nav')
+		console.log('clickedBridgeInfoButtonCount = ' + clickedBridgeInfoButtonCount)
 		if (!isMobile && clickedBridgeInfoButtonCount <= 0 && url.match(/bridge/i))
 			pageNavElement.classList.add("hidden");
 	}, [

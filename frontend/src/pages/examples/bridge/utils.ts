@@ -1,4 +1,5 @@
-import { computedStyle, Reference } from "../../../components/constants";
+import React from 'react';
+import { BODY_BACKGROUND_CSS_CLASSNAME, computedStyle, Reference } from "../../../components/constants";
 import { scrollToSection } from "../../../components/utils";
 
 export const SECOND_INFO_BUTTON_DELAY = 500;
@@ -43,7 +44,16 @@ export const BRIDGE_PAGE_NAV_LINKS_COLORS: {
     hover: COLOR_PRIMARY_BRIDGE_4,
   },
 }
-
+export const setLinearGradientCssCustomProp = () => {
+    const newLinearGradient = `
+      linear-gradient(to right, var(--color-primary-1), var(--color-primary-1));
+    `;
+		document.documentElement.style.setProperty(
+			BODY_BACKGROUND_CSS_CLASSNAME,
+			newLinearGradient,
+		);
+    console.log('newLinearGradient =', newLinearGradient);
+}
 
 export const toggleSecondInfoButtonClick = (hero: HTMLElement, heroMore: HTMLElement, isMobile: boolean, shouldWaitToHideHero = true, span: HTMLElement | null = null) => {
   heroMore?.classList.remove('hero__more--clicked');

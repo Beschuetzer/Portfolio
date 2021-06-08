@@ -57,3 +57,4 @@ OPTIMIZATIONS:
 -fix bug where opening bridge card clicking progress bar, moving to other site vids and clicking progress bar then going to bridge again causes z-index-highest not to be removed from cards 
 -add optional message box that pops up over <Video/> when video--stopped is applied (Similar to bridge cards)?
 -convert everything to Typescript!
+-fix bug where clicking bridge ? then new page then back, doesn't reset d-none somewhere

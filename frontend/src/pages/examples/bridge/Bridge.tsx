@@ -26,9 +26,8 @@ import preferencesVideo from "../../../clips/bridge/preferences.mp4";
 import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import CardManager from "../../../components/Card/CardManager";
-import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME } from "./utils";
+import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, setLinearGradientCssCustomProp } from "./utils";
 import {
-	BODY_BACKGROUND_CSS_CLASSNAME,
 	DISPLAY_NONE_CLASSNAME,
 } from "../../../components/constants";
 import BridgeHero from "./BridgeHero";
@@ -513,17 +512,14 @@ const Bridge: React.FC<BridgeProps> = ({
 	const rightArrowProps = {direction: 'right'};
 	
 	useEffect(() => {
-		const newLinearGradient = `
-      linear-gradient(to right, var(--color-primary-1), var(--color-primary-1));
-    `;
-		document.documentElement.style.setProperty(
-			BODY_BACKGROUND_CSS_CLASSNAME,
-			newLinearGradient,
-		);
+		setLinearGradientCssCustomProp();
 		setHasClickedALink(false);
 	}, [setHasClickedALink]);
 
 	useEffect(() => {
+		setClickedBridgeInfoButtonCount(0);
+		setCurrentBridgeSection(0);
+
 		return () => {
 			setClickedBridgeInfoButtonCount(0);
 			setCurrentBridgeSection(0);
@@ -556,6 +552,8 @@ const Bridge: React.FC<BridgeProps> = ({
 			window.removeEventListener("scroll", handleScroll as any);
 		};
 	}, [isMobile]);
+
+
 
 	const renderSections = () => {
 		return sectionContents.map((item, index) => {
