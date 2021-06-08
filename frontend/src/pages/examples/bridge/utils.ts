@@ -1,8 +1,10 @@
+import { RefObject } from "react";
 import { BODY_BACKGROUND_CSS_CLASSNAME, computedStyle, Reference } from "../../../components/constants";
 import { scrollToSection } from "../../../components/utils";
 
 export const SECOND_INFO_BUTTON_DELAY = 500;
 export const BRIDGE_CLASSNAME = 'bridge';
+export const BRIDGE_HERO_CLASSNAME = 'hero';
 export const BRIDGE_CARD_SECTION_CLASSNAME = `${BRIDGE_CLASSNAME}__card-section`;
 export const BRIDGE_CURRENT_SECTION_CLASSNAME = `${BRIDGE_CLASSNAME}__current-section`;
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAME = `${BRIDGE_CLASSNAME}__page-nav-link`;
@@ -111,4 +113,31 @@ export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: H
       background?.classList.remove('reverse-ease');
     }
   }
+}
+
+export const handleMoreClick = (
+  clickedBridgeInfoButtonCount: number,
+  headerHeight: number,
+  isMobile: boolean,
+  heroMore: Reference,
+  hero: Reference,
+  checkBoxRef: RefObject<HTMLInputElement>,
+  backgroundRef: Reference,
+  sounds: {play: (sound: string) => void},
+  setClickedBridgeInfoButtonCount: (value: number) => void,
+) => {
+  if (clickedBridgeInfoButtonCount % 2 === 0) {
+    showBridgeHero(heroMore);
+  } else if (clickedBridgeInfoButtonCount > 0) {
+    toggleSecondInfoButtonClick(hero.current, heroMore.current, isMobile);
+  }
+
+  handleBridgeHeroSounds(
+    checkBoxRef.current as any,
+    backgroundRef.current,
+    sounds,
+    isMobile,
+    headerHeight,
+  );
+  setClickedBridgeInfoButtonCount(clickedBridgeInfoButtonCount + 1);
 }

@@ -565,7 +565,7 @@ const Bridge: React.FC<BridgeProps> = ({
 
 	return (
 		<div className="bridge">
-			<BridgeHero name="Bridge" pageName="bridge" />
+			<BridgeHero/>
 
 			<SourceCodeLink
 				href="https://github.com/Beschuetzer/Bridge"

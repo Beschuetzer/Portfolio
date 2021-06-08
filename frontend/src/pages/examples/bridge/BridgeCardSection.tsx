@@ -1,6 +1,11 @@
 import { BRIDGE_CARD_SECTION_CLASSNAME, BRIDGE_CLASSNAME } from "./utils";
 
-const BridgeCardSection = ({title, children}) => {
+interface BridgeCardSectionProps {
+  title: string,
+  children: any,
+}
+
+const BridgeCardSection: React.FC<BridgeCardSectionProps> = ({title, children}) => {
   return (
     <div className={BRIDGE_CARD_SECTION_CLASSNAME}>
       <h3>{title}</h3>
