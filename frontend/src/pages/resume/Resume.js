@@ -14,6 +14,16 @@ import { getRepositories, setSectionsToSkipAnimation } from "../../actions";
 import SkillsPopup from "./Skills/SkillsPopup";
 import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
 import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
+import { SKILLS_CLASSNAME } from "./Skills/utils";
+
+function getLinkClassHTML() {
+	return ` class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' `;
+}
+
+function getExternalLinkTargetAndRel() {
+	return ` target='_blank' rel='noreferrer' `;
+}
+
 class Resume extends React.Component {
 	static popupUrl = "/resume#skillsPopup";
 	static skillsItemSectionLabels = [
@@ -300,16 +310,16 @@ class Resume extends React.Component {
 			</React.Fragment>,
 		],
 		[
-			"skills",
+			`${SKILLS_CLASSNAME}`,
 			<React.Fragment>
-				<ul className="skills">
+				<ul className={`${SKILLS_CLASSNAME}`}>
 					<SkillsItemSection title={`${Resume.skillsItemSectionLabels[0]} `}>
 					{
-						Resume.webDevSubSkillsLabels.map((subskill, index) => {
+						Resume.webDevSubSkillsLabels.map((subSkill, index) => {
 							return (
-								<SkillsItemSection key={index} title={subskill}>
+								<SkillsItemSection key={index} title={subSkill}>
 								<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
-									{Resume.skills[Resume.skillsItemSectionLabels[0]][subskill].map((skill, index2) => {
+									{Resume.skills[Resume.skillsItemSectionLabels[0]][subSkill].map((skill, index2) => {
 										return (
 											<SkillsItem
 												key={index2}
@@ -370,8 +380,8 @@ class Resume extends React.Component {
 						startDate="07/19"
 						endDate="06/20"
 						number="01"
-						title="Technology Services Support Representative at <a target='_blank' rel='noreferrer'
-            class='skills-popup__link-text skills__title--animating' href='https://www.ricoh-usa.com/en'> Ricoh Ltd </a>"
+						title={`Technology Services Support Representative at <a ${getExternalLinkTargetAndRel()}
+            ${getLinkClassHTML()} href='https://www.ricoh-usa.com/en'> Ricoh Ltd </a>`}
 						sections={[
 							{
 								title: "Responsibilities",
@@ -384,7 +394,7 @@ class Resume extends React.Component {
 								title: "Highlights",
 								bullets: [
 									"Secured two contracts with clients by going the extra mile to ensure customer satisfaction.",
-									"Increased productivity by 10% by <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://github.com/Beschuetzer/PowerShell'> automating repetitive tasks.</a> ",
+									`Increased productivity by 10% by <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='https://github.com/Beschuetzer/PowerShell'> automating repetitive tasks.</a> `,
 								],
 							},
 						]}
@@ -393,14 +403,14 @@ class Resume extends React.Component {
 						startDate="07/18"
 						endDate="06/19"
 						number="02"
-						title="Second Grade Classroom Volunteer at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.kualapuucharterschool.org/'> <span>Kualapuu Charter School <span></a>"
+						title={`Second Grade Classroom Volunteer at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='https://www.kualapuucharterschool.org/'> <span>Kualapuu Charter School <span></a>`}
 						sections={[
 							{
 								title: "Highlights",
 								bullets: [
-									"Created a <a class='skills-popup__link-text skills__title--animating' href='/macroexamples/macroExampleMathGrader.xlsm'> grading tool</a> to facilitate grading of math assessments.",
-									"Created a <a class='skills-popup__link-text skills__title--animating' href='/macroexamples/macroExampleBookTrust.xlsm'>Book Trust tool</a> to facilitate monthly <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.booktrust.org'>Book Trust </a> ordering process.",
-									"Used my time to study Bash, Powershell, Windows Active Directory, get the Google IT Support Specialist Certificate, and other IT Support related skills (IT support was the direction I wanted to go in at that point in time).",
+									`Created a <a ${getLinkClassHTML()} href='/macroexamples/macroExampleMathGrader.xlsm'> grading tool</a> to facilitate grading of math assessments.`,
+									`Created a <a ${getLinkClassHTML()} href='/macroexamples/macroExampleBookTrust.xlsm'>Book Trust tool</a> to facilitate monthly <a ${getExternalLinkTargetAndRel()} class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' href='https://www.booktrust.org'>Book Trust </a> ordering process.`,
+									`Used my time to study Bash, Powershell, Windows Active Directory, get the Google IT Support Specialist Certificate, and other IT Support related skills (IT support was the direction I wanted to go in at that point in time).`,
 								],
 							},
 						]}
@@ -409,7 +419,7 @@ class Resume extends React.Component {
 						startDate="07/07"
 						endDate="07/18"
 						number="03"
-						title="PearsonVue Test Admin / Office Admin at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.isd622.org/'> ISD622 </a>"
+						title={`PearsonVue Test Admin / Office Admin at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='https://www.isd622.org/'> ISD622 </a>`}
 						sections={[
 							{
 								title: "Responsibilities",
@@ -425,7 +435,7 @@ class Resume extends React.Component {
 								title: "Highlights",
 								bullets: [
 									"Created VBA macros to automate report generation, reducing the time-to-complete by more than 80%.",
-									"Created <a class='skills-popup__link-text skills__title--animating' href='/macroexamples/macroExampleScoring.xlsm'>custom grading forms</a> using Excel userForms and macros in order to reduce the time it took to grade assessment tests by 75%.",
+									`Created <a ${getLinkClassHTML()} href='/macroexamples/macroExampleScoring.xlsm'>custom grading forms</a> using Excel userForms and macros in order to reduce the time it took to grade assessment tests by 75%.`,
 									"Created a tool that used testing data to produce reports that the teachers could use to understand the areas in which their students were having difficulties, preventing the purchase of dedicated software.",
 								],
 							},
@@ -435,7 +445,7 @@ class Resume extends React.Component {
 						startDate="09/06"
 						endDate="12/06"
 						number="04"
-						title="Overnight Stocker at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.toysrus.com/'> Toy's &ldquo;R&rdquo; Us </a>"
+						title={`Overnight Stocker at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='https://www.toysrus.com/'> Toy's &ldquo;R&rdquo; Us </a>`}
 						sections={[
 							{
 								title: "Responsibilities",
@@ -449,7 +459,7 @@ class Resume extends React.Component {
 						startDate="09/05"
 						endDate="07/06"
 						number="05"
-						title="English Assistant at <a target='_blank' rel='noreferrer' class='skills-popup__link-text skills__title--animating' href='https://www.lietz-schulen.de/en/haubinda/boarding-school-village/'> Herman-Lietz Schule Haubinda </a>"
+						title={`English Assistant at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='https://www.lietz-schulen.de/en/haubinda/boarding-school-village/'> Herman-Lietz Schule Haubinda </a>`}
 						sections={[
 							{
 								title: "Responsibilities",

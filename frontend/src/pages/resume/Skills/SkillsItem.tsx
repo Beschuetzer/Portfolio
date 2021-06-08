@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { clickSkill } from "../../../actions";
 import SkillsItemSectionLabels from "./SkillsItemSectionLabels";
+import { SKILLS_CLASSNAME } from "./utils";
 
 interface SkillsItemProps {
   title: string,
@@ -26,7 +27,7 @@ const SkillsItem: React.FC<SkillsItemProps> = ({ title, percent, href, clickSkil
 		)
 			return;
 
-		skillsPopupDiv?.classList?.toggle("skills-popup--active");
+		skillsPopupDiv?.classList?.toggle(`${SKILLS_CLASSNAME}-popup--active`);
 		clickSkill(e.target as HTMLElement);
 	};
 
@@ -37,34 +38,34 @@ const SkillsItem: React.FC<SkillsItemProps> = ({ title, percent, href, clickSkil
 
 	return (
 		<React.Fragment>
-			<li className="skills__item">
-				<svg className="skills__section-svg">
+			<li className={`${SKILLS_CLASSNAME}__item`}>
+				<svg className={`${SKILLS_CLASSNAME}__section-svg`}>
 					<use xlinkHref="/sprite.svg#icon-circle"></use>
 				</svg>
 				{href ? (
 					<a
 						target="_blank"
 						rel="noreferrer"
-						className="skills__title"
+						className={`${SKILLS_CLASSNAME}__title`}
 						href={href}>
 						{title}:
 					</a>
 				) : (
-					<div onClick={(e: any) => onParagraphClick(e)} className="skills__title">
+					<div onClick={(e: any) => onParagraphClick(e)} className={`${SKILLS_CLASSNAME}__title`}>
 						{title}:
 					</div>
 				)}
 			</li>
-			<div className="skills__percent-outer">
+			<div className={`${SKILLS_CLASSNAME}__percent-outer`}>
 				<SkillsItemSectionLabels labels={labels} />
-				<div ref={percentDiv} className="skills__percent-inner">
-					<div className="skills__hours">
+				<div ref={percentDiv} className={`${SKILLS_CLASSNAME}__percent-inner`}>
+					<div className={`${SKILLS_CLASSNAME}__hours`}>
 						{hours ? `~ ${hours} hours` : null}
 					</div>
 				</div>
-				<div className="skills__percent-outer-left"></div>
-				<div className="skills__percent-outer-center"></div>
-				<div className="skills__percent-outer-right"></div>
+				<div className={`${SKILLS_CLASSNAME}__percent-outer-left`}></div>
+				<div className={`${SKILLS_CLASSNAME}__percent-outer-center`}></div>
+				<div className={`${SKILLS_CLASSNAME}__percent-outer-right`}></div>
 			</div>
 		</React.Fragment>
 	);
