@@ -11,7 +11,7 @@ import ReferenceItem from "./ReferenceItem";
 import EducationItem from "./EducationItem";
 
 import { getRepositories, setSectionsToSkipAnimation } from "../../actions";
-import SkillsPopup from "./Skills/SkillsPopup/SkillsPopup";
+import SkillsPopup from "./Skills/SkillsPopup";
 import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
 import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
 class Resume extends React.Component {

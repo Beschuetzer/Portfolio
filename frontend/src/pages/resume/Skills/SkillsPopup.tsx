@@ -1,18 +1,27 @@
 import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { connect } from "react-redux";
-import { checkForParentOfType } from "../../../../helpers";
+import { connect, RootStateOrAny } from "react-redux";
+import { checkForParentOfType } from "../../../helpers";
 import {
 	clickSkill,
 	addRepoToReposToDisplay,
-} from "../../../../actions";
+} from "../../../actions";
 import SkillsPopupName from "./SkillsPopupName";
-import { capitalize } from "../../../../helpers";
-import { addSpaceAfterPunctuationMarks } from "../../../../components/utils";
-// import { KeepStencilOp } from "three";
+import { capitalize } from "../../../helpers";
+import { addSpaceAfterPunctuationMarks } from "../../../components/utils";
+import { Repository } from "./utils";
 
-const SkillsPopup = ({
+interface SkillsPopupProps {
+	reposToDisplay: Repository[],
+	repos: Repository[],
+	clickedSkill: string,
+	isMobile: boolean,
+	clickSkill: (value: string | null) => void,
+	addRepoToReposToDisplay: (value: Repository) => void,
+}
+
+const SkillsPopup: React.FC<SkillsPopupProps> = ({
 	reposToDisplay,
 	repos,
 	clickedSkill,
@@ -20,15 +29,15 @@ const SkillsPopup = ({
 	clickSkill,
 	isMobile,
 }) => {
-	const skillsPopupDiv = document.querySelector("#skillsPopup");
+	const skillsPopupDiv = document.querySelector("#skillsPopup") as HTMLElement;
 	const resetReposDelay = 500;
 
 	//on initial load
 	useEffect(() => {
-		const handleClickBody = (e) => {
+		const handleClickBody = (e: MouseEvent) => {
 			e.stopPropagation();
 			const isBodyClick = !checkForParentOfType(
-				e.target,
+				e.target as HTMLElement,
 				"div",
 				"skills-popup",
 			);
@@ -134,7 +143,7 @@ const SkillsPopup = ({
 		// }
 	// };
 
-	const onCloseClick = (e) => {
+	const onCloseClick = (e: MouseEvent) => {
 		skillsPopupDiv?.classList?.remove("skills-popup--active");
 		setTimeout(() => {
 			clickSkill(null);
@@ -142,7 +151,7 @@ const SkillsPopup = ({
 		}, resetReposDelay);
 	};
 
-	const returnDate = (key, repo, title, onlySpans = false) => {
+	const returnDate = (key: string, repo: any, title: string, onlySpans = false) => {
 		const date = new Date(repo[key]).toLocaleString();
 		const index = date.lastIndexOf(":");
 		const dateToShow = date.slice(0, index) + " " + date.slice(index + 4);
@@ -171,7 +180,7 @@ const SkillsPopup = ({
 		);
 	};
 
-	const getProjectContent = (repo, key, index) => {
+	const getProjectContent = (repo: any, key: string, index: number) => {
 		switch (key) {
 			case "name":
 				if (
@@ -317,7 +326,7 @@ const SkillsPopup = ({
 					Github Projects with tag '
 					<span className="skills-popup__header-skill">{clickedSkill}</span>':
 				</span>
-				<svg onClick={onCloseClick} className="skills-popup__close">
+				<svg onClick={(e: any) => onCloseClick(e)} className="skills-popup__close">
 					<use xlinkHref="/sprite.svg#icon-close"></use>
 				</svg>
 			</div>
@@ -326,11 +335,11 @@ const SkillsPopup = ({
 				{renderProjects()}
 			</div>
 		</div>,
-		document.querySelector("#skillsPopup"),
+		document.querySelector("#skillsPopup")!,
 	);
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: RootStateOrAny) => {
 	return {
 		repos: state.general.repos,
 		reposToDisplay: state.resume.reposToDisplay,
@@ -342,4 +351,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
 	clickSkill,
 	addRepoToReposToDisplay,
-})(SkillsPopup);
+})(SkillsPopup as any);
