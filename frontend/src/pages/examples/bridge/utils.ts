@@ -9,6 +9,7 @@ export const BRIDGE_PAGE_NAV_LINK_CLASSNAME = 'bridge__page-nav-link';
 export const BRIDGE_SECTION_TITLES_CLASSNAME = 'bridge__section-titles';
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAMES = `${BRIDGE_PAGE_NAV_LINK_CLASSNAME} page-nav__section`;
 export const BRIDGE_BACKDROP_CLASSNAME = 'bridge__backdrop';
+export const BRIDGE_HERO_MORE__CLICKED_CLASSNAME = "hero__more--clicked";
 export const bridgeSections = [
   "Why",
   "Features",
@@ -56,7 +57,7 @@ export const setLinearGradientCssCustomProp = () => {
 }
 
 export const toggleSecondInfoButtonClick = (hero: HTMLElement, heroMore: HTMLElement, isMobile: boolean, shouldWaitToHideHero = true, span: HTMLElement | null = null) => {
-  heroMore?.classList.remove('hero__more--clicked');
+  heroMore?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
   if (shouldWaitToHideHero) {
     setTimeout(() => {
       if (!isMobile) hero?.classList.add('d-none');
@@ -83,7 +84,15 @@ export const showBridgeHero = (heroMore: Reference) => {
   document.documentElement.style.setProperty('--bridge-section-height', '100vh');
   document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
   
-  heroMore.current?.classList.add('hero__more--clicked');
+  heroMore.current?.classList.add(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
+}
+
+export const resetBridgeHero = (heroMore: Reference) => {
+  document.querySelector('.page-nav')?.classList?.add('hidden');
+  document.documentElement.style.setProperty('--bridge-section-height', '1px');
+  document.documentElement.style.setProperty('--bridge-section-padding', `0px`);
+  
+  heroMore.current?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
 }
 
 export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: HTMLElement, sounds: {play: (name: string) => void}, isMobile: boolean, headerHeight: number) => {

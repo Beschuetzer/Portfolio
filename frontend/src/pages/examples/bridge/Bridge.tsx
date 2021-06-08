@@ -26,9 +26,9 @@ import preferencesVideo from "../../../clips/bridge/preferences.mp4";
 import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import CardManager from "../../../components/Card/CardManager";
-import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, setLinearGradientCssCustomProp } from "./utils";
+import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, resetBridgeHero, setLinearGradientCssCustomProp } from "./utils";
 import {
-	DISPLAY_NONE_CLASSNAME,
+	DISPLAY_NONE_CLASSNAME, Reference,
 } from "../../../components/constants";
 import BridgeHero from "./BridgeHero";
 import SourceCodeLink from "../../../components/SourceCodeLink";
@@ -517,6 +517,9 @@ const Bridge: React.FC<BridgeProps> = ({
 	}, [setHasClickedALink]);
 
 	useEffect(() => {
+		const heroMore = document.querySelector('.hero__more')
+		debugger
+		resetBridgeHero({current: heroMore} as Reference)
 		setClickedBridgeInfoButtonCount(0);
 		setCurrentBridgeSection(0);
 
