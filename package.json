@@ -20,11 +20,11 @@
     "url": "https://github.com/Beschuetzer/Portfolio/issues"
   },
   "homepage": "https://github.com/Beschuetzer/Portfolio#readme",
-  "dependencies": {
-    
+  "dependencies": {    
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0"
+  }
 }
