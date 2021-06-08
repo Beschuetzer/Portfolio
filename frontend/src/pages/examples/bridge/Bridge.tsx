@@ -518,7 +518,6 @@ const Bridge: React.FC<BridgeProps> = ({
 
 	useEffect(() => {
 		const heroMore = document.querySelector('.hero__more')
-		debugger
 		resetBridgeHero({current: heroMore} as Reference)
 		setClickedBridgeInfoButtonCount(0);
 		setCurrentBridgeSection(0);
