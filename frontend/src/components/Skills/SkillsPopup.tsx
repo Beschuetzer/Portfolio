@@ -2,14 +2,14 @@ import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { connect, RootStateOrAny } from "react-redux";
-import { checkForParentOfType } from "../../../helpers";
+import { checkForParentOfType } from "../../helpers";
 import {
 	clickSkill,
 	addRepoToReposToDisplay,
-} from "../../../actions";
+} from "../../actions";
 import SkillsPopupName from "./SkillsPopupName";
-import { capitalize } from "../../../helpers";
-import { addSpaceAfterPunctuationMarks } from "../../../components/utils";
+import { capitalize } from "../../helpers";
+import { addSpaceAfterPunctuationMarks } from "../utils";
 import { Repository, SKILLS_CLASSNAME } from "./utils";
 
 interface SkillsPopupProps {

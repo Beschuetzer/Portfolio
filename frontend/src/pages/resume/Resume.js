@@ -4,17 +4,17 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Section from "../../components/Section";
 import Paragraph from "../../typography/Paragraph";
-import SkillsItemSection from "./Skills/SkillsItemSection";
-import SkillsItemSectionLabels from "./Skills/SkillsItemSectionLabels";
-import SkillsItem from "./Skills/SkillsItem";
+import SkillsItemSection from "../../components/Skills/SkillsItemSection";
+import SkillsItemSectionLabels from "../../components/Skills/SkillsItemSectionLabels";
+import SkillsItem from "../../components/Skills/SkillsItem";
 import ReferenceItem from "./ReferenceItem";
 import EducationItem from "./EducationItem";
 
 import { getRepositories, setSectionsToSkipAnimation } from "../../actions";
-import SkillsPopup from "./Skills/SkillsPopup";
+import SkillsPopup from "../../components/Skills/SkillsPopup";
 import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
 import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
-import { SKILLS_CLASSNAME } from "./Skills/utils";
+import { SKILLS_CLASSNAME } from "../../components/Skills/utils";
 
 function getLinkClassHTML() {
 	return ` class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' `;
