@@ -8,7 +8,7 @@ import {
   setHasClickedALink,
 } from '../../../actions';
 import { scrollToSection } from '../../../components/utils';
-import { BRIDGE_PAGE_NAV_LINK_CLASSNAMES, handleBridgeHeroSounds, showBridgeHero, toggleSecondInfoButtonClick } from './utils';
+import { BRIDGE_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAMES, handleBridgeHeroSounds, showBridgeHero, toggleSecondInfoButtonClick } from './utils';
 
 const BridgeSectionLink = ({isEmbeddedLink = false, bridgeSections, currentBridgeSection, setCurrentBridgeSection, sectionToSkipTo, content, match, sounds, isMobile, headerHeight, setClickedBridgeInfoButtonCount, setHasClickedALink, hasClickedALink}) => {
   const spanRef = useRef(null);
@@ -57,7 +57,7 @@ const BridgeSectionLink = ({isEmbeddedLink = false, bridgeSections, currentBridg
   }
 
   let classToUse = BRIDGE_PAGE_NAV_LINK_CLASSNAMES;
-  if (isEmbeddedLink) classToUse = 'bridge__link';
+  if (isEmbeddedLink) classToUse = `${BRIDGE_CLASSNAME}__link`;
 
   return (
     <span ref={spanRef} onClick={navigateToSection} className={classToUse}>{content}</span>

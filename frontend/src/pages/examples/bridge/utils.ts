@@ -1,14 +1,14 @@
-import React from 'react';
 import { BODY_BACKGROUND_CSS_CLASSNAME, computedStyle, Reference } from "../../../components/constants";
 import { scrollToSection } from "../../../components/utils";
 
 export const SECOND_INFO_BUTTON_DELAY = 500;
-export const BRIDGE_CARD_SECTION_CLASSNAME = 'bridge__card-section';
-export const BRIDGE_CURRENT_SECTION_CLASSNAME = 'bridge__current-section';
-export const BRIDGE_PAGE_NAV_LINK_CLASSNAME = 'bridge__page-nav-link';
-export const BRIDGE_SECTION_TITLES_CLASSNAME = 'bridge__section-titles';
+export const BRIDGE_CLASSNAME = 'bridge';
+export const BRIDGE_CARD_SECTION_CLASSNAME = `${BRIDGE_CLASSNAME}__card-section`;
+export const BRIDGE_CURRENT_SECTION_CLASSNAME = `${BRIDGE_CLASSNAME}__current-section`;
+export const BRIDGE_PAGE_NAV_LINK_CLASSNAME = `${BRIDGE_CLASSNAME}__page-nav-link`;
+export const BRIDGE_SECTION_TITLES_CLASSNAME = `${BRIDGE_CLASSNAME}__section-titles`;
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAMES = `${BRIDGE_PAGE_NAV_LINK_CLASSNAME} page-nav__section`;
-export const BRIDGE_BACKDROP_CLASSNAME = 'bridge__backdrop';
+export const BRIDGE_BACKDROP_CLASSNAME = `${BRIDGE_CLASSNAME}__backdrop`;
 export const BRIDGE_HERO_MORE__CLICKED_CLASSNAME = "hero__more--clicked";
 export const bridgeSections = [
   "Why",

@@ -4,6 +4,7 @@ import { connect, RootStateOrAny } from "react-redux";
 
 import { setCurrentBridgeSection, setBridgeSections } from "../actions";
 import {
+	BRIDGE_CLASSNAME,
 	COLOR_PRIMARY_BRIDGE_1,
 	COLOR_PRIMARY_BRIDGE_2,
 	COLOR_PRIMARY_BRIDGE_3,
@@ -30,7 +31,7 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 	//Initial setup, storing sections
 	useEffect(() => {
 		// if (bridgeSections) return;
-		const sections = document.querySelectorAll(".bridge__section");
+		const sections = document.querySelectorAll(`.${BRIDGE_CLASSNAME}__section`);
 		setBridgeSections(sections);
 	}, [setBridgeSections]);
 

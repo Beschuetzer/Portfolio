@@ -1,5 +1,5 @@
 import { RefObject } from "react";
-import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
+import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_CLASSNAME, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
 import { MOBILE_BREAK_POINT_WIDTH, Reference, Z_INDEX_HIGHEST_CLASSNAME } from "../constants";
 import { closeVideo, getPercentOfProgressBar } from "../VideoPlayer/utils";
 
@@ -18,11 +18,11 @@ export const changeSectionTitle = (
 	const originalMsgTitle = "Features";
 	const originalMsgSubTitle = "Pick a Card any Card";
 
-	const sections = document.querySelectorAll(".bridge__section");
+	const sections = document.querySelectorAll(`.${BRIDGE_CLASSNAME}__section`);
 	for (let i = 0; i < sections.length; i++) {
 		const section = sections[i];
 		if (section.id.match(/feature/i)) {
-			const title = section.querySelector(".bridge__section-title");
+			const title = section.querySelector(`.${BRIDGE_CLASSNAME}__section-title`);
 
 			let msgTitleToUse = originalMsgTitle as string | null | undefined;
 			let msgSubTitleToUse = originalMsgSubTitle;

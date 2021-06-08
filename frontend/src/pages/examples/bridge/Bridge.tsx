@@ -26,7 +26,7 @@ import preferencesVideo from "../../../clips/bridge/preferences.mp4";
 import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import CardManager from "../../../components/Card/CardManager";
-import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, resetBridgeHero, setLinearGradientCssCustomProp } from "./utils";
+import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_CLASSNAME, resetBridgeHero, setLinearGradientCssCustomProp } from "./utils";
 import {
 	DISPLAY_NONE_CLASSNAME, Reference,
 } from "../../../components/constants";
@@ -292,7 +292,7 @@ const sectionContents = [
 				<p>
 					To that end, I left my &nbsp;
 					<a
-						className="bridge__link"
+						className={`${BRIDGE_CLASSNAME}__link`}
 						href="/resume#work-history"
 						target="_blank"
 						rel="noreferrer">
@@ -318,7 +318,7 @@ const sectionContents = [
 					a job at the end.&nbsp; Ultimately, I decided that the best approach
 					would be to take the self-taught path.&nbsp;The main reasons were:
 				</p>
-				<div className="bridge__subsection-grid">
+				<div className={`${BRIDGE_CLASSNAME}__subsection-grid`}>
 					<span>1).</span>
 					<span>
 						I could go my own pace, which would allow me to move more quickly
@@ -377,7 +377,7 @@ const sectionContents = [
 							target="_blank"
 							rel="noreferrer"
 							href="https://www.udemy.com/course/the-web-developer-bootcamp/"
-							className="bridge__link">
+							className={`${BRIDGE_CLASSNAME}__link`}>
 							Web Developer Bootcamp
 						</a>
 						&nbsp; (which has since been updated) to use as the foundation for

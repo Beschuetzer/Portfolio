@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { BRIDGE_CLASSNAME } from "../pages/examples/bridge/utils";
 
 interface EmbeddedLinkProps {
 	href: string,
@@ -10,7 +11,7 @@ interface EmbeddedLinkProps {
 
 const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 	href,
-	className = "bridge__link",
+	className = `${BRIDGE_CLASSNAME}__link`,
 	isLocal = false,
 	children,
 }) => {

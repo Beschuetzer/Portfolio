@@ -13,6 +13,7 @@ import EducationItem from "./EducationItem";
 import { getRepositories, setSectionsToSkipAnimation } from "../../actions";
 import SkillsPopup from "./Skills/SkillsPopup/SkillsPopup";
 import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
+import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
 class Resume extends React.Component {
 	static popupUrl = "/resume#skillsPopup";
 	static skillsItemSectionLabels = [
@@ -271,7 +272,7 @@ class Resume extends React.Component {
 				</Paragraph>
 
 				<div>
-					<div className="bridge__subsection-grid">
+					<div className={`${BRIDGE_CLASSNAME}__subsection-grid`}>
 						<span>1).</span>
 						<span>
 							A summary of the skills I possess and example projects highlighting those skills (click headers to open section and then click on individual skills to view projects using that skill). 
