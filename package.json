@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend && tsc frontend"
   },
   "repository": {
     "type": "git",
@@ -21,20 +21,10 @@
   },
   "homepage": "https://github.com/Beschuetzer/Portfolio#readme",
   "dependencies": {
-    "@types/jest": "^26.0.23",
-    "@types/node": "^15.6.0",
-    "@types/react": "^17.0.6",
-    "@types/react-dom": "^17.0.5",
-    "@types/react-redux": "^7.1.16",
-    "@types/react-router-dom": "^5.1.7",
+    
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
-    "graphql-request": "^3.4.0",
-    "typescript": "^4.2.4"
-  },
-  "devDependencies": {
-    "@types/three": "^0.128.0"
-  }
+    "graphql-request": "^3.4.0"
 }

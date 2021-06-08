@@ -1,0 +1,483 @@
+# npm audit report
+
+braces  <2.3.1
+Regular Expression Denial of Service - https://npmjs.com/advisories/786
+fix available via `npm audit fix --force`
+Will install react-scripts@4.0.3, which is a breaking change
+node_modules/http-proxy-middleware/node_modules/braces
+node_modules/jest-cli/node_modules/braces
+node_modules/jest-haste-map/node_modules/braces
+node_modules/jest-message-util/node_modules/braces
+node_modules/jest-runtime/node_modules/braces
+node_modules/sane/node_modules/braces
+node_modules/test-exclude/node_modules/braces
+  micromatch  0.2.0 - 2.3.11
+  Depends on vulnerable versions of braces
+  Depends on vulnerable versions of parse-glob
+  node_modules/http-proxy-middleware/node_modules/micromatch
+  node_modules/jest-cli/node_modules/micromatch
+  node_modules/jest-haste-map/node_modules/micromatch
+  node_modules/jest-message-util/node_modules/micromatch
+  node_modules/jest-runtime/node_modules/micromatch
+  node_modules/sane/node_modules/micromatch
+  node_modules/test-exclude/node_modules/micromatch
+    anymatch  1.2.0 - 1.3.2
+    Depends on vulnerable versions of micromatch
+    node_modules/sane/node_modules/anymatch
+      sane  1.0.4 - 4.0.1
+      Depends on vulnerable versions of anymatch
+      Depends on vulnerable versions of exec-sh
+      node_modules/sane
+        jest-haste-map  16.1.0-alpha.691b0e22 - 24.0.0
+        Depends on vulnerable versions of micromatch
+        Depends on vulnerable versions of sane
+        node_modules/jest-haste-map
+          jest-cli  12.1.1-alpha.2935e14d || 12.1.2-alpha.6230044c - 24.8.0
+          Depends on vulnerable versions of jest-haste-map
+          Depends on vulnerable versions of jest-jasmine2
+          Depends on vulnerable versions of jest-message-util
+          Depends on vulnerable versions of jest-snapshot
+          Depends on vulnerable versions of micromatch
+          Depends on vulnerable versions of yargs
+          node_modules/jest-cli
+            jest  18.5.0-alpha.7da3df39 - 22.4.4 || 23.4.0 - 23.6.0
+            Depends on vulnerable versions of jest-cli
+            node_modules/jest
+              react-scripts  >=0.1.0
+              Depends on vulnerable versions of babel-jest
+              Depends on vulnerable versions of file-loader
+              Depends on vulnerable versions of html-webpack-plugin
+              Depends on vulnerable versions of jest
+              Depends on vulnerable versions of sw-precache-webpack-plugin
+              Depends on vulnerable versions of webpack
+              Depends on vulnerable versions of webpack-dev-server
+              node_modules/react-scripts
+          jest-runtime  12.1.1-alpha.2935e14d - 24.8.0
+          Depends on vulnerable versions of babel-jest
+          Depends on vulnerable versions of babel-plugin-istanbul
+          Depends on vulnerable versions of jest-haste-map
+          Depends on vulnerable versions of jest-util
+          Depends on vulnerable versions of micromatch
+          Depends on vulnerable versions of yargs
+          node_modules/jest-runtime
+    http-proxy-middleware  0.3.0 - 0.17.4
+    Depends on vulnerable versions of micromatch
+    node_modules/http-proxy-middleware
+      webpack-dev-server  <=3.11.2
+      Depends on vulnerable versions of chokidar
+      Depends on vulnerable versions of http-proxy-middleware
+      Depends on vulnerable versions of webpack
+      Depends on vulnerable versions of yargs
+      node_modules/webpack-dev-server
+    jest-message-util  18.5.0-alpha.7da3df39 - 23.1.0 || 23.4.0 - 24.0.0-alpha.16
+    Depends on vulnerable versions of micromatch
+    node_modules/jest-message-util
+      jest-jasmine2  18.5.0-alpha.7da3df39 - 22.4.4 || 23.4.0 - 23.6.0
+      Depends on vulnerable versions of jest-matchers
+      Depends on vulnerable versions of jest-message-util
+      node_modules/jest-jasmine2
+        jest-config  18.5.0-alpha.7da3df39 - 22.4.4 || 23.4.0 - 23.6.0
+        Depends on vulnerable versions of jest-jasmine2
+        node_modules/jest-config
+      jest-matchers  >=18.5.0-alpha.7da3df39
+      Depends on vulnerable versions of jest-message-util
+      node_modules/jest-matchers
+      jest-util  18.5.0-alpha.7da3df39 - 22.4.3 || 23.4.0
+      Depends on vulnerable versions of jest-message-util
+      node_modules/jest-util
+        jest-environment-jsdom  18.5.0-alpha.7da3df39 - 22.4.3 || 23.4.0
+        Depends on vulnerable versions of jest-util
+        node_modules/jest-environment-jsdom
+        jest-environment-node  18.5.0-alpha.7da3df39 - 22.4.3 || 23.4.0
+        Depends on vulnerable versions of jest-util
+        node_modules/jest-environment-node
+        jest-snapshot  18.5.0-alpha.7da3df39 - 21.0.0-beta.1
+        Depends on vulnerable versions of jest-util
+        node_modules/jest-snapshot
+    test-exclude  <=4.2.3
+    Depends on vulnerable versions of micromatch
+    node_modules/test-exclude
+      babel-plugin-istanbul  <=5.0.0
+      Depends on vulnerable versions of test-exclude
+      node_modules/babel-plugin-istanbul
+        babel-jest  14.2.0-alpha.ca8bfb6e - 24.0.0-alpha.16
+        Depends on vulnerable versions of babel-plugin-istanbul
+        node_modules/babel-jest
+
+css-what  <5.0.1
+Severity: high
+Denial of Service - https://npmjs.com/advisories/1754
+fix available via `npm audit fix --force`
+Will install react-scripts@4.0.3, which is a breaking change
+node_modules/css-what
+  css-select  <=3.1.2
+  Depends on vulnerable versions of css-what
+  node_modules/css-select
+    renderkid  >=1.0.0
+    Depends on vulnerable versions of css-select
+    node_modules/renderkid
+      pretty-error  <=0.1.3 || >=1.2.0
+      Depends on vulnerable versions of renderkid
+      node_modules/pretty-error
+        html-webpack-plugin  >=2.6.0
+        Depends on vulnerable versions of pretty-error
+        node_modules/html-webpack-plugin
+          react-scripts  >=0.1.0
+          Depends on vulnerable versions of babel-jest
+          Depends on vulnerable versions of file-loader
+          Depends on vulnerable versions of html-webpack-plugin
+          Depends on vulnerable versions of jest
+          Depends on vulnerable versions of sw-precache-webpack-plugin
+          Depends on vulnerable versions of webpack
+          Depends on vulnerable versions of webpack-dev-server
+          node_modules/react-scripts
+
+glob-parent  <5.1.2
+Severity: moderate
+Regular expression denial of service - https://npmjs.com/advisories/1751
+fix available via `npm audit fix --force`
+Will install react-scripts@4.0.3, which is a breaking change
+node_modules/glob-base/node_modules/glob-parent
+node_modules/live-server/node_modules/glob-parent
+node_modules/webpack-dev-server/node_modules/glob-parent
+  chokidar  1.0.0-rc1 - 2.1.8
+  Depends on vulnerable versions of glob-parent
+  node_modules/live-server/node_modules/chokidar
+  node_modules/webpack-dev-server/node_modules/chokidar
+    live-server  >=1.2.0
+    Depends on vulnerable versions of chokidar
+    node_modules/live-server
+    webpack-dev-server  <=3.11.2
+    Depends on vulnerable versions of chokidar
+    Depends on vulnerable versions of http-proxy-middleware
+    Depends on vulnerable versions of webpack
+    Depends on vulnerable versions of yargs
+    node_modules/webpack-dev-server
+      react-scripts  >=0.1.0
+      Depends on vulnerable versions of babel-jest
+      Depends on vulnerable versions of file-loader
+      Depends on vulnerable versions of html-webpack-plugin
+      Depends on vulnerable versions of jest
+      Depends on vulnerable versions of sw-precache-webpack-plugin
+      Depends on vulnerable versions of webpack
+      Depends on vulnerable versions of webpack-dev-server
+      node_modules/react-scripts
+  glob-base  *
+  Depends on vulnerable versions of glob-parent
+  node_modules/glob-base
+    parse-glob  >=2.1.0
+    Depends on vulnerable versions of glob-base
+    node_modules/parse-glob
+      micromatch  0.2.0 - 2.3.11
+      Depends on vulnerable versions of braces
+      Depends on vulnerable versions of parse-glob
+      node_modules/http-proxy-middleware/node_modules/micromatch
+      node_modules/jest-cli/node_modules/micromatch
+      node_modules/jest-haste-map/node_modules/micromatch
+      node_modules/jest-message-util/node_modules/micromatch
+      node_modules/jest-runtime/node_modules/micromatch
+      node_modules/sane/node_modules/micromatch
+      node_modules/test-exclude/node_modules/micromatch
+        anymatch  1.2.0 - 1.3.2
+        Depends on vulnerable versions of micromatch
+        node_modules/sane/node_modules/anymatch
+          sane  1.0.4 - 4.0.1
+          Depends on vulnerable versions of anymatch
+          Depends on vulnerable versions of exec-sh
+          node_modules/sane
+            jest-haste-map  16.1.0-alpha.691b0e22 - 24.0.0
+            Depends on vulnerable versions of micromatch
+            Depends on vulnerable versions of sane
+            node_modules/jest-haste-map
+              jest-cli  12.1.1-alpha.2935e14d || 12.1.2-alpha.6230044c - 24.8.0
+              Depends on vulnerable versions of jest-haste-map
+              Depends on vulnerable versions of jest-jasmine2
+              Depends on vulnerable versions of jest-message-util
+              Depends on vulnerable versions of jest-snapshot
+              Depends on vulnerable versions of micromatch
+              Depends on vulnerable versions of yargs
+              node_modules/jest-cli
+                jest  18.5.0-alpha.7da3df39 - 22.4.4 || 23.4.0 - 23.6.0
+                Depends on vulnerable versions of jest-cli
+                node_modules/jest
+              jest-runtime  12.1.1-alpha.2935e14d - 24.8.0
+              Depends on vulnerable versions of babel-jest
+              Depends on vulnerable versions of babel-plugin-istanbul
+              Depends on vulnerable versions of jest-haste-map
+              Depends on vulnerable versions of jest-util
+              Depends on vulnerable versions of micromatch
+              Depends on vulnerable versions of yargs
+              node_modules/jest-runtime
+        http-proxy-middleware  0.3.0 - 0.17.4
+        Depends on vulnerable versions of micromatch
+        node_modules/http-proxy-middleware
+        jest-message-util  18.5.0-alpha.7da3df39 - 23.1.0 || 23.4.0 - 24.0.0-alpha.16
+        Depends on vulnerable versions of micromatch
+        node_modules/jest-message-util
+          jest-jasmine2  18.5.0-alpha.7da3df39 - 22.4.4 || 23.4.0 - 23.6.0
+          Depends on vulnerable versions of jest-matchers
+          Depends on vulnerable versions of jest-message-util
+          node_modules/jest-jasmine2
+            jest-config  18.5.0-alpha.7da3df39 - 22.4.4 || 23.4.0 - 23.6.0
+            Depends on vulnerable versions of jest-jasmine2
+            node_modules/jest-config
+          jest-matchers  >=18.5.0-alpha.7da3df39
+          Depends on vulnerable versions of jest-message-util
+          node_modules/jest-matchers
+          jest-util  18.5.0-alpha.7da3df39 - 22.4.3 || 23.4.0
+          Depends on vulnerable versions of jest-message-util
+          node_modules/jest-util
+            jest-environment-jsdom  18.5.0-alpha.7da3df39 - 22.4.3 || 23.4.0
+            Depends on vulnerable versions of jest-util
+            node_modules/jest-environment-jsdom
+            jest-environment-node  18.5.0-alpha.7da3df39 - 22.4.3 || 23.4.0
+            Depends on vulnerable versions of jest-util
+            node_modules/jest-environment-node
+            jest-snapshot  18.5.0-alpha.7da3df39 - 21.0.0-beta.1
+            Depends on vulnerable versions of jest-util
+            node_modules/jest-snapshot
+        test-exclude  <=4.2.3
+        Depends on vulnerable versions of micromatch
+        node_modules/test-exclude
+          babel-plugin-istanbul  <=5.0.0
+          Depends on vulnerable versions of test-exclude
+          node_modules/babel-plugin-istanbul
+            babel-jest  14.2.0-alpha.ca8bfb6e - 24.0.0-alpha.16
+            Depends on vulnerable versions of babel-plugin-istanbul
+            node_modules/babel-jest
+
+js-yaml  <=3.13.0
+Severity: high
+Denial of Service - https://npmjs.com/advisories/788
+Code Injection - https://npmjs.com/advisories/813
+fix available via `npm audit fix`
+node_modules/svgo/node_modules/js-yaml
+  svgo  0.4.2 - 1.0.5
+  Depends on vulnerable versions of js-yaml
+  node_modules/svgo
+    postcss-svgo  <=2.1.6
+    Depends on vulnerable versions of svgo
+    node_modules/postcss-svgo
+      cssnano  3.0.0 - 3.10.0
+      Depends on vulnerable versions of postcss-svgo
+      node_modules/cssnano
+
+mem  <4.0.0
+Denial of Service - https://npmjs.com/advisories/1084
+fix available via `npm audit fix --force`
+Will install react-scripts@4.0.3, which is a breaking change
+node_modules/mem
+  os-locale  2.0.0 - 3.0.0
+  Depends on vulnerable versions of mem
+  node_modules/webpack/node_modules/os-locale
+    yargs  4.0.0-alpha1 - 12.0.5 || 14.1.0 || 15.0.0 - 15.2.0
+    Depends on vulnerable versions of os-locale
+    Depends on vulnerable versions of yargs-parser
+    node_modules/webpack-dev-server/node_modules/yargs
+    node_modules/webpack/node_modules/yargs
+    node_modules/yargs
+      jest-cli  12.1.1-alpha.2935e14d || 12.1.2-alpha.6230044c - 24.8.0
+      Depends on vulnerable versions of jest-haste-map
+      Depends on vulnerable versions of jest-jasmine2
+      Depends on vulnerable versions of jest-message-util
+      Depends on vulnerable versions of jest-snapshot
+      Depends on vulnerable versions of micromatch
+      Depends on vulnerable versions of yargs
+      node_modules/jest-cli
+        jest  18.5.0-alpha.7da3df39 - 22.4.4 || 23.4.0 - 23.6.0
+        Depends on vulnerable versions of jest-cli
+        node_modules/jest
+          react-scripts  >=0.1.0
+          Depends on vulnerable versions of babel-jest
+          Depends on vulnerable versions of file-loader
+          Depends on vulnerable versions of html-webpack-plugin
+          Depends on vulnerable versions of jest
+          Depends on vulnerable versions of sw-precache-webpack-plugin
+          Depends on vulnerable versions of webpack
+          Depends on vulnerable versions of webpack-dev-server
+          node_modules/react-scripts
+      jest-runtime  12.1.1-alpha.2935e14d - 24.8.0
+      Depends on vulnerable versions of babel-jest
+      Depends on vulnerable versions of babel-plugin-istanbul
+      Depends on vulnerable versions of jest-haste-map
+      Depends on vulnerable versions of jest-util
+      Depends on vulnerable versions of micromatch
+      Depends on vulnerable versions of yargs
+      node_modules/jest-runtime
+      webpack  2.0.0-beta - 4.0.0-beta.3
+      Depends on vulnerable versions of yargs
+      node_modules/webpack
+        babel-loader  7.0.0-alpha.1 - 7.1.2 || 8.0.0-beta.0 - 8.0.0-beta.6
+        Depends on vulnerable versions of webpack
+        node_modules/babel-loader
+        extract-text-webpack-plugin  2.0.0-beta.0 - 3.0.2
+        Depends on vulnerable versions of webpack
+        node_modules/extract-text-webpack-plugin
+        file-loader  1.1.1 - 1.1.9
+        Depends on vulnerable versions of webpack
+        node_modules/file-loader
+        webpack-dev-server  <=3.11.2
+        Depends on vulnerable versions of chokidar
+        Depends on vulnerable versions of http-proxy-middleware
+        Depends on vulnerable versions of webpack
+        Depends on vulnerable versions of yargs
+        node_modules/webpack-dev-server
+
+merge  <2.1.1
+Severity: high
+Prototype Pollution - https://npmjs.com/advisories/1666
+fix available via `npm audit fix --force`
+Will install react-scripts@4.0.3, which is a breaking change
+node_modules/merge
+  exec-sh  <=0.3.1
+  Depends on vulnerable versions of merge
+  node_modules/exec-sh
+    sane  1.0.4 - 4.0.1
+    Depends on vulnerable versions of anymatch
+    Depends on vulnerable versions of exec-sh
+    node_modules/sane
+      jest-haste-map  16.1.0-alpha.691b0e22 - 24.0.0
+      Depends on vulnerable versions of micromatch
+      Depends on vulnerable versions of sane
+      node_modules/jest-haste-map
+        jest-cli  12.1.1-alpha.2935e14d || 12.1.2-alpha.6230044c - 24.8.0
+        Depends on vulnerable versions of jest-haste-map
+        Depends on vulnerable versions of jest-jasmine2
+        Depends on vulnerable versions of jest-message-util
+        Depends on vulnerable versions of jest-snapshot
+        Depends on vulnerable versions of micromatch
+        Depends on vulnerable versions of yargs
+        node_modules/jest-cli
+          jest  18.5.0-alpha.7da3df39 - 22.4.4 || 23.4.0 - 23.6.0
+          Depends on vulnerable versions of jest-cli
+          node_modules/jest
+            react-scripts  >=0.1.0
+            Depends on vulnerable versions of babel-jest
+            Depends on vulnerable versions of file-loader
+            Depends on vulnerable versions of html-webpack-plugin
+            Depends on vulnerable versions of jest
+            Depends on vulnerable versions of sw-precache-webpack-plugin
+            Depends on vulnerable versions of webpack
+            Depends on vulnerable versions of webpack-dev-server
+            node_modules/react-scripts
+        jest-runtime  12.1.1-alpha.2935e14d - 24.8.0
+        Depends on vulnerable versions of babel-jest
+        Depends on vulnerable versions of babel-plugin-istanbul
+        Depends on vulnerable versions of jest-haste-map
+        Depends on vulnerable versions of jest-util
+        Depends on vulnerable versions of micromatch
+        Depends on vulnerable versions of yargs
+        node_modules/jest-runtime
+
+trim-newlines  <3.0.1 || =4.0.0
+Severity: high
+Regular Expression Denial of Service - https://npmjs.com/advisories/1753
+fix available via `npm audit fix --force`
+Will install react-scripts@4.0.3, which is a breaking change
+node_modules/trim-newlines
+  meow  3.4.0 - 5.0.0
+  Depends on vulnerable versions of trim-newlines
+  node_modules/meow
+    sw-precache  >=4.2.0
+    Depends on vulnerable versions of meow
+    node_modules/sw-precache
+      sw-precache-webpack-plugin  >=0.8.0
+      Depends on vulnerable versions of sw-precache
+      node_modules/sw-precache-webpack-plugin
+        react-scripts  >=0.1.0
+        Depends on vulnerable versions of babel-jest
+        Depends on vulnerable versions of file-loader
+        Depends on vulnerable versions of html-webpack-plugin
+        Depends on vulnerable versions of jest
+        Depends on vulnerable versions of sw-precache-webpack-plugin
+        Depends on vulnerable versions of webpack
+        Depends on vulnerable versions of webpack-dev-server
+        node_modules/react-scripts
+
+webpack-dev-server  <=3.11.2
+Severity: high
+Missing Origin Validation - https://npmjs.com/advisories/725
+Depends on vulnerable versions of chokidar
+Depends on vulnerable versions of http-proxy-middleware
+Depends on vulnerable versions of webpack
+Depends on vulnerable versions of yargs
+fix available via `npm audit fix --force`
+Will install react-scripts@4.0.3, which is a breaking change
+node_modules/webpack-dev-server
+  react-scripts  >=0.1.0
+  Depends on vulnerable versions of babel-jest
+  Depends on vulnerable versions of file-loader
+  Depends on vulnerable versions of html-webpack-plugin
+  Depends on vulnerable versions of jest
+  Depends on vulnerable versions of sw-precache-webpack-plugin
+  Depends on vulnerable versions of webpack
+  Depends on vulnerable versions of webpack-dev-server
+  node_modules/react-scripts
+
+yargs-parser  <=13.1.1 || 14.0.0 - 15.0.0 || 16.0.0 - 18.1.1
+Prototype Pollution - https://npmjs.com/advisories/1500
+fix available via `npm audit fix --force`
+Will install react-scripts@4.0.3, which is a breaking change
+node_modules/webpack-dev-server/node_modules/yargs-parser
+node_modules/webpack/node_modules/yargs-parser
+node_modules/yargs-parser
+  yargs  4.0.0-alpha1 - 12.0.5 || 14.1.0 || 15.0.0 - 15.2.0
+  Depends on vulnerable versions of os-locale
+  Depends on vulnerable versions of yargs-parser
+  node_modules/webpack-dev-server/node_modules/yargs
+  node_modules/webpack/node_modules/yargs
+  node_modules/yargs
+    jest-cli  12.1.1-alpha.2935e14d || 12.1.2-alpha.6230044c - 24.8.0
+    Depends on vulnerable versions of jest-haste-map
+    Depends on vulnerable versions of jest-jasmine2
+    Depends on vulnerable versions of jest-message-util
+    Depends on vulnerable versions of jest-snapshot
+    Depends on vulnerable versions of micromatch
+    Depends on vulnerable versions of yargs
+    node_modules/jest-cli
+      jest  18.5.0-alpha.7da3df39 - 22.4.4 || 23.4.0 - 23.6.0
+      Depends on vulnerable versions of jest-cli
+      node_modules/jest
+        react-scripts  >=0.1.0
+        Depends on vulnerable versions of babel-jest
+        Depends on vulnerable versions of file-loader
+        Depends on vulnerable versions of html-webpack-plugin
+        Depends on vulnerable versions of jest
+        Depends on vulnerable versions of sw-precache-webpack-plugin
+        Depends on vulnerable versions of webpack
+        Depends on vulnerable versions of webpack-dev-server
+        node_modules/react-scripts
+    jest-runtime  12.1.1-alpha.2935e14d - 24.8.0
+    Depends on vulnerable versions of babel-jest
+    Depends on vulnerable versions of babel-plugin-istanbul
+    Depends on vulnerable versions of jest-haste-map
+    Depends on vulnerable versions of jest-util
+    Depends on vulnerable versions of micromatch
+    Depends on vulnerable versions of yargs
+    node_modules/jest-runtime
+    webpack  2.0.0-beta - 4.0.0-beta.3
+    Depends on vulnerable versions of yargs
+    node_modules/webpack
+      babel-loader  7.0.0-alpha.1 - 7.1.2 || 8.0.0-beta.0 - 8.0.0-beta.6
+      Depends on vulnerable versions of webpack
+      node_modules/babel-loader
+      extract-text-webpack-plugin  2.0.0-beta.0 - 3.0.2
+      Depends on vulnerable versions of webpack
+      node_modules/extract-text-webpack-plugin
+      file-loader  1.1.1 - 1.1.9
+      Depends on vulnerable versions of webpack
+      node_modules/file-loader
+      webpack-dev-server  <=3.11.2
+      Depends on vulnerable versions of chokidar
+      Depends on vulnerable versions of http-proxy-middleware
+      Depends on vulnerable versions of webpack
+      Depends on vulnerable versions of yargs
+      node_modules/webpack-dev-server
+
+50 vulnerabilities (25 low, 9 moderate, 16 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
