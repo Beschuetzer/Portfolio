@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { SKILLS_CLASSNAME } from './utils';
 
 class SkillsItemSection extends React.Component {
-  static skillsSectionClassname = 'skills__section';
-  static skillsSectionOpenClassName = 'skills__section--open';
+  static skillsSectionClassname = `${SKILLS_CLASSNAME}__section`;
+  static skillsSectionOpenClassName = `${SKILLS_CLASSNAME}__section--open`;
   static timeOutDifferential = 50;
 
   onTitleClick = (e) => {
@@ -17,7 +18,7 @@ class SkillsItemSection extends React.Component {
     if (!clickedSection.nextSibling) return;
     if (clickedSection.parentNode.querySelector(`.${SkillsItemSection.skillsSectionClassname}`)) return;
 
-    const items = clickedSection.nextSibling.querySelectorAll('.skills__percent-outer');
+    const items = clickedSection.nextSibling.querySelectorAll(`.${SKILLS_CLASSNAME}__percent-outer`);
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
       setTimeout(() => {
@@ -25,7 +26,7 @@ class SkillsItemSection extends React.Component {
 
         if (this.props.sectionsToSkipAnimation.indexOf(clickedSection.textContent) === -1) {
           const previousElementChildren = item.previousElementSibling?.children;
-          previousElementChildren[previousElementChildren.length - 1]?.classList?.add('skills__title--animating')
+          previousElementChildren[previousElementChildren.length - 1]?.classList?.add(`${SKILLS_CLASSNAME}__title--animating`)
         }
 
       }, SkillsItemSection.timeOutDifferential * i);
@@ -35,14 +36,14 @@ class SkillsItemSection extends React.Component {
   render() {
     const { children, title } = this.props;
     return (
-      <div className='skills__section'>
-        <div onClick={this.onTitleClick} className="skills__section-title skills__title--animating">
+      <div className={`${SKILLS_CLASSNAME}__section`}>
+        <div onClick={this.onTitleClick} className={`${SKILLS_CLASSNAME}__section-title skills__title--animating`}>
           {title}
-          <svg className="skills__section-title-svg">
+          <svg className={`${SKILLS_CLASSNAME}__section-title-svg`}>
               <use xlinkHref="/sprite.svg#icon-angle-right"></use>
             </svg>
         </div>
-        <div className="skills__section-content">
+        <div className={`${SKILLS_CLASSNAME}__section-content`}>
           {children}
         </div>
       </div>

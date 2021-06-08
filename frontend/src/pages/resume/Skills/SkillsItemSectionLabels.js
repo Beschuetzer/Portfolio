@@ -1,4 +1,5 @@
 import React from 'react';
+import { SKILLS_CLASSNAME } from './utils';
 
 class SkillsItemSectionLabels extends React.Component {
   render() {
@@ -6,10 +7,10 @@ class SkillsItemSectionLabels extends React.Component {
     return (
       <React.Fragment>
         <div></div>
-        <div className="skills__labels">
-          <span className="skills__label skills__label-left">{labels?.left}</span>
-          <span className="skills__label skills__label-center">{labels?.center}</span>
-          <span className="skills__label skills__label-right">{labels?.right}</span>
+        <div className={`${SKILLS_CLASSNAME}__labels`}>
+          <span className={`${SKILLS_CLASSNAME}__label ${SKILLS_CLASSNAME}__label-left`}>{labels?.left}</span>
+          <span className={`${SKILLS_CLASSNAME}__label ${SKILLS_CLASSNAME}__label-center`}>{labels?.center}</span>
+          <span className={`${SKILLS_CLASSNAME}__label ${SKILLS_CLASSNAME}__label-right`}>{labels?.right}</span>
         </div>
       </React.Fragment>
     );

@@ -10,7 +10,7 @@ import {
 import SkillsPopupName from "./SkillsPopupName";
 import { capitalize } from "../../../helpers";
 import { addSpaceAfterPunctuationMarks } from "../../../components/utils";
-import { Repository } from "./utils";
+import { Repository, SKILLS_CLASSNAME } from "./utils";
 
 interface SkillsPopupProps {
 	reposToDisplay: Repository[],
@@ -39,10 +39,10 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 			const isBodyClick = !checkForParentOfType(
 				e.target as HTMLElement,
 				"div",
-				"skills-popup",
+				`${SKILLS_CLASSNAME}-popup`,
 			);
 			if (isBodyClick) {
-				skillsPopupDiv?.classList?.remove("skills-popup--active");
+				skillsPopupDiv?.classList?.remove(`${SKILLS_CLASSNAME}-popup--active`);
 				setTimeout(() => {
 					clickSkill(null);
 					addRepoToReposToDisplay([]);
@@ -78,14 +78,14 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 	// const onTableItemMouseEvent = (e) => {
 		// return;
 		// if (isMobile) return;
-		// const table = document.querySelector(".skills-popup__table");
+		// const table = document.querySelector(`.${SKILLS_CLASSNAME}-popup__table`);
 		// const skillsPopupItems = document.querySelectorAll(
-		// 	".skills-popup__table-item",
+		// 	`.${SKILLS_CLASSNAME}-popup__table-item`,
 		// );
 		// const indexOfTarget = getIndexOfItem(e.target, skillsPopupItems);
-		// const classNameToAddToItems = "skills-popup__item-js--hover";
-		// const classNameToAddToLinks = "skills-popup__link-js--hover";
-		// const headerCount = document.querySelectorAll(".skills-popup__table-header")
+		// const classNameToAddToItems = `${SKILLS_CLASSNAME}-popup__item-js--hover`;
+		// const classNameToAddToLinks = `${SKILLS_CLASSNAME}-popup__link-js--hover`;
+		// const headerCount = document.querySelectorAll(`.${SKILLS_CLASSNAME}-popup__table-header`)
 		// 	.length;
 		// const classList = e.target.classList;
 
@@ -96,24 +96,24 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		// let indexOffset = 0;
 
 		// if (
-		// 	classList?.contains("skills-popup__link-text") ||
-		// 	classList?.contains("skills-popup__name")
+		// 	classList?.contains(`${SKILLS_CLASSNAME}-popup__link-text`) ||
+		// 	classList?.contains(`${SKILLS_CLASSNAME}-popup__name`)
 		// ) {
 		// 	min = headerCount + indexOfTarget + 0;
 		// 	max = headerCount + indexOfTarget + 4;
-		// } else if (classList?.contains("skills-popup__description")) {
+		// } else if (classList?.contains(`${SKILLS_CLASSNAME}-popup__description`)) {
 		// 	min = headerCount + indexOfTarget + -1;
 		// 	max = headerCount + indexOfTarget + 3;
 		// 	indexOffset = 1;
-		// } else if (classList?.contains("skills-popup__createdAt")) {
+		// } else if (classList?.contains(`${SKILLS_CLASSNAME}-popup__createdAt`)) {
 		// 	min = headerCount + indexOfTarget + -2;
 		// 	max = headerCount + indexOfTarget + 2;
 		// 	indexOffset = 2;
-		// } else if (classList?.contains("skills-popup__updatedAt")) {
+		// } else if (classList?.contains(`${SKILLS_CLASSNAME}-popup__updatedAt`)) {
 		// 	min = headerCount + indexOfTarget + -3;
 		// 	max = headerCount + indexOfTarget + 1;
 		// 	indexOffset = 3;
-		// } else if (classList?.contains("skills-popup__url")) {
+		// } else if (classList?.contains(`${SKILLS_CLASSNAME}-popup__url`)) {
 		// 	min = headerCount + indexOfTarget + -4;
 		// 	max = headerCount + indexOfTarget + 0;
 		// 	indexOffset = 4;
@@ -131,7 +131,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		// //Adding or Removing class to trigger link animation when hovering over a row with a link name element
 		// rowsNameElement = skillsPopupItems[indexOfTarget - indexOffset];
 		// isRowsNameElementALink = rowsNameElement?.classList?.contains(
-		// 	"skills-popup__link",
+		// 	`${SKILLS_CLASSNAME}-popup__link`,
 		// )
 		// 	? true
 		// 	: false;
@@ -144,7 +144,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 	// };
 
 	const onCloseClick = (e: MouseEvent) => {
-		skillsPopupDiv?.classList?.remove("skills-popup--active");
+		skillsPopupDiv?.classList?.remove(`${SKILLS_CLASSNAME}-popup--active`);
 		setTimeout(() => {
 			clickSkill(null);
 			addRepoToReposToDisplay([]);
@@ -276,7 +276,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		const keys = ["name", "description", "createdAt", "updatedAt", "url"];
 		if (!reposToDisplay || reposToDisplay.length === 0) {
 			return (
-				<div className="skills-popup__error">
+				<div className={`${SKILLS_CLASSNAME}-popup__error`}>
 					Unable to load repositories from Github.  Try refreshing...
 				</div>
 			);
@@ -284,7 +284,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		return reposToDisplay.map((repo) => {
 			if (isMobile) {
 				return (
-					<article key={repo.name} className="skills-popup__table-repo">
+					<article key={repo.name} className={`${SKILLS_CLASSNAME}-popup__table-repo`}>
 						{keys.map((key, index) => {
 							return getProjectContent(repo, key, index);
 						})}
@@ -301,11 +301,11 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 	const renderTableHeaders = () => {
 		const headers = ["Name", "Description", "Created", "Updated", "Repo Url"];
 		return isMobile
-			? // <div className="skills-popup__table-headers">
+			? // <div className={`${SKILLS_CLASSNAME}-popup__table-headers`}>
 			  //   {
 			  //     headers.map(header => {
 			  //       return (
-			  //         <div key={header} className="skills-popup__table-header">{header}</div>
+			  //         <div key={header} className={`${SKILLS_CLASSNAME}-popup__table-header`}>{header}</div>
 			  //       );
 			  //     })
 			  //   }
@@ -313,24 +313,25 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 			  null
 			: headers.map((header) => {
 					return (
-						<div key={header} className="skills-popup__table-header">
+						<div key={header} className={`${SKILLS_CLASSNAME}-popup__table-header`}>
 							{header}
 						</div>
 					);
 			  });
 	};
 	return ReactDOM.createPortal(
-		<div className="skills-popup__content">
-			<div className="skills-popup__header">
-				<span className="skills-popup__header-text">
+		<div className={`${SKILLS_CLASSNAME}-popup__content`}>
+			<div className={`${SKILLS_CLASSNAME}-popup__header`}>
+				<span className={`${SKILLS_CLASSNAME}-popup__header-text`}>
 					Github Projects with tag '
-					<span className="skills-popup__header-skill">{clickedSkill}</span>':
+					<span className={`${SKILLS_CLASSNAME}-popup__header-skill`}>{clickedSkill}</span>
+					:
 				</span>
-				<svg onClick={(e: any) => onCloseClick(e)} className="skills-popup__close">
+				<svg onClick={(e: any) => onCloseClick(e)} className={`${SKILLS_CLASSNAME}-popup__close`}>
 					<use xlinkHref="/sprite.svg#icon-close"></use>
 				</svg>
 			</div>
-			<div className="skills-popup__table">
+			<div className={`${SKILLS_CLASSNAME}-popup__table`}>
 				{renderTableHeaders()}
 				{renderProjects()}
 			</div>
