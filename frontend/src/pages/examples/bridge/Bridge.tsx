@@ -402,7 +402,7 @@ const sectionContents = [
 						Have a look at some of the fun features in the &nbsp;
 						<BridgeSectionLink
 							isEmbeddedLink={true}
-							content="feature's section"
+							name="feature's section"
 							sectionToSkipTo="features"></BridgeSectionLink>
 						&nbsp; or check out some of the
 						<EmbeddedLink href="https://github.com/Beschuetzer/Bridge">

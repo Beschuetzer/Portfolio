@@ -55,7 +55,7 @@ const PageNav: React.FC<PageNavProps> = ({
 			return (
 				<BridgeSectionLink
 					key={index}
-					content={bridgeSections[index]}
+					name={bridgeSections[index]}
 					sectionToSkipTo={bridgeSections[index]}
 					match={match}
 				/>
