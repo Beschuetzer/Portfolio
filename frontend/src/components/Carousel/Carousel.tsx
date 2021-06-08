@@ -7,7 +7,7 @@ import {
 import useInit from "./useInit";
 import useInterItemWidth from "./useInterItemWidth";
 import CarouselArrow from "./CarouselArrow";
-import { CAROUSEL_TRANSLATION_CSS_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./util";
+import { CAROUSEL_CLASSNAME, CAROUSEL_TRANSLATION_CSS_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./util";
 import { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 
 interface CarouselProps {
@@ -25,14 +25,14 @@ const Carousel: React.FC<CarouselProps> = ({
 	numberOfItemsInCarouselAtOneTime,
 	numberOfItemsToScrollOnClick,
 }) => {
-	const IMAGE_CLASSNAME = "carousel__image";
-	const ITEM_CLASSNAME = "carousel__item";
+	const IMAGE_CLASSNAME = `${CAROUSEL_CLASSNAME}__image`;
+	const ITEM_CLASSNAME = `${CAROUSEL_CLASSNAME}__item`;
 	const TRANSITION_CLASSNAME = "carousel-transition";
 	const DESCRIPTION_CLASSNAME = `${IMAGE_CLASSNAME}-description`;
 
-	const DOT_CLASSNAME = "carousel__dot";
+	const DOT_CLASSNAME = `${CAROUSEL_CLASSNAME}__dot`;
 	const DOT_ACTIVE_CLASSNAME = `${DOT_CLASSNAME}--active`;
-	const ARROW_BUTTONS_CLASSNAME = "carousel__arrow-button";
+	const ARROW_BUTTONS_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button`;
 	const ARROW_BUTTON_LEFT_CLASSNAME = `${ARROW_BUTTONS_CLASSNAME}--left`;
 	const ARROW_BUTTON_RIGHT_CLASSNAME = `${ARROW_BUTTONS_CLASSNAME}--right`;
 	const minImageCount = 0;
@@ -72,7 +72,7 @@ const Carousel: React.FC<CarouselProps> = ({
 
 		const currentCount =
 			+numberOfItemsInCarouselAtOneTime +
-			currentTranslationFactor * +numberOfItemsToScrollOnClick -
+			currentTranslationFactor * numberOfItemsToScrollOnClick -
 			1;
 
 		if (currentCount <= minImageCount) leftArrow.classList.add("hidden");
@@ -110,8 +110,8 @@ const Carousel: React.FC<CarouselProps> = ({
 
 	const handleArrowClick = (e: Event) => {
 		const maxImageCount =
-			+numberOfItemsToScrollOnClick === 1
-				? items.length - numberOfItemsInCarouselAtOneTime
+			numberOfItemsToScrollOnClick === 1
+				? items.length - +numberOfItemsInCarouselAtOneTime
 				: items.length - 1;
 
 		let hasClickedLeftArrow = false;
@@ -254,14 +254,16 @@ const Carousel: React.FC<CarouselProps> = ({
         svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
       />
 
-			<div className="carousel__dots">{renderCarouselButtons()}</div>
+			<div className={`${CAROUSEL_CLASSNAME}__dots`}>{renderCarouselButtons()}</div>
 		</React.Fragment>
 	);
 };
 
-const mapStateToProps = (state: RootStateOrAny) => {
+const mapStateToProps = (state: RootStateOrAny, ownProps: any) => {
 	return {
 		viewPortWidth: state.general.viewPortWidth,
+		numberOfItemsToScrollOnClick: +(ownProps.numberOfItemsToScrollOnClick),
+		numberOfItemsInCarouselAtOneTime: +(ownProps.numberOfItemsInCarouselAtOneTime),
 	};
 };
 

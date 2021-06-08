@@ -1,4 +1,4 @@
-import React, { RefObject, useRef } from "react";
+import React, { useRef } from "react";
 
 import PlayControl from "../VideoPlayer/PlayControl";
 import StopControl from "../VideoPlayer/StopControl";
@@ -6,17 +6,17 @@ import PauseControl from "../VideoPlayer/PauseControl";
 import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
 import Video from "../VideoPlayer/Video";
-import { CAROUSEL_VIDEO_CLASSNAME } from "./util";
+import { CAROUSEL_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./util";
 import {
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
 } from "../VideoPlayer/utils";
 
 const FULLSCREEN_CLASSNAME = "full-screen";
-const FULLSCREEN_PARENT_CLASSNAME = "carousel__item--full-screen";
-const PLAYING_CLASSNAME = "carousel__item--playing";
-const STOPPED_CLASSNAME = "carousel__item--stopped";
-const DONE_CLASSNAME = "carousel__item--done";
+const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
+const PLAYING_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--playing`;
+const STOPPED_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--stopped`;
+const DONE_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--done`;
 const CLASSNAMES_TO_REMOVE = [
 	FULLSCREEN_PARENT_CLASSNAME,
 	FULLSCREEN_CLASSNAME,
