@@ -2,6 +2,12 @@ export interface Repository {
   [key: string]: any,
 }
 
+export interface SkillsItemLabel {
+  left: string;
+  center: string;
+  right: string;
+}
+
 export const SKILLS_CLASSNAME = "skills";
 export const SKILLS_SECTION_CLASSNAME = `${SKILLS_CLASSNAME}__section`;
 export const SKILLS_SECTION_OPEN_CLASSNAME = `${SKILLS_CLASSNAME}__section--open`;
@@ -28,6 +34,4 @@ export const toggleItem = (
 
     }, TIME_OUT_DIFFERENTIAL * i);
   }
-
-  (e.target as HTMLElement)?.classList?.toggle(SKILLS_SECTION_OPEN_CLASSNAME);
 }

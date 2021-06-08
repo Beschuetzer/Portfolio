@@ -3,27 +3,34 @@ import { useRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { clickSkill } from "../../../actions";
 import SkillsItemSectionLabels from "./SkillsItemSectionLabels";
-import { SKILLS_CLASSNAME } from "./utils";
+import { SkillsItemLabel, SKILLS_CLASSNAME } from "./utils";
 
 interface SkillsItemProps {
-  title: string,
-  percent: string,
-  href: string,
-  hours: string,
-  labels: string,
-  clickSkill: (value: HTMLElement) => void,
+	title: string;
+	percent: string;
+	href: string;
+	hours: string;
+	label: SkillsItemLabel;
+	clickSkill: (value: HTMLElement) => void;
 }
 
-const SkillsItem: React.FC<SkillsItemProps> = ({ title, percent, href, clickSkill, hours, labels }) => {
+const SkillsItem: React.FC<SkillsItemProps> = ({
+	title,
+	percent,
+	href,
+	clickSkill,
+	hours,
+	label,
+}) => {
 	const skillsPopupDiv = document.querySelector("#skillsPopup");
 	const percentDiv = useRef<any>(null);
 	const [isDivSet, setIsDivSet] = useState(false);
 
 	const onParagraphClick = (e: MouseEvent) => {
 		if (
-			((e.target as HTMLElement)?.parentNode?.parentNode as any)?.previousElementSibling?.textContent.search(
-				/human/i,
-			) !== -1
+			(
+				(e.target as HTMLElement)?.parentNode?.parentNode as any
+			)?.previousElementSibling?.textContent.search(/human/i) !== -1
 		)
 			return;
 
@@ -51,13 +58,15 @@ const SkillsItem: React.FC<SkillsItemProps> = ({ title, percent, href, clickSkil
 						{title}:
 					</a>
 				) : (
-					<div onClick={(e: any) => onParagraphClick(e)} className={`${SKILLS_CLASSNAME}__title`}>
+					<div
+						onClick={(e: any) => onParagraphClick(e)}
+						className={`${SKILLS_CLASSNAME}__title`}>
 						{title}:
 					</div>
 				)}
 			</li>
 			<div className={`${SKILLS_CLASSNAME}__percent-outer`}>
-				<SkillsItemSectionLabels labels={labels} />
+				<SkillsItemSectionLabels label={label} />
 				<div ref={percentDiv} className={`${SKILLS_CLASSNAME}__percent-inner`}>
 					<div className={`${SKILLS_CLASSNAME}__hours`}>
 						{hours ? `~ ${hours} hours` : null}

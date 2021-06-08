@@ -323,7 +323,7 @@ class Resume extends React.Component {
 										return (
 											<SkillsItem
 												key={index2}
-												labels={Resume.skillsLabels.web}
+												label={Resume.skillsLabels.web}
 												title={skill.title}
 												percent={skill.percent}
 												href={skill.href ? skill.href : ''}
@@ -343,7 +343,7 @@ class Resume extends React.Component {
 								return (
 									<SkillsItem
 										key={index}
-										labels={Resume.skillsLabels.it}
+										label={Resume.skillsLabels.it}
 										href={skill.href ? skill.href : ''}
 										title={skill.title}
 										percent={skill.percent}
@@ -360,7 +360,7 @@ class Resume extends React.Component {
 								return (
 									<SkillsItem
 										key={index}
-										labels={Resume.skillsLabels.it}
+										label={Resume.skillsLabels.it}
 										href={skill.href ? skill.href : ''}
 										title={skill.title}
 										percent={skill.percent}

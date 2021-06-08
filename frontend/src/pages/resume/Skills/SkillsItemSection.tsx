@@ -1,5 +1,5 @@
 import { connect, RootStateOrAny } from 'react-redux';
-import { SKILLS_CLASSNAME, toggleItem } from './utils';
+import { SKILLS_CLASSNAME, SKILLS_SECTION_OPEN_CLASSNAME, toggleItem } from './utils';
 
 interface SkillsItemSectionProps {
   title: string,
@@ -16,6 +16,7 @@ const SkillsItemSection: React.FC<SkillsItemSectionProps> = ({
   const onTitleClick = (e: MouseEvent) => {
     e.stopPropagation();
     toggleItem(e, sectionsToSkipAnimation);
+    (e.target as HTMLElement)?.classList?.toggle(SKILLS_SECTION_OPEN_CLASSNAME);
   }
 
   return (
