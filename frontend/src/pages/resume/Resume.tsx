@@ -25,15 +25,15 @@ function getExternalLinkTargetAndRel() {
 	return ` target='_blank' rel='noreferrer' `;
 }
 
-const popupUrl = "/resume#skillsPopup";
 const skillsItemSectionLabels = [
 	"Web Development",
 	"IT Support",
 	"Human Skills",
 ];
 const sectionsToSkipAnimation = [skillsItemSectionLabels[2]];
+
 const skillsLabels: {
-	[key: string]: {left: string, center: string, right: string}
+	[key: string]: { left: string; center: string; right: string };
 } = {
 	web: {
 		left: "Novice",
@@ -51,187 +51,188 @@ const skillsLabels: {
 		right: "Excels",
 	},
 };
+
 const webDevSubSkillsLabels = [
-	'Basics',
-	'Libraries',
-	'Frameworks',
-	'Methodologies',
-	'Databases',
+	"Basics",
+	"Libraries",
+	"Frameworks",
+	"Methodologies",
+	"Databases",
 ];
 
 const skills: {
 	[key: string]: {
-		[key: string]: [Skill]
-	}
+		[key: string]: [Skill];
+	};
 } = {
 	[skillsItemSectionLabels[0]]: {
 		[webDevSubSkillsLabels[0]]: [
 			{
-				title: 'CSS3',
+				title: "CSS3",
 				percent: 78,
 			},
 			{
-				title: 'C#',
+				title: "C#",
 				percent: 35,
 			},
 			{
-				title: 'Express',
+				title: "Express",
 				percent: 70,
 			},
 			{
-				title: 'GraphQL',
+				title: "GraphQL",
 				percent: 45,
 			},
 			{
-				title: 'HTML5',
+				title: "HTML5",
 				percent: 65,
 			},
 			{
-				title: 'Javascript',
+				title: "Javascript",
 				percent: 78,
 			},
 			{
-				title: 'jQuery',
+				title: "jQuery",
 				percent: 46,
 			},
 			{
-				title: 'Python',
+				title: "Python",
 				percent: 50,
 			},
 			{
-				title: 'Ruby',
+				title: "Ruby",
 				percent: 25,
 			},
 			{
-				title: 'SASS',
+				title: "SASS",
 				percent: 62,
 			},
 			{
-				title: 'Typescript',
+				title: "Typescript",
 				percent: 51,
 			},
 		],
 		[webDevSubSkillsLabels[1]]: [
 			{
-				title: 'Howler',
+				title: "Howler",
 				percent: 55,
 			},
 			{
-				title: 'PaperJS',
+				title: "PaperJS",
 				percent: 59,
 			},
 			{
-				title: 'rxjs',
+				title: "rxjs",
 				percent: 25,
 			},
 			{
-				title: 'socket.io',
+				title: "socket.io",
 				percent: 62.5,
 			},
 			{
-				title: 'ThreeJS',
+				title: "ThreeJS",
 				percent: 35,
 			},
 		],
 		[webDevSubSkillsLabels[2]]: [
 			{
-				title: 'Angular',
+				title: "Angular",
 				percent: 55,
 			},
 			{
-				title: 'Bootstrap',
+				title: "Bootstrap",
 				percent: 55,
 			},
 			{
-				title: 'NestJS',
+				title: "NestJS",
 				percent: 35,
 			},
 			{
-				title: 'NextJS',
+				title: "NextJS",
 				percent: 33,
 			},
 			{
-				title: 'React',
+				title: "React",
 				percent: 65,
 			},
 			{
-				title: 'Redux',
+				title: "Redux",
 				percent: 51,
-			},				
+			},
 			{
-				title: 'Semantic-UI',
+				title: "Semantic-UI",
 				percent: 43,
-			},			
+			},
 		],
 		[webDevSubSkillsLabels[3]]: [
 			{
-				title: 'BEM',
+				title: "BEM",
 				percent: 57,
 			},
 			{
-				title: 'DSA',
+				title: "DSA",
 				percent: 48,
 			},
 			{
-				title: 'Dynamic Programming',
+				title: "Dynamic Programming",
 				percent: 50,
 			},
 			{
-				title: 'Responsive Design',
+				title: "Responsive Design",
 				percent: 68,
 			},
 			{
-				title: 'TDD',
+				title: "TDD",
 				percent: 52.5,
 			},
 		],
 		[webDevSubSkillsLabels[4]]: [
 			{
-				title: 'Mongoose',
+				title: "Mongoose",
 				percent: 57,
 			},
 			{
-				title: 'PostgresSQL',
+				title: "PostgresSQL",
 				percent: 24,
-				href:"/certs/sql.png",
+				href: "/certs/sql.png",
 			},
 		],
 	},
 	[skillsItemSectionLabels[1]]: [
 		{
-			title: 'A+',
+			title: "A+",
 			percent: 80,
-			href:"/certs/a-plus.png",
+			href: "/certs/a-plus.png",
 		},
 		{
-			title: 'Google IT Support',
+			title: "Google IT Support",
 			percent: 66,
-			href:"https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ",
+			href: "https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ",
 		},
 		{
-			title: 'Group Policy',
+			title: "Group Policy",
 			percent: 38,
-			href:"/certs/group-policy.jpg",
+			href: "/certs/group-policy.jpg",
 		},
 		{
-			title: 'Network+',
+			title: "Network+",
 			percent: 70,
-			href:"/certs/network-plus.png",
+			href: "/certs/network-plus.png",
 		},
 		{
-			title: 'Powershell',
+			title: "Powershell",
 			percent: 50,
-			href:"/certs/powershell-active-directory-admin.jpg",
+			href: "/certs/powershell-active-directory-admin.jpg",
 		},
 		{
-			title: 'SCCM',
+			title: "SCCM",
 			percent: 35,
-			href:"/certs/sccm.jpg",
+			href: "/certs/sccm.jpg",
 		},
 		{
 			title: "Window's Server 2016",
 			percent: 40,
-			href:"/certs/server2016.png",
+			href: "/certs/server2016.png",
 		},
 	],
 	[skillsItemSectionLabels[2]]: [
@@ -267,8 +268,13 @@ const skills: {
 			title: "Written Communication",
 			percent: 85,
 		},
-	]
-}
+	],
+};
+
+const hints = {
+	skills: "* click headers to view skills",
+	education: "* click link to view transcript",
+};
 
 interface Skill {
 	title: string;
@@ -281,44 +287,41 @@ interface HeaderSideContent {
 }
 
 interface ResumeProps {
-	repos: Repository[],
-	getRepositories: () => void,
-	setSectionsToSkipAnimation: (value: any[]) => void,
+	repos: Repository[];
+	getRepositories: () => void;
+	setSectionsToSkipAnimation: (value: any[]) => void;
 }
 
-const Resume:React.FC<ResumeProps> = ({
+const Resume: React.FC<ResumeProps> = ({
 	repos,
 	getRepositories,
 	setSectionsToSkipAnimation,
-}) => {	
-
+}) => {
 	const content = [
 		[
 			"overview",
 			<React.Fragment>
-				<Paragraph size="five">
-					Below you will find the following:
-				</Paragraph>
+				<Paragraph size="five">Below you will find the following:</Paragraph>
 
 				<div>
 					<div className={`${BRIDGE_CLASSNAME}__subsection-grid`}>
 						<span>1).</span>
 						<span>
-							A summary of the skills I possess and example projects highlighting those skills (click headers to open section and then click on individual skills to view projects using that skill). 
+							A summary of the skills I possess with example projects
+							highlighting those skills.
 						</span>
 						<span>2).</span>
-						<span>
-							Full work history 
-						</span>
+						<span>Full work history</span>
 						<span>3).</span>
 						<span>
-							Full post-secondary education history including transcripts (click links to view)
+							Transcript highlighting my post-secondary education
 						</span>
 						<span>4).</span>
 						<span>
-							References and letters of recommendation (click the name of the reference to download)
+							References and letters of recommendation (click the name of the
+							reference to download)
 						</span>
-					</div>		
+					</div>
 				</div>
 
 				{/* <Paragraph size="four">
@@ -333,60 +336,58 @@ const Resume:React.FC<ResumeProps> = ({
 			<React.Fragment>
 				<ul className={`${SKILLS_CLASSNAME}`}>
 					<SkillsItemSection title={`${skillsItemSectionLabels[0]} `}>
-					{
-						webDevSubSkillsLabels.map((subSkill: string, index: number) => {
+						{webDevSubSkillsLabels.map((subSkill: string, index: number) => {
 							return (
 								<SkillsItemSection key={index} title={subSkill}>
-								<SkillsItemSectionLabels label={skillsLabels.web} />	
-									{(skills[skillsItemSectionLabels[0]][subSkill] as any).map((skill: any, index2: number) => {
-										return (
-											<SkillsItem
-												key={index2}
-												label={skillsLabels.web}
-												title={skill.title}
-												percent={skill.percent}
-												href={skill.href ? skill.href : ''}
-											/>
-										)
-									})}	
+									<SkillsItemSectionLabels label={skillsLabels.web} />
+									{(skills[skillsItemSectionLabels[0]][subSkill] as any).map(
+										(skill: any, index2: number) => {
+											return (
+												<SkillsItem
+													key={index2}
+													label={skillsLabels.web}
+													title={skill.title}
+													percent={skill.percent}
+													href={skill.href ? skill.href : ""}
+												/>
+											);
+										},
+									)}
 								</SkillsItemSection>
-							)
-						})
-					}
+							);
+						})}
 					</SkillsItemSection>
-
 					<SkillsItemSection title={skillsItemSectionLabels[1]}>
 						<SkillsItemSectionLabels label={skillsLabels.it} />
-						{
-							(skills[skillsItemSectionLabels[1]] as any).map((skill: Skill, index: number) => {
+						{(skills[skillsItemSectionLabels[1]] as any).map(
+							(skill: Skill, index: number) => {
 								return (
 									<SkillsItem
 										key={index}
 										label={skillsLabels.it}
-										href={skill.href ? skill.href : ''}
+										href={skill.href ? skill.href : ""}
 										title={skill.title}
 										percent={skill.percent as any}
 									/>
-								)
-							})
-						}
+								);
+							},
+						)}
 					</SkillsItemSection>
-					
 					<SkillsItemSection title={skillsItemSectionLabels[2]}>
 						<SkillsItemSectionLabels label={skillsLabels.human} />
-						{
-							(skills[skillsItemSectionLabels[2]] as any).map((skill: Skill, index: number) => {
+						{(skills[skillsItemSectionLabels[2]] as any).map(
+							(skill: Skill, index: number) => {
 								return (
 									<SkillsItem
 										key={index}
 										label={skillsLabels.it}
-										href={skill.href ? skill.href : ''}
+										href={skill.href ? skill.href : ""}
 										title={skill.title}
 										percent={skill.percent as any}
 									/>
-								)
-							})
-						}
+								);
+							},
+						)}
 					</SkillsItemSection>
 				</ul>
 			</React.Fragment>,
@@ -553,6 +554,7 @@ const Resume:React.FC<ResumeProps> = ({
 			</React.Fragment>,
 		],
 	];
+
 	const headerSideContent = {
 		overview: (
 			<div className="thumbnail">
@@ -566,7 +568,7 @@ const Resume:React.FC<ResumeProps> = ({
 		if (repos?.length > 0) return;
 		getRepositories();
 		setSectionsToSkipAnimation(sectionsToSkipAnimation);
-	})
+	});
 
 	const renderSections = () => {
 		return content.map((contentArray, index) => {
@@ -577,14 +579,21 @@ const Resume:React.FC<ResumeProps> = ({
 						key={index}
 						name={contentArray[0] as string}
 						pageName="resume"
-						headerSideContent={headerSideContent[contentArray[0] as keyof HeaderSideContent]}>
+						headerSideContent={
+							headerSideContent[contentArray[0] as keyof HeaderSideContent]
+						}
+						hint={hints[contentArray[0]]}>
 						{contentArray[1] as string}
 					</Section>
 				);
 			}
 
 			return (
-				<Section key={index} name={contentArray[0] as string} pageName="resume">
+				<Section
+					key={index}
+					name={contentArray[0] as string}
+					pageName="resume"
+					hint={hints[contentArray[0]]}>
 					{contentArray[1] as string}
 				</Section>
 			);
@@ -600,7 +609,7 @@ const Resume:React.FC<ResumeProps> = ({
 			<SkillsPopup />
 		</React.Fragment>
 	);
-}
+};
 
 const mapStateToProps = (state: RootStateOrAny) => {
 	return {

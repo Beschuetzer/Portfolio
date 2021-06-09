@@ -8,13 +8,15 @@ interface SectionProps {
 	pageName: string,
 	children: string,
 	headerSideContent?: any,
+	hint?: string,
 }
 
 const Section: React.FC<SectionProps> = ({
 	name,
 	pageName,
 	children,
-	headerSideContent
+	headerSideContent,
+	hint,
 }) => {
 	return (
 		<SectionContainer name={name} pageName={pageName}>
@@ -26,6 +28,10 @@ const Section: React.FC<SectionProps> = ({
 						</h3>
 						{headerSideContent ? headerSideContent : null}
 					</div>
+					<div 
+						dangerouslySetInnerHTML={{ __html: hint ? hint : ''}}
+						className={`${pageName}__hint`}
+					></div>
 					{children}
 				</div>
 			</article>

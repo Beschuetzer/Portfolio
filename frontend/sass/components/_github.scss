@@ -1,6 +1,6 @@
 .github {
 	border-radius: 50%;
-	box-shadow: 0 $default-font-size $default-font-size * 2 rgb($color-black, .33);
+	box-shadow: $navbar-box-shadow-resume;
 
 	font-family: $font-family-text;
 	font-size: 1vw;

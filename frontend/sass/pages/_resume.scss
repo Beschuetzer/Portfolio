@@ -128,7 +128,6 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-bottom: $default-font-size * 2;
 		text-shadow: $resume-header-text-shadow;
 
 		@include respond(tab-port) {
@@ -188,6 +187,22 @@
 		text-shadow: getTextShadow(distant, rgba(var(--color-primary-1-rgb),1), var(--color-primary-2-rgb));
 		// text-shadow: getTextShadow(soft-emboss, $color-primary-3);
 		color: var(--color-primary-3);
+	}
+	&__hint {
+		margin: -$default-font-size * .25 0 $default-font-size * 2.25;
+		font-size: $default-font-size * .75;
+
+		@include respond(tab-port) {
+			margin: -$default-font-size * 1 0 $default-font-size * 3;
+		}
+
+		@include respond(phone) {
+			margin-bottom:  $default-font-size * 2;
+			height: 0;
+		}
+		@include respond(small-font) {
+			margin-bottom: $default-font-size * 1.75;
+		}
 	}
 }
 

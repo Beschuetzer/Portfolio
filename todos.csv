@@ -1,23 +1,10 @@
 BUGS------------------------------------
   -bug with PageNav and no mouse where the scroll scaling doesn't apply to the last clicked item as it has :hover (is there a way to trigger a touch/click event in JS? so as to clear the :hover state) (remove hover effect on card when mobile input after close?)
   -PlayControl and RestartControl handleVideoProgress listeners can be run at the same time (doesn't seem to affect performance though)
-
-
-Temporary things to do---------------------------------
-  add select A# Maj Bridge source code to a public repository for resume
+  -when downloader or playlist-sync is loaded and computer locks, chrome crashes?
 
 IDEAS-----------------------------------------------------------
   -add hover popup for references that pops up a card with image, quote (recommendation from ziprecruiter, and letter of recommendation from scott?), more detailed info about relationship with reference;  add personal references?
-
-  -on root route:
-    -have words orbiting a planet with a work on it?
-    artistically place multiple words that mean something and then have a description of their importance in the coding when show up as a unique pop up/slide in effect: 
-      -what is an Adam Major (click a word to find out more)?
-      -curiosity
-      -driven
-      -excellence
-      -listening
-      -
 
 
 OPTIMIZATIONS:
@@ -54,5 +41,4 @@ OPTIMIZATIONS:
 -remove mapStateToProps and ampDispatchToProps (the function {} after); use newest version of react-redux 
 -add functionality where when you click a web dev subsection it calls scrollTo() in helpers to make that section at the top
 -double check that no event listeners don't get cleaned up on page change
--fix bug where opening bridge card clicking progress bar, moving to other site vids and clicking progress bar then going to bridge again causes z-index-highest not to be removed from cards 
 -add optional message box that pops up over <Video/> when video--stopped is applied (Similar to bridge cards)?
