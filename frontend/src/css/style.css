@@ -65,7 +65,7 @@
 :root {
   scroll-behavior: smooth;
   scroll-padding-top: 12rem;
-  --scrollbar-width: 0.8rem;
+  --scrollbar-width: 1.6rem;
   --default-font-size: 1.6rem;
   --site-nav-item-gradient-direction: 45deg;
   --site-nav-linear-gradient: linear-gradient(
@@ -1190,34 +1190,28 @@ body {
   transform: scale(var(--site-nav-active-scale-amount));
 }
 
-::-webkit-scrollbar {
-  background: var(--color-primary-4);
-}
-
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 0;
   border-radius: 0;
-  background-color: var(--color-primary-1);
-}
-
-::-webkit-scrollbar-corner {
-  background: var(--color-primary-4);
+  background-color: var(--color-primary-4);
+  -webkit-box-shadow: inset 0 0 0.8rem rgba(var(--color-primary-1-rgb), 0.5);
+  box-shadow: inset 0 0 0.8rem rgba(var(--color-primary-1-rgb), 0.5);
 }
 
 ::-webkit-scrollbar {
   width: var(--scrollbar-width);
   height: var(--scrollbar-width);
-}
-
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 0.8rem rgba(0, 0, 0, 0.3);
-  border-radius: 1.6rem;
   background: var(--color-primary-4);
 }
 
-::-webkit-scrollbar-thumb {
-  border-radius: 1.6rem;
-  -webkit-box-shadow: inset 0 0 0.8rem rgba(0, 0, 0, 0.5);
+::-webkit-scrollbar-corner {
+  background: var(--color-primary-1);
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0.8rem rgba(var(--color-primary-1-rgb), 0.5);
+  box-shadow: inset 0 0 0.8rem rgba(var(--color-primary-1-rgb), 0.5);
+  background: var(--color-primary-1);
 }
 
 :root {
@@ -1794,6 +1788,12 @@ body {
 .skills__section:nth-child(3) .skills__title {
   cursor: auto;
   border: 0.16rem solid transparent;
+}
+.skills__section:last-of-type {
+  color: green;
+}
+.skills__section:last-of-type .skills__section-title {
+  margin-bottom: 0 !important;
 }
 .skills__section-content {
   height: 0;

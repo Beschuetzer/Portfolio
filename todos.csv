@@ -42,3 +42,5 @@ OPTIMIZATIONS:
 -add functionality where when you click a web dev subsection it calls scrollTo() in helpers to make that section at the top
 -double check that no event listeners don't get cleaned up on page change
 -add optional message box that pops up over <Video/> when video--stopped is applied (Similar to bridge cards)?
+-fix bug on bridge where clicking more then scorlling down compoletely doesn't show arrow
+-var(--rgb) colors don't update on page change (SiteNav)

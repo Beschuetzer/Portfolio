@@ -273,7 +273,7 @@ const skills: {
 };
 
 const hints = {
-	skills: "click headers to view skills",
+	skills: "click section to view skills",
 	education: "click degree to view transcript",
 	references: "click name to view letter of recommendation"
 };
