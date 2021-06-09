@@ -31,7 +31,7 @@
 		&-grid {
 			display: grid;
 			grid-template-columns: min-content 1fr;
-			padding-bottom: $default-font-size * 1;
+			// padding-bottom: $default-font-size * 1;
 			align-items: center;
 			justify-items: flex-start;
 			grid-row-gap: $default-font-size * 0.5;

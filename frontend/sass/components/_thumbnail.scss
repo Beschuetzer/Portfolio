@@ -20,7 +20,7 @@ $thumbnail-transition:
 
 	&:hover {
 		animation: black-hole-background 1 2s;
-		background-color: var(--color-black);
+		background-color: $color-black;
 	}
 	&:hover > img {
 		animation: black-hole 1 2s;

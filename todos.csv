@@ -44,3 +44,4 @@ OPTIMIZATIONS:
 -add optional message box that pops up over <Video/> when video--stopped is applied (Similar to bridge cards)?
 -fix bug on bridge where clicking more then scorlling down compoletely doesn't show arrow
 -var(--rgb) colors don't update on page change (SiteNav)
+-consider changing csharp content order (images after description)

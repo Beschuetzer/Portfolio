@@ -674,7 +674,7 @@
 
 	@include respond(nav-switch) {
 		z-index: 0;
-		font-size: $default-font-size * 1;
+		font-size: $default-font-size * 1.25;
 		position: static;
 		width: calc(var(--header-inner-width-nav-switch) - 16rem);
 		grid-template-rows: auto;

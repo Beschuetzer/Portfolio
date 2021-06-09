@@ -189,7 +189,7 @@
 		color: var(--color-primary-3);
 	}
 	&__hint {
-		margin: 0 0 $resume-section-padding-top;
+		margin: 0 0 $default-font-size * 2;
 		font-size: $default-font-size * 0.75;
 
 		@include respond(tab-port) {

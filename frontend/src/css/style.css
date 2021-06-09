@@ -152,7 +152,7 @@
     background-color: var(--color-primary-1);
   }
   100% {
-    background-color: var(--color-black);
+    background-color: #000000;
   }
 }
 @keyframes animate-skills {
@@ -1117,7 +1117,7 @@ body {
 @media only screen and (max-width: 68.75em) {
   .page-nav {
     z-index: 0;
-    font-size: 1.6rem;
+    font-size: 2rem;
     position: static;
     width: calc(var(--header-inner-width-nav-switch) - 16rem);
     grid-template-rows: auto;
@@ -1764,7 +1764,7 @@ body {
 }
 .thumbnail:hover {
   animation: black-hole-background 1 2s;
-  background-color: var(--color-black);
+  background-color: #000000;
 }
 .thumbnail:hover > img {
   animation: black-hole 1 2s;
@@ -2951,7 +2951,7 @@ body {
   color: var(--color-primary-3);
 }
 .resume__hint {
-  margin: 0 0 4rem;
+  margin: 0 0 3.2rem;
   font-size: 1.2rem;
 }
 @media only screen and (max-width: 52.6875em) {
@@ -3135,7 +3135,6 @@ div.references__name {
 .bridge__subsection-grid {
   display: grid;
   grid-template-columns: min-content 1fr;
-  padding-bottom: 1.6rem;
   align-items: center;
   justify-items: flex-start;
   grid-row-gap: 0.8rem;
