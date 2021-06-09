@@ -211,8 +211,6 @@ const PageNav: React.FC<PageNavProps> = ({
 		pageNavElement.classList = cssClass;
 		pageNavElement.classList.add(`${cssClass}-${pageName}`);
 
-		console.log('loading page nav')
-		console.log('clickedBridgeInfoButtonCount = ' + clickedBridgeInfoButtonCount)
 		if (!isMobile && clickedBridgeInfoButtonCount <= 0 && url.match(/bridge/i))
 			pageNavElement.classList.add(HIDDEN_CLASSNAME);
 	}, [

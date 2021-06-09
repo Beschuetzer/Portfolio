@@ -74,4 +74,12 @@ export const BODY_BACKGROUND_CSS_CLASSNAME = "--body-background";
 export const NO_MARGIN_CLASSNAME = "margin-0";
 
 
+export const PAGE_NAMES = [
+  "",
+  "/bridge",
+  "/resume",
+  "/downloader",
+  "/playlist-syncer",
+];
+
 //#endregion

@@ -242,7 +242,7 @@
 		&:not(.navbar__dropdown-container):hover {
 			z-index: 10000;
 			transform: translateY(-$navbar__item-divider-width);
-			background: var(--color-primary-1);
+			background: rgba(var(--color-primary-1-rgb), .5);
 			box-shadow: $navbar-box-shadow-normal;
 			transition: 
 				background $animation-duration / 3 $animation-easing-standard,
@@ -251,7 +251,7 @@
 			;
 
 			& a {
-				color: var(--color-primary-4);
+				color: rgba(var(--color-primary-4-rgb),.95);
 				transition: color $animation-duration / 2 $animation-easing-standard;
 
 			}

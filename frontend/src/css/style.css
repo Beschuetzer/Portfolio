@@ -739,12 +739,12 @@ body {
 .navbar__item:not(.navbar__dropdown-container):hover {
   z-index: 10000;
   transform: translateY(-0.32rem);
-  background: var(--color-primary-1);
+  background: rgba(var(--color-primary-1-rgb), 0.5);
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
   transition: background 0.1666666667s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 .navbar__item:not(.navbar__dropdown-container):hover a {
-  color: var(--color-primary-4);
+  color: rgba(var(--color-primary-4-rgb), 0.95);
   transition: color 0.25s ease;
 }
 .navbar__item:not(.navbar__dropdown-container) img,

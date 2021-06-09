@@ -26,7 +26,6 @@ const resumeReducer = (state = INITIAL_STATE, action: Action) => {
     case SET_LAST_SECOND_ROW_CARD_NUMBER:
       return {...state, lastSecondRowCardNumber: action.payload};
     case SET_CLICKED_BRIDGE_INFO_BUTTON_COUNT:
-      console.log('reducer setting to ' + action.payload);
       return {...state, clickedBridgeInfoButtonCount: action.payload};
     case SET_CURRENT_BRIDGE_SECTION:
       return {...state, currentBridgeSection: action.payload};
