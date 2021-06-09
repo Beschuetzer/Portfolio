@@ -104,6 +104,7 @@ export const addSpaceAfterPunctuationMarks = (string: string) => {
 }
 
 export function fixZIndexIssue(item: HTMLElement, additionalSelector: string, shouldAddZIndex = false) {
+  debugger;
   let sectionAbove: HTMLElement | null;
   let sectionAboveThat: HTMLElement | null;
 

@@ -9,6 +9,7 @@ interface SectionProps {
 	children: string;
 	headerSideContent?: any;
 	hint?: string;
+	styles?: any,
 }
 
 const Section: React.FC<SectionProps> = ({
@@ -17,9 +18,10 @@ const Section: React.FC<SectionProps> = ({
 	children,
 	headerSideContent,
 	hint,
+	styles,
 }) => {
 	return (
-		<SectionContainer name={name} pageName={pageName}>
+		<SectionContainer name={name} pageName={pageName} styles={styles}>
 			<article className={`${pageName}__card z-index-content`}>
 				<div className={`${pageName}__content`}>
 					<div className={`${pageName}__headers`}>

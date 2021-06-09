@@ -2,7 +2,7 @@ import React from "react";
 import { capitalize, replaceCharacters } from "../../../helpers";
 import Section from "../../../components/Section";
 import SourceCodeLink from "../../../components/SourceCodeLink";
-import { C_SHARP_LAYOUT_CSS_NAME } from "./utils";
+import { C_SHARP_CLASSNAME } from "./utils";
 
 interface CSharpLayoutProps {
 	pageName: string;
@@ -22,7 +22,12 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 	function renderSections() {
 		return sections.map((section, index) => {
 			return (
-				<Section key={index} name={section.name} pageName={section.pageName}>
+				<Section 
+					key={index} 
+					name={section.name} 
+					pageName={section.pageName}
+					styles={section.styles}
+				>
 					{section.children.map((child: Element, index: number) => {
 						return <React.Fragment key={index}>{child}</React.Fragment>;
 					})}
@@ -32,11 +37,11 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 	}
 
 	return (
-		<div className={`${C_SHARP_LAYOUT_CSS_NAME} ${pageName}`}>
+		<div className={`${C_SHARP_CLASSNAME} ${pageName}`}>
 			{sourceCodeLink ? (
 				<SourceCodeLink href={sourceCodeLink} msg={sourceCodeMsg} />
 			) : null}
-			<div className={`${C_SHARP_LAYOUT_CSS_NAME}__title`}>
+			<div className={`${C_SHARP_CLASSNAME}__title`}>
 				{capitalize(replaceCharacters(pageName))}
 			</div>
 			{children}

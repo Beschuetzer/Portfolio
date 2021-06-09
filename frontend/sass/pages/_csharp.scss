@@ -78,17 +78,17 @@
     
     
     &:last-of-type {
-      padding-bottom: $default-font-size * 2;
+      padding-bottom: $default-font-size * 3;
     }
       
   }
   
-  &__section-content {
-    font-family: $font-family-text !important;
+  &__section { 
+    margin-bottom: $default-font-size * 6;
   }
 
-  &__section-images {
-    position: relative;
+  &__section-content {
+    font-family: $font-family-text !important;
   }
 
   &__title {

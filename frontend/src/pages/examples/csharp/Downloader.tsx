@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import Carousel from "../../../components/Carousel/Carousel";
 import CSharpLayout from "./CSharpLayout";
 
@@ -12,12 +12,23 @@ import img6 from "../../../imgs/downloader/img6.png";
 import problemVideo from "../../../clips/downloader/problem.mp4";
 import demoVideo from "../../../clips/downloader/demo.mp4";
 import CSharpCardSection from "./CSharpCardSection";
-import { C_SHARP_LAYOUT_CSS_NAME as C_SHARP_CLASSNAME } from "./utils";
+import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
+import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
+
+const styling: CSSProperties = {
+	position: 'relative',
+}
+
+const sectionNames = [
+	'Description',
+	'Media',
+	'Notes'
+]
 
 const sections = [
 	{
-		name: "Description",
+		name: sectionNames[0],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
@@ -49,7 +60,32 @@ const sections = [
 		],
 	},
 	{
-		name: "Notes",
+		name: sectionNames[1],
+		pageName: C_SHARP_CLASSNAME,
+		children: [
+			<section className={`${C_SHARP_CLASSNAME}__${CAROUSEL_CLASSNAME}`} style={styling}>
+				<Carousel
+					items={[problemVideo, demoVideo, img1, img2, img3, img4, img5, img6]}
+					alts={[
+						"The manual way of downloading",
+						"The automated way of downloading",
+						"The User interface",
+						"Options available",
+						"Full-screen user interface when downloading",
+						"Integrated file-renaming tool used to standardize file names of downloads",
+						"A list of songs from ocremix.org. A pain to download manually...",
+						"Songs downloaded from OCRemix.org (including sub-linked songs)",
+					]}
+					numberOfItemsInCarouselAtOneTime="3"
+					numberOfItemsToScrollOnClick="3"
+					functionToGetContainer={functionToGetContainer}
+					functionToRunOnClose={fixZIndexIssue.bind(null, null as any, `#${sectionNames[1].toLowerCase()}`)}
+				/>
+			</section>
+		]
+	},
+	{
+		name: sectionNames[2],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
@@ -87,23 +123,6 @@ const Downloader: React.FC<DownloaderProps> = () => {
 			sections={sections}
 			pageName="downloader"
 			sourceCodeLink="https://github.com/Beschuetzer/Downloader">
-			<section className={`${C_SHARP_CLASSNAME}__${CAROUSEL_CLASSNAME}`}>
-				<Carousel
-					items={[problemVideo, demoVideo, img1, img2, img3, img4, img5, img6]}
-					alts={[
-            "The manual way of downloading",
-						"The automated way of downloading",
-						"The User interface",
-						"Options available",
-						"Full-screen user interface when downloading",
-						"Integrated file-renaming tool used to standardize file names of downloads",
-						"A list of songs from ocremix.org. A pain to download manually...",
-						"Songs downloaded from OCRemix.org (including sub-linked songs)",
-					]}
-					numberOfItemsInCarouselAtOneTime="3"
-					numberOfItemsToScrollOnClick="3"
-				/>
-			</section>
 		</CSharpLayout>
 	);
 };

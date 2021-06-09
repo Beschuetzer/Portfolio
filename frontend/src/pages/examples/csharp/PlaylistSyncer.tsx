@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import Carousel from "../../../components/Carousel/Carousel";
 import CSharpLayout from "./CSharpLayout";
 import EmbeddedLink from "../../../components/EmbeddedLink";
@@ -10,14 +10,20 @@ import img3 from "../../../imgs/playlist-syncer/img3.png";
 import img4 from "../../../imgs/playlist-syncer/img4.png";
 import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
 import CSharpCardSection from "./CSharpCardSection";
-import { C_SHARP_LAYOUT_CSS_NAME } from "./utils";
+import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
 import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
 
+const sectionNames = [
+	'Description',
+	'Media',
+	'Notes'
+]
+
 const sections = [
 	{
-		name: "Description",
-		pageName: C_SHARP_LAYOUT_CSS_NAME,
+		name: sectionNames[0],
+		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
 				<CSharpCardSection title="Purpose">
@@ -77,8 +83,11 @@ const sections = [
 		],
 	},
 	{
-		name: "Media",
-		pageName: C_SHARP_LAYOUT_CSS_NAME,
+		styles: {
+			position: 'relative',
+		},
+		name: sectionNames[1],
+		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<section className="csharp__carousel">
 				<Carousel
@@ -95,14 +104,14 @@ const sections = [
 					numberOfItemsInCarouselAtOneTime="3"
 					numberOfItemsToScrollOnClick="3"
 					functionToGetContainer={functionToGetContainer}
-					functionToRunOnClose={fixZIndexIssue.bind(null, null as any, '#images')}
+					functionToRunOnClose={fixZIndexIssue.bind(null, null as any, `#${sectionNames[1].toLowerCase()}`)}
 				/>
 			</section>
 		]
 	},
 	{
-		name: "Notes",
-		pageName: C_SHARP_LAYOUT_CSS_NAME,
+		name: sectionNames[2],
+		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
 				<CSharpCardSection title="Multi-threading">
