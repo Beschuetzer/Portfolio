@@ -13,6 +13,7 @@ import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
 import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
+import { CSharpSection } from "../../../components/constants";
 
 const sectionNames = [
 	'Description',
@@ -20,7 +21,7 @@ const sectionNames = [
 	'Notes'
 ]
 
-const sections = [
+const sections: CSharpSection[] = [
 	{
 		name: sectionNames[0],
 		pageName: C_SHARP_CLASSNAME,

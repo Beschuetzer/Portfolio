@@ -15,10 +15,7 @@ import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
 import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
-
-const styling: CSSProperties = {
-	position: 'relative',
-}
+import { CSharpSection } from "../../../components/constants";
 
 const sectionNames = [
 	'Description',
@@ -26,7 +23,7 @@ const sectionNames = [
 	'Notes'
 ]
 
-const sections = [
+const sections: CSharpSection[] = [
 	{
 		name: sectionNames[0],
 		pageName: C_SHARP_CLASSNAME,
@@ -60,10 +57,13 @@ const sections = [
 		],
 	},
 	{
+		styles: {
+			position: 'relative',
+		},
 		name: sectionNames[1],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
-			<section className={`${C_SHARP_CLASSNAME}__${CAROUSEL_CLASSNAME}`} style={styling}>
+			<section className={`${C_SHARP_CLASSNAME}__${CAROUSEL_CLASSNAME}`}>
 				<Carousel
 					items={[problemVideo, demoVideo, img1, img2, img3, img4, img5, img6]}
 					alts={[
@@ -122,7 +122,8 @@ const Downloader: React.FC<DownloaderProps> = () => {
 		<CSharpLayout
 			sections={sections}
 			pageName="downloader"
-			sourceCodeLink="https://github.com/Beschuetzer/Downloader">
+			sourceCodeLink="https://github.com/Beschuetzer/Downloader"
+			>
 		</CSharpLayout>
 	);
 };

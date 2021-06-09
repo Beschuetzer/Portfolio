@@ -44,6 +44,6 @@ OPTIMIZATIONS:
 -add optional message box that pops up over <Video/> when video--stopped is applied (Similar to bridge cards)?
 -fix bug on bridge where clicking more then scorlling down compoletely doesn't show arrow
 -var(--rgb) colors don't update on page change (SiteNav)
--re-arrange downloader sections (remove images section at top)
+-make closing button more noticible for charp videos?
 
     

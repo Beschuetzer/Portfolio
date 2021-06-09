@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
@@ -13,6 +14,13 @@ export let computedStyle = getComputedStyle(document.documentElement);
 //#region Breakpoint Stuff
 export interface Reference {
   current: HTMLElement;
+}
+
+export type CSharpSection = {
+	name: string,
+	pageName: string,
+	children: any[],
+	styles?: CSSProperties,
 }
 
 export const headerTogglerWidth = parseFloat(computedStyle.getPropertyValue('--header-toggler-width'));
