@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import Carousel from "../../../components/Carousel/Carousel";
 import CSharpLayout from "./CSharpLayout";
 import EmbeddedLink from "../../../components/EmbeddedLink";
@@ -114,20 +114,11 @@ const sections = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="Multi-threading">
-					PlaylistSyncer uses three threads.&nbsp; One thread analyzes the
-					html looking for sub-links and urls matching the Regular Expression.
-					If it finds a link to download it adds it to the download queue,
-					which is handled by the second thread.&nbsp; The last thread handles
-					the GUI updates.
+				<CSharpCardSection title="MTP">
+					In order to facilitate the 
 				</CSharpCardSection>
-				<CSharpCardSection title="Challenging Concept">
-					At this point in time (March-April 2020), I had never written an
-					app/script that used multiple threads.&nbsp; It took a few days to
-					firmly grasp the concept, but once I had it, I was able to do
-					everything I wanted to do, namely analyze html, download files, and
-					update the GUI all at the same time. I took this understanding and
-					applied it to
+				<CSharpCardSection title="ANother thing?">
+					What to write here?
 					<EmbeddedLink isLocal={true} href="/examples/playlist-syncer">
 						another problem
 					</EmbeddedLink>

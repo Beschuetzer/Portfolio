@@ -11,6 +11,7 @@ interface NavListItemProps {
   triangle?: any;
   imageAlt?: string;
   imageSource?: string;
+  rank?: string,
   onMouseEnter: (e: any) => void;
   onClick: (e: any) => void;
 }
@@ -24,6 +25,7 @@ const NavListItem: React.FC<NavListItemProps> = ({
   children,
   className,
   triangle,
+  rank,
   imageAlt = "A picture",
   imageSource = "",
 }) => {
@@ -65,6 +67,7 @@ const NavListItem: React.FC<NavListItemProps> = ({
       className={`${classNamesToUse}  ${
         isLink && imageSource ? "overflow-hidden" : ""
       }`}>
+        
       {isLink && imageSource ? (
         <img
           className={defaults.imageClassName}
@@ -72,6 +75,7 @@ const NavListItem: React.FC<NavListItemProps> = ({
           alt={imageAlt}
         />
       ) : null}
+
       {isLink ? (
         <Link className={defaults.linkClassName} to={to}>
           {getContent()}

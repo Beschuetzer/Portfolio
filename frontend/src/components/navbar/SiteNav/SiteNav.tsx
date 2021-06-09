@@ -147,22 +147,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 						triangle={<div className="triangle-down"></div>}>
 						<ul className={`${NAVBAR_CLASSNAME}__dropdown`}>
 							<NavListItem
-								imageSource={downloaderImage}
-								imageAlt="Downloader"
-								to="/examples/downloader"
-								label="Downloader"
-								onMouseEnter={onMouseEnter}
-								onClick={onNavItemClick}
-							/>
-							<NavListItem
-								imageSource={syncerImage}
-								imageAlt="Syncer"
-								to="/examples/playlist-syncer"
-								label="Syncer"
-								onMouseEnter={onMouseEnter}
-								onClick={onNavItemClick}
-							/>
-							<NavListItem
 								imageSource={bridgeImage}
 								imageAlt="Bridge"
 								to="/examples/bridge"
@@ -178,12 +162,22 @@ const SiteNav: React.FC<SiteNavProps> = ({
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
-							{/* <NavListItem
-								to="/examples"
-								label="All"
+							<NavListItem
+								imageSource={downloaderImage}
+								imageAlt="Downloader"
+								to="/examples/downloader"
+								label="Downloader"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
-							/> */}
+							/>
+							<NavListItem
+								imageSource={syncerImage}
+								imageAlt="Syncer"
+								to="/examples/playlist-syncer"
+								label="Syncer"
+								onMouseEnter={onMouseEnter}
+								onClick={onNavItemClick}
+							/>
 						</ul>
 					</NavListItem>
 					<NavListItem

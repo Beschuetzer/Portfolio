@@ -739,6 +739,13 @@ body {
 .navbar__item:not(.navbar__dropdown-container):hover {
   z-index: 10000;
   transform: translateY(-0.32rem);
+  background: var(--color-primary-1);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
+  transition: background 0.1666666667s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.navbar__item:not(.navbar__dropdown-container):hover a {
+  color: var(--color-primary-4);
+  transition: color 0.25s ease;
 }
 .navbar__item:not(.navbar__dropdown-container) img,
 .navbar__item .navbar__link > img {
@@ -883,6 +890,7 @@ body {
 }
 .navbar__dropdown .navbar__item:hover {
   transform: translateX(0.32rem) !important;
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.5);
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__dropdown .navbar__item:hover, .navbar__dropdown .navbar__item:hover + li {

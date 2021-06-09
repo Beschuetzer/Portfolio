@@ -47,6 +47,8 @@ $navbar__item-divider: $navbar__item-divider-width solid var(--color-primary-1);
 $navbar-box-shadow-resume-color: rgba($color-black, 0.15);
 $navbar-box-shadow-resume: 0 $default-font-size $default-font-size * 2
 	rgba($color-black, 0.33);
+$navbar-box-shadow-left-right: -10px 0 10px rgba($color-black, .5);
+$navbar-box-shadow-normal:  0px 10px 10px rgba($color-black, .5);
 $hover-color-change-amount: 0.15;
 
 //skills
