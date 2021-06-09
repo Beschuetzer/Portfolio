@@ -10,14 +10,16 @@ import {
 	COLOR_PRIMARY_BRIDGE_3,
 	COLOR_PRIMARY_BRIDGE_4,
 } from "../pages/examples/bridge/utils";
+import { HIDDEN_CLASSNAME } from "./constants";
 
 interface ArrowButtonProps {
   direction: string,
 	bridgeSections: NodeListOf<Element>,
 	currentBridgeSection: number,
 	clickedBridgeInfoButtonCount: number,
-	setBridgeSections: (value: NodeListOf<Element>) => void,
-	setCurrentBridgeSection: (value: number) => void,
+	reference?: any,
+	setBridgeSections: any,
+	setCurrentBridgeSection: any,
 }
 
 const ArrowButton: React.FC<ArrowButtonProps> = ({
@@ -27,6 +29,7 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 	bridgeSections,
 	setBridgeSections,
 	clickedBridgeInfoButtonCount,
+	reference,
 }) => {
 	//Initial setup, storing sections
 	useEffect(() => {
@@ -48,20 +51,20 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 					currentBridgeSection < bridgeSections.length - 1 &&
 					clickedBridgeInfoButtonCount > 1
 				)
-					rightArrow.classList.remove("hidden");
+					rightArrow.classList.remove(HIDDEN_CLASSNAME);
 
 				if (leftArrow && currentBridgeSection === 0)
-					leftArrow.classList.add("hidden");
+					leftArrow.classList.add(HIDDEN_CLASSNAME);
 			} else {
 				if (leftArrow && currentBridgeSection > 0)
-					leftArrow.classList.remove("hidden");
+					leftArrow.classList.remove(HIDDEN_CLASSNAME);
 
 				if (
 					rightArrow &&
 					(currentBridgeSection === bridgeSections.length - 1 ||
 						(clickedBridgeInfoButtonCount > 1 && currentBridgeSection === 0))
 				)
-					rightArrow.classList.add("hidden");
+					rightArrow.classList.add(HIDDEN_CLASSNAME);
 			}
 		};
 
@@ -172,6 +175,7 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 
 	return (
 		<div
+			ref={reference}
 			onClick={(e: any) => handleClick(e)}
 			className={`hidden arrow-button arrow-button--${direction}`}>
 			<svg>
@@ -195,4 +199,4 @@ const mapStateToProps = (state: RootStateOrAny) => {
 export default connect(mapStateToProps, {
 	setCurrentBridgeSection,
 	setBridgeSections,
-})(ArrowButton as any);
+})(ArrowButton);

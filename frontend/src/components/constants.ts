@@ -69,6 +69,7 @@ export const Z_INDEX_NAVBAR_CLASSNAME = 'z-index-navbar';
 export const OVERFLOW_HIDDEN_CLASSNAME = 'overflow--hidden';
 export const TRANSPARENT_CLASSNAME = 'transparent';
 export const DISPLAY_NONE_CLASSNAME = 'd-none';
+export const HIDDEN_CLASSNAME = 'hidden';
 export const BODY_BACKGROUND_CSS_CLASSNAME = "--body-background";
 export const NO_MARGIN_CLASSNAME = "margin-0";
 

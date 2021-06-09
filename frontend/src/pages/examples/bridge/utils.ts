@@ -1,5 +1,5 @@
 import { RefObject } from "react";
-import { BODY_BACKGROUND_CSS_CLASSNAME, computedStyle, Reference } from "../../../components/constants";
+import { BODY_BACKGROUND_CSS_CLASSNAME, computedStyle, HIDDEN_CLASSNAME, Reference } from "../../../components/constants";
 import { scrollToSection } from "../../../components/utils";
 
 export const SECOND_INFO_BUTTON_DELAY = 500;
@@ -82,7 +82,7 @@ export const showBridgeHero = (heroMore: Reference) => {
   const defaultFontSize = docStyle.getPropertyValue('--default-font-size')
   const defaultFontSizeFloat = parseFloat(defaultFontSize);
   
-  document.querySelector('.page-nav')?.classList?.remove('hidden');
+  document.querySelector('.page-nav')?.classList?.remove(HIDDEN_CLASSNAME);
   document.documentElement.style.setProperty('--bridge-section-height', '100vh');
   document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
   
@@ -90,7 +90,7 @@ export const showBridgeHero = (heroMore: Reference) => {
 }
 
 export const resetBridgeHero = (heroMore: Reference) => {
-  document.querySelector('.page-nav')?.classList?.add('hidden');
+  document.querySelector('.page-nav')?.classList?.add(HIDDEN_CLASSNAME);
   document.documentElement.style.setProperty('--bridge-section-height', '1px');
   document.documentElement.style.setProperty('--bridge-section-padding', `0px`);
   

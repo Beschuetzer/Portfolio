@@ -2,7 +2,7 @@ import React, { RefObject, useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import CarouselItem from "./CarouselItem";
 import {
-	ANIMATION_DURATION,
+	ANIMATION_DURATION, HIDDEN_CLASSNAME,
 } from "../constants";
 import useInit from "./useInit";
 import useInterItemWidth from "./useInterItemWidth";
@@ -65,22 +65,22 @@ const Carousel: React.FC<CarouselProps> = ({
 		const leftArrow = (leftArrowRef.current as any)[0];
 		const rightArrow = (rightArrowRef.current as any)[0];
 		if (currentTranslationFactor === 0) {
-			leftArrow.classList.add('hidden');
-			return rightArrow.classList.remove('hidden');
+			leftArrow.classList.add(HIDDEN_CLASSNAME);
+			return rightArrow.classList.remove(HIDDEN_CLASSNAME);
 		}
 
 		if (!leftArrow || !rightArrow) return;
 
-		leftArrow.classList.remove("hidden");
-		rightArrow.classList.remove("hidden");
+		leftArrow.classList.remove(HIDDEN_CLASSNAME);
+		rightArrow.classList.remove(HIDDEN_CLASSNAME);
 
 		const currentCount =
 			+numberOfItemsInCarouselAtOneTime +
 			currentTranslationFactor * numberOfItemsToScrollOnClick -
 			1;
 
-		if (currentCount <= minImageCount) leftArrow.classList.add("hidden");
-		if (currentCount >= maxImageCount) rightArrow.classList.add("hidden");
+		if (currentCount <= minImageCount) leftArrow.classList.add(HIDDEN_CLASSNAME);
+		if (currentCount >= maxImageCount) rightArrow.classList.add(HIDDEN_CLASSNAME);
 	}
 
 	function setCurrentActiveButton(indexOfActiveDot: number) {

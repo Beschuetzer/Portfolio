@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 
@@ -28,7 +28,7 @@ import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import CardManager from "../../../components/Card/CardManager";
 import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_CLASSNAME, resetBridgeHero, setLinearGradientCssCustomProp } from "./utils";
 import {
-	DISPLAY_NONE_CLASSNAME, Reference,
+	DISPLAY_NONE_CLASSNAME, HIDDEN_CLASSNAME, Reference,
 } from "../../../components/constants";
 import BridgeHero from "./BridgeHero";
 import SourceCodeLink from "../../../components/SourceCodeLink";
@@ -545,6 +545,7 @@ const Bridge: React.FC<BridgeProps> = ({
 					document
 						.querySelector(".hero")
 						?.classList.add(DISPLAY_NONE_CLASSNAME);
+						setClickedBridgeInfoButtonCount(2);
 			}
 		};
 
@@ -553,7 +554,7 @@ const Bridge: React.FC<BridgeProps> = ({
 		return () => {
 			window.removeEventListener("scroll", handleScroll as any);
 		};
-	}, [isMobile]);
+	}, [isMobile, setClickedBridgeInfoButtonCount]);
 
 
 

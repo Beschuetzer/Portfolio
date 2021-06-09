@@ -7,6 +7,7 @@ import BridgeSectionLink from "../../../pages/examples/bridge/BridgeSectionLink"
 import {
 	bridgeSections,
 } from "../../../pages/examples/bridge/utils";
+import { HIDDEN_CLASSNAME } from "../../constants";
 import { scrollToSection } from "../../utils";
 import { checkShouldSetPreviousUrl, getSectionNames, setBridgeColors, setGradientPercent } from "./utils";
 
@@ -213,7 +214,7 @@ const PageNav: React.FC<PageNavProps> = ({
 		console.log('loading page nav')
 		console.log('clickedBridgeInfoButtonCount = ' + clickedBridgeInfoButtonCount)
 		if (!isMobile && clickedBridgeInfoButtonCount <= 0 && url.match(/bridge/i))
-			pageNavElement.classList.add("hidden");
+			pageNavElement.classList.add(HIDDEN_CLASSNAME);
 	}, [
 		clickedBridgeInfoButtonCount,
 		isMobile,
