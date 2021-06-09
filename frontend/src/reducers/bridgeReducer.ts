@@ -8,6 +8,7 @@ import {
   SET_IS_CARD_VIDEO_OPEN,
   SET_CARD_TO_CLOSE,
 } from '../actions/types';
+import { Action } from '../models';
 
 const INITIAL_STATE = {
   lastSecondRowCardNumber: 5,
@@ -20,7 +21,7 @@ const INITIAL_STATE = {
   cardToClose: null,
 }
 
-const resumeReducer = (state = INITIAL_STATE, action) => {
+const resumeReducer = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
     case SET_LAST_SECOND_ROW_CARD_NUMBER:
       return {...state, lastSecondRowCardNumber: action.payload};

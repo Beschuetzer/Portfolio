@@ -7,6 +7,7 @@ import {
   SET_VIEW_PORT_WIDTH,
   SET_HEADER_HEIGHT,
 } from '../actions/types';
+import { Action } from '../models';
 
 const INITIAL_STATE = {
   isMobile: null,
@@ -18,7 +19,7 @@ const INITIAL_STATE = {
   headerHeight: null,
 }
 
-const generalReducer = (state = INITIAL_STATE, action) => {
+const generalReducer = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
     case SET_IS_MOBILE:
       return {...state, isMobile: action.payload.isMobile, viewPortWidth: action.payload.viewPortWidth};  
