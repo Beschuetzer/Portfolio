@@ -36,6 +36,7 @@ OPTIMIZATIONS:
 -bridge page is very choppy (can separate out, add hooks and refactor to optimize?)
 -how hard would it be to add a better animation to examples opening up in SiteNav?
 
+-add notes to playlist syncer page?  what else to say about it?
 -add svgs to csharp layouts
 -create a sass function that can insert colors into the svgs and return data
 -remove mapStateToProps and ampDispatchToProps (the function {} after); use newest version of react-redux 
