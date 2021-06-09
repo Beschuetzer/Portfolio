@@ -9,7 +9,7 @@ interface SkillsItemProps {
 	title: string;
 	percent: string;
 	href: string;
-	hours: string;
+	hours?: string;
 	label: SkillsItemLabel;
 	clickSkill: (value: HTMLElement) => void;
 }

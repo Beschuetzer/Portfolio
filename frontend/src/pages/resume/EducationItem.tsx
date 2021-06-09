@@ -5,7 +5,7 @@ import { EDUCATION_CLASSNAME } from "./utils";
 
 interface EducationItemProps{
 	startDate: string,
-	endDate: string,
+	endDate?: string,
 	degree: string,
 	location: string,
 	gpa: string,

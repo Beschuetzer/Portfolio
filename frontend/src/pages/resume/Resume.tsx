@@ -1,7 +1,8 @@
+//@ts-nocheck
+
 // import * as THREE from "three";
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { connect, RootStateOrAny } from "react-redux";
 import Section from "../../components/Section";
 import Paragraph from "../../typography/Paragraph";
 import SkillsItemSection from "../../components/Skills/SkillsItemSection";
@@ -14,7 +15,7 @@ import { getRepositories, setSectionsToSkipAnimation } from "../../actions";
 import SkillsPopup from "../../components/Skills/SkillsPopup";
 import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
 import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
-import { SKILLS_CLASSNAME } from "../../components/Skills/utils";
+import { Repository, SKILLS_CLASSNAME } from "../../components/Skills/utils";
 
 function getLinkClassHTML() {
 	return ` class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' `;
@@ -24,256 +25,274 @@ function getExternalLinkTargetAndRel() {
 	return ` target='_blank' rel='noreferrer' `;
 }
 
-class Resume extends React.Component {
-	static popupUrl = "/resume#skillsPopup";
-	static skillsItemSectionLabels = [
-		"Web Development",
-		"IT Support",
-		"Human Skills",
-	];
-	static sectionsToSkipAnimation = [Resume.skillsItemSectionLabels[2]];
-	static skillsLabels = {
-		web: {
-			left: "Novice",
-			center: "Proficient",
-			right: "Master",
-		},
-		it: {
-			left: "Familiar",
-			center: "Knowledgeable",
-			right: "Expert",
-		},
-		human: {
-			left: "Lacks",
-			center: "Average",
-			right: "Excels",
-		},
-	};
-	static webDevSubSkillsLabels = [
-		'Basics',
-		'Libraries',
-		'Frameworks',
-		'Methodologies',
-		'Databases',
-	];
-	static skills = {
-		[Resume.skillsItemSectionLabels[0]]: {
-			[Resume.webDevSubSkillsLabels[0]]: [
-				{
-					title: 'CSS3',
-					percent: 78,
-					order: 1,
-				},
-				{
-					title: 'C#',
-					percent: 35,
-					order: 2,
-				},
-				{
-					title: 'Express',
-					percent: 70,
-					order: 4,
-				},
-				{
-					title: 'GraphQL',
-					percent: 45,
-					order: 5,
-				},
-				{
-					title: 'HTML5',
-					percent: 65,
-					order: 6,
-				},
-				{
-					title: 'Javascript',
-					percent: 78,
-					order: 7,
-				},
-				{
-					title: 'jQuery',
-					percent: 46,
-					order: 8,
-				},
-				{
-					title: 'Python',
-					percent: 50,
-					order: 9,
-				},
-				{
-					title: 'Ruby',
-					percent: 25,
-					order: 10,
-				},
-				{
-					title: 'SASS',
-					percent: 62,
-					order: 11,
-				},
-				{
-					title: 'Typescript',
-					percent: 51,
-					order: 12,
-				},
-			],
-			[Resume.webDevSubSkillsLabels[1]]: [
-				{
-					title: 'Howler',
-					percent: 55,
-				},
-				{
-					title: 'PaperJS',
-					percent: 59,
-				},
-				{
-					title: 'rxjs',
-					percent: 25,
-				},
-				{
-					title: 'socket.io',
-					percent: 62.5,
-				},
-				{
-					title: 'ThreeJS',
-					percent: 35,
-				},
-			],
-			[Resume.webDevSubSkillsLabels[2]]: [
-				{
-					title: 'Angular',
-					percent: 55,
-				},
-				{
-					title: 'Bootstrap',
-					percent: 55,
-				},
-				{
-					title: 'NestJS',
-					percent: 35,
-				},
-				{
-					title: 'NextJS',
-					percent: 33,
-				},
-				{
-					title: 'React',
-					percent: 65,
-				},
-				{
-					title: 'Redux',
-					percent: 51,
-				},				
-				{
-					title: 'Semantic-UI',
-					percent: 43,
-				},			
-			],
-			[Resume.webDevSubSkillsLabels[3]]: [
-				{
-					title: 'BEM',
-					percent: 57,
-				},
-				{
-					title: 'DSA',
-					percent: 48,
-				},
-				{
-					title: 'Dynamic Programming',
-					percent: 50,
-				},
-				{
-					title: 'Responsive Design',
-					percent: 68,
-				},
-				{
-					title: 'TDD',
-					percent: 52.5,
-				},
-			],
-			[Resume.webDevSubSkillsLabels[4]]: [
-				{
-					title: 'Mongoose',
-					percent: 57,
-				},
-				{
-					title: 'PostgresSQL',
-					percent: 24,
-					href:"/certs/sql.png",
-				},
-			],
-		},
-		[Resume.skillsItemSectionLabels[1]]: [
+const popupUrl = "/resume#skillsPopup";
+const skillsItemSectionLabels = [
+	"Web Development",
+	"IT Support",
+	"Human Skills",
+];
+const sectionsToSkipAnimation = [skillsItemSectionLabels[2]];
+const skillsLabels: {
+	[key: string]: {left: string, center: string, right: string}
+} = {
+	web: {
+		left: "Novice",
+		center: "Proficient",
+		right: "Master",
+	},
+	it: {
+		left: "Familiar",
+		center: "Knowledgeable",
+		right: "Expert",
+	},
+	human: {
+		left: "Lacks",
+		center: "Average",
+		right: "Excels",
+	},
+};
+const webDevSubSkillsLabels = [
+	'Basics',
+	'Libraries',
+	'Frameworks',
+	'Methodologies',
+	'Databases',
+];
+
+const skills: {
+	[key: string]: {
+		[key: string]: [Skill]
+	}
+} = {
+	[skillsItemSectionLabels[0]]: {
+		[webDevSubSkillsLabels[0]]: [
 			{
-				title: 'A+',
-				percent: 80,
-				href:"/certs/a-plus.png",
-			},
-			{
-				title: 'Google IT Support',
-				percent: 66,
-				href:"https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ",
-			},
-			{
-				title: 'Group Policy',
-				percent: 38,
-				href:"/certs/group-policy.jpg",
-			},
-			{
-				title: 'Network+',
-				percent: 70,
-				href:"/certs/network-plus.png",
-			},
-			{
-				title: 'Powershell',
-				percent: 50,
-				href:"/certs/powershell-active-directory-admin.jpg",
-			},
-			{
-				title: 'SCCM',
-				percent: 35,
-				href:"/certs/sccm.jpg",
-			},
-			{
-				title: "Window's Server 2016",
-				percent: 40,
-				href:"/certs/server2016.png",
-			},
-		],
-		[Resume.skillsItemSectionLabels[2]]: [
-			{
-				title: "Empathizing",
-				percent: 68,
-			},
-			{
-				title: "Giving Feedback",
-				percent: 48,
-			},
-			{
-				title: "Having Difficult Conversations",
-				percent: 75,
-			},
-			{
-				title: "Listening",
-				percent: 85,
-			},
-			{
-				title: "Oral Communication",
-				percent: 75,
-			},
-			{
-				title: "Receiving Feedback",
-				percent: 66,
-			},
-			{
-				title: "Self-Starter",
+				title: 'CSS3',
 				percent: 78,
 			},
 			{
-				title: "Written Communication",
-				percent: 85,
+				title: 'C#',
+				percent: 35,
 			},
-		]
-	}
-	static content = [
+			{
+				title: 'Express',
+				percent: 70,
+			},
+			{
+				title: 'GraphQL',
+				percent: 45,
+			},
+			{
+				title: 'HTML5',
+				percent: 65,
+			},
+			{
+				title: 'Javascript',
+				percent: 78,
+			},
+			{
+				title: 'jQuery',
+				percent: 46,
+			},
+			{
+				title: 'Python',
+				percent: 50,
+			},
+			{
+				title: 'Ruby',
+				percent: 25,
+			},
+			{
+				title: 'SASS',
+				percent: 62,
+			},
+			{
+				title: 'Typescript',
+				percent: 51,
+			},
+		],
+		[webDevSubSkillsLabels[1]]: [
+			{
+				title: 'Howler',
+				percent: 55,
+			},
+			{
+				title: 'PaperJS',
+				percent: 59,
+			},
+			{
+				title: 'rxjs',
+				percent: 25,
+			},
+			{
+				title: 'socket.io',
+				percent: 62.5,
+			},
+			{
+				title: 'ThreeJS',
+				percent: 35,
+			},
+		],
+		[webDevSubSkillsLabels[2]]: [
+			{
+				title: 'Angular',
+				percent: 55,
+			},
+			{
+				title: 'Bootstrap',
+				percent: 55,
+			},
+			{
+				title: 'NestJS',
+				percent: 35,
+			},
+			{
+				title: 'NextJS',
+				percent: 33,
+			},
+			{
+				title: 'React',
+				percent: 65,
+			},
+			{
+				title: 'Redux',
+				percent: 51,
+			},				
+			{
+				title: 'Semantic-UI',
+				percent: 43,
+			},			
+		],
+		[webDevSubSkillsLabels[3]]: [
+			{
+				title: 'BEM',
+				percent: 57,
+			},
+			{
+				title: 'DSA',
+				percent: 48,
+			},
+			{
+				title: 'Dynamic Programming',
+				percent: 50,
+			},
+			{
+				title: 'Responsive Design',
+				percent: 68,
+			},
+			{
+				title: 'TDD',
+				percent: 52.5,
+			},
+		],
+		[webDevSubSkillsLabels[4]]: [
+			{
+				title: 'Mongoose',
+				percent: 57,
+			},
+			{
+				title: 'PostgresSQL',
+				percent: 24,
+				href:"/certs/sql.png",
+			},
+		],
+	},
+	[skillsItemSectionLabels[1]]: [
+		{
+			title: 'A+',
+			percent: 80,
+			href:"/certs/a-plus.png",
+		},
+		{
+			title: 'Google IT Support',
+			percent: 66,
+			href:"https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ",
+		},
+		{
+			title: 'Group Policy',
+			percent: 38,
+			href:"/certs/group-policy.jpg",
+		},
+		{
+			title: 'Network+',
+			percent: 70,
+			href:"/certs/network-plus.png",
+		},
+		{
+			title: 'Powershell',
+			percent: 50,
+			href:"/certs/powershell-active-directory-admin.jpg",
+		},
+		{
+			title: 'SCCM',
+			percent: 35,
+			href:"/certs/sccm.jpg",
+		},
+		{
+			title: "Window's Server 2016",
+			percent: 40,
+			href:"/certs/server2016.png",
+		},
+	],
+	[skillsItemSectionLabels[2]]: [
+		{
+			title: "Empathizing",
+			percent: 68,
+		},
+		{
+			title: "Giving Feedback",
+			percent: 48,
+		},
+		{
+			title: "Having Difficult Conversations",
+			percent: 75,
+		},
+		{
+			title: "Listening",
+			percent: 85,
+		},
+		{
+			title: "Oral Communication",
+			percent: 75,
+		},
+		{
+			title: "Receiving Feedback",
+			percent: 66,
+		},
+		{
+			title: "Self-Starter",
+			percent: 78,
+		},
+		{
+			title: "Written Communication",
+			percent: 85,
+		},
+	]
+}
+
+interface Skill {
+	title: string;
+	percent: number;
+	href?: string;
+}
+
+interface HeaderSideContent {
+	overview: any;
+}
+
+interface ResumeProps {
+	repos: Repository[],
+	getRepositories: () => void,
+	setSectionsToSkipAnimation: (value: any[]) => void,
+}
+
+const Resume:React.FC<ResumeProps> = ({
+	repos,
+	getRepositories,
+	setSectionsToSkipAnimation,
+}) => {	
+
+	const content = [
 		[
 			"overview",
 			<React.Fragment>
@@ -313,17 +332,17 @@ class Resume extends React.Component {
 			`${SKILLS_CLASSNAME}`,
 			<React.Fragment>
 				<ul className={`${SKILLS_CLASSNAME}`}>
-					<SkillsItemSection title={`${Resume.skillsItemSectionLabels[0]} `}>
+					<SkillsItemSection title={`${skillsItemSectionLabels[0]} `}>
 					{
-						Resume.webDevSubSkillsLabels.map((subSkill, index) => {
+						webDevSubSkillsLabels.map((subSkill: string, index: number) => {
 							return (
 								<SkillsItemSection key={index} title={subSkill}>
-								<SkillsItemSectionLabels labels={Resume.skillsLabels.web} />	
-									{Resume.skills[Resume.skillsItemSectionLabels[0]][subSkill].map((skill, index2) => {
+								<SkillsItemSectionLabels label={skillsLabels.web} />	
+									{(skills[skillsItemSectionLabels[0]][subSkill] as any).map((skill: any, index2: number) => {
 										return (
 											<SkillsItem
 												key={index2}
-												label={Resume.skillsLabels.web}
+												label={skillsLabels.web}
 												title={skill.title}
 												percent={skill.percent}
 												href={skill.href ? skill.href : ''}
@@ -336,34 +355,34 @@ class Resume extends React.Component {
 					}
 					</SkillsItemSection>
 
-					<SkillsItemSection title={Resume.skillsItemSectionLabels[1]}>
-						<SkillsItemSectionLabels labels={Resume.skillsLabels.it} />
+					<SkillsItemSection title={skillsItemSectionLabels[1]}>
+						<SkillsItemSectionLabels label={skillsLabels.it} />
 						{
-							Resume.skills[Resume.skillsItemSectionLabels[1]].map((skill, index) => {
+							(skills[skillsItemSectionLabels[1]] as any).map((skill: Skill, index: number) => {
 								return (
 									<SkillsItem
 										key={index}
-										label={Resume.skillsLabels.it}
+										label={skillsLabels.it}
 										href={skill.href ? skill.href : ''}
 										title={skill.title}
-										percent={skill.percent}
+										percent={skill.percent as any}
 									/>
 								)
 							})
 						}
 					</SkillsItemSection>
 					
-					<SkillsItemSection title={Resume.skillsItemSectionLabels[2]}>
-						<SkillsItemSectionLabels labels={Resume.skillsLabels.human} />
+					<SkillsItemSection title={skillsItemSectionLabels[2]}>
+						<SkillsItemSectionLabels label={skillsLabels.human} />
 						{
-							Resume.skills[Resume.skillsItemSectionLabels[2]].map((skill, index) => {
+							(skills[skillsItemSectionLabels[2]] as any).map((skill: Skill, index: number) => {
 								return (
 									<SkillsItem
 										key={index}
-										label={Resume.skillsLabels.it}
+										label={skillsLabels.it}
 										href={skill.href ? skill.href : ''}
 										title={skill.title}
-										percent={skill.percent}
+										percent={skill.percent as any}
 									/>
 								)
 							})
@@ -534,59 +553,56 @@ class Resume extends React.Component {
 			</React.Fragment>,
 		],
 	];
-	static headerSideContent = {
+	const headerSideContent = {
 		overview: (
 			<div className="thumbnail">
 				<img src="/self-small.png" alt="Adam Major" />
 			</div>
 		),
 	};
-	
 
-	componentDidMount() {
-		// this.renderTHREE();
-		if (this.props.repos?.length > 0) return;
-		this.props.getRepositories();
-		this.props.setSectionsToSkipAnimation(Resume.sectionsToSkipAnimation);
-	}
+	useEffect(() => {
+		// renderTHREE();
+		if (repos?.length > 0) return;
+		getRepositories();
+		setSectionsToSkipAnimation(sectionsToSkipAnimation);
+	})
 
-	renderSections = () => {
-		return Resume.content.map((contentArray, index) => {
+	const renderSections = () => {
+		return content.map((contentArray, index) => {
 			//Returning if there is headerSideContent for this section
-			if (Resume.headerSideContent[contentArray[0]]) {
+			if (headerSideContent[contentArray[0] as keyof HeaderSideContent]) {
 				return (
 					<Section
 						key={index}
-						name={contentArray[0]}
+						name={contentArray[0] as string}
 						pageName="resume"
-						headerSideContent={Resume.headerSideContent[contentArray[0]]}>
-						{contentArray[1]}
+						headerSideContent={headerSideContent[contentArray[0] as keyof HeaderSideContent]}>
+						{contentArray[1] as string}
 					</Section>
 				);
 			}
 
 			return (
-				<Section key={index} name={contentArray[0]} pageName="resume">
-					{contentArray[1]}
+				<Section key={index} name={contentArray[0] as string} pageName="resume">
+					{contentArray[1] as string}
 				</Section>
 			);
 		});
 	};
 
-	render() {
-		return (
-			<React.Fragment>
-				<section className="resume">
-					<h2 className="heading heading--two">R&eacute;sum&eacute;</h2>
-					{this.renderSections()}
-				</section>
-				<SkillsPopup />
-			</React.Fragment>
-		);
-	}
+	return (
+		<React.Fragment>
+			<section className="resume">
+				<h2 className="heading heading--two">R&eacute;sum&eacute;</h2>
+				{renderSections()}
+			</section>
+			<SkillsPopup />
+		</React.Fragment>
+	);
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: RootStateOrAny) => {
 	return {
 		repos: state.general.repos,
 	};
@@ -595,4 +611,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(mapStateToProps, {
 	getRepositories,
 	setSectionsToSkipAnimation,
-})(Resume);
+})(Resume as any);

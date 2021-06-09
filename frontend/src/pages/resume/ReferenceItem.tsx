@@ -7,7 +7,7 @@ interface ReferenceItemProps {
   phone: string,
   email: string,
   relation: string,
-  href: string
+  href?: string
 }
 
 const ReferenceItem: React.FC<ReferenceItemProps> = ({ 

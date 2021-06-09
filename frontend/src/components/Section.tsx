@@ -7,7 +7,7 @@ interface SectionProps {
 	name: string,
 	pageName: string,
 	children: string,
-	headerSideContent?: Element,
+	headerSideContent?: any,
 }
 
 const Section: React.FC<SectionProps> = ({
