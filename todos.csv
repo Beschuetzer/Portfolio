@@ -56,4 +56,3 @@ OPTIMIZATIONS:
 -double check that no event listeners don't get cleaned up on page change
 -fix bug where opening bridge card clicking progress bar, moving to other site vids and clicking progress bar then going to bridge again causes z-index-highest not to be removed from cards 
 -add optional message box that pops up over <Video/> when video--stopped is applied (Similar to bridge cards)?
--add note to Skillspopup under title that says ('* click the repo name to view a working demo (when available))

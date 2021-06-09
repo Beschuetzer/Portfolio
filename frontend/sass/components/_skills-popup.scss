@@ -192,6 +192,15 @@
 		}
 	}
 
+	&__hint {
+		font-size:  $default-font-size * .75;
+		font-style: italic;
+
+		@include respond(nav-switch) {
+			padding-bottom: $default-font-size;
+		}
+	}
+
 	&__close {
 		cursor: pointer;
 		fill: var(--color-primary-1);

@@ -323,13 +323,14 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		<div className={`${SKILLS_CLASSNAME}-popup__content`}>
 			<div className={`${SKILLS_CLASSNAME}-popup__header`}>
 				<span className={`${SKILLS_CLASSNAME}-popup__header-text`}>
-					Github Projects with tag '
+					Projects with tag '
 					<span className={`${SKILLS_CLASSNAME}-popup__header-skill`}>{clickedSkill}</span>
-					:
+					':
 				</span>
 				<svg onClick={(e: any) => onCloseClick(e)} className={`${SKILLS_CLASSNAME}-popup__close`}>
 					<use xlinkHref="/sprite.svg#icon-close"></use>
 				</svg>
+				<h5 className={`${SKILLS_CLASSNAME}-popup__hint`}>* click the project name to view a working demo (when possible)</h5>
 			</div>
 			<div className={`${SKILLS_CLASSNAME}-popup__table`}>
 				{renderTableHeaders()}
