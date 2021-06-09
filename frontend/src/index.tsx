@@ -1,5 +1,4 @@
-//@ts-nocheck
-
+// @ts-nocheck
 //3rd Party Imports
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';

@@ -30,12 +30,14 @@ import {
 	handleNavClick,
 	handleMouseEnter,
 } from "./utils";
+import { scrollToSection } from "../../utils";
 
 interface SiteNavProps {
 	isAnimating: boolean;
 	match: { url: string };
 	previousUrl: string;
 	viewPortWidth: number;
+	headerHeight: number;
 	sounds: { play: (value: string) => void };
 	setIsAnimating: (value: boolean) => void;
 	setHeaderHeight: (value: number) => void;
@@ -47,6 +49,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	match,
 	previousUrl,
 	viewPortWidth,
+	headerHeight,
 	sounds,
 	setHeaderHeight,
 }) => {
@@ -77,9 +80,10 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	useEffect(() => {
 		if (!currentUrl || currentUrl !== match.url) {
+			scrollToSection(document.body, headerHeight)
 			setCurrentUrl(match.url);
 		}
-	}, [match, currentUrl, previousUrl, setCurrentUrl]);
+	}, [match, currentUrl, previousUrl, setCurrentUrl, headerHeight]);
 
 	useEffect(() => {
 		changePage(currentUrl);
@@ -205,6 +209,7 @@ const mapStateToProps = (state: RootStateOrAny) => {
 		isAnimating: state.general.isAnimating,
 		previousUrl: state.general.previousUrl,
 		viewPortWidth: state.general.viewPortWidth,
+		headerHeight: state.general.headerHeight,
 		sounds: state.sounds,
 	};
 };
