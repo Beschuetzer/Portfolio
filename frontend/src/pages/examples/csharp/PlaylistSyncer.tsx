@@ -8,7 +8,6 @@ import imgProblem from "../../../imgs/playlist-syncer/img-problem.jpg";
 import img2 from "../../../imgs/playlist-syncer/img2.png";
 import img3 from "../../../imgs/playlist-syncer/img3.png";
 import img4 from "../../../imgs/playlist-syncer/img4.png";
-import img5 from "../../../imgs/playlist-syncer/img5.png";
 import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_LAYOUT_CSS_NAME } from "./utils";
@@ -82,7 +81,7 @@ const sections = [
 		children: [
 			<section className="csharp__carousel">
 				<Carousel
-					items={[imgProblem, demoVideo, img1, img2, img3, img4, img5]}
+					items={[imgProblem, demoVideo, img1, img2, img3, img4]}
 					alts={[
 						"156 songs transferred but an empty playlist...",
 						"Video Demonstration",
@@ -142,3 +141,4 @@ const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
 };
 
 export default PlaylistSyncer;
+

@@ -87,6 +87,9 @@
     font-family: $font-family-text !important;
   }
 
+  &__section-images {
+    position: relative;
+  }
 
   &__title {
     -webkit-touch-callout: none; /* iOS Safari */

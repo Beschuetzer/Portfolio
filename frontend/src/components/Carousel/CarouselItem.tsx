@@ -11,6 +11,7 @@ import {
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
 } from "../VideoPlayer/utils";
+import { Z_INDEX_CONTENT_CLASSNAME } from '../constants';
 
 const FULLSCREEN_CLASSNAME = "full-screen";
 const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
@@ -71,6 +72,16 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	const progressBarRef = useRef<HTMLProgressElement>(null);
 	const isVideo = itemSrc.match(getRegexStringFromStringArray(videoExtentions));
 
+	function fixZIndexIssue(item: HTMLElement, shouldAddZIndex = false) {
+		const sectionAbove = item.closest('section');
+		const sectionAboveThat = (sectionAbove?.parentNode as HTMLElement)?.closest('section');
+
+		if (shouldAddZIndex) sectionAboveThat?.classList.add(Z_INDEX_CONTENT_CLASSNAME)
+		else sectionAboveThat?.classList.remove(Z_INDEX_CONTENT_CLASSNAME);
+		debugger
+
+	}
+
 	function functionToGetContainer (e: Event) {
 		return (e.currentTarget as any).parentNode.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`);		
 	}
@@ -130,8 +141,9 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 			item.classList.contains(videoClassname) ||
 			item.classList.contains(foregroundVideoClassname)
 		) {
-			const video = item.querySelector("video");
+			const video = item.querySelector("video") as HTMLVideoElement;
 			const isPlaying = getIsVideoPlaying(video);
+
 			if (isPlaying) {
 				item.classList.remove(PLAYING_CLASSNAME);
 				video.currentTime = 0;
@@ -144,6 +156,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 				video.addEventListener("timeupdate", onVideoProgress);
 			}
 		}
+		fixZIndexIssue(item, true);
 	};
 
 	let mediaToAdd = (
@@ -254,6 +267,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 					videoRef={videoRef}
 					containerRef={containerRef}
 					classNamesToRemove={videoCloseControlClassesToRemove}
+					functionToRunOnClose={fixZIndexIssue.bind(null, videoRef.current as HTMLVideoElement, false)}
 				/>
 			</React.Fragment>
 		);

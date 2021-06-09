@@ -3729,6 +3729,9 @@ div.references__name {
 .csharp__section-content {
   font-family: "Open Sans", sans-serif !important;
 }
+.csharp__section-images {
+  position: relative;
+}
 .csharp__title {
   -webkit-touch-callout: none;
   /* iOS Safari */
