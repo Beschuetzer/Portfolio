@@ -34,15 +34,13 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 
 	return (
 		<div className={`${C_SHARP_LAYOUT_CSS_NAME} ${pageName}`}>
-			<SectionContainer name="Images" pageName={C_SHARP_LAYOUT_CSS_NAME}>
-				{sourceCodeLink ? (
-					<SourceCodeLink href={sourceCodeLink} msg={sourceCodeMsg} />
-				) : null}
-				<div className={`${C_SHARP_LAYOUT_CSS_NAME}__title`}>
-					{capitalize(replaceCharacters(pageName))}
-				</div>
-				{children}
-			</SectionContainer>
+			{sourceCodeLink ? (
+				<SourceCodeLink href={sourceCodeLink} msg={sourceCodeMsg} />
+			) : null}
+			<div className={`${C_SHARP_LAYOUT_CSS_NAME}__title`}>
+				{capitalize(replaceCharacters(pageName))}
+			</div>
+			{children}
 			{renderSections()}
 		</div>
 	);

@@ -2363,15 +2363,17 @@ body {
   grid-column: 2/span 3;
   display: grid;
   grid-column-gap: 1.6rem;
-  grid-template-columns: repeat(auto-fit, minmax(calc( 	(85rem - 2 * 1.6rem - 0.3rem) / 3 ), 1.6rem));
+  grid-template-columns: repeat(auto-fit, minmax(calc( 	(85rem - 2 * 4.8rem) / 3 ), 1.6rem));
   padding: 0 0 0 0.2rem;
   justify-items: flex-start;
   align-items: flex-start;
   overflow: hidden;
+  margin-left: 3.2rem;
+  width: calc(100% - 1.6rem * 3.75);
 }
 @media only screen and (max-width: 68.75em) {
   .carousel {
-    width: 100%;
+    margin-left: 0;
     justify-content: center;
     grid-column-gap: 0.8rem;
     grid-template-columns: repeat(auto-fit, minmax(8rem, 33.6rem));
@@ -2396,13 +2398,13 @@ body {
   cursor: pointer;
   width: 3.5vw;
   height: 3.5vw;
-  fill: rgba(var(--color-primary-1-rgb), var(--carousel-dot-alpha, 0.5));
+  fill: rgba(var(--color-primary-4-rgb), var(--carousel-dot-alpha, 0.5));
 }
 .carousel__dot:hover {
   --carousel-dot-alpha: .75;
 }
 .carousel__dot--active {
-  fill: var(--color-primary-4-rgb) !important;
+  fill: var(--color-primary-1-rgb) !important;
 }
 .carousel__arrow-button {
   position: relative;
@@ -2429,7 +2431,7 @@ body {
 .carousel__arrow-button svg {
   width: 7vw;
   height: 7vw;
-  fill: rgba(var(--color-primary-1-rgb), 0.5);
+  fill: rgba(var(--color-primary-4-rgb), 0.75);
 }
 @media only screen and (max-width: 68.75em) {
   .carousel__arrow-button svg {
@@ -2438,7 +2440,7 @@ body {
   }
 }
 .carousel__arrow-button svg:hover, .carousel__arrow-button svg:active, .carousel__arrow-button svg:focus {
-  fill: var(--color-primary-4);
+  fill: var(--color-primary-1);
 }
 .carousel__item {
   pointer-events: none;
@@ -2447,7 +2449,7 @@ body {
   font-size: 1.6rem;
   width: 100%;
   height: 32rem;
-  border: 0.16rem solid var(--color-primary-4);
+  border: 0.16rem solid var(--color-primary-1);
   border-radius: 0.8rem;
   overflow: hidden;
   transform: translateX(var(--carousel-item-translation-x));
@@ -3709,9 +3711,12 @@ div.references__name {
   padding-bottom: 1.6rem;
 }
 .csharp__header {
-  padding: 3.2rem 3.2rem 3.2rem 3.2rem;
+  padding: 3.2rem 3.2rem 3.2rem 0;
   color: #f9f7f7;
   border-bottom: 0.24rem solid var(--color-primary-2);
+}
+.csharp__header-title {
+  font-size: 4.8rem;
 }
 .csharp__card-section-title {
   color: #f9f7f7;
@@ -3737,10 +3742,10 @@ div.references__name {
   /* Internet Explorer/Edge */
   user-select: none;
   /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
-  font-size: 6.4rem;
+  font-size: 9.6rem;
   text-align: center;
   width: 100vw;
-  padding-top: calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.4vw);
+  padding-top: calc(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.4vw) - 2vw);
   text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
 }
 .csharp__carousel {
@@ -3748,9 +3753,8 @@ div.references__name {
   display: grid;
   grid-row-gap: 3.2rem;
   grid-template-columns: 1fr 28.3333333333rem 28.3333333333rem 28.3333333333rem 1fr;
-  grid-template-rows: 38rem;
   justify-content: center;
-  padding: 3.2rem 0 16rem 0;
+  padding: 3.2rem 0 3.2rem 0;
 }
 @media only screen and (max-width: 68.75em) {
   .csharp__carousel {

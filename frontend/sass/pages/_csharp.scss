@@ -59,9 +59,13 @@
   }
   
   &__header {
-    padding: $default-font-size * 2 $default-font-size * 2 $default-font-size * 2 $default-font-size * 2 ;
+    padding: $default-font-size * 2 $default-font-size * 2 $default-font-size * 2 0 ;
     color: $color-primary-downloader-1;
     border-bottom: $default-font-size * .15 solid var(--color-primary-2);
+
+    &-title{ 
+      font-size: $default-font-size * 3;
+    }
   }
   
   &__card-section {
@@ -92,10 +96,10 @@
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 
-    font-size: $default-font-size * 4;
+    font-size: $default-font-size * 6;
     text-align: center;
     width: 100vw;
-  	padding-top: $header-top;
+  	padding-top: calc(#{$header-top} - 2vw);
     text-shadow: $resume-header-text-shadow;
 
     @include respond(nav-switch) {
@@ -107,11 +111,11 @@
     margin: 0 auto;
     display: grid;
     grid-row-gap: $default-font-size * 2;
+    // grid-template-rows: $default-font-size * 23.75;
     grid-template-columns: 1fr $resume-card-width-full / 3 $resume-card-width-full / 3 
     $resume-card-width-full / 3 1fr;
-    grid-template-rows: $default-font-size * 23.75;
     justify-content: center;
-    padding: $default-font-size * 2 0 $default-font-size * 10 0;
+    padding: $default-font-size * 2 0 $default-font-size * 2 0;
 
     @include respond(nav-switch) {
       width: calc(100% - #{$default-font-size} * 1);

@@ -3,7 +3,7 @@ $carousel-svg-width: $default-font-size * 6;
 $carousel-svg-parent-width: $carousel-progress-bar-height * 4;
 $carousel-grid-column-gap: $default-font-size;
 $carousel-grid-width: calc(
-	(#{$resume-card-width-full} - 2 * #{$carousel-grid-column-gap} - 0.3rem) / 3
+	(#{$resume-card-width-full} - 2 * #{$carousel-grid-column-gap * 3}) / 3
 );
 
 .carousel {
@@ -18,9 +18,17 @@ $carousel-grid-width: calc(
 	justify-items: flex-start;
 	align-items: flex-start;
 	overflow: hidden;
+	margin-left: $default-font-size * 2;
+	width: calc(100% - #{$default-font-size} * 3.75);
 
 	@include respond(nav-switch) {
-		width: 100%;
+	}
+
+	// grid-template-columns: repeat(auto-fit, minmax(calc( (85rem - 2 * 4.8rem) / 3 ), 1.6rem));
+
+	@include respond(nav-switch) {
+		// width: 100%;
+		margin-left: 0;
 		justify-content: center;
 		grid-column-gap: $default-font-size / 2;
 		grid-template-columns: repeat(
@@ -48,14 +56,14 @@ $carousel-grid-width: calc(
 		cursor: pointer;
 		width: $navbar__logo-width / 2;
 		height: $navbar__logo-width / 2;
-		fill: rgba(#{var(--color-primary-1-rgb)}, var(--carousel-dot-alpha, .5));
+		fill: rgba(#{var(--color-primary-4-rgb)}, var(--carousel-dot-alpha, .5));
 
 		&:hover {
 			--carousel-dot-alpha: .75;
 		}
 
 		&--active {
-			fill: var(--color-primary-4-rgb) !important;
+			fill: var(--color-primary-1-rgb) !important;
 		}
 	}
 
@@ -86,7 +94,7 @@ $carousel-grid-width: calc(
 		& svg {
 			width: $navbar__logo-width;
 			height: $navbar__logo-width;
-			fill: rgba(var(--color-primary-1-rgb), .5);
+			fill: rgba(var(--color-primary-4-rgb), .75);
 
 			@include respond(nav-switch) {
 				width: $default-font-size * 5;
@@ -96,7 +104,7 @@ $carousel-grid-width: calc(
 			&:hover,
 			&:active,
 			&:focus {
-				fill: var(--color-primary-4);
+				fill: var(--color-primary-1);
 			}
 		}
 	}
@@ -109,7 +117,7 @@ $carousel-grid-width: calc(
 		width: 100%;
 		height: $default-font-size * 20;
 
-		border: $default-font-size * 0.1 solid var(--color-primary-4);
+		border: $default-font-size * 0.1 solid var(--color-primary-1);
 		border-radius: $default-font-size * 0.5;
 		overflow: hidden;
 

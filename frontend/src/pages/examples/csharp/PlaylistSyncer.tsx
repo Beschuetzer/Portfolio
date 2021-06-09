@@ -77,6 +77,28 @@ const sections = [
 		],
 	},
 	{
+		name: "Images",
+		pageName: C_SHARP_LAYOUT_CSS_NAME,
+		children: [
+			<section className="csharp__carousel">
+				<Carousel
+					items={[imgProblem, demoVideo, img1, img2, img3, img4, img5]}
+					alts={[
+						"156 songs transferred but an empty playlist...",
+						"Video Demonstration",
+						"The complete user interface",
+						"Left-side of UI",
+						"Playlists available section of UI",
+						"Transfer section of UI after transfer",
+						"Transfer section of UI during transfer",
+					]}
+					numberOfItemsInCarouselAtOneTime="3"
+					numberOfItemsToScrollOnClick="3"
+				/>
+			</section>
+		]
+	},
+	{
 		name: "Notes",
 		pageName: C_SHARP_LAYOUT_CSS_NAME,
 		children: [
@@ -115,22 +137,6 @@ const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
 			sections={sections}
 			pageName="playlist-syncer"
 			sourceCodeLink="https://github.com/Beschuetzer/Playlist-syncer">
-			<section className="csharp__carousel">
-				<Carousel
-					items={[imgProblem, demoVideo, img1, img2, img3, img4, img5]}
-					alts={[
-						"156 songs transferred but an empty playlist...",
-						"Video Demonstration",
-						"The complete user interface",
-						"Left-side of UI",
-						"Playlists available section of UI",
-						"Transfer section of UI after transfer",
-						"Transfer section of UI during transfer",
-					]}
-					numberOfItemsInCarouselAtOneTime="3"
-					numberOfItemsToScrollOnClick="3"
-				/>
-			</section>
 		</CSharpLayout>
 	);
 };
