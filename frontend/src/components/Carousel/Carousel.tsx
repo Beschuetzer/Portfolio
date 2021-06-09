@@ -16,6 +16,8 @@ interface CarouselProps {
 	alts: string[],
 	numberOfItemsInCarouselAtOneTime: number,
 	numberOfItemsToScrollOnClick: number,
+	functionToRunOnClose?: any,
+	functionToGetContainer?: any,
 }
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -24,6 +26,8 @@ const Carousel: React.FC<CarouselProps> = ({
 	alts,
 	numberOfItemsInCarouselAtOneTime,
 	numberOfItemsToScrollOnClick,
+	functionToRunOnClose,
+	functionToGetContainer,
 }) => {
 	const IMAGE_CLASSNAME = `${CAROUSEL_CLASSNAME}__image`;
 	const ITEM_CLASSNAME = `${CAROUSEL_CLASSNAME}__item`;
@@ -208,6 +212,8 @@ const Carousel: React.FC<CarouselProps> = ({
 				videoRestartControlSvgXLinkHref: "/sprite.svg#icon-restart",
 				videoPauseControlSvgXLinkHref: "/sprite.svg#icon-pause",
 				videoCloseControlSvgXLinkHref: "/sprite.svg#icon-close",
+				functionToGetContainer,
+				functionToRunOnClose,
 			};
 
 			return (

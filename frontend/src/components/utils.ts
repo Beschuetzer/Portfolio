@@ -1,5 +1,6 @@
 import history from "../history";
-import { OVERFLOW_HIDDEN_CLASSNAME } from "./constants";
+import { CAROUSEL_VIDEO_CLASSNAME } from "./Carousel/util";
+import { OVERFLOW_HIDDEN_CLASSNAME, Z_INDEX_CONTENT_CLASSNAME } from "./constants";
 import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./navbar/utils";
 
 //#region Helper Functions
@@ -100,6 +101,29 @@ export const addSpaceAfterPunctuationMarks = (string: string) => {
     newString += char;
   }
   return newString;
+}
+
+export function fixZIndexIssue(item: HTMLElement, additionalSelector: string, shouldAddZIndex = false) {
+  let sectionAbove: HTMLElement | null;
+  let sectionAboveThat: HTMLElement | null;
+
+  if (item === null) {
+    item = document.querySelector(additionalSelector) as HTMLElement;
+    sectionAboveThat = item;
+  } else {
+    sectionAbove = item.closest('section');
+    sectionAboveThat = (sectionAbove?.parentNode as HTMLElement)?.closest('section');
+  }
+
+  if (sectionAboveThat) {
+    if (shouldAddZIndex) sectionAboveThat.classList.add(Z_INDEX_CONTENT_CLASSNAME)
+    else sectionAboveThat.classList.remove(Z_INDEX_CONTENT_CLASSNAME);
+  }
+}
+
+export function functionToGetContainer (e: Event) {
+  debugger
+  return (e.currentTarget as any).parentNode.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`);		
 }
 
 //#endregion

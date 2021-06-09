@@ -12,6 +12,7 @@ import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_LAYOUT_CSS_NAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
+import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
 
 const sections = [
 	{
@@ -76,7 +77,7 @@ const sections = [
 		],
 	},
 	{
-		name: "Images",
+		name: "Media",
 		pageName: C_SHARP_LAYOUT_CSS_NAME,
 		children: [
 			<section className="csharp__carousel">
@@ -93,6 +94,8 @@ const sections = [
 					]}
 					numberOfItemsInCarouselAtOneTime="3"
 					numberOfItemsToScrollOnClick="3"
+					functionToGetContainer={functionToGetContainer}
+					functionToRunOnClose={fixZIndexIssue.bind(null, null as any, '#images')}
 				/>
 			</section>
 		]

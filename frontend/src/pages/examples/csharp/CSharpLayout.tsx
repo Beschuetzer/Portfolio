@@ -1,7 +1,6 @@
 import React from "react";
 import { capitalize, replaceCharacters } from "../../../helpers";
 import Section from "../../../components/Section";
-import SectionContainer from "../../../components/SectionContainer";
 import SourceCodeLink from "../../../components/SourceCodeLink";
 import { C_SHARP_LAYOUT_CSS_NAME } from "./utils";
 
