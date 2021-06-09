@@ -16,6 +16,7 @@ import SkillsPopup from "../../components/Skills/SkillsPopup";
 import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
 import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
 import { Repository, SKILLS_CLASSNAME } from "../../components/Skills/utils";
+import { NO_MARGIN_CLASSNAME } from "../../components/constants";
 
 function getLinkClassHTML() {
 	return ` class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' `;
@@ -272,8 +273,9 @@ const skills: {
 };
 
 const hints = {
-	skills: "* click headers to view skills",
-	education: "* click link to view transcript",
+	skills: "click headers to view skills",
+	education: "click degree to view transcript",
+	references: "click name to view letter of recommendation"
 };
 
 interface Skill {
@@ -301,7 +303,7 @@ const Resume: React.FC<ResumeProps> = ({
 		[
 			"overview",
 			<React.Fragment>
-				<Paragraph size="five">Below you will find the following:</Paragraph>
+				<Paragraph classNamesToAdd={`${NO_MARGIN_CLASSNAME}`} size="five">Below you will find the following:</Paragraph>
 
 				<div>
 					<div className={`${BRIDGE_CLASSNAME}__subsection-grid`}>

@@ -534,6 +534,10 @@ body {
   transform: scale(1) !important;
 }
 
+.margin-0 {
+  margin: 0 !important;
+}
+
 .navbar {
   border-radius: 16rem 0 0 16rem;
   position: relative;
@@ -1815,7 +1819,7 @@ body {
 }
 .skills__section-title {
   backface-visibility: hidden;
-  margin: 0 0 1.6rem 0;
+  margin: 0 0 2rem 0;
   user-select: none;
   cursor: pointer;
   display: flex;
@@ -1861,7 +1865,7 @@ body {
   height: auto;
   visibility: visible;
   opacity: 1;
-  margin-bottom: 1.6rem;
+  margin-bottom: 2rem;
 }
 .skills__section--open svg {
   transform: rotate(90deg);
@@ -1870,7 +1874,7 @@ body {
   opacity: 1;
 }
 .skills__section > *:nth-child(2n+2) {
-  margin-left: 3.2rem;
+  margin-left: 4rem;
 }
 .skills__labels {
   display: grid;
@@ -2872,7 +2876,12 @@ body {
     background-image: var(--color-primary-3);
   }
 }
+.resume__headers {
+  display: flex;
+  flex-direction: column-reverse;
+}
 .resume__header {
+  margin-bottom: 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2883,14 +2892,14 @@ body {
     margin-bottom: 1.2rem;
   }
 }
-.resume__header:last-child {
-  margin-bottom: 0.8rem;
-}
 .resume__header-summary {
   grid-column: 1/-1;
 }
 .resume__header-title {
   font-family: "Merriweather", serif;
+}
+.resume__hint + .resume__header {
+  margin-bottom: 0;
 }
 .resume__content {
   padding: 4.8rem 1.6rem 5.6rem;
@@ -2898,7 +2907,7 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 .resume__content .bridge__subsection-grid {
-  margin-top: 3.2rem;
+  margin-top: 4rem;
 }
 @media only screen and (max-width: 40.9375em) {
   .resume__content {
@@ -2942,23 +2951,23 @@ body {
   color: var(--color-primary-3);
 }
 .resume__hint {
-  margin: -0.4rem 0 3.6rem;
+  margin: 0 0 4rem;
   font-size: 1.2rem;
 }
 @media only screen and (max-width: 52.6875em) {
   .resume__hint {
-    margin: -1.6rem 0 4.8rem;
+    margin: -0.4rem 0 4.8rem;
+    height: 0;
   }
 }
 @media only screen and (max-width: 40.9375em) {
   .resume__hint {
-    margin-bottom: 3.2rem;
-    height: 0;
+    margin: -0.528rem 0 4rem;
   }
 }
 @media only screen and (max-width: 29.3125em) {
   .resume__hint {
-    margin-bottom: 2.8rem;
+    margin-bottom: 3.2rem;
   }
 }
 

@@ -4,11 +4,11 @@ import SectionContainer from "./SectionContainer";
 import { capitalize, replaceCharacters } from "../helpers";
 
 interface SectionProps {
-	name: string,
-	pageName: string,
-	children: string,
-	headerSideContent?: any,
-	hint?: string,
+	name: string;
+	pageName: string;
+	children: string;
+	headerSideContent?: any;
+	hint?: string;
 }
 
 const Section: React.FC<SectionProps> = ({
@@ -22,21 +22,26 @@ const Section: React.FC<SectionProps> = ({
 		<SectionContainer name={name} pageName={pageName}>
 			<article className={`${pageName}__card z-index-content`}>
 				<div className={`${pageName}__content`}>
-					<div className={`${pageName}__header`}>
-						<h3 className={`heading--three ${pageName}__header-title`}>
-							{capitalize(replaceCharacters(name))}
-						</h3>
-						{headerSideContent ? headerSideContent : null}
+					<div className={`${pageName}__headers`}>
+						{hint ? (
+							<div
+								className={`${pageName}__hint`}>
+								*&nbsp;{hint}
+							</div>
+						) : null}
+						<div className={`${pageName}__header`}>
+							<h3 className={`heading--three ${pageName}__header-title`}>
+								{capitalize(replaceCharacters(name))}
+							</h3>
+							{headerSideContent ? headerSideContent : null}
+						</div>
 					</div>
-					<div 
-						dangerouslySetInnerHTML={{ __html: hint ? hint : ''}}
-						className={`${pageName}__hint`}
-					></div>
+
 					{children}
 				</div>
 			</article>
 		</SectionContainer>
 	);
-}
+};
 
 export default Section;
