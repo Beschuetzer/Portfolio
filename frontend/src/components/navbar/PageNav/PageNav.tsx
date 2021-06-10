@@ -7,7 +7,7 @@ import BridgeSectionLink from "../../../pages/examples/bridge/BridgeSectionLink"
 import {
 	bridgeSections,
 } from "../../../pages/examples/bridge/utils";
-import { HIDDEN_CLASSNAME } from "../../constants";
+import { HIDDEN_CLASSNAME, MOBILE_BREAK_POINT_WIDTH, PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME, PAGE_NAV_WIDTH_AT_SWITCH_OFFSET } from "../../constants";
 import { scrollToSection } from "../../utils";
 import { checkShouldSetPreviousUrl, getSectionNames, setBridgeColors, setGradientPercent } from "./utils";
 
@@ -205,7 +205,16 @@ const PageNav: React.FC<PageNavProps> = ({
 	}, []);
 
 	useEffect(() => {
-		// updateActiveScaleRange();
+		if (!isMobile) return;
+		const itemCount = pageNavElement.children.length;
+		if (!itemCount) return;
+		const widthOfPageNavAtSwitch = MOBILE_BREAK_POINT_WIDTH - PAGE_NAV_WIDTH_AT_SWITCH_OFFSET;
+		const newMinWidth = `${widthOfPageNavAtSwitch / (itemCount + 1) + .1}px`
+		const toAdd = `${PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${newMinWidth}`;
+		document.documentElement.style.cssText += toAdd;
+	}, [previousUrl, pageNavElement, isMobile])
+
+	useEffect(() => {
 		const url = match.url;
 		const pageName = url.slice(url.lastIndexOf("/") + 1);
 		pageNavElement.classList = cssClass;

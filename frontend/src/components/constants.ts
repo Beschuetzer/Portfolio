@@ -2,8 +2,9 @@ import { CSSProperties } from "react";
 
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
+export const PAGE_NAV_WIDTH_AT_SWITCH_OFFSET = 192;
 export let computedStyle = getComputedStyle(document.documentElement);
-
+export const PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME = '--page-nav-min-column-width';
 //#region CSS Colors
 // export const COLOR_PRIMARY_1 = computedStyle.getPropertyValue('--color-primary-1');
 // export const COLOR_PRIMARY_2 = computedStyle.getPropertyValue('--color-primary-2');

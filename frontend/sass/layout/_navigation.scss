@@ -698,7 +698,7 @@
 			minmax(var(--page-nav-min-column-width), 1fr)
 		);
 		justify-items: center;
-		margin-left: $default-font-size * 0.25;
+		// margin-left: $default-font-size * 0.25;
 	}
 
 	&__section {
