@@ -264,10 +264,8 @@ const Carousel: React.FC<CarouselProps> = ({
 				videoOverlayChildren: item.videoOverlayChildren
 					? item.videoOverlayChildren
 					: undefined,
-				functionToRunOnClose: item.functionToRunOnClose
-					? item.functionToRunOnClose : functionToRunOnClose ? functionToRunOnClose	: undefined,
-				functionToGetContainer: item.functionToGetContainer
-					? item.functionToGetContainer : functionToGetContainer ? functionToGetContainer	: undefined,
+				functionToRunOnClose: functionToRunOnClose ? functionToRunOnClose	: undefined,
+				functionToGetContainer: functionToGetContainer ? functionToGetContainer	: undefined,
 			};
 
 			return (

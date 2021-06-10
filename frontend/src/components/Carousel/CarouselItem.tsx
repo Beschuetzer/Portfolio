@@ -6,7 +6,14 @@ import PauseControl from "../VideoPlayer/PauseControl";
 import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
 import Video, { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
-import { CarouselItemProps, CAROUSEL_CLASSNAME, CAROUSEL_DESCRIPTION_CLASSNAME, CAROUSEL_IMAGE_CLASSNAME, CAROUSEL_ITEM_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./util";
+import {
+	CarouselItemProps,
+	CAROUSEL_CLASSNAME,
+	CAROUSEL_DESCRIPTION_CLASSNAME,
+	CAROUSEL_IMAGE_CLASSNAME,
+	CAROUSEL_ITEM_CLASSNAME,
+	CAROUSEL_VIDEO_CLASSNAME,
+} from "./util";
 import {
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
@@ -46,7 +53,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	videoCloseControlSvgXLinkHref = "/sprite.svg#icon-close",
 	videoCloseControlClassesToRemove = CLASSNAMES_TO_REMOVE,
 	videoExtentions = ["mp4", "ogv", "webm", "ogg"],
-	videoOverlayText = '',
+	videoOverlayText = "",
 	videoOverlayStyles = {},
 	videoOverlayChildren = null,
 	functionToRunOnClose,
@@ -55,7 +62,9 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const containerRef = useRef<HTMLElement>(null);
 	const progressBarRef = useRef<HTMLProgressElement>(null);
-	const isVideo = itemSrc?.match(getRegexStringFromStringArray(videoExtentions));
+	const isVideo = itemSrc?.match(
+		getRegexStringFromStringArray(videoExtentions),
+	);
 
 	function getRegexStringFromStringArray(fileExtensions: string[]) {
 		const mapped = fileExtensions.map((ext, index) => {
@@ -105,8 +114,8 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		if (!item) return;
 		e.preventDefault();
 
-		(item).classList.toggle(FULLSCREEN_CLASSNAME);
-		(item).parentNode?.classList.toggle(FULLSCREEN_PARENT_CLASSNAME);
+		item.classList.toggle(FULLSCREEN_CLASSNAME);
+		item.parentNode?.classList.toggle(FULLSCREEN_PARENT_CLASSNAME);
 
 		if (
 			item.classList.contains(videoClassname) ||
@@ -151,12 +160,8 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 					onClick={onItemClick}
 					reference={videoRef}
 					progressBarRef={progressBarRef}
-					progressBarOnClick={onProgressBarClick}
-				>
-					<OverlayText 
-						titleText={videoOverlayText}
-						styles={videoOverlayStyles}
-					>
+					progressBarOnClick={onProgressBarClick}>
+					<OverlayText titleText={videoOverlayText} styles={videoOverlayStyles}>
 						{videoOverlayChildren}
 					</OverlayText>
 				</Video>
@@ -169,15 +174,17 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	}
 
 	const renderControls = (isVideo: RegExpMatchArray | null) => {
-		if (!isVideo)
-			return (
-				<CloseControl
-					xlinkHref={videoCloseControlSvgXLinkHref}
-					videoRef={videoRef}
-					containerRef={containerRef}
-					classNamesToRemove={videoCloseControlClassesToRemove}
-				/>
-			);
+		const closeControlToUse = (
+			<CloseControl
+				xlinkHref={videoCloseControlSvgXLinkHref}
+				videoRef={videoRef}
+				containerRef={containerRef}
+				classNamesToRemove={videoCloseControlClassesToRemove}
+				functionToRunOnClose={functionToRunOnClose}
+			/>
+		);
+
+		if (!isVideo) return closeControlToUse;
 
 		return (
 			<React.Fragment>
@@ -239,14 +246,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 					stoppedClassname={STOPPED_CLASSNAME}
 					functionToGetContainer={functionToGetContainer}
 				/>
-
-				<CloseControl
-					xlinkHref={videoCloseControlSvgXLinkHref}
-					videoRef={videoRef}
-					containerRef={containerRef}
-					classNamesToRemove={videoCloseControlClassesToRemove}
-					functionToRunOnClose={functionToRunOnClose}
-				/>
+				{closeControlToUse}
 			</React.Fragment>
 		);
 	};

@@ -23,7 +23,7 @@ const CloseControl: React.FC<CloseControlProps> = ({
 	classNamesToRemoveFromElement = [],
 	functionToRunOnClose = null,
 }) => {
-	const handleCloseVideo = (e: MouseEvent) => {
+	const handleCloseItem = (e: MouseEvent) => {
 		e.stopPropagation();
 		closeVideo(videoRef.current as HTMLVideoElement);
 		if (functionToRunOnClose) functionToRunOnClose();
@@ -48,7 +48,7 @@ const CloseControl: React.FC<CloseControlProps> = ({
 	};
 
 	return (
-		<div onClick={(e: any) => handleCloseVideo(e)} className={`${className}-parent`}>
+		<div onClick={(e: any) => handleCloseItem(e)} className={`${className}-parent`}>
 			<svg className={`${className}`}>
 				<use xlinkHref={xlinkHref}></use>
 			</svg>
