@@ -45,5 +45,4 @@ OPTIMIZATIONS:
 -double check that no event listeners don't get cleaned up on page change
 -make closing button more noticible for charp videos?
 -add optional message box that pops up over <Video/> when video--stopped is applied (Similar to bridge cards)?
--figure out why firefox doesn't add 'scaleY' to --card-playing-transform on open
     

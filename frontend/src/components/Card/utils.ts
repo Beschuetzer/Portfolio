@@ -193,15 +193,15 @@ export const adjustCardYPosition = (
 		"--card-playing-transform",
 	);
 	const split = cardPlayingTransform.split(" ");
-
 	let translateY = split[2];
 	let translateYIndex = 2;
 	if (!translateY.match(/Y/)) {
 		for (let i = 0; i < split.length; i++) {
 			const splitString = split[i];
-			if (splitString.match(/Y/)) {
+			if (splitString.match(/translateY/)) {
 				translateY = splitString;
 				translateYIndex = i;
+				break;
 			}
 		}
 	}
