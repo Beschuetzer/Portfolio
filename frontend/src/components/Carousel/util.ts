@@ -1,6 +1,7 @@
-import { CSSProperties } from "react";
+import { CSSProperties, RefObject } from "react";
+import { ANIMATION_DURATION, HIDDEN_CLASSNAME } from "../constants";
 
-export const CAROUSEL_CLASSNAME = 'carousel';
+export const CAROUSEL_CLASSNAME = "carousel";
 export const CAROUSEL_TRANSLATION_CSS_CLASSNAME = `--${CAROUSEL_CLASSNAME}-item-translation-x`;
 export const CAROUSEL_VIDEO_CLASSNAME = `${CAROUSEL_CLASSNAME}__video`;
 
@@ -23,7 +24,7 @@ export interface CarouselItemProps {
 	foregroundVideoClassname: string | undefined;
 	description: string | undefined;
 	itemSrc: string | undefined;
-	videoType?: 'mp4' | 'ogv' | 'webm' | 'ogg' | undefined;
+	videoType?: "mp4" | "ogv" | "webm" | "ogg" | undefined;
 	videoAutoPlay?: boolean | undefined;
 	videoLoop?: boolean | undefined;
 	videoPlaySVGXLinkHref: string | undefined;
@@ -33,10 +34,75 @@ export interface CarouselItemProps {
 	videoPauseControlSvgXLinkHref?: string | undefined;
 	videoCloseControlSvgXLinkHref?: string | undefined;
 	videoCloseControlClassesToRemove?: string | undefined;
-	videoOverlayStyles?: CSSProperties | undefined,
-	videoOverlayText?: string | undefined,
-	videoOverlayChildren?: any | undefined,
-	videoExtentions?: string[] | undefined,
-	functionToRunOnClose?: any | undefined,
-	functionToGetContainer?: any | undefined,
+	videoOverlayStyles?: CSSProperties | undefined;
+	videoOverlayText?: string | undefined;
+	videoOverlayChildren?: any | undefined;
+	videoExtentions?: string[] | undefined;
+	functionToRunOnClose?: any | undefined;
+	functionToGetContainer?: any | undefined;
+}
+
+export function setArrowButtonsHiddenClass(
+	CAROUSEL_MIN_IMAGE_COUNT: number,
+	maxImageCount: number,
+	currentTranslationFactor: number,
+	leftArrowRef: RefObject<HTMLElement>,
+	rightArrowRef: RefObject<HTMLElement>,
+	numberOfItemsInCarouselAtOneTime: number,
+	numberOfItemsToScrollOnClick: number,
+) {
+	const leftArrow = (leftArrowRef.current as any)[0];
+	const rightArrow = (rightArrowRef.current as any)[0];
+	if (currentTranslationFactor === 0) {
+		leftArrow.classList.add(HIDDEN_CLASSNAME);
+		return rightArrow.classList.remove(HIDDEN_CLASSNAME);
+	}
+
+	if (!leftArrow || !rightArrow) return;
+
+	leftArrow.classList.remove(HIDDEN_CLASSNAME);
+	rightArrow.classList.remove(HIDDEN_CLASSNAME);
+
+	const currentCount =
+		numberOfItemsInCarouselAtOneTime +
+		currentTranslationFactor * numberOfItemsToScrollOnClick -
+		1;
+
+	if (currentCount <= CAROUSEL_MIN_IMAGE_COUNT)
+		leftArrow.classList.add(HIDDEN_CLASSNAME);
+	if (currentCount >= maxImageCount) rightArrow.classList.add(HIDDEN_CLASSNAME);
+}
+
+export function setCurrentActiveButton(indexOfActiveDot: number) {
+	const dots = document.querySelectorAll(`.${CAROUSEL_DOT_CLASSNAME}`);
+	for (let i = 0; i < dots.length; i++) {
+		const dot = dots[i];
+		if (i !== indexOfActiveDot)
+			dot?.classList.remove(CAROUSEL_DOT_ACTIVE_CLASSNAME);
+		else dot?.classList.add(CAROUSEL_DOT_ACTIVE_CLASSNAME);
+	}
+}
+
+export function setTranslationAmount(
+	amountToTranslateImages: number,
+	removeTransitionTimeout: number,
+	itemsRef: RefObject<HTMLElement>,
+) {
+	clearInterval(removeTransitionTimeout);
+
+	const itemElements = (itemsRef as any).current;
+	for (let i = 0; i < itemElements.length; i++) {
+		const item = itemElements[i];
+		item?.classList.add(CAROUSEL_TRANSITION_CLASSNAME);
+	}
+
+	const newValue = `${CAROUSEL_TRANSLATION_CSS_CLASSNAME}: -${amountToTranslateImages}px`;
+	document.documentElement.style.cssText += newValue;
+
+	return setTimeout(() => {
+		for (let i = 0; i < itemElements.length; i++) {
+			const item = itemElements[i];
+			item?.classList.remove(CAROUSEL_TRANSITION_CLASSNAME);
+		}
+	}, ANIMATION_DURATION / 2);
 }

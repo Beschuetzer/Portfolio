@@ -15,6 +15,20 @@ interface DefaultStyles {
 }
 
 export function getDefaultStyles () {
+  // const defaults: CSSProperties = {
+  //   position: 'fixed',
+  //   top: '50%',
+  //   left: '50%',
+  //   bottom: 'auto',
+  //   right: 'auto',
+  //   transform: "translate(-50%, -50%)",
+  //   backgroundColor: '#f7f7f7',
+  //   color: '#000000',
+  //   zIndex: 10000,
+  //   backdropFilter: 'blur(10px)',
+  //   padding: "1.6rem 3.2rem",
+  // };
+
   const defaults: CSSProperties = {
     position: 'fixed',
     top: '50%',
@@ -22,11 +36,7 @@ export function getDefaultStyles () {
     bottom: 'auto',
     right: 'auto',
     transform: "translate(-50%, -50%)",
-    backgroundColor: '#f7f7f7',
-    color: '#000000',
     zIndex: 10000,
-    backdropFilter: 'blur(10px)',
-    padding: "1.6rem 3.2rem",
   };
 
   return JSON.parse(JSON.stringify(defaults));

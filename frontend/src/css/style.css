@@ -2596,6 +2596,18 @@ body {
   visibility: visible;
   opacity: 1;
 }
+.carousel .overlay-text {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+  padding: 1.6rem 3.2rem;
+  background-color: rgba(var(--color-primary-4-rgb), 0.9);
+  border-radius: 0.8rem;
+}
+.carousel__item--stopped .overlay-text, .carousel__item--done .overlay-text {
+  opacity: 1;
+  visibility: visible;
+}
 .carousel :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
   opacity: 1;
   visibility: visible;
