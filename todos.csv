@@ -27,20 +27,19 @@ OPTIMIZATIONS:
 
 -consider a different bridge animation like fade in
 
--add mouse listener that moves sun up and down when moving mouse up and down
 -maybe alternate the rotation speed of cube based on user mouse interactions?
--add background to 4th section in bridge (and colors gradient for mobile
--change name section to grid
 
--add hover fx and fill change fx
 
 -how hard would it be to add a better animation to examples opening up in SiteNav?
 
--add notes to playlist syncer page?  what else to say about it?
--add svgs to csharp layouts
 -double check that no event listeners don't get cleaned up on page change
 
 -work on OverlayText styling for CarouselItem
--need responsive styling for video carouselitems 
 
+-add svgs to csharp layouts
+-add notes to playlist syncer page?  what else to say about it?
+-add form to contact page that sends text and email when clicked?
+-finish content in about
+-finish last 4th section in bridge (and colors gradient for mobile and svg
+-need responsive styling for video carouselitems 
 -add functionality where when you click a web dev subsection it calls scrollTo() in helpers to make that section at the top
