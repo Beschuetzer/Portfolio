@@ -5,7 +5,6 @@
 	-moz-user-select: none; /* Old versions of Firefox */
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
-	
 
 	cursor: pointer;
 	z-index: $card-z-index;
@@ -22,13 +21,13 @@
 	transition: transform $animation-duration / 3 $animation-easing-standard;
 
 	@include respond(tab-port) {
-	margin: $default-font-size 0;
+		margin: $default-font-size 0;
 	}
 	@include respond(phone) {
-	margin: $default-font-size * 1.5 0;
+		margin: $default-font-size * 1.5 0;
 	}
 	@include respond(small-font) {
-	margin: $default-font-size * 3 0;
+		margin: $default-font-size * 3 0;
 	}
 
 	& * {
@@ -45,14 +44,14 @@
 		width: 100%;
 		height: 3px;
 		position: absolute;
-		bottom: -$default-font-size * .2;
-		left:0;
+		bottom: -$default-font-size * 0.2;
+		left: 0;
 		/* Reset the default appearance */
 		-webkit-appearance: none;
-				-moz-appearance: none;
-						appearance: none;
+		-moz-appearance: none;
+		appearance: none;
 		border: none;
-			
+
 		&::-webkit-progress-bar {
 			background-color: var(--color-primary-4);
 			border-radius: 1px;
@@ -60,18 +59,18 @@
 		}
 
 		&::-webkit-progress-value {
-			background-image:
-				 -webkit-linear-gradient(-45deg, 
-																 transparent 33%, rgba($color-primary-bridge-1, .1) 33%, 
-																 rgba($color-primary-bridge-1, .1) 66%, transparent 66%),
-				 -webkit-linear-gradient(top, 
-																 rgba($color-primary-bridge-4, .25), 
-																 rgba($color-primary-bridge-1, .25)),
-				 -webkit-linear-gradient(left,var(--color-primary-1),var(--color-primary-2))
-				;
-		
-				border-radius: 2px; 
-				background-size: 35px 20px, 100% 100%, 100% 100%;
+			background-image: -webkit-linear-gradient(
+					-45deg,
+					transparent 33%,
+					rgba($color-primary-bridge-1, 0.1) 33%,
+					rgba($color-primary-bridge-1, 0.1) 66%,
+					transparent 66%
+				),
+				-webkit-linear-gradient(top, rgba($color-primary-bridge-4, 0.25), rgba($color-primary-bridge-1, 0.25)),
+				-webkit-linear-gradient(left, var(--color-primary-1), var(--color-primary-2));
+
+			border-radius: 2px;
+			background-size: 35px 20px, 100% 100%, 100% 100%;
 		}
 	}
 
@@ -83,38 +82,36 @@
 		opacity: 0;
 		// visibility: hidden;
 		position: absolute;
-    left: 50%;
-    top: 0%;
-    // top: 0;
-    transform: translate(-50%, -0%);
-    font-size: $default-font-size * .25;
-    background-color: var(--color-primary-4);
-    border: .1px solid var(--color-primary-1);
-    // padding: 0.33rem;
-    width: 95%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-		transition:
-			opacity $animation-duration * 2 $animation-easing-standard,
-			transform $animation-duration $animation-easing-standard-easeInOutBack,
-		;		
+		left: 50%;
+		top: 0%;
+		// top: 0;
+		transform: translate(-50%, -0%);
+		font-size: $default-font-size * 0.25;
+		background-color: var(--color-primary-4);
+		border: 0.1px solid var(--color-primary-1);
+		// padding: 0.33rem;
+		width: 95%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: opacity $animation-duration * 2 $animation-easing-standard,
+			transform $animation-duration $animation-easing-standard-easeInOutBack;
 
 		@include respond(nav-break) {
-			font-size: $default-font-size * .4125;
+			font-size: $default-font-size * 0.4125;
 		}
 
 		& div {
-			padding: $default-font-size * .25;
+			padding: $default-font-size * 0.25;
 		}
 
 		& ul {
 			list-style: decimal;
-			padding-left: $default-font-size * .5;
-			font-size: $default-font-size * .2;
+			padding-left: $default-font-size * 0.5;
+			font-size: $default-font-size * 0.2;
 
 			@include respond(nav-break) {
-				font-size: $default-font-size * .4;
+				font-size: $default-font-size * 0.4;
 			}
 		}
 
@@ -143,9 +140,9 @@
 		// backface-visibility: hidden;
 		text-align: center;
 		font-size: $default-font-size * 1.25;
-    padding: $default-font-size * .25;
-    height: 100%;
-    width: 100%;
+		padding: $default-font-size * 0.25;
+		height: 100%;
+		width: 100%;
 		// padding: $default-font-size;
 	}
 	&__text {
@@ -157,7 +154,11 @@
 		// grid-template-columns: 80% 20%;
 	}
 
-	&__play, &__pause, &__close, &__stop,	&__restart {
+	&__play,
+	&__pause,
+	&__close,
+	&__stop,
+	&__restart {
 		cursor: pointer;
 		opacity: 0;
 		// visibility: hidden;
@@ -170,15 +171,18 @@
 		z-index: 10;
 		position: absolute;
 		transition: opacity $animation-duration $animation-easing-standard,
-			fill $animation-duration $animation-easing-standard
-		;		
+			fill $animation-duration $animation-easing-standard;
 	}
 
 	&__play {
 		top: 50%;
 	}
 
-	&__play-parent, &__pause-parent, &__close-parent, &__stop-parent,	&__restart-parent {
+	&__play-parent,
+	&__pause-parent,
+	&__close-parent,
+	&__stop-parent,
+	&__restart-parent {
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
@@ -187,18 +191,18 @@
 		position: absolute;
 	}
 
-
-	& :is(.card__pause, .card__stop, .card__restart, .card__play, .card__close):is(:active, :focus) {
+	&
+		:is(.card__pause, .card__stop, .card__restart, .card__play, .card__close):is(:active, :focus) {
 		fill: var(--color-primary-4);
 	}
 
-	& :is(.card__stop-parent, .card__pause-parent, .card__restart-parent, .card__play-parent, .card__close-parent):is(:active, :focus) svg {
+	&
+		:is(.card__stop-parent, .card__pause-parent, .card__restart-parent, .card__play-parent, .card__close-parent):is(:active, :focus)
+		svg {
 		visibility: visible;
 		fill: var(--color-primary-4);
-		transition:
-			opacity $animation-duration $animation-easing-standard,
-		;
-	}	
+		transition: opacity $animation-duration $animation-easing-standard;
+	}
 
 	&__play {
 		width: 100%;
@@ -223,8 +227,8 @@
 
 	&__restart {
 		left: 60%;
-		width: $card-pause-and-stop-width * .75;
-		height: $card-pause-and-stop-width * .75;
+		width: $card-pause-and-stop-width * 0.75;
+		height: $card-pause-and-stop-width * 0.75;
 	}
 
 	&__current-svg {
@@ -250,7 +254,8 @@
 			fill: rgba($color-primary-bridge-1, 1);
 		}
 
-		&:is(.card--open .card__content, .card--done .card__content):hover .card__close {
+		&:is(.card--open .card__content, .card--done .card__content):hover
+			.card__close {
 			opacity: $bridge-card-hover-button-opacity;
 			// visibility: visible;
 		}
@@ -267,7 +272,8 @@
 			opacity: 1;
 		}
 
-		& :is(.card__play-parent, .card__pause-parent, .card__close-parent, .card__stop-parent,	.card__restart-parent) {
+		&
+			:is(.card__play-parent, .card__pause-parent, .card__close-parent, .card__stop-parent, .card__restart-parent) {
 			height: auto;
 			width: auto;
 			position: static;
@@ -283,7 +289,7 @@
 		}
 
 		& .card__image {
-				width: 102%;
+			width: 102%;
 		}
 
 		& .card__title {
@@ -323,7 +329,9 @@
 			// visibility: visible;
 		}
 
-		& .card__content:hover :is(.card__pause, .card__stop, .card__restart, .card__close) {
+		&
+			.card__content:hover
+			:is(.card__pause, .card__stop, .card__restart, .card__close) {
 			opacity: $bridge-card-hover-button-opacity;
 			// visibility: visible;
 		}
@@ -340,7 +348,7 @@
 
 		& .card__close {
 			z-index: $card-z-index + 10;
-			
+
 			&:hover {
 				opacity: 1 !important;
 				// visibility: visible;
@@ -355,9 +363,9 @@
 			@include card-description-visible;
 		}
 
-		& :is(.card__pause, .card__stop){
+		& :is(.card__pause, .card__stop) {
 			opacity: 0;
-			visibility: hidden;			
+			visibility: hidden;
 		}
 
 		&:hover :is(.card__pause, .card__stop) {
@@ -385,7 +393,7 @@
 		}
 
 		& .card__content:hover :is(.card__pause) {
-			opacity: 0 ;
+			opacity: 0;
 			// visibility: hidden;
 		}
 
@@ -395,11 +403,9 @@
 		}
 	}
 
-	&--stopped .card__close, &--closed .card__close {
-		animation: 
-			bridge-color-change 6s infinite,
-			bridge-more 2s infinite,
-		;
+	&--stopped .card__close,
+	&--closed .card__close {
+		animation: color-change 6s infinite, bridge-more 2s infinite;
 
 		&:hover {
 			animation: none;

@@ -168,7 +168,7 @@ $carousel-grid-width: calc(
 			& .carousel__video ~ .carousel__image-description {
 				padding:
 					$default-font-size * 1
-					$carousel-svg-parent-width * 1
+					calc(#{$carousel-svg-parent-width} * 1 + #{$default-font-size})
 					$default-font-size * 1
 					$carousel-svg-parent-width * 2
 				;
@@ -345,7 +345,7 @@ $carousel-grid-width: calc(
 	}
 
 	& .card__restart-parent {
-		right: 0;
+		right: $default-font-size;
 		left: auto;
 	}
 
@@ -376,11 +376,11 @@ $carousel-grid-width: calc(
 	}
 
 	& .card__close {
-    transform: translate(5%,80%);
-		top: 0;
+		transform: translate(5%,80%);
     left: auto;
-    right: 0;
-    bottom: auto;
+    right: $default-font-size * 1;
+    top: auto;
+    bottom: 10vh;
     height: $carousel-svg-parent-width;
     width: $carousel-svg-parent-width;
     opacity: 0;
@@ -389,6 +389,11 @@ $carousel-grid-width: calc(
 	//showing close x when hovering
 	& .card__close-parent:hover .card__close{
 		opacity: 1;
+	}
+
+	//making close button more noticable
+	&__item--stopped ~ .card__close-parent .card__close, &__item--done ~ .card__close-parent .card__close {
+		animation: 5s infinite color-change;
 	}
 
 	//hiding pause when video is stopped

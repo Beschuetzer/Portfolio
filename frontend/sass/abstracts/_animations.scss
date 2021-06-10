@@ -126,19 +126,19 @@ $max-degrees: 2.5deg;
 	}
 }
 
-@keyframes bridge-color-change {
+@keyframes color-change {
 	0% {
 		opacity: 1;
-		fill: var(--color-primary-bridge-1);
+		fill: var(--color-primary-1);
 	}
 	33% {
-		fill: var(--color-primary-bridge-2);
+		fill: var(--color-primary-2);
 	}
 	66% {
-		fill: var(--color-primary-bridge-4);
+		fill: var(--color-primary-4);
 	}
 	100% {
-		fill: var(--color-primary-bridge-1);
+		fill: var(--color-primary-1);
 		opacity: 1;
 	}
 }

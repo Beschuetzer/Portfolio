@@ -96,7 +96,7 @@ const sections: CSharpSection[] = [
 						},
 						{
 							itemSrc: img6,
-							description: 	"Songs downloaded from OCRemix.org (including sub-linked songs)",
+							description: 	"Result of automatic download of songs (including sub-linked songs)",
 						},
 					]}
 					numberOfItemsInCarouselAtOneTime="3"

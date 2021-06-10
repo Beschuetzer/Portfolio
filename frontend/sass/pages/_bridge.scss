@@ -154,7 +154,7 @@
 				url(getSvgBackground(
 					bridge-section-2,
 					$color-bridge-section-svg-1,
-					$color-bridge-section-svg-1,
+					$color-bridge-section-svg-1
 				));
 			background-size: cover;
 
@@ -204,11 +204,11 @@
 
 		&:nth-of-type(3) {
 			background-image: $bridge-card-section-3-gradient,
-			url(getSvgBackground(
-				bridge-section-3,
-				$color-bridge-section-svg-3,
-				$color-primary-bridge-1,
-			));
+				url(getSvgBackground(
+					bridge-section-3,
+					$color-bridge-section-svg-3,
+					$color-primary-bridge-1
+				));
 
 			@include respond(tab-land) {
 				background-image: $bridge-card-section-3-gradient;
@@ -484,7 +484,7 @@
 			}
 
 			& svg:nth-child(2) {
-				animation: bridge-color-change 10s infinite;
+				animation: color-change 10s infinite;
 			}
 		}
 

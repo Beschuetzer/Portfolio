@@ -232,19 +232,19 @@
     transform: translate(-50%, -50%) rotate(0deg);
   }
 }
-@keyframes bridge-color-change {
+@keyframes color-change {
   0% {
     opacity: 1;
-    fill: var(--color-primary-bridge-1);
+    fill: var(--color-primary-1);
   }
   33% {
-    fill: var(--color-primary-bridge-2);
+    fill: var(--color-primary-2);
   }
   66% {
-    fill: var(--color-primary-bridge-4);
+    fill: var(--color-primary-4);
   }
   100% {
-    fill: var(--color-primary-bridge-1);
+    fill: var(--color-primary-1);
     opacity: 1;
   }
 }
@@ -1684,7 +1684,7 @@ body {
   opacity: 1 !important;
 }
 .card--stopped .card__close, .card--closed .card__close {
-  animation: bridge-color-change 6s infinite, bridge-more 2s infinite;
+  animation: color-change 6s infinite, bridge-more 2s infinite;
 }
 .card--stopped .card__close:hover, .card--closed .card__close:hover {
   animation: none;
@@ -2495,7 +2495,7 @@ body {
   border: 1px solid var(--color-primary-4);
 }
 .carousel__item--full-screen .carousel__video ~ .carousel__image-description {
-  padding: 1.6rem 10vh 1.6rem 20vh;
+  padding: 1.6rem calc(10vh * 1 + 1.6rem) 1.6rem 20vh;
 }
 .carousel__item--full-screen .carousel__image-description {
   display: flex;
@@ -2627,7 +2627,7 @@ body {
   left: 0;
 }
 .carousel .card__restart-parent {
-  right: 0;
+  right: 1.6rem;
   left: auto;
 }
 .carousel .card__stop-parent {
@@ -2645,16 +2645,19 @@ body {
 }
 .carousel .card__close {
   transform: translate(5%, 80%);
-  top: 0;
   left: auto;
-  right: 0;
-  bottom: auto;
+  right: 1.6rem;
+  top: auto;
+  bottom: 10vh;
   height: 10vh;
   width: 10vh;
   opacity: 0;
 }
 .carousel .card__close-parent:hover .card__close {
   opacity: 1;
+}
+.carousel__item--stopped ~ .card__close-parent .card__close, .carousel__item--done ~ .card__close-parent .card__close {
+  animation: 5s infinite color-change;
 }
 .carousel :is(.carousel__item--stopped, .carousel__item--done) ~ .card__pause-parent {
   display: none;
@@ -3498,7 +3501,7 @@ div.references__name {
   }
 }
 .hero__more--clicked svg:nth-child(2) {
-  animation: bridge-color-change 10s infinite;
+  animation: color-change 10s infinite;
 }
 .hero__more:hover svg {
   fill: var(--color-primary-4);
