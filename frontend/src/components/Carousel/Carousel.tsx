@@ -30,6 +30,7 @@ interface CarouselProps {
 	videoOverlayText?: string;
 	videoOverlayStyles?: CSSProperties;
 	videoOverlayChildren?: any;
+	dotSVGXLinkHref?: string,
 }
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -43,6 +44,7 @@ const Carousel: React.FC<CarouselProps> = ({
 	videoOverlayText = "",
 	videoOverlayStyles = {},
 	videoOverlayChildren = null,
+	dotSVGXLinkHref = "/sprite.svg#icon-dot-single",
 }) => {
 	let currentTranslationFactor = CAROUSEL_MIN_IMAGE_COUNT;
 	let itemsRef = useRef<RefObject<HTMLElement>>(null);
@@ -287,7 +289,7 @@ const Carousel: React.FC<CarouselProps> = ({
               ${index === 0 ? CAROUSEL_DOT_ACTIVE_CLASSNAME : ""}
             `}
 					onClick={(e: any) => handleDotClick(e)}>
-					<use xlinkHref="/sprite.svg#icon-dot-single"></use>
+					<use xlinkHref={dotSVGXLinkHref}></use>
 				</svg>
 			);
 		});

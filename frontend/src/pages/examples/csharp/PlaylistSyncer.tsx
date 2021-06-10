@@ -92,15 +92,31 @@ const sections: CSharpSection[] = [
 		children: [
 			<section className="csharp__carousel">
 				<Carousel
-					items={[imgProblem, demoVideo, img1, img2, img3, img4]}
-					alts={[
-						"156 songs transferred but an empty playlist...",
-						"Video Demonstration",
-						"The complete user interface",
-						"Left-side of UI",
-						"Playlists available section of UI",
-						"Transfer section of UI after transfer",
-						"Transfer section of UI during transfer",
+					items={[
+						{
+							itemSrc: imgProblem,
+							description: "156 songs transferred but an empty playlist...",
+						},
+						{
+							itemSrc: demoVideo,
+							description: "Video Demonstration",
+						},
+						{
+							itemSrc: img1,
+							description: "The complete user interface",
+						},
+						{
+							itemSrc: img2,
+							description: 	"Left-side of UI",
+						},
+						{
+							itemSrc: img3,
+							description: "Playlists available section of UI",
+						},
+						{
+							itemSrc: img4,
+							description: "Transfer section of UI after transfer",
+						},
 					]}
 					numberOfItemsInCarouselAtOneTime="3"
 					numberOfItemsToScrollOnClick="3"

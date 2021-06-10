@@ -33,7 +33,6 @@ export function getDefaultStyles () {
 }
 
 export function getStyles (stylesFromAbove: CSSProperties) {
-  debugger;
   const defaultStyles = getDefaultStyles();
   if (!stylesFromAbove) return defaultStyles;
   const keys = Object.keys(stylesFromAbove);

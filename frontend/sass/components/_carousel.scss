@@ -56,14 +56,14 @@ $carousel-grid-width: calc(
 		cursor: pointer;
 		width: $navbar__logo-width / 2;
 		height: $navbar__logo-width / 2;
-		fill: rgba(#{var(--color-primary-4-rgb)}, var(--carousel-dot-alpha, .5));
+		fill: rgba(#{var(--color-primary-1-rgb)}, var(--carousel-dot-alpha, .5));
 
 		&:hover {
 			--carousel-dot-alpha: .75;
 		}
 
 		&--active {
-			fill: var(--color-primary-1-rgb) !important;
+			fill: rgba(var(--color-primary-2-rgb),1) !important;
 		}
 	}
 
@@ -94,7 +94,7 @@ $carousel-grid-width: calc(
 		& svg {
 			width: $navbar__logo-width;
 			height: $navbar__logo-width;
-			fill: rgba(var(--color-primary-4-rgb), .75);
+			fill: rgba(var(--color-primary-1-rgb), .75);
 
 			@include respond(nav-switch) {
 				width: $default-font-size * 5;

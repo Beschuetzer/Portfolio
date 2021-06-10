@@ -2406,13 +2406,13 @@ body {
   cursor: pointer;
   width: 3.5vw;
   height: 3.5vw;
-  fill: rgba(var(--color-primary-4-rgb), var(--carousel-dot-alpha, 0.5));
+  fill: rgba(var(--color-primary-1-rgb), var(--carousel-dot-alpha, 0.5));
 }
 .carousel__dot:hover {
   --carousel-dot-alpha: .75;
 }
 .carousel__dot--active {
-  fill: var(--color-primary-1-rgb) !important;
+  fill: rgba(var(--color-primary-2-rgb), 1) !important;
 }
 .carousel__arrow-button {
   position: relative;
@@ -2439,7 +2439,7 @@ body {
 .carousel__arrow-button svg {
   width: 7vw;
   height: 7vw;
-  fill: rgba(var(--color-primary-4-rgb), 0.75);
+  fill: rgba(var(--color-primary-1-rgb), 0.75);
 }
 @media only screen and (max-width: 68.75em) {
   .carousel__arrow-button svg {
