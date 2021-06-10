@@ -106,3 +106,53 @@ export function setTranslationAmount(
 		}
 	}, ANIMATION_DURATION / 2);
 }
+
+export const handleSetTranslation = (
+	e: Event,
+	currentTranslationFactor: number,
+	numberOfItemsToScrollOnClick: number,
+	numberOfItemsInCarouselAtOneTime: number,
+  items: any[],
+): number => {
+	const maxImageCount =
+		numberOfItemsToScrollOnClick === 1
+			? items.length - +numberOfItemsInCarouselAtOneTime
+			: items.length - 1;
+
+	let hasClickedLeftArrow = false;
+	if (
+		(e.currentTarget as HTMLElement)?.classList.contains(
+			CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
+		)
+	)
+		hasClickedLeftArrow = true;
+
+	if (hasClickedLeftArrow) {
+		if (!Number.isInteger(currentTranslationFactor))
+			currentTranslationFactor = Math.floor(currentTranslationFactor);
+		else currentTranslationFactor -= 1;
+	} else {
+		if (!Number.isInteger(currentTranslationFactor))
+			currentTranslationFactor = Math.ceil(currentTranslationFactor);
+		else currentTranslationFactor += 1;
+	}
+
+	setCurrentActiveButton(
+		currentTranslationFactor * numberOfItemsToScrollOnClick,
+	);
+
+	if (
+		currentTranslationFactor * numberOfItemsToScrollOnClick <
+		CAROUSEL_MIN_IMAGE_COUNT
+	) {
+		return CAROUSEL_MIN_IMAGE_COUNT;
+	} else if (
+		currentTranslationFactor * numberOfItemsToScrollOnClick >
+		maxImageCount
+	) {
+		return Math.floor(
+			maxImageCount / numberOfItemsToScrollOnClick,
+		);
+	}
+  return currentTranslationFactor;
+};

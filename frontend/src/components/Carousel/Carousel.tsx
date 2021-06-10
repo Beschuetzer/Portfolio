@@ -15,8 +15,8 @@ import {
 	CAROUSEL_ITEM_CLASSNAME,
 	CAROUSEL_MIN_IMAGE_COUNT,
 	setArrowButtonsHiddenClass,
-	setCurrentActiveButton,
 	setTranslationAmount,
+	handleSetTranslation as getNewCurrentTranslationFactor
 } from "./util";
 
 interface CarouselProps {
@@ -60,51 +60,7 @@ const Carousel: React.FC<CarouselProps> = ({
 	useInterItemWidth(viewPortWidth, itemsRef, itemsWidthRef);
 
 	const handleArrowClick = (e: Event) => {
-		const maxImageCount =
-			numberOfItemsToScrollOnClick === 1
-				? items.length - +numberOfItemsInCarouselAtOneTime
-				: items.length - 1;
-
-		let hasClickedLeftArrow = false;
-		if (
-			(e.currentTarget as HTMLElement)?.classList.contains(
-				CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
-			)
-		)
-			hasClickedLeftArrow = true;
-
-		if (hasClickedLeftArrow) {
-			if (!Number.isInteger(currentTranslationFactor))
-				currentTranslationFactor = Math.floor(currentTranslationFactor);
-			else currentTranslationFactor -= 1;
-		} else {
-			if (!Number.isInteger(currentTranslationFactor))
-				currentTranslationFactor = Math.ceil(currentTranslationFactor);
-			else currentTranslationFactor += 1;
-		}
-
-		setCurrentActiveButton(
-			currentTranslationFactor * numberOfItemsToScrollOnClick,
-		);
-
-		// console.log('numberOfImagesInCarouselAtOneTime =', numberOfImagesInCarouselAtOneTime);
-		// console.log('numberOfImagesToScrollOnClick =',
-		// numberOfImagesToScrollOnClick);
-		// console.log('maxImageCount =', maxImageCount);
-
-		if (
-			currentTranslationFactor * numberOfItemsToScrollOnClick <
-			CAROUSEL_MIN_IMAGE_COUNT
-		) {
-			return (currentTranslationFactor = CAROUSEL_MIN_IMAGE_COUNT);
-		} else if (
-			currentTranslationFactor * numberOfItemsToScrollOnClick >
-			maxImageCount
-		) {
-			return (currentTranslationFactor = Math.floor(
-				maxImageCount / numberOfItemsToScrollOnClick,
-			));
-		}
+		currentTranslationFactor = getNewCurrentTranslationFactor(e, currentTranslationFactor, numberOfItemsToScrollOnClick, numberOfItemsInCarouselAtOneTime, items );
 
 		setArrowButtonsHiddenClass(
 			numberOfItemsInCarouselAtOneTime - 1,
