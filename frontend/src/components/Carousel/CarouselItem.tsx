@@ -5,8 +5,8 @@ import StopControl from "../VideoPlayer/StopControl";
 import PauseControl from "../VideoPlayer/PauseControl";
 import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
-import Video from "../VideoPlayer/Video";
-import { CAROUSEL_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./util";
+import Video, { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
+import { CarouselItemProps, CAROUSEL_CLASSNAME, CAROUSEL_DESCRIPTION_CLASSNAME, CAROUSEL_IMAGE_CLASSNAME, CAROUSEL_ITEM_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./util";
 import {
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
@@ -27,44 +27,18 @@ const CLASSNAMES_TO_REMOVE = [
 	DONE_CLASSNAME,
 ];
 
-interface CarouselItemProps {
-	descriptionClassname: string;
-	itemClassName: string;
-	imageClassname: string;
-	videoClassname: string;
-	foregroundVideoClassname: string;
-	imageAlt: string;
-	itemSrc: string;
-	videoType?: 'mp4' | 'ogv' | 'webm' | 'ogg';
-	videoAutoPlay?: boolean;
-	videoLoop?: boolean;
-	videoSvgXLinkHref: string
-	videoPlayControlSvgXLinkHref?: string;
-	videoStopControlSvgXLinkHref?: string;
-	videoRestartControlSvgXLinkHref?: string;
-	videoPauseControlSvgXLinkHref?: string;
-	videoCloseControlSvgXLinkHref?: string;
-	videoCloseControlClassesToRemove?: string;
-	videoOverlayStyles?: CSSProperties,
-	videoOverlayText?: string,
-	videoOverlayChildren?: any,
-	videoExtentions?: string[],
-	functionToRunOnClose?: any,
-	functionToGetContainer?: any,
-}
-
 const CarouselItem: React.FC<CarouselItemProps> = ({
-	descriptionClassname,
-	itemClassName,
-	imageClassname,
-	videoClassname,
-	foregroundVideoClassname,
-	imageAlt,
+	descriptionClassname = CAROUSEL_DESCRIPTION_CLASSNAME,
+	itemClassName = CAROUSEL_ITEM_CLASSNAME,
+	imageClassname = CAROUSEL_IMAGE_CLASSNAME,
+	videoClassname = CAROUSEL_VIDEO_CLASSNAME,
+	foregroundVideoClassname = FOREGROUND_VIDEO_CLASSNAME,
+	description: imageAlt,
 	itemSrc,
 	videoType = "mp4",
 	videoAutoPlay = false,
 	videoLoop = false,
-	videoSvgXLinkHref,
+	videoPlaySVGXLinkHref = "/sprite.svg#icon-play",
 	videoPlayControlSvgXLinkHref = "/sprite.svg#icon-play",
 	videoStopControlSvgXLinkHref = "/sprite.svg#icon-stop",
 	videoRestartControlSvgXLinkHref = "/sprite.svg#icon-restart",
@@ -81,7 +55,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const containerRef = useRef<HTMLElement>(null);
 	const progressBarRef = useRef<HTMLProgressElement>(null);
-	const isVideo = itemSrc.match(getRegexStringFromStringArray(videoExtentions));
+	const isVideo = itemSrc?.match(getRegexStringFromStringArray(videoExtentions));
 
 	function getRegexStringFromStringArray(fileExtensions: string[]) {
 		const mapped = fileExtensions.map((ext, index) => {
@@ -170,7 +144,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 			<React.Fragment>
 				<Video
 					type={videoType}
-					src={itemSrc}
+					src={itemSrc as string}
 					autoPlay={videoAutoPlay}
 					loop={videoLoop}
 					className={`${videoClassname} ${foregroundVideoClassname}`}
@@ -188,7 +162,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 				</Video>
 				;
 				<svg className={`${videoClassname}-svg`}>
-					<use xlinkHref={videoSvgXLinkHref}></use>
+					<use xlinkHref={videoPlaySVGXLinkHref}></use>
 				</svg>
 			</React.Fragment>
 		);
@@ -281,7 +255,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		<article ref={containerRef} className={itemClassName}>
 			{mediaToAdd}
 			<p className={descriptionClassname}>{imageAlt}</p>
-			{renderControls(isVideo)}
+			{renderControls(isVideo as RegExpMatchArray)}
 		</article>
 	);
 };

@@ -1,46 +1,50 @@
-import React, { RefObject, useRef } from "react";
+import React, { CSSProperties, RefObject, useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import CarouselItem from "./CarouselItem";
-import {
-	ANIMATION_DURATION, HIDDEN_CLASSNAME,
-} from "../constants";
+import { ANIMATION_DURATION, HIDDEN_CLASSNAME } from "../constants";
 import useInit from "./useInit";
 import useInterItemWidth from "./useInterItemWidth";
 import CarouselArrow from "./CarouselArrow";
-import { CAROUSEL_CLASSNAME, CAROUSEL_TRANSLATION_CSS_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./util";
-import { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
+import {
+	CarouselItemProps,
+	CAROUSEL_ARROW_BUTTONS_CLASSNAME,
+	CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
+	CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME,
+	CAROUSEL_CLASSNAME,
+	CAROUSEL_DOT_ACTIVE_CLASSNAME,
+	CAROUSEL_DOT_CLASSNAME,
+	CAROUSEL_ITEM_CLASSNAME,
+	CAROUSEL_MIN_IMAGE_COUNT,
+	CAROUSEL_TRANSITION_CLASSNAME,
+	CAROUSEL_TRANSLATION_CSS_CLASSNAME,
+} from "./util";
 
 interface CarouselProps {
-	viewPortWidth: number,
-	items: string[],
-	alts: string[],
-	numberOfItemsInCarouselAtOneTime: number,
-	numberOfItemsToScrollOnClick: number,
-	functionToRunOnClose?: any,
-	functionToGetContainer?: any,
+	viewPortWidth: number;
+	items: CarouselItemProps[];
+	descriptions: string[];
+	numberOfItemsInCarouselAtOneTime: number;
+	numberOfItemsToScrollOnClick: number;
+	functionToRunOnClose?: any;
+	functionToGetContainer?: any;
+	videoOverlayText?: string;
+	videoOverlayStyles?: CSSProperties;
+	videoOverlayChildren?: any;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
 	viewPortWidth,
 	items,
-	alts,
+	descriptions,
 	numberOfItemsInCarouselAtOneTime,
 	numberOfItemsToScrollOnClick,
 	functionToRunOnClose,
 	functionToGetContainer,
+	videoOverlayText = "",
+	videoOverlayStyles = {},
+	videoOverlayChildren = null,
 }) => {
-	const IMAGE_CLASSNAME = `${CAROUSEL_CLASSNAME}__image`;
-	const ITEM_CLASSNAME = `${CAROUSEL_CLASSNAME}__item`;
-	const TRANSITION_CLASSNAME = "carousel-transition";
-	const DESCRIPTION_CLASSNAME = `${IMAGE_CLASSNAME}-description`;
-
-	const DOT_CLASSNAME = `${CAROUSEL_CLASSNAME}__dot`;
-	const DOT_ACTIVE_CLASSNAME = `${DOT_CLASSNAME}--active`;
-	const ARROW_BUTTONS_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button`;
-	const ARROW_BUTTON_LEFT_CLASSNAME = `${ARROW_BUTTONS_CLASSNAME}--left`;
-	const ARROW_BUTTON_RIGHT_CLASSNAME = `${ARROW_BUTTONS_CLASSNAME}--right`;
-	const minImageCount = 0;
-	let currentTranslationFactor = minImageCount;
+	let currentTranslationFactor = CAROUSEL_MIN_IMAGE_COUNT;
 	let itemsRef = useRef<RefObject<HTMLElement>>(null);
 	let itemsWidthRef = useRef<RefObject<HTMLElement>>(null);
 	let leftArrowRef = useRef<RefObject<HTMLElement>>(null);
@@ -50,15 +54,15 @@ const Carousel: React.FC<CarouselProps> = ({
 	useInit(
 		leftArrowRef,
 		rightArrowRef,
-		ARROW_BUTTON_RIGHT_CLASSNAME,
-		ARROW_BUTTON_LEFT_CLASSNAME,
-		ITEM_CLASSNAME,
-    itemsRef,
+		CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME,
+		CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
+		CAROUSEL_ITEM_CLASSNAME,
+		itemsRef,
 	);
 	useInterItemWidth(viewPortWidth, itemsRef, itemsWidthRef);
 
 	function setArrowButtonsHiddenClass(
-		minImageCount: number,
+		CAROUSEL_MIN_IMAGE_COUNT: number,
 		maxImageCount: number,
 		currentTranslationFactor: number,
 	) {
@@ -79,16 +83,19 @@ const Carousel: React.FC<CarouselProps> = ({
 			currentTranslationFactor * numberOfItemsToScrollOnClick -
 			1;
 
-		if (currentCount <= minImageCount) leftArrow.classList.add(HIDDEN_CLASSNAME);
-		if (currentCount >= maxImageCount) rightArrow.classList.add(HIDDEN_CLASSNAME);
+		if (currentCount <= CAROUSEL_MIN_IMAGE_COUNT)
+			leftArrow.classList.add(HIDDEN_CLASSNAME);
+		if (currentCount >= maxImageCount)
+			rightArrow.classList.add(HIDDEN_CLASSNAME);
 	}
 
 	function setCurrentActiveButton(indexOfActiveDot: number) {
-		const dots = document.querySelectorAll(`.${DOT_CLASSNAME}`);
+		const dots = document.querySelectorAll(`.${CAROUSEL_DOT_CLASSNAME}`);
 		for (let i = 0; i < dots.length; i++) {
 			const dot = dots[i];
-			if (i !== indexOfActiveDot) dot?.classList.remove(DOT_ACTIVE_CLASSNAME);
-			else dot?.classList.add(DOT_ACTIVE_CLASSNAME);
+			if (i !== indexOfActiveDot)
+				dot?.classList.remove(CAROUSEL_DOT_ACTIVE_CLASSNAME);
+			else dot?.classList.add(CAROUSEL_DOT_ACTIVE_CLASSNAME);
 		}
 	}
 
@@ -98,7 +105,7 @@ const Carousel: React.FC<CarouselProps> = ({
 		const itemElements = (itemsRef as any).current;
 		for (let i = 0; i < itemElements.length; i++) {
 			const item = itemElements[i];
-			item?.classList.add(TRANSITION_CLASSNAME);
+			item?.classList.add(CAROUSEL_TRANSITION_CLASSNAME);
 		}
 
 		const newValue = `${CAROUSEL_TRANSLATION_CSS_CLASSNAME}: -${amountToTranslateImages}px`;
@@ -107,7 +114,7 @@ const Carousel: React.FC<CarouselProps> = ({
 		removeTransitionTimeout = setTimeout(() => {
 			for (let i = 0; i < itemElements.length; i++) {
 				const item = itemElements[i];
-				item?.classList.remove(TRANSITION_CLASSNAME);
+				item?.classList.remove(CAROUSEL_TRANSITION_CLASSNAME);
 			}
 		}, ANIMATION_DURATION / 2);
 	}
@@ -119,7 +126,11 @@ const Carousel: React.FC<CarouselProps> = ({
 				: items.length - 1;
 
 		let hasClickedLeftArrow = false;
-		if ((e.currentTarget as HTMLElement)?.classList.contains(ARROW_BUTTON_LEFT_CLASSNAME))
+		if (
+			(e.currentTarget as HTMLElement)?.classList.contains(
+				CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
+			)
+		)
 			hasClickedLeftArrow = true;
 
 		if (hasClickedLeftArrow) {
@@ -143,9 +154,9 @@ const Carousel: React.FC<CarouselProps> = ({
 
 		if (
 			currentTranslationFactor * numberOfItemsToScrollOnClick <
-			minImageCount
+			CAROUSEL_MIN_IMAGE_COUNT
 		) {
-			return (currentTranslationFactor = minImageCount);
+			return (currentTranslationFactor = CAROUSEL_MIN_IMAGE_COUNT);
 		} else if (
 			currentTranslationFactor * numberOfItemsToScrollOnClick >
 			maxImageCount
@@ -172,54 +183,96 @@ const Carousel: React.FC<CarouselProps> = ({
 		let indexOfCurrentDot = -1;
 		let indexOfDotToMoveTo = -1;
 
-		const dots = document.querySelectorAll(`.${DOT_CLASSNAME}`);
+		const dots = document.querySelectorAll(`.${CAROUSEL_DOT_CLASSNAME}`);
 		const clickedOnDot = e.currentTarget;
 
 		for (let i = 0; i < dots.length; i++) {
 			const dot = dots[i];
 			if (dot === clickedOnDot) indexOfDotToMoveTo = i;
-			else if (dot?.classList.contains(DOT_ACTIVE_CLASSNAME))
+			else if (dot?.classList.contains(CAROUSEL_DOT_ACTIVE_CLASSNAME))
 				indexOfCurrentDot = i;
 
 			if (indexOfCurrentDot !== -1 && indexOfDotToMoveTo !== -1) break;
 		}
 
-		const amountToTranslateImages = (itemsWidthRef as any).current * indexOfDotToMoveTo;
+		const amountToTranslateImages =
+			(itemsWidthRef as any).current * indexOfDotToMoveTo;
 
 		currentTranslationFactor =
 			indexOfDotToMoveTo / numberOfItemsToScrollOnClick;
 
-		setArrowButtonsHiddenClass(0, items.length - 1, indexOfDotToMoveTo === 0 ? 0 : currentTranslationFactor);
+		setArrowButtonsHiddenClass(
+			0,
+			items.length - 1,
+			indexOfDotToMoveTo === 0 ? 0 : currentTranslationFactor,
+		);
 
 		setTranslationAmount(amountToTranslateImages);
-		dots[indexOfDotToMoveTo]?.classList.add(DOT_ACTIVE_CLASSNAME);
-		dots[indexOfCurrentDot]?.classList.remove(DOT_ACTIVE_CLASSNAME);
+		dots[indexOfDotToMoveTo]?.classList.add(CAROUSEL_DOT_ACTIVE_CLASSNAME);
+		dots[indexOfCurrentDot]?.classList.remove(CAROUSEL_DOT_ACTIVE_CLASSNAME);
 	};
 
 	const renderItems = () => {
-    return items.map((item, index) => {
-			const carouselItemProps = {
-				descriptionClassname: DESCRIPTION_CLASSNAME,
-				itemClassName: ITEM_CLASSNAME,
-				imageClassname: IMAGE_CLASSNAME,
-				videoClassname: CAROUSEL_VIDEO_CLASSNAME,
-				foregroundVideoClassname: FOREGROUND_VIDEO_CLASSNAME,
-				imageAlt: alts[index],
-				itemSrc: item,
-				videoSvgXLinkHref: "/sprite.svg#icon-play",
-				videoPlayControlSvgXLinkHref: "/sprite.svg#icon-play",
-				videoStopControlSvgXLinkHref: "/sprite.svg#icon-stop",
-				videoRestartControlSvgXLinkHref: "/sprite.svg#icon-restart",
-				videoPauseControlSvgXLinkHref: "/sprite.svg#icon-pause",
-				videoCloseControlSvgXLinkHref: "/sprite.svg#icon-close",
-				functionToGetContainer,
-				functionToRunOnClose,
+		return items.map((item, index) => {
+			const carouselItemProps: CarouselItemProps = {
+				descriptionClassname: item.descriptionClassname
+					? item.descriptionClassname
+					: undefined,
+				itemClassName: item.itemClassName ? item.itemClassName : undefined,
+				imageClassname: item.imageClassname ? item.imageClassname : undefined,
+				videoClassname: item.videoClassname ? item.videoClassname : undefined,
+				foregroundVideoClassname: item.foregroundVideoClassname
+					? item.foregroundVideoClassname
+					: undefined,
+				description: item.description ? item.description : undefined,
+				itemSrc: item.itemSrc ? item.itemSrc : undefined,
+				videoType: item.videoType ? item.videoType : undefined,
+				videoAutoPlay: item.videoAutoPlay ? item.videoAutoPlay : undefined,
+				videoLoop: item.videoLoop ? item.videoLoop : undefined,
+				videoPlaySVGXLinkHref: item.videoPlaySVGXLinkHref
+					? item.videoPlaySVGXLinkHref
+					: undefined,
+				videoPlayControlSvgXLinkHref: item.videoPlayControlSvgXLinkHref
+					? item.videoPlayControlSvgXLinkHref
+					: undefined,
+				videoStopControlSvgXLinkHref: item.videoStopControlSvgXLinkHref
+					? item.videoStopControlSvgXLinkHref
+					: undefined,
+				videoRestartControlSvgXLinkHref: item.videoRestartControlSvgXLinkHref
+					? item.videoRestartControlSvgXLinkHref
+					: undefined,
+				videoPauseControlSvgXLinkHref: item.videoPauseControlSvgXLinkHref
+					? item.videoPauseControlSvgXLinkHref
+					: undefined,
+				videoCloseControlSvgXLinkHref: item.videoCloseControlSvgXLinkHref
+					? item.videoCloseControlSvgXLinkHref
+					: undefined,
+				videoCloseControlClassesToRemove: item.videoCloseControlClassesToRemove
+					? item.videoCloseControlClassesToRemove
+					: undefined,
+				videoExtentions: item.videoExtentions
+					? item.videoExtentions
+					: undefined,
+				videoOverlayText: item.videoOverlayText
+					? item.videoOverlayText
+					: undefined,
+				videoOverlayStyles: item.videoOverlayStyles
+					? item.videoOverlayStyles
+					: undefined,
+				videoOverlayChildren: item.videoOverlayChildren
+					? item.videoOverlayChildren
+					: undefined,
+				functionToRunOnClose: item.functionToRunOnClose
+					? item.functionToRunOnClose
+					: undefined,
+				functionToGetContainer: item.functionToGetContainer
+					? item.functionToGetContainer
+					: undefined,
 			};
 
 			return (
-
 				<React.Fragment key={index}>
-					<CarouselItem {...carouselItemProps} />
+					<CarouselItem {...(carouselItemProps as any)} />
 				</React.Fragment>
 			);
 		});
@@ -231,11 +284,11 @@ const Carousel: React.FC<CarouselProps> = ({
 				<svg
 					key={index}
 					className={`
-              ${DOT_CLASSNAME}
-              ${DOT_CLASSNAME}-${index}
-              ${index === 0 ? DOT_ACTIVE_CLASSNAME : ""}
+              ${CAROUSEL_DOT_CLASSNAME}
+              ${CAROUSEL_DOT_CLASSNAME}-${index}
+              ${index === 0 ? CAROUSEL_DOT_ACTIVE_CLASSNAME : ""}
             `}
-					onClick={(e: any ) => handleDotClick(e)}>
+					onClick={(e: any) => handleDotClick(e)}>
 					<use xlinkHref="/sprite.svg#icon-dot-single"></use>
 				</svg>
 			);
@@ -244,23 +297,23 @@ const Carousel: React.FC<CarouselProps> = ({
 
 	return (
 		<React.Fragment>
-			<article className="carousel">
-        {renderItems()}
-      </article>
+			<article className="carousel">{renderItems()}</article>
 
-      <CarouselArrow
-        onClick={(e: any) => handleArrowClick(e)}
-        className={`hidden ${ARROW_BUTTONS_CLASSNAME} ${ARROW_BUTTON_LEFT_CLASSNAME}`}
-        svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
-      />
+			<CarouselArrow
+				onClick={(e: any) => handleArrowClick(e)}
+				className={`hidden ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME}`}
+				svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
+			/>
 
-      <CarouselArrow
-        onClick={(e: any) => handleArrowClick(e)}
-        className={` ${ARROW_BUTTONS_CLASSNAME} ${ARROW_BUTTON_RIGHT_CLASSNAME} `}
-        svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
-      />
+			<CarouselArrow
+				onClick={(e: any) => handleArrowClick(e)}
+				className={` ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME} `}
+				svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
+			/>
 
-			<div className={`${CAROUSEL_CLASSNAME}__dots`}>{renderCarouselButtons()}</div>
+			<div className={`${CAROUSEL_CLASSNAME}__dots`}>
+				{renderCarouselButtons()}
+			</div>
 		</React.Fragment>
 	);
 };
@@ -268,8 +321,9 @@ const Carousel: React.FC<CarouselProps> = ({
 const mapStateToProps = (state: RootStateOrAny, ownProps: any) => {
 	return {
 		viewPortWidth: state.general.viewPortWidth,
-		numberOfItemsToScrollOnClick: +(ownProps.numberOfItemsToScrollOnClick),
-		numberOfItemsInCarouselAtOneTime: +(ownProps.numberOfItemsInCarouselAtOneTime),
+		numberOfItemsToScrollOnClick: +ownProps.numberOfItemsToScrollOnClick,
+		numberOfItemsInCarouselAtOneTime:
+			+ownProps.numberOfItemsInCarouselAtOneTime,
 	};
 };
 

@@ -16,7 +16,6 @@ import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
 import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
 import { CSharpSection } from "../../../components/constants";
-import OverlayText from "../../../components/OverlayText/OverlayText";
 
 const sectionNames = [
 	'Description',
@@ -66,24 +65,44 @@ const sections: CSharpSection[] = [
 		children: [
 			<section className={`${C_SHARP_CLASSNAME}__${CAROUSEL_CLASSNAME}`}>
 				<Carousel
-					items={[problemVideo, demoVideo, img1, img2, img3, img4, img5, img6]}
-					alts={[
-						"The manual way of downloading",
-						"The automated way of downloading",
-						"The User interface",
-						"Options available",
-						"Full-screen user interface when downloading",
-						"Integrated file-renaming tool used to standardize file names of downloads",
-						"A list of songs from ocremix.org. A pain to download manually...",
-						"Songs downloaded from OCRemix.org (including sub-linked songs)",
+					items={[
+						{
+							itemSrc: problemVideo,
+							description: "The manual way of downloading",
+						},
+						{
+							itemSrc: demoVideo,
+							description: "The automated way of downloading",
+						},
+						{
+							itemSrc: img1,
+							description: "The User interface",
+						},
+						{
+							itemSrc: img2,
+							description: 	"Options available",
+						},
+						{
+							itemSrc: img3,
+							description: "Full-screen user interface when downloading",
+						},
+						{
+							itemSrc: img4,
+							description: "Integrated file-renaming tool used to standardize file names of downloads",
+						},
+						{
+							itemSrc: img5,
+							description: "A list of songs from ocremix.org. A pain to download manually...",
+						},
+						{
+							itemSrc: img6,
+							description: 	"Songs downloaded from OCRemix.org (including sub-linked songs)",
+						},
 					]}
 					numberOfItemsInCarouselAtOneTime="3"
 					numberOfItemsToScrollOnClick="3"
 					functionToGetContainer={functionToGetContainer}
 					functionToRunOnClose={fixZIndexIssue.bind(null, null as any, `#${sectionNames[1].toLowerCase()}`)}
-					videoOverlayChildren=""
-					videoOverlayStyles=""
-					videoOverlayText=""
 				>
 				</Carousel>
 			</section>
