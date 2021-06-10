@@ -695,7 +695,7 @@
 		grid-template-rows: auto;
 		grid-template-columns: repeat(
 			auto-fill,
-			minmax($default-font-size * 9.5375, 1fr)
+			minmax(var(--page-nav-min-column-width), 1fr)
 		);
 		justify-items: center;
 		margin-left: $default-font-size * 0.25;

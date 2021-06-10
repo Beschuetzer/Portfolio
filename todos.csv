@@ -46,4 +46,5 @@ OPTIMIZATIONS:
 -add functionality where when you click a web dev subsection it calls scrollTo() in helpers to make that section at the top
 -refactor Carousel (move to .utils)
 -fix bug where changing pages via SiteNav causes PageNav color to be incorrect until scrolling 
-
+-have PageNav dynamically adjust template column min width based total width /  on number of items it has + 1 => in px
+  widthOfPageNav / (itemCount + 1) + .1px
