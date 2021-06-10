@@ -1,10 +1,7 @@
 import React, { CSSProperties, useRef, useEffect } from 'react'
+import { getStyles } from './utils';
 
 type Positions = "relative" | 'static' | 'absolute' | 'fixed';
-
-const defaultStyles = {
-
-}
 
 interface OverlayTextProps {
   positionType?: Positions,
@@ -42,53 +39,14 @@ const OverlayText: React.FC<OverlayTextProps> = ({
 }) => {
 
   const reference = useRef<any>(null);
+  let stylesToUse = getStyles(styles as CSSProperties);
   useEffect(() => {
     //need to set parent to position relative inline style
-    (reference.current.parentNode?.style as CSSProperties).position = positionType
+    (reference.current.parentNode?.style as CSSProperties).position = positionType;
   }, [positionType])
 
-  function getStyles (stylesFromAbove: CSSProperties) {
-    //if styles from above then iterate through each style and override default style with it
-
-    interface DefaultStyles {
-      position: string,
-      top: string,
-      left: string,
-      bottom: string,
-      right: string,
-      transform: string,
-      backgroundColor: string,
-      color: string,
-      zIndex: number,
-      backdropFilter: string,
-    }
-
-    let defaultStyles: CSSProperties = {
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
-      bottom: 'auto',
-      right: 'auto',
-      transform: "translate(-50%, -50%)",
-      backgroundColor: '#f7f7f7',
-      color: '#000000',
-      zIndex: 10000,
-      backdropFilter: 'blur(10px)',
-    }
-
-    const keys = Object.keys(stylesFromAbove);
-    for (let i = 0; i < keys.length; i++) {
-      const keyFromAbove = keys[i];
-      if (defaultStyles[keyFromAbove as keyof DefaultStyles]) {
-        defaultStyles[keyFromAbove] = stylesFromAbove[keyFromAbove as keyof DefaultStyles];
-      }
-    }
-    
-    return defaultStyles
-  }
-
   return (
-    <div ref={reference} className={`${cssClassname}`}>
+    <div ref={reference} className={`${cssClassname}`} style={stylesToUse ? stylesToUse : null}>
       <h3 className={`${cssClassname}-title` }>{titleText}</h3>
       <div className={`${cssClassname}-content` }>
         {children}

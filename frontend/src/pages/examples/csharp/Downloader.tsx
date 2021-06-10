@@ -16,6 +16,7 @@ import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
 import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
 import { CSharpSection } from "../../../components/constants";
+import OverlayText from "../../../components/OverlayText/OverlayText";
 
 const sectionNames = [
 	'Description',
@@ -80,7 +81,11 @@ const sections: CSharpSection[] = [
 					numberOfItemsToScrollOnClick="3"
 					functionToGetContainer={functionToGetContainer}
 					functionToRunOnClose={fixZIndexIssue.bind(null, null as any, `#${sectionNames[1].toLowerCase()}`)}
-				/>
+					videoOverlayChildren=""
+					videoOverlayStyles=""
+					videoOverlayText=""
+				>
+				</Carousel>
 			</section>
 		]
 	},

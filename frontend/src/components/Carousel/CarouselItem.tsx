@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { CSSProperties, useRef } from "react";
 
 import PlayControl from "../VideoPlayer/PlayControl";
 import StopControl from "../VideoPlayer/StopControl";
@@ -11,8 +11,8 @@ import {
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
 } from "../VideoPlayer/utils";
-import { Z_INDEX_CONTENT_CLASSNAME } from '../constants';
 import { fixZIndexIssue } from "../utils";
+import OverlayText from "../OverlayText/OverlayText";
 
 const FULLSCREEN_CLASSNAME = "full-screen";
 const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
@@ -45,6 +45,9 @@ interface CarouselItemProps {
 	videoPauseControlSvgXLinkHref?: string;
 	videoCloseControlSvgXLinkHref?: string;
 	videoCloseControlClassesToRemove?: string;
+	videoOverlayStyles?: CSSProperties,
+	videoOverlayText?: string,
+	videoOverlayChildren?: any,
 	videoExtentions?: string[],
 	functionToRunOnClose?: any,
 	functionToGetContainer?: any,
@@ -69,6 +72,9 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	videoCloseControlSvgXLinkHref = "/sprite.svg#icon-close",
 	videoCloseControlClassesToRemove = CLASSNAMES_TO_REMOVE,
 	videoExtentions = ["mp4", "ogv", "webm", "ogg"],
+	videoOverlayText = '',
+	videoOverlayStyles = {},
+	videoOverlayChildren = null,
 	functionToRunOnClose,
 	functionToGetContainer,
 }) => {
@@ -172,7 +178,14 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 					reference={videoRef}
 					progressBarRef={progressBarRef}
 					progressBarOnClick={onProgressBarClick}
-				/>
+				>
+					<OverlayText 
+						titleText={videoOverlayText}
+						styles={videoOverlayStyles}
+					>
+						{videoOverlayChildren}
+					</OverlayText>
+				</Video>
 				;
 				<svg className={`${videoClassname}-svg`}>
 					<use xlinkHref={videoSvgXLinkHref}></use>
