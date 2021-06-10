@@ -122,7 +122,6 @@ export function fixZIndexIssue(item: HTMLElement, additionalSelector: string, sh
 }
 
 export function functionToGetContainer (e: Event) {
-  debugger
   return (e.currentTarget as any).parentNode.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`);		
 }
 
