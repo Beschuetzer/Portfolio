@@ -112,7 +112,7 @@ export const handleSetTranslation = (
 	currentTranslationFactor: number,
 	numberOfItemsToScrollOnClick: number,
 	numberOfItemsInCarouselAtOneTime: number,
-  items: any[],
+	items: any[],
 ): number => {
 	const maxImageCount =
 		numberOfItemsToScrollOnClick === 1
@@ -150,9 +150,60 @@ export const handleSetTranslation = (
 		currentTranslationFactor * numberOfItemsToScrollOnClick >
 		maxImageCount
 	) {
-		return Math.floor(
-			maxImageCount / numberOfItemsToScrollOnClick,
-		);
+		return Math.floor(maxImageCount / numberOfItemsToScrollOnClick);
 	}
-  return currentTranslationFactor;
+	return currentTranslationFactor;
+};
+
+export const getCurrentTranslationFactorFromDots = (
+  e: MouseEvent,
+  items: any[],
+  itemsRef: RefObject<HTMLElement>,
+	itemsWidthRef: RefObject<HTMLElement>,
+  leftArrowRef: RefObject<HTMLElement>,
+  rightArrowRef: RefObject<HTMLElement>,
+  numberOfItemsInCarouselAtOneTime: number,
+	numberOfItemsToScrollOnClick: number,
+	removeTransitionTimeout: any,
+) => {
+	let indexOfCurrentDot = -1;
+	let indexOfDotToMoveTo = -1;
+
+	const dots = document.querySelectorAll(`.${CAROUSEL_DOT_CLASSNAME}`);
+	const clickedOnDot = e.currentTarget;
+
+	for (let i = 0; i < dots.length; i++) {
+		const dot = dots[i];
+		if (dot === clickedOnDot) indexOfDotToMoveTo = i;
+		else if (dot?.classList.contains(CAROUSEL_DOT_ACTIVE_CLASSNAME))
+			indexOfCurrentDot = i;
+
+		if (indexOfCurrentDot !== -1 && indexOfDotToMoveTo !== -1) break;
+	}
+
+	const amountToTranslateImages =
+		(itemsWidthRef as any).current * indexOfDotToMoveTo;
+
+	const currentTranslationFactor =
+		indexOfDotToMoveTo / numberOfItemsToScrollOnClick;
+
+	setArrowButtonsHiddenClass(
+		0,
+		items.length - 1,
+		indexOfDotToMoveTo === 0 ? 0 : currentTranslationFactor,
+		leftArrowRef as any,
+		rightArrowRef as any,
+		numberOfItemsInCarouselAtOneTime,
+		numberOfItemsToScrollOnClick,
+	);
+
+	removeTransitionTimeout = setTranslationAmount(
+		amountToTranslateImages,
+		removeTransitionTimeout,
+		itemsRef as any,
+	);
+	dots[indexOfDotToMoveTo]?.classList.add(CAROUSEL_DOT_ACTIVE_CLASSNAME);
+	dots[indexOfCurrentDot]?.classList.remove(CAROUSEL_DOT_ACTIVE_CLASSNAME);
+
+	return [currentTranslationFactor, removeTransitionTimeout];
 };

@@ -16,7 +16,8 @@ import {
 	CAROUSEL_MIN_IMAGE_COUNT,
 	setArrowButtonsHiddenClass,
 	setTranslationAmount,
-	handleSetTranslation as getNewCurrentTranslationFactor
+	handleSetTranslation as getNewCurrentTranslationFactor,
+	getCurrentTranslationFactorFromDots
 } from "./util";
 
 interface CarouselProps {
@@ -80,40 +81,7 @@ const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	const handleDotClick = (e: MouseEvent) => {
-		let indexOfCurrentDot = -1;
-		let indexOfDotToMoveTo = -1;
-
-		const dots = document.querySelectorAll(`.${CAROUSEL_DOT_CLASSNAME}`);
-		const clickedOnDot = e.currentTarget;
-
-		for (let i = 0; i < dots.length; i++) {
-			const dot = dots[i];
-			if (dot === clickedOnDot) indexOfDotToMoveTo = i;
-			else if (dot?.classList.contains(CAROUSEL_DOT_ACTIVE_CLASSNAME))
-				indexOfCurrentDot = i;
-
-			if (indexOfCurrentDot !== -1 && indexOfDotToMoveTo !== -1) break;
-		}
-
-		const amountToTranslateImages =
-			(itemsWidthRef as any).current * indexOfDotToMoveTo;
-
-		currentTranslationFactor =
-			indexOfDotToMoveTo / numberOfItemsToScrollOnClick;
-
-		setArrowButtonsHiddenClass(
-			0,
-			items.length - 1,
-			indexOfDotToMoveTo === 0 ? 0 : currentTranslationFactor,
-			leftArrowRef as any,
-			rightArrowRef as any,
-			numberOfItemsInCarouselAtOneTime,
-			numberOfItemsToScrollOnClick,
-		);
-
-		removeTransitionTimeout = setTranslationAmount(amountToTranslateImages, removeTransitionTimeout, itemsRef as any);
-		dots[indexOfDotToMoveTo]?.classList.add(CAROUSEL_DOT_ACTIVE_CLASSNAME);
-		dots[indexOfCurrentDot]?.classList.remove(CAROUSEL_DOT_ACTIVE_CLASSNAME);
+		[currentTranslationFactor, removeTransitionTimeout] = getCurrentTranslationFactorFromDots(e, items, itemsRef as any, itemsWidthRef as any, leftArrowRef as any, rightArrowRef as any, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick, removeTransitionTimeout as any);
 	};
 
 	const renderItems = () => {
