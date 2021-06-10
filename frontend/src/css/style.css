@@ -2586,7 +2586,7 @@ body {
   bottom: 0;
   width: 100%;
   position: absolute;
-  color: var(--color-primary-1);
+  color: var(--color-primary-4);
   z-index: 10000;
   background: rgba(var(--color-primary-1-rgb), 0.95);
   padding: 1.6rem;
