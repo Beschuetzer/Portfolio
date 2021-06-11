@@ -68,7 +68,7 @@
   --scrollbar-width: 1.6rem;
   --default-font-size: 1.6rem;
   --page-nav-min-column-width: calc(1.6rem * 9.5375);
-  --site-nav-button-width: 7.5vw ;
+  --site-nav-button-width: 7.5vw;
   --site-nav-item-gradient-direction: 45deg;
   --site-nav-linear-gradient: linear-gradient(
   	to right,
@@ -90,7 +90,7 @@
   --tab-land-max-width: 58.5625em;
   --big-desktop-min-width: 112.5em;
   --nav-switch-width: 68.75em;
-  --larger-than-nav-switch: calc(68.75em + .001em);
+  --larger-than-nav-switch: calc(68.75em + 0.001em);
   --header-toggler-svg-rotation: 180deg;
   --header-toggler-translate-x: 0;
   --header-toggler-translate-y: 0;
@@ -1940,7 +1940,7 @@ body {
 }
 .skills__title--animating, .skills__title--animating:link, .skills__title--animating:visited, .skills__section .skills__section .skills__title {
   cursor: pointer;
-  background: linear-gradient(to left, var(--color-primary-1) 0%, var(--color-primary-4) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
+  background: linear-gradient(to left, rgba(var(--color-primary-1-rgb), 1) 0%, rgba(var(--color-primary-4-rgb), 1) 5%, rgba(var(--color-primary-1-rgb), 1) 10%, rgba(var(--color-primary-1-rgb), 1) 100%);
   background-size: 200% auto;
   background-clip: text;
   color: transparent;
@@ -2810,15 +2810,56 @@ body {
   transform: translate(0, 100vh);
   animation: 1.5s 1 translateToZero forwards cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
-.home__footer {
-  position: absolute;
-  bottom: 16%;
-  transform: translate(0%, 50%);
-  left: 0%;
+.home__main {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  --home-column-height: 33vh;
+  --home-column-width: calc(
+  			((100vw - calc(
+  	85rem + ((100vw - 85rem) / 2) + 7vw
+  )) + 7vw) * 1
+  		);
+  grid-template-columns: repeat(3, var(--home-column-width)) 1fr repeat(3, var(--home-column-width));
+  grid-template-rows: var(--home-column-height) 1fr var(--home-column-height);
+}
+.home__main-welcome {
+  padding: 1.6rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  grid-column: 1/-1;
+  grid-row: 3/-1;
+  --welcome-opacity: .9;
+}
+.home__main-welcome h4 {
+  font-size: 6.4rem;
+}
+.home__main-welcome p {
+  color: rgba(var(--color-primary-4-rgb), var(--welcome-opacity));
+  margin: 1.6rem;
+  font-size: 1.6rem;
+  transition: color 0.5s ease;
+}
+.home__main-welcome:hover p {
+  --welcome-opacity: 1;
+}
+.home__main-link {
+  cursor: pointer;
+  background: linear-gradient(to left, rgba(var(--color-primary-4-rgb), 1) 0%, rgba(var(--color-primary-1-rgb), 0.01) 5%, rgba(var(--color-primary-4-rgb), 1) 10%, rgba(var(--color-primary-4-rgb), 1) 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  color: transparent;
+  animation: animate-skills infinite 10s;
+  border: none;
+}
+.home__main-link:hover {
+  color: rgba(var(--color-primary-2-rgb), 1);
 }
 
 .resume {
@@ -3082,7 +3123,7 @@ body {
   border-image: linear-gradient(to right, var(--color-primary-4) 0%, var(--color-primary-1) 50%, var(--color-primary-1) 50%, var(--color-primary-4) 100%);
   border-image-slice: 1;
   cursor: pointer;
-  background: linear-gradient(to left, var(--color-primary-1) 0%, var(--color-primary-4) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
+  background: linear-gradient(to left, rgba(var(--color-primary-1-rgb), 1) 0%, rgba(var(--color-primary-4-rgb), 1) 5%, rgba(var(--color-primary-1-rgb), 1) 10%, rgba(var(--color-primary-1-rgb), 1) 100%);
   background-size: 200% auto;
   background-clip: text;
   color: transparent;
@@ -3129,7 +3170,7 @@ body {
 }
 .references__email a {
   cursor: pointer;
-  background: linear-gradient(to left, var(--color-primary-1) 0%, var(--color-primary-4) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
+  background: linear-gradient(to left, rgba(var(--color-primary-1-rgb), 1) 0%, rgba(var(--color-primary-4-rgb), 1) 5%, rgba(var(--color-primary-1-rgb), 1) 10%, rgba(var(--color-primary-1-rgb), 1) 100%);
   background-size: 200% auto;
   background-clip: text;
   color: transparent;
@@ -3414,7 +3455,7 @@ div.references__name {
 }
 .bridge__link {
   cursor: pointer;
-  background: linear-gradient(to left, var(--color-primary-1) 0%, var(--color-primary-4) 5%, var(--color-primary-1) 10%, var(--color-primary-1) 100%);
+  background: linear-gradient(to left, rgba(var(--color-primary-1-rgb), 1) 0%, rgba(var(--color-primary-4-rgb), 1) 5%, rgba(var(--color-primary-1-rgb), 1) 10%, rgba(var(--color-primary-1-rgb), 1) 100%);
   background-size: 200% auto;
   background-clip: text;
   color: transparent;
@@ -3473,9 +3514,9 @@ div.references__name {
   right: calc((100vw - calc( 	85rem + ((100% - 85rem) / 2) + 7vw )) / 2);
 }
 .bridge .hero--clicked ~ .source-link__source {
-  right: calc((100vw - calc( 				85rem + ((100vw - 85rem) / 2) + 7vw + 2vw 			)) / 2);
+  right: calc( 				( 						100vw - 							calc( 								85rem + ( 										(100vw - 85rem) / 2 									) + 7vw + 2vw 							) 					) / 2 			);
 }
-@media only screen and (min-width: calc(68.75em + .001em)) {
+@media only screen and (min-width: calc(68.75em + 0.001em)) {
   .bridge-page .header {
     width: 100vw;
   }

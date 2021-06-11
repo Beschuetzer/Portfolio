@@ -3,7 +3,11 @@
 	width: 100vw;
 	font-size: $default-font-size * 5;
 	font-weight: 400;
-	text-shadow: getTextShadow(close, var(--color-primary-1-rgb), var(--color-primary-2-rgb));
+	text-shadow: getTextShadow(
+		close,
+		var(--color-primary-1-rgb),
+		var(--color-primary-2-rgb)
+	);
 
 	& > * {
 		z-index: 1;
@@ -51,16 +55,16 @@
 	// }
 
 	&__canvas {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100vw;
+		height: 100vh;
 	}
 
 	&__name {
 		position: absolute;
-		transform: translate(-50%, -50%);	
+		transform: translate(-50%, -50%);
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		justify-items: center;
@@ -79,41 +83,96 @@
 			font-size: $default-font-size * 3;
 		}
 	}
-	
+
 	&__name-first {
 		justify-self: flex-end;
 		transform: translate(-$default-font-size * 50, 0);
-		animation: 
-			1.5s 1 translateToZero forwards $animation-easing-standard-easeInOutBack,
-		;
+		animation: 1.5s 1 translateToZero forwards
+			$animation-easing-standard-easeInOutBack;
 	}
 
 	&__name-last {
 		justify-self: flex-start;
 		transform: translate($default-font-size * 50, 0);
-		animation: 
-			1.5s 1 translateToZero forwards $animation-easing-standard-easeInOutBack,
-		;
+		animation: 1.5s 1 translateToZero forwards
+			$animation-easing-standard-easeInOutBack;
 	}
 
 	&__third-word {
 		font-weight: 900;
 		grid-column: 1/-1;
-    font-size: $default-font-size * 1.5;
+		font-size: $default-font-size * 1.5;
 		transform: translate(0, 100vh);
-		animation: 
-			1.5s 1 translateToZero forwards $animation-easing-standard-easeInOutBack,
-		;
+		animation: 1.5s 1 translateToZero forwards
+			$animation-easing-standard-easeInOutBack;
 	}
 
-	&__footer{
-		position: absolute;
-		bottom: 16%;
-		transform: translate(0%, 50%);
-		left: 0%;
+	&__main {
+		position: fixed;
+		top: 0;
+		left: 0;
 		width: 100vw;
-		display: flex;
+		height: 100vh;
+		display: grid;
 		justify-content: center;
-		align-items: center;
+		--home-column-height: 33vh;
+		--home-column-width: calc(
+			((100vw - #{$header-inner-width-vw}) + #{$navbar__logo-width}) * 1
+		);
+		grid-template-columns: repeat(3, var(--home-column-width)) 1fr repeat(
+				3,
+				var(--home-column-width)
+			);
+		grid-template-rows: var(--home-column-height) 1fr var(--home-column-height);
+
+
+		&-welcome {
+			padding: $default-font-size;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			grid-column: 1 / -1;
+			grid-row: 3 / -1;
+			--welcome-opacity: .9;
+
+			& h4 {
+				font-size: $default-font-size * 4;
+			}
+			& p {
+				color: rgba(var(--color-primary-4-rgb), var(--welcome-opacity));
+				margin: $default-font-size;
+				font-size: $default-font-size * 1;
+				transition: 
+					color $animation-duration * 1 $animation-easing-standard,
+				;
+			}
+
+			&:hover {
+				& p {
+					--welcome-opacity: 1;
+				}
+			}
+		}
+
+		&-link {
+			@include link-animating(
+				var(--color-primary-4-rgb),
+				var(--color-primary-1-rgb),
+				var(--color-primary-4-rgb),
+				var(--color-primary-4-rgb),
+				1,
+				.01,
+				1,
+				1,
+			);
+			border:none;
+
+			&:hover {
+				color: rgba(var(--color-primary-2-rgb), 1);
+			}
+		}
+
+		
 	}
 }

@@ -132,27 +132,27 @@
 				position: relative;
 
 				&::before {
-					content: '';
+					content: "";
 					background-image: linear-gradient(
-						to right,
-						rgba(var(--color-primary-1-rgb), .65),
-						rgba(var(--color-primary-2-rgb), .65)
-					),
-					url("/src/imgs/bridge-section-3.jpg");
+							to right,
+							rgba(var(--color-primary-1-rgb), 0.65),
+							rgba(var(--color-primary-2-rgb), 0.65)
+						),
+						url("/src/imgs/bridge-section-3.jpg");
 					background-position: top;
 					background-size: cover;
-					@include bridge-title-pics(0, 5px, .33);
+					@include bridge-title-pics(0, 5px, 0.33);
 				}
-				@include bridge-title-pics-hover(center, .33, 0);
+				@include bridge-title-pics-hover(center, 0.33, 0);
 			}
 
 			& .bridge__section-content {
 				background-image: linear-gradient(
 					var(--bridge-gradient-direction),
-					rgba(var(--color-primary-3-rgb), .5) 0%,
-					rgba(var(--color-primary-4-rgb), .5) 25%,
-					rgba(var(--color-primary-4-rgb), .5) 75%,
-					rgba(var(--color-primary-3-rgb), .5) 100%
+					rgba(var(--color-primary-3-rgb), 0.5) 0%,
+					rgba(var(--color-primary-4-rgb), 0.5) 25%,
+					rgba(var(--color-primary-4-rgb), 0.5) 75%,
+					rgba(var(--color-primary-3-rgb), 0.5) 100%
 				);
 			}
 		}
@@ -174,13 +174,13 @@
 				color: var(--color-primary-1);
 				position: relative;
 				&::before {
-					content: '';
+					content: "";
 					background-image: linear-gradient(
-						to left,
-						rgba(var(--color-primary-2-rgb), .875) 0%,
-						rgba(var(--color-primary-3-rgb), .875) 100%,
-					),
-					url("/src/imgs/bridge-section-2.jpg");
+							to left,
+							rgba(var(--color-primary-2-rgb), 0.875) 0%,
+							rgba(var(--color-primary-3-rgb), 0.875) 100%
+						),
+						url("/src/imgs/bridge-section-2.jpg");
 					background-position: center;
 					background-size: cover;
 					@include bridge-title-pics;
@@ -200,8 +200,8 @@
 				color: var(--color-primary-4);
 				background-image: linear-gradient(
 					to right,
-					rgba(var(--color-primary-3-rgb), .475),
-					rgba(var(--color-primary-1-rgb), .475),
+					rgba(var(--color-primary-3-rgb), 0.475),
+					rgba(var(--color-primary-1-rgb), 0.475)
 				);
 			}
 
@@ -232,16 +232,16 @@
 				position: relative;
 				color: var(--color-primary-1);
 
-				&::before{ 
-					content: '';
+				&::before {
+					content: "";
 					background-image: linear-gradient(
-						to right,
-						rgba(var(--color-primary-2-rgb), .4625),
-						rgba(var(--color-primary-3-rgb), .925) 33%,
-						rgba(var(--color-primary-4-rgb), .4625) 66%,
-						rgba(var(--color-primary-1-rgb), .925),
-					),
-					url("/src/imgs/bridge-section-1.jpg");
+							to right,
+							rgba(var(--color-primary-2-rgb), 0.4625),
+							rgba(var(--color-primary-3-rgb), 0.925) 33%,
+							rgba(var(--color-primary-4-rgb), 0.4625) 66%,
+							rgba(var(--color-primary-1-rgb), 0.925)
+						),
+						url("/src/imgs/bridge-section-1.jpg");
 					background-position: top;
 					background-size: cover;
 					@include bridge-title-pics;
@@ -253,10 +253,10 @@
 			& .bridge__section-content {
 				background-image: linear-gradient(
 					var(--bridge-gradient-direction),
-					rgba(var(--color-primary-3-rgb), .475) 0%,
-					rgba(var(--color-primary-3-rgb), .475) 25%,
-					rgba(var(--color-primary-4-rgb), .475) 75%,
-					rgba(var(--color-primary-4-rgb), .475) 100%
+					rgba(var(--color-primary-3-rgb), 0.475) 0%,
+					rgba(var(--color-primary-3-rgb), 0.475) 25%,
+					rgba(var(--color-primary-4-rgb), 0.475) 75%,
+					rgba(var(--color-primary-4-rgb), 0.475) 100%
 				);
 			}
 		}
@@ -369,18 +369,25 @@
 		}
 
 		&--clicked ~ .source-link__source {
-			right: calc((100vw - calc(
-				#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + #{$navbar__logo-width} + 2vw
-			)) / 2);
+			right: calc(
+				(
+						100vw -
+							calc(
+								#{$resume-card-width-full} + (
+										(100vw - #{$resume-card-width-full}) / 2
+									) + #{$navbar__logo-width} + 2vw
+							)
+					) / 2
+			);
 		}
 	}
 
 	@include respond(larger-than-nav-switch) {
 		&-page .header {
 			width: 100vw;
-	
+
 			&__inner {
-				width: $bridge-header-inner-width;
+				width: $header-inner-width-vw;
 			}
 		}
 	}
@@ -682,7 +689,7 @@ $padding-nav-switch: $default-font-size * 0.5;
 	height: calc(
 		(#{$navbar__logo-width} + 0.29vw) / var(--bridge-arrow-hover-scale-amount)
 	);
-	transition: transform $animation-duration * .5 $animation-easing-standard,
+	transition: transform $animation-duration * 0.5 $animation-easing-standard,
 		opacity $animation-duration * 1.5 $animation-easing-standard;
 
 	@include respond(nav-switch) {

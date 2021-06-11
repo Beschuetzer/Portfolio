@@ -42,7 +42,4 @@ OPTIMIZATIONS:
 -add form to contact page that sends text and email when clicked?
 -finish content in about
 -finish last 4th section in bridge (and colors gradient for mobile and svg
--rewrite the motivation part of bridge (talk about how I wanted a sufficiently-complex project to test whether I had what it takes to become a professional programmer (this was the main reason, Andrew's suggestion was an added motivation)
-
--add side content with msg = "Welcome to my portfolio!"  "This site was created with React, Redux, and custom CSS"  "Click, hover, and enjoy!"  "Get in touch when you're ready"
 

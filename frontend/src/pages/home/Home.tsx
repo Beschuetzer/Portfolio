@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { getRepositories } from "../../actions";
+import EmbeddedLink from "../../components/EmbeddedLink";
 import useSky from './useSky';
 
 interface HomeProps {
@@ -20,13 +21,30 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 		<React.Fragment>
 			<section className="home">
 				<div className="home__name">
-					<div className="home__name-first">&nbsp;Adam&nbsp;</div>
-					<div className="home__name-last">&nbsp;Major&nbsp;</div>
+					<h3 className="home__name-first">&nbsp;Adam&nbsp;</h3>
+					<h3 className="home__name-last">&nbsp;Major&nbsp;</h3>
 					<h5 className="home__third-word">embodies</h5>
 				</div>
-				<div className="home__footer">
-					text
+				<div className="home__main">
+					<div className="home__main-welcome">
+						{/* <h4>Welcome!</h4> */}
+						<p>This site was created with React, Redux, and custom CSS</p>
+						<p>Click, hover, and <EmbeddedLink className="home__main-link" isLocal={true} href="contact">get in touch</EmbeddedLink> when you're ready.</p>
+
+						<p>
+							Not sure where to start?&nbsp;Check out the <EmbeddedLink className="home__main-link" href="/examples/bridge" isLocal={true}>multiplayer app </EmbeddedLink> I created.
+						</p>
+					</div> 
+
+
+					{/* <div className="home__main-description">
+						This site was created with React, Redux, and custom CSS
+					</div>
+					<div className="home__main-cta">
+						Click, hover, and get in touch when you're ready.
+					</div> */}
 				</div>
+				
 			</section>
 		</React.Fragment>
 	);

@@ -88,9 +88,24 @@
 	);
 	border-image-slice: 1;
 }
-@mixin link-animating {
+@mixin link-animating(
+	$color1: var(--color-primary-1-rgb),
+	$color2: var(--color-primary-4-rgb),
+	$color3: var(--color-primary-1-rgb),
+	$color4: var(--color-primary-1-rgb),
+	$color1-opacity: 1,
+	$color2-opacity: 1,
+	$color3-opacity: 1,
+	$color4-opacity: 1
+) {
 	cursor: pointer;
-	background: $skills-linear-gradient-original;
+	background: linear-gradient(
+		to left,
+		rgba($color1, $color1-opacity) 0%,
+		rgba($color2, $color2-opacity) 5%,
+		rgba($color3, $color3-opacity) 10%,
+		rgba($color4, $color4-opacity) 100%
+	);
 	background-size: 200% auto;
 	background-clip: text;
 	color: transparent;
@@ -116,7 +131,7 @@
 	transform: translateY(0%) scale(1);
 }
 
-@mixin bridge-title-pics($sepia: .5, $blur: 5px, $contrast: 1) {
+@mixin bridge-title-pics($sepia: 0.5, $blur: 5px, $contrast: 1) {
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -125,19 +140,21 @@
 	z-index: -1;
 	filter: sepia($sepia) contrast($contrast) blur($blur);
 
-	transition: 
-		filter $animation-duration $animation-easing-standard,
-		background $animation-duration $animation-easing-standard,
-	;
+	transition: filter $animation-duration $animation-easing-standard,
+		background $animation-duration $animation-easing-standard;
 }
 
 @mixin bridge-title-pics-hover($position: center, $contrast: 1, $sepia: 1) {
 	&:hover::before {
-		filter: sepia($sepia) contrast($contrast) blur(0px) drop-shadow(0 $card-image-drop-shadow-x $card-image-drop-shadow-y rgba(var(--color-black-rgb), 1));
+		filter: sepia($sepia) contrast($contrast) blur(0px)
+			drop-shadow(
+				0 $card-image-drop-shadow-x $card-image-drop-shadow-y
+					rgba(var(--color-black-rgb), 1)
+			);
 		background-position: $position;
 	}
 }
-	/* ------------------------------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------- */
 //Media Query Manager
 @mixin respond($breakpoint) {
 	@if $breakpoint == small-font {
@@ -178,7 +195,7 @@
 	}
 
 	@if $breakpoint == larger-than-nav-switch {
-		@media only screen and (min-width: $larger-than-nav-switch){
+		@media only screen and (min-width: $larger-than-nav-switch) {
 			@content;
 		}
 	}

@@ -5,7 +5,7 @@ $phone-max-width: 40.9375em;
 $tab-port-max-width: 52.6875em;
 $tab-land-max-width: 58.5625em;
 $nav-switch-width: 68.75em;
-$larger-than-nav-switch: calc(#{$nav-switch-width} + .001em);
+$larger-than-nav-switch: calc(#{$nav-switch-width} + 0.001em);
 $big-desktop-min-width: 112.5em;
 
 //font
@@ -16,7 +16,8 @@ $font-family-fancy-bridge: "New Tegomin", serif;
 $font-family-text: "Open Sans", sans-serif;
 $font-family-headers: "Merriweather", serif;
 $default-font-size: 1.6rem;
-$scrollbar-box-shadow: inset 0 0 $default-font-size * .5 rgba(var(--color-primary-1-rgb), 0.5);
+$scrollbar-box-shadow: inset 0 0 $default-font-size * 0.5
+	rgba(var(--color-primary-1-rgb), 0.5);
 $scrollbar-track-background: var(--color-primary-1);
 $scrollbar-thumb-background: var(--color-primary-4);
 
@@ -27,8 +28,6 @@ $github__logo-width: $navbar__logo-width;
 $navbar__logo-width-nav-switch: $default-font-size * 5;
 $content-padding-nav-switch: 5vmin;
 $paddingFactor: 1.25;
-
-
 
 //navbar stuff
 $navbar-full-z-index: 5;
@@ -47,8 +46,8 @@ $navbar__item-divider: $navbar__item-divider-width solid var(--color-primary-1);
 $navbar-box-shadow-resume-color: rgba($color-black, 0.15);
 $navbar-box-shadow-resume: 0 $default-font-size $default-font-size * 2
 	rgba($color-black, 0.33);
-$navbar-box-shadow-left-right: -10px 0 10px rgba($color-black, .5);
-$navbar-box-shadow-normal:  0px 10px 10px rgba($color-black, .5);
+$navbar-box-shadow-left-right: -10px 0 10px rgba($color-black, 0.5);
+$navbar-box-shadow-normal: 0px 10px 10px rgba($color-black, 0.5);
 $hover-color-change-amount: 0.15;
 
 //skills
@@ -71,7 +70,7 @@ $resume-card-width-full: $default-font-size * 53.125;
 $resume-header-text-shadow: getTextShadow(
 	soft-emboss,
 	var(--color-primary-3-rgb),
-	var(--color-primary-2-rgb),
+	var(--color-primary-2-rgb)
 );
 
 //header
@@ -95,7 +94,7 @@ $header-toggler-width: 4rem;
 $header-inner-width: calc(
 	#{$resume-card-width-full} + ((100% - #{$resume-card-width-full}) / 2) + #{$navbar__logo-width}
 );
-$bridge-header-inner-width: calc(
+$header-inner-width-vw: calc(
 	#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + #{$navbar__logo-width}
 );
 $header-width-nav-switch: calc(100vw - #{$default-font-size * 1.33});
@@ -190,7 +189,7 @@ $hero-blend-mode: hard-light;
 $bridge-logo-opacity: 0.25;
 $card-image-drop-shadow-x: 6px;
 $card-image-drop-shadow-y: 4px;
-$card-image-drop-shadow-opacity: .33;
+$card-image-drop-shadow-opacity: 0.33;
 $card-z-index: 1;
 $card-height: $default-font-size * 50;
 $card-header-height: $card-height / 3.333333333333;
@@ -227,7 +226,7 @@ $page-nav-top: calc(
 	--scrollbar-width: #{$default-font-size * 1};
 	--default-font-size: #{$default-font-size};
 	--page-nav-min-column-width: calc(#{$default-font-size} * 9.5375);
-	--site-nav-button-width: 7.5vw ;
+	--site-nav-button-width: 7.5vw;
 	--site-nav-item-gradient-direction: 45deg;
 	--site-nav-linear-gradient: linear-gradient(
 		to right,
@@ -252,7 +251,6 @@ $page-nav-top: calc(
 	--big-desktop-min-width: #{$big-desktop-min-width};
 	--nav-switch-width: #{$nav-switch-width};
 	--larger-than-nav-switch: #{$larger-than-nav-switch};
-
 
 	//misc
 	--header-toggler-svg-rotation: 180deg;
