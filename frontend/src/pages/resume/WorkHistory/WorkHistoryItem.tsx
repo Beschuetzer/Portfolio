@@ -8,6 +8,7 @@ interface WorkHistoryItemProps {
   endDate: string,
   title: string,
   number: string,
+  id?: string,
 }
 
 const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
@@ -16,6 +17,7 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
   endDate,
   title,
   number,
+  id = ""
 }) => {
   const renderSections = () => {
     return sections.map((section: WorkHistoryItemModel, index: number) => {
@@ -44,7 +46,7 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
   }
 
   return (
-    <div className={`${WORK_HISTORY_CLASSNAME}__item`}>
+    <div id={id ? id : undefined} className={`${WORK_HISTORY_CLASSNAME}__item`}>
         <span className={`${WORK_HISTORY_CLASSNAME}__item-number`}>{number}.</span>
         <h6 className={`${WORK_HISTORY_CLASSNAME}__title-header heading--six`} dangerouslySetInnerHTML={createTitle(title)}></h6>
         <div className={`${WORK_HISTORY_CLASSNAME}__title-dates`}>

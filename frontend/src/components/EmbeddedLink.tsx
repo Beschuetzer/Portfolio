@@ -20,15 +20,12 @@ const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 	headerHeight,
 }) => {
 
-	const handleClick = (e: MouseEvent) => {
-		console.log('e =', e);
-		const href =  ((e.target as any)?.href as string);
-		const indexStart = href.indexOf('#');
-		console.log('indexStart =', indexStart);
-		if (!indexStart) return;
-		const sectionToScrollTo = href.slice(indexStart);
+	const scrollToLink = (e: MouseEvent) => {
 		setTimeout(() => {
-			console.log('sectionToScrollTo =', sectionToScrollTo);
+			const href =  ((e.target as any)?.href as string);
+			const indexStart = href.indexOf('#');
+			if (indexStart === -1 || !href) return;
+			const sectionToScrollTo = href.slice(indexStart);
 			scrollToSection(document.querySelector(`${sectionToScrollTo}`) as HTMLElement, headerHeight);
 		}, 0);
 	}
@@ -36,7 +33,7 @@ const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 	const renderContent = () => {
 		if (isLocal) {
 			return (
-				<Link to={href} className={className} onClick={(e: any) => handleClick(e)}>
+				<Link to={href} className={className} onClick={(e: any) => scrollToLink(e)}>
 					{children}
 				</Link>
 			);

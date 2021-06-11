@@ -399,6 +399,7 @@ const Resume: React.FC<ResumeProps> = ({
 			<React.Fragment>
 				<div className="work-history">
 					<WorkHistoryItem
+						id="ricoh"
 						startDate="07/19"
 						endDate="06/20"
 						number="01"
@@ -422,6 +423,7 @@ const Resume: React.FC<ResumeProps> = ({
 						]}
 					/>
 					<WorkHistoryItem
+						id="hawaii"
 						startDate="07/18"
 						endDate="06/19"
 						number="02"
@@ -438,6 +440,7 @@ const Resume: React.FC<ResumeProps> = ({
 						]}
 					/>
 					<WorkHistoryItem
+						id="isd622"
 						startDate="07/07"
 						endDate="07/18"
 						number="03"
@@ -464,6 +467,7 @@ const Resume: React.FC<ResumeProps> = ({
 						]}
 					/>
 					<WorkHistoryItem
+
 						startDate="09/06"
 						endDate="12/06"
 						number="04"
@@ -478,6 +482,7 @@ const Resume: React.FC<ResumeProps> = ({
 						]}
 					/>
 					<WorkHistoryItem
+						id="germany"
 						startDate="09/05"
 						endDate="07/06"
 						number="05"

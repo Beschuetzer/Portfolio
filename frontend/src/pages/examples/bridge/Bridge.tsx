@@ -57,7 +57,7 @@ const sectionContents = [
 				// title='An App is Born'
 			>
 				<p>
-					It was June of 2020 and I had just left my job at <EmbeddedLink href="/resume#work-history" isLocal={true}>Ricoh</EmbeddedLink> to pursue a life-long interest of mine: coding.&nbsp; 
+					It was June of 2020 and I had just left my job at <EmbeddedLink href="/resume#ricoh" isLocal={true}>Ricoh</EmbeddedLink> to pursue a life-long interest of mine: coding.&nbsp; 
 					&nbsp;I had just finished my two smaller side projects
 					(		
 					<EmbeddedLink isLocal={true} href="/examples/downloader">
@@ -74,7 +74,7 @@ const sectionContents = [
 					During a phone call, a good friend of mine mentioned how much he missed playing bridge now that the pandemic had shut everything down.&nbsp; Initially, I suggested we look for a free-to-play Bridge app.&nbsp;  However, after extensively searching for such an app to no avail, it was clear I would have to make one if we wanted to play online for free (since then at least one free-to-play app has been released). 
 				</p>
 				<p>
-					It was shortly after that phone call that I resolved to make the best free-top-play contract Bridge application I could with the knowledge I had at that point in time (not knowing any HTML, CSS, or JS).
+					It was shortly after that phone call that I resolved to make the best free-to-play contract Bridge application I could with the knowledge I had at that point in time (not knowing any HTML, CSS, or JS).
 				</p>
 			</BridgeCardSection>
 		</BridgeCard>
@@ -301,7 +301,7 @@ const sectionContents = [
 						rel="noreferrer">
 						service technician position
 					</a>{" "}
-					at <EmbeddedLink href="/resume#work-history" isLocal={true}>Ricoh</EmbeddedLink> in order to free up the time and energy needed to
+					at <EmbeddedLink href="/resume#ricoh" isLocal={true}>Ricoh</EmbeddedLink> in order to free up the time and energy needed to
 					whole-heartily devote myself to the project.
 				</p>
 			</BridgeCardSection>
