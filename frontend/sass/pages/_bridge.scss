@@ -140,29 +140,9 @@
 					url("/src/imgs/bridge-section-3.jpg");
 					background-position: top;
 					background-size: cover;
-					filter: sepia(.5) blur(5px);
-					position: absolute;
-					left: 0;
-					bottom: 0;
-					top: 0;
-					right: 0;
-					z-index: -1;
-
-					transition: 
-						filter $animation-duration $animation-easing-standard,
-						background $animation-duration $animation-easing-standard,
-					;
+					@include bridge-title-pics;
 				}
-
-				& > * {
-					pointer-events: none;
-				}
-
-				&:hover::before {
-					filter: sepia(1) blur(0px) drop-shadow(0 $card-image-drop-shadow-x $card-image-drop-shadow-y rgba(var(--color-black-rgb), 1));
-					background-position: center;
-				}
-				
+				@include bridge-title-pics-hover;
 			}
 
 			& .bridge__section-content {
@@ -190,15 +170,23 @@
 			}
 
 			& .bridge__section-titles {
-				background-image: linear-gradient(
+				color: var(--color-primary-1);
+				position: relative;
+				&::before {
+					content: '';
+					background-image: linear-gradient(
 						to left,
-						rgba(var(--color-primary-2-rgb), .95) 0%,
-						rgba(var(--color-primary-3-rgb), .95) 100%,
+						rgba(var(--color-primary-2-rgb), .875) 0%,
+						rgba(var(--color-primary-3-rgb), .875) 100%,
 					),
 					url("/src/imgs/bridge-section-2.jpg");
-				background-position: top;
-				background-size: cover;
-				color: var(--color-primary-4);
+					background-position: bottom;
+					background-size: cover;
+					filter: sepia(.5) blur(5px);
+
+					@include bridge-title-pics;
+				}
+				@include bridge-title-pics-hover(top);
 			}
 
 			& .bridge__section-content {

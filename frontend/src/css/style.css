@@ -3263,17 +3263,14 @@ div.references__name {
   background-image: linear-gradient(to right, rgba(var(--color-primary-1-rgb), 0.65), rgba(var(--color-primary-2-rgb), 0.65)), url("/src/imgs/bridge-section-3.jpg");
   background-position: top;
   background-size: cover;
-  filter: sepia(0.5) blur(5px);
   position: absolute;
   left: 0;
   bottom: 0;
   top: 0;
   right: 0;
   z-index: -1;
+  filter: sepia(0.5) blur(5px);
   transition: filter 0.5s ease, background 0.5s ease;
-}
-.bridge__section:nth-of-type(1) .bridge__section-titles > * {
-  pointer-events: none;
 }
 .bridge__section:nth-of-type(1) .bridge__section-titles:hover::before {
   filter: sepia(1) blur(0px) drop-shadow(0 6px 4px rgba(var(--color-black-rgb), 1));
@@ -3292,10 +3289,27 @@ div.references__name {
   }
 }
 .bridge__section:nth-of-type(2) .bridge__section-titles {
-  background-image: linear-gradient(to left, rgba(var(--color-primary-2-rgb), 0.95) 0%, rgba(var(--color-primary-3-rgb), 0.95) 100%), url("/src/imgs/bridge-section-2.jpg");
-  background-position: top;
+  color: var(--color-primary-1);
+  position: relative;
+}
+.bridge__section:nth-of-type(2) .bridge__section-titles::before {
+  content: "";
+  background-image: linear-gradient(to left, rgba(var(--color-primary-2-rgb), 0.875) 0%, rgba(var(--color-primary-3-rgb), 0.875) 100%), url("/src/imgs/bridge-section-2.jpg");
+  background-position: bottom;
   background-size: cover;
-  color: var(--color-primary-4);
+  filter: sepia(0.5) blur(5px);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  filter: sepia(0.5) blur(5px);
+  transition: filter 0.5s ease, background 0.5s ease;
+}
+.bridge__section:nth-of-type(2) .bridge__section-titles:hover::before {
+  filter: sepia(1) blur(0px) drop-shadow(0 6px 4px rgba(var(--color-black-rgb), 1));
+  background-position: top;
 }
 .bridge__section:nth-of-type(2) .bridge__section-content {
   padding: 0;
