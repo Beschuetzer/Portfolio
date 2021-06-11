@@ -5,7 +5,7 @@ $phone-max-width: 40.9375em;
 $tab-port-max-width: 52.6875em;
 $tab-land-max-width: 58.5625em;
 $nav-switch-width: 68.75em;
-$larger-than-nav-switch: 68.8125em;
+$larger-than-nav-switch: calc(#{$nav-switch-width} + .001em);
 $big-desktop-min-width: 112.5em;
 
 //font

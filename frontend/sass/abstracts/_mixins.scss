@@ -116,14 +116,14 @@
 	transform: translateY(0%) scale(1);
 }
 
-@mixin bridge-title-pics($sepia: .5, $blur: 5px) {
+@mixin bridge-title-pics($sepia: .5, $blur: 5px, $contrast: 1) {
 	position: absolute;
 	left: 0;
 	bottom: 0;
 	top: 0;
 	right: 0;
 	z-index: -1;
-	filter: sepia($sepia) blur($blur);
+	filter: sepia($sepia) contrast($contrast) blur($blur);
 
 	transition: 
 		filter $animation-duration $animation-easing-standard,
@@ -131,9 +131,9 @@
 	;
 }
 
-@mixin bridge-title-pics-hover($position: center) {
+@mixin bridge-title-pics-hover($position: center, $contrast: 1) {
 	&:hover::before {
-		filter: sepia(1) blur(0px) drop-shadow(0 $card-image-drop-shadow-x $card-image-drop-shadow-y rgba(var(--color-black-rgb), 1));
+		filter: sepia(1) contrast($contrast) blur(0px) drop-shadow(0 $card-image-drop-shadow-x $card-image-drop-shadow-y rgba(var(--color-black-rgb), 1));
 		background-position: $position;
 	}
 }

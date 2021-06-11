@@ -61,6 +61,7 @@
 
 		@include respond(nav-switch) {
 			height: auto;
+			width: 100%;
 			padding: $default-font-size * 2 0;
 		}
 
@@ -140,9 +141,9 @@
 					url("/src/imgs/bridge-section-3.jpg");
 					background-position: top;
 					background-size: cover;
-					@include bridge-title-pics;
+					@include bridge-title-pics(.5, 5px, .33);
 				}
-				@include bridge-title-pics-hover;
+				@include bridge-title-pics-hover(center, .33);
 			}
 
 			& .bridge__section-content {
@@ -325,7 +326,6 @@
 		// @include link-animating;
 		cursor: pointer;
 		opacity: $resume-color-opacity;
-		font-size: $default-font-size * 1;
 		color: var(--bridge-page-nav-link-color);
 		transition: color $animation-duration / 2 $animation-easing-standard,
 			transform $animation-duration / 2 $animation-easing-standard;
@@ -366,11 +366,13 @@
 		}
 	}
 
-	&-page .header {
-		width: 100vw;
-
-		&__inner {
-			width: $bridge-header-inner-width;
+	@include respond(larger-than-nav-switch) {
+		&-page .header {
+			width: 100vw;
+	
+			&__inner {
+				width: $bridge-header-inner-width;
+			}
 		}
 	}
 }
