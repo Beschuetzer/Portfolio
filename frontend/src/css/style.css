@@ -3442,6 +3442,20 @@ div.references__name {
 .bridge__current-section:hover {
   transform: scale(1.1) translate(0, 0);
 }
+.bridge .hero.bridge {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: text;
+  /* Safari 'none' or 'text' here 'all' has issues*/
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
 .bridge .hero .bg-video {
   width: 100vw;
 }

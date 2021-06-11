@@ -48,4 +48,3 @@ OPTIMIZATIONS:
 
 -add source_code link on resume leading to portfolio
 -fix main page overflow-x issue (setTimeout to remove overflow-hidden-x)
--fix bridge scroll bar issue by making .bridge height 100vh + 1px for full-size when scrolling down completely?  also change .bridge width to 100%;  alternatively can change bridge .header and .source-code__link

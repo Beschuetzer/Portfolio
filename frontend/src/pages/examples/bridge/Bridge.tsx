@@ -26,7 +26,7 @@ import preferencesVideo from "../../../clips/bridge/preferences.mp4";
 import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import CardManager from "../../../components/Card/CardManager";
-import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_CLASSNAME, resetBridgeHero, setLinearGradientCssCustomProp } from "./utils";
+import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_CLASSNAME, BRIDGE_HERO_CLASSNAME, BRIDGE_HERO_CLICKED_CLASSNAME, BRIDGE_HERO_MORE__CLICKED_CLASSNAME, resetBridgeHero, setLinearGradientCssCustomProp } from "./utils";
 import {
 	DISPLAY_NONE_CLASSNAME, Reference,
 } from "../../../components/constants";
@@ -489,11 +489,17 @@ const Bridge: React.FC<BridgeProps> = ({
 					?.classList.remove(DISPLAY_NONE_CLASSNAME);
 			}
 			if (window.scrollY >= window.innerHeight) {
-				if (!isMobile)
-					document
-						.querySelector(".hero")
-						?.classList.add(DISPLAY_NONE_CLASSNAME);
-						setClickedBridgeInfoButtonCount(2);
+				if (!isMobile) {
+					const hero = document.querySelector(`.${BRIDGE_HERO_CLASSNAME}`);
+					const heroMore = document.querySelector(`.${BRIDGE_HERO_CLASSNAME}__more`);
+					if (hero) {
+						hero.classList.add(DISPLAY_NONE_CLASSNAME);
+						hero.classList.remove(BRIDGE_HERO_CLICKED_CLASSNAME);
+					}
+					heroMore?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
+
+					setClickedBridgeInfoButtonCount(2);
+				}
 			}
 		};
 
