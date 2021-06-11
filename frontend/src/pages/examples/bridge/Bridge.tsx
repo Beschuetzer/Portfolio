@@ -45,11 +45,11 @@ const sectionContents = [
 					<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 						A# Maj Bridge
 					</EmbeddedLink>
-					is a ann I created where users can play
+					is an app I created where users can play
 					<EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">
 						contract bridge
 					</EmbeddedLink>
-					online for free.  I started the project in August of 2020 and completed the main code base in January of 2021.
+					online for free.&nbsp; I started seriously coding of the project in August of 2020 and completed the main code base in January of 2021.
 				</p>
 			</BridgeCardSection>
 			<BridgeCardSection
@@ -57,20 +57,24 @@ const sectionContents = [
 				// title='An App is Born'
 			>
 				<p>
-					The COVID-19 pandemic was in full swing, and a good
-					friend of mine had mentioned how much he missed playing bridge and thought it would be a good way to stay socially-active during the pandemic.&nbsp; 
-				</p>
-				<p>
-					Initially, I figured there had to be a free way we could play, but after extensively searching for such an app to no avail, I came to the conclusion that there wasn't one.  &nbsp;I had told my friend about the
+					It was June of 2020 and I had just left my job at <EmbeddedLink href="/resume#work-history" isLocal={true}>Ricoh</EmbeddedLink> to pursue a life-long interest of mine: coding.&nbsp; 
+					&nbsp;I had just finished my two smaller side projects
+					(		
 					<EmbeddedLink isLocal={true} href="/examples/downloader">
 						downloader
 					</EmbeddedLink>
 					and
 					<EmbeddedLink href="/examples/playlist-syncer" isLocal={true}>
-						music syncing
-					</EmbeddedLink>
-					apps that I had recently finished, and he playfully remarked that I
-					should make an app since we didn't really feel like paying $1.00 a deal. &nbsp;I took up the challenge and decided to invest some time into figuring out how one would do such a thing.
+						playlist syncer
+					</EmbeddedLink>   
+					) 
+					and was looking for another project that would really test my proverbial coding chops.
+				</p>
+				<p>
+					During a phone call, a good friend of mine mentioned how much he missed playing bridge now that the pandemic had shut everything down.&nbsp; Initially, I suggested we look for a free-to-play Bridge app.&nbsp;  However, after extensively searching for such an app to no avail, it was clear I would have to make one if we wanted to play online for free (since then at least one free-to-play app has been released). 
+				</p>
+				<p>
+					It was shortly after that phone call that I resolved to make the best free-top-play contract Bridge application I could with the knowledge I had at that point in time (not knowing any HTML, CSS, or JS).
 				</p>
 			</BridgeCardSection>
 		</BridgeCard>
@@ -297,7 +301,7 @@ const sectionContents = [
 						rel="noreferrer">
 						service technician position
 					</a>{" "}
-					at Ricoh in order to free up the time and energy needed to
+					at <EmbeddedLink href="/resume#work-history" isLocal={true}>Ricoh</EmbeddedLink> in order to free up the time and energy needed to
 					whole-heartily devote myself to the project.
 				</p>
 			</BridgeCardSection>
@@ -410,26 +414,6 @@ const sectionContents = [
 					</p>
 				</BridgeCardSection>
 			</BridgeCardSection>
-
-			{/* <BridgeCardSection
-					title='You did what?'
-				>
-					<ul className='bridge__reasons'>
-						<li className='bridge__reasons-item'>
-							There was no free online bridge resource in May of 2020. 
-						</li>
-						<li className='bridge__reasons-item'>
-							A good friend from MN mentioned how much he missed playing Bridge now that he couldn’t play Bridge in person due to the COVID 19 pandemic. 
-						</li>
-						<li className='bridge__reasons-item'>
-							My current position at Ricoh was not panning out as I had expected. 
-						</li>
-						<li className='bridge__reasons-item'>
-							I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
-						</li>							
-					</ul>
-					All throughout my youth, I had taken a keen interest in computer programming.   &nbsp;I figured that this was the last chance I would get to realize that interest. 
-				</BridgeCardSection> */}
 		</BridgeCard>
 	</SectionContainer>,
 	<SectionContainer name={bridgeSections[3]} pageName="bridge">
@@ -455,41 +439,6 @@ const sectionContents = [
 					may need to backtrack.
 				</p>
 			</BridgeCardSection>
-			{/* <ul className='bridge__reasons'>
-						<li className='bridge__reasons-item'>
-							There was no free online bridge resource in May of 2020. 
-						</li>
-						<li className='bridge__reasons-item'>
-							A good friend from MN mentioned how much he missed playing Bridge now that he couldn’t play Bridge in person due to the COVID 19 pandemic. 
-						</li>
-						<li className='bridge__reasons-item'>
-							My current position at Ricoh was not panning out as I had expected. 
-						</li>
-						<li className='bridge__reasons-item'>
-							I saw A#Maj as a test of whether or not I had what it takes to become a programmer.
-						</li>
-					</ul> */}
-
-			{/* <Card
-					cardName='ace-of-clubs'
-					title='Why?'
-				>
-				</Card>
-				<Card
-					cardName='ace-of-diamonds'
-					title='How?'
-				>
-				</Card>
-				<Card
-					cardName='ace-of-hearts'
-					title='Challenges'
-				>
-				</Card>
-				<Card
-					cardName='ace-of-spades'
-					title='Lessons Learned'
-				>
-				</Card> */}
 		</BridgeCard>
 	</SectionContainer>,
 ];

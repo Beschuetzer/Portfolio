@@ -3270,11 +3270,11 @@ div.references__name {
   top: 0;
   right: 0;
   z-index: -1;
-  filter: sepia(0.5) contrast(0.33) blur(5px);
+  filter: sepia(0) contrast(0.33) blur(5px);
   transition: filter 0.5s ease, background 0.5s ease;
 }
 .bridge__section:nth-of-type(1) .bridge__section-titles:hover::before {
-  filter: sepia(1) contrast(0.33) blur(0px) drop-shadow(0 6px 4px rgba(var(--color-black-rgb), 1));
+  filter: sepia(0) contrast(0.33) blur(0px) drop-shadow(0 6px 4px rgba(var(--color-black-rgb), 1));
   background-position: center;
 }
 .bridge__section:nth-of-type(1) .bridge__section-content {

@@ -131,9 +131,9 @@
 	;
 }
 
-@mixin bridge-title-pics-hover($position: center, $contrast: 1) {
+@mixin bridge-title-pics-hover($position: center, $contrast: 1, $sepia: 1) {
 	&:hover::before {
-		filter: sepia(1) contrast($contrast) blur(0px) drop-shadow(0 $card-image-drop-shadow-x $card-image-drop-shadow-y rgba(var(--color-black-rgb), 1));
+		filter: sepia($sepia) contrast($contrast) blur(0px) drop-shadow(0 $card-image-drop-shadow-x $card-image-drop-shadow-y rgba(var(--color-black-rgb), 1));
 		background-position: $position;
 	}
 }

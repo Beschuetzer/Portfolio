@@ -141,9 +141,9 @@
 					url("/src/imgs/bridge-section-3.jpg");
 					background-position: top;
 					background-size: cover;
-					@include bridge-title-pics(.5, 5px, .33);
+					@include bridge-title-pics(0, 5px, .33);
 				}
-				@include bridge-title-pics-hover(center, .33);
+				@include bridge-title-pics-hover(center, .33, 0);
 			}
 
 			& .bridge__section-content {
