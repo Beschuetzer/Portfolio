@@ -180,10 +180,8 @@
 						rgba(var(--color-primary-3-rgb), .875) 100%,
 					),
 					url("/src/imgs/bridge-section-2.jpg");
-					background-position: bottom;
+					background-position: center;
 					background-size: cover;
-					filter: sepia(.5) blur(5px);
-
 					@include bridge-title-pics;
 				}
 				@include bridge-title-pics-hover(top);
@@ -230,15 +228,25 @@
 			}
 
 			& .bridge__section-titles {
-				background-image: linear-gradient(
-						to top right,
-						rgba(var(--color-primary-4-rgb), .925),
+				position: relative;
+				color: var(--color-primary-1);
+
+				&::before{ 
+					content: '';
+					background-image: linear-gradient(
+						to right,
+						rgba(var(--color-primary-2-rgb), .4625),
+						rgba(var(--color-primary-3-rgb), .925) 33%,
+						rgba(var(--color-primary-4-rgb), .4625) 66%,
 						rgba(var(--color-primary-1-rgb), .925),
 					),
 					url("/src/imgs/bridge-section-1.jpg");
-				background-position: top;
-				background-size: cover;
-				color: var(--color-primary-1);
+					background-position: top;
+					background-size: cover;
+					@include bridge-title-pics;
+				}
+
+				@include bridge-title-pics-hover(top);
 			}
 
 			& .bridge__section-content {
