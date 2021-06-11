@@ -111,7 +111,7 @@
   --bridge-hero-rotate-heading-3: 0deg;
   --bridge-hero-rotate-heading-4: 0deg;
   --hero-more-y-translate: -50%;
-  --bridge-section-height: 1px;
+  --bridge-section-height: 0px;
   --bridge-section-padding: 0;
   --arrow-button-rotation: 90deg;
   --arrow-button-fill-left: var(--color-primary-bridge-1);
@@ -1043,7 +1043,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc( 	85rem + ((100vw - 85rem) / 2) + 6.4vw );
+  width: calc( 	85rem + ((100% - 85rem) / 2) + 7vw );
   margin: 0 auto;
 }
 .header__inner * {
@@ -2702,7 +2702,7 @@ body {
   align-items: center;
   top: calc( 14vw + ( ( ( ( 100vw - ( 85rem + ( (100vw - 85rem) / 2 ) + 7vw ) ) / 2 ) - 1vw ) * 1 ) - .9vw );
   text-decoration: none;
-  right: calc((100vw - calc( 	85rem + ((100vw - 85rem) / 2) + 6.4vw )) / 2);
+  right: calc((100vw - calc( 	85rem + ((100% - 85rem) / 2) + 7vw ) - 1.5vw) / 2);
 }
 @media only screen and (max-width: 68.75em) {
   .source-link__source {
@@ -3442,6 +3442,21 @@ div.references__name {
 .bridge__current-section:hover {
   transform: scale(1.1) translate(0, 0);
 }
+.bridge .hero .bg-video {
+  width: 100vw;
+}
+.bridge .hero ~ .source-link__source {
+  right: calc((100vw - calc( 	85rem + ((100% - 85rem) / 2) + 7vw )) / 2);
+}
+.bridge .hero--clicked ~ .source-link__source {
+  right: calc((100vw - calc( 				85rem + ((100vw - 85rem) / 2) + 7vw + 2vw 			)) / 2);
+}
+.bridge-page .header {
+  width: 100vw;
+}
+.bridge-page .header__inner {
+  width: calc( 	85rem + ((100vw - 85rem) / 2) + 7vw );
+}
 
 .hero {
   background-image: linear-gradient(var(--bridge-gradient-direction), rgba(245, 146, 41, 0.33) 0%, rgba(0, 64, 107, 0.33) 25%, rgba(0, 64, 107, 0.33) 75%, rgba(245, 146, 41, 0.33) 100%);
@@ -3693,7 +3708,7 @@ div.references__name {
   }
 }
 .arrow-button--left {
-  left: calc((100vw - calc( 	85rem + ((100vw - 85rem) / 2) + 6.4vw ) - 1vw) / 2);
+  left: calc((100vw - calc( 	85rem + ((100% - 85rem) / 2) + 7vw ) - 1vw) / 2);
 }
 @media only screen and (max-width: 68.75em) {
   .arrow-button--left {

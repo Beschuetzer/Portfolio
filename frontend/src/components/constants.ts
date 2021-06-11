@@ -34,6 +34,8 @@ export const navSwitchWidth = parseFloat(computedStyle.getPropertyValue('--nav-s
 export const largerThanNavSwitchWidth = parseFloat(computedStyle.getPropertyValue('--larger-than-nav-switch'));
 export const bigDesktopPixelMin = parseFloat(computedStyle.getPropertyValue('--big-desktop-min-width'));
 export const siteNavOriginalButtonWidth = computedStyle.getPropertyValue('--site-nav-button-width');
+export const bridgeSectionHeightDefault = computedStyle.getPropertyValue('--bridge-section-height');
+export const bridgeSectionPaddingDefault = computedStyle.getPropertyValue('--bridge-section-padding');
 
 const offset = .00000000000001;
 export const viewPortPixelToRem: {

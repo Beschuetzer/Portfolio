@@ -93,7 +93,10 @@ $header-top: calc(#{$header-top-inner} - 0.4vw);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
 $header-inner-width: calc(
-	#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 6.4vw
+	#{$resume-card-width-full} + ((100% - #{$resume-card-width-full}) / 2) + #{$navbar__logo-width}
+);
+$bridge-header-inner-width: calc(
+	#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + #{$navbar__logo-width}
 );
 $header-width-nav-switch: calc(100vw - #{$default-font-size * 1.33});
 // $header-width-tab-land: calc(100vw - #{$default-font-size * 2});
@@ -278,7 +281,7 @@ $page-nav-top: calc(
 	--bridge-hero-rotate-heading-3: 0deg;
 	--bridge-hero-rotate-heading-4: 0deg;
 	--hero-more-y-translate: -50%;
-	--bridge-section-height: 1px;
+	--bridge-section-height: 0px;
 	--bridge-section-padding: 0;
 	--arrow-button-rotation: 90deg;
 	--arrow-button-fill-left: var(--color-primary-bridge-1);

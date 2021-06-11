@@ -348,6 +348,31 @@
 			transform: scale($bridge-page-nav-link-scale-amount) translate(0, 0);
 		}
 	}
+
+	//fixing unique bridge situation regarding no scroll on full screen
+	.hero {
+		& .bg-video {
+			width: 100vw;
+		}
+
+		& ~ .source-link__source {
+			right: calc((100vw - #{$header-inner-width}) / 2);
+		}
+
+		&--clicked ~ .source-link__source {
+			right: calc((100vw - calc(
+				#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + #{$navbar__logo-width} + 2vw
+			)) / 2);
+		}
+	}
+
+	&-page .header {
+		width: 100vw;
+
+		&__inner {
+			width: $bridge-header-inner-width;
+		}
+	}
 }
 
 .hero {
