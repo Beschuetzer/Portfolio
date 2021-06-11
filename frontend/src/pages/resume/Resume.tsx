@@ -17,6 +17,7 @@ import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
 import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
 import { Repository, SKILLS_CLASSNAME } from "../../components/Skills/utils";
 import { NO_MARGIN_CLASSNAME } from "../../components/constants";
+import SourceCodeLink from "../../components/SourceCodeLink";
 
 function getLinkClassHTML() {
 	return ` class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' `;
@@ -610,6 +611,10 @@ const Resume: React.FC<ResumeProps> = ({
 	return (
 		<React.Fragment>
 			<section className="resume">
+				<SourceCodeLink
+					href="https://github.com/Beschuetzer/portfolio"
+					// blockName="hero"
+				/>
 				<h2 className="heading heading--two">R&eacute;sum&eacute;</h2>
 				{renderSections()}
 			</section>
