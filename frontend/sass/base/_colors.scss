@@ -57,12 +57,12 @@ $color-primary-playlist-syncer-4: #583d72;
 	--color-grey-80: #{$color-grey-80};
 	--color-white: 	#{$color-white};
 
-	--color-black:-rgb 	#{hexToRGB($color-black)};
+	--color-black-rgb: 	#{hexToRGB($color-black)};
   --color-grey-20-rgb: #{hexToRGB($color-grey-20)};
 	--color-grey-40-rgb: #{hexToRGB($color-grey-40)};
 	--color-grey-60-rgb: #{hexToRGB($color-grey-60)};
 	--color-grey-80-rgb: #{hexToRGB($color-grey-80)};
-	--color-white:-rgb 	#{hexToRGB($color-white)};
+	--color-white-rgb: 	#{hexToRGB($color-white)};
 
 	--color-primary-1: #{$color-primary-1};
 	--color-primary-1-light: #{$color-primary-1-light};

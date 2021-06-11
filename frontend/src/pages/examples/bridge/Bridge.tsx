@@ -72,7 +72,7 @@ const sectionContents = [
 		<BridgeCard
 			titleSize="two"
 			titleContent={bridgeSections[1]}
-			titleSubtitle="Pick a Card any Card...">
+			titleSubtitle="Pick a card any card...">
 			<CardManager>
 				<Card
 					video={cardPlayAndRoundEndVideo}

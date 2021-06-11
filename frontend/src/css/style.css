@@ -12,12 +12,12 @@
   --color-grey-60: #999999;
   --color-grey-80: #cccccc;
   --color-white:	#ffffff;
-  --color-black:-rgb	0, 0, 0;
+  --color-black-rgb:	0, 0, 0;
   --color-grey-20-rgb: 51, 51, 51;
   --color-grey-40-rgb: 102, 102, 102;
   --color-grey-60-rgb: 153, 153, 153;
   --color-grey-80-rgb: 204, 204, 204;
-  --color-white:-rgb	255, 255, 255;
+  --color-white-rgb:	255, 255, 255;
   --color-primary-1: #28537b;
   --color-primary-1-light: #999999;
   --color-primary-2: #8ac6d0;
@@ -752,7 +752,7 @@ body {
 .navbar__item .navbar__link > img {
   pointer-events: none;
   width: 100%;
-  opacity: 0.1125;
+  opacity: 0.0495;
   position: absolute;
   top: 0;
   left: 0;
@@ -1359,7 +1359,7 @@ body {
 }
 
 .bg-video {
-  opacity: 0.075;
+  opacity: 0.033;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -1377,7 +1377,7 @@ body {
 .fg-video {
   display: flex;
   align-items: center;
-  opacity: 0.075;
+  opacity: 0.033;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1503,6 +1503,11 @@ body {
   width: 100%;
   position: absolute;
   z-index: -1;
+  transition: filter 0.25s ease;
+  filter: sepia(0.25) saturate(0.66) blur(0.7px) drop-shadow(0px 6px 4px rgba(var(--color-black-rgb), 0.33));
+}
+.card:hover .card__image {
+  filter: sepia(0) saturate(1) blur(0px) drop-shadow(0px calc(6px * var(--card-scale-amount)) calc(4px * var(--card-scale-amount)) rgba(var(--color-black-rgb), calc(0.33 * var(--card-scale-amount))));
 }
 .card__title {
   grid-column: 1/-1;
@@ -3258,7 +3263,7 @@ div.references__name {
   }
 }
 .bridge__section:nth-of-type(2) .bridge__section-titles {
-  background-image: linear-gradient(to top right, #f59229, rgba(245, 146, 41, 0.85)), url("/src/imgs/bridge-section-2.jpg");
+  background-image: linear-gradient(to left, rgba(var(--color-primary-2-rgb), 0.95) 0%, rgba(var(--color-primary-3-rgb), 0.95) 100%), url("/src/imgs/bridge-section-2.jpg");
   background-position: top;
   background-size: cover;
   color: var(--color-primary-4);
@@ -3270,7 +3275,7 @@ div.references__name {
   grid-template-columns: repeat(auto-fill, minmax(14.4rem, 1fr));
   align-items: center;
   color: var(--color-primary-4);
-  background-image: linear-gradient(var(--bridge-gradient-direction), #00406b 0%, #00406b 100%);
+  background-image: linear-gradient(to right, rgba(var(--color-primary-3-rgb), 0.475), rgba(var(--color-primary-1-rgb), 0.475));
 }
 .bridge__section:nth-of-type(2) .bridge__card {
   border: 2px solid var(--color-primary-2);
@@ -3290,13 +3295,13 @@ div.references__name {
   }
 }
 .bridge__section:nth-of-type(3) .bridge__section-titles {
-  background-image: linear-gradient(to top right, #f5f1db, rgba(245, 241, 219, 0.75)), url("/src/imgs/bridge-section-1.jpg");
+  background-image: linear-gradient(to top right, rgba(var(--color-primary-4-rgb), 0.925), rgba(var(--color-primary-1-rgb), 0.925)), url("/src/imgs/bridge-section-1.jpg");
   background-position: top;
   background-size: cover;
   color: var(--color-primary-1);
 }
 .bridge__section:nth-of-type(3) .bridge__section-content {
-  background-image: linear-gradient(var(--bridge-gradient-direction), #e4e0c9 0%, rgba(228, 224, 201, 0.925) 25%, rgba(228, 224, 201, 0.925) 75%, #e4e0c9 100%);
+  background-image: linear-gradient(var(--bridge-gradient-direction), rgba(var(--color-primary-4-rgb), 0.475) 0%, rgba(var(--color-primary-4-rgb), 0.475) 25%, rgba(var(--color-primary-2-rgb), 0.15) 75%, rgba(var(--color-primary-2-rgb), 0.15) 100%);
 }
 .bridge__section:nth-of-type(n + 2) {
   position: absolute;
@@ -3611,7 +3616,7 @@ div.references__name {
   box-shadow: 0 1.6rem 3.2rem rgba(0, 0, 0, 0.33);
   width: calc( 		(7vw + 0.29vw) / var(--bridge-arrow-hover-scale-amount) 	);
   height: calc( 		(7vw + 0.29vw) / var(--bridge-arrow-hover-scale-amount) 	);
-  transition: transform 0.5s ease, opacity 0.75s ease;
+  transition: transform 0.25s ease, opacity 0.75s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .arrow-button {
@@ -3660,7 +3665,7 @@ div.references__name {
   fill: var(--arrow-button-right-fill-hover);
 }
 .arrow-button:hover {
-  transform: translateY(calc(-50% - 0.16rem));
+  transform: translateY(calc(-50% - 0.4rem));
 }
 
 .reverse-ease {

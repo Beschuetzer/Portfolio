@@ -32,19 +32,19 @@ export const BRIDGE_PAGE_NAV_LINKS_COLORS: {
 } = {
   0: {
     normal: COLOR_PRIMARY_BRIDGE_4,
-    hover: COLOR_PRIMARY_BRIDGE_4,
+    hover: COLOR_PRIMARY_BRIDGE_1,
   },
   1: {
     normal: COLOR_PRIMARY_BRIDGE_1,
-    hover: COLOR_PRIMARY_BRIDGE_1,
+    hover: COLOR_PRIMARY_BRIDGE_4,
   },
   2: {
     normal: COLOR_PRIMARY_BRIDGE_1,
-    hover: COLOR_PRIMARY_BRIDGE_1,
+    hover: COLOR_PRIMARY_BRIDGE_2,
   },
   3: {
     normal: COLOR_PRIMARY_BRIDGE_4,
-    hover: COLOR_PRIMARY_BRIDGE_4,
+    hover: COLOR_PRIMARY_BRIDGE_1,
   },
 }
 export const setLinearGradientCssCustomProp = () => {

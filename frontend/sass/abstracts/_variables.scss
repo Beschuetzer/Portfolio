@@ -146,7 +146,7 @@ $animation-bridge-windshield-two-end: polygon(
 );
 
 //misc
-$bg-video-opacity: 0.075;
+$bg-video-opacity: 0.033;
 
 //bridge
 $bridge-card-section-1-gradient: linear-gradient(
@@ -185,6 +185,9 @@ $bridge-card-border-size: 2px solid;
 $hero-background-image-alpha: 0.33;
 $hero-blend-mode: hard-light;
 $bridge-logo-opacity: 0.25;
+$card-image-drop-shadow-x: 6px;
+$card-image-drop-shadow-y: 4px;
+$card-image-drop-shadow-opacity: .33;
 $card-z-index: 1;
 $card-height: $default-font-size * 50;
 $card-header-height: $card-height / 3.333333333333;
