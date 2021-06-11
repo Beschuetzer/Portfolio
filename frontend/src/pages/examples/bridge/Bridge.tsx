@@ -38,23 +38,30 @@ const sectionContents = [
 	<SectionContainer name={bridgeSections[0]} pageName="bridge">
 		<BridgeCard titleSize="two" titleContent={bridgeSections[0]}>
 			<BridgeCardSection
-				title="Motivation"
+				title="What is A#Maj Bridge?"
 				// title='An App is Born'
 			>
 				<p>
 					<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 						A# Maj Bridge
 					</EmbeddedLink>
-					is a website I created between June of 2020 and February of 2021,
-					where users can play
+					is a ann I created where users can play
 					<EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">
 						contract bridge
 					</EmbeddedLink>
-					online for free.&nbsp; The COVID-19 pandemic was in full swing, and a good
-					friend of mine had mentioned how much he missed playing bridge and thought it would be a good way to stay socially-active during the pandemic.
+					online for free.  I started the project in August of 2020 and completed the main code base in January of 2021.
+				</p>
+			</BridgeCardSection>
+			<BridgeCardSection
+				title="Motivation"
+				// title='An App is Born'
+			>
+				<p>
+					The COVID-19 pandemic was in full swing, and a good
+					friend of mine had mentioned how much he missed playing bridge and thought it would be a good way to stay socially-active during the pandemic.&nbsp; 
 				</p>
 				<p>
-					Initially, I figured there had to be a free way we could play, but after searching extensively for such an app, I came to the conclusion that there wasn't one.  &nbsp;I had told my friend about the
+					Initially, I figured there had to be a free way we could play, but after extensively searching for such an app to no avail, I came to the conclusion that there wasn't one.  &nbsp;I had told my friend about the
 					<EmbeddedLink isLocal={true} href="/examples/downloader">
 						downloader
 					</EmbeddedLink>

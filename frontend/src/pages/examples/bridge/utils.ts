@@ -13,7 +13,7 @@ export const BRIDGE_PAGE_NAV_LINK_CLASSNAMES = `${BRIDGE_PAGE_NAV_LINK_CLASSNAME
 export const BRIDGE_BACKDROP_CLASSNAME = `${BRIDGE_CLASSNAME}__backdrop`;
 export const BRIDGE_HERO_MORE__CLICKED_CLASSNAME = "hero__more--clicked";
 export const bridgeSections = [
-  "Why",
+  "Intro",
   "Features",
   "Details",
   "Lessons",
