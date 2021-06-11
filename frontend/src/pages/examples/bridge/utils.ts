@@ -15,7 +15,7 @@ export const BRIDGE_HERO_MORE__CLICKED_CLASSNAME = "hero__more--clicked";
 export const bridgeSections = [
   "Why",
   "Features",
-  "How",
+  "Details",
   "Lessons",
 ];
 

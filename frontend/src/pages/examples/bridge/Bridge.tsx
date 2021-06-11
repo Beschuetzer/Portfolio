@@ -378,16 +378,16 @@ const sectionContents = [
 						curiosity.
 					</p>
 				</BridgeCardSection>
-				<BridgeCardSection title="The Results are in.">
+				<BridgeCardSection title="The Results">
 					<p>
 						<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 							A# Maj Bridge
 						</EmbeddedLink>
-						took roughly 8 months to complete.&nbsp; It runs smoothly on
+						took roughly 6 months for me to complete starting from not knowing any HTML, CSS, or Javascript.&nbsp; It runs smoothly on
 						Android 10+, Firefox 70+, and Chrome 70+ (but not on mobile iOS
 						devices due to paperJS issues that I couldn't resolve due to the
 						fact that I don't have access to an iOS device). &nbsp; It can
-						host multiple simultaneous games, but is unlikely to run more a
+						host multiple simultaneous games, but is unlikely to be able to serve more than a
 						thousand simultaneous games in its current state.&nbsp;{" "}
 					</p>
 					<p>
