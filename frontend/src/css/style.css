@@ -1797,9 +1797,6 @@ body {
   cursor: auto;
   border: 0.16rem solid transparent;
 }
-.skills__section:last-of-type {
-  color: green;
-}
 .skills__section:last-of-type .skills__section-title {
   margin-bottom: 0 !important;
 }

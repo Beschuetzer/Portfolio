@@ -42,4 +42,3 @@ OPTIMIZATIONS:
 -finish content in about
 -finish last 4th section in bridge (and colors gradient for mobile and svg
 -need responsive styling for video carouselitems 
--add functionality where when you click a web dev subsection it calls scrollTo() in helpers to make that section at the top

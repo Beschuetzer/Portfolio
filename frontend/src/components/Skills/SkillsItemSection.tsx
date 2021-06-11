@@ -1,22 +1,27 @@
 import { connect, RootStateOrAny } from 'react-redux';
+import { scrollToSection } from '../utils';
 import { SKILLS_CLASSNAME, SKILLS_SECTION_OPEN_CLASSNAME, toggleItem } from './utils';
 
 interface SkillsItemSectionProps {
   title: string,
   children: any,
   sectionsToSkipAnimation: any[],
+  headerHeight: number,
 }
 
 const SkillsItemSection: React.FC<SkillsItemSectionProps> = ({
   title,
   children,
-  sectionsToSkipAnimation
+  sectionsToSkipAnimation,
+  headerHeight,
 }) => {
 
   const onTitleClick = (e: MouseEvent) => {
     e.stopPropagation();
     toggleItem(e, sectionsToSkipAnimation);
     (e.target as HTMLElement)?.classList?.toggle(SKILLS_SECTION_OPEN_CLASSNAME);
+    const clickedElement = e.currentTarget;
+    if (clickedElement && (clickedElement as HTMLElement).classList.contains(SKILLS_SECTION_OPEN_CLASSNAME)) scrollToSection(clickedElement as HTMLElement, headerHeight)
   }
 
   return (
@@ -37,6 +42,7 @@ const SkillsItemSection: React.FC<SkillsItemSectionProps> = ({
 const mapStateToProps = (state: RootStateOrAny) => {
   return {
     sectionsToSkipAnimation: state.resume.sectionsToSkipAnimation,
+    headerHeight: state.general.headerHeight,
   }
 }
 
