@@ -205,6 +205,16 @@
 			margin-bottom: $default-font-size * 2;
 		}
 	}
+
+	& .source-link__source {
+		&-label {
+			border-radius: 50%;
+			padding: $default-font-size * .25 $default-font-size * .5;
+			color: rgba(var(--color-primary-4-rgb), 1);
+			font-family: $font-family-headers;
+			background-color: rgba(var(--color-primary-1-rgb),0.1);
+		}
+	}
 }
 
 .education {
