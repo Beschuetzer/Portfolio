@@ -569,6 +569,7 @@
 }
 
 .header {
+	pointer-events: none;
 	top: $header-top;
 	width: 100%;
 	position: fixed;
@@ -593,6 +594,10 @@
 		width: $header-inner-width;
 		// width: calc(#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 8rem);
 		margin: 0 auto;
+
+		& * {
+			pointer-events: all;
+		}
 
 		@include respond(nav-switch) {
 			width: var(--header-inner-width-nav-switch);

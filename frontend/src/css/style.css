@@ -1016,6 +1016,7 @@ body {
 }
 
 .header {
+  pointer-events: none;
   top: calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.4vw);
   width: 100%;
   position: fixed;
@@ -1038,6 +1039,9 @@ body {
   align-items: center;
   width: calc( 	85rem + ((100vw - 85rem) / 2) + 6.4vw );
   margin: 0 auto;
+}
+.header__inner * {
+  pointer-events: all;
 }
 @media only screen and (max-width: 68.75em) {
   .header__inner {
@@ -3245,10 +3249,29 @@ div.references__name {
   }
 }
 .bridge__section:nth-of-type(1) .bridge__section-titles {
-  background-image: linear-gradient(to bottom right, rgba(var(--color-primary-1-rgb), 0.875), rgba(var(--color-primary-2-rgb), 0.875)), url("/src/imgs/bridge-section-3.jpg");
+  color: var(--color-primary-4);
+  position: relative;
+}
+.bridge__section:nth-of-type(1) .bridge__section-titles::before {
+  content: "";
+  background-image: linear-gradient(to right, rgba(var(--color-primary-1-rgb), 0.65), rgba(var(--color-primary-2-rgb), 0.65)), url("/src/imgs/bridge-section-3.jpg");
   background-position: top;
   background-size: cover;
-  color: var(--color-primary-4);
+  filter: sepia(0.5) blur(5px);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  transition: filter 0.5s ease, background 0.5s ease;
+}
+.bridge__section:nth-of-type(1) .bridge__section-titles > * {
+  pointer-events: none;
+}
+.bridge__section:nth-of-type(1) .bridge__section-titles:hover::before {
+  filter: sepia(1) blur(0px) drop-shadow(0 6px 4px rgba(var(--color-black-rgb), 1));
+  background-position: center;
 }
 .bridge__section:nth-of-type(1) .bridge__section-content {
   background-image: linear-gradient(var(--bridge-gradient-direction), rgba(var(--color-primary-3-rgb), 0.5) 0%, rgba(var(--color-primary-4-rgb), 0.5) 25%, rgba(var(--color-primary-4-rgb), 0.5) 75%, rgba(var(--color-primary-3-rgb), 0.5) 100%);
@@ -3301,7 +3324,7 @@ div.references__name {
   color: var(--color-primary-1);
 }
 .bridge__section:nth-of-type(3) .bridge__section-content {
-  background-image: linear-gradient(var(--bridge-gradient-direction), rgba(var(--color-primary-4-rgb), 0.475) 0%, rgba(var(--color-primary-4-rgb), 0.475) 25%, rgba(var(--color-primary-2-rgb), 0.15) 75%, rgba(var(--color-primary-2-rgb), 0.15) 100%);
+  background-image: linear-gradient(var(--bridge-gradient-direction), rgba(var(--color-primary-3-rgb), 0.475) 0%, rgba(var(--color-primary-3-rgb), 0.475) 25%, rgba(var(--color-primary-4-rgb), 0.475) 75%, rgba(var(--color-primary-4-rgb), 0.475) 100%);
 }
 .bridge__section:nth-of-type(n + 2) {
   position: absolute;
