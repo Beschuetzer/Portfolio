@@ -28,7 +28,7 @@ import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import CardManager from "../../../components/Card/CardManager";
 import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_CLASSNAME, resetBridgeHero, setLinearGradientCssCustomProp } from "./utils";
 import {
-	DISPLAY_NONE_CLASSNAME, HIDDEN_CLASSNAME, Reference,
+	DISPLAY_NONE_CLASSNAME, Reference,
 } from "../../../components/constants";
 import BridgeHero from "./BridgeHero";
 import SourceCodeLink from "../../../components/SourceCodeLink";
@@ -50,14 +50,11 @@ const sectionContents = [
 					<EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">
 						contract bridge
 					</EmbeddedLink>
-					for free.&nbsp; The COVID-19 pandemic was in full swing, and a good
-					friend of mine had mentioned how much he missed playing bridge
-					(something which none of the members of our regular bridge group had
-					done for many months at that point).
+					online for free.&nbsp; The COVID-19 pandemic was in full swing, and a good
+					friend of mine had mentioned how much he missed playing bridge and thought it would be a good way to stay socially-active during the pandemic.
 				</p>
 				<p>
-					Initially, we looked for free, online apps but were unable to find
-					any at the time. &nbsp;I had told Andrew about the
+					Initially, I figured there had to be a free way we could play, but after searching extensively for such an app, I came to the conclusion that there wasn't one.  &nbsp;I had told my friend about the
 					<EmbeddedLink isLocal={true} href="/examples/downloader">
 						downloader
 					</EmbeddedLink>
@@ -66,12 +63,7 @@ const sectionContents = [
 						music syncing
 					</EmbeddedLink>
 					apps that I had recently finished, and he playfully remarked that I
-					should make an app to play bridge online. &nbsp;At that point, I
-					wasn't very interested in making my own bridge app.&nbsp; I figured
-					there had to be a free way we could play online. &nbsp; However,
-					after spending an hour, to no avail, looking for a free app/website,
-					I decided to invest some time into figuring out how one would do
-					such a thing.
+					should make an app since we didn't really feel like paying $1.00 a deal. &nbsp;I took up the challenge and decided to invest some time into figuring out how one would do such a thing.
 				</p>
 			</BridgeCardSection>
 		</BridgeCard>
@@ -275,7 +267,7 @@ const sectionContents = [
 						Do I have what it takes?  Will I be able to find a job during the pandemic?  These were questions that I was scared to face, but, to me, scarier was not pursing something that I have enjoyed doing since I was a kid.
 					</p> */}
 			</BridgeCardSection>
-			<BridgeCardSection title="The Process">
+			<BridgeCardSection title="The Approach">
 				{/* <p>
 						First, I needed some sort of test that was sufficiently complex and representative enough of actual real-world applications, such that if I could pass it, I would know I am on the right track.&nbsp;
 

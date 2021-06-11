@@ -34,11 +34,11 @@ OPTIMIZATIONS:
 
 -double check that no event listeners don't get cleaned up on page change
 
--work on OverlayText styling for CarouselItem
 
+-need responsive styling for video carouselitems 
+-work on OverlayText styling for CarouselItem
 -add svgs to csharp layouts
 -add notes to playlist syncer page?  what else to say about it?
 -add form to contact page that sends text and email when clicked?
 -finish content in about
 -finish last 4th section in bridge (and colors gradient for mobile and svg
--need responsive styling for video carouselitems 

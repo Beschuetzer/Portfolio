@@ -35,7 +35,7 @@
 			align-items: center;
 			justify-items: flex-start;
 			grid-row-gap: $default-font-size * 0.5;
-			// margin-left: $default-font-size * 2;
+			margin-bottom: $default-font-size * 1;
 
 			& span:nth-of-type(2n + 1) {
 				padding: 0 $default-font-size;

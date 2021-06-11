@@ -3160,6 +3160,7 @@ div.references__name {
   align-items: center;
   justify-items: flex-start;
   grid-row-gap: 0.8rem;
+  margin-bottom: 1.6rem;
 }
 .bridge__subsection-grid span:nth-of-type(2n + 1) {
   padding: 0 1.6rem;
