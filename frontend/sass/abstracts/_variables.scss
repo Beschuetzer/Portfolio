@@ -151,8 +151,8 @@ $bg-video-opacity: 0.075;
 //bridge
 $bridge-card-section-1-gradient: linear-gradient(
 	#{var(--bridge-gradient-direction)},
-	rgba($color-primary-bridge-1, 0.5),
-	rgba($color-primary-bridge-2, 0.5)
+	rgba(var(--color-primary-1-rgb), 0.5),
+	rgba(var(--color-primary-2-rgb), 0.5)
 );
 $bridge-card-section-2-gradient: linear-gradient(
 	#{var(--bridge-gradient-direction)},

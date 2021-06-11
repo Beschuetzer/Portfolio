@@ -128,9 +128,9 @@
 
 			& .bridge__section-titles {
 				background-image: linear-gradient(
-						to top right,
-						$color-primary-bridge-1,
-						rgba($color-primary-bridge-1, 0.75)
+						to bottom right,
+						rgba(var(--color-primary-1-rgb), .875),
+						rgba(var(--color-primary-2-rgb), .875)
 					),
 					url("/src/imgs/bridge-section-3.jpg");
 				background-position: top;
@@ -141,10 +141,10 @@
 			& .bridge__section-content {
 				background-image: linear-gradient(
 					var(--bridge-gradient-direction),
-					rgba($color-primary-bridge-3, 1) 0%,
-					rgba($color-primary-bridge-4, 1) 25%,
-					rgba($color-primary-bridge-4, 1) 75%,
-					rgba($color-primary-bridge-3, 1) 100%
+					rgba(var(--color-primary-3-rgb), .5) 0%,
+					rgba(var(--color-primary-4-rgb), .5) 25%,
+					rgba(var(--color-primary-4-rgb), .5) 75%,
+					rgba(var(--color-primary-3-rgb), .5) 100%
 				);
 			}
 		}
