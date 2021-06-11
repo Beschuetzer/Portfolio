@@ -224,6 +224,7 @@ $page-nav-top: calc(
 	--scrollbar-width: #{$default-font-size * 1};
 	--default-font-size: #{$default-font-size};
 	--page-nav-min-column-width: calc(#{$default-font-size} * 9.5375);
+	--site-nav-button-width: 7.5vw ;
 	--site-nav-item-gradient-direction: 45deg;
 	--site-nav-linear-gradient: linear-gradient(
 		to right,

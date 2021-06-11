@@ -68,6 +68,7 @@
   --scrollbar-width: 1.6rem;
   --default-font-size: 1.6rem;
   --page-nav-min-column-width: calc(1.6rem * 9.5375);
+  --site-nav-button-width: 7.5vw ;
   --site-nav-item-gradient-direction: 45deg;
   --site-nav-linear-gradient: linear-gradient(
   	to right,
@@ -540,6 +541,8 @@ body {
 }
 
 .navbar {
+  width: var(--site-nav-button-width);
+  --site-nav-button-width: 7.5vw;
   border-radius: 16rem 0 0 16rem;
   position: relative;
   font-size: 2.4rem;
@@ -927,6 +930,9 @@ body {
 }
 .navbar__dropdown-container:hover .navbar__dropdown .navbar__link {
   padding: 2rem 3.2rem;
+}
+.navbar.navbar--isAnimating, .navbar.navbar--active {
+  --site-nav-button-width: auto;
 }
 .navbar.navbar--active .navbar__link, .navbar.navbar--active .navbar__link:link, .navbar.navbar--active .navbar__link:visited {
   opacity: 1;

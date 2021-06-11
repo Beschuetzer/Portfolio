@@ -1,4 +1,7 @@
 .navbar {
+	width: var(--site-nav-button-width);
+	--site-nav-button-width: 7.5vw;
+
 	// margin-left: 0.583vw;
 	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
 	position: relative;
@@ -464,6 +467,11 @@
 		padding: $default-font-size * $paddingFactor $default-font-size * 2;
 	}
 
+	//setting navbar button width to auto to allow for expansion
+	&.navbar--isAnimating, 	&.navbar--active {
+		--site-nav-button-width: auto;
+	}
+	
 	//when navbar is open
 	&.navbar--active {
 		& .navbar__link,

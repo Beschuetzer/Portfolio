@@ -9,6 +9,8 @@ import {
 	DISPLAY_NONE_CLASSNAME,
 	Z_INDEX_HIGHEST_CLASSNAME,
 	PAGE_NAMES,
+	siteNavOriginalButtonWidth,
+	SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME,
 } from "../../constants";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
@@ -26,6 +28,7 @@ const BODY_BACKGROUND_CLASSNAME = "body-background";
 const SET_ANIMATING_DONE_WAIT_FACTOR = 1.2;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
+let setSiteNavWidthTimeout: any;
 
 export interface Sounds {
 	play: (sound: string) => void;

@@ -33,6 +33,7 @@ export const tabLandMaxWidth = parseFloat(computedStyle.getPropertyValue('--tab-
 export const navSwitchWidth = parseFloat(computedStyle.getPropertyValue('--nav-switch-width'));
 export const largerThanNavSwitchWidth = parseFloat(computedStyle.getPropertyValue('--larger-than-nav-switch'));
 export const bigDesktopPixelMin = parseFloat(computedStyle.getPropertyValue('--big-desktop-min-width'));
+export const siteNavOriginalButtonWidth = computedStyle.getPropertyValue('--site-nav-button-width');
 
 const offset = .00000000000001;
 export const viewPortPixelToRem: {
@@ -72,6 +73,7 @@ export const TRANSPARENT_CLASSNAME = 'transparent';
 export const DISPLAY_NONE_CLASSNAME = 'd-none';
 export const HIDDEN_CLASSNAME = 'hidden';
 export const BODY_BACKGROUND_CSS_CLASSNAME = "--body-background";
+export const SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME = "--site-nav-button-width";
 export const NO_MARGIN_CLASSNAME = "margin-0";
 
 
