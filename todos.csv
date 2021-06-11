@@ -44,5 +44,6 @@ OPTIMIZATIONS:
 -finish last 4th section in bridge (and colors gradient for mobile and svg
 -rewrite the motivation part of bridge (talk about how I wanted a sufficiently-complex project to test whether I had what it takes to become a professional programmer (this was the main reason, Andrew's suggestion was an added motivation)
 
--fix main page overflow-x issue (setTimeout to remove overflow-hidden-x)
 -add side content with msg = "Welcome to my portfolio!"  "This site was created with React, Redux, and custom CSS"  "Click, hover, and enjoy!"  "Get in touch when you're ready"
+-fix bridge scroll bar issue by making .bridge height 100vh + 1px for full-size when scrolling down completely?  also change .bridge width to 100%;  alternatively can change bridge .header and .source-code__link
+-fix main page overflow-x issue (setTimeout to remove overflow-hidden-x)
