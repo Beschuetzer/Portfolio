@@ -2760,6 +2760,9 @@ body {
 .home > * {
   z-index: 1;
 }
+.home-page {
+  overflow-y: hidden;
+}
 .home__canvas {
   position: absolute;
   left: 0;
@@ -2804,7 +2807,7 @@ body {
   font-weight: 900;
   grid-column: 1/-1;
   font-size: 2.4rem;
-  transform: translate(0, 80rem);
+  transform: translate(0, 100vh);
   animation: 1.5s 1 translateToZero forwards cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 .home__footer {

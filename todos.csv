@@ -46,4 +46,3 @@ OPTIMIZATIONS:
 
 -add side content with msg = "Welcome to my portfolio!"  "This site was created with React, Redux, and custom CSS"  "Click, hover, and enjoy!"  "Get in touch when you're ready"
 
--fix main page overflow-x issue (setTimeout to remove overflow-hidden-x)

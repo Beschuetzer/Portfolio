@@ -104,7 +104,7 @@ export const changePage = (newUrl: string) => {
 
 export const setBodyStyle = (currentUrl: string) => {
 	const setBodyStyle = (page: string) => {
-		if (page === "") document.body.className = BODY_BACKGROUND_CLASSNAME;
+		if (page === "") document.body.className = `${BODY_BACKGROUND_CLASSNAME} home-page`;
 		else {
 			document.body.className = `${BODY_BACKGROUND_CLASSNAME} ${page.slice(
 				1,
