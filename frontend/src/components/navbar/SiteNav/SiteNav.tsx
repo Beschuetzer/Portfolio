@@ -31,10 +31,11 @@ import {
 	handleMouseEnter,
 	HEADER_ID,
 	handleSound,
+	HEADER_TOGGLER_CLASSNAME,
 } from "./utils";
 import { scrollToSection } from "../../utils";
 import { checkForParentOfType } from "../../../helpers";
-import { ANIMATION_DURATION, MOBILE_BREAK_POINT_WIDTH, OVERFLOW_HIDDEN_CLASSNAME, Z_INDEX_HIGHEST_CLASSNAME } from "../../constants";
+import { ANIMATION_DURATION, DISPLAY_NONE_CLASSNAME, MOBILE_BREAK_POINT_WIDTH, OVERFLOW_HIDDEN_CLASSNAME, TRANSPARENT_CLASSNAME, Z_INDEX_HIGHEST_CLASSNAME } from "../../constants";
 
 interface SiteNavProps {
 	match: { url: string };
@@ -156,13 +157,21 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 	}
 
 	componentDidUpdate(prevProps: any, prevState: any) {
-		//when header height changes
-		if (prevProps.headerHeight !== this.props.headerHeight || this.state.headerHeight !== prevState.headerHeight) {
-			if (!this.state.currentUrl || this.state.currentUrl !== this.match.url) {
-				scrollToSection(document.body, this.headerHeight)
-				this.setState({currentUrl: this.match.url});
+		// if (prevProps.headerHeight !== this.props.headerHeight || this.state.headerHeight !== prevState.headerHeight) {
+			if (this.props.match.url !== '/') {
+				document.querySelector(`${HEADER_ID}`)!.classList.remove(TRANSPARENT_CLASSNAME);
+				document.querySelector(`.${HEADER_TOGGLER_CLASSNAME}`)!.classList.remove(DISPLAY_NONE_CLASSNAME);
+			} else {
+				document.querySelector(`${HEADER_ID}`)!.classList.add(TRANSPARENT_CLASSNAME);
+				document.querySelector(`.${HEADER_TOGGLER_CLASSNAME}`)!.classList.add(DISPLAY_NONE_CLASSNAME);
 			}
-		}
+		// }
+
+			if (!this.state.currentUrl || this.state.currentUrl !== this.props.match.url) {
+				scrollToSection(document.body, this.headerHeight)
+				this.setState({currentUrl: this.props.match.url});
+			}
+		// }
 
 		if (this.state.currentUrl !== this.props.match.url || this.state.currentUrl === prevState.currentUrl) {
 			setBodyStyle(this.props.match.url);
