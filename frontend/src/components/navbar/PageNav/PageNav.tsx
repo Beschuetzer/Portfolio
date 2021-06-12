@@ -205,6 +205,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	}, []);
 
 	useEffect(() => {
+		debugger
 		if (!isMobile) return;
 		const itemCount = pageNavElement.children.length;
 		if (!itemCount) return;

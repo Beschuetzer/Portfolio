@@ -53,10 +53,6 @@ class App extends React.PureComponent<AppProps, AppState> {
 			isMobile: window.innerWidth <= MOBILE_BREAK_POINT_WIDTH,
 			isAnimating: false,
 		}
-	}
-
-	componentDidMount() {
-		window.addEventListener("keydown", keypressHandler.bind(null, this.state.isAnimating, setIsAnimating));
 
 		const sounds = new Howl({
 			src: [soundsSpriteMp3, soundsSpriteOgg],
@@ -69,7 +65,15 @@ class App extends React.PureComponent<AppProps, AppState> {
 				siteNavClose: [4500, 1000],
 			},
 		});
-		setSounds(sounds);
+
+		this.props.setIsMobile(window.innerWidth <= MOBILE_BREAK_POINT_WIDTH, window.innerWidth);
+		this.props.setSounds(sounds);
+	}
+
+	componentDidMount() {
+		window.addEventListener("keydown", keypressHandler.bind(null, this.state.isAnimating, setIsAnimating));
+
+		
 	}
 
 	componentWillUnmount() {

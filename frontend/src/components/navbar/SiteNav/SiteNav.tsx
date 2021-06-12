@@ -44,7 +44,7 @@ interface SiteNavProps {
 	setIsAnimating: (value: boolean) => void;
 	setHeaderHeight: (value: number) => void;
 	setViewPortWidth:  (value: number) => void;
-	setIsMobile:  (value: boolean) => void;
+	setIsMobile:  (value: boolean, windowWidth: number) => void;
 	navRef: RefObject<HTMLElement>;
 }
 
@@ -63,7 +63,7 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 	sounds: { play: (value: string) => void };
 	setIsAnimating: (value: boolean) => void;
 	setHeaderHeight: (value: number) => void;
-	setIsMobile: (value: boolean) => void;
+	setIsMobile: (value: boolean, windowWidth: number) => void;
 	setViewPortWidth: (value: number) => void;
 	navRef: RefObject<HTMLElement>;
 
@@ -194,13 +194,13 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 		if (window.innerWidth <= MOBILE_BREAK_POINT_WIDTH && !this.state.isMobile) {
 			const newValue = `--bridge-gradient-direction: to bottom`;
 			document.documentElement.style.cssText += newValue;
-			return setIsMobile(true, window.innerWidth);
+			return this.setIsMobile(true, window.innerWidth);
 		} else if (window.innerWidth > MOBILE_BREAK_POINT_WIDTH && this.state.isMobile) {
 			const newValue = `--bridge-gradient-direction: to right`;
 			document.documentElement.style.cssText += newValue;
-			return setIsMobile(false, window.innerWidth);
+			return this.setIsMobile(false, window.innerWidth);
 		}
-		return setViewPortWidth(window.innerWidth);
+		return this.setViewPortWidth(window.innerWidth);
 	};
 
 	render(){
