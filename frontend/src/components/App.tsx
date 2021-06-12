@@ -27,6 +27,7 @@ import {
 	setIsMobile,
 	setViewPortWidth,
 	setSounds,
+	setHeaderHeight,
 } from "../actions";
 import soundsSpriteMp3 from "../sounds/soundsSprite.mp3";
 import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
@@ -39,6 +40,7 @@ interface AppProps {
 	setIsAnimating: (value: boolean) => void,
 	setViewPortWidth: (value: number) => void,
 	setSounds: (value: {}) => void,
+	setHeaderHeight: (value: {}) => void,
 }
 
 interface AppState {
@@ -50,6 +52,7 @@ class App extends React.PureComponent<AppProps, AppState> {
 	setIsMobile: (value: boolean, windowWidth: number) => void;
 	setIsAnimating: (value: boolean) => void;
 	setViewPortWidth: (value: number) => void;
+	setHeaderHeight: (value: number) => void;
 	setSounds: (value: {}) => void;
 
 	constructor(props: any) {
@@ -59,6 +62,7 @@ class App extends React.PureComponent<AppProps, AppState> {
 		this.setIsMobile = this.props.setIsMobile;
 		this.setIsAnimating = this.props.setIsAnimating;
 		this.setSounds = this.props.setSounds;
+		this.setHeaderHeight = this.props.setHeaderHeight;
 		this.state = {
 			isMobile: window.innerWidth <= MOBILE_BREAK_POINT_WIDTH,
 			isAnimating: false,
@@ -103,13 +107,14 @@ class App extends React.PureComponent<AppProps, AppState> {
 		if (window.innerWidth <= MOBILE_BREAK_POINT_WIDTH && !this.state.isMobile) {
 			const newValue = `--bridge-gradient-direction: to bottom`;
 			document.documentElement.style.cssText += newValue;
-			return this.setIsMobile(true, window.innerWidth);
+			this.setIsMobile(true, window.innerWidth);
 		} else if (window.innerWidth > MOBILE_BREAK_POINT_WIDTH && this.state.isMobile) {
 			const newValue = `--bridge-gradient-direction: to right`;
 			document.documentElement.style.cssText += newValue;
-			return this.setIsMobile(false, window.innerWidth);
+			this.setIsMobile(false, window.innerWidth);
 		}
-		return this.setViewPortWidth(window.innerWidth);
+		this.setViewPortWidth(window.innerWidth);
+		this.setHeaderHeight(document.querySelector('#header')!.getBoundingClientRect().height);
 	};
 
 
@@ -150,6 +155,7 @@ const mapStateToProps = (state: RootStateOrAny) => {
 
 export default connect(mapStateToProps, {
 	setIsAnimating,
+	setHeaderHeight,
 	setIsMobile,
 	setViewPortWidth,
 	setSounds,

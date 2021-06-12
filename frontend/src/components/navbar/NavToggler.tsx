@@ -20,6 +20,8 @@ const NavToggler: React.FC<NavTogglerProps> = ({
 }) => {
 	//Adjusting NavToggler height to match header height as it changes on resizes
 	useEffect(() => {
+		console.log('viewPortWidth =', viewPortWidth);
+		console.log('headerHeight =', headerHeight);
 		const getPixelToRemConversionToUse = () => {
 			let pixelToRemConversionToUse = viewPortPixelToRem.full.pixelsToRem;
 			for (const [key, value] of Object.entries(viewPortPixelToRem)) {
@@ -34,6 +36,7 @@ const NavToggler: React.FC<NavTogglerProps> = ({
 
 		const pixelToRemConversionToUse = getPixelToRemConversionToUse();
 		const headerHeightInRem = headerHeight / pixelToRemConversionToUse;
+
 		const newWidth = `${
 			headerHeightInRem + parseFloat(headerTogglerWidth as any)
 		}rem`;
@@ -41,6 +44,7 @@ const NavToggler: React.FC<NavTogglerProps> = ({
 			HEADER_TOGGLER_CSS_CLASSNAME,
 			newWidth,
 		);
+		console.log('newWidth =', newWidth);
 	}, [headerHeight, viewPortWidth]);
 
 	const handleOnClick = (e: MouseEvent) => {

@@ -164,11 +164,7 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 			}
 		}
 
-		console.log('match.url =', this.props.match.url);
-		console.log('this.state.currentUrl =', this.state.currentUrl);
-		console.log('prevState.currentUrl =', prevState.currentUrl);
 		if (this.state.currentUrl !== this.props.match.url || this.state.currentUrl === prevState.currentUrl) {
-			console.log('setting body------------------------------------------------');
 			setBodyStyle(this.props.match.url);
 		}
 
@@ -196,19 +192,6 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 			changePage(this.state.currentUrl);
 			startAnimating(this.navRef, this.state.isAnimating);
 		}
-	}
-
-	windowResize = (e: Event) => {
-		if (window.innerWidth <= MOBILE_BREAK_POINT_WIDTH && !this.state.isMobile) {
-			const newValue = `--bridge-gradient-direction: to bottom`;
-			document.documentElement.style.cssText += newValue;
-			return this.setIsMobile(true, window.innerWidth);
-		} else if (window.innerWidth > MOBILE_BREAK_POINT_WIDTH && this.state.isMobile) {
-			const newValue = `--bridge-gradient-direction: to right`;
-			document.documentElement.style.cssText += newValue;
-			return this.setIsMobile(false, window.innerWidth);
-		}
-		return this.setViewPortWidth(window.innerWidth);
 	}
 
 	render(){
