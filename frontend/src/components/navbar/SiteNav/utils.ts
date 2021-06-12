@@ -155,6 +155,7 @@ export const handleSound = (sounds: Sounds, e: MouseEvent) => {
 		NAVBAR_CLASSNAME,
 	);
 
+	if (sounds.play === undefined) return
 	if (!isActive && isMenu) sounds.play("siteNavOpen");
 	else if ((!isActive && !isNavbar) || (isActive && isMenu))
 		sounds.play("siteNavClose");

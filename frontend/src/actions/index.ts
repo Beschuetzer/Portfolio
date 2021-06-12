@@ -1,3 +1,4 @@
+import { Howl } from 'howler';
 import { Dispatch } from 'react';
 import github from '../apis/github';
 import {
@@ -222,7 +223,7 @@ export const setIsMobile = (isMobile: boolean, viewPortWidth: number) => {
   }
 }
 
-export const setViewPortWidth = (value: boolean) => {
+export const setViewPortWidth = (value: number) => {
   return {
     type: SET_VIEW_PORT_WIDTH,
     payload: value,
@@ -250,7 +251,7 @@ export const setScrollPercent = (percent: string) => {
   }
 }
 
-export const setSounds = (sounds: []) => {
+export const setSounds = (sounds: Howl) => {
   return {
     type: SET_SOUNDS,
     payload: sounds,

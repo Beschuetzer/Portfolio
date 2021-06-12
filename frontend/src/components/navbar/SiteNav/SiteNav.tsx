@@ -89,9 +89,7 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 		);
 	
 		if (!navBar) return;
-		if (this.sounds && this.sounds !== undefined) {
-			console.log('this.sounds =', this.sounds);
-			
+		if (this.sounds !== undefined) {
 			handleSound(this.sounds, e);
 		}
 	

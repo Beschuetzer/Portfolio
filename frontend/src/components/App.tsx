@@ -41,50 +41,24 @@ interface AppProps {
 	setSounds: (value: {}) => void,
 }
 
-const App: React.FC<AppProps> = ({
-	isMobile,
-	setIsMobile,
-	isAnimating,
-	setIsAnimating,
-	setViewPortWidth,
-	setSounds,
-}) => {
-	const mobileBreakPointWidth = MOBILE_BREAK_POINT_WIDTH;
-	setIsMobile(window.innerWidth <= mobileBreakPointWidth, window.innerWidth);
+interface AppState {
+	isMobile: boolean,
+	isAnimating: boolean,
+}
 
-	//setup window resize listener
-	useEffect(() => {
-		const windowResize = (e: Event) => {
-			if (window.innerWidth <= mobileBreakPointWidth && !isMobile) {
-				const newValue = `--bridge-gradient-direction: to bottom`;
-				document.documentElement.style.cssText += newValue;
-				return setIsMobile(true, window.innerWidth);
-			} else if (window.innerWidth > mobileBreakPointWidth && isMobile) {
-				const newValue = `--bridge-gradient-direction: to right`;
-				document.documentElement.style.cssText += newValue;
-				return setIsMobile(false, window.innerWidth);
-			}
-			return setViewPortWidth(window.innerWidth);
-		};
+class App extends React.PureComponent<AppProps, AppState> {
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			isMobile: window.innerWidth <= MOBILE_BREAK_POINT_WIDTH,
+			isAnimating: false,
+		}
+	}
 
-		window.addEventListener("resize", windowResize);
-		window.addEventListener("keydown", keypressHandler.bind(null, isAnimating, setIsAnimating));
+	componentDidMount() {
+		window.addEventListener("resize", this.windowResize);
+		window.addEventListener("keydown", keypressHandler.bind(null, this.state.isAnimating, setIsAnimating));
 
-		return () => {
-			window.removeEventListener("resize", windowResize);
-			window.removeEventListener("keydown", keypressHandler.bind(null, isAnimating, setIsAnimating));
-		};
-	}, [
-		isMobile,
-		setIsMobile,
-		mobileBreakPointWidth,
-		isAnimating,
-		setIsAnimating,
-		setViewPortWidth,
-	]);
-
-	//Loading Sounds, etc
-	useEffect(() => {
 		const sounds = new Howl({
 			src: [soundsSpriteMp3, soundsSpriteOgg],
 			volume: 0.1,
@@ -97,31 +71,59 @@ const App: React.FC<AppProps> = ({
 			},
 		});
 		setSounds(sounds);
-	}, [setSounds]);
+	}
 
-	return (
-		<Router history={history}>
-			<Switch>
-				<Route path="/" exact component={Home} />
-				<Route path="/examples/bridge" exact component={Bridge} />
-				<Route path="/examples/downloader" exact component={Downloader} />
-				<Route
-					path="/examples/playlist-syncer"
-					exact
-					component={PlaylistSyncer}
-				/>
-				<Route path="/examples/autobid" exact component={Autobid} />
-				<Route path="/about" exact component={About} />
-				<Route path="/resume" exact component={Resume} />
-				<Route path="/contact" exact component={Contact} />
-			</Switch>
-			<Route path="*" exact component={NavToggler} />
-			<Route path="*" exact component={PageNav} />
-			<Route path="*" exact component={SiteNav} />
-			<Route path="*" exact component={GithubButton} />
-			{/* <Footer/> */}
-		</Router>
-	);
+	componentWillUnmount() {
+		window.removeEventListener("resize", this.windowResize);
+		window.removeEventListener("keydown", keypressHandler.bind(null, this.state.isAnimating, setIsAnimating));
+	}
+
+	componentDidUpdate(prevProps: any, prevState: any) {
+		console.log('app update------------------------------------------------');
+		if (prevProps.isAnimating !== this.props.isAnimating) {
+			console.log('this.props.isAnimating =', this.props.isAnimating);
+			this.setState({isAnimating: this.props.isAnimating})
+		}
+	}
+
+	windowResize = (e: Event) => {
+		if (window.innerWidth <= MOBILE_BREAK_POINT_WIDTH && !this.state.isMobile) {
+			const newValue = `--bridge-gradient-direction: to bottom`;
+			document.documentElement.style.cssText += newValue;
+			return setIsMobile(true, window.innerWidth);
+		} else if (window.innerWidth > MOBILE_BREAK_POINT_WIDTH && this.state.isMobile) {
+			const newValue = `--bridge-gradient-direction: to right`;
+			document.documentElement.style.cssText += newValue;
+			return setIsMobile(false, window.innerWidth);
+		}
+		return setViewPortWidth(window.innerWidth);
+	};
+
+	render() {
+		return (
+			<Router history={history}>
+				<Switch>
+					<Route path="/" exact component={Home} />
+					<Route path="/examples/bridge" exact component={Bridge} />
+					<Route path="/examples/downloader" exact component={Downloader} />
+					<Route
+						path="/examples/playlist-syncer"
+						exact
+						component={PlaylistSyncer}
+					/>
+					<Route path="/examples/autobid" exact component={Autobid} />
+					<Route path="/about" exact component={About} />
+					<Route path="/resume" exact component={Resume} />
+					<Route path="/contact" exact component={Contact} />
+				</Switch>
+				<Route path="*" exact component={NavToggler} />
+				<Route path="*" exact component={PageNav} />
+				<Route path="*" exact component={SiteNav} />
+				<Route path="*" exact component={GithubButton} />
+				{/* <Footer/> */}
+			</Router>
+		);
+	}
 };
 
 const mapStateToProps = (state: RootStateOrAny) => {
