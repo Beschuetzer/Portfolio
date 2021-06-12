@@ -3,7 +3,7 @@ import React from 'react'
 interface TextScroll {
 
 }
-const TextScroll: React.FC<TextScroll> extends Component = ({
+const TextScroll: React.FC<TextScroll> = ({
   
 }) => {
   
