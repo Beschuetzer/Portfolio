@@ -44,4 +44,5 @@ OPTIMIZATIONS:
 -finish last 4th section in bridge (and colors gradient for mobile and svg
 
 -issue with transparent class on header for main page and not removing on page change
+-not scrolling to top on page change
 -skills popup styling issue when going from nav-switch to normal
