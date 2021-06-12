@@ -56,7 +56,6 @@ class App extends React.PureComponent<AppProps, AppState> {
 	}
 
 	componentDidMount() {
-		window.addEventListener("resize", this.windowResize);
 		window.addEventListener("keydown", keypressHandler.bind(null, this.state.isAnimating, setIsAnimating));
 
 		const sounds = new Howl({
@@ -74,30 +73,16 @@ class App extends React.PureComponent<AppProps, AppState> {
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener("resize", this.windowResize);
 		window.removeEventListener("keydown", keypressHandler.bind(null, this.state.isAnimating, setIsAnimating));
 	}
 
 	componentDidUpdate(prevProps: any, prevState: any) {
-		console.log('app update------------------------------------------------');
 		if (prevProps.isAnimating !== this.props.isAnimating) {
 			console.log('this.props.isAnimating =', this.props.isAnimating);
 			this.setState({isAnimating: this.props.isAnimating})
 		}
 	}
 
-	windowResize = (e: Event) => {
-		if (window.innerWidth <= MOBILE_BREAK_POINT_WIDTH && !this.state.isMobile) {
-			const newValue = `--bridge-gradient-direction: to bottom`;
-			document.documentElement.style.cssText += newValue;
-			return setIsMobile(true, window.innerWidth);
-		} else if (window.innerWidth > MOBILE_BREAK_POINT_WIDTH && this.state.isMobile) {
-			const newValue = `--bridge-gradient-direction: to right`;
-			document.documentElement.style.cssText += newValue;
-			return setIsMobile(false, window.innerWidth);
-		}
-		return setViewPortWidth(window.innerWidth);
-	};
 
 	render() {
 		return (

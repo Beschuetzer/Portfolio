@@ -111,14 +111,14 @@ export const resetBridgeHero = (heroMore: Reference) => {
 
 export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: HTMLElement, sounds: {play: (name: string) => void}, isMobile: boolean, headerHeight: number) => {
   if (!checkBox?.checked) {
-    sounds.play('doorFast');
+    if (sounds.play !== undefined) sounds.play('doorFast');
 
     if (!background) return;
     background?.classList.add('visible');
     background?.classList.add('reverse-ease');
   }
   else {
-    sounds.play('doorNormal');
+    if (sounds.play !== undefined) sounds.play('doorNormal');
     scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()) as HTMLElement, !isMobile ? 0 : headerHeight)
     if (background)  {
       background?.classList.remove('visible');

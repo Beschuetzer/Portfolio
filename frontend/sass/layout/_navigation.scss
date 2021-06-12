@@ -11,6 +11,7 @@
 	align-items: center;
 
 	@include respond(nav-switch) {
+		--site-nav-button-width: auto;
 		align-items: flex-start;
 		border-radius: 0;
 		&.overflow--hidden.navbar.navbar--active {

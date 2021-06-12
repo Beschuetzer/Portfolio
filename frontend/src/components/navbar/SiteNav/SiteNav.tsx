@@ -12,7 +12,7 @@ import examplesImage from "../../../imgs/site-nav-examples.jpg";
 import resumeImage from "../../../imgs/site-nav-resume.jpg";
 import syncerImage from "../../../imgs/site-nav-syncer.jpg";
 
-import { setHeaderHeight, setIsAnimating } from "../../../actions";
+import { setHeaderHeight, setIsAnimating, setViewPortWidth, setIsMobile } from "../../../actions";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_CLASSNAME,
@@ -43,6 +43,8 @@ interface SiteNavProps {
 	sounds: { play: (value: string) => void };
 	setIsAnimating: (value: boolean) => void;
 	setHeaderHeight: (value: number) => void;
+	setViewPortWidth:  (value: number) => void;
+	setIsMobile:  (value: boolean) => void;
 	navRef: RefObject<HTMLElement>;
 }
 
@@ -51,6 +53,7 @@ interface SiteNavState {
 	isAnimating: boolean,
 	headerHeight: number,
 	viewPortWidth: number;
+	isMobile: boolean,
 }
 
 class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements SiteNavProps  {
@@ -60,6 +63,8 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 	sounds: { play: (value: string) => void };
 	setIsAnimating: (value: boolean) => void;
 	setHeaderHeight: (value: number) => void;
+	setIsMobile: (value: boolean) => void;
+	setViewPortWidth: (value: number) => void;
 	navRef: RefObject<HTMLElement>;
 
 	constructor(props: SiteNavProps){
@@ -70,11 +75,14 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 		this.sounds = this.props.sounds;
 		this.setIsAnimating = this.props.setIsAnimating;
 		this.setHeaderHeight = this.props.setHeaderHeight;
+		this.setIsMobile = this.props.setIsMobile;
+		this.setViewPortWidth = this.props.setViewPortWidth;
 		this.state = {
 			currentUrl: '',
 			isAnimating: false,
 			headerHeight: 0,
 			viewPortWidth: window.innerWidth,
+			isMobile: window.innerWidth <= MOBILE_BREAK_POINT_WIDTH,
 		}
 		this.navRef = React.createRef();
 	}
@@ -99,7 +107,7 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 			navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 			document.querySelector(HEADER_ID)!.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
-			setIsAnimating(true);
+			this.setIsAnimating(true);
 			this.setState({isAnimating: true});
 		} else {
 			navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
@@ -111,7 +119,7 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 					.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
 			}, ANIMATION_DURATION);
 	
-			setIsAnimating(false);
+			this.setIsAnimating(false);
 			this.setState({isAnimating: false})
 		}
 	};
@@ -136,7 +144,7 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 	}
 
 	componentDidMount () {
-		init(this.navRef, setHeaderHeight);
+		init(this.navRef, this.setHeaderHeight);
 		document.addEventListener('scroll', this.handleScroll);
 		window.addEventListener('resize', this.handleResize);
 	}
@@ -181,6 +189,19 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 			startAnimating(this.navRef, this.state.isAnimating);
 		}
 	}
+
+	windowResize = (e: Event) => {
+		if (window.innerWidth <= MOBILE_BREAK_POINT_WIDTH && !this.state.isMobile) {
+			const newValue = `--bridge-gradient-direction: to bottom`;
+			document.documentElement.style.cssText += newValue;
+			return setIsMobile(true, window.innerWidth);
+		} else if (window.innerWidth > MOBILE_BREAK_POINT_WIDTH && this.state.isMobile) {
+			const newValue = `--bridge-gradient-direction: to right`;
+			document.documentElement.style.cssText += newValue;
+			return setIsMobile(false, window.innerWidth);
+		}
+		return setViewPortWidth(window.innerWidth);
+	};
 
 	render(){
 		return ReactDOM.createPortal(
@@ -289,4 +310,6 @@ const mapStateToProps = (state: RootStateOrAny) => {
 export default connect(mapStateToProps, {
 	setIsAnimating,
 	setHeaderHeight,
-})(SiteNav);
+	setIsMobile,
+	setViewPortWidth
+})(SiteNav as any);
