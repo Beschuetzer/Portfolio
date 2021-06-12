@@ -8,6 +8,7 @@ interface EmbeddedLinkProps {
 	href: string,
 	className?: string,
 	isLocal?: boolean,
+	openInNewTab?: boolean,
 	children: any,
 	headerHeight: number,
 }
@@ -16,11 +17,13 @@ const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 	href,
 	className = `${BRIDGE_CLASSNAME}__link`,
 	isLocal = false,
+	openInNewTab = true,
 	children,
 	headerHeight,
 }) => {
 
 	const scrollToLink = (e: MouseEvent) => {
+		if (openInNewTab) return;
 		setTimeout(() => {
 			const href =  ((e.target as any)?.href as string);
 			const indexStart = href.indexOf('#');
@@ -33,14 +36,15 @@ const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 	const renderContent = () => {
 		if (isLocal) {
 			return (
-				<Link to={href} className={className} onClick={(e: any) => scrollToLink(e)}>
+				<Link rel={openInNewTab ? "noreferrer" : undefined} target={openInNewTab ? "_blank" : undefined} to={href} className={className} onClick={(e: any) => scrollToLink(e)}>
 					{children}
 				</Link>
 			);
 		}
 
 		return (
-			<a target="_blank" rel="noreferrer" href={href} className={className}>
+			//eslint-disable-next-line
+			<a rel={openInNewTab ? "noreferrer" : undefined} target={openInNewTab ? "_blank" : undefined} href={href} className={className}>
 				{children}
 			</a>
 		);

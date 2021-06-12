@@ -57,7 +57,7 @@ const sectionContents = [
 				// title='An App is Born'
 			>
 				<p>
-					It was June of 2020 and I had just left my job at <EmbeddedLink href="/resume#ricoh" isLocal={true}>Ricoh</EmbeddedLink> to pursue a life-long interest of mine: coding.&nbsp; 
+					It was June of 2020 and I had just left my job at <EmbeddedLink href="/resume#ricoh" openInNewTab={true} isLocal={true}>Ricoh</EmbeddedLink> to pursue a life-long interest of mine: coding.&nbsp; 
 					&nbsp;I had just finished my two smaller side projects
 					(		
 					<EmbeddedLink isLocal={true} href="/examples/downloader">
@@ -301,7 +301,7 @@ const sectionContents = [
 						rel="noreferrer">
 						service technician position
 					</a>{" "}
-					at <EmbeddedLink href="/resume#ricoh" isLocal={true}>Ricoh</EmbeddedLink> in order to free up the time and energy needed to
+					at <EmbeddedLink href="/resume#ricoh" openInNewTab={true} isLocal={true}>Ricoh</EmbeddedLink> in order to free up the time and energy needed to
 					whole-heartily devote myself to the project.
 				</p>
 			</BridgeCardSection>
