@@ -1,5 +1,4 @@
 import React, { RefObject } from "react";
-import { useEffect, useRef, useState } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import ReactDOM from "react-dom";
 import NavListItem from "../NavListItem";
@@ -31,6 +30,7 @@ import {
 	hide,
 	handleMouseEnter,
 	HEADER_ID,
+	handleSound,
 } from "./utils";
 import { scrollToSection } from "../../utils";
 import { checkForParentOfType } from "../../../helpers";
@@ -89,7 +89,11 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 		);
 	
 		if (!navBar) return;
-		// if (this.sounds && this.sounds !== undefined) handleSound(this.sounds, e);
+		if (this.sounds && this.sounds !== undefined) {
+			console.log('this.sounds =', this.sounds);
+			
+			handleSound(this.sounds, e);
+		}
 	
 		if (isChildOfNavBar) navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 	
