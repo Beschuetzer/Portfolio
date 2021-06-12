@@ -45,4 +45,4 @@ OPTIMIZATIONS:
 
 -issue with transparent class on header for main page and not removing on page change
 -not scrolling to top on page change
--skills popup styling issue when going from nav-switch to normal
+-skills popup styling issue when going from nav-switch to normal (isMobile isn't causing SkillsPopup to re-render so it stays in second state indefinitely)

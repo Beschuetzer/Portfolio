@@ -66,6 +66,10 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		}
 	}, [clickedSkill, repos, addRepoToReposToDisplay]);
 
+	useEffect(() => {
+		console.log('need to do something to cause re-render here------------------------------------------------');
+	}, [isMobile])
+
 	// const getIndexOfItem = (target, items) => {
 	// 	for (let i = 0; i < items.length; i++) {
 	// 		const item = items[i];
@@ -283,6 +287,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 			);
 		}
 		return reposToDisplay.map((repo) => {
+			console.log('isMobile =', isMobile);
 			if (isMobile) {
 				return (
 					<article key={repo.name} className={`${SKILLS_CLASSNAME}-popup__table-repo`}>
