@@ -108,8 +108,10 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 			navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 			document.querySelector(HEADER_ID)!.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
-			this.setIsAnimating(true);
-			this.setState({isAnimating: true});
+			if (this.state.isAnimating === false) {
+				this.setIsAnimating(true);
+				this.setState({isAnimating: true});
+			}
 		} else {
 			navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
@@ -120,8 +122,10 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 					.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
 			}, ANIMATION_DURATION);
 	
-			this.setIsAnimating(false);
-			this.setState({isAnimating: false})
+			if (this.state.isAnimating === true) {
+				this.setIsAnimating(false);
+				this.setState({isAnimating: false})
+			}
 		}
 	};
 
@@ -136,16 +140,16 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 
 	handleResize = (e: any) => {
 		const viewPortWidth = window.innerWidth;
-		this.setState({viewPortWidth});
+		if (this.state.viewPortWidth !== viewPortWidth) this.setState({viewPortWidth});
 	}
 
 	handleScroll = (e: any) => {
 		const headerHeight = document.querySelector('#header')!.getBoundingClientRect().height;
-		this.setState({headerHeight})
+		if (this.state.headerHeight !== headerHeight)	this.setState({headerHeight})
 	}
 
 	componentDidMount () {
-		init(this.navRef, this.setHeaderHeight);
+		init(this.navRef, this.props.setHeaderHeight);
 		document.addEventListener('scroll', this.handleScroll);
 		window.addEventListener('resize', this.handleResize);
 	}
@@ -169,7 +173,7 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 
 			if (!this.state.currentUrl || this.state.currentUrl !== this.props.match.url) {
 				scrollToSection(document.body, this.headerHeight)
-				this.setState({currentUrl: this.props.match.url});
+				if (this.state.currentUrl !== this.props.match.url) this.setState({currentUrl: this.props.match.url});
 			}
 		// }
 
@@ -192,7 +196,7 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 			navbarContent.style.top = newTop;
 		
 			const headerHeight = header.getBoundingClientRect().height;
-			this.setState({headerHeight});
+			if (this.state.headerHeight !== headerHeight) this.setState({headerHeight});
 		}
 
 		//when isAnimating changes
