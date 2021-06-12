@@ -13,7 +13,7 @@ const resumeReducer = (state = INITIAL_STATE, action: Action) => {
       if (action.payload.length !== state.sectionsToSkipAnimation.length) return {...state, sectionsToSkipAnimation: action.payload};
       return state;
     case ADD_REPO:
-      if (action.payload?.length === 0) return state;
+      if (action.payload?.length === 0) return {...state, reposToDisplay: []};
       const reposToDisplayNew = [...state.reposToDisplay, action.payload];
       if (state.reposToDisplay.length !== reposToDisplayNew.length ) return {...state, reposToDisplay: reposToDisplayNew};
       return state;
