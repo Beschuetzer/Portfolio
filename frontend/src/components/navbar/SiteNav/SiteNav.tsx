@@ -1,4 +1,4 @@
-import React from "react";
+import React, { RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import ReactDOM from "react-dom";
@@ -41,161 +41,172 @@ interface SiteNavProps {
 	sounds: { play: (value: string) => void };
 	setIsAnimating: (value: boolean) => void;
 	setHeaderHeight: (value: number) => void;
+	navRef: RefObject<HTMLElement>;
 }
 
-const SiteNav: React.FC<SiteNavProps> = ({
-	isAnimating,
-	setIsAnimating,
-	match,
-	previousUrl,
-	viewPortWidth,
-	headerHeight,
-	sounds,
-	setHeaderHeight,
-}) => {
-	const [currentUrl, setCurrentUrl] = useState<string>("");
-	const navRef = useRef<HTMLElement>(null);
-	
-	const onNavClick = (e: MouseEvent) => {
-		e.stopPropagation();
-		handleNavClick(navRef, sounds, setIsAnimating, e);
-	};
+interface SiteNavState {
+	currentUrl: string,
+}
 
-	const onNavItemClick = (e: MouseEvent) => {
-		hide(navRef);
-	};
+class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements SiteNavProps  {
+	isAnimating: boolean;
+	match: { url: string };
+	previousUrl: string;
+	viewPortWidth: number;
+	headerHeight: number;
+	sounds: { play: (value: string) => void };
+	setIsAnimating: (value: boolean) => void;
+	setHeaderHeight: (value: number) => void;
+	navRef: RefObject<HTMLElement>;
 
-	const onMouseEnter = (e: MouseEvent) => {
-		e.stopPropagation();
-		handleMouseEnter(navRef);
-	};
-
-	useEffect(() => {
-		setBodyStyle(currentUrl);
-	}, [currentUrl]);
-
-	useEffect(() => {
-		setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
-	}, [viewPortWidth, setHeaderHeight]);
-
-	useEffect(() => {
-		if (!currentUrl || currentUrl !== match.url) {
-			scrollToSection(document.body, headerHeight)
-			setCurrentUrl(match.url);
+	constructor(props: SiteNavProps){
+		super(props);
+		this.isAnimating = this.props.isAnimating;
+		this.match = this.props.match;
+		this.previousUrl = this.props.previousUrl;
+		this.viewPortWidth = this.props.viewPortWidth;
+		this.headerHeight = this.props.headerHeight;
+		this.sounds = this.props.sounds;
+		this.setIsAnimating = this.props.setIsAnimating;
+		this.setHeaderHeight = this.props.setHeaderHeight;
+		this.state = {
+			currentUrl: '',
 		}
-	}, [match, currentUrl, previousUrl, setCurrentUrl, headerHeight]);
+		this.navRef = React.createRef();
+	}
 
-	useEffect(() => {
-		changePage(currentUrl);
-	}, [currentUrl]);
+	
+	onNavClick = (e: MouseEvent) => {
+		e.stopPropagation();
+		handleNavClick(this.navRef, this.sounds, setIsAnimating, e);
+	};
 
-	//initial
-	useEffect(() => {
-		init(navRef, setHeaderHeight);
+	onNavItemClick = (e: MouseEvent) => {
+		hide(this.navRef);
+	};
 
-		return () => {
-			destroy(navRef);
-		};
-	}, [setHeaderHeight]);
+	onMouseEnter = (e: MouseEvent) => {
+		e.stopPropagation();
+		handleMouseEnter(this.navRef);
+	};
 
-	useEffect(() => {
-		startAnimating(navRef, isAnimating);
+	componentDidMount () {
+		init(this.navRef, setHeaderHeight);
+	}
 
-		return () => {
-			clearTimeout(getResetAnimatingId());
-		};
-	}, [isAnimating]);
 
-	return ReactDOM.createPortal(
-		<nav
-			ref={navRef}
-			className={`${NAVBAR_CLASSNAME} ${NAVBAR_Z_INDEX_CLASSNAME}`}
-			onClick={(e: any) => onNavClick(e)}>
-			<div className={`${NAVBAR_CLASSNAME}__button`}>
-				<div className={`${NAVBAR_CLASSNAME}__menu`}>
-					<div className={`${NAVBAR_CLASSNAME}__menu-bar`}></div>
+	componentDidUpdate(propsTwo: any) {
+		setBodyStyle(this.state.currentUrl);
+		setHeaderHeightOnViewPortChange(this.viewPortWidth, setHeaderHeight); //on viewport change
+
+		//when header height changes
+		if (!this.state.currentUrl || this.state.currentUrl !== this.match.url) {
+			scrollToSection(document.body, this.headerHeight)
+			this.setState({currentUrl: this.match.url});
+		}
+
+		//when isAnimating changes
+		clearTimeout(getResetAnimatingId());
+		changePage(this.state.currentUrl);
+		startAnimating(this.navRef, this.isAnimating);
+	}
+
+	componentWillUnmount() {
+		destroy(this.navRef);
+	}
+
+	render(){
+		return ReactDOM.createPortal(
+			<nav
+				ref={this.navRef}
+				className={`${NAVBAR_CLASSNAME} ${NAVBAR_Z_INDEX_CLASSNAME}`}
+				onClick={(e: any) => this.onNavClick(e)}>
+				<div className={`${NAVBAR_CLASSNAME}__button`}>
+					<div className={`${NAVBAR_CLASSNAME}__menu`}>
+						<div className={`${NAVBAR_CLASSNAME}__menu-bar`}></div>
+					</div>
 				</div>
-			</div>
-			<div className={`${NAVBAR_CLASSNAME}__content`}>
-				<ul className={`${NAVBAR_CLASSNAME}__list`}>
-					<NavListItem
-						imageSource={aboutImage}
-						imageAlt="About"
-						to="/about"
-						label="About"
-						onMouseEnter={onMouseEnter}
-						onClick={onNavItemClick}
-					/>
+				<div className={`${NAVBAR_CLASSNAME}__content`}>
+					<ul className={`${NAVBAR_CLASSNAME}__list`}>
+						<NavListItem
+							imageSource={aboutImage}
+							imageAlt="About"
+							to="/about"
+							label="About"
+							onMouseEnter={this.onMouseEnter}
+							onClick={this.onNavItemClick}
+						/>
 
-					<NavListItem
-						imageSource={resumeImage}
-						imageAlt="Resume"
-						to="/resume"
-						label="R&eacute;sum&eacute;"
-						onMouseEnter={onMouseEnter}
-						onClick={onNavItemClick}
-					/>
-					<NavListItem
-						imageSource={examplesImage}
-						imageAlt="Examples"
-						isLink={false}
-						to="/examples"
-						label="Examples"
-						onMouseEnter={onMouseEnter}
-						onClick={onNavItemClick}
-						className={`${NAVBAR_CLASSNAME}__item ${NAVBAR_CLASSNAME}__dropdown-container flex align-center justify-content-center`}
-						triangle={<div className="triangle-down"></div>}>
-						<ul className={`${NAVBAR_CLASSNAME}__dropdown`}>
-							<NavListItem
-								imageSource={bridgeImage}
-								imageAlt="Bridge"
-								to="/examples/bridge"
-								label="A# Maj Bridge"
-								onMouseEnter={onMouseEnter}
-								onClick={onNavItemClick}
-							/>
-							<NavListItem
-								imageSource={autoBidImage}
-								imageAlt="autoBid"
-								to="/examples/autobid"
-								label="Auto Bid"
-								onMouseEnter={onMouseEnter}
-								onClick={onNavItemClick}
-							/>
-							<NavListItem
-								imageSource={downloaderImage}
-								imageAlt="Downloader"
-								to="/examples/downloader"
-								label="Downloader"
-								onMouseEnter={onMouseEnter}
-								onClick={onNavItemClick}
-							/>
-							<NavListItem
-								imageSource={syncerImage}
-								imageAlt="Syncer"
-								to="/examples/playlist-syncer"
-								label="Syncer"
-								onMouseEnter={onMouseEnter}
-								onClick={onNavItemClick}
-							/>
-						</ul>
-					</NavListItem>
-					<NavListItem
-						imageSource={contactImage}
-						imageAlt="Contact"
-						to="/contact"
-						label="Contact"
-						onMouseEnter={onMouseEnter}
-						onClick={onNavItemClick}
-					/>
-				</ul>
-			</div>
-			<div
-				onClick={(e: any) => onNavClick(e)}
-				className={`${NAVBAR_CLASSNAME}__background`}></div>
-		</nav>,
-		document.querySelector(".site-nav")!,
-	);
+						<NavListItem
+							imageSource={resumeImage}
+							imageAlt="Resume"
+							to="/resume"
+							label="R&eacute;sum&eacute;"
+							onMouseEnter={this.onMouseEnter}
+							onClick={this.onNavItemClick}
+						/>
+						<NavListItem
+							imageSource={examplesImage}
+							imageAlt="Examples"
+							isLink={false}
+							to="/examples"
+							label="Examples"
+							onMouseEnter={this.onMouseEnter}
+							onClick={this.onNavItemClick}
+							className={`${NAVBAR_CLASSNAME}__item ${NAVBAR_CLASSNAME}__dropdown-container flex align-center justify-content-center`}
+							triangle={<div className="triangle-down"></div>}>
+							<ul className={`${NAVBAR_CLASSNAME}__dropdown`}>
+								<NavListItem
+									imageSource={bridgeImage}
+									imageAlt="Bridge"
+									to="/examples/bridge"
+									label="A# Maj Bridge"
+									onMouseEnter={this.onMouseEnter}
+									onClick={this.onNavItemClick}
+								/>
+								<NavListItem
+									imageSource={autoBidImage}
+									imageAlt="autoBid"
+									to="/examples/autobid"
+									label="Auto Bid"
+									onMouseEnter={this.onMouseEnter}
+									onClick={this.onNavItemClick}
+								/>
+								<NavListItem
+									imageSource={downloaderImage}
+									imageAlt="Downloader"
+									to="/examples/downloader"
+									label="Downloader"
+									onMouseEnter={this.onMouseEnter}
+									onClick={this.onNavItemClick}
+								/>
+								<NavListItem
+									imageSource={syncerImage}
+									imageAlt="Syncer"
+									to="/examples/playlist-syncer"
+									label="Syncer"
+									onMouseEnter={this.onMouseEnter}
+									onClick={this.onNavItemClick}
+								/>
+							</ul>
+						</NavListItem>
+						<NavListItem
+							imageSource={contactImage}
+							imageAlt="Contact"
+							to="/contact"
+							label="Contact"
+							onMouseEnter={this.onMouseEnter}
+							onClick={this.onNavItemClick}
+						/>
+					</ul>
+				</div>
+				<div
+					onClick={(e: any) => this.onNavClick(e)}
+					className={`${NAVBAR_CLASSNAME}__background`}></div>
+			</nav>,
+			document.querySelector(".site-nav")!,
+		);
+	}
 };
 
 const mapStateToProps = (state: RootStateOrAny) => {
