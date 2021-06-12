@@ -11,12 +11,13 @@ import SkillsPopupName from "./SkillsPopupName";
 import { capitalize } from "../../helpers";
 import { addSpaceAfterPunctuationMarks } from "../utils";
 import { Repository, SKILLS_CLASSNAME } from "./utils";
+import { MOBILE_BREAK_POINT_WIDTH } from "../constants";
 
 interface SkillsPopupProps {
 	reposToDisplay: Repository[],
 	repos: Repository[],
 	clickedSkill: string,
-	isMobile: boolean,
+	viewPortWidth: number,
 	clickSkill: (value: string | null) => void,
 	addRepoToReposToDisplay: (value: Repository) => void,
 }
@@ -27,7 +28,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 	clickedSkill,
 	addRepoToReposToDisplay,
 	clickSkill,
-	isMobile,
+	viewPortWidth
 }) => {
 	const skillsPopupDiv = document.querySelector("#skillsPopup") as HTMLElement;
 	const resetReposDelay = 500;
@@ -65,10 +66,6 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 			}
 		}
 	}, [clickedSkill, repos, addRepoToReposToDisplay]);
-
-	useEffect(() => {
-		console.log('need to do something to cause re-render here------------------------------------------------');
-	}, [isMobile])
 
 	// const getIndexOfItem = (target, items) => {
 	// 	for (let i = 0; i < items.length; i++) {
@@ -161,7 +158,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		const dateToShow = date.slice(0, index) + " " + date.slice(index + 4);
 		const spanJSX = <span className={`skills-popup__${key}-title`}>{title}:</span>;
 		if (onlySpans) {
-			if (isMobile) {
+			if (viewPortWidth <= MOBILE_BREAK_POINT_WIDTH) {
 				return (
 					<React.Fragment>
 						{spanJSX}
@@ -177,7 +174,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 				key={key}
 				className={`skills-popup__table-item skills-popup__${key}`}
 			>
-				{isMobile ? (
+				{viewPortWidth <= MOBILE_BREAK_POINT_WIDTH ? (
 					{spanJSX}
 				) : null}
 				<span>{dateToShow}</span>
@@ -227,7 +224,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 					<div
 						key={key}
 						className={`skills-popup__table-item skills-popup__${key}`}>
-						{isMobile ? (
+						{viewPortWidth <= MOBILE_BREAK_POINT_WIDTH ? (
 							<span className={`skills-popup__${key}-title`}>
 								{capitalize(key)}:
 							</span>
@@ -250,7 +247,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 					</a>
 				);
 			case "createdAt":
-				if (isMobile) {
+				if (viewPortWidth <= MOBILE_BREAK_POINT_WIDTH) {
 					return (
 						<div
 							key={key}
@@ -263,7 +260,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 				}
 				return returnDate(key, repo, "Created");
 			case "updatedAt":
-				if (isMobile) return null;
+				if (viewPortWidth <= MOBILE_BREAK_POINT_WIDTH) return null;
 				return returnDate(key, repo, "Updated");
 			case "description":
 				return (
@@ -287,8 +284,8 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 			);
 		}
 		return reposToDisplay.map((repo) => {
-			console.log('isMobile =', isMobile);
-			if (isMobile) {
+	
+			if (viewPortWidth <= MOBILE_BREAK_POINT_WIDTH) {
 				return (
 					<article key={repo.name} className={`${SKILLS_CLASSNAME}-popup__table-repo`}>
 						{keys.map((key, index) => {
@@ -306,7 +303,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 
 	const renderTableHeaders = () => {
 		const headers = ["Name", "Description", "Created", "Updated", "Repo Url"];
-		return isMobile
+		return viewPortWidth <= MOBILE_BREAK_POINT_WIDTH
 			? // <div className={`${SKILLS_CLASSNAME}-popup__table-headers`}>
 			  //   {
 			  //     headers.map(header => {
@@ -352,7 +349,7 @@ const mapStateToProps = (state: RootStateOrAny) => {
 		repos: state.general.repos,
 		reposToDisplay: state.resume.reposToDisplay,
 		clickedSkill: state.resume.clickedSkill,
-		isMobile: state.general.isMobile,
+		viewPortWidth: state.general.viewPortWidth,
 	};
 };
 
