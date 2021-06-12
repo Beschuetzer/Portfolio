@@ -155,11 +155,12 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		const date = new Date(repo[key]).toLocaleString();
 		const index = date.lastIndexOf(":");
 		const dateToShow = date.slice(0, index) + " " + date.slice(index + 4);
+		const spanJSX = <span className={`skills-popup__${key}-title`}>{title}:</span>;
 		if (onlySpans) {
 			if (isMobile) {
 				return (
 					<React.Fragment>
-						<span className={`skills-popup__${key}-title`}>{title}:</span>
+						{spanJSX}
 						<span>{dateToShow}</span>
 					</React.Fragment>
 				);
@@ -173,7 +174,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 				className={`skills-popup__table-item skills-popup__${key}`}
 			>
 				{isMobile ? (
-					<span className={`skills-popup__${key}-title`}>{title}:</span>
+					{spanJSX}
 				) : null}
 				<span>{dateToShow}</span>
 			</div>
