@@ -164,7 +164,7 @@ export const hide = (navRef: NavRef) => {
 	navRef.current?.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 };
 
-const handleSound = (sounds: Sounds, e: MouseEvent) => {
+export const handleSound = (sounds: Sounds, e: MouseEvent) => {
 	const isActive = (e.currentTarget as HTMLElement).className.match(
 		/--active/i,
 	) as RegExpMatchArray;

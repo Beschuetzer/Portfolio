@@ -43,4 +43,5 @@ OPTIMIZATIONS:
 -finish content in about
 -finish last 4th section in bridge (and colors gradient for mobile and svg
 
--turn components with state into purecomponents (class-based comopnent that extedn React.PureComponent
+-issue with transparent class on header for main page and not removing on page change
+-header toggler not adjust height
