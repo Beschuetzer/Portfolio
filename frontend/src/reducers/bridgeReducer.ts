@@ -21,27 +21,43 @@ const INITIAL_STATE = {
   cardToClose: null,
 }
 
-const resumeReducer = (state = INITIAL_STATE, action: Action) => {
+const bridgeReducer = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
     case SET_LAST_SECOND_ROW_CARD_NUMBER:
-      return {...state, lastSecondRowCardNumber: action.payload};
+      if (state.lastSecondRowCardNumber !== action.payload)
+        return {...state, lastSecondRowCardNumber: action.payload};
+      return state;
     case SET_CLICKED_BRIDGE_INFO_BUTTON_COUNT:
-      return {...state, clickedBridgeInfoButtonCount: action.payload};
+      if (state.clickedBridgeInfoButtonCount !== action.payload)
+        return {...state, clickedBridgeInfoButtonCount: action.payload};
+      return state;
     case SET_CURRENT_BRIDGE_SECTION:
-      return {...state, currentBridgeSection: action.payload};
+      if (state.currentBridgeSection !== action.payload)
+        return {...state, currentBridgeSection: action.payload};
+      return state;
     case SET_BRIDGE_SECTIONS:
-      return {...state, bridgeSections: action.payload};
+      if (state.bridgeSections !== action.payload)
+        return {...state, bridgeSections: action.payload};
+      return state;
     case SET_BRIDGE_CARDS:
-      return {...state, bridgeCards: action.payload};
+      if (state.bridgeCards !== action.payload)
+        return {...state, bridgeCards: action.payload};
+      return state;
     case SET_HAS_CLICKED_A_LINK:
-      return {...state, hasClickedALink: action.payload};
+      if (state.hasClickedALink !== action.payload)
+        return {...state, hasClickedALink: action.payload};
+      return state;
     case SET_IS_CARD_VIDEO_OPEN:
-      return {...state, isCardVideoOpen: action.payload};
+      if (state.isCardVideoOpen !== action.payload)
+        return {...state, isCardVideoOpen: action.payload};
+      return state;
     case SET_CARD_TO_CLOSE:
-      return {...state, cardToClose: action.payload};
+      if (state.cardToClose !== action.payload)
+        return {...state, cardToClose: action.payload};
+      return state;
     default:
       return state;
   }
 }
 
-export default resumeReducer;
+export default bridgeReducer;

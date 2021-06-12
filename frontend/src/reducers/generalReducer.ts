@@ -22,19 +22,26 @@ const INITIAL_STATE = {
 const generalReducer = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
     case SET_IS_MOBILE:
-      return {...state, isMobile: action.payload.isMobile, viewPortWidth: action.payload.viewPortWidth};  
+      if (state.isMobile !== action.payload) return {...state, isMobile: action.payload.isMobile, viewPortWidth: action.payload.viewPortWidth}; 
+      return state;
     case SET_VIEW_PORT_WIDTH:
-      return {...state, viewPortWidth: action.payload}
+      if (state.viewPortWidth !== action.payload) return {...state, viewPortWidth: action.payload}
+      return state;
     case SET_IS_ANIMATING:
-      return {...state, isAnimating: action.payload};  
+      if (state.isAnimating !== action.payload) return {...state, isAnimating: action.payload};  
+      return state;
     case GET_REPOSITORIES:
-      return {...state, repos: action.payload};  
+      if (state.repos !== action.payload) return {...state, repos: action.payload};  
+      return state;
     case SET_PREVIOUS_URL:
-      return {...state, previousUrl: action.payload};  
+      if (state.previousUrl !== action.payload) return {...state, previousUrl: action.payload};  
+      return state;
     case SET_SCROLL_PERCENT:
-      return {...state, scrollPercent: action.payload}; 
+      if (state.scrollPercent !== action.payload) return {...state, scrollPercent: action.payload}; 
+      return state;
     case SET_HEADER_HEIGHT:
-      return {...state, headerHeight: action.payload};
+      if (state.headerHeight !== action.payload) return {...state, headerHeight: action.payload};
+      return state;
     default:
       return state;
   }
