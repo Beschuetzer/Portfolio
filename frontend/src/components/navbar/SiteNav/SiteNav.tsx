@@ -15,7 +15,10 @@ import syncerImage from "../../../imgs/site-nav-syncer.jpg";
 
 import { setHeaderHeight, setIsAnimating } from "../../../actions";
 import {
+	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_CLASSNAME,
+	NAVBAR_CONTENT_CLASSNAME,
+	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_Z_INDEX_CLASSNAME,
 } from "../utils";
 import {
@@ -24,19 +27,18 @@ import {
 	startAnimating,
 	init,
 	setBodyStyle,
-	setHeaderHeightOnViewPortChange,
 	getResetAnimatingId,
 	hide,
-	handleNavClick,
 	handleMouseEnter,
+	HEADER_ID,
 } from "./utils";
 import { scrollToSection } from "../../utils";
+import { checkForParentOfType } from "../../../helpers";
+import { ANIMATION_DURATION, MOBILE_BREAK_POINT_WIDTH, OVERFLOW_HIDDEN_CLASSNAME, Z_INDEX_HIGHEST_CLASSNAME } from "../../constants";
 
 interface SiteNavProps {
-	isAnimating: boolean;
 	match: { url: string };
 	previousUrl: string;
-	viewPortWidth: number;
 	headerHeight: number;
 	sounds: { play: (value: string) => void };
 	setIsAnimating: (value: boolean) => void;
@@ -46,13 +48,14 @@ interface SiteNavProps {
 
 interface SiteNavState {
 	currentUrl: string,
+	isAnimating: boolean,
+	headerHeight: number,
+	viewPortWidth: number;
 }
 
 class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements SiteNavProps  {
-	isAnimating: boolean;
 	match: { url: string };
 	previousUrl: string;
-	viewPortWidth: number;
 	headerHeight: number;
 	sounds: { play: (value: string) => void };
 	setIsAnimating: (value: boolean) => void;
@@ -61,24 +64,54 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 
 	constructor(props: SiteNavProps){
 		super(props);
-		this.isAnimating = this.props.isAnimating;
 		this.match = this.props.match;
 		this.previousUrl = this.props.previousUrl;
-		this.viewPortWidth = this.props.viewPortWidth;
 		this.headerHeight = this.props.headerHeight;
 		this.sounds = this.props.sounds;
 		this.setIsAnimating = this.props.setIsAnimating;
 		this.setHeaderHeight = this.props.setHeaderHeight;
 		this.state = {
 			currentUrl: '',
+			isAnimating: false,
+			headerHeight: 0,
+			viewPortWidth: window.innerWidth,
 		}
 		this.navRef = React.createRef();
 	}
 
-	
 	onNavClick = (e: MouseEvent) => {
 		e.stopPropagation();
-		handleNavClick(this.navRef, this.sounds, setIsAnimating, e);
+		const navBar = this.navRef.current;
+		const isChildOfNavBar = checkForParentOfType(
+			e.target as HTMLElement,
+			"nav",
+			NAVBAR_CLASSNAME,
+		);
+	
+		if (!navBar) return;
+		// if (this.sounds && this.sounds !== undefined) handleSound(this.sounds, e);
+	
+		if (isChildOfNavBar) navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
+	
+		if (!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) && isChildOfNavBar) {
+			navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
+			navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
+			document.querySelector(HEADER_ID)!.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
+			setIsAnimating(true);
+			this.setState({isAnimating: true});
+		} else {
+			navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
+	
+			setTimeout(() => {
+				document
+					.querySelector(HEADER_ID)!
+					.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
+			}, ANIMATION_DURATION);
+	
+			setIsAnimating(false);
+			this.setState({isAnimating: false})
+		}
 	};
 
 	onNavItemClick = (e: MouseEvent) => {
@@ -90,15 +123,49 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 		handleMouseEnter(this.navRef);
 	};
 
-	componentDidMount () {
-		init(this.navRef, setHeaderHeight);
+	handleResize = (e: any) => {
+		const viewPortWidth = window.innerWidth;
+		this.setState({viewPortWidth});
 	}
 
+	handleScroll = (e: any) => {
+		const headerHeight = document.querySelector('#header')!.getBoundingClientRect().height;
+		this.setState({headerHeight})
+	}
 
-	componentDidUpdate(propsTwo: any) {
+	componentDidMount () {
+		init(this.navRef, setHeaderHeight);
+		document.addEventListener('scroll', this.handleScroll);
+		window.addEventListener('resize', this.handleResize);
+	}
+
+	componentWillUnmount() {
+		destroy(this.navRef);
+		document.removeEventListener('scroll', this.handleScroll);
+		window.removeEventListener('resize', this.handleResize);
+	}
+
+	componentDidUpdate(prevProps: any, prevState: any) {
 		setBodyStyle(this.state.currentUrl);
-		setHeaderHeightOnViewPortChange(this.viewPortWidth, setHeaderHeight); //on viewport change
 
+		//on viewport changed
+		if (prevState.viewPort !== this.state.viewPortWidth) {
+			const navbarContent = document.querySelector(
+				`.${NAVBAR_CONTENT_CLASSNAME}`,
+			) as HTMLElement;
+			const header = document.querySelector(HEADER_ID) as HTMLElement;
+			const headerBoundingRect = header.getBoundingClientRect();
+		
+			let newTop = `calc(${headerBoundingRect.height}px)`;
+			if (this.state.viewPortWidth > MOBILE_BREAK_POINT_WIDTH) {
+				newTop = "auto";
+			}
+			navbarContent.style.top = newTop;
+		
+			const headerHeight = header.getBoundingClientRect().height;
+			this.setState({headerHeight});
+		}
+		
 		//when header height changes
 		if (!this.state.currentUrl || this.state.currentUrl !== this.match.url) {
 			scrollToSection(document.body, this.headerHeight)
@@ -106,13 +173,11 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 		}
 
 		//when isAnimating changes
-		clearTimeout(getResetAnimatingId());
-		changePage(this.state.currentUrl);
-		startAnimating(this.navRef, this.isAnimating);
-	}
-
-	componentWillUnmount() {
-		destroy(this.navRef);
+		if (prevState.isAnimating !== this.state.isAnimating) {
+			clearTimeout(getResetAnimatingId());
+			changePage(this.state.currentUrl);
+			startAnimating(this.navRef, this.state.isAnimating);
+		}
 	}
 
 	render(){
