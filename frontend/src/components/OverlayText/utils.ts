@@ -42,7 +42,7 @@ export function getDefaultStyles () {
   return JSON.parse(JSON.stringify(defaults));
 }
 
-export function getStyles (stylesFromAbove: CSSProperties) {
+export function reconcileStyles (stylesFromAbove: CSSProperties) {
   const defaultStyles = getDefaultStyles();
   if (!stylesFromAbove) return defaultStyles;
   const keys = Object.keys(stylesFromAbove);

@@ -1,5 +1,5 @@
 import React, { CSSProperties, useRef, useEffect } from 'react'
-import { getStyles } from './utils';
+import { reconcileStyles } from './utils';
 
 type Positions = "relative" | 'static' | 'absolute' | 'fixed';
 
@@ -39,7 +39,7 @@ const OverlayText: React.FC<OverlayTextProps> = ({
 }) => {
 
   const reference = useRef<any>(null);
-  let stylesToUse = getStyles(styles as CSSProperties);
+  let stylesToUse = reconcileStyles(styles as CSSProperties);
   useEffect(() => {
     //need to set parent to position relative inline style
     (reference.current.parentNode?.style as CSSProperties).position = positionType;
