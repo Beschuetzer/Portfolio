@@ -25,7 +25,7 @@ export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
 export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 
 const BODY_BACKGROUND_CLASSNAME = "body-background";
-const SET_ANIMATING_DONE_WAIT_FACTOR = 1.2;
+const SET_ANIMATING_DONE_WAIT_FACTOR = 1.3;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
 let setSiteNavWidthTimeout: any;
