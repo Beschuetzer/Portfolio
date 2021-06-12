@@ -98,7 +98,7 @@
 			transform $animation-duration $animation-easing-standard-easeInOutBack;
 
 		@include respond(nav-break) {
-			font-size: $default-font-size * 0.4125;
+			font-size: $default-font-size * 0.3125;
 		}
 
 		& div {
