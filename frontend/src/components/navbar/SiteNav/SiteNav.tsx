@@ -203,6 +203,79 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 		}
 	}
 
+	listOfItems = (<ul className={`${NAVBAR_CLASSNAME}__list`}>
+		<NavListItem
+			imageSource={aboutImage}
+			imageAlt="About"
+			to="/about"
+			label="About"
+			onMouseEnter={this.onMouseEnter}
+			onClick={this.onNavItemClick}
+		/>
+
+		<NavListItem
+			imageSource={resumeImage}
+			imageAlt="Resume"
+			to="/resume"
+			label="R&eacute;sum&eacute;"
+			onMouseEnter={this.onMouseEnter}
+			onClick={this.onNavItemClick}
+		/>
+		<NavListItem
+			imageSource={examplesImage}
+			imageAlt="Examples"
+			isLink={false}
+			to="/examples"
+			label="Examples"
+			onMouseEnter={this.onMouseEnter}
+			onClick={this.onNavItemClick}
+			className={`${NAVBAR_CLASSNAME}__item ${NAVBAR_CLASSNAME}__dropdown-container flex align-center justify-content-center`}
+			triangle={<div className="triangle-down"></div>}>
+			<ul className={`${NAVBAR_CLASSNAME}__dropdown`}>
+				<NavListItem
+					imageSource={bridgeImage}
+					imageAlt="Bridge"
+					to="/examples/bridge"
+					label="A# Maj Bridge"
+					onMouseEnter={this.onMouseEnter}
+					onClick={this.onNavItemClick}
+				/>
+				<NavListItem
+					imageSource={autoBidImage}
+					imageAlt="autoBid"
+					to="/examples/autobid"
+					label="Auto Bid"
+					onMouseEnter={this.onMouseEnter}
+					onClick={this.onNavItemClick}
+				/>
+				<NavListItem
+					imageSource={downloaderImage}
+					imageAlt="Downloader"
+					to="/examples/downloader"
+					label="Downloader"
+					onMouseEnter={this.onMouseEnter}
+					onClick={this.onNavItemClick}
+				/>
+				<NavListItem
+					imageSource={syncerImage}
+					imageAlt="Syncer"
+					to="/examples/playlist-syncer"
+					label="Syncer"
+					onMouseEnter={this.onMouseEnter}
+					onClick={this.onNavItemClick}
+				/>
+			</ul>
+		</NavListItem>
+		<NavListItem
+			imageSource={contactImage}
+			imageAlt="Contact"
+			to="/contact"
+			label="Contact"
+			onMouseEnter={this.onMouseEnter}
+			onClick={this.onNavItemClick}
+		/>
+	</ul>);
+
 	render(){
 		return ReactDOM.createPortal(
 			<nav
@@ -215,78 +288,7 @@ class SiteNav extends React.PureComponent<SiteNavProps, SiteNavState> implements
 					</div>
 				</div>
 				<div className={`${NAVBAR_CLASSNAME}__content`}>
-					<ul className={`${NAVBAR_CLASSNAME}__list`}>
-						<NavListItem
-							imageSource={aboutImage}
-							imageAlt="About"
-							to="/about"
-							label="About"
-							onMouseEnter={this.onMouseEnter}
-							onClick={this.onNavItemClick}
-						/>
-
-						<NavListItem
-							imageSource={resumeImage}
-							imageAlt="Resume"
-							to="/resume"
-							label="R&eacute;sum&eacute;"
-							onMouseEnter={this.onMouseEnter}
-							onClick={this.onNavItemClick}
-						/>
-						<NavListItem
-							imageSource={examplesImage}
-							imageAlt="Examples"
-							isLink={false}
-							to="/examples"
-							label="Examples"
-							onMouseEnter={this.onMouseEnter}
-							onClick={this.onNavItemClick}
-							className={`${NAVBAR_CLASSNAME}__item ${NAVBAR_CLASSNAME}__dropdown-container flex align-center justify-content-center`}
-							triangle={<div className="triangle-down"></div>}>
-							<ul className={`${NAVBAR_CLASSNAME}__dropdown`}>
-								<NavListItem
-									imageSource={bridgeImage}
-									imageAlt="Bridge"
-									to="/examples/bridge"
-									label="A# Maj Bridge"
-									onMouseEnter={this.onMouseEnter}
-									onClick={this.onNavItemClick}
-								/>
-								<NavListItem
-									imageSource={autoBidImage}
-									imageAlt="autoBid"
-									to="/examples/autobid"
-									label="Auto Bid"
-									onMouseEnter={this.onMouseEnter}
-									onClick={this.onNavItemClick}
-								/>
-								<NavListItem
-									imageSource={downloaderImage}
-									imageAlt="Downloader"
-									to="/examples/downloader"
-									label="Downloader"
-									onMouseEnter={this.onMouseEnter}
-									onClick={this.onNavItemClick}
-								/>
-								<NavListItem
-									imageSource={syncerImage}
-									imageAlt="Syncer"
-									to="/examples/playlist-syncer"
-									label="Syncer"
-									onMouseEnter={this.onMouseEnter}
-									onClick={this.onNavItemClick}
-								/>
-							</ul>
-						</NavListItem>
-						<NavListItem
-							imageSource={contactImage}
-							imageAlt="Contact"
-							to="/contact"
-							label="Contact"
-							onMouseEnter={this.onMouseEnter}
-							onClick={this.onNavItemClick}
-						/>
-					</ul>
+					{this.listOfItems}
 				</div>
 				<div
 					onClick={(e: any) => this.onNavClick(e)}
