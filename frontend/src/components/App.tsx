@@ -98,7 +98,6 @@ class App extends React.PureComponent<AppProps, AppState> {
 
 	componentDidUpdate(prevProps: any, prevState: any) {
 		if (prevProps.isAnimating !== this.props.isAnimating) {
-			console.log('this.props.isAnimating =', this.props.isAnimating);
 			this.setState({isAnimating: this.props.isAnimating})
 		}
 	}
