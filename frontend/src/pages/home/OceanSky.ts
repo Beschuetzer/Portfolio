@@ -103,21 +103,21 @@ const cloudZRotationRateChange = 0.0005;
 const cloudZPositionRateChange = 0.9;
 
 interface TextData {
-	text: string,
-	x: number,
-	y: number,
-	z: number,
-	xRotation: number,
-	yRotation: number,
-	zRotation: number,
-	color: THREE.Color,
-	size: number,
-	height: number,
+	text: string;
+	x: number;
+	y: number;
+	z: number;
+	xRotation: number;
+	yRotation: number;
+	zRotation: number;
+	color: THREE.Color;
+	size: number;
+	height: number;
 }
 
-const textDisappearZ = -50 ;
-const textMinXRotation = -Math.PI / 2 - .25;
-const textScrollSpeed = .1;
+const textDisappearZ = -50;
+const textMinXRotation = -Math.PI / 2 - 0.25;
+const textScrollSpeed = 0.1;
 const defaultTextX = 0;
 const defaultTextY = -0.2;
 const defaultTextYRotation = 0;
@@ -213,7 +213,7 @@ let textData: TextData[] = [
 		size: defaultTextSize,
 		height: defaultTextHeight,
 	},
-]
+];
 
 function getCloudXPosition() {
 	return Math.random() * cloudXPositionMax - cloudXPositionMin;
@@ -338,7 +338,7 @@ export function init() {
 
 	loadTexts(textData, scene);
 	//
-	
+
 	const orbitControlsStartTargetX = 0;
 	const orbitControlsStartTargetY = 30;
 	const orbitControlsStartTargetZ = 0;
@@ -346,11 +346,15 @@ export function init() {
 	const orbitControlsEndTargetY = 15;
 	const orbitControlsEndTargetZ = 0;
 	const orbitControlsMaxPolarAngleStart = 0;
-	const orbitControlsMaxPolarAngleEnd = Math.PI * orbitControlsMaxPolarAngleFactor;
-
+	const orbitControlsMaxPolarAngleEnd =
+		Math.PI * orbitControlsMaxPolarAngleFactor;
 
 	orbitControls = new OrbitControls(camera, renderer.domElement);
-	orbitControls.target.set(orbitControlsStartTargetX, orbitControlsStartTargetY, orbitControlsStartTargetZ);
+	orbitControls.target.set(
+		orbitControlsStartTargetX,
+		orbitControlsStartTargetY,
+		orbitControlsStartTargetZ,
+	);
 	orbitControls.minDistance = 100;
 	orbitControls.maxDistance = 100;
 	orbitControls.minAzimuthAngle = 0;
@@ -395,10 +399,36 @@ function onMouseMove(e: MouseEvent) {
 }
 
 function onWindowResize() {
+	adjustTextSizes();
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function adjustTextSizes() {
+	if (texts) {
+		const newSize = window.innerWidth * textSizeScaleFactor;
+		texts.forEach((text, index) => {
+			console.log("text =", text);
+			console.log('text.geometry.parameters =', text.geometry.parameters);
+			// texts.push(
+			// 	addTextGeometry(
+			// 		scene,
+			// 		"text",
+			// 		text.position.x,
+			// 		text.position.y,
+			// 		text.position.z,
+			// 		text.rotation.x,
+			// 		text.rotation.y,
+			// 		text.rotation.z,
+			// 		text.geometry.parameters.options.color,
+			// 		0,
+			// 	),
+			// );
+			texts.splice(index, 1);
+		});
+	}
 }
 
 function handleCubeBobbing(time: number) {
@@ -514,19 +544,21 @@ function addTextGeometry(
 function loadTexts(textData: TextData[], scene: Scene) {
 	for (let i = 0; i < textData.length; i++) {
 		const textObj = textData[i];
-		texts.push(addTextGeometry(
-			scene,
-			textObj.text,
-			textObj.x,
-			textObj.y,
-			textObj.z,
-			textObj.xRotation ? textObj.xRotation : undefined,
-			textObj.yRotation ? textObj.yRotation : undefined,
-			textObj.zRotation ? textObj.zRotation : undefined,
-			textObj.color ? textObj.color : undefined,
-			textObj.size ? textObj.size : undefined,
-			textObj.height ? textObj.height : undefined,
-		));
+		texts.push(
+			addTextGeometry(
+				scene,
+				textObj.text,
+				textObj.x,
+				textObj.y,
+				textObj.z,
+				textObj.xRotation ? textObj.xRotation : undefined,
+				textObj.yRotation ? textObj.yRotation : undefined,
+				textObj.zRotation ? textObj.zRotation : undefined,
+				textObj.color ? textObj.color : undefined,
+				textObj.size ? textObj.size : undefined,
+				textObj.height ? textObj.height : undefined,
+			),
+		);
 	}
 }
 
@@ -541,20 +573,20 @@ function render() {
 		});
 
 	if (texts) {
-		texts.forEach(text => {
+		texts.forEach((text) => {
 			const currentOpacity = (text.material as any).opacity;
 			if (currentOpacity > 0) {
-				if  (text.position.z <= textDisappearZ) {
+				if (text.position.z <= textDisappearZ) {
 					text.material = new MeshBasicMaterial({
 						transparent: true,
-						opacity: currentOpacity - .001,
+						opacity: currentOpacity - 0.001,
 						color: defaultTextColor,
 					});
 					// if (text.rotation.x >= textMinXRotation) text.rotation.x -= textScrollSpeed / 50;
 				}
 				text.position.z -= textScrollSpeed;
 			}
-		})
+		});
 	}
 
 	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
