@@ -219,18 +219,18 @@ export function init() {
 
 	clouds = addCloud();
 
-	const text = addTextGeometry(
+	const welcomeText = addTextGeometry(
 		scene,
-		"This site was created with React, Redux, Express, ThreeJS, and custom SASS/CSS",
-		-50,
+		"Welcome!",
+		0,
+		-.2,
+		60,
+		-Math.PI / 2,
+		0,
+		0,
+		new THREE.Color(waterColor),
 		10,
-		75,
-		0,
-		0,
-		0,
-		new THREE.Color(sunColor),
-		1,
-		1,
+		.1,
 	);
 	//
 
@@ -284,21 +284,6 @@ export function animate() {
 
 export function stopKey() {
 	cancelAnimationFrame(id);
-}
-
-function render() {
-	const time = (i += cubeRotationSpeed);
-	handleCubeRotation(time);
-	// handleCubeBobbing(time);
-	if (clouds)
-		clouds.forEach((cloud) => {
-			cloud.rotation.z += cloudZRotationRateChange;
-			cloud.position.z -= cloudZPositionRateChange;
-		});
-
-	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
-
-	renderer.render(scene, camera);
 }
 
 function handleCubeBobbing(time: number) {
@@ -397,6 +382,8 @@ function addTextGeometry(
 		bevelSize: 0.3,
 		bevelSegments: 5,
 	});
+	geo.center();
+
 	const mesh = new THREE.Mesh(
 		geo,
 		new THREE.MeshBasicMaterial({
@@ -406,4 +393,20 @@ function addTextGeometry(
 	mesh.position.set(x, y, z);
 	mesh.rotation.set(xRotation, yRotation, zRotation);
 	scene.add(mesh);
+	return mesh;
+}
+
+function render() {
+	const time = (i += cubeRotationSpeed);
+	handleCubeRotation(time);
+	// handleCubeBobbing(time);
+	if (clouds)
+		clouds.forEach((cloud) => {
+			cloud.rotation.z += cloudZRotationRateChange;
+			cloud.position.z -= cloudZPositionRateChange;
+		});
+
+	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
+
+	renderer.render(scene, camera);
 }
