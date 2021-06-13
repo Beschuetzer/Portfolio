@@ -44,12 +44,9 @@ const sectionContents = [
 				<p>
 					<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 						A# Maj Bridge
-					</EmbeddedLink>
-					is an app I created where users can play
-					<EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">
+					</EmbeddedLink>is an app I created where users can play<EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">
 						contract bridge
-					</EmbeddedLink>
-					online for free.&nbsp; I started seriously coding of the project in August of 2020 and completed the main code base in January of 2021.
+					</EmbeddedLink>online for free.&nbsp; I started seriously coding of the project in August of 2020 and completed the main code base in January of 2021.
 				</p>
 			</BridgeCardSection>
 			<BridgeCardSection
@@ -57,24 +54,20 @@ const sectionContents = [
 				// title='An App is Born'
 			>
 				<p>
-					It was June of 2020 and I had just left my job at <EmbeddedLink href="/resume#ricoh" openInNewTab={true} isLocal={true}>Ricoh</EmbeddedLink> to pursue a life-long interest of mine: coding.&nbsp; 
+					It was June of 2020 and I had just left my job at<EmbeddedLink href="/resume#ricoh" openInNewTab={true} isLocal={true}>Ricoh</EmbeddedLink>to pursue a life-long interest of mine: coding.&nbsp; 
 					&nbsp;I had just finished my two smaller side projects
-					(		
-					<EmbeddedLink isLocal={true} href="/examples/downloader">
+					(<EmbeddedLink isLocal={true} href="/examples/downloader">
 						downloader
-					</EmbeddedLink>
-					and
-					<EmbeddedLink href="/examples/playlist-syncer" isLocal={true}>
+					</EmbeddedLink>and<EmbeddedLink href="/examples/playlist-syncer" isLocal={true}>
 						playlist syncer
-					</EmbeddedLink>   
-					) 
+					</EmbeddedLink>) 
 					and was looking for another project that would really test my proverbial coding chops.
 				</p>
 				<p>
 					During a phone call, a good friend of mine mentioned how much he missed playing bridge now that the pandemic had shut everything down.&nbsp; Initially, I suggested we look for a free-to-play Bridge app.&nbsp;  However, after extensively searching for such an app to no avail, it was clear I would have to make one if we wanted to play online for free (since then at least one free-to-play app has been released). 
 				</p>
 				<p>
-					It was shortly after that phone call that I resolved to make the best free-to-play contract Bridge application I could with the knowledge I had at that point in time (not knowing any HTML, CSS, or JS).
+					It was shortly after that phone call that I resolved to make the best free-to-play contract Bridge application I could without knowing any HTML, CSS, or JS at the time.
 				</p>
 			</BridgeCardSection>
 		</BridgeCard>
@@ -220,49 +213,34 @@ const sectionContents = [
 	</SectionContainer>,
 	<SectionContainer name={bridgeSections[2]} pageName="bridge">
 		<BridgeCard titleSize="two" titleContent={bridgeSections[2]}>
-			<BridgeCardSection title="Research">
+			<BridgeCardSection title="First Steps">
 				<p>
-					I started out by trying to create a simple chat room app using C#,
-					but soon realized it would be rather challenging to create the
-					bridge app I had envisioned using C#. &nbsp;I knew there had to be
-					an easier way... &nbsp;off to YouTube/Google to find it! &nbsp; This
-					is where I first encountered 'socket.io'. &nbsp;After watching a
-					quick implementation video on YouTube, I was convinced:&nbsp;
-					socket.io would be a part of the stack, if i was going to do this
-					thing.
+					Because I had just completed the<EmbeddedLink isLocal={true} href="/examples/downloader">downloader</EmbeddedLink>and<EmbeddedLink href="/examples/playlist-syncer" isLocal={true}>playlist syncer</EmbeddedLink>projects, I initially tried creating<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
+						A# Maj Bridge
+					</EmbeddedLink>using c#/WPF.&nbsp; However, it became readily-apparent early on that it would be rather challenging to create the bridge app I had envisioned using c#/WPF. 
 				</p>
 				<p>
-					The only problem was I had no idea how to create a web application
-					at all.&nbsp; After googling some more, I found an exquisite
-					resource called
-					<EmbeddedLink href="https://www.theodinproject.com/">
-						The Odin Project
-					</EmbeddedLink>
+					After some research, I made the decision to create the whole app around socket.io, which would handle the real-time aspects of the app.&nbsp; The only problem was I had absolutely no idea how to create a web application at that point in time.&nbsp; After googling some more, I found an exquisite resource called<EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>.
 				</p>
 			</BridgeCardSection>
-			<BridgeCardSection title="A Tough Decision">
+			{/* <BridgeCardSection title="A Tough Decision">
 				<p>
-					Before I had found the
-					<EmbeddedLink href="https://www.theodinproject.com/">
+					Before I had found the<EmbeddedLink href="https://www.theodinproject.com/">
 						The Odin Project
-					</EmbeddedLink>
-					, I had been under the impression that one needed to have a Computer
+					</EmbeddedLink>, I had been under the impression that one needed to have a Computer
 					Science degree in order to become a web developer.&nbsp; That
 					assumption was shattered upon reading about some of the experiences
-					others had had with the
-					<EmbeddedLink href="https://www.theodinproject.com/">
+					others had had with the<EmbeddedLink href="https://www.theodinproject.com/">
 						The Odin Project
-					</EmbeddedLink>
-					. Then and there, a hope, nay, a determination awakened inside of me
+					</EmbeddedLink>. Then and there, a hope, nay, a determination awakened inside of me
 					that had lain dormant for many years.&nbsp; Maybe I too could become
 					a web developer?&nbsp; I was determined to find out once and for
 					all, if I have what it takes to become a web developer.&nbsp; Hence,
-					I fully committed myself to making the
-					<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
+					I fully committed myself to making the<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 						A# Maj Bridge
-					</EmbeddedLink>
-					project.
-				</p>
+					</EmbeddedLink>project.
+				</p> */}
+				{/*NOTE: Not likely to use below here*/}
 				{/* <p>
 						Ultimately my decision to become a web developer came down to the fact that I knew I would regret it in the future if I didn't give it an honest effort to become a web developer.  &nbsp;With the COVID-19 pandemic in full swing, I knew I would have time to explore my potential.
 					</p> 
@@ -277,13 +255,8 @@ const sectionContents = [
 				{/* <p>
 						Do I have what it takes?  Will I be able to find a job during the pandemic?  These were questions that I was scared to face, but, to me, scarier was not pursing something that I have enjoyed doing since I was a kid.
 					</p> */}
-			</BridgeCardSection>
-			<BridgeCardSection title="The Approach">
-				{/* <p>
-						First, I needed some sort of test that was sufficiently complex and representative enough of actual real-world applications, such that if I could pass it, I would know I am on the right track.&nbsp;
-
-						This is when<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>became a full-time endeavor.&nbsp; 
-					</p> */}
+			{/* </BridgeCardSection> */}
+			{/* <BridgeCardSection title="The Approach">
 				<p>
 					If I could create a some-what scalable, web-based multiplayer bridge
 					app, I was convinced I would have what it takes.&nbsp; I decided
@@ -301,17 +274,22 @@ const sectionContents = [
 						rel="noreferrer">
 						service technician position
 					</a>{" "}
-					at <EmbeddedLink href="/resume#ricoh" openInNewTab={true} isLocal={true}>Ricoh</EmbeddedLink> in order to free up the time and energy needed to
+					at<EmbeddedLink href="/resume#ricoh" openInNewTab={true} isLocal={true}>Ricoh</EmbeddedLink>in order to free up the time and energy needed to
 					whole-heartily devote myself to the project.
-				</p>
-			</BridgeCardSection>
+				</p> */}
+
+				{/* note: not used after here 
+					<p>
+						First, I needed some sort of test that was sufficiently complex and representative enough of actual real-world applications, such that if I could pass it, I would know I am on the right track.&nbsp;
+
+						This is when<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>became a full-time endeavor.&nbsp; 
+					</p> */}
+			{/* </BridgeCardSection> */}
 			<BridgeCardSection title="The Little Matter of How">
 				<p>
-					I started the learning process by following the curriculum on the
-					<EmbeddedLink href="https://www.theodinproject.com/">
+					I started by learning the basics via the<EmbeddedLink href="https://www.theodinproject.com/">
 						The Odin Project
-					</EmbeddedLink>
-					website.&nbsp; There I learned the basics of HTML5, CSS3, and
+					</EmbeddedLink>.&nbsp; There I learned the basics of Ruby, HTML5, CSS3, and
 					JS.&nbsp; However, after completing most of the Ruby part of the
 					curriculum, I realized I would need further resources.&nbsp;
 				</p>
@@ -362,11 +340,9 @@ const sectionContents = [
 					If I wanted to become a web developer, I figured, I would need to
 					have a solid understanding of HTML5, CSS3, and JS.&nbsp; What better
 					way to learn the basics than to build a web-based multiplayer bridge
-					app? &nbsp; This line of thinking is what led me to develop
-					<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
+					app? &nbsp; This line of thinking is what led me to develop<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 						A# Maj Bridge
-					</EmbeddedLink>
-					using primarily vanilla HTML5, CSS3, and JS.
+					</EmbeddedLink>using primarily vanilla HTML5, CSS3, and JS.
 				</p>
 				<BridgeCardSection title="Picking the Right Curriculum">
 					<p>
@@ -393,8 +369,7 @@ const sectionContents = [
 					<p>
 						<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 							A# Maj Bridge
-						</EmbeddedLink>
-						took roughly 6 months for me to complete starting from not knowing any HTML, CSS, or Javascript.&nbsp; It runs smoothly on
+						</EmbeddedLink>took roughly 6 months for me to complete starting from not knowing any HTML, CSS, or Javascript.&nbsp; It runs smoothly on
 						Android 10+, Firefox 70+, and Chrome 70+ (but not on mobile iOS
 						devices due to paperJS issues that I couldn't resolve due to the
 						fact that I don't have access to an iOS device). &nbsp; It can
@@ -407,8 +382,7 @@ const sectionContents = [
 							isEmbeddedLink={true}
 							name="feature's section"
 							sectionToSkipTo="features"></BridgeSectionLink>
-						&nbsp; or check out some of the
-						<EmbeddedLink href="https://github.com/Beschuetzer/Bridge">
+						&nbsp; or check out some of the<EmbeddedLink href="https://github.com/Beschuetzer/Bridge">
 							source code.
 						</EmbeddedLink>
 					</p>
@@ -421,11 +395,9 @@ const sectionContents = [
 			<BridgeCardSection title="No One Technology is 'Better'">
 				<p>
 					It's easy to think in the absolute terms of 'good', 'better', and
-					'best'.&nbsp; My experience coding
-					<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
+					'best'.&nbsp; My experience coding<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 						A# Maj Bridge
-					</EmbeddedLink>
-					has illustrated to me that when it comes to web development thinking
+					</EmbeddedLink>has illustrated to me that when it comes to web development thinking
 					in these terms doesn't cut it.&nbsp;
 				</p>
 			</BridgeCardSection>

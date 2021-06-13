@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { getRepositories } from "../../actions";
 import EmbeddedLink from "../../components/EmbeddedLink";
-import TextScroll from "../../components/TextScroll/Textscroll";
 import useSky from './useSky';
 
 interface HomeProps {
@@ -28,15 +27,6 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 				</div>
 				<div className="home__main">
 					<div className="home__main-welcome">
-						{/* <TextScroll
-							perspective="1000px"
-							text="Test TextScroll"
-						>
-
-						</TextScroll> */}
-						{/* <h4>Welcome!</h4> */}
-					
-
 						<p>
 							Not sure where to start?&nbsp; Check out the <EmbeddedLink className="home__main-link" href="/examples/bridge" isLocal={true}>multiplayer app </EmbeddedLink>I created.
 						</p>

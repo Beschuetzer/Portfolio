@@ -44,6 +44,7 @@
 		}
 
 		&-content {
+			opacity: .95;
 		}
 	}
 
@@ -189,7 +190,7 @@
 			}
 
 			& .bridge__section-content {
-				padding: 0;
+				padding: $default-font-size;
 				overflow: hidden;
 				display: grid;
 				grid-template-columns: repeat(
@@ -709,7 +710,7 @@ $padding-nav-switch: $default-font-size * 0.5;
 	&--left {
 		// padding-left: $padding-full;
 		// left: 0%;
-		left: calc((100vw - #{$header-inner-width} - 1vw) / 2);
+		left: calc((100vw - #{$header-inner-width}) / 2);
 		// border: $default-font-size * .1 solid var(--arrow-button-left-fill);
 
 		@include respond(nav-switch) {
