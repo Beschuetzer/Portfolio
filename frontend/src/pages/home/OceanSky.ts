@@ -410,24 +410,28 @@ function adjustTextSizes() {
 	if (texts) {
 		const newSize = window.innerWidth * textSizeScaleFactor;
 		texts.forEach((text, index) => {
-			console.log("text =", text);
-			console.log('text.geometry.parameters =', text.geometry.parameters);
-			// texts.push(
-			// 	addTextGeometry(
-			// 		scene,
-			// 		"text",
-			// 		text.position.x,
-			// 		text.position.y,
-			// 		text.position.z,
-			// 		text.rotation.x,
-			// 		text.rotation.y,
-			// 		text.rotation.z,
-			// 		text.geometry.parameters.options.color,
-			// 		0,
-			// 	),
-			// );
-			texts.splice(index, 1);
+			const currentTextData = textData[index]
+			texts.push(
+				addTextGeometry(
+					scene,
+					currentTextData.text,
+					text.position.x,
+					text.position.y,
+					text.position.z,
+					currentTextData.xRotation,
+					currentTextData.yRotation,
+					currentTextData.zRotation,
+					currentTextData.color,
+					newSize,
+					currentTextData.height,
+				),
+			);
+			let textToRemove = texts.slice(index, 1)[0];
+			scene.remove(textToRemove)
 		});
+		for (let i = 0; i < textData.length; i++) {
+			texts.splice(i, 1);
+		}
 	}
 }
 
