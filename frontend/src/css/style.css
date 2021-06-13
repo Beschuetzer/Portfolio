@@ -3505,6 +3505,8 @@ div.references__name {
   transform: scale(1.33);
 }
 .bridge__current-section:hover {
+  cursor: auto;
+  color: var(--bridge-page-nav-link-color);
   transform: scale(1.33) translate(0, 0);
 }
 .bridge .hero.bridge {

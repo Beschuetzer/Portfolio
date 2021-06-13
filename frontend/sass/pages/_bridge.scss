@@ -346,6 +346,9 @@
 		transform: scale($bridge-page-nav-link-scale-amount);
 
 		&:hover {
+			// pointer-events: none;
+			cursor: auto;
+			color: var(--bridge-page-nav-link-color);
 			transform: scale($bridge-page-nav-link-scale-amount) translate(0, 0);
 		}
 	}
