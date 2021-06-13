@@ -18,7 +18,7 @@ import cubeMap4 from "../../imgs/cube-communication.jpg";
 import cubeMap1 from "../../imgs/cube-determination.jpg";
 import cubeMap2 from "../../imgs/cube-passion.jpg";
 import cloud from "../../imgs/cloud.png";
-import uniqueFont from "../../fonts/poppins/Poppins_Regular.json";
+import introFont from "../../fonts/star-wars/star-jedi-rounded_Regular.json";
 import { MeshBasicMaterial, Scene, TextBufferGeometry } from "three";
 
 let camera: any, scene: any, renderer: any, lastClientY: number;
@@ -115,22 +115,25 @@ interface TextData {
 	height: number,
 }
 
-const textDisappearZ = 25 ;
+const textDisappearZ = -50 ;
 const textMinXRotation = -Math.PI / 2 - .25;
 const textScrollSpeed = .1;
 const defaultTextX = 0;
 const defaultTextY = -0.2;
 const defaultTextYRotation = 0;
 const defaultTextZRotation = 0;
-const defaultTextSize = 5;
-const defaultTextHeight = .1;
-const defaultTextColor = new THREE.Color(sunColor);
+const textSizeScaleFactor = 0.006882312;
+const defaultTextSize = window.innerWidth * textSizeScaleFactor;
+const defaultTextHeight = 1;
+const defaultTextColor = new THREE.Color(0xf4d262);
+const lineSpacing = defaultTextSize * 3;
+const lineStart = 75;
 let textData: TextData[] = [
 	{
-		text: "Welcome",
+		text: "Welcome to my Porfolio!",
 		x: defaultTextX,
 		y: defaultTextY,
-		z: 50,
+		z: lineStart,
 		xRotation: -Math.PI / 2,
 		yRotation: defaultTextYRotation,
 		zRotation: defaultTextZRotation,
@@ -139,10 +142,10 @@ let textData: TextData[] = [
 		height: defaultTextHeight,
 	},
 	{
-		text: "to my",
+		text: "Everything you will see today",
 		x: defaultTextX,
 		y: defaultTextY,
-		z: 66,
+		z: lineStart + lineSpacing * 1,
 		xRotation: -Math.PI / 2,
 		yRotation: defaultTextYRotation,
 		zRotation: defaultTextZRotation,
@@ -151,10 +154,58 @@ let textData: TextData[] = [
 		height: defaultTextHeight,
 	},
 	{
-		text: "Portfolio",
+		text: "was made with",
 		x: defaultTextX,
 		y: defaultTextY,
-		z:80,
+		z: lineStart + lineSpacing * 2,
+		xRotation: -Math.PI / 2,
+		yRotation: defaultTextYRotation,
+		zRotation: defaultTextZRotation,
+		color: defaultTextColor,
+		size: defaultTextSize,
+		height: defaultTextHeight,
+	},
+	{
+		text: "React, Redux, custom SASS/CSS,",
+		x: defaultTextX,
+		y: defaultTextY,
+		z: lineStart + lineSpacing * 3,
+		xRotation: -Math.PI / 2,
+		yRotation: defaultTextYRotation,
+		zRotation: defaultTextZRotation,
+		color: defaultTextColor,
+		size: defaultTextSize,
+		height: defaultTextHeight,
+	},
+	{
+		text: "Express, and ThreeJS",
+		x: defaultTextX,
+		y: defaultTextY,
+		z: lineStart + lineSpacing * 4,
+		xRotation: -Math.PI / 2,
+		yRotation: defaultTextYRotation,
+		zRotation: defaultTextZRotation,
+		color: defaultTextColor,
+		size: defaultTextSize,
+		height: defaultTextHeight,
+	},
+	{
+		text: "Looking forward",
+		x: defaultTextX,
+		y: defaultTextY,
+		z: lineStart + lineSpacing * 6,
+		xRotation: -Math.PI / 2,
+		yRotation: defaultTextYRotation,
+		zRotation: defaultTextZRotation,
+		color: defaultTextColor,
+		size: defaultTextSize,
+		height: defaultTextHeight,
+	},
+	{
+		text: "to working with you!",
+		x: defaultTextX,
+		y: defaultTextY,
+		z: lineStart + lineSpacing * 7,
 		xRotation: -Math.PI / 2,
 		yRotation: defaultTextYRotation,
 		zRotation: defaultTextZRotation,
@@ -287,16 +338,24 @@ export function init() {
 
 	loadTexts(textData, scene);
 	//
-	const orbitControlsEndTargetY = 15;
+	
+	const orbitControlsStartTargetX = 0;
 	const orbitControlsStartTargetY = 30;
+	const orbitControlsStartTargetZ = 0;
+	const orbitControlsEndTargetX = 0;
+	const orbitControlsEndTargetY = 15;
+	const orbitControlsEndTargetZ = 0;
+	const orbitControlsMaxPolarAngleStart = 0;
+	const orbitControlsMaxPolarAngleEnd = Math.PI * orbitControlsMaxPolarAngleFactor;
+
 
 	orbitControls = new OrbitControls(camera, renderer.domElement);
-	orbitControls.target.set(0, orbitControlsStartTargetY, 0);
+	orbitControls.target.set(orbitControlsStartTargetX, orbitControlsStartTargetY, orbitControlsStartTargetZ);
 	orbitControls.minDistance = 100;
 	orbitControls.maxDistance = 100;
 	orbitControls.minAzimuthAngle = 0;
 	orbitControls.maxAzimuthAngle = 0;
-	orbitControls.maxPolarAngle = Math.PI * orbitControlsMaxPolarAngleFactor - .1;
+	orbitControls.maxPolarAngle = orbitControlsMaxPolarAngleStart;
 	orbitControls.minPolarAngle = orbitControls.maxPolarAngle;
 	orbitControls.mouseButtons = {
 		LEFT: THREE.MOUSE.ROTATE,
@@ -427,16 +486,16 @@ function addTextGeometry(
 	height = 5,
 ) {
 	const textLoader = new THREE.FontLoader();
-	const font = textLoader.parse(uniqueFont);
+	const font = textLoader.parse(introFont);
 	const geo = new THREE.TextGeometry(text, {
 		font: font,
 		size: size,
 		height: height,
-		curveSegments: 4,
-		bevelEnabled: true,
-		bevelThickness: 0.15,
-		bevelSize: 0.3,
-		bevelSegments: 5,
+		// curveSegments: 4,
+		// bevelEnabled: true,
+		// bevelThickness: 0.15,
+		// bevelSize: 0.3,
+		// bevelSegments: 5,
 	});
 	geo.center();
 
