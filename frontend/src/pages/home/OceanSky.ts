@@ -216,6 +216,7 @@ export function init() {
 
 	clouds = addCloud();
 
+	// const text = addTextGeometry(scene, "Testing",);
 	//
 
 	orbitControls = new OrbitControls(camera, renderer.domElement);
@@ -328,7 +329,10 @@ function addCloud() {
 	let clouds: any[] = [];
 	let cloudLoader = new THREE.TextureLoader();
 	cloudLoader.load(cloud, function (texture) {
-		const cloudGeo = new THREE.PlaneGeometry(cloudWidthSegments, cloudWidthSegments);
+		const cloudGeo = new THREE.PlaneGeometry(
+			cloudWidthSegments,
+			cloudWidthSegments,
+		);
 		const cloudMaterial = new THREE.MeshBasicMaterial({
 			map: texture,
 			transparent: true,
@@ -352,3 +356,32 @@ function addCloud() {
 	});
 	return clouds;
 }
+
+function addTextGeometry(
+	scene: any,
+	text: string,
+	font = "../../src/fonts/poppins/Poppins_Regular.json",
+) {
+	const textLoader = new THREE.FontLoader();
+	textLoader.load(font, (font) => {
+		debugger;
+		const geo =  new THREE.TextGeometry(text, {
+			font: font,
+			size: 5.2,
+			height: 4.9,
+			curveSegments: 4,
+			bevelEnabled: true,
+			bevelThickness: 0.15,
+			bevelSize: 0.3,
+			bevelSegments: 5,
+		});
+		const mesh = new THREE.Mesh(geo, new THREE.MeshPhongMaterial({
+			color: 0x02ab11,
+		}))
+		mesh.position.set(0, 100, 100);
+		scene.add(mesh);
+	});
+}
+
+
+

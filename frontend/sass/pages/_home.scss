@@ -127,6 +127,8 @@
 
 
 		&-welcome {
+			--welcome-opacity: .75;
+			color: rgba(var(--color-primary-4-rgb), var(--welcome-opacity));
 			padding: $default-font-size;
 			display: flex;
 			justify-content: center;
@@ -134,13 +136,11 @@
 			flex-direction: column;
 			grid-column: 1 / -1;
 			grid-row: 3 / -1;
-			--welcome-opacity: .9;
 
 			& h4 {
 				font-size: $default-font-size * 4;
 			}
 			& p {
-				color: rgba(var(--color-primary-4-rgb), var(--welcome-opacity));
 				margin: $default-font-size;
 				font-size: $default-font-size * 1;
 				transition: 

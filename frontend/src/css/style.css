@@ -2829,6 +2829,8 @@ body {
   grid-template-rows: var(--home-column-height) 1fr var(--home-column-height);
 }
 .home__main-welcome {
+  --welcome-opacity: .75;
+  color: rgba(var(--color-primary-4-rgb), var(--welcome-opacity));
   padding: 1.6rem;
   display: flex;
   justify-content: center;
@@ -2836,13 +2838,11 @@ body {
   flex-direction: column;
   grid-column: 1/-1;
   grid-row: 3/-1;
-  --welcome-opacity: .9;
 }
 .home__main-welcome h4 {
   font-size: 6.4rem;
 }
 .home__main-welcome p {
-  color: rgba(var(--color-primary-4-rgb), var(--welcome-opacity));
   margin: 1.6rem;
   font-size: 1.6rem;
   transition: color 0.5s ease;
