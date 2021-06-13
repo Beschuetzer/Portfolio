@@ -1,5 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+// import TTFLoader from 'three/examples/js/loaders/TTFLoader';
+// import openType from "three/examples/js/libs/opentype.min"
 // import Stats from "three/examples/jsm/libs/stats.module.js";
 // import { gui } from 'three/examples/jsm/libs/dat.gui.module.js';
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -16,6 +18,7 @@ import cubeMap4 from "../../imgs/cube-communication.jpg";
 import cubeMap1 from "../../imgs/cube-determination.jpg";
 import cubeMap2 from "../../imgs/cube-passion.jpg";
 import cloud from "../../imgs/cloud.png";
+import uniqueFont from "../../fonts/unique/Unique_Regular.json";
 
 let camera: any, scene: any, renderer: any, lastClientY: number;
 let orbitControls, water: any, sun: any, mesh: any;
@@ -212,11 +215,23 @@ export function init() {
 
 	mesh = new THREE.Mesh(geometry, materials);
 	mesh.position.y = cubeStartingHeight;
-	scene.add(mesh);
+	// scene.add(mesh);
 
 	clouds = addCloud();
 
-	// const text = addTextGeometry(scene, "Testing",);
+	const text = addTextGeometry(
+		scene,
+		"This site was created with React, Redux, Express, ThreeJS, and custom SASS/CSS",
+		-50,
+		10,
+		75,
+		0,
+		0,
+		0,
+		new THREE.Color(sunColor),
+		1,
+		1,
+	);
 	//
 
 	orbitControls = new OrbitControls(camera, renderer.domElement);
@@ -360,28 +375,35 @@ function addCloud() {
 function addTextGeometry(
 	scene: any,
 	text: string,
-	font = "../../src/fonts/poppins/Poppins_Regular.json",
+	x: number,
+	y: number,
+	z: number,
+	xRotation = 0,
+	yRotation = 0,
+	zRotation = 0,
+	color = new THREE.Color(0xffffff),
+	size = 10,
+	height = 5,
 ) {
 	const textLoader = new THREE.FontLoader();
-	textLoader.load(font, (font) => {
-		debugger;
-		const geo =  new THREE.TextGeometry(text, {
-			font: font,
-			size: 5.2,
-			height: 4.9,
-			curveSegments: 4,
-			bevelEnabled: true,
-			bevelThickness: 0.15,
-			bevelSize: 0.3,
-			bevelSegments: 5,
-		});
-		const mesh = new THREE.Mesh(geo, new THREE.MeshPhongMaterial({
-			color: 0x02ab11,
-		}))
-		mesh.position.set(0, 100, 100);
-		scene.add(mesh);
+	const font = textLoader.parse(uniqueFont);
+	const geo = new THREE.TextGeometry(text, {
+		font: font,
+		size: size,
+		height: height,
+		curveSegments: 4,
+		bevelEnabled: true,
+		bevelThickness: 0.15,
+		bevelSize: 0.3,
+		bevelSegments: 5,
 	});
+	const mesh = new THREE.Mesh(
+		geo,
+		new THREE.MeshBasicMaterial({
+			color,
+		}),
+	);
+	mesh.position.set(x, y, z);
+	mesh.rotation.set(xRotation, yRotation, zRotation);
+	scene.add(mesh);
 }
-
-
-
