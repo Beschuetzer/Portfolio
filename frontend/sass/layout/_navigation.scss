@@ -228,7 +228,7 @@
 		width: 100%;
 		transition: transform $animation-duration * 0.25 $animation-easing-standard,
 			background-color $animation-duration * 0.25 $animation-easing-standard;
-		box-shadow: $navbar-box-shadow-resume;
+		box-shadow: $navbar-box-shadow-normal;
 
 		& .triangle-down {
 			transition: transform $animation-duration * 0.5 $animation-easing-standard;
@@ -247,7 +247,7 @@
 			z-index: 10000;
 			transform: translateY(-$navbar__item-divider-width);
 			background: rgba(var(--color-primary-1-rgb), .5);
-			box-shadow: $navbar-box-shadow-normal;
+			box-shadow: $navbar-box-shadow-hover;
 			transition: 
 				background $animation-duration / 3 $animation-easing-standard,
 				transform $animation-duration / 2 $animation-easing-standard,
@@ -416,7 +416,7 @@
 
 			&:hover {
 				transform: translateX($navbar__item-divider-width) !important;
-				box-shadow: $navbar-box-shadow-left-right;
+				box-shadow: $navbar-box-shadow-left-right-hover;
 
 			}
 
@@ -462,6 +462,11 @@
 	&__dropdown-container:hover &__dropdown &__item {
 		height: 100%;
 		opacity: 1;
+
+		@include respond(nav-switch) {
+			width: 90%; 
+    	max-width: $default-font-size * 30;
+		}
 	}
 
 	&__dropdown-container:hover &__dropdown &__link {
