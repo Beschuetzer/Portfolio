@@ -19,7 +19,7 @@ import cubeMap1 from "../../imgs/cube-determination.jpg";
 import cubeMap2 from "../../imgs/cube-passion.jpg";
 import cloud from "../../imgs/cloud.png";
 import uniqueFont from "../../fonts/poppins/Poppins_Regular.json";
-import { Scene, TextBufferGeometry } from "three";
+import { MeshBasicMaterial, Scene, TextBufferGeometry } from "three";
 
 let camera: any, scene: any, renderer: any, lastClientY: number;
 let orbitControls, water: any, sun: any, mesh: any;
@@ -72,6 +72,8 @@ const spotLightY = 100;
 const spotLightZ = 300;
 const spotLightColor = sunColor;
 
+const cameraFinalFOV = 55;
+
 const waterWidthSegments = 10000;
 const waterHeightSegments = waterWidthSegments;
 const waterAnimationSpeed = 0.75;
@@ -113,14 +115,16 @@ interface TextData {
 	height: number,
 }
 
+const textDisappearZ = 25 ;
+const textMinXRotation = -Math.PI / 2 - .25;
 const textScrollSpeed = .1;
 const defaultTextX = 0;
 const defaultTextY = -0.2;
 const defaultTextYRotation = 0;
 const defaultTextZRotation = 0;
 const defaultTextSize = 5;
-const defaultTextHeight = .5;
-const defaultTextColor = new THREE.Color(waterColor);
+const defaultTextHeight = .1;
+const defaultTextColor = new THREE.Color(sunColor);
 let textData: TextData[] = [
 	{
 		text: "Welcome",
@@ -147,7 +151,7 @@ let textData: TextData[] = [
 		height: defaultTextHeight,
 	},
 	{
-		text: "Porfolio",
+		text: "Portfolio",
 		x: defaultTextX,
 		y: defaultTextY,
 		z:80,
@@ -183,7 +187,7 @@ export function init() {
 
 	scene = new THREE.Scene();
 	camera = new THREE.PerspectiveCamera(
-		55,
+		60,
 		window.innerWidth / window.innerHeight,
 		1,
 		20000,
@@ -277,20 +281,22 @@ export function init() {
 
 	mesh = new THREE.Mesh(geometry, materials);
 	mesh.position.y = cubeStartingHeight;
-	scene.add(mesh);
+	// scene.add(mesh);
 
 	clouds = addCloud();
 
 	loadTexts(textData, scene);
 	//
+	const orbitControlsEndTargetY = 15;
+	const orbitControlsStartTargetY = 30;
 
 	orbitControls = new OrbitControls(camera, renderer.domElement);
-	orbitControls.target.set(0, 15, 0);
+	orbitControls.target.set(0, orbitControlsStartTargetY, 0);
 	orbitControls.minDistance = 100;
 	orbitControls.maxDistance = 100;
 	orbitControls.minAzimuthAngle = 0;
 	orbitControls.maxAzimuthAngle = 0;
-	orbitControls.maxPolarAngle = Math.PI * orbitControlsMaxPolarAngleFactor;
+	orbitControls.maxPolarAngle = Math.PI * orbitControlsMaxPolarAngleFactor - .1;
 	orbitControls.minPolarAngle = orbitControls.maxPolarAngle;
 	orbitControls.mouseButtons = {
 		LEFT: THREE.MOUSE.ROTATE,
@@ -305,6 +311,15 @@ export function init() {
 
 	window.addEventListener("resize", onWindowResize);
 	window.addEventListener("mousemove", onMouseMove);
+}
+
+export function animate() {
+	id = requestAnimationFrame(animate);
+	render();
+}
+
+export function stopKey() {
+	cancelAnimationFrame(id);
 }
 
 function onMouseMove(e: MouseEvent) {
@@ -325,15 +340,6 @@ function onWindowResize() {
 	camera.updateProjectionMatrix();
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
-export function animate() {
-	id = requestAnimationFrame(animate);
-	render();
-}
-
-export function stopKey() {
-	cancelAnimationFrame(id);
 }
 
 function handleCubeBobbing(time: number) {
@@ -477,7 +483,18 @@ function render() {
 
 	if (texts) {
 		texts.forEach(text => {
-			text.position.z -= textScrollSpeed;
+			const currentOpacity = (text.material as any).opacity;
+			if (currentOpacity > 0) {
+				if  (text.position.z <= textDisappearZ) {
+					text.material = new MeshBasicMaterial({
+						transparent: true,
+						opacity: currentOpacity - .001,
+						color: defaultTextColor,
+					});
+					// if (text.rotation.x >= textMinXRotation) text.rotation.x -= textScrollSpeed / 50;
+				}
+				text.position.z -= textScrollSpeed;
+			}
 		})
 	}
 
