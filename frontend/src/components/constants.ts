@@ -67,6 +67,8 @@ export const viewPortPixelToRem: {
   },
 }
 
+export const SLIDING_CLASSNAME = 'sliding';
+export const TRANSITION_NONE_CLASSNAME = 'transition-none';
 export const Z_INDEX_HIGHEST_CLASSNAME = 'z-index-highest';
 export const Z_INDEX_CONTENT_CLASSNAME = 'z-index-content';
 export const Z_INDEX_NAVBAR_CLASSNAME = 'z-index-navbar';
@@ -77,6 +79,7 @@ export const HIDDEN_CLASSNAME = 'hidden';
 export const BODY_BACKGROUND_CSS_CLASSNAME = "--body-background";
 export const SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME = "--site-nav-button-width";
 export const NO_MARGIN_CLASSNAME = "margin-0";
+export const PAGE_NAV_CLASSNAME = 'page-nav';
 
 
 export const PAGE_NAMES = [

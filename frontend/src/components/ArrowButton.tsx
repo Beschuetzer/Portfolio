@@ -10,7 +10,7 @@ import {
 	COLOR_PRIMARY_BRIDGE_3,
 	COLOR_PRIMARY_BRIDGE_4,
 } from "../pages/examples/bridge/utils";
-import { HIDDEN_CLASSNAME } from "./constants";
+import { ANIMATION_DURATION, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME, TRANSITION_NONE_CLASSNAME } from "./constants";
 
 interface ArrowButtonProps {
   direction: string,
@@ -162,6 +162,8 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 	}, [currentBridgeSection, bridgeSections, clickedBridgeInfoButtonCount]);
 
 	const handleClick = (e: MouseEvent) => {
+		hideContentDuringSlide()
+		
 		if ((e.currentTarget as HTMLElement)?.className.match(/left/i)) {
 			if (currentBridgeSection > 0) {
 				return setCurrentBridgeSection(currentBridgeSection - 1);
@@ -172,6 +174,25 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 			}
 		}
 	};
+
+	const hideContentDuringSlide = () => {
+		const pageNav = document.querySelector(`.${PAGE_NAV_CLASSNAME}`);
+		const leftArrow = document.querySelector(".arrow-button--left");
+		const rightArrow = document.querySelector(".arrow-button--right");
+		const toHide = [pageNav, leftArrow, rightArrow];
+
+		toHide.forEach(item => {
+			item?.classList.add(SLIDING_CLASSNAME);
+		})
+		
+		setTimeout(() => {
+			toHide.forEach(item => {
+				item?.classList.remove(SLIDING_CLASSNAME);
+			})
+
+		}, ANIMATION_DURATION / 2);
+
+	}
 
 	return (
 		<div

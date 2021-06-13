@@ -90,6 +90,16 @@
 	overflow: hidden !important;
 }
 
+.sliding {
+	transition: none !important;
+	opacity: 0 !important;
+	visibility: hidden !important;
+}
+
+.transition-none {
+	transition: none !important;
+}
+
 .visible {
 	visibility: visible !important;
 	opacity: 1 !important;

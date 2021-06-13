@@ -699,7 +699,10 @@
 	align-items: center;
 	grid-auto-rows: 1fr;
 	height: 200%;
-	transition: opacity $animation-duration * 1 $animation-easing-standard;
+	transition: 
+		opacity $animation-duration * 2.5 $animation-easing-standard,
+	;
+
 
 	@include respond(nav-switch) {
 		z-index: 0;

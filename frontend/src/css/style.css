@@ -477,6 +477,16 @@ body {
   overflow: hidden !important;
 }
 
+.sliding {
+  transition: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.transition-none {
+  transition: none !important;
+}
+
 .visible {
   visibility: visible !important;
   opacity: 1 !important;
@@ -1132,7 +1142,7 @@ body {
   align-items: center;
   grid-auto-rows: 1fr;
   height: 200%;
-  transition: opacity 0.5s ease;
+  transition: opacity 1.25s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .page-nav {
@@ -3476,14 +3486,14 @@ div.references__name {
 }
 .bridge__page-nav-link {
   cursor: pointer;
-  opacity: 0.95;
+  opacity: 0.75;
   color: var(--bridge-page-nav-link-color);
   transition: color 0.25s ease, transform 0.25s ease;
 }
 .bridge__page-nav-link:hover {
   opacity: 1;
   color: var(--bridge-page-nav-link-color-hover);
-  transform: translateY(-0.16rem) scale(1.1);
+  transform: translateY(-0.16rem) scale(1.33);
 }
 @media only screen and (max-width: 68.75em) {
   .bridge__page-nav-link {
@@ -3492,10 +3502,10 @@ div.references__name {
 }
 .bridge__current-section {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.33);
 }
 .bridge__current-section:hover {
-  transform: scale(1.1) translate(0, 0);
+  transform: scale(1.33) translate(0, 0);
 }
 .bridge .hero.bridge {
   -webkit-touch-callout: none;
