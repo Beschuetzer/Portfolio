@@ -26,7 +26,7 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 					<h5 className="home__third-word">embodies</h5>
 				</div>
 				<div className="home__main">
-					<div className="home__main-welcome">
+					{/* <div className="home__main-welcome">
 						<p>
 							Not sure where to start?&nbsp; Check out the <EmbeddedLink className="home__main-link" href="/examples/bridge" isLocal={true}>multiplayer app </EmbeddedLink>I created.
 						</p>
@@ -36,7 +36,7 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 						<p>
 							This site was created with React, Redux, Express, ThreeJS, and custom SASS/CSS
 						</p>
-					</div> 
+					</div>  */}
 
 
 					{/* <div className="home__main-description">

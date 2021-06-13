@@ -18,12 +18,14 @@ import cubeMap4 from "../../imgs/cube-communication.jpg";
 import cubeMap1 from "../../imgs/cube-determination.jpg";
 import cubeMap2 from "../../imgs/cube-passion.jpg";
 import cloud from "../../imgs/cloud.png";
-import uniqueFont from "../../fonts/unique/Unique_Regular.json";
+import uniqueFont from "../../fonts/poppins/Poppins_Regular.json";
+import { Scene, TextBufferGeometry } from "three";
 
 let camera: any, scene: any, renderer: any, lastClientY: number;
 let orbitControls, water: any, sun: any, mesh: any;
 let id: number;
 let clouds: any[];
+let texts: THREE.Mesh<TextBufferGeometry>[] = [];
 
 let i = 0;
 let cubeCanRotateY = false;
@@ -97,6 +99,66 @@ const cloudZPositionMax = 500;
 const cloudZPositionMin = 500;
 const cloudZRotationRateChange = 0.0005;
 const cloudZPositionRateChange = 0.9;
+
+interface TextData {
+	text: string,
+	x: number,
+	y: number,
+	z: number,
+	xRotation: number,
+	yRotation: number,
+	zRotation: number,
+	color: THREE.Color,
+	size: number,
+	height: number,
+}
+
+const textScrollSpeed = .1;
+const defaultTextX = 0;
+const defaultTextY = -0.2;
+const defaultTextYRotation = 0;
+const defaultTextZRotation = 0;
+const defaultTextSize = 5;
+const defaultTextHeight = .5;
+const defaultTextColor = new THREE.Color(waterColor);
+let textData: TextData[] = [
+	{
+		text: "Welcome",
+		x: defaultTextX,
+		y: defaultTextY,
+		z: 50,
+		xRotation: -Math.PI / 2,
+		yRotation: defaultTextYRotation,
+		zRotation: defaultTextZRotation,
+		color: defaultTextColor,
+		size: defaultTextSize,
+		height: defaultTextHeight,
+	},
+	{
+		text: "to my",
+		x: defaultTextX,
+		y: defaultTextY,
+		z: 66,
+		xRotation: -Math.PI / 2,
+		yRotation: defaultTextYRotation,
+		zRotation: defaultTextZRotation,
+		color: defaultTextColor,
+		size: defaultTextSize,
+		height: defaultTextHeight,
+	},
+	{
+		text: "Porfolio",
+		x: defaultTextX,
+		y: defaultTextY,
+		z:80,
+		xRotation: -Math.PI / 2,
+		yRotation: defaultTextYRotation,
+		zRotation: defaultTextZRotation,
+		color: defaultTextColor,
+		size: defaultTextSize,
+		height: defaultTextHeight,
+	},
+]
 
 function getCloudXPosition() {
 	return Math.random() * cloudXPositionMax - cloudXPositionMin;
@@ -215,23 +277,11 @@ export function init() {
 
 	mesh = new THREE.Mesh(geometry, materials);
 	mesh.position.y = cubeStartingHeight;
-	// scene.add(mesh);
+	scene.add(mesh);
 
 	clouds = addCloud();
 
-	const welcomeText = addTextGeometry(
-		scene,
-		"Welcome!",
-		0,
-		-.2,
-		60,
-		-Math.PI / 2,
-		0,
-		0,
-		new THREE.Color(waterColor),
-		10,
-		.1,
-	);
+	loadTexts(textData, scene);
 	//
 
 	orbitControls = new OrbitControls(camera, renderer.domElement);
@@ -358,7 +408,7 @@ function addCloud() {
 }
 
 function addTextGeometry(
-	scene: any,
+	scene: Scene,
 	text: string,
 	x: number,
 	y: number,
@@ -396,6 +446,25 @@ function addTextGeometry(
 	return mesh;
 }
 
+function loadTexts(textData: TextData[], scene: Scene) {
+	for (let i = 0; i < textData.length; i++) {
+		const textObj = textData[i];
+		texts.push(addTextGeometry(
+			scene,
+			textObj.text,
+			textObj.x,
+			textObj.y,
+			textObj.z,
+			textObj.xRotation ? textObj.xRotation : undefined,
+			textObj.yRotation ? textObj.yRotation : undefined,
+			textObj.zRotation ? textObj.zRotation : undefined,
+			textObj.color ? textObj.color : undefined,
+			textObj.size ? textObj.size : undefined,
+			textObj.height ? textObj.height : undefined,
+		));
+	}
+}
+
 function render() {
 	const time = (i += cubeRotationSpeed);
 	handleCubeRotation(time);
@@ -405,6 +474,12 @@ function render() {
 			cloud.rotation.z += cloudZRotationRateChange;
 			cloud.position.z -= cloudZPositionRateChange;
 		});
+
+	if (texts) {
+		texts.forEach(text => {
+			text.position.z -= textScrollSpeed;
+		})
+	}
 
 	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
 
