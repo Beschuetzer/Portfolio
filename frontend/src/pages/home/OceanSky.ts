@@ -620,7 +620,8 @@ function getFromStartToFinishUsingFunction(
 ) {
 	//todo: return a number that when you multiply start with it frame times (durationInSeconds * fps) you get end
 	let result = null;
-	if (start === 0) throw new Error("Start must be a number other than 0");
+	if (start > end && end === 0) throw new Error("End must be a number other than 0 when start is greater than end");
+	if (start === 0 && end > start) throw new Error("Start must be a number other than 0 when end is greater than start");
 	if (functionToUse === "linear") {
 		result = getLinearStartToFinish(durationInMS, start, end, fps);
 	} else if (functionToUse === "exponential") {
@@ -636,7 +637,8 @@ function getLinearStartToFinish(
 	fps: number,
 ) {
 		//TODO: return a number that when added to start and then the result repeatedly yields end in frame steps/intervals...
-
+	const frames = fps * durationInMS / 1000;
+	return (end - start) / frames;
 }
 
 function getExponentialStartToFinish(
@@ -646,6 +648,9 @@ function getExponentialStartToFinish(
 	fps: number,
 ) {
 		//TODO: return a number that when multiplied by start and then the result repeatedly yields end in frame steps/intervals...
-
-
+		const frames = fps * durationInMS / 1000;
+		return Math.pow((end / start), (1 / frames));
 }
+
+
+console.log(getExponentialStartToFinish(1000 / 30, .1, 15, 60));
