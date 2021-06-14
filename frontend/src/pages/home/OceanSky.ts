@@ -22,11 +22,12 @@ import introFont from "../../fonts/star-wars/star-jedi-rounded_Regular.json";
 import { MeshBasicMaterial, Scene, TextBufferGeometry } from "three";
 
 let camera: any, scene: any, renderer: any, lastClientY: number;
-let orbitControls, water: any, sun: any, mesh: any;
+let orbitControls: OrbitControls, water: any, sun: any, mesh: any;
 let id: number;
 let clouds: any[];
 let texts: THREE.Mesh<TextBufferGeometry>[] = [];
 
+let startTime = Date.now();
 let i = 0;
 let cubeCanRotateY = false;
 let cubeCanRotateX = true;
@@ -78,7 +79,28 @@ const waterWidthSegments = 10000;
 const waterHeightSegments = waterWidthSegments;
 const waterAnimationSpeed = 0.75;
 
+//animation stuff
+const introPanDuration = 5000;
+const introPanStartWait = 500;
+
 const orbitControlsMaxPolarAngleFactor = 0.495;
+const orbitControlsStartTargetX = 0;
+const orbitControlsStartTargetY = 30;
+const orbitControlsStartTargetZ = 0;
+const orbitControlsEndTargetX = 0;
+const orbitControlsEndTargetY = 15;
+const orbitControlsEndTargetZ = 0;
+const orbitControlsMaxPolarAngleEnd = Math.PI * orbitControlsMaxPolarAngleFactor;
+const orbitControlsMaxPolarAngleStart = Math.PI * .0001;
+const obitControlsMaxPolarAngleEndRenderDivisor =
+	getFromStartToFinishUsingFunction(
+		introPanDuration,
+		orbitControlsMaxPolarAngleStart,
+		orbitControlsMaxPolarAngleEnd,
+		60,
+		"exponential",
+	);
+	console.log('obitControlsMaxPolarAngleEndRenderDivisor =', obitControlsMaxPolarAngleEndRenderDivisor);
 
 const cubeSize = 33;
 const cubeRotationSpeed = 0.0066;
@@ -122,7 +144,7 @@ const defaultTextX = 0;
 const defaultTextY = -0.2;
 const defaultTextYRotation = 0;
 const defaultTextZRotation = 0;
-const textSizeScaleFactor = 0.006882312;
+const textSizeScaleFactor = 0.0066;
 const defaultTextSize = window.innerWidth * textSizeScaleFactor;
 const defaultTextHeight = 1;
 const defaultTextColor = new THREE.Color(0xf4d262);
@@ -339,37 +361,28 @@ export function init() {
 	loadTexts(textData, scene);
 	//
 
-	const orbitControlsStartTargetX = 0;
-	const orbitControlsStartTargetY = 30;
-	const orbitControlsStartTargetZ = 0;
-	const orbitControlsEndTargetX = 0;
-	const orbitControlsEndTargetY = 15;
-	const orbitControlsEndTargetZ = 0;
-	const orbitControlsMaxPolarAngleStart = 0;
-	const orbitControlsMaxPolarAngleEnd =
-		Math.PI * orbitControlsMaxPolarAngleFactor;
-
 	orbitControls = new OrbitControls(camera, renderer.domElement);
 	orbitControls.target.set(
 		orbitControlsStartTargetX,
 		orbitControlsStartTargetY,
 		orbitControlsStartTargetZ,
 	);
-	orbitControls.minDistance = 100;
-	orbitControls.maxDistance = 100;
-	orbitControls.minAzimuthAngle = 0;
-	orbitControls.maxAzimuthAngle = 0;
+	// orbitControls.minDistance = 100;
+	// orbitControls.maxDistance = 100;
+	// orbitControls.minAzimuthAngle = 0;
+	// orbitControls.maxAzimuthAngle = 0;
 	orbitControls.maxPolarAngle = orbitControlsMaxPolarAngleStart;
-	orbitControls.minPolarAngle = orbitControls.maxPolarAngle;
-	orbitControls.mouseButtons = {
-		LEFT: THREE.MOUSE.ROTATE,
-		MIDDLE: THREE.MOUSE.ROTATE,
-		RIGHT: THREE.MOUSE.ROTATE,
-	};
-	orbitControls.touches = {
-		ONE: THREE.TOUCH.ROTATE,
-		TWO: THREE.TOUCH.ROTATE,
-	};
+	// orbitControls.minPolarAngle = 0;
+	// orbitControls.mouseButtons = {
+	// 	LEFT: THREE.MOUSE.ROTATE,
+	// 	MIDDLE: THREE.MOUSE.ROTATE,
+	// 	RIGHT: THREE.MOUSE.ROTATE,
+	// };
+	// orbitControls.touches = {
+	// 	ONE: THREE.TOUCH.ROTATE,
+	// 	TWO: THREE.TOUCH.ROTATE,
+	// };
+	orbitControls.enabled = false;
 	orbitControls.update();
 
 	window.addEventListener("resize", onWindowResize);
@@ -573,8 +586,11 @@ function adjustTextSizes() {
 }
 
 function render() {
-	const time = (i += cubeRotationSpeed);
-	handleCubeRotation(time);
+	const currentTime = Date.now();
+	const timeElapsedInMS = currentTime - startTime;
+	const cubeRotationCounter = (i += cubeRotationSpeed);
+	handleCubeRotation(cubeRotationCounter);
+
 	// handleCubeBobbing(time);
 	if (clouds)
 		clouds.forEach((cloud) => {
@@ -599,6 +615,15 @@ function render() {
 		});
 	}
 
+	if (orbitControls) {
+		if (timeElapsedInMS >= introPanStartWait) {
+			const currentMaxPolarAngle = orbitControls.maxPolarAngle;
+			orbitControls.maxPolarAngle = currentMaxPolarAngle * (obitControlsMaxPolarAngleEndRenderDivisor ? obitControlsMaxPolarAngleEndRenderDivisor : 1)
+			;
+			orbitControls.update();
+		}
+	}
+
 	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
 
 	renderer.render(scene, camera);
@@ -613,8 +638,14 @@ function getFromStartToFinishUsingFunction(
 ) {
 	//todo: return a number that when you multiply start with it frame times (durationInSeconds * fps) you get end
 	let result = null;
-	if (start > end && end === 0) throw new Error("End must be a number other than 0 when start is greater than end");
-	if (start === 0 && end > start) throw new Error("Start must be a number other than 0 when end is greater than start");
+	if (start > end && end === 0)
+		throw new Error(
+			"End must be a number other than 0 when start is greater than end",
+		);
+	if (start === 0 && end > start)
+		throw new Error(
+			"Start must be a number other than 0 when end is greater than start",
+		);
 	if (functionToUse === "linear") {
 		result = getLinearStartToFinish(durationInMS, start, end, fps);
 	} else if (functionToUse === "exponential") {
@@ -629,8 +660,8 @@ function getLinearStartToFinish(
 	end: number,
 	fps: number,
 ) {
-		//TODO: return a number that when added to start and then the result repeatedly yields end in frame steps/intervals...
-	const frames = fps * durationInMS / 1000;
+	//TODO: return a number that when added to start and then the result repeatedly yields end in frame steps/intervals...
+	const frames = (fps * durationInMS) / 1000;
 	return (end - start) / frames;
 }
 
@@ -640,10 +671,9 @@ function getExponentialStartToFinish(
 	end: number,
 	fps: number,
 ) {
-		//TODO: return a number that when multiplied by start and then the result repeatedly yields end in frame steps/intervals...
-		const frames = fps * durationInMS / 1000;
-		return Math.pow((end / start), (1 / frames));
+	//TODO: return a number that when multiplied by start and then the result repeatedly yields end in frame steps/intervals...
+	const frames = (fps * durationInMS) / 1000;
+	return Math.pow(end / start, 1 / frames);
 }
-
 
 // console.log(getExponentialStartToFinish(1000 / 30, .1, 15, 60));
