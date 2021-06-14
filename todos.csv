@@ -44,3 +44,7 @@ OPTIMIZATIONS:
 -finish last 4th section in bridge (and colors gradient for mobile and svg
 
 -call getFromStartToFinishUsingFunction() to get number to multiply by when doing the pan down for orbit controls then use that in render
+
+-remove all html overlays (add in on timer through opacity)
+-add timeout to start animation as well
+-set cloud z back a bit so that it is at starting point when camera sets
