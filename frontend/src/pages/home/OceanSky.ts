@@ -96,6 +96,8 @@ const waterWidthSegments = 10000;
 const waterHeightSegments = waterWidthSegments;
 const waterAnimationSpeed = 0.75;
 
+const cloudZRotationRateChange = 0.0005;
+const cloudZPositionRateChange = 0.9;
 const cloudColor = new THREE.Color(0xff9999);
 const cloudWidthSegments = 5000;
 const cloudXRotationStart = 1.16;
@@ -104,10 +106,8 @@ const cloudZRotationStart = Math.random() * 2 * Math.PI;
 const cloudXPositionMax = 800;
 const cloudXPositionMin = 400;
 const cloudYPosition = 1300;
-const cloudZPositionMax = 500;
-const cloudZPositionMin = 500;
-const cloudZRotationRateChange = 0.0005;
-const cloudZPositionRateChange = 0.9;
+const cloudZPositionMax = 500 + (animationFPS * (introPanDuration + introPanStartWait));
+const cloudZPositionMin = cloudZPositionMax;
 //#endregion
 
 //#region Lighting
@@ -236,7 +236,8 @@ let textData: TextData[] = [
 //#region  Camera and Animation stuff
 const animationFPS = 60.0;
 const introPanDuration = 7500;
-const introPanStartWait = 27500;
+const introPanStartWait = 22500;
+const cubeRaiseDuration = introPanDuration / 2;
 
 const cameraFinalFOV = 55;
 const cameraPositionXStart = 0;
@@ -268,7 +269,7 @@ const cameraLookAtZFactor = getFromStartToFinishUsingFunction(
 );
 console.log("cameraLookAtZFactor =", cameraLookAtZFactor);
 const cubeHeightAdditiveIncrement = getFromStartToFinishUsingFunction(
-	introPanDuration,
+	cubeRaiseDuration,
 	cubeStartHeight,
 	cubeEndHeight,
 	animationFPS,
@@ -285,6 +286,7 @@ function getCloudYPosition() {
 	return cloudYPosition;
 }
 function getCloudZPosition() {
+
 	return Math.random() * cloudZPositionMax - cloudZPositionMin;
 }
 
@@ -494,6 +496,7 @@ function getFromStartToFinishUsingFunction(
 	if (functionToUse === "linear") {
 		result = getLinearStartToFinish(durationInMS, start, end, fps);
 	} else if (functionToUse === "exponential") {
+		if ((start > 0 && end < 0) || (start < 0 && end > 0)) throw new Error('Start and end numbers must be either both positive or both negative when using exponential.')
 		result = getExponentialStartToFinish(durationInMS, start, end, fps);
 	}
 	return result;
@@ -522,6 +525,7 @@ function getExponentialStartToFinish(
 }
 //#endregion
 
+//#region Listeners
 function onMouseMove(e: MouseEvent) {
 	const currentY = e.clientY;
 	let mouseWasMovedUp = false;
@@ -542,6 +546,7 @@ function onWindowResize() {
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
 }
+//#endregion
 
 export function init() {
 	//
@@ -655,8 +660,6 @@ export function init() {
 function render() {
 	const currentTime = Date.now();
 	const timeElapsedInMS = currentTime - startTime;
-	const cubeRotationCounter = (i += cubeRotationSpeed);
-	handleCubeRotation(cubeRotationCounter);
 
 	// handleCubeBobbing(time);
 	if (clouds)
@@ -705,10 +708,15 @@ function render() {
 	}
 
 	if (cube) {
-		if (timeElapsedInMS >= (introPanStartWait)) {
+		if (timeElapsedInMS >= (introPanStartWait + introPanDuration)) {
 			const currentYPosition = cube.position.y;
 			if (currentYPosition <= cubeEndHeight) {
 				cube.position.y += (cubeHeightAdditiveIncrement as number);
+			}
+
+			if (currentYPosition >= (cubeEndHeight)) {
+				const cubeRotationCounter = (i += cubeRotationSpeed);
+				handleCubeRotation(cubeRotationCounter);
 			}
 		}
 	}
@@ -718,5 +726,3 @@ function render() {
 
 	renderer.render(scene, camera);
 }
-
-// console.log(getExponentialStartToFinish(1000 / 30, .1, 15, 60));
