@@ -53,9 +53,11 @@ const cubeMaterial6 = new THREE.MeshPhongMaterial({
 });
 
 const parameters = {
-	elevation: 1,
+	elevation: 0,
 	azimuth: 180,
 };
+
+const animationFPS = 60;
 
 const sunColor = new THREE.Color(0xf4d262);
 const waterColor = new THREE.Color(0x8ac6d0);
@@ -71,16 +73,9 @@ const spotLightY = 100;
 const spotLightZ = 300;
 const spotLightColor = sunColor;
 
-const cameraFinalFOV = 55;
-
 const waterWidthSegments = 10000;
 const waterHeightSegments = waterWidthSegments;
 const waterAnimationSpeed = 0.75;
-
-//animation stuff
-const introPanDuration = 5000;
-const introPanStartWait = 500;
-
 
 const cubeSize = 33;
 const cubeRotationSpeed = 0.0066;
@@ -104,6 +99,8 @@ const cloudZPositionMin = 500;
 const cloudZRotationRateChange = 0.0005;
 const cloudZPositionRateChange = 0.9;
 
+
+//#region text stuff
 interface TextData {
 	text: string;
 	x: number;
@@ -216,6 +213,29 @@ let textData: TextData[] = [
 		height: defaultTextHeight,
 	},
 ];
+//#endregion
+
+//#region  animation stuff
+const introPanDuration = 7500;
+const introPanStartWait = 15000;
+
+const cameraFinalFOV = 55;
+const cameraPositionXStart = 0;
+const cameraPositionYStart = 150;
+const cameraPositionZStart = 100;
+const cameraPositionYEnd = 15;
+
+const cameraLookAtXStart = 0;
+const cameraLookAtYStart = 0;
+const cameraLookAtZStart = cameraPositionZStart;
+const cameraLookAtXEnd = 0;
+const cameraLookAtYEnd = 0;
+const cameraLookAtZEnd = -waterWidthSegments / 2;
+const cameraPositionYFactor = getFromStartToFinishUsingFunction(introPanDuration, cameraPositionYStart, cameraPositionYEnd, animationFPS, 'exponential');
+const cameraLookAtZFactor = getFromStartToFinishUsingFunction(introPanDuration * 2, cameraLookAtZStart, cameraLookAtZEnd, animationFPS, 'linear');
+console.log('cameraLookAtZFactor =', cameraLookAtZFactor);
+let currentCameraZLookAt = cameraLookAtZStart;
+//#endregion
 
 function getCloudXPosition() {
 	return Math.random() * cloudXPositionMax - cloudXPositionMin;
@@ -245,20 +265,6 @@ export function init() {
 		1,
 		20000,
 	);
-
-	const cameraPositionXStart = 0;
-	const cameraPositionYStart = 150;
-	const cameraPositionZStart = 100;
-	const cameraPositionXEnd = 0;
-	const cameraPositionYEnd = 0;
-	const cameraPositionZEnd = 100;
-
-	const cameraLookAtXStart = 0;
-	const cameraLookAtYStart = 0;
-	const cameraLookAtZStart = cameraPositionZStart;
-	const cameraLookAtXEnd = 0;
-	const cameraLookAtYEnd = 0;
-	const cameraLookAtZEnd = waterWidthSegments;
 
 	camera.position.set(cameraPositionXStart, cameraPositionYStart, cameraPositionZStart);
 	camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
@@ -350,7 +356,7 @@ export function init() {
 
 	mesh = new THREE.Mesh(geometry, materials);
 	mesh.position.y = cubeStartingHeight;
-	// scene.add(mesh);
+	scene.add(mesh);
 
 	clouds = addCloud();
 
@@ -585,6 +591,21 @@ function render() {
 				text.position.z -= textScrollSpeed;
 			}
 		});
+	}
+
+	if (camera) {
+		if (timeElapsedInMS >= introPanStartWait) {
+			const currentYPosition = camera.position.y;
+			if (currentYPosition >= cameraPositionYEnd) {
+				camera.position.set(cameraPositionXStart, currentYPosition * (cameraPositionYFactor as number), cameraPositionZStart);
+			}
+
+			if (currentCameraZLookAt >= cameraLookAtZEnd) {
+				currentCameraZLookAt += (cameraLookAtZFactor as any)
+				console.log('currentCameraZLookAt =', currentCameraZLookAt);
+				camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, currentCameraZLookAt);
+			}
+		}
 	}
 
 	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
