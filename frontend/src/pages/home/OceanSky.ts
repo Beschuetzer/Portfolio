@@ -17,10 +17,10 @@ import cubeMap1 from "../../imgs/cube-determination.jpg";
 import cubeMap2 from "../../imgs/cube-passion.jpg";
 import cloud from "../../imgs/cloud.png";
 import introFont from "../../fonts/star-wars/star-jedi-rounded_Regular.json";
-import { MeshBasicMaterial, PerspectiveCamera, Scene, TextBufferGeometry } from "three";
+import { MeshBasicMaterial, PerspectiveCamera, PMREMGenerator, Scene, TextBufferGeometry } from "three";
 
 let camera: PerspectiveCamera, scene: any, renderer: any, lastClientY: number;
-let water: any, sun: any, mesh: any;
+let water: any, sun: any, mesh: any, sky: Sky;
 let id: number;
 let clouds: any[];
 let texts: THREE.Mesh<TextBufferGeometry>[] = [];
@@ -53,11 +53,16 @@ const cubeMaterial6 = new THREE.MeshPhongMaterial({
 });
 
 const parameters = {
-	elevation: 0,
+	elevation: 1,
 	azimuth: 180,
 };
 
-const animationFPS = 60;
+const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
+const theta = THREE.MathUtils.degToRad(parameters.azimuth);
+let pmremGenerator: PMREMGenerator;
+
+
+const animationFPS = 60.0;
 
 const sunColor = new THREE.Color(0xf4d262);
 const waterColor = new THREE.Color(0x8ac6d0);
@@ -217,7 +222,7 @@ let textData: TextData[] = [
 
 //#region  animation stuff
 const introPanDuration = 7500;
-const introPanStartWait = 15000;
+const introPanStartWait = 1000;
 
 const cameraFinalFOV = 55;
 const cameraPositionXStart = 0;
@@ -275,7 +280,6 @@ export function init() {
 	scene.add(spotLight);
 
 	// Water
-
 	const waterGeometry = new THREE.PlaneGeometry(
 		waterWidthSegments,
 		waterHeightSegments,
@@ -302,8 +306,8 @@ export function init() {
 	scene.add(water);
 
 	// Skybox
-
-	const sky = new Sky();
+	pmremGenerator = new THREE.PMREMGenerator(renderer);
+	sky = new Sky();
 	sky.scale.setScalar(500);
 	scene.add(sky);
 
@@ -317,23 +321,9 @@ export function init() {
 	if (document.body)
 		document.body.lastElementChild?.classList.add("home__canvas");
 
-	const pmremGenerator = new THREE.PMREMGenerator(renderer);
 
 	sun = new THREE.Vector3();
-
-	function updateSun() {
-		const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
-		const theta = THREE.MathUtils.degToRad(parameters.azimuth);
-
-		sun.setFromSphericalCoords(1, phi, theta);
-
-		sky.material.uniforms["sunPosition"].value.copy(sun);
-		water.material.uniforms["sunDirection"].value.copy(sun).normalize();
-
-		scene.environment = pmremGenerator.fromScene(sky as any).texture;
-	}
-
-	updateSun();
+	updateSun(phi, theta);
 
 	//
 
@@ -365,6 +355,16 @@ export function init() {
 
 	window.addEventListener("resize", onWindowResize);
 	window.addEventListener("mousemove", onMouseMove);
+}
+
+function updateSun(phi: number, theta: number) {
+
+	sun.setFromSphericalCoords(1, phi, theta);
+
+	sky.material.uniforms["sunPosition"].value.copy(sun);
+	water.material.uniforms["sunDirection"].value.copy(sun).normalize();
+
+	scene.environment = pmremGenerator.fromScene(sky as any).texture;
 }
 
 export function animate() {
@@ -602,13 +602,16 @@ function render() {
 
 			if (currentCameraZLookAt >= cameraLookAtZEnd) {
 				currentCameraZLookAt += (cameraLookAtZFactor as any)
-				console.log('currentCameraZLookAt =', currentCameraZLookAt);
 				camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, currentCameraZLookAt);
 			}
 		}
 	}
 
-	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
+	// if (sun) {
+	// 	sun.setFromSphericalCoords(10, phi, theta - 1);
+	// }
+
+	water.material.uniforms["time"].value += waterAnimationSpeed / animationFPS;
 
 	renderer.render(scene, camera);
 }
