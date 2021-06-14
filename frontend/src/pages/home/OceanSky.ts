@@ -406,35 +406,6 @@ function onWindowResize() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-function adjustTextSizes() {
-	if (texts) {
-		const newSize = window.innerWidth * textSizeScaleFactor;
-		texts.forEach((text, index) => {
-			const currentTextData = textData[index];
-			texts.push(
-				addTextGeometry(
-					scene,
-					currentTextData.text,
-					text.position.x,
-					text.position.y,
-					text.position.z,
-					currentTextData.xRotation,
-					currentTextData.yRotation,
-					currentTextData.zRotation,
-					currentTextData.color,
-					newSize,
-					currentTextData.height,
-				),
-			);
-			let textToRemove = texts.slice(index, 1)[0];
-			scene.remove(textToRemove);
-		});
-		for (let i = 0; i < textData.length; i++) {
-			texts.splice(i, 1);
-		}
-	}
-}
-
 function handleCubeBobbing(time: number) {
 	if (mesh.position.y < cubeMaxHeight && cubeBobbingDirectionIsUp)
 		mesh.position.y += cubeBobbingSpeed;
@@ -566,6 +537,41 @@ function loadTexts(textData: TextData[], scene: Scene) {
 	}
 }
 
+function adjustTextSizes() {
+	if (texts) {
+		const newSize = window.innerWidth * textSizeScaleFactor;
+		texts.forEach((text, index) => {
+			const currentTextData = textData[index];
+			const meshToPush = addTextGeometry(
+				scene,
+				currentTextData.text,
+				text.position.x,
+				text.position.y,
+				text.position.z,
+				currentTextData.xRotation,
+				currentTextData.yRotation,
+				currentTextData.zRotation,
+				currentTextData.color,
+				newSize,
+				currentTextData.height,
+			);
+
+			texts.push(meshToPush);
+
+			let textToRemove = texts.slice(index, 1)[0];
+			scene.remove(textToRemove);
+		});
+
+		for (let i = 0; i < textData.length; i++) {
+			const removed = texts.splice(0, 1)[0];
+			removed.geometry.dispose();
+			//@ts-ignore
+			removed.material.dispose();
+			scene.remove(removed);
+		}
+	}
+}
+
 function render() {
 	const time = (i += cubeRotationSpeed);
 	handleCubeRotation(time);
@@ -597,19 +603,6 @@ function render() {
 
 	renderer.render(scene, camera);
 }
-
-// class StartToFinishCalculator {
-// 	frames: number;
-// 	constructor(
-// 		private durationInMS: number,
-// 		private start: number,
-// 		private end: number,
-// 		private fps: number,
-// 		private functionToUse: "linear" | "exponential",
-// 	) {
-// 		this.frames = fps * (durationInMS / 1000);
-// 	}
-// }
 
 function getFromStartToFinishUsingFunction(
 	durationInMS: number,
@@ -653,4 +646,4 @@ function getExponentialStartToFinish(
 }
 
 
-console.log(getExponentialStartToFinish(1000 / 30, .1, 15, 60));
+// console.log(getExponentialStartToFinish(1000 / 30, .1, 15, 60));
