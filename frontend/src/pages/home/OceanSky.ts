@@ -17,11 +17,23 @@ import cubeMap1 from "../../imgs/cube-determination.jpg";
 import cubeMap2 from "../../imgs/cube-passion.jpg";
 import cloud from "../../imgs/cloud.png";
 import introFont from "../../fonts/star-wars/star-jedi-rounded_Regular.json";
-import { MeshBasicMaterial, PerspectiveCamera, PMREMGenerator, Scene, TextBufferGeometry } from "three";
+import {
+	Material,
+	Mesh,
+	MeshBasicMaterial,
+	PerspectiveCamera,
+	PMREMGenerator,
+	Renderer,
+	Scene,
+	TextBufferGeometry,
+} from "three";
 
 //#region Variable Inits
-let camera: PerspectiveCamera, scene: any, renderer: any, lastClientY: number;
-let water: any, sun: any, mesh: any, sky: Sky;
+let camera: PerspectiveCamera,
+	scene: THREE.Scene,
+	renderer: THREE.WebGLRenderer,
+	lastClientY: number;
+let water: Water, sun: any, cube: Mesh, sky: Sky;
 let id: number;
 let clouds: any[];
 let texts: THREE.Mesh<TextBufferGeometry>[] = [];
@@ -58,11 +70,12 @@ const cubeMaterial6 = new THREE.MeshPhongMaterial({
 const cubeSize = 33;
 const cubeRotationSpeed = 0.0066;
 const cubeRotationDirectionTransitionTime = 250;
-const cubeStartingHeight = 15;
+const cubeStartHeight = -25;
 const cubeMaxHeight = 17.5;
 const cubeMinHeight = 12.5;
 const cubeBobbingDirectionIsUp = true;
-const cubeBobbingSpeed = Math.abs(cubeStartingHeight - cubeMaxHeight) / 90;
+const cubeBobbingSpeed = Math.abs(cubeStartHeight - cubeMaxHeight) / 90;
+const cubeEndHeight = 15;
 //#endregion
 
 //#region Sun, Water, Sky
@@ -72,7 +85,7 @@ const parameters = {
 };
 
 const sunColor = new THREE.Color(0xf4d262);
-const waterColor = new THREE.Color(0x8ac6d0);
+const waterColor = new THREE.Color(0x6aa6b0);
 const cloudTransparency = 0.55;
 const skyTurbidity = 10; //(10)
 const skyRayleigh = 5; //(2)
@@ -105,7 +118,7 @@ const spotLightZ = 300;
 const spotLightColor = sunColor;
 //#endregion
 
-//#region text stuff
+//#region Text stuff
 interface TextData {
 	text: string;
 	x: number;
@@ -220,10 +233,10 @@ let textData: TextData[] = [
 ];
 //#endregion
 
-//#region  animation stuff
+//#region  Camera and Animation stuff
 const animationFPS = 60.0;
 const introPanDuration = 7500;
-const introPanStartWait = 1000;
+const introPanStartWait = 27500;
 
 const cameraFinalFOV = 55;
 const cameraPositionXStart = 0;
@@ -236,11 +249,32 @@ const cameraLookAtYStart = 0;
 const cameraLookAtZStart = cameraPositionZStart;
 const cameraLookAtXEnd = 0;
 const cameraLookAtYEnd = 0;
-const cameraLookAtZEnd = -waterWidthSegments / 2;
-const cameraPositionYFactor = getFromStartToFinishUsingFunction(introPanDuration, cameraPositionYStart, cameraPositionYEnd, animationFPS, 'exponential');
-const cameraLookAtZFactor = getFromStartToFinishUsingFunction(introPanDuration * 2, cameraLookAtZStart, cameraLookAtZEnd, animationFPS, 'linear');
-console.log('cameraLookAtZFactor =', cameraLookAtZFactor);
+const cameraLookAtZEnd = -waterWidthSegments / 10;
 let currentCameraZLookAt = cameraLookAtZStart;
+
+const cameraPositionYFactor = getFromStartToFinishUsingFunction(
+	introPanDuration,
+	cameraPositionYStart,
+	cameraPositionYEnd,
+	animationFPS,
+	"exponential",
+);
+const cameraLookAtZFactor = getFromStartToFinishUsingFunction(
+	introPanDuration * 2,
+	cameraLookAtZStart,
+	cameraLookAtZEnd,
+	animationFPS,
+	"linear",
+);
+console.log("cameraLookAtZFactor =", cameraLookAtZFactor);
+const cubeHeightAdditiveIncrement = getFromStartToFinishUsingFunction(
+	introPanDuration,
+	cubeStartHeight,
+	cubeEndHeight,
+	animationFPS,
+	"linear",
+);
+
 //#endregion
 
 //#region Helper Functions
@@ -260,7 +294,7 @@ function updateSun(phi: number, theta: number) {
 	sun.setFromSphericalCoords(1, phi, theta);
 
 	sky.material.uniforms["sunPosition"].value.copy(sun);
-	water.material.uniforms["sunDirection"].value.copy(sun).normalize();
+	(water.material as any).uniforms["sunDirection"].value.copy(sun).normalize();
 
 	scene.environment = pmremGenerator.fromScene(sky as any).texture;
 }
@@ -275,15 +309,15 @@ export function stopKey() {
 }
 
 function handleCubeBobbing(time: number) {
-	if (mesh.position.y < cubeMaxHeight && cubeBobbingDirectionIsUp)
-		mesh.position.y += cubeBobbingSpeed;
+	if (cube.position.y < cubeMaxHeight && cubeBobbingDirectionIsUp)
+		cube.position.y += cubeBobbingSpeed;
 	else {
 	}
 }
 
 function handleCubeRotation(time: number) {
-	if (mesh.rotation.x < Math.PI * 2 && cubeCanRotateX) {
-		mesh.rotation.x = time;
+	if (cube.rotation.x < Math.PI * 2 && cubeCanRotateX) {
+		cube.rotation.x = time;
 		clearTimeout(cubeTimeOutIdX);
 		cubeTimeOutIdX = setTimeout(() => {
 			cubeCanRotateY = true;
@@ -293,8 +327,8 @@ function handleCubeRotation(time: number) {
 		}, cubeRotationDirectionTransitionTime);
 	}
 
-	if (cubeCanRotateY && mesh.rotation.y > -(Math.PI * 2)) {
-		mesh.rotation.y = -time;
+	if (cubeCanRotateY && cube.rotation.y > -(Math.PI * 2)) {
+		cube.rotation.y = -time;
 		clearTimeout(cubeTimeOutIdY);
 		cubeTimeOutIdY = setTimeout(() => {
 			cubeCanRotateY = false;
@@ -304,8 +338,8 @@ function handleCubeRotation(time: number) {
 
 	if (cubeCanReset) {
 		cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6Rotated);
-		mesh.rotation.x = 0;
-		mesh.rotation.y = 0;
+		cube.rotation.x = 0;
+		cube.rotation.y = 0;
 		cubeCanRotateY = false;
 		cubeCanRotateX = true;
 		cubeCanReset = false;
@@ -528,7 +562,11 @@ export function init() {
 		20000,
 	);
 
-	camera.position.set(cameraPositionXStart, cameraPositionYStart, cameraPositionZStart);
+	camera.position.set(
+		cameraPositionXStart,
+		cameraPositionYStart,
+		cameraPositionZStart,
+	);
 	camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
 
 	//light
@@ -577,7 +615,6 @@ export function init() {
 	if (document.body)
 		document.body.lastElementChild?.classList.add("home__canvas");
 
-
 	sun = new THREE.Vector3();
 	const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
 	const theta = THREE.MathUtils.degToRad(parameters.azimuth);
@@ -602,9 +639,9 @@ export function init() {
 	const bumpTexture = new THREE.TextureLoader().load(bumpMap);
 	material.map = bumpTexture;
 
-	mesh = new THREE.Mesh(geometry, materials);
-	mesh.position.y = cubeStartingHeight;
-	scene.add(mesh);
+	cube = new THREE.Mesh(geometry, materials);
+	cube.position.y = cubeStartHeight;
+	scene.add(cube);
 
 	clouds = addCloud();
 
@@ -649,21 +686,35 @@ function render() {
 		if (timeElapsedInMS >= introPanStartWait) {
 			const currentYPosition = camera.position.y;
 			if (currentYPosition >= cameraPositionYEnd) {
-				camera.position.set(cameraPositionXStart, currentYPosition * (cameraPositionYFactor as number), cameraPositionZStart);
+				camera.position.set(
+					cameraPositionXStart,
+					currentYPosition * (cameraPositionYFactor as number),
+					cameraPositionZStart,
+				);
 			}
 
 			if (currentCameraZLookAt >= cameraLookAtZEnd) {
-				currentCameraZLookAt += (cameraLookAtZFactor as any)
-				camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, currentCameraZLookAt);
+				currentCameraZLookAt += cameraLookAtZFactor as any;
+				camera.lookAt(
+					cameraLookAtXStart,
+					cameraLookAtYStart,
+					currentCameraZLookAt,
+				);
 			}
 		}
 	}
 
-	// if (sun) {
-	// 	sun.setFromSphericalCoords(10, phi, theta - 1);
-	// }
+	if (cube) {
+		if (timeElapsedInMS >= (introPanStartWait)) {
+			const currentYPosition = cube.position.y;
+			if (currentYPosition <= cubeEndHeight) {
+				cube.position.y += (cubeHeightAdditiveIncrement as number);
+			}
+		}
+	}
 
-	water.material.uniforms["time"].value += waterAnimationSpeed / animationFPS;
+	if (water) (water.material as any).uniforms["time"].value +=
+		waterAnimationSpeed / animationFPS;
 
 	renderer.render(scene, camera);
 }
