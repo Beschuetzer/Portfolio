@@ -42,3 +42,7 @@ OPTIMIZATIONS:
 -add form to contact page that sends text and email when clicked?
 -finish content in about
 -finish last 4th section in bridge (and colors gradient for mobile and svg
+
+-implement a function that takes a desired animation duration, start, and stop value and maybe a rate type (linear, polynomial, exponential, etc) and returns the value that get from start to end in desired duration assuming 60fps
+  -inputs: desiredDuration, start, stop, fps functionToUseToGetThere = 'function as a string'
+  -output: value that gets you from start to stop in (fps * desiredDuration) intervals of functionType

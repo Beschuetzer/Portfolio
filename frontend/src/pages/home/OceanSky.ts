@@ -410,7 +410,7 @@ function adjustTextSizes() {
 	if (texts) {
 		const newSize = window.innerWidth * textSizeScaleFactor;
 		texts.forEach((text, index) => {
-			const currentTextData = textData[index]
+			const currentTextData = textData[index];
 			texts.push(
 				addTextGeometry(
 					scene,
@@ -427,7 +427,7 @@ function adjustTextSizes() {
 				),
 			);
 			let textToRemove = texts.slice(index, 1)[0];
-			scene.remove(textToRemove)
+			scene.remove(textToRemove);
 		});
 		for (let i = 0; i < textData.length; i++) {
 			texts.splice(i, 1);
@@ -596,4 +596,56 @@ function render() {
 	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
 
 	renderer.render(scene, camera);
+}
+
+// class StartToFinishCalculator {
+// 	frames: number;
+// 	constructor(
+// 		private durationInMS: number,
+// 		private start: number,
+// 		private end: number,
+// 		private fps: number,
+// 		private functionToUse: "linear" | "exponential",
+// 	) {
+// 		this.frames = fps * (durationInMS / 1000);
+// 	}
+// }
+
+function getFromStartToFinishUsingFunction(
+	durationInMS: number,
+	start: number,
+	end: number,
+	fps: number,
+	functionToUse: "linear" | "exponential",
+) {
+	//todo: return a number that when you multiply start with it frame times (durationInSeconds * fps) you get end
+	let result = null;
+	if (start === 0) throw new Error("Start must be a number other than 0");
+	if (functionToUse === "linear") {
+		result = getLinearStartToFinish(durationInMS, start, end, fps);
+	} else if (functionToUse === "exponential") {
+		result = getExponentialStartToFinish(durationInMS, start, end, fps);
+	}
+	return result;
+}
+
+function getLinearStartToFinish(
+	durationInMS: number,
+	start: number,
+	end: number,
+	fps: number,
+) {
+		//TODO: return a number that when added to start and then the result repeatedly yields end in frame steps/intervals...
+
+}
+
+function getExponentialStartToFinish(
+	durationInMS: number,
+	start: number,
+	end: number,
+	fps: number,
+) {
+		//TODO: return a number that when multiplied by start and then the result repeatedly yields end in frame steps/intervals...
+
+
 }
