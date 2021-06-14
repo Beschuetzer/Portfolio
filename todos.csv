@@ -47,4 +47,3 @@ OPTIMIZATIONS:
 
 -remove all html overlays (add in on timer through opacity)
 -add timeout to start animation as well
--set cloud z back a bit so that it is at starting point when camera sets

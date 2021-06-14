@@ -3,6 +3,7 @@ import * as THREE from "three";
 // import openType from "three/examples/js/libs/opentype.min"
 // import Stats from "three/examples/jsm/libs/stats.module.js";
 // import { gui } from 'three/examples/jsm/libs/dat.gui.module.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { Water } from "three/examples/jsm/objects/Water.js";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 
@@ -18,18 +19,16 @@ import cubeMap2 from "../../imgs/cube-passion.jpg";
 import cloud from "../../imgs/cloud.png";
 import introFont from "../../fonts/star-wars/star-jedi-rounded_Regular.json";
 import {
-	Material,
 	Mesh,
 	MeshBasicMaterial,
 	PerspectiveCamera,
-	PMREMGenerator,
-	Renderer,
 	Scene,
 	TextBufferGeometry,
 } from "three";
 
 //#region Variable Inits
 let camera: PerspectiveCamera,
+	orbitControls: OrbitControls,
 	scene: THREE.Scene,
 	renderer: THREE.WebGLRenderer,
 	lastClientY: number;
@@ -106,7 +105,7 @@ const cloudZRotationStart = Math.random() * 2 * Math.PI;
 const cloudXPositionMax = 800;
 const cloudXPositionMin = 400;
 const cloudYPosition = 1300;
-const cloudSpan = 1000;
+const cloudSpan = 500;
 //#endregion
 
 //#region Lighting
@@ -232,7 +231,7 @@ let textData: TextData[] = [
 ];
 //#endregion
 
-//#region  Camera and Animation stuff
+//#region Camera and Animation stuff
 const animationFPS = 60.0;
 const introPanDuration = 7500;
 const introPanStartWait = 22500;
@@ -281,18 +280,16 @@ const cubeHeightAdditiveIncrement = getFromStartToFinishUsingFunction(
 function getCloudXPosition() {
 	return Math.random() * cloudXPositionMax - cloudXPositionMin;
 }
+
 function getCloudYPosition() {
 	return cloudYPosition;
 }
+
 function getCloudZPosition() {
-	//note: want the value to be 0 after (intro) 
-	//and the range to be 1000?
-	const timeToGetToCameraFinalPosition = introPanDuration + introPanStartWait;
-	const numberOfFramesIntroTakes = animationFPS * timeToGetToCameraFinalPosition;
-	const metersCloudMovesPerFrame = cloudZPositionRateChange / animationFPS;
-	const distanceCloudMovesDuringIntro = metersCloudMovesPerFrame * numberOfFramesIntroTakes;
-	console.log('distanceCloudMovesDuringIntro =', distanceCloudMovesDuringIntro);
-	return ((Math.random() * cloudSpan - cloudSpan) + (distanceCloudMovesDuringIntro / (animationFPS * 1000)));
+	const secondsToGetToCameraFinalPosition = (introPanDuration + introPanStartWait) / 1000;
+	const numberOfFramesIntroTakes = animationFPS * secondsToGetToCameraFinalPosition;
+	const distanceCloudMovesDuringIntro = cloudZPositionRateChange * numberOfFramesIntroTakes;
+	return((Math.random() * cloudSpan) - cloudSpan) + distanceCloudMovesDuringIntro * .75;
 }
 
 function updateSun(phi: number, theta: number) {
@@ -578,6 +575,11 @@ export function init() {
 		cameraPositionZStart,
 	);
 	camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
+
+	//#region Orbit Controls 
+	// orbitControls = new OrbitControls(camera, renderer.domElement);
+	// orbitControls.update();
+	//#endregion
 
 	//light
 	var spotLight = new THREE.SpotLight(spotLightColor, spotLightStrength);
