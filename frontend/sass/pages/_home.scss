@@ -16,6 +16,10 @@
 	//this sets body to hide overflow for home page
 	&-page {
 		overflow-y: hidden;
+
+		& .header {
+			width: 100vw;
+		}
 	}
 
 	// background-image: linear-gradient(

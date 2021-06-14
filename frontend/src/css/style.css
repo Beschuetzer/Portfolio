@@ -2780,6 +2780,9 @@ body {
 .home-page {
   overflow-y: hidden;
 }
+.home-page .header {
+  width: 100vw;
+}
 .home__canvas {
   position: absolute;
   left: 0;

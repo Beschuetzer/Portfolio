@@ -1,10 +1,8 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 // import TTFLoader from 'three/examples/js/loaders/TTFLoader';
 // import openType from "three/examples/js/libs/opentype.min"
 // import Stats from "three/examples/jsm/libs/stats.module.js";
 // import { gui } from 'three/examples/jsm/libs/dat.gui.module.js';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Water } from "three/examples/jsm/objects/Water.js";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 
@@ -19,10 +17,10 @@ import cubeMap1 from "../../imgs/cube-determination.jpg";
 import cubeMap2 from "../../imgs/cube-passion.jpg";
 import cloud from "../../imgs/cloud.png";
 import introFont from "../../fonts/star-wars/star-jedi-rounded_Regular.json";
-import { MeshBasicMaterial, Scene, TextBufferGeometry } from "three";
+import { MeshBasicMaterial, PerspectiveCamera, Scene, TextBufferGeometry } from "three";
 
-let camera: any, scene: any, renderer: any, lastClientY: number;
-let orbitControls: OrbitControls, water: any, sun: any, mesh: any;
+let camera: PerspectiveCamera, scene: any, renderer: any, lastClientY: number;
+let water: any, sun: any, mesh: any;
 let id: number;
 let clouds: any[];
 let texts: THREE.Mesh<TextBufferGeometry>[] = [];
@@ -83,24 +81,6 @@ const waterAnimationSpeed = 0.75;
 const introPanDuration = 5000;
 const introPanStartWait = 500;
 
-const orbitControlsMaxPolarAngleFactor = 0.495;
-const orbitControlsStartTargetX = 0;
-const orbitControlsStartTargetY = 30;
-const orbitControlsStartTargetZ = 0;
-const orbitControlsEndTargetX = 0;
-const orbitControlsEndTargetY = 15;
-const orbitControlsEndTargetZ = 0;
-const orbitControlsMaxPolarAngleEnd = Math.PI * orbitControlsMaxPolarAngleFactor;
-const orbitControlsMaxPolarAngleStart = Math.PI * .0001;
-const obitControlsMaxPolarAngleEndRenderDivisor =
-	getFromStartToFinishUsingFunction(
-		introPanDuration,
-		orbitControlsMaxPolarAngleStart,
-		orbitControlsMaxPolarAngleEnd,
-		60,
-		"exponential",
-	);
-	console.log('obitControlsMaxPolarAngleEndRenderDivisor =', obitControlsMaxPolarAngleEndRenderDivisor);
 
 const cubeSize = 33;
 const cubeRotationSpeed = 0.0066;
@@ -139,17 +119,17 @@ interface TextData {
 
 const textDisappearZ = -50;
 const textMinXRotation = -Math.PI / 2 - 0.25;
-const textScrollSpeed = 0.1;
+const textScrollSpeed = 0.2;
 const defaultTextX = 0;
 const defaultTextY = -0.2;
 const defaultTextYRotation = 0;
 const defaultTextZRotation = 0;
-const textSizeScaleFactor = 0.0066;
+const textSizeScaleFactor = 0.005;
 const defaultTextSize = window.innerWidth * textSizeScaleFactor;
 const defaultTextHeight = 1;
 const defaultTextColor = new THREE.Color(0xf4d262);
 const lineSpacing = defaultTextSize * 3;
-const lineStart = 75;
+const lineStart = 180;
 let textData: TextData[] = [
 	{
 		text: "Welcome to my Porfolio!",
@@ -265,7 +245,23 @@ export function init() {
 		1,
 		20000,
 	);
-	camera.position.set(0, 0, 100);
+
+	const cameraPositionXStart = 0;
+	const cameraPositionYStart = 150;
+	const cameraPositionZStart = 100;
+	const cameraPositionXEnd = 0;
+	const cameraPositionYEnd = 0;
+	const cameraPositionZEnd = 100;
+
+	const cameraLookAtXStart = 0;
+	const cameraLookAtYStart = 0;
+	const cameraLookAtZStart = cameraPositionZStart;
+	const cameraLookAtXEnd = 0;
+	const cameraLookAtYEnd = 0;
+	const cameraLookAtZEnd = waterWidthSegments;
+
+	camera.position.set(cameraPositionXStart, cameraPositionYStart, cameraPositionZStart);
+	camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
 
 	//light
 	var spotLight = new THREE.SpotLight(spotLightColor, spotLightStrength);
@@ -360,30 +356,6 @@ export function init() {
 
 	loadTexts(textData, scene);
 	//
-
-	orbitControls = new OrbitControls(camera, renderer.domElement);
-	orbitControls.target.set(
-		orbitControlsStartTargetX,
-		orbitControlsStartTargetY,
-		orbitControlsStartTargetZ,
-	);
-	// orbitControls.minDistance = 100;
-	// orbitControls.maxDistance = 100;
-	// orbitControls.minAzimuthAngle = 0;
-	// orbitControls.maxAzimuthAngle = 0;
-	orbitControls.maxPolarAngle = orbitControlsMaxPolarAngleStart;
-	// orbitControls.minPolarAngle = 0;
-	// orbitControls.mouseButtons = {
-	// 	LEFT: THREE.MOUSE.ROTATE,
-	// 	MIDDLE: THREE.MOUSE.ROTATE,
-	// 	RIGHT: THREE.MOUSE.ROTATE,
-	// };
-	// orbitControls.touches = {
-	// 	ONE: THREE.TOUCH.ROTATE,
-	// 	TWO: THREE.TOUCH.ROTATE,
-	// };
-	orbitControls.enabled = false;
-	orbitControls.update();
 
 	window.addEventListener("resize", onWindowResize);
 	window.addEventListener("mousemove", onMouseMove);
@@ -613,15 +585,6 @@ function render() {
 				text.position.z -= textScrollSpeed;
 			}
 		});
-	}
-
-	if (orbitControls) {
-		if (timeElapsedInMS >= introPanStartWait) {
-			const currentMaxPolarAngle = orbitControls.maxPolarAngle;
-			orbitControls.maxPolarAngle = currentMaxPolarAngle * (obitControlsMaxPolarAngleEndRenderDivisor ? obitControlsMaxPolarAngleEndRenderDivisor : 1)
-			;
-			orbitControls.update();
-		}
 	}
 
 	water.material.uniforms["time"].value += waterAnimationSpeed / 60.0;
