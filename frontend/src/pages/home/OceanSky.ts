@@ -78,7 +78,7 @@ const cubeBobbingSpeed = Math.abs(cubeStartHeight - cubeMaxHeight) / 90;
 const cubeEndHeight = 15;
 //#endregion
 
-//#region Sun, Water, Sky
+//#region Sun, Water, Cloud
 const parameters = {
 	elevation: 1,
 	azimuth: 180,
@@ -106,8 +106,7 @@ const cloudZRotationStart = Math.random() * 2 * Math.PI;
 const cloudXPositionMax = 800;
 const cloudXPositionMin = 400;
 const cloudYPosition = 1300;
-const cloudZPositionMax = 500 + (animationFPS * (introPanDuration + introPanStartWait));
-const cloudZPositionMin = cloudZPositionMax;
+const cloudSpan = 1000;
 //#endregion
 
 //#region Lighting
@@ -286,8 +285,14 @@ function getCloudYPosition() {
 	return cloudYPosition;
 }
 function getCloudZPosition() {
-
-	return Math.random() * cloudZPositionMax - cloudZPositionMin;
+	//note: want the value to be 0 after (intro) 
+	//and the range to be 1000?
+	const timeToGetToCameraFinalPosition = introPanDuration + introPanStartWait;
+	const numberOfFramesIntroTakes = animationFPS * timeToGetToCameraFinalPosition;
+	const metersCloudMovesPerFrame = cloudZPositionRateChange / animationFPS;
+	const distanceCloudMovesDuringIntro = metersCloudMovesPerFrame * numberOfFramesIntroTakes;
+	console.log('distanceCloudMovesDuringIntro =', distanceCloudMovesDuringIntro);
+	return ((Math.random() * cloudSpan - cloudSpan) + (distanceCloudMovesDuringIntro / (animationFPS * 1000)));
 }
 
 function updateSun(phi: number, theta: number) {
