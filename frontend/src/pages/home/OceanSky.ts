@@ -19,6 +19,7 @@ import cloud from "../../imgs/cloud.png";
 import introFont from "../../fonts/star-wars/star-jedi-rounded_Regular.json";
 import { MeshBasicMaterial, PerspectiveCamera, PMREMGenerator, Scene, TextBufferGeometry } from "three";
 
+//#region Variable Inits
 let camera: PerspectiveCamera, scene: any, renderer: any, lastClientY: number;
 let water: any, sun: any, mesh: any, sky: Sky;
 let id: number;
@@ -32,7 +33,9 @@ let cubeCanRotateX = true;
 let cubeCanReset = false;
 let cubeTimeOutIdX: any;
 let cubeTimeOutIdY: any;
+//#endregion
 
+//#region cube stuff
 const cubeMaterial1 = new THREE.MeshPhongMaterial({
 	map: new THREE.TextureLoader().load(cubeMap1),
 });
@@ -52,17 +55,21 @@ const cubeMaterial6 = new THREE.MeshPhongMaterial({
 	map: new THREE.TextureLoader().load(cubeMap6Rotated),
 });
 
+const cubeSize = 33;
+const cubeRotationSpeed = 0.0066;
+const cubeRotationDirectionTransitionTime = 250;
+const cubeStartingHeight = 15;
+const cubeMaxHeight = 17.5;
+const cubeMinHeight = 12.5;
+const cubeBobbingDirectionIsUp = true;
+const cubeBobbingSpeed = Math.abs(cubeStartingHeight - cubeMaxHeight) / 90;
+//#endregion
+
+//#region Sun, Water, Sky
 const parameters = {
 	elevation: 1,
 	azimuth: 180,
 };
-
-const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
-const theta = THREE.MathUtils.degToRad(parameters.azimuth);
-let pmremGenerator: PMREMGenerator;
-
-
-const animationFPS = 60.0;
 
 const sunColor = new THREE.Color(0xf4d262);
 const waterColor = new THREE.Color(0x8ac6d0);
@@ -72,24 +79,9 @@ const skyRayleigh = 5; //(2)
 const skyMieCoefficient = 0.0025; //(.005)
 const skyMieDirectionalG = 0.8; //(.8)
 
-const spotLightStrength = 0.8;
-const spotLightX = 0;
-const spotLightY = 100;
-const spotLightZ = 300;
-const spotLightColor = sunColor;
-
 const waterWidthSegments = 10000;
 const waterHeightSegments = waterWidthSegments;
 const waterAnimationSpeed = 0.75;
-
-const cubeSize = 33;
-const cubeRotationSpeed = 0.0066;
-const cubeRotationDirectionTransitionTime = 250;
-const cubeStartingHeight = 15;
-const cubeMaxHeight = 17.5;
-const cubeMinHeight = 12.5;
-const cubeBobbingDirectionIsUp = true;
-const cubeBobbingSpeed = Math.abs(cubeStartingHeight - cubeMaxHeight) / 90;
 
 const cloudColor = new THREE.Color(0xff9999);
 const cloudWidthSegments = 5000;
@@ -103,7 +95,15 @@ const cloudZPositionMax = 500;
 const cloudZPositionMin = 500;
 const cloudZRotationRateChange = 0.0005;
 const cloudZPositionRateChange = 0.9;
+//#endregion
 
+//#region Lighting
+const spotLightStrength = 0.8;
+const spotLightX = 0;
+const spotLightY = 100;
+const spotLightZ = 300;
+const spotLightColor = sunColor;
+//#endregion
 
 //#region text stuff
 interface TextData {
@@ -221,6 +221,7 @@ let textData: TextData[] = [
 //#endregion
 
 //#region  animation stuff
+const animationFPS = 60.0;
 const introPanDuration = 7500;
 const introPanStartWait = 1000;
 
@@ -242,6 +243,7 @@ console.log('cameraLookAtZFactor =', cameraLookAtZFactor);
 let currentCameraZLookAt = cameraLookAtZStart;
 //#endregion
 
+//#region Helper Functions
 function getCloudXPosition() {
 	return Math.random() * cloudXPositionMax - cloudXPositionMin;
 }
@@ -252,112 +254,8 @@ function getCloudZPosition() {
 	return Math.random() * cloudZPositionMax - cloudZPositionMin;
 }
 
-export function init() {
-	//
-
-	renderer = new THREE.WebGLRenderer();
-	renderer.setPixelRatio(window.devicePixelRatio);
-	renderer.setSize(window.innerWidth, window.innerHeight);
-	renderer.toneMapping = THREE.ACESFilmicToneMapping;
-	document.body.appendChild(renderer.domElement);
-
-	//
-
-	scene = new THREE.Scene();
-	camera = new THREE.PerspectiveCamera(
-		60,
-		window.innerWidth / window.innerHeight,
-		1,
-		20000,
-	);
-
-	camera.position.set(cameraPositionXStart, cameraPositionYStart, cameraPositionZStart);
-	camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
-
-	//light
-	var spotLight = new THREE.SpotLight(spotLightColor, spotLightStrength);
-	spotLight.position.set(spotLightX, spotLightY, spotLightZ);
-	scene.add(spotLight);
-
-	// Water
-	const waterGeometry = new THREE.PlaneGeometry(
-		waterWidthSegments,
-		waterHeightSegments,
-	);
-
-	water = new Water(waterGeometry, {
-		textureWidth: 512,
-		textureHeight: 512,
-		waterNormals: new THREE.TextureLoader().load(
-			waterNormals,
-			function (texture) {
-				texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-			},
-		),
-		sunDirection: new THREE.Vector3(),
-		sunColor,
-		waterColor: waterColor,
-		distortionScale: 3.7,
-		fog: scene.fog !== undefined,
-	});
-
-	water.rotation.x = -Math.PI / 2;
-
-	scene.add(water);
-
-	// Skybox
-	pmremGenerator = new THREE.PMREMGenerator(renderer);
-	sky = new Sky();
-	sky.scale.setScalar(500);
-	scene.add(sky);
-
-	const skyUniforms = sky.material.uniforms;
-
-	skyUniforms["turbidity"].value = skyTurbidity;
-	skyUniforms["rayleigh"].value = skyRayleigh;
-	skyUniforms["mieCoefficient"].value = skyMieCoefficient;
-	skyUniforms["mieDirectionalG"].value = skyMieDirectionalG;
-
-	if (document.body)
-		document.body.lastElementChild?.classList.add("home__canvas");
-
-
-	sun = new THREE.Vector3();
-	updateSun(phi, theta);
-
-	//
-
-	const materials = [
-		cubeMaterial1,
-		cubeMaterial2,
-		cubeMaterial3,
-		cubeMaterial4,
-		cubeMaterial5,
-		cubeMaterial6,
-	];
-
-	const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-	const material = new THREE.MeshPhongMaterial({
-		reflectivity: 0,
-		refractionRatio: 0,
-	});
-	const bumpTexture = new THREE.TextureLoader().load(bumpMap);
-	material.map = bumpTexture;
-
-	mesh = new THREE.Mesh(geometry, materials);
-	mesh.position.y = cubeStartingHeight;
-	scene.add(mesh);
-
-	clouds = addCloud();
-
-	loadTexts(textData, scene);
-	//
-
-	window.addEventListener("resize", onWindowResize);
-	window.addEventListener("mousemove", onMouseMove);
-}
-
 function updateSun(phi: number, theta: number) {
+	const pmremGenerator = new THREE.PMREMGenerator(renderer);
 
 	sun.setFromSphericalCoords(1, phi, theta);
 
@@ -374,27 +272,6 @@ export function animate() {
 
 export function stopKey() {
 	cancelAnimationFrame(id);
-}
-
-function onMouseMove(e: MouseEvent) {
-	const currentY = e.clientY;
-	let mouseWasMovedUp = false;
-
-	if (currentY < lastClientY) mouseWasMovedUp = true;
-
-	if (mouseWasMovedUp) {
-	} else {
-	}
-
-	lastClientY = e.clientY;
-}
-
-function onWindowResize() {
-	adjustTextSizes();
-	camera.aspect = window.innerWidth / window.innerHeight;
-	camera.updateProjectionMatrix();
-
-	renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 function handleCubeBobbing(time: number) {
@@ -563,6 +440,181 @@ function adjustTextSizes() {
 	}
 }
 
+function getFromStartToFinishUsingFunction(
+	durationInMS: number,
+	start: number,
+	end: number,
+	fps: number,
+	functionToUse: "linear" | "exponential",
+) {
+	//todo: return a number that when you multiply start with it frame times (durationInSeconds * fps) you get end
+	let result = null;
+	if (start > end && end === 0)
+		throw new Error(
+			"End must be a number other than 0 when start is greater than end",
+		);
+	if (start === 0 && end > start)
+		throw new Error(
+			"Start must be a number other than 0 when end is greater than start",
+		);
+	if (functionToUse === "linear") {
+		result = getLinearStartToFinish(durationInMS, start, end, fps);
+	} else if (functionToUse === "exponential") {
+		result = getExponentialStartToFinish(durationInMS, start, end, fps);
+	}
+	return result;
+}
+
+function getLinearStartToFinish(
+	durationInMS: number,
+	start: number,
+	end: number,
+	fps: number,
+) {
+	//TODO: return a number that when added to start and then the result repeatedly yields end in frame steps/intervals...
+	const frames = (fps * durationInMS) / 1000;
+	return (end - start) / frames;
+}
+
+function getExponentialStartToFinish(
+	durationInMS: number,
+	start: number,
+	end: number,
+	fps: number,
+) {
+	//TODO: return a number that when multiplied by start and then the result repeatedly yields end in frame steps/intervals...
+	const frames = (fps * durationInMS) / 1000;
+	return Math.pow(end / start, 1 / frames);
+}
+//#endregion
+
+function onMouseMove(e: MouseEvent) {
+	const currentY = e.clientY;
+	let mouseWasMovedUp = false;
+
+	if (currentY < lastClientY) mouseWasMovedUp = true;
+
+	if (mouseWasMovedUp) {
+	} else {
+	}
+
+	lastClientY = e.clientY;
+}
+
+function onWindowResize() {
+	adjustTextSizes();
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+export function init() {
+	//
+
+	renderer = new THREE.WebGLRenderer();
+	renderer.setPixelRatio(window.devicePixelRatio);
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	renderer.toneMapping = THREE.ACESFilmicToneMapping;
+	document.body.appendChild(renderer.domElement);
+
+	//
+
+	scene = new THREE.Scene();
+	camera = new THREE.PerspectiveCamera(
+		60,
+		window.innerWidth / window.innerHeight,
+		1,
+		20000,
+	);
+
+	camera.position.set(cameraPositionXStart, cameraPositionYStart, cameraPositionZStart);
+	camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
+
+	//light
+	var spotLight = new THREE.SpotLight(spotLightColor, spotLightStrength);
+	spotLight.position.set(spotLightX, spotLightY, spotLightZ);
+	scene.add(spotLight);
+
+	// Water
+	const waterGeometry = new THREE.PlaneGeometry(
+		waterWidthSegments,
+		waterHeightSegments,
+	);
+
+	water = new Water(waterGeometry, {
+		textureWidth: 512,
+		textureHeight: 512,
+		waterNormals: new THREE.TextureLoader().load(
+			waterNormals,
+			function (texture) {
+				texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+			},
+		),
+		sunDirection: new THREE.Vector3(),
+		sunColor,
+		waterColor: waterColor,
+		distortionScale: 3.7,
+		fog: scene.fog !== undefined,
+	});
+
+	water.rotation.x = -Math.PI / 2;
+
+	scene.add(water);
+
+	// Skybox
+	sky = new Sky();
+	sky.scale.setScalar(500);
+	scene.add(sky);
+
+	const skyUniforms = sky.material.uniforms;
+
+	skyUniforms["turbidity"].value = skyTurbidity;
+	skyUniforms["rayleigh"].value = skyRayleigh;
+	skyUniforms["mieCoefficient"].value = skyMieCoefficient;
+	skyUniforms["mieDirectionalG"].value = skyMieDirectionalG;
+
+	if (document.body)
+		document.body.lastElementChild?.classList.add("home__canvas");
+
+
+	sun = new THREE.Vector3();
+	const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
+	const theta = THREE.MathUtils.degToRad(parameters.azimuth);
+
+	updateSun(phi, theta);
+	//
+
+	const materials = [
+		cubeMaterial1,
+		cubeMaterial2,
+		cubeMaterial3,
+		cubeMaterial4,
+		cubeMaterial5,
+		cubeMaterial6,
+	];
+
+	const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+	const material = new THREE.MeshPhongMaterial({
+		reflectivity: 0,
+		refractionRatio: 0,
+	});
+	const bumpTexture = new THREE.TextureLoader().load(bumpMap);
+	material.map = bumpTexture;
+
+	mesh = new THREE.Mesh(geometry, materials);
+	mesh.position.y = cubeStartingHeight;
+	scene.add(mesh);
+
+	clouds = addCloud();
+
+	loadTexts(textData, scene);
+	//
+
+	window.addEventListener("resize", onWindowResize);
+	window.addEventListener("mousemove", onMouseMove);
+}
+
 function render() {
 	const currentTime = Date.now();
 	const timeElapsedInMS = currentTime - startTime;
@@ -614,53 +666,6 @@ function render() {
 	water.material.uniforms["time"].value += waterAnimationSpeed / animationFPS;
 
 	renderer.render(scene, camera);
-}
-
-function getFromStartToFinishUsingFunction(
-	durationInMS: number,
-	start: number,
-	end: number,
-	fps: number,
-	functionToUse: "linear" | "exponential",
-) {
-	//todo: return a number that when you multiply start with it frame times (durationInSeconds * fps) you get end
-	let result = null;
-	if (start > end && end === 0)
-		throw new Error(
-			"End must be a number other than 0 when start is greater than end",
-		);
-	if (start === 0 && end > start)
-		throw new Error(
-			"Start must be a number other than 0 when end is greater than start",
-		);
-	if (functionToUse === "linear") {
-		result = getLinearStartToFinish(durationInMS, start, end, fps);
-	} else if (functionToUse === "exponential") {
-		result = getExponentialStartToFinish(durationInMS, start, end, fps);
-	}
-	return result;
-}
-
-function getLinearStartToFinish(
-	durationInMS: number,
-	start: number,
-	end: number,
-	fps: number,
-) {
-	//TODO: return a number that when added to start and then the result repeatedly yields end in frame steps/intervals...
-	const frames = (fps * durationInMS) / 1000;
-	return (end - start) / frames;
-}
-
-function getExponentialStartToFinish(
-	durationInMS: number,
-	start: number,
-	end: number,
-	fps: number,
-) {
-	//TODO: return a number that when multiplied by start and then the result repeatedly yields end in frame steps/intervals...
-	const frames = (fps * durationInMS) / 1000;
-	return Math.pow(end / start, 1 / frames);
 }
 
 // console.log(getExponentialStartToFinish(1000 / 30, .1, 15, 60));
