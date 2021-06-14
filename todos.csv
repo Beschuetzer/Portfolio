@@ -45,5 +45,4 @@ OPTIMIZATIONS:
 
 -call getFromStartToFinishUsingFunction() to get number to multiply by when doing the pan down for orbit controls then use that in render
 
--remove all html overlays (add in on timer through opacity)
--add timeout to start animation as well
+-add html overlays for left bottom and right (have bottom be same color as water and say the tech used to build site

@@ -1,12 +1,17 @@
 import { useEffect } from 'react';
-import { cubeRaiseDuration, introPanDuration, introPanStartWait } from "./OceanSky";
+import { cubeRaiseDuration, cubeRaiseStartTime } from "./OceanSky";
 
-const useAnimations = () => {
+interface ClasslistAdder {
+	classnames: string[],
+	classesToAdd: string[]
+}
+
+const useClasslistAdder = () => {
   useEffect(() => {
-    const animations = [
+    const animations: ClasslistAdder[] = [
       {
         classnames: ['home__name-first','home__name-last','home__third-word',],
-        animationsToAdd: ['home__animation-top'],
+        classesToAdd: ['home__animation-top'],
       },
     ];
 
@@ -16,13 +21,13 @@ const useAnimations = () => {
 				for (let j = 0; j < animation.classnames.length; j++) {
 					const classname = animation.classnames[j];
 					const element = document.querySelector(`.${classname}`);
-					for (let k = 0; k < animation.animationsToAdd.length; k++) {
-						const animationClassname = animation.animationsToAdd[k];
+					for (let k = 0; k < animation.classesToAdd.length; k++) {
+						const animationClassname = animation.classesToAdd[k];
 						element?.classList.add(animationClassname);
 					}
 				}
 			}
-		}, introPanDuration + introPanStartWait + cubeRaiseDuration);
+		}, cubeRaiseStartTime + (cubeRaiseDuration / 3));
 	}, [])
 
   return (
@@ -30,4 +35,4 @@ const useAnimations = () => {
   )
 }
 
-export default useAnimations;
+export default useClasslistAdder;

@@ -84,7 +84,7 @@ const parameters = {
 };
 
 const sunColor = new THREE.Color(0xf4d262);
-const waterColor = new THREE.Color(0x6aa6b0);
+const waterColor = new THREE.Color(0x28537b);
 const cloudTransparency = 0.55;
 const skyTurbidity = 10; //(10)
 const skyRayleigh = 5; //(2)
@@ -236,6 +236,7 @@ const animationFPS = 60.0;
 export const introPanDuration = 5000;
 export const introPanStartWait = 22500;
 export const cubeRaiseDuration = introPanDuration / 2;
+export const cubeRaiseStartTime = (introPanStartWait + introPanDuration / 2);
 
 const cameraFinalFOV = 55;
 const cameraPositionXStart = 0;
@@ -246,9 +247,7 @@ const cameraPositionYEnd = 15;
 const cameraLookAtXStart = 0;
 const cameraLookAtYStart = 0;
 const cameraLookAtZStart = cameraPositionZStart;
-const cameraLookAtXEnd = 0;
-const cameraLookAtYEnd = 0;
-const cameraLookAtZEnd = -waterWidthSegments / 10;
+const cameraLookAtZEnd = -waterWidthSegments / 20;
 let currentCameraZLookAt = cameraLookAtZStart;
 
 const cameraPositionYFactor = getFromStartToFinishUsingFunction(
@@ -273,6 +272,7 @@ const cubeHeightAdditiveIncrement = getFromStartToFinishUsingFunction(
 	animationFPS,
 	"linear",
 );
+const opacityChangeRate = getFromStartToFinishUsingFunction(introPanDuration * 3, 1, .000001, animationFPS, 'exponential');
 
 //#endregion
 
@@ -295,7 +295,7 @@ function getCloudZPosition() {
 function updateSun(phi: number, theta: number) {
 	const pmremGenerator = new THREE.PMREMGenerator(renderer);
 
-	sun.setFromSphericalCoords(1, phi, theta);
+	sun.setFromSphericalCoords(10, phi, theta);
 
 	sky.material.uniforms["sunPosition"].value.copy(sun);
 	(water.material as any).uniforms["sunDirection"].value.copy(sun).normalize();
@@ -614,7 +614,7 @@ export function init() {
 
 	// Skybox
 	sky = new Sky();
-	sky.scale.setScalar(500);
+	sky.scale.setScalar(5000);
 	scene.add(sky);
 
 	const skyUniforms = sky.material.uniforms;
@@ -630,6 +630,7 @@ export function init() {
 	sun = new THREE.Vector3();
 	const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
 	const theta = THREE.MathUtils.degToRad(parameters.azimuth);
+
 
 	updateSun(phi, theta);
 	//
@@ -679,10 +680,10 @@ function render() {
 		texts.forEach((text) => {
 			const currentOpacity = (text.material as any).opacity;
 			if (currentOpacity > 0) {
-				if (text.position.z <= textDisappearZ) {
+				if (timeElapsedInMS >= (introPanStartWait)) {
 					text.material = new MeshBasicMaterial({
 						transparent: true,
-						opacity: currentOpacity - 0.001,
+						opacity: currentOpacity * (opacityChangeRate as number),
 						color: defaultTextColor,
 					});
 					// if (text.rotation.x >= textMinXRotation) text.rotation.x -= textScrollSpeed / 50;
@@ -715,7 +716,7 @@ function render() {
 	}
 
 	if (cube) {
-		if (timeElapsedInMS >= (introPanStartWait + introPanDuration)) {
+		if (timeElapsedInMS >= cubeRaiseStartTime) {
 			const currentYPosition = cube.position.y;
 			if (currentYPosition <= cubeEndHeight) {
 				cube.position.y += (cubeHeightAdditiveIncrement as number);
