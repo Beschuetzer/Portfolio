@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { getRepositories } from "../../actions";
-import EmbeddedLink from "../../components/EmbeddedLink";
+import useAnimations from "./useAnimations";
 import useSky from './useSky';
 
 interface HomeProps {
@@ -14,6 +14,9 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 	useEffect(() => {
 		if (!repos || repos.length === 0) getRepositories();
 	}, [repos, getRepositories]);
+
+
+	useAnimations();
 
 	useSky();
 

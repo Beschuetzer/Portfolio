@@ -2816,19 +2816,16 @@ body {
 .home__name-first {
   justify-self: flex-end;
   transform: translate(-80rem, 0);
-  animation: 1.5s 1 translateToZero forwards cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 .home__name-last {
   justify-self: flex-start;
   transform: translate(80rem, 0);
-  animation: 1.5s 1 translateToZero forwards cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 .home__third-word {
   font-weight: 900;
   grid-column: 1/-1;
   font-size: 2.4rem;
   transform: translate(0, 100vh);
-  animation: 1.5s 1 translateToZero forwards cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 .home__main {
   position: fixed;
@@ -2880,6 +2877,9 @@ body {
 }
 .home__main-link:hover {
   color: rgba(var(--color-primary-2-rgb), 1);
+}
+.home__animation-top {
+  animation: 1.5s 1 translateToZero forwards cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 
 .resume {

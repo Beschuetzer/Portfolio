@@ -233,9 +233,9 @@ let textData: TextData[] = [
 
 //#region Camera and Animation stuff
 const animationFPS = 60.0;
-const introPanDuration = 7500;
-const introPanStartWait = 22500;
-const cubeRaiseDuration = introPanDuration / 2;
+export const introPanDuration = 5000;
+export const introPanStartWait = 22500;
+export const cubeRaiseDuration = introPanDuration / 2;
 
 const cameraFinalFOV = 55;
 const cameraPositionXStart = 0;

@@ -95,15 +95,11 @@
 	&__name-first {
 		justify-self: flex-end;
 		transform: translate(-$default-font-size * 50, 0);
-		animation: 1.5s 1 translateToZero forwards
-			$animation-easing-standard-easeInOutBack;
 	}
 
 	&__name-last {
 		justify-self: flex-start;
 		transform: translate($default-font-size * 50, 0);
-		animation: 1.5s 1 translateToZero forwards
-			$animation-easing-standard-easeInOutBack;
 	}
 
 	&__third-word {
@@ -111,8 +107,6 @@
 		grid-column: 1/-1;
 		font-size: $default-font-size * 1.5;
 		transform: translate(0, 100vh);
-		animation: 1.5s 1 translateToZero forwards
-			$animation-easing-standard-easeInOutBack;
 	}
 
 	&__main {
@@ -182,5 +176,9 @@
 		}
 
 		
+	}
+
+	&__animation-top {
+		animation: 1.5s 1 translateToZero forwards cubic-bezier(0.68, -0.6, 0.32, 1.6);
 	}
 }
