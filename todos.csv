@@ -43,6 +43,5 @@ OPTIMIZATIONS:
 -finish content in about
 -finish last 4th section in bridge (and colors gradient for mobile and svg
 
--call getFromStartToFinishUsingFunction() to get number to multiply by when doing the pan down for orbit controls then use that in render
+-change how the left,right,and bottom divs come in (stagger them timewise for a more interesting fx)
 
--add html overlays for left bottom and right (have bottom be same color as water and say the tech used to build site

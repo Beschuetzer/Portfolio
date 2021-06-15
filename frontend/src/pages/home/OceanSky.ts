@@ -25,6 +25,7 @@ import {
 	Scene,
 	TextBufferGeometry,
 } from "three";
+import { MOBILE_BREAK_POINT_WIDTH } from "../../components/constants";
 
 //#region Variable Inits
 let camera: PerspectiveCamera,
@@ -130,6 +131,7 @@ interface TextData {
 	height: number;
 }
 
+const isMobile = (window.innerWidth < MOBILE_BREAK_POINT_WIDTH);
 const textDisappearZ = -50;
 const textMinXRotation = -Math.PI / 2 - 0.25;
 const textScrollSpeed = 0.2;
@@ -137,7 +139,7 @@ const defaultTextX = 0;
 const defaultTextY = -0.2;
 const defaultTextYRotation = 0;
 const defaultTextZRotation = 0;
-const textSizeScaleFactor = 0.005;
+const textSizeScaleFactor = isMobile ? .009 : 0.0055;
 const defaultTextSize = window.innerWidth * textSizeScaleFactor;
 const defaultTextHeight = 1;
 const defaultTextColor = new THREE.Color(0xf4d262);
@@ -233,8 +235,9 @@ let textData: TextData[] = [
 
 //#region Camera and Animation stuff
 const animationFPS = 60.0;
+export let timeElapsedInMS = 0;
 export const introPanDuration = 5000;
-export const introPanStartWait = 22500;
+export const introPanStartWait = isMobile ? 15000 : 27500;
 export const cubeRaiseDuration = introPanDuration / 2;
 export const cubeRaiseStartTime = (introPanStartWait + introPanDuration / 2);
 
@@ -663,11 +666,12 @@ export function init() {
 
 	window.addEventListener("resize", onWindowResize);
 	window.addEventListener("mousemove", onMouseMove);
+
 }
 
 function render() {
 	const currentTime = Date.now();
-	const timeElapsedInMS = currentTime - startTime;
+	timeElapsedInMS = currentTime - startTime;
 
 	// handleCubeBobbing(time);
 	if (clouds)
@@ -733,4 +737,14 @@ function render() {
 		waterAnimationSpeed / animationFPS;
 
 	renderer.render(scene, camera);
+}
+
+export function resetAnimations () {
+	timeElapsedInMS = 0;
+	camera.position.set(
+		cameraPositionXStart,
+		cameraPositionYStart,
+		cameraPositionZStart,
+	);
+	camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
 }

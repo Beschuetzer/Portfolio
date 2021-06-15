@@ -17,9 +17,6 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 		z-index: 1;
 	}
 
-	&__canvas {
-	}
-
 	//this sets styles specific to home page like body to hide overflow for home page
 	&-page {
 		overflow-y: hidden;
@@ -73,8 +70,8 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 		position: absolute;
 		left: 0;
 		top: 0;
-		width: 100vw;
-		height: 100vh;
+		width: 100vw !important;
+		height: 100vh !important;
 		z-index: -1;
 	}
 

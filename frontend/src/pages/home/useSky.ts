@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { animate as animateSky, init, stopKey as stopSky } from './OceanSky';
+import { animate as animateSky, init, resetAnimations, stopKey as stopSky, timeElapsedInMS } from './OceanSky';
 
 const useSky = () => {
 	const HOME_CANVAS_CLASSNAME = 'home__canvas';
@@ -15,6 +15,7 @@ const useSky = () => {
 
 			canvasElement = document.querySelector(`.${HOME_CANVAS_CLASSNAME}`);
 			if (canvasElement) document.body?.removeChild(canvasElement);
+			resetAnimations();
 		})
 	}, [])
 
