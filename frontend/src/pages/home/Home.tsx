@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { getRepositories } from "../../actions";
+import EmbeddedLink from "../../components/EmbeddedLink";
 import useClasslistAdder from "./useClasslistAdder";
 import useSky from './useSky';
 
@@ -27,18 +28,18 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 					<h5 className="home__third-word">embodies</h5>
 				</div>
 				<div className="home__main">
-					{/* <div className="home__main-welcome">
-						<p>
-							Not sure where to start?&nbsp; Check out the <EmbeddedLink className="home__main-link" href="/examples/bridge" isLocal={true}>multiplayer app </EmbeddedLink>I created.
-						</p>
-					
-						<p>Click, hover, and<EmbeddedLink className="home__main-link" isLocal={true} href="contact">get in touch</EmbeddedLink>when you're ready.</p>
 
-						<p>
-							This site was created with React, Redux, Express, ThreeJS, and custom SASS/CSS
-						</p>
-					</div>  */}
+					<div className="home__main-bottom">
+						This site was created with React, Redux, Express, ThreeJS, and custom SASS/CSS.
+					</div>
 
+					<div className="home__main-left">
+						Not sure where to start?&nbsp; Check out the <EmbeddedLink className="home__main-link" href="/examples/bridge" isLocal={true}>multiplayer app </EmbeddedLink>I created.
+					</div>
+
+					<div className="home__main-right">
+						Click, hover, and<EmbeddedLink className="home__main-link" isLocal={true} href="contact">get in touch</EmbeddedLink>when you're ready.
+					</div>
 
 					{/* <div className="home__main-description">
 						This site was created with React, Redux, and custom CSS

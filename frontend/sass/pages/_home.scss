@@ -17,12 +17,16 @@
 	&__canvas {
 	}
 
-	//this sets body to hide overflow for home page
+	//this sets styles specific to home page like body to hide overflow for home page
 	&-page {
 		overflow-y: hidden;
 
 		& .header {
 			width: 100vw;
+		}
+
+		& .page-nav {
+			display: none;
 		}
 	}
 
@@ -68,6 +72,7 @@
 		top: 0;
 		width: 100vw;
 		height: 100vh;
+		z-index: -1;
 	}
 
 	&__name {
@@ -110,6 +115,7 @@
 	}
 
 	&__main {
+		font-size: $default-font-size;
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -119,10 +125,10 @@
 		justify-content: center;
 		--home-column-height: 33vh;
 		--home-column-width: calc(
-			((100vw - #{$header-inner-width-vw}) + #{$navbar__logo-width}) * 1
+			((100vw - #{$header-inner-width-vw}) + #{$navbar__logo-width})
 		);
-		grid-template-columns: repeat(3, var(--home-column-width)) 1fr repeat(
-				3,
+		grid-template-columns: repeat(1, var(--home-column-width)) 1fr repeat(
+				1,
 				var(--home-column-width)
 			);
 		grid-template-rows: var(--home-column-height) 1fr var(--home-column-height);
@@ -131,13 +137,14 @@
 		&-welcome {
 			--welcome-opacity: .75;
 			color: rgba(var(--color-primary-4-rgb), var(--welcome-opacity));
-			padding: $default-font-size;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: column;
 			grid-column: 1 / -1;
 			grid-row: 3 / -1;
+			padding: 0 $default-font-size;
+			display: grid;
+			grid-template-rows: min-content 1fr min-content;
+			align-items: center;
+			justify-items: center;
+    	justify-content: center;
 
 			& h4 {
 				font-size: $default-font-size * 4;
@@ -154,6 +161,66 @@
 				& p {
 					--welcome-opacity: 1;
 				}
+			}
+		}
+
+		&-left, &-right {
+			color: rgba(var(--color-primary-4-rgb), .4);
+			position: relative;
+			z-index: 10000;
+		}
+
+		&-left {
+			transform: translate(-100%, 0);
+			grid-row: 2 / span 1;
+			grid-column: 1 / span 1;
+			text-align: left;
+			justify-self: flex-start;
+			padding-left: calc((100vw - #{$header-inner-width-vw}) / 2);
+			width: $navbar__logo-width * 3;
+
+			@include respond(nav-switch) {
+				padding-left: $default-font-size * .5;
+			}
+
+		}
+
+		&-right {
+			transform: translate(100%, 0);
+			grid-row: 2/span 1;
+			grid-column: 2/span 2;
+			text-align: right;
+			justify-self: flex-end;
+			padding-right: calc((100vw - #{$header-inner-width-vw}) / 2);
+			width: $navbar__logo-width * 3;
+
+			@include respond(nav-switch) {
+				padding-right: $default-font-size * .5;
+			}
+		}
+
+		&-bottom { 
+			transform: translate(0, 100%);
+			--bottom-color: var(--color-primary-1);
+			--bottom-left-color: rgba(var(--color-primary-4-rgb), .1);
+			--bottom-middle-color-1: rgba(var(--color-primary-4-rgb), .85) 25%;
+			--bottom-middle-color-2: rgba(var(--color-primary-4-rgb), .85) 75%;
+			--bottom-right-color: rgba(var(--color-primary-4-rgb), .1);
+			color: var(--bottom-color);
+			grid-column: 1 / -1;
+			grid-row: 4 / span 1;
+			text-align: center;
+			padding: $default-font-size * 1;
+			background-image: linear-gradient(
+				to right,
+				var(--bottom-left-color),
+				var(--bottom-middle-color-1),
+				var(--bottom-middle-color-2),
+				var(--bottom-right-color),
+			);
+
+			&:hover {
+				--bottom-color: rgba(var(--color-primary-1-rgb), .5);
 			}
 		}
 
@@ -178,7 +245,7 @@
 		
 	}
 
-	&__animation-top {
+	&__animation {
 		animation: 1.5s 1 translateToZero forwards cubic-bezier(0.68, -0.6, 0.32, 1.6);
 	}
 }
