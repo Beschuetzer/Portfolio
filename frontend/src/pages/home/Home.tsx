@@ -29,17 +29,21 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 				</div>
 				<div className="home__main">
 
-					<div className="home__main-bottom">
+					<article className="home__main-bottom">
 						This site was created with React, Redux, Express, ThreeJS, and custom SASS/CSS.
-					</div>
+					</article>
 
-					<div className="home__main-left">
-						Not sure where to start?&nbsp; Check out the <EmbeddedLink className="home__main-link" href="/examples/bridge" isLocal={true}>multiplayer app </EmbeddedLink>I created.
-					</div>
+					<article className="home__main-left">
+						<div className="home__main-left-content">
+							Not sure where to start?&nbsp; Check out the <EmbeddedLink className="home__main-link" href="/examples/bridge" isLocal={true}>multiplayer Bridge app </EmbeddedLink>I created.
+						</div>
+					</article>
 
-					<div className="home__main-right">
-						Click, hover, and<EmbeddedLink className="home__main-link" isLocal={true} href="contact">get in touch</EmbeddedLink>when you're ready.
-					</div>
+					<article className="home__main-right">
+						<div className="home__main-right-content">
+							Click, hover, and<EmbeddedLink className="home__main-link" isLocal={true} href="contact">get in touch</EmbeddedLink>when you're ready.
+						</div>
+					</article>
 
 					{/* <div className="home__main-description">
 						This site was created with React, Redux, and custom CSS

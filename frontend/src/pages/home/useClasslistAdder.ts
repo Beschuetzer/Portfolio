@@ -14,11 +14,16 @@ const useClasslistAdder = () => {
 					"home__name-first",
 					"home__name-last",
 					"home__third-word",
+				],
+				classesToAdd: ["home__animation-ease-in-out-back"],
+			},
+			{
+				classnames: [
 					"home__main-left",
 					"home__main-right",
 					"home__main-bottom",
 				],
-				classesToAdd: ["home__animation"],
+				classesToAdd: ["home__animation-ease"],
 			},
 		];
 
@@ -34,7 +39,7 @@ const useClasslistAdder = () => {
 					}
 				}
 			}
-		}, cubeRaiseStartTime + cubeRaiseDuration / 3);
+		}, cubeRaiseStartTime + cubeRaiseDuration / 2);
 	}, []);
 
 	return null;

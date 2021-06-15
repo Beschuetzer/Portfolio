@@ -157,7 +157,7 @@ let textData: TextData[] = [
 		height: defaultTextHeight,
 	},
 	{
-		text: "Everything you will see today",
+		text: "Everything you see here",
 		x: defaultTextX,
 		y: defaultTextY,
 		z: lineStart + lineSpacing * 1,
