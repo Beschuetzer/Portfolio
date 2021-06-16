@@ -3,7 +3,7 @@ import * as THREE from "three";
 // import openType from "three/examples/js/libs/opentype.min"
 // import Stats from "three/examples/jsm/libs/stats.module.js";
 // import { gui } from 'three/examples/jsm/libs/dat.gui.module.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Water } from "three/examples/jsm/objects/Water.js";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 
@@ -25,7 +25,6 @@ import {
 	Scene,
 	TextBufferGeometry,
 } from "three";
-import { MOBILE_BREAK_POINT_WIDTH } from "../../components/constants";
 import { getLinearPercentOfMaxMatchWithinRange } from "../../helpers";
 
 //#region Variable Inits
@@ -132,122 +131,115 @@ interface TextData {
 	height: number;
 }
 
-const isMobile = (window.innerWidth < 1250);
+const isMobile = window.innerWidth < 1250;
 const textMinXRotation = -Math.PI / 2 - 0.25;
-const textScrollSpeed = 0.2;
+const textScrollSpeed = 0.25;
 const defaultTextX = 0;
 const defaultTextY = -0.2;
 const defaultTextYRotation = 0;
 const defaultTextZRotation = 0;
 
-const textSizeScaleFactor = getLinearPercentOfMaxMatchWithinRange(window.innerWidth,
+const textSizeScaleFactor = getLinearPercentOfMaxMatchWithinRange(
+	window.innerWidth,
 	800,
 	1600,
-	.0066,
-	.0038,
+	0.0066,
+	0.0038,
 );
-console.log('textSizeScaleFactor =', textSizeScaleFactor);
+console.log("textSizeScaleFactor =", textSizeScaleFactor);
 // const textSizeScaleFactor = isMobile ? .0066 : 0.0036;
 const defaultTextSize = window.innerWidth * textSizeScaleFactor;
 const defaultTextHeight = 1;
 const defaultTextColor = new THREE.Color(0xf4d262);
 const lineSpacing = defaultTextSize * 3;
 const lineStart = 180;
-let textData: TextData[] = [
+
+const textsToUse = [
 	{
-		text: "Welcome to my Porfolio!",
-		x: defaultTextX,
-		y: defaultTextY,
-		z: lineStart,
-		xRotation: -Math.PI / 2,
-		yRotation: defaultTextYRotation,
-		zRotation: defaultTextZRotation,
-		color: defaultTextColor,
-		size: defaultTextSize,
-		height: defaultTextHeight,
+		text: "Hello!  My name is",
+		spaceBefore: false,
 	},
 	{
-		text: "Everything you see here",
-		x: defaultTextX,
-		y: defaultTextY,
-		z: lineStart + lineSpacing * 1,
-		xRotation: -Math.PI / 2,
-		yRotation: defaultTextYRotation,
-		zRotation: defaultTextZRotation,
-		color: defaultTextColor,
-		size: defaultTextSize,
-		height: defaultTextHeight,
+		text: "Adam, and this is",
+		spaceBefore: false,
 	},
 	{
-		text: "was made with",
-		x: defaultTextX,
-		y: defaultTextY,
-		z: lineStart + lineSpacing * 2,
-		xRotation: -Math.PI / 2,
-		yRotation: defaultTextYRotation,
-		zRotation: defaultTextZRotation,
-		color: defaultTextColor,
-		size: defaultTextSize,
-		height: defaultTextHeight,
+		text: "my portfolio!",
+		spaceBefore: false,
 	},
 	{
-		text: "React, Redux, custom SASS/CSS,",
-		x: defaultTextX,
-		y: defaultTextY,
-		z: lineStart + lineSpacing * 3,
-		xRotation: -Math.PI / 2,
-		yRotation: defaultTextYRotation,
-		zRotation: defaultTextZRotation,
-		color: defaultTextColor,
-		size: defaultTextSize,
-		height: defaultTextHeight,
+		text: "I recently changed my",
+		spaceBefore: true,
 	},
 	{
-		text: "Express, and ThreeJS",
-		x: defaultTextX,
-		y: defaultTextY,
-		z: lineStart + lineSpacing * 4,
-		xRotation: -Math.PI / 2,
-		yRotation: defaultTextYRotation,
-		zRotation: defaultTextZRotation,
-		color: defaultTextColor,
-		size: defaultTextSize,
-		height: defaultTextHeight,
+		text: "life by deciding to",
+		spaceBefore: false,
 	},
 	{
-		text: "Looking forward",
-		x: defaultTextX,
-		y: defaultTextY,
-		z: lineStart + lineSpacing * 6,
-		xRotation: -Math.PI / 2,
-		yRotation: defaultTextYRotation,
-		zRotation: defaultTextZRotation,
-		color: defaultTextColor,
-		size: defaultTextSize,
-		height: defaultTextHeight,
+		text: "become a web developer.",
+		spaceBefore: false,
 	},
 	{
-		text: "to working with you!",
-		x: defaultTextX,
-		y: defaultTextY,
-		z: lineStart + lineSpacing * 7,
-		xRotation: -Math.PI / 2,
-		yRotation: defaultTextYRotation,
-		zRotation: defaultTextZRotation,
-		color: defaultTextColor,
-		size: defaultTextSize,
-		height: defaultTextHeight,
+		text: "I am excited",
+		spaceBefore: true,
 	},
+	{
+		text: "to show you what",
+		spaceBefore: false,
+	},
+	{
+		text: "I have built",
+		spaceBefore: false,
+	},
+	{
+		text: "and to hear",
+		spaceBefore: false,
+	},
+	{
+		text: "what you think.",
+		spaceBefore: false,
+	},
+	{
+		text: "Looking forward to",
+		spaceBefore: true,
+	},
+	{
+		text: "hearing from you soon!",
+		spaceBefore: false,
+	},
+
+	// {
+	// 	text: "React, Redux, custom SASS/CSS,",
+	// spaceBefore: true,
+
+	// },
+	// {
+	// 	text: "Express, and ThreeJS",
+	// spaceBefore: false,
+	// },
 ];
+
+let textData: TextData[] = generateTextList(textsToUse);
+
+const linesOfText = textsToUse.reduce((previous, current) => {
+	let additional = 1;
+	if (current.spaceBefore) additional = 2;
+	return previous + additional;
+}, 0);
 //#endregion
 
 //#region Camera and Animation stuff
 const animationFPS = 60.0;
 export let timeElapsedInMS = 0;
 export const introPanDuration = 5000;
-export const introPanStartWait = isMobile ? 15000 : 27500;
+const lineScrollDuration = 1500;
+export const introPanDurationMobile = linesOfText * lineScrollDuration;
+;
+export const introPanStartWait = isMobile
+	? introPanDurationMobile
+	: introPanDurationMobile + 5000;
 export const cubeRaiseDuration = introPanDuration / 2;
-export const cubeRaiseStartTime = (introPanStartWait + introPanDuration / 2);
+export const cubeRaiseStartTime = introPanStartWait + introPanDuration / 2;
 
 const cameraFinalFOV = 55;
 const cameraPositionXStart = 0;
@@ -283,11 +275,46 @@ const cubeHeightAdditiveIncrement = getFromStartToFinishUsingFunction(
 	animationFPS,
 	"linear",
 );
-const opacityChangeRate = getFromStartToFinishUsingFunction(introPanDuration * 3, 1, .000001, animationFPS, 'exponential');
+const opacityChangeRate = getFromStartToFinishUsingFunction(
+	introPanDuration * 3,
+	1,
+	0.000001,
+	animationFPS,
+	"exponential",
+);
 
 //#endregion
 
 //#region Helper Functions
+function generateTextList(
+	texts: { text: string; spaceBefore: boolean }[],
+): TextData[] {
+	let result: TextData[] = [];
+	let lineCount = 0;
+	for (let i = 0; i < texts.length; i++) {
+		const text = texts[i];
+
+		if (texts && text.spaceBefore) {
+			lineCount++;
+		}
+
+		result.push({
+			text: text.text,
+			x: defaultTextX,
+			y: defaultTextY,
+			z: lineStart + lineSpacing * ++lineCount,
+			xRotation: -Math.PI / 2,
+			yRotation: defaultTextYRotation,
+			zRotation: defaultTextZRotation,
+			color: defaultTextColor,
+			size: defaultTextSize,
+			height: defaultTextHeight,
+		});
+	}
+
+	return result;
+}
+
 function getCloudXPosition() {
 	return Math.random() * cloudXPositionMax - cloudXPositionMin;
 }
@@ -297,10 +324,15 @@ function getCloudYPosition() {
 }
 
 function getCloudZPosition() {
-	const secondsToGetToCameraFinalPosition = (introPanDuration + introPanStartWait) / 1000;
-	const numberOfFramesIntroTakes = animationFPS * secondsToGetToCameraFinalPosition;
-	const distanceCloudMovesDuringIntro = cloudZPositionRateChange * numberOfFramesIntroTakes;
-	return((Math.random() * cloudSpan) - cloudSpan) + distanceCloudMovesDuringIntro * .75;
+	const secondsToGetToCameraFinalPosition =
+		(introPanDuration + introPanStartWait) / 1000;
+	const numberOfFramesIntroTakes =
+		animationFPS * secondsToGetToCameraFinalPosition;
+	const distanceCloudMovesDuringIntro =
+		cloudZPositionRateChange * numberOfFramesIntroTakes;
+	return (
+		Math.random() * cloudSpan - cloudSpan + distanceCloudMovesDuringIntro * 0.75
+	);
 }
 
 function updateSun(phi: number, theta: number) {
@@ -509,7 +541,10 @@ function getFromStartToFinishUsingFunction(
 	if (functionToUse === "linear") {
 		result = getLinearStartToFinish(durationInMS, start, end, fps);
 	} else if (functionToUse === "exponential") {
-		if ((start > 0 && end < 0) || (start < 0 && end > 0)) throw new Error('Start and end numbers must be either both positive or both negative when using exponential.')
+		if ((start > 0 && end < 0) || (start < 0 && end > 0))
+			throw new Error(
+				"Start and end numbers must be either both positive or both negative when using exponential.",
+			);
 		result = getExponentialStartToFinish(durationInMS, start, end, fps);
 	}
 	return result;
@@ -587,7 +622,7 @@ export function init() {
 	);
 	camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
 
-	//#region Orbit Controls 
+	//#region Orbit Controls
 	// orbitControls = new OrbitControls(camera, renderer.domElement);
 	// orbitControls.update();
 	//#endregion
@@ -642,7 +677,6 @@ export function init() {
 	const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
 	const theta = THREE.MathUtils.degToRad(parameters.azimuth);
 
-
 	updateSun(phi, theta);
 	//
 
@@ -674,7 +708,6 @@ export function init() {
 
 	window.addEventListener("resize", onWindowResize);
 	window.addEventListener("mousemove", onMouseMove);
-
 }
 
 function render() {
@@ -692,7 +725,7 @@ function render() {
 		texts.forEach((text) => {
 			const currentOpacity = (text.material as any).opacity;
 			if (currentOpacity > 0) {
-				if (timeElapsedInMS >= (introPanStartWait)) {
+				if (timeElapsedInMS >= introPanStartWait) {
 					text.material = new MeshBasicMaterial({
 						transparent: true,
 						opacity: currentOpacity * (opacityChangeRate as number),
@@ -731,23 +764,24 @@ function render() {
 		if (timeElapsedInMS >= cubeRaiseStartTime) {
 			const currentYPosition = cube.position.y;
 			if (currentYPosition <= cubeEndHeight) {
-				cube.position.y += (cubeHeightAdditiveIncrement as number);
+				cube.position.y += cubeHeightAdditiveIncrement as number;
 			}
 
-			if (currentYPosition >= (cubeEndHeight)) {
+			if (currentYPosition >= cubeEndHeight) {
 				const cubeRotationCounter = (i += cubeRotationSpeed);
 				handleCubeRotation(cubeRotationCounter);
 			}
 		}
 	}
 
-	if (water) (water.material as any).uniforms["time"].value +=
-		waterAnimationSpeed / animationFPS;
+	if (water)
+		(water.material as any).uniforms["time"].value +=
+			waterAnimationSpeed / animationFPS;
 
 	renderer.render(scene, camera);
 }
 
-export function resetAnimations () {
+export function resetAnimations() {
 	timeElapsedInMS = 0;
 	camera.position.set(
 		cameraPositionXStart,

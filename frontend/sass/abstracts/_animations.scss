@@ -143,18 +143,20 @@ $max-degrees: 2.5deg;
 	}
 }
 
+$text-bounce-letter-spacing-factor: .2;
+$text-bounce-margin-factor: .15;
 @keyframes text-bounce {
 	0%{ 
 		letter-spacing: 0;
 		margin: 0;
 	}
-	10% {
-		letter-spacing: $default-font-size * .2;
-		margin: auto $default-font-size * .15;
-	}
-	50% {
-		letter-spacing: $default-font-size * .2;
-		margin: auto $default-font-size * .15;
+	// 10% {
+		// letter-spacing: $default-font-size * .2;
+		// margin: auto $default-font-size * .15;
+	// }
+	30% {
+		letter-spacing: $default-font-size * $text-bounce-letter-spacing-factor;
+		margin: auto $default-font-size * $text-bounce-margin-factor;
 	}
 	90%{
 		letter-spacing: 0;
@@ -163,6 +165,52 @@ $max-degrees: 2.5deg;
 	100%{ 
 		letter-spacing: 0;
 		margin: 0;
+	}
+}
+
+$text-bounce-mobile-smaller-factor: .4;
+@keyframes text-bounce-mobile {
+	0%{ 
+		letter-spacing: 0;
+		margin: 0;
+	}
+	// 10% {
+		// letter-spacing: $default-font-size * $text-bounce-letter-spacing-factor;
+		// margin: auto $default-font-size * .15;
+	// }
+	30% {
+		letter-spacing: $default-font-size * $text-bounce-letter-spacing-factor * $text-bounce-mobile-smaller-factor;
+		margin: auto $default-font-size * $text-bounce-margin-factor * $text-bounce-mobile-smaller-factor;
+	}
+	90%{
+		letter-spacing: 0;
+		margin: 0;
+	}
+	100%{ 
+		letter-spacing: 0;
+		margin: 0;
+	}
+}
+
+$ocean-sky-overlay-color: var(--color-black-rgb);
+$ocean-sky-start-opacity: 0;
+$ocean-sky-end-opacity: .33;
+@keyframes ocean-sky-fading {
+	0%{ 
+		background-color: rgba($ocean-sky-overlay-color, $ocean-sky-start-opacity);
+
+	}
+	30% {
+		background-color: rgba($ocean-sky-overlay-color, $ocean-sky-end-opacity);
+
+	}
+	90%{
+		background-color: rgba($ocean-sky-overlay-color, $ocean-sky-start-opacity);
+
+	}
+	100%{ 
+		background-color: rgba($ocean-sky-overlay-color, $ocean-sky-start-opacity);
+
 	}
 }
 

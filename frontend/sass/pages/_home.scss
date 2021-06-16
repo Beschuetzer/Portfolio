@@ -13,6 +13,10 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 		var(--color-primary-2-rgb)
 	);
 
+	@include respond(tab-port) {
+		font-size: $default-font-size;
+	}
+
 	& > * {
 		z-index: 1;
 	}
@@ -116,7 +120,10 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 	}
 
 	&__main {
+		animation: ocean-sky-fading 100s forwards  $animation-easing-standard infinite;
 		// font-size: $default-font-size;
+		line-height: 1.7;
+		// font-family: $font-family-text;
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -137,7 +144,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 				var(--home-column-height)
 			);
 
-		@include respond(phone) {
+		@include respond(tab-port) {
 			grid-template-rows: repeat(
 					2,
 					var(--home-column-height)
@@ -183,13 +190,12 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 			text-align: left;
 			justify-self: flex-start;
 			padding-left: calc((100vw - #{$header-inner-width-vw}) / 2);
-			width: $navbar__logo-width * 3;
 
 			@include respond(nav-switch) {
 				padding-left: 0;
 			}
 
-			@include respond(phone) {
+			@include respond(tab-port) {
 				grid-row: 3 / span 1;
 				background-color: rgba(var(--color-primary-1-rgb), $background-color-opacity);
 				border-top: $home-page-border ;
@@ -204,13 +210,12 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 			text-align: right;
 			justify-self: flex-end;
 			padding-right: calc((100vw - #{$header-inner-width-vw}) / 2);
-			width: $navbar__logo-width * 3;
 
 			@include respond(nav-switch) {
 				padding-right: 0;
 			}
 
-			@include respond(phone) {
+			@include respond(tab-port) {
 				grid-row: 4 / span 1;
 				background-color: rgba(var(--color-primary-2-rgb), $background-color-opacity);
 			}
@@ -218,14 +223,15 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 
 		&-left,
 		&-right {
-			color: rgba(var(--color-primary-4-rgb), 0.5);
+			color: rgba(var(--color-primary-4-rgb), 0.66);
 			position: relative;
 			z-index: 10000;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			width: $navbar__logo-width * 3.43;
 
-			@include respond(phone) {
+			@include respond(tab-port) {
 				width: 100vw;		
 			}
 		}
@@ -236,7 +242,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 			margin: 2.5vh auto 0 auto;		
 			width: 66vw;
 			
-			@include respond(phone) {
+			@include respond(tab-port) {
 				text-align: center;
 				margin: 0 auto;
 			}
@@ -244,7 +250,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 
 		&-bottom {
 			transform: translate(0, 100%);
-			--bottom-color: rgba(var(--color-primary-1-rgb), .5);
+			--bottom-color: rgba(var(--color-primary-4-rgb), .75);
 			--bottom-left-color: rgba(var(--color-primary-4-rgb), 0.1);
 			--bottom-middle-color-1: rgba(var(--color-primary-4-rgb), 0.85) 25%;
 			--bottom-middle-color-2: rgba(var(--color-primary-4-rgb), 0.85) 75%;
@@ -254,27 +260,28 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 			grid-row: 4 / span 1;
 			text-align: center;
 			padding: $default-font-size * 1;
-			background-image: linear-gradient(
-				to right,
-				var(--bottom-left-color),
-				var(--bottom-middle-color-1),
-				var(--bottom-middle-color-2),
-				var(--bottom-right-color)
-			);
+			// background-image: linear-gradient(
+			// 	to right,
+			// 	var(--bottom-left-color),
+			// 	var(--bottom-middle-color-1),
+			// 	var(--bottom-middle-color-2),
+			// 	var(--bottom-right-color)
+			// );
+			background-color: $color-black;
 
 			@include respond(nav-switch) {
-				background-color: rgba(var(--color-primary-4-rgb), 1);
+				// background-color: rgba(var(--color-primary-4-rgb), 1);
 				background-image: none;
 			}
 
-			@include respond(phone) {
+			@include respond(tab-port) {
 				grid-row: 5 / span 1;
 				border-top: $home-page-border;
 			}
 
 			&:hover {
-				transition: color $animation-duration / 2 $animation-easing-flash;
-				--bottom-color: rgba(var(--color-primary-1-rgb), .66);
+				transition: color $animation-duration / 3 $animation-easing-standard;
+				--bottom-color: rgba(var(--color-primary-4-rgb), 1);
 			}
 		}
 
@@ -297,6 +304,13 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 				animate-skills infinite 10s,
 			;
 
+			@include respond(tab-port) {
+				animation: 	
+					10s text-bounce-mobile forwards  $animation-easing-standard infinite,
+					animate-skills infinite 10s,
+				;
+			}
+
 			&:hover {
 				color: rgba(var(--color-primary-4-rgb), 1);
 			}
@@ -310,7 +324,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 	&__animation-ease {
 		animation: $home-page-animation $animation-easing-standard-easeInOutBack;
 
-		@include respond(phone) {
+		@include respond(tab-port) {
 			animation: $home-page-animation ease;
 		}
 	}
