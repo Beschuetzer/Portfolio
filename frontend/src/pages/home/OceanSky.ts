@@ -26,6 +26,7 @@ import {
 	TextBufferGeometry,
 } from "three";
 import { MOBILE_BREAK_POINT_WIDTH } from "../../components/constants";
+import { getLinearPercentOfMaxMatchWithinRange } from "../../helpers";
 
 //#region Variable Inits
 let camera: PerspectiveCamera,
@@ -131,15 +132,22 @@ interface TextData {
 	height: number;
 }
 
-const isMobile = (window.innerWidth < MOBILE_BREAK_POINT_WIDTH);
-const textDisappearZ = -50;
+const isMobile = (window.innerWidth < 1250);
 const textMinXRotation = -Math.PI / 2 - 0.25;
 const textScrollSpeed = 0.2;
 const defaultTextX = 0;
 const defaultTextY = -0.2;
 const defaultTextYRotation = 0;
 const defaultTextZRotation = 0;
-const textSizeScaleFactor = isMobile ? .009 : 0.0036;
+
+const textSizeScaleFactor = getLinearPercentOfMaxMatchWithinRange(window.innerWidth,
+	800,
+	1600,
+	.0066,
+	.0038,
+);
+console.log('textSizeScaleFactor =', textSizeScaleFactor);
+// const textSizeScaleFactor = isMobile ? .0066 : 0.0036;
 const defaultTextSize = window.innerWidth * textSizeScaleFactor;
 const defaultTextHeight = 1;
 const defaultTextColor = new THREE.Color(0xf4d262);

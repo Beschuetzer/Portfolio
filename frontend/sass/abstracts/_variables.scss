@@ -113,6 +113,7 @@ $animation-easing-standard-easeInOutBack-smaller: cubic-bezier(
 	0.32,
 	1.2
 );
+$animation-easing-flash: cubic-bezier(0.68, -2, 0.32, 1);
 $animation-easing-modern: cubic-bezier(1, 0, 0, 1);
 $animation-navbar: $animation-duration $animation-easing-standard;
 $animation-bridge-width: calc(

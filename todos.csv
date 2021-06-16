@@ -66,10 +66,18 @@ OPTIMIZATIONS:
   "get to know me on a personal level" <-- link to about page
   "Dive into the making of a trick-based card game"
 
-'I'm excited that you're here.'
-'This is the perfect opportunity'
-'to highlight some of my work'
 
-'I enjoy a difficult challange'
-'as well as 
-'but most of all meeting new people'
+-change the font size to 12 for main-page  (16 for links)
+
+-note: it takes 3 seconds to complete light shining fx on home-page;  try syncing up bounce/accordion animation with it
+
+
+
+NOT SURE------------------------------------------------------------
+  'I'm excited that you're here.'
+  'This is the perfect opportunity'
+  'to highlight some of my work'
+
+  'I enjoy a difficult challange'
+  'as well as 
+  'but most of all meeting new people'

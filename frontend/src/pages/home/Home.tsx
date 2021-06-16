@@ -35,7 +35,7 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 
 					<article className="home__main-left">
 						<div className="home__main-left-content">
-							Not sure where to start?&nbsp; Check out the <EmbeddedLink className="home__main-link" href="/examples/bridge" isLocal={true}>multiplayer Bridge app </EmbeddedLink>I created.
+							Not sure where to start?&nbsp; Check out the <EmbeddedLink className="home__main-link" href="/examples/bridge" isLocal={true}>multiplayer Bridge app</EmbeddedLink>I created.
 						</div>
 					</article>
 
