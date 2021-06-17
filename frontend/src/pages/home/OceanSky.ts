@@ -152,7 +152,7 @@ const defaultTextSize = window.innerWidth * textSizeScaleFactor;
 const defaultTextHeight = 1;
 const defaultTextColor = new THREE.Color(0xf4d262);
 const lineSpacing = defaultTextSize * 3;
-const lineStart = 180;
+const lineStart = 172;
 
 const textsToUse = [
 	{
@@ -179,32 +179,36 @@ const textsToUse = [
 		text: "become a web developer.",
 		spaceBefore: false,
 	},
+	// {
+	// 	text: "i am excited",
+	// 	spaceBefore: true,
+	// },
+	// {
+	// 	text: "to show you what",
+	// 	spaceBefore: false,
+	// },
+	// {
+	// 	text: "i have built",
+	// 	spaceBefore: false,
+	// },
 	{
-		text: "i am excited",
+		text: "Everything on this site",
 		spaceBefore: true,
 	},
 	{
-		text: "to show you what",
+		text: "was built using 'hand-made'",
 		spaceBefore: false,
 	},
 	{
-		text: "i have built",
+		text: "components and SASS/CSS",
 		spaceBefore: false,
 	},
 	{
-		text: "and to hear",
-		spaceBefore: false,
-	},
-	{
-		text: "what you think.",
-		spaceBefore: false,
-	},
-	{
-		text: "Looking forward to",
+		text: "i Look forward to",
 		spaceBefore: true,
 	},
 	{
-		text: "hearing from you soon!",
+		text: "hearing what you think!",
 		spaceBefore: false,
 	},
 
@@ -232,7 +236,7 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 const animationFPS = 60.0;
 export let timeElapsedInMS = 0;
 export const introPanDuration = 5000;
-const lineScrollDuration = 1500;
+const lineScrollDuration = 1650;
 export const introPanDurationMobile = linesOfText * lineScrollDuration;
 ;
 export const introPanStartWait = isMobile

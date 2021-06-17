@@ -318,11 +318,11 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 	}
 
 	&__animation-ease-in-out-back {
-		animation: $home-page-animation cubic-bezier(0.68, -0.6, 0.32, 1.6);
+		animation: $home-page-animation $animation-easing-standard-easeInOutBack-smaller;
 	}
 
 	&__animation-ease {
-		animation: $home-page-animation $animation-easing-standard-easeInOutBack;
+		animation: $home-page-animation $animation-easing-standard-easeInOutBack-smaller;
 
 		@include respond(tab-port) {
 			animation: $home-page-animation ease;

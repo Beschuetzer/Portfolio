@@ -31,11 +31,7 @@ const sections: CSharpSection[] = [
 					<Paragraph size="four">
 						Around the end of Febraury 2020, Samsung updated their Android OS
 						to version 10.&nbsp; Eager to check out the newest Android OS, I
-						promptly updated.&nbsp; Unfortunately, the update
-						<EmbeddedLink href="https://issuetracker.google.com/issues/150054563">
-							broke my ability to sync music and playlists
-						</EmbeddedLink>{" "}
-						to my Galaxy S9+ phone.&nbsp;
+						promptly updated.&nbsp; Unfortunately, the update<EmbeddedLink href="https://issuetracker.google.com/issues/150054563">broke my ability to sync music and playlists</EmbeddedLink>to my Galaxy S9+ phone.&nbsp;
 					</Paragraph>
 					<Paragraph size="four">
 						Thinking it would get resolved in a prompt manner, I waited a few
@@ -60,24 +56,15 @@ const sections: CSharpSection[] = [
 					</Paragraph>
 				</CSharpCardSection>
 
-				<CSharpCardSection title="How">
+				<CSharpCardSection title="Approach">
 					<Paragraph size="four">
 						First I needed to figure out how to sync music to an Android
 						device. It turns out that the main way to do that is through a
-						protocol called the{" "}
-						<EmbeddedLink href="https://en.wikipedia.org/wiki/Media_Transfer_Protocol">
-							Media Transfer Protocol
-						</EmbeddedLink>{" "}
-						(MTP), which is part of the{" "}
-						<EmbeddedLink href="https://en.wikipedia.org/wiki/Windows_Media_DRM">
-							Windows Media DRM
-						</EmbeddedLink>
-						. Because of the{" "}
-						<EmbeddedLink isLocal={true} href="/examples/downloader">
-							downloader
-						</EmbeddedLink>{" "}
-						app I had recently started, I decided to use c# and WPF to create
+						protocol called the<EmbeddedLink href="https://en.wikipedia.org/wiki/Media_Transfer_Protocol">Media Transfer Protocol</EmbeddedLink>(MTP), which is part of the<EmbeddedLink href="https://en.wikipedia.org/wiki/Windows_Media_DRM">Windows Media DRM</EmbeddedLink>. Because of the<EmbeddedLink isLocal={true} href="/examples/downloader">downloader</EmbeddedLink>app I had recently started, I decided to use c# and WPF to create
 						the playlist syncing app.
+					</Paragraph>
+					<Paragraph size="four">
+						Creating the application was fairly straight forward due to what I had already learned from the downloader after I had thoroughly understood the problem and had a firm grasp on how task factories work and async code in general.
 					</Paragraph>
 				</CSharpCardSection>
 			</React.Fragment>,
@@ -126,24 +113,24 @@ const sections: CSharpSection[] = [
 			</section>
 		]
 	},
-	{
-		name: sectionNames[2],
-		pageName: C_SHARP_CLASSNAME,
-		children: [
-			<React.Fragment>
-				<CSharpCardSection title="MTP">
-					In order to facilitate the 
-				</CSharpCardSection>
-				<CSharpCardSection title="ANother thing?">
-					What to write here?
-					<EmbeddedLink isLocal={true} href="/examples/playlist-syncer">
-						another problem
-					</EmbeddedLink>
-					I was facing at the time.
-				</CSharpCardSection>
-			</React.Fragment>,
-		],
-	},
+	// {
+	// 	name: sectionNames[2],
+	// 	pageName: C_SHARP_CLASSNAME,
+	// 	children: [
+	// 		<React.Fragment>
+	// 			<CSharpCardSection title="MTP">
+	// 				In order to facilitate the 
+	// 			</CSharpCardSection>
+	// 			<CSharpCardSection title="ANother thing?">
+	// 				What to write here?
+	// 				<EmbeddedLink isLocal={true} href="/examples/playlist-syncer">
+	// 					another problem
+	// 				</EmbeddedLink>
+	// 				I was facing at the time.
+	// 			</CSharpCardSection>
+	// 		</React.Fragment>,
+	// 	],
+	// },
 ];
 
 interface PlaylistSyncerProps {
