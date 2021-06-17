@@ -28,7 +28,6 @@ const BODY_BACKGROUND_CLASSNAME = "body-background";
 const SET_ANIMATING_DONE_WAIT_FACTOR = 1.3;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
-let setSiteNavWidthTimeout: any;
 
 export interface Sounds {
 	play: (sound: string) => void;

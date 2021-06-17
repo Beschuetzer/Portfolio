@@ -54,23 +54,28 @@ const sectionContents = [
 				// title='An App is Born'
 			>
 				<p>
-					It was June of 2020 and I had just left my job at<EmbeddedLink href="/resume#ricoh" openInNewTab={true} isLocal={true}>Ricoh</EmbeddedLink>to pursue a life-long interest of mine: coding.&nbsp; 
-					&nbsp;I had just finished my two smaller side projects
+					It was June of 2020, and I had just left my job at<EmbeddedLink href="/resume#ricoh" openInNewTab={true} isLocal={true}>Ricoh</EmbeddedLink>to become a web developer.&nbsp; 
+					&nbsp;My two smaller c# projects
 					(<EmbeddedLink isLocal={true} href="/examples/downloader">
 						downloader
 					</EmbeddedLink>and<EmbeddedLink href="/examples/playlist-syncer" isLocal={true}>
 						playlist syncer
-					</EmbeddedLink>) 
-					and was looking for another project that would really test my proverbial coding chops.
+					</EmbeddedLink>) were finished
+					and I was looking for another project that would challenge me to ascend to the next level.
 				</p>
 				<p>
-					A good friend of mine mentioned how much he missed playing bridge since the pandemic had started.&nbsp; Initially, I suggested we look for a free-to-play Bridge app.&nbsp;  However, after extensively searching for such an app to no avail, it was clear I would have to make one if we wanted to play online for free (since then at least one free-to-play app has been released). 
+					A friend of mine mentioned how much he missed playing bridge since the pandemic had started.&nbsp; Initially, I suggested we look for a free-to-play Bridge app.&nbsp;  However, after extensively searching for such an app to no avail, it was clear I would have to make one if we wanted to play online for free.
+				</p>
+			</BridgeCardSection>
+			<BridgeCardSection
+				title="A Germinating Seed"
+				// title='An App is Born'
+			>
+				<p>
+					It was shortly after that conversation that I resolved to make the best free-to-play contract Bridge application I could while not knowing any HTML, CSS, or JS at that time.
 				</p>
 				<p>
-					It was shortly after that phone call that I resolved to make the best free-to-play contract Bridge application I could while not knowing any HTML, CSS, or JS at that time.
-				</p>
-				<p>
-					If I could make a satisfactory application, I was convinced I would have what it takes to justify devoting more time and energy to becoming an employed web developer.&nbsp; If not, I could always go back to Tech Support...
+					If I could make a seamless multiplayer contract bridge application, I was convinced I would have what it takes to justify devoting more time and energy to becoming an employed web developer.&nbsp; If not, I could always go back to Tech Support...
 				</p>
 				<p>
 					Turn the page to learn about the&nbsp;<BridgeSectionLink 	
@@ -394,7 +399,7 @@ const sectionContents = [
 						At the time it was easy for me to justify delaying learning about front end frameworks with the rationale that I would need to have a solid understanding of Javascript in order to start learning them.&nbsp; While that is somewhat true, learning a framework in the beginning would have forced me to also learn about modules and importing.&nbsp; That skill alone would have made my code base much more readable from the get go.&nbsp; Instead, I have a code base that needs to be completely refactored.
 					</p>
 			</BridgeCardSection>
-			<BridgeCardSection title="Leave no rock unturned">
+			<BridgeCardSection title="Leave No Rock Unturned">
 					<p>
 						Choosing to rely on paperJS for my vector graphic concerns worked out in the end, but had I done some upfront research, I would have been exposed to options like threeJS much earlier.&nbsp; I may not have chosen to use threeJS as it may have seemed like overkill at the time, but knowing about your options is important, which leads me to...
 					</p>

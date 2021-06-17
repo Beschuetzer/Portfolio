@@ -1,6 +1,6 @@
 .source-link {
   &__source {
-		font-family: $font-family-fancy-bridge;
+		font-family: $font-family-headers;
     position: fixed;
     z-index: $navbar-full-z-index;
     display: inline-flex;
@@ -45,6 +45,11 @@
 			transition:  
 				transform $animation-duration * .25 $animation-easing-modern,
 			;
+
+			border-radius: 50%;
+			padding: $default-font-size * .25 $default-font-size * .5;
+			color: rgba(var(--color-primary-4-rgb), 1);
+			background-color: rgba(var(--color-primary-1-rgb),0.1);
 		}
 
 		&:hover &-label {
