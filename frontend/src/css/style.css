@@ -2802,8 +2802,7 @@ body {
   transition: transform 0.125s cubic-bezier(1, 0, 0, 1);
   border-radius: 50%;
   padding: 0.4rem 0.8rem;
-  color: rgba(var(--color-primary-4-rgb), 1);
-  background-color: rgba(var(--color-primary-1-rgb), 0.1);
+  background-color: rgba(var(--color-primary-4-rgb), 0.1);
 }
 .source-link__source:hover .source-link__source-label {
   color: var(--arrow-button-right-fill-hover);

@@ -48,12 +48,13 @@
 
 			border-radius: 50%;
 			padding: $default-font-size * .25 $default-font-size * .5;
-			color: rgba(var(--color-primary-4-rgb), 1);
-			background-color: rgba(var(--color-primary-1-rgb),0.1);
+			// color: rgba(var(--color-primary-4-rgb), 1);
+			background-color: rgba(var(--color-primary-4-rgb),0.1);
 		}
 
 		&:hover &-label {
 			color: var(--arrow-button-right-fill-hover);
+			// color: rgba(var(--color-primary-4-rgb), .5);
 			transform: rotate(2.5deg);
 		}
 
