@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { NAVBAR_CLASSNAME } from "./utils";
 
 interface NavListItemProps {
+  isEmail?: boolean
 	isLink?: boolean
   to: string;
   label: string;
@@ -17,6 +18,7 @@ interface NavListItemProps {
 }
 
 const NavListItem: React.FC<NavListItemProps> = ({
+	isEmail = false,
 	isLink = true,
   onMouseEnter,
   onClick,
@@ -60,6 +62,36 @@ const NavListItem: React.FC<NavListItemProps> = ({
     return content;
   };
 
+  const renderLink = () => {
+    if (isEmail) {
+      return (
+        <a className={defaults.linkClassName} href={to}>
+          {getContent()}
+        </a>
+      )
+    }
+    else if (isLink === true) return (
+      <Link className={defaults.linkClassName} to={to}>
+        {getContent()}
+      </Link>
+    ) 
+    else if (isLink === false) return (
+      <div
+        className={`${defaults.linkClassName} ${
+          !isLink && imageSource ? "overflow-hidden" : ""
+        }`}>
+        {!isLink && imageSource ? (
+          <img
+            className={defaults.imageClassName}
+            src={imageSource}
+            alt={imageAlt}
+          />
+        ) : null}
+        {getContent()}
+      </div>
+    )
+  }
+
   return (
     <li
       onMouseEnter={onMouseEnter}
@@ -76,25 +108,7 @@ const NavListItem: React.FC<NavListItemProps> = ({
         />
       ) : null}
 
-      {isLink ? (
-        <Link className={defaults.linkClassName} to={to}>
-          {getContent()}
-        </Link>
-      ) : (
-        <div
-          className={`${defaults.linkClassName} ${
-            !isLink && imageSource ? "overflow-hidden" : ""
-          }`}>
-          {!isLink && imageSource ? (
-            <img
-              className={defaults.imageClassName}
-              src={imageSource}
-              alt={imageAlt}
-            />
-          ) : null}
-          {getContent()}
-        </div>
-      )}
+      {renderLink()}
     </li>
   );
 }

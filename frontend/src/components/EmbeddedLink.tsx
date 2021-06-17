@@ -8,6 +8,7 @@ interface EmbeddedLinkProps {
 	href: string,
 	className?: string,
 	isLocal?: boolean,
+	addSpaces?: boolean,
 	openInNewTab?: boolean,
 	children: any,
 	headerHeight: number,
@@ -17,6 +18,7 @@ const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 	href,
 	className = `${BRIDGE_CLASSNAME}__link`,
 	isLocal = false,
+	addSpaces = true,
 	openInNewTab = true,
 	children,
 	headerHeight,
@@ -52,9 +54,9 @@ const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 
 	return (
 		<React.Fragment>
-			&nbsp;
+			{addSpaces ? <span>&nbsp;</span> : null}
 			{renderContent()}
-			&nbsp;
+			{addSpaces ? <span>&nbsp;</span> : null}
 		</React.Fragment>
 	);
 };

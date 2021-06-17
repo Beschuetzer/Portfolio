@@ -31,6 +31,7 @@ import {
 	handleMouseEnter,
 } from "./utils";
 import { scrollToSection } from "../../utils";
+import { email } from "../../constants";
 
 interface SiteNavProps {
 	isAnimating: boolean;
@@ -183,8 +184,9 @@ const SiteNav: React.FC<SiteNavProps> = ({
 					<NavListItem
 						imageSource={contactImage}
 						imageAlt="Contact"
-						to="/contact"
+						to={`mailto:${email}`}
 						label="Contact"
+						isEmail={true}
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
 					/>

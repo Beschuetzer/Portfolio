@@ -229,7 +229,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: $navbar__logo-width * 3.43;
+			width: $navbar__logo-width * 3.85;
 
 			@include respond(tab-port) {
 				width: 100vw;		
@@ -239,7 +239,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 		&-left-content, &-right-content {
 			padding: $default-font-size * .5;
 			align-self: center;
-			margin: 2.5vh auto 0 auto;		
+			margin: 0 auto;		
 			width: 66vw;
 			
 			@include respond(tab-port) {
@@ -259,7 +259,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 			grid-column: 1 / -1;
 			grid-row: 4 / span 1;
 			text-align: center;
-			padding: $default-font-size * 1;
+			padding: $default-font-size * .5;
 			// background-image: linear-gradient(
 			// 	to right,
 			// 	var(--bottom-left-color),
@@ -286,7 +286,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 		}
 
 		&-link {
-			margin: auto $default-font-size * .15;
+			margin: 0;
 			font-size: $default-font-size;
 			@include link-animating(
 				var(--color-primary-4-rgb),

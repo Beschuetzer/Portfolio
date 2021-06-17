@@ -168,7 +168,7 @@ const textsToUse = [
 		spaceBefore: false,
 	},
 	{
-		text: "I recently changed my",
+		text: "i recently changed my",
 		spaceBefore: true,
 	},
 	{
@@ -180,7 +180,7 @@ const textsToUse = [
 		spaceBefore: false,
 	},
 	{
-		text: "I am excited",
+		text: "i am excited",
 		spaceBefore: true,
 	},
 	{
@@ -188,7 +188,7 @@ const textsToUse = [
 		spaceBefore: false,
 	},
 	{
-		text: "I have built",
+		text: "i have built",
 		spaceBefore: false,
 	},
 	{
