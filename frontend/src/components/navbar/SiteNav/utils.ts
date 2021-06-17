@@ -11,6 +11,7 @@ import {
 	PAGE_NAMES,
 	siteNavOriginalButtonWidth,
 	SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME,
+	DEFAULT_PAGE_NAME_INDEX,
 } from "../../constants";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
@@ -119,7 +120,7 @@ export const setBodyStyle = (currentUrl: string) => {
 	const lastIndexOfSlash = (currentUrl as any).lastIndexOf("/");
 	const pageName = (currentUrl as any).slice(lastIndexOfSlash);
 	const temp = PAGE_NAMES.indexOf(pageName);
-	const index = temp !== -1 ? temp : 0;
+	const index = temp !== -1 ? temp : DEFAULT_PAGE_NAME_INDEX;
 	setBodyStyle(PAGE_NAMES[index]);
 	const colorVarSuffix = PAGE_NAMES[index].slice(1);
 

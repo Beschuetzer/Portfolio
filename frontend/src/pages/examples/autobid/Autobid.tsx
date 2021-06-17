@@ -28,7 +28,7 @@ const sections: CSharpSection[] = [
         </CSharpCardSection>
 
         <CSharpCardSection title="The Collaboration">
-          <Paragraph size="four" classNamesToAdd="margin-top-1">
+          <Paragraph size="four">
             Our approach to working together was a multi-step process.  First, we would decide what we were going to work on for that day.  Second, we discussed our ideas about how we understood the problem.  Thirds, we both made our cases for why we thought what we thought using examples when necessary.  Fourth, we ultimately would agree on how the AI should behave in general with regards to the feature in question.  Fifth, we  started writing test cases to make sure we weren't missing anything.  Sixth, I would lay out the overall design of the feature/section.  Seven, we would take turns writing code to pass the test cases.  We devoted ~ 8 hours every Saturday to the project, and we are on track to finish the bidding phase part of the AI before the fall of 2021.
 
           </Paragraph>

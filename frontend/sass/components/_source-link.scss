@@ -64,3 +64,21 @@
 		}
 	}
 }
+
+:is(.csharp, .resume) .source-link__source {
+	&-svg {
+		fill: var(--color-primary-4) !important;
+
+		&:hover {
+			fill: rgba(var(--color-primary-4-rgb), .5) !important;
+		}
+	}
+
+	&-label {
+		color: var(--color-primary-4) !important;
+	}
+
+	&:hover .source-link__source-label {
+		color: var(--color-primary-3) !important;
+	}
+}

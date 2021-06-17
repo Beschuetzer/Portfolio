@@ -71,6 +71,7 @@ OPTIMIZATIONS:
 
 -add quote api to fill home page bottom?
 -move bridge stuff not related to making directly to about page
+-bug where clicking a SiteNav item right as pointer events comes online causes glitch
 
 
 NOT SURE------------------------------------------------------------

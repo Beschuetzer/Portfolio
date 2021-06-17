@@ -41,11 +41,20 @@ $color-primary-playlist-syncer-2: #ff8474;
 $color-primary-playlist-syncer-3: #9f5f80;
 $color-primary-playlist-syncer-4: #583d72;
 
+$color-primary-autobid-1: #E6E6E6;
+$color-primary-autobid-2: #C5A880;
+$color-primary-autobid-3: #532E1C;
+$color-primary-autobid-4: #0F0F0F;
+
+// $color-primary-autobid-4: #62959C;
+// $color-primary-autobid-3: #C19277;
+// $color-primary-autobid-2: #E1BC91;
+// $color-primary-autobid-1: #E3D0B9;
+
 :root {
 	--color-grey-light-1: #{$color-grey-light-1};
 	--color-grey-light-2: #{$color-grey-light-2};
 	--color-grey-light-3: #{$color-grey-light-3};
-
 	--color-grey-light-1-rgb: #{hexToRGB($color-grey-light-1)};
 	--color-grey-light-2-rgb: #{hexToRGB($color-grey-light-2)};
 	--color-grey-light-3-rgb: #{hexToRGB($color-grey-light-3)};
@@ -56,7 +65,6 @@ $color-primary-playlist-syncer-4: #583d72;
 	--color-grey-60: #{$color-grey-60};
 	--color-grey-80: #{$color-grey-80};
 	--color-white: 	#{$color-white};
-
 	--color-black-rgb: 	#{hexToRGB($color-black)};
   --color-grey-20-rgb: #{hexToRGB($color-grey-20)};
 	--color-grey-40-rgb: #{hexToRGB($color-grey-40)};
@@ -69,7 +77,6 @@ $color-primary-playlist-syncer-4: #583d72;
 	--color-primary-2: #{$color-primary-2};
 	--color-primary-3: #{$color-primary-3};
 	--color-primary-4: #{$color-primary-4};
-
 	--color-primary-1-rgb: #{hexToRGB($color-primary-1)};
 	--color-primary-1-light-rgb: #{hexToRGB($color-primary-1-light)};
 	--color-primary-2-rgb: #{hexToRGB($color-primary-2)};
@@ -80,7 +87,6 @@ $color-primary-playlist-syncer-4: #583d72;
 	--color-primary-resume-2: #{$color-primary-resume-2};
 	--color-primary-resume-3: #{$color-primary-resume-3};
 	--color-primary-resume-4: #{$color-primary-resume-4};
-
 	--color-primary-resume-1-rgb: #{hexToRGB($color-primary-resume-1)};
 	--color-primary-resume-2-rgb: #{hexToRGB($color-primary-resume-2)};
 	--color-primary-resume-3-rgb: #{hexToRGB($color-primary-resume-3)};
@@ -90,7 +96,6 @@ $color-primary-playlist-syncer-4: #583d72;
 	--color-primary-bridge-4: #{$color-primary-bridge-4};
 	--color-primary-bridge-3: #{$color-primary-bridge-3};
 	--color-primary-bridge-1: #{$color-primary-bridge-1};
-
 	--color-primary-bridge-2-rgb: #{hexToRGB($color-primary-bridge-2)};
 	--color-primary-bridge-4-rgb: #{hexToRGB($color-primary-bridge-4)};
 	--color-primary-bridge-3-rgb: #{hexToRGB($color-primary-bridge-3)};
@@ -100,7 +105,6 @@ $color-primary-playlist-syncer-4: #583d72;
 	--color-primary-downloader-3: #{$color-primary-downloader-3};
 	--color-primary-downloader-2: #{$color-primary-downloader-2};
 	--color-primary-downloader-4: #{$color-primary-downloader-4};
-	
 	--color-primary-downloader-1-rgb: #{hexToRGB($color-primary-downloader-1)};
 	--color-primary-downloader-3-rgb: #{hexToRGB($color-primary-downloader-3)};
 	--color-primary-downloader-2-rgb: #{hexToRGB($color-primary-downloader-2)};
@@ -110,10 +114,18 @@ $color-primary-playlist-syncer-4: #583d72;
 	--color-primary-playlist-syncer-3: #{$color-primary-playlist-syncer-3};
 	--color-primary-playlist-syncer-2: #{$color-primary-playlist-syncer-2};
 	--color-primary-playlist-syncer-4: #{$color-primary-playlist-syncer-4};
-	
 	--color-primary-playlist-syncer-1-rgb: #{hexToRGB($color-primary-playlist-syncer-1)};
 	--color-primary-playlist-syncer-3-rgb: #{hexToRGB($color-primary-playlist-syncer-3)};
 	--color-primary-playlist-syncer-2-rgb: #{hexToRGB($color-primary-playlist-syncer-2)};
 	--color-primary-playlist-syncer-4-rgb: #{hexToRGB($color-primary-playlist-syncer-4)};
+
+	--color-primary-autobid-1: #{$color-primary-autobid-1};
+	--color-primary-autobid-3: #{$color-primary-autobid-3};
+	--color-primary-autobid-2: #{$color-primary-autobid-2};
+	--color-primary-autobid-4: #{$color-primary-autobid-4};
+	--color-primary-autobid-1-rgb: #{hexToRGB($color-primary-autobid-1)};
+	--color-primary-autobid-3-rgb: #{hexToRGB($color-primary-autobid-3)};
+	--color-primary-autobid-2-rgb: #{hexToRGB($color-primary-autobid-2)};
+	--color-primary-autobid-4-rgb: #{hexToRGB($color-primary-autobid-4)};
 
 }

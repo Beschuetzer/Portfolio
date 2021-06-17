@@ -246,7 +246,7 @@
 		&:not(.navbar__dropdown-container):hover {
 			z-index: 10000;
 			transform: translateY(-$navbar__item-divider-width);
-			background: rgba(var(--color-primary-1-rgb), .5);
+			background: rgba(var(--color-primary-1-rgb), $resume-color-opacity);
 			box-shadow: $navbar-box-shadow-hover;
 			transition: 
 				background $animation-duration / 3 $animation-easing-standard,
@@ -785,6 +785,11 @@
 
 				& span {
 					text-shadow: getTextShadow(soft-emboss, var(--color-primary-4-rgb));
+					background-image: linear-gradient(
+						to right,
+						rgba(var(--color-primary-4-rgb), 1),
+						rgba(var(--color-primary-4-rgb), 1),
+					) !important;
 				}
 
 				@include respond(nav-switch) {

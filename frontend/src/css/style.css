@@ -60,6 +60,14 @@
   --color-primary-playlist-syncer-3-rgb: 159, 95, 128;
   --color-primary-playlist-syncer-2-rgb: 255, 132, 116;
   --color-primary-playlist-syncer-4-rgb: 88, 61, 114;
+  --color-primary-autobid-1: #E6E6E6;
+  --color-primary-autobid-3: #532E1C;
+  --color-primary-autobid-2: #C5A880;
+  --color-primary-autobid-4: #0F0F0F;
+  --color-primary-autobid-1-rgb: 230, 230, 230;
+  --color-primary-autobid-3-rgb: 83, 46, 28;
+  --color-primary-autobid-2-rgb: 197, 168, 128;
+  --color-primary-autobid-4-rgb: 15, 15, 15;
 }
 
 :root {
@@ -800,7 +808,7 @@ body {
 .navbar__item:not(.navbar__dropdown-container):hover {
   z-index: 10000;
   transform: translateY(-0.32rem);
-  background: rgba(var(--color-primary-1-rgb), 0.5);
+  background: rgba(var(--color-primary-1-rgb), 0.95);
   box-shadow: 0px 10px 10px rgba(17, 17, 17, 0.5);
   transition: background 0.1666666667s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -1256,6 +1264,7 @@ body {
 }
 .page-nav__section-group:hover span {
   text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
+  background-image: linear-gradient(to right, rgba(var(--color-primary-4-rgb), 1), rgba(var(--color-primary-4-rgb), 1)) !important;
 }
 @media only screen and (max-width: 68.75em) {
   .page-nav__section-group:hover {
@@ -2816,6 +2825,19 @@ body {
   fill: var(--arrow-button-right-fill);
 }
 
+:is(.csharp, .resume) .source-link__source-svg {
+  fill: var(--color-primary-4) !important;
+}
+:is(.csharp, .resume) .source-link__source-svg:hover {
+  fill: rgba(var(--color-primary-4-rgb), 0.5) !important;
+}
+:is(.csharp, .resume) .source-link__source-label {
+  color: var(--color-primary-4) !important;
+}
+:is(.csharp, .resume) .source-link__source:hover .source-link__source-label {
+  color: var(--color-primary-3) !important;
+}
+
 .home {
   height: 100vh;
   width: 100vw;
@@ -4145,14 +4167,9 @@ div.references__name {
     padding-bottom: 1.6rem;
   }
 }
-.csharp .source-link__source-svg {
-  fill: var(--color-primary-3);
-}
-.csharp .source-link__source-label {
-  color: var(--color-primary-4);
-}
-.csharp .source-link__source:hover .source-link__source-label {
-  color: var(--color-primary-3);
+
+.autobid.csharp {
+  background-image: linear-gradient(to right, rgba(var(--color-primary-4-rgb), 0.25), rgba(var(--color-primary-3-rgb), 0.25));
 }
 
 /*# sourceMappingURL=style.css.map */
