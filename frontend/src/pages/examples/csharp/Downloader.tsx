@@ -120,7 +120,7 @@ const sections: CSharpSection[] = [
 					is handled by the second thread.&nbsp; The last thread handles the
 					GUI updates.
 				</CSharpCardSection>
-				<CSharpCardSection title="Challenging Concept">
+				<CSharpCardSection title="A Challenging Concept">
 					At this point in time (March-April 2020), I had never written an
 					app/script that used multiple threads.&nbsp; It took a few days to
 					firmly grasp the concept, but once I had it, I was able to do

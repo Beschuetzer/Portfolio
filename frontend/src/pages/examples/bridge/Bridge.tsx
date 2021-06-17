@@ -44,9 +44,9 @@ const sectionContents = [
 				<p>
 					<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 						A# Maj Bridge
-					</EmbeddedLink>is an app I created where users can play<EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">
+					</EmbeddedLink>is a socket.io and MongoDB app I created where users can play<EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">
 						contract bridge
-					</EmbeddedLink>online for free.&nbsp; I started seriously coding of the project in August of 2020 and completed the main code base in January of 2021.
+					</EmbeddedLink>online for free.&nbsp; I started serious coding of the project in August of 2020 and completed the main code base in January of 2021.
 				</p>
 			</BridgeCardSection>
 			<BridgeCardSection
@@ -234,7 +234,7 @@ const sectionContents = [
 					</EmbeddedLink>using c#/WPF.&nbsp; However, it became readily-apparent early on that it would be rather challenging to create the bridge app I had envisioned using c#/WPF. 
 				</p>
 				<p>
-					After some research, I made the decision to create the whole app around socket.io, which would handle the real-time aspects of the app.&nbsp; The only problem was I had absolutely no idea how to create a web application at that point in time.&nbsp; After googling some more, I found an exquisite resource called<EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>.
+					After some research, I made the decision to create the whole app around socket.io and MongoDB, which would handle the real-time aspects of the app.&nbsp; The only problem was I had absolutely no idea how to create a web application at that point in time.&nbsp; After googling some more, I found an exquisite resource called<EmbeddedLink href="https://www.theodinproject.com/">The Odin Project</EmbeddedLink>.
 				</p>
 			</BridgeCardSection>
 			{/* <BridgeCardSection title="A Tough Decision">

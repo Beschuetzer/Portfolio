@@ -162,5 +162,8 @@
 .margin-0 {
 	margin: 0 !important;
 }
+.margin-top-1 {
+	margin-top: $default-font-size * 1 !important;
+}
 //Dealing with SiteNav filter bug on pages like '/bridge'
 // .no-filter {filter: none !important}
