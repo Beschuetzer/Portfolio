@@ -36,14 +36,14 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 
 					<article className="home__main-left">
 						<div className="home__main-left-content">
-							Not sure where to start?&nbsp; Check out the <EmbeddedLink addSpaces={false} className="home__main-link" href="/examples/bridge" isLocal={true}>multiplayer Bridge app</EmbeddedLink><br></br>I created.
+							Not sure where to start?&nbsp; Check out the <EmbeddedLink addSpaces={false} className="home__main-link" href="/examples/bridge" openInNewTab={false} isLocal={true}>multiplayer Bridge app</EmbeddedLink><br></br>I created.
 						</div>
 					</article>
 
 					<article className="home__main-right">
 						<div className="home__main-right-content">
-							{/* Click, hover, and<br></br><EmbeddedLink addSpaces={false} className="home__main-link" isLocal={false} href={`mailto:${email}`}>get in touch</EmbeddedLink><br></br>when you're ready. */}
-							Take a peek at my<br></br><EmbeddedLink addSpaces={false} className="home__main-link" isLocal={false} href="/resume#skills">skill set</EmbeddedLink><br></br> when you're ready
+							{/* Click, hover, and<br></br><EmbeddedLink addSpaces={false} className="home__main-link" openInNewTab={false} isLocal={false} href={`mailto:${email}`}>get in touch</EmbeddedLink><br></br>when you're ready. */}
+							Take a peek at my<br></br><EmbeddedLink addSpaces={false} className="home__main-link" openInNewTab={false} isLocal={true} href="/resume#skills">skill set</EmbeddedLink><br></br> when you're ready
 						</div>
 					</article>
 

@@ -64,10 +64,19 @@ const sectionContents = [
 					and was looking for another project that would really test my proverbial coding chops.
 				</p>
 				<p>
-					During a phone call, a good friend of mine mentioned how much he missed playing bridge now that the pandemic had shut everything down.&nbsp; Initially, I suggested we look for a free-to-play Bridge app.&nbsp;  However, after extensively searching for such an app to no avail, it was clear I would have to make one if we wanted to play online for free (since then at least one free-to-play app has been released). 
+					A good friend of mine mentioned how much he missed playing bridge since the pandemic had started.&nbsp; Initially, I suggested we look for a free-to-play Bridge app.&nbsp;  However, after extensively searching for such an app to no avail, it was clear I would have to make one if we wanted to play online for free (since then at least one free-to-play app has been released). 
 				</p>
 				<p>
-					It was shortly after that phone call that I resolved to make the best free-to-play contract Bridge application I could without knowing any HTML, CSS, or JS at the time.
+					It was shortly after that phone call that I resolved to make the best free-to-play contract Bridge application I could while not knowing any HTML, CSS, or JS at that time.
+				</p>
+				<p>
+					If I could make a satisfactory application, I was convinced I would have what it takes to justify devoting more time and energy to becoming an employed web developer.&nbsp; If not, I could always go back to Tech Support...
+				</p>
+				<p>
+					Turn the page to learn about the&nbsp;<BridgeSectionLink 	
+						isEmbeddedLink={true}
+						name="features"
+						sectionToSkipTo="features"/> I built into<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>.
 				</p>
 			</BridgeCardSection>
 		</BridgeCard>
@@ -302,7 +311,7 @@ const sectionContents = [
 				<div className={`${BRIDGE_CLASSNAME}__subsection-grid`}>
 					<span>1).</span>
 					<span>
-						I could go my own pace, which would allow me to move more quickly
+						I could go at my own pace, which would allow me to move more quickly
 						through the areas that I find easy while being able to spend more
 						time on the areas that I find difficult.
 					</span>
@@ -329,20 +338,15 @@ const sectionContents = [
 			</BridgeCardSection>
 			<BridgeCardSection title="Deciding on the Technology to Use">
 				<p>
-					I knew I would pave my own path, but were would I start?&nbsp; I
-					researched popular web development technologies and came across many
-					different stacks.&nbsp; Admittedly, it was a bit overwhelming at
-					first figuring out where to start, but eventually I came to the
-					conclusion that sticking to the bread and butter of web development
-					and then expanding out from there would be the best approach.&nbsp;
+					Admittedly, it was a bit overwhelming at
+					first figure out which stack to go with for the project.&nbsp; After much research, I came to the
+					conclusion that sticking to the bread and butter of web development would be the best choice.  I figured it would be beneficial to my future career to get 'down and dirty' with CSS and JS.&nbsp; I could always layer on more complexity later.
 				</p>
 				<p>
-					If I wanted to become a web developer, I figured, I would need to
-					have a solid understanding of HTML5, CSS3, and JS.&nbsp; What better
-					way to learn the basics than to build a web-based multiplayer bridge
-					app? &nbsp; This line of thinking is what led me to develop<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
-						A# Maj Bridge
-					</EmbeddedLink>using primarily vanilla HTML5, CSS3, and JS.
+					For that reason, I chose to develop the frontend of<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>with vanilla HTML5, CSS3, and JS and the backend with NodeJS(Express).&nbsp; My choice to use paperJS for the vector graphics library was purely because I had learned about it in Colt Steele's<EmbeddedLink
+						href="https://www.udemy.com/course/the-web-developer-bootcamp/"
+						isLocal={false}
+					>web developer bootcamp</EmbeddedLink>and didn't have any reason at the time to think about alternatives.
 				</p>
 				<BridgeCardSection title="Picking the Right Curriculum">
 					<p>
@@ -351,15 +355,12 @@ const sectionContents = [
 						didn't take long for me to find NodeJS.&nbsp; Knowing what I would
 						use for my server-side code made searching for bootcamps on sites
 						like Udemy and YouTube much easier.&nbsp;After careful
-						consideration, I decided on Colte Steele's &nbsp;
-						<a
-							target="_blank"
-							rel="noreferrer"
+						consideration, I decided on Colte Steele's<EmbeddedLink
 							href="https://www.udemy.com/course/the-web-developer-bootcamp/"
-							className={`${BRIDGE_CLASSNAME}__link`}>
-							Web Developer Bootcamp
-						</a>
-						&nbsp; (which has since been updated) to use as the foundation for
+							isLocal={false}
+						>
+							Web Developer Bootcamp (2015 version)
+						</EmbeddedLink>(which has since been updated) to use as the foundation for
 						learning how to build a complete application using HTML5, CSS3,
 						and JS.&nbsp; The rest is hard work, will power, luck, and
 						curiosity.
@@ -372,7 +373,7 @@ const sectionContents = [
 						</EmbeddedLink>took roughly 6 months for me to complete starting from not knowing any HTML, CSS, or Javascript.&nbsp; It runs smoothly on
 						Android 10+, Firefox 70+, and Chrome 70+ (but not on mobile iOS
 						devices due to paperJS issues that I couldn't resolve due to the
-						fact that I don't have access to an iOS device). &nbsp; It can
+						fact that I don't have access to an iOS device and wanted to focus on other things.). &nbsp; It can
 						host multiple simultaneous games, but is unlikely to be able to serve more than a
 						thousand simultaneous games in its current state.&nbsp;{" "}
 					</p>
