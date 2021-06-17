@@ -222,7 +222,7 @@ const sectionContents = [
 	</SectionContainer>,
 	<SectionContainer name={bridgeSections[2]} pageName="bridge">
 		<BridgeCard titleSize="two" titleContent={bridgeSections[2]}>
-			<BridgeCardSection title="First Steps">
+			<BridgeCardSection title="Off and Running">
 				<p>
 					Because I had just completed the<EmbeddedLink isLocal={true} href="/examples/downloader">downloader</EmbeddedLink>and<EmbeddedLink href="/examples/playlist-syncer" isLocal={true}>playlist syncer</EmbeddedLink>projects, I initially tried creating<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 						A# Maj Bridge
@@ -294,7 +294,7 @@ const sectionContents = [
 						This is when<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>became a full-time endeavor.&nbsp; 
 					</p> */}
 			{/* </BridgeCardSection> */}
-			<BridgeCardSection title="The Little Matter of How">
+			<BridgeCardSection title="To Pay or Not To Pay?">
 				<p>
 					I started by learning the basics via the<EmbeddedLink href="https://www.theodinproject.com/">
 						The Odin Project
@@ -350,27 +350,22 @@ const sectionContents = [
 				</p>
 				<BridgeCardSection title="Picking the Right Curriculum">
 					<p>
-						With a technology decision for the client-side in place, I began
-						looking at server-side technologies that I could use.&nbsp; It
-						didn't take long for me to find NodeJS.&nbsp; Knowing what I would
-						use for my server-side code made searching for bootcamps on sites
-						like Udemy and YouTube much easier.&nbsp;After careful
+						Knowing what I would use on the server-side made searching for resources much easier.&nbsp; After careful
 						consideration, I decided on Colte Steele's<EmbeddedLink
 							href="https://www.udemy.com/course/the-web-developer-bootcamp/"
 							isLocal={false}
 						>
 							Web Developer Bootcamp (2015 version)
-						</EmbeddedLink>(which has since been updated) to use as the foundation for
+						</EmbeddedLink>to use as the foundation for
 						learning how to build a complete application using HTML5, CSS3,
-						and JS.&nbsp; The rest is hard work, will power, luck, and
-						curiosity.
+						and JS.&nbsp; The rest is hard work, dedication, will power, luck, and curiosity.
 					</p>
 				</BridgeCardSection>
 				<BridgeCardSection title="The Results">
 					<p>
 						<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 							A# Maj Bridge
-						</EmbeddedLink>took roughly 6 months for me to complete starting from not knowing any HTML, CSS, or Javascript.&nbsp; It runs smoothly on
+						</EmbeddedLink>took roughly 4 months for me to complete starting from not knowing any HTML, CSS, Javascript or.&nbsp; It runs smoothly on
 						Android 10+, Firefox 70+, and Chrome 70+ (but not on mobile iOS
 						devices due to paperJS issues that I couldn't resolve due to the
 						fact that I don't have access to an iOS device and wanted to focus on other things.). &nbsp; It can
@@ -392,24 +387,24 @@ const sectionContents = [
 		</BridgeCard>
 	</SectionContainer>,
 	<SectionContainer name={bridgeSections[3]} pageName="bridge">
+		
 		<BridgeCard titleSize="two" titleContent={bridgeSections[3]}>
+			<BridgeCardSection title="Sometimes Bread and Butter is not enough">
+					<p>
+						At the time it was easy for me to justify delaying learning about front end frameworks with the rationale that I would need to have a solid understanding of Javascript in order to start learning them.&nbsp; While that is somewhat true, learning a framework in the beginning would have forced me to also learn about modules and importing.&nbsp; That skill alone would have made my code base much more readable from the get go.&nbsp; Instead, I have a code base that needs to be completely refactored.
+					</p>
+			</BridgeCardSection>
+			<BridgeCardSection title="Leave no rock unturned">
+					<p>
+						Choosing to rely on paperJS for my vector graphic concerns worked out in the end, but had I done some upfront research, I would have been exposed to options like threeJS much earlier.&nbsp; I may not have chosen to use threeJS as it may have seemed like overkill at the time, but knowing about your options is important, which leads me to...
+					</p>
+			</BridgeCardSection>
 			<BridgeCardSection title="No One Technology is 'Better'">
 				<p>
 					It's easy to think in the absolute terms of 'good', 'better', and
 					'best'.&nbsp; My experience coding<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
 						A# Maj Bridge
-					</EmbeddedLink>has illustrated to me that when it comes to web development thinking
-					in these terms doesn't cut it.&nbsp;
-				</p>
-			</BridgeCardSection>
-			<BridgeCardSection title="A 'Better' Approach">
-				<p>
-					How soon does it need to be finished?&nbsp; Does it need to be able
-					to scale up to millions of users?&nbsp; What types of browser
-					support does it need to have?&nbsp; These are all crucial
-					considerations to take into account before dashing off the starting
-					line and potentially taking a wrong turn somewhere from which you
-					may need to backtrack.
+					</EmbeddedLink>has shown me that this way of thinking doesn't apply very well to web development.&nbsp; Picking the technology that meets the requirements with the least amount of complexity, is a more appropriate approach (assuming you don't already know a technology that meets the requirements).
 				</p>
 			</BridgeCardSection>
 		</BridgeCard>
