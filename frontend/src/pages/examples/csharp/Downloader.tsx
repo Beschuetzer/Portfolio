@@ -147,8 +147,13 @@ const Downloader: React.FC<DownloaderProps> = () => {
 		{
 			selector: "#root",
 			styles: {
-				backgroundColor: 'green !important',
+				backgroundImage: `linear-gradient(
+					to right,
+					black,
+					transparent
+				) !important`,
 				color: 'red !important',
+				fill: 'green',
 			}
 		,
 		}

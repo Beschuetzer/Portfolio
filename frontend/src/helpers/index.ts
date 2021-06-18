@@ -67,3 +67,18 @@ export function getLinearPercentOfMaxMatchWithinRange(currentTrackedValue: numbe
     return startOutputValue - (percentOfRange * outputValueRange);
   }
 }
+
+export function removeConsequetiveSpaces(str: string) {
+	let multipleSpacesRemoved: string[] = []
+	for (let i = 0; i < str.length; i++) {
+		const char = str[i];
+
+		if (multipleSpacesRemoved[multipleSpacesRemoved.length - 1] === '') debugger;
+
+		if (multipleSpacesRemoved[multipleSpacesRemoved.length - 1] === '' && char === '') {
+			continue;
+		}
+		multipleSpacesRemoved.push(char);
+	}
+	return multipleSpacesRemoved.join('');
+}
