@@ -26,7 +26,7 @@ export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
 export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 
 const BODY_BACKGROUND_CLASSNAME = "body-background";
-const SET_ANIMATING_DONE_WAIT_FACTOR = 1.3;
+const SET_ANIMATING_DONE_WAIT_FACTOR = 1.33;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
 
@@ -67,6 +67,8 @@ export const destroy = (navRef: NavRef) => {
 
 export const startAnimating = (navRef: NavRef, isAnimating: boolean) => {
 	const navBar = navRef.current as any;
+	navBar?.classList?.add(NAVBAR_IS_ANIMATING_CLASSNAME);
+
 	resetAnimatingId = setTimeout(() => {
 		navBar?.classList?.remove(NAVBAR_IS_ANIMATING_CLASSNAME);
 		navBar?.classList?.remove(OVERFLOW_HIDDEN_CLASSNAME);
@@ -76,7 +78,6 @@ export const startAnimating = (navRef: NavRef, isAnimating: boolean) => {
 			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 		}
 	}, ANIMATION_DURATION * SET_ANIMATING_DONE_WAIT_FACTOR);
-	navBar?.classList?.add(NAVBAR_IS_ANIMATING_CLASSNAME);
 };
 
 export const getResetAnimatingId = () => {
@@ -202,15 +203,16 @@ export const handleNavClick = (
 	e: MouseEvent,
 ) => {
 	const navBar = navRef.current;
-	const isChildOfNavBar = checkForParentOfType(
+	if (!navBar) return;
+	handleSound(sounds, e);
+
+	let isChildOfNavBar = ((e.target as HTMLElement)?.classList.contains(NAVBAR_CLASSNAME))
+	if (!isChildOfNavBar) isChildOfNavBar =	checkForParentOfType(
 		e.target as HTMLElement,
 		"nav",
 		NAVBAR_CLASSNAME,
 	);
-
-	if (!navBar) return;
-	handleSound(sounds, e);
-
+	
 	if (isChildOfNavBar) navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 
 	if (!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) && isChildOfNavBar) {
