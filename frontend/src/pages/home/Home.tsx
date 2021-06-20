@@ -2,23 +2,18 @@ import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { getRepositories } from "../../actions";
 import { getRandomQuote, Quote } from "../../apis/quotes";
-import { email } from "../../components/constants";
 import EmbeddedLink from "../../components/EmbeddedLink";
 import useClasslistAdder, { ClasslistAdder } from "./useClasslistAdder";
-import useSky from './useSky';
+import useSky from "./useSky";
 
 let quoteResult: Quote;
-getRandomQuote().then(response => {
-	quoteResult = response;
-});
+// getRandomQuote().then((response) => {
+// 	quoteResult = response;
+// });
 
 const classListsToSet: ClasslistAdder[] = [
 	{
-		classnames: [
-			"home__name-first",
-			"home__name-last",
-			"home__third-word",
-		],
+		classnames: ["home__name-first", "home__name-last", "home__third-word"],
 		classesToAdd: ["home__animation-ease-in-out-back"],
 	},
 	{
@@ -26,7 +21,7 @@ const classListsToSet: ClasslistAdder[] = [
 			"home__main-left",
 			"home__main-right",
 			"home__main-bottom",
-			"home__main-quote",
+			"home__quote",
 		],
 		classesToAdd: ["home__animation-ease"],
 	},
@@ -37,20 +32,14 @@ interface HomeProps {
 	getRepositories: () => void;
 }
 
-const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
+const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 	//Getting Repos
 	useEffect(() => {
 		if (!repos || repos.length === 0) getRepositories();
 	}, [repos, getRepositories]);
 
-
 	useClasslistAdder(classListsToSet);
 	useSky();
-
-	const getQuote = () => {
-		if (!quoteResult) return;
-		return quoteResult.content;		
-	}
 
 	return (
 		<React.Fragment>
@@ -61,26 +50,53 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 					<h5 className="home__third-word">embodies</h5>
 				</div>
 				<div className="home__main">
-
 					<article className="home__main-bottom">
-						This site was created with React, Redux, Express, ThreeJS, and custom SASS/CSS.
+						This site was created with React, Redux, Express, ThreeJS, and
+						custom SASS/CSS.
 					</article>
 
 					<article className="home__main-left">
 						<div className="home__main-left-content">
-							Not sure where to start?&nbsp; Check out the <EmbeddedLink addSpaces={false} className="home__main-link" href="/examples/bridge" openInNewTab={false} isLocal={true}>multiplayer Bridge app</EmbeddedLink><br></br>I created.
+							Not sure where to start?&nbsp; Check out the{" "}
+							<EmbeddedLink
+								addSpaces={false}
+								className="home__main-link"
+								href="/examples/bridge"
+								openInNewTab={false}
+								isLocal={true}>
+								multiplayer Bridge app
+							</EmbeddedLink>
+							<br></br>I created.
 						</div>
 					</article>
 
 					<article className="home__main-right">
 						<div className="home__main-right-content">
 							{/* Click, hover, and<br></br><EmbeddedLink addSpaces={false} className="home__main-link" openInNewTab={false} isLocal={false} href={`mailto:${email}`}>get in touch</EmbeddedLink><br></br>when you're ready. */}
-							Take a peek at my<br></br><EmbeddedLink addSpaces={false} className="home__main-link" openInNewTab={false} isLocal={true} href="/resume#skills">skill set</EmbeddedLink><br></br> when you're ready
+							Take a peek at my<br></br>
+							<EmbeddedLink
+								addSpaces={false}
+								className="home__main-link"
+								openInNewTab={false}
+								isLocal={true}
+								href="/resume#skills">
+								skill set
+							</EmbeddedLink>
+							<br></br> when you're ready
 						</div>
 					</article>
 
-					<article className="home__main-quote">
-						{getQuote()}
+					<article className="home__quote">
+						<span className="home__quote-content">
+							&lsquo;{quoteResult ? quoteResult.content : null}&rsquo; &nbsp;
+							&#8212; &nbsp;
+							<span className="home__quote-author">
+								{quoteResult ? quoteResult.author : null}
+								{/* <br></br> */}
+								{/* {quoteResult && quoteResult.tags ? quoteResult.tags : null} */}
+								{/* {quoteResult && (quoteResult as any).results ? (quoteResult as any).results : null} */}
+							</span>
+						</span>
 					</article>
 
 					{/* <div className="home__main-description">
@@ -90,11 +106,10 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 						Click, hover, and get in touch when you're ready.
 					</div> */}
 				</div>
-				
 			</section>
 		</React.Fragment>
 	);
-}
+};
 
 const mapStateToProps = (state: RootStateOrAny) => {
 	return {

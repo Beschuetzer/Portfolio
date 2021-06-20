@@ -3026,14 +3026,6 @@ body {
   transition: color 0.1666666667s ease;
   --bottom-color: rgba(var(--color-primary-4-rgb), 1);
 }
-.home__main-quote {
-  transform: translateY(100%);
-  grid-column: 2/span 1;
-  grid-row: 3/-1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .home__main-link {
   margin: 0;
   font-size: 1.6rem;
@@ -3053,6 +3045,23 @@ body {
 }
 .home__main-link:hover {
   color: rgba(var(--color-primary-4-rgb), 1);
+}
+.home__quote {
+  padding: 3.2rem 6.4rem;
+  transform: translateY(100%);
+  grid-column: 2/span 1;
+  grid-row: 3/-1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  color: rgba(var(--color-primary-4-rgb), 0.5);
+}
+@media only screen and (max-width: 52.6875em) {
+  .home__quote {
+    opacity: 0;
+    visibility: none;
+  }
 }
 .home__animation-ease-in-out-back {
   animation: 1.5s 1 translateToZero forwards cubic-bezier(0.68, -0.2, 0.32, 1.2);

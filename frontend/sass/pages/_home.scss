@@ -1,6 +1,7 @@
 $background-color-opacity: .1;
 $home-page-border: 2px solid rgba(var(--color-primary-4-rgb), .5);
 $home-page-animation: 1.5s 1 translateToZero forwards;
+$breakpoint-to-change-layout: 'tab-port';
 
 .home {
 	height: 100vh;
@@ -13,7 +14,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 		var(--color-primary-2-rgb)
 	);
 
-	@include respond(tab-port) {
+	@include respond($breakpoint-to-change-layout) {
 		font-size: $default-font-size;
 	}
 
@@ -144,7 +145,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 				var(--home-column-height)
 			);
 
-		@include respond(tab-port) {
+		@include respond($breakpoint-to-change-layout) {
 			grid-template-rows: repeat(
 					2,
 					var(--home-column-height)
@@ -195,7 +196,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 				padding-left: 0;
 			}
 
-			@include respond(tab-port) {
+			@include respond($breakpoint-to-change-layout) {
 				grid-row: 3 / span 1;
 				background-color: rgba(var(--color-primary-1-rgb), $background-color-opacity);
 				border-top: $home-page-border ;
@@ -215,7 +216,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 				padding-right: 0;
 			}
 
-			@include respond(tab-port) {
+			@include respond($breakpoint-to-change-layout) {
 				grid-row: 4 / span 1;
 				background-color: rgba(var(--color-primary-2-rgb), $background-color-opacity);
 			}
@@ -231,7 +232,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 			align-items: center;
 			width: $navbar__logo-width * 3.85;
 
-			@include respond(tab-port) {
+			@include respond($breakpoint-to-change-layout) {
 				width: 100vw;		
 			}
 		}
@@ -242,7 +243,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 			margin: 0 auto;		
 			width: 66vw;
 			
-			@include respond(tab-port) {
+			@include respond($breakpoint-to-change-layout) {
 				text-align: center;
 				margin: 0 auto;
 			}
@@ -274,7 +275,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 				background-image: none;
 			}
 
-			@include respond(tab-port) {
+			@include respond($breakpoint-to-change-layout) {
 				grid-row: 5 / span 1;
 				border-top: $home-page-border;
 			}
@@ -285,14 +286,6 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 			}
 		}
 
-		&-quote {
-			transform: translateY(100%);
-			grid-column: 2 / span 1;
-			grid-row: 3 / -1;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
 
 		&-link {
 			margin: 0;
@@ -313,7 +306,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 				animate-skills infinite 10s,
 			;
 
-			@include respond(tab-port) {
+			@include respond($breakpoint-to-change-layout) {
 				animation: 	
 					10s text-bounce-mobile forwards  $animation-easing-standard infinite,
 					animate-skills infinite 10s,
@@ -326,6 +319,23 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 		}
 	}
 
+	&__quote {
+		padding: $default-font-size * 2 $default-font-size * 4;
+		transform: translateY(100%);
+		grid-column: 2 / span 1;
+		grid-row: 3 / -1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.6rem;
+		color: rgba(var(--color-primary-4-rgb), .5);
+
+		@include respond($breakpoint-to-change-layout) {
+			opacity: 0;
+			visibility: none;
+		}
+	}
+
 	&__animation-ease-in-out-back {
 		animation: $home-page-animation $animation-easing-standard-easeInOutBack-smaller;
 	}
@@ -333,7 +343,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 	&__animation-ease {
 		animation: $home-page-animation $animation-easing-standard-easeInOutBack-smaller;
 
-		@include respond(tab-port) {
+		@include respond($breakpoint-to-change-layout) {
 			animation: $home-page-animation ease;
 		}
 	}
