@@ -13,6 +13,12 @@ let quoteResult: Quote;
 
 const classListsToSet: ClasslistAdder[] = [
 	{
+		classnames: [
+			"home__name"
+		],
+		classesToAdd: ["visible"],
+	},
+	{
 		classnames: ["home__name-first", "home__name-last", "home__third-word"],
 		classesToAdd: ["home__animation-ease-in-out-back"],
 	},

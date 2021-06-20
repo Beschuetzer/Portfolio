@@ -4,6 +4,7 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 $breakpoint-to-change-layout: 'tab-port';
 
 .home {
+	position: relative;
 	height: 100vh;
 	width: 100vw;
 	font-size: $default-font-size * .75;
@@ -81,6 +82,8 @@ $breakpoint-to-change-layout: 'tab-port';
 	}
 
 	&__name {
+		opacity: 0;
+		visibility: hidden;
 		font-size: $default-font-size * 5;
 		position: absolute;
 		transform: translate(-50%, -50%);
@@ -91,6 +94,7 @@ $breakpoint-to-change-layout: 'tab-port';
 		width: 100vw;
 		left: 50%;
 		top: 15%;
+		transition: opacity $animation-duration * 2 $animation-easing-standard;
 
 		@include respond(phone) {
 			top: 16%;

@@ -2861,6 +2861,7 @@ body {
 }
 
 .home {
+  position: relative;
   height: 100vh;
   width: 100vw;
   font-size: 1.2rem;
@@ -2893,6 +2894,8 @@ body {
   z-index: -1;
 }
 .home__name {
+  opacity: 0;
+  visibility: hidden;
   font-size: 8rem;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -2903,6 +2906,7 @@ body {
   width: 100vw;
   left: 50%;
   top: 15%;
+  transition: opacity 1s ease;
 }
 @media only screen and (max-width: 40.9375em) {
   .home__name {
