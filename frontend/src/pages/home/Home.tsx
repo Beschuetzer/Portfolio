@@ -1,10 +1,36 @@
 import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { getRepositories } from "../../actions";
+import { getRandomQuote, Quote } from "../../apis/quotes";
 import { email } from "../../components/constants";
 import EmbeddedLink from "../../components/EmbeddedLink";
-import useClasslistAdder from "./useClasslistAdder";
+import useClasslistAdder, { ClasslistAdder } from "./useClasslistAdder";
 import useSky from './useSky';
+
+let quoteResult: Quote;
+getRandomQuote().then(response => {
+	quoteResult = response;
+});
+
+const classListsToSet: ClasslistAdder[] = [
+	{
+		classnames: [
+			"home__name-first",
+			"home__name-last",
+			"home__third-word",
+		],
+		classesToAdd: ["home__animation-ease-in-out-back"],
+	},
+	{
+		classnames: [
+			"home__main-left",
+			"home__main-right",
+			"home__main-bottom",
+			"home__main-quote",
+		],
+		classesToAdd: ["home__animation-ease"],
+	},
+];
 
 interface HomeProps {
 	repos: [];
@@ -17,8 +43,14 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 		if (!repos || repos.length === 0) getRepositories();
 	}, [repos, getRepositories]);
 
-	useClasslistAdder();
+
+	useClasslistAdder(classListsToSet);
 	useSky();
+
+	const getQuote = () => {
+		if (!quoteResult) return;
+		return quoteResult.content;		
+	}
 
 	return (
 		<React.Fragment>
@@ -45,6 +77,10 @@ const Home: React.FC<HomeProps> = ({repos, getRepositories}) => {
 							{/* Click, hover, and<br></br><EmbeddedLink addSpaces={false} className="home__main-link" openInNewTab={false} isLocal={false} href={`mailto:${email}`}>get in touch</EmbeddedLink><br></br>when you're ready. */}
 							Take a peek at my<br></br><EmbeddedLink addSpaces={false} className="home__main-link" openInNewTab={false} isLocal={true} href="/resume#skills">skill set</EmbeddedLink><br></br> when you're ready
 						</div>
+					</article>
+
+					<article className="home__main-quote">
+						{getQuote()}
 					</article>
 
 					{/* <div className="home__main-description">

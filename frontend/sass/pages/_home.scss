@@ -285,6 +285,15 @@ $home-page-animation: 1.5s 1 translateToZero forwards;
 			}
 		}
 
+		&-quote {
+			transform: translateY(100%);
+			grid-column: 2 / span 1;
+			grid-row: 3 / -1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
 		&-link {
 			margin: 0;
 			font-size: $default-font-size;
