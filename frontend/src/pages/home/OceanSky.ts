@@ -26,6 +26,7 @@ import {
 	TextBufferGeometry,
 } from "three";
 import { getLinearPercentOfMaxMatchWithinRange } from "../../helpers";
+import { isContinueStatement } from "typescript";
 
 //#region Variable Inits
 let camera: PerspectiveCamera,
@@ -726,7 +727,9 @@ function render() {
 		});
 
 	if (texts) {
-		texts.forEach((text) => {
+		for (let i = 0; i < texts.length; i++) {
+			const text = texts[i];
+			if (!text) continue;
 			const currentOpacity = (text.material as any).opacity;
 			if (currentOpacity > 0) {
 				if (timeElapsedInMS >= introPanStartWait) {
@@ -739,7 +742,11 @@ function render() {
 				}
 				text.position.z -= textScrollSpeed;
 			}
-		});
+			else {
+				console.log('removing text------------------------------------------------');
+				scene.remove(text);
+			}
+		}
 	}
 
 	if (camera) {

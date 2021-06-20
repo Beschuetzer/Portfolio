@@ -67,9 +67,8 @@ OPTIMIZATIONS:
   "Dive into the making of a trick-based card game"
 
 
--change the font size to 12 for main-page  (16 for links)
+-changing viewport on home shows scroll text after it has faded out
 
--add quote api to fill home page bottom?
 
 
 NOT SURE------------------------------------------------------------
