@@ -132,6 +132,7 @@ interface TextData {
 	height: number;
 }
 
+const originalAspectRatio = window.innerWidth / window.innerHeight;
 const isMobile = window.innerWidth < 1250;
 const textMinXRotation = -Math.PI / 2 - 0.25;
 const textScrollSpeed = 0.25;
@@ -494,8 +495,14 @@ function loadTexts(textData: TextData[], scene: Scene) {
 function adjustTextSizes() {
 	if (texts) {
 		const newSize = window.innerWidth * textSizeScaleFactor;
-		texts.forEach((text, index) => {
-			const currentTextData = textData[index];
+		// const currentAspectRation = window.innerWidth / window.innerHeight;
+
+		// const ratioDifferenceFactor = currentAspectRation / originalAspectRatio;
+
+		for (let i = 0; i < texts.length; i++) {
+			const text = texts[i];
+			const currentTextData = textData[i];
+			if (!text || !currentTextData) continue;
 			const meshToPush = addTextGeometry(
 				scene,
 				currentTextData.text,
@@ -512,9 +519,9 @@ function adjustTextSizes() {
 
 			texts.push(meshToPush);
 
-			let textToRemove = texts.slice(index, 1)[0];
+			let textToRemove = texts.slice(i, 1)[0];
 			scene.remove(textToRemove);
-		});
+		}
 
 		for (let i = 0; i < textData.length; i++) {
 			const removed = texts.splice(0, 1)[0];

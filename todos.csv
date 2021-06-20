@@ -68,6 +68,7 @@ OPTIMIZATIONS:
 
 
 -changing viewport on home shows scroll text after it has faded out
+-changing viewport on home doesn't change text height spacing durin scroll
 
 
 

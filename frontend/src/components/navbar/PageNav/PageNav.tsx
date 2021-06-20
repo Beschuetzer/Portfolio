@@ -78,8 +78,7 @@ const PageNav: React.FC<PageNavProps> = ({
 
 	const handleSectionClick = (e: MouseEvent) => {
 		scrollToSection(
-			document.getElementById((e.currentTarget as any)?.textContent.toLowerCase()) as HTMLElement,
-			headerHeight,
+			document.getElementById((e.currentTarget as any)?.textContent.toLowerCase()) as HTMLElement
 		);
 	};
 

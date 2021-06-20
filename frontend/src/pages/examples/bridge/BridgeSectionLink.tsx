@@ -73,7 +73,7 @@ const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 					: bridgeSections.length - 1;
 
 		if (isMobile) {
-			scrollToSection(bridgeSections[valueToUse], headerHeight);
+			scrollToSection(bridgeSections[valueToUse]);
 		} else {
 			setCurrentBridgeSection(valueToUse);
 		}

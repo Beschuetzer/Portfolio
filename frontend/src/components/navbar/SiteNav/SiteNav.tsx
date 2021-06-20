@@ -81,10 +81,10 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	useEffect(() => {
 		if (!currentUrl || currentUrl !== match.url) {
-			scrollToSection(document.body, headerHeight)
+			scrollToSection(document.body)
 			setCurrentUrl(match.url);
 		}
-	}, [match, currentUrl, previousUrl, setCurrentUrl, headerHeight]);
+	}, [match, currentUrl, previousUrl, setCurrentUrl]);
 
 	useEffect(() => {
 		changePage(currentUrl);

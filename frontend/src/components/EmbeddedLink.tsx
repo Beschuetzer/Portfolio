@@ -31,7 +31,7 @@ const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 			const indexStart = href.indexOf('#');
 			if (indexStart === -1 || !href) return;
 			const sectionToScrollTo = href.slice(indexStart);
-			scrollToSection(document.querySelector(`${sectionToScrollTo}`) as HTMLElement, headerHeight);
+			scrollToSection(document.querySelector(`${sectionToScrollTo}`) as HTMLElement);
 		}, 0);
 	}
 

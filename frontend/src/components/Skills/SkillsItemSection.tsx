@@ -21,7 +21,7 @@ const SkillsItemSection: React.FC<SkillsItemSectionProps> = ({
     toggleItem(e, sectionsToSkipAnimation);
     (e.target as HTMLElement)?.classList?.toggle(SKILLS_SECTION_OPEN_CLASSNAME);
     const clickedElement = e.currentTarget;
-    if (clickedElement && (clickedElement as HTMLElement).classList.contains(SKILLS_SECTION_OPEN_CLASSNAME)) scrollToSection(clickedElement as HTMLElement, headerHeight)
+    if (clickedElement && (clickedElement as HTMLElement).classList.contains(SKILLS_SECTION_OPEN_CLASSNAME)) scrollToSection(clickedElement as HTMLElement)
   }
 
   return (

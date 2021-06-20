@@ -135,8 +135,7 @@ const Card: React.FC<CardProps> = ({
 			changeSectionTitle(titleRef);
 			openCard(video as HTMLVideoElement , clickedCard as HTMLElement, bridgeBackdrop as HTMLElement, initialCardSize as ClientRect);
 			scrollToSection(
-				document.querySelector(`#${bridgeSections[1].toLowerCase()}`) as HTMLElement,
-				headerHeight,
+				document.querySelector(`#${bridgeSections[1].toLowerCase()}`) as HTMLElement
 			);
 		}, ANIMATION_DURATION / 2);
 	};

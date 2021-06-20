@@ -119,7 +119,7 @@ export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: H
   }
   else {
     sounds.play('doorNormal');
-    scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()) as HTMLElement, !isMobile ? 0 : headerHeight)
+    scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()) as HTMLElement)
     if (background)  {
       background?.classList.remove('visible');
       background?.classList.remove('reverse-ease');

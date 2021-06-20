@@ -1,6 +1,7 @@
 import history from "../history";
 import { CAROUSEL_VIDEO_CLASSNAME } from "./Carousel/util";
 import { OVERFLOW_HIDDEN_CLASSNAME, Z_INDEX_CONTENT_CLASSNAME } from "./constants";
+import { HEADER_ID } from "./navbar/SiteNav/utils";
 import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./navbar/utils";
 
 //#region Helper Functions
@@ -74,7 +75,8 @@ export const removeClassFromAllChildren = (parent: HTMLElement, classNameToRemov
 //   // console.log('interactions =', interactions);
 // }
 
-export const scrollToSection = (sectionToScrollTo: HTMLElement, headerHeight: number) => {
+export const scrollToSection = (sectionToScrollTo: HTMLElement) => {
+  const headerHeight = document.querySelector(HEADER_ID)!.getBoundingClientRect().height;
   const topScrollAmount =  window.scrollY + sectionToScrollTo.getBoundingClientRect().top - headerHeight;
   window.scroll({
     top: topScrollAmount,
