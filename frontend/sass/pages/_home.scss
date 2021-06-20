@@ -192,6 +192,13 @@ $breakpoint-to-change-layout: 'tab-port';
 			justify-self: flex-start;
 			padding-left: calc((100vw - #{$header-inner-width-vw}) / 2);
 
+			& .home__main-link {
+				animation: 
+					10s text-bounce forwards  $animation-easing-standard infinite,
+					animate-skills-both infinite 10s,
+				;
+			}
+
 			@include respond(nav-switch) {
 				padding-left: 0;
 			}
@@ -211,6 +218,13 @@ $breakpoint-to-change-layout: 'tab-port';
 			text-align: right;
 			justify-self: flex-end;
 			padding-right: calc((100vw - #{$header-inner-width-vw}) / 2);
+
+			& .home__main-link {
+				animation: 
+					10s text-bounce forwards  $animation-easing-standard infinite,
+					animate-skills-both-reverse infinite 10s,
+				;
+			}
 
 			@include respond(nav-switch) {
 				padding-right: 0;
@@ -301,10 +315,6 @@ $breakpoint-to-change-layout: 'tab-port';
 				1
 			);
 			border: none;
-			animation: 
-				10s text-bounce forwards  $animation-easing-standard infinite,
-				animate-skills infinite 10s,
-			;
 
 			@include respond($breakpoint-to-change-layout) {
 				animation: 	
