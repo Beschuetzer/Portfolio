@@ -980,7 +980,7 @@ body {
   }
 }
 .navbar__dropdown .navbar__item:hover {
-  transform: translateX(0.32rem) !important;
+  transform: translateX(0.64rem) !important;
   box-shadow: -10px 0 10px rgba(17, 17, 17, 0.5);
 }
 @media only screen and (max-width: 68.75em) {

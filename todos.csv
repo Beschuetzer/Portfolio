@@ -3,6 +3,8 @@ BUGS------------------------------------
   -PlayControl and RestartControl handleVideoProgress listeners can be run at the same time (doesn't seem to affect performance though)
   -when visiting all three video pages then waiting ~15 mins  with dev servers running, causes chrome to crash (but a single firefox tab?)
     -running no dev server, single tab mozilla, 20mins = no crash
+  -changing viewport on home shows scroll text after it has faded out
+  -changing viewport on home doesn't change text height spacing durin scroll
 
 IDEAS-----------------------------------------------------------
   -add hover popup for references that pops up a card with image, quote (recommendation from ziprecruiter, and letter of recommendation from scott?), more detailed info about relationship with reference;  add personal references?
@@ -39,36 +41,18 @@ OPTIMIZATIONS:
 -work on OverlayText styling for CarouselItem
 -add svgs to csharp layouts
 -add notes to playlist syncer page?  what else to say about it?
--add form to contact page that sends text and email when clicked?
 -finish content in about
--finish last 4th section in bridge (and colors gradient for mobile and svg
 
 -change how the left,right,and bottom divs come in (stagger them timewise for a more interesting fx)
 
 
 
-'My name is Adam and...'
-'this is my porfolio site!'
-'I recently changed my life'
-'by deciding to become a web developer'
-'It could be better'
-'but I'm proud of what I'
-'have acheived in the'
-'last year during the pandemic'
-
-'Feel free to parouse the site'
-'and make an evaluation for yourself'
 
 
--create an html link that has a span as innerhtml that removes the ancor tag's styling , effectivelyrending it regular text surrounding by text that uses the same link.
 
--ideas for suggestions on home page 
-  "get to know me on a personal level" <-- link to about page
-  "Dive into the making of a trick-based card game"
+-turn auto-bid into multiple sections rather than just opening
 
 
--changing viewport on home shows scroll text after it has faded out
--changing viewport on home doesn't change text height spacing durin scroll
 
 
 
@@ -80,3 +64,13 @@ NOT SURE------------------------------------------------------------
   'I enjoy a difficult challange'
   'as well as 
   'but most of all meeting new people'
+
+  'Feel free to parouse the site'
+  'and make an evaluation for yourself'
+
+
+-ideas for suggestions on home page 
+  "get to know me on a personal level" <-- link to about page
+  "Dive into the making of a trick-based card game"
+
+-create an html link that has a span as innerhtml that removes the ancor tag's styling , effectivelyrending it regular text surrounding by text that uses the same link.

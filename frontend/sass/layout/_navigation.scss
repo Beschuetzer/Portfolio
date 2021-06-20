@@ -415,7 +415,7 @@
 			}
 
 			&:hover {
-				transform: translateX($navbar__item-divider-width) !important;
+				transform: translateX($navbar__item-divider-width * 2) !important;
 				box-shadow: $navbar-box-shadow-left-right-hover;
 
 			}
