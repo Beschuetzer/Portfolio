@@ -29,9 +29,11 @@ import {
 	hide,
 	handleNavClick,
 	handleMouseEnter,
+	resetPageNavMinWidth,
 } from "./utils";
 import { scrollToSection } from "../../utils";
 import { email } from "../../constants";
+import { setPageNavMinWidth } from "../PageNav/utils";
 
 interface SiteNavProps {
 	isAnimating: boolean;
@@ -77,6 +79,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	useEffect(() => {
 		setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
+		resetPageNavMinWidth(viewPortWidth)
 	}, [viewPortWidth, setHeaderHeight]);
 
 	useEffect(() => {

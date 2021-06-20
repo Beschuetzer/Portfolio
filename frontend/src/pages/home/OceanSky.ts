@@ -749,10 +749,6 @@ function render() {
 				}
 				text.position.z -= textScrollSpeed;
 			}
-			else {
-				console.log('removing text------------------------------------------------');
-				scene.remove(text);
-			}
 		}
 	}
 

@@ -9,10 +9,11 @@ import {
 	DISPLAY_NONE_CLASSNAME,
 	Z_INDEX_HIGHEST_CLASSNAME,
 	PAGE_NAMES,
-	siteNavOriginalButtonWidth,
-	SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME,
 	DEFAULT_PAGE_NAME_INDEX,
+	PAGE_NAV_CLASSNAME,
+	PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME,
 } from "../../constants";
+import { PAGE_NAV_MIN_WIDTH_DEFAULT, PAGE_NAV_MIN_WIDTH_THRESHOLD, setPageNavMinWidth } from "../PageNav/utils";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
@@ -247,4 +248,14 @@ export function hexToRgb(hex: string) {
 		return r + "," + g + "," + b; //return 23,14,45 -> reformat if needed
 	}
 	throw new Error("Invald Hex Value: " + hex);
+}
+
+export function resetPageNavMinWidth(viewPortWidth: number) {
+	if (viewPortWidth < PAGE_NAV_MIN_WIDTH_THRESHOLD) {
+		if (`${viewPortWidth}px` === PAGE_NAV_MIN_WIDTH_DEFAULT) return;
+		const newValue = `${PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${PAGE_NAV_MIN_WIDTH_DEFAULT}`;
+		document.documentElement.style.cssText += newValue;
+	} else if (viewPortWidth >= PAGE_NAV_MIN_WIDTH_THRESHOLD) {
+		setPageNavMinWidth(document.querySelector(`.${PAGE_NAV_CLASSNAME}` as any))
+	}
 }

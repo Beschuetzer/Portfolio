@@ -1,9 +1,11 @@
 import { capitalize } from "../../../helpers";
 import { BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME } from "../../../pages/examples/bridge/utils";
+import { MOBILE_BREAK_POINT_WIDTH, PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME, PAGE_NAV_WIDTH_AT_SWITCH_OFFSET } from "../../constants";
 
 export const selectedClass = "page-nav--active";
 export const docStyle = getComputedStyle(document.documentElement);
-
+export const PAGE_NAV_MIN_WIDTH_THRESHOLD = 500;
+export const PAGE_NAV_MIN_WIDTH_DEFAULT = '151px';
 export const getLinearGradient = (percent: number, docStyle: any) => {
   const mainColor = docStyle.getPropertyValue("--color-primary-4");
   const progressColor = docStyle.getPropertyValue("--color-primary-2").trim();
@@ -97,3 +99,21 @@ export const setBridgeColors = (currentBridgeSection: number, clickedBridgeInfoB
   const newHoverValue = `--bridge-page-nav-link-color-hover: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].hover}`;
   document.documentElement.style.cssText += newHoverValue;
 };
+
+export const setPageNavMinWidth = (pageNavElement: HTMLElement) => {
+  let toAdd: string;
+  
+  const itemCount = pageNavElement.children.length;
+
+  if (!itemCount) return;
+  if (window.innerWidth <= PAGE_NAV_MIN_WIDTH_THRESHOLD) {
+    toAdd = `${PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${PAGE_NAV_MIN_WIDTH_DEFAULT}`
+  }
+  else {
+    const widthOfPageNavAtSwitch = MOBILE_BREAK_POINT_WIDTH - PAGE_NAV_WIDTH_AT_SWITCH_OFFSET;
+    const newMinWidth = `${widthOfPageNavAtSwitch / (itemCount + 1) + .1}px`
+    toAdd = `${PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${newMinWidth}`;
+  }
+ 
+  document.documentElement.style.cssText += toAdd;
+}

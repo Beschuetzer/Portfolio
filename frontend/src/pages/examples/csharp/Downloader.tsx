@@ -16,7 +16,6 @@ import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
 import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
 import { CSharpSection } from "../../../components/constants";
-import useCssClassCreator, { CSSClassCreationObject } from "../../../hooks/CssClassCreater/useCSSClassCreator";
 
 const sectionNames = [
 	'Description',
@@ -143,27 +142,6 @@ interface DownloaderProps {
 }
 
 const Downloader: React.FC<DownloaderProps> = () => {
-	const classesToCreate: CSSClassCreationObject[] = [
-		{
-			selector: "#root",
-			styles: {
-				backgroundImage: `linear-gradient(
-					to right,
-					black,
-					transparent
-				) !important`,
-				color: 'red !important',
-				fill: 'green',
-			}
-		,
-		}
-	]
-
-	useCssClassCreator(
-		{ 
-			list: classesToCreate,
-		}
-	);
 
 	return (
 		<CSharpLayout
