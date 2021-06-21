@@ -11,27 +11,32 @@ const About = ({
 
 }) => {
   //This page should have the following:
-  //   I grew up in Minnesota. Visited England, Ireland, and Whales when I was 16 through People to People (started by Dwight D. Eisenhower), Graduated HS, Moved to Germany when I was 19 to teach/tutor English at a boarding school.  Studied Linguistics (regrettably not something with a B.S. in front of it), Helped adults meet their educational goals for 10 years, while pursuing the idea of starting a recording studio, moved to Hawaii for 1 year (avoided serious sun burn), moved to Oregon to fix MFDs, PANDEMIC!, Web Devloper...
+  //   I grew up in Minnesota. Visited England, Ireland, and Whales when I was 16 through People to People (started by Dwight D. Eisenhower), Graduated HS, Moved to Germany when I was 19 to teach/tutor English at a boarding school.  Studied Linguistics (regrettably not a degree with a B.S. in front of it), Helped adults meet their educational goals for 10 years, while pursuing the idea of starting a recording studio, moved to Hawaii for 1 year (avoided serious sun burn), moved to Oregon to fix MFDs, PANDEMIC!, Web Developer...
   
-	//   details on what the design philosophy for the portfolio page is (e.g. using React and all custom CSS to illustrate what I have learned)
+	//Philosophy
+		//I believe in the value of TDD when the tests are written properly, however I have yet to fully learn how to use e2e suites like Cypress.  OO and Functional Programming can co-exist in my world (there's a time and place for both). 
+		//prefer to be Agile when possible rather than a Waterfall
+		//Find it important to create things I would want to use as well as the intended audience
+		//prefer leave the design to others
+		//love to get my hands dirty by building systems and fixing bugs (especially love the feeling of fixing something I initially thought was unfixable/impossible)
+		
 	//interests: playing drums/guitar, riding bike, exercising, Astronomy(almost majored in it)
-	//Add a music section
-	//add these songs in the form of an AudioPlayer component:
-		// steve's sweet song original,
-		// luminiscent ether mastered up,
-		// eerie correspondence,
-		// reunited ozone master,
-		// adam and linda's song,
-		// honeydew in june b 3rd version,
-		// 4 starlite five songs (sweet jam too,
-		// blues is stalking more reverb),
-		// mario remix,
-		// ein paar ganz schnelle,
-		// relentless shame remastered 2,
-		// hopeful uncertainty mastered,
-		// old band practice songs
-	// talk about self and coding philosophy a bit
-	return (
+
+	//Music (add these songs in the form of an AudioPlayer component):
+		// ein paar ganz schnelle - 2003,
+		// mario remix - 2004,
+		// adam and linda's song- 2006,
+		// old band practice songs - 2009
+		// luminiscent ether mastered up - 2012,
+		// steve's sweet song original - 2013,
+		// eerie correspondence - 2013,
+		// reunited ozone master - 2013,
+		// hopeful uncertainty mastered - 2013,
+		// honeydew in june b 3rd version - 2014,
+		// relentless shame remastered 2 - 2013,
+		// 4 starlite five songs (sweet jam too, blues is stalking more reverb) - 2015-16
+
+		return (
 		<SectionContainer
 			name='summary'
 			pageName='bridge'
