@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ParagraphProps {
-  classNamesToAdd?: string,
+  classNameToAdd?: string,
   size: string,
   children: any,
 }
@@ -9,10 +9,10 @@ interface ParagraphProps {
 const Paragraph: React.FC<ParagraphProps> = ({
   size,
   children,
-  classNamesToAdd,
+  classNameToAdd,
 }) => {
   return (
-    <p className={`paragraph paragraph--${size} ${classNamesToAdd}`}>
+    <p className={`paragraph paragraph--${size} ${classNameToAdd}`}>
       {children}
     </p>
   )

@@ -304,7 +304,7 @@ const Resume: React.FC<ResumeProps> = ({
 		[
 			"overview",
 			<React.Fragment>
-				<Paragraph classNamesToAdd={`${NO_MARGIN_CLASSNAME}`} size="five">Below you will find the following:</Paragraph>
+				<Paragraph classNameToAdd={`${NO_MARGIN_CLASSNAME}`} size="five">Below you will find the following:</Paragraph>
 
 				<div>
 					<div className={`${BRIDGE_CLASSNAME}__subsection-grid`}>

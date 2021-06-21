@@ -45,16 +45,7 @@ OPTIMIZATIONS:
 
 -change how the left,right,and bottom divs come in (stagger them timewise for a more interesting fx)
 
-
-
-
-
-
 -turn auto-bid into multiple sections rather than just opening
-
-
-
-
 
 NOT SURE------------------------------------------------------------
   'I'm excited that you're here.'
@@ -73,4 +64,4 @@ NOT SURE------------------------------------------------------------
   "get to know me on a personal level" <-- link to about page
   "Dive into the making of a trick-based card game"
 
--create an html link that has a span as innerhtml that removes the ancor tag's styling , effectivelyrending it regular text surrounding by text that uses the same link.
+  -create an html link that has a span as innerhtml that removes the ancor tag's styling , effectivelyrending it regular text surrounding by text that uses the same link.

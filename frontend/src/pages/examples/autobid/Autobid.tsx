@@ -10,7 +10,8 @@ import { fixZIndexIssue, functionToGetContainer } from "../../../components/util
 import { CSharpSection } from "../../../components/constants";
 
 const sectionNames = [
-	'Description',
+	'Purpose',
+	'Collaboration',
 	// 'Media',
 	// 'Notes'
 ]
@@ -21,18 +22,20 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="Purpose">
-					<Paragraph size="four">
-            Autobid is a collaborative work-in-progress with a friend who is learning Python. The goal is to create a rudimentary bidding AI, that humans can play with (rather than a machine-learning-driven AI whose rationale are unknown).&nbsp; Our approach to the AI is to effectively emulate moderate to high level bridge play during the bidding phase (this is the part that involves partner communication with incomplete information.  The bidding ultimately determines who plays the hand and how many tricks they have to make) while playing like the best human players during the trick-taking phase.
-					</Paragraph>
-        </CSharpCardSection>
-
-        <CSharpCardSection title="The Collaboration">
-          <Paragraph size="four">
+				<Paragraph size="four" classNameToAdd="margin-top-2 padding-bottom-2">
+					Autobid is a collaborative work-in-progress with a friend who is learning Python. The goal is to create a rudimentary bidding AI, that humans can play with (rather than a machine-learning-driven AI whose rationale are unknown).&nbsp; Our approach to the AI is to effectively emulate moderate to high level bridge play during the bidding phase (this is the part that involves partner communication with incomplete information.  The bidding ultimately determines who plays the hand and how many tricks they have to make) while playing like the best human players during the trick-taking phase.
+				</Paragraph>
+			</React.Fragment>,
+		],
+	},
+	{
+		name: sectionNames[0],
+		pageName: C_SHARP_CLASSNAME,
+		children: [
+			<React.Fragment>
+          <Paragraph size="four" classNameToAdd="margin-top-2 padding-bottom-2">
             Our approach to working together was a multi-step process.  First, we would decide what we were going to work on for that day.  Second, we discussed our ideas about how we understood the problem.  Thirds, we both made our cases for why we thought what we thought using examples when necessary.  Fourth, we ultimately would agree on how the AI should behave in general with regards to the feature in question.  Fifth, we  started writing test cases to make sure we weren't missing anything.  Sixth, I would lay out the overall design of the feature/section.  Seven, we would take turns writing code to pass the test cases.  We devoted ~ 8 hours every Saturday to the project, and we are on track to finish the bidding phase part of the AI before the fall of 2021.
-
           </Paragraph>
-				</CSharpCardSection>
 			</React.Fragment>,
 		],
 	},

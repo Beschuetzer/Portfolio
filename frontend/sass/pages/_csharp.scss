@@ -1,9 +1,41 @@
 .downloader {
-  background-image: linear-gradient(
-    to right,
-    var(--color-primary-1) 0%,
-    var(--color-primary-2) 100%,
-  );
+  background-image: $bridge-card-section-2-gradient,
+  url(getSvgBackground(
+    bridge-section-1,
+    $color-bridge-section-svg-1,
+    $color-bridge-section-svg-1,
+  ));
+  background-size: cover;
+
+  @include respond(tab-land) {
+    background-image: linear-gradient(
+      to right,
+      var(--color-primary-1) 0%,
+      var(--color-primary-2) 100%,
+    );
+  }
+}
+
+.playlist-syncer {
+  background-image: $bridge-card-section-2-gradient,
+  url(getSvgBackground(
+    bridge-section-2,
+    $color-bridge-section-svg-1,
+    $color-bridge-section-svg-1,
+  ));
+  background-size: cover;
+
+  @include respond(tab-land) {
+    background-image: linear-gradient(
+      to right,
+      var(--color-primary-1) 0%,
+      var(--color-primary-2) 100%,
+    );
+  }
+
+  & .csharp__card {
+    background-color: rgba(var(--color-primary-4-rgb), .875);
+  }
 }
 
 .csharp {
@@ -36,8 +68,9 @@
     // border: $default-font-size * .3 solid var(--color-primary-2);
     box-shadow: $navbar-box-shadow-resume;
     width: $resume-card-width-full;
-    background-color: var(--color-primary-4);
-    color: rgba($color-primary-downloader-1, $resume-color-opacity);
+
+    background-color: rgba(var(--color-primary-4-rgb), 0.4);
+    color: rgba(var(--color-primary-1-rgb),.875);
     margin: $default-font-size * 2 auto;
 
     @include respond(tab-land) {
@@ -49,7 +82,7 @@
     z-index: 5;
     position: relative;
     & > * {
-      padding: 0 $default-font-size * 2 $default-font-size / 2 $default-font-size * 2;
+      padding: 0 $default-font-size * 2 0 $default-font-size * 2;
     }
 
     & > *:last-child(){
@@ -60,7 +93,7 @@
   
   &__header {
     padding: $default-font-size * 2 $default-font-size * 2 $default-font-size * 2 0 ;
-    color: $color-primary-downloader-1;
+    color: rgba(var(--color-primary-1), 1);
     border-bottom: $default-font-size * .15 solid var(--color-primary-2);
 
     &-title{ 
@@ -70,15 +103,13 @@
   
   &__card-section {
     &-title {
-      color: $color-primary-downloader-1;
+      color: rgba(var(--color-primary-1),1);
       font-size: $default-font-size * 1.35;
       padding: $default-font-size 0;
     }
-
-    
     
     &:last-of-type {
-      padding-bottom: $default-font-size * 3;
+      padding-bottom: $default-font-size * 2;
     }
       
   }
@@ -111,7 +142,7 @@
 
   &__carousel {
     // width: $resume-card-width-full;
-    margin: 0 auto;
+    margin: $default-font-size auto 0 auto;
     display: grid;
     grid-row-gap: $default-font-size * 2;
     // grid-template-rows: $default-font-size * 23.75;
