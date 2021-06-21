@@ -1,6 +1,13 @@
 @keyframes translateToZero {
+	0% {
+		border-right: home-page-border;
+	}
+	99% {
+		border-right: home-page-border;
+	}
 	100% {
 		transform: translate(0, 0);
+		border-right: 2px solid transparent;
 	}
 }
 

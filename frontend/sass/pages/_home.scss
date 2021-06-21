@@ -1,18 +1,18 @@
-$background-color-opacity: .1;
-$home-page-border: 2px solid rgba(var(--color-primary-4-rgb), .5);
+$background-color-opacity: 0.1;
+$home-page-border: 2px solid rgba(var(--color-primary-4-rgb), 0.5);
 $home-page-animation: 1.5s 1 translateToZero forwards;
-$breakpoint-to-change-layout: 'tab-port';
+$breakpoint-to-change-layout: "tab-port";
 
 .home {
 	position: relative;
 	height: 100vh;
 	width: 100vw;
-	font-size: $default-font-size * .75;
+	font-size: $default-font-size * 1;
 	font-weight: 400;
 	text-shadow: getTextShadow(
 		close,
-		var(--color-primary-1-rgb),
-		var(--color-primary-2-rgb)
+		var(--color-black-rgb),
+		var(--color-black-rgb)
 	);
 
 	@include respond($breakpoint-to-change-layout) {
@@ -125,7 +125,8 @@ $breakpoint-to-change-layout: 'tab-port';
 	}
 
 	&__main {
-		animation: ocean-sky-fading 100s forwards  $animation-easing-standard infinite;
+		animation: ocean-sky-fading 100s forwards $animation-easing-standard
+			infinite;
 		// font-size: $default-font-size;
 		line-height: 1.7;
 		// font-family: $font-family-text;
@@ -136,7 +137,7 @@ $breakpoint-to-change-layout: 'tab-port';
 		height: 100vh;
 		display: grid;
 		justify-content: center;
-		--home-column-height: 33vh;
+		--home-column-height: 40.4vh;
 		--home-column-width: calc(
 			((100vw - #{$header-inner-width-vw}) + #{$navbar__logo-width})
 		);
@@ -150,13 +151,13 @@ $breakpoint-to-change-layout: 'tab-port';
 			);
 
 		@include respond($breakpoint-to-change-layout) {
-			grid-template-rows: repeat(
-					2,
-					var(--home-column-height)
-				)
-				1fr 
+			--home-column-height: 33vh;
+			grid-template-columns: 1fr 1fr;
+
+			grid-template-rows:
+				repeat(2, var(--home-column-height))
 				1fr
-			;
+				1fr;
 		}
 		// &-welcome {
 		// 	--welcome-opacity: .75;
@@ -197,10 +198,8 @@ $breakpoint-to-change-layout: 'tab-port';
 			padding-left: calc((100vw - #{$header-inner-width-vw}) / 2);
 
 			& .home__main-link {
-				animation: 
-					10s text-bounce forwards  $animation-easing-standard infinite,
-					animate-skills-both infinite 10s,
-				;
+				animation: 10s text-bounce forwards $animation-easing-standard infinite,
+					animate-skills-both infinite 10s;
 			}
 
 			@include respond(nav-switch) {
@@ -209,9 +208,13 @@ $breakpoint-to-change-layout: 'tab-port';
 
 			@include respond($breakpoint-to-change-layout) {
 				grid-row: 3 / span 1;
-				background-color: rgba(var(--color-primary-1-rgb), $background-color-opacity);
-				border-top: $home-page-border ;
-				border-bottom: $home-page-border ;
+				background-color: rgba(
+					var(--color-primary-1-rgb),
+					$background-color-opacity
+				);
+				border-top: $home-page-border;
+				border-bottom: $home-page-border;
+				border-right: $home-page-border;
 			}
 		}
 
@@ -224,10 +227,8 @@ $breakpoint-to-change-layout: 'tab-port';
 			padding-right: calc((100vw - #{$header-inner-width-vw}) / 2);
 
 			& .home__main-link {
-				animation: 
-					10s text-bounce forwards  $animation-easing-standard infinite,
-					animate-skills-both-reverse infinite 10s,
-				;
+				animation: 10s text-bounce forwards $animation-easing-standard infinite,
+					animate-skills-both-reverse infinite 10s;
 			}
 
 			@include respond(nav-switch) {
@@ -236,7 +237,10 @@ $breakpoint-to-change-layout: 'tab-port';
 
 			@include respond($breakpoint-to-change-layout) {
 				grid-row: 4 / span 1;
-				background-color: rgba(var(--color-primary-2-rgb), $background-color-opacity);
+				background-color: rgba(
+					var(--color-primary-2-rgb),
+					$background-color-opacity
+				);
 			}
 		}
 
@@ -251,16 +255,17 @@ $breakpoint-to-change-layout: 'tab-port';
 			width: $navbar__logo-width * 3.85;
 
 			@include respond($breakpoint-to-change-layout) {
-				width: 100vw;		
+				width: 100vw;
 			}
 		}
 
-		&-left-content, &-right-content {
-			padding: $default-font-size * .5;
+		&-left-content,
+		&-right-content {
+			padding: $default-font-size * 0.5;
 			align-self: center;
-			margin: 0 auto;		
+			margin: 0 auto;
 			width: 66vw;
-			
+
 			@include respond($breakpoint-to-change-layout) {
 				text-align: center;
 				margin: 0 auto;
@@ -269,7 +274,7 @@ $breakpoint-to-change-layout: 'tab-port';
 
 		&-bottom {
 			transform: translate(0, 100%);
-			--bottom-color: rgba(var(--color-primary-4-rgb), .75);
+			--bottom-color: rgba(var(--color-primary-4-rgb), 0.75);
 			--bottom-left-color: rgba(var(--color-primary-4-rgb), 0.1);
 			--bottom-middle-color-1: rgba(var(--color-primary-4-rgb), 0.85) 25%;
 			--bottom-middle-color-2: rgba(var(--color-primary-4-rgb), 0.85) 75%;
@@ -278,7 +283,7 @@ $breakpoint-to-change-layout: 'tab-port';
 			grid-column: 1 / -1;
 			grid-row: 4 / span 1;
 			text-align: center;
-			padding: $default-font-size * .5;
+			padding: $default-font-size * 0.5;
 			// background-image: linear-gradient(
 			// 	to right,
 			// 	var(--bottom-left-color),
@@ -304,7 +309,6 @@ $breakpoint-to-change-layout: 'tab-port';
 			}
 		}
 
-
 		&-link {
 			margin: 0;
 			font-size: $default-font-size;
@@ -321,10 +325,9 @@ $breakpoint-to-change-layout: 'tab-port';
 			border: none;
 
 			@include respond($breakpoint-to-change-layout) {
-				animation: 	
-					10s text-bounce-mobile forwards  $animation-easing-standard infinite,
-					animate-skills infinite 10s,
-				;
+				animation: 10s text-bounce-mobile forwards $animation-easing-standard
+						infinite,
+					animate-skills infinite 10s;
 			}
 
 			&:hover {
@@ -342,7 +345,7 @@ $breakpoint-to-change-layout: 'tab-port';
 		justify-content: center;
 		align-items: center;
 		font-size: 1.6rem;
-		color: rgba(var(--color-primary-4-rgb), .5);
+		color: rgba(var(--color-primary-4-rgb), 0.5);
 
 		@include respond($breakpoint-to-change-layout) {
 			opacity: 0;
@@ -351,11 +354,13 @@ $breakpoint-to-change-layout: 'tab-port';
 	}
 
 	&__animation-ease-in-out-back {
-		animation: $home-page-animation $animation-easing-standard-easeInOutBack-smaller;
+		animation: $home-page-animation
+			$animation-easing-standard-easeInOutBack-smaller;
 	}
 
 	&__animation-ease {
-		animation: $home-page-animation $animation-easing-standard-easeInOutBack-smaller;
+		animation: $home-page-animation
+			$animation-easing-standard-easeInOutBack-smaller;
 
 		@include respond($breakpoint-to-change-layout) {
 			animation: $home-page-animation ease;

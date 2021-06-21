@@ -63,16 +63,20 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 
 					<article className="home__main-left">
 						<div className="home__main-left-content">
-							Not sure where to start?&nbsp; Check out the{" "}
+							Not sure where to start?&nbsp; 
+							<br></br>
+							Check out the multiplayer 
+							<br></br>
 							<EmbeddedLink
 								addSpaces={false}
 								className="home__main-link"
 								href="/examples/bridge"
 								openInNewTab={false}
 								isLocal={true}>
-								multiplayer Bridge app
+								contract bridge app
 							</EmbeddedLink>
-							<br></br>I created.
+							<br></br>
+							I created.
 						</div>
 					</article>
 
