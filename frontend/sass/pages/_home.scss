@@ -98,7 +98,7 @@ $breakpoint-to-change-layout: "tab-port";
 
 		@include respond(phone) {
 			top: 16%;
-			font-size: 6.5vmin;
+			font-size: 11vw;
 		}
 
 		@include respond(small-font) {
