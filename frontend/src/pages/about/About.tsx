@@ -36,6 +36,20 @@ const About = ({
 		// relentless shame remastered 2 - 2013,
 		// 4 starlite five songs (sweet jam too, blues is stalking more reverb) - 2015-16
 
+		// <script>
+    //   function play() {
+    //     var audio = document.getElementById("audio");
+    //     audio.play();
+    //   }
+    // </script>
+
+    // <input type="button" value="PLAY" onclick="play()">
+    // <audio controls id='audio'>
+		// 	<source src="horse.ogg" type="audio/ogg">
+		// 	<source src="horse.mp3" type="audio/mpeg">
+		// 	Your browser does not support the audio element.
+		// </audio>
+
 		return (
 		<SectionContainer
 			name='summary'
