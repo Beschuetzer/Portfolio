@@ -3073,7 +3073,7 @@ body {
 }
 .home__main-bottom {
   transform: translate(0, 100%);
-  --bottom-color: rgba(var(--color-primary-4-rgb), 0.75);
+  --bottom-color: rgba(var(--color-primary-4-rgb), $home-regular-text-opacity);
   --bottom-left-color: rgba(var(--color-primary-4-rgb), 0.1);
   --bottom-middle-color-1: rgba(var(--color-primary-4-rgb), 0.85) 25%;
   --bottom-middle-color-2: rgba(var(--color-primary-4-rgb), 0.85) 75%;
@@ -3128,7 +3128,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 1.6rem;
-  color: rgba(var(--color-primary-4-rgb), 0.5);
+  color: rgba(var(--color-primary-4-rgb), 0.66);
 }
 @media only screen and (max-width: 52.6875em) {
   .home__quote {

@@ -29,6 +29,7 @@ $navbar__logo-width-nav-switch: $default-font-size * 5;
 $content-padding-nav-switch: 5vmin;
 $paddingFactor: 1.25;
 
+
 //navbar stuff
 $navbar-full-z-index: 5;
 $navbar__button-bar-before-rotation: rotate(105deg);
@@ -64,6 +65,11 @@ $skills-linear-gradient-hover: linear-gradient(
 	var(--color-primary-1),
 	var(--color-primary-1)
 );
+
+
+//home
+$home-regular-text-opacity: 0.66;
+
 
 //resume
 $resume-section-padding-top: $default-font-size * 2.5;

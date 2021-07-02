@@ -44,6 +44,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	const scrollRefreshLimit = 50;
 	const maxScrollOffsetPercent = 1;
 	const isBridgePage = match.url.match(/bridge/i);
+	const isHomePage = match.url.match(/home/i);
 	
   let pageNavElement = document.querySelector(".page-nav") as any;
 	let previousSectionBottom: number | null = 0;
@@ -204,9 +205,10 @@ const PageNav: React.FC<PageNavProps> = ({
 	}, []);
 
 	useEffect(() => {
+		if (match.url.trim() === '/') pageNavElement.classList.add(HIDDEN_CLASSNAME);
 		if (!isMobile) return;
 		setPageNavMinWidth(pageNavElement);
-	}, [previousUrl, pageNavElement, isMobile])
+	}, [previousUrl, pageNavElement, isMobile, match])
 
 	useEffect(() => {
 		const url = match.url;

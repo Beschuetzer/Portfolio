@@ -7,9 +7,9 @@ import useClasslistAdder, { ClasslistAdder } from "./useClasslistAdder";
 import useSky from "./useSky";
 
 let quoteResult: Quote;
-// getRandomQuote().then((response) => {
-// 	quoteResult = response;
-// });
+getRandomQuote().then((response) => {
+	quoteResult = response;
+});
 
 const classListsToSet: ClasslistAdder[] = [
 	{

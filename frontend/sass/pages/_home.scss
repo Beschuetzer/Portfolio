@@ -246,7 +246,7 @@ $breakpoint-to-change-layout: "tab-port";
 
 		&-left,
 		&-right {
-			color: rgba(var(--color-primary-4-rgb), 0.66);
+			color: rgba(var(--color-primary-4-rgb), $home-regular-text-opacity);
 			position: relative;
 			z-index: 10000;
 			display: flex;
@@ -274,7 +274,7 @@ $breakpoint-to-change-layout: "tab-port";
 
 		&-bottom {
 			transform: translate(0, 100%);
-			--bottom-color: rgba(var(--color-primary-4-rgb), 0.75);
+			--bottom-color: rgba(var(--color-primary-4-rgb), $home-regular-text-opacity);
 			--bottom-left-color: rgba(var(--color-primary-4-rgb), 0.1);
 			--bottom-middle-color-1: rgba(var(--color-primary-4-rgb), 0.85) 25%;
 			--bottom-middle-color-2: rgba(var(--color-primary-4-rgb), 0.85) 75%;
@@ -345,7 +345,7 @@ $breakpoint-to-change-layout: "tab-port";
 		justify-content: center;
 		align-items: center;
 		font-size: 1.6rem;
-		color: rgba(var(--color-primary-4-rgb), 0.5);
+		color: rgba(var(--color-primary-4-rgb), $home-regular-text-opacity);
 
 		@include respond($breakpoint-to-change-layout) {
 			opacity: 0;
