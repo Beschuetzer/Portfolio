@@ -147,11 +147,15 @@ const skills: {
 			},
 			{
 				title: "NestJS",
-				percent: 35,
+				percent: 48,
 			},
 			{
 				title: "NextJS",
 				percent: 33,
+			},
+			{
+				title: "nx",
+				percent: 55,
 			},
 			{
 				title: "React",
