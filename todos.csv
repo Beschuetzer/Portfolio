@@ -66,3 +66,8 @@ NOT SURE------------------------------------------------------------
   "Dive into the making of a trick-based card game"
 
   -create an html link that has a span as innerhtml that removes the ancor tag's styling , effectivelyrending it regular text surrounding by text that uses the same link.
+
+
+
+-need to fix nx-bridge portfolio links to go amajreplays.herokuapp.com and the 'made' link to the /bridge page
+-add link to angular project with recipes and shopping list
