@@ -31,6 +31,7 @@ import {
 import soundsSpriteMp3 from "../sounds/soundsSprite.mp3";
 import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
 import { keypressHandler } from "./utils";
+import ReplayViewer from "../pages/examples/csharp/ReplayViewer";
 
 interface AppProps {
 	isMobile: boolean,
@@ -110,6 +111,7 @@ const App: React.FC<AppProps> = ({
 					exact
 					component={PlaylistSyncer}
 				/>
+				<Route path="/examples/replay" exact component={ReplayViewer} />
 				<Route path="/examples/autobid" exact component={Autobid} />
 				<Route path="/about" exact component={About} />
 				<Route path="/resume" exact component={Resume} />

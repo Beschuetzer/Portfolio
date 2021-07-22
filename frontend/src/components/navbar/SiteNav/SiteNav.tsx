@@ -12,12 +12,10 @@ import downloaderImage from "../../../imgs/site-nav-downloader.jpg";
 import examplesImage from "../../../imgs/site-nav-examples.jpg";
 import resumeImage from "../../../imgs/site-nav-resume.jpg";
 import syncerImage from "../../../imgs/site-nav-syncer.jpg";
+import replayImage from "../../../imgs/site-nav-replay.jpg";
 
 import { setHeaderHeight, setIsAnimating } from "../../../actions";
-import {
-	NAVBAR_CLASSNAME,
-	NAVBAR_Z_INDEX_CLASSNAME,
-} from "../utils";
+import { NAVBAR_CLASSNAME, NAVBAR_Z_INDEX_CLASSNAME } from "../utils";
 import {
 	changePage,
 	destroy,
@@ -33,7 +31,6 @@ import {
 } from "./utils";
 import { scrollToSection } from "../../utils";
 import { email } from "../../constants";
-import { setPageNavMinWidth } from "../PageNav/utils";
 
 interface SiteNavProps {
 	isAnimating: boolean;
@@ -58,7 +55,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 }) => {
 	const [currentUrl, setCurrentUrl] = useState<string>("");
 	const navRef = useRef<HTMLElement>(null);
-	
+
 	const onNavClick = (e: MouseEvent) => {
 		e.stopPropagation();
 		handleNavClick(navRef, sounds, setIsAnimating, e);
@@ -79,12 +76,12 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	useEffect(() => {
 		setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
-		resetPageNavMinWidth(viewPortWidth)
+		resetPageNavMinWidth(viewPortWidth);
 	}, [viewPortWidth, setHeaderHeight]);
 
 	useEffect(() => {
 		if (!currentUrl || currentUrl !== match.url) {
-			scrollToSection(document.body)
+			scrollToSection(document.body);
 			setCurrentUrl(match.url);
 		}
 	}, [match, currentUrl, previousUrl, setCurrentUrl]);
@@ -150,6 +147,14 @@ const SiteNav: React.FC<SiteNavProps> = ({
 						className={`${NAVBAR_CLASSNAME}__item ${NAVBAR_CLASSNAME}__dropdown-container flex align-center justify-content-center`}
 						triangle={<div className="triangle-down"></div>}>
 						<ul className={`${NAVBAR_CLASSNAME}__dropdown`}>
+							<NavListItem
+								imageSource={replayImage}
+								imageAlt="Replay Viewer"
+								to="/examples/replay"
+								label="Replay Viewer"
+								onMouseEnter={onMouseEnter}
+								onClick={onNavItemClick}
+							/>
 							<NavListItem
 								imageSource={bridgeImage}
 								imageAlt="Bridge"
