@@ -27,6 +27,7 @@ import {
 	functionToGetContainer,
 } from "../../../components/utils";
 import {
+	BRIDGE_URL,
 	CSharpSection,
 	GITHUB_URL,
 	REPLAYS_URL,
@@ -43,23 +44,25 @@ const sections: CSharpSection[] = [
 				<CSharpCardSection title="The Reasons">
 					<Paragraph size="four">
 						There are two reasons why I chose to build the
-						<EmbeddedLink isLocal={false} href={REPLAYS_URL}>
+						<EmbeddedLink addSpaces={false} isLocal={false} href={REPLAYS_URL}>
 							A# Maj Replay Viewer
 						</EmbeddedLink>
 						.
 					</Paragraph>
 					<Paragraph size="four" classNameToAdd="margin-top-1">
-						First, in March of 2021, I finished
-						<EmbeddedLink isLocal={false} href="">
+						First, in March of 2021, I finished&nbsp;
+						<EmbeddedLink addSpaces={false} isLocal={false} href={BRIDGE_URL}>
 							A# Maj Bridge
 						</EmbeddedLink>
 						, which saves games, deals, and user statistics into a mongoDB
 						database.&nbsp; There have been multiple times where it would have
-						been nice to review games without having to login to the database and decipher the raw data.&nbsp;
+						been nice to review games without having to log into the database
+						and decipher the raw data.&nbsp;
 					</Paragraph>
 
 					<Paragraph size="four" classNameToAdd="margin-top-1">
-						Second, I wanted to improve my familiarity with Narwahl's NX workspace and Angular.&nbsp; What better way to do that than to
+						Second, I wanted to improve my familiarity with Narwahl's NX
+						workspace and Angular.&nbsp; What better way to do that than to
 						create a real-world application with a practical use?
 					</Paragraph>
 				</CSharpCardSection>
@@ -160,15 +163,24 @@ const sections: CSharpSection[] = [
 			<React.Fragment>
 				<CSharpCardSection title="Filters">
 					<Paragraph size="four">
-						There are two type of filters that can be applied: Game-level and
-						Deal-level.&nbsp; Game-level filters work by checking the
-						currently-displayed games only.&nbsp; Deal-level filters work by
-						checking only the deals of the currently-displayed games.&nbsp; If
-						both types of filters are applied at the same time, the game is
-						first checked, then the deals are checked to see if a match is
-						found.&nbsp; If so, the game is send to an array of filtered games
-						and if one of the deal filters matches, then that deal is sent to an
-						array of matching deals.&nbsp;{" "}
+						There are two type of filters that can be applied: game-level and
+						deal-level.&nbsp; Game-level filters work by checking the games in
+						the current currently-displayed games array.&nbsp; Deal-level
+						filters work by checking the deals of the games that pass the
+						game-level filters.
+					</Paragraph>
+					<Paragraph size="four" classNameToAdd="margin-top-1">
+						When both types of filters are applied at the same time, games are
+						checked first.&nbsp; If a match is found, that game is added to the
+						filtered games.
+					</Paragraph>
+					<Paragraph size="four" classNameToAdd="margin-top-1">
+						Thereafter, the game's deals are checked to see if any of them match
+						any of the applied deal-level filters.&nbsp; If a match is found on
+						the deal-level, that deal is sent to an array of deals which is used
+						to highlight that deal when the game detail is opened. &nbsp; If
+						there are no deal-level filters applied, then deal checking is
+						skipped.&nbsp;
 					</Paragraph>
 				</CSharpCardSection>
 				<CSharpCardSection title="Preferences">
@@ -178,7 +190,7 @@ const sections: CSharpSection[] = [
 					</Paragraph>
 					<Paragraph size="four" classNameToAdd="margin-top-1">
 						Size refers to the size of the game detail card in the games list
-						view.&nbsp; There are three options: Large, Medium, and Small.
+						view.&nbsp; There are three options: large, medium, and small.
 					</Paragraph>
 					<Paragraph size="four" classNameToAdd="margin-top-1">
 						Sort refers to whether the matched games are sorted in descending or
@@ -186,7 +198,7 @@ const sections: CSharpSection[] = [
 					</Paragraph>
 					<Paragraph size="four" classNameToAdd="margin-top-1">
 						Results per page refers to how many matched games are displayed at
-						one time.&nbsp; The choices are: 1, 2, 5, 10, 25, 50, and 100.
+						one time.&nbsp; The options are: 1, 2, 5, 10, 25, 50, and 100.
 					</Paragraph>
 				</CSharpCardSection>
 				<CSharpCardSection title="Caching">
@@ -219,9 +231,13 @@ const sections: CSharpSection[] = [
 						nicely as a player with tens of thousands of deals would have to
 						download most of those deals on every query (local storage max is
 						5mb and each deal is around 2kb), leading to an unacceptably-long
-						delay.&nbsp; Given that the most deals any user has is less than a
-						thousand, this concern is currently irrelevant (adding pagination
-						would remedy this concern).
+						delay.
+					</Paragraph>
+					<Paragraph size="four" classNameToAdd="margin-top-1">
+						However, given that the most deals any user has is less than six
+						hundred at this time, this concern is currently secondary in
+						nature.&nbsp; It would be fairly easy to fix though by adding
+						pagination.
 					</Paragraph>
 				</CSharpCardSection>
 			</React.Fragment>,
