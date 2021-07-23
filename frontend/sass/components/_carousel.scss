@@ -51,19 +51,20 @@ $carousel-grid-width: calc(
 	}
 
 	&__dot {
+		--opacity: .33;
 		position: relative;
 		z-index: 6;
 		cursor: pointer;
 		width: $navbar__logo-width / 2;
 		height: $navbar__logo-width / 2;
-		fill: rgba(#{var(--color-primary-1-rgb)}, var(--carousel-dot-alpha, .5));
+		fill: rgba(#{var(--color-primary-1-rgb)}, var(--carousel-dot-alpha, var(--opacity)));
 
 		&:hover {
-			--carousel-dot-alpha: .75;
+			--carousel-dot-alpha: 0.75;
 		}
 
 		&--active {
-			fill: rgba(var(--color-primary-2-rgb),1) !important;
+		  --opacity: 1;
 		}
 	}
 
@@ -94,7 +95,7 @@ $carousel-grid-width: calc(
 		& svg {
 			width: $navbar__logo-width;
 			height: $navbar__logo-width;
-			fill: rgba(var(--color-primary-1-rgb), .75);
+			fill: rgba(var(--color-primary-1-rgb), 0.75);
 
 			@include respond(nav-switch) {
 				width: $default-font-size * 5;
@@ -160,18 +161,15 @@ $carousel-grid-width: calc(
 
 				&::-webkit-progress-bar {
 					background-color: var(--color-primary-1);
-					box-shadow: 0 3px 16px rgba(0,0,0,.25);
+					box-shadow: 0 3px 16px rgba(0, 0, 0, 0.25);
 					border: 1px solid var(--color-primary-4);
 				}
 			}
 
 			& .carousel__video ~ .carousel__image-description {
-				padding:
-					$default-font-size * 1
+				padding: $default-font-size * 1
 					calc(#{$carousel-svg-parent-width} * 1 + #{$default-font-size})
-					$default-font-size * 1
-					$carousel-svg-parent-width * 2
-				;
+					$default-font-size * 1 $carousel-svg-parent-width * 2;
 			}
 
 			& .carousel__image-description {
@@ -189,9 +187,8 @@ $carousel-grid-width: calc(
 				}
 			}
 		}
-		
-		&--is-playing{
-			
+
+		&--is-playing {
 		}
 	}
 
@@ -200,10 +197,14 @@ $carousel-grid-width: calc(
 		&.fg-video {
 			opacity: 1;
 			video {
-				object-position: top left;
 				top: 0;
+				left: 50%;
 				position: fixed;
 				height: 100%;
+				object-position: top left;
+				object-fit: contain;
+				transform: translateX(-50%);
+				width: auto;
 			}
 
 			&.full-screen {
@@ -285,9 +286,7 @@ $carousel-grid-width: calc(
 			z-index: 10000;
 			background: rgba(var(--color-primary-1-rgb), $resume-color-opacity);
 			padding: $default-font-size;
-			transition:     
-				opacity $animation-duration $animation-easing-standard,
-			;
+			transition: opacity $animation-duration $animation-easing-standard;
 			// display: none;
 			// height: 100vh;
 			// border: none;
@@ -302,8 +301,7 @@ $carousel-grid-width: calc(
 	&__item:hover &__image-description,
 	&__item:active &__image-description,
 	&__item:focus &__image-description,
-	&__item--full-screen &__image-description
-	{
+	&__item--full-screen &__image-description {
 		visibility: visible;
 		opacity: 1;
 	}
@@ -312,14 +310,13 @@ $carousel-grid-width: calc(
 	& .overlay-text {
 		opacity: 0;
 		visibility: hidden;
-		transition: 
-			opacity $animation-duration $animation-easing-standard,
-		;
+		transition: opacity $animation-duration $animation-easing-standard;
 		padding: $default-font-size $default-font-size * 2;
-		background-color: rgba(var(--color-primary-4-rgb), .9);
+		background-color: rgba(var(--color-primary-4-rgb), 0.9);
 		border-radius: $default-font-size / 2;
 	}
-	&__item--stopped .overlay-text, &__item--done .overlay-text {
+	&__item--stopped .overlay-text,
+	&__item--done .overlay-text {
 		opacity: 1;
 		visibility: visible;
 	}
@@ -335,8 +332,8 @@ $carousel-grid-width: calc(
 		height: 100%;
 	}
 
-	& :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
-		
+	&
+		:is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
 		cursor: pointer;
 		z-index: -1;
 		width: $carousel-svg-parent-width;
@@ -344,17 +341,17 @@ $carousel-grid-width: calc(
 		top: auto;
 		bottom: 0;
 		transform: translateY(0);
-		
-		& svg{
+
+		& svg {
 			fill: rgba(var(--color-primary-red-rgb), 1);
 			&:hover {
-				fill: rgba(var(--color-primary-red-rgb), .5);
+				fill: rgba(var(--color-primary-red-rgb), 0.5);
 			}
 		}
 	}
 
 	& .card__play-parent {
-		left:0;
+		left: 0;
 	}
 
 	& .card__pause-parent {
@@ -389,29 +386,29 @@ $carousel-grid-width: calc(
 	}
 
 	& .card__stop {
-	
 	}
 
 	& .card__close {
-		transform: translate(5%,80%);
-    left: auto;
-    right: $default-font-size * 1.375;
+		transform: translate(5%, 80%);
+		left: auto;
+		right: $default-font-size * 1.375;
 		right: 2.2rem;
-    top: 1.6rem;
-    top: $default-font-size;
-    bottom: 10vh;
-    height: $carousel-svg-parent-width;
-    width: $carousel-svg-parent-width;
-    opacity: 0;
+		top: 1.6rem;
+		top: $default-font-size;
+		bottom: 10vh;
+		height: $carousel-svg-parent-width;
+		width: $carousel-svg-parent-width;
+		opacity: 0;
 	}
 
 	//showing close x when hovering
-	& .card__close-parent:hover .card__close{
+	& .card__close-parent:hover .card__close {
 		opacity: 1;
 	}
 
 	//making close button more noticable
-	&__item--stopped ~ .card__close-parent .card__close, &__item--done ~ .card__close-parent .card__close {
+	&__item--stopped ~ .card__close-parent .card__close,
+	&__item--done ~ .card__close-parent .card__close {
 		animation: 5s infinite color-change;
 	}
 
@@ -425,7 +422,9 @@ $carousel-grid-width: calc(
 	}
 
 	//showing controls when is open
-	& &__item--full-screen :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent)  {
+	&
+		&__item--full-screen
+		:is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
 		z-index: 10000;
 	}
 }

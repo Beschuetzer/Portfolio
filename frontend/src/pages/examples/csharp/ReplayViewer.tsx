@@ -16,6 +16,9 @@ import imgUser from "../../../imgs/replay-viewer/img-user-1.png";
 import imgStore from "../../../imgs/replay-viewer/img-store-1.png";
 import imgMobile1 from "../../../imgs/replay-viewer/img-mobile-1.png";
 import imgMobile2 from "../../../imgs/replay-viewer/img-mobile-2.png";
+import clipAnimations from "../../../clips/replay-viewer/animations.mp4";
+import clipDealPlayer from "../../../clips/replay-viewer/deal-player.mp4";
+import clipFilters from "../../../clips/replay-viewer/filters.mp4";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
@@ -75,13 +78,21 @@ const sections: CSharpSection[] = [
 			<section className="csharp__carousel">
 				<Carousel
 					items={[
-						// {
-						// itemSrc: demoVideo,
-						// 	description: "Video Demonstration",
-						// },
 						{
 							itemSrc: img1,
 							description: "First impressions matter.",
+						},
+						{
+							itemSrc: clipFilters,
+							description: "Applying Filters",
+						},
+						{
+							itemSrc: clipDealPlayer,
+							description: "Using the deal player",
+						},
+						{
+							itemSrc: clipAnimations,
+							description: "Misc. Animations",
 						},
 						{
 							itemSrc: img2,
@@ -205,7 +216,7 @@ const sections: CSharpSection[] = [
 		children: [
 			<React.Fragment>
 				<CSharpCardSection title="On Caching">
-					<Paragraph size="four" classNameToAdd="margin-top-1">
+					<Paragraph size="four">
 						It should be noted that the current implementation would not scale
 						nicely as a player with tens of thousands of deals would have to
 						download most of those deals on every query (local storage max is

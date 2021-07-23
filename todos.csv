@@ -74,9 +74,3 @@ NOT SURE------------------------------------------------------------
 -mention nx monorepos in purpose
 -talk about how deals are stored separately from games and that each game has at least 2 deals (give examples of data structure)
 
--get replay-viewer videos
-  -1 for applying filters
-  -1 for hide animations
-  -1 for deal player
-
--add new images of local storage stuff

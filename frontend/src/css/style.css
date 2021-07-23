@@ -2568,18 +2568,19 @@ body {
   }
 }
 .carousel__dot {
+  --opacity: .33;
   position: relative;
   z-index: 6;
   cursor: pointer;
   width: 3.5vw;
   height: 3.5vw;
-  fill: rgba(var(--color-primary-1-rgb), var(--carousel-dot-alpha, 0.5));
+  fill: rgba(var(--color-primary-1-rgb), var(--carousel-dot-alpha, var(--opacity)));
 }
 .carousel__dot:hover {
-  --carousel-dot-alpha: .75;
+  --carousel-dot-alpha: 0.75;
 }
 .carousel__dot--active {
-  fill: rgba(var(--color-primary-2-rgb), 1) !important;
+  --opacity: 1;
 }
 .carousel__arrow-button {
   position: relative;
@@ -2686,10 +2687,14 @@ body {
   opacity: 1;
 }
 .carousel__video.fg-video video {
-  object-position: top left;
   top: 0;
+  left: 50%;
   position: fixed;
   height: 100%;
+  object-position: top left;
+  object-fit: contain;
+  transform: translateX(-50%);
+  width: auto;
 }
 .carousel__video.fg-video.full-screen video {
   height: calc( 						90vh - 2.5vh 					);
@@ -4246,10 +4251,14 @@ div.references__name {
 .csharp__content > *:last-child() {
   padding-bottom: 1.6rem;
 }
+.csharp__headers {
+  color: var(--color-primary-4);
+  background-image: linear-gradient(to bottom right, rgba(var(--color-primary-1-rgb), 1), rgba(var(--color-primary-1-rgb), 1));
+}
 .csharp__header {
-  padding: 3.2rem 3.2rem 3.2rem 0;
+  padding: 1.6rem 1.6rem 1.6rem 0;
   color: rgba(var(--color-primary-1), 1);
-  border-bottom: 0.24rem solid var(--color-primary-2);
+  border-bottom: 0.24rem solid rgba(var(--color-primary-1-rgb), 0.25);
 }
 .csharp__header-title {
   font-size: 4.8rem;
