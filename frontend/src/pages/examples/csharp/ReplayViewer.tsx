@@ -3,12 +3,15 @@ import Carousel from "../../../components/Carousel/Carousel";
 import CSharpLayout from "./CSharpLayout";
 import EmbeddedLink from "../../../components/EmbeddedLink";
 
-import img1 from "../../../imgs/playlist-syncer/img1.png";
-import imgProblem from "../../../imgs/playlist-syncer/img-problem.jpg";
-import img2 from "../../../imgs/playlist-syncer/img2.png";
-import img3 from "../../../imgs/playlist-syncer/img3.png";
-import img4 from "../../../imgs/playlist-syncer/img4.png";
-import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
+import img1 from "../../../imgs/replay-viewer/img-1.png";
+import img2 from "../../../imgs/replay-viewer/img-2.png";
+import img3 from "../../../imgs/replay-viewer/img-3.png";
+import img4 from "../../../imgs/replay-viewer/img-4.png";
+import img5 from "../../../imgs/replay-viewer/img-5.png";
+import img6 from "../../../imgs/replay-viewer/img-6.png";
+import img7 from "../../../imgs/replay-viewer/img-7.png";
+import imgMobile1 from "../../../imgs/replay-viewer/img-mobile-1.png";
+import imgMobile2 from "../../../imgs/replay-viewer/img-mobile-2.png";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
@@ -80,29 +83,45 @@ const sections: CSharpSection[] = [
 			<section className="csharp__carousel">
 				<Carousel
 					items={[
-						{
-							itemSrc: imgProblem,
-							description: "156 songs transferred but an empty playlist...",
-						},
-						{
-							itemSrc: demoVideo,
-							description: "Video Demonstration",
-						},
+						// {
+							// itemSrc: demoVideo,
+						// 	description: "Video Demonstration",
+						// },
 						{
 							itemSrc: img1,
-							description: "The complete user interface",
+							description: "First impressions matter.",
 						},
 						{
 							itemSrc: img2,
-							description: 	"Left-side of UI",
+							description: 	"Overall Layout",
 						},
 						{
 							itemSrc: img3,
-							description: "Playlists available section of UI",
+							description: "Filters en masse",
 						},
 						{
 							itemSrc: img4,
-							description: "Transfer section of UI after transfer",
+							description: "Filters applied and results shown.",
+						},
+						{
+							itemSrc: img5,
+							description: "Game detail screen collapsed",
+						},
+						{
+							itemSrc: img6,
+							description: "Game detail screen expanded",
+						},
+						{
+							itemSrc: img7,
+							description: "Deal player layout",
+						},
+						{
+							itemSrc: imgMobile1,
+							description: "Mobile game detail",
+						},
+						{
+							itemSrc: imgMobile2,
+							description: "Mobile deal player",
 						},
 					]}
 					numberOfItemsInCarouselAtOneTime="3"

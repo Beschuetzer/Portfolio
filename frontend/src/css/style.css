@@ -2650,6 +2650,7 @@ body {
   position: fixed;
   min-height: calc(100vh - 90vh);
   background: var(--color-primary-4);
+  color: var(--color-primary-1);
 }
 @media only screen and (max-width: 68.75em) {
   .carousel__item--full-screen .carousel__image-description {
@@ -2803,8 +2804,10 @@ body {
 .carousel .card__close {
   transform: translate(5%, 80%);
   left: auto;
-  right: 1.6rem;
-  top: auto;
+  right: 2.2rem;
+  right: 2.2rem;
+  top: 1.6rem;
+  top: 1.6rem;
   bottom: 10vh;
   height: 10vh;
   width: 10vh;

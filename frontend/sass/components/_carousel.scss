@@ -182,6 +182,7 @@ $carousel-grid-width: calc(
 				position: fixed;
 				min-height: calc(100vh - #{$carousel-full-screen-image-height});
 				background: var(--color-primary-4);
+				color: var(--color-primary-1);
 
 				@include respond(nav-switch) {
 					font-size: $default-font-size * 1.5;
@@ -394,8 +395,10 @@ $carousel-grid-width: calc(
 	& .card__close {
 		transform: translate(5%,80%);
     left: auto;
-    right: $default-font-size * 1;
-    top: auto;
+    right: $default-font-size * 1.375;
+		right: 2.2rem;
+    top: 1.6rem;
+    top: $default-font-size;
     bottom: 10vh;
     height: $carousel-svg-parent-width;
     width: $carousel-svg-parent-width;

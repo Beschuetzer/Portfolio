@@ -1,12 +1,8 @@
 import React from "react";
-import Carousel from "../../../components/Carousel/Carousel";
 import CSharpLayout from "../csharp/CSharpLayout";
-import EmbeddedLink from "../../../components/EmbeddedLink";
 
-import CSharpCardSection from "../csharp/CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "../csharp/utils";
 import Paragraph from "../../../typography/Paragraph";
-import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
 import { CSharpSection } from "../../../components/constants";
 
 const sectionNames = [
@@ -29,7 +25,7 @@ const sections: CSharpSection[] = [
 		],
 	},
 	{
-		name: sectionNames[0],
+		name: sectionNames[1],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
