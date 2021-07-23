@@ -21,7 +21,10 @@ import {
 } from "../../../components/utils";
 import {
 	CSharpSection,
-	WEBSITE_REPLAYS_URL,
+	GITHUB_URL,
+	REPLAYS_URL,
+	WIKIPEDIA_DRM_URL,
+	WIKIPEDIA_MTP_URL,
 } from "../../../components/constants";
 
 const sectionNames = ["Motivation", "Media", "Hands On"];
@@ -35,7 +38,7 @@ const sections: CSharpSection[] = [
 				<CSharpCardSection title="The Reasons">
 					<Paragraph size="four">
 						There are two reasons why I chose to build the
-						<EmbeddedLink isLocal={false} href={WEBSITE_REPLAYS_URL}>
+						<EmbeddedLink isLocal={false} href={REPLAYS_URL}>
 							A# Maj Replay Viewer
 						</EmbeddedLink>.
 					</Paragraph>
@@ -65,11 +68,11 @@ const sections: CSharpSection[] = [
 						First I needed to figure out how to sync music to an Android device.
 						It turns out that the main way to do that is through a protocol
 						called the
-						<EmbeddedLink href="https://en.wikipedia.org/wiki/Media_Transfer_Protocol">
+						<EmbeddedLink href={WIKIPEDIA_MTP_URL}>
 							Media Transfer Protocol
 						</EmbeddedLink>
 						(MTP), which is part of the
-						<EmbeddedLink href="https://en.wikipedia.org/wiki/Windows_Media_DRM">
+						<EmbeddedLink href={WIKIPEDIA_DRM_URL}>
 							Windows Media DRM
 						</EmbeddedLink>
 						. Because of the
@@ -159,11 +162,11 @@ interface ReplayViewerProps {}
 const ReplayViewer: React.FC<ReplayViewerProps> = () => {
 	return (
 		<CSharpLayout
-			href={WEBSITE_REPLAYS_URL}
+			href={REPLAYS_URL}
 			sections={sections}
 			pageName="replay-viewer"
-			sourceCodeLink="https://github.com/Beschuetzer/nxBridge"
-			demoLink={WEBSITE_REPLAYS_URL}></CSharpLayout>
+			sourceCodeLink={`${GITHUB_URL}/nxBridge`}
+			demoLink={REPLAYS_URL}> </CSharpLayout>
 	);
 };
 

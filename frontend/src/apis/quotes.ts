@@ -1,3 +1,5 @@
+import { QUOTE_API_URL } from "../components/constants";
+
 export interface Quote {
 	author: string;
 	authorSlug: string;
@@ -32,7 +34,6 @@ const TAGS = [
   "wisdom", //19
 ]
 
-const QUOTE_API_URL = 'https://api.quotable.io';
 const ENDPOINT = 'random';
 const TAGS_TO_USE = `${TAGS[8]}|${TAGS[18]}|${TAGS[1]}`;
 // const TAGS_TO_USE = `${TAGS[9]}`;

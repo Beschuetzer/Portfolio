@@ -82,6 +82,7 @@ $breakpoint-to-change-layout: "tab-port";
 	}
 
 	&__name {
+		color: var(--color-primary-3);
 		opacity: 0;
 		visibility: hidden;
 		font-size: $default-font-size * 5;
@@ -91,7 +92,7 @@ $breakpoint-to-change-layout: "tab-port";
 		grid-template-columns: 1fr 1fr;
 		justify-items: center;
 		align-items: flex-end;
-		width: 100vw;
+		width: max-content;
 		left: 50%;
 		top: 15%;
 		transition: opacity $animation-duration * 2 $animation-easing-standard;
@@ -137,7 +138,6 @@ $breakpoint-to-change-layout: "tab-port";
 		height: 100vh;
 		display: grid;
 		justify-content: center;
-		--home-column-height: 40.4vh;
 		--home-column-width: calc(
 			((100vw - #{$header-inner-width-vw}) + #{$navbar__logo-width})
 		);
@@ -145,10 +145,7 @@ $breakpoint-to-change-layout: "tab-port";
 				1,
 				var(--home-column-width)
 			);
-		grid-template-rows: var(--home-column-height) 1fr repeat(
-				1,
-				var(--home-column-height)
-			);
+		grid-template-rows: 39.1vh min-content 1fr auto;
 
 		@include respond($breakpoint-to-change-layout) {
 			--home-column-height: 33vh;
@@ -274,7 +271,7 @@ $breakpoint-to-change-layout: "tab-port";
 
 		&-bottom {
 			transform: translate(0, 100%);
-			--bottom-color: rgba(var(--color-primary-4-rgb), $home-regular-text-opacity);
+			--bottom-color: rgba(var(--color-primary-4-rgb), #{$home-regular-text-opacity});
 			--bottom-left-color: rgba(var(--color-primary-4-rgb), 0.1);
 			--bottom-middle-color-1: rgba(var(--color-primary-4-rgb), 0.85) 25%;
 			--bottom-middle-color-2: rgba(var(--color-primary-4-rgb), 0.85) 75%;

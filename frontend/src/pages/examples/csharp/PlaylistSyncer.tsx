@@ -13,7 +13,7 @@ import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
 import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
-import { CSharpSection } from "../../../components/constants";
+import { CSharpSection, GITHUB_URL, OS_10_ISSUE_TRACKER_URL, WIKIPEDIA_DRM_URL, WIKIPEDIA_MTP_URL } from "../../../components/constants";
 
 const sectionNames = [
 	'Description',
@@ -31,7 +31,7 @@ const sections: CSharpSection[] = [
 					<Paragraph size="four">
 						Around the end of Febraury 2020, Samsung updated their Android OS
 						to version 10.&nbsp; Eager to check out the newest Android OS, I
-						promptly updated.&nbsp; Unfortunately, the update<EmbeddedLink href="https://issuetracker.google.com/issues/150054563">broke my ability to sync music and playlists</EmbeddedLink>to my Galaxy S9+ phone.&nbsp;
+						promptly updated.&nbsp; Unfortunately, the update<EmbeddedLink href={OS_10_ISSUE_TRACKER_URL}>broke my ability to sync music and playlists</EmbeddedLink>to my Galaxy S9+ phone.&nbsp;
 					</Paragraph>
 					<Paragraph size="four" classNameToAdd="margin-top-1">
 						Thinking it would get resolved in a prompt manner, I waited a few
@@ -60,7 +60,7 @@ const sections: CSharpSection[] = [
 					<Paragraph size="four">
 						First I needed to figure out how to sync music to an Android
 						device. It turns out that the main way to do that is through a
-						protocol called the<EmbeddedLink href="https://en.wikipedia.org/wiki/Media_Transfer_Protocol">Media Transfer Protocol</EmbeddedLink>(MTP), which is part of the<EmbeddedLink href="https://en.wikipedia.org/wiki/Windows_Media_DRM">Windows Media DRM</EmbeddedLink>. Because of the<EmbeddedLink isLocal={true} href="/examples/downloader">downloader</EmbeddedLink>app I had recently started, I decided to use c# and WPF to create
+						protocol called the<EmbeddedLink href={WIKIPEDIA_MTP_URL}>Media Transfer Protocol</EmbeddedLink>(MTP), which is part of the<EmbeddedLink href={WIKIPEDIA_DRM_URL}>Windows Media DRM</EmbeddedLink>. Because of the<EmbeddedLink isLocal={true} href="/examples/downloader">downloader</EmbeddedLink>app I had recently started, I decided to use c# and WPF to create
 						the playlist syncing app.
 					</Paragraph>
 					<Paragraph size="four" classNameToAdd="margin-top-1">
@@ -142,7 +142,7 @@ const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
 		<CSharpLayout
 			sections={sections}
 			pageName="playlist-syncer"
-			sourceCodeLink="https://github.com/Beschuetzer/Playlist-syncer">
+			sourceCodeLink={`${GITHUB_URL}/playlist-syncer`}>
 		</CSharpLayout>
 	);
 };

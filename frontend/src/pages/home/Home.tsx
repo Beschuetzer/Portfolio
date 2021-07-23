@@ -50,11 +50,11 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 	return (
 		<React.Fragment>
 			<section className="home">
-				<div className="home__name">
+				<article className="home__name">
 					<h3 className="home__name-first">&nbsp;Adam&nbsp;</h3>
 					<h3 className="home__name-last">&nbsp;Major&nbsp;</h3>
 					<h5 className="home__third-word">embodies</h5>
-				</div>
+				</article>
 				<div className="home__main">
 					<article className="home__main-bottom">
 						This site was created with React, Redux, Express, ThreeJS, and
@@ -76,7 +76,17 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 								contract bridge app
 							</EmbeddedLink>
 							<br></br>
-							I created.
+							I created. Or the
+							<br></br>
+
+							<EmbeddedLink
+								addSpaces={false}
+								className="home__main-link"
+								href="/examples/replay"
+								openInNewTab={false}
+								isLocal={true}>
+								replay viewer
+							</EmbeddedLink>
 						</div>
 					</article>
 

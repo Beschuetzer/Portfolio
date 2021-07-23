@@ -3,7 +3,7 @@ import CSharpLayout from "../csharp/CSharpLayout";
 
 import { C_SHARP_CLASSNAME } from "../csharp/utils";
 import Paragraph from "../../../typography/Paragraph";
-import { CSharpSection } from "../../../components/constants";
+import { CSharpSection, GITHUB_URL } from "../../../components/constants";
 
 const sectionNames = [
 	'Purpose',
@@ -89,7 +89,7 @@ const AutoBid: React.FC<AutoBidProps> = () => {
 		<CSharpLayout
 			sections={sections}
 			pageName="autobid"
-			sourceCodeLink="https://github.com/Beschuetzer/autobid">
+			sourceCodeLink={`${GITHUB_URL}/autobid`}>
 		</CSharpLayout>
 	);
 };

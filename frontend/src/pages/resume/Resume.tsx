@@ -16,7 +16,7 @@ import SkillsPopup from "../../components/Skills/SkillsPopup";
 import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
 import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
 import { Repository, SKILLS_CLASSNAME } from "../../components/Skills/utils";
-import { NO_MARGIN_CLASSNAME } from "../../components/constants";
+import { BOOK_TRUST_URL, GITHUB_URL, GOOGLE_IT_SPECIALIST_URL, HERMAN_LIETZ_SCHULE_URL, ISD_622_URL, KUALAPUU_URL, NO_MARGIN_CLASSNAME, RICOH_URL, TOYS_R_US_RUL as TOYS_R_US_URL } from "../../components/constants";
 import SourceCodeLink from "../../components/SourceCodeLink";
 
 function getLinkClassHTML() {
@@ -213,7 +213,7 @@ const skills: {
 		{
 			title: "Google IT Support",
 			percent: 66,
-			href: "https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ",
+			href: GOOGLE_IT_SPECIALIST_URL,
 		},
 		{
 			title: "Group Policy",
@@ -409,7 +409,7 @@ const Resume: React.FC<ResumeProps> = ({
 						endDate="06/20"
 						number="01"
 						title={`Technology Services Support Representative at <a ${getExternalLinkTargetAndRel()}
-            ${getLinkClassHTML()} href='https://www.ricoh-usa.com/en'> Ricoh Ltd </a>`}
+            ${getLinkClassHTML()} href=${RICOH_URL}> Ricoh Ltd </a>`}
 						sections={[
 							{
 								title: "Responsibilities",
@@ -422,7 +422,7 @@ const Resume: React.FC<ResumeProps> = ({
 								title: "Highlights",
 								bullets: [
 									"Secured two contracts with clients by going the extra mile to ensure customer satisfaction.",
-									`Increased productivity by 10% by <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='https://github.com/Beschuetzer/PowerShell'> automating repetitive tasks.</a> `,
+									`Increased productivity by 10% by <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='${GITHUB_URL}/powerShell'> automating repetitive tasks.</a> `,
 								],
 							},
 						]}
@@ -432,13 +432,13 @@ const Resume: React.FC<ResumeProps> = ({
 						startDate="07/18"
 						endDate="06/19"
 						number="02"
-						title={`Second Grade Classroom Volunteer at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='https://www.kualapuucharterschool.org/'> <span>Kualapuu Charter School <span></a>`}
+						title={`Second Grade Classroom Volunteer at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${KUALAPUU_URL}> <span>Kualapuu Charter School <span></a>`}
 						sections={[
 							{
 								title: "Highlights",
 								bullets: [
 									`Created a <a ${getLinkClassHTML()} href='/macroexamples/macroExampleMathGrader.xlsm'> grading tool</a> to facilitate grading of math assessments.`,
-									`Created a <a ${getLinkClassHTML()} href='/macroexamples/macroExampleBookTrust.xlsm'>Book Trust tool</a> to facilitate monthly <a ${getExternalLinkTargetAndRel()} class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' href='https://www.booktrust.org'>Book Trust </a> ordering process.`,
+									`Created a <a ${getLinkClassHTML()} href='/macroexamples/macroExampleBookTrust.xlsm'>Book Trust tool</a> to facilitate monthly <a ${getExternalLinkTargetAndRel()} class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' href=${BOOK_TRUST_URL}>Book Trust </a> ordering process.`,
 									`Used my time to study Bash, Powershell, Windows Active Directory, get the Google IT Support Specialist Certificate, and other IT Support related skills (IT support was the direction I wanted to go in at that point in time).`,
 								],
 							},
@@ -449,7 +449,7 @@ const Resume: React.FC<ResumeProps> = ({
 						startDate="07/07"
 						endDate="07/18"
 						number="03"
-						title={`PearsonVue Test Admin / Office Admin at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='https://www.isd622.org/'> ISD622 </a>`}
+						title={`PearsonVue Test Admin / Office Admin at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${ISD_622_URL}> ISD622 </a>`}
 						sections={[
 							{
 								title: "Responsibilities",
@@ -476,7 +476,7 @@ const Resume: React.FC<ResumeProps> = ({
 						startDate="09/06"
 						endDate="12/06"
 						number="04"
-						title={`Overnight Stocker at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='https://www.toysrus.com/'> Toy's &ldquo;R&rdquo; Us </a>`}
+						title={`Overnight Stocker at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${TOYS_R_US_URL}> Toy's &ldquo;R&rdquo; Us </a>`}
 						sections={[
 							{
 								title: "Responsibilities",
@@ -491,7 +491,7 @@ const Resume: React.FC<ResumeProps> = ({
 						startDate="09/05"
 						endDate="07/06"
 						number="05"
-						title={`English Assistant at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='https://www.lietz-schulen.de/en/haubinda/boarding-school-village/'> Herman-Lietz Schule Haubinda </a>`}
+						title={`English Assistant at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${HERMAN_LIETZ_SCHULE_URL}> Herman-Lietz Schule Haubinda </a>`}
 						sections={[
 							{
 								title: "Responsibilities",
@@ -616,7 +616,7 @@ const Resume: React.FC<ResumeProps> = ({
 		<React.Fragment>
 			<section className="resume">
 				<SourceCodeLink
-					href="https://github.com/Beschuetzer/portfolio"
+					href={`${GITHUB_URL}/portfolio`}
 					// blockName="hero"
 				/>
 				<h2 className="heading heading--two">R&eacute;sum&eacute;</h2>

@@ -1,7 +1,27 @@
 import { CSSProperties } from "react";
 
-export const WEBSITE_BRIDGE_URL = "https://still-bayou-51404.herokuapp.com";
-export const WEBSITE_REPLAYS_URL = "https://amajreplays.herokuapp.com";
+export const BOOK_TRUST_URL = "https://www.booktrust.org";
+export const BRIDGE_URL = "https://still-bayou-51404.herokuapp.com";
+export const GITHUB_URL = "http://github.com/beschuetzer";
+export const GOOGLE_IT_SPECIALIST_URL = "https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ";
+export const HERMAN_LIETZ_SCHULE_URL = "https://www.lietz-schulen.de/en/haubinda/boarding-school-village/";
+export const ISD_622_URL = "https://www.isd622.org/";
+export const KH_INSIDER_URL = "https://downloads.khinsider.com";
+export const KUALAPUU_URL = "https://www.kualapuucharterschool.org/";
+export const OC_REMIX_URL = "https://www.ocremix.org";
+export const ODIN_PROJECT_URL = "https://www.theodinproject.com/";
+export const OS_10_ISSUE_TRACKER_URL = "https://issuetracker.google.com/issues/150054563"
+export const REPLAYS_URL = "https://amajreplays.herokuapp.com";
+export const RICOH_URL = "https://www.ricoh-usa.com/en";
+export const TOYS_R_US_RUL = "https://www.toysrus.com/";
+export const QUOTE_API_URL = 'https://api.quotable.io';
+export const WIKIPEDIA_BRIDGE_URL = "https://en.wikipedia.org/wiki/Contract_bridge";
+export const WIKIPEDIA_MTP_URL = "https://en.wikipedia.org/wiki/Media_Transfer_Protocol";
+export const WIKIPEDIA_DRM_URL = "https://en.wikipedia.org/wiki/Windows_Media_DRM";
+export const UDEMY_BOOTCAMP_URL = "https://www.udemy.com/course/the-web-developer-bootcamp/";
+
+
+
 
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;

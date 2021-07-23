@@ -15,7 +15,7 @@ import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
 import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
-import { CSharpSection } from "../../../components/constants";
+import { CSharpSection, GITHUB_URL, KH_INSIDER_URL, OC_REMIX_URL } from "../../../components/constants";
 
 const sectionNames = [
 	'Description',
@@ -31,11 +31,11 @@ const sections: CSharpSection[] = [
 			<React.Fragment>
 				<CSharpCardSection title="Purpose">
 					Websites like
-					<EmbeddedLink href="https://www.ocremix.org">
+					<EmbeddedLink href={OC_REMIX_URL}>
 						OCRemix
 					</EmbeddedLink>{" "}
 					and{" "}
-					<EmbeddedLink href="https://downloads.khinsider.com">
+					<EmbeddedLink href={KH_INSIDER_URL}>
 						Kingdom Hearts Insider
 					</EmbeddedLink>
 					offer mp3 files for downloading.&nbsp;&nbsp;It can be tedious
@@ -48,7 +48,7 @@ const sections: CSharpSection[] = [
 					crawls any sub-links until it runs out of links. &nbsp;On each page,
 					it looks for download links that match the Regular Expression and
 					adds them to a download queue. &nbsp;It works best on sites like
-					<EmbeddedLink href="https://downloads.khinsider.com">
+					<EmbeddedLink href={KH_INSIDER_URL}>
 						Kingdom Hearts Insider
 					</EmbeddedLink>
 					where each album page only has links to that specific album.
@@ -147,7 +147,7 @@ const Downloader: React.FC<DownloaderProps> = () => {
 		<CSharpLayout
 			sections={sections}
 			pageName="downloader"
-			sourceCodeLink="https://github.com/Beschuetzer/Downloader"
+			sourceCodeLink={`${GITHUB_URL}/downloader`}
 			>
 		</CSharpLayout>
 	);
