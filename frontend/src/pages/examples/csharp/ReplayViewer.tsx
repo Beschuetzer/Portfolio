@@ -53,16 +53,14 @@ const sections: CSharpSection[] = [
 						<EmbeddedLink isLocal={false} href="">
 							A# Maj Bridge
 						</EmbeddedLink>
-						, which saves games, deals, and user statistics in a mongoDB
+						, which saves games, deals, and user statistics into a mongoDB
 						database.&nbsp; There have been multiple times where it would have
-						been nice to review games without having to login to the db and look
-						at the decipher the raw data.&nbsp;
+						been nice to review games without having to login to the database and decipher the raw data.&nbsp;
 					</Paragraph>
 
 					<Paragraph size="four" classNameToAdd="margin-top-1">
-						Second, I wanted to improve my Angular familiarity by creating a
-						"real-world" application.&nbsp; What better way to do that than to
-						do something useful at the same time?
+						Second, I wanted to improve my familiarity with Narwahl's NX workspace and Angular.&nbsp; What better way to do that than to
+						create a real-world application with a practical use?
 					</Paragraph>
 				</CSharpCardSection>
 			</React.Fragment>,

@@ -69,8 +69,7 @@ NOT SURE------------------------------------------------------------
 
 
 
--work on replay-viewer content
+-proof read replay-viewer
 
 -mention nx monorepos in purpose
 -talk about how deals are stored separately from games and that each game has at least 2 deals (give examples of data structure)
-
