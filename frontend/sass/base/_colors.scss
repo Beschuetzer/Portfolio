@@ -15,17 +15,21 @@ $color-primary-1-light: #999999;
 $color-primary-2: #8ac6d0;
 $color-primary-3: #f4d262;
 $color-primary-4: #fbeeac;
+$color-primary-red: #D08A97;
 
 $color-primary-resume-1: #28537b;
 $color-primary-resume-2: #8ac5d0;
 $color-primary-resume-3: #f4d262;
 $color-primary-resume-4: #fbeeac;
+$color-primary-resume-red: #D08A97;
+
 $resume-color-opacity: .95;
 
-$color-primary-bridge-1: rgb(0, 64, 107);
+$color-primary-bridge-1: #00406b;
 $color-primary-bridge-2: #f59229;
 $color-primary-bridge-3: #e4e0c9;
 $color-primary-bridge-4: #f5f1db;
+$color-primary-bridge-red: #6B0700;
 $color-bridge-section-svg-1: #23f5f1db;
 $color-bridge-section-svg-2: #23f5f1db;
 $color-bridge-section-svg-3: #00406b80;
@@ -35,6 +39,8 @@ $color-primary-downloader-1: #f9f7f7;
 $color-primary-downloader-2: #dbe2ef;
 $color-primary-downloader-3: #3f72af;
 $color-primary-downloader-4: #112d4e;
+$color-primary-downloader-red: #B05840;
+
 $color-downloader-section-svg-1: #f9f7f7db;
 $color-downloader-section-svg-2: #dbe2efdb;
 $color-downloader-section-svg-3: #3f72afdb;
@@ -44,20 +50,19 @@ $color-primary-playlist-syncer-1: #ffc996;
 $color-primary-playlist-syncer-2: #ff8474;
 $color-primary-playlist-syncer-3: #9f5f80;
 $color-primary-playlist-syncer-4: #583d72;
+$color-primary-playlist-syncer-red: #ff8474;
 
 $color-primary-autobid-1: #E6E6E6;
 $color-primary-autobid-2: #C5A880;
 $color-primary-autobid-3: #532E1C;
 $color-primary-autobid-4: #0F0F0F;
+$color-primary-autobid-red: #541C2F;
 
 $color-primary-replay-1: #28537b;
 $color-primary-replay-2: #8ac6d0;
 $color-primary-replay-3: #f4d262;
 $color-primary-replay-4: #fbeeac;
-// $color-primary-autobid-4: #62959C;
-// $color-primary-autobid-3: #C19277;
-// $color-primary-autobid-2: #E1BC91;
-// $color-primary-autobid-1: #E3D0B9;
+$color-primary-replay-red: #D08A97;
 
 :root {
 	--color-grey-light-1: #{$color-grey-light-1};
@@ -85,64 +90,78 @@ $color-primary-replay-4: #fbeeac;
 	--color-primary-2: #{$color-primary-2};
 	--color-primary-3: #{$color-primary-3};
 	--color-primary-4: #{$color-primary-4};
+	--color-primary-red: #{$color-primary-red};
 	--color-primary-1-rgb: #{hexToRGB($color-primary-1)};
 	--color-primary-1-light-rgb: #{hexToRGB($color-primary-1-light)};
 	--color-primary-2-rgb: #{hexToRGB($color-primary-2)};
 	--color-primary-3-rgb: #{hexToRGB($color-primary-3)};
 	--color-primary-4-rgb: #{hexToRGB($color-primary-4)};
+	--color-primary-red-rgb: #{hexToRGB($color-primary-red)};
 
 	--color-primary-resume-1: #{$color-primary-resume-1};
 	--color-primary-resume-2: #{$color-primary-resume-2};
 	--color-primary-resume-3: #{$color-primary-resume-3};
 	--color-primary-resume-4: #{$color-primary-resume-4};
+		--color-primary-resume-red: #{$color-primary-resume-red};
 	--color-primary-resume-1-rgb: #{hexToRGB($color-primary-resume-1)};
 	--color-primary-resume-2-rgb: #{hexToRGB($color-primary-resume-2)};
 	--color-primary-resume-3-rgb: #{hexToRGB($color-primary-resume-3)};
 	--color-primary-resume-4-rgb: #{hexToRGB($color-primary-resume-4)};
+		--color-primary-resume-red-rgb: #{hexToRGB($color-primary-resume-red)};
 
 	--color-primary-bridge-2: #{$color-primary-bridge-2};
 	--color-primary-bridge-4: #{$color-primary-bridge-4};
 	--color-primary-bridge-3: #{$color-primary-bridge-3};
 	--color-primary-bridge-1: #{$color-primary-bridge-1};
+	--color-primary-bridge-red: #{$color-primary-bridge-red};
 	--color-primary-bridge-2-rgb: #{hexToRGB($color-primary-bridge-2)};
 	--color-primary-bridge-4-rgb: #{hexToRGB($color-primary-bridge-4)};
 	--color-primary-bridge-3-rgb: #{hexToRGB($color-primary-bridge-3)};
 	--color-primary-bridge-1-rgb: #{hexToRGB($color-primary-bridge-1)};
+	--color-primary-bridge-red-rgb: #{hexToRGB($color-primary-bridge-red)};
 
 	--color-primary-downloader-1: #{$color-primary-downloader-1};
 	--color-primary-downloader-3: #{$color-primary-downloader-3};
 	--color-primary-downloader-2: #{$color-primary-downloader-2};
 	--color-primary-downloader-4: #{$color-primary-downloader-4};
+		--color-primary-downloader-red: #{$color-primary-downloader-red};
 	--color-primary-downloader-1-rgb: #{hexToRGB($color-primary-downloader-1)};
 	--color-primary-downloader-3-rgb: #{hexToRGB($color-primary-downloader-3)};
 	--color-primary-downloader-2-rgb: #{hexToRGB($color-primary-downloader-2)};
 	--color-primary-downloader-4-rgb: #{hexToRGB($color-primary-downloader-4)};
+		--color-primary-downloader-red-rgb: #{hexToRGB($color-primary-downloader-red)};
 
 	--color-primary-playlist-syncer-1: #{$color-primary-playlist-syncer-1};
 	--color-primary-playlist-syncer-3: #{$color-primary-playlist-syncer-3};
 	--color-primary-playlist-syncer-2: #{$color-primary-playlist-syncer-2};
 	--color-primary-playlist-syncer-4: #{$color-primary-playlist-syncer-4};
+		--color-primary-playlist-syncer-red: #{$color-primary-playlist-syncer-red};
 	--color-primary-playlist-syncer-1-rgb: #{hexToRGB($color-primary-playlist-syncer-1)};
 	--color-primary-playlist-syncer-3-rgb: #{hexToRGB($color-primary-playlist-syncer-3)};
 	--color-primary-playlist-syncer-2-rgb: #{hexToRGB($color-primary-playlist-syncer-2)};
 	--color-primary-playlist-syncer-4-rgb: #{hexToRGB($color-primary-playlist-syncer-4)};
+		--color-primary-playlist-syncer-red-rgb: #{hexToRGB($color-primary-playlist-syncer-red)};
 
 	--color-primary-autobid-1: #{$color-primary-autobid-1};
 	--color-primary-autobid-3: #{$color-primary-autobid-3};
 	--color-primary-autobid-2: #{$color-primary-autobid-2};
 	--color-primary-autobid-4: #{$color-primary-autobid-4};
+		--color-primary-autobid-red: #{$color-primary-autobid-red};
 	--color-primary-autobid-1-rgb: #{hexToRGB($color-primary-autobid-1)};
 	--color-primary-autobid-3-rgb: #{hexToRGB($color-primary-autobid-3)};
 	--color-primary-autobid-2-rgb: #{hexToRGB($color-primary-autobid-2)};
 	--color-primary-autobid-4-rgb: #{hexToRGB($color-primary-autobid-4)};
+		--color-primary-autobid-red-rgb: #{hexToRGB($color-primary-autobid-red)};
 
 	--color-primary-replay-1: #{$color-primary-replay-1};
 	--color-primary-replay-2: #{$color-primary-replay-2};
 	--color-primary-replay-3: #{$color-primary-replay-3};
 	--color-primary-replay-4: #{$color-primary-replay-4};
+		--color-primary-replay-red: #{$color-primary-replay-red};
 	--color-primary-replay-1-rgb: #{hexToRGB($color-primary-replay-1)};
 	--color-primary-replay-2-rgb: #{hexToRGB($color-primary-replay-2)};
 	--color-primary-replay-3-rgb: #{hexToRGB($color-primary-replay-3)};
 	--color-primary-replay-4-rgb: #{hexToRGB($color-primary-replay-4)};
+		--color-primary-replay-red-rgb: #{hexToRGB($color-primary-replay-red)};
 
 }

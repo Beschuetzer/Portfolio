@@ -118,7 +118,7 @@ export const setBodyStyle = (currentUrl: string) => {
 
 	let docStyle = getComputedStyle(document.documentElement);
 	const colorVarRoot = "--color-primary";
-	const colorVarNumbers = ["-1", "-2", "-3", "-4"];
+	const colorSuffixes = ["-1", "-2", "-3", "-4", "-red"];
 	const lastIndexOfSlash = (currentUrl as any).lastIndexOf("/");
 	const pageName = (currentUrl as any).slice(lastIndexOfSlash);
 	const temp = PAGE_NAMES.indexOf(pageName);
@@ -126,8 +126,8 @@ export const setBodyStyle = (currentUrl: string) => {
 	setBodyStyle(PAGE_NAMES[index]);
 	const colorVarSuffix = PAGE_NAMES[index].slice(1);
 
-	for (let i = 0; i < colorVarNumbers.length; i++) {
-		const colorVarNumber = colorVarNumbers[i];
+	for (let i = 0; i < colorSuffixes.length; i++) {
+		const colorVarNumber = colorSuffixes[i];
 		let colorVarToChange = `${colorVarRoot}${colorVarNumber}`;
 		const colorVarTarget = `${colorVarRoot}${
 			colorVarSuffix !== "" ? `-${colorVarSuffix}` : ""

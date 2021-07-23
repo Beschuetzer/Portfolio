@@ -346,9 +346,9 @@ $carousel-grid-width: calc(
 		transform: translateY(0);
 		
 		& svg{
-			fill: var(--color-primary-1);
+			fill: rgba(var(--color-primary-red-rgb), 1);
 			&:hover {
-				fill: var(--color-primary-2);
+				fill: rgba(var(--color-primary-red-rgb), .5);
 			}
 		}
 	}

@@ -23,59 +23,73 @@
   --color-primary-2: #8ac6d0;
   --color-primary-3: #f4d262;
   --color-primary-4: #fbeeac;
+  --color-primary-red: #D08A97;
   --color-primary-1-rgb: 40, 83, 123;
   --color-primary-1-light-rgb: 153, 153, 153;
   --color-primary-2-rgb: 138, 198, 208;
   --color-primary-3-rgb: 244, 210, 98;
   --color-primary-4-rgb: 251, 238, 172;
+  --color-primary-red-rgb: 208, 138, 151;
   --color-primary-resume-1: #28537b;
   --color-primary-resume-2: #8ac5d0;
   --color-primary-resume-3: #f4d262;
   --color-primary-resume-4: #fbeeac;
+  --color-primary-resume-red: #D08A97;
   --color-primary-resume-1-rgb: 40, 83, 123;
   --color-primary-resume-2-rgb: 138, 197, 208;
   --color-primary-resume-3-rgb: 244, 210, 98;
   --color-primary-resume-4-rgb: 251, 238, 172;
+  --color-primary-resume-red-rgb: 208, 138, 151;
   --color-primary-bridge-2: #f59229;
   --color-primary-bridge-4: #f5f1db;
   --color-primary-bridge-3: #e4e0c9;
   --color-primary-bridge-1: #00406b;
+  --color-primary-bridge-red: #6B0700;
   --color-primary-bridge-2-rgb: 245, 146, 41;
   --color-primary-bridge-4-rgb: 245, 241, 219;
   --color-primary-bridge-3-rgb: 228, 224, 201;
   --color-primary-bridge-1-rgb: 0, 64, 107;
+  --color-primary-bridge-red-rgb: 107, 7, 0;
   --color-primary-downloader-1: #f9f7f7;
   --color-primary-downloader-3: #3f72af;
   --color-primary-downloader-2: #dbe2ef;
   --color-primary-downloader-4: #112d4e;
+  --color-primary-downloader-red: #B05840;
   --color-primary-downloader-1-rgb: 249, 247, 247;
   --color-primary-downloader-3-rgb: 63, 114, 175;
   --color-primary-downloader-2-rgb: 219, 226, 239;
   --color-primary-downloader-4-rgb: 17, 45, 78;
+  --color-primary-downloader-red-rgb: 176, 88, 64;
   --color-primary-playlist-syncer-1: #ffc996;
   --color-primary-playlist-syncer-3: #9f5f80;
   --color-primary-playlist-syncer-2: #ff8474;
   --color-primary-playlist-syncer-4: #583d72;
+  --color-primary-playlist-syncer-red: #ff8474;
   --color-primary-playlist-syncer-1-rgb: 255, 201, 150;
   --color-primary-playlist-syncer-3-rgb: 159, 95, 128;
   --color-primary-playlist-syncer-2-rgb: 255, 132, 116;
   --color-primary-playlist-syncer-4-rgb: 88, 61, 114;
+  --color-primary-playlist-syncer-red-rgb: 255, 132, 116;
   --color-primary-autobid-1: #E6E6E6;
   --color-primary-autobid-3: #532E1C;
   --color-primary-autobid-2: #C5A880;
   --color-primary-autobid-4: #0F0F0F;
+  --color-primary-autobid-red: #541C2F;
   --color-primary-autobid-1-rgb: 230, 230, 230;
   --color-primary-autobid-3-rgb: 83, 46, 28;
   --color-primary-autobid-2-rgb: 197, 168, 128;
   --color-primary-autobid-4-rgb: 15, 15, 15;
+  --color-primary-autobid-red-rgb: 84, 28, 47;
   --color-primary-replay-1: #28537b;
   --color-primary-replay-2: #8ac6d0;
   --color-primary-replay-3: #f4d262;
   --color-primary-replay-4: #fbeeac;
+  --color-primary-replay-red: #D08A97;
   --color-primary-replay-1-rgb: 40, 83, 123;
   --color-primary-replay-2-rgb: 138, 198, 208;
   --color-primary-replay-3-rgb: 244, 210, 98;
   --color-primary-replay-4-rgb: 251, 238, 172;
+  --color-primary-replay-red-rgb: 208, 138, 151;
 }
 
 :root {
@@ -1269,7 +1283,7 @@ body {
   display: grid;
   justify-items: center;
   align-items: center;
-  grid-auto-rows: 1fr;
+  grid-auto-rows: min-content;
   height: 200%;
   transition: opacity 1.25s ease;
 }
@@ -2781,10 +2795,10 @@ body {
   transform: translateY(0);
 }
 .carousel :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) svg {
-  fill: var(--color-primary-1);
+  fill: rgba(var(--color-primary-red-rgb), 1);
 }
 .carousel :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) svg:hover {
-  fill: var(--color-primary-2);
+  fill: rgba(var(--color-primary-red-rgb), 0.5);
 }
 .carousel .card__play-parent {
   left: 0;

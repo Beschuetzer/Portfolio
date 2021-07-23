@@ -702,7 +702,7 @@
 	display: grid;
 	justify-items: center;
 	align-items: center;
-	grid-auto-rows: 1fr;
+	grid-auto-rows: min-content;
 	height: 200%;
 	transition: 
 		opacity $animation-duration * 2.5 $animation-easing-standard,
