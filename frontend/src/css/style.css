@@ -4291,6 +4291,9 @@ div.references__name {
   justify-content: center;
   align-items: center;
   text-decoration: none;
+}
+.csharp__title--animated {
+  transition: color 0.25s ease;
   cursor: pointer;
   background: linear-gradient(to left, rgba(var(--color-primary-4-rgb), 1) 0%, rgba(var(--color-primary-1-rgb), 1) 5%, rgba(var(--color-primary-4-rgb), 1) 10%, rgba(var(--color-primary-4-rgb), 1) 100%);
   background-size: 200% auto;
@@ -4298,7 +4301,7 @@ div.references__name {
   color: transparent;
   animation: animate-skills infinite 10s;
 }
-.csharp__title:hover {
+.csharp__title--animated:hover {
   color: var(--color-primary-3);
 }
 .csharp__carousel {

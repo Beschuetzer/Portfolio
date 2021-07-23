@@ -21,8 +21,6 @@ export const WIKIPEDIA_DRM_URL = "https://en.wikipedia.org/wiki/Windows_Media_DR
 export const UDEMY_BOOTCAMP_URL = "https://www.udemy.com/course/the-web-developer-bootcamp/";
 
 
-
-
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const PAGE_NAV_WIDTH_AT_SWITCH_OFFSET = 192;

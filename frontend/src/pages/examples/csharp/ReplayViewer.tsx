@@ -10,6 +10,10 @@ import img4 from "../../../imgs/replay-viewer/img-4.png";
 import img5 from "../../../imgs/replay-viewer/img-5.png";
 import img6 from "../../../imgs/replay-viewer/img-6.png";
 import img7 from "../../../imgs/replay-viewer/img-7.png";
+import imgDeal from "../../../imgs/replay-viewer/img-deal-1.png";
+import imgGame from "../../../imgs/replay-viewer/img-game-1.png";
+import imgUser from "../../../imgs/replay-viewer/img-user-1.png";
+import imgStore from "../../../imgs/replay-viewer/img-store-1.png";
 import imgMobile1 from "../../../imgs/replay-viewer/img-mobile-1.png";
 import imgMobile2 from "../../../imgs/replay-viewer/img-mobile-2.png";
 import CSharpCardSection from "./CSharpCardSection";
@@ -23,11 +27,9 @@ import {
 	CSharpSection,
 	GITHUB_URL,
 	REPLAYS_URL,
-	WIKIPEDIA_DRM_URL,
-	WIKIPEDIA_MTP_URL,
 } from "../../../components/constants";
 
-const sectionNames = ["Motivation", "Media", "Hands On"];
+const sectionNames = ["Motivation", "Media", "Features", "Notes"];
 
 const sections: CSharpSection[] = [
 	{
@@ -40,53 +42,24 @@ const sections: CSharpSection[] = [
 						There are two reasons why I chose to build the
 						<EmbeddedLink isLocal={false} href={REPLAYS_URL}>
 							A# Maj Replay Viewer
-						</EmbeddedLink>.
+						</EmbeddedLink>
+						.
 					</Paragraph>
 					<Paragraph size="four" classNameToAdd="margin-top-1">
 						First, in March of 2021, I finished
 						<EmbeddedLink isLocal={false} href="">
 							A# Maj Bridge
-						</EmbeddedLink>, which saves games, deals, and user statistics in a mongoDB database.&nbsp; There have been multiple times where it would have been nice to review games without having to login to the db and look at the decipher the raw data.&nbsp; 
+						</EmbeddedLink>
+						, which saves games, deals, and user statistics in a mongoDB
+						database.&nbsp; There have been multiple times where it would have
+						been nice to review games without having to login to the db and look
+						at the decipher the raw data.&nbsp;
 					</Paragraph>
 
 					<Paragraph size="four" classNameToAdd="margin-top-1">
-						Second, I wanted to improve my Angular familiarity by creating a "real-world" application.&nbsp;  What better way to do that than to do something useful at the same time?
-					</Paragraph>
-				</CSharpCardSection>
-
-				<CSharpCardSection title="How It Works">
-					<Paragraph size="four">
-						The application works by utilizing local storage to cache games and deals for each player that a user searchs.&nbsp; Only new games and deals are downloaded on each subsequent query of a given player's username.&nbsp; 
-					</Paragraph>
-					<Paragraph size="four" classNameToAdd="margin-top-1">
-						It should be noted that the current implementation would not scale nicely as a player with tens of thousands of deals would have to download most of those deals on every query, leading to an unacceptably-long delay.&nbsp; However, my main concern was getting the app working and making it extensible, if the future requires it to be extended (given that the most deals any user has is less than a thousand, these concerns are currently irrelevant).
-					</Paragraph>
-				</CSharpCardSection>
-
-				<CSharpCardSection title="Approach">
-					<Paragraph size="four">
-						First I needed to figure out how to sync music to an Android device.
-						It turns out that the main way to do that is through a protocol
-						called the
-						<EmbeddedLink href={WIKIPEDIA_MTP_URL}>
-							Media Transfer Protocol
-						</EmbeddedLink>
-						(MTP), which is part of the
-						<EmbeddedLink href={WIKIPEDIA_DRM_URL}>
-							Windows Media DRM
-						</EmbeddedLink>
-						. Because of the
-						<EmbeddedLink isLocal={true} href="/examples/downloader">
-							downloader
-						</EmbeddedLink>
-						app I had recently started, I decided to use c# and WPF to create
-						the playlist syncing app.
-					</Paragraph>
-					<Paragraph size="four" classNameToAdd="margin-top-1">
-						Creating the application was fairly straight forward due to what I
-						had already learned from the downloader after I had thoroughly
-						understood the problem and had a firm grasp on how task factories
-						work and async code in general.
+						Second, I wanted to improve my Angular familiarity by creating a
+						"real-world" application.&nbsp; What better way to do that than to
+						do something useful at the same time?
 					</Paragraph>
 				</CSharpCardSection>
 			</React.Fragment>,
@@ -142,6 +115,22 @@ const sections: CSharpSection[] = [
 							itemSrc: imgMobile2,
 							description: "Mobile deal player",
 						},
+						{
+							itemSrc: imgStore,
+							description: "What the store looks like",
+						},
+						{
+							itemSrc: imgGame,
+							description: "Example of a game cached in local storage",
+						},
+						{
+							itemSrc: imgDeal,
+							description: "Example of a deal cached in local storage",
+						},
+						{
+							itemSrc: imgUser,
+							description: "Example of a user cached in local storage",
+						},
 					]}
 					numberOfItemsInCarouselAtOneTime="3"
 					numberOfItemsToScrollOnClick="3"
@@ -155,6 +144,80 @@ const sections: CSharpSection[] = [
 			</section>,
 		],
 	},
+	{
+		name: sectionNames[2],
+		pageName: C_SHARP_CLASSNAME,
+		children: [
+			<React.Fragment>
+				<CSharpCardSection title="Filters">
+					<Paragraph size="four">
+						There are two type of filters that can be applied: Game-level and
+						Deal-level.&nbsp; Game-level filters work by checking the
+						currently-displayed games only.&nbsp; Deal-level filters work by
+						checking only the deals of the currently-displayed games.&nbsp; If
+						both types of filters are applied at the same time, the game is
+						first checked, then the deals are checked to see if a match is
+						found.&nbsp; If so, the game is send to an array of filtered games
+						and if one of the deal filters matches, then that deal is sent to an
+						array of matching deals.&nbsp;{" "}
+					</Paragraph>
+				</CSharpCardSection>
+				<CSharpCardSection title="Preferences">
+					<Paragraph size="four">
+						There are three preferences the user can select from: size, sort,
+						and resultsPerPage.
+					</Paragraph>
+					<Paragraph size="four" classNameToAdd="margin-top-1">
+						Size refers to the size of the game detail card in the games list
+						view.&nbsp; There are three options: Large, Medium, and Small.
+					</Paragraph>
+					<Paragraph size="four" classNameToAdd="margin-top-1">
+						Sort refers to whether the matched games are sorted in descending or
+						ascending order based on the completion date.
+					</Paragraph>
+					<Paragraph size="four" classNameToAdd="margin-top-1">
+						Results per page refers to how many matched games are displayed at
+						one time.&nbsp; The choices are: 1, 2, 5, 10, 25, 50, and 100.
+					</Paragraph>
+				</CSharpCardSection>
+				<CSharpCardSection title="Caching">
+					<Paragraph size="four">
+						The results of each query are stored in local storage, allowing for
+						faster load times on subsequent queries of the same username as well
+						as any other usernames that were part of any of the cached
+						deals/games.&nbsp; Preferences, users, userIds, deals, and games are
+						all stored in local storage as separate items.&nbsp; The keys are
+						the id of the item and the value is the relevant data for that item.
+					</Paragraph>
+					{/* <Paragraph size="four">
+						The application works by utilizing local storage to cache games and
+						deals for each player that a user searchs.&nbsp; Only new games and
+						deals are downloaded on each subsequent query of a given player's
+						username.&nbsp;
+					</Paragraph> */}
+				</CSharpCardSection>
+			</React.Fragment>,
+		],
+	},
+	{
+		name: sectionNames[3],
+		pageName: C_SHARP_CLASSNAME,
+		children: [
+			<React.Fragment>
+				<CSharpCardSection title="On Caching">
+					<Paragraph size="four" classNameToAdd="margin-top-1">
+						It should be noted that the current implementation would not scale
+						nicely as a player with tens of thousands of deals would have to
+						download most of those deals on every query (local storage max is
+						5mb and each deal is around 2kb), leading to an unacceptably-long
+						delay.&nbsp; Given that the most deals any user has is less than a
+						thousand, this concern is currently irrelevant (adding pagination
+						would remedy this concern).
+					</Paragraph>
+				</CSharpCardSection>
+			</React.Fragment>,
+		],
+	},
 ];
 
 interface ReplayViewerProps {}
@@ -166,7 +229,9 @@ const ReplayViewer: React.FC<ReplayViewerProps> = () => {
 			sections={sections}
 			pageName="replay-viewer"
 			sourceCodeLink={`${GITHUB_URL}/nxBridge`}
-			demoLink={REPLAYS_URL}> </CSharpLayout>
+			demoLink={REPLAYS_URL}>
+			{" "}
+		</CSharpLayout>
 	);
 };
 

@@ -141,16 +141,22 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    @include link-animating(
-      var(--color-primary-4-rgb),
-      var(--color-primary-1-rgb),
-      var(--color-primary-4-rgb),
-      var(--color-primary-4-rgb),
-      );
 
-    &:hover {
-      color: var(--color-primary-3);
+    &--animated {
+      transition: color $animation-duration * .5 $animation-easing-standard;
+      @include link-animating(
+        var(--color-primary-4-rgb),
+        var(--color-primary-1-rgb),
+        var(--color-primary-4-rgb),
+        var(--color-primary-4-rgb),
+        );
+      &:hover {
+        color: var(--color-primary-3);
+      }
     }
+
+
+    
 
     @include respond(nav-switch) {
     }

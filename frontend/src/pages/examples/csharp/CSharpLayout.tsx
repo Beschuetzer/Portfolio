@@ -52,7 +52,7 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 					target="_blank"
 					rel="noreferrer"
 					href={href}
-					className={`${C_SHARP_CLASSNAME}__title`}>
+					className={`${C_SHARP_CLASSNAME}__title ${C_SHARP_CLASSNAME}__title--animated`}>
 					{capitalize(replaceCharacters(pageName))}
 				</a>
 			) : (
