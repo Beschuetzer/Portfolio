@@ -28,7 +28,7 @@ import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import CardManager from "../../../components/Card/CardManager";
 import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_CLASSNAME, BRIDGE_HERO_CLASSNAME, BRIDGE_HERO_CLICKED_CLASSNAME, BRIDGE_HERO_MORE__CLICKED_CLASSNAME, resetBridgeHero, setLinearGradientCssCustomProp } from "./utils";
 import {
-	DISPLAY_NONE_CLASSNAME, Reference,
+	DISPLAY_NONE_CLASSNAME, Reference, WEBSITE_BRIDGE_URL,
 } from "../../../components/constants";
 import BridgeHero from "./BridgeHero";
 import SourceCodeLink from "../../../components/SourceCodeLink";
@@ -42,7 +42,7 @@ const sectionContents = [
 				// title='An App is Born'
 			>
 				<p>
-					<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
+					<EmbeddedLink href={WEBSITE_BRIDGE_URL}>
 						A# Maj Bridge
 					</EmbeddedLink>is a socket.io and MongoDB app I created where users can play<EmbeddedLink href="https://en.wikipedia.org/wiki/Contract_bridge">
 						contract bridge
@@ -81,7 +81,7 @@ const sectionContents = [
 					Turn the page to learn about the&nbsp;<BridgeSectionLink 	
 						isEmbeddedLink={true}
 						name="features"
-						sectionToSkipTo="features"/> I built into<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>.
+						sectionToSkipTo="features"/> I built into<EmbeddedLink href={WEBSITE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>.
 				</p>
 			</BridgeCardSection>
 		</BridgeCard>
@@ -229,7 +229,7 @@ const sectionContents = [
 		<BridgeCard titleSize="two" titleContent={bridgeSections[2]}>
 			<BridgeCardSection title="Off and Running">
 				<p>
-					Because I had just completed the<EmbeddedLink isLocal={true} href="/examples/downloader">downloader</EmbeddedLink>and<EmbeddedLink href="/examples/playlist-syncer" isLocal={true}>playlist syncer</EmbeddedLink>projects, I initially tried creating<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
+					Because I had just completed the<EmbeddedLink isLocal={true} href="/examples/downloader">downloader</EmbeddedLink>and<EmbeddedLink href="/examples/playlist-syncer" isLocal={true}>playlist syncer</EmbeddedLink>projects, I initially tried creating<EmbeddedLink href={WEBSITE_BRIDGE_URL}>
 						A# Maj Bridge
 					</EmbeddedLink>using c#/WPF.&nbsp; However, it became readily-apparent early on that it would be rather challenging to create the bridge app I had envisioned using c#/WPF. 
 				</p>
@@ -250,7 +250,7 @@ const sectionContents = [
 					that had lain dormant for many years.&nbsp; Maybe I too could become
 					a web developer?&nbsp; I was determined to find out once and for
 					all, if I have what it takes to become a web developer.&nbsp; Hence,
-					I fully committed myself to making the<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
+					I fully committed myself to making the<EmbeddedLink href={WEBSITE_BRIDGE_URL}>
 						A# Maj Bridge
 					</EmbeddedLink>project.
 				</p> */}
@@ -259,7 +259,7 @@ const sectionContents = [
 						Ultimately my decision to become a web developer came down to the fact that I knew I would regret it in the future if I didn't give it an honest effort to become a web developer.  &nbsp;With the COVID-19 pandemic in full swing, I knew I would have time to explore my potential.
 					</p> 
 					<p>
-						I had taken MOOC courses in the past on EdX about computer programming, but I lacked the motivation to complete them because I told myself it wouldn't amount to anything.  &nbsp;Knowing now, that there was a chance to become a web developer, &nbsp;I couldn't see how I wouldn't regret not trying to become a web developer.&nbsp; Hence the reason I dove into the<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>project. */}
+						I had taken MOOC courses in the past on EdX about computer programming, but I lacked the motivation to complete them because I told myself it wouldn't amount to anything.  &nbsp;Knowing now, that there was a chance to become a web developer, &nbsp;I couldn't see how I wouldn't regret not trying to become a web developer.&nbsp; Hence the reason I dove into the<EmbeddedLink href={WEBSITE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>project. */}
 				{/* 							
 						 I look at my life 10 years from now and ask what if I had completely devoted my energy to becoming a web developer?  I couldn't imagine a scenario where I would be ok with just giving up on something that I enjoyed so much.&nbsp; With the pandemic looking like it was just getting started, I decided to take a leap of faith in myself: I decided to become a web developer. */}
 				{/* </p> */}
@@ -296,7 +296,7 @@ const sectionContents = [
 					<p>
 						First, I needed some sort of test that was sufficiently complex and representative enough of actual real-world applications, such that if I could pass it, I would know I am on the right track.&nbsp;
 
-						This is when<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>became a full-time endeavor.&nbsp; 
+						This is when<EmbeddedLink href={WEBSITE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>became a full-time endeavor.&nbsp; 
 					</p> */}
 			{/* </BridgeCardSection> */}
 			<BridgeCardSection title="To Pay or Not To Pay?">
@@ -348,7 +348,7 @@ const sectionContents = [
 					conclusion that sticking to the bread and butter of web development would be the best choice.  I figured it would be beneficial to my future career to get 'down and dirty' with CSS and JS.&nbsp; I could always layer on more complexity later.
 				</p>
 				<p>
-					For that reason, I chose to develop the frontend of<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">A# Maj Bridge</EmbeddedLink>with vanilla HTML5, CSS3, and JS and the backend with NodeJS(Express).&nbsp; My choice to use paperJS for the vector graphics library was purely because I had learned about it in Colt Steele's<EmbeddedLink
+					For that reason, I chose to develop the frontend of<EmbeddedLink href={WEBSITE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>with vanilla HTML5, CSS3, and JS and the backend with NodeJS(Express).&nbsp; My choice to use paperJS for the vector graphics library was purely because I had learned about it in Colt Steele's<EmbeddedLink
 						href="https://www.udemy.com/course/the-web-developer-bootcamp/"
 						isLocal={false}
 					>web developer bootcamp</EmbeddedLink>and didn't have any reason at the time to think about alternatives.
@@ -368,7 +368,7 @@ const sectionContents = [
 				</BridgeCardSection>
 				<BridgeCardSection title="The Results">
 					<p>
-						<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
+						<EmbeddedLink href={WEBSITE_BRIDGE_URL}>
 							A# Maj Bridge
 						</EmbeddedLink>took roughly 4 months for me to complete starting from not knowing any HTML, CSS, Javascript or.&nbsp; It runs smoothly on
 						Android 10+, Firefox 70+, and Chrome 70+ (but not on mobile iOS
@@ -407,7 +407,7 @@ const sectionContents = [
 			<BridgeCardSection title="No One Technology is 'Better'">
 				<p>
 					It's easy to think in the absolute terms of 'good', 'better', and
-					'best'.&nbsp; My experience coding<EmbeddedLink href="https://still-bayou-51404.herokuapp.com">
+					'best'.&nbsp; My experience coding<EmbeddedLink href={WEBSITE_BRIDGE_URL}>
 						A# Maj Bridge
 					</EmbeddedLink>has shown me that this way of thinking doesn't apply very well to web development.&nbsp; Picking the technology that meets the requirements with the least amount of complexity, is a more appropriate approach (assuming you don't already know a technology that meets the requirements).
 				</p>

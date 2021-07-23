@@ -1,5 +1,8 @@
 import { CSSProperties } from "react";
 
+export const WEBSITE_BRIDGE_URL = "https://still-bayou-51404.herokuapp.com";
+export const WEBSITE_REPLAYS_URL = "https://amajreplays.herokuapp.com";
+
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const PAGE_NAV_WIDTH_AT_SWITCH_OFFSET = 192;
