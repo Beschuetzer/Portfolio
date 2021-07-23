@@ -1,4 +1,4 @@
-import React, { CSSProperties, useRef } from "react";
+import React, { useRef } from "react";
 
 import PlayControl from "../VideoPlayer/PlayControl";
 import StopControl from "../VideoPlayer/StopControl";
@@ -18,15 +18,16 @@ import {
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
 } from "../VideoPlayer/utils";
-import { fixZIndexIssue } from "../utils";
+import { closeCarouselItem } from "../utils";
 import OverlayText from "../OverlayText/OverlayText";
 
-const FULLSCREEN_CLASSNAME = "full-screen";
-const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
-const PLAYING_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--playing`;
-const STOPPED_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--stopped`;
-const DONE_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--done`;
-const CLASSNAMES_TO_REMOVE = [
+export const FULLSCREEN_CLASSNAME = "full-screen";
+export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
+export const FULLSCREEN_ARROW_BUTTON_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button--full-screen`;
+export const PLAYING_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--playing`;
+export const STOPPED_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--stopped`;
+export const DONE_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--done`;
+export const CLASSNAMES_TO_REMOVE = [
 	FULLSCREEN_PARENT_CLASSNAME,
 	FULLSCREEN_CLASSNAME,
 	PLAYING_CLASSNAME,
@@ -42,6 +43,8 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	foregroundVideoClassname = FOREGROUND_VIDEO_CLASSNAME,
 	description: imageAlt,
 	itemSrc,
+	leftArrowRef,
+	rightArrowRef,
 	videoType = "mp4",
 	videoAutoPlay = false,
 	videoLoop = false,
@@ -76,37 +79,20 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		return result;
 	}
 
+	function addFullscreenClassToArrowButtons() {
+		const leftArrowEl = (leftArrowRef?.current as any)[0];
+		const rightArrowEl = (rightArrowRef?.current as any)[0];
+
+		if (leftArrowEl) leftArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
+		if (rightArrowEl) rightArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
+	}
+
 	const handleVideoEnd = (e: Event) => {
 		const video = videoRef?.current as any;
 		if (!video) return;
 		video.parentNode.classList.add(DONE_CLASSNAME);
 		video.parentNode.classList.remove(PLAYING_CLASSNAME);
 		video.removeEventListener("ended", handleVideoEnd);
-	};
-
-	const onVideoProgress = (e: Event) => {
-		const video = e.target as any;
-		const item = video.parentNode;
-		if (!video || !item) return;
-
-		const percent = video.currentTime / video.duration;
-		(progressBarRef as any).current.value = percent;
-	};
-
-	const onProgressBarClick = (e: MouseEvent) => {
-		const clientX = e.clientX;
-		const progressBar = e.currentTarget as HTMLProgressElement;
-		if (!progressBar) return;
-
-		const percent = getPercentOfProgressBar(progressBar, clientX);
-
-		const video = videoRef.current;
-		if (!video) return;
-		video.currentTime = percent * video.duration;
-		if ((video as any).parentNode.classList.contains(DONE_CLASSNAME)) {
-			(video as any).parentNode.classList.remove(DONE_CLASSNAME);
-			(video as any).parentNode.classList.add(STOPPED_CLASSNAME);
-		}
 	};
 
 	const onItemClick = (e: MouseEvent) => {
@@ -116,6 +102,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
 		item.classList.toggle(FULLSCREEN_CLASSNAME);
 		item.parentNode?.classList.toggle(FULLSCREEN_PARENT_CLASSNAME);
+		addFullscreenClassToArrowButtons();
 
 		if (
 			item.classList.contains(videoClassname) ||
@@ -136,7 +123,32 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 				video.addEventListener("timeupdate", onVideoProgress);
 			}
 		}
-		fixZIndexIssue(item, "", true);
+		closeCarouselItem(item, "", true);
+	};
+
+	const onProgressBarClick = (e: MouseEvent) => {
+		const clientX = e.clientX;
+		const progressBar = e.currentTarget as HTMLProgressElement;
+		if (!progressBar) return;
+
+		const percent = getPercentOfProgressBar(progressBar, clientX);
+
+		const video = videoRef.current;
+		if (!video) return;
+		video.currentTime = percent * video.duration;
+		if ((video as any).parentNode.classList.contains(DONE_CLASSNAME)) {
+			(video as any).parentNode.classList.remove(DONE_CLASSNAME);
+			(video as any).parentNode.classList.add(STOPPED_CLASSNAME);
+		}
+	};
+
+	const onVideoProgress = (e: Event) => {
+		const video = e.target as any;
+		const item = video.parentNode;
+		if (!video || !item) return;
+
+		const percent = video.currentTime / video.duration;
+		(progressBarRef as any).current.value = percent;
 	};
 
 	let mediaToAdd = (

@@ -1,5 +1,6 @@
 import history from "../history";
-import { CAROUSEL_VIDEO_CLASSNAME } from "./Carousel/util";
+import { FULLSCREEN_ARROW_BUTTON_CLASSNAME } from "./Carousel/CarouselItem";
+import { CAROUSEL_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./Carousel/util";
 import { OVERFLOW_HIDDEN_CLASSNAME, Z_INDEX_CONTENT_CLASSNAME } from "./constants";
 import { HEADER_ID } from "./navbar/SiteNav/utils";
 import { NAVBAR_ACTIVE_CLASSNAME, NAVBAR_CLASSNAME, NAVBAR_DONE_CLASSNAME } from "./navbar/utils";
@@ -105,7 +106,7 @@ export const addSpaceAfterPunctuationMarks = (string: string) => {
   return newString;
 }
 
-export function fixZIndexIssue(item: HTMLElement, additionalSelector: string, shouldAddZIndex = false) {
+export function closeCarouselItem(item: HTMLElement, additionalSelector: string, shouldAddZIndex = false) {
   let sectionAbove: HTMLElement | null;
   let sectionAboveThat: HTMLElement | null;
 
@@ -120,6 +121,17 @@ export function fixZIndexIssue(item: HTMLElement, additionalSelector: string, sh
   if (sectionAboveThat) {
     if (shouldAddZIndex) sectionAboveThat.classList.add(Z_INDEX_CONTENT_CLASSNAME)
     else sectionAboveThat.classList.remove(Z_INDEX_CONTENT_CLASSNAME);
+  }
+
+  resetArrowButtonClassnames();
+}
+
+export function resetArrowButtonClassnames() {
+  const arrowButtons = document.querySelectorAll(`.${CAROUSEL_CLASSNAME}__arrow-button`);
+
+  for (let i = 0; i < arrowButtons.length; i++) {
+    const arrowButton = arrowButtons[i];
+    arrowButton.classList.remove(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
   }
 }
 

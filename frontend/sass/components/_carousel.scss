@@ -51,24 +51,31 @@ $carousel-grid-width: calc(
 	}
 
 	&__dot {
-		--opacity: .33;
+		--opacity: 0.33;
 		position: relative;
 		z-index: 6;
 		cursor: pointer;
 		width: $navbar__logo-width / 2;
 		height: $navbar__logo-width / 2;
-		fill: rgba(#{var(--color-primary-1-rgb)}, var(--carousel-dot-alpha, var(--opacity)));
+		fill: rgba(
+			#{var(--color-primary-1-rgb)},
+			var(--carousel-dot-alpha, var(--opacity))
+		);
 
 		&:hover {
 			--carousel-dot-alpha: 0.75;
 		}
 
 		&--active {
-		  --opacity: 1;
+			--opacity: 1;
 		}
 	}
 
 	&__arrow-button {
+		--fullscreen-top: calc(
+			(#{$carousel-full-screen-image-height} - #{$navbar__logo-width}) / 2
+		);
+
 		position: relative;
 		z-index: 100;
 		// transform: none;
@@ -78,6 +85,20 @@ $carousel-grid-width: calc(
 
 		@include respond(nav-switch) {
 			display: none;
+		}
+
+		&--full-screen {
+			position: fixed;
+			z-index: 1000000;
+			top: var(--fullscreen-top);
+		}
+
+		&--full-screen#{&}--left {
+			left: 0;
+		}
+
+		&--full-screen#{&}--right {
+			right: 0;
 		}
 
 		&--left {

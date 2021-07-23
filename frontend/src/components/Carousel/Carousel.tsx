@@ -44,10 +44,10 @@ const Carousel: React.FC<CarouselProps> = ({
 	dotSVGXLinkHref = "/sprite.svg#icon-dot-single",
 }) => {
 	let currentTranslationFactor = CAROUSEL_MIN_IMAGE_COUNT;
-	let itemsRef = useRef<RefObject<HTMLElement>>(null);
-	let itemsWidthRef = useRef<RefObject<HTMLElement>>(null);
-	let leftArrowRef = useRef<RefObject<HTMLElement>>(null);
-	let rightArrowRef = useRef<RefObject<HTMLElement>>(null);
+	let itemsRef = useRef<HTMLElement>(null);
+	let itemsWidthRef = useRef<HTMLElement>(null);
+	let leftArrowRef = useRef<HTMLElement>(null);
+	let rightArrowRef = useRef<HTMLElement>(null);
 	let removeTransitionTimeout: any;
 
 	useInit(
@@ -98,6 +98,8 @@ const Carousel: React.FC<CarouselProps> = ({
 					: undefined,
 				description: item.description ? item.description : undefined,
 				itemSrc: item.itemSrc ? item.itemSrc : undefined,
+				leftArrowRef: leftArrowRef,
+				rightArrowRef: rightArrowRef,
 				videoType: item.videoType ? item.videoType : undefined,
 				videoAutoPlay: item.videoAutoPlay ? item.videoAutoPlay : undefined,
 				videoLoop: item.videoLoop ? item.videoLoop : undefined,

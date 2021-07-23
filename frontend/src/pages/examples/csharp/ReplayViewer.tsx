@@ -23,7 +23,7 @@ import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
 import {
-	fixZIndexIssue,
+	closeCarouselItem as closeCarouselItem,
 	functionToGetContainer,
 } from "../../../components/utils";
 import {
@@ -147,7 +147,7 @@ const sections: CSharpSection[] = [
 					numberOfItemsInCarouselAtOneTime="3"
 					numberOfItemsToScrollOnClick="3"
 					functionToGetContainer={functionToGetContainer}
-					functionToRunOnClose={fixZIndexIssue.bind(
+					functionToRunOnClose={closeCarouselItem.bind(
 						null,
 						null as any,
 						`#${sectionNames[1].toLowerCase()}`,

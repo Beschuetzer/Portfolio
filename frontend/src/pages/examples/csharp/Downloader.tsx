@@ -14,7 +14,7 @@ import demoVideo from "../../../clips/downloader/demo.mp4";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
-import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
+import { closeCarouselItem, functionToGetContainer } from "../../../components/utils";
 import { CSharpSection, GITHUB_URL, KH_INSIDER_URL, OC_REMIX_URL } from "../../../components/constants";
 
 const sectionNames = [
@@ -102,7 +102,7 @@ const sections: CSharpSection[] = [
 					numberOfItemsInCarouselAtOneTime="3"
 					numberOfItemsToScrollOnClick="3"
 					functionToGetContainer={functionToGetContainer}
-					functionToRunOnClose={fixZIndexIssue.bind(null, null as any, `#${sectionNames[1].toLowerCase()}`)}
+					functionToRunOnClose={closeCarouselItem.bind(null, null as any, `#${sectionNames[1].toLowerCase()}`)}
 				>
 				</Carousel>
 			</section>

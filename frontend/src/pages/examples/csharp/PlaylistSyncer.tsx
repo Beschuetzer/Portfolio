@@ -12,7 +12,7 @@ import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
-import { fixZIndexIssue, functionToGetContainer } from "../../../components/utils";
+import { closeCarouselItem, functionToGetContainer } from "../../../components/utils";
 import { CSharpSection, GITHUB_URL, OS_10_ISSUE_TRACKER_URL, WIKIPEDIA_DRM_URL, WIKIPEDIA_MTP_URL } from "../../../components/constants";
 
 const sectionNames = [
@@ -108,7 +108,7 @@ const sections: CSharpSection[] = [
 					numberOfItemsInCarouselAtOneTime="3"
 					numberOfItemsToScrollOnClick="3"
 					functionToGetContainer={functionToGetContainer}
-					functionToRunOnClose={fixZIndexIssue.bind(null, null as any, `#${sectionNames[1].toLowerCase()}`)}
+					functionToRunOnClose={closeCarouselItem.bind(null, null as any, `#${sectionNames[1].toLowerCase()}`)}
 				/>
 			</section>
 		]

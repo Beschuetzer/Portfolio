@@ -2568,7 +2568,7 @@ body {
   }
 }
 .carousel__dot {
-  --opacity: .33;
+  --opacity: 0.33;
   position: relative;
   z-index: 6;
   cursor: pointer;
@@ -2583,6 +2583,9 @@ body {
   --opacity: 1;
 }
 .carousel__arrow-button {
+  --fullscreen-top: calc(
+  	(90vh - 7vw) / 2
+  );
   position: relative;
   z-index: 100;
   justify-self: center;
@@ -2593,6 +2596,17 @@ body {
   .carousel__arrow-button {
     display: none;
   }
+}
+.carousel__arrow-button--full-screen {
+  position: fixed;
+  z-index: 1000000;
+  top: var(--fullscreen-top);
+}
+.carousel__arrow-button--full-screen.carousel__arrow-button--left {
+  left: 0;
+}
+.carousel__arrow-button--full-screen.carousel__arrow-button--right {
+  right: 0;
 }
 .carousel__arrow-button--left {
   grid-column: 2/span 1;
