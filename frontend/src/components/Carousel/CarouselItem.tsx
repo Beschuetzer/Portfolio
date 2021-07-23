@@ -20,6 +20,7 @@ import {
 } from "../VideoPlayer/utils";
 import { closeCarouselItem } from "../utils";
 import OverlayText from "../OverlayText/OverlayText";
+import { FILL_RED_CLASSNAME } from "../constants";
 
 export const FULLSCREEN_CLASSNAME = "full-screen";
 export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
@@ -83,8 +84,16 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		const leftArrowEl = (leftArrowRef?.current as any)[0];
 		const rightArrowEl = (rightArrowRef?.current as any)[0];
 
-		if (leftArrowEl) leftArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
-		if (rightArrowEl) rightArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
+		if (leftArrowEl) {
+			leftArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
+			const svg = leftArrowEl.querySelector('svg');
+			svg?.classList.add(FILL_RED_CLASSNAME);
+		}
+		if (rightArrowEl) {
+			rightArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
+			const svg = rightArrowEl.querySelector('svg');
+			svg?.classList.add(FILL_RED_CLASSNAME);
+		}
 	}
 
 	const handleVideoEnd = (e: Event) => {
@@ -97,11 +106,12 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
 	const onItemClick = (e: MouseEvent) => {
 		const item = e.currentTarget as any;
-		if (!item) return;
+		if (!item || (item.parentNode as HTMLElement)?.classList.contains(FULLSCREEN_PARENT_CLASSNAME)) return;
 		e.preventDefault();
 
-		item.classList.toggle(FULLSCREEN_CLASSNAME);
-		item.parentNode?.classList.toggle(FULLSCREEN_PARENT_CLASSNAME);
+
+		item.classList.add(FULLSCREEN_CLASSNAME);
+		item.parentNode?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 		addFullscreenClassToArrowButtons();
 
 		if (

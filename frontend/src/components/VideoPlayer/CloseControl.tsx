@@ -1,5 +1,7 @@
 import { RefObject } from "react";
 import { connect } from "react-redux";
+import { FULLSCREEN_CLASSNAME, FULLSCREEN_PARENT_CLASSNAME } from "../Carousel/CarouselItem";
+import { CAROUSEL_ITEM_CLASSNAME } from "../Carousel/util";
 import { removeClassFromAllChildren } from "../utils";
 
 import { closeVideo } from "./utils";
@@ -27,9 +29,16 @@ const CloseControl: React.FC<CloseControlProps> = ({
 		e.stopPropagation();
 		closeVideo(videoRef.current as HTMLVideoElement);
 		if (functionToRunOnClose) functionToRunOnClose();
-
+		
 		if (containerRef && containerRef.current) {
 			const container = containerRef.current;
+			container.classList.remove(FULLSCREEN_PARENT_CLASSNAME)
+			const items = container.querySelectorAll(`.${CAROUSEL_ITEM_CLASSNAME}`);
+
+			for (let i = 0; i < items.length; i++) {
+				const item = items[i];
+				item?.classList.remove(FULLSCREEN_CLASSNAME);
+			}
 
 			for (let i = 0; i < classNamesToRemove.length; i++) {
 				const classNameToRemove = classNamesToRemove[i];
