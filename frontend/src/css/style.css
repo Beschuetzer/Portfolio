@@ -68,6 +68,14 @@
   --color-primary-autobid-3-rgb: 83, 46, 28;
   --color-primary-autobid-2-rgb: 197, 168, 128;
   --color-primary-autobid-4-rgb: 15, 15, 15;
+  --color-primary-replay-1: #28537b;
+  --color-primary-replay-2: #8ac6d0;
+  --color-primary-replay-3: #f4d262;
+  --color-primary-replay-4: #fbeeac;
+  --color-primary-replay-1-rgb: 40, 83, 123;
+  --color-primary-replay-2-rgb: 138, 198, 208;
+  --color-primary-replay-3-rgb: 244, 210, 98;
+  --color-primary-replay-4-rgb: 251, 238, 172;
 }
 
 :root {
@@ -365,7 +373,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   font-family: "Merriweather", serif;
-  color: var(--color-primary-4);
+  color: var(--color-primary-1);
   overflow-x: hidden;
 }
 
@@ -2836,7 +2844,7 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  top: calc( 14vw + ( ( ( ( 100vw - ( 85rem + ( (100vw - 85rem) / 2 ) + 7vw ) ) / 2 ) - 1vw ) * 1 ) - .9vw );
+  top: calc( 			14vw + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 				0.9vw 		);
   text-decoration: none;
   right: calc((100vw - calc( 	85rem + ((100% - 85rem) / 2) + 7vw ) - 1.5vw) / 2);
 }
@@ -2887,6 +2895,9 @@ body {
 }
 .source-link__source:hover svg {
   fill: var(--arrow-button-right-fill);
+}
+.source-link__demo {
+  top: calc(( 			14vw + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 				0.9vw) * 1.5 		);
 }
 
 :is(.csharp, .resume) .source-link__source-svg {
@@ -4182,7 +4193,7 @@ div.references__name {
   }
 }
 .playlist-syncer .csharp__card {
-  background-color: rgba(var(--color-primary-4-rgb), 0.875);
+  background-color: rgba(var(--color-primary-4-rgb), 1);
 }
 
 .csharp {
@@ -4203,8 +4214,7 @@ div.references__name {
   border-radius: 0.8rem;
   box-shadow: 0 1.6rem 3.2rem rgba(17, 17, 17, 0.33);
   width: 85rem;
-  background-color: rgba(var(--color-primary-4-rgb), 0.4);
-  color: rgba(var(--color-primary-1-rgb), 0.875);
+  background-color: rgba(var(--color-primary-4-rgb), 1);
   margin: 3.2rem auto;
 }
 @media only screen and (max-width: 58.5625em) {
@@ -4262,6 +4272,20 @@ div.references__name {
   width: 100vw;
   padding-top: calc(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.4vw) - 2vw);
   text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
+  color: var(--color-primary-4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: linear-gradient(to left, rgba(var(--color-primary-4-rgb), 1) 0%, rgba(var(--color-primary-1-rgb), 1) 5%, rgba(var(--color-primary-4-rgb), 1) 10%, rgba(var(--color-primary-4-rgb), 1) 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  color: transparent;
+  animation: animate-skills infinite 10s;
+}
+.csharp__title:hover {
+  color: var(--color-primary-3);
 }
 .csharp__carousel {
   margin: 1.6rem auto 0 auto;

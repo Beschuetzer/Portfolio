@@ -159,9 +159,11 @@ interface ReplayViewerProps {
 const ReplayViewer: React.FC<ReplayViewerProps> = () => {
 	return (
 		<CSharpLayout
+			href="http://amajreplays.herokuapp.com"
 			sections={sections}
 			pageName="replay-viewer"
-			sourceCodeLink="https://github.com/Beschuetzer/nxBridge">
+			sourceCodeLink="https://github.com/Beschuetzer/nxBridge"
+			demoLink="https://amajreplays.herokuapp.com">
 		</CSharpLayout>
 	);
 };

@@ -70,5 +70,9 @@ NOT SURE------------------------------------------------------------
 
 
 -work on replay-viewer content
--get replay-viewer images and videos
--auto bid has two sections the same
+-get replay-viewer videos
+  -1 for applying filters
+  -1 for hide animations
+  -1 for deal player
+
+-make each page's title a anchor to demo

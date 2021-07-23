@@ -1,12 +1,15 @@
 .source-link {
-  &__source {
+	&__source {
 		font-family: $font-family-headers;
-    position: fixed;
-    z-index: $navbar-full-z-index;
-    display: inline-flex;
+		position: fixed;
+		z-index: $navbar-full-z-index;
+		display: inline-flex;
 		justify-content: center;
 		align-items: center;
-		top: calc(    14vw +     (      (        (          (            100vw -             (              85rem + (                (100vw - 85rem) / 2               ) + 7vw             )           ) / 2         ) - 1vw       ) * 1     ) - .9vw   );
+		top: calc(
+			14vw + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) -
+				0.9vw
+		);
 		text-decoration: none;
 		right: calc((100vw - #{$header-inner-width} - 1.5vw) / 2);
 
@@ -21,10 +24,8 @@
 			width: $navbar__logo-width;
 			height: $navbar__logo-width;
 			fill: var(--arrow-button-left-fill-hover);
-			opacity: .15;
-			transition:  
-				fill $animation-duration * .25 $animation-easing-modern,
-			;
+			opacity: 0.15;
+			transition: fill $animation-duration * 0.25 $animation-easing-modern;
 		}
 
 		&-label {
@@ -42,14 +43,12 @@
 			transform: translate(-50%, -50%);
 			color: var(--arrow-button-right-fill);
 			font-size: $default-font-size * 1;
-			transition:  
-				transform $animation-duration * .25 $animation-easing-modern,
-			;
+			transition: transform $animation-duration * 0.25 $animation-easing-modern;
 
 			border-radius: 50%;
-			padding: $default-font-size * .25 $default-font-size * .5;
+			padding: $default-font-size * 0.25 $default-font-size * 0.5;
 			// color: rgba(var(--color-primary-4-rgb), 1);
-			background-color: rgba(var(--color-primary-4-rgb),0.1);
+			background-color: rgba(var(--color-primary-4-rgb), 0.1);
 		}
 
 		&:hover &-label {
@@ -58,10 +57,16 @@
 			transform: rotate(2.5deg);
 		}
 
-
 		&:hover svg {
 			fill: var(--arrow-button-right-fill);
 		}
+	}
+
+	&__demo {
+		top: calc((
+			14vw + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) -
+				0.9vw) * 1.5
+		);
 	}
 }
 
@@ -70,7 +75,7 @@
 		fill: var(--color-primary-4) !important;
 
 		&:hover {
-			fill: rgba(var(--color-primary-4-rgb), .5) !important;
+			fill: rgba(var(--color-primary-4-rgb), 0.5) !important;
 		}
 	}
 

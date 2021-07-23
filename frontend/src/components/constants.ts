@@ -92,6 +92,7 @@ export const PAGE_NAMES = [
   "/downloader",
   "/playlist-syncer",
   "/autobid",
+  "/replay",
 ];
 
 //#endregion

@@ -34,7 +34,7 @@
   }
 
   & .csharp__card {
-    background-color: rgba(var(--color-primary-4-rgb), .875);
+    background-color: rgba(var(--color-primary-4-rgb), 1);
   }
 }
 
@@ -69,8 +69,8 @@
     box-shadow: $navbar-box-shadow-resume;
     width: $resume-card-width-full;
 
-    background-color: rgba(var(--color-primary-4-rgb), 0.4);
-    color: rgba(var(--color-primary-1-rgb),.875);
+    background-color: rgba(var(--color-primary-4-rgb), 1);
+    // color: rgba(var(--color-primary-1-rgb),.875);
     margin: $default-font-size * 2 auto;
 
     @include respond(tab-land) {
@@ -135,6 +135,22 @@
     width: 100vw;
   	padding-top: calc(#{$header-top} - 2vw);
     text-shadow: $resume-header-text-shadow;
+    color: var(--color-primary-4);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    @include link-animating(
+      var(--color-primary-4-rgb),
+      var(--color-primary-1-rgb),
+      var(--color-primary-4-rgb),
+      var(--color-primary-4-rgb),
+      );
+
+    &:hover {
+      color: var(--color-primary-3);
+    }
 
     @include respond(nav-switch) {
     }
