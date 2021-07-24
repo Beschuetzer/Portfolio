@@ -187,6 +187,10 @@ $carousel-grid-width: calc(
 				}
 			}
 
+			& .carousel__video {
+				cursor: auto;
+			}
+
 			& .carousel__video ~ .carousel__image-description {
 				padding: $default-font-size * 1
 					calc(#{$carousel-svg-parent-width} * 1 + #{$default-font-size})
@@ -209,8 +213,7 @@ $carousel-grid-width: calc(
 			}
 		}
 
-		&--is-playing {
-		}
+	
 	}
 
 	&__video {
@@ -223,9 +226,15 @@ $carousel-grid-width: calc(
 				position: fixed;
 				height: 100%;
 				object-position: top left;
-				object-fit: contain;
+				object-fit: cover;
 				transform: translateX(-50%);
 				width: auto;
+
+				.carousel__item--full-screen & {
+						width: 100vw;
+						backdrop-filter: blur(10px);
+						height: calc(#{$carousel-full-screen-image-height} - #{$carousel-progress-bar-height});
+				}
 			}
 
 			&.full-screen {
@@ -251,6 +260,10 @@ $carousel-grid-width: calc(
 
 			& use {
 				pointer-events: none;
+			}
+
+			.carousel__item--full-screen & {
+				opacity: 0;
 			}
 		}
 
@@ -337,11 +350,11 @@ $carousel-grid-width: calc(
 		background-color: rgba(var(--color-primary-4-rgb), 0.9);
 		border-radius: $default-font-size / 2;
 	}
-	&__item--stopped .overlay-text,
-	&__item--done .overlay-text {
-		opacity: 1;
-		visibility: visible;
-	}
+	// &__item--stopped .overlay-text,
+	// &__item--done .overlay-text {
+	// 	opacity: 1;
+	// 	visibility: visible;
+	// }
 
 	//control styling below here
 	& :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
@@ -377,10 +390,14 @@ $carousel-grid-width: calc(
 
 	& .card__play-parent {
 		left: 0;
+		visibility: visible;
+		opacity: 1;
 	}
 
 	& .card__pause-parent {
 		left: 0;
+		opacity: 0;
+		visibility: hidden;
 	}
 
 	& .card__restart-parent {
@@ -442,9 +459,20 @@ $carousel-grid-width: calc(
 		display: none;
 	}
 
-	&__item--playing ~ .card__play-parent {
-		display: none;
+	&__item--playing {
+		& ~ .card__play-parent {
+			opacity: 0;
+			visibility: hidden;
+		}
+		& ~ .card__pause-parent {
+			opacity: 1;
+			visibility: visible;
+		}
 	}
+	// :is(&__item--stopped, &__item--done) ~ .card__pause-parent {
+	// 	visibility: visible;
+	// 	opacity: 1;
+	// }
 
 	//showing controls when is open
 	&

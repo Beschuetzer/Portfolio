@@ -14,11 +14,13 @@ import {
 	CAROUSEL_ITEM_CLASSNAME,
 	CAROUSEL_VIDEO_CLASSNAME,
 	getNthItemOpen,
+	handleVideo,
 	toggleLeftAndRightArrows,
 } from "./util";
 import {
 	getIsVideoPlaying,
 	getPercentOfProgressBar,
+	handleVideoProgress,
 } from "../VideoPlayer/utils";
 import { closeCarouselItem } from "../utils";
 import OverlayText from "../OverlayText/OverlayText";
@@ -72,16 +74,6 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		getRegexStringFromStringArray(videoExtentions),
 	);
 
-	function getRegexStringFromStringArray(fileExtensions: string[]) {
-		const mapped = fileExtensions.map((ext, index) => {
-			let orChar = "|";
-			if (index === 0) orChar = "";
-			return `${orChar}(.${ext})`;
-		});
-		const result = ".+" + mapped.join("") + "$";
-		return result;
-	}
-
 	function addFullscreenClassToArrowButtons() {
 		const leftArrowEl = (leftArrowRef?.current as any)[0];
 		const rightArrowEl = (rightArrowRef?.current as any)[0];
@@ -96,6 +88,16 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 			const svg = rightArrowEl.querySelector('svg');
 			svg?.classList.add(FILL_RED_CLASSNAME);
 		}
+	}
+
+	function getRegexStringFromStringArray(fileExtensions: string[]) {
+		const mapped = fileExtensions.map((ext, index) => {
+			let orChar = "|";
+			if (index === 0) orChar = "";
+			return `${orChar}(.${ext})`;
+		});
+		const result = ".+" + mapped.join("") + "$";
+		return result;
 	}
 
 	const handleVideoEnd = (e: Event) => {
@@ -121,36 +123,17 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	}
 
 	const onItemClick = (e: MouseEvent) => {
-		const item = e.currentTarget as any;
-		if (!item || (item.parentNode as HTMLElement)?.classList.contains(FULLSCREEN_PARENT_CLASSNAME)) return ;
+		const carouselItem = e.currentTarget as any;
+		if (!carouselItem || (carouselItem.parentNode as HTMLElement)?.classList.contains(FULLSCREEN_PARENT_CLASSNAME)) return ;
 		e.preventDefault();
 
 		handleShouldHideArrows(e);
 
-		item.classList.add(FULLSCREEN_CLASSNAME);
-		item.parentNode?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
+		carouselItem.classList.add(FULLSCREEN_CLASSNAME);
+		carouselItem.parentNode?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 		addFullscreenClassToArrowButtons();
-
-		if (
-			item.classList.contains(videoClassname) ||
-			item.classList.contains(foregroundVideoClassname)
-		) {
-			const video = item.querySelector("video") as HTMLVideoElement;
-			const isPlaying = getIsVideoPlaying(video);
-
-			if (isPlaying) {
-				item.classList.remove(PLAYING_CLASSNAME);
-				video.currentTime = 0;
-				video.pause();
-				video.removeEventListener("timeupdate", onVideoProgress);
-			} else if (!item.classList.contains(PLAYING_CLASSNAME)) {
-				item.classList.add(PLAYING_CLASSNAME);
-				video.play();
-				video.addEventListener("ended", handleVideoEnd);
-				video.addEventListener("timeupdate", onVideoProgress);
-			}
-		}
-		closeCarouselItem(item, "", true);
+		handleVideo(carouselItem, videoClassname, foregroundVideoClassname, handleVideoEnd, handleVideoProgress);		
+		closeCarouselItem(carouselItem, "", true);
 	};
 
 	const onProgressBarClick = (e: MouseEvent) => {

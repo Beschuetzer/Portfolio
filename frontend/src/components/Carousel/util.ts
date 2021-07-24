@@ -4,7 +4,8 @@ import {
 	ArrowButtonDirection,
 	HIDDEN_CLASSNAME,
 } from "../constants";
-import { FULLSCREEN_PARENT_CLASSNAME } from "./CarouselItem";
+import { getIsVideoPlaying } from "../VideoPlayer/utils";
+import { FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME } from "./CarouselItem";
 
 export const CAROUSEL_CLASSNAME = "carousel";
 export const CAROUSEL_TRANSLATION_CSS_CLASSNAME = `--${CAROUSEL_CLASSNAME}-item-translation-x`;
@@ -229,7 +230,9 @@ export const getNthItemOpen = (
 		direction: undefined,
 	};
 
-	const clickedItem = (e.currentTarget as HTMLElement).closest(`.${CAROUSEL_ITEM_CLASSNAME}`);
+	const clickedItem = (e.currentTarget as HTMLElement).closest(
+		`.${CAROUSEL_ITEM_CLASSNAME}`,
+	);
 	const carousel = rightArrow?.parentNode as HTMLElement;
 	const items = carousel?.querySelectorAll(`.${CAROUSEL_ITEM_CLASSNAME}`);
 	if (!items || items?.length <= 0) return defaultReturn;
@@ -278,3 +281,37 @@ export const toggleLeftAndRightArrows = (
 	if (isNotLastItem) rightArrow?.classList.remove(HIDDEN_CLASSNAME);
 	else rightArrow?.classList.add(HIDDEN_CLASSNAME);
 };
+
+export function handleVideo(
+	carouselItem: HTMLElement,
+	videoClassname: string,
+	foregroundVideoClassname: string,
+	handleVideoEnd?: (e: Event) => void,
+	onVideoProgress?: (videoRef: RefObject<HTMLVideoElement>, progressBarRef: RefObject<HTMLProgressElement>, e: Event) => void,
+) {
+	if (
+		carouselItem.classList.contains(videoClassname) ||
+		carouselItem.classList.contains(foregroundVideoClassname)
+	) {
+		const video = carouselItem.querySelector("video") as HTMLVideoElement;
+		const isPlaying = getIsVideoPlaying(video);
+
+		if (isPlaying) {
+			resetCarouselVideo(carouselItem, video);
+			if (onVideoProgress)
+				video.removeEventListener("timeupdate", onVideoProgress as any);
+		} else if (!carouselItem.classList.contains(PLAYING_CLASSNAME)) {
+			carouselItem.classList.add(PLAYING_CLASSNAME);
+			video.play();
+			if (handleVideoEnd) video.addEventListener("ended", handleVideoEnd);
+			if (onVideoProgress)
+				video.addEventListener("timeupdate", onVideoProgress as any);
+		}
+	}
+}
+
+export function resetCarouselVideo(carouselItem: HTMLElement, video: HTMLVideoElement) {
+	carouselItem.classList.remove(PLAYING_CLASSNAME);
+	video.currentTime = 0;
+	video.pause();
+}

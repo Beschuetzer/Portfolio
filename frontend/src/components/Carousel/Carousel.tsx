@@ -1,6 +1,6 @@
 import React, { CSSProperties, useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
-import CarouselItem, { FULLSCREEN_PARENT_CLASSNAME } from "./CarouselItem";
+import CarouselItem, { FULLSCREEN_CLASSNAME, FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME, STOPPED_CLASSNAME } from "./CarouselItem";
 import useInit from "./useInit";
 import useInterItemWidth from "./useInterItemWidth";
 import CarouselArrow from "./CarouselArrow";
@@ -20,6 +20,9 @@ import {
 	getCurrentTranslationFactorFromDots,
 	getNthItemOpen,
 	toggleLeftAndRightArrows,
+	handleVideo,
+	resetCarouselVideo,
+	CAROUSEL_VIDEO_CLASSNAME,
 } from "./util";
 import { ArrowButtonDirection } from "../constants";
 
@@ -96,7 +99,21 @@ const Carousel: React.FC<CarouselProps> = ({
 		);
 	};
 
+	const handleCleanUp = () => {
+		const carouselItemClicked = document.querySelector(`.${FULLSCREEN_PARENT_CLASSNAME}`) as HTMLElement;
+		const videoDiv = carouselItemClicked?.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`);
+		const video = carouselItemClicked?.querySelector('video') as HTMLVideoElement;
+		if (video) resetCarouselVideo(carouselItemClicked, video)
+		if (videoDiv) {
+			videoDiv.classList.remove(PLAYING_CLASSNAME);
+			videoDiv.classList.remove(FULLSCREEN_CLASSNAME);
+			videoDiv.classList.add(STOPPED_CLASSNAME);
+		}
+	}
+
 	const handleFullsizeArrowToggling = (e: Event) => {
+		handleCleanUp();
+
 		const leftArrow = (leftArrowRef.current as any)[0] as HTMLElement;
 		const rightArrow = (rightArrowRef.current as any)[0] as HTMLElement;
 		let direction: ArrowButtonDirection = "left";
@@ -117,6 +134,7 @@ const Carousel: React.FC<CarouselProps> = ({
 		if (nthItemOpen !== -1 && typeof nthItemOpen === "number")
 			if (items) items[nthItemOpen]?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 
+		if (!nthItemOpen) return false;
 		return nthItemOpen !== -1;
 	};
 

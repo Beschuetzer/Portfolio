@@ -2684,6 +2684,9 @@ body {
   box-shadow: 0 3px 16px rgba(0, 0, 0, 0.25);
   border: 1px solid var(--color-primary-4);
 }
+.carousel__item--full-screen .carousel__video {
+  cursor: auto;
+}
 .carousel__item--full-screen .carousel__video ~ .carousel__image-description {
   padding: 1.6rem calc(10vh * 1 + 1.6rem) 1.6rem 20vh;
 }
@@ -2714,9 +2717,14 @@ body {
   position: fixed;
   height: 100%;
   object-position: top left;
-  object-fit: contain;
+  object-fit: cover;
   transform: translateX(-50%);
   width: auto;
+}
+.carousel__item--full-screen .carousel__video.fg-video video {
+  width: 100vw;
+  backdrop-filter: blur(10px);
+  height: calc(90vh - 2.5vh);
 }
 .carousel__video.fg-video.full-screen {
   cursor: auto;
@@ -2737,6 +2745,9 @@ body {
 }
 .carousel__video-svg use {
   pointer-events: none;
+}
+.carousel__item--full-screen .carousel__video-svg {
+  opacity: 0;
 }
 .carousel__video:hover ~ .carousel__video-svg {
   fill: var(--color-primary-3);
@@ -2805,10 +2816,6 @@ body {
   background-color: rgba(var(--color-primary-4-rgb), 0.9);
   border-radius: 0.8rem;
 }
-.carousel__item--stopped .overlay-text, .carousel__item--done .overlay-text {
-  opacity: 1;
-  visibility: visible;
-}
 .carousel :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
   opacity: 1;
   visibility: visible;
@@ -2835,9 +2842,13 @@ body {
 }
 .carousel .card__play-parent {
   left: 0;
+  visibility: visible;
+  opacity: 1;
 }
 .carousel .card__pause-parent {
   left: 0;
+  opacity: 0;
+  visibility: hidden;
 }
 .carousel .card__restart-parent {
   right: 1.6rem;
@@ -2871,7 +2882,12 @@ body {
   display: none;
 }
 .carousel__item--playing ~ .card__play-parent {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+.carousel__item--playing ~ .card__pause-parent {
+  opacity: 1;
+  visibility: visible;
 }
 .carousel .carousel__item--full-screen :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
   z-index: 10000;
