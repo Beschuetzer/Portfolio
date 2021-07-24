@@ -10,7 +10,7 @@ import {
 	COLOR_PRIMARY_BRIDGE_3,
 	COLOR_PRIMARY_BRIDGE_4,
 } from "../pages/examples/bridge/utils";
-import { ANIMATION_DURATION, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME, TRANSITION_NONE_CLASSNAME } from "./constants";
+import { ANIMATION_DURATION, ArrowButtonDirection, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
 
 interface ArrowButtonProps {
   direction: string,
@@ -163,7 +163,6 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 
 	const handleClick = (e: MouseEvent) => {
 		hideContentDuringSlide()
-		
 		if ((e.currentTarget as HTMLElement)?.className.match(/left/i)) {
 			if (currentBridgeSection > 0) {
 				return setCurrentBridgeSection(currentBridgeSection - 1);
@@ -173,6 +172,7 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 				setCurrentBridgeSection(currentBridgeSection + 1);
 			}
 		}
+
 	};
 
 	const hideContentDuringSlide = () => {

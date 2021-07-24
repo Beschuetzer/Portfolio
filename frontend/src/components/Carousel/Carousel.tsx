@@ -1,6 +1,6 @@
 import React, { CSSProperties, RefObject, useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
-import CarouselItem from "./CarouselItem";
+import CarouselItem, { FULLSCREEN_CLASSNAME, FULLSCREEN_PARENT_CLASSNAME } from "./CarouselItem";
 import useInit from "./useInit";
 import useInterItemWidth from "./useInterItemWidth";
 import CarouselArrow from "./CarouselArrow";
@@ -17,8 +17,9 @@ import {
 	setArrowButtonsHiddenClass,
 	setTranslationAmount,
 	handleSetTranslation as getNewCurrentTranslationFactor,
-	getCurrentTranslationFactorFromDots
+	getCurrentTranslationFactorFromDots,
 } from "./util";
+import { ArrowButtonDirection, HIDDEN_CLASSNAME } from "../constants";
 
 interface CarouselProps {
 	viewPortWidth: number;
@@ -61,7 +62,16 @@ const Carousel: React.FC<CarouselProps> = ({
 	useInterItemWidth(viewPortWidth, itemsRef, itemsWidthRef);
 
 	const handleArrowClick = (e: Event) => {
-		currentTranslationFactor = getNewCurrentTranslationFactor(e, currentTranslationFactor, numberOfItemsToScrollOnClick, numberOfItemsInCarouselAtOneTime, items );
+		const isFullSize = handleFullSize(e);
+		if (isFullSize) return;
+
+		currentTranslationFactor = getNewCurrentTranslationFactor(
+			e,
+			currentTranslationFactor,
+			numberOfItemsToScrollOnClick,
+			numberOfItemsInCarouselAtOneTime,
+			items,
+		);
 
 		setArrowButtonsHiddenClass(
 			numberOfItemsInCarouselAtOneTime - 1,
@@ -77,11 +87,72 @@ const Carousel: React.FC<CarouselProps> = ({
 			(itemsWidthRef as any).current *
 			currentTranslationFactor *
 			numberOfItemsToScrollOnClick;
-			removeTransitionTimeout = setTranslationAmount(amountToTranslateImages, removeTransitionTimeout, itemsRef as any);
+		removeTransitionTimeout = setTranslationAmount(
+			amountToTranslateImages,
+			removeTransitionTimeout,
+			itemsRef as any,
+		);
+
+	};
+
+	const handleFullSize = (e: Event) => {
+		let direction: ArrowButtonDirection = "left";
+		const arrowClicked = (e.currentTarget || e.target) as HTMLElement;
+
+		if (arrowClicked?.className?.match(/right/i)) direction = "right";
+
+		const leftArrow = (leftArrowRef.current as any)[0] as HTMLElement;
+		const rightArrow = (rightArrowRef.current as any)[0] as HTMLElement;
+		const carousel = rightArrow?.parentNode as HTMLElement;
+		const items = carousel?.querySelectorAll(`.${CAROUSEL_ITEM_CLASSNAME}`);
+		if (!items || items?.length <= 0) return;
+
+		let nthItemOpen = -1;
+		for (let i = 0; i < items.length; i++) {
+			const item = items[i];
+			if (nthItemOpen === -1 && item.classList.contains(FULLSCREEN_PARENT_CLASSNAME)) {
+				nthItemOpen = i;
+			}
+			item.classList.remove(FULLSCREEN_PARENT_CLASSNAME);
+		}
+
+		if (nthItemOpen === -1) return
+
+		let isNotLastItem = nthItemOpen < items.length - 1;
+		let isNotFirstItem = nthItemOpen > 0;
+		if (direction === 'left' && isNotFirstItem) {
+			nthItemOpen--;
+		}
+		else if (direction === 'right' && isNotLastItem) {
+			nthItemOpen++;
+		}
+
+		isNotLastItem = nthItemOpen < items.length - 1;
+		isNotFirstItem = nthItemOpen > 0;
+		if (isNotFirstItem) leftArrow?.classList.remove(HIDDEN_CLASSNAME);
+		else leftArrow?.classList.add(HIDDEN_CLASSNAME);
+		
+		if (isNotLastItem) rightArrow?.classList.remove(HIDDEN_CLASSNAME);
+		else rightArrow?.classList.add(HIDDEN_CLASSNAME);
+
+		(items[nthItemOpen] as HTMLElement)?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
+
+		return nthItemOpen !== -1;
 	};
 
 	const handleDotClick = (e: MouseEvent) => {
-		[currentTranslationFactor, removeTransitionTimeout] = getCurrentTranslationFactorFromDots(e, items, itemsRef as any, itemsWidthRef as any, leftArrowRef as any, rightArrowRef as any, numberOfItemsInCarouselAtOneTime, numberOfItemsToScrollOnClick, removeTransitionTimeout as any);
+		[currentTranslationFactor, removeTransitionTimeout] =
+			getCurrentTranslationFactorFromDots(
+				e,
+				items,
+				itemsRef as any,
+				itemsWidthRef as any,
+				leftArrowRef as any,
+				rightArrowRef as any,
+				numberOfItemsInCarouselAtOneTime,
+				numberOfItemsToScrollOnClick,
+				removeTransitionTimeout as any,
+			);
 	};
 
 	const renderItems = () => {

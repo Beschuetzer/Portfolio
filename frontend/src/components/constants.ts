@@ -45,6 +45,8 @@ export type CSharpSection = {
 	styles?: CSSProperties,
 }
 
+export type ArrowButtonDirection = 'left' | 'right';
+
 export const headerTogglerWidth = parseFloat(computedStyle.getPropertyValue('--header-toggler-width'));
 export const smallFontMaxWidth = parseFloat(computedStyle.getPropertyValue('--small-font-max-width'));
 export const navBreakMaxWidth = parseFloat(computedStyle.getPropertyValue('--nav-break-max-width'));
