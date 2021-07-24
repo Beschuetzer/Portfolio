@@ -659,6 +659,10 @@ body {
   margin-top: 3.2rem !important;
 }
 
+.margin-left-3 {
+  margin-left: 4.8rem !important;
+}
+
 .margin-bottom-1 {
   margin-bottom: 1.6rem !important;
 }
@@ -3062,7 +3066,7 @@ body {
   )) + 7vw)
   		);
   grid-template-columns: repeat(1, var(--home-column-width)) 1fr repeat(1, var(--home-column-width));
-  grid-template-rows: 39.1vh min-content 1fr auto;
+  grid-template-rows: 40.7vh min-content 1fr auto;
 }
 @media only screen and (max-width: 52.6875em) {
   .home__main {

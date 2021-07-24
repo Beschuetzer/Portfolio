@@ -65,19 +65,21 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 						<div className="home__main-left-content">
 							Not sure where to start?&nbsp; 
 							<br></br>
-							Check out the multiplayer 
+							Check out these apps I created: 
 							<br></br>
+							1)&nbsp;
 							<EmbeddedLink
 								addSpaces={false}
 								className="home__main-link"
 								href="/examples/bridge"
 								openInNewTab={false}
 								isLocal={true}>
-								contract bridge app
+								A# Maj Bridge
 							</EmbeddedLink>
 							<br></br>
-							I created. Or the
-							<br></br>
+							{/* I created. Or the
+							<br></br>  */}
+							2)&nbsp;
 
 							<EmbeddedLink
 								addSpaces={false}
@@ -85,7 +87,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 								href="/examples/replay"
 								openInNewTab={false}
 								isLocal={true}>
-								replay viewer
+								Replay Viewer
 							</EmbeddedLink>
 						</div>
 					</article>
