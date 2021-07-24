@@ -109,6 +109,8 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		if (!item || (item.parentNode as HTMLElement)?.classList.contains(FULLSCREEN_PARENT_CLASSNAME)) return;
 		e.preventDefault();
 
+		
+
 
 		item.classList.add(FULLSCREEN_CLASSNAME);
 		item.parentNode?.classList.add(FULLSCREEN_PARENT_CLASSNAME);

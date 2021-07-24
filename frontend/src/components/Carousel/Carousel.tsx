@@ -1,6 +1,6 @@
-import React, { CSSProperties, RefObject, useRef } from "react";
+import React, { CSSProperties, useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
-import CarouselItem, { FULLSCREEN_CLASSNAME, FULLSCREEN_PARENT_CLASSNAME } from "./CarouselItem";
+import CarouselItem, { FULLSCREEN_PARENT_CLASSNAME } from "./CarouselItem";
 import useInit from "./useInit";
 import useInterItemWidth from "./useInterItemWidth";
 import CarouselArrow from "./CarouselArrow";
@@ -18,6 +18,7 @@ import {
 	setTranslationAmount,
 	handleSetTranslation as getNewCurrentTranslationFactor,
 	getCurrentTranslationFactorFromDots,
+	getNthItemOpen,
 } from "./util";
 import { ArrowButtonDirection, HIDDEN_CLASSNAME } from "../constants";
 
@@ -92,50 +93,28 @@ const Carousel: React.FC<CarouselProps> = ({
 			removeTransitionTimeout,
 			itemsRef as any,
 		);
-
 	};
 
 	const handleFullSize = (e: Event) => {
-		let direction: ArrowButtonDirection = "left";
-		const arrowClicked = (e.currentTarget || e.target) as HTMLElement;
-
-		if (arrowClicked?.className?.match(/right/i)) direction = "right";
-
 		const leftArrow = (leftArrowRef.current as any)[0] as HTMLElement;
 		const rightArrow = (rightArrowRef.current as any)[0] as HTMLElement;
-		const carousel = rightArrow?.parentNode as HTMLElement;
-		const items = carousel?.querySelectorAll(`.${CAROUSEL_ITEM_CLASSNAME}`);
-		if (!items || items?.length <= 0) return;
+		debugger;
+		const { isNotFirstItem, isNotLastItem, nthItemOpen, items } = getNthItemOpen(
+			e,
+			leftArrow,
+			rightArrow,
+		);
 
-		let nthItemOpen = -1;
-		for (let i = 0; i < items.length; i++) {
-			const item = items[i];
-			if (nthItemOpen === -1 && item.classList.contains(FULLSCREEN_PARENT_CLASSNAME)) {
-				nthItemOpen = i;
-			}
-			item.classList.remove(FULLSCREEN_PARENT_CLASSNAME);
-		}
-
-		if (nthItemOpen === -1) return
-
-		let isNotLastItem = nthItemOpen < items.length - 1;
-		let isNotFirstItem = nthItemOpen > 0;
-		if (direction === 'left' && isNotFirstItem) {
-			nthItemOpen--;
-		}
-		else if (direction === 'right' && isNotLastItem) {
-			nthItemOpen++;
-		}
-
-		isNotLastItem = nthItemOpen < items.length - 1;
-		isNotFirstItem = nthItemOpen > 0;
-		if (isNotFirstItem) leftArrow?.classList.remove(HIDDEN_CLASSNAME);
+		if (isNotFirstItem)
+			leftArrow?.classList.remove(HIDDEN_CLASSNAME);
 		else leftArrow?.classList.add(HIDDEN_CLASSNAME);
-		
-		if (isNotLastItem) rightArrow?.classList.remove(HIDDEN_CLASSNAME);
+
+		if (isNotLastItem)
+			rightArrow?.classList.remove(HIDDEN_CLASSNAME);
 		else rightArrow?.classList.add(HIDDEN_CLASSNAME);
 
-		(items[nthItemOpen] as HTMLElement)?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
+		if (nthItemOpen !== -1 && typeof nthItemOpen === 'number')
+			if (items) items[nthItemOpen]?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 
 		return nthItemOpen !== -1;
 	};

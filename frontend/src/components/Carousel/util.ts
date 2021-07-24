@@ -1,5 +1,10 @@
 import { CSSProperties, RefObject } from "react";
-import { ANIMATION_DURATION, HIDDEN_CLASSNAME } from "../constants";
+import {
+	ANIMATION_DURATION,
+	ArrowButtonDirection,
+	HIDDEN_CLASSNAME,
+} from "../constants";
+import { FULLSCREEN_PARENT_CLASSNAME } from "./CarouselItem";
 
 export const CAROUSEL_CLASSNAME = "carousel";
 export const CAROUSEL_TRANSLATION_CSS_CLASSNAME = `--${CAROUSEL_CLASSNAME}-item-translation-x`;
@@ -158,13 +163,13 @@ export const handleSetTranslation = (
 };
 
 export const getCurrentTranslationFactorFromDots = (
-  e: MouseEvent,
-  items: any[],
-  itemsRef: RefObject<HTMLElement>,
+	e: MouseEvent,
+	items: any[],
+	itemsRef: RefObject<HTMLElement>,
 	itemsWidthRef: RefObject<HTMLElement>,
-  leftArrowRef: RefObject<HTMLElement>,
-  rightArrowRef: RefObject<HTMLElement>,
-  numberOfItemsInCarouselAtOneTime: number,
+	leftArrowRef: RefObject<HTMLElement>,
+	rightArrowRef: RefObject<HTMLElement>,
+	numberOfItemsInCarouselAtOneTime: number,
 	numberOfItemsToScrollOnClick: number,
 	removeTransitionTimeout: any,
 ) => {
@@ -208,4 +213,52 @@ export const getCurrentTranslationFactorFromDots = (
 	dots[indexOfCurrentDot]?.classList.remove(CAROUSEL_DOT_ACTIVE_CLASSNAME);
 
 	return [currentTranslationFactor, removeTransitionTimeout];
+};
+
+export const getNthItemOpen = (
+	e: Event,
+	leftArrow: HTMLElement,
+	rightArrow: HTMLElement,
+) => {
+	const defaultReturn = {
+		isNotFirstItem: undefined,
+		isNotLastItem: undefined,
+		nthItemOpen: undefined,
+		items: undefined,
+	};
+	let direction: ArrowButtonDirection = "left";
+	const arrowClicked = (e.currentTarget || e.target) as HTMLElement;
+
+	if (arrowClicked?.className?.match(/right/i)) direction = "right";
+	
+	const carousel = rightArrow?.parentNode as HTMLElement;
+	const items = carousel?.querySelectorAll(`.${CAROUSEL_ITEM_CLASSNAME}`);
+	if (!items || items?.length <= 0) return defaultReturn;
+
+	let nthItemOpen = -1;
+	for (let i = 0; i < items.length; i++) {
+		const item = items[i];
+		if (
+			nthItemOpen === -1 &&
+			item.classList.contains(FULLSCREEN_PARENT_CLASSNAME)
+		) {
+			nthItemOpen = i;
+		}
+		item.classList.remove(FULLSCREEN_PARENT_CLASSNAME);
+	}
+
+	if (nthItemOpen === -1) return defaultReturn;
+
+	let isNotLastItem = nthItemOpen < items.length - 1;
+	let isNotFirstItem = nthItemOpen > 0;
+	if (direction === "left" && isNotFirstItem) {
+		nthItemOpen--;
+	} else if (direction === "right" && isNotLastItem) {
+		nthItemOpen++;
+	}
+
+	isNotLastItem = nthItemOpen < items.length - 1;
+	isNotFirstItem = nthItemOpen > 0;
+
+	return { isNotFirstItem, isNotLastItem, nthItemOpen, items };
 };
