@@ -13,6 +13,8 @@ import {
 	CAROUSEL_IMAGE_CLASSNAME,
 	CAROUSEL_ITEM_CLASSNAME,
 	CAROUSEL_VIDEO_CLASSNAME,
+	getNthItemOpen,
+	toggleLeftAndRightArrows,
 } from "./util";
 import {
 	getIsVideoPlaying,
@@ -104,13 +106,26 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		video.removeEventListener("ended", handleVideoEnd);
 	};
 
+	const handleShouldHideArrows = (e: Event) => {
+		const leftArrow = (leftArrowRef?.current as any)[0] as HTMLElement;
+		const rightArrow = (rightArrowRef?.current as any)[0] as HTMLElement;
+		const { isNotFirstItem, isNotLastItem } = getNthItemOpen(
+			e,
+			leftArrow,
+			rightArrow,
+			null,
+		);
+
+		toggleLeftAndRightArrows(leftArrow, rightArrow, isNotFirstItem !== undefined ? isNotFirstItem : true, isNotLastItem !== undefined ? isNotLastItem : true);
+
+	}
+
 	const onItemClick = (e: MouseEvent) => {
 		const item = e.currentTarget as any;
-		if (!item || (item.parentNode as HTMLElement)?.classList.contains(FULLSCREEN_PARENT_CLASSNAME)) return;
+		if (!item || (item.parentNode as HTMLElement)?.classList.contains(FULLSCREEN_PARENT_CLASSNAME)) return ;
 		e.preventDefault();
 
-		
-
+		handleShouldHideArrows(e);
 
 		item.classList.add(FULLSCREEN_CLASSNAME);
 		item.parentNode?.classList.add(FULLSCREEN_PARENT_CLASSNAME);

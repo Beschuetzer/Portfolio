@@ -219,37 +219,38 @@ export const getNthItemOpen = (
 	e: Event,
 	leftArrow: HTMLElement,
 	rightArrow: HTMLElement,
+	direction: ArrowButtonDirection | null,
 ) => {
 	const defaultReturn = {
 		isNotFirstItem: undefined,
 		isNotLastItem: undefined,
 		nthItemOpen: undefined,
 		items: undefined,
+		direction: undefined,
 	};
-	let direction: ArrowButtonDirection = "left";
-	const arrowClicked = (e.currentTarget || e.target) as HTMLElement;
 
-	if (arrowClicked?.className?.match(/right/i)) direction = "right";
-	
+	const clickedItem = (e.currentTarget as HTMLElement).closest(`.${CAROUSEL_ITEM_CLASSNAME}`);
 	const carousel = rightArrow?.parentNode as HTMLElement;
 	const items = carousel?.querySelectorAll(`.${CAROUSEL_ITEM_CLASSNAME}`);
 	if (!items || items?.length <= 0) return defaultReturn;
 
 	let nthItemOpen = -1;
+
 	for (let i = 0; i < items.length; i++) {
 		const item = items[i];
 		if (
 			nthItemOpen === -1 &&
-			item.classList.contains(FULLSCREEN_PARENT_CLASSNAME)
+			(item.classList.contains(FULLSCREEN_PARENT_CLASSNAME) ||
+				clickedItem === item)
 		) {
 			nthItemOpen = i;
 		}
 		item.classList.remove(FULLSCREEN_PARENT_CLASSNAME);
 	}
 
-	if (nthItemOpen === -1) return defaultReturn;
+	if (nthItemOpen === -1 && direction !== null) return defaultReturn;
 
-	let isNotLastItem = nthItemOpen < items.length - 1;
+	let isNotLastItem = nthItemOpen < items?.length - 1;
 	let isNotFirstItem = nthItemOpen > 0;
 	if (direction === "left" && isNotFirstItem) {
 		nthItemOpen--;
@@ -257,8 +258,23 @@ export const getNthItemOpen = (
 		nthItemOpen++;
 	}
 
-	isNotLastItem = nthItemOpen < items.length - 1;
-	isNotFirstItem = nthItemOpen > 0;
+	if (direction === "left" || direction === "right") {
+		isNotLastItem = nthItemOpen < items?.length - 1;
+		isNotFirstItem = nthItemOpen > 0;
+	}
 
 	return { isNotFirstItem, isNotLastItem, nthItemOpen, items };
+};
+
+export const toggleLeftAndRightArrows = (
+	leftArrow: HTMLElement,
+	rightArrow: HTMLElement,
+	isNotFirstItem: boolean,
+	isNotLastItem: boolean,
+) => {
+	if (isNotFirstItem) leftArrow?.classList.remove(HIDDEN_CLASSNAME);
+	else leftArrow?.classList.add(HIDDEN_CLASSNAME);
+
+	if (isNotLastItem) rightArrow?.classList.remove(HIDDEN_CLASSNAME);
+	else rightArrow?.classList.add(HIDDEN_CLASSNAME);
 };

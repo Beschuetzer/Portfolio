@@ -19,8 +19,9 @@ import {
 	handleSetTranslation as getNewCurrentTranslationFactor,
 	getCurrentTranslationFactorFromDots,
 	getNthItemOpen,
+	toggleLeftAndRightArrows,
 } from "./util";
-import { ArrowButtonDirection, HIDDEN_CLASSNAME } from "../constants";
+import { ArrowButtonDirection } from "../constants";
 
 interface CarouselProps {
 	viewPortWidth: number;
@@ -63,7 +64,7 @@ const Carousel: React.FC<CarouselProps> = ({
 	useInterItemWidth(viewPortWidth, itemsRef, itemsWidthRef);
 
 	const handleArrowClick = (e: Event) => {
-		const isFullSize = handleFullSize(e);
+		const isFullSize = handleFullsizeArrowToggling(e);
 		if (isFullSize) return;
 
 		currentTranslationFactor = getNewCurrentTranslationFactor(
@@ -95,25 +96,25 @@ const Carousel: React.FC<CarouselProps> = ({
 		);
 	};
 
-	const handleFullSize = (e: Event) => {
+	const handleFullsizeArrowToggling = (e: Event) => {
 		const leftArrow = (leftArrowRef.current as any)[0] as HTMLElement;
 		const rightArrow = (rightArrowRef.current as any)[0] as HTMLElement;
-		debugger;
-		const { isNotFirstItem, isNotLastItem, nthItemOpen, items } = getNthItemOpen(
-			e,
+		let direction: ArrowButtonDirection = "left";
+		const arrowClicked = (e.currentTarget || e.target) as HTMLElement;
+
+		if (arrowClicked?.className?.match(/right/i)) direction = "right";
+
+		const { isNotFirstItem, isNotLastItem, nthItemOpen, items } =
+			getNthItemOpen(e, leftArrow, rightArrow, direction);
+
+		toggleLeftAndRightArrows(
 			leftArrow,
 			rightArrow,
+			isNotFirstItem !== undefined ? isNotFirstItem : true,
+			isNotLastItem !== undefined ? isNotLastItem : true,
 		);
 
-		if (isNotFirstItem)
-			leftArrow?.classList.remove(HIDDEN_CLASSNAME);
-		else leftArrow?.classList.add(HIDDEN_CLASSNAME);
-
-		if (isNotLastItem)
-			rightArrow?.classList.remove(HIDDEN_CLASSNAME);
-		else rightArrow?.classList.add(HIDDEN_CLASSNAME);
-
-		if (nthItemOpen !== -1 && typeof nthItemOpen === 'number')
+		if (nthItemOpen !== -1 && typeof nthItemOpen === "number")
 			if (items) items[nthItemOpen]?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 
 		return nthItemOpen !== -1;
