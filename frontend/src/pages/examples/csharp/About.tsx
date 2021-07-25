@@ -10,50 +10,38 @@
 
 //interests: playing drums/guitar, riding bike, exercising, Astronomy(almost majored in it)
 
-//Music (add these songs in the form of an AudioPlayer component):
-// ein paar ganz schnelle - 2003,
-// mario remix - 2004,
-// adam and linda's song- 2006,
-// old band practice songs - 2009
-// luminiscent ether mastered up - 2012,
-// steve's sweet song original - 2013,
-// eerie correspondence - 2013,
-// reunited ozone master - 2013,
-// hopeful uncertainty mastered - 2013,
-// honeydew in june b 3rd version - 2014,
-// relentless shame remastered 2 - 2013,
-// 4 starlite five songs (sweet jam too, blues is stalking more reverb) - 2015-16
-
-// <script>
-//   function play() {
-//     var audio = document.getElementById("audio");
-//     audio.play();
-//   }
-// </script>
-
-// <input type="button" value="PLAY" onclick="play()">
-// <audio controls id='audio'>
-// 	<source src="horse.ogg" type="audio/ogg">
-// 	<source src="horse.mp3" type="audio/mpeg">
-// 	Your browser does not support the audio element.
-// </audio>
-
 import React from "react";
-import Carousel from "../../../components/Carousel/Carousel";
 import CSharpLayout from "./CSharpLayout";
-
-import EmbeddedLink from "../../../components/EmbeddedLink";
-// import img1 from "../../../imgs/About/img1.png";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
-import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
-import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import {
-	CSharpSection,
-} from "../../../components/constants";
+import { CSharpSection } from "../../../components/constants";
+
+import earlier1 from "../../../music/renaming/Earlier-01.mp3";
+import earlier2 from "../../../music/renaming/Earlier-02.mp3";
+import earlier3 from "../../../music/renaming/Earlier-03.mp3";
+import earlier4 from "../../../music/renaming/Earlier-04.mp3";
+import earlier5 from "../../../music/renaming/Earlier-05.mp3";
+import earlier6 from "../../../music/renaming/Earlier-06.mp3";
+import earlier7 from "../../../music/renaming/Earlier-07.mp3";
+import earliest1 from "../../../music/renaming/Earliest-01.mp3";
+import earliest2 from "../../../music/renaming/Earliest-02.mp3";
+import earliest3 from "../../../music/renaming/Earliest-03.mp3";
+import othersEC from "../../../music/renaming/Others - EC.mp3";
+import othersHoneyDew from "../../../music/renaming/Others - Honeydew in June.mp3";
+import othersLE from "../../../music/renaming/Others - LE.mp3";
+import othersQC from "../../../music/renaming/Others - QC.mp3";
+import othersReunited from "../../../music/renaming/Others - Reunited.mp3";
+import othersSweet from "../../../music/renaming/Others - Sweet.mp3";
+import selfFD from "../../../music/renaming/Self - FD.mp3";
+import selfHDIJB from "../../../music/renaming/Self - HDIJ - B.mp3";
+import selfHDICC from "../../../music/renaming/Self - HDICJ - C.mp3";
+import selfHU from "../../../music/renaming/Self - HU.mp3";
+import selfMario from "../../../music/renaming/Self - Mario.mp3";
+import selfRS from "../../../music/renaming/Self - RS.mp3";
+import startliteBISM from "../../../music/renaming/Startlite - BISM.mp3";
+import startliteJam from "../../../music/renaming/Startlite - Jam.mp3";
+import startliteOMB from "../../../music/renaming/Startlite - OMB.mp3";
+import startliteTF from "../../../music/renaming/Startlite - TF.mp3";
 
 const sectionNames = ["Introduction", "Likes", "Music", "Philosophy"];
 
@@ -66,59 +54,63 @@ const sections: CSharpSection[] = [
 				<CSharpCardSection title="Making the Most of a Tough Situation">
 					The outbreak of the COVID-19 Pandemic provided me with a lot of time
 					to reflect on my career choices and where I want to be in 10 years
-					time.&nbsp; By means of said careful reflection, I realized that I would not
-					be able to live a self-realized life, if I did not give it my best
-					shot at professional coder.
+					time.&nbsp; By means of said careful reflection, I realized that I
+					would not be able to live a self-realized life, if I did not give it
+					my best shot at professional coder.
 				</CSharpCardSection>
 				<CSharpCardSection title="Long Time Coming">
 					I have always been enamored with the idea of becoming a computer
-					programmer.&nbsp; If my dad had not had a heart attack, I am sure I would
-					have chosen to study Computer Science at University instead of
-					Linguistics.&nbsp; The constant The thing is, my dad was a programmer for a
-					company called Deluxe for 1 years.&nbsp; However, I saw how much my dad’s
-					new position as a project manager caused him a lot of stress, which
-					eventually to a heart attack.&nbsp; I naively attributed his heart attack to
-					coding in my mind and decided to pursue other things, even though I
-					had a thing for programming.&nbsp;, and I finally realized that this may be
-					my last chance to become a programmer.&nbsp;
+					programmer.&nbsp; If my dad had not had a heart attack, I am sure I
+					would have chosen to study Computer Science at University instead of
+					Linguistics.&nbsp; The constant The thing is, my dad was a programmer
+					for a company called Deluxe for 1 years.&nbsp; However, I saw how much
+					my dad’s new position as a project manager caused him a lot of stress,
+					which eventually to a heart attack.&nbsp; I naively attributed his
+					heart attack to coding in my mind and decided to pursue other things,
+					even though I had a thing for programming.&nbsp;, and I finally
+					realized that this may be my last chance to become a programmer.&nbsp;
 				</CSharpCardSection>
 			</React.Fragment>,
 		],
 	},
 	{
+		//Music (add these songs in the form of an AudioPlayer component):
+		// ein paar ganz schnelle - 2003,
+		// mario remix - 2004,
+		// adam and linda's song- 2006,
+		// old band practice songs - 2009
+		// luminiscent ether mastered up - 2012,
+		// steve's sweet song original - 2013,
+		// eerie correspondence - 2013,
+		// reunited ozone master - 2013,
+		// hopeful uncertainty mastered - 2013,
+		// honeydew in june b 3rd version - 2014,
+		// relentless shame remastered 2 - 2013,
+		// 4 starlite five songs (sweet jam too, blues is stalking more reverb) - 2015-16
+
 		styles: {
 			position: "relative",
 		},
 		name: sectionNames[1],
 		pageName: C_SHARP_CLASSNAME,
-		children: [
-			<section className={`${C_SHARP_CLASSNAME}__${CAROUSEL_CLASSNAME}`}>
-				<Carousel
-					items={
-						[
-							// {
-							// 	itemSrc: img1,
-							// 	description: "The manual way of downloading",
-							// },
-						]
-					}
-					numberOfItemsInCarouselAtOneTime="3"
-					numberOfItemsToScrollOnClick="3"
-					functionToGetContainer={functionToGetContainer}
-					functionToRunOnClose={closeCarouselItem.bind(
-						null,
-						null as any,
-						`#${sectionNames[1].toLowerCase()}`,
-					)}></Carousel>
-			</section>,
-		],
+		children: [],
 	},
 	{
 		name: sectionNames[2],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="A Passion for Sound">Music</CSharpCardSection>
+				<CSharpCardSection title="A Passion for Sound">
+					Music
+					<AudioPlayer
+						items={[
+							{
+								name: "Adam - Earlier 1",
+								path: {earlier1},
+							},
+						]}
+					/>
+				</CSharpCardSection>
 			</React.Fragment>,
 		],
 	},
@@ -136,7 +128,11 @@ const sections: CSharpSection[] = [
 interface AboutProps {}
 
 const About: React.FC<AboutProps> = () => {
-	return <CSharpLayout sections={sections} pageName="About"> </CSharpLayout>;
+	return (
+		<CSharpLayout sections={sections} pageName="About">
+			{" "}
+		</CSharpLayout>
+	);
 };
 
 export default About;
