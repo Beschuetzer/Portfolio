@@ -1,4 +1,8 @@
+import { Howl } from "howler";
 import React from "react";
+import soundsSpriteMp3 from "../../sounds/soundsSprite.mp3";
+
+
 
 export const AUDIO_PLAYER_CLASSNAME = "audio-player";
 
@@ -12,20 +16,19 @@ export interface AudioPlayerProps {
 }
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({ items }) => {
+  console.log('items =', items);
+
+
 	function renderItems() {
 		return items.map((item) => {
 			return <li>{`${item.path}, ${item.name}`}</li>;
 		});
 	}
 
-  // <input type="button" value="PLAY" onclick="play()"/>
-  // <audio controls id='audio'>
-  //   <source src="horse.ogg" type="audio/ogg">
-  //   <source src="horse.mp3" type="audio/mpeg">
-  //   Your browser does not support the audio element.
-  // </audio>
+ 
 
 	return (
+    
 		<ul className={AUDIO_PLAYER_CLASSNAME}>
 			{renderItems()}
 			<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>

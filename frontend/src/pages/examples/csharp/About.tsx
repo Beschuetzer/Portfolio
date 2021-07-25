@@ -16,32 +16,32 @@ import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import { CSharpSection } from "../../../components/constants";
 
-import earlier1 from "../../../music/renaming/Earlier-01.mp3";
-import earlier2 from "../../../music/renaming/Earlier-02.mp3";
-import earlier3 from "../../../music/renaming/Earlier-03.mp3";
-import earlier4 from "../../../music/renaming/Earlier-04.mp3";
-import earlier5 from "../../../music/renaming/Earlier-05.mp3";
-import earlier6 from "../../../music/renaming/Earlier-06.mp3";
-import earlier7 from "../../../music/renaming/Earlier-07.mp3";
-import earliest1 from "../../../music/renaming/Earliest-01.mp3";
-import earliest2 from "../../../music/renaming/Earliest-02.mp3";
-import earliest3 from "../../../music/renaming/Earliest-03.mp3";
-import othersEC from "../../../music/renaming/Others - EC.mp3";
-import othersHoneyDew from "../../../music/renaming/Others - Honeydew in June.mp3";
-import othersLE from "../../../music/renaming/Others - LE.mp3";
-import othersQC from "../../../music/renaming/Others - QC.mp3";
-import othersReunited from "../../../music/renaming/Others - Reunited.mp3";
-import othersSweet from "../../../music/renaming/Others - Sweet.mp3";
-import selfFD from "../../../music/renaming/Self - FD.mp3";
-import selfHDIJB from "../../../music/renaming/Self - HDIJ - B.mp3";
-import selfHDICC from "../../../music/renaming/Self - HDICJ - C.mp3";
-import selfHU from "../../../music/renaming/Self - HU.mp3";
-import selfMario from "../../../music/renaming/Self - Mario.mp3";
-import selfRS from "../../../music/renaming/Self - RS.mp3";
-import startliteBISM from "../../../music/renaming/Startlite - BISM.mp3";
-import startliteJam from "../../../music/renaming/Startlite - Jam.mp3";
-import startliteOMB from "../../../music/renaming/Startlite - OMB.mp3";
-import startliteTF from "../../../music/renaming/Startlite - TF.mp3";
+import earlier1 from "../../../music/renaming/Earlier_01.mp3";
+import earlier2 from "../../../music/renaming/Earlier_02.mp3";
+import earlier3 from "../../../music/renaming/Earlier_03.mp3";
+import earlier5 from "../../../music/renaming/Earlier_05.mp3";
+import earlier6 from "../../../music/renaming/Earlier_06.mp3";
+import earlier7 from "../../../music/renaming/Earlier_07.mp3";
+import earliest1 from "../../../music/renaming/Earliest_01.mp3";
+import earliest2 from "../../../music/renaming/Earliest_02.mp3";
+import earliest3 from "../../../music/renaming/Earliest_03.mp3";
+import othersEC from "../../../music/renaming/Others_EC.mp3";
+import othersHoneyDew from "../../../music/renaming/Others_Honeydew in June.mp3";
+import othersLE from "../../../music/renaming/Others_LE.mp3";
+import othersQC from "../../../music/renaming/Others_QC.mp3";
+import othersReunited from "../../../music/renaming/Others_Reunited.mp3";
+import othersSweet from "../../../music/renaming/Others_Sweet.mp3";
+import selfHDIJB from "../../../music/renaming/Self_HDIJ B.mp3";
+import selfHDICC from "../../../music/renaming/Self_HDICJ C.mp3";
+import selfFD from "../../../music/renaming/Self_FD.mp3";
+import selfHU from "../../../music/renaming/Self_HU.mp3";
+import selfMario from "../../../music/renaming/Self_Mario.mp3";
+import selfRS from "../../../music/renaming/Self_RS.mp3";
+import startliteBISM from "../../../music/renaming/Starlite_Five_BISM.mp3";
+import startliteJam from "../../../music/renaming/Starlite_Five_Jam.mp3";
+import startliteOMB from "../../../music/renaming/Starlite_Five_OMB.mp3";
+import startliteTF from "../../../music/renaming/Starlite_Five_TF.mp3";
+import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
 
 const sectionNames = ["Introduction", "Likes", "Music", "Philosophy"];
 
@@ -105,8 +105,88 @@ const sections: CSharpSection[] = [
 					<AudioPlayer
 						items={[
 							{
-								name: "Adam - Earlier 1",
+								name: "Band Practice Recording - 1",
 								path: {earlier1},
+							},
+							{
+								name: "Band Practice Recording - 2",
+								path: {earlier2},
+							},
+							{
+								name: "Band Practice Recording - 3",
+								path: {earlier3},
+							},
+							{
+								name: "Band Practice Recording - Altus",
+								path: {earlier5},
+							},
+							{
+								name: "Band Practice Recording - 4",
+								path: {earlier6},
+							},
+							{
+								name: "Band Practice Recording - Hey Joe",
+								path: {earlier7},
+							},
+							{
+								name: "Adam - Fruity Loops - Earliest 1",
+								path: {earliest1},
+							},
+							{
+								name: "Adam - Fruity Loops - Earliest 2",
+								path: {earliest2},
+							},
+							{
+								name: "Adam - Linda",
+								path: {earliest3},
+							},
+							{
+								name: "Adam - Hopeful Uncertainty",
+								path: {selfHU},
+							},
+							{
+								name: "Adam - Mario",
+								path: {selfMario},
+							},
+							{
+								name: "Adam - Relentless Sacrifice",
+								path: {selfRS},
+							},
+							{
+								name: "Steve - Eerie Correspondence",
+								path: {othersEC},
+							},
+							{
+								name: "Steve - Reunited",
+								path: {othersReunited},
+							},
+							{
+								name: "Steve and Paula - Luminescent Ether",
+								path: {othersLE},
+							},
+							{
+								name: "Paula - Quiet Condolences",
+								path: {othersQC},
+							},
+							{
+								name: "Steve - Sweetness",
+								path: {othersSweet},
+							},
+							{
+								name: "Starlite Five - The Blues is Stalkin' Me",
+								path: {startliteBISM},
+							},
+							{
+								name: "Starlite Five - That feeling",
+								path: {startliteJam},
+							},
+							{
+								name: "Starlite Five - Oldsmobile Blue",
+								path: {startliteOMB},
+							},
+							{
+								name: "Starlite Five - Those Feet",
+								path: {startliteTF},
 							},
 						]}
 					/>
