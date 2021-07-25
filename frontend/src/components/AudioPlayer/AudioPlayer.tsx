@@ -16,19 +16,13 @@ export interface AudioPlayerProps {
 }
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({ items }) => {
-  console.log('items =', items);
-
-
 	function renderItems() {
 		return items.map((item) => {
-			return <li>{`${item.path}, ${item.name}`}</li>;
+			return <li className={`${AUDIO_PLAYER_CLASSNAME}__item`}>{`${item.path}, ${item.name}`}</li>;
 		});
 	}
 
- 
-
 	return (
-    
 		<ul className={AUDIO_PLAYER_CLASSNAME}>
 			{renderItems()}
 			<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>

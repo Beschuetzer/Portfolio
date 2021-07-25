@@ -101,92 +101,121 @@ const sections: CSharpSection[] = [
 		children: [
 			<React.Fragment>
 				<CSharpCardSection title="A Passion for Sound">
-					Music
+					Music has been a big part of my life since I was young.&nbsp; Ever
+					since first discovered Fruity Loops, I have been using music as a
+					cathartic outlet.&nbsp; The songs are almost universally of low
+					quality, but the act of getting the idea out of my head into the real
+					world is really the part that brings me joy.&nbsp; Listening to the
+					song reminds me of the process.&nbsp;
+				</CSharpCardSection>
+				<CSharpCardSection title="Electronic">
+					Here are some of the first songs I made on Fruity Loops
+					<AudioPlayer
+						items={[
+							{
+								name: "Adam - Fruity Loops - Earliest 1",
+								path: { earliest1 },
+							},
+							{
+								name: "Adam - Fruity Loops - Earliest 2",
+								path: { earliest2 },
+							},
+						]}
+					/>
+				</CSharpCardSection>
+				<CSharpCardSection title="Youthful Aspirations">
+					In high school, some friends and I were in a band:
 					<AudioPlayer
 						items={[
 							{
 								name: "Band Practice Recording - 1",
-								path: {earlier1},
+								path: { earlier1 },
 							},
 							{
 								name: "Band Practice Recording - 2",
-								path: {earlier2},
+								path: { earlier2 },
 							},
 							{
 								name: "Band Practice Recording - 3",
-								path: {earlier3},
+								path: { earlier3 },
 							},
 							{
 								name: "Band Practice Recording - Altus",
-								path: {earlier5},
+								path: { earlier5 },
 							},
 							{
 								name: "Band Practice Recording - 4",
-								path: {earlier6},
+								path: { earlier6 },
 							},
 							{
 								name: "Band Practice Recording - Hey Joe",
-								path: {earlier7},
+								path: { earlier7 },
 							},
-							{
-								name: "Adam - Fruity Loops - Earliest 1",
-								path: {earliest1},
-							},
-							{
-								name: "Adam - Fruity Loops - Earliest 2",
-								path: {earliest2},
-							},
+						]}
+					/>
+				</CSharpCardSection>
+				<CSharpCardSection title="Real Instruments">
+					As my interest and talent grew, I began trying to learn how to sing and record songs using more than just electronic samples and instruments:
+					<AudioPlayer
+						items={[							
 							{
 								name: "Adam - Linda",
-								path: {earliest3},
+								path: { earliest3 },
 							},
 							{
 								name: "Adam - Hopeful Uncertainty",
-								path: {selfHU},
+								path: { selfHU },
 							},
 							{
 								name: "Adam - Mario",
-								path: {selfMario},
+								path: { selfMario },
 							},
 							{
 								name: "Adam - Relentless Sacrifice",
-								path: {selfRS},
+								path: { selfRS },
 							},
 							{
 								name: "Steve - Eerie Correspondence",
-								path: {othersEC},
+								path: { othersEC },
 							},
 							{
 								name: "Steve - Reunited",
-								path: {othersReunited},
+								path: { othersReunited },
 							},
 							{
 								name: "Steve and Paula - Luminescent Ether",
-								path: {othersLE},
+								path: { othersLE },
 							},
 							{
 								name: "Paula - Quiet Condolences",
-								path: {othersQC},
+								path: { othersQC },
 							},
 							{
 								name: "Steve - Sweetness",
-								path: {othersSweet},
+								path: { othersSweet },
 							},
+						]}
+					/>
+				</CSharpCardSection>
+				<CSharpCardSection title="Trying to Make It">
+					For a few years, I whole-heartily pursued the idea of becoming a recording/mixing engineer.&nbsp; Unfortunately, devotion doesn't always make up for lack of skill:
+					<AudioPlayer
+						items={[																					
 							{
 								name: "Starlite Five - The Blues is Stalkin' Me",
-								path: {startliteBISM},
+								path: { startliteBISM },
 							},
 							{
 								name: "Starlite Five - That feeling",
-								path: {startliteJam},
+								path: { startliteJam },
 							},
 							{
 								name: "Starlite Five - Oldsmobile Blue",
-								path: {startliteOMB},
+								path: { startliteOMB },
 							},
 							{
 								name: "Starlite Five - Those Feet",
-								path: {startliteTF},
+								path: { startliteTF },
 							},
 						]}
 					/>
