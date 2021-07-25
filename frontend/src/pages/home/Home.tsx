@@ -63,23 +63,23 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 
 					<article className="home__main-left">
 						<div className="home__main-left-content">
-							Not sure where to start?&nbsp; 
+							{/* <span>Not sure where to start?</span> */}
+							{/* <br></br> */}
+							<span className="home__content-header">Explore: </span>
 							<br></br>
-							Check out these apps I created: 
-							<br></br>
-							1)&nbsp;
+							{/* 1)&nbsp; */}
 							<EmbeddedLink
 								addSpaces={false}
 								className="home__main-link"
 								href="/examples/bridge"
 								openInNewTab={false}
 								isLocal={true}>
-								A# Maj Bridge
+								Multiplayer Bridge
 							</EmbeddedLink>
 							<br></br>
 							{/* I created. Or the
 							<br></br>  */}
-							2)&nbsp;
+							{/* 2)&nbsp; */}
 
 							<EmbeddedLink
 								addSpaces={false}
@@ -95,16 +95,54 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 					<article className="home__main-right">
 						<div className="home__main-right-content">
 							{/* Click, hover, and<br></br><EmbeddedLink addSpaces={false} className="home__main-link" openInNewTab={false} isLocal={false} href={`mailto:${email}`}>get in touch</EmbeddedLink><br></br>when you're ready. */}
-							Take a peek at my<br></br>
+							{/* Take a peek at my<br></br> */}
+							<span className="home__content-header">Experience: </span>
+							<br></br>
+							<EmbeddedLink
+								addSpaces={false}
+								className="home__main-link"
+								openInNewTab={false}
+								isLocal={true}
+								href="/resume#work-history">
+								Work History
+							</EmbeddedLink>
+							<br></br>
 							<EmbeddedLink
 								addSpaces={false}
 								className="home__main-link"
 								openInNewTab={false}
 								isLocal={true}
 								href="/resume#skills">
-								skill set
+								Skills
 							</EmbeddedLink>
-							<br></br> when you're ready
+							<br></br>
+							<EmbeddedLink
+								addSpaces={false}
+								className="home__main-link"
+								openInNewTab={false}
+								isLocal={true}
+								href="/resume#education">
+								Education
+							</EmbeddedLink>
+							<br></br>
+							<EmbeddedLink
+								addSpaces={false}
+								className="home__main-link"
+								openInNewTab={false}
+								isLocal={true}
+								href="/resume#references">
+								References
+							</EmbeddedLink>
+							<br></br>
+							<EmbeddedLink
+								addSpaces={false}
+								className="home__main-link"
+								openInNewTab={false}
+								isLocal={true}
+								href="/about">
+								The Person
+							</EmbeddedLink>
+							{/* <br></br> when you're ready */}
 						</div>
 					</article>
 

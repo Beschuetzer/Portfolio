@@ -1,13 +1,13 @@
 $background-color-opacity: 0.1;
 $home-page-border: 2px solid rgba(var(--color-primary-4-rgb), 0.5);
 $home-page-animation: 1.5s 1 translateToZero forwards;
-$breakpoint-to-change-layout: "tab-port";
+$breakpoint-to-change-layout: "tab-land";
 
 .home {
 	position: relative;
 	height: 100vh;
 	width: 100vw;
-	font-size: $default-font-size * 1;
+	font-size: $default-font-size * 1.25;
 	font-weight: 400;
 	text-shadow: getTextShadow(
 		close,
@@ -15,8 +15,8 @@ $breakpoint-to-change-layout: "tab-port";
 		var(--color-black-rgb)
 	);
 
-	@include respond($breakpoint-to-change-layout) {
-		font-size: $default-font-size;
+	@include respond(nav-switch) {
+		// font-size: $default-font-size;
 	}
 
 	& > * {
@@ -145,7 +145,7 @@ $breakpoint-to-change-layout: "tab-port";
 				1,
 				var(--home-column-width)
 			);
-		grid-template-rows: 40.7vh min-content 1fr auto;
+		grid-template-rows: 1fr min-content 1fr min-content;
 
 		@include respond($breakpoint-to-change-layout) {
 			--home-column-height: 33vh;
@@ -249,7 +249,7 @@ $breakpoint-to-change-layout: "tab-port";
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: $navbar__logo-width * 3.85;
+			// width: $navbar__logo-width * 3.85;
 
 			@include respond($breakpoint-to-change-layout) {
 				width: 100vw;
@@ -269,9 +269,20 @@ $breakpoint-to-change-layout: "tab-port";
 			}
 		}
 
+		&-right-content {
+			transform: translateY(19%);
+
+			@include respond($breakpoint-to-change-layout) {
+				transform: none;
+			}
+		}
+
 		&-bottom {
 			transform: translate(0, 100%);
-			--bottom-color: rgba(var(--color-primary-4-rgb), #{$home-regular-text-opacity});
+			--bottom-color: rgba(
+				var(--color-primary-4-rgb),
+				#{$home-regular-text-opacity}
+			);
 			--bottom-left-color: rgba(var(--color-primary-4-rgb), 0.1);
 			--bottom-middle-color-1: rgba(var(--color-primary-4-rgb), 0.85) 25%;
 			--bottom-middle-color-2: rgba(var(--color-primary-4-rgb), 0.85) 75%;
@@ -307,15 +318,17 @@ $breakpoint-to-change-layout: "tab-port";
 		}
 
 		&-link {
+			text-decoration: none;
 			margin: 0;
-			font-size: $default-font-size;
+			// font-size: $default-font-size * 1.5;
+			font-weight: 700;
 			@include link-animating(
+				var(--color-primary-3-rgb),
 				var(--color-primary-4-rgb),
-				var(--color-primary-1-rgb),
-				var(--color-primary-4-rgb),
-				var(--color-primary-4-rgb),
+				var(--color-primary-3-rgb),
+				var(--color-primary-3-rgb),
 				1,
-				0.01,
+				1,
 				1,
 				1
 			);
@@ -333,6 +346,26 @@ $breakpoint-to-change-layout: "tab-port";
 		}
 	}
 
+	&__content-header {
+		// text-shadow: getTextShadow(close, var(--color-primary-3-rgb), var(--color-primary-4-rgb));
+		--second-image-color: hsl(15, 100%, 50%);
+
+		text-shadow: getTextShadow(hard, var(--color-primary-2-rgb), var(--color-primary-4-rgb), .05);
+		font-weight: 700;
+		font-size: $default-font-size * 3;
+		background-image: linear-gradient(
+			45deg,
+			var(--color-primary-4),
+			var(--second-image-color)
+		);
+		color: transparent;
+		background-clip: text;
+
+		@include respond($breakpoint-to-change-layout) {
+			--second-image-color: var(--color-primary-3);
+		}
+	}
+
 	&__quote {
 		padding: $default-font-size * 2 $default-font-size * 4;
 		transform: translateY(100%);
@@ -341,8 +374,7 @@ $breakpoint-to-change-layout: "tab-port";
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-size: 1.6rem;
-		color: rgba(var(--color-primary-4-rgb), $home-regular-text-opacity);
+		color: rgba(var(--color-primary-4-rgb), 1);
 
 		@include respond($breakpoint-to-change-layout) {
 			opacity: 0;
