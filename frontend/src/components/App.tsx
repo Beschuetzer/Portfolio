@@ -10,7 +10,6 @@ import {
 } from "./constants";
 
 import Home from "../pages/home/Home";
-import About from "../pages/about/About";
 import Contact from "../pages/contact/Contact";
 import PlaylistSyncer from "../pages/examples/csharp/PlaylistSyncer";
 import Downloader from "../pages/examples/csharp/Downloader";
@@ -32,6 +31,7 @@ import soundsSpriteMp3 from "../sounds/soundsSprite.mp3";
 import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
 import { keypressHandler } from "./utils";
 import ReplayViewer from "../pages/examples/csharp/ReplayViewer";
+import About from "../pages/examples/csharp/About";
 
 interface AppProps {
 	isMobile: boolean,

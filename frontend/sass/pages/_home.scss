@@ -109,11 +109,13 @@ $breakpoint-to-change-layout: "tab-land";
 	}
 
 	&__name-first {
+		font-weight:$home-name-font-weight;
 		justify-self: flex-end;
 		transform: translate(-$default-font-size * 50, 0);
 	}
 
 	&__name-last {
+		font-weight:$home-name-font-weight;
 		justify-self: flex-start;
 		transform: translate($default-font-size * 50, 0);
 	}
@@ -304,6 +306,7 @@ $breakpoint-to-change-layout: "tab-land";
 		}
 
 		&-bottom {
+			font-weight: $home-name-font-weight;
 			transform: translate(0, 100%);
 			--bottom-color: rgba(
 				var(--color-primary-4-rgb),
@@ -390,6 +393,7 @@ $breakpoint-to-change-layout: "tab-land";
 	}
 
 	&__quote {
+		font-weight: 100;
 		padding: $default-font-size * 2 $default-font-size * 4;
 		transform: translateY(100%);
 		grid-column: 2 / span 1;

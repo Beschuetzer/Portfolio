@@ -14,14 +14,19 @@ import demoVideo from "../../../clips/downloader/demo.mp4";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
-import { closeCarouselItem, functionToGetContainer } from "../../../components/utils";
-import { CSharpSection, GITHUB_URL, KH_INSIDER_URL, OC_REMIX_URL } from "../../../components/constants";
+import {
+	closeCarouselItem,
+	functionToGetContainer,
+} from "../../../components/utils";
+import {
+	CSharpSection,
+	GITHUB_URL,
+	KH_INSIDER_URL,
+	OC_REMIX_URL,
+} from "../../../components/constants";
+import Paragraph from "../../../typography/Paragraph";
 
-const sectionNames = [
-	'Description',
-	'Media',
-	'Notes'
-]
+const sectionNames = ["Description", "Media", "Notes"];
 
 const sections: CSharpSection[] = [
 	{
@@ -31,10 +36,7 @@ const sections: CSharpSection[] = [
 			<React.Fragment>
 				<CSharpCardSection title="Purpose">
 					Websites like
-					<EmbeddedLink href={OC_REMIX_URL}>
-						OCRemix
-					</EmbeddedLink>{" "}
-					and{" "}
+					<EmbeddedLink href={OC_REMIX_URL}>OCRemix</EmbeddedLink> and{" "}
 					<EmbeddedLink href={KH_INSIDER_URL}>
 						Kingdom Hearts Insider
 					</EmbeddedLink>
@@ -46,8 +48,8 @@ const sections: CSharpSection[] = [
 				<CSharpCardSection title="How">
 					The app finds any links that are on the url provided and recursively
 					crawls any sub-links until it runs out of links. &nbsp;On each page,
-					it looks for download links that match the Regular Expression and
-					adds them to a download queue. &nbsp;It works best on sites like
+					it looks for download links that match the Regular Expression and adds
+					them to a download queue. &nbsp;It works best on sites like
 					<EmbeddedLink href={KH_INSIDER_URL}>
 						Kingdom Hearts Insider
 					</EmbeddedLink>
@@ -58,7 +60,7 @@ const sections: CSharpSection[] = [
 	},
 	{
 		styles: {
-			position: 'relative',
+			position: "relative",
 		},
 		name: sectionNames[1],
 		pageName: C_SHARP_CLASSNAME,
@@ -80,7 +82,7 @@ const sections: CSharpSection[] = [
 						},
 						{
 							itemSrc: img2,
-							description: 	"Options available",
+							description: "Options available",
 						},
 						{
 							itemSrc: img3,
@@ -88,25 +90,30 @@ const sections: CSharpSection[] = [
 						},
 						{
 							itemSrc: img4,
-							description: "Integrated file-renaming tool used to standardize file names of downloads",
+							description:
+								"Integrated file-renaming tool used to standardize file names of downloads",
 						},
 						{
 							itemSrc: img5,
-							description: "A list of songs from ocremix.org. A pain to download manually...",
+							description:
+								"A list of songs from ocremix.org. A pain to download manually...",
 						},
 						{
 							itemSrc: img6,
-							description: 	"Result of automatic download of songs (including sub-linked songs)",
+							description:
+								"Result of automatic download of songs (including sub-linked songs)",
 						},
 					]}
 					numberOfItemsInCarouselAtOneTime="3"
 					numberOfItemsToScrollOnClick="3"
 					functionToGetContainer={functionToGetContainer}
-					functionToRunOnClose={closeCarouselItem.bind(null, null as any, `#${sectionNames[1].toLowerCase()}`)}
-				>
-				</Carousel>
-			</section>
-		]
+					functionToRunOnClose={closeCarouselItem.bind(
+						null,
+						null as any,
+						`#${sectionNames[1].toLowerCase()}`,
+					)}></Carousel>
+			</section>,
+		],
 	},
 	{
 		name: sectionNames[2],
@@ -115,10 +122,10 @@ const sections: CSharpSection[] = [
 			<React.Fragment>
 				<CSharpCardSection title="Multi-threading">
 					Downloader uses three threads.&nbsp; One thread analyzes the html
-					looking for sub-links and urls matching the Regular Expression. If
-					it finds a link to download it adds it to the download queue, which
-					is handled by the second thread.&nbsp; The last thread handles the
-					GUI updates.
+					looking for sub-links and urls matching the Regular Expression. If it
+					finds a link to download it adds it to the download queue, which is
+					handled by the second thread.&nbsp; The last thread handles the GUI
+					updates.
 				</CSharpCardSection>
 				<CSharpCardSection title="A Challenging Concept">
 					At this point in time (March-April 2020), I had never written an
@@ -137,18 +144,15 @@ const sections: CSharpSection[] = [
 	},
 ];
 
-interface DownloaderProps {
-
-}
+interface DownloaderProps {}
 
 const Downloader: React.FC<DownloaderProps> = () => {
-
 	return (
 		<CSharpLayout
 			sections={sections}
 			pageName="downloader"
-			sourceCodeLink={`${GITHUB_URL}/downloader`}
-			>
+			sourceCodeLink={`${GITHUB_URL}/downloader`}>
+			&nbsp;
 		</CSharpLayout>
 	);
 };

@@ -63,11 +63,8 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 
 					<article className="home__main-left">
 						<div className="home__main-left-content">
-							{/* <span>Not sure where to start?</span> */}
-							{/* <br></br> */}
 							<span className="home__content-header">Explore: </span>
 							<br></br>
-							{/* 1)&nbsp; */}
 							<EmbeddedLink
 								addSpaces={false}
 								className="home__main-link"
@@ -77,10 +74,6 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 								Multiplayer Bridge
 							</EmbeddedLink>
 							<br></br>
-							{/* I created. Or the
-							<br></br>  */}
-							{/* 2)&nbsp; */}
-
 							<EmbeddedLink
 								addSpaces={false}
 								className="home__main-link"
@@ -94,8 +87,6 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 
 					<article className="home__main-right">
 						<div className="home__main-right-content">
-							{/* Click, hover, and<br></br><EmbeddedLink addSpaces={false} className="home__main-link" openInNewTab={false} isLocal={false} href={`mailto:${email}`}>get in touch</EmbeddedLink><br></br>when you're ready. */}
-							{/* Take a peek at my<br></br> */}
 							<span className="home__content-header">Experience: </span>
 							<br></br>
 							<EmbeddedLink
@@ -142,7 +133,6 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 								href="/about">
 								The Person
 							</EmbeddedLink>
-							{/* <br></br> when you're ready */}
 						</div>
 					</article>
 

@@ -63,7 +63,7 @@
 	}
 
 	&__card {
-		border-radius: $default-font-size / 2;
+		border-radius: 0 0 $default-font-size / 2 $default-font-size / 2;
 		// border: $default-font-size * .3 solid var(--color-primary-2);
 		box-shadow: $navbar-box-shadow-resume;
 		width: $resume-card-width-full;
@@ -128,6 +128,10 @@
 
 	&__section-content {
 		font-family: $font-family-text !important;
+
+		& li {
+			padding-left: $default-font-size * .5;
+		}
 	}
 
 	&__title {

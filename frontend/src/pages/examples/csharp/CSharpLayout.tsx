@@ -6,7 +6,7 @@ import { C_SHARP_CLASSNAME } from "./utils";
 
 interface CSharpLayoutProps {
 	pageName: string;
-	sourceCodeLink: string;
+	sourceCodeLink?: string;
 	sourceCodeMsg?: string;
 	demoLink?: string;
 	demoMsg?: string;

@@ -4,6 +4,7 @@ import CSharpLayout from "../csharp/CSharpLayout";
 import { C_SHARP_CLASSNAME } from "../csharp/utils";
 import Paragraph from "../../../typography/Paragraph";
 import { CSharpSection, GITHUB_URL } from "../../../components/constants";
+import CSharpCardSection from "../csharp/CSharpCardSection";
 
 const sectionNames = [
 	"Purpose",
@@ -18,19 +19,19 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<Paragraph size="four" classNameToAdd="margin-top-2 ">
+				<CSharpCardSection title="The Project">
 					Autobid is a collaborative work-in-progress with a friend who is
 					learning Python.&nbsp; The goal is to create a rudimentary bidding AI,
 					that humans can play with (rather than a machine-learning-driven AI
 					whose rationale are unknown).&nbsp;
-				</Paragraph>
-				<Paragraph size="four" classNameToAdd="margin-top-2 padding-bottom-2">
+				</CSharpCardSection>
+				<CSharpCardSection title="The Approach">
 					Our approach to the AI is to effectively emulate moderate to high
 					level bridge play during the bidding phase (the part that involves
 					partner communication with incomplete information and ultimately
 					determines the viability of making the contract) while playing like
 					the best human players during the trick-taking phase.&nbsp;
-				</Paragraph>
+				</CSharpCardSection>
 			</React.Fragment>,
 		],
 	},
@@ -39,38 +40,36 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<Paragraph size="four" classNameToAdd="margin-top-2 ">
-					Our collaborative process was multi-faceted:
+				<CSharpCardSection title="Collaboration">
+					Our collaboration is a multi-step process:
 					<ol className="margin-left-3">
 						<li>
-							&nbsp;We decided what we were going to work on for that day.
+							We decide what we are going to work on for that day.
 						</li>
-						<li> &nbsp;We discussed our understanding of the problem.</li>
+						<li> We discuss our understanding of the problem.</li>
 						<li>
-							&nbsp;We took turns making our case for why we thought what we
-							&nbsp;Using examples when necessary.
+							We take turns making our case for why we think what we think, using data/examples when possible.
 						</li>
 						<li>
-							&nbsp;We reached some level of basic agreement on how the AI
+							We reach some level of basic agreement on how the AI
 							should behave in general with regards to the behavior in question.
 						</li>
 						<li>
-							&nbsp;We started writing test cases to make sure we weren't
-							missing anything (this was also the time when our assumptions were
+							We start writing test cases to make sure we aren't
+							missing anything (this is also the time when our assumptions are
 							really put to the test).
 						</li>
 						<li>
-							{" "}
-							&nbsp;I created the coding architecture for the feature/section.
+							I creat the coding architecture for the feature/section.
 						</li>
-						<li>&nbsp;We taked turns writing code to pass the test cases.</li>
+						<li>We take turns writing code to pass the test cases.</li>
 					</ol>
-				</Paragraph>
-				<Paragraph size="four" classNameToAdd="margin-top-2 padding-bottom-2">
-					We usually devoted ~ 8 hours every Saturday to the project are
-					on track to finish the bidding phase part of the AI in the fall of
+				</CSharpCardSection>
+				<CSharpCardSection title="E.T.A">
+					We usually devoted ~ 8 hours every Saturday to the project are on
+					track to finish the bidding phase part of the AI in the fall of
 					2021.&nbsp;
-				</Paragraph>
+				</CSharpCardSection>
 			</React.Fragment>,
 		],
 	},
@@ -83,7 +82,9 @@ const AutoBid: React.FC<AutoBidProps> = () => {
 		<CSharpLayout
 			sections={sections}
 			pageName="autobid"
-			sourceCodeLink={`${GITHUB_URL}/autobid`}> </CSharpLayout>
+			sourceCodeLink={`${GITHUB_URL}/autobid`}>
+			{" "}
+		</CSharpLayout>
 	);
 };
 
