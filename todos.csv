@@ -72,4 +72,6 @@ NOT SURE------------------------------------------------------------
 -create separate AudioList (where songs are clicked and dispatched to AudioPlayer)
 
 -finish styling of AudioPlayer
--add functionality to AudioPlayer controls
+-add functionality to AudioPlayer close 
+-setup elapsed and duration
+-user can click really quickly on same sound to load multiple times (disable clicking if in process of loading?)
