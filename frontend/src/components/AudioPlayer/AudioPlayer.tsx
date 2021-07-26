@@ -17,8 +17,12 @@ export interface AudioPlayerState {
 }
 
 class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
+	seekAmount = 15;
+	id: number;
+
 	constructor(props: AudioPlayerProps) {
 		super(props);
+		this.id = -1;
 		this.state = {
 			howl: null,
 			currentlyPlayingSound: {} as AudioItem,
@@ -31,7 +35,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 	componentDidUpdate() {
 		if (!this.props.currentlyPlayingSound?.path) return;
-		if (this.state?.howl?.play) this.state.howl.play();
+		if (this.state?.howl?.play) this.id = this.state.howl.play();
 	}
 
 	componentWillReceiveProps(nextProps: AudioPlayerProps) {
@@ -46,17 +50,76 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 			const newHowl = new Howl({
 				src: path,
-			})
-	
-			this.setState(
-				{
-					howl: newHowl,
-					elapsed: 0,
-					songLength: newHowl.duration as unknown as number,  
-					currentlyPlayingSound: nextProps.currentlyPlayingSound,
-				}
-			);
+			});
+
+			this.setState({
+				howl: newHowl,
+				elapsed: 0,
+				songLength: newHowl.duration as unknown as number,
+				currentlyPlayingSound: nextProps.currentlyPlayingSound,
+			});
 		}
+	}
+
+	getSeekTo(isForward = true) {
+		if(!this.state.howl) return;
+
+		const sound = (this.state.howl.pause() as any)._sounds[0];
+		const currentSeek = sound._seek;
+		const duration = this.state.howl.duration();
+
+		let seekTo = currentSeek + this.seekAmount;
+		if (seekTo >= duration) {
+			seekTo = duration;
+		}
+
+		if (!isForward) {
+			seekTo = currentSeek - this.seekAmount;
+			if (seekTo <= 0) seekTo = 0;
+		}
+
+		return seekTo;
+	}
+
+	handleBackward() {
+		if (!this.state.howl) return;
+		const seekTo = this.getSeekTo(false);
+		this.state.howl.seek(seekTo, this.id);
+		this.handlePlay();
+	}
+
+	handleForward() {
+		if (!this.state.howl) return;
+		const seekTo = this.getSeekTo();
+		this.state.howl.seek(seekTo, this.id);
+		this.handlePlay();
+	}
+
+	handleClose() {
+		if (this.state.howl) this.state.howl.stop();
+	}
+
+	handlePause() {
+		if (!this.state.howl) return;
+		this.state.howl.pause();
+	}
+
+	handlePlay() {
+		if (!this.state.howl) return;
+		if (this.state.howl.playing()) return;
+		this.id = this.state.howl.play();
+	}
+
+	handleRestart() {
+		if (!this.state.howl) return;
+		this.state.howl.stop();
+		this.id = this.state.howl.play();
+	}
+
+	handleStop() {
+		if (!this.state.howl) return;
+		this.state.howl.stop();
+		this.id = -1;
 	}
 
 	handleProgressBarClick(e: MouseEvent) {
@@ -93,25 +156,39 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 					onClick={(e: any) => this.handleProgressBarClick(e)}
 					className={`${AUDIO_PLAYER_CLASSNAME}__progress`}></div>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__controls`}>
-					<svg className={`${AUDIO_PLAYER_CLASSNAME}__play`}>
+					<svg
+						onClick={(e: any) => this.handlePlay()}
+						className={`${AUDIO_PLAYER_CLASSNAME}__play`}>
 						<use xlinkHref="/sprite.svg#icon-play"></use>
 					</svg>
-					<svg className={`${AUDIO_PLAYER_CLASSNAME}__pause`}>
+					<svg
+						onClick={(e: any) => this.handlePause()}
+						className={`${AUDIO_PLAYER_CLASSNAME}__pause`}>
 						<use xlinkHref="/sprite.svg#icon-pause"></use>
 					</svg>
-					<svg className={`${AUDIO_PLAYER_CLASSNAME}__stop`}>
+					<svg
+						onClick={(e: any) => this.handleStop()}
+						className={`${AUDIO_PLAYER_CLASSNAME}__stop`}>
 						<use xlinkHref="/sprite.svg#icon-stop"></use>
 					</svg>
-					<svg className={`${AUDIO_PLAYER_CLASSNAME}__restart`}>
+					<svg
+						onClick={(e: any) => this.handleRestart()}
+						className={`${AUDIO_PLAYER_CLASSNAME}__restart`}>
 						<use xlinkHref="/sprite.svg#icon-restart"></use>
 					</svg>
-					<svg className={`${AUDIO_PLAYER_CLASSNAME}__backward`}>
+					<svg
+						onClick={(e: any) => this.handleBackward()}
+						className={`${AUDIO_PLAYER_CLASSNAME}__backward`}>
 						<use xlinkHref="/sprite.svg#icon-backward"></use>
 					</svg>
-					<svg className={`${AUDIO_PLAYER_CLASSNAME}__forward`}>
+					<svg
+						onClick={(e: any) => this.handleForward()}
+						className={`${AUDIO_PLAYER_CLASSNAME}__forward`}>
 						<use xlinkHref="/sprite.svg#icon-forward"></use>
 					</svg>
-					<svg className={`${AUDIO_PLAYER_CLASSNAME}__close`}>
+					<svg
+						onClick={(e: any) => this.handleClose()}
+						className={`${AUDIO_PLAYER_CLASSNAME}__close`}>
 						<use xlinkHref="/sprite.svg#icon-close"></use>
 					</svg>
 				</div>
