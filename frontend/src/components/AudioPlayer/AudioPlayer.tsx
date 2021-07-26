@@ -2,6 +2,7 @@ import { debug } from "console";
 import { Howl } from "howler";
 import React from "react";
 import { connect, RootStateOrAny } from "react-redux";
+import { setIsLoadingSound } from "../../actions";
 import { AudioItem } from "./AudioList";
 import { getMinuteAndSecondsString } from "./utils";
 
@@ -9,6 +10,7 @@ export const AUDIO_PLAYER_CLASSNAME = "audio-player";
 
 export interface AudioPlayerProps {
 	currentlyPlayingSound: AudioItem;
+	setIsLoadingSound: (value: boolean) => void;
 }
 
 export interface AudioPlayerState {
@@ -17,6 +19,7 @@ export interface AudioPlayerState {
 	currentlyPlayingSound: AudioItem;
 	elapsed: string;
 	songLength: string;
+	
 }
 
 class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
@@ -42,9 +45,12 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	}
 
 	componentWillReceiveProps(nextProps: AudioPlayerProps) {
-		//todo: need to just play from beginning if clicking same song
+		//need to just play from beginning if clicking same song
 		const playingSoundPath = Object.values(nextProps.currentlyPlayingSound?.path)[0];
-		if (playingSoundPath !== undefined && playingSoundPath === (this.state.playingHowl as any)?._src) return this.handleRestart();
+		if (playingSoundPath !== undefined && playingSoundPath === (this.state.playingHowl as any)?._src) {
+			this.props.setIsLoadingSound(false);
+			return this.handleRestart();
+		}
 
 		if (nextProps.currentlyPlayingSound) {
 			const playingHowl = this.getPlayingHowl();
@@ -56,10 +62,11 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 			if (!path) return;
 
-			//todo: need to see if sound is already loaded, if so just play it, otherwise load
+			//need to see if sound is already loaded, if so play it, otherwise load
 			const loadedHowl = this.getLoadedHowl(path);
 			if (loadedHowl) {
 				loadedHowl.play();
+				this.props.setIsLoadingSound(false);
 				return this.setState({
 					playingHowl: loadedHowl,
 				})
@@ -71,10 +78,6 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 			newHowl.once("load", this.onSoundLoad.bind(this, newHowl, nextProps));
 		}
-	}
-
-	getHowl(source: string): Howl | null {
-		return null;
 	}
 
 	getLoadedHowl(path: string) {
@@ -99,26 +102,6 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		}
 
 		return isSoundPlaying;
-	}
-
-	onSoundLoad(newHowl: Howl, nextProps: AudioPlayerProps) {
-		if (newHowl?.play) {
-			this.id = newHowl.play();
-		}
-
-		let newHowls = [];
-		if (this.state.howls) newHowls = [...this.state.howls, newHowl];
-		else newHowls.push(newHowl);
-
-		this.setState({
-			howls: newHowls,
-			playingHowl: newHowl,
-			elapsed: "0",
-			songLength: getMinuteAndSecondsString(
-				newHowl.duration() as unknown as number,
-			),
-			currentlyPlayingSound: nextProps.currentlyPlayingSound,
-		});
 	}
 
 	getSeekTo(isForward = true) {
@@ -189,6 +172,28 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		const max = percentBar.getBoundingClientRect().width;
 		const percent = e.clientX / max;
 		console.log("percent =", percent);
+	}
+
+	onSoundLoad(newHowl: Howl, nextProps: AudioPlayerProps) {
+		if (newHowl?.play) {
+			this.id = newHowl.play();
+		}
+
+		let newHowls = [];
+		if (this.state.howls) newHowls = [...this.state.howls, newHowl];
+		else newHowls.push(newHowl);
+
+		this.props.setIsLoadingSound(false);
+
+		this.setState({
+			howls: newHowls,
+			playingHowl: newHowl,
+			elapsed: "0",
+			songLength: getMinuteAndSecondsString(
+				newHowl.duration() as unknown as number,
+			),
+			currentlyPlayingSound: nextProps.currentlyPlayingSound,
+		});
 	}
 
 	updateElapsedTime(e: Event) {}
@@ -265,4 +270,4 @@ const mapStateToProps = (state: RootStateOrAny) => {
 	};
 };
 
-export default connect(mapStateToProps, {})(AudioPlayer);
+export default connect(mapStateToProps, {setIsLoadingSound})(AudioPlayer);

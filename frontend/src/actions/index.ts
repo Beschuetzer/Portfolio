@@ -21,67 +21,9 @@ import {
   SET_HAS_CLICKED_A_LINK,
   SET_IS_CARD_VIDEO_OPEN,
   SET_CURRENTLY_PLAYING_SOUND,
+  SET_IS_LOADING_SOUND,
 } from './types';
     
-export const getRepositories = () => async (dispatch: Dispatch<any>) => {
-  // const schema = `
-  //   query {
-  //     __schema {
-  //       types {
-  //         name
-  //         kind
-  //         description
-  //         fields {
-  //           name
-  //         }
-  //       }
-  //     }
-  //   }
-  // `;
-
-  // const individualObjIntrospection = `
-  //   query {
-  //     __type(name: "Repository") {
-  //       name
-  //       kind
-  //       description
-  //       fields {
-  //         name
-  //       }
-  //     }
-  //   }
-  // `;
-
-  const query = 
-  `query {
-    viewer {
-      repositories(first:100) {
-        nodes {
-          createdAt
-          description
-          name
-          updatedAt
-          repositoryTopics(first:100) {
-            nodes {
-              topic {
-                name
-              }
-            }
-          }
-          homepageUrl
-          url
-        }
-      }
-    }
-  }`;
-
-  const response = await github(query);
-  dispatch({
-    type: GET_REPOSITORIES,
-    payload: response.data.viewer.repositories.nodes,
-  });
-}
-
 //Github Graph QL Repository 
 // 0: {name: "assignableUsers"}
 // 1: {name: "branchProtectionRules"}
@@ -181,7 +123,12 @@ export const getRepositories = () => async (dispatch: Dispatch<any>) => {
 // 95: {name: "viewerSubscription"}
 // 96: {name: "vulnerabilityAlerts"}
 // 97: {name: "watchers"}
-
+export const addRepoToReposToDisplay = (repo: any) => {
+  return {
+    type: ADD_REPO,
+    payload: repo,
+  }
+}
 export const clickSkill = (target: HTMLElement) => {
   interface SkillsToReplaceMap {
     [key: string]: string,
@@ -202,124 +149,164 @@ export const clickSkill = (target: HTMLElement) => {
     payload: skill,
   }
 }
+export const getRepositories = () => async (dispatch: Dispatch<any>) => {
+  // const schema = `
+  //   query {
+  //     __schema {
+  //       types {
+  //         name
+  //         kind
+  //         description
+  //         fields {
+  //           name
+  //         }
+  //       }
+  //     }
+  //   }
+  // `;
 
-export const addRepoToReposToDisplay = (repo: any) => {
-  return {
-    type: ADD_REPO,
-    payload: repo,
-  }
+  // const individualObjIntrospection = `
+  //   query {
+  //     __type(name: "Repository") {
+  //       name
+  //       kind
+  //       description
+  //       fields {
+  //         name
+  //       }
+  //     }
+  //   }
+  // `;
+
+  const query = 
+  `query {
+    viewer {
+      repositories(first:100) {
+        nodes {
+          createdAt
+          description
+          name
+          updatedAt
+          repositoryTopics(first:100) {
+            nodes {
+              topic {
+                name
+              }
+            }
+          }
+          homepageUrl
+          url
+        }
+      }
+    }
+  }`;
+
+  const response = await github(query);
+  dispatch({
+    type: GET_REPOSITORIES,
+    payload: response.data.viewer.repositories.nodes,
+  });
 }
-
-export const setIsAnimating = (value: boolean) => {
-  return {
-    type: SET_IS_ANIMATING,
-    payload: value,
-  }
-}
-
-export const setIsMobile = (isMobile: boolean, viewPortWidth: number) => {
-  return {
-    type: SET_IS_MOBILE,
-    payload: {isMobile, viewPortWidth},
-  }
-}
-
-export const setViewPortWidth = (value: boolean) => {
-  return {
-    type: SET_VIEW_PORT_WIDTH,
-    payload: value,
-  }
-}
-
-export const setSectionsToSkipAnimation = (value: []) => {
-  return {
-    type: SET_SECTIONS_TO_SKIP_ANIMATION,
-    payload: value,
-  }
-}
-
-export const setPreviousUrl = (url: string) =>{
-  return {
-    type: SET_PREVIOUS_URL,
-    payload: url,
-  }
-}
-
-export const setScrollPercent = (percent: string) => {
-  return {
-    type: SET_SCROLL_PERCENT,
-    payload: percent,
-  }
-}
-
-export const setSounds = (sounds: []) => {
-  return {
-    type: SET_SOUNDS,
-    payload: sounds,
-  }
-}
-
-export const setCurrentlyPlayingSound = (sound: AudioItem) => {
-  return {
-    type: SET_CURRENTLY_PLAYING_SOUND,
-    payload: sound,
-  }
-}
-
-export const setClickedBridgeInfoButtonCount = (value: number) => {
-  return {
-    type: SET_CLICKED_BRIDGE_INFO_BUTTON_COUNT,
-    payload: value,
-  }
-} 
-
-export const setCurrentBridgeSection = (value: number) => {
-  return {
-    type: SET_CURRENT_BRIDGE_SECTION,
-    payload: value,
-  }
-}
-
-export const setBridgeSections = (value: []) => {
-  return {
-    type: SET_BRIDGE_SECTIONS,
-    payload: value,
-  }
-}
-
-export const setHeaderHeight = (value: number) => {
-  return {
-    type: SET_HEADER_HEIGHT,
-    payload: value,
-  }
-}
-
-export const setLastSecondRowCardNumber = (value: number) => {
-  return {
-    type: SET_LAST_SECOND_ROW_CARD_NUMBER,
-    payload: value,
-  }
-}
-
 export const setBridgeCards = (value: []) => {
   return {
     type: SET_BRIDGE_CARDS,
     payload: value,
   }
 }
-
+export const setBridgeSections = (value: []) => {
+  return {
+    type: SET_BRIDGE_SECTIONS,
+    payload: value,
+  }
+}
+export const setClickedBridgeInfoButtonCount = (value: number) => {
+  return {
+    type: SET_CLICKED_BRIDGE_INFO_BUTTON_COUNT,
+    payload: value,
+  }
+} 
+export const setCurrentBridgeSection = (value: number) => {
+  return {
+    type: SET_CURRENT_BRIDGE_SECTION,
+    payload: value,
+  }
+}
+export const setCurrentlyPlayingSound = (sound: AudioItem) => {
+  return {
+    type: SET_CURRENTLY_PLAYING_SOUND,
+    payload: sound,
+  }
+}
 export const setHasClickedALink = (value: boolean) => {
   return {
     type: SET_HAS_CLICKED_A_LINK,
     payload: value,
   }
 }
-
+export const setHeaderHeight = (value: number) => {
+  return {
+    type: SET_HEADER_HEIGHT,
+    payload: value,
+  }
+}
+export const setIsAnimating = (value: boolean) => {
+  return {
+    type: SET_IS_ANIMATING,
+    payload: value,
+  }
+}
 export const setIsCardVideoOpen = (value: boolean) => {
   return {
     type: SET_IS_CARD_VIDEO_OPEN,
     payload: value,
   }
 }
-
+export const setIsLoadingSound = (value: boolean) => {
+  return {
+    type: SET_IS_LOADING_SOUND,
+    payload: value,
+  }
+}
+export const setIsMobile = (isMobile: boolean, viewPortWidth: number) => {
+  return {
+    type: SET_IS_MOBILE,
+    payload: {isMobile, viewPortWidth},
+  }
+}
+export const setLastSecondRowCardNumber = (value: number) => {
+  return {
+    type: SET_LAST_SECOND_ROW_CARD_NUMBER,
+    payload: value,
+  }
+}
+export const setPreviousUrl = (url: string) =>{
+  return {
+    type: SET_PREVIOUS_URL,
+    payload: url,
+  }
+}
+export const setScrollPercent = (percent: string) => {
+  return {
+    type: SET_SCROLL_PERCENT,
+    payload: percent,
+  }
+}
+export const setSectionsToSkipAnimation = (value: []) => {
+  return {
+    type: SET_SECTIONS_TO_SKIP_ANIMATION,
+    payload: value,
+  }
+}
+export const setSounds = (sounds: []) => {
+  return {
+    type: SET_SOUNDS,
+    payload: sounds,
+  }
+}
+export const setViewPortWidth = (value: boolean) => {
+  return {
+    type: SET_VIEW_PORT_WIDTH,
+    payload: value,
+  }
+}
 
