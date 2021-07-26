@@ -42,6 +42,7 @@ import startliteJam from "../../../music/renaming/Starlite_Five_Jam.mp3";
 import startliteOMB from "../../../music/renaming/Starlite_Five_OMB.mp3";
 import startliteTF from "../../../music/renaming/Starlite_Five_TF.mp3";
 import AudioList from "../../../components/AudioPlayer/AudioList";
+import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
 
 const sectionNames = ["Introduction", "Likes", "Music", "Philosophy"];
 
@@ -134,22 +135,6 @@ const sections: CSharpSection[] = [
 						className="margin-top-1"
 						items={[
 							{
-								name: "Band - 1",
-								path: { earlier1 },
-							},
-							{
-								name: "Band - 2",
-								path: { earlier2 },
-							},
-							{
-								name: "Band - 3",
-								path: { earlier3 },
-							},
-							{
-								name: "Band - 4",
-								path: { earlier6 },
-							},
-							{
 								name: "Band - Altus",
 								path: { earlier5 },
 							},
@@ -157,14 +142,24 @@ const sections: CSharpSection[] = [
 								name: "Band - Hey Joe",
 								path: { earlier7 },
 							},
+							{
+								name: "Band - Vodoo Child",
+								path: { earlier3 },
+							},
+							{
+								name: "Band - Washed Away",
+								path: { earlier6 },
+							},
 						]}
 					/>
 				</CSharpCardSection>
 				<CSharpCardSection title="Real Instruments">
-					As my interest and talent grew, I began trying to learn how to sing and record songs using more than just electronic samples and instruments:
+					As my interest and talent grew, I began trying to learn how to sing
+					and record songs using more than just electronic samples and
+					instruments:
 					<AudioList
 						className="margin-top-1"
-						items={[							
+						items={[
 							{
 								name: "Adam - Hopeful Uncertainty",
 								path: { selfHU },
@@ -201,10 +196,12 @@ const sections: CSharpSection[] = [
 					/>
 				</CSharpCardSection>
 				<CSharpCardSection title="Trying to Make It">
-					For a few years, I whole-heartily pursued the idea of becoming a recording/mixing engineer.&nbsp; Unfortunately, devotion doesn't always make up for lack of skill:
+					For a few years, I whole-heartily pursued the idea of becoming a
+					recording/mixing engineer.&nbsp; Unfortunately, devotion doesn't
+					always make up for lack of skill:
 					<AudioList
 						className="margin-top-1"
-						items={[																					
+						items={[
 							{
 								name: "Starlite Five - The Blues is Stalkin' Me",
 								path: { startliteBISM },
@@ -242,9 +239,12 @@ interface AboutProps {}
 
 const About: React.FC<AboutProps> = () => {
 	return (
-		<CSharpLayout sections={sections} pageName="About">
-			{" "}
-		</CSharpLayout>
+		<React.Fragment>
+			<CSharpLayout sections={sections} pageName="About">
+				{" "}
+			</CSharpLayout>
+			<AudioPlayer />
+		</React.Fragment>
 	);
 };
 

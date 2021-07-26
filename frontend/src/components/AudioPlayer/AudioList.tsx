@@ -1,5 +1,4 @@
 import React from "react";
-import { AUDIO_PLAYER_CLASSNAME } from "./AudioPlayer";
 import { connect, RootStateOrAny } from 'react-redux';
 import { setCurrentlyPlayingSound } from '../../actions';
 
@@ -13,15 +12,13 @@ export interface AudioItem {
 export interface AudioListProps {
 	items: AudioItem[];
 	className?: string;
-  currentlyPlayingSound: AudioItem;
   setCurrentlyPlayingSound: (sound: AudioItem) => void;
 }
 
-const AudioList: React.FC<AudioListProps> = ({ items, className, setCurrentlyPlayingSound, currentlyPlayingSound}) => {
+const AudioList: React.FC<AudioListProps> = ({ items, className, setCurrentlyPlayingSound}) => {
 	function handleItemClick(e: Event) {
-
-    const clickedItem = e.target as HTMLElement;
-    if (!clickedItem) return;
+    const clickedItem = e.currentTarget as HTMLElement;
+    if (!clickedItem?.dataset?.item) return;
 
     const parsedItem = JSON.parse(clickedItem?.dataset?.item as string);
     setCurrentlyPlayingSound(parsedItem);

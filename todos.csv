@@ -69,4 +69,7 @@ NOT SURE------------------------------------------------------------
 
 
 -for AudioPlayer__details
--create separate AudioList (where songs are clicked and dispatched to AudioPlayer) 
+-create separate AudioList (where songs are clicked and dispatched to AudioPlayer)
+
+-finish styling of AudioPlayer
+-add functionality to AudioPlayer controls

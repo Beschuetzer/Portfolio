@@ -1,5 +1,64 @@
 .audio-player {
-	
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	background-color: var(--color-primary-4);
+	z-index: 10;
+
+	&__controls {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&
+			svg:not(.audio-player__restart, .audio-player__backward, .audio-player__forward, .audio-player__close) {
+			width: $navbar__logo-width;
+			height: $navbar__logo-width;
+		}
+
+		& svg {
+			cursor: pointer;
+			fill: rgba(var(--color-primary-1-rgb), 1);
+			&:hover {
+				fill: rgba(var(--color-primary-1-rgb), 0.75);
+			}
+
+			&:active,
+			&:focus {
+				fill: rgba(var(--color-primary-2-rgb), 1);
+			}
+		}
+	}
+
+	&__details {
+	}
+
+	&__progress {
+    cursor: pointer;
+    background-color: var(--color-primary-2);
+    width:100%;
+    height: $default-font-size * 1.5;
+	}
+
+	&__backward,
+	&__forward {
+		width: $navbar__logo-width * 1.090838207;
+		height: $navbar__logo-width * 1.090838207;
+	}
+
+	&__close {
+		width: $navbar__logo-width * 1.131266846;
+		height: $navbar__logo-width * 1.131266846;
+	}
+
+	&__restart {
+		width: $navbar__logo-width * 0.75;
+		height: $navbar__logo-width * 0.75;
+	}
 }
-
-

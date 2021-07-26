@@ -2976,6 +2976,57 @@ body {
   color: var(--color-primary-3) !important;
 }
 
+.audio-player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-color: var(--color-primary-4);
+  z-index: 10;
+}
+.audio-player__controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.audio-player__controls svg:not(.audio-player__restart, .audio-player__backward, .audio-player__forward, .audio-player__close) {
+  width: 7vw;
+  height: 7vw;
+}
+.audio-player__controls svg {
+  cursor: pointer;
+  fill: rgba(var(--color-primary-1-rgb), 1);
+}
+.audio-player__controls svg:hover {
+  fill: rgba(var(--color-primary-1-rgb), 0.75);
+}
+.audio-player__controls svg:active, .audio-player__controls svg:focus {
+  fill: rgba(var(--color-primary-2-rgb), 1);
+}
+.audio-player__progress {
+  cursor: pointer;
+  background-color: var(--color-primary-2);
+  width: 100%;
+  height: 2.4rem;
+}
+.audio-player__backward, .audio-player__forward {
+  width: 7.635867449vw;
+  height: 7.635867449vw;
+}
+.audio-player__close {
+  width: 7.918867922vw;
+  height: 7.918867922vw;
+}
+.audio-player__restart {
+  width: 5.25vw;
+  height: 5.25vw;
+}
+
 .audio-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(38.4rem, 1fr));
