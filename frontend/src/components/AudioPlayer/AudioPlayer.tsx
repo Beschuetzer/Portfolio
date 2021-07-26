@@ -19,6 +19,7 @@ export interface AudioPlayerState {
 	currentlyPlayingSound: AudioItem;
 	elapsed: string;
 	songLength: string;
+	songProgressPercent: number;
 }
 
 class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
@@ -34,6 +35,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 			currentlyPlayingSound: {} as AudioItem,
 			elapsed: "-1",
 			songLength: "-1",
+			songProgressPercent: 0,
 		};
 	}
 
@@ -181,9 +183,11 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	step = () => {
 		if (!this.state?.playingHowl) return;
 		const seek = (this.state.playingHowl.seek() || 0) as number;
-		const percent =
-			((seek / this.state.playingHowl.duration()) * 100 || 0) + "%";
-		this.setState({ elapsed: getMinuteAndSecondsString(seek) });
+		const percent = (seek / this.state.playingHowl.duration()) * 100 || 0;
+		this.setState({
+			elapsed: getMinuteAndSecondsString(seek),
+			songProgressPercent: percent,
+		});
 
 		if (this.state.playingHowl.playing()) {
 			requestAnimationFrame(this.step);
@@ -238,7 +242,9 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 				<div
 					onClick={(e: any) => this.handleProgressBarClick(e)}
-					className={`${AUDIO_PLAYER_CLASSNAME}__progress`}></div>
+					className={`${AUDIO_PLAYER_CLASSNAME}__progress`}>
+					<div style={{ width: `${this.state.songProgressPercent}%` }}></div>
+				</div>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__controls`}>
 					<svg
 						onClick={(e: any) => this.handlePlay()}
