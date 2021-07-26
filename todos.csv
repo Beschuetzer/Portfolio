@@ -68,4 +68,5 @@ NOT SURE------------------------------------------------------------
   -create an html link that has a span as innerhtml that removes the ancor tag's styling , effectivelyrending it regular text surrounding by text that uses the same link.
 
 
--for AudioPlayer__details 
+-for AudioPlayer__details
+-create separate AudioList (where songs are clicked and dispatched to AudioPlayer) 

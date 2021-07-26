@@ -1,5 +1,6 @@
 import { RefObject } from "react";
 import { checkForParentOfType } from "../../../helpers";
+import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../../Carousel/util";
 import {
 	ANIMATION_DURATION,
@@ -30,10 +31,6 @@ const BODY_BACKGROUND_CLASSNAME = "body-background";
 const SET_ANIMATING_DONE_WAIT_FACTOR = 1.33;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
-
-export interface Sounds {
-	play: (sound: string) => void;
-}
 
 export type NavRef = RefObject<HTMLElement>;
 
@@ -166,7 +163,7 @@ export const hide = (navRef: NavRef) => {
 	navRef.current?.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 };
 
-const handleSound = (sounds: Sounds, e: MouseEvent) => {
+const handleSound = (sounds: LoadedSounds, e: MouseEvent) => {
 	const isActive = (e.currentTarget as HTMLElement).className.match(
 		/--active/i,
 	) as RegExpMatchArray;
@@ -177,9 +174,9 @@ const handleSound = (sounds: Sounds, e: MouseEvent) => {
 		NAVBAR_CLASSNAME,
 	);
 
-	if (!isActive && isMenu) sounds.play("siteNavOpen");
+	if (!isActive && isMenu) if (sounds?.loaded?.play) sounds.loaded.play("siteNavOpen");
 	else if ((!isActive && !isNavbar) || (isActive && isMenu))
-		sounds.play("siteNavClose");
+		if (sounds?.loaded?.play) sounds.loaded.play("siteNavClose");
 };
 
 export const handleMouseEnter = (navRef: NavRef) => {
@@ -199,7 +196,7 @@ export const handleMouseEnter = (navRef: NavRef) => {
 
 export const handleNavClick = (
 	navRef: NavRef,
-	sounds: Sounds,
+	sounds: LoadedSounds,
 	setIsAnimating: (value: boolean) => void,
 	e: MouseEvent,
 ) => {

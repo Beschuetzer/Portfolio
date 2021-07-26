@@ -8,6 +8,7 @@ import {
 	setHasClickedALink,
 } from "../../../actions";
 import { scrollToSection } from "../../../components/utils";
+import { LoadedSounds } from "../../../reducers/soundsReducer";
 import {
 	BRIDGE_CLASSNAME,
   BRIDGE_HERO_CLASSNAME,
@@ -27,7 +28,7 @@ interface BridgeSectionLinkProps {
 	name: string,
 	match: {url: string},
   bridgeSections: any[],
-	sounds: {play: (sound: string) => void},
+	sounds: LoadedSounds,
 	setCurrentBridgeSection: (value: number) => void,
 	setClickedBridgeInfoButtonCount: (value: number) => void,
 	setHasClickedALink: (value: boolean) => void,

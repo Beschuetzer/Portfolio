@@ -41,7 +41,7 @@ import startliteBISM from "../../../music/renaming/Starlite_Five_BISM.mp3";
 import startliteJam from "../../../music/renaming/Starlite_Five_Jam.mp3";
 import startliteOMB from "../../../music/renaming/Starlite_Five_OMB.mp3";
 import startliteTF from "../../../music/renaming/Starlite_Five_TF.mp3";
-import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
+import AudioList from "../../../components/AudioPlayer/AudioList";
 
 const sectionNames = ["Introduction", "Likes", "Music", "Philosophy"];
 
@@ -74,7 +74,7 @@ const sections: CSharpSection[] = [
 		],
 	},
 	{
-		//Music (add these songs in the form of an AudioPlayer component):
+		//Music (add these songs in the form of an AudioList
 		// ein paar ganz schnelle - 2003,
 		// mario remix - 2004,
 		// adam and linda's song- 2006,
@@ -110,7 +110,8 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection>
 				<CSharpCardSection title="Electronic">
 					Here are some of the first songs I made on Fruity Loops
-					<AudioPlayer
+					<AudioList
+						className="margin-top-1"
 						items={[
 							{
 								name: "Adam - Fruity Loops - Earliest 1",
@@ -125,7 +126,8 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection>
 				<CSharpCardSection title="Youthful Aspirations">
 					In high school, some friends and I were in a band:
-					<AudioPlayer
+					<AudioList
+						className="margin-top-1"
 						items={[
 							{
 								name: "Band Practice Recording - 1",
@@ -156,7 +158,8 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection>
 				<CSharpCardSection title="Real Instruments">
 					As my interest and talent grew, I began trying to learn how to sing and record songs using more than just electronic samples and instruments:
-					<AudioPlayer
+					<AudioList
+						className="margin-top-1"
 						items={[							
 							{
 								name: "Adam - Linda",
@@ -199,7 +202,8 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection>
 				<CSharpCardSection title="Trying to Make It">
 					For a few years, I whole-heartily pursued the idea of becoming a recording/mixing engineer.&nbsp; Unfortunately, devotion doesn't always make up for lack of skill:
-					<AudioPlayer
+					<AudioList
+						className="margin-top-1"
 						items={[																					
 							{
 								name: "Starlite Five - The Blues is Stalkin' Me",

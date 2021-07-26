@@ -11,9 +11,10 @@ import {
 	handleMoreClick,
 } from "./utils";
 import { HEADER_ID } from "../../../components/navbar/SiteNav/utils";
+import { LoadedSounds } from "../../../reducers/soundsReducer";
 
 interface BridgeHeroProps {
-	sounds: { play: (sound: string) => void };
+	sounds: LoadedSounds;
 	isMobile: boolean;
 	setClickedBridgeInfoButtonCount: (value: number) => void;
 	clickedBridgeInfoButtonCount: number;

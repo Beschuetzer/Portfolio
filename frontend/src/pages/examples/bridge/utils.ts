@@ -1,6 +1,7 @@
 import { RefObject } from "react";
 import { ANIMATION_DURATION, BODY_BACKGROUND_CSS_CLASSNAME, bridgeSectionHeightDefault, bridgeSectionPaddingDefault, computedStyle, HIDDEN_CLASSNAME, Reference } from "../../../components/constants";
 import { scrollToSection } from "../../../components/utils";
+import { LoadedSounds } from "../../../reducers/soundsReducer";
 
 export const SECOND_INFO_BUTTON_DELAY = 500;
 export const BRIDGE_CLASSNAME = 'bridge';
@@ -109,16 +110,16 @@ export const resetBridgeHero = (heroMore: Reference) => {
 
 }
 
-export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: HTMLElement, sounds: {play: (name: string) => void}, isMobile: boolean, headerHeight: number) => {
+export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: HTMLElement, sounds: LoadedSounds, isMobile: boolean, headerHeight: number) => {
   if (!checkBox?.checked) {
-    sounds.play('doorFast');
+    if (sounds?.loaded?.play) sounds.loaded.play('doorFast');
 
     if (!background) return;
     background?.classList.add('visible');
     background?.classList.add('reverse-ease');
   }
   else {
-    sounds.play('doorNormal');
+    if (sounds?.loaded?.play) sounds.loaded.play('doorNormal');
     scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()) as HTMLElement)
     if (background)  {
       background?.classList.remove('visible');
@@ -135,7 +136,7 @@ export const handleMoreClick = (
   hero: Reference,
   checkBoxRef: RefObject<HTMLInputElement>,
   backgroundRef: Reference,
-  sounds: {play: (sound: string) => void},
+  sounds: LoadedSounds,
   setClickedBridgeInfoButtonCount: (value: number) => void,
 ) => {
   if (clickedBridgeInfoButtonCount % 2 === 0) {

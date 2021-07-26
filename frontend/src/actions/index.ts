@@ -1,5 +1,6 @@
 import { Dispatch } from 'react';
 import github from '../apis/github';
+import { AudioItem } from '../components/AudioPlayer/AudioList';
 import {
   GET_REPOSITORIES,
   CLICK_SKILL,
@@ -19,6 +20,7 @@ import {
   SET_BRIDGE_CARDS,
   SET_HAS_CLICKED_A_LINK,
   SET_IS_CARD_VIDEO_OPEN,
+  SET_CURRENTLY_PLAYING_SOUND,
 } from './types';
     
 export const getRepositories = () => async (dispatch: Dispatch<any>) => {
@@ -254,6 +256,13 @@ export const setSounds = (sounds: []) => {
   return {
     type: SET_SOUNDS,
     payload: sounds,
+  }
+}
+
+export const setCurrentlyPlayingSound = (sound: AudioItem) => {
+  return {
+    type: SET_CURRENTLY_PLAYING_SOUND,
+    payload: sound,
   }
 }
 

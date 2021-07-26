@@ -31,6 +31,7 @@ import {
 } from "./utils";
 import { scrollToSection } from "../../utils";
 import { email } from "../../constants";
+import { LoadedSounds } from "../../../reducers/soundsReducer";
 
 interface SiteNavProps {
 	isAnimating: boolean;
@@ -38,7 +39,7 @@ interface SiteNavProps {
 	previousUrl: string;
 	viewPortWidth: number;
 	headerHeight: number;
-	sounds: { play: (value: string) => void };
+	sounds: LoadedSounds;
 	setIsAnimating: (value: boolean) => void;
 	setHeaderHeight: (value: number) => void;
 }
