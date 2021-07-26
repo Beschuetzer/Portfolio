@@ -3008,6 +3008,12 @@ body {
 .audio-player__controls svg:active, .audio-player__controls svg:focus {
   fill: rgba(var(--color-primary-2-rgb), 1);
 }
+.audio-player__details {
+  font-size: 1.6rem;
+}
+.audio-player__details-time {
+  margin-left: 1.6rem;
+}
 .audio-player__progress {
   cursor: pointer;
   background-color: var(--color-primary-2);

@@ -115,11 +115,11 @@ const sections: CSharpSection[] = [
 						className="margin-top-1"
 						items={[
 							{
-								name: "Adam - Fruity Loops - Earliest 1",
+								name: "Adam - Fruity Loops 1",
 								path: { earliest1 },
 							},
 							{
-								name: "Adam - Fruity Loops - Earliest 2",
+								name: "Adam - Fruity Loops 2",
 								path: { earliest2 },
 							},
 							{

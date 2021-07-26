@@ -37,6 +37,11 @@
 	}
 
 	&__details {
+    font-size: $default-font-size;
+
+    &-time {
+      margin-left:  $default-font-size * 1;
+    }
 	}
 
 	&__progress {
