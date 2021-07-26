@@ -2976,6 +2976,43 @@ body {
   color: var(--color-primary-3) !important;
 }
 
+.audio-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(38.4rem, 1fr));
+}
+.audio-list__item {
+  --padding-top-and-bottom: 0.8rem;
+  --padding-right: 1.6rem;
+  cursor: pointer;
+  background: linear-gradient(to left, rgba(var(--color-primary-1-rgb), 1) 0%, rgba(var(--color-primary-4-rgb), 1) 5%, rgba(var(--color-primary-1-rgb), 1) 10%, rgba(var(--color-primary-1-rgb), 1) 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  color: transparent;
+  animation: animate-skills infinite 10s;
+  border-bottom-width: 0.16rem;
+  border-bottom-style: solid;
+  border-image: linear-gradient(to right, rgba(var(--color-primary-4-rgb), 0.1) 0%, rgba(var(--color-primary-1-rgb), 1) 50%, rgba(var(--color-primary-1-rgb), 1) 50%, rgba(var(--color-primary-4-rgb), 0.1) 100%);
+  border-image-slice: 1;
+  text-decoration: underline;
+  width: max-content;
+  padding: var(--padding-top-and-bottom) var(--padding-right) var(--padding-top-and-bottom) 0;
+}
+@media only screen and (max-width: 58.5625em) {
+  .audio-list__item {
+    --padding-top-and-bottom: 1.6rem * .25;
+    --padding-right: 1.6rem * .5;
+    width: auto;
+  }
+}
+.audio-list__item > span:nth-of-type(2) {
+  padding-left: 0.8rem;
+}
+.audio-list__item:hover {
+  color: var(--color-primary-1);
+  text-decoration: none;
+  border-image: none;
+}
+
 .home {
   position: relative;
   height: 100vh;

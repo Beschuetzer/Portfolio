@@ -68,6 +68,10 @@ $skills-linear-gradient-hover: linear-gradient(
 
 
 //home
+$home-background-color-opacity: 0.1;
+$home-page-border: 2px solid rgba(var(--color-primary-4-rgb), 0.5);
+$home-page-animation: 1.5s 1 translateToZero forwards;
+$breakpoint-to-change-layout: "tab-land";
 $home-name-font-weight: 100;
 $home-regular-text-opacity: 0.85;
 $home-content-header-gradient-colors: var(--color-primary-4),

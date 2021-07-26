@@ -121,6 +121,10 @@ const sections: CSharpSection[] = [
 								name: "Adam - Fruity Loops - Earliest 2",
 								path: { earliest2 },
 							},
+							{
+								name: "Adam - Mario Jingle",
+								path: { selfMario },
+							},
 						]}
 					/>
 				</CSharpCardSection>
@@ -130,27 +134,27 @@ const sections: CSharpSection[] = [
 						className="margin-top-1"
 						items={[
 							{
-								name: "Band Practice Recording - 1",
+								name: "Band - 1",
 								path: { earlier1 },
 							},
 							{
-								name: "Band Practice Recording - 2",
+								name: "Band - 2",
 								path: { earlier2 },
 							},
 							{
-								name: "Band Practice Recording - 3",
+								name: "Band - 3",
 								path: { earlier3 },
 							},
 							{
-								name: "Band Practice Recording - Altus",
-								path: { earlier5 },
-							},
-							{
-								name: "Band Practice Recording - 4",
+								name: "Band - 4",
 								path: { earlier6 },
 							},
 							{
-								name: "Band Practice Recording - Hey Joe",
+								name: "Band - Altus",
+								path: { earlier5 },
+							},
+							{
+								name: "Band - Hey Joe",
 								path: { earlier7 },
 							},
 						]}
@@ -162,20 +166,24 @@ const sections: CSharpSection[] = [
 						className="margin-top-1"
 						items={[							
 							{
-								name: "Adam - Linda",
-								path: { earliest3 },
-							},
-							{
 								name: "Adam - Hopeful Uncertainty",
 								path: { selfHU },
 							},
 							{
-								name: "Adam - Mario",
-								path: { selfMario },
-							},
-							{
 								name: "Adam - Relentless Sacrifice",
 								path: { selfRS },
+							},
+							{
+								name: "Adam and Linda - Rear-view Mirror",
+								path: { earliest3 },
+							},
+							{
+								name: "Paula - Quiet Condolences",
+								path: { othersQC },
+							},
+							{
+								name: "Paula, and Steve - Luminescent Ether",
+								path: { othersLE },
 							},
 							{
 								name: "Steve - Eerie Correspondence",
@@ -184,14 +192,6 @@ const sections: CSharpSection[] = [
 							{
 								name: "Steve - Reunited",
 								path: { othersReunited },
-							},
-							{
-								name: "Steve and Paula - Luminescent Ether",
-								path: { othersLE },
-							},
-							{
-								name: "Paula - Quiet Condolences",
-								path: { othersQC },
 							},
 							{
 								name: "Steve - Sweetness",

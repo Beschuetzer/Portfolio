@@ -1,5 +1,9 @@
 import React from "react";
 import { AUDIO_PLAYER_CLASSNAME } from "./AudioPlayer";
+import { connect, RootStateOrAny } from 'react-redux';
+import { setCurrentlyPlayingSound } from '../../actions';
+
+export const AUDIO_LIST_CLASSNAME = "audio-list";
 
 export interface AudioItem {
 	path: any;
@@ -9,39 +13,49 @@ export interface AudioItem {
 export interface AudioListProps {
 	items: AudioItem[];
 	className?: string;
+  currentlyPlayingSound: AudioItem;
+  setCurrentlyPlayingSound: (sound: AudioItem) => void;
 }
 
-const AudioList: React.FC<AudioListProps> = ({ items, className }) => {
+const AudioList: React.FC<AudioListProps> = ({ items, className, setCurrentlyPlayingSound, currentlyPlayingSound}) => {
 	function handleItemClick(e: Event) {
-		console.log("item click------------------------------------------------");
-		console.log("e =", e);
+
     const clickedItem = e.target as HTMLElement;
     if (!clickedItem) return;
 
     const parsedItem = JSON.parse(clickedItem?.dataset?.item as string);
-    debugger
+    setCurrentlyPlayingSound(parsedItem);
 	}
 
 	function renderItems() {
 		return items.map((item, index) => {
 			return (
-				<li
+				<div
 					key={index}
 					onClick={(e: any) => handleItemClick(e)}
-					className={`${AUDIO_PLAYER_CLASSNAME}__item`}
+					className={`${AUDIO_LIST_CLASSNAME}__item`}
           data-item={JSON.stringify(item)}
         >
-          {`${JSON.stringify(item.path)}, ${item.name}`}
-        </li>
+          <span>{index + 1}).</span>
+          <span>{item.name}</span>
+        </div>
 			);
 		});
 	}
 
 	return (
-		<ul className={`${className ? className : ""} ${AUDIO_PLAYER_CLASSNAME}`}>
+		<div className={`${className ? className : ""} ${AUDIO_LIST_CLASSNAME}`}>
 			{renderItems()}
-		</ul>
+		</div>
 	);
 };
 
-export default AudioList;
+const mapStateToProps = (state: RootStateOrAny) => {
+  return {
+    currentlyPlayingSound: state.sounds.currentlyPlayingSound,
+  }
+}
+
+export default connect(mapStateToProps, {
+  setCurrentlyPlayingSound,
+})(AudioList);

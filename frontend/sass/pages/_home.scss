@@ -1,7 +1,4 @@
-$background-color-opacity: 0.1;
-$home-page-border: 2px solid rgba(var(--color-primary-4-rgb), 0.5);
-$home-page-animation: 1.5s 1 translateToZero forwards;
-$breakpoint-to-change-layout: "tab-land";
+
 
 .home {
 	position: relative;
@@ -209,7 +206,7 @@ $breakpoint-to-change-layout: "tab-land";
 				grid-row: 3 / span 1;
 				background-color: rgba(
 					var(--color-primary-1-rgb),
-					$background-color-opacity
+					$home-background-color-opacity
 				);
 				border-top: $home-page-border;
 				border-bottom: $home-page-border;
@@ -238,7 +235,7 @@ $breakpoint-to-change-layout: "tab-land";
 				grid-row: 4 / span 1;
 				background-color: rgba(
 					var(--color-primary-2-rgb),
-					$background-color-opacity
+					$home-background-color-opacity
 				);
 			}
 		}

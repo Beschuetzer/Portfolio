@@ -14,7 +14,6 @@ export interface SoundState {
   currentlyPlayingSound: AudioItem,
 }
 
-
 const INITIAL_STATE: SoundState = {
   loaded: {} as LoadedSounds,
   currentlyPlayingSound: {} as AudioItem,
