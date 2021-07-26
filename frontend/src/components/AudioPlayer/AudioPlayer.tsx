@@ -19,7 +19,6 @@ export interface AudioPlayerState {
 	currentlyPlayingSound: AudioItem;
 	elapsed: string;
 	songLength: string;
-	
 }
 
 class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
@@ -46,8 +45,13 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 	componentWillReceiveProps(nextProps: AudioPlayerProps) {
 		//need to just play from beginning if clicking same song
-		const playingSoundPath = Object.values(nextProps.currentlyPlayingSound?.path)[0];
-		if (playingSoundPath !== undefined && playingSoundPath === (this.state.playingHowl as any)?._src) {
+		const playingSoundPath = Object.values(
+			nextProps.currentlyPlayingSound?.path,
+		)[0];
+		if (
+			playingSoundPath !== undefined &&
+			playingSoundPath === (this.state.playingHowl as any)?._src
+		) {
 			this.props.setIsLoadingSound(false);
 			return this.handleRestart();
 		}
@@ -69,7 +73,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 				this.props.setIsLoadingSound(false);
 				return this.setState({
 					playingHowl: loadedHowl,
-				})
+				});
 			}
 
 			const newHowl = new Howl({
@@ -174,9 +178,22 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		console.log("percent =", percent);
 	}
 
+	step = () => {
+		if (!this.state?.playingHowl) return;
+		const seek = (this.state.playingHowl.seek() || 0) as number;
+		const percent =
+			((seek / this.state.playingHowl.duration()) * 100 || 0) + "%";
+		this.setState({ elapsed: getMinuteAndSecondsString(seek) });
+
+		if (this.state.playingHowl.playing()) {
+			requestAnimationFrame(this.step);
+		}
+	};
+
 	onSoundLoad(newHowl: Howl, nextProps: AudioPlayerProps) {
 		if (newHowl?.play) {
 			this.id = newHowl.play();
+			requestAnimationFrame(this.step);
 		}
 
 		let newHowls = [];
@@ -270,4 +287,4 @@ const mapStateToProps = (state: RootStateOrAny) => {
 	};
 };
 
-export default connect(mapStateToProps, {setIsLoadingSound})(AudioPlayer);
+export default connect(mapStateToProps, { setIsLoadingSound })(AudioPlayer);
