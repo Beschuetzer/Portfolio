@@ -219,7 +219,7 @@ $card-pause-and-stop-width: 25%;
 //carousel
 $carousel-item-card-size-nav-switch: $default-font-size * 12.5;
 $carousel-full-screen-item-height: 87.5vh;
-$carousel-fullscreen-button-hover-opacity: 0.5;
+$carousel-fullscreen-button-hover-opacity: 1;
 $carousel-progress-bar-height: 2.5vh;
 $carousel-full-screen-media-height: calc(
 	#{$carousel-full-screen-item-height} - #{$carousel-progress-bar-height}

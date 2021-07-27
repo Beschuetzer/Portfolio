@@ -208,7 +208,7 @@
 //Dealing with SiteNav filter bug on pages like '/bridge'
 // .no-filter {filter: none !important}
 .fill-red {
-	--opacity: 1;
+	--opacity: .5;
 	fill: rgba(var(--color-primary-red-rgb), var(--opacity)) !important;
 
 	&:hover {

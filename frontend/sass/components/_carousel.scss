@@ -79,31 +79,27 @@
 
 		&--full-screen {
 			--translation-y: -50%;
-
 			position: fixed;
 			z-index: 1000000;
-			top: var(--fullscreen-top);
+			// top: var(--fullscreen-top);
 			display: block;
-
-			@include respond(nav-switch) {
-				// --fullscreen-top: calc(#{$carousel-full-screen-item-height} / 2);
-			}
+			bottom: calc(
+				(100vh - #{$carousel-full-screen-item-height}) - (#{$carousel-progress-bar-height})
+			);
+			top: auto;
+			// @include respond(nav-switch) {
+			// 	bottom: calc(
+			// 	(100vh - #{$carousel-full-screen-item-height}) - (#{$carousel-progress-bar-height})
+			// );
+			// }
 		}
 
 		&--full-screen#{&}--left {
-			left: 0;
-
-			@include respond(nav-switch) {
-				
-			}
+			left: $default-font-size;
 		}
 
 		&--full-screen#{&}--right {
-			right: 0;
-
-			@include respond(nav-switch) {
-				
-			}
+			right: $default-font-size;
 		}
 
 		&--left {
@@ -121,8 +117,8 @@
 		}
 
 		& svg {
-			width: $navbar__logo-width;
-			height: $navbar__logo-width;
+			width: calc(#{$carousel-svg-parent-width} * .75);
+			height: calc(#{$carousel-svg-parent-width} * .75);
 			fill: rgba(var(--color-primary-1-rgb), 0.75);
 
 			@include respond(nav-switch) {
@@ -287,7 +283,7 @@
 				left: 50%;
 				position: fixed;
 				height: 100%;
-				object-position: left;
+				// object-position: left;
 				object-fit: contain;
 				transform: translateX(-50%);
 				width: auto;
@@ -389,6 +385,12 @@
 		max-height: 85%;
 		overflow: auto;
 
+		@include respond(phone) {
+			left: 0 !important;
+			right: 0 !important;
+			transform: translate(0, -50%) !important;
+		}
+
 		&-title {
 			font-size: $default-font-size * 2;
 		}
@@ -480,12 +482,19 @@
 		left: auto;
 		top: 0;
 		transform: none;
+		// opacity: calc(#{$carousel-fullscreen-button-hover-opacity} / 2);
 
 		@include respond(nav-switch) {
 			top: auto;
+			right: auto;
+			left: 50%;
 			bottom: calc(100vh - #{$carousel-full-screen-media-height});
-			right: 0;
+			transform: translateX(-50%);
 		}
+
+		// &:hover {
+		// 	opacity: calc(#{$carousel-fullscreen-button-hover-opacity});
+		// }
 	}
 
 	& .card__play {
@@ -557,9 +566,17 @@
 		:is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
 		z-index: 10000;
 
-		@include respond(nav-switch) {
-			&:not(.card__close-parent) {
+		&:not(.card__close-parent) {
+			@include respond(nav-switch) {
 				bottom: calc(0.016 * (100vh - #{$carousel-full-screen-item-height}));
+			}
+
+			&:hover svg {
+				fill: var(--color-white);
+			}
+
+			&:active svg, &:focus svg {
+				fill: var(--color-primary-3);
 			}
 		}
 	}

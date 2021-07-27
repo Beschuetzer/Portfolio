@@ -220,6 +220,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	const renderControls = (isVideo: RegExpMatchArray | null) => {
 		const closeControlToUse = (
 			<CloseControl
+				additionalSvgClassNames={["fill-red"]}
 				xlinkHref={videoCloseControlSvgXLinkHref}
 				videoRef={videoRef}
 				containerRef={containerRef}
