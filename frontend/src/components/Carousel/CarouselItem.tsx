@@ -129,8 +129,10 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
 		handleShouldHideArrows(e);
 
+		carouselItem?.classList.remove(STOPPED_CLASSNAME);
 		carouselItem.classList.add(FULLSCREEN_CLASSNAME);
 		carouselItem.parentNode?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
+
 		addFullscreenClassToArrowButtons();
 		handleVideo(carouselItem, videoClassname, foregroundVideoClassname, handleVideoEnd, handleVideoProgress);		
 		closeCarouselItem(carouselItem, "", true);

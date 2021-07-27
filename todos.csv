@@ -67,10 +67,14 @@ NOT SURE------------------------------------------------------------
 
   -create an html link that has a span as innerhtml that removes the ancor tag's styling , effectivelyrending it regular text surrounding by text that uses the same link.
 
+mobile issues---------------------
+  -examples link not expanded in navbar
+  -carousel descriptions not shown
+  -carousel items not showing full screen correctly
 
 -for AudioPlayer__details
 -create separate AudioList (where songs are clicked and dispatched to AudioPlayer)
 
+-change scroll sensitivity (have it scroll futher down each scroll)
 -finish toggler for AudioPlayer
 -add css loading spinner when audio loading
--bug when click video in carousel, switch to another video, close, then re-open original video
