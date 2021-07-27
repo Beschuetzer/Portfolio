@@ -26,6 +26,8 @@ export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const PAGE_NAV_WIDTH_AT_SWITCH_OFFSET = 192;
 export let computedStyle = getComputedStyle(document.documentElement);
 export const PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME = '--page-nav-min-column-width';
+export const CAROUSEL_GRID_MAX_COLUMN_WIDTH_CSS_PROPERTY_NAME = '--carousel-grid-max-column-width';
+
 //#region CSS Colors
 // export const COLOR_PRIMARY_1 = computedStyle.getPropertyValue('--color-primary-1');
 // export const COLOR_PRIMARY_2 = computedStyle.getPropertyValue('--color-primary-2');
@@ -59,6 +61,7 @@ export const bigDesktopPixelMin = parseFloat(computedStyle.getPropertyValue('--b
 export const siteNavOriginalButtonWidth = computedStyle.getPropertyValue('--site-nav-button-width');
 export const bridgeSectionHeightDefault = computedStyle.getPropertyValue('--bridge-section-height');
 export const bridgeSectionPaddingDefault = computedStyle.getPropertyValue('--bridge-section-padding');
+
 
 const offset = .00000000000001;
 export const viewPortPixelToRem: {

@@ -2,6 +2,7 @@ import { CSSProperties, RefObject } from "react";
 import {
 	ANIMATION_DURATION,
 	ArrowButtonDirection,
+	CAROUSEL_GRID_MAX_COLUMN_WIDTH_CSS_PROPERTY_NAME,
 	HIDDEN_CLASSNAME,
 } from "../constants";
 import { getIsVideoPlaying } from "../VideoPlayer/utils";
@@ -21,6 +22,14 @@ export const CAROUSEL_ARROW_BUTTONS_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-bu
 export const CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME = `${CAROUSEL_ARROW_BUTTONS_CLASSNAME}--left`;
 export const CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME = `${CAROUSEL_ARROW_BUTTONS_CLASSNAME}--right`;
 export const CAROUSEL_MIN_IMAGE_COUNT = 0;
+
+export const CAROUSEL_GRID_MAX_COLUMN_WIDTHS: [number, string][] = [
+	//1st index is number of items and second is the width
+	[7, "15rem"],
+	[8, "12rem"],
+	[12, "10rem"],
+	[13, "8rem"],
+];
 
 export interface CarouselItemProps {
 	descriptionClassname: string | undefined;
@@ -287,7 +296,11 @@ export function handleVideo(
 	videoClassname: string,
 	foregroundVideoClassname: string,
 	handleVideoEnd?: (e: Event) => void,
-	onVideoProgress?: (videoRef: RefObject<HTMLVideoElement>, progressBarRef: RefObject<HTMLProgressElement>, e: Event) => void,
+	onVideoProgress?: (
+		videoRef: RefObject<HTMLVideoElement>,
+		progressBarRef: RefObject<HTMLProgressElement>,
+		e: Event,
+	) => void,
 ) {
 	if (
 		carouselItem.classList.contains(videoClassname) ||
@@ -310,8 +323,45 @@ export function handleVideo(
 	}
 }
 
-export function resetCarouselVideo(carouselItem: HTMLElement, video: HTMLVideoElement) {
+export function resetCarouselVideo(
+	carouselItem: HTMLElement,
+	video: HTMLVideoElement,
+) {
 	carouselItem.classList.remove(PLAYING_CLASSNAME);
 	video.currentTime = 0;
 	video.pause();
+}
+
+export function setCarouselGridMaxColumnWidth(
+	itemsRef: RefObject<NodeListOf<Element>>,
+) {
+	if (!itemsRef || !itemsRef.current) return;
+	const numberOfItemsInCarousel = itemsRef.current.length;
+	const firstItem = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[0];
+	const lastItem = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[CAROUSEL_GRID_MAX_COLUMN_WIDTHS.length - 1];
+	
+	let valueToUse = "-1";
+
+	if (numberOfItemsInCarousel < firstItem[0]) return;
+	if (numberOfItemsInCarousel >= lastItem[0]) valueToUse = lastItem[1];
+
+	if (valueToUse === "-1") {
+		for (let i = 0; i < CAROUSEL_GRID_MAX_COLUMN_WIDTHS.length - 1; i++) {
+			const item = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[i];
+			const nextItem = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[i + 1];
+
+			if (item[0] === numberOfItemsInCarousel) {
+				valueToUse = item[1];
+				break;
+			}
+
+			if (item[0] < numberOfItemsInCarousel && nextItem[0] >= numberOfItemsInCarousel) {
+				valueToUse = nextItem[1];
+				break;
+			}
+		}
+	}
+
+	const newValue = `${CAROUSEL_GRID_MAX_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${valueToUse}`;
+	document.documentElement.style.cssText += newValue;
 }

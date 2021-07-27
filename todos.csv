@@ -73,14 +73,10 @@ mobile issues---------------------
 -for AudioPlayer__details
 -create separate AudioList (where songs are clicked and dispatched to AudioPlayer)
 
+-demo and github source code svgs not positioned properly in nav-switch for replay viewer (all csharp layout pages); position them at the top?
 -change scroll sensitivity (have it scroll futher down each scroll)
 -finish toggler for AudioPlayer
 -add css loading spinner when audio loading
 -add overlay text to carousel video items
 -hovering carousel image doesn't change filter enough
 -change dot count based on item # (>= 7 then divide by two as there will be two columns)
--change --carousel-grid-max-column-width based on following: 
-  7 items = 15rem
-  8 items = 12rem
-  9-12 items = 10rem
-  >=13 items = 8rem
