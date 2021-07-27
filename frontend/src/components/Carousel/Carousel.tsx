@@ -1,6 +1,11 @@
 import React, { CSSProperties, useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
-import CarouselItem, { FULLSCREEN_CLASSNAME, FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME, STOPPED_CLASSNAME } from "./CarouselItem";
+import CarouselItem, {
+	FULLSCREEN_CLASSNAME,
+	FULLSCREEN_PARENT_CLASSNAME,
+	PLAYING_CLASSNAME,
+	STOPPED_CLASSNAME,
+} from "./CarouselItem";
 import useInit from "./useInit";
 import useInterItemWidth from "./useInterItemWidth";
 import CarouselArrow from "./CarouselArrow";
@@ -22,8 +27,9 @@ import {
 	toggleLeftAndRightArrows as handleWhetherToDisplayArrows,
 	resetCarouselVideo,
 	CAROUSEL_VIDEO_CLASSNAME,
+	getCarouselGridMaxColumnWidth,
 } from "./util";
-import { ArrowButtonDirection } from "../constants";
+import { ArrowButtonDirection, carouselGridMaxColumnWidthDefault } from "../constants";
 
 interface CarouselProps {
 	viewPortWidth: number;
@@ -49,7 +55,7 @@ const Carousel: React.FC<CarouselProps> = ({
 	dotSVGXLinkHref = "/sprite.svg#icon-dot-single",
 }) => {
 	let currentTranslationFactor = CAROUSEL_MIN_IMAGE_COUNT;
-	let itemsRef = useRef<HTMLElement>(null);
+	let itemsRef = useRef<NodeListOf<Element>>(null);
 	let itemsWidthRef = useRef<HTMLElement>(null);
 	let leftArrowRef = useRef<HTMLElement>(null);
 	let rightArrowRef = useRef<HTMLElement>(null);
@@ -99,19 +105,25 @@ const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	const handleCleanUp = () => {
-		const carouselItemClicked = document.querySelector(`.${FULLSCREEN_PARENT_CLASSNAME}`) as HTMLElement;
-		const videoDiv = carouselItemClicked?.querySelector(`.${CAROUSEL_VIDEO_CLASSNAME}`);
-		const video = carouselItemClicked?.querySelector('video') as HTMLVideoElement;
-		if (video) resetCarouselVideo(carouselItemClicked, video)
+		const carouselItemClicked = document.querySelector(
+			`.${FULLSCREEN_PARENT_CLASSNAME}`,
+		) as HTMLElement;
+		const videoDiv = carouselItemClicked?.querySelector(
+			`.${CAROUSEL_VIDEO_CLASSNAME}`,
+		);
+		const video = carouselItemClicked?.querySelector(
+			"video",
+		) as HTMLVideoElement;
+		if (video) resetCarouselVideo(carouselItemClicked, video);
 		if (videoDiv) {
 			videoDiv.classList.remove(PLAYING_CLASSNAME);
 			videoDiv.classList.remove(FULLSCREEN_CLASSNAME);
 			videoDiv.classList.add(STOPPED_CLASSNAME);
 		}
 
-		const image = carouselItemClicked?.querySelector('img') as HTMLImageElement;
+		const image = carouselItemClicked?.querySelector("img") as HTMLImageElement;
 		if (image) image.classList.remove(FULLSCREEN_CLASSNAME);
-	}
+	};
 
 	const handleDotClick = (e: MouseEvent) => {
 		[currentTranslationFactor, removeTransitionTimeout] =
@@ -230,16 +242,27 @@ const Carousel: React.FC<CarouselProps> = ({
 		});
 	};
 
-	const renderCarouselButtons = () => {
+	const renderCarouselDots = () => {
+		if (!items.length) return null;
+		const maxWidth = getCarouselGridMaxColumnWidth(items.length);
+
+		let numberOfColumns = 1;
+		if (maxWidth !== carouselGridMaxColumnWidthDefault) numberOfColumns = 2;
+
 		return items.map((image, index) => {
+			const indexToUse = index % numberOfColumns;
+			if (indexToUse !== 0) return null;
+
+			const nthIndex = index / numberOfColumns;
+
 			return (
 				<svg
-					key={index}
+					key={nthIndex}
 					className={`
-              ${CAROUSEL_DOT_CLASSNAME}
-              ${CAROUSEL_DOT_CLASSNAME}-${index}
-              ${index === 0 ? CAROUSEL_DOT_ACTIVE_CLASSNAME : ""}
-            `}
+								${CAROUSEL_DOT_CLASSNAME}
+								${CAROUSEL_DOT_CLASSNAME}-${nthIndex}
+								${index === 0 ? CAROUSEL_DOT_ACTIVE_CLASSNAME : ""}
+							`}
 					onClick={(e: any) => handleDotClick(e)}>
 					<use xlinkHref={dotSVGXLinkHref}></use>
 				</svg>
@@ -264,7 +287,7 @@ const Carousel: React.FC<CarouselProps> = ({
 			/>
 
 			<div className={`${CAROUSEL_CLASSNAME}__dots`}>
-				{renderCarouselButtons()}
+				{renderCarouselDots()}
 			</div>
 		</React.Fragment>
 	);

@@ -2,6 +2,7 @@ import { CSSProperties, RefObject } from "react";
 import {
 	ANIMATION_DURATION,
 	ArrowButtonDirection,
+	carouselGridMaxColumnWidthDefault,
 	CAROUSEL_GRID_MAX_COLUMN_WIDTH_CSS_PROPERTY_NAME,
 	HIDDEN_CLASSNAME,
 } from "../constants";
@@ -103,7 +104,7 @@ export function setCurrentActiveButton(indexOfActiveDot: number) {
 export function setTranslationAmount(
 	amountToTranslateImages: number,
 	removeTransitionTimeout: number,
-	itemsRef: RefObject<HTMLElement>,
+	itemsRef: RefObject<NodeListOf<Element>>,
 ) {
 	clearInterval(removeTransitionTimeout);
 
@@ -175,7 +176,7 @@ export const handleSetTranslation = (
 export const getCurrentTranslationFactorFromDots = (
 	e: MouseEvent,
 	items: any[],
-	itemsRef: RefObject<HTMLElement>,
+	itemsRef: RefObject<NodeListOf<Element>>,
 	itemsWidthRef: RefObject<HTMLElement>,
 	leftArrowRef: RefObject<HTMLElement>,
 	rightArrowRef: RefObject<HTMLElement>,
@@ -332,36 +333,48 @@ export function resetCarouselVideo(
 	video.pause();
 }
 
+export function getCarouselGridMaxColumnWidth(
+	numberOfItemsInCarousel: number
+) {
+	if (numberOfItemsInCarousel === undefined || numberOfItemsInCarousel === null) return;
+
+	const firstItem = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[0];
+	const lastItem =
+		CAROUSEL_GRID_MAX_COLUMN_WIDTHS[CAROUSEL_GRID_MAX_COLUMN_WIDTHS.length - 1];
+
+	let valueToUse = "-1";
+
+	if (numberOfItemsInCarousel < firstItem[0]) return carouselGridMaxColumnWidthDefault;
+	if (numberOfItemsInCarousel >= lastItem[0]) return lastItem[1];
+
+	for (let i = 0; i < CAROUSEL_GRID_MAX_COLUMN_WIDTHS.length - 1; i++) {
+		const item = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[i];
+		const nextItem = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[i + 1];
+
+		if (item[0] === numberOfItemsInCarousel) {
+			valueToUse = item[1];
+			break;
+		}
+
+		if (
+			item[0] < numberOfItemsInCarousel &&
+			nextItem[0] >= numberOfItemsInCarousel
+		) {
+			valueToUse = nextItem[1];
+			break;
+		}
+	}
+
+	return valueToUse;
+}
+
 export function setCarouselGridMaxColumnWidth(
 	itemsRef: RefObject<NodeListOf<Element>>,
 ) {
 	if (!itemsRef || !itemsRef.current) return;
-	const numberOfItemsInCarousel = itemsRef.current.length;
-	const firstItem = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[0];
-	const lastItem = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[CAROUSEL_GRID_MAX_COLUMN_WIDTHS.length - 1];
-	
-	let valueToUse = "-1";
+	const maxWidthToUse = getCarouselGridMaxColumnWidth(itemsRef.current.length);
 
-	if (numberOfItemsInCarousel < firstItem[0]) return;
-	if (numberOfItemsInCarousel >= lastItem[0]) valueToUse = lastItem[1];
-
-	if (valueToUse === "-1") {
-		for (let i = 0; i < CAROUSEL_GRID_MAX_COLUMN_WIDTHS.length - 1; i++) {
-			const item = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[i];
-			const nextItem = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[i + 1];
-
-			if (item[0] === numberOfItemsInCarousel) {
-				valueToUse = item[1];
-				break;
-			}
-
-			if (item[0] < numberOfItemsInCarousel && nextItem[0] >= numberOfItemsInCarousel) {
-				valueToUse = nextItem[1];
-				break;
-			}
-		}
-	}
-
-	const newValue = `${CAROUSEL_GRID_MAX_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${valueToUse}`;
+	if (!maxWidthToUse) return;
+	const newValue = `${CAROUSEL_GRID_MAX_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${maxWidthToUse}`;
 	document.documentElement.style.cssText += newValue;
 }

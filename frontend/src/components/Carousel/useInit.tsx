@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { RefObject, useEffect } from "react";
 import { setCarouselGridMaxColumnWidth } from "./util";
 
 const useInit = (
@@ -7,7 +7,7 @@ const useInit = (
 	arrowButtonRightClassname: string,
 	arrowButtonLeftClassname: string,
 	itemClassname: string,
-	itemsRef: any,
+	itemsRef: RefObject<NodeListOf<Element>>,
 ) => {
 	useEffect(() => {
 		if (leftArrowRef) (leftArrowRef as any).current = document.querySelectorAll(
