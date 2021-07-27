@@ -1,6 +1,6 @@
 $carousel-width: 50vw;
 $carousel-svg-width: $default-font-size * 6;
-$carousel-svg-parent-width: $carousel-progress-bar-height * 4;
+$carousel-svg-parent-width: calc(100vh - #{$carousel-full-screen-image-height});
 $carousel-grid-column-gap: $default-font-size;
 $carousel-grid-width: calc(
 	(#{$resume-card-width-full} - 2 * #{$carousel-grid-column-gap * 3}) / 3
@@ -92,7 +92,6 @@ $carousel-grid-width: calc(
 			z-index: 1000000;
 			top: var(--fullscreen-top);
 			display: block;
-			
 		}
 
 		&--full-screen#{&}--left {
@@ -149,7 +148,10 @@ $carousel-grid-width: calc(
 
 		&-description {
 			--font-size: #{$default-font-size};
-			--padding: #{$default-font-size * .5};
+			--padding: #{$default-font-size * 0.5};
+			--padding-top: var(--padding);
+			--padding-right: var(--padding);
+			--padding-left: var(--padding);
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -163,7 +165,7 @@ $carousel-grid-width: calc(
 			color: var(--color-primary-4);
 			z-index: 10000;
 			background: rgba(var(--color-primary-1-rgb), $resume-color-opacity);
-			padding: var(--padding);
+			padding: var(--padding-top) var(--padding-right) var(--padding-top)  var(--padding-left)  ;
 
 			// visibility: hidden;
 			// opacity: 0;
@@ -171,13 +173,20 @@ $carousel-grid-width: calc(
 
 			.carousel__item--full-screen & {
 				--font-size: #{$default-font-size * 2};
-				--padding: #{$default-font-size * 1};
+				--padding-top: calc(var(--padding) * 2);
+				--padding-right: #{$carousel-svg-parent-width};
+				--padding-left: calc(#{$carousel-svg-parent-width} * 2);
 				transition: none;
 				height: calc(100vh - #{$carousel-full-screen-image-height});
 				background-color: var(--color-black);
 
+				@include respond(nav-switch) {
+					align-items: flex-start;
+					--padding-top: var(--padding);
+					--padding-right: var(--padding);
+					--padding-left: var(--padding);
+				}
 			}
-
 		}
 
 		& * {
@@ -228,8 +237,8 @@ $carousel-grid-width: calc(
 
 			& .carousel__video ~ .item-description {
 				padding: $default-font-size * 1
-					calc(#{$carousel-svg-parent-width} * 1 + #{$default-font-size})
-					$default-font-size * 1 $carousel-svg-parent-width * 2;
+					calc(#{$carousel-svg-parent-width} + #{$default-font-size})
+					$default-font-size * 1 calc($carousel-svg-parent-width * 2);
 			}
 
 			& .item-description {
@@ -355,8 +364,15 @@ $carousel-grid-width: calc(
 		visibility: hidden;
 		transition: opacity $animation-duration $animation-easing-standard;
 		padding: $default-font-size $default-font-size * 2;
-		background-color: rgba(var(--color-primary-4-rgb), 0.9);
+		color: var(--color-white);
+		background-color: rgba(var(--color-black-rgb), 1);
+		border: $overlay-text-border;
 		border-radius: $default-font-size / 2;
+		box-shadow: $overlay-text-box-shadow;
+
+		&-title {
+			font-size: $default-font-size * 2;
+		}
 	}
 	&__item--stopped .overlay-text,
 	&__item--done .overlay-text {

@@ -604,7 +604,7 @@ body {
   left: 0 !important;
   top: 0 !important;
   width: 100vw !important;
-  height: 90vh !important;
+  height: 87.5vh !important;
   z-index: 10000 !important;
   border: none !important;
   border-radius: 0 !important;
@@ -2596,7 +2596,7 @@ body {
 }
 .carousel__arrow-button {
   --fullscreen-top: calc(
-  	(90vh - 7vw) / 2
+  	(87.5vh - 7vw) / 2
   );
   position: relative;
   z-index: 100;
@@ -2660,6 +2660,9 @@ body {
 .carousel__item-description {
   --font-size: 1.6rem;
   --padding: 0.8rem;
+  --padding-top: var(--padding);
+  --padding-right: var(--padding);
+  --padding-left: var(--padding);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2673,21 +2676,31 @@ body {
   color: var(--color-primary-4);
   z-index: 10000;
   background: rgba(var(--color-primary-1-rgb), 0.95);
-  padding: var(--padding);
+  padding: var(--padding-top) var(--padding-right) var(--padding-top) var(--padding-left);
 }
 .carousel__item--full-screen .carousel__item-description {
   --font-size: 3.2rem;
-  --padding: 1.6rem;
+  --padding-top: calc(var(--padding) * 2);
+  --padding-right: calc(100vh - 87.5vh);
+  --padding-left: calc(calc(100vh - 87.5vh) * 2);
   transition: none;
-  height: calc(100vh - 90vh);
+  height: calc(100vh - 87.5vh);
   background-color: var(--color-black);
+}
+@media only screen and (max-width: 68.75em) {
+  .carousel__item--full-screen .carousel__item-description {
+    align-items: flex-start;
+    --padding-top: var(--padding);
+    --padding-right: var(--padding);
+    --padding-left: var(--padding);
+  }
 }
 .carousel__item * {
   pointer-events: all;
 }
 .carousel__item .card__progress {
   z-index: 100000;
-  bottom: calc(100vh - 90vh);
+  bottom: calc(100vh - 87.5vh);
   opacity: 0;
   visibility: hidden;
   height: 2.5vh;
@@ -2718,7 +2731,7 @@ body {
   cursor: auto;
 }
 .carousel__item--full-screen .carousel__video ~ .item-description {
-  padding: 1.6rem calc(10vh * 1 + 1.6rem) 1.6rem 20vh;
+  padding: 1.6rem calc(calc(100vh - 87.5vh) + 1.6rem) 1.6rem calc($carousel-svg-parent-width * 2);
 }
 .carousel__item--full-screen .item-description {
   display: flex;
@@ -2726,7 +2739,7 @@ body {
   justify-content: center;
   align-items: center;
   position: fixed;
-  min-height: calc(100vh - 90vh);
+  min-height: calc(100vh - 87.5vh);
   background: var(--color-primary-4);
   color: var(--color-primary-1);
 }
@@ -2754,13 +2767,13 @@ body {
 .carousel__item--full-screen .carousel__video.fg-video video {
   width: 100vw;
   backdrop-filter: blur(10px);
-  height: calc( 						90vh - 2.5vh 					);
+  height: calc( 						87.5vh - 2.5vh 					);
 }
 .carousel__video.fg-video.full-screen {
   cursor: auto;
 }
 .carousel__video.fg-video.full-screen video {
-  height: calc( 						90vh - 2.5vh 					);
+  height: calc( 						87.5vh - 2.5vh 					);
 }
 .carousel__video-svg {
   pointer-events: none;
@@ -2825,8 +2838,14 @@ body {
   visibility: hidden;
   transition: opacity 0.5s ease;
   padding: 1.6rem 3.2rem;
-  background-color: rgba(var(--color-primary-4-rgb), 0.9);
+  color: var(--color-white);
+  background-color: rgba(var(--color-black-rgb), 1);
+  border: 1px solid rgba(var(--color-white-rgb), 1);
   border-radius: 0.8rem;
+  box-shadow: 0px 0px 1.6rem 0.8rem rgba(var(--color-white-rgb), 0.5);
+}
+.carousel .overlay-text-title {
+  font-size: 3.2rem;
 }
 .carousel__item--stopped .overlay-text, .carousel__item--done .overlay-text {
   opacity: 1;
@@ -2844,8 +2863,8 @@ body {
 .carousel :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
   cursor: pointer;
   z-index: -1;
-  width: 10vh;
-  height: 10vh;
+  width: calc(100vh - 87.5vh);
+  height: calc(100vh - 87.5vh);
   top: auto;
   bottom: 0;
   transform: translateY(0);
@@ -2871,7 +2890,7 @@ body {
   left: auto;
 }
 .carousel .card__stop-parent {
-  left: 10vh;
+  left: calc(100vh - 87.5vh);
 }
 .carousel .card__close-parent {
   right: 1.6rem;
@@ -2884,8 +2903,8 @@ body {
   height: 75%;
 }
 .carousel .card__close {
-  height: 10vh;
-  width: 10vh;
+  height: calc(100vh - 87.5vh);
+  width: calc(100vh - 87.5vh);
   opacity: 0;
 }
 .carousel .card__close-parent:hover .card__close {

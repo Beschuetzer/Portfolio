@@ -20,7 +20,6 @@ import {
 	getCurrentTranslationFactorFromDots,
 	getNthItemOpen,
 	toggleLeftAndRightArrows as handleWhetherToDisplayArrows,
-	handleVideo,
 	resetCarouselVideo,
 	CAROUSEL_VIDEO_CLASSNAME,
 } from "./util";

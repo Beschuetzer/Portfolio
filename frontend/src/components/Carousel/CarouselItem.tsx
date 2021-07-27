@@ -80,12 +80,12 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
 		if (leftArrowEl) {
 			leftArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
-			const svg = leftArrowEl.querySelector('svg');
+			const svg = leftArrowEl.querySelector("svg");
 			svg?.classList.add(FILL_RED_CLASSNAME);
 		}
 		if (rightArrowEl) {
 			rightArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
-			const svg = rightArrowEl.querySelector('svg');
+			const svg = rightArrowEl.querySelector("svg");
 			svg?.classList.add(FILL_RED_CLASSNAME);
 		}
 	}
@@ -118,13 +118,23 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 			null,
 		);
 
-		toggleLeftAndRightArrows(leftArrow, rightArrow, isNotFirstItem !== undefined ? isNotFirstItem : true, isNotLastItem !== undefined ? isNotLastItem : true);
-
-	}
+		toggleLeftAndRightArrows(
+			leftArrow,
+			rightArrow,
+			isNotFirstItem !== undefined ? isNotFirstItem : true,
+			isNotLastItem !== undefined ? isNotLastItem : true,
+		);
+	};
 
 	const onItemClick = (e: MouseEvent) => {
 		const carouselItem = e.currentTarget as any;
-		if (!carouselItem || (carouselItem.parentNode as HTMLElement)?.classList.contains(FULLSCREEN_PARENT_CLASSNAME)) return ;
+		if (
+			!carouselItem ||
+			(carouselItem.parentNode as HTMLElement)?.classList.contains(
+				FULLSCREEN_PARENT_CLASSNAME,
+			)
+		)
+			return;
 		e.preventDefault();
 
 		handleShouldHideArrows(e);
@@ -134,7 +144,13 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		carouselItem.parentNode?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 
 		addFullscreenClassToArrowButtons();
-		handleVideo(carouselItem, videoClassname, foregroundVideoClassname, handleVideoEnd, handleVideoProgress);		
+		handleVideo(
+			carouselItem,
+			videoClassname,
+			foregroundVideoClassname,
+			handleVideoEnd,
+			handleVideoProgress,
+		);
 		closeCarouselItem(carouselItem, "", true);
 	};
 
@@ -185,9 +201,13 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 					reference={videoRef}
 					progressBarRef={progressBarRef}
 					progressBarOnClick={onProgressBarClick}>
-					<OverlayText titleText={videoOverlayText} styles={videoOverlayStyles}>
-						{videoOverlayChildren}
-					</OverlayText>
+					{videoOverlayChildren ? (
+						<OverlayText
+							titleText={videoOverlayText}
+							styles={videoOverlayStyles}>
+							{videoOverlayChildren}
+						</OverlayText>
+					) : null}
 				</Video>
 				;
 				<svg className={`${videoClassname}-svg`}>
