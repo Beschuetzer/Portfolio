@@ -91,6 +91,8 @@ $carousel-grid-width: calc(
 			position: fixed;
 			z-index: 1000000;
 			top: var(--fullscreen-top);
+			display: block;
+			
 		}
 
 		&--full-screen#{&}--left {
@@ -147,9 +149,8 @@ $carousel-grid-width: calc(
 
 		&-description {
 			--font-size: #{$default-font-size};
+			--padding: #{$default-font-size * .5};
 			display: flex;
-			visibility: hidden;
-			opacity: 0;
 			justify-content: center;
 			align-items: center;
 			font-size: var(--font-size);
@@ -162,15 +163,21 @@ $carousel-grid-width: calc(
 			color: var(--color-primary-4);
 			z-index: 10000;
 			background: rgba(var(--color-primary-1-rgb), $resume-color-opacity);
-			padding: $default-font-size;
-			transition: opacity $animation-duration $animation-easing-standard;
+			padding: var(--padding);
+
+			// visibility: hidden;
+			// opacity: 0;
+			// transition: opacity $animation-duration $animation-easing-standard;
 
 			.carousel__item--full-screen & {
 				--font-size: #{$default-font-size * 2};
+				--padding: #{$default-font-size * 1};
 				transition: none;
 				height: calc(100vh - #{$carousel-full-screen-image-height});
 				background-color: var(--color-black);
+
 			}
+
 		}
 
 		& * {
@@ -251,8 +258,8 @@ $carousel-grid-width: calc(
 				left: 50%;
 				position: fixed;
 				height: 100%;
-				object-position: top left;
-				object-fit: cover;
+				object-position: left;
+				object-fit: contain;
 				transform: translateX(-50%);
 				width: auto;
 
@@ -351,11 +358,11 @@ $carousel-grid-width: calc(
 		background-color: rgba(var(--color-primary-4-rgb), 0.9);
 		border-radius: $default-font-size / 2;
 	}
-	// &__item--stopped .overlay-text,
-	// &__item--done .overlay-text {
-	// 	opacity: 1;
-	// 	visibility: visible;
-	// }
+	&__item--stopped .overlay-text,
+	&__item--done .overlay-text {
+		opacity: 1;
+		visibility: visible;
+	}
 
 	//control styling below here
 	& :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {

@@ -2613,6 +2613,7 @@ body {
   position: fixed;
   z-index: 1000000;
   top: var(--fullscreen-top);
+  display: block;
 }
 .carousel__arrow-button--full-screen.carousel__arrow-button--left {
   left: 0;
@@ -2658,9 +2659,8 @@ body {
 }
 .carousel__item-description {
   --font-size: 1.6rem;
+  --padding: 0.8rem;
   display: flex;
-  visibility: hidden;
-  opacity: 0;
   justify-content: center;
   align-items: center;
   font-size: var(--font-size);
@@ -2673,11 +2673,11 @@ body {
   color: var(--color-primary-4);
   z-index: 10000;
   background: rgba(var(--color-primary-1-rgb), 0.95);
-  padding: 1.6rem;
-  transition: opacity 0.5s ease;
+  padding: var(--padding);
 }
 .carousel__item--full-screen .carousel__item-description {
   --font-size: 3.2rem;
+  --padding: 1.6rem;
   transition: none;
   height: calc(100vh - 90vh);
   background-color: var(--color-black);
@@ -2746,8 +2746,8 @@ body {
   left: 50%;
   position: fixed;
   height: 100%;
-  object-position: top left;
-  object-fit: cover;
+  object-position: left;
+  object-fit: contain;
   transform: translateX(-50%);
   width: auto;
 }
@@ -2827,6 +2827,10 @@ body {
   padding: 1.6rem 3.2rem;
   background-color: rgba(var(--color-primary-4-rgb), 0.9);
   border-radius: 0.8rem;
+}
+.carousel__item--stopped .overlay-text, .carousel__item--done .overlay-text {
+  opacity: 1;
+  visibility: visible;
 }
 .carousel :is(.card__play, .card__pause, .card__restart, .card__stop, .card__close) {
   opacity: 1;

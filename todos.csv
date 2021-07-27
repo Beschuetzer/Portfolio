@@ -69,8 +69,6 @@ NOT SURE------------------------------------------------------------
 
 mobile issues---------------------
   -examples link not expanded in navbar
-  -carousel descriptions not shown
-  -carousel items not showing full screen correctly
 
 -for AudioPlayer__details
 -create separate AudioList (where songs are clicked and dispatched to AudioPlayer)
@@ -78,3 +76,4 @@ mobile issues---------------------
 -change scroll sensitivity (have it scroll futher down each scroll)
 -finish toggler for AudioPlayer
 -add css loading spinner when audio loading
+-add overlay text to carousel video items
