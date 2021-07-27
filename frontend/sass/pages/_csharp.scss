@@ -175,7 +175,7 @@
 		// width: $resume-card-width-full;
 		margin: $default-font-size auto 0 auto;
 		display: grid;
-		grid-row-gap: $default-font-size * 2;
+		row-gap: $default-font-size * 1;
 		// grid-template-rows: $default-font-size * 23.75;
 		grid-template-columns:
 			1fr $resume-card-width-full / 3 $resume-card-width-full / 3

@@ -33,7 +33,7 @@
 		// grid-auto-rows: minmax(min-content, max-content);
 		// border-radius: $default-font-size;
 
-		// grid-row-gap: $default-font-size * 2;
+		// row-gap: $default-font-size * 2;
 		@include respond(nav-switch) {
 			width: 100vw;
 		}
@@ -193,13 +193,13 @@
 		font-size: $default-font-size * 0.75;
 
 		@include respond(tab-port) {
-			margin: -$default-font-size * .25 0 $default-font-size * 3;
+			margin: -$default-font-size * 0.25 0 $default-font-size * 3;
 			height: 0;
 		}
 
 		@include respond(phone) {
 			// margin-bottom:  $default-font-size * 2;
-			margin: -$default-font-size * .33 0 $resume-section-padding-top;
+			margin: -$default-font-size * 0.33 0 $resume-section-padding-top;
 		}
 		@include respond(small-font) {
 			margin-bottom: $default-font-size * 2;
@@ -209,10 +209,10 @@
 	& .source-link__source {
 		&-label {
 			border-radius: 50%;
-			padding: $default-font-size * .25 $default-font-size * .5;
+			padding: $default-font-size * 0.25 $default-font-size * 0.5;
 			color: rgba(var(--color-primary-4-rgb), 1);
 			font-family: $font-family-headers;
-			background-color: rgba(var(--color-primary-1-rgb),0.1);
+			background-color: rgba(var(--color-primary-1-rgb), 0.1);
 		}
 	}
 }

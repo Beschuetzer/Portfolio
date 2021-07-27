@@ -214,8 +214,6 @@ $card-initial-opacity: 0.25;
 $card-pause-and-stop-top: 85%;
 $card-pause-and-stop-width: 25%;
 
-
-
 //carousel
 $carousel-item-card-size-nav-switch: $default-font-size * 12.5;
 $carousel-full-screen-item-height: 87.5vh;
@@ -233,12 +231,10 @@ $carousel-svg-parent-width-nav-switch: calc(
 $carousel-svg-parent-offset-nav-switch: calc(
 	50% - #{$carousel-svg-parent-width-nav-switch}
 );
-$carousel-grid-column-gap: $default-font-size;
+$carousel-column-gap: $default-font-size;
 $carousel-grid-width: calc(
-	(#{$resume-card-width-full} - 2 * #{$carousel-grid-column-gap * 3}) / 3
+	(#{$resume-card-width-full} - 2 * #{$carousel-column-gap * 3}) / 3
 );
-
-
 
 //page-nav
 $page-nav-top: calc(

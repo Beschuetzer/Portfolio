@@ -10,11 +10,8 @@
 	opacity: 0;
 	visibility: hidden;
 	z-index: 10000;
-	transition: opacity $animation-duration * 1.5
-		$animation-easing-standard,
-		visibility $animation-duration * 1.5
-		$animation-easing-standard
-	;
+	transition: opacity $animation-duration * 1.5 $animation-easing-standard,
+		visibility $animation-duration * 1.5 $animation-easing-standard;
 
 	&__content {
 		overflow-y: auto;
@@ -87,7 +84,8 @@
 			padding-right: $default-font-size * 3;
 
 			&:nth-last-child(n + 2) {
-				border-bottom: $default-font-size * 0.1 solid var(--color-primary-1-light);
+				border-bottom: $default-font-size * 0.1 solid
+					var(--color-primary-1-light);
 			}
 		}
 
@@ -120,14 +118,14 @@
 				&:nth-child(3) {
 					display: grid;
 					grid-template-columns: max-content 1fr;
-					grid-column-gap: $default-font-size;
+					column-gap: $default-font-size;
 				}
 
 				.skills-popup__table-repo > &:first-child {
 					font-size: $default-font-size * 1.1;
 					display: grid;
 					grid-template-columns: max-content 1fr;
-					grid-column-gap: $default-font-size;
+					column-gap: $default-font-size;
 				}
 
 				.skills-popup__table-repo > &:last-child {
@@ -193,7 +191,7 @@
 	}
 
 	&__hint {
-		font-size:  $default-font-size * .75;
+		font-size: $default-font-size * 0.75;
 		font-style: italic;
 
 		@include respond(nav-switch) {
@@ -208,8 +206,7 @@
 		width: $default-font-size * 2;
 		margin-left: auto;
 		backface-visibility: hidden;
-		transition: 
-			fill $animation-duration * 0.25 $animation-easing-standard,
+		transition: fill $animation-duration * 0.25 $animation-easing-standard,
 			transform $animation-duration * 0.25 $animation-easing-standard;
 		&:hover {
 			fill: var(--color-primary-2);
@@ -312,16 +309,16 @@
 	}
 
 	&__content::-webkit-scrollbar {
-			width: $default-font-size;
+		width: $default-font-size;
 	}
 
 	&__content::-webkit-scrollbar-track {
-			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-			border-radius: $default-font-size;
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		border-radius: $default-font-size;
 	}
 
 	&__content::-webkit-scrollbar-thumb {
-			border-radius: $default-font-size;
-			-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+		border-radius: $default-font-size;
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 	}
 }

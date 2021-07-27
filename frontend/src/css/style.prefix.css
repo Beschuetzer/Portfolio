@@ -409,8 +409,8 @@ body {
 	display: grid;
 	grid-template-columns: -webkit-max-content 1fr;
 	grid-template-columns: max-content 1fr;
-	grid-row-gap: 0.2rem;
-	grid-column-gap: 1.6rem;
+	row-gap: 0.2rem;
+	column-gap: 1.6rem;
 	grid-auto-rows: -webkit-min-content;
 	grid-auto-rows: min-content;
 	-webkit-align-items: center;
@@ -950,7 +950,7 @@ body {
 	grid-auto-rows: minmax(-webkit-min-content, -webkit-max-content);
 	grid-auto-rows: minmax(min-content, max-content);
 	border-radius: 1.6rem;
-	grid-row-gap: 3.2rem;
+	row-gap: 3.2rem;
 }
 .resume__section-summary {
 	grid-column: 1/-1;

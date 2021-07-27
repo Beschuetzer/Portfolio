@@ -20,15 +20,13 @@
 			height: 0;
 			visibility: hidden;
 			opacity: 0;
-			transition: 
-				opacity $animation-duration $animation-easing-standard,
-			;
+			transition: opacity $animation-duration $animation-easing-standard;
 
 			font-weight: 500;
 			display: grid;
 			grid-template-columns: max-content 1fr;
-			grid-row-gap: $default-font-size * 0.125;
-			grid-column-gap: $default-font-size * 1;
+			row-gap: $default-font-size * 0.125;
+			column-gap: $default-font-size * 1;
 			grid-auto-rows: min-content;
 			align-items: center;
 			margin-left: $default-font-size;
@@ -82,11 +80,13 @@
 				// color: var(--color-primary-2);
 			}
 
-			&:not(.skills__section--open) + .skills__section-content .skills__section-content{
+			&:not(.skills__section--open)
+				+ .skills__section-content
+				.skills__section-content {
 				visibility: hidden;
 				display: none;
 			}
-				
+
 			&:hover &-svg {
 				fill: var(--color-primary-1);
 			}
@@ -162,7 +162,8 @@
 
 	&__title:link,
 	&__title:visited,
-	&__title,  &__section &__section .skills__title {
+	&__title,
+	&__section &__section .skills__title {
 		cursor: pointer;
 		backface-visibility: hidden;
 		position: relative;
@@ -174,11 +175,11 @@
 
 	&__title--animating,
 	&__title--animating:link,
-	&__title--animating:visited, &__section &__section .skills__title {
+	&__title--animating:visited,
+	&__section &__section .skills__title {
 		@include link-animating;
 		transition: border $animation-duration * 0.5 $animation-easing-standard,
-			transform $animation-duration $animation-easing-standard
-		;
+			transform $animation-duration $animation-easing-standard;
 
 		&:link:hover,
 		&:visited:hover,
@@ -207,10 +208,8 @@
 			height: $default-font-size;
 			transform: scale(0);
 			transform-origin: left;
-			transition: 
-				transform $animation-duration * 2
-				cubic-bezier(0.68, -0.33, 0.32, 1.33)
-			;
+			transition: transform $animation-duration * 2
+				cubic-bezier(0.68, -0.33, 0.32, 1.33);
 
 			@include respond(nav-break) {
 				margin-left: $default-font-size;

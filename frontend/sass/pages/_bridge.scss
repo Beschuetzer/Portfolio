@@ -34,7 +34,7 @@
 			// padding-bottom: $default-font-size * 1;
 			align-items: center;
 			justify-items: flex-start;
-			grid-row-gap: $default-font-size * 0.5;
+			row-gap: $default-font-size * 0.5;
 			margin-bottom: $default-font-size * 1;
 
 			& span:nth-of-type(2n + 1) {
@@ -44,7 +44,7 @@
 		}
 
 		&-content {
-			opacity: .95;
+			opacity: 0.95;
 		}
 	}
 
@@ -97,7 +97,8 @@
 		&-content {
 			position: relative;
 			overflow-y: auto;
-			padding: $default-font-size * 2 $default-font-size * 4 $default-font-size * 0 $default-font-size * 4;
+			padding: $default-font-size * 2 $default-font-size * 4 $default-font-size *
+				0 $default-font-size * 4;
 			display: flex;
 			justify-content: flex-start;
 			flex-direction: column;
@@ -368,7 +369,7 @@
 	&__page-nav-link {
 		// @include link-animating;
 		cursor: pointer;
-		opacity: .75;
+		opacity: 0.75;
 		color: var(--bridge-page-nav-link-color);
 		transition: color $animation-duration / 2 $animation-easing-standard,
 			transform $animation-duration / 2 $animation-easing-standard;
