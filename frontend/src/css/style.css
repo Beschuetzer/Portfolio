@@ -2622,14 +2622,16 @@ body {
   right: 0;
 }
 .carousel__arrow-button--left {
+  --rotation: 90deg;
   grid-column: 2/span 1;
   grid-row: 2/span 1;
-  transform: rotate(90deg);
+  transform: translateY(-50%) rotate(var(--rotation));
 }
 .carousel__arrow-button--right {
+  --rotation: -90deg;
   grid-column: 4/span 1;
   grid-row: 2/span 1;
-  transform: rotate(-90deg);
+  transform: translateY(-50%) rotate(var(--rotation));
 }
 .carousel__arrow-button svg {
   width: 7vw;
@@ -2638,8 +2640,8 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .carousel__arrow-button svg {
-    width: 8rem;
-    height: 8rem;
+    width: calc( 	calc(100vh - 87.5vh) / 1.5 );
+    height: calc( 	calc(100vh - 87.5vh) / 1.5 );
   }
 }
 .carousel__arrow-button svg:hover, .carousel__arrow-button svg:active, .carousel__arrow-button svg:focus {
@@ -2690,7 +2692,7 @@ body {
 @media only screen and (max-width: 68.75em) {
   .carousel__item--full-screen .carousel__item-description {
     align-items: flex-start;
-    --padding-top: var(--padding);
+    --padding-top: calc(calc(100vh - 87.5vh) * .066) ;
     --padding-right: var(--padding);
     --padding-left: var(--padding);
   }
@@ -2861,13 +2863,21 @@ body {
   height: 100%;
 }
 .carousel :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
+  --width: calc(100vh - 87.5vh);
   cursor: pointer;
   z-index: -1;
-  width: calc(100vh - 87.5vh);
-  height: calc(100vh - 87.5vh);
+  width: var(--width);
+  height: var(--width);
   top: auto;
   bottom: 0;
   transform: translateY(0);
+}
+@media only screen and (max-width: 68.75em) {
+  .carousel :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
+    --width: calc(
+    	calc(100vh - 87.5vh) / 1.5
+    );
+  }
 }
 .carousel :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) svg {
   fill: rgba(var(--color-primary-red-rgb), 1);
@@ -2880,17 +2890,41 @@ body {
   visibility: visible;
   opacity: 1;
 }
+@media only screen and (max-width: 68.75em) {
+  .carousel .card__play-parent {
+    left: calc( 	50% - calc( 	calc(100vh - 87.5vh) / 1.5 ) );
+    transform: translateX(-50%);
+  }
+}
 .carousel .card__pause-parent {
   left: 0;
   opacity: 0;
   visibility: hidden;
 }
+@media only screen and (max-width: 68.75em) {
+  .carousel .card__pause-parent {
+    left: calc( 	50% - calc( 	calc(100vh - 87.5vh) / 1.5 ) );
+    transform: translateX(-50%);
+  }
+}
 .carousel .card__restart-parent {
   right: 1.6rem;
   left: auto;
 }
+@media only screen and (max-width: 68.75em) {
+  .carousel .card__restart-parent {
+    right: calc(50% - calc( 	calc(100vh - 87.5vh) / 1.5 ));
+    transform: translateX(50%);
+  }
+}
 .carousel .card__stop-parent {
   left: calc(100vh - 87.5vh);
+}
+@media only screen and (max-width: 68.75em) {
+  .carousel .card__stop-parent {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 .carousel .card__close-parent {
   right: 1.6rem;
@@ -2903,9 +2937,17 @@ body {
   height: 75%;
 }
 .carousel .card__close {
-  height: calc(100vh - 87.5vh);
-  width: calc(100vh - 87.5vh);
+  --width: calc(100vh - 87.5vh);
+  height: var(--width);
+  width: var(--width);
   opacity: 0;
+}
+@media only screen and (max-width: 68.75em) {
+  .carousel .card__close {
+    --width: calc(
+    	calc(100vh - 87.5vh) / 1.5
+    );
+  }
 }
 .carousel .card__close-parent:hover .card__close {
   opacity: 1;
@@ -2926,6 +2968,11 @@ body {
 }
 .carousel .carousel__item--full-screen :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
   z-index: 10000;
+}
+@media only screen and (max-width: 68.75em) {
+  .carousel .carousel__item--full-screen :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent):not(.card__close-parent) {
+    bottom: 0.8rem;
+  }
 }
 .carousel__item--full-screen .card__close-parent .card__close {
   opacity: 1;

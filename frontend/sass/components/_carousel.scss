@@ -1,6 +1,12 @@
 $carousel-width: 50vw;
 $carousel-svg-width: $default-font-size * 6;
 $carousel-svg-parent-width: calc(100vh - #{$carousel-full-screen-image-height});
+$carousel-svg-parent-width-nav-switch: calc(
+	#{$carousel-svg-parent-width} / 1.5
+);
+$carousel-svg-parent-offset-nav-switch: calc(
+	50% - #{$carousel-svg-parent-width-nav-switch}
+);
 $carousel-grid-column-gap: $default-font-size;
 $carousel-grid-width: calc(
 	(#{$resume-card-width-full} - 2 * #{$carousel-grid-column-gap * 3}) / 3
@@ -92,6 +98,10 @@ $carousel-grid-width: calc(
 			z-index: 1000000;
 			top: var(--fullscreen-top);
 			display: block;
+
+			@include respond(nav-switch) {
+				// --fullscreen-top: calc(#{$carousel-full-screen-image-height} / 2);
+			}
 		}
 
 		&--full-screen#{&}--left {
@@ -103,15 +113,17 @@ $carousel-grid-width: calc(
 		}
 
 		&--left {
+			--rotation: 90deg;
 			grid-column: 2 / span 1;
 			grid-row: 2 / span 1;
-			transform: rotate(90deg);
+			transform: translateY(-50%) rotate(var(--rotation));
 		}
 
 		&--right {
+			--rotation: -90deg;
 			grid-column: 4 / span 1;
 			grid-row: 2 / span 1;
-			transform: rotate(-90deg);
+			transform: translateY(-50%) rotate(var(--rotation));
 		}
 
 		& svg {
@@ -120,8 +132,8 @@ $carousel-grid-width: calc(
 			fill: rgba(var(--color-primary-1-rgb), 0.75);
 
 			@include respond(nav-switch) {
-				width: $default-font-size * 5;
-				height: $default-font-size * 5;
+				width: $carousel-svg-parent-width-nav-switch;
+				height: $carousel-svg-parent-width-nav-switch;
 			}
 
 			&:hover,
@@ -165,7 +177,8 @@ $carousel-grid-width: calc(
 			color: var(--color-primary-4);
 			z-index: 10000;
 			background: rgba(var(--color-primary-1-rgb), $resume-color-opacity);
-			padding: var(--padding-top) var(--padding-right) var(--padding-top)  var(--padding-left)  ;
+			padding: var(--padding-top) var(--padding-right) var(--padding-top)
+				var(--padding-left);
 
 			// visibility: hidden;
 			// opacity: 0;
@@ -182,7 +195,7 @@ $carousel-grid-width: calc(
 
 				@include respond(nav-switch) {
 					align-items: flex-start;
-					--padding-top: var(--padding);
+					--padding-top: calc(#{$carousel-svg-parent-width} * .066) ;
 					--padding-right: var(--padding);
 					--padding-left: var(--padding);
 				}
@@ -393,13 +406,18 @@ $carousel-grid-width: calc(
 
 	&
 		:is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
+		--width: #{$carousel-svg-parent-width};
 		cursor: pointer;
 		z-index: -1;
-		width: $carousel-svg-parent-width;
-		height: $carousel-svg-parent-width;
+		width: var(--width);
+		height: var(--width);
 		top: auto;
 		bottom: 0;
 		transform: translateY(0);
+
+		@include respond(nav-switch) {
+			--width: #{$carousel-svg-parent-width-nav-switch};
+		}
 
 		& svg {
 			fill: rgba(var(--color-primary-red-rgb), 1);
@@ -416,21 +434,39 @@ $carousel-grid-width: calc(
 		left: 0;
 		visibility: visible;
 		opacity: 1;
+		@include respond(nav-switch) {
+			left: $carousel-svg-parent-offset-nav-switch;
+			transform: translateX(-50%);
+		}
 	}
 
 	& .card__pause-parent {
 		left: 0;
 		opacity: 0;
 		visibility: hidden;
+		@include respond(nav-switch) {
+			left: $carousel-svg-parent-offset-nav-switch;
+			transform: translateX(-50%);
+		}
 	}
 
 	& .card__restart-parent {
 		right: $default-font-size;
 		left: auto;
+
+		@include respond(nav-switch) {
+			right: calc(50% - #{$carousel-svg-parent-width-nav-switch});
+			transform: translateX(50%);
+		}
 	}
 
 	& .card__stop-parent {
 		left: $carousel-svg-parent-width;
+
+		@include respond(nav-switch) {
+			left: 50%;
+			transform: translateX(-50%);
+		}
 	}
 
 	& .card__close-parent {
@@ -462,9 +498,14 @@ $carousel-grid-width: calc(
 		// top: 1.6rem;
 		// top: $default-font-size;
 		// bottom: 10vh;
-		height: $carousel-svg-parent-width;
-		width: $carousel-svg-parent-width;
+		--width: #{$carousel-svg-parent-width};
+		height: var(--width);
+		width: var(--width);
 		opacity: 0;
+
+		@include respond(nav-switch) {
+			--width: #{$carousel-svg-parent-width-nav-switch};
+		}
 	}
 
 	//showing close x when hovering
@@ -503,6 +544,12 @@ $carousel-grid-width: calc(
 		&__item--full-screen
 		:is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent) {
 		z-index: 10000;
+
+		@include respond(nav-switch) {
+			&:not(.card__close-parent) {
+				bottom: $default-font-size * 0.5;
+			}
+		}
 	}
 
 	&__item--full-screen .card__close-parent .card__close {
