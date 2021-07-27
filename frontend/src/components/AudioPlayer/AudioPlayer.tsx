@@ -1,12 +1,11 @@
-import { debug } from "console";
 import { Howl } from "howler";
-import React, { LegacyRef } from "react";
+import React from "react";
 import { RefObject } from "react";
 import { createRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
-import { setIsLoadingSound } from "../../actions";
-import { DISPLAY_NONE_CLASSNAME, HIDDEN_CLASSNAME } from "../constants";
-import { AudioItem } from "./AudioList";
+import { setIsLoadingSound, setCurrentlyPlayingSound } from "../../actions";
+import { HIDDEN_CLASSNAME } from "../constants";
+import { AudioItem, AUDIO_LIST_CLASSNAME } from "./AudioList";
 import { getMinuteAndSecondsString } from "./utils";
 
 export const AUDIO_PLAYER_CLASSNAME = "audio-player";
@@ -14,6 +13,7 @@ export const AUDIO_PLAYER_CLASSNAME = "audio-player";
 export interface AudioPlayerProps {
 	currentlyPlayingSound: AudioItem;
 	setIsLoadingSound: (value: boolean) => void;
+	setCurrentlyPlayingSound: (value: AudioItem) => void;
 }
 
 export interface AudioPlayerState {
@@ -30,6 +30,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	id: number;
 	pauseRef: RefObject<HTMLElement>;
 	playRef: RefObject<HTMLElement>;
+	songsOnPage: NodeListOf<Element> | null;
 
 	constructor(props: AudioPlayerProps) {
 		super(props);
@@ -45,9 +46,15 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 		this.pauseRef = createRef();
 		this.playRef = createRef();
+		this.songsOnPage = null;
 	}
 
-	componentDidMount() {}
+	componentDidMount() {
+		const songsOnPage = document.querySelectorAll(
+			`.${AUDIO_LIST_CLASSNAME}__item`,
+		);
+		this.songsOnPage = songsOnPage;
+	}
 
 	componentDidUpdate() {
 		if (!this.props.currentlyPlayingSound?.path) return;
@@ -92,6 +99,15 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 			newHowl.once("load", this.onSoundLoad.bind(this, newHowl, nextProps));
 		}
+	}
+
+	componentWillUnmount() {
+		this.state.playingHowl?.stop();
+		this.setState = (state, callback) => {
+			return;
+		};
+		this.props.setIsLoadingSound(false);
+		this.props.setCurrentlyPlayingSound({} as AudioItem);
 	}
 
 	getLoadedHowl(path: string) {
@@ -196,6 +212,48 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		this.handlePlay();
 	}
 
+	handleSkipBackward(e: MouseEvent) {
+		if (!this.state.howls || !this.state.playingHowl) return;
+		this.loadNextSong(false);
+	}
+
+	handleSkipForward(e: MouseEvent) {
+		if (!this.state.howls || !this.state.playingHowl) return;
+		this.loadNextSong(true);
+	}
+
+	getNextSong(isSkipForward = true) {
+		if (!this.songsOnPage) return null;
+
+		let currentIndex = -1;
+		for (let i = 0; i < this.songsOnPage.length; i++) {
+			const element = this.songsOnPage[i] as HTMLElement;
+			const parsedItem = JSON.parse(
+				element.dataset?.item as string,
+			) as AudioItem;
+			if (
+				Object.values(parsedItem.path)[0] ===
+				(this.state.playingHowl as any)._src
+			) {
+				currentIndex = i;
+				break;
+			}
+		}
+
+		let elementToUse;
+		if (isSkipForward) {
+			if (currentIndex >= this.songsOnPage.length - 1)
+				elementToUse = this.songsOnPage[0];
+			else elementToUse = this.songsOnPage[currentIndex + 1];
+		} else {
+			if (currentIndex <= 0)
+				elementToUse = this.songsOnPage[this.songsOnPage.length - 1];
+			else elementToUse = this.songsOnPage[currentIndex - 1];
+		}
+
+		return JSON.parse((elementToUse as HTMLElement)?.dataset?.item as string);
+	}
+
 	handleStop() {
 		if (!this.state.playingHowl) return;
 		this.state.playingHowl.stop();
@@ -216,6 +274,13 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		this.seekTo(duration ? duration * percent : 0);
 		this.handlePlay();
 		this.setState({ songProgressPercent: percent });
+	}
+
+	loadNextSong(isSkipForward = true) {
+		this.handleStop();
+		const nextSong = this.getNextSong(isSkipForward);
+		this.props.setIsLoadingSound(true);
+		this.props.setCurrentlyPlayingSound(nextSong);
 	}
 
 	seekTo(seekTo: number, id?: number) {
@@ -336,6 +401,16 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 						<use xlinkHref="/sprite.svg#icon-forward"></use>
 					</svg>
 					<svg
+						onClick={(e: any) => this.handleSkipBackward(e)}
+						className={`${AUDIO_PLAYER_CLASSNAME}__skip-backward`}>
+						<use xlinkHref="/sprite.svg#icon-skip-backward"></use>
+					</svg>
+					<svg
+						onClick={(e: any) => this.handleSkipForward(e)}
+						className={`${AUDIO_PLAYER_CLASSNAME}__skip-forward`}>
+						<use xlinkHref="/sprite.svg#icon-skip-forward"></use>
+					</svg>
+					<svg
 						onClick={(e: any) => this.handleClose()}
 						className={`${AUDIO_PLAYER_CLASSNAME}__close`}>
 						<use xlinkHref="/sprite.svg#icon-close"></use>
@@ -352,4 +427,7 @@ const mapStateToProps = (state: RootStateOrAny) => {
 	};
 };
 
-export default connect(mapStateToProps, { setIsLoadingSound })(AudioPlayer);
+export default connect(mapStateToProps, {
+	setIsLoadingSound,
+	setCurrentlyPlayingSound,
+})(AudioPlayer as any);

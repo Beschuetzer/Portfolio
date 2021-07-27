@@ -72,4 +72,4 @@ NOT SURE------------------------------------------------------------
 -create separate AudioList (where songs are clicked and dispatched to AudioPlayer)
 
 -finish styling of AudioPlayer
--add functionality to AudioPlayer close 
+-add css loading spinner when audio loading

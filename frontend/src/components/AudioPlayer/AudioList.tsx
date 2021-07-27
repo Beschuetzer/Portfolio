@@ -19,9 +19,7 @@ export interface AudioListProps {
 
 const AudioList: React.FC<AudioListProps> = ({ items, className, setCurrentlyPlayingSound, isLoadingSound, setIsLoadingSound}) => {
 	function handleItemClick(e: Event) {
-    console.log('isLoadingSound =', isLoadingSound);
     if (isLoadingSound) return;
-    console.log('not loading------------------------------------------------');
     const clickedItem = e.currentTarget as HTMLElement;
     if (!clickedItem?.dataset?.item) return;
 

@@ -189,7 +189,7 @@ const sections: CSharpSection[] = [
 								path: { othersReunited },
 							},
 							{
-								name: "Steve - Sweetness",
+								name: "Steve - Nostalgia",
 								path: { othersSweet },
 							},
 						]}
