@@ -152,6 +152,7 @@ const sections: CSharpSection[] = [
 							itemSrc: imgUser,
 							description: "Example of a user cached in local storage",
 						},
+
 					]}
 					numberOfItemsInCarouselAtOneTime="3"
 					numberOfItemsToScrollOnClick="3"

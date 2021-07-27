@@ -1,10 +1,11 @@
 .carousel {
 	grid-column: 2 / span 3;
 	display: grid;
-	grid-column-gap: $carousel-grid-column-gap;
+	column-gap: $carousel-grid-column-gap;
+	row-gap: $carousel-grid-column-gap;
 	grid-template-columns: repeat(
-		auto-fit,
-		minmax($carousel-grid-width, $default-font-size)
+		auto-fill,
+		minmax($carousel-grid-width, var(--carousel-grid-max-column-width))
 	);
 	padding: 0 0 0 0.2rem;
 	justify-items: flex-start;
@@ -19,7 +20,7 @@
 		justify-content: center;
 		grid-column-gap: $default-font-size / 2;
 		grid-template-columns: repeat(
-			auto-fit,
+			auto-fill,
 			minmax($default-font-size * 5, $carousel-item-card-size-nav-switch)
 		);
 		grid-row-gap: $default-font-size * 0.5;
@@ -206,6 +207,7 @@
 
 			.carousel__item--full-screen img ~ & {
 				align-items: center;
+				padding: $default-font-size;
 			}
 		}
 

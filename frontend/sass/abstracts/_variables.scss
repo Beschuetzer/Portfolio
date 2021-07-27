@@ -331,6 +331,7 @@ $page-nav-top: calc(
 
 	//csharp layout pages
 	--carousel-item-translation-x: 0;
+	--carousel-grid-max-column-width: #{$default-font-size};
 
 	//shapes stuff
 	--diamond-fractal-animation-duration: 120s;

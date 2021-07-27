@@ -152,6 +152,7 @@
   --card-scale-amount: 1;
   --card-playing-transform: translate(0, 0) scale(1);
   --carousel-item-translation-x: 0;
+  --carousel-grid-max-column-width: 1.6rem;
   --diamond-fractal-animation-duration: 120s;
   --diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
   --aspect-ratio-factor: calc(16 / 9);
@@ -2549,8 +2550,9 @@ body {
 .carousel {
   grid-column: 2/span 3;
   display: grid;
-  grid-column-gap: 1.6rem;
-  grid-template-columns: repeat(auto-fit, minmax(calc( 	(85rem - 2 * 4.8rem) / 3 ), 1.6rem));
+  column-gap: 1.6rem;
+  row-gap: 1.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(calc( 	(85rem - 2 * 4.8rem) / 3 ), var(--carousel-grid-max-column-width)));
   padding: 0 0 0 0.2rem;
   justify-items: flex-start;
   align-items: flex-start;
@@ -2563,7 +2565,7 @@ body {
     margin-left: 0;
     justify-content: center;
     grid-column-gap: 0.8rem;
-    grid-template-columns: repeat(auto-fit, minmax(8rem, 20rem));
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 20rem));
     grid-row-gap: 0.8rem;
   }
 }
@@ -2721,6 +2723,7 @@ body {
 }
 .carousel__item--full-screen img ~ .carousel__item-description {
   align-items: center;
+  padding: 1.6rem;
 }
 .carousel__item .card__progress {
   z-index: 100000;

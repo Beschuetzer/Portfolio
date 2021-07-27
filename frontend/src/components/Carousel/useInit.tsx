@@ -16,6 +16,8 @@ const useInit = (
 			`.${arrowButtonRightClassname}`,
 		);
 		if (itemsRef) (itemsRef as any).current = document.querySelectorAll(`.${itemClassname}`);
+
+		
 	}, [
 		leftArrowRef,
 		rightArrowRef,
