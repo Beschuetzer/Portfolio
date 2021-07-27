@@ -71,5 +71,6 @@ NOT SURE------------------------------------------------------------
 -for AudioPlayer__details
 -create separate AudioList (where songs are clicked and dispatched to AudioPlayer)
 
--finish styling of AudioPlayer
+-finish toggler for AudioPlayer
 -add css loading spinner when audio loading
+-bug when click video in carousel, switch to another video, close, then re-open original video

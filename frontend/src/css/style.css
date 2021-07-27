@@ -580,8 +580,6 @@ body {
 
 .sliding {
   transition: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
 }
 
 .transition-none {
@@ -590,15 +588,14 @@ body {
 
 .visible {
   visibility: visible !important;
-  opacity: 1 !important;
 }
 
-.hidden {
+.hidden, .sliding {
   visibility: hidden !important;
   opacity: 0 !important;
 }
 
-.full-opacity {
+.full-opacity, .visible {
   opacity: 1 !important;
 }
 
@@ -614,7 +611,6 @@ body {
   object-fit: contain !important;
   object-position: center !important;
   backdrop-filter: blur(1.6rem) sepia(0) brightness(0.25);
-  transform: translate(0, 0) !important;
   transition: none !important;
 }
 
@@ -645,6 +641,10 @@ body {
 
 .scale-1 {
   transform: scale(1) !important;
+}
+
+.transform-none, .full-screen {
+  transform: translate(0, 0) !important;
 }
 
 .margin-0 {
@@ -2656,6 +2656,32 @@ body {
   overflow: hidden;
   transform: translateX(var(--carousel-item-translation-x));
 }
+.carousel__item-description {
+  --font-size: 1.6rem;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size);
+  font-weight: 700;
+  text-align: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  color: var(--color-primary-4);
+  z-index: 10000;
+  background: rgba(var(--color-primary-1-rgb), 0.95);
+  padding: 1.6rem;
+  transition: opacity 0.5s ease;
+}
+.carousel__item--full-screen .carousel__item-description {
+  --font-size: 3.2rem;
+  transition: none;
+  height: calc(100vh - 90vh);
+  background-color: var(--color-black);
+}
 .carousel__item * {
   pointer-events: all;
 }
@@ -2691,10 +2717,10 @@ body {
 .carousel__item--full-screen .carousel__video {
   cursor: auto;
 }
-.carousel__item--full-screen .carousel__video ~ .carousel__image-description {
+.carousel__item--full-screen .carousel__video ~ .item-description {
   padding: 1.6rem calc(10vh * 1 + 1.6rem) 1.6rem 20vh;
 }
-.carousel__item--full-screen .carousel__image-description {
+.carousel__item--full-screen .item-description {
   display: flex;
   font-size: 3.2rem;
   justify-content: center;
@@ -2705,7 +2731,7 @@ body {
   color: var(--color-primary-1);
 }
 @media only screen and (max-width: 68.75em) {
-  .carousel__item--full-screen .carousel__image-description {
+  .carousel__item--full-screen .item-description {
     font-size: 2.4rem;
   }
 }
@@ -2728,7 +2754,7 @@ body {
 .carousel__item--full-screen .carousel__video.fg-video video {
   width: 100vw;
   backdrop-filter: blur(10px);
-  height: calc(90vh - 2.5vh);
+  height: calc( 						90vh - 2.5vh 					);
 }
 .carousel__video.fg-video.full-screen {
   cursor: auto;
@@ -2790,25 +2816,7 @@ body {
 .carousel__image.full-screen {
   cursor: auto;
 }
-.carousel__image-description {
-  display: flex;
-  visibility: hidden;
-  opacity: 0;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.6rem;
-  text-align: center;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  position: absolute;
-  color: var(--color-primary-4);
-  z-index: 10000;
-  background: rgba(var(--color-primary-1-rgb), 0.95);
-  padding: 1.6rem;
-  transition: opacity 0.5s ease;
-}
-.carousel__item:hover .carousel__image-description, .carousel__item:active .carousel__image-description, .carousel__item:focus .carousel__image-description, .carousel__item--full-screen .carousel__image-description {
+.carousel__item:hover .carousel__item-description, .carousel__item:active .carousel__item-description, .carousel__item:focus .carousel__item-description, .carousel__item--full-screen .carousel__item-description {
   visibility: visible;
   opacity: 1;
 }

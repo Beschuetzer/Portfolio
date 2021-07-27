@@ -339,7 +339,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 	render() {
 		return (
-			<section className={`${AUDIO_PLAYER_CLASSNAME}`}>
+			<section className={`${AUDIO_PLAYER_CLASSNAME}` }>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
 					<span>Playing:&nbsp;</span>
 					<span>

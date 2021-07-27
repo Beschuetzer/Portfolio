@@ -19,7 +19,7 @@ import {
 	handleSetTranslation as getNewCurrentTranslationFactor,
 	getCurrentTranslationFactorFromDots,
 	getNthItemOpen,
-	toggleLeftAndRightArrows,
+	toggleLeftAndRightArrows as handleWhetherToDisplayArrows,
 	handleVideo,
 	resetCarouselVideo,
 	CAROUSEL_VIDEO_CLASSNAME,
@@ -109,34 +109,10 @@ const Carousel: React.FC<CarouselProps> = ({
 			videoDiv.classList.remove(FULLSCREEN_CLASSNAME);
 			videoDiv.classList.add(STOPPED_CLASSNAME);
 		}
+
+		const image = carouselItemClicked?.querySelector('img') as HTMLImageElement;
+		if (image) image.classList.remove(FULLSCREEN_CLASSNAME);
 	}
-
-	const handleFullsizeArrowToggling = (e: Event) => {
-		handleCleanUp();
-
-		const leftArrow = (leftArrowRef.current as any)[0] as HTMLElement;
-		const rightArrow = (rightArrowRef.current as any)[0] as HTMLElement;
-		let direction: ArrowButtonDirection = "left";
-		const arrowClicked = (e.currentTarget || e.target) as HTMLElement;
-
-		if (arrowClicked?.className?.match(/right/i)) direction = "right";
-
-		const { isNotFirstItem, isNotLastItem, nthItemOpen, items } =
-			getNthItemOpen(e, leftArrow, rightArrow, direction);
-
-		toggleLeftAndRightArrows(
-			leftArrow,
-			rightArrow,
-			isNotFirstItem !== undefined ? isNotFirstItem : true,
-			isNotLastItem !== undefined ? isNotLastItem : true,
-		);
-
-		if (nthItemOpen !== -1 && typeof nthItemOpen === "number")
-			if (items) items[nthItemOpen]?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
-
-		if (!nthItemOpen) return false;
-		return nthItemOpen !== -1;
-	};
 
 	const handleDotClick = (e: MouseEvent) => {
 		[currentTranslationFactor, removeTransitionTimeout] =
@@ -151,6 +127,40 @@ const Carousel: React.FC<CarouselProps> = ({
 				numberOfItemsToScrollOnClick,
 				removeTransitionTimeout as any,
 			);
+	};
+
+	const handleFullsizeArrowToggling = (e: Event) => {
+		handleCleanUp();
+
+		const leftArrow = (leftArrowRef.current as any)[0] as HTMLElement;
+		const rightArrow = (rightArrowRef.current as any)[0] as HTMLElement;
+		let direction: ArrowButtonDirection = "left";
+		const arrowClicked = (e.currentTarget || e.target) as HTMLElement;
+
+		if (arrowClicked?.className?.match(/right/i)) direction = "right";
+
+		const { isNotFirstItem, isNotLastItem, nthItemOpen, items } =
+			getNthItemOpen(e, leftArrow, rightArrow, direction);
+
+		handleWhetherToDisplayArrows(
+			leftArrow,
+			rightArrow,
+			isNotFirstItem !== undefined ? isNotFirstItem : true,
+			isNotLastItem !== undefined ? isNotLastItem : true,
+		);
+
+		if (nthItemOpen !== -1 && typeof nthItemOpen === "number")
+			if (items) {
+				const itemToOpen = items[nthItemOpen];
+				const imageOrVideo = itemToOpen.children[0] as HTMLElement;
+				itemToOpen?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
+				imageOrVideo.classList.add(FULLSCREEN_CLASSNAME);
+			}
+
+		if (!nthItemOpen) return false;
+
+		//return whether it's full-size
+		return nthItemOpen !== -1;
 	};
 
 	const renderItems = () => {

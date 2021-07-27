@@ -92,8 +92,7 @@
 
 .sliding {
 	transition: none !important;
-	opacity: 0 !important;
-	visibility: hidden !important;
+	@extend .hidden;
 }
 
 .transition-none {
@@ -102,7 +101,7 @@
 
 .visible {
 	visibility: visible !important;
-	opacity: 1 !important;
+	@extend .full-opacity;
 }
 
 .hidden {
@@ -115,6 +114,7 @@
 }
 
 .full-screen {
+	@extend .transform-none;
 	position: fixed !important;
 	left: 0 !important;
 	top: 0 !important;
@@ -126,7 +126,6 @@
 	object-fit: contain !important;
 	object-position: center !important;
 	backdrop-filter: blur($default-font-size) sepia(0) brightness(0.25);
-	transform: translate(0, 0) !important;
 	transition: none !important;
 }
 
@@ -157,6 +156,10 @@
 
 .scale-1 {
 	transform: scale(1) !important;
+}
+
+.transform-none {
+	transform: translate(0, 0) !important;
 }
 
 .margin-0 {
@@ -208,8 +211,7 @@
 	--opacity: 1;
 	fill: rgba(var(--color-primary-red-rgb), var(--opacity)) !important;
 
-	&:hover{ 
+	&:hover {
 		--opacity: #{$carousel-fullscreen-button-hover-opacity};
 	}
-	
 }
