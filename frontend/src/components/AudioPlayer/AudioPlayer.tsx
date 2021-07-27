@@ -170,7 +170,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		this.handlePlay();
 	}
 
-	handleClose() {
+	handleToggler() {
 		if (this.state.playingHowl) this.state.playingHowl.stop();
 		this.showPlay();
 		this.hidePause();
@@ -410,10 +410,13 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 						className={`${AUDIO_PLAYER_CLASSNAME}__skip-forward`}>
 						<use xlinkHref="/sprite.svg#icon-skip-forward"></use>
 					</svg>
-					<svg
-						onClick={(e: any) => this.handleClose()}
-						className={`${AUDIO_PLAYER_CLASSNAME}__close`}>
-						<use xlinkHref="/sprite.svg#icon-close"></use>
+				</div>
+				<div
+					className={`${AUDIO_PLAYER_CLASSNAME}__toggler`}
+				>
+					<svg>
+						onClick={(e: any) => this.handleToggler()}
+						<use xlinkHref="/sprite.svg#icon-forward"></use>
 					</svg>
 				</div>
 			</section>
