@@ -86,9 +86,12 @@ export function setArrowButtonsHiddenClass(
 		currentTranslationFactor * numberOfItemsToScrollOnClick -
 		1;
 
+	let numberOfRows = 1;
+	if (getCarouselGridMaxColumnWidth(maxImageCount + 1) !== carouselGridMaxColumnWidthDefault) numberOfRows = 2;
+
 	if (currentCount <= CAROUSEL_MIN_IMAGE_COUNT)
 		leftArrow.classList.add(HIDDEN_CLASSNAME);
-	if (currentCount >= maxImageCount) rightArrow.classList.add(HIDDEN_CLASSNAME);
+	if (currentCount >= (maxImageCount / numberOfRows)) rightArrow.classList.add(HIDDEN_CLASSNAME);
 }
 
 export function setCurrentActiveButton(indexOfActiveDot: number) {

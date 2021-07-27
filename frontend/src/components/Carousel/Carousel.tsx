@@ -91,6 +91,7 @@ const Carousel: React.FC<CarouselProps> = ({
 			rightArrowRef as any,
 			numberOfItemsInCarouselAtOneTime,
 			numberOfItemsToScrollOnClick,
+
 		);
 
 		const amountToTranslateImages =
@@ -246,14 +247,14 @@ const Carousel: React.FC<CarouselProps> = ({
 		if (!items.length) return null;
 		const maxWidth = getCarouselGridMaxColumnWidth(items.length);
 
-		let numberOfColumns = 1;
-		if (maxWidth !== carouselGridMaxColumnWidthDefault) numberOfColumns = 2;
+		let numberOfRows = 1;
+		if (maxWidth !== carouselGridMaxColumnWidthDefault) numberOfRows = 2;
 
 		return items.map((image, index) => {
-			const indexToUse = index % numberOfColumns;
+			const indexToUse = index % numberOfRows;
 			if (indexToUse !== 0) return null;
 
-			const nthIndex = index / numberOfColumns;
+			const nthIndex = index / numberOfRows;
 
 			return (
 				<svg
