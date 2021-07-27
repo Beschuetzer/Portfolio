@@ -23,16 +23,7 @@ interface OverlayTextProps {
 
 const OverlayText: React.FC<OverlayTextProps> = ({
   positionType = 'fixed',
-  positionTop = "50%",
-  positionBottom= "auto",
-  positionLeft= "50%",
-  positionRight= "auto",
-  transform= "translate(-50%, -50%)",
-  zIndex = 10000,
-  textBackgroundColor = '#f7f7f7',
-  textColor = '#000000',
   titleText = "Title",
-  backdropFilter = "blur(10px)",
   cssClassname = 'overlay-text',
   styles,
   children,

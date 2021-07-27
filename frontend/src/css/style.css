@@ -2563,8 +2563,13 @@ body {
     margin-left: 0;
     justify-content: center;
     grid-column-gap: 0.8rem;
-    grid-template-columns: repeat(auto-fit, minmax(8rem, 33.6rem));
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 20rem));
     grid-row-gap: 0.8rem;
+  }
+}
+@media only screen and (max-width: 58.5625em) {
+  .carousel {
+    width: 100%;
   }
 }
 .carousel__dots {
@@ -2595,9 +2600,10 @@ body {
   --opacity: 1;
 }
 .carousel__arrow-button {
-  --fullscreen-top: calc(
-  	(87.5vh - 7vw) / 2
-  );
+  --fullscreen-top: calc(calc(
+  	87.5vh - 2.5vh
+  ) / 2);
+  --translation-y: 0%;
   position: relative;
   z-index: 100;
   justify-self: center;
@@ -2610,6 +2616,7 @@ body {
   }
 }
 .carousel__arrow-button--full-screen {
+  --translation-y: -50%;
   position: fixed;
   z-index: 1000000;
   top: var(--fullscreen-top);
@@ -2625,13 +2632,13 @@ body {
   --rotation: 90deg;
   grid-column: 2/span 1;
   grid-row: 2/span 1;
-  transform: translateY(-50%) rotate(var(--rotation));
+  transform: translateY(var(--translation-y)) rotate(var(--rotation));
 }
 .carousel__arrow-button--right {
   --rotation: -90deg;
   grid-column: 4/span 1;
   grid-row: 2/span 1;
-  transform: translateY(-50%) rotate(var(--rotation));
+  transform: translateY(var(--translation-y)) rotate(var(--rotation));
 }
 .carousel__arrow-button svg {
   width: 7vw;
@@ -2659,12 +2666,21 @@ body {
   overflow: hidden;
   transform: translateX(var(--carousel-item-translation-x));
 }
+@media only screen and (max-width: 68.75em) {
+  .carousel__item {
+    height: 20rem;
+  }
+}
+.carousel__item * {
+  pointer-events: all;
+}
 .carousel__item-description {
   --font-size: 1.6rem;
   --padding: 0.8rem;
   --padding-top: var(--padding);
   --padding-right: var(--padding);
   --padding-left: var(--padding);
+  pointer-events: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2692,13 +2708,18 @@ body {
 @media only screen and (max-width: 68.75em) {
   .carousel__item--full-screen .carousel__item-description {
     align-items: flex-start;
-    --padding-top: calc(calc(100vh - 87.5vh) * .066) ;
+    --padding-top: calc(calc(100vh - 87.5vh) * 0.066);
     --padding-right: var(--padding);
     --padding-left: var(--padding);
   }
 }
-.carousel__item * {
-  pointer-events: all;
+@media only screen and (max-width: 29.3125em) {
+  .carousel__item--full-screen .carousel__item-description {
+    --font-size: 2rem;
+  }
+}
+.carousel__item--full-screen img ~ .carousel__item-description {
+  align-items: center;
 }
 .carousel__item .card__progress {
   z-index: 100000;
@@ -2769,13 +2790,13 @@ body {
 .carousel__item--full-screen .carousel__video.fg-video video {
   width: 100vw;
   backdrop-filter: blur(10px);
-  height: calc( 						87.5vh - 2.5vh 					);
+  height: calc( 	87.5vh - 2.5vh );
 }
 .carousel__video.fg-video.full-screen {
   cursor: auto;
 }
 .carousel__video.fg-video.full-screen video {
-  height: calc( 						87.5vh - 2.5vh 					);
+  height: calc( 	87.5vh - 2.5vh );
 }
 .carousel__video-svg {
   pointer-events: none;
@@ -2836,6 +2857,7 @@ body {
   opacity: 1;
 }
 .carousel .overlay-text {
+  top: calc(calc( 	87.5vh - 2.5vh ) / 2) !important;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s ease;
@@ -2845,6 +2867,8 @@ body {
   border: 1px solid rgba(var(--color-white-rgb), 1);
   border-radius: 0.8rem;
   box-shadow: 0px 0px 1.6rem 0.8rem rgba(var(--color-white-rgb), 0.5);
+  max-height: 85%;
+  overflow: auto;
 }
 .carousel .overlay-text-title {
   font-size: 3.2rem;
@@ -2932,6 +2956,13 @@ body {
   top: 0;
   transform: none;
 }
+@media only screen and (max-width: 68.75em) {
+  .carousel .card__close-parent {
+    top: auto;
+    bottom: calc(100vh - calc( 	87.5vh - 2.5vh ));
+    right: 0;
+  }
+}
 .carousel .card__restart {
   width: 75%;
   height: 75%;
@@ -2971,7 +3002,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .carousel .carousel__item--full-screen :is(.card__play-parent, .card__pause-parent, .card__restart-parent, .card__stop-parent, .card__close-parent):not(.card__close-parent) {
-    bottom: 0.8rem;
+    bottom: calc(0.016 * (100vh - 87.5vh));
   }
 }
 .carousel__item--full-screen .card__close-parent .card__close {
