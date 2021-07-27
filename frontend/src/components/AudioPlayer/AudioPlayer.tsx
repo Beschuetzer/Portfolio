@@ -1,8 +1,11 @@
 import { debug } from "console";
 import { Howl } from "howler";
-import React from "react";
+import React, { LegacyRef } from "react";
+import { RefObject } from "react";
+import { createRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { setIsLoadingSound } from "../../actions";
+import { DISPLAY_NONE_CLASSNAME, HIDDEN_CLASSNAME } from "../constants";
 import { AudioItem } from "./AudioList";
 import { getMinuteAndSecondsString } from "./utils";
 
@@ -25,6 +28,8 @@ export interface AudioPlayerState {
 class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	seekAmount = 15;
 	id: number;
+	pauseRef: RefObject<HTMLElement>;
+	playRef: RefObject<HTMLElement>;
 
 	constructor(props: AudioPlayerProps) {
 		super(props);
@@ -37,6 +42,9 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 			songLength: "-1",
 			songProgressPercent: 0,
 		};
+
+		this.pauseRef = createRef();
+		this.playRef = createRef();
 	}
 
 	componentDidMount() {}
@@ -148,48 +156,84 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 	handleClose() {
 		if (this.state.playingHowl) this.state.playingHowl.stop();
+		this.showPlay();
+		this.hidePause();
 	}
 
 	handlePause() {
 		if (!this.state.playingHowl) return;
 		this.state.playingHowl.pause();
+
+		this.showPlay();
+		this.hidePause();
 	}
 
 	handlePlay() {
 		if (!this.state.playingHowl) return;
-		if (this.state.playingHowl.playing()) return;
+		if (this.state.playingHowl.playing()) {
+			this.hidePlay();
+			return this.showPause();
+		}
+
+		this.hidePlay();
+		this.showPause();
+
 		this.id = this.state.playingHowl.play();
+		requestAnimationFrame(this.step);
+	}
+
+	hidePause() {
+		(this.pauseRef?.current as HTMLElement)?.classList.add(HIDDEN_CLASSNAME);
+	}
+
+	hidePlay() {
+		(this.playRef?.current as HTMLElement)?.classList.add(HIDDEN_CLASSNAME);
 	}
 
 	handleRestart() {
 		if (!this.state.playingHowl) return;
 		this.state.playingHowl.stop();
-		this.id = this.state.playingHowl.play();
+		this.handlePlay();
 	}
 
 	handleStop() {
 		if (!this.state.playingHowl) return;
 		this.state.playingHowl.stop();
 		this.id = -1;
+
+		this.showPlay();
+		this.hidePause();
 	}
 
 	handleProgressBarClick(e: MouseEvent) {
-		const percentBar = e.target as HTMLElement;
+		const percentBar = (e.target as HTMLElement).parentNode as HTMLElement;
 		const max = percentBar.getBoundingClientRect().width;
 		const percent = e.clientX / max;
-		this.setState({songProgressPercent: percent});
-		this.seekTo(percent * +this.state.songLength);
+		const duration = this.state.playingHowl?.duration();
+
+		if (!duration) return;
+
+		this.seekTo(duration ? duration * percent : 0);
 		this.handlePlay();
+		this.setState({ songProgressPercent: percent });
 	}
 
 	seekTo(seekTo: number, id?: number) {
-		this.state.playingHowl?.seek(seekTo, id);
+		this.state.playingHowl?.seek(seekTo);
+	}
+
+	showPlay() {
+		(this.playRef?.current as HTMLElement)?.classList.remove(HIDDEN_CLASSNAME);
+	}
+
+	showPause() {
+		(this.pauseRef?.current as HTMLElement)?.classList.remove(HIDDEN_CLASSNAME);
 	}
 
 	step = () => {
 		if (!this.state?.playingHowl) return;
 		const seek = (this.state.playingHowl.seek() || 0) as number;
-		const percent = (seek / this.state.playingHowl.duration()) || 0;
+		const percent = seek / this.state.playingHowl.duration() || 0;
 		this.setState({
 			elapsed: getMinuteAndSecondsString(seek),
 			songProgressPercent: percent,
@@ -209,6 +253,9 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		let newHowls = [];
 		if (this.state.howls) newHowls = [...this.state.howls, newHowl];
 		else newHowls.push(newHowl);
+
+		this.hidePlay();
+		this.showPause();
 
 		this.props.setIsLoadingSound(false);
 
@@ -249,19 +296,25 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 				<div
 					onClick={(e: any) => this.handleProgressBarClick(e)}
 					className={`${AUDIO_PLAYER_CLASSNAME}__progress`}>
-					<div style={{ width: `${this.state.songProgressPercent * 100}%` }}>&nbsp;</div>
+					<div style={{ width: `${this.state.songProgressPercent * 100}%` }}>
+						&nbsp;
+					</div>
 				</div>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__controls`}>
-					<svg
-						onClick={(e: any) => this.handlePlay()}
-						className={`${AUDIO_PLAYER_CLASSNAME}__play`}>
-						<use xlinkHref="/sprite.svg#icon-play"></use>
-					</svg>
-					<svg
-						onClick={(e: any) => this.handlePause()}
-						className={`${AUDIO_PLAYER_CLASSNAME}__pause`}>
-						<use xlinkHref="/sprite.svg#icon-pause"></use>
-					</svg>
+					<div>
+						<svg
+							ref={this.playRef as any}
+							onClick={(e: any) => this.handlePlay()}
+							className={`${AUDIO_PLAYER_CLASSNAME}__play`}>
+							<use xlinkHref="/sprite.svg#icon-play"></use>
+						</svg>
+						<svg
+							ref={this.pauseRef as any}
+							onClick={(e: any) => this.handlePause()}
+							className={`${AUDIO_PLAYER_CLASSNAME}__pause hidden`}>
+							<use xlinkHref="/sprite.svg#icon-pause"></use>
+						</svg>
+					</div>
 					<svg
 						onClick={(e: any) => this.handleStop()}
 						className={`${AUDIO_PLAYER_CLASSNAME}__stop`}>

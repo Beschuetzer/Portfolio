@@ -2999,6 +2999,7 @@ body {
   height: 7vw;
 }
 .audio-player__controls svg {
+  transition: opacity 0.5s ease;
   cursor: pointer;
   fill: rgba(var(--color-primary-1-rgb), 1);
 }
@@ -3007,6 +3008,14 @@ body {
 }
 .audio-player__controls svg:active, .audio-player__controls svg:focus {
   fill: rgba(var(--color-primary-2-rgb), 1);
+}
+.audio-player__controls > div {
+  position: relative;
+  width: 7vw;
+  height: 7vw;
+}
+.audio-player__controls > div > svg {
+  position: absolute;
 }
 .audio-player__details {
   font-size: 1.6rem;

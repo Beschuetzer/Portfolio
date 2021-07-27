@@ -23,6 +23,7 @@
 		}
 
 		& svg {
+      transition: opacity $animation-duration $animation-easing-standard;
 			cursor: pointer;
 			fill: rgba(var(--color-primary-1-rgb), 1);
 			&:hover {
@@ -34,6 +35,16 @@
 				fill: rgba(var(--color-primary-2-rgb), 1);
 			}
 		}
+
+    & > div {
+      position: relative;
+      width: 7vw;
+      height: 7vw;
+
+      & > svg {
+        position: absolute;
+      }
+    }
 	}
 
 	&__details {
