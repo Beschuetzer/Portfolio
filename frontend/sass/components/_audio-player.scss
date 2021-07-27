@@ -50,10 +50,10 @@
     width:100%;
     height: $default-font-size * 1.5;
 
-    & span {
+    & > div {
       align-self: flex-start;
-      background-color: var(--color-primary-2);
-
+      background-color: var(--color-primary-1);
+      height: 100%;
     }
 	}
 
@@ -66,6 +66,9 @@
 	&__close {
 		width: $navbar__logo-width * 1.131266846;
 		height: $navbar__logo-width * 1.131266846;
+
+    position: absolute;
+    right: 0;
 	}
 
 	&__restart {

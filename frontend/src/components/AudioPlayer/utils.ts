@@ -1,8 +1,13 @@
 export function getMinuteAndSecondsString(songLengthInSeconds: number) {
   const secondsPerMinute = 60;
   const hours = Math.floor(songLengthInSeconds / secondsPerMinute / secondsPerMinute);
-  const minutes = Math.floor(songLengthInSeconds / secondsPerMinute);
-  const seconds = Math.ceil(songLengthInSeconds % secondsPerMinute);
+  let minutes = Math.floor(songLengthInSeconds / secondsPerMinute);
   
-  return `${hours > 0 ? `${hours}:` : ''}${minutes}:${seconds}`;
+  let seconds = Math.ceil(songLengthInSeconds % secondsPerMinute);
+  if (seconds === 60)  {
+    seconds = 0;
+    minutes += 1;
+  }
+
+  return `${hours > 0 ? `${hours}:` : ''}${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 }
