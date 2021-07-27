@@ -134,7 +134,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		if (!this.state.howls || !this.state.playingHowl) return;
 
 		const seekTo = this.getSeekTo(false);
-		this.state.playingHowl.seek(seekTo, this.id);
+		this.seekTo(seekTo, this.id);
 		this.handlePlay();
 	}
 
@@ -142,7 +142,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		if (!this.state.howls || !this.state.playingHowl) return;
 
 		const seekTo = this.getSeekTo();
-		this.state.playingHowl.seek(seekTo, this.id);
+		this.seekTo(seekTo, this.id);
 		this.handlePlay();
 	}
 
@@ -177,13 +177,19 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		const percentBar = e.target as HTMLElement;
 		const max = percentBar.getBoundingClientRect().width;
 		const percent = e.clientX / max;
-		console.log("percent =", percent);
+		this.setState({songProgressPercent: percent});
+		this.seekTo(percent * +this.state.songLength);
+		this.handlePlay();
+	}
+
+	seekTo(seekTo: number, id?: number) {
+		this.state.playingHowl?.seek(seekTo, id);
 	}
 
 	step = () => {
 		if (!this.state?.playingHowl) return;
 		const seek = (this.state.playingHowl.seek() || 0) as number;
-		const percent = (seek / this.state.playingHowl.duration()) * 100 || 0;
+		const percent = (seek / this.state.playingHowl.duration()) || 0;
 		this.setState({
 			elapsed: getMinuteAndSecondsString(seek),
 			songProgressPercent: percent,
@@ -243,7 +249,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 				<div
 					onClick={(e: any) => this.handleProgressBarClick(e)}
 					className={`${AUDIO_PLAYER_CLASSNAME}__progress`}>
-					<div style={{ width: `${this.state.songProgressPercent}%` }}>&nbsp;</div>
+					<div style={{ width: `${this.state.songProgressPercent * 100}%` }}>&nbsp;</div>
 				</div>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__controls`}>
 					<svg
