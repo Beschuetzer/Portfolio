@@ -11,6 +11,7 @@ import {
 } from "./Carousel/util";
 import {
   FILL_RED_CLASSNAME,
+	MOBILE_BREAK_POINT_WIDTH,
 	OVERFLOW_HIDDEN_CLASSNAME,
 	Z_INDEX_CONTENT_CLASSNAME,
 } from "./constants";
@@ -100,13 +101,14 @@ export const removeClassFromAllChildren = (
 // }
 
 export const scrollToSection = (sectionToScrollTo: HTMLElement) => {
+	const shouldAddHeaderHeight = window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
 	const headerHeight = document
 		.querySelector(HEADER_ID)!
 		.getBoundingClientRect().height;
 	const topScrollAmount =
 		window.scrollY +
 		sectionToScrollTo.getBoundingClientRect().top -
-		headerHeight;
+		(shouldAddHeaderHeight ? headerHeight : 0);
 	window.scroll({
 		top: topScrollAmount,
 		left: 0,

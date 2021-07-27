@@ -42,14 +42,14 @@ const sections: CSharpSection[] = [
 		children: [
 			<React.Fragment>
 				<CSharpCardSection title="The Reasons">
-					<Paragraph size="four">
+					<Paragraph size="five">
 						There are two reasons why I chose to build the
 						<EmbeddedLink addSpaces={false} isLocal={false} href={REPLAYS_URL}>
 							A# Maj Replay Viewer
 						</EmbeddedLink>
 						.
 					</Paragraph>
-					<Paragraph size="four" classNameToAdd="margin-top-1">
+					<Paragraph size="five" classNameToAdd="margin-top-1">
 						First, in March of 2021, I finished&nbsp;
 						<EmbeddedLink addSpaces={false} isLocal={false} href={BRIDGE_URL}>
 							A# Maj Bridge
@@ -60,7 +60,7 @@ const sections: CSharpSection[] = [
 						and decipher the raw data.&nbsp;
 					</Paragraph>
 
-					<Paragraph size="four" classNameToAdd="margin-top-1">
+					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Second, I wanted to improve my familiarity with Narwahl's NX
 						workspace and Angular.&nbsp; What better way to do that than to
 						create a real-world application with a practical use?
@@ -172,19 +172,19 @@ const sections: CSharpSection[] = [
 		children: [
 			<React.Fragment>
 				<CSharpCardSection title="Filters">
-					<Paragraph size="four">
+					<Paragraph size="five">
 						There are two type of filters that can be applied: game-level and
 						deal-level.&nbsp; Game-level filters work by checking the games in
 						the current currently-displayed games array.&nbsp; Deal-level
 						filters work by checking the deals of the games that pass the
 						game-level filters.
 					</Paragraph>
-					<Paragraph size="four" classNameToAdd="margin-top-1">
+					<Paragraph size="five" classNameToAdd="margin-top-1">
 						When both types of filters are applied at the same time, games are
 						checked first.&nbsp; If a match is found, that game is added to the
 						filtered games.
 					</Paragraph>
-					<Paragraph size="four" classNameToAdd="margin-top-1">
+					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Thereafter, the game's deals are checked to see if any of them match
 						any of the applied deal-level filters.&nbsp; If a match is found on
 						the deal-level, that deal is sent to an array of deals which is used
@@ -194,25 +194,25 @@ const sections: CSharpSection[] = [
 					</Paragraph>
 				</CSharpCardSection>
 				<CSharpCardSection title="Preferences">
-					<Paragraph size="four">
+					<Paragraph size="five">
 						There are three preferences the user can select from: size, sort,
 						and resultsPerPage.
 					</Paragraph>
-					<Paragraph size="four" classNameToAdd="margin-top-1">
+					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Size refers to the size of the game detail card in the games list
 						view.&nbsp; There are three options: large, medium, and small.
 					</Paragraph>
-					<Paragraph size="four" classNameToAdd="margin-top-1">
+					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Sort refers to whether the matched games are sorted in descending or
 						ascending order based on the completion date.
 					</Paragraph>
-					<Paragraph size="four" classNameToAdd="margin-top-1">
+					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Results per page refers to how many matched games are displayed at
 						one time.&nbsp; The options are: 1, 2, 5, 10, 25, 50, and 100.
 					</Paragraph>
 				</CSharpCardSection>
 				<CSharpCardSection title="Caching">
-					<Paragraph size="four">
+					<Paragraph size="five">
 						The results of each query are stored in local storage, allowing for
 						faster load times on subsequent queries of the same username as well
 						as any other usernames that were part of any of the cached
@@ -220,7 +220,7 @@ const sections: CSharpSection[] = [
 						all stored in local storage as separate items.&nbsp; The keys are
 						the id of the item and the value is the relevant data for that item.
 					</Paragraph>
-					{/* <Paragraph size="four">
+					{/* <Paragraph size="five">
 						The application works by utilizing local storage to cache games and
 						deals for each player that a user searchs.&nbsp; Only new games and
 						deals are downloaded on each subsequent query of a given player's
@@ -236,14 +236,14 @@ const sections: CSharpSection[] = [
 		children: [
 			<React.Fragment>
 				<CSharpCardSection title="On Caching">
-					<Paragraph size="four">
+					<Paragraph size="five">
 						It should be noted that the current implementation would not scale
 						nicely as a player with tens of thousands of deals would have to
 						download most of those deals on every query (local storage max is
 						5mb and each deal is around 2kb), leading to an unacceptably-long
 						delay.
 					</Paragraph>
-					<Paragraph size="four" classNameToAdd="margin-top-1">
+					<Paragraph size="five" classNameToAdd="margin-top-1">
 						However, given that the most deals any user has is less than six
 						hundred at this time, this concern is currently secondary in
 						nature.&nbsp; It would be fairly easy to fix though by adding
