@@ -3193,8 +3193,9 @@ body {
   }
 }
 .audio-player__content {
-  width: calc(100% - var(--svg-size) - var(--));
   max-width: 85rem;
+  width: 100%;
+  text-align: center;
 }
 .audio-player__controls {
   display: flex;

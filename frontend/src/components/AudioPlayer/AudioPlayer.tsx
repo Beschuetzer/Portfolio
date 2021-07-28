@@ -70,6 +70,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	}
 
 	componentWillReceiveProps(nextProps: AudioPlayerProps) {
+		debugger;
 		//need to just play from beginning if clicking same song
 		const playingSoundPath = Object.values(
 			nextProps.currentlyPlayingSound?.path,
@@ -101,6 +102,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 				this.props.setIsLoadingSound(false);
 				return this.setState({
 					playingHowl: loadedHowl,
+					songLength: getMinuteAndSecondsString(loadedHowl.duration()),
 				});
 			}
 
@@ -276,8 +278,10 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 	handleProgressBarClick(e: MouseEvent) {
 		const percentBar = (e.target as HTMLElement).parentNode as HTMLElement;
-		const max = percentBar.getBoundingClientRect().width;
-		const percent = e.clientX / max;
+		const percentBarBounds  = percentBar.getBoundingClientRect();
+		const left = percentBarBounds.left;
+		const right = percentBarBounds.right;
+		const percent = (e.clientX - left) / Math.abs(right - left);
 		const duration = this.state.playingHowl?.duration();
 
 		if (!duration) return;
@@ -404,8 +408,6 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 	render() {
 		return (
-			// <React.Fragment>
-
 			<section
 				ref={this.audioPlayerRef as any}
 				className={`${AUDIO_PLAYER_CLASSNAME}`}>
@@ -489,7 +491,6 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 					</svg>
 				</div>
 			</section>
-			// </React.Fragment>
 		);
 	}
 }
