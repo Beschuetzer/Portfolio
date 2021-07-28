@@ -67,15 +67,16 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 	return (
 		<div className={`${C_SHARP_CLASSNAME} ${pageName}`}>
 			{href ? (
-				<a
-					target="_blank"
-					rel="noreferrer"
-					href={href}
-					className={`${C_SHARP_CLASSNAME}__title ${C_SHARP_CLASSNAME}__title--animated`}>
+				<div
+					className={`${C_SHARP_CLASSNAME}__title`} >
 					{renderSourceCodeLinks()}
 
-					{capitalize(replaceCharacters(pageName))}
-				</a>
+					<a 
+					className={`${C_SHARP_CLASSNAME}__title-link`}
+					target="_blank" rel="noreferrer" href={href}>
+						{capitalize(replaceCharacters(pageName))}
+					</a>
+				</div>
 			) : (
 				<div className={`${C_SHARP_CLASSNAME}__title`}>
 					{renderSourceCodeLinks()}

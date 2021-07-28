@@ -152,9 +152,9 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		text-decoration: none;
-
-		&--animated {
+		
+		&-link {
+			text-decoration: none;
 			transition: color $animation-duration * 0.5 $animation-easing-standard;
 			@include link-animating(
 				var(--color-primary-4-rgb),

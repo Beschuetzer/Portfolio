@@ -2783,7 +2783,7 @@ body {
   cursor: auto;
 }
 .carousel__item--full-screen .carousel__video ~ .item-description {
-  padding: 1.6rem calc(calc(100vh - 87.5vh) + 1.6rem) 1.6rem calc($carousel-svg-parent-width * 2);
+  padding: 1.6rem calc(calc(100vh - 87.5vh) + 1.6rem) 1.6rem calc(calc(100vh - 87.5vh) * 2);
 }
 .carousel__item--full-screen .item-description {
   display: flex;
@@ -4770,9 +4770,9 @@ div.references__name {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-decoration: none;
 }
-.csharp__title--animated {
+.csharp__title-link {
+  text-decoration: none;
   transition: color 0.25s ease;
   cursor: pointer;
   background: linear-gradient(to left, rgba(var(--color-primary-4-rgb), 1) 0%, rgba(var(--color-primary-1-rgb), 1) 5%, rgba(var(--color-primary-4-rgb), 1) 10%, rgba(var(--color-primary-4-rgb), 1) 100%);
@@ -4781,7 +4781,7 @@ div.references__name {
   color: transparent;
   animation: animate-skills infinite 10s;
 }
-.csharp__title--animated:hover {
+.csharp__title-link:hover {
   color: var(--color-primary-3);
 }
 @media only screen and (max-width: 68.75em) {

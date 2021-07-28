@@ -288,7 +288,7 @@
 			& .carousel__video ~ .item-description {
 				padding: $default-font-size * 1
 					calc(#{$carousel-svg-parent-width} + #{$default-font-size})
-					$default-font-size * 1 calc($carousel-svg-parent-width * 2);
+					$default-font-size * 1 calc(#{$carousel-svg-parent-width} * 2);
 			}
 
 			& .item-description {
