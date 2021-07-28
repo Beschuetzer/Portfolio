@@ -74,3 +74,14 @@ mobile issues---------------------
 
 -change scroll sensitivity (have it scroll futher down each scroll)
 -finish toggler for AudioPlayer
+-mobile home styling
+-mobile Csharp title width
+
+-try streaming audio
+var stream = new Howl({
+    src: ['...'],
+    ext: ['mp3'],
+    autoplay: true,
+    html5: true
+});
+Note that you must use HTML5 Audio to stream, it isn't possible with Web Audio since the full audio must be loaded and decoded first.

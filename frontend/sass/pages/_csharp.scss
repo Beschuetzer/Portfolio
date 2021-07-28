@@ -90,12 +90,12 @@
 	}
 
 	&__headers {
-    color: var(--color-primary-4);
-    background-image: linear-gradient(
-      to bottom right,
-			rgba(var(--color-primary-1-rgb), 1) ,
-			rgba(var(--color-primary-1-rgb), 1) ,
-    );
+		color: var(--color-primary-4);
+		background-image: linear-gradient(
+			to bottom right,
+			rgba(var(--color-primary-1-rgb), 1),
+			rgba(var(--color-primary-1-rgb), 1)
+		);
 	}
 
 	&__header {
@@ -130,11 +130,12 @@
 		font-family: $font-family-text !important;
 
 		& li {
-			padding-left: $default-font-size * .5;
+			padding-left: $default-font-size * 0.5;
 		}
 	}
 
 	&__title {
+		--font-size: #{$default-font-size * 6};
 		-webkit-touch-callout: none; /* iOS Safari */
 		-webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/
 		-khtml-user-select: none; /* Konqueror HTML */
@@ -142,7 +143,7 @@
 		-ms-user-select: none; /* Internet Explorer/Edge */
 		user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 
-		font-size: $default-font-size * 6;
+		font-size: var(--font-size);
 		text-align: center;
 		width: 100vw;
 		padding-top: calc(#{$header-top} - 2vw);
@@ -152,7 +153,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		
+
 		&-link {
 			text-decoration: none;
 			transition: color $animation-duration * 0.5 $animation-easing-standard;
@@ -173,6 +174,19 @@
 			justify-content: flex-start;
 			width: $resume-card-width-full;
 			margin: auto;
+		}
+
+		@include respond(tab-land) {
+			--padding: #{$default-font-size * .5};
+			width: 100vw;
+			--font-size: #{$default-font-size * 3};
+			padding: var(--padding) calc(var(--padding) + var(--scrollbar-width)) var(--padding) var(--padding);
+		}
+		@include respond(small-font) {
+			--font-size: #{$default-font-size * 2};
+			display: flex;
+			flex-direction: column;
+			margin-top: $default-font-size * 5;
 		}
 	}
 

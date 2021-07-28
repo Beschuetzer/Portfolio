@@ -106,13 +106,13 @@
 	}
 
 	&__name-first {
-		font-weight:$home-name-font-weight;
+		font-weight: $home-name-font-weight;
 		justify-self: flex-end;
 		transform: translate(-$default-font-size * 50, 0);
 	}
 
 	&__name-last {
-		font-weight:$home-name-font-weight;
+		font-weight: $home-name-font-weight;
 		justify-self: flex-start;
 		transform: translate($default-font-size * 50, 0);
 	}
@@ -263,7 +263,10 @@
 
 			@include respond($breakpoint-to-change-layout) {
 				text-align: center;
-				margin: 0 auto;
+				margin: 0;
+				width: 100vw;
+				padding: $default-font-size * 0.5;
+				font-size: $default-font-size;
 			}
 		}
 
@@ -279,8 +282,12 @@
 				& .home__content-header {
 					background-image: linear-gradient(
 						-5deg,
-						$home-content-header-gradient-colors,
+						$home-content-header-gradient-colors
 					);
+				}
+
+				@include respond($breakpoint-to-change-layout) {
+					transform: none;
 				}
 			}
 		}
@@ -296,7 +303,7 @@
 				& .home__content-header {
 					background-image: linear-gradient(
 						5deg,
-						$home-content-header-gradient-colors,
+						$home-content-header-gradient-colors
 					);
 				}
 			}
@@ -386,6 +393,7 @@
 
 		@include respond($breakpoint-to-change-layout) {
 			--background-image-color-two: var(--color-primary-3);
+			font-size: $default-font-size;
 		}
 	}
 

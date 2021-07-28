@@ -168,6 +168,11 @@
 /* ------------------------------------------------------------------------------------------------- */
 //Media Query Manager
 @mixin respond($breakpoint) {
+	@if $breakpoint == nav-list-break {
+		@media only screen and (max-width: $nav-list-break-max-width) {
+			@content;
+		} //370px
+	}
 	@if $breakpoint == small-font {
 		@media only screen and (max-width: $small-font-max-width) {
 			@content;

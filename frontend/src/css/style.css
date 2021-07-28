@@ -852,15 +852,21 @@ body {
   backface-visibility: hidden;
   transform-origin: top left;
   transition: transform 0.25s ease, opacity 0.375s ease, width 0.25s cubic-bezier(1, 0, 0, 1) 0.25s;
+  --min-column-width: 26.9rem;
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(26.9rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--min-column-width), 1fr));
     flex-direction: column;
     opacity: 0;
     width: 8rem;
     transform: scale(0);
+  }
+}
+@media only screen and (max-width: 23.125em) {
+  .navbar__list {
+    --min-column-width: 12.8rem;
   }
 }
 .navbar__list .navbar__item:first-child {
@@ -3538,11 +3544,19 @@ body {
 @media only screen and (max-width: 58.5625em) {
   .home__main-left-content, .home__main-right-content {
     text-align: center;
-    margin: 0 auto;
+    margin: 0;
+    width: 100vw;
+    padding: 0.8rem;
+    font-size: 1.6rem;
   }
 }
 .home__main-left-content .home__content-header {
   background-image: linear-gradient(-5deg, var(--color-primary-4), var(--color-primary-4) var(--primary-4-end), var(--background-image-color-two));
+}
+@media only screen and (max-width: 58.5625em) {
+  .home__main-left-content {
+    transform: none;
+  }
 }
 .home__main-right-content {
   transform: translateY(19%);
@@ -3618,6 +3632,7 @@ body {
 @media only screen and (max-width: 58.5625em) {
   .home__content-header {
     --background-image-color-two: var(--color-primary-3);
+    font-size: 1.6rem;
   }
 }
 .home__quote {
@@ -4749,6 +4764,7 @@ div.references__name {
   padding-left: 0.8rem;
 }
 .csharp__title {
+  --font-size: 9.6rem;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: text;
@@ -4761,7 +4777,7 @@ div.references__name {
   /* Internet Explorer/Edge */
   user-select: none;
   /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
-  font-size: 9.6rem;
+  font-size: var(--font-size);
   text-align: center;
   width: 100vw;
   padding-top: calc(calc(calc( 	( 		( 				100vw - 					( 						85rem + ( 								(100vw - 85rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.4vw) - 2vw);
@@ -4791,6 +4807,22 @@ div.references__name {
     justify-content: flex-start;
     width: 85rem;
     margin: auto;
+  }
+}
+@media only screen and (max-width: 58.5625em) {
+  .csharp__title {
+    --padding: 0.8rem;
+    width: 100vw;
+    --font-size: 4.8rem;
+    padding: var(--padding) calc(var(--padding) + var(--scrollbar-width)) var(--padding) var(--padding);
+  }
+}
+@media only screen and (max-width: 29.3125em) {
+  .csharp__title {
+    --font-size: 3.2rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 8rem;
   }
 }
 .csharp__carousel {
