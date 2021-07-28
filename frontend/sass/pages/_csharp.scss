@@ -168,6 +168,11 @@
 		}
 
 		@include respond(nav-switch) {
+			display: grid;
+			grid-template-columns: min-content 1fr min-content;
+			justify-content: flex-start;
+			width: $resume-card-width-full;
+			margin: auto;
 		}
 	}
 

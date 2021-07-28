@@ -3071,11 +3071,14 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .source-link__source {
-    top: 87.5vh;
-    transform: translateX(50%);
-    right: 50%;
-    position: absolute;
+    top: auto;
+    transform: translateX(0%);
+    right: auto;
+    position: static;
   }
+}
+.source-link__source:nth-of-type(2) {
+  order: 2;
 }
 .source-link__source-svg {
   width: 7vw;
@@ -4673,6 +4676,15 @@ div.references__name {
 }
 .csharp__title--animated:hover {
   color: var(--color-primary-3);
+}
+@media only screen and (max-width: 68.75em) {
+  .csharp__title {
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    justify-content: flex-start;
+    width: 85rem;
+    margin: auto;
+  }
 }
 .csharp__carousel {
   margin: 1.6rem auto 0 auto;

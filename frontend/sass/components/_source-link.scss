@@ -14,10 +14,14 @@
 		right: calc((100vw - #{$header-inner-width} - 1.5vw) / 2);
 
 		@include respond(nav-switch) {
-			top: 87.5vh;
-			transform: translateX(50%);
-			right: 50%;
-			position: absolute;
+			top: auto;
+			transform: translateX(0%);
+			right: auto;
+			position: static;
+		}
+
+		&:nth-of-type(2) {
+			order: 2;
 		}
 
 		&-svg {

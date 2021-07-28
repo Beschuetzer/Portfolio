@@ -41,22 +41,44 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 		});
 	}
 
+	function renderSourceCodeLinks() {
+		return (
+			<React.Fragment>
+				{sourceCodeLink ? (
+					<SourceCodeLink href={sourceCodeLink} msg={sourceCodeMsg} />
+				) : null}
+				{demoLink ? (
+					<SourceCodeLink
+						className="source-link__demo"
+						href={demoLink}
+						msg={demoMsg}
+					/>
+				) : (
+					<SourceCodeLink
+						className="source-link__demo hidden"
+						href={sourceCodeLink as string}
+						msg={demoMsg}
+					/>
+				)}
+			</React.Fragment>
+		);
+	}
+
 	return (
 		<div className={`${C_SHARP_CLASSNAME} ${pageName}`}>
-			{sourceCodeLink ? (
-				<SourceCodeLink href={sourceCodeLink} msg={sourceCodeMsg} />
-			) : null}
-			{demoLink ? <SourceCodeLink className="source-link__demo" href={demoLink} msg={demoMsg} /> : null}
 			{href ? (
 				<a
 					target="_blank"
 					rel="noreferrer"
 					href={href}
 					className={`${C_SHARP_CLASSNAME}__title ${C_SHARP_CLASSNAME}__title--animated`}>
+					{renderSourceCodeLinks()}
+
 					{capitalize(replaceCharacters(pageName))}
 				</a>
 			) : (
 				<div className={`${C_SHARP_CLASSNAME}__title`}>
+					{renderSourceCodeLinks()}
 					{capitalize(replaceCharacters(pageName))}
 				</div>
 			)}

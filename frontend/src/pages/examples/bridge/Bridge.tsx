@@ -574,6 +574,11 @@ const Bridge: React.FC<BridgeProps> = ({
 				href={`${GITHUB_URL}/bridge`}
 				// blockName="hero"
 			/>
+			<SourceCodeLink
+				className="source-link__demo"
+				href={BRIDGE_URL}
+				msg={"Demo"}
+			/>
 
 			{renderSections()}
 			<ArrowButton {...leftArrowProps} />

@@ -5,6 +5,8 @@ BUGS------------------------------------
     -running no dev server, single tab mozilla, 20mins = no crash
   -changing viewport on home shows scroll text after it has faded out
   -changing viewport on home doesn't change text height spacing durin scroll
+  -can't have multiple carousels on page due to same css var name
+
 
 IDEAS-----------------------------------------------------------
   -add hover popup for references that pops up a card with image, quote (recommendation from ziprecruiter, and letter of recommendation from scott?), more detailed info about relationship with reference;  add personal references?
@@ -73,8 +75,6 @@ mobile issues---------------------
 -for AudioPlayer__details
 -create separate AudioList (where songs are clicked and dispatched to AudioPlayer)
 
--demo and github source code svgs not positioned properly in nav-switch for replay viewer (all csharp layout pages); position them at the top?
 -change scroll sensitivity (have it scroll futher down each scroll)
 -finish toggler for AudioPlayer
 -add css loading spinner when audio loading
--can't have multiple carousels on page due to same css var name
