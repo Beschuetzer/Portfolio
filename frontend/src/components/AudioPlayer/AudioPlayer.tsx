@@ -339,7 +339,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 	render() {
 		return (
-			<section className={`${AUDIO_PLAYER_CLASSNAME}` }>
+			<section className={`${AUDIO_PLAYER_CLASSNAME}`}>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
 					<span>Playing:&nbsp;</span>
 					<span>
@@ -410,11 +410,8 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 						<use xlinkHref="/sprite.svg#icon-skip-forward"></use>
 					</svg>
 				</div>
-				<div
-					className={`${AUDIO_PLAYER_CLASSNAME}__toggler`}
-				>
-					<svg>
-						onClick={(e: any) => this.handleToggler()}
+				<div className={`${AUDIO_PLAYER_CLASSNAME}__toggler`}>
+					<svg onClick={(e: any) => this.handleToggler()}>
 						<use xlinkHref="/sprite.svg#icon-forward"></use>
 					</svg>
 				</div>
