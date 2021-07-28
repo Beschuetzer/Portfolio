@@ -3213,6 +3213,8 @@ body {
 }
 .audio-player__controls > div > svg {
   position: absolute;
+  left: 0;
+  top: 0;
 }
 .audio-player__details {
   font-size: 2.4rem;
@@ -3242,6 +3244,7 @@ body {
   right: 0;
   height: calc(100% + var(--svg-size) + var(--toggler-padding));
   background-color: var(--background-color);
+  z-index: -1;
   border-radius: 1.6rem;
 }
 .audio-player__toggler svg {

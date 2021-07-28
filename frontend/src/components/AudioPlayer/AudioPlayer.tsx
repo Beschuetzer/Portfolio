@@ -38,6 +38,8 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	audioPlayerTogglerSvgRef: RefObject<HTMLElement>;
 	songsOnPage: NodeListOf<Element> | null;
 	shouldShowAudioPlayer = false;
+	updateInterval: any;
+	updateRate = 125;
 
 	constructor(props: AudioPlayerProps) {
 		super(props);
@@ -70,7 +72,6 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	}
 
 	componentWillReceiveProps(nextProps: AudioPlayerProps) {
-		debugger;
 		//need to just play from beginning if clicking same song
 		const playingSoundPath = Object.values(
 			nextProps.currentlyPlayingSound?.path,
@@ -208,7 +209,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		this.showPause();
 
 		this.id = this.state.playingHowl.play();
-		requestAnimationFrame(this.step);
+		this.setUpdateInterval();
 	}
 
 	hidePause() {
@@ -278,13 +279,13 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 	handleProgressBarClick(e: MouseEvent) {
 		const percentBar = (e.target as HTMLElement).parentNode as HTMLElement;
-		const percentBarBounds  = percentBar.getBoundingClientRect();
+		const percentBarBounds = percentBar.getBoundingClientRect();
 		const left = percentBarBounds.left;
 		const right = percentBarBounds.right;
 		const percent = (e.clientX - left) / Math.abs(right - left);
 		const duration = this.state.playingHowl?.duration();
 
-		if (!duration) return;
+		if (duration === undefined) return;
 
 		this.seekTo(duration ? duration * percent : 0);
 		this.handlePlay();
@@ -306,7 +307,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	onSoundLoad(newHowl: Howl, nextProps: AudioPlayerProps) {
 		if (newHowl?.play) {
 			this.id = newHowl.play();
-			requestAnimationFrame(this.step);
+			this.setUpdateInterval();
 		}
 
 		let newHowls = [];
@@ -333,7 +334,25 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		this.state.playingHowl?.seek(seekTo);
 	}
 
+	setSeekAmount() {
+		if (!this.state?.playingHowl) return;
+
+		const seek = this.state.playingHowl.seek() as number;
+		const percent = seek / this.state.playingHowl.duration();
+
+		this.setState({
+			elapsed: getMinuteAndSecondsString(seek),
+			songProgressPercent: percent,
+		});
+	}
+
 	showAudioPlayer() {
+		const audioPlayerTogglerSvgParent = (
+			this.audioPlayerTogglerSvgRef.current as HTMLElement
+		)?.parentNode as HTMLElement;
+		if (audioPlayerTogglerSvgParent)
+			audioPlayerTogglerSvgParent.classList.remove(HIDDEN_CLASSNAME);
+
 		this.handleAudioPlayerTransformNoneClassname("add");
 		this.handleAudioPlayerTogglerOpenClassname("add");
 	}
@@ -345,20 +364,6 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	showPause() {
 		(this.pauseRef?.current as HTMLElement)?.classList.remove(HIDDEN_CLASSNAME);
 	}
-
-	step = () => {
-		if (!this.state?.playingHowl) return;
-		const seek = (this.state.playingHowl.seek() || 0) as number;
-		const percent = seek / this.state.playingHowl.duration() || 0;
-		this.setState({
-			elapsed: getMinuteAndSecondsString(seek),
-			songProgressPercent: percent,
-		});
-
-		if (this.state.playingHowl.playing()) {
-			requestAnimationFrame(this.step);
-		}
-	};
 
 	toggleAudioPlayer() {
 		this.handleAudioPlayerTransformNoneClassname("toggle");
@@ -405,6 +410,13 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 			}
 		}
 	}
+
+	private setUpdateInterval = () => {
+		clearInterval(this.updateInterval);
+		this.updateInterval = setInterval(() => {
+			this.setSeekAmount();
+		}, this.updateRate);
+	};
 
 	render() {
 		return (
@@ -483,7 +495,8 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 						</svg>
 					</div>
 				</div>
-				<div className={`${AUDIO_PLAYER_TOGGLER_CLASSNAME}`}>
+				<div
+					className={`${AUDIO_PLAYER_TOGGLER_CLASSNAME} ${HIDDEN_CLASSNAME}`}>
 					<svg
 						ref={this.audioPlayerTogglerSvgRef as any}
 						onClick={(e: any) => this.handleToggler()}>
