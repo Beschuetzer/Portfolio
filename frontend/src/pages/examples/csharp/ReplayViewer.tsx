@@ -115,7 +115,7 @@ const sections: CSharpSection[] = [
 							ideoOverlayText: "Watching Replays",
 							videoOverlayChildren: <div>
 								<CSharpCardSection title="Cherry on Top">
-									Animations sweeten the experience just a little but. &nbsp; Of course they can't make up for otherwise poor design and user experience.
+									Animations can turn a boring app into an interesting one, assuming the user experience is good.  
 								</CSharpCardSection>
 							</div>,
 						},

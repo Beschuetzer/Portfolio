@@ -4,7 +4,7 @@ import { RefObject } from "react";
 import { createRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { setIsLoadingSound, setCurrentlyPlayingSound } from "../../actions";
-import { HIDDEN_CLASSNAME } from "../constants";
+import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
 import { AudioItem, AUDIO_LIST_CLASSNAME } from "./AudioList";
 import { getMinuteAndSecondsString } from "./utils";
 
@@ -30,7 +30,9 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	id: number;
 	pauseRef: RefObject<HTMLElement>;
 	playRef: RefObject<HTMLElement>;
+	audioPlayerRef: RefObject<HTMLElement>;
 	songsOnPage: NodeListOf<Element> | null;
+	shouldShowAudioPlayer = true;
 
 	constructor(props: AudioPlayerProps) {
 		super(props);
@@ -46,6 +48,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 		this.pauseRef = createRef();
 		this.playRef = createRef();
+		this.audioPlayerRef = createRef();
 		this.songsOnPage = null;
 	}
 
@@ -74,6 +77,8 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		}
 
 		if (nextProps.currentlyPlayingSound) {
+			this.showAudioPlayer();
+
 			const playingHowl = this.getPlayingHowl();
 			if (playingHowl) playingHowl.stop();
 
@@ -95,6 +100,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 			const newHowl = new Howl({
 				src: path,
+				html5: true,
 			});
 
 			newHowl.once("load", this.onSoundLoad.bind(this, newHowl, nextProps));
@@ -171,9 +177,8 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	}
 
 	handleToggler() {
-		if (this.state.playingHowl) this.state.playingHowl.stop();
-		this.showPlay();
-		this.hidePause();
+		this.toggleAudioPlayer();
+		this.shouldShowAudioPlayer = !this.shouldShowAudioPlayer;
 	}
 
 	handlePause() {
@@ -276,38 +281,20 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		this.setState({ songProgressPercent: percent });
 	}
 
+	hideAudioPlayer() {
+		const audioPlayer = this.audioPlayerRef.current as HTMLElement;
+		if (audioPlayer && this.shouldShowAudioPlayer) {
+			audioPlayer.classList.add(HIDDEN_CLASSNAME);
+			audioPlayer.classList.remove(TRANSFORM_NONE_CLASSNAME);
+		}
+	}
+
 	loadNextSong(isSkipForward = true) {
 		this.handleStop();
 		const nextSong = this.getNextSong(isSkipForward);
 		this.props.setIsLoadingSound(true);
 		this.props.setCurrentlyPlayingSound(nextSong);
 	}
-
-	seekTo(seekTo: number, id?: number) {
-		this.state.playingHowl?.seek(seekTo);
-	}
-
-	showPlay() {
-		(this.playRef?.current as HTMLElement)?.classList.remove(HIDDEN_CLASSNAME);
-	}
-
-	showPause() {
-		(this.pauseRef?.current as HTMLElement)?.classList.remove(HIDDEN_CLASSNAME);
-	}
-
-	step = () => {
-		if (!this.state?.playingHowl) return;
-		const seek = (this.state.playingHowl.seek() || 0) as number;
-		const percent = seek / this.state.playingHowl.duration() || 0;
-		this.setState({
-			elapsed: getMinuteAndSecondsString(seek),
-			songProgressPercent: percent,
-		});
-
-		if (this.state.playingHowl.playing()) {
-			requestAnimationFrame(this.step);
-		}
-	};
 
 	onSoundLoad(newHowl: Howl, nextProps: AudioPlayerProps) {
 		if (newHowl?.play) {
@@ -335,87 +322,131 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		});
 	}
 
+	seekTo(seekTo: number, id?: number) {
+		this.state.playingHowl?.seek(seekTo);
+	}
+
+	showAudioPlayer() {
+		const audioPlayer = this.audioPlayerRef.current as HTMLElement;
+		if (audioPlayer && this.shouldShowAudioPlayer) {
+			audioPlayer.classList.remove(HIDDEN_CLASSNAME);
+			audioPlayer.classList.add(TRANSFORM_NONE_CLASSNAME);
+		}
+	}
+
+	showPlay() {
+		(this.playRef?.current as HTMLElement)?.classList.remove(HIDDEN_CLASSNAME);
+	}
+
+	showPause() {
+		(this.pauseRef?.current as HTMLElement)?.classList.remove(HIDDEN_CLASSNAME);
+	}
+
+	step = () => {
+		if (!this.state?.playingHowl) return;
+		const seek = (this.state.playingHowl.seek() || 0) as number;
+		const percent = seek / this.state.playingHowl.duration() || 0;
+		this.setState({
+			elapsed: getMinuteAndSecondsString(seek),
+			songProgressPercent: percent,
+		});
+
+		if (this.state.playingHowl.playing()) {
+			requestAnimationFrame(this.step);
+		}
+	};
+
+	toggleAudioPlayer() {
+		const audioPlayer = this.audioPlayerRef.current as HTMLElement;
+		audioPlayer.classList.toggle(HIDDEN_CLASSNAME);
+		audioPlayer.classList.toggle(TRANSFORM_NONE_CLASSNAME);
+	}
+
 	updateElapsedTime(e: Event) {}
 
 	render() {
 		return (
-			<section className={`${AUDIO_PLAYER_CLASSNAME}`}>
-				<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
-					<span>Playing:&nbsp;</span>
-					<span>
-						<b>
-							'
-							{this.props.currentlyPlayingSound
-								? this.props.currentlyPlayingSound.name
-								: null}
-							'
-						</b>
-					</span>
-					<span className={`${AUDIO_PLAYER_CLASSNAME}__details-time`}>
-						<span>{this.state.elapsed}</span>
-						<span>&nbsp;/&nbsp;</span>
-						<span>{this.state.songLength}</span>
-					</span>
-				</div>
-				<div
-					onClick={(e: any) => this.handleProgressBarClick(e)}
-					className={`${AUDIO_PLAYER_CLASSNAME}__progress`}>
-					<div style={{ width: `${this.state.songProgressPercent * 100}%` }}>
-						&nbsp;
-					</div>
-				</div>
-				<div className={`${AUDIO_PLAYER_CLASSNAME}__controls`}>
-					<div>
-						<svg
-							ref={this.playRef as any}
-							onClick={(e: any) => this.handlePlay()}
-							className={`${AUDIO_PLAYER_CLASSNAME}__play`}>
-							<use xlinkHref="/sprite.svg#icon-play"></use>
-						</svg>
-						<svg
-							ref={this.pauseRef as any}
-							onClick={(e: any) => this.handlePause()}
-							className={`${AUDIO_PLAYER_CLASSNAME}__pause hidden`}>
-							<use xlinkHref="/sprite.svg#icon-pause"></use>
-						</svg>
-					</div>
-					<svg
-						onClick={(e: any) => this.handleStop()}
-						className={`${AUDIO_PLAYER_CLASSNAME}__stop`}>
-						<use xlinkHref="/sprite.svg#icon-stop"></use>
-					</svg>
-					<svg
-						onClick={(e: any) => this.handleRestart()}
-						className={`${AUDIO_PLAYER_CLASSNAME}__restart`}>
-						<use xlinkHref="/sprite.svg#icon-restart"></use>
-					</svg>
-					<svg
-						onClick={(e: any) => this.handleBackward()}
-						className={`${AUDIO_PLAYER_CLASSNAME}__backward`}>
-						<use xlinkHref="/sprite.svg#icon-backward"></use>
-					</svg>
-					<svg
-						onClick={(e: any) => this.handleForward()}
-						className={`${AUDIO_PLAYER_CLASSNAME}__forward`}>
-						<use xlinkHref="/sprite.svg#icon-forward"></use>
-					</svg>
-					<svg
-						onClick={(e: any) => this.handleSkipBackward(e)}
-						className={`${AUDIO_PLAYER_CLASSNAME}__skip-backward`}>
-						<use xlinkHref="/sprite.svg#icon-skip-backward"></use>
-					</svg>
-					<svg
-						onClick={(e: any) => this.handleSkipForward(e)}
-						className={`${AUDIO_PLAYER_CLASSNAME}__skip-forward`}>
-						<use xlinkHref="/sprite.svg#icon-skip-forward"></use>
-					</svg>
-				</div>
+			<React.Fragment>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__toggler`}>
 					<svg onClick={(e: any) => this.handleToggler()}>
 						<use xlinkHref="/sprite.svg#icon-forward"></use>
 					</svg>
 				</div>
-			</section>
+				<section
+					ref={this.audioPlayerRef}
+					className={`${AUDIO_PLAYER_CLASSNAME} ${HIDDEN_CLASSNAME}`}>
+					<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
+						<span>Playing:&nbsp;</span>
+						<span>
+							<b>
+								'
+								{this.props.currentlyPlayingSound
+									? this.props.currentlyPlayingSound.name
+									: null}
+								'
+							</b>
+						</span>
+						<span className={`${AUDIO_PLAYER_CLASSNAME}__details-time`}>
+							<span>{this.state.elapsed}</span>
+							<span>&nbsp;/&nbsp;</span>
+							<span>{this.state.songLength}</span>
+						</span>
+					</div>
+					<div
+						onClick={(e: any) => this.handleProgressBarClick(e)}
+						className={`${AUDIO_PLAYER_CLASSNAME}__progress`}>
+						<div style={{ width: `${this.state.songProgressPercent * 100}%` }}>
+							&nbsp;
+						</div>
+					</div>
+					<div className={`${AUDIO_PLAYER_CLASSNAME}__controls`}>
+						<div>
+							<svg
+								ref={this.playRef as any}
+								onClick={(e: any) => this.handlePlay()}
+								className={`${AUDIO_PLAYER_CLASSNAME}__play`}>
+								<use xlinkHref="/sprite.svg#icon-play"></use>
+							</svg>
+							<svg
+								ref={this.pauseRef as any}
+								onClick={(e: any) => this.handlePause()}
+								className={`${AUDIO_PLAYER_CLASSNAME}__pause hidden`}>
+								<use xlinkHref="/sprite.svg#icon-pause"></use>
+							</svg>
+						</div>
+						<svg
+							onClick={(e: any) => this.handleStop()}
+							className={`${AUDIO_PLAYER_CLASSNAME}__stop`}>
+							<use xlinkHref="/sprite.svg#icon-stop"></use>
+						</svg>
+						<svg
+							onClick={(e: any) => this.handleRestart()}
+							className={`${AUDIO_PLAYER_CLASSNAME}__restart`}>
+							<use xlinkHref="/sprite.svg#icon-restart"></use>
+						</svg>
+						<svg
+							onClick={(e: any) => this.handleBackward()}
+							className={`${AUDIO_PLAYER_CLASSNAME}__backward`}>
+							<use xlinkHref="/sprite.svg#icon-backward"></use>
+						</svg>
+						<svg
+							onClick={(e: any) => this.handleForward()}
+							className={`${AUDIO_PLAYER_CLASSNAME}__forward`}>
+							<use xlinkHref="/sprite.svg#icon-forward"></use>
+						</svg>
+						<svg
+							onClick={(e: any) => this.handleSkipBackward(e)}
+							className={`${AUDIO_PLAYER_CLASSNAME}__skip-backward`}>
+							<use xlinkHref="/sprite.svg#icon-skip-backward"></use>
+						</svg>
+						<svg
+							onClick={(e: any) => this.handleSkipForward(e)}
+							className={`${AUDIO_PLAYER_CLASSNAME}__skip-forward`}>
+							<use xlinkHref="/sprite.svg#icon-skip-forward"></use>
+						</svg>
+					</div>
+				</section>
+			</React.Fragment>
 		);
 	}
 }

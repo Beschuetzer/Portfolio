@@ -2,7 +2,7 @@
 	transition: opacity $animation-duration $animation-easing-standard;
 	cursor: pointer;
 	fill: rgba(var(--svg-fill-color), 1);
-	
+
 	&:hover {
 		fill: rgba(var(--svg-fill-color), 0.75);
 	}
@@ -18,7 +18,7 @@
 	--color: var(--color-primary-4);
 	--svg-fill-color: var(--color-primary-4-rgb);
 	--svg-active-color: var(--color-primary-3-rgb);
-	--svg-size: 3.5vw;
+	--svg-size: 7vmin;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -31,6 +31,20 @@
 	color: var(--color);
 	background-color: var(--background-color);
 	z-index: 10;
+	transform: translateY(100%);
+	transition: 
+		transform $animation-duration
+		$animation-easing-standard,
+		opacity $animation-duration * .5 $animation-easing-standard,
+		;
+
+	@include respond(nav-switch) {
+		--svg-size: #{$default-font-size * 4};
+	}
+
+	@include respond(small-font) {
+		--svg-size: #{$default-font-size * 3};
+	}
 
 	&__controls {
 		display: flex;
@@ -87,14 +101,14 @@
 	}
 
 	&__toggler {
-		--padding: #{$default-font-size} * .5;
+		--padding: #{$default-font-size} * 0.5;
 		position: absolute;
 		bottom: 0;
 		right: 0;
 		height: calc(100% + var(--svg-size) + var(--padding));
-    background-color: var(--background-color);
-    z-index: -1;
-    border-radius: $default-font-size;
+		background-color: var(--background-color);
+		z-index: -1;
+		border-radius: $default-font-size;
 
 		& svg {
 			transform: rotate(90deg);
