@@ -36,7 +36,7 @@ const sections: CSharpSection[] = [
 			<React.Fragment>
 				<CSharpCardSection title="Purpose">
 					Websites like
-					<EmbeddedLink href={OC_REMIX_URL}>OCRemix</EmbeddedLink> and{" "}
+					<EmbeddedLink href={OC_REMIX_URL}>OCRemix</EmbeddedLink> and 
 					<EmbeddedLink href={KH_INSIDER_URL}>
 						Kingdom Hearts Insider
 					</EmbeddedLink>
@@ -71,10 +71,39 @@ const sections: CSharpSection[] = [
 						{
 							itemSrc: problemVideo,
 							description: "The manual way of downloading",
+							videoOverlayText: "A Chore",
+							videoOverlayChildren: (
+								<div>
+									<CSharpCardSection title="The Problem">
+										Downloading new releases from{" "}
+										<EmbeddedLink isLocal={false} href={OC_REMIX_URL}>
+											ocremix.org
+										</EmbeddedLink>{" "}
+										is exciting, but having to download a few months worth is
+										more of a chore.&nbsp;
+									</CSharpCardSection>
+									<CSharpCardSection title="Reality Check">
+										This is what it takes to download one song.
+									</CSharpCardSection>
+								</div>
+							),
 						},
 						{
 							itemSrc: demoVideo,
 							description: "The automated way of downloading",
+							videoOverlayText: "Automation FTW",
+							videoOverlayChildren: (
+								<div>
+									<CSharpCardSection title="Embedded Links">
+										The downloader app not only downloads links it finds
+										matching the given criteria, but will do the same for any
+										embedded links it finds.
+									</CSharpCardSection>
+									<CSharpCardSection title="Buggy but functional">
+										The download logs aren't always correct, but there's no denying the result.
+									</CSharpCardSection>
+								</div>
+							),
 						},
 						{
 							itemSrc: img1,
@@ -91,7 +120,7 @@ const sections: CSharpSection[] = [
 						{
 							itemSrc: img4,
 							description:
-								"Integrated file-renaming tool used to standardize file names of downloads",
+								"Integrated file-renaming tool",
 						},
 						{
 							itemSrc: img5,
@@ -101,7 +130,7 @@ const sections: CSharpSection[] = [
 						{
 							itemSrc: img6,
 							description:
-								"Result of automatic download of songs (including sub-linked songs)",
+								"Result of using Downloader",
 						},
 					]}
 					numberOfItemsInCarouselAtOneTime="3"

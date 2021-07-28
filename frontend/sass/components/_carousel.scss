@@ -341,6 +341,7 @@
 			width: $carousel-svg-width;
 			height: $carousel-svg-width;
 			fill: var(--color-primary-4);
+			z-index: 100000;
 			position: absolute;
 			top: 50%;
 			left: 50%;
@@ -395,17 +396,20 @@
 
 	//overlay-text styling
 	& .overlay-text {
+		--color: var(--color-white-rgb);
+		--background-color: var(--color-black-rgb);
 		top: calc(#{$carousel-full-screen-media-height} / 2) !important;
 		left: 50% !important;
 		opacity: 0;
 		visibility: hidden;
 		transition: opacity $animation-duration $animation-easing-standard;
 		padding: $default-font-size $default-font-size * 2;
-		color: var(--color-white);
-		background-color: rgba(var(--color-black-rgb), 1);
-		border: $overlay-text-border;
+		color: rgba(var(--color), 1);
+		background-color: rgba(var(--background-color), 1);
+		border: 1px solid rgba(var(--color), 1);
 		border-radius: $default-font-size / 2;
-		box-shadow: $overlay-text-box-shadow;
+		box-shadow: 0px 0px $default-font-size $default-font-size * 0.5
+		rgba(var(--color), 0.5);
 		max-height: 85%;
 		overflow: auto;
 
@@ -417,6 +421,26 @@
 
 		&-title {
 			font-size: $default-font-size * 2;
+		}
+
+		& .bridge__link {
+			@include link-animating(
+				var(--color),
+				var(--background-color),
+				var(--color),
+				var(--color),
+			);
+
+			@include link-line(
+				var(--background-color),
+				var(--color),
+				var(--color),
+				var(--background-color),
+			);
+
+			&:hover {
+				color: rgba(var(--color-white-rgb), 1);
+			}
 		}
 	}
 	&__item--stopped .overlay-text,

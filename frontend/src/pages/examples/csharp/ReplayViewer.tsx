@@ -99,10 +99,25 @@ const sections: CSharpSection[] = [
 						{
 							itemSrc: clipDealPlayer,
 							description: "Using the deal player",
+							videoOverlayText: "Watching Replays",
+							videoOverlayChildren: <div>
+								<CSharpCardSection title="Critical Analysis">
+									One of the main reasons I created the <EmbeddedLink isLocal={false} href={REPLAYS_URL}>Replay Viewer</EmbeddedLink> was to be able to easily review the trick-taking phase of games completed on <EmbeddedLink isLocal={false} href={BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>.
+								</CSharpCardSection>
+								<CSharpCardSection title="Viewing Options">
+									There are two ways to get to the questionable play:&nbsp;  by turning on auto play or by skipping ahead to the trick in question.  
+								</CSharpCardSection>
+							</div>,
 						},
 						{
 							itemSrc: clipAnimations,
 							description: "Misc. Animations",
+							ideoOverlayText: "Watching Replays",
+							videoOverlayChildren: <div>
+								<CSharpCardSection title="Cherry on Top">
+									Animations sweeten the experience just a little but. &nbsp; Of course they can't make up for otherwise poor design and user experience.
+								</CSharpCardSection>
+							</div>,
 						},
 						{
 							itemSrc: img2,
