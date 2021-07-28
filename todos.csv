@@ -73,4 +73,5 @@ mobile issues---------------------
   -examples link not expanded in navbar
 
 -change scroll sensitivity (have it scroll futher down each scroll)
--finish toggler for AudioPlayer
+-finish about content
+-add svg to about

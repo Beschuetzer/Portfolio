@@ -444,9 +444,10 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 					<div
 						onClick={(e: any) => this.handleProgressBarClick(e)}
 						className={`${AUDIO_PLAYER_CLASSNAME}__progress`}>
-						<div style={{ width: `${this.state.songProgressPercent * 100}%` }}>
-							&nbsp;
-						</div>
+						<div
+							style={{
+								width: `${this.state.songProgressPercent * 100}%`,
+							}}></div>
 					</div>
 					<div className={`${AUDIO_PLAYER_CLASSNAME}__controls`}>
 						<div>
