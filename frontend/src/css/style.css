@@ -160,6 +160,8 @@
   --translate-center: translate(-50%, -50%);
   --square-root-of-two: 0.707106781;
   --diamond-outer-opacity: 0.05;
+  --audio-player-toggler-rotation-closed: 270deg;
+  --audio-player-toggler-rotation-open: 90deg;
 }
 @media only screen and (max-width: 68.75em) {
   :root {
@@ -3156,11 +3158,17 @@ body {
 }
 
 .audio-player {
+  transform: translateY(100%);
+  transition: transform 0.5s ease, opacity 0.25s ease;
+}
+
+.audio-player {
   --background-color: rgba(var(--color-primary-2-rgb), 1);
   --color: var(--color-primary-4);
   --svg-fill-color: var(--color-primary-4-rgb);
   --svg-active-color: var(--color-primary-3-rgb);
   --svg-size: 7vmin;
+  --toggler-padding: 0.8rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -3173,8 +3181,6 @@ body {
   color: var(--color);
   background-color: var(--background-color);
   z-index: 10;
-  transform: translateY(100%);
-  transition: transform 0.5s ease, opacity 0.25s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .audio-player {
@@ -3185,6 +3191,10 @@ body {
   .audio-player {
     --svg-size: 4.8rem;
   }
+}
+.audio-player__content {
+  width: calc(100% - var(--svg-size) - var(--));
+  max-width: 85rem;
 }
 .audio-player__controls {
   display: flex;
@@ -3226,19 +3236,21 @@ body {
   height: calc(var(--svg-size) * 1.090838207);
 }
 .audio-player__toggler {
-  --padding: 1.6rem * 0.5;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
-  height: calc(100% + var(--svg-size) + var(--padding));
+  height: calc(100% + var(--svg-size) + var(--toggler-padding));
   background-color: var(--background-color);
-  z-index: -1;
   border-radius: 1.6rem;
 }
 .audio-player__toggler svg {
-  transform: rotate(90deg);
+  transition: transform 0.5s ease;
+  transform: rotate(var(--audio-player-toggler-rotation-closed));
   width: calc(var(--svg-size) * 1.131266846);
   height: calc(var(--svg-size) * 1.131266846);
+}
+.audio-player__toggler svg.audio-player__toggler--open {
+  transform: rotate(var(--audio-player-toggler-rotation-open));
 }
 .audio-player__restart {
   width: calc(var(--svg-size) * 0.75);

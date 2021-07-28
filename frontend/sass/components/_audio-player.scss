@@ -13,12 +13,19 @@
 	}
 }
 
+%hidden {
+	transform: translateY(100%);
+	transition: transform $animation-duration $animation-easing-standard,
+		opacity $animation-duration * 0.5 $animation-easing-standard;
+}
+
 .audio-player {
 	--background-color: rgba(var(--color-primary-2-rgb), 1);
 	--color: var(--color-primary-4);
 	--svg-fill-color: var(--color-primary-4-rgb);
 	--svg-active-color: var(--color-primary-3-rgb);
 	--svg-size: 7vmin;
+	--toggler-padding: #{$default-font-size * 0.5};
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -31,12 +38,7 @@
 	color: var(--color);
 	background-color: var(--background-color);
 	z-index: 10;
-	transform: translateY(100%);
-	transition: 
-		transform $animation-duration
-		$animation-easing-standard,
-		opacity $animation-duration * .5 $animation-easing-standard,
-		;
+	@extend %hidden;
 
 	@include respond(nav-switch) {
 		--svg-size: #{$default-font-size * 4};
@@ -44,6 +46,11 @@
 
 	@include respond(small-font) {
 		--svg-size: #{$default-font-size * 3};
+	}
+
+	&__content {
+		width: calc(100% - var(--svg-size) - var(--));
+		max-width: $resume-card-width-full;
 	}
 
 	&__controls {
@@ -101,20 +108,24 @@
 	}
 
 	&__toggler {
-		--padding: #{$default-font-size} * 0.5;
-		position: absolute;
+		position: fixed;
 		bottom: 0;
 		right: 0;
-		height: calc(100% + var(--svg-size) + var(--padding));
+		height: calc(100% + var(--svg-size) + var(--toggler-padding));
 		background-color: var(--background-color);
-		z-index: -1;
+		// z-index: -1;
 		border-radius: $default-font-size;
 
 		& svg {
-			transform: rotate(90deg);
+			transition: transform $animation-duration $animation-easing-standard;
+			transform: rotate(var(--audio-player-toggler-rotation-closed));
 			width: calc(var(--svg-size) * 1.131266846);
 			height: calc(var(--svg-size) * 1.131266846);
 			@extend %svg-behavior;
+
+			&.audio-player__toggler--open {
+				transform: rotate(var(--audio-player-toggler-rotation-open));
+			}
 		}
 	}
 

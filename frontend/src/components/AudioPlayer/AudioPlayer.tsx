@@ -9,6 +9,8 @@ import { AudioItem, AUDIO_LIST_CLASSNAME } from "./AudioList";
 import { getMinuteAndSecondsString } from "./utils";
 
 export const AUDIO_PLAYER_CLASSNAME = "audio-player";
+export const AUDIO_PLAYER_TOGGLER_CLASSNAME = `${AUDIO_PLAYER_CLASSNAME}__toggler`;
+export const AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME = `${AUDIO_PLAYER_TOGGLER_CLASSNAME}--open`;
 
 export interface AudioPlayerProps {
 	currentlyPlayingSound: AudioItem;
@@ -25,14 +27,17 @@ export interface AudioPlayerState {
 	songProgressPercent: number;
 }
 
+export type AudioPlayerAction = "add" | "remove" | "toggle";
+
 class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	seekAmount = 15;
 	id: number;
 	pauseRef: RefObject<HTMLElement>;
 	playRef: RefObject<HTMLElement>;
 	audioPlayerRef: RefObject<HTMLElement>;
+	audioPlayerTogglerSvgRef: RefObject<HTMLElement>;
 	songsOnPage: NodeListOf<Element> | null;
-	shouldShowAudioPlayer = true;
+	shouldShowAudioPlayer = false;
 
 	constructor(props: AudioPlayerProps) {
 		super(props);
@@ -49,6 +54,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		this.pauseRef = createRef();
 		this.playRef = createRef();
 		this.audioPlayerRef = createRef();
+		this.audioPlayerTogglerSvgRef = createRef();
 		this.songsOnPage = null;
 	}
 
@@ -177,8 +183,8 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	}
 
 	handleToggler() {
-		this.toggleAudioPlayer();
 		this.shouldShowAudioPlayer = !this.shouldShowAudioPlayer;
+		this.toggleAudioPlayer();
 	}
 
 	handlePause() {
@@ -282,11 +288,8 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	}
 
 	hideAudioPlayer() {
-		const audioPlayer = this.audioPlayerRef.current as HTMLElement;
-		if (audioPlayer && this.shouldShowAudioPlayer) {
-			audioPlayer.classList.add(HIDDEN_CLASSNAME);
-			audioPlayer.classList.remove(TRANSFORM_NONE_CLASSNAME);
-		}
+		this.handleAudioPlayerTransformNoneClassname("remove");
+		this.handleAudioPlayerTogglerOpenClassname("remove");
 	}
 
 	loadNextSong(isSkipForward = true) {
@@ -327,11 +330,8 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	}
 
 	showAudioPlayer() {
-		const audioPlayer = this.audioPlayerRef.current as HTMLElement;
-		if (audioPlayer && this.shouldShowAudioPlayer) {
-			audioPlayer.classList.remove(HIDDEN_CLASSNAME);
-			audioPlayer.classList.add(TRANSFORM_NONE_CLASSNAME);
-		}
+		this.handleAudioPlayerTransformNoneClassname("add");
+		this.handleAudioPlayerTogglerOpenClassname("add");
 	}
 
 	showPlay() {
@@ -357,24 +357,59 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	};
 
 	toggleAudioPlayer() {
-		const audioPlayer = this.audioPlayerRef.current as HTMLElement;
-		audioPlayer.classList.toggle(HIDDEN_CLASSNAME);
-		audioPlayer.classList.toggle(TRANSFORM_NONE_CLASSNAME);
+		this.handleAudioPlayerTransformNoneClassname("toggle");
+		this.handleAudioPlayerTogglerOpenClassname("toggle");
 	}
 
 	updateElapsedTime(e: Event) {}
 
+	private handleAudioPlayerTogglerOpenClassname(action: AudioPlayerAction) {
+		const audioPlayerToggler = this.audioPlayerTogglerSvgRef
+			.current as HTMLElement;
+		if (audioPlayerToggler) {
+			switch (action) {
+				case "add":
+					audioPlayerToggler.classList.add(AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME);
+					break;
+				case "remove":
+					audioPlayerToggler.classList.remove(
+						AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME,
+					);
+					break;
+				case "toggle":
+					audioPlayerToggler.classList.toggle(
+						AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME,
+					);
+					break;
+			}
+		}
+	}
+
+	private handleAudioPlayerTransformNoneClassname(action: AudioPlayerAction) {
+		const audioPlayer = this.audioPlayerRef.current as HTMLElement;
+		if (audioPlayer) {
+			switch (action) {
+				case "add":
+					audioPlayer.classList.add(TRANSFORM_NONE_CLASSNAME);
+					break;
+				case "remove":
+					audioPlayer.classList.remove(TRANSFORM_NONE_CLASSNAME);
+					break;
+				case "toggle":
+					audioPlayer.classList.toggle(TRANSFORM_NONE_CLASSNAME);
+					break;
+			}
+		}
+	}
+
 	render() {
 		return (
-			<React.Fragment>
-				<div className={`${AUDIO_PLAYER_CLASSNAME}__toggler`}>
-					<svg onClick={(e: any) => this.handleToggler()}>
-						<use xlinkHref="/sprite.svg#icon-forward"></use>
-					</svg>
-				</div>
-				<section
-					ref={this.audioPlayerRef}
-					className={`${AUDIO_PLAYER_CLASSNAME} ${HIDDEN_CLASSNAME}`}>
+			// <React.Fragment>
+
+			<section
+				ref={this.audioPlayerRef as any}
+				className={`${AUDIO_PLAYER_CLASSNAME}`}>
+				<div className={`${AUDIO_PLAYER_CLASSNAME}__content`}>
 					<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
 						<span>Playing:&nbsp;</span>
 						<span>
@@ -445,8 +480,16 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 							<use xlinkHref="/sprite.svg#icon-skip-forward"></use>
 						</svg>
 					</div>
-				</section>
-			</React.Fragment>
+				</div>
+				<div className={`${AUDIO_PLAYER_TOGGLER_CLASSNAME}`}>
+					<svg
+						ref={this.audioPlayerTogglerSvgRef as any}
+						onClick={(e: any) => this.handleToggler()}>
+						<use xlinkHref="/sprite.svg#icon-forward"></use>
+					</svg>
+				</div>
+			</section>
+			// </React.Fragment>
 		);
 	}
 }

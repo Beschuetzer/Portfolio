@@ -74,3 +74,5 @@ mobile issues---------------------
 
 -change scroll sensitivity (have it scroll futher down each scroll)
 -finish toggler for AudioPlayer
+-need to update duration when clicking a song that is already loaded
+-need to handle progress bar click with new width not being window width
