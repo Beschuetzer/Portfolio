@@ -72,9 +72,6 @@ NOT SURE------------------------------------------------------------
 mobile issues---------------------
   -examples link not expanded in navbar
 
--for AudioPlayer__details
--create separate AudioList (where songs are clicked and dispatched to AudioPlayer)
-
 -change scroll sensitivity (have it scroll futher down each scroll)
 -finish toggler for AudioPlayer
 -add css loading spinner when audio loading

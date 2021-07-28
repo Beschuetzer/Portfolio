@@ -43,6 +43,7 @@ import startliteOMB from "../../../music/renaming/Starlite_Five_OMB.mp3";
 import startliteTF from "../../../music/renaming/Starlite_Five_TF.mp3";
 import AudioList from "../../../components/AudioPlayer/AudioList";
 import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
+import LoadingSpinner from "../../../components/loading/LoadingSpinner";
 
 const sectionNames = ["Introduction", "Likes", "Music", "Philosophy"];
 
@@ -240,6 +241,7 @@ interface AboutProps {}
 const About: React.FC<AboutProps> = () => {
 	return (
 		<React.Fragment>
+			<LoadingSpinner/>
 			<CSharpLayout sections={sections} pageName="About">
 				{" "}
 			</CSharpLayout>
