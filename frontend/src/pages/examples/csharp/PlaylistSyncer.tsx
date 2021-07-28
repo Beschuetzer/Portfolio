@@ -87,6 +87,14 @@ const sections: CSharpSection[] = [
 						{
 							itemSrc: demoVideo,
 							description: "Video Demonstration",
+							videoOverlayText: "Transferring Files in a Crisis",
+							videoOverlayChildren: (
+								<div>
+									<CSharpCardSection title="How It Works">
+										The playlist syncer has the ability to transfer songs to either an SD card or the phone's internal memory.  &nbsp; Files in the playlist that are not found in the destination are copied to '/destination/music'. &nbsp; After that .m3u playlist file is transferred to 'destination/music/playlists'.
+									</CSharpCardSection>
+								</div>
+							)
 						},
 						{
 							itemSrc: img1,
@@ -113,24 +121,7 @@ const sections: CSharpSection[] = [
 			</section>
 		]
 	},
-	// {
-	// 	name: sectionNames[2],
-	// 	pageName: C_SHARP_CLASSNAME,
-	// 	children: [
-	// 		<React.Fragment>
-	// 			<CSharpCardSection title="MTP">
-	// 				In order to facilitate the 
-	// 			</CSharpCardSection>
-	// 			<CSharpCardSection title="ANother thing?">
-	// 				What to write here?
-	// 				<EmbeddedLink isLocal={true} href="/examples/playlist-syncer">
-	// 					another problem
-	// 				</EmbeddedLink>
-	// 				I was facing at the time.
-	// 			</CSharpCardSection>
-	// 		</React.Fragment>,
-	// 	],
-	// },
+
 ];
 
 interface PlaylistSyncerProps {

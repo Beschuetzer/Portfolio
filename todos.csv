@@ -77,4 +77,5 @@ mobile issues---------------------
 -change scroll sensitivity (have it scroll futher down each scroll)
 -finish toggler for AudioPlayer
 -add css loading spinner when audio loading
--add overlay text to carousel video items
+-can't have multiple carousels on page due to same css var name
+-progress bar not working
