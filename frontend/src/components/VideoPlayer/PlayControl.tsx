@@ -28,7 +28,6 @@ const PlayControl: React.FC<PlayControlProps> = ({
   let hasProgressEventListener = false;
 
   const handlePlayVideo = (e: MouseEvent) => {
-
 		let container = containerRef && containerRef.current ? containerRef.current : null;
 		
 		if (!container && functionToGetContainer) container = functionToGetContainer(e);

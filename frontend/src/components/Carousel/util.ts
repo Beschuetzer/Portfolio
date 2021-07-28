@@ -321,8 +321,9 @@ export function handleVideo(
 			carouselItem.classList.add(PLAYING_CLASSNAME);
 			video.play();
 			if (handleVideoEnd) video.addEventListener("ended", handleVideoEnd);
-			if (onVideoProgress)
+			if (onVideoProgress) {
 				video.addEventListener("timeupdate", onVideoProgress as any);
+			}
 		}
 	}
 }

@@ -18,9 +18,7 @@ import {
 	toggleLeftAndRightArrows,
 } from "./util";
 import {
-	getIsVideoPlaying,
 	getPercentOfProgressBar,
-	handleVideoProgress,
 } from "../VideoPlayer/utils";
 import { closeCarouselItem } from "../utils";
 import OverlayText from "../OverlayText/OverlayText";
@@ -149,7 +147,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 			videoClassname,
 			foregroundVideoClassname,
 			handleVideoEnd,
-			handleVideoProgress,
+			onVideoProgress as any,
 		);
 		closeCarouselItem(carouselItem, "", true);
 	};

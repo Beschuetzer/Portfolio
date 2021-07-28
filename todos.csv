@@ -78,4 +78,3 @@ mobile issues---------------------
 -finish toggler for AudioPlayer
 -add css loading spinner when audio loading
 -can't have multiple carousels on page due to same css var name
--progress bar not working
