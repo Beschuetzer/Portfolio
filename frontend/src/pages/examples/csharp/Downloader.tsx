@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import Carousel from "../../../components/Carousel/Carousel";
 import CSharpLayout from "./CSharpLayout";
 
@@ -11,6 +11,16 @@ import img5 from "../../../imgs/downloader/img5.png";
 import img6 from "../../../imgs/downloader/img6.png";
 import problemVideo from "../../../clips/downloader/problem.mp4";
 import demoVideo from "../../../clips/downloader/demo.mp4";
+
+import img1Thumbnail from "../../../imgs/downloader/thumbnails/img1-thumbnail.png";
+import img2Thumbnail from "../../../imgs/downloader/thumbnails/img2-thumbnail.png";
+import img3Thumbnail from "../../../imgs/downloader/thumbnails/img3-thumbnail.png";
+import img4Thumbnail from "../../../imgs/downloader/thumbnails/img4-thumbnail.png";
+import img5Thumbnail from "../../../imgs/downloader/thumbnails/img5-thumbnail.png";
+import img6Thumbnail from "../../../imgs/downloader/thumbnails/img6-thumbnail.png";
+
+
+
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
@@ -107,28 +117,34 @@ const sections: CSharpSection[] = [
 						},
 						{
 							itemSrc: img1,
+							itemThumbnailSrc: img1Thumbnail,
 							description: "The User interface",
 						},
 						{
 							itemSrc: img2,
+							itemThumbnailSrc: img2Thumbnail,
 							description: "Options available",
 						},
 						{
 							itemSrc: img3,
+							itemThumbnailSrc: img3Thumbnail,
 							description: "Full-screen user interface when downloading",
 						},
 						{
 							itemSrc: img4,
+							itemThumbnailSrc: img4Thumbnail,
 							description:
 								"Integrated file-renaming tool",
 						},
 						{
 							itemSrc: img5,
+							itemThumbnailSrc: img5Thumbnail,
 							description:
 								"A list of songs from ocremix.org. A pain to download manually...",
 						},
 						{
 							itemSrc: img6,
+							itemThumbnailSrc: img6Thumbnail,
 							description:
 								"Result of using Downloader",
 						},
