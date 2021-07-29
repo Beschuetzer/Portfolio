@@ -8,6 +8,16 @@ import imgProblem from "../../../imgs/playlist-syncer/img-problem.jpg";
 import img2 from "../../../imgs/playlist-syncer/img2.png";
 import img3 from "../../../imgs/playlist-syncer/img3.png";
 import img4 from "../../../imgs/playlist-syncer/img4.png";
+
+import img1Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img1-thumbnail.png";
+import imgProblemThumbnail from "../../../imgs/playlist-syncer/thumbnails/img-problem-thumbnail.jpg";
+import img2Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img2-thumbnail.png";
+import img3Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img3-thumbnail.png";
+import img4Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img4-thumbnail.png";
+
+
+
+
 import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
@@ -82,6 +92,7 @@ const sections: CSharpSection[] = [
 					items={[
 						{
 							itemSrc: imgProblem,
+							itemThumbnailSrc: imgProblemThumbnail,
 							description: "156 songs transferred but an empty playlist...",
 						},
 						{
@@ -98,18 +109,22 @@ const sections: CSharpSection[] = [
 						},
 						{
 							itemSrc: img1,
+							itemThumbnailSrc: img1Thumbnail,
 							description: "The complete user interface",
 						},
 						{
 							itemSrc: img2,
+							itemThumbnailSrc: img2Thumbnail,
 							description: 	"Left-side of UI",
 						},
 						{
 							itemSrc: img3,
+							itemThumbnailSrc: img3Thumbnail,
 							description: "Playlists available section of UI",
 						},
 						{
 							itemSrc: img4,
+							itemThumbnailSrc: img4Thumbnail,
 							description: "Transfer section of UI after transfer",
 						},
 					]}
