@@ -75,5 +75,5 @@ mobile issues---------------------
 -change scroll sensitivity (have it scroll futher down each scroll)
 -finish about content
 -add svg to about
--finish about section
--minify photos
+-finish about section story
+-fix loading bug caused by loading too many songs? (remove the cached songs?)

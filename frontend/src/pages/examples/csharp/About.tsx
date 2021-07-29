@@ -16,31 +16,26 @@ import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import { CSharpSection } from "../../../components/constants";
 
-import earlier1 from "../../../music/renaming/Earlier_01.mp3";
-import earlier2 from "../../../music/renaming/Earlier_02.mp3";
-import earlier3 from "../../../music/renaming/Earlier_03.mp3";
-import earlier5 from "../../../music/renaming/Earlier_05.mp3";
-import earlier6 from "../../../music/renaming/Earlier_06.mp3";
-import earlier7 from "../../../music/renaming/Earlier_07.mp3";
-import earliest1 from "../../../music/renaming/Earliest_01.mp3";
-import earliest2 from "../../../music/renaming/Earliest_02.mp3";
-import earliest3 from "../../../music/renaming/Earliest_03.mp3";
-import othersEC from "../../../music/renaming/Others_EC.mp3";
-import othersHoneyDew from "../../../music/renaming/Others_Honeydew in June.mp3";
-import othersLE from "../../../music/renaming/Others_LE.mp3";
-import othersQC from "../../../music/renaming/Others_QC.mp3";
-import othersReunited from "../../../music/renaming/Others_Reunited.mp3";
-import othersSweet from "../../../music/renaming/Others_Sweet.mp3";
-import selfHDIJB from "../../../music/renaming/Self_HDIJ B.mp3";
-import selfHDICC from "../../../music/renaming/Self_HDICJ C.mp3";
-import selfFD from "../../../music/renaming/Self_FD.mp3";
-import selfHU from "../../../music/renaming/Self_HU.mp3";
-import selfMario from "../../../music/renaming/Self_Mario.mp3";
-import selfRS from "../../../music/renaming/Self_RS.mp3";
-import startliteBISM from "../../../music/renaming/Starlite_Five_BISM.mp3";
-import startliteJam from "../../../music/renaming/Starlite_Five_Jam.mp3";
-import startliteOMB from "../../../music/renaming/Starlite_Five_OMB.mp3";
-import startliteTF from "../../../music/renaming/Starlite_Five_TF.mp3";
+import earlier3 from "../../../music/Earlier_03.mp3";
+import earlier5 from "../../../music/Earlier_05.mp3";
+import earlier6 from "../../../music/Earlier_06.mp3";
+import earlier7 from "../../../music/Earlier_07.mp3";
+import earliest1 from "../../../music/Earliest_01.mp3";
+import earliest2 from "../../../music/Earliest_02.mp3";
+import earliest3 from "../../../music/Earliest_03.mp3";
+import othersEC from "../../../music/Others_EC.mp3";
+import othersLE from "../../../music/Others_LE.mp3";
+import othersQC from "../../../music/Others_QC.mp3";
+import othersReunited from "../../../music/Others_Reunited.mp3";
+import othersSweet from "../../../music/Others_Sweet.mp3";
+import selfHDIJC from "../../../music/Self_HIDJ_C.mp3";
+import selfHU from "../../../music/Self_HU.mp3";
+import selfMario from "../../../music/Self_Mario.mp3";
+import selfRS from "../../../music/Self_RS.mp3";
+import startliteBISM from "../../../music/Starlite_Five_BISM.mp3";
+import startliteJam from "../../../music/Starlite_Five_Jam.mp3";
+import startliteOMB from "../../../music/Starlite_Five_OMB.mp3";
+import startliteTF from "../../../music/Starlite_Five_TF.mp3";
 import AudioList from "../../../components/AudioPlayer/AudioList";
 import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
 import LoadingSpinner from "../../../components/loading/LoadingSpinner";
@@ -161,6 +156,10 @@ const sections: CSharpSection[] = [
 					<AudioList
 						className="margin-top-1"
 						items={[
+							{
+								name: "Adam - Honeydew in June",
+								path: { selfHDIJC },
+							},
 							{
 								name: "Adam - Hopeful Uncertainty",
 								path: { selfHU },
