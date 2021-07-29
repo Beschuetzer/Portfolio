@@ -33,6 +33,9 @@ import imgUserThumbnail from "../../../imgs/replay-viewer/thumbnails/img-user-1-
 import imgStoreThumbnail from "../../../imgs/replay-viewer/thumbnails/img-store-1-thumbnail.png";
 import imgMobile1Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-mobile-1-thumbnail.png";
 import imgMobile2Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-mobile-2-thumbnail.png";
+import clipAnimationsThumbnail from "../../../clips/replay-viewer/thumbnails/animations-thumbnail.png";
+import clipDealPlayerThumbnail from "../../../clips/replay-viewer/thumbnails/deal-player-thumbnail.png";
+import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
 
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
@@ -101,6 +104,7 @@ const sections: CSharpSection[] = [
 						},
 						{
 							itemSrc: clipFilters,
+							itemThumbnailSrc: clipFiltersThumbnail,
 							description: "Applying Filters",
 							videoOverlayText: "Applying Filters",
 							videoOverlayChildren: (
@@ -120,6 +124,7 @@ const sections: CSharpSection[] = [
 						},
 						{
 							itemSrc: clipDealPlayer,
+							itemThumbnailSrc: clipDealPlayerThumbnail,
 							description: "Using the deal player",
 							videoOverlayText: "Watching Replays",
 							videoOverlayChildren: (
@@ -146,6 +151,7 @@ const sections: CSharpSection[] = [
 						},
 						{
 							itemSrc: clipAnimations,
+							itemThumbnailSrc: clipAnimationsThumbnail,
 							description: "Misc. Animations",
 							ideoOverlayText: "Watching Replays",
 							videoOverlayChildren: (
