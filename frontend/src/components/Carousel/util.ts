@@ -40,6 +40,7 @@ export interface CarouselItemProps {
 	foregroundVideoClassname: string | undefined;
 	description: string | undefined;
 	itemSrc: string | undefined;
+	itemThumbnailSrc: string | undefined;
 	leftArrowRef: RefObject<HTMLElement> | undefined;
 	rightArrowRef: RefObject<HTMLElement> | undefined;
 	videoType?: "mp4" | "ogv" | "webm" | "ogg" | undefined;

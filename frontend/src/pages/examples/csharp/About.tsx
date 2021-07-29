@@ -71,20 +71,6 @@ const sections: CSharpSection[] = [
 		],
 	},
 	{
-		//Music (add these songs in the form of an AudioList
-		// ein paar ganz schnelle - 2003,
-		// mario remix - 2004,
-		// adam and linda's song- 2006,
-		// old band practice songs - 2009
-		// luminiscent ether mastered up - 2012,
-		// steve's sweet song original - 2013,
-		// eerie correspondence - 2013,
-		// reunited ozone master - 2013,
-		// hopeful uncertainty mastered - 2013,
-		// honeydew in june b 3rd version - 2014,
-		// relentless shame remastered 2 - 2013,
-		// 4 starlite five songs (sweet jam too, blues is stalking more reverb) - 2015-16
-
 		styles: {
 			position: "relative",
 		},
@@ -240,8 +226,9 @@ interface AboutProps {}
 const About: React.FC<AboutProps> = () => {
 	return (
 		<React.Fragment>
-			<LoadingSpinner/>
+			<LoadingSpinner />
 			<CSharpLayout sections={sections} pageName="About">
+				
 			</CSharpLayout>
 			<AudioPlayer />
 		</React.Fragment>

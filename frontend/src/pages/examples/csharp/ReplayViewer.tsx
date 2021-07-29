@@ -19,11 +19,26 @@ import imgMobile2 from "../../../imgs/replay-viewer/img-mobile-2.png";
 import clipAnimations from "../../../clips/replay-viewer/animations.mp4";
 import clipDealPlayer from "../../../clips/replay-viewer/deal-player.mp4";
 import clipFilters from "../../../clips/replay-viewer/filters.mp4";
+
+import img1Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-1-thumbnail.png";
+import img2Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-2-thumbnail.png";
+import img3Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-3-thumbnail.png";
+import img4Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-4-thumbnail.png";
+import img5Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-5-thumbnail.png";
+import img6Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-6-thumbnail.png";
+import img7Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-7-thumbnail.png";
+import imgDealThumbnail from "../../../imgs/replay-viewer/thumbnails/img-deal-1-thumbnail.png";
+import imgGameThumbnail from "../../../imgs/replay-viewer/thumbnails/img-game-1-thumbnail.png";
+import imgUserThumbnail from "../../../imgs/replay-viewer/thumbnails/img-user-1-thumbnail.png";
+import imgStoreThumbnail from "../../../imgs/replay-viewer/thumbnails/img-store-1-thumbnail.png";
+import imgMobile1Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-mobile-1-thumbnail.png";
+import imgMobile2Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-mobile-2-thumbnail.png";
+
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
 import {
-	closeCarouselItem as closeCarouselItem,
+	closeCarouselItem,
 	functionToGetContainer,
 } from "../../../components/utils";
 import {
@@ -81,93 +96,127 @@ const sections: CSharpSection[] = [
 					items={[
 						{
 							itemSrc: img1,
+							itemThumbnailSrc: img1Thumbnail,
 							description: "First impressions matter.",
 						},
 						{
 							itemSrc: clipFilters,
 							description: "Applying Filters",
 							videoOverlayText: "Applying Filters",
-							videoOverlayChildren: <div>
-								<CSharpCardSection title="Contract is 1&clubs;">
-									The first part of the video highlights the process of applying the contract matching filter.&nbsp;  There are two matches found. 
-								</CSharpCardSection>
-								<CSharpCardSection title="Two Filters = Double the Filtering">
-									The second filter applied requires 'Ann' to have the 2&clubs;.  In one of the filtered games, she does and in the other one she doesn't.  
-								</CSharpCardSection>
-							</div>,
+							videoOverlayChildren: (
+								<div>
+									<CSharpCardSection title="Contract is 1&clubs;">
+										The first part of the video highlights the process of
+										applying the contract matching filter.&nbsp; There are two
+										matches found.
+									</CSharpCardSection>
+									<CSharpCardSection title="Two Filters = Double the Filtering">
+										The second filter applied requires 'Ann' to have the
+										2&clubs;. In one of the filtered games, she does and in the
+										other one she doesn't.
+									</CSharpCardSection>
+								</div>
+							),
 						},
 						{
 							itemSrc: clipDealPlayer,
 							description: "Using the deal player",
 							videoOverlayText: "Watching Replays",
-							videoOverlayChildren: <div>
-								<CSharpCardSection title="Critical Analysis">
-									One of the main reasons I created the <EmbeddedLink isLocal={false} href={REPLAYS_URL}>Replay Viewer</EmbeddedLink> was to be able to easily review the trick-taking phase of games completed on <EmbeddedLink isLocal={false} href={BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>.
-								</CSharpCardSection>
-								<CSharpCardSection title="Viewing Options">
-									There are two ways to get to the questionable play:&nbsp;  by turning on auto play or by skipping ahead to the trick in question.  
-								</CSharpCardSection>
-							</div>,
+							videoOverlayChildren: (
+								<div>
+									<CSharpCardSection title="Critical Analysis">
+										One of the main reasons I created the{" "}
+										<EmbeddedLink isLocal={false} href={REPLAYS_URL}>
+											Replay Viewer
+										</EmbeddedLink>{" "}
+										was to be able to easily review the trick-taking phase of
+										games completed on{" "}
+										<EmbeddedLink isLocal={false} href={BRIDGE_URL}>
+											A# Maj Bridge
+										</EmbeddedLink>
+										.
+									</CSharpCardSection>
+									<CSharpCardSection title="Viewing Options">
+										There are two ways to get to the questionable play:&nbsp; by
+										turning on auto play or by skipping ahead to the trick in
+										question.
+									</CSharpCardSection>
+								</div>
+							),
 						},
 						{
 							itemSrc: clipAnimations,
 							description: "Misc. Animations",
 							ideoOverlayText: "Watching Replays",
-							videoOverlayChildren: <div>
-								<CSharpCardSection title="Cherry on Top">
-									Animations can turn a boring app into an interesting one, assuming the user experience is good.  
-								</CSharpCardSection>
-							</div>,
+							videoOverlayChildren: (
+								<div>
+									<CSharpCardSection title="Cherry on Top">
+										Animations can turn a boring app into an interesting one,
+										assuming the user experience is good.
+									</CSharpCardSection>
+								</div>
+							),
 						},
 						{
 							itemSrc: img2,
+							itemThumbnailSrc: img2Thumbnail,
 							description: "Overall Layout",
 						},
 						{
 							itemSrc: img3,
+							itemThumbnailSrc: img3Thumbnail,
 							description: "Filters en masse",
 						},
 						{
 							itemSrc: img4,
+							itemThumbnailSrc: img4Thumbnail,
 							description: "Filters applied and results shown.",
 						},
 						{
 							itemSrc: img5,
+							itemThumbnailSrc: img5Thumbnail,
 							description: "Game detail screen collapsed",
 						},
 						{
 							itemSrc: img6,
+							itemThumbnailSrc: img6Thumbnail,
 							description: "Game detail screen expanded",
 						},
 						{
 							itemSrc: img7,
+							itemThumbnailSrc: img7Thumbnail,
 							description: "Deal player layout",
 						},
 						{
 							itemSrc: imgMobile1,
+							itemThumbnailSrc: imgMobile1Thumbnail,
 							description: "Mobile game detail",
 						},
 						{
 							itemSrc: imgMobile2,
+							itemThumbnailSrc: imgMobile2Thumbnail,
 							description: "Mobile deal player",
 						},
 						{
 							itemSrc: imgStore,
+							itemThumbnailSrc: imgStoreThumbnail,
 							description: "What the store looks like",
 						},
 						{
 							itemSrc: imgGame,
+							itemThumbnailSrc: imgGameThumbnail,
 							description: "Example of a game cached in local storage",
 						},
 						{
 							itemSrc: imgDeal,
+							itemThumbnailSrc: imgDealThumbnail,
 							description: "Example of a deal cached in local storage",
 						},
 						{
 							itemSrc: imgUser,
+							itemThumbnailSrc: imgUserThumbnail,
 							description: "Example of a user cached in local storage",
 						},
-
 					]}
 					numberOfItemsInCarouselAtOneTime="3"
 					numberOfItemsToScrollOnClick="3"

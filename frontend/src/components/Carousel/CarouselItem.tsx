@@ -23,6 +23,7 @@ import {
 import { closeCarouselItem } from "../utils";
 import OverlayText from "../OverlayText/OverlayText";
 import { FILL_RED_CLASSNAME } from "../constants";
+import { useState } from "react";
 
 export const FULLSCREEN_CLASSNAME = "full-screen";
 export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
@@ -46,6 +47,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	foregroundVideoClassname = FOREGROUND_VIDEO_CLASSNAME,
 	description: imageAlt,
 	itemSrc,
+	itemThumbnailSrc,
 	leftArrowRef,
 	rightArrowRef,
 	videoType = "mp4",
@@ -65,6 +67,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	functionToRunOnClose,
 	functionToGetContainer,
 }) => {
+	const [isFullScreen, setIsFullScreen] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const containerRef = useRef<HTMLElement>(null);
 	const progressBarRef = useRef<HTMLProgressElement>(null);
@@ -150,6 +153,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 			onVideoProgress as any,
 		);
 		closeCarouselItem(carouselItem, "", true);
+		setIsFullScreen(true);
 	};
 
 	const onProgressBarClick = (e: MouseEvent) => {
@@ -179,7 +183,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
 	let mediaToAdd = (
 		<img
-			src={itemSrc}
+			src={isFullScreen ? itemSrc : itemThumbnailSrc}
 			className={`${imageClassname}`}
 			alt={imageAlt}
 			onClick={(e: any) => onItemClick(e)}

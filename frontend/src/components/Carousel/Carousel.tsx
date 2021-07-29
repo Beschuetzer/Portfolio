@@ -189,6 +189,7 @@ const Carousel: React.FC<CarouselProps> = ({
 					: undefined,
 				description: item.description ? item.description : undefined,
 				itemSrc: item.itemSrc ? item.itemSrc : undefined,
+				itemThumbnailSrc: item.itemThumbnailSrc ? item.itemThumbnailSrc : undefined,
 				leftArrowRef: leftArrowRef,
 				rightArrowRef: rightArrowRef,
 				videoType: item.videoType ? item.videoType : undefined,
