@@ -77,6 +77,4 @@ mobile issues---------------------
 -add svg to about
 -finish about section story
 -fix loading bug caused by loading too many songs? (remove the cached songs?)
--figure out how to add carousel thumbnails for videos and then stream video on opening
--add thumbnails for /bridge videos?
--add thumbnails for all carousel videos?
+-fix bug causing bottom card on /bridge to center incorrectly
