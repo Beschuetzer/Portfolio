@@ -148,7 +148,6 @@ const textSizeScaleFactor = getLinearPercentOfMaxMatchWithinRange(
 	0.0066,
 	0.0038,
 );
-console.log("textSizeScaleFactor =", textSizeScaleFactor);
 // const textSizeScaleFactor = isMobile ? .0066 : 0.0036;
 const defaultTextSize = window.innerWidth * textSizeScaleFactor;
 const defaultTextHeight = 1;
@@ -158,7 +157,7 @@ const lineStart = 172;
 
 const textsToUse = [
 	{
-		text: "Hello!  My name is",
+		text: "Welcome!  My name is",
 		spaceBefore: false,
 	},
 	{
@@ -166,21 +165,29 @@ const textsToUse = [
 		spaceBefore: false,
 	},
 	{
-		text: "my portfolio!",
+		text: "my portfolio.",
 		spaceBefore: false,
 	},
 	{
-		text: "i recently changed my",
+		text: "i build apps",
 		spaceBefore: true,
 	},
 	{
-		text: "life by deciding to",
+		text: "to solve problems.",
 		spaceBefore: false,
 	},
-	{
-		text: "become a web developer.",
-		spaceBefore: false,
-	},
+	// {
+	// 	text: "i recently changed my",
+	// 	spaceBefore: true,
+	// },
+	// {
+	// 	text: "life by deciding to",
+	// 	spaceBefore: false,
+	// },
+	// {
+	// 	text: "become a web developer.",
+	// 	spaceBefore: false,
+	// },
 	// {
 	// 	text: "i am excited",
 	// 	spaceBefore: true,
@@ -194,17 +201,29 @@ const textsToUse = [
 	// 	spaceBefore: false,
 	// },
 	{
-		text: "Everything on this site",
+		text: "This site highlights some of",
 		spaceBefore: true,
 	},
 	{
-		text: "was built using 'hand-made'",
+		text: "the problems i have solved",
 		spaceBefore: false,
 	},
 	{
-		text: "components and SASS/CSS",
+		text: "using my web dev skills.",
 		spaceBefore: false,
 	},
+	// {
+	// 	text: "Everything on this site",
+	// 	spaceBefore: true,
+	// },
+	// {
+	// 	text: "was built using 'hand-made'",
+	// 	spaceBefore: false,
+	// },
+	// {
+	// 	text: "components and SASS/CSS",
+	// 	spaceBefore: false,
+	// },
 	{
 		text: "i Look forward to",
 		spaceBefore: true,
@@ -238,7 +257,7 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 const animationFPS = 60.0;
 export let timeElapsedInMS = 0;
 export const introPanDuration = 5000;
-const lineScrollDuration = 1650;
+const lineScrollDuration = 1500;
 export const introPanDurationMobile = linesOfText * lineScrollDuration;
 ;
 export const introPanStartWait = isMobile
