@@ -1,4 +1,4 @@
-import React, { CSSProperties, useRef } from "react";
+import React, { useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import CarouselItem, {
 	FULLSCREEN_CLASSNAME,
@@ -32,6 +32,7 @@ import {
 	getArrangedItems,
 } from "./util";
 import { ArrowButtonDirection } from "../constants";
+import { useState } from "react";
 
 interface CarouselProps {
 	viewPortWidth: number;

@@ -24,6 +24,7 @@ import { closeCarouselItem } from "../utils";
 import OverlayText from "../OverlayText/OverlayText";
 import { FILL_RED_CLASSNAME } from "../constants";
 import { useState } from "react";
+import { useEffect } from "react";
 
 export const FULLSCREEN_CLASSNAME = "full-screen";
 export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
@@ -67,6 +68,12 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	functionToRunOnClose,
 	functionToGetContainer,
 }) => {
+
+	useEffect(() => {
+		console.log('changing item------------------------------------------------');
+	})
+
+
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const containerRef = useRef<HTMLElement>(null);
