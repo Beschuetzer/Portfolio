@@ -45,12 +45,13 @@ export interface Reference {
   current: HTMLElement;
 }
 
-export type CSharpSection = {
-	name: string,
-	pageName: string,
-	children: any[],
-	styles?: CSSProperties,
-}
+export interface CSharpSection {
+	name: string;
+	pageName: string;
+	children: any[];
+  hasCarousel?: boolean;
+	styles?: CSSProperties;
+};
 
 export type ArrowButtonDirection = 'left' | 'right';
 

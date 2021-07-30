@@ -3,6 +3,8 @@ import { capitalize, replaceCharacters } from "../../../helpers";
 import Section from "../../../components/Section";
 import SourceCodeLink from "../../../components/SourceCodeLink";
 import { C_SHARP_CLASSNAME } from "./utils";
+import { CSharpSection } from "../../../components/constants";
+
 
 interface CSharpLayoutProps {
 	pageName: string;
@@ -11,7 +13,7 @@ interface CSharpLayoutProps {
 	demoLink?: string;
 	demoMsg?: string;
 	href?: string;
-	sections: any[];
+	sections: CSharpSection[];
 	children: any;
 }
 
@@ -27,13 +29,17 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 }) => {
 	function renderSections() {
 		return sections.map((section, index) => {
+			if (section.hasCarousel) {
+				section.styles = {...section.styles, position: 'relative'};
+			}
+
 			return (
 				<Section
 					key={index}
 					name={section.name}
 					pageName={section.pageName}
 					styles={section.styles}>
-					{section.children.map((child: Element, index: number) => {
+					{(section.children as any).map((child: any, index: number) => {
 						return <React.Fragment key={index}>{child}</React.Fragment>;
 					})}
 				</Section>

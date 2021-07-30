@@ -310,11 +310,10 @@ const sections: CSharpSection[] = [
 				{likesCarousel}
 			</React.Fragment>,
 		],
+		hasCarousel: true,
 	},
 	{
-		styles: {
-			position: "relative",
-		},
+		hasCarousel: true,
 		name: sectionNames[1],
 		pageName: C_SHARP_CLASSNAME,
 		children: [],

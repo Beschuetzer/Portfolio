@@ -90,4 +90,3 @@ multiple carousels causes issues---------
   -one button works on all carousels
   -number of items not correct
   -dots not reacting properly
-  -z-index not correct for about ones (need to add position: relative to hosting section) (currently any section with a carousel need to have style of 'position: relative' set to work properly)
