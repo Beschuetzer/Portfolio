@@ -48,6 +48,13 @@
 		--svg-size: #{$default-font-size * 3};
 	}
 
+	&__checkbox-label {
+		position: absolute;
+		top: 50%;
+		right: 0%;
+		transform: translate(-50%, -50%);
+	}
+
 	&__content {
 		max-width: $resume-card-width-full;
 		width: 100%;

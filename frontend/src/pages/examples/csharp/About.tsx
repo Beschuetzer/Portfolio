@@ -36,9 +36,84 @@ import startliteBISM from "../../../music/Starlite_Five_BISM.mp3";
 import startliteJam from "../../../music/Starlite_Five_Jam.mp3";
 import startliteOMB from "../../../music/Starlite_Five_OMB.mp3";
 import startliteTF from "../../../music/Starlite_Five_TF.mp3";
+
+import germany01 from "../../../imgs/about/germany-01.jpg";
+import germany02 from "../../../imgs/about/germany-02.jpg";
+import germany03 from "../../../imgs/about/germany-03.jpg";
+import germany04 from "../../../imgs/about/germany-04.jpg";
+import germany05 from "../../../imgs/about/germany-05.jpg";
+import germany06 from "../../../imgs/about/germany-06.jpg";
+import germany07 from "../../../imgs/about/germany-07.jpg";
+import germany08 from "../../../imgs/about/germany-08.jpg";
+import germany09 from "../../../imgs/about/germany-09.jpg";
+
+import germany01Thumbnail from "../../../imgs/about/thumbnails/germany-01-thumbnail.jpg";
+import germany02Thumbnail from "../../../imgs/about/thumbnails/germany-02-thumbnail.jpg";
+import germany03Thumbnail from "../../../imgs/about/thumbnails/germany-03-thumbnail.jpg";
+import germany04Thumbnail from "../../../imgs/about/thumbnails/germany-04-thumbnail.jpg";
+import germany05Thumbnail from "../../../imgs/about/thumbnails/germany-05-thumbnail.jpg";
+import germany06Thumbnail from "../../../imgs/about/thumbnails/germany-06-thumbnail.jpg";
+import germany07Thumbnail from "../../../imgs/about/thumbnails/germany-07-thumbnail.jpg";
+import germany08Thumbnail from "../../../imgs/about/thumbnails/germany-08-thumbnail.jpg";
+import germany09Thumbnail from "../../../imgs/about/thumbnails/germany-09-thumbnail.jpg";
+
 import AudioList from "../../../components/AudioPlayer/AudioList";
 import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
 import LoadingSpinner from "../../../components/loading/LoadingSpinner";
+import Carousel from "../../../components/Carousel/Carousel";
+
+const germanyCarousel = (
+	<section className="csharp__carousel margin-0 padding-top-0">
+		<Carousel
+			items={[
+				{
+					itemSrc: germany06,
+					itemThumbnailSrc: germany06Thumbnail,
+					description: "Residence and its caretaker",
+				},
+				{
+					itemSrc: germany01,
+					itemThumbnailSrc: germany01Thumbnail,
+					description: "A Family I had the pleasure of meeting",
+				},
+				{
+					itemSrc: germany02,
+					itemThumbnailSrc: germany02Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: germany03,
+					itemThumbnailSrc: germany03Thumbnail,
+					description: "Sunset in Hungary on the Balaton See",
+				},
+				{
+					itemSrc: germany04,
+					itemThumbnailSrc: germany04Thumbnail,
+					description: "Morning in South Tirol, Italy",
+				},
+				{
+					itemSrc: germany05,
+					itemThumbnailSrc: germany05Thumbnail,
+					description: "Not much left of the old city in Nuernberg",
+				},
+				{
+					itemSrc: germany07,
+					itemThumbnailSrc: germany07Thumbnail,
+					description: "The pain is real even if the equipment is not",
+				},
+				{
+					itemSrc: germany09,
+					itemThumbnailSrc: germany09Thumbnail,
+					description: "Shields only work if you know how to use them",
+				},
+				{
+					itemSrc: germany08,
+					itemThumbnailSrc: germany08Thumbnail,
+					description: "WanderTag!  (Learn by doing)",
+				},
+			]}></Carousel>
+	</section>
+);
 
 const sectionNames = ["Introduction", "Likes", "Music", "Philosophy"];
 
@@ -67,6 +142,7 @@ const sections: CSharpSection[] = [
 					even though I had a thing for programming.&nbsp;, and I finally
 					realized that this may be my last chance to become a programmer.&nbsp;
 				</CSharpCardSection>
+				{germanyCarousel}
 			</React.Fragment>,
 		],
 	},
@@ -181,10 +257,10 @@ const sections: CSharpSection[] = [
 						]}
 					/>
 				</CSharpCardSection>
-				<CSharpCardSection title="Trying to Make It">
+				<CSharpCardSection title="Making the Most of It">
 					For a few years, I whole-heartily pursued the idea of becoming a
 					recording/mixing engineer.&nbsp; Unfortunately, devotion doesn't
-					always make up for lack of skill:
+					always make up for lack of skill and connections:
 					<AudioList
 						className="margin-top-1"
 						items={[
@@ -227,9 +303,7 @@ const About: React.FC<AboutProps> = () => {
 	return (
 		<React.Fragment>
 			<LoadingSpinner />
-			<CSharpLayout sections={sections} pageName="About">
-				
-			</CSharpLayout>
+			<CSharpLayout sections={sections} pageName="About"></CSharpLayout>
 			<AudioPlayer />
 		</React.Fragment>
 	);

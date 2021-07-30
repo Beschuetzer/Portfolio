@@ -40,6 +40,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	shouldShowAudioPlayer = false;
 	updateInterval: any;
 	updateRate = 125;
+	hasShownPlayer = false;
 
 	constructor(props: AudioPlayerProps) {
 		super(props);
@@ -85,7 +86,10 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		}
 
 		if (nextProps.currentlyPlayingSound) {
-			this.showAudioPlayer();
+			if (!this.hasShownPlayer) {
+				this.showAudioPlayer();
+				this.hasShownPlayer = true;
+			}
 
 			const playingHowl = this.getPlayingHowl();
 			if (playingHowl) playingHowl.stop();
@@ -504,6 +508,15 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 						<use xlinkHref="/sprite.svg#icon-forward"></use>
 					</svg>
 				</div>
+				{/* <label
+						className={`${AUDIO_PLAYER_CLASSNAME}__checkbox-label`}
+				>
+					
+					<input
+						type="checkbox"
+					/>
+					Keep Closed?
+				</label> */}
 			</section>
 		);
 	}
