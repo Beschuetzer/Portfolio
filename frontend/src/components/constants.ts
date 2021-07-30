@@ -27,7 +27,6 @@ export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const PAGE_NAV_WIDTH_AT_SWITCH_OFFSET = 192;
 export let computedStyle = getComputedStyle(document.documentElement);
 export const PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME = '--page-nav-min-column-width';
-export const CAROUSEL_GRID_MAX_COLUMN_WIDTH_CSS_PROPERTY_NAME = '--carousel-grid-max-column-width';
 export const AUDIO_PLAYER_TOGGLER_ROTATION_CLOSED_CSS_PROPERTY_NAME = '--audio-player-toggler-rotation-closed';
 export const AUDIO_PLAYER_TOGGLER_ROTATION_OPEN_CSS_PROPERTY_NAME = '--audio-player-toggler-rotation-open';
 
@@ -67,7 +66,6 @@ export const bigDesktopPixelMin = parseFloat(computedStyle.getPropertyValue('--b
 export const siteNavOriginalButtonWidth = computedStyle.getPropertyValue('--site-nav-button-width');
 export const bridgeSectionHeightDefault = computedStyle.getPropertyValue('--bridge-section-height');
 export const bridgeSectionPaddingDefault = computedStyle.getPropertyValue('--bridge-section-padding');
-export const carouselGridMaxColumnWidthDefault = computedStyle.getPropertyValue('--carousel-grid-max-column-width');
 export const carouselGridWidth = computedStyle.getPropertyValue('--carousel-grid-width');
 
 

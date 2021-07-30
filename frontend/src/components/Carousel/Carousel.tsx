@@ -28,10 +28,10 @@ import {
 	resetCarouselVideo,
 	CAROUSEL_VIDEO_CLASSNAME,
 	getCarouselGridMaxColumnWidth,
+	CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT,
 } from "./util";
 import {
 	ArrowButtonDirection,
-	carouselGridMaxColumnWidthDefault,
 } from "../constants";
 
 interface CarouselProps {
@@ -255,7 +255,7 @@ const Carousel: React.FC<CarouselProps> = ({
 		const maxWidth = getCarouselGridMaxColumnWidth(items.length);
 
 		let numberOfRows = 1;
-		if (maxWidth !== carouselGridMaxColumnWidthDefault) numberOfRows = 2;
+		if (maxWidth !== CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT) numberOfRows = 2;
 
 		return items.map((image, index) => {
 			const indexToUse = index % numberOfRows;

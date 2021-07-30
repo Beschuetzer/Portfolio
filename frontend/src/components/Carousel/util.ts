@@ -1,7 +1,6 @@
 import { CSSProperties, RefObject } from "react";
 import {
 	ArrowButtonDirection,
-	carouselGridMaxColumnWidthDefault,
 	carouselGridWidth,
 	HIDDEN_CLASSNAME,
 } from "../constants";
@@ -23,6 +22,7 @@ export const CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME = `${CAROUSEL_ARROW_BUTTONS_CL
 export const CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME = `${CAROUSEL_ARROW_BUTTONS_CLASSNAME}--right`;
 export const CAROUSEL_MIN_IMAGE_COUNT = 0;
 
+export const CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT = "1.6rem";
 export const CAROUSEL_GRID_MAX_COLUMN_WIDTHS: [number, string][] = [
 	//1st index is number of items and second is the width
 	[7, "15rem"],
@@ -89,7 +89,7 @@ export function setArrowButtonsHiddenClass(
 	let numberOfRows = 1;
 	if (
 		getCarouselGridMaxColumnWidth(maxImageCount + 1) !==
-		carouselGridMaxColumnWidthDefault
+		CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT
 	)
 		numberOfRows = 2;
 
@@ -355,7 +355,6 @@ export function resetCarouselVideo(
 export function getCarouselGridMaxColumnWidth(numberOfItemsInCarousel: number) {
 	if (numberOfItemsInCarousel === undefined || numberOfItemsInCarousel === null)
 		return;
-
 	const firstItem = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[0];
 	const lastItem =
 		CAROUSEL_GRID_MAX_COLUMN_WIDTHS[CAROUSEL_GRID_MAX_COLUMN_WIDTHS.length - 1];
@@ -363,7 +362,7 @@ export function getCarouselGridMaxColumnWidth(numberOfItemsInCarousel: number) {
 	let valueToUse = "-1";
 
 	if (numberOfItemsInCarousel < firstItem[0])
-		return carouselGridMaxColumnWidthDefault;
+		return CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT;
 	if (numberOfItemsInCarousel >= lastItem[0]) return lastItem[1];
 
 	for (let i = 0; i < CAROUSEL_GRID_MAX_COLUMN_WIDTHS.length - 1; i++) {

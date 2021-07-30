@@ -86,4 +86,4 @@ Of course, there can be variation, but the most important thing is to try to ide
 --------------------------------------------
 
 multiple carousels causes issues---------
-  //todo: remove item-translation and grid-max-column vars when done
+  -carousel items are not in expected order
