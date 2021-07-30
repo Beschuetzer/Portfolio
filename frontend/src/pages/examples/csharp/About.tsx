@@ -14,7 +14,7 @@ import React from "react";
 import CSharpLayout from "./CSharpLayout";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
-import { CSharpSection } from "../../../components/constants";
+import { CSharpSection, GERMANY_APP_URL } from "../../../components/constants";
 
 import earlier3 from "../../../music/Earlier_03.mp3";
 import earlier5 from "../../../music/Earlier_05.mp3";
@@ -46,6 +46,23 @@ import germany06 from "../../../imgs/about/germany-06.jpg";
 import germany07 from "../../../imgs/about/germany-07.jpg";
 import germany08 from "../../../imgs/about/germany-08.jpg";
 import germany09 from "../../../imgs/about/germany-09.jpg";
+import joshuaTree01 from "../../../imgs/about/joshua-tree-01.jpg";
+import joshuaTree02 from "../../../imgs/about/joshua-tree-02.jpg";
+import maui01 from "../../../imgs/about/maui-01.jpg";
+import maui02 from "../../../imgs/about/maui-02.jpg";
+import maui03 from "../../../imgs/about/maui-03.jpg";
+import maui04 from "../../../imgs/about/maui-04.jpg";
+import maui05 from "../../../imgs/about/maui-05.jpg";
+import maui06 from "../../../imgs/about/maui-06.jpg";
+import maui07 from "../../../imgs/about/maui-07.jpg";
+import molokai01 from "../../../imgs/about/molokai-01.jpg";
+import molokai02 from "../../../imgs/about/molokai-02.jpg";
+import molokai03 from "../../../imgs/about/molokai-03.jpg";
+import molokai04 from "../../../imgs/about/molokai-04.jpg";
+import molokai05 from "../../../imgs/about/molokai-05.jpg";
+import oregon01 from "../../../imgs/about/oregon-01.jpg";
+import oregon02 from "../../../imgs/about/oregon-02.jpg";
+import oregon03 from "../../../imgs/about/oregon-03.jpg";
 
 import germany01Thumbnail from "../../../imgs/about/thumbnails/germany-01-thumbnail.jpg";
 import germany02Thumbnail from "../../../imgs/about/thumbnails/germany-02-thumbnail.jpg";
@@ -56,14 +73,38 @@ import germany06Thumbnail from "../../../imgs/about/thumbnails/germany-06-thumbn
 import germany07Thumbnail from "../../../imgs/about/thumbnails/germany-07-thumbnail.jpg";
 import germany08Thumbnail from "../../../imgs/about/thumbnails/germany-08-thumbnail.jpg";
 import germany09Thumbnail from "../../../imgs/about/thumbnails/germany-09-thumbnail.jpg";
+import joshuaTree01Thumbnail from "../../../imgs/about/thumbnails/joshua-tree-01-thumbnail.jpg";
+import joshuaTree02Thumbnail from "../../../imgs/about/thumbnails/joshua-tree-02-thumbnail.jpg";
+import maui01Thumbnail from "../../../imgs/about/thumbnails/maui-01-thumbnail.jpg";
+import maui02Thumbnail from "../../../imgs/about/thumbnails/maui-02-thumbnail.jpg";
+import maui03Thumbnail from "../../../imgs/about/thumbnails/maui-03-thumbnail.jpg";
+import maui04Thumbnail from "../../../imgs/about/thumbnails/maui-04-thumbnail.jpg";
+import maui05Thumbnail from "../../../imgs/about/thumbnails/maui-05-thumbnail.jpg";
+import maui06Thumbnail from "../../../imgs/about/thumbnails/maui-06-thumbnail.jpg";
+import maui07Thumbnail from "../../../imgs/about/thumbnails/maui-07-thumbnail.jpg";
+import molokai01Thumbnail from "../../../imgs/about/thumbnails/molokai-01-thumbnail.jpg";
+import molokai02Thumbnail from "../../../imgs/about/thumbnails/molokai-02-thumbnail.jpg";
+import molokai03Thumbnail from "../../../imgs/about/thumbnails/molokai-03-thumbnail.jpg";
+import molokai04Thumbnail from "../../../imgs/about/thumbnails/molokai-04-thumbnail.jpg";
+import molokai05Thumbnail from "../../../imgs/about/thumbnails/molokai-05-thumbnail.jpg";
+import oregon01Thumbnail from "../../../imgs/about/thumbnails/oregon-01-thumbnail.jpg";
+import oregon02Thumbnail from "../../../imgs/about/thumbnails/oregon-02-thumbnail.jpg";
+import oregon03Thumbnail from "../../../imgs/about/thumbnails/oregon-03-thumbnail.jpg";
 
 import AudioList from "../../../components/AudioPlayer/AudioList";
 import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
 import LoadingSpinner from "../../../components/loading/LoadingSpinner";
 import Carousel from "../../../components/Carousel/Carousel";
+import {
+	closeCarouselItem,
+	functionToGetContainer,
+} from "../../../components/utils";
+import EmbeddedLink from "../../../components/EmbeddedLink";
+
+const sectionNames = ["Backstory", "Likes", "Music"];
 
 const germanyCarousel = (
-	<section className="csharp__carousel margin-0 padding-top-0">
+	<section className="csharp__carousel padding-top-0">
 		<Carousel
 			items={[
 				{
@@ -111,11 +152,118 @@ const germanyCarousel = (
 					itemThumbnailSrc: germany08Thumbnail,
 					description: "WanderTag!  (Learn by doing)",
 				},
-			]}></Carousel>
+			]}
+			numberOfItemsInCarouselAtOneTime="3"
+			numberOfItemsToScrollOnClick="3"
+			functionToGetContainer={functionToGetContainer}
+			functionToRunOnClose={closeCarouselItem.bind(
+				null,
+				null as any,
+				`#${sectionNames[0].toLowerCase()}`,
+			)}></Carousel>
 	</section>
 );
 
-const sectionNames = ["Introduction", "Likes", "Music", "Philosophy"];
+const likesCarousel = (
+	<section className="csharp__carousel">
+		<Carousel
+			items={[
+				{
+					itemSrc: joshuaTree01,
+					itemThumbnailSrc: joshuaTree01Thumbnail,
+					description: "Residence and its caretaker",
+				},
+				{
+					itemSrc: joshuaTree02,
+					itemThumbnailSrc: joshuaTree02Thumbnail,
+					description: "A Family I had the pleasure of meeting",
+				},
+				{
+					itemSrc: molokai01,
+					itemThumbnailSrc: molokai01Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: molokai02,
+					itemThumbnailSrc: molokai02Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: molokai03,
+					itemThumbnailSrc: molokai03Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: molokai04,
+					itemThumbnailSrc: molokai04Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: molokai05,
+					itemThumbnailSrc: molokai05Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: maui01,
+					itemThumbnailSrc: maui01Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: maui02,
+					itemThumbnailSrc: maui02Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: maui03,
+					itemThumbnailSrc: maui03Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: maui04,
+					itemThumbnailSrc: maui04Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: maui05,
+					itemThumbnailSrc: maui05Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: maui06,
+					itemThumbnailSrc: maui06Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: maui07,
+					itemThumbnailSrc: maui07Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: oregon01,
+					itemThumbnailSrc: oregon01Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: oregon02,
+					itemThumbnailSrc: oregon02Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+				{
+					itemSrc: oregon03,
+					itemThumbnailSrc: oregon03Thumbnail,
+					description: "The path (learning) is a never-ending",
+				},
+			]}
+			numberOfItemsInCarouselAtOneTime="3"
+			numberOfItemsToScrollOnClick="3"
+			functionToGetContainer={functionToGetContainer}
+			functionToRunOnClose={closeCarouselItem.bind(
+				null,
+				null as any,
+				`#${sectionNames[0].toLowerCase()}`,
+			)}></Carousel>
+	</section>
+);
 
 const sections: CSharpSection[] = [
 	{
@@ -142,7 +290,24 @@ const sections: CSharpSection[] = [
 					even though I had a thing for programming.&nbsp;, and I finally
 					realized that this may be my last chance to become a programmer.&nbsp;
 				</CSharpCardSection>
-				{germanyCarousel}
+
+				<CSharpCardSection title="More than You Need to Know">
+					"Anyone who stops learning is old, whether at twenty or eighty. Anyone
+					who keeps learning stays young." - Henry Ford The above quote sheds a
+					lot of light onto the choices I have made in my life. After I
+					graduated high school, I wanted to learn more about the world and its
+					inhabitants (a desire that was fostered by my People to People
+					experience to England, Ireland, and Whales in 10th Grade). To this
+					end, I 
+					<EmbeddedLink isLocal={false} href={GERMANY_APP_URL}>
+						applied
+					</EmbeddedLink> to a posting I found online for an English Assistant at a boarding
+					school in Thuringia, Germany:
+					{germanyCarousel}
+					As a result of this experience, I learned a lot about myself, my prior
+					assumptions, and German culture.
+				</CSharpCardSection>
+				{likesCarousel}
 			</React.Fragment>,
 		],
 	},
@@ -286,15 +451,6 @@ const sections: CSharpSection[] = [
 			</React.Fragment>,
 		],
 	},
-	{
-		name: sectionNames[3],
-		pageName: C_SHARP_CLASSNAME,
-		children: [
-			<React.Fragment>
-				<CSharpCardSection title="A Passion for Sound">Music</CSharpCardSection>
-			</React.Fragment>,
-		],
-	},
 ];
 
 interface AboutProps {}
@@ -303,7 +459,9 @@ const About: React.FC<AboutProps> = () => {
 	return (
 		<React.Fragment>
 			<LoadingSpinner />
-			<CSharpLayout sections={sections} pageName="About"></CSharpLayout>
+			<CSharpLayout sections={sections} pageName="About">
+				{" "}
+			</CSharpLayout>
 			<AudioPlayer />
 		</React.Fragment>
 	);

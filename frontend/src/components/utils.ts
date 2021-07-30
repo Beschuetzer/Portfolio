@@ -1,12 +1,10 @@
 import history from "../history";
 import {
 	FULLSCREEN_ARROW_BUTTON_CLASSNAME,
-	FULLSCREEN_CLASSNAME,
 	FULLSCREEN_PARENT_CLASSNAME,
 } from "./Carousel/CarouselItem";
 import {
 	CAROUSEL_CLASSNAME,
-	CAROUSEL_ITEM_CLASSNAME,
 	CAROUSEL_VIDEO_CLASSNAME,
 } from "./Carousel/util";
 import {

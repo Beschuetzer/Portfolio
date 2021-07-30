@@ -19,6 +19,7 @@ export const WIKIPEDIA_BRIDGE_URL = "https://en.wikipedia.org/wiki/Contract_brid
 export const WIKIPEDIA_MTP_URL = "https://en.wikipedia.org/wiki/Media_Transfer_Protocol";
 export const WIKIPEDIA_DRM_URL = "https://en.wikipedia.org/wiki/Windows_Media_DRM";
 export const UDEMY_BOOTCAMP_URL = "https://www.udemy.com/course/the-web-developer-bootcamp/";
+export const GERMANY_APP_URL = "/germany-application-letter.pdf"
 
 
 export const ANIMATION_DURATION = 500;
