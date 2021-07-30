@@ -29,7 +29,10 @@ import {
 	CAROUSEL_VIDEO_CLASSNAME,
 	getCarouselGridMaxColumnWidth,
 } from "./util";
-import { ArrowButtonDirection, carouselGridMaxColumnWidthDefault } from "../constants";
+import {
+	ArrowButtonDirection,
+	carouselGridMaxColumnWidthDefault,
+} from "../constants";
 
 interface CarouselProps {
 	viewPortWidth: number;
@@ -92,13 +95,13 @@ const Carousel: React.FC<CarouselProps> = ({
 			rightArrowRef as any,
 			numberOfItemsInCarouselAtOneTime,
 			numberOfItemsToScrollOnClick,
-
 		);
 
 		const amountToTranslateImages =
 			(itemsWidthRef as any).current *
 			currentTranslationFactor *
 			numberOfItemsToScrollOnClick;
+
 		removeTransitionTimeout = setTranslationAmount(
 			amountToTranslateImages,
 			removeTransitionTimeout,
@@ -145,8 +148,8 @@ const Carousel: React.FC<CarouselProps> = ({
 	const handleFullsizeArrowToggling = (e: Event) => {
 		handleCleanUp();
 
-		const leftArrow = (leftArrowRef.current as any) as HTMLElement;
-		const rightArrow = (rightArrowRef.current as any) as HTMLElement;
+		const leftArrow = leftArrowRef.current as any as HTMLElement;
+		const rightArrow = rightArrowRef.current as any as HTMLElement;
 		let direction: ArrowButtonDirection = "left";
 		const arrowClicked = (e.currentTarget || e.target) as HTMLElement;
 
@@ -190,7 +193,9 @@ const Carousel: React.FC<CarouselProps> = ({
 					: undefined,
 				description: item.description ? item.description : undefined,
 				itemSrc: item.itemSrc ? item.itemSrc : undefined,
-				itemThumbnailSrc: item.itemThumbnailSrc ? item.itemThumbnailSrc : undefined,
+				itemThumbnailSrc: item.itemThumbnailSrc
+					? item.itemThumbnailSrc
+					: undefined,
 				leftArrowRef: leftArrowRef,
 				rightArrowRef: rightArrowRef,
 				videoType: item.videoType ? item.videoType : undefined,

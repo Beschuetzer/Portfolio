@@ -324,8 +324,8 @@ $page-nav-top: calc(
 	--card-playing-transform: translate(0, 0) scale(1);
 
 	//csharp layout pages
-	--carousel-item-translation-x: 0;
-	--carousel-grid-max-column-width: #{$default-font-size};
+	//todo: remove item-translation and grid-max-column
+	--carousel-grid-width: #{$carousel-grid-width};
 
 	//shapes stuff
 	--diamond-fractal-animation-duration: 120s;

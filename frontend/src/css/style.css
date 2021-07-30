@@ -151,8 +151,9 @@
   --arrow-button-left-fill-hover: var(--color-primary-bridge-2);
   --card-scale-amount: 1;
   --card-playing-transform: translate(0, 0) scale(1);
-  --carousel-item-translation-x: 0;
-  --carousel-grid-max-column-width: 1.6rem;
+  --carousel-grid-width: calc(
+  	(85rem - 2 * 4.8rem) / 3
+  );
   --diamond-fractal-animation-duration: 120s;
   --diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
   --aspect-ratio-factor: calc(16 / 9);
@@ -613,7 +614,7 @@ body {
   border-radius: 0 !important;
   object-fit: contain !important;
   object-position: center !important;
-  backdrop-filter: blur(1.6rem) sepia(0) brightness(0.25);
+  backdrop-filter: blur(50px) sepia(0) brightness(0.25);
   transition: none !important;
 }
 
@@ -2581,7 +2582,6 @@ body {
   grid-column: 2/span 3;
   display: grid;
   column-gap: 1.6rem;
-  grid-template-columns: repeat(auto-fill, minmax(calc( 	(85rem - 2 * 4.8rem) / 3 ), var(--carousel-grid-max-column-width)));
   padding: 0 0 0 0.2rem;
   justify-items: flex-start;
   align-items: flex-start;
@@ -2687,9 +2687,6 @@ body {
   fill: var(--color-primary-1);
 }
 .carousel__item {
-  --x-translate: var(--carousel-item-translation-x);
-  --y-translate: 0;
-  --scale: 1;
   pointer-events: none;
   position: relative;
   z-index: 1;
@@ -2700,8 +2697,7 @@ body {
   border-radius: 3.2rem;
   overflow: hidden;
   box-shadow: 0px 4px 8px rgba(var(--color-black-rgb), 0.5);
-  transform: translateX(var(--x-translate)) translateY(var(--y-translate));
-  transition: border-radius 0.5s ease;
+  transition: border-radius 0.5s ease, transform 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .carousel__item {
@@ -2781,7 +2777,7 @@ body {
   top: 0;
   left: 0;
   z-index: 100000;
-  transform: translate(0, 0);
+  transform: translate(0, 0) !important;
   transition: none;
   border: none;
   border-radius: 0;

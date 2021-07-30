@@ -125,7 +125,7 @@
 	border-radius: 0 !important;
 	object-fit: contain !important;
 	object-position: center !important;
-	backdrop-filter: blur($default-font-size) sepia(0) brightness(0.25);
+	backdrop-filter: blur(50px) sepia(0) brightness(0.25);
 	transition: none !important;
 }
 

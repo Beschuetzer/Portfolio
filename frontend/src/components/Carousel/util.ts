@@ -3,6 +3,7 @@ import {
 	ANIMATION_DURATION,
 	ArrowButtonDirection,
 	carouselGridMaxColumnWidthDefault,
+	carouselGridWidth,
 	CAROUSEL_GRID_MAX_COLUMN_WIDTH_CSS_PROPERTY_NAME,
 	HIDDEN_CLASSNAME,
 } from "../constants";
@@ -118,15 +119,13 @@ export function setTranslationAmount(
 		item?.classList.add(CAROUSEL_TRANSITION_CLASSNAME);
 	}
 
-	const newValue = `${CAROUSEL_TRANSLATION_CSS_CLASSNAME}: -${amountToTranslateImages}px`;
-	document.documentElement.style.cssText += newValue;
-
 	return setTimeout(() => {
 		for (let i = 0; i < itemElements.length; i++) {
-			const item = itemElements[i];
-			item?.classList.remove(CAROUSEL_TRANSITION_CLASSNAME);
+			const item = itemElements[i] as HTMLElement;
+			const string = `translate(-${amountToTranslateImages}px, 0)`;
+			item.style.transform = string;
 		}
-	}, ANIMATION_DURATION / 2);
+	}, 1);
 }
 
 export const handleSetTranslation = (
@@ -377,7 +376,6 @@ export function setCarouselGridMaxColumnWidth(
 	itemsRef: RefObject<NodeListOf<Element>>,
 ) {
 	if (!itemsRef || !itemsRef.current) return;
-	debugger;
 
 	const maxWidthToUse = getCarouselGridMaxColumnWidth(itemsRef.current.length);
 
@@ -385,9 +383,7 @@ export function setCarouselGridMaxColumnWidth(
 
 	const parentCarousel = (itemsRef.current[0]	as HTMLElement).closest(`.${CAROUSEL_CLASSNAME}`) as HTMLElement;
 
-	if (parentCarousel) parentCarousel.style.gridTemplateColumns = `repeat(
-		auto-fill,
-		minmax($carousel-grid-width, ${maxWidthToUse})
-	);`
+	const newValue = `repeat(auto-fill,	minmax(${carouselGridWidth}, ${maxWidthToUse}))`;
+	if (parentCarousel) parentCarousel.style.setProperty('grid-template-columns', newValue);
 
 }

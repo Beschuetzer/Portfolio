@@ -31,6 +31,8 @@ export const CAROUSEL_GRID_MAX_COLUMN_WIDTH_CSS_PROPERTY_NAME = '--carousel-grid
 export const AUDIO_PLAYER_TOGGLER_ROTATION_CLOSED_CSS_PROPERTY_NAME = '--audio-player-toggler-rotation-closed';
 export const AUDIO_PLAYER_TOGGLER_ROTATION_OPEN_CSS_PROPERTY_NAME = '--audio-player-toggler-rotation-open';
 
+
+
 //#region CSS Colors
 // export const COLOR_PRIMARY_1 = computedStyle.getPropertyValue('--color-primary-1');
 // export const COLOR_PRIMARY_2 = computedStyle.getPropertyValue('--color-primary-2');
@@ -65,6 +67,8 @@ export const siteNavOriginalButtonWidth = computedStyle.getPropertyValue('--site
 export const bridgeSectionHeightDefault = computedStyle.getPropertyValue('--bridge-section-height');
 export const bridgeSectionPaddingDefault = computedStyle.getPropertyValue('--bridge-section-padding');
 export const carouselGridMaxColumnWidthDefault = computedStyle.getPropertyValue('--carousel-grid-max-column-width');
+export const carouselGridWidth = computedStyle.getPropertyValue('--carousel-grid-width');
+
 
 
 const offset = .00000000000001;

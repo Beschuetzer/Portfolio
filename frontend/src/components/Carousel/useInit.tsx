@@ -21,7 +21,6 @@ const useInit = (
 
 		if (itemsRef && parentCarousel) (itemsRef as any).current = parentCarousel.querySelectorAll(`.${itemClassname}`);
 
-		debugger;
 		if (leftArrowRef && csharpCarouselContainer) (leftArrowRef as any).current = csharpCarouselContainer.querySelector(
 			`.${arrowButtonLeftClassname}`,
 		);

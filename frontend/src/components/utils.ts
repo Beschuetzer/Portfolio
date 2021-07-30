@@ -142,6 +142,7 @@ export function closeCarouselItem(
 	let sectionAbove: HTMLElement | null;
 	let sectionAboveThat: HTMLElement | null;
 
+	debugger;
 	if (item === null) {
 		item = document.querySelector(additionalSelector) as HTMLElement;
 		sectionAboveThat = item;
