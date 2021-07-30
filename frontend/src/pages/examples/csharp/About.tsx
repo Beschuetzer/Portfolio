@@ -153,7 +153,7 @@ const germanyCarousel = (
 					description: "WanderTag!  (Learn by doing)",
 				},
 			]}
-			numberOfItemsInCarouselAtOneTime="3"
+			numberOfItemsInCarouselWidthWise="3"
 			numberOfItemsToScrollOnClick="3"
 			functionToGetContainer={functionToGetContainer}
 			functionToRunOnClose={closeCarouselItem.bind(
@@ -169,92 +169,92 @@ const likesCarousel = (
 		<Carousel
 			items={[
 				{
-					itemSrc: joshuaTree01,
-					itemThumbnailSrc: joshuaTree01Thumbnail,
-					description: "Residence and its caretaker",
-				},
-				{
-					itemSrc: joshuaTree02,
-					itemThumbnailSrc: joshuaTree02Thumbnail,
-					description: "A Family I had the pleasure of meeting",
-				},
-				{
-					itemSrc: molokai01,
-					itemThumbnailSrc: molokai01Thumbnail,
-					description: "The path (learning) is a never-ending",
-				},
-				{
-					itemSrc: molokai02,
-					itemThumbnailSrc: molokai02Thumbnail,
-					description: "The path (learning) is a never-ending",
-				},
-				{
-					itemSrc: molokai03,
-					itemThumbnailSrc: molokai03Thumbnail,
-					description: "The path (learning) is a never-ending",
-				},
-				{
-					itemSrc: molokai04,
-					itemThumbnailSrc: molokai04Thumbnail,
-					description: "The path (learning) is a never-ending",
-				},
-				{
-					itemSrc: molokai05,
-					itemThumbnailSrc: molokai05Thumbnail,
-					description: "The path (learning) is a never-ending",
-				},
-				{
 					itemSrc: maui01,
 					itemThumbnailSrc: maui01Thumbnail,
-					description: "The path (learning) is a never-ending",
+					description: "Cliff Jumping at Kapalua Cliff House",
 				},
 				{
 					itemSrc: maui02,
 					itemThumbnailSrc: maui02Thumbnail,
-					description: "The path (learning) is a never-ending",
+					description: "Turtle Came to Say Hi to Cliff Jumbers",
 				},
 				{
 					itemSrc: maui03,
 					itemThumbnailSrc: maui03Thumbnail,
-					description: "The path (learning) is a never-ending",
+					description: "'Hidden' Bamboo Forest Waterfall on Maui",
 				},
 				{
 					itemSrc: maui04,
 					itemThumbnailSrc: maui04Thumbnail,
-					description: "The path (learning) is a never-ending",
+					description: "Stunning Beaches, Mediocre Sand-Castle-Building Sand...",
 				},
 				{
 					itemSrc: maui05,
 					itemThumbnailSrc: maui05Thumbnail,
-					description: "The path (learning) is a never-ending",
+					description: "Haleakalā Sunset",
 				},
 				{
 					itemSrc: maui06,
 					itemThumbnailSrc: maui06Thumbnail,
-					description: "The path (learning) is a never-ending",
+					description: "Haleakalā Backside",
 				},
 				{
 					itemSrc: maui07,
 					itemThumbnailSrc: maui07Thumbnail,
-					description: "The path (learning) is a never-ending",
+					description: "Haleakalā Backside 2",
+				},
+				{
+					itemSrc: joshuaTree01,
+					itemThumbnailSrc: joshuaTree01Thumbnail,
+					description: "Joshua Tree Sunset",
+				},
+				{
+					itemSrc: joshuaTree02,
+					itemThumbnailSrc: joshuaTree02Thumbnail,
+					description: "Joshua Tree Rock Formation",
+				},
+				{
+					itemSrc: molokai01,
+					itemThumbnailSrc: molokai01Thumbnail,
+					description: "Molokai Roots",
+				},
+				{
+					itemSrc: molokai02,
+					itemThumbnailSrc: molokai02Thumbnail,
+					description: "Make Horse Beach on Molokai",
+				},
+				{
+					itemSrc: molokai03,
+					itemThumbnailSrc: molokai03Thumbnail,
+					description: "Kaunakakai Harbor Sunet",
+				},
+				{
+					itemSrc: molokai04,
+					itemThumbnailSrc: molokai04Thumbnail,
+					description: "Double the Rainbow, Double the Treasure",
+				},
+				{
+					itemSrc: molokai05,
+					itemThumbnailSrc: molokai05Thumbnail,
+					description: "Molokai Biking Requires Preparedness",
 				},
 				{
 					itemSrc: oregon01,
 					itemThumbnailSrc: oregon01Thumbnail,
-					description: "The path (learning) is a never-ending",
+					description: "Sweet Creek in Oregon",
 				},
 				{
 					itemSrc: oregon02,
 					itemThumbnailSrc: oregon02Thumbnail,
-					description: "The path (learning) is a never-ending",
+					description: "Oregon Coast",
 				},
 				{
 					itemSrc: oregon03,
 					itemThumbnailSrc: oregon03Thumbnail,
-					description: "The path (learning) is a never-ending",
+					description: "Another Oregonian Creek",
 				},
 			]}
-			numberOfItemsInCarouselAtOneTime="3"
+			numberOfItemsInCarouselWidthWise="3"
 			numberOfItemsToScrollOnClick="3"
 			functionToGetContainer={functionToGetContainer}
 			functionToRunOnClose={closeCarouselItem.bind(
@@ -292,16 +292,17 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection>
 
 				<CSharpCardSection title="More than You Need to Know">
-					"Anyone who stops learning is old, whether at twenty or eighty.&nbsp; Anyone
-					who keeps learning stays young." - Henry Ford The above quote sheds a
-					lot of light onto the choices I have made in my life.&nbsp; After I
-					graduated high school, I wanted to learn more about the world and its
-					inhabitants (a desire that was fostered by my People to People
-					experience to England, Ireland, and Whales in 10th Grade). &nbsp;To this
-					end, I 
+					"Anyone who stops learning is old, whether at twenty or eighty.&nbsp;
+					Anyone who keeps learning stays young." - Henry Ford The above quote
+					sheds a lot of light onto the choices I have made in my life.&nbsp;
+					After I graduated high school, I wanted to learn more about the world
+					and its inhabitants (a desire that was fostered by my People to People
+					experience to England, Ireland, and Whales in 10th Grade). &nbsp;To
+					this end, I
 					<EmbeddedLink isLocal={false} href={GERMANY_APP_URL}>
 						applied
-					</EmbeddedLink>to a posting I found online for an English Assistant at a boarding
+					</EmbeddedLink>
+					to a posting I found online for an English Assistant at a boarding
 					school in Thuringia, Germany:
 					{germanyCarousel}
 					As a result of this experience, I learned a lot about myself, my prior

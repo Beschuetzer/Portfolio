@@ -28,7 +28,7 @@ export const CAROUSEL_GRID_MAX_COLUMN_WIDTHS: [number, string][] = [
 	[7, "15rem"],
 	[8, "12rem"],
 	[12, "10rem"],
-	[13, "6.4rem"],
+	[13, "7rem"],
 ];
 
 export interface CarouselItemProps {
@@ -66,7 +66,7 @@ export function setArrowButtonsHiddenClass(
 	currentTranslationFactor: number,
 	leftArrowRef: RefObject<HTMLElement>,
 	rightArrowRef: RefObject<HTMLElement>,
-	numberOfItemsInCarouselAtOneTime: number,
+	numberOfItemsInCarouselWidthWise: number,
 	numberOfItemsToScrollOnClick: number,
 ) {
 	const leftArrow = leftArrowRef.current as any;
@@ -82,7 +82,7 @@ export function setArrowButtonsHiddenClass(
 	rightArrow.classList.remove(HIDDEN_CLASSNAME);
 
 	const currentCount =
-		numberOfItemsInCarouselAtOneTime +
+		numberOfItemsInCarouselWidthWise +
 		currentTranslationFactor * numberOfItemsToScrollOnClick -
 		1;
 
@@ -144,12 +144,12 @@ export const handleSetTranslation = (
 	e: Event,
 	currentTranslationFactor: number,
 	numberOfItemsToScrollOnClick: number,
-	numberOfItemsInCarouselAtOneTime: number,
+	numberOfItemsInCarouselWidthWise: number,
 	items: CarouselItemProps[],
 ): number => {
 	const maxImageCount =
 		numberOfItemsToScrollOnClick === 1
-			? items.length - +numberOfItemsInCarouselAtOneTime
+			? items.length - +numberOfItemsInCarouselWidthWise
 			: items.length - 1;
 
 	let hasClickedLeftArrow = false;
@@ -196,15 +196,17 @@ export const getCurrentTranslationFactorFromDots = (
 	itemsWidthRef: RefObject<HTMLElement>,
 	leftArrowRef: RefObject<HTMLElement>,
 	rightArrowRef: RefObject<HTMLElement>,
-	numberOfItemsInCarouselAtOneTime: number,
+	numberOfItemsInCarouselWidthWise: number,
 	numberOfItemsToScrollOnClick: number,
 	removeTransitionTimeout: any,
 ) => {
 	let indexOfCurrentDot = -1;
 	let indexOfDotToMoveTo = -1;
 
-	const {csharpParentCarousel} = getFirstItemAndParentCarousels(items);
-	const dots = csharpParentCarousel?.querySelectorAll(`.${CAROUSEL_DOT_CLASSNAME}`);
+	const { csharpParentCarousel } = getFirstItemAndParentCarousels(items);
+	const dots = csharpParentCarousel?.querySelectorAll(
+		`.${CAROUSEL_DOT_CLASSNAME}`,
+	);
 	const clickedOnDot = e.currentTarget;
 
 	if (!dots) return [0, -1];
@@ -229,7 +231,7 @@ export const getCurrentTranslationFactorFromDots = (
 		indexOfDotToMoveTo === 0 ? 0 : currentTranslationFactor,
 		leftArrowRef as any,
 		rightArrowRef as any,
-		numberOfItemsInCarouselAtOneTime,
+		numberOfItemsInCarouselWidthWise,
 		numberOfItemsToScrollOnClick,
 	);
 
@@ -420,4 +422,26 @@ export function getFirstItemAndParentCarousels(items: CarouselItemProps[]) {
 	const parentCarousel = firstItem?.closest(`.${CAROUSEL_CLASSNAME}`);
 
 	return { firstItem, csharpParentCarousel, parentCarousel };
+}
+
+export function getArrangedItems(
+	items: NodeListOf<Element> | CarouselItemProps[],
+	shouldRearrange: boolean,
+	numberOfItemsInCarouselWidthWise: number,
+) {
+	const minCutOff = +CAROUSEL_GRID_MAX_COLUMN_WIDTHS[0][0];
+
+	if (!shouldRearrange || items.length < minCutOff) return items;
+
+	const front = [];
+	const back = [];
+
+	for (let i = 0; i < items.length; i++) {
+		const item = items[i];
+		if (Math.floor(i / numberOfItemsInCarouselWidthWise) % 2 === 1)
+			back.push(item);
+		else front.push(item);
+	}
+
+	return [...front, ...back];
 }

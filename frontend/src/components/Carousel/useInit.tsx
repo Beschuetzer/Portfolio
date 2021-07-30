@@ -1,5 +1,5 @@
 import { RefObject, useEffect } from "react";
-import { CarouselItemProps, getFirstItemAndParentCarousels, setCarouselGridMaxColumnWidth } from "./util";
+import { CarouselItemProps, getArrangedItems, getFirstItemAndParentCarousels, setCarouselGridMaxColumnWidth } from "./util";
 
 const useInit = (
 	leftArrowRef: any,
@@ -9,11 +9,17 @@ const useInit = (
 	itemClassname: string,
 	itemsRef: RefObject<NodeListOf<Element>>,
 	items: CarouselItemProps[],
+	shouldRearrange: boolean,
+	numberOfItemsInCarouselWidthWise: number
 ) => {
 	useEffect(() => {
 		const {csharpParentCarousel, parentCarousel }= getFirstItemAndParentCarousels(items);
 
-		if (itemsRef && parentCarousel) (itemsRef as any).current = parentCarousel.querySelectorAll(`.${itemClassname}`);
+		if (itemsRef && parentCarousel) {
+			const items = parentCarousel.querySelectorAll(`.${itemClassname}`);
+			const arrangedItems = getArrangedItems(items, shouldRearrange, numberOfItemsInCarouselWidthWise);
+			(itemsRef as any).current = arrangedItems;
+	}
 
 		if (leftArrowRef && csharpParentCarousel) (leftArrowRef as any).current = csharpParentCarousel.querySelector(
 			`.${arrowButtonLeftClassname}`,
@@ -31,6 +37,8 @@ const useInit = (
 		itemClassname,
 		itemsRef,
 		items,
+		shouldRearrange,
+		numberOfItemsInCarouselWidthWise,
 	]);
 
 	return null;

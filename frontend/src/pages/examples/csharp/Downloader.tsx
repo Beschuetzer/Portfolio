@@ -19,8 +19,6 @@ import img4Thumbnail from "../../../imgs/downloader/thumbnails/img4-thumbnail.pn
 import img5Thumbnail from "../../../imgs/downloader/thumbnails/img5-thumbnail.png";
 import img6Thumbnail from "../../../imgs/downloader/thumbnails/img6-thumbnail.png";
 
-
-
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
@@ -46,7 +44,7 @@ const sections: CSharpSection[] = [
 			<React.Fragment>
 				<CSharpCardSection title="Purpose">
 					Websites like
-					<EmbeddedLink href={OC_REMIX_URL}>OCRemix</EmbeddedLink> and 
+					<EmbeddedLink href={OC_REMIX_URL}>OCRemix</EmbeddedLink> and
 					<EmbeddedLink href={KH_INSIDER_URL}>
 						Kingdom Hearts Insider
 					</EmbeddedLink>
@@ -110,7 +108,8 @@ const sections: CSharpSection[] = [
 										embedded links it finds.
 									</CSharpCardSection>
 									<CSharpCardSection title="Buggy but functional">
-										The download logs aren't always correct, but there's no denying the result.
+										The download logs aren't always correct, but there's no
+										denying the result.
 									</CSharpCardSection>
 								</div>
 							),
@@ -133,8 +132,7 @@ const sections: CSharpSection[] = [
 						{
 							itemSrc: img4,
 							itemThumbnailSrc: img4Thumbnail,
-							description:
-								"Integrated file-renaming tool",
+							description: "Integrated file-renaming tool",
 						},
 						{
 							itemSrc: img5,
@@ -145,11 +143,10 @@ const sections: CSharpSection[] = [
 						{
 							itemSrc: img6,
 							itemThumbnailSrc: img6Thumbnail,
-							description:
-								"Result of using Downloader",
+							description: "Result of using Downloader",
 						},
 					]}
-					numberOfItemsInCarouselAtOneTime="3"
+					numberOfItemsInCarouselWidthWise="3"
 					numberOfItemsToScrollOnClick="3"
 					functionToGetContainer={functionToGetContainer}
 					functionToRunOnClose={closeCarouselItem.bind(

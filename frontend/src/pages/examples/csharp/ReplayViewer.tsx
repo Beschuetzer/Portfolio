@@ -224,7 +224,7 @@ const sections: CSharpSection[] = [
 							description: "Example of a user cached in local storage",
 						},
 					]}
-					numberOfItemsInCarouselAtOneTime="3"
+					numberOfItemsInCarouselWidthWise="3"
 					numberOfItemsToScrollOnClick="3"
 					functionToGetContainer={functionToGetContainer}
 					functionToRunOnClose={closeCarouselItem.bind(

@@ -29,33 +29,30 @@ import {
 	CAROUSEL_VIDEO_CLASSNAME,
 	getCarouselGridMaxColumnWidth,
 	CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT,
+	getArrangedItems,
 } from "./util";
-import {
-	ArrowButtonDirection,
-} from "../constants";
+import { ArrowButtonDirection } from "../constants";
 
 interface CarouselProps {
 	viewPortWidth: number;
 	items: CarouselItemProps[];
-	descriptions: string[];
-	numberOfItemsInCarouselAtOneTime: number;
+	numberOfItemsInCarouselWidthWise: number;
 	numberOfItemsToScrollOnClick: number;
 	functionToRunOnClose?: any;
 	functionToGetContainer?: any;
-	videoOverlayText?: string;
-	videoOverlayStyles?: CSSProperties;
-	videoOverlayChildren?: any;
 	dotSVGXLinkHref?: string;
+	shouldRearrangeItems: boolean;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
 	viewPortWidth,
 	items,
-	numberOfItemsInCarouselAtOneTime,
+	numberOfItemsInCarouselWidthWise,
 	numberOfItemsToScrollOnClick,
 	functionToRunOnClose,
 	functionToGetContainer,
 	dotSVGXLinkHref = "/sprite.svg#icon-dot-single",
+	shouldRearrangeItems = true,
 }) => {
 	let currentTranslationFactor = CAROUSEL_MIN_IMAGE_COUNT;
 	let itemsRef = useRef<NodeListOf<Element>>(null);
@@ -72,6 +69,8 @@ const Carousel: React.FC<CarouselProps> = ({
 		CAROUSEL_ITEM_CLASSNAME,
 		itemsRef,
 		items,
+		shouldRearrangeItems,
+		numberOfItemsInCarouselWidthWise,
 	);
 	useInterItemWidth(viewPortWidth, itemsRef, itemsWidthRef);
 
@@ -83,17 +82,17 @@ const Carousel: React.FC<CarouselProps> = ({
 			e,
 			currentTranslationFactor,
 			numberOfItemsToScrollOnClick,
-			numberOfItemsInCarouselAtOneTime,
+			numberOfItemsInCarouselWidthWise,
 			items,
 		);
 
 		setArrowButtonsHiddenClass(
-			numberOfItemsInCarouselAtOneTime - 1,
+			numberOfItemsInCarouselWidthWise - 1,
 			items.length - 1,
 			currentTranslationFactor,
 			leftArrowRef as any,
 			rightArrowRef as any,
-			numberOfItemsInCarouselAtOneTime,
+			numberOfItemsInCarouselWidthWise,
 			numberOfItemsToScrollOnClick,
 		);
 
@@ -139,13 +138,14 @@ const Carousel: React.FC<CarouselProps> = ({
 				itemsWidthRef as any,
 				leftArrowRef as any,
 				rightArrowRef as any,
-				numberOfItemsInCarouselAtOneTime,
+				numberOfItemsInCarouselWidthWise,
 				numberOfItemsToScrollOnClick,
 				removeTransitionTimeout as any,
 			);
 	};
 
 	const handleFullsizeArrowToggling = (e: Event) => {
+		debugger;
 		handleCleanUp();
 
 		const leftArrow = leftArrowRef.current as any as HTMLElement;
@@ -180,7 +180,9 @@ const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	const renderItems = () => {
-		return items.map((item, index) => {
+		const arrangedItems = getArrangedItems(items, shouldRearrangeItems, numberOfItemsInCarouselWidthWise) as CarouselItemProps[];
+
+		return arrangedItems.map((item, index) => {
 			const carouselItemProps: CarouselItemProps = {
 				descriptionClassname: item.descriptionClassname
 					? item.descriptionClassname
@@ -305,8 +307,8 @@ const mapStateToProps = (state: RootStateOrAny, ownProps: any) => {
 	return {
 		viewPortWidth: state.general.viewPortWidth,
 		numberOfItemsToScrollOnClick: +ownProps.numberOfItemsToScrollOnClick,
-		numberOfItemsInCarouselAtOneTime:
-			+ownProps.numberOfItemsInCarouselAtOneTime,
+		numberOfItemsInCarouselWidthWise:
+			+ownProps.numberOfItemsInCarouselWidthWise,
 	};
 };
 
