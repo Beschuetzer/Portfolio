@@ -145,7 +145,6 @@ const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	const handleFullsizeArrowToggling = (e: Event) => {
-		debugger;
 		handleCleanUp();
 
 		const leftArrow = leftArrowRef.current as any as HTMLElement;

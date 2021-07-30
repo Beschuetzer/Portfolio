@@ -76,8 +76,8 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	);
 
 	function addFullscreenClassToArrowButtons() {
-		const leftArrowEl = (leftArrowRef?.current as any)[0];
-		const rightArrowEl = (rightArrowRef?.current as any)[0];
+		const leftArrowEl = (leftArrowRef?.current as any);
+		const rightArrowEl = (rightArrowRef?.current as any);
 
 		if (leftArrowEl) {
 			leftArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
@@ -110,8 +110,8 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	};
 
 	const handleShouldHideArrows = (e: Event) => {
-		const leftArrow = (leftArrowRef?.current as any)[0] as HTMLElement;
-		const rightArrow = (rightArrowRef?.current as any)[0] as HTMLElement;
+		const leftArrow = (leftArrowRef?.current as any) as HTMLElement;
+		const rightArrow = (rightArrowRef?.current as any) as HTMLElement;
 		const { isNotFirstItem, isNotLastItem } = getNthItemOpen(
 			e,
 			leftArrow,
@@ -137,7 +137,6 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		)
 			return;
 		e.preventDefault();
-
 		handleShouldHideArrows(e);
 
 		carouselItem?.classList.remove(STOPPED_CLASSNAME);
