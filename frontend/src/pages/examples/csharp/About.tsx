@@ -292,22 +292,22 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection>
 
 				<CSharpCardSection title="More than You Need to Know">
-					"Anyone who stops learning is old, whether at twenty or eighty. Anyone
+					"Anyone who stops learning is old, whether at twenty or eighty.&nbsp; Anyone
 					who keeps learning stays young." - Henry Ford The above quote sheds a
-					lot of light onto the choices I have made in my life. After I
+					lot of light onto the choices I have made in my life.&nbsp; After I
 					graduated high school, I wanted to learn more about the world and its
 					inhabitants (a desire that was fostered by my People to People
-					experience to England, Ireland, and Whales in 10th Grade). To this
+					experience to England, Ireland, and Whales in 10th Grade). &nbsp;To this
 					end, I 
 					<EmbeddedLink isLocal={false} href={GERMANY_APP_URL}>
 						applied
-					</EmbeddedLink> to a posting I found online for an English Assistant at a boarding
+					</EmbeddedLink>to a posting I found online for an English Assistant at a boarding
 					school in Thuringia, Germany:
 					{germanyCarousel}
 					As a result of this experience, I learned a lot about myself, my prior
 					assumptions, and German culture.
 				</CSharpCardSection>
-				{likesCarousel}
+				{/* {likesCarousel} */}
 			</React.Fragment>,
 		],
 	},
