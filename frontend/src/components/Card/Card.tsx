@@ -99,7 +99,7 @@ const Card: React.FC<CardProps> = ({
 			adjustCardYPosition(video);
 			backdrop?.classList.remove("visible");
 			card.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
-		}, ANIMATION_DURATION / 2);
+		}, ANIMATION_DURATION);
 
 		setIsCardVideoOpen(true);
 	};
