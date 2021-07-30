@@ -2594,7 +2594,7 @@ body {
     margin-left: 0;
     justify-content: center;
     column-gap: 0.8rem;
-    grid-template-columns: repeat(auto-fill, minmax(8rem, 20rem));
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 20rem)) !important;
     row-gap: 0.8rem;
   }
 }

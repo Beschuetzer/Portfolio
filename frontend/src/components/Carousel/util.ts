@@ -114,10 +114,10 @@ export function setTranslationAmount(
 	clearInterval(removeTransitionTimeout);
 
 	const itemElements = (itemsRef as any).current;
-	for (let i = 0; i < itemElements.length; i++) {
-		const item = itemElements[i];
-		item?.classList.add(CAROUSEL_TRANSITION_CLASSNAME);
-	}
+	// for (let i = 0; i < itemElements.length; i++) {
+	// 	const item = itemElements[i];
+	// 	item?.classList.add(CAROUSEL_TRANSITION_CLASSNAME);
+	// }
 
 	return setTimeout(() => {
 		for (let i = 0; i < itemElements.length; i++) {
