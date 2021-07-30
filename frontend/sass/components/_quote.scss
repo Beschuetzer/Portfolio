@@ -1,0 +1,12 @@
+.quote {
+
+  &__message {
+    font-size: $default-font-size * 2;
+    font-family: $font-family-fancy-bridge;
+  }
+
+  &__author {
+    font-size: $default-font-size * 1;
+    font-family: $font-family-text;
+  }
+}

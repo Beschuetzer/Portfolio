@@ -2,7 +2,6 @@ import React from "react";
 import CSharpLayout from "../csharp/CSharpLayout";
 
 import { C_SHARP_CLASSNAME } from "../csharp/utils";
-import Paragraph from "../../../typography/Paragraph";
 import { CSharpSection, GITHUB_URL } from "../../../components/constants";
 import CSharpCardSection from "../csharp/CSharpCardSection";
 

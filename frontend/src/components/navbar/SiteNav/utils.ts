@@ -115,7 +115,9 @@ export const setBodyStyle = (currentUrl: string) => {
 	const lastIndexOfSlash = (currentUrl as any).lastIndexOf("/");
 	const pageName = (currentUrl as any).slice(lastIndexOfSlash);
 	const temp = PAGE_NAMES.indexOf(pageName);
-	const index = temp !== -1 ? temp : DEFAULT_PAGE_NAME_INDEX;
+
+	let index = temp !== -1 ? temp : DEFAULT_PAGE_NAME_INDEX;
+	if (currentUrl === "/") index = 0;
 	setBodyStyle(PAGE_NAMES[index]);
 	const colorVarSuffix = PAGE_NAMES[index].slice(1);
 

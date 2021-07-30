@@ -100,6 +100,7 @@ import {
 	functionToGetContainer,
 } from "../../../components/utils";
 import EmbeddedLink from "../../../components/EmbeddedLink";
+import Quote from "../../../components/Quote";
 
 const sectionNames = ["Backstory", "Likes", "Music"];
 
@@ -186,7 +187,8 @@ const likesCarousel = (
 				{
 					itemSrc: maui04,
 					itemThumbnailSrc: maui04Thumbnail,
-					description: "Stunning Beaches, Mediocre Sand-Castle-Building Sand...",
+					description:
+						"Stunning Beaches, Mediocre Sand-Castle-Building Sand...",
 				},
 				{
 					itemSrc: maui05,
@@ -292,13 +294,15 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection>
 
 				<CSharpCardSection title="More than You Need to Know">
-					"Anyone who stops learning is old, whether at twenty or eighty.&nbsp;
-					Anyone who keeps learning stays young." - Henry Ford The above quote
-					sheds a lot of light onto the choices I have made in my life.&nbsp;
-					After I graduated high school, I wanted to learn more about the world
-					and its inhabitants (a desire that was fostered by my People to People
-					experience to England, Ireland, and Whales in 10th Grade). &nbsp;To
-					this end, I
+					<Quote author="Henry Ford">
+						Anyone who stops learning is old, whether at twenty or eighty.
+						Anyone who keeps learning stays young. How do you know?  Keep quiet!
+					</Quote>
+					The above quote sheds a lot of light onto the choices I have made in
+					my life.&nbsp; After I graduated high school, I wanted to learn more
+					about the world and its inhabitants (a desire that was fostered by my
+					People to People experience to England, Ireland, and Whales in 10th
+					Grade). &nbsp;To this end, I
 					<EmbeddedLink isLocal={false} href={GERMANY_APP_URL}>
 						applied
 					</EmbeddedLink>
