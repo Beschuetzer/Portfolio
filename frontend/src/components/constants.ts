@@ -122,12 +122,13 @@ export const PAGE_NAV_CLASSNAME = 'page-nav';
 export const DEFAULT_PAGE_NAME_INDEX = 2; 
 export const PAGE_NAMES = [
   "",
+  "/about",
+  "/autobid",
   "/bridge",
-  "/resume",
   "/downloader",
   "/playlist-syncer",
-  "/autobid",
   "/replay",
+  "/resume",
 ];
 
 //#endregion

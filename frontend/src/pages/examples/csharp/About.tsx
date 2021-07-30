@@ -459,7 +459,7 @@ const About: React.FC<AboutProps> = () => {
 	return (
 		<React.Fragment>
 			<LoadingSpinner />
-			<CSharpLayout sections={sections} pageName="About">
+			<CSharpLayout sections={sections} pageName="about">
 				{" "}
 			</CSharpLayout>
 			<AudioPlayer />

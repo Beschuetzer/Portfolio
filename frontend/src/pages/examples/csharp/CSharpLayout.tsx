@@ -71,7 +71,7 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 	}
 
 	return (
-		<div className={`${C_SHARP_CLASSNAME} ${pageName}`}>
+		<div className={`${C_SHARP_CLASSNAME} ${pageName.toLowerCase()}`}>
 			{href ? (
 				<div
 					className={`${C_SHARP_CLASSNAME}__title`} >

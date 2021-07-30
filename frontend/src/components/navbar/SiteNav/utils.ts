@@ -83,10 +83,6 @@ export const getResetAnimatingId = () => {
 };
 
 export const changePage = (newUrl: string) => {
-	//resetting Carousel scrolling
-	const newValue = `${CAROUSEL_TRANSLATION_CSS_CLASSNAME}: 0px`;
-	document.documentElement.style.cssText += newValue;
-
 	const headerElement = document.querySelector(HEADER_ID);
 	const headerTogglerElement = document.querySelector(
 		`.${HEADER_TOGGLER_CLASSNAME}`,
