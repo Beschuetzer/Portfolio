@@ -68,6 +68,7 @@ const Carousel: React.FC<CarouselProps> = ({
 		CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
 		CAROUSEL_ITEM_CLASSNAME,
 		itemsRef,
+		items,
 	);
 	useInterItemWidth(viewPortWidth, itemsRef, itemsWidthRef);
 
@@ -144,8 +145,8 @@ const Carousel: React.FC<CarouselProps> = ({
 	const handleFullsizeArrowToggling = (e: Event) => {
 		handleCleanUp();
 
-		const leftArrow = (leftArrowRef.current as any)[0] as HTMLElement;
-		const rightArrow = (rightArrowRef.current as any)[0] as HTMLElement;
+		const leftArrow = (leftArrowRef.current as any) as HTMLElement;
+		const rightArrow = (rightArrowRef.current as any) as HTMLElement;
 		let direction: ArrowButtonDirection = "left";
 		const arrowClicked = (e.currentTarget || e.target) as HTMLElement;
 

@@ -307,7 +307,7 @@ const sections: CSharpSection[] = [
 					As a result of this experience, I learned a lot about myself, my prior
 					assumptions, and German culture.
 				</CSharpCardSection>
-				{/* {likesCarousel} */}
+				{likesCarousel}
 			</React.Fragment>,
 		],
 	},

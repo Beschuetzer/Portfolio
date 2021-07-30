@@ -1,5 +1,6 @@
 import { RefObject, useEffect } from "react";
-import { setCarouselGridMaxColumnWidth } from "./util";
+import CarouselItem from "./CarouselItem";
+import { CarouselItemProps, CAROUSEL_CLASSNAME, setCarouselGridMaxColumnWidth } from "./util";
 
 const useInit = (
 	leftArrowRef: any,
@@ -8,15 +9,25 @@ const useInit = (
 	arrowButtonLeftClassname: string,
 	itemClassname: string,
 	itemsRef: RefObject<NodeListOf<Element>>,
+	items: any[],
 ) => {
 	useEffect(() => {
-		if (leftArrowRef) (leftArrowRef as any).current = document.querySelectorAll(
+		let firstItem = document.querySelector(`[src="${(items[0] as CarouselItemProps).itemThumbnailSrc}"]`) as HTMLElement;
+
+		if (!firstItem) firstItem = document.querySelector(`[src="${(items[0] as CarouselItemProps).itemSrc}"]`) as HTMLElement;
+
+		const parentCarousel = firstItem?.closest(`.${CAROUSEL_CLASSNAME}`);
+		const csharpCarouselContainer = firstItem?.closest(`.csharp__${CAROUSEL_CLASSNAME}`);
+
+		if (itemsRef && parentCarousel) (itemsRef as any).current = parentCarousel.querySelectorAll(`.${itemClassname}`);
+
+		debugger;
+		if (leftArrowRef && csharpCarouselContainer) (leftArrowRef as any).current = csharpCarouselContainer.querySelector(
 			`.${arrowButtonLeftClassname}`,
 		);
-		if (rightArrowRef) (rightArrowRef as any).current = document.querySelectorAll(
+		if (rightArrowRef && csharpCarouselContainer) (rightArrowRef as any).current = csharpCarouselContainer.querySelector(
 			`.${arrowButtonRightClassname}`,
 		);
-		if (itemsRef) (itemsRef as any).current = document.querySelectorAll(`.${itemClassname}`);
 
 		setCarouselGridMaxColumnWidth(itemsRef);
 	}, [
@@ -26,6 +37,7 @@ const useInit = (
 		arrowButtonLeftClassname,
 		itemClassname,
 		itemsRef,
+		items,
 	]);
 
 	return null;

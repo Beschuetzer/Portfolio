@@ -70,8 +70,8 @@ export function setArrowButtonsHiddenClass(
 	numberOfItemsInCarouselAtOneTime: number,
 	numberOfItemsToScrollOnClick: number,
 ) {
-	const leftArrow = (leftArrowRef.current as any)[0];
-	const rightArrow = (rightArrowRef.current as any)[0];
+	const leftArrow = (leftArrowRef.current as any);
+	const rightArrow = (rightArrowRef.current as any);
 	if (currentTranslationFactor === 0) {
 		leftArrow.classList.add(HIDDEN_CLASSNAME);
 		return rightArrow.classList.remove(HIDDEN_CLASSNAME);
@@ -377,9 +377,17 @@ export function setCarouselGridMaxColumnWidth(
 	itemsRef: RefObject<NodeListOf<Element>>,
 ) {
 	if (!itemsRef || !itemsRef.current) return;
+	debugger;
+
 	const maxWidthToUse = getCarouselGridMaxColumnWidth(itemsRef.current.length);
 
 	if (!maxWidthToUse) return;
-	const newValue = `${CAROUSEL_GRID_MAX_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${maxWidthToUse}`;
-	document.documentElement.style.cssText += newValue;
+
+	const parentCarousel = (itemsRef.current[0]	as HTMLElement).closest(`.${CAROUSEL_CLASSNAME}`) as HTMLElement;
+
+	if (parentCarousel) parentCarousel.style.gridTemplateColumns = `repeat(
+		auto-fill,
+		minmax($carousel-grid-width, ${maxWidthToUse})
+	);`
+
 }
