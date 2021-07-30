@@ -1,10 +1,8 @@
 import { CSSProperties, RefObject } from "react";
 import {
-	ANIMATION_DURATION,
 	ArrowButtonDirection,
 	carouselGridMaxColumnWidthDefault,
 	carouselGridWidth,
-	CAROUSEL_GRID_MAX_COLUMN_WIDTH_CSS_PROPERTY_NAME,
 	HIDDEN_CLASSNAME,
 } from "../constants";
 import { getIsVideoPlaying } from "../VideoPlayer/utils";
@@ -30,7 +28,7 @@ export const CAROUSEL_GRID_MAX_COLUMN_WIDTHS: [number, string][] = [
 	[7, "15rem"],
 	[8, "12rem"],
 	[12, "10rem"],
-	[13, "8rem"],
+	[13, "6.4rem"],
 ];
 
 export interface CarouselItemProps {
@@ -71,8 +69,8 @@ export function setArrowButtonsHiddenClass(
 	numberOfItemsInCarouselAtOneTime: number,
 	numberOfItemsToScrollOnClick: number,
 ) {
-	const leftArrow = (leftArrowRef.current as any);
-	const rightArrow = (rightArrowRef.current as any);
+	const leftArrow = leftArrowRef.current as any;
+	const rightArrow = rightArrowRef.current as any;
 	if (currentTranslationFactor === 0) {
 		leftArrow.classList.add(HIDDEN_CLASSNAME);
 		return rightArrow.classList.remove(HIDDEN_CLASSNAME);
@@ -89,15 +87,29 @@ export function setArrowButtonsHiddenClass(
 		1;
 
 	let numberOfRows = 1;
-	if (getCarouselGridMaxColumnWidth(maxImageCount + 1) !== carouselGridMaxColumnWidthDefault) numberOfRows = 2;
+	if (
+		getCarouselGridMaxColumnWidth(maxImageCount + 1) !==
+		carouselGridMaxColumnWidthDefault
+	)
+		numberOfRows = 2;
 
 	if (currentCount <= CAROUSEL_MIN_IMAGE_COUNT)
 		leftArrow.classList.add(HIDDEN_CLASSNAME);
-	if (currentCount >= (maxImageCount / numberOfRows)) rightArrow.classList.add(HIDDEN_CLASSNAME);
+	if (currentCount >= maxImageCount / numberOfRows)
+		rightArrow.classList.add(HIDDEN_CLASSNAME);
 }
 
-export function setCurrentActiveButton(indexOfActiveDot: number) {
-	const dots = document.querySelectorAll(`.${CAROUSEL_DOT_CLASSNAME}`);
+export function setCurrentActiveButton(
+	items: CarouselItemProps[],
+	indexOfActiveDot: number,
+) {
+	const { csharpParentCarousel } = getFirstItemAndParentCarousels(items);
+
+	const dots = csharpParentCarousel?.querySelectorAll(
+		`.${CAROUSEL_DOT_CLASSNAME}`,
+	);
+	if (!dots) return;
+
 	for (let i = 0; i < dots.length; i++) {
 		const dot = dots[i];
 		if (i !== indexOfActiveDot)
@@ -133,7 +145,7 @@ export const handleSetTranslation = (
 	currentTranslationFactor: number,
 	numberOfItemsToScrollOnClick: number,
 	numberOfItemsInCarouselAtOneTime: number,
-	items: any[],
+	items: CarouselItemProps[],
 ): number => {
 	const maxImageCount =
 		numberOfItemsToScrollOnClick === 1
@@ -159,6 +171,7 @@ export const handleSetTranslation = (
 	}
 
 	setCurrentActiveButton(
+		items,
 		currentTranslationFactor * numberOfItemsToScrollOnClick,
 	);
 
@@ -178,7 +191,7 @@ export const handleSetTranslation = (
 
 export const getCurrentTranslationFactorFromDots = (
 	e: MouseEvent,
-	items: any[],
+	items: CarouselItemProps[],
 	itemsRef: RefObject<NodeListOf<Element>>,
 	itemsWidthRef: RefObject<HTMLElement>,
 	leftArrowRef: RefObject<HTMLElement>,
@@ -190,9 +203,11 @@ export const getCurrentTranslationFactorFromDots = (
 	let indexOfCurrentDot = -1;
 	let indexOfDotToMoveTo = -1;
 
-	const dots = document.querySelectorAll(`.${CAROUSEL_DOT_CLASSNAME}`);
+	const {csharpParentCarousel} = getFirstItemAndParentCarousels(items);
+	const dots = csharpParentCarousel?.querySelectorAll(`.${CAROUSEL_DOT_CLASSNAME}`);
 	const clickedOnDot = e.currentTarget;
 
+	if (!dots) return [0, -1];
 	for (let i = 0; i < dots.length; i++) {
 		const dot = dots[i];
 		if (dot === clickedOnDot) indexOfDotToMoveTo = i;
@@ -337,10 +352,9 @@ export function resetCarouselVideo(
 	video.pause();
 }
 
-export function getCarouselGridMaxColumnWidth(
-	numberOfItemsInCarousel: number
-) {
-	if (numberOfItemsInCarousel === undefined || numberOfItemsInCarousel === null) return;
+export function getCarouselGridMaxColumnWidth(numberOfItemsInCarousel: number) {
+	if (numberOfItemsInCarousel === undefined || numberOfItemsInCarousel === null)
+		return;
 
 	const firstItem = CAROUSEL_GRID_MAX_COLUMN_WIDTHS[0];
 	const lastItem =
@@ -348,7 +362,8 @@ export function getCarouselGridMaxColumnWidth(
 
 	let valueToUse = "-1";
 
-	if (numberOfItemsInCarousel < firstItem[0]) return carouselGridMaxColumnWidthDefault;
+	if (numberOfItemsInCarousel < firstItem[0])
+		return carouselGridMaxColumnWidthDefault;
 	if (numberOfItemsInCarousel >= lastItem[0]) return lastItem[1];
 
 	for (let i = 0; i < CAROUSEL_GRID_MAX_COLUMN_WIDTHS.length - 1; i++) {
@@ -381,9 +396,29 @@ export function setCarouselGridMaxColumnWidth(
 
 	if (!maxWidthToUse) return;
 
-	const parentCarousel = (itemsRef.current[0]	as HTMLElement).closest(`.${CAROUSEL_CLASSNAME}`) as HTMLElement;
+	const parentCarousel = (itemsRef.current[0] as HTMLElement).closest(
+		`.${CAROUSEL_CLASSNAME}`,
+	) as HTMLElement;
 
 	const newValue = `repeat(auto-fill,	minmax(${carouselGridWidth}, ${maxWidthToUse}))`;
-	if (parentCarousel) parentCarousel.style.setProperty('grid-template-columns', newValue);
+	if (parentCarousel)
+		parentCarousel.style.setProperty("grid-template-columns", newValue);
+}
 
+export function getFirstItemAndParentCarousels(items: CarouselItemProps[]) {
+	let firstItem = document.querySelector(
+		`[src="${(items[0] as CarouselItemProps).itemThumbnailSrc}"]`,
+	) as HTMLElement;
+
+	if (!firstItem)
+		firstItem = document.querySelector(
+			`[src="${(items[0] as CarouselItemProps).itemSrc}"]`,
+		) as HTMLElement;
+
+	const csharpParentCarousel = firstItem?.closest(
+		`.csharp__${CAROUSEL_CLASSNAME}`,
+	);
+	const parentCarousel = firstItem?.closest(`.${CAROUSEL_CLASSNAME}`);
+
+	return { firstItem, csharpParentCarousel, parentCarousel };
 }
