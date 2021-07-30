@@ -58,6 +58,7 @@ export interface CarouselItemProps {
 	videoExtentions?: string[] | undefined;
 	functionToRunOnClose?: any | undefined;
 	functionToGetContainer?: any | undefined;
+	shouldRenderFullScreen?: boolean;
 }
 
 export function setArrowButtonsHiddenClass(

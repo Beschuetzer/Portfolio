@@ -62,6 +62,8 @@ const Carousel: React.FC<CarouselProps> = ({
 	let rightArrowRef = useRef<HTMLElement>(null);
 	let removeTransitionTimeout: any;
 
+	const [itemsToRenderFullScreen, setItemsToRenderFullScreen] = useState<number[]>([]);
+
 	useInit(
 		leftArrowRef,
 		rightArrowRef,
@@ -171,6 +173,10 @@ const Carousel: React.FC<CarouselProps> = ({
 				const imageOrVideo = itemToOpen.children[0] as HTMLElement;
 				itemToOpen?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 				imageOrVideo.classList.add(FULLSCREEN_CLASSNAME);
+				
+				let newItems = [...itemsToRenderFullScreen];
+				if (!itemsToRenderFullScreen.includes(nthItemOpen)) newItems.push(nthItemOpen);
+				setItemsToRenderFullScreen(newItems);
 			}
 
 		if (!nthItemOpen) return false;
@@ -242,6 +248,7 @@ const Carousel: React.FC<CarouselProps> = ({
 				functionToGetContainer: functionToGetContainer
 					? functionToGetContainer
 					: undefined,
+				shouldRenderFullScreen: itemsToRenderFullScreen.includes(index)
 			};
 
 			return (

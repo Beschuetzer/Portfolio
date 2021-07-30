@@ -67,12 +67,8 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	videoOverlayChildren = null,
 	functionToRunOnClose,
 	functionToGetContainer,
+	shouldRenderFullScreen = false,
 }) => {
-
-	useEffect(() => {
-		console.log('changing item------------------------------------------------');
-	})
-
 
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
@@ -189,7 +185,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
 	let mediaToAdd = (
 		<img
-			src={isFullScreen ? itemSrc : itemThumbnailSrc}
+			src={isFullScreen || shouldRenderFullScreen ? itemSrc : itemThumbnailSrc}
 			className={`${imageClassname}`}
 			alt={imageAlt}
 			onClick={(e: any) => onItemClick(e)}
