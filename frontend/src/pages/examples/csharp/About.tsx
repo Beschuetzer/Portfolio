@@ -64,6 +64,9 @@ import oregon01 from "../../../imgs/about/oregon-01.jpg";
 import oregon02 from "../../../imgs/about/oregon-02.jpg";
 import oregon03 from "../../../imgs/about/oregon-03.jpg";
 
+import p2p01 from "../../../imgs/about/p.jpg";
+
+
 import germany01Thumbnail from "../../../imgs/about/thumbnails/germany-01-thumbnail.jpg";
 import germany02Thumbnail from "../../../imgs/about/thumbnails/germany-02-thumbnail.jpg";
 import germany03Thumbnail from "../../../imgs/about/thumbnails/germany-03-thumbnail.jpg";
@@ -267,13 +270,34 @@ const likesCarousel = (
 	</section>
 );
 
+const peopleToPeopleCarousel = (
+	<section className="csharp__carousel">
+		<Carousel
+			items={[
+				{
+					itemSrc: maui01,
+					itemThumbnailSrc: maui01Thumbnail,
+					description: "Cliff Jumping at Kapalua Cliff House",
+				},
+			]}
+			numberOfItemsInCarouselWidthWise="3"
+			numberOfItemsToScrollOnClick="3"
+			functionToGetContainer={functionToGetContainer}
+			functionToRunOnClose={closeCarouselItem.bind(
+				null,
+				null as any,
+				`#${sectionNames[0].toLowerCase()}`,
+			)}></Carousel>
+	</section>
+);
+
 const sections: CSharpSection[] = [
 	{
 		name: sectionNames[0],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="Making the Most of a Tough Situation">
+				{/* <CSharpCardSection title="Making the Most of a Tough Situation">
 					The outbreak of the COVID-19 Pandemic provided me with a lot of time
 					to reflect on my career choices and where I want to be in 10 years
 					time.&nbsp; By means of said careful reflection, I realized that I
@@ -291,9 +315,9 @@ const sections: CSharpSection[] = [
 					heart attack to coding in my mind and decided to pursue other things,
 					even though I had a thing for programming.&nbsp;, and I finally
 					realized that this may be my last chance to become a programmer.&nbsp;
-				</CSharpCardSection>
+				</CSharpCardSection> */}
 
-				<CSharpCardSection title="More than You Need to Know">
+				<CSharpCardSection title="A Way of Life">
 					<Quote author="Henry Ford">
 						Anyone who stops learning is old, whether at twenty or eighty.
 						Anyone who keeps learning stays young. How do you know?  Keep quiet!

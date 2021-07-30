@@ -2700,13 +2700,18 @@ body {
     opacity: 0;
   }
 }
+.quote {
+  text-align: center;
+}
 .quote__message {
+  font-style: italic;
   font-size: 3.2rem;
   font-family: "New Tegomin", serif;
 }
 .quote__author {
-  font-size: 1.6rem;
-  font-family: "Open Sans", sans-serif;
+  padding: 1.6rem;
+  font-size: 2.4rem;
+  font-family: "Merriweather", serif;
 }
 
 .skills {

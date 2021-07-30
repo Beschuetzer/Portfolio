@@ -187,4 +187,24 @@ export function functionToGetContainer(e: Event) {
 	);
 }
 
+export function getSentencesFromString(str: string, punctuationMarks: string[]) {
+    const toReturn: string[] = [];
+		const indexLocations = [];
+
+		for (let i = 0; i < str.length; i++) {
+			const char = str[i];
+			if (punctuationMarks.includes(char)) indexLocations.push(i);
+		}
+
+		for (let i = 0; i < indexLocations.length; i++) {
+			const endIndex = indexLocations[i] + 1;
+			let startIndex = 0;
+			if (i !== 0) startIndex = indexLocations[i - 1] + 1;
+
+			toReturn.push(str.substring(startIndex, endIndex)?.trim());
+		}
+
+    return toReturn;
+}
+
 //#endregion
