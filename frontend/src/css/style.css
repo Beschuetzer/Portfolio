@@ -2045,13 +2045,18 @@ body {
     margin-left: 0;
     justify-content: center;
     column-gap: 0.8rem;
-    grid-template-columns: repeat(auto-fill, minmax(8rem, 20rem)) !important;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 19.2rem)) !important;
     row-gap: 0.8rem;
   }
 }
 @media only screen and (max-width: 58.5625em) {
   .carousel {
     width: 100%;
+  }
+}
+@media only screen and (max-width: 29.3125em) {
+  .carousel {
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 17.28rem)) !important;
   }
 }
 .carousel__dots {
@@ -2152,7 +2157,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .carousel__item {
-    height: 20rem;
+    height: 19.2rem;
   }
 }
 .carousel__item:hover {
@@ -2178,7 +2183,6 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 33%;
   min-height: 33%;
   position: absolute;
   color: var(--color-primary-4);
@@ -4186,8 +4190,18 @@ body {
 .csharp__content > * {
   padding: 0 3.2rem 0 3.2rem;
 }
+@media only screen and (max-width: 40.9375em) {
+  .csharp__content > * {
+    padding: 0.8rem;
+  }
+}
 .csharp__content > *:last-child() {
   padding-bottom: 1.6rem;
+}
+@media only screen and (max-width: 40.9375em) {
+  .csharp__content > *:last-child() {
+    padding-bottom: 0.8rem;
+  }
 }
 .csharp__headers {
   color: var(--color-primary-4);

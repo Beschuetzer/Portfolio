@@ -63,8 +63,10 @@ import molokai05 from "../../../imgs/about/molokai-05.jpg";
 import oregon01 from "../../../imgs/about/oregon-01.jpg";
 import oregon02 from "../../../imgs/about/oregon-02.jpg";
 import oregon03 from "../../../imgs/about/oregon-03.jpg";
-
-import p2p01 from "../../../imgs/about/p.jpg";
+import p2p01 from "../../../imgs/about/p2p-01.png";
+import p2p02 from "../../../imgs/about/p2p-02.png";
+import p2p03 from "../../../imgs/about/p2p-03.png";
+import p2p04 from "../../../imgs/about/p2p-04.png";
 
 
 import germany01Thumbnail from "../../../imgs/about/thumbnails/germany-01-thumbnail.jpg";
@@ -93,6 +95,10 @@ import molokai05Thumbnail from "../../../imgs/about/thumbnails/molokai-05-thumbn
 import oregon01Thumbnail from "../../../imgs/about/thumbnails/oregon-01-thumbnail.jpg";
 import oregon02Thumbnail from "../../../imgs/about/thumbnails/oregon-02-thumbnail.jpg";
 import oregon03Thumbnail from "../../../imgs/about/thumbnails/oregon-03-thumbnail.jpg";
+import p2p01Thumbnail from "../../../imgs/about/thumbnails/p2p-01-thumbnail.png";
+import p2p02Thumbnail from "../../../imgs/about/thumbnails/p2p-02-thumbnail.png";
+import p2p03Thumbnail from "../../../imgs/about/thumbnails/p2p-03-thumbnail.png";
+import p2p04Thumbnail from "../../../imgs/about/thumbnails/p2p-04-thumbnail.png";
 
 import AudioList from "../../../components/AudioPlayer/AudioList";
 import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
@@ -180,18 +186,18 @@ const likesCarousel = (
 				{
 					itemSrc: maui02,
 					itemThumbnailSrc: maui02Thumbnail,
-					description: "Turtle Came to Say Hi to Cliff Jumbers",
+					description: "Friendly Turtle Visit",
 				},
 				{
 					itemSrc: maui03,
 					itemThumbnailSrc: maui03Thumbnail,
-					description: "'Hidden' Bamboo Forest Waterfall on Maui",
+					description: "Bamboo Forest Waterfall on Maui",
 				},
 				{
 					itemSrc: maui04,
 					itemThumbnailSrc: maui04Thumbnail,
 					description:
-						"Stunning Beaches, Mediocre Sand-Castle-Building Sand...",
+						"Stunning Beach, Less than Ideal Sand",
 				},
 				{
 					itemSrc: maui05,
@@ -275,11 +281,27 @@ const peopleToPeopleCarousel = (
 		<Carousel
 			items={[
 				{
-					itemSrc: maui01,
-					itemThumbnailSrc: maui01Thumbnail,
-					description: "Cliff Jumping at Kapalua Cliff House",
+					itemSrc: p2p01,
+					itemThumbnailSrc: p2p01Thumbnail,
+					description: "Abseiling an English Castle",
+				},
+				{
+					itemSrc: p2p02,
+					itemThumbnailSrc: p2p02Thumbnail,
+					description: "Team Building Exercise",
+				},
+				{
+					itemSrc: p2p03,
+					itemThumbnailSrc: p2p03Thumbnail,
+					description: "Roman Infantry Training",
+				},
+				{
+					itemSrc: p2p04,
+					itemThumbnailSrc: p2p04Thumbnail,
+					description: "The Training Commences",
 				},
 			]}
+		  
 			numberOfItemsInCarouselWidthWise="3"
 			numberOfItemsToScrollOnClick="3"
 			functionToGetContainer={functionToGetContainer}
@@ -320,13 +342,13 @@ const sections: CSharpSection[] = [
 				<CSharpCardSection title="A Way of Life">
 					<Quote author="Henry Ford">
 						Anyone who stops learning is old, whether at twenty or eighty.
-						Anyone who keeps learning stays young. How do you know?  Keep quiet!
+						Anyone who keeps learning stays young.
 					</Quote>
 					The above quote sheds a lot of light onto the choices I have made in
 					my life.&nbsp; After I graduated high school, I wanted to learn more
 					about the world and its inhabitants (a desire that was fostered by my
 					People to People experience to England, Ireland, and Whales in 10th
-					Grade). &nbsp;To this end, I
+					Grade). {peopleToPeopleCarousel} &nbsp;To this end, I
 					<EmbeddedLink isLocal={false} href={GERMANY_APP_URL}>
 						applied
 					</EmbeddedLink>

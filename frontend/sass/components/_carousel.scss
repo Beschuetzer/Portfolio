@@ -48,6 +48,13 @@
 		width: 100%;
 	}
 
+	@include respond(small-font) {
+		grid-template-columns: repeat(
+			auto-fill,
+			minmax($default-font-size * 5, $carousel-item-card-size-nav-switch * .9)
+		) !important;
+	}
+
 	&__dots {
 		grid-column: 3 / span 1;
 		grid-row: 2 / span 1;
@@ -199,7 +206,7 @@
 			left: 0;
 			bottom: 0;
 			width: 100%;
-			height: 33%;
+			// height: 33%;
 			min-height: 33%;
 			position: absolute;
 			color: var(--color-primary-4);

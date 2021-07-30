@@ -36,7 +36,7 @@ const Quote: React.FC<QuoteProps> = ({ children, author, shouldBreakLines = fals
 		return sentences.map((sentence, index) => {
 			if (index === 0 || index === sentences.length - 1)
 				return (
-					<span key={index}>&nbsp;{shouldReturnOriginal ? children : sentence}&nbsp;</span>
+					<span key={index}>{shouldReturnOriginal ? children : sentence}</span>
 				);
 
 			return (
@@ -48,7 +48,7 @@ const Quote: React.FC<QuoteProps> = ({ children, author, shouldBreakLines = fals
 	return (
 		<div className={`${QUOTE_CLASSNAME}`}>
 			<div className={`${QUOTE_CLASSNAME}__message`}>
-				&ldquo; {getMessage()}&rdquo;
+				&ldquo;&nbsp; {getMessage()}&rdquo;
 			</div>
 			<div className={`${QUOTE_CLASSNAME}__author`}>&#8212;{author}</div>
 		</div>

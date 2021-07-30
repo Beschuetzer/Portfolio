@@ -82,10 +82,18 @@
 		position: relative;
 		& > * {
 			padding: 0 $default-font-size * 2 0 $default-font-size * 2;
+
+			@include respond(phone) {
+				padding: $default-font-size * .5;
+			}
 		}
 
 		& > *:last-child() {
 			padding-bottom: $default-font-size;
+
+			@include respond(phone) {
+				padding-bottom: $default-font-size * .5;
+			}
 		}
 	}
 
