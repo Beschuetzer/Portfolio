@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { RefObject, useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import CarouselItem, {
 	FULLSCREEN_CLASSNAME,
@@ -7,7 +7,6 @@ import CarouselItem, {
 	STOPPED_CLASSNAME,
 } from "./CarouselItem";
 import useInit from "./useInit";
-import useInterItemWidth from "./useInterItemWidth";
 import CarouselArrow from "./CarouselArrow";
 import {
 	CarouselItemProps,
@@ -57,12 +56,16 @@ const Carousel: React.FC<CarouselProps> = ({
 }) => {
 	let currentTranslationFactor = CAROUSEL_MIN_IMAGE_COUNT;
 	let itemsRef = useRef<NodeListOf<Element>>(null);
-	let itemsWidthRef = useRef<HTMLElement>(null);
+	let itemsWidthRef = useRef<any>(null);
 	let leftArrowRef = useRef<HTMLElement>(null);
 	let rightArrowRef = useRef<HTMLElement>(null);
+	let hasResized = useRef<boolean>(false);
 	let removeTransitionTimeout: any;
 
+
 	const [itemsToRenderFullScreen, setItemsToRenderFullScreen] = useState<number[]>([]);
+
+	window.addEventListener('resize', handleResize);
 
 	useInit(
 		leftArrowRef,
@@ -75,9 +78,9 @@ const Carousel: React.FC<CarouselProps> = ({
 		shouldRearrangeItems,
 		numberOfItemsInCarouselWidthWise,
 	);
-	useInterItemWidth(viewPortWidth, itemsRef, itemsWidthRef);
 
 	const handleArrowClick = (e: Event) => {
+		debugger;
 		const isFullSize = handleFullsizeArrowToggling(e);
 		if (isFullSize) return;
 
@@ -99,6 +102,7 @@ const Carousel: React.FC<CarouselProps> = ({
 			numberOfItemsToScrollOnClick,
 		);
 
+		setItemsWidthRef(itemsWidthRef);
 		const amountToTranslateImages =
 			(itemsWidthRef as any).current *
 			currentTranslationFactor *
@@ -110,6 +114,10 @@ const Carousel: React.FC<CarouselProps> = ({
 			itemsRef as any,
 		);
 	};
+
+	function handleResize() {
+		hasResized.current = true;
+	}
 
 	const handleCleanUp = () => {
 		const carouselItemClicked = document.querySelector(
@@ -286,6 +294,16 @@ const Carousel: React.FC<CarouselProps> = ({
 			);
 		});
 	};
+
+	function setItemsWidthRef(itemsWidthRef: RefObject<number>) {
+		debugger;
+		if ((itemsRef.current && itemsWidthRef.current === null) || hasResized.current) {
+			const image1Left = itemsRef?.current ? itemsRef?.current[0]?.children[0]?.getBoundingClientRect().left : 0;
+			const image2Left = itemsRef?.current ? itemsRef?.current[1]?.children[0]?.getBoundingClientRect().left : 0;
+			(itemsWidthRef.current as any) = Math.abs(image1Left - image2Left);
+			hasResized.current = false;
+		}
+	}
 
 	return (
 		<React.Fragment>

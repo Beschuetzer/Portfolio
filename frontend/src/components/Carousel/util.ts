@@ -100,7 +100,7 @@ export function setArrowButtonsHiddenClass(
 		rightArrow.classList.add(HIDDEN_CLASSNAME);
 }
 
-export function setCurrentActiveButton(
+export function setActiveDot(
 	items: CarouselItemProps[],
 	indexOfActiveDot: number,
 ) {
@@ -171,7 +171,7 @@ export const handleSetTranslation = (
 		else currentTranslationFactor += 1;
 	}
 
-	setCurrentActiveButton(
+	setActiveDot(
 		items,
 		currentTranslationFactor * numberOfItemsToScrollOnClick,
 	);
