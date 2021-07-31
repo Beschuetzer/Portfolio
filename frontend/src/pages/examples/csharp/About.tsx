@@ -115,12 +115,12 @@ import EmbeddedLink from "../../../components/EmbeddedLink";
 import Quote from "../../../components/Quote";
 import ClassToggler from "../../../components/ClassToggler";
 
-const sectionNames = ["Backstory", "Likes", "Music"];
+const sectionNames = ["Backstory", "Interests", "Music"];
 
 const germanyCarousel = (
 	<section
 		id="german-carousel"
-		className={`${DISPLAY_NONE_CLASSNAME} csharp__carousel padding-top-0`}>
+		className={`${DISPLAY_NONE_CLASSNAME} csharp__carousel padding-0`}>
 		<Carousel
 			items={[
 				{
@@ -181,7 +181,7 @@ const germanyCarousel = (
 );
 
 const likesCarousel = (
-	<section className="csharp__carousel">
+	<section className="csharp__carousel margin-top-0 padding-bottom-0">
 		<Carousel
 			items={[
 				{
@@ -276,7 +276,7 @@ const likesCarousel = (
 			functionToRunOnClose={closeCarouselItem.bind(
 				null,
 				null as any,
-				`#${sectionNames[0].toLowerCase()}`,
+				`#${sectionNames[1].toLowerCase()}`,
 			)}></Carousel>
 	</section>
 );
@@ -345,14 +345,15 @@ const sections: CSharpSection[] = [
 					realized that this may be my last chance to become a programmer.&nbsp;
 				</CSharpCardSection> */}
 
-					<Quote author="Henry Ford">
-						Anyone who stops learning is old, whether at twenty or eighty.
-						Anyone who keeps learning stays young.
-					</Quote>
+				<Quote author="Henry Ford">
+					Anyone who stops learning is old, whether at twenty or eighty. Anyone
+					who keeps learning stays young.
+				</Quote>
 				<CSharpCardSection title="A Way of Life">
 					The above quote sheds a lot of light onto the choices I have made in
 					my life.&nbsp; After I graduated high school, I wanted to learn more
-					about the world and its inhabitants (a desire that was fostered by my&nbsp; 
+					about the world and its inhabitants (a desire that was fostered by
+					my&nbsp;
 					<ClassToggler
 						classToToggle={DISPLAY_NONE_CLASSNAME}
 						targetSelector="#p2p-carousel">
@@ -373,7 +374,6 @@ const sections: CSharpSection[] = [
 					about myself, my prior assumptions, and German culture.&nbsp;
 					{germanyCarousel}
 				</CSharpCardSection>
-				{likesCarousel}
 			</React.Fragment>,
 		],
 		hasCarousel: true,
@@ -382,7 +382,30 @@ const sections: CSharpSection[] = [
 		hasCarousel: true,
 		name: sectionNames[1],
 		pageName: C_SHARP_CLASSNAME,
-		children: [],
+		children: [
+			<React.Fragment>
+				<CSharpCardSection title="Biking">
+					One of the most enjoyable things I do on a regular basis is bike riding.&nbsp;  I enjoy it so much, that I even tried using it as my main source of transportation for a year (quite a challenge given I did it in Minnesota).&nbsp;
+				</CSharpCardSection>
+				<CSharpCardSection title="Hiking">
+					Living in Oregon for two years really fostered a fondness for hiking.&nbsp;  I don't plan on hiking Everest anytime soon, but I will definitely enjoy any chance I get to change my elevation by using my feet.  
+				</CSharpCardSection>
+				<CSharpCardSection title="Drums">
+					My dad was a drummer, so growing up I had the privilege of having access to a drum kit while growing up.&nbsp;  For what ever reason, the way my brain works is well-suited to playing drums
+				</CSharpCardSection>
+				<CSharpCardSection title="Guitar">
+					In high school, a few friends and I started a band.&nbsp;  It was during this time that I learned how to play guitar.&nbsp;  While not as naturally-inclined to it, playing guitar is something I find very rewarding.&nbsp;
+				</CSharpCardSection>
+				<CSharpCardSection title="Exercise">
+					Sort of a strange thing to put for an 'interest', but going to the gym and exercising is the main way that I cope with stress.&nbsp;  Without it, I am but a pile of saggy mortality.
+				</CSharpCardSection>
+				<CSharpCardSection title="Proof of Concept">
+				Here are some photos of enjoyable moments I've had:
+				{likesCarousel}
+
+				</CSharpCardSection>
+			</React.Fragment>,
+		],
 	},
 	{
 		name: sectionNames[2],

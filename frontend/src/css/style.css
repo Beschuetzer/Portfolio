@@ -666,6 +666,10 @@ body {
   margin: 0 !important;
 }
 
+.margin-top-0 {
+  margin-top: 0 !important;
+}
+
 .margin-top-1 {
   margin-top: 1.6rem !important;
 }
@@ -2712,6 +2716,31 @@ body {
   color: var(--color-primary-1);
 }
 
+.arrow-down {
+  --translate-x: 0;
+  --translate-y: 100%;
+  position: absolute;
+  bottom: 0;
+  transform: translate(var(--translate-x), var(--translate-y));
+  width: 0;
+  height: 0;
+  --width: 10px;
+  --color: var(--color-primary-2);
+  border-left: var(--width) solid transparent;
+  border-right: var(--width) solid transparent;
+  border-top: var(--width) solid var(--color);
+}
+.arrow-down--left {
+  left: 0;
+}
+.arrow-down--center {
+  left: 50%;
+  --translate-x: -50%;
+}
+.arrow-down--right {
+  right: 0;
+}
+
 .quote {
   cursor: pointer;
   text-align: center;
@@ -2723,12 +2752,17 @@ body {
 .quote::before {
   content: "“";
   top: 0;
-  left: -1.6rem;
+  left: -0.8rem;
 }
 .quote::after {
   content: "”";
   bottom: 0;
-  right: -1.6rem;
+  right: -0.8rem;
+}
+.quote__author {
+  padding-top: 1.6rem;
+  font-size: 2.4rem;
+  font-family: "Merriweather", serif;
 }
 .quote__message {
   position: relative;
@@ -2736,10 +2770,16 @@ body {
   font-size: 3.2rem;
   font-family: "New Tegomin", serif;
 }
-.quote__author {
-  padding-top: 1.6rem;
-  font-size: 2.4rem;
-  font-family: "Merriweather", serif;
+.quote__popup {
+  background-color: var(--color-primary-2);
+  color: var(--color-primary-4);
+  padding: 1.6rem;
+  position: absolute;
+  top: 0;
+  left: 0%;
+  right: 0;
+  transform: translate(0%, -200%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .skills {
