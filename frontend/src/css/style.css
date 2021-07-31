@@ -95,12 +95,12 @@
   --color-primary-about-2: #c84b31;
   --color-primary-about-3: #31C9B0;
   --color-primary-about-4: #ecdbba;
-  --color-primary-about-red: #ECBBBB;
+  --color-primary-about-red: #c84b31;
   --color-primary-about-1-rgb: 22, 22, 22;
   --color-primary-about-2-rgb: 200, 75, 49;
   --color-primary-about-3-rgb: 49, 201, 176;
   --color-primary-about-4-rgb: 236, 219, 186;
-  --color-primary-about-red-rgb: 236, 187, 187;
+  --color-primary-about-red-rgb: 200, 75, 49;
 }
 
 :root {
@@ -2712,7 +2712,8 @@ body {
 .quote::after, .quote::before {
   position: absolute;
   font-size: 12.8rem;
-  opacity: 0.25;
+  opacity: 0.125;
+  top: 0;
   color: var(--color-primary-1);
 }
 
@@ -2725,10 +2726,10 @@ body {
   width: 0;
   height: 0;
   --width: 10px;
-  --color: var(--color-primary-2);
+  --background-color: var(--color-primary-red);
   border-left: var(--width) solid transparent;
   border-right: var(--width) solid transparent;
-  border-top: var(--width) solid var(--color);
+  border-top: var(--width) solid var(--background-color);
 }
 .arrow-down--left {
   left: 0;
@@ -2742,21 +2743,21 @@ body {
 }
 
 .quote {
+  --quote-popup-transform-default: translate(-0%, 100%) scale(0);
   cursor: pointer;
   text-align: center;
   position: relative;
+  color: var(--color-primary-1);
 }
 .quote:hover::before, .quote:hover::after {
-  opacity: 0.5;
+  opacity: 0.25;
 }
 .quote::before {
   content: "“";
-  top: 0;
   left: -0.8rem;
 }
 .quote::after {
   content: "”";
-  bottom: 0;
   right: -0.8rem;
 }
 .quote__author {
@@ -2771,15 +2772,18 @@ body {
   font-family: "New Tegomin", serif;
 }
 .quote__popup {
-  background-color: var(--color-primary-2);
+  background-color: var(--color-primary-red);
   color: var(--color-primary-4);
   padding: 1.6rem;
   position: absolute;
   top: 0;
   left: 0%;
   right: 0;
-  transform: translate(0%, -200%);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: var(--quote-popup-transform-default);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(1, 0, 0, 1);
+}
+.quote:hover {
+  color: rgba(var(--color-primary-1-rgb), 0.75);
 }
 
 .skills {

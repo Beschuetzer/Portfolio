@@ -16,8 +16,23 @@ import SkillsPopup from "../../components/Skills/SkillsPopup";
 import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
 import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
 import { Repository, SKILLS_CLASSNAME } from "../../components/Skills/utils";
-import { BOOK_TRUST_URL, GITHUB_URL, GOOGLE_IT_SPECIALIST_URL, HERMAN_LIETZ_SCHULE_URL, ISD_622_URL, KUALAPUU_URL, NO_MARGIN_CLASSNAME, RICOH_URL, TOYS_R_US_RUL as TOYS_R_US_URL } from "../../components/constants";
+import {
+	BOOK_TRUST_URL,
+	GITHUB_URL,
+	GOOGLE_IT_SPECIALIST_URL,
+	HERMAN_LIETZ_SCHULE_URL,
+	ISD_622_URL,
+	KUALAPUU_URL,
+	NO_MARGIN_CLASSNAME,
+	RICOH_URL,
+	TOYS_R_US_RUL as TOYS_R_US_URL,
+} from "../../components/constants";
 import SourceCodeLink from "../../components/SourceCodeLink";
+import Quote from "../../components/Quote";
+
+// export const RESUME_SPELLING = <span>R&eacute;sum&eacute;</span>;
+export const RESUME_SPELLING = "Résumé";
+
 
 function getLinkClassHTML() {
 	return ` class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' `;
@@ -280,7 +295,7 @@ const skills: {
 const hints = {
 	skills: "click section to view skills",
 	education: "click degree to view transcript",
-	references: "click name to view letter of recommendation"
+	references: "click name to view letter of recommendation",
 };
 
 interface Skill {
@@ -308,7 +323,12 @@ const Resume: React.FC<ResumeProps> = ({
 		[
 			"overview",
 			<React.Fragment>
-				<Paragraph classNameToAdd={`${NO_MARGIN_CLASSNAME}`} size="five">Below you will find the following:</Paragraph>
+				<Quote author="Seth Godin" className="padding-bottom-2">
+					You are not your résumé, you are your work.
+				</Quote>
+				<Paragraph classNameToAdd={`${NO_MARGIN_CLASSNAME}`} size="five">
+					Below you will find the following:
+				</Paragraph>
 
 				<div>
 					<div className={`${BRIDGE_CLASSNAME}__subsection-grid`}>
@@ -320,9 +340,7 @@ const Resume: React.FC<ResumeProps> = ({
 						<span>2).</span>
 						<span>Full work history</span>
 						<span>3).</span>
-						<span>
-							Transcript highlighting my post-secondary education
-						</span>
+						<span>Transcript highlighting my post-secondary education</span>
 						<span>4).</span>
 						<span>
 							References and letters of recommendation (click the name of the
@@ -472,7 +490,6 @@ const Resume: React.FC<ResumeProps> = ({
 						]}
 					/>
 					<WorkHistoryItem
-
 						startDate="09/06"
 						endDate="12/06"
 						number="04"
@@ -619,7 +636,7 @@ const Resume: React.FC<ResumeProps> = ({
 					href={`${GITHUB_URL}/portfolio`}
 					// blockName="hero"
 				/>
-				<h2 className="heading heading--two">R&eacute;sum&eacute;</h2>
+				<h2 className="heading heading--two">{RESUME_SPELLING}</h2>
 				{renderSections()}
 			</section>
 			<SkillsPopup />

@@ -115,7 +115,7 @@ import EmbeddedLink from "../../../components/EmbeddedLink";
 import Quote from "../../../components/Quote";
 import ClassToggler from "../../../components/ClassToggler";
 
-const sectionNames = ["Backstory", "Interests", "Music"];
+const sectionNames = ["Learning", "Interests", "Music"];
 
 const germanyCarousel = (
 	<section
@@ -345,7 +345,7 @@ const sections: CSharpSection[] = [
 					realized that this may be my last chance to become a programmer.&nbsp;
 				</CSharpCardSection> */}
 
-				<Quote author="Henry Ford">
+				<Quote author="Henry Ford" className="padding-top-1">
 					Anyone who stops learning is old, whether at twenty or eighty. Anyone
 					who keeps learning stays young.
 				</Quote>
@@ -384,25 +384,40 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
+				<Quote author="Phyllis McGinley" className="padding-top-1">
+					A hobby a day keeps the doldrums away.
+				</Quote>
 				<CSharpCardSection title="Biking">
-					One of the most enjoyable things I do on a regular basis is bike riding.&nbsp;  I enjoy it so much, that I even tried using it as my main source of transportation for a year (quite a challenge given I did it in Minnesota).&nbsp;
+					One of the most enjoyable things I do on a regular basis is bike
+					riding.&nbsp; I enjoy it so much, that I even tried using it as my
+					main source of transportation for a year (quite a challenge given I
+					did it in Minnesota).&nbsp;
 				</CSharpCardSection>
 				<CSharpCardSection title="Hiking">
-					Living in Oregon for two years really fostered a fondness for hiking.&nbsp;  I don't plan on hiking Everest anytime soon, but I will definitely enjoy any chance I get to change my elevation by using my feet.  
+					Living in Oregon for two years really fostered a fondness for
+					hiking.&nbsp; I don't plan on hiking Everest anytime soon, but I will
+					definitely enjoy any chance I get to change my elevation by using my
+					feet.
 				</CSharpCardSection>
 				<CSharpCardSection title="Drums">
-					My dad was a drummer, so growing up I had the privilege of having access to a drum kit while growing up.&nbsp;  For what ever reason, the way my brain works is well-suited to playing drums
+					My dad was a drummer, so growing up I had the privilege of having
+					access to a drum kit while growing up.&nbsp; For what ever reason, the
+					way my brain works is well-suited to playing drums
 				</CSharpCardSection>
 				<CSharpCardSection title="Guitar">
-					In high school, a few friends and I started a band.&nbsp;  It was during this time that I learned how to play guitar.&nbsp;  While not as naturally-inclined to it, playing guitar is something I find very rewarding.&nbsp;
+					In high school, a few friends and I started a band.&nbsp; It was
+					during this time that I learned how to play guitar.&nbsp; While not as
+					naturally-inclined to it, playing guitar is something I find very
+					rewarding.&nbsp;
 				</CSharpCardSection>
 				<CSharpCardSection title="Exercise">
-					Sort of a strange thing to put for an 'interest', but going to the gym and exercising is the main way that I cope with stress.&nbsp;  Without it, I am but a pile of saggy mortality.
+					Sort of a strange thing to put for an 'interest', but going to the gym
+					and exercising is the main way that I cope with stress.&nbsp; Without
+					it, I am but a pile of saggy mortality.
 				</CSharpCardSection>
 				<CSharpCardSection title="Proof of Concept">
-				Here are some photos of enjoyable moments I've had:
-				{likesCarousel}
-
+					Here are some photos of enjoyable moments I've had:
+					{likesCarousel}
 				</CSharpCardSection>
 			</React.Fragment>,
 		],
@@ -412,6 +427,9 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
+				<Quote author="Leornard Bernstein" className="padding-top-1">
+					To achieve great things, two things are needed: a plan, and not quite enough time.
+				</Quote>
 				<CSharpCardSection title="A Passion for Sound">
 					Music has been a big part of my life since I was young.&nbsp; Ever
 					since first discovered Fruity Loops, I have been using music as a

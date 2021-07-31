@@ -22,6 +22,7 @@ export const UDEMY_BOOTCAMP_URL = "https://www.udemy.com/course/the-web-develope
 export const GERMANY_APP_URL = "/germany-application-letter.pdf"
 
 
+
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const PAGE_NAV_WIDTH_AT_SWITCH_OFFSET = 192;
@@ -67,6 +68,8 @@ export const siteNavOriginalButtonWidth = computedStyle.getPropertyValue('--site
 export const bridgeSectionHeightDefault = computedStyle.getPropertyValue('--bridge-section-height');
 export const bridgeSectionPaddingDefault = computedStyle.getPropertyValue('--bridge-section-padding');
 export const carouselGridWidth = computedStyle.getPropertyValue('--carousel-grid-width');
+export const quotePopupTransformDefault = computedStyle.getPropertyValue('--quote-popup-transform-default');
+
 
 
 

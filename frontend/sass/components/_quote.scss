@@ -1,7 +1,10 @@
+$popup-background-color: var(--color-primary-red);
+$quote-normal-opacity: 0.125;
 %quote-basic {
 	position: absolute;
 	font-size: $default-font-size * 8;
-	opacity: 0.25;
+	opacity: $quote-normal-opacity;
+	top: 0;
 	color: var(--color-primary-1);
 }
 
@@ -14,15 +17,14 @@
 	width: 0;
 	height: 0;
 	--width: 10px;
-	--color: var(--color-primary-2);
+	--background-color: #{$popup-background-color};
 	border-left: var(--width) solid transparent;
 	border-right: var(--width) solid transparent;
-	border-top: var(--width) solid var(--color);
+	border-top: var(--width) solid var(--background-color);
 
 	&--left {
 		left: 0;
 	}
-
 
 	&--center {
 		left: 50%;
@@ -35,27 +37,27 @@
 }
 
 .quote {
+	--quote-popup-transform-default: translate(-0%, 100%) scale(0);
 	cursor: pointer;
 	text-align: center;
 	position: relative;
+	color: var(--color-primary-1);
 
 	&:hover {
 		&::before,
 		&::after {
-			opacity: 0.5;
+			opacity: $quote-normal-opacity * 2;
 		}
 	}
 
 	&::before {
 		content: "\201C";
-		top: 0;
 		left: -$default-font-size * 0.5;
 		@extend %quote-basic;
 	}
 
 	&::after {
 		content: "\201D";
-		bottom: 0;
 		right: -$default-font-size * 0.5;
 		@extend %quote-basic;
 	}
@@ -75,19 +77,20 @@
 
 	&__popup {
 		// @extend %arrow-down;
-		background-color: var(--color-primary-2);
+		background-color: $popup-background-color;
 		color: var(--color-primary-4);
 		padding: $default-font-size;
 		position: absolute;
 		top: 0;
 		left: 0%;
 		right: 0;
-		transform: translate(-0%, -200%);
+		transform: var(--quote-popup-transform-default);
 		// width: 50%;
-		transition: 
-			opacity $animation-duration $animation-easing-standard,
-			transform $animation-duration $animation-easing-standard,
+		transition: opacity $animation-duration $animation-easing-standard,
+			transform $animation-duration $animation-easing-modern;
+	}
 
-			;
+	&:hover {
+		color: rgba(var(--color-primary-1-rgb), 0.75);
 	}
 }

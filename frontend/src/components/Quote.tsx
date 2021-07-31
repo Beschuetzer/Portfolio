@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef } from "react";
-import { HIDDEN_CLASSNAME } from "./constants";
+import { HIDDEN_CLASSNAME, quotePopupTransformDefault } from "./constants";
 import { getSentencesFromString } from "./utils";
 
 export const QUOTE_CLASSNAME = "quote";
@@ -9,12 +9,14 @@ export interface QuoteProps {
 	children: string;
 	author: string;
 	shouldBreakLines?: boolean;
+	className?: string;
 }
 
 const Quote: React.FC<QuoteProps> = ({
 	children,
 	author,
 	shouldBreakLines = false,
+	className = ''
 }) => {
 	const POPUP_SHOW_DURATION = 2500;
 	const POPUP_MESSAGE = 'Quote Copied to Clipboard';
@@ -42,9 +44,10 @@ const Quote: React.FC<QuoteProps> = ({
 	};
 
 	function getMessage() {
-		const splitByPeriod = children.split(".");
-		const splitByQuestionMark = children.split("?");
-		const splitByExclamationPoint = children.split("!");
+		if (!children.split) return null;
+		const splitByPeriod = children?.split(".");
+		const splitByQuestionMark = children?.split("?");
+		const splitByExclamationPoint = children?.split("!");
 		const splitsToIterateThrough = [
 			splitByPeriod,
 			splitByQuestionMark,
@@ -81,10 +84,10 @@ const Quote: React.FC<QuoteProps> = ({
 		clearTimeout(popUpTimeout);
 
 		popUp.classList.remove(HIDDEN_CLASSNAME);
-		popUp.style.transform = `translate(-0%, -100%)`;
+		popUp.style.transform = `translate(-0%, 0%) scale(1)`;
 
 		popUpTimeout = setTimeout(() => {
-			popUp.style.transform = `translate(-0%, -200%)`;
+			popUp.style.transform = quotePopupTransformDefault;
 			popUp.classList.add(HIDDEN_CLASSNAME);
 		}, POPUP_SHOW_DURATION)
 	}
@@ -92,7 +95,7 @@ const Quote: React.FC<QuoteProps> = ({
 	return (
 		<div
 			onClick={(e: any) => copyToClipboard()}
-			className={`${QUOTE_CLASSNAME}`}>
+			className={`${QUOTE_CLASSNAME} ${className}`}>
 			<div ref={messageRef as any} className={`${QUOTE_CLASSNAME}__message`}>
 				{getMessage()}
 			</div>
@@ -101,9 +104,9 @@ const Quote: React.FC<QuoteProps> = ({
 			</div>
 			<div ref={popUpRef as any} className={`${QUOTE_CLASSNAME}__popup hidden`}>
 				{POPUP_MESSAGE}
-				<div className={`arrow-down arrow-down--left`}></div>
+				{/* <div className={`arrow-down arrow-down--left`}></div> */}
 				<div className={`arrow-down arrow-down--center`}></div>
-				<div className={`arrow-down arrow-down--right`}></div>
+				{/* <div className={`arrow-down arrow-down--right`}></div> */}
 			</div>
 		</div>
 	);
