@@ -14,7 +14,11 @@ import React from "react";
 import CSharpLayout from "./CSharpLayout";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
-import { CSharpSection, GERMANY_APP_URL } from "../../../components/constants";
+import {
+	CSharpSection,
+	DISPLAY_NONE_CLASSNAME,
+	GERMANY_APP_URL,
+} from "../../../components/constants";
 
 import earlier3 from "../../../music/Earlier_03.mp3";
 import earlier5 from "../../../music/Earlier_05.mp3";
@@ -68,7 +72,6 @@ import p2p02 from "../../../imgs/about/p2p-02.png";
 import p2p03 from "../../../imgs/about/p2p-03.png";
 import p2p04 from "../../../imgs/about/p2p-04.png";
 
-
 import germany01Thumbnail from "../../../imgs/about/thumbnails/germany-01-thumbnail.jpg";
 import germany02Thumbnail from "../../../imgs/about/thumbnails/germany-02-thumbnail.jpg";
 import germany03Thumbnail from "../../../imgs/about/thumbnails/germany-03-thumbnail.jpg";
@@ -110,11 +113,14 @@ import {
 } from "../../../components/utils";
 import EmbeddedLink from "../../../components/EmbeddedLink";
 import Quote from "../../../components/Quote";
+import ClassToggler from "../../../components/ClassToggler";
 
 const sectionNames = ["Backstory", "Likes", "Music"];
 
 const germanyCarousel = (
-	<section className="csharp__carousel padding-top-0">
+	<section
+		id="german-carousel"
+		className={`${DISPLAY_NONE_CLASSNAME} csharp__carousel padding-top-0`}>
 		<Carousel
 			items={[
 				{
@@ -196,8 +202,7 @@ const likesCarousel = (
 				{
 					itemSrc: maui04,
 					itemThumbnailSrc: maui04Thumbnail,
-					description:
-						"Stunning Beach, Less than Ideal Sand",
+					description: "Stunning Beach, Less than Ideal Sand",
 				},
 				{
 					itemSrc: maui05,
@@ -277,7 +282,9 @@ const likesCarousel = (
 );
 
 const peopleToPeopleCarousel = (
-	<section className="csharp__carousel">
+	<section
+		id="p2p-carousel"
+		className={`${DISPLAY_NONE_CLASSNAME} csharp__carousel padding-top-0`}>
 		<Carousel
 			items={[
 				{
@@ -301,7 +308,6 @@ const peopleToPeopleCarousel = (
 					description: "The Training Commences",
 				},
 			]}
-		  
 			numberOfItemsInCarouselWidthWise="3"
 			numberOfItemsToScrollOnClick="3"
 			functionToGetContainer={functionToGetContainer}
@@ -339,24 +345,33 @@ const sections: CSharpSection[] = [
 					realized that this may be my last chance to become a programmer.&nbsp;
 				</CSharpCardSection> */}
 
-				<CSharpCardSection title="A Way of Life">
 					<Quote author="Henry Ford">
 						Anyone who stops learning is old, whether at twenty or eighty.
 						Anyone who keeps learning stays young.
 					</Quote>
+				<CSharpCardSection title="A Way of Life">
 					The above quote sheds a lot of light onto the choices I have made in
 					my life.&nbsp; After I graduated high school, I wanted to learn more
-					about the world and its inhabitants (a desire that was fostered by my
-					People to People experience to England, Ireland, and Whales in 10th
-					Grade). {peopleToPeopleCarousel} &nbsp;To this end, I
+					about the world and its inhabitants (a desire that was fostered by my&nbsp; 
+					<ClassToggler
+						classToToggle={DISPLAY_NONE_CLASSNAME}
+						targetSelector="#p2p-carousel">
+						People to People Experience
+					</ClassToggler>{" "}
+					to England, Ireland, and Whales in 10th Grade).{" "}
+					{peopleToPeopleCarousel} &nbsp;To this end, I
 					<EmbeddedLink isLocal={false} href={GERMANY_APP_URL}>
 						applied
 					</EmbeddedLink>
 					to a posting I found online for an English Assistant at a boarding
-					school in Thuringia, Germany:
+					school in Thuringia, Germany.&nbsp; As a result of this experience,{" "}
+					<ClassToggler
+						classToToggle={DISPLAY_NONE_CLASSNAME}
+						targetSelector="#german-carousel">
+						I learned a lot
+					</ClassToggler>{" "}
+					about myself, my prior assumptions, and German culture.&nbsp;
 					{germanyCarousel}
-					As a result of this experience, I learned a lot about myself, my prior
-					assumptions, and German culture.
 				</CSharpCardSection>
 				{likesCarousel}
 			</React.Fragment>,

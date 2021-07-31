@@ -1,15 +1,46 @@
+%quote-basic {
+	position: absolute;
+	font-size: $default-font-size * 8;
+	opacity: 0.25;
+	color: var(--color-primary-1);
+}
+
 .quote {
-  text-align: center;
+	cursor: pointer;
+	text-align: center;
+	position: relative;
 
-  &__message {
-    font-style: italic;
-    font-size: $default-font-size * 2;
-    font-family: $font-family-fancy-bridge;
-  }
+	&:hover {
+		&::before,
+		&::after {
+			opacity: 0.5;
+		}
+	}
 
-  &__author {
-    padding: $default-font-size;
-    font-size: $default-font-size * 1.5;
-    font-family: $font-family-headers;
-  }
+	&::before {
+		content: "\201C";
+		top: 0;
+		left: -$default-font-size;
+		@extend %quote-basic;
+	}
+
+	&::after {
+		content: "\201D";
+		bottom: 0;
+		right: -$default-font-size;
+		@extend %quote-basic;
+	}
+
+	&__message {
+		position: relative;
+		font-style: italic;
+		font-size: $default-font-size * 2;
+		font-family: $font-family-fancy-bridge;
+	}
+
+	&__author {
+		padding-top: $default-font-size;
+		font-size: $default-font-size * 1.5;
+		font-family: $font-family-headers;
+	}
 }

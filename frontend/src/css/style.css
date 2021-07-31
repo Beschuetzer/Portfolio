@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ------------------------------------------------------------------------------------------------- */
 :root {
   --color-grey-light-1: #faf9f9;
@@ -2704,16 +2705,39 @@ body {
     opacity: 0;
   }
 }
+.quote::after, .quote::before {
+  position: absolute;
+  font-size: 12.8rem;
+  opacity: 0.25;
+  color: var(--color-primary-1);
+}
+
 .quote {
+  cursor: pointer;
   text-align: center;
+  position: relative;
+}
+.quote:hover::before, .quote:hover::after {
+  opacity: 0.5;
+}
+.quote::before {
+  content: "“";
+  top: 0;
+  left: -1.6rem;
+}
+.quote::after {
+  content: "”";
+  bottom: 0;
+  right: -1.6rem;
 }
 .quote__message {
+  position: relative;
   font-style: italic;
   font-size: 3.2rem;
   font-family: "New Tegomin", serif;
 }
 .quote__author {
-  padding: 1.6rem;
+  padding-top: 1.6rem;
   font-size: 2.4rem;
   font-family: "Merriweather", serif;
 }
