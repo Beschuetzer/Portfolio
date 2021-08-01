@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-//note: add page names here
+//#region note: Add page names here
 export const ABOUT_PAGE_NAME = "about";
 export const AUTO_BID_PAGE_NAME = "autobid";
 export const REPLAY_PAGE_NAME = "replay";
@@ -20,7 +20,19 @@ export const PAGE_NAMES = [
 	`/${REPLAY_PAGE_NAME}`,
 	`/${RESUME_PAGE_NAME}`,
 ];
+//#endregion
 
+//#region Internal URLs
+export const PLAYLIST_SYNCER_URL = `/examples/${PLAYLIST_SYNCER_PAGE_NAME}`;
+export const DOWNLOADER_URL = `/examples/${DOWNLOADER_PAGE_NAME}`;
+export const BRIDGE_URL = `/examples/${BRIDGE_PAGE_NAME}`;
+export const REPLAY_VIEWER_URL = `/examples/${REPLAY_PAGE_NAME}`;
+export const AUTO_BID_URL = `/examples/${AUTO_BID_PAGE_NAME}`;
+export const RESUME_URL = `/${RESUME_PAGE_NAME}`;
+export const ABOUT_URL = `/${ABOUT_PAGE_NAME}`;
+//#endregion
+
+//#region External URLs
 export const BOOK_TRUST_URL = "https://www.booktrust.org";
 export const AMAJ_BRIDGE_URL = "https://still-bayou-51404.herokuapp.com";
 export const GITHUB_URL = "http://github.com/beschuetzer";
@@ -48,17 +60,15 @@ export const WIKIPEDIA_DRM_URL =
 export const UDEMY_BOOTCAMP_URL =
 	"https://www.udemy.com/course/the-web-developer-bootcamp/";
 export const GERMANY_APP_URL = "/germany-application-letter.pdf";
-export const PLAYLIST_SYNCER_URL = `/examples/${PLAYLIST_SYNCER_PAGE_NAME}`;
-export const DOWNLOADER_URL = `/examples/${DOWNLOADER_PAGE_NAME}`;
-export const BRIDGE_URL = `/examples/${BRIDGE_PAGE_NAME}`;
-export const REPLAY_VIEWER_URL = `/examples/${REPLAY_PAGE_NAME}`;
-export const AUTO_BID_URL = `/examples/${AUTO_BID_PAGE_NAME}`;
-export const RESUME_URL = `/${RESUME_PAGE_NAME}`;
-export const ABOUT_URL = `/${ABOUT_PAGE_NAME}`;
+//#endregion
 
+//#region Globally-relevant Constants
 export const ANIMATION_DURATION = 500;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const PAGE_NAV_WIDTH_AT_SWITCH_OFFSET = 192;
+//#endregion
+
+//#region CSS Property Names
 export let computedStyle = getComputedStyle(document.documentElement);
 export const PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME =
 	"--page-nav-min-column-width";
@@ -66,29 +76,9 @@ export const AUDIO_PLAYER_TOGGLER_ROTATION_CLOSED_CSS_PROPERTY_NAME =
 	"--audio-player-toggler-rotation-closed";
 export const AUDIO_PLAYER_TOGGLER_ROTATION_OPEN_CSS_PROPERTY_NAME =
 	"--audio-player-toggler-rotation-open";
-
-//#region CSS Colors
-// export const COLOR_PRIMARY_1 = computedStyle.getPropertyValue('--color-primary-1');
-// export const COLOR_PRIMARY_2 = computedStyle.getPropertyValue('--color-primary-2');
-// export const COLOR_PRIMARY_3 = computedStyle.getPropertyValue('--color-primary-3');
-// export const COLOR_PRIMARY_4 = computedStyle.getPropertyValue('--color-primary-4');
-
 //#endregion
+
 //#region Breakpoint Stuff
-export interface Reference {
-	current: HTMLElement;
-}
-
-export interface CSharpSection {
-	name: string;
-	pageName: string;
-	children: any[];
-	hasCarousel?: boolean;
-	styles?: CSSProperties;
-}
-
-export type ArrowButtonDirection = "left" | "right";
-
 export const headerTogglerWidth = parseFloat(
 	computedStyle.getPropertyValue("--header-toggler-width"),
 );
@@ -165,7 +155,8 @@ export const viewPortPixelToRem: {
 export const EMAIL = "adam.j.major@gmail.com";
 const SUBJECT = "";
 const BODY = "";
-export const MAIL_TO_STRING = "mailto:" + EMAIL + "&subject=" + SUBJECT + "&body=" + BODY;
+export const MAIL_TO_STRING =
+	"mailto:" + EMAIL + "&subject=" + SUBJECT + "&body=" + BODY;
 export const SLIDING_CLASSNAME = "sliding";
 export const FILL_RED_CLASSNAME = "fill-red";
 export const TRANSITION_NONE_CLASSNAME = "transition-none";
@@ -186,4 +177,20 @@ export const PAGE_NAV_CLASSNAME = "page-nav";
 //only applies if you forget to add page name to PAGE_NAMES
 export const DEFAULT_PAGE_NAME_INDEX = 2;
 
+//#endregion
+
+//#region Global Types and Interfaces
+export interface CSharpSection {
+	name: string;
+	pageName: string;
+	children: any[];
+	hasCarousel?: boolean;
+	styles?: CSSProperties;
+}
+
+export interface Reference {
+	current: HTMLElement;
+}
+
+export type ArrowButtonDirection = "left" | "right";
 //#endregion
