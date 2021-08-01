@@ -401,8 +401,8 @@
 
 	//overlay-text styling
 	& .overlay-text {
-		--color: var(--color-white-rgb);
-		--background-color: var(--color-black-rgb);
+		--color: var(--color-primary-4-rgb);
+		--background-color: var(--color-primary-1-rgb);
 		top: calc(#{$carousel-full-screen-media-height} / 2) !important;
 		left: 50% !important;
 		opacity: 0;

@@ -28,6 +28,7 @@ import {
 } from "../../../components/utils";
 import {
 	CSharpSection,
+	DOWNLOADER_PAGE_NAME,
 	GITHUB_URL,
 	KH_INSIDER_URL,
 	OC_REMIX_URL,
@@ -197,8 +198,8 @@ const Downloader: React.FC<DownloaderProps> = () => {
 	return (
 		<CSharpLayout
 			sections={sections}
-			pageName="downloader"
-			sourceCodeLink={`${GITHUB_URL}/downloader`}>
+			pageName={DOWNLOADER_PAGE_NAME}
+			sourceCodeLink={`${GITHUB_URL}/${DOWNLOADER_PAGE_NAME}`}>
 			&nbsp;
 		</CSharpLayout>
 	);

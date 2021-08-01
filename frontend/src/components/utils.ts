@@ -8,9 +8,10 @@ import {
 	ABOUT_URL,
 	AUTO_BID_URL,
 	BRIDGE_URL,
-	CONTACT_URL,
 	DOWNLOADER_URL,
+	EMAIL,
 	FILL_RED_CLASSNAME,
+	MAIL_TO_STRING,
 	MOBILE_BREAK_POINT_WIDTH,
 	OVERFLOW_HIDDEN_CLASSNAME,
 	PLAYLIST_SYNCER_URL,
@@ -40,8 +41,8 @@ export const keypressHandler = (
 			history.push(BRIDGE_URL);
 			break;
 		case "c":
-			history.push(CONTACT_URL);
-			break;
+			window.location.href = MAIL_TO_STRING;
+		break;
 		case "d":
 			history.push(DOWNLOADER_URL);
 			break;

@@ -9,13 +9,11 @@ import {
 	ABOUT_URL,
 	AUTO_BID_URL,
 	BRIDGE_URL,
-	CONTACT_URL,
 	DOWNLOADER_URL,
 	MOBILE_BREAK_POINT_WIDTH, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
 } from "./constants";
 
 import Home from "../pages/home/Home";
-import Contact from "../pages/contact/Contact";
 import PlaylistSyncer from "../pages/examples/csharp/PlaylistSyncer";
 import Downloader from "../pages/examples/csharp/Downloader";
 import Bridge from "../pages/examples/bridge/Bridge";
@@ -120,7 +118,6 @@ const App: React.FC<AppProps> = ({
 				<Route path={AUTO_BID_URL} exact component={Autobid} />
 				<Route path={ABOUT_URL} exact component={About} />
 				<Route path={RESUME_URL} exact component={Resume} />
-				<Route path={CONTACT_URL} exact component={Contact} />
 			</Switch>
 			<Route path="*" exact component={NavToggler} />
 			<Route path="*" exact component={PageNav} />

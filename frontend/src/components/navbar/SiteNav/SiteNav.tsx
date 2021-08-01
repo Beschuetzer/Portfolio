@@ -30,8 +30,9 @@ import {
 	resetPageNavMinWidth,
 } from "./utils";
 import { scrollToSection } from "../../utils";
-import { ABOUT_URL, AUTO_BID_URL, BRIDGE_URL, DOWNLOADER_URL, email, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL } from "../../constants";
+import { ABOUT_PAGE_NAME, ABOUT_URL, AUTO_BID_PAGE_NAME, AUTO_BID_URL, BRIDGE_PAGE_NAME, BRIDGE_URL, DOWNLOADER_PAGE_NAME, DOWNLOADER_URL, EMAIL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_PAGE_NAME, RESUME_URL } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
+import { capitalize } from "../../../helpers";
 
 interface SiteNavProps {
 	isAnimating: boolean;
@@ -122,16 +123,16 @@ const SiteNav: React.FC<SiteNavProps> = ({
 				<ul className={`${NAVBAR_CLASSNAME}__list`}>
 					<NavListItem
 						imageSource={aboutImage}
-						imageAlt="About"
+						imageAlt={capitalize(ABOUT_PAGE_NAME)}
 						to={ABOUT_URL}
-						label="About"
+						label={capitalize(ABOUT_PAGE_NAME)}
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
 					/>
 
 					<NavListItem
 						imageSource={resumeImage}
-						imageAlt="Resume"
+						imageAlt={capitalize(RESUME_PAGE_NAME)}
 						to={RESUME_URL}
 						label="R&eacute;sum&eacute;"
 						onMouseEnter={onMouseEnter}
@@ -158,7 +159,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 							/>
 							<NavListItem
 								imageSource={bridgeImage}
-								imageAlt="Bridge"
+								imageAlt={capitalize(BRIDGE_PAGE_NAME)}
 								to={BRIDGE_URL}
 								label="A# Maj Bridge"
 								onMouseEnter={onMouseEnter}
@@ -166,17 +167,17 @@ const SiteNav: React.FC<SiteNavProps> = ({
 							/>
 							<NavListItem
 								imageSource={autoBidImage}
-								imageAlt="autoBid"
+								imageAlt={AUTO_BID_PAGE_NAME}
 								to={AUTO_BID_URL}
-								label="Auto Bid"
+								label={capitalize(AUTO_BID_PAGE_NAME)}
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
 							<NavListItem
 								imageSource={downloaderImage}
-								imageAlt="Downloader"
+								imageAlt={capitalize(DOWNLOADER_PAGE_NAME)}
 								to={DOWNLOADER_URL}
-								label="Downloader"
+								label={capitalize(DOWNLOADER_PAGE_NAME)}
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
@@ -193,7 +194,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 					<NavListItem
 						imageSource={contactImage}
 						imageAlt="Contact"
-						to={`mailto:${email}`}
+						to={`mailto:${EMAIL}`}
 						label="Contact"
 						isEmail={true}
 						onMouseEnter={onMouseEnter}

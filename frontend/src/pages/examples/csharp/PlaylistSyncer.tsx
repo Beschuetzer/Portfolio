@@ -28,6 +28,7 @@ import {
 	DOWNLOADER_URL,
 	GITHUB_URL,
 	OS_10_ISSUE_TRACKER_URL,
+	PLAYLIST_SYNCER_PAGE_NAME,
 	WIKIPEDIA_DRM_URL,
 	WIKIPEDIA_MTP_URL,
 } from "../../../components/constants";
@@ -179,8 +180,8 @@ const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
 	return (
 		<CSharpLayout
 			sections={sections}
-			pageName="playlist-syncer"
-			sourceCodeLink={`${GITHUB_URL}/playlist-syncer`}>
+			pageName={PLAYLIST_SYNCER_PAGE_NAME}
+			sourceCodeLink={`${GITHUB_URL}/${PLAYLIST_SYNCER_PAGE_NAME}`}>
 			{" "}
 		</CSharpLayout>
 	);

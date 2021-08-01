@@ -15,6 +15,7 @@ import CSharpLayout from "./CSharpLayout";
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import {
+	ABOUT_PAGE_NAME,
 	CSharpSection,
 	DISPLAY_NONE_CLASSNAME,
 	DOWNLOADER_URL,
@@ -584,7 +585,7 @@ const About: React.FC<AboutProps> = () => {
 	return (
 		<React.Fragment>
 			<LoadingSpinner />
-			<CSharpLayout sections={sections} pageName="about">
+			<CSharpLayout sections={sections} pageName={ABOUT_PAGE_NAME}>
 				{" "}
 			</CSharpLayout>
 			<AudioPlayer />

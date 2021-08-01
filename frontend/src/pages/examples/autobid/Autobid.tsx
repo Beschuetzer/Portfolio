@@ -2,7 +2,7 @@ import React from "react";
 import CSharpLayout from "../csharp/CSharpLayout";
 
 import { C_SHARP_CLASSNAME } from "../csharp/utils";
-import { CSharpSection, GITHUB_URL } from "../../../components/constants";
+import { AUTO_BID_PAGE_NAME, CSharpSection, GITHUB_URL } from "../../../components/constants";
 import CSharpCardSection from "../csharp/CSharpCardSection";
 
 const sectionNames = [
@@ -80,8 +80,8 @@ const AutoBid: React.FC<AutoBidProps> = () => {
 	return (
 		<CSharpLayout
 			sections={sections}
-			pageName="autobid"
-			sourceCodeLink={`${GITHUB_URL}/autobid`}>
+			pageName={AUTO_BID_PAGE_NAME}
+			sourceCodeLink={`${GITHUB_URL}/${AUTO_BID_PAGE_NAME}`}>
 			{" "}
 		</CSharpLayout>
 	);

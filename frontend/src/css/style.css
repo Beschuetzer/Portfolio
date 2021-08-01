@@ -24,23 +24,23 @@
   --color-primary-2: #8ac6d0;
   --color-primary-3: #f4d262;
   --color-primary-4: #fbeeac;
-  --color-primary-red: #d08a97;
+  --color-primary-red: #7B2853;
   --color-primary-1-rgb: 40, 83, 123;
   --color-primary-1-light-rgb: 153, 153, 153;
   --color-primary-2-rgb: 138, 198, 208;
   --color-primary-3-rgb: 244, 210, 98;
   --color-primary-4-rgb: 251, 238, 172;
-  --color-primary-red-rgb: 208, 138, 151;
+  --color-primary-red-rgb: 123, 40, 83;
   --color-primary-resume-1: #28537b;
   --color-primary-resume-2: #8ac5d0;
   --color-primary-resume-3: #f4d262;
   --color-primary-resume-4: #fbeeac;
-  --color-primary-resume-red: #d08a97;
+  --color-primary-resume-red: #7B2853;
   --color-primary-resume-1-rgb: 40, 83, 123;
   --color-primary-resume-2-rgb: 138, 197, 208;
   --color-primary-resume-3-rgb: 244, 210, 98;
   --color-primary-resume-4-rgb: 251, 238, 172;
-  --color-primary-resume-red-rgb: 208, 138, 151;
+  --color-primary-resume-red-rgb: 123, 40, 83;
   --color-primary-bridge-2: #f59229;
   --color-primary-bridge-4: #f5f1db;
   --color-primary-bridge-3: #e4e0c9;
@@ -85,12 +85,12 @@
   --color-primary-replay-2: #8ac6d0;
   --color-primary-replay-3: #f4d262;
   --color-primary-replay-4: #fbeeac;
-  --color-primary-replay-red: #d08a97;
+  --color-primary-replay-red: #7B5028;
   --color-primary-replay-1-rgb: 40, 83, 123;
   --color-primary-replay-2-rgb: 138, 198, 208;
   --color-primary-replay-3-rgb: 244, 210, 98;
   --color-primary-replay-4-rgb: 251, 238, 172;
-  --color-primary-replay-red-rgb: 208, 138, 151;
+  --color-primary-replay-red-rgb: 123, 80, 40;
   --color-primary-about-1: #161616;
   --color-primary-about-2: #c84b31;
   --color-primary-about-3: #31C9B0;
@@ -2345,8 +2345,8 @@ body {
   opacity: 1;
 }
 .carousel .overlay-text {
-  --color: var(--color-white-rgb);
-  --background-color: var(--color-black-rgb);
+  --color: var(--color-primary-4-rgb);
+  --background-color: var(--color-primary-1-rgb);
   top: calc(calc( 	87.5vh - 2.5vh ) / 2) !important;
   left: 50% !important;
   opacity: 0;
@@ -4780,7 +4780,7 @@ body {
   flex-direction: column-reverse;
 }
 .resume__header {
-  margin-bottom: 4rem;
+  margin-bottom: 1.6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

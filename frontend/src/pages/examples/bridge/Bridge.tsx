@@ -47,6 +47,7 @@ import {
 	PLAYLIST_SYNCER_URL,
 	DOWNLOADER_URL,
 	RESUME_URL,
+	BRIDGE_PAGE_NAME,
 } from "../../../components/constants";
 import BridgeHero from "./BridgeHero";
 import SourceCodeLink from "../../../components/SourceCodeLink";
@@ -54,7 +55,7 @@ import ArrowButton from "../../../components/ArrowButton";
 import Quote from "../../../components/Quote";
 
 const sectionContents = [
-	<SectionContainer name={bridgeSections[0]} pageName="bridge">
+	<SectionContainer name={bridgeSections[0]} pageName={BRIDGE_PAGE_NAME}>
 		<BridgeCard titleSize="two" titleContent={bridgeSections[0]}>
 			<Quote author="Timothy Ferriss" className="padding-bottom-2">
 				What we fear doing most is usually what we most need to do.
@@ -129,7 +130,7 @@ const sectionContents = [
 			</BridgeCardSection>
 		</BridgeCard>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSections[1]} pageName="bridge">
+	<SectionContainer name={bridgeSections[1]} pageName={BRIDGE_PAGE_NAME}>
 		<BridgeCard
 			titleSize="two"
 			titleContent={bridgeSections[1]}
@@ -263,7 +264,7 @@ const sectionContents = [
 			<div className={BRIDGE_BACKDROP_CLASSNAME}></div>
 		</BridgeCard>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSections[2]} pageName="bridge">
+	<SectionContainer name={bridgeSections[2]} pageName={BRIDGE_PAGE_NAME}>
 		<BridgeCard titleSize="two" titleContent={bridgeSections[2]}>
 			<Quote author="Walt Disney" className="padding-bottom-2">
 				There's no magic in magic, it's all in the details.
@@ -458,7 +459,7 @@ const sectionContents = [
 			</BridgeCardSection>
 		</BridgeCard>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSections[3]} pageName="bridge">
+	<SectionContainer name={bridgeSections[3]} pageName={BRIDGE_PAGE_NAME}>
 		<BridgeCard titleSize="two" titleContent={bridgeSections[3]}>
 		<Quote author="Zig Ziglar" className="padding-bottom-2">
 				If you are not willing to learn, no one can help you.&nbsp;  If you are determined to learn, no one can stop you.
@@ -576,11 +577,11 @@ const Bridge: React.FC<BridgeProps> = ({
 	};
 
 	return (
-		<div className="bridge">
+		<div className={BRIDGE_PAGE_NAME}>
 			<BridgeHero />
 
 			<SourceCodeLink
-				href={`${GITHUB_URL}/bridge`}
+				href={`${GITHUB_URL}/${BRIDGE_PAGE_NAME}`}
 				// blockName="hero"
 			/>
 			<SourceCodeLink

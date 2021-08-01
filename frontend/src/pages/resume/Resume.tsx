@@ -1,4 +1,3 @@
-//@ts-nocheck
 
 // import * as THREE from "three";
 import React, { useEffect } from "react";
@@ -24,6 +23,7 @@ import {
 	ISD_622_URL,
 	KUALAPUU_URL,
 	NO_MARGIN_CLASSNAME,
+	RESUME_PAGE_NAME,
 	RICOH_URL,
 	TOYS_R_US_RUL as TOYS_R_US_URL,
 } from "../../components/constants";
@@ -77,6 +77,7 @@ const webDevSubSkillsLabels = [
 	"Databases",
 ];
 
+//@ts-ignore
 const skills: {
 	[key: string]: {
 		[key: string]: [Skill];
@@ -607,11 +608,11 @@ const Resume: React.FC<ResumeProps> = ({
 					<Section
 						key={index}
 						name={contentArray[0] as string}
-						pageName="resume"
+						pageName={RESUME_PAGE_NAME}
 						headerSideContent={
 							headerSideContent[contentArray[0] as keyof HeaderSideContent]
 						}
-						hint={hints[contentArray[0]]}>
+						hint={(hints as any)[contentArray[0] as any]}>
 						{contentArray[1] as string}
 					</Section>
 				);
@@ -621,8 +622,8 @@ const Resume: React.FC<ResumeProps> = ({
 				<Section
 					key={index}
 					name={contentArray[0] as string}
-					pageName="resume"
-					hint={hints[contentArray[0]]}>
+					pageName={RESUME_PAGE_NAME}
+					hint={(hints as any)[contentArray[0] as any]}>
 					{contentArray[1] as string}
 				</Section>
 			);
@@ -631,7 +632,7 @@ const Resume: React.FC<ResumeProps> = ({
 
 	return (
 		<React.Fragment>
-			<section className="resume">
+			<section className={RESUME_PAGE_NAME}>
 				<SourceCodeLink
 					href={`${GITHUB_URL}/portfolio`}
 					// blockName="hero"
