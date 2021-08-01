@@ -50,6 +50,7 @@ import {
 	GITHUB_URL,
 	REPLAYS_URL,
 } from "../../../components/constants";
+import Quote from "../../../components/Quote";
 
 const sectionNames = ["Motivation", "Media", "Features", "Notes"];
 
@@ -59,6 +60,9 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
+				<Quote author="Anonymous">
+					When the why is clear, the how is easy.
+				</Quote>
 				<CSharpCardSection title="The Reasons">
 					<Paragraph size="five">
 						There are two reasons why I chose to build the
@@ -241,6 +245,11 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
+				<Quote author="Tim Cook" className="padding-top-1">
+					A great product isn't just a collection of features. &nbsp;It's how it
+					all works together.
+				</Quote>
+
 				<CSharpCardSection title="Filters">
 					<Paragraph size="five">
 						There are two type of filters that can be applied: game-level and

@@ -84,7 +84,7 @@ const Quote: React.FC<QuoteProps> = ({
 		clearTimeout(popUpTimeout);
 
 		popUp.classList.remove(HIDDEN_CLASSNAME);
-		popUp.style.transform = `translate(-0%, 0%) scale(1)`;
+		popUp.style.transform = `translate(-0%, 00%) scale(1)`;
 
 		popUpTimeout = setTimeout(() => {
 			popUp.style.transform = quotePopupTransformDefault;

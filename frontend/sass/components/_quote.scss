@@ -37,7 +37,7 @@ $quote-normal-opacity: 0.125;
 }
 
 .quote {
-	--quote-popup-transform-default: translate(-0%, 100%) scale(0);
+	--quote-popup-transform-default: translate(-0%, 200%) scale(0);
 	cursor: pointer;
 	text-align: center;
 	position: relative;
@@ -76,7 +76,11 @@ $quote-normal-opacity: 0.125;
 	}
 
 	&__popup {
-		// @extend %arrow-down;
+		height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
 		background-color: $popup-background-color;
 		color: var(--color-primary-4);
 		padding: $default-font-size;

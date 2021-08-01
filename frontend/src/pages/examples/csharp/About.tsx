@@ -346,7 +346,7 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection> */}
 
 				<Quote author="Henry Ford" className="padding-top-1">
-					Anyone who stops learning is old, whether at twenty or eighty. Anyone
+					Anyone who stops learning is old, whether at twenty or eighty. &nbsp;Anyone
 					who keeps learning stays young.
 				</Quote>
 				<CSharpCardSection title="A Way of Life">

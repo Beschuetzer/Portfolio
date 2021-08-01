@@ -30,6 +30,7 @@ import {
 	WIKIPEDIA_DRM_URL,
 	WIKIPEDIA_MTP_URL,
 } from "../../../components/constants";
+import Quote from "../../../components/Quote";
 
 const sectionNames = ["Description", "Media", "Notes"];
 
@@ -39,6 +40,9 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
+				<Quote author="Charles Kettering" className="padding-top-1">
+					A problem well-stated is a problem half-solved;
+				</Quote>
 				<CSharpCardSection title="Purpose">
 					<Paragraph size="four">
 						Around the end of Febraury 2020, Samsung updated their Android OS to
@@ -175,7 +179,9 @@ const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
 		<CSharpLayout
 			sections={sections}
 			pageName="playlist-syncer"
-			sourceCodeLink={`${GITHUB_URL}/playlist-syncer`}> </CSharpLayout>
+			sourceCodeLink={`${GITHUB_URL}/playlist-syncer`}>
+			{" "}
+		</CSharpLayout>
 	);
 };
 

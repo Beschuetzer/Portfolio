@@ -33,6 +33,7 @@ import {
 	OC_REMIX_URL,
 } from "../../../components/constants";
 import Paragraph from "../../../typography/Paragraph";
+import Quote from "../../../components/Quote";
 
 const sectionNames = ["Description", "Media", "Notes"];
 
@@ -42,6 +43,9 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
+				<Quote author="Peter Drucker" className="padding-top-1">
+					Efficiency is doing better what is already being done.
+				</Quote>
 				<CSharpCardSection title="Purpose">
 					Websites like
 					<EmbeddedLink href={OC_REMIX_URL}>OCRemix</EmbeddedLink> and

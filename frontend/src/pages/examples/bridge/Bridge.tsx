@@ -48,10 +48,14 @@ import {
 import BridgeHero from "./BridgeHero";
 import SourceCodeLink from "../../../components/SourceCodeLink";
 import ArrowButton from "../../../components/ArrowButton";
+import Quote from "../../../components/Quote";
 
 const sectionContents = [
 	<SectionContainer name={bridgeSections[0]} pageName="bridge">
 		<BridgeCard titleSize="two" titleContent={bridgeSections[0]}>
+			<Quote author="Timothy Ferriss" className="padding-bottom-2">
+				What we fear doing most is usually what we most need to do.
+			</Quote>
 			<BridgeCardSection
 				title="What is A#Maj Bridge?"
 				// title='An App is Born'
@@ -258,6 +262,9 @@ const sectionContents = [
 	</SectionContainer>,
 	<SectionContainer name={bridgeSections[2]} pageName="bridge">
 		<BridgeCard titleSize="two" titleContent={bridgeSections[2]}>
+			<Quote author="Walt Disney" className="padding-bottom-2">
+				There's no magic in magic, it's all in the details.
+			</Quote>
 			<BridgeCardSection title="Off and Running">
 				<p>
 					Because I had just completed the
@@ -403,9 +410,7 @@ const sectionContents = [
 					NodeJS(Express).&nbsp; My choice to use paperJS for the vector
 					graphics library was purely because I had learned about it in Colt
 					Steele's
-					<EmbeddedLink
-						href={UDEMY_BOOTCAMP_URL}
-						isLocal={false}>
+					<EmbeddedLink href={UDEMY_BOOTCAMP_URL} isLocal={false}>
 						web developer bootcamp
 					</EmbeddedLink>
 					and didn't have any reason at the time to think about alternatives.
@@ -415,9 +420,7 @@ const sectionContents = [
 						Knowing what I would use on the server-side made searching for
 						resources much easier.&nbsp; After careful consideration, I decided
 						on Colte Steele's
-						<EmbeddedLink
-							href={UDEMY_BOOTCAMP_URL}
-							isLocal={false}>
+						<EmbeddedLink href={UDEMY_BOOTCAMP_URL} isLocal={false}>
 							Web Developer Bootcamp (2015 version)
 						</EmbeddedLink>
 						to use as the foundation for learning how to build a complete
@@ -454,6 +457,9 @@ const sectionContents = [
 	</SectionContainer>,
 	<SectionContainer name={bridgeSections[3]} pageName="bridge">
 		<BridgeCard titleSize="two" titleContent={bridgeSections[3]}>
+		<Quote author="Zig Ziglar" className="padding-bottom-2">
+				If you are not willing to learn, no one can help you.&nbsp;  If you are determined to learn, no one can stop you.
+			</Quote>
 			<BridgeCardSection title="Sometimes Bread and Butter is not enough">
 				<p>
 					At the time it was easy for me to justify delaying learning about
