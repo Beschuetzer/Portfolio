@@ -117,6 +117,7 @@ import {
 import EmbeddedLink from "../../../components/EmbeddedLink";
 import Quote from "../../../components/Quote";
 import ClassToggler from "../../../components/ClassToggler";
+import Paragraph from "../../../typography/Paragraph";
 
 const sectionNames = ["Learning", "Interests", "Music", "FAQ"];
 
@@ -349,33 +350,14 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection> */}
 
 				<Quote author="Henry Ford" className="padding-top-1">
-					Anyone who stops learning is old, whether at twenty or eighty. &nbsp;Anyone
-					who keeps learning stays young.
+					Anyone who stops learning is old, whether at twenty or eighty.
+					&nbsp;Anyone who keeps learning stays young.
 				</Quote>
 				<CSharpCardSection title="A Way of Life">
-					The above quote sheds a lot of light onto the choices I have made in
-					my life.&nbsp; After I graduated high school, I wanted to learn more
-					about the world and its inhabitants (a desire that was fostered by
-					my&nbsp;
-					<ClassToggler
-						classToToggle={DISPLAY_NONE_CLASSNAME}
-						targetSelector="#p2p-carousel">
-						People to People Experience
-					</ClassToggler>{" "}
-					to England, Ireland, and Whales in 10th Grade).{" "}
-					{peopleToPeopleCarousel} &nbsp;To this end, I
-					<EmbeddedLink isLocal={false} href={GERMANY_APP_URL}>
-						applied
-					</EmbeddedLink>
-					to a posting I found online for an English Assistant at a boarding
-					school in Thuringia, Germany.&nbsp; As a result of this experience,{" "}
-					<ClassToggler
-						classToToggle={DISPLAY_NONE_CLASSNAME}
-						targetSelector="#german-carousel">
-						I learned a lot
-					</ClassToggler>{" "}
-					about myself, my prior assumptions, and German culture.&nbsp;
-					{germanyCarousel}
+					The above quote sheds a lot of light onto the person I am. Whether or
+					not I become a professional web developer, I will continue to learn
+					about it and its related topics simply because I have a strong need to
+					grow, which I water by learning new things among other things.
 				</CSharpCardSection>
 			</React.Fragment>,
 		],
@@ -431,7 +413,8 @@ const sections: CSharpSection[] = [
 		children: [
 			<React.Fragment>
 				<Quote author="Leornard Bernstein" className="padding-top-1">
-					To achieve great things, two things are needed: a plan, and not quite enough time.
+					To achieve great things, two things are needed: a plan, and not quite
+					enough time.
 				</Quote>
 				<CSharpCardSection title="A Passion for Sound">
 					Music has been a big part of my life since I was young.&nbsp; Ever
@@ -565,13 +548,91 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<Quote author="Henry Ford" className="padding-top-1">
-					Anyone who stops learning is old, whether at twenty or eighty. &nbsp;Anyone
-					who keeps learning stays young.
-				</Quote>
 				<CSharpCardSection title="Why Now?">
-					If you had asked me what my career goals were in January of 2020, I'd have told to that I want to become a level 3 Tech Support Specialist of a Systems Administrator (this was because I didn't believe I had the necessary pre-requisites to do what I really wanted to do).  When I left Ricoh, I had more free time on my hands than I'd had in a while.  I used that freetime to start learning c# with the intent of solving a couple tech "problems" I had had at the time (see <EmbeddedLink isLocal={true} href={DOWNLOADER_URL} openInNewTab={true}>Downloader</EmbeddedLink> and <EmbeddedLink isLocal={true} href={PLAYLIST_SYNCER_URL} openInNewTab={true}>Playlist Syncer</EmbeddedLink>)
-				
+					If you had asked me what my career goals were in January of 2020, I'd
+					have told to that I want to become a level 3 Tech Support Specialist
+					or a Systems Administrator (I didn't believe I could ever have the
+					necessary pre-requisites to becoming a programmer, which is what I
+					really wanted to do).&nbsp; When I left Ricoh, I had more free time on
+					my hands than I'd had in a while.&nbsp; I used that free time to start
+					learning c# (I was familiar with Powershell, so c# seemed like a
+					logical next step) with the intent of solving a couple "problems" I
+					had had at the time (see{" "}
+					<EmbeddedLink
+						isLocal={true}
+						href={DOWNLOADER_URL}
+						openInNewTab={true}>
+						Downloader
+					</EmbeddedLink>{" "}
+					and{" "}
+					<EmbeddedLink
+						isLocal={true}
+						href={PLAYLIST_SYNCER_URL}
+						openInNewTab={true}>
+						Playlist Syncer
+					</EmbeddedLink>
+					).&nbsp; One thing led to another until I eventually realized that I
+					would regret not pursuing a career in Programming/Web
+					Development.&nbsp;
+				</CSharpCardSection>
+				<CSharpCardSection title="Why not Comp Sci?">
+					After I graduated high school, I wanted to learn more about the world
+					and its inhabitants (a desire that was fostered by my&nbsp;
+					<ClassToggler
+						classToToggle={DISPLAY_NONE_CLASSNAME}
+						targetSelector="#p2p-carousel">
+						People to People Experience
+					</ClassToggler>{" "}
+					to England, Ireland, and Whales in 10th Grade).{" "}
+					{peopleToPeopleCarousel} &nbsp;To this end, I
+					<EmbeddedLink isLocal={false} href={GERMANY_APP_URL}>
+						applied
+					</EmbeddedLink>
+					to a posting I found online for an English Assistant at a boarding
+					school in Thuringia, Germany.&nbsp; As a result of this experience,{" "}
+					<ClassToggler
+						classToToggle={DISPLAY_NONE_CLASSNAME}
+						targetSelector="#german-carousel">
+						I learned a lot
+					</ClassToggler>{" "}
+					about myself, my prior assumptions, and German culture.&nbsp;
+					{germanyCarousel}
+					<Paragraph size="five" classNameToAdd="margin-top-1">
+						Upon returning home, I took some time reacclimate myself to American
+						culture (I spent 11 as the sole U.S. citizen at the school). &nbsp;I spent
+						the summer volunteering at an English as a Second Language school in
+						St.Paul called "The Hubb Center". &nbsp;It was at this time that my father
+						was strongly encouraging me to finish my Post-Secondary schooling.
+					</Paragraph>
+					<Paragraph size="five" classNameToAdd="margin-top-1">
+						I was really interested in Astronomy, Computer Science, and Language
+						at that time. &nbsp;Astronomy involved a lot of math and physics, which I
+						enjoyed, but I ultimately doubted how well I would be able to handle
+						the highest levels of math needed to be a successful astronomer, so
+						I ruled out that option.
+					</Paragraph>
+					<Paragraph size="five" classNameToAdd="margin-top-1">
+						Computer Science was the field that my father worked in at the time,
+						so I had a lot of familiarity with process. &nbsp;Unforunately for my
+						future self, my father had just had a heart attack partially due to
+						the stress from his job at Deluxe Corp, so I shyed away from that
+						option.
+					</Paragraph>
+					<Paragraph size="five" classNameToAdd="margin-top-1">
+						Knowing what I know now, it's hard to understand why I chose to
+						major in Linguistics (I was naive to the fact that B.A. degrees are
+						not as highly regarded by many employers as B.S. degrees).&nbsp; I guess
+						if I had to empathize with my former self, I would tell him that he
+						made the best choice at that time considering the circumstances (the
+						prevailing thought of the time was just to get a university degree
+						regardless of major).&nbsp;
+					</Paragraph>
+					<Paragraph size="five" classNameToAdd="margin-top-1">
+						One thing is for sure, as a result of having a B.A. instead of a
+						B.S., I have since learned that to some people, credentials are
+						paramount.&nbsp; I have also learned that some people evaluate your
+						current self based on a few decisions you made many years ago.
+					</Paragraph>
 				</CSharpCardSection>
 			</React.Fragment>,
 		],
