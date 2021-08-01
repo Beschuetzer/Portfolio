@@ -34,7 +34,7 @@ import {
 } from "../../../components/constants";
 import Quote from "../../../components/Quote";
 
-const sectionNames = ["Description", "Media", "Notes"];
+const sectionNames = ["Background", "Media", "Problem", "Approach"];
 
 const sections: CSharpSection[] = [
 	{
@@ -42,10 +42,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<Quote author="Charles Kettering" className="padding-top-1">
-					A problem well-stated is a problem half-solved;
-				</Quote>
-				<CSharpCardSection title="Purpose">
+				<CSharpCardSection title="">
 					<Paragraph size="four">
 						Around the end of Febraury 2020, Samsung updated their Android OS to
 						version 10.&nbsp; Eager to check out the newest Android OS, I
@@ -65,45 +62,6 @@ const sections: CSharpSection[] = [
 						my phone.
 					</Paragraph>
 				</CSharpCardSection>
-
-				<CSharpCardSection title="The Problem">
-					<Paragraph size="four">
-						It was clear from the experiences others were having that the
-						problem stemmed from how Android 10 handled the playlist information
-						with regards to the media database.&nbsp; After doing some more
-						digging, I came across a workaround that involved simple filename
-						path changes.&nbsp; After successfully trying this workaround out
-						for myself, I began thinking about how to integrate it into the app
-						I was planning on building.
-					</Paragraph>
-				</CSharpCardSection>
-
-				<CSharpCardSection title="Approach">
-					<Paragraph size="four">
-						First I needed to figure out how to sync music to an Android device.
-						It turns out that the main way to do that is through a protocol
-						called the
-						<EmbeddedLink href={WIKIPEDIA_MTP_URL}>
-							Media Transfer Protocol
-						</EmbeddedLink>
-						(MTP), which is part of the
-						<EmbeddedLink href={WIKIPEDIA_DRM_URL}>
-							Windows Media DRM
-						</EmbeddedLink>
-						. Because of the
-						<EmbeddedLink isLocal={true} href={DOWNLOADER_URL}>
-							downloader
-						</EmbeddedLink>
-						app I had recently started, I decided to use c# and WPF to create
-						the playlist syncing app.
-					</Paragraph>
-					<Paragraph size="four" classNameToAdd="margin-top-1">
-						Creating the application was fairly straight forward due to what I
-						had already learned from the downloader after I had thoroughly
-						understood the problem and had a firm grasp on how task factories
-						work and async code in general.
-					</Paragraph>
-				</CSharpCardSection>
 			</React.Fragment>,
 		],
 	},
@@ -114,7 +72,7 @@ const sections: CSharpSection[] = [
 		name: sectionNames[1],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
-			<section className="csharp__carousel">
+			<section className="csharp__carousel margin-top-0">
 				<Carousel
 					items={[
 						{
@@ -170,6 +128,62 @@ const sections: CSharpSection[] = [
 					)}
 				/>
 			</section>,
+		],
+	},
+	{
+		name: sectionNames[2],
+		pageName: C_SHARP_CLASSNAME,
+		children: [
+			<React.Fragment>
+				<Quote author="Charles Kettering" className="padding-top-1">
+					A problem well-stated is a problem half-solved;
+				</Quote>
+				<CSharpCardSection title="">
+					<Paragraph size="four">
+						It was clear from the experiences others were having that the
+						problem stemmed from how Android 10 handled the playlist information
+						with regards to the media database.&nbsp; After doing some more
+						digging, I came across a workaround that involved simple filename
+						path changes.&nbsp; After successfully trying this workaround out
+						for myself, I began thinking about how to integrate it into the app
+						I was planning on building.
+					</Paragraph>
+				</CSharpCardSection>
+			</React.Fragment>,
+		],
+	},
+	{
+		name: sectionNames[3],
+		pageName: C_SHARP_CLASSNAME,
+		children: [
+			<React.Fragment>
+				<CSharpCardSection title="">
+					<Paragraph size="four">
+						First I needed to figure out how to sync music to an Android device.
+						It turns out that the main way to do that is through a protocol
+						called the
+						<EmbeddedLink href={WIKIPEDIA_MTP_URL}>
+							Media Transfer Protocol
+						</EmbeddedLink>
+						(MTP), which is part of the
+						<EmbeddedLink href={WIKIPEDIA_DRM_URL}>
+							Windows Media DRM
+						</EmbeddedLink>
+						. Because of the
+						<EmbeddedLink isLocal={true} href={DOWNLOADER_URL}>
+							downloader
+						</EmbeddedLink>
+						app I had recently started, I decided to use c# and WPF to create
+						the playlist syncing app.
+					</Paragraph>
+					<Paragraph size="four" classNameToAdd="margin-top-1">
+						Creating the application was fairly straight forward due to what I
+						had already learned from the downloader after I had thoroughly
+						understood the problem and had a firm grasp on how task factories
+						work and async code in general.
+					</Paragraph>
+				</CSharpCardSection>
+			</React.Fragment>,
 		],
 	},
 ];

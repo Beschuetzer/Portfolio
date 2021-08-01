@@ -48,7 +48,7 @@ const sections: CSharpSection[] = [
 				<Quote author="Peter Drucker" className="padding-top-1">
 					Efficiency is doing better what is already being done.
 				</Quote>
-				<CSharpCardSection title="Purpose">
+				<CSharpCardSection title="Why">
 					Websites like
 					<EmbeddedLink href={OC_REMIX_URL}>OCRemix</EmbeddedLink> and
 					<EmbeddedLink href={KH_INSIDER_URL}>

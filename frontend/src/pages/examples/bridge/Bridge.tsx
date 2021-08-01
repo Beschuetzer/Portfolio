@@ -582,7 +582,6 @@ const Bridge: React.FC<BridgeProps> = ({
 
 			<SourceCodeLink
 				href={`${GITHUB_URL}/${BRIDGE_PAGE_NAME}`}
-				// blockName="hero"
 			/>
 			<SourceCodeLink
 				className="source-link__demo"

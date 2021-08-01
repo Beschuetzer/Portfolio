@@ -6,7 +6,7 @@ import { AUTO_BID_PAGE_NAME, CSharpSection, GITHUB_URL } from "../../../componen
 import CSharpCardSection from "../csharp/CSharpCardSection";
 
 const sectionNames = [
-	"Purpose",
+	"Details",
 	"Collaboration",
 	// 'Media',
 	// 'Notes'
@@ -39,7 +39,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="Collaboration">
+				<CSharpCardSection title="">
 					Our collaboration is a multi-step process:
 					<ol className="margin-left-3">
 						<li>
