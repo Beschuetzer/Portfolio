@@ -87,4 +87,3 @@ Of course, there can be variation, but the most important thing is to try to ide
 
 
 -add quotes to various locations on site
--need to reset carousel on resize (reset transform for all carousel items and use ref for hasResized)

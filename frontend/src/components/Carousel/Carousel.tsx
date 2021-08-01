@@ -80,7 +80,6 @@ const Carousel: React.FC<CarouselProps> = ({
 	);
 
 	const handleArrowClick = (e: Event) => {
-		debugger;
 		const isFullSize = handleFullsizeArrowToggling(e);
 		if (isFullSize) return;
 
@@ -92,6 +91,10 @@ const Carousel: React.FC<CarouselProps> = ({
 			items,
 		);
 
+		setTranslationAmountFlow();
+	};
+
+	function setTranslationAmountFlow() {
 		setArrowButtonsHiddenClass(
 			numberOfItemsInCarouselWidthWise - 1,
 			items.length - 1,
@@ -113,10 +116,18 @@ const Carousel: React.FC<CarouselProps> = ({
 			removeTransitionTimeout,
 			itemsRef as any,
 		);
-	};
+	}
 
 	function handleResize() {
 		hasResized.current = true;
+		currentTranslationFactor = getNewCurrentTranslationFactor(
+			null,
+			currentTranslationFactor,
+			numberOfItemsToScrollOnClick,
+			numberOfItemsInCarouselWidthWise,
+			items,
+		);
+		setTranslationAmountFlow();
 	}
 
 	const handleCleanUp = () => {
@@ -296,7 +307,6 @@ const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	function setItemsWidthRef(itemsWidthRef: RefObject<number>) {
-		debugger;
 		if ((itemsRef.current && itemsWidthRef.current === null) || hasResized.current) {
 			const image1Left = itemsRef?.current ? itemsRef?.current[0]?.children[0]?.getBoundingClientRect().left : 0;
 			const image2Left = itemsRef?.current ? itemsRef?.current[1]?.children[0]?.getBoundingClientRect().left : 0;

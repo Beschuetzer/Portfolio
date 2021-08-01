@@ -125,12 +125,7 @@ export function setTranslationAmount(
 	itemsRef: RefObject<NodeListOf<Element>>,
 ) {
 	clearInterval(removeTransitionTimeout);
-
 	const itemElements = (itemsRef as any).current;
-	// for (let i = 0; i < itemElements.length; i++) {
-	// 	const item = itemElements[i];
-	// 	item?.classList.add(CAROUSEL_TRANSITION_CLASSNAME);
-	// }
 
 	return setTimeout(() => {
 		for (let i = 0; i < itemElements.length; i++) {
@@ -142,30 +137,33 @@ export function setTranslationAmount(
 }
 
 export const handleSetTranslation = (
-	e: Event,
+	e: Event | null,
 	currentTranslationFactor: number,
 	numberOfItemsToScrollOnClick: number,
 	numberOfItemsInCarouselWidthWise: number,
 	items: CarouselItemProps[],
 ): number => {
+
 	const maxImageCount =
 		numberOfItemsToScrollOnClick === 1
 			? items.length - +numberOfItemsInCarouselWidthWise
 			: items.length - 1;
 
-	let hasClickedLeftArrow = false;
+	let hasClickedLeftArrow: boolean | null = false;
 	if (
-		(e.currentTarget as HTMLElement)?.classList.contains(
+		(e?.currentTarget as HTMLElement)?.classList.contains(
 			CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
 		)
 	)
 		hasClickedLeftArrow = true;
 
-	if (hasClickedLeftArrow) {
+	if (!e) hasClickedLeftArrow = null;
+
+	if (hasClickedLeftArrow === true) {
 		if (!Number.isInteger(currentTranslationFactor))
 			currentTranslationFactor = Math.floor(currentTranslationFactor);
 		else currentTranslationFactor -= 1;
-	} else {
+	} else if (hasClickedLeftArrow === false) {
 		if (!Number.isInteger(currentTranslationFactor))
 			currentTranslationFactor = Math.ceil(currentTranslationFactor);
 		else currentTranslationFactor += 1;
