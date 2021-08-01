@@ -23,6 +23,7 @@ import {
 	ISD_622_URL,
 	KUALAPUU_URL,
 	NO_MARGIN_CLASSNAME,
+	POWERSHELL_URL,
 	RESUME_PAGE_NAME,
 	RICOH_URL,
 	TOYS_R_US_RUL as TOYS_R_US_URL,
@@ -441,7 +442,7 @@ const Resume: React.FC<ResumeProps> = ({
 								title: "Highlights",
 								bullets: [
 									"Secured two contracts with clients by going the extra mile to ensure customer satisfaction.",
-									`Increased productivity by 10% by <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='${GITHUB_URL}/powerShell'> automating repetitive tasks.</a> `,
+									`Increased productivity by 10% by <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='${POWERSHELL_URL}'> automating repetitive tasks.</a> `,
 								],
 							},
 						]}

@@ -36,6 +36,7 @@ export const ABOUT_URL = `/${ABOUT_PAGE_NAME}`;
 export const BOOK_TRUST_URL = "https://www.booktrust.org";
 export const AMAJ_BRIDGE_URL = "https://still-bayou-51404.herokuapp.com";
 export const GITHUB_URL = "http://github.com/beschuetzer";
+export const POWERSHELL_URL = `${GITHUB_URL}/powerShell`;
 export const GOOGLE_IT_SPECIALIST_URL =
 	"https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ";
 export const HERMAN_LIETZ_SCHULE_URL =

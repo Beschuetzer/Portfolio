@@ -21,6 +21,8 @@ import {
 	DOWNLOADER_URL,
 	GERMANY_APP_URL,
 	PLAYLIST_SYNCER_URL,
+	POWERSHELL_URL,
+	RESUME_URL,
 } from "../../../components/constants";
 
 import earlier3 from "../../../music/Earlier_03.mp3";
@@ -553,11 +555,25 @@ const sections: CSharpSection[] = [
 					have told to that I want to become a level 3 Tech Support Specialist
 					or a Systems Administrator (I didn't believe I could ever have the
 					necessary pre-requisites to becoming a programmer, which is what I
-					really wanted to do).&nbsp; When I left Ricoh, I had more free time on
-					my hands than I'd had in a while.&nbsp; I used that free time to start
-					learning c# (I was familiar with Powershell, so c# seemed like a
-					logical next step) with the intent of solving a couple "problems" I
-					had had at the time (see{" "}
+					really wanted to do).&nbsp; When I left&nbsp;
+					<EmbeddedLink
+						href={`${RESUME_URL}#ricoh`}
+						openInNewTab={true}
+						isLocal={true}
+						addSpaces={false}>
+						Ricoh
+					</EmbeddedLink>
+					, I had more free time on my hands than I'd had in a while.&nbsp; I
+					used that free time to start learning c# (I was familiar with&nbsp;
+					<EmbeddedLink
+						href={POWERSHELL_URL}
+						openInNewTab={true}
+						isLocal={false}
+						addSpaces={false}>
+						Powershell
+					</EmbeddedLink>
+					, so c# seemed like a logical next step) with the intent of solving a
+					couple "problems" I had had at the time (see{" "}
 					<EmbeddedLink
 						isLocal={true}
 						href={DOWNLOADER_URL}
@@ -576,56 +592,79 @@ const sections: CSharpSection[] = [
 					Development.&nbsp;
 				</CSharpCardSection>
 				<CSharpCardSection title="Why not Comp Sci?">
-					After I graduated high school, I wanted to learn more about the world
-					and its inhabitants (a desire that was fostered by my&nbsp;
-					<ClassToggler
-						classToToggle={DISPLAY_NONE_CLASSNAME}
-						targetSelector="#p2p-carousel">
-						People to People Experience
-					</ClassToggler>{" "}
-					to England, Ireland, and Whales in 10th Grade).{" "}
-					{peopleToPeopleCarousel} &nbsp;To this end, I
-					<EmbeddedLink isLocal={false} href={GERMANY_APP_URL}>
-						applied
-					</EmbeddedLink>
-					to a posting I found online for an English Assistant at a boarding
-					school in Thuringia, Germany.&nbsp; As a result of this experience,{" "}
-					<ClassToggler
-						classToToggle={DISPLAY_NONE_CLASSNAME}
-						targetSelector="#german-carousel">
-						I learned a lot
-					</ClassToggler>{" "}
-					about myself, my prior assumptions, and German culture.&nbsp;
-					{germanyCarousel}
-					<Paragraph size="five" classNameToAdd="margin-top-1">
-						Upon returning home, I took some time reacclimate myself to American
-						culture (I spent 11 as the sole U.S. citizen at the school). &nbsp;I spent
-						the summer volunteering at an English as a Second Language school in
-						St.Paul called "The Hubb Center". &nbsp;It was at this time that my father
-						was strongly encouraging me to finish my Post-Secondary schooling.
+					<Paragraph size="five" classNameToAdd="">
+						After I graduated high school, I wanted to learn more about the
+						world and its inhabitants (a desire that was fostered by my&nbsp;
+						<ClassToggler
+							classToToggle={DISPLAY_NONE_CLASSNAME}
+							targetSelector="#p2p-carousel">
+							People to People Experience
+						</ClassToggler>{" "}
+						to England, Ireland, and Whales in 10th Grade).{" "}
+						{peopleToPeopleCarousel} &nbsp;I had studied German throughout high
+						school and even won a scholarship to be used to further my knowledge
+						of German and/or German culture.&nbsp; I could've used the
+						scholarship to take German classes, but I was young and for some
+						reason believed that Europeans were "better" versions of
+						Americans.&nbsp;
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
-						I was really interested in Astronomy, Computer Science, and Language
-						at that time. &nbsp;Astronomy involved a lot of math and physics, which I
-						enjoyed, but I ultimately doubted how well I would be able to handle
-						the highest levels of math needed to be a successful astronomer, so
-						I ruled out that option.
+						I wanted to learn to be "better", so I began searching for ways to
+						go to Germany that involved total immersion.&nbsp; Eventually, I
+						found a posting online for an English Assistant at a boarding school
+						in Thuringia, Germany.&nbsp; It seemed like a good fit, so I&nbsp;
+						<EmbeddedLink
+							isLocal={false}
+							href={GERMANY_APP_URL}
+							addSpaces={false}>
+							applied
+						</EmbeddedLink>
+						&nbsp; to it. &nbsp; Overall, it was a very challenging and&nbsp;
+						<ClassToggler
+							classToToggle={DISPLAY_NONE_CLASSNAME}
+							targetSelector="#german-carousel">
+							rewarding experience
+						</ClassToggler>{" "}
+						.&nbsp; Frankly, I learned a lot about myself, my assumptions, human
+						nature, and what "being an American" means to me.
+						{germanyCarousel}
+					</Paragraph>
+					<Paragraph size="five" classNameToAdd="margin-top-1">
+						Upon returning home, I took some time re-acclimate myself to
+						American culture (For the last 11 months, I was the only "American"
+						I had interacted with). &nbsp;I wasn't sure what I wanted to study
+						yet, so I spent the summer volunteering at two English as a Second
+						Language schools (The Hubb Center and Harmony Learning Center).
+					</Paragraph>
+					<Paragraph size="five" classNameToAdd="margin-top-1">
+						&nbsp;As September rolled around, my father had a talk to me about
+						finishing my college.&nbsp; At the time, my father was of the
+						opinion that the degree was less important than just having a
+						college degree (this was a time when many freshman would choose
+						majors like "Psychology", "Philosophy", and "English" without any
+						real clue as to how they would use those degrees upon graduation).
+					</Paragraph>
+					<Paragraph size="five" classNameToAdd="margin-top-1">
+						todo:I was really interested in Astronomy, Computer Science, and Language
+						at that time. &nbsp;Astronomy involved a lot of math and physics,
+						which I enjoyed, but I ultimately doubted how well I would be able
+						to handle the highest levels of math needed to be a successful
+						astronomer, so I ruled out that option.
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Computer Science was the field that my father worked in at the time,
-						so I had a lot of familiarity with process. &nbsp;Unforunately for my
-						future self, my father had just had a heart attack partially due to
-						the stress from his job at Deluxe Corp, so I shyed away from that
+						so I had a lot of familiarity with process. &nbsp;Unforunately for
+						my future self, my father had just had a heart attack partially due
+						to the stress from his job at Deluxe Corp, so I shied away from that
 						option.
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Knowing what I know now, it's hard to understand why I chose to
 						major in Linguistics (I was naive to the fact that B.A. degrees are
-						not as highly regarded by many employers as B.S. degrees).&nbsp; I guess
-						if I had to empathize with my former self, I would tell him that he
-						made the best choice at that time considering the circumstances (the
-						prevailing thought of the time was just to get a university degree
-						regardless of major).&nbsp;
+						not as highly regarded by many employers as B.S. degrees).&nbsp; I
+						guess if I had to empathize with my former self, I would tell him
+						that he made the best choice at that time considering the
+						circumstances.&nbsp;
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						One thing is for sure, as a result of having a B.A. instead of a
