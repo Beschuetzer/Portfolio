@@ -17,7 +17,9 @@ import { C_SHARP_CLASSNAME } from "./utils";
 import {
 	CSharpSection,
 	DISPLAY_NONE_CLASSNAME,
+	DOWNLOADER_URL,
 	GERMANY_APP_URL,
+	PLAYLIST_SYNCER_URL,
 } from "../../../components/constants";
 
 import earlier3 from "../../../music/Earlier_03.mp3";
@@ -115,7 +117,7 @@ import EmbeddedLink from "../../../components/EmbeddedLink";
 import Quote from "../../../components/Quote";
 import ClassToggler from "../../../components/ClassToggler";
 
-const sectionNames = ["Learning", "Interests", "Music"];
+const sectionNames = ["Learning", "Interests", "Music", "FAQ"];
 
 const germanyCarousel = (
 	<section
@@ -556,6 +558,23 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection>
 			</React.Fragment>,
 		],
+	},
+	{
+		name: sectionNames[3],
+		pageName: C_SHARP_CLASSNAME,
+		children: [
+			<React.Fragment>
+				<Quote author="Henry Ford" className="padding-top-1">
+					Anyone who stops learning is old, whether at twenty or eighty. &nbsp;Anyone
+					who keeps learning stays young.
+				</Quote>
+				<CSharpCardSection title="Why Now?">
+					If you had asked me what my career goals were in January of 2020, I'd have told to that I want to become a level 3 Tech Support Specialist of a Systems Administrator (this was because I didn't believe I had the necessary pre-requisites to do what I really wanted to do).  When I left Ricoh, I had more free time on my hands than I'd had in a while.  I used that freetime to start learning c# with the intent of solving a couple tech "problems" I had had at the time (see <EmbeddedLink isLocal={true} href={DOWNLOADER_URL} openInNewTab={true}>Downloader</EmbeddedLink> and <EmbeddedLink isLocal={true} href={PLAYLIST_SYNCER_URL} openInNewTab={true}>Playlist Syncer</EmbeddedLink>)
+				
+				</CSharpCardSection>
+			</React.Fragment>,
+		],
+		hasCarousel: false,
 	},
 ];
 

@@ -39,11 +39,14 @@ import {
 import {
 	DISPLAY_NONE_CLASSNAME,
 	Reference,
-	BRIDGE_URL,
+	AMAJ_BRIDGE_URL,
 	GITHUB_URL,
 	WIKIPEDIA_BRIDGE_URL,
 	ODIN_PROJECT_URL,
 	UDEMY_BOOTCAMP_URL,
+	PLAYLIST_SYNCER_URL,
+	DOWNLOADER_URL,
+	RESUME_URL,
 } from "../../../components/constants";
 import BridgeHero from "./BridgeHero";
 import SourceCodeLink from "../../../components/SourceCodeLink";
@@ -61,7 +64,7 @@ const sectionContents = [
 				// title='An App is Born'
 			>
 				<p>
-					<EmbeddedLink href={BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>is a
+					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>is a
 					socket.io and MongoDB app I created where users can play
 					<EmbeddedLink href={WIKIPEDIA_BRIDGE_URL}>
 						contract bridge
@@ -76,15 +79,15 @@ const sectionContents = [
 			>
 				<p>
 					It was June of 2020, and I had just left my job at
-					<EmbeddedLink href="/resume#ricoh" openInNewTab={true} isLocal={true}>
+					<EmbeddedLink href={`${RESUME_URL}#ricoh`} openInNewTab={true} isLocal={true}>
 						Ricoh
 					</EmbeddedLink>
 					to become a web developer.&nbsp; &nbsp;My two smaller c# projects (
-					<EmbeddedLink isLocal={true} href="/examples/downloader">
+					<EmbeddedLink isLocal={true} href={DOWNLOADER_URL}>
 						downloader
 					</EmbeddedLink>
 					and
-					<EmbeddedLink href="/examples/playlist-syncer" isLocal={true}>
+					<EmbeddedLink href={PLAYLIST_SYNCER_URL} isLocal={true}>
 						playlist syncer
 					</EmbeddedLink>
 					) were finished and I was looking for another project that would
@@ -121,7 +124,7 @@ const sectionContents = [
 						sectionToSkipTo="features"
 					/>{" "}
 					I built into
-					<EmbeddedLink href={BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>.
+					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>.
 				</p>
 			</BridgeCardSection>
 		</BridgeCard>
@@ -268,15 +271,15 @@ const sectionContents = [
 			<BridgeCardSection title="Off and Running">
 				<p>
 					Because I had just completed the
-					<EmbeddedLink isLocal={true} href="/examples/downloader">
+					<EmbeddedLink isLocal={true} href={DOWNLOADER_URL}>
 						downloader
 					</EmbeddedLink>
 					and
-					<EmbeddedLink href="/examples/playlist-syncer" isLocal={true}>
+					<EmbeddedLink href={PLAYLIST_SYNCER_URL} isLocal={true}>
 						playlist syncer
 					</EmbeddedLink>
 					projects, I initially tried creating
-					<EmbeddedLink href={BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>using
+					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>using
 					c#/WPF.&nbsp; However, it became readily-apparent early on that it
 					would be rather challenging to create the bridge app I had envisioned
 					using c#/WPF.
@@ -336,12 +339,12 @@ const sectionContents = [
 					To that end, I left my &nbsp;
 					<a
 						className={`${BRIDGE_CLASSNAME}__link`}
-						href="/resume#work-history"
+						href={`${RESUME_URL}#work-history`}"
 						target="_blank"
 						rel="noreferrer">
 						service technician position
 					</a>{" "}
-					at<EmbeddedLink href="/resume#ricoh" openInNewTab={true} isLocal={true}>Ricoh</EmbeddedLink>in order to free up the time and energy needed to
+					at<EmbeddedLink href={`${RESUME_URL}#ricoh`} openInNewTab={true} isLocal={true}>Ricoh</EmbeddedLink>in order to free up the time and energy needed to
 					whole-heartily devote myself to the project.
 				</p> */}
 
@@ -405,7 +408,7 @@ const sectionContents = [
 				</p>
 				<p>
 					For that reason, I chose to develop the frontend of
-					<EmbeddedLink href={BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>with
+					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>with
 					vanilla HTML5, CSS3, and JS and the backend with
 					NodeJS(Express).&nbsp; My choice to use paperJS for the vector
 					graphics library was purely because I had learned about it in Colt
@@ -430,7 +433,7 @@ const sectionContents = [
 				</BridgeCardSection>
 				<BridgeCardSection title="The Results">
 					<p>
-						<EmbeddedLink href={BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>took
+						<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>took
 						roughly 4 months for me to complete starting from not knowing any
 						HTML, CSS, Javascript or.&nbsp; It runs smoothly on Android 10+,
 						Firefox 70+, and Chrome 70+ (but not on mobile iOS devices due to
@@ -485,7 +488,7 @@ const sectionContents = [
 				<p>
 					It's easy to think in the absolute terms of 'good', 'better', and
 					'best'.&nbsp; My experience coding
-					<EmbeddedLink href={BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>has shown
+					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>has shown
 					me that this way of thinking doesn't apply very well to web
 					development.&nbsp; Picking the technology that meets the requirements
 					with the least amount of complexity, is a more appropriate approach
@@ -582,7 +585,7 @@ const Bridge: React.FC<BridgeProps> = ({
 			/>
 			<SourceCodeLink
 				className="source-link__demo"
-				href={BRIDGE_URL}
+				href={AMAJ_BRIDGE_URL}
 				msg={"Demo"}
 			/>
 

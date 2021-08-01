@@ -1,7 +1,22 @@
 import { CSSProperties } from "react";
 
+//note: add page names here
+export const ABOUT_PAGE_NAME = 'about';
+
+//todo: finsih this
+export const PAGE_NAMES = [
+  ``,
+  `/${ABOUT_PAGE_NAME}`,
+  `/autobid`,
+  `/bridge`,
+  `/downloader`,
+  `/playlist-syncer`,
+  `/replay`,
+  `/resume`,
+];
+
 export const BOOK_TRUST_URL = "https://www.booktrust.org";
-export const BRIDGE_URL = "https://still-bayou-51404.herokuapp.com";
+export const AMAJ_BRIDGE_URL = "https://still-bayou-51404.herokuapp.com";
 export const GITHUB_URL = "http://github.com/beschuetzer";
 export const GOOGLE_IT_SPECIALIST_URL = "https://www.coursera.org/account/accomplishments/specialization/SFUHXP7E2PYQ";
 export const HERMAN_LIETZ_SCHULE_URL = "https://www.lietz-schulen.de/en/haubinda/boarding-school-village/";
@@ -20,6 +35,14 @@ export const WIKIPEDIA_MTP_URL = "https://en.wikipedia.org/wiki/Media_Transfer_P
 export const WIKIPEDIA_DRM_URL = "https://en.wikipedia.org/wiki/Windows_Media_DRM";
 export const UDEMY_BOOTCAMP_URL = "https://www.udemy.com/course/the-web-developer-bootcamp/";
 export const GERMANY_APP_URL = "/germany-application-letter.pdf"
+export const PLAYLIST_SYNCER_URL = "/examples/playlist-syncer";
+export const DOWNLOADER_URL = "/examples/downloader";
+export const BRIDGE_URL = "/examples/bridge";
+export const REPLAY_VIEWER_URL = "/examples/replay";
+export const AUTO_BID_URL = "/examples/auto-bid";
+export const RESUME_URL = "/resume";
+export const ABOUT_URL = "/about";
+export const CONTACT_URL = "/contact";
 
 
 
@@ -123,15 +146,6 @@ export const PAGE_NAV_CLASSNAME = 'page-nav';
 //determines which class name gets applied to body by default (index of PAGE_NAMES); 
 //only applies if you forget to add page name to PAGE_NAMES
 export const DEFAULT_PAGE_NAME_INDEX = 2; 
-export const PAGE_NAMES = [
-  "",
-  "/about",
-  "/autobid",
-  "/bridge",
-  "/downloader",
-  "/playlist-syncer",
-  "/replay",
-  "/resume",
-];
+
 
 //#endregion

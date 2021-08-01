@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { getRepositories } from "../../actions";
 import { getRandomQuote, Quote } from "../../apis/quotes";
+import { ABOUT_URL, BRIDGE_URL, REPLAY_VIEWER_URL, RESUME_URL } from "../../components/constants";
 import EmbeddedLink from "../../components/EmbeddedLink";
 import useClasslistAdder, { ClasslistAdder } from "./useClasslistAdder";
 import useSky from "./useSky";
@@ -68,7 +69,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 							<EmbeddedLink
 								addSpaces={false}
 								className="home__main-link"
-								href="/examples/bridge"
+								href={BRIDGE_URL}
 								openInNewTab={false}
 								isLocal={true}>
 								Multiplayer Bridge
@@ -77,7 +78,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 							<EmbeddedLink
 								addSpaces={false}
 								className="home__main-link"
-								href="/examples/replay"
+								href={REPLAY_VIEWER_URL}
 								openInNewTab={false}
 								isLocal={true}>
 								Replay Viewer
@@ -94,7 +95,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 								className="home__main-link"
 								openInNewTab={false}
 								isLocal={true}
-								href="/resume#work-history">
+								href={`${RESUME_URL}#work-history`}>
 								Work History
 							</EmbeddedLink>
 							<br></br>
@@ -103,7 +104,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 								className="home__main-link"
 								openInNewTab={false}
 								isLocal={true}
-								href="/resume#skills">
+								href={`${RESUME_URL}#skills`}>
 								Skills
 							</EmbeddedLink>
 							<br></br>
@@ -112,7 +113,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 								className="home__main-link"
 								openInNewTab={false}
 								isLocal={true}
-								href="/resume#education">
+								href={`${RESUME_URL}#education`}>
 								Education
 							</EmbeddedLink>
 							<br></br>
@@ -121,7 +122,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 								className="home__main-link"
 								openInNewTab={false}
 								isLocal={true}
-								href="/resume#references">
+								href={`${RESUME_URL}#references`}>
 								References
 							</EmbeddedLink>
 							<br></br>
@@ -130,7 +131,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 								className="home__main-link"
 								openInNewTab={false}
 								isLocal={true}
-								href="/about">
+								href={ABOUT_URL}>
 								The Person
 							</EmbeddedLink>
 						</div>

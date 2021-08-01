@@ -31,6 +31,7 @@ import {
 	GITHUB_URL,
 	KH_INSIDER_URL,
 	OC_REMIX_URL,
+	PLAYLIST_SYNCER_URL,
 } from "../../../components/constants";
 import Paragraph from "../../../typography/Paragraph";
 import Quote from "../../../components/Quote";
@@ -180,7 +181,7 @@ const sections: CSharpSection[] = [
 					everything I wanted to do, namely analyze html, download files, and
 					update the GUI all at the same time. I took this understanding and
 					applied it to
-					<EmbeddedLink isLocal={true} href="/examples/playlist-syncer">
+					<EmbeddedLink isLocal={true} href={PLAYLIST_SYNCER_URL}>
 						another problem
 					</EmbeddedLink>
 					I was facing at the time.

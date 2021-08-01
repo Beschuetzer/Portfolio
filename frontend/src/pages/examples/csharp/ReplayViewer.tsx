@@ -45,7 +45,7 @@ import {
 	functionToGetContainer,
 } from "../../../components/utils";
 import {
-	BRIDGE_URL,
+	AMAJ_BRIDGE_URL,
 	CSharpSection,
 	GITHUB_URL,
 	REPLAYS_URL,
@@ -73,7 +73,7 @@ const sections: CSharpSection[] = [
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						First, in March of 2021, I finished&nbsp;
-						<EmbeddedLink addSpaces={false} isLocal={false} href={BRIDGE_URL}>
+						<EmbeddedLink addSpaces={false} isLocal={false} href={AMAJ_BRIDGE_URL}>
 							A# Maj Bridge
 						</EmbeddedLink>
 						, which saves games, deals, and user statistics into a mongoDB
@@ -140,7 +140,7 @@ const sections: CSharpSection[] = [
 										</EmbeddedLink>{" "}
 										was to be able to easily review the trick-taking phase of
 										games completed on{" "}
-										<EmbeddedLink isLocal={false} href={BRIDGE_URL}>
+										<EmbeddedLink isLocal={false} href={AMAJ_BRIDGE_URL}>
 											A# Maj Bridge
 										</EmbeddedLink>
 										.

@@ -25,6 +25,7 @@ import {
 } from "../../../components/utils";
 import {
 	CSharpSection,
+	DOWNLOADER_URL,
 	GITHUB_URL,
 	OS_10_ISSUE_TRACKER_URL,
 	WIKIPEDIA_DRM_URL,
@@ -89,7 +90,7 @@ const sections: CSharpSection[] = [
 							Windows Media DRM
 						</EmbeddedLink>
 						. Because of the
-						<EmbeddedLink isLocal={true} href="/examples/downloader">
+						<EmbeddedLink isLocal={true} href={DOWNLOADER_URL}>
 							downloader
 						</EmbeddedLink>
 						app I had recently started, I decided to use c# and WPF to create

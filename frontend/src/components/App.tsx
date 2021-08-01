@@ -6,7 +6,12 @@ import history from "../history";
 import { Howl } from "howler";
 
 import {
-	MOBILE_BREAK_POINT_WIDTH,
+	ABOUT_URL,
+	AUTO_BID_URL,
+	BRIDGE_URL,
+	CONTACT_URL,
+	DOWNLOADER_URL,
+	MOBILE_BREAK_POINT_WIDTH, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
 } from "./constants";
 
 import Home from "../pages/home/Home";
@@ -104,18 +109,18 @@ const App: React.FC<AppProps> = ({
 		<Router history={history}>
 			<Switch>
 				<Route path="/" exact component={Home} />
-				<Route path="/examples/bridge" exact component={Bridge} />
-				<Route path="/examples/downloader" exact component={Downloader} />
+				<Route path={BRIDGE_URL} exact component={Bridge} />
+				<Route path={DOWNLOADER_URL} exact component={Downloader} />
 				<Route
-					path="/examples/playlist-syncer"
+					path={PLAYLIST_SYNCER_URL}
 					exact
 					component={PlaylistSyncer}
 				/>
-				<Route path="/examples/replay" exact component={ReplayViewer} />
-				<Route path="/examples/autobid" exact component={Autobid} />
-				<Route path="/about" exact component={About} />
-				<Route path="/resume" exact component={Resume} />
-				<Route path="/contact" exact component={Contact} />
+				<Route path={REPLAY_VIEWER_URL} exact component={ReplayViewer} />
+				<Route path={AUTO_BID_URL} exact component={Autobid} />
+				<Route path={ABOUT_URL} exact component={About} />
+				<Route path={RESUME_URL} exact component={Resume} />
+				<Route path={CONTACT_URL} exact component={Contact} />
 			</Switch>
 			<Route path="*" exact component={NavToggler} />
 			<Route path="*" exact component={PageNav} />

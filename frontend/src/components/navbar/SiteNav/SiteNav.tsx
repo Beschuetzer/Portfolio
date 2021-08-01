@@ -30,7 +30,7 @@ import {
 	resetPageNavMinWidth,
 } from "./utils";
 import { scrollToSection } from "../../utils";
-import { email } from "../../constants";
+import { ABOUT_URL, AUTO_BID_URL, BRIDGE_URL, DOWNLOADER_URL, email, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 
 interface SiteNavProps {
@@ -123,7 +123,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 					<NavListItem
 						imageSource={aboutImage}
 						imageAlt="About"
-						to="/about"
+						to={ABOUT_URL}
 						label="About"
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
@@ -132,7 +132,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 					<NavListItem
 						imageSource={resumeImage}
 						imageAlt="Resume"
-						to="/resume"
+						to={RESUME_URL}
 						label="R&eacute;sum&eacute;"
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
@@ -151,7 +151,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 							<NavListItem
 								imageSource={replayImage}
 								imageAlt="Replay Viewer"
-								to="/examples/replay"
+								to={REPLAY_VIEWER_URL}
 								label="Replay Viewer"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
@@ -159,7 +159,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 							<NavListItem
 								imageSource={bridgeImage}
 								imageAlt="Bridge"
-								to="/examples/bridge"
+								to={BRIDGE_URL}
 								label="A# Maj Bridge"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
@@ -167,7 +167,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 							<NavListItem
 								imageSource={autoBidImage}
 								imageAlt="autoBid"
-								to="/examples/autobid"
+								to={AUTO_BID_URL}
 								label="Auto Bid"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
@@ -175,7 +175,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 							<NavListItem
 								imageSource={downloaderImage}
 								imageAlt="Downloader"
-								to="/examples/downloader"
+								to={DOWNLOADER_URL}
 								label="Downloader"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
@@ -183,7 +183,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 							<NavListItem
 								imageSource={syncerImage}
 								imageAlt="Syncer"
-								to="/examples/playlist-syncer"
+								to={PLAYLIST_SYNCER_URL}
 								label="Syncer"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}

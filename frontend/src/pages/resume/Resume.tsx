@@ -351,7 +351,7 @@ const Resume: React.FC<ResumeProps> = ({
 
 				{/* <Paragraph size="four">
 					If you want  haven't yet, I highly encourage you
-					check out the page I created dedicated to the making the multiplayer&nbsp;<Link className="link" to="/examples/bridge">Bridge app</Link> I recently created.
+					check out the page I created dedicated to the making the multiplayer&nbsp;<Link className="link" to={BRIDGE_URL}>Bridge app</Link> I recently created.
 					&nbsp;
 				</Paragraph> */}
 			</React.Fragment>,

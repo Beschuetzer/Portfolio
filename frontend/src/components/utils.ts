@@ -3,14 +3,19 @@ import {
 	FULLSCREEN_ARROW_BUTTON_CLASSNAME,
 	FULLSCREEN_PARENT_CLASSNAME,
 } from "./Carousel/CarouselItem";
+import { CAROUSEL_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./Carousel/util";
 import {
-	CAROUSEL_CLASSNAME,
-	CAROUSEL_VIDEO_CLASSNAME,
-} from "./Carousel/util";
-import {
-  FILL_RED_CLASSNAME,
+	ABOUT_URL,
+	AUTO_BID_URL,
+	BRIDGE_URL,
+	CONTACT_URL,
+	DOWNLOADER_URL,
+	FILL_RED_CLASSNAME,
 	MOBILE_BREAK_POINT_WIDTH,
 	OVERFLOW_HIDDEN_CLASSNAME,
+	PLAYLIST_SYNCER_URL,
+	REPLAY_VIEWER_URL,
+	RESUME_URL,
 	Z_INDEX_CONTENT_CLASSNAME,
 } from "./constants";
 import { HEADER_ID } from "./navbar/SiteNav/utils";
@@ -29,6 +34,18 @@ export const keypressHandler = (
 	if (!e.altKey || !e.ctrlKey) return;
 	switch (e.key) {
 		case "a":
+			history.push(ABOUT_URL);
+			break;
+		case "b":
+			history.push(BRIDGE_URL);
+			break;
+		case "c":
+			history.push(CONTACT_URL);
+			break;
+		case "d":
+			history.push(DOWNLOADER_URL);
+			break;
+		case "o":
 			const navbar = document.querySelector(`.${NAVBAR_CLASSNAME}`);
 			const root = document.querySelector("#root");
 			setIsAnimating(!isAnimating);
@@ -42,24 +59,17 @@ export const keypressHandler = (
 				root?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 			}
 			break;
-
-		case "c":
-			history.push("/contact");
-			break;
-		case "b":
-			history.push("/examples/bridge");
-			break;
-		case "s":
-			history.push("/examples/csharp");
-			break;
-		case "u":
-			history.push("/examples/autoBid");
+		case "p":
+			history.push(REPLAY_VIEWER_URL);
 			break;
 		case "r":
-			history.push("/resume");
+			history.push(RESUME_URL);
 			break;
-		case "t":
-			history.push("/about");
+		case "s":
+			history.push(PLAYLIST_SYNCER_URL);
+			break;
+		case "u":
+			history.push(AUTO_BID_URL);
 			break;
 		default:
 			break;
@@ -174,9 +184,9 @@ export function resetArrowButtonClassnames() {
 
 		for (let i = 0; i < arrowButtons.length; i++) {
 			const arrowButton = arrowButtons[i];
-      const svg = arrowButton.querySelector('svg');
+			const svg = arrowButton.querySelector("svg");
 			arrowButton.classList.remove(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
-      svg?.classList.remove(FILL_RED_CLASSNAME)
+			svg?.classList.remove(FILL_RED_CLASSNAME);
 		}
 	}, 1);
 }
@@ -187,24 +197,27 @@ export function functionToGetContainer(e: Event) {
 	);
 }
 
-export function getSentencesFromString(str: string, punctuationMarks: string[]) {
-    const toReturn: string[] = [];
-		const indexLocations = [];
+export function getSentencesFromString(
+	str: string,
+	punctuationMarks: string[],
+) {
+	const toReturn: string[] = [];
+	const indexLocations = [];
 
-		for (let i = 0; i < str.length; i++) {
-			const char = str[i];
-			if (punctuationMarks.includes(char)) indexLocations.push(i);
-		}
+	for (let i = 0; i < str.length; i++) {
+		const char = str[i];
+		if (punctuationMarks.includes(char)) indexLocations.push(i);
+	}
 
-		for (let i = 0; i < indexLocations.length; i++) {
-			const endIndex = indexLocations[i] + 1;
-			let startIndex = 0;
-			if (i !== 0) startIndex = indexLocations[i - 1] + 1;
+	for (let i = 0; i < indexLocations.length; i++) {
+		const endIndex = indexLocations[i] + 1;
+		let startIndex = 0;
+		if (i !== 0) startIndex = indexLocations[i - 1] + 1;
 
-			toReturn.push(str.substring(startIndex, endIndex)?.trim());
-		}
+		toReturn.push(str.substring(startIndex, endIndex)?.trim());
+	}
 
-    return toReturn;
+	return toReturn;
 }
 
 //#endregion
