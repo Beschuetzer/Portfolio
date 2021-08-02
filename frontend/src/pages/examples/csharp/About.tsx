@@ -638,40 +638,41 @@ const sections: CSharpSection[] = [
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						&nbsp;As September rolled around, my father had a talk to me about
-						finishing my college.&nbsp; At the time, my father was of the
-						opinion that the degree was less important than just having a
+						finishing my bachelor's degree.&nbsp; At the time, my father was of
+						the opinion that the degree was less important than just having a
 						college degree (this was a time when many freshman would choose
 						majors like "Psychology", "Philosophy", and "English" without any
 						real clue as to how they would use those degrees upon graduation).
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
-						todo:I was really interested in Astronomy, Computer Science, and Language
-						at that time. &nbsp;Astronomy involved a lot of math and physics,
-						which I enjoyed, but I ultimately doubted how well I would be able
-						to handle the highest levels of math needed to be a successful
-						astronomer, so I ruled out that option.
+						At that time, I was entertaining three choices: Astronomy, Computer
+						Science, and Linguistics. &nbsp;Astronomy involved a lot of math and
+						physics, which I enjoyed, but I ultimately doubted how well I would
+						be able to handle the highest levels of math needed to be a
+						successful astronomer, so I ruled out that option.
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
-						Computer Science was the field that my father worked in at the time,
-						so I had a lot of familiarity with process. &nbsp;Unforunately for
-						my future self, my father had just had a heart attack partially due
-						to the stress from his job at Deluxe Corp, so I shied away from that
-						option.
+						Computer Science was the most appealing option at the time, but I
+						ultimately shied away from it for two reasons.&nbsp; First, my dad
+						had been promoted to a team leader (from a developer
+						position).&nbsp; I didn't realize it at the time, but his comments
+						and attitude toward the new position negatively affected by
+						perception of the whole field.&nbsp; Second, I had just spent 11
+						months learning and perfecting my German and I didn't want to "lose
+						it".&nbsp;
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Knowing what I know now, it's hard to understand why I chose to
-						major in Linguistics (I was naive to the fact that B.A. degrees are
-						not as highly regarded by many employers as B.S. degrees).&nbsp; I
-						guess if I had to empathize with my former self, I would tell him
-						that he made the best choice at that time considering the
-						circumstances.&nbsp;
+						major in Linguistics (I was ignorant of the fact that a B.A. degree
+						would limit my options in the job market as they are generally
+						considered inferior to B.S. degrees).&nbsp; I tell myself I made the "best" choice with what I knew at the time, but if I could, I would use inception to plant the idea that majoring in computer science is the "best" choice, even if I were to only get a 2.0 G.P.A.
 					</Paragraph>
-					<Paragraph size="five" classNameToAdd="margin-top-1">
+					{/* <Paragraph size="five" classNameToAdd="margin-top-1">
 						One thing is for sure, as a result of having a B.A. instead of a
 						B.S., I have since learned that to some people, credentials are
 						paramount.&nbsp; I have also learned that some people evaluate your
 						current self based on a few decisions you made many years ago.
-					</Paragraph>
+					</Paragraph> */}
 				</CSharpCardSection>
 			</React.Fragment>,
 		],

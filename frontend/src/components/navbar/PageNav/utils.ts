@@ -65,7 +65,7 @@ export const getSectionNames = () => {
   const sections = document.querySelectorAll("[data-section]");
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i];
-    const capitalized = capitalize((section as any).dataset.section);
+    const capitalized = (section as any).dataset.section;
     sectionNames.push(capitalized);
   }
   return sectionNames;

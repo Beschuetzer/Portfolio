@@ -18,7 +18,7 @@ const SectionContainer: React.FC<SectionContainerProps> = ({
     <section
       style={styles ? styles : {}}
       id={name.toLowerCase()}
-      data-section={name.toLowerCase()}
+      data-section={name}
       className={`${pageName}__section ${pageName}__section-${name.toLowerCase()}`}
     >
       {children}

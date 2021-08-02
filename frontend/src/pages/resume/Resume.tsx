@@ -30,6 +30,7 @@ import {
 } from "../../components/constants";
 import SourceCodeLink from "../../components/SourceCodeLink";
 import Quote from "../../components/Quote";
+import { capitalize } from "../../helpers";
 
 // export const RESUME_SPELLING = <span>R&eacute;sum&eacute;</span>;
 export const RESUME_SPELLING = "Résumé";
@@ -42,6 +43,14 @@ function getLinkClassHTML() {
 function getExternalLinkTargetAndRel() {
 	return ` target='_blank' rel='noreferrer' `;
 }
+
+const sectionTitles = [
+	"Overview",
+	SKILLS_CLASSNAME,
+	"Work-history",
+	"Education",
+	"References",
+]
 
 const skillsItemSectionLabels = [
 	"Web Development",
@@ -323,7 +332,7 @@ const Resume: React.FC<ResumeProps> = ({
 }) => {
 	const content = [
 		[
-			"overview",
+			sectionTitles[0],
 			<React.Fragment>
 				<Quote author="Seth Godin" className="padding-bottom-2">
 					You are not your résumé, you are your work.
@@ -359,7 +368,7 @@ const Resume: React.FC<ResumeProps> = ({
 			</React.Fragment>,
 		],
 		[
-			`${SKILLS_CLASSNAME}`,
+			capitalize(sectionTitles[1]),
 			<React.Fragment>
 				<ul className={`${SKILLS_CLASSNAME}`}>
 					<SkillsItemSection title={`${skillsItemSectionLabels[0]} `}>
@@ -420,7 +429,7 @@ const Resume: React.FC<ResumeProps> = ({
 			</React.Fragment>,
 		],
 		[
-			"work-History",
+			sectionTitles[2],
 			<React.Fragment>
 				<div className="work-history">
 					<WorkHistoryItem
@@ -526,7 +535,7 @@ const Resume: React.FC<ResumeProps> = ({
 			</React.Fragment>,
 		],
 		[
-			"education",
+			sectionTitles[3],
 			<React.Fragment>
 				<ul className="education">
 					<EducationItem
@@ -548,7 +557,7 @@ const Resume: React.FC<ResumeProps> = ({
 			</React.Fragment>,
 		],
 		[
-			"references",
+			sectionTitles[4],
 			<React.Fragment>
 				<div className="references">
 					<ReferenceItem
