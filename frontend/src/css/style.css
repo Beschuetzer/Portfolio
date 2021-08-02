@@ -2007,7 +2007,7 @@ body {
   visibility: visible;
 }
 .card--stopped .card__content:hover :is(.card__pause) {
-  opacity: 0;
+  opacity: 0 !important;
 }
 .card--stopped .card__play:hover {
   opacity: 1 !important;

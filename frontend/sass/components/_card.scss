@@ -408,7 +408,7 @@
 		}
 
 		& .card__content:hover :is(.card__pause) {
-			opacity: 0;
+			opacity: 0 !important;
 			// visibility: hidden;
 		}
 
