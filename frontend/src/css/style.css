@@ -3385,6 +3385,9 @@ body {
   fill: var(--arrow-button-right-fill);
 }
 .source-link__demo {
+  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						0.9vw 				) * 2 		);
+}
+.source-link__live {
   top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						0.9vw 				) * 1.5 		);
 }
 
@@ -4295,6 +4298,12 @@ body {
 }
 .csharp__card-section:last-of-type {
   padding-bottom: 3.2rem;
+}
+.csharp__card-section ul {
+  list-style: disc;
+}
+.csharp__card-section :is(ul, ol) {
+  padding: 0 3.2rem 0 3.2rem;
 }
 .csharp__section {
   margin-bottom: 9.6rem;

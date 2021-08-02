@@ -48,6 +48,7 @@ import {
 	DOWNLOADER_URL,
 	RESUME_URL,
 	BRIDGE_PAGE_NAME,
+	BRIDGE_DEMO_URL,
 } from "../../../components/constants";
 import BridgeHero from "./BridgeHero";
 import SourceCodeLink from "../../../components/SourceCodeLink";
@@ -588,8 +589,16 @@ const Bridge: React.FC<BridgeProps> = ({
 		const demoSourceLink = (
 			<SourceCodeLink
 				className="source-link__demo"
-				href={AMAJ_BRIDGE_URL}
+				href={BRIDGE_DEMO_URL}
 				msg={"Demo"}
+			/>
+		);
+
+		const liveSourceLink = (
+			<SourceCodeLink
+				className="source-link__live"
+				href={AMAJ_BRIDGE_URL}
+				msg={"Live Site"}
 			/>
 		);
 
@@ -597,6 +606,7 @@ const Bridge: React.FC<BridgeProps> = ({
 			return (
 				<div className="source-link__container">
 					{codeSourceLink}
+					{liveSourceLink}
 					{demoSourceLink}
 				</div>
 			);
@@ -604,6 +614,7 @@ const Bridge: React.FC<BridgeProps> = ({
 		return (
 			<React.Fragment>
 				{codeSourceLink}
+				{liveSourceLink}
 				{demoSourceLink}
 			</React.Fragment>
 		);

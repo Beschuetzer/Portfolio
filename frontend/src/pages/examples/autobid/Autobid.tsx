@@ -39,9 +39,8 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="">
-					Our collaboration is a multi-step process:
-					<ol className="margin-left-3">
+				<CSharpCardSection title="The Collaborative Process">
+					<ol>
 						<li>
 							We decide what we are going to work on for that day.
 						</li>

@@ -7,6 +7,7 @@ import { Howl } from "howler";
 import {
 	ABOUT_URL,
 	AUTO_BID_URL,
+	BRIDGE_DEMO_URL,
 	BRIDGE_URL,
 	DOWNLOADER_URL,
 	MOBILE_BREAK_POINT_WIDTH, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
@@ -34,6 +35,7 @@ import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
 import { keypressHandler } from "./utils";
 import ReplayViewer from "../pages/examples/csharp/ReplayViewer";
 import About from "../pages/examples/csharp/About";
+import BridgeDemo from "../pages/examples/csharp/BridgeDemo";
 
 interface AppProps {
 	isMobile: boolean,
@@ -107,6 +109,7 @@ const App: React.FC<AppProps> = ({
 			<Switch>
 				<Route path="/" exact component={Home} />
 				<Route path={BRIDGE_URL} exact component={Bridge} />
+				<Route path={BRIDGE_DEMO_URL} exact component={BridgeDemo} />
 				<Route path={DOWNLOADER_URL} exact component={Downloader} />
 				<Route
 					path={PLAYLIST_SYNCER_URL}
@@ -117,6 +120,7 @@ const App: React.FC<AppProps> = ({
 				<Route path={AUTO_BID_URL} exact component={Autobid} />
 				<Route path={ABOUT_URL} exact component={About} />
 				<Route path={RESUME_URL} exact component={Resume} />
+				<Route path="*" exact component={Home} />
 			</Switch>
 			<Route path="*" exact component={NavToggler} />
 			<Route path="*" exact component={PageNav} />

@@ -35,6 +35,9 @@
 		@include respond(tab-land) {
 			width: calc(100% - #{$default-font-size} * 1);
 		}
+
+
+		
 	}
 
 	&__content {
@@ -88,6 +91,17 @@
 		&:last-of-type {
 			padding-bottom: $default-font-size * 2;
 		}
+
+		& {
+			& ul {
+				list-style: disc;
+			}
+			:is(ul, ol) {
+				padding: 0 $default-font-size * 2 0 $default-font-size * 2;
+	
+				
+			}
+		} 
 	}
 
 	&__section {
@@ -215,4 +229,5 @@
 	& .csharp__card {
 		background-color: rgba(var(--color-primary-4-rgb), 1);
 	}
+
 }
