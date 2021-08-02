@@ -2765,11 +2765,21 @@ body {
   font-size: 2.4rem;
   font-family: "Merriweather", serif;
 }
+@media only screen and (max-width: 40.9375em) {
+  .quote__author {
+    font-size: 1.6rem;
+  }
+}
 .quote__message {
   position: relative;
   font-style: italic;
   font-size: 3.2rem;
   font-family: "New Tegomin", serif;
+}
+@media only screen and (max-width: 40.9375em) {
+  .quote__message {
+    font-size: 2.4rem;
+  }
 }
 .quote__popup {
   height: 50%;
@@ -3375,7 +3385,7 @@ body {
   fill: var(--arrow-button-right-fill);
 }
 .source-link__demo {
-  top: calc(( 			14vw + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 				0.9vw) * 1.5 		);
+  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						0.9vw 				) * 1.5 		);
 }
 
 :is(.csharp, .resume) .source-link__source-svg {

@@ -580,19 +580,40 @@ const Bridge: React.FC<BridgeProps> = ({
 		});
 	};
 
+	function renderSourceLinks() {
+		const codeSourceLink = (
+			<SourceCodeLink href={`${GITHUB_URL}/${BRIDGE_PAGE_NAME}`} />
+		);
+
+		const demoSourceLink = (
+			<SourceCodeLink
+				className="source-link__demo"
+				href={AMAJ_BRIDGE_URL}
+				msg={"Demo"}
+			/>
+		);
+
+		if (isMobile)
+			return (
+				<div className="source-link__container">
+					{codeSourceLink}
+					{demoSourceLink}
+				</div>
+			);
+
+		return (
+			<React.Fragment>
+				{codeSourceLink}
+				{demoSourceLink}
+			</React.Fragment>
+		);
+	}
+
 	return (
 		<div className={BRIDGE_PAGE_NAME}>
 			<BridgeHero />
 
-			<div className="source-link__container">
-				<SourceCodeLink href={`${GITHUB_URL}/${BRIDGE_PAGE_NAME}`} />
-				<SourceCodeLink
-					className="source-link__demo"
-					href={AMAJ_BRIDGE_URL}
-					msg={"Demo"}
-				/>
-			</div>
-
+			{renderSourceLinks()}
 			{renderSections()}
 			<ArrowButton {...leftArrowProps} />
 			<ArrowButton {...rightArrowProps} />

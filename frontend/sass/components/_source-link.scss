@@ -1,14 +1,14 @@
 .source-link {
 	&__container {
 		display: flex;
-    justify-content: space-around;
-    align-items: center;
+		justify-content: space-around;
+		align-items: center;
 
 		&:not(.csharp &) {
 			background-image: linear-gradient(
-				rgba(var(--color-primary-2-rgb), .5),
-				rgba(var(--color-primary-1-rgb), .5),
-			)
+				rgba(var(--color-primary-2-rgb), 0.5),
+				rgba(var(--color-primary-1-rgb), 0.5)
+			);
 		}
 	}
 
@@ -84,9 +84,12 @@
 	}
 
 	&__demo {
-		top: calc((
-			14vw + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) -
-				0.9vw) * 1.5
+		top: calc(
+			(
+					14vw +
+						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) -
+						0.9vw
+				) * 1.5
 		);
 	}
 }
