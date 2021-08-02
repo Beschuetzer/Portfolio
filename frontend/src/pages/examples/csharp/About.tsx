@@ -142,7 +142,7 @@ const germanyCarousel = (
 				{
 					itemSrc: germany02,
 					itemThumbnailSrc: germany02Thumbnail,
-					description: "The path (learning) is a never-ending",
+					description: "Learning is never-ending Path",
 				},
 				{
 					itemSrc: germany03,
@@ -631,13 +631,12 @@ const sections: CSharpSection[] = [
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Upon returning home, I took some time re-acclimate myself to
-						American culture (For the last 11 months, I was the only "American"
-						I had interacted with). &nbsp;I wasn't sure what I wanted to study
+						American culture (I had been the only "American" at the school). &nbsp;I wasn't sure what I wanted to study
 						yet, so I spent the summer volunteering at two English as a Second
 						Language schools (The Hubb Center and Harmony Learning Center).
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
-						&nbsp;As September rolled around, my father had a talk to me about
+						&nbsp;As Summerwas winding up, my father had a talk to me about
 						finishing my bachelor's degree.&nbsp; At the time, my father was of
 						the opinion that the degree was less important than just having a
 						college degree (this was a time when many freshman would choose
@@ -649,7 +648,7 @@ const sections: CSharpSection[] = [
 						Science, and Linguistics. &nbsp;Astronomy involved a lot of math and
 						physics, which I enjoyed, but I ultimately doubted how well I would
 						be able to handle the highest levels of math needed to be a
-						successful astronomer, so I ruled out that option.
+						successful astronomer, so I entertained other options.
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Computer Science was the most appealing option at the time, but I
@@ -658,14 +657,13 @@ const sections: CSharpSection[] = [
 						position).&nbsp; I didn't realize it at the time, but his comments
 						and attitude toward the new position negatively affected by
 						perception of the whole field.&nbsp; Second, I had just spent 11
-						months learning and perfecting my German and I didn't want to "lose
-						it".&nbsp;
+						months learning and perfecting my German and I didn't want to the proficiency I had built up.&nbsp;
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Knowing what I know now, it's hard to understand why I chose to
 						major in Linguistics (I was ignorant of the fact that a B.A. degree
 						would limit my options in the job market as they are generally
-						considered inferior to B.S. degrees).&nbsp; I tell myself I made the "best" choice with what I knew at the time, but if I could, I would use inception to plant the idea that majoring in computer science is the "best" choice, even if I were to only get a 2.0 G.P.A.
+						considered inferior to B.S. degrees).&nbsp; I tell myself I made the "best" choice with what I knew at the time, but if I could, I would use inception to plant the idea that majoring in computer science is the "best" choice, even if I though I would end up with a 2.0 G.P.A.
 					</Paragraph>
 					{/* <Paragraph size="five" classNameToAdd="margin-top-1">
 						One thing is for sure, as a result of having a B.A. instead of a
