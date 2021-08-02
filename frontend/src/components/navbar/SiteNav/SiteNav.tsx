@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 import { useEffect, useRef, useState } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import ReactDOM from "react-dom";
@@ -33,7 +33,7 @@ import { scrollToSection } from "../../utils";
 import {
 	ABOUT_PAGE_NAME,
 	ABOUT_URL,
-	AMAJ_BRIDGE_URL,
+	LIVE_BRIDGE_URL,
 	AUTO_BID_PAGE_NAME,
 	AUTO_BID_URL,
 	BRIDGE_PAGE_NAME,
@@ -45,9 +45,11 @@ import {
 	REPLAY_VIEWER_URL,
 	RESUME_PAGE_NAME,
 	RESUME_URL,
+	LIVE_REPLAYS_URL,
 } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
+import { Dispatch } from "react";
 
 interface SiteNavProps {
 	isAnimating: boolean;
@@ -74,7 +76,10 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	const RESET_HAS_PINGED_CONTAINER_DURATION = 900000;
 	const [currentUrl, setCurrentUrl] = useState<string>("");
 	const navRef = useRef<HTMLElement>(null);
-	const [hasPingedHerokuContainer, setHasPingedHerokuContainer] = useState(false);
+	const [hasPingedBridgeHerokuContainer, setHasPingedBridgeHerokuContainer] =
+		useState(false);
+	const [hasPingedReplayHerokuContainer, setHasPingedReplayHerokuContainer] =
+		useState(false);
 
 	const onNavClick = (e: MouseEvent) => {
 		e.stopPropagation();
@@ -88,27 +93,38 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		if (!target) return;
 
 		//note: this starts heroku container from sleep
-		if (!hasPingedHerokuContainer && target.baseURI.match(BRIDGE_URL)) {
-			const currentWindow = window;
-			const openedWindow = window.open(AMAJ_BRIDGE_URL);
-
-				currentWindow.focus();
-
-			setTimeout(() => {
-				if (openedWindow) openedWindow.close();
-				setHasPingedHerokuContainer(true);
-			}, CLOSE_WINDOW_WAIT);
-
-			setTimeout(() => {
-				setHasPingedHerokuContainer(false);
-			}, RESET_HAS_PINGED_CONTAINER_DURATION)
-		}
+		if (!hasPingedBridgeHerokuContainer && target.baseURI.match(BRIDGE_URL))
+			pingContainer(setHasPingedBridgeHerokuContainer, LIVE_BRIDGE_URL);
+		if (
+			!hasPingedReplayHerokuContainer &&
+			target.baseURI.match(REPLAY_VIEWER_URL)
+		)
+			pingContainer(setHasPingedReplayHerokuContainer, LIVE_REPLAYS_URL);
 	};
 
 	const onMouseEnter = (e: MouseEvent) => {
 		e.stopPropagation();
 		handleMouseEnter(navRef);
 	};
+
+	function pingContainer(
+		setStateAction: Dispatch<SetStateAction<boolean>>,
+		href: string,
+	) {
+		const currentWindow = window;
+		const openedWindow = window.open(href);
+
+		currentWindow.focus();
+
+		setTimeout(() => {
+			if (openedWindow) openedWindow.close();
+			setStateAction(true);
+		}, CLOSE_WINDOW_WAIT);
+
+		setTimeout(() => {
+			setStateAction(false);
+		}, RESET_HAS_PINGED_CONTAINER_DURATION);
+	}
 
 	useEffect(() => {
 		setBodyStyle(currentUrl);

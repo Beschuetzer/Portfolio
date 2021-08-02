@@ -45,10 +45,10 @@ import {
 	functionToGetContainer,
 } from "../../../components/utils";
 import {
-	AMAJ_BRIDGE_URL,
+	LIVE_BRIDGE_URL,
 	CSharpSection,
 	GITHUB_URL,
-	REPLAYS_URL,
+	LIVE_REPLAYS_URL,
 } from "../../../components/constants";
 import Quote from "../../../components/Quote";
 
@@ -66,14 +66,14 @@ const sections: CSharpSection[] = [
 				<CSharpCardSection title="The Reasons">
 					<Paragraph size="five">
 						There are two reasons why I chose to build the
-						<EmbeddedLink addSpaces={false} isLocal={false} href={REPLAYS_URL}>
+						<EmbeddedLink addSpaces={false} isLocal={false} href={LIVE_REPLAYS_URL}>
 							A# Maj Replay Viewer
 						</EmbeddedLink>
 						.
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						First, in March of 2021, I finished&nbsp;
-						<EmbeddedLink addSpaces={false} isLocal={false} href={AMAJ_BRIDGE_URL}>
+						<EmbeddedLink addSpaces={false} isLocal={false} href={LIVE_BRIDGE_URL}>
 							A# Maj Bridge
 						</EmbeddedLink>
 						, which saves games, deals, and user statistics into a mongoDB
@@ -135,12 +135,12 @@ const sections: CSharpSection[] = [
 								<div>
 									<CSharpCardSection title="Critical Analysis">
 										One of the main reasons I created the{" "}
-										<EmbeddedLink isLocal={false} href={REPLAYS_URL}>
+										<EmbeddedLink isLocal={false} href={LIVE_REPLAYS_URL}>
 											Replay Viewer
 										</EmbeddedLink>{" "}
 										was to be able to easily review the trick-taking phase of
 										games completed on{" "}
-										<EmbeddedLink isLocal={false} href={AMAJ_BRIDGE_URL}>
+										<EmbeddedLink isLocal={false} href={LIVE_BRIDGE_URL}>
 											A# Maj Bridge
 										</EmbeddedLink>
 										.
@@ -339,11 +339,11 @@ interface ReplayViewerProps {}
 const ReplayViewer: React.FC<ReplayViewerProps> = () => {
 	return (
 		<CSharpLayout
-			href={REPLAYS_URL}
+			href={LIVE_REPLAYS_URL}
 			sections={sections}
 			pageName="replay-viewer"
 			sourceCodeLink={`${GITHUB_URL}/nxBridge`}
-			demoLink={REPLAYS_URL}>
+			demoLink={LIVE_REPLAYS_URL}>
 			{" "}
 		</CSharpLayout>
 	);

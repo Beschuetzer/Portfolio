@@ -39,7 +39,7 @@ import {
 import {
 	DISPLAY_NONE_CLASSNAME,
 	Reference,
-	AMAJ_BRIDGE_URL,
+	LIVE_BRIDGE_URL,
 	GITHUB_URL,
 	WIKIPEDIA_BRIDGE_URL,
 	ODIN_PROJECT_URL,
@@ -66,7 +66,7 @@ const sectionContents = [
 				// title='An App is Born'
 			>
 				<p>
-					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>is a
+					<EmbeddedLink href={LIVE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>is a
 					socket.io and MongoDB app I created where users can play
 					<EmbeddedLink href={WIKIPEDIA_BRIDGE_URL}>
 						contract bridge
@@ -129,7 +129,7 @@ const sectionContents = [
 						sectionToSkipTo="features"
 					/>{" "}
 					to learn about the features I built into
-					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>.
+					<EmbeddedLink href={LIVE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>.
 				</p>
 			</BridgeCardSection>
 		</BridgeCard>
@@ -284,7 +284,7 @@ const sectionContents = [
 						playlist syncer
 					</EmbeddedLink>
 					projects, I initially tried creating
-					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>using
+					<EmbeddedLink href={LIVE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>using
 					c#/WPF.&nbsp; However, it became readily-apparent early on that it
 					would be rather challenging to create the bridge app I had envisioned
 					using c#/WPF.
@@ -413,7 +413,7 @@ const sectionContents = [
 				</p>
 				<p>
 					For that reason, I chose to develop the frontend of
-					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>with
+					<EmbeddedLink href={LIVE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>with
 					vanilla HTML5, CSS3, and JS and the backend with
 					NodeJS(Express).&nbsp; My choice to use paperJS for the vector
 					graphics library was purely because I had learned about it in Colt
@@ -438,7 +438,7 @@ const sectionContents = [
 				</BridgeCardSection>
 				<BridgeCardSection title="The Results">
 					<p>
-						<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>
+						<EmbeddedLink href={LIVE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>
 						took roughly 4 months for me to complete starting from not knowing
 						any HTML, CSS, Javascript or.&nbsp; It runs smoothly on Android 10+,
 						Firefox 70+, and Chrome 70+ (but not on mobile iOS devices due to
@@ -494,7 +494,7 @@ const sectionContents = [
 				<p>
 					It's easy to think in the absolute terms of 'good', 'better', and
 					'best'.&nbsp; My experience coding
-					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>has
+					<EmbeddedLink href={LIVE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>has
 					shown me that this way of thinking doesn't apply very well to web
 					development.&nbsp; Picking the technology that meets the requirements
 					with the least amount of complexity, is a more appropriate approach
@@ -597,7 +597,7 @@ const Bridge: React.FC<BridgeProps> = ({
 		const liveSourceLink = (
 			<SourceCodeLink
 				className="source-link__live"
-				href={AMAJ_BRIDGE_URL}
+				href={LIVE_BRIDGE_URL}
 				msg={"Live Site"}
 			/>
 		);

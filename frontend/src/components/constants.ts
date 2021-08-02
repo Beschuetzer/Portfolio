@@ -37,7 +37,8 @@ export const ABOUT_URL = `/${ABOUT_PAGE_NAME}`;
 
 //#region External URLs
 export const BOOK_TRUST_URL = "https://www.booktrust.org";
-export const AMAJ_BRIDGE_URL = "https://still-bayou-51404.herokuapp.com";
+export const LIVE_BRIDGE_URL = "https://still-bayou-51404.herokuapp.com";
+export const LIVE_REPLAYS_URL = "https://amajreplays.herokuapp.com";
 export const GITHUB_URL = "http://github.com/beschuetzer";
 export const POWERSHELL_URL = `${GITHUB_URL}/powerShell`;
 export const GOOGLE_IT_SPECIALIST_URL =
@@ -51,7 +52,6 @@ export const OC_REMIX_URL = "https://www.ocremix.org";
 export const ODIN_PROJECT_URL = "https://www.theodinproject.com/";
 export const OS_10_ISSUE_TRACKER_URL =
 	"https://issuetracker.google.com/issues/150054563";
-export const REPLAYS_URL = "https://amajreplays.herokuapp.com";
 export const RICOH_URL = "https://www.ricoh-usa.com/en";
 export const TOYS_R_US_RUL = "https://www.toysrus.com/";
 export const QUOTE_API_URL = "https://api.quotable.io";

@@ -151,7 +151,7 @@ const PageNav: React.FC<PageNavProps> = ({
           break;
         } else if (section === sections[sections.length - 1]) {
 					const boundingRectToUse = boundingRects[boundingRects.length - 1];
-					const {percentThroughSection: proposedPercentThroughSection, currentSection: proposedCurrentSection} = getPercentThroughSection(i, indexOfCurrentSection, sections, boundingRectToUse, boundingRects);
+					const {percentThroughSection: proposedPercentThroughSection} = getPercentThroughSection(i, indexOfCurrentSection, sections, boundingRectToUse, boundingRects);
 
 					percentThroughSection = proposedPercentThroughSection;
 					currentSection = sections[sections.length - 1];

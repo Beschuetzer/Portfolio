@@ -14,14 +14,14 @@ import {
 	functionToGetContainer,
 } from "../../../components/utils";
 import {
-	AMAJ_BRIDGE_URL,
+	LIVE_BRIDGE_URL,
 	BRIDGE_DEMO_PAGE_NAME,
 	CSharpSection,
 } from "../../../components/constants";
 import EmbeddedLink from "../../../components/EmbeddedLink";
 
 const sectionNames = [
-	"Pre-Requisites",
+	"Requirements",
 	"Written Instructions",
 	"Video Instructions",
 ];
@@ -60,7 +60,7 @@ const sections: CSharpSection[] = [
 							Navigate to{" "}
 							<EmbeddedLink
 								isLocal={false}
-								href={`${AMAJ_BRIDGE_URL}/login`}
+								href={`${LIVE_BRIDGE_URL}/login`}
 								addSpaces={false}>
 								here
 							</EmbeddedLink>
