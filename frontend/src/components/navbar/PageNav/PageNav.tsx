@@ -144,46 +144,18 @@ const PageNav: React.FC<PageNavProps> = ({
           let boundingRectToUse =
             boundingRects[i < 1 ? 0 : indexOfCurrentSection];
   
-          if (
-            (boundingRectToUse.bottom <= scrollSectionDelimiterOffset && i > 0) ||
-            i === 0
-          ) {
-            currentSection = sections[indexOfCurrentSection + 1];
-            if (!previousSectionBottom) previousSectionBottom = window.scrollY;
-  
-            let boundingRectNext =
-              boundingRects[i < 1 ? 0 : indexOfCurrentSection + 1];
-  
-            const addedPercent =
-              (scrollSectionDelimiterOffset /
-                Math.abs(boundingRectNext.bottom - boundingRectNext.top)) *
-              100;
-  
-            const amountProgressed = window.scrollY - previousSectionBottom;
-            const endAmount = scrollSectionDelimiterOffset;
-  
-            percentThroughSection = (amountProgressed / endAmount) * addedPercent;
-  
-            // console.log('percentThroughSection =', percentThroughSection);
-            if (percentThroughSection >= addedPercent)
-              percentThroughSection = addedPercent;
-          } else {
-            previousSectionBottom = null;
-            const addedPercent =
-              (scrollSectionDelimiterOffset /
-                Math.abs(boundingRectToUse.bottom - boundingRectToUse.top)) *
-              100;
-  
-            percentThroughSection =
-              (Math.abs(boundingRectToUse.top) /
-                (Math.abs(boundingRectToUse.top) +
-                  Math.abs(boundingRectToUse.bottom))) *
-              100;
-  
-            percentThroughSection += addedPercent;
-          }
+					const {percentThroughSection: proposedPercentThroughSection, currentSection: proposedCurrentSection} = getPercentThroughSection(i, indexOfCurrentSection, sections, boundingRectToUse, boundingRects);
+
+					percentThroughSection = proposedPercentThroughSection;
+					if (proposedCurrentSection) currentSection = proposedCurrentSection;
           break;
-        }
+        } else if (section === sections[sections.length - 1]) {
+					const boundingRectToUse = boundingRects[boundingRects.length - 1];
+					const {percentThroughSection: proposedPercentThroughSection, currentSection: proposedCurrentSection} = getPercentThroughSection(i, indexOfCurrentSection, sections, boundingRectToUse, boundingRects);
+
+					percentThroughSection = proposedPercentThroughSection;
+					currentSection = sections[sections.length - 1];
+				}
       }
       setGradientPercent(
         sections,
@@ -198,6 +170,53 @@ const PageNav: React.FC<PageNavProps> = ({
     };
 		document.addEventListener("scroll", handleScroll);
 		// updateActiveScaleRange();
+
+
+		function getPercentThroughSection (i: number, indexOfCurrentSection: number, sections: NodeListOf<Element>, boundingRectToUse: DOMRect, boundingRects: DOMRect[]) {
+			let percentThroughSection = 0;
+			let currentSection = null;
+
+			if (
+				(boundingRectToUse.bottom <= scrollSectionDelimiterOffset && i > 0) ||
+				i === 0
+			) {
+				currentSection = sections[indexOfCurrentSection + 1];
+				if (!previousSectionBottom) previousSectionBottom = window.scrollY;
+
+				let boundingRectNext =
+					boundingRects[i < 1 ? 0 : indexOfCurrentSection + 1];
+
+				const addedPercent =
+					(scrollSectionDelimiterOffset /
+						Math.abs(boundingRectNext.bottom - boundingRectNext.top)) *
+					100;
+
+				const amountProgressed = window.scrollY - previousSectionBottom;
+				const endAmount = scrollSectionDelimiterOffset;
+
+				percentThroughSection = (amountProgressed / endAmount) * addedPercent;
+
+				// console.log('percentThroughSection =', percentThroughSection);
+				if (percentThroughSection >= addedPercent)
+					percentThroughSection = addedPercent;
+			} else {
+				previousSectionBottom = null;
+				const addedPercent =
+					(scrollSectionDelimiterOffset /
+						Math.abs(boundingRectToUse.bottom - boundingRectToUse.top)) *
+					100;
+
+				percentThroughSection =
+					(Math.abs(boundingRectToUse.top) /
+						(Math.abs(boundingRectToUse.top) +
+							Math.abs(boundingRectToUse.bottom))) *
+					100;
+
+				percentThroughSection += addedPercent;
+			}
+
+			return {percentThroughSection, currentSection};
+		}
 
 		return () => {
 			document.removeEventListener("scroll", handleScroll);
