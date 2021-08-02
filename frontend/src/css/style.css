@@ -3316,10 +3316,16 @@ body {
     transform: translateX(0%);
     right: auto;
     position: static;
+    background-color: rgba(var(--color-primary-2-rgb), 0.5);
   }
 }
 .source-link__source:nth-of-type(2) {
   order: 2;
+}
+@media only screen and (max-width: 68.75em) {
+  .source-link__source:nth-of-type(2) {
+    order: 0;
+  }
 }
 .source-link__source-svg {
   width: 7vw;

@@ -84,5 +84,9 @@ That being said, it's considered good practice to include an "About" section on 
 Of course, there can be variation, but the most important thing is to try to identify your unique selling points and validators (past work and/or skills) and point them out as clearly as possible.
 --------------------------------------------
 
--create a demo page for /bridge that has instructions on how to try out the site (has a video that shows logging in with four different test players); clicking on 'Demo' link on /bridge should open amaj bridge in a new tab and redirect ot "/bridge/demo" (use setTimeout?)
 -how hard  to add another level/dimension/layer to PageNav?
+-create a demo page for /bridge that has instructions on how to try out the site (has a video that shows logging in with four different test players); clicking on 'Demo' link on /bridge should open amaj bridge in a new tab and redirect ot "/bridge/demo" (use setTimeout?)
+
+bridge demo page----------------------
+  Pre-requisites:
+    1).  Need at least two different browswers installed and neither can be internet explorer.

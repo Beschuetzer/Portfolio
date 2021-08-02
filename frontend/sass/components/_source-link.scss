@@ -18,10 +18,15 @@
 			transform: translateX(0%);
 			right: auto;
 			position: static;
+			background-color: rgba(var(--color-primary-2-rgb), .5);
 		}
 
 		&:nth-of-type(2) {
 			order: 2;
+
+			@include respond(nav-switch) {
+				order: 0;
+			}
 		}
 
 		&-svg {

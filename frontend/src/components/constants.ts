@@ -166,6 +166,7 @@ export const Z_INDEX_HIGHEST_CLASSNAME = "z-index-highest";
 export const Z_INDEX_CONTENT_CLASSNAME = "z-index-content";
 export const Z_INDEX_NAVBAR_CLASSNAME = "z-index-navbar";
 export const OVERFLOW_HIDDEN_CLASSNAME = "overflow--hidden";
+export const OVERFLOW_HIDDEN_ALWAYS_CLASSNAME = "overflow-hidden";
 export const TRANSPARENT_CLASSNAME = "transparent";
 export const DISPLAY_NONE_CLASSNAME = "d-none";
 export const HIDDEN_CLASSNAME = "hidden";

@@ -30,7 +30,22 @@ import {
 	resetPageNavMinWidth,
 } from "./utils";
 import { scrollToSection } from "../../utils";
-import { ABOUT_PAGE_NAME, ABOUT_URL, AUTO_BID_PAGE_NAME, AUTO_BID_URL, BRIDGE_PAGE_NAME, BRIDGE_URL, DOWNLOADER_PAGE_NAME, DOWNLOADER_URL, EMAIL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_PAGE_NAME, RESUME_URL } from "../../constants";
+import {
+	ABOUT_PAGE_NAME,
+	ABOUT_URL,
+	AMAJ_BRIDGE_URL,
+	AUTO_BID_PAGE_NAME,
+	AUTO_BID_URL,
+	BRIDGE_PAGE_NAME,
+	BRIDGE_URL,
+	DOWNLOADER_PAGE_NAME,
+	DOWNLOADER_URL,
+	EMAIL,
+	PLAYLIST_SYNCER_URL,
+	REPLAY_VIEWER_URL,
+	RESUME_PAGE_NAME,
+	RESUME_URL,
+} from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
 
@@ -65,6 +80,18 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	const onNavItemClick = (e: MouseEvent) => {
 		hide(navRef);
+		console.log("e =", e);
+		const target = e.target as HTMLElement;
+
+		if (!target) return;
+
+		//note: this starts heroku container from sleep
+		if (target.baseURI.match(BRIDGE_URL)) {
+			const currentWindow = window;
+			const openedWindow = window.open(AMAJ_BRIDGE_URL);
+			if (openedWindow) openedWindow.close();
+			currentWindow.focus();
+		}
 	};
 
 	const onMouseEnter = (e: MouseEvent) => {
@@ -129,7 +156,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
 					/>
-
 					<NavListItem
 						imageSource={resumeImage}
 						imageAlt={capitalize(RESUME_PAGE_NAME)}

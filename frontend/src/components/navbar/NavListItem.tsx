@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { OVERFLOW_HIDDEN_ALWAYS_CLASSNAME } from "../constants";
 import { NAVBAR_CLASSNAME } from "./utils";
 
 interface NavListItemProps {
@@ -97,7 +98,7 @@ const NavListItem: React.FC<NavListItemProps> = ({
       onMouseEnter={onMouseEnter}
       onClick={onClick}
       className={`${classNamesToUse}  ${
-        isLink && imageSource ? "overflow-hidden" : ""
+        isLink && imageSource ? OVERFLOW_HIDDEN_ALWAYS_CLASSNAME : ""
       }`}>
         
       {isLink && imageSource ? (
