@@ -79,7 +79,7 @@ const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 			setCurrentBridgeSection(valueToUse);
 		}
 
-		if (match && match.url.match(/bridge/i)) {
+		if (match && match.url.match(/bridge$/i)) {
 			const hero = document.querySelector(`.${BRIDGE_HERO_CLASSNAME}`) as any;
 			const heroMore = document.querySelector(`.${BRIDGE_HERO_CLASSNAME}__more`) as any;
 			const checkBoxRef = document.querySelector(`#${BRIDGE_HERO_CLASSNAME}__more-checkbox`) as any;

@@ -2,9 +2,9 @@ import React from "react";
 import Carousel from "../../../components/Carousel/Carousel";
 import CSharpLayout from "./CSharpLayout";
 
-import img1 from "../../../imgs/downloader/img1.png";
-
-import img1Thumbnail from "../../../imgs/downloader/thumbnails/img1-thumbnail.png";
+import video1 from "../../../clips/bridge-demo/1.mp4";
+import video2 from "../../../clips/bridge-demo/2.mp4";
+import video3 from "../../../clips/bridge-demo/3.mp4";
 
 import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
@@ -20,7 +20,11 @@ import {
 } from "../../../components/constants";
 import EmbeddedLink from "../../../components/EmbeddedLink";
 
-const sectionNames = ["Instructions", "Video Instructions"];
+const sectionNames = [
+	"Pre-Requisites",
+	"Written Instructions",
+	"Video Instructions",
+];
 
 const sections: CSharpSection[] = [
 	{
@@ -28,16 +32,24 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="Pre-Requisites">
+				<CSharpCardSection title="">
 					<ol>
 						<li>Two separate browsers (neither can be IE)</li>
 						<li>
 							Browsers must have a way to create independent sessions (e.g.
-							"Private Browsing")
+							"Private Window" in Firefox and "Incognito Mode" in Crome)
 						</li>
 					</ol>
 				</CSharpCardSection>
-				<CSharpCardSection title="Instructions">
+			</React.Fragment>,
+		],
+	},
+	{
+		name: sectionNames[1],
+		pageName: C_SHARP_CLASSNAME,
+		children: [
+			<React.Fragment>
+				<CSharpCardSection title="">
 					<ol>
 						<li>Open both browsers</li>
 						<li>
@@ -80,26 +92,50 @@ const sections: CSharpSection[] = [
 		styles: {
 			position: "relative",
 		},
-		name: sectionNames[1],
+		name: sectionNames[2],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<section className={`${C_SHARP_CLASSNAME}__${CAROUSEL_CLASSNAME}`}>
 				<Carousel
 					items={[
-						// {
-						// 	itemSrc: problemVideo,
-						// 	description: "The manual way of downloading",
-						// 	videoOverlayText: "A Chore",
-						// 	videoOverlayChildren: (
-						// 		<div>
-						// 			<CSharpCardSection title="The Problem"></CSharpCardSection>
-						// 		</div>
-						// 	),
-						// },
 						{
-							itemSrc: img1,
-							itemThumbnailSrc: img1Thumbnail,
-							description: "The User interface",
+							itemSrc: video1,
+							description: "Setting Up",
+							videoOverlayText: "",
+							videoOverlayChildren: (
+								<div>
+									<CSharpCardSection title="Four Windows At Once">
+										This video show you how to open Chrome and Firefox and create private session windows
+									</CSharpCardSection>
+								</div>
+							),
+						},
+						{
+							itemSrc: video2,
+							description: "Logging In",
+							videoOverlayText: "",
+							videoOverlayChildren: (
+								<div>
+									<CSharpCardSection title="Separate Usernames but Equal Passwords">
+										Notice how each window uses a separate username but the password is the same.
+									</CSharpCardSection>
+								</div>
+							),
+						},
+						{
+							itemSrc: video3,
+							description: "Starting a Game",
+							videoOverlayText: "",
+							videoOverlayChildren: (
+								<div>
+									<CSharpCardSection title="Create a Lobby">
+										After logging in, create a lobby by entering a name an clicking 'Go'.
+									</CSharpCardSection>
+									<CSharpCardSection title="Join the Lobby">
+									    Clicking 'Go' with a lobby name that is open will join that lobby.
+									</CSharpCardSection>
+								</div>
+							),
 						},
 					]}
 					numberOfItemsInCarouselWidthWise="3"
@@ -108,7 +144,7 @@ const sections: CSharpSection[] = [
 					functionToRunOnClose={closeCarouselItem.bind(
 						null,
 						null as any,
-						`#${sectionNames[1].toLowerCase()}`,
+						`#${sectionNames[2].toLowerCase()}`,
 					)}></Carousel>
 			</section>,
 		],

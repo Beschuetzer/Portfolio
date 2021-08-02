@@ -43,7 +43,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	const scrollSectionDelimiterOffset = window.innerHeight / 6;
 	const scrollRefreshLimit = 50;
 	const maxScrollOffsetPercent = 1;
-	const isBridgePage = match.url.match(/bridge/i);
+	const isBridgePage = match.url.match(/bridge$/i);
 	const isHomePage = match.url.match(/home/i);
 	
   let pageNavElement = document.querySelector(".page-nav") as any;
@@ -216,7 +216,7 @@ const PageNav: React.FC<PageNavProps> = ({
 		pageNavElement.classList = cssClass;
 		pageNavElement.classList.add(`${cssClass}-${pageName}`);
 
-		if (!isMobile && clickedBridgeInfoButtonCount <= 0 && url.match(/bridge/i))
+		if (!isMobile && clickedBridgeInfoButtonCount <= 0 && url.match(/bridge$/i))
 			pageNavElement.classList.add(HIDDEN_CLASSNAME);
 	}, [
 		clickedBridgeInfoButtonCount,

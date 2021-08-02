@@ -16,6 +16,7 @@ export const PAGE_NAMES = [
 	`/${ABOUT_PAGE_NAME}`,
 	`/${AUTO_BID_PAGE_NAME}`,
 	`/${BRIDGE_PAGE_NAME}`,
+	`/${BRIDGE_DEMO_PAGE_NAME}`,
 	`/${DOWNLOADER_PAGE_NAME}`,
 	`/${PLAYLIST_SYNCER_PAGE_NAME}`,
 	`/${REPLAY_PAGE_NAME}`,
@@ -27,7 +28,7 @@ export const PAGE_NAMES = [
 export const PLAYLIST_SYNCER_URL = `/examples/${PLAYLIST_SYNCER_PAGE_NAME}`;
 export const DOWNLOADER_URL = `/examples/${DOWNLOADER_PAGE_NAME}`;
 export const BRIDGE_URL = `/examples/${BRIDGE_PAGE_NAME}`;
-export const BRIDGE_DEMO_URL = `/examples/${BRIDGE_PAGE_NAME}/demo`;
+export const BRIDGE_DEMO_URL = `/${BRIDGE_DEMO_PAGE_NAME}`;
 export const REPLAY_VIEWER_URL = `/examples/${REPLAY_PAGE_NAME}`;
 export const AUTO_BID_URL = `/examples/${AUTO_BID_PAGE_NAME}`;
 export const RESUME_URL = `/${RESUME_PAGE_NAME}`;
