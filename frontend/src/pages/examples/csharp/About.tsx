@@ -20,6 +20,8 @@ import {
 	DISPLAY_NONE_CLASSNAME,
 	DOWNLOADER_URL,
 	GERMANY_APP_URL,
+	HARMONY_URL,
+	HUBB_CENTER_URL,
 	PLAYLIST_SYNCER_URL,
 	POWERSHELL_URL,
 	RESUME_URL,
@@ -631,9 +633,20 @@ const sections: CSharpSection[] = [
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Upon returning home, I took some time re-acclimate myself to
-						American culture (I had been the only "American" at the school). &nbsp;I wasn't sure what I wanted to study
-						yet, so I spent the summer volunteering at two English as a Second
-						Language schools (The Hubb Center and Harmony Learning Center).
+						American culture (I had been the only "American" at the school).
+						&nbsp;I wasn't sure what I wanted to study yet, so I spent the
+						summer volunteering at two English as a Second Language schools (
+						<EmbeddedLink
+							isLocal={false}
+							addSpaces={false}
+							href={HUBB_CENTER_URL}>
+							The Hubb Center
+						</EmbeddedLink>
+						&nbsp;and&nbsp;
+						<EmbeddedLink isLocal={false} addSpaces={false} href={HARMONY_URL}>
+							Harmony Learning Center
+						</EmbeddedLink>
+						).
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						&nbsp;As Summerwas winding up, my father had a talk to me about
@@ -657,13 +670,17 @@ const sections: CSharpSection[] = [
 						position).&nbsp; I didn't realize it at the time, but his comments
 						and attitude toward the new position negatively affected by
 						perception of the whole field.&nbsp; Second, I had just spent 11
-						months learning and perfecting my German and I didn't want to the proficiency I had built up.&nbsp;
+						months learning and perfecting my German and I didn't want to the
+						proficiency I had built up.&nbsp;
 					</Paragraph>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Knowing what I know now, it's hard to understand why I chose to
 						major in Linguistics (I was ignorant of the fact that a B.A. degree
 						would limit my options in the job market as they are generally
-						considered inferior to B.S. degrees).&nbsp; I tell myself I made the "best" choice with what I knew at the time, but if I could, I would use inception to plant the idea that majoring in computer science is the "best" choice, even if I though I would end up with a 2.0 G.P.A.
+						considered inferior to B.S. degrees).&nbsp; I tell myself I made the
+						"best" choice with what I knew at the time, but if I could, I would
+						use inception to plant the idea that majoring in computer science is
+						the "best" choice, even if I though I would end up with a 2.0 G.P.A.
 					</Paragraph>
 					{/* <Paragraph size="five" classNameToAdd="margin-top-1">
 						One thing is for sure, as a result of having a B.A. instead of a

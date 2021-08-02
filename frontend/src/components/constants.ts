@@ -64,6 +64,8 @@ export const WIKIPEDIA_DRM_URL =
 export const UDEMY_BOOTCAMP_URL =
 	"https://www.udemy.com/course/the-web-developer-bootcamp/";
 export const GERMANY_APP_URL = "/germany-application-letter.pdf";
+export const HARMONY_URL = "https://www.isd622.org/harmony";
+export const HUBB_CENTER_URL = "https://www.spps.org/hubbs";
 //#endregion
 
 //#region Globally-relevant Constants
