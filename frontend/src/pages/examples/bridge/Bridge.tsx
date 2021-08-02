@@ -118,12 +118,13 @@ const sectionContents = [
 					could always go back to Tech Support...
 				</p>
 				<p>
-					Turn the page to learn about the&nbsp;
+					Click&nbsp;
 					<BridgeSectionLink
 						isEmbeddedLink={true}
-						name="features"
+						name="here"
 						sectionToSkipTo="features"
 					/>{" "}
+					to learn about the features
 					I built into
 					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>.
 				</p>

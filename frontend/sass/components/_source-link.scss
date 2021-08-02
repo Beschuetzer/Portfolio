@@ -18,7 +18,10 @@
 			transform: translateX(0%);
 			right: auto;
 			position: static;
-			background-color: rgba(var(--color-primary-2-rgb), .5);
+
+			&:not(.csharp &) {
+				background-color: rgba(var(--color-primary-2-rgb), .5);
+			}
 		}
 
 		&:nth-of-type(2) {

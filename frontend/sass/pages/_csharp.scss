@@ -137,9 +137,11 @@
 		}
 
 		@include respond(nav-switch) {
-			display: grid;
-			grid-template-columns: min-content 1fr min-content;
-			justify-content: flex-start;
+			// display: grid;
+			// grid-template-columns: min-content 1fr min-content;
+			// justify-content: flex-start;
+			display: flex;
+			flex-direction: column-reverse;
 			width: $resume-card-width-full;
 			margin: auto;
 		}

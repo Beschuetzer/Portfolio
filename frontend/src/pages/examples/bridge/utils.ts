@@ -16,7 +16,7 @@ export const BRIDGE_BACKDROP_CLASSNAME = `${BRIDGE_CLASSNAME}__backdrop`;
 export const BRIDGE_HERO_CLICKED_CLASSNAME = "hero--clicked";
 export const BRIDGE_HERO_MORE__CLICKED_CLASSNAME = "hero__more--clicked";
 export const bridgeSections = [
-  "About",
+  "Overview",
   "Features",
   "Details",
   "Lessons",

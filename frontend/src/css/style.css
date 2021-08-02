@@ -3316,6 +3316,8 @@ body {
     transform: translateX(0%);
     right: auto;
     position: static;
+  }
+  .source-link__source:not(.csharp .source-link__source) {
     background-color: rgba(var(--color-primary-2-rgb), 0.5);
   }
 }
@@ -4327,9 +4329,8 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .csharp__title {
-    display: grid;
-    grid-template-columns: min-content 1fr min-content;
-    justify-content: flex-start;
+    display: flex;
+    flex-direction: column-reverse;
     width: 85rem;
     margin: auto;
   }

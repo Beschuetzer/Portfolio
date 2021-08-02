@@ -70,8 +70,11 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	sounds,
 	setHeaderHeight,
 }) => {
+	const CLOSE_WINDOW_WAIT = 750;
+	const RESET_HAS_PINGED_CONTAINER_DURATION = 900000;
 	const [currentUrl, setCurrentUrl] = useState<string>("");
 	const navRef = useRef<HTMLElement>(null);
+	const [hasPingedHerokuContainer, setHasPingedHerokuContainer] = useState(false);
 
 	const onNavClick = (e: MouseEvent) => {
 		e.stopPropagation();
@@ -80,17 +83,25 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	const onNavItemClick = (e: MouseEvent) => {
 		hide(navRef);
-		console.log("e =", e);
 		const target = e.target as HTMLElement;
 
 		if (!target) return;
 
 		//note: this starts heroku container from sleep
-		if (target.baseURI.match(BRIDGE_URL)) {
+		if (!hasPingedHerokuContainer && target.baseURI.match(BRIDGE_URL)) {
 			const currentWindow = window;
 			const openedWindow = window.open(AMAJ_BRIDGE_URL);
-			if (openedWindow) openedWindow.close();
-			currentWindow.focus();
+
+				currentWindow.focus();
+
+			setTimeout(() => {
+				if (openedWindow) openedWindow.close();
+				setHasPingedHerokuContainer(true);
+			}, CLOSE_WINDOW_WAIT);
+
+			setTimeout(() => {
+				setHasPingedHerokuContainer(false);
+			}, RESET_HAS_PINGED_CONTAINER_DURATION)
 		}
 	};
 

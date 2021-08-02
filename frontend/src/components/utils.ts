@@ -220,5 +220,4 @@ export function getSentencesFromString(
 
 	return toReturn;
 }
-
 //#endregion
