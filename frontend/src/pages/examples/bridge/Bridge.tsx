@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 
@@ -80,7 +80,10 @@ const sectionContents = [
 			>
 				<p>
 					It was June of 2020, and I had just left my job at
-					<EmbeddedLink href={`${RESUME_URL}#ricoh`} openInNewTab={true} isLocal={true}>
+					<EmbeddedLink
+						href={`${RESUME_URL}#ricoh`}
+						openInNewTab={true}
+						isLocal={true}>
 						Ricoh
 					</EmbeddedLink>
 					to become a web developer.&nbsp; &nbsp;My two smaller c# projects (
@@ -124,8 +127,7 @@ const sectionContents = [
 						name="here"
 						sectionToSkipTo="features"
 					/>{" "}
-					to learn about the features
-					I built into
+					to learn about the features I built into
 					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>.
 				</p>
 			</BridgeCardSection>
@@ -435,9 +437,9 @@ const sectionContents = [
 				</BridgeCardSection>
 				<BridgeCardSection title="The Results">
 					<p>
-						<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>took
-						roughly 4 months for me to complete starting from not knowing any
-						HTML, CSS, Javascript or.&nbsp; It runs smoothly on Android 10+,
+						<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>
+						took roughly 4 months for me to complete starting from not knowing
+						any HTML, CSS, Javascript or.&nbsp; It runs smoothly on Android 10+,
 						Firefox 70+, and Chrome 70+ (but not on mobile iOS devices due to
 						paperJS issues that I couldn't resolve due to the fact that I don't
 						have access to an iOS device and wanted to focus on other things.).
@@ -462,8 +464,9 @@ const sectionContents = [
 	</SectionContainer>,
 	<SectionContainer name={bridgeSections[3]} pageName={BRIDGE_PAGE_NAME}>
 		<BridgeCard titleSize="two" titleContent={bridgeSections[3]}>
-		<Quote author="Zig Ziglar" className="padding-bottom-2">
-				If you are not willing to learn, no one can help you.&nbsp;  If you are determined to learn, no one can stop you.
+			<Quote author="Zig Ziglar" className="padding-bottom-2">
+				If you are not willing to learn, no one can help you.&nbsp; If you are
+				determined to learn, no one can stop you.
 			</Quote>
 			<BridgeCardSection title="Sometimes Bread and Butter is not enough">
 				<p>
@@ -490,8 +493,8 @@ const sectionContents = [
 				<p>
 					It's easy to think in the absolute terms of 'good', 'better', and
 					'best'.&nbsp; My experience coding
-					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>has shown
-					me that this way of thinking doesn't apply very well to web
+					<EmbeddedLink href={AMAJ_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>has
+					shown me that this way of thinking doesn't apply very well to web
 					development.&nbsp; Picking the technology that meets the requirements
 					with the least amount of complexity, is a more appropriate approach
 					(assuming you don't already know a technology that meets the
@@ -581,14 +584,14 @@ const Bridge: React.FC<BridgeProps> = ({
 		<div className={BRIDGE_PAGE_NAME}>
 			<BridgeHero />
 
-			<SourceCodeLink
-				href={`${GITHUB_URL}/${BRIDGE_PAGE_NAME}`}
-			/>
-			<SourceCodeLink
-				className="source-link__demo"
-				href={AMAJ_BRIDGE_URL}
-				msg={"Demo"}
-			/>
+			<div className="source-link__container">
+				<SourceCodeLink href={`${GITHUB_URL}/${BRIDGE_PAGE_NAME}`} />
+				<SourceCodeLink
+					className="source-link__demo"
+					href={AMAJ_BRIDGE_URL}
+					msg={"Demo"}
+				/>
+			</div>
 
 			{renderSections()}
 			<ArrowButton {...leftArrowProps} />

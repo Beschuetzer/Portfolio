@@ -1,4 +1,17 @@
 .source-link {
+	&__container {
+		display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+		&:not(.csharp &) {
+			background-image: linear-gradient(
+				rgba(var(--color-primary-2-rgb), .5),
+				rgba(var(--color-primary-1-rgb), .5),
+			)
+		}
+	}
+
 	&__source {
 		font-family: $font-family-headers;
 		position: fixed;
@@ -18,10 +31,6 @@
 			transform: translateX(0%);
 			right: auto;
 			position: static;
-
-			&:not(.csharp &) {
-				background-color: rgba(var(--color-primary-2-rgb), .5);
-			}
 		}
 
 		&:nth-of-type(2) {

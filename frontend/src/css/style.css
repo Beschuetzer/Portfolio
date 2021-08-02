@@ -3299,6 +3299,14 @@ body {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
+.source-link__container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.source-link__container:not(.csharp .source-link__container) {
+  background-image: linear-gradient(rgba(var(--color-primary-2-rgb), 0.5), rgba(var(--color-primary-1-rgb), 0.5));
+}
 .source-link__source {
   font-family: "Merriweather", serif;
   position: fixed;
@@ -3316,9 +3324,6 @@ body {
     transform: translateX(0%);
     right: auto;
     position: static;
-  }
-  .source-link__source:not(.csharp .source-link__source) {
-    background-color: rgba(var(--color-primary-2-rgb), 0.5);
   }
 }
 .source-link__source:nth-of-type(2) {

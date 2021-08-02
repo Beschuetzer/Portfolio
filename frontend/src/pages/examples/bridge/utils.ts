@@ -1,6 +1,7 @@
 import { RefObject } from "react";
 import { ANIMATION_DURATION, BODY_BACKGROUND_CSS_CLASSNAME, bridgeSectionHeightDefault, bridgeSectionPaddingDefault, computedStyle, HIDDEN_CLASSNAME, Reference } from "../../../components/constants";
 import { scrollToSection } from "../../../components/utils";
+import { getLinearPercentOfMaxMatchWithinRange } from "../../../helpers";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 
 export const SECOND_INFO_BUTTON_DELAY = 500;
@@ -120,7 +121,11 @@ export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: H
   }
   else {
     if (sounds?.loaded?.play) sounds.loaded.play('doorNormal');
-    scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()) as HTMLElement)
+
+    //min = -27.5 max = 100 from 340 to 1099
+    let heightOffset = 0;
+    if (isMobile) heightOffset = getLinearPercentOfMaxMatchWithinRange(window.innerWidth, 340, 1099, 27.5, 100);
+    scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()) as HTMLElement, -heightOffset);
     if (background)  {
       background?.classList.remove('visible');
       background?.classList.remove('reverse-ease');
