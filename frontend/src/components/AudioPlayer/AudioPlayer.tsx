@@ -15,6 +15,7 @@ import { getMinuteAndSecondsString } from "./utils";
 export const AUDIO_PLAYER_CLASSNAME = "audio-player";
 export const AUDIO_PLAYER_TOGGLER_CLASSNAME = `${AUDIO_PLAYER_CLASSNAME}__toggler`;
 export const AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME = `${AUDIO_PLAYER_TOGGLER_CLASSNAME}--open`;
+export const AUDIO_PLAYER_FILL_COLOR_CLASSNAME = 'fill-primary-3';
 
 export interface AudioPlayerProps {
 	currentlyPlayingSound: AudioItem;
@@ -29,6 +30,8 @@ export interface AudioPlayerState {
 	elapsed: string;
 	songLength: string;
 	songProgressPercent: number;
+	shouldShowAudioPlayer: boolean;
+	isOpen: boolean;
 }
 
 export type AudioPlayerAction = "add" | "remove" | "toggle";
@@ -41,7 +44,6 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	audioPlayerRef: RefObject<HTMLElement>;
 	audioPlayerTogglerSvgRef: RefObject<HTMLElement>;
 	songsOnPage: NodeListOf<Element> | null;
-	shouldShowAudioPlayer = false;
 	updateInterval: any;
 	updateRate = 125;
 	hasShownPlayer = false;
@@ -56,6 +58,8 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 			elapsed: "-1",
 			songLength: "-1",
 			songProgressPercent: 0,
+			shouldShowAudioPlayer: true,
+			isOpen: false,
 		};
 
 		this.pauseRef = createRef();
@@ -65,44 +69,6 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		this.songsOnPage = null;
 
 		window.addEventListener("click", this.handleWindowClick.bind(this));
-	}
-
-	handleWindowClick(e: MouseEvent) {
-		const target = e.target as HTMLElement;
-		if (!target) return;
-
-		const pathes = (e as any).path;
-		for (let i = 0; i < pathes.length; i++) {
-			const path = pathes[i] as HTMLElement;
-			if (typeof path.className === 'string' && path.className?.match(AUDIO_PLAYER_TOGGLER_CLASSNAME)) return
-		}
-
-		const audioListMatchRegExp = new RegExp(AUDIO_LIST_ITEM_CLASSNAME, "i");
-		const targetIsAudioListItem = target?.classList?.contains(
-			`${AUDIO_LIST_ITEM_CLASSNAME}`,
-		);
-		const parentIsAudioListItem = (
-			target.closest(`.${AUDIO_LIST_CLASSNAME}__item`) as HTMLElement
-		)?.className.search(audioListMatchRegExp);
-
-		if (
-			targetIsAudioListItem ||
-			(parentIsAudioListItem !== undefined &&
-				parentIsAudioListItem !== -1 &&
-				this.shouldShowAudioPlayer)
-		) {
-			return this.showAudioPlayer();
-		}
-
-		console.log("targetIsAudioListItem =", targetIsAudioListItem);
-		console.log("after------------------------------------------------");
-		const audioPlayerExist = target.closest(AUDIO_PLAYER_CLASSNAME);
-		console.log("audioPlayerExist =", audioPlayerExist);
-		if (
-			!audioPlayerExist &&
-			Object.keys(this.state.currentlyPlayingSound).length > 0
-		)
-			this.hideAudioPlayer();
 	}
 
 	componentDidMount() {
@@ -117,9 +83,6 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	}
 
 	componentWillReceiveProps(nextProps: AudioPlayerProps) {
-		console.log(
-			"receiving props------------------------------------------------",
-		);
 		//need to just play from beginning if clicking same song
 		const playingSoundPath = Object.values(
 			nextProps.currentlyPlayingSound?.path,
@@ -236,9 +199,25 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		this.handlePlay();
 	}
 
-	handleToggler() {
-		this.shouldShowAudioPlayer = !this.shouldShowAudioPlayer;
+	handleToggler(e: MouseEvent) {
 		this.toggleAudioPlayer();
+
+
+		let target: SVGElement | null = e.target as SVGElement;
+		if (target.localName !== 'svg') {
+			target = target?.closest('svg');
+		}
+
+		debugger;
+		let isOpen = false;
+		if (!target?.className.baseVal.match(AUDIO_PLAYER_FILL_COLOR_CLASSNAME)) {
+			target?.classList.add(AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME);
+			isOpen = true;
+		}
+
+		if (!isOpen) this.hideAudioPlayer();
+
+		this.setState({ shouldShowAudioPlayer: !this.state.shouldShowAudioPlayer, isOpen });
 	}
 
 	handlePause() {
@@ -261,6 +240,50 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 		this.id = this.state.playingHowl.play();
 		this.setUpdateInterval();
+	}
+
+	handleWindowClick(e: MouseEvent) {
+		const target = e.target as HTMLElement;
+		if (!target) return;
+
+		let targetIsAudioListItem = false;
+		let parentIsAudioListItem = -1;
+
+		const pathes = (e as any).path;
+		for (let i = 0; i < pathes.length; i++) {
+			const path = pathes[i] as HTMLElement;
+
+			if (typeof path.className === "string") {
+				if (path.className?.match(AUDIO_PLAYER_TOGGLER_CLASSNAME)) return;
+				targetIsAudioListItem = !!path.className?.match(
+					AUDIO_LIST_ITEM_CLASSNAME,
+				);
+			}
+		}
+
+		if (!targetIsAudioListItem) {
+			const audioListMatchRegExp = new RegExp(AUDIO_LIST_ITEM_CLASSNAME, "i");
+			parentIsAudioListItem = (
+				target.closest(`.${AUDIO_LIST_CLASSNAME}__item`) as HTMLElement
+			)?.className.search(audioListMatchRegExp);
+		}
+
+		// debugger;
+		if (
+			targetIsAudioListItem ||
+			(parentIsAudioListItem !== undefined &&
+				parentIsAudioListItem !== -1 &&
+				this.state.shouldShowAudioPlayer)
+		) {
+			return this.showAudioPlayer();
+		}
+
+		const audioPlayerExists = target.closest(AUDIO_PLAYER_CLASSNAME);
+		if (
+			!audioPlayerExists &&
+			Object.keys(this.state.currentlyPlayingSound).length > 0
+		)
+			this.hideAudioPlayer();
 	}
 
 	hidePause() {
@@ -473,7 +496,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		return (
 			<section
 				ref={this.audioPlayerRef as any}
-				className={`${AUDIO_PLAYER_CLASSNAME}`}>
+				className={ `${AUDIO_PLAYER_CLASSNAME}`}>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__content`}>
 					<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
 						<span>Playing:&nbsp;</span>
@@ -551,8 +574,9 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 					id={`${AUDIO_PLAYER_TOGGLER_CLASSNAME}`}
 					className={`${AUDIO_PLAYER_TOGGLER_CLASSNAME} ${HIDDEN_CLASSNAME}`}>
 					<svg
+						className={`${this.state.shouldShowAudioPlayer ? AUDIO_PLAYER_FILL_COLOR_CLASSNAME : ``} ${this.state.isOpen ? AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME : ''}`}
 						ref={this.audioPlayerTogglerSvgRef as any}
-						onClick={(e: any) => this.handleToggler()}>
+						onClick={(e: any) => this.handleToggler(e)}>
 						<use xlinkHref="/sprite.svg#icon-forward"></use>
 					</svg>
 				</div>

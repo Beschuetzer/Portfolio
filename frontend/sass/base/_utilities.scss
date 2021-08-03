@@ -228,3 +228,16 @@
 		--opacity: #{$carousel-fullscreen-button-hover-opacity};
 	}
 }
+
+.fill-primary-1 {
+	fill: rgba(var(--color-primary-1-rgb), 1) !important;
+}
+.fill-primary-2 {
+	fill: rgba(var(--color-primary-2-rgb), 1) !important;
+}
+.fill-primary-3 {
+	fill: rgba(var(--color-primary-3-rgb), 1) !important;
+}
+.fill-primary-4 {
+	fill: rgba(var(--color-primary-4-rgb), 1) !important;
+}
