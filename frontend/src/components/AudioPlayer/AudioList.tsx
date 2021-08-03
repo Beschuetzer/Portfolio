@@ -3,6 +3,7 @@ import { connect, RootStateOrAny } from 'react-redux';
 import { setCurrentlyPlayingSound, setIsLoadingSound } from '../../actions';
 
 export const AUDIO_LIST_CLASSNAME = "audio-list";
+export const AUDIO_LIST_ITEM_CLASSNAME = `${AUDIO_LIST_CLASSNAME}__item`;
 
 export interface AudioItem {
 	path: any;
@@ -34,7 +35,7 @@ const AudioList: React.FC<AudioListProps> = ({ items, className, setCurrentlyPla
 				<div
 					key={index}
 					onClick={(e: any) => handleItemClick(e)}
-					className={`${AUDIO_LIST_CLASSNAME}__item`}
+					className={AUDIO_LIST_ITEM_CLASSNAME}
           data-item={JSON.stringify(item)}
         >
           <span>{index + 1}).</span>

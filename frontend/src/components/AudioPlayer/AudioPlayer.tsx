@@ -5,7 +5,11 @@ import { createRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { setIsLoadingSound, setCurrentlyPlayingSound } from "../../actions";
 import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
-import { AudioItem, AUDIO_LIST_CLASSNAME } from "./AudioList";
+import {
+	AudioItem,
+	AUDIO_LIST_CLASSNAME,
+	AUDIO_LIST_ITEM_CLASSNAME,
+} from "./AudioList";
 import { getMinuteAndSecondsString } from "./utils";
 
 export const AUDIO_PLAYER_CLASSNAME = "audio-player";
@@ -59,6 +63,46 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		this.audioPlayerRef = createRef();
 		this.audioPlayerTogglerSvgRef = createRef();
 		this.songsOnPage = null;
+
+		window.addEventListener("click", this.handleWindowClick.bind(this));
+	}
+
+	handleWindowClick(e: MouseEvent) {
+		const target = e.target as HTMLElement;
+		if (!target) return;
+
+		const pathes = (e as any).path;
+		for (let i = 0; i < pathes.length; i++) {
+			const path = pathes[i] as HTMLElement;
+			if (typeof path.className === 'string' && path.className?.match(AUDIO_PLAYER_TOGGLER_CLASSNAME)) return
+		}
+
+		const audioListMatchRegExp = new RegExp(AUDIO_LIST_ITEM_CLASSNAME, "i");
+		const targetIsAudioListItem = target?.classList?.contains(
+			`${AUDIO_LIST_ITEM_CLASSNAME}`,
+		);
+		const parentIsAudioListItem = (
+			target.closest(`.${AUDIO_LIST_CLASSNAME}__item`) as HTMLElement
+		)?.className.search(audioListMatchRegExp);
+
+		if (
+			targetIsAudioListItem ||
+			(parentIsAudioListItem !== undefined &&
+				parentIsAudioListItem !== -1 &&
+				this.shouldShowAudioPlayer)
+		) {
+			return this.showAudioPlayer();
+		}
+
+		console.log("targetIsAudioListItem =", targetIsAudioListItem);
+		console.log("after------------------------------------------------");
+		const audioPlayerExist = target.closest(AUDIO_PLAYER_CLASSNAME);
+		console.log("audioPlayerExist =", audioPlayerExist);
+		if (
+			!audioPlayerExist &&
+			Object.keys(this.state.currentlyPlayingSound).length > 0
+		)
+			this.hideAudioPlayer();
 	}
 
 	componentDidMount() {
@@ -73,6 +117,9 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	}
 
 	componentWillReceiveProps(nextProps: AudioPlayerProps) {
+		console.log(
+			"receiving props------------------------------------------------",
+		);
 		//need to just play from beginning if clicking same song
 		const playingSoundPath = Object.values(
 			nextProps.currentlyPlayingSound?.path,
@@ -501,6 +548,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 					</div>
 				</div>
 				<div
+					id={`${AUDIO_PLAYER_TOGGLER_CLASSNAME}`}
 					className={`${AUDIO_PLAYER_TOGGLER_CLASSNAME} ${HIDDEN_CLASSNAME}`}>
 					<svg
 						ref={this.audioPlayerTogglerSvgRef as any}
