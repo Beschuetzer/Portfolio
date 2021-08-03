@@ -15,7 +15,7 @@ import { getMinuteAndSecondsString } from "./utils";
 export const AUDIO_PLAYER_CLASSNAME = "audio-player";
 export const AUDIO_PLAYER_TOGGLER_CLASSNAME = `${AUDIO_PLAYER_CLASSNAME}__toggler`;
 export const AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME = `${AUDIO_PLAYER_TOGGLER_CLASSNAME}--open`;
-export const AUDIO_PLAYER_FILL_COLOR_CLASSNAME = 'fill-primary-3';
+export const AUDIO_PLAYER_FILL_COLOR_CLASSNAME = "fill-primary-3";
 
 export interface AudioPlayerProps {
 	currentlyPlayingSound: AudioItem;
@@ -202,22 +202,24 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	handleToggler(e: MouseEvent) {
 		this.toggleAudioPlayer();
 
-
 		let target: SVGElement | null = e.target as SVGElement;
-		if (target.localName !== 'svg') {
-			target = target?.closest('svg');
+		if (target.localName !== "svg") {
+			target = target?.closest("svg");
 		}
 
-		debugger;
-		let isOpen = false;
-		if (!target?.className.baseVal.match(AUDIO_PLAYER_FILL_COLOR_CLASSNAME)) {
+		const isOpen = this.state.isOpen;
+		if (!isOpen) {
+			this.showAudioPlayer();
 			target?.classList.add(AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME);
-			isOpen = true;
+		} else {
+			this.hideAudioPlayer();
+			target?.classList.remove(AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME);
 		}
 
-		if (!isOpen) this.hideAudioPlayer();
-
-		this.setState({ shouldShowAudioPlayer: !this.state.shouldShowAudioPlayer, isOpen });
+		this.setState({
+			shouldShowAudioPlayer: !this.state.shouldShowAudioPlayer,
+			isOpen: !isOpen,
+		});
 	}
 
 	handlePause() {
@@ -275,15 +277,18 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 				parentIsAudioListItem !== -1 &&
 				this.state.shouldShowAudioPlayer)
 		) {
-			return this.showAudioPlayer();
+			this.showAudioPlayer();
+			return this.setState({ isOpen: true });
 		}
 
 		const audioPlayerExists = target.closest(AUDIO_PLAYER_CLASSNAME);
 		if (
 			!audioPlayerExists &&
 			Object.keys(this.state.currentlyPlayingSound).length > 0
-		)
+		) {
 			this.hideAudioPlayer();
+			return this.setState({ isOpen: false });
+		}
 	}
 
 	hidePause() {
@@ -496,7 +501,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		return (
 			<section
 				ref={this.audioPlayerRef as any}
-				className={ `${AUDIO_PLAYER_CLASSNAME}`}>
+				className={`${AUDIO_PLAYER_CLASSNAME}`}>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__content`}>
 					<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
 						<span>Playing:&nbsp;</span>
@@ -574,7 +579,11 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 					id={`${AUDIO_PLAYER_TOGGLER_CLASSNAME}`}
 					className={`${AUDIO_PLAYER_TOGGLER_CLASSNAME} ${HIDDEN_CLASSNAME}`}>
 					<svg
-						className={`${this.state.shouldShowAudioPlayer ? AUDIO_PLAYER_FILL_COLOR_CLASSNAME : ``} ${this.state.isOpen ? AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME : ''}`}
+						className={`${
+							this.state.shouldShowAudioPlayer
+								? AUDIO_PLAYER_FILL_COLOR_CLASSNAME
+								: ``
+						} ${this.state.isOpen ? AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME : ""}`}
 						ref={this.audioPlayerTogglerSvgRef as any}
 						onClick={(e: any) => this.handleToggler(e)}>
 						<use xlinkHref="/sprite.svg#icon-forward"></use>
