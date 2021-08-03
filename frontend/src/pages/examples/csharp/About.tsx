@@ -327,6 +327,41 @@ const peopleToPeopleCarousel = (
 	</section>
 );
 
+const regretQuote = (
+	<Quote author="Anonymous" className="padding-bottom-1">
+		In the end, we only regret the chances we didn't take, relationships we were
+		afraid to have, and the decisions we waited to long to make.
+	</Quote>
+);
+
+const youngQuote = (
+	<Quote author="Henry Ford" className="padding-top-1">
+		Anyone who stops learning is old, whether at twenty or eighty. &nbsp;Anyone
+		who keeps learning stays young.
+	</Quote>
+);
+
+const greatThingsQuote = (
+	<Quote author="Leornard Bernstein" className="padding-top-1">
+		To achieve great things, two things are needed: a plan, and not quite enough
+		time.
+	</Quote>
+);
+
+const hobbyQuote = (
+	<Quote author="Phyllis McGinley" className="padding-top-1">
+		A hobby a day keeps the doldrums away.
+	</Quote>
+);
+
+const selfDoubtQuote = (
+	<Quote author="Sylvia Plath" className="padding-top-1">
+		And by the way, everything in life is writable about if you have the
+		outgoing guts to do it, and the imagination to improvise. The worst enemy to
+		creativity is self-doubt.
+	</Quote>
+);
+
 const sections: CSharpSection[] = [
 	{
 		name: sectionNames[0],
@@ -353,10 +388,7 @@ const sections: CSharpSection[] = [
 					realized that this may be my last chance to become a programmer.&nbsp;
 				</CSharpCardSection> */}
 
-				<Quote author="Henry Ford" className="padding-top-1">
-					Anyone who stops learning is old, whether at twenty or eighty.
-					&nbsp;Anyone who keeps learning stays young.
-				</Quote>
+				{youngQuote}
 				<CSharpCardSection title="A Way of Life">
 					The above quote sheds a lot of light onto the person I am. Whether or
 					not I become a professional web developer, I will continue to learn
@@ -373,9 +405,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<Quote author="Phyllis McGinley" className="padding-top-1">
-					A hobby a day keeps the doldrums away.
-				</Quote>
+				{hobbyQuote}
 				<CSharpCardSection title="Biking">
 					One of the most enjoyable things I do on a regular basis is bike
 					riding.&nbsp; I enjoy it so much, that I even tried using it as my
@@ -416,10 +446,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<Quote author="Leornard Bernstein" className="padding-top-1">
-					To achieve great things, two things are needed: a plan, and not quite
-					enough time.
-				</Quote>
+				{greatThingsQuote}
 				<CSharpCardSection title="A Passion for Sound">
 					Music has been a big part of my life since I was young.&nbsp; Ever
 					since first discovered Fruity Loops, I have been using music as a
@@ -552,6 +579,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
+				{regretQuote}
 				<CSharpCardSection title="Why Now?">
 					If you had asked me what my career goals were in January of 2020, I'd
 					have told to that I want to become a level 3 Tech Support Specialist
@@ -593,6 +621,7 @@ const sections: CSharpSection[] = [
 					would regret not pursuing a career in Programming/Web
 					Development.&nbsp;
 				</CSharpCardSection>
+
 				<CSharpCardSection title="Why not Comp Sci?">
 					<div>
 						After I graduated high school, I wanted to learn more about the
@@ -601,8 +630,8 @@ const sections: CSharpSection[] = [
 							classToToggle={DISPLAY_NONE_CLASSNAME}
 							targetSelector="#p2p-carousel">
 							People to People Experience
-						</ClassToggler>&nbsp;
-						to England, Ireland, and Whales in 10th Grade).&nbsp;
+						</ClassToggler>
+						&nbsp; to England, Ireland, and Whales in 10th Grade).&nbsp;
 						{peopleToPeopleCarousel} &nbsp;I had studied German throughout high
 						school and even won a scholarship to be used to further my knowledge
 						of German and/or German culture.&nbsp; I could've used the
@@ -656,6 +685,7 @@ const sections: CSharpSection[] = [
 						majors like "Psychology", "Philosophy", and "English" without any
 						real clue as to how they would use those degrees upon graduation).
 					</Paragraph>
+					{selfDoubtQuote}
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						At that time, I was entertaining three choices: Astronomy, Computer
 						Science, and Linguistics. &nbsp;Astronomy involved a lot of math and
