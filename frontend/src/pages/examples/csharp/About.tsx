@@ -519,7 +519,7 @@ const sections: CSharpSection[] = [
 					/>
 				</CSharpCardSection>
 				<CSharpCardSection title="Making the Most of It">
-					For a few years, I whole-heartily pursued the idea of becoming a
+					For a few years, I whole-heartedly pursued the idea of becoming a
 					recording/mixing engineer.&nbsp; Unfortunately, devotion doesn't
 					always make up for lack of skill and connections:
 					<AudioList

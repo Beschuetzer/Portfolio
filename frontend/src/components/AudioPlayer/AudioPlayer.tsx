@@ -244,6 +244,22 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		this.setUpdateInterval();
 	}
 
+	handleRestart() {
+		if (!this.state.playingHowl) return;
+		this.state.playingHowl.stop();
+		this.handlePlay();
+	}
+
+	handleSkipBackward(e: MouseEvent) {
+		if (!this.state.howls || !this.state.playingHowl) return;
+		this.loadNextSong(false);
+	}
+
+	handleSkipForward(e: MouseEvent) {
+		if (!this.state.howls || !this.state.playingHowl) return;
+		this.loadNextSong(true);
+	}
+
 	handleWindowClick(e: MouseEvent) {
 		const target = e.target as HTMLElement;
 		if (!target) return;
@@ -256,7 +272,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 			const path = pathes[i] as HTMLElement;
 
 			if (typeof path.className === "string") {
-				if (path.className?.match(AUDIO_PLAYER_TOGGLER_CLASSNAME)) return;
+				if (path.className?.match(AUDIO_PLAYER_CLASSNAME)) return;
 				targetIsAudioListItem = !!path.className?.match(
 					AUDIO_LIST_ITEM_CLASSNAME,
 				);
@@ -299,21 +315,6 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		(this.playRef?.current as HTMLElement)?.classList.add(HIDDEN_CLASSNAME);
 	}
 
-	handleRestart() {
-		if (!this.state.playingHowl) return;
-		this.state.playingHowl.stop();
-		this.handlePlay();
-	}
-
-	handleSkipBackward(e: MouseEvent) {
-		if (!this.state.howls || !this.state.playingHowl) return;
-		this.loadNextSong(false);
-	}
-
-	handleSkipForward(e: MouseEvent) {
-		if (!this.state.howls || !this.state.playingHowl) return;
-		this.loadNextSong(true);
-	}
 
 	getNextSong(isSkipForward = true) {
 		if (!this.songsOnPage) return null;
