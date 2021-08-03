@@ -98,7 +98,7 @@ const sections: CSharpSection[] = [
 		name: sectionNames[1],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
-			<section className="csharp__carousel">
+			<div className="csharp__carousel">
 				<Carousel
 					items={[
 						{
@@ -237,7 +237,7 @@ const sections: CSharpSection[] = [
 						`#${sectionNames[1].toLowerCase()}`,
 					)}
 				/>
-			</section>,
+			</div>,
 		],
 	},
 	{

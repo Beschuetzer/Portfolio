@@ -594,23 +594,23 @@ const sections: CSharpSection[] = [
 					Development.&nbsp;
 				</CSharpCardSection>
 				<CSharpCardSection title="Why not Comp Sci?">
-					<Paragraph size="five" classNameToAdd="">
+					<div>
 						After I graduated high school, I wanted to learn more about the
 						world and its inhabitants (a desire that was fostered by my&nbsp;
 						<ClassToggler
 							classToToggle={DISPLAY_NONE_CLASSNAME}
 							targetSelector="#p2p-carousel">
 							People to People Experience
-						</ClassToggler>{" "}
-						to England, Ireland, and Whales in 10th Grade).{" "}
+						</ClassToggler>&nbsp;
+						to England, Ireland, and Whales in 10th Grade).&nbsp;
 						{peopleToPeopleCarousel} &nbsp;I had studied German throughout high
 						school and even won a scholarship to be used to further my knowledge
 						of German and/or German culture.&nbsp; I could've used the
 						scholarship to take German classes, but I was young and for some
 						reason believed that Europeans were "better" versions of
 						Americans.&nbsp;
-					</Paragraph>
-					<Paragraph size="five" classNameToAdd="margin-top-1">
+					</div>
+					<div className="margin-top-1">
 						I wanted to learn to be "better", so I began searching for ways to
 						go to Germany that involved total immersion.&nbsp; Eventually, I
 						found a posting online for an English Assistant at a boarding school
@@ -630,7 +630,7 @@ const sections: CSharpSection[] = [
 						.&nbsp; Frankly, I learned a lot about myself, my assumptions, human
 						nature, and what "being an American" means to me.
 						{germanyCarousel}
-					</Paragraph>
+					</div>
 					<Paragraph size="five" classNameToAdd="margin-top-1">
 						Upon returning home, I took some time re-acclimate myself to
 						American culture (I had been the only "American" at the school).
@@ -682,12 +682,6 @@ const sections: CSharpSection[] = [
 						use inception to plant the idea that majoring in computer science is
 						the "best" choice, even if I though I would end up with a 2.0 G.P.A.
 					</Paragraph>
-					{/* <Paragraph size="five" classNameToAdd="margin-top-1">
-						One thing is for sure, as a result of having a B.A. instead of a
-						B.S., I have since learned that to some people, credentials are
-						paramount.&nbsp; I have also learned that some people evaluate your
-						current self based on a few decisions you made many years ago.
-					</Paragraph> */}
 				</CSharpCardSection>
 			</React.Fragment>,
 		],

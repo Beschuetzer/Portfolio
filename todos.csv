@@ -87,5 +87,5 @@ Of course, there can be variation, but the most important thing is to try to ide
 -how hard  to add another level/dimension/layer to PageNav?
 
 -proof read content
--clicking on hide button for AudioPlayer should keep the control visible
+-clicking on hide button for AudioPlayer should keep the control visible (change what is hidden)
 -clicking anything other than AudioPlayer should minimize
