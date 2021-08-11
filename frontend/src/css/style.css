@@ -4272,7 +4272,7 @@ body {
   box-shadow: 0 1.6rem 3.2rem rgba(17, 17, 17, 0.33);
   width: 85rem;
   background-color: rgba(var(--color-primary-4-rgb), 1);
-  margin: 3.2rem auto;
+  margin: 1.6rem auto;
 }
 @media only screen and (max-width: 58.5625em) {
   .csharp__card {
@@ -4310,6 +4310,11 @@ body {
 }
 .csharp__header-title {
   font-size: 4.8rem;
+}
+@media only screen and (max-width: 58.5625em) {
+  .csharp__header-title {
+    font-size: 3.2rem;
+  }
 }
 .csharp__card-section-title {
   color: rgba(var(--color-primary-1), 1);
@@ -4389,10 +4394,8 @@ body {
 }
 @media only screen and (max-width: 29.3125em) {
   .csharp__title {
-    --font-size: 3.2rem;
+    --font-size: 4.8rem;
     display: flex;
-    flex-direction: column;
-    margin-top: 8rem;
   }
 }
 .csharp__carousel {

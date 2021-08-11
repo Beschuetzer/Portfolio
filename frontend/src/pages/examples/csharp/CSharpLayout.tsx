@@ -61,7 +61,7 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 					/>
 				) : (
 					<SourceCodeLink
-						className="source-link__demo hidden"
+						className="source-link__demo d-none"
 						href={sourceCodeLink as string}
 						msg={demoMsg}
 					/>

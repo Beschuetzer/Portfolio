@@ -30,7 +30,7 @@
 
 		background-color: rgba(var(--color-primary-4-rgb), 1);
 		// color: rgba(var(--color-primary-1-rgb),.875);
-		margin: $default-font-size * 2 auto;
+		margin: $default-font-size * 1 auto;
 
 		@include respond(tab-land) {
 			width: calc(100% - #{$default-font-size} * 1);
@@ -78,6 +78,10 @@
 
 		&-title {
 			font-size: $default-font-size * 3;
+
+			@include respond(tab-land) {
+				font-size: $default-font-size * 2;
+			}
 		}
 	}
 
@@ -165,10 +169,10 @@
 			padding: var(--padding) calc(var(--padding) + var(--scrollbar-width)) var(--padding) var(--padding);
 		}
 		@include respond(small-font) {
-			--font-size: #{$default-font-size * 2};
+			--font-size: #{$default-font-size * 3};
 			display: flex;
-			flex-direction: column;
-			margin-top: $default-font-size * 5;
+			// flex-direction: column;
+			// margin-top: $default-font-size * 5;
 		}
 	}
 
