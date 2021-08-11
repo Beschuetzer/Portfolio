@@ -82,6 +82,7 @@ export const AUDIO_PLAYER_TOGGLER_ROTATION_CLOSED_CSS_PROPERTY_NAME =
 	"--audio-player-toggler-rotation-closed";
 export const AUDIO_PLAYER_TOGGLER_ROTATION_OPEN_CSS_PROPERTY_NAME =
 	"--audio-player-toggler-rotation-open";
+export const HEADER_HEIGHT_CSS_PROPERTY_NAME = '--header-height';
 //#endregion
 
 //#region Breakpoint Stuff

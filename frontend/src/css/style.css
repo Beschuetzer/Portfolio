@@ -4260,7 +4260,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .csharp {
-    padding-top: 12.8rem;
+    padding-top: var(--header-height);
   }
 }
 .csharp .paragraph {
@@ -4332,6 +4332,11 @@ body {
 }
 .csharp__section {
   margin-bottom: 9.6rem;
+}
+@media only screen and (max-width: 58.5625em) {
+  .csharp__section {
+    margin-bottom: 3.2rem;
+  }
 }
 .csharp__section-content {
   font-family: "Open Sans", sans-serif !important;

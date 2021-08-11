@@ -100,4 +100,4 @@ Add section under Skills called “Personality” with big five:
   -Emotional Stability - 60
   -Extraversion – 30
 
--add css var for header-height and set on SiteNav re-render
+-need to keep track of last headerHeight on handleOnClick in NavToggler and update var(--header-height) accordingly

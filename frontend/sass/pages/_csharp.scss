@@ -5,7 +5,7 @@
 	background-color: var(--color-primary-1);
 
 	@include respond(nav-switch) {
-		padding-top: $default-font-size * 8;
+		padding-top: var(--header-height);
 	}
 
 	// background-image:
@@ -23,7 +23,7 @@
 	}
 
 	&__card {
-		border: 3px solid rgba(var(--color-primary-4-rgb), .5); 
+		border: 3px solid rgba(var(--color-primary-4-rgb), 0.5);
 		border-radius: 0 0 $default-font-size / 2 $default-font-size / 2;
 		box-shadow: $navbar-box-shadow-resume;
 		width: $resume-card-width-full;
@@ -35,9 +35,6 @@
 		@include respond(tab-land) {
 			width: calc(100% - #{$default-font-size} * 1);
 		}
-
-
-		
 	}
 
 	&__content {
@@ -47,7 +44,7 @@
 			padding: 0 $default-font-size * 2 0 $default-font-size * 2;
 
 			@include respond(phone) {
-				padding: $default-font-size * .5;
+				padding: $default-font-size * 0.5;
 			}
 		}
 
@@ -55,7 +52,7 @@
 			padding-bottom: $default-font-size;
 
 			@include respond(phone) {
-				padding-bottom: $default-font-size * .5;
+				padding-bottom: $default-font-size * 0.5;
 			}
 		}
 	}
@@ -103,11 +100,15 @@
 			:is(ul, ol) {
 				padding: 0 $default-font-size * 2 0 $default-font-size * 2;
 			}
-		} 
+		}
 	}
 
 	&__section {
 		margin-bottom: $default-font-size * 6;
+
+		@include respond(tab-land) {
+			margin-bottom: $default-font-size * 2;
+		}
 	}
 
 	&__section-content {
@@ -163,10 +164,11 @@
 		}
 
 		@include respond(tab-land) {
-			--padding: #{$default-font-size * .5};
+			--padding: #{$default-font-size * 0.5};
 			width: 100vw;
 			--font-size: #{$default-font-size * 3};
-			padding: var(--padding) calc(var(--padding) + var(--scrollbar-width)) var(--padding) var(--padding);
+			padding: var(--padding) calc(var(--padding) + var(--scrollbar-width))
+				var(--padding) var(--padding);
 		}
 		@include respond(small-font) {
 			--font-size: #{$default-font-size * 3};
@@ -231,5 +233,4 @@
 	& .csharp__card {
 		background-color: rgba(var(--color-primary-4-rgb), 1);
 	}
-
 }

@@ -46,6 +46,7 @@ import {
 	RESUME_PAGE_NAME,
 	RESUME_URL,
 	LIVE_REPLAYS_URL,
+	HEADER_HEIGHT_CSS_PROPERTY_NAME,
 } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
@@ -133,6 +134,10 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	useEffect(() => {
 		setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
 		resetPageNavMinWidth(viewPortWidth);
+
+		const header = document.querySelector(`#header`) as HTMLElement;
+		const newHeaderHeight = header.getBoundingClientRect().height;
+		document.documentElement.style.setProperty(HEADER_HEIGHT_CSS_PROPERTY_NAME, `${newHeaderHeight * 1}px`);
 	}, [viewPortWidth, setHeaderHeight]);
 
 	useEffect(() => {
