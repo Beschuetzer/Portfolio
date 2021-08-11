@@ -15,7 +15,7 @@ import syncerImage from "../../../imgs/site-nav-syncer.jpg";
 import replayImage from "../../../imgs/site-nav-replay.jpg";
 
 import { setHeaderHeight, setIsAnimating } from "../../../actions";
-import { NAVBAR_CLASSNAME, NAVBAR_Z_INDEX_CLASSNAME } from "../utils";
+import { NAVBAR_CLASSNAME, NAVBAR_Z_INDEX_CLASSNAME, setHeaderHeaderCSSPropertyValue } from "../utils";
 import {
 	changePage,
 	destroy,
@@ -134,10 +134,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	useEffect(() => {
 		setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
 		resetPageNavMinWidth(viewPortWidth);
-
-		const header = document.querySelector(`#header`) as HTMLElement;
-		const newHeaderHeight = header.getBoundingClientRect().height;
-		document.documentElement.style.setProperty(HEADER_HEIGHT_CSS_PROPERTY_NAME, `${newHeaderHeight * 1}px`);
+		setHeaderHeaderCSSPropertyValue();		
 	}, [viewPortWidth, setHeaderHeight]);
 
 	useEffect(() => {
@@ -154,6 +151,11 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	//initial
 	useEffect(() => {
 		init(navRef, setHeaderHeight);
+
+		//need timeout to wait for PageNav to render
+		setTimeout(() => {
+			setHeaderHeaderCSSPropertyValue();
+		},1)
 
 		return () => {
 			destroy(navRef);
