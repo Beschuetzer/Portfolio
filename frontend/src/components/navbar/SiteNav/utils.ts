@@ -1,7 +1,6 @@
 import { RefObject } from "react";
 import { checkForParentOfType } from "../../../helpers";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
-import { CAROUSEL_TRANSLATION_CSS_CLASSNAME } from "../../Carousel/util";
 import {
 	ANIMATION_DURATION,
 	MOBILE_BREAK_POINT_WIDTH,
@@ -31,6 +30,7 @@ const BODY_BACKGROUND_CLASSNAME = "body-background";
 const SET_ANIMATING_DONE_WAIT_FACTOR = 1.33;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
+let zIndexHighestTimeoutId: any;
 
 export type NavRef = RefObject<HTMLElement>;
 
@@ -198,6 +198,7 @@ export const handleNavClick = (
 	setIsAnimating: (value: boolean) => void,
 	e: MouseEvent,
 ) => {
+	clearTimeout(zIndexHighestTimeoutId);
 	const navBar = navRef.current;
 	if (!navBar) return;
 	handleSound(sounds, e);
@@ -220,7 +221,7 @@ export const handleNavClick = (
 		navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 		navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 
-		setTimeout(() => {
+		zIndexHighestTimeoutId = setTimeout(() => {
 			document
 				.querySelector(HEADER_ID)!
 				.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);

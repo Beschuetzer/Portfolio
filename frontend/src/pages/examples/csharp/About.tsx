@@ -123,7 +123,7 @@ import Quote from "../../../components/Quote";
 import ClassToggler from "../../../components/ClassToggler";
 import Paragraph from "../../../typography/Paragraph";
 
-const sectionNames = ["Learning", "Interests", "Music", "FAQ"];
+const sectionNames = ["Personality", "Interests", "Music", "FAQ"];
 
 const germanyCarousel = (
 	<section
@@ -368,29 +368,14 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				{/* <CSharpCardSection title="Making the Most of a Tough Situation">
-					The outbreak of the COVID-19 Pandemic provided me with a lot of time
-					to reflect on my career choices and where I want to be in 10 years
-					time.&nbsp; By means of said careful reflection, I realized that I
-					would not be able to live a self-realized life, if I did not give it
-					my best shot at professional coder.
-				</CSharpCardSection>
-				<CSharpCardSection title="Long Time Coming">
-					I have always been enamored with the idea of becoming a computer
-					programmer.&nbsp; If my dad had not had a heart attack, I am sure I
-					would have chosen to study Computer Science at University instead of
-					Linguistics.&nbsp; The constant The thing is, my dad was a programmer
-					for a company called Deluxe for 1 years.&nbsp; However, I saw how much
-					my dad’s new position as a project manager caused him a lot of stress,
-					which eventually to a heart attack.&nbsp; I naively attributed his
-					heart attack to coding in my mind and decided to pursue other things,
-					even though I had a thing for programming.&nbsp;, and I finally
-					realized that this may be my last chance to become a programmer.&nbsp;
-				</CSharpCardSection> */}
-
 				{youngQuote}
 				<CSharpCardSection title="A Way of Life">
-				My mind is always working, whether at work or at play. I enjoy learning new things and bring a natural curiosity to everything I encounter. While I enjoy being out in the world, I always look forward to evenings at home with one or two good friends and great conversation. I can also find happiness on my own, working on a project or reading a good book.
+					My mind is always working, whether at work or at play. I enjoy
+					learning new things and bring a natural curiosity to everything I
+					encounter. While I enjoy being out in the world, I always look forward
+					to evenings at home with one or two good friends and great
+					conversation. I can also find happiness on my own, working on a
+					project or reading a good book.
 				</CSharpCardSection>
 			</React.Fragment>,
 		],

@@ -101,4 +101,3 @@ Add section under Skills called “Personality” with big five:
   -Extraversion – 30
 
 -Replay viewer nav-switch and below should render source-links next to each other with less margin
--Change .z-index-navbar to always be 7 (fixes issue where spamming navbar open/close cause backdrop-filter to not display correctly when above nav-switch size
