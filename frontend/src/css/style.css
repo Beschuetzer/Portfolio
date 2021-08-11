@@ -4257,10 +4257,15 @@ body {
   overflow: hidden;
   width: 100vw;
   background-color: var(--color-primary-1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .csharp {
-    padding-top: var(--header-height);
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    transform: translateY(var(--header-height));
   }
 }
 .csharp .paragraph {

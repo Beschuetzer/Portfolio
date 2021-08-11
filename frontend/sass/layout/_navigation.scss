@@ -590,8 +590,7 @@
 	width: 100%;
 	position: fixed;
 	z-index: 1;
-	transition: opacity $animation-duration $animation-easing-standard,
-		transform $animation-duration $animation-easing-standard;
+	transition: $header-transition;
 
 	@include respond(nav-switch) {
 		padding: $default-font-size * 0.5;

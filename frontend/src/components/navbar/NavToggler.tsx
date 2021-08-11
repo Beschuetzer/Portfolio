@@ -7,7 +7,8 @@ import {
 	viewPortPixelToRem,
 	headerTogglerWidth,
 } from "../constants";
-import { HEADER_TOGGLER_CLASSNAME, HEADER_TOGGLER_CSS_CLASSNAME } from "./SiteNav/utils";
+import { HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_TOGGLER_CLASSNAME, HEADER_TOGGLER_CSS_CLASSNAME } from "./SiteNav/utils";
+import { setHeaderHeaderCSSPropertyValue } from "./utils";
 
 interface NavTogglerProps {
 	headerHeight: number;
@@ -44,9 +45,15 @@ const NavToggler: React.FC<NavTogglerProps> = ({
 	}, [headerHeight, viewPortWidth]);
 
 	const handleOnClick = (e: MouseEvent) => {
-		(e.currentTarget as any)?.parentNode?.classList?.toggle(
-			`${HEADER_TOGGLER_CLASSNAME}--active`,
+		const toggler = e.currentTarget as HTMLElement;
+		const togglerParent = toggler.parentNode as HTMLElement;
+
+		togglerParent?.classList?.toggle(
+			HEADER_TOGGLER_ACTIVE_CLASSNAME,
 		);
+
+		if (!togglerParent.classList.contains(HEADER_TOGGLER_ACTIVE_CLASSNAME)) setHeaderHeaderCSSPropertyValue();
+		else setHeaderHeaderCSSPropertyValue(0);
 	};
 
 	return ReactDOM.createPortal(

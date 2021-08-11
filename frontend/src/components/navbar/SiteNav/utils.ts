@@ -24,6 +24,7 @@ import {
 
 export const HEADER_ID = "#header";
 export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
+export const HEADER_TOGGLER_ACTIVE_CLASSNAME = `${HEADER_TOGGLER_CLASSNAME}--active`;
 export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 
 const BODY_BACKGROUND_CLASSNAME = "body-background";
