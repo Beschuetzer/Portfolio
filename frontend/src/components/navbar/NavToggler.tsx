@@ -8,7 +8,7 @@ import {
 	headerTogglerWidth,
 } from "../constants";
 import { HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_TOGGLER_CLASSNAME, HEADER_TOGGLER_CSS_CLASSNAME } from "./SiteNav/utils";
-import { setHeaderHeaderCSSPropertyValue } from "./utils";
+import { setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue } from "./utils";
 
 interface NavTogglerProps {
 	headerHeight: number;
@@ -52,8 +52,8 @@ const NavToggler: React.FC<NavTogglerProps> = ({
 			HEADER_TOGGLER_ACTIVE_CLASSNAME,
 		);
 
-		if (!togglerParent.classList.contains(HEADER_TOGGLER_ACTIVE_CLASSNAME)) setHeaderHeaderCSSPropertyValue();
-		else setHeaderHeaderCSSPropertyValue(0);
+		if (!togglerParent.classList.contains(HEADER_TOGGLER_ACTIVE_CLASSNAME)) setHeaderHeightCSSPropertyValue();
+		else setHeaderHeightCSSPropertyValue(0);
 	};
 
 	return ReactDOM.createPortal(

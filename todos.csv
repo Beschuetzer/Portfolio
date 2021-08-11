@@ -100,4 +100,4 @@ Add section under Skills called “Personality” with big five:
   -Emotional Stability - 60
   -Extraversion – 30
 
--loading one CSharpLayout then routing to another causes second one not to load toggler height and header-height correctly
+-PageNav scroll percent incorrect on load
