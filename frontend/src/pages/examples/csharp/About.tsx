@@ -390,10 +390,7 @@ const sections: CSharpSection[] = [
 
 				{youngQuote}
 				<CSharpCardSection title="A Way of Life">
-					The above quote sheds a lot of light onto the person I am. Whether or
-					not I become a professional web developer, I will continue to learn
-					about it and its related topics simply because I have a strong need to
-					grow, which I water by learning new things among other things.
+				My mind is always working, whether at work or at play. I enjoy learning new things and bring a natural curiosity to everything I encounter. While I enjoy being out in the world, I always look forward to evenings at home with one or two good friends and great conversation. I can also find happiness on my own, working on a project or reading a good book.
 				</CSharpCardSection>
 			</React.Fragment>,
 		],
