@@ -22,6 +22,7 @@ import {
 	ISD_622_URL,
 	KUALAPUU_URL,
 	NO_MARGIN_CLASSNAME,
+	PERSONALITY_PAGE_NAME,
 	POWERSHELL_URL,
 	RESUME_PAGE_NAME,
 	RICOH_URL,
@@ -310,22 +311,27 @@ const skills: {
 		{
 			title: "Conscientiousness",
 			percent: 85,
+			href: `/${PERSONALITY_PAGE_NAME}#conscientiousness`,
 		},
 		{
 			title: "Agreeableness",
 			percent: 75,
+			href: `/${PERSONALITY_PAGE_NAME}#agreeableness`,
 		},
 		{
 			title: "Openness",
 			percent: 70,
+			href: `/${PERSONALITY_PAGE_NAME}#openness`,
 		},
 		{
 			title: "Emotional Stability",
 			percent: 65,
+			href: `/${PERSONALITY_PAGE_NAME}#emotional Stability`,
 		},
 		{
 			title: "Extraversion",
 			percent: 35,
+			href: `/${PERSONALITY_PAGE_NAME}#extraversion`,
 		},
 	],
 };

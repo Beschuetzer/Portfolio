@@ -723,6 +723,7 @@
 
 	&__section {
 		backface-visibility: hidden;
+		line-break: anywhere;
 		cursor: pointer;
 		// text-shadow: getTextShadow(soft-emboss, $color-primary-resume-4);
 		text-shadow: getTextShadow(glowing, var(--color-primary-4-rgb));

@@ -9,10 +9,8 @@ import {
 	AUTO_BID_URL,
 	BRIDGE_DEMO_URL,
 	BRIDGE_URL,
-	CONSCIENTIOUSNESS_PAGE_NAME,
-	CONSCIENTIOUSNESS_URL,
 	DOWNLOADER_URL,
-	MOBILE_BREAK_POINT_WIDTH, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
+	MOBILE_BREAK_POINT_WIDTH, PERSONALITY_URL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
 } from "./constants";
 
 import Home from "../pages/home/Home";
@@ -39,6 +37,7 @@ import ReplayViewer from "../pages/examples/csharp/ReplayViewer";
 import About from "../pages/examples/csharp/About";
 import BridgeDemo from "../pages/examples/csharp/BridgeDemo";
 import Conscientiousness from "../pages/examples/csharp/Personality";
+import Personality from "../pages/examples/csharp/Personality";
 
 interface AppProps {
 	isMobile: boolean,
