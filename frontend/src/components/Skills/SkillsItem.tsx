@@ -1,7 +1,8 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { clickSkill } from "../../actions"
+import { clickSkill } from "../../actions";
+import EmbeddedLink from "../EmbeddedLink";
 import SkillsItemSectionLabels from "./SkillsItemSectionLabels";
 import { SkillsItemLabel, SKILLS_CLASSNAME } from "./utils";
 
@@ -10,6 +11,7 @@ interface SkillsItemProps {
 	percent: string;
 	href: string;
 	hours?: string;
+	isLocal?: boolean;
 	label: SkillsItemLabel;
 	clickSkill: (value: HTMLElement) => void;
 }
@@ -21,6 +23,7 @@ const SkillsItem: React.FC<SkillsItemProps> = ({
 	clickSkill,
 	hours,
 	label,
+	isLocal = false,
 }) => {
 	const skillsPopupDiv = document.querySelector("#skillsPopup");
 	const percentDiv = useRef<any>(null);
@@ -38,6 +41,26 @@ const SkillsItem: React.FC<SkillsItemProps> = ({
 		clickSkill(e.target as HTMLElement);
 	};
 
+	function renderHref() {
+		let toReturn = (
+			<div
+				onClick={(e: any) => onParagraphClick(e)}
+				className={`${SKILLS_CLASSNAME}__title`}>
+				{title}:
+			</div>
+		);
+
+		if (href) {
+			toReturn = (
+				<EmbeddedLink className={`${SKILLS_CLASSNAME}__title`} href={href} isLocal={isLocal} openInNewTab={!isLocal}>
+					{title}:
+				</EmbeddedLink>
+			);
+		}
+
+		return toReturn;
+	}
+
 	useEffect(() => {
 		percentDiv.current.style.width = `${percent}%`;
 		setIsDivSet(true);
@@ -49,21 +72,7 @@ const SkillsItem: React.FC<SkillsItemProps> = ({
 				<svg className={`${SKILLS_CLASSNAME}__section-svg`}>
 					<use xlinkHref="/sprite.svg#icon-circle"></use>
 				</svg>
-				{href ? (
-					<a
-						target="_blank"
-						rel="noreferrer"
-						className={`${SKILLS_CLASSNAME}__title`}
-						href={href}>
-						{title}:
-					</a>
-				) : (
-					<div
-						onClick={(e: any) => onParagraphClick(e)}
-						className={`${SKILLS_CLASSNAME}__title`}>
-						{title}:
-					</div>
-				)}
+				{renderHref()}
 			</li>
 			<div className={`${SKILLS_CLASSNAME}__percent-outer`}>
 				<SkillsItemSectionLabels label={label} />

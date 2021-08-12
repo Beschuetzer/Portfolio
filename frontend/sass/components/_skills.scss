@@ -171,6 +171,10 @@
 		text-decoration: none;
 		color: var(--color-primary-1);
 		border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
+
+		&:hover{
+			color: rgba(var(--color-primary-1-rgb), .5);
+		}
 	}
 
 	&__title--animating,

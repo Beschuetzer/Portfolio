@@ -2954,6 +2954,9 @@ body {
   color: var(--color-primary-1);
   border-bottom: 0.16rem solid var(--color-primary-1);
 }
+.skills__title:link:hover, .skills__title:visited:hover, .skills__title:hover, .skills__section .skills__section .skills__title:hover {
+  color: rgba(var(--color-primary-1-rgb), 0.5);
+}
 .skills__title--animating, .skills__title--animating:link, .skills__title--animating:visited, .skills__section .skills__section .skills__title {
   cursor: pointer;
   background: linear-gradient(to left, rgba(var(--color-primary-1-rgb), 1) 0%, rgba(var(--color-primary-4-rgb), 1) 5%, rgba(var(--color-primary-1-rgb), 1) 10%, rgba(var(--color-primary-1-rgb), 1) 100%);

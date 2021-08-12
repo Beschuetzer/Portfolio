@@ -469,6 +469,7 @@ const Resume: React.FC<ResumeProps> = ({
 										href={skill.href ? skill.href : ""}
 										title={skill.title}
 										percent={skill.percent as any}
+										isLocal={true}
 									/>
 								);
 							},
