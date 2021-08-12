@@ -41,6 +41,7 @@ let haveSentQuoteAlready = false;
 
 export async function getRandomQuote() {
   try {
+    // ‘Programs must be written for people to read, and only incidentally for machines to execute.’   —  Hal Abelson
     if (haveSentQuoteAlready) return;
     const stream = await fetch(`${QUOTE_API_URL}/${ENDPOINT}?tags=${TAGS_TO_USE}`, {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.

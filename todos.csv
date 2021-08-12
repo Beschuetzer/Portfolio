@@ -90,12 +90,8 @@ Of course, there can be variation, but the most important thing is to try to ide
 -hiding audio player should still show controls
 -replay page carousel doesn't have z-index fix (check others)
 
+-timing on home seems accelerated (threejs turbo mode?)
 -Add volume slider to AudioPLayer
 -change “IT Support” on resume to “IT Skills”
-
-Add section under Skills called “Personality” with big five:
-  -Agreeableness – 75
-  -Conscientiousness – 85
-  -Openness – 70
-  -Emotional Stability - 60
-  -Extraversion – 30
+-add section in Resume highlighting how I spent time during pandemic to now (as if contracted to build bridge stuff)
+-make a CSharpLayout page with info from Big five test for each trait

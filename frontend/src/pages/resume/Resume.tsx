@@ -55,6 +55,7 @@ const skillsItemSectionLabels = [
 	"Web Development",
 	"IT Support",
 	"Human Skills",
+	"Personality",
 ];
 const sectionsToSkipAnimation = [skillsItemSectionLabels[2]];
 
@@ -75,6 +76,11 @@ const skillsLabels: {
 		left: "Lacks",
 		center: "Average",
 		right: "Excels",
+	},
+	personality: {
+		left: "Low",
+		center: "Middle",
+		right: "High",
 	},
 };
 
@@ -300,6 +306,28 @@ const skills: {
 			percent: 85,
 		},
 	],
+	[skillsItemSectionLabels[3]]: [
+		{
+			title: "Conscientiousness",
+			percent: 85,
+		},
+		{
+			title: "Agreeableness",
+			percent: 75,
+		},
+		{
+			title: "Openness",
+			percent: 70,
+		},
+		{
+			title: "Emotional Stability",
+			percent: 65,
+		},
+		{
+			title: "Extraversion",
+			percent: 35,
+		},
+	],
 };
 
 const hints = {
@@ -415,7 +443,23 @@ const Resume: React.FC<ResumeProps> = ({
 								return (
 									<SkillsItem
 										key={index}
-										label={skillsLabels.it}
+										label={skillsLabels.human}
+										href={skill.href ? skill.href : ""}
+										title={skill.title}
+										percent={skill.percent as any}
+									/>
+								);
+							},
+						)}
+					</SkillsItemSection>
+					<SkillsItemSection title={skillsItemSectionLabels[3]}>
+						<SkillsItemSectionLabels label={skillsLabels.personality} />
+						{(skills[skillsItemSectionLabels[3]] as any).map(
+							(skill: Skill, index: number) => {
+								return (
+									<SkillsItem
+										key={index}
+										label={skillsLabels.personality}
 										href={skill.href ? skill.href : ""}
 										title={skill.title}
 										percent={skill.percent as any}
@@ -643,7 +687,7 @@ const Resume: React.FC<ResumeProps> = ({
 		<React.Fragment>
 			<section className={`${RESUME_PAGE_NAME}`}>
 				<div className={`${C_SHARP_CLASSNAME}__title`}>
-					<SourceCodeLink href={`${GITHUB_URL}/portfolio`}/>
+					<SourceCodeLink href={`${GITHUB_URL}/portfolio`} />
 					{RESUME_SPELLING}
 				</div>
 				{renderSections()}
