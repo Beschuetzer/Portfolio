@@ -326,7 +326,7 @@ const skills: {
 		{
 			title: "Emotional Stability",
 			percent: 65,
-			href: `/${PERSONALITY_PAGE_NAME}#emotional Stability`,
+			href: `/${PERSONALITY_PAGE_NAME}#emotional-stability`,
 		},
 		{
 			title: "Extraversion",

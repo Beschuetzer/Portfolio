@@ -1,6 +1,5 @@
 import React from "react";
 import {
-	AUTO_BID_PAGE_NAME,
 	CSharpSection,
 	PERSONALITY_PAGE_NAME,
 } from "../../../components/constants";

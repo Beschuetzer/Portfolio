@@ -110,6 +110,14 @@ export const removeClassFromAllChildren = (
 // }
 
 export const scrollToSection = (sectionToScrollTo: HTMLElement, addedHeight: number = 0) => {
+	if (!sectionToScrollTo) {
+		return window.scroll({
+			top: 0,
+			left: 0,
+			behavior: "smooth",
+		});
+	}
+
 	const shouldAddHeaderHeight = window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
 	const headerHeight = document
 		.querySelector(HEADER_ID)!
@@ -118,6 +126,7 @@ export const scrollToSection = (sectionToScrollTo: HTMLElement, addedHeight: num
 		window.scrollY +
 		sectionToScrollTo.getBoundingClientRect().top -
 		(shouldAddHeaderHeight ? headerHeight : 0) + addedHeight;
+		
 	window.scroll({
 		top: topScrollAmount,
 		left: 0,
