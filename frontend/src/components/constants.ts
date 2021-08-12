@@ -9,6 +9,12 @@ export const BRIDGE_DEMO_PAGE_NAME = "bridge-demo";
 export const DOWNLOADER_PAGE_NAME = "downloader";
 export const PLAYLIST_SYNCER_PAGE_NAME = "playlist-syncer";
 export const RESUME_PAGE_NAME = "resume";
+export const CONSCIENTIOUSNESS_PAGE_NAME = "conscientiousness";
+export const OPENNESS_PAGE_NAME = "openness";
+export const AGREEABLENESS_PAGE_NAME = "agreeableness";
+export const EXTRAVERSION_PAGE_NAME = "extraversion";
+export const EMOTIONAL_STABILITY_PAGE_NAME = "emotional stability";
+
 
 //note: and here
 export const PAGE_NAMES = [
@@ -21,6 +27,11 @@ export const PAGE_NAMES = [
 	`/${PLAYLIST_SYNCER_PAGE_NAME}`,
 	`/${REPLAY_PAGE_NAME}`,
 	`/${RESUME_PAGE_NAME}`,
+	`/${CONSCIENTIOUSNESS_PAGE_NAME}`,
+	`/${OPENNESS_PAGE_NAME}`,
+	`/${AGREEABLENESS_PAGE_NAME}`,
+	`/${EXTRAVERSION_PAGE_NAME}`,
+	`/${EMOTIONAL_STABILITY_PAGE_NAME}`,
 ];
 //#endregion
 
@@ -33,6 +44,11 @@ export const REPLAY_VIEWER_URL = `/examples/${REPLAY_PAGE_NAME}`;
 export const AUTO_BID_URL = `/examples/${AUTO_BID_PAGE_NAME}`;
 export const RESUME_URL = `/${RESUME_PAGE_NAME}`;
 export const ABOUT_URL = `/${ABOUT_PAGE_NAME}`;
+export const EXTRAVERSION_URL = `/${EXTRAVERSION_PAGE_NAME}`;
+export const OPENNESS_URL = `/${OPENNESS_PAGE_NAME}`;
+export const EMOTIONAL_STABILITY_URL = `/${EMOTIONAL_STABILITY_PAGE_NAME}`;
+export const AGREEABLENESS_URL = `/${AGREEABLENESS_PAGE_NAME}`;
+export const CONSCIENTIOUSNESS_URL = `/${CONSCIENTIOUSNESS_PAGE_NAME}`;
 //#endregion
 
 //#region External URLs

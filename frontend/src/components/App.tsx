@@ -9,6 +9,8 @@ import {
 	AUTO_BID_URL,
 	BRIDGE_DEMO_URL,
 	BRIDGE_URL,
+	CONSCIENTIOUSNESS_PAGE_NAME,
+	CONSCIENTIOUSNESS_URL,
 	DOWNLOADER_URL,
 	MOBILE_BREAK_POINT_WIDTH, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
 } from "./constants";
@@ -36,6 +38,7 @@ import { keypressHandler } from "./utils";
 import ReplayViewer from "../pages/examples/csharp/ReplayViewer";
 import About from "../pages/examples/csharp/About";
 import BridgeDemo from "../pages/examples/csharp/BridgeDemo";
+import Conscientiousness from "../pages/examples/csharp/Personality";
 
 interface AppProps {
 	isMobile: boolean,
@@ -120,6 +123,7 @@ const App: React.FC<AppProps> = ({
 				<Route path={AUTO_BID_URL} exact component={Autobid} />
 				<Route path={ABOUT_URL} exact component={About} />
 				<Route path={RESUME_URL} exact component={Resume} />
+				<Route path={PERSONALITY_URL} exact component={Personality} />
 				<Route path="*" exact component={Home} />
 			</Switch>
 			<Route path="*" exact component={NavToggler} />
