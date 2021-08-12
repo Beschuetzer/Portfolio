@@ -275,6 +275,7 @@ $page-nav-top: calc(
 		var(--color-primary-1)
 	);
 
+
 	//setting media query custom properties
 	--small-font-max-width: #{$small-font-max-width};
 	--nav-break-max-width: #{$nav-break-max-width};
@@ -293,6 +294,11 @@ $page-nav-top: calc(
 	--header-toggler-height: #{$header-height + $header-toggler-width};
 	--header-toggler-width: #{$header-toggler-width};
 	--header-inner-width-nav-switch: 100%;
+
+
+
+	--page-padding-top: var(--header-height);
+
 
 	//bridge page
 
