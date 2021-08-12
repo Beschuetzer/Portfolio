@@ -1,4 +1,3 @@
-
 // import * as THREE from "three";
 import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
@@ -31,10 +30,10 @@ import {
 import SourceCodeLink from "../../components/SourceCodeLink";
 import Quote from "../../components/Quote";
 import { capitalize } from "../../helpers";
+import { C_SHARP_CLASSNAME } from "../examples/csharp/utils";
 
 // export const RESUME_SPELLING = <span>R&eacute;sum&eacute;</span>;
 export const RESUME_SPELLING = "Résumé";
-
 
 function getLinkClassHTML() {
 	return ` class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' `;
@@ -50,7 +49,7 @@ const sectionTitles = [
 	"Work-history",
 	"Education",
 	"References",
-]
+];
 
 const skillsItemSectionLabels = [
 	"Web Development",
@@ -642,12 +641,11 @@ const Resume: React.FC<ResumeProps> = ({
 
 	return (
 		<React.Fragment>
-			<section className={RESUME_PAGE_NAME}>
-				<SourceCodeLink
-					href={`${GITHUB_URL}/portfolio`}
-					// blockName="hero"
-				/>
-				<h2 className="heading heading--two">{RESUME_SPELLING}</h2>
+			<section className={`${RESUME_PAGE_NAME}`}>
+				<div className={`${C_SHARP_CLASSNAME}__title`}>
+					<SourceCodeLink href={`${GITHUB_URL}/portfolio`}/>
+					{RESUME_SPELLING}
+				</div>
 				{renderSections()}
 			</section>
 			<SkillsPopup />
