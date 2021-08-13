@@ -118,6 +118,7 @@ export const scrollToSection = (sectionToScrollTo: HTMLElement, addedHeight: num
 		});
 	}
 
+
 	const shouldAddHeaderHeight = window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
 	const headerHeight = document
 		.querySelector(HEADER_ID)!

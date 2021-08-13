@@ -50,6 +50,7 @@ const SkillsItem: React.FC<SkillsItemProps> = ({
 			</div>
 		);
 
+
 		if (href) {
 			toReturn = (
 				<EmbeddedLink className={`${SKILLS_CLASSNAME}__title`} href={href} isLocal={isLocal} openInNewTab={!isLocal}>

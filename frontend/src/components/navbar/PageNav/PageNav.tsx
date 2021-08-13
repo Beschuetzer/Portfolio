@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { connect, RootStateOrAny } from "react-redux";
 
 import { setPreviousUrl } from "../../../actions";
+import { capitalize } from "../../../helpers";
 import BridgeSectionLink from "../../../pages/examples/bridge/BridgeSectionLink";
 import { bridgeSections } from "../../../pages/examples/bridge/utils";
 import { HIDDEN_CLASSNAME } from "../../constants";
@@ -84,7 +85,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	const handleSectionClick = (e: MouseEvent) => {
 		scrollToSection(
 			document.getElementById(
-				(e.currentTarget as any)?.textContent.toLowerCase(),
+				(e.currentTarget as any)?.textContent.toLowerCase().replace(' ', '-'),
 			) as HTMLElement,
 		);
 	};
@@ -99,7 +100,7 @@ const PageNav: React.FC<PageNavProps> = ({
 					<span
 						onClick={(e: any) => handleSectionClick(e)}
 						className={`${cssClass}__section ${cssClass}__section-${sectionName}`}>
-						{sectionName}
+						{capitalize(sectionName.replace('-', ' '))}
 					</span>
 				</li>
 			);

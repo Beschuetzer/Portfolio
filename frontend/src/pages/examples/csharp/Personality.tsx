@@ -7,13 +7,14 @@ import CSharpCardSection from "./CSharpCardSection";
 import CSharpLayout from "./CSharpLayout";
 import { C_SHARP_CLASSNAME } from "./utils";
 
+
 const sectionNames = [
 	"Overview",
-	"Conscientiousness",
-	"Agreeableness",
-	"Openness",
-	"Emotional Stability",
-	"Extraversion",
+	"Conscientiousness", //percent: 85,
+	"Agreeableness", //percent: 75,
+	"Openness", //percent: 70,
+	"Emotional Stability", //percent: 65
+	"Extraversion", //percent: 35,
 	"Take Away"
 ];
 

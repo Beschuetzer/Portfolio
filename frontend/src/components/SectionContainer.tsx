@@ -14,11 +14,12 @@ const SectionContainer: React.FC<SectionContainerProps> = ({
   styles,
 }) => {
 
+  const id = name.toLowerCase().replace(' ', '-');
   return (
     <section
       style={styles ? styles : {}}
-      id={name.toLowerCase()}
-      data-section={name}
+      id={id}
+      data-section={id}
       className={`${pageName}__section ${pageName}__section-${name.toLowerCase()}`}
     >
       {children}
