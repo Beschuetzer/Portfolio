@@ -1,7 +1,7 @@
 import React from "react";
 import {
 	CSharpSection,
-	PERSONALITY_PAGE_NAME,
+	BIG_FIVE_PAGE_NAME,
 } from "../../../components/constants";
 import CSharpCardSection from "./CSharpCardSection";
 import CSharpLayout from "./CSharpLayout";
@@ -12,7 +12,7 @@ const sectionNames = [
 	"Conscientiousness", //percent: 85,
 	"Agreeableness", //percent: 75,
 	"Openness", //percent: 70,
-	"Neruoticism", //percent: 65
+	"Neuroticism", //percent: 65
 	"Extraversion", //percent: 35,
 	"Take Away",
 ];
@@ -151,7 +151,7 @@ interface PersonalityProps {}
 
 const Personality: React.FC<PersonalityProps> = () => {
 	return (
-		<CSharpLayout sections={sections} pageName={PERSONALITY_PAGE_NAME}>
+		<CSharpLayout sections={sections} pageName={BIG_FIVE_PAGE_NAME}>
 			{" "}
 		</CSharpLayout>
 	);

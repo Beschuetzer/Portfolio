@@ -9,7 +9,7 @@ export const BRIDGE_DEMO_PAGE_NAME = "bridge-demo";
 export const DOWNLOADER_PAGE_NAME = "downloader";
 export const PLAYLIST_SYNCER_PAGE_NAME = "playlist-syncer";
 export const RESUME_PAGE_NAME = "resume";
-export const PERSONALITY_PAGE_NAME = "personality";
+export const BIG_FIVE_PAGE_NAME = "the-big-five";
 
 //note: and here
 export const PAGE_NAMES = [
@@ -22,7 +22,7 @@ export const PAGE_NAMES = [
 	`/${PLAYLIST_SYNCER_PAGE_NAME}`,
 	`/${REPLAY_PAGE_NAME}`,
 	`/${RESUME_PAGE_NAME}`,
-	`/${PERSONALITY_PAGE_NAME}`,
+	`/${BIG_FIVE_PAGE_NAME}`,
 ];
 //#endregion
 
@@ -35,7 +35,7 @@ export const REPLAY_VIEWER_URL = `/examples/${REPLAY_PAGE_NAME}`;
 export const AUTO_BID_URL = `/examples/${AUTO_BID_PAGE_NAME}`;
 export const RESUME_URL = `/${RESUME_PAGE_NAME}`;
 export const ABOUT_URL = `/${ABOUT_PAGE_NAME}`;
-export const PERSONALITY_URL = `/${PERSONALITY_PAGE_NAME}`;
+export const PERSONALITY_URL = `/${BIG_FIVE_PAGE_NAME}`;
 //#endregion
 
 //#region External URLs

@@ -21,7 +21,8 @@ export const replaceCharacters = (
 
 	for (let i = 0; i < replacementsToUse.length; i++) {
 		const characterMapping = replacementsToUse[i];
-		strToUse = strToUse.replace(characterMapping[0], characterMapping[1]);
+		const splitStr = strToUse.split(characterMapping[0]);
+		strToUse = splitStr.join(characterMapping[1]);
 	}
 	return strToUse;
 };
