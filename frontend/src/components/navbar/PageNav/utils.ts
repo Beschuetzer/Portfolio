@@ -41,8 +41,9 @@ export const setGradientPercent = (
 		const section = sections[i];
 		const pageNavSectionName = capitalize(section.dataset.section);
 		const pageNavSectionElement = document.querySelector(
-			`.page-nav__section-${pageNavSectionName}`,
+			`.page-nav__section-${pageNavSectionName.toLowerCase()}`,
 		) as HTMLElement;
+
 
 		if (!pageNavSectionElement || !pageNavSectionElement.parentNode) return;
 
