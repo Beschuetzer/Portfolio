@@ -36,8 +36,7 @@ import { keypressHandler } from "./utils";
 import ReplayViewer from "../pages/examples/csharp/ReplayViewer";
 import About from "../pages/examples/csharp/About";
 import BridgeDemo from "../pages/examples/csharp/BridgeDemo";
-import Conscientiousness from "../pages/examples/csharp/Personality";
-import Personality from "../pages/examples/csharp/Personality";
+import BigFive from "../pages/examples/csharp/BigFive/BigFive";
 
 interface AppProps {
 	isMobile: boolean,
@@ -122,7 +121,7 @@ const App: React.FC<AppProps> = ({
 				<Route path={AUTO_BID_URL} exact component={Autobid} />
 				<Route path={ABOUT_URL} exact component={About} />
 				<Route path={RESUME_URL} exact component={Resume} />
-				<Route path={PERSONALITY_URL} exact component={Personality} />
+				<Route path={PERSONALITY_URL} exact component={BigFive} />
 				<Route path="*" exact component={Home} />
 			</Switch>
 			<Route path="*" exact component={NavToggler} />
