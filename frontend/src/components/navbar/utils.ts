@@ -13,6 +13,7 @@ export function setHeaderHeaderCSSPropertyValue(valueToUse = -1) {
 	if (newHeaderHeight === -1) {
 		const header = document.querySelector(`${HEADER_ID}`) as HTMLElement;
 		newHeaderHeight = header.getBoundingClientRect().height;
+		console.log('newHeaderHeight =', newHeaderHeight);
 	}
 	document.documentElement.style.setProperty(
 		HEADER_HEIGHT_CSS_PROPERTY_NAME,

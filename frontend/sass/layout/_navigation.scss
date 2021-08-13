@@ -622,7 +622,7 @@
 	&-toggler {
 		display: none;
 		box-shadow: $navbar-box-shadow-resume;
-		height: var(--header-toggler-height);
+		height: calc(var(--header-height) + #{$header-toggler-width});
 		border-left: $default-font-size * 0.15 solid var(--color-primary-4);
 		border-bottom: $default-font-size * 0.15 solid var(--color-primary-4);
 		border-right: $default-font-size * 0.15 solid var(--color-primary-4);

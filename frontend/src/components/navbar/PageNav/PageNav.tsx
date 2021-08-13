@@ -8,6 +8,7 @@ import BridgeSectionLink from "../../../pages/examples/bridge/BridgeSectionLink"
 import { bridgeSections } from "../../../pages/examples/bridge/utils";
 import { HIDDEN_CLASSNAME } from "../../constants";
 import { scrollToSection } from "../../utils";
+import { setHeaderHeaderCSSPropertyValue } from "../utils";
 import {
 	checkShouldSetPreviousUrl,
 	getSectionNames,
@@ -54,6 +55,10 @@ const PageNav: React.FC<PageNavProps> = ({
 	let pageNavElement = document.querySelector(".page-nav") as any;
 	let previousSectionBottom: number | null = 0;
 	let shouldHandleScroll = useRef(true);
+
+	useEffect(() => {
+		setHeaderHeaderCSSPropertyValue();
+	})
 
 	const renderFullBridge = () => {
 		setBridgeColors(currentBridgeSection, clickedBridgeInfoButtonCount);

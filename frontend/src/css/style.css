@@ -1273,7 +1273,7 @@ body {
 .header-toggler {
   display: none;
   box-shadow: 0 1.6rem 3.2rem rgba(17, 17, 17, 0.33);
-  height: var(--header-toggler-height);
+  height: calc(var(--header-height) + 4rem);
   border-left: 0.24rem solid var(--color-primary-4);
   border-bottom: 0.24rem solid var(--color-primary-4);
   border-right: 0.24rem solid var(--color-primary-4);

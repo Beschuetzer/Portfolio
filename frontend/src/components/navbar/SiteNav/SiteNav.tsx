@@ -18,7 +18,7 @@ import { setHeaderHeight, setIsAnimating } from "../../../actions";
 import {
 	NAVBAR_CLASSNAME,
 	NAVBAR_Z_INDEX_CLASSNAME,
-	setHeaderHeaderCSSPropertyValue,
+	setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue,
 } from "../utils";
 import {
 	changePage,
@@ -134,7 +134,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	useEffect(() => {
 		//need timeout to wait for PageNav to render
 		setTimeout(() => {
-			setHeaderHeaderCSSPropertyValue();
+			setHeaderHeightCSSPropertyValue();
 		}, 1);
 	});
 
@@ -145,7 +145,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	useEffect(() => {
 		setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
 		resetPageNavMinWidth(viewPortWidth);
-		setHeaderHeaderCSSPropertyValue();
+		setHeaderHeightCSSPropertyValue();
 	}, [viewPortWidth, setHeaderHeight]);
 
 	useEffect(() => {
