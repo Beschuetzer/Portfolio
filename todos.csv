@@ -90,7 +90,6 @@ Of course, there can be variation, but the most important thing is to try to ide
 -hiding audio player should still show controls
 -replay page carousel doesn't have z-index fix (check others)
 
--timing on home seems accelerated (threejs turbo mode?)
 -Add volume slider to AudioPLayer
 -change “IT Support” on resume to “IT Skills”
 -add section in Resume highlighting how I spent time during pandemic to now (as if contracted to build bridge stuff)

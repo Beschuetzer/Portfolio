@@ -1,3 +1,5 @@
+$top-offset: 1.25vw;
+
 .source-link {
 	&__container {
 		display: flex;
@@ -21,7 +23,7 @@
 		align-items: center;
 		top: calc(
 			14vw + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) -
-				0.9vw
+				#{$top-offset}
 		);
 		text-decoration: none;
 		right: calc((100vw - #{$header-inner-width} - 1.5vw) / 2);
@@ -88,8 +90,8 @@
 			(
 					14vw +
 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) -
-						0.9vw
-				) * 2
+						#{$top-offset}
+				) * 1.5
 		);
 	}
 
@@ -98,8 +100,8 @@
 			(
 					14vw +
 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) -
-						0.9vw
-				) * 1.5
+						#{$top-offset}
+				) * 1.25
 		);
 	}
 }

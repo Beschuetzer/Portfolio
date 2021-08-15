@@ -3345,7 +3345,7 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  top: calc( 			14vw + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 				0.9vw 		);
+  top: calc( 			14vw + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 				1.25vw 		);
   text-decoration: none;
   right: calc((100vw - calc( 	85rem + ((100% - 85rem) / 2) + 7vw ) - 1.5vw) / 2);
 }
@@ -3406,10 +3406,10 @@ body {
   fill: var(--arrow-button-right-fill);
 }
 .source-link__demo {
-  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						0.9vw 				) * 2 		);
+  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						1.25vw 				) * 1.5 		);
 }
 .source-link__live {
-  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						0.9vw 				) * 1.5 		);
+  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						1.25vw 				) * 1.25 		);
 }
 
 :is(.csharp, .resume) .source-link__source-svg {
