@@ -205,7 +205,7 @@
 }
 
 .downloader {
-	background-color: var(--color-primary-red);
+	background-color: rgba(var(--color-primary-2-rgb), 0.5);
 	background-image: url($downloader-background-svg);
 	background-size: cover;
 
