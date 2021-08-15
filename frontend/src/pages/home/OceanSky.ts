@@ -254,10 +254,10 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 //#endregion
 
 //#region Camera and Animation stuff
-const animationFPS = 60.0;
+const animationFPS = 120.0;
 export let timeElapsedInMS = 0;
 export const introPanDuration = 5000;
-const lineScrollDuration = 1500;
+const lineScrollDuration = 500;
 export const introPanDurationMobile = linesOfText * lineScrollDuration;
 ;
 export const introPanStartWait = isMobile
