@@ -70,11 +70,11 @@ $color-primary-about-3: #31C9B0;
 $color-primary-about-4: #ecdbba;
 $color-primary-about-red: #c84b31;
 
-$color-primary-big-five-1: #7D5A50;
-$color-primary-big-five-2: #B4846C;
-$color-primary-big-five-3: #E5B299;
-$color-primary-big-five-4: #FCDEC0;
-$color-primary-big-five-red: $color-black;
+$color-primary-the-big-five-1: #7D5A50;
+$color-primary-the-big-five-2: #B4846C;
+$color-primary-the-big-five-3: #E5B299;
+$color-primary-the-big-five-4: #FCDEC0;
+$color-primary-the-big-five-red: $color-black;
 
 :root {
 	--color-grey-light-1: #{$color-grey-light-1};
@@ -197,14 +197,14 @@ $color-primary-big-five-red: $color-black;
 	--color-primary-about-4-rgb: #{hexToRGB($color-primary-about-4)};
 	--color-primary-about-red-rgb: #{hexToRGB($color-primary-about-red)};
 
-	--color-primary-big-five-1: #{$color-primary-big-five-1};
-	--color-primary-big-five-2: #{$color-primary-big-five-2};
-	--color-primary-big-five-3: #{$color-primary-big-five-3};
-	--color-primary-big-five-4: #{$color-primary-big-five-4};
-	--color-primary-big-five-red: #{$color-primary-big-five-red};
-	--color-primary-big-five-1-rgb: #{hexToRGB($color-primary-big-five-1)};
-	--color-primary-big-five-2-rgb: #{hexToRGB($color-primary-big-five-2)};
-	--color-primary-big-five-3-rgb: #{hexToRGB($color-primary-big-five-3)};
-	--color-primary-big-five-4-rgb: #{hexToRGB($color-primary-big-five-4)};
-	--color-primary-big-five-red-rgb: #{hexToRGB($color-primary-big-five-red)};
+	--color-primary-the-big-five-1: #{$color-primary-the-big-five-1};
+	--color-primary-the-big-five-2: #{$color-primary-the-big-five-2};
+	--color-primary-the-big-five-3: #{$color-primary-the-big-five-3};
+	--color-primary-the-big-five-4: #{$color-primary-the-big-five-4};
+	--color-primary-the-big-five-red: #{$color-primary-the-big-five-red};
+	--color-primary-the-big-five-1-rgb: #{hexToRGB($color-primary-the-big-five-1)};
+	--color-primary-the-big-five-2-rgb: #{hexToRGB($color-primary-the-big-five-2)};
+	--color-primary-the-big-five-3-rgb: #{hexToRGB($color-primary-the-big-five-3)};
+	--color-primary-the-big-five-4-rgb: #{hexToRGB($color-primary-the-big-five-4)};
+	--color-primary-the-big-five-red-rgb: #{hexToRGB($color-primary-the-big-five-red)};
 }
