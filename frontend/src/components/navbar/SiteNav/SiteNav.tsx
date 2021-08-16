@@ -26,7 +26,6 @@ import {
 	startAnimating,
 	init,
 	setBodyStyle,
-	setHeaderHeightOnViewPortChange,
 	getResetAnimatingId,
 	hide,
 	handleNavClick,
