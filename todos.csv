@@ -100,3 +100,4 @@ perosnality section-----------------------
   -overview = talk about what big 5 personality test is and why it's relevant
 
 -when clicking navbar__toggler, Keep the github button and SiteNav button in corners, just hide PageNav links
+-when sitenav toggler is hidden and you change viewport, it is reset to original value
