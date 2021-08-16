@@ -1,4 +1,5 @@
-import { HEADER_HEIGHT_CSS_PROPERTY_NAME } from "../constants";
+import { ANIMATION_DURATION, HEADER_HEIGHT_CSS_PROPERTY_NAME } from "../constants";
+import { SITE_NAV_CLASSNAME, SITE_NAV_MINIMAL_CLASSNAME } from "./SiteNav/SiteNav";
 import { HEADER_ID, HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_TOGGLER_CLASSNAME } from "./SiteNav/utils";
 
 export const NAVBAR_Z_INDEX_CLASSNAME = "z-index-navbar";
@@ -22,4 +23,16 @@ export function setHeaderHeaderCSSPropertyValue(valueToUse = -1) {
 		HEADER_HEIGHT_CSS_PROPERTY_NAME,
 		`${newHeaderHeight}px`,
 	);
+}
+
+export function toggleSiteNavMinimal() {
+	const siteNav = document.querySelector(`.${SITE_NAV_CLASSNAME}`) as HTMLElement;
+	 if (!siteNav) return;
+
+	let waitDurationToUse = ANIMATION_DURATION;
+	if (siteNav.classList.contains(SITE_NAV_MINIMAL_CLASSNAME)) waitDurationToUse = 0;
+
+	setTimeout(() => {
+		siteNav.classList.toggle(SITE_NAV_MINIMAL_CLASSNAME);
+	}, waitDurationToUse);
 }

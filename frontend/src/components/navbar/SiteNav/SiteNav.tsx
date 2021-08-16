@@ -31,6 +31,7 @@ import {
 	handleNavClick,
 	handleMouseEnter,
 	resetPageNavMinWidth,
+	setHeaderHeightOnViewPortChange,
 } from "./utils";
 import { scrollToSection } from "../../utils";
 import {
@@ -49,11 +50,15 @@ import {
 	RESUME_PAGE_NAME,
 	RESUME_URL,
 	LIVE_REPLAYS_URL,
-	HEADER_HEIGHT_CSS_PROPERTY_NAME,
+	SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME,
+	ANIMATION_DURATION,
 } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
 import { Dispatch } from "react";
+
+export const SITE_NAV_CLASSNAME = "site-nav";
+export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal";
 
 interface SiteNavProps {
 	isAnimating: boolean;
@@ -142,7 +147,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	}, [currentUrl]);
 
 	useEffect(() => {
-		// setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
+		setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
 		resetPageNavMinWidth(viewPortWidth);
 		setHeaderHeightCSSPropertyValue();
 	}, [viewPortWidth, setHeaderHeight]);
