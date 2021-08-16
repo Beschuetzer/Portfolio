@@ -13,10 +13,12 @@ const sectionNames = [
 	"Conscientiousness", //percent: 85,
 	"Agreeableness", //percent: 75,
 	"Openness", //percent: 70,
-	"Neuroticism", //percent: 65
+	"Neuroticism", //percent: 55
 	"Extraversion", //percent: 35,
 	"Take Away",
 ];
+
+const values = ["", "- 85", "- 75", "- 70", "- 55", "- 35", ""];
 
 const sections: CSharpSection[] = [
 	{
@@ -75,7 +77,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<BigFiveItem
-				benefits={[
+			benefits={[
 					"I am accommodating",
 					"I am attuned to others",
 					"I look for a 'win-win' result",
@@ -107,7 +109,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<BigFiveItem
-				benefits={[
+			benefits={[
 					"I bring experience to strategy",
 					"I am a flexible problem solver",
 					"I am a pragmatic thinker",
@@ -140,7 +142,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<BigFiveItem
-				benefits={[
+			benefits={[
 					"I am aware of others’ emotional states",
 					"I cope with most things",
 					"I am even tempered",
@@ -174,7 +176,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<BigFiveItem
-				benefits={[
+			benefits={[
 					"I am contemplative",
 					"I am dispassionate",
 					"I excel at independent work",
@@ -236,7 +238,7 @@ interface PersonalityProps {}
 
 const BigFive: React.FC<PersonalityProps> = () => {
 	return (
-		<CSharpLayout sections={sections} pageName={BIG_FIVE_PAGE_NAME}>
+		<CSharpLayout sections={sections} headerSideContents={values} pageName={BIG_FIVE_PAGE_NAME}>
 			{" "}
 		</CSharpLayout>
 	);

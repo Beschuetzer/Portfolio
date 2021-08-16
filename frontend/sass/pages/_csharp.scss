@@ -72,6 +72,13 @@
 	}
 
 	&__header {
+		display: grid;
+    /* justify-content: flex-start; */
+    /* align-items: center; */
+    grid-template-columns: max-content 1fr;
+    column-gap: $default-font-size;
+    font-size: $default-font-size * 3;
+
 		padding: $default-font-size * 1 $default-font-size * 1 $default-font-size *
 			1 0;
 		color: rgba(var(--color-primary-1), 1);

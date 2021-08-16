@@ -15,6 +15,7 @@ interface CSharpLayoutProps {
 	href?: string;
 	sections: CSharpSection[];
 	children: any;
+	headerSideContents?: any;
 }
 
 const CSharpLayout: React.FC<CSharpLayoutProps> = ({
@@ -26,6 +27,7 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 	demoLink,
 	demoMsg = "Demo",
 	children,
+	headerSideContents,
 }) => {
 	function renderSections() {
 		return sections.map((section, index) => {
@@ -38,6 +40,7 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 					key={index}
 					name={section.name}
 					pageName={section.pageName}
+					headerSideContent={headerSideContents[index]}
 					styles={section.styles}>
 					{(section.children as any).map((child: any, index: number) => {
 						return <React.Fragment key={index}>{child}</React.Fragment>;
