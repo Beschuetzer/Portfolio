@@ -37,7 +37,7 @@ const sections: CSharpSection[] = [
 		children: [
 			<BigFiveItem
 				benefits={[
-					"I tend to focuses on task at hand",
+					"I tend to focus on the task at hand",
 					"I tend to identify key goals",
 					"I have a strong sense of commitment",
 					"I have a structured work style",
@@ -88,7 +88,7 @@ const sections: CSharpSection[] = [
 				]}>
 				I generally am accommodating and open to the views of other
 				people.&nbsp; I tend to trust other people, and can be depended on to
-				have a consistent and forgiving viewpoint.&nbsp; I are very loyal, and
+				have a consistent and forgiving viewpoint.&nbsp; I am very loyal, and
 				build relationships with other people based on mutual respect.&nbsp;
 				Other people's needs influence my dealings with them, and I am often the
 				person who is striving for a harmonious outcome.&nbsp; I am tuned in to
@@ -160,8 +160,8 @@ const sections: CSharpSection[] = [
 				tend to respond to situations in a measured manner, as I have a good
 				understanding of my ability to cope.&nbsp; Indeed my friends and
 				colleagues might well describe me as an even-tempered and positive
-				person.&nbsp; By and large I probably feel well able to deal with most
-				of what life hands me.&nbsp;
+				person.&nbsp; By and large I feel well able to deal with most of what
+				life hands me.&nbsp;
 			</BigFiveItem>,
 		],
 	},
@@ -190,7 +190,7 @@ const sections: CSharpSection[] = [
 				have a strong need to express my views or opinions.&nbsp; When it comes
 				to the energy I put into life, being a self-contained, reflective
 				person, I am generally quite happy in my own world.&nbsp; That is not to
-				say I are disinterested in other people - rather that I am likely to
+				say I am disinterested in other people - rather that I am likely to
 				prefer one-on-one or small group interactions that feel more
 				manageable.&nbsp; Larger groups can be draining to me and, therefore, I
 				need time alone to recharge.&nbsp; Overall I may show a low level of
@@ -204,8 +204,26 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				
-			</React.Fragment>
+				<CSharpCardSection title="What I Complement Well">
+					I am steady, confident and resourceful, and compatible with most
+					workers. Since I am able to let stress roll off my back, while
+					maintaining my concentration on the goal at hand, I steadfastly
+					accomplish whatever professional goals I or others set for me. At the
+					same time, since I also enjoy engaging in the process of doing, am
+					intuitive, and am able to work collaboratively with all but the least
+					conscientious and open-minded of co-workers, I am valued by colleagues
+					and executives alike.
+				</CSharpCardSection>
+				<CSharpCardSection title="Potential Conflicts">
+					As an industrious worker and a lover of people, I am fortunate that I
+					work well with most sorts of people. However, often sought out for my
+					innate amicability, I occasionall come across others who try to
+					dominate and manipulate me. In such case, I employ a large amount of
+					assertiveness in order to earn respect from others. Finally, because
+					of my industriousness, I find it more challenging to work with those
+					who have closed minds and little work ethic.
+				</CSharpCardSection>
+			</React.Fragment>,
 		],
 	},
 ];

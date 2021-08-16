@@ -101,6 +101,16 @@
   --color-primary-about-3-rgb: 49, 201, 176;
   --color-primary-about-4-rgb: 236, 219, 186;
   --color-primary-about-red-rgb: 200, 75, 49;
+  --color-primary-big-five-1: #7D5A50;
+  --color-primary-big-five-2: #B4846C;
+  --color-primary-big-five-3: #E5B299;
+  --color-primary-big-five-4: #FCDEC0;
+  --color-primary-big-five-red: #111111;
+  --color-primary-big-five-1-rgb: 125, 90, 80;
+  --color-primary-big-five-2-rgb: 180, 132, 108;
+  --color-primary-big-five-3-rgb: 229, 178, 153;
+  --color-primary-big-five-4-rgb: 252, 222, 192;
+  --color-primary-big-five-red-rgb: 17, 17, 17;
 }
 
 :root {
@@ -1291,7 +1301,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    --active-height: 8rem;
   }
   .header-toggler__svg {
     cursor: pointer;
@@ -3398,10 +3407,10 @@ body {
   fill: var(--arrow-button-right-fill);
 }
 .source-link__demo {
-  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						1.25vw 				) * 1.5 		);
+  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						1.25vw 				) * 1.66 		);
 }
 .source-link__live {
-  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						1.25vw 				) * 1.25 		);
+  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						1.25vw 				) * 1.33 		);
 }
 
 :is(.csharp, .resume) .source-link__source-svg {

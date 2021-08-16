@@ -13,8 +13,8 @@ const BigFiveItem: React.FC<BigFiveItemProps> = ({
 	pitfalls,
 }) => {
 	function getListItems(items: string[]) {
-		return items.map((item) => {
-			return <li>{item}</li>;
+		return items.map((item, index) => {
+			return <li key={index}>{item}</li>;
 		});
 	}
 
@@ -28,7 +28,7 @@ const BigFiveItem: React.FC<BigFiveItemProps> = ({
 			<CSharpCardSection title="Potential Benefits">
 				{getOrderedListFromArray(benefits)}
       </CSharpCardSection>
-			<CSharpCardSection title="Potential Downfalls">
+			<CSharpCardSection title="Potential Pitfalls">
 				{getOrderedListFromArray(pitfalls)}
 			</CSharpCardSection>
 		</React.Fragment>
