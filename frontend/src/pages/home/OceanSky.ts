@@ -15,7 +15,7 @@ import cubeMap6 from "../../imgs/cube-learning.jpg";
 import cubeMap6Rotated from "../../imgs/cube-learning-rotated.jpg";
 import cubeMap4 from "../../imgs/cube-communication.jpg";
 import cubeMap1 from "../../imgs/cube-determination.jpg";
-import cubeMap2 from "../../imgs/cube-driven.png";
+import cubeMap2 from "../../imgs/cube-motivated.jpg";
 import cloud from "../../imgs/cloud.png";
 import introFont from "../../fonts/star-wars/star-jedi-rounded_Regular.json";
 import {
@@ -26,7 +26,6 @@ import {
 	TextBufferGeometry,
 } from "three";
 import { getLinearPercentOfMaxMatchWithinRange } from "../../helpers";
-import { isContinueStatement } from "typescript";
 
 //#region Variable Inits
 let camera: PerspectiveCamera,

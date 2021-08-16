@@ -42,6 +42,8 @@ let haveSentQuoteAlready = false;
 export async function getRandomQuote() {
   try {
     // ‘Programs must be written for people to read, and only incidentally for machines to execute.’   —  Hal Abelson
+    //‘To accomplish great things, we must not only act, but also dream; not only plan, but also believe.’   —  Anatole France
+    // ‘In times of change, learners inherit the earth, while the learned find themselves beautifully equipped to deal with a world that no longer exists.’   —  Eric Hoffer
     if (haveSentQuoteAlready) return;
     const stream = await fetch(`${QUOTE_API_URL}/${ENDPOINT}?tags=${TAGS_TO_USE}`, {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -56,7 +58,6 @@ export async function getRandomQuote() {
     return response;
   }
   catch (err) {
-    console.log('getRandomQuote------------------------------------------------');
     console.log('err =', err);
     return "";
   }

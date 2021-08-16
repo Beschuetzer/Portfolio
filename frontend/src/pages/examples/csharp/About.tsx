@@ -123,7 +123,7 @@ import Quote from "../../../components/Quote";
 import ClassToggler from "../../../components/ClassToggler";
 import Paragraph from "../../../typography/Paragraph";
 
-const sectionNames = ["Personality", "Interests", "Music", "FAQ"];
+const sectionNames = ["Summary", "Interests", "Music", "FAQ"];
 
 const germanyCarousel = (
 	<section
@@ -369,13 +369,16 @@ const sections: CSharpSection[] = [
 		children: [
 			<React.Fragment>
 				{youngQuote}
-				<CSharpCardSection title="A Way of Life">
+				<CSharpCardSection title="">
 					My mind is always working, whether at work or at play. I enjoy
 					learning new things and bring a natural curiosity to everything I
 					encounter. While I enjoy being out in the world, I always look forward
 					to evenings at home with one or two good friends and great
 					conversation. I can also find happiness on my own, working on a
-					project or reading a good book.
+					project or reading a good book.  
+				</CSharpCardSection>
+				<CSharpCardSection title="">
+				 Learn about my personality <EmbeddedLink href="/the-big-five" addSpaces={false} isLocal={false}>here</EmbeddedLink> 
 				</CSharpCardSection>
 			</React.Fragment>,
 		],
