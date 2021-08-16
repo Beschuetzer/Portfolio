@@ -1,12 +1,13 @@
 .github {
 	border-radius: 50%;
 	box-shadow: $navbar-box-shadow-resume;
-
+	
 	font-family: $font-family-text;
 	font-size: 1vw;
 	position: relative;
 	display: flex;
 	align-items: center;
+	align-self: flex-start;
 	z-index: 10000;
 
 	@include respond(nav-switch) {

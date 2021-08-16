@@ -2557,6 +2557,7 @@ body {
   position: relative;
   display: flex;
   align-items: center;
+  align-self: flex-start;
   z-index: 10000;
 }
 @media only screen and (max-width: 68.75em) {
@@ -2818,6 +2819,10 @@ body {
 }
 .quote:hover {
   color: rgba(var(--color-primary-1-rgb), 0.75);
+}
+
+.site-nav {
+  align-self: flex-start;
 }
 
 .skills {

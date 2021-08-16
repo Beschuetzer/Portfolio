@@ -143,7 +143,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	}, [currentUrl]);
 
 	useEffect(() => {
-		setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
+		// setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
 		resetPageNavMinWidth(viewPortWidth);
 		setHeaderHeightCSSPropertyValue();
 	}, [viewPortWidth, setHeaderHeight]);
