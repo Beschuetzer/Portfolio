@@ -325,7 +325,7 @@ const skills: {
 		},
 		{
 			title: "Neuroticism",
-			percent: 65,
+			percent: 55,
 			href: `/${BIG_FIVE_PAGE_NAME}#neuroticism`,
 		},
 		{

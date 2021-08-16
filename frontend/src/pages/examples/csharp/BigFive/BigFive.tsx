@@ -152,7 +152,7 @@ const sections: CSharpSection[] = [
 					"I may not show real feelings",
 				]}>
 				I tend to respond to pressure in a relaxed way but also know when to
-				take things seriously.&nbsp; I am usually able to let minor irritations
+				take things seriously.&nbsp; I am able to let minor irritations
 				go.&nbsp; I am someone who is generally calm, and not the sort to dwell
 				on things, but who is also 'on guard' at times.&nbsp; I listen to other
 				people and take note of what they say, but am not prone to let criticism

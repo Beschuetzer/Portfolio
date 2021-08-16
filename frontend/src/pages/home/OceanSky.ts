@@ -15,7 +15,7 @@ import cubeMap6 from "../../imgs/cube-learning.jpg";
 import cubeMap6Rotated from "../../imgs/cube-learning-rotated.jpg";
 import cubeMap4 from "../../imgs/cube-communication.jpg";
 import cubeMap1 from "../../imgs/cube-determination.jpg";
-import cubeMap2 from "../../imgs/cube-passion.jpg";
+import cubeMap2 from "../../imgs/cube-driven.png";
 import cloud from "../../imgs/cloud.png";
 import introFont from "../../fonts/star-wars/star-jedi-rounded_Regular.json";
 import {
@@ -95,10 +95,10 @@ const skyMieDirectionalG = 0.8; //(.8)
 
 const waterWidthSegments = 10000;
 const waterHeightSegments = waterWidthSegments;
-const waterAnimationSpeed = 0.75;
+const waterAnimationSpeed = .75;
 
-const cloudZRotationRateChange = 0.0005;
-const cloudZPositionRateChange = 0.9;
+const cloudZRotationRateChange = 0.0001;
+const cloudZPositionRateChange = 0.5;
 const cloudColor = new THREE.Color(0xff9999);
 const cloudWidthSegments = 5000;
 const cloudXRotationStart = 1.16;
@@ -257,7 +257,8 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 const animationFPS = 120.0;
 export let timeElapsedInMS = 0;
 export const introPanDuration = 5000;
-const lineScrollDuration = 500;
+// const lineScrollDuration = 800;
+const lineScrollDuration = 0;
 export const introPanDurationMobile = linesOfText * lineScrollDuration;
 ;
 export const introPanStartWait = isMobile
