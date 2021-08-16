@@ -6,7 +6,7 @@ import { capitalize, replaceCharacters } from "../helpers";
 interface SectionProps {
 	name: string;
 	pageName: string;
-	children: string;
+	children: any;
 	headerSideContent?: any;
 	hint?: string;
 	styles?: any,

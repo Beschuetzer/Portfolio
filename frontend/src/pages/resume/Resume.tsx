@@ -54,7 +54,7 @@ const sectionTitles = [
 
 const skillsItemSectionLabels = [
 	"Web Development",
-	"IT Support",
+	"IT Skills",
 	"Human Skills",
 	"Personality",
 ];
@@ -663,15 +663,14 @@ const Resume: React.FC<ResumeProps> = ({
 	const renderSections = () => {
 		return content.map((contentArray, index) => {
 			//Returning if there is headerSideContent for this section
-			if (headerSideContent[contentArray[0] as keyof HeaderSideContent]) {
+			const headerSideContents = headerSideContent[(contentArray[0] as string).toLowerCase() as keyof HeaderSideContent];
+			if (headerSideContents) {
 				return (
 					<Section
 						key={index}
 						name={contentArray[0] as string}
 						pageName={RESUME_PAGE_NAME}
-						headerSideContent={
-							headerSideContent[contentArray[0] as keyof HeaderSideContent]
-						}
+						headerSideContent={headerSideContents}
 						hint={(hints as any)[contentArray[0] as any]}>
 						{contentArray[1] as string}
 					</Section>

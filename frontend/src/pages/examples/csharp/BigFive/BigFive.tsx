@@ -29,7 +29,7 @@ const sections: CSharpSection[] = [
 					commonly used model of personality in academic psychology. &nbsp;
 				</CSharpCardSection>
 
-				<CSharpCardSection title="What is the Big Five Assessment?">
+				<CSharpCardSection title="">
 				Below you will find my rating for each of the five personality traits as well as a description of what they mean.
 				</CSharpCardSection>
 			</React.Fragment>,
