@@ -200,15 +200,15 @@ const textsToUse = [
 	// 	spaceBefore: false,
 	// },
 	{
-		text: "This site highlights some of",
+		text: "This site highlights",
 		spaceBefore: true,
 	},
 	{
-		text: "the problems i have solved",
+		text: "some of those problems",
 		spaceBefore: false,
 	},
 	{
-		text: "using my web dev skills.",
+		text: "and my solutions to them",
 		spaceBefore: false,
 	},
 	// {
@@ -256,8 +256,8 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 const animationFPS = 120.0;
 export let timeElapsedInMS = 0;
 export const introPanDuration = 5000;
-// const lineScrollDuration = 800;
-const lineScrollDuration = 0;
+const lineScrollDuration = 800;
+// const lineScrollDuration = 0;
 export const introPanDurationMobile = linesOfText * lineScrollDuration;
 ;
 export const introPanStartWait = isMobile

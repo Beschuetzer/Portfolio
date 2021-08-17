@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { getRepositories } from "../../actions";
 import { getRandomQuote, Quote } from "../../apis/quotes";
-import { ABOUT_URL, BRIDGE_URL, REPLAY_VIEWER_URL, RESUME_URL } from "../../components/constants";
+import {
+	ABOUT_URL,
+	BRIDGE_URL,
+	REPLAY_VIEWER_URL,
+	RESUME_URL,
+} from "../../components/constants";
 import EmbeddedLink from "../../components/EmbeddedLink";
 import useClasslistAdder, { ClasslistAdder } from "./useClasslistAdder";
 import useSky from "./useSky";
@@ -14,9 +19,7 @@ getRandomQuote().then((response) => {
 
 const classListsToSet: ClasslistAdder[] = [
 	{
-		classnames: [
-			"home__name"
-		],
+		classnames: ["home__name"],
 		classesToAdd: ["visible"],
 	},
 	{
@@ -47,6 +50,20 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 
 	useClasslistAdder(classListsToSet);
 	useSky();
+
+	function getQuoteJSX() {
+		const content = quoteResult ? quoteResult.content : null;
+		const author = quoteResult ? `${quoteResult.author} ` : null;
+
+		return (
+			<article className="home__quote">
+				<span className="home__quote-content">
+					&lsquo;{content}&rsquo; &nbsp; 
+					<div className="home__quote-author">&#8212; &nbsp; {author} </div>
+				</span>
+			</article>
+		);
+	}
 
 	return (
 		<React.Fragment>
@@ -137,18 +154,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 						</div>
 					</article>
 
-					<article className="home__quote">
-						<span className="home__quote-content">
-							&lsquo;{quoteResult ? quoteResult.content : null}&rsquo; &nbsp;
-							&#8212; &nbsp;
-							<span className="home__quote-author">
-								{quoteResult ? quoteResult.author : null}
-								{/* <br></br> */}
-								{/* {quoteResult && quoteResult.tags ? quoteResult.tags : null} */}
-								{/* {quoteResult && (quoteResult as any).results ? (quoteResult as any).results : null} */}
-							</span>
-						</span>
-					</article>
+					{getQuoteJSX()}
 
 					{/* <div className="home__main-description">
 						This site was created with React, Redux, and custom CSS

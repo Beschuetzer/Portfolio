@@ -1,4 +1,7 @@
-
+%name-font {
+	font-family: $font-family-fancy-bridge;
+	font-weight: $home-name-font-weight;
+}
 
 .home {
 	position: relative;
@@ -106,13 +109,13 @@
 	}
 
 	&__name-first {
-		font-weight: $home-name-font-weight;
+		@extend %name-font;
 		justify-self: flex-end;
 		transform: translate(-$default-font-size * 50, 0);
 	}
 
 	&__name-last {
-		font-weight: $home-name-font-weight;
+		@extend %name-font;
 		justify-self: flex-start;
 		transform: translate($default-font-size * 50, 0);
 	}
@@ -387,6 +390,7 @@
 			0.05
 		);
 		font-weight: 700;
+		font-family: $font-family-fancy-bridge;
 		font-size: $default-font-size * 3;
 		color: transparent;
 		background-clip: text;
@@ -411,6 +415,11 @@
 		@include respond($breakpoint-to-change-layout) {
 			opacity: 0;
 			visibility: none;
+		}
+
+		&-author {
+			text-align: center;
+			font-family: $font-family-fancy-bridge;
 		}
 	}
 
