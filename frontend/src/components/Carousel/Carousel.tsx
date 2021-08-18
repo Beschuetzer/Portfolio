@@ -62,10 +62,11 @@ const Carousel: React.FC<CarouselProps> = ({
 	let hasResized = useRef<boolean>(false);
 	let removeTransitionTimeout: any;
 
+	const [itemsToRenderFullScreen, setItemsToRenderFullScreen] = useState<
+		number[]
+	>([]);
 
-	const [itemsToRenderFullScreen, setItemsToRenderFullScreen] = useState<number[]>([]);
-
-	window.addEventListener('resize', handleResize);
+	window.addEventListener("resize", handleResize);
 
 	useInit(
 		leftArrowRef,
@@ -192,9 +193,10 @@ const Carousel: React.FC<CarouselProps> = ({
 				const imageOrVideo = itemToOpen.children[0] as HTMLElement;
 				itemToOpen?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 				imageOrVideo.classList.add(FULLSCREEN_CLASSNAME);
-				
+
 				let newItems = [...itemsToRenderFullScreen];
-				if (!itemsToRenderFullScreen.includes(nthItemOpen)) newItems.push(nthItemOpen);
+				if (!itemsToRenderFullScreen.includes(nthItemOpen))
+					newItems.push(nthItemOpen);
 				setItemsToRenderFullScreen(newItems);
 			}
 
@@ -205,7 +207,11 @@ const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	const renderItems = () => {
-		const arrangedItems = getArrangedItems(items, shouldRearrangeItems, numberOfItemsInCarouselWidthWise) as CarouselItemProps[];
+		const arrangedItems = getArrangedItems(
+			items,
+			shouldRearrangeItems,
+			numberOfItemsInCarouselWidthWise,
+		) as CarouselItemProps[];
 
 		return arrangedItems.map((item, index) => {
 			const carouselItemProps: CarouselItemProps = {
@@ -267,7 +273,7 @@ const Carousel: React.FC<CarouselProps> = ({
 				functionToGetContainer: functionToGetContainer
 					? functionToGetContainer
 					: undefined,
-				shouldRenderFullScreen: itemsToRenderFullScreen.includes(index)
+				shouldRenderFullScreen: itemsToRenderFullScreen.includes(index),
 			};
 
 			return (
@@ -279,7 +285,8 @@ const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	const renderCarouselDots = () => {
-		if (!items.length) return null;
+		if (!items.length || items.length <= numberOfItemsInCarouselWidthWise)
+			return null;
 		const maxWidth = getCarouselGridMaxColumnWidth(items.length);
 
 		let numberOfRows = 1;
@@ -307,30 +314,45 @@ const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	function setItemsWidthRef(itemsWidthRef: RefObject<number>) {
-		if ((itemsRef.current && itemsWidthRef.current === null) || hasResized.current) {
-			const image1Left = itemsRef?.current ? itemsRef?.current[0]?.children[0]?.getBoundingClientRect().left : 0;
-			const image2Left = itemsRef?.current ? itemsRef?.current[1]?.children[0]?.getBoundingClientRect().left : 0;
+		if (
+			(itemsRef.current && itemsWidthRef.current === null) ||
+			hasResized.current
+		) {
+			const image1Left = itemsRef?.current
+				? itemsRef?.current[0]?.children[0]?.getBoundingClientRect().left
+				: 0;
+			const image2Left = itemsRef?.current
+				? itemsRef?.current[1]?.children[0]?.getBoundingClientRect().left
+				: 0;
 			(itemsWidthRef.current as any) = Math.abs(image1Left - image2Left);
 			hasResized.current = false;
 		}
 	}
 
+	function renderArrows() {
+		if (items.length <= numberOfItemsInCarouselWidthWise) return null;
+
+		return (
+			<React.Fragment>
+				<CarouselArrow
+					onClick={(e: any) => handleArrowClick(e)}
+					className={`hidden ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME}`}
+					svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
+				/>
+
+				<CarouselArrow
+					onClick={(e: any) => handleArrowClick(e)}
+					className={` ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME} `}
+					svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
+				/>
+			</React.Fragment>
+		);
+	}
+
 	return (
 		<React.Fragment>
 			<article className="carousel">{renderItems()}</article>
-
-			<CarouselArrow
-				onClick={(e: any) => handleArrowClick(e)}
-				className={`hidden ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME}`}
-				svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
-			/>
-
-			<CarouselArrow
-				onClick={(e: any) => handleArrowClick(e)}
-				className={` ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME} `}
-				svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
-			/>
-
+			{renderArrows()}
 			<div className={`${CAROUSEL_CLASSNAME}__dots`}>
 				{renderCarouselDots()}
 			</div>

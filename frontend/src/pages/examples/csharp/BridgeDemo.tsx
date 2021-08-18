@@ -33,6 +33,9 @@ const sections: CSharpSection[] = [
 		children: [
 			<React.Fragment>
 				<CSharpCardSection title="">
+					<p>
+						Since there is no AI currently implemented, runing a demo of A#Maj Bridge requires one to open two different browsers with two tabs in each browser (one of which has to be a "Private Browsing" tab or "Incognito" tab).  
+					</p>
 					<ol>
 						<li>Two separate browsers (neither can be IE)</li>
 						<li>
@@ -89,9 +92,7 @@ const sections: CSharpSection[] = [
 		],
 	},
 	{
-		styles: {
-			position: "relative",
-		},
+		hasCarousel: false,
 		name: sectionNames[2],
 		pageName: C_SHARP_CLASSNAME,
 		children: [

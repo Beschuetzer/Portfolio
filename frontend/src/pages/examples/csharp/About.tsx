@@ -330,7 +330,7 @@ const peopleToPeopleCarousel = (
 const regretQuote = (
 	<Quote author="Anonymous" className="padding-bottom-1">
 		In the end, we only regret the chances we didn't take, relationships we were
-		afraid to have, and the decisions we waited to long to make.
+		afraid to have, and the decisions we waited too long to make.
 	</Quote>
 );
 
