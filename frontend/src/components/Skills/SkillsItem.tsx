@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { clickSkill } from "../../actions";
 import EmbeddedLink from "../EmbeddedLink";
-import PercentBar from "../PercentBar";
-import { SkillsItemLabel, SKILLS_CLASSNAME } from "./utils";
+import PercentBar, { PercentBarLabel } from "../PercentBar";
+import { SKILLS_CLASSNAME } from "./utils";
 
 interface SkillsItemProps {
 	title: string;
@@ -11,7 +11,7 @@ interface SkillsItemProps {
 	href: string;
 	hours?: string;
 	isLocal?: boolean;
-	label: SkillsItemLabel;
+	label: PercentBarLabel;
 	clickSkill: (value: HTMLElement) => void;
 }
 
@@ -69,7 +69,7 @@ const SkillsItem: React.FC<SkillsItemProps> = ({
 				</svg>
 				{renderHref()}
 			</li>
-			<PercentBar hours={hours} label={label} percent={percent}/>
+			<PercentBar value={hours} label={label} percent={percent}/>
 			
 		</React.Fragment>
 	);

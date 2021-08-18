@@ -1,8 +1,9 @@
 import React from 'react';
-import { SkillsItemLabel, SKILLS_CLASSNAME } from './utils';
+import { PercentBarLabel } from '../PercentBar';
+import { SKILLS_CLASSNAME } from './utils';
 
 interface SkillsItemSectionLabelsProps {
-  label: SkillsItemLabel,
+  label: PercentBarLabel,
 }
 
 const SkillsItemSectionLabels: React.FC<SkillsItemSectionLabelsProps> = ({

@@ -2771,6 +2771,9 @@ body {
   padding: 0rem 0.4rem;
   transition: opacity 0.5s ease 0.5s;
 }
+.percent-bar__outer .skills__labels:hover ~ .percent-bar__inner .percent-bar__value {
+  opacity: 1;
+}
 @media only screen and (max-width: 35.0625em) {
   .percent-bar__outer .skills__labels:hover {
     opacity: 0.5;
@@ -2791,8 +2794,29 @@ body {
   border: 0.16rem solid var(--color-primary-4);
   transition: opacity 2s ease 0.5s, transform 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
-.percent-bar__inner:hover .skills__hours {
+.percent-bar__inner:hover .skills__value {
   transform: translate(-50%, -50%) scaleY(calc(3 / 5));
+  opacity: 1;
+}
+.percent-bar__value {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  right: 0.4rem;
+  transform: translate(0%, -50%);
+  font-size: 1.2rem;
+  transition: opacity 0.5s ease;
+}
+
+.csharp .percent-bar__labels {
+  padding: 0;
+  font-size: 1.2rem;
+  top: -1.6rem;
+}
+.csharp .percent-bar__outer {
+  transform: scale(1);
+}
+.csharp .percent-bar__inner {
   opacity: 1;
 }
 

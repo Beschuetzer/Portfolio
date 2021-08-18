@@ -3,6 +3,7 @@ import {
 	CSharpSection,
 	BIG_FIVE_PAGE_NAME,
 } from "../../../../components/constants";
+import PercentBar, { PercentBarLabel } from "../../../../components/PercentBar";
 import CSharpCardSection from "../CSharpCardSection";
 import CSharpLayout from "../CSharpLayout";
 import { C_SHARP_CLASSNAME } from "../utils";
@@ -18,7 +19,45 @@ const sectionNames = [
 	"Take Away",
 ];
 
-const values = ["", "- 85", "- 75", "- 70", "- 55", "- 35", ""];
+const label: PercentBarLabel = {
+	left: "0",
+	center: "50",
+	right: "100",
+};
+
+const percentBarValues = [
+	85,
+	75,
+	70,
+	55,
+	35,
+];
+
+const percentBars = [
+	"",
+	<React.Fragment>
+		<br></br>
+		<PercentBar value={percentBarValues[0]} label={label} percent={percentBarValues[0]} />
+	</React.Fragment>,
+		<React.Fragment>
+		<br></br>
+		<PercentBar value={percentBarValues[1]} label={label} percent={percentBarValues[1]} />
+	</React.Fragment>,
+		<React.Fragment>
+		<br></br>
+		<PercentBar value={percentBarValues[2]} label={label} percent={percentBarValues[2]} />
+	</React.Fragment>,
+		<React.Fragment>
+		<br></br>
+		<PercentBar value={percentBarValues[3]} label={label} percent={percentBarValues[3]} />
+	</React.Fragment>,
+		<React.Fragment>
+		<br></br>
+		<PercentBar value={percentBarValues[4]} label={label} percent={percentBarValues[4]} />
+	</React.Fragment>,
+
+	"",
+];
 
 const sections: CSharpSection[] = [
 	{
@@ -241,7 +280,7 @@ const BigFive: React.FC<PersonalityProps> = () => {
 	return (
 		<CSharpLayout
 			sections={sections}
-			headerSideContents={values}
+			headerSideContents={percentBars}
 			pageName={BIG_FIVE_PAGE_NAME}>
 			{" "}
 		</CSharpLayout>

@@ -1,13 +1,7 @@
-import { PERCENT_BAR_CLASSNAME, PERCENT_BAR_OUTER_CLASSNAME } from "../PercentBar";
+import { PERCENT_BAR_OUTER_CLASSNAME } from "../PercentBar";
 
 export interface Repository {
   [key: string]: any,
-}
-
-export interface SkillsItemLabel {
-  left: string;
-  center: string;
-  right: string;
 }
 
 export const SKILLS_CLASSNAME = "skills";

@@ -55,6 +55,11 @@
         $animation-duration;
 
       &:hover {
+
+        & ~ .percent-bar__inner .percent-bar__value {
+          opacity: 1;
+        }
+
         @include respond(nav-break) {
           opacity: 0.5;
         }
@@ -82,9 +87,40 @@
         $animation-easing-standard-easeInOutBack;
     // &:hover {
     // }
-    &:hover .skills__hours {
+    &:hover .skills__value {
       transform: translate(-50%, -50%) scaleY(calc(3 / 5));
       opacity: 1;
     }
+  }
+
+  &__value {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    right: $default-font-size * .25;
+    transform: translate(-0%, -50%);
+    font-size: $default-font-size * .75;
+    transition: opacity $animation-duration * 1 $animation-easing-standard ;
+
+    
+  }
+
+
+}
+
+.csharp .percent-bar {
+
+  &__labels {
+    padding: 0;
+    font-size: $default-font-size * .75;
+    top: -$default-font-size;
+  }
+
+  &__outer {
+    transform: scale(1);
+  }
+
+  &__inner {
+    opacity: 1;
   }
 }
