@@ -342,17 +342,17 @@ const hints = {
 	references: "click name to view letter of recommendation",
 };
 
-interface Skill {
+export interface Skill {
 	title: string;
 	percent: number;
 	href?: string;
 }
 
-interface HeaderSideContent {
+export interface HeaderSideContent {
 	overview: any;
 }
 
-interface ResumeProps {
+export interface ResumeProps {
 	repos: Repository[];
 	getRepositories: () => void;
 	setSectionsToSkipAnimation: (value: any[]) => void;
@@ -663,7 +663,10 @@ const Resume: React.FC<ResumeProps> = ({
 	const renderSections = () => {
 		return content.map((contentArray, index) => {
 			//Returning if there is headerSideContent for this section
-			const headerSideContents = headerSideContent[(contentArray[0] as string).toLowerCase() as keyof HeaderSideContent];
+			const headerSideContents =
+				headerSideContent[
+					(contentArray[0] as string).toLowerCase() as keyof HeaderSideContent
+				];
 			if (headerSideContents) {
 				return (
 					<Section
@@ -694,6 +697,11 @@ const Resume: React.FC<ResumeProps> = ({
 			<section className={`${RESUME_PAGE_NAME}`}>
 				<div className={`${C_SHARP_CLASSNAME}__title`}>
 					<SourceCodeLink href={`${GITHUB_URL}/portfolio`} />
+					<SourceCodeLink
+						className="source-link__live"
+						href={`/resume.pdf`}
+						msg={"Download"}
+					/>
 					{RESUME_SPELLING}
 				</div>
 				{renderSections()}
