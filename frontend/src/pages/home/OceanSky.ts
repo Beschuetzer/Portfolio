@@ -175,30 +175,6 @@ const textsToUse = [
 		text: "to solve problems.",
 		spaceBefore: false,
 	},
-	// {
-	// 	text: "i recently changed my",
-	// 	spaceBefore: true,
-	// },
-	// {
-	// 	text: "life by deciding to",
-	// 	spaceBefore: false,
-	// },
-	// {
-	// 	text: "become a web developer.",
-	// 	spaceBefore: false,
-	// },
-	// {
-	// 	text: "i am excited",
-	// 	spaceBefore: true,
-	// },
-	// {
-	// 	text: "to show you what",
-	// 	spaceBefore: false,
-	// },
-	// {
-	// 	text: "i have built",
-	// 	spaceBefore: false,
-	// },
 	{
 		text: "This site highlights",
 		spaceBefore: true,
@@ -208,21 +184,9 @@ const textsToUse = [
 		spaceBefore: false,
 	},
 	{
-		text: "and my solutions to them",
+		text: "and my solutions to them.",
 		spaceBefore: false,
 	},
-	// {
-	// 	text: "Everything on this site",
-	// 	spaceBefore: true,
-	// },
-	// {
-	// 	text: "was built using 'hand-made'",
-	// 	spaceBefore: false,
-	// },
-	// {
-	// 	text: "components and SASS/CSS",
-	// 	spaceBefore: false,
-	// },
 	{
 		text: "i Look forward to",
 		spaceBefore: true,

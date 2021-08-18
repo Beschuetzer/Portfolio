@@ -99,7 +99,6 @@ export const changePage = (newUrl: string) => {
 };
 
 export const setBodyStyle = (currentUrl: string) => {
-	if (currentUrl === '/defaultsite') return;
 	const setBodyStyle = (page: string) => {
 		if (page === "") document.body.className = `${BODY_BACKGROUND_CLASSNAME} home-page`;
 		else {
@@ -118,6 +117,7 @@ export const setBodyStyle = (currentUrl: string) => {
 	const pageName = (currentUrl as any).slice(lastIndexOfSlash);
 	const temp = PAGE_NAMES.indexOf(pageName);
 
+	if (temp === -1) return;
 	let index = temp !== -1 ? temp : DEFAULT_PAGE_NAME_INDEX;
 	if (currentUrl === "/") index = 0;
 	setBodyStyle(PAGE_NAMES[index]);
