@@ -2722,6 +2722,80 @@ body {
     opacity: 0;
   }
 }
+.percent-bar__outer {
+  backface-visibility: hidden;
+  position: relative;
+  background-color: var(--color-primary-4);
+  height: 1.6rem;
+  transform: scale(0);
+  transform-origin: left;
+  transition: transform 1s cubic-bezier(0.68, -0.33, 0.32, 1.33);
+}
+@media only screen and (max-width: 35.0625em) {
+  .percent-bar__outer {
+    margin-left: 1.6rem;
+  }
+}
+.percent-bar__outer-left, .percent-bar__outer-center, .percent-bar__outer-right {
+  z-index: 10000;
+  position: absolute;
+  background-color: var(--color-primary-1);
+  width: 0.16rem;
+  height: 1.6rem;
+}
+.percent-bar__outer-left {
+  top: 0;
+  left: 0%;
+  transform: translate(-50%, 0%);
+}
+.percent-bar__outer-center {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+.percent-bar__outer-right {
+  bottom: 0;
+  right: 0%;
+  transform: translate(0%, 0%);
+}
+.percent-bar__outer .skills__labels {
+  opacity: 0;
+  display: grid;
+  transform: translate(0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 1;
+  height: 100%;
+  width: 100%;
+  padding: 0rem 0.4rem;
+  transition: opacity 0.5s ease 0.5s;
+}
+@media only screen and (max-width: 35.0625em) {
+  .percent-bar__outer .skills__labels:hover {
+    opacity: 0.5;
+  }
+}
+@media only screen and (max-width: 68.75em) {
+  .percent-bar__outer .skills__labels:hover + .percent-bar-inner {
+    transform: scaleY(calc(5 / 3));
+  }
+}
+.percent-bar__inner {
+  position: relative;
+  backface-visibility: hidden;
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(17, 17, 17, 0.15);
+  background-color: var(--color-primary-2);
+  height: 1.6rem;
+  opacity: 0;
+  border: 0.16rem solid var(--color-primary-4);
+  transition: opacity 2s ease 0.5s, transform 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+.percent-bar__inner:hover .skills__hours {
+  transform: translate(-50%, -50%) scaleY(calc(3 / 5));
+  opacity: 1;
+}
+
 .quote::after, .quote::before {
   position: absolute;
   font-size: 12.8rem;
@@ -2931,7 +3005,7 @@ body {
 .skills__section--open svg {
   transform: rotate(90deg);
 }
-.skills__section--open + .skills__section-content .skills__percent-inner {
+.skills__section--open + .skills__section-content .percent-bar__inner {
   opacity: 1;
 }
 .skills__section > *:nth-child(2n+2) {
@@ -3004,79 +3078,6 @@ body {
   transform: translateX(1.6rem);
   font-weight: 700;
   max-width: calc(100% - 1.6rem);
-}
-.skills__percent-outer {
-  backface-visibility: hidden;
-  position: relative;
-  background-color: var(--color-primary-4);
-  height: 1.6rem;
-  transform: scale(0);
-  transform-origin: left;
-  transition: transform 1s cubic-bezier(0.68, -0.33, 0.32, 1.33);
-}
-@media only screen and (max-width: 35.0625em) {
-  .skills__percent-outer {
-    margin-left: 1.6rem;
-  }
-}
-.skills__percent-outer-left, .skills__percent-outer-center, .skills__percent-outer-right {
-  z-index: 10000;
-  position: absolute;
-  background-color: var(--color-primary-1);
-  width: 0.16rem;
-  height: 1.6rem;
-}
-.skills__percent-outer-left {
-  top: 0;
-  left: 0%;
-  transform: translate(-50%, 0%);
-}
-.skills__percent-outer-center {
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0%);
-}
-.skills__percent-outer-right {
-  bottom: 0;
-  right: 0%;
-  transform: translate(0%, 0%);
-}
-.skills__percent-outer .skills__labels {
-  opacity: 0;
-  display: grid;
-  transform: translate(0);
-  position: absolute;
-  top: 0;
-  left: 0;
-  line-height: 1;
-  height: 100%;
-  width: 100%;
-  padding: 0rem 0.4rem;
-  transition: opacity 0.5s ease 0.5s;
-}
-@media only screen and (max-width: 35.0625em) {
-  .skills__percent-outer .skills__labels:hover {
-    opacity: 0.5;
-  }
-}
-@media only screen and (max-width: 68.75em) {
-  .skills__percent-outer .skills__labels:hover + .skills__percent-inner {
-    transform: scaleY(calc(5 / 3));
-  }
-}
-.skills__percent-inner {
-  position: relative;
-  backface-visibility: hidden;
-  box-shadow: 0 0.8rem 1.6rem 0 rgba(17, 17, 17, 0.15);
-  background-color: var(--color-primary-2);
-  height: 1.6rem;
-  opacity: 0;
-  border: 0.16rem solid var(--color-primary-4);
-  transition: opacity 2s ease 0.5s, transform 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
-}
-.skills__percent-inner:hover .skills__hours {
-  transform: translate(-50%, -50%) scaleY(calc(3 / 5));
-  opacity: 1;
 }
 .skills__hours {
   backface-visibility: hidden;

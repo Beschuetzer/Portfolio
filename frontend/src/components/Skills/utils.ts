@@ -1,3 +1,5 @@
+import { PERCENT_BAR_CLASSNAME, PERCENT_BAR_OUTER_CLASSNAME } from "../PercentBar";
+
 export interface Repository {
   [key: string]: any,
 }
@@ -21,7 +23,7 @@ export const toggleItem = (
   if (!clickedSection.nextSibling) return;
   if (clickedSection.parentNode?.querySelector(`.${SKILLS_SECTION_CLASSNAME}`)) return;
 
-  const items = (clickedSection.nextSibling as HTMLElement)?.querySelectorAll(`.${SKILLS_CLASSNAME}__percent-outer`);
+  const items = (clickedSection.nextSibling as HTMLElement)?.querySelectorAll(`.${PERCENT_BAR_OUTER_CLASSNAME}`);
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     setTimeout(() => {

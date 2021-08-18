@@ -1,7 +1,11 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import SkillsItemSectionLabels from "./Skills/SkillsItemSectionLabels";
-import { SkillsItemLabel, SKILLS_CLASSNAME } from "./Skills/utils";
+import { SkillsItemLabel } from "./Skills/utils";
+
+export const PERCENT_BAR_CLASSNAME = 'percent-bar'
+export const PERCENT_BAR_OUTER_CLASSNAME = `${PERCENT_BAR_CLASSNAME}__outer`;
+export const PERCENT_BAR_INNER_CLASSNAME = `${PERCENT_BAR_CLASSNAME}__inner`;
 
 export interface PercentBarProps {
   label: SkillsItemLabel;
@@ -15,9 +19,7 @@ const PercentBar: React.FC<PercentBarProps> = ({
   percent
 }) => {
 	const percentDiv = useRef<any>(null);
-
 	const [isDivSet, setIsDivSet] = useState(false);
-
 
   useEffect(() => {
 		percentDiv.current.style.width = `${percent}%`;
@@ -26,16 +28,16 @@ const PercentBar: React.FC<PercentBarProps> = ({
 
 
 	return (
-		<div className={`${SKILLS_CLASSNAME}__percent-outer`}>
+		<div className={`${PERCENT_BAR_OUTER_CLASSNAME}`}>
 			<SkillsItemSectionLabels label={label} />
-			<div ref={percentDiv} className={`${SKILLS_CLASSNAME}__percent-inner`}>
-				<div className={`${SKILLS_CLASSNAME}__hours`}>
+			<div ref={percentDiv} className={`${PERCENT_BAR_INNER_CLASSNAME}`}>
+				<div className={`${PERCENT_BAR_CLASSNAME}__hours`}>
 					{hours ? `~ ${hours} hours` : null}
 				</div>
 			</div>
-			<div className={`${SKILLS_CLASSNAME}__percent-outer-left`}></div>
-			<div className={`${SKILLS_CLASSNAME}__percent-outer-center`}></div>
-			<div className={`${SKILLS_CLASSNAME}__percent-outer-right`}></div>
+			<div className={`${PERCENT_BAR_OUTER_CLASSNAME}-left`}></div>
+			<div className={`${PERCENT_BAR_OUTER_CLASSNAME}-center`}></div>
+			<div className={`${PERCENT_BAR_OUTER_CLASSNAME}-right`}></div>
 		</div>
 	);
 };
