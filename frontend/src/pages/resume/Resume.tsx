@@ -4,7 +4,7 @@ import { connect, RootStateOrAny } from "react-redux";
 import Section from "../../components/Section";
 import Paragraph from "../../typography/Paragraph";
 import SkillsItemSection from "../../components/Skills/SkillsItemSection";
-import SkillsItemSectionLabels from "../../components/Skills/SkillsItemSectionLabels";
+import PercentBarLabels from "../../components/PercentBar/PercentBarLabels";
 import SkillsItem from "../../components/Skills/SkillsItem";
 import ReferenceItem from "./ReferenceItem";
 import EducationItem from "./EducationItem";
@@ -408,7 +408,7 @@ const Resume: React.FC<ResumeProps> = ({
 						{webDevSubSkillsLabels.map((subSkill: string, index: number) => {
 							return (
 								<SkillsItemSection key={index} title={subSkill}>
-									<SkillsItemSectionLabels label={skillsLabels.web} />
+									<PercentBarLabels label={skillsLabels.web} />
 									{(skills[skillsItemSectionLabels[0]][subSkill] as any).map(
 										(skill: any, index2: number) => {
 											return (
@@ -427,7 +427,7 @@ const Resume: React.FC<ResumeProps> = ({
 						})}
 					</SkillsItemSection>
 					<SkillsItemSection title={skillsItemSectionLabels[1]}>
-						<SkillsItemSectionLabels label={skillsLabels.it} />
+						<PercentBarLabels label={skillsLabels.it} />
 						{(skills[skillsItemSectionLabels[1]] as any).map(
 							(skill: Skill, index: number) => {
 								return (
@@ -443,7 +443,7 @@ const Resume: React.FC<ResumeProps> = ({
 						)}
 					</SkillsItemSection>
 					<SkillsItemSection title={skillsItemSectionLabels[2]}>
-						<SkillsItemSectionLabels label={skillsLabels.human} />
+						<PercentBarLabels label={skillsLabels.human} />
 						{(skills[skillsItemSectionLabels[2]] as any).map(
 							(skill: Skill, index: number) => {
 								return (
@@ -459,7 +459,7 @@ const Resume: React.FC<ResumeProps> = ({
 						)}
 					</SkillsItemSection>
 					<SkillsItemSection title={skillsItemSectionLabels[3]}>
-						<SkillsItemSectionLabels label={skillsLabels.personality} />
+						<PercentBarLabels label={skillsLabels.personality} />
 						{(skills[skillsItemSectionLabels[3]] as any).map(
 							(skill: Skill, index: number) => {
 								return (

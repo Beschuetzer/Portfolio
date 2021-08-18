@@ -3,7 +3,7 @@ import {
 	CSharpSection,
 	BIG_FIVE_PAGE_NAME,
 } from "../../../../components/constants";
-import PercentBar, { PercentBarLabel } from "../../../../components/PercentBar";
+import PercentBar, { PercentBarLabel } from "../../../../components/PercentBar/PercentBar";
 import CSharpCardSection from "../CSharpCardSection";
 import CSharpLayout from "../CSharpLayout";
 import { C_SHARP_CLASSNAME } from "../utils";

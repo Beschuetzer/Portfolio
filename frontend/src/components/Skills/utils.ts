@@ -1,4 +1,4 @@
-import { PERCENT_BAR_OUTER_CLASSNAME } from "../PercentBar";
+import { PERCENT_BAR_OUTER_CLASSNAME } from "../PercentBar/PercentBar";
 
 export interface Repository {
   [key: string]: any,

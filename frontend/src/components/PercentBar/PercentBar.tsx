@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import SkillsItemSectionLabels from "./Skills/SkillsItemSectionLabels";
+import PercentBarLabels from "./PercentBarLabels";
 
 export const PERCENT_BAR_CLASSNAME = 'percent-bar'
 export const PERCENT_BAR_OUTER_CLASSNAME = `${PERCENT_BAR_CLASSNAME}__outer`;
@@ -33,7 +33,7 @@ const PercentBar: React.FC<PercentBarProps> = ({
 
 	return (
 		<div className={`${PERCENT_BAR_OUTER_CLASSNAME}`}>
-			<SkillsItemSectionLabels label={label} />
+			<PercentBarLabels label={label} />
 			<div ref={percentDiv} className={`${PERCENT_BAR_INNER_CLASSNAME}`}>
 				<div className={`${PERCENT_BAR_CLASSNAME}__value`}>
 					{value ? `${value}` : null}
