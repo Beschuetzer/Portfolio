@@ -175,6 +175,7 @@ const handleSound = (sounds: LoadedSounds, e: MouseEvent) => {
 
 	if (!isActive && isMenu) if (sounds?.loaded?.play) sounds.loaded.play("siteNavOpen");
 	else if ((!isActive && !isNavbar) || (isActive && isMenu))
+	console.log('sounds.loaded =', sounds.loaded);
 		if (sounds?.loaded?.play) sounds.loaded.play("siteNavClose");
 };
 

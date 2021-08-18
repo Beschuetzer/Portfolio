@@ -377,6 +377,7 @@
 			}
 
 			&:hover {
+				animation: none;
 				color: rgba(var(--color-primary-4-rgb), 1);
 			}
 		}

@@ -4731,6 +4731,7 @@ body {
   }
 }
 .home__main-link:hover {
+  animation: none;
   color: rgba(var(--color-primary-4-rgb), 1);
 }
 .home__content-header {
