@@ -1,9 +1,8 @@
 import React from "react";
-import { useRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { clickSkill } from "../../actions";
 import EmbeddedLink from "../EmbeddedLink";
-import SkillsItemSectionLabels from "./SkillsItemSectionLabels";
+import PercentBar from "../PercentBar";
 import { SkillsItemLabel, SKILLS_CLASSNAME } from "./utils";
 
 interface SkillsItemProps {
@@ -26,8 +25,6 @@ const SkillsItem: React.FC<SkillsItemProps> = ({
 	isLocal = false,
 }) => {
 	const skillsPopupDiv = document.querySelector("#skillsPopup");
-	const percentDiv = useRef<any>(null);
-	const [isDivSet, setIsDivSet] = useState(false);
 
 	const onParagraphClick = (e: MouseEvent) => {
 		if (
@@ -62,10 +59,7 @@ const SkillsItem: React.FC<SkillsItemProps> = ({
 		return toReturn;
 	}
 
-	useEffect(() => {
-		percentDiv.current.style.width = `${percent}%`;
-		setIsDivSet(true);
-	}, [percentDiv, percent, isDivSet]);
+	
 
 	return (
 		<React.Fragment>
@@ -75,17 +69,8 @@ const SkillsItem: React.FC<SkillsItemProps> = ({
 				</svg>
 				{renderHref()}
 			</li>
-			<div className={`${SKILLS_CLASSNAME}__percent-outer`}>
-				<SkillsItemSectionLabels label={label} />
-				<div ref={percentDiv} className={`${SKILLS_CLASSNAME}__percent-inner`}>
-					<div className={`${SKILLS_CLASSNAME}__hours`}>
-						{hours ? `~ ${hours} hours` : null}
-					</div>
-				</div>
-				<div className={`${SKILLS_CLASSNAME}__percent-outer-left`}></div>
-				<div className={`${SKILLS_CLASSNAME}__percent-outer-center`}></div>
-				<div className={`${SKILLS_CLASSNAME}__percent-outer-right`}></div>
-			</div>
+			<PercentBar hours={hours} label={label} percent={percent}/>
+			
 		</React.Fragment>
 	);
 };

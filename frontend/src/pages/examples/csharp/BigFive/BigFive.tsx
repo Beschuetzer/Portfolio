@@ -32,7 +32,8 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection>
 
 				<CSharpCardSection title="">
-				Below you will find my rating for each of the five personality traits as well as a description of what they mean.
+					Below you will find my rating for each of the five personality traits
+					as well as a description of what they mean.
 				</CSharpCardSection>
 			</React.Fragment>,
 		],
@@ -77,7 +78,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<BigFiveItem
-			benefits={[
+				benefits={[
 					"I am accommodating",
 					"I am attuned to others",
 					"I look for a 'win-win' result",
@@ -109,7 +110,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<BigFiveItem
-			benefits={[
+				benefits={[
 					"I bring experience to strategy",
 					"I am a flexible problem solver",
 					"I am a pragmatic thinker",
@@ -142,7 +143,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<BigFiveItem
-			benefits={[
+				benefits={[
 					"I am aware of others’ emotional states",
 					"I cope with most things",
 					"I am even tempered",
@@ -176,7 +177,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<BigFiveItem
-			benefits={[
+				benefits={[
 					"I am contemplative",
 					"I am dispassionate",
 					"I excel at independent work",
@@ -238,7 +239,10 @@ interface PersonalityProps {}
 
 const BigFive: React.FC<PersonalityProps> = () => {
 	return (
-		<CSharpLayout sections={sections} headerSideContents={values} pageName={BIG_FIVE_PAGE_NAME}>
+		<CSharpLayout
+			sections={sections}
+			headerSideContents={values}
+			pageName={BIG_FIVE_PAGE_NAME}>
 			{" "}
 		</CSharpLayout>
 	);
