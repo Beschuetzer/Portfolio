@@ -99,6 +99,7 @@ export const changePage = (newUrl: string) => {
 };
 
 export const setBodyStyle = (currentUrl: string) => {
+	if (currentUrl === '/defaultsite') return;
 	const setBodyStyle = (page: string) => {
 		if (page === "") document.body.className = `${BODY_BACKGROUND_CLASSNAME} home-page`;
 		else {
