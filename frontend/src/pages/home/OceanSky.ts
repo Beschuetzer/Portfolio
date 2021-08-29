@@ -212,8 +212,8 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 const animationFPS = 120.0;
 export let timeElapsedInMS = 0;
 export const introPanDuration = 5000;
-// const lineScrollDuration = 800;
-const lineScrollDuration = 0;
+const lineScrollDuration = 800;
+// const lineScrollDuration = 0;
 export const introPanDurationMobile = linesOfText * lineScrollDuration;
 ;
 export const introPanStartWait = isMobile
