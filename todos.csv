@@ -91,3 +91,7 @@ Of course, there can be variation, but the most important thing is to try to ide
 -replay page carousel doesn't have z-index fix (check others)
 
 -Add volume slider to AudioPLayer
+
+-go through each page and work on accessability
+
+-fix navbar menu corner transition on opening

@@ -169,6 +169,8 @@ export const MAIL_TO_STRING =
 	"mailto:" + EMAIL + "&subject=" + SUBJECT + "&body=" + BODY;
 export const SLIDING_CLASSNAME = "sliding";
 export const FILL_RED_CLASSNAME = "fill-red";
+
+export const UNCLICKABLE_CLASSNAME = "unclickable";
 export const TRANSITION_NONE_CLASSNAME = "transition-none";
 export const TRANSFORM_NONE_CLASSNAME = "transform-none";
 export const Z_INDEX_HIGHEST_CLASSNAME = "z-index-highest";

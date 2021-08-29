@@ -577,6 +577,10 @@ body {
   justify-content: center !important;
 }
 
+.unclickable {
+  pointer-events: none !important;
+}
+
 .transparent {
   background-color: transparent !important;
   background-image: none !important;

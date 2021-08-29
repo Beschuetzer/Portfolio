@@ -52,7 +52,6 @@ import {
 	RESUME_PAGE_NAME,
 	RESUME_URL,
 	LIVE_REPLAYS_URL,
-	OVERFLOW_HIDDEN_CLASSNAME,
 } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";

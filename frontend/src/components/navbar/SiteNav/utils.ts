@@ -12,6 +12,7 @@ import {
 	DEFAULT_PAGE_NAME_INDEX,
 	PAGE_NAV_CLASSNAME,
 	PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME,
+	UNCLICKABLE_CLASSNAME,
 } from "../../constants";
 import {
 	PAGE_NAV_MIN_WIDTH_DEFAULT,
@@ -24,7 +25,9 @@ import {
 	NAVBAR_IS_ANIMATING_CLASSNAME,
 	NAVBAR_CONTENT_CLASSNAME,
 	NAVBAR_CLASSNAME,
+	NAVBAR_Z_INDEX_CLASSNAME,
 } from "../utils";
+import { SITE_NAV_CLASSNAME } from "./SiteNav";
 
 export const HEADER_ID = "#header";
 export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
@@ -35,6 +38,7 @@ const BODY_BACKGROUND_CLASSNAME = "body-background";
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
 let zIndexHighestTimeoutId: any;
+let resetUnclickableTimeoutId: any;
 
 export type NavRef = RefObject<HTMLElement>;
 
@@ -84,7 +88,8 @@ export const startAnimating = (
 		}
 
 		navBar?.classList?.remove(OVERFLOW_HIDDEN_CLASSNAME);
-		// if (waitDurationFactor === 2)
+		// console.log('waitDurationFactor =', waitDurationFactor);
+		// if (waitDurationFactor !== 0)
 		// 	navBar?.classList?.remove(OVERFLOW_HIDDEN_CLASSNAME);
 		// else {
 		// 	setTimeout(() => {
@@ -221,12 +226,24 @@ export const handleNavClick = (
 	setIsAnimating: (value: boolean) => void,
 	e: MouseEvent,
 ) => {
-	clearTimeout(zIndexHighestTimeoutId);
 	const navBar = navRef.current;
-	if (!navBar) return;
+
+	if (!navBar || navBar?.classList.contains(UNCLICKABLE_CLASSNAME)) { 
+		// clearTimeout(resetUnclickableTimeoutId);
+		navBar?.classList.remove(UNCLICKABLE_CLASSNAME);
+		return;
+	}
+
+	clearTimeout(zIndexHighestTimeoutId);
+	clearTimeout(resetUnclickableTimeoutId);
 	handleSound(sounds, e);
 
 	navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
+	navBar.classList.add(UNCLICKABLE_CLASSNAME);
+
+	resetUnclickableTimeoutId = setTimeout(() => {
+		navBar.classList.remove(UNCLICKABLE_CLASSNAME);
+	}, ANIMATION_DURATION * 2);
 
 	let isChildOfNavBar = (e.currentTarget as HTMLElement)?.classList.contains(
 		NAVBAR_CLASSNAME,
@@ -239,6 +256,9 @@ export const handleNavClick = (
 		);
 
 	if (!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) && isChildOfNavBar) {
+		// const header = document.querySelector(`${HEADER_ID}`) as HTMLElement;
+		// header.className = "header z-index-navbar";
+
 		navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 		navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 		document.querySelector(HEADER_ID)!.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
@@ -249,7 +269,6 @@ export const handleNavClick = (
 
 		zIndexHighestTimeoutId = setTimeout(() => {
 			const header = document.querySelector(HEADER_ID) as HTMLElement;
-
 			header.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
 		}, ANIMATION_DURATION);
 
