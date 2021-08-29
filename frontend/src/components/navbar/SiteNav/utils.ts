@@ -25,9 +25,7 @@ import {
 	NAVBAR_IS_ANIMATING_CLASSNAME,
 	NAVBAR_CONTENT_CLASSNAME,
 	NAVBAR_CLASSNAME,
-	NAVBAR_Z_INDEX_CLASSNAME,
 } from "../utils";
-import { SITE_NAV_CLASSNAME } from "./SiteNav";
 
 export const HEADER_ID = "#header";
 export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
@@ -36,9 +34,13 @@ export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 
 const BODY_BACKGROUND_CLASSNAME = "body-background";
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
+const SPAMMING_INTERVAL_THRESHOLD = ANIMATION_DURATION; //anything subsequent open or close click less than this amount is considered spam
 let resetAnimatingId: any;
 let zIndexHighestTimeoutId: any;
 let resetUnclickableTimeoutId: any;
+let checkNavbarClassnameIsResetId: any;
+let lastNavbarOpenClickTime: number;
+let lastNavbarCloseClickTime: number;
 
 export type NavRef = RefObject<HTMLElement>;
 
@@ -227,13 +229,28 @@ export const handleNavClick = (
 	e: MouseEvent,
 ) => {
 	const navBar = navRef.current;
+	const now = Date.now();
+	const isSpamming =
+		Math.abs(lastNavbarCloseClickTime - now) < SPAMMING_INTERVAL_THRESHOLD ||
+		Math.abs(lastNavbarOpenClickTime - now) < SPAMMING_INTERVAL_THRESHOLD;
+	const isOpening =
+		navBar?.classList.contains(UNCLICKABLE_CLASSNAME) &&
+		!navBar?.classList.contains(NAVBAR_DONE_CLASSNAME);
 
-	if (!navBar || navBar?.classList.contains(UNCLICKABLE_CLASSNAME)) { 
-		// clearTimeout(resetUnclickableTimeoutId);
+	console.log("isSpamming =", isSpamming);
+	console.log("lastNavbarCloseClickTime =", lastNavbarCloseClickTime);
+	console.log("lastNavbarOpenClickTime =", lastNavbarOpenClickTime);
+	console.log("now =", now);
+
+	if (!navBar || (isSpamming && isOpening) || isOpening) {
+		clearInterval(checkNavbarClassnameIsResetId);
+		lastNavbarOpenClickTime = Date.now();
+		lastNavbarCloseClickTime = Date.now();
 		navBar?.classList.remove(UNCLICKABLE_CLASSNAME);
 		return;
 	}
 
+	clearInterval(checkNavbarClassnameIsResetId);
 	clearTimeout(zIndexHighestTimeoutId);
 	clearTimeout(resetUnclickableTimeoutId);
 	handleSound(sounds, e);
@@ -243,7 +260,7 @@ export const handleNavClick = (
 
 	resetUnclickableTimeoutId = setTimeout(() => {
 		navBar.classList.remove(UNCLICKABLE_CLASSNAME);
-	}, ANIMATION_DURATION * 2);
+	}, ANIMATION_DURATION * 1);
 
 	let isChildOfNavBar = (e.currentTarget as HTMLElement)?.classList.contains(
 		NAVBAR_CLASSNAME,
@@ -259,11 +276,18 @@ export const handleNavClick = (
 		// const header = document.querySelector(`${HEADER_ID}`) as HTMLElement;
 		// header.className = "header z-index-navbar";
 
-		navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
-		navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
-		document.querySelector(HEADER_ID)!.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
-		setIsAnimating(true);
+		if (navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME)) {
+			checkNavbarClassnameIsResetId = setInterval(() => {
+				console.log('navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME) =', navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME));
+				if (!navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME)) {
+					openNavBar(navBar, setIsAnimating);
+				}
+			}, 100);
+		} else {
+			openNavBar(navBar, setIsAnimating);
+		}
 	} else {
+		lastNavbarCloseClickTime = Date.now();
 		navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
 		navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 
@@ -275,6 +299,18 @@ export const handleNavClick = (
 		setIsAnimating(false);
 	}
 };
+
+export function openNavBar(
+	navBar: HTMLElement,
+	setIsAnimating: (value: boolean) => void,
+) {
+	if (!navBar) return;
+	lastNavbarOpenClickTime = Date.now();
+	navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
+	navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
+	document.querySelector(HEADER_ID)!.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
+	setIsAnimating(true);
+}
 
 export function rgbToHex(r: number, g: number, b: number) {
 	return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);

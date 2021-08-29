@@ -18,8 +18,7 @@ import { setHeaderHeight, setIsAnimating } from "../../../actions";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_CLASSNAME,
-	NAVBAR_DONE_CLASSNAME,
-	NAVBAR_Z_INDEX_CLASSNAME,
+	NAVBAR_DEFAULT_CLASSNAME,
 	setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue,
 } from "../utils";
 import {
@@ -174,7 +173,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	useEffect(() => {
 		const navRefEl = navRef.current as HTMLElement;
-		let waitDurationFactor = 1.33;
+		let waitDurationFactor = 1.1;
 		if (navRefEl?.classList.contains(NAVBAR_ACTIVE_CLASSNAME)) waitDurationFactor = 0;
 		startAnimating(navRef, isAnimating, waitDurationFactor);
 
@@ -186,7 +185,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	return ReactDOM.createPortal(
 		<div
 			ref={navRef as any}
-			className={`${NAVBAR_CLASSNAME} ${NAVBAR_Z_INDEX_CLASSNAME}`}
+			className={NAVBAR_DEFAULT_CLASSNAME}
 			onClick={(e: any) => onNavClick(e)}>
 			<div className={`${NAVBAR_CLASSNAME}__button`}>
 				<div className={`${NAVBAR_CLASSNAME}__menu`}>

@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import { NAVBAR_CLASSNAME, NAVBAR_Z_INDEX_CLASSNAME } from "./navbar/utils";
 
 //#region note: Add page names here
 export const ABOUT_PAGE_NAME = "about";
@@ -186,7 +187,6 @@ export const SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME = "--site-nav-button-width";
 export const NO_MARGIN_CLASSNAME = "margin-0";
 export const PAGE_NAV_CLASSNAME = "page-nav";
 export const HOME_CANVAS_CLASSNAME = "home__canvas";
-
 
 //determines which class name gets applied to body by default (index of PAGE_NAMES);
 //only applies if you forget to add page name to PAGE_NAMES

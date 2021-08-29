@@ -95,3 +95,6 @@ Of course, there can be variation, but the most important thing is to try to ide
 -go through each page and work on accessability
 
 -fix navbar menu corner transition on opening
+-keep track of the time since last open click and last close. if difference is less than .5s it is spamming
+
+-add an interval that checks whether the navbar classnaame is reset to default every few 100ms in the open logic route and reset on new clicks
