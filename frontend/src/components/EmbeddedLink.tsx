@@ -36,9 +36,10 @@ const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 	}
 
 	const renderContent = () => {
+		const ariaLabel = `link to ${children}`
 		if (isLocal) {
 			return (
-				<Link rel={openInNewTab ? "noreferrer" : undefined} target={openInNewTab ? "_blank" : undefined} to={href} className={className} onClick={(e: any) => scrollToLink(e)}>
+				<Link aria-label={ariaLabel} rel={openInNewTab ? "noreferrer" : undefined} target={openInNewTab ? "_blank" : undefined} to={href} className={className} onClick={(e: any) => scrollToLink(e)}>
 					{children}
 				</Link>
 			);
