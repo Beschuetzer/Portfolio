@@ -133,7 +133,8 @@
 		z-index: 10;
 		visibility: hidden;
 		width: 100%;
-		transform: translateX(-125%);
+		transform-origin: left;
+		transform: scaleX(0) translateX(0);
 		transition: visibility $animation-navbar, transform $animation-navbar;
 
 		@include respond(nav-switch) {
@@ -495,7 +496,7 @@
 		& .navbar__content {
 			visibility: visible;
 			opacity: 1;
-			transform: translateX(0%);
+			transform: scaleX(1);
 
 			@include respond(nav-switch) {
 				width: $header-width-nav-switch;
@@ -561,11 +562,15 @@
 	}
 
 	//Handling Bug where leaving button after clicking causes overflow hidden to change
-	&.navbar--isAnimating * {
-		pointer-events: none;
-		box-shadow: none;
+	&.navbar--isAnimating {
+		& .navbar__content {
+			transform: scaleX(1) translateX(-100%);
+		}
+		* {
+			pointer-events: none;
+			box-shadow: none;
+		}
 	}
-
 	& * {
 		-webkit-user-drag: none;
 		-khtml-user-drag: none;
@@ -634,9 +639,8 @@
 		opacity: 0;
 		transition: top $animation-duration * 1
 				$animation-easing-standard-easeInOutBack-smaller,
-			transform $animation-duration * 1 $animation-easing-standard
-			background $animation-duration * 1 $animation-easing-standard
-			;
+			transform $animation-duration * 1 $animation-easing-standard background
+				$animation-duration * 1 $animation-easing-standard;
 
 		@include respond(nav-switch) {
 			opacity: 1;
@@ -666,7 +670,6 @@
 				& + .header {
 					transform: translateY(calc(var(--header-toggler-height) * -1));
 				}
-
 			}
 			&:hover {
 				background-color: var(--color-primary-4);

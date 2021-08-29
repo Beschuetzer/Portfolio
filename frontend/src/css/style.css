@@ -875,7 +875,8 @@ body {
   z-index: 10;
   visibility: hidden;
   width: 100%;
-  transform: translateX(-125%);
+  transform-origin: left;
+  transform: scaleX(0) translateX(0);
   transition: visibility 0.5s ease, transform 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
@@ -1164,7 +1165,7 @@ body {
 .navbar.navbar--active .navbar__content {
   visibility: visible;
   opacity: 1;
-  transform: translateX(0%);
+  transform: scaleX(1);
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__content {
@@ -1212,6 +1213,9 @@ body {
   visibility: visible;
   transition: filter 0.5s ease;
   backdrop-filter: blur(0.8rem) brightness(0.75) drop-shadow(0px 1.6rem 3.2rem var(--color-grey-80));
+}
+.navbar.navbar--isAnimating .navbar__content {
+  transform: scaleX(1) translateX(-100%);
 }
 .navbar.navbar--isAnimating * {
   pointer-events: none;

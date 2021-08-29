@@ -16,7 +16,9 @@ import replayImage from "../../../imgs/site-nav-replay.jpg";
 
 import { setHeaderHeight, setIsAnimating } from "../../../actions";
 import {
+	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_CLASSNAME,
+	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_Z_INDEX_CLASSNAME,
 	setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue,
 } from "../utils";
@@ -50,6 +52,7 @@ import {
 	RESUME_PAGE_NAME,
 	RESUME_URL,
 	LIVE_REPLAYS_URL,
+	OVERFLOW_HIDDEN_CLASSNAME,
 } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
@@ -171,7 +174,10 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	}, [setHeaderHeight]);
 
 	useEffect(() => {
-		startAnimating(navRef, isAnimating);
+		const navRefEl = navRef.current as HTMLElement;
+		let waitDurationFactor = 1.33;
+		if (navRefEl?.classList.contains(NAVBAR_ACTIVE_CLASSNAME)) waitDurationFactor = 0;
+		startAnimating(navRef, isAnimating, waitDurationFactor);
 
 		return () => {
 			clearTimeout(getResetAnimatingId());

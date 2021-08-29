@@ -32,7 +32,6 @@ export const HEADER_TOGGLER_ACTIVE_CLASSNAME = `${HEADER_TOGGLER_CLASSNAME}--act
 export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 
 const BODY_BACKGROUND_CLASSNAME = "body-background";
-const SET_ANIMATING_DONE_WAIT_FACTOR = 1.66;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
 let zIndexHighestTimeoutId: any;
@@ -68,19 +67,31 @@ export const destroy = (navRef: NavRef) => {
 	document.body.removeEventListener("click", onBodyClick.bind(null, navRef));
 };
 
-export const startAnimating = (navRef: NavRef, isAnimating: boolean) => {
+export const startAnimating = (
+	navRef: NavRef,
+	isAnimating: boolean,
+	waitDurationFactor: number,
+) => {
 	const navBar = navRef.current as any;
 	navBar?.classList?.add(NAVBAR_IS_ANIMATING_CLASSNAME);
 
 	resetAnimatingId = setTimeout(() => {
 		navBar?.classList?.remove(NAVBAR_IS_ANIMATING_CLASSNAME);
-		navBar?.classList?.remove(OVERFLOW_HIDDEN_CLASSNAME);
 		if (isAnimating && navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME)) {
 			navBar.classList?.add(NAVBAR_DONE_CLASSNAME);
 		} else {
 			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 		}
-	}, ANIMATION_DURATION * SET_ANIMATING_DONE_WAIT_FACTOR);
+
+		navBar?.classList?.remove(OVERFLOW_HIDDEN_CLASSNAME);
+		// if (waitDurationFactor === 2)
+		// 	navBar?.classList?.remove(OVERFLOW_HIDDEN_CLASSNAME);
+		// else {
+		// 	setTimeout(() => {
+		// 		navBar?.classList?.remove(OVERFLOW_HIDDEN_CLASSNAME);
+		// 	}, ANIMATION_DURATION);
+		// }
+	}, ANIMATION_DURATION * waitDurationFactor);
 };
 
 export const getResetAnimatingId = () => {
@@ -216,7 +227,6 @@ export const handleNavClick = (
 	handleSound(sounds, e);
 
 	navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
-
 
 	let isChildOfNavBar = (e.currentTarget as HTMLElement)?.classList.contains(
 		NAVBAR_CLASSNAME,
