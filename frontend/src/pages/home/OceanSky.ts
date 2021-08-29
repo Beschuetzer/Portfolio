@@ -195,16 +195,6 @@ const textsToUse = [
 		text: "hearing what you think!",
 		spaceBefore: false,
 	},
-
-	// {
-	// 	text: "React, Redux, custom SASS/CSS,",
-	// spaceBefore: true,
-
-	// },
-	// {
-	// 	text: "Express, and ThreeJS",
-	// spaceBefore: false,
-	// },
 ];
 
 let textData: TextData[] = generateTextList(textsToUse);

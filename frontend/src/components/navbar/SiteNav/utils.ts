@@ -13,7 +13,11 @@ import {
 	PAGE_NAV_CLASSNAME,
 	PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME,
 } from "../../constants";
-import { PAGE_NAV_MIN_WIDTH_DEFAULT, PAGE_NAV_MIN_WIDTH_THRESHOLD, setPageNavMinWidth } from "../PageNav/utils";
+import {
+	PAGE_NAV_MIN_WIDTH_DEFAULT,
+	PAGE_NAV_MIN_WIDTH_THRESHOLD,
+	setPageNavMinWidth,
+} from "../PageNav/utils";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
@@ -28,7 +32,7 @@ export const HEADER_TOGGLER_ACTIVE_CLASSNAME = `${HEADER_TOGGLER_CLASSNAME}--act
 export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 
 const BODY_BACKGROUND_CLASSNAME = "body-background";
-const SET_ANIMATING_DONE_WAIT_FACTOR = 1.33;
+const SET_ANIMATING_DONE_WAIT_FACTOR = 1.66;
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 let resetAnimatingId: any;
 let zIndexHighestTimeoutId: any;
@@ -100,7 +104,8 @@ export const changePage = (newUrl: string) => {
 
 export const setBodyStyle = (currentUrl: string) => {
 	const setBodyStyle = (page: string) => {
-		if (page === "") document.body.className = `${BODY_BACKGROUND_CLASSNAME} home-page`;
+		if (page === "")
+			document.body.className = `${BODY_BACKGROUND_CLASSNAME} home-page`;
 		else {
 			document.body.className = `${BODY_BACKGROUND_CLASSNAME} ${page.slice(
 				1,
@@ -132,10 +137,13 @@ export const setBodyStyle = (currentUrl: string) => {
 		const targetValue = docStyle.getPropertyValue(colorVarTarget);
 		document.documentElement.style.setProperty(colorVarToChange, targetValue);
 
-		const colorRGBTarget = colorVarTarget + '-rgb';
-		if (colorVarToChange) colorVarToChange += '-rgb';
+		const colorRGBTarget = colorVarTarget + "-rgb";
+		if (colorVarToChange) colorVarToChange += "-rgb";
 		const targetValueRGB = docStyle.getPropertyValue(colorRGBTarget);
-		document.documentElement.style.setProperty(colorVarToChange, targetValueRGB);
+		document.documentElement.style.setProperty(
+			colorVarToChange,
+			targetValueRGB,
+		);
 	}
 };
 
@@ -174,10 +182,11 @@ const handleSound = (sounds: LoadedSounds, e: MouseEvent) => {
 		NAVBAR_CLASSNAME,
 	);
 
-	if (!isActive && isMenu) if (sounds?.loaded?.play) sounds.loaded.play("siteNavOpen");
-	else if ((!isActive && !isNavbar) || (isActive && isMenu))
-	console.log('sounds.loaded =', sounds.loaded);
-		if (sounds?.loaded?.play) sounds.loaded.play("siteNavClose");
+	if (!isActive && isMenu)
+		if (sounds?.loaded?.play) sounds.loaded.play("siteNavOpen");
+		else if ((!isActive && !isNavbar) || (isActive && isMenu))
+			console.log("sounds.loaded =", sounds.loaded);
+	if (sounds?.loaded?.play) sounds.loaded.play("siteNavClose");
 };
 
 export const handleMouseEnter = (navRef: NavRef) => {
@@ -206,14 +215,18 @@ export const handleNavClick = (
 	if (!navBar) return;
 	handleSound(sounds, e);
 
-	let isChildOfNavBar = ((e.target as HTMLElement)?.classList.contains(NAVBAR_CLASSNAME))
-	if (!isChildOfNavBar) isChildOfNavBar =	checkForParentOfType(
-		e.target as HTMLElement,
-		"nav",
+	navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
+
+
+	let isChildOfNavBar = (e.currentTarget as HTMLElement)?.classList.contains(
 		NAVBAR_CLASSNAME,
 	);
-	
-	if (isChildOfNavBar) navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
+	if (!isChildOfNavBar)
+		isChildOfNavBar = checkForParentOfType(
+			e.target as HTMLElement,
+			"nav",
+			NAVBAR_CLASSNAME,
+		);
 
 	if (!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) && isChildOfNavBar) {
 		navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
@@ -225,9 +238,9 @@ export const handleNavClick = (
 		navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
 
 		zIndexHighestTimeoutId = setTimeout(() => {
-			document
-				.querySelector(HEADER_ID)!
-				.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
+			const header = document.querySelector(HEADER_ID) as HTMLElement;
+
+			header.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
 		}, ANIMATION_DURATION);
 
 		setIsAnimating(false);
@@ -255,6 +268,6 @@ export function resetPageNavMinWidth(viewPortWidth: number) {
 		const newValue = `${PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${PAGE_NAV_MIN_WIDTH_DEFAULT}`;
 		document.documentElement.style.cssText += newValue;
 	} else if (viewPortWidth >= PAGE_NAV_MIN_WIDTH_THRESHOLD) {
-		setPageNavMinWidth(document.querySelector(`.${PAGE_NAV_CLASSNAME}` as any))
+		setPageNavMinWidth(document.querySelector(`.${PAGE_NAV_CLASSNAME}` as any));
 	}
 }

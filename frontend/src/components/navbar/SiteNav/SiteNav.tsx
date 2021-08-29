@@ -50,8 +50,6 @@ import {
 	RESUME_PAGE_NAME,
 	RESUME_URL,
 	LIVE_REPLAYS_URL,
-	SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME,
-	ANIMATION_DURATION,
 } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
@@ -181,8 +179,8 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	}, [isAnimating]);
 
 	return ReactDOM.createPortal(
-		<nav
-			ref={navRef}
+		<div
+			ref={navRef as any}
 			className={`${NAVBAR_CLASSNAME} ${NAVBAR_Z_INDEX_CLASSNAME}`}
 			onClick={(e: any) => onNavClick(e)}>
 			<div className={`${NAVBAR_CLASSNAME}__button`}>
@@ -275,7 +273,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			<div
 				onClick={(e: any) => onNavClick(e)}
 				className={`${NAVBAR_CLASSNAME}__background`}></div>
-		</nav>,
+		</div>,
 		document.querySelector(".site-nav")!,
 	);
 };
