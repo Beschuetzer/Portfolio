@@ -12,6 +12,9 @@ import EmbeddedLink from "../../components/EmbeddedLink";
 import useClasslistAdder, { ClasslistAdder } from "./useClasslistAdder";
 import useSky from "./useSky";
 
+const EMBODIMENT_STRING =
+	"integrity, determination, learning, hard work, motivation, and communication";
+
 let quoteResult: Quote;
 getRandomQuote().then((response) => {
 	quoteResult = response;
@@ -56,114 +59,125 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 		const author = quoteResult ? `${quoteResult.author} ` : null;
 
 		return (
-			<article className="home__quote">
-				<span className="home__quote-content">
-					&lsquo;{content}&rsquo; &nbsp; 
-					<div className="home__quote-author">&#8212; &nbsp; {author} </div>
-				</span>
-			</article>
+			<blockquote className="home__quote">
+				<q className="home__quote-content">
+					{/* &lsquo;{content}&rsquo; &nbsp;  */}
+					{content}
+				</q>
+				<cite className="home__quote-author">
+					&#8212;{author}{" "}
+				</cite>
+			</blockquote>
 		);
 	}
 
 	return (
 		<React.Fragment>
-			<section className="home">
-				<article className="home__name">
-					<h3 className="home__name-first">&nbsp;Adam&nbsp;</h3>
-					<h3 className="home__name-last">&nbsp;Major&nbsp;</h3>
-					<h5 className="home__third-word">embodies</h5>
-				</article>
-				<div className="home__main">
-					<article className="home__main-bottom">
-						This site was created with React, Redux, Express, ThreeJS, and
-						custom SASS/CSS.
-					</article>
+			{/* <section className="home"> */}
+			<header
+				aria-label={`adam major embodies ${EMBODIMENT_STRING}`}
+				className="home__name">
+				<span aria-hidden="true" className="home__name-first">
+					&nbsp;Adam&nbsp;
+				</span>
+				<span aria-hidden="true" className="home__name-last">
+					&nbsp;Major&nbsp;
+				</span>
+				<span aria-hidden="true" className="home__third-word">
+					embodies
+				</span>
+			</header>
+			<div aria-hidden="true" className="home__main">
+				<section className="home__main-bottom">
+					This site was created with React, Redux, Express, ThreeJS, and custom
+					SASS/CSS.
+				</section>
 
-					<article className="home__main-left">
-						<div className="home__main-left-content">
-							<span className="home__content-header">Explore: </span>
-							<br></br>
-							<EmbeddedLink
-								addSpaces={false}
-								className="home__main-link"
-								href={BRIDGE_URL}
-								openInNewTab={false}
-								isLocal={true}>
-								Multiplayer Bridge
-							</EmbeddedLink>
-							<br></br>
-							<EmbeddedLink
-								addSpaces={false}
-								className="home__main-link"
-								href={REPLAY_VIEWER_URL}
-								openInNewTab={false}
-								isLocal={true}>
-								Replay Viewer
-							</EmbeddedLink>
-						</div>
-					</article>
+				<section className="home__main-left">
+					<div className="home__main-left-content">
+						<span className="home__content-header">Explore: </span>
+						<br></br>
+						<EmbeddedLink
+							addSpaces={false}
+							className="home__main-link"
+							href={BRIDGE_URL}
+							openInNewTab={false}
+							isLocal={true}>
+							Multiplayer Bridge
+						</EmbeddedLink>
+						<br></br>
+						<EmbeddedLink
+							addSpaces={false}
+							className="home__main-link"
+							href={REPLAY_VIEWER_URL}
+							openInNewTab={false}
+							isLocal={true}>
+							Replay Viewer
+						</EmbeddedLink>
+					</div>
+				</section>
 
-					<article className="home__main-right">
-						<div className="home__main-right-content">
-							<span className="home__content-header">Experience: </span>
-							<br></br>
-							<EmbeddedLink
-								addSpaces={false}
-								className="home__main-link"
-								openInNewTab={false}
-								isLocal={true}
-								href={`${RESUME_URL}#work-history`}>
-								Work History
-							</EmbeddedLink>
-							<br></br>
-							<EmbeddedLink
-								addSpaces={false}
-								className="home__main-link"
-								openInNewTab={false}
-								isLocal={true}
-								href={`${RESUME_URL}#skills`}>
-								Skills
-							</EmbeddedLink>
-							<br></br>
-							<EmbeddedLink
-								addSpaces={false}
-								className="home__main-link"
-								openInNewTab={false}
-								isLocal={true}
-								href={`${RESUME_URL}#education`}>
-								Education
-							</EmbeddedLink>
-							<br></br>
-							<EmbeddedLink
-								addSpaces={false}
-								className="home__main-link"
-								openInNewTab={false}
-								isLocal={true}
-								href={`${RESUME_URL}#references`}>
-								References
-							</EmbeddedLink>
-							<br></br>
-							<EmbeddedLink
-								addSpaces={false}
-								className="home__main-link"
-								openInNewTab={false}
-								isLocal={true}
-								href={ABOUT_URL}>
-								The Person
-							</EmbeddedLink>
-						</div>
-					</article>
+				<section className="home__main-right">
+					<div className="home__main-right-content">
+						<span className="home__content-header">Experience: </span>
+						<br></br>
+						<EmbeddedLink
+							addSpaces={false}
+							className="home__main-link"
+							openInNewTab={false}
+							isLocal={true}
+							href={`${RESUME_URL}#work-history`}>
+							Work History
+						</EmbeddedLink>
+						<br></br>
+						<EmbeddedLink
+							addSpaces={false}
+							className="home__main-link"
+							openInNewTab={false}
+							isLocal={true}
+							href={`${RESUME_URL}#skills`}>
+							Skills
+						</EmbeddedLink>
+						<br></br>
+						<EmbeddedLink
+							addSpaces={false}
+							className="home__main-link"
+							openInNewTab={false}
+							isLocal={true}
+							href={`${RESUME_URL}#education`}>
+							Education
+						</EmbeddedLink>
+						<br></br>
+						<EmbeddedLink
+							addSpaces={false}
+							className="home__main-link"
+							openInNewTab={false}
+							isLocal={true}
+							href={`${RESUME_URL}#references`}>
+							References
+						</EmbeddedLink>
+						<br></br>
+						<EmbeddedLink
+							addSpaces={false}
+							className="home__main-link"
+							openInNewTab={false}
+							isLocal={true}
+							href={ABOUT_URL}>
+							The Person
+						</EmbeddedLink>
+					</div>
+				</section>
 
-					{getQuoteJSX()}
+				{getQuoteJSX()}
 
-					{/* <div className="home__main-description">
+				{/* <div className="home__main-description">
 						This site was created with React, Redux, and custom CSS
 					</div>
 					<div className="home__main-cta">
 						Click, hover, and get in touch when you're ready.
 					</div> */}
-				</div>
-			</section>
+			</div>
+			{/* </section> */}
 		</React.Fragment>
 	);
 };

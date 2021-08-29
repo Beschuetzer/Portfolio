@@ -1,5 +1,5 @@
 .resume {
-	--background-svg-opacity: .95;
+	--background-svg-opacity: .975;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -38,7 +38,7 @@
 			grid-column: 1 / -1;
 			& .resume__card {
 				// background-color: var(--color-primary-3);
-				background-image: get-resume-card-gradient(calc(var(--background-svg-opacity) + .025)),
+				background-image: get-resume-card-gradient(calc(var(--background-svg-opacity) - .025)),
 					url($resume-card-background-summary);
 				background-attachment: fixed;
 				background-size: cover;
@@ -80,7 +80,7 @@
 		&-education {
 			& .resume__card {
 				background-color: var(--color-primary-3);
-				background-image: get-resume-card-gradient(calc(var(--background-svg-opacity) - .075)),
+				background-image: get-resume-card-gradient(calc(var(--background-svg-opacity) - .025)),
 					url($resume-card-background-education);
 				background-attachment: fixed;
 
@@ -96,7 +96,7 @@
 
 			& .resume__card {
 				background-color: var(--color-primary-3);
-				background-image: get-resume-card-gradient(calc(var(--background-svg-opacity) - .05)),
+				background-image: get-resume-card-gradient(calc(var(--background-svg-opacity) - .025)),
 					url($resume-card-background-references);
 				background-attachment: fixed;
 

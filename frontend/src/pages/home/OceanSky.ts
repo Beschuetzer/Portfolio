@@ -26,8 +26,10 @@ import {
 	TextBufferGeometry,
 } from "three";
 import { getLinearPercentOfMaxMatchWithinRange } from "../../helpers";
+import { HOME_CANVAS_CLASSNAME } from "../../components/constants";
 
 //#region Variable Inits
+
 let camera: PerspectiveCamera,
 	orbitControls: OrbitControls,
 	scene: THREE.Scene,
@@ -210,8 +212,8 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 const animationFPS = 120.0;
 export let timeElapsedInMS = 0;
 export const introPanDuration = 5000;
-const lineScrollDuration = 800;
-// const lineScrollDuration = 0;
+// const lineScrollDuration = 800;
+const lineScrollDuration = 0;
 export const introPanDurationMobile = linesOfText * lineScrollDuration;
 ;
 export const introPanStartWait = isMobile
@@ -246,7 +248,6 @@ const cameraLookAtZFactor = getFromStartToFinishUsingFunction(
 	animationFPS,
 	"linear",
 );
-console.log("cameraLookAtZFactor =", cameraLookAtZFactor);
 const cubeHeightAdditiveIncrement = getFromStartToFinishUsingFunction(
 	cubeRaiseDuration,
 	cubeStartHeight,
@@ -655,8 +656,11 @@ export function init() {
 	skyUniforms["mieCoefficient"].value = skyMieCoefficient;
 	skyUniforms["mieDirectionalG"].value = skyMieDirectionalG;
 
-	if (document.body)
-		document.body.lastElementChild?.classList.add("home__canvas");
+	if (document.body) {
+		document.body.lastElementChild?.classList.add(HOME_CANVAS_CLASSNAME);
+		const homeCanvas = document.querySelector(`.${HOME_CANVAS_CLASSNAME}`) as HTMLCanvasElement;
+		homeCanvas.setAttribute('aria-hidden', 'true');
+	}
 
 	sun = new THREE.Vector3();
 	const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);

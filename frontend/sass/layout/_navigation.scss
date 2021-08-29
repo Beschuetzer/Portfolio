@@ -331,7 +331,7 @@
 		align-items: center;
 		box-shadow: $navbar-box-shadow-resume;
 
-		transition: border $animation-duration * 1 $animation-easing-standard;
+		transition: border-radius $animation-duration * 1 $animation-easing-standard;
 		@include respond(nav-switch) {
 			border-radius: $default-font-size;
 			border: none;
@@ -802,4 +802,8 @@
 		transform: scale(var(--site-nav-active-scale-amount));
 		// animation: selected-section infinite 5s forwards;
 	}
+}
+
+.page-nav- {
+	display: none;
 }

@@ -358,6 +358,7 @@
 			margin: 0;
 			// font-size: $default-font-size * 1.5;
 			font-weight: 700;
+			font-size: $default-font-size * 1.5;
 			@include link-animating(
 				var(--color-primary-3-rgb),
 				var(--color-white-rgb),
@@ -379,6 +380,7 @@
 			&:hover {
 				animation: none;
 				color: rgba(var(--color-primary-4-rgb), 1);
+				letter-spacing: $default-font-size * $text-bounce-letter-spacing-factor;
 			}
 		}
 	}
@@ -403,12 +405,14 @@
 	}
 
 	&__quote {
+		font-size: $default-font-size;
 		font-weight: 100;
 		padding: $default-font-size * 2 $default-font-size * 4;
 		transform: translateY(100%);
 		grid-column: 2 / span 1;
 		grid-row: 3 / -1;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		color: rgba(var(--color-primary-4-rgb), 1);
@@ -422,6 +426,7 @@
 			text-align: center;
 			font-family: $font-family-fancy-bridge;
 		}
+
 	}
 
 	&__animation-ease-in-out-back {
