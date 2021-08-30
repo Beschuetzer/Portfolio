@@ -240,9 +240,12 @@ export const handleNavClick = (
 	navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 	navBar.classList.add(UNCLICKABLE_CLASSNAME);
 
-	let isChildOfNavBar = getIsChildOfNavBar(e);
+	const IS_CHILD_OF_NAVBAR = getIsChildOfNavBar(e);
+	const IS_NAV_ITEM_CLICK = (e.target as HTMLElement)?.localName === 'a';
 
-	if (!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) && isChildOfNavBar) {
+	if (IS_NAV_ITEM_CLICK) return;
+
+	if (!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) && IS_CHILD_OF_NAVBAR) {
 		if (navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME)) {
 			checkShouldOpenNavBarIntervalId = setInterval(() => {
 				if (!navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME)) {

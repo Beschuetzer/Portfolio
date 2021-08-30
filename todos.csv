@@ -100,4 +100,4 @@ Of course, there can be variation, but the most important thing is to try to ide
 
 
 
--clicking on a link causes SiteNav glitch at end of animation
+-opening SiteNav then hovering over examples causes overflow issue
