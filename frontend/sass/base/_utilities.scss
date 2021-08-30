@@ -74,6 +74,12 @@
 //misc
 .unclickable {
 	pointer-events: none !important;
+	overflow: hidden !important;
+
+
+	& .navbar__dropdown {
+		height: 0 !important;
+	}
 }
 
 .transparent {
@@ -88,10 +94,11 @@
 	@include respond(nav-switch) {
 		overflow: visible !important;
 	}
-}
 
-.overflow--hidden:not(.navbar--active, .navbar--isAnimating){
-	overflow: visible !important;
+	&:not(.navbar--active, .navbar--isAnimating){
+		overflow: visible !important;
+	}
+
 }
 
 .overflow-hidden {

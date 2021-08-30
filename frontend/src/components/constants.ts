@@ -1,5 +1,4 @@
 import { CSSProperties } from "react";
-import { NAVBAR_CLASSNAME, NAVBAR_Z_INDEX_CLASSNAME } from "./navbar/utils";
 
 //#region note: Add page names here
 export const ABOUT_PAGE_NAME = "about";

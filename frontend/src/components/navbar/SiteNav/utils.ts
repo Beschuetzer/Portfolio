@@ -36,7 +36,7 @@ export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 
 const BODY_BACKGROUND_CLASSNAME = "body-background";
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
-const CHECK_SHOULD_RESET_OVERFLOW_HIDDEN_FREQUENCY = 3;  //used as quotient of ANIMATION_DURATION so 2 means it checks every 1/2 or half of ANIMATION_DURATION
+const CHECK_SHOULD_RESET_OVERFLOW_HIDDEN_FREQUENCY = 3; //used as quotient of ANIMATION_DURATION so 2 means it checks every 1/2 or half of ANIMATION_DURATION
 let resetAnimatingId: any;
 let zIndexHighestTimeoutId: any;
 let resetUnclickableTimeoutId: any;
@@ -201,15 +201,16 @@ const handleSound = (sounds: LoadedSounds, e: MouseEvent) => {
 };
 
 export const handleMouseEnter = (navRef: NavRef) => {
+	console.log("navRef.current.className =", navRef?.current?.className);
+
 	if (
 		!navRef.current ||
 		!navRef.current?.classList.contains(NAVBAR_ACTIVE_CLASSNAME) ||
-		navRef.current?.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME)
+		navRef.current.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME)
 	) {
 		navRef.current?.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 		return;
 	} else if (
-		navRef.current.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME) ||
 		navRef.current.classList.contains(NAVBAR_DONE_CLASSNAME)
 	) {
 		navRef.current?.classList.remove(OVERFLOW_HIDDEN_CLASSNAME);
@@ -241,11 +242,14 @@ export const handleNavClick = (
 	navBar.classList.add(UNCLICKABLE_CLASSNAME);
 
 	const IS_CHILD_OF_NAVBAR = getIsChildOfNavBar(e);
-	const IS_NAV_ITEM_CLICK = (e.target as HTMLElement)?.localName === 'a';
+	const IS_NAV_ITEM_CLICK = (e.target as HTMLElement)?.localName === "a";
 
 	if (IS_NAV_ITEM_CLICK) return;
 
-	if (!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) && IS_CHILD_OF_NAVBAR) {
+	if (
+		!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&
+		IS_CHILD_OF_NAVBAR
+	) {
 		if (navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME)) {
 			checkShouldOpenNavBarIntervalId = setInterval(() => {
 				if (!navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME)) {
@@ -267,15 +271,25 @@ function startIntervalsAndTimeouts(navBar: HTMLElement) {
 
 	checkShouldResetOverflowHiddenIntervalId = setInterval(() => {
 		let shouldClearInterval = false;
-		if (navBar.classList.contains(OVERFLOW_HIDDEN_CLASSNAME) && !navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME) && !navBar.classList.contains(UNCLICKABLE_CLASSNAME) && !navBar.classList.contains(NAVBAR_DONE_CLASSNAME) && !navBar.classList.contains(NAVBAR_ACTIVE_CLASSNAME)) {
+		if (
+			navBar.classList.contains(OVERFLOW_HIDDEN_CLASSNAME) &&
+			!navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME) &&
+			!navBar.classList.contains(UNCLICKABLE_CLASSNAME) &&
+			!navBar.classList.contains(NAVBAR_DONE_CLASSNAME) &&
+			!navBar.classList.contains(NAVBAR_ACTIVE_CLASSNAME)
+		) {
 			removerOverFlowHiddenTimeoutId = setTimeout(() => {
 				navBar.classList.remove(OVERFLOW_HIDDEN_CLASSNAME);
-			}, 1)
+			}, 1);
 			shouldClearInterval = true;
 		}
-		
-		if (numberOfOverflowHiddenChecksMade > CHECK_SHOULD_RESET_OVERFLOW_HIDDEN_FREQUENCY * 10) shouldClearInterval = true;
-		
+
+		if (
+			numberOfOverflowHiddenChecksMade >
+			CHECK_SHOULD_RESET_OVERFLOW_HIDDEN_FREQUENCY * 10
+		)
+			shouldClearInterval = true;
+
 		if (shouldClearInterval) {
 			clearInterval(checkShouldResetOverflowHiddenIntervalId);
 			// clearTimeout(removerOverFlowHiddenTimeoutId);
