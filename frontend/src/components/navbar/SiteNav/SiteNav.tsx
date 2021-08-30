@@ -51,6 +51,7 @@ import {
 	RESUME_PAGE_NAME,
 	RESUME_URL,
 	LIVE_REPLAYS_URL,
+	ANIMATION_DURATION_WAIT_FACTOR,
 } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
@@ -173,7 +174,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	useEffect(() => {
 		const navRefEl = navRef.current as HTMLElement;
-		let waitDurationFactor = 1.1;
+		let waitDurationFactor = ANIMATION_DURATION_WAIT_FACTOR;
 		if (navRefEl?.classList.contains(NAVBAR_ACTIVE_CLASSNAME)) waitDurationFactor = 0;
 		startAnimating(navRef, isAnimating, waitDurationFactor);
 
