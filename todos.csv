@@ -94,8 +94,7 @@ Of course, there can be variation, but the most important thing is to try to ide
 
 -go through each page and work on accessability
 
--fix navbar menu corner transition on opening
--keep track of the time since last open click and last close. if difference is less than .5s it is spamming
+-loading home page then clicking to another page then clicking back doesn't work correctly
 
 
 

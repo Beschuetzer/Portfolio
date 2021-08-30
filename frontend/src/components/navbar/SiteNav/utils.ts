@@ -115,16 +115,12 @@ export const changePage = (newUrl: string) => {
 
 export const setBodyStyle = (currentUrl: string) => {
 	const setBodyStyle = (page: string) => {
-		if (page === "")
-			document.body.className = `${BODY_BACKGROUND_CLASSNAME} home-page`;
-		else {
 			document.body.className = `${BODY_BACKGROUND_CLASSNAME} ${page.slice(
 				1,
 			)}-page`;
-		}
 	};
 
-	if (!currentUrl) return;
+	if (!currentUrl) return document.body.className = `${BODY_BACKGROUND_CLASSNAME} home-page`;;
 
 	let docStyle = getComputedStyle(document.documentElement);
 	const colorVarRoot = "--color-primary";
