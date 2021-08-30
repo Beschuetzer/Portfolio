@@ -199,7 +199,8 @@ const handleSound = (sounds: LoadedSounds, e: MouseEvent) => {
 export const handleMouseEnter = (navRef: NavRef) => {
 	if (
 		!navRef.current ||
-		!navRef.current?.classList.contains(NAVBAR_ACTIVE_CLASSNAME)
+		!navRef.current?.classList.contains(NAVBAR_ACTIVE_CLASSNAME) ||
+		navRef.current?.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME) 
 	) {
 		navRef.current?.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 		return;

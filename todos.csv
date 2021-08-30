@@ -97,5 +97,5 @@ Of course, there can be variation, but the most important thing is to try to ide
 -fix navbar menu corner transition on opening
 -keep track of the time since last open click and last close. if difference is less than .5s it is spamming
 
--fix bug where clicking SiteNav button then hovering over examples causes glitch
+
 -need to add overflow--hidden to SiteNav when close animation complete
