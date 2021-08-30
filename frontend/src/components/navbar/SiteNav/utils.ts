@@ -42,6 +42,7 @@ let zIndexHighestTimeoutId: any;
 let resetUnclickableTimeoutId: any;
 let checkShouldOpenNavBarIntervalId: any;
 let checkShouldResetOverflowHiddenIntervalId: any;
+let removerOverFlowHiddenTimeoutId: any;
 let numberOfOverflowHiddenChecksMade = 0;
 
 export type NavRef = RefObject<HTMLElement>;
@@ -264,7 +265,7 @@ function startIntervalsAndTimeouts(navBar: HTMLElement) {
 	checkShouldResetOverflowHiddenIntervalId = setInterval(() => {
 		let shouldClearInterval = false;
 		if (navBar.classList.contains(OVERFLOW_HIDDEN_CLASSNAME) && !navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME) && !navBar.classList.contains(UNCLICKABLE_CLASSNAME) && !navBar.classList.contains(NAVBAR_DONE_CLASSNAME) && !navBar.classList.contains(NAVBAR_ACTIVE_CLASSNAME)) {
-			setTimeout(() => {
+			removerOverFlowHiddenTimeoutId = setTimeout(() => {
 				navBar.classList.remove(OVERFLOW_HIDDEN_CLASSNAME);
 			}, 1)
 			shouldClearInterval = true;
@@ -272,9 +273,10 @@ function startIntervalsAndTimeouts(navBar: HTMLElement) {
 		
 		if (numberOfOverflowHiddenChecksMade > CHECK_SHOULD_RESET_OVERFLOW_HIDDEN_FREQUENCY * 10) shouldClearInterval = true;
 		
-		if (shouldClearInterval) {clearInterval(checkShouldResetOverflowHiddenIntervalId);
-			navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
-		
+		if (shouldClearInterval) {
+			clearInterval(checkShouldResetOverflowHiddenIntervalId);
+			// clearTimeout(removerOverFlowHiddenTimeoutId);
+			// navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 		}
 		numberOfOverflowHiddenChecksMade++;
 	}, ANIMATION_DURATION / CHECK_SHOULD_RESET_OVERFLOW_HIDDEN_FREQUENCY);
@@ -285,6 +287,7 @@ function clearIntervalsAndTimeouts() {
 	clearInterval(checkShouldResetOverflowHiddenIntervalId);
 	clearTimeout(zIndexHighestTimeoutId);
 	clearTimeout(resetUnclickableTimeoutId);
+	clearTimeout(removerOverFlowHiddenTimeoutId);
 }
 
 export function getIsChildOfNavBar(e: Event) {

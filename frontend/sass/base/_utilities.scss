@@ -90,6 +90,10 @@
 	}
 }
 
+.overflow--hidden:not(.navbar--active, .navbar--isAnimating){
+	overflow: visible !important;
+}
+
 .overflow-hidden {
 	overflow: hidden !important;
 }
