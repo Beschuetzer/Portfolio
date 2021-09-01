@@ -3556,12 +3556,13 @@ body {
 
 .work-history__item {
   display: grid;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: min-content 1fr min-content;
   font-size: 1.6rem;
   padding: 3.2rem 0;
 }
 @media only screen and (max-width: 52.6875em) {
   .work-history__item {
+    grid-template-columns: min-content 1fr;
     padding-bottom: 1.6rem;
     padding-top: 1.6rem;
   }
@@ -3612,11 +3613,17 @@ body {
   font-style: italic;
 }
 .work-history__title-dates {
+  --starting-column: 3;
   font-size: 1.44rem;
   display: flex;
   align-items: center;
   font-weight: 300;
-  grid-column: 2/-1;
+  grid-column: var(--starting-column)/-1;
+}
+@media only screen and (max-width: 52.6875em) {
+  .work-history__title-dates {
+    --starting-column: 2;
+  }
 }
 .work-history__title-dates > div:nth-child(2) {
   margin: 0 0.4rem;

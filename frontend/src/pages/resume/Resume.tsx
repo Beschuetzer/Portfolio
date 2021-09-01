@@ -367,14 +367,16 @@ const Resume: React.FC<ResumeProps> = ({
 		[
 			sectionTitles[0],
 			<React.Fragment>
-				<Quote author="Seth Godin" className="padding-bottom-2">
-					You are not your résumé, you are your work.
-				</Quote>
-				<Paragraph classNameToAdd={`${NO_MARGIN_CLASSNAME}`} size="five">
-					Below you will find the following:
-				</Paragraph>
+				<section aria-label="Overview">
+					<Quote author="Seth Godin" className="padding-bottom-2">
+						You are not your résumé, you are your work.
+					</Quote>
+					<Paragraph classNameToAdd={`${NO_MARGIN_CLASSNAME}`} size="five">
+						Below you will find the following:
+					</Paragraph>
+				</section>
 
-				<div>
+				<section>
 					<div className={`${BRIDGE_CLASSNAME}__subsection-grid`}>
 						<span>1).</span>
 						<span>
@@ -391,7 +393,7 @@ const Resume: React.FC<ResumeProps> = ({
 							reference to download)
 						</span>
 					</div>
-				</div>
+				</section>
 
 				{/* <Paragraph size="four">
 					If you want  haven't yet, I highly encourage you
@@ -551,6 +553,7 @@ const Resume: React.FC<ResumeProps> = ({
 						]}
 					/>
 					<WorkHistoryItem
+						id="overnight stocker"
 						startDate="09/06"
 						endDate="12/06"
 						number="04"

@@ -19,6 +19,7 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
   number,
   id = ""
 }) => {
+
   const renderSections = () => {
     return sections.map((section: WorkHistoryItemModel, index: number) => {
       return (
@@ -45,17 +46,28 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
     }
   }
 
+  function getYearFromDate(date: string) {
+
+  }
+
+  function getDateString(date: string) {
+    //date is in format of "mm/yy"
+    const splitDate = date.split('/');
+    const dateObj = new Date(date);
+    return `${dateObj.toLocaleString('en-us', {month: 'long'})} 20${splitDate[1]}`;
+  }
+
   return (
-    <div id={id ? id : undefined} className={`${WORK_HISTORY_CLASSNAME}__item`}>
+    <section aria-label={`${id} job description`} id={id ? id : undefined} className={`${WORK_HISTORY_CLASSNAME}__item`}>
         <span className={`${WORK_HISTORY_CLASSNAME}__item-number`}>{number}.</span>
         <h6 className={`${WORK_HISTORY_CLASSNAME}__title-header heading--six`} dangerouslySetInnerHTML={createTitle(title)}></h6>
         <div className={`${WORK_HISTORY_CLASSNAME}__title-dates`}>
-          <div> {startDate} </div>
-          <div> &ndash; </div>
-          <div> {endDate} </div>
+          <time aria-label="start date" dateTime={`20${getYearFromDate(startDate)}`}> {getDateString(startDate)} </time>
+          <span> &ndash; </span>
+          <time aria-label="end date" dateTime={`20${getYearFromDate(endDate)}`}> {getDateString(endDate)} </time>
         </div>
       {renderSections()}    
-    </div>        
+    </section>        
   )
 }
 
