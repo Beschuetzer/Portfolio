@@ -562,7 +562,9 @@ const Resume: React.FC<ResumeProps> = ({
 							{
 								title: "Responsibilities",
 								bullets: [
-									"Stocked shelves and generally made sure the store was ready to open.",
+									"Unloaded Freight.",
+									"Opened boxes and placed merchandise on displays/shelves.",
+									"Cleaned up and disposed up boxes.",
 								],
 							},
 						]}

@@ -47,7 +47,9 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
   }
 
   function getYearFromDate(date: string) {
-
+    const splitDate = date.split('/');
+    const dateObj = new Date(date);
+    return `20${splitDate[1]}-${dateObj.toLocaleString('en-us', {month: '2-digit'})}`;
   }
 
   function getDateString(date: string) {
@@ -62,9 +64,9 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
         <span className={`${WORK_HISTORY_CLASSNAME}__item-number`}>{number}.</span>
         <h6 className={`${WORK_HISTORY_CLASSNAME}__title-header heading--six`} dangerouslySetInnerHTML={createTitle(title)}></h6>
         <div className={`${WORK_HISTORY_CLASSNAME}__title-dates`}>
-          <time aria-label="start date" dateTime={`20${getYearFromDate(startDate)}`}> {getDateString(startDate)} </time>
-          <span> &ndash; </span>
-          <time aria-label="end date" dateTime={`20${getYearFromDate(endDate)}`}> {getDateString(endDate)} </time>
+          <time aria-label="start date" dateTime={`${getYearFromDate(startDate)}`}> {getDateString(startDate)} </time>
+          <span>&nbsp;&ndash;&nbsp;</span>
+          <time aria-label="end date" dateTime={`${getYearFromDate(endDate)}`}> {getDateString(endDate)} </time>
         </div>
       {renderSections()}    
     </section>        

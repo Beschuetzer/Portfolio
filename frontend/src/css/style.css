@@ -3556,7 +3556,7 @@ body {
 
 .work-history__item {
   display: grid;
-  grid-template-columns: min-content 1fr min-content;
+  grid-template-columns: min-content 1fr max-content;
   font-size: 1.6rem;
   padding: 3.2rem 0;
 }
