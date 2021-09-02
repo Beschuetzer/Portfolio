@@ -594,15 +594,15 @@ const Resume: React.FC<ResumeProps> = ({
 			<React.Fragment>
 				<ul className="education">
 					<EducationItem
-						startDate="12/10"
+						// startDate="12/10"
 						location="University of Minnesota Twin Cities"
 						degree="B.A. in Linguistics "
 						gpa="3.701"
 						href="/transcript.pdf"
 					/>
 					<EducationItem
-						startDate="09/03"
-						endDate="08/05"
+						// startDate="09/03"
+						// endDate="08/05"
 						location="Century College"
 						degree="Minnesota Transfer Curriculum (PSEO)"
 						gpa="3.86"

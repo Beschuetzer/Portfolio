@@ -96,18 +96,9 @@ Of course, there can be variation, but the most important thing is to try to ide
 
 -loading home page then clicking to another page then clicking back doesn't work correctly
 
+-Add resume experience for building bridge website and replay viewer
 
-ANna's Resume Changes
--remove interests section
--make name front and center and bigger
--remove location
--remove achievements/tasks lines from each job
--remove dates and GPA from education section 
--specify what kind of degree
--remove references or put on separate page of their onwards
--move dates over to the right and place to the left by the company name 
--change dates to July 2019 rather than 07/2019
-
+-The PageNav highlights don't reset on page load
 
 
 

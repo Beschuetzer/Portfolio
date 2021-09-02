@@ -4,7 +4,7 @@ import { EDUCATION_CLASSNAME } from "./utils";
 
 
 interface EducationItemProps{
-	startDate: string,
+	startDate?: string,
 	endDate?: string,
 	degree: string,
 	location: string,
@@ -20,6 +20,10 @@ const EducationItem: React.FC<EducationItemProps> = ({
 	gpa,
 	href,
 }) => {
+	function getStartDate() {
+		return startDate ? `${startDate}:` : null;
+	}
+
 	return (
 		<li className={`${EDUCATION_CLASSNAME}__item`}>
 			<span className={`${EDUCATION_CLASSNAME}__date`}>
@@ -30,9 +34,8 @@ const EducationItem: React.FC<EducationItemProps> = ({
 						<span>{endDate}</span>
 					</React.Fragment>
 				) : (
-					startDate
+					getStartDate()
 				)}
-				:
 			</span>
 			<a
 				href={href}
