@@ -54,7 +54,10 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
 
   function getDateString(date: string) {
     //date is in format of "mm/yy"
+
     const splitDate = date.split('/');
+    if (splitDate.length === 1 && date.match(/present/i)) return date;
+
     const dateObj = new Date(date);
     return `${dateObj.toLocaleString('en-us', {month: 'long'})} 20${splitDate[1]}`;
   }

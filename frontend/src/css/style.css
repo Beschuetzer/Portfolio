@@ -3613,6 +3613,7 @@ body {
   font-style: italic;
 }
 .work-history__title-dates {
+  padding-bottom: 0.8rem;
   font-size: 1.44rem;
   display: flex;
   align-items: center;

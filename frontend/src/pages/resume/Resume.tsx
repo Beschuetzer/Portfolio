@@ -27,6 +27,10 @@ import {
 	RESUME_PAGE_NAME,
 	RICOH_URL,
 	TOYS_R_US_RUL as TOYS_R_US_URL,
+	BRIDGE_DEMO_URL,
+	BRIDGE_URL,
+	REPLAY_VIEWER_URL,
+	PLAYLIST_SYNCER_URL,
 } from "../../components/constants";
 import SourceCodeLink from "../../components/SourceCodeLink";
 import Quote from "../../components/Quote";
@@ -485,10 +489,27 @@ const Resume: React.FC<ResumeProps> = ({
 			<React.Fragment>
 				<div className="work-history">
 					<WorkHistoryItem
+						id="freelance_web_developer"
+						startDate="03/20"
+						endDate="Present"
+						number="01"
+						title={`Freelance Web Developer`}
+						sections={[
+							{
+								title: "",
+								bullets: [
+									`Built <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='${BRIDGE_URL}'>  socket.io-based multiplayer bridge app</a> that allows four players to play bridge online.`,
+									`Built an  <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='${REPLAY_VIEWER_URL}'>angular 12 replay viewer app</a> utilizing redux, nest.js, and mongoDB.  The app pulls from the mongoDB collection used in the aforementioned bridge app, allowing for easy reviewing of games played as well as insight into the statistics surrounding their games.`,
+									`Built a  <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href='${PLAYLIST_SYNCER_URL}'>c# application to synchronize music playlists</a> after an Andriod OS update that rendered my previous playlist syncing app unusable.`,
+								],
+							},
+						]}
+					/>
+					<WorkHistoryItem
 						id="ricoh"
 						startDate="07/19"
 						endDate="06/20"
-						number="01"
+						number="02"
 						title={`Technology Services Support Representative at <a ${getExternalLinkTargetAndRel()}
             ${getLinkClassHTML()} href=${RICOH_URL}> Ricoh Ltd </a>`}
 						sections={[
@@ -512,7 +533,7 @@ const Resume: React.FC<ResumeProps> = ({
 						id="hawaii"
 						startDate="07/18"
 						endDate="06/19"
-						number="02"
+						number="03"
 						title={`Second Grade Classroom Volunteer at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${KUALAPUU_URL}> <span>Kualapuu Charter School <span></a>`}
 						sections={[
 							{
@@ -529,7 +550,7 @@ const Resume: React.FC<ResumeProps> = ({
 						id="isd622"
 						startDate="07/07"
 						endDate="07/18"
-						number="03"
+						number="04"
 						title={`PearsonVue Test Admin / Office Admin at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${ISD_622_URL}> ISD622 </a>`}
 						sections={[
 							{
@@ -553,10 +574,10 @@ const Resume: React.FC<ResumeProps> = ({
 						]}
 					/>
 					<WorkHistoryItem
-						id="overnight stocker"
+						id="overnight_stocker"
 						startDate="09/06"
 						endDate="12/06"
-						number="04"
+						number="05"
 						title={`Overnight Stocker at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${TOYS_R_US_URL}> Toy's &ldquo;R&rdquo; Us </a>`}
 						sections={[
 							{
@@ -573,7 +594,7 @@ const Resume: React.FC<ResumeProps> = ({
 						id="germany"
 						startDate="09/05"
 						endDate="07/06"
-						number="05"
+						number="06"
 						title={`English Assistant at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${HERMAN_LIETZ_SCHULE_URL}> Herman-Lietz Schule Haubinda </a>`}
 						sections={[
 							{
