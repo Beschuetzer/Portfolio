@@ -93,12 +93,12 @@ const Quote: React.FC<QuoteProps> = ({
 	}
 
 	return (
-		<blockquote
+		<figure
 			onClick={(e: any) => copyToClipboard()}
 			className={`${QUOTE_CLASSNAME} ${className}`}>
-			<q ref={messageRef as any} className={`${QUOTE_CLASSNAME}__message`}>
+			<blockquote ref={messageRef as any} className={`${QUOTE_CLASSNAME}__message`}>
 				{getMessage()}
-			</q>
+			</blockquote>
 			<cite ref={authorRef as any} className={`${QUOTE_CLASSNAME}__author`}>
 				&#8212;{author}
 			</cite>
@@ -108,7 +108,7 @@ const Quote: React.FC<QuoteProps> = ({
 				<div className={`arrow-down arrow-down--center`}></div>
 				{/* <div className={`arrow-down arrow-down--right`}></div> */}
 			</div>
-		</blockquote>
+		</figure>
 	);
 };
 
