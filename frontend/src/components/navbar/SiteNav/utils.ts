@@ -43,6 +43,7 @@ let resetUnclickableTimeoutId: any;
 let checkShouldOpenNavBarIntervalId: any;
 let checkShouldResetOverflowHiddenIntervalId: any;
 let removerOverFlowHiddenTimeoutId: any;
+let removeOverFlowHiddenAfterOpeningTimeoutId: any;
 let numberOfOverflowHiddenChecksMade = 0;
 
 export type NavRef = RefObject<HTMLElement>;
@@ -115,12 +116,13 @@ export const changePage = (newUrl: string) => {
 
 export const setBodyStyle = (currentUrl: string) => {
 	const setBodyStyle = (page: string) => {
-			document.body.className = `${BODY_BACKGROUND_CLASSNAME} ${page.slice(
-				1,
-			)}-page`;
+		document.body.className = `${BODY_BACKGROUND_CLASSNAME} ${page.slice(
+			1,
+		)}-page`;
 	};
 
-	if (!currentUrl) return document.body.className = `${BODY_BACKGROUND_CLASSNAME} home-page`;;
+	if (!currentUrl)
+		return (document.body.className = `${BODY_BACKGROUND_CLASSNAME} home-page`);
 
 	let docStyle = getComputedStyle(document.documentElement);
 	const colorVarRoot = "--color-primary";
@@ -206,9 +208,7 @@ export const handleMouseEnter = (navRef: NavRef) => {
 	) {
 		navRef.current?.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 		return;
-	} else if (
-		navRef.current.classList.contains(NAVBAR_DONE_CLASSNAME)
-	) {
+	} else if (navRef.current.classList.contains(NAVBAR_DONE_CLASSNAME)) {
 		navRef.current?.classList.remove(OVERFLOW_HIDDEN_CLASSNAME);
 	}
 };
@@ -301,6 +301,7 @@ function clearIntervalsAndTimeouts() {
 	clearTimeout(zIndexHighestTimeoutId);
 	clearTimeout(resetUnclickableTimeoutId);
 	clearTimeout(removerOverFlowHiddenTimeoutId);
+	clearTimeout(removeOverFlowHiddenAfterOpeningTimeoutId);
 }
 
 export function getIsChildOfNavBar(e: Event) {
@@ -340,6 +341,10 @@ export function openNavBar(
 	navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 	navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
 	document.querySelector(HEADER_ID)!.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
+
+	removeOverFlowHiddenAfterOpeningTimeoutId = setTimeout(() => {
+		navBar.classList.remove(OVERFLOW_HIDDEN_CLASSNAME);
+	}, ANIMATION_DURATION);
 	setIsAnimating(true);
 }
 

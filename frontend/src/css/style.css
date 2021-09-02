@@ -887,7 +887,7 @@ body {
   visibility: hidden;
   width: 100%;
   transform-origin: left;
-  transform: scaleX(0) translateX(0);
+  transform: scaleX(0) translateX(0) scaleY(0.25);
   transition: visibility 0.5s ease, transform 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
@@ -1027,6 +1027,7 @@ body {
   border: 0.16rem solid var(--color-primary-1);
 }
 .navbar__button {
+  border-style: double;
   cursor: pointer;
   z-index: 100;
   background-color: var(--color-primary-4);
@@ -1176,7 +1177,7 @@ body {
 .navbar.navbar--active .navbar__content {
   visibility: visible;
   opacity: 1;
-  transform: scaleX(1);
+  transform: scaleX(1) scaleY(1);
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__content {
@@ -1226,7 +1227,7 @@ body {
   backdrop-filter: blur(0.8rem) brightness(0.75) drop-shadow(0px 1.6rem 3.2rem var(--color-grey-80));
 }
 .navbar.navbar--isAnimating .navbar__content {
-  transform: scaleX(1) translateX(-100%);
+  transform: scaleX(1) translateX(-100%) scaleY(0.25);
 }
 .navbar.navbar--isAnimating * {
   pointer-events: none;

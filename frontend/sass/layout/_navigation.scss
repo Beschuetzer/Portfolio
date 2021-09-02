@@ -1,3 +1,4 @@
+$scale-y-amount: .25;
 .navbar {
 	width: var(--site-nav-button-width);
 	--site-nav-button-width: 7.5vw;
@@ -134,7 +135,7 @@
 		visibility: hidden;
 		width: 100%;
 		transform-origin: left;
-		transform: scaleX(0) translateX(0);
+		transform: scaleX(0) translateX(0) scaleY($scale-y-amount);
 		transition: visibility $animation-navbar, transform $animation-navbar;
 
 		@include respond(nav-switch) {
@@ -322,6 +323,7 @@
 	}
 
 	&__button {
+		border-style: double;
 		cursor: pointer;
 		z-index: 100;
 		// border: $default-font-size * .1 solid transparent;
@@ -496,7 +498,7 @@
 		& .navbar__content {
 			visibility: visible;
 			opacity: 1;
-			transform: scaleX(1);
+			transform: scaleX(1) scaleY(1);
 
 			@include respond(nav-switch) {
 				width: $header-width-nav-switch;
@@ -564,7 +566,7 @@
 	//Handling Bug where leaving button after clicking causes overflow hidden to change
 	&.navbar--isAnimating {
 		& .navbar__content {
-			transform: scaleX(1) translateX(-100%);
+			transform: scaleX(1) translateX(-100%) scaleY($scale-y-amount);
 		}
 		* {
 			pointer-events: none;
