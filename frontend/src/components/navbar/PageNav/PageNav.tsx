@@ -123,6 +123,8 @@ const PageNav: React.FC<PageNavProps> = ({
 	// };
 
 	function getIsScrollEnd(scrollY: number) {
+		//note: assumes that first child of main is page content
+
 		let scrollHeight = document.body.scrollHeight;
 		if (scrollHeight === 0) {
 			const main = document.querySelector('main') as HTMLElement;
