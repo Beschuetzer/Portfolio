@@ -175,7 +175,8 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	useEffect(() => {
 		const navRefEl = navRef.current as HTMLElement;
 		let waitDurationFactor = ANIMATION_DURATION_WAIT_FACTOR;
-		if (navRefEl?.classList.contains(NAVBAR_ACTIVE_CLASSNAME)) waitDurationFactor = 0;
+		if (navRefEl?.classList.contains(NAVBAR_ACTIVE_CLASSNAME))
+			waitDurationFactor = 0;
 		startAnimating(navRef, isAnimating, waitDurationFactor);
 
 		return () => {
@@ -188,12 +189,14 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			ref={navRef as any}
 			className={NAVBAR_DEFAULT_CLASSNAME}
 			onClick={(e: any) => onNavClick(e)}>
-			<div className={`${NAVBAR_CLASSNAME}__button`}>
-				<div className={`${NAVBAR_CLASSNAME}__menu`}>
+			<button
+				aria-label="show pages"
+				className={`${NAVBAR_CLASSNAME}__button`}>
+				<div aria-hidden="true" className={`${NAVBAR_CLASSNAME}__menu`}>
 					<div className={`${NAVBAR_CLASSNAME}__menu-bar`}></div>
 				</div>
-			</div>
-			<div className={`${NAVBAR_CLASSNAME}__content`}>
+			</button>
+			<section aria-label="pages" className={`${NAVBAR_CLASSNAME}__content`}>
 				<ul className={`${NAVBAR_CLASSNAME}__list`}>
 					<NavListItem
 						imageSource={aboutImage}
@@ -274,10 +277,11 @@ const SiteNav: React.FC<SiteNavProps> = ({
 						onClick={onNavItemClick}
 					/>
 				</ul>
-			</div>
+			</section>
 			<div
 				onClick={(e: any) => onNavClick(e)}
-				className={`${NAVBAR_CLASSNAME}__background`}></div>
+				className={`${NAVBAR_CLASSNAME}__background`}
+				aria-hidden="true"></div>
 		</div>,
 		document.querySelector(".site-nav")!,
 	);

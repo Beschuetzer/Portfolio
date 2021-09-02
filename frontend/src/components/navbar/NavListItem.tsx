@@ -95,6 +95,7 @@ const NavListItem: React.FC<NavListItemProps> = ({
 
   return (
     <li
+      aria-label={label}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
       className={`${classNamesToUse}  ${
@@ -103,6 +104,7 @@ const NavListItem: React.FC<NavListItemProps> = ({
         
       {isLink && imageSource ? (
         <img
+          aria-hidden="true"
           className={defaults.imageClassName}
           src={imageSource}
           alt={imageAlt}
