@@ -5,6 +5,8 @@
 	position: relative;
 
 	&__section {
+		list-style: none;
+
 		&:nth-child(3) .skills__title {
 			cursor: auto;
 			border: $default-font-size * 0.1 solid transparent;

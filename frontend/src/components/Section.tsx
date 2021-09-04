@@ -24,20 +24,20 @@ const Section: React.FC<SectionProps> = ({
 		<SectionContainer name={name} pageName={pageName} styles={styles}>
 			<article className={`${pageName}__card z-index-content`}>
 				<div className={`${pageName}__content`}>
-					<div className={`${pageName}__headers`}>
+					<header className={`${pageName}__headers`}>
 						{hint ? (
 							<div
 								className={`${pageName}__hint`}>
 								*&nbsp;{hint}
 							</div>
 						) : null}
-						<div className={`${pageName}__header`}>
-							<h3 className={`heading--three ${pageName}__header-title`}>
+						<h3 className={`${pageName}__header`}>
+							<span className={`heading--three ${pageName}__header-title`}>
 								{capitalize(replaceCharacters(name))}
-							</h3>
+							</span>
 							{headerSideContent ? headerSideContent : null}
-						</div>
-					</div>
+						</h3>
+					</header>
 
 					{children}
 				</div>

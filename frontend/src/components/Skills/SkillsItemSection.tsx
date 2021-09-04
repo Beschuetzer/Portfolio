@@ -25,17 +25,17 @@ const SkillsItemSection: React.FC<SkillsItemSectionProps> = ({
   }
 
   return (
-    <div className={`${SKILLS_CLASSNAME}__section`}>
-      <div onClick={(e: any) => onTitleClick(e)} className={`${SKILLS_CLASSNAME}__section-title ${SKILLS_CLASSNAME}__title--animating`}>
+    <li className={`${SKILLS_CLASSNAME}__section`}>
+      <h4 onClick={(e: any) => onTitleClick(e)} className={`${SKILLS_CLASSNAME}__section-title ${SKILLS_CLASSNAME}__title--animating`}>
         {title}
         <svg className={`${SKILLS_CLASSNAME}__section-title-svg`}>
             <use xlinkHref="/sprite.svg#icon-angle-right"></use>
           </svg>
-      </div>
-      <div className={`${SKILLS_CLASSNAME}__section-content`}>
+      </h4>
+      <ul className={`${SKILLS_CLASSNAME}__section-content`}>
         {children}
-      </div>
-    </div>
+      </ul>
+    </li>
   );
 }
 

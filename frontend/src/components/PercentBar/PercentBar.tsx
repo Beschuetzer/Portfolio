@@ -32,7 +32,7 @@ const PercentBar: React.FC<PercentBarProps> = ({
 
 
 	return (
-		<div className={`${PERCENT_BAR_OUTER_CLASSNAME}`}>
+		<div aria-label={`${percent} percent`} className={`${PERCENT_BAR_OUTER_CLASSNAME}`}>
 			<PercentBarLabels label={label} />
 			<div ref={percentDiv} className={`${PERCENT_BAR_INNER_CLASSNAME}`}>
 				<div className={`${PERCENT_BAR_CLASSNAME}__value`}>

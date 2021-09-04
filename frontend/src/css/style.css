@@ -2992,6 +2992,9 @@ body {
   font-family: "Open Sans", sans-serif;
   position: relative;
 }
+.skills__section {
+  list-style: none;
+}
 .skills__section:nth-child(3) .skills__title {
   cursor: auto;
   border: 0.16rem solid transparent;
