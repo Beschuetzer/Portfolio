@@ -324,6 +324,7 @@ $scale-y-amount: .25;
 
 	&__button {
 		border-style: double;
+		border: 1px solid var(--color-primary-1);
 		cursor: pointer;
 		z-index: 100;
 		// border: $default-font-size * .1 solid transparent;

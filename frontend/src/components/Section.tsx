@@ -23,7 +23,7 @@ const Section: React.FC<SectionProps> = ({
 	return (
 		<SectionContainer name={name} pageName={pageName} styles={styles}>
 			<article className={`${pageName}__card z-index-content`}>
-				<div className={`${pageName}__content`}>
+				<section className={`${pageName}__content`}>
 					<header className={`${pageName}__headers`}>
 						{hint ? (
 							<div
@@ -40,7 +40,7 @@ const Section: React.FC<SectionProps> = ({
 					</header>
 
 					{children}
-				</div>
+				</section>
 			</article>
 		</SectionContainer>
 	);

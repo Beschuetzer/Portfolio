@@ -1028,6 +1028,7 @@ body {
 }
 .navbar__button {
   border-style: double;
+  border: 1px solid var(--color-primary-1);
   cursor: pointer;
   z-index: 100;
   background-color: var(--color-primary-4);
@@ -2564,6 +2565,7 @@ body {
 
 .github {
   border-radius: 50%;
+  border: 1px solid var(--color-primary-1);
   box-shadow: 0 1.6rem 3.2rem rgba(17, 17, 17, 0.33);
   font-family: "Open Sans", sans-serif;
   font-size: 1vw;

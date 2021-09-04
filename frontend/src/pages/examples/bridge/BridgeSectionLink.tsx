@@ -113,9 +113,9 @@ const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 	if (isEmbeddedLink) classToUse = `${BRIDGE_CLASSNAME}__link`;
 
 	return (
-		<span ref={spanRef} onClick={(e: any) => navigateToSection(e)} className={classToUse}>
+		<h3 ref={spanRef as any} onClick={(e: any) => navigateToSection(e)} className={classToUse}>
 			{name}
-		</span>
+		</h3>
 	);
 };
 

@@ -720,8 +720,8 @@ const Resume: React.FC<ResumeProps> = ({
 
 	return (
 		<React.Fragment>
-			<section className={`${RESUME_PAGE_NAME}`}>
-				<div className={`${C_SHARP_CLASSNAME}__title`}>
+			<div className={`${RESUME_PAGE_NAME}`}>
+				<h2 className={`${C_SHARP_CLASSNAME}__title`}>
 					<SourceCodeLink href={`${GITHUB_URL}/portfolio`} />
 					<SourceCodeLink
 						className="source-link__live"
@@ -729,9 +729,9 @@ const Resume: React.FC<ResumeProps> = ({
 						msg={"Download"}
 					/>
 					{RESUME_SPELLING}
-				</div>
+				</h2>
 				{renderSections()}
-			</section>
+			</div>
 			<SkillsPopup />
 		</React.Fragment>
 	);

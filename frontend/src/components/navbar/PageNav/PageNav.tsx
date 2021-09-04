@@ -102,11 +102,11 @@ const PageNav: React.FC<PageNavProps> = ({
 		return sectionNames.map((sectionName, index, array) => {
 			return (
 				<li key={index} className={`${cssClass}__section-group`}>
-					<span
+					<h3
 						onClick={(e: any) => handleSectionClick(e)}
 						className={`${cssClass}__section ${cssClass}__section-${sectionName}`}>
 						{capitalize(sectionName.replace('-', ' '))}
-					</span>
+					</h3>
 				</li>
 			);
 		});

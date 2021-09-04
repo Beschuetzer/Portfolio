@@ -76,7 +76,7 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 	return (
 		<div className={`${C_SHARP_CLASSNAME} ${pageName.toLowerCase()}`}>
 			{href ? (
-				<div
+				<h2
 					className={`${C_SHARP_CLASSNAME}__title`} >
 					{renderSourceCodeLinks()}
 
@@ -85,12 +85,12 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 					target="_blank" rel="noreferrer" href={href}>
 						{capitalize(replaceCharacters(pageName))}
 					</a>
-				</div>
+				</h2>
 			) : (
-				<div className={`${C_SHARP_CLASSNAME}__title`}>
+				<h2 className={`${C_SHARP_CLASSNAME}__title`}>
 					{renderSourceCodeLinks()}
 					{capitalize(replaceCharacters(pageName))}
-				</div>
+				</h2>
 			)}
 			{children}
 			{renderSections()}
