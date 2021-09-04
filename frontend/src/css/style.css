@@ -1384,7 +1384,7 @@ body {
   background-image: var(--site-nav-linear-gradient);
   -webkit-background-clip: text;
   background-clip: text;
-  padding: 1vw 0;
+  padding: 0.5vw 0;
   transition: color 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
