@@ -188,6 +188,11 @@
 			@content;
 		} //655px
 	}
+	@if $breakpoint == phone-touch {
+		@media only screen and (max-width: $phone-max-width) and (hover: hover) {
+			@content;
+		} //655px
+	}
 	@if $breakpoint == tab-port {
 		@media only screen and (max-width: $tab-port-max-width) {
 			@content;

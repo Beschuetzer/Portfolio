@@ -155,8 +155,14 @@
 
 			grid-template-rows:
 				repeat(2, var(--home-column-height))
-				1fr
+				max-content
 				1fr;
+
+				line-height: 1.4;
+			
+		}
+
+		@include respond(phone-touch) {
 		}
 		// &-welcome {
 		// 	--welcome-opacity: .75;
@@ -253,7 +259,7 @@
 			align-items: center;
 
 			@include respond($breakpoint-to-change-layout) {
-				width: 100vw;
+				// width: 100vw;
 			}
 		}
 
@@ -268,7 +274,7 @@
 				text-align: center;
 				margin: 0;
 				width: 100vw;
-				padding: $default-font-size * 0.5;
+				padding-bottom: $default-font-size * 0.5;
 				font-size: $default-font-size;
 			}
 		}
@@ -375,6 +381,7 @@
 				animation: 10s text-bounce-mobile forwards $animation-easing-standard
 						infinite,
 					animate-skills infinite 10s;
+					font-size: 2vh;
 			}
 
 			&:hover {
