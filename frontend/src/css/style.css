@@ -4594,16 +4594,13 @@ body {
 }
 .home__name-first {
   justify-self: flex-end;
-  transform: translate(-80rem, 0);
 }
 .home__name-last {
   justify-self: flex-start;
-  transform: translate(80rem, 0);
 }
 .home__third-word {
   font-weight: 900;
   grid-column: 1/-1;
-  transform: translate(0, 100vh);
   font-size: 2.4rem;
 }
 .home__main {
