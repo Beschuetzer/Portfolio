@@ -352,10 +352,11 @@ const Carousel: React.FC<CarouselProps> = ({
 	return (
 		<React.Fragment>
 			<article className="carousel">{renderItems()}</article>
-			{renderArrows()}
+			{/* //todo: figure out why carousel has changed the way it renders */}
+			{/* {renderArrows()}
 			<div className={`${CAROUSEL_CLASSNAME}__dots`}>
 				{renderCarouselDots()}
-			</div>
+			</div> */}
 		</React.Fragment>
 	);
 };
