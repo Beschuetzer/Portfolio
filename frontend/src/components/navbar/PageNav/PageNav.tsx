@@ -128,7 +128,7 @@ const PageNav: React.FC<PageNavProps> = ({
 		let scrollHeight = document.body.scrollHeight;
 		if (scrollHeight === 0) {
 			const main = document.querySelector('main') as HTMLElement;
-			const mainChild = main.children[0] as HTMLElement;
+			const mainChild = main.children?.[0] as HTMLElement;
 			scrollHeight = mainChild.getBoundingClientRect().height;
 		}
 		const maxScrollY = scrollHeight - window.innerHeight;

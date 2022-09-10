@@ -54,7 +54,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 
 	//when clickedSkillUpdate
 	useEffect(() => {
-		for (let i = 0; i < repos.length; i++) {
+		for (let i = 0; i < repos?.length; i++) {
 			const repo = repos[i];
 			for (let j = 0; j < repo.repositoryTopics.nodes?.length; j++) {
 				const node = repo.repositoryTopics.nodes[j];
