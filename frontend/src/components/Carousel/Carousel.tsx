@@ -66,7 +66,7 @@ const Carousel: React.FC<CarouselProps> = ({
 		number[]
 	>([]);
 
-	window.addEventListener("resize", handleResize);
+	// window.addEventListener("resize", handleResize);
 
 	useInit(
 		leftArrowRef,
@@ -353,6 +353,7 @@ const Carousel: React.FC<CarouselProps> = ({
 		<React.Fragment>
 			<article className="carousel">{renderItems()}</article>
 			{/* //todo: figure out why carousel has changed the way it renders */}
+			{/* //todo: uncomment out event listener above ~line 69 */}
 			{/* {renderArrows()}
 			<div className={`${CAROUSEL_CLASSNAME}__dots`}>
 				{renderCarouselDots()}

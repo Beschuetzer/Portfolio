@@ -204,7 +204,7 @@ export const getRepositories = () => async (dispatch: Dispatch<any>) => {
   const response = await github(query);
   dispatch({
     type: GET_REPOSITORIES,
-    payload: response.data.viewer.repositories.nodes,
+    payload: response?.data.viewer.repositories.nodes,
   });
 }
 export const setBridgeCards = (value: []) => {
