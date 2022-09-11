@@ -5,7 +5,7 @@ exports.githubController = async (req, res) => {
   const endpoint = 'https://api.github.com/graphql'
   const graphQLClient = new GraphQLClient(endpoint, {
     headers: {
-      Authorization: `bearer ${process.env.REACT_APP_GITHUB}`,
+      Authorization: `Bearer ${process.env.REACT_APP_GITHUB}`,
     },
   })
 
