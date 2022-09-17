@@ -327,7 +327,7 @@ $scale-y-amount: .25;
 		border: 1px solid var(--color-primary-1);
 		cursor: pointer;
 		z-index: 100;
-		// border: $default-font-size * .1 solid transparent;
+		border: 1px solid transparent;
 		background-color: var(--color-primary-4);
 		border-radius: $navbar__item-border-radius;
 		display: flex;
