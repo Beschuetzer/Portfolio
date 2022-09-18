@@ -31,17 +31,21 @@ import {
 	BRIDGE_URL,
 	REPLAY_VIEWER_URL,
 	PLAYLIST_SYNCER_URL,
+	BEST_BUY_URL,
+	YORK_B2E_URL,
 } from "../../components/constants";
 import SourceCodeLink from "../../components/SourceCodeLink";
 import Quote from "../../components/Quote";
 import { capitalize } from "../../helpers";
 import { C_SHARP_CLASSNAME } from "../examples/csharp/utils";
+import { WORK_HISTORY_CLASSNAME } from "./WorkHistory/utils";
 
 // export const RESUME_SPELLING = <span>R&eacute;sum&eacute;</span>;
 export const RESUME_SPELLING = "Résumé";
 
-function getLinkClassHTML() {
-	return ` class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' `;
+function getLinkClassHTML(classNamesToAdd?: string[]) {
+	const joined = classNamesToAdd?.join(' ');
+	return ` class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' ${classNamesToAdd}`;
 }
 
 function getExternalLinkTargetAndRel() {
@@ -509,11 +513,49 @@ const Resume: React.FC<ResumeProps> = ({
 			<React.Fragment>
 				<div className="work-history">
 					<WorkHistoryItem
-						id="freelance_web_developer"
-						startDate="03/20"
+						id="best_buy"
+						location={`<a ${getExternalLinkTargetAndRel()}
+						${getLinkClassHTML()} href=${BEST_BUY_URL}> Best Buy</a>`}
+						startDate="02/22"
 						endDate="Present"
 						number="01"
-						title={`Freelance Web Developer`}
+						title="Full Stack Web Developer (Contract)"
+						sections={[
+							{
+								title: "best_buy",
+								bullets: [
+									`Part of the Solution Sidekick (add link) team responsible for building a selling tool used by in-store employees.`,
+									`Played a decisive role in the development of the following features/enhancements: leads, accessory attachment, PDP, voice notes, caching, and displaying combo items in the basket.`,
+									`Discovered and fixed numerous bugs.`,
+								],
+							},
+						]}
+					/>
+					<WorkHistoryItem
+						id="york_solutions"
+						location={`<a ${getExternalLinkTargetAndRel()}
+						${getLinkClassHTML()} href=${YORK_B2E_URL}> York Solutions</a>`}
+						startDate="11/21"
+						endDate="02/22"
+						number="02"
+						title="Barriers to Entry Java Full Stack Program"
+						sections={[
+							{
+								title: "york_solutions",
+								bullets: [
+									`Learned Java (Spring Boot), Agile methodology, and improved React.js skills with the intent of starting a contract at Best Buy as a full`,
+									`Created a "Movie Night Recommendation" app leveraging Best Buy APIs in Spring Boot and React as
+									well as a team project.`,
+								],
+							},
+						]}
+					/>
+					<WorkHistoryItem
+						id="freelance_web_developer"
+						startDate="03/20"
+						endDate="11/21"
+						number="03"
+						title="Freelance Web Developer"
 						sections={[
 							{
 								title: "",
@@ -527,11 +569,12 @@ const Resume: React.FC<ResumeProps> = ({
 					/>
 					<WorkHistoryItem
 						id="ricoh"
+						location={`<a ${getExternalLinkTargetAndRel()}
+						${getLinkClassHTML()} href=${RICOH_URL}> Ricoh Ltd </a>`}
 						startDate="07/19"
 						endDate="06/20"
-						number="02"
-						title={`Technology Services Support Representative at <a ${getExternalLinkTargetAndRel()}
-            ${getLinkClassHTML()} href=${RICOH_URL}> Ricoh Ltd </a>`}
+						number="04"
+						title="Technology Services Support Representative"
 						sections={[
 							{
 								title: "Responsibilities",
@@ -551,10 +594,11 @@ const Resume: React.FC<ResumeProps> = ({
 					/>
 					<WorkHistoryItem
 						id="hawaii"
+						location={`<a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${KUALAPUU_URL}> <span>Kualapuu Charter School <span></a>`}
 						startDate="07/18"
 						endDate="06/19"
-						number="03"
-						title={`Second Grade Classroom Volunteer at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${KUALAPUU_URL}> <span>Kualapuu Charter School <span></a>`}
+						number="05"
+						title="Second Grade Classroom Volunteer"
 						sections={[
 							{
 								title: "Highlights",
@@ -568,10 +612,11 @@ const Resume: React.FC<ResumeProps> = ({
 					/>
 					<WorkHistoryItem
 						id="isd622"
+						location={`<a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${ISD_622_URL}> ISD622 </a>`}
 						startDate="07/07"
 						endDate="07/18"
-						number="04"
-						title={`PearsonVue Test Admin / Office Admin at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${ISD_622_URL}> ISD622 </a>`}
+						number="06"
+						title="PearsonVue Test Admin / Office Admin"
 						sections={[
 							{
 								title: "Responsibilities",
@@ -595,10 +640,11 @@ const Resume: React.FC<ResumeProps> = ({
 					/>
 					<WorkHistoryItem
 						id="overnight_stocker"
+						location={`<a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${TOYS_R_US_URL}> Toy's &ldquo;R&rdquo; Us </a>`}
 						startDate="09/06"
 						endDate="12/06"
-						number="05"
-						title={`Overnight Stocker at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${TOYS_R_US_URL}> Toy's &ldquo;R&rdquo; Us </a>`}
+						number="07"
+						title="Overnight Stocker"
 						sections={[
 							{
 								title: "Responsibilities",
@@ -612,10 +658,11 @@ const Resume: React.FC<ResumeProps> = ({
 					/>
 					<WorkHistoryItem
 						id="germany"
+						location={`<a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${HERMAN_LIETZ_SCHULE_URL}> Herman-Lietz Schule Haubinda </a>`}
 						startDate="09/05"
 						endDate="07/06"
-						number="06"
-						title={`English Assistant at <a ${getExternalLinkTargetAndRel()} ${getLinkClassHTML()} href=${HERMAN_LIETZ_SCHULE_URL}> Herman-Lietz Schule Haubinda </a>`}
+						number="08"
+						title="English Assistant"
 						sections={[
 							{
 								title: "Responsibilities",

@@ -9,6 +9,7 @@ interface WorkHistoryItemProps {
   title: string,
   number: string,
   id?: string,
+  location?: string,
 }
 
 const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
@@ -17,7 +18,8 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
   endDate,
   title,
   number,
-  id = ""
+  id = "",
+  location = '',
 }) => {
 
   const renderSections = () => {
@@ -40,9 +42,9 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
     })
   }
 
-  const createTitle = (title: string) => {
+  const setInnerHtml = (string: string) => {
     return {
-      __html: `${title}:`
+      __html: `${string}`
     }
   }
 
@@ -65,7 +67,10 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
   return (
     <section aria-label={`${id} job description`} id={id ? id : undefined} className={`${WORK_HISTORY_CLASSNAME}__item`}>
         <span className={`${WORK_HISTORY_CLASSNAME}__item-number`}>{number}.</span>
-        <h6 className={`${WORK_HISTORY_CLASSNAME}__title-header heading--six`} dangerouslySetInnerHTML={createTitle(title)}></h6>
+        <h6 className={`${WORK_HISTORY_CLASSNAME}__title-header heading--six`} dangerouslySetInnerHTML={setInnerHtml(title)}/>
+        {location ? (
+          <h6 className={`${WORK_HISTORY_CLASSNAME}__title-location`} dangerouslySetInnerHTML={setInnerHtml(location)}/>
+        ): null}
         <div className={`${WORK_HISTORY_CLASSNAME}__title-dates`}>
           <time aria-label="start date" dateTime={`${getYearFromDate(startDate)}`}> {getDateString(startDate)} </time>
           <span>&nbsp;&ndash;&nbsp;</span>

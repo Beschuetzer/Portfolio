@@ -3618,15 +3618,21 @@ body {
 }
 .work-history__title-header {
   font-size: 1.6rem;
-  font-style: italic;
+}
+.work-history__title-location {
+  font-size: 1.6rem;
+  grid-column: 2/-1;
+  font-weight: 500;
+  padding-bottom: 1.056rem;
 }
 .work-history__title-dates {
   padding-bottom: 0.8rem;
   font-size: 1.44rem;
   display: flex;
   align-items: center;
-  font-weight: 300;
+  font-weight: 400;
   grid-column: 3/-1;
+  font-style: italic;
 }
 @media only screen and (max-width: 52.6875em) {
   .work-history__title-dates {
