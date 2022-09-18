@@ -149,6 +149,10 @@ const skills: {
 				title: "Typescript",
 				percent: 51,
 			},
+			{
+				title: "Java",
+				percent: 35,
+			},
 		],
 		[webDevSubSkillsLabels[1]]: [
 			{
@@ -195,11 +199,11 @@ const skills: {
 			},
 			{
 				title: "React",
-				percent: 65,
+				percent: 80,
 			},
 			{
 				title: "Redux",
-				percent: 51,
+				percent: 75,
 			},
 			{
 				title: "Semantic-UI",

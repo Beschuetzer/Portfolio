@@ -274,10 +274,16 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 
 	const renderProjects = () => {
 		const keys = ["name", "description", "createdAt", "updatedAt", "url"];
-		if (!reposToDisplay || reposToDisplay.length === 0) {
+		if (!reposToDisplay) {
 			return (
 				<div className={`${SKILLS_CLASSNAME}-popup__error`}>
 					Unable to load repositories from Github.  Try refreshing...
+				</div>
+			);
+		} else if (reposToDisplay.length === 0) {
+			return (
+				<div className={`${SKILLS_CLASSNAME}-popup__error`}>
+					There are currently no repos with the tag '{capitalize(clickedSkill)}'
 				</div>
 			);
 		}
