@@ -282,8 +282,9 @@
 	&__error {
 		grid-column: 1 /-1;
 		justify-self: center;
-		margin-top: 30vh;
 		font-size: $default-font-size * 2;
+		position: absolute;
+		top: 58.5%;
 	}
 
 	&--active {

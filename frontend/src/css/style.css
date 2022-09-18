@@ -3365,8 +3365,9 @@ body {
 .skills-popup__error {
   grid-column: 1/-1;
   justify-self: center;
-  margin-top: 30vh;
   font-size: 3.2rem;
+  position: absolute;
+  top: 58.5%;
 }
 .skills-popup--active {
   opacity: 1;
