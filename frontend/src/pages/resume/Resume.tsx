@@ -111,7 +111,7 @@ const skills: {
 			},
 			{
 				title: "C#",
-				percent: 35,
+				percent: 40,
 			},
 			{
 				title: "Express",
@@ -127,7 +127,7 @@ const skills: {
 			},
 			{
 				title: "Javascript",
-				percent: 78,
+				percent: 82,
 			},
 			{
 				title: "jQuery",
@@ -147,7 +147,7 @@ const skills: {
 			},
 			{
 				title: "Typescript",
-				percent: 51,
+				percent: 75,
 			},
 			{
 				title: "Java",
@@ -202,12 +202,24 @@ const skills: {
 				percent: 80,
 			},
 			{
+				title: "React Native",
+				percent: 70,
+			},
+			{
 				title: "Redux",
 				percent: 75,
 			},
 			{
 				title: "Semantic-UI",
 				percent: 43,
+			},
+			{
+				title: "Spring Boot",
+				percent: 53,
+			},
+			{
+				title: ".NET",
+				percent: 29,
 			},
 		],
 		[webDevSubSkillsLabels[3]]: [
@@ -231,6 +243,10 @@ const skills: {
 				title: "TDD",
 				percent: 52.5,
 			},
+			{
+				title: "BDD",
+				percent: 66,
+			},
 		],
 		[webDevSubSkillsLabels[4]]: [
 			{
@@ -239,7 +255,7 @@ const skills: {
 			},
 			{
 				title: "PostgresSQL",
-				percent: 24,
+				percent: 55,
 				href: "/certs/sql.png",
 			},
 		],
