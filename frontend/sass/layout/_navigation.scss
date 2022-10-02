@@ -504,6 +504,9 @@ $scale-y-amount: .25;
 			opacity: 1;
 			width: 100%;
 			transform: scale(1);
+			@include respond(nav-switch) {
+				padding-right: $default-font-size * .5;
+			}
 		}
 		& .navbar__content {
 			visibility: visible;

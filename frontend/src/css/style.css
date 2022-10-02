@@ -1183,6 +1183,11 @@ body {
   width: 100%;
   transform: scale(1);
 }
+@media only screen and (max-width: 68.75em) {
+  .navbar.navbar--active .navbar__list {
+    padding-right: 0.8rem;
+  }
+}
 .navbar.navbar--active .navbar__content {
   visibility: visible;
   opacity: 1;
