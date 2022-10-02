@@ -8,7 +8,12 @@ $scale-y-amount: .25;
 	position: relative;
 	font-size: $default-font-size * 1.5;
 	text-align: center;
-	display: flex;
+	display: grid;
+	grid-template-columns: min-content repeat(
+		4,
+		1fr,
+	);
+	column-gap: $navbar__item-divider-width;
 	align-items: center;
 
 	@include respond(nav-switch) {
@@ -160,6 +165,7 @@ $scale-y-amount: .25;
 	}
 
 	&__list {
+		column-gap: $navbar__item-divider-width;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -183,6 +189,8 @@ $scale-y-amount: .25;
 				auto-fill,
 				minmax(var(--min-column-width), 1fr)
 			);
+			column-gap: 1px;
+			row-gap: 1px;
 			flex-direction: column;
 			opacity: 0;
 			width: $default-font-size * 5;
@@ -201,7 +209,6 @@ $scale-y-amount: .25;
 		}
 
 		& .navbar__item:nth-child(n + 1) {
-			margin-left: $default-font-size * 0.1;
 			@include respond(nav-switch) {
 			}
 		}
@@ -220,8 +227,6 @@ $scale-y-amount: .25;
 	}
 
 	&__item {
-		// border: $default-font-size * 0.1 solid var(--color-primary-1)
-		border: $default-font-size * 0.1 solid transparent;
 		position: relative;
 		background-color: var(--color-primary-4);
 		// background: linear-gradient(
