@@ -235,7 +235,7 @@ $scale-y-amount: .25;
 		transition: transform $animation-duration * 0.25 $animation-easing-standard,
 			background-color $animation-duration * 0.25 $animation-easing-standard;
 		box-shadow: $navbar-box-shadow-normal;
-
+		
 		& .triangle-down {
 			transition: transform $animation-duration * 0.5 $animation-easing-standard;
 		}
@@ -295,7 +295,7 @@ $scale-y-amount: .25;
 	&__link:link,
 	&__link:visited {
 		padding: $default-font-size * $paddingFactor 0;
-		font-size: 3.2rem;
+		font-size: 2vmax;
 		height: 100%;
 		width: 100%;
 		text-decoration: none;
@@ -318,7 +318,9 @@ $scale-y-amount: .25;
 	}
 
 	&--done &__item {
-		border: $default-font-size * 0.1 solid var(--color-primary-1);
+		@include respond(nav-switch) {
+			border: 1px solid var(--color-primary-1);
+		}
 	}
 
 	&__button {
@@ -331,7 +333,7 @@ $scale-y-amount: .25;
 		border-radius: $navbar__item-border-radius;
 		display: flex;
 		align-items: center;
-		box-shadow: $navbar-box-shadow-resume;
+		box-shadow: $navbar-box-shadow-normal;
 
 		transition: border-radius $animation-duration * 1 $animation-easing-standard;
 		@include respond(nav-switch) {
@@ -451,7 +453,7 @@ $scale-y-amount: .25;
 	&__dropdown-container:hover &__dropdown,
 	&__dropdown &__item:hover &__dropdown {
 		@include site-nav-examples-expanded;
-		/* background: var(--color-primary-1);
+		/* background: var(--color-primary-4);
 		border-radius: 0 0 $default-font-size $default-font-size; */
 	}
 
@@ -558,7 +560,7 @@ $scale-y-amount: .25;
 			visibility: visible;
 			transition: filter $animation-duration $animation-easing-standard;
 
-			backdrop-filter: blur($default-font-size * 0.5) brightness(0.75)
+			backdrop-filter: blur($default-font-size * 0.5) brightness(0.5)
 				drop-shadow(
 					0px $default-font-size * 1 $default-font-size * 2 var(--color-grey-80)
 				);

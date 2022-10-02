@@ -584,6 +584,12 @@ body {
 .unclickable .navbar__dropdown {
   height: 0 !important;
 }
+.unclickable .navbar__button {
+  box-shadow: none;
+}
+.unclickable .navbar__item {
+  box-shadow: none;
+}
 
 .transparent {
   background-color: transparent !important;
@@ -998,8 +1004,8 @@ body {
   cursor: auto;
 }
 .navbar__link, .navbar__link:link, .navbar__link:visited {
-  padding: 2.4rem 0;
-  font-size: 3.2rem;
+  padding: 1.6rem 0;
+  font-size: 2vmax;
   height: 100%;
   width: 100%;
   text-decoration: none;
@@ -1018,8 +1024,10 @@ body {
     opacity: 0;
   }
 }
-.navbar--done .navbar__item {
-  border: 0.16rem solid var(--color-primary-1);
+@media only screen and (max-width: 68.75em) {
+  .navbar--done .navbar__item {
+    border: 1px solid var(--color-primary-1);
+  }
 }
 .navbar__button {
   border-style: double;
@@ -1031,7 +1039,7 @@ body {
   border-radius: 16rem;
   display: flex;
   align-items: center;
-  box-shadow: 0 1.6rem 3.2rem rgba(17, 17, 17, 0.33);
+  box-shadow: 0px 4px 8px rgba(17, 17, 17, 0.33);
   transition: border-radius 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
@@ -1137,8 +1145,8 @@ body {
   visibility: visible;
   opacity: 1;
   height: auto;
-  transform: translateY(0%) scale(1);
-  /* background: var(--color-primary-1);
+  transform: translateY(2px) scale(1);
+  /* background: var(--color-primary-4);
   border-radius: 0 0 $default-font-size $default-font-size; */
 }
 @media only screen and (hover: none) {
@@ -1146,7 +1154,7 @@ body {
     visibility: visible;
     opacity: 1;
     height: auto;
-    transform: translateY(0%) scale(1);
+    transform: translateY(2px) scale(1);
   }
 }
 .navbar__dropdown-container:hover .navbar__dropdown .navbar__item {
@@ -1160,7 +1168,7 @@ body {
   }
 }
 .navbar__dropdown-container:hover .navbar__dropdown .navbar__link {
-  padding: 2.4rem 3.2rem;
+  padding: 1.6rem 3.2rem;
 }
 .navbar.navbar--isAnimating, .navbar.navbar--active {
   --site-nav-button-width: auto;
@@ -1213,7 +1221,7 @@ body {
   width: 0;
 }
 .navbar.navbar--active .navbar__link:not(.navbar.navbar--active__dropdown .navbar.navbar--active__link) {
-  padding: 2.4rem 3.2rem;
+  padding: 1.6rem 3.2rem;
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__link:not(.navbar.navbar--active__dropdown .navbar.navbar--active__link) {
@@ -1223,7 +1231,7 @@ body {
 .navbar.navbar--active .navbar__background {
   visibility: visible;
   transition: filter 0.5s ease;
-  backdrop-filter: blur(0.8rem) brightness(0.75) drop-shadow(0px 1.6rem 3.2rem var(--color-grey-80));
+  backdrop-filter: blur(0.8rem) brightness(0.5) drop-shadow(0px 1.6rem 3.2rem var(--color-grey-80));
 }
 .navbar.navbar--isAnimating .navbar__content {
   transform: scaleX(1) translateX(-100%) scaleY(0.25);
@@ -2564,7 +2572,7 @@ body {
 .github {
   border-radius: 50%;
   border: 1px solid transparent;
-  box-shadow: 0 1.6rem 3.2rem rgba(17, 17, 17, 0.33);
+  box-shadow: 0px 4px 8px rgba(17, 17, 17, 0.33);
   font-family: "Open Sans", sans-serif;
   font-size: 1vw;
   position: relative;

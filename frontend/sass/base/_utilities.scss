@@ -80,6 +80,14 @@
 	& .navbar__dropdown {
 		height: 0 !important;
 	}
+
+	& .navbar__button {
+		box-shadow: none;
+	}
+
+	& .navbar__item {
+		box-shadow: none;
+	}
 }
 
 .transparent {
