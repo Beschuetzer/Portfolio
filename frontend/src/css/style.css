@@ -1242,7 +1242,12 @@ body {
   backdrop-filter: blur(0.8rem) brightness(0.5) drop-shadow(0px 1.6rem 3.2rem var(--color-grey-80));
 }
 .navbar.navbar--isAnimating .navbar__content {
-  transform: scaleX(1) translateY(-0.4rem) scaleY(1);
+  transform: scaleX(1) translateX(-100%) scaleY(1);
+}
+@media only screen and (max-width: 68.75em) {
+  .navbar.navbar--isAnimating .navbar__content {
+    transform: scaleX(1) translateY(-0.4rem) scaleY(1);
+  }
 }
 .navbar.navbar--isAnimating * {
   pointer-events: none;
@@ -1389,7 +1394,7 @@ body {
   backface-visibility: hidden;
   line-break: anywhere;
   cursor: pointer;
-  text-shadow: 0px 0px 6px rgba(var(--color-primary-4-rgb), 0.5);
+  text-shadow: 0px 4px 8px rgba(17, 17, 17, 0.33);
   width: 100%;
   text-align: center;
   text-decoration: none;
@@ -1446,6 +1451,9 @@ body {
   .page-nav__section-group:hover > a {
     color: var(--color-primary-2);
   }
+}
+.page-nav__section:hover {
+  text-shadow: 0px 0px 0.4rem rgba(var(--color-primary-4-rgb), 0.5);
 }
 .page-nav--active {
   transform: scale(var(--site-nav-active-scale-amount));
@@ -3380,7 +3388,7 @@ body {
   justify-self: center;
   font-size: 3.2rem;
   position: absolute;
-  top: 58.5%;
+  top: 50%;
 }
 .skills-popup--active {
   opacity: 1;

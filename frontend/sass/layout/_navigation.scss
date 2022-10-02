@@ -580,7 +580,11 @@ $scale-y-amount: .25;
 	//Handling Bug where leaving button after clicking causes overflow hidden to change
 	&.navbar--isAnimating {
 		& .navbar__content {
-			transform: scaleX(1) translateY(-$default-font-size * .25) scaleY(1);
+			transform: scaleX(1) translateX(-100%) scaleY(1);
+
+			@include respond(nav-switch) {
+				transform: scaleX(1) translateY(-$default-font-size * .25) scaleY(1);
+			}
 		}
 		* {
 			pointer-events: none;
@@ -747,7 +751,6 @@ $scale-y-amount: .25;
 		-webkit-background-clip: text;
 		background-clip: text;
 		padding: .5vw 0;
-
 		transition: color $animation-duration $animation-easing-standard;
 
 		@include respond(nav-switch) {
@@ -811,6 +814,10 @@ $scale-y-amount: .25;
 					color: var(--color-primary-2);
 				}
 			}
+		}
+
+		&:hover {
+			text-shadow: getTextShadow(glowing-hover, var(--color-primary-4-rgb));
 		}
 	}
 

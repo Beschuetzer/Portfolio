@@ -199,7 +199,7 @@ const skills: {
 			},
 			{
 				title: "nx",
-				percent: 55,
+				percent: 66,
 			},
 			{
 				title: "React",
