@@ -194,11 +194,9 @@ $scale-y-amount: .25;
 		}
 
 		& .navbar__item:first-child {
-			transition: border-radius $animation-duration $animation-easing-standard;
 			/* border-radius: $default-font-size * 0.5 0 0 $default-font-size * 0.5; */
 			border-radius: 0;
 			@include respond(nav-switch) {
-				border-radius: 0;
 			}
 		}
 
@@ -453,6 +451,8 @@ $scale-y-amount: .25;
 	&__dropdown-container:hover &__dropdown,
 	&__dropdown &__item:hover &__dropdown {
 		@include site-nav-examples-expanded;
+		/* background: var(--color-primary-1);
+		border-radius: 0 0 $default-font-size $default-font-size; */
 	}
 
 	//expanding SiteNav 'examples' menu if mobile device

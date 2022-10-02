@@ -928,14 +928,8 @@ body {
   }
 }
 .navbar__list .navbar__item:first-child {
-  transition: border-radius 0.5s ease;
   /* border-radius: $default-font-size * 0.5 0 0 $default-font-size * 0.5; */
   border-radius: 0;
-}
-@media only screen and (max-width: 68.75em) {
-  .navbar__list .navbar__item:first-child {
-    border-radius: 0;
-  }
 }
 .navbar__list .navbar__item:nth-child(n+1) {
   margin-left: 0.16rem;
@@ -1144,6 +1138,8 @@ body {
   opacity: 1;
   height: auto;
   transform: translateY(0%) scale(1);
+  /* background: var(--color-primary-1);
+  border-radius: 0 0 $default-font-size $default-font-size; */
 }
 @media only screen and (hover: none) {
   .navbar__dropdown-container .navbar__dropdown, .navbar__dropdown .navbar__item .navbar__dropdown, .navbar__dropdown .navbar__item {
