@@ -140,11 +140,11 @@ $scale-y-amount: .25;
 		visibility: hidden;
 		width: 100%;
 		transform-origin: left;
-		transform: scaleX(0) translateX(0) scaleY($scale-y-amount);
+		transform: scale(0) translateX($default-font-size * .5);
 		transition: visibility $animation-navbar, transform $animation-navbar;
 
 		@include respond(nav-switch) {
-			transform: translateY(-$default-font-size * 1.5);
+			transform: translateY(0);
 			position: absolute;
 			transform-origin: top;
 			top: calc(#{$header-height} - #{$default-font-size * 1});
@@ -194,7 +194,8 @@ $scale-y-amount: .25;
 			row-gap: 1px;
 			flex-direction: column;
 			opacity: 0;
-			width: $default-font-size * 5;
+			/* this add the width part of the animation */
+			/* width: $default-font-size * 1; */
 			transform: scale(0);
 		}
 
@@ -579,7 +580,7 @@ $scale-y-amount: .25;
 	//Handling Bug where leaving button after clicking causes overflow hidden to change
 	&.navbar--isAnimating {
 		& .navbar__content {
-			transform: scaleX(1) translateX(-100%) scaleY($scale-y-amount);
+			transform: scaleX(1) translateY(-$default-font-size * .25) scaleY(1);
 		}
 		* {
 			pointer-events: none;

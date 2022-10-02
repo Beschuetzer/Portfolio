@@ -895,12 +895,12 @@ body {
   visibility: hidden;
   width: 100%;
   transform-origin: left;
-  transform: scaleX(0) translateX(0) scaleY(0.25);
+  transform: scale(0) translateX(0.8rem);
   transition: visibility 0.5s ease, transform 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__content {
-    transform: translateY(-2.4rem);
+    transform: translateY(0);
     position: absolute;
     transform-origin: top;
     top: calc(10rem - 1.6rem);
@@ -930,7 +930,8 @@ body {
     row-gap: 1px;
     flex-direction: column;
     opacity: 0;
-    width: 8rem;
+    /* this add the width part of the animation */
+    /* width: $default-font-size * 1; */
     transform: scale(0);
   }
 }
@@ -1241,7 +1242,7 @@ body {
   backdrop-filter: blur(0.8rem) brightness(0.5) drop-shadow(0px 1.6rem 3.2rem var(--color-grey-80));
 }
 .navbar.navbar--isAnimating .navbar__content {
-  transform: scaleX(1) translateX(-100%) scaleY(0.25);
+  transform: scaleX(1) translateY(-0.4rem) scaleY(1);
 }
 .navbar.navbar--isAnimating * {
   pointer-events: none;
