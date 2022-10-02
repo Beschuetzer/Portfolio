@@ -136,7 +136,7 @@ interface TextData {
 const originalAspectRatio = window.innerWidth / window.innerHeight;
 const isMobile = window.innerWidth < 1250;
 const textMinXRotation = -Math.PI / 2 - 0.25;
-const textScrollSpeed = 0.25;
+const textScrollSpeed = 0.4;
 const defaultTextX = 0;
 const defaultTextY = -0.2;
 const defaultTextYRotation = 0;
@@ -194,7 +194,7 @@ const textsToUse = [
 		spaceBefore: true,
 	},
 	{
-		text: "hearing what you think!",
+		text: "hearing from you.",
 		spaceBefore: false,
 	},
 ];
@@ -212,7 +212,7 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 const animationFPS = 60.0;
 export let timeElapsedInMS = 0;
 export const introPanDuration = 5000;
-const lineScrollDuration = 1550;
+const lineScrollDuration = 725;
 // const lineScrollDuration = 0;
 export const introPanDurationMobile = linesOfText * lineScrollDuration;
 ;
