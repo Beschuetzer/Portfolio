@@ -146,7 +146,8 @@ $scale-y-amount: .25;
 		@include respond(nav-switch) {
 			transform: translateY(-$default-font-size * 1.5);
 			position: absolute;
-			top: calc(#{$header-height} - #{$default-font-size * 0.25});
+			transform-origin: top;
+			top: calc(#{$header-height} - #{$default-font-size * 1});
 			left: -1px;
 			display: flex;
 			overflow: visible !important;
