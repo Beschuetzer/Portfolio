@@ -695,7 +695,7 @@ const sections: CSharpSection[] = [
 						considered inferior to B.S. degrees).&nbsp; I tell myself I made the
 						"best" choice with what I knew at the time, but if I could, I would
 						use inception to plant the idea that majoring in computer science is
-						the "best" choice, even if I though I would end up with a 2.0 G.P.A.
+						the "best" choice, even if I thought I would end up with a 2.0 G.P.A.
 					</Paragraph>
 				</CSharpCardSection>
 			</React.Fragment>,

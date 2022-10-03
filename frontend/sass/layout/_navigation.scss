@@ -8,12 +8,11 @@ $scale-y-amount: .25;
 	position: relative;
 	font-size: $default-font-size * 1.5;
 	text-align: center;
-	display: grid;
+	display: flex;
 	grid-template-columns: min-content repeat(
 		4,
 		1fr,
 	);
-	column-gap: $navbar__item-divider-width;
 	align-items: center;
 
 	@include respond(nav-switch) {
