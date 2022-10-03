@@ -6,6 +6,8 @@ JOB STUFF------------------------------------
   -add links to best buy and york projects in the resume section (embedded links)
   -minify SSK videos
   -create a Solution Sidekick feature page
+  -change navbar behavior such that clicking an item closes it
+  -about page images not working from nav-switch breakpoint and below?
 
 BUGS------------------------------------
   -fix carousel issue (use 3rd party lib?)
