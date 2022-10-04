@@ -7,6 +7,7 @@ JOB STUFF------------------------------------
   -create a Solution Sidekick feature page
   -about page images not working from nav-switch breakpoint and below?
   -scrolling down then up all the way and then changing to another page with PageNav causes issues with percent tracking and colors
+  -remove the delayed sound (maybe all sounds for SiteNav?)
 
 BUGS------------------------------------
   -fix carousel issue (use 3rd party lib?)

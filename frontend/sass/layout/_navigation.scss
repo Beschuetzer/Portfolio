@@ -504,9 +504,6 @@ $scale-y-amount: .25;
 			opacity: 1;
 			width: 100%;
 			transform: scale(1);
-			@include respond(nav-switch) {
-				padding-right: $default-font-size * .5;
-			}
 		}
 		& .navbar__content {
 			visibility: visible;
@@ -515,8 +512,17 @@ $scale-y-amount: .25;
 
 			@include respond(nav-switch) {
 				width: $header-width-nav-switch;
+				padding-right: $default-font-size / 2;
+				/* width: 100vw; */
 				position: absolute;
 				z-index: 100;
+
+			
+			}
+
+			@include respond(mobile) {
+				width: 100vw;
+				padding-right: $default-font-size;
 			}
 
 			// @include respond(tab-land) {

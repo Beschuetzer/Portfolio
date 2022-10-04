@@ -1183,11 +1183,6 @@ body {
   width: 100%;
   transform: scale(1);
 }
-@media only screen and (max-width: 68.75em) {
-  .navbar.navbar--active .navbar__list {
-    padding-right: 0.8rem;
-  }
-}
 .navbar.navbar--active .navbar__content {
   visibility: visible;
   opacity: 1;
@@ -1196,8 +1191,16 @@ body {
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__content {
     width: calc(100vw - 2.128rem);
+    padding-right: 0.8rem;
+    /* width: 100vw; */
     position: absolute;
     z-index: 100;
+  }
+}
+@media only screen and (hover: none) {
+  .navbar.navbar--active .navbar__content {
+    width: 100vw;
+    padding-right: 1.6rem;
   }
 }
 .navbar.navbar--active .navbar__button {
