@@ -6,7 +6,7 @@ JOB STUFF------------------------------------
   -minify SSK videos
   -create a Solution Sidekick feature page
   -about page images not working from nav-switch breakpoint and below?
-  -change navbar behavior such that clicking an item closes it
+  -scrolling down then up all the way and then changing to another page with PageNav causes issues with percent tracking and colors
 
 BUGS------------------------------------
   -fix carousel issue (use 3rd party lib?)
