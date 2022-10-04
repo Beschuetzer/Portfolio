@@ -240,8 +240,6 @@ export const handleNavClick = (
 	const IS_CHILD_OF_NAVBAR = getIsChildOfNavBar(e);
 	const IS_NAV_ITEM_CLICK = (e.target as HTMLElement)?.localName === "a";
 
-	if (IS_NAV_ITEM_CLICK) return;
-
 	if (
 		!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&
 		IS_CHILD_OF_NAVBAR
@@ -256,7 +254,13 @@ export const handleNavClick = (
 			openNavBar(navBar, setIsAnimating);
 		}
 	} else {
-		closeNavBar(navBar, setIsAnimating);
+		if (IS_NAV_ITEM_CLICK) {
+			setTimeout(() => {
+				closeNavBar(navBar, setIsAnimating);
+			}, 1);
+		} else {
+			closeNavBar(navBar, setIsAnimating);
+		}
 	}
 };
 

@@ -91,7 +91,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		useState(false);
 
 	const onNavClick = (e: MouseEvent) => {
-		e.stopPropagation();
+		e && e.stopPropagation();
 		handleNavClick(navRef, sounds, setIsAnimating, e);
 	};
 
@@ -109,6 +109,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			target.baseURI.match(REPLAY_VIEWER_URL)
 		)
 			pingContainer(setHasPingedReplayHerokuContainer, LIVE_REPLAYS_URL);
+		onNavClick(e);
 	};
 
 	const onMouseEnter = (e: MouseEvent) => {
