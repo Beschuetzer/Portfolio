@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { connect, RootStateOrAny } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import { setPreviousUrl } from "../../../actions";
 import { capitalize } from "../../../helpers";
@@ -12,6 +13,7 @@ import { setHeaderHeaderCSSPropertyValue } from "../utils";
 import {
 	checkShouldSetPreviousUrl,
 	getSectionNames,
+	resetGradientPercents,
 	setBridgeColors,
 	setGradientPercent,
 	setPageNavMinWidth,
@@ -55,6 +57,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	let pageNavElement = document.querySelector(".page-nav") as any;
 	let previousSectionBottom: number | null = 0;
 	let shouldHandleScroll = useRef(true);
+	const location = useLocation();
 
 	useEffect(() => {
 		setHeaderHeaderCSSPropertyValue();
@@ -270,6 +273,13 @@ const PageNav: React.FC<PageNavProps> = ({
 			document.removeEventListener("scroll", handleScroll);
 		};
 	}, []);
+	
+	useEffect(() => {
+		setTimeout(() => {
+			const sections = document.querySelectorAll("[data-section]");
+			resetGradientPercents(sections);
+		}, 1);
+	}, [location])
 
 	useEffect(() => {
 		if (match.url.trim() === "/")

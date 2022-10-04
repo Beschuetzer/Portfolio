@@ -28,6 +28,22 @@ export const getLinearGradient = (percent: number, docStyle: any) => {
       ${mainColor} 100%)`;
 };
 
+export const resetGradientPercents = (
+	sections: any,
+) => {
+	for (let i = 0; i < sections.length; i++) {
+		const section = sections[i];
+		const pageNavSectionName = capitalize(section.dataset.section);
+		const pageNavSectionElement = document.querySelector(
+			`.page-nav__section-${pageNavSectionName.toLowerCase()}`,
+		) as HTMLElement;
+
+		if (!pageNavSectionElement) return;
+
+		pageNavSectionElement.style.removeProperty('background-image');
+	}
+}
+
 export const setGradientPercent = (
 	sections: any,
 	currentSection: Element | null,
