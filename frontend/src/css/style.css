@@ -1345,7 +1345,7 @@ body {
     --header-toggler-svg-rotation: 0deg;
   }
   .header-toggler--active + .header {
-    transform: translateY(calc(var(--header-toggler-height) * -1));
+    transform: translateY(-100%);
   }
   .header-toggler:hover {
     background-color: var(--color-primary-4);

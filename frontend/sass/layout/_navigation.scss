@@ -693,7 +693,7 @@ $scale-y-amount: .25;
 				}
 
 				& + .header {
-					transform: translateY(calc(var(--header-toggler-height) * -1));
+					transform: translateY(-100%);
 				}
 			}
 			&:hover {

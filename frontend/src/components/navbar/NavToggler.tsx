@@ -41,6 +41,13 @@ const NavToggler: React.FC<NavTogglerProps> = ({
 			HEADER_TOGGLER_CSS_CLASSNAME,
 			newWidth,
 		);
+
+		//prevents bug regarding toggler being closed when going above nav-switch breakpoint
+		const toggler = document.querySelector(`.header-toggler`) as HTMLElement;
+		if (viewPortWidth >= viewPortPixelToRem?.navBreak.max) {
+			toggler.classList.remove(HEADER_TOGGLER_ACTIVE_CLASSNAME);
+		}
+
 	}, [headerHeight, viewPortWidth]);
 
 	const handleOnClick = (e: MouseEvent) => {
