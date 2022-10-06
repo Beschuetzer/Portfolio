@@ -116,7 +116,7 @@
 	}
 
 	&__section {
-		margin-bottom: $default-font-size * 6;
+		padding: $default-font-size * 2 0;
 
 		@include respond(tab-land) {
 			margin-bottom: $default-font-size * 2;
