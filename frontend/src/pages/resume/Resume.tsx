@@ -39,6 +39,7 @@ import Quote from "../../components/Quote";
 import { capitalize } from "../../helpers";
 import { C_SHARP_CLASSNAME } from "../examples/csharp/utils";
 import { WORK_HISTORY_CLASSNAME } from "./WorkHistory/utils";
+import PageWrapper from "../PageWrapper";
 
 // export const RESUME_SPELLING = <span>R&eacute;sum&eacute;</span>;
 export const RESUME_SPELLING = "Résumé";
@@ -787,7 +788,7 @@ const Resume: React.FC<ResumeProps> = ({
 
 	return (
 		<React.Fragment>
-			<div className={`${RESUME_PAGE_NAME}`}>
+			<PageWrapper pageName={RESUME_PAGE_NAME}>
 				<h2 className={`${C_SHARP_CLASSNAME}__title`}>
 					<SourceCodeLink href={`${GITHUB_URL}/portfolio`} />
 					<SourceCodeLink
@@ -798,7 +799,7 @@ const Resume: React.FC<ResumeProps> = ({
 					{RESUME_SPELLING}
 				</h2>
 				{renderSections()}
-			</div>
+			</PageWrapper>
 			<SkillsPopup />
 		</React.Fragment>
 	);

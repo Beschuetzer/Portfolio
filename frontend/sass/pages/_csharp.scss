@@ -9,8 +9,8 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-    position: absolute;
-    transform: translateY(var(--header-height));
+		position: absolute;
+		transform: translateY(var(--header-height));
 	}
 
 	// background-image:
@@ -143,13 +143,15 @@
 		font-size: var(--font-size);
 		text-align: center;
 		width: 100vw;
-		padding-top: calc(#{$header-top} - 2vw);
+		/* padding-top: calc(#{$header-top} - 2vw); */
 		text-shadow: $resume-header-text-shadow;
 		color: var(--color-primary-4);
 
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		position: absolute;
+		top: calc(#{$header-top} - #{$navbar__logo-width / 6 });
 
 		&-link {
 			text-decoration: none;
@@ -173,6 +175,7 @@
 			flex-direction: column-reverse;
 			width: $resume-card-width-full;
 			margin: auto;
+			position: static;
 		}
 
 		@include respond(tab-land) {
@@ -187,6 +190,9 @@
 			display: flex;
 			// flex-direction: column;
 			// margin-top: $default-font-size * 5;
+		}
+		@include respond(mobile) {
+			position: static;
 		}
 	}
 
