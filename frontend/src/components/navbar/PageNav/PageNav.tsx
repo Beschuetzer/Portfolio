@@ -38,6 +38,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	headerHeight,
 	setPreviousUrl,
 }) => {
+	//#region Init
 	const cssClass = "page-nav";
 	// const gradientVarName = "--site-nav-linear-gradient";
 	// const activeScaleVarName = "--site-nav-active-scale-amount";
@@ -58,11 +59,9 @@ const PageNav: React.FC<PageNavProps> = ({
 	let previousSectionBottom: number | null = 0;
 	let shouldHandleScroll = useRef(true);
 	const location = useLocation();
+	//#endregion
 
-	useEffect(() => {
-		setHeaderHeaderCSSPropertyValue();
-	})
-
+	//#region Functions
 	const renderFullBridge = () => {
 		setBridgeColors(currentBridgeSection, clickedBridgeInfoButtonCount);
 
@@ -140,6 +139,12 @@ const PageNav: React.FC<PageNavProps> = ({
 
 		return scrollY >= maxScrollY - maxScrollOffset;
 	}
+	//#endregion
+
+	//#region useEffects
+	useEffect(() => {
+		setHeaderHeaderCSSPropertyValue();
+	})
 
 	useEffect(() => {
 		const handleScroll = (e: Event) => {
@@ -297,7 +302,9 @@ const PageNav: React.FC<PageNavProps> = ({
 		if (!isMobile && clickedBridgeInfoButtonCount <= 0 && url.match(/bridge$/i))
 			pageNavElement.classList.add(HIDDEN_CLASSNAME);
 	}, [clickedBridgeInfoButtonCount, isMobile, match.url, pageNavElement]);
+	//#endregion
 
+	//#region JSX
 	return ReactDOM.createPortal(
 		//The idea behind this component is to have a nav element that has quick links  to the sections of each page
 		<React.Fragment>
@@ -305,6 +312,7 @@ const PageNav: React.FC<PageNavProps> = ({
 		</React.Fragment>,
 		pageNavElement,
 	);
+	//#endregion
 };
 
 const mapStateToProps = (state: RootStateOrAny) => {
