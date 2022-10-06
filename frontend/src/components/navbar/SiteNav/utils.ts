@@ -232,7 +232,7 @@ export const handleNavClick = (
 
 	clearIntervalsAndTimeouts();
 	startIntervalsAndTimeouts(navBar);
-	handleSound(sounds, e);
+	// handleSound(sounds, e);
 
 	navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 	navBar.classList.add(UNCLICKABLE_CLASSNAME);
