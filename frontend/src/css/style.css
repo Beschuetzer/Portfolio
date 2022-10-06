@@ -1199,8 +1199,8 @@ body {
 }
 @media only screen and (hover: none) {
   .navbar.navbar--active .navbar__content {
-    width: 100vw;
-    padding-right: 1.6rem;
+    width: calc(100vw - (1.6rem / 2));
+    padding-right: 0;
   }
 }
 .navbar.navbar--active .navbar__button {

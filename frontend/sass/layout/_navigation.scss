@@ -521,8 +521,8 @@ $scale-y-amount: .25;
 			}
 
 			@include respond(mobile) {
-				width: 100vw;
-				padding-right: $default-font-size;
+				width: calc(100vw - (#{$default-font-size} / 2));
+				padding-right: 0;
 			}
 
 			// @include respond(tab-land) {
@@ -633,11 +633,9 @@ $scale-y-amount: .25;
 
 	&__inner {
 		display: flex;
-		// flex-direction: row-reverse;
 		justify-content: space-between;
 		align-items: center;
 		width: $header-inner-width;
-		// width: calc(#{$resume-card-width-full} + ((100vw - #{$resume-card-width-full}) / 2) + 8rem);
 		margin: 0 auto;
 
 		& * {
