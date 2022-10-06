@@ -6,10 +6,14 @@
 	}
 
     @include respond(mobile) {
-        padding-top: $default-font-size * 2;
+        padding-top: calc(var(--header-height) + #{$default-font-size} * 1);
     }
 
-    &.csharp {
+    &.downloader {
+	    padding-top: calc(var(--header-height) + #{$navbar__logo-width} - #{$default-font-size} * 1);
+    }
+
+    &.csharp, &.downloader {
         @include respond(nav-switch) {
             padding-top: $default-font-size * 2;
         }
