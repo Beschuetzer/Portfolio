@@ -1,0 +1,17 @@
+.page-wrapper {
+	padding-top: calc(var(--header-height) + #{$navbar__logo-width});
+
+    @include respond(nav-switch) {
+		padding-top: calc(var(--header-height) + #{$default-font-size} * 1);
+	}
+
+    @include respond(mobile) {
+        padding-top: $default-font-size * 2;
+    }
+
+    &.csharp {
+        @include respond(nav-switch) {
+            padding-top: $default-font-size * 2;
+        }
+    }
+}
