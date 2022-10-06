@@ -681,7 +681,7 @@ $scale-y-amount: .25;
 						var(--header-toggler-translate-y)
 					);
 				fill: var(--color-primary-4);
-				width: $header-toggler-width;
+				width: calc(#{$header-toggler-width} * .88085);
 				height: $header-toggler-width;
 				transition: transform $animation-duration $animation-easing-standard,
 					all $animation-duration $animation-easing-standard;
@@ -702,6 +702,10 @@ $scale-y-amount: .25;
 					fill: var(--color-primary-1);
 				}
 			}
+		}
+
+		@include respond(tab-land) {
+			right: $default-font-size * .5;
 		}
 	}
 }

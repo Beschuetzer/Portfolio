@@ -1,6 +1,4 @@
-.site-nav {
-	align-self: flex-start;
-}
+.site-nav {}
 
 .site-nav--nav-switch-minimal {
 	@include respond(nav-switch) {
@@ -30,6 +28,9 @@
 			--opacity: 1;
 
 		}
+	}
 
+	@include respond(tab-land) {
+		left: $default-font-size * .5;
 	}
 }
