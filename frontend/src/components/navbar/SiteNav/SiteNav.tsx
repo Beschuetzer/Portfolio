@@ -56,6 +56,7 @@ import {
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
 import { Dispatch } from "react";
+import { useLocation } from "react-router-dom";
 
 export const SITE_NAV_CLASSNAME = "site-nav";
 export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal";
@@ -84,6 +85,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	const CLOSE_WINDOW_WAIT = 750;
 	const RESET_HAS_PINGED_CONTAINER_DURATION = 900000;
 	const [currentUrl, setCurrentUrl] = useState<string>("");
+	const location = useLocation();
 	const navRef = useRef<HTMLElement>(null);
 	const [hasPingedBridgeHerokuContainer, setHasPingedBridgeHerokuContainer] =
 		useState(false);
@@ -171,7 +173,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		return () => {
 			destroy(navRef);
 		};
-	}, [setHeaderHeight]);
+	}, [setHeaderHeight, location]);
 
 	useEffect(() => {
 		const navRefEl = navRef.current as HTMLElement;
