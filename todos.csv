@@ -5,9 +5,10 @@ JOB STUFF------------------------------------
   -add links to best buy and york projects in the resume section (embedded links)
   -minify SSK videos
   -create a Solution Sidekick feature page
-  -about page images not working from nav-switch breakpoint and below?
-  -scrolling down then up all the way and then changing to another page with PageNav causes issues with percent tracking and colors
-  -remove the delayed sound (maybe all sounds for SiteNav?)
+  -about page images not working from nav-switch breakpoint and below (set top dynamically and add a backdrop filter)?
+  -mobile - scrolling on own phone glitchy up and down fast
+  -mobile - examples on Navbar not expanded
+  
 
 BUGS------------------------------------
   -fix carousel issue (use 3rd party lib?)

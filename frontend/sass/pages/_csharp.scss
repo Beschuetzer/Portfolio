@@ -182,8 +182,8 @@
 			--padding: #{$default-font-size * 0.5};
 			width: 100vw;
 			--font-size: #{$default-font-size * 3};
-			padding: var(--padding) calc(var(--padding) + var(--scrollbar-width))
-				var(--padding) var(--padding);
+			/* padding: var(--padding) calc(var(--padding) + var(--scrollbar-width))
+				var(--padding) var(--padding); */
 		}
 		@include respond(small-font) {
 			--font-size: #{$default-font-size * 3};

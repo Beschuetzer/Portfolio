@@ -166,12 +166,15 @@
 			width: 95%;
 		}
 		@include respond(tab-port) {
-			max-width: 95%;
+			/* max-width: 95%; */
 			width: 100%;
-			margin: $default-font-size auto;
+			margin: $default-font-size;
 		}
 		@include respond(phone) {
 			padding: 0;
+		}
+		@include respond(mobile) {
+			margin: $default-font-size * 2 $default-font-size * .5;
 		}
 	}
 	& .heading {
