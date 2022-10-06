@@ -7,6 +7,7 @@ import {
 	viewPortPixelToRem,
 	headerTogglerWidth,
 } from "../constants";
+import { SITE_NAV_MINIMAL_CLASSNAME } from "./SiteNav/SiteNav";
 import { HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_TOGGLER_CLASSNAME, HEADER_TOGGLER_CSS_CLASSNAME } from "./SiteNav/utils";
 import { setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue, toggleSiteNavMinimal } from "./utils";
 
@@ -43,9 +44,11 @@ const NavToggler: React.FC<NavTogglerProps> = ({
 		);
 
 		//prevents bug regarding toggler being closed when going above nav-switch breakpoint
-		const toggler = document.querySelector(`.header-toggler`) as HTMLElement;
 		if (viewPortWidth >= viewPortPixelToRem?.navBreak.max) {
+			const toggler = document.querySelector(`.header-toggler`) as HTMLElement;
+			const siteNav = document.querySelector(`.site-nav`) as HTMLElement;
 			toggler.classList.remove(HEADER_TOGGLER_ACTIVE_CLASSNAME);
+			siteNav.classList.remove(SITE_NAV_MINIMAL_CLASSNAME);
 		}
 
 	}, [headerHeight, viewPortWidth]);

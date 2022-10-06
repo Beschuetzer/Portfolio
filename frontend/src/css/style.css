@@ -2992,11 +2992,10 @@ body {
     position: fixed;
     top: 100%;
     left: 0;
-    transform: translateY(50%);
     transition: transform 0.5s ease;
   }
   .site-nav--nav-switch-minimal .navbar__button {
-    --opacity: .33;
+    --opacity: .66;
     --scale-amount: .5;
     opacity: var(--opacity);
     transform: scale(var(--scale-amount));
