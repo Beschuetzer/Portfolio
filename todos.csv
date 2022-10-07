@@ -5,7 +5,7 @@ JOB STUFF------------------------------------
   -add links to best buy and york projects in the resume section (embedded links)
   -minify SSK videos
   -create a Solution Sidekick feature page
-  -about page images not working from nav-switch breakpoint and below (set top dynamically and add a backdrop filter)?
+  -carousel item on mobile fix (grab pageWrapper element and set transform to none;  grab all sections and turn opacity to 0; disable scrolling?)
   -mobile - scrolling on own phone glitchy up and down fast
   -mobile - examples on Navbar not expanded
   
