@@ -13,16 +13,16 @@ export const BIG_FIVE_PAGE_NAME = "the-big-five";
 
 //note: and here
 export const PAGE_NAMES = [
-	``,
-	`/${ABOUT_PAGE_NAME}`,
-	`/${AUTO_BID_PAGE_NAME}`,
-	`/${BRIDGE_PAGE_NAME}`,
-	`/${BRIDGE_DEMO_PAGE_NAME}`,
-	`/${DOWNLOADER_PAGE_NAME}`,
-	`/${PLAYLIST_SYNCER_PAGE_NAME}`,
-	`/${REPLAY_PAGE_NAME}`,
-	`/${RESUME_PAGE_NAME}`,
-	`/${BIG_FIVE_PAGE_NAME}`,
+  ``,
+  `/${ABOUT_PAGE_NAME}`,
+  `/${AUTO_BID_PAGE_NAME}`,
+  `/${BRIDGE_PAGE_NAME}`,
+  `/${BRIDGE_DEMO_PAGE_NAME}`,
+  `/${DOWNLOADER_PAGE_NAME}`,
+  `/${PLAYLIST_SYNCER_PAGE_NAME}`,
+  `/${REPLAY_PAGE_NAME}`,
+  `/${RESUME_PAGE_NAME}`,
+  `/${BIG_FIVE_PAGE_NAME}`,
 ];
 //#endregion
 
@@ -137,32 +137,32 @@ export const quotePopupTransformDefault = computedStyle.getPropertyValue(
 
 const offset = 0.00000000000001;
 export const viewPortPixelToRem: {
-	[wide: string]: {
-		pixelsToRem: number;
-		max: number;
-		min: number;
-	};
+  [wide: string]: {
+    pixelsToRem: number;
+    max: number;
+    min: number;
+  };
 } = {
-	wide: {
-		pixelsToRem: 12,
-		max: 10000,
-		min: bigDesktopPixelMin * 16,
-	},
-	full: {
-		pixelsToRem: 10,
-		max: (bigDesktopPixelMin - offset) * 16,
-		min: (tabPortMaxWidth + offset) * 16,
-	},
-	tabPort: {
-		pixelsToRem: 9,
-		max: tabPortMaxWidth * 16,
-		min: (navBreakMaxWidth + offset) * 16,
-	},
-	navBreak: {
-		pixelsToRem: 8,
-		max: navBreakMaxWidth * 16,
-		min: 0,
-	},
+  wide: {
+    pixelsToRem: 12,
+    max: 10000,
+    min: bigDesktopPixelMin * 16,
+  },
+  full: {
+    pixelsToRem: 10,
+    max: (bigDesktopPixelMin - offset) * 16,
+    min: (tabPortMaxWidth + offset) * 16,
+  },
+  tabPort: {
+    pixelsToRem: 9,
+    max: tabPortMaxWidth * 16,
+    min: (navBreakMaxWidth + offset) * 16,
+  },
+  navBreak: {
+    pixelsToRem: 8,
+    max: navBreakMaxWidth * 16,
+    min: 0,
+  },
 };
 
 export const EMAIL = "adam.j.major@gmail.com";
@@ -190,6 +190,7 @@ export const SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME = "--site-nav-button-width";
 export const NO_MARGIN_CLASSNAME = "margin-0";
 export const PAGE_NAV_CLASSNAME = "page-nav";
 export const HOME_CANVAS_CLASSNAME = "home__canvas";
+export const CONTAINS_CAROUSEL_CLASSNAME = "contains-carousel";
 
 //determines which class name gets applied to body by default (index of PAGE_NAMES);
 //only applies if you forget to add page name to PAGE_NAMES
@@ -199,15 +200,15 @@ export const DEFAULT_PAGE_NAME_INDEX = 2;
 
 //#region Global Types and Interfaces
 export interface CSharpSection {
-	name: string;
-	pageName: string;
-	children: any[];
-	hasCarousel?: boolean;
-	styles?: CSSProperties;
+  name: string;
+  pageName: string;
+  children: any[];
+  hasCarousel?: boolean;
+  styles?: CSSProperties;
 }
 
 export interface Reference {
-	current: HTMLElement;
+  current: HTMLElement;
 }
 
 export type ArrowButtonDirection = "left" | "right";

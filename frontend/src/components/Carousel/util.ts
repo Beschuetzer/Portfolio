@@ -2,6 +2,7 @@ import { CSSProperties, RefObject } from "react";
 import {
 	ArrowButtonDirection,
 	carouselGridWidth,
+	CONTAINS_CAROUSEL_CLASSNAME,
 	HIDDEN_CLASSNAME,
 	TRANSFORM_REMOVED_CLASSNAME,
 } from "../constants";
@@ -140,12 +141,11 @@ export function setTranslationAmount(
 export function toggleMobileDisplayIssueFixes() {
 	const pageWrapper = document.querySelector('.page-wrapper') as HTMLElement;
 	const sections = document.querySelectorAll('.csharp__section');
-	const csharpSectionMediaClassname = 'csharp__section-media';
 
 	if (pageWrapper?.classList.contains(TRANSFORM_REMOVED_CLASSNAME)) {
 		pageWrapper?.classList.remove(TRANSFORM_REMOVED_CLASSNAME);
 		sections?.forEach((section) => {
-			if (!section.classList.contains(csharpSectionMediaClassname)) {
+			if (!section.classList.contains(CONTAINS_CAROUSEL_CLASSNAME)) {
 				section.classList.remove(HIDDEN_CLASSNAME);
 			}
 		});
@@ -153,7 +153,7 @@ export function toggleMobileDisplayIssueFixes() {
 	} else {
 		pageWrapper?.classList.add(TRANSFORM_REMOVED_CLASSNAME);
 		sections?.forEach((section) => {
-			if (!section.classList.contains(csharpSectionMediaClassname)) {
+			if (!section.classList.contains(CONTAINS_CAROUSEL_CLASSNAME)) {
 				section.classList.add(HIDDEN_CLASSNAME);
 			}
 		});
