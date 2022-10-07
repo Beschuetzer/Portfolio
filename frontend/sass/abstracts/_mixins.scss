@@ -138,7 +138,7 @@
 @mixin site-nav-examples-expanded {
 	visibility: visible;
 	opacity: 1;
-	height: auto;
+	height: 100%;
 	transform: translateY(0px) scale(1);
 }
 

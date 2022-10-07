@@ -792,8 +792,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 200vw;
+  height: 200vh;
   visibility: hidden;
   z-index: -1;
 }
@@ -1150,7 +1150,7 @@ body {
 .navbar__dropdown-container:hover .navbar__dropdown, .navbar__dropdown .navbar__item:hover .navbar__dropdown {
   visibility: visible;
   opacity: 1;
-  height: auto;
+  height: 100%;
   transform: translateY(0px) scale(1);
   /* background: var(--color-primary-4);
   border-radius: 0 0 $default-font-size $default-font-size; */
@@ -1159,7 +1159,7 @@ body {
   .navbar__dropdown-container .navbar__dropdown, .navbar__dropdown .navbar__item .navbar__dropdown, .navbar__dropdown .navbar__item {
     visibility: visible;
     opacity: 1;
-    height: auto;
+    height: 100%;
     transform: translateY(0px) scale(1);
   }
 }
