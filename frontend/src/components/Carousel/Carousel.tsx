@@ -29,6 +29,7 @@ import {
 	getCarouselGridMaxColumnWidth,
 	CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT,
 	getArrangedItems,
+	toggleMobileDisplayIssueFixes,
 } from "./util";
 import { ArrowButtonDirection } from "../constants";
 import { useState } from "react";
@@ -268,7 +269,10 @@ const Carousel: React.FC<CarouselProps> = ({
 					? item.videoOverlayChildren
 					: undefined,
 				functionToRunOnClose: functionToRunOnClose
-					? functionToRunOnClose
+					? () => {
+						toggleMobileDisplayIssueFixes();
+						functionToRunOnClose();
+					}
 					: undefined,
 				functionToGetContainer: functionToGetContainer
 					? functionToGetContainer

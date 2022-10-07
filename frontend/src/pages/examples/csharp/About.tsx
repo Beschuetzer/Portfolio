@@ -709,9 +709,7 @@ interface AboutProps {}
 const About: React.FC<AboutProps> = () => {
 	return (
 		<React.Fragment>
-			<CSharpLayout sections={sections} pageName={ABOUT_PAGE_NAME}>
-				{" "}
-			</CSharpLayout>
+			<CSharpLayout sections={sections} pageName={ABOUT_PAGE_NAME} />
 			<AudioPlayer />
 			<LoadingSpinner />
 		</React.Fragment>

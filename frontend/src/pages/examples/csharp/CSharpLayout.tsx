@@ -15,7 +15,7 @@ interface CSharpLayoutProps {
 	demoMsg?: string;
 	href?: string;
 	sections: CSharpSection[];
-	children: any;
+	children?: any;
 	headerSideContents?: any;
 }
 

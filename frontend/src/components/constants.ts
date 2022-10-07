@@ -176,6 +176,7 @@ export const FILL_RED_CLASSNAME = "fill-red";
 export const UNCLICKABLE_CLASSNAME = "unclickable";
 export const TRANSITION_NONE_CLASSNAME = "transition-none";
 export const TRANSFORM_NONE_CLASSNAME = "transform-none";
+export const TRANSFORM_REMOVED_CLASSNAME = "transform-removed";
 export const Z_INDEX_HIGHEST_CLASSNAME = "z-index-highest";
 export const Z_INDEX_CONTENT_CLASSNAME = "z-index-content";
 export const Z_INDEX_NAVBAR_CLASSNAME = "z-index-navbar";

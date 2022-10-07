@@ -16,6 +16,7 @@ import {
 	getNthItemOpen,
 	handleVideo,
 	toggleLeftAndRightArrows,
+	toggleMobileDisplayIssueFixes,
 } from "./util";
 import {
 	getPercentOfProgressBar,
@@ -24,7 +25,6 @@ import { closeCarouselItem } from "../utils";
 import OverlayText from "../OverlayText/OverlayText";
 import { FILL_RED_CLASSNAME } from "../constants";
 import { useState } from "react";
-import { useEffect } from "react";
 
 export const FULLSCREEN_CLASSNAME = "full-screen";
 export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
@@ -147,6 +147,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		carouselItem.parentNode?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 
 		addFullscreenClassToArrowButtons();
+		toggleMobileDisplayIssueFixes();
 		handleVideo(
 			carouselItem,
 			videoClassname,
@@ -182,7 +183,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		const percent = video.currentTime / video.duration;
 		(progressBarRef as any).current.value = percent;
 	};
-
+	
 	let mediaToAdd = (
 		<img
 			src={isFullScreen || shouldRenderFullScreen ? itemSrc : itemThumbnailSrc}

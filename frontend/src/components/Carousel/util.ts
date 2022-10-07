@@ -3,6 +3,7 @@ import {
 	ArrowButtonDirection,
 	carouselGridWidth,
 	HIDDEN_CLASSNAME,
+	TRANSFORM_REMOVED_CLASSNAME,
 } from "../constants";
 import { getIsVideoPlaying } from "../VideoPlayer/utils";
 import { FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME } from "./CarouselItem";
@@ -134,6 +135,30 @@ export function setTranslationAmount(
 			item.style.transform = string;
 		}
 	}, 1);
+}
+
+export function toggleMobileDisplayIssueFixes() {
+	const pageWrapper = document.querySelector('.page-wrapper') as HTMLElement;
+	const sections = document.querySelectorAll('.csharp__section');
+	const csharpSectionMediaClassname = 'csharp__section-media';
+
+	if (pageWrapper?.classList.contains(TRANSFORM_REMOVED_CLASSNAME)) {
+		pageWrapper?.classList.remove(TRANSFORM_REMOVED_CLASSNAME);
+		sections?.forEach((section) => {
+			if (!section.classList.contains(csharpSectionMediaClassname)) {
+				section.classList.remove(HIDDEN_CLASSNAME);
+			}
+		});
+		document.body.style.overflow = 'visible';
+	} else {
+		pageWrapper?.classList.add(TRANSFORM_REMOVED_CLASSNAME);
+		sections?.forEach((section) => {
+			if (!section.classList.contains(csharpSectionMediaClassname)) {
+				section.classList.add(HIDDEN_CLASSNAME);
+			}
+		});
+		document.body.style.overflow = 'hidden';
+	}
 }
 
 export const handleSetTranslation = (
