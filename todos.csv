@@ -8,7 +8,6 @@ JOB STUFF------------------------------------
   -mobile - scrolling on own phone glitchy up and down fast
   -mobile - examples on Navbar not expanded
   -create function for to scroll on document and use on navbar when open
-  
 
 BUGS------------------------------------
   -fix carousel issue (use 3rd party lib?)

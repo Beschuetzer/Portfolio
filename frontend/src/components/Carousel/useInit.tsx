@@ -1,6 +1,6 @@
 import { RefObject, useEffect } from "react";
 import { CONTAINS_CAROUSEL_CLASSNAME } from "../constants";
-import { CarouselItemProps, getArrangedItems, getFirstItemAndParentCarousels, setCarouselGridMaxColumnWidth } from "./util";
+import { CarouselItemProps, getArrangedItems, getFirstItemAndParentCarousels, setCarouselGridMaxColumnWidth, toggleMobileDisplayIssueFixes } from "./util";
 
 const useInit = (
 	leftArrowRef: any,
@@ -35,6 +35,10 @@ const useInit = (
 		);
 
 		setCarouselGridMaxColumnWidth(itemsRef);
+
+		return () => {
+			document.body.style.overflow = 'visible';
+		}
 	}, [
 		leftArrowRef,
 		rightArrowRef,
