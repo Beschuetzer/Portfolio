@@ -1724,6 +1724,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1.6rem 0;
 }
 .audio-player__controls svg:not(.audio-player__restart, .audio-player__backward, .audio-player__forward) {
   width: var(--svg-size);
@@ -1741,7 +1742,7 @@ body {
 }
 .audio-player__details {
   font-size: 2.4rem;
-  padding: 0.4rem;
+  padding: 1.6rem 3.2rem;
 }
 .audio-player__details-time {
   margin-left: 1.6rem;
