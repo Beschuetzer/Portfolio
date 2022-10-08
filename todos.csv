@@ -6,8 +6,6 @@ JOB STUFF------------------------------------
   -minify SSK videos
   -create a Solution Sidekick feature page
   -mobile - scrolling on own phone glitchy up and down fast
-  -mobile - examples on Navbar not expanded
-  -navigating to another page when a video is running crashes app
 
 BUGS------------------------------------
   -fix carousel issue (use 3rd party lib?)
@@ -38,8 +36,6 @@ OPTIMIZATIONS:
 
 -add a popdown menu when hovering over a Pagenav item that has multiple subsections, showing each subsection as a clickable link?
 -work on the little matter of how onwards (doesn't flow well)
-
--mobile doesn't work with SiteNav showing examples expanded
 
 -consider a different bridge animation like fade in
 
