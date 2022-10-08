@@ -98,8 +98,15 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	};
 
 	const onNavItemClick = (e: MouseEvent) => {
-		hide(navRef);
+		e && e.stopPropagation();
 		const target = e.target as HTMLElement;
+		
+		//do nothing if it is a nav group
+		if (target.children?.length > 0) {
+			return;
+		}
+
+		hide(navRef);
 
 		if (!target) return;
 
