@@ -1744,7 +1744,7 @@ body {
 }
 .audio-player__details {
   font-size: 2.4rem;
-  padding: 1.6rem 3.2rem;
+  padding: 1.6rem;
 }
 .audio-player__details-time {
   margin-left: 1.6rem;

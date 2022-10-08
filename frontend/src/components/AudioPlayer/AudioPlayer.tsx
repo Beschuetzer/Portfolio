@@ -5,12 +5,14 @@ import { createRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { setIsLoadingSound, setCurrentlyPlayingSound } from "../../actions";
 import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
+import { MaxCharCount, MAX_CHAR_COUNTS } from "../../types";
 import {
 	AudioItem,
 	AUDIO_LIST_CLASSNAME,
 	AUDIO_LIST_ITEM_CLASSNAME,
 } from "./AudioList";
 import { getMinuteAndSecondsString } from "./utils";
+import { getMaxLengthString } from "../utils";
 
 export const AUDIO_PLAYER_CLASSNAME = "audio-player";
 export const AUDIO_PLAYER_TOGGLER_CLASSNAME = `${AUDIO_PLAYER_CLASSNAME}__toggler`;
@@ -522,16 +524,18 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 				className={`${AUDIO_PLAYER_CLASSNAME}`}>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__content`}>
 					<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
-						<span>Playing:&nbsp;</span>
-						<span>
-							<b>
-								'
-								{this.props.currentlyPlayingSound
-									? this.props.currentlyPlayingSound.name
-									: null}
-								'
-							</b>
-						</span>
+						<div>
+							{/* <span>Playing:&nbsp;</span> */}
+							<span>
+								<b>
+									'
+									{this.props.currentlyPlayingSound
+										? getMaxLengthString(this.props.currentlyPlayingSound.name, MAX_CHAR_COUNTS[MaxCharCount.song]())
+										: null}
+									'
+								</b>
+							</span>
+						</div>
 						<span className={`${AUDIO_PLAYER_CLASSNAME}__details-time`}>
 							<span>{this.state.elapsed}</span>
 							<span>&nbsp;/&nbsp;</span>

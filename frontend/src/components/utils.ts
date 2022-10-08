@@ -109,6 +109,19 @@ export const removeClassFromAllChildren = (
 //   // console.log('interactions =', interactions);
 // }
 
+export function getMaxLengthString(str: string, maxCharCount = 30, addElliplse = true) {	
+	if (!str) {
+		return '';
+	}
+
+	let isEllipseNeeded = false;
+	if (str.length > maxCharCount) {
+		isEllipseNeeded = true;
+	}
+
+	return `${str.slice(0, maxCharCount)}${isEllipseNeeded && addElliplse ? '...' : ''}`;
+}
+
 export const scrollToSection = (sectionToScrollTo: HTMLElement, addedHeight: number = 0) => {
 	if (!sectionToScrollTo) {
 		return window.scroll({
