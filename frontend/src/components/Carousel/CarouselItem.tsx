@@ -181,7 +181,10 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		if (!video || !item) return;
 
 		const percent = video.currentTime / video.duration;
-		(progressBarRef as any).current.value = percent;
+
+		if (progressBarRef.current) {
+			progressBarRef.current.value = percent;
+		}
 	};
 	
 	let mediaToAdd = (
