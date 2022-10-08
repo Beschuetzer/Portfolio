@@ -230,4 +230,12 @@ export function getSentencesFromString(
 
 	return toReturn;
 }
+
+export function toggleScrollability(isScrollable = true) {
+	if (isScrollable) {
+		document.body.style.overflow = 'visible';
+	} else {
+		document.body.style.overflow = 'hidden';
+	}
+}
 //#endregion

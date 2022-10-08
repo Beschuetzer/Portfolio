@@ -6,6 +6,7 @@ import {
 	HIDDEN_CLASSNAME,
 	TRANSFORM_REMOVED_CLASSNAME,
 } from "../constants";
+import { toggleScrollability } from "../utils";
 import { getIsVideoPlaying } from "../VideoPlayer/utils";
 import { FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME } from "./CarouselItem";
 
@@ -149,7 +150,7 @@ export function toggleMobileDisplayIssueFixes() {
 				section.classList.remove(HIDDEN_CLASSNAME);
 			}
 		});
-		document.body.style.overflow = 'visible';
+		toggleScrollability();
 	} else {
 		pageWrapper?.classList.add(TRANSFORM_REMOVED_CLASSNAME);
 		sections?.forEach((section) => {
@@ -157,7 +158,7 @@ export function toggleMobileDisplayIssueFixes() {
 				section.classList.add(HIDDEN_CLASSNAME);
 			}
 		});
-		document.body.style.overflow = 'hidden';
+		toggleScrollability(false);
 	}
 }
 
