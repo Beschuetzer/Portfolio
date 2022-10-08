@@ -61,6 +61,7 @@ const Carousel: React.FC<CarouselProps> = ({
 	let leftArrowRef = useRef<HTMLElement>(null);
 	let rightArrowRef = useRef<HTMLElement>(null);
 	let hasResized = useRef<boolean>(false);
+	const isItemOpenRef = useRef<boolean>(false);
 	let removeTransitionTimeout: any;
 
 	const [itemsToRenderFullScreen, setItemsToRenderFullScreen] = useState<
@@ -221,6 +222,7 @@ const Carousel: React.FC<CarouselProps> = ({
 					: undefined,
 				itemClassName: item.itemClassName ? item.itemClassName : undefined,
 				imageClassname: item.imageClassname ? item.imageClassname : undefined,
+				isItemOpenRef: isItemOpenRef,
 				videoClassname: item.videoClassname ? item.videoClassname : undefined,
 				foregroundVideoClassname: item.foregroundVideoClassname
 					? item.foregroundVideoClassname

@@ -43,6 +43,7 @@ export interface CarouselItemProps {
 	description: string | undefined;
 	itemSrc: string | undefined;
 	itemThumbnailSrc: string | undefined;
+	isItemOpenRef: React.MutableRefObject<boolean>;
 	leftArrowRef: RefObject<HTMLElement> | undefined;
 	rightArrowRef: RefObject<HTMLElement> | undefined;
 	videoType?: "mp4" | "ogv" | "webm" | "ogg" | undefined;

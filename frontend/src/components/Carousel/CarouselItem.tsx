@@ -49,6 +49,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	description: imageAlt,
 	itemSrc,
 	itemThumbnailSrc,
+	isItemOpenRef,
 	leftArrowRef,
 	rightArrowRef,
 	videoType = "mp4",
@@ -131,14 +132,22 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	};
 
 	const onItemClick = (e: MouseEvent) => {
+		if (isItemOpenRef.current) {
+			return
+		}
+
+		isItemOpenRef.current = true;
+
 		const carouselItem = e.currentTarget as any;
 		if (
 			!carouselItem ||
 			(carouselItem.parentNode as HTMLElement)?.classList.contains(
 				FULLSCREEN_PARENT_CLASSNAME,
 			)
-		)
+		) {
 			return;
+		}
+
 		e.preventDefault();
 		handleShouldHideArrows(e);
 
@@ -232,6 +241,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 				xlinkHref={videoCloseControlSvgXLinkHref}
 				videoRef={videoRef}
 				containerRef={containerRef}
+				isItemOpenRef={isItemOpenRef}
 				classNamesToRemove={videoCloseControlClassesToRemove}
 				functionToRunOnClose={functionToRunOnClose}
 			/>

@@ -13,6 +13,7 @@ interface CloseControlProps {
 	className?: string;
 	additionalSvgClassNames?: string[];
 	xlinkHref: string;
+	isItemOpenRef?: React.MutableRefObject<boolean>;
 	videoRef: RefObject<HTMLVideoElement>;
 	containerRef?: RefObject<HTMLElement>;
 	classNamesToRemove: string[] | string;
@@ -23,6 +24,7 @@ interface CloseControlProps {
 const CloseControl: React.FC<CloseControlProps> = ({
 	xlinkHref,
 	videoRef,
+	isItemOpenRef,
 	className = "card__close",
 	additionalSvgClassNames = [],
 	containerRef = null,
@@ -32,6 +34,7 @@ const CloseControl: React.FC<CloseControlProps> = ({
 }) => {
 	const handleCloseItem = (e: MouseEvent) => {
 		e.stopPropagation();
+		if (isItemOpenRef?.current) isItemOpenRef.current = false;
 		closeVideo(videoRef.current as HTMLVideoElement);
 		if (functionToRunOnClose) functionToRunOnClose();
 
