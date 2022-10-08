@@ -7,6 +7,7 @@ JOB STUFF------------------------------------
   -create a Solution Sidekick feature page
   -mobile - scrolling on own phone glitchy up and down fast
   -adjust PageNav such that the scroll percent is 100 for previous item when it is in the middle of the screen
+  -after playing a song then stopping and closing the player, the orange tab still appears
   -bridge video cards don't close when another one is opened
 
 BUGS------------------------------------
