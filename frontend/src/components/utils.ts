@@ -233,9 +233,9 @@ export function getSentencesFromString(
 
 export function toggleScrollability(isScrollable = true) {
 	if (isScrollable) {
-		document.body.style.overflow = 'visible';
+		document.body.style.overflowY = 'visible';
 	} else {
-		document.body.style.overflow = 'hidden';
+		document.body.style.overflowY = 'hidden';
 	}
 }
 //#endregion

@@ -1,5 +1,6 @@
 import { RefObject, useEffect } from "react";
 import { CONTAINS_CAROUSEL_CLASSNAME } from "../constants";
+import { toggleScrollability } from "../utils";
 import { CarouselItemProps, getArrangedItems, getFirstItemAndParentCarousels, setCarouselGridMaxColumnWidth, toggleMobileDisplayIssueFixes } from "./util";
 
 const useInit = (
@@ -37,7 +38,7 @@ const useInit = (
 		setCarouselGridMaxColumnWidth(itemsRef);
 
 		return () => {
-			document.body.style.overflow = 'visible';
+			toggleScrollability();
 		}
 	}, [
 		leftArrowRef,
