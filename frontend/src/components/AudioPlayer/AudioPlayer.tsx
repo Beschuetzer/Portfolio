@@ -32,6 +32,7 @@ export interface AudioPlayerState {
 	songProgressPercent: number;
 	shouldShowAudioPlayer: boolean;
 	isOpen: boolean;
+	isLoadingHowl: boolean;
 }
 
 export type AudioPlayerAction = "add" | "remove" | "toggle";
@@ -60,6 +61,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 			songProgressPercent: 0,
 			shouldShowAudioPlayer: true,
 			isOpen: false,
+			isLoadingHowl: true,
 		};
 
 		this.pauseRef = createRef();
@@ -84,6 +86,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 
 	componentWillReceiveProps(nextProps: AudioPlayerProps) {
 		//need to just play from beginning if clicking same song
+		this.setState({isLoadingHowl: true})
 		const playingSoundPath = Object.values(
 			nextProps.currentlyPlayingSound?.path,
 		)[0];
@@ -200,7 +203,11 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 	}
 
 	handleToggler(e: MouseEvent) {
+		let newShouldShowState = !this.state.shouldShowAudioPlayer;
+		let newIsOpenState = !this.state.isOpen;
+
 		this.toggleAudioPlayer();
+		this.hideIfNotPlaying();
 
 		let target: SVGElement | null = e.target as SVGElement;
 		if (target.localName !== "svg") {
@@ -211,15 +218,15 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		if (!isOpen) {
 			this.showAudioPlayer();
 			target?.classList.add(AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME);
-		} else {
+		} else if (this.state.playingHowl?.playing()){
 			this.hideAudioPlayer();
 			target?.classList.remove(AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME);
 		}
 
 		this.setState({
-			shouldShowAudioPlayer: !this.state.shouldShowAudioPlayer,
-			isOpen: !isOpen,
-		});
+			shouldShowAudioPlayer: newShouldShowState,
+			isOpen: newIsOpenState,
+		}); 
 	}
 
 	handlePause() {
@@ -286,7 +293,8 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 			)?.className.search(audioListMatchRegExp);
 		}
 
-		// debugger;
+		this.hideIfNotPlaying();
+	
 		if (
 			targetIsAudioListItem ||
 			(parentIsAudioListItem !== undefined &&
@@ -304,6 +312,14 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		) {
 			this.hideAudioPlayer();
 			return this.setState({ isOpen: false });
+		}
+	}
+
+	hideIfNotPlaying() {
+		const isLoadingHowl = this.state.isLoadingHowl;
+		const isHowlPlaying = this.state.playingHowl?.playing();
+		if (!isLoadingHowl && !isHowlPlaying) {
+			this.audioPlayerRef.current?.classList?.add(HIDDEN_CLASSNAME);
 		}
 	}
 
@@ -407,6 +423,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 				newHowl.duration() as unknown as number,
 			),
 			currentlyPlayingSound: nextProps.currentlyPlayingSound,
+			isLoadingHowl: false,
 		});
 	}
 

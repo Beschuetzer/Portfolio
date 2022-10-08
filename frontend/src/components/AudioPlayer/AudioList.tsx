@@ -1,6 +1,8 @@
 import React from "react";
 import { connect, RootStateOrAny } from 'react-redux';
 import { setCurrentlyPlayingSound, setIsLoadingSound } from '../../actions';
+import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
+import { AUDIO_PLAYER_CLASSNAME } from "./AudioPlayer";
 
 export const AUDIO_LIST_CLASSNAME = "audio-list";
 export const AUDIO_LIST_ITEM_CLASSNAME = `${AUDIO_LIST_CLASSNAME}__item`;
@@ -20,13 +22,21 @@ export interface AudioListProps {
 
 const AudioList: React.FC<AudioListProps> = ({ items, className, setCurrentlyPlayingSound, isLoadingSound, setIsLoadingSound}) => {
 	function handleItemClick(e: Event) {
-    if (isLoadingSound) return;
-    const clickedItem = e.currentTarget as HTMLElement;
-    if (!clickedItem?.dataset?.item) return;
+		const audioPlayer = document.querySelector(`.${AUDIO_PLAYER_CLASSNAME}`);
+		if (audioPlayer) {
+			if (audioPlayer.classList.contains(HIDDEN_CLASSNAME)) {
+				audioPlayer.classList.add(TRANSFORM_NONE_CLASSNAME);
+			}
+			audioPlayer.classList.remove(HIDDEN_CLASSNAME);
+		}
 
-    const parsedItem = JSON.parse(clickedItem?.dataset?.item as string);
-    setIsLoadingSound(true);
-    setCurrentlyPlayingSound(parsedItem);
+		if (isLoadingSound) return;
+		const clickedItem = e.currentTarget as HTMLElement;
+		if (!clickedItem?.dataset?.item) return;
+
+		const parsedItem = JSON.parse(clickedItem?.dataset?.item as string);
+		setIsLoadingSound(true);
+		setCurrentlyPlayingSound(parsedItem);
 	}
 
 	function renderItems() {
