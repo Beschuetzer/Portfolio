@@ -59,7 +59,6 @@ export const setLinearGradientCssCustomProp = () => {
 			BODY_BACKGROUND_CSS_CLASSNAME,
 			newLinearGradient,
 		);
-    console.log('newLinearGradient =', newLinearGradient);
 }
 
 export const toggleSecondInfoButtonClick = (hero: HTMLElement, heroMore: HTMLElement, isMobile: boolean, shouldWaitToHideHero = true, span: HTMLElement | null = null) => {
