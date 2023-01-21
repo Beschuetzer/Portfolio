@@ -30,8 +30,8 @@ import { HOME_CANVAS_CLASSNAME } from "../../components/constants";
 
 //#region Variable Inits
 const defaultFps = 60;
-const fpsMultiplier = 0; //todo: figure out how to pass this in
-const animationFPS = defaultFps * 6;
+const fpsMultiplier = 6; //todo: figure out how to pass this in
+const animationFPS = defaultFps * fpsMultiplier;
 let camera: PerspectiveCamera,
 	orbitControls: OrbitControls,
 	scene: THREE.Scene,
