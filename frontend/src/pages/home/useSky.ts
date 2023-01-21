@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Water } from "three/examples/jsm/objects/Water.js";
@@ -25,7 +25,9 @@ import {
 import { getLinearPercentOfMaxMatchWithinRange } from "../../helpers";
 import { HOME_CANVAS_CLASSNAME } from "../../components/constants";
 
+type FpsReturned = number[];
 //#region Variable Inits
+const NUMBER_OF_FPS_POINTS_TO_GET = 100;
 const baseScreenRefreshRate = 60;
 let camera: PerspectiveCamera,
 	orbitControls: OrbitControls,
@@ -496,9 +498,8 @@ function onWindowResize() {
 }
 //#endregion
 
-
 const useSky = () => {
-	const [screenRefreshRate, setScreenRefreshRate] = useState(360);
+	const [screenRefreshRate, setScreenRefreshRate] = useState(0);
 	const [screenRefreshRateMultiplier, setScreenRefreshRateMultiplier] = useState(screenRefreshRate / baseScreenRefreshRate); //todo figure out how to calculate this
 	
 	//#region Functions and variables that need access to refresh rate
@@ -785,7 +786,78 @@ const useSky = () => {
 	}
 	//#endregion
 
+	const fpsReturned = [] as FpsReturned;
 	useEffect(() => {
+		function getScreenRefreshRate(callback: any, runIndefinitely: boolean){
+			let requestId: number | null = null;
+			let callbackTriggered = false;
+			runIndefinitely = runIndefinitely || false;
+		
+			// if (!window.requestAnimationFrame) {
+			// 	window.requestAnimationFrame = window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
+			// }
+			
+			let DOMHighResTimeStampCollection: any[] = [];
+		
+			const cancelTimeout = () => window.setTimeout(function(){
+				window.cancelAnimationFrame(requestId || 1);
+				requestId = null;
+			}, 500);
+			let triggerAnimation = function(DOMHighResTimeStamp: number){
+				DOMHighResTimeStampCollection.unshift(DOMHighResTimeStamp);
+				
+				if (DOMHighResTimeStampCollection.length > 10) {
+					let t0 = DOMHighResTimeStampCollection.pop();
+					let fps = Math.floor(1000 * 10 / (DOMHighResTimeStamp - t0));
+		
+					if(!callbackTriggered){
+						callback.call(undefined, fps, cancelTimeout, DOMHighResTimeStampCollection);
+					}
+		
+					if(runIndefinitely){
+						callbackTriggered = false;
+					}else{
+						callbackTriggered = true;
+					}
+				}
+			
+				requestId = window.requestAnimationFrame(triggerAnimation);
+			};
+			
+			window.requestAnimationFrame(triggerAnimation);
+		
+			// Stop after half second if it shouldn't run indefinitely
+			if(!runIndefinitely){
+				cancelTimeout()
+			}
+		}
+		
+		if (screenRefreshRate) return;
+		getScreenRefreshRate((fps: number, cancelTimeout: () => void) => {
+			if (!screenRefreshRate) {
+				cancelTimeout();
+			}
+
+			fpsReturned.push(fps)
+
+			if (fpsReturned.length > NUMBER_OF_FPS_POINTS_TO_GET) {
+				cancelTimeout();
+				if (!screenRefreshRate) {
+					const newFps = Math.max(...fpsReturned);
+					console.log(`fps: ${Math.max(...fpsReturned)}`);
+					console.log(`multiplier: ${newFps / baseScreenRefreshRate}`);
+					setScreenRefreshRate(newFps);
+					setScreenRefreshRateMultiplier(newFps / baseScreenRefreshRate);
+				}
+			}
+		}, true);
+	}, [])
+
+	useEffect(() => {
+		console.log(`final FPS: ${screenRefreshRate}`);
+		if (!screenRefreshRate) return;
+		console.log('running');
+		
 		init();
 		animate();
 
@@ -798,7 +870,7 @@ const useSky = () => {
 			if (canvasElement) document.body?.removeChild(canvasElement);
 			resetAnimations();
 		})
-	}, [])
+	}, [screenRefreshRate])
 
 	return (
 	null
