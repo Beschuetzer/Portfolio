@@ -29,7 +29,9 @@ import { getLinearPercentOfMaxMatchWithinRange } from "../../helpers";
 import { HOME_CANVAS_CLASSNAME } from "../../components/constants";
 
 //#region Variable Inits
-
+const defaultFps = 60;
+const fpsMultiplier = 0; //todo: figure out how to pass this in
+const animationFPS = defaultFps * 6;
 let camera: PerspectiveCamera,
 	orbitControls: OrbitControls,
 	scene: THREE.Scene,
@@ -70,7 +72,7 @@ const cubeMaterial6 = new THREE.MeshPhongMaterial({
 });
 
 const cubeSize = 33;
-const cubeRotationSpeed = 0.0066;
+const cubeRotationSpeed = 0.0066 / fpsMultiplier;
 const cubeRotationDirectionTransitionTime = 250;
 const cubeStartHeight = -25;
 const cubeMaxHeight = 17.5;
@@ -98,8 +100,8 @@ const waterWidthSegments = 10000;
 const waterHeightSegments = waterWidthSegments;
 const waterAnimationSpeed = .75;
 
-const cloudZRotationRateChange = 0.0001;
-const cloudZPositionRateChange = 0.5;
+const cloudZRotationRateChange = 0.0001 / fpsMultiplier;
+const cloudZPositionRateChange = 0.5 / fpsMultiplier;
 const cloudColor = new THREE.Color(0xff9999);
 const cloudWidthSegments = 5000;
 const cloudXRotationStart = 1.16;
@@ -136,7 +138,7 @@ interface TextData {
 const originalAspectRatio = window.innerWidth / window.innerHeight;
 const isMobile = window.innerWidth < 1250;
 const textMinXRotation = -Math.PI / 2 - 0.25;
-const textScrollSpeed = 0.4;
+const textScrollSpeed = 0.4 / fpsMultiplier;
 const defaultTextX = 0;
 const defaultTextY = -0.2;
 const defaultTextYRotation = 0;
@@ -209,7 +211,6 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 //#endregion
 
 //#region Camera and Animation stuff
-const animationFPS = 60.0;
 export let timeElapsedInMS = 0;
 export const introPanDuration = 5000;
 const lineScrollDuration = 725;
