@@ -25,215 +25,487 @@ import {
 import { getLinearPercentOfMaxMatchWithinRange } from "../../helpers";
 import { HOME_CANVAS_CLASSNAME } from "../../components/constants";
 
-const useSky = () => {
-	//#region Variable Inits
-	const baseScreenRefreshRate = 60;
-	const [screenRefreshRate, setScreenRefreshRate] = useState(360);
-	const [screenRefreshRateMultiplier, setScreenRefreshRateMultiplier] = useState(screenRefreshRate / baseScreenRefreshRate); //todo figure out how to calculate this
+//#region Variable Inits
+const baseScreenRefreshRate = 60;
+let camera: PerspectiveCamera,
+	orbitControls: OrbitControls,
+	scene: THREE.Scene,
+	renderer: THREE.WebGLRenderer,
+	lastClientY: number;
+let water: Water, sun: any, cube: Mesh, sky: Sky;
+let id: number;
+let clouds: any[];
+let texts: THREE.Mesh<TextBufferGeometry>[] = [];
 
-	let camera: PerspectiveCamera,
-		orbitControls: OrbitControls,
-		scene: THREE.Scene,
-		renderer: THREE.WebGLRenderer,
-		lastClientY: number;
-	let water: Water, sun: any, cube: Mesh, sky: Sky;
-	let id: number;
-	let clouds: any[];
-	let texts: THREE.Mesh<TextBufferGeometry>[] = [];
+let startTime = Date.now();
+let i = 0;
+let cubeCanRotateY = false;
+let cubeCanRotateX = true;
+let cubeCanReset = false;
+let cubeTimeOutIdX: any;
+let cubeTimeOutIdY: any;
+//#endregion
 
-	let startTime = Date.now();
-	let i = 0;
-	let cubeCanRotateY = false;
-	let cubeCanRotateX = true;
-	let cubeCanReset = false;
-	let cubeTimeOutIdX: any;
-	let cubeTimeOutIdY: any;
-	//#endregion
+//#region cube stuff
+const cubeMaterial1 = new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap1),
+});
+const cubeMaterial2 = new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap2),
+});
+const cubeMaterial3 = new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap3),
+});
+const cubeMaterial4 = new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap4),
+});
+const cubeMaterial5 = new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap5),
+});
+const cubeMaterial6 = new THREE.MeshPhongMaterial({
+	map: new THREE.TextureLoader().load(cubeMap6Rotated),
+});
 
-	//#region cube stuff
-	const cubeMaterial1 = new THREE.MeshPhongMaterial({
-		map: new THREE.TextureLoader().load(cubeMap1),
-	});
-	const cubeMaterial2 = new THREE.MeshPhongMaterial({
-		map: new THREE.TextureLoader().load(cubeMap2),
-	});
-	const cubeMaterial3 = new THREE.MeshPhongMaterial({
-		map: new THREE.TextureLoader().load(cubeMap3),
-	});
-	const cubeMaterial4 = new THREE.MeshPhongMaterial({
-		map: new THREE.TextureLoader().load(cubeMap4),
-	});
-	const cubeMaterial5 = new THREE.MeshPhongMaterial({
-		map: new THREE.TextureLoader().load(cubeMap5),
-	});
-	const cubeMaterial6 = new THREE.MeshPhongMaterial({
-		map: new THREE.TextureLoader().load(cubeMap6Rotated),
-	});
+const cubeSize = 33;
+const cubeRotationDirectionTransitionTime = 250;
+const cubeStartHeight = -25;
+const cubeMaxHeight = 17.5;
+const cubeMinHeight = 12.5;
+const cubeBobbingDirectionIsUp = true;
+const cubeBobbingSpeed = Math.abs(cubeStartHeight - cubeMaxHeight) / 90;
+const cubeEndHeight = 15;
+//#endregion
 
-	const cubeSize = 33;
-	const cubeRotationSpeed = 0.0066 / screenRefreshRateMultiplier;
-	const cubeRotationDirectionTransitionTime = 250;
-	const cubeStartHeight = -25;
-	const cubeMaxHeight = 17.5;
-	const cubeMinHeight = 12.5;
-	const cubeBobbingDirectionIsUp = true;
-	const cubeBobbingSpeed = Math.abs(cubeStartHeight - cubeMaxHeight) / 90;
-	const cubeEndHeight = 15;
-	//#endregion
+//#region Sun, Water, Cloud
+const parameters = {
+	elevation: 1,
+	azimuth: 180,
+};
 
-	//#region Sun, Water, Cloud
-	const parameters = {
-		elevation: 1,
-		azimuth: 180,
-	};
+const sunColor = new THREE.Color(0xf4d262);
+const waterColor = new THREE.Color(0x28537b);
+const cloudTransparency = 0.55;
+const skyTurbidity = 10; //(10)
+const skyRayleigh = 5; //(2)
+const skyMieCoefficient = 0.0025; //(.005)
+const skyMieDirectionalG = 0.8; //(.8)
 
-	const sunColor = new THREE.Color(0xf4d262);
-	const waterColor = new THREE.Color(0x28537b);
-	const cloudTransparency = 0.55;
-	const skyTurbidity = 10; //(10)
-	const skyRayleigh = 5; //(2)
-	const skyMieCoefficient = 0.0025; //(.005)
-	const skyMieDirectionalG = 0.8; //(.8)
+const waterWidthSegments = 10000;
+const waterHeightSegments = waterWidthSegments;
+const waterAnimationSpeed = .75;
 
-	const waterWidthSegments = 10000;
-	const waterHeightSegments = waterWidthSegments;
-	const waterAnimationSpeed = .75;
+const cloudColor = new THREE.Color(0xff9999);
+const cloudWidthSegments = 5000;
+const cloudXRotationStart = 1.16;
+const cloudYRotationStart = 0.12;
+const cloudZRotationStart = Math.random() * 2 * Math.PI;
+const cloudXPositionMax = 800;
+const cloudXPositionMin = 400;
+const cloudYPosition = 1300;
+const cloudSpan = 500;
+//#endregion
 
-	const cloudZRotationRateChange = 0.0001 / screenRefreshRateMultiplier;
-	const cloudZPositionRateChange = 0.5 / screenRefreshRateMultiplier;
-	const cloudColor = new THREE.Color(0xff9999);
-	const cloudWidthSegments = 5000;
-	const cloudXRotationStart = 1.16;
-	const cloudYRotationStart = 0.12;
-	const cloudZRotationStart = Math.random() * 2 * Math.PI;
-	const cloudXPositionMax = 800;
-	const cloudXPositionMin = 400;
-	const cloudYPosition = 1300;
-	const cloudSpan = 500;
-	//#endregion
+//#region Lighting
+const spotLightStrength = 0.8;
+const spotLightX = 0;
+const spotLightY = 100;
+const spotLightZ = 300;
+const spotLightColor = sunColor;
+//#endregion
 
-	//#region Lighting
-	const spotLightStrength = 0.8;
-	const spotLightX = 0;
-	const spotLightY = 100;
-	const spotLightZ = 300;
-	const spotLightColor = sunColor;
-	//#endregion
+//#region Text stuff
+interface TextData {
+	text: string;
+	x: number;
+	y: number;
+	z: number;
+	xRotation: number;
+	yRotation: number;
+	zRotation: number;
+	color: THREE.Color;
+	size: number;
+	height: number;
+}
 
-	//#region Text stuff
-	interface TextData {
-		text: string;
-		x: number;
-		y: number;
-		z: number;
-		xRotation: number;
-		yRotation: number;
-		zRotation: number;
-		color: THREE.Color;
-		size: number;
-		height: number;
+const originalAspectRatio = window.innerWidth / window.innerHeight;
+const isMobile = window.innerWidth < 1250;
+const textMinXRotation = -Math.PI / 2 - 0.25;
+const defaultTextX = 0;
+const defaultTextY = -0.2;
+const defaultTextYRotation = 0;
+const defaultTextZRotation = 0;
+
+const textSizeScaleFactor = getLinearPercentOfMaxMatchWithinRange(
+	window.innerWidth,
+	800,
+	1600,
+	0.0066,
+	0.0038,
+);
+// const textSizeScaleFactor = isMobile ? .0066 : 0.0036;
+const defaultTextSize = window.innerWidth * textSizeScaleFactor;
+const defaultTextHeight = 1;
+const defaultTextColor = new THREE.Color(0xf4d262);
+const lineSpacing = defaultTextSize * 3;
+const lineStart = 172;
+
+const textsToUse = [
+	{
+		text: "Welcome!  My name is",
+		spaceBefore: false,
+	},
+	{
+		text: "Adam, and this is",
+		spaceBefore: false,
+	},
+	{
+		text: "my portfolio.",
+		spaceBefore: false,
+	},
+	{
+		text: "i build apps",
+		spaceBefore: true,
+	},
+	{
+		text: "to solve problems.",
+		spaceBefore: false,
+	},
+	{
+		text: "This site highlights",
+		spaceBefore: true,
+	},
+	{
+		text: "some of those problems",
+		spaceBefore: false,
+	},
+	{
+		text: "and my solutions to them.",
+		spaceBefore: false,
+	},
+	{
+		text: "i Look forward to",
+		spaceBefore: true,
+	},
+	{
+		text: "hearing from you.",
+		spaceBefore: false,
+	},
+];
+
+let textData: TextData[] = generateTextList(textsToUse);
+const linesOfText = textsToUse.reduce((previous, current) => {
+	let additional = 1;
+	if (current.spaceBefore) additional = 2;
+	return previous + additional;
+}, 0);
+//#endregion
+
+//#region Camera and Animation stuff
+let timeElapsedInMS = 0;
+const introPanDuration = 5000;
+const lineScrollDuration = 725;
+// const lineScrollDuration = 0;
+const introPanDurationMobile = linesOfText * lineScrollDuration;
+;
+const introPanStartWait = isMobile
+	? introPanDurationMobile
+	: introPanDurationMobile + 5000;
+export const cubeRaiseDuration = introPanDuration / 2;
+export const cubeRaiseStartTime = introPanStartWait + introPanDuration / 2;
+
+const cameraFinalFOV = 55;
+const cameraPositionXStart = 0;
+const cameraPositionYStart = 150;
+const cameraPositionZStart = 100;
+const cameraPositionYEnd = 15;
+
+const cameraLookAtXStart = 0;
+const cameraLookAtYStart = 0;
+const cameraLookAtZStart = cameraPositionZStart;
+const cameraLookAtZEnd = -waterWidthSegments / 20;
+let currentCameraZLookAt = cameraLookAtZStart;
+
+
+//#endregion
+
+//#region Helper Functions
+function generateTextList(
+	texts: { text: string; spaceBefore: boolean }[],
+): TextData[] {
+	let result: TextData[] = [];
+	let lineCount = 0;
+	for (let i = 0; i < texts.length; i++) {
+		const text = texts[i];
+
+		if (texts && text.spaceBefore) {
+			lineCount++;
+		}
+
+		result.push({
+			text: text.text,
+			x: defaultTextX,
+			y: defaultTextY,
+			z: lineStart + lineSpacing * ++lineCount,
+			xRotation: -Math.PI / 2,
+			yRotation: defaultTextYRotation,
+			zRotation: defaultTextZRotation,
+			color: defaultTextColor,
+			size: defaultTextSize,
+			height: defaultTextHeight,
+		});
 	}
 
-	const originalAspectRatio = window.innerWidth / window.innerHeight;
-	const isMobile = window.innerWidth < 1250;
-	const textMinXRotation = -Math.PI / 2 - 0.25;
-	const textScrollSpeed = 0.4 / screenRefreshRateMultiplier;
-	const defaultTextX = 0;
-	const defaultTextY = -0.2;
-	const defaultTextYRotation = 0;
-	const defaultTextZRotation = 0;
+	return result;
+}
 
-	const textSizeScaleFactor = getLinearPercentOfMaxMatchWithinRange(
-		window.innerWidth,
-		800,
-		1600,
-		0.0066,
-		0.0038,
+function getCloudXPosition() {
+	return Math.random() * cloudXPositionMax - cloudXPositionMin;
+}
+
+function getCloudYPosition() {
+	return cloudYPosition;
+}
+
+function updateSun(phi: number, theta: number) {
+	const pmremGenerator = new THREE.PMREMGenerator(renderer);
+
+	sun.setFromSphericalCoords(10, phi, theta);
+
+	sky.material.uniforms["sunPosition"].value.copy(sun);
+	(water.material as any).uniforms["sunDirection"].value.copy(sun).normalize();
+
+	scene.environment = pmremGenerator.fromScene(sky as any).texture;
+}
+
+function stopKey() {
+	cancelAnimationFrame(id);
+}
+
+function handleCubeBobbing(time: number) {
+	if (cube.position.y < cubeMaxHeight && cubeBobbingDirectionIsUp)
+		cube.position.y += cubeBobbingSpeed;
+	else {
+	}
+}
+
+function handleCubeRotation(time: number) {
+	if (cube.rotation.x < Math.PI * 2 && cubeCanRotateX) {
+		cube.rotation.x = time;
+		clearTimeout(cubeTimeOutIdX);
+		cubeTimeOutIdX = setTimeout(() => {
+			cubeCanRotateY = true;
+			cubeCanRotateX = false;
+			cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6);
+			i = 0;
+		}, cubeRotationDirectionTransitionTime);
+	}
+
+	if (cubeCanRotateY && cube.rotation.y > -(Math.PI * 2)) {
+		cube.rotation.y = -time;
+		clearTimeout(cubeTimeOutIdY);
+		cubeTimeOutIdY = setTimeout(() => {
+			cubeCanRotateY = false;
+			cubeCanReset = true;
+		}, cubeRotationDirectionTransitionTime);
+	}
+
+	if (cubeCanReset) {
+		cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6Rotated);
+		cube.rotation.x = 0;
+		cube.rotation.y = 0;
+		cubeCanRotateY = false;
+		cubeCanRotateX = true;
+		cubeCanReset = false;
+		i = 0;
+	}
+}
+
+function addTextGeometry(
+	scene: Scene,
+	text: string,
+	x: number,
+	y: number,
+	z: number,
+	xRotation = 0,
+	yRotation = 0,
+	zRotation = 0,
+	color = new THREE.Color(0xffffff),
+	size = 10,
+	height = 5,
+) {
+	const textLoader = new THREE.FontLoader();
+	const font = textLoader.parse(introFont);
+	const geo = new THREE.TextGeometry(text, {
+		font: font,
+		size: size,
+		height: height,
+		// curveSegments: 4,
+		// bevelEnabled: true,
+		// bevelThickness: 0.15,
+		// bevelSize: 0.3,
+		// bevelSegments: 5,
+	});
+	geo.center();
+
+	const mesh = new THREE.Mesh(
+		geo,
+		new THREE.MeshBasicMaterial({
+			color,
+		}),
 	);
-	// const textSizeScaleFactor = isMobile ? .0066 : 0.0036;
-	const defaultTextSize = window.innerWidth * textSizeScaleFactor;
-	const defaultTextHeight = 1;
-	const defaultTextColor = new THREE.Color(0xf4d262);
-	const lineSpacing = defaultTextSize * 3;
-	const lineStart = 172;
+	mesh.position.set(x, y, z);
+	mesh.rotation.set(xRotation, yRotation, zRotation);
+	scene.add(mesh);
+	return mesh;
+}
 
-	const textsToUse = [
-		{
-			text: "Welcome!  My name is",
-			spaceBefore: false,
-		},
-		{
-			text: "Adam, and this is",
-			spaceBefore: false,
-		},
-		{
-			text: "my portfolio.",
-			spaceBefore: false,
-		},
-		{
-			text: "i build apps",
-			spaceBefore: true,
-		},
-		{
-			text: "to solve problems.",
-			spaceBefore: false,
-		},
-		{
-			text: "This site highlights",
-			spaceBefore: true,
-		},
-		{
-			text: "some of those problems",
-			spaceBefore: false,
-		},
-		{
-			text: "and my solutions to them.",
-			spaceBefore: false,
-		},
-		{
-			text: "i Look forward to",
-			spaceBefore: true,
-		},
-		{
-			text: "hearing from you.",
-			spaceBefore: false,
-		},
-	];
+function loadTexts(textData: TextData[], scene: Scene) {
+	for (let i = 0; i < textData.length; i++) {
+		const textObj = textData[i];
+		texts.push(
+			addTextGeometry(
+				scene,
+				textObj.text,
+				textObj.x,
+				textObj.y,
+				textObj.z,
+				textObj.xRotation ? textObj.xRotation : undefined,
+				textObj.yRotation ? textObj.yRotation : undefined,
+				textObj.zRotation ? textObj.zRotation : undefined,
+				textObj.color ? textObj.color : undefined,
+				textObj.size ? textObj.size : undefined,
+				textObj.height ? textObj.height : undefined,
+			),
+		);
+	}
+}
 
-	let textData: TextData[] = generateTextList(textsToUse);
+function adjustTextSizes() {
+	if (texts) {
+		const newSize = window.innerWidth * textSizeScaleFactor;
+		// const currentAspectRation = window.innerWidth / window.innerHeight;
 
-	const linesOfText = textsToUse.reduce((previous, current) => {
-		let additional = 1;
-		if (current.spaceBefore) additional = 2;
-		return previous + additional;
-	}, 0);
-	//#endregion
+		// const ratioDifferenceFactor = currentAspectRation / originalAspectRatio;
 
-	//#region Camera and Animation stuff
-	let timeElapsedInMS = 0;
-	const introPanDuration = 5000;
-	const lineScrollDuration = 725;
-	// const lineScrollDuration = 0;
-	const introPanDurationMobile = linesOfText * lineScrollDuration;
-	;
-	const introPanStartWait = isMobile
-		? introPanDurationMobile
-		: introPanDurationMobile + 5000;
-	const cubeRaiseDuration = introPanDuration / 2;
-	const cubeRaiseStartTime = introPanStartWait + introPanDuration / 2;
+		for (let i = 0; i < texts.length; i++) {
+			const text = texts[i];
+			const currentTextData = textData[i];
+			if (!text || !currentTextData) continue;
+			const meshToPush = addTextGeometry(
+				scene,
+				currentTextData.text,
+				text.position.x,
+				text.position.y,
+				text.position.z,
+				currentTextData.xRotation,
+				currentTextData.yRotation,
+				currentTextData.zRotation,
+				currentTextData.color,
+				newSize,
+				currentTextData.height,
+			);
 
-	const cameraFinalFOV = 55;
-	const cameraPositionXStart = 0;
-	const cameraPositionYStart = 150;
-	const cameraPositionZStart = 100;
-	const cameraPositionYEnd = 15;
+			texts.push(meshToPush);
 
-	const cameraLookAtXStart = 0;
-	const cameraLookAtYStart = 0;
-	const cameraLookAtZStart = cameraPositionZStart;
-	const cameraLookAtZEnd = -waterWidthSegments / 20;
-	let currentCameraZLookAt = cameraLookAtZStart;
+			let textToRemove = texts.slice(i, 1)[0];
+			scene.remove(textToRemove);
+		}
 
+		for (let i = 0; i < textData.length; i++) {
+			const removed = texts.splice(0, 1)[0];
+			removed.geometry.dispose();
+			//@ts-ignore
+			removed.material.dispose();
+			scene.remove(removed);
+		}
+	}
+}
+
+function getFromStartToFinishUsingFunction(
+	durationInMS: number,
+	start: number,
+	end: number,
+	fps: number,
+	functionToUse: "linear" | "exponential",
+) {
+	//todo: return a number that when you multiply start with it frame times (durationInSeconds * fps) you get end
+	let result = null;
+	if (start > end && end === 0)
+		throw new Error(
+			"End must be a number other than 0 when start is greater than end",
+		);
+	if (start === 0 && end > start)
+		throw new Error(
+			"Start must be a number other than 0 when end is greater than start",
+		);
+	if (functionToUse === "linear") {
+		result = getLinearStartToFinish(durationInMS, start, end, fps);
+	} else if (functionToUse === "exponential") {
+		if ((start > 0 && end < 0) || (start < 0 && end > 0))
+			throw new Error(
+				"Start and end numbers must be either both positive or both negative when using exponential.",
+			);
+		result = getExponentialStartToFinish(durationInMS, start, end, fps);
+	}
+	return result;
+}
+
+function getLinearStartToFinish(
+	durationInMS: number,
+	start: number,
+	end: number,
+	fps: number,
+) {
+	//TODO: return a number that when added to start and then the result repeatedly yields end in frame steps/intervals...
+	const frames = (fps * durationInMS) / 1000;
+	return (end - start) / frames;
+}
+
+function getExponentialStartToFinish(
+	durationInMS: number,
+	start: number,
+	end: number,
+	fps: number,
+) {
+	//TODO: return a number that when multiplied by start and then the result repeatedly yields end in frame steps/intervals...
+	const frames = (fps * durationInMS) / 1000;
+	return Math.pow(end / start, 1 / frames);
+}
+//#endregion
+
+//#region Listeners
+function onMouseMove(e: MouseEvent) {
+	const currentY = e.clientY;
+	let mouseWasMovedUp = false;
+
+	if (currentY < lastClientY) mouseWasMovedUp = true;
+
+	if (mouseWasMovedUp) {
+	} else {
+	}
+
+	lastClientY = e.clientY;
+}
+
+function onWindowResize() {
+	adjustTextSizes();
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize(window.innerWidth, window.innerHeight);
+}
+//#endregion
+
+
+const useSky = () => {
+	const [screenRefreshRate, setScreenRefreshRate] = useState(360);
+	const [screenRefreshRateMultiplier, setScreenRefreshRateMultiplier] = useState(screenRefreshRate / baseScreenRefreshRate); //todo figure out how to calculate this
+	
+	//#region Functions and variables that need access to refresh rate
+	const cubeRotationSpeed = 0.0066 / screenRefreshRateMultiplier;
+	const textScrollSpeed = 0.4 / screenRefreshRateMultiplier;
+	const cloudZRotationRateChange = 0.0001 / screenRefreshRateMultiplier;
+	const cloudZPositionRateChange = 0.5 / screenRefreshRateMultiplier;
 	const cameraPositionYFactor = getFromStartToFinishUsingFunction(
 		introPanDuration,
 		cameraPositionYStart,
@@ -263,115 +535,9 @@ const useSky = () => {
 		"exponential",
 	);
 
-	//#endregion
-
-	//#region Helper Functions
-	function generateTextList(
-		texts: { text: string; spaceBefore: boolean }[],
-	): TextData[] {
-		let result: TextData[] = [];
-		let lineCount = 0;
-		for (let i = 0; i < texts.length; i++) {
-			const text = texts[i];
-
-			if (texts && text.spaceBefore) {
-				lineCount++;
-			}
-
-			result.push({
-				text: text.text,
-				x: defaultTextX,
-				y: defaultTextY,
-				z: lineStart + lineSpacing * ++lineCount,
-				xRotation: -Math.PI / 2,
-				yRotation: defaultTextYRotation,
-				zRotation: defaultTextZRotation,
-				color: defaultTextColor,
-				size: defaultTextSize,
-				height: defaultTextHeight,
-			});
-		}
-
-		return result;
-	}
-
-	function getCloudXPosition() {
-		return Math.random() * cloudXPositionMax - cloudXPositionMin;
-	}
-
-	function getCloudYPosition() {
-		return cloudYPosition;
-	}
-
-	function getCloudZPosition() {
-		const secondsToGetToCameraFinalPosition =
-			(introPanDuration + introPanStartWait) / 1000;
-		const numberOfFramesIntroTakes =
-			screenRefreshRate * secondsToGetToCameraFinalPosition;
-		const distanceCloudMovesDuringIntro =
-			cloudZPositionRateChange * numberOfFramesIntroTakes;
-		return (
-			Math.random() * cloudSpan - cloudSpan + distanceCloudMovesDuringIntro * 0.75
-		);
-	}
-
-	function updateSun(phi: number, theta: number) {
-		const pmremGenerator = new THREE.PMREMGenerator(renderer);
-
-		sun.setFromSphericalCoords(10, phi, theta);
-
-		sky.material.uniforms["sunPosition"].value.copy(sun);
-		(water.material as any).uniforms["sunDirection"].value.copy(sun).normalize();
-
-		scene.environment = pmremGenerator.fromScene(sky as any).texture;
-	}
-
 	function animate() {
 		id = requestAnimationFrame(animate);
 		render();
-	}
-
-	function stopKey() {
-		cancelAnimationFrame(id);
-	}
-
-	function handleCubeBobbing(time: number) {
-		if (cube.position.y < cubeMaxHeight && cubeBobbingDirectionIsUp)
-			cube.position.y += cubeBobbingSpeed;
-		else {
-		}
-	}
-
-	function handleCubeRotation(time: number) {
-		if (cube.rotation.x < Math.PI * 2 && cubeCanRotateX) {
-			cube.rotation.x = time;
-			clearTimeout(cubeTimeOutIdX);
-			cubeTimeOutIdX = setTimeout(() => {
-				cubeCanRotateY = true;
-				cubeCanRotateX = false;
-				cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6);
-				i = 0;
-			}, cubeRotationDirectionTransitionTime);
-		}
-
-		if (cubeCanRotateY && cube.rotation.y > -(Math.PI * 2)) {
-			cube.rotation.y = -time;
-			clearTimeout(cubeTimeOutIdY);
-			cubeTimeOutIdY = setTimeout(() => {
-				cubeCanRotateY = false;
-				cubeCanReset = true;
-			}, cubeRotationDirectionTransitionTime);
-		}
-
-		if (cubeCanReset) {
-			cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6Rotated);
-			cube.rotation.x = 0;
-			cube.rotation.y = 0;
-			cubeCanRotateY = false;
-			cubeCanRotateX = true;
-			cubeCanReset = false;
-			i = 0;
-		}
 	}
 
 	function addCloud() {
@@ -387,7 +553,7 @@ const useSky = () => {
 				transparent: true,
 				color: cloudColor,
 			});
-
+	
 			for (let p = 0; p < 50; p++) {
 				let cloud = new THREE.Mesh(cloudGeo, cloudMaterial);
 				cloud.position.set(
@@ -406,181 +572,17 @@ const useSky = () => {
 		return clouds;
 	}
 
-	function addTextGeometry(
-		scene: Scene,
-		text: string,
-		x: number,
-		y: number,
-		z: number,
-		xRotation = 0,
-		yRotation = 0,
-		zRotation = 0,
-		color = new THREE.Color(0xffffff),
-		size = 10,
-		height = 5,
-	) {
-		const textLoader = new THREE.FontLoader();
-		const font = textLoader.parse(introFont);
-		const geo = new THREE.TextGeometry(text, {
-			font: font,
-			size: size,
-			height: height,
-			// curveSegments: 4,
-			// bevelEnabled: true,
-			// bevelThickness: 0.15,
-			// bevelSize: 0.3,
-			// bevelSegments: 5,
-		});
-		geo.center();
-
-		const mesh = new THREE.Mesh(
-			geo,
-			new THREE.MeshBasicMaterial({
-				color,
-			}),
+	function getCloudZPosition() {
+		const secondsToGetToCameraFinalPosition =
+			(introPanDuration + introPanStartWait) / 1000;
+		const numberOfFramesIntroTakes =
+			screenRefreshRate * secondsToGetToCameraFinalPosition;
+		const distanceCloudMovesDuringIntro =
+			cloudZPositionRateChange * numberOfFramesIntroTakes;
+		return (
+			Math.random() * cloudSpan - cloudSpan + distanceCloudMovesDuringIntro * 0.75
 		);
-		mesh.position.set(x, y, z);
-		mesh.rotation.set(xRotation, yRotation, zRotation);
-		scene.add(mesh);
-		return mesh;
 	}
-
-	function loadTexts(textData: TextData[], scene: Scene) {
-		for (let i = 0; i < textData.length; i++) {
-			const textObj = textData[i];
-			texts.push(
-				addTextGeometry(
-					scene,
-					textObj.text,
-					textObj.x,
-					textObj.y,
-					textObj.z,
-					textObj.xRotation ? textObj.xRotation : undefined,
-					textObj.yRotation ? textObj.yRotation : undefined,
-					textObj.zRotation ? textObj.zRotation : undefined,
-					textObj.color ? textObj.color : undefined,
-					textObj.size ? textObj.size : undefined,
-					textObj.height ? textObj.height : undefined,
-				),
-			);
-		}
-	}
-
-	function adjustTextSizes() {
-		if (texts) {
-			const newSize = window.innerWidth * textSizeScaleFactor;
-			// const currentAspectRation = window.innerWidth / window.innerHeight;
-
-			// const ratioDifferenceFactor = currentAspectRation / originalAspectRatio;
-
-			for (let i = 0; i < texts.length; i++) {
-				const text = texts[i];
-				const currentTextData = textData[i];
-				if (!text || !currentTextData) continue;
-				const meshToPush = addTextGeometry(
-					scene,
-					currentTextData.text,
-					text.position.x,
-					text.position.y,
-					text.position.z,
-					currentTextData.xRotation,
-					currentTextData.yRotation,
-					currentTextData.zRotation,
-					currentTextData.color,
-					newSize,
-					currentTextData.height,
-				);
-
-				texts.push(meshToPush);
-
-				let textToRemove = texts.slice(i, 1)[0];
-				scene.remove(textToRemove);
-			}
-
-			for (let i = 0; i < textData.length; i++) {
-				const removed = texts.splice(0, 1)[0];
-				removed.geometry.dispose();
-				//@ts-ignore
-				removed.material.dispose();
-				scene.remove(removed);
-			}
-		}
-	}
-
-	function getFromStartToFinishUsingFunction(
-		durationInMS: number,
-		start: number,
-		end: number,
-		fps: number,
-		functionToUse: "linear" | "exponential",
-	) {
-		//todo: return a number that when you multiply start with it frame times (durationInSeconds * fps) you get end
-		let result = null;
-		if (start > end && end === 0)
-			throw new Error(
-				"End must be a number other than 0 when start is greater than end",
-			);
-		if (start === 0 && end > start)
-			throw new Error(
-				"Start must be a number other than 0 when end is greater than start",
-			);
-		if (functionToUse === "linear") {
-			result = getLinearStartToFinish(durationInMS, start, end, fps);
-		} else if (functionToUse === "exponential") {
-			if ((start > 0 && end < 0) || (start < 0 && end > 0))
-				throw new Error(
-					"Start and end numbers must be either both positive or both negative when using exponential.",
-				);
-			result = getExponentialStartToFinish(durationInMS, start, end, fps);
-		}
-		return result;
-	}
-
-	function getLinearStartToFinish(
-		durationInMS: number,
-		start: number,
-		end: number,
-		fps: number,
-	) {
-		//TODO: return a number that when added to start and then the result repeatedly yields end in frame steps/intervals...
-		const frames = (fps * durationInMS) / 1000;
-		return (end - start) / frames;
-	}
-
-	function getExponentialStartToFinish(
-		durationInMS: number,
-		start: number,
-		end: number,
-		fps: number,
-	) {
-		//TODO: return a number that when multiplied by start and then the result repeatedly yields end in frame steps/intervals...
-		const frames = (fps * durationInMS) / 1000;
-		return Math.pow(end / start, 1 / frames);
-	}
-	//#endregion
-
-	//#region Listeners
-	function onMouseMove(e: MouseEvent) {
-		const currentY = e.clientY;
-		let mouseWasMovedUp = false;
-
-		if (currentY < lastClientY) mouseWasMovedUp = true;
-
-		if (mouseWasMovedUp) {
-		} else {
-		}
-
-		lastClientY = e.clientY;
-	}
-
-	function onWindowResize() {
-		adjustTextSizes();
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-
-		renderer.setSize(window.innerWidth, window.innerHeight);
-	}
-	//#endregion
 
 	function init() {
 		//
@@ -781,6 +783,7 @@ const useSky = () => {
 		);
 		camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
 	}
+	//#endregion
 
 	useEffect(() => {
 		init();

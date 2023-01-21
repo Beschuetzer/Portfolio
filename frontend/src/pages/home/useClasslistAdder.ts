@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { cubeRaiseDuration, cubeRaiseStartTime } from "./OceanSky";
+import { cubeRaiseDuration, cubeRaiseStartTime } from "./useSky";
 
 export interface ClasslistAdder {
 	classnames: string[];
