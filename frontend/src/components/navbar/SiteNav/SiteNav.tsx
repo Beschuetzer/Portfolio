@@ -226,10 +226,10 @@ const SiteNav: React.FC<SiteNavProps> = ({
 					/>
 					<NavListItem
 						imageSource={examplesImage}
-						imageAlt="Examples"
+						imageAlt="projects"
 						isLink={false}
-						to="/examples"
-						label="Examples"
+						to="/projects"
+						label="Projects"
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
 						className={`${NAVBAR_CLASSNAME}__item ${NAVBAR_CLASSNAME}__dropdown-container flex align-center justify-content-center`}
