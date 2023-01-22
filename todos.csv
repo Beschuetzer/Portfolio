@@ -1,9 +1,10 @@
 JOB STUFF------------------------------------
-  -figure out why letting start animation complete, navigate to page, then back doesn't properly reset the animation
-  -Remove logs from portfolio utils.ts 203
-  -Change 'Explore' to 'Projects'
-  -look into free options for other sites (dynamo are no longer free and don't work atm)
   -remove Bestbuy contacts from website and resume (can provide separately if need be)
+  -create a Solution Sidekick feature page
+  -Change 'Explore' to 'Projects'
+  -Remove logs from portfolio utils.ts 203
+  -figure out why letting start animation complete, navigate to page, then back doesn't properly reset the animation
+  -look into free options for other sites (dynamo are no longer free and don't work atm)
   -add resume end date 11/12 for contract work and 11/13 for FTE work
   -add resume line talking point "10X increase in user base since starting" for Best Buy contract
   -minify SSK videos
@@ -11,13 +12,13 @@ JOB STUFF------------------------------------
   -make york repos public (team and personal) and add a description to both with links (add tags too and make sure they are referenced in the resume section)
   -increase values for React, Bootstrap, Redux, and PostGreSQL
   -add links to best buy and york projects in the resume section (embedded links)
-  -create a Solution Sidekick feature page
   -mobile - scrolling on own phone glitchy up and down fast
   -adjust PageNav such that the scroll percent is 100 for previous item when it is in the middle of the screen
-  -after playing a song then stopping and closing the player, the orange tab still appears
-  -bridge video cards don't close when another one is opened
 
 BUGS------------------------------------
+  -mobile start screen doesn't show all of bottom and not scrollable
+  -after playing a song then stopping and closing the player, the orange tab still appears
+  -bridge video cards don't close when another one is opened
   -fix carousel issue (use 3rd party lib?)
   -bug with PageNav and no mouse where the scroll scaling doesn't apply to the last clicked item as it has :hover (is there a way to trigger a touch/click event in JS? so as to clear the :hover state) (remove hover effect on card when mobile input after close?)
   -PlayControl and RestartControl handleVideoProgress listeners can be run at the same time (doesn't seem to affect performance though)
