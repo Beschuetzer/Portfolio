@@ -39,7 +39,6 @@ let id: number;
 let clouds: any[];
 let texts: THREE.Mesh<TextBufferGeometry>[] = [];
 
-let startTime = Date.now();
 let i = 0;
 let cubeCanRotateY = false;
 let cubeCanRotateX = true;
@@ -460,6 +459,7 @@ function onWindowResize() {
 //#endregion
 
 const useSky = () => {
+	const [startTime, setStartTime] = useState(Date.now());
 	const [screenRefreshRate, setScreenRefreshRate] = useState(0);
 	const [cameraPositionYFactor, setCameraPositionYFactor] = useState<null | number>(0);
 	const [cameraLookAtZFactor, setCameraLookAtZFactor] = useState<null | number>(0);
@@ -473,6 +473,7 @@ const useSky = () => {
 
 	const fpsReturned = [] as FpsReturned;
 	useEffect(() => {
+		setStartTime(Date.now());
 		function getScreenRefreshRate(callback: any, runIndefinitely: boolean){
 			let requestId: number | null = null;
 			let callbackTriggered = false;
@@ -616,8 +617,6 @@ const useSky = () => {
 		}
 	
 		function init() {
-			//
-	
 			renderer = new THREE.WebGLRenderer();
 			renderer.setPixelRatio(window.devicePixelRatio);
 			renderer.setSize(window.innerWidth, window.innerHeight);
@@ -806,6 +805,7 @@ const useSky = () => {
 		}
 	
 		function resetAnimations() {
+			
 			timeElapsedInMS = 0;
 			camera.position.set(
 				cameraPositionXStart,
@@ -871,8 +871,6 @@ const useSky = () => {
 		animate();
 
 		return (() => {
-			console.log("running");
-			
 			stopKey();
 			let canvasElement = document.querySelector(`.${HOME_CANVAS_CLASSNAME}`);
 			if (canvasElement) document.body?.removeChild(canvasElement);
