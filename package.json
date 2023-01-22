@@ -32,6 +32,6 @@
     "@welldone-software/why-did-you-render": "^6.1.4"
   },
   "engines": {
-    "node": "18.x"
+    "node": "17.x"
   }
 }
