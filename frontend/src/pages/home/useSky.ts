@@ -204,7 +204,7 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 //#region Camera and Animation stuff
 let timeElapsedInMS = 0;
 const introPanDuration = 5000;
-const lineScrollDuration = 725;
+const lineScrollDuration = 733;
 // const lineScrollDuration = 0;
 const introPanDurationMobile = linesOfText * lineScrollDuration;
 ;
@@ -528,10 +528,10 @@ const useSky = () => {
 					const newScreenRefreshRate = Math.max(...fpsReturned);
 					const newMultiplier = newScreenRefreshRate / baseScreenRefreshRate;
 
-					setTextScrollSpeed(0.4 / newMultiplier);
+					setTextScrollSpeed(0.45 / newMultiplier);
 					setCloudZRotationRateChange(0.0001 / newMultiplier);
 					setCloudZPositionRateChange(0.5 / newMultiplier);
-					setCubeRotationSpeed( 0.0066 / newMultiplier);
+					setCubeRotationSpeed( 0.015 / newMultiplier);
 					setScreenRefreshRate(newScreenRefreshRate);
 					setCameraPositionYFactor(getFromStartToFinishUsingFunction(
 						introPanDuration,
