@@ -283,45 +283,6 @@ function stopKey() {
 	cancelAnimationFrame(id);
 }
 
-function handleCubeBobbing(time: number) {
-	if (cube.position.y < cubeMaxHeight && cubeBobbingDirectionIsUp)
-		cube.position.y += cubeBobbingSpeed;
-	else {
-	}
-}
-
-function handleCubeRotation(time: number) {
-	if (cube.rotation.x < Math.PI * 2 && cubeCanRotateX) {
-		cube.rotation.x = time;
-		clearTimeout(cubeTimeOutIdX);
-		cubeTimeOutIdX = setTimeout(() => {
-			cubeCanRotateY = true;
-			cubeCanRotateX = false;
-			cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6);
-			i = 0;
-		}, cubeRotationDirectionTransitionTime);
-	}
-
-	if (cubeCanRotateY && cube.rotation.y > -(Math.PI * 2)) {
-		cube.rotation.y = -time;
-		clearTimeout(cubeTimeOutIdY);
-		cubeTimeOutIdY = setTimeout(() => {
-			cubeCanRotateY = false;
-			cubeCanReset = true;
-		}, cubeRotationDirectionTransitionTime);
-	}
-
-	if (cubeCanReset) {
-		cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6Rotated);
-		cube.rotation.x = 0;
-		cube.rotation.y = 0;
-		cubeCanRotateY = false;
-		cubeCanRotateX = true;
-		cubeCanReset = false;
-		i = 0;
-	}
-}
-
 function addTextGeometry(
 	scene: Scene,
 	text: string,
@@ -501,290 +462,15 @@ function onWindowResize() {
 const useSky = () => {
 	const [screenRefreshRate, setScreenRefreshRate] = useState(0);
 	const [screenRefreshRateMultiplier, setScreenRefreshRateMultiplier] = useState(screenRefreshRate / baseScreenRefreshRate); //todo figure out how to calculate this
-	
+	const [cameraPositionYFactor, setCameraPositionYFactor] = useState<null | number>(1);
+	const [cameraLookAtZFactor, setCameraLookAtZFactor] = useState<null | number>(.2);
+	const [cubeHeightAdditiveIncrement, setCubeHeightAdditiveIncrement] = useState<null | number>(1);
+	const [opacityChangeRate, setOpacityChangeRate] = useState<null | number>(1);
+	const [textScrollSpeed, setTextScrollSpeed] = useState<number>(1);
+	const [cloudZRotationRateChange, setCloudZRotationRateChange] = useState<number>(1);
+	const [cloudZPositionRateChange, setCloudZPositionRateChange] = useState<number>(1);
+	const [cubeRotationSpeed, setCubeRotationSpeed] = useState<number>(1);
 	//#region Functions and variables that need access to refresh rate
-	const cubeRotationSpeed = 0.0066 / screenRefreshRateMultiplier;
-	const textScrollSpeed = 0.4 / screenRefreshRateMultiplier;
-	const cloudZRotationRateChange = 0.0001 / screenRefreshRateMultiplier;
-	const cloudZPositionRateChange = 0.5 / screenRefreshRateMultiplier;
-	const cameraPositionYFactor = getFromStartToFinishUsingFunction(
-		introPanDuration,
-		cameraPositionYStart,
-		cameraPositionYEnd,
-		screenRefreshRate,
-		"exponential",
-	);
-	const cameraLookAtZFactor = getFromStartToFinishUsingFunction(
-		introPanDuration * 2,
-		cameraLookAtZStart,
-		cameraLookAtZEnd,
-		screenRefreshRate,
-		"linear",
-	);
-	const cubeHeightAdditiveIncrement = getFromStartToFinishUsingFunction(
-		cubeRaiseDuration,
-		cubeStartHeight,
-		cubeEndHeight,
-		screenRefreshRate,
-		"linear",
-	);
-	const opacityChangeRate = getFromStartToFinishUsingFunction(
-		introPanDuration * 3,
-		1,
-		0.000001,
-		screenRefreshRate,
-		"exponential",
-	);
-
-	function animate() {
-		id = requestAnimationFrame(animate);
-		render();
-	}
-
-	function addCloud() {
-		let clouds: any[] = [];
-		let cloudLoader = new THREE.TextureLoader();
-		cloudLoader.load(cloud, function (texture) {
-			const cloudGeo = new THREE.PlaneGeometry(
-				cloudWidthSegments,
-				cloudWidthSegments,
-			);
-			const cloudMaterial = new THREE.MeshBasicMaterial({
-				map: texture,
-				transparent: true,
-				color: cloudColor,
-			});
-	
-			for (let p = 0; p < 50; p++) {
-				let cloud = new THREE.Mesh(cloudGeo, cloudMaterial);
-				cloud.position.set(
-					getCloudXPosition(),
-					getCloudYPosition(),
-					getCloudZPosition(),
-				);
-				cloud.rotation.x = cloudXRotationStart;
-				cloud.rotation.y = cloudYRotationStart;
-				cloud.rotation.z = cloudZRotationStart;
-				cloud.material.opacity = cloudTransparency;
-				scene.add(cloud);
-				clouds.push(cloud);
-			}
-		});
-		return clouds;
-	}
-
-	function getCloudZPosition() {
-		const secondsToGetToCameraFinalPosition =
-			(introPanDuration + introPanStartWait) / 1000;
-		const numberOfFramesIntroTakes =
-			screenRefreshRate * secondsToGetToCameraFinalPosition;
-		const distanceCloudMovesDuringIntro =
-			cloudZPositionRateChange * numberOfFramesIntroTakes;
-		return (
-			Math.random() * cloudSpan - cloudSpan + distanceCloudMovesDuringIntro * 0.75
-		);
-	}
-
-	function init() {
-		//
-
-		renderer = new THREE.WebGLRenderer();
-		renderer.setPixelRatio(window.devicePixelRatio);
-		renderer.setSize(window.innerWidth, window.innerHeight);
-		renderer.toneMapping = THREE.ACESFilmicToneMapping;
-		document.body.appendChild(renderer.domElement);
-
-		//
-
-		scene = new THREE.Scene();
-		camera = new THREE.PerspectiveCamera(
-			60,
-			window.innerWidth / window.innerHeight,
-			1,
-			20000,
-		);
-
-		camera.position.set(
-			cameraPositionXStart,
-			cameraPositionYStart,
-			cameraPositionZStart,
-		);
-		camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
-
-		//#region Orbit Controls
-		// orbitControls = new OrbitControls(camera, renderer.domElement);
-		// orbitControls.update();
-		//#endregion
-
-		//light
-		var spotLight = new THREE.SpotLight(spotLightColor, spotLightStrength);
-		spotLight.position.set(spotLightX, spotLightY, spotLightZ);
-		scene.add(spotLight);
-
-		// Water
-		const waterGeometry = new THREE.PlaneGeometry(
-			waterWidthSegments,
-			waterHeightSegments,
-		);
-
-		water = new Water(waterGeometry, {
-			textureWidth: 512,
-			textureHeight: 512,
-			waterNormals: new THREE.TextureLoader().load(
-				waterNormals,
-				function (texture) {
-					texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-				},
-			),
-			sunDirection: new THREE.Vector3(),
-			sunColor,
-			waterColor: waterColor,
-			distortionScale: 3.7,
-			fog: scene.fog !== undefined,
-		});
-
-		water.rotation.x = -Math.PI / 2;
-
-		scene.add(water);
-
-		// Skybox
-		sky = new Sky();
-		sky.scale.setScalar(5000);
-		scene.add(sky);
-
-		const skyUniforms = sky.material.uniforms;
-
-		skyUniforms["turbidity"].value = skyTurbidity;
-		skyUniforms["rayleigh"].value = skyRayleigh;
-		skyUniforms["mieCoefficient"].value = skyMieCoefficient;
-		skyUniforms["mieDirectionalG"].value = skyMieDirectionalG;
-
-		if (document.body) {
-			document.body.lastElementChild?.classList.add(HOME_CANVAS_CLASSNAME);
-			const homeCanvas = document.querySelector(`.${HOME_CANVAS_CLASSNAME}`) as HTMLCanvasElement;
-			homeCanvas.setAttribute('aria-hidden', 'true');
-		}
-
-		sun = new THREE.Vector3();
-		const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
-		const theta = THREE.MathUtils.degToRad(parameters.azimuth);
-
-		updateSun(phi, theta);
-		//
-
-		const materials = [
-			cubeMaterial1,
-			cubeMaterial2,
-			cubeMaterial3,
-			cubeMaterial4,
-			cubeMaterial5,
-			cubeMaterial6,
-		];
-
-		const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-		const material = new THREE.MeshPhongMaterial({
-			reflectivity: 0,
-			refractionRatio: 0,
-		});
-		const bumpTexture = new THREE.TextureLoader().load(bumpMap);
-		material.map = bumpTexture;
-
-		cube = new THREE.Mesh(geometry, materials);
-		cube.position.y = cubeStartHeight;
-		scene.add(cube);
-
-		clouds = addCloud();
-
-		loadTexts(textData, scene);
-		//
-
-		window.addEventListener("resize", onWindowResize);
-		window.addEventListener("mousemove", onMouseMove);
-	}
-
-	function render() {
-		const currentTime = Date.now();
-		timeElapsedInMS = currentTime - startTime;
-
-		// handleCubeBobbing(time);
-		if (clouds)
-			clouds.forEach((cloud) => {
-				cloud.rotation.z += cloudZRotationRateChange;
-				cloud.position.z -= cloudZPositionRateChange;
-			});
-
-		if (texts) {
-			for (let i = 0; i < texts.length; i++) {
-				const text = texts[i];
-				if (!text) continue;
-				const currentOpacity = (text.material as any).opacity;
-				if (currentOpacity > 0) {
-					if (timeElapsedInMS >= introPanStartWait) {
-						text.material = new MeshBasicMaterial({
-							transparent: true,
-							opacity: currentOpacity * (opacityChangeRate as number),
-							color: defaultTextColor,
-						});
-						// if (text.rotation.x >= textMinXRotation) text.rotation.x -= textScrollSpeed / 50;
-					}
-					text.position.z -= textScrollSpeed;
-				}
-			}
-		}
-
-		if (camera) {
-			if (timeElapsedInMS >= introPanStartWait) {
-				const currentYPosition = camera.position.y;
-				if (currentYPosition >= cameraPositionYEnd) {
-					camera.position.set(
-						cameraPositionXStart,
-						currentYPosition * (cameraPositionYFactor as number),
-						cameraPositionZStart,
-					);
-				}
-
-				if (currentCameraZLookAt >= cameraLookAtZEnd) {
-					currentCameraZLookAt += cameraLookAtZFactor as any;
-					camera.lookAt(
-						cameraLookAtXStart,
-						cameraLookAtYStart,
-						currentCameraZLookAt,
-					);
-				}
-			}
-		}
-
-		if (cube) {
-			if (timeElapsedInMS >= cubeRaiseStartTime) {
-				const currentYPosition = cube.position.y;
-				if (currentYPosition <= cubeEndHeight) {
-					cube.position.y += cubeHeightAdditiveIncrement as number;
-				}
-
-				if (currentYPosition >= cubeEndHeight) {
-					const cubeRotationCounter = (i += cubeRotationSpeed);
-					handleCubeRotation(cubeRotationCounter);
-				}
-			}
-		}
-
-		if (water)
-			(water.material as any).uniforms["time"].value +=
-				waterAnimationSpeed / screenRefreshRate;
-
-		renderer.render(scene, camera);
-	}
-
-	function resetAnimations() {
-		timeElapsedInMS = 0;
-		camera.position.set(
-			cameraPositionXStart,
-			cameraPositionYStart,
-			cameraPositionZStart,
-		);
-		camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
-	}
-	//#endregion
 
 	const fpsReturned = [] as FpsReturned;
 	useEffect(() => {
@@ -843,17 +529,354 @@ const useSky = () => {
 			if (fpsReturned.length > NUMBER_OF_FPS_POINTS_TO_GET) {
 				cancelTimeout();
 				if (!screenRefreshRate) {
-					const newFps = Math.max(...fpsReturned);
-					console.log(`fps: ${Math.max(...fpsReturned)}`);
-					console.log(`multiplier: ${newFps / baseScreenRefreshRate}`);
-					setScreenRefreshRate(newFps);
-					setScreenRefreshRateMultiplier(newFps / baseScreenRefreshRate);
+					const newScreenRefreshRate = Math.max(...fpsReturned);
+					const newMultiplier = newScreenRefreshRate / baseScreenRefreshRate;
+
+					setTextScrollSpeed(0.4 / newMultiplier);
+					setCloudZRotationRateChange(0.0001 / newMultiplier);
+					setCloudZPositionRateChange(0.5 / newMultiplier);
+					setCubeRotationSpeed( 0.0066 / newMultiplier);
+					setScreenRefreshRate(newScreenRefreshRate);
+					setScreenRefreshRateMultiplier(newMultiplier);
+					setCameraPositionYFactor(getFromStartToFinishUsingFunction(
+						introPanDuration,
+						cameraPositionYStart,
+						cameraPositionYEnd,
+						newScreenRefreshRate,
+						"exponential",
+					));
+					setCameraLookAtZFactor(getFromStartToFinishUsingFunction(
+						introPanDuration * 2,
+						cameraLookAtZStart,
+						cameraLookAtZEnd,
+						newScreenRefreshRate,
+						"linear",
+					));
+					setCubeHeightAdditiveIncrement(getFromStartToFinishUsingFunction(
+						cubeRaiseDuration,
+						cubeStartHeight,
+						cubeEndHeight,
+						newScreenRefreshRate,
+						"linear",
+					));
+					setOpacityChangeRate(getFromStartToFinishUsingFunction(
+						introPanDuration * 3,
+						1,
+						0.000001,
+						newScreenRefreshRate,
+						"exponential",
+					));
 				}
 			}
 		}, true);
 	}, [])
 
 	useEffect(() => {
+		function animate() {
+			id = requestAnimationFrame(animate);
+			render();
+		}
+	
+		function addCloud() {
+			let clouds: any[] = [];
+			let cloudLoader = new THREE.TextureLoader();
+			cloudLoader.load(cloud, function (texture) {
+				const cloudGeo = new THREE.PlaneGeometry(
+					cloudWidthSegments,
+					cloudWidthSegments,
+				);
+				const cloudMaterial = new THREE.MeshBasicMaterial({
+					map: texture,
+					transparent: true,
+					color: cloudColor,
+				});
+		
+				for (let p = 0; p < 50; p++) {
+					let cloud = new THREE.Mesh(cloudGeo, cloudMaterial);
+					cloud.position.set(
+						getCloudXPosition(),
+						getCloudYPosition(),
+						getCloudZPosition(),
+					);
+					cloud.rotation.x = cloudXRotationStart;
+					cloud.rotation.y = cloudYRotationStart;
+					cloud.rotation.z = cloudZRotationStart;
+					cloud.material.opacity = cloudTransparency;
+					scene.add(cloud);
+					clouds.push(cloud);
+				}
+			});
+			return clouds;
+		}
+	
+		function getCloudZPosition() {
+			const secondsToGetToCameraFinalPosition =
+				(introPanDuration + introPanStartWait) / 1000;
+			const numberOfFramesIntroTakes =
+				screenRefreshRate * secondsToGetToCameraFinalPosition;
+			const distanceCloudMovesDuringIntro =
+				cloudZPositionRateChange * numberOfFramesIntroTakes;
+			return (
+				Math.random() * cloudSpan - cloudSpan + distanceCloudMovesDuringIntro * 0.75
+			);
+		}
+	
+		function init() {
+			//
+	
+			renderer = new THREE.WebGLRenderer();
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.toneMapping = THREE.ACESFilmicToneMapping;
+			document.body.appendChild(renderer.domElement);
+	
+			//
+	
+			scene = new THREE.Scene();
+			camera = new THREE.PerspectiveCamera(
+				60,
+				window.innerWidth / window.innerHeight,
+				1,
+				20000,
+			);
+	
+			camera.position.set(
+				cameraPositionXStart,
+				cameraPositionYStart,
+				cameraPositionZStart,
+			);
+			camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
+	
+			//#region Orbit Controls
+			// orbitControls = new OrbitControls(camera, renderer.domElement);
+			// orbitControls.update();
+			//#endregion
+	
+			//light
+			var spotLight = new THREE.SpotLight(spotLightColor, spotLightStrength);
+			spotLight.position.set(spotLightX, spotLightY, spotLightZ);
+			scene.add(spotLight);
+	
+			// Water
+			const waterGeometry = new THREE.PlaneGeometry(
+				waterWidthSegments,
+				waterHeightSegments,
+			);
+	
+			water = new Water(waterGeometry, {
+				textureWidth: 512,
+				textureHeight: 512,
+				waterNormals: new THREE.TextureLoader().load(
+					waterNormals,
+					function (texture) {
+						texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+					},
+				),
+				sunDirection: new THREE.Vector3(),
+				sunColor,
+				waterColor: waterColor,
+				distortionScale: 3.7,
+				fog: scene.fog !== undefined,
+			});
+	
+			water.rotation.x = -Math.PI / 2;
+	
+			scene.add(water);
+	
+			// Skybox
+			sky = new Sky();
+			sky.scale.setScalar(5000);
+			scene.add(sky);
+	
+			const skyUniforms = sky.material.uniforms;
+	
+			skyUniforms["turbidity"].value = skyTurbidity;
+			skyUniforms["rayleigh"].value = skyRayleigh;
+			skyUniforms["mieCoefficient"].value = skyMieCoefficient;
+			skyUniforms["mieDirectionalG"].value = skyMieDirectionalG;
+	
+			if (document.body) {
+				document.body.lastElementChild?.classList.add(HOME_CANVAS_CLASSNAME);
+				const homeCanvas = document.querySelector(`.${HOME_CANVAS_CLASSNAME}`) as HTMLCanvasElement;
+				homeCanvas.setAttribute('aria-hidden', 'true');
+			}
+	
+			sun = new THREE.Vector3();
+			const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
+			const theta = THREE.MathUtils.degToRad(parameters.azimuth);
+	
+			updateSun(phi, theta);
+			//
+	
+			const materials = [
+				cubeMaterial1,
+				cubeMaterial2,
+				cubeMaterial3,
+				cubeMaterial4,
+				cubeMaterial5,
+				cubeMaterial6,
+			];
+	
+			const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+			const material = new THREE.MeshPhongMaterial({
+				reflectivity: 0,
+				refractionRatio: 0,
+			});
+			const bumpTexture = new THREE.TextureLoader().load(bumpMap);
+			material.map = bumpTexture;
+	
+			cube = new THREE.Mesh(geometry, materials);
+			cube.position.y = cubeStartHeight;
+			scene.add(cube);
+	
+			clouds = addCloud();
+	
+			loadTexts(textData, scene);
+			//
+	
+			window.addEventListener("resize", onWindowResize);
+			window.addEventListener("mousemove", onMouseMove);
+		}
+	
+		function render() {
+			const currentTime = Date.now();
+			timeElapsedInMS = currentTime - startTime;
+	
+			// handleCubeBobbing(time);
+			if (clouds)
+				clouds.forEach((cloud) => {
+					cloud.rotation.z += cloudZRotationRateChange;
+					cloud.position.z -= cloudZPositionRateChange;
+				});
+	
+			if (texts) {
+				for (let i = 0; i < texts.length; i++) {
+					const text = texts[i];
+					if (!text) continue;
+					const currentOpacity = (text.material as any).opacity;
+					if (currentOpacity > 0) {
+						if (timeElapsedInMS >= introPanStartWait) {
+							text.material = new MeshBasicMaterial({
+								transparent: true,
+								opacity: currentOpacity * (opacityChangeRate as number),
+								color: defaultTextColor,
+							});
+							// if (text.rotation.x >= textMinXRotation) text.rotation.x -= textScrollSpeed / 50;
+						}
+						text.position.z -= textScrollSpeed;
+					}
+				}
+			}
+	
+			if (camera) {
+				if (timeElapsedInMS >= introPanStartWait) {
+					const currentYPosition = camera.position.y;
+					if (currentYPosition >= cameraPositionYEnd) {
+						camera.position.set(
+							cameraPositionXStart,
+							currentYPosition * (cameraPositionYFactor as number),
+							cameraPositionZStart,
+						);
+					}
+	
+					if (currentCameraZLookAt >= cameraLookAtZEnd) {
+						currentCameraZLookAt += cameraLookAtZFactor as any;
+						camera.lookAt(
+							cameraLookAtXStart,
+							cameraLookAtYStart,
+							currentCameraZLookAt,
+						);
+					}
+				}
+			}
+	
+			if (cube) {
+				if (timeElapsedInMS >= cubeRaiseStartTime) {
+					console.dir(cube)
+					console.log({cubeEndHeight});
+					
+					const currentYPosition = cube.position.y;
+					console.log({currentYPosition});
+					if (currentYPosition <= cubeEndHeight) {
+						cube.position.y += cubeHeightAdditiveIncrement as number;
+						console.log(`cube y position: ${cube.position.y} after adding ${cubeHeightAdditiveIncrement}`);
+						
+					}
+	
+					if (currentYPosition >= cubeEndHeight) {
+						console.log(4);
+						
+						const cubeRotationCounter = (i += cubeRotationSpeed);
+						handleCubeRotation(cubeRotationCounter);
+					}
+				}
+			}
+	
+			if (water)
+				(water.material as any).uniforms["time"].value +=
+					waterAnimationSpeed / screenRefreshRate;
+	
+			renderer.render(scene, camera);
+		}
+	
+		function resetAnimations() {
+			timeElapsedInMS = 0;
+			camera.position.set(
+				cameraPositionXStart,
+				cameraPositionYStart,
+				cameraPositionZStart,
+			);
+			camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
+		}
+		//#endregion
+
+		function handleCubeBobbing(time: number) {
+			if (cube.position.y < cubeMaxHeight && cubeBobbingDirectionIsUp)
+				cube.position.y += cubeBobbingSpeed;
+			else {
+			}
+		}
+		
+		function handleCubeRotation(time: number) {
+			console.dir(cube);
+			
+			if (cube.rotation.x < Math.PI * 2 && cubeCanRotateX) {
+				console.log(1);
+				
+				cube.rotation.x = time;
+				clearTimeout(cubeTimeOutIdX);
+				cubeTimeOutIdX = setTimeout(() => {
+					cubeCanRotateY = true;
+					cubeCanRotateX = false;
+					cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6);
+					i = 0;
+				}, cubeRotationDirectionTransitionTime);
+			}
+		
+			if (cubeCanRotateY && cube.rotation.y > -(Math.PI * 2)) {
+				console.log(2);
+		
+				cube.rotation.y = -time;
+				clearTimeout(cubeTimeOutIdY);
+				cubeTimeOutIdY = setTimeout(() => {
+					cubeCanRotateY = false;
+					cubeCanReset = true;
+				}, cubeRotationDirectionTransitionTime);
+			}
+		
+			if (cubeCanReset) {
+				console.log(3);
+		
+				cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6Rotated);
+				cube.rotation.x = 0;
+				cube.rotation.y = 0;
+				cubeCanRotateY = false;
+				cubeCanRotateX = true;
+				cubeCanReset = false;
+				i = 0;
+			}
+		}
+
 		console.log(`final FPS: ${screenRefreshRate}`);
 		if (!screenRefreshRate) return;
 		console.log('running');
