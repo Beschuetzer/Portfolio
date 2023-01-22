@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "concurrently -k \"react-scripts start\" \"sass sass/main.scss src/css/style.css --watch\"",
-    "build": "react-scripts build",
+    "build": "react-scripts build --openssl-legacy-provider",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "compile:sass": "sass sass/main.scss src/css/style.comp.css",
@@ -69,5 +69,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
