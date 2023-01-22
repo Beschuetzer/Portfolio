@@ -461,15 +461,14 @@ function onWindowResize() {
 
 const useSky = () => {
 	const [screenRefreshRate, setScreenRefreshRate] = useState(0);
-	const [screenRefreshRateMultiplier, setScreenRefreshRateMultiplier] = useState(screenRefreshRate / baseScreenRefreshRate); //todo figure out how to calculate this
-	const [cameraPositionYFactor, setCameraPositionYFactor] = useState<null | number>(1);
-	const [cameraLookAtZFactor, setCameraLookAtZFactor] = useState<null | number>(.2);
-	const [cubeHeightAdditiveIncrement, setCubeHeightAdditiveIncrement] = useState<null | number>(1);
-	const [opacityChangeRate, setOpacityChangeRate] = useState<null | number>(1);
-	const [textScrollSpeed, setTextScrollSpeed] = useState<number>(1);
-	const [cloudZRotationRateChange, setCloudZRotationRateChange] = useState<number>(1);
-	const [cloudZPositionRateChange, setCloudZPositionRateChange] = useState<number>(1);
-	const [cubeRotationSpeed, setCubeRotationSpeed] = useState<number>(1);
+	const [cameraPositionYFactor, setCameraPositionYFactor] = useState<null | number>(0);
+	const [cameraLookAtZFactor, setCameraLookAtZFactor] = useState<null | number>(0);
+	const [cubeHeightAdditiveIncrement, setCubeHeightAdditiveIncrement] = useState<null | number>(0);
+	const [opacityChangeRate, setOpacityChangeRate] = useState<null | number>(0);
+	const [textScrollSpeed, setTextScrollSpeed] = useState<number>(0);
+	const [cloudZRotationRateChange, setCloudZRotationRateChange] = useState<number>(0);
+	const [cloudZPositionRateChange, setCloudZPositionRateChange] = useState<number>(0);
+	const [cubeRotationSpeed, setCubeRotationSpeed] = useState<number>(0);
 	//#region Functions and variables that need access to refresh rate
 
 	const fpsReturned = [] as FpsReturned;
@@ -520,10 +519,6 @@ const useSky = () => {
 		
 		if (screenRefreshRate) return;
 		getScreenRefreshRate((fps: number, cancelTimeout: () => void) => {
-			if (!screenRefreshRate) {
-				cancelTimeout();
-			}
-
 			fpsReturned.push(fps)
 
 			if (fpsReturned.length > NUMBER_OF_FPS_POINTS_TO_GET) {
@@ -537,7 +532,6 @@ const useSky = () => {
 					setCloudZPositionRateChange(0.5 / newMultiplier);
 					setCubeRotationSpeed( 0.0066 / newMultiplier);
 					setScreenRefreshRate(newScreenRefreshRate);
-					setScreenRefreshRateMultiplier(newMultiplier);
 					setCameraPositionYFactor(getFromStartToFinishUsingFunction(
 						introPanDuration,
 						cameraPositionYStart,
@@ -792,20 +786,12 @@ const useSky = () => {
 	
 			if (cube) {
 				if (timeElapsedInMS >= cubeRaiseStartTime) {
-					console.dir(cube)
-					console.log({cubeEndHeight});
-					
 					const currentYPosition = cube.position.y;
-					console.log({currentYPosition});
 					if (currentYPosition <= cubeEndHeight) {
 						cube.position.y += cubeHeightAdditiveIncrement as number;
-						console.log(`cube y position: ${cube.position.y} after adding ${cubeHeightAdditiveIncrement}`);
-						
 					}
 	
 					if (currentYPosition >= cubeEndHeight) {
-						console.log(4);
-						
 						const cubeRotationCounter = (i += cubeRotationSpeed);
 						handleCubeRotation(cubeRotationCounter);
 					}
@@ -838,11 +824,7 @@ const useSky = () => {
 		}
 		
 		function handleCubeRotation(time: number) {
-			console.dir(cube);
-			
 			if (cube.rotation.x < Math.PI * 2 && cubeCanRotateX) {
-				console.log(1);
-				
 				cube.rotation.x = time;
 				clearTimeout(cubeTimeOutIdX);
 				cubeTimeOutIdX = setTimeout(() => {
@@ -854,8 +836,6 @@ const useSky = () => {
 			}
 		
 			if (cubeCanRotateY && cube.rotation.y > -(Math.PI * 2)) {
-				console.log(2);
-		
 				cube.rotation.y = -time;
 				clearTimeout(cubeTimeOutIdY);
 				cubeTimeOutIdY = setTimeout(() => {
@@ -865,8 +845,6 @@ const useSky = () => {
 			}
 		
 			if (cubeCanReset) {
-				console.log(3);
-		
 				cubeMaterial6.map = new THREE.TextureLoader().load(cubeMap6Rotated);
 				cube.rotation.x = 0;
 				cube.rotation.y = 0;
@@ -876,15 +854,25 @@ const useSky = () => {
 				i = 0;
 			}
 		}
-
-		console.log(`final FPS: ${screenRefreshRate}`);
-		if (!screenRefreshRate) return;
-		console.log('running');
 		
+		if (
+			!screenRefreshRate ||
+			!cameraPositionYFactor ||
+			!cameraLookAtZFactor ||
+			!cubeHeightAdditiveIncrement ||
+			!opacityChangeRate ||
+			!textScrollSpeed ||
+			!cloudZRotationRateChange ||
+			!cloudZPositionRateChange ||
+			!cubeRotationSpeed
+		) return;
+
 		init();
 		animate();
 
 		return (() => {
+			console.log("running");
+			
 			stopKey();
 			let canvasElement = document.querySelector(`.${HOME_CANVAS_CLASSNAME}`);
 			if (canvasElement) document.body?.removeChild(canvasElement);
@@ -893,7 +881,17 @@ const useSky = () => {
 			if (canvasElement) document.body?.removeChild(canvasElement);
 			resetAnimations();
 		})
-	}, [screenRefreshRate])
+	}, [
+		screenRefreshRate,
+		cameraPositionYFactor,
+		cameraLookAtZFactor,
+		cubeHeightAdditiveIncrement,
+		opacityChangeRate,
+		textScrollSpeed,
+		cloudZRotationRateChange,
+		cloudZPositionRateChange,
+		cubeRotationSpeed,
+	])
 
 	return (
 	null
