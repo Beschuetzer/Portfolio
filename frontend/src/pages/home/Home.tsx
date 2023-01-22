@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import { getRepositories } from "../../actions";
-import { getRandomQuote, Quote } from "../../apis/quotes";
+import { getRandomQuote, Quote, QuoteableAuthors, QuoteTags } from "../../apis/quotes";
 import {
 	ABOUT_URL,
 	BRIDGE_URL,
@@ -14,11 +14,6 @@ import useSky from "./useSky";
 
 const EMBODIMENT_STRING =
 	"integrity, determination, learning, hard work, motivation, and communication";
-
-let quoteResult: Quote;
-getRandomQuote().then((response) => {
-	quoteResult = response;
-});
 
 const classListsToSet: ClasslistAdder[] = [
 	{
@@ -46,6 +41,9 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
+	const [quoteResult, setQuoteResult] = useState<Quote | undefined>(undefined);
+	const hasFetchedQuoteRef = useRef(false);
+
 	//Getting Repos
 	useEffect(() => {
 		if (!repos || repos.length === 0) getRepositories();
@@ -53,6 +51,29 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 
 	useClasslistAdder(classListsToSet);
 	useSky();
+
+	useEffect(() => {
+		async function fetchQuote() {
+			const quote = await getRandomQuote({
+				authors: [
+					QuoteableAuthors.abrahamLincoln,
+					QuoteableAuthors.albertEinstein,
+					QuoteableAuthors.anatoleFrance,
+					QuoteableAuthors.ericHoffer,
+				], 
+				tags: [
+					QuoteTags.education,
+					QuoteTags.inspirational,
+				]
+			});
+			hasFetchedQuoteRef.current = true;
+			setQuoteResult(quote || {} as Quote);
+		}
+
+		if (!hasFetchedQuoteRef.current) {
+			fetchQuote();
+		}
+	}, [])
 
 	function getQuoteJSX() {
 		const content = quoteResult ? quoteResult.content : null;

@@ -32,8 +32,6 @@ const Quote: React.FC<QuoteProps> = ({
 			(authorRef.current as any)?.textContent
 		}`;
 
-		console.log("message =", message);
-
 		const el = document.createElement("textarea") as HTMLTextAreaElement;
 		el.value = message;
 		document.body.appendChild(el);

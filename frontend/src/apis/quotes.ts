@@ -11,41 +11,47 @@ export interface Quote {
 	_id: string;
 }
 
-const TAGS = [
-  "business", //0
-  "education", //1
-  "faith", //2
-  "famous-quotes", //3
-  "friendship", //4
-  "future", //5
-  "happiness", //6
-  "history", //7
-  "inspirational", //8
-  "life", //9
-  "literature", //10
-  "love", //11
-  "nature", //12
-  "politics", //13
-  "proverb", //14
-  "religion", //15
-  "science", //16
-  "success", //17
-  "technology", //18
-  "wisdom", //19
-]
+export enum QuoteTags {
+  business = "business", //0
+  education = "education", //1
+  faith = "faith", //2
+  famous = "famous-quotes", //3
+  friendship = "friendship", //4
+  future = "future", //5
+  happiness = "happiness", //6
+  history = "history", //7
+  inspirational = "inspirational", //8
+  life = "life", //9
+  literature = "literature", //10
+  love = "love", //11
+  nature = "nature", //12
+  politics = "politics", //13
+  proverb = "proverb", //14
+  religion = "religion", //15
+  science = "science", //16
+  success = "success", //17
+  technology = "technology", //18
+  wisdom = "wisdom", //19
+}
 
 const ENDPOINT = 'random';
-const TAGS_TO_USE = `${TAGS[8]}|${TAGS[18]}|${TAGS[1]}`;
-// const TAGS_TO_USE = `${TAGS[9]}`;
-let haveSentQuoteAlready = false;
+export enum QuoteableAuthors {
+  abrahamLincoln = 'abraham-lincoln',
+  albertEinstein = 'albert-einstein',
+  anatoleFrance = 'anatole-france',
+  ericHoffer = 'eric-hoffer',
+}
 
-export async function getRandomQuote() {
+function getQuotableString(arr: any[]) {
+  return arr.join('|');
+}
+
+export async function getRandomQuote({ authors = [], tags = [] }: { authors?: string[]; tags?: QuoteTags[]; } = {}) {
   try {
-    // ‘Programs must be written for people to read, and only incidentally for machines to execute.’   —  Hal Abelson
-    //‘To accomplish great things, we must not only act, but also dream; not only plan, but also believe.’   —  Anatole France
-    // ‘In times of change, learners inherit the earth, while the learned find themselves beautifully equipped to deal with a world that no longer exists.’   —  Eric Hoffer
-    if (haveSentQuoteAlready) return;
-    const stream = await fetch(`${QUOTE_API_URL}/${ENDPOINT}?tags=${TAGS_TO_USE}`, {
+    const url = `${QUOTE_API_URL}/${ENDPOINT}?tags=${getQuotableString(tags)}&author=${getQuotableString(authors)}`;
+    console.log(url);
+    
+    const stream = await fetch(url, {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -54,11 +60,16 @@ export async function getRandomQuote() {
       },
     })
     const response = await stream.json();
-    haveSentQuoteAlready = true;
-    return response;
+    return response as Quote;
   }
   catch (err) {
-    console.log('err =', err);
-    return "";
+    return {
+      author: "Abraham Lincoln",
+      authorSlug: "abraham-lincoln",
+      content: "It's supposed I am not bound to win, but I am bound to be true. I am not bound to succeed, but I am bound to live by the light that I have. I must stand with anybody that stands right, and stand with him while he is right, and part with him when he goes wrong.",
+      dateAdded: "2019-10-12",
+      dateModified: "2022-01-07",
+      length: 260,
+    } as Quote;
   }
 }

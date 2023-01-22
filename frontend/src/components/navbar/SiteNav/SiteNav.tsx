@@ -110,14 +110,14 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 		if (!target) return;
 
-		//note: this starts heroku container from sleep
-		if (!hasPingedBridgeHerokuContainer && target.baseURI.match(BRIDGE_URL))
-			pingContainer(setHasPingedBridgeHerokuContainer, LIVE_BRIDGE_URL);
-		if (
-			!hasPingedReplayHerokuContainer &&
-			target.baseURI.match(REPLAY_VIEWER_URL)
-		)
-			pingContainer(setHasPingedReplayHerokuContainer, LIVE_REPLAYS_URL);
+		//note: this starts heroku container from sleep (no longer necessary as free tier gone)
+		// if (!hasPingedBridgeHerokuContainer && target.baseURI.match(BRIDGE_URL))
+		// 	pingContainer(setHasPingedBridgeHerokuContainer, LIVE_BRIDGE_URL);
+		// if (
+		// 	!hasPingedReplayHerokuContainer &&
+		// 	target.baseURI.match(REPLAY_VIEWER_URL)
+		// )
+		// 	pingContainer(setHasPingedReplayHerokuContainer, LIVE_REPLAYS_URL);
 		onNavClick(e);
 	};
 
