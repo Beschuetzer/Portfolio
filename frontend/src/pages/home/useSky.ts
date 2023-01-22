@@ -27,6 +27,7 @@ import { HOME_CANVAS_CLASSNAME } from "../../components/constants";
 
 type FpsReturned = number[];
 //#region Variable Inits
+const clock = new THREE.Clock();
 let camera: PerspectiveCamera,
 	orbitControls: OrbitControls,
 	scene: THREE.Scene,
@@ -202,15 +203,13 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 //#region Camera and Animation stuff
 const NUMBER_OF_FPS_POINTS_TO_GET = 100;
 const baseScreenRefreshRate = 60;
-let timeElapsedInMS = 0;
-const introPanDuration = 5000;
-const lineScrollDuration = 733;
-// const lineScrollDuration = 0;
+const introPanDuration = 5;
+const lineScrollDuration = .66;
 const introPanDurationMobile = linesOfText * lineScrollDuration;
 ;
 const introPanStartWait = isMobile
 	? introPanDurationMobile
-	: introPanDurationMobile + 5000;
+	: introPanDurationMobile + 5;
 export const cubeRaiseDuration = introPanDuration / 2;
 export const cubeRaiseStartTime = introPanStartWait + introPanDuration / 2;
 
@@ -384,7 +383,7 @@ function adjustTextSizes() {
 }
 
 function getFromStartToFinishUsingFunction(
-	durationInMS: number,
+	durationInSeconds: number,
 	start: number,
 	end: number,
 	fps: number,
@@ -401,36 +400,36 @@ function getFromStartToFinishUsingFunction(
 			"Start must be a number other than 0 when end is greater than start",
 		);
 	if (functionToUse === "linear") {
-		result = getLinearStartToFinish(durationInMS, start, end, fps);
+		result = getLinearStartToFinish(durationInSeconds, start, end, fps);
 	} else if (functionToUse === "exponential") {
 		if ((start > 0 && end < 0) || (start < 0 && end > 0))
 			throw new Error(
 				"Start and end numbers must be either both positive or both negative when using exponential.",
 			);
-		result = getExponentialStartToFinish(durationInMS, start, end, fps);
+		result = getExponentialStartToFinish(durationInSeconds, start, end, fps);
 	}
 	return result;
 }
 
 function getLinearStartToFinish(
-	durationInMS: number,
+	durationInSeconds: number,
 	start: number,
 	end: number,
 	fps: number,
 ) {
 	//TODO: return a number that when added to start and then the result repeatedly yields end in frame steps/intervals...
-	const frames = (fps * durationInMS) / 1000;
+	const frames = (fps * durationInSeconds);
 	return (end - start) / frames;
 }
 
 function getExponentialStartToFinish(
-	durationInMS: number,
+	durationInSeconds: number,
 	start: number,
 	end: number,
 	fps: number,
 ) {
 	//TODO: return a number that when multiplied by start and then the result repeatedly yields end in frame steps/intervals...
-	const frames = (fps * durationInMS) / 1000;
+	const frames = (fps * durationInSeconds);
 	return Math.pow(end / start, 1 / frames);
 }
 //#endregion
@@ -722,8 +721,7 @@ const useSky = () => {
 		}
 	
 		function render() {
-			const currentTime = Date.now();
-			timeElapsedInMS = currentTime - startTime;
+			const timeElapsedInSeconds = clock.getElapsedTime();
 	
 			if (clouds)
 				clouds.forEach((cloud) => {
@@ -737,7 +735,7 @@ const useSky = () => {
 					if (!text) continue;
 					const currentOpacity = (text.material as any).opacity;
 					if (currentOpacity > 0) {
-						if (timeElapsedInMS >= introPanStartWait) {
+						if (timeElapsedInSeconds >= introPanStartWait) {
 							text.material = new MeshBasicMaterial({
 								transparent: true,
 								opacity: currentOpacity * (opacityChangeRate as number),
@@ -751,7 +749,7 @@ const useSky = () => {
 			}
 	
 			if (camera) {
-				if (timeElapsedInMS >= introPanStartWait) {
+				if (timeElapsedInSeconds >= introPanStartWait) {
 					const currentYPosition = camera.position.y;
 					if (currentYPosition >= cameraPositionYEnd) {
 						camera.position.set(
@@ -773,7 +771,7 @@ const useSky = () => {
 			}
 	
 			if (cube) {
-				if (timeElapsedInMS >= cubeRaiseStartTime) {
+				if (timeElapsedInSeconds >= cubeRaiseStartTime) {
 					const currentYPosition = cube.position.y;
 					if (currentYPosition <= cubeEndHeight) {
 						cube.position.y += cubeHeightAdditiveIncrement as number;
@@ -794,7 +792,6 @@ const useSky = () => {
 		}
 	
 		function resetAnimations() {
-			timeElapsedInMS = 0;
 			camera.position.set(
 				cameraPositionXStart,
 				cameraPositionYStart,

@@ -20,7 +20,7 @@ const useClasslistAdder = (classListsToAdd: ClasslistAdder[]) => {
 					}
 				}
 			}
-		}, cubeRaiseStartTime + cubeRaiseDuration / 2);
+		}, (cubeRaiseStartTime + cubeRaiseDuration / 2) * 1000);
 	}, [classListsToAdd]);
 
 	return null;
