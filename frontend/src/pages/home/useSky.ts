@@ -27,8 +27,6 @@ import { HOME_CANVAS_CLASSNAME } from "../../components/constants";
 
 type FpsReturned = number[];
 //#region Variable Inits
-const NUMBER_OF_FPS_POINTS_TO_GET = 100;
-const baseScreenRefreshRate = 60;
 let camera: PerspectiveCamera,
 	orbitControls: OrbitControls,
 	scene: THREE.Scene,
@@ -202,6 +200,8 @@ const linesOfText = textsToUse.reduce((previous, current) => {
 //#endregion
 
 //#region Camera and Animation stuff
+const NUMBER_OF_FPS_POINTS_TO_GET = 100;
+const baseScreenRefreshRate = 60;
 let timeElapsedInMS = 0;
 const introPanDuration = 5000;
 const lineScrollDuration = 733;
@@ -459,30 +459,30 @@ function onWindowResize() {
 //#endregion
 
 const useSky = () => {
-	const [startTime, setStartTime] = useState(Date.now());
-	const [screenRefreshRate, setScreenRefreshRate] = useState(0);
-	const [cameraPositionYFactor, setCameraPositionYFactor] = useState<null | number>(0);
-	const [cameraLookAtZFactor, setCameraLookAtZFactor] = useState<null | number>(0);
-	const [cubeHeightAdditiveIncrement, setCubeHeightAdditiveIncrement] = useState<null | number>(0);
-	const [opacityChangeRate, setOpacityChangeRate] = useState<null | number>(0);
-	const [textScrollSpeed, setTextScrollSpeed] = useState<number>(0);
-	const [cloudZRotationRateChange, setCloudZRotationRateChange] = useState<number>(0);
-	const [cloudZPositionRateChange, setCloudZPositionRateChange] = useState<number>(0);
-	const [cubeRotationSpeed, setCubeRotationSpeed] = useState<number>(0);
-	//#region Functions and variables that need access to refresh rate
-
+	//#region Init
+	const POS_INITIAL_VALUE = 0;
 	const fpsReturned = [] as FpsReturned;
+
+	//any new piece of state (POS) needs to be reset in the unload function below
+	const [startTime, setStartTime] = useState(Date.now());
+	const [screenRefreshRate, setScreenRefreshRate] = useState(POS_INITIAL_VALUE);
+	const [cameraPositionYFactor, setCameraPositionYFactor] = useState<null | number>(POS_INITIAL_VALUE);
+	const [cameraLookAtZFactor, setCameraLookAtZFactor] = useState<null | number>(POS_INITIAL_VALUE);
+	const [cubeHeightAdditiveIncrement, setCubeHeightAdditiveIncrement] = useState<null | number>(POS_INITIAL_VALUE);
+	const [opacityChangeRate, setOpacityChangeRate] = useState<null | number>(POS_INITIAL_VALUE);
+	const [textScrollSpeed, setTextScrollSpeed] = useState<number>(POS_INITIAL_VALUE);
+	const [cloudZRotationRateChange, setCloudZRotationRateChange] = useState<number>(POS_INITIAL_VALUE);
+	const [cloudZPositionRateChange, setCloudZPositionRateChange] = useState<number>(POS_INITIAL_VALUE);
+	const [cubeRotationSpeed, setCubeRotationSpeed] = useState<number>(POS_INITIAL_VALUE);
+	//#endregion
+
+	//Setting screen refresh rate and dependent POS
 	useEffect(() => {
 		setStartTime(Date.now());
 		function getScreenRefreshRate(callback: any, runIndefinitely: boolean){
 			let requestId: number | null = null;
 			let callbackTriggered = false;
-			runIndefinitely = runIndefinitely || false;
-		
-			// if (!window.requestAnimationFrame) {
-			// 	window.requestAnimationFrame = window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
-			// }
-			
+			runIndefinitely = runIndefinitely || false;			
 			let DOMHighResTimeStampCollection: any[] = [];
 		
 			const cancelTimeout = () => window.setTimeout(function(){
@@ -623,8 +623,6 @@ const useSky = () => {
 			renderer.toneMapping = THREE.ACESFilmicToneMapping;
 			document.body.appendChild(renderer.domElement);
 	
-			//
-	
 			scene = new THREE.Scene();
 			camera = new THREE.PerspectiveCamera(
 				60,
@@ -639,11 +637,6 @@ const useSky = () => {
 				cameraPositionZStart,
 			);
 			camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
-	
-			//#region Orbit Controls
-			// orbitControls = new OrbitControls(camera, renderer.domElement);
-			// orbitControls.update();
-			//#endregion
 	
 			//light
 			var spotLight = new THREE.SpotLight(spotLightColor, spotLightStrength);
@@ -699,7 +692,6 @@ const useSky = () => {
 			const theta = THREE.MathUtils.degToRad(parameters.azimuth);
 	
 			updateSun(phi, theta);
-			//
 	
 			const materials = [
 				cubeMaterial1,
@@ -725,8 +717,6 @@ const useSky = () => {
 			clouds = addCloud();
 	
 			loadTexts(textData, scene);
-			//
-	
 			window.addEventListener("resize", onWindowResize);
 			window.addEventListener("mousemove", onMouseMove);
 		}
@@ -735,7 +725,6 @@ const useSky = () => {
 			const currentTime = Date.now();
 			timeElapsedInMS = currentTime - startTime;
 	
-			// handleCubeBobbing(time);
 			if (clouds)
 				clouds.forEach((cloud) => {
 					cloud.rotation.z += cloudZRotationRateChange;
@@ -805,7 +794,6 @@ const useSky = () => {
 		}
 	
 		function resetAnimations() {
-			
 			timeElapsedInMS = 0;
 			camera.position.set(
 				cameraPositionXStart,
@@ -814,15 +802,7 @@ const useSky = () => {
 			);
 			camera.lookAt(cameraLookAtXStart, cameraLookAtYStart, cameraLookAtZStart);
 		}
-		//#endregion
 
-		function handleCubeBobbing(time: number) {
-			if (cube.position.y < cubeMaxHeight && cubeBobbingDirectionIsUp)
-				cube.position.y += cubeBobbingSpeed;
-			else {
-			}
-		}
-		
 		function handleCubeRotation(time: number) {
 			if (cube.rotation.x < Math.PI * 2 && cubeCanRotateX) {
 				cube.rotation.x = time;
@@ -871,6 +851,17 @@ const useSky = () => {
 		animate();
 
 		return (() => {
+			setStartTime(POS_INITIAL_VALUE);
+			setScreenRefreshRate(POS_INITIAL_VALUE);
+			setCameraPositionYFactor(POS_INITIAL_VALUE);
+			setCameraLookAtZFactor(POS_INITIAL_VALUE);
+			setCubeHeightAdditiveIncrement(POS_INITIAL_VALUE);
+			setOpacityChangeRate(POS_INITIAL_VALUE);
+			setTextScrollSpeed(POS_INITIAL_VALUE);
+			setCloudZRotationRateChange(POS_INITIAL_VALUE);
+			setCloudZPositionRateChange(POS_INITIAL_VALUE);
+			setCubeRotationSpeed(POS_INITIAL_VALUE);
+
 			stopKey();
 			let canvasElement = document.querySelector(`.${HOME_CANVAS_CLASSNAME}`);
 			if (canvasElement) document.body?.removeChild(canvasElement);

@@ -1,5 +1,4 @@
 JOB STUFF------------------------------------
-  -setup heroku command line and merge changes into main, then push to heroku
   -figure out why letting start animation complete, navigate to page, then back doesn't properly reset the animation
   -Remove logs from portfolio utils.ts 203
   -Change 'Explore' to 'Projects'
