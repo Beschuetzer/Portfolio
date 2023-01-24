@@ -90,7 +90,7 @@
 		}
 		&-references {
 			& .resume__header {
-				margin-bottom: $default-font-size * 0.5;
+				margin-bottom: $default-font-size * 0;
 			}
 
 			& .resume__card {
@@ -102,6 +102,10 @@
 				@include respond(tab-port) {
 					background-image: var(--color-primary-3);
 				}
+			}
+
+			& .resume__content {
+				padding-bottom: $default-font-size * 1.5;
 			}
 		}
 	}
@@ -245,7 +249,6 @@
 }
 
 .references {
-	// font-size: $default-font-size * .9;
 	display: grid;
 	grid-template-columns:
 		repeat(2, minmax(min-content, $default-font-size * 12.5))
@@ -261,10 +264,13 @@
 		height: 100%;
 		border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
 
-		&:nth-last-child(n + 13) {
-			padding-top: 0;
+		&:nth-last-child(-n + 4) {
+			border-bottom: none;
 		}
+		
 	}
+
+	
 
 	@include respond(tab-port) {
 		grid-gap: 0;

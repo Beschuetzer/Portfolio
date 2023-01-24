@@ -4966,7 +4966,7 @@ body {
   }
 }
 .resume__section-references .resume__header {
-  margin-bottom: 0.8rem;
+  margin-bottom: 0rem;
 }
 .resume__section-references .resume__card {
   background-color: var(--color-primary-3);
@@ -4977,6 +4977,9 @@ body {
   .resume__section-references .resume__card {
     background-image: var(--color-primary-3);
   }
+}
+.resume__section-references .resume__content {
+  padding-bottom: 2.4rem;
 }
 .resume__headers {
   display: flex;
@@ -5116,8 +5119,8 @@ body {
   height: 100%;
   border-bottom: 0.16rem solid var(--color-primary-1);
 }
-.references > *:nth-last-child(n+13) {
-  padding-top: 0;
+.references > *:nth-last-child(-n+4) {
+  border-bottom: none;
 }
 @media only screen and (max-width: 52.6875em) {
   .references {
