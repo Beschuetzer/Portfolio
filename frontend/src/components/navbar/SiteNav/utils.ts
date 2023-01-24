@@ -242,7 +242,7 @@ export const handleNavClick = (
 		!navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME) &&
 		IS_CHILD_OF_NAVBAR
 	) {
-		toggleScrollability(false);
+		// toggleScrollability(false);
 		if (navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME)) {
 			checkShouldOpenNavBarIntervalId = setInterval(() => {
 				if (!navBar.classList.contains(NAVBAR_IS_ANIMATING_CLASSNAME)) {
@@ -253,7 +253,7 @@ export const handleNavClick = (
 			openNavBar(navBar, setIsAnimating);
 		}
 	} else {
-		toggleScrollability(true);
+		// toggleScrollability(true);
 		if (IS_NAV_ITEM_CLICK) {
 			setTimeout(() => {
 				closeNavBar(navBar, setIsAnimating);
