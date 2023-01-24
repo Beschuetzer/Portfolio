@@ -67,10 +67,12 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
   return (
     <section aria-label={`${id} job description`} id={id ? id : undefined} className={`${WORK_HISTORY_CLASSNAME}__item`}>
         <span className={`${WORK_HISTORY_CLASSNAME}__item-number`}>{number}.</span>
-        <h6 className={`${WORK_HISTORY_CLASSNAME}__title-header heading--six`} dangerouslySetInnerHTML={setInnerHtml(title)}/>
-        {location ? (
-          <h6 className={`${WORK_HISTORY_CLASSNAME}__title-location`} dangerouslySetInnerHTML={setInnerHtml(location)}/>
-        ): null}
+        <div>
+          <h6 className={`${WORK_HISTORY_CLASSNAME}__title-header heading--six`} dangerouslySetInnerHTML={setInnerHtml(title)}/>
+          {location ? (
+            <h6 className={`${WORK_HISTORY_CLASSNAME}__title-location`} dangerouslySetInnerHTML={setInnerHtml(location)}/>
+          ): null}
+        </div>
         <div className={`${WORK_HISTORY_CLASSNAME}__title-dates`}>
           <time aria-label="start date" dateTime={`${getYearFromDate(startDate)}`}> {getDateString(startDate)} </time>
           <span>&nbsp;&ndash;&nbsp;</span>

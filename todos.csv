@@ -1,7 +1,7 @@
 JOB STUFF------------------------------------
-  -remove Bestbuy contacts from website and resume (can provide separately if need be)
+  -Change 'Explore' to 'Projects' on start page
   -create a Solution Sidekick feature page
-  -Change 'Explore' to 'Projects'
+  -update downloadable resume
   -Remove logs from portfolio utils.ts 203
   -figure out why letting start animation complete, navigate to page, then back doesn't properly reset the animation
   -look into free options for other sites (dynamo are no longer free and don't work atm)

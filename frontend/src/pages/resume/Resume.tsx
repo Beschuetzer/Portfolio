@@ -406,7 +406,7 @@ const Resume: React.FC<ResumeProps> = ({
 				</section>
 
 				<section>
-					<div className={`${BRIDGE_CLASSNAME}__subsection-grid`}>
+					<div className={`${BRIDGE_CLASSNAME}__subsection-grid margin-bottom-0`}>
 						<span>1).</span>
 						<span>
 							A summary of the skills I possess with example projects
@@ -418,8 +418,7 @@ const Resume: React.FC<ResumeProps> = ({
 						<span>Transcript highlighting my post-secondary education</span>
 						<span>4).</span>
 						<span>
-							References and letters of recommendation (click the name of the
-							reference to download)
+							References
 						</span>
 					</div>
 				</section>
@@ -710,7 +709,7 @@ const Resume: React.FC<ResumeProps> = ({
 						relation="Former Supervisor"
 						phone="651-325-5416"
 						email="shelland@isd622.org"
-						href="/letterOfRecommendationScott.pdf"
+						// href="/letterOfRecommendationScott.pdf"
 					/>
 					<ReferenceItem
 						number="02"
@@ -718,7 +717,7 @@ const Resume: React.FC<ResumeProps> = ({
 						relation="Former Co-worker"
 						phone="651-325-7633"
 						email="rbulger@isd622.org"
-						href="/letterOfRecommendationRita.pdf"
+						// href="/letterOfRecommendationRita.pdf"
 					/>
 					<ReferenceItem
 						number="03"

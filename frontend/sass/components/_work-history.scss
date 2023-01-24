@@ -38,6 +38,7 @@
 			&-list {
 				// margin-left: $default-font-size * 1;
 				// margin-top: -$default-font-size * .25;
+				line-height: $default-font-size * 1.5;
 				margin: -$default-font-size * 0.5 $default-font-size * 3 0rem
 					$default-font-size;
 
@@ -81,16 +82,17 @@
 			font-size: $default-font-size * 1;
 			grid-column: 2/-1;
 			font-weight: 500;
-			padding-bottom: $default-font-size * .66;
+			padding-bottom: $default-font-size * 1.5;
 		}
 
 		&-dates {
-			padding-bottom: $default-font-size * .5;
+			padding-bottom: $default-font-size * 1.5;
 			font-size: $default-font-size * 0.9;
 			display: flex;
-			align-items: center;
+			align-items: flex-start;
 			font-weight: 400;
 			grid-column: 3 / -1;
+			grid-row: 1/-1;
 			font-style: italic;
 
 			@include respond(tab-port) {
