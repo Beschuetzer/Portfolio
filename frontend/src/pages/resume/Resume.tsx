@@ -116,7 +116,7 @@ const skills: {
 			},
 			{
 				title: "C#",
-				percent: 40,
+				percent: 55,
 			},
 			{
 				title: "Express",
@@ -156,7 +156,7 @@ const skills: {
 			},
 			{
 				title: "Java",
-				percent: 35,
+				percent: 48,
 			},
 		],
 		[webDevSubSkillsLabels[1]]: [
@@ -224,7 +224,7 @@ const skills: {
 			},
 			{
 				title: ".NET",
-				percent: 29,
+				percent: 55,
 			},
 		],
 		[webDevSubSkillsLabels[3]]: [

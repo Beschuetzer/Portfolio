@@ -1,4 +1,5 @@
 import { connect, RootStateOrAny } from 'react-redux';
+import { MOBILE_BREAK_POINT_WIDTH } from '../constants';
 import { scrollToSection } from '../utils';
 import { SKILLS_CLASSNAME, SKILLS_SECTION_OPEN_CLASSNAME, toggleItem } from './utils';
 
@@ -21,7 +22,11 @@ const SkillsItemSection: React.FC<SkillsItemSectionProps> = ({
     toggleItem(e, sectionsToSkipAnimation);
     (e.target as HTMLElement)?.classList?.toggle(SKILLS_SECTION_OPEN_CLASSNAME);
     const clickedElement = e.currentTarget;
-    if (clickedElement && (clickedElement as HTMLElement).classList.contains(SKILLS_SECTION_OPEN_CLASSNAME)) scrollToSection(clickedElement as HTMLElement)
+    if (clickedElement && (clickedElement as HTMLElement).classList.contains(SKILLS_SECTION_OPEN_CLASSNAME)) {
+      const shouldAddHeaderHeight = window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
+	    const topOffset = !shouldAddHeaderHeight ? -window.innerHeight / 3 : -headerHeight * 2;
+      scrollToSection(clickedElement as HTMLElement, topOffset)
+    }
   }
 
   return (
