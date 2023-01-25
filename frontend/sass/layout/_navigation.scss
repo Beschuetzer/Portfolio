@@ -139,7 +139,7 @@ $scale-y-amount: .25;
 		visibility: hidden;
 		width: 100%;
 		transform-origin: left;
-		transform: scale(0) translateX($default-font-size * .5);
+		transform: translateX(-100%);
 		transition: visibility $animation-navbar, transform $animation-navbar;
 
 		@include respond(nav-switch) {
