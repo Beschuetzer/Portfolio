@@ -27,7 +27,6 @@ import {
 	RESUME_PAGE_NAME,
 	RICOH_URL,
 	TOYS_R_US_RUL as TOYS_R_US_URL,
-	BRIDGE_DEMO_URL,
 	BRIDGE_URL,
 	REPLAY_VIEWER_URL,
 	PLAYLIST_SYNCER_URL,
@@ -38,7 +37,6 @@ import SourceCodeLink from "../../components/SourceCodeLink";
 import Quote from "../../components/Quote";
 import { capitalize } from "../../helpers";
 import { C_SHARP_CLASSNAME } from "../examples/csharp/utils";
-import { WORK_HISTORY_CLASSNAME } from "./WorkHistory/utils";
 import PageWrapper from "../PageWrapper";
 
 // export const RESUME_SPELLING = <span>R&eacute;sum&eacute;</span>;
@@ -46,7 +44,7 @@ export const RESUME_SPELLING = "Résumé";
 
 function getLinkClassHTML(classNamesToAdd?: string[]) {
 	const joined = classNamesToAdd?.join(' ');
-	return ` class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' ${classNamesToAdd}`;
+	return ` class='${SKILLS_CLASSNAME}-popup__link-text ${SKILLS_CLASSNAME}__title--animating' ${classNamesToAdd} ${joined}`;
 }
 
 function getExternalLinkTargetAndRel() {

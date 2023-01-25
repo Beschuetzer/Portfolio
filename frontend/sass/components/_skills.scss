@@ -106,7 +106,7 @@
 			height: auto;
 			visibility: visible;
 			opacity: 1;
-			margin-bottom: $resume-section-padding-top / 2;
+			margin-bottom: $default-font-size * 1.5;
 		}
 
 		&--open svg {
@@ -122,11 +122,13 @@
 		}
 
 		& > *:nth-child(2n + 2) {
-			margin-left: $resume-section-padding-top;
+			margin-left: $default-font-size;
 		}
-	}
 
-	
+		&-content &:last-of-type &-content {
+			margin-bottom: 0;
+		}
+	}	
 
 	&__item {
 		// list-style: none;
@@ -187,4 +189,7 @@
 	}
 
 
+	& > &__section:last-of-type &__section-content {
+		margin-bottom: 0;
+	} 
 }
