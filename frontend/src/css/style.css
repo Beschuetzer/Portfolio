@@ -5004,7 +5004,7 @@ body {
   }
 }
 .resume__section-references .resume__content {
-  padding-bottom: 2.1rem;
+  padding-bottom: 0.7rem;
 }
 .resume__headers {
   display: flex;
@@ -5027,7 +5027,7 @@ body {
   margin-bottom: 0;
 }
 .resume__content {
-  padding: 4.2rem 1.4rem;
+  padding: 3.5rem 1.4rem 4.55rem;
   font-size: 1.4rem;
   font-family: "Open Sans", sans-serif;
 }
