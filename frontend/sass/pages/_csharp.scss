@@ -132,7 +132,7 @@
 	}
 
 	&__title {
-		--font-size: #{$default-font-size * 6};
+		--font-size: #{$font-size-nine};
 		-webkit-touch-callout: none; /* iOS Safari */
 		-webkit-user-select: text; /* Safari 'none' or 'text' here 'all' has issues*/
 		-khtml-user-select: none; /* Konqueror HTML */
@@ -151,7 +151,7 @@
 		justify-content: center;
 		align-items: center;
 		position: absolute;
-		top: calc(#{$header-top} - #{$navbar__logo-width / 6 });
+		top: calc(#{$header-top} + #{$font-size-nine} / 2.5);
 
 		&-link {
 			text-decoration: none;

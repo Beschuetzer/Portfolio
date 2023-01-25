@@ -6,7 +6,7 @@ $scale-y-amount: .25;
 	// margin-left: 0.583vw;
 	border-radius: $navbar__item-border-radius 0 0 $navbar__item-border-radius;
 	position: relative;
-	font-size: $default-font-size * 1.5;
+	font-size: $font-size-six;
 	text-align: center;
 	display: flex;
 	grid-template-columns: min-content repeat(
@@ -774,7 +774,7 @@ $scale-y-amount: .25;
 		}
 
 		&-group {
-			// width: 100%;
+			font-size: min(#{$default-font-size}, 1vw);
 			padding: $default-font-size * 0.25 0;
 			display: flex;
 			justify-content: center;
@@ -819,6 +819,10 @@ $scale-y-amount: .25;
 				@include respond(hover) {
 					color: var(--color-primary-2);
 				}
+			}
+
+			@include respond(nav-switch) {
+				font-size: min(#{$default-font-size}, 1.5vw);
 			}
 		}
 

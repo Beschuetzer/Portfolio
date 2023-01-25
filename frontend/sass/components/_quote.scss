@@ -2,9 +2,10 @@ $popup-background-color: var(--color-primary-red);
 $quote-normal-opacity: 0.125;
 %quote-basic {
 	position: absolute;
-	font-size: $default-font-size * 8;
+	font-size: $font-size-nine;
 	opacity: $quote-normal-opacity;
 	top: 0;
+	padding: $font-size-two;
 	color: var(--color-primary-1);
 }
 
@@ -42,6 +43,7 @@ $quote-normal-opacity: 0.125;
 	text-align: center;
 	position: relative;
 	color: var(--color-primary-1);
+	margin: $default-font-size * 1 $default-font-size * 1.5;
 
 	&:hover {
 		&::before,
@@ -64,7 +66,7 @@ $quote-normal-opacity: 0.125;
 
 	&__author {
 		padding-top: $default-font-size;
-		font-size: $default-font-size * 1.5;
+		font-size: $font-size-four;
 		font-family: $font-family-headers;
 
 		@include respond(phone) {
@@ -75,11 +77,11 @@ $quote-normal-opacity: 0.125;
 	&__message {
 		position: relative;
 		font-style: italic;
-		font-size: $default-font-size * 2;
+		font-size: $font-size-six;
 		font-family: $font-family-fancy-bridge;
 
 		@include respond(phone) {
-			font-size: $default-font-size * 1.5;
+			font-size: $font-size-four;
 		}
 	}
 

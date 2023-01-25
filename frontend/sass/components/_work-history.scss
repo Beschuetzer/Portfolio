@@ -49,7 +49,7 @@
 
 				& li {
 					margin-left: $default-font-size * 1.5;
-					font-size: $default-font-size * 1;
+					font-size: $font-size-three;
 				}
 
 				& li:first-child {
@@ -75,11 +75,11 @@
 		// }
 
 		&-header {
-			font-size: $default-font-size * 1;
+			font-size: $font-size-four;
 		}
 
 		&-location {
-			font-size: $default-font-size * 1;
+			font-size: $font-size-three;
 			grid-column: 2/-1;
 			font-weight: 500;
 			padding-bottom: $default-font-size * 1.5;
@@ -87,7 +87,7 @@
 
 		&-dates {
 			padding-bottom: $default-font-size * 1.5;
-			font-size: $default-font-size * 0.9;
+			font-size: $font-size-three;
 			display: flex;
 			align-items: flex-start;
 			font-weight: 400;

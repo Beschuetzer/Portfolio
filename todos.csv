@@ -1,7 +1,7 @@
 JOB STUFF------------------------------------
-  -change sorting of skill examples to creation date newest to oldest
-  -changing width in resume breaks work item layout (grid)
-  -add sort options of skill examples
+  -changing width in resume breaks work history layout (grid)
+  -fix navbar starting from 0 height on open
+  -go through each instance of $default-font-size and change to an instance of $font-size-xxx
   -create a Solution Sidekick feature page (add to start page too; left side)
   -add challenges (make a 3js demo for horse jump code)
   -update downloadable resume
@@ -17,6 +17,7 @@ JOB STUFF------------------------------------
   -add links to best buy and york projects in the resume section (embedded links)
   -mobile - scrolling on own phone glitchy up and down fast
   -adjust PageNav such that the scroll percent is 100 for previous item when it is in the middle of the screen
+  -add sort options of skill examples?
 
 BUGS------------------------------------
   -mobile start screen doesn't show all of bottom and not scrollable

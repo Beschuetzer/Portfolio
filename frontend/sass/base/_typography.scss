@@ -1,25 +1,35 @@
 .heading{
     font-family: $font-family-headers;
     &--one {
-        font-size: $default-font-size * 6;
+        font-size: $font-size-nine;
+        font-weight: 100;
     }
     &--two {
-        font-size: $default-font-size * 4;
+        font-size:  $font-size-eight;
+        font-weight: 100;
     }
     &--three {
-        font-size: $default-font-size * 2;
-        font-weight: 300;
+        font-size:  $font-size-seven;
+        font-weight: 100;
     }
     &--four {
-        font-size: $default-font-size * 1.5;
+        font-size: $font-size-six;
     }
     &--five {
-        font-size: $default-font-size * 1.25;
+        font-size: $font-size-five;
     }
     &--six {
-        font-size: $default-font-size * 1;
+        font-size: $font-size-four;
     }
-   
+    &--seven {
+        font-size: $font-size-three;
+    }
+    &--eight {
+        font-size: $font-size-two;
+    }
+    &--nine {
+        font-size: $font-size-one;
+    }
 }
     
 .paragraph {
