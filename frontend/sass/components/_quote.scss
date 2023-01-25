@@ -43,7 +43,7 @@ $quote-normal-opacity: 0.125;
 	text-align: center;
 	position: relative;
 	color: var(--color-primary-1);
-	margin: $default-font-size * 1 $default-font-size * 1.5;
+	margin: $default-font-size $default-font-size * 1.5;
 
 	&:hover {
 		&::before,

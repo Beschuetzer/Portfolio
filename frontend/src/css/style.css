@@ -979,7 +979,6 @@ body {
   height: 100%;
   width: 100%;
   transition: transform 0.125s ease, background-color 0.125s ease;
-  box-shadow: 0px 4px 8px rgba(17, 17, 17, 0.33);
 }
 .navbar__item .triangle-down {
   transition: transform 0.25s ease;
@@ -1059,7 +1058,6 @@ body {
   border-radius: 14rem;
   display: flex;
   align-items: center;
-  box-shadow: 0px 4px 8px rgba(17, 17, 17, 0.33);
   transition: border-radius 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
@@ -1419,7 +1417,6 @@ body {
   backface-visibility: hidden;
   line-break: anywhere;
   cursor: pointer;
-  text-shadow: 0px 4px 8px rgba(17, 17, 17, 0.33);
   width: 100%;
   text-align: center;
   text-decoration: none;
@@ -1484,7 +1481,7 @@ body {
   }
 }
 .page-nav__section:hover {
-  text-shadow: 0px 0px 0.35rem rgba(var(--color-primary-4-rgb), 0.5);
+  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
 }
 .page-nav--active {
   transform: scale(var(--site-nav-active-scale-amount));
@@ -2622,7 +2619,6 @@ body {
 .github {
   border-radius: 50%;
   border: 1px solid transparent;
-  box-shadow: 0px 4px 8px rgba(17, 17, 17, 0.33);
   font-family: "Open Sans", sans-serif;
   font-size: 1vw;
   position: relative;
@@ -3240,7 +3236,7 @@ body {
   }
 }
 .skills-popup__header {
-  font-size: 2.8rem;
+  font-size: 3.41775rem;
   font-weight: 100;
   text-align: center;
   margin-bottom: 2.1rem;
@@ -3256,9 +3252,6 @@ body {
 }
 .skills-popup__header-text {
   margin-right: 2.1rem;
-}
-.skills-popup__header-skill {
-  font-weight: 400;
 }
 .skills-popup__table {
   display: grid;
@@ -3362,7 +3355,7 @@ body {
   transform: scale(1.15);
 }
 .skills-popup__hint {
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   font-style: italic;
 }
 @media only screen and (max-width: 68.75em) {
@@ -3408,17 +3401,6 @@ body {
   z-index: -1;
   transition: opacity 0.125s cubic-bezier(1, 0, 0.25, 0.55) 0.125s, height 0.125s cubic-bezier(1, 0, 0, 1) 0.125s, width 0.125s cubic-bezier(1, 0, 0, 1), border-radius 0.125s ease 0.125s;
 }
-.skills-popup__link:hover .skills-popup__link-text::before {
-  height: 100%;
-  width: 100%;
-  opacity: 1;
-  border-radius: 0;
-}
-@media only screen and (max-width: 68.75em) {
-  .skills-popup__link:hover .skills-popup__link-text::before {
-    opacity: 0;
-  }
-}
 .skills-popup__link:hover .skills-popup__link-text {
   color: var(--color-primary-1);
   border-image: none;
@@ -3427,8 +3409,10 @@ body {
 .skills-popup__error {
   grid-column: 1/-1;
   justify-self: center;
-  font-size: 2.8rem;
+  font-size: 2.734375rem;
+  padding: 0 2.8rem;
   position: absolute;
+  text-align: center;
   top: 50%;
 }
 .skills-popup--active {
@@ -3437,12 +3421,6 @@ body {
 }
 .skills-popup--active .skills-popup__content {
   transform: translate(-50%, -50%);
-}
-.skills-popup__link-js--hover > div::before {
-  height: 100%;
-  width: 100%;
-  opacity: 1;
-  border-radius: 0;
 }
 .skills-popup__table-item.skills-popup__link {
   border-bottom: none;
@@ -4521,7 +4499,7 @@ body {
   text-align: center;
   width: 100vw;
   /* padding-top: calc(calc(calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.4vw) - 2vw); */
-  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
+  text-shadow: 0px 4px 3px rgba(var(--color-primary-3-rgb), 0.4), 0px 8px 13px rgba(var(--color-primary-3-rgb), 0.1), 0px 18px 23px rgba(var(--color-primary-3-rgb), 0.1);
   color: var(--color-primary-4);
   display: flex;
   justify-content: center;
@@ -5015,7 +4993,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
+  text-shadow: 0px 4px 3px rgba(var(--color-primary-3-rgb), 0.4), 0px 8px 13px rgba(var(--color-primary-3-rgb), 0.1), 0px 18px 23px rgba(var(--color-primary-3-rgb), 0.1);
 }
 .resume__header-summary {
   grid-column: 1/-1;
@@ -5038,6 +5016,9 @@ body {
   .resume__content {
     padding: 5vmin;
   }
+}
+.resume__content .quote {
+  margin-top: -1.4rem;
 }
 .resume__card {
   max-width: calc(100% - 20.8rem);
@@ -5138,6 +5119,9 @@ body {
   align-items: center;
   height: 100%;
   border-bottom: 0.14rem solid var(--color-primary-1);
+}
+.references > *:nth-child(-n+4) {
+  padding-top: 0;
 }
 .references > *:nth-last-child(-n+4) {
   border-bottom: none;

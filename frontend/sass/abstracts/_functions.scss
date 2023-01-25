@@ -118,7 +118,7 @@
 		@return rgba($color, 0.5) 0px 3px 3px;
 	}
 	@if $type == glowing {
-		@return $navbar-box-shadow-normal;
+		@return 0px 4px 8px rgba($color-black, 0.33);;
 	}
 	@if $type == glowing-hover {
 		@return 0px 0px $default-font-size * .25 rgba($color, 0.5);

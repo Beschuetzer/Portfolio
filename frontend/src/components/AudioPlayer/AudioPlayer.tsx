@@ -276,7 +276,7 @@ class AudioPlayer extends React.Component<AudioPlayerProps, AudioPlayerState> {
 		let targetIsAudioListItem = false;
 		let parentIsAudioListItem = -1;
 
-		const pathes = (e as any).path;
+		const pathes = (e as any)?.path || [];
 		for (let i = 0; i < pathes.length; i++) {
 			const path = pathes[i] as HTMLElement;
 

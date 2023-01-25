@@ -395,7 +395,7 @@ const Resume: React.FC<ResumeProps> = ({
 			sectionTitles[0],
 			<React.Fragment>
 				<section aria-label="Overview">
-					<Quote author="Seth Godin" className="padding-bottom-2">
+					<Quote author="Seth Godin">
 						You are not your résumé, you are your work.
 					</Quote>
 					<Paragraph classNameToAdd={`${NO_MARGIN_CLASSNAME}`} size="five">

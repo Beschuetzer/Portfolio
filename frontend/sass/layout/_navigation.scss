@@ -240,7 +240,6 @@ $scale-y-amount: .25;
 		width: 100%;
 		transition: transform $animation-duration * 0.25 $animation-easing-standard,
 			background-color $animation-duration * 0.25 $animation-easing-standard;
-		box-shadow: $navbar-box-shadow-normal;
 		
 		& .triangle-down {
 			transition: transform $animation-duration * 0.5 $animation-easing-standard;
@@ -338,7 +337,6 @@ $scale-y-amount: .25;
 		border-radius: $navbar__item-border-radius;
 		display: flex;
 		align-items: center;
-		box-shadow: $navbar-box-shadow-normal;
 
 		transition: border-radius $animation-duration * 1 $animation-easing-standard;
 		@include respond(nav-switch) {
@@ -745,9 +743,6 @@ $scale-y-amount: .25;
 		backface-visibility: hidden;
 		line-break: anywhere;
 		cursor: pointer;
-		// text-shadow: getTextShadow(soft-emboss, $color-primary-resume-4);
-		text-shadow: getTextShadow(glowing, var(--color-primary-4-rgb));
-
 		width: 100%;
 		text-align: center;
 		text-decoration: none;
@@ -827,7 +822,7 @@ $scale-y-amount: .25;
 		}
 
 		&:hover {
-			text-shadow: getTextShadow(glowing-hover, var(--color-primary-4-rgb));
+			text-shadow: getTextShadow(soft-emboss, var(--color-black-rgb));
 		}
 	}
 

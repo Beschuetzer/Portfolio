@@ -283,7 +283,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		} else if (reposToDisplay.length === 0) {
 			return (
 				<div className={`${SKILLS_CLASSNAME}-popup__error`}>
-					There are currently no repos with the tag '{capitalize(clickedSkill)}'
+					No {capitalize(clickedSkill)} projects found.
 				</div>
 			);
 		}
@@ -334,9 +334,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		<div className={`${SKILLS_CLASSNAME}-popup__content`}>
 			<div className={`${SKILLS_CLASSNAME}-popup__header`}>
 				<span className={`${SKILLS_CLASSNAME}-popup__header-text`}>
-					Projects with tag '
-					<span className={`${SKILLS_CLASSNAME}-popup__header-skill`}>{clickedSkill}</span>
-					':
+					<span className={`${SKILLS_CLASSNAME}-popup__header-skill`}>{capitalize(clickedSkill)}</span> Projects:
 				</span>
 				<svg onClick={(e: any) => onCloseClick(e)} className={`${SKILLS_CLASSNAME}-popup__close`}>
 					<use xlinkHref="/sprite.svg#icon-close"></use>

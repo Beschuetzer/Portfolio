@@ -41,7 +41,7 @@
 	}
 
 	&__header {
-		font-size: $default-font-size * 2;
+		font-size: $font-size-eight;
 		font-weight: 100;
 		text-align: center;
 		margin-bottom: $default-font-size * 1.5;
@@ -57,9 +57,6 @@
 		&-text {
 			margin-right: $default-font-size * 1.5;
 		}
-		&-skill {
-			font-weight: 400;
-		}
 	}
 
 	&__table {
@@ -74,8 +71,6 @@
 		@include respond(nav-switch) {
 			display: flex;
 			flex-direction: column;
-			// justify-content: center;
-			// align-items: center;
 		}
 
 		&-repo {
@@ -100,7 +95,6 @@
 			border-bottom: 1px solid var(--color-primary-1-light);
 			font-weight: 400;
 			font-family: $font-family-text;
-			// border-bottom: 1px solid transparent;
 			display: flex;
 			align-items: center;
 			padding: $default-font-size * 1.5 $default-font-size * 2
@@ -156,7 +150,6 @@
 					text-decoration: none;
 					&:hover {
 						border-image: none;
-						// color: var(--color-primary-2);
 					}
 				}
 			}
@@ -191,7 +184,7 @@
 	}
 
 	&__hint {
-		font-size: $default-font-size * 0.75;
+		font-size: $font-size-three;
 		font-style: italic;
 
 		@include respond(nav-switch) {
@@ -221,9 +214,6 @@
 
 		&-text {
 			@include link-line;
-			// transition: border $animation-duration * 0.1 $animation-easing-standard,
-			// 	color $animation-duration * 0.1 $animation-easing-modern;
-
 			&::before {
 				border-radius: 100%;
 				background-image: linear-gradient(
@@ -253,27 +243,8 @@
 			}
 		}
 
-		&:hover {
-			// @include skills-popup-item-hover;
-		}
-
-		&:hover &-text::before {
-			@include skills-popup-link-hover;
-
-			@include respond(nav-switch) {
-				opacity: 0;
-			}
-		}
-
 		&:hover &-text {
 			color: var(--color-primary-1);
-			// border-image: linear-gradient(to right, var(--color-primary-2) 0%, var(--color-primary-3) 50%, var(--color-primary-3) 50%, var(--color-primary-2) 100%);
-			// border-bottom: 1px solid 0,0,0;
-			// border-image: linear-gradient(
-			// 	to bottom,
-			// 	var(--color-primary-4),
-			// 	var(--color-primary-4)
-			// );
 			border-image: none;
 			border-image-slice: 1;
 		}
@@ -282,8 +253,10 @@
 	&__error {
 		grid-column: 1 /-1;
 		justify-self: center;
-		font-size: $default-font-size * 2;
+		font-size: $font-size-seven;
+		padding: 0 $default-font-size * 2;
 		position: absolute;
+		text-align: center;
 		top: 50%;
 	}
 
@@ -294,14 +267,6 @@
 		& .skills-popup__content {
 			transform: translate(-50%, -50%);
 		}
-	}
-
-	//JS
-	// &__item-js--hover {
-	// @include skills-popup-item-hover;
-	// }
-	&__link-js--hover > div::before {
-		@include skills-popup-link-hover;
 	}
 
 	//This has to go at the end to override a previous style

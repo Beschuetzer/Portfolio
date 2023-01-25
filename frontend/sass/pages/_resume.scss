@@ -152,6 +152,10 @@
 		@include respond(phone) {
 			padding: $content-padding-nav-switch;
 		}
+
+		& .quote {
+			margin-top: -$default-font-size;
+		}
 	}
 	&__card {
 		max-width: calc(100% - 20.8rem);
@@ -264,10 +268,13 @@
 		height: 100%;
 		border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
 
+		&:nth-child(-n + 4) {
+			padding-top: 0;
+		}
+
 		&:nth-last-child(-n + 4) {
 			border-bottom: none;
 		}
-		
 	}
 
 	
