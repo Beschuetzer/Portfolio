@@ -834,7 +834,6 @@ const OceanSky = () => {
 			}
 		}
 		
-		return;
 		if (
 			!screenRefreshRate ||
 			!cameraPositionYFactor ||
@@ -882,12 +881,10 @@ const OceanSky = () => {
 		cubeRotationSpeed,
 	])
 
-	return (
-		<LoadingSpinner/>
-	)
-	// return (
-	// null
-	// )
+	if (!screenRefreshRate) {
+		return <LoadingSpinner forceShow={true}/>
+	}
+	return null;
 }
 
 export default OceanSky;

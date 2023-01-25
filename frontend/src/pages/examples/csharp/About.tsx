@@ -711,7 +711,7 @@ const About: React.FC<AboutProps> = () => {
 		<React.Fragment>
 			<CSharpLayout sections={sections} pageName={ABOUT_PAGE_NAME} />
 			<AudioPlayer />
-			<LoadingSpinner />
+			<LoadingSpinner forceShow={false}/>
 		</React.Fragment>
 	);
 };

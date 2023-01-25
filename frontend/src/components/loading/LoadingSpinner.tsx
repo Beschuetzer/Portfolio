@@ -5,21 +5,26 @@ import { HIDDEN_CLASSNAME } from "../constants";
 
 interface LoadingSpinnerProps {
 	isLoadingSound: boolean;
+	forceShow?: boolean;
 }
 
-function LoadingSpinner(prop: LoadingSpinnerProps) {
+function LoadingSpinner({
+	isLoadingSound = false,
+	forceShow = true,
+}) {
 	const containerRef = useRef<HTMLElement>();
 
 	useEffect(() => {
+		if (forceShow) return;
 		const container = (containerRef?.current as HTMLElement);
-		if (!prop.isLoadingSound)
+		if (!isLoadingSound)
 			container.classList.add(HIDDEN_CLASSNAME);
 		else container.classList.remove(HIDDEN_CLASSNAME);
 
-	}, [prop.isLoadingSound]);
+	}, [isLoadingSound]);
 
 	return (
-		<div ref={containerRef as any} className="lds-spinner-container hidden">
+		<div ref={containerRef as any} className="lds-spinner-container">
 			<div className="lds-spinner">
 				<div></div>
 				<div></div>

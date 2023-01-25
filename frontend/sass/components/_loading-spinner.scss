@@ -1,4 +1,4 @@
-$color: var(--color-primary-1);
+$color: var(--color-primary-2);
 
 .lds-spinner-container {
   top: 0;
@@ -12,7 +12,7 @@ $color: var(--color-primary-1);
 }
 
 .lds-spinner {
-  color: official;
+  color: $color;
   display: inline-block;
   position: absolute;
   top: 50%;

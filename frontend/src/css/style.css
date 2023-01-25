@@ -2688,7 +2688,7 @@ body {
 }
 
 .lds-spinner {
-  color: official;
+  color: var(--color-primary-2);
   display: inline-block;
   position: absolute;
   top: 50%;
@@ -2712,7 +2712,7 @@ body {
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: var(--color-primary-1);
+  background: var(--color-primary-2);
 }
 
 .lds-spinner div:nth-child(1) {
