@@ -1,4 +1,6 @@
 JOB STUFF------------------------------------
+  -add loading modal for start screen
+  -adjust padding on big five and about item sections (can do as one style?)
   -change behavior of auto-scroll when clicking on a skill in 'Skills section'
   -Change 'Explore' to 'Projects' on start page
   -create a Solution Sidekick feature page
