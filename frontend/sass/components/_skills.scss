@@ -50,7 +50,7 @@
 			align-items: center;
 			border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
 			grid-column: 1/-1;
-			font-size: $default-font-size * 1.5;
+			font-size: $font-size-five;
 			font-weight: 300;
 
 			transition: transform $animation-duration * 0.5 $animation-easing-standard,

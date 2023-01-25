@@ -3092,7 +3092,7 @@ body {
   align-items: center;
   border-bottom: 0.14rem solid var(--color-primary-1);
   grid-column: 1/-1;
-  font-size: 2.1rem;
+  font-size: 1.75rem;
   font-weight: 300;
   transition: transform 0.25s ease, color 0.5s ease;
 }
@@ -3667,18 +3667,19 @@ body {
 }
 .work-history__item-section-list li {
   margin-left: 2.1rem;
-  font-size: 1.12rem;
+  font-size: 1.4rem;
 }
 .work-history__item-section-list li:first-child {
   margin-top: 0.7rem;
 }
 .work-history__item-number {
+  font-size: 1.75rem;
   font-family: ui-sans-serif;
   font-weight: 300;
   margin-right: 0.8rem;
 }
 .work-history__title-header {
-  font-size: 1.4rem;
+  font-size: 1.75rem;
 }
 .work-history__title-location {
   font-size: 1.12rem;
@@ -5010,16 +5011,11 @@ body {
   flex-direction: column-reverse;
 }
 .resume__header {
-  margin-bottom: 1.4rem;
+  margin-bottom: 2.1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2), 0px -5px 35px rgba(255, 255, 255, 0.3);
-}
-@media only screen and (max-width: 52.6875em) {
-  .resume__header {
-    margin-bottom: 1.05rem;
-  }
 }
 .resume__header-summary {
   grid-column: 1/-1;
@@ -5031,7 +5027,7 @@ body {
   margin-bottom: 0;
 }
 .resume__content {
-  padding: 4.2rem 1.4rem 4.9rem;
+  padding: 4.2rem 1.4rem;
   font-size: 1.4rem;
   font-family: "Open Sans", sans-serif;
 }
@@ -5200,6 +5196,7 @@ body {
 }
 @media only screen and (max-width: 52.6875em) {
   .references__number {
+    font-size: 1.75rem;
     font-family: ui-sans-serif;
     font-weight: 300;
     margin-right: 0.8rem;

@@ -66,7 +66,7 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
 
   return (
     <section aria-label={`${id} job description`} id={id ? id : undefined} className={`${WORK_HISTORY_CLASSNAME}__item`}>
-        <span className={`${WORK_HISTORY_CLASSNAME}__item-number`}>{number}.</span>
+        <span className={`${WORK_HISTORY_CLASSNAME}__item-number`}>{number}).</span>
         <div>
           <h6 className={`${WORK_HISTORY_CLASSNAME}__title-header heading--six`} dangerouslySetInnerHTML={setInnerHtml(title)}/>
           {location ? (

@@ -72,6 +72,7 @@
 	border-radius: 0;
 }
 @mixin item-number {
+	font-size: $font-size-five;
 	font-family: ui-sans-serif;
 	font-weight: 300;
 	margin-right: 0.8rem;

@@ -12,7 +12,6 @@ const WorkHistoryItemSection: React.FC<WorkHistoryItemSectionProps> = ({
 }) => {
   return (
     <div aria-label={title} className={`${WORK_HISTORY_CLASSNAME}__item-section`}>
-      {/* <h6 className="heading--six">{title}:</h6> */}
       <ul className={`${WORK_HISTORY_CLASSNAME}__item-section-list`}>
         {children}
       </ul>

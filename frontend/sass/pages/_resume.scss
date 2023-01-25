@@ -116,15 +116,15 @@
 	}
 
 	&__header {
-		margin-bottom: $default-font-size * 1;
+		margin-bottom: $default-font-size * 1.5;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		text-shadow: $resume-header-text-shadow;
 
-		@include respond(tab-port) {
-			margin-bottom: $default-font-size * 0.75;
-		}
+		// @include respond(tab-port) {
+			// margin-bottom: $default-font-size * 0.75;
+		// }
 
 		&:last-child {
 			// margin-bottom: $default-font-size * 0.5;
@@ -141,7 +141,7 @@
 		margin-bottom: 0;
 	}
 	&__content {
-		padding: $default-font-size * 3 $default-font-size $default-font-size * 3.5;
+		padding: $default-font-size * 3 $default-font-size;
 		font-size: $default-font-size;
 		font-family: $font-family-text;
 
