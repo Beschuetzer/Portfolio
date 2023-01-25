@@ -49,7 +49,7 @@
 			padding: 0 $default-font-size * 2 0 $default-font-size * 2;
 
 			@include respond(phone) {
-				padding: $default-font-size * 0.5;
+				padding: $default-font-size * 0.5 $default-font-size * 1;
 			}
 		}
 

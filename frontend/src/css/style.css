@@ -4416,7 +4416,7 @@ body {
 }
 @media only screen and (max-width: 40.9375em) {
   .csharp__content > * {
-    padding: 0.8rem;
+    padding: 0.8rem 1.6rem;
   }
 }
 .csharp__content > *:last-child() {

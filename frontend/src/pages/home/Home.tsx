@@ -10,7 +10,8 @@ import {
 } from "../../components/constants";
 import EmbeddedLink from "../../components/EmbeddedLink";
 import useClasslistAdder, { ClasslistAdder } from "./useClasslistAdder";
-import useSky from "./useSky";
+import useSky from "./OceanSky";
+import OceanSky from "./OceanSky";
 
 const EMBODIMENT_STRING =
 	"integrity, determination, learning, hard work, motivation, and communication";
@@ -50,7 +51,6 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 	}, [repos, getRepositories]);
 
 	useClasslistAdder(classListsToSet);
-	useSky();
 
 	useEffect(() => {
 		async function fetchQuote() {
@@ -93,8 +93,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 	}
 
 	return (
-		<React.Fragment>
-			{/* <section className="home"> */}
+		<section className="home">
 			<header
 				aria-label={`adam major embodies ${EMBODIMENT_STRING}`}
 				className="home__name">
@@ -116,7 +115,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 
 				<section className="home__main-left">
 					<div className="home__main-left-content">
-						<span className="home__content-header">Explore: </span>
+						<span className="home__content-header">Projects: </span>
 						<br></br>
 						<EmbeddedLink
 							addSpaces={false}
@@ -140,7 +139,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 
 				<section className="home__main-right">
 					<div className="home__main-right-content">
-						<span className="home__content-header">Experience: </span>
+						<span className="home__content-header">About: </span>
 						<br></br>
 						<EmbeddedLink
 							addSpaces={false}
@@ -188,18 +187,10 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 						</EmbeddedLink>
 					</div>
 				</section>
-
 				{getQuoteJSX()}
-
-				{/* <div className="home__main-description">
-						This site was created with React, Redux, and custom CSS
-					</div>
-					<div className="home__main-cta">
-						Click, hover, and get in touch when you're ready.
-					</div> */}
 			</div>
-			{/* </section> */}
-		</React.Fragment>
+			<OceanSky/>
+		</section>
 	);
 };
 
