@@ -287,7 +287,12 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 				</div>
 			);
 		}
-		return reposToDisplay.map((repo) => {
+		return reposToDisplay.sort((a, b) => {
+			const firstItemsDate = new Date(a?.[keys?.[2]] || '').toLocaleString();
+			const secondItemsDate = new Date(b?.[keys?.[2]] || '').toLocaleString();
+			console.log({a, b, firstItemsDate, secondItemsDate});
+			return a > b ? 1 : b < a ? -1 : 0;
+		}).map((repo) => {
 			if (isMobile) {
 				return (
 					<article key={repo.name} className={`${SKILLS_CLASSNAME}-popup__table-repo`}>
