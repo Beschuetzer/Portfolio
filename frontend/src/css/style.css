@@ -1014,8 +1014,7 @@ body {
   cursor: auto;
 }
 .navbar__link, .navbar__link:link, .navbar__link:visited {
-  padding: 1.6rem 0;
-  font-size: 2vmax;
+  padding: 2rem 0;
   height: 100%;
   width: 100%;
   text-decoration: none;
@@ -1178,7 +1177,7 @@ body {
   }
 }
 .navbar__dropdown-container:hover .navbar__dropdown .navbar__link {
-  padding: 1.6rem 3.2rem;
+  padding: 2rem 3.2rem;
 }
 .navbar.navbar--isAnimating, .navbar.navbar--active {
   --site-nav-button-width: auto;
@@ -1239,7 +1238,7 @@ body {
   width: 0;
 }
 .navbar.navbar--active .navbar__link:not(.navbar.navbar--active__dropdown .navbar.navbar--active__link) {
-  padding: 1.6rem 3.2rem;
+  padding: 2rem 3.2rem;
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__link:not(.navbar.navbar--active__dropdown .navbar.navbar--active__link) {
