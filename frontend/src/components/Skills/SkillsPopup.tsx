@@ -288,9 +288,9 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 			);
 		}
 		return reposToDisplay.sort((a, b) => {
-			const firstItemsDate = new Date(a?.[keys?.[2]] || '').toLocaleString();
-			const secondItemsDate = new Date(b?.[keys?.[2]] || '').toLocaleString();
-			console.log({a, b, firstItemsDate, secondItemsDate});
+			const firstItemsDate = a?.[keys?.[2]];
+			const secondItemsDate = b?.[keys?.[2]];
+			console.log({a, b, firstItemsDate, secondItemsDate, valueReturned: firstItemsDate > secondItemsDate ? -1 : firstItemsDate < secondItemsDate ? 1 : 0});
 			return firstItemsDate > secondItemsDate ? -1 : firstItemsDate < secondItemsDate ? 1 : 0;
 		}).map((repo) => {
 			if (isMobile) {
