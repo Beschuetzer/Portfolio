@@ -1,5 +1,4 @@
 JOB STUFF------------------------------------
-  -toggle main scroll bar when opening and closing skills popup
   -changing width in resume breaks work history layout (grid)
   -go through each instance of $default-font-size and change to an instance of $font-size-xxx
   -create a Solution Sidekick feature page (add to start page too; left side)

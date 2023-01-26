@@ -9,7 +9,7 @@ import {
 } from "../../actions";
 import SkillsPopupName from "./SkillsPopupName";
 import { capitalize } from "../../helpers";
-import { addSpaceAfterPunctuationMarks } from "../utils";
+import { addSpaceAfterPunctuationMarks, toggleScrollability } from "../utils";
 import { Repository, SKILLS_CLASSNAME } from "./utils";
 
 interface SkillsPopupProps {
@@ -145,6 +145,7 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 
 	const onCloseClick = (e: MouseEvent) => {
 		skillsPopupDiv?.classList?.remove(`${SKILLS_CLASSNAME}-popup--active`);
+		toggleScrollability();
 		setTimeout(() => {
 			clickSkill(null);
 			addRepoToReposToDisplay([]);

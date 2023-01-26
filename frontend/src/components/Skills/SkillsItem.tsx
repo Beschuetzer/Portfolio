@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { clickSkill } from "../../actions";
 import EmbeddedLink from "../EmbeddedLink";
 import PercentBar, { PercentBarLabel } from "../PercentBar/PercentBar";
+import { toggleScrollability } from "../utils";
 import { SKILLS_CLASSNAME } from "./utils";
 
 interface SkillsItemProps {
@@ -36,6 +37,7 @@ const SkillsItem: React.FC<SkillsItemProps> = ({
 
 		skillsPopupDiv?.classList?.toggle(`${SKILLS_CLASSNAME}-popup--active`);
 		clickSkill(e.target as HTMLElement);
+		setTimeout(() => toggleScrollability(false), 750);
 	};
 
 	function renderHref() {
