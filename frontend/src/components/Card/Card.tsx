@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { useRef } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 
@@ -63,6 +63,7 @@ const Card: React.FC<CardProps> = ({
 	headerHeight,
 	setIsCardVideoOpen,
 }) => {
+	const [showChildren, setShowChildren] = useState<boolean>(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const titleRef = useRef<HTMLHeadingElement>(null);
 	const cardRef = useRef<HTMLElement>(null);
@@ -137,6 +138,7 @@ const Card: React.FC<CardProps> = ({
 			scrollToSection(
 				document.querySelector(`#${bridgeSections[1].toLowerCase()}`) as HTMLElement
 			);
+			setShowChildren(true);
 		}, ANIMATION_DURATION / 2);
 	};
 
@@ -151,10 +153,15 @@ const Card: React.FC<CardProps> = ({
 		// }, CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION);
 	};
 
+	const onCloseChildren = () => {
+		setShowChildren(false);
+		
+	};
+
 	const onProgressBarClick = (e: MouseEventHandler<HTMLElement>) => {
 		handleProgressBarClick(videoRef, cardRef, e as any);
 	};
-
+	
 	return (
 		<article
 			ref={cardRef}
@@ -212,7 +219,10 @@ const Card: React.FC<CardProps> = ({
 						],
 						[Z_INDEX_HIGHEST_CLASSNAME, cardRef.current],
 					]}
-					functionToRunOnClose={() => changeSectionTitle(titleRef, false)}
+					functionToRunOnClose={() => {
+						changeSectionTitle(titleRef, false);
+						setShowChildren(true);
+					}}
 				/>
 
 				<PlayControl
@@ -236,12 +246,14 @@ const Card: React.FC<CardProps> = ({
 					reference={videoRef}
 					progressBarRef={progressBarRef}
 					progressBarOnClick={onProgressBarClick}>
-					<div className="card__children">
-						{/* <svg className="card__children-toggler">
-              <use xlinkHref="/sprite.svg#icon-angle-double-down"></use>
-            </svg> */}
-						{children}
-					</div>
+					{showChildren ? (
+						<div className="card__children">
+							<svg onClick={onCloseChildren} className="card__children-close">
+								<use xlinkHref="/sprite.svg#icon-close"/>
+							</svg>
+							{children}
+						</div>
+					) : null}
 				</Video>
 			</div>
 		</article>

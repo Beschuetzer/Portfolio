@@ -1884,6 +1884,8 @@ body {
 }
 .card__children {
   opacity: 0;
+  padding: 0.35rem;
+  padding-right: 1.0526315789rem;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -1902,9 +1904,6 @@ body {
     font-size: 0.4375rem;
   }
 }
-.card__children div {
-  padding: 0.35rem;
-}
 .card__children ul {
   list-style: decimal;
   padding-left: 0.7rem;
@@ -1914,6 +1913,17 @@ body {
   .card__children ul {
     font-size: 0.56rem;
   }
+}
+.card__children-close {
+  height: 0.7rem;
+  width: 0.7rem;
+  pointer-events: all;
+  cursor: pointer;
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  fill: var(--color-primary-2);
+  opacity: 1;
 }
 .card__image {
   width: 100%;
