@@ -13,13 +13,11 @@ import img7 from "../../../imgs/replay-viewer/img-7.png";
 import imgDeal from "../../../imgs/replay-viewer/img-deal-1.png";
 import imgGame from "../../../imgs/replay-viewer/img-game-1.png";
 import imgUser from "../../../imgs/replay-viewer/img-user-1.png";
-import imgStore from "../../../imgs/replay-viewer/img-store-1.png";
 import imgMobile1 from "../../../imgs/replay-viewer/img-mobile-1.png";
 import imgMobile2 from "../../../imgs/replay-viewer/img-mobile-2.png";
 import clipAnimations from "../../../clips/replay-viewer/animations.mp4";
 import clipDealPlayer from "../../../clips/replay-viewer/deal-player.mp4";
 import clipFilters from "../../../clips/replay-viewer/filters.mp4";
-
 import img1Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-1-thumbnail.png";
 import img2Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-2-thumbnail.png";
 import img3Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-3-thumbnail.png";
@@ -206,11 +204,6 @@ const sections: CSharpSection[] = [
 							itemSrc: imgMobile2,
 							itemThumbnailSrc: imgMobile2Thumbnail,
 							description: "Mobile deal player",
-						},
-						{
-							itemSrc: imgStore,
-							itemThumbnailSrc: imgStoreThumbnail,
-							description: "What the store looks like",
 						},
 						{
 							itemSrc: imgGame,

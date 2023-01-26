@@ -413,8 +413,7 @@
 		background-color: rgba(var(--background-color), 1);
 		border: 1px solid rgba(var(--color), 1);
 		border-radius: $default-font-size / 2;
-		box-shadow: 0px 0px $default-font-size $default-font-size * 0.5
-		rgba(var(--color), 0.5);
+		box-shadow: 0px $default-font-size / 2 $default-font-size $default-font-size * 0.5 rgba(var(--color-black-rgb), 0.5);
 		max-height: 85%;
 		overflow: auto;
 
@@ -573,8 +572,8 @@
 		// top: $default-font-size;
 		// bottom: 10vh;
 		--width: #{$carousel-svg-parent-width};
-		height: var(--width);
-		width: var(--width);
+		height: $default-font-size * 4;
+		width: $default-font-size * 4;
 		opacity: 0;
 
 		@include respond(nav-switch) {
