@@ -639,3 +639,22 @@
 		opacity: 1;
 	}
 }
+
+.overlay-text-title {
+	&-container {
+		display: flex;
+    	align-items: center;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	&-close {
+		cursor: pointer;
+		width: $font-size-seven;
+		height: $font-size-seven;
+		fill: var(--color-primary-2);
+
+		&:hover {
+			fill: var(--color-primary-3);
+		}
+	}
+}

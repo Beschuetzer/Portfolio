@@ -1,5 +1,5 @@
 JOB STUFF------------------------------------
-  -add an X in top right of carousel video overlay to be able to pause video and see what is there.
+  -need to refactor OverlayItem to use useState and force a re-render of children when going in/out of full screen
   -make the carousel handle the calculation in setCarouselGridMaxColumnWidth() for $carousel-grid-width (instead of having to hard code in css variables)
   -adjust height of code links on right (should match page nav start on left)
   -how hard to make the site nav and github buttons smaller?
