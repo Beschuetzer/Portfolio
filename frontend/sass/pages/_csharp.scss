@@ -77,7 +77,7 @@
     /* align-items: center; */
     grid-template-columns: max-content 1fr;
     column-gap: $default-font-size;
-    font-size: $font-size-nine;
+    font-size: $font-size-eight;
 
 		padding: $default-font-size * 1 $default-font-size * 1 $default-font-size *
 			1 0;
@@ -86,9 +86,9 @@
 			rgba(var(--color-primary-1-rgb), 0.25);
 
 		&-title {
-			font-size: $font-size-nine;
+			font-size: $font-size-eight;
 			@include respond(tab-land) {
-				font-size: $font-size-seven;
+				// font-size: $font-size-seven;
 			}
 		}
 	}

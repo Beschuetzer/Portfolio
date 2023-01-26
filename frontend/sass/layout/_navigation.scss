@@ -717,7 +717,7 @@ $scale-y-amount: .25;
 	top: $page-nav-top;
 	left: 0;
 	width: calc((100% - #{$resume-card-width-full}) / 2);
-	font-size: 1.5vw;
+	font-size: $font-size-six;
 	display: grid;
 	justify-items: center;
 	align-items: center;
