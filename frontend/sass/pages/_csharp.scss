@@ -1,5 +1,5 @@
 .csharp {
-	font-size: $default-font-size * 1;
+	font-size: $font-size-four;
 	overflow: hidden;
 	width: 100vw;
 	background-color: var(--color-primary-1);
@@ -88,7 +88,7 @@
 		&-title {
 			font-size: $font-size-nine;
 			@include respond(tab-land) {
-				font-size: $default-font-size * 2;
+				font-size: $font-size-seven;
 			}
 		}
 	}
@@ -101,7 +101,7 @@
 		}
 
 		&:last-of-type {
-			padding-bottom: $default-font-size * 2;
+			padding-bottom: $font-size-seven;
 		}
 
 		& {
@@ -180,12 +180,12 @@
 		@include respond(tab-land) {
 			--padding: #{$default-font-size * 0.5};
 			width: 100vw;
-			--font-size: #{$default-font-size * 3};
+			--font-size: #{$font-size-nine};
 			/* padding: var(--padding) calc(var(--padding) + var(--scrollbar-width))
 				var(--padding) var(--padding); */
 		}
 		@include respond(small-font) {
-			--font-size: #{$default-font-size * 3};
+			--font-size: #{$font-size-nine};
 			display: flex;
 			// flex-direction: column;
 			// margin-top: $default-font-size * 5;

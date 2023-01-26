@@ -727,7 +727,7 @@ $scale-y-amount: .25;
 
 	@include respond(nav-switch) {
 		z-index: 0;
-		font-size: $default-font-size * 1.25;
+		font-size: $font-size-five;
 		position: static;
 		width: calc(var(--header-inner-width-nav-switch) - 16rem);
 		grid-template-rows: auto;
@@ -769,7 +769,7 @@ $scale-y-amount: .25;
 		}
 
 		&-group {
-			font-size: min(#{$default-font-size}, 1vw);
+			font-size: min(#{$font-size-four}, 1vw);
 			padding: $default-font-size * 0.25 0;
 			display: flex;
 			justify-content: center;
@@ -817,7 +817,7 @@ $scale-y-amount: .25;
 			}
 
 			@include respond(nav-switch) {
-				font-size: min(#{$default-font-size}, 1.5vw);
+				font-size: min(#{$font-size-four}, 1.5vw);
 			}
 		}
 

@@ -9,7 +9,7 @@
 	z-index: 10000;
 
 	@include respond(nav-switch) {
-		font-size: $default-font-size * 0.85;
+		font-size: $font-size-three;
 	}
 
 	&__top {

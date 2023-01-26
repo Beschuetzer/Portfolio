@@ -2634,7 +2634,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .github {
-    font-size: 1.19rem;
+    font-size: 1.12rem;
   }
 }
 .github__top {
@@ -2904,7 +2904,7 @@ body {
   top: 50%;
   right: 0.35rem;
   transform: translate(0%, -50%);
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   transition: opacity 0.5s ease;
   backface-visibility: hidden;
 }
@@ -2912,7 +2912,7 @@ body {
 .csharp .percent-bar__labels {
   opacity: 1;
   padding: 0;
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   top: -1.4rem;
 }
 .csharp .percent-bar__outer {
@@ -2984,7 +2984,7 @@ body {
 }
 @media only screen and (max-width: 40.9375em) {
   .quote__author {
-    font-size: 1.4rem;
+    font-size: 1.12rem;
   }
 }
 .quote__message {
@@ -3253,7 +3253,7 @@ body {
   .skills-popup__header {
     border-bottom: 0.14rem solid var(--color-primary-1);
     margin-bottom: 0.7rem;
-    font-size: 2.1rem;
+    font-size: 2.1875rem;
   }
 }
 .skills-popup__header-text {
@@ -3307,7 +3307,7 @@ body {
     column-gap: 1.4rem;
   }
   .skills-popup__table-repo > .skills-popup__table-item:first-child {
-    font-size: 1.54rem;
+    font-size: 1.4rem;
     display: grid;
     grid-template-columns: max-content 1fr;
     column-gap: 1.4rem;
@@ -3775,7 +3775,7 @@ body {
 }
 @media only screen and (max-width: 29.3125em) {
   .bridge__section-title {
-    font-size: 4.2rem;
+    font-size: 4.272625rem;
   }
 }
 .bridge__section-titles {
@@ -4087,25 +4087,25 @@ body {
   color: var(--color-primary-3);
   position: fixed;
   font-weight: 100;
-  font-size: 8.4rem;
+  font-size: 8.344rem;
   transition: opacity 0.5s ease 0.5s, transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s;
 }
 .hero__heading:first-of-type, .hero__heading:nth-of-type(4) {
-  font-size: 14rem;
+  font-size: 13.0382rem;
   font-weight: 200;
 }
 @media only screen and (max-width: 35.0625em) {
   .hero__heading:first-of-type, .hero__heading:nth-of-type(4) {
-    font-size: 8.4rem;
+    font-size: 8.344rem;
   }
 }
 .hero__heading:nth-of-type(2), .hero__heading:nth-of-type(3) {
-  font-size: 7rem;
+  font-size: 6.6752rem;
   font-weight: 700;
 }
 @media only screen and (max-width: 29.3125em) {
   .hero__heading:nth-of-type(2), .hero__heading:nth-of-type(3) {
-    font-size: 5.6rem;
+    font-size: 5.341rem;
   }
 }
 .hero__heading:first-of-type {
@@ -4143,10 +4143,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4.2rem;
   z-index: 1;
   position: fixed;
-  top: 66vh;
+  top: 61.5vh;
   left: 49vw;
   transform: translate(-50%, -50%);
   color: var(--color-primary-2);
@@ -4165,8 +4164,8 @@ body {
   justify-content: center;
 }
 .hero__more svg {
-  width: 14vw;
-  height: 14vw;
+  width: 7vw;
+  height: 7vw;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -4456,7 +4455,7 @@ body {
 }
 @media only screen and (max-width: 58.5625em) {
   .csharp__header-title {
-    font-size: 2.8rem;
+    font-size: 2.734375rem;
   }
 }
 .csharp__card-section-title {
@@ -4465,7 +4464,7 @@ body {
   padding: 1.4rem 0;
 }
 .csharp__card-section:last-of-type {
-  padding-bottom: 2.8rem;
+  padding-bottom: 2.734375rem;
 }
 .csharp__card-section ul {
   list-style: disc;
@@ -4539,14 +4538,14 @@ body {
   .csharp__title {
     --padding: 0.7rem;
     width: 100vw;
-    --font-size: 4.2rem;
+    --font-size: 4.272625rem;
     /* padding: var(--padding) calc(var(--padding) + var(--scrollbar-width))
     	var(--padding) var(--padding); */
   }
 }
 @media only screen and (max-width: 29.3125em) {
   .csharp__title {
-    --font-size: 4.2rem;
+    --font-size: 4.272625rem;
     display: flex;
   }
 }
@@ -4633,7 +4632,7 @@ body {
   color: var(--color-primary-3);
   opacity: 0;
   visibility: hidden;
-  font-size: 7rem;
+  font-size: 6.6752rem;
   position: absolute;
   transform: translate(-50%, -50%);
   display: grid;
@@ -4665,7 +4664,7 @@ body {
 .home__third-word {
   font-weight: 900;
   grid-column: 1/-1;
-  font-size: 2.1rem;
+  font-size: 2.1875rem;
 }
 .home__main {
   animation: ocean-sky-fading 100s forwards ease infinite;
@@ -4821,7 +4820,7 @@ body {
   text-decoration: none;
   margin: 0;
   font-weight: 700;
-  font-size: 2.1rem;
+  font-size: 2.1875rem;
   cursor: pointer;
   background: linear-gradient(to left, rgba(var(--color-primary-3-rgb), 1) 0%, rgba(var(--color-white-rgb), 1) 5%, rgba(var(--color-primary-3-rgb), 1) 10%, rgba(var(--color-primary-3-rgb), 1) 100%);
   background-size: 200% auto;
@@ -4845,7 +4844,7 @@ body {
   text-shadow: 6px 6px 0px rgba(var(--color-primary-2-rgb), 0.05);
   font-weight: 700;
   font-family: "New Tegomin", serif;
-  font-size: 4.2rem;
+  font-size: 4.272625rem;
   color: transparent;
   background-clip: text;
 }

@@ -120,7 +120,7 @@
 		top: 50%;
 		right: $default-font-size * 0.25;
 		transform: translate(-0%, -50%);
-		font-size: $default-font-size * 0.75;
+		font-size: $font-size-three;
 		transition: opacity $animation-duration * 1 $animation-easing-standard;
 		backface-visibility: hidden;
 	}
@@ -130,7 +130,7 @@
 	&__labels {
 		opacity: 1;
 		padding: 0;
-		font-size: $default-font-size * 0.75;
+		font-size: $font-size-three;
 		top: -$default-font-size;
 	}
 

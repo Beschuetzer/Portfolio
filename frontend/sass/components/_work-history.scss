@@ -2,7 +2,7 @@
 	&__item {
 		display: grid;
 		grid-template-columns: min-content 1fr max-content;
-		font-size: $default-font-size;
+		font-size: $font-size-four;
 		padding: $default-font-size * 2 0;
 		column-gap: $default-font-size / 2;
 		

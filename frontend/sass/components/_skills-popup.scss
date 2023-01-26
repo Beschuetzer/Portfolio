@@ -3,7 +3,7 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	font-size: $default-font-size * 1;
+	font-size: $font-size-four;
 	backdrop-filter: blur(20px) brightness(0.5);
 	width: 100vw;
 	height: 100vh;
@@ -51,7 +51,7 @@
 		@include respond(nav-switch) {
 			border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
 			margin-bottom: $default-font-size * 0.5;
-			font-size: $default-font-size * 1.5;
+			font-size: $font-size-six;
 		}
 
 		&-text {
@@ -116,7 +116,7 @@
 				}
 
 				.skills-popup__table-repo > &:first-child {
-					font-size: $default-font-size * 1.1;
+					font-size: $font-size-four;
 					display: grid;
 					grid-template-columns: max-content 1fr;
 					column-gap: $default-font-size;

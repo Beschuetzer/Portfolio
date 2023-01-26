@@ -70,7 +70,7 @@ $quote-normal-opacity: 0.125;
 		font-family: $font-family-headers;
 
 		@include respond(phone) {
-			font-size: $default-font-size * 1;
+			font-size: $font-size-three;
 		}
 	}
 

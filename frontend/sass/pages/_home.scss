@@ -7,7 +7,7 @@
 	position: relative;
 	height: 100vh;
 	width: 100vw;
-	font-size: $default-font-size * 1.25;
+	font-size: $font-size-five;
 	font-weight: 400;
 	text-shadow: getTextShadow(
 		close,
@@ -85,7 +85,7 @@
 		color: var(--color-primary-3);
 		opacity: 0;
 		visibility: hidden;
-		font-size: $default-font-size * 5;
+		font-size: $font-size-eleven;
 		position: absolute;
 		transform: translate(-50%, -50%);
 		display: grid;
@@ -124,7 +124,7 @@
 		font-weight: 900;
 		grid-column: 1/-1;
 		// transform: translate(0, 100vh);
-		font-size: $default-font-size * 1.5;
+		font-size: $font-size-six;
 	}
 
 	&__main {
@@ -275,7 +275,7 @@
 				margin: 0;
 				width: 100vw;
 				padding-bottom: $default-font-size * 0.5;
-				font-size: $default-font-size;
+				font-size: $font-size-four;
 			}
 		}
 
@@ -364,7 +364,7 @@
 			margin: 0;
 			// font-size: $default-font-size * 1.5;
 			font-weight: 700;
-			font-size: $default-font-size * 1.5;
+			font-size: $font-size-six;
 			@include link-animating(
 				var(--color-primary-3-rgb),
 				var(--color-white-rgb),
@@ -401,18 +401,18 @@
 		);
 		font-weight: 700;
 		font-family: $font-family-fancy-bridge;
-		font-size: $default-font-size * 3;
+		font-size: $font-size-nine;
 		color: transparent;
 		background-clip: text;
 
 		@include respond($breakpoint-to-change-layout) {
 			--background-image-color-two: var(--color-primary-3);
-			font-size: $default-font-size;
+			font-size: $font-size-four;
 		}
 	}
 
 	&__quote {
-		font-size: $default-font-size;
+		font-size: $font-size-four;
 		font-weight: 100;
 		padding: $default-font-size * 2 $default-font-size * 4;
 		transform: translateY(100%);

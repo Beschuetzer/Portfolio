@@ -77,7 +77,7 @@
 		&-title {
 			text-align: center;
 			@include respond(small-font) {
-				font-size: $default-font-size * 3;
+				font-size: $font-size-nine;
 			}
 		}
 
@@ -321,7 +321,7 @@
 	}
 
 	&__card {
-		font-size: $default-font-size;
+		font-size: $font-size-four;
 		overflow: hidden;
 		border: $bridge-card-border-size var(--color-primary-4);
 		box-shadow: $bridge-card-box-shadow-size rgba($color-primary-bridge-4, 0.5);
@@ -465,7 +465,7 @@
 		color: var(--color-primary-3);
 		position: fixed;
 		font-weight: 100;
-		font-size: $default-font-size * 6;
+		font-size: $font-size-twelve;
 
 		transition: opacity $animation-duration $animation-easing-standard
 				$animation-duration,
@@ -479,21 +479,21 @@
 
 		&:first-of-type,
 		&:nth-of-type(4) {
-			font-size: $default-font-size * 10;
+			font-size: $font-size-fourteen;
 			font-weight: 200;
 
 			@include respond(nav-break) {
-				font-size: $default-font-size * 6;
+				font-size: $font-size-twelve;
 			}
 		}
 
 		&:nth-of-type(2),
 		&:nth-of-type(3) {
-			font-size: $default-font-size * 5;
+			font-size: $font-size-eleven;
 			font-weight: 700;
 
 			@include respond(small-font) {
-				font-size: $default-font-size * 4;
+				font-size: $font-size-ten;
 			}
 		}
 
@@ -533,10 +533,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		font-size: $default-font-size * 3;
+		// font-size: $font-size-nine;
 		z-index: 1;
 		position: fixed;
-		top: 66vh;
+		top: 61.5vh;
 		left: 49vw;
 		transform: translate(-50%, -50%);
 		color: var(--color-primary-2);
@@ -557,8 +557,8 @@
 		}
 
 		& svg {
-			width: $navbar__logo-width * 2;
-			height: $navbar__logo-width * 2;
+			width: $navbar__logo-width * 1;
+			height: $navbar__logo-width * 1;
 			position: absolute;
 			top: 50%;
 			left: 50%;

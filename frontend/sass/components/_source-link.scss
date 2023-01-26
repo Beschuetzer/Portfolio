@@ -65,7 +65,7 @@ $top-offset: 1.25vw;
 			left: 50%;
 			transform: translate(-50%, -50%);
 			color: var(--arrow-button-right-fill);
-			font-size: $default-font-size * 1;
+			font-size: $font-size-four;
 			transition: transform $animation-duration * 0.25 $animation-easing-modern;
 
 			border-radius: 50%;
