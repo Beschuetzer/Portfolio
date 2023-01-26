@@ -4,6 +4,7 @@
 		grid-template-columns: min-content 1fr max-content;
 		font-size: $default-font-size;
 		padding: $default-font-size * 2 0;
+		column-gap: $default-font-size / 2;
 		
 		@include respond(tab-port) {
 			grid-template-columns: min-content 1fr;
@@ -85,12 +86,12 @@
 			grid-row: 1/-1;
 			font-style: italic;
 
-			@include respond(tab-port) {
-				grid-column: 2 / -1;
-			}
-
 			& > div:nth-child(2) {
 				margin: 0 $default-font-size * 0.25;
+			}
+
+			@include respond(nav-break) {
+				margin-top: .5rem;
 			}
 		}
 	}

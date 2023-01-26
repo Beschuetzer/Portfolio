@@ -93,7 +93,7 @@
 	}
 
 	&__details {
-		font-size: $default-font-size * 1.5;
+		font-size: $font-size-six;
 		padding: $default-font-size * 1;
 
 		&-time {
@@ -105,7 +105,7 @@
 		cursor: pointer;
 		background-color: rgba(var(--svg-fill-color), 0.2);
 		width: 100%;
-		height: $default-font-size * 1.5;
+		height: $font-size-six;
 
 		& > div {
 			align-self: flex-start;

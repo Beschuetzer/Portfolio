@@ -36,22 +36,28 @@
     font-family: $font-family-text;
     margin-top: $default-font-size;
     &--one {
-        font-size: $default-font-size * 2;
+        font-size: $font-size-eight;
     }
     &--two {
-        font-size: $default-font-size * 1.75;
+        font-size: $font-size-seven;
     }
     &--three {
-        font-size: $default-font-size * 1.5;
+        font-size: $font-size-six;
     }
     &--four {
-        font-size: $default-font-size * 1.25;
+        font-size: $font-size-five;
     }
     &--five {
-        font-size: $default-font-size * 1;
+        font-size: $font-size-four;
     }
     &--six {
-        font-size: $default-font-size * .85;
+        font-size: $font-size-three;
+    }
+    &--seven {
+        font-size: $font-size-two;
+    }
+    &--eight {
+        font-size: $font-size-one;
     }
 }
 

@@ -142,7 +142,7 @@
 	}
 	&__content {
 		padding: $default-font-size * 2.5 $default-font-size $default-font-size * 3.25;
-		font-size: $default-font-size;
+		font-size: $font-size-four;
 		font-family: $font-family-text;
 
 		& .bridge__subsection-grid {
@@ -196,7 +196,7 @@
 	}
 	&__hint {
 		margin: 0 0 $default-font-size * 2;
-		font-size: $default-font-size * 0.75;
+		font-size: $font-size-three;
 
 		@include respond(tab-port) {
 			margin: -$default-font-size * 0.25 0 $default-font-size * 3;
@@ -239,7 +239,7 @@
 	&__date,
 	&__gpa {
 		font-weight: 500;
-		font-size: $default-font-size * 0.9;
+		font-size: $font-size-four;
 	}
 	&__date {
 		margin-right: $default-font-size * 0.5;
@@ -286,7 +286,6 @@
 
 		& > * {
 			margin-left: $default-font-size * 3;
-			// font-size: $default-font-size;
 			padding: 0;
 			border: none;
 		}
@@ -298,21 +297,12 @@
 
 	&__name {
 		@include respond(tab-port) {
-			font-size: $default-font-size * 1;
+			font-size: $font-size-five;
 			margin: $default-font-size 0 $default-font-size * 0.5 0;
-
-			& *:nth-child(2) {
-				// font-size: $default-font-size * 1.15;
-			}
 
 			&:nth-child(n + 2) {
 				border-top: $default-font-size * 0.1 solid var(--color-primary-1);
 			}
-		}
-		&-text {
-			// border-top-width: 0.32rem;
-			// border-color: transparent;
-			// border-bottom-style: solid;
 		}
 
 		&-link:link,
@@ -337,7 +327,7 @@
 	}
 	&__number {
 		display: none;
-
+		margin-right: $default-font-size;
 		&--no-link {
 			border-top: $default-font-size * 0.1875 solid transparent;
 		}
