@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 
 import PlayControl from "../VideoPlayer/PlayControl";
 import StopControl from "../VideoPlayer/StopControl";
@@ -24,7 +24,6 @@ import {
 import { closeCarouselItem } from "../utils";
 import OverlayText from "../OverlayText/OverlayText";
 import { FILL_RED_CLASSNAME } from "../constants";
-import { useState } from "react";
 
 export const FULLSCREEN_CLASSNAME = "full-screen";
 export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
@@ -72,6 +71,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 }) => {
 
 	const [isFullScreen, setIsFullScreen] = useState(false);
+	const [showOverlayText, setShowOverlayText] = useState(true);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const containerRef = useRef<HTMLElement>(null);
 	const progressBarRef = useRef<HTMLProgressElement>(null);
@@ -221,7 +221,9 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 					{videoOverlayChildren ? (
 						<OverlayText
 							titleText={videoOverlayText}
-							styles={videoOverlayStyles}>
+							styles={videoOverlayStyles}
+							setIsVisible={setShowOverlayText}
+							isVisible={showOverlayText}>
 							{videoOverlayChildren}
 						</OverlayText>
 					) : null}
@@ -293,6 +295,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 					doneClassname={DONE_CLASSNAME}
 					stoppedClassname={STOPPED_CLASSNAME}
 					functionToGetContainer={functionToGetContainer}
+					onClick={() => setShowOverlayText(true)}
 				/>
 
 				<RestartControl

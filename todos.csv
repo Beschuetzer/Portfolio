@@ -1,5 +1,4 @@
 JOB STUFF------------------------------------
-  -need to refactor OverlayItem to use useState and force a re-render of children when going in/out of full screen
   -add back and forward arrows for carousel items (reset current item html and change next or previous siblings')
   -make the carousel handle the calculation in setCarouselGridMaxColumnWidth() for $carousel-grid-width (instead of having to hard code in css variables)
   -adjust height of code links on right (should match page nav start on left)

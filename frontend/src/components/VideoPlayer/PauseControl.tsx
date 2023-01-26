@@ -11,6 +11,7 @@ interface PauseControlProps {
 	videoRef: RefObject<HTMLElement>,
 	containerRef?: RefObject<HTMLElement>,
 	functionToGetContainer?: (e: MouseEvent) => HTMLElement | null,
+	onClick?: (e: MouseEvent) => void,
 }
 
 const PauseControl: React.FC<PauseControlProps> = ({
@@ -22,6 +23,7 @@ const PauseControl: React.FC<PauseControlProps> = ({
 	doneClassname,
 	stoppedClassname,
 	functionToGetContainer = null,
+	onClick = () => null,
 }) => {
   const handlePauseVideo = (e: MouseEvent) => {
 		e.stopPropagation();
@@ -31,6 +33,7 @@ const PauseControl: React.FC<PauseControlProps> = ({
 		if (!container && functionToGetContainer) container = functionToGetContainer(e);
 
 		pauseVideo((videoRef?.current) as HTMLVideoElement, container as HTMLElement);
+		onClick && onClick(e);
 	}
 
   const pauseVideo = (video: HTMLVideoElement, container: HTMLElement) => {

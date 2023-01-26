@@ -18,6 +18,8 @@ interface OverlayTextProps {
   cssClassname?: string,
   styles?: CSSProperties,
   children?: any,
+  isVisible?: boolean, //parent controls visibility
+  setIsVisible?: React.Dispatch<React.SetStateAction<boolean>>, //parent controls visibility
 }
 
 
@@ -27,14 +29,15 @@ const OverlayText: React.FC<OverlayTextProps> = ({
   cssClassname = 'overlay-text',
   styles,
   children,
+  isVisible = true,
+  setIsVisible = () => null,
 }) => {
 
   const reference = useRef<any>(null);
   let stylesToUse = reconcileStyles(styles as CSSProperties);
-  const [isVisible, setIsVisible] = useState(true);
 
   function onClick() {
-    setIsVisible((isVisible) => !isVisible);
+    setIsVisible && setIsVisible(false);
   }
 
   useEffect(() => {
