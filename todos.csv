@@ -1,5 +1,6 @@
 JOB STUFF------------------------------------
-  -carousels should be smaller and hold more items per row
+  -add an X in top right of carousel video overlay to be able to pause video and see what is there.
+  -make the carousel handle the calculation in setCarouselGridMaxColumnWidth() for $carousel-grid-width (instead of having to hard code in css variables)
   -adjust height of code links on right (should match page nav start on left)
   -how hard to make the site nav and github buttons smaller?
   -create a Solution Sidekick feature page (add to start page too; left side)

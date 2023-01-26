@@ -246,8 +246,9 @@ $carousel-svg-parent-offset-nav-switch: calc(
 	50% - #{$carousel-svg-parent-width-nav-switch}
 );
 $carousel-column-gap: $default-font-size;
+$carousel-items-per-row: 4;
 $carousel-grid-width: calc(
-	(#{$resume-card-width-full} - 2 * #{$carousel-column-gap * 3}) / 3
+	(#{$resume-card-width-full} - 2 * #{$carousel-column-gap * $carousel-items-per-row}) / #{$carousel-items-per-row} + .3rem
 );
 
 //page-nav

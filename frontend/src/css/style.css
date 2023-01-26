@@ -174,7 +174,7 @@
   --card-scale-amount: 1;
   --card-playing-transform: translate(0, 0) scale(1);
   --carousel-grid-width: calc(
-  	(74.375rem - 2 * 4.2rem) / 3
+  	(74.375rem - 2 * 5.6rem) / 4 + .3rem
   );
   --diamond-fractal-animation-duration: 120s;
   --diamond-fractal-length: calc(20vw * var(--aspect-ratio-factor));
@@ -2246,8 +2246,8 @@ body {
   font-size: 1.4rem;
   width: 95%;
   margin: 0 auto 1.4rem auto;
-  height: 21rem;
-  border-radius: 2.8rem;
+  height: 15.2894rem;
+  border-radius: 0.7rem;
   overflow: hidden;
   box-shadow: 0px 4px 8px rgba(var(--color-black-rgb), 0.5);
   transition: border-radius 0.5s ease, transform 0.5s ease;
@@ -2258,14 +2258,14 @@ body {
   }
 }
 .carousel__item:hover {
-  border-radius: 0.7rem;
+  border-radius: 0;
 }
 .carousel__item * {
   pointer-events: all;
 }
 .carousel__item-description {
   --background-opacity: 0.95;
-  --font-size: 1.4rem;
+  --font-size: 1.12rem;
   --padding: 0.7rem;
   --padding-top: var(--padding);
   --padding-right: var(--padding);
@@ -2391,8 +2391,8 @@ body {
   fill: var(--color-primary-4);
   z-index: 100000;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 46%;
+  left: 56%;
   transform: translate(-50%, -50%);
   transition: fill 0.125s ease;
 }

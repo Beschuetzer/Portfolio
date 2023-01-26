@@ -167,9 +167,9 @@
 		z-index: 1;
 		font-size: $font-size-four;
 		width: 95%;
-    margin: 0 auto $default-font-size auto;
-		height: $default-font-size * 15;
-		border-radius: $default-font-size * 2;
+    	margin: 0 auto $default-font-size auto;
+		height: $default-font-size * 10.921;
+		border-radius: $default-font-size / 2;
 		overflow: hidden;
 		box-shadow: 0px 4px 8px rgba(var(--color-black-rgb), 0.5);
 		transition: 
@@ -182,7 +182,7 @@
 		}
 
 		&:hover {
-			border-radius: $default-font-size * 0.5;
+			border-radius: 0;
 		}
 
 		& * {
@@ -191,7 +191,7 @@
 
 		&-description {
 			--background-opacity: #{$resume-color-opacity};
-			--font-size: #{$font-size-four};
+			--font-size: #{$font-size-three};
 			--padding: #{$default-font-size * 0.5};
 			--padding-top: var(--padding);
 			--padding-right: var(--padding);
@@ -348,8 +348,8 @@
 			fill: var(--color-primary-4);
 			z-index: 100000;
 			position: absolute;
-			top: 50%;
-			left: 50%;
+			top: 46%;
+			left: 56%;
 			transform: translate(-50%, -50%);
 			transition: fill $animation-duration / 4 $animation-easing-standard;
 
