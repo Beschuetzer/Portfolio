@@ -2198,6 +2198,7 @@ body {
   	87.5vh - 2.5vh
   ) / 2);
   --translation-y: 0%;
+  display: none;
   position: relative;
   z-index: 100;
   justify-self: center;
@@ -2210,12 +2211,17 @@ body {
   }
 }
 .carousel__arrow-button--full-screen {
+  display: inline;
   --translation-y: -50%;
   position: fixed;
   z-index: 1000000;
   display: block;
-  bottom: calc( 				(100vh - 87.5vh) - 					(2.5vh) 			);
-  top: auto;
+  top: calc(87.5vh / 2);
+  opacity: 0.25;
+  bottom: auto;
+}
+.carousel__arrow-button--full-screen:hover {
+  opacity: 1;
 }
 .carousel__arrow-button--full-screen.carousel__arrow-button--left {
   left: 1.4rem;
@@ -2547,7 +2553,7 @@ body {
   }
 }
 .carousel .card__restart-parent {
-  right: 1.4rem;
+  right: 0;
   left: auto;
 }
 @media only screen and (max-width: 68.75em) {
@@ -2566,7 +2572,7 @@ body {
   }
 }
 .carousel .card__close-parent {
-  right: 1.4rem;
+  right: 0;
   left: auto;
   top: 0;
   transform: none;

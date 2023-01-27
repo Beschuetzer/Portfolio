@@ -91,7 +91,7 @@
 	&__arrow-button {
 		--fullscreen-top: calc(#{$carousel-full-screen-media-height} / 2);
 		--translation-y: 0%;
-
+		display: none;
 		position: relative;
 		z-index: 100;
 		// transform: none;
@@ -104,21 +104,19 @@
 		}
 
 		&--full-screen {
+			display: inline;
 			--translation-y: -50%;
 			position: fixed;
 			z-index: 1000000;
 			// top: var(--fullscreen-top);
 			display: block;
-			bottom: calc(
-				(100vh - #{$carousel-full-screen-item-height}) -
-					(#{$carousel-progress-bar-height})
-			);
-			top: auto;
-			// @include respond(nav-switch) {
-			// 	bottom: calc(
-			// 	(100vh - #{$carousel-full-screen-item-height}) - (#{$carousel-progress-bar-height})
-			// );
-			// }
+			top: calc(#{$carousel-full-screen-item-height} / 2);
+			opacity: .25;
+			bottom: auto;
+			
+			&:hover {
+				opacity: 1;
+			}
 		}
 
 		&--full-screen#{&}--left {
@@ -511,7 +509,7 @@
 	}
 
 	& .card__restart-parent {
-		right: $default-font-size;
+		right: 0;
 		left: auto;
 
 		@include respond(nav-switch) {
@@ -530,7 +528,7 @@
 	}
 
 	& .card__close-parent {
-		right: $default-font-size;
+		right: 0;
 		left: auto;
 		top: 0;
 		transform: none;
