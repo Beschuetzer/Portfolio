@@ -872,7 +872,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__menu-bar::before {
-    transform: rotate(105deg) translate(-0.105rem, -0.7rem);
+    transform: rotate(105deg) translate(0.35rem, 2.625rem);
   }
 }
 .navbar.navbar--active .navbar__menu-bar {
