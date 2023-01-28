@@ -156,7 +156,7 @@
 			grid-template-rows:
 				repeat(2, var(--home-column-height))
 				max-content
-				1fr;
+				0fr;
 
 				line-height: 1.4;
 			
@@ -303,7 +303,7 @@
 
 		&-right {
 			&-content {
-				transform: translateY(19%);
+				transform: translateY(10%);
 
 				@include respond($breakpoint-to-change-layout) {
 					transform: none;
@@ -393,12 +393,13 @@
 	}
 
 	&__content-header {
-		text-shadow: getTextShadow(
-			hard,
-			var(--color-primary-2-rgb),
-			var(--color-primary-4-rgb),
-			0.05
-		);
+		// text-shadow: getTextShadow(
+		// 	hard,
+		// 	var(--color-primary-2-rgb),
+		// 	var(--color-primary-4-rgb),
+		// 	0.05
+		// );
+		text-shadow: none;
 		font-weight: 700;
 		font-family: $font-family-fancy-bridge;
 		font-size: $font-size-nine;
@@ -446,6 +447,9 @@
 			$animation-easing-standard-easeInOutBack-smaller;
 
 		@include respond($breakpoint-to-change-layout) {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			animation: $home-page-animation ease;
 		}
 	}
