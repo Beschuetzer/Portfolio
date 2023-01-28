@@ -1,5 +1,5 @@
 .page-wrapper {
-	padding-top: calc(var(--header-height) + #{$navbar__logo-width});
+    padding-top: calc(#{$header-top} + 1.6vw);
 
     @include respond(nav-switch) {
 		padding-top: calc(var(--header-height) + #{$default-font-size} * 1);

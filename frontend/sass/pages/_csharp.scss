@@ -142,15 +142,12 @@
 		font-size: var(--font-size);
 		text-align: center;
 		width: 100vw;
-		/* padding-top: calc(#{$header-top} - 2vw); */
 		text-shadow: $resume-header-text-shadow;
 		color: var(--color-primary-4);
 
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		position: absolute;
-		top: calc(#{$header-top} + #{$font-size-nine} / 2.5);
 
 		&-link {
 			text-decoration: none;
@@ -167,14 +164,10 @@
 		}
 
 		@include respond(nav-switch) {
-			// display: grid;
-			// grid-template-columns: min-content 1fr min-content;
-			// justify-content: flex-start;
 			display: flex;
 			flex-direction: column-reverse;
 			width: $resume-card-width-full;
 			margin: auto;
-			position: static;
 		}
 
 		@include respond(tab-land) {
