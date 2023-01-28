@@ -1,5 +1,5 @@
 .page-wrapper {
-    padding-top: calc(#{$header-top} + #{$page-wrapper-padding-top-spacing});
+    padding-top: $page-wrapper-padding-top-spacing;
     // padding-top: 3.5rem;
 
     @include respond(nav-switch) {

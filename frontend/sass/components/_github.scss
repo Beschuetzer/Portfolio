@@ -2,7 +2,7 @@
 	border-radius: 50%;
 	border: 1px solid transparent;
 	font-family: $font-family-text;
-	font-size: 1vw;
+	font-size: $font-size-three;
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -26,8 +26,6 @@
 	}
 
 	&__svg {
-		// width: 100%;
-		// height: $default-font-size * 5.875;
 		height: $github__logo-width;
 		width: $github__logo-width;
 		fill: var(--color-primary-4);
@@ -48,25 +46,22 @@
 		left: 50%;
 		pointer-events: none;
 		z-index: 1;
+		transform: translate(-50%, 0%);
 
 		&-top {
-			transform: translate(-50%, 0%);
-			top: 0.5vw;
+			top: $default-font-size / 2;
 		}
 
 		&-bottom {
-			transform: translate(-50%, 0%);
-			bottom: 0.4vw;
+			bottom: $default-font-size / 2;
 		}
 
 		@include respond(nav-switch) {
 			&-top {
-				transform: translate(-50%, 0%);
-				top: $default-font-size * 0.4375;
+				top: $default-font-size * 0.33;
 			}
 			&-bottom {
-				transform: translate(-50%, 0%);
-				bottom: $default-font-size * 0.33;
+				bottom: $default-font-size * 0.25;
 			}
 		}
 	}

@@ -193,7 +193,7 @@ $bridge-card-section-3-gradient: linear-gradient(
 );
 $bridge-arrow-hover-scale-amount: 1.1;
 $bridge-card-hover-button-opacity: 0.5;
-$bridge-page-nav-link-scale-amount: 1.25;
+$bridge-page-nav-link-scale-amount: 1.1;
 $bridge-hero-animation-duration: $animation-duration * 2;
 $hero-background-opacity: 0.66;
 $arrow-button-position: calc(
@@ -247,28 +247,12 @@ $carousel-grid-width: calc(
 );
 //#endregion
 
-//#region PageNav
-$page-nav-top: calc(
-	100% +
-		(
-			(
-					(
-							(
-									100vw -
-										(
-											#{$resume-card-width-full} + (
-													(100vw - #{$resume-card-width-full}) / 2
-												) + #{$navbar__logo-width}
-										)
-								) / 2
-						) - 1vw
-				) * 1
-		) - 0.9vw
-);
+//#region Page Wrapper
+$page-wrapper-padding-top-spacing: calc(#{$header-top} + #{$default-font-size});
 //#endregion
 
-//#region Page Wrapper
-$page-wrapper-padding-top-spacing: $default-font-size * 2.5;
+//#region PageNav
+$page-nav-top: calc(#{$navbar__logo-width} + #{$default-font-size} * 1);
 //#endregion
 
 :root {

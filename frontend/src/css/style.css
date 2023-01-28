@@ -1370,7 +1370,7 @@ body {
   /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
   z-index: 1;
   position: absolute;
-  top: calc( 	100% + 		( 			( 					( 							( 									100vw - 										( 											74.375rem + ( 													(100vw - 74.375rem) / 2 												) + 8.344rem 										) 								) / 2 						) - 1vw 				) * 1 		) - 0.9vw );
+  top: calc(8.344rem + 1.4rem * 1);
   left: 0;
   width: calc((100% - 74.375rem) / 2);
   font-size: 2.1875rem;
@@ -2631,7 +2631,7 @@ body {
   border-radius: 50%;
   border: 1px solid transparent;
   font-family: "Open Sans", sans-serif;
-  font-size: 1vw;
+  font-size: 1.12rem;
   position: relative;
   display: flex;
   align-items: center;
@@ -2671,23 +2671,20 @@ body {
   left: 50%;
   pointer-events: none;
   z-index: 1;
+  transform: translate(-50%, 0%);
 }
 .github__text-top {
-  transform: translate(-50%, 0%);
-  top: 0.5vw;
+  top: 0.7rem;
 }
 .github__text-bottom {
-  transform: translate(-50%, 0%);
-  bottom: 0.4vw;
+  bottom: 0.7rem;
 }
 @media only screen and (max-width: 68.75em) {
   .github__text-top {
-    transform: translate(-50%, 0%);
-    top: 0.6125rem;
+    top: 0.462rem;
   }
   .github__text-bottom {
-    transform: translate(-50%, 0%);
-    bottom: 0.462rem;
+    bottom: 0.35rem;
   }
 }
 
@@ -3461,9 +3458,10 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  top: calc( 			14vw + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 				1.25vw 		);
+  top: calc(calc(8.344rem + 1.4rem * 1));
+  transform: translateY(33%);
   text-decoration: none;
-  right: calc((100vw - calc( 	74.375rem + ((100% - 74.375rem) / 2) + 8.344rem ) - 1.5vw) / 2);
+  right: calc((100vw - calc( 	74.375rem + ((100% - 74.375rem) / 2) + 8.344rem ) - 1.25vw) / 2);
 }
 @media only screen and (max-width: 68.75em) {
   .source-link__source {
@@ -3485,7 +3483,7 @@ body {
   width: 8.344rem;
   height: 8.344rem;
   fill: var(--arrow-button-left-fill-hover);
-  opacity: 0.15;
+  opacity: 0.25;
   transition: fill 0.125s cubic-bezier(1, 0, 0, 1);
 }
 .source-link__source-label {
@@ -3512,20 +3510,20 @@ body {
   transition: transform 0.125s cubic-bezier(1, 0, 0, 1);
   border-radius: 50%;
   padding: 0.35rem 0.7rem;
-  background-color: rgba(var(--color-primary-4-rgb), 0.1);
 }
 .source-link__source:hover .source-link__source-label {
   color: var(--arrow-button-right-fill-hover);
-  transform: rotate(2.5deg);
+  transform: rotate(0deg);
 }
 .source-link__source:hover svg {
   fill: var(--arrow-button-right-fill);
+  opacity: 0.33;
 }
 .source-link__demo {
-  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						1.25vw 				) * 1.66 		);
+  top: calc(calc(8.344rem + 1.4rem * 1) + 8.344rem);
 }
 .source-link__live {
-  top: calc( 			( 					14vw + 						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) - 						1.25vw 				) * 1.33 		);
+  top: calc(calc(8.344rem + 1.4rem * 1) + 8.344rem * 2);
 }
 
 :is(.csharp, .resume) .source-link__source-svg {
@@ -4027,7 +4025,7 @@ body {
 .bridge__page-nav-link:hover {
   opacity: 1;
   color: var(--bridge-page-nav-link-color-hover);
-  transform: translateY(-0.14rem) scale(1.25);
+  transform: translateY(-0.14rem) scale(1.1);
 }
 @media only screen and (max-width: 68.75em) {
   .bridge__page-nav-link {
@@ -4036,12 +4034,12 @@ body {
 }
 .bridge__current-section {
   opacity: 1;
-  transform: scale(1.25);
+  transform: scale(1.1);
 }
 .bridge__current-section:hover {
   cursor: auto;
   color: var(--bridge-page-nav-link-color);
-  transform: scale(1.25) translate(0, 0);
+  transform: scale(1.1) translate(0, 0);
 }
 .bridge .hero.bridge {
   -webkit-touch-callout: none;
@@ -4298,11 +4296,9 @@ body {
 .arrow-button {
   cursor: pointer;
   position: absolute;
-  transform: translateY(-50%);
-  bottom: 0;
+  bottom: 2.1rem;
   z-index: 10;
   border-radius: 50%;
-  box-shadow: 0 1.4rem 2.8rem rgba(17, 17, 17, 0.33);
   width: calc( 		(8.344rem + 0.29vw) / var(--bridge-arrow-hover-scale-amount) 	);
   height: calc( 		(8.344rem + 0.29vw) / var(--bridge-arrow-hover-scale-amount) 	);
   transition: transform 0.25s ease, opacity 0.75s ease;
@@ -4354,7 +4350,8 @@ body {
   fill: var(--arrow-button-right-fill-hover);
 }
 .arrow-button:hover {
-  transform: translateY(calc(-50% - 0.35rem));
+  transform: translateY(-0.35rem);
+  box-shadow: 0 1.4rem 2.8rem rgba(17, 17, 17, 0.33);
 }
 
 .reverse-ease {
@@ -4473,7 +4470,7 @@ body {
   padding: 0 2.8rem 0 2.8rem;
 }
 .csharp__section {
-  padding: 2.8rem 0;
+  margin: 5.6rem 0;
 }
 @media only screen and (max-width: 58.5625em) {
   .csharp__section {
@@ -5238,7 +5235,7 @@ div.references__name {
 }
 
 .page-wrapper {
-  padding-top: calc(2.1rem + 3.5rem);
+  padding-top: calc(2.1rem + 1.4rem);
 }
 @media only screen and (max-width: 68.75em) {
   .page-wrapper {
@@ -5251,7 +5248,7 @@ div.references__name {
   }
 }
 .page-wrapper > section:first-of-type {
-  margin-top: 3.5rem;
+  margin-top: calc(2.1rem + 1.4rem);
 }
 
 /*# sourceMappingURL=style.css.map */

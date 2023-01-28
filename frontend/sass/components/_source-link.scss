@@ -21,12 +21,10 @@ $top-offset: 1.25vw;
 		display: inline-flex;
 		justify-content: center;
 		align-items: center;
-		top: calc(
-			14vw + ((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) -
-				#{$top-offset}
-		);
+		top: calc(#{$page-nav-top});
+		transform: translateY(33%);
 		text-decoration: none;
-		right: calc((100vw - #{$header-inner-width} - 1.5vw) / 2);
+		right: calc((100vw - #{$header-inner-width} - 1.25vw) / 2);
 
 		@include respond(nav-switch) {
 			top: auto;
@@ -47,7 +45,7 @@ $top-offset: 1.25vw;
 			width: $navbar__logo-width;
 			height: $navbar__logo-width;
 			fill: var(--arrow-button-left-fill-hover);
-			opacity: 0.15;
+			opacity: 0.25;
 			transition: fill $animation-duration * 0.25 $animation-easing-modern;
 		}
 
@@ -71,38 +69,27 @@ $top-offset: 1.25vw;
 			border-radius: 50%;
 			padding: $default-font-size * 0.25 $default-font-size * 0.5;
 			// color: rgba(var(--color-primary-4-rgb), 1);
-			background-color: rgba(var(--color-primary-4-rgb), 0.1);
+			// background-color: rgba(var(--color-primary-4-rgb), 0.1);
 		}
 
 		&:hover &-label {
 			color: var(--arrow-button-right-fill-hover);
 			// color: rgba(var(--color-primary-4-rgb), .5);
-			transform: rotate(2.5deg);
+			transform: rotate(0deg);
 		}
 
 		&:hover svg {
 			fill: var(--arrow-button-right-fill);
+			opacity: .33;
 		}
 	}
 
 	&__demo {
-		top: calc(
-			(
-					14vw +
-						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) -
-						#{$top-offset}
-				) * 1.66
-		);
+		top: calc(#{$page-nav-top} + #{$navbar__logo-width});
 	}
 
 	&__live {
-		top: calc(
-			(
-					14vw +
-						((((100vw - (85rem + ((100vw - 85rem) / 2) + 7vw)) / 2) - 1vw) * 1) -
-						#{$top-offset}
-				) * 1.33
-		);
+		top: calc(#{$page-nav-top} + #{$navbar__logo-width} * 2);
 	}
 }
 

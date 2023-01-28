@@ -700,7 +700,7 @@ $scale-y-amount: .25;
 	z-index: 1;
 	position: absolute;
 	top: $page-nav-top;
-	left: 0;
+	left: 0; 
 	width: calc((100% - #{$resume-card-width-full}) / 2);
 	font-size: $font-size-six;
 	display: grid;
