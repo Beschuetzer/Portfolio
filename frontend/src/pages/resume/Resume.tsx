@@ -129,6 +129,10 @@ const skills: {
 				percent: 65,
 			},
 			{
+				title: "Java",
+				percent: 48,
+			},
+			{
 				title: "Javascript",
 				percent: 82,
 			},
@@ -151,10 +155,6 @@ const skills: {
 			{
 				title: "Typescript",
 				percent: 75,
-			},
-			{
-				title: "Java",
-				percent: 48,
 			},
 		],
 		[webDevSubSkillsLabels[1]]: [
@@ -193,6 +193,10 @@ const skills: {
 				percent: 48,
 			},
 			{
+				title: ".NET",
+				percent: 55,
+			},
+			{
 				title: "NextJS",
 				percent: 33,
 			},
@@ -220,12 +224,12 @@ const skills: {
 				title: "Spring Boot",
 				percent: 53,
 			},
-			{
-				title: ".NET",
-				percent: 55,
-			},
 		],
 		[webDevSubSkillsLabels[3]]: [
+			{
+				title: "BDD",
+				percent: 66,
+			},
 			{
 				title: "BEM",
 				percent: 57,
@@ -245,10 +249,6 @@ const skills: {
 			{
 				title: "TDD",
 				percent: 52.5,
-			},
-			{
-				title: "BDD",
-				percent: 66,
 			},
 		],
 		[webDevSubSkillsLabels[4]]: [
