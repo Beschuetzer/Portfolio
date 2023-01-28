@@ -46,7 +46,7 @@ $font-family-headers: "Merriweather", serif;
 
 //#region Sizes
 $scale-amount: 1.05;
-$navbar__logo-width: 7vw;
+$navbar__logo-width: $font-size-thirteen;
 $github__logo-width: $navbar__logo-width;
 $navbar__logo-width-nav-switch: $default-font-size * 5;
 $content-padding-nav-switch: 5vmin;
@@ -59,8 +59,6 @@ $navbar__button-bar-before-rotation: rotate(105deg);
 $navbar__button-bar-before-transform: $navbar__button-bar-before-rotation
 	translate($default-font-size * 0.25, $default-font-size * 1.875);
 $navbar__button-bar-after-rotation: rotate(-105deg);
-$navbar__button-bar-after-transform: $navbar__button-bar-after-rotation
-	translate(-$default-font-size * 0.075, -$default-font-size * 0.5);
 $navbar-width-nav-switch: 97.5vw;
 
 $navbar__item-border-radius: $default-font-size * 10;
