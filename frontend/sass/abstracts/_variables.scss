@@ -1,4 +1,4 @@
-//font sizes
+//#region Font Sizes
 $default-font-size: 1.4rem;
 $font-size-fourteen: $default-font-size * 9.313;
 $font-size-thirteen: $default-font-size * 7.451;
@@ -14,8 +14,9 @@ $font-size-four: $default-font-size * 1;
 $font-size-three: $default-font-size * .8;
 $font-size-two: $default-font-size * .64;
 $font-size-one: $default-font-size * .511875;
+//#endregion
 
-//media query breakpoints
+//#region Media Query Breakpoints
 $nav-list-break-max-width: 23.125em;
 $small-font-max-width: 29.3125em;
 $nav-break-max-width: 35.0625em;
@@ -25,30 +26,34 @@ $tab-land-max-width: 58.5625em;
 $nav-switch-width: 68.75em;
 $larger-than-nav-switch: calc(#{$nav-switch-width} + 0.001em);
 $big-desktop-min-width: 112.5em;
+//#endregion
 
-//font
+//#region Scrollbar 
+$scrollbar-box-shadow: inset 0 0 $default-font-size * 0.5
+	rgba(var(--color-primary-1-rgb), 0.5);
+$scrollbar-track-background: var(--color-primary-1);
+$scrollbar-thumb-background: var(--color-primary-4);
+//#endregion
+
+//#region Fonts
 // $font-family-text: "Roboto", sans-serif;
 // $font-family-headers: "Cinzel", sans-serif;
 $line-height: 1.5;
 $font-family-fancy-bridge: "New Tegomin", serif;
 $font-family-text: "Open Sans", sans-serif;
 $font-family-headers: "Merriweather", serif;
-$scrollbar-box-shadow: inset 0 0 $default-font-size * 0.5
-	rgba(var(--color-primary-1-rgb), 0.5);
-$scrollbar-track-background: var(--color-primary-1);
-$scrollbar-thumb-background: var(--color-primary-4);
+//#endregion
 
-//sizes
+//#region Sizes
 $scale-amount: 1.05;
 $navbar__logo-width: 7vw;
 $github__logo-width: $navbar__logo-width;
 $navbar__logo-width-nav-switch: $default-font-size * 5;
 $content-padding-nav-switch: 5vmin;
 $paddingFactor: 1.25;
+//#endregion
 
-//overlay-text
-
-//navbar stuff
+//#region Navbar
 $navbar-full-z-index: 5;
 $navbar__button-bar-before-rotation: rotate(105deg);
 $navbar__button-bar-before-transform: $navbar__button-bar-before-rotation
@@ -69,8 +74,9 @@ $navbar-box-shadow-normal: 0px 4px 8px rgba($color-black, 0.33);
 $navbar-box-shadow-left-right-hover: -10px 0 10px rgba($color-black, 0.5);
 $navbar-box-shadow-hover: 0px 10px 10px rgba($color-black, 0.5);
 $hover-color-change-amount: 0.15;
+//#endregion
 
-//skills
+//#region Skills
 $skills-linear-gradient-original: linear-gradient(
 	to left,
 	var(--color-primary-1) 0%,
@@ -83,8 +89,9 @@ $skills-linear-gradient-hover: linear-gradient(
 	var(--color-primary-1),
 	var(--color-primary-1)
 );
+//#endregion
 
-//home
+//#region Home
 $home-background-color-opacity: 0.1;
 $home-page-border: 2px solid rgba(var(--color-primary-4-rgb), 0.5);
 $home-page-animation: 1.5s 1 translateToZero forwards;
@@ -93,8 +100,9 @@ $home-name-font-weight: 100;
 $home-regular-text-opacity: 0.85;
 $home-content-header-gradient-colors: var(--color-primary-4),
 	var(--color-primary-4) var(--primary-4-end), var(--background-image-color-two);
+//#endregion
 
-//resume
+//#region Resume
 $resume-section-padding-top: $default-font-size * 2;
 $resume-card-width-full: $default-font-size * 53.125;
 $resume-header-text-shadow: getTextShadow(
@@ -102,23 +110,12 @@ $resume-header-text-shadow: getTextShadow(
 	var(--color-primary-3-rgb),
 	var(--color-primary-2-rgb)
 );
+//#endregion
 
-//header
-$header-top-inner: calc(
-	(
-		(
-				100vw -
-					(
-						#{$resume-card-width-full} + (
-								(100vw - #{$resume-card-width-full}) / 2
-							) + #{$navbar__logo-width}
-					)
-			) / 2
-	)
-);
-$page-margin-top-amount: calc(#{$header-top-inner});
+//#region Header
+$header-top:  $default-font-size * 1.5;
+$page-margin-top-amount: calc(#{$header-top});
 $page-margin-top-amount-nav-switch: $default-font-size * 7.5;
-$header-top: calc(#{$header-top-inner} - 0.4vw);
 $header-height: $default-font-size * 6.25;
 $header-toggler-width: 4rem;
 $header-inner-width: calc(
@@ -132,7 +129,7 @@ $header-width-nav-switch: calc(100vw - #{$default-font-size * 1.33});
 // $header-width-phone: calc(100vw - #{$default-font-size * 2});
 // $header-width-small-font: calc(100vw - #{$default-font-size * 2});
 
-//animation
+//#region animation
 $animation-duration: 0.5s;
 $animation-easing-standard: ease;
 $animation-easing-standard-easeInOutBack: cubic-bezier(0.68, -0.6, 0.32, 1.6);
@@ -145,9 +142,8 @@ $animation-easing-standard-easeInOutBack-smaller: cubic-bezier(
 $animation-easing-flash: cubic-bezier(0.68, -2, 0.32, 1);
 $animation-easing-modern: cubic-bezier(1, 0, 0, 1);
 $animation-navbar: $animation-duration $animation-easing-standard;
-$animation-bridge-width: calc(
-	#{$header-top-inner} * 2 + #{$navbar__logo-width} - 0.5vw
-);
+$animation-bridge-width: 1px;
+// $animation-bridge-width: calc((100% - #{$header-inner-width-vw}) + #{$navbar__logo-width});
 $animation-bridge-windshield-start: polygon(
 	$animation-bridge-width 100%,
 	$animation-bridge-width 0,
@@ -177,11 +173,13 @@ $animation-bridge-windshield-two-end: polygon(
 	100% 0%,
 	$animation-bridge-width 0
 );
+//#endregion
 
-//misc
+//#region misc
 $bg-video-opacity: 0.033;
+//#endregion
 
-//bridge
+//#region bridge
 $bridge-card-section-1-gradient: linear-gradient(
 	#{var(--bridge-gradient-direction)},
 	rgba(var(--color-primary-1-rgb), 0.5),
@@ -227,6 +225,7 @@ $card-header-height: $card-height / 3.333333333333;
 $card-initial-opacity: 0.25;
 $card-pause-and-stop-top: 85%;
 $card-pause-and-stop-width: 25%;
+//#endregion
 
 //carousel
 $carousel-item-card-size-nav-switch: $default-font-size * 12;
@@ -250,8 +249,9 @@ $carousel-items-per-row: 4;
 $carousel-grid-width: calc(
 	(#{$resume-card-width-full} - 2 * #{$carousel-column-gap * $carousel-items-per-row}) / #{$carousel-items-per-row} + .3rem
 );
+//#endregion
 
-//page-nav
+//#region PageNav
 $page-nav-top: calc(
 	100% +
 		(
@@ -269,6 +269,11 @@ $page-nav-top: calc(
 				) * 1
 		) - 0.9vw
 );
+//#endregion
+
+//#region Page Wrapper
+$page-wrapper-padding-top-spacing: $default-font-size * 2.5;
+//#endregion
 
 :root {
 	scroll-behavior: smooth;

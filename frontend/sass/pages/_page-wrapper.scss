@@ -1,5 +1,6 @@
 .page-wrapper {
-    padding-top: calc(#{$header-top} + 1.6vw);
+    padding-top: calc(#{$header-top} + #{$page-wrapper-padding-top-spacing});
+    // padding-top: 3.5rem;
 
     @include respond(nav-switch) {
 		padding-top: calc(var(--header-height) + #{$default-font-size} * 1);
@@ -8,9 +9,8 @@
     @include respond(mobile) {
         padding-top: calc(var(--header-height) + #{$default-font-size} * 1);
     }
-    // &.csharp, &.downloader {
-    //     @include respond(nav-switch) {
-    //         padding-top: $default-font-size * 2;
-    //     }
-    // }
+    
+    & > section:first-of-type {
+        margin-top: $page-wrapper-padding-top-spacing;
+    }
 }

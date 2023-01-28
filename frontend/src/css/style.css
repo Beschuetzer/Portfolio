@@ -231,24 +231,24 @@
 }
 @keyframes bridge-hero-windshield {
   0% {
-    clip-path: polygon(calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 100%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0, 100% 100%, 100% 0%);
+    clip-path: polygon(1px 100%, 1px 0, 100% 100%, 100% 0%);
   }
   50% {
-    clip-path: polygon(calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 100%, 100% 100%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0, 100% 0%);
+    clip-path: polygon(1px 100%, 100% 100%, 1px 0, 100% 0%);
   }
   100% {
-    clip-path: polygon(calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 100%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0, 100% 100%, 100% 0%);
+    clip-path: polygon(1px 100%, 1px 0, 100% 100%, 100% 0%);
   }
 }
 @keyframes bridge-hero-windshield-two {
   0% {
-    clip-path: polygon(calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 100%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0, calc(calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) + 1px) 1000%, 200% 100%, 100% 0%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0);
+    clip-path: polygon(1px 100%, 1px 0, calc(1px + 1px) 1000%, 200% 100%, 100% 0%, 1px 0);
   }
   50% {
-    clip-path: polygon(calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 100%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0, 100% 1px, 200% 100%, 100% 0%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0);
+    clip-path: polygon(1px 100%, 1px 0, 100% 1px, 200% 100%, 100% 0%, 1px 0);
   }
   100% {
-    clip-path: polygon(calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 100%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0, calc(calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) + 1px) 1000%, 200% 100%, 100% 0%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0);
+    clip-path: polygon(1px 100%, 1px 0, calc(1px + 1px) 1000%, 200% 100%, 100% 0%, 1px 0);
   }
 }
 @keyframes bridge-more {
@@ -1302,7 +1302,7 @@ body {
 
 .header {
   pointer-events: none;
-  top: calc(calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.4vw);
+  top: 2.1rem;
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -3609,7 +3609,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  clip-path: polygon(calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 100%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0, calc(calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) + 1px) 1000%, 200% 100%, 100% 0%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0);
+  clip-path: polygon(1px 100%, 1px 0, calc(1px + 1px) 1000%, 200% 100%, 100% 0%, 1px 0);
   transition: clip-path 1s ease;
 }
 .bg-video video {
@@ -4298,7 +4298,7 @@ body {
   left: 50%;
 }
 #hero__more-checkbox:checked ~ .hero .bg-video {
-  clip-path: polygon(calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 100%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0, 100% 1px, 200% 100%, 100% 0%, calc( 	calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) * 2 + 7vw - 0.5vw ) 0);
+  clip-path: polygon(1px 100%, 1px 0, 100% 1px, 200% 100%, 100% 0%, 1px 0);
 }
 #hero__more-checkbox:checked ~ .hero .hero__heading {
   opacity: 1;
@@ -5265,7 +5265,7 @@ div.references__name {
 }
 
 .page-wrapper {
-  padding-top: calc(calc(calc( 	( 		( 				100vw - 					( 						74.375rem + ( 								(100vw - 74.375rem) / 2 							) + 7vw 					) 			) / 2 	) ) - 0.4vw) + 1.6vw);
+  padding-top: calc(2.1rem + 3.5rem);
 }
 @media only screen and (max-width: 68.75em) {
   .page-wrapper {
@@ -5276,6 +5276,9 @@ div.references__name {
   .page-wrapper {
     padding-top: calc(var(--header-height) + 1.4rem * 1);
   }
+}
+.page-wrapper > section:first-of-type {
+  margin-top: 3.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */
