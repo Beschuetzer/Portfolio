@@ -5277,13 +5277,5 @@ div.references__name {
     padding-top: calc(var(--header-height) + 1.4rem * 1);
   }
 }
-.page-wrapper.downloader {
-  padding-top: calc(var(--header-height) + 7vw - 1.4rem * 1);
-}
-@media only screen and (max-width: 68.75em) {
-  .page-wrapper.csharp, .page-wrapper.downloader {
-    padding-top: 2.8rem;
-  }
-}
 
 /*# sourceMappingURL=style.css.map */
