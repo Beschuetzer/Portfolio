@@ -825,8 +825,8 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__menu {
-    width: 7rem;
-    height: 7rem;
+    width: 6.6752rem;
+    height: 6.6752rem;
   }
 }
 .navbar__menu-bar, .navbar__menu-bar::before, .navbar__menu-bar::after {
@@ -872,7 +872,7 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__menu-bar::before {
-    transform: rotate(105deg) translate(0.35rem, 2.625rem);
+    transform: rotate(105deg) translate(0.39998rem, 2.8rem);
   }
 }
 .navbar.navbar--active .navbar__menu-bar {
@@ -4170,8 +4170,8 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .hero__more svg {
-    width: 14rem;
-    height: 14rem;
+    width: 13.3504rem;
+    height: 13.3504rem;
   }
 }
 .hero__more svg:nth-of-type(1) {
@@ -4222,8 +4222,8 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .hero__bridge-logo {
-    height: calc(7rem * 2 - 0.5rem);
-    width: calc(7rem * 2 - 0.5rem);
+    height: calc(6.6752rem * 2 - 0.5rem);
+    width: calc(6.6752rem * 2 - 0.5rem);
   }
 }
 .hero__background {
