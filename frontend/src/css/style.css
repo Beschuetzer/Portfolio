@@ -871,14 +871,7 @@ body {
   transform: rotate(105deg) translate(0.35rem, 2.625rem);
 }
 .navbar.navbar--active .navbar__menu-bar {
-  width: 1.66vw;
-  transform: translate(-33%, -50%);
-}
-@media only screen and (max-width: 68.75em) {
-  .navbar.navbar--active .navbar__menu-bar {
-    width: 2.1rem;
-    transform: translate(-50%, -50%);
-  }
+  width: calc(10.4314rem * .2);
 }
 .navbar.navbar--active .navbar__menu-bar::after {
   transform: rotate(-105deg) translate(-0.105rem, -0.7rem);
