@@ -1209,8 +1209,18 @@ body {
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::before {
   transform: rotate(135deg) translate(1.41848rem, 1.41848rem);
 }
+@media only screen and (max-width: 68.75em) {
+  .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::before {
+    transform: rotate(135deg) translate(1.19rem, 1.19rem);
+  }
+}
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::after {
   transform: rotate(-135deg) translate(1.41848rem, -1.41848rem);
+}
+@media only screen and (max-width: 68.75em) {
+  .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::after {
+    transform: rotate(-135deg) translate(1.19rem, -1.19rem);
+  }
 }
 .navbar.navbar--active .navbar__button:hover .navbar__menu-bar {
   width: 0;

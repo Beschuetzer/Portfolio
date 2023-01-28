@@ -530,9 +530,15 @@ $scale-y-amount: .25;
 			//A hover styling
 			&:hover .navbar__menu-bar::before {
 				transform: rotate(135deg) translate($navbar__logo-width * .17, $navbar__logo-width * .17);
+				@include respond(nav-switch) {
+					transform: rotate(135deg) translate($default-font-size * .85, $default-font-size * .85);
+				}
 			}
 			&:hover .navbar__menu-bar::after {
 				transform: rotate(-135deg) translate($navbar__logo-width * .17, -$navbar__logo-width * .17);
+				@include respond(nav-switch) {
+					transform: rotate(-135deg) translate($default-font-size * .85, -$default-font-size * .85);
+				}
 			}
 			&:hover .navbar__menu-bar {
 				width: 0;
