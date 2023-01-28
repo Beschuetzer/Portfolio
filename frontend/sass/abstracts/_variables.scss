@@ -56,8 +56,6 @@ $paddingFactor: 1.25;
 //#region Navbar
 $navbar-full-z-index: 5;
 $navbar__button-bar-before-rotation: rotate(105deg);
-$navbar__button-bar-before-transform: $navbar__button-bar-before-rotation
-	translate($default-font-size * 0.25, $default-font-size * 1.875);
 $navbar__button-bar-after-rotation: rotate(-105deg);
 $navbar-width-nav-switch: 97.5vw;
 

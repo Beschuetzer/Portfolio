@@ -868,13 +868,18 @@ body {
   transform: translate(-50%, calc((10.4314rem * .15) + 50%));
 }
 .navbar.navbar--active .navbar__menu-bar::before {
-  transform: rotate(105deg) translate(0.35rem, 2.625rem);
+  transform: rotate(105deg) translate(0.5528642rem, 3.963932rem);
+}
+@media only screen and (max-width: 68.75em) {
+  .navbar.navbar--active .navbar__menu-bar::before {
+    transform: rotate(105deg) translate(-0.105rem, -0.7rem);
+  }
 }
 .navbar.navbar--active .navbar__menu-bar {
-  width: calc(10.4314rem * .2);
+  width: calc(10.4314rem * .22);
 }
 .navbar.navbar--active .navbar__menu-bar::after {
-  transform: rotate(-105deg) translate(-0.105rem, -0.7rem);
+  transform: rotate(-105deg) translate(0rem, -1.04314rem);
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__menu-bar::after {

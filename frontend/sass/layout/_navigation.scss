@@ -98,14 +98,20 @@ $scale-y-amount: .25;
 
 		//Change menu bars to 'A' on click
 		.navbar.navbar--active &-bar::before {
-			transform: $navbar__button-bar-before-transform;
+			transform:  $navbar__button-bar-before-rotation
+				translate($navbar__logo-width * .053, $navbar__logo-width * .38);
+			@include respond(nav-switch) {
+				transform: $navbar__button-bar-before-rotation
+					translate(-$default-font-size * 0.075, -$default-font-size * 0.5);
+
+			}
 		}
 		.navbar.navbar--active &-bar {
-			width: calc(#{$navbar__logo_width} * .2);
+			width: calc(#{$navbar__logo_width} * .22);
 		}
 		.navbar.navbar--active &-bar::after {
-			transform: $navbar__button-bar-after-rotation
-			translate(-$default-font-size * 0.075, -$default-font-size * 0.5);
+			transform:  $navbar__button-bar-after-rotation
+				translate($navbar__logo-width * 0, $navbar__logo-width * -.1);
 			@include respond(nav-switch) {
 				transform: $navbar__button-bar-after-rotation
 					translate(-$default-font-size * 0.075, -$default-font-size * 0.5);
