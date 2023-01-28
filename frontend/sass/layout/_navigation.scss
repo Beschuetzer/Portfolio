@@ -103,11 +103,10 @@ $scale-y-amount: .25;
 			@include respond(nav-switch) {
 				transform: $navbar__button-bar-before-rotation
 				translate($default-font-size * 0.25, $default-font-size * 1.875);
-
 			}
 		}
 		.navbar.navbar--active &-bar {
-			width: calc(#{$navbar__logo_width} * .22);
+			width: calc(#{$navbar__logo_width} * .25);
 		}
 		.navbar.navbar--active &-bar::after {
 			transform:  $navbar__button-bar-after-rotation
@@ -115,7 +114,6 @@ $scale-y-amount: .25;
 			@include respond(nav-switch) {
 				transform: $navbar__button-bar-after-rotation
 					translate(-$default-font-size * 0.075, -$default-font-size * 0.5);
-
 			}
 		}
 	}
@@ -531,10 +529,10 @@ $scale-y-amount: .25;
 			}
 			//A hover styling
 			&:hover .navbar__menu-bar::before {
-				transform: rotate(135deg) translate(1.4rem, 1.4rem);
+				transform: rotate(135deg) translate($navbar__logo-width * .17, $navbar__logo-width * .17);
 			}
 			&:hover .navbar__menu-bar::after {
-				transform: rotate(-135deg) translate(1.4rem, -1.4rem);
+				transform: rotate(-135deg) translate($navbar__logo-width * .17, -$navbar__logo-width * .17);
 			}
 			&:hover .navbar__menu-bar {
 				width: 0;
