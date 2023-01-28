@@ -139,7 +139,7 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 
 				<section className="home__main-right">
 					<div className="home__main-right-content">
-						<span className="home__content-header">About: </span>
+						<span className="home__content-header">Resume: </span>
 						<br></br>
 						<EmbeddedLink
 							addSpaces={false}
@@ -164,26 +164,8 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 							className="home__main-link"
 							openInNewTab={false}
 							isLocal={true}
-							href={`${RESUME_URL}#education`}>
-							Education
-						</EmbeddedLink>
-						<br></br>
-						<EmbeddedLink
-							addSpaces={false}
-							className="home__main-link"
-							openInNewTab={false}
-							isLocal={true}
 							href={`${RESUME_URL}#references`}>
 							References
-						</EmbeddedLink>
-						<br></br>
-						<EmbeddedLink
-							addSpaces={false}
-							className="home__main-link"
-							openInNewTab={false}
-							isLocal={true}
-							href={ABOUT_URL}>
-							The Person
 						</EmbeddedLink>
 					</div>
 				</section>

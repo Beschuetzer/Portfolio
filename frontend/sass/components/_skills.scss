@@ -12,12 +12,6 @@
 			border: $default-font-size * 0.1 solid transparent;
 		}
 
-		&:last-of-type {
-			& .skills__section-title {
-				margin-bottom: 0 !important;
-			}
-		}
-
 		&-content {
 			height: 0;
 			visibility: hidden;

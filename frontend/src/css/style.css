@@ -3062,9 +3062,6 @@ body {
   cursor: auto;
   border: 0.14rem solid transparent;
 }
-.skills__section:last-of-type .skills__section-title {
-  margin-bottom: 0 !important;
-}
 .skills__section-content {
   height: 0;
   visibility: hidden;

@@ -1,7 +1,5 @@
 JOB STUFF------------------------------------
-  -adjust height of code links on right (should match page nav start on left)
-  -make the carousel handle the calculation in setCarouselGridMaxColumnWidth() for $carousel-grid-width (instead of having to hard code in css variables)
-  -how hard to make the site nav and github buttons smaller?
+  -make york repos public (team and personal) and add a description to both with links (add tags too and make sure they are referenced in the resume section)
   -create a Solution Sidekick feature page (add to start page too; left side)
   -add challenges (make a 3js demo for horse jump code)
   -update downloadable resume
@@ -11,15 +9,12 @@ JOB STUFF------------------------------------
   -add resume end date 11/12 for contract work and 11/13 for FTE work
   -add resume line talking point "10X increase in user base since starting" for Best Buy contract
   -minify SSK videos
-  -add pdf updated resume
-  -make york repos public (team and personal) and add a description to both with links (add tags too and make sure they are referenced in the resume section)
-  -increase values for React, Bootstrap, Redux, and PostGreSQL
-  -add links to best buy and york projects in the resume section (embedded links)
   -mobile - scrolling on own phone glitchy up and down fast
-  -adjust PageNav such that the scroll percent is 100 for previous item when it is in the middle of the screen
   -add sort options of skill examples?
+  -make the carousel handle the calculation in setCarouselGridMaxColumnWidth() for $carousel-grid-width (instead of having to hard code in css variables)
 
 BUGS------------------------------------
+  -adjust PageNav such that the scroll percent is 100 for previous item when it is in the middle of the screen
   -mobile start screen doesn't show all of bottom and not scrollable
   -after playing a song then stopping and closing the player, the orange tab still appears
   -bridge video cards don't close when another one is opened

@@ -186,7 +186,7 @@ const skills: {
 			},
 			{
 				title: "Bootstrap",
-				percent: 55,
+				percent: 68,
 			},
 			{
 				title: "NestJS",
@@ -258,7 +258,7 @@ const skills: {
 			},
 			{
 				title: "PostgresSQL",
-				percent: 55,
+				percent: 65,
 				href: "/certs/sql.png",
 			},
 		],
