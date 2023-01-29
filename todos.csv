@@ -11,9 +11,11 @@ JOB STUFF------------------------------------
   -minify SSK videos
   -mobile - scrolling on own phone glitchy up and down fast
   -add sort options of skill examples?
+  -each instance of <Carousel/> has a section above it that can be refactored into <Carousel/>
   -make the carousel handle the calculation in setCarouselGridMaxColumnWidth() for $carousel-grid-width (instead of having to hard code in css variables)
 
 BUGS------------------------------------
+  -bridge demo page lacks carousel arrows
   -adjust PageNav such that the scroll percent is 100 for previous item when it is in the middle of the screen
   -mobile start screen doesn't show all of bottom and not scrollable
   -after playing a song then stopping and closing the player, the orange tab still appears

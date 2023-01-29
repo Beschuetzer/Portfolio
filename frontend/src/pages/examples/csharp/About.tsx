@@ -184,7 +184,8 @@ const germanyCarousel = (
 				null,
 				null as any,
 				`#${sectionNames[0].toLowerCase()}`,
-			)}></Carousel>
+			)}
+		/>
 	</section>
 );
 
@@ -285,7 +286,8 @@ const likesCarousel = (
 				null,
 				null as any,
 				`#${sectionNames[1].toLowerCase()}`,
-			)}></Carousel>
+			)}
+		/>
 	</section>
 );
 
@@ -323,7 +325,8 @@ const peopleToPeopleCarousel = (
 				null,
 				null as any,
 				`#${sectionNames[0].toLowerCase()}`,
-			)}></Carousel>
+			)}
+		/>
 	</section>
 );
 

@@ -96,7 +96,7 @@ const sections: CSharpSection[] = [
 		name: sectionNames[1],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
-			<div className="csharp__carousel">
+			<section className="csharp__carousel">
 				<Carousel
 					items={[
 						{
@@ -155,7 +155,7 @@ const sections: CSharpSection[] = [
 							itemSrc: clipAnimations,
 							itemThumbnailSrc: clipAnimationsThumbnail,
 							description: "Misc. Animations",
-							ideoOverlayText: "Watching Replays",
+							videoOverlayText: "Watching Replays",
 							videoOverlayChildren: (
 								<div>
 									<CSharpCardSection title="Cherry on Top">
@@ -230,7 +230,7 @@ const sections: CSharpSection[] = [
 						`#${sectionNames[1].toLowerCase()}`,
 					)}
 				/>
-			</div>,
+			</section>,
 		],
 	},
 	{

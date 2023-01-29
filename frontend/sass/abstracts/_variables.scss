@@ -245,6 +245,7 @@ $carousel-items-per-row: 4;
 $carousel-grid-width: calc(
 	(#{$resume-card-width-full} - 2 * #{$carousel-column-gap * $carousel-items-per-row}) / #{$carousel-items-per-row} + .3rem
 );
+$carousel-nav-switch-button-bottom: calc(100vh - #{$carousel-full-screen-media-height});
 //#endregion
 
 //#region Page Wrapper

@@ -159,7 +159,8 @@ const sections: CSharpSection[] = [
 						null,
 						null as any,
 						`#${sectionNames[1].toLowerCase()}`,
-					)}></Carousel>
+					)}
+				/>
 			</section>,
 		],
 	},
@@ -199,9 +200,8 @@ const Downloader: React.FC<DownloaderProps> = () => {
 		<CSharpLayout
 			sections={sections}
 			pageName={DOWNLOADER_PAGE_NAME}
-			sourceCodeLink={`${GITHUB_URL}/${DOWNLOADER_PAGE_NAME}`}>
-			&nbsp;
-		</CSharpLayout>
+			sourceCodeLink={`${GITHUB_URL}/${DOWNLOADER_PAGE_NAME}`}
+		/>
 	);
 };
 

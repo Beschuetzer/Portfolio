@@ -102,10 +102,10 @@ const sections: CSharpSection[] = [
 						{
 							itemSrc: video1,
 							description: "Setting Up",
-							videoOverlayText: "",
+							videoOverlayText: "Four Windows At Once",
 							videoOverlayChildren: (
 								<div>
-									<CSharpCardSection title="Four Windows At Once">
+									<CSharpCardSection title="">
 										This video show you how to open Chrome and Firefox and create private session windows
 									</CSharpCardSection>
 								</div>
@@ -114,10 +114,10 @@ const sections: CSharpSection[] = [
 						{
 							itemSrc: video2,
 							description: "Logging In",
-							videoOverlayText: "",
+							videoOverlayText: "Test is the Password ",
 							videoOverlayChildren: (
 								<div>
-									<CSharpCardSection title="Separate Usernames but Equal Passwords">
+									<CSharpCardSection title="">
 										Notice how each window uses a separate username but the password is the same.
 									</CSharpCardSection>
 								</div>
@@ -126,7 +126,7 @@ const sections: CSharpSection[] = [
 						{
 							itemSrc: video3,
 							description: "Starting a Game",
-							videoOverlayText: "",
+							videoOverlayText: "Starting",
 							videoOverlayChildren: (
 								<div>
 									<CSharpCardSection title="Create a Lobby">
@@ -146,7 +146,8 @@ const sections: CSharpSection[] = [
 						null,
 						null as any,
 						`#${sectionNames[2].toLowerCase()}`,
-					)}></Carousel>
+					)}
+				/>
 			</section>,
 		],
 	},
@@ -156,9 +157,7 @@ interface BridgeDemoProps {}
 
 const BridgeDemo: React.FC<BridgeDemoProps> = () => {
 	return (
-		<CSharpLayout sections={sections} pageName={BRIDGE_DEMO_PAGE_NAME}>
-			{""}
-		</CSharpLayout>
+		<CSharpLayout sections={sections} pageName={BRIDGE_DEMO_PAGE_NAME}/>
 	);
 };
 
