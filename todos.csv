@@ -9,12 +9,12 @@ JOB STUFF------------------------------------
   -add resume end date 11/12 for contract work and 11/13 for FTE work
   -add resume line talking point "10X increase in user base since starting" for Best Buy contract
   -minify SSK videos
-  -mobile - scrolling on own phone glitchy up and down fast
   -add sort options of skill examples?
   -each instance of <Carousel/> has a section above it that can be refactored into <Carousel/>
   -make the carousel handle the calculation in setCarouselGridMaxColumnWidth() for $carousel-grid-width (instead of having to hard code in css variables)
 
 BUGS------------------------------------
+  -mobile - scrolling on own phone glitchy up and down fast
   -bridge demo page lacks carousel arrows
   -adjust PageNav such that the scroll percent is 100 for previous item when it is in the middle of the screen
   -mobile start screen doesn't show all of bottom and not scrollable
