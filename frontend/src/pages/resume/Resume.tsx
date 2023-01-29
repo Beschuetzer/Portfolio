@@ -122,7 +122,7 @@ const skills: {
 			},
 			{
 				title: "GraphQL",
-				percent: 45,
+				percent: 28,
 			},
 			{
 				title: "HTML5",
