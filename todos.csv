@@ -1,5 +1,4 @@
 React best practices re-work (branch = sitenav_rework)
-  -figure out how to add 'z-index-highest' to div with id of 'header'
   -why does changing pages cause glitch most time in SiteNav button?
 
 JOB STUFF------------------------------------

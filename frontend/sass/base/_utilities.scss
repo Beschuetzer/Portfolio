@@ -102,11 +102,6 @@
 	@include respond(nav-switch) {
 		overflow: visible !important;
 	}
-
-	&:not(.navbar--active, .navbar--isAnimating){
-		overflow: visible !important;
-	}
-
 }
 
 .overflow-hidden {

@@ -56,6 +56,7 @@ import {
 	ANIMATION_DURATION_WAIT_FACTOR,
 	OVERFLOW_HIDDEN_CLASSNAME,
 	ANIMATION_DURATION,
+	UNCLICKABLE_CLASSNAME,
 } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
@@ -247,6 +248,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			${NAVBAR_ACTIVE_CLASSNAME} 
 			${NAVBAR_DONE_CLASSNAME} 
 			${isTransitioning ? OVERFLOW_HIDDEN_CLASSNAME: ''}
+			${isTransitioning ? UNCLICKABLE_CLASSNAME: ''}
 		  ` 
 		: `
 			${isTransitioning ? NAVBAR_DONE_CLASSNAME : ''} 
