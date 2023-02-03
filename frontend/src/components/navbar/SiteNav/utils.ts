@@ -32,7 +32,6 @@ export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 
 const BODY_BACKGROUND_CLASSNAME = "body-background";
 const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
-let resetAnimatingId: any;
 
 export type NavRef = RefObject<HTMLElement>;
 
@@ -63,28 +62,6 @@ export const init = (
 
 export const destroy = (navRef: NavRef) => {
 	document.body.removeEventListener("click", onBodyClick.bind(null, navRef));
-};
-
-export const startAnimating = (
-	navRef: NavRef,
-	isAnimating: boolean,
-	waitDurationFactor: number,
-) => {
-	const navBar = navRef.current as any;
-	navBar?.classList?.add(NAVBAR_IS_ANIMATING_CLASSNAME);
-
-	resetAnimatingId = setTimeout(() => {
-		navBar?.classList?.remove(NAVBAR_IS_ANIMATING_CLASSNAME);
-		if (isAnimating && navBar.classList?.contains(NAVBAR_ACTIVE_CLASSNAME)) {
-			navBar.classList?.add(NAVBAR_DONE_CLASSNAME);
-		} else {
-			navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
-		}
-	}, ANIMATION_DURATION * waitDurationFactor);
-};
-
-export const getResetAnimatingId = () => {
-	return resetAnimatingId;
 };
 
 export const changePage = (newUrl: string) => {

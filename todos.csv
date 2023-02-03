@@ -1,5 +1,4 @@
 React best practices re-work (branch = sitenav_rework)
-  -remove isAnimating/setIsAnimating Redux POS if possible
   -fix 'o' key not opening the menu (keypressHandler)
   -rework remaining places that directly modify the DOM
 

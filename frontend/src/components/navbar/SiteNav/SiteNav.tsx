@@ -62,13 +62,11 @@ export const SITE_NAV_CLASSNAME = "site-nav";
 export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal";
 
 interface SiteNavProps {
-	isAnimating: boolean;
 	match: { url: string };
 	previousUrl: string;
 	viewPortWidth: number;
 	headerHeight: number;
 	sounds: LoadedSounds;
-	setIsAnimating: (value: boolean) => void;
 	setHeaderHeight: (value: number) => void;
 }
 

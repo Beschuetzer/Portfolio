@@ -12,7 +12,6 @@ import { Action } from '../models';
 const INITIAL_STATE = {
   isMobile: null,
   viewPortWidth: null,
-  isAnimating: false,
   repos: [],
   previousUrl: null,
   scrollPercent: "0%",
@@ -25,8 +24,6 @@ const generalReducer = (state = INITIAL_STATE, action: Action) => {
       return {...state, isMobile: action.payload.isMobile, viewPortWidth: action.payload.viewPortWidth};  
     case SET_VIEW_PORT_WIDTH:
       return {...state, viewPortWidth: action.payload}
-    case SET_IS_ANIMATING:
-      return {...state, isAnimating: action.payload};  
     case GET_REPOSITORIES:
       return {...state, repos: action.payload};  
     case SET_PREVIOUS_URL:
