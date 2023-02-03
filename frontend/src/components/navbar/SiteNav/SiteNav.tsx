@@ -25,12 +25,11 @@ import {
 } from "../utils";
 import {
 	changePage,
-	destroy,
-	init,
 	setBodyStyle,
 	handleMouseEnter,
 	resetPageNavMinWidth,
 	setHeaderHeightOnViewPortChange,
+	HEADER_ID,
 } from "./utils";
 import { scrollToSection } from "../../utils";
 import {
@@ -76,11 +75,13 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	viewPortWidth,
 	setHeaderHeight,
 }) => {
+	const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 	const CLOSE_WINDOW_WAIT = 750;
 	const RESET_HAS_PINGED_CONTAINER_DURATION = 900000;
 	const [currentUrl, setCurrentUrl] = useState<string>("");
 	const location = useLocation();
 	const navRef = useRef<HTMLElement>(null);
+	const toggleTransitioningTimeoutIdRef = useRef<any>(null);
 	const [isTransitioning, setIsTransitioning] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const [hasPingedBridgeHerokuContainer, setHasPingedBridgeHerokuContainer] =
@@ -90,22 +91,37 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 
 	//#region Functions/Handlers
+	//uncomment and change logic to enable sounds
+	// const handleSound = (sounds: LoadedSounds, e: MouseEvent) => {	
+	// 	if (!isActive && isMenu)
+	// 		if (sounds?.loaded?.play) sounds.loaded.play("siteNavOpen");
+	// 		else if ((!isActive && !isNavbar) || (isActive && isMenu))
+	// 	if (sounds?.loaded?.play) sounds.loaded.play("siteNavClose");
+	// };
+
+	const onBodyClick = (e: Event) => {
+		const isNavClick = (e.target as any)?.classList?.contains(
+			NAVBAR_ACTIVE_CLASSNAME,
+		)
+			? true
+			: false;
+		if (!isNavClick) {
+			navRef?.current?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+		}
+	};
+
 	const onNavClick = (e: MouseEvent) => {
 		e && e.stopPropagation();
 		if (!!isTransitioning) {
 			return;
 		}
-		setIsTransitioning(true);
-		setIsOpen(!isOpen);
-		setTimeout(() => {
-			setIsTransitioning(false);
-		}, ANIMATION_DURATION + 40)
+		toggleState();
 	};
 
 	const onNavItemClick = (e: MouseEvent) => {
 		e && e.stopPropagation();
 		const target = e.target as HTMLElement;
-		
+
 		//do nothing if it is a nav group
 		if (target.children?.length > 0) {
 			return;
@@ -133,23 +149,33 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		handleMouseEnter(navRef);
 	};
 
-	function pingContainer(
-		setStateAction: Dispatch<SetStateAction<boolean>>,
-		href: string,
-	) {
-		const currentWindow = window;
-		const openedWindow = window.open(href);
+	// function pingContainer(
+	// 	setStateAction: Dispatch<SetStateAction<boolean>>,
+	// 	href: string,
+	// ) {
+	// 	const currentWindow = window;
+	// 	const openedWindow = window.open(href);
 
-		currentWindow.focus();
+	// 	currentWindow.focus();
 
-		setTimeout(() => {
-			if (openedWindow) openedWindow.close();
-			setStateAction(true);
-		}, CLOSE_WINDOW_WAIT);
+	// 	setTimeout(() => {
+	// 		if (openedWindow) openedWindow.close();
+	// 		setStateAction(true);
+	// 	}, CLOSE_WINDOW_WAIT);
 
-		setTimeout(() => {
-			setStateAction(false);
-		}, RESET_HAS_PINGED_CONTAINER_DURATION);
+	// 	setTimeout(() => {
+	// 		setStateAction(false);
+	// 	}, RESET_HAS_PINGED_CONTAINER_DURATION);
+	// }
+
+	function toggleState() {
+		setIsOpen((currentValue) => !currentValue);
+		setIsTransitioning(true);
+
+		if (toggleTransitioningTimeoutIdRef.current) clearTimeout(toggleTransitioningTimeoutIdRef.current);
+		toggleTransitioningTimeoutIdRef.current = setTimeout(() => {
+			setIsTransitioning(false);
+		}, ANIMATION_DURATION + 50)
 	}
 	//#endregion
 
@@ -168,7 +194,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	useEffect(() => {
 		// setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
 		resetPageNavMinWidth(viewPortWidth);
-		setHeaderHeightCSSPropertyValue();
 	}, [viewPortWidth, setHeaderHeight]);
 
 	useEffect(() => {
@@ -183,30 +208,47 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	}, [currentUrl]);
 
 	useEffect(() => {
-		init(navRef, setHeaderHeight);
+		function handleKeypress(e: KeyboardEvent) {
+			console.log({ e });
+			switch (e.key) {
+				case "o":
+					toggleState();
+					break;
+				default:
+					break;
+			}
+		}
+
+		setTimeout(() => {
+			const headerHeight = (
+				document.querySelector(HEADER_ID) as HTMLElement
+			).getBoundingClientRect().height;
+			setHeaderHeight(headerHeight);
+		}, SET_INITIAL_HEADER_HEIGHT_DELAY);
+
+		window.addEventListener("keydown", handleKeypress);
+		document.body.addEventListener("click", onBodyClick);
 
 		return () => {
-			destroy(navRef);
+			window.removeEventListener("keydown", handleKeypress);
+			document.body.removeEventListener("click", onBodyClick);
 		};
 	}, [setHeaderHeight, location]);
 	//#endregion
 
 	//#region JSX
-	const dynamicClassnames = isOpen 
+	const dynamicClassnames = isOpen
 		? `
 			${NAVBAR_ACTIVE_CLASSNAME} 
 			${NAVBAR_DONE_CLASSNAME} 
-			${isTransitioning ? OVERFLOW_HIDDEN_CLASSNAME: ''}
-			${isTransitioning ? UNCLICKABLE_CLASSNAME: ''}
-		  ` 
+			${isTransitioning ? OVERFLOW_HIDDEN_CLASSNAME : ''}
+			${isTransitioning ? UNCLICKABLE_CLASSNAME : ''}
+		  `
 		: `
 			${isTransitioning ? NAVBAR_DONE_CLASSNAME : ''} 
 			${OVERFLOW_HIDDEN_CLASSNAME}
 			${isTransitioning ? NAVBAR_IS_ANIMATING_CLASSNAME : ''}
 		` ;
-
-	console.log({isOpen, isTransitioning});
-	
 	return ReactDOM.createPortal(
 		<div
 			ref={navRef as any}

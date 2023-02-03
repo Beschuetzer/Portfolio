@@ -2,7 +2,6 @@ import { RefObject } from "react";
 import { checkForParentOfType } from "../../../helpers";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import {
-	ANIMATION_DURATION,
 	MOBILE_BREAK_POINT_WIDTH,
 	OVERFLOW_HIDDEN_CLASSNAME,
 	TRANSPARENT_CLASSNAME,
@@ -31,38 +30,7 @@ export const HEADER_TOGGLER_ACTIVE_CLASSNAME = `${HEADER_TOGGLER_CLASSNAME}--act
 export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 
 const BODY_BACKGROUND_CLASSNAME = "body-background";
-const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
-
 export type NavRef = RefObject<HTMLElement>;
-
-const onBodyClick = (navRef: NavRef, e: Event) => {
-	const isNavClick = (e.target as any)?.classList?.contains(
-		NAVBAR_ACTIVE_CLASSNAME,
-	)
-		? true
-		: false;
-	if (!isNavClick) {
-		navRef?.current?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-	}
-};
-
-export const init = (
-	navRef: NavRef,
-	setHeaderHeight: (value: number) => void,
-) => {
-	document.body.addEventListener("click", onBodyClick.bind(null, navRef));
-
-	setTimeout(() => {
-		const headerHeight = (
-			document.querySelector(HEADER_ID) as HTMLElement
-		).getBoundingClientRect().height;
-		setHeaderHeight(headerHeight);
-	}, SET_INITIAL_HEADER_HEIGHT_DELAY);
-};
-
-export const destroy = (navRef: NavRef) => {
-	document.body.removeEventListener("click", onBodyClick.bind(null, navRef));
-};
 
 export const changePage = (newUrl: string) => {
 	const headerElement = document.querySelector(HEADER_ID);
@@ -143,23 +111,6 @@ export const setHeaderHeightOnViewPortChange = (
 
 export const hide = (navRef: NavRef) => {
 	navRef.current?.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
-};
-
-const handleSound = (sounds: LoadedSounds, e: MouseEvent) => {
-	const isActive = (e.currentTarget as HTMLElement).className.match(
-		/--active/i,
-	) as RegExpMatchArray;
-	const isMenu = (e.target as HTMLElement)?.className?.match(
-		/navbar__menu/i,
-	) as RegExpMatchArray;
-	const isNavbar = (e.target as HTMLElement).classList.contains(
-		NAVBAR_CLASSNAME,
-	);
-
-	if (!isActive && isMenu)
-		if (sounds?.loaded?.play) sounds.loaded.play("siteNavOpen");
-		else if ((!isActive && !isNavbar) || (isActive && isMenu))
-	if (sounds?.loaded?.play) sounds.loaded.play("siteNavClose");
 };
 
 export const handleMouseEnter = (navRef: NavRef) => {
