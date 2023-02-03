@@ -242,10 +242,18 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	}, [isAnimating]);
 
 	//#region JSX
-	const openClassname = isOpen ? `${NAVBAR_ACTIVE_CLASSNAME}` : '';
-	const transitionClassname = isTransitioning ? `${NAVBAR_IS_ANIMATING_CLASSNAME}` : '';
-	const overflowHiddenClassname = isOpen && !isTransitioning ? '' : OVERFLOW_HIDDEN_CLASSNAME;
-	const dynamicClassnames = `${openClassname} ${transitionClassname} ${overflowHiddenClassname}`;
+	const dynamicClassnames = isOpen 
+		? `
+			${NAVBAR_ACTIVE_CLASSNAME} 
+			${NAVBAR_DONE_CLASSNAME} 
+			${isTransitioning ? OVERFLOW_HIDDEN_CLASSNAME: ''}
+		  ` 
+		: `
+			${NAVBAR_ACTIVE_CLASSNAME} 
+			${NAVBAR_DONE_CLASSNAME} 
+			${OVERFLOW_HIDDEN_CLASSNAME}
+			${NAVBAR_IS_ANIMATING_CLASSNAME}
+		` ;
 
 	console.log({isOpen, isTransitioning});
 	
