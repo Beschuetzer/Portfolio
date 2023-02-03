@@ -20,6 +20,7 @@ import {
 	NAVBAR_CLASSNAME,
 	NAVBAR_DEFAULT_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
+	NAVBAR_IS_ANIMATING_CLASSNAME,
 	setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue,
 } from "../utils";
 import {
@@ -98,6 +99,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		useState(false);
 
 
+	//todo: clean up these functions when done in utils.ts
 	// export function closeNavBar(
 	// 	navBar: HTMLElement,
 	// 	setIsAnimating: (value: boolean) => void,
@@ -139,7 +141,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		setIsOpen(!isOpen);
 		setTimeout(() => {
 			setIsTransitioning(false);
-		}, ANIMATION_DURATION)
+		}, ANIMATION_DURATION + 40)
 	};
 
 	const onNavItemClick = (e: MouseEvent) => {
@@ -241,11 +243,16 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 	//#region JSX
 	const openClassname = isOpen ? `${NAVBAR_ACTIVE_CLASSNAME}` : '';
-	const transitionClassname = isTransitioning ? `${NAVBAR_DONE_CLASSNAME}` : '';
+	const transitionClassname = isTransitioning ? `${NAVBAR_IS_ANIMATING_CLASSNAME}` : '';
+	const overflowHiddenClassname = isOpen && !isTransitioning ? '' : OVERFLOW_HIDDEN_CLASSNAME;
+	const dynamicClassnames = `${openClassname} ${transitionClassname} ${overflowHiddenClassname}`;
+
+	console.log({isOpen, isTransitioning});
+	
 	return ReactDOM.createPortal(
 		<div
 			ref={navRef as any}
-			className={`${NAVBAR_DEFAULT_CLASSNAME} ${openClassname}`}
+			className={`${NAVBAR_DEFAULT_CLASSNAME} ${dynamicClassnames}`}
 			onClick={(e: any) => onNavClick(e)}>
 			<button
 				aria-label="show pages"
