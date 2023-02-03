@@ -14,25 +14,22 @@ import resumeImage from "../../../imgs/site-nav-resume.jpg";
 import syncerImage from "../../../imgs/site-nav-syncer.jpg";
 import replayImage from "../../../imgs/site-nav-replay.jpg";
 
-import { setHeaderHeight, setIsAnimating } from "../../../actions";
+import { setHeaderHeight } from "../../../actions";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_CLASSNAME,
 	NAVBAR_DEFAULT_CLASSNAME,
+	NAVBAR_DONE_CLASSNAME,
+	NAVBAR_IS_ANIMATING_CLASSNAME,
 	setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue,
 } from "../utils";
 import {
 	changePage,
-	destroy,
-	startAnimating,
-	init,
 	setBodyStyle,
-	getResetAnimatingId,
-	hide,
-	handleNavClick,
 	handleMouseEnter,
 	resetPageNavMinWidth,
 	setHeaderHeightOnViewPortChange,
+	HEADER_ID,
 } from "./utils";
 import { scrollToSection } from "../../utils";
 import {
@@ -51,7 +48,9 @@ import {
 	RESUME_PAGE_NAME,
 	RESUME_URL,
 	LIVE_REPLAYS_URL,
-	ANIMATION_DURATION_WAIT_FACTOR,
+	OVERFLOW_HIDDEN_CLASSNAME,
+	ANIMATION_DURATION,
+	UNCLICKABLE_CLASSNAME,
 } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
@@ -62,51 +61,71 @@ export const SITE_NAV_CLASSNAME = "site-nav";
 export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal";
 
 interface SiteNavProps {
-	isAnimating: boolean;
 	match: { url: string };
 	previousUrl: string;
 	viewPortWidth: number;
 	headerHeight: number;
 	sounds: LoadedSounds;
-	setIsAnimating: (value: boolean) => void;
 	setHeaderHeight: (value: number) => void;
 }
 
 const SiteNav: React.FC<SiteNavProps> = ({
-	isAnimating,
-	setIsAnimating,
 	match,
 	previousUrl,
 	viewPortWidth,
-	headerHeight,
-	sounds,
 	setHeaderHeight,
 }) => {
+	const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 	const CLOSE_WINDOW_WAIT = 750;
 	const RESET_HAS_PINGED_CONTAINER_DURATION = 900000;
 	const [currentUrl, setCurrentUrl] = useState<string>("");
 	const location = useLocation();
 	const navRef = useRef<HTMLElement>(null);
+	const toggleTransitioningTimeoutIdRef = useRef<any>(null);
+	const [isTransitioning, setIsTransitioning] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 	const [hasPingedBridgeHerokuContainer, setHasPingedBridgeHerokuContainer] =
 		useState(false);
 	const [hasPingedReplayHerokuContainer, setHasPingedReplayHerokuContainer] =
 		useState(false);
 
+
+	//#region Functions/Handlers
+	//uncomment and change logic to enable sounds
+	// const handleSound = (sounds: LoadedSounds, e: MouseEvent) => {	
+	// 	if (!isActive && isMenu)
+	// 		if (sounds?.loaded?.play) sounds.loaded.play("siteNavOpen");
+	// 		else if ((!isActive && !isNavbar) || (isActive && isMenu))
+	// 	if (sounds?.loaded?.play) sounds.loaded.play("siteNavClose");
+	// };
+
+	const onBodyClick = (e: Event) => {
+		const isNavClick = (e.target as any)?.classList?.contains(
+			NAVBAR_ACTIVE_CLASSNAME,
+		)
+			? true
+			: false;
+		if (!isNavClick) {
+			navRef?.current?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+		}
+	};
+
 	const onNavClick = (e: MouseEvent) => {
 		e && e.stopPropagation();
-		handleNavClick(navRef, sounds, setIsAnimating, e);
+		if (!!isTransitioning) {
+			return;
+		}
+		toggleState();
 	};
 
 	const onNavItemClick = (e: MouseEvent) => {
 		e && e.stopPropagation();
 		const target = e.target as HTMLElement;
-		
+
 		//do nothing if it is a nav group
 		if (target.children?.length > 0) {
 			return;
 		}
-
-		hide(navRef);
 
 		if (!target) return;
 
@@ -118,7 +137,11 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		// 	target.baseURI.match(REPLAY_VIEWER_URL)
 		// )
 		// 	pingContainer(setHasPingedReplayHerokuContainer, LIVE_REPLAYS_URL);
-		onNavClick(e);
+
+		//need timeout to ensure page has loaded first (may need to increase if overflow hidden glitch still occurs)
+		setTimeout(() => {
+			onNavClick(e);
+		}, 1)
 	};
 
 	const onMouseEnter = (e: MouseEvent) => {
@@ -126,25 +149,37 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		handleMouseEnter(navRef);
 	};
 
-	function pingContainer(
-		setStateAction: Dispatch<SetStateAction<boolean>>,
-		href: string,
-	) {
-		const currentWindow = window;
-		const openedWindow = window.open(href);
+	// function pingContainer(
+	// 	setStateAction: Dispatch<SetStateAction<boolean>>,
+	// 	href: string,
+	// ) {
+	// 	const currentWindow = window;
+	// 	const openedWindow = window.open(href);
 
-		currentWindow.focus();
+	// 	currentWindow.focus();
 
-		setTimeout(() => {
-			if (openedWindow) openedWindow.close();
-			setStateAction(true);
-		}, CLOSE_WINDOW_WAIT);
+	// 	setTimeout(() => {
+	// 		if (openedWindow) openedWindow.close();
+	// 		setStateAction(true);
+	// 	}, CLOSE_WINDOW_WAIT);
 
-		setTimeout(() => {
-			setStateAction(false);
-		}, RESET_HAS_PINGED_CONTAINER_DURATION);
+	// 	setTimeout(() => {
+	// 		setStateAction(false);
+	// 	}, RESET_HAS_PINGED_CONTAINER_DURATION);
+	// }
+
+	function toggleState() {
+		setIsOpen((currentValue) => !currentValue);
+		setIsTransitioning(true);
+
+		if (toggleTransitioningTimeoutIdRef.current) clearTimeout(toggleTransitioningTimeoutIdRef.current);
+		toggleTransitioningTimeoutIdRef.current = setTimeout(() => {
+			setIsTransitioning(false);
+		}, ANIMATION_DURATION + 50)
 	}
+	//#endregion
 
+	//#region Side FXs
 	useEffect(() => {
 		//need timeout to wait for PageNav to render
 		setTimeout(() => {
@@ -159,7 +194,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	useEffect(() => {
 		// setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
 		resetPageNavMinWidth(viewPortWidth);
-		setHeaderHeightCSSPropertyValue();
 	}, [viewPortWidth, setHeaderHeight]);
 
 	useEffect(() => {
@@ -173,31 +207,52 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		changePage(currentUrl);
 	}, [currentUrl]);
 
-	//initial
 	useEffect(() => {
-		init(navRef, setHeaderHeight);
+		function handleKeypress(e: KeyboardEvent) {
+			console.log({ e });
+			switch (e.key) {
+				case "o":
+					toggleState();
+					break;
+				default:
+					break;
+			}
+		}
+
+		setTimeout(() => {
+			const headerHeight = (
+				document.querySelector(HEADER_ID) as HTMLElement
+			).getBoundingClientRect().height;
+			setHeaderHeight(headerHeight);
+		}, SET_INITIAL_HEADER_HEIGHT_DELAY);
+
+		window.addEventListener("keydown", handleKeypress);
+		document.body.addEventListener("click", onBodyClick);
 
 		return () => {
-			destroy(navRef);
+			window.removeEventListener("keydown", handleKeypress);
+			document.body.removeEventListener("click", onBodyClick);
 		};
 	}, [setHeaderHeight, location]);
+	//#endregion
 
-	useEffect(() => {
-		const navRefEl = navRef.current as HTMLElement;
-		let waitDurationFactor = ANIMATION_DURATION_WAIT_FACTOR;
-		if (navRefEl?.classList.contains(NAVBAR_ACTIVE_CLASSNAME))
-			waitDurationFactor = 0;
-		startAnimating(navRef, isAnimating, waitDurationFactor);
-
-		return () => {
-			clearTimeout(getResetAnimatingId());
-		};
-	}, [isAnimating]);
-
+	//#region JSX
+	const dynamicClassnames = isOpen
+		? `
+			${NAVBAR_ACTIVE_CLASSNAME} 
+			${NAVBAR_DONE_CLASSNAME} 
+			${isTransitioning ? OVERFLOW_HIDDEN_CLASSNAME : ''}
+			${isTransitioning ? UNCLICKABLE_CLASSNAME : ''}
+		  `
+		: `
+			${isTransitioning ? NAVBAR_DONE_CLASSNAME : ''} 
+			${OVERFLOW_HIDDEN_CLASSNAME}
+			${isTransitioning ? NAVBAR_IS_ANIMATING_CLASSNAME : ''}
+		` ;
 	return ReactDOM.createPortal(
 		<div
 			ref={navRef as any}
-			className={NAVBAR_DEFAULT_CLASSNAME}
+			className={`${NAVBAR_DEFAULT_CLASSNAME} ${dynamicClassnames}`}
 			onClick={(e: any) => onNavClick(e)}>
 			<button
 				aria-label="show pages"
@@ -295,11 +350,11 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		</div>,
 		document.querySelector(".site-nav")!,
 	);
+	//#endregion
 };
 
 const mapStateToProps = (state: RootStateOrAny) => {
 	return {
-		isAnimating: state.general.isAnimating,
 		previousUrl: state.general.previousUrl,
 		viewPortWidth: state.general.viewPortWidth,
 		headerHeight: state.general.headerHeight,
@@ -308,6 +363,5 @@ const mapStateToProps = (state: RootStateOrAny) => {
 };
 
 export default connect(mapStateToProps, {
-	setIsAnimating,
 	setHeaderHeight,
 })(SiteNav);

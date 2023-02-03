@@ -28,8 +28,6 @@ import {
 
 //#region Helper Functions
 export const keypressHandler = (
-	isAnimating: boolean,
-	setIsAnimating: (value: boolean) => void,
 	e: KeyboardEvent,
 ) => {
 	if (!e.altKey || !e.ctrlKey) return;
@@ -45,20 +43,6 @@ export const keypressHandler = (
 		break;
 		case "d":
 			history.push(DOWNLOADER_URL);
-			break;
-		case "o":
-			const navbar = document.querySelector(`.${NAVBAR_CLASSNAME}`);
-			const root = document.querySelector("#root");
-			setIsAnimating(!isAnimating);
-			if (isAnimating) {
-				navbar?.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
-				root?.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
-			} else {
-				navbar?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-				navbar?.classList?.remove(NAVBAR_DONE_CLASSNAME);
-				navbar?.classList?.add(OVERFLOW_HIDDEN_CLASSNAME);
-				root?.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-			}
 			break;
 		case "p":
 			history.push(REPLAY_VIEWER_URL);

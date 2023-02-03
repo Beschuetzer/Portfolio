@@ -36,6 +36,7 @@
 		&-overview {
 			grid-column: 1 / -1;
 			& .resume__card {
+				margin-top: 0;
 				// background-color: var(--color-primary-3);
 				background-image: get-resume-card-gradient(calc(var(--background-svg-opacity) - .025)),
 					url($resume-card-background-summary);

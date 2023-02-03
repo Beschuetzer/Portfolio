@@ -249,12 +249,6 @@ export const setHeaderHeight = (value: number) => {
     payload: value,
   }
 }
-export const setIsAnimating = (value: boolean) => {
-  return {
-    type: SET_IS_ANIMATING,
-    payload: value,
-  }
-}
 export const setIsCardVideoOpen = (value: boolean) => {
   return {
     type: SET_IS_CARD_VIDEO_OPEN,

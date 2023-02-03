@@ -25,7 +25,6 @@ import NavToggler from "./navbar/NavToggler";
 import "../css/style.css";
 import GithubButton from "./GithubButton";
 import {
-	setIsAnimating,
 	setIsMobile,
 	setViewPortWidth,
 	setSounds,
@@ -40,9 +39,7 @@ import BigFive from "../pages/examples/csharp/BigFive/BigFive";
 
 interface AppProps {
 	isMobile: boolean,
-	isAnimating: boolean,
 	setIsMobile: (value: boolean, windowWidth: number) => void,
-	setIsAnimating: (value: boolean) => void,
 	setViewPortWidth: (value: number) => void,
 	setSounds: (value: {}) => void,
 }
@@ -50,8 +47,6 @@ interface AppProps {
 const App: React.FC<AppProps> = ({
 	isMobile,
 	setIsMobile,
-	isAnimating,
-	setIsAnimating,
 	setViewPortWidth,
 	setSounds,
 }) => {
@@ -74,18 +69,16 @@ const App: React.FC<AppProps> = ({
 		};
 
 		window.addEventListener("resize", windowResize);
-		window.addEventListener("keydown", keypressHandler.bind(null, isAnimating, setIsAnimating));
+		window.addEventListener("keydown", keypressHandler);
 
 		return () => {
 			window.removeEventListener("resize", windowResize);
-			window.removeEventListener("keydown", keypressHandler.bind(null, isAnimating, setIsAnimating));
+			window.removeEventListener("keydown", keypressHandler);
 		};
 	}, [
 		isMobile,
 		setIsMobile,
 		mobileBreakPointWidth,
-		isAnimating,
-		setIsAnimating,
 		setViewPortWidth,
 	]);
 
@@ -135,13 +128,11 @@ const App: React.FC<AppProps> = ({
 
 const mapStateToProps = (state: RootStateOrAny) => {
 	return {
-		isAnimating: state.general.isAnimating,
 		isMobile: state.general.isMobile,
 	};
 };
 
 export default connect(mapStateToProps, {
-	setIsAnimating,
 	setIsMobile,
 	setViewPortWidth,
 	setSounds,
