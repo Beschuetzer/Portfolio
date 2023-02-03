@@ -14,7 +14,7 @@ import resumeImage from "../../../imgs/site-nav-resume.jpg";
 import syncerImage from "../../../imgs/site-nav-syncer.jpg";
 import replayImage from "../../../imgs/site-nav-replay.jpg";
 
-import { setHeaderHeight, setIsAnimating } from "../../../actions";
+import { setHeaderHeight } from "../../../actions";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_CLASSNAME,
@@ -26,12 +26,8 @@ import {
 import {
 	changePage,
 	destroy,
-	startAnimating,
 	init,
 	setBodyStyle,
-	getResetAnimatingId,
-	hide,
-	handleNavClick,
 	handleMouseEnter,
 	resetPageNavMinWidth,
 	setHeaderHeightOnViewPortChange,
@@ -53,7 +49,6 @@ import {
 	RESUME_PAGE_NAME,
 	RESUME_URL,
 	LIVE_REPLAYS_URL,
-	ANIMATION_DURATION_WAIT_FACTOR,
 	OVERFLOW_HIDDEN_CLASSNAME,
 	ANIMATION_DURATION,
 	UNCLICKABLE_CLASSNAME,
@@ -78,13 +73,9 @@ interface SiteNavProps {
 }
 
 const SiteNav: React.FC<SiteNavProps> = ({
-	isAnimating,
-	setIsAnimating,
 	match,
 	previousUrl,
 	viewPortWidth,
-	headerHeight,
-	sounds,
 	setHeaderHeight,
 }) => {
 	const CLOSE_WINDOW_WAIT = 750;
@@ -100,44 +91,12 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		useState(false);
 
 
-	//todo: clean up these functions when done in utils.ts
-	// export function closeNavBar(
-	// 	navBar: HTMLElement,
-	// 	setIsAnimating: (value: boolean) => void,
-	// ) {
-	// 	navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
-	// 	navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
-	
-	// 	zIndexHighestTimeoutId = setTimeout(() => {
-	// 		const header = document.querySelector(HEADER_ID) as HTMLElement;
-	// 		header.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
-	// 	}, ANIMATION_DURATION);
-	
-	// 	setIsAnimating(false);
-	// }
-	
-	// export function openNavBar(
-	// 	navBar: HTMLElement,
-	// 	setIsAnimating: (value: boolean) => void,
-	// ) {
-	// 	if (!navBar) return;
-	// 	navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
-	// 	navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
-	// 	document.querySelector(HEADER_ID)!.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
-	
-	// 	removeOverFlowHiddenAfterOpeningTimeoutId = setTimeout(() => {
-	// 		navBar.classList.remove(OVERFLOW_HIDDEN_CLASSNAME);
-	// 	}, ANIMATION_DURATION);
-	// 	setIsAnimating(true);
-	// }
-
+	//#region Functions/Handlers
 	const onNavClick = (e: MouseEvent) => {
 		e && e.stopPropagation();
-		// handleNavClick(navRef, sounds, setIsAnimating, e);
 		if (!!isTransitioning) {
 			return;
 		}
-
 		setIsTransitioning(true);
 		setIsOpen(!isOpen);
 		setTimeout(() => {
@@ -154,8 +113,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			return;
 		}
 
-		hide(navRef);
-
 		if (!target) return;
 
 		//note: this starts heroku container from sleep (no longer necessary as free tier gone)
@@ -166,7 +123,11 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		// 	target.baseURI.match(REPLAY_VIEWER_URL)
 		// )
 		// 	pingContainer(setHasPingedReplayHerokuContainer, LIVE_REPLAYS_URL);
-		onNavClick(e);
+
+		//need timeout to ensure page has loaded first (may need to increase if overflow hidden glitch still occurs)
+		setTimeout(() => {
+			onNavClick(e);
+		}, 1)
 	};
 
 	const onMouseEnter = (e: MouseEvent) => {
@@ -192,7 +153,9 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			setStateAction(false);
 		}, RESET_HAS_PINGED_CONTAINER_DURATION);
 	}
+	//#endregion
 
+	//#region Side FXs
 	useEffect(() => {
 		//need timeout to wait for PageNav to render
 		setTimeout(() => {
@@ -221,7 +184,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		changePage(currentUrl);
 	}, [currentUrl]);
 
-	//initial
 	useEffect(() => {
 		init(navRef, setHeaderHeight);
 
@@ -229,18 +191,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			destroy(navRef);
 		};
 	}, [setHeaderHeight, location]);
-
-	useEffect(() => {
-		const navRefEl = navRef.current as HTMLElement;
-		let waitDurationFactor = ANIMATION_DURATION_WAIT_FACTOR;
-		if (navRefEl?.classList.contains(NAVBAR_ACTIVE_CLASSNAME))
-			waitDurationFactor = 0;
-		startAnimating(navRef, isAnimating, waitDurationFactor);
-
-		return () => {
-			clearTimeout(getResetAnimatingId());
-		};
-	}, [isAnimating]);
+	//#endregion
 
 	//#region JSX
 	const dynamicClassnames = isOpen 
@@ -364,7 +315,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 
 const mapStateToProps = (state: RootStateOrAny) => {
 	return {
-		isAnimating: state.general.isAnimating,
 		previousUrl: state.general.previousUrl,
 		viewPortWidth: state.general.viewPortWidth,
 		headerHeight: state.general.headerHeight,
@@ -373,6 +323,5 @@ const mapStateToProps = (state: RootStateOrAny) => {
 };
 
 export default connect(mapStateToProps, {
-	setIsAnimating,
 	setHeaderHeight,
 })(SiteNav);
