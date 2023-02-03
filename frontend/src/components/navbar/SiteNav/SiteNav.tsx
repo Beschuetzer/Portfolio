@@ -19,6 +19,7 @@ import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_CLASSNAME,
 	NAVBAR_DEFAULT_CLASSNAME,
+	NAVBAR_DONE_CLASSNAME,
 	setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue,
 } from "../utils";
 import {
@@ -52,6 +53,8 @@ import {
 	RESUME_URL,
 	LIVE_REPLAYS_URL,
 	ANIMATION_DURATION_WAIT_FACTOR,
+	OVERFLOW_HIDDEN_CLASSNAME,
+	ANIMATION_DURATION,
 } from "../../constants";
 import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
@@ -87,14 +90,56 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	const [currentUrl, setCurrentUrl] = useState<string>("");
 	const location = useLocation();
 	const navRef = useRef<HTMLElement>(null);
+	const [isTransitioning, setIsTransitioning] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 	const [hasPingedBridgeHerokuContainer, setHasPingedBridgeHerokuContainer] =
 		useState(false);
 	const [hasPingedReplayHerokuContainer, setHasPingedReplayHerokuContainer] =
 		useState(false);
 
+
+	// export function closeNavBar(
+	// 	navBar: HTMLElement,
+	// 	setIsAnimating: (value: boolean) => void,
+	// ) {
+	// 	navBar.classList?.remove(NAVBAR_ACTIVE_CLASSNAME);
+	// 	navBar.classList?.remove(NAVBAR_DONE_CLASSNAME);
+	
+	// 	zIndexHighestTimeoutId = setTimeout(() => {
+	// 		const header = document.querySelector(HEADER_ID) as HTMLElement;
+	// 		header.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
+	// 	}, ANIMATION_DURATION);
+	
+	// 	setIsAnimating(false);
+	// }
+	
+	// export function openNavBar(
+	// 	navBar: HTMLElement,
+	// 	setIsAnimating: (value: boolean) => void,
+	// ) {
+	// 	if (!navBar) return;
+	// 	navBar.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
+	// 	navBar.classList?.add(NAVBAR_ACTIVE_CLASSNAME);
+	// 	document.querySelector(HEADER_ID)!.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
+	
+	// 	removeOverFlowHiddenAfterOpeningTimeoutId = setTimeout(() => {
+	// 		navBar.classList.remove(OVERFLOW_HIDDEN_CLASSNAME);
+	// 	}, ANIMATION_DURATION);
+	// 	setIsAnimating(true);
+	// }
+
 	const onNavClick = (e: MouseEvent) => {
 		e && e.stopPropagation();
-		handleNavClick(navRef, sounds, setIsAnimating, e);
+		// handleNavClick(navRef, sounds, setIsAnimating, e);
+		if (!!isTransitioning) {
+			return;
+		}
+
+		setIsTransitioning(true);
+		setIsOpen(!isOpen);
+		setTimeout(() => {
+			setIsTransitioning(false);
+		}, ANIMATION_DURATION)
 	};
 
 	const onNavItemClick = (e: MouseEvent) => {
@@ -194,10 +239,13 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		};
 	}, [isAnimating]);
 
+	//#region JSX
+	const openClassname = isOpen ? `${NAVBAR_ACTIVE_CLASSNAME}` : '';
+	const transitionClassname = isTransitioning ? `${NAVBAR_DONE_CLASSNAME}` : '';
 	return ReactDOM.createPortal(
 		<div
 			ref={navRef as any}
-			className={NAVBAR_DEFAULT_CLASSNAME}
+			className={`${NAVBAR_DEFAULT_CLASSNAME} ${openClassname}`}
 			onClick={(e: any) => onNavClick(e)}>
 			<button
 				aria-label="show pages"
@@ -295,6 +343,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		</div>,
 		document.querySelector(".site-nav")!,
 	);
+	//#endregion
 };
 
 const mapStateToProps = (state: RootStateOrAny) => {
