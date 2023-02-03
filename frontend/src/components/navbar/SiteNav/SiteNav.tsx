@@ -249,10 +249,9 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			${isTransitioning ? OVERFLOW_HIDDEN_CLASSNAME: ''}
 		  ` 
 		: `
-			${NAVBAR_ACTIVE_CLASSNAME} 
-			${NAVBAR_DONE_CLASSNAME} 
+			${isTransitioning ? NAVBAR_DONE_CLASSNAME : ''} 
 			${OVERFLOW_HIDDEN_CLASSNAME}
-			${NAVBAR_IS_ANIMATING_CLASSNAME}
+			${isTransitioning ? NAVBAR_IS_ANIMATING_CLASSNAME : ''}
 		` ;
 
 	console.log({isOpen, isTransitioning});
