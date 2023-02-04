@@ -36,6 +36,7 @@ import ReplayViewer from "../pages/examples/csharp/ReplayViewer";
 import About from "../pages/examples/csharp/About";
 import BridgeDemo from "../pages/examples/csharp/BridgeDemo";
 import BigFive from "../pages/examples/csharp/BigFive/BigFive";
+import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 
 interface AppProps {
 	isMobile: boolean,
@@ -120,6 +121,7 @@ const App: React.FC<AppProps> = ({
 			<Route path="*" exact component={NavToggler} />
 			<Route path="*" exact component={PageNav} />
 			<Route path="*" exact component={SiteNav} />
+			<Route path="*" exact component={AudioPlayer} />
 			<Route path="*" exact component={GithubButton} />
 			{/* <Footer/> */}
 		</Router>

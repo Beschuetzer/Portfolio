@@ -1,6 +1,5 @@
 import { Howl } from "howler";
 import React, { FC, useEffect, useRef, useState } from "react";
-import { RefObject } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLoadingSound, setCurrentlyPlayingSound } from "../../actions";
 import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
@@ -13,6 +12,7 @@ import {
 import { getMinuteAndSecondsString } from "./utils";
 import { getMaxLengthString } from "../utils";
 import { RootState } from "../../reducers";
+import { useLocation } from "react-router-dom";
 
 export const AUDIO_PLAYER_CLASSNAME = "audio-player";
 export const AUDIO_PLAYER_TOGGLER_CLASSNAME = `${AUDIO_PLAYER_CLASSNAME}__toggler`;
@@ -35,8 +35,8 @@ export type AudioPlayerState = {
 
 export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	//#region Init
-	const updateRate = 125;
-	const seekAmount = 15;
+	const SEEK_AMOUNT = 10;
+	const UPDATE_RATE = 125;
 	const currentlyPlayingSound = useSelector((state: RootState) => state.sounds.currentlyPlayingSound);
 	const isCurrentlyPlayingSoundValid = Object.keys(currentlyPlayingSound || {}).length > 0;
 	const id = useRef(-1);
@@ -56,21 +56,10 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isLoadingHowl, setIsLoadingHowl] = useState(true);
 	const dispatch = useDispatch();
+	const location = useLocation();
 	//#endregion
 	
 	//#region Functions/Handlers
-	function getLoadedHowl(path: string) {
-		if (!howls) return null;
-
-		let loadedSound = null;
-		for (let i = 0; i < howls.length; i++) {
-			const howl = howls[i];
-			if ((howl as any)._src === path) return howl;
-		}
-
-		return loadedSound;
-	}
-
 	function getPlayingHowl() {
 		if (!howls) return null;
 
@@ -82,20 +71,20 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		return null;
 	}
 
-	function getSeekTo(isForward = true) {
+	function getSeekToAmount(isForward = true) {
 		if (!howls || !playingHowl) return;
 
 		const sound = (playingHowl.pause() as any)._sounds[0];
 		const currentSeek = sound._seek;
 		const duration = playingHowl.duration();
 
-		let seekTo = currentSeek + seekAmount;
+		let seekTo = currentSeek + SEEK_AMOUNT;
 		if (seekTo >= duration) {
 			seekTo = duration;
 		}
 
 		if (!isForward) {
-			seekTo = currentSeek - seekAmount;
+			seekTo = currentSeek - SEEK_AMOUNT;
 			if (seekTo <= 0) seekTo = 0;
 		}
 
@@ -103,39 +92,19 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	}
 
 	function handleBackward() {
-		if (!howls || !playingHowl) return;
+		if (!playingHowl) return;
 
-		const seekTo = getSeekTo(false);
-		seekTo(seekTo, id);
+		const seekToValue = getSeekToAmount(false);
+		seekTo(seekToValue);
 		handlePlay();
 	}
 
 	function handleForward() {
 		if (!howls || !playingHowl) return;
 
-		const seekTo = getSeekTo();
-		seekTo(seekTo, id);
+		const seekToValue = getSeekToAmount();
+		seekTo(seekToValue);
 		handlePlay();
-	}
-
-	function handleToggler(e: MouseEvent) {
-		let newShouldShowState = !shouldShowAudioPlayer;
-
-		toggleAudioPlayer();
-		hideIfNotPlaying();
-
-		let target: SVGElement | null = e.target as SVGElement;
-		if (target.localName !== "svg") {
-			target = target?.closest("svg");
-		}
-
-		if (!isOpen) {
-			showAudioPlayer();
-		} else if (playingHowl?.playing()){
-			hideAudioPlayer();
-		}
-		setShouldShowAudioPlayer(newShouldShowState);
-		setIsOpen(!isOpen);
 	}
 
 	function handlePause() {
@@ -174,6 +143,14 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	function handleSkipForward(e: MouseEvent) {
 		if (!howls || !playingHowl) return;
 		loadNextSong(true);
+	}
+
+	function handleToggler(e: MouseEvent) {
+		toggleAudioPlayer();
+		hideIfNotPlaying();
+
+		setShouldShowAudioPlayer(!shouldShowAudioPlayer);
+		setIsOpen(!isOpen);
 	}
 
 	function handleWindowClick(e: MouseEvent) {
@@ -348,14 +325,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	}
 
 	function onSoundLoad(newHowl: Howl) {
-		// //need to see if sound is already loaded, if so play it, otherwise load
-		// const loadedHowl = getLoadedHowl(playingSoundPath);
-		// if (loadedHowl) {
-		// 	loadedHowl.play();
-		// 	dispatch(setIsLoadingSound(false));
- 		// 	setSongLength(getMinuteAndSecondsString(loadedHowl.duration()));
-		// }
-
 		if (newHowl?.play) {
 			id.current = newHowl.play();
 		}
@@ -379,7 +348,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		setUpdateInterval(newHowl);
 	}
 
-	function seekTo(seekTo: number, id?: number) {
+	function seekTo(seekTo: number) {
 		playingHowl?.seek(seekTo);
 	}
 
@@ -396,7 +365,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		clearInterval(updateInterval.current);
 		updateInterval.current = setInterval(() => {
 			setSeekAmount(howl);
-		}, updateRate);
+		}, UPDATE_RATE);
 	};
 
 	function showAudioPlayer() {
@@ -429,19 +398,26 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		songsOnPage.current = document.querySelectorAll(
 			`.${AUDIO_LIST_CLASSNAME}__item`,
 		);
-		window.addEventListener("click", handleWindowClick.bind(this));
+		window.addEventListener("click", handleWindowClick);
 	
 		return () => {
-			window.removeEventListener("click", handleWindowClick.bind(this));
 			playingHowl?.stop();
-			dispatch(setIsLoadingSound(false));
+			window.removeEventListener("click", handleWindowClick);
 			dispatch(setCurrentlyPlayingSound({} as AudioItem));
+			dispatch(setIsLoadingSound(false));
 		}
 	}, [])
 
+	useEffect(() => {
+	  hideAudioPlayer();
+	}, [location])
+	
+
 	//loading sound
 	useEffect(() => {
-		if (!isCurrentlyPlayingSoundValid) return;
+		if (!isCurrentlyPlayingSoundValid) {
+			return
+		};
 	 	//need to just play from beginning if clicking same song
 		setIsLoadingHowl(true);
 		const playingSoundPath = Object.values(
