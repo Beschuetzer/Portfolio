@@ -36,7 +36,9 @@ export type AudioPlayerState = {
 export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	//#region Init
 	const updateRate = 125;
+	const seekAmount = 15;
 	const currentlyPlayingSound = useSelector((state: RootState) => state.sounds.currentlyPlayingSound);
+	const isCurrentlyPlayingSoundValid = Object.keys(currentlyPlayingSound || {}).length > 0;
 	const id = useRef(-1);
 	const pauseRef = useRef<HTMLElement>(null);
 	const playRef = useRef<HTMLElement>(null);
@@ -44,12 +46,11 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	const audioPlayerTogglerSvgRef = useRef<HTMLElement>(null);
 	const songsOnPage = useRef<NodeListOf<Element> | null>(null);
 	const updateInterval = useRef<any>(-1);
-	const [seekAmount, setseekAmount] = useState(15)
 	const [hasShownPlayer, setHasShownPlayer] = useState(false);
 	const [howls, setHowls] = useState<Howl[] | null>(null);
 	const [playingHowl, setPlayingHowl] = useState<Howl | null>(null);
-	const [elapsed, setElapsed] = useState("-1");
-	const [songLength, setSongLength] = useState("-1");
+	const [elapsed, setElapsed] = useState("0");
+	const [songLength, setSongLength] = useState("0");
 	const [songProgressPercent, setSongProgressPercent] = useState(0);
 	const [shouldShowAudioPlayer, setShouldShowAudioPlayer] = useState(true);
 	const [isOpen, setIsOpen] = useState(false);
@@ -73,13 +74,12 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	function getPlayingHowl() {
 		if (!howls) return null;
 
-		let isSoundPlaying = null;
 		for (let i = 0; i < howls.length; i++) {
 			const howl = howls[i];
 			if (howl.playing()) return howl;
 		}
 
-		return isSoundPlaying;
+		return null;
 	}
 
 	function getSeekTo(isForward = true) {
@@ -131,10 +131,8 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 
 		if (!isOpen) {
 			showAudioPlayer();
-			target?.classList.add(AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME);
 		} else if (playingHowl?.playing()){
 			hideAudioPlayer();
-			target?.classList.remove(AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME);
 		}
 		setShouldShowAudioPlayer(newShouldShowState);
 		setIsOpen(!isOpen);
@@ -218,8 +216,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 
 		const audioPlayerExists = target.closest(AUDIO_PLAYER_CLASSNAME);
 		if (
-			!audioPlayerExists &&
-			Object.keys(currentlyPlayingSound).length > 0
+			!audioPlayerExists && isCurrentlyPlayingSoundValid
 		) {
 			hideAudioPlayer();
 			setIsOpen(false);
@@ -351,9 +348,16 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	}
 
 	function onSoundLoad(newHowl: Howl) {
+		// //need to see if sound is already loaded, if so play it, otherwise load
+		// const loadedHowl = getLoadedHowl(playingSoundPath);
+		// if (loadedHowl) {
+		// 	loadedHowl.play();
+		// 	dispatch(setIsLoadingSound(false));
+ 		// 	setSongLength(getMinuteAndSecondsString(loadedHowl.duration()));
+		// }
+
 		if (newHowl?.play) {
 			id.current = newHowl.play();
-			setUpdateInterval();
 		}
 
 		let newHowls = [];
@@ -372,25 +376,26 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 			newHowl.duration() as unknown as number,
 		));
 		setIsLoadingHowl(false);
+		setUpdateInterval(newHowl);
 	}
 
 	function seekTo(seekTo: number, id?: number) {
 		playingHowl?.seek(seekTo);
 	}
 
-	function setSeekAmount() {
-		if (!playingHowl) return;
-
-		const seek = playingHowl.seek() as number;
-		const percent = seek / playingHowl.duration();
+	function setSeekAmount(howl?: Howl) {
+		const howlToUse = playingHowl || howl;
+		if (!howlToUse) return;
+		const seek = howlToUse.seek() as number;
+		const percent = seek / howlToUse.duration();
 		setElapsed(getMinuteAndSecondsString(seek));
 		setSongProgressPercent(percent);
 	}
 	
-	function setUpdateInterval() {
+	function setUpdateInterval(howl?: Howl) {
 		clearInterval(updateInterval.current);
 		updateInterval.current = setInterval(() => {
-			setSeekAmount();
+			setSeekAmount(howl);
 		}, updateRate);
 	};
 
@@ -417,59 +422,9 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		handleAudioPlayerTransformNoneClassname("toggle");
 		handleAudioPlayerTogglerOpenClassname("toggle");
 	}
-
-	function updateElapsedTime(e: Event) {}
 	//#endregion
 	
 	//#region Side FXs
-	useEffect(() => {
-	 	//need to just play from beginning if clicking same song
-		setIsLoadingHowl(true);
-		const playingSoundPath = Object.values(
-			currentlyPlayingSound?.path || {}
-		)?.[0];
-		if (
-			playingSoundPath !== undefined &&
-			playingSoundPath === (playingHowl as any)?._src
-		) {
-			dispatch(setIsLoadingSound(false));
-			return handleRestart();
-		}
-
-		if (currentlyPlayingSound) {
-			if (!hasShownPlayer) {
-				showAudioPlayer();
-				setHasShownPlayer(true);
-			}
-
-			const playingHowl = getPlayingHowl();
-			if (playingHowl) playingHowl.stop();
-
-			const path = Object.values(
-				currentlyPlayingSound?.path || {}
-			)?.[0] as string;
-
-			if (!path) return;
-
-			//need to see if sound is already loaded, if so play it, otherwise load
-			const loadedHowl = getLoadedHowl(path);
-			if (loadedHowl) {
-				loadedHowl.play();
-				dispatch(setIsLoadingSound(false));
-				setPlayingHowl(loadedHowl);
-				setSongLength(getMinuteAndSecondsString(loadedHowl.duration()));
-			}
-
-			const newHowl = new Howl({
-				src: path,
-				html5: true,
-			});
-
-			newHowl.once("load", onSoundLoad.bind(this, newHowl));
-		}
-	})
-	
-
 	useEffect(() => {
 		songsOnPage.current = document.querySelectorAll(
 			`.${AUDIO_LIST_CLASSNAME}__item`,
@@ -483,6 +438,39 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 			dispatch(setCurrentlyPlayingSound({} as AudioItem));
 		}
 	}, [])
+
+	//loading sound
+	useEffect(() => {
+		if (!isCurrentlyPlayingSoundValid) return;
+	 	//need to just play from beginning if clicking same song
+		setIsLoadingHowl(true);
+		const playingSoundPath = Object.values(
+			currentlyPlayingSound?.path || {}
+		)?.[0] as string || '';
+		if (
+			playingSoundPath !== undefined &&
+			playingSoundPath === (playingHowl as any)?._src
+		) {
+			dispatch(setIsLoadingSound(false));
+			return handleRestart();
+		}
+
+		if (!hasShownPlayer) {
+			showAudioPlayer();
+			setHasShownPlayer(true);
+		}
+
+		const playingHowlLocal = getPlayingHowl();
+		if (playingHowlLocal) playingHowlLocal.stop();
+		if (!playingSoundPath) return;	
+		const newHowl = new Howl({
+			src: playingSoundPath,
+			html5: true,
+		});
+
+		setPlayingHowl(newHowl);
+		newHowl.once("load", onSoundLoad.bind(this, newHowl));
+	}, [currentlyPlayingSound])
 	//#endregion
 
 	//#region JSX
@@ -492,18 +480,19 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 			className={`${AUDIO_PLAYER_CLASSNAME}`}>
 			<div className={`${AUDIO_PLAYER_CLASSNAME}__content`}>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
-					<div>
+					{!!playingHowl ? (
+						<div>
 						{/* <span>Playing:&nbsp;</span> */}
 						<span>
 							<b>
 								'
-								{currentlyPlayingSound
-									? getMaxLengthString(currentlyPlayingSound.name, MAX_CHAR_COUNTS[MaxCharCount.song]())
-									: null}
+								{getMaxLengthString(currentlyPlayingSound.name, MAX_CHAR_COUNTS[MaxCharCount.song]())}
+								
 								'
 							</b>
 						</span>
 					</div>
+					) : null}
 					<span className={`${AUDIO_PLAYER_CLASSNAME}__details-time`}>
 						<span>{elapsed}</span>
 						<span>&nbsp;/&nbsp;</span>
@@ -579,15 +568,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 					<use xlinkHref="/sprite.svg#icon-forward"></use>
 				</svg>
 			</div>
-			{/* <label
-					className={`${AUDIO_PLAYER_CLASSNAME}__checkbox-label`}
-			>
-				
-				<input
-					type="checkbox"
-				/>
-				Keep Closed?
-			</label> */}
 		</section>
 	);
 	//#endregion
