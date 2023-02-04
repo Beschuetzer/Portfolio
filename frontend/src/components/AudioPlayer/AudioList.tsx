@@ -1,6 +1,7 @@
 import React from "react";
-import { connect, RootStateOrAny } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentlyPlayingSound, setIsLoadingSound } from '../../actions';
+import { RootState } from "../../reducers";
 import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
 import { AUDIO_PLAYER_CLASSNAME } from "./AudioPlayer";
 
@@ -15,12 +16,12 @@ export interface AudioItem {
 export interface AudioListProps {
 	items: AudioItem[];
 	className?: string;
-  isLoadingSound: boolean;
-  setCurrentlyPlayingSound: (sound: AudioItem) => void;
-  setIsLoadingSound: (value: boolean) => void;
 }
 
-const AudioList: React.FC<AudioListProps> = ({ items, className, setCurrentlyPlayingSound, isLoadingSound, setIsLoadingSound}) => {
+export const AudioList: React.FC<AudioListProps> = ({ items, className}) => {
+	const dispatch = useDispatch();
+    const isLoadingSound = useSelector((state: RootState) => state.sounds.isLoadingSound);
+
 	function handleItemClick(e: Event) {
 		const audioPlayer = document.querySelector(`.${AUDIO_PLAYER_CLASSNAME}`);
 		if (audioPlayer) {
@@ -35,8 +36,8 @@ const AudioList: React.FC<AudioListProps> = ({ items, className, setCurrentlyPla
 		if (!clickedItem?.dataset?.item) return;
 
 		const parsedItem = JSON.parse(clickedItem?.dataset?.item as string);
-		setIsLoadingSound(true);
-		setCurrentlyPlayingSound(parsedItem);
+		dispatch(setIsLoadingSound(true));
+		dispatch(setCurrentlyPlayingSound(parsedItem));
 	}
 
 	function renderItems() {
@@ -61,15 +62,3 @@ const AudioList: React.FC<AudioListProps> = ({ items, className, setCurrentlyPla
 		</div>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-  return {
-    currentlyPlayingSound: state.sounds.currentlyPlayingSound,
-    isLoadingSound: state.sounds.isLoadingSound,
-  }
-}
-
-export default connect(mapStateToProps, {
-  setCurrentlyPlayingSound,
-  setIsLoadingSound,
-})(AudioList);

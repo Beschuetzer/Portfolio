@@ -110,7 +110,7 @@ import p2p02Thumbnail from "../../../imgs/about/thumbnails/p2p-02-thumbnail.png"
 import p2p03Thumbnail from "../../../imgs/about/thumbnails/p2p-03-thumbnail.png";
 import p2p04Thumbnail from "../../../imgs/about/thumbnails/p2p-04-thumbnail.png";
 
-import AudioList from "../../../components/AudioPlayer/AudioList";
+import { AudioList } from "../../../components/AudioPlayer/AudioList";
 import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
 import LoadingSpinner from "../../../components/loading/LoadingSpinner";
 import Carousel from "../../../components/Carousel/Carousel";
