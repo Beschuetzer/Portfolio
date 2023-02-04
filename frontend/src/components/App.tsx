@@ -19,7 +19,7 @@ import Downloader from "../pages/examples/csharp/Downloader";
 import Bridge from "../pages/examples/bridge/Bridge";
 import Autobid from "../pages/examples/autobid/Autobid";
 import Resume from "../pages/resume/Resume";
-import SiteNav from "./navbar/SiteNav/SiteNav";
+import { SiteNav } from "./navbar/SiteNav/SiteNav";
 import PageNav from "./navbar/PageNav/PageNav";
 import NavToggler from "./navbar/NavToggler";
 import "../css/style.css";

@@ -1,6 +1,6 @@
-import React, { SetStateAction } from "react";
+import React from "react";
 import { useEffect, useRef, useState } from "react";
-import { connect, RootStateOrAny } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ReactDOM from "react-dom";
 import NavListItem from "../NavListItem";
 
@@ -28,7 +28,6 @@ import {
 	setBodyStyle,
 	handleMouseEnter,
 	resetPageNavMinWidth,
-	setHeaderHeightOnViewPortChange,
 	HEADER_ID,
 } from "./utils";
 import { scrollToSection } from "../../utils";
@@ -52,53 +51,32 @@ import {
 	ANIMATION_DURATION,
 	UNCLICKABLE_CLASSNAME,
 } from "../../constants";
-import { LoadedSounds } from "../../../reducers/soundsReducer";
 import { capitalize } from "../../../helpers";
-import { Dispatch } from "react";
 import { useLocation } from "react-router-dom";
+import { RootState } from "../../../reducers";
 
 export const SITE_NAV_CLASSNAME = "site-nav";
 export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal";
 
 interface SiteNavProps {
 	match: { url: string };
-	previousUrl: string;
-	viewPortWidth: number;
-	headerHeight: number;
-	sounds: LoadedSounds;
-	setHeaderHeight: (value: number) => void;
 }
 
-const SiteNav: React.FC<SiteNavProps> = ({
+export const SiteNav: React.FC<SiteNavProps> = ({
 	match,
-	previousUrl,
-	viewPortWidth,
-	setHeaderHeight,
 }) => {
+	const previousUrl = useSelector((state: RootState) => state.general.previousUrl);
+	const viewPortWidth = useSelector((state: RootState) => state.general.viewPortWidth);
+	const dispatch = useDispatch();
 	const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
-	const CLOSE_WINDOW_WAIT = 750;
-	const RESET_HAS_PINGED_CONTAINER_DURATION = 900000;
 	const [currentUrl, setCurrentUrl] = useState<string>("");
 	const location = useLocation();
 	const navRef = useRef<HTMLElement>(null);
 	const toggleTransitioningTimeoutIdRef = useRef<any>(null);
 	const [isTransitioning, setIsTransitioning] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const [hasPingedBridgeHerokuContainer, setHasPingedBridgeHerokuContainer] =
-		useState(false);
-	const [hasPingedReplayHerokuContainer, setHasPingedReplayHerokuContainer] =
-		useState(false);
-
 
 	//#region Functions/Handlers
-	//uncomment and change logic to enable sounds
-	// const handleSound = (sounds: LoadedSounds, e: MouseEvent) => {	
-	// 	if (!isActive && isMenu)
-	// 		if (sounds?.loaded?.play) sounds.loaded.play("siteNavOpen");
-	// 		else if ((!isActive && !isNavbar) || (isActive && isMenu))
-	// 	if (sounds?.loaded?.play) sounds.loaded.play("siteNavClose");
-	// };
-
 	const onBodyClick = (e: Event) => {
 		const isNavClick = (e.target as any)?.classList?.contains(
 			NAVBAR_ACTIVE_CLASSNAME,
@@ -127,17 +105,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			return;
 		}
 
-		if (!target) return;
-
-		//note: this starts heroku container from sleep (no longer necessary as free tier gone)
-		// if (!hasPingedBridgeHerokuContainer && target.baseURI.match(BRIDGE_URL))
-		// 	pingContainer(setHasPingedBridgeHerokuContainer, LIVE_BRIDGE_URL);
-		// if (
-		// 	!hasPingedReplayHerokuContainer &&
-		// 	target.baseURI.match(REPLAY_VIEWER_URL)
-		// )
-		// 	pingContainer(setHasPingedReplayHerokuContainer, LIVE_REPLAYS_URL);
-
 		//need timeout to ensure page has loaded first (may need to increase if overflow hidden glitch still occurs)
 		setTimeout(() => {
 			onNavClick(e);
@@ -148,25 +115,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 		e.stopPropagation();
 		handleMouseEnter(navRef);
 	};
-
-	// function pingContainer(
-	// 	setStateAction: Dispatch<SetStateAction<boolean>>,
-	// 	href: string,
-	// ) {
-	// 	const currentWindow = window;
-	// 	const openedWindow = window.open(href);
-
-	// 	currentWindow.focus();
-
-	// 	setTimeout(() => {
-	// 		if (openedWindow) openedWindow.close();
-	// 		setStateAction(true);
-	// 	}, CLOSE_WINDOW_WAIT);
-
-	// 	setTimeout(() => {
-	// 		setStateAction(false);
-	// 	}, RESET_HAS_PINGED_CONTAINER_DURATION);
-	// }
 
 	function toggleState() {
 		setIsOpen((currentValue) => !currentValue);
@@ -192,7 +140,6 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	}, [currentUrl]);
 
 	useEffect(() => {
-		// setHeaderHeightOnViewPortChange(viewPortWidth, setHeaderHeight);
 		resetPageNavMinWidth(viewPortWidth);
 	}, [viewPortWidth, setHeaderHeight]);
 
@@ -223,7 +170,7 @@ const SiteNav: React.FC<SiteNavProps> = ({
 			const headerHeight = (
 				document.querySelector(HEADER_ID) as HTMLElement
 			).getBoundingClientRect().height;
-			setHeaderHeight(headerHeight);
+			dispatch(setHeaderHeight(headerHeight));
 		}, SET_INITIAL_HEADER_HEIGHT_DELAY);
 
 		window.addEventListener("keydown", handleKeypress);
@@ -353,15 +300,3 @@ const SiteNav: React.FC<SiteNavProps> = ({
 	//#endregion
 };
 
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		previousUrl: state.general.previousUrl,
-		viewPortWidth: state.general.viewPortWidth,
-		headerHeight: state.general.headerHeight,
-		sounds: state.sounds,
-	};
-};
-
-export default connect(mapStateToProps, {
-	setHeaderHeight,
-})(SiteNav);

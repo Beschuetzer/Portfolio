@@ -89,26 +89,6 @@ export const setBodyStyle = (currentUrl: string) => {
 	}
 };
 
-export const setHeaderHeightOnViewPortChange = (
-	viewPortWidth: number,
-	setHeaderHeight: (value: number) => void,
-) => {
-	const navbarContent = document.querySelector(
-		`.${NAVBAR_CONTENT_CLASSNAME}`,
-	) as HTMLElement;
-	const header = document.querySelector(HEADER_ID) as HTMLElement;
-	const headerBoundingRect = header.getBoundingClientRect();
-
-	let newTop = `calc(${headerBoundingRect.height}px)`;
-	if (viewPortWidth > MOBILE_BREAK_POINT_WIDTH) {
-		newTop = "auto";
-	}
-	navbarContent.style.top = newTop;
-
-	const headerHeight = header.getBoundingClientRect().height;
-	setHeaderHeight(headerHeight);
-};
-
 export const hide = (navRef: NavRef) => {
 	navRef.current?.classList.add(OVERFLOW_HIDDEN_CLASSNAME);
 };
