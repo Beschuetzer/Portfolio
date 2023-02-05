@@ -1,5 +1,4 @@
 React best practices re-work (branch = sitenav_rework)
-  -fix AUdioPlayer svg bug when changing pages and opening then closing
   -finish removing connect stuff
   -rework remaining places that directly modify the DOM
 

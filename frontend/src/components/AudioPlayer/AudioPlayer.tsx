@@ -39,6 +39,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	const UPDATE_RATE = 125;
 	const currentlyPlayingSound = useSelector((state: RootState) => state.sounds.currentlyPlayingSound);
 	const isCurrentlyPlayingSoundValid = Object.keys(currentlyPlayingSound || {}).length > 0;
+	const hasSwitchedLocationRef = useRef(false);
 	const id = useRef(-1);
 	const pauseRef = useRef<HTMLElement>(null);
 	const playRef = useRef<HTMLElement>(null);
@@ -322,7 +323,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	}
 
 	function setSeekAmount(howl?: Howl) {
-		const howlToUse = playingHowl || howl;
+		const howlToUse = howl || playingHowl;
 		if (!howlToUse) return;
 		const seek = howlToUse.seek() as number;
 		const percent = seek / howlToUse.duration();
@@ -348,18 +349,29 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	
 	//#region Side FXs
 	useEffect(() => {
-		songsOnPage.current = document.querySelectorAll(
-			`.${AUDIO_LIST_CLASSNAME}__item`,
-		);
 		window.addEventListener("click", handleWindowClick);
 	
 		return () => {
 			playingHowl?.stop();
 			window.removeEventListener("click", handleWindowClick);
+			setIsOpen(false);
 			dispatch(setCurrentlyPlayingSound({} as AudioItem));
 			dispatch(setIsLoadingSound(false));
 		}
 	}, [])
+
+	useEffect(() => {
+		songsOnPage.current = document.querySelectorAll(
+			`.${AUDIO_LIST_CLASSNAME}__item`,
+		);
+
+		setIsPlayButtonVisible(true);
+		setIsOpen(false);
+		setShouldShowAudioPlayer(false);
+		setHasShownPlayer(false);
+	  	playingHowl?.stop();
+	}, [location])
+	
 
 	//loading sound
 	useEffect(() => {
@@ -398,7 +410,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 
 	//#region JSX
 	const openClassname = isOpen ? TRANSFORM_NONE_CLASSNAME : '';
-	const showSvgClassname = hasShownPlayer ? '' : HIDDEN_CLASSNAME;
+	const showSvgClassname = !hasShownPlayer  ? HIDDEN_CLASSNAME : '';
 	return (
 		<section
 			ref={audioPlayerRef as any}
@@ -407,7 +419,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
 					{!!playingHowl ? (
 						<div>
-						{/* <span>Playing:&nbsp;</span> */}
 						<span>
 							<b>
 								'
