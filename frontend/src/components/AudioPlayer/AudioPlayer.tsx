@@ -374,14 +374,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		}
 	}, [])
 
-	useEffect(() => {
-	}, [location])
-
-	useEffect(() => {
-	
-	}, [isOpen])
-	
-
 	//loading sound
 	useEffect(() => {
 		if (!isCurrentlyPlayingSoundValid) {
@@ -418,8 +410,11 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	//#endregion
 
 	//#region JSX
+	console.log({isOpen});
+
 	const hideClassname = !isLoadingHowl && !playingHowl?.playing() ? HIDDEN_CLASSNAME : '';
-	const openClassname = isOpen ? AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME : '';
+	const openClassname = isOpen ? TRANSFORM_NONE_CLASSNAME : '';
+	const showSvgClassname = hasShownPlayer ? '' : HIDDEN_CLASSNAME;
 	return (
 		<section
 			ref={audioPlayerRef as any}
@@ -433,7 +428,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 							<b>
 								'
 								{getMaxLengthString(currentlyPlayingSound.name, MAX_CHAR_COUNTS[MaxCharCount.song]())}
-								
 								'
 							</b>
 						</span>
@@ -502,7 +496,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 			</div>
 			<div
 				id={`${AUDIO_PLAYER_TOGGLER_CLASSNAME}`}
-				className={`${AUDIO_PLAYER_TOGGLER_CLASSNAME} ${HIDDEN_CLASSNAME}`}>
+				className={`${AUDIO_PLAYER_TOGGLER_CLASSNAME} ${showSvgClassname}`}>
 				<svg
 					className={`${
 						shouldShowAudioPlayer
