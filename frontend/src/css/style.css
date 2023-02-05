@@ -1680,7 +1680,7 @@ body {
   --color: var(--color-primary-4);
   --svg-fill-color: var(--color-primary-4-rgb);
   --svg-active-color: var(--color-primary-3-rgb);
-  --svg-size: 7vmin;
+  --svg-size: 4.272625rem;
   --toggler-padding: 0.7rem;
   display: flex;
   flex-direction: column;
@@ -1694,16 +1694,6 @@ body {
   color: var(--color);
   background-color: var(--background-color);
   z-index: 10;
-}
-@media only screen and (max-width: 68.75em) {
-  .audio-player {
-    --svg-size: 5.6rem;
-  }
-}
-@media only screen and (max-width: 29.3125em) {
-  .audio-player {
-    --svg-size: 4.2rem;
-  }
 }
 .audio-player__checkbox-label {
   position: absolute;
