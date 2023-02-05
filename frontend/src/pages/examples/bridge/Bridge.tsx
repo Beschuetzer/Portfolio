@@ -25,7 +25,7 @@ import cardPlayAndRoundEndVideo from "../../../clips/bridge/animation-roundEndDu
 import preferencesVideo from "../../../clips/bridge/preferences.mp4";
 import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
-import CardManager from "../../../components/Card/CardManager";
+import { CardManager } from "../../../components/Card/CardManager";
 import {
 	bridgeSections,
 	BRIDGE_BACKDROP_CLASSNAME,
