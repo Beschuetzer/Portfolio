@@ -55,6 +55,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	const [shouldShowAudioPlayer, setShouldShowAudioPlayer] = useState(true);
 	const [isOpen, setIsOpen] = useState(false);
 	const [isLoadingHowl, setIsLoadingHowl] = useState(true);
+	const [isPlayButtonVisible, setIsPlayButtonVisible] = useState(false);
 	const dispatch = useDispatch();
 	const location = useLocation();
 	//#endregion
@@ -112,17 +113,14 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		playingHowl.pause();
 
 		showPlay();
-		hidePause();
 	}
 
 	function handlePlay() {
 		if (!playingHowl) return;
 		if (playingHowl.playing()) {
-			hidePlay();
 			return showPause();
 		}
 
-		hidePlay();
 		showPause();
 
 		id.current = playingHowl.play();
@@ -193,15 +191,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 			setIsOpen(false);
 		}
 	}
-
-	function hidePause() {
-		(pauseRef?.current as HTMLElement)?.classList.add(HIDDEN_CLASSNAME);
-	}
-
-	function hidePlay() {
-		(playRef?.current as HTMLElement)?.classList.add(HIDDEN_CLASSNAME);
-	}
-
 
 	function getNextSong(isSkipForward = true) {
 		const songsOnPageLocal = songsOnPage?.current || null;
@@ -281,7 +270,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		playingHowl.stop();
 		id.current = -1;
 		showPlay();
-		hidePause();
 	}
 
 	function handleProgressBarClick(e: MouseEvent) {
@@ -315,7 +303,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		if (howls) newHowls = [...howls, newHowl];
 		else newHowls.push(newHowl);
 
-		hidePlay();
 		showPause();
 
 		dispatch(setIsLoadingSound(false));
@@ -351,11 +338,11 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	};
 
 	function showPlay() {
-		(playRef?.current as HTMLElement)?.classList.remove(HIDDEN_CLASSNAME);
+		setIsPlayButtonVisible(true);
 	}
 
 	function showPause() {
-		(pauseRef?.current as HTMLElement)?.classList.remove(HIDDEN_CLASSNAME);
+		setIsPlayButtonVisible(false);
 	}
 	//#endregion
 	
@@ -410,15 +397,12 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	//#endregion
 
 	//#region JSX
-	console.log({isOpen});
-
-	const hideClassname = !isLoadingHowl && !playingHowl?.playing() ? HIDDEN_CLASSNAME : '';
 	const openClassname = isOpen ? TRANSFORM_NONE_CLASSNAME : '';
 	const showSvgClassname = hasShownPlayer ? '' : HIDDEN_CLASSNAME;
 	return (
 		<section
 			ref={audioPlayerRef as any}
-			className={`${AUDIO_PLAYER_CLASSNAME} ${hideClassname} ${openClassname}`}>
+			className={`${AUDIO_PLAYER_CLASSNAME} ${openClassname}`}>
 			<div className={`${AUDIO_PLAYER_CLASSNAME}__content`}>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
 					{!!playingHowl ? (
@@ -449,18 +433,21 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 				</div>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__controls`}>
 					<div>
-						<svg
-							ref={playRef as any}
-							onClick={(e: any) => handlePlay()}
-							className={`${AUDIO_PLAYER_CLASSNAME}__play`}>
-							<use xlinkHref="/sprite.svg#icon-play"></use>
-						</svg>
-						<svg
-							ref={pauseRef as any}
-							onClick={(e: any) => handlePause()}
-							className={`${AUDIO_PLAYER_CLASSNAME}__pause hidden`}>
-							<use xlinkHref="/sprite.svg#icon-pause"></use>
-						</svg>
+						{isPlayButtonVisible ? (
+							<svg
+								ref={playRef as any}
+								onClick={(e: any) => handlePlay()}
+								className={`${AUDIO_PLAYER_CLASSNAME}__play`}>
+								<use xlinkHref="/sprite.svg#icon-play"></use>
+							</svg>
+						) : (
+							<svg
+								ref={pauseRef as any}
+								onClick={(e: any) => handlePause()}
+								className={`${AUDIO_PLAYER_CLASSNAME}__pause`}>
+								<use xlinkHref="/sprite.svg#icon-pause"></use>
+							</svg>
+						)}
 					</div>
 					<svg
 						onClick={(e: any) => handleStop()}
