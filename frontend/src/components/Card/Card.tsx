@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useState } from "react";
 import { useRef } from "react";
-import { connect, RootStateOrAny } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
 	ANIMATION_DURATION,
@@ -26,7 +26,6 @@ import {
 	centerCard,
 	changeSectionTitle,
 	checkShouldContinueOnClick,
-	closeCard,
 	handleProgressBarClick,
 } from "./utils";
 import {
@@ -35,10 +34,12 @@ import {
 } from "../../pages/examples/bridge/utils";
 import {
 	attachProgressListener,
+	closeVideo,
 	getIsVideoPlaying,
 	handleVideoProgress,
 } from "../VideoPlayer/utils";
 import { scrollToSection } from "../utils";
+import { RootState } from "../../reducers";
 
 interface CardProps {
 	title: string;
@@ -46,29 +47,45 @@ interface CardProps {
 	fileType?: string;
 	children: any;
 	video: string;
-	viewPortWidth: number;
-	isMobile: boolean;
-	headerHeight: number;
-	setIsCardVideoOpen: (value: boolean) => void;
 }
 
-const Card: React.FC<CardProps> = ({
+export const Card: React.FC<CardProps> = ({
 	title,
 	cardName,
 	fileType = "svg",
 	children,
 	video,
-	viewPortWidth,
-	isMobile,
-	headerHeight,
-	setIsCardVideoOpen,
 }) => {
+	//#region Init
+	const dispatch = useDispatch();
+	const isMobile = useSelector((state: RootState) => state.general.isMobile);
+	const viewPortWidth  = useSelector((state: RootState) => state.general.viewPortWidth);
 	const [showChildren, setShowChildren] = useState<boolean>(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const titleRef = useRef<HTMLHeadingElement>(null);
 	const cardRef = useRef<HTMLElement>(null);
 	const progressBarRef = useRef<HTMLProgressElement>(null);
 	let hasProgressEventListener = false;
+	//#endregion
+
+	//#region Functions/Handlers
+	const closeCard = (
+		video: HTMLVideoElement,
+		card: HTMLElement,
+		titleRef: Reference,
+		setIsCardVideoOpen: (value: boolean) => void,
+	) => {
+		closeVideo(video);
+	
+		if (!titleRef) return;
+		changeSectionTitle(titleRef, false);
+		dispatch(setIsCardVideoOpen(false));
+	
+		if (!card) return;
+		card.classList.remove(CARD_OPEN_CLASSNAME);
+		card.classList.remove(CARD_DONE_CLASSNAME);
+		card.classList.remove(CARD_STOPPED_CLASSNAME);
+	};
 
 	const openCard = (
 		video: HTMLVideoElement,
@@ -102,7 +119,7 @@ const Card: React.FC<CardProps> = ({
 			card.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
 		}, ANIMATION_DURATION);
 
-		setIsCardVideoOpen(true);
+		dispatch(setIsCardVideoOpen(true));
 	};
 
 	const playVideo = (video: HTMLVideoElement, card: HTMLElement) => {
@@ -117,7 +134,6 @@ const Card: React.FC<CardProps> = ({
 		card.classList.remove(CARD_STOPPED_CLASSNAME);
 		video.play();
 	};
-
 
 	const handleVideoEnd = (e: Event) => {
 		cardRef.current?.classList.add(CARD_DONE_CLASSNAME);
@@ -161,7 +177,9 @@ const Card: React.FC<CardProps> = ({
 	const onProgressBarClick = (e: MouseEventHandler<HTMLElement>) => {
 		handleProgressBarClick(videoRef, cardRef, e as any);
 	};
-	
+	//#endregion
+
+	//#region JSX	
 	return (
 		<article
 			ref={cardRef}
@@ -258,16 +276,5 @@ const Card: React.FC<CardProps> = ({
 			</div>
 		</article>
 	);
+	//#endregion
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		viewPortWidth: state.general.viewPortWidth,
-		isMobile: state.general.isMobile,
-		headerHeight: state.general.headerHeight,
-	};
-};
-
-export default connect(mapStateToProps, {
-	setIsCardVideoOpen,
-})(Card);

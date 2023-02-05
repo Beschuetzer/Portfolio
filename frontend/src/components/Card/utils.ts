@@ -1,7 +1,7 @@
 import { RefObject } from "react";
 import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_CLASSNAME, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
-import { MOBILE_BREAK_POINT_WIDTH, Reference, Z_INDEX_HIGHEST_CLASSNAME } from "../constants";
-import { closeVideo, getPercentOfProgressBar } from "../VideoPlayer/utils";
+import { MOBILE_BREAK_POINT_WIDTH, Z_INDEX_HIGHEST_CLASSNAME } from "../constants";
+import { getPercentOfProgressBar } from "../VideoPlayer/utils";
 
 export const CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION = 75;
 export const CARD_DONE_CLASSNAME = "card--done";
@@ -294,24 +294,6 @@ export const centerCard = (
 	const newValue = `--card-playing-transform: ${newTransform}`;
 
 	document.documentElement.style.cssText += newValue;
-};
-
-export const closeCard = (
-	video: HTMLVideoElement,
-	card: HTMLElement,
-	titleRef: Reference,
-	setIsCardVideoOpen: (value: boolean) => void,
-) => {
-	closeVideo(video);
-
-	if (!titleRef) return;
-	changeSectionTitle(titleRef, false);
-	setIsCardVideoOpen(false);
-
-	if (!card) return;
-	card.classList.remove(CARD_OPEN_CLASSNAME);
-	card.classList.remove(CARD_DONE_CLASSNAME);
-	card.classList.remove(CARD_STOPPED_CLASSNAME);
 };
 
 export const checkShouldContinueOnClick = (

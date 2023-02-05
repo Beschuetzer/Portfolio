@@ -12,7 +12,7 @@ import EmbeddedLink from "../../../components/EmbeddedLink";
 import BridgeCard from "./BridgeCard";
 import BridgeCardSection from "./BridgeCardSection";
 import SectionContainer from "../../../components/SectionContainer";
-import Card from "../../../components/Card/Card";
+import { Card } from "../../../components/Card/Card";
 import BridgeSectionLink from "./BridgeSectionLink";
 
 import dealSummaryVideo from "../../../clips/bridge/dealSummary.mp4";
