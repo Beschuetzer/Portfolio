@@ -235,4 +235,16 @@ export function toggleScrollability(isScrollable = true) {
 		document.body.style.overflowY = 'hidden';
 	}
 }
+
+/*
+* recursively checks nodes and their ancestors for a classname stopping at stoppingElementType
+*/
+export function getAncestorContainsClassname(elementToCheck: HTMLElement | null, classname: string, stoppingElementType = 'body'): boolean {
+	const regex = new RegExp(classname, 'i');
+	if (!classname || !elementToCheck) return false;
+	if ( elementToCheck?.className?.match(regex)) return true;
+	if (elementToCheck?.localName?.toLocaleLowerCase() === stoppingElementType) return false;
+	const parent = elementToCheck?.parentElement || null;
+	return getAncestorContainsClassname(parent, classname, stoppingElementType);
+}
 //#endregion

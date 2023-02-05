@@ -10,7 +10,7 @@ import {
 	AUDIO_LIST_ITEM_CLASSNAME,
 } from "./AudioList";
 import { getMinuteAndSecondsString } from "./utils";
-import { getMaxLengthString } from "../utils";
+import { getAncestorContainsClassname, getMaxLengthString } from "../utils";
 import { RootState } from "../../reducers";
 import { useLocation } from "react-router-dom";
 
@@ -20,18 +20,11 @@ export const AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME = `${AUDIO_PLAYER_TOGGLER_CLASS
 export const AUDIO_PLAYER_FILL_COLOR_CLASSNAME = "fill-primary-3";
 
 export type AudioPlayerAction = "add" | "remove" | "toggle";
-export type AudioPlayerProps = {}
-export type AudioPlayerState = {
-	howls: Howl[] | null;
-	playingHowl: Howl | null;
-	currentlyPlayingSound: AudioItem;
-	elapsed: string;
-	songLength: string;
-	songProgressPercent: number;
-	shouldShowAudioPlayer: boolean;
-	isOpen: boolean;
-	isLoadingHowl: boolean;
+enum AudioPlayerTogglerStates {
+	fullSize,
+	minimized,
 }
+export type AudioPlayerProps = {}
 
 export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	//#region Init
@@ -39,7 +32,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	const UPDATE_RATE = 125;
 	const currentlyPlayingSound = useSelector((state: RootState) => state.sounds.currentlyPlayingSound);
 	const isCurrentlyPlayingSoundValid = Object.keys(currentlyPlayingSound || {}).length > 0;
-	const hasSwitchedLocationRef = useRef(false);
 	const id = useRef(-1);
 	const pauseRef = useRef<HTMLElement>(null);
 	const playRef = useRef<HTMLElement>(null);
@@ -55,8 +47,8 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	const [songProgressPercent, setSongProgressPercent] = useState(0);
 	const [shouldShowAudioPlayer, setShouldShowAudioPlayer] = useState(true);
 	const [isOpen, setIsOpen] = useState(false);
-	const [isLoadingHowl, setIsLoadingHowl] = useState(true);
 	const [isPlayButtonVisible, setIsPlayButtonVisible] = useState(false);
+	const [assumedPreferredState, setAssumedPreferredState] = useState<AudioPlayerTogglerStates>(AudioPlayerTogglerStates.fullSize);
 	const dispatch = useDispatch();
 	const location = useLocation();
 	//#endregion
@@ -147,50 +139,11 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	function handleToggler(e: MouseEvent) {
 		setShouldShowAudioPlayer(!shouldShowAudioPlayer);
 		setIsOpen(!isOpen);
-	}
-
-	function handleWindowClick(e: MouseEvent) {
-		//todo: need to re-do this
-		const target = e.target as HTMLElement;
-		if (!target) return;
-
-		let targetIsAudioListItem = false;
-		let parentIsAudioListItem = -1;
-
-		const pathes = (e as any)?.path || [];
-		for (let i = 0; i < pathes.length; i++) {
-			const path = pathes[i] as HTMLElement;
-
-			if (typeof path.className === "string") {
-				if (path.className?.match(AUDIO_PLAYER_CLASSNAME)) return;
-				targetIsAudioListItem = !!path.className?.match(
-					AUDIO_LIST_ITEM_CLASSNAME,
-				);
-			}
-		}
-
-		if (!targetIsAudioListItem) {
-			const audioListMatchRegExp = new RegExp(AUDIO_LIST_ITEM_CLASSNAME, "i");
-			parentIsAudioListItem = (
-				target.closest(`.${AUDIO_LIST_CLASSNAME}__item`) as HTMLElement
-			)?.className.search(audioListMatchRegExp);
-		}
-	
-		if (
-			targetIsAudioListItem ||
-			(parentIsAudioListItem !== undefined &&
-				parentIsAudioListItem !== -1 &&
-				shouldShowAudioPlayer)
-		) {
-			setIsOpen(true);
-		}
-
-		const audioPlayerExists = target.closest(AUDIO_PLAYER_CLASSNAME);
-		if (
-			!audioPlayerExists && isCurrentlyPlayingSoundValid
-		) {
-			setIsOpen(false);
-		}
+		setAssumedPreferredState((current) => {
+			return current === AudioPlayerTogglerStates.fullSize ? 
+				AudioPlayerTogglerStates.minimized : 
+				AudioPlayerTogglerStates.fullSize
+		});
 	}
 
 	function getNextSong(isSkipForward = true) {
@@ -226,46 +179,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		return JSON.parse((elementToUse as HTMLElement)?.dataset?.item as string);
 	}
 
-
-	function handleAudioPlayerTogglerOpenClassname(action: AudioPlayerAction) {
-		const audioPlayerToggler = audioPlayerTogglerSvgRef
-			.current as HTMLElement;
-		if (audioPlayerToggler) {
-			switch (action) {
-				case "add":
-					audioPlayerToggler.classList.add(AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME);
-					break;
-				case "remove":
-					audioPlayerToggler.classList.remove(
-						AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME,
-					);
-					break;
-				case "toggle":
-					audioPlayerToggler.classList.toggle(
-						AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME,
-					);
-					break;
-			}
-		}
-	}
-
-	function handleAudioPlayerTransformNoneClassname(action: AudioPlayerAction) {
-		const audioPlayer = audioPlayerRef.current as HTMLElement;
-		if (audioPlayer) {
-			switch (action) {
-				case "add":
-					audioPlayer.classList.add(TRANSFORM_NONE_CLASSNAME);
-					break;
-				case "remove":
-					audioPlayer.classList.remove(TRANSFORM_NONE_CLASSNAME);
-					break;
-				case "toggle":
-					audioPlayer.classList.toggle(TRANSFORM_NONE_CLASSNAME);
-					break;
-			}
-		}
-	}
-
 	function handleStop() {
 		if (!playingHowl) return;
 		playingHowl.stop();
@@ -286,6 +199,15 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		seekTo(duration ? duration * percent : 0);
 		handlePlay();
 		setSongProgressPercent(percent);
+	}
+
+	function handleWindowClick(e: MouseEvent) {
+		e.stopPropagation();
+		if (assumedPreferredState === AudioPlayerTogglerStates.minimized) return;
+		const target = e.target as HTMLElement;
+		const isPartOfAudioPlayer = getAncestorContainsClassname(target, AUDIO_PLAYER_CLASSNAME, 'section');
+		if (isPartOfAudioPlayer) return;
+		setIsOpen(false);
 	}
 
 	function loadNextSong(isSkipForward = true) {
@@ -314,8 +236,11 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		setSongLength(getMinuteAndSecondsString(
 			newHowl.duration() as unknown as number,
 		));
-		setIsLoadingHowl(false);
 		setUpdateInterval(newHowl);
+		if (!hasShownPlayer || assumedPreferredState === AudioPlayerTogglerStates.fullSize) {
+			setIsOpen(true);
+		}
+		dispatch(setIsLoadingSound(false));
 	}
 
 	function seekTo(seekTo: number) {
@@ -379,7 +304,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 			return
 		};
 	 	//need to just play from beginning if clicking same song
-		setIsLoadingHowl(true);
+		dispatch(setIsLoadingSound(true));
 		const playingSoundPath = Object.values(
 			currentlyPlayingSound?.path || {}
 		)?.[0] as string || '';
