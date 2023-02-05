@@ -22,6 +22,7 @@ import {
   SET_IS_CARD_VIDEO_OPEN,
   SET_CURRENTLY_PLAYING_SOUND,
   SET_IS_LOADING_SOUND,
+  SET_BRIDGE_FEATURE_SECTION_TITLE,
 } from './types';
     
 //Github Graph QL Repository 
@@ -216,6 +217,12 @@ export const setBridgeCards = (value: []) => {
 export const setBridgeSections = (value: []) => {
   return {
     type: SET_BRIDGE_SECTIONS,
+    payload: value,
+  }
+}
+export const setBridgeFeatureSectionTitle = (value: string) => {
+  return {
+    type: SET_BRIDGE_FEATURE_SECTION_TITLE,
     payload: value,
   }
 }

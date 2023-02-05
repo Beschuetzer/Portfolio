@@ -7,18 +7,20 @@ import {
   SET_HAS_CLICKED_A_LINK,
   SET_IS_CARD_VIDEO_OPEN,
   SET_CARD_TO_CLOSE,
+  SET_BRIDGE_FEATURE_SECTION_TITLE,
 } from '../actions/types';
 import { Action } from '../models';
 
 const INITIAL_STATE = {
-  lastSecondRowCardNumber: 5,
+  bridgeCards: null,
+  bridgeSections: null,
+  cardToClose: null,
   clickedBridgeInfoButtonCount: 0,
   currentBridgeSection: 0,
-  bridgeSections: null,
-  bridgeCards: null,
+  featureSectionTitle: 'Pick a card any card...',
   hasClickedALink: null,
   isCardVideoOpen: false,
-  cardToClose: null,
+  lastSecondRowCardNumber: 5,
 }
 
 const resumeReducer = (state = INITIAL_STATE, action: Action) => {
@@ -31,6 +33,8 @@ const resumeReducer = (state = INITIAL_STATE, action: Action) => {
       return {...state, currentBridgeSection: action.payload};
     case SET_BRIDGE_SECTIONS:
       return {...state, bridgeSections: action.payload};
+    case SET_BRIDGE_FEATURE_SECTION_TITLE:
+      return {...state, featureSectionTitle: action.payload};
     case SET_BRIDGE_CARDS:
       return {...state, bridgeCards: action.payload};
     case SET_HAS_CLICKED_A_LINK:

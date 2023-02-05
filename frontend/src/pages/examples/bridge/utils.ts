@@ -16,7 +16,7 @@ export const BRIDGE_BACKDROP_CLASSNAME = `${BRIDGE_CLASSNAME}__backdrop`;
 
 export const BRIDGE_HERO_CLICKED_CLASSNAME = "hero--clicked";
 export const BRIDGE_HERO_MORE__CLICKED_CLASSNAME = "hero__more--clicked";
-export const bridgeSections = [
+export const bridgeSectionNames = [
   "Overview",
   "Features",
   "Details",
@@ -77,7 +77,7 @@ export const toggleSecondInfoButtonClick = (hero: HTMLElement, heroMore: HTMLEle
     hero?.classList.add('d-none');
   }
 
-  if (span?.textContent !== bridgeSections[bridgeSections.length - 1]){
+  if (span?.textContent !== bridgeSectionNames[bridgeSectionNames.length - 1]){
     setTimeout(() => {
       const arrowButtonRight = document.querySelector('.arrow-button--right');
       if (arrowButtonRight) arrowButtonRight.classList.remove('d-none');
@@ -124,7 +124,7 @@ export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: H
     //min = -27.5 max = 100 from 340 to 1099
     let heightOffset = 0;
     if (isMobile) heightOffset = getLinearPercentOfMaxMatchWithinRange(window.innerWidth, 340, 1099, 27.5, 100);
-    scrollToSection(document.getElementById(bridgeSections[0].toLowerCase()) as HTMLElement, -heightOffset);
+    scrollToSection(document.getElementById(bridgeSectionNames[0].toLowerCase()) as HTMLElement, -heightOffset);
     if (background)  {
       background?.classList.remove('visible');
       background?.classList.remove('reverse-ease');

@@ -1,5 +1,5 @@
 import { RefObject } from "react";
-import { bridgeSections, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_CLASSNAME, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
+import { bridgeSectionNames, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_CLASSNAME, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
 import { MOBILE_BREAK_POINT_WIDTH, Z_INDEX_HIGHEST_CLASSNAME } from "../constants";
 import { getPercentOfProgressBar } from "../VideoPlayer/utils";
 
@@ -10,39 +10,9 @@ export const CARD_OPEN_CLASSNAME = "card--open";
 export const CARD_PLAYING_CLASSNAME = "card--playing";
 export const CARD_DEFAULT_CLASSNAME = "card card--hoverable";
 
-export const changeSectionTitle = (
-	titleRef: RefObject<HTMLElement> | HTMLElement,
-	isOpen = true,
-) => {
-	if (!titleRef) return;
-	const originalMsgTitle = "Features";
-	const originalMsgSubTitle = "Pick a Card any Card";
-
-	const sections = document.querySelectorAll(`.${BRIDGE_CLASSNAME}__section`);
-	for (let i = 0; i < sections.length; i++) {
-		const section = sections[i];
-		if (section.id.match(/feature/i)) {
-			const title = section.querySelector(`.${BRIDGE_CLASSNAME}__section-title`);
-
-			let msgTitleToUse = originalMsgTitle as string | null | undefined;
-			let msgSubTitleToUse = originalMsgSubTitle;
-			if (isOpen) {
-				if (titleRef && (titleRef as any).current)
-					msgTitleToUse = (titleRef as any).current?.textContent;
-				msgSubTitleToUse = "";
-			}
-			if (title) {
-				title.textContent = msgTitleToUse as string;
-				(title.nextElementSibling as any).textContent = msgSubTitleToUse;
-			}
-			break;
-		}
-	}
-};
-
 export const getFeaturesBridgeSectionTitles = () => {
 	const features = document.querySelector(
-		`#${(bridgeSections as any)[1]?.toLowerCase()}`,
+		`#${(bridgeSectionNames as any)[1]?.toLowerCase()}`,
 	) as HTMLElement;
 	return features.querySelector(`.${BRIDGE_SECTION_TITLES_CLASSNAME}`);
 };

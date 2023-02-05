@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { setPreviousUrl } from "../../../actions";
 import { capitalize } from "../../../helpers";
 import BridgeSectionLink from "../../../pages/examples/bridge/BridgeSectionLink";
-import { bridgeSections } from "../../../pages/examples/bridge/utils";
+import { bridgeSectionNames } from "../../../pages/examples/bridge/utils";
 import { HIDDEN_CLASSNAME } from "../../constants";
 import { scrollToSection } from "../../utils";
 import { setHeaderHeaderCSSPropertyValue } from "../utils";
@@ -65,12 +65,12 @@ const PageNav: React.FC<PageNavProps> = ({
 	const renderFullBridge = () => {
 		setBridgeColors(currentBridgeSection, clickedBridgeInfoButtonCount);
 
-		return bridgeSections.map((sectionName, index, array) => {
+		return bridgeSectionNames.map((sectionName, index, array) => {
 			return (
 				<BridgeSectionLink
 					key={index}
-					name={bridgeSections[index]}
-					sectionToSkipTo={bridgeSections[index]}
+					name={bridgeSectionNames[index]}
+					sectionToSkipTo={bridgeSectionNames[index]}
 					match={match}
 				/>
 			);

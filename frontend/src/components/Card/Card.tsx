@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { MouseEventHandler, RefObject, useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -24,13 +24,13 @@ import {
 	CARD_PLAYING_CLASSNAME,
 	CARD_STOPPED_CLASSNAME,
 	centerCard,
-	changeSectionTitle,
 	checkShouldContinueOnClick,
 	handleProgressBarClick,
 } from "./utils";
 import {
-	bridgeSections,
+	bridgeSectionNames,
 	BRIDGE_BACKDROP_CLASSNAME,
+	BRIDGE_CLASSNAME,
 } from "../../pages/examples/bridge/utils";
 import {
 	attachProgressListener,
@@ -70,6 +70,36 @@ export const Card: React.FC<CardProps> = ({
 	//#endregion
 
 	//#region Functions/Handlers
+	const changeSectionTitle = (
+		titleRef: RefObject<HTMLElement> | HTMLElement,
+		isOpen = true,
+	) => {
+		if (!titleRef) return;
+		const originalMsgTitle = "Features";
+		const originalMsgSubTitle = "Pick a Card any Card";
+	
+		const sections = document.querySelectorAll(`.${BRIDGE_CLASSNAME}__section`);
+		for (let i = 0; i < sections.length; i++) {
+			const section = sections[i];
+			if (section.id.match(/feature/i)) {
+				const title = section.querySelector(`.${BRIDGE_CLASSNAME}__section-title`);
+	
+				let msgTitleToUse = originalMsgTitle as string | null | undefined;
+				let msgSubTitleToUse = originalMsgSubTitle;
+				if (isOpen) {
+					if (titleRef && (titleRef as any).current)
+						msgTitleToUse = (titleRef as any).current?.textContent;
+					msgSubTitleToUse = "";
+				}
+				if (title) {
+					title.textContent = msgTitleToUse as string;
+					(title.nextElementSibling as any).textContent = msgSubTitleToUse;
+				}
+				break;
+			}
+		}
+	};
+
 	const closeCard = (
 		video: HTMLVideoElement,
 		card: HTMLElement,
@@ -153,7 +183,7 @@ export const Card: React.FC<CardProps> = ({
 			changeSectionTitle(titleRef);
 			openCard(video as HTMLVideoElement , clickedCard as HTMLElement, bridgeBackdrop as HTMLElement, initialCardSize as ClientRect);
 			scrollToSection(
-				document.querySelector(`#${bridgeSections[1].toLowerCase()}`) as HTMLElement
+				document.querySelector(`#${bridgeSectionNames[1].toLowerCase()}`) as HTMLElement
 			);
 			setShowChildren(true);
 		}, ANIMATION_DURATION / 2);

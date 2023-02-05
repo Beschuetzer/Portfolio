@@ -27,7 +27,7 @@ import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import { CardManager } from "../../../components/Card/CardManager";
 import {
-	bridgeSections,
+	bridgeSectionNames,
 	BRIDGE_BACKDROP_CLASSNAME,
 	BRIDGE_CLASSNAME,
 	BRIDGE_HERO_CLASSNAME,
@@ -54,10 +54,11 @@ import BridgeHero from "./BridgeHero";
 import SourceCodeLink from "../../../components/SourceCodeLink";
 import ArrowButton from "../../../components/ArrowButton";
 import Quote from "../../../components/Quote";
+import { RootState } from "../../../reducers";
 
 const sectionContents = [
-	<SectionContainer name={bridgeSections[0]} pageName={BRIDGE_PAGE_NAME}>
-		<BridgeCard titleSize="two" titleContent={bridgeSections[0]}>
+	<SectionContainer name={bridgeSectionNames[0]} pageName={BRIDGE_PAGE_NAME}>
+		<BridgeCard titleSize="two" titleContent={bridgeSectionNames[0]}>
 			<Quote author="Timothy Ferriss" className="padding-bottom-2">
 				What we fear doing most is usually what we most need to do.
 			</Quote>
@@ -134,11 +135,11 @@ const sectionContents = [
 			</BridgeCardSection>
 		</BridgeCard>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSections[1]} pageName={BRIDGE_PAGE_NAME}>
+	<SectionContainer name={bridgeSectionNames[1]} pageName={BRIDGE_PAGE_NAME}>
 		<BridgeCard
+			selectorToUseForSubtitle={(state: RootState) => state.bridge.featureSectionTitle}
 			titleSize="two"
-			titleContent={bridgeSections[1]}
-			titleSubtitle="Pick a card any card...">
+			titleContent={bridgeSectionNames[1]}>
 			<CardManager>
 				<Card
 					video={cardPlayAndRoundEndVideo}
@@ -268,8 +269,8 @@ const sectionContents = [
 			<div className={BRIDGE_BACKDROP_CLASSNAME}></div>
 		</BridgeCard>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSections[2]} pageName={BRIDGE_PAGE_NAME}>
-		<BridgeCard titleSize="two" titleContent={bridgeSections[2]}>
+	<SectionContainer name={bridgeSectionNames[2]} pageName={BRIDGE_PAGE_NAME}>
+		<BridgeCard titleSize="two" titleContent={bridgeSectionNames[2]}>
 			<Quote author="Walt Disney" className="padding-bottom-2">
 				There's no magic in magic, it's all in the details.
 			</Quote>
@@ -463,8 +464,8 @@ const sectionContents = [
 			</BridgeCardSection>
 		</BridgeCard>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSections[3]} pageName={BRIDGE_PAGE_NAME}>
-		<BridgeCard titleSize="two" titleContent={bridgeSections[3]}>
+	<SectionContainer name={bridgeSectionNames[3]} pageName={BRIDGE_PAGE_NAME}>
+		<BridgeCard titleSize="two" titleContent={bridgeSectionNames[3]}>
 			<Quote author="Zig Ziglar" className="padding-bottom-2">
 				If you are not willing to learn, no one can help you.&nbsp; If you are
 				determined to learn, no one can stop you.
