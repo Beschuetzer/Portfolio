@@ -146,14 +146,12 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	}
 
 	function handleToggler(e: MouseEvent) {
-		toggleAudioPlayer();
-		hideIfNotPlaying();
-
 		setShouldShowAudioPlayer(!shouldShowAudioPlayer);
 		setIsOpen(!isOpen);
 	}
 
 	function handleWindowClick(e: MouseEvent) {
+		//todo: need to re-do this
 		const target = e.target as HTMLElement;
 		if (!target) return;
 
@@ -178,8 +176,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 				target.closest(`.${AUDIO_LIST_CLASSNAME}__item`) as HTMLElement
 			)?.className.search(audioListMatchRegExp);
 		}
-
-		hideIfNotPlaying();
 	
 		if (
 			targetIsAudioListItem ||
@@ -187,7 +183,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 				parentIsAudioListItem !== -1 &&
 				shouldShowAudioPlayer)
 		) {
-			showAudioPlayer();
 			setIsOpen(true);
 		}
 
@@ -195,15 +190,7 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		if (
 			!audioPlayerExists && isCurrentlyPlayingSoundValid
 		) {
-			hideAudioPlayer();
 			setIsOpen(false);
-		}
-	}
-
-	function hideIfNotPlaying() {
-		const isHowlPlaying = playingHowl?.playing();
-		if (!isLoadingHowl && !isHowlPlaying) {
-			audioPlayerRef.current?.classList?.add(HIDDEN_CLASSNAME);
 		}
 	}
 
@@ -312,11 +299,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		setSongProgressPercent(percent);
 	}
 
-	function hideAudioPlayer() {
-		handleAudioPlayerTransformNoneClassname("remove");
-		handleAudioPlayerTogglerOpenClassname("remove");
-	}
-
 	function loadNextSong(isSkipForward = true) {
 		handleStop();
 		const nextSong = getNextSong(isSkipForward);
@@ -368,28 +350,12 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		}, UPDATE_RATE);
 	};
 
-	function showAudioPlayer() {
-		const audioPlayerTogglerSvgParent = (
-			audioPlayerTogglerSvgRef.current as HTMLElement
-		)?.parentNode as HTMLElement;
-		if (audioPlayerTogglerSvgParent)
-			audioPlayerTogglerSvgParent.classList.remove(HIDDEN_CLASSNAME);
-
-		handleAudioPlayerTransformNoneClassname("add");
-		handleAudioPlayerTogglerOpenClassname("add");
-	}
-
 	function showPlay() {
 		(playRef?.current as HTMLElement)?.classList.remove(HIDDEN_CLASSNAME);
 	}
 
 	function showPause() {
 		(pauseRef?.current as HTMLElement)?.classList.remove(HIDDEN_CLASSNAME);
-	}
-
-	function toggleAudioPlayer() {
-		handleAudioPlayerTransformNoneClassname("toggle");
-		handleAudioPlayerTogglerOpenClassname("toggle");
 	}
 	//#endregion
 	
@@ -409,8 +375,11 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	}, [])
 
 	useEffect(() => {
-	  hideAudioPlayer();
 	}, [location])
+
+	useEffect(() => {
+	
+	}, [isOpen])
 	
 
 	//loading sound
@@ -432,7 +401,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 		}
 
 		if (!hasShownPlayer) {
-			showAudioPlayer();
 			setHasShownPlayer(true);
 		}
 
@@ -450,10 +418,12 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	//#endregion
 
 	//#region JSX
+	const hideClassname = !isLoadingHowl && !playingHowl?.playing() ? HIDDEN_CLASSNAME : '';
+	const openClassname = isOpen ? AUDIO_PLAYER_TOGGLER_OPEN_CLASSNAME : '';
 	return (
 		<section
 			ref={audioPlayerRef as any}
-			className={`${AUDIO_PLAYER_CLASSNAME}`}>
+			className={`${AUDIO_PLAYER_CLASSNAME} ${hideClassname} ${openClassname}`}>
 			<div className={`${AUDIO_PLAYER_CLASSNAME}__content`}>
 				<div className={`${AUDIO_PLAYER_CLASSNAME}__details`}>
 					{!!playingHowl ? (
