@@ -11,7 +11,7 @@ interface BridgeCardProps {
 	titleSubtitle?: string,
 }
 
-const BridgeCard: React.FC<BridgeCardProps> = ({
+export const BridgeSection: React.FC<BridgeCardProps> = ({
 	children,
 	selectorToUseForSubtitle: selectorToUseForSubtitle = () => '',
 	titleSize = "two",
@@ -33,5 +33,3 @@ const BridgeCard: React.FC<BridgeCardProps> = ({
 		</div>
 	);
 };
-
-export default BridgeCard;

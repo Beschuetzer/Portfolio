@@ -9,7 +9,7 @@ import {
 } from "../../../actions";
 
 import EmbeddedLink from "../../../components/EmbeddedLink";
-import BridgeCard from "./BridgeCard";
+import { BridgeSection } from "./BridgeCard";
 import BridgeCardSection from "./BridgeCardSection";
 import SectionContainer from "../../../components/SectionContainer";
 import { Card } from "../../../components/Card/Card";
@@ -58,7 +58,7 @@ import { RootState } from "../../../reducers";
 
 const sectionContents = [
 	<SectionContainer name={bridgeSectionNames[0]} pageName={BRIDGE_PAGE_NAME}>
-		<BridgeCard titleSize="two" titleContent={bridgeSectionNames[0]}>
+		<BridgeSection titleSize="two" titleContent={bridgeSectionNames[0]}>
 			<Quote author="Timothy Ferriss" className="padding-bottom-2">
 				What we fear doing most is usually what we most need to do.
 			</Quote>
@@ -133,10 +133,10 @@ const sectionContents = [
 					<EmbeddedLink href={LIVE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>.
 				</p>
 			</BridgeCardSection>
-		</BridgeCard>
+		</BridgeSection>
 	</SectionContainer>,
 	<SectionContainer name={bridgeSectionNames[1]} pageName={BRIDGE_PAGE_NAME}>
-		<BridgeCard
+		<BridgeSection
 			selectorToUseForSubtitle={(state: RootState) => state.bridge.featureSectionTitle}
 			titleSize="two"
 			titleContent={bridgeSectionNames[1]}>
@@ -267,10 +267,10 @@ const sectionContents = [
 				</Card>
 			</CardManager>
 			<div className={BRIDGE_BACKDROP_CLASSNAME}></div>
-		</BridgeCard>
+		</BridgeSection>
 	</SectionContainer>,
 	<SectionContainer name={bridgeSectionNames[2]} pageName={BRIDGE_PAGE_NAME}>
-		<BridgeCard titleSize="two" titleContent={bridgeSectionNames[2]}>
+		<BridgeSection titleSize="two" titleContent={bridgeSectionNames[2]}>
 			<Quote author="Walt Disney" className="padding-bottom-2">
 				There's no magic in magic, it's all in the details.
 			</Quote>
@@ -462,10 +462,10 @@ const sectionContents = [
 					</p>
 				</BridgeCardSection>
 			</BridgeCardSection>
-		</BridgeCard>
+		</BridgeSection>
 	</SectionContainer>,
 	<SectionContainer name={bridgeSectionNames[3]} pageName={BRIDGE_PAGE_NAME}>
-		<BridgeCard titleSize="two" titleContent={bridgeSectionNames[3]}>
+		<BridgeSection titleSize="two" titleContent={bridgeSectionNames[3]}>
 			<Quote author="Zig Ziglar" className="padding-bottom-2">
 				If you are not willing to learn, no one can help you.&nbsp; If you are
 				determined to learn, no one can stop you.
@@ -503,7 +503,7 @@ const sectionContents = [
 					requirements).
 				</p>
 			</BridgeCardSection>
-		</BridgeCard>
+		</BridgeSection>
 	</SectionContainer>,
 ];
 
