@@ -5,7 +5,7 @@ import StopControl from "../VideoPlayer/StopControl";
 import PauseControl from "../VideoPlayer/PauseControl";
 import RestartControl from "../VideoPlayer/RestartControl";
 import CloseControl from "../VideoPlayer/CloseControl";
-import Video, { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
+import { Video, FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 import {
 	CarouselItemProps,
 	CAROUSEL_CLASSNAME,
@@ -24,8 +24,7 @@ import {
 import { closeCarouselItem } from "../utils";
 import OverlayText from "../OverlayText/OverlayText";
 import { FILL_RED_CLASSNAME } from "../constants";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../reducers";
+import { useDispatch } from "react-redux";
 import { setCurrentlyViewingCarouselImage } from "../../actions";
 
 export const FULLSCREEN_CLASSNAME = "full-screen";
@@ -73,8 +72,6 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 	shouldRenderFullScreen = false,
 }) => {
 	const dispatch = useDispatch();
-	const currentlyViewingImage = useSelector((state: RootState) => state.general.currentlyViewingImage);
-	const isOpen = currentlyViewingImage === itemSrc;
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const [showOverlayText, setShowOverlayText] = useState(true);
 	const videoRef = useRef<HTMLVideoElement>(null);
@@ -83,22 +80,6 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 	const isVideo = itemSrc?.match(
 		getRegexStringFromStringArray(videoExtentions),
 	);
-
-	function addFullscreenClassToArrowButtons() {
-		const leftArrowEl = (leftArrowRef?.current as any);
-		const rightArrowEl = (rightArrowRef?.current as any);
-
-		if (leftArrowEl) {
-			leftArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
-			const svg = leftArrowEl.querySelector("svg");
-			svg?.classList.add(FILL_RED_CLASSNAME);
-		}
-		if (rightArrowEl) {
-			rightArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
-			const svg = rightArrowEl.querySelector("svg");
-			svg?.classList.add(FILL_RED_CLASSNAME);
-		}
-	}
 
 	function getRegexStringFromStringArray(fileExtensions: string[]) {
 		const mapped = fileExtensions.map((ext, index) => {
@@ -162,7 +143,6 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 		carouselItem?.classList.remove(STOPPED_CLASSNAME);
 		carouselItem.parentNode?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 
-		addFullscreenClassToArrowButtons();
 		toggleMobileDisplayIssueFixes();
 		handleVideo(
 			carouselItem,

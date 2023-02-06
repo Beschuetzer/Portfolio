@@ -1,4 +1,4 @@
-import React, { RefObject, useRef } from "react";
+import React, { RefObject, useEffect, useRef } from "react";
 import {
 	CarouselItem,
 	FULLSCREEN_CLASSNAME,
@@ -6,14 +6,12 @@ import {
 	PLAYING_CLASSNAME,
 	STOPPED_CLASSNAME,
 } from "./CarouselItem";
-import useInit from "./useInit";
 import CarouselArrow from "./CarouselArrow";
 import {
 	CarouselItemProps,
 	CAROUSEL_ARROW_BUTTONS_CLASSNAME,
 	CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
 	CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME,
-	CAROUSEL_CLASSNAME,
 	CAROUSEL_DOT_ACTIVE_CLASSNAME,
 	CAROUSEL_DOT_CLASSNAME,
 	CAROUSEL_ITEM_CLASSNAME,
@@ -30,9 +28,12 @@ import {
 	CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT,
 	getArrangedItems,
 	toggleMobileDisplayIssueFixes,
+	getFirstItemAndParentCarousels,
+	setCarouselGridMaxColumnWidth,
 } from "./util";
-import { ArrowButtonDirection } from "../constants";
+import { ArrowButtonDirection, CONTAINS_CAROUSEL_CLASSNAME } from "../constants";
 import { useState } from "react";
+import { toggleScrollability } from "../utils";
 
 export type CarouselProps = {
 	items: CarouselItemProps[];
@@ -69,18 +70,6 @@ export const Carousel: React.FC<CarouselProps> = ({
 	>([]);
 
 	window.addEventListener("resize", handleResize);
-
-	useInit(
-		leftArrowRef,
-		rightArrowRef,
-		CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME,
-		CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
-		CAROUSEL_ITEM_CLASSNAME,
-		itemsRef,
-		items,
-		shouldRearrangeItems,
-		numberOfItemsInCarouselWidthWiseConverted,
-	);
 
 	const handleArrowClick = (e: Event) => {
 		const isFullSize = handleFullsizeArrowToggling(e);
@@ -354,6 +343,45 @@ export const Carousel: React.FC<CarouselProps> = ({
 			</React.Fragment>
 		);
 	}
+
+	useEffect(() => {
+		const {csharpParentCarousel, parentCarousel }= getFirstItemAndParentCarousels(items);
+
+		if (parentCarousel) {
+			const parentSection = parentCarousel.closest('section.csharp__section');
+			parentSection?.classList.add(CONTAINS_CAROUSEL_CLASSNAME)
+		}
+
+		if (itemsRef && parentCarousel) {
+			const items = parentCarousel.querySelectorAll(`.${CAROUSEL_ITEM_CLASSNAME}`);
+			const arrangedItems = getArrangedItems(items, shouldRearrangeItems, numberOfItemsInCarouselWidthWiseConverted);
+			(itemsRef as any).current = arrangedItems;
+		}
+
+		if (leftArrowRef && csharpParentCarousel) (leftArrowRef as any).current = csharpParentCarousel.querySelector(
+			`.${CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME}`,
+		);
+		if (rightArrowRef && csharpParentCarousel) (rightArrowRef as any).current = csharpParentCarousel.querySelector(
+			`.${CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME}`,
+		);
+
+		setCarouselGridMaxColumnWidth(itemsRef);
+
+		return () => {
+			toggleScrollability();
+		}
+	}, [
+		leftArrowRef,
+		rightArrowRef,
+		CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
+		CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME,
+		CAROUSEL_ITEM_CLASSNAME,
+		itemsRef,
+		items,
+		shouldRearrangeItems,
+		numberOfItemsInCarouselWidthWiseConverted,
+	]);
+
 
 	return (
 		<React.Fragment>

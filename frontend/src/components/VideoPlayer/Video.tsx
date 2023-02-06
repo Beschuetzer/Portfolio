@@ -18,7 +18,7 @@ interface VideoProps {
 	children?: any,
 }
 
-const Video: React.FC<VideoProps>  = ({
+export const Video: React.FC<VideoProps>  = ({
 	className,
 	src,
 	type,
@@ -57,4 +57,3 @@ const Video: React.FC<VideoProps>  = ({
 	);
 }
 
-export default Video;

@@ -4,7 +4,7 @@ import { connect, RootStateOrAny } from "react-redux";
 
 import { setClickedBridgeInfoButtonCount } from "../../../actions";
 
-import Video from "../../../components/VideoPlayer/Video";
+import { Video } from "../../../components/VideoPlayer/Video";
 import bgVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
 import {
 	BRIDGE_HERO_CLASSNAME,

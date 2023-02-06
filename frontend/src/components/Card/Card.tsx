@@ -9,7 +9,7 @@ import {
 } from "../constants";
 import { setIsCardVideoOpen } from "../../actions";
 
-import Video, { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
+import { Video, FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 import { capitalize } from "../../helpers";
 import PauseControl from "../VideoPlayer/PauseControl";
 import StopControl from "../VideoPlayer/StopControl";
