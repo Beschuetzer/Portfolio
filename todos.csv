@@ -1,4 +1,5 @@
 React best practices re-work (branch = sitenav_rework)
+  -need to have SiteNav remove z-index-highest when a carousel item is being viewed
   -finish removing connect stuff
   -rework remaining places that directly modify the DOM
 

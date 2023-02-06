@@ -1,5 +1,6 @@
 import React, { RefObject, useRef } from "react";
-import CarouselItem, {
+import {
+	CarouselItem,
 	FULLSCREEN_CLASSNAME,
 	FULLSCREEN_PARENT_CLASSNAME,
 	PLAYING_CLASSNAME,

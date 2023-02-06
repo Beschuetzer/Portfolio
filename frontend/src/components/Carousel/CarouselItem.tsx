@@ -24,6 +24,9 @@ import {
 import { closeCarouselItem } from "../utils";
 import OverlayText from "../OverlayText/OverlayText";
 import { FILL_RED_CLASSNAME } from "../constants";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../reducers";
+import { setCurrentlyViewingCarouselImage } from "../../actions";
 
 export const FULLSCREEN_CLASSNAME = "full-screen";
 export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
@@ -39,7 +42,7 @@ export const CLASSNAMES_TO_REMOVE = [
 	DONE_CLASSNAME,
 ];
 
-const CarouselItem: React.FC<CarouselItemProps> = ({
+export const CarouselItem: React.FC<CarouselItemProps> = ({
 	descriptionClassname = CAROUSEL_DESCRIPTION_CLASSNAME,
 	itemClassName = CAROUSEL_ITEM_CLASSNAME,
 	imageClassname = CAROUSEL_IMAGE_CLASSNAME,
@@ -69,7 +72,9 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	functionToGetContainer,
 	shouldRenderFullScreen = false,
 }) => {
-
+	const dispatch = useDispatch();
+	const currentlyViewingImage = useSelector((state: RootState) => state.general.currentlyViewingImage);
+	const isOpen = currentlyViewingImage === itemSrc;
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const [showOverlayText, setShowOverlayText] = useState(true);
 	const videoRef = useRef<HTMLVideoElement>(null);
@@ -152,9 +157,9 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
 		e.preventDefault();
 		handleShouldHideArrows(e);
+		dispatch(setCurrentlyViewingCarouselImage(itemSrc || ''));
 
 		carouselItem?.classList.remove(STOPPED_CLASSNAME);
-		carouselItem.classList.add(FULLSCREEN_CLASSNAME);
 		carouselItem.parentNode?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 
 		addFullscreenClassToArrowButtons();
@@ -247,7 +252,10 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 				containerRef={containerRef}
 				isItemOpenRef={isItemOpenRef}
 				classNamesToRemove={videoCloseControlClassesToRemove}
-				functionToRunOnClose={functionToRunOnClose}
+				functionToRunOnClose={() => {
+					functionToRunOnClose && functionToRunOnClose();
+					dispatch(setCurrentlyViewingCarouselImage(''));
+				}}
 			/>
 		);
 
@@ -319,13 +327,14 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		);
 	};
 
+	//#region JSX
+	const fullscreenClassname = isFullScreen ? `carousel__item--${FULLSCREEN_CLASSNAME}` : '';
 	return (
-		<article ref={containerRef} className={itemClassName}>
+		<article ref={containerRef} className={`${itemClassName}`}>
 			{mediaToAdd}
 			<p className={descriptionClassname}>{imageAlt}</p>
 			{renderControls(isVideo as RegExpMatchArray)}
 		</article>
 	);
+	//#endregion
 };
-
-export default CarouselItem;

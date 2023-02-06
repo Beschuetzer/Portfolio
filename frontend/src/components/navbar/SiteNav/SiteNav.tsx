@@ -65,6 +65,7 @@ interface SiteNavProps {
 export const SiteNav: React.FC<SiteNavProps> = ({
 	match,
 }) => {
+	const currentlyViewingImage = useSelector((state: RootState) => state.general.currentlyViewingImage);
 	const previousUrl = useSelector((state: RootState) => state.general.previousUrl);
 	const viewPortWidth = useSelector((state: RootState) => state.general.viewPortWidth);
 	const dispatch = useDispatch();

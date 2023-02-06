@@ -6,10 +6,12 @@ import {
   SET_SCROLL_PERCENT,
   SET_VIEW_PORT_WIDTH,
   SET_HEADER_HEIGHT,
+  SET_CURRENTLY_VIEWING_CAROUSEL_IMAGE,
 } from '../actions/types';
 import { Action } from '../models';
 
 const INITIAL_STATE = {
+  currentlyViewingImage: '',
   isMobile: null,
   viewPortWidth: null,
   repos: [],
@@ -32,6 +34,8 @@ const generalReducer = (state = INITIAL_STATE, action: Action) => {
       return {...state, scrollPercent: action.payload}; 
     case SET_HEADER_HEIGHT:
       return {...state, headerHeight: action.payload};
+    case SET_CURRENTLY_VIEWING_CAROUSEL_IMAGE:
+      return {...state, currentlyViewingImage: action.payload};
     default:
       return state;
   }
