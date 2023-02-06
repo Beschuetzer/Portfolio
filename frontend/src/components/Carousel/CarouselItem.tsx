@@ -132,11 +132,13 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	};
 
 	const onItemClick = (e: MouseEvent) => {
-		if (isItemOpenRef.current) {
+		if (isItemOpenRef?.current) {
 			return
 		}
 
-		isItemOpenRef.current = true;
+		if (isItemOpenRef) {
+			isItemOpenRef.current = true;
+		}
 
 		const carouselItem = e.currentTarget as any;
 		if (

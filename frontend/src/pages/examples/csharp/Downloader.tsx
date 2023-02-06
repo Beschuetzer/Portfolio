@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "../../../components/Carousel/Carousel";
+import { Carousel } from "../../../components/Carousel/Carousel";
 import CSharpLayout from "./CSharpLayout";
 
 import EmbeddedLink from "../../../components/EmbeddedLink";

@@ -112,7 +112,7 @@ import p2p04Thumbnail from "../../../imgs/about/thumbnails/p2p-04-thumbnail.png"
 
 import { AudioList } from "../../../components/AudioPlayer/AudioList";
 import LoadingSpinner from "../../../components/loading/LoadingSpinner";
-import Carousel from "../../../components/Carousel/Carousel";
+import { Carousel } from "../../../components/Carousel/Carousel";
 import {
 	closeCarouselItem,
 	functionToGetContainer,
