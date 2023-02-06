@@ -50,6 +50,7 @@ import {
 	OVERFLOW_HIDDEN_CLASSNAME,
 	ANIMATION_DURATION,
 	UNCLICKABLE_CLASSNAME,
+	Z_INDEX_HIGHEST_CLASSNAME,
 } from "../../constants";
 import { capitalize } from "../../../helpers";
 import { useLocation } from "react-router-dom";
@@ -76,6 +77,13 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 	const toggleTransitioningTimeoutIdRef = useRef<any>(null);
 	const [isTransitioning, setIsTransitioning] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
+	const header = document.querySelector(`${HEADER_ID}`) as HTMLElement;
+	
+	if (currentlyViewingImage) {
+		header?.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
+	} else {
+		header?.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
+	}
 
 	//#region Functions/Handlers
 	const onBodyClick = (e: Event) => {
