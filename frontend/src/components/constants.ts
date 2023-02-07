@@ -213,3 +213,12 @@ export interface Reference {
 
 export type ArrowButtonDirection = "left" | "right";
 //#endregion
+
+//#region Styling Stuff
+// this is in rem
+export const DEFAULT_FONT_SIZE = parseFloat(
+	computedStyle.getPropertyValue("--default-font-size"),
+);
+console.log({DEFAULT_FONT_SIZE});
+
+//#endregion

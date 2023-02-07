@@ -8,7 +8,7 @@ import { capitalize } from "../../../helpers";
 import BridgeSectionLink from "../../../pages/examples/bridge/BridgeSectionLink";
 import { bridgeSectionNames } from "../../../pages/examples/bridge/utils";
 import { RootState } from "../../../reducers";
-import { HIDDEN_CLASSNAME } from "../../constants";
+import { DEFAULT_FONT_SIZE, HIDDEN_CLASSNAME } from "../../constants";
 import { scrollToSection } from "../../utils";
 import { setHeaderHeaderCSSPropertyValue } from "../utils";
 import {
@@ -306,6 +306,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 								document.getElementById(
 									(e.currentTarget as any)?.textContent.toLowerCase().replace(' ', '-'),
 								) as HTMLElement,
+								-DEFAULT_FONT_SIZE * 17.5,
 							);
 						}}
 						className={`${cssClass}__section ${cssClass}__section-${sectionName}`}>
