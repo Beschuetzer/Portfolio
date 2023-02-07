@@ -1,5 +1,8 @@
 React best practices re-work (branch = sitenav_rework)
   -finish removing connect stuff
+  -re-work Carousel (should be pure re-useable component)
+  -re-work PageNav to better track the filling (fill should start when section is roughly centerd in the middle of the viewPort)
+  -c-sharp layout seems to have embedded <p> tags (see warning)
   -rework remaining places that directly modify the DOM
 
 

@@ -31,7 +31,6 @@ export const PageNav: React.FC<PageNavProps> = ({
 	const isMobile  = useSelector((state: RootState) => state.general.isMobile);
 	const clickedBridgeInfoButtonCount  = useSelector((state: RootState) => state.bridge.clickedBridgeInfoButtonCount);
 	const currentBridgeSection  = useSelector((state: RootState) => state.bridge.currentBridgeSection);
-	const headerHeight  = useSelector((state: RootState) => state.general.headerHeight);
 	const cssClass = "page-nav";
 	// const gradientVarName = "--site-nav-linear-gradient";
 	// const activeScaleVarName = "--site-nav-active-scale-amount";
@@ -51,7 +50,6 @@ export const PageNav: React.FC<PageNavProps> = ({
 	let previousSectionBottom: number | null = 0;
 	let shouldHandleScroll = useRef(true);
 	const [sectionsToRender, setsectionsToRender] = useState<NodeListOf<Element> | any[]>([]);
-	const [sectionNames, setsectionNames] = useState<string[] | null>(null);
 	const location = useLocation();
 	//#endregion
 
@@ -65,58 +63,6 @@ export const PageNav: React.FC<PageNavProps> = ({
 		if (!previousUrl || previousUrl !== currentUrl) {
 			dispatch(setPreviousUrl(currentUrl));
 		}
-	};
-
-	const renderFullBridge = () => {
-		setBridgeColors(currentBridgeSection, clickedBridgeInfoButtonCount);
-
-		return bridgeSectionNames.map((sectionName, index, array) => {
-			return (
-				<BridgeSectionLink
-					key={index}
-					name={bridgeSectionNames[index]}
-					sectionToSkipTo={bridgeSectionNames[index]}
-					match={match}
-				/>
-			);
-		});
-	};
-
-	const renderMobileBridge = () => {
-		return renderSections();
-	};
-
-	const renderBridgeSections = () => {
-		if (isMobile) return renderMobileBridge();
-		else {
-			checkShouldSetPreviousUrl(match, previousUrl);
-			return renderFullBridge();
-		}
-	};
-
-	const handleSectionClick = (e: MouseEvent) => {
-		scrollToSection(
-			document.getElementById(
-				(e.currentTarget as any)?.textContent.toLowerCase().replace(' ', '-'),
-			) as HTMLElement,
-		);
-	};
-
-	const renderSections = () => {
-		checkShouldSetPreviousUrl(match, previousUrl);
-		const sectionNames = getSectionNames();
-
-		return sectionNames.map((sectionName, index, array) => {
-			return (
-				<li key={index} className={`${cssClass}__section-group`}>
-					<h2
-						onClick={(e: any) => handleSectionClick(e)}
-						className={`${cssClass}__section ${cssClass}__section-${sectionName}`}>
-						{capitalize(sectionName.replace('-', ' '))}
-					</h2>
-				</li>
-			);
-		});
 	};
 
 	const getSectionNames = () => {
@@ -139,25 +85,9 @@ export const PageNav: React.FC<PageNavProps> = ({
 	// 		activeScaleRange.max = activeScaleRange.desktop.max;
 	// 	}
 	// };
-
-	function getIsScrollEnd(scrollY: number) {
-		//note: assumes that first child of main is page content
-
-		let scrollHeight = document.body.scrollHeight;
-		if (scrollHeight === 0) {
-			const main = document.querySelector('main') as HTMLElement;
-			const mainChild = main.children?.[0] as HTMLElement;
-			scrollHeight = mainChild.getBoundingClientRect().height;
-		}
-		const maxScrollY = scrollHeight - window.innerHeight;
-		const maxScrollOffset =
-			(scrollHeight * maxScrollOffsetPercent) / 100;
-
-		return scrollY >= maxScrollY - maxScrollOffset;
-	}
 	//#endregion
 
-	//#region useEffects
+	//#region Side FX
 	useEffect(() => {
 		setHeaderHeaderCSSPropertyValue();
 	})
@@ -235,8 +165,23 @@ export const PageNav: React.FC<PageNavProps> = ({
 				shouldHandleScroll.current = true;
 			}, scrollRefreshLimit);
 		};
-		document.addEventListener("scroll", handleScroll);
 		// updateActiveScaleRange();
+
+		function getIsScrollEnd(scrollY: number) {
+			//note: assumes that first child of main is page content
+	
+			let scrollHeight = document.body.scrollHeight;
+			if (scrollHeight === 0) {
+				const main = document.querySelector('main') as HTMLElement;
+				const mainChild = main.children?.[0] as HTMLElement;
+				scrollHeight = mainChild.getBoundingClientRect().height;
+			}
+			const maxScrollY = scrollHeight - window.innerHeight;
+			const maxScrollOffset =
+				(scrollHeight * maxScrollOffsetPercent) / 100;
+	
+			return scrollY >= maxScrollY - maxScrollOffset;
+		}
 
 		function getPercentThroughSection(
 			i: number,
@@ -290,6 +235,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 			return { percentThroughSection, currentSection };
 		}
 
+		document.addEventListener("scroll", handleScroll);
 		return () => {
 			document.removeEventListener("scroll", handleScroll);
 		};
@@ -300,11 +246,6 @@ export const PageNav: React.FC<PageNavProps> = ({
 		resetGradientPercents(sections);
 		setsectionsToRender(sections);
 	}, [location])
-
-	useEffect(() => {
-		if (!sectionsToRender) return;
-		setsectionNames(getSectionNames());
-	}, [sectionsToRender])
 
 	useEffect(() => {
 		if (match.url.trim() === "/")
@@ -325,6 +266,56 @@ export const PageNav: React.FC<PageNavProps> = ({
 	//#endregion
 
 	//#region JSX
+	const renderFullBridge = () => {
+		setBridgeColors(currentBridgeSection, clickedBridgeInfoButtonCount);
+
+		return bridgeSectionNames.map((sectionName, index, array) => {
+			return (
+				<BridgeSectionLink
+					key={index}
+					name={bridgeSectionNames[index]}
+					sectionToSkipTo={bridgeSectionNames[index]}
+					match={match}
+				/>
+			);
+		});
+	};
+
+	const renderMobileBridge = () => {
+		return renderSections();
+	};
+
+	const renderBridgeSections = () => {
+		if (isMobile) return renderMobileBridge();
+		else {
+			checkShouldSetPreviousUrl(match, previousUrl);
+			return renderFullBridge();
+		}
+	};
+
+	const renderSections = () => {
+		checkShouldSetPreviousUrl(match, previousUrl);
+		const sectionNames = getSectionNames();
+
+		return sectionNames.map((sectionName, index, array) => {
+			return (
+				<li key={index} className={`${cssClass}__section-group`}>
+					<h2
+						onClick={(e: any) => {
+							scrollToSection(
+								document.getElementById(
+									(e.currentTarget as any)?.textContent.toLowerCase().replace(' ', '-'),
+								) as HTMLElement,
+							);
+						}}
+						className={`${cssClass}__section ${cssClass}__section-${sectionName}`}>
+						{capitalize(sectionName.replace('-', ' '))}
+					</h2>
+				</li>
+			);
+		});
+	};
+
 	return ReactDOM.createPortal(
 		isBridgePage ? renderBridgeSections() : renderSections(),
 		pageNavElement,
