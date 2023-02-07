@@ -18,7 +18,7 @@ interface NavListItemProps {
   onClick: (e: any) => void;
 }
 
-const NavListItem: React.FC<NavListItemProps> = ({
+export const NavListItem: React.FC<NavListItemProps> = ({
 	isEmail = false,
 	isLink = true,
   onMouseEnter,
@@ -115,5 +115,3 @@ const NavListItem: React.FC<NavListItemProps> = ({
     </li>
   );
 }
-
-export default NavListItem;

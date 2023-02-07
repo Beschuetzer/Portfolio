@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactDOM from "react-dom";
-import NavListItem from "../NavListItem";
+import { NavListItem } from "../NavListItem";
 
 import aboutImage from "../../../imgs/site-nav-about.jpg";
 import autoBidImage from "../../../imgs/site-nav-autobid.jpg";
@@ -56,8 +56,8 @@ import { capitalize } from "../../../helpers";
 import { useLocation } from "react-router-dom";
 import { RootState } from "../../../reducers";
 
-export const SITE_NAV_CLASSNAME = "site-nav";
-export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal";
+export const SITE_NAV_CLASSNAME = "site-nav"; //if changing this, change in index.html too
+export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal"; //if changing this, change in index.html too
 
 interface SiteNavProps {
 	match: { url: string };
@@ -66,6 +66,7 @@ interface SiteNavProps {
 export const SiteNav: React.FC<SiteNavProps> = ({
 	match,
 }) => {
+	const isSiteNavMinimized = useSelector((state: RootState) => state.general.isSiteNavMinimized);
 	const currentlyViewingImage = useSelector((state: RootState) => state.general.currentlyViewingImage);
 	const previousUrl = useSelector((state: RootState) => state.general.previousUrl);
 	const viewPortWidth = useSelector((state: RootState) => state.general.viewPortWidth);
@@ -165,7 +166,6 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 
 	useEffect(() => {
 		function handleKeypress(e: KeyboardEvent) {
-			console.log({ e });
 			switch (e.key) {
 				case "o":
 					toggleState();
@@ -190,6 +190,14 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 			document.body.removeEventListener("click", onBodyClick);
 		};
 	}, [setHeaderHeight, location]);
+
+	useEffect(() => {
+		if (navRef.current) {
+			const siteNav = document.querySelector(`.${SITE_NAV_CLASSNAME}`) as HTMLDivElement;
+			if (!siteNav) return;
+			siteNav.classList.toggle(SITE_NAV_MINIMAL_CLASSNAME);
+		}
+	}, [isSiteNavMinimized, navRef])
 	//#endregion
 
 	//#region JSX
@@ -304,7 +312,7 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 				className={`${NAVBAR_CLASSNAME}__background`}
 				aria-hidden="true"></div>
 		</div>,
-		document.querySelector(".site-nav")!,
+		document.querySelector(`.${SITE_NAV_CLASSNAME}`)!,
 	);
 	//#endregion
 };

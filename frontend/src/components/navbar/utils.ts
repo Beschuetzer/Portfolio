@@ -26,15 +26,3 @@ export function setHeaderHeaderCSSPropertyValue(valueToUse = -1) {
 		`${newHeaderHeight}px`,
 	);
 }
-
-export function toggleSiteNavMinimal() {
-	const siteNav = document.querySelector(`.${SITE_NAV_CLASSNAME}`) as HTMLElement;
-	 if (!siteNav) return;
-
-	let waitDurationToUse = ANIMATION_DURATION;
-	if (siteNav.classList.contains(SITE_NAV_MINIMAL_CLASSNAME)) waitDurationToUse = 0;
-
-	setTimeout(() => {
-		siteNav.classList.toggle(SITE_NAV_MINIMAL_CLASSNAME);
-	}, waitDurationToUse);
-}

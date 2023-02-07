@@ -1,5 +1,4 @@
 import { 
-  SET_IS_ANIMATING,
   GET_REPOSITORIES,
   SET_IS_MOBILE,
   SET_PREVIOUS_URL,
@@ -7,12 +6,14 @@ import {
   SET_VIEW_PORT_WIDTH,
   SET_HEADER_HEIGHT,
   SET_CURRENTLY_VIEWING_CAROUSEL_IMAGE,
+  SET_IS_SITE_NAV_MINIMIZED,
 } from '../actions/types';
 import { Action } from '../models';
 
 const INITIAL_STATE = {
   currentlyViewingImage: '',
   isMobile: null,
+  isSiteNavMinimized: false,
   viewPortWidth: null,
   repos: [],
   previousUrl: null,
@@ -28,6 +29,8 @@ const generalReducer = (state = INITIAL_STATE, action: Action) => {
       return {...state, viewPortWidth: action.payload}
     case GET_REPOSITORIES:
       return {...state, repos: action.payload};  
+    case SET_IS_SITE_NAV_MINIMIZED:
+      return {...state, isSiteNavMinimized: action.payload};  
     case SET_PREVIOUS_URL:
       return {...state, previousUrl: action.payload};  
     case SET_SCROLL_PERCENT:

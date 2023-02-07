@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-
 import PlayControl from "../VideoPlayer/PlayControl";
 import StopControl from "../VideoPlayer/StopControl";
 import PauseControl from "../VideoPlayer/PauseControl";
@@ -23,7 +22,6 @@ import {
 } from "../VideoPlayer/utils";
 import { closeCarouselItem } from "../utils";
 import OverlayText from "../OverlayText/OverlayText";
-import { FILL_RED_CLASSNAME } from "../constants";
 import { useDispatch } from "react-redux";
 import { setCurrentlyViewingCarouselImage } from "../../actions";
 

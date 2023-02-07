@@ -642,10 +642,7 @@ $scale-y-amount: .25;
 		top: 0;
 		background-color: var(--color-primary-1);
 		opacity: 0;
-		transition: top $animation-duration * 1
-				$animation-easing-standard-easeInOutBack-smaller,
-			transform $animation-duration * 1 $animation-easing-standard background
-				$animation-duration * 1 $animation-easing-standard;
+		transition: height $animation-duration * 1 ease;
 
 		@include respond(nav-switch) {
 			opacity: 1;

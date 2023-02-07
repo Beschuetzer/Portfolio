@@ -1,5 +1,6 @@
 .page-wrapper {
     padding-top: $page-wrapper-padding-top-spacing;
+    transition: all $animation-duration ease;
     // padding-top: 3.5rem;
 
     @include respond(nav-switch) {

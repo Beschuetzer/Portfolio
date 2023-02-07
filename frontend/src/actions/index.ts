@@ -24,6 +24,7 @@ import {
   SET_IS_LOADING_SOUND,
   SET_BRIDGE_FEATURE_SECTION_TITLE,
   SET_CURRENTLY_VIEWING_CAROUSEL_IMAGE,
+  SET_IS_SITE_NAV_MINIMIZED,
 } from './types';
     
 //Github Graph QL Repository 
@@ -317,4 +318,9 @@ export const setViewPortWidth = (value: boolean) => {
     payload: value,
   }
 }
-
+export const setIsSiteNavMinimized = (value: boolean) => {
+  return {
+    type: SET_IS_SITE_NAV_MINIMIZED,
+    payload: value,
+  }
+}

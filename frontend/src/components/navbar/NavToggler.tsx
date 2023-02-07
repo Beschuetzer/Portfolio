@@ -1,7 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { connect, RootStateOrAny } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsSiteNavMinimized } from "../../actions";
+import { RootState } from "../../reducers";
 
 import {
 	viewPortPixelToRem,
@@ -9,17 +11,16 @@ import {
 } from "../constants";
 import { SITE_NAV_MINIMAL_CLASSNAME } from "./SiteNav/SiteNav";
 import { HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_TOGGLER_CLASSNAME, HEADER_TOGGLER_CSS_CLASSNAME } from "./SiteNav/utils";
-import { setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue, toggleSiteNavMinimal } from "./utils";
+import { setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue } from "./utils";
 
-interface NavTogglerProps {
-	headerHeight: number;
-	viewPortWidth: number;
-}
+interface NavTogglerProps {}
 
-const NavToggler: React.FC<NavTogglerProps> = ({
-	headerHeight,
-	viewPortWidth,
-}) => {
+export const NavToggler: React.FC<NavTogglerProps> = () => {
+	const dispatch = useDispatch();
+	const headerHeight = useSelector((state: RootState) => state.general.headerHeight);
+	const viewPortWidth = useSelector((state: RootState) => state.general.viewPortWidth);
+	const isSiteNavMinimized = useSelector((state: RootState) => state.general.isSiteNavMinimized);
+
 	//Adjusting NavToggler height to match header height as it changes on resizes
 	useEffect(() => {
 		const getPixelToRemConversionToUse = () => {
@@ -63,8 +64,8 @@ const NavToggler: React.FC<NavTogglerProps> = ({
 
 		if (!togglerParent.classList.contains(HEADER_TOGGLER_ACTIVE_CLASSNAME)) setHeaderHeightCSSPropertyValue();
 		else setHeaderHeightCSSPropertyValue(0);
-
-		toggleSiteNavMinimal();
+		
+		dispatch(setIsSiteNavMinimized(!isSiteNavMinimized));
 	};
 
 	return ReactDOM.createPortal(
@@ -76,12 +77,3 @@ const NavToggler: React.FC<NavTogglerProps> = ({
 		document.body.querySelector(`.${HEADER_TOGGLER_CLASSNAME}`)!,
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		headerHeight: state.general.headerHeight,
-		viewPortWidth: state.general.viewPortWidth,
-	};
-};
-
-export default connect(mapStateToProps, {})(NavToggler);
