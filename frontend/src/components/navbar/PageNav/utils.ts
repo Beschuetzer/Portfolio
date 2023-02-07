@@ -82,27 +82,6 @@ export const setGradientPercent = (
 	}
 };
 
-export const checkShouldSetPreviousUrl = (
-	match: { url: string },
-	previousUrl: string,
-	setPreviousUrl: (value: string) => void,
-) => {
-	const currentUrl = match?.url;
-
-	if (!previousUrl || previousUrl !== currentUrl) setPreviousUrl(currentUrl);
-};
-
-export const getSectionNames = () => {
-	const sectionNames = [];
-	const sections = document.querySelectorAll("[data-section]");
-	for (let i = 0; i < sections.length; i++) {
-		const section = sections[i];
-		const capitalized = (section as any).dataset.section;
-		sectionNames.push(capitalized);
-	}
-	return sectionNames;
-};
-
 export const setBridgeColors = (
 	currentBridgeSection: number,
 	clickedBridgeInfoButtonCount: number,

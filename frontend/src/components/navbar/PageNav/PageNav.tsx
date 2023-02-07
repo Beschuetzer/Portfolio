@@ -1,18 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { connect, RootStateOrAny } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { setPreviousUrl } from "../../../actions";
 import { capitalize } from "../../../helpers";
 import BridgeSectionLink from "../../../pages/examples/bridge/BridgeSectionLink";
 import { bridgeSectionNames } from "../../../pages/examples/bridge/utils";
+import { RootState } from "../../../reducers";
 import { HIDDEN_CLASSNAME } from "../../constants";
 import { scrollToSection } from "../../utils";
 import { setHeaderHeaderCSSPropertyValue } from "../utils";
 import {
-	checkShouldSetPreviousUrl,
-	getSectionNames,
 	resetGradientPercents,
 	setBridgeColors,
 	setGradientPercent,
@@ -21,24 +20,18 @@ import {
 
 interface PageNavProps {
 	match: { url: string };
-	previousUrl: string;
-	isMobile: boolean;
-	clickedBridgeInfoButtonCount: number;
-	currentBridgeSection: number;
-	headerHeight: number;
-	setPreviousUrl: (value: string) => void;
 }
 
-const PageNav: React.FC<PageNavProps> = ({
+export const PageNav: React.FC<PageNavProps> = ({
 	match,
-	previousUrl,
-	isMobile,
-	clickedBridgeInfoButtonCount,
-	currentBridgeSection,
-	headerHeight,
-	setPreviousUrl,
 }) => {
 	//#region Init
+	const dispatch = useDispatch();
+	const previousUrl  = useSelector((state: RootState) => state.general.previousUrl);
+	const isMobile  = useSelector((state: RootState) => state.general.isMobile);
+	const clickedBridgeInfoButtonCount  = useSelector((state: RootState) => state.bridge.clickedBridgeInfoButtonCount);
+	const currentBridgeSection  = useSelector((state: RootState) => state.bridge.currentBridgeSection);
+	const headerHeight  = useSelector((state: RootState) => state.general.headerHeight);
 	const cssClass = "page-nav";
 	// const gradientVarName = "--site-nav-linear-gradient";
 	// const activeScaleVarName = "--site-nav-active-scale-amount";
@@ -53,15 +46,27 @@ const PageNav: React.FC<PageNavProps> = ({
 	const scrollRefreshLimit = 50;
 	const maxScrollOffsetPercent = 1;
 	const isBridgePage = match.url.match(/bridge$/i);
-	const isHomePage = match.url.match(/home/i);
 
 	let pageNavElement = document.querySelector(".page-nav") as any;
 	let previousSectionBottom: number | null = 0;
 	let shouldHandleScroll = useRef(true);
+	const [sectionsToRender, setsectionsToRender] = useState<NodeListOf<Element> | any[]>([]);
+	const [sectionNames, setsectionNames] = useState<string[] | null>(null);
 	const location = useLocation();
 	//#endregion
 
 	//#region Functions
+	const checkShouldSetPreviousUrl = (
+		match: { url: string },
+		previousUrl: string,
+	) => {
+		const currentUrl = match?.url;
+
+		if (!previousUrl || previousUrl !== currentUrl) {
+			dispatch(setPreviousUrl(currentUrl));
+		}
+	};
+
 	const renderFullBridge = () => {
 		setBridgeColors(currentBridgeSection, clickedBridgeInfoButtonCount);
 
@@ -84,7 +89,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	const renderBridgeSections = () => {
 		if (isMobile) return renderMobileBridge();
 		else {
-			checkShouldSetPreviousUrl(match, previousUrl, setPreviousUrl);
+			checkShouldSetPreviousUrl(match, previousUrl);
 			return renderFullBridge();
 		}
 	};
@@ -98,7 +103,7 @@ const PageNav: React.FC<PageNavProps> = ({
 	};
 
 	const renderSections = () => {
-		checkShouldSetPreviousUrl(match, previousUrl, setPreviousUrl);
+		checkShouldSetPreviousUrl(match, previousUrl);
 		const sectionNames = getSectionNames();
 
 		return sectionNames.map((sectionName, index, array) => {
@@ -112,6 +117,17 @@ const PageNav: React.FC<PageNavProps> = ({
 				</li>
 			);
 		});
+	};
+
+	const getSectionNames = () => {
+		const sectionNames = [];
+		if (!sectionsToRender) return [];
+		for (let i = 0; i < sectionsToRender?.length; i++) {
+			const section = sectionsToRender?.[i] || null;
+			const capitalized = (section as any).dataset.section;
+			sectionNames.push(capitalized);
+		}
+		return sectionNames;
 	};
 
 	// const updateActiveScaleRange = () => {
@@ -280,11 +296,15 @@ const PageNav: React.FC<PageNavProps> = ({
 	}, []);
 	
 	useEffect(() => {
-		setTimeout(() => {
-			const sections = document.querySelectorAll("[data-section]");
-			resetGradientPercents(sections);
-		}, 1);
+		const sections = document.querySelectorAll("[data-section]");
+		resetGradientPercents(sections);
+		setsectionsToRender(sections);
 	}, [location])
+
+	useEffect(() => {
+		if (!sectionsToRender) return;
+		setsectionNames(getSectionNames());
+	}, [sectionsToRender])
 
 	useEffect(() => {
 		if (match.url.trim() === "/")
@@ -306,25 +326,8 @@ const PageNav: React.FC<PageNavProps> = ({
 
 	//#region JSX
 	return ReactDOM.createPortal(
-		//The idea behind this component is to have a nav element that has quick links  to the sections of each page
-		<React.Fragment>
-			{isBridgePage ? renderBridgeSections() : renderSections()}
-		</React.Fragment>,
+		isBridgePage ? renderBridgeSections() : renderSections(),
 		pageNavElement,
 	);
 	//#endregion
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		previousUrl: state.general.previousUrl,
-		isMobile: state.general.isMobile,
-		clickedBridgeInfoButtonCount: state.bridge.clickedBridgeInfoButtonCount,
-		currentBridgeSection: state.bridge.currentBridgeSection,
-		headerHeight: state.general.headerHeight,
-	};
-};
-
-export default connect(mapStateToProps, {
-	setPreviousUrl,
-})(PageNav);
