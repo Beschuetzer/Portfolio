@@ -1,34 +1,25 @@
 import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { connect, RootStateOrAny } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import { checkForParentOfType } from "../../helpers";
 import {
-	clickSkill,
-	addRepoToReposToDisplay,
+	addRepoToReposToDisplay, clickSkill,
 } from "../../actions";
 import SkillsPopupName from "./SkillsPopupName";
 import { capitalize } from "../../helpers";
 import { addSpaceAfterPunctuationMarks, toggleScrollability } from "../utils";
 import { Repository, SKILLS_CLASSNAME } from "./utils";
+import { RootState } from "../../reducers";
 
-interface SkillsPopupProps {
-	reposToDisplay: Repository[],
-	repos: Repository[],
-	clickedSkill: string,
-	isMobile: boolean,
-	clickSkill: (value: string | null) => void,
-	addRepoToReposToDisplay: (value: Repository) => void,
-}
+interface SkillsPopupProps {}
 
-const SkillsPopup: React.FC<SkillsPopupProps> = ({
-	reposToDisplay,
-	repos,
-	clickedSkill,
-	addRepoToReposToDisplay,
-	clickSkill,
-	isMobile,
-}) => {
+export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
+	const dispatch = useDispatch();
+	const repos = useSelector((state: RootState) => state.general.repos) as Repository[];
+	const reposToDisplay = useSelector((state: RootState) => (state.resume as any)?.reposToDisplay) as Repository;
+	const clickedSkill = useSelector((state: RootState) => (state.resume as any)?.clickedSkill);
+	const isMobile = useSelector((state: RootState) => state.general.isMobile);
 	const skillsPopupDiv = document.querySelector("#skillsPopup") as HTMLElement;
 	const resetReposDelay = 500;
 
@@ -44,13 +35,13 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 			if (isBodyClick) {
 				skillsPopupDiv?.classList?.remove(`${SKILLS_CLASSNAME}-popup--active`);
 				setTimeout(() => {
-					clickSkill(null);
-					addRepoToReposToDisplay([]);
+					dispatch(clickSkill(null));
+					dispatch(addRepoToReposToDisplay([]));
 				}, resetReposDelay);
 			}
 		};
 		skillsPopupDiv.addEventListener("click", handleClickBody);
-	}, [clickSkill, skillsPopupDiv, addRepoToReposToDisplay]);
+	}, [dispatch, clickSkill, skillsPopupDiv, addRepoToReposToDisplay]);
 
 	//when clickedSkillUpdate
 	useEffect(() => {
@@ -59,12 +50,12 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 			for (let j = 0; j < repo.repositoryTopics.nodes?.length; j++) {
 				const node = repo.repositoryTopics.nodes[j];
 				if (clickedSkill && node?.topic?.name === clickedSkill?.trim().replace(' ', '-')) {
-					addRepoToReposToDisplay(repos[i]);
+					dispatch(addRepoToReposToDisplay(repos[i]));
 					break;
 				}
 			}
 		}
-	}, [clickedSkill, repos, addRepoToReposToDisplay]);
+	}, [dispatch, clickedSkill, repos, addRepoToReposToDisplay]);
 
 	// const getIndexOfItem = (target, items) => {
 	// 	for (let i = 0; i < items.length; i++) {
@@ -147,8 +138,8 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		skillsPopupDiv?.classList?.remove(`${SKILLS_CLASSNAME}-popup--active`);
 		toggleScrollability();
 		setTimeout(() => {
-			clickSkill(null);
-			addRepoToReposToDisplay([]);
+			dispatch(clickSkill(null));
+			dispatch(addRepoToReposToDisplay([]));
 		}, resetReposDelay);
 	};
 
@@ -288,12 +279,12 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 				</div>
 			);
 		}
-		return reposToDisplay.sort((a, b) => {
+		return reposToDisplay.sort((a: any, b: any) => {
 			const firstItemsDate = a?.[keys?.[2]];
 			const secondItemsDate = b?.[keys?.[2]];
 			console.log({a, b, firstItemsDate, secondItemsDate, valueReturned: firstItemsDate > secondItemsDate ? -1 : firstItemsDate < secondItemsDate ? 1 : 0});
 			return firstItemsDate > secondItemsDate ? -1 : firstItemsDate < secondItemsDate ? 1 : 0;
-		}).map((repo) => {
+		}).map((repo: any) => {
 			if (isMobile) {
 				return (
 					<article key={repo.name} className={`${SKILLS_CLASSNAME}-popup__table-repo`}>
@@ -350,17 +341,3 @@ const SkillsPopup: React.FC<SkillsPopupProps> = ({
 		document.querySelector("#skillsPopup")!,
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		repos: state.general.repos,
-		reposToDisplay: state.resume.reposToDisplay,
-		clickedSkill: state.resume.clickedSkill,
-		isMobile: state.general.isMobile,
-	};
-};
-
-export default connect(mapStateToProps, {
-	clickSkill,
-	addRepoToReposToDisplay,
-})(SkillsPopup as any);

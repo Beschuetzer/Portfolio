@@ -1,4 +1,5 @@
-import { connect, RootStateOrAny } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers';
 import { MOBILE_BREAK_POINT_WIDTH } from '../constants';
 import { scrollToSection } from '../utils';
 import { SKILLS_CLASSNAME, SKILLS_SECTION_OPEN_CLASSNAME, toggleItem } from './utils';
@@ -6,16 +7,14 @@ import { SKILLS_CLASSNAME, SKILLS_SECTION_OPEN_CLASSNAME, toggleItem } from './u
 interface SkillsItemSectionProps {
   title: string,
   children: any,
-  sectionsToSkipAnimation: any[],
-  headerHeight: number,
 }
 
-const SkillsItemSection: React.FC<SkillsItemSectionProps> = ({
+export const SkillsItemSection: React.FC<SkillsItemSectionProps> = ({
   title,
   children,
-  sectionsToSkipAnimation,
-  headerHeight,
 }) => {
+  const sectionsToSkipAnimation = useSelector((state: RootState) => (state.resume as any)?.sectionsToSkipAnimation);
+  const headerHeight = useSelector((state: RootState) => state.general.headerHeight);
 
   const onTitleClick = (e: MouseEvent) => {
     e.stopPropagation();
@@ -43,15 +42,3 @@ const SkillsItemSection: React.FC<SkillsItemSectionProps> = ({
     </li>
   );
 }
-
-const mapStateToProps = (state: RootStateOrAny) => {
-  return {
-    sectionsToSkipAnimation: state.resume.sectionsToSkipAnimation,
-    headerHeight: state.general.headerHeight,
-  }
-}
-
-export default connect(mapStateToProps,
-{
-
-})(SkillsItemSection);

@@ -3,14 +3,14 @@ import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
 import Section from "../../components/Section";
 import Paragraph from "../../typography/Paragraph";
-import SkillsItemSection from "../../components/Skills/SkillsItemSection";
+import { SkillsItemSection } from "../../components/Skills/SkillsItemSection";
 import { PercentBarLabels } from "../../components/PercentBar/PercentBarLabels";
-import SkillsItem from "../../components/Skills/SkillsItem";
+import { SkillsItem } from "../../components/Skills/SkillsItem";
 import ReferenceItem from "./ReferenceItem";
 import EducationItem from "./EducationItem";
 
 import { getRepositories, setSectionsToSkipAnimation } from "../../actions";
-import SkillsPopup from "../../components/Skills/SkillsPopup";
+import { SkillsPopup } from "../../components/Skills/SkillsPopup";
 import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
 import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
 import { Repository, SKILLS_CLASSNAME } from "../../components/Skills/utils";

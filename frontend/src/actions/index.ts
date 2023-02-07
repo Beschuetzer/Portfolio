@@ -132,7 +132,7 @@ export const addRepoToReposToDisplay = (repo: any) => {
     payload: repo,
   }
 }
-export const clickSkill = (target: HTMLElement) => {
+export const clickSkill = (target: HTMLElement | null) => {
   interface SkillsToReplaceMap {
     [key: string]: string,
   }
