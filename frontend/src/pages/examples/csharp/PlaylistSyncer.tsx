@@ -42,7 +42,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					<Paragraph size="four">
 						Around the end of Febraury 2020, Samsung updated their Android OS to
 						version 10.&nbsp; Eager to check out the newest Android OS, I
@@ -138,7 +138,7 @@ const sections: CSharpSection[] = [
 				<Quote author="Charles Kettering" className="padding-top-1">
 					A problem well-stated is a problem half-solved;
 				</Quote>
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					<Paragraph size="four">
 						It was clear from the experiences others were having that the
 						problem stemmed from how Android 10 handled the playlist information
@@ -157,7 +157,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					<Paragraph size="four">
 						First I needed to figure out how to sync music to an Android device.
 						It turns out that the main way to do that is through a protocol

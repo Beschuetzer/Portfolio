@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import PercentBarLabels from "./PercentBarLabels";
+import { PercentBarLabels } from "./PercentBarLabels";
 
 export const PERCENT_BAR_CLASSNAME = 'percent-bar'
 export const PERCENT_BAR_OUTER_CLASSNAME = `${PERCENT_BAR_CLASSNAME}__outer`;
@@ -17,7 +17,7 @@ export interface PercentBarProps {
   value?: string | number | undefined;
 }
 
-const PercentBar: React.FC<PercentBarProps> = ({
+export const PercentBar: React.FC<PercentBarProps> = ({
   label,
   value,
   percent
@@ -25,7 +25,7 @@ const PercentBar: React.FC<PercentBarProps> = ({
 	const percentDiv = useRef<any>(null);
 	const [isDivSet, setIsDivSet] = useState(false);
 
-  useEffect(() => {
+  	useEffect(() => {
 		percentDiv.current.style.width = `${percent}%`;
 		setIsDivSet(true);
 	}, [percentDiv, percent, isDivSet]);
@@ -45,5 +45,3 @@ const PercentBar: React.FC<PercentBarProps> = ({
 		</div>
 	);
 };
-
-export default PercentBar;

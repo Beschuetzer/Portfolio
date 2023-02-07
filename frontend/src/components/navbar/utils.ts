@@ -1,5 +1,4 @@
-import { ANIMATION_DURATION, HEADER_HEIGHT_CSS_PROPERTY_NAME } from "../constants";
-import { SITE_NAV_CLASSNAME, SITE_NAV_MINIMAL_CLASSNAME } from "./SiteNav/SiteNav";
+import { HEADER_HEIGHT_CSS_PROPERTY_NAME } from "../constants";
 import { HEADER_ID, HEADER_TOGGLER_ACTIVE_CLASSNAME } from "./SiteNav/utils";
 
 export const NAVBAR_Z_INDEX_CLASSNAME = "z-index-navbar";

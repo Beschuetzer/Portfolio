@@ -5,13 +5,13 @@ import {
 } from "./utils";
 
 interface CSharpCardSectionProps {
-	title: string;
+	title?: string;
 	children: any;
 	headerSideContent?: any;
 }
 
 const CSharpCardSection: React.FC<CSharpCardSectionProps> = ({
-	title,
+	title = "",
 	children,
 	headerSideContent,
 }) => {

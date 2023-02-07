@@ -3,6 +3,7 @@ React best practices re-work (branch = sitenav_rework)
   -re-work Carousel (should be pure re-useable component)
   -re-work PageNav to better track the filling (fill should start when section is roughly centerd in the middle of the viewPort)
   -c-sharp layout seems to have embedded <p> tags (see warning)
+  -turn About into a drop down with options including Personality (brings to big five)?
   -rework remaining places that directly modify the DOM
 
 

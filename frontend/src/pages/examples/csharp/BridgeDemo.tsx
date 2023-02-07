@@ -33,7 +33,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					<p>
 						Since there is no AI currently implemented, runing a demo of A#Maj Bridge requires one to open two different browsers with two tabs in each browser (one of which has to be a "Private Browsing" tab or "Incognito" tab).  
 					</p>
@@ -53,7 +53,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					<ol>
 						<li>Open both browsers</li>
 						<li>
@@ -106,7 +106,7 @@ const sections: CSharpSection[] = [
 							videoOverlayText: "Four Windows At Once",
 							videoOverlayChildren: (
 								<div>
-									<CSharpCardSection title="">
+									<CSharpCardSection>
 										This video show you how to open Chrome and Firefox and create private session windows
 									</CSharpCardSection>
 								</div>
@@ -118,7 +118,7 @@ const sections: CSharpSection[] = [
 							videoOverlayText: "Test is the Password ",
 							videoOverlayChildren: (
 								<div>
-									<CSharpCardSection title="">
+									<CSharpCardSection>
 										Notice how each window uses a separate username but the password is the same.
 									</CSharpCardSection>
 								</div>

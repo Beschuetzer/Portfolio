@@ -1,8 +1,20 @@
-import React, { CSSProperties, useRef, useEffect, useState } from 'react'
-import { reconcileStyles } from './utils';
+import React, { CSSProperties, useRef, useEffect } from 'react'
 
 type Positions = "relative" | 'static' | 'absolute' | 'fixed';
 
+interface OverlayTextDefaultStyles {
+  position: string,
+  top: string,
+  left: string,
+  bottom: string,
+  right: string,
+  transform: string,
+  backgroundColor: string,
+  color: string,
+  zIndex: number,
+  backdropFilter: string,
+  padding: string,
+}
 interface OverlayTextProps {
   positionType?: Positions,
   positionTop?: string,
@@ -23,7 +35,7 @@ interface OverlayTextProps {
 }
 
 
-const OverlayText: React.FC<OverlayTextProps> = ({
+export const OverlayText: React.FC<OverlayTextProps> = ({
   positionType = 'fixed',
   titleText = "Title",
   cssClassname = 'overlay-text',
@@ -38,6 +50,47 @@ const OverlayText: React.FC<OverlayTextProps> = ({
 
   function onClick() {
     setIsVisible && setIsVisible(false);
+  }
+  
+  function getDefaultStyles () {
+    // const defaults: CSSProperties = {
+    //   position: 'fixed',
+    //   top: '50%',
+    //   left: '50%',
+    //   bottom: 'auto',
+    //   right: 'auto',
+    //   transform: "translate(-50%, -50%)",
+    //   backgroundColor: '#f7f7f7',
+    //   color: '#000000',
+    //   zIndex: 10000,
+    //   backdropFilter: 'blur(10px)',
+    //   padding: "1.6rem 3.2rem",
+    // };
+  
+    const defaults: CSSProperties = {
+      position: 'fixed',
+      top: '50%',
+      left: '50%',
+      bottom: 'auto',
+      right: 'auto',
+      transform: "translate(-50%, -50%)",
+      zIndex: 10000,
+    };
+  
+    return JSON.parse(JSON.stringify(defaults));
+  }
+  
+  function reconcileStyles (stylesFromAbove: CSSProperties) {
+    const defaultStyles = getDefaultStyles();
+    if (!stylesFromAbove) return defaultStyles;
+    const keys = Object.keys(stylesFromAbove);
+    for (let i = 0; i < keys.length; i++) {
+      const keyFromAbove = keys[i] as any;
+      if (defaultStyles[keyFromAbove as keyof OverlayTextDefaultStyles]) {
+        (defaultStyles[keyFromAbove as keyof OverlayTextDefaultStyles] as any) = stylesFromAbove[keyFromAbove as keyof OverlayTextDefaultStyles];
+      }
+    }
+    return defaultStyles
   }
 
   useEffect(() => {
@@ -60,5 +113,3 @@ const OverlayText: React.FC<OverlayTextProps> = ({
     </div>
   )
 }
-
-export default OverlayText

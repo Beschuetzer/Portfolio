@@ -21,7 +21,7 @@ import {
 	getPercentOfProgressBar,
 } from "../VideoPlayer/utils";
 import { closeCarouselItem } from "../utils";
-import OverlayText from "../OverlayText/OverlayText";
+import { OverlayText } from "../OverlayText/OverlayText";
 import { useDispatch } from "react-redux";
 import { setCurrentlyViewingCarouselImage } from "../../actions";
 

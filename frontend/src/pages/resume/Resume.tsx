@@ -4,7 +4,7 @@ import { connect, RootStateOrAny } from "react-redux";
 import Section from "../../components/Section";
 import Paragraph from "../../typography/Paragraph";
 import SkillsItemSection from "../../components/Skills/SkillsItemSection";
-import PercentBarLabels from "../../components/PercentBar/PercentBarLabels";
+import { PercentBarLabels } from "../../components/PercentBar/PercentBarLabels";
 import SkillsItem from "../../components/Skills/SkillsItem";
 import ReferenceItem from "./ReferenceItem";
 import EducationItem from "./EducationItem";

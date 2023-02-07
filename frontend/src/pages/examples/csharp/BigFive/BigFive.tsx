@@ -3,7 +3,7 @@ import {
 	CSharpSection,
 	BIG_FIVE_PAGE_NAME,
 } from "../../../../components/constants";
-import PercentBar, { PercentBarLabel } from "../../../../components/PercentBar/PercentBar";
+import { PercentBar, PercentBarLabel } from "../../../../components/PercentBar/PercentBar";
 import CSharpCardSection from "../CSharpCardSection";
 import CSharpLayout from "../CSharpLayout";
 import { C_SHARP_CLASSNAME } from "../utils";
@@ -70,7 +70,7 @@ const sections: CSharpSection[] = [
 					commonly used model of personality in academic psychology. &nbsp;
 				</CSharpCardSection>
 
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					Below you will find my rating for each of the five personality traits
 					as well as a description of what they mean.
 				</CSharpCardSection>
