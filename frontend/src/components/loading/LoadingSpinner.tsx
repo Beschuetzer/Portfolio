@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
-import { connect, RootStateOrAny } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../../reducers";
 import { HIDDEN_CLASSNAME } from "../constants";
 
 interface LoadingSpinnerProps {
@@ -8,11 +9,11 @@ interface LoadingSpinnerProps {
 	forceShow?: boolean;
 }
 
-function LoadingSpinner({
-	isLoadingSound = false,
+export function LoadingSpinner({
 	forceShow = true,
 }) {
 	const containerRef = useRef<HTMLElement>();
+	const isLoadingSound = useSelector((state: RootState) => state.sounds.isLoadingSound);
 
 	useEffect(() => {
 		if (forceShow) return;
@@ -42,11 +43,3 @@ function LoadingSpinner({
 		</div>
 	);
 }
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		isLoadingSound: state.sounds.isLoadingSound,
-	};
-};
-
-export default connect(mapStateToProps, {})(LoadingSpinner);
