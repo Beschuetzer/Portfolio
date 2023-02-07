@@ -1,18 +1,18 @@
 import React from 'react';
-import { connect, RootStateOrAny } from 'react-redux';
+import { connect, RootStateOrAny, useSelector } from 'react-redux';
+import { RootState } from '../../reducers';
 import { SKILLS_CLASSNAME } from './utils';
 
 interface SkillsPopupNameProps {
   repo: any,
   href: string,
-  isMobile: boolean,
 }
 
-const SkillsPopupName: React.FC<SkillsPopupNameProps> = ({
+export const SkillsPopupName: React.FC<SkillsPopupNameProps> = ({
   repo,
   href,
-  isMobile,
 }) => {
+  const isMobile = useSelector((state: RootState) => state.general.isMobile);
   
   return (
     <div className={`${SKILLS_CLASSNAME}-popup__table-item ${SKILLS_CLASSNAME}-popup__name`}>
@@ -36,13 +36,3 @@ const SkillsPopupName: React.FC<SkillsPopupNameProps> = ({
     </div>
   );
 }
-
-const mapStateToProps = (state: RootStateOrAny) => {
-  return {
-    isMobile: state.general.isMobile,
-  }
-}
-
-export default connect(mapStateToProps, {
-
-})(SkillsPopupName);

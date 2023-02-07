@@ -1,5 +1,4 @@
 import { RefObject } from "react";
-import { connect } from "react-redux";
 import {
 	FULLSCREEN_CLASSNAME,
 	FULLSCREEN_PARENT_CLASSNAME,
@@ -21,7 +20,7 @@ interface CloseControlProps {
 	functionToRunOnClose?: () => void;
 }
 
-const CloseControl: React.FC<CloseControlProps> = ({
+export const CloseControl: React.FC<CloseControlProps> = ({
 	xlinkHref,
 	videoRef,
 	isItemOpenRef,
@@ -75,5 +74,3 @@ const CloseControl: React.FC<CloseControlProps> = ({
 		</div>
 	);
 };
-
-export default connect(null, {})(CloseControl);

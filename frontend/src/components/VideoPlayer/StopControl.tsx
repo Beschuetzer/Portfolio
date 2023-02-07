@@ -11,7 +11,7 @@ interface StopControlProps{
 	functionToGetContainer?: (e: any) => void,
 }
 
-const StopControl: React.FC<StopControlProps> = ({
+export const StopControl: React.FC<StopControlProps> = ({
 	className = 'card__stop', 
 	xlinkHref, 
 	videoRef, 
@@ -53,5 +53,3 @@ const StopControl: React.FC<StopControlProps> = ({
     </div>
   );
 }
-
-export default StopControl;

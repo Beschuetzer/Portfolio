@@ -1,5 +1,4 @@
 import { RefObject } from "react";
-import { Reference } from "../constants";
 import { removeClassFromAllChildren } from "../utils";
 
 interface PauseControlProps {
@@ -14,7 +13,7 @@ interface PauseControlProps {
 	onClick?: (e: MouseEvent) => void,
 }
 
-const PauseControl: React.FC<PauseControlProps> = ({
+export const PauseControl: React.FC<PauseControlProps> = ({
 	className = 'card__pause',
 	xlinkHref,
 	videoRef,
@@ -53,5 +52,3 @@ const PauseControl: React.FC<PauseControlProps> = ({
     </div>
   );
 }
-
-export default PauseControl;

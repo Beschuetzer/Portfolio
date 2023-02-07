@@ -9,13 +9,8 @@ import {
 } from "../constants";
 import { setIsCardVideoOpen } from "../../actions";
 
-import { Video, FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 import { capitalize } from "../../helpers";
-import PauseControl from "../VideoPlayer/PauseControl";
-import StopControl from "../VideoPlayer/StopControl";
-import PlayControl from "../VideoPlayer/PlayControl";
-import RestartControl from "../VideoPlayer/RestartControl";
-import CloseControl from "../VideoPlayer/CloseControl";
+import { StopControl, RestartControl, PlayControl, CloseControl, PauseControl, Video, FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer";
 import {
 	adjustCardYPosition,
 	CARD_DEFAULT_CLASSNAME,

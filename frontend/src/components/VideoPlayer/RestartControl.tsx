@@ -11,7 +11,7 @@ interface RestartControlProps {
 	functionToGetContainer?: (e: any) => void,
 }
 
-const RestartControl: React.FC<RestartControlProps> = ({
+export const RestartControl: React.FC<RestartControlProps> = ({
 	className = 'card__restart',
 	xlinkHref,
 	videoRef,
@@ -64,5 +64,3 @@ const RestartControl: React.FC<RestartControlProps> = ({
     </div>
   );
 }
-
-export default RestartControl;

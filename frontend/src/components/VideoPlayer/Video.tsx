@@ -1,4 +1,4 @@
-import React, { ReactChildren, RefObject } from "react";
+import React from "react";
 
 export const FOREGROUND_VIDEO_CLASSNAME = 'fg-video';
 
@@ -33,7 +33,6 @@ export const Video: React.FC<VideoProps>  = ({
 	progressBarClassname = "card__progress",
 	children,
 }) => {
-
 	return (
 		<React.Fragment>
 			<div className={className} onClick={onClick ? (e: any) => onClick(e) : undefined}>

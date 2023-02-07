@@ -13,7 +13,7 @@ interface PlayControlProps {
 	functionToGetContainer?: (e: any) => void,
 }
 
-const PlayControl: React.FC<PlayControlProps> = ({
+export const PlayControl: React.FC<PlayControlProps> = ({
 	className = 'card__play', 
 	xlinkHref, 
 	videoRef, 
@@ -58,5 +58,3 @@ const PlayControl: React.FC<PlayControlProps> = ({
     </div>
   );
 }
-
-export default PlayControl;

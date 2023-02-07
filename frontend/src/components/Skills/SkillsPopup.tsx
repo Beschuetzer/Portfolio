@@ -6,7 +6,7 @@ import { checkForParentOfType } from "../../helpers";
 import {
 	addRepoToReposToDisplay, clickSkill,
 } from "../../actions";
-import SkillsPopupName from "./SkillsPopupName";
+import { SkillsPopupName } from "./SkillsPopupName";
 import { capitalize } from "../../helpers";
 import { addSpaceAfterPunctuationMarks, toggleScrollability } from "../utils";
 import { Repository, SKILLS_CLASSNAME } from "./utils";

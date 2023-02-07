@@ -1,10 +1,5 @@
 import React, { useState, useRef } from "react";
-import PlayControl from "../VideoPlayer/PlayControl";
-import StopControl from "../VideoPlayer/StopControl";
-import PauseControl from "../VideoPlayer/PauseControl";
-import RestartControl from "../VideoPlayer/RestartControl";
-import CloseControl from "../VideoPlayer/CloseControl";
-import { Video, FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
+import { Video, FOREGROUND_VIDEO_CLASSNAME, CloseControl, PauseControl, PlayControl, StopControl, RestartControl } from "../VideoPlayer";
 import {
 	CarouselItemProps,
 	CAROUSEL_CLASSNAME,
