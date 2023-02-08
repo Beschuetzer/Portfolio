@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { connect, RootStateOrAny } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
 	setClickedBridgeInfoButtonCount,
@@ -508,37 +508,30 @@ const sectionContents = [
 ];
 
 interface BridgeProps {
-	isMobile: boolean;
-	setClickedBridgeInfoButtonCount: (value: number) => any;
-	setCurrentBridgeSection: (value: number) => any;
-	setHasClickedALink: (value: boolean) => any;
 }
 
-const Bridge: React.FC<BridgeProps> = ({
-	setHasClickedALink,
-	setClickedBridgeInfoButtonCount,
-	setCurrentBridgeSection,
-	isMobile,
-}) => {
+export const Bridge: React.FC<BridgeProps> = () => {
+	const dispatch = useDispatch();
+	const isMobile = useSelector((state: RootState) => state.general.isMobile);
 	const leftArrowProps = { direction: "left" };
 	const rightArrowProps = { direction: "right" };
 
 	useEffect(() => {
 		setLinearGradientCssCustomProp();
-		setHasClickedALink(false);
-	}, [setHasClickedALink]);
+		dispatch(setHasClickedALink(false));
+	}, [setHasClickedALink, dispatch]);
 
 	useEffect(() => {
 		const heroMore = document.querySelector(".hero__more");
 		resetBridgeHero({ current: heroMore } as Reference);
-		setClickedBridgeInfoButtonCount(0);
-		setCurrentBridgeSection(0);
+		dispatch(setClickedBridgeInfoButtonCount(0));
+		dispatch(setCurrentBridgeSection(0));
 
 		return () => {
-			setClickedBridgeInfoButtonCount(0);
-			setCurrentBridgeSection(0);
+			dispatch(setClickedBridgeInfoButtonCount(0));
+			dispatch(setCurrentBridgeSection(0));
 		};
-	}, [setClickedBridgeInfoButtonCount, setCurrentBridgeSection]);
+	}, [dispatch, setClickedBridgeInfoButtonCount, setCurrentBridgeSection]);
 
 	//adding scroll listener
 	useEffect(() => {
@@ -564,7 +557,7 @@ const Bridge: React.FC<BridgeProps> = ({
 					}
 					heroMore?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
 
-					setClickedBridgeInfoButtonCount(2);
+					dispatch(setClickedBridgeInfoButtonCount(2));
 				}
 			}
 		};
@@ -574,7 +567,7 @@ const Bridge: React.FC<BridgeProps> = ({
 		return () => {
 			window.removeEventListener("scroll", handleScroll as any);
 		};
-	}, [isMobile, setClickedBridgeInfoButtonCount]);
+	}, [isMobile, dispatch, setClickedBridgeInfoButtonCount]);
 
 	const renderSections = () => {
 		return sectionContents.map((item, index) => {
@@ -632,19 +625,6 @@ const Bridge: React.FC<BridgeProps> = ({
 		</div>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		isMobile: state.general.isMobile,
-		hasClickedALink: state.bridge.hasClickedALink,
-	};
-};
-
-export default connect(mapStateToProps, {
-	setHasClickedALink,
-	setClickedBridgeInfoButtonCount,
-	setCurrentBridgeSection,
-})(Bridge);
 
 /* <p>
 		Contract bridge, or simply bridge, is a trick-taking card game using a standard 52-card deck. In its basic format, it is played by four players in two competing partnerships, with partners sitting opposite each other around a table.

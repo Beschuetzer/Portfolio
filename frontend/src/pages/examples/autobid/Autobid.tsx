@@ -75,15 +75,12 @@ const sections: CSharpSection[] = [
 
 interface AutoBidProps {}
 
-const AutoBid: React.FC<AutoBidProps> = () => {
+export const AutoBid: React.FC<AutoBidProps> = () => {
 	return (
 		<CSharpLayout
 			sections={sections}
 			pageName={AUTO_BID_PAGE_NAME}
-			sourceCodeLink={`${GITHUB_URL}/${AUTO_BID_PAGE_NAME}`}>
-			{" "}
-		</CSharpLayout>
+			sourceCodeLink={`${GITHUB_URL}/${AUTO_BID_PAGE_NAME}`}/>
 	);
 };
 
-export default AutoBid;

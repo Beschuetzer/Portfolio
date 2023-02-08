@@ -16,8 +16,6 @@ import {
 import Home from "../pages/home/Home";
 import PlaylistSyncer from "../pages/examples/csharp/PlaylistSyncer";
 import Downloader from "../pages/examples/csharp/Downloader";
-import Bridge from "../pages/examples/bridge/Bridge";
-import Autobid from "../pages/examples/autobid/Autobid";
 import Resume from "../pages/resume/Resume";
 import { SiteNav } from "./navbar/SiteNav/SiteNav";
 import { PageNav } from "./navbar/PageNav/PageNav";
@@ -38,6 +36,7 @@ import BridgeDemo from "../pages/examples/csharp/BridgeDemo";
 import BigFive from "../pages/examples/csharp/BigFive/BigFive";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { RootState } from "../reducers";
+import { AutoBid, Bridge } from "../pages/";
 
 interface AppProps {}
 
@@ -107,7 +106,7 @@ export const App: React.FC<AppProps> = ({
 					component={PlaylistSyncer}
 				/>
 				<Route path={REPLAY_VIEWER_URL} exact component={ReplayViewer} />
-				<Route path={AUTO_BID_URL} exact component={Autobid} />
+				<Route path={AUTO_BID_URL} exact component={AutoBid} />
 				<Route path={ABOUT_URL} exact component={About} />
 				<Route path={RESUME_URL} exact component={Resume} />
 				<Route path={PERSONALITY_URL} exact component={BigFive} />
