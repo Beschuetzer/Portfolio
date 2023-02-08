@@ -2,7 +2,7 @@ import React from "react";
 import { Carousel } from "../../../components/Carousel/Carousel";
 import CSharpLayout from "./CSharpLayout";
 
-import EmbeddedLink from "../../../components/EmbeddedLink";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import img1 from "../../../imgs/downloader/img1.png";
 import img2 from "../../../imgs/downloader/img2.png";
 import img3 from "../../../imgs/downloader/img3.png";
@@ -34,8 +34,7 @@ import {
 	OC_REMIX_URL,
 	PLAYLIST_SYNCER_URL,
 } from "../../../components/constants";
-import Paragraph from "../../../typography/Paragraph";
-import Quote from "../../../components/Quote";
+import { Quote } from "../../../components/Quote";
 
 const sectionNames = ["Description", "Media", "Notes"];
 

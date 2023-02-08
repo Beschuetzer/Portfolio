@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
-import { connect, RootStateOrAny } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setBridgeSections, setCurrentBridgeSection } from "../actions";
 
-import { setCurrentBridgeSection, setBridgeSections } from "../actions";
 import {
 	BRIDGE_CLASSNAME,
 	COLOR_PRIMARY_BRIDGE_1,
@@ -10,33 +10,29 @@ import {
 	COLOR_PRIMARY_BRIDGE_3,
 	COLOR_PRIMARY_BRIDGE_4,
 } from "../pages/examples/bridge/utils";
-import { ANIMATION_DURATION, ArrowButtonDirection, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
+import { RootState } from "../reducers";
+import { ANIMATION_DURATION, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
 
 interface ArrowButtonProps {
-  direction: string,
-	bridgeSections: NodeListOf<Element>,
-	currentBridgeSection: number,
-	clickedBridgeInfoButtonCount: number,
+  	direction: string,
 	reference?: any,
-	setBridgeSections: any,
-	setCurrentBridgeSection: any,
 }
 
-const ArrowButton: React.FC<ArrowButtonProps> = ({
+export const ArrowButton: React.FC<ArrowButtonProps> = ({
 	direction,
-	setCurrentBridgeSection,
-	currentBridgeSection,
-	bridgeSections,
-	setBridgeSections,
-	clickedBridgeInfoButtonCount,
 	reference,
 }) => {
+	const dispatch = useDispatch();
+	const currentBridgeSection = useSelector((state: RootState) => state.bridge.currentBridgeSection);
+	const bridgeSections = useSelector((state: RootState) => state.bridge.bridgeSections);
+	const clickedBridgeInfoButtonCount = useSelector((state: RootState) => state.bridge.clickedBridgeInfoButtonCount);
+
 	//Initial setup, storing sections
 	useEffect(() => {
 		// if (bridgeSections) return;
 		const sections = document.querySelectorAll(`.${BRIDGE_CLASSNAME}__section`);
-		setBridgeSections(sections);
-	}, [setBridgeSections]);
+		dispatch(setBridgeSections(sections));
+	}, [dispatch, setBridgeSections]);
 
 	//Handling Updates
 	useEffect(() => {
@@ -165,11 +161,11 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 		hideContentDuringSlide()
 		if ((e.currentTarget as HTMLElement)?.className.match(/left/i)) {
 			if (currentBridgeSection > 0) {
-				return setCurrentBridgeSection(currentBridgeSection - 1);
+				return dispatch(setCurrentBridgeSection(currentBridgeSection - 1));
 			}
 		} else {
 			if (currentBridgeSection < bridgeSections.length - 1) {
-				setCurrentBridgeSection(currentBridgeSection + 1);
+				dispatch(setCurrentBridgeSection(currentBridgeSection + 1));
 			}
 		}
 
@@ -208,16 +204,3 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 		</div>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		currentBridgeSection: state.bridge.currentBridgeSection,
-		bridgeSections: state.bridge.bridgeSections,
-		clickedBridgeInfoButtonCount: state.bridge.clickedBridgeInfoButtonCount,
-	};
-};
-
-export default connect(mapStateToProps, {
-	setCurrentBridgeSection,
-	setBridgeSections,
-})(ArrowButton);

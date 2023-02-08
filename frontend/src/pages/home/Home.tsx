@@ -3,14 +3,12 @@ import { connect, RootStateOrAny } from "react-redux";
 import { getRepositories } from "../../actions";
 import { getRandomQuote, Quote, QuoteableAuthors, QuoteTags } from "../../apis/quotes";
 import {
-	ABOUT_URL,
 	BRIDGE_URL,
 	REPLAY_VIEWER_URL,
 	RESUME_URL,
 } from "../../components/constants";
-import EmbeddedLink from "../../components/EmbeddedLink";
+import { EmbeddedLink } from "../../components/EmbeddedLink";
 import useClasslistAdder, { ClasslistAdder } from "./useClasslistAdder";
-import useSky from "./OceanSky";
 import OceanSky from "./OceanSky";
 
 const EMBODIMENT_STRING =

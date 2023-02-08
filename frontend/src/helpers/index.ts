@@ -60,3 +60,19 @@ export function getLinearPercentOfMaxMatchWithinRange(currentTrackedValue: numbe
     return startOutputValue - percentOfRange * outputValueRange;
   }
 }
+
+/*
+* recursively checks nodes and their ancestors for a classname stopping at stoppingElementType
+*/
+export function getAncestorContainsClassname(elementToCheck: HTMLElement | null, classname: string, stoppingElementType = 'body'): boolean {
+  try {
+    const regex = new RegExp(classname, 'i');
+    if (!classname || !elementToCheck) return false;
+    if ( elementToCheck?.className?.match(regex)) return true;
+    if (elementToCheck?.localName?.toLocaleLowerCase() === stoppingElementType) return false;
+    const parent = elementToCheck?.parentElement || null;
+    return getAncestorContainsClassname(parent, classname, stoppingElementType);
+  } catch (error) {
+    return true;
+  }
+}

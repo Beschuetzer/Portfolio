@@ -8,10 +8,10 @@ import {
 	setHasClickedALink,
 } from "../../../actions";
 
-import EmbeddedLink from "../../../components/EmbeddedLink";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { BridgeSection } from "./BridgeCard";
 import BridgeCardSection from "./BridgeCardSection";
-import SectionContainer from "../../../components/SectionContainer";
+import { SectionContainer } from "../../../components/SectionContainer";
 import { Card } from "../../../components/Card/Card";
 import BridgeSectionLink from "./BridgeSectionLink";
 
@@ -51,9 +51,9 @@ import {
 	BRIDGE_DEMO_URL,
 } from "../../../components/constants";
 import BridgeHero from "./BridgeHero";
-import SourceCodeLink from "../../../components/SourceCodeLink";
-import ArrowButton from "../../../components/ArrowButton";
-import Quote from "../../../components/Quote";
+import { SourceCodeLink } from "../../../components/SourceCodeLink";
+import { ArrowButton } from "../../../components/ArrowButton";
+import { Quote } from "../../../components/Quote";
 import { RootState } from "../../../reducers";
 
 const sectionContents = [

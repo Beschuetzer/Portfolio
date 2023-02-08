@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import { connect, RootStateOrAny } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import history from "../history";
 import { Howl } from "howler";
 
@@ -23,7 +23,7 @@ import { SiteNav } from "./navbar/SiteNav/SiteNav";
 import { PageNav } from "./navbar/PageNav/PageNav";
 import { NavToggler } from "./navbar/NavToggler";
 import "../css/style.css";
-import GithubButton from "./GithubButton";
+import { GithubButton } from "./GithubButton";
 import {
 	setIsMobile,
 	setViewPortWidth,
@@ -37,22 +37,16 @@ import About from "../pages/examples/csharp/About";
 import BridgeDemo from "../pages/examples/csharp/BridgeDemo";
 import BigFive from "../pages/examples/csharp/BigFive/BigFive";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
+import { RootState } from "../reducers";
 
-interface AppProps {
-	isMobile: boolean,
-	setIsMobile: (value: boolean, windowWidth: number) => void,
-	setViewPortWidth: (value: number) => void,
-	setSounds: (value: {}) => void,
-}
+interface AppProps {}
 
-const App: React.FC<AppProps> = ({
-	isMobile,
-	setIsMobile,
-	setViewPortWidth,
-	setSounds,
+export const App: React.FC<AppProps> = ({
 }) => {
+	const dispatch = useDispatch();
+	const isMobile = useSelector((state: RootState) => state.general.isMobile);
 	const mobileBreakPointWidth = MOBILE_BREAK_POINT_WIDTH;
-	setIsMobile(window.innerWidth <= mobileBreakPointWidth, window.innerWidth);
+	dispatch(setIsMobile(window.innerWidth <= mobileBreakPointWidth, window.innerWidth));
 
 	//setup window resize listener
 	useEffect(() => {
@@ -60,13 +54,14 @@ const App: React.FC<AppProps> = ({
 			if (window.innerWidth <= mobileBreakPointWidth && !isMobile) {
 				const newValue = `--bridge-gradient-direction: to bottom`;
 				document.documentElement.style.cssText += newValue;
-				return setIsMobile(true, window.innerWidth);
+				return dispatch(setIsMobile(true, window.innerWidth));
 			} else if (window.innerWidth > mobileBreakPointWidth && isMobile) {
 				const newValue = `--bridge-gradient-direction: to right`;
 				document.documentElement.style.cssText += newValue;
-				return setIsMobile(false, window.innerWidth);
+				return dispatch(setIsMobile(false, window.innerWidth));
 			}
-			return setViewPortWidth(window.innerWidth);
+			dispatch(setViewPortWidth(window.innerWidth));
+			return;
 		};
 
 		window.addEventListener("resize", windowResize);
@@ -96,7 +91,7 @@ const App: React.FC<AppProps> = ({
 				siteNavClose: [4500, 1000],
 			},
 		});
-		setSounds(sounds);
+		dispatch(setSounds(sounds));
 	}, [setSounds]);
 
 	return (
@@ -127,15 +122,3 @@ const App: React.FC<AppProps> = ({
 		</Router>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		isMobile: state.general.isMobile,
-	};
-};
-
-export default connect(mapStateToProps, {
-	setIsMobile,
-	setViewPortWidth,
-	setSounds,
-})(App as any);

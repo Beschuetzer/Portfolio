@@ -1,7 +1,8 @@
 import React from "react";
-import { connect, RootStateOrAny } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { BRIDGE_CLASSNAME } from "../pages/examples/bridge/utils";
+import { RootState } from "../reducers";
 import { scrollToSection } from "./utils";
 
 interface EmbeddedLinkProps {
@@ -11,18 +12,17 @@ interface EmbeddedLinkProps {
 	addSpaces?: boolean,
 	openInNewTab?: boolean,
 	children: any,
-	headerHeight: number,
 }
 
-const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
+export const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 	href,
 	className = `${BRIDGE_CLASSNAME}__link`,
 	isLocal = false,
 	addSpaces = true,
 	openInNewTab = true,
 	children,
-	headerHeight,
 }) => {
+	const headerHeight = useSelector((state: RootState) => state.general.headerHeight);
 
 	const scrollToLink = (e: MouseEvent) => {
 		if (openInNewTab) return;
@@ -61,11 +61,3 @@ const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 		</React.Fragment>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		headerHeight: state.general.headerHeight,
-	}
-}
-
-export default connect(mapStateToProps, {})(EmbeddedLink);

@@ -1,7 +1,7 @@
 import React from "react";
 import { capitalize, replaceCharacters } from "../../../helpers";
-import Section from "../../../components/Section";
-import SourceCodeLink from "../../../components/SourceCodeLink";
+import { Section } from "../../../components/Section";
+import { SourceCodeLink } from "../../../components/SourceCodeLink";
 import { C_SHARP_CLASSNAME } from "./utils";
 import { CSharpSection } from "../../../components/constants";
 import PageWrapper from "../../PageWrapper";

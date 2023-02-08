@@ -1,3 +1,4 @@
+import { Howl } from 'howler';
 import { Dispatch } from 'react';
 import github from '../apis/github';
 import { AudioItem } from '../components/AudioPlayer/AudioList';
@@ -216,7 +217,7 @@ export const setBridgeCards = (value: []) => {
     payload: value,
   }
 }
-export const setBridgeSections = (value: []) => {
+export const setBridgeSections = (value: NodeListOf<Element>) => {
   return {
     type: SET_BRIDGE_SECTIONS,
     payload: value,
@@ -306,13 +307,13 @@ export const setSectionsToSkipAnimation = (value: []) => {
     payload: value,
   }
 }
-export const setSounds = (sounds: []) => {
+export const setSounds = (sounds: Howl | Howl[]) => {
   return {
     type: SET_SOUNDS,
     payload: sounds,
   }
 }
-export const setViewPortWidth = (value: boolean) => {
+export const setViewPortWidth = (value: number) => {
   return {
     type: SET_VIEW_PORT_WIDTH,
     payload: value,

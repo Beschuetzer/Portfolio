@@ -19,7 +19,7 @@ import {
 	BRIDGE_DEMO_PAGE_NAME,
 	CSharpSection,
 } from "../../../components/constants";
-import EmbeddedLink from "../../../components/EmbeddedLink";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
 
 const sectionNames = [
 	"Requirements",

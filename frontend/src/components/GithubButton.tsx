@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { GITHUB_URL } from './constants';
 
-class GithubButton extends React.Component {
+export class GithubButton extends React.Component {
   render() {
     return (
       ReactDOM.createPortal(
@@ -24,5 +24,3 @@ class GithubButton extends React.Component {
     );
   }
 }
-
-export default GithubButton;

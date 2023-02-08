@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "../../../components/Carousel/Carousel";
 import CSharpLayout from "./CSharpLayout";
-import EmbeddedLink from "../../../components/EmbeddedLink";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
 
 import img1 from "../../../imgs/replay-viewer/img-1.png";
 import img2 from "../../../imgs/replay-viewer/img-2.png";
@@ -48,7 +48,7 @@ import {
 	GITHUB_URL,
 	LIVE_REPLAYS_URL,
 } from "../../../components/constants";
-import Quote from "../../../components/Quote";
+import { Quote } from "../../../components/Quote";
 
 const sectionNames = ["Motivation", "Media", "Features", "Notes"];
 

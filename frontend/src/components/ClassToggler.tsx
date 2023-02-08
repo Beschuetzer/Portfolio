@@ -8,7 +8,7 @@ export interface ClassTogglerProps {
 	children: any;
 }
 
-const ClassToggler: React.FC<ClassTogglerProps> = ({
+export const ClassToggler: React.FC<ClassTogglerProps> = ({
 	targetSelector,
 	classToToggle,
 	children,
@@ -29,5 +29,3 @@ const ClassToggler: React.FC<ClassTogglerProps> = ({
 		</span>
 	);
 };
-
-export default ClassToggler;

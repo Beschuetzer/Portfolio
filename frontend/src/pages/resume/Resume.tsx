@@ -1,7 +1,7 @@
 // import * as THREE from "three";
 import React, { useEffect } from "react";
 import { connect, RootStateOrAny } from "react-redux";
-import Section from "../../components/Section";
+import { Section } from "../../components/Section";
 import Paragraph from "../../typography/Paragraph";
 import { SkillsItemSection } from "../../components/Skills/SkillsItemSection";
 import { PercentBarLabels } from "../../components/PercentBar/PercentBarLabels";
@@ -33,8 +33,8 @@ import {
 	BEST_BUY_URL,
 	YORK_B2E_URL,
 } from "../../components/constants";
-import SourceCodeLink from "../../components/SourceCodeLink";
-import Quote from "../../components/Quote";
+import { SourceCodeLink } from "../../components/SourceCodeLink";
+import { Quote } from "../../components/Quote";
 import { capitalize } from "../../helpers";
 import { C_SHARP_CLASSNAME } from "../examples/csharp/utils";
 import PageWrapper from "../PageWrapper";

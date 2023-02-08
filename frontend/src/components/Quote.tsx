@@ -12,7 +12,7 @@ export interface QuoteProps {
 	className?: string;
 }
 
-const Quote: React.FC<QuoteProps> = ({
+export const Quote: React.FC<QuoteProps> = ({
 	children,
 	author,
 	shouldBreakLines = false,
@@ -109,5 +109,3 @@ const Quote: React.FC<QuoteProps> = ({
 		</figure>
 	);
 };
-
-export default Quote;

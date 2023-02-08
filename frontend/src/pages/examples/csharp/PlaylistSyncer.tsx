@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel } from "../../../components/Carousel/Carousel";
 import CSharpLayout from "./CSharpLayout";
-import EmbeddedLink from "../../../components/EmbeddedLink";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
 
 import img1 from "../../../imgs/playlist-syncer/img1.png";
 import imgProblem from "../../../imgs/playlist-syncer/img-problem.jpg";
@@ -32,7 +32,7 @@ import {
 	WIKIPEDIA_DRM_URL,
 	WIKIPEDIA_MTP_URL,
 } from "../../../components/constants";
-import Quote from "../../../components/Quote";
+import { Quote } from "../../../components/Quote";
 
 const sectionNames = ["Background", "Media", "Problem", "Approach"];
 

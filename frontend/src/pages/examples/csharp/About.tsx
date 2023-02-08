@@ -117,9 +117,9 @@ import {
 	closeCarouselItem,
 	functionToGetContainer,
 } from "../../../components/utils";
-import EmbeddedLink from "../../../components/EmbeddedLink";
-import Quote from "../../../components/Quote";
-import ClassToggler from "../../../components/ClassToggler";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
+import { Quote } from "../../../components/Quote";
+import { ClassToggler } from "../../../components/ClassToggler";
 import Paragraph from "../../../typography/Paragraph";
 
 const sectionNames = ["Summary", "Interests", "Music", "FAQ"];

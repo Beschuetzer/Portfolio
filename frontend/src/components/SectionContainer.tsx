@@ -7,7 +7,7 @@ interface SectionContainerProps {
   styles?: any,
 }
 
-const SectionContainer: React.FC<SectionContainerProps> = ({
+export const SectionContainer: React.FC<SectionContainerProps> = ({
   name,
   pageName,
   children,
@@ -26,5 +26,3 @@ const SectionContainer: React.FC<SectionContainerProps> = ({
     </section>
   );
 }
-
-export default SectionContainer;
