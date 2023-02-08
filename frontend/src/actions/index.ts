@@ -2,6 +2,7 @@ import { Howl } from 'howler';
 import { Dispatch } from 'react';
 import github from '../apis/github';
 import { AudioItem } from '../components/AudioPlayer/AudioList';
+import { LoadedSounds } from '../reducers/soundsReducer';
 import {
   GET_REPOSITORIES,
   CLICK_SKILL,
@@ -307,7 +308,7 @@ export const setSectionsToSkipAnimation = (value: []) => {
     payload: value,
   }
 }
-export const setSounds = (sounds: Howl | Howl[]) => {
+export const setSounds = (sounds: LoadedSounds) => {
   return {
     type: SET_SOUNDS,
     payload: sounds,

@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 import { setPreviousUrl } from "../../../actions";
 import { capitalize } from "../../../helpers";
-import BridgeSectionLink from "../../../pages/examples/bridge/BridgeSectionLink";
+import { BridgeSectionLink } from "../../../pages";
 import { bridgeSectionNames } from "../../../pages/examples/bridge/utils";
 import { RootState } from "../../../reducers";
 import { DEFAULT_FONT_SIZE, HIDDEN_CLASSNAME } from "../../constants";

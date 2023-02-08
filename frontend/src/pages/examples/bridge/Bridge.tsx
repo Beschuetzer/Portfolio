@@ -9,12 +9,10 @@ import {
 } from "../../../actions";
 
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
-import { BridgeSection } from "./BridgeCard";
+import { BridgeSection } from "./BridgeSection";
 import BridgeCardSection from "./BridgeCardSection";
 import { SectionContainer } from "../../../components/SectionContainer";
 import { Card } from "../../../components/Card/Card";
-import BridgeSectionLink from "./BridgeSectionLink";
-
 import dealSummaryVideo from "../../../clips/bridge/dealSummary.mp4";
 import undoVideo from "../../../clips/bridge/undo.mp4";
 import claimSomeVideo from "../../../clips/bridge/claim-some-declarer-initial.mp4";
@@ -55,6 +53,7 @@ import { SourceCodeLink } from "../../../components/SourceCodeLink";
 import { ArrowButton } from "../../../components/ArrowButton";
 import { Quote } from "../../../components/Quote";
 import { RootState } from "../../../reducers";
+import { BridgeSectionLink } from "./BridgeSectionLink";
 
 const sectionContents = [
 	<SectionContainer name={bridgeSectionNames[0]} pageName={BRIDGE_PAGE_NAME}>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef } from "react";
-import { connect, RootStateOrAny } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
 	setCurrentBridgeSection,
@@ -8,7 +8,7 @@ import {
 	setHasClickedALink,
 } from "../../../actions";
 import { scrollToSection } from "../../../components/utils";
-import { LoadedSounds } from "../../../reducers/soundsReducer";
+import { RootState } from "../../../reducers";
 import {
 	BRIDGE_CLASSNAME,
   BRIDGE_HERO_CLASSNAME,
@@ -20,35 +20,26 @@ import {
 
 interface BridgeSectionLinkProps {
 	isEmbeddedLink?: boolean,
-	hasClickedALink: boolean,
-	isMobile: boolean,
-	currentBridgeSection: number,
-	headerHeight: number,
 	sectionToSkipTo: string,
 	name: string,
-	match: {url: string},
-  bridgeSections: any[],
-	sounds: LoadedSounds,
-	setCurrentBridgeSection: (value: number) => void,
-	setClickedBridgeInfoButtonCount: (value: number) => void,
-	setHasClickedALink: (value: boolean) => void,
+	match?: {url: string},
 }
 
-const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
+export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 	isEmbeddedLink = false,
-	bridgeSections,
-	currentBridgeSection,
-	setCurrentBridgeSection,
 	sectionToSkipTo,
 	name,
 	match,
-	sounds,
-	isMobile,
-	headerHeight,
-	setClickedBridgeInfoButtonCount,
-	setHasClickedALink,
-	hasClickedALink,
 }) => {
+	const currentBridgeSection = useSelector((state: RootState) => state.bridge.currentBridgeSection);
+	const bridgeSections = useSelector((state: RootState) => state.bridge.bridgeSections);
+	const hasClickedALink = useSelector((state: RootState) => state.bridge.hasClickedALink);
+	const headerHeight = useSelector((state: RootState) => state.general.headerHeight);
+	const isMobile = useSelector((state: RootState) => state.general.isMobile);
+	const sounds = useSelector((state: RootState) => state.sounds);
+	// numberOfSkips: parseInt(ownProps.numberOfSkips),
+	// const numberOfSkips = useSelector((state: RootState) => stat);
+	const dispatch = useDispatch();
 	const spanRef = useRef<HTMLElement>(null);
 
 	const getSkipDirectionAndSkips = (e: MouseEvent) => {
@@ -76,7 +67,7 @@ const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 		if (isMobile) {
 			scrollToSection(bridgeSections[valueToUse]);
 		} else {
-			setCurrentBridgeSection(valueToUse);
+			dispatch(setCurrentBridgeSection(valueToUse));
 		}
 
 		if (match && match.url.match(/bridge$/i)) {
@@ -94,17 +85,17 @@ const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 				false,
 				spanRef.current,
 			);
-			setClickedBridgeInfoButtonCount(2);
+			dispatch(setClickedBridgeInfoButtonCount(2));
 
 			if (!hasClickedALink) {
 				handleBridgeHeroSounds(
 					checkBoxRef,
 					backgroundRef,
-					sounds,
+					sounds as any,
 					isMobile,
 					headerHeight,
 				);
-				setHasClickedALink(true);
+				dispatch(setHasClickedALink(true));
 			}
 		}
 	};
@@ -118,21 +109,3 @@ const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 		</a>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny, ownProps: any) => {
-	return {
-		currentBridgeSection: state.bridge.currentBridgeSection,
-		bridgeSections: state.bridge.bridgeSections,
-		hasClickedALink: state.bridge.hasClickedALink,
-		headerHeight: state.general.headerHeight,
-		isMobile: state.general.isMobile,
-		sounds: state.sounds,
-		numberOfSkips: parseInt(ownProps.numberOfSkips),
-	};
-};
-
-export default connect(mapStateToProps, {
-	setCurrentBridgeSection,
-	setClickedBridgeInfoButtonCount,
-	setHasClickedALink,
-})(BridgeSectionLink);

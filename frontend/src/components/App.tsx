@@ -37,6 +37,7 @@ import BigFive from "../pages/examples/csharp/BigFive/BigFive";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { RootState } from "../reducers";
 import { AutoBid, Bridge } from "../pages/";
+import { LoadedSounds } from "../reducers/soundsReducer";
 
 interface AppProps {}
 
@@ -90,7 +91,7 @@ export const App: React.FC<AppProps> = ({
 				siteNavClose: [4500, 1000],
 			},
 		});
-		dispatch(setSounds(sounds));
+		dispatch(setSounds(sounds as unknown as LoadedSounds));
 	}, [setSounds]);
 
 	return (
