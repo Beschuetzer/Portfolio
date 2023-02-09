@@ -1,0 +1,306 @@
+import React, { MouseEventHandler, RefObject, useState } from "react";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+	ANIMATION_DURATION,
+	Reference,
+	Z_INDEX_HIGHEST_CLASSNAME,
+} from "../constants";
+import { setIsCardVideoOpen } from "../../actions";
+
+import { capitalize } from "../../helpers";
+import { StopControl, RestartControl, PlayControl, CloseControl, PauseControl, Video, FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer";
+import {
+	adjustCardYPosition,
+	CARD_DEFAULT_CLASSNAME,
+	CARD_DONE_CLASSNAME,
+	CARD_OPEN_CLASSNAME,
+	CARD_PLAYING_CLASSNAME,
+	CARD_STOPPED_CLASSNAME,
+	centerCard,
+	checkShouldContinueOnClick,
+	handleProgressBarClick,
+} from "./utils";
+import {
+	bridgeSectionNames,
+	BRIDGE_BACKDROP_CLASSNAME,
+	BRIDGE_CLASSNAME,
+} from "../../pages/examples/bridge/utils";
+import {
+	attachProgressListener,
+	closeVideo,
+	getIsVideoPlaying,
+	handleVideoProgress,
+} from "../VideoPlayer/utils";
+import { scrollToSection } from "../utils";
+import { RootState } from "../../reducers";
+
+interface CardProps {
+	title: string;
+	cardName: string;
+	fileType?: string;
+	children: any;
+	video: string;
+}
+
+export const Card: React.FC<CardProps> = ({
+	title,
+	cardName,
+	fileType = "svg",
+	children,
+	video,
+}) => {
+	//#region Init
+	const dispatch = useDispatch();
+	const isMobile = useSelector((state: RootState) => state.general.isMobile);
+	const viewPortWidth  = useSelector((state: RootState) => state.general.viewPortWidth);
+	const [showChildren, setShowChildren] = useState<boolean>(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const videoRef = useRef<HTMLVideoElement>(null);
+	const titleRef = useRef<HTMLHeadingElement>(null);
+	const cardRef = useRef<HTMLElement>(null);
+	const progressBarRef = useRef<HTMLProgressElement>(null);
+	let hasProgressEventListener = false;
+	//#endregion
+
+	//#region Functions/Handlers
+	const changeSectionTitle = (
+		titleRef: RefObject<HTMLElement> | HTMLElement,
+		isOpen = true,
+	) => {
+		if (!titleRef) return;
+		const originalMsgTitle = "Features";
+		const originalMsgSubTitle = "Pick a Card any Card";
+	
+		const sections = document.querySelectorAll(`.${BRIDGE_CLASSNAME}__section`);
+		for (let i = 0; i < sections.length; i++) {
+			const section = sections[i];
+			if (section.id.match(/feature/i)) {
+				const title = section.querySelector(`.${BRIDGE_CLASSNAME}__section-title`);
+	
+				let msgTitleToUse = originalMsgTitle as string | null | undefined;
+				let msgSubTitleToUse = originalMsgSubTitle;
+				if (isOpen) {
+					if (titleRef && (titleRef as any).current)
+						msgTitleToUse = (titleRef as any).current?.textContent;
+					msgSubTitleToUse = "";
+				}
+				if (title) {
+					title.textContent = msgTitleToUse as string;
+					(title.nextElementSibling as any).textContent = msgSubTitleToUse;
+				}
+				break;
+			}
+		}
+	};
+
+	const closeCard = (
+		video: HTMLVideoElement,
+		card: HTMLElement,
+		titleRef: Reference,
+		setIsCardVideoOpen: (value: boolean) => void,
+	) => {
+		closeVideo(video);
+	
+		if (!titleRef) return;
+		changeSectionTitle(titleRef, false);
+		dispatch(setIsCardVideoOpen(false));
+	
+		if (!card) return;
+		card.classList.remove(CARD_OPEN_CLASSNAME);
+		card.classList.remove(CARD_DONE_CLASSNAME);
+		card.classList.remove(CARD_STOPPED_CLASSNAME);
+	};
+
+	const openCard = (
+		video: HTMLVideoElement,
+		card: HTMLElement,
+		backdrop: HTMLElement,
+		initialCardDimensions: ClientRect,
+	) => {
+		if (!card) return;
+
+		const cardDimensions = card.getBoundingClientRect();
+		centerCard(
+			card,
+			cardDimensions,
+			initialCardDimensions,
+			viewPortWidth,
+			isMobile,
+		);
+
+		const isVideoPlaying = getIsVideoPlaying(video);
+		if (!video) return;
+		if (isVideoPlaying || card.classList.contains(CARD_OPEN_CLASSNAME))
+			return closeCard(video, card, titleRef as Reference, setIsCardVideoOpen);
+		else {
+			playVideo(video, card);
+			card.classList.add(CARD_OPEN_CLASSNAME);
+		}
+
+		setTimeout(() => {
+			adjustCardYPosition(video);
+			backdrop?.classList.remove("visible");
+			card.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
+		}, ANIMATION_DURATION);
+
+		dispatch(setIsCardVideoOpen(true));
+	};
+
+	const playVideo = (video: HTMLVideoElement, card: HTMLElement) => {
+		hasProgressEventListener = attachProgressListener(
+			video,
+			hasProgressEventListener,
+			handleVideoProgress.bind(null, {current: video}, progressBarRef) as any,
+		)!;
+		video.addEventListener("ended", handleVideoEnd);
+		card.classList.remove(CARD_DONE_CLASSNAME);
+		card.classList.add(CARD_PLAYING_CLASSNAME);
+		card.classList.remove(CARD_STOPPED_CLASSNAME);
+		video.play();
+	};
+
+	const handleVideoEnd = (e: Event) => {
+		cardRef.current?.classList.add(CARD_DONE_CLASSNAME);
+		cardRef.current?.classList.remove(CARD_PLAYING_CLASSNAME);
+		const video = e.currentTarget;
+		if (video) video.removeEventListener("ended", handleVideoEnd);
+	};
+
+	const handleCardClick = (e: MouseEventHandler<HTMLElement>) => {
+		(e as any).stopPropagation();
+		const [ video, clickedCard, bridgeBackdrop, initialCardSize ] = checkShouldContinueOnClick(videoRef, cardRef);
+
+		if (!video) return;
+
+		setTimeout(() => {
+			changeSectionTitle(titleRef);
+			openCard(video as HTMLVideoElement , clickedCard as HTMLElement, bridgeBackdrop as HTMLElement, initialCardSize as ClientRect);
+			scrollToSection(
+				document.querySelector(`#${bridgeSectionNames[1].toLowerCase()}`) as HTMLElement
+			);
+			setShowChildren(true);
+		}, ANIMATION_DURATION / 2);
+	};
+
+	const handleMouseEnter = (e: MouseEventHandler<HTMLElement>) => {
+		((e as any).currentTarget as HTMLElement)?.classList.add("z-index-content");
+	};
+
+	const handleMouseLeave = (e: MouseEventHandler<HTMLElement>): void => {
+		const target = (e as any).currentTarget as HTMLElement;
+		// setTimeout(() => {
+		target?.classList.remove("z-index-content");
+		// }, CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION);
+	};
+
+	const onCloseChildren = () => {
+		setShowChildren(false);
+		
+	};
+
+	const onProgressBarClick = (e: MouseEventHandler<HTMLElement>) => {
+		handleProgressBarClick(videoRef, cardRef, e as any);
+	};
+	//#endregion
+
+	//#region JSX	
+	return (
+		<article
+			ref={cardRef}
+			onMouseLeave={(e: any) => handleMouseLeave(e)}
+			onMouseEnter={(e: any) => handleMouseEnter(e)}
+			onClick={(e: any) => handleCardClick(e)}
+			className={CARD_DEFAULT_CLASSNAME}>
+			<img
+				className="card__image"
+				alt={capitalize(cardName.replace("-", " "))}
+				src={`/${cardName}.${fileType}`}
+			/>
+			<div className="card__content">
+				<StopControl
+					xlinkHref="/sprite.svg#icon-stop"
+					videoRef={videoRef}
+					containerRef={cardRef}
+					playingClassname={CARD_PLAYING_CLASSNAME}
+					doneClassname={CARD_DONE_CLASSNAME}
+					stoppedClassname={CARD_STOPPED_CLASSNAME}
+				/>
+
+				<PauseControl
+					xlinkHref="/sprite.svg#icon-pause"
+					videoRef={videoRef}
+					containerRef={cardRef}
+					playingClassname={CARD_PLAYING_CLASSNAME}
+					doneClassname={CARD_DONE_CLASSNAME}
+					stoppedClassname={CARD_STOPPED_CLASSNAME}
+				/>
+
+				<RestartControl
+					xlinkHref="/sprite.svg#icon-restart"
+					videoRef={videoRef}
+					containerRef={cardRef}
+					progressBarRef={progressBarRef}
+					playingClassname={CARD_PLAYING_CLASSNAME}
+					doneClassname={CARD_DONE_CLASSNAME}
+					stoppedClassname={CARD_STOPPED_CLASSNAME}
+				/>
+
+				<CloseControl
+					xlinkHref="/sprite.svg#icon-close"
+					videoRef={videoRef}
+					containerRef={cardRef}
+					classNamesToRemove={[
+						CARD_DONE_CLASSNAME,
+						CARD_OPEN_CLASSNAME,
+						CARD_STOPPED_CLASSNAME,
+					]}
+					classNamesToRemoveFromElement={[
+						[
+							"visible",
+							document.querySelector(`.${BRIDGE_BACKDROP_CLASSNAME}`),
+						],
+						[Z_INDEX_HIGHEST_CLASSNAME, cardRef.current],
+					]}
+					functionToRunOnClose={() => {
+						changeSectionTitle(titleRef, false);
+						setShowChildren(true);
+					}}
+				/>
+
+				<PlayControl
+					xlinkHref="/sprite.svg#icon-play"
+					videoRef={videoRef}
+					containerRef={cardRef}
+					playingClassname={CARD_PLAYING_CLASSNAME}
+					doneClassname={CARD_DONE_CLASSNAME}
+					stoppedClassname={CARD_STOPPED_CLASSNAME}
+				/>
+
+				<h4 ref={titleRef} className="card__title">
+					{title}
+				</h4>
+				<Video
+					className={FOREGROUND_VIDEO_CLASSNAME}
+					type="mp4"
+					src={video}
+					autoPlay={false}
+					loop={false}
+					reference={videoRef}
+					progressBarRef={progressBarRef}
+					progressBarOnClick={onProgressBarClick}>
+					{showChildren ? (
+						<div className="card__children">
+							<svg onClick={onCloseChildren} className="card__children-close">
+								<use xlinkHref="/sprite.svg#icon-close"/>
+							</svg>
+							{children}
+						</div>
+					) : null}
+				</Video>
+			</div>
+		</article>
+	);
+	//#endregion
+};

@@ -105,13 +105,13 @@ export const generalSlice = createSlice({
 
 //#region Selectors
 export const currentlyViewingImageSelector = (state: RootState) => state[generalSlice.name].currentlyViewingImage;
+export const headerHeightSelector = (state: RootState) => state[generalSlice.name].headerHeight;
 export const isMobileSelector = (state: RootState) => state[generalSlice.name].isMobile;
 export const isSiteNavMinimizedSelector = (state: RootState) => state[generalSlice.name].isSiteNavMinimized;
-export const viewPortWidthSelector = (state: RootState) => state[generalSlice.name].viewPortWidth;
-export const reposSelector = (state: RootState) => state[generalSlice.name].repos;
 export const previousUrlSelector = (state: RootState) => state[generalSlice.name].previousUrl;
+export const reposSelector = (state: RootState) => state[generalSlice.name].repos;
 export const scrollPercentSelector = (state: RootState) => state[generalSlice.name].scrollPercent;
-export const headerHeightSelector = (state: RootState) => state[generalSlice.name].headerHeight;
+export const viewPortWidthSelector = (state: RootState) => state[generalSlice.name].viewPortWidth;
 //#endregion
 
 export const { 
