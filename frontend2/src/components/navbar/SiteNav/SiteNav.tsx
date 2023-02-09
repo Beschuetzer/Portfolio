@@ -14,7 +14,6 @@ import resumeImage from "../../../imgs/site-nav-resume.jpg";
 import syncerImage from "../../../imgs/site-nav-syncer.jpg";
 import replayImage from "../../../imgs/site-nav-replay.jpg";
 
-import { setHeaderHeight } from "../../../actions";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_CLASSNAME,
@@ -54,7 +53,8 @@ import {
 } from "../../constants";
 import { capitalize } from "../../../helpers";
 import { useLocation } from "react-router-dom";
-import { RootState } from "../../../reducers";
+import { setHeaderHeight } from "../../../slices/generalSlice";
+import { RootState } from "../../../store";
 
 export const SITE_NAV_CLASSNAME = "site-nav"; //if changing this, change in index.html too
 export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal"; //if changing this, change in index.html too

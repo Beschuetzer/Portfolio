@@ -1,5 +1,5 @@
 import { RefObject } from "react";
-import { bridgeSectionNames, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_CLASSNAME, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages/examples/bridge/utils";
+import { bridgeSectionNames, BRIDGE_SECTION_TITLES_CLASSNAME, BRIDGE_BACKDROP_CLASSNAME } from "../../pages";
 import { MOBILE_BREAK_POINT_WIDTH, Z_INDEX_HIGHEST_CLASSNAME } from "../constants";
 import { getPercentOfProgressBar } from "../VideoPlayer/utils";
 

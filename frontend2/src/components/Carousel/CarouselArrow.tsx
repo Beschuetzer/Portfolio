@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../reducers';
+import { useAppSelector } from '../../hooks';
+import { currentlyViewingImageSelector } from '../../slices/generalSlice';
 import { FILL_RED_CLASSNAME } from '../constants';
 import { FULLSCREEN_ARROW_BUTTON_CLASSNAME } from './CarouselItem';
 
@@ -11,7 +11,7 @@ interface CarouselArrowProps {
 }
 
 const CarouselArrow: React.FC<CarouselArrowProps> = ({onClick, className, svgXLinkHref}) => {
-  const currentlyViewingImage = useSelector((state: RootState) => state.general.currentlyViewingImage);
+  const currentlyViewingImage = useAppSelector(currentlyViewingImageSelector);
 
   const fullscreenClassname = currentlyViewingImage ? FULLSCREEN_ARROW_BUTTON_CLASSNAME : '';
   const svgColorClassname = currentlyViewingImage ? FILL_RED_CLASSNAME : '';

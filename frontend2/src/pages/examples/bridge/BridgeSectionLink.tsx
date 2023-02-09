@@ -1,14 +1,9 @@
 import React from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import {
-	setCurrentBridgeSection,
-	setClickedBridgeInfoButtonCount,
-	setHasClickedALink,
-} from "../../../actions";
 import { scrollToSection } from "../../../components/utils";
-import { RootState } from "../../../reducers";
+import { setCurrentBridgeSection, setClickedBridgeInfoButtonCount, setHasClickedALink } from "../../../slices/bridgeSlice";
+import { RootState } from "../../../store";
 import {
 	BRIDGE_CLASSNAME,
   BRIDGE_HERO_CLASSNAME,
@@ -44,8 +39,8 @@ export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 
 	const getSkipDirectionAndSkips = (e: MouseEvent) => {
 		let skipToSectionNumber = -1;
-		for (let i = 0; i < bridgeSections.length; i++) {
-			const bridgeSection = bridgeSections[i];
+		for (let i = 0; i < (bridgeSections || []).length; i++) {
+			const bridgeSection = (bridgeSections || [])[i];
 			if (bridgeSection.id === sectionToSkipTo.toLowerCase()) {
 				skipToSectionNumber = i;
 				break;
@@ -60,12 +55,12 @@ export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 		if (numberOfSkips < 0) valueToUse = valueToUse >= 0 ? valueToUse : 0;
 		else if (numberOfSkips > 0)
 			valueToUse =
-				valueToUse < bridgeSections.length
+				valueToUse < (bridgeSections || []).length
 					? valueToUse
-					: bridgeSections.length - 1;
+					: (bridgeSections || []).length - 1;
 
 		if (isMobile) {
-			scrollToSection(bridgeSections[valueToUse]);
+			scrollToSection((bridgeSections || [])[valueToUse]);
 		} else {
 			dispatch(setCurrentBridgeSection(valueToUse));
 		}

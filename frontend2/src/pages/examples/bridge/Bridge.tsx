@@ -1,13 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import {
-	setClickedBridgeInfoButtonCount,
-	setCurrentBridgeSection,
-	setHasClickedALink,
-} from "../../../actions";
-
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { BridgeSection } from "./BridgeSection";
 import BridgeCardSection from "./BridgeCardSection";
@@ -52,8 +45,9 @@ import { BridgeHero } from "./BridgeHero";
 import { SourceCodeLink } from "../../../components/SourceCodeLink";
 import { ArrowButton } from "../../../components/ArrowButton";
 import { Quote } from "../../../components/Quote";
-import { RootState } from "../../../reducers";
 import { BridgeSectionLink } from "./BridgeSectionLink";
+import { setHasClickedALink, setClickedBridgeInfoButtonCount, setCurrentBridgeSection } from "../../../slices/bridgeSlice";
+import { RootState } from "../../../store";
 
 const sectionContents = [
 	<SectionContainer name={bridgeSectionNames[0]} pageName={BRIDGE_PAGE_NAME}>

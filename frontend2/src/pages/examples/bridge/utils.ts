@@ -1,7 +1,7 @@
 import { ANIMATION_DURATION, BODY_BACKGROUND_CSS_CLASSNAME, bridgeSectionHeightDefault, bridgeSectionPaddingDefault, computedStyle, HIDDEN_CLASSNAME, Reference } from "../../../components/constants";
 import { scrollToSection } from "../../../components/utils";
 import { getLinearPercentOfMaxMatchWithinRange } from "../../../helpers";
-import { LoadedSounds } from "../../../reducers/soundsReducer";
+import { LoadedSounds } from "../../../slices/soundsSlice";
 
 export const SECOND_INFO_BUTTON_DELAY = 500;
 export const BRIDGE_CLASSNAME = 'bridge';

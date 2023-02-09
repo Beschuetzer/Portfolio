@@ -3,20 +3,18 @@ import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import {  useDispatch, useSelector } from "react-redux";
 import { checkForParentOfType } from "../../helpers";
-import {
-	addRepoToReposToDisplay, clickSkill,
-} from "../../actions";
 import { SkillsPopupName } from "./SkillsPopupName";
 import { capitalize } from "../../helpers";
 import { addSpaceAfterPunctuationMarks, toggleScrollability } from "../utils";
 import { Repository, SKILLS_CLASSNAME } from "./utils";
-import { RootState } from "../../reducers";
+import { clickSkill, addRepoToReposToDisplay } from "../../slices/resumeSlice";
+import { RootState } from "../../store";
 
 interface SkillsPopupProps {}
 
 export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 	const dispatch = useDispatch();
-	const repos = useSelector((state: RootState) => state.general.repos) as Repository[];
+	const repos = useSelector((state: RootState) => state.general.repos);
 	const reposToDisplay = useSelector((state: RootState) => (state.resume as any)?.reposToDisplay) as Repository;
 	const clickedSkill = useSelector((state: RootState) => (state.resume as any)?.clickedSkill);
 	const isMobile = useSelector((state: RootState) => state.general.isMobile);

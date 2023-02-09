@@ -1,4 +1,3 @@
-import history from "../history";
 import {
 	FULLSCREEN_ARROW_BUTTON_CLASSNAME,
 	FULLSCREEN_PARENT_CLASSNAME,
@@ -9,22 +8,16 @@ import {
 	AUTO_BID_URL,
 	BRIDGE_URL,
 	DOWNLOADER_URL,
-	EMAIL,
 	FILL_RED_CLASSNAME,
 	MAIL_TO_STRING,
 	MOBILE_BREAK_POINT_WIDTH,
-	OVERFLOW_HIDDEN_CLASSNAME,
 	PLAYLIST_SYNCER_URL,
 	REPLAY_VIEWER_URL,
 	RESUME_URL,
 	Z_INDEX_CONTENT_CLASSNAME,
 } from "./constants";
 import { HEADER_ID } from "./navbar/SiteNav/utils";
-import {
-	NAVBAR_ACTIVE_CLASSNAME,
-	NAVBAR_CLASSNAME,
-	NAVBAR_DONE_CLASSNAME,
-} from "./navbar/utils";
+import history from "../components/history";
 
 //#region Helper Functions
 export const keypressHandler = (

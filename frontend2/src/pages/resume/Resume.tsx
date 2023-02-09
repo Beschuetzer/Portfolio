@@ -1,14 +1,12 @@
 // import * as THREE from "three";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Section } from "../../components/Section";
 import Paragraph from "../../typography/Paragraph";
 import { SkillsItemSection } from "../../components/Skills/SkillsItemSection";
 import { PercentBarLabels } from "../../components/PercentBar/PercentBarLabels";
 import { SkillsItem } from "../../components/Skills/SkillsItem";
 import { ReferenceItem } from "./ReferenceItem";
-
-import { getRepositories, setSectionsToSkipAnimation } from "../../actions";
 import { SkillsPopup } from "../../components/Skills/SkillsPopup";
 import { WorkHistoryItem } from "./WorkHistory/WorkHistoryItem";
 import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
@@ -38,7 +36,10 @@ import { capitalize } from "../../helpers";
 import { C_SHARP_CLASSNAME } from "../examples/csharp/utils";
 import { PageWrapper } from "../PageWrapper";
 import { EducationItem } from "./EducationItem";
-import { RootState } from "../../reducers";
+import { getRepositories } from "../../slices/generalSlice";
+import { setSectionsToSkipAnimation } from "../../slices/resumeSlice";
+import { RootState } from "../../store";
+import { useAppDispatch } from "../../hooks";
 
 // export const RESUME_SPELLING = <span>R&eacute;sum&eacute;</span>;
 export const RESUME_SPELLING = "Résumé";
@@ -383,7 +384,7 @@ export type HeaderSideContent = {
 export type ResumeProps = {}
 
 export const Resume: React.FC<ResumeProps> = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const repos = useSelector((state: RootState) => state.general.repos);
 
 	const content = [

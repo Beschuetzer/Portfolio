@@ -2,9 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsSiteNavMinimized } from "../../actions";
-import { RootState } from "../../reducers";
-
+import { setIsSiteNavMinimized } from "../../slices/generalSlice";
+import { RootState } from "../../store";
 import {
 	viewPortPixelToRem,
 	headerTogglerWidth,

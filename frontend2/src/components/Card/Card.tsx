@@ -7,9 +7,6 @@ import {
 	Reference,
 	Z_INDEX_HIGHEST_CLASSNAME,
 } from "../constants";
-import { setIsCardVideoOpen } from "../../actions";
-
-import { capitalize } from "../../helpers";
 import { StopControl, RestartControl, PlayControl, CloseControl, PauseControl, Video, FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer";
 import {
 	adjustCardYPosition,
@@ -23,18 +20,16 @@ import {
 	handleProgressBarClick,
 } from "./utils";
 import {
-	bridgeSectionNames,
-	BRIDGE_BACKDROP_CLASSNAME,
-	BRIDGE_CLASSNAME,
-} from "../../pages/examples/bridge/utils";
-import {
 	attachProgressListener,
 	closeVideo,
 	getIsVideoPlaying,
 	handleVideoProgress,
 } from "../VideoPlayer/utils";
 import { scrollToSection } from "../utils";
-import { RootState } from "../../reducers";
+import { BRIDGE_CLASSNAME, bridgeSectionNames, BRIDGE_BACKDROP_CLASSNAME } from "../../pages";
+import { setIsCardVideoOpen } from "../../slices/bridgeSlice";
+import { RootState } from "../../store";
+import { capitalize } from "../../helpers";
 
 interface CardProps {
 	title: string;
@@ -99,7 +94,6 @@ export const Card: React.FC<CardProps> = ({
 		video: HTMLVideoElement,
 		card: HTMLElement,
 		titleRef: Reference,
-		setIsCardVideoOpen: (value: boolean) => void,
 	) => {
 		closeVideo(video);
 	
@@ -133,7 +127,7 @@ export const Card: React.FC<CardProps> = ({
 		const isVideoPlaying = getIsVideoPlaying(video);
 		if (!video) return;
 		if (isVideoPlaying || card.classList.contains(CARD_OPEN_CLASSNAME))
-			return closeCard(video, card, titleRef as Reference, setIsCardVideoOpen);
+			return closeCard(video, card, titleRef as Reference);
 		else {
 			playVideo(video, card);
 			card.classList.add(CARD_OPEN_CLASSNAME);

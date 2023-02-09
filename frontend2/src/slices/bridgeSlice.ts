@@ -3,7 +3,7 @@ import { RootState } from '../store';
 
 export type BridgeSliceState = {
   bridgeCards: any[] | null;
-  bridgeSections: NodeListOf<Element> | null;
+  bridgeSections: NodeListOf<HTMLElement> | null;
   clickedBridgeInfoButtonCount: number;
   currentBridgeSection: number;
   featureSectionTitle: string;

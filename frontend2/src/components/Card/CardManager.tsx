@@ -1,21 +1,15 @@
 import React, { ReactNode } from "react";
 import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import {
-	setBridgeCards,
-	setIsCardVideoOpen,
-	setLastSecondRowCardNumber,
-} from "../../actions";
-
 import { checkForParentOfType } from "../../helpers";
-import { RootState } from "../../reducers";
+import { setLastSecondRowCardNumber, setBridgeCards, setIsCardVideoOpen } from "../../slices/bridgeSlice";
+import { RootState } from "../../store";
 import { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 
 import { CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME } from "./utils";
 
 interface CardManagerProps {
-  children: (Element | ReactNode)[],
+  children: ReactNode,
 }
 
 export enum CardTransformOptions {
@@ -73,11 +67,11 @@ export const CardManager: React.FC<CardManagerProps> = ({
 	useEffect(() => {
 		const setTransformOrigins = () => {
 			const rowLength = lastSecondRowCardNumber;
-			const numberOfRows = Math.ceil(bridgeCards.length / rowLength);
+			const numberOfRows = Math.ceil((bridgeCards || []).length / rowLength);
 			
 
-			for (let i = 0; i < bridgeCards.length; i++) {
-				const card = bridgeCards[i];
+			for (let i = 0; i < (bridgeCards || []).length; i++) {
+				const card = (bridgeCards || [])[i];
 				const isTopRow = i < lastSecondRowCardNumber;
 				const isBottomRow = i > rowLength * (numberOfRows - 1) - 1;
 				const isFirstInRow = i === 0 || i % rowLength === 0;

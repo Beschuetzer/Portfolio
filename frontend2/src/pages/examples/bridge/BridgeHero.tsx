@@ -1,9 +1,6 @@
 import React from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { setClickedBridgeInfoButtonCount } from "../../../actions";
-
 import { Video } from "../../../components/VideoPlayer";
 import bgVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
 import {
@@ -13,7 +10,8 @@ import {
 	toggleSecondInfoButtonClick,
 } from "./utils";
 import { HEADER_ID } from "../../../components/navbar/SiteNav/utils";
-import { RootState } from "../../../reducers";
+import { setClickedBridgeInfoButtonCount } from "../../../slices/bridgeSlice";
+import { RootState } from "../../../store";
 
 type BridgeHeroProps = {}
 

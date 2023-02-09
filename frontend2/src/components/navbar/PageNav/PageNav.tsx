@@ -3,11 +3,10 @@ import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { setPreviousUrl } from "../../../actions";
 import { capitalize } from "../../../helpers";
-import { BridgeSectionLink } from "../../../pages";
-import { bridgeSectionNames } from "../../../pages/examples/bridge/utils";
-import { RootState } from "../../../reducers";
+import { bridgeSectionNames, BridgeSectionLink } from "../../../pages";
+import { setPreviousUrl } from "../../../slices/generalSlice";
+import { RootState } from "../../../store";
 import { DEFAULT_FONT_SIZE, HIDDEN_CLASSNAME } from "../../constants";
 import { scrollToSection } from "../../utils";
 import { setHeaderHeaderCSSPropertyValue } from "../utils";

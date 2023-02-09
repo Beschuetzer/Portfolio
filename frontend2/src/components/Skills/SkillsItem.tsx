@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { clickSkill } from "../../actions";
+import { clickSkill } from "../../slices/resumeSlice";
 import { EmbeddedLink } from "../EmbeddedLink";
 import { PercentBar, PercentBarLabel } from "../PercentBar/PercentBar";
 import { toggleScrollability } from "../utils";

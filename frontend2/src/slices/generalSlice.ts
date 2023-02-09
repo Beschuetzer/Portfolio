@@ -5,25 +5,25 @@ import { RootState } from '../store';
 export type GeneralSliceState = {
   currentlyViewingImage: string;
   error: string;
-  headerHeight: number | null;
-  isMobile: boolean | null;
+  headerHeight: number;
+  isMobile: boolean;
   isSiteNavMinimized: boolean;
-  previousUrl: string | null;
+  previousUrl: string;
   repos: any[];
   scrollPercent: string;
-  viewPortWidth: number | null;
+  viewPortWidth: number;
 }
 
 export const generalSliceInitialState: GeneralSliceState = {
   currentlyViewingImage: '',
   error: '',
-  headerHeight: null,
-  isMobile: null,
+  headerHeight: 0,
+  isMobile: false,
   isSiteNavMinimized: false,
-  previousUrl: null,
+  previousUrl: "",
   repos: [],
   scrollPercent: "0%",
-  viewPortWidth: null,
+  viewPortWidth: 0,
 };
 
 //#region Payloads and other Types

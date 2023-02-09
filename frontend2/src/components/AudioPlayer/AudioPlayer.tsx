@@ -1,18 +1,18 @@
 import { Howl } from "howler";
 import React, { FC, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsLoadingSound, setCurrentlyPlayingSound } from "../../actions";
 import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
-import { MaxCharCount, MAX_CHAR_COUNTS } from "../../types";
 import {
 	AudioItem,
 	AUDIO_LIST_CLASSNAME,
 } from "./AudioList";
 import { getMinuteAndSecondsString } from "./utils";
 import { getMaxLengthString } from "../utils";
-import { RootState } from "../../reducers";
 import { useLocation } from "react-router-dom";
+import { setIsLoadingSound, setCurrentlyPlayingSound } from "../../slices/soundsSlice";
+import { RootState } from "../../store";
 import { getAncestorContainsClassname } from "../../helpers";
+import { MAX_CHAR_COUNTS, MaxCharCount } from "../../types";
 
 export const AUDIO_PLAYER_CLASSNAME = "audio-player";
 export const AUDIO_PLAYER_TOGGLER_CLASSNAME = `${AUDIO_PLAYER_CLASSNAME}__toggler`;

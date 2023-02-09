@@ -18,8 +18,7 @@ import {
 import { closeCarouselItem } from "../utils";
 import { OverlayText } from "../OverlayText/OverlayText";
 import { useDispatch } from "react-redux";
-import { setCurrentlyViewingCarouselImage } from "../../actions";
-
+import { setCurrentlyViewingCarouselImage } from "../../slices/generalSlice";
 export const FULLSCREEN_CLASSNAME = "full-screen";
 export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
 export const FULLSCREEN_ARROW_BUTTON_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button--full-screen`;

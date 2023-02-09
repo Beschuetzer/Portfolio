@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentlyPlayingSound, setIsLoadingSound } from '../../actions';
-import { RootState } from "../../reducers";
+import { setIsLoadingSound, setCurrentlyPlayingSound } from "../../slices/soundsSlice";
+import { RootState } from "../../store";
 import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
 import { AUDIO_PLAYER_CLASSNAME } from "./AudioPlayer";
 
