@@ -41,8 +41,6 @@ const resumeReducer = (state = INITIAL_STATE, action: Action) => {
       return {...state, hasClickedALink: action.payload};
     case SET_IS_CARD_VIDEO_OPEN:
       return {...state, isCardVideoOpen: action.payload};
-    case SET_CARD_TO_CLOSE:
-      return {...state, cardToClose: action.payload};
     default:
       return state;
   }

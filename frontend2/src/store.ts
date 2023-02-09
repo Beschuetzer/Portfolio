@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { bridgeSlice } from './slices/bridgeSlice';
 import { generalSlice } from './slices/generalSlice';
 
 export const store = configureStore({
   reducer: {
-    general: generalSlice.reducer,
+    [generalSlice.name]: generalSlice.reducer,
+    [bridgeSlice.name]: bridgeSlice.reducer,
   },
 });
 

@@ -59,7 +59,6 @@ export const RICOH_URL = "https://www.ricoh-usa.com/en";
 export const YORK_B2E_URL = "https://yorksolutions.net/b2e-career-seekers/"
 export const BEST_BUY_URL = "http://www.bestbuy.com";
 export const TOYS_R_US_RUL = "https://www.toysrus.com/";
-export const QUOTE_API_URL = "https://api.quotable.io";
 export const WIKIPEDIA_BRIDGE_URL =
 	"https://en.wikipedia.org/wiki/Contract_bridge";
 export const WIKIPEDIA_MTP_URL =

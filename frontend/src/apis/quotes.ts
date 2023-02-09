@@ -1,4 +1,4 @@
-import { QUOTE_API_URL } from "../components/constants";
+export const QUOTE_API_URL = "https://api.quotable.io";
 
 export interface Quote {
 	author: string;
