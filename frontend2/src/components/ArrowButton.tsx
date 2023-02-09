@@ -1,16 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setBridgeSections, setCurrentBridgeSection } from "../actions";
-
-import {
-	BRIDGE_CLASSNAME,
-	COLOR_PRIMARY_BRIDGE_1,
-	COLOR_PRIMARY_BRIDGE_2,
-	COLOR_PRIMARY_BRIDGE_3,
-	COLOR_PRIMARY_BRIDGE_4,
-} from "../pages/examples/bridge/utils";
-import { RootState } from "../reducers";
+import { BRIDGE_CLASSNAME, COLOR_PRIMARY_BRIDGE_1, COLOR_PRIMARY_BRIDGE_4, COLOR_PRIMARY_BRIDGE_2, COLOR_PRIMARY_BRIDGE_3 } from "../pages";
+import { setBridgeSections, setCurrentBridgeSection } from "../slices/bridgeSlice";
+import { RootState } from "../store";
 import { ANIMATION_DURATION, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
 
 interface ArrowButtonProps {
@@ -164,7 +157,7 @@ export const ArrowButton: React.FC<ArrowButtonProps> = ({
 				return dispatch(setCurrentBridgeSection(currentBridgeSection - 1));
 			}
 		} else {
-			if (currentBridgeSection < bridgeSections.length - 1) {
+			if (currentBridgeSection < (bridgeSections || []).length - 1) {
 				dispatch(setCurrentBridgeSection(currentBridgeSection + 1));
 			}
 		}

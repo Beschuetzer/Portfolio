@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import history from "../history";
+import history from "./history";
 import { Howl } from "howler";
 
 import {
@@ -18,18 +18,13 @@ import { PageNav } from "./navbar/PageNav/PageNav";
 import { NavToggler } from "./navbar/NavToggler";
 import "../css/style.css";
 import { GithubButton } from "./GithubButton";
-import {
-	setIsMobile,
-	setViewPortWidth,
-	setSounds,
-} from "../actions";
 import soundsSpriteMp3 from "../sounds/soundsSprite.mp3";
 import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
 import { keypressHandler } from "./utils";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
-import { RootState } from "../reducers";
-import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer, Home, Resume } from "../pages/";
-import { LoadedSounds } from "../reducers/soundsReducer";
+import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer, Home, Resume } from "../pages";
+import { LoadedSounds } from "../slices/soundsSlice";
+import { RootState } from "../store";
 
 interface AppProps {}
 
@@ -114,3 +109,17 @@ export const App: React.FC<AppProps> = ({
 		</Router>
 	);
 };
+
+function setIsMobile(arg0: boolean, innerWidth: number): any {
+	throw new Error("Function not implemented.");
+}
+
+
+function setViewPortWidth(innerWidth: number): any {
+	throw new Error("Function not implemented.");
+}
+
+
+function setSounds(arg0: LoadedSounds): any {
+	throw new Error("Function not implemented.");
+}
