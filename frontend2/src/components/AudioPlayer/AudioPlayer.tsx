@@ -1,6 +1,5 @@
 import { Howl } from "howler";
 import React, { FC, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
 import {
 	AudioItem,
@@ -9,10 +8,10 @@ import {
 import { getMinuteAndSecondsString } from "./utils";
 import { getMaxLengthString } from "../utils";
 import { useLocation } from "react-router-dom";
-import { setIsLoadingSound, setCurrentlyPlayingSound } from "../../slices/soundsSlice";
-import { RootState } from "../../store";
+import { setIsLoadingSound, setCurrentlyPlayingSound, currentlyPlayingSoundSelector } from "../../slices/soundsSlice";
 import { getAncestorContainsClassname } from "../../helpers";
 import { MAX_CHAR_COUNTS, MaxCharCount } from "../../types";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
 export const AUDIO_PLAYER_CLASSNAME = "audio-player";
 export const AUDIO_PLAYER_TOGGLER_CLASSNAME = `${AUDIO_PLAYER_CLASSNAME}__toggler`;
@@ -30,7 +29,8 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	//#region Init
 	const SEEK_AMOUNT = 10;
 	const UPDATE_RATE = 125;
-	const currentlyPlayingSound = useSelector((state: RootState) => state.sounds.currentlyPlayingSound);
+	const dispatch = useAppDispatch();
+	const currentlyPlayingSound = useAppSelector(currentlyPlayingSoundSelector);
 	const isCurrentlyPlayingSoundValid = Object.keys(currentlyPlayingSound || {}).length > 0;
 	const id = useRef(-1);
 	const pauseRef = useRef<HTMLElement>(null);
@@ -49,7 +49,6 @@ export const AudioPlayer: FC<AudioPlayerProps> = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isPlayButtonVisible, setIsPlayButtonVisible] = useState(false);
 	const [assumedPreferredState, setAssumedPreferredState] = useState<AudioPlayerTogglerStates>(AudioPlayerTogglerStates.fullSize);
-	const dispatch = useDispatch();
 	const location = useLocation();
 	//#endregion
 	

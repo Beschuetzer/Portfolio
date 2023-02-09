@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
 import { useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { checkForParentOfType } from "../../helpers";
-import { setLastSecondRowCardNumber, setBridgeCards, setIsCardVideoOpen } from "../../slices/bridgeSlice";
-import { RootState } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { setLastSecondRowCardNumber, setBridgeCards, setIsCardVideoOpen, bridgeCardsSelector, isCardVideoOpenSelector, lastSecondRowCardNumberSelector } from "../../slices/bridgeSlice";
+import { isMobileSelector, viewPortWidthSelector } from "../../slices/generalSlice";
 import { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 
 import { CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME } from "./utils";
@@ -29,12 +29,12 @@ export const CardManager: React.FC<CardManagerProps> = ({
 	children,
 }) => {
 	//#region Init
-	const dispatch = useDispatch();
-	const isMobile = useSelector((state: RootState) => state.general.isMobile);
-	const viewPortWidth  = useSelector((state: RootState) => state.general.viewPortWidth);
-	const lastSecondRowCardNumber  = useSelector((state: RootState) => state.bridge.lastSecondRowCardNumber);
-	const bridgeCards  = useSelector((state: RootState) => state.bridge.bridgeCards);
-	const isCardVideoOpen  = useSelector((state: RootState) => state.bridge.isCardVideoOpen);
+	const dispatch = useAppDispatch();
+	const isMobile = useAppSelector(isMobileSelector);
+	const viewPortWidth  = useAppSelector(viewPortWidthSelector);
+	const lastSecondRowCardNumber  = useAppSelector(lastSecondRowCardNumberSelector);
+	const bridgeCards  = useAppSelector(bridgeCardsSelector);
+	const isCardVideoOpen  = useAppSelector(isCardVideoOpenSelector);
 	//#endregion
 	
 	//#region Functions/Handlers

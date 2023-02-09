@@ -1,6 +1,5 @@
 // import * as THREE from "three";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { Section } from "../../components/Section";
 import Paragraph from "../../typography/Paragraph";
 import { SkillsItemSection } from "../../components/Skills/SkillsItemSection";
@@ -36,10 +35,9 @@ import { capitalize } from "../../helpers";
 import { C_SHARP_CLASSNAME } from "../examples/csharp/utils";
 import { PageWrapper } from "../PageWrapper";
 import { EducationItem } from "./EducationItem";
-import { getRepositories } from "../../slices/generalSlice";
+import { getRepositories, reposSelector } from "../../slices/generalSlice";
 import { setSectionsToSkipAnimation } from "../../slices/resumeSlice";
-import { RootState } from "../../store";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
 // export const RESUME_SPELLING = <span>R&eacute;sum&eacute;</span>;
 export const RESUME_SPELLING = "Résumé";
@@ -385,7 +383,7 @@ export type ResumeProps = {}
 
 export const Resume: React.FC<ResumeProps> = () => {
 	const dispatch = useAppDispatch();
-	const repos = useSelector((state: RootState) => state.general.repos);
+	const repos = useAppSelector(reposSelector);
 
 	const content = [
 		[

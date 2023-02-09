@@ -17,8 +17,8 @@ import {
 } from "../VideoPlayer/utils";
 import { closeCarouselItem } from "../utils";
 import { OverlayText } from "../OverlayText/OverlayText";
-import { useDispatch } from "react-redux";
 import { setCurrentlyViewingCarouselImage } from "../../slices/generalSlice";
+import { useAppDispatch } from "../../hooks";
 export const FULLSCREEN_CLASSNAME = "full-screen";
 export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
 export const FULLSCREEN_ARROW_BUTTON_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button--full-screen`;
@@ -63,7 +63,7 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 	functionToGetContainer,
 	shouldRenderFullScreen = false,
 }) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const [showOverlayText, setShowOverlayText] = useState(true);
 	const videoRef = useRef<HTMLVideoElement>(null);

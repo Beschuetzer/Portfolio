@@ -1,9 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setIsSiteNavMinimized } from "../../slices/generalSlice";
-import { RootState } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { headerHeightSelector, isSiteNavMinimizedSelector, setIsSiteNavMinimized, viewPortWidthSelector } from "../../slices/generalSlice";
 import {
 	viewPortPixelToRem,
 	headerTogglerWidth,
@@ -15,10 +14,10 @@ import { setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue } fr
 interface NavTogglerProps {}
 
 export const NavToggler: React.FC<NavTogglerProps> = () => {
-	const dispatch = useDispatch();
-	const headerHeight = useSelector((state: RootState) => state.general.headerHeight);
-	const viewPortWidth = useSelector((state: RootState) => state.general.viewPortWidth);
-	const isSiteNavMinimized = useSelector((state: RootState) => state.general.isSiteNavMinimized);
+	const dispatch = useAppDispatch();
+	const headerHeight = useAppSelector(headerHeightSelector);
+	const viewPortWidth = useAppSelector(viewPortWidthSelector);
+	const isSiteNavMinimized = useAppSelector(isSiteNavMinimizedSelector);
 
 	//Adjusting NavToggler height to match header height as it changes on resizes
 	useEffect(() => {

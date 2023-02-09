@@ -1,9 +1,10 @@
 import React from "react";
 import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { scrollToSection } from "../../../components/utils";
-import { setCurrentBridgeSection, setClickedBridgeInfoButtonCount, setHasClickedALink } from "../../../slices/bridgeSlice";
-import { RootState } from "../../../store";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { setCurrentBridgeSection, setClickedBridgeInfoButtonCount, setHasClickedALink, currentBridgeSectionSelector, bridgeSectionsSelector, hasClickedALinkSelector } from "../../../slices/bridgeSlice";
+import { headerHeightSelector, isMobileSelector } from "../../../slices/generalSlice";
+import { loadedSoundsSelector } from "../../../slices/soundsSlice";
 import {
 	BRIDGE_CLASSNAME,
   BRIDGE_HERO_CLASSNAME,
@@ -26,15 +27,15 @@ export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 	name,
 	match,
 }) => {
-	const currentBridgeSection = useSelector((state: RootState) => state.bridge.currentBridgeSection);
-	const bridgeSections = useSelector((state: RootState) => state.bridge.bridgeSections);
-	const hasClickedALink = useSelector((state: RootState) => state.bridge.hasClickedALink);
-	const headerHeight = useSelector((state: RootState) => state.general.headerHeight);
-	const isMobile = useSelector((state: RootState) => state.general.isMobile);
-	const sounds = useSelector((state: RootState) => state.sounds);
+	const currentBridgeSection = useAppSelector(currentBridgeSectionSelector);
+	const bridgeSections = useAppSelector(bridgeSectionsSelector);
+	const hasClickedALink = useAppSelector(hasClickedALinkSelector);
+	const headerHeight = useAppSelector(headerHeightSelector);
+	const isMobile = useAppSelector(isMobileSelector);
+	const sounds = useAppSelector(loadedSoundsSelector);
 	// numberOfSkips: parseInt(ownProps.numberOfSkips),
-	// const numberOfSkips = useSelector((state: RootState) => stat);
-	const dispatch = useDispatch();
+	// const numberOfSkips = useAppSelector((state: RootState) => stat);
+	const dispatch = useAppDispatch();
 	const spanRef = useRef<HTMLElement>(null);
 
 	const getSkipDirectionAndSkips = (e: MouseEvent) => {

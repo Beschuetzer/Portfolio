@@ -1,6 +1,5 @@
 import React, { MouseEventHandler, RefObject, useState } from "react";
 import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import {
 	ANIMATION_DURATION,
@@ -30,6 +29,8 @@ import { BRIDGE_CLASSNAME, bridgeSectionNames, BRIDGE_BACKDROP_CLASSNAME } from 
 import { setIsCardVideoOpen } from "../../slices/bridgeSlice";
 import { RootState } from "../../store";
 import { capitalize } from "../../helpers";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { isMobileSelector, viewPortWidthSelector } from "../../slices/generalSlice";
 
 interface CardProps {
 	title: string;
@@ -47,9 +48,9 @@ export const Card: React.FC<CardProps> = ({
 	video,
 }) => {
 	//#region Init
-	const dispatch = useDispatch();
-	const isMobile = useSelector((state: RootState) => state.general.isMobile);
-	const viewPortWidth  = useSelector((state: RootState) => state.general.viewPortWidth);
+	const dispatch = useAppDispatch();
+	const isMobile = useAppSelector(isMobileSelector);
+	const viewPortWidth  = useAppSelector(viewPortWidthSelector);
 	const [showChildren, setShowChildren] = useState<boolean>(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);

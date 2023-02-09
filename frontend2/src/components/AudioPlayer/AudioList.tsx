@@ -1,7 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { setIsLoadingSound, setCurrentlyPlayingSound } from "../../slices/soundsSlice";
-import { RootState } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { setIsLoadingSound, setCurrentlyPlayingSound, isLoadingSoundSelector } from "../../slices/soundsSlice";
 import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
 import { AUDIO_PLAYER_CLASSNAME } from "./AudioPlayer";
 
@@ -19,8 +18,8 @@ export interface AudioListProps {
 }
 
 export const AudioList: React.FC<AudioListProps> = ({ items, className}) => {
-	const dispatch = useDispatch();
-    const isLoadingSound = useSelector((state: RootState) => state.sounds.isLoadingSound);
+	const dispatch = useAppDispatch();
+    const isLoadingSound = useAppSelector(isLoadingSoundSelector);
 
 	function handleItemClick(e: Event) {
 		const audioPlayer = document.querySelector(`.${AUDIO_PLAYER_CLASSNAME}`);

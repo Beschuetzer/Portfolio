@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import ReactDOM from "react-dom";
 import { NavListItem } from "../NavListItem";
 
@@ -52,9 +51,9 @@ import {
 	Z_INDEX_HIGHEST_CLASSNAME,
 } from "../../constants";
 import { useLocation } from "react-router-dom";
-import { setHeaderHeight } from "../../../slices/generalSlice";
-import { RootState } from "../../../store";
+import { currentlyViewingImageSelector, isSiteNavMinimizedSelector, previousUrlSelector, setHeaderHeight, viewPortWidthSelector } from "../../../slices/generalSlice";
 import { capitalize } from "../../../helpers";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 
 export const SITE_NAV_CLASSNAME = "site-nav"; //if changing this, change in index.html too
 export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal"; //if changing this, change in index.html too
@@ -66,11 +65,11 @@ interface SiteNavProps {
 export const SiteNav: React.FC<SiteNavProps> = ({
 	match,
 }) => {
-	const isSiteNavMinimized = useSelector((state: RootState) => state.general.isSiteNavMinimized);
-	const currentlyViewingImage = useSelector((state: RootState) => state.general.currentlyViewingImage);
-	const previousUrl = useSelector((state: RootState) => state.general.previousUrl);
-	const viewPortWidth = useSelector((state: RootState) => state.general.viewPortWidth);
-	const dispatch = useDispatch();
+	const isSiteNavMinimized = useAppSelector(isSiteNavMinimizedSelector);
+	const currentlyViewingImage = useAppSelector(currentlyViewingImageSelector);
+	const previousUrl = useAppSelector(previousUrlSelector);
+	const viewPortWidth = useAppSelector(viewPortWidthSelector);
+	const dispatch = useAppDispatch();
 	const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 	const [currentUrl, setCurrentUrl] = useState<string>("");
 	const location = useLocation();

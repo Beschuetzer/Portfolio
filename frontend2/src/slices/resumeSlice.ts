@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 export type ResumeSliceState = {
-  clickedSkill: HTMLElement | null,
+  clickedSkill: string,
   reposToDisplay: any[],
   sectionsToSkipAnimation: string[],
 }
 
 export const resumeSliceInitialState: ResumeSliceState = {
-  clickedSkill: null,
+  clickedSkill: '',
   reposToDisplay: [],
   sectionsToSkipAnimation: [],
 };

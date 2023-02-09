@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { capitalize } from "../../../helpers";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 
 import { bridgeSectionNames, BridgeSectionLink } from "../../../pages";
-import { setPreviousUrl } from "../../../slices/generalSlice";
+import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../../slices/bridgeSlice";
+import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../../slices/generalSlice";
 import { RootState } from "../../../store";
 import { DEFAULT_FONT_SIZE, HIDDEN_CLASSNAME } from "../../constants";
 import { scrollToSection } from "../../utils";
@@ -25,11 +26,11 @@ export const PageNav: React.FC<PageNavProps> = ({
 	match,
 }) => {
 	//#region Init
-	const dispatch = useDispatch();
-	const previousUrl  = useSelector((state: RootState) => state.general.previousUrl);
-	const isMobile  = useSelector((state: RootState) => state.general.isMobile);
-	const clickedBridgeInfoButtonCount  = useSelector((state: RootState) => state.bridge.clickedBridgeInfoButtonCount);
-	const currentBridgeSection  = useSelector((state: RootState) => state.bridge.currentBridgeSection);
+	const dispatch = useAppDispatch();
+	const previousUrl  = useAppSelector(previousUrlSelector);
+	const isMobile  = useAppSelector(isMobileSelector);
+	const clickedBridgeInfoButtonCount  = useAppSelector(clickedBridgeInfoButtonCountSelector);
+	const currentBridgeSection  = useAppSelector(currentBridgeSectionSelector);
 	const cssClass = "page-nav";
 	// const gradientVarName = "--site-nav-linear-gradient";
 	// const activeScaleVarName = "--site-nav-active-scale-amount";

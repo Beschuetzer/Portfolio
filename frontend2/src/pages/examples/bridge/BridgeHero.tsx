@@ -1,6 +1,5 @@
 import React from "react";
 import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Video } from "../../../components/VideoPlayer";
 import bgVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
 import {
@@ -10,16 +9,18 @@ import {
 	toggleSecondInfoButtonClick,
 } from "./utils";
 import { HEADER_ID } from "../../../components/navbar/SiteNav/utils";
-import { setClickedBridgeInfoButtonCount } from "../../../slices/bridgeSlice";
-import { RootState } from "../../../store";
+import { clickedBridgeInfoButtonCountSelector, setClickedBridgeInfoButtonCount } from "../../../slices/bridgeSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { isMobileSelector } from "../../../slices/generalSlice";
+import { loadedSoundsSelector } from "../../../slices/soundsSlice";
 
 type BridgeHeroProps = {}
 
 export const BridgeHero: React.FC<BridgeHeroProps> = () => {
-	const dispatch = useDispatch();
-	const sounds = useSelector((state: RootState) => state.sounds);
-	const isMobile = useSelector((state: RootState) => state.general.isMobile);
-	const clickedBridgeInfoButtonCount = useSelector((state: RootState) => state.bridge.clickedBridgeInfoButtonCount);
+	const dispatch = useAppDispatch();
+	const sounds = useAppSelector(loadedSoundsSelector);
+	const isMobile = useAppSelector(isMobileSelector);
+	const clickedBridgeInfoButtonCount = useAppSelector(clickedBridgeInfoButtonCountSelector);
 	const checkBoxRef = useRef<any>(null);
 	const backgroundRef = useRef<any>(null);
 	const hero = useRef<any>(null);

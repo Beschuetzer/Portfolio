@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../hooks";
 import { clickSkill } from "../../slices/resumeSlice";
 import { EmbeddedLink } from "../EmbeddedLink";
 import { PercentBar, PercentBarLabel } from "../PercentBar/PercentBar";
@@ -23,7 +23,7 @@ export const SkillsItem: React.FC<SkillsItemProps> = ({
 	label,
 	isLocal = false,
 }) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const skillsPopupDiv = document.querySelector("#skillsPopup");
 
 	const onParagraphClick = (e: MouseEvent) => {

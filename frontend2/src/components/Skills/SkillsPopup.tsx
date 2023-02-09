@@ -1,22 +1,23 @@
 import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
-import {  useDispatch, useSelector } from "react-redux";
 import { SkillsPopupName } from "./SkillsPopupName";
 import { addSpaceAfterPunctuationMarks, toggleScrollability } from "../utils";
 import { Repository, SKILLS_CLASSNAME } from "./utils";
-import { clickSkill, addRepoToReposToDisplay } from "../../slices/resumeSlice";
+import { clickSkill, addRepoToReposToDisplay, clickedSkillSelector, reposToDisplaySelector } from "../../slices/resumeSlice";
 import { RootState } from "../../store";
 import { checkForParentOfType, capitalize } from "../../helpers";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { reposSelector, isMobileSelector } from "../../slices/generalSlice";
 
 interface SkillsPopupProps {}
 
 export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
-	const dispatch = useDispatch();
-	const repos = useSelector((state: RootState) => state.general.repos);
-	const reposToDisplay = useSelector((state: RootState) => (state.resume as any)?.reposToDisplay) as Repository;
-	const clickedSkill = useSelector((state: RootState) => (state.resume as any)?.clickedSkill);
-	const isMobile = useSelector((state: RootState) => state.general.isMobile);
+	const dispatch = useAppDispatch();
+	const repos = useAppSelector(reposSelector);
+	const reposToDisplay = useAppSelector(reposToDisplaySelector);
+	const clickedSkill = useAppSelector(clickedSkillSelector);
+	const isMobile = useAppSelector(isMobileSelector);
 	const skillsPopupDiv = document.querySelector("#skillsPopup") as HTMLElement;
 	const resetReposDelay = 500;
 

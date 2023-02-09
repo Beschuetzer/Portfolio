@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../hooks";
 import { BRIDGE_CLASSNAME, COLOR_PRIMARY_BRIDGE_1, COLOR_PRIMARY_BRIDGE_4, COLOR_PRIMARY_BRIDGE_2, COLOR_PRIMARY_BRIDGE_3 } from "../pages";
-import { setBridgeSections, setCurrentBridgeSection } from "../slices/bridgeSlice";
+import { bridgeSectionsSelector, clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector, setBridgeSections, setCurrentBridgeSection } from "../slices/bridgeSlice";
 import { RootState } from "../store";
 import { ANIMATION_DURATION, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
 
@@ -15,10 +15,10 @@ export const ArrowButton: React.FC<ArrowButtonProps> = ({
 	direction,
 	reference,
 }) => {
-	const dispatch = useDispatch();
-	const currentBridgeSection = useSelector((state: RootState) => state.bridge.currentBridgeSection);
-	const bridgeSections = useSelector((state: RootState) => state.bridge.bridgeSections);
-	const clickedBridgeInfoButtonCount = useSelector((state: RootState) => state.bridge.clickedBridgeInfoButtonCount);
+	const dispatch = useAppDispatch();
+	const currentBridgeSection = useAppSelector(currentBridgeSectionSelector);
+	const bridgeSections = useAppSelector(bridgeSectionsSelector);
+	const clickedBridgeInfoButtonCount = useAppSelector(clickedBridgeInfoButtonCountSelector);
 
 	//Initial setup, storing sections
 	useEffect(() => {

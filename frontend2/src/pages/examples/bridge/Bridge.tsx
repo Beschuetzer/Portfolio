@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { BridgeSection } from "./BridgeSection";
 import BridgeCardSection from "./BridgeCardSection";
@@ -48,6 +47,8 @@ import { Quote } from "../../../components/Quote";
 import { BridgeSectionLink } from "./BridgeSectionLink";
 import { setHasClickedALink, setClickedBridgeInfoButtonCount, setCurrentBridgeSection } from "../../../slices/bridgeSlice";
 import { RootState } from "../../../store";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { isMobileSelector } from "../../../slices/generalSlice";
 
 const sectionContents = [
 	<SectionContainer name={bridgeSectionNames[0]} pageName={BRIDGE_PAGE_NAME}>
@@ -504,8 +505,8 @@ interface BridgeProps {
 }
 
 export const Bridge: React.FC<BridgeProps> = () => {
-	const dispatch = useDispatch();
-	const isMobile = useSelector((state: RootState) => state.general.isMobile);
+	const dispatch = useAppDispatch();
+	const isMobile = useAppSelector(isMobileSelector);
 	const leftArrowProps = { direction: "left" };
 	const rightArrowProps = { direction: "right" };
 
