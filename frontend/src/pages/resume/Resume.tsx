@@ -745,7 +745,6 @@ const Resume: React.FC<ResumeProps> = ({
 	};
 
 	useEffect(() => {
-		// renderTHREE();
 		if (repos?.length > 0) return;
 		getRepositories();
 		setSectionsToSkipAnimation(sectionsToSkipAnimation);

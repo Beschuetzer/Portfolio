@@ -458,7 +458,7 @@ function onWindowResize() {
 }
 //#endregion
 
-const OceanSky = () => {
+export const OceanSky = () => {
 	//#region Init
 	const POS_INITIAL_VALUE = 0;
 	const fpsReturned = [] as FpsReturned;
@@ -885,5 +885,3 @@ const OceanSky = () => {
 	}
 	return null;
 }
-
-export default OceanSky;
