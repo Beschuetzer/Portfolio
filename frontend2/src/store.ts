@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { bridgeSlice } from './slices/bridgeSlice';
 import { generalSlice } from './slices/generalSlice';
+import { resumeSlice } from './slices/resumeSlice';
 
 export const store = configureStore({
   reducer: {
     [generalSlice.name]: generalSlice.reducer,
     [bridgeSlice.name]: bridgeSlice.reducer,
+    [resumeSlice.name]: resumeSlice.reducer,
   },
 });
 

@@ -67,7 +67,6 @@ export const getRepositories = createAsyncThunk(
 export const generalSlice = createSlice({
   name: 'general',
   initialState: generalSliceInitialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     setCurrentlyViewingCarouselImage: (state, action: PayloadAction<string>) => {
       state.currentlyViewingImage = action.payload;

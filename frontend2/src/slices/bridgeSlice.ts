@@ -32,7 +32,6 @@ export const bridgeSliceInitialState: BridgeSliceState = {
 export const bridgeSlice = createSlice({
   name: 'bridge',
   initialState: bridgeSliceInitialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     setBridgeCards: (state, action: PayloadAction<any[]>) => {
       state.bridgeCards = action.payload;
