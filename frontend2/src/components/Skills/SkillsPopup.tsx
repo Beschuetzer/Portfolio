@@ -2,13 +2,12 @@ import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import {  useDispatch, useSelector } from "react-redux";
-import { checkForParentOfType } from "../../helpers";
 import { SkillsPopupName } from "./SkillsPopupName";
-import { capitalize } from "../../helpers";
 import { addSpaceAfterPunctuationMarks, toggleScrollability } from "../utils";
 import { Repository, SKILLS_CLASSNAME } from "./utils";
 import { clickSkill, addRepoToReposToDisplay } from "../../slices/resumeSlice";
 import { RootState } from "../../store";
+import { checkForParentOfType, capitalize } from "../../helpers";
 
 interface SkillsPopupProps {}
 

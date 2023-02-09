@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-
 import { capitalize } from "../../../helpers";
+
 import { bridgeSectionNames, BridgeSectionLink } from "../../../pages";
 import { setPreviousUrl } from "../../../slices/generalSlice";
 import { RootState } from "../../../store";

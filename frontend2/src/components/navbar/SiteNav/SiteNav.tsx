@@ -51,10 +51,10 @@ import {
 	UNCLICKABLE_CLASSNAME,
 	Z_INDEX_HIGHEST_CLASSNAME,
 } from "../../constants";
-import { capitalize } from "../../../helpers";
 import { useLocation } from "react-router-dom";
 import { setHeaderHeight } from "../../../slices/generalSlice";
 import { RootState } from "../../../store";
+import { capitalize } from "../../../helpers";
 
 export const SITE_NAV_CLASSNAME = "site-nav"; //if changing this, change in index.html too
 export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal"; //if changing this, change in index.html too

@@ -1,8 +1,6 @@
 import { RefObject } from "react";
 import { checkForParentOfType } from "../../../helpers";
-import { LoadedSounds } from "../../../reducers/soundsReducer";
 import {
-	MOBILE_BREAK_POINT_WIDTH,
 	OVERFLOW_HIDDEN_CLASSNAME,
 	TRANSPARENT_CLASSNAME,
 	DISPLAY_NONE_CLASSNAME,
@@ -20,7 +18,6 @@ import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
-	NAVBAR_CONTENT_CLASSNAME,
 	NAVBAR_CLASSNAME,
 } from "../utils";
 

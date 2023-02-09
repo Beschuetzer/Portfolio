@@ -1,7 +1,13 @@
 React best practices re-work (branch = sitenav_rework)
   -replace selectors with pre-defined ones
   -need to replace useDispatch and useSelector with useAppSelector/Dispatch
-  -finish removing connect stuff
+
+  -bugs to fix after changes:
+    -PageNav not working
+    -Carousel styling grid
+    -github repos not getting fetched (because folder is frontend2?)
+    -infinite LoadingSpinner (after clicking About)
+
   -re-work Carousel (should be pure re-useable component)
   -re-work PageNav to better track the filling (fill should start when section is roughly centerd in the middle of the viewPort)
   -c-sharp layout seems to have embedded <p> tags (see warning)

@@ -1,9 +1,5 @@
 import { capitalize } from "../../../helpers";
-import {
-	BRIDGE_CURRENT_SECTION_CLASSNAME,
-	BRIDGE_PAGE_NAV_LINKS_COLORS,
-	BRIDGE_PAGE_NAV_LINK_CLASSNAME,
-} from "../../../pages/examples/bridge/utils";
+import { BRIDGE_PAGE_NAV_LINK_CLASSNAME, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS } from "../../../pages";
 import {
 	MOBILE_BREAK_POINT_WIDTH,
 	PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME,

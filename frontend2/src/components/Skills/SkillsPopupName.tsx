@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect, RootStateOrAny, useSelector } from 'react-redux';
-import { RootState } from '../../reducers';
+import { useAppSelector } from '../../hooks';
+import { isMobileSelector } from '../../slices/generalSlice';
 import { SKILLS_CLASSNAME } from './utils';
 
 interface SkillsPopupNameProps {
@@ -12,7 +12,7 @@ export const SkillsPopupName: React.FC<SkillsPopupNameProps> = ({
   repo,
   href,
 }) => {
-  const isMobile = useSelector((state: RootState) => state.general.isMobile);
+  const isMobile = useAppSelector(isMobileSelector);
   
   return (
     <div className={`${SKILLS_CLASSNAME}-popup__table-item ${SKILLS_CLASSNAME}-popup__name`}>

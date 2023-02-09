@@ -1,5 +1,6 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../reducers';
+import { useAppSelector } from '../../hooks';
+import { headerHeightSelector } from '../../slices/generalSlice';
+import { sectionsToSkipAnimationSelector } from '../../slices/resumeSlice';
 import { MOBILE_BREAK_POINT_WIDTH } from '../constants';
 import { scrollToSection } from '../utils';
 import { SKILLS_CLASSNAME, SKILLS_SECTION_OPEN_CLASSNAME, toggleItem } from './utils';
@@ -13,8 +14,8 @@ export const SkillsItemSection: React.FC<SkillsItemSectionProps> = ({
   title,
   children,
 }) => {
-  const sectionsToSkipAnimation = useSelector((state: RootState) => (state.resume as any)?.sectionsToSkipAnimation);
-  const headerHeight = useSelector((state: RootState) => state.general.headerHeight);
+  const sectionsToSkipAnimation = useAppSelector(sectionsToSkipAnimationSelector);
+  const headerHeight = useAppSelector(headerHeightSelector);
 
   const onTitleClick = (e: MouseEvent) => {
     e.stopPropagation();
