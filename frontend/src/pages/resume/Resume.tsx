@@ -1,19 +1,18 @@
 // import * as THREE from "three";
 import React, { useEffect } from "react";
-import { connect, RootStateOrAny } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Section } from "../../components/Section";
 import Paragraph from "../../typography/Paragraph";
 import { SkillsItemSection } from "../../components/Skills/SkillsItemSection";
 import { PercentBarLabels } from "../../components/PercentBar/PercentBarLabels";
 import { SkillsItem } from "../../components/Skills/SkillsItem";
-import ReferenceItem from "./ReferenceItem";
-import EducationItem from "./EducationItem";
+import { ReferenceItem } from "./ReferenceItem";
 
 import { getRepositories, setSectionsToSkipAnimation } from "../../actions";
 import { SkillsPopup } from "../../components/Skills/SkillsPopup";
-import WorkHistoryItem from "./WorkHistory/WorkHistoryItem";
+import { WorkHistoryItem } from "./WorkHistory/WorkHistoryItem";
 import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
-import { Repository, SKILLS_CLASSNAME } from "../../components/Skills/utils";
+import { SKILLS_CLASSNAME } from "../../components/Skills/utils";
 import {
 	BOOK_TRUST_URL,
 	GITHUB_URL,
@@ -38,6 +37,8 @@ import { Quote } from "../../components/Quote";
 import { capitalize } from "../../helpers";
 import { C_SHARP_CLASSNAME } from "../examples/csharp/utils";
 import PageWrapper from "../PageWrapper";
+import { EducationItem } from "./EducationItem";
+import { RootState } from "../../reducers";
 
 // export const RESUME_SPELLING = <span>R&eacute;sum&eacute;</span>;
 export const RESUME_SPELLING = "Résumé";
@@ -369,27 +370,22 @@ const hints = {
 	references: "click name to view letter of recommendation",
 };
 
-export interface Skill {
+export type Skill = {
 	title: string;
 	percent: number;
 	href?: string;
 }
 
-export interface HeaderSideContent {
+export type HeaderSideContent = {
 	overview: any;
 }
 
-export interface ResumeProps {
-	repos: Repository[];
-	getRepositories: () => void;
-	setSectionsToSkipAnimation: (value: any[]) => void;
-}
+export type ResumeProps = {}
 
-const Resume: React.FC<ResumeProps> = ({
-	repos,
-	getRepositories,
-	setSectionsToSkipAnimation,
-}) => {
+export const Resume: React.FC<ResumeProps> = () => {
+	const dispatch = useDispatch();
+	const repos = useSelector((state: RootState) => state.general.repos);
+
 	const content = [
 		[
 			sectionTitles[0],
@@ -746,8 +742,8 @@ const Resume: React.FC<ResumeProps> = ({
 
 	useEffect(() => {
 		if (repos?.length > 0) return;
-		getRepositories();
-		setSectionsToSkipAnimation(sectionsToSkipAnimation);
+		dispatch(getRepositories());
+		dispatch(setSectionsToSkipAnimation(sectionsToSkipAnimation));
 	});
 
 	const renderSections = () => {
@@ -800,14 +796,3 @@ const Resume: React.FC<ResumeProps> = ({
 		</React.Fragment>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		repos: state.general.repos,
-	};
-};
-
-export default connect(mapStateToProps, {
-	getRepositories,
-	setSectionsToSkipAnimation,
-})(Resume as any);

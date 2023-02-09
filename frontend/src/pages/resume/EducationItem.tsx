@@ -12,7 +12,7 @@ interface EducationItemProps{
 	href: string,
 }
 
-const EducationItem: React.FC<EducationItemProps> = ({
+export const EducationItem: React.FC<EducationItemProps> = ({
 	startDate,
 	endDate,
 	degree,
@@ -49,5 +49,3 @@ const EducationItem: React.FC<EducationItemProps> = ({
 		</li>
 	);
 };
-
-export default EducationItem;

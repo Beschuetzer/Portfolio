@@ -13,7 +13,6 @@ import {
 	MOBILE_BREAK_POINT_WIDTH, PERSONALITY_URL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
 } from "./constants";
 
-import Resume from "../pages/resume/Resume";
 import { SiteNav } from "./navbar/SiteNav/SiteNav";
 import { PageNav } from "./navbar/PageNav/PageNav";
 import { NavToggler } from "./navbar/NavToggler";
@@ -29,7 +28,7 @@ import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
 import { keypressHandler } from "./utils";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { RootState } from "../reducers";
-import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer, Home } from "../pages/";
+import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer, Home, Resume } from "../pages/";
 import { LoadedSounds } from "../reducers/soundsReducer";
 
 interface AppProps {}

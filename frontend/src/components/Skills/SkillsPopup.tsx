@@ -282,7 +282,6 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 		return reposToDisplay.sort((a: any, b: any) => {
 			const firstItemsDate = a?.[keys?.[2]];
 			const secondItemsDate = b?.[keys?.[2]];
-			console.log({a, b, firstItemsDate, secondItemsDate, valueReturned: firstItemsDate > secondItemsDate ? -1 : firstItemsDate < secondItemsDate ? 1 : 0});
 			return firstItemsDate > secondItemsDate ? -1 : firstItemsDate < secondItemsDate ? 1 : 0;
 		}).map((repo: any) => {
 			if (isMobile) {

@@ -302,7 +302,7 @@ export const setScrollPercent = (percent: string) => {
     payload: percent,
   }
 }
-export const setSectionsToSkipAnimation = (value: []) => {
+export const setSectionsToSkipAnimation = (value: string[]) => {
   return {
     type: SET_SECTIONS_TO_SKIP_ANIMATION,
     payload: value,

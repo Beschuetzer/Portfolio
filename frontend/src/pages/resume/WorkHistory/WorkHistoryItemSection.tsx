@@ -6,7 +6,7 @@ interface WorkHistoryItemSectionProps {
   children: any,
 }
 
-const WorkHistoryItemSection: React.FC<WorkHistoryItemSectionProps> = ({
+export const WorkHistoryItemSection: React.FC<WorkHistoryItemSectionProps> = ({
   title,
   children,
 }) => {
@@ -18,5 +18,3 @@ const WorkHistoryItemSection: React.FC<WorkHistoryItemSectionProps> = ({
     </div>
   );
 }
-
-export default WorkHistoryItemSection;

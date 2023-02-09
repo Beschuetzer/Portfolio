@@ -1,5 +1,5 @@
 import React from 'react';
-import WorkHistoryItemSection from './WorkHistoryItemSection';
+import { WorkHistoryItemSection } from './WorkHistoryItemSection';
 import { WorkHistoryItemModel, WORK_HISTORY_CLASSNAME } from './utils';
 
 interface WorkHistoryItemProps {
@@ -12,7 +12,7 @@ interface WorkHistoryItemProps {
   location?: string,
 }
 
-const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
+export const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
   sections,
   startDate,
   endDate,
@@ -82,5 +82,3 @@ const WorkHistoryItem: React.FC<WorkHistoryItemProps> = ({
     </section>        
   )
 }
-
-export default WorkHistoryItem;

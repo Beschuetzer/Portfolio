@@ -1,6 +1,6 @@
 export const WORK_HISTORY_CLASSNAME = "work-history";
 
-export interface WorkHistoryItemModel {
+export type WorkHistoryItemModel = {
   title: string;
   bullets: string[];
 }
