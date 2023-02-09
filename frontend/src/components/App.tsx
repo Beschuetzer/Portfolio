@@ -14,8 +14,6 @@ import {
 } from "./constants";
 
 import Home from "../pages/home/Home";
-import PlaylistSyncer from "../pages/examples/csharp/PlaylistSyncer";
-import Downloader from "../pages/examples/csharp/Downloader";
 import Resume from "../pages/resume/Resume";
 import { SiteNav } from "./navbar/SiteNav/SiteNav";
 import { PageNav } from "./navbar/PageNav/PageNav";
@@ -30,13 +28,9 @@ import {
 import soundsSpriteMp3 from "../sounds/soundsSprite.mp3";
 import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
 import { keypressHandler } from "./utils";
-import ReplayViewer from "../pages/examples/csharp/ReplayViewer";
-import About from "../pages/examples/csharp/About";
-import BridgeDemo from "../pages/examples/csharp/BridgeDemo";
-import BigFive from "../pages/examples/csharp/BigFive/BigFive";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { RootState } from "../reducers";
-import { AutoBid, Bridge } from "../pages/";
+import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer } from "../pages/";
 import { LoadedSounds } from "../reducers/soundsReducer";
 
 interface AppProps {}

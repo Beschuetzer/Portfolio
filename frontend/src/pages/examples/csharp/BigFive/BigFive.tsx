@@ -1,13 +1,13 @@
 import React from "react";
+import { CSharpCardSection } from "../CSharpCardSection";
 import {
 	CSharpSection,
 	BIG_FIVE_PAGE_NAME,
 } from "../../../../components/constants";
 import { PercentBar, PercentBarLabel } from "../../../../components/PercentBar/PercentBar";
-import CSharpCardSection from "../CSharpCardSection";
-import CSharpLayout from "../CSharpLayout";
+import { CSharpLayout } from "../CSharpLayout";
 import { C_SHARP_CLASSNAME } from "../utils";
-import BigFiveItem from "./BigFiveItem";
+import { BigFiveItem } from "./BigFiveItem";
 
 const sectionNames = [
 	"Overview",
@@ -276,7 +276,7 @@ const sections: CSharpSection[] = [
 
 interface PersonalityProps {}
 
-const BigFive: React.FC<PersonalityProps> = () => {
+export const BigFive: React.FC<PersonalityProps> = () => {
 	return (
 		<CSharpLayout
 			sections={sections}
@@ -286,5 +286,3 @@ const BigFive: React.FC<PersonalityProps> = () => {
 		</CSharpLayout>
 	);
 };
-
-export default BigFive;

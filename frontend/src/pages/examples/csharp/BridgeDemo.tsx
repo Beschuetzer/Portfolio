@@ -1,13 +1,12 @@
 import React from "react";
 import { Carousel } from "../../../components/Carousel/Carousel";
 
-import CSharpLayout from "./CSharpLayout";
+import { CSharpLayout } from "./CSharpLayout";
 
 import video1 from "../../../clips/bridge-demo/1.mp4";
 import video2 from "../../../clips/bridge-demo/2.mp4";
 import video3 from "../../../clips/bridge-demo/3.mp4";
 
-import CSharpCardSection from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
 import {
@@ -20,6 +19,7 @@ import {
 	CSharpSection,
 } from "../../../components/constants";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
+import { CSharpCardSection } from "./CSharpCardSection";
 
 const sectionNames = [
 	"Requirements",
@@ -156,10 +156,8 @@ const sections: CSharpSection[] = [
 
 interface BridgeDemoProps {}
 
-const BridgeDemo: React.FC<BridgeDemoProps> = () => {
+export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
 	return (
 		<CSharpLayout sections={sections} pageName={BRIDGE_DEMO_PAGE_NAME}/>
 	);
 };
-
-export default BridgeDemo;

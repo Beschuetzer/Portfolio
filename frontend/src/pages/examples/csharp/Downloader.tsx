@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from "../../../components/Carousel/Carousel";
-import CSharpLayout from "./CSharpLayout";
+import { CSharpLayout } from "./CSharpLayout";
 
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import img1 from "../../../imgs/downloader/img1.png";
@@ -19,7 +19,7 @@ import img4Thumbnail from "../../../imgs/downloader/thumbnails/img4-thumbnail.pn
 import img5Thumbnail from "../../../imgs/downloader/thumbnails/img5-thumbnail.png";
 import img6Thumbnail from "../../../imgs/downloader/thumbnails/img6-thumbnail.png";
 
-import CSharpCardSection from "./CSharpCardSection";
+import { CSharpCardSection } from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
 import {
@@ -194,7 +194,7 @@ const sections: CSharpSection[] = [
 
 interface DownloaderProps {}
 
-const Downloader: React.FC<DownloaderProps> = () => {
+export const Downloader: React.FC<DownloaderProps> = () => {
 	return (
 		<CSharpLayout
 			sections={sections}
@@ -203,5 +203,3 @@ const Downloader: React.FC<DownloaderProps> = () => {
 		/>
 	);
 };
-
-export default Downloader;

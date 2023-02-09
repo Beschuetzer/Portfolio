@@ -19,7 +19,7 @@ interface CSharpLayoutProps {
 	headerSideContents?: any;
 }
 
-const CSharpLayout: React.FC<CSharpLayoutProps> = ({
+export const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 	href,
 	sections,
 	pageName,
@@ -101,5 +101,3 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 		</PageWrapper>
 	);
 };
-
-export default CSharpLayout;

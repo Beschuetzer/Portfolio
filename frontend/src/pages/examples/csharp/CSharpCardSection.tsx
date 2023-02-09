@@ -10,7 +10,7 @@ interface CSharpCardSectionProps {
 	headerSideContent?: any;
 }
 
-const CSharpCardSection: React.FC<CSharpCardSectionProps> = ({
+export const CSharpCardSection: React.FC<CSharpCardSectionProps> = ({
 	title = "",
 	children,
 	headerSideContent,
@@ -22,5 +22,3 @@ const CSharpCardSection: React.FC<CSharpCardSectionProps> = ({
 		</section>
 	);
 };
-
-export default CSharpCardSection;

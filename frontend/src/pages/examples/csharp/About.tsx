@@ -11,8 +11,7 @@
 //interests: playing drums/guitar, riding bike, exercising, Astronomy(almost majored in it)
 
 import React from "react";
-import CSharpLayout from "./CSharpLayout";
-import CSharpCardSection from "./CSharpCardSection";
+import { CSharpLayout } from "./CSharpLayout";
 import { C_SHARP_CLASSNAME } from "./utils";
 import {
 	ABOUT_PAGE_NAME,
@@ -121,6 +120,7 @@ import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { Quote } from "../../../components/Quote";
 import { ClassToggler } from "../../../components/ClassToggler";
 import Paragraph from "../../../typography/Paragraph";
+import { CSharpCardSection } from "./CSharpCardSection";
 
 const sectionNames = ["Summary", "Interests", "Music", "FAQ"];
 
@@ -708,7 +708,7 @@ const sections: CSharpSection[] = [
 
 interface AboutProps {}
 
-const About: React.FC<AboutProps> = () => {
+export const About: React.FC<AboutProps> = () => {
 	return (
 		<React.Fragment>
 			<CSharpLayout sections={sections} pageName={ABOUT_PAGE_NAME} />
@@ -716,5 +716,3 @@ const About: React.FC<AboutProps> = () => {
 		</React.Fragment>
 	);
 };
-
-export default About;

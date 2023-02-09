@@ -1,6 +1,6 @@
 import React from "react";
 import { Carousel } from "../../../components/Carousel/Carousel";
-import CSharpLayout from "./CSharpLayout";
+import { CSharpLayout } from "./CSharpLayout";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 
 import img1 from "../../../imgs/replay-viewer/img-1.png";
@@ -35,7 +35,7 @@ import clipAnimationsThumbnail from "../../../clips/replay-viewer/thumbnails/ani
 import clipDealPlayerThumbnail from "../../../clips/replay-viewer/thumbnails/deal-player-thumbnail.png";
 import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
 
-import CSharpCardSection from "./CSharpCardSection";
+import { CSharpCardSection } from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
 import {
@@ -329,7 +329,7 @@ const sections: CSharpSection[] = [
 
 interface ReplayViewerProps {}
 
-const ReplayViewer: React.FC<ReplayViewerProps> = () => {
+export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
 	return (
 		<CSharpLayout
 			href={LIVE_REPLAYS_URL}
@@ -341,5 +341,3 @@ const ReplayViewer: React.FC<ReplayViewerProps> = () => {
 		</CSharpLayout>
 	);
 };
-
-export default ReplayViewer;
