@@ -48,7 +48,7 @@ import {
 	BRIDGE_PAGE_NAME,
 	BRIDGE_DEMO_URL,
 } from "../../../components/constants";
-import BridgeHero from "./BridgeHero";
+import { BridgeHero } from "./BridgeHero";
 import { SourceCodeLink } from "../../../components/SourceCodeLink";
 import { ArrowButton } from "../../../components/ArrowButton";
 import { Quote } from "../../../components/Quote";

@@ -36,7 +36,7 @@ import { SourceCodeLink } from "../../components/SourceCodeLink";
 import { Quote } from "../../components/Quote";
 import { capitalize } from "../../helpers";
 import { C_SHARP_CLASSNAME } from "../examples/csharp/utils";
-import PageWrapper from "../PageWrapper";
+import { PageWrapper } from "../PageWrapper";
 import { EducationItem } from "./EducationItem";
 import { RootState } from "../../reducers";
 

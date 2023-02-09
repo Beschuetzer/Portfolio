@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef } from "react";
-import { connect, RootStateOrAny } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { setClickedBridgeInfoButtonCount } from "../../../actions";
 
@@ -8,24 +8,20 @@ import { Video } from "../../../components/VideoPlayer";
 import bgVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
 import {
 	BRIDGE_HERO_CLASSNAME,
-	handleMoreClick,
+	handleBridgeHeroSounds,
+	showBridgeHero,
+	toggleSecondInfoButtonClick,
 } from "./utils";
 import { HEADER_ID } from "../../../components/navbar/SiteNav/utils";
-import { LoadedSounds } from "../../../reducers/soundsReducer";
+import { RootState } from "../../../reducers";
 
-interface BridgeHeroProps {
-	sounds: LoadedSounds;
-	isMobile: boolean;
-	setClickedBridgeInfoButtonCount: (value: number) => void;
-	clickedBridgeInfoButtonCount: number;
-}
+type BridgeHeroProps = {}
 
-const BridgeHero: React.FC<BridgeHeroProps> = ({
-	sounds,
-	isMobile,
-	setClickedBridgeInfoButtonCount,
-	clickedBridgeInfoButtonCount,
-}) => {
+export const BridgeHero: React.FC<BridgeHeroProps> = () => {
+	const dispatch = useDispatch();
+	const sounds = useSelector((state: RootState) => state.sounds);
+	const isMobile = useSelector((state: RootState) => state.general.isMobile);
+	const clickedBridgeInfoButtonCount = useSelector((state: RootState) => state.bridge.clickedBridgeInfoButtonCount);
 	const checkBoxRef = useRef<any>(null);
 	const backgroundRef = useRef<any>(null);
 	const hero = useRef<any>(null);
@@ -35,17 +31,20 @@ const BridgeHero: React.FC<BridgeHeroProps> = ({
 		.getBoundingClientRect().height;
 
 	const onMoreClick = (e: MouseEvent) => {
-		handleMoreClick(
-			clickedBridgeInfoButtonCount,
-			headerHeight,
+		if (clickedBridgeInfoButtonCount % 2 === 0) {
+			showBridgeHero(heroMore);
+		  } else if (clickedBridgeInfoButtonCount > 0) {
+			toggleSecondInfoButtonClick(hero.current, heroMore.current, isMobile);
+		  }
+		
+		  handleBridgeHeroSounds(
+			checkBoxRef.current as any,
+			backgroundRef.current,
+			sounds as any,
 			isMobile,
-			heroMore,
-			hero,
-			checkBoxRef,
-			backgroundRef,
-			sounds,
-			setClickedBridgeInfoButtonCount,
-		);
+			headerHeight,
+		  );
+		  dispatch(setClickedBridgeInfoButtonCount(clickedBridgeInfoButtonCount + 1));
 	};
 
 	return (
@@ -90,15 +89,3 @@ const BridgeHero: React.FC<BridgeHeroProps> = ({
 		</React.Fragment>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		sounds: state.sounds,
-		isMobile: state.general.isMobile,
-		clickedBridgeInfoButtonCount: state.bridge.clickedBridgeInfoButtonCount,
-	};
-};
-
-export default connect(mapStateToProps, {
-	setClickedBridgeInfoButtonCount,
-})(BridgeHero);
