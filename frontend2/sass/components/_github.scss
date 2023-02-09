@@ -1,0 +1,68 @@
+.github {
+	border-radius: 50%;
+	border: 1px solid transparent;
+	font-family: $font-family-text;
+	font-size: $font-size-three;
+	position: relative;
+	display: flex;
+	align-items: center;
+	z-index: 10000;
+
+	@include respond(nav-switch) {
+		font-size: $font-size-three;
+	}
+
+	&__top {
+		transition: $animation-duration $animation-easing-standard-easeInOutBack-smaller;
+	}
+
+	&__link:link,
+	&__link:visited {
+		text-decoration: none;
+		color: var(--color-primary-1);
+		font-weight: 700;
+		display: flex;
+		align-items: center;
+	}
+
+	&__svg {
+		height: $github__logo-width;
+		width: $github__logo-width;
+		fill: var(--color-primary-4);
+
+		
+
+		@include respond(nav-switch) {
+			height: $default-font-size * 5;
+			width: $default-font-size * 5;
+		}
+
+		&:hover {
+			fill: var(--color-primary-3);
+		}
+	}
+	&__text {
+		position: absolute;
+		left: 50%;
+		pointer-events: none;
+		z-index: 1;
+		transform: translate(-50%, 0%);
+
+		&-top {
+			top: $default-font-size / 2;
+		}
+
+		&-bottom {
+			bottom: $default-font-size / 2;
+		}
+
+		@include respond(nav-switch) {
+			&-top {
+				top: $default-font-size * 0.33;
+			}
+			&-bottom {
+				bottom: $default-font-size * 0.25;
+			}
+		}
+	}
+}

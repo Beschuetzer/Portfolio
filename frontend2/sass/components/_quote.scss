@@ -1,0 +1,110 @@
+$popup-background-color: var(--color-primary-red);
+$quote-normal-opacity: 0.125;
+%quote-basic {
+	position: absolute;
+	font-size: $font-size-nine;
+	opacity: $quote-normal-opacity;
+	top: 0;
+	padding: $font-size-two;
+	color: var(--color-primary-1);
+}
+
+.arrow-down {
+	--translate-x: 0;
+	--translate-y: 100%;
+	position: absolute;
+	bottom: 0;
+	transform: translate(var(--translate-x), var(--translate-y));
+	width: 0;
+	height: 0;
+	--width: 10px;
+	--background-color: #{$popup-background-color};
+	border-left: var(--width) solid transparent;
+	border-right: var(--width) solid transparent;
+	border-top: var(--width) solid var(--background-color);
+
+	&--left {
+		left: 0;
+	}
+
+	&--center {
+		left: 50%;
+		--translate-x: -50%;
+	}
+
+	&--right {
+		right: 0;
+	}
+}
+
+.quote {
+	--quote-popup-transform-default: translate(-0%, 200%) scale(0);
+	cursor: pointer;
+	text-align: center;
+	position: relative;
+	color: var(--color-primary-1);
+	margin: $default-font-size $default-font-size * 1.5;
+
+	&:hover {
+		&::before,
+		&::after {
+			opacity: $quote-normal-opacity * 2;
+		}
+	}
+
+	&::before {
+		content: "\201C";
+		left: -$default-font-size * 0.5;
+		@extend %quote-basic;
+	}
+
+	&::after {
+		content: "\201D";
+		right: -$default-font-size * 0.5;
+		@extend %quote-basic;
+	}
+
+	&__author {
+		padding-top: $default-font-size;
+		font-size: $font-size-four;
+		font-family: $font-family-headers;
+
+		@include respond(phone) {
+			font-size: $font-size-three;
+		}
+	}
+
+	&__message {
+		position: relative;
+		font-style: italic;
+		font-size: $font-size-six;
+		font-family: $font-family-fancy-bridge;
+
+		@include respond(phone) {
+			font-size: $font-size-four;
+		}
+	}
+
+	&__popup {
+		height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+		background-color: $popup-background-color;
+		color: var(--color-primary-4);
+		padding: $default-font-size;
+		position: absolute;
+		top: 0;
+		left: 0%;
+		right: 0;
+		transform: var(--quote-popup-transform-default);
+		// width: 50%;
+		transition: opacity $animation-duration $animation-easing-standard,
+			transform $animation-duration $animation-easing-modern;
+	}
+
+	&:hover {
+		color: rgba(var(--color-primary-1-rgb), 0.75);
+	}
+}

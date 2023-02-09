@@ -1,0 +1,36 @@
+.site-nav {}
+
+.site-nav--nav-switch-minimal {
+	@include respond(nav-switch) {
+		position: fixed;
+		top: 100%;
+		left: 0;
+		transition: transform $animation-duration $animation-easing-standard;
+
+		& .navbar__button {
+			--opacity: .66;
+			--scale-amount: .5;
+			opacity: var(--opacity);
+			transform: scale(var(--scale-amount));
+			transform-origin: top left;
+
+			transition: transform $animation-duration $animation-easing-standard;
+
+
+			&:hover, &:active, &:focus {
+				--scale-amount: 1;
+				--opacity: 1;
+			}
+		}
+
+		& .navbar--active .navbar__button {
+			--scale-amount: 1;
+			--opacity: 1;
+
+		}
+	}
+
+	@include respond(tab-land) {
+		left: $default-font-size * .5;
+	}
+}

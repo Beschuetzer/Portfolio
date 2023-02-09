@@ -1,0 +1,210 @@
+$color-grey-light-1: #faf9f9;
+$color-grey-light-2: #f3f1f1;
+$color-grey-light-3: #f1efef;
+
+$color-black: #111111;
+$color-grey-20: #333333;
+$color-grey-40: #666666;
+$color-grey-60: #999999;
+$color-grey-80: #cccccc;
+$color-white: #ffffff;
+
+$color-primary-1: #28537b;
+$color-primary-1-light: #999999;
+
+$color-primary-2: #8ac6d0;
+$color-primary-3: #f4d262;
+$color-primary-4: #fbeeac;
+$color-primary-red: #7B2853;
+
+$color-primary-resume-1: #28537b;
+$color-primary-resume-2: #8ac5d0;
+$color-primary-resume-3: #f4d262;
+$color-primary-resume-4: #fbeeac;
+$color-primary-resume-red: #7B2853;
+
+$resume-color-opacity: 0.95;
+
+$color-primary-bridge-1: #00406b;
+$color-primary-bridge-2: #f59229;
+$color-primary-bridge-3: #e4e0c9;
+$color-primary-bridge-4: #f5f1db;
+$color-primary-bridge-red: #6b0700;
+$color-bridge-section-svg-1: #23f5f1db;
+$color-bridge-section-svg-2: #23f5f1db;
+$color-bridge-section-svg-3: #00406b80;
+$color-bridge-section-svg-4: #23f5f1db;
+
+$color-primary-downloader-1: #f9f7f7;
+$color-primary-downloader-2: #dbe2ef;
+$color-primary-downloader-3: #3f72af;
+$color-primary-downloader-4: #112d4e;
+$color-primary-downloader-red: #b05840;
+
+$color-downloader-section-svg-1: #f9f7f7db;
+$color-downloader-section-svg-2: #dbe2efdb;
+$color-downloader-section-svg-3: #3f72afdb;
+$color-downloader-section-svg-4: #112d4edb;
+
+$color-primary-playlist-syncer-1: #ffc996;
+$color-primary-playlist-syncer-2: #ff8474;
+$color-primary-playlist-syncer-3: #9f5f80;
+$color-primary-playlist-syncer-4: #583d72;
+$color-primary-playlist-syncer-red: #ff8474;
+
+$color-primary-autobid-1: #e6e6e6;
+$color-primary-autobid-2: #c5a880;
+$color-primary-autobid-3: #532e1c;
+$color-primary-autobid-4: #0f0f0f;
+$color-primary-autobid-red: #541c2f;
+
+$color-primary-replay-1: #28537b;
+$color-primary-replay-2: #8ac6d0;
+$color-primary-replay-3: #f4d262;
+$color-primary-replay-4: #fbeeac;
+$color-primary-replay-red: #7B5028;
+
+$color-primary-about-1: #161616;
+$color-primary-about-2: #c84b31;
+$color-primary-about-3: #31C9B0;
+$color-primary-about-4: #ecdbba;
+$color-primary-about-red: #c84b31;
+
+$color-primary-the-big-five-1: #7D5A50;
+$color-primary-the-big-five-2: #B4846C;
+$color-primary-the-big-five-3: #E5B299;
+$color-primary-the-big-five-4: #FCDEC0;
+$color-primary-the-big-five-red: $color-black;
+
+:root {
+	--color-grey-light-1: #{$color-grey-light-1};
+	--color-grey-light-2: #{$color-grey-light-2};
+	--color-grey-light-3: #{$color-grey-light-3};
+	--color-grey-light-1-rgb: #{hexToRGB($color-grey-light-1)};
+	--color-grey-light-2-rgb: #{hexToRGB($color-grey-light-2)};
+	--color-grey-light-3-rgb: #{hexToRGB($color-grey-light-3)};
+
+	--color-black: #{$color-black};
+	--color-grey-20: #{$color-grey-20};
+	--color-grey-40: #{$color-grey-40};
+	--color-grey-60: #{$color-grey-60};
+	--color-grey-80: #{$color-grey-80};
+	--color-white: #{$color-white};
+	--color-black-rgb: #{hexToRGB($color-black)};
+	--color-grey-20-rgb: #{hexToRGB($color-grey-20)};
+	--color-grey-40-rgb: #{hexToRGB($color-grey-40)};
+	--color-grey-60-rgb: #{hexToRGB($color-grey-60)};
+	--color-grey-80-rgb: #{hexToRGB($color-grey-80)};
+	--color-white-rgb: #{hexToRGB($color-white)};
+
+	--color-primary-1: #{$color-primary-1};
+	--color-primary-1-light: #{$color-primary-1-light};
+	--color-primary-2: #{$color-primary-2};
+	--color-primary-3: #{$color-primary-3};
+	--color-primary-4: #{$color-primary-4};
+	--color-primary-red: #{$color-primary-red};
+	--color-primary-1-rgb: #{hexToRGB($color-primary-1)};
+	--color-primary-1-light-rgb: #{hexToRGB($color-primary-1-light)};
+	--color-primary-2-rgb: #{hexToRGB($color-primary-2)};
+	--color-primary-3-rgb: #{hexToRGB($color-primary-3)};
+	--color-primary-4-rgb: #{hexToRGB($color-primary-4)};
+	--color-primary-red-rgb: #{hexToRGB($color-primary-red)};
+
+	--color-primary-resume-1: #{$color-primary-resume-1};
+	--color-primary-resume-2: #{$color-primary-resume-2};
+	--color-primary-resume-3: #{$color-primary-resume-3};
+	--color-primary-resume-4: #{$color-primary-resume-4};
+	--color-primary-resume-red: #{$color-primary-resume-red};
+	--color-primary-resume-1-rgb: #{hexToRGB($color-primary-resume-1)};
+	--color-primary-resume-2-rgb: #{hexToRGB($color-primary-resume-2)};
+	--color-primary-resume-3-rgb: #{hexToRGB($color-primary-resume-3)};
+	--color-primary-resume-4-rgb: #{hexToRGB($color-primary-resume-4)};
+	--color-primary-resume-red-rgb: #{hexToRGB($color-primary-resume-red)};
+
+	--color-primary-bridge-2: #{$color-primary-bridge-2};
+	--color-primary-bridge-4: #{$color-primary-bridge-4};
+	--color-primary-bridge-3: #{$color-primary-bridge-3};
+	--color-primary-bridge-1: #{$color-primary-bridge-1};
+	--color-primary-bridge-red: #{$color-primary-bridge-red};
+	--color-primary-bridge-2-rgb: #{hexToRGB($color-primary-bridge-2)};
+	--color-primary-bridge-4-rgb: #{hexToRGB($color-primary-bridge-4)};
+	--color-primary-bridge-3-rgb: #{hexToRGB($color-primary-bridge-3)};
+	--color-primary-bridge-1-rgb: #{hexToRGB($color-primary-bridge-1)};
+	--color-primary-bridge-red-rgb: #{hexToRGB($color-primary-bridge-red)};
+
+	--color-primary-downloader-1: #{$color-primary-downloader-1};
+	--color-primary-downloader-2: #{$color-primary-downloader-2};
+	--color-primary-downloader-3: #{$color-primary-downloader-3};
+	--color-primary-downloader-4: #{$color-primary-downloader-4};
+	--color-primary-downloader-red: #{$color-primary-downloader-red};
+	--color-primary-downloader-1-rgb: #{hexToRGB($color-primary-downloader-1)};
+	--color-primary-downloader-2-rgb: #{hexToRGB($color-primary-downloader-2)};
+	--color-primary-downloader-3-rgb: #{hexToRGB($color-primary-downloader-3)};
+	--color-primary-downloader-4-rgb: #{hexToRGB($color-primary-downloader-4)};
+	--color-primary-downloader-red-rgb: #{hexToRGB($color-primary-downloader-red)};
+
+	--color-primary-playlist-syncer-1: #{$color-primary-playlist-syncer-1};
+	--color-primary-playlist-syncer-3: #{$color-primary-playlist-syncer-3};
+	--color-primary-playlist-syncer-2: #{$color-primary-playlist-syncer-2};
+	--color-primary-playlist-syncer-4: #{$color-primary-playlist-syncer-4};
+	--color-primary-playlist-syncer-red: #{$color-primary-playlist-syncer-red};
+	--color-primary-playlist-syncer-1-rgb: #{hexToRGB(
+			$color-primary-playlist-syncer-1
+		)};
+	--color-primary-playlist-syncer-3-rgb: #{hexToRGB(
+			$color-primary-playlist-syncer-3
+		)};
+	--color-primary-playlist-syncer-2-rgb: #{hexToRGB(
+			$color-primary-playlist-syncer-2
+		)};
+	--color-primary-playlist-syncer-4-rgb: #{hexToRGB(
+			$color-primary-playlist-syncer-4
+		)};
+	--color-primary-playlist-syncer-red-rgb: #{hexToRGB(
+			$color-primary-playlist-syncer-red
+		)};
+
+	--color-primary-autobid-1: #{$color-primary-autobid-1};
+	--color-primary-autobid-3: #{$color-primary-autobid-3};
+	--color-primary-autobid-2: #{$color-primary-autobid-2};
+	--color-primary-autobid-4: #{$color-primary-autobid-4};
+	--color-primary-autobid-red: #{$color-primary-autobid-red};
+	--color-primary-autobid-1-rgb: #{hexToRGB($color-primary-autobid-1)};
+	--color-primary-autobid-3-rgb: #{hexToRGB($color-primary-autobid-3)};
+	--color-primary-autobid-2-rgb: #{hexToRGB($color-primary-autobid-2)};
+	--color-primary-autobid-4-rgb: #{hexToRGB($color-primary-autobid-4)};
+	--color-primary-autobid-red-rgb: #{hexToRGB($color-primary-autobid-red)};
+
+	--color-primary-replay-1: #{$color-primary-replay-1};
+	--color-primary-replay-2: #{$color-primary-replay-2};
+	--color-primary-replay-3: #{$color-primary-replay-3};
+	--color-primary-replay-4: #{$color-primary-replay-4};
+	--color-primary-replay-red: #{$color-primary-replay-red};
+	--color-primary-replay-1-rgb: #{hexToRGB($color-primary-replay-1)};
+	--color-primary-replay-2-rgb: #{hexToRGB($color-primary-replay-2)};
+	--color-primary-replay-3-rgb: #{hexToRGB($color-primary-replay-3)};
+	--color-primary-replay-4-rgb: #{hexToRGB($color-primary-replay-4)};
+	--color-primary-replay-red-rgb: #{hexToRGB($color-primary-replay-red)};
+
+	--color-primary-about-1: #{$color-primary-about-1};
+	--color-primary-about-2: #{$color-primary-about-2};
+	--color-primary-about-3: #{$color-primary-about-3};
+	--color-primary-about-4: #{$color-primary-about-4};
+	--color-primary-about-red: #{$color-primary-about-red};
+	--color-primary-about-1-rgb: #{hexToRGB($color-primary-about-1)};
+	--color-primary-about-2-rgb: #{hexToRGB($color-primary-about-2)};
+	--color-primary-about-3-rgb: #{hexToRGB($color-primary-about-3)};
+	--color-primary-about-4-rgb: #{hexToRGB($color-primary-about-4)};
+	--color-primary-about-red-rgb: #{hexToRGB($color-primary-about-red)};
+
+	--color-primary-the-big-five-1: #{$color-primary-the-big-five-1};
+	--color-primary-the-big-five-2: #{$color-primary-the-big-five-2};
+	--color-primary-the-big-five-3: #{$color-primary-the-big-five-3};
+	--color-primary-the-big-five-4: #{$color-primary-the-big-five-4};
+	--color-primary-the-big-five-red: #{$color-primary-the-big-five-red};
+	--color-primary-the-big-five-1-rgb: #{hexToRGB($color-primary-the-big-five-1)};
+	--color-primary-the-big-five-2-rgb: #{hexToRGB($color-primary-the-big-five-2)};
+	--color-primary-the-big-five-3-rgb: #{hexToRGB($color-primary-the-big-five-3)};
+	--color-primary-the-big-five-4-rgb: #{hexToRGB($color-primary-the-big-five-4)};
+	--color-primary-the-big-five-red-rgb: #{hexToRGB($color-primary-the-big-five-red)};
+}

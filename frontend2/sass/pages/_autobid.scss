@@ -1,0 +1,43 @@
+.autobid {
+
+  &-page {
+
+  }
+
+  &.csharp{
+    background-image: $bridge-card-section-2-gradient,
+    url(getSvgBackground(
+      bridge-section-3,
+      $color-bridge-section-svg-1,
+      $color-bridge-section-svg-2,
+    ));
+    background-size: cover;
+  
+    @include respond(tab-land) {
+      background-image: linear-gradient(
+        to right,
+        rgba(var(--color-primary-4-rgb), .25),
+        rgba(var(--color-primary-3-rgb), .25),
+      );
+    }
+
+  }
+
+  & .csharp {
+    
+    &__header{
+    // color: rgba(var(--color-primary-2-rgb), 1);
+
+    }
+
+    &__card{
+      &-section {
+        &-title {
+          // color: rgba(var(--color-primary-1-rgb), 1);
+  
+        }
+      }
+    }
+  }
+  
+}

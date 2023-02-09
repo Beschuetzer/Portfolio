@@ -1,0 +1,275 @@
+.u-center-text {
+	text-align: center;
+}
+.u-margin-bottom-small {
+	margin-bottom: $default-font-size;
+	@include respond(tab-port) {
+		margin-bottom: $default-font-size / 2;
+	}
+}
+.u-margin-bottom-medium {
+	margin-bottom: $default-font-size * 2.5;
+	@include respond(tab-port) {
+		margin-bottom: $default-font-size * 2.5 / 2;
+	}
+}
+.u-margin-bottom-large {
+	margin-bottom: $default-font-size * 5;
+	@include respond(tab-port) {
+		margin-bottom: $default-font-size * 5 / 2;
+	}
+}
+.u-margin-bottom-huge {
+	margin-bottom: $default-font-size * 6;
+	@include respond(tab-port) {
+		margin-bottom: $default-font-size * 6 / 2;
+	}
+}
+
+.u-margin-top-small {
+	margin-top: $default-font-size !important;
+	@include respond(tab-port) {
+		margin-top: $default-font-size !important;
+	}
+}
+.u-margin-top-medium {
+	margin-top: $default-font-size * 2.5 !important;
+	@include respond(tab-port) {
+		margin-top: $default-font-size * 1.25 !important;
+	}
+}
+.u-margin-top-large {
+	margin-top: $default-font-size * 5 !important;
+	@include respond(tab-port) {
+		margin-top: $default-font-size * 2.5 !important;
+	}
+}
+.u-margin-top-huge {
+	margin-top: $default-font-size * 6 !important;
+	@include respond(tab-port) {
+		margin-top: $default-font-size * 3 !important;
+	}
+}
+.w-100 {
+	width: 100% !important;
+}
+.h-100 {
+	height: 100% !important;
+}
+.text-align-center {
+	text-align: center !important;
+}
+
+//flexbox
+.flex {
+	display: flex !important;
+}
+.align-center {
+	align-items: center !important;
+}
+.justify-content-center {
+	justify-content: center !important;
+}
+
+//misc
+.unclickable {
+	pointer-events: none !important;
+	overflow: hidden !important;
+
+
+	& .navbar__dropdown {
+		height: 0 !important;
+	}
+
+	& .navbar__button {
+		box-shadow: none;
+	}
+
+	& .navbar__item {
+		box-shadow: none;
+	}
+}
+
+.transparent {
+	background-color: transparent !important;
+	background-image: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+.overflow--hidden {
+	overflow: hidden !important;
+
+	@include respond(nav-switch) {
+		overflow: visible !important;
+	}
+
+	&:not(.navbar--active, .navbar--isAnimating){
+		overflow: visible !important;
+	}
+
+}
+
+.overflow-hidden {
+	overflow: hidden !important;
+}
+
+.sliding {
+	transition: none !important;
+	@extend .hidden;
+}
+
+.transition-none {
+	transition: none !important;
+}
+
+.visible {
+	visibility: visible !important;
+	@extend .full-opacity;
+}
+
+.hidden {
+	visibility: hidden !important;
+	opacity: 0 !important;
+}
+
+.full-opacity {
+	opacity: 1 !important;
+}
+
+.full-screen {
+	@extend .transform-none;
+	position: fixed !important;
+	left: 0 !important;
+	top: 0 !important;
+	width: 100vw !important;
+	height: $carousel-full-screen-item-height !important;
+	z-index: 10000 !important;
+	border: none !important;
+	border-radius: 0 !important;
+	object-fit: contain !important;
+	object-position: center !important;
+	backdrop-filter: blur(50px) sepia(0) brightness(0.25);
+	transition: none !important;
+}
+
+.carousel-transition {
+	transition: transform $animation-duration / 2 $animation-easing-standard !important
+        ;
+}
+
+.d-none {
+	display: none !important;
+}
+
+//Dealing with SiteNav glitch
+.z-index-navbar {
+	z-index: $navbar-full-z-index !important;
+	@include respond(nav-switch) {
+		z-index: $navbar-full-z-index + 2 !important;
+	}
+}
+//content must be higher than navbar for click event to work properly
+.z-index-content {
+	z-index: $navbar-full-z-index + 1 !important;
+}
+
+.z-index-highest {
+	z-index: $navbar-full-z-index + 100 !important;
+}
+
+.scale-1 {
+	transform: scale(1) !important;
+}
+
+.transform-none {
+	transform: translate(0, 0) !important;
+}
+
+.transform-removed {
+	transform: none !important;
+}
+
+.margin-0 {
+	margin: 0 !important;
+}
+
+.margin-top-0 {
+	margin-top: 0 !important;
+}
+
+.margin-top-1 {
+	margin-top: $default-font-size * 1 !important;
+}
+
+.margin-top-2 {
+	margin-top: $default-font-size * 2 !important;
+}
+
+.margin-left-3 {
+	margin-left: $default-font-size * 3 !important;
+}
+
+.margin-bottom-0 {
+	margin-bottom: 0 !important;
+}
+
+
+.margin-bottom-1 {
+	margin-bottom: $default-font-size * 1 !important;
+}
+
+.margin-bottom-2 {
+	margin-bottom: $default-font-size * 2 !important;
+}
+
+.padding-0 {
+	padding: 0 !important;
+
+}
+.padding-top-0 {
+	padding-top: 0 !important;
+}
+
+
+.padding-top-1 {
+	padding-top: $default-font-size * 1 !important;
+}
+
+.padding-top-2 {
+	padding-top: $default-font-size * 2 !important;
+}
+
+.padding-bottom-0 {
+	padding-bottom: 0 !important;
+}
+
+.padding-bottom-1 {
+	padding-bottom: $default-font-size * 1 !important;
+}
+
+.padding-bottom-2 {
+	padding-bottom: $default-font-size * 2 !important;
+}
+//Dealing with SiteNav filter bug on pages like '/bridge'
+// .no-filter {filter: none !important}
+.fill-red {
+	--opacity: .75;
+	fill: rgba(var(--color-primary-red-rgb), var(--opacity)) !important;
+
+	&:hover {
+		--opacity: #{$carousel-fullscreen-button-hover-opacity};
+	}
+}
+
+.fill-primary-1 {
+	fill: rgba(var(--color-primary-1-rgb), 1) !important;
+}
+.fill-primary-2 {
+	fill: rgba(var(--color-primary-2-rgb), 1) !important;
+}
+.fill-primary-3 {
+	fill: rgba(var(--color-primary-3-rgb), 1) !important;
+}
+.fill-primary-4 {
+	fill: rgba(var(--color-primary-4-rgb), 1) !important;
+}

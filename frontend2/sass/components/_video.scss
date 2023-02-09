@@ -1,0 +1,52 @@
+
+.bg-video {
+  opacity: $bg-video-opacity;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // animation: 5s bridge-hero-windshield 1;
+  // animation: 5s bridge-hero-windshield-two infinite;
+  clip-path: $animation-bridge-windshield-two-start;
+  transition: clip-path $bridge-hero-animation-duration  $animation-easing-standard;
+  
+  // &:hover {
+  //   clip-path: $animation-bridge-windshield-two-end;
+
+  // }
+
+  & video {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+  }
+}
+
+
+.fg-video {
+  display: flex;
+  align-items: center;
+  opacity: $bg-video-opacity;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: 
+    opacity $animation-duration $animation-easing-standard,
+  ;
+
+  & video {
+      height: 95%;
+      width: 100%;
+      object-fit: cover;
+  }
+
+  &__children .card__children p{
+    margin: 0;
+  }
+}
+
+
+

@@ -1,0 +1,112 @@
+$top-offset: 1.25vw;
+
+.source-link {
+	&__container {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+
+		&:not(.csharp &) {
+			background-image: linear-gradient(
+				rgba(var(--color-primary-2-rgb), 0.5),
+				rgba(var(--color-primary-1-rgb), 0.5)
+			);
+		}
+	}
+
+	&__source {
+		font-family: $font-family-headers;
+		position: fixed;
+		z-index: $navbar-full-z-index;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		top: calc(#{$page-nav-top});
+		transform: translateY(33%);
+		text-decoration: none;
+		right: calc((100vw - #{$header-inner-width} - 1.25vw) / 2);
+
+		@include respond(nav-switch) {
+			top: auto;
+			transform: translateX(0%);
+			right: auto;
+			position: static;
+		}
+
+		&:nth-of-type(2) {
+			order: 2;
+
+			@include respond(nav-switch) {
+				order: 0;
+			}
+		}
+
+		&-svg {
+			width: $navbar__logo-width;
+			height: $navbar__logo-width;
+			fill: var(--arrow-button-left-fill-hover);
+			opacity: 0.25;
+			transition: fill $animation-duration * 0.25 $animation-easing-modern;
+		}
+
+		&-label {
+			text-align: center;
+			-webkit-touch-callout: none; /* iOS Safari */
+			-webkit-user-select: none; /* Safari 'none' or 'text' here 'all' has issues*/
+			-khtml-user-select: none; /* Konqueror HTML */
+			-moz-user-select: none; /* Old versions of Firefox */
+			-ms-user-select: none; /* Internet Explorer/Edge */
+			user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+			text-shadow: getTextShadow(soft-emboss, $color-primary-resume-4);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: var(--arrow-button-right-fill);
+			font-size: $font-size-four;
+			transition: transform $animation-duration * 0.25 $animation-easing-modern;
+
+			border-radius: 50%;
+			padding: $default-font-size * 0.25 $default-font-size * 0.5;
+			// color: rgba(var(--color-primary-4-rgb), 1);
+			// background-color: rgba(var(--color-primary-4-rgb), 0.1);
+		}
+
+		&:hover &-label {
+			color: var(--arrow-button-right-fill-hover);
+			// color: rgba(var(--color-primary-4-rgb), .5);
+			transform: rotate(0deg);
+		}
+
+		&:hover svg {
+			fill: var(--arrow-button-right-fill);
+			opacity: .33;
+		}
+	}
+
+	&__demo {
+		top: calc(#{$page-nav-top} + #{$navbar__logo-width});
+	}
+
+	&__live {
+		top: calc(#{$page-nav-top} + #{$navbar__logo-width} * 2);
+	}
+}
+
+:is(.csharp, .resume) .source-link__source {
+	&-svg {
+		fill: var(--color-primary-4) !important;
+
+		&:hover {
+			fill: rgba(var(--color-primary-4-rgb), 0.5) !important;
+		}
+	}
+
+	&-label {
+		color: var(--color-primary-4) !important;
+	}
+
+	&:hover .source-link__source-label {
+		color: var(--color-primary-3) !important;
+	}
+}

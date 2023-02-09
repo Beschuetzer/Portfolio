@@ -1,0 +1,9 @@
+.triangle-down {
+	margin-left: $default-font-size * 0.5;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: $default-font-size * 0.33 0 $default-font-size * 0.33
+		$default-font-size * 0.75;
+	border-color: transparent transparent transparent var(--color-primary-1);
+}

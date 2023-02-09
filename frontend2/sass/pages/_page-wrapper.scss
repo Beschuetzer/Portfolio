@@ -1,0 +1,17 @@
+.page-wrapper {
+    padding-top: $page-wrapper-padding-top-spacing;
+    transition: all $animation-duration ease;
+    // padding-top: 3.5rem;
+
+    @include respond(nav-switch) {
+		padding-top: calc(var(--header-height) + #{$default-font-size} * 1);
+	}
+
+    @include respond(mobile) {
+        padding-top: calc(var(--header-height) + #{$default-font-size} * 1);
+    }
+    
+    & > section:first-of-type {
+        margin-top: $page-wrapper-padding-top-spacing;
+    }
+}

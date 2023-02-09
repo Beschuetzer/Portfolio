@@ -1,0 +1,146 @@
+.percent-bar {
+	&__labels {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		align-items: flex-end;
+		justify-items: center;
+		align-items: center;
+		z-index: 10;
+		transform: translateY(33%);
+		line-height: 1;
+
+		@include respond(nav-break) {
+			display: none;
+		}
+
+		& > span:first-child {
+			justify-self: flex-start;
+		}
+		& > span:last-child {
+			justify-self: flex-end;
+		}
+	}
+
+	&__outer {
+		backface-visibility: hidden;
+		position: relative;
+		background-color: var(--color-primary-4);
+		height: $default-font-size;
+		transform: scale(0);
+		transform-origin: left;
+		transition: transform $animation-duration * 2
+			cubic-bezier(0.68, -0.33, 0.32, 1.33);
+
+		@include respond(nav-break) {
+			margin-left: $default-font-size;
+		}
+
+		&-left,
+		&-center,
+		&-right {
+			z-index: 10000;
+			position: absolute;
+			background-color: var(--color-primary-1);
+			width: $default-font-size * 0.1;
+			height: $default-font-size;
+		}
+
+		&-left {
+			top: 0;
+			left: 0%;
+			transform: translate(-50%, 0%);
+		}
+		&-center {
+			bottom: 0;
+			left: 50%;
+			transform: translate(-50%, 0%);
+		}
+		&-right {
+			bottom: 0;
+			right: 0%;
+			transform: translate(0%, 0%);
+		}
+
+		//Styling skills labels
+		& .percent-bar__labels {
+			opacity: 0;
+			display: grid;
+			transform: translate(0);
+			position: absolute;
+			top: 0;
+			left: 0;
+			line-height: 1;
+			height: 100%;
+			width: 100%;
+			padding: 0rem $default-font-size * 0.25;
+			transition: opacity $animation-duration * 1 $animation-easing-standard
+				$animation-duration;
+
+			&:hover {
+				@include respond(nav-break) {
+					opacity: 0.5;
+				}
+			}
+
+			@include respond(nav-switch) {
+				&:hover + .percent-bar-inner {
+					transform: scaleY(calc(5 / 3));
+				}
+			}
+		}
+
+		&:hover .percent-bar__value {
+			opacity: 1;
+		}
+	}
+
+	&__inner {
+		position: relative;
+		backface-visibility: hidden;
+		box-shadow: 0 $default-font-size * 0.5 $default-font-size * 1 0
+			$navbar-box-shadow-resume-color;
+		background-color: var(--color-primary-2);
+		height: $default-font-size;
+		opacity: 0;
+		border: $default-font-size * 0.1 solid var(--color-primary-4);
+		transition: opacity $animation-duration * 4 $animation-easing-standard
+				$animation-duration * 1,
+			transform $animation-duration * 2 $animation-easing-standard-easeInOutBack;
+		// &:hover {
+		// }
+		&:hover .skills__value {
+			transform: translate(-50%, -50%) scaleY(calc(3 / 5));
+			opacity: 1;
+		}
+	}
+
+	&__value {
+		opacity: 0;
+		position: absolute;
+		top: 50%;
+		right: $default-font-size * 0.25;
+		transform: translate(-0%, -50%);
+		font-size: $font-size-three;
+		transition: opacity $animation-duration * 1 $animation-easing-standard;
+		backface-visibility: hidden;
+	}
+}
+
+.csharp .percent-bar {
+	&__labels {
+		opacity: 1;
+		padding: 0;
+		font-size: $font-size-three;
+		top: -$default-font-size;
+	}
+
+	&__outer {
+		transform: scale(1);
+		margin-top: $default-font-size * 0.5;
+		grid-column: 1/-1;
+	}
+
+	&__inner {
+		opacity: 1;
+	}
+}

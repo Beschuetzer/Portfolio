@@ -1,0 +1,72 @@
+.heading{
+    font-family: $font-family-headers;
+    &--one {
+        font-size: $font-size-nine;
+        font-weight: 100;
+    }
+    &--two {
+        font-size:  $font-size-eight;
+        font-weight: 100;
+    }
+    &--three {
+        font-size:  $font-size-seven;
+        font-weight: 100;
+    }
+    &--four {
+        font-size: $font-size-six;
+    }
+    &--five {
+        font-size: $font-size-five;
+    }
+    &--six {
+        font-size: $font-size-four;
+    }
+    &--seven {
+        font-size: $font-size-three;
+    }
+    &--eight {
+        font-size: $font-size-two;
+    }
+    &--nine {
+        font-size: $font-size-one;
+    }
+}
+    
+.paragraph {
+    font-family: $font-family-text;
+    margin-top: $default-font-size;
+    &--one {
+        font-size: $font-size-eight;
+    }
+    &--two {
+        font-size: $font-size-seven;
+    }
+    &--three {
+        font-size: $font-size-six;
+    }
+    &--four {
+        font-size: $font-size-five;
+    }
+    &--five {
+        font-size: $font-size-four;
+    }
+    &--six {
+        font-size: $font-size-three;
+    }
+    &--seven {
+        font-size: $font-size-two;
+    }
+    &--eight {
+        font-size: $font-size-one;
+    }
+}
+
+.code {
+    background: #111;
+    box-shadow: 0 0 10px #08c, inset 0 0 10px #000;
+    border: 0;
+    border-radius: 9px;
+    color: #fff !important;
+}
+
+// <pre class="code"><span class="lightblue">npm</span> install -g <span class="gold">browserify</span></pre>

@@ -1,0 +1,79 @@
+.video-player{
+  &__play, &__pause, &__close, &__stop,	&__restart {
+		cursor: pointer;
+		opacity: 0;
+		// visibility: hidden;
+		top: $card-pause-and-stop-top;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: $card-pause-and-stop-width;
+		width: $card-pause-and-stop-width;
+		fill: var(--color-primary-2);
+		z-index: 10;
+		position: absolute;
+		transition: opacity $animation-duration $animation-easing-standard,
+			fill $animation-duration $animation-easing-standard
+		;		
+	}
+
+	&__play {
+		top: 50%;
+	}
+
+	&__play-parent, &__pause-parent, &__close-parent, &__stop-parent,	&__restart-parent {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: 50%;
+		width: 50%;
+		position: absolute;
+	}
+
+
+	& :is(.video-player__pause, .video-player__stop, .video-player__restart, .video-player__play, .video-player__close):is(:active, :focus) {
+		fill: var(--color-primary-4);
+	}
+
+	& :is(.video-player__stop-parent, .video-player__pause-parent, .video-player__restart-parent, .video-player__play-parent, .video-player__close-parent):is(:active, :focus) svg {
+		visibility: visible;
+		fill: var(--color-primary-4);
+		transition:
+			opacity $animation-duration $animation-easing-standard,
+		;
+	}	
+
+	&__play {
+		width: 100%;
+		height: 100%;
+	}
+
+	&__pause {
+		left: 20%;
+		width: $card-pause-and-stop-width;
+		height: $card-pause-and-stop-width;
+	}
+
+	&__stop {
+		left: 40%;
+		width: $card-pause-and-stop-width;
+		height: $card-pause-and-stop-width;
+	}
+
+	&__close {
+		left: 80%;
+	}
+
+	&__restart {
+		left: 60%;
+		width: $card-pause-and-stop-width * .75;
+		height: $card-pause-and-stop-width * .75;
+	}
+
+	&__current-svg {
+		z-index: 10;
+		opacity: $card-initial-opacity;
+		// visibility: visible;
+	}
+
+	
+}
