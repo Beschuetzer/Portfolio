@@ -38,28 +38,29 @@ export const getRepositories = createAsyncThunk(
   'general/getRepositories',
   async () => {
     const query = 
-      `query {
-        viewer {
-          repositories(first:100) {
-            nodes {
-              createdAt
-              description
-              name
-              updatedAt
-              repositoryTopics(first:100) {
-                nodes {
-                  topic {
-                    name
-                  }
+    `query {
+      viewer {
+        repositories(first:100) {
+          nodes {
+            createdAt
+            description
+            name
+            updatedAt
+            repositoryTopics(first:100) {
+              nodes {
+                topic {
+                  name
                 }
               }
-              homepageUrl
-              url
             }
+            homepageUrl
+            url
           }
         }
-      }`;
-    return github(query);
+      }
+    }`;
+    const response = await github(query);
+    return  response?.data.viewer.repositories.nodes;
   }
 )
 //#endregion
