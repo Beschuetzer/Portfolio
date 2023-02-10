@@ -3,11 +3,9 @@ import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
 import { capitalize } from "../../../helpers";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-
 import { bridgeSectionNames, BridgeSectionLink } from "../../../pages";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../../slices/bridgeSlice";
 import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../../slices/generalSlice";
-import { RootState } from "../../../store";
 import { DEFAULT_FONT_SIZE, HIDDEN_CLASSNAME } from "../../constants";
 import { scrollToSection } from "../../utils";
 import { setHeaderHeaderCSSPropertyValue } from "../utils";
@@ -251,7 +249,10 @@ export const PageNav: React.FC<PageNavProps> = ({
 		if (match.url.trim() === "/")
 			pageNavElement.classList.add(HIDDEN_CLASSNAME);
 		if (!isMobile) return;
-		setPageNavMinWidth(pageNavElement);
+
+		setTimeout(() => {
+			setPageNavMinWidth(pageNavElement);
+		}, 1)
 	}, [previousUrl, pageNavElement, isMobile, match]);
 
 	useEffect(() => {
