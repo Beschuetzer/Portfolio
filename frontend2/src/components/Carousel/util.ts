@@ -76,12 +76,12 @@ export function setArrowButtonsHiddenClass(
 ) {
 	const leftArrow = leftArrowRef.current as any;
 	const rightArrow = rightArrowRef.current as any;
+	if (!leftArrow || !rightArrow) return;
+
 	if (currentTranslationFactor === 0) {
 		leftArrow.classList.add(HIDDEN_CLASSNAME);
 		return rightArrow.classList.remove(HIDDEN_CLASSNAME);
 	}
-
-	if (!leftArrow || !rightArrow) return;
 
 	leftArrow.classList.remove(HIDDEN_CLASSNAME);
 	rightArrow.classList.remove(HIDDEN_CLASSNAME);

@@ -183,7 +183,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 				const itemToOpen = items[nthItemOpen];
 				const imageOrVideo = itemToOpen.children[0] as HTMLElement;
 				itemToOpen?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
-				imageOrVideo.classList.add(FULLSCREEN_CLASSNAME);
+				imageOrVideo.classList.remove(FULLSCREEN_CLASSNAME);
 
 				let newItems = [...itemsToRenderFullScreen];
 				if (!itemsToRenderFullScreen.includes(nthItemOpen))
