@@ -5,6 +5,7 @@ React best practices re-work (branch = sitenav_rework)
     -skills popup not working
     -infinite LoadingSpinner (after clicking About)
 
+  -make SkillsPopup title (section with close button) absolutely postioned
   -re-work Carousel (should be pure re-useable component)
   -re-work PageNav to better track the filling (fill should start when section is roughly centerd in the middle of the viewPort)
   -c-sharp layout seems to have embedded <p> tags (see warning)
