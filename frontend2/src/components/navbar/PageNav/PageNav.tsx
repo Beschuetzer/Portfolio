@@ -8,7 +8,7 @@ import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } fr
 import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../../slices/generalSlice";
 import { DEFAULT_FONT_SIZE, HIDDEN_CLASSNAME } from "../../constants";
 import { scrollToSection } from "../../utils";
-import { setHeaderHeaderCSSPropertyValue } from "../utils";
+import { setHeaderHeightCSSPropertyValue } from "../utils";
 import {
 	resetGradientPercents,
 	setBridgeColors,
@@ -87,7 +87,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 
 	//#region Side FX
 	useEffect(() => {
-		setHeaderHeaderCSSPropertyValue();
+		setHeaderHeightCSSPropertyValue();
 	})
 
 	useEffect(() => {
@@ -302,12 +302,12 @@ export const PageNav: React.FC<PageNavProps> = ({
 			return (
 				<li key={index} className={`${cssClass}__section-group`}>
 					<h2
-						onClick={(e: any) => {
+						onClick={(e: any) => {				
 							scrollToSection(
 								document.getElementById(
 									(e.currentTarget as any)?.textContent.toLowerCase().replace(' ', '-'),
 								) as HTMLElement,
-								-DEFAULT_FONT_SIZE * 17.5,
+								-DEFAULT_FONT_SIZE * 75,
 							);
 						}}
 						className={`${cssClass}__section ${cssClass}__section-${sectionName}`}>

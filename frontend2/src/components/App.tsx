@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
-import { Howl } from "howler";
 
 import {
 	ABOUT_URL,
@@ -17,12 +16,9 @@ import { PageNav } from "./navbar/PageNav/PageNav";
 import { NavToggler } from "./navbar/NavToggler";
 import "../css/style.css";
 import { GithubButton } from "./GithubButton";
-import soundsSpriteMp3 from "../sounds/soundsSprite.mp3";
-import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
 import { keypressHandler } from "./utils";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer, Home, Resume } from "../pages";
-import { LoadedSounds, setSounds } from "../slices/soundsSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { isMobileSelector, setIsMobile, setViewPortWidth } from "../slices/generalSlice";
 

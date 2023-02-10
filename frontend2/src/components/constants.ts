@@ -91,36 +91,6 @@ export const HEADER_HEIGHT_CSS_PROPERTY_NAME = '--header-height';
 //#endregion
 
 //#region Breakpoint Stuff
-export const headerTogglerWidth = parseFloat(
-	computedStyle.getPropertyValue("--header-toggler-width"),
-);
-export const smallFontMaxWidth = parseFloat(
-	computedStyle.getPropertyValue("--small-font-max-width"),
-);
-export const navBreakMaxWidth = parseFloat(
-	computedStyle.getPropertyValue("--nav-break-max-width"),
-);
-export const phoneMaxWidth = parseFloat(
-	computedStyle.getPropertyValue("--phone-max-width"),
-);
-export const tabPortMaxWidth = parseFloat(
-	computedStyle.getPropertyValue("--tab-port-max-width"),
-);
-export const tabLandMaxWidth = parseFloat(
-	computedStyle.getPropertyValue("--tab-land-max-width"),
-);
-export const navSwitchWidth = parseFloat(
-	computedStyle.getPropertyValue("--nav-switch-width"),
-);
-export const largerThanNavSwitchWidth = parseFloat(
-	computedStyle.getPropertyValue("--larger-than-nav-switch"),
-);
-export const bigDesktopPixelMin = parseFloat(
-	computedStyle.getPropertyValue("--big-desktop-min-width"),
-);
-export const siteNavOriginalButtonWidth = computedStyle.getPropertyValue(
-	"--site-nav-button-width",
-);
 export const bridgeSectionHeightDefault = computedStyle.getPropertyValue(
 	"--bridge-section-height",
 );
@@ -133,36 +103,6 @@ export const carouselGridWidth = computedStyle.getPropertyValue(
 export const quotePopupTransformDefault = computedStyle.getPropertyValue(
 	"--quote-popup-transform-default",
 );
-
-const offset = 0.00000000000001;
-export const viewPortPixelToRem: {
-  [wide: string]: {
-    pixelsToRem: number;
-    max: number;
-    min: number;
-  };
-} = {
-  wide: {
-    pixelsToRem: 12,
-    max: 10000,
-    min: bigDesktopPixelMin * 16,
-  },
-  full: {
-    pixelsToRem: 10,
-    max: (bigDesktopPixelMin - offset) * 16,
-    min: (tabPortMaxWidth + offset) * 16,
-  },
-  tabPort: {
-    pixelsToRem: 9,
-    max: tabPortMaxWidth * 16,
-    min: (navBreakMaxWidth + offset) * 16,
-  },
-  navBreak: {
-    pixelsToRem: 8,
-    max: navBreakMaxWidth * 16,
-    min: 0,
-  },
-};
 
 export const EMAIL = "adam.j.major@gmail.com";
 const SUBJECT = "";
@@ -215,9 +155,7 @@ export type ArrowButtonDirection = "left" | "right";
 
 //#region Styling Stuff
 // this is in rem
-export const DEFAULT_FONT_SIZE = parseFloat(
-	computedStyle.getPropertyValue("--default-font-size"),
-);
-console.log({DEFAULT_FONT_SIZE});
+export const DEFAULT_FONT_SIZE = 1.4; //this is in rem
+console.log({computedStyle});
 
 //#endregion

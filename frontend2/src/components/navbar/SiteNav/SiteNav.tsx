@@ -19,7 +19,7 @@ import {
 	NAVBAR_DEFAULT_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
-	setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue,
+	setHeaderHeightCSSPropertyValue,
 } from "../utils";
 import {
 	changePage,

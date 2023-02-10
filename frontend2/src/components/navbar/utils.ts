@@ -10,7 +10,7 @@ export const NAVBAR_CONTENT_CLASSNAME = `${NAVBAR_CLASSNAME}__content`;
 export const NAVBAR_DEFAULT_CLASSNAME = `${NAVBAR_CLASSNAME} ${NAVBAR_Z_INDEX_CLASSNAME}`;
 
 
-export function setHeaderHeaderCSSPropertyValue(valueToUse = -1) {
+export function setHeaderHeightCSSPropertyValue(valueToUse = -1) {
 	let newHeaderHeight = valueToUse;
 
 	const headerTogglerActive = document.querySelector(`.${HEADER_TOGGLER_ACTIVE_CLASSNAME}`);
@@ -19,7 +19,7 @@ export function setHeaderHeaderCSSPropertyValue(valueToUse = -1) {
 		const header = document.querySelector(`${HEADER_ID}`) as HTMLElement;
 		newHeaderHeight = header.getBoundingClientRect().height;
 	}
-
+	
 	document.documentElement.style.setProperty(
 		HEADER_HEIGHT_CSS_PROPERTY_NAME,
 		`${newHeaderHeight}px`,

@@ -3,13 +3,8 @@ import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { headerHeightSelector, isSiteNavMinimizedSelector, setIsSiteNavMinimized, viewPortWidthSelector } from "../../slices/generalSlice";
-import {
-	viewPortPixelToRem,
-	headerTogglerWidth,
-} from "../constants";
-import { SITE_NAV_MINIMAL_CLASSNAME } from "./SiteNav/SiteNav";
 import { HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_TOGGLER_CLASSNAME, HEADER_TOGGLER_CSS_CLASSNAME } from "./SiteNav/utils";
-import { setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue } from "./utils";
+import { setHeaderHeightCSSPropertyValue } from "./utils";
 
 interface NavTogglerProps {}
 
@@ -21,35 +16,15 @@ export const NavToggler: React.FC<NavTogglerProps> = () => {
 
 	//Adjusting NavToggler height to match header height as it changes on resizes
 	useEffect(() => {
-		const getPixelToRemConversionToUse = () => {
-			for (const [key, value] of Object.entries(viewPortPixelToRem)) {
-				if (
-					viewPortWidth >= viewPortPixelToRem[key].min &&
-					viewPortWidth <= viewPortPixelToRem[key].max
-				)
-					return viewPortPixelToRem[key].pixelsToRem;
-			}
-			return viewPortPixelToRem.full.pixelsToRem;
-		};
-
-		const pixelToRemConversionToUse = getPixelToRemConversionToUse();
+		const pixelToRemConversionToUse = 10;
 		const headerHeightInRem = headerHeight / pixelToRemConversionToUse;
 		const newWidth = `${
-			headerHeightInRem + parseFloat(headerTogglerWidth as any)
-		}rem`;
+			headerHeightInRem}rem`;
+		
 		document.documentElement.style.setProperty(
 			HEADER_TOGGLER_CSS_CLASSNAME,
 			newWidth,
 		);
-
-		//prevents bug regarding toggler being closed when going above nav-switch breakpoint
-		if (viewPortWidth >= viewPortPixelToRem?.navBreak.max) {
-			const toggler = document.querySelector(`.header-toggler`) as HTMLElement;
-			const siteNav = document.querySelector(`.site-nav`) as HTMLElement;
-			toggler.classList.remove(HEADER_TOGGLER_ACTIVE_CLASSNAME);
-			siteNav.classList.remove(SITE_NAV_MINIMAL_CLASSNAME);
-		}
-
 	}, [headerHeight, viewPortWidth]);
 
 	const handleOnClick = (e: MouseEvent) => {
