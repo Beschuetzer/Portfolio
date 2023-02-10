@@ -35,7 +35,7 @@ export const SkillsItem: React.FC<SkillsItemProps> = ({
 			return;
 
 		skillsPopupDiv?.classList?.toggle(`${SKILLS_CLASSNAME}-popup--active`);
-		dispatch(clickSkill(e.target as HTMLElement));
+		dispatch(clickSkill(((e.target as HTMLDivElement)?.textContent || '')));
 		setTimeout(() => toggleScrollability(false), 750);
 	};
 

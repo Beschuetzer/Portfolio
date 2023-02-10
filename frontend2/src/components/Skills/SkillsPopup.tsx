@@ -3,21 +3,21 @@ import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { SkillsPopupName } from "./SkillsPopupName";
 import { addSpaceAfterPunctuationMarks, toggleScrollability } from "../utils";
-import { Repository, SKILLS_CLASSNAME } from "./utils";
+import { SKILLS_CLASSNAME } from "./utils";
 import { clickSkill, addRepoToReposToDisplay, clickedSkillSelector, reposToDisplaySelector } from "../../slices/resumeSlice";
-import { RootState } from "../../store";
 import { checkForParentOfType, capitalize } from "../../helpers";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch } from "../../hooks";
 import { reposSelector, isMobileSelector } from "../../slices/generalSlice";
+import { useSelector } from "react-redux";
 
 interface SkillsPopupProps {}
 
 export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 	const dispatch = useAppDispatch();
-	const repos = useAppSelector(reposSelector);
-	const reposToDisplay = useAppSelector(reposToDisplaySelector);
-	const clickedSkill = useAppSelector(clickedSkillSelector);
-	const isMobile = useAppSelector(isMobileSelector);
+	const repos = useSelector(reposSelector);
+	const reposToDisplay = useSelector(reposToDisplaySelector);
+	const clickedSkill = useSelector(clickedSkillSelector);
+	const isMobile = useSelector(isMobileSelector);
 	const skillsPopupDiv = document.querySelector("#skillsPopup") as HTMLElement;
 	const resetReposDelay = 500;
 
@@ -33,7 +33,7 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 			if (isBodyClick) {
 				skillsPopupDiv?.classList?.remove(`${SKILLS_CLASSNAME}-popup--active`);
 				setTimeout(() => {
-					dispatch(clickSkill(null));
+					dispatch(clickSkill(""));
 					dispatch(addRepoToReposToDisplay([]));
 				}, resetReposDelay);
 			}
@@ -136,7 +136,7 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 		skillsPopupDiv?.classList?.remove(`${SKILLS_CLASSNAME}-popup--active`);
 		toggleScrollability();
 		setTimeout(() => {
-			dispatch(clickSkill(null));
+			dispatch(clickSkill(""));
 			dispatch(addRepoToReposToDisplay([]));
 		}, resetReposDelay);
 	};
@@ -277,9 +277,10 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 				</div>
 			);
 		}
-		return reposToDisplay.sort((a: any, b: any) => {
-			const firstItemsDate = a?.[keys?.[2]];
-			const secondItemsDate = b?.[keys?.[2]];
+		return [...reposToDisplay]
+		.sort((a: any, b: any) => {
+			const firstItemsDate = a?.[keys?.[3]] || a?.[keys?.[2]];
+			const secondItemsDate = b?.[keys?.[3]] || b?.[keys?.[2]];
 			return firstItemsDate > secondItemsDate ? -1 : firstItemsDate < secondItemsDate ? 1 : 0;
 		}).map((repo: any) => {
 			if (isMobile) {

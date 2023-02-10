@@ -65,21 +65,21 @@ export const App: React.FC<AppProps> = ({
 		setViewPortWidth,
 	]);
 
-	//Loading Sounds, etc
-	useEffect(() => {
-		const sounds = new Howl({
-			src: [soundsSpriteMp3, soundsSpriteOgg],
-			volume: 0.1,
-			sprite: {
-				doorFast: [0, 1500],
-				doorNormal: [1500, 1000],
-				sonicBoom: [2500, 1000],
-				siteNavOpen: [3500, 1000],
-				siteNavClose: [4500, 1000],
-			},
-		});
-		dispatch(setSounds(sounds as unknown as LoadedSounds));
-	}, [setSounds]);
+	// //Loading Sounds, etc
+	// useEffect(() => {
+	// 	const sounds = new Howl({
+	// 		src: [soundsSpriteMp3, soundsSpriteOgg],
+	// 		volume: 0.1,
+	// 		sprite: {
+	// 			doorFast: [0, 1500],
+	// 			doorNormal: [1500, 1000],
+	// 			sonicBoom: [2500, 1000],
+	// 			siteNavOpen: [3500, 1000],
+	// 			siteNavClose: [4500, 1000],
+	// 		},
+	// 	});
+	// 	dispatch(setSounds(sounds as unknown as LoadedSounds));
+	// }, [setSounds]);
 
 	return (
 		<Router history={history}>

@@ -2,7 +2,6 @@ React best practices re-work (branch = sitenav_rework)
   -bugs to fix after changes:
     -PageNav not working
     -Carousel styling grid
-    -skills popup not working
     -infinite LoadingSpinner (after clicking About)
 
   -make SkillsPopup title (section with close button) absolutely postioned

@@ -33,19 +33,15 @@ export const resumeSlice = createSlice({
       }
       state.reposToDisplay = [...state.reposToDisplay, action.payload];
     },
-    clickSkill: (state, action: PayloadAction<HTMLElement | null>) => {
+    clickSkill: (state, action: PayloadAction<string>) => {
       const skillsToReplace: SkillsToReplaceMap = {
         'c#': 'csharp',
         'socket.io': 'socketio',
         'dsa': 'data-structures-and-algorithms',
       };
       
-      const target = action.payload;
-      let skill = null;
-      if (target) {
-        skill = (target as any)?.textContent?.replace(':', '').toLowerCase();
-        if (skillsToReplace[skill]) skill = skillsToReplace[skill];
-      }
+      let skill = action.payload?.replace(':', '').toLowerCase();
+      if (skillsToReplace?.[skill]) skill = skillsToReplace[skill];
       state.clickedSkill = skill;
     },
     setSectionsToSkipAnimation: (state, action: PayloadAction<string[]>) => {
