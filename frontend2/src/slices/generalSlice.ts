@@ -3,7 +3,6 @@ import github from '../apis/github';
 import { RootState } from '../store';
 
 export type GeneralSliceState = {
-  computedStyles: string;
   currentlyViewingImage: string;
   error: string;
   headerHeight: number;
@@ -16,7 +15,6 @@ export type GeneralSliceState = {
 }
 
 export const generalSliceInitialState: GeneralSliceState = {
-  computedStyles: "",
   currentlyViewingImage: '',
   error: '',
   headerHeight: 0,
@@ -71,9 +69,6 @@ export const generalSlice = createSlice({
   name: 'general',
   initialState: generalSliceInitialState,
   reducers: {
-    setComputedStyles: (state, action: PayloadAction<string>) => {
-      state.computedStyles = action.payload;
-    },
     setCurrentlyViewingCarouselImage: (state, action: PayloadAction<string>) => {
       state.currentlyViewingImage = action.payload;
     },
@@ -110,7 +105,6 @@ export const generalSlice = createSlice({
 });
 
 //#region Selectors
-export const computedStylesSelector = (state: RootState): CSSStyleDeclaration => JSON.parse(state[generalSlice.name].computedStyles);
 export const currentlyViewingImageSelector = (state: RootState) => state[generalSlice.name].currentlyViewingImage;
 export const headerHeightSelector = (state: RootState) => state[generalSlice.name].headerHeight;
 export const isMobileSelector = (state: RootState) => state[generalSlice.name].isMobile;
@@ -122,7 +116,6 @@ export const viewPortWidthSelector = (state: RootState) => state[generalSlice.na
 //#endregion
 
 export const { 
-  setComputedStyles,
   setCurrentlyViewingCarouselImage,
   setHeaderHeight,
   setIsMobile,

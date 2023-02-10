@@ -20,7 +20,7 @@ import { keypressHandler } from "./utils";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer, Home, Resume } from "../pages";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { isMobileSelector, setComputedStyles, setIsMobile, setViewPortWidth } from "../slices/generalSlice";
+import { isMobileSelector, setIsMobile, setViewPortWidth } from "../slices/generalSlice";
 
 interface AppProps {}
 
@@ -50,8 +50,6 @@ export const App: React.FC<AppProps> = ({
 		window.addEventListener("resize", windowResize);
 		window.addEventListener("keydown", keypressHandler);
 
-		dispatch(setComputedStyles(JSON.stringify(window.getComputedStyle(document.documentElement))));
-		
 		return () => {
 			window.removeEventListener("resize", windowResize);
 			window.removeEventListener("keydown", keypressHandler);

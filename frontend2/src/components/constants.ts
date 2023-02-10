@@ -88,15 +88,13 @@ export const AUDIO_PLAYER_TOGGLER_ROTATION_CLOSED_CSS_PROPERTY_NAME =
 export const AUDIO_PLAYER_TOGGLER_ROTATION_OPEN_CSS_PROPERTY_NAME =
 	"--audio-player-toggler-rotation-open";
 export const HEADER_HEIGHT_CSS_PROPERTY_NAME = '--header-height';
+export const BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME = "--bridge-section-height";
+export const BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME = "--bridge-section-padding";
+export const CAROUSEL_GRID_WIDTH_CSS_PROPERTY_NAME = "--carousel-grid-width";
+export const QUOTE_POPUP_TRANSFORM_DEFAULT_CSS_PROPERTY_NAME = "--quote-popup-transform-default";
 //#endregion
 
 //#region Breakpoint Stuff
-export const bridgeSectionHeightDefault = computedStyle.getPropertyValue(
-	"--bridge-section-height",
-);
-export const bridgeSectionPaddingDefault = computedStyle.getPropertyValue(
-	"--bridge-section-padding",
-);
 export const carouselGridWidth = computedStyle.getPropertyValue(
 	"--carousel-grid-width",
 );

@@ -1,4 +1,4 @@
-import { ANIMATION_DURATION, BODY_BACKGROUND_CSS_CLASSNAME, bridgeSectionHeightDefault, bridgeSectionPaddingDefault, computedStyle, HIDDEN_CLASSNAME, Reference } from "../../../components/constants";
+import { ANIMATION_DURATION, BODY_BACKGROUND_CSS_CLASSNAME, BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME, BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME, computedStyle, HIDDEN_CLASSNAME, Reference } from "../../../components/constants";
 import { scrollToSection } from "../../../components/utils";
 import { getLinearPercentOfMaxMatchWithinRange } from "../../../helpers";
 import { LoadedSounds } from "../../../slices/soundsSlice";
@@ -22,34 +22,39 @@ export const bridgeSectionNames = [
   "Lessons",
 ];
 
-export const COLOR_PRIMARY_BRIDGE_1 = computedStyle.getPropertyValue('--color-primary-bridge-1');
-export const COLOR_PRIMARY_BRIDGE_2 = computedStyle.getPropertyValue('--color-primary-bridge-2');
-export const COLOR_PRIMARY_BRIDGE_3 = computedStyle.getPropertyValue('--color-primary-bridge-3');
-export const COLOR_PRIMARY_BRIDGE_4 = computedStyle.getPropertyValue('--color-primary-bridge-4');
+export const COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME = '--color-primary-bridge-1';
+export const COLOR_PRIMARY_BRIDGE_2_CSS_PROPERTY_NAME = '--color-primary-bridge-2';
+export const COLOR_PRIMARY_BRIDGE_3_CSS_PROPERTY_NAME = '--color-primary-bridge-3';
+export const COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME = '--color-primary-bridge-4';
 
-export const BRIDGE_PAGE_NAV_LINKS_COLORS: {
-  [key: string]: {
-    normal: string,
-    hover: string,
-  }
-} = {
-  0: {
-    normal: COLOR_PRIMARY_BRIDGE_4,
-    hover: COLOR_PRIMARY_BRIDGE_1,
-  },
-  1: {
-    normal: COLOR_PRIMARY_BRIDGE_1,
-    hover: COLOR_PRIMARY_BRIDGE_4,
-  },
-  2: {
-    normal: COLOR_PRIMARY_BRIDGE_1,
-    hover: COLOR_PRIMARY_BRIDGE_2,
-  },
-  3: {
-    normal: COLOR_PRIMARY_BRIDGE_4,
-    hover: COLOR_PRIMARY_BRIDGE_1,
-  },
+type BridgePageNavLinkColors = {
+  normal: () => string;
+  hover: () => string;
 }
+export const BRIDGE_PAGE_NAV_LINKS_COLORS: BridgePageNavLinkColors[] = [
+  {
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+  },
+  {
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+  },
+  {
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_2_CSS_PROPERTY_NAME),
+  },
+  {
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+  },
+];
+
+export function getComputedStyleCustom(propertyName: string) {
+  if (!propertyName) return '';
+  return window.getComputedStyle(document.documentElement).getPropertyValue(propertyName);
+}
+
 export const setLinearGradientCssCustomProp = () => {
     const newLinearGradient = `
       linear-gradient(to right, var(--color-primary-1), var(--color-primary-1));
@@ -99,10 +104,10 @@ export const showBridgeHero = (heroMore: Reference) => {
 }
 
 export const resetBridgeHero = (heroMore: Reference) => {
+  const computedStyles = window.getComputedStyle(document.documentElement);
   document.querySelector('.page-nav')?.classList?.add(HIDDEN_CLASSNAME);
-  document.documentElement.style.setProperty('--bridge-section-height', bridgeSectionHeightDefault);
-  document.documentElement.style.setProperty('--bridge-section-padding', bridgeSectionPaddingDefault);
-  
+  document.documentElement.style.setProperty(BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME, computedStyles.getPropertyValue(BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME));
+  document.documentElement.style.setProperty(BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME, computedStyles.getPropertyValue(BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME));
 
   heroMore.current?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
   (heroMore.current?.parentNode as HTMLElement)?.classList.remove(BRIDGE_HERO_CLICKED_CLASSNAME);

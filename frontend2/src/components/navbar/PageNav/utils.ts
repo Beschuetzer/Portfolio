@@ -103,10 +103,10 @@ export const setBridgeColors = (
 	}
 
 	//change CSS color var depending on currentBridgeSection
-	const newNormalValue = `--bridge-page-nav-link-color: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].normal}`;
+	const newNormalValue = `--bridge-page-nav-link-color: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].normal()}`;
 	document.documentElement.style.cssText += newNormalValue;
 
-	const newHoverValue = `--bridge-page-nav-link-color-hover: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].hover}`;
+	const newHoverValue = `--bridge-page-nav-link-color-hover: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].hover()}`;
 	document.documentElement.style.cssText += newHoverValue;
 };
 

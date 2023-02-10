@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { BRIDGE_CLASSNAME, COLOR_PRIMARY_BRIDGE_1, COLOR_PRIMARY_BRIDGE_4, COLOR_PRIMARY_BRIDGE_2, COLOR_PRIMARY_BRIDGE_3 } from "../pages";
+import { BRIDGE_CLASSNAME, COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_2_CSS_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_3_CSS_PROPERTY_NAME, getComputedStyleCustom } from "../pages";
 import { bridgeSectionsSelector, clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector, setBridgeSections, setCurrentBridgeSection } from "../slices/bridgeSlice";
 import { RootState } from "../store";
 import { ANIMATION_DURATION, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
@@ -79,67 +79,67 @@ export const ArrowButton: React.FC<ArrowButtonProps> = ({
 		const handleArrowColors = () => {
 			const arrowColors: {
         [key: string]: {
-          normal: {left: string, right: string},
-          hover: {left: string, right: string},
+          normal: {left: () => string, right: () => string},
+          hover: {left: () => string, right: () => string},
         },
       } = {
 				0: {
 					normal: {
-						left: COLOR_PRIMARY_BRIDGE_1,
-						right: COLOR_PRIMARY_BRIDGE_1,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
 					},
 					hover: {
-						left: COLOR_PRIMARY_BRIDGE_4,
-						right: COLOR_PRIMARY_BRIDGE_4,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
 					},
 				},
 				1: {
 					normal: {
-						left: COLOR_PRIMARY_BRIDGE_1,
-						right: COLOR_PRIMARY_BRIDGE_2,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
 					},
 					hover: {
-						left: COLOR_PRIMARY_BRIDGE_4,
-						right: COLOR_PRIMARY_BRIDGE_1,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
 					},
 				},
 				2: {
 					normal: {
-						left: COLOR_PRIMARY_BRIDGE_1,
-						right: COLOR_PRIMARY_BRIDGE_3,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
 					},
 					hover: {
-						left: COLOR_PRIMARY_BRIDGE_2,
-						right: COLOR_PRIMARY_BRIDGE_4,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
 					},
 				},
 				3: {
 					normal: {
-						left: COLOR_PRIMARY_BRIDGE_1,
-						right: COLOR_PRIMARY_BRIDGE_1,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
 					},
 					hover: {
-						left: COLOR_PRIMARY_BRIDGE_4,
-						right: COLOR_PRIMARY_BRIDGE_4,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
 					},
 				},
 			};
 
 			document.documentElement.style.setProperty(
 				"--arrow-button-left-fill",
-				arrowColors[currentBridgeSection].normal.left,
+				arrowColors[currentBridgeSection].normal.left(),
 			);
 			document.documentElement.style.setProperty(
 				"--arrow-button-right-fill",
-				arrowColors[currentBridgeSection].normal.right,
+				arrowColors[currentBridgeSection].normal.right(),
 			);
 			document.documentElement.style.setProperty(
 				"--arrow-button-left-fill-hover",
-				arrowColors[currentBridgeSection].hover.left,
+				arrowColors[currentBridgeSection].hover.left(),
 			);
 			document.documentElement.style.setProperty(
 				"--arrow-button-right-fill-hover",
-				arrowColors[currentBridgeSection].hover.right,
+				arrowColors[currentBridgeSection].hover.right(),
 			);
 		};
 
