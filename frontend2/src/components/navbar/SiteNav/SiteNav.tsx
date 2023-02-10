@@ -99,9 +99,6 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 
 	const onNavClick = (e: MouseEvent) => {
 		e && e.stopPropagation();
-		if (!!isTransitioning) {
-			return;
-		}
 		toggleState();
 	};
 
@@ -117,7 +114,7 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 		//need timeout to ensure page has loaded first (may need to increase if overflow hidden glitch still occurs)
 		setTimeout(() => {
 			onNavClick(e);
-		}, 1)
+		}, 100)
 	};
 
 	const onMouseEnter = (e: MouseEvent) => {
