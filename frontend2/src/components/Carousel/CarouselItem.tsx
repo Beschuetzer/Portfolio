@@ -300,7 +300,6 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 	};
 
 	//#region JSX
-	const fullscreenClassname = isFullScreen ? `carousel__item--${FULLSCREEN_CLASSNAME}` : '';
 	return (
 		<article ref={containerRef} className={`${itemClassName}`}>
 			{mediaToAdd}
