@@ -80,7 +80,7 @@ export const PAGE_NAV_WIDTH_AT_SWITCH_OFFSET = 192;
 //#endregion
 
 //#region CSS Property Names
-export let computedStyle = getComputedStyle(document.documentElement);
+export let computedStyle = window.getComputedStyle(document.documentElement);
 export const PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME =
 	"--page-nav-min-column-width";
 export const AUDIO_PLAYER_TOGGLER_ROTATION_CLOSED_CSS_PROPERTY_NAME =
@@ -154,8 +154,5 @@ export type ArrowButtonDirection = "left" | "right";
 //#endregion
 
 //#region Styling Stuff
-// this is in rem
 export const DEFAULT_FONT_SIZE = 1.4; //this is in rem
-console.log({computedStyle});
-
 //#endregion

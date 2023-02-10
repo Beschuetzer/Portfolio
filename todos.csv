@@ -1,5 +1,6 @@
 React best practices re-work (branch = sitenav_rework)
   -bugs to fix after changes:
+    -replace all instances of `computedStyle` with the selector version
     -Bridge page colors for PageNav and links not correct
     -infinite LoadingSpinner (after clicking About)
 
