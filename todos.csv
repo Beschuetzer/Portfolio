@@ -7,6 +7,7 @@ React best practices re-work (branch = sitenav_rework)
   -make SkillsPopup title (section with close button) absolutely postioned
   -add more complext logic in SkillPopup sort to weight created date?
   -re-work Carousel (should be pure re-useable component)
+  -create a separate component for SiteNav expandable menu (ultimately add prop for direction and add a horizontal one for Resume with each section being an option) 
   -re-work PageNav to better track the filling (fill should start when section is roughly centerd in the middle of the viewPort)
   -c-sharp layout seems to have embedded <p> tags (see warning)
   -turn About into a drop down with options including Personality (brings to big five)?
