@@ -84,7 +84,12 @@ export const QUOTE_POPUP_TRANSFORM_DEFAULT_CSS_PROPERTY_NAME = "--quote-popup-tr
 //#endregion
 
 
-//#region CSS classnames
+//#region CSS classnames and 
+export const CARD_DONE_CLASSNAME = "card--done";
+export const CARD_STOPPED_CLASSNAME = "card--stopped";
+export const CARD_OPEN_CLASSNAME = "card--open";
+export const CARD_PLAYING_CLASSNAME = "card--playing";
+export const CARD_DEFAULT_CLASSNAME = "card card--hoverable";
 export const BODY_BACKGROUND_CSS_CLASSNAME = "--body-background";
 export const CONTAINS_CAROUSEL_CLASSNAME = "contains-carousel";
 export const DISPLAY_NONE_CLASSNAME = "d-none";
@@ -136,6 +141,11 @@ export const SITE_NAV_CLASSNAME = "site-nav"; //if changing this, change in inde
 export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal"; //if changing this, change in index.html too
 //#endregion
 
+//#region Components
+
+//#endregion
+
+//#region Misc
 export const MAX_CHAR_COUNTS: MaxCharCounts = {
 	[MaxCharCount.song]: () => {
 		const windowWidth = window.innerWidth;
@@ -149,3 +159,4 @@ export const MAX_CHAR_COUNTS: MaxCharCounts = {
 		}
 	},
 }
+//#endregion

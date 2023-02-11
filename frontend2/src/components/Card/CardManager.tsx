@@ -4,9 +4,8 @@ import { checkForParentOfType } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setLastSecondRowCardNumber, setBridgeCards, setIsCardVideoOpen, bridgeCardsSelector, isCardVideoOpenSelector, lastSecondRowCardNumberSelector } from "../../slices/bridgeSlice";
 import { isMobileSelector, viewPortWidthSelector } from "../../slices/generalSlice";
+import { CARD_OPEN_CLASSNAME, CARD_DEFAULT_CLASSNAME } from "../constants";
 import { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
-
-import { CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME } from "./utils";
 
 interface CardManagerProps {
   children: ReactNode,
