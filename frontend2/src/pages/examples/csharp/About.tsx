@@ -15,7 +15,6 @@ import { CSharpLayout } from "./CSharpLayout";
 import { C_SHARP_CLASSNAME } from "./utils";
 import {
 	ABOUT_PAGE_NAME,
-	CSharpSection,
 	DISPLAY_NONE_CLASSNAME,
 	DOWNLOADER_URL,
 	GERMANY_APP_URL,
@@ -121,6 +120,7 @@ import { Quote } from "../../../components/Quote";
 import { ClassToggler } from "../../../components/ClassToggler";
 import Paragraph from "../../../typography/Paragraph";
 import { CSharpCardSection } from "./CSharpCardSection";
+import { CSharpSection } from "../../../types";
 
 const sectionNames = ["Summary", "Interests", "Music", "FAQ"];
 

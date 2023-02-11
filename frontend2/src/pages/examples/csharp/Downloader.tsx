@@ -27,7 +27,6 @@ import {
 	functionToGetContainer,
 } from "../../../components/utils";
 import {
-	CSharpSection,
 	DOWNLOADER_PAGE_NAME,
 	GITHUB_URL,
 	KH_INSIDER_URL,
@@ -35,6 +34,7 @@ import {
 	PLAYLIST_SYNCER_URL,
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
+import { CSharpSection } from "../../../types";
 
 const sectionNames = ["Description", "Media", "Notes"];
 

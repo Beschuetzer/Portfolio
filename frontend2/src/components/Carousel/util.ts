@@ -1,7 +1,8 @@
 import { CSSProperties, RefObject } from "react";
+import { getComputedStyleCustom } from "../../helpers";
+import { ArrowButtonDirection } from "../../types";
 import {
-	ArrowButtonDirection,
-	carouselGridWidth,
+	CAROUSEL_GRID_WIDTH_CSS_PROPERTY_NAME,
 	CONTAINS_CAROUSEL_CLASSNAME,
 	HIDDEN_CLASSNAME,
 	TRANSFORM_REMOVED_CLASSNAME,
@@ -427,6 +428,7 @@ export function setCarouselGridMaxColumnWidth(
 		`.${CAROUSEL_CLASSNAME}`,
 	) as HTMLElement;
 
+	const carouselGridWidth = getComputedStyleCustom(CAROUSEL_GRID_WIDTH_CSS_PROPERTY_NAME);
 	const newValue = `repeat(auto-fill,	minmax(${carouselGridWidth}, ${maxWidthToUse}))`;
 	if (parentCarousel)
 		parentCarousel.style.setProperty("grid-template-columns", newValue);

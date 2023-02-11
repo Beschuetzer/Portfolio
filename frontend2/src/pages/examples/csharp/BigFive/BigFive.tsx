@@ -1,13 +1,13 @@
 import React from "react";
 import { CSharpCardSection } from "../CSharpCardSection";
 import {
-	CSharpSection,
 	BIG_FIVE_PAGE_NAME,
 } from "../../../../components/constants";
 import { PercentBar, PercentBarLabel } from "../../../../components/PercentBar/PercentBar";
 import { CSharpLayout } from "../CSharpLayout";
 import { C_SHARP_CLASSNAME } from "../utils";
 import { BigFiveItem } from "./BigFiveItem";
+import { CSharpSection } from "../../../../types";
 
 const sectionNames = [
 	"Overview",

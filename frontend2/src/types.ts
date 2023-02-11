@@ -1,19 +1,25 @@
-export enum MaxCharCount {
-	song = 'song',
+import { CSSProperties } from "react";
+
+//#region Types and Interfaces
+export type ArrowButtonDirection = "left" | "right";
+export type CSharpSection = {
+	name: string;
+	pageName: string;
+	children: any[];
+	hasCarousel?: boolean;
+	styles?: CSSProperties;
 }
 export type MaxCharCounts = {
 	[key in MaxCharCount]: () => number;
 }
-export const MAX_CHAR_COUNTS: MaxCharCounts = {
-	[MaxCharCount.song]: () => {
-		const windowWidth = window.innerWidth;
-		switch (true) {
-			case (windowWidth < 410):
-				return 27;
-			case (windowWidth < 600):
-				return 80;
-			default: 
-				return 1000;
-		}
-	},
+export type Reference = {
+	current: HTMLElement;
 }
+//#endregion
+
+//#region Enums
+export enum MaxCharCount {
+	song = 'song',
+}
+//#endregion
+

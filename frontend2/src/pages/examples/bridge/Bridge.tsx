@@ -28,7 +28,6 @@ import {
 } from "./utils";
 import {
 	DISPLAY_NONE_CLASSNAME,
-	Reference,
 	LIVE_BRIDGE_URL,
 	GITHUB_URL,
 	WIKIPEDIA_BRIDGE_URL,
@@ -49,6 +48,7 @@ import { setHasClickedALink, setClickedBridgeInfoButtonCount, setCurrentBridgeSe
 import { RootState } from "../../../store";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { isMobileSelector } from "../../../slices/generalSlice";
+import { Reference } from "../../../types";
 
 const sectionContents = [
 	<SectionContainer name={bridgeSectionNames[0]} pageName={BRIDGE_PAGE_NAME}>

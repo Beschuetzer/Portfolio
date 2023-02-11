@@ -24,7 +24,6 @@ import {
 	functionToGetContainer,
 } from "../../../components/utils";
 import {
-	CSharpSection,
 	DOWNLOADER_URL,
 	GITHUB_URL,
 	OS_10_ISSUE_TRACKER_URL,
@@ -33,6 +32,7 @@ import {
 	WIKIPEDIA_MTP_URL,
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
+import { CSharpSection } from "../../../types";
 
 const sectionNames = ["Background", "Media", "Problem", "Approach"];
 

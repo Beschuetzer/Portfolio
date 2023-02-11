@@ -3,7 +3,6 @@ import { useRef } from "react";
 
 import {
 	ANIMATION_DURATION,
-	Reference,
 	Z_INDEX_HIGHEST_CLASSNAME,
 } from "../constants";
 import { StopControl, RestartControl, PlayControl, CloseControl, PauseControl, Video, FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer";
@@ -27,10 +26,10 @@ import {
 import { scrollToSection } from "../utils";
 import { BRIDGE_CLASSNAME, bridgeSectionNames, BRIDGE_BACKDROP_CLASSNAME } from "../../pages";
 import { setIsCardVideoOpen } from "../../slices/bridgeSlice";
-import { RootState } from "../../store";
 import { capitalize } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { isMobileSelector, viewPortWidthSelector } from "../../slices/generalSlice";
+import { Reference } from "../../types";
 
 interface CardProps {
 	title: string;

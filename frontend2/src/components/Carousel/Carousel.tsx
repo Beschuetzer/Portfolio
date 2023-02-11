@@ -31,9 +31,10 @@ import {
 	getFirstItemAndParentCarousels,
 	setCarouselGridMaxColumnWidth,
 } from "./util";
-import { ArrowButtonDirection, CONTAINS_CAROUSEL_CLASSNAME } from "../constants";
+import { CONTAINS_CAROUSEL_CLASSNAME } from "../constants";
 import { useState } from "react";
 import { toggleScrollability } from "../utils";
+import { ArrowButtonDirection } from "../../types";
 
 export type CarouselProps = {
 	items: CarouselItemProps[];

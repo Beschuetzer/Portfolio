@@ -44,11 +44,11 @@ import {
 } from "../../../components/utils";
 import {
 	LIVE_BRIDGE_URL,
-	CSharpSection,
 	GITHUB_URL,
 	LIVE_REPLAYS_URL,
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
+import { CSharpSection } from "../../../types";
 
 const sectionNames = ["Motivation", "Media", "Features", "Notes"];
 

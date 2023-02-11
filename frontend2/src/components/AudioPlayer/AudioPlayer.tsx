@@ -1,6 +1,6 @@
 import { Howl } from "howler";
 import React, { FC, useEffect, useRef, useState } from "react";
-import { HIDDEN_CLASSNAME, TRANSFORM_NONE_CLASSNAME } from "../constants";
+import { HIDDEN_CLASSNAME, MAX_CHAR_COUNTS, TRANSFORM_NONE_CLASSNAME } from "../constants";
 import {
 	AudioItem,
 	AUDIO_LIST_CLASSNAME,
@@ -10,8 +10,8 @@ import { getMaxLengthString } from "../utils";
 import { useLocation } from "react-router-dom";
 import { setIsLoadingSound, setCurrentlyPlayingSound, currentlyPlayingSoundSelector } from "../../slices/soundsSlice";
 import { getAncestorContainsClassname } from "../../helpers";
-import { MAX_CHAR_COUNTS, MaxCharCount } from "../../types";
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import { MaxCharCount } from "../../types";
 
 export const AUDIO_PLAYER_CLASSNAME = "audio-player";
 export const AUDIO_PLAYER_TOGGLER_CLASSNAME = `${AUDIO_PLAYER_CLASSNAME}__toggler`;

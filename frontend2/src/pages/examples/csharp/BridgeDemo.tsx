@@ -16,10 +16,10 @@ import {
 import {
 	LIVE_BRIDGE_URL,
 	BRIDGE_DEMO_PAGE_NAME,
-	CSharpSection,
 } from "../../../components/constants";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { CSharpCardSection } from "./CSharpCardSection";
+import { CSharpSection } from "../../../types";
 
 const sectionNames = [
 	"Requirements",

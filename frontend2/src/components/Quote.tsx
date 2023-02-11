@@ -1,6 +1,7 @@
 import React from "react";
 import { useRef } from "react";
-import { HIDDEN_CLASSNAME, quotePopupTransformDefault } from "./constants";
+import { getComputedStyleCustom } from "../helpers";
+import { HIDDEN_CLASSNAME, QUOTE_POPUP_TRANSFORM_DEFAULT_CSS_PROPERTY_NAME } from "./constants";
 import { getSentencesFromString } from "./utils";
 
 export const QUOTE_CLASSNAME = "quote";
@@ -85,7 +86,7 @@ export const Quote: React.FC<QuoteProps> = ({
 		popUp.style.transform = `translate(-0%, 00%) scale(1)`;
 
 		popUpTimeout = setTimeout(() => {
-			popUp.style.transform = quotePopupTransformDefault;
+			popUp.style.transform = getComputedStyleCustom(QUOTE_POPUP_TRANSFORM_DEFAULT_CSS_PROPERTY_NAME);
 			popUp.classList.add(HIDDEN_CLASSNAME);
 		}, POPUP_SHOW_DURATION)
 	}
