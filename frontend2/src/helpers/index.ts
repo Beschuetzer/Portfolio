@@ -61,6 +61,17 @@ export function getLinearPercentOfMaxMatchWithinRange(currentTrackedValue: numbe
   }
 }
 
+export function hexToRgb(hex: string) {
+	const result = /^#?([a-fd]{2})([a-fd]{2})([a-fd]{2})$/i.exec(hex);
+	if (result) {
+		const r = parseInt(result[1], 16);
+		const g = parseInt(result[2], 16);
+		const b = parseInt(result[3], 16);
+		return r + "," + g + "," + b; //return 23,14,45 -> reformat if needed
+	}
+	throw new Error("Invald Hex Value: " + hex);
+}
+
 export const replaceCharacters = (str: string, characterMappings: [string, string][] = []) => {
   const replacements = [
     ["-", " "],
@@ -78,3 +89,8 @@ export const replaceCharacters = (str: string, characterMappings: [string, strin
   }
   return strToUse;
 };
+
+
+export function rgbToHex(r: number, g: number, b: number) {
+	return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}

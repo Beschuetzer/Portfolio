@@ -126,6 +126,7 @@ export const DEFAULT_FONT_SIZE = 1.4; //this is in rem
 //#endregion
 
 //#region Header and Navigation
+export const BODY_BACKGROUND_CLASSNAME = "body-background";
 export const HEADER_ID = "#header";
 export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
 export const HEADER_TOGGLER_ACTIVE_CLASSNAME = `${HEADER_TOGGLER_CLASSNAME}--active`;

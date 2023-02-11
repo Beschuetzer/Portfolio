@@ -11,7 +11,7 @@ import {
 	MOBILE_BREAK_POINT_WIDTH, PERSONALITY_URL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
 } from "./constants";
 
-import { SiteNav } from "./navbar/SiteNav/SiteNav";
+import { SiteNav } from "./navbar/SiteNav";
 import { PageNav } from "./navbar/PageNav/PageNav";
 import { NavToggler } from "./navbar/NavToggler";
 import "../css/style.css";
