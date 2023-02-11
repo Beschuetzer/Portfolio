@@ -1,7 +1,7 @@
 import { ANIMATION_DURATION, BODY_BACKGROUND_CSS_CLASSNAME, BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME, BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME, computedStyle, HIDDEN_CLASSNAME, Reference } from "../../../components/constants";
 import { scrollToSection } from "../../../components/utils";
-import { getLinearPercentOfMaxMatchWithinRange } from "../../../helpers";
-import { LoadedSounds } from "../../../slices/soundsSlice";
+import { getComputedStyleCustom, getLinearPercentOfMaxMatchWithinRange } from "../../../helpers";
+import { LoadedSounds } from "../../../slices/";
 
 export const SECOND_INFO_BUTTON_DELAY = 500;
 export const BRIDGE_CLASSNAME = 'bridge';
@@ -49,11 +49,6 @@ export const BRIDGE_PAGE_NAV_LINKS_COLORS: BridgePageNavLinkColors[] = [
     hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
   },
 ];
-
-export function getComputedStyleCustom(propertyName: string) {
-  if (!propertyName) return '';
-  return window.getComputedStyle(document.documentElement).getPropertyValue(propertyName);
-}
 
 export const setLinearGradientCssCustomProp = () => {
     const newLinearGradient = `

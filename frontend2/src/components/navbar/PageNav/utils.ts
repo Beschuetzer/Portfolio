@@ -5,13 +5,11 @@ import {
 	PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME,
 	PAGE_NAV_WIDTH_AT_SWITCH_OFFSET,
 } from "../../constants";
+import { PAGE_NAV_MIN_WIDTH_DEFAULT, PAGE_NAV_ITEM_COUNT_DEFAULT, PAGE_NAV_MAX_WIDTH_DEFAULT } from "./PageNav";
 
 export const selectedClass = "page-nav--active";
 export const docStyle = getComputedStyle(document.documentElement);
-export const PAGE_NAV_MIN_WIDTH_THRESHOLD = 500;
-export const PAGE_NAV_ITEM_COUNT_DEFAULT = 5;
-export const PAGE_NAV_MIN_WIDTH_DEFAULT = "155px";
-export const PAGE_NAV_MAX_WIDTH_DEFAULT = "228px";
+
 export const getLinearGradient = (percent: number, docStyle: any) => {
 	const mainColor = docStyle.getPropertyValue("--color-primary-4");
 	const progressColor = docStyle.getPropertyValue("--color-primary-2").trim();

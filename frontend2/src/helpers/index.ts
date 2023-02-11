@@ -6,24 +6,6 @@ export function capitalize(str: string | undefined | null) {
     .join(" ");
 }
 
-export const replaceCharacters = (str: string, characterMappings: [string, string][] = []) => {
-  const replacements = [
-    ["-", " "],
-    ["_", " "],
-  ];
-
-  let strToUse = str;
-  let replacementsToUse = replacements;
-  if (characterMappings.length > 0) replacementsToUse = characterMappings;
-
-  for (let i = 0; i < replacementsToUse.length; i++) {
-    const characterMapping = replacementsToUse[i];
-    const splitStr = strToUse.split(characterMapping[0]);
-    strToUse = splitStr.join(characterMapping[1]);
-  }
-  return strToUse;
-};
-
 export function checkForParentOfType(clickedElement: HTMLElement, parentType: string, classPresent = ""): boolean {
   try {
     if (
@@ -41,6 +23,24 @@ export function checkForParentOfType(clickedElement: HTMLElement, parentType: st
   } catch (error) {
     return false;
   }
+}
+
+export function getAncestorContainsClassname(elementToCheck: HTMLElement | null, classname: string, stoppingElementType = 'body'): boolean {
+  try {
+    const regex = new RegExp(classname, 'i');
+    if (!classname || !elementToCheck) return false;
+    if ( elementToCheck?.className?.match(regex)) return true;
+    if (elementToCheck?.localName?.toLocaleLowerCase() === stoppingElementType) return false;
+    const parent = elementToCheck?.parentElement || null;
+    return getAncestorContainsClassname(parent, classname, stoppingElementType);
+  } catch (error) {
+    return true;
+  }
+}
+
+export function getComputedStyleCustom(propertyName: string) {
+	if (!propertyName) return '';
+	return window.getComputedStyle(document.documentElement).getPropertyValue(propertyName);
 }
 
 export function getLinearPercentOfMaxMatchWithinRange(currentTrackedValue: number, minTrackedValue: number, maxTrackedValue: number, startOutputValue: number, endOutputValue: number) {
@@ -61,18 +61,20 @@ export function getLinearPercentOfMaxMatchWithinRange(currentTrackedValue: numbe
   }
 }
 
-/*
-* recursively checks nodes and their ancestors for a classname stopping at stoppingElementType
-*/
-export function getAncestorContainsClassname(elementToCheck: HTMLElement | null, classname: string, stoppingElementType = 'body'): boolean {
-  try {
-    const regex = new RegExp(classname, 'i');
-    if (!classname || !elementToCheck) return false;
-    if ( elementToCheck?.className?.match(regex)) return true;
-    if (elementToCheck?.localName?.toLocaleLowerCase() === stoppingElementType) return false;
-    const parent = elementToCheck?.parentElement || null;
-    return getAncestorContainsClassname(parent, classname, stoppingElementType);
-  } catch (error) {
-    return true;
+export const replaceCharacters = (str: string, characterMappings: [string, string][] = []) => {
+  const replacements = [
+    ["-", " "],
+    ["_", " "],
+  ];
+
+  let strToUse = str;
+  let replacementsToUse = replacements;
+  if (characterMappings.length > 0) replacementsToUse = characterMappings;
+
+  for (let i = 0; i < replacementsToUse.length; i++) {
+    const characterMapping = replacementsToUse[i];
+    const splitStr = strToUse.split(characterMapping[0]);
+    strToUse = splitStr.join(characterMapping[1]);
   }
-}
+  return strToUse;
+};

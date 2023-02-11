@@ -26,7 +26,6 @@ import {
 	setBodyStyle,
 	handleMouseEnter,
 	resetPageNavMinWidth,
-	HEADER_ID,
 } from "./utils";
 import { scrollToSection } from "../../utils";
 import {
@@ -49,14 +48,14 @@ import {
 	ANIMATION_DURATION,
 	UNCLICKABLE_CLASSNAME,
 	Z_INDEX_HIGHEST_CLASSNAME,
+	HEADER_ID,
+	SITE_NAV_CLASSNAME,
+	SITE_NAV_MINIMAL_CLASSNAME,
 } from "../../constants";
 import { useLocation } from "react-router-dom";
 import { currentlyViewingImageSelector, isSiteNavMinimizedSelector, previousUrlSelector, setHeaderHeight, viewPortWidthSelector } from "../../../slices/generalSlice";
 import { capitalize } from "../../../helpers";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-
-export const SITE_NAV_CLASSNAME = "site-nav"; //if changing this, change in index.html too
-export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal"; //if changing this, change in index.html too
 
 interface SiteNavProps {
 	match: { url: string };

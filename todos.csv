@@ -3,7 +3,7 @@ React best practices re-work (branch = sitenav_rework)
     -replace all instances of `computedStyle` with `getComputedStyleCustom`
     -infinite LoadingSpinner (after clicking About)
   
-  -work on consolidating all the utils.ts files (move functions with more than one use to helpers or main utils file?)
+  -work on consolidating all the utils.ts files (move functions with more than one use to helpers folder)
   -make SkillsPopup title (section with close button) absolutely postioned
   -add more complext logic in SkillPopup sort to weight created date?
   -re-work Carousel (should be pure re-useable component)

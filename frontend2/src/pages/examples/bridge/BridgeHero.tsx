@@ -8,11 +8,11 @@ import {
 	showBridgeHero,
 	toggleSecondInfoButtonClick,
 } from "./utils";
-import { HEADER_ID } from "../../../components/navbar/SiteNav/utils";
 import { clickedBridgeInfoButtonCountSelector, setClickedBridgeInfoButtonCount } from "../../../slices/bridgeSlice";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { isMobileSelector } from "../../../slices/generalSlice";
 import { loadedSoundsSelector } from "../../../slices/soundsSlice";
+import { HEADER_ID } from "../../../components/constants";
 
 type BridgeHeroProps = {}
 

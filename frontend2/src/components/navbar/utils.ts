@@ -1,5 +1,4 @@
-import { HEADER_HEIGHT_CSS_PROPERTY_NAME } from "../constants";
-import { HEADER_ID, HEADER_TOGGLER_ACTIVE_CLASSNAME } from "./SiteNav/utils";
+import { HEADER_HEIGHT_CSS_PROPERTY_NAME, HEADER_ID, HEADER_TOGGLER_ACTIVE_CLASSNAME } from "../constants";
 
 export const NAVBAR_Z_INDEX_CLASSNAME = "z-index-navbar";
 export const NAVBAR_CLASSNAME = "navbar";

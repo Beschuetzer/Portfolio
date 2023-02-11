@@ -20,6 +20,11 @@ interface PageNavProps {
 	match: { url: string };
 }
 
+export const PAGE_NAV_MIN_WIDTH_THRESHOLD = 500;
+export const PAGE_NAV_ITEM_COUNT_DEFAULT = 5;
+export const PAGE_NAV_MIN_WIDTH_DEFAULT = "155px";
+export const PAGE_NAV_MAX_WIDTH_DEFAULT = "228px";
+
 export const PageNav: React.FC<PageNavProps> = ({
 	match,
 }) => {

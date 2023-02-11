@@ -154,3 +154,13 @@ export type ArrowButtonDirection = "left" | "right";
 //#region Styling Stuff
 export const DEFAULT_FONT_SIZE = 1.4; //this is in rem
 //#endregion
+
+//#region Header and Navigation
+export const HEADER_ID = "#header";
+export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
+export const HEADER_TOGGLER_ACTIVE_CLASSNAME = `${HEADER_TOGGLER_CLASSNAME}--active`;
+export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
+
+export const SITE_NAV_CLASSNAME = "site-nav"; //if changing this, change in index.html too
+export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal"; //if changing this, change in index.html too
+//#endregion

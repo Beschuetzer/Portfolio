@@ -8,23 +8,17 @@ import {
 	DEFAULT_PAGE_NAME_INDEX,
 	PAGE_NAV_CLASSNAME,
 	PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME,
+	HEADER_ID,
+	HEADER_TOGGLER_CLASSNAME,
 } from "../../constants";
-import {
-	PAGE_NAV_MIN_WIDTH_DEFAULT,
-	PAGE_NAV_MIN_WIDTH_THRESHOLD,
-	setPageNavMinWidth,
-} from "../PageNav/utils";
+import { PAGE_NAV_MIN_WIDTH_THRESHOLD, PAGE_NAV_MIN_WIDTH_DEFAULT } from "../PageNav/PageNav";
+import { setPageNavMinWidth } from "../PageNav/utils";
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
 	NAVBAR_CLASSNAME,
 } from "../utils";
-
-export const HEADER_ID = "#header";
-export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
-export const HEADER_TOGGLER_ACTIVE_CLASSNAME = `${HEADER_TOGGLER_CLASSNAME}--active`;
-export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 
 const BODY_BACKGROUND_CLASSNAME = "body-background";
 export type NavRef = RefObject<HTMLElement>;

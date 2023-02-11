@@ -9,6 +9,7 @@ import {
 	BRIDGE_URL,
 	DOWNLOADER_URL,
 	FILL_RED_CLASSNAME,
+	HEADER_ID,
 	MAIL_TO_STRING,
 	MOBILE_BREAK_POINT_WIDTH,
 	PLAYLIST_SYNCER_URL,
@@ -16,57 +17,10 @@ import {
 	RESUME_URL,
 	Z_INDEX_CONTENT_CLASSNAME,
 } from "./constants";
-import { HEADER_ID } from "./navbar/SiteNav/utils";
 import history from "../components/history";
 
 //#region Helper Functions
-export const keypressHandler = (
-	e: KeyboardEvent,
-) => {
-	if (!e.altKey || !e.ctrlKey) return;
-	switch (e.key) {
-		case "a":
-			history.push(ABOUT_URL);
-			break;
-		case "b":
-			history.push(BRIDGE_URL);
-			break;
-		case "c":
-			window.location.href = MAIL_TO_STRING;
-		break;
-		case "d":
-			history.push(DOWNLOADER_URL);
-			break;
-		case "p":
-			history.push(REPLAY_VIEWER_URL);
-			break;
-		case "r":
-			history.push(RESUME_URL);
-			break;
-		case "s":
-			history.push(PLAYLIST_SYNCER_URL);
-			break;
-		case "u":
-			history.push(AUTO_BID_URL);
-			break;
-		default:
-			break;
-	}
-};
 
-export const removeClassFromAllChildren = (
-	parent: HTMLElement,
-	classNameToRemove: string,
-) => {
-	const childrenWithClassname = parent.querySelectorAll(
-		`.${classNameToRemove}`,
-	);
-
-	for (let j = 0; j < childrenWithClassname.length; j++) {
-		const childWithClassname = childrenWithClassname[j];
-		childWithClassname.classList.remove(classNameToRemove);
-	}
-};
 
 // export function onRenderCallback(
 //   id, // the "id" prop of the Profiler tree that has just committed
@@ -85,45 +39,6 @@ export const removeClassFromAllChildren = (
 //   // console.log('commitTime =', commitTime);
 //   // console.log('interactions =', interactions);
 // }
-
-export function getMaxLengthString(str: string, maxCharCount = 30, addElliplse = true) {	
-	if (!str) {
-		return '';
-	}
-
-	let isEllipseNeeded = false;
-	if (str.length > maxCharCount) {
-		isEllipseNeeded = true;
-	}
-
-	return `${str.slice(0, maxCharCount)}${isEllipseNeeded && addElliplse ? '...' : ''}`;
-}
-
-export const scrollToSection = (sectionToScrollTo: HTMLElement, addedHeight: number = 0) => {
-	if (!sectionToScrollTo) {
-		return window.scroll({
-			top: 0,
-			left: 0,
-			behavior: "smooth",
-		});
-	}
-
-
-	const shouldAddHeaderHeight = window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
-	const headerHeight = document
-		.querySelector(HEADER_ID)!
-		.getBoundingClientRect().height;
-	const topScrollAmount =
-		window.scrollY +
-		sectionToScrollTo.getBoundingClientRect().top -
-		(shouldAddHeaderHeight ? headerHeight : 0) + addedHeight;
-		
-	window.scroll({
-		top: topScrollAmount,
-		left: 0,
-		behavior: "smooth",
-	});
-};
 
 export const addSpaceAfterPunctuationMarks = (string: string) => {
 	const punctuationMarks = [".", "?", "!"];
@@ -172,30 +87,24 @@ export function closeCarouselItem(
 	resetArrowButtonClassnames();
 }
 
-export function resetArrowButtonClassnames() {
-	setTimeout(() => {
-		const carouselItemsFullScreen = document.querySelectorAll(
-			`.${FULLSCREEN_PARENT_CLASSNAME}`,
-		);
-
-		if (carouselItemsFullScreen.length > 0) return;
-		const arrowButtons = document.querySelectorAll(
-			`.${CAROUSEL_CLASSNAME}__arrow-button`,
-		);
-
-		for (let i = 0; i < arrowButtons.length; i++) {
-			const arrowButton = arrowButtons[i];
-			const svg = arrowButton.querySelector("svg");
-			arrowButton.classList.remove(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
-			svg?.classList.remove(FILL_RED_CLASSNAME);
-		}
-	}, 1);
-}
 
 export function functionToGetContainer(e: Event) {
 	return (e.currentTarget as any).parentNode.querySelector(
 		`.${CAROUSEL_VIDEO_CLASSNAME}`,
 	);
+}
+
+export function getMaxLengthString(str: string, maxCharCount = 30, addElliplse = true) {	
+	if (!str) {
+		return '';
+	}
+
+	let isEllipseNeeded = false;
+	if (str.length > maxCharCount) {
+		isEllipseNeeded = true;
+	}
+
+	return `${str.slice(0, maxCharCount)}${isEllipseNeeded && addElliplse ? '...' : ''}`;
 }
 
 export function getSentencesFromString(
@@ -221,6 +130,100 @@ export function getSentencesFromString(
 	return toReturn;
 }
 
+export const keypressHandler = (
+	e: KeyboardEvent,
+) => {
+	if (!e.altKey || !e.ctrlKey) return;
+	switch (e.key) {
+		case "a":
+			history.push(ABOUT_URL);
+			break;
+		case "b":
+			history.push(BRIDGE_URL);
+			break;
+		case "c":
+			window.location.href = MAIL_TO_STRING;
+		break;
+		case "d":
+			history.push(DOWNLOADER_URL);
+			break;
+		case "p":
+			history.push(REPLAY_VIEWER_URL);
+			break;
+		case "r":
+			history.push(RESUME_URL);
+			break;
+		case "s":
+			history.push(PLAYLIST_SYNCER_URL);
+			break;
+		case "u":
+			history.push(AUTO_BID_URL);
+			break;
+		default:
+			break;
+	}
+};
+
+export const removeClassFromAllChildren = (
+	parent: HTMLElement,
+	classNameToRemove: string,
+) => {
+	const childrenWithClassname = parent.querySelectorAll(
+		`.${classNameToRemove}`,
+	);
+
+	for (let j = 0; j < childrenWithClassname.length; j++) {
+		const childWithClassname = childrenWithClassname[j];
+		childWithClassname.classList.remove(classNameToRemove);
+	}
+};
+
+export function resetArrowButtonClassnames() {
+	setTimeout(() => {
+		const carouselItemsFullScreen = document.querySelectorAll(
+			`.${FULLSCREEN_PARENT_CLASSNAME}`,
+		);
+
+		if (carouselItemsFullScreen.length > 0) return;
+		const arrowButtons = document.querySelectorAll(
+			`.${CAROUSEL_CLASSNAME}__arrow-button`,
+		);
+
+		for (let i = 0; i < arrowButtons.length; i++) {
+			const arrowButton = arrowButtons[i];
+			const svg = arrowButton.querySelector("svg");
+			arrowButton.classList.remove(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
+			svg?.classList.remove(FILL_RED_CLASSNAME);
+		}
+	}, 1);
+}
+
+export const scrollToSection = (sectionToScrollTo: HTMLElement, addedHeight: number = 0) => {
+	if (!sectionToScrollTo) {
+		return window.scroll({
+			top: 0,
+			left: 0,
+			behavior: "smooth",
+		});
+	}
+
+
+	const shouldAddHeaderHeight = window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
+	const headerHeight = document
+		.querySelector(HEADER_ID)!
+		.getBoundingClientRect().height;
+	const topScrollAmount =
+		window.scrollY +
+		sectionToScrollTo.getBoundingClientRect().top -
+		(shouldAddHeaderHeight ? headerHeight : 0) + addedHeight;
+		
+	window.scroll({
+		top: topScrollAmount,
+		left: 0,
+		behavior: "smooth",
+	});
+};
+
 export function toggleScrollability(isScrollable = true) {
 	if (isScrollable) {
 		document.body.style.overflowY = 'visible';
@@ -228,5 +231,4 @@ export function toggleScrollability(isScrollable = true) {
 		document.body.style.overflowY = 'hidden';
 	}
 }
-
 //#endregion
