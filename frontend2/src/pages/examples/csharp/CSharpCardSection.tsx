@@ -18,7 +18,7 @@ export const CSharpCardSection: React.FC<CSharpCardSectionProps> = ({
 	return (
 		<section className={C_SHARP_CARD_SECTION_CLASSNAME}>
 			<h4 className={C_SHARP_CARD_SECTION_TITLE_CLASSNAME}>{title}</h4>
-			<p className={C_SHARP_CARD_SECTION_CONTENT_CLASSNAME}>{children}</p>
+			<div className={C_SHARP_CARD_SECTION_CONTENT_CLASSNAME}>{children}</div>
 		</section>
 	);
 };
