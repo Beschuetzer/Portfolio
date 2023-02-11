@@ -100,14 +100,12 @@ export const showBridgeHero = (heroMore: Reference) => {
 }
 
 export const resetBridgeHero = (heroMore: Reference) => {
-  const computedStyles = window.getComputedStyle(document.documentElement);
   document.querySelector('.page-nav')?.classList?.add(HIDDEN_CLASSNAME);
-  document.documentElement.style.setProperty(BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME, computedStyles.getPropertyValue(BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME));
-  document.documentElement.style.setProperty(BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME, computedStyles.getPropertyValue(BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME));
+  document.documentElement.style.setProperty(BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME, getComputedStyleCustom(BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME));
+  document.documentElement.style.setProperty(BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME, getComputedStyleCustom(BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME));
 
   heroMore.current?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
   (heroMore.current?.parentNode as HTMLElement)?.classList.remove(BRIDGE_HERO_CLICKED_CLASSNAME);
-
 }
 
 export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: HTMLElement, sounds: LoadedSounds, isMobile: boolean, headerHeight: number) => {
