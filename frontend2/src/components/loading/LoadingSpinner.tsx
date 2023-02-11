@@ -13,7 +13,7 @@ export const LoadingSpinner: FC<LoadingSpinnerProps> = ({
 	forceShow = true,
 }) => {
 	const containerRef = useRef<HTMLElement>();
-	const isLoadingSound = useAppSelector((state: RootState) => isLoadingSoundSelector);
+	const isLoadingSound = useAppSelector(isLoadingSoundSelector);
 
 	useEffect(() => {
 		if (forceShow) return;
