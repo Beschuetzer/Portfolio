@@ -42,16 +42,12 @@ import {
 	HEADER_ID,
 	SITE_NAV_CLASSNAME,
 	SITE_NAV_MINIMAL_CLASSNAME,
-	PAGE_NAV_CLASSNAME,
-	PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME,
 } from "../constants";
 import { useLocation } from "react-router-dom";
-import { currentlyViewingImageSelector, isSiteNavMinimizedSelector, setHeaderHeight, viewPortWidthSelector } from "../../slices/generalSlice";
+import { currentlyViewingImageSelector, isSiteNavMinimizedSelector, setHeaderHeight } from "../../slices/generalSlice";
 import { capitalize } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useHandleChangePage } from "../../hooks/useHandleChangePage";
-import { PAGE_NAV_MIN_WIDTH_THRESHOLD, PAGE_NAV_MIN_WIDTH_DEFAULT } from "./PageNav/PageNav";
-import { setPageNavMinWidth } from "./PageNav/utils";
 import { Match } from "../../types";
 
 interface SiteNavProps {
@@ -63,7 +59,6 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 }) => {
 	const isSiteNavMinimized = useAppSelector(isSiteNavMinimizedSelector);
 	const currentlyViewingImage = useAppSelector(currentlyViewingImageSelector);
-	const viewPortWidth = useAppSelector(viewPortWidthSelector);
 	const dispatch = useAppDispatch();
 	const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 	const location = useLocation();
@@ -144,16 +139,6 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 			setHeaderHeightCSSPropertyValue();
 		}, 1);
 	});
-
-	useEffect(() => {
-		if (viewPortWidth < PAGE_NAV_MIN_WIDTH_THRESHOLD) {
-			if (`${viewPortWidth}px` === PAGE_NAV_MIN_WIDTH_DEFAULT) return;
-			const newValue = `${PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${PAGE_NAV_MIN_WIDTH_DEFAULT}`;
-			document.documentElement.style.cssText += newValue;
-		} else if (viewPortWidth >= PAGE_NAV_MIN_WIDTH_THRESHOLD) {
-			setPageNavMinWidth(document.querySelector(`.${PAGE_NAV_CLASSNAME}` as any));
-		}
-	}, [viewPortWidth, setHeaderHeight]);
 
 	useEffect(() => {
 		function handleKeypress(e: KeyboardEvent) {

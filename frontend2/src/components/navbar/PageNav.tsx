@@ -1,25 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
-import { capitalize } from "../../../helpers";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { bridgeSectionNames, BridgeSectionLink } from "../../../pages";
-import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../../slices/bridgeSlice";
-import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../../slices/generalSlice";
-import { DEFAULT_FONT_SIZE, HIDDEN_CLASSNAME } from "../../constants";
-import { scrollToSection } from "../../utils";
-import { setHeaderHeightCSSPropertyValue } from "../utils";
-import {
-	resetGradientPercents,
-	setBridgeColors,
-	setGradientPercent,
-	setPageNavMinWidth,
-} from "./utils";
+import { capitalize } from "../../helpers";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { bridgeSectionNames, BridgeSectionLink, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME } from "../../pages";
+import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../slices/bridgeSlice";
+import { isMobileSelector, previousUrlSelector, setHeaderHeight, setPreviousUrl, viewPortWidthSelector } from "../../slices/generalSlice";
+import { DEFAULT_FONT_SIZE, HIDDEN_CLASSNAME, MOBILE_BREAK_POINT_WIDTH, PAGE_NAV_CLASSNAME, PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME, PAGE_NAV_WIDTH_AT_SWITCH_OFFSET } from "../constants";
+import { scrollToSection } from "../utils";
+import { setHeaderHeightCSSPropertyValue } from "./utils";
 
 interface PageNavProps {
 	match: { url: string };
 }
 
+export const selectedClass = "page-nav--active";
 export const PAGE_NAV_MIN_WIDTH_THRESHOLD = 500;
 export const PAGE_NAV_ITEM_COUNT_DEFAULT = 5;
 export const PAGE_NAV_MIN_WIDTH_DEFAULT = "155px";
@@ -30,6 +25,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 }) => {
 	//#region Init
 	const dispatch = useAppDispatch();
+	const viewPortWidth = useAppSelector(viewPortWidthSelector);
 	const previousUrl  = useAppSelector(previousUrlSelector);
 	const isMobile  = useAppSelector(isMobileSelector);
 	const clickedBridgeInfoButtonCount  = useAppSelector(clickedBridgeInfoButtonCountSelector);
@@ -48,6 +44,8 @@ export const PageNav: React.FC<PageNavProps> = ({
 	const scrollRefreshLimit = 50;
 	const maxScrollOffsetPercent = 1;
 	const isBridgePage = match.url.match(/bridge$/i);
+	const docStyle = getComputedStyle(document.documentElement);
+
 
 	let pageNavElement = document.querySelector(".page-nav") as any;
 	let previousSectionBottom: number | null = 0;
@@ -68,6 +66,18 @@ export const PageNav: React.FC<PageNavProps> = ({
 		}
 	};
 
+	const getLinearGradient = (percent: number) => {
+		const mainColor = docStyle.getPropertyValue("--color-primary-4");
+		const progressColor = docStyle.getPropertyValue("--color-primary-2").trim();
+	
+		return `
+		linear-gradient(to right, 
+		  ${progressColor.trim()} 0%, 
+		  ${progressColor.trim()} ${percent}%,
+		  ${mainColor} ${percent}%,
+		  ${mainColor} 100%)`;
+	};
+
 	const getSectionNames = () => {
 		const sectionNames = [];
 		if (!sectionsToRender) return [];
@@ -77,6 +87,109 @@ export const PageNav: React.FC<PageNavProps> = ({
 			sectionNames.push(capitalized);
 		}
 		return sectionNames;
+	};
+	
+	const resetGradientPercents = (
+		sections: any,
+	) => {
+		for (let i = 0; i < sections.length; i++) {
+			const section = sections[i];
+			const pageNavSectionName = capitalize(section.dataset.section);
+			const pageNavSectionElement = document.querySelector(
+				`.page-nav__section-${pageNavSectionName.toLowerCase()}`,
+			) as HTMLElement;
+	
+			if (!pageNavSectionElement) return;
+	
+			pageNavSectionElement.style.removeProperty('background-image');
+		}
+	}
+	
+	const setGradientPercent = (
+		sections: any,
+		currentSection: Element | null,
+		percentThroughSection: number,
+		isEnd: boolean,
+		indexOfCurrentSection: number,
+	) => {
+		for (let i = 0; i < sections.length; i++) {
+			let gradientToUse = getLinearGradient(percentThroughSection);
+			let shouldAddActiveClass = true;
+			const section = sections[i];
+			const pageNavSectionName = capitalize(section.dataset.section);
+			const pageNavSectionElement = document.querySelector(
+				`.page-nav__section-${pageNavSectionName.toLowerCase()}`,
+			) as HTMLElement;
+	
+	
+			if (!pageNavSectionElement || !pageNavSectionElement.parentNode) return;
+	
+			const shouldSetEnd = isEnd && i >= indexOfCurrentSection;
+			if (shouldSetEnd) {
+				gradientToUse = getLinearGradient(100);
+			} else if (
+				!currentSection?.className.match(new RegExp(pageNavSectionName, "ig"))
+			) {
+				gradientToUse = getLinearGradient(0);
+				shouldAddActiveClass = false;
+			}
+	
+			pageNavSectionElement.style.backgroundImage = gradientToUse;
+	
+			if (shouldAddActiveClass) {
+				(pageNavSectionElement.parentNode as any).classList.add(selectedClass);
+			} else
+				(pageNavSectionElement.parentNode as any).classList.remove(selectedClass);
+		}
+	};
+	
+	const setBridgeColors = (
+		currentBridgeSection: number,
+		clickedBridgeInfoButtonCount: number,
+	) => {
+		//get the currentBridgeSection and run through all of the
+		const sectionNames = document.querySelectorAll(
+			`.${BRIDGE_PAGE_NAV_LINK_CLASSNAME}`,
+		);
+	
+		//Setting BRIDGE_CURRENT_SECTION_CLASSNAME CSS class
+		for (let i = 0; i < sectionNames.length; i++) {
+			const sectionName = sectionNames[i];
+			if (!sectionName) return;
+	
+			if (clickedBridgeInfoButtonCount >= 2) {
+				sectionName.classList.remove("full-opacity");
+				if (i === currentBridgeSection)
+					sectionName.classList.add(BRIDGE_CURRENT_SECTION_CLASSNAME);
+				else sectionName.classList.remove(BRIDGE_CURRENT_SECTION_CLASSNAME);
+			} else {
+				sectionName.classList.add("full-opacity");
+			}
+		}
+	
+		//change CSS color var depending on currentBridgeSection
+		const newNormalValue = `--bridge-page-nav-link-color: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].normal()}`;
+		document.documentElement.style.cssText += newNormalValue;
+	
+		const newHoverValue = `--bridge-page-nav-link-color-hover: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].hover()}`;
+		document.documentElement.style.cssText += newHoverValue;
+	};
+
+	const setPageNavMinWidth = (pageNavElement: HTMLElement) => {
+		let toAdd: string;
+	
+		const itemCount = pageNavElement.children.length;
+	
+		let newMinWidth = PAGE_NAV_MIN_WIDTH_DEFAULT;
+		if (itemCount >= PAGE_NAV_ITEM_COUNT_DEFAULT + 1) newMinWidth = PAGE_NAV_MAX_WIDTH_DEFAULT;
+		else if (itemCount < PAGE_NAV_ITEM_COUNT_DEFAULT) {
+			const widthOfPageNavAtSwitch =
+				MOBILE_BREAK_POINT_WIDTH - PAGE_NAV_WIDTH_AT_SWITCH_OFFSET;
+			newMinWidth = `${widthOfPageNavAtSwitch / (itemCount + 1) + 0.1}px`;
+		}
+	  
+		toAdd = `${PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${newMinWidth}`;
+		document.documentElement.style.cssText += toAdd;
 	};
 
 	// const updateActiveScaleRange = () => {
@@ -259,6 +372,16 @@ export const PageNav: React.FC<PageNavProps> = ({
 			setPageNavMinWidth(pageNavElement);
 		}, 1)
 	}, [previousUrl, pageNavElement, isMobile, match]);
+
+	useEffect(() => {
+		if (viewPortWidth < PAGE_NAV_MIN_WIDTH_THRESHOLD) {
+			if (`${viewPortWidth}px` === PAGE_NAV_MIN_WIDTH_DEFAULT) return;
+			const newValue = `${PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${PAGE_NAV_MIN_WIDTH_DEFAULT}`;
+			document.documentElement.style.cssText += newValue;
+		} else if (viewPortWidth >= PAGE_NAV_MIN_WIDTH_THRESHOLD) {
+			setPageNavMinWidth(document.querySelector(`.${PAGE_NAV_CLASSNAME}` as any));
+		}
+	}, [viewPortWidth, setHeaderHeight]);
 
 	useEffect(() => {
 		const url = match.url;
