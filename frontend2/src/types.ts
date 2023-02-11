@@ -2,6 +2,10 @@ import { CSSProperties, RefObject } from "react";
 
 //#region Types and Interfaces
 export type ArrowButtonDirection = "left" | "right";
+export type BridgePageNavLinkColors = {
+	normal: () => string;
+	hover: () => string;
+}
 export type CSharpSection = {
 	name: string;
 	pageName: string;

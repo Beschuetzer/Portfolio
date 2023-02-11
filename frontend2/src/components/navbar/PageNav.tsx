@@ -3,10 +3,11 @@ import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
 import { capitalize } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { bridgeSectionNames, BridgeSectionLink, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME } from "../../pages";
+import { useUpdatePageNav } from "../../hooks/useUpdatePageNav";
+import { BridgeSectionLink } from "../../pages";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../slices/bridgeSlice";
-import { isMobileSelector, previousUrlSelector, setHeaderHeight, setPreviousUrl, viewPortWidthSelector } from "../../slices/generalSlice";
-import { DEFAULT_FONT_SIZE, HIDDEN_CLASSNAME, MOBILE_BREAK_POINT_WIDTH, PAGE_NAV_CLASSNAME, PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME, PAGE_NAV_WIDTH_AT_SWITCH_OFFSET } from "../constants";
+import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../slices/generalSlice";
+import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME, DEFAULT_FONT_SIZE } from "../constants";
 import { scrollToSection } from "../utils";
 import { setHeaderHeightCSSPropertyValue } from "./utils";
 
@@ -25,12 +26,23 @@ export const PageNav: React.FC<PageNavProps> = ({
 }) => {
 	//#region Init
 	const dispatch = useAppDispatch();
-	const viewPortWidth = useAppSelector(viewPortWidthSelector);
+	const location = useLocation();
 	const previousUrl  = useAppSelector(previousUrlSelector);
 	const isMobile  = useAppSelector(isMobileSelector);
 	const clickedBridgeInfoButtonCount  = useAppSelector(clickedBridgeInfoButtonCountSelector);
 	const currentBridgeSection  = useAppSelector(currentBridgeSectionSelector);
-	const cssClass = "page-nav";
+	const shouldHandleScroll = useRef(true);
+	const [sectionsToRender, setsectionsToRender] = useState<NodeListOf<Element> | any[]>([]);
+	const cssClass = "page-nav";	
+	const isBridgePage = match.url.match(/bridge$/i);
+	const docStyle = getComputedStyle(document.documentElement);
+	let previousSectionBottom: number | null = 0;
+	const pageNavElement = document.querySelector(".page-nav") as HTMLElement;
+	const maxScrollOffsetPercent = 1;
+	const scrollRefreshLimit = 50;
+	const scrollSectionDelimiterOffset = window.innerHeight / 6;
+	const url = match.url;
+	const pageName = url.slice(url.lastIndexOf("/") + 1);
 	// const gradientVarName = "--site-nav-linear-gradient";
 	// const activeScaleVarName = "--site-nav-active-scale-amount";
 	// const activeScaleRange = {
@@ -40,18 +52,6 @@ export const PageNav: React.FC<PageNavProps> = ({
 	// 	max: 1.75,
 	// };
 	// const progressPercent = "0%";
-	const scrollSectionDelimiterOffset = window.innerHeight / 6;
-	const scrollRefreshLimit = 50;
-	const maxScrollOffsetPercent = 1;
-	const isBridgePage = match.url.match(/bridge$/i);
-	const docStyle = getComputedStyle(document.documentElement);
-
-
-	let pageNavElement = document.querySelector(".page-nav") as any;
-	let previousSectionBottom: number | null = 0;
-	let shouldHandleScroll = useRef(true);
-	const [sectionsToRender, setsectionsToRender] = useState<NodeListOf<Element> | any[]>([]);
-	const location = useLocation();
 	//#endregion
 
 	//#region Functions
@@ -175,22 +175,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 		document.documentElement.style.cssText += newHoverValue;
 	};
 
-	const setPageNavMinWidth = (pageNavElement: HTMLElement) => {
-		let toAdd: string;
 	
-		const itemCount = pageNavElement.children.length;
-	
-		let newMinWidth = PAGE_NAV_MIN_WIDTH_DEFAULT;
-		if (itemCount >= PAGE_NAV_ITEM_COUNT_DEFAULT + 1) newMinWidth = PAGE_NAV_MAX_WIDTH_DEFAULT;
-		else if (itemCount < PAGE_NAV_ITEM_COUNT_DEFAULT) {
-			const widthOfPageNavAtSwitch =
-				MOBILE_BREAK_POINT_WIDTH - PAGE_NAV_WIDTH_AT_SWITCH_OFFSET;
-			newMinWidth = `${widthOfPageNavAtSwitch / (itemCount + 1) + 0.1}px`;
-		}
-	  
-		toAdd = `${PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${newMinWidth}`;
-		document.documentElement.style.cssText += toAdd;
-	};
 
 	// const updateActiveScaleRange = () => {
 	// 	if (isMobile) {
@@ -204,6 +189,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 	//#endregion
 
 	//#region Side FX
+	useUpdatePageNav(match, pageNavElement);
 	useEffect(() => {
 		setHeaderHeightCSSPropertyValue();
 	})
@@ -362,36 +348,6 @@ export const PageNav: React.FC<PageNavProps> = ({
 		resetGradientPercents(sections);
 		setsectionsToRender(sections);
 	}, [location])
-
-	useEffect(() => {
-		if (match.url.trim() === "/")
-			pageNavElement.classList.add(HIDDEN_CLASSNAME);
-		if (!isMobile) return;
-
-		setTimeout(() => {
-			setPageNavMinWidth(pageNavElement);
-		}, 1)
-	}, [previousUrl, pageNavElement, isMobile, match]);
-
-	useEffect(() => {
-		if (viewPortWidth < PAGE_NAV_MIN_WIDTH_THRESHOLD) {
-			if (`${viewPortWidth}px` === PAGE_NAV_MIN_WIDTH_DEFAULT) return;
-			const newValue = `${PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME}: ${PAGE_NAV_MIN_WIDTH_DEFAULT}`;
-			document.documentElement.style.cssText += newValue;
-		} else if (viewPortWidth >= PAGE_NAV_MIN_WIDTH_THRESHOLD) {
-			setPageNavMinWidth(document.querySelector(`.${PAGE_NAV_CLASSNAME}` as any));
-		}
-	}, [viewPortWidth, setHeaderHeight]);
-
-	useEffect(() => {
-		const url = match.url;
-		const pageName = url.slice(url.lastIndexOf("/") + 1);
-		pageNavElement.classList = cssClass;
-		pageNavElement.classList.add(`${cssClass}-${pageName}`);
-
-		if (!isMobile && clickedBridgeInfoButtonCount <= 0 && url.match(/bridge$/i))
-			pageNavElement.classList.add(HIDDEN_CLASSNAME);
-	}, [clickedBridgeInfoButtonCount, isMobile, match.url, pageNavElement]);
 	//#endregion
 
 	//#region JSX
@@ -446,6 +402,10 @@ export const PageNav: React.FC<PageNavProps> = ({
 		});
 	};
 
+	//hide if bridge page initial
+	if (match.url?.match(/bridge$/i) && !isMobile && clickedBridgeInfoButtonCount <= 0) {
+		return null;
+	}
 	return ReactDOM.createPortal(
 		isBridgePage ? renderBridgeSections() : renderSections(),
 		pageNavElement,

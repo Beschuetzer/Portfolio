@@ -3,6 +3,10 @@ import { useRef } from "react";
 
 import {
 	ANIMATION_DURATION,
+	bridgeSectionNames,
+	BRIDGE_BACKDROP_CLASSNAME,
+	BRIDGE_CLASSNAME,
+	BRIDGE_SECTION_TITLES_CLASSNAME,
 	CARD_DEFAULT_CLASSNAME,
 	CARD_DONE_CLASSNAME,
 	CARD_OPEN_CLASSNAME,
@@ -20,7 +24,6 @@ import {
 	handleVideoProgress,
 } from "../VideoPlayer/utils";
 import { scrollToSection } from "../utils";
-import { BRIDGE_CLASSNAME, bridgeSectionNames, BRIDGE_BACKDROP_CLASSNAME, BRIDGE_SECTION_TITLES_CLASSNAME } from "../../pages";
 import { setIsCardVideoOpen } from "../../slices/bridgeSlice";
 import { capitalize } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";

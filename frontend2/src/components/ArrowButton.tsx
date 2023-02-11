@@ -1,9 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { BRIDGE_CLASSNAME, COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_2_CSS_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_3_CSS_PROPERTY_NAME } from "../pages";
 import { bridgeSectionsSelector, clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector, setBridgeSections, setCurrentBridgeSection } from "../slices";
-import { ANIMATION_DURATION, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
+import { ANIMATION_DURATION, BRIDGE_CLASSNAME, COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
 import { getComputedStyleCustom } from "../helpers";
 
 interface ArrowButtonProps {

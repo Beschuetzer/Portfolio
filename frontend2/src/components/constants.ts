@@ -1,4 +1,5 @@
-import { MaxCharCount, MaxCharCounts } from "../types";
+import { getComputedStyleCustom } from "../helpers";
+import { BridgePageNavLinkColors, MaxCharCount, MaxCharCounts } from "../types";
 
 //#region note: Add page names here
 export const ABOUT_PAGE_NAME = "about";
@@ -75,6 +76,10 @@ export const PAGE_NAV_WIDTH_AT_SWITCH_OFFSET = 192;
 //#region CSS Property Names
 export const AUDIO_PLAYER_TOGGLER_ROTATION_CLOSED_CSS_PROPERTY_NAME = "--audio-player-toggler-rotation-closed";
 export const AUDIO_PLAYER_TOGGLER_ROTATION_OPEN_CSS_PROPERTY_NAME = "--audio-player-toggler-rotation-open";
+export const COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME = '--color-primary-bridge-1';
+export const COLOR_PRIMARY_BRIDGE_2_CSS_PROPERTY_NAME = '--color-primary-bridge-2';
+export const COLOR_PRIMARY_BRIDGE_3_CSS_PROPERTY_NAME = '--color-primary-bridge-3';
+export const COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME = '--color-primary-bridge-4';
 export const BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME = "--bridge-section-height";
 export const BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME = "--bridge-section-padding";
 export const CAROUSEL_GRID_WIDTH_CSS_PROPERTY_NAME = "--carousel-grid-width";
@@ -85,12 +90,22 @@ export const QUOTE_POPUP_TRANSFORM_DEFAULT_CSS_PROPERTY_NAME = "--quote-popup-tr
 
 
 //#region CSS classnames and 
+export const BODY_BACKGROUND_CSS_CLASSNAME = "--body-background";
+export const BRIDGE_CLASSNAME = 'bridge';
+export const BRIDGE_BACKDROP_CLASSNAME = `${BRIDGE_CLASSNAME}__backdrop`;
+export const BRIDGE_CARD_SECTION_CLASSNAME = `${BRIDGE_CLASSNAME}__card-section`;
+export const BRIDGE_CURRENT_SECTION_CLASSNAME = `${BRIDGE_CLASSNAME}__current-section`;
+export const BRIDGE_HERO_CLASSNAME = 'hero';
+export const BRIDGE_HERO_CLICKED_CLASSNAME = "hero--clicked";
+export const BRIDGE_HERO_MORE__CLICKED_CLASSNAME = "hero__more--clicked";
+export const BRIDGE_PAGE_NAV_LINK_CLASSNAME = `${BRIDGE_CLASSNAME}__page-nav-link`;
+export const BRIDGE_PAGE_NAV_LINK_CLASSNAMES = `${BRIDGE_PAGE_NAV_LINK_CLASSNAME} page-nav__section`;
+export const BRIDGE_SECTION_TITLES_CLASSNAME = `${BRIDGE_CLASSNAME}__section-titles`;
+export const CARD_DEFAULT_CLASSNAME = "card card--hoverable";
 export const CARD_DONE_CLASSNAME = "card--done";
-export const CARD_STOPPED_CLASSNAME = "card--stopped";
 export const CARD_OPEN_CLASSNAME = "card--open";
 export const CARD_PLAYING_CLASSNAME = "card--playing";
-export const CARD_DEFAULT_CLASSNAME = "card card--hoverable";
-export const BODY_BACKGROUND_CSS_CLASSNAME = "--body-background";
+export const CARD_STOPPED_CLASSNAME = "card--stopped";
 export const CONTAINS_CAROUSEL_CLASSNAME = "contains-carousel";
 export const DISPLAY_NONE_CLASSNAME = "d-none";
 export const FILL_RED_CLASSNAME = "fill-red";
@@ -139,13 +154,39 @@ export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 
 export const SITE_NAV_CLASSNAME = "site-nav"; //if changing this, change in index.html too
 export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal"; //if changing this, change in index.html too
+export const SITE_NAV_CLOSE_DELAY = 250; //delay in how long it takes to close SiteNav aftering clicking an NavItem; fixs overflow glitch
 //#endregion
 
-//#region Components
-
+//#region Bridge
+export const SECOND_INFO_BUTTON_DELAY = 500;
+export const bridgeSectionNames = [
+  "Overview",
+  "Features",
+  "Details",
+  "Lessons",
+];
 //#endregion
 
 //#region Misc
+export const BRIDGE_PAGE_NAV_LINKS_COLORS: BridgePageNavLinkColors[] = [
+  {
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+  },
+  {
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+  },
+  {
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_2_CSS_PROPERTY_NAME),
+  },
+  {
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+  },
+];
+
 export const MAX_CHAR_COUNTS: MaxCharCounts = {
 	[MaxCharCount.song]: () => {
 		const windowWidth = window.innerWidth;

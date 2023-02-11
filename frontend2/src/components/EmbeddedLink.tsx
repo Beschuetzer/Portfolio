@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BRIDGE_CLASSNAME } from "../pages";
+import { BRIDGE_CLASSNAME } from "./constants";
 import { scrollToSection } from "./utils";
 
 interface EmbeddedLinkProps {

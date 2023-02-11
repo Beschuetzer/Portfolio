@@ -1,7 +1,7 @@
 import React from "react";
+import { BRIDGE_CLASSNAME } from "../../../components/constants";
 import { useAppSelector } from "../../../hooks";
 import { RootState } from "../../../store";
-import { BRIDGE_CLASSNAME } from "./utils";
 
 interface BridgeCardProps {
 	children: any,

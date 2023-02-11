@@ -17,16 +17,6 @@ import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import { CardManager } from "../../../components/Card/CardManager";
 import {
-	bridgeSectionNames,
-	BRIDGE_BACKDROP_CLASSNAME,
-	BRIDGE_CLASSNAME,
-	BRIDGE_HERO_CLASSNAME,
-	BRIDGE_HERO_CLICKED_CLASSNAME,
-	BRIDGE_HERO_MORE__CLICKED_CLASSNAME,
-	resetBridgeHero,
-	setLinearGradientCssCustomProp,
-} from "./utils";
-import {
 	DISPLAY_NONE_CLASSNAME,
 	LIVE_BRIDGE_URL,
 	GITHUB_URL,
@@ -38,6 +28,12 @@ import {
 	RESUME_URL,
 	BRIDGE_PAGE_NAME,
 	BRIDGE_DEMO_URL,
+	bridgeSectionNames,
+	BRIDGE_BACKDROP_CLASSNAME,
+	BRIDGE_CLASSNAME,
+	BRIDGE_HERO_CLASSNAME,
+	BRIDGE_HERO_CLICKED_CLASSNAME,
+	BRIDGE_HERO_MORE__CLICKED_CLASSNAME,
 } from "../../../components/constants";
 import { BridgeHero } from "./BridgeHero";
 import { SourceCodeLink } from "../../../components/SourceCodeLink";
@@ -49,6 +45,7 @@ import { RootState } from "../../../store";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { isMobileSelector } from "../../../slices/generalSlice";
 import { Reference } from "../../../types";
+import { setLinearGradientCssCustomProp, resetBridgeHero } from "./utils";
 
 const sectionContents = [
 	<SectionContainer name={bridgeSectionNames[0]} pageName={BRIDGE_PAGE_NAME}>

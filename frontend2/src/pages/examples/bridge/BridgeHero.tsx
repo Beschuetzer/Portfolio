@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { Video } from "../../../components/VideoPlayer";
 import bgVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
 import {
-	BRIDGE_HERO_CLASSNAME,
 	handleBridgeHeroSounds,
 	showBridgeHero,
 	toggleSecondInfoButtonClick,
@@ -12,7 +11,7 @@ import { clickedBridgeInfoButtonCountSelector, setClickedBridgeInfoButtonCount }
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { isMobileSelector } from "../../../slices/generalSlice";
 import { loadedSoundsSelector } from "../../../slices/soundsSlice";
-import { HEADER_ID } from "../../../components/constants";
+import { BRIDGE_HERO_CLASSNAME, HEADER_ID } from "../../../components/constants";
 
 type BridgeHeroProps = {}
 
@@ -36,7 +35,7 @@ export const BridgeHero: React.FC<BridgeHeroProps> = () => {
 			toggleSecondInfoButtonClick(hero.current, heroMore.current, isMobile);
 		  }
 		
-		  handleBridgeHeroSounds(
+		handleBridgeHeroSounds(
 			checkBoxRef.current as any,
 			backgroundRef.current,
 			sounds as any,

@@ -42,6 +42,7 @@ import {
 	HEADER_ID,
 	SITE_NAV_CLASSNAME,
 	SITE_NAV_MINIMAL_CLASSNAME,
+	SITE_NAV_CLOSE_DELAY,
 } from "../constants";
 import { useLocation } from "react-router-dom";
 import { currentlyViewingImageSelector, isSiteNavMinimizedSelector, setHeaderHeight } from "../../slices/generalSlice";
@@ -103,7 +104,7 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 		//need timeout to ensure page has loaded first (may need to increase if overflow hidden glitch still occurs)
 		setTimeout(() => {
 			onNavClick(e);
-		}, 100)
+		}, SITE_NAV_CLOSE_DELAY)
 	};
 
 	const onMouseEnter = (e: MouseEvent) => {
