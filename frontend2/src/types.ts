@@ -13,6 +13,13 @@ export type CSharpSection = {
 	hasCarousel?: boolean;
 	styles?: CSSProperties;
 }
+export type Exclusive<
+  T extends Record<PropertyKey, unknown>,
+  U extends Record<PropertyKey, unknown>
+> =
+  | (T & { [k in Exclude<keyof U, keyof T>]?: never })
+  | (U & { [k in Exclude<keyof T, keyof U>]?: never })
+
 export type Match = { url: string };
 export type MaxCharCounts = {
 	[key in MaxCharCount]: () => number;

@@ -238,6 +238,10 @@ $scale-y-amount: .25;
 			// 	var(--color-primary-4),
 			// );
 			transition: background-image $animation-duration $animation-easing-modern;
+
+			& > .navbar__link-image {
+				opacity: $bg-video-opacity * 3;
+			}
 		}
 		&:not(.navbar__dropdown-container):hover {
 			z-index: 10000;
@@ -257,7 +261,7 @@ $scale-y-amount: .25;
 		.navbar__link > img {
 			pointer-events: none;
 			width: 100%;
-			opacity: $bg-video-opacity * 1.5;
+			opacity: 0;
 			position: absolute;
 			top: 0;
 			left: 0;
