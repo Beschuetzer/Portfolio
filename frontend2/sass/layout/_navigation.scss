@@ -279,6 +279,16 @@ $scale-y-amount: .25;
 				border-radius: 0;
 			}
 		}
+		&:not(.navbar__dropdown-container) {
+			&:first-of-type {
+				grid-row: 1;
+				grid-column: 2 / -1;
+			}
+			&:last-of-type {
+				grid-row: 1;
+				grid-column: 1;
+			}
+		}
 	}
 
 	div.navbar__link {
