@@ -68,10 +68,10 @@ export const NavListItem: React.FC<NavListItemProps> = ({
           <div className={`${NAVBAR_CLASSNAME}__dropdown-group`}>
             {label}
             {triangle}
-            <NavListItemExpanded direction={expandedItemOptions.direction}>
-              {expandedItemOptions.items?.map((itemProps) => <NavListItem {...itemProps}/>)}
-            </NavListItemExpanded>
           </div>
+          <NavListItemExpanded direction={expandedItemOptions.direction}>
+            {expandedItemOptions.items?.map((itemProps) => <NavListItem {...itemProps}/>)}
+          </NavListItemExpanded>
         </React.Fragment>
       );
     }
