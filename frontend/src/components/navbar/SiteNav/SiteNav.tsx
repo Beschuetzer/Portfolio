@@ -228,26 +228,30 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 			<section aria-label="pages" className={`${NAVBAR_CLASSNAME}__content`}>
 				<ul className={`${NAVBAR_CLASSNAME}__list`}>
 					<NavListItem
-						imageSource={aboutImage}
-						imageAlt={capitalize(ABOUT_PAGE_NAME)}
+						image={{
+							source: aboutImage,
+							alt: capitalize(ABOUT_PAGE_NAME),
+						}}
 						to={ABOUT_URL}
 						label={capitalize(ABOUT_PAGE_NAME)}
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
 					/>
 					<NavListItem
-						imageSource={resumeImage}
-						imageAlt={capitalize(RESUME_PAGE_NAME)}
+						image={{
+							source: resumeImage,
+							alt: capitalize(RESUME_PAGE_NAME),
+						}}
 						to={RESUME_URL}
 						label="R&eacute;sum&eacute;"
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
 					/>
 					<NavListItem
-						imageSource={examplesImage}
-						imageAlt="projects"
-						isLink={false}
-						to="/projects"
+						image={{
+							source: examplesImage,
+							alt: "Projects",
+						}}
 						label="Projects"
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
@@ -255,40 +259,50 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 						triangle={<div className="triangle-down"></div>}>
 						<ul className={`${NAVBAR_CLASSNAME}__dropdown`}>
 							<NavListItem
-								imageSource={replayImage}
-								imageAlt="Replay Viewer"
+								image={{
+									source: replayImage,
+									alt: "Replay Viewer",
+								}}
 								to={REPLAY_VIEWER_URL}
 								label="Replay Viewer"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
 							<NavListItem
-								imageSource={bridgeImage}
-								imageAlt={capitalize(BRIDGE_PAGE_NAME)}
+								image={{
+									source: bridgeImage,
+									alt: capitalize(BRIDGE_PAGE_NAME),
+								}}
 								to={BRIDGE_URL}
 								label="A# Maj Bridge"
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
 							<NavListItem
-								imageSource={autoBidImage}
-								imageAlt={AUTO_BID_PAGE_NAME}
+								image={{
+									source: autoBidImage,
+									alt: AUTO_BID_PAGE_NAME,
+								}}
 								to={AUTO_BID_URL}
 								label={capitalize(AUTO_BID_PAGE_NAME)}
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
 							<NavListItem
-								imageSource={downloaderImage}
-								imageAlt={capitalize(DOWNLOADER_PAGE_NAME)}
+								image={{
+									source: downloaderImage,
+									alt: capitalize(DOWNLOADER_PAGE_NAME),
+								}}
 								to={DOWNLOADER_URL}
 								label={capitalize(DOWNLOADER_PAGE_NAME)}
 								onMouseEnter={onMouseEnter}
 								onClick={onNavItemClick}
 							/>
 							<NavListItem
-								imageSource={syncerImage}
-								imageAlt="Syncer"
+								image={{
+									source: syncerImage,
+									alt: "Syncer",
+								}}
 								to={PLAYLIST_SYNCER_URL}
 								label="Syncer"
 								onMouseEnter={onMouseEnter}
@@ -297,8 +311,10 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 						</ul>
 					</NavListItem>
 					<NavListItem
-						imageSource={contactImage}
-						imageAlt="Contact"
+						image={{
+							source: contactImage,
+							alt: "Contact",
+						}}
 						to={`mailto:${EMAIL}`}
 						label="Contact"
 						isEmail={true}

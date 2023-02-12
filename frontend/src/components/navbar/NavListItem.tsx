@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom';
 import { OVERFLOW_HIDDEN_ALWAYS_CLASSNAME } from "../constants";
 import { NAVBAR_CLASSNAME } from "./utils";
 
-interface NavListItemProps {
+type NavListItemImage = {
+  alt?: string;
+  source?: string;
+}
+type NavListItemProps = {
   isEmail?: boolean
-	isLink?: boolean
-  to: string;
+  to?: string; //is a link if this is truthy
   label: string;
   children?: any;
   className?: string;
   triangle?: any;
-  imageAlt?: string;
-  imageSource?: string;
+  image?: NavListItemImage;
   rank?: string,
   onMouseEnter: (e: any) => void;
   onClick: (e: any) => void;
@@ -20,17 +22,18 @@ interface NavListItemProps {
 
 export const NavListItem: React.FC<NavListItemProps> = ({
 	isEmail = false,
-	isLink = true,
   onMouseEnter,
   onClick,
-  to,
+  to = '',
   label,
   children,
   className,
   triangle,
   rank,
-  imageAlt = "A picture",
-  imageSource = "",
+  image = {
+    alt: '',
+    source: '',
+  }
 }) => {
 	
   const defaults = {
@@ -71,21 +74,22 @@ export const NavListItem: React.FC<NavListItemProps> = ({
         </a>
       )
     }
-    else if (isLink === true) return (
+    else if (!!to) return (
       <Link className={defaults.linkClassName} to={to}>
         {getContent()}
       </Link>
     ) 
-    else if (isLink === false) return (
+    
+    return (
       <div
         className={`${defaults.linkClassName} ${
-          !isLink && imageSource ? "overflow-hidden" : ""
+          !to && image.source ? "overflow-hidden" : ""
         }`}>
-        {!isLink && imageSource ? (
+        {!to && image.source ? (
           <img
             className={defaults.imageClassName}
-            src={imageSource}
-            alt={imageAlt}
+            src={image.source}
+            alt={image.alt}
           />
         ) : null}
         {getContent()}
@@ -99,15 +103,15 @@ export const NavListItem: React.FC<NavListItemProps> = ({
       onMouseEnter={onMouseEnter}
       onClick={onClick}
       className={`${classNamesToUse}  ${
-        isLink && imageSource ? OVERFLOW_HIDDEN_ALWAYS_CLASSNAME : ""
+        !!to && image.source ? OVERFLOW_HIDDEN_ALWAYS_CLASSNAME : ""
       }`}>
         
-      {isLink && imageSource ? (
+      {!!to && image.source ? (
         <img
           aria-hidden="true"
           className={defaults.imageClassName}
-          src={imageSource}
-          alt={imageAlt}
+          src={image.source}
+          alt={image.alt}
         />
       ) : null}
 
