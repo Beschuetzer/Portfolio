@@ -1,4 +1,5 @@
 React best practices re-work (branch = sitenav_rework)
+  -implement horizontal instance of NavListItemExpanded (may need to disable altogether on mobile or smaller viewports)
   -work on consolidating all the utils.ts files (move functions with more than one use to helpers folder)
   -rework remaining places that directly modify the DOM
   -make SkillsPopup title (section with close button) absolutely postioned
