@@ -1049,9 +1049,8 @@ body {
   background-color: var(--color-primary-3);
 }
 .navbar__dropdown {
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(0%);
+  transform: translateY(-10px) scaleY(0);
+  transform-origin: top;
   position: absolute;
   top: 100%;
   left: 0%;
@@ -1084,7 +1083,6 @@ body {
 }
 .navbar__dropdown .navbar__item {
   opacity: 0;
-  height: 0;
   border: none;
   margin-top: 0.28rem;
   transform-origin: top;
@@ -1244,6 +1242,9 @@ body {
   .navbar.navbar--isAnimating .navbar__content {
     transform: scaleX(1) translateY(-0.35rem) scaleY(1);
   }
+}
+.navbar.navbar--isAnimating .navbar__dropdown {
+  display: none;
 }
 .navbar.navbar--isAnimating * {
   pointer-events: none;

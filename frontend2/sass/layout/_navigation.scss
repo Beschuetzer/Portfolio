@@ -337,9 +337,8 @@ $scale-y-amount: .25;
 	}
 
 	&__dropdown {
-		visibility: hidden;
-		opacity: 0;
-		transform: translateY(0%);
+		transform: translateY(-10px) scaleY(0);
+		transform-origin: top;
 		position: absolute;
 		top: 100%;
 		left: 0%;
@@ -371,12 +370,10 @@ $scale-y-amount: .25;
 
 		& .navbar__item {
 			opacity: 0;
-			height: 0;
 			border: none;
 			margin-top: $navbar__item-divider-width;
 			transform-origin: top;
 			transition: 
-				// height $animation-duration $animation-easing-standard,
 				padding $animation-duration $animation-easing-standard,
 				opacity $animation-duration $animation-easing-standard,
 				transform $animation-duration * 0.25 $animation-easing-standard,
@@ -395,7 +392,6 @@ $scale-y-amount: .25;
 			&:first-child {
 				border-radius: 0;
 				margin-top: $default-font-size * 0.25;
-				// border-radius: $default-font-size * 0.5 $default-font-size * 0.5 0 0;
 				@include respond(nav-switch) {
 					border-top: $default-font-size * 0.1 solid var(--color-primary-1);
 					margin-top: $default-font-size * 0.75;
@@ -573,6 +569,12 @@ $scale-y-amount: .25;
 				transform: scaleX(1) translateY(-$default-font-size * .25) scaleY(1);
 			}
 		}
+
+		//fixes UI bug where clicking a dropdown link to change pages leave a visual remnant while closing
+		& .navbar__dropdown {
+			display: none;
+		}
+
 		* {
 			pointer-events: none;
 			box-shadow: none;
