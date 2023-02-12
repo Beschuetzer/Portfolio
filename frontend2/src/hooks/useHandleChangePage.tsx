@@ -1,21 +1,13 @@
-import { useEffect, useState } from 'react';
-import { BODY_BACKGROUND_CLASSNAME, PAGE_NAMES, DEFAULT_PAGE_NAME_INDEX, DISPLAY_NONE_CLASSNAME, HEADER_ID, HEADER_TOGGLER_CLASSNAME, TRANSPARENT_CLASSNAME } from '../components/constants';
+import { useEffect, useCallback } from 'react';
+import { BODY_BACKGROUND_CLASSNAME, PAGE_NAMES, DEFAULT_PAGE_NAME_INDEX, DISPLAY_NONE_CLASSNAME, HEADER_ID, HEADER_TOGGLER_CLASSNAME, TRANSPARENT_CLASSNAME, PAGE_NAV_CLASSNAME, HIDDEN_CLASSNAME } from '../components/constants';
 import { scrollToSection } from '../components/utils';
-import { useAppSelector } from '../hooks';
-import { previousUrlSelector } from '../slices';
 import { Match } from '../types';
 
 //match is inserted into all components via react-router-dom
 export const useHandleChangePage = (match: Match) => {
-	const previousUrl = useAppSelector(previousUrlSelector);
-	const [currentUrl, setCurrentUrl] = useState<string>("");
+	const currentUrl = match?.url || '';
 
-    useEffect(() => {
-		if (!currentUrl) { 
-			(document.body.className = `${BODY_BACKGROUND_CLASSNAME} home-page`);
-			return;
-		}
-	
+	const adjustColors = useCallback(() => {
 		let docStyle = getComputedStyle(document.documentElement);
 		const colorVarRoot = "--color-primary";
 		const colorSuffixes = ["-1", "-2", "-3", "-4", "-red"];
@@ -48,16 +40,9 @@ export const useHandleChangePage = (match: Match) => {
 				targetValueRGB,
 			);
 		}
-	}, [currentUrl]);
+	}, [currentUrl])
 
-    useEffect(() => {
-		if (!currentUrl || currentUrl !== match.url) {
-			scrollToSection(document.body);
-			setCurrentUrl(match.url);
-		}
-	}, [match, currentUrl, previousUrl, setCurrentUrl]);
-
-	useEffect(() => {
+	const adjustHeaderStyles = useCallback(() => {
 		const headerElement = document.querySelector(HEADER_ID);
 		const headerTogglerElement = document.querySelector(
 			`.${HEADER_TOGGLER_CLASSNAME}`,
@@ -67,8 +52,23 @@ export const useHandleChangePage = (match: Match) => {
 			headerElement.classList.add(TRANSPARENT_CLASSNAME);
 			headerTogglerElement.classList.add(DISPLAY_NONE_CLASSNAME);
 		} else {
+			// const pageNavElement = document.querySelector(`.${PAGE_NAV_CLASSNAME}`);
+			// pageNavElement?.classList.remove(HIDDEN_CLASSNAME);
 			headerElement.classList.remove(TRANSPARENT_CLASSNAME);
 			headerTogglerElement.classList.remove(DISPLAY_NONE_CLASSNAME);
 		}
+
+	}, [currentUrl, TRANSPARENT_CLASSNAME, DISPLAY_NONE_CLASSNAME]);
+
+    useEffect(() => {
+		if (!currentUrl) { 
+			(document.body.className = `${BODY_BACKGROUND_CLASSNAME} home-page`);
+			return;
+		}
+		adjustHeaderStyles();
+		adjustColors();
+		setTimeout(() => {
+			scrollToSection(null);
+		}, 100)
 	}, [currentUrl]);
 }

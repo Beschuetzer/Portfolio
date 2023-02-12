@@ -198,7 +198,7 @@ export function resetArrowButtonClassnames() {
 	}, 1);
 }
 
-export const scrollToSection = (sectionToScrollTo: HTMLElement, addedHeight: number = 0) => {
+export const scrollToSection = (sectionToScrollTo: HTMLElement | null, addedHeight: number = 0) => {
 	if (!sectionToScrollTo) {
 		return window.scroll({
 			top: 0,

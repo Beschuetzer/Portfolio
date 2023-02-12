@@ -29,7 +29,10 @@ export const App: React.FC<AppProps> = ({
 	const dispatch = useAppDispatch();
 	const isMobile = useAppSelector(isMobileSelector);
 	const mobileBreakPointWidth = MOBILE_BREAK_POINT_WIDTH;
-	dispatch(setIsMobile({isMobile: window.innerWidth <= mobileBreakPointWidth, viewPortWidth: window.innerWidth}));
+
+	useEffect(() => {
+		dispatch(setIsMobile({isMobile: window.innerWidth <= mobileBreakPointWidth, viewPortWidth: window.innerWidth}));
+	}, [])
 
 	//setup window resize listener
 	useEffect(() => {

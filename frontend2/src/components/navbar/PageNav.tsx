@@ -7,7 +7,8 @@ import { useUpdatePageNav } from "../../hooks/useUpdatePageNav";
 import { BridgeSectionLink } from "../../pages";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../slices/bridgeSlice";
 import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../slices/generalSlice";
-import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME, DEFAULT_FONT_SIZE } from "../constants";
+import { Match } from "../../types";
+import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME, DEFAULT_FONT_SIZE, PAGE_NAV_CLASSNAME } from "../constants";
 import { scrollToSection } from "../utils";
 import { setHeaderHeightCSSPropertyValue } from "./utils";
 
@@ -37,12 +38,10 @@ export const PageNav: React.FC<PageNavProps> = ({
 	const isBridgePage = match.url.match(/bridge$/i);
 	const docStyle = getComputedStyle(document.documentElement);
 	let previousSectionBottom: number | null = 0;
-	const pageNavElement = document.querySelector(".page-nav") as HTMLElement;
+	const pageNavElement = document.querySelector(`.${PAGE_NAV_CLASSNAME}`) as HTMLElement;
 	const maxScrollOffsetPercent = 1;
 	const scrollRefreshLimit = 50;
 	const scrollSectionDelimiterOffset = window.innerHeight / 6;
-	const url = match.url;
-	const pageName = url.slice(url.lastIndexOf("/") + 1);
 	// const gradientVarName = "--site-nav-linear-gradient";
 	// const activeScaleVarName = "--site-nav-active-scale-amount";
 	// const activeScaleRange = {
@@ -56,13 +55,16 @@ export const PageNav: React.FC<PageNavProps> = ({
 
 	//#region Functions
 	const checkShouldSetPreviousUrl = (
-		match: { url: string },
+		match: Match,
 		previousUrl: string,
 	) => {
 		const currentUrl = match?.url;
 
 		if (!previousUrl || previousUrl !== currentUrl) {
-			dispatch(setPreviousUrl(currentUrl));
+			//timeout fixes warning about setState in render
+			setTimeout(() => {
+				dispatch(setPreviousUrl(currentUrl));
+			}, 1)
 		}
 	};
 
@@ -189,7 +191,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 	//#endregion
 
 	//#region Side FX
-	useUpdatePageNav(match, pageNavElement);
+	useUpdatePageNav(pageNavElement);
 	useEffect(() => {
 		setHeaderHeightCSSPropertyValue();
 	})
@@ -345,7 +347,10 @@ export const PageNav: React.FC<PageNavProps> = ({
 	
 	useEffect(() => {
 		const sections = document.querySelectorAll("[data-section]");
-		resetGradientPercents(sections);
+		
+		setTimeout(() => {
+			resetGradientPercents(sections);
+		}, 100)
 		setsectionsToRender(sections);
 	}, [location])
 	//#endregion
@@ -402,8 +407,8 @@ export const PageNav: React.FC<PageNavProps> = ({
 		});
 	};
 
-	//hide if bridge page initial
-	if (match.url?.match(/bridge$/i) && !isMobile && clickedBridgeInfoButtonCount <= 0) {
+	//hide if bridge page initial or landing page	
+	if (match.url === '/' || match.url?.match(/bridge$/i) && !isMobile && clickedBridgeInfoButtonCount <= 0) {
 		return null;
 	}
 	return ReactDOM.createPortal(

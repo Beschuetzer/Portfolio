@@ -133,7 +133,7 @@ export function setTranslationAmount(
 	const itemElements = (itemsRef as any).current;
 
 	return setTimeout(() => {
-		for (let i = 0; i < itemElements.length; i++) {
+		for (let i = 0; i < itemElements?.length; i++) {
 			const item = itemElements[i] as HTMLElement;
 			const string = `translate(-${amountToTranslateImages}px, 0)`;
 			item.style.transform = string;
