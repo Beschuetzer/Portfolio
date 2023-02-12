@@ -59,6 +59,7 @@ $navbar__button-bar-before-rotation: rotate(105deg);
 $navbar__button-bar-after-rotation: rotate(-105deg);
 $navbar-width-nav-switch: 97.5vw;
 
+$navbar__item-margin-top: $default-font-size * 0.25;
 $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divider-width: $default-font-size * 0.2;
 $navbar__item-divider: $navbar__item-divider-width solid var(--color-primary-1);

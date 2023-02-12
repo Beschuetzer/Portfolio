@@ -7,6 +7,7 @@ import {
 	ABOUT_URL,
 	AUTO_BID_URL,
 	BRIDGE_URL,
+	DEFAULT_FONT_SIZE,
 	DOWNLOADER_URL,
 	FILL_RED_CLASSNAME,
 	HEADER_ID,
@@ -198,7 +199,7 @@ export function resetArrowButtonClassnames() {
 	}, 1);
 }
 
-export const scrollToSection = (sectionToScrollTo: HTMLElement | null, addedHeight: number = 0) => {
+export const scrollToSection = (sectionToScrollTo: HTMLElement | null, addedHeight: number = (-DEFAULT_FONT_SIZE * 75)) => {
 	if (!sectionToScrollTo) {
 		return window.scroll({
 			top: 0,

@@ -43,6 +43,7 @@ import {
 	SITE_NAV_CLASSNAME,
 	SITE_NAV_MINIMAL_CLASSNAME,
 	SITE_NAV_CLOSE_DELAY,
+	PERSONALITY_URL,
 } from "../constants";
 import { useLocation } from "react-router-dom";
 import { currentlyViewingImageSelector, isSiteNavMinimizedSelector, setHeaderHeight } from "../../slices/generalSlice";
@@ -51,6 +52,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useHandleChangePage } from "../../hooks/useHandleChangePage";
 import { Match } from "../../types";
 import { NavListItemExpandedDirections } from "./NavListItemExpanded";
+import { ABOUT_SECTION_NAMES } from "../../pages";
 
 interface SiteNavProps {
 	match: Match
@@ -205,16 +207,6 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 			</button>
 			<section aria-label="pages" className={`${NAVBAR_CLASSNAME}__content`}>
 				<ul className={`${NAVBAR_CLASSNAME}__list`}>
-				<NavListItem
-						image={{
-							source: aboutImage,
-							alt: capitalize(ABOUT_PAGE_NAME),
-						}}
-						to={ABOUT_URL}
-						label={capitalize(ABOUT_PAGE_NAME)}
-						onMouseEnter={onMouseEnter}
-						onClick={onNavItemClick}
-					/>
 					<NavListItem
 						image={{
 							source: resumeImage,
@@ -226,6 +218,37 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 						onClick={onNavItemClick}
 					/>
 					<NavListItem
+						expandedItemOptions={{
+							items: [
+								...ABOUT_SECTION_NAMES.map((name) => {
+									return {
+										to: `${ABOUT_URL}#${name?.toLowerCase()}`,
+										label: capitalize(name),
+										onMouseEnter: onMouseEnter,
+										onClick: onNavItemClick,
+									}
+								}),
+								{
+									image: {
+										source: replayImage,
+										alt: "Personality",
+									},
+									to: PERSONALITY_URL,
+									label: "Personality",
+									onMouseEnter: onMouseEnter,
+									onClick: onNavItemClick,
+								},
+							]
+						}}
+						image={{
+							source: aboutImage,
+							alt: capitalize(ABOUT_PAGE_NAME),
+						}}
+						label={capitalize(ABOUT_PAGE_NAME)}
+						onMouseEnter={onMouseEnter}
+						onClick={onNavItemClick}
+					/>
+					<NavListItem
 						image={{
 							source: examplesImage,
 							alt: "Projects",
@@ -233,9 +256,7 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 						label="Projects"
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
-						className={`${NAVBAR_CLASSNAME}__item ${NAVBAR_CLASSNAME}__dropdown-container flex align-center justify-content-center`}
 						expandedItemOptions={{
-							direction: NavListItemExpandedDirections.vertical,
 							items: [
 								{
 									image: {

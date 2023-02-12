@@ -21,7 +21,7 @@ type NavListItemLinkAndExpandedMenuExclusivity = Exclusive< {
    */
   expandedItemOptions: {
     items: NavListItemProps[];
-    direction: NavListItemExpandedDirections;
+    direction?: NavListItemExpandedDirections;
   };
 }>; 
 
@@ -47,14 +47,15 @@ export const NavListItem: React.FC<NavListItemProps> = ({
   onClick,
   to = '',
   label,
-  className,
+  className = '',
   image = {
     alt: '',
     source: '',
   }
 }) => {
+  const expandedMenuClassname = `${NAVBAR_CLASSNAME}__item ${NAVBAR_CLASSNAME}__dropdown-container flex align-center justify-content-center`;
+  const classNameToUse = className || expandedItemOptions ? expandedMenuClassname : defaults.liClassName;
   const triangle = <div className="triangle-down"/>;
-  const classNamesToUse = className || defaults.liClassName;
   const getContent = () => {
     let content = (
       <React.Fragment>
@@ -69,8 +70,8 @@ export const NavListItem: React.FC<NavListItemProps> = ({
             {label}
             {triangle}
           </div>
-          <NavListItemExpanded direction={expandedItemOptions.direction}>
-            {expandedItemOptions.items?.map((itemProps) => <NavListItem {...itemProps}/>)}
+          <NavListItemExpanded direction={expandedItemOptions ? expandedItemOptions.direction : NavListItemExpandedDirections.vertical}>
+            {expandedItemOptions.items?.map((itemProps, index) => <NavListItem key={index} {...itemProps}/>)}
           </NavListItemExpanded>
         </React.Fragment>
       );
@@ -115,7 +116,7 @@ export const NavListItem: React.FC<NavListItemProps> = ({
       aria-label={label}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
-      className={`${classNamesToUse}  ${
+      className={`${classNameToUse}  ${
         !!to && image.source ? OVERFLOW_HIDDEN_ALWAYS_CLASSNAME : ""
       }`}>
         

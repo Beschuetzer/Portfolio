@@ -1052,7 +1052,7 @@ body {
   background-color: var(--color-primary-3);
 }
 .navbar__dropdown {
-  transform: translateY(-10px) scaleY(0);
+  transform: translateY(-0.35rem) scaleY(0);
   transform-origin: top;
   position: absolute;
   top: 100%;

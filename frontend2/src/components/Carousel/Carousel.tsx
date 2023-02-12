@@ -199,11 +199,12 @@ export const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	const renderItems = () => {
-		const arrangedItems = getArrangedItems(
-			items,
-			shouldRearrangeItems,
-			numberOfItemsInCarouselWidthWiseConverted,
-		) as CarouselItemProps[];
+		// const arrangedItems = getArrangedItems(
+		// 	items,
+		// 	shouldRearrangeItems,
+		// 	numberOfItemsInCarouselWidthWiseConverted,
+		// ) as CarouselItemProps[];
+		const arrangedItems = items;
 
 		return arrangedItems.map((item, index) => {
 			const carouselItemProps: CarouselItemProps = {
@@ -355,7 +356,8 @@ export const Carousel: React.FC<CarouselProps> = ({
 
 		if (itemsRef && parentCarousel) {
 			const items = parentCarousel.querySelectorAll(`.${CAROUSEL_ITEM_CLASSNAME}`);
-			const arrangedItems = getArrangedItems(items, shouldRearrangeItems, numberOfItemsInCarouselWidthWiseConverted);
+			const arrangedItems = items;
+			// const arrangedItems = getArrangedItems(items, shouldRearrangeItems, numberOfItemsInCarouselWidthWiseConverted);
 			(itemsRef as any).current = arrangedItems;
 		}
 

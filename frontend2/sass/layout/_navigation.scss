@@ -341,7 +341,7 @@ $scale-y-amount: .25;
 	}
 
 	&__dropdown {
-		transform: translateY(-10px) scaleY(0);
+		transform: translateY(-$navbar__item-margin-top) scaleY(0);
 		transform-origin: top;
 		position: absolute;
 		top: 100%;
@@ -395,7 +395,7 @@ $scale-y-amount: .25;
 
 			&:first-child {
 				border-radius: 0;
-				margin-top: $default-font-size * 0.25;
+				margin-top: $navbar__item-margin-top;
 				@include respond(nav-switch) {
 					border-top: $default-font-size * 0.1 solid var(--color-primary-1);
 					margin-top: $default-font-size * 0.75;

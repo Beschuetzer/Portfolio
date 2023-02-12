@@ -8,7 +8,7 @@ import { BridgeSectionLink } from "../../pages";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../slices/bridgeSlice";
 import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../slices/generalSlice";
 import { Match } from "../../types";
-import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME, DEFAULT_FONT_SIZE, PAGE_NAV_CLASSNAME } from "../constants";
+import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME, PAGE_NAV_CLASSNAME } from "../constants";
 import { scrollToSection } from "../utils";
 import { setHeaderHeightCSSPropertyValue } from "./utils";
 
@@ -395,8 +395,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 							scrollToSection(
 								document.getElementById(
 									(e.currentTarget as any)?.textContent.toLowerCase().replace(' ', '-'),
-								) as HTMLElement,
-								-DEFAULT_FONT_SIZE * 75,
+								) as HTMLElement
 							);
 						}}
 						className={`${cssClass}__section ${cssClass}__section-${sectionName}`}>
