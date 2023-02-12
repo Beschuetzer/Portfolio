@@ -195,12 +195,11 @@ const sectionContents = [
 					title="Claim Some">
 					<div>
 						<p>
-							'Claim Some' allows the declarer (person playing the contract) to
+							The 'Claim Some' feature speeds up gameplay in some scenarios by allowing the declarer (person playing the contract) to
 							claim some number of tricks less than or equal to the number of
 							tricks remaining.&nbsp; The UI guides players through the
-							selection process, by graying out cards that are invalid and
-							displaying the selected cards in a table, allowing for a smooth
-							user experience.
+							selection process by disabling invalid choices and
+							displaying valid choices in a table.
 						</p>
 					</div>
 				</Card>
