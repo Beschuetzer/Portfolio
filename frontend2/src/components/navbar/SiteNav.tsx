@@ -3,15 +3,15 @@ import { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { NavListItem } from "./NavListItem";
 
-import aboutImage from "../../imgs/site-nav-about.jpg";
-import autoBidImage from "../../imgs/site-nav-autobid.jpg";
-import bridgeImage from "../../imgs/bridge-section-6.jpg";
-import contactImage from "../../imgs/site-nav-contact.jpg";
-import downloaderImage from "../../imgs/site-nav-downloader.jpg";
-import examplesImage from "../../imgs/site-nav-examples.jpg";
-import resumeImage from "../../imgs/site-nav-resume.jpg";
-import syncerImage from "../../imgs/site-nav-syncer.jpg";
-import replayImage from "../../imgs/site-nav-replay.jpg";
+import aboutImage from "../../imgs/site-nav/about.jpg";
+import autoBidImage from "../../imgs/site-nav/autobid.jpg";
+import bridgeImage from "../../imgs/site-nav/bridge.jpg";
+import contactImage from "../../imgs/site-nav/contact.jpg";
+import downloaderImage from "../../imgs/site-nav/downloader.jpg";
+import examplesImage from "../../imgs/site-nav/examples.jpg";
+import resumeImage from "../../imgs/site-nav/resume.jpg";
+import syncerImage from "../../imgs/site-nav/syncer.jpg";
+import replayImage from "../../imgs/site-nav/replay.jpg";
 
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
@@ -212,6 +212,7 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 							items: [
 								...RESUME_SECTION_TITLES.map((name) => {
 									const nameToUse = name.replace('-', ' ');
+									//todo: add images here
 									return {
 										to: `${RESUME_URL}#${nameToUse?.toLowerCase()}`,
 										label: capitalize(nameToUse),
@@ -234,6 +235,8 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 							items: [
 								...ABOUT_SECTION_NAMES.map((name) => {
 									const nameToUse = name.replace('-', ' ');
+
+									//todo: add images here
 									return {
 										to: `${ABOUT_URL}#${nameToUse?.toLowerCase()}`,
 										label: capitalize(nameToUse),
