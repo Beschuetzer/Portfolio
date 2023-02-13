@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import { setHeaderHeightCSSPropertyValue } from "../../hooks/useSetHeaderCssStyle";
 import { headerHeightSelector, isSiteNavMinimizedSelector, setIsSiteNavMinimized, viewPortWidthSelector } from "../../slices/generalSlice";
 import { HEADER_TOGGLER_CSS_CLASSNAME, HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_TOGGLER_CLASSNAME } from "../constants";
-import { setHeaderHeightCSSPropertyValue } from "./utils";
 
 interface NavTogglerProps {}
 

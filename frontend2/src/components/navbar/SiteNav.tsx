@@ -30,7 +30,6 @@ import {
 	NAVBAR_DEFAULT_CLASSNAME,
 	NAVBAR_DONE_CLASSNAME,
 	NAVBAR_IS_ANIMATING_CLASSNAME,
-	setHeaderHeightCSSPropertyValue,
 } from "./utils";
 import {
 	ABOUT_PAGE_NAME,
@@ -147,13 +146,6 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 
 	//#region Side FXs
 	useHandleChangePage(match);
-	useEffect(() => {
-		//need timeout to wait for PageNav to render
-		setTimeout(() => {
-			setHeaderHeightCSSPropertyValue();
-		}, 1);
-	});
-
 	useEffect(() => {
 		function handleKeypress(e: KeyboardEvent) {
 			switch (e.key) {

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
 import { capitalize } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useSetHeaderCssStyle } from "../../hooks/useSetHeaderCssStyle";
 import { useUpdatePageNav } from "../../hooks/useUpdatePageNav";
 import { BridgeSectionLink } from "../../pages";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../slices/bridgeSlice";
@@ -10,7 +11,6 @@ import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../sli
 import { Match } from "../../types";
 import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME, PAGE_NAV_CLASSNAME } from "../constants";
 import { scrollToSection } from "../utils";
-import { setHeaderHeightCSSPropertyValue } from "./utils";
 
 interface PageNavProps {
 	match: { url: string };
@@ -192,10 +192,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 
 	//#region Side FX
 	useUpdatePageNav(pageNavElement);
-	useEffect(() => {
-		setHeaderHeightCSSPropertyValue();
-	})
-
+	useSetHeaderCssStyle();
 	useEffect(() => {
 		const handleScroll = (e: Event) => {
 			if (!shouldHandleScroll || !shouldHandleScroll.current) return;
