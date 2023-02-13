@@ -1,15 +1,14 @@
 import {
-	FULLSCREEN_ARROW_BUTTON_CLASSNAME,
-	FULLSCREEN_PARENT_CLASSNAME,
-} from "./Carousel/CarouselItem";
-import { CAROUSEL_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME } from "./Carousel/util";
-import {
 	ABOUT_URL,
 	AUTO_BID_URL,
 	BRIDGE_URL,
+	CAROUSEL_CLASSNAME,
+	CAROUSEL_VIDEO_CLASSNAME,
 	DEFAULT_FONT_SIZE,
 	DOWNLOADER_URL,
 	FILL_RED_CLASSNAME,
+	FULLSCREEN_ARROW_BUTTON_CLASSNAME,
+	FULLSCREEN_PARENT_CLASSNAME,
 	HEADER_ID,
 	MAIL_TO_STRING,
 	MOBILE_BREAK_POINT_WIDTH,
@@ -19,27 +18,6 @@ import {
 	Z_INDEX_CONTENT_CLASSNAME,
 } from "./constants";
 import history from "../components/history";
-
-//#region Helper Functions
-
-
-// export function onRenderCallback(
-//   id, // the "id" prop of the Profiler tree that has just committed
-//   phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
-//   actualDuration, // time spent rendering the committed update
-//   baseDuration, // estimated time to render the entire subtree without memoization
-//   startTime, // when React began rendering this update
-//   commitTime, // when React committed this update
-//   interactions // the Set of interactions belonging to this update
-// ) {
-//   console.log('id =', id);
-//   console.log('phase =', phase);
-//   console.log('actualDuration =', actualDuration);
-//   console.log('baseDuration =', baseDuration);
-//   // console.log('startTime =', startTime);
-//   // console.log('commitTime =', commitTime);
-//   // console.log('interactions =', interactions);
-// }
 
 export const addSpaceAfterPunctuationMarks = (string: string) => {
 	const punctuationMarks = [".", "?", "!"];
@@ -232,4 +210,3 @@ export function toggleScrollability(isScrollable = true) {
 		document.body.style.overflowY = 'hidden';
 	}
 }
-//#endregion

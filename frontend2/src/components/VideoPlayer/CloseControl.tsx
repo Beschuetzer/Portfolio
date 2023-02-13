@@ -1,9 +1,7 @@
 import { RefObject } from "react";
 import {
-	FULLSCREEN_CLASSNAME,
-	FULLSCREEN_PARENT_CLASSNAME,
 } from "../Carousel/CarouselItem";
-import { CAROUSEL_ITEM_CLASSNAME } from "../Carousel/util";
+import { FULLSCREEN_PARENT_CLASSNAME, CAROUSEL_ITEM_CLASSNAME, FULLSCREEN_CLASSNAME } from "../constants";
 import { removeClassFromAllChildren } from "../utils";
 
 import { closeVideo } from "./utils";

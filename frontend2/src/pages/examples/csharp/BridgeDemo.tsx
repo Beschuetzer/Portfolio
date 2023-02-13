@@ -8,7 +8,6 @@ import video2 from "../../../clips/bridge-demo/2.mp4";
 import video3 from "../../../clips/bridge-demo/3.mp4";
 
 import { C_SHARP_CLASSNAME } from "./utils";
-import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
 import {
 	closeCarouselItem,
 	functionToGetContainer,
@@ -16,6 +15,7 @@ import {
 import {
 	LIVE_BRIDGE_URL,
 	BRIDGE_DEMO_PAGE_NAME,
+	CAROUSEL_CLASSNAME,
 } from "../../../components/constants";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { CSharpCardSection } from "./CSharpCardSection";

@@ -1,20 +1,9 @@
 import React, { RefObject, useEffect, useRef } from "react";
 import {
 	CarouselItem,
-	FULLSCREEN_CLASSNAME,
-	FULLSCREEN_PARENT_CLASSNAME,
-	PLAYING_CLASSNAME,
-	STOPPED_CLASSNAME,
 } from "./CarouselItem";
 import CarouselArrow from "./CarouselArrow";
 import {
-	CAROUSEL_ARROW_BUTTONS_CLASSNAME,
-	CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
-	CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME,
-	CAROUSEL_DOT_ACTIVE_CLASSNAME,
-	CAROUSEL_DOT_CLASSNAME,
-	CAROUSEL_ITEM_CLASSNAME,
-	CAROUSEL_MIN_IMAGE_COUNT,
 	setArrowButtonsHiddenClass,
 	setTranslationAmount,
 	handleSetTranslation as getNewCurrentTranslationFactor,
@@ -22,15 +11,13 @@ import {
 	getNthItemOpen,
 	toggleLeftAndRightArrows as handleWhetherToDisplayArrows,
 	resetCarouselVideo,
-	CAROUSEL_VIDEO_CLASSNAME,
 	getCarouselGridMaxColumnWidth,
-	CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT,
 	getArrangedItems,
 	toggleMobileDisplayIssueFixes,
 	getFirstItemAndParentCarousels,
 	setCarouselGridMaxColumnWidth,
 } from "./util";
-import { CONTAINS_CAROUSEL_CLASSNAME } from "../constants";
+import { CAROUSEL_ARROW_BUTTONS_CLASSNAME, CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME, CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME, CAROUSEL_DOT_ACTIVE_CLASSNAME, CAROUSEL_DOT_CLASSNAME, CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT, CAROUSEL_ITEM_CLASSNAME, CAROUSEL_MIN_IMAGE_COUNT, CAROUSEL_VIDEO_CLASSNAME, CONTAINS_CAROUSEL_CLASSNAME, FULLSCREEN_CLASSNAME, FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME, STOPPED_CLASSNAME } from "../constants";
 import { useState } from "react";
 import { toggleScrollability } from "../utils";
 import { ArrowButtonDirection, CarouselItemProps } from "../../types";

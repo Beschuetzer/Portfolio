@@ -106,17 +106,35 @@ export const CARD_DONE_CLASSNAME = "card--done";
 export const CARD_OPEN_CLASSNAME = "card--open";
 export const CARD_PLAYING_CLASSNAME = "card--playing";
 export const CARD_STOPPED_CLASSNAME = "card--stopped";
+export const CAROUSEL_CLASSNAME = "carousel";
+export const CAROUSEL_ARROW_BUTTONS_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button`;
+export const CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME = `${CAROUSEL_ARROW_BUTTONS_CLASSNAME}--left`;
+export const CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME = `${CAROUSEL_ARROW_BUTTONS_CLASSNAME}--right`;
+export const CAROUSEL_ITEM_CLASSNAME = `${CAROUSEL_CLASSNAME}__item`;
+export const CAROUSEL_DOT_CLASSNAME = `${CAROUSEL_CLASSNAME}__dot`;
+export const CAROUSEL_DESCRIPTION_CLASSNAME = `${CAROUSEL_ITEM_CLASSNAME}-description`;
+export const CAROUSEL_DOT_ACTIVE_CLASSNAME = `${CAROUSEL_DOT_CLASSNAME}--active`;
+export const CAROUSEL_IMAGE_CLASSNAME = `${CAROUSEL_CLASSNAME}__image`;
+export const CAROUSEL_TRANSITION_CLASSNAME = "carousel-transition";
+export const CAROUSEL_TRANSLATION_CSS_CLASSNAME = `--${CAROUSEL_CLASSNAME}-item-translation-x`;
+export const CAROUSEL_VIDEO_CLASSNAME = `${CAROUSEL_CLASSNAME}__video`;
 export const CONTAINS_CAROUSEL_CLASSNAME = "contains-carousel";
 export const DISPLAY_NONE_CLASSNAME = "d-none";
+export const DONE_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--done`;
 export const FILL_RED_CLASSNAME = "fill-red";
+export const FULLSCREEN_ARROW_BUTTON_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button--full-screen`;
+export const FULLSCREEN_CLASSNAME = "full-screen";
+export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
 export const HIDDEN_CLASSNAME = "hidden";
 export const HOME_CANVAS_CLASSNAME = "home__canvas";
 export const NO_MARGIN_CLASSNAME = "margin-0";
 export const OVERFLOW_HIDDEN_ALWAYS_CLASSNAME = "overflow-hidden";
 export const OVERFLOW_HIDDEN_CLASSNAME = "overflow--hidden";
 export const PAGE_NAV_CLASSNAME = "page-nav";
+export const PLAYING_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--playing`;
 export const SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME = "--site-nav-button-width";
 export const SLIDING_CLASSNAME = "sliding";
+export const STOPPED_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--stopped`;
 export const TRANSFORM_NONE_CLASSNAME = "transform-none";
 export const TRANSFORM_REMOVED_CLASSNAME = "transform-removed";
 export const TRANSITION_NONE_CLASSNAME = "transition-none";
@@ -185,6 +203,16 @@ export const BRIDGE_PAGE_NAV_LINKS_COLORS: BridgePageNavLinkColors[] = [
     normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
     hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
   },
+];
+
+export const CAROUSEL_MIN_IMAGE_COUNT = 0;
+export const CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT = "1.6rem";
+export const CAROUSEL_GRID_MAX_COLUMN_WIDTHS: [number, string][] = [
+	//1st index is number of items and second is the width
+	[7, "15rem"],
+	[8, "12rem"],
+	[12, "10rem"],
+	[13, "7rem"],
 ];
 
 export const MAX_CHAR_COUNTS: MaxCharCounts = {
