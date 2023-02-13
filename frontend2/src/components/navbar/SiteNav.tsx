@@ -52,7 +52,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useHandleChangePage } from "../../hooks/useHandleChangePage";
 import { Match } from "../../types";
 import { NavListItemExpandedDirections } from "./NavListItemExpanded";
-import { ABOUT_SECTION_NAMES } from "../../pages";
+import { ABOUT_SECTION_NAMES, RESUME_SECTION_TITLES } from "../../pages";
 
 interface SiteNavProps {
 	match: Match
@@ -208,11 +208,23 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 			<section aria-label="pages" className={`${NAVBAR_CLASSNAME}__content`}>
 				<ul className={`${NAVBAR_CLASSNAME}__list`}>
 					<NavListItem
+						expandedItemOptions={{
+							items: [
+								...RESUME_SECTION_TITLES.map((name) => {
+									const nameToUse = name.replace('-', ' ');
+									return {
+										to: `${RESUME_URL}#${nameToUse?.toLowerCase()}`,
+										label: capitalize(nameToUse),
+										onMouseEnter: onMouseEnter,
+										onClick: onNavItemClick,
+									}
+								})
+							]
+						}}
 						image={{
 							source: resumeImage,
 							alt: capitalize(RESUME_PAGE_NAME),
 						}}
-						to={RESUME_URL}
 						label="R&eacute;sum&eacute;"
 						onMouseEnter={onMouseEnter}
 						onClick={onNavItemClick}
@@ -221,18 +233,19 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 						expandedItemOptions={{
 							items: [
 								...ABOUT_SECTION_NAMES.map((name) => {
+									const nameToUse = name.replace('-', ' ');
 									return {
-										to: `${ABOUT_URL}#${name?.toLowerCase()}`,
-										label: capitalize(name),
+										to: `${ABOUT_URL}#${nameToUse?.toLowerCase()}`,
+										label: capitalize(nameToUse),
 										onMouseEnter: onMouseEnter,
 										onClick: onNavItemClick,
 									}
 								}),
 								{
-									image: {
-										source: replayImage,
-										alt: "Personality",
-									},
+									// image: {
+									// 	source: replayImage,
+									// 	alt: "Personality",
+									// },
 									to: PERSONALITY_URL,
 									label: "Personality",
 									onMouseEnter: onMouseEnter,

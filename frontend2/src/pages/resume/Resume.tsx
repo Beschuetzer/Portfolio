@@ -51,7 +51,7 @@ function getExternalLinkTargetAndRel() {
 	return ` target='_blank' rel='noreferrer' `;
 }
 
-const sectionTitles = [
+export const RESUME_SECTION_TITLES = [
 	"Overview",
 	SKILLS_CLASSNAME,
 	"Work-history",
@@ -59,13 +59,13 @@ const sectionTitles = [
 	"References",
 ];
 
-const skillsItemSectionLabels = [
+const RESUME_SKILLS_SECTIONS = [
 	"Web Development",
 	"IT Skills",
 	"Human Skills",
 	"Personality",
 ];
-const sectionsToSkipAnimation = [skillsItemSectionLabels[2]];
+const sectionsToSkipAnimation = [RESUME_SKILLS_SECTIONS[2]];
 
 const skillsLabels: {
 	[key: string]: { left: string; center: string; right: string };
@@ -106,7 +106,7 @@ const skills: {
 		[key: string]: [Skill];
 	};
 } = {
-	[skillsItemSectionLabels[0]]: {
+	[RESUME_SKILLS_SECTIONS[0]]: {
 		[webDevSubSkillsLabels[0]]: [
 			{
 				title: "CSS3",
@@ -263,7 +263,7 @@ const skills: {
 			},
 		],
 	},
-	[skillsItemSectionLabels[1]]: [
+	[RESUME_SKILLS_SECTIONS[1]]: [
 		{
 			title: "A+",
 			percent: 80,
@@ -300,7 +300,7 @@ const skills: {
 			href: "/certs/server2016.png",
 		},
 	],
-	[skillsItemSectionLabels[2]]: [
+	[RESUME_SKILLS_SECTIONS[2]]: [
 		{
 			title: "Empathizing",
 			percent: 68,
@@ -334,7 +334,7 @@ const skills: {
 			percent: 85,
 		},
 	],
-	[skillsItemSectionLabels[3]]: [
+	[RESUME_SKILLS_SECTIONS[3]]: [
 		{
 			title: "Conscientiousness",
 			percent: 85,
@@ -387,7 +387,7 @@ export const Resume: React.FC<ResumeProps> = () => {
 
 	const content = [
 		[
-			sectionTitles[0],
+			RESUME_SECTION_TITLES[0],
 			<React.Fragment>
 				<section aria-label="Overview">
 					<Quote author="Seth Godin">
@@ -424,15 +424,15 @@ export const Resume: React.FC<ResumeProps> = () => {
 			</React.Fragment>,
 		],
 		[
-			capitalize(sectionTitles[1]),
+			capitalize(RESUME_SECTION_TITLES[1]),
 			<React.Fragment>
 				<ul className={`${SKILLS_CLASSNAME}`}>
-					<SkillsItemSection title={`${skillsItemSectionLabels[0]} `}>
+					<SkillsItemSection title={`${RESUME_SKILLS_SECTIONS[0]} `}>
 						{webDevSubSkillsLabels.map((subSkill: string, index: number) => {
 							return (
 								<SkillsItemSection key={index} title={subSkill}>
 									<PercentBarLabels label={skillsLabels.web} />
-									{(skills[skillsItemSectionLabels[0]][subSkill] as any).map(
+									{(skills[RESUME_SKILLS_SECTIONS[0]][subSkill] as any).map(
 										(skill: any, index2: number) => {
 											return (
 												<SkillsItem
@@ -449,9 +449,9 @@ export const Resume: React.FC<ResumeProps> = () => {
 							);
 						})}
 					</SkillsItemSection>
-					<SkillsItemSection title={skillsItemSectionLabels[1]}>
+					<SkillsItemSection title={RESUME_SKILLS_SECTIONS[1]}>
 						<PercentBarLabels label={skillsLabels.it} />
-						{(skills[skillsItemSectionLabels[1]] as any).map(
+						{(skills[RESUME_SKILLS_SECTIONS[1]] as any).map(
 							(skill: Skill, index: number) => {
 								return (
 									<SkillsItem
@@ -465,9 +465,9 @@ export const Resume: React.FC<ResumeProps> = () => {
 							},
 						)}
 					</SkillsItemSection>
-					<SkillsItemSection title={skillsItemSectionLabels[2]}>
+					<SkillsItemSection title={RESUME_SKILLS_SECTIONS[2]}>
 						<PercentBarLabels label={skillsLabels.human} />
-						{(skills[skillsItemSectionLabels[2]] as any).map(
+						{(skills[RESUME_SKILLS_SECTIONS[2]] as any).map(
 							(skill: Skill, index: number) => {
 								return (
 									<SkillsItem
@@ -481,9 +481,9 @@ export const Resume: React.FC<ResumeProps> = () => {
 							},
 						)}
 					</SkillsItemSection>
-					<SkillsItemSection title={skillsItemSectionLabels[3]}>
+					<SkillsItemSection title={RESUME_SKILLS_SECTIONS[3]}>
 						<PercentBarLabels label={skillsLabels.personality} />
-						{(skills[skillsItemSectionLabels[3]] as any).map(
+						{(skills[RESUME_SKILLS_SECTIONS[3]] as any).map(
 							(skill: Skill, index: number) => {
 								return (
 									<SkillsItem
@@ -502,7 +502,7 @@ export const Resume: React.FC<ResumeProps> = () => {
 			</React.Fragment>,
 		],
 		[
-			sectionTitles[2],
+			RESUME_SECTION_TITLES[2],
 			<React.Fragment>
 				<div className="work-history">
 					<WorkHistoryItem
@@ -671,7 +671,7 @@ export const Resume: React.FC<ResumeProps> = () => {
 			</React.Fragment>,
 		],
 		[
-			sectionTitles[3],
+			RESUME_SECTION_TITLES[3],
 			<React.Fragment>
 				<ul className="education">
 					<EducationItem
@@ -693,7 +693,7 @@ export const Resume: React.FC<ResumeProps> = () => {
 			</React.Fragment>,
 		],
 		[
-			sectionTitles[4],
+			RESUME_SECTION_TITLES[4],
 			<React.Fragment>
 				<div className="references">
 					<ReferenceItem
