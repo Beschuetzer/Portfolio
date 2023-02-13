@@ -5,7 +5,7 @@ import { OVERFLOW_HIDDEN_ALWAYS_CLASSNAME } from "../constants";
 import { NavListItemExpanded, NavListItemExpandedDirections } from "./NavListItemExpanded";
 import { NAVBAR_CLASSNAME } from "./utils";
 
-type NavListItemImage = {
+export type NavListItemImage = {
   alt?: string;
   source?: string;
 }
@@ -25,7 +25,7 @@ type NavListItemLinkAndExpandedMenuExclusivity = Exclusive< {
   };
 }>; 
 
-type NavListItemProps = {
+export type NavListItemProps = {
   className?: string;
   image?: NavListItemImage;
   isEmail?: boolean;
@@ -88,12 +88,14 @@ export const NavListItem: React.FC<NavListItemProps> = ({
         </a>
       )
     }
-    else if (!!to) return (
-      <Link className={defaults.linkClassName} to={to}>
-        {getContent()}
-      </Link>
-    ) 
-    
+    else if (!!to) {
+      return (
+        <Link className={defaults.linkClassName} to={to}>
+          {getContent()}
+        </Link>
+      ) 
+    }
+
     return (
       <div
         className={`${defaults.linkClassName} ${

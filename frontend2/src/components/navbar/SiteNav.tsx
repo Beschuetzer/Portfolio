@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { NavListItem } from "./NavListItem";
+import { NavListItem, NavListItemImage, NavListItemProps } from "./NavListItem";
 
 import aboutImage from "../../imgs/site-nav/about.jpg";
 import autoBidImage from "../../imgs/site-nav/autobid.jpg";
@@ -13,9 +13,16 @@ import resumeImage from "../../imgs/site-nav/resume.jpg";
 import syncerImage from "../../imgs/site-nav/syncer.jpg";
 import replayImage from "../../imgs/site-nav/replay.jpg";
 
-import overviewImageResume from "../../imgs/site-nav/overview.jpg";
-import overviewImageAbout from "../../imgs/site-nav/overview-2.jpg";
+import resume1 from "../../imgs/site-nav/overview.jpg";
+import resume2 from "../../imgs/site-nav/skills.jpg";
+import resume3 from "../../imgs/site-nav/work-history.jpg";
+import resume4 from "../../imgs/site-nav/education.jpg";
+import resume5 from "../../imgs/site-nav/references.jpg";
 
+import about1 from "../../imgs/site-nav/overview-2.jpg";
+import about2 from "../../imgs/site-nav/interests.jpg";
+import about3 from "../../imgs/site-nav/music.jpg";
+import about4 from "../../imgs/site-nav/personality.jpg";
 
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
@@ -213,10 +220,34 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 					<NavListItem
 						expandedItemOptions={{
 							items: [
-								...RESUME_SECTION_TITLES.map((name) => {
+								...RESUME_SECTION_TITLES.map((name, index) => {
 									const nameToUse = name.replace('-', ' ');
-									//todo: add images here
+
+									const resumeImgsToIndexMapping = [
+										{
+											source: resume1,
+											alt: RESUME_SECTION_TITLES[0],
+										},
+										{
+											source: resume2,
+											alt: RESUME_SECTION_TITLES[1],
+										},
+										{
+											source: resume3,
+											alt: RESUME_SECTION_TITLES[2],
+										},
+										{
+											source: resume4,
+											alt: RESUME_SECTION_TITLES[3],
+										},
+										{
+											source: resume5,
+											alt: RESUME_SECTION_TITLES[4],
+										},
+									] as NavListItemImage[];
+
 									return {
+										image: resumeImgsToIndexMapping[index],
 										to: `${RESUME_URL}#${nameToUse?.toLowerCase()}`,
 										label: capitalize(nameToUse),
 										onMouseEnter: onMouseEnter,
@@ -236,22 +267,37 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 					<NavListItem
 						expandedItemOptions={{
 							items: [
-								...ABOUT_SECTION_NAMES.map((name) => {
+								...ABOUT_SECTION_NAMES.map((name, index) => {
 									const nameToUse = name.replace('-', ' ');
 
-									//todo: add images here
+									const aboutImgsToIndexMapping = [
+										{
+											source: about1,
+											alt: ABOUT_SECTION_NAMES[0],
+										},
+										{
+											source: about2,
+											alt: ABOUT_SECTION_NAMES[1],
+										},
+										{
+											source: about3,
+											alt: ABOUT_SECTION_NAMES[2],
+										},
+									] as NavListItemImage[];
+
 									return {
+										image: aboutImgsToIndexMapping[index],
 										to: `${ABOUT_URL}#${nameToUse?.toLowerCase()}`,
 										label: capitalize(nameToUse),
 										onMouseEnter: onMouseEnter,
 										onClick: onNavItemClick,
-									}
+									} as NavListItemProps;
 								}),
 								{
-									// image: {
-									// 	source: replayImage,
-									// 	alt: "Personality",
-									// },
+									image: {
+										source: about4,
+										alt: "Personality",
+									},
 									to: PERSONALITY_URL,
 									label: "Personality",
 									onMouseEnter: onMouseEnter,
