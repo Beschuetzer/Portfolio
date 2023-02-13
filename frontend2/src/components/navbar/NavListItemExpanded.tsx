@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { NAVBAR_CLASSNAME } from "./utils";
+import { NAVBAR_CLASSNAME } from "../constants";
 
 export enum NavListItemExpandedDirections {
   horizontal, 

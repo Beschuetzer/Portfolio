@@ -192,7 +192,6 @@ export const PageNav: React.FC<PageNavProps> = ({
 
 	//#region Side FX
 	useUpdatePageNav(pageNavElement);
-	useSetHeaderCssStyle();
 	useEffect(() => {
 		const handleScroll = (e: Event) => {
 			if (!shouldHandleScroll || !shouldHandleScroll.current) return;

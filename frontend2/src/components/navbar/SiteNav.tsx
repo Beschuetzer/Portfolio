@@ -25,13 +25,6 @@ import about3 from "../../imgs/site-nav/music.jpg";
 import about4 from "../../imgs/site-nav/personality.jpg";
 
 import {
-	NAVBAR_ACTIVE_CLASSNAME,
-	NAVBAR_CLASSNAME,
-	NAVBAR_DEFAULT_CLASSNAME,
-	NAVBAR_DONE_CLASSNAME,
-	NAVBAR_IS_ANIMATING_CLASSNAME,
-} from "./utils";
-import {
 	ABOUT_PAGE_NAME,
 	ABOUT_URL,
 	AUTO_BID_PAGE_NAME,
@@ -54,6 +47,11 @@ import {
 	SITE_NAV_MINIMAL_CLASSNAME,
 	SITE_NAV_CLOSE_DELAY,
 	PERSONALITY_URL,
+	NAVBAR_ACTIVE_CLASSNAME,
+	NAVBAR_CLASSNAME,
+	NAVBAR_DEFAULT_CLASSNAME,
+	NAVBAR_DONE_CLASSNAME,
+	NAVBAR_IS_ANIMATING_CLASSNAME,
 } from "../constants";
 import { useLocation } from "react-router-dom";
 import { currentlyViewingImageSelector, isSiteNavMinimizedSelector, setHeaderHeight } from "../../slices/generalSlice";

@@ -21,6 +21,7 @@ import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer, Home, Resume } from "../pages";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { isMobileSelector, setIsMobile, setViewPortWidth } from "../slices/generalSlice";
+import { useSetHeaderCssStyle } from "../hooks/useSetHeaderCssStyle";
 
 interface AppProps {}
 
@@ -30,6 +31,7 @@ export const App: React.FC<AppProps> = ({
 	const isMobile = useAppSelector(isMobileSelector);
 	const mobileBreakPointWidth = MOBILE_BREAK_POINT_WIDTH;
 
+	useSetHeaderCssStyle();
 	useEffect(() => {
 		dispatch(setIsMobile({isMobile: window.innerWidth <= mobileBreakPointWidth, viewPortWidth: window.innerWidth}));
 	}, [])

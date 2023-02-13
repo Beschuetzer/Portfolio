@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { Exclusive } from "../../types";
-import { OVERFLOW_HIDDEN_ALWAYS_CLASSNAME } from "../constants";
+import { NAVBAR_CLASSNAME, OVERFLOW_HIDDEN_ALWAYS_CLASSNAME } from "../constants";
 import { NavListItemExpanded, NavListItemExpandedDirections } from "./NavListItemExpanded";
-import { NAVBAR_CLASSNAME } from "./utils";
 
 export type NavListItemImage = {
   alt?: string;

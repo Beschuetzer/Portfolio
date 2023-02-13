@@ -8,7 +8,9 @@ export const useSetHeaderCssStyle = () => {
     const viewPortWidth = useAppSelector(viewPortWidthSelector);
 
 	useEffect(() => {
-        setHeaderHeightCSSPropertyValue();
+        setTimeout(() => {
+            setHeaderHeightCSSPropertyValue();
+        }, 1);
 	}, [viewPortWidth, setHeaderHeightCSSPropertyValue])
 }
 

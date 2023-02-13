@@ -169,7 +169,13 @@ export const HEADER_ID = "#header";
 export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
 export const HEADER_TOGGLER_ACTIVE_CLASSNAME = `${HEADER_TOGGLER_CLASSNAME}--active`;
 export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
-
+export const NAVBAR_Z_INDEX_CLASSNAME = "z-index-navbar";
+export const NAVBAR_CLASSNAME = "navbar";
+export const NAVBAR_ACTIVE_CLASSNAME = `${NAVBAR_CLASSNAME}--active`;
+export const NAVBAR_DONE_CLASSNAME = `${NAVBAR_CLASSNAME}--done`;
+export const NAVBAR_IS_ANIMATING_CLASSNAME = `${NAVBAR_CLASSNAME}--isAnimating`;
+export const NAVBAR_CONTENT_CLASSNAME = `${NAVBAR_CLASSNAME}__content`;
+export const NAVBAR_DEFAULT_CLASSNAME = `${NAVBAR_CLASSNAME} ${NAVBAR_Z_INDEX_CLASSNAME}`;
 export const SITE_NAV_CLASSNAME = "site-nav"; //if changing this, change in index.html too
 export const SITE_NAV_MINIMAL_CLASSNAME = "site-nav--nav-switch-minimal"; //if changing this, change in index.html too
 export const SITE_NAV_CLOSE_DELAY = 250; //delay in how long it takes to close SiteNav aftering clicking an NavItem; fixs overflow glitch
