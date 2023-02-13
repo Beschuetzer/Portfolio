@@ -58,6 +58,9 @@ export type NavRef = RefObject<HTMLElement>;
 export type Reference = {
 	current: HTMLElement;
 }
+export type Repository = {
+	[key: string]: any,
+}
 //#endregion
 
 //#region Enums

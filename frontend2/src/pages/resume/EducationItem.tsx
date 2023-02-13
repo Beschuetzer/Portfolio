@@ -1,5 +1,5 @@
 import React from "react";
-import { SKILLS_CLASSNAME } from "../../components/Skills/utils";
+import { SKILLS_CLASSNAME } from "../../components/constants";
 import { EDUCATION_CLASSNAME } from "./utils";
 
 

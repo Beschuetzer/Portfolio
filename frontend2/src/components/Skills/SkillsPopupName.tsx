@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../hooks';
 import { isMobileSelector } from '../../slices/generalSlice';
-import { SKILLS_CLASSNAME } from './utils';
+import { SKILLS_CLASSNAME } from '../constants';
 
 interface SkillsPopupNameProps {
   repo: any,

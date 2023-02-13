@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { Video, FOREGROUND_VIDEO_CLASSNAME, CloseControl, PauseControl, PlayControl, StopControl, RestartControl } from "../VideoPlayer";
 import {
 	getNthItemOpen,
 	handleVideo,
@@ -15,6 +14,12 @@ import { setCurrentlyViewingCarouselImage } from "../../slices/generalSlice";
 import { useAppDispatch } from "../../hooks";
 import { CarouselItemProps } from "../../types";
 import { CAROUSEL_DESCRIPTION_CLASSNAME, CAROUSEL_ITEM_CLASSNAME, CAROUSEL_IMAGE_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME, DONE_CLASSNAME, FULLSCREEN_CLASSNAME, FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME, STOPPED_CLASSNAME } from "../constants";
+import { CloseControl } from "../VideoPlayer/CloseControl";
+import { PauseControl } from "../VideoPlayer/PauseControl";
+import { PlayControl } from "../VideoPlayer/PlayControl";
+import { RestartControl } from "../VideoPlayer/RestartControl";
+import { StopControl } from "../VideoPlayer/StopControl";
+import { FOREGROUND_VIDEO_CLASSNAME, Video } from "../VideoPlayer/Video";
 
 export const CLASSNAMES_TO_REMOVE = [
 	FULLSCREEN_PARENT_CLASSNAME,

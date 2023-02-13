@@ -1,10 +1,10 @@
 import React from "react";
 import { useAppDispatch } from "../../hooks";
 import { clickSkill } from "../../slices/resumeSlice";
+import { SKILLS_CLASSNAME } from "../constants";
 import { EmbeddedLink } from "../EmbeddedLink";
 import { PercentBar, PercentBarLabel } from "../PercentBar/PercentBar";
 import { toggleScrollability } from "../utils";
-import { SKILLS_CLASSNAME } from "./utils";
 
 interface SkillsItemProps {
 	title: string;

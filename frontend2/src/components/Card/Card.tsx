@@ -15,7 +15,6 @@ import {
 	MOBILE_BREAK_POINT_WIDTH,
 	Z_INDEX_HIGHEST_CLASSNAME,
 } from "../constants";
-import { StopControl, RestartControl, PlayControl, CloseControl, PauseControl, Video, FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer";
 import {
 	attachProgressListener,
 	closeVideo,
@@ -29,6 +28,12 @@ import { capitalize } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { isMobileSelector, viewPortWidthSelector } from "../../slices/generalSlice";
 import { Reference } from "../../types";
+import { CloseControl } from "../VideoPlayer/CloseControl";
+import { PauseControl } from "../VideoPlayer/PauseControl";
+import { PlayControl } from "../VideoPlayer/PlayControl";
+import { RestartControl } from "../VideoPlayer/RestartControl";
+import { StopControl } from "../VideoPlayer/StopControl";
+import { Video, FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 
 interface CardProps {
 	title: string;

@@ -8,7 +8,6 @@ import { SkillsItem } from "../../components/Skills/SkillsItem";
 import { ReferenceItem } from "./ReferenceItem";
 import { SkillsPopup } from "../../components/Skills/SkillsPopup";
 import { WorkHistoryItem } from "./WorkHistory/WorkHistoryItem";
-import { SKILLS_CLASSNAME } from "../../components/Skills/utils";
 import {
 	BOOK_TRUST_URL,
 	GITHUB_URL,
@@ -28,6 +27,7 @@ import {
 	BEST_BUY_URL,
 	YORK_B2E_URL,
 	BRIDGE_CLASSNAME,
+	SKILLS_CLASSNAME,
 } from "../../components/constants";
 import { SourceCodeLink } from "../../components/SourceCodeLink";
 import { Quote } from "../../components/Quote";

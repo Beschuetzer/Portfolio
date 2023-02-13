@@ -1,6 +1,5 @@
 import React from "react";
 import { useRef } from "react";
-import { Video } from "../../../components/VideoPlayer";
 import bgVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
 import {
 	handleBridgeHeroSounds,
@@ -12,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { isMobileSelector } from "../../../slices/generalSlice";
 import { loadedSoundsSelector } from "../../../slices/soundsSlice";
 import { BRIDGE_HERO_CLASSNAME, HEADER_ID } from "../../../components/constants";
+import { Video } from "../../../components/VideoPlayer/Video";
 
 type BridgeHeroProps = {}
 

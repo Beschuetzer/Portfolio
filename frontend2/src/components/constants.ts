@@ -133,6 +133,9 @@ export const OVERFLOW_HIDDEN_CLASSNAME = "overflow--hidden";
 export const PAGE_NAV_CLASSNAME = "page-nav";
 export const PLAYING_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--playing`;
 export const SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME = "--site-nav-button-width";
+export const SKILLS_CLASSNAME = "skills";
+export const SKILLS_SECTION_CLASSNAME = `${SKILLS_CLASSNAME}__section`;
+export const SKILLS_SECTION_OPEN_CLASSNAME = `${SKILLS_CLASSNAME}__section--open`;
 export const SLIDING_CLASSNAME = "sliding";
 export const STOPPED_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--stopped`;
 export const TRANSFORM_NONE_CLASSNAME = "transform-none";
@@ -234,4 +237,5 @@ export const MAX_CHAR_COUNTS: MaxCharCounts = {
 		}
 	},
 }
+export const TIME_OUT_DIFFERENTIAL = 50;
 //#endregion

@@ -3,11 +3,11 @@ import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { SkillsPopupName } from "./SkillsPopupName";
 import { addSpaceAfterPunctuationMarks, toggleScrollability } from "../utils";
-import { SKILLS_CLASSNAME } from "./utils";
 import { clickSkill, addRepoToReposToDisplay, clickedSkillSelector, reposToDisplaySelector } from "../../slices/resumeSlice";
 import { checkForParentOfType, capitalize } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { reposSelector, isMobileSelector } from "../../slices/generalSlice";
+import { SKILLS_CLASSNAME } from "../constants";
 
 interface SkillsPopupProps {}
 
