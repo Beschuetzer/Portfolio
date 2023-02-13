@@ -13,6 +13,10 @@ import resumeImage from "../../imgs/site-nav/resume.jpg";
 import syncerImage from "../../imgs/site-nav/syncer.jpg";
 import replayImage from "../../imgs/site-nav/replay.jpg";
 
+import overviewImageResume from "../../imgs/site-nav/overview.jpg";
+import overviewImageAbout from "../../imgs/site-nav/overview-2.jpg";
+
+
 import {
 	NAVBAR_ACTIVE_CLASSNAME,
 	NAVBAR_CLASSNAME,
@@ -51,7 +55,6 @@ import { capitalize } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useHandleChangePage } from "../../hooks/useHandleChangePage";
 import { Match } from "../../types";
-import { NavListItemExpandedDirections } from "./NavListItemExpanded";
 import { ABOUT_SECTION_NAMES, RESUME_SECTION_TITLES } from "../../pages";
 
 interface SiteNavProps {
