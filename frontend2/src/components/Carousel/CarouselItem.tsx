@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Video, FOREGROUND_VIDEO_CLASSNAME, CloseControl, PauseControl, PlayControl, StopControl, RestartControl } from "../VideoPlayer";
 import {
-	CarouselItemProps,
 	CAROUSEL_CLASSNAME,
 	CAROUSEL_DESCRIPTION_CLASSNAME,
 	CAROUSEL_IMAGE_CLASSNAME,
@@ -19,6 +18,7 @@ import { closeCarouselItem } from "../utils";
 import { OverlayText } from "../OverlayText/OverlayText";
 import { setCurrentlyViewingCarouselImage } from "../../slices/generalSlice";
 import { useAppDispatch } from "../../hooks";
+import { CarouselItemProps } from "../../types";
 export const FULLSCREEN_CLASSNAME = "full-screen";
 export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
 export const FULLSCREEN_ARROW_BUTTON_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button--full-screen`;

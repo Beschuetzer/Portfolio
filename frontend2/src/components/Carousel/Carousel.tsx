@@ -8,7 +8,6 @@ import {
 } from "./CarouselItem";
 import CarouselArrow from "./CarouselArrow";
 import {
-	CarouselItemProps,
 	CAROUSEL_ARROW_BUTTONS_CLASSNAME,
 	CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
 	CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME,
@@ -34,7 +33,7 @@ import {
 import { CONTAINS_CAROUSEL_CLASSNAME } from "../constants";
 import { useState } from "react";
 import { toggleScrollability } from "../utils";
-import { ArrowButtonDirection } from "../../types";
+import { ArrowButtonDirection, CarouselItemProps } from "../../types";
 
 export type CarouselProps = {
 	items: CarouselItemProps[];

@@ -1,6 +1,6 @@
 import { CSSProperties, RefObject } from "react";
 import { getComputedStyleCustom } from "../../helpers";
-import { ArrowButtonDirection } from "../../types";
+import { ArrowButtonDirection, CarouselItemProps } from "../../types";
 import {
 	CAROUSEL_GRID_WIDTH_CSS_PROPERTY_NAME,
 	CONTAINS_CAROUSEL_CLASSNAME,
@@ -35,36 +35,6 @@ export const CAROUSEL_GRID_MAX_COLUMN_WIDTHS: [number, string][] = [
 	[13, "7rem"],
 ];
 
-export interface CarouselItemProps {
-	descriptionClassname?: string | undefined;
-	itemClassName?: string | undefined;
-	imageClassname?: string | undefined;
-	videoClassname?: string | undefined;
-	foregroundVideoClassname?: string | undefined;
-	description: string | undefined;
-	itemSrc: string | undefined;
-	itemThumbnailSrc?: string | undefined;
-	isItemOpenRef?: React.MutableRefObject<boolean>;
-	leftArrowRef?: RefObject<HTMLElement> | undefined;
-	rightArrowRef?: RefObject<HTMLElement> | undefined;
-	videoType?: "mp4" | "ogv" | "webm" | "ogg" | undefined;
-	videoAutoPlay?: boolean | undefined;
-	videoLoop?: boolean | undefined;
-	videoPlaySVGXLinkHref?: string | undefined;
-	videoPlayControlSvgXLinkHref?: string | undefined;
-	videoStopControlSvgXLinkHref?: string | undefined;
-	videoRestartControlSvgXLinkHref?: string | undefined;
-	videoPauseControlSvgXLinkHref?: string | undefined;
-	videoCloseControlSvgXLinkHref?: string | undefined;
-	videoCloseControlClassesToRemove?: string | undefined;
-	videoOverlayStyles?: CSSProperties | undefined;
-	videoOverlayText?: string | undefined;
-	videoOverlayChildren?: any | undefined;
-	videoExtentions?: string[] | undefined;
-	functionToRunOnClose?: any | undefined;
-	functionToGetContainer?: any | undefined;
-	shouldRenderFullScreen?: boolean;
-}
 
 export function setArrowButtonsHiddenClass(
 	CAROUSEL_MIN_IMAGE_COUNT: number,
