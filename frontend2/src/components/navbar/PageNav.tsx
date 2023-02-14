@@ -3,24 +3,17 @@ import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
 import { capitalize } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { useSetHeaderCssStyle } from "../../hooks/useSetHeaderCssStyle";
 import { useUpdatePageNav } from "../../hooks/useUpdatePageNav";
 import { BridgeSectionLink } from "../../pages";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../slices/bridgeSlice";
 import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../slices/generalSlice";
 import { Match } from "../../types";
-import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME, PAGE_NAV_CLASSNAME } from "../constants";
+import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME, PAGE_NAV_ACTIVE_CLASSNAME, PAGE_NAV_CLASSNAME } from "../constants";
 import { scrollToSection } from "../utils";
 
-interface PageNavProps {
+type PageNavProps = {
 	match: { url: string };
 }
-
-export const selectedClass = "page-nav--active";
-export const PAGE_NAV_MIN_WIDTH_THRESHOLD = 500;
-export const PAGE_NAV_ITEM_COUNT_DEFAULT = 5;
-export const PAGE_NAV_MIN_WIDTH_DEFAULT = "155px";
-export const PAGE_NAV_MAX_WIDTH_DEFAULT = "228px";
 
 export const PageNav: React.FC<PageNavProps> = ({
 	match,
@@ -42,15 +35,6 @@ export const PageNav: React.FC<PageNavProps> = ({
 	const maxScrollOffsetPercent = 1;
 	const scrollRefreshLimit = 50;
 	const scrollSectionDelimiterOffset = window.innerHeight / 6;
-	// const gradientVarName = "--site-nav-linear-gradient";
-	// const activeScaleVarName = "--site-nav-active-scale-amount";
-	// const activeScaleRange = {
-	// 	desktop: { min: 1.75, max: 1.5 },
-	// 	mobile: { min: 1.25, max: 1.05 },
-	// 	min: 1.5,
-	// 	max: 1.75,
-	// };
-	// const progressPercent = "0%";
 	//#endregion
 
 	//#region Functions
@@ -139,9 +123,9 @@ export const PageNav: React.FC<PageNavProps> = ({
 			pageNavSectionElement.style.backgroundImage = gradientToUse;
 	
 			if (shouldAddActiveClass) {
-				(pageNavSectionElement.parentNode as any).classList.add(selectedClass);
+				(pageNavSectionElement.parentNode as any).classList.add(PAGE_NAV_ACTIVE_CLASSNAME);
 			} else
-				(pageNavSectionElement.parentNode as any).classList.remove(selectedClass);
+				(pageNavSectionElement.parentNode as any).classList.remove(PAGE_NAV_ACTIVE_CLASSNAME);
 		}
 	};
 	
@@ -176,18 +160,6 @@ export const PageNav: React.FC<PageNavProps> = ({
 		const newHoverValue = `--bridge-page-nav-link-color-hover: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].hover()}`;
 		document.documentElement.style.cssText += newHoverValue;
 	};
-
-	
-
-	// const updateActiveScaleRange = () => {
-	// 	if (isMobile) {
-	// 		activeScaleRange.min = activeScaleRange.mobile.min;
-	// 		activeScaleRange.max = activeScaleRange.mobile.max;
-	// 	} else {
-	// 		activeScaleRange.min = activeScaleRange.desktop.min;
-	// 		activeScaleRange.max = activeScaleRange.desktop.max;
-	// 	}
-	// };
 	//#endregion
 
 	//#region Side FX

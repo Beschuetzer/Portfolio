@@ -1,4 +1,5 @@
 React best practices re-work (branch = sitenav_rework)
+  -re-work PageNav to better track the filling (fill should start when section is roughly centerd in the middle of the viewPort)
   -work on consolidating all the utils.ts files (move functions with more than one use to helpers folder)
   -unable to move back in current Carousel on initial item goint to full screen
   -rework remaining places that directly modify the DOM
@@ -7,7 +8,6 @@ React best practices re-work (branch = sitenav_rework)
   -add more complext logic in SkillPopup sort to weight created date?
   -re-work Carousel (should be pure re-useable component)
   -create a separate component for SiteNav expandable menu (ultimately add prop for direction and add a horizontal one for Resume with each section being an option) 
-  -re-work PageNav to better track the filling (fill should start when section is roughly centerd in the middle of the viewPort)
   -turn About into a drop down with options including Personality (brings to big five)?
   -implement horizontal instance of NavListItemExpanded (may need to disable altogether on mobile or smaller viewports)
 

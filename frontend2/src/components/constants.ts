@@ -131,6 +131,7 @@ export const NO_MARGIN_CLASSNAME = "margin-0";
 export const OVERFLOW_HIDDEN_ALWAYS_CLASSNAME = "overflow-hidden";
 export const OVERFLOW_HIDDEN_CLASSNAME = "overflow--hidden";
 export const PAGE_NAV_CLASSNAME = "page-nav";
+export const PAGE_NAV_ACTIVE_CLASSNAME = "page-nav--active";
 export const PLAYING_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--playing`;
 export const SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME = "--site-nav-button-width";
 export const SKILLS_CLASSNAME = "skills";
@@ -237,5 +238,9 @@ export const MAX_CHAR_COUNTS: MaxCharCounts = {
 		}
 	},
 }
+export const PAGE_NAV_MIN_WIDTH_THRESHOLD = 500;
+export const PAGE_NAV_ITEM_COUNT_DEFAULT = 5;
+export const PAGE_NAV_MIN_WIDTH_DEFAULT = "155px";
+export const PAGE_NAV_MAX_WIDTH_DEFAULT = "228px";
 export const TIME_OUT_DIFFERENTIAL = 50;
 //#endregion

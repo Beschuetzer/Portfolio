@@ -1,6 +1,5 @@
 import { useEffect, useCallback } from 'react';
-import { MOBILE_BREAK_POINT_WIDTH, PAGE_NAV_WIDTH_AT_SWITCH_OFFSET, PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME, PAGE_NAV_CLASSNAME } from "../components/constants";
-import { PAGE_NAV_MIN_WIDTH_DEFAULT, PAGE_NAV_ITEM_COUNT_DEFAULT, PAGE_NAV_MAX_WIDTH_DEFAULT, PAGE_NAV_MIN_WIDTH_THRESHOLD } from "../components/navbar/PageNav";
+import { PAGE_NAV_MIN_WIDTH_DEFAULT, PAGE_NAV_ITEM_COUNT_DEFAULT, PAGE_NAV_MAX_WIDTH_DEFAULT, MOBILE_BREAK_POINT_WIDTH, PAGE_NAV_WIDTH_AT_SWITCH_OFFSET, PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME, PAGE_NAV_MIN_WIDTH_THRESHOLD } from '../components/constants';
 import { useAppSelector } from "../hooks";
 import { viewPortWidthSelector, isMobileSelector } from "../slices";
 
