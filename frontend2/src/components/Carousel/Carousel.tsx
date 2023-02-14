@@ -319,13 +319,13 @@ export const Carousel: React.FC<CarouselProps> = ({
 			<React.Fragment>
 				<CarouselArrow
 					onClick={(e: any) => handleArrowClick(e)}
-					className={`hidden ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME}`}
+					className={`${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME}`}
 					svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
 				/>
 
 				<CarouselArrow
 					onClick={(e: any) => handleArrowClick(e)}
-					className={` ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME} `}
+					className={`${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME} `}
 					svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
 				/>
 			</React.Fragment>
