@@ -78,7 +78,9 @@ export const useHandleChangePage = (match: Match) => {
 	useEffect(() => {
 		if (!!location.hash) {
 			setTimeout(() => {
-				scrollToSection(document.querySelector(location.hash))
+				let destination = location.hash?.replace('%20', '-');
+				destination = destination?.replace(' ', '-');
+				scrollToSection(document.querySelector(destination));
 			}, 100)
 		}
 	}, [location])
