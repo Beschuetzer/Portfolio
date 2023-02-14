@@ -38,6 +38,18 @@ export const PageNav: React.FC<PageNavProps> = ({
 	//#endregion
 
 	//#region Functions
+	const activateElement = (element: HTMLElement, percent: number) => {
+		if (!element) return;
+		(element.parentNode as any).classList.add(PAGE_NAV_ACTIVE_CLASSNAME);
+		element.style.backgroundImage = getLinearGradient(percent);
+	}
+
+	const deactivateElement = (element: HTMLElement) => {
+		if (!element) return;
+		(element.parentNode as any).classList.remove(PAGE_NAV_ACTIVE_CLASSNAME);
+		element.style.backgroundImage = getLinearGradient(0);
+	}
+
 	const checkShouldSetPreviousUrl = (
 		match: Match,
 		previousUrl: string,
@@ -96,36 +108,30 @@ export const PageNav: React.FC<PageNavProps> = ({
 		currentSection: Element | null,
 		percentThroughSection: number,
 		isEnd: boolean,
-		indexOfCurrentSection: number,
 	) => {
+		if (!sections) return;
 		for (let i = 0; i < sections.length; i++) {
-			let gradientToUse = getLinearGradient(percentThroughSection);
-			let shouldAddActiveClass = true;
 			const section = sections[i];
 			const pageNavSectionName = capitalize(section.dataset.section);
 			const pageNavSectionElement = document.querySelector(
 				`.page-nav__section-${pageNavSectionName.toLowerCase()}`,
 			) as HTMLElement;
-	
-	
-			if (!pageNavSectionElement || !pageNavSectionElement.parentNode) return;
-	
-			const shouldSetEnd = isEnd && i >= indexOfCurrentSection;
-			if (shouldSetEnd) {
-				gradientToUse = getLinearGradient(100);
-			} else if (
+
+			if (isEnd) {
+				deactivateElement(pageNavSectionElement);
+				continue;
+			}
+			
+			if (!pageNavSectionElement || !pageNavSectionElement.parentNode) {
+				return;
+			} 
+			else if (
 				!currentSection?.className.match(new RegExp(pageNavSectionName, "ig"))
 			) {
-				gradientToUse = getLinearGradient(0);
-				shouldAddActiveClass = false;
+				deactivateElement(pageNavSectionElement);
+			} else {
+				activateElement(pageNavSectionElement, percentThroughSection);
 			}
-	
-			pageNavSectionElement.style.backgroundImage = gradientToUse;
-	
-			if (shouldAddActiveClass) {
-				(pageNavSectionElement.parentNode as any).classList.add(PAGE_NAV_ACTIVE_CLASSNAME);
-			} else
-				(pageNavSectionElement.parentNode as any).classList.remove(PAGE_NAV_ACTIVE_CLASSNAME);
 		}
 	};
 	
@@ -231,7 +237,6 @@ export const PageNav: React.FC<PageNavProps> = ({
 				currentSection,
 				percentThroughSection,
 				isEnd,
-				indexOfCurrentSection,
 			);
 			setTimeout(() => {
 				shouldHandleScroll.current = true;

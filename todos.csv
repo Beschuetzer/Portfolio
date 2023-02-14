@@ -1,5 +1,4 @@
 React best practices re-work (branch = sitenav_rework)
-  -re-work PageNav to better track the filling (fill should start when section is roughly centerd in the middle of the viewPort)
   -work on consolidating all the utils.ts files (move functions with more than one use to helpers folder)
   -unable to move back in current Carousel on initial item goint to full screen
   -rework remaining places that directly modify the DOM
