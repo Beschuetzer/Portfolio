@@ -1001,14 +1001,6 @@ body {
     border-radius: 0;
   }
 }
-.navbar__item:not(.navbar__dropdown-container):first-of-type {
-  grid-row: 1;
-  grid-column: 2/-1;
-}
-.navbar__item:not(.navbar__dropdown-container):last-of-type {
-  grid-row: 1;
-  grid-column: 1;
-}
 .navbar div.navbar__link {
   cursor: auto;
 }

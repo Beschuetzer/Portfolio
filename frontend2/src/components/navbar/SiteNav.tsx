@@ -54,7 +54,7 @@ import {
 	NAVBAR_IS_ANIMATING_CLASSNAME,
 } from "../constants";
 import { useLocation } from "react-router-dom";
-import { currentlyViewingImageSelector, isSiteNavMinimizedSelector, setHeaderHeight } from "../../slices/generalSlice";
+import { currentlyViewingImageSelector, isMobileSelector, isSiteNavMinimizedSelector, setHeaderHeight } from "../../slices/generalSlice";
 import { capitalize } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useHandleChangePage } from "../../hooks/useHandleChangePage";
@@ -68,6 +68,7 @@ interface SiteNavProps {
 export const SiteNav: React.FC<SiteNavProps> = ({
 	match,
 }) => {
+	const isMobile = useAppSelector(isMobileSelector);
 	const isSiteNavMinimized = useAppSelector(isSiteNavMinimizedSelector);
 	const currentlyViewingImage = useAppSelector(currentlyViewingImageSelector);
 	const dispatch = useAppDispatch();
@@ -207,102 +208,129 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 			</button>
 			<section aria-label="pages" className={`${NAVBAR_CLASSNAME}__content`}>
 				<ul className={`${NAVBAR_CLASSNAME}__list`}>
-					<NavListItem
-						expandedItemOptions={{
-							items: [
-								...RESUME_SECTION_TITLES.map((name, index) => {
-									const nameToUse = name.replace('-', ' ');
+					{isMobile ? (
+						<NavListItem
+							to={RESUME_URL}
+							image={{
+								source: resumeImage,
+								alt: capitalize(RESUME_PAGE_NAME),
+							}}
+							label="R&eacute;sum&eacute;"
+							onMouseEnter={onMouseEnter}
+							onClick={onNavItemClick}
+						/>
 
-									const resumeImgsToIndexMapping = [
-										{
-											source: resume1,
-											alt: RESUME_SECTION_TITLES[0],
-										},
-										{
-											source: resume2,
-											alt: RESUME_SECTION_TITLES[1],
-										},
-										{
-											source: resume3,
-											alt: RESUME_SECTION_TITLES[2],
-										},
-										{
-											source: resume4,
-											alt: RESUME_SECTION_TITLES[3],
-										},
-										{
-											source: resume5,
-											alt: RESUME_SECTION_TITLES[4],
-										},
-									] as NavListItemImage[];
+					) : (
+						<NavListItem
+							expandedItemOptions={{
+								items: [
+									...RESUME_SECTION_TITLES.map((name, index) => {
+										const nameToUse = name.replace('-', ' ');
 
-									return {
-										image: resumeImgsToIndexMapping[index],
-										to: `${RESUME_URL}#${nameToUse?.toLowerCase()}`,
-										label: capitalize(nameToUse),
+										const resumeImgsToIndexMapping = [
+											{
+												source: resume1,
+												alt: RESUME_SECTION_TITLES[0],
+											},
+											{
+												source: resume2,
+												alt: RESUME_SECTION_TITLES[1],
+											},
+											{
+												source: resume3,
+												alt: RESUME_SECTION_TITLES[2],
+											},
+											{
+												source: resume4,
+												alt: RESUME_SECTION_TITLES[3],
+											},
+											{
+												source: resume5,
+												alt: RESUME_SECTION_TITLES[4],
+											},
+										] as NavListItemImage[];
+
+										return {
+											image: resumeImgsToIndexMapping[index],
+											to: `${RESUME_URL}#${nameToUse?.toLowerCase()}`,
+											label: capitalize(nameToUse),
+											onMouseEnter: onMouseEnter,
+											onClick: onNavItemClick,
+										}
+									})
+								]
+							}}
+							image={{
+								source: resumeImage,
+								alt: capitalize(RESUME_PAGE_NAME),
+							}}
+							label="R&eacute;sum&eacute;"
+							onMouseEnter={onMouseEnter}
+							onClick={onNavItemClick}
+						/>
+					)}
+					{isMobile ? (
+						<NavListItem
+							to={ABOUT_URL}
+							image={{
+								source: aboutImage,
+								alt: capitalize(ABOUT_PAGE_NAME),
+							}}
+							label={capitalize(ABOUT_PAGE_NAME)}
+							onMouseEnter={onMouseEnter}
+							onClick={onNavItemClick}
+						/>
+					) : (
+						<NavListItem
+							expandedItemOptions={{
+								items: [
+									...ABOUT_SECTION_NAMES.map((name, index) => {
+										const nameToUse = name.replace('-', ' ');
+
+										const aboutImgsToIndexMapping = [
+											{
+												source: about1,
+												alt: ABOUT_SECTION_NAMES[0],
+											},
+											{
+												source: about2,
+												alt: ABOUT_SECTION_NAMES[1],
+											},
+											{
+												source: about3,
+												alt: ABOUT_SECTION_NAMES[2],
+											},
+										] as NavListItemImage[];
+
+										return {
+											image: aboutImgsToIndexMapping[index],
+											to: `${ABOUT_URL}#${nameToUse?.toLowerCase()}`,
+											label: capitalize(nameToUse),
+											onMouseEnter: onMouseEnter,
+											onClick: onNavItemClick,
+										} as NavListItemProps;
+									}),
+									{
+										image: {
+											source: about4,
+											alt: "Personality",
+										},
+										to: PERSONALITY_URL,
+										label: "Personality",
 										onMouseEnter: onMouseEnter,
 										onClick: onNavItemClick,
-									}
-								})
-							]
-						}}
-						image={{
-							source: resumeImage,
-							alt: capitalize(RESUME_PAGE_NAME),
-						}}
-						label="R&eacute;sum&eacute;"
-						onMouseEnter={onMouseEnter}
-						onClick={onNavItemClick}
-					/>
-					<NavListItem
-						expandedItemOptions={{
-							items: [
-								...ABOUT_SECTION_NAMES.map((name, index) => {
-									const nameToUse = name.replace('-', ' ');
-
-									const aboutImgsToIndexMapping = [
-										{
-											source: about1,
-											alt: ABOUT_SECTION_NAMES[0],
-										},
-										{
-											source: about2,
-											alt: ABOUT_SECTION_NAMES[1],
-										},
-										{
-											source: about3,
-											alt: ABOUT_SECTION_NAMES[2],
-										},
-									] as NavListItemImage[];
-
-									return {
-										image: aboutImgsToIndexMapping[index],
-										to: `${ABOUT_URL}#${nameToUse?.toLowerCase()}`,
-										label: capitalize(nameToUse),
-										onMouseEnter: onMouseEnter,
-										onClick: onNavItemClick,
-									} as NavListItemProps;
-								}),
-								{
-									image: {
-										source: about4,
-										alt: "Personality",
 									},
-									to: PERSONALITY_URL,
-									label: "Personality",
-									onMouseEnter: onMouseEnter,
-									onClick: onNavItemClick,
-								},
-							]
-						}}
-						image={{
-							source: aboutImage,
-							alt: capitalize(ABOUT_PAGE_NAME),
-						}}
-						label={capitalize(ABOUT_PAGE_NAME)}
-						onMouseEnter={onMouseEnter}
-						onClick={onNavItemClick}
-					/>
+								]
+							}}
+							image={{
+								source: aboutImage,
+								alt: capitalize(ABOUT_PAGE_NAME),
+							}}
+							label={capitalize(ABOUT_PAGE_NAME)}
+							onMouseEnter={onMouseEnter}
+							onClick={onNavItemClick}
+						/>
+					)}
 					<NavListItem
 						image={{
 							source: examplesImage,
