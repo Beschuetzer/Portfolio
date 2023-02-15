@@ -1,14 +1,10 @@
 React best practices re-work (branch = sitenav_rework)
   -work on consolidating all the utils.ts files (move functions with more than one use to helpers folder)
-  -unable to move back in current Carousel on initial item goint to full screen
   -rework remaining places that directly modify the DOM
   -make SkillsPopup title (section with close button) absolutely postioned
   -add onPress handler to ArrowButton to be able to hide the elements on bridge page when switching left/right 
   -add more complext logic in SkillPopup sort to weight created date?
   -re-work Carousel (should be pure re-useable component)
-  -create a separate component for SiteNav expandable menu (ultimately add prop for direction and add a horizontal one for Resume with each section being an option) 
-  -turn About into a drop down with options including Personality (brings to big five)?
-  -implement horizontal instance of NavListItemExpanded (may need to disable altogether on mobile or smaller viewports)
 
 
 JOB STUFF------------------------------------
