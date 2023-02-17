@@ -1,5 +1,5 @@
 import React from "react";
-import { REFERENCES_CLASSNAME } from "./utils";
+import { REFERENCES_CLASSNAME } from "../../components/constants";
 
 interface ReferenceItemProps { 
   number: string,

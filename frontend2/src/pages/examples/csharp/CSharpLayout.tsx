@@ -2,9 +2,9 @@ import React from "react";
 import { capitalize, replaceCharacters } from "../../../helpers";
 import { Section } from "../../../components/Section";
 import { SourceCodeLink } from "../../../components/SourceCodeLink";
-import { C_SHARP_CLASSNAME } from "./utils";
 import { PageWrapper } from "../../PageWrapper";
 import { CSharpSection } from "../../../types";
+import { C_SHARP_CLASSNAME } from "../../../components/constants";
 
 interface CSharpLayoutProps {
 	pageName: string;

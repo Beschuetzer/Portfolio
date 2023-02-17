@@ -1,6 +1,5 @@
 import React from "react";
-import { SKILLS_CLASSNAME } from "../../components/constants";
-import { EDUCATION_CLASSNAME } from "./utils";
+import { EDUCATION_CLASSNAME, SKILLS_CLASSNAME } from "../../components/constants";
 
 
 interface EducationItemProps{

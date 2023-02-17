@@ -20,9 +20,9 @@ import img5Thumbnail from "../../../imgs/downloader/thumbnails/img5-thumbnail.pn
 import img6Thumbnail from "../../../imgs/downloader/thumbnails/img6-thumbnail.png";
 
 import { CSharpCardSection } from "./CSharpCardSection";
-import { C_SHARP_CLASSNAME } from "./utils";
 import {
 	CAROUSEL_CLASSNAME,
+	C_SHARP_CLASSNAME,
 	DOWNLOADER_PAGE_NAME,
 	GITHUB_URL,
 	KH_INSIDER_URL,

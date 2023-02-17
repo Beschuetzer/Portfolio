@@ -17,9 +17,9 @@ import img4Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img4-thumbna
 
 import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
 import { CSharpCardSection } from "./CSharpCardSection";
-import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
 import {
+	C_SHARP_CLASSNAME,
 	DOWNLOADER_URL,
 	GITHUB_URL,
 	OS_10_ISSUE_TRACKER_URL,

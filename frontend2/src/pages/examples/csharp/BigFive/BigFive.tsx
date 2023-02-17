@@ -1,11 +1,10 @@
 import React from "react";
 import { CSharpCardSection } from "../CSharpCardSection";
 import {
-	BIG_FIVE_PAGE_NAME,
+	BIG_FIVE_PAGE_NAME, C_SHARP_CLASSNAME,
 } from "../../../../components/constants";
 import { PercentBar, PercentBarLabel } from "../../../../components/PercentBar/PercentBar";
 import { CSharpLayout } from "../CSharpLayout";
-import { C_SHARP_CLASSNAME } from "../utils";
 import { BigFiveItem } from "./BigFiveItem";
 import { CSharpSection } from "../../../../types";
 

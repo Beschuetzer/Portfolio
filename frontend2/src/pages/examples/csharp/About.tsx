@@ -12,9 +12,9 @@
 
 import React from "react";
 import { CSharpLayout } from "./CSharpLayout";
-import { C_SHARP_CLASSNAME } from "./utils";
 import {
 	ABOUT_PAGE_NAME,
+	C_SHARP_CLASSNAME,
 	DISPLAY_NONE_CLASSNAME,
 } from "../../../components/constants";
 

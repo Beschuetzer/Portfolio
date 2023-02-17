@@ -88,8 +88,7 @@ export const PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME = "--page-nav-min-colum
 export const QUOTE_POPUP_TRANSFORM_DEFAULT_CSS_PROPERTY_NAME = "--quote-popup-transform-default";
 //#endregion
 
-
-//#region CSS classnames and 
+//#region CSS classnames
 export const BODY_BACKGROUND_CSS_CLASSNAME = "--body-background";
 export const BRIDGE_CLASSNAME = 'bridge';
 export const BRIDGE_BACKDROP_CLASSNAME = `${BRIDGE_CLASSNAME}__backdrop`;
@@ -101,6 +100,10 @@ export const BRIDGE_HERO_MORE__CLICKED_CLASSNAME = "hero__more--clicked";
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAME = `${BRIDGE_CLASSNAME}__page-nav-link`;
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAMES = `${BRIDGE_PAGE_NAV_LINK_CLASSNAME} page-nav__section`;
 export const BRIDGE_SECTION_TITLES_CLASSNAME = `${BRIDGE_CLASSNAME}__section-titles`;
+export const C_SHARP_CLASSNAME = "csharp";
+export const C_SHARP_CARD_SECTION_CLASSNAME = `${C_SHARP_CLASSNAME}__card-section`
+export const C_SHARP_CARD_SECTION_TITLE_CLASSNAME = `${C_SHARP_CLASSNAME}__card-section-title`;
+export const C_SHARP_CARD_SECTION_CONTENT_CLASSNAME = `${C_SHARP_CLASSNAME}__section-content`;
 export const CARD_DEFAULT_CLASSNAME = "card card--hoverable";
 export const CARD_DONE_CLASSNAME = "card--done";
 export const CARD_OPEN_CLASSNAME = "card--open";
@@ -121,6 +124,7 @@ export const CAROUSEL_VIDEO_CLASSNAME = `${CAROUSEL_CLASSNAME}__video`;
 export const CONTAINS_CAROUSEL_CLASSNAME = "contains-carousel";
 export const DISPLAY_NONE_CLASSNAME = "d-none";
 export const DONE_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--done`;
+export const EDUCATION_CLASSNAME = "education";
 export const FILL_RED_CLASSNAME = "fill-red";
 export const FULLSCREEN_ARROW_BUTTON_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button--full-screen`;
 export const FULLSCREEN_CLASSNAME = "full-screen";
@@ -133,6 +137,7 @@ export const OVERFLOW_HIDDEN_CLASSNAME = "overflow--hidden";
 export const PAGE_NAV_CLASSNAME = "page-nav";
 export const PAGE_NAV_ACTIVE_CLASSNAME = "page-nav--active";
 export const PLAYING_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--playing`;
+export const REFERENCES_CLASSNAME = "references";
 export const SITE_NAV_BUTTON_WIDTH_CSS_CLASSNAME = "--site-nav-button-width";
 export const SKILLS_CLASSNAME = "skills";
 export const SKILLS_SECTION_CLASSNAME = `${SKILLS_CLASSNAME}__section`;

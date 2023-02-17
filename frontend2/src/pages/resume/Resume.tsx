@@ -28,11 +28,11 @@ import {
 	YORK_B2E_URL,
 	BRIDGE_CLASSNAME,
 	SKILLS_CLASSNAME,
+	C_SHARP_CLASSNAME,
 } from "../../components/constants";
 import { SourceCodeLink } from "../../components/SourceCodeLink";
 import { Quote } from "../../components/Quote";
 import { capitalize } from "../../helpers";
-import { C_SHARP_CLASSNAME } from "../examples/csharp/utils";
 import { PageWrapper } from "../PageWrapper";
 import { EducationItem } from "./EducationItem";
 import { getRepositories, reposSelector } from "../../slices/generalSlice";
