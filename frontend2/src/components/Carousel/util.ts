@@ -1,5 +1,5 @@
 import { RefObject } from "react";
-import { getComputedStyleCustom } from "../../helpers";
+import { getComputedStyleCustom, toggleScrollability } from "../../helpers";
 import { ArrowButtonDirection, CarouselItemProps } from "../../types";
 import {
 	CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
@@ -17,7 +17,6 @@ import {
 	PLAYING_CLASSNAME,
 	TRANSFORM_REMOVED_CLASSNAME,
 } from "../constants";
-import { toggleScrollability } from "../utils";
 import { getIsVideoPlaying } from "../VideoPlayer/utils";
 
 export function setArrowButtonsHiddenClass(

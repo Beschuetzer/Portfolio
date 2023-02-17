@@ -1,4 +1,4 @@
-import { removeClassFromAllChildren } from "../utils";
+import { removeClassFromAllChildren } from "../../helpers";
 
 interface StopControlProps{
 	className?: string,

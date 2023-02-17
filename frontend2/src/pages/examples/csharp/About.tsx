@@ -104,14 +104,11 @@ import p2p04Thumbnail from "../../../imgs/about/thumbnails/p2p-04-thumbnail.png"
 import { AudioList } from "../../../components/AudioPlayer/AudioList";
 import { LoadingSpinner } from "../../../components/loading/LoadingSpinner";
 import { Carousel } from "../../../components/Carousel/Carousel";
-import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { Quote } from "../../../components/Quote";
 import { CSharpCardSection } from "./CSharpCardSection";
 import { CSharpSection } from "../../../types";
+import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 
 export const ABOUT_SECTION_NAMES = ["Overview", "Interests", "Music"];
 const germanyCarousel = (

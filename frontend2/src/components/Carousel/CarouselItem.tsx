@@ -8,7 +8,6 @@ import {
 import {
 	getPercentOfProgressBar,
 } from "../VideoPlayer/utils";
-import { closeCarouselItem } from "../utils";
 import { OverlayText } from "../OverlayText/OverlayText";
 import { setCurrentlyViewingCarouselImage } from "../../slices/generalSlice";
 import { useAppDispatch } from "../../hooks";
@@ -20,6 +19,7 @@ import { PlayControl } from "../VideoPlayer/PlayControl";
 import { RestartControl } from "../VideoPlayer/RestartControl";
 import { StopControl } from "../VideoPlayer/StopControl";
 import { FOREGROUND_VIDEO_CLASSNAME, Video } from "../VideoPlayer/Video";
+import { closeCarouselItem } from "../../helpers";
 
 export const CLASSNAMES_TO_REMOVE = [
 	FULLSCREEN_PARENT_CLASSNAME,

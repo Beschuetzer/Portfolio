@@ -1,3 +1,26 @@
+import { Z_INDEX_CONTENT_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME, ABOUT_URL, BRIDGE_URL, MAIL_TO_STRING, DOWNLOADER_URL, REPLAY_VIEWER_URL, RESUME_URL, PLAYLIST_SYNCER_URL, AUTO_BID_URL, FULLSCREEN_PARENT_CLASSNAME, CAROUSEL_CLASSNAME, FULLSCREEN_ARROW_BUTTON_CLASSNAME, FILL_RED_CLASSNAME, DEFAULT_FONT_SIZE, MOBILE_BREAK_POINT_WIDTH, HEADER_ID } from "../components/constants";
+import history from "../components/history";
+
+export const addSpaceAfterPunctuationMarks = (string: string) => {
+	const punctuationMarks = [".", "?", "!"];
+	let shouldAdd = false;
+	let newString = "";
+	for (let i = 0; i < string.length; i++) {
+		const char = string[i];
+
+		if (shouldAdd && !punctuationMarks.includes(char)) {
+			//add &nbsp here in front of current char
+			shouldAdd = false;
+			if (char === "<" || string[i + 1] !== "") newString += char;
+			else newString += "&nbsp" + char;
+			continue;
+		}
+		if (punctuationMarks.includes(char)) shouldAdd = true;
+		newString += char;
+	}
+	return newString;
+};
+
 export function capitalize(str: string | undefined | null) {
   if (!str) return "";
   return str
@@ -23,6 +46,39 @@ export function checkForParentOfType(clickedElement: HTMLElement, parentType: st
   } catch (error) {
     return false;
   }
+}
+
+export function closeCarouselItem(
+	item: HTMLElement,
+	additionalSelector: string,
+	shouldAddZIndex = false,
+) {
+	let sectionAbove: HTMLElement | null;
+	let sectionAboveThat: HTMLElement | null;
+
+	if (item === null) {
+		item = document.querySelector(additionalSelector) as HTMLElement;
+		sectionAboveThat = item;
+	} else {
+		sectionAbove = item.closest("section");
+		sectionAboveThat = (sectionAbove?.parentNode as HTMLElement)?.closest(
+			"section",
+		);
+	}
+
+	if (sectionAboveThat) {
+		if (shouldAddZIndex)
+			sectionAboveThat.classList.add(Z_INDEX_CONTENT_CLASSNAME);
+		else sectionAboveThat.classList.remove(Z_INDEX_CONTENT_CLASSNAME);
+	}
+
+	resetArrowButtonClassnames();
+}
+
+export function functionToGetContainer(e: Event) {
+	return (e.currentTarget as any).parentNode.querySelector(
+		`.${CAROUSEL_VIDEO_CLASSNAME}`,
+	);
 }
 
 export function getAncestorContainsClassname(elementToCheck: HTMLElement | null, classname: string, stoppingElementType = 'body'): boolean {
@@ -61,6 +117,20 @@ export function getLinearPercentOfMaxMatchWithinRange(currentTrackedValue: numbe
   }
 }
 
+
+export function getMaxLengthString(str: string, maxCharCount = 30, addElliplse = true) {	
+	if (!str) {
+		return '';
+	}
+
+	let isEllipseNeeded = false;
+	if (str.length > maxCharCount) {
+		isEllipseNeeded = true;
+	}
+
+	return `${str.slice(0, maxCharCount)}${isEllipseNeeded && addElliplse ? '...' : ''}`;
+}
+
 export function getMinuteAndSecondsString(songLengthInSeconds: number) {
   const secondsPerMinute = 60;
   const hours = Math.floor(songLengthInSeconds / secondsPerMinute / secondsPerMinute);
@@ -75,6 +145,29 @@ export function getMinuteAndSecondsString(songLengthInSeconds: number) {
   return `${hours > 0 ? `${hours}:` : ''}${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 }
 
+export function getSentencesFromString(
+	str: string,
+	punctuationMarks: string[],
+) {
+	const toReturn: string[] = [];
+	const indexLocations = [];
+
+	for (let i = 0; i < str.length; i++) {
+		const char = str[i];
+		if (punctuationMarks.includes(char)) indexLocations.push(i);
+	}
+
+	for (let i = 0; i < indexLocations.length; i++) {
+		const endIndex = indexLocations[i] + 1;
+		let startIndex = 0;
+		if (i !== 0) startIndex = indexLocations[i - 1] + 1;
+
+		toReturn.push(str.substring(startIndex, endIndex)?.trim());
+	}
+
+	return toReturn;
+}
+
 export function hexToRgb(hex: string) {
 	const result = /^#?([a-fd]{2})([a-fd]{2})([a-fd]{2})$/i.exec(hex);
 	if (result) {
@@ -85,6 +178,54 @@ export function hexToRgb(hex: string) {
 	}
 	throw new Error("Invald Hex Value: " + hex);
 }
+
+export const keypressHandler = (
+	e: KeyboardEvent,
+) => {
+	if (!e.altKey || !e.ctrlKey) return;
+	switch (e.key) {
+		case "a":
+			history.push(ABOUT_URL);
+			break;
+		case "b":
+			history.push(BRIDGE_URL);
+			break;
+		case "c":
+			window.location.href = MAIL_TO_STRING;
+		break;
+		case "d":
+			history.push(DOWNLOADER_URL);
+			break;
+		case "p":
+			history.push(REPLAY_VIEWER_URL);
+			break;
+		case "r":
+			history.push(RESUME_URL);
+			break;
+		case "s":
+			history.push(PLAYLIST_SYNCER_URL);
+			break;
+		case "u":
+			history.push(AUTO_BID_URL);
+			break;
+		default:
+			break;
+	}
+};
+
+export const removeClassFromAllChildren = (
+	parent: HTMLElement,
+	classNameToRemove: string,
+) => {
+	const childrenWithClassname = parent.querySelectorAll(
+		`.${classNameToRemove}`,
+	);
+
+	for (let j = 0; j < childrenWithClassname.length; j++) {
+		const childWithClassname = childrenWithClassname[j];
+		childWithClassname.classList.remove(classNameToRemove);
+	}
+};
 
 export const replaceCharacters = (str: string, characterMappings: [string, string][] = []) => {
   const replacements = [
@@ -105,6 +246,59 @@ export const replaceCharacters = (str: string, characterMappings: [string, strin
 };
 
 
+export function resetArrowButtonClassnames() {
+	setTimeout(() => {
+		const carouselItemsFullScreen = document.querySelectorAll(
+			`.${FULLSCREEN_PARENT_CLASSNAME}`,
+		);
+
+		if (carouselItemsFullScreen.length > 0) return;
+		const arrowButtons = document.querySelectorAll(
+			`.${CAROUSEL_CLASSNAME}__arrow-button`,
+		);
+
+		for (let i = 0; i < arrowButtons.length; i++) {
+			const arrowButton = arrowButtons[i];
+			const svg = arrowButton.querySelector("svg");
+			arrowButton.classList.remove(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
+			svg?.classList.remove(FILL_RED_CLASSNAME);
+		}
+	}, 1);
+}
+
 export function rgbToHex(r: number, g: number, b: number) {
 	return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+export const scrollToSection = (sectionToScrollTo: HTMLElement | null, addedHeight: number = (-DEFAULT_FONT_SIZE * 75)) => {
+	if (!sectionToScrollTo) {
+		return window.scroll({
+			top: 0,
+			left: 0,
+			behavior: "smooth",
+		});
+	}
+
+	const shouldAddHeaderHeight = window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
+	const headerHeight = document
+		.querySelector(HEADER_ID)!
+		.getBoundingClientRect().height;
+	const topScrollAmount =
+		window.scrollY +
+		sectionToScrollTo.getBoundingClientRect().top -
+		(shouldAddHeaderHeight ? headerHeight : 0) + addedHeight;
+		
+	window.scroll({
+		top: topScrollAmount,
+		left: 0,
+		behavior: "smooth",
+	});
+};
+
+export function toggleScrollability(isScrollable = true) {
+	if (isScrollable) {
+		document.body.style.overflowY = 'visible';
+	} else {
+		document.body.style.overflowY = 'hidden';
+	}
 }

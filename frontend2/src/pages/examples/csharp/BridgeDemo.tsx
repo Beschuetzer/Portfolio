@@ -9,10 +9,6 @@ import video3 from "../../../clips/bridge-demo/3.mp4";
 
 import { C_SHARP_CLASSNAME } from "./utils";
 import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import {
 	LIVE_BRIDGE_URL,
 	BRIDGE_DEMO_PAGE_NAME,
 	CAROUSEL_CLASSNAME,
@@ -20,6 +16,7 @@ import {
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { CSharpCardSection } from "./CSharpCardSection";
 import { CSharpSection } from "../../../types";
+import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 
 const sectionNames = [
 	"Requirements",

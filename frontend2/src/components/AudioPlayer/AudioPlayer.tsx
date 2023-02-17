@@ -5,10 +5,9 @@ import {
 	AudioItem,
 	AUDIO_LIST_CLASSNAME,
 } from "./AudioList";
-import { getMaxLengthString } from "../utils";
 import { useLocation } from "react-router-dom";
 import { setIsLoadingSound, setCurrentlyPlayingSound, currentlyPlayingSoundSelector } from "../../slices/soundsSlice";
-import { getAncestorContainsClassname, getMinuteAndSecondsString } from "../../helpers";
+import { getAncestorContainsClassname, getMaxLengthString, getMinuteAndSecondsString } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { MaxCharCount } from "../../types";
 

@@ -16,12 +16,12 @@ import { PageNav } from "./navbar/PageNav";
 import { NavToggler } from "./navbar/NavToggler";
 import "../css/style.css";
 import { GithubButton } from "./GithubButton";
-import { keypressHandler } from "./utils";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer, Home, Resume } from "../pages";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { isMobileSelector, setIsMobile, setViewPortWidth } from "../slices/generalSlice";
 import { useSetHeaderCssStyle } from "../hooks/useSetHeaderCssStyle";
+import { keypressHandler } from "../helpers";
 
 interface AppProps {}
 

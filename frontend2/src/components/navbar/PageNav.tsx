@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
-import { capitalize } from "../../helpers";
+import { capitalize, scrollToSection } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useUpdatePageNav } from "../../hooks/useUpdatePageNav";
 import { BridgeSectionLink } from "../../pages";
@@ -9,7 +9,6 @@ import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } fr
 import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../slices/generalSlice";
 import { Match } from "../../types";
 import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME, PAGE_NAV_ACTIVE_CLASSNAME, PAGE_NAV_CLASSNAME } from "../constants";
-import { scrollToSection } from "../utils";
 
 type PageNavProps = {
 	match: { url: string };

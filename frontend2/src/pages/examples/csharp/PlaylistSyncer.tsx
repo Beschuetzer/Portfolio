@@ -20,10 +20,6 @@ import { CSharpCardSection } from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
 import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import {
 	DOWNLOADER_URL,
 	GITHUB_URL,
 	OS_10_ISSUE_TRACKER_URL,
@@ -33,6 +29,7 @@ import {
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
 import { CSharpSection } from "../../../types";
+import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 
 const sectionNames = ["Background", "Media", "Problem", "Approach"];
 

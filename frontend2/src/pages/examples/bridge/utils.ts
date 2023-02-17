@@ -1,6 +1,5 @@
 import { ANIMATION_DURATION, BODY_BACKGROUND_CSS_CLASSNAME, bridgeSectionNames, BRIDGE_HERO_CLICKED_CLASSNAME, BRIDGE_HERO_MORE__CLICKED_CLASSNAME, BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME, BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SECOND_INFO_BUTTON_DELAY } from "../../../components/constants";
-import { scrollToSection } from "../../../components/utils";
-import { getComputedStyleCustom, getLinearPercentOfMaxMatchWithinRange } from "../../../helpers";
+import { getComputedStyleCustom, getLinearPercentOfMaxMatchWithinRange, scrollToSection } from "../../../helpers";
 import { LoadedSounds } from "../../../slices/";
 import { Reference } from "../../../types";
 

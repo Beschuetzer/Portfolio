@@ -39,16 +39,13 @@ import { CSharpCardSection } from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
 import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import {
 	LIVE_BRIDGE_URL,
 	GITHUB_URL,
 	LIVE_REPLAYS_URL,
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
 import { CSharpSection } from "../../../types";
+import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 
 const sectionNames = ["Motivation", "Media", "Features", "Notes"];
 

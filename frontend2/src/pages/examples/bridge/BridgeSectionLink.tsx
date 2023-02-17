@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import { BRIDGE_HERO_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAMES, BRIDGE_CLASSNAME } from "../../../components/constants";
-import { scrollToSection } from "../../../components/utils";
+import { scrollToSection } from "../../../helpers";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { setCurrentBridgeSection, setClickedBridgeInfoButtonCount, setHasClickedALink, currentBridgeSectionSelector, bridgeSectionsSelector, hasClickedALinkSelector } from "../../../slices/bridgeSlice";
 import { headerHeightSelector, isMobileSelector } from "../../../slices/generalSlice";

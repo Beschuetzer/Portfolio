@@ -22,10 +22,6 @@ import img6Thumbnail from "../../../imgs/downloader/thumbnails/img6-thumbnail.pn
 import { CSharpCardSection } from "./CSharpCardSection";
 import { C_SHARP_CLASSNAME } from "./utils";
 import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import {
 	CAROUSEL_CLASSNAME,
 	DOWNLOADER_PAGE_NAME,
 	GITHUB_URL,
@@ -35,6 +31,7 @@ import {
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
 import { CSharpSection } from "../../../types";
+import { closeCarouselItem, functionToGetContainer } from "../../../helpers";
 
 const sectionNames = ["Description", "Media", "Notes"];
 

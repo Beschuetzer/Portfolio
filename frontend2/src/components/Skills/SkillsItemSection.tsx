@@ -1,9 +1,9 @@
+import { scrollToSection } from '../../helpers';
 import { useAppSelector } from '../../hooks';
 import { headerHeightSelector } from '../../slices/generalSlice';
 import { sectionsToSkipAnimationSelector } from '../../slices/resumeSlice';
 import { MOBILE_BREAK_POINT_WIDTH, SKILLS_CLASSNAME, SKILLS_SECTION_CLASSNAME, SKILLS_SECTION_OPEN_CLASSNAME, TIME_OUT_DIFFERENTIAL } from '../constants';
 import { PERCENT_BAR_OUTER_CLASSNAME } from '../PercentBar/PercentBar';
-import { scrollToSection } from '../utils';
 
 interface SkillsItemSectionProps {
   title: string,

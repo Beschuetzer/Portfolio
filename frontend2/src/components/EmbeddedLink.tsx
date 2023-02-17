@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { scrollToSection } from "../helpers";
 import { BRIDGE_CLASSNAME } from "./constants";
-import { scrollToSection } from "./utils";
 
 interface EmbeddedLinkProps {
 	href: string,

@@ -22,9 +22,8 @@ import {
 	getPercentOfProgressBar,
 	handleVideoProgress,
 } from "../VideoPlayer/utils";
-import { scrollToSection } from "../utils";
 import { setIsCardVideoOpen } from "../../slices/bridgeSlice";
-import { capitalize } from "../../helpers";
+import { capitalize, scrollToSection } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { isMobileSelector, viewPortWidthSelector } from "../../slices/generalSlice";
 import { Reference } from "../../types";

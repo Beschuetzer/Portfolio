@@ -1,8 +1,7 @@
 import React from "react";
 import { useRef } from "react";
-import { getComputedStyleCustom } from "../helpers";
+import { getComputedStyleCustom, getSentencesFromString } from "../helpers";
 import { HIDDEN_CLASSNAME, QUOTE_POPUP_TRANSFORM_DEFAULT_CSS_PROPERTY_NAME } from "./constants";
-import { getSentencesFromString } from "./utils";
 
 export const QUOTE_CLASSNAME = "quote";
 
