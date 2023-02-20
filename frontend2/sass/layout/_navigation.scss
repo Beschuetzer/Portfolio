@@ -395,7 +395,7 @@ $scale-y-amount: .25;
 
 			&:first-child {
 				border-radius: 0;
-				margin-top: $navbar__item-margin-top;
+				// margin-top: $navbar__item-margin-top;
 				@include respond(nav-switch) {
 					border-top: $default-font-size * 0.1 solid var(--color-primary-1);
 					margin-top: $default-font-size * 0.75;
@@ -521,8 +521,9 @@ $scale-y-amount: .25;
 		}
 
 		& .navbar__button {
-			border-radius: $default-font-size * 10 $default-font-size * 1
-				$default-font-size * 1 $default-font-size * 10;
+			margin-right: $navbar__item-divider-width;
+			border-radius: $default-font-size * 10 $default-font-size * 0
+				$default-font-size * 0 $default-font-size * 10;
 			@include respond(nav-switch) {
 				border-radius: $default-font-size * 1 $default-font-size * 1
 					$default-font-size * 0 $default-font-size * 0;
