@@ -1,4 +1,4 @@
-import { attachProgressListener } from "./utils";
+import { attachProgressListener } from "../../helpers";
 
 interface PlayControlProps {
 	className?: string,

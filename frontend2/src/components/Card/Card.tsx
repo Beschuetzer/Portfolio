@@ -15,15 +15,8 @@ import {
 	MOBILE_BREAK_POINT_WIDTH,
 	Z_INDEX_HIGHEST_CLASSNAME,
 } from "../constants";
-import {
-	attachProgressListener,
-	closeVideo,
-	getIsVideoPlaying,
-	getPercentOfProgressBar,
-	handleVideoProgress,
-} from "../VideoPlayer/utils";
 import { setIsCardVideoOpen } from "../../slices/bridgeSlice";
-import { capitalize, scrollToSection } from "../../helpers";
+import { attachProgressListener, capitalize, closeVideo, getIsVideoPlaying, getPercentOfProgressBar, handleVideoProgress, scrollToSection } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { isMobileSelector, viewPortWidthSelector } from "../../slices/generalSlice";
 import { Reference } from "../../types";

@@ -1,3 +1,4 @@
+import { RefObject } from "react";
 import { Z_INDEX_CONTENT_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME, ABOUT_URL, BRIDGE_URL, MAIL_TO_STRING, DOWNLOADER_URL, REPLAY_VIEWER_URL, RESUME_URL, PLAYLIST_SYNCER_URL, AUTO_BID_URL, FULLSCREEN_PARENT_CLASSNAME, CAROUSEL_CLASSNAME, FULLSCREEN_ARROW_BUTTON_CLASSNAME, FILL_RED_CLASSNAME, DEFAULT_FONT_SIZE, MOBILE_BREAK_POINT_WIDTH, HEADER_ID } from "../components/constants";
 import history from "../components/history";
 
@@ -20,6 +21,15 @@ export const addSpaceAfterPunctuationMarks = (string: string) => {
 	}
 	return newString;
 };
+
+export const attachProgressListener = (video: HTMLVideoElement, hasProgressEventListener: boolean, handleVideoProgress: () => void) => {
+	if(!video) return;
+	if (!hasProgressEventListener) {
+	  video.addEventListener('timeupdate', handleVideoProgress);
+	  return true;
+	} 
+	return false;
+}
 
 export function capitalize(str: string | undefined | null) {
   if (!str) return "";
@@ -74,6 +84,12 @@ export function closeCarouselItem(
 
 	resetArrowButtonClassnames();
 }
+
+export const closeVideo = (video: HTMLVideoElement) => {
+	if (!video) return;
+	video.pause();
+	video.currentTime = 0;
+};
 
 export function functionToGetContainer(e: Event) {
 	return (e.currentTarget as any).parentNode.querySelector(
@@ -145,6 +161,24 @@ export function getMinuteAndSecondsString(songLengthInSeconds: number) {
   return `${hours > 0 ? `${hours}:` : ''}${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 }
 
+export const getIsVideoPlaying = (video: HTMLVideoElement) => {
+	return (
+	  video.currentTime > 0 &&
+	  !video.paused &&
+	  !video.ended &&
+	  video.readyState > 2
+	);
+};
+
+export const getPercentOfProgressBar = (progressBar: HTMLProgressElement, clientX: number) => {
+	const progressBarBoundingRect = progressBar.getBoundingClientRect();
+	const progressBarLeftX = progressBarBoundingRect.left;
+	const progressBarRightX = progressBarBoundingRect.right;
+	const amountPastLeft = (clientX - progressBarLeftX);
+	const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
+	return percent;
+}
+
 export function getSentencesFromString(
 	str: string,
 	punctuationMarks: string[],
@@ -167,6 +201,16 @@ export function getSentencesFromString(
 
 	return toReturn;
 }
+
+export const handleVideoProgress = (videoRef: RefObject<HTMLVideoElement> | Event, progressBarRef: RefObject<HTMLProgressElement>, e: Event) => {
+	const video = (videoRef as any).current || (videoRef as any).target as HTMLVideoElement;
+	if (!video) return;
+	const percent = video.currentTime / video.duration;
+  
+	if (progressBarRef.current) {
+	  (progressBarRef.current as HTMLProgressElement).value = percent;
+	}
+};
 
 export function hexToRgb(hex: string) {
 	const result = /^#?([a-fd]{2})([a-fd]{2})([a-fd]{2})$/i.exec(hex);
@@ -244,7 +288,6 @@ export const replaceCharacters = (str: string, characterMappings: [string, strin
   }
   return strToUse;
 };
-
 
 export function resetArrowButtonClassnames() {
 	setTimeout(() => {
