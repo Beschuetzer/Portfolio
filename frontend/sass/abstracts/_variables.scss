@@ -206,8 +206,8 @@ $arrow-button-position: calc(
 				)
 		) / 2
 );
-$bridge-card-box-shadow-size: 0 0rem $default-font-size * 2 -$default-font-size *
-	0.5;
+$bridge-card-box-shadow-size: 0 0rem $default-font-size * 2 (-$default-font-size *
+	0.5);
 $bridge-card-border-size: 2px solid;
 $hero-background-image-alpha: 0.33;
 $hero-blend-mode: hard-light;

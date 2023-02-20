@@ -23,7 +23,7 @@ import { isMobileSelector, setIsMobile, setViewPortWidth } from "../slices/gener
 import { useSetHeaderCssStyle } from "../hooks/useSetHeaderCssStyle";
 import { keypressHandler } from "../helpers";
 
-interface AppProps {}
+type AppProps = {}
 
 export const App: React.FC<AppProps> = ({
 }) => {
@@ -34,7 +34,7 @@ export const App: React.FC<AppProps> = ({
 	useSetHeaderCssStyle();
 	useEffect(() => {
 		dispatch(setIsMobile({isMobile: window.innerWidth <= mobileBreakPointWidth, viewPortWidth: window.innerWidth}));
-	}, [])
+	}, [dispatch, setIsMobile, mobileBreakPointWidth])
 
 	//setup window resize listener
 	useEffect(() => {
@@ -60,6 +60,7 @@ export const App: React.FC<AppProps> = ({
 			window.removeEventListener("keydown", keypressHandler);
 		};
 	}, [
+		dispatch,
 		isMobile,
 		setIsMobile,
 		mobileBreakPointWidth,

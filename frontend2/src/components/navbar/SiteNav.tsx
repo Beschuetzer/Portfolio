@@ -343,16 +343,6 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 							items: [
 								{
 									image: {
-										source: replayImage,
-										alt: "Replay Viewer",
-									},
-									to: REPLAY_VIEWER_URL,
-									label: "Replay Viewer",
-									onMouseEnter: onMouseEnter,
-									onClick: onNavItemClick,
-								},
-								{
-									image: {
 										source: bridgeImage,
 										alt: capitalize(BRIDGE_PAGE_NAME),
 									},
@@ -362,15 +352,25 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 									onClick: onNavItemClick,
 								},
 								{
-									image:{
-										source: autoBidImage,
-										alt: AUTO_BID_PAGE_NAME,
+									image: {
+										source: replayImage,
+										alt: "Bridge Replayer",
 									},
-									to: AUTO_BID_URL,
-									label: capitalize(AUTO_BID_PAGE_NAME),
+									to: REPLAY_VIEWER_URL,
+									label: "Bridge Replayer",
 									onMouseEnter: onMouseEnter,
 									onClick: onNavItemClick,
 								},
+								// {
+								// 	image:{
+								// 		source: autoBidImage,
+								// 		alt: AUTO_BID_PAGE_NAME,
+								// 	},
+								// 	to: AUTO_BID_URL,
+								// 	label: capitalize(AUTO_BID_PAGE_NAME),
+								// 	onMouseEnter: onMouseEnter,
+								// 	onClick: onNavItemClick,
+								// },
 								{
 									image: {
 										source: downloaderImage,

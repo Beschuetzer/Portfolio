@@ -327,7 +327,7 @@ $scale-y-amount: .25;
 		display: flex;
 		align-items: center;
 
-		transition: border-radius $animation-duration * 1 $animation-easing-standard;
+		transition: border-radius $animation-duration * 1.5 $animation-easing-standard;
 		@include respond(nav-switch) {
 			border-radius: $default-font-size;
 			border: none;
@@ -547,7 +547,7 @@ $scale-y-amount: .25;
 		}
 
 		& .navbar__link:not(&__dropdown &__link) {
-			padding: $default-font-size * $paddingFactor $default-font-size * 2;
+			padding: $default-font-size * $paddingFactor $default-font-size * $paddingFactor * 1.5;
 
 			@include respond(nav-switch) {
 				padding: $default-font-size 0;

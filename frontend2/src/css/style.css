@@ -1039,7 +1039,7 @@ body {
   border-radius: 14rem;
   display: flex;
   align-items: center;
-  transition: border-radius 0.5s ease;
+  transition: border-radius 0.75s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__button {
@@ -1226,7 +1226,7 @@ body {
   width: 0;
 }
 .navbar.navbar--active .navbar__link:not(.navbar.navbar--active__dropdown .navbar.navbar--active__link) {
-  padding: 2.5998rem 2.8rem;
+  padding: 2.5998rem 3.8997rem;
 }
 @media only screen and (max-width: 68.75em) {
   .navbar.navbar--active .navbar__link:not(.navbar.navbar--active__dropdown .navbar.navbar--active__link) {
