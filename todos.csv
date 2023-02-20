@@ -1,5 +1,4 @@
 React best practices re-work (branch = sitenav_rework)
-  -make SkillsPopup title (section with close button) absolutely postioned
   -rework remaining places that directly modify the DOM
   -add onPress handler to ArrowButton to be able to hide the elements on bridge page when switching left/right 
   -add more complext logic in SkillPopup sort to weight created date?

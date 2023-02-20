@@ -298,7 +298,7 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 	};
 
 	const renderTableHeaders = () => {
-		const headers = ["Name", "Description", "Created", "Updated", "Repo Url"];
+		const headers = ["Name", "Description", "Created", "Updated", "Url"];
 		return isMobile
 			? // <div className={`${SKILLS_CLASSNAME}-popup__table-headers`}>
 			  //   {
@@ -328,9 +328,11 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 					<use xlinkHref="/sprite.svg#icon-close"></use>
 				</svg>
 				<h5 className={`${SKILLS_CLASSNAME}-popup__hint`}>* click the project name to view a working demo (when possible)</h5>
+				<div className={`${SKILLS_CLASSNAME}-popup__table-headers`}>
+					{renderTableHeaders()}
+				</div>
 			</div>
 			<div className={`${SKILLS_CLASSNAME}-popup__table`}>
-				{renderTableHeaders()}
 				{renderProjects()}
 			</div>
 		</div>,
