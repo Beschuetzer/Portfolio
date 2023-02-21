@@ -32,7 +32,7 @@
 			$animation-easing-standard-easeInOutBack-smaller;
 		
 		& > * {
-			padding: $default-font-size * 2;
+			padding: $default-font-size * 2 0;
 
 			&:nth-of-type(2) {
 				padding-top: 0;
@@ -55,7 +55,7 @@
 	}
 
 	&__header {
-		padding-bottom: 0;
+		padding: $skills-popup-padding-amount 0 0;
 		font-size: $font-size-eight;
 		font-weight: 100;
 		text-align: center;
@@ -123,6 +123,14 @@
 			display: flex;
 			align-items: center;
 			text-align: center;
+
+			&:nth-of-type(1) {
+				padding-left: $skills-popup-padding-amount;
+			}
+
+			&:nth-last-of-type(1) {
+				padding-right: $skills-popup-padding-amount;
+			}
 		}
 		&-item {
 			border-bottom: 1px solid var(--color-primary-1-light);
@@ -190,13 +198,17 @@
 				}
 			}
 
-			&:nth-child(5n + 3),
-			&:nth-child(5n + 4) {
-				padding-right: 0
+			// &:nth-child(5n + 3),
+			// &:nth-child(5n + 4) {
+			// 	padding-right: 0
+			// }
+
+			&:nth-child(5n + 1) {
+				padding-left: $skills-popup-padding-amount;
 			}
 
-			&:nth-child(5n + 5) {
-				padding-right: 0;
+			&:nth-child(5n + 5)  {
+				padding-right: $skills-popup-padding-amount;
 			}
 
 			&:nth-last-child(-n + 5) {
@@ -240,6 +252,7 @@
 	}
 
 	&__close {
+		margin-right: $skills-popup-padding-amount;
 		cursor: pointer;
 		fill: var(--color-primary-1);
 		height: $default-font-size * 2;
