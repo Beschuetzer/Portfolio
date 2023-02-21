@@ -328,9 +328,7 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 					<use xlinkHref="/sprite.svg#icon-close"></use>
 				</svg>
 				<h5 className={`${SKILLS_CLASSNAME}-popup__hint`}>* click the project name to view a working demo (when possible)</h5>
-				<div className={`${SKILLS_CLASSNAME}-popup__table-headers`}>
-					{renderTableHeaders()}
-				</div>
+				{renderTableHeaders()}
 			</div>
 			<div className={`${SKILLS_CLASSNAME}-popup__table`}>
 				{renderProjects()}
