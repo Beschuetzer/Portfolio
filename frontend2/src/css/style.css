@@ -3305,7 +3305,6 @@ body {
 }
 @media only screen and (max-width: 68.75em) {
   .skills-popup__table {
-    padding: 1.4rem;
     display: flex;
     flex-direction: column;
   }
@@ -3343,7 +3342,8 @@ body {
 @media only screen and (max-width: 68.75em) {
   .skills-popup__table-item {
     border: none;
-    padding: 1.4rem 0;
+    padding: 1.4rem;
+    margin-left: 1.4rem;
   }
   .skills-popup__table-item:nth-child(n+4) {
     padding-top: 0;
@@ -3362,7 +3362,7 @@ body {
   .skills-popup__table-repo > .skills-popup__table-item:last-child {
     position: absolute;
     top: 1.4rem;
-    right: 0;
+    right: 1.4rem;
   }
   .skills-popup__table-item .skills-popup__table-item {
     padding: 0;
@@ -3378,13 +3378,18 @@ body {
   }
 }
 .skills-popup__table-item.skills-popup__description {
-  display: inline;
+  display: inline-block;
 }
 .skills-popup__table-item.skills-popup__description a {
   text-decoration: none;
 }
 .skills-popup__table-item.skills-popup__description a:hover {
   border-image: none;
+}
+@media only screen and (max-width: 68.75em) {
+  .skills-popup__table-item.skills-popup__description {
+    padding: 0;
+  }
 }
 .skills-popup__table-item:nth-child(5n+3), .skills-popup__table-item:nth-child(5n+4) {
   padding-right: 0;
@@ -3399,6 +3404,7 @@ body {
   padding: 2.1rem 2.8rem 2.1rem 0;
 }
 .skills-popup__url {
+  margin-left: 0;
   backface-visibility: hidden;
   display: flex;
   justify-content: center;

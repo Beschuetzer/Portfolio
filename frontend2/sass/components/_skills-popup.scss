@@ -86,7 +86,6 @@
 		grid-template-columns: $skill-popup-grid-column-template;
 
 		@include respond(nav-switch) {
-			padding: $default-font-size;
 			display: flex;
 			flex-direction: column;
 		}
@@ -135,7 +134,8 @@
 
 			@include respond(nav-switch) {
 				border: none;
-				padding: $default-font-size 0;
+				padding: $default-font-size;
+				margin-left: $default-font-size;
 
 				&:nth-child(n + 4) {
 					padding-top: 0;
@@ -157,7 +157,7 @@
 				.skills-popup__table-repo > &:last-child {
 					position: absolute;
 					top: $default-font-size * 1;
-					right: 0;
+					right: $default-font-size * 1;
 				}
 
 				& .skills-popup__table-item {
@@ -177,12 +177,16 @@
 			}
 
 			&.skills-popup__description {
-				display: inline;
+				display: inline-block;
 				& a {
 					text-decoration: none;
 					&:hover {
 						border-image: none;
 					}
+				}
+
+				@include respond(nav-switch) {
+					padding: 0;
 				}
 			}
 
@@ -207,6 +211,7 @@
 	}
 
 	&__url {
+		margin-left: 0;
 		backface-visibility: hidden;
 		display: flex;
 		justify-content: center;
