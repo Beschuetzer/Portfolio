@@ -49,11 +49,11 @@
 		transform: translate(-50%, 0%);
 
 		&-top {
-			top: $default-font-size / 2;
+			top: $default-font-size / 4;
 		}
 
 		&-bottom {
-			bottom: $default-font-size / 2;
+			bottom: $default-font-size / 4;
 		}
 
 		@include respond(nav-switch) {
