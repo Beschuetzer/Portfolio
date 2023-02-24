@@ -1,21 +1,14 @@
 import React, { ReactNode } from "react";
 import { useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import {
-	setBridgeCards,
-	setIsCardVideoOpen,
-	setLastSecondRowCardNumber,
-} from "../../actions";
-
 import { checkForParentOfType } from "../../helpers";
-import { RootState } from "../../reducers";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { setLastSecondRowCardNumber, setBridgeCards, setIsCardVideoOpen, bridgeCardsSelector, isCardVideoOpenSelector, lastSecondRowCardNumberSelector } from "../../slices/bridgeSlice";
+import { isMobileSelector, viewPortWidthSelector } from "../../slices/generalSlice";
+import { CARD_OPEN_CLASSNAME, CARD_DEFAULT_CLASSNAME } from "../constants";
 import { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 
-import { CARD_DEFAULT_CLASSNAME, CARD_OPEN_CLASSNAME } from "./utils";
-
 interface CardManagerProps {
-  children: (Element | ReactNode)[],
+  children: ReactNode,
 }
 
 export enum CardTransformOptions {
@@ -35,12 +28,12 @@ export const CardManager: React.FC<CardManagerProps> = ({
 	children,
 }) => {
 	//#region Init
-	const dispatch = useDispatch();
-	const isMobile = useSelector((state: RootState) => state.general.isMobile);
-	const viewPortWidth  = useSelector((state: RootState) => state.general.viewPortWidth);
-	const lastSecondRowCardNumber  = useSelector((state: RootState) => state.bridge.lastSecondRowCardNumber);
-	const bridgeCards  = useSelector((state: RootState) => state.bridge.bridgeCards);
-	const isCardVideoOpen  = useSelector((state: RootState) => state.bridge.isCardVideoOpen);
+	const dispatch = useAppDispatch();
+	const isMobile = useAppSelector(isMobileSelector);
+	const viewPortWidth  = useAppSelector(viewPortWidthSelector);
+	const lastSecondRowCardNumber  = useAppSelector(lastSecondRowCardNumberSelector);
+	const bridgeCards  = useAppSelector(bridgeCardsSelector);
+	const isCardVideoOpen  = useAppSelector(isCardVideoOpenSelector);
 	//#endregion
 	
 	//#region Functions/Handlers
@@ -73,11 +66,11 @@ export const CardManager: React.FC<CardManagerProps> = ({
 	useEffect(() => {
 		const setTransformOrigins = () => {
 			const rowLength = lastSecondRowCardNumber;
-			const numberOfRows = Math.ceil(bridgeCards.length / rowLength);
+			const numberOfRows = Math.ceil((bridgeCards || []).length / rowLength);
 			
 
-			for (let i = 0; i < bridgeCards.length; i++) {
-				const card = bridgeCards[i];
+			for (let i = 0; i < (bridgeCards || []).length; i++) {
+				const card = (bridgeCards || [])[i];
 				const isTopRow = i < lastSecondRowCardNumber;
 				const isBottomRow = i > rowLength * (numberOfRows - 1) - 1;
 				const isFirstInRow = i === 0 || i % rowLength === 0;

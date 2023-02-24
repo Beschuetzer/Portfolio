@@ -1,4 +1,4 @@
-import { BRIDGE_CARD_SECTION_CLASSNAME, BRIDGE_CLASSNAME } from "./utils";
+import { BRIDGE_CARD_SECTION_CLASSNAME, BRIDGE_CLASSNAME } from "../../../components/constants";
 
 interface BridgeCardSectionProps {
   title: string,

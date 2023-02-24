@@ -1,13 +1,5 @@
 import React from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import {
-	setClickedBridgeInfoButtonCount,
-	setCurrentBridgeSection,
-	setHasClickedALink,
-} from "../../../actions";
-
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { BridgeSection } from "./BridgeSection";
 import BridgeCardSection from "./BridgeCardSection";
@@ -25,18 +17,7 @@ import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
 import { CardManager } from "../../../components/Card/CardManager";
 import {
-	bridgeSectionNames,
-	BRIDGE_BACKDROP_CLASSNAME,
-	BRIDGE_CLASSNAME,
-	BRIDGE_HERO_CLASSNAME,
-	BRIDGE_HERO_CLICKED_CLASSNAME,
-	BRIDGE_HERO_MORE__CLICKED_CLASSNAME,
-	resetBridgeHero,
-	setLinearGradientCssCustomProp,
-} from "./utils";
-import {
 	DISPLAY_NONE_CLASSNAME,
-	Reference,
 	LIVE_BRIDGE_URL,
 	GITHUB_URL,
 	WIKIPEDIA_BRIDGE_URL,
@@ -47,13 +28,24 @@ import {
 	RESUME_URL,
 	BRIDGE_PAGE_NAME,
 	BRIDGE_DEMO_URL,
+	bridgeSectionNames,
+	BRIDGE_BACKDROP_CLASSNAME,
+	BRIDGE_CLASSNAME,
+	BRIDGE_HERO_CLASSNAME,
+	BRIDGE_HERO_CLICKED_CLASSNAME,
+	BRIDGE_HERO_MORE__CLICKED_CLASSNAME,
 } from "../../../components/constants";
 import { BridgeHero } from "./BridgeHero";
 import { SourceCodeLink } from "../../../components/SourceCodeLink";
 import { ArrowButton } from "../../../components/ArrowButton";
 import { Quote } from "../../../components/Quote";
-import { RootState } from "../../../reducers";
 import { BridgeSectionLink } from "./BridgeSectionLink";
+import { setHasClickedALink, setClickedBridgeInfoButtonCount, setCurrentBridgeSection } from "../../../slices/bridgeSlice";
+import { RootState } from "../../../store";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { isMobileSelector } from "../../../slices/generalSlice";
+import { Reference } from "../../../types";
+import { setLinearGradientCssCustomProp, resetBridgeHero } from "./utils";
 
 const sectionContents = [
 	<SectionContainer name={bridgeSectionNames[0]} pageName={BRIDGE_PAGE_NAME}>
@@ -203,12 +195,11 @@ const sectionContents = [
 					title="Claim Some">
 					<div>
 						<p>
-							'Claim Some' allows the declarer (person playing the contract) to
+							The 'Claim Some' feature speeds up gameplay in some scenarios by allowing the declarer (person playing the contract) to
 							claim some number of tricks less than or equal to the number of
 							tricks remaining.&nbsp; The UI guides players through the
-							selection process, by graying out cards that are invalid and
-							displaying the selected cards in a table, allowing for a smooth
-							user experience.
+							selection process by disabling invalid choices and
+							displaying valid choices in a table.
 						</p>
 					</div>
 				</Card>
@@ -510,8 +501,8 @@ interface BridgeProps {
 }
 
 export const Bridge: React.FC<BridgeProps> = () => {
-	const dispatch = useDispatch();
-	const isMobile = useSelector((state: RootState) => state.general.isMobile);
+	const dispatch = useAppDispatch();
+	const isMobile = useAppSelector(isMobileSelector);
 	const leftArrowProps = { direction: "left" };
 	const rightArrowProps = { direction: "right" };
 

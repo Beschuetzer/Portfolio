@@ -238,6 +238,10 @@ $scale-y-amount: .25;
 			// 	var(--color-primary-4),
 			// );
 			transition: background-image $animation-duration $animation-easing-modern;
+
+			& > .navbar__link-image {
+				opacity: $bg-video-opacity * 3;
+			}
 		}
 		&:not(.navbar__dropdown-container):hover {
 			z-index: 10000;
@@ -257,7 +261,7 @@ $scale-y-amount: .25;
 		.navbar__link > img {
 			pointer-events: none;
 			width: 100%;
-			opacity: $bg-video-opacity * 1.5;
+			opacity: 0;
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -323,7 +327,7 @@ $scale-y-amount: .25;
 		display: flex;
 		align-items: center;
 
-		transition: border-radius $animation-duration * 1 $animation-easing-standard;
+		transition: border-radius $animation-duration * 1.5 $animation-easing-standard;
 		@include respond(nav-switch) {
 			border-radius: $default-font-size;
 			border: none;
@@ -337,9 +341,8 @@ $scale-y-amount: .25;
 	}
 
 	&__dropdown {
-		visibility: hidden;
-		opacity: 0;
-		transform: translateY(0%);
+		transform: translateY(-$navbar__item-margin-top) scaleY(0);
+		transform-origin: top;
 		position: absolute;
 		top: 100%;
 		left: 0%;
@@ -371,12 +374,10 @@ $scale-y-amount: .25;
 
 		& .navbar__item {
 			opacity: 0;
-			height: 0;
 			border: none;
 			margin-top: $navbar__item-divider-width;
 			transform-origin: top;
 			transition: 
-				// height $animation-duration $animation-easing-standard,
 				padding $animation-duration $animation-easing-standard,
 				opacity $animation-duration $animation-easing-standard,
 				transform $animation-duration * 0.25 $animation-easing-standard,
@@ -394,8 +395,7 @@ $scale-y-amount: .25;
 
 			&:first-child {
 				border-radius: 0;
-				margin-top: $default-font-size * 0.25;
-				// border-radius: $default-font-size * 0.5 $default-font-size * 0.5 0 0;
+				// margin-top: $navbar__item-margin-top;
 				@include respond(nav-switch) {
 					border-top: $default-font-size * 0.1 solid var(--color-primary-1);
 					margin-top: $default-font-size * 0.75;
@@ -521,8 +521,9 @@ $scale-y-amount: .25;
 		}
 
 		& .navbar__button {
-			border-radius: $default-font-size * 10 $default-font-size * 1
-				$default-font-size * 1 $default-font-size * 10;
+			margin-right: $navbar__item-divider-width;
+			border-radius: $default-font-size * 10 $default-font-size * 0
+				$default-font-size * 0 $default-font-size * 10;
 			@include respond(nav-switch) {
 				border-radius: $default-font-size * 1 $default-font-size * 1
 					$default-font-size * 0 $default-font-size * 0;
@@ -546,7 +547,7 @@ $scale-y-amount: .25;
 		}
 
 		& .navbar__link:not(&__dropdown &__link) {
-			padding: $default-font-size * $paddingFactor $default-font-size * 2;
+			padding: $default-font-size * $paddingFactor $default-font-size * $paddingFactor * 1.5;
 
 			@include respond(nav-switch) {
 				padding: $default-font-size 0;
@@ -573,6 +574,12 @@ $scale-y-amount: .25;
 				transform: scaleX(1) translateY(-$default-font-size * .25) scaleY(1);
 			}
 		}
+
+		//fixes UI bug where clicking a dropdown link to change pages leave a visual remnant while closing
+		& .navbar__dropdown {
+			display: none;
+		}
+
 		* {
 			pointer-events: none;
 			box-shadow: none;

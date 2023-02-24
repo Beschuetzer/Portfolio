@@ -36,19 +36,16 @@ import clipDealPlayerThumbnail from "../../../clips/replay-viewer/thumbnails/dea
 import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
 
 import { CSharpCardSection } from "./CSharpCardSection";
-import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
 import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import {
 	LIVE_BRIDGE_URL,
-	CSharpSection,
 	GITHUB_URL,
 	LIVE_REPLAYS_URL,
+	C_SHARP_CLASSNAME,
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
+import { CSharpSection } from "../../../types";
+import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 
 const sectionNames = ["Motivation", "Media", "Features", "Notes"];
 

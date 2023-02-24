@@ -1,18 +1,12 @@
 import React from "react";
 import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
+import { BRIDGE_HERO_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAMES, BRIDGE_CLASSNAME } from "../../../components/constants";
+import { scrollToSection } from "../../../helpers";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { setCurrentBridgeSection, setClickedBridgeInfoButtonCount, setHasClickedALink, currentBridgeSectionSelector, bridgeSectionsSelector, hasClickedALinkSelector } from "../../../slices/bridgeSlice";
+import { headerHeightSelector, isMobileSelector } from "../../../slices/generalSlice";
+import { loadedSoundsSelector } from "../../../slices/soundsSlice";
 import {
-	setCurrentBridgeSection,
-	setClickedBridgeInfoButtonCount,
-	setHasClickedALink,
-} from "../../../actions";
-import { scrollToSection } from "../../../components/utils";
-import { RootState } from "../../../reducers";
-import {
-	BRIDGE_CLASSNAME,
-  BRIDGE_HERO_CLASSNAME,
-	BRIDGE_PAGE_NAV_LINK_CLASSNAMES,
 	handleBridgeHeroSounds,
 	showBridgeHero,
 	toggleSecondInfoButtonClick,
@@ -31,21 +25,21 @@ export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 	name,
 	match,
 }) => {
-	const currentBridgeSection = useSelector((state: RootState) => state.bridge.currentBridgeSection);
-	const bridgeSections = useSelector((state: RootState) => state.bridge.bridgeSections);
-	const hasClickedALink = useSelector((state: RootState) => state.bridge.hasClickedALink);
-	const headerHeight = useSelector((state: RootState) => state.general.headerHeight);
-	const isMobile = useSelector((state: RootState) => state.general.isMobile);
-	const sounds = useSelector((state: RootState) => state.sounds);
+	const currentBridgeSection = useAppSelector(currentBridgeSectionSelector);
+	const bridgeSections = useAppSelector(bridgeSectionsSelector);
+	const hasClickedALink = useAppSelector(hasClickedALinkSelector);
+	const headerHeight = useAppSelector(headerHeightSelector);
+	const isMobile = useAppSelector(isMobileSelector);
+	const sounds = useAppSelector(loadedSoundsSelector);
 	// numberOfSkips: parseInt(ownProps.numberOfSkips),
-	// const numberOfSkips = useSelector((state: RootState) => stat);
-	const dispatch = useDispatch();
+	// const numberOfSkips = useAppSelector((state: RootState) => stat);
+	const dispatch = useAppDispatch();
 	const spanRef = useRef<HTMLElement>(null);
 
 	const getSkipDirectionAndSkips = (e: MouseEvent) => {
 		let skipToSectionNumber = -1;
-		for (let i = 0; i < bridgeSections.length; i++) {
-			const bridgeSection = bridgeSections[i];
+		for (let i = 0; i < (bridgeSections || []).length; i++) {
+			const bridgeSection = (bridgeSections || [])[i];
 			if (bridgeSection.id === sectionToSkipTo.toLowerCase()) {
 				skipToSectionNumber = i;
 				break;
@@ -60,12 +54,12 @@ export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 		if (numberOfSkips < 0) valueToUse = valueToUse >= 0 ? valueToUse : 0;
 		else if (numberOfSkips > 0)
 			valueToUse =
-				valueToUse < bridgeSections.length
+				valueToUse < (bridgeSections || []).length
 					? valueToUse
-					: bridgeSections.length - 1;
+					: (bridgeSections || []).length - 1;
 
 		if (isMobile) {
-			scrollToSection(bridgeSections[valueToUse]);
+			scrollToSection((bridgeSections || [])[valueToUse]);
 		} else {
 			dispatch(setCurrentBridgeSection(valueToUse));
 		}

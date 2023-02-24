@@ -1,7 +1,8 @@
 import { FC, useEffect } from "react";
 import { useRef } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../reducers";
+import { useAppSelector } from "../../hooks";
+import { isLoadingSoundSelector } from "../../slices/soundsSlice";
+import { RootState } from "../../store";
 import { HIDDEN_CLASSNAME } from "../constants";
 
 interface LoadingSpinnerProps {
@@ -12,7 +13,7 @@ export const LoadingSpinner: FC<LoadingSpinnerProps> = ({
 	forceShow = true,
 }) => {
 	const containerRef = useRef<HTMLElement>();
-	const isLoadingSound = useSelector((state: RootState) => state.sounds.isLoadingSound);
+	const isLoadingSound = useAppSelector(isLoadingSoundSelector);
 
 	useEffect(() => {
 		if (forceShow) return;

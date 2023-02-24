@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import history from "../history";
-import { Howl } from "howler";
+import history from "./history";
 
 import {
 	ABOUT_URL,
@@ -13,32 +11,30 @@ import {
 	MOBILE_BREAK_POINT_WIDTH, PERSONALITY_URL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
 } from "./constants";
 
-import { SiteNav } from "./navbar/SiteNav/SiteNav";
-import { PageNav } from "./navbar/PageNav/PageNav";
+import { SiteNav } from "./navbar/SiteNav";
+import { PageNav } from "./navbar/PageNav";
 import { NavToggler } from "./navbar/NavToggler";
 import "../css/style.css";
 import { GithubButton } from "./GithubButton";
-import {
-	setIsMobile,
-	setViewPortWidth,
-	setSounds,
-} from "../actions";
-import soundsSpriteMp3 from "../sounds/soundsSprite.mp3";
-import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
-import { keypressHandler } from "./utils";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
-import { RootState } from "../reducers";
-import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer, Home, Resume } from "../pages/";
-import { LoadedSounds } from "../reducers/soundsReducer";
+import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer, Home, Resume } from "../pages";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { isMobileSelector, setIsMobile, setViewPortWidth } from "../slices/generalSlice";
+import { useSetHeaderCssStyle } from "../hooks/useSetHeaderCssStyle";
+import { keypressHandler } from "../helpers";
 
-interface AppProps {}
+type AppProps = {}
 
 export const App: React.FC<AppProps> = ({
 }) => {
-	const dispatch = useDispatch();
-	const isMobile = useSelector((state: RootState) => state.general.isMobile);
+	const dispatch = useAppDispatch();
+	const isMobile = useAppSelector(isMobileSelector);
 	const mobileBreakPointWidth = MOBILE_BREAK_POINT_WIDTH;
-	dispatch(setIsMobile(window.innerWidth <= mobileBreakPointWidth, window.innerWidth));
+
+	useSetHeaderCssStyle();
+	useEffect(() => {
+		dispatch(setIsMobile({isMobile: window.innerWidth <= mobileBreakPointWidth, viewPortWidth: window.innerWidth}));
+	}, [dispatch, setIsMobile, mobileBreakPointWidth])
 
 	//setup window resize listener
 	useEffect(() => {
@@ -46,11 +42,11 @@ export const App: React.FC<AppProps> = ({
 			if (window.innerWidth <= mobileBreakPointWidth && !isMobile) {
 				const newValue = `--bridge-gradient-direction: to bottom`;
 				document.documentElement.style.cssText += newValue;
-				return dispatch(setIsMobile(true, window.innerWidth));
+				return dispatch(setIsMobile({isMobile: true, viewPortWidth: window.innerWidth}));
 			} else if (window.innerWidth > mobileBreakPointWidth && isMobile) {
 				const newValue = `--bridge-gradient-direction: to right`;
 				document.documentElement.style.cssText += newValue;
-				return dispatch(setIsMobile(false, window.innerWidth));
+				return dispatch(setIsMobile({isMobile: false,viewPortWidth:  window.innerWidth}));
 			}
 			dispatch(setViewPortWidth(window.innerWidth));
 			return;
@@ -64,27 +60,28 @@ export const App: React.FC<AppProps> = ({
 			window.removeEventListener("keydown", keypressHandler);
 		};
 	}, [
+		dispatch,
 		isMobile,
 		setIsMobile,
 		mobileBreakPointWidth,
 		setViewPortWidth,
 	]);
 
-	//Loading Sounds, etc
-	useEffect(() => {
-		const sounds = new Howl({
-			src: [soundsSpriteMp3, soundsSpriteOgg],
-			volume: 0.1,
-			sprite: {
-				doorFast: [0, 1500],
-				doorNormal: [1500, 1000],
-				sonicBoom: [2500, 1000],
-				siteNavOpen: [3500, 1000],
-				siteNavClose: [4500, 1000],
-			},
-		});
-		dispatch(setSounds(sounds as unknown as LoadedSounds));
-	}, [setSounds]);
+	// //Loading Sounds, etc
+	// useEffect(() => {
+	// 	const sounds = new Howl({
+	// 		src: [soundsSpriteMp3, soundsSpriteOgg],
+	// 		volume: 0.1,
+	// 		sprite: {
+	// 			doorFast: [0, 1500],
+	// 			doorNormal: [1500, 1000],
+	// 			sonicBoom: [2500, 1000],
+	// 			siteNavOpen: [3500, 1000],
+	// 			siteNavClose: [4500, 1000],
+	// 		},
+	// 	});
+	// 	dispatch(setSounds(sounds as unknown as LoadedSounds));
+	// }, [setSounds]);
 
 	return (
 		<Router history={history}>

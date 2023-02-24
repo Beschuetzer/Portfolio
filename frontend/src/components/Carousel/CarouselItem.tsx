@@ -1,31 +1,23 @@
 import React, { useState, useRef } from "react";
-import { Video, FOREGROUND_VIDEO_CLASSNAME, CloseControl, PauseControl, PlayControl, StopControl, RestartControl } from "../VideoPlayer";
 import {
-	CarouselItemProps,
-	CAROUSEL_CLASSNAME,
-	CAROUSEL_DESCRIPTION_CLASSNAME,
-	CAROUSEL_IMAGE_CLASSNAME,
-	CAROUSEL_ITEM_CLASSNAME,
-	CAROUSEL_VIDEO_CLASSNAME,
 	getNthItemOpen,
 	handleVideo,
 	toggleLeftAndRightArrows,
 	toggleMobileDisplayIssueFixes,
 } from "./util";
-import {
-	getPercentOfProgressBar,
-} from "../VideoPlayer/utils";
-import { closeCarouselItem } from "../utils";
 import { OverlayText } from "../OverlayText/OverlayText";
-import { useDispatch } from "react-redux";
-import { setCurrentlyViewingCarouselImage } from "../../actions";
+import { setCurrentlyViewingCarouselImage } from "../../slices/generalSlice";
+import { useAppDispatch } from "../../hooks";
+import { CarouselItemProps } from "../../types";
+import { CAROUSEL_DESCRIPTION_CLASSNAME, CAROUSEL_ITEM_CLASSNAME, CAROUSEL_IMAGE_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME, DONE_CLASSNAME, FULLSCREEN_CLASSNAME, FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME, STOPPED_CLASSNAME } from "../constants";
+import { CloseControl } from "../VideoPlayer/CloseControl";
+import { PauseControl } from "../VideoPlayer/PauseControl";
+import { PlayControl } from "../VideoPlayer/PlayControl";
+import { RestartControl } from "../VideoPlayer/RestartControl";
+import { StopControl } from "../VideoPlayer/StopControl";
+import { FOREGROUND_VIDEO_CLASSNAME, Video } from "../VideoPlayer/Video";
+import { closeCarouselItem, getPercentOfProgressBar } from "../../helpers";
 
-export const FULLSCREEN_CLASSNAME = "full-screen";
-export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
-export const FULLSCREEN_ARROW_BUTTON_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button--full-screen`;
-export const PLAYING_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--playing`;
-export const STOPPED_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--stopped`;
-export const DONE_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--done`;
 export const CLASSNAMES_TO_REMOVE = [
 	FULLSCREEN_PARENT_CLASSNAME,
 	FULLSCREEN_CLASSNAME,
@@ -64,7 +56,7 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 	functionToGetContainer,
 	shouldRenderFullScreen = false,
 }) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const [showOverlayText, setShowOverlayText] = useState(true);
 	const videoRef = useRef<HTMLVideoElement>(null);
@@ -301,7 +293,6 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 	};
 
 	//#region JSX
-	const fullscreenClassname = isFullScreen ? `carousel__item--${FULLSCREEN_CLASSNAME}` : '';
 	return (
 		<article ref={containerRef} className={`${itemClassName}`}>
 			{mediaToAdd}

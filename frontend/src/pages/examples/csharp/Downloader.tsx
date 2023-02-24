@@ -20,14 +20,9 @@ import img5Thumbnail from "../../../imgs/downloader/thumbnails/img5-thumbnail.pn
 import img6Thumbnail from "../../../imgs/downloader/thumbnails/img6-thumbnail.png";
 
 import { CSharpCardSection } from "./CSharpCardSection";
-import { C_SHARP_CLASSNAME } from "./utils";
-import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
 import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import {
-	CSharpSection,
+	CAROUSEL_CLASSNAME,
+	C_SHARP_CLASSNAME,
 	DOWNLOADER_PAGE_NAME,
 	GITHUB_URL,
 	KH_INSIDER_URL,
@@ -35,6 +30,8 @@ import {
 	PLAYLIST_SYNCER_URL,
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
+import { CSharpSection } from "../../../types";
+import { closeCarouselItem, functionToGetContainer } from "../../../helpers";
 
 const sectionNames = ["Description", "Media", "Notes"];
 

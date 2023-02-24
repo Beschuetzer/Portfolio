@@ -1,12 +1,8 @@
 import { RefObject } from "react";
+import { closeVideo, removeClassFromAllChildren } from "../../helpers";
 import {
-	FULLSCREEN_CLASSNAME,
-	FULLSCREEN_PARENT_CLASSNAME,
 } from "../Carousel/CarouselItem";
-import { CAROUSEL_ITEM_CLASSNAME } from "../Carousel/util";
-import { removeClassFromAllChildren } from "../utils";
-
-import { closeVideo } from "./utils";
+import { FULLSCREEN_PARENT_CLASSNAME, CAROUSEL_ITEM_CLASSNAME, FULLSCREEN_CLASSNAME } from "../constants";
 
 interface CloseControlProps {
 	className?: string;

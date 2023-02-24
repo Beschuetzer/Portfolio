@@ -1,25 +1,21 @@
 import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
-import {  useDispatch, useSelector } from "react-redux";
-import { checkForParentOfType } from "../../helpers";
-import {
-	addRepoToReposToDisplay, clickSkill,
-} from "../../actions";
 import { SkillsPopupName } from "./SkillsPopupName";
-import { capitalize } from "../../helpers";
-import { addSpaceAfterPunctuationMarks, toggleScrollability } from "../utils";
-import { Repository, SKILLS_CLASSNAME } from "./utils";
-import { RootState } from "../../reducers";
+import { clickSkill, addRepoToReposToDisplay, clickedSkillSelector, reposToDisplaySelector } from "../../slices/resumeSlice";
+import { checkForParentOfType, capitalize, addSpaceAfterPunctuationMarks, toggleScrollability } from "../../helpers";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { reposSelector, isMobileSelector } from "../../slices/generalSlice";
+import { SKILLS_CLASSNAME } from "../constants";
 
 interface SkillsPopupProps {}
 
 export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
-	const dispatch = useDispatch();
-	const repos = useSelector((state: RootState) => state.general.repos) as Repository[];
-	const reposToDisplay = useSelector((state: RootState) => (state.resume as any)?.reposToDisplay) as Repository;
-	const clickedSkill = useSelector((state: RootState) => (state.resume as any)?.clickedSkill);
-	const isMobile = useSelector((state: RootState) => state.general.isMobile);
+	const dispatch = useAppDispatch();
+	const repos = useAppSelector(reposSelector);
+	const reposToDisplay = useAppSelector(reposToDisplaySelector);
+	const clickedSkill = useAppSelector(clickedSkillSelector);
+	const isMobile = useAppSelector(isMobileSelector);
 	const skillsPopupDiv = document.querySelector("#skillsPopup") as HTMLElement;
 	const resetReposDelay = 500;
 
@@ -35,7 +31,7 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 			if (isBodyClick) {
 				skillsPopupDiv?.classList?.remove(`${SKILLS_CLASSNAME}-popup--active`);
 				setTimeout(() => {
-					dispatch(clickSkill(null));
+					dispatch(clickSkill(""));
 					dispatch(addRepoToReposToDisplay([]));
 				}, resetReposDelay);
 			}
@@ -138,7 +134,7 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 		skillsPopupDiv?.classList?.remove(`${SKILLS_CLASSNAME}-popup--active`);
 		toggleScrollability();
 		setTimeout(() => {
-			dispatch(clickSkill(null));
+			dispatch(clickSkill(""));
 			dispatch(addRepoToReposToDisplay([]));
 		}, resetReposDelay);
 	};
@@ -279,9 +275,10 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 				</div>
 			);
 		}
-		return reposToDisplay.sort((a: any, b: any) => {
-			const firstItemsDate = a?.[keys?.[2]];
-			const secondItemsDate = b?.[keys?.[2]];
+		return [...reposToDisplay]
+		.sort((a: any, b: any) => {
+			const firstItemsDate = a?.[keys?.[2]] || a?.[keys?.[3]];
+			const secondItemsDate = b?.[keys?.[2]] || b?.[keys?.[3]];
 			return firstItemsDate > secondItemsDate ? -1 : firstItemsDate < secondItemsDate ? 1 : 0;
 		}).map((repo: any) => {
 			if (isMobile) {
@@ -301,7 +298,7 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 	};
 
 	const renderTableHeaders = () => {
-		const headers = ["Name", "Description", "Created", "Updated", "Repo Url"];
+		const headers = ["Name", "Description", "Created", "Updated", "Url"];
 		return isMobile
 			? // <div className={`${SKILLS_CLASSNAME}-popup__table-headers`}>
 			  //   {
@@ -331,9 +328,9 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 					<use xlinkHref="/sprite.svg#icon-close"></use>
 				</svg>
 				<h5 className={`${SKILLS_CLASSNAME}-popup__hint`}>* click the project name to view a working demo (when possible)</h5>
+				{renderTableHeaders()}
 			</div>
 			<div className={`${SKILLS_CLASSNAME}-popup__table`}>
-				{renderTableHeaders()}
 				{renderProjects()}
 			</div>
 		</div>,

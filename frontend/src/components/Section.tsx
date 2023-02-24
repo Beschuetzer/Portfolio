@@ -1,7 +1,6 @@
 import React from "react";
-
-import { SectionContainer } from "./SectionContainer";
 import { capitalize, replaceCharacters } from "../helpers";
+import { SectionContainer } from "./SectionContainer";
 
 interface SectionProps {
 	name: string;

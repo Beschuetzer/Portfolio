@@ -7,19 +7,16 @@ import video1 from "../../../clips/bridge-demo/1.mp4";
 import video2 from "../../../clips/bridge-demo/2.mp4";
 import video3 from "../../../clips/bridge-demo/3.mp4";
 
-import { C_SHARP_CLASSNAME } from "./utils";
-import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
-import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
 import {
 	LIVE_BRIDGE_URL,
 	BRIDGE_DEMO_PAGE_NAME,
-	CSharpSection,
+	CAROUSEL_CLASSNAME,
+	C_SHARP_CLASSNAME,
 } from "../../../components/constants";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { CSharpCardSection } from "./CSharpCardSection";
+import { CSharpSection } from "../../../types";
+import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 
 const sectionNames = [
 	"Requirements",

@@ -1,9 +1,7 @@
 import React from "react";
-import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
-import { BRIDGE_CLASSNAME } from "../pages/examples/bridge/utils";
-import { RootState } from "../reducers";
-import { scrollToSection } from "./utils";
+import { scrollToSection } from "../helpers";
+import { BRIDGE_CLASSNAME } from "./constants";
 
 interface EmbeddedLinkProps {
 	href: string,
@@ -22,8 +20,6 @@ export const EmbeddedLink: React.FC<EmbeddedLinkProps> = ({
 	openInNewTab = true,
 	children,
 }) => {
-	const headerHeight = useSelector((state: RootState) => state.general.headerHeight);
-
 	const scrollToLink = (e: MouseEvent) => {
 		if (openInNewTab) return;
 		setTimeout(() => {

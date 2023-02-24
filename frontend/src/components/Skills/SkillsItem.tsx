@@ -1,10 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { clickSkill } from "../../actions";
+import { toggleScrollability } from "../../helpers";
+import { useAppDispatch } from "../../hooks";
+import { clickSkill } from "../../slices/resumeSlice";
+import { SKILLS_CLASSNAME } from "../constants";
 import { EmbeddedLink } from "../EmbeddedLink";
 import { PercentBar, PercentBarLabel } from "../PercentBar/PercentBar";
-import { toggleScrollability } from "../utils";
-import { SKILLS_CLASSNAME } from "./utils";
 
 interface SkillsItemProps {
 	title: string;
@@ -23,7 +23,7 @@ export const SkillsItem: React.FC<SkillsItemProps> = ({
 	label,
 	isLocal = false,
 }) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const skillsPopupDiv = document.querySelector("#skillsPopup");
 
 	const onParagraphClick = (e: MouseEvent) => {
@@ -35,7 +35,7 @@ export const SkillsItem: React.FC<SkillsItemProps> = ({
 			return;
 
 		skillsPopupDiv?.classList?.toggle(`${SKILLS_CLASSNAME}-popup--active`);
-		dispatch(clickSkill(e.target as HTMLElement));
+		dispatch(clickSkill(((e.target as HTMLDivElement)?.textContent || '')));
 		setTimeout(() => toggleScrollability(false), 750);
 	};
 

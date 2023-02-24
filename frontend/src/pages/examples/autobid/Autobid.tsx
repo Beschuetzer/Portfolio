@@ -1,9 +1,9 @@
 import React from "react";
 import { CSharpLayout } from "../csharp/CSharpLayout";
 
-import { C_SHARP_CLASSNAME } from "../csharp/utils";
-import { AUTO_BID_PAGE_NAME, CSharpSection, GITHUB_URL } from "../../../components/constants";
+import { AUTO_BID_PAGE_NAME, C_SHARP_CLASSNAME, GITHUB_URL } from "../../../components/constants";
 import { CSharpCardSection } from "../csharp";
+import { CSharpSection } from "../../../types";
 
 const sectionNames = [
 	"Details",

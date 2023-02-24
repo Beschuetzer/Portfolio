@@ -17,14 +17,9 @@ import img4Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img4-thumbna
 
 import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
 import { CSharpCardSection } from "./CSharpCardSection";
-import { C_SHARP_CLASSNAME } from "./utils";
 import Paragraph from "../../../typography/Paragraph";
 import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import {
-	CSharpSection,
+	C_SHARP_CLASSNAME,
 	DOWNLOADER_URL,
 	GITHUB_URL,
 	OS_10_ISSUE_TRACKER_URL,
@@ -33,6 +28,8 @@ import {
 	WIKIPEDIA_MTP_URL,
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
+import { CSharpSection } from "../../../types";
+import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 
 const sectionNames = ["Background", "Media", "Problem", "Approach"];
 

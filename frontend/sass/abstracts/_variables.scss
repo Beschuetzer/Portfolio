@@ -46,11 +46,11 @@ $font-family-headers: "Merriweather", serif;
 
 //#region Sizes
 $scale-amount: 1.05;
-$navbar__logo-width: $font-size-twelve;
+$navbar__logo-width: $font-size-eleven;
 $github__logo-width: $navbar__logo-width;
 $navbar__logo-width-nav-switch:  $font-size-eleven;
 $content-padding-nav-switch: 5vmin;
-$paddingFactor: 1.25;
+$paddingFactor: 1.26;
 //#endregion
 
 //#region Navbar
@@ -59,6 +59,7 @@ $navbar__button-bar-before-rotation: rotate(105deg);
 $navbar__button-bar-after-rotation: rotate(-105deg);
 $navbar-width-nav-switch: 97.5vw;
 
+$navbar__item-margin-top: $default-font-size * 0.25;
 $navbar__item-border-radius: $default-font-size * 10;
 $navbar__item-divider-width: $default-font-size * 0.2;
 $navbar__item-divider: $navbar__item-divider-width solid var(--color-primary-1);
@@ -85,6 +86,9 @@ $skills-linear-gradient-hover: linear-gradient(
 	var(--color-primary-1),
 	var(--color-primary-1)
 );
+$skill-popup-grid-column-template: minmax(200px, 1fr) minmax(400px, 2fr) 1fr 1fr min-content;
+$skill-popup-grid-column-template-nav-switch: 1fr 2fr min-content min-content min-content;
+$skills-popup-padding-amount: $default-font-size * 2;
 //#endregion
 
 //#region Home
@@ -206,8 +210,8 @@ $arrow-button-position: calc(
 				)
 		) / 2
 );
-$bridge-card-box-shadow-size: 0 0rem $default-font-size * 2 (-$default-font-size *
-	0.5);
+$bridge-card-box-shadow-size: 0 0rem $default-font-size * 2 -$default-font-size *
+	0.5;
 $bridge-card-border-size: 2px solid;
 $hero-background-image-alpha: 0.33;
 $hero-blend-mode: hard-light;

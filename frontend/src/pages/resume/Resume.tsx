@@ -1,18 +1,13 @@
 // import * as THREE from "three";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Section } from "../../components/Section";
 import Paragraph from "../../typography/Paragraph";
 import { SkillsItemSection } from "../../components/Skills/SkillsItemSection";
 import { PercentBarLabels } from "../../components/PercentBar/PercentBarLabels";
 import { SkillsItem } from "../../components/Skills/SkillsItem";
 import { ReferenceItem } from "./ReferenceItem";
-
-import { getRepositories, setSectionsToSkipAnimation } from "../../actions";
 import { SkillsPopup } from "../../components/Skills/SkillsPopup";
 import { WorkHistoryItem } from "./WorkHistory/WorkHistoryItem";
-import { BRIDGE_CLASSNAME } from "../examples/bridge/utils";
-import { SKILLS_CLASSNAME } from "../../components/Skills/utils";
 import {
 	BOOK_TRUST_URL,
 	GITHUB_URL,
@@ -31,14 +26,18 @@ import {
 	PLAYLIST_SYNCER_URL,
 	BEST_BUY_URL,
 	YORK_B2E_URL,
+	BRIDGE_CLASSNAME,
+	SKILLS_CLASSNAME,
+	C_SHARP_CLASSNAME,
 } from "../../components/constants";
 import { SourceCodeLink } from "../../components/SourceCodeLink";
 import { Quote } from "../../components/Quote";
 import { capitalize } from "../../helpers";
-import { C_SHARP_CLASSNAME } from "../examples/csharp/utils";
 import { PageWrapper } from "../PageWrapper";
 import { EducationItem } from "./EducationItem";
-import { RootState } from "../../reducers";
+import { getRepositories, reposSelector } from "../../slices/generalSlice";
+import { setSectionsToSkipAnimation } from "../../slices/resumeSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
 // export const RESUME_SPELLING = <span>R&eacute;sum&eacute;</span>;
 export const RESUME_SPELLING = "Résumé";
@@ -52,7 +51,7 @@ function getExternalLinkTargetAndRel() {
 	return ` target='_blank' rel='noreferrer' `;
 }
 
-const sectionTitles = [
+export const RESUME_SECTION_TITLES = [
 	"Overview",
 	SKILLS_CLASSNAME,
 	"Work-history",
@@ -60,13 +59,13 @@ const sectionTitles = [
 	"References",
 ];
 
-const skillsItemSectionLabels = [
+const RESUME_SKILLS_SECTIONS = [
 	"Web Development",
 	"IT Skills",
 	"Human Skills",
 	"Personality",
 ];
-const sectionsToSkipAnimation = [skillsItemSectionLabels[2]];
+const sectionsToSkipAnimation = [RESUME_SKILLS_SECTIONS[2]];
 
 const skillsLabels: {
 	[key: string]: { left: string; center: string; right: string };
@@ -107,7 +106,7 @@ const skills: {
 		[key: string]: [Skill];
 	};
 } = {
-	[skillsItemSectionLabels[0]]: {
+	[RESUME_SKILLS_SECTIONS[0]]: {
 		[webDevSubSkillsLabels[0]]: [
 			{
 				title: "CSS3",
@@ -264,7 +263,7 @@ const skills: {
 			},
 		],
 	},
-	[skillsItemSectionLabels[1]]: [
+	[RESUME_SKILLS_SECTIONS[1]]: [
 		{
 			title: "A+",
 			percent: 80,
@@ -301,7 +300,7 @@ const skills: {
 			href: "/certs/server2016.png",
 		},
 	],
-	[skillsItemSectionLabels[2]]: [
+	[RESUME_SKILLS_SECTIONS[2]]: [
 		{
 			title: "Empathizing",
 			percent: 68,
@@ -335,7 +334,7 @@ const skills: {
 			percent: 85,
 		},
 	],
-	[skillsItemSectionLabels[3]]: [
+	[RESUME_SKILLS_SECTIONS[3]]: [
 		{
 			title: "Conscientiousness",
 			percent: 85,
@@ -383,12 +382,12 @@ export type HeaderSideContent = {
 export type ResumeProps = {}
 
 export const Resume: React.FC<ResumeProps> = () => {
-	const dispatch = useDispatch();
-	const repos = useSelector((state: RootState) => state.general.repos);
+	const dispatch = useAppDispatch();
+	const repos = useAppSelector(reposSelector);
 
 	const content = [
 		[
-			sectionTitles[0],
+			RESUME_SECTION_TITLES[0],
 			<React.Fragment>
 				<section aria-label="Overview">
 					<Quote author="Seth Godin">
@@ -425,15 +424,15 @@ export const Resume: React.FC<ResumeProps> = () => {
 			</React.Fragment>,
 		],
 		[
-			capitalize(sectionTitles[1]),
+			capitalize(RESUME_SECTION_TITLES[1]),
 			<React.Fragment>
 				<ul className={`${SKILLS_CLASSNAME}`}>
-					<SkillsItemSection title={`${skillsItemSectionLabels[0]} `}>
+					<SkillsItemSection title={`${RESUME_SKILLS_SECTIONS[0]} `}>
 						{webDevSubSkillsLabels.map((subSkill: string, index: number) => {
 							return (
 								<SkillsItemSection key={index} title={subSkill}>
 									<PercentBarLabels label={skillsLabels.web} />
-									{(skills[skillsItemSectionLabels[0]][subSkill] as any).map(
+									{(skills[RESUME_SKILLS_SECTIONS[0]][subSkill] as any).map(
 										(skill: any, index2: number) => {
 											return (
 												<SkillsItem
@@ -450,9 +449,9 @@ export const Resume: React.FC<ResumeProps> = () => {
 							);
 						})}
 					</SkillsItemSection>
-					<SkillsItemSection title={skillsItemSectionLabels[1]}>
+					<SkillsItemSection title={RESUME_SKILLS_SECTIONS[1]}>
 						<PercentBarLabels label={skillsLabels.it} />
-						{(skills[skillsItemSectionLabels[1]] as any).map(
+						{(skills[RESUME_SKILLS_SECTIONS[1]] as any).map(
 							(skill: Skill, index: number) => {
 								return (
 									<SkillsItem
@@ -466,9 +465,9 @@ export const Resume: React.FC<ResumeProps> = () => {
 							},
 						)}
 					</SkillsItemSection>
-					<SkillsItemSection title={skillsItemSectionLabels[2]}>
+					<SkillsItemSection title={RESUME_SKILLS_SECTIONS[2]}>
 						<PercentBarLabels label={skillsLabels.human} />
-						{(skills[skillsItemSectionLabels[2]] as any).map(
+						{(skills[RESUME_SKILLS_SECTIONS[2]] as any).map(
 							(skill: Skill, index: number) => {
 								return (
 									<SkillsItem
@@ -482,9 +481,9 @@ export const Resume: React.FC<ResumeProps> = () => {
 							},
 						)}
 					</SkillsItemSection>
-					<SkillsItemSection title={skillsItemSectionLabels[3]}>
+					<SkillsItemSection title={RESUME_SKILLS_SECTIONS[3]}>
 						<PercentBarLabels label={skillsLabels.personality} />
-						{(skills[skillsItemSectionLabels[3]] as any).map(
+						{(skills[RESUME_SKILLS_SECTIONS[3]] as any).map(
 							(skill: Skill, index: number) => {
 								return (
 									<SkillsItem
@@ -503,7 +502,7 @@ export const Resume: React.FC<ResumeProps> = () => {
 			</React.Fragment>,
 		],
 		[
-			sectionTitles[2],
+			RESUME_SECTION_TITLES[2],
 			<React.Fragment>
 				<div className="work-history">
 					<WorkHistoryItem
@@ -672,7 +671,7 @@ export const Resume: React.FC<ResumeProps> = () => {
 			</React.Fragment>,
 		],
 		[
-			sectionTitles[3],
+			RESUME_SECTION_TITLES[3],
 			<React.Fragment>
 				<ul className="education">
 					<EducationItem
@@ -694,7 +693,7 @@ export const Resume: React.FC<ResumeProps> = () => {
 			</React.Fragment>,
 		],
 		[
-			sectionTitles[4],
+			RESUME_SECTION_TITLES[4],
 			<React.Fragment>
 				<div className="references">
 					<ReferenceItem

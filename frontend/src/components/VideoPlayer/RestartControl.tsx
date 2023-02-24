@@ -1,4 +1,5 @@
-import { attachProgressListener, getIsVideoPlaying, handleVideoProgress } from "./utils";
+import { attachProgressListener, getIsVideoPlaying, handleVideoProgress } from "../../helpers";
+
 interface RestartControlProps {
 	className?: string,
 	xlinkHref: string,

@@ -1,21 +1,9 @@
 import React, { RefObject, useEffect, useRef } from "react";
 import {
 	CarouselItem,
-	FULLSCREEN_CLASSNAME,
-	FULLSCREEN_PARENT_CLASSNAME,
-	PLAYING_CLASSNAME,
-	STOPPED_CLASSNAME,
 } from "./CarouselItem";
 import CarouselArrow from "./CarouselArrow";
 import {
-	CarouselItemProps,
-	CAROUSEL_ARROW_BUTTONS_CLASSNAME,
-	CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
-	CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME,
-	CAROUSEL_DOT_ACTIVE_CLASSNAME,
-	CAROUSEL_DOT_CLASSNAME,
-	CAROUSEL_ITEM_CLASSNAME,
-	CAROUSEL_MIN_IMAGE_COUNT,
 	setArrowButtonsHiddenClass,
 	setTranslationAmount,
 	handleSetTranslation as getNewCurrentTranslationFactor,
@@ -23,17 +11,16 @@ import {
 	getNthItemOpen,
 	toggleLeftAndRightArrows as handleWhetherToDisplayArrows,
 	resetCarouselVideo,
-	CAROUSEL_VIDEO_CLASSNAME,
 	getCarouselGridMaxColumnWidth,
-	CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT,
 	getArrangedItems,
 	toggleMobileDisplayIssueFixes,
 	getFirstItemAndParentCarousels,
 	setCarouselGridMaxColumnWidth,
 } from "./util";
-import { ArrowButtonDirection, CONTAINS_CAROUSEL_CLASSNAME } from "../constants";
+import { CAROUSEL_ARROW_BUTTONS_CLASSNAME, CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME, CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME, CAROUSEL_DOT_ACTIVE_CLASSNAME, CAROUSEL_DOT_CLASSNAME, CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT, CAROUSEL_ITEM_CLASSNAME, CAROUSEL_MIN_IMAGE_COUNT, CAROUSEL_VIDEO_CLASSNAME, CONTAINS_CAROUSEL_CLASSNAME, FULLSCREEN_CLASSNAME, FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME, STOPPED_CLASSNAME } from "../constants";
 import { useState } from "react";
-import { toggleScrollability } from "../utils";
+import { ArrowButtonDirection, CarouselItemProps } from "../../types";
+import { toggleScrollability } from "../../helpers";
 
 export type CarouselProps = {
 	items: CarouselItemProps[];
@@ -183,7 +170,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 				const itemToOpen = items[nthItemOpen];
 				const imageOrVideo = itemToOpen.children[0] as HTMLElement;
 				itemToOpen?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
-				imageOrVideo.classList.add(FULLSCREEN_CLASSNAME);
+				imageOrVideo.classList.remove(FULLSCREEN_CLASSNAME);
 
 				let newItems = [...itemsToRenderFullScreen];
 				if (!itemsToRenderFullScreen.includes(nthItemOpen))
@@ -198,11 +185,12 @@ export const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	const renderItems = () => {
-		const arrangedItems = getArrangedItems(
-			items,
-			shouldRearrangeItems,
-			numberOfItemsInCarouselWidthWiseConverted,
-		) as CarouselItemProps[];
+		// const arrangedItems = getArrangedItems(
+		// 	items,
+		// 	shouldRearrangeItems,
+		// 	numberOfItemsInCarouselWidthWiseConverted,
+		// ) as CarouselItemProps[];
+		const arrangedItems = items;
 
 		return arrangedItems.map((item, index) => {
 			const carouselItemProps: CarouselItemProps = {
@@ -331,13 +319,13 @@ export const Carousel: React.FC<CarouselProps> = ({
 			<React.Fragment>
 				<CarouselArrow
 					onClick={(e: any) => handleArrowClick(e)}
-					className={`hidden ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME}`}
+					className={`${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME}`}
 					svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
 				/>
 
 				<CarouselArrow
 					onClick={(e: any) => handleArrowClick(e)}
-					className={` ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME} `}
+					className={`${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME} `}
 					svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
 				/>
 			</React.Fragment>
@@ -354,7 +342,8 @@ export const Carousel: React.FC<CarouselProps> = ({
 
 		if (itemsRef && parentCarousel) {
 			const items = parentCarousel.querySelectorAll(`.${CAROUSEL_ITEM_CLASSNAME}`);
-			const arrangedItems = getArrangedItems(items, shouldRearrangeItems, numberOfItemsInCarouselWidthWiseConverted);
+			const arrangedItems = items;
+			// const arrangedItems = getArrangedItems(items, shouldRearrangeItems, numberOfItemsInCarouselWidthWiseConverted);
 			(itemsRef as any).current = arrangedItems;
 		}
 

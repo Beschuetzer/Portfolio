@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../reducers";
-import { BRIDGE_CLASSNAME } from "./utils";
+import { BRIDGE_CLASSNAME } from "../../../components/constants";
+import { useAppSelector } from "../../../hooks";
+import { RootState } from "../../../store";
 
 interface BridgeCardProps {
 	children: any,
@@ -18,7 +18,7 @@ export const BridgeSection: React.FC<BridgeCardProps> = ({
 	titleContent,
 	titleSubtitle = "",
 }) => {
-	const titleToUse = useSelector((state: RootState) => selectorToUseForSubtitle(state)) || titleSubtitle || null;
+	const titleToUse = useAppSelector((state: RootState) => selectorToUseForSubtitle(state)) || titleSubtitle || null;
 	return (
 		<div className={`${BRIDGE_CLASSNAME}__card`}>
 			<div className={`${BRIDGE_CLASSNAME}__section-titles`}>
