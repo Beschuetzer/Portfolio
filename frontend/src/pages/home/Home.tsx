@@ -1,17 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { connect, RootStateOrAny } from "react-redux";
-import { getRepositories } from "../../actions";
 import { getRandomQuote, Quote, QuoteableAuthors, QuoteTags } from "../../apis/quotes";
 import {
-	ABOUT_URL,
 	BRIDGE_URL,
 	REPLAY_VIEWER_URL,
 	RESUME_URL,
 } from "../../components/constants";
-import EmbeddedLink from "../../components/EmbeddedLink";
-import useClasslistAdder, { ClasslistAdder } from "./useClasslistAdder";
-import useSky from "./OceanSky";
-import OceanSky from "./OceanSky";
+import { EmbeddedLink } from "../../components/EmbeddedLink";
+import { useClasslistAdder, ClasslistAdder } from "./useClasslistAdder";
+import { OceanSky } from "./OceanSky";
 
 const EMBODIMENT_STRING =
 	"integrity, determination, learning, hard work, motivation, and communication";
@@ -36,19 +32,11 @@ const classListsToSet: ClasslistAdder[] = [
 	},
 ];
 
-interface HomeProps {
-	repos: [];
-	getRepositories: () => void;
-}
+type HomeProps = {}
 
-const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
+export const Home: React.FC<HomeProps> = () => {
 	const [quoteResult, setQuoteResult] = useState<Quote | undefined>(undefined);
 	const hasFetchedQuoteRef = useRef(false);
-
-	//Getting Repos
-	useEffect(() => {
-		if (!repos || repos.length === 0) getRepositories();
-	}, [repos, getRepositories]);
 
 	useClasslistAdder(classListsToSet);
 
@@ -175,13 +163,3 @@ const Home: React.FC<HomeProps> = ({ repos, getRepositories }) => {
 		</section>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		repos: state.general.repos,
-	};
-};
-
-export default connect(mapStateToProps, {
-	getRepositories,
-})(Home);

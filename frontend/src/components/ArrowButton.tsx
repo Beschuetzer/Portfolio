@@ -1,42 +1,30 @@
 import React from "react";
 import { useEffect } from "react";
-import { connect, RootStateOrAny } from "react-redux";
-
-import { setCurrentBridgeSection, setBridgeSections } from "../actions";
-import {
-	BRIDGE_CLASSNAME,
-	COLOR_PRIMARY_BRIDGE_1,
-	COLOR_PRIMARY_BRIDGE_2,
-	COLOR_PRIMARY_BRIDGE_3,
-	COLOR_PRIMARY_BRIDGE_4,
-} from "../pages/examples/bridge/utils";
-import { ANIMATION_DURATION, ArrowButtonDirection, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { bridgeSectionsSelector, clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector, setBridgeSections, setCurrentBridgeSection } from "../slices";
+import { ANIMATION_DURATION, BRIDGE_CLASSNAME, COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
+import { getComputedStyleCustom } from "../helpers";
 
 interface ArrowButtonProps {
-  direction: string,
-	bridgeSections: NodeListOf<Element>,
-	currentBridgeSection: number,
-	clickedBridgeInfoButtonCount: number,
+  	direction: string,
 	reference?: any,
-	setBridgeSections: any,
-	setCurrentBridgeSection: any,
 }
 
-const ArrowButton: React.FC<ArrowButtonProps> = ({
+export const ArrowButton: React.FC<ArrowButtonProps> = ({
 	direction,
-	setCurrentBridgeSection,
-	currentBridgeSection,
-	bridgeSections,
-	setBridgeSections,
-	clickedBridgeInfoButtonCount,
 	reference,
 }) => {
+	const dispatch = useAppDispatch();
+	const currentBridgeSection = useAppSelector(currentBridgeSectionSelector);
+	const bridgeSections = useAppSelector(bridgeSectionsSelector);
+	const clickedBridgeInfoButtonCount = useAppSelector(clickedBridgeInfoButtonCountSelector);
+
 	//Initial setup, storing sections
 	useEffect(() => {
 		// if (bridgeSections) return;
 		const sections = document.querySelectorAll(`.${BRIDGE_CLASSNAME}__section`);
-		setBridgeSections(sections);
-	}, [setBridgeSections]);
+		dispatch(setBridgeSections(sections));
+	}, [dispatch, setBridgeSections]);
 
 	//Handling Updates
 	useEffect(() => {
@@ -90,67 +78,67 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 		const handleArrowColors = () => {
 			const arrowColors: {
         [key: string]: {
-          normal: {left: string, right: string},
-          hover: {left: string, right: string},
+          normal: {left: () => string, right: () => string},
+          hover: {left: () => string, right: () => string},
         },
       } = {
 				0: {
 					normal: {
-						left: COLOR_PRIMARY_BRIDGE_1,
-						right: COLOR_PRIMARY_BRIDGE_1,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
 					},
 					hover: {
-						left: COLOR_PRIMARY_BRIDGE_4,
-						right: COLOR_PRIMARY_BRIDGE_4,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
 					},
 				},
 				1: {
 					normal: {
-						left: COLOR_PRIMARY_BRIDGE_1,
-						right: COLOR_PRIMARY_BRIDGE_2,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
 					},
 					hover: {
-						left: COLOR_PRIMARY_BRIDGE_4,
-						right: COLOR_PRIMARY_BRIDGE_1,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
 					},
 				},
 				2: {
 					normal: {
-						left: COLOR_PRIMARY_BRIDGE_1,
-						right: COLOR_PRIMARY_BRIDGE_3,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
 					},
 					hover: {
-						left: COLOR_PRIMARY_BRIDGE_2,
-						right: COLOR_PRIMARY_BRIDGE_4,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
 					},
 				},
 				3: {
 					normal: {
-						left: COLOR_PRIMARY_BRIDGE_1,
-						right: COLOR_PRIMARY_BRIDGE_1,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
 					},
 					hover: {
-						left: COLOR_PRIMARY_BRIDGE_4,
-						right: COLOR_PRIMARY_BRIDGE_4,
+						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
 					},
 				},
 			};
 
 			document.documentElement.style.setProperty(
 				"--arrow-button-left-fill",
-				arrowColors[currentBridgeSection].normal.left,
+				arrowColors[currentBridgeSection].normal.left(),
 			);
 			document.documentElement.style.setProperty(
 				"--arrow-button-right-fill",
-				arrowColors[currentBridgeSection].normal.right,
+				arrowColors[currentBridgeSection].normal.right(),
 			);
 			document.documentElement.style.setProperty(
 				"--arrow-button-left-fill-hover",
-				arrowColors[currentBridgeSection].hover.left,
+				arrowColors[currentBridgeSection].hover.left(),
 			);
 			document.documentElement.style.setProperty(
 				"--arrow-button-right-fill-hover",
-				arrowColors[currentBridgeSection].hover.right,
+				arrowColors[currentBridgeSection].hover.right(),
 			);
 		};
 
@@ -165,11 +153,11 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 		hideContentDuringSlide()
 		if ((e.currentTarget as HTMLElement)?.className.match(/left/i)) {
 			if (currentBridgeSection > 0) {
-				return setCurrentBridgeSection(currentBridgeSection - 1);
+				return dispatch(setCurrentBridgeSection(currentBridgeSection - 1));
 			}
 		} else {
-			if (currentBridgeSection < bridgeSections.length - 1) {
-				setCurrentBridgeSection(currentBridgeSection + 1);
+			if (currentBridgeSection < (bridgeSections || []).length - 1) {
+				dispatch(setCurrentBridgeSection(currentBridgeSection + 1));
 			}
 		}
 
@@ -208,16 +196,3 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
 		</div>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		currentBridgeSection: state.bridge.currentBridgeSection,
-		bridgeSections: state.bridge.bridgeSections,
-		clickedBridgeInfoButtonCount: state.bridge.clickedBridgeInfoButtonCount,
-	};
-};
-
-export default connect(mapStateToProps, {
-	setCurrentBridgeSection,
-	setBridgeSections,
-})(ArrowButton);

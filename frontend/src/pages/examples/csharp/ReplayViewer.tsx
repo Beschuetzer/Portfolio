@@ -1,7 +1,7 @@
 import React from "react";
-import Carousel from "../../../components/Carousel/Carousel";
-import CSharpLayout from "./CSharpLayout";
-import EmbeddedLink from "../../../components/EmbeddedLink";
+import { Carousel } from "../../../components/Carousel/Carousel";
+import { CSharpLayout } from "./CSharpLayout";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
 
 import img1 from "../../../imgs/replay-viewer/img-1.png";
 import img2 from "../../../imgs/replay-viewer/img-2.png";
@@ -35,20 +35,17 @@ import clipAnimationsThumbnail from "../../../clips/replay-viewer/thumbnails/ani
 import clipDealPlayerThumbnail from "../../../clips/replay-viewer/thumbnails/deal-player-thumbnail.png";
 import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
 
-import CSharpCardSection from "./CSharpCardSection";
-import { C_SHARP_CLASSNAME } from "./utils";
+import { CSharpCardSection } from "./CSharpCardSection";
 import Paragraph from "../../../typography/Paragraph";
 import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import {
 	LIVE_BRIDGE_URL,
-	CSharpSection,
 	GITHUB_URL,
 	LIVE_REPLAYS_URL,
+	C_SHARP_CLASSNAME,
 } from "../../../components/constants";
-import Quote from "../../../components/Quote";
+import { Quote } from "../../../components/Quote";
+import { CSharpSection } from "../../../types";
+import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 
 const sectionNames = ["Motivation", "Media", "Features", "Notes"];
 
@@ -329,7 +326,7 @@ const sections: CSharpSection[] = [
 
 interface ReplayViewerProps {}
 
-const ReplayViewer: React.FC<ReplayViewerProps> = () => {
+export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
 	return (
 		<CSharpLayout
 			href={LIVE_REPLAYS_URL}
@@ -341,5 +338,3 @@ const ReplayViewer: React.FC<ReplayViewerProps> = () => {
 		</CSharpLayout>
 	);
 };
-
-export default ReplayViewer;

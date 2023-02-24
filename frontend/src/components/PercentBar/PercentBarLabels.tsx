@@ -5,7 +5,7 @@ interface PercentBarLabelsProps {
   label: PercentBarLabel,
 }
 
-const PercentBarLabels: React.FC<PercentBarLabelsProps> = ({
+export const PercentBarLabels: React.FC<PercentBarLabelsProps> = ({
   label,
 }) => {
   return (
@@ -19,5 +19,3 @@ const PercentBarLabels: React.FC<PercentBarLabelsProps> = ({
     </React.Fragment>
   );
 }
-
-export default PercentBarLabels;

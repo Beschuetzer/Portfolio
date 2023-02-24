@@ -1,24 +1,22 @@
 import React from "react";
-import Carousel from "../../../components/Carousel/Carousel";
-import CSharpLayout from "./CSharpLayout";
+import { Carousel } from "../../../components/Carousel/Carousel";
+
+import { CSharpLayout } from "./CSharpLayout";
 
 import video1 from "../../../clips/bridge-demo/1.mp4";
 import video2 from "../../../clips/bridge-demo/2.mp4";
 import video3 from "../../../clips/bridge-demo/3.mp4";
 
-import CSharpCardSection from "./CSharpCardSection";
-import { C_SHARP_CLASSNAME } from "./utils";
-import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
-import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
 import {
 	LIVE_BRIDGE_URL,
 	BRIDGE_DEMO_PAGE_NAME,
-	CSharpSection,
+	CAROUSEL_CLASSNAME,
+	C_SHARP_CLASSNAME,
 } from "../../../components/constants";
-import EmbeddedLink from "../../../components/EmbeddedLink";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
+import { CSharpCardSection } from "./CSharpCardSection";
+import { CSharpSection } from "../../../types";
+import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 
 const sectionNames = [
 	"Requirements",
@@ -32,7 +30,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					<p>
 						Since there is no AI currently implemented, runing a demo of A#Maj Bridge requires one to open two different browsers with two tabs in each browser (one of which has to be a "Private Browsing" tab or "Incognito" tab).  
 					</p>
@@ -52,7 +50,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					<ol>
 						<li>Open both browsers</li>
 						<li>
@@ -105,7 +103,7 @@ const sections: CSharpSection[] = [
 							videoOverlayText: "Four Windows At Once",
 							videoOverlayChildren: (
 								<div>
-									<CSharpCardSection title="">
+									<CSharpCardSection>
 										This video show you how to open Chrome and Firefox and create private session windows
 									</CSharpCardSection>
 								</div>
@@ -117,7 +115,7 @@ const sections: CSharpSection[] = [
 							videoOverlayText: "Test is the Password ",
 							videoOverlayChildren: (
 								<div>
-									<CSharpCardSection title="">
+									<CSharpCardSection>
 										Notice how each window uses a separate username but the password is the same.
 									</CSharpCardSection>
 								</div>
@@ -155,10 +153,8 @@ const sections: CSharpSection[] = [
 
 interface BridgeDemoProps {}
 
-const BridgeDemo: React.FC<BridgeDemoProps> = () => {
+export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
 	return (
 		<CSharpLayout sections={sections} pageName={BRIDGE_DEMO_PAGE_NAME}/>
 	);
 };
-
-export default BridgeDemo;

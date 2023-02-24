@@ -1,13 +1,12 @@
 import React from "react";
+import { CSharpCardSection } from "../CSharpCardSection";
 import {
-	CSharpSection,
-	BIG_FIVE_PAGE_NAME,
+	BIG_FIVE_PAGE_NAME, C_SHARP_CLASSNAME,
 } from "../../../../components/constants";
-import PercentBar, { PercentBarLabel } from "../../../../components/PercentBar/PercentBar";
-import CSharpCardSection from "../CSharpCardSection";
-import CSharpLayout from "../CSharpLayout";
-import { C_SHARP_CLASSNAME } from "../utils";
-import BigFiveItem from "./BigFiveItem";
+import { PercentBar, PercentBarLabel } from "../../../../components/PercentBar/PercentBar";
+import { CSharpLayout } from "../CSharpLayout";
+import { BigFiveItem } from "./BigFiveItem";
+import { CSharpSection } from "../../../../types";
 
 const sectionNames = [
 	"Overview",
@@ -70,7 +69,7 @@ const sections: CSharpSection[] = [
 					commonly used model of personality in academic psychology. &nbsp;
 				</CSharpCardSection>
 
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					Below you will find my rating for each of the five personality traits
 					as well as a description of what they mean.
 				</CSharpCardSection>
@@ -276,7 +275,7 @@ const sections: CSharpSection[] = [
 
 interface PersonalityProps {}
 
-const BigFive: React.FC<PersonalityProps> = () => {
+export const BigFive: React.FC<PersonalityProps> = () => {
 	return (
 		<CSharpLayout
 			sections={sections}
@@ -286,5 +285,3 @@ const BigFive: React.FC<PersonalityProps> = () => {
 		</CSharpLayout>
 	);
 };
-
-export default BigFive;

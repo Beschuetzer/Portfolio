@@ -1,5 +1,5 @@
 import React from "react";
-import CSharpCardSection from "../CSharpCardSection";
+import { CSharpCardSection } from "../CSharpCardSection";
 
 export interface BigFiveItemProps {
 	children: any;
@@ -7,7 +7,7 @@ export interface BigFiveItemProps {
 	pitfalls: string[];
 }
 
-const BigFiveItem: React.FC<BigFiveItemProps> = ({
+export const BigFiveItem: React.FC<BigFiveItemProps> = ({
 	children,
 	benefits,
 	pitfalls,
@@ -34,5 +34,3 @@ const BigFiveItem: React.FC<BigFiveItemProps> = ({
 		</React.Fragment>
 	);
 };
-
-export default BigFiveItem;

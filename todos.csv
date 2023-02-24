@@ -1,8 +1,12 @@
 React best practices re-work (branch = sitenav_rework)
   -rework remaining places that directly modify the DOM
+  -add onPress handler to ArrowButton to be able to hide the elements on bridge page when switching left/right 
+  -add more complext logic in SkillPopup sort to weight created date?
+  -re-work Carousel (should be pure re-useable component)
 
 
 JOB STUFF------------------------------------
+  -Portoflio repo is Private so make Public when the search starts
   -add to resume/portfolio "Identified multiple inefficiencies and proposed and implemented optimizations (backend interaction running through each action every time a new action is triggered even though the current state of the interaction was available; frontend added caching to various features reducing the number of calls needed)"
   -make york repos public (team and personal) and add a description to both with links (add tags too and make sure they are referenced in the resume section)
   -create a Solution Sidekick feature page (add to start page too; left side)

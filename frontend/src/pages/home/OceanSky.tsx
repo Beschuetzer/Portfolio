@@ -1,8 +1,8 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Water } from "three/examples/jsm/objects/Water.js";
-import LoadingSpinner from "../../components/loading/LoadingSpinner";
+import { LoadingSpinner } from "../../components/loading/LoadingSpinner";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 
 import waterNormals from "../../imgs/waterNormals.jpg";
@@ -17,7 +17,6 @@ import cubeMap2 from "../../imgs/cube-motivated.jpg";
 import cloud from "../../imgs/cloud.png";
 import introFont from "../../fonts/star-wars/star-jedi-rounded_Regular.json";
 import {
-	LoadingManager,
 	Mesh,
 	MeshBasicMaterial,
 	PerspectiveCamera,
@@ -459,7 +458,7 @@ function onWindowResize() {
 }
 //#endregion
 
-const OceanSky = () => {
+export const OceanSky = () => {
 	//#region Init
 	const POS_INITIAL_VALUE = 0;
 	const fpsReturned = [] as FpsReturned;
@@ -886,5 +885,3 @@ const OceanSky = () => {
 	}
 	return null;
 }
-
-export default OceanSky;

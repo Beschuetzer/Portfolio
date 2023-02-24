@@ -7,14 +7,13 @@ interface  SourceCodeLinkProps {
 	className?: string,
 }
 
-const SourceCodeLink: React.FC<SourceCodeLinkProps> = ({ 
+export const SourceCodeLink: React.FC<SourceCodeLinkProps> = ({ 
   href,
   blockName = "source-link",
   msg = "Code",
 	className,
 }) => {
 	const defaultClassname = `${blockName}__source`;
-
 	return (
 		<a
 			target="_blank"
@@ -28,5 +27,3 @@ const SourceCodeLink: React.FC<SourceCodeLinkProps> = ({
 		</a>
 	);
 };
-
-export default SourceCodeLink;

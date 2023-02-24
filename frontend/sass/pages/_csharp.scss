@@ -190,7 +190,7 @@
 
 	&__carousel {
 		// width: $resume-card-width-full;
-		margin: $default-font-size auto 0 auto;
+		// margin: $default-font-size auto 0 auto;
 		display: grid;
 		row-gap: $default-font-size * 1;
 		// grid-template-rows: $default-font-size * 23.75;
@@ -198,7 +198,6 @@
 			1fr $resume-card-width-full / 3 $resume-card-width-full / 3
 			$resume-card-width-full / 3 1fr;
 		justify-content: center;
-		padding: $default-font-size * 2 0 $default-font-size * 2 0;
 
 		@include respond(nav-switch) {
 			width: calc(100% - #{$default-font-size} * 1);

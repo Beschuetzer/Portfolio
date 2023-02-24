@@ -1,36 +1,23 @@
 import React, { useState, useRef } from "react";
-
-import PlayControl from "../VideoPlayer/PlayControl";
-import StopControl from "../VideoPlayer/StopControl";
-import PauseControl from "../VideoPlayer/PauseControl";
-import RestartControl from "../VideoPlayer/RestartControl";
-import CloseControl from "../VideoPlayer/CloseControl";
-import Video, { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
 import {
-	CarouselItemProps,
-	CAROUSEL_CLASSNAME,
-	CAROUSEL_DESCRIPTION_CLASSNAME,
-	CAROUSEL_IMAGE_CLASSNAME,
-	CAROUSEL_ITEM_CLASSNAME,
-	CAROUSEL_VIDEO_CLASSNAME,
 	getNthItemOpen,
 	handleVideo,
 	toggleLeftAndRightArrows,
 	toggleMobileDisplayIssueFixes,
 } from "./util";
-import {
-	getPercentOfProgressBar,
-} from "../VideoPlayer/utils";
-import { closeCarouselItem } from "../utils";
-import OverlayText from "../OverlayText/OverlayText";
-import { FILL_RED_CLASSNAME } from "../constants";
+import { OverlayText } from "../OverlayText/OverlayText";
+import { setCurrentlyViewingCarouselImage } from "../../slices/generalSlice";
+import { useAppDispatch } from "../../hooks";
+import { CarouselItemProps } from "../../types";
+import { CAROUSEL_DESCRIPTION_CLASSNAME, CAROUSEL_ITEM_CLASSNAME, CAROUSEL_IMAGE_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME, DONE_CLASSNAME, FULLSCREEN_CLASSNAME, FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME, STOPPED_CLASSNAME } from "../constants";
+import { CloseControl } from "../VideoPlayer/CloseControl";
+import { PauseControl } from "../VideoPlayer/PauseControl";
+import { PlayControl } from "../VideoPlayer/PlayControl";
+import { RestartControl } from "../VideoPlayer/RestartControl";
+import { StopControl } from "../VideoPlayer/StopControl";
+import { FOREGROUND_VIDEO_CLASSNAME, Video } from "../VideoPlayer/Video";
+import { closeCarouselItem, getPercentOfProgressBar } from "../../helpers";
 
-export const FULLSCREEN_CLASSNAME = "full-screen";
-export const FULLSCREEN_PARENT_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--full-screen`;
-export const FULLSCREEN_ARROW_BUTTON_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button--full-screen`;
-export const PLAYING_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--playing`;
-export const STOPPED_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--stopped`;
-export const DONE_CLASSNAME = `${CAROUSEL_CLASSNAME}__item--done`;
 export const CLASSNAMES_TO_REMOVE = [
 	FULLSCREEN_PARENT_CLASSNAME,
 	FULLSCREEN_CLASSNAME,
@@ -39,7 +26,7 @@ export const CLASSNAMES_TO_REMOVE = [
 	DONE_CLASSNAME,
 ];
 
-const CarouselItem: React.FC<CarouselItemProps> = ({
+export const CarouselItem: React.FC<CarouselItemProps> = ({
 	descriptionClassname = CAROUSEL_DESCRIPTION_CLASSNAME,
 	itemClassName = CAROUSEL_ITEM_CLASSNAME,
 	imageClassname = CAROUSEL_IMAGE_CLASSNAME,
@@ -69,7 +56,7 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	functionToGetContainer,
 	shouldRenderFullScreen = false,
 }) => {
-
+	const dispatch = useAppDispatch();
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const [showOverlayText, setShowOverlayText] = useState(true);
 	const videoRef = useRef<HTMLVideoElement>(null);
@@ -78,22 +65,6 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	const isVideo = itemSrc?.match(
 		getRegexStringFromStringArray(videoExtentions),
 	);
-
-	function addFullscreenClassToArrowButtons() {
-		const leftArrowEl = (leftArrowRef?.current as any);
-		const rightArrowEl = (rightArrowRef?.current as any);
-
-		if (leftArrowEl) {
-			leftArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
-			const svg = leftArrowEl.querySelector("svg");
-			svg?.classList.add(FILL_RED_CLASSNAME);
-		}
-		if (rightArrowEl) {
-			rightArrowEl.classList.add(FULLSCREEN_ARROW_BUTTON_CLASSNAME);
-			const svg = rightArrowEl.querySelector("svg");
-			svg?.classList.add(FILL_RED_CLASSNAME);
-		}
-	}
 
 	function getRegexStringFromStringArray(fileExtensions: string[]) {
 		const mapped = fileExtensions.map((ext, index) => {
@@ -132,11 +103,13 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 	};
 
 	const onItemClick = (e: MouseEvent) => {
-		if (isItemOpenRef.current) {
+		if (isItemOpenRef?.current) {
 			return
 		}
 
-		isItemOpenRef.current = true;
+		if (isItemOpenRef) {
+			isItemOpenRef.current = true;
+		}
 
 		const carouselItem = e.currentTarget as any;
 		if (
@@ -150,12 +123,11 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 
 		e.preventDefault();
 		handleShouldHideArrows(e);
+		dispatch(setCurrentlyViewingCarouselImage(itemSrc || ''));
 
 		carouselItem?.classList.remove(STOPPED_CLASSNAME);
-		carouselItem.classList.add(FULLSCREEN_CLASSNAME);
 		carouselItem.parentNode?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
 
-		addFullscreenClassToArrowButtons();
 		toggleMobileDisplayIssueFixes();
 		handleVideo(
 			carouselItem,
@@ -245,7 +217,10 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 				containerRef={containerRef}
 				isItemOpenRef={isItemOpenRef}
 				classNamesToRemove={videoCloseControlClassesToRemove}
-				functionToRunOnClose={functionToRunOnClose}
+				functionToRunOnClose={() => {
+					functionToRunOnClose && functionToRunOnClose();
+					dispatch(setCurrentlyViewingCarouselImage(''));
+				}}
 			/>
 		);
 
@@ -317,13 +292,13 @@ const CarouselItem: React.FC<CarouselItemProps> = ({
 		);
 	};
 
+	//#region JSX
 	return (
-		<article ref={containerRef} className={itemClassName}>
+		<article ref={containerRef} className={`${itemClassName}`}>
 			{mediaToAdd}
 			<p className={descriptionClassname}>{imageAlt}</p>
 			{renderControls(isVideo as RegExpMatchArray)}
 		</article>
 	);
+	//#endregion
 };
-
-export default CarouselItem;

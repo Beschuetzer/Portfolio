@@ -1,8 +1,8 @@
 import React from "react";
-import Carousel from "../../../components/Carousel/Carousel";
-import CSharpLayout from "./CSharpLayout";
+import { Carousel } from "../../../components/Carousel/Carousel";
+import { CSharpLayout } from "./CSharpLayout";
 
-import EmbeddedLink from "../../../components/EmbeddedLink";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import img1 from "../../../imgs/downloader/img1.png";
 import img2 from "../../../imgs/downloader/img2.png";
 import img3 from "../../../imgs/downloader/img3.png";
@@ -19,23 +19,19 @@ import img4Thumbnail from "../../../imgs/downloader/thumbnails/img4-thumbnail.pn
 import img5Thumbnail from "../../../imgs/downloader/thumbnails/img5-thumbnail.png";
 import img6Thumbnail from "../../../imgs/downloader/thumbnails/img6-thumbnail.png";
 
-import CSharpCardSection from "./CSharpCardSection";
-import { C_SHARP_CLASSNAME } from "./utils";
-import { CAROUSEL_CLASSNAME } from "../../../components/Carousel/util";
+import { CSharpCardSection } from "./CSharpCardSection";
 import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import {
-	CSharpSection,
+	CAROUSEL_CLASSNAME,
+	C_SHARP_CLASSNAME,
 	DOWNLOADER_PAGE_NAME,
 	GITHUB_URL,
 	KH_INSIDER_URL,
 	OC_REMIX_URL,
 	PLAYLIST_SYNCER_URL,
 } from "../../../components/constants";
-import Paragraph from "../../../typography/Paragraph";
-import Quote from "../../../components/Quote";
+import { Quote } from "../../../components/Quote";
+import { CSharpSection } from "../../../types";
+import { closeCarouselItem, functionToGetContainer } from "../../../helpers";
 
 const sectionNames = ["Description", "Media", "Notes"];
 
@@ -195,7 +191,7 @@ const sections: CSharpSection[] = [
 
 interface DownloaderProps {}
 
-const Downloader: React.FC<DownloaderProps> = () => {
+export const Downloader: React.FC<DownloaderProps> = () => {
 	return (
 		<CSharpLayout
 			sections={sections}
@@ -204,5 +200,3 @@ const Downloader: React.FC<DownloaderProps> = () => {
 		/>
 	);
 };
-
-export default Downloader;

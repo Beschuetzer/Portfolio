@@ -6,7 +6,7 @@ export interface ClasslistAdder {
 	classesToAdd: string[];
 }
 
-const useClasslistAdder = (classListsToAdd: ClasslistAdder[]) => {
+export const useClasslistAdder = (classListsToAdd: ClasslistAdder[]) => {
 	useEffect(() => {
 		setTimeout(() => {
 			for (let i = 0; i < classListsToAdd.length; i++) {
@@ -25,5 +25,3 @@ const useClasslistAdder = (classListsToAdd: ClasslistAdder[]) => {
 
 	return null;
 };
-
-export default useClasslistAdder;

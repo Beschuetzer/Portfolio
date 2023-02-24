@@ -1,9 +1,9 @@
 import React from "react";
-import CSharpLayout from "../csharp/CSharpLayout";
+import { CSharpLayout } from "../csharp/CSharpLayout";
 
-import { C_SHARP_CLASSNAME } from "../csharp/utils";
-import { AUTO_BID_PAGE_NAME, CSharpSection, GITHUB_URL } from "../../../components/constants";
-import CSharpCardSection from "../csharp/CSharpCardSection";
+import { AUTO_BID_PAGE_NAME, C_SHARP_CLASSNAME, GITHUB_URL } from "../../../components/constants";
+import { CSharpCardSection } from "../csharp";
+import { CSharpSection } from "../../../types";
 
 const sectionNames = [
 	"Details",
@@ -75,15 +75,12 @@ const sections: CSharpSection[] = [
 
 interface AutoBidProps {}
 
-const AutoBid: React.FC<AutoBidProps> = () => {
+export const AutoBid: React.FC<AutoBidProps> = () => {
 	return (
 		<CSharpLayout
 			sections={sections}
 			pageName={AUTO_BID_PAGE_NAME}
-			sourceCodeLink={`${GITHUB_URL}/${AUTO_BID_PAGE_NAME}`}>
-			{" "}
-		</CSharpLayout>
+			sourceCodeLink={`${GITHUB_URL}/${AUTO_BID_PAGE_NAME}`}/>
 	);
 };
 
-export default AutoBid;

@@ -4,9 +4,9 @@ export interface PageWrapperProps {
     pageName: string;
 }
 
-const PageWrapper: React.FC<PageWrapperProps> = ({
+export const PageWrapper: React.FC<PageWrapperProps> = ({
     children,
-    className,
+    className = '',
     pageName
 }) => {
     return (
@@ -15,5 +15,3 @@ const PageWrapper: React.FC<PageWrapperProps> = ({
         </div>
     )
 }
-
-export default PageWrapper;

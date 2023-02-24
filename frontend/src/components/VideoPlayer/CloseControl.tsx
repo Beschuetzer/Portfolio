@@ -1,13 +1,8 @@
 import { RefObject } from "react";
-import { connect } from "react-redux";
+import { closeVideo, removeClassFromAllChildren } from "../../helpers";
 import {
-	FULLSCREEN_CLASSNAME,
-	FULLSCREEN_PARENT_CLASSNAME,
 } from "../Carousel/CarouselItem";
-import { CAROUSEL_ITEM_CLASSNAME } from "../Carousel/util";
-import { removeClassFromAllChildren } from "../utils";
-
-import { closeVideo } from "./utils";
+import { FULLSCREEN_PARENT_CLASSNAME, CAROUSEL_ITEM_CLASSNAME, FULLSCREEN_CLASSNAME } from "../constants";
 
 interface CloseControlProps {
 	className?: string;
@@ -21,7 +16,7 @@ interface CloseControlProps {
 	functionToRunOnClose?: () => void;
 }
 
-const CloseControl: React.FC<CloseControlProps> = ({
+export const CloseControl: React.FC<CloseControlProps> = ({
 	xlinkHref,
 	videoRef,
 	isItemOpenRef,
@@ -75,5 +70,3 @@ const CloseControl: React.FC<CloseControlProps> = ({
 		</div>
 	);
 };
-
-export default connect(null, {})(CloseControl);

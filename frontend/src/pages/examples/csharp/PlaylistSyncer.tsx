@@ -1,7 +1,7 @@
 import React from "react";
-import Carousel from "../../../components/Carousel/Carousel";
-import CSharpLayout from "./CSharpLayout";
-import EmbeddedLink from "../../../components/EmbeddedLink";
+import { Carousel } from "../../../components/Carousel/Carousel";
+import { CSharpLayout } from "./CSharpLayout";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
 
 import img1 from "../../../imgs/playlist-syncer/img1.png";
 import imgProblem from "../../../imgs/playlist-syncer/img-problem.jpg";
@@ -16,15 +16,10 @@ import img3Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img3-thumbna
 import img4Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img4-thumbnail.png";
 
 import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
-import CSharpCardSection from "./CSharpCardSection";
-import { C_SHARP_CLASSNAME } from "./utils";
+import { CSharpCardSection } from "./CSharpCardSection";
 import Paragraph from "../../../typography/Paragraph";
 import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import {
-	CSharpSection,
+	C_SHARP_CLASSNAME,
 	DOWNLOADER_URL,
 	GITHUB_URL,
 	OS_10_ISSUE_TRACKER_URL,
@@ -32,7 +27,9 @@ import {
 	WIKIPEDIA_DRM_URL,
 	WIKIPEDIA_MTP_URL,
 } from "../../../components/constants";
-import Quote from "../../../components/Quote";
+import { Quote } from "../../../components/Quote";
+import { CSharpSection } from "../../../types";
+import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 
 const sectionNames = ["Background", "Media", "Problem", "Approach"];
 
@@ -42,7 +39,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					<Paragraph size="four">
 						Around the end of Febraury 2020, Samsung updated their Android OS to
 						version 10.&nbsp; Eager to check out the newest Android OS, I
@@ -138,7 +135,7 @@ const sections: CSharpSection[] = [
 				<Quote author="Charles Kettering" className="padding-top-1">
 					A problem well-stated is a problem half-solved;
 				</Quote>
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					<Paragraph size="four">
 						It was clear from the experiences others were having that the
 						problem stemmed from how Android 10 handled the playlist information
@@ -157,7 +154,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					<Paragraph size="four">
 						First I needed to figure out how to sync music to an Android device.
 						It turns out that the main way to do that is through a protocol
@@ -190,7 +187,7 @@ const sections: CSharpSection[] = [
 
 interface PlaylistSyncerProps {}
 
-const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
+export const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
 	return (
 		<CSharpLayout
 			sections={sections}
@@ -200,5 +197,3 @@ const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
 		</CSharpLayout>
 	);
 };
-
-export default PlaylistSyncer;

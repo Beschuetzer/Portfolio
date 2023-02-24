@@ -256,14 +256,16 @@
 	&__current-svg {
 		z-index: 10;
 		opacity: $card-initial-opacity;
-		// visibility: visible;
 	}
 
 	&--hoverable {
 		&:hover {
 			--card-scale-amount: 1.5;
-			// transform: perspective(#{$default-font-size * 3}) translate3d(0,#{$default-font-size},#{$default-font-size * 1}) ;
 			z-index: $card-z-index + 1;
+
+			@include respond(phone) {
+				--card-scale-amount: 1.15;
+			}
 		}
 
 		&:hover .card__children {

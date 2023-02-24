@@ -1,7 +1,6 @@
 import React from "react";
-
-import SectionContainer from "./SectionContainer";
 import { capitalize, replaceCharacters } from "../helpers";
+import { SectionContainer } from "./SectionContainer";
 
 interface SectionProps {
 	name: string;
@@ -12,7 +11,7 @@ interface SectionProps {
 	styles?: any,
 }
 
-const Section: React.FC<SectionProps> = ({
+export const Section: React.FC<SectionProps> = ({
 	name,
 	pageName,
 	children,
@@ -45,5 +44,3 @@ const Section: React.FC<SectionProps> = ({
 		</SectionContainer>
 	);
 };
-
-export default Section;

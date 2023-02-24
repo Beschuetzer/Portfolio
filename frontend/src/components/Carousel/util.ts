@@ -1,69 +1,22 @@
-import { CSSProperties, RefObject } from "react";
+import { RefObject } from "react";
+import { getComputedStyleCustom, getIsVideoPlaying, toggleScrollability } from "../../helpers";
+import { ArrowButtonDirection, CarouselItemProps } from "../../types";
 import {
-	ArrowButtonDirection,
-	carouselGridWidth,
+	CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
+	CAROUSEL_CLASSNAME,
+	CAROUSEL_DOT_ACTIVE_CLASSNAME,
+	CAROUSEL_DOT_CLASSNAME,
+	CAROUSEL_GRID_MAX_COLUMN_WIDTHS,
+	CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT,
+	CAROUSEL_GRID_WIDTH_CSS_PROPERTY_NAME,
+	CAROUSEL_ITEM_CLASSNAME,
+	CAROUSEL_MIN_IMAGE_COUNT,
 	CONTAINS_CAROUSEL_CLASSNAME,
+	FULLSCREEN_PARENT_CLASSNAME,
 	HIDDEN_CLASSNAME,
+	PLAYING_CLASSNAME,
 	TRANSFORM_REMOVED_CLASSNAME,
 } from "../constants";
-import { toggleScrollability } from "../utils";
-import { getIsVideoPlaying } from "../VideoPlayer/utils";
-import { FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME } from "./CarouselItem";
-
-export const CAROUSEL_CLASSNAME = "carousel";
-export const CAROUSEL_TRANSLATION_CSS_CLASSNAME = `--${CAROUSEL_CLASSNAME}-item-translation-x`;
-export const CAROUSEL_VIDEO_CLASSNAME = `${CAROUSEL_CLASSNAME}__video`;
-
-export const CAROUSEL_IMAGE_CLASSNAME = `${CAROUSEL_CLASSNAME}__image`;
-export const CAROUSEL_ITEM_CLASSNAME = `${CAROUSEL_CLASSNAME}__item`;
-export const CAROUSEL_TRANSITION_CLASSNAME = "carousel-transition";
-export const CAROUSEL_DESCRIPTION_CLASSNAME = `${CAROUSEL_ITEM_CLASSNAME}-description`;
-export const CAROUSEL_DOT_CLASSNAME = `${CAROUSEL_CLASSNAME}__dot`;
-export const CAROUSEL_DOT_ACTIVE_CLASSNAME = `${CAROUSEL_DOT_CLASSNAME}--active`;
-export const CAROUSEL_ARROW_BUTTONS_CLASSNAME = `${CAROUSEL_CLASSNAME}__arrow-button`;
-export const CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME = `${CAROUSEL_ARROW_BUTTONS_CLASSNAME}--left`;
-export const CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME = `${CAROUSEL_ARROW_BUTTONS_CLASSNAME}--right`;
-export const CAROUSEL_MIN_IMAGE_COUNT = 0;
-
-export const CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT = "1.6rem";
-export const CAROUSEL_GRID_MAX_COLUMN_WIDTHS: [number, string][] = [
-	//1st index is number of items and second is the width
-	[7, "15rem"],
-	[8, "12rem"],
-	[12, "10rem"],
-	[13, "7rem"],
-];
-
-export interface CarouselItemProps {
-	descriptionClassname: string | undefined;
-	itemClassName: string | undefined;
-	imageClassname: string | undefined;
-	videoClassname: string | undefined;
-	foregroundVideoClassname: string | undefined;
-	description: string | undefined;
-	itemSrc: string | undefined;
-	itemThumbnailSrc: string | undefined;
-	isItemOpenRef: React.MutableRefObject<boolean>;
-	leftArrowRef: RefObject<HTMLElement> | undefined;
-	rightArrowRef: RefObject<HTMLElement> | undefined;
-	videoType?: "mp4" | "ogv" | "webm" | "ogg" | undefined;
-	videoAutoPlay?: boolean | undefined;
-	videoLoop?: boolean | undefined;
-	videoPlaySVGXLinkHref: string | undefined;
-	videoPlayControlSvgXLinkHref?: string | undefined;
-	videoStopControlSvgXLinkHref?: string | undefined;
-	videoRestartControlSvgXLinkHref?: string | undefined;
-	videoPauseControlSvgXLinkHref?: string | undefined;
-	videoCloseControlSvgXLinkHref?: string | undefined;
-	videoCloseControlClassesToRemove?: string | undefined;
-	videoOverlayStyles?: CSSProperties | undefined;
-	videoOverlayText?: string | undefined;
-	videoOverlayChildren?: any | undefined;
-	videoExtentions?: string[] | undefined;
-	functionToRunOnClose?: any | undefined;
-	functionToGetContainer?: any | undefined;
-	shouldRenderFullScreen?: boolean;
-}
 
 export function setArrowButtonsHiddenClass(
 	CAROUSEL_MIN_IMAGE_COUNT: number,
@@ -76,12 +29,12 @@ export function setArrowButtonsHiddenClass(
 ) {
 	const leftArrow = leftArrowRef.current as any;
 	const rightArrow = rightArrowRef.current as any;
+	if (!leftArrow || !rightArrow) return;
+
 	if (currentTranslationFactor === 0) {
 		leftArrow.classList.add(HIDDEN_CLASSNAME);
 		return rightArrow.classList.remove(HIDDEN_CLASSNAME);
 	}
-
-	if (!leftArrow || !rightArrow) return;
 
 	leftArrow.classList.remove(HIDDEN_CLASSNAME);
 	rightArrow.classList.remove(HIDDEN_CLASSNAME);
@@ -132,7 +85,7 @@ export function setTranslationAmount(
 	const itemElements = (itemsRef as any).current;
 
 	return setTimeout(() => {
-		for (let i = 0; i < itemElements.length; i++) {
+		for (let i = 0; i < itemElements?.length; i++) {
 			const item = itemElements[i] as HTMLElement;
 			const string = `translate(-${amountToTranslateImages}px, 0)`;
 			item.style.transform = string;
@@ -427,6 +380,7 @@ export function setCarouselGridMaxColumnWidth(
 		`.${CAROUSEL_CLASSNAME}`,
 	) as HTMLElement;
 
+	const carouselGridWidth = getComputedStyleCustom(CAROUSEL_GRID_WIDTH_CSS_PROPERTY_NAME);
 	const newValue = `repeat(auto-fill,	minmax(${carouselGridWidth}, ${maxWidthToUse}))`;
 	if (parentCarousel)
 		parentCarousel.style.setProperty("grid-template-columns", newValue);

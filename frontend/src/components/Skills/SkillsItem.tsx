@@ -1,10 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
-import { clickSkill } from "../../actions";
-import EmbeddedLink from "../EmbeddedLink";
-import PercentBar, { PercentBarLabel } from "../PercentBar/PercentBar";
-import { toggleScrollability } from "../utils";
-import { SKILLS_CLASSNAME } from "./utils";
+import { toggleScrollability } from "../../helpers";
+import { useAppDispatch } from "../../hooks";
+import { clickSkill } from "../../slices/resumeSlice";
+import { SKILLS_CLASSNAME } from "../constants";
+import { EmbeddedLink } from "../EmbeddedLink";
+import { PercentBar, PercentBarLabel } from "../PercentBar/PercentBar";
 
 interface SkillsItemProps {
 	title: string;
@@ -13,18 +13,17 @@ interface SkillsItemProps {
 	hours?: string;
 	isLocal?: boolean;
 	label: PercentBarLabel;
-	clickSkill: (value: HTMLElement) => void;
 }
 
-const SkillsItem: React.FC<SkillsItemProps> = ({
+export const SkillsItem: React.FC<SkillsItemProps> = ({
 	title,
 	percent,
 	href,
-	clickSkill,
 	hours,
 	label,
 	isLocal = false,
 }) => {
+	const dispatch = useAppDispatch();
 	const skillsPopupDiv = document.querySelector("#skillsPopup");
 
 	const onParagraphClick = (e: MouseEvent) => {
@@ -36,7 +35,7 @@ const SkillsItem: React.FC<SkillsItemProps> = ({
 			return;
 
 		skillsPopupDiv?.classList?.toggle(`${SKILLS_CLASSNAME}-popup--active`);
-		clickSkill(e.target as HTMLElement);
+		dispatch(clickSkill(((e.target as HTMLDivElement)?.textContent || '')));
 		setTimeout(() => toggleScrollability(false), 750);
 	};
 
@@ -76,7 +75,3 @@ const SkillsItem: React.FC<SkillsItemProps> = ({
 		</React.Fragment>
 	);
 };
-
-export default connect(null, {
-	clickSkill,
-})(SkillsItem);

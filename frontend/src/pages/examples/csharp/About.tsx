@@ -11,20 +11,11 @@
 //interests: playing drums/guitar, riding bike, exercising, Astronomy(almost majored in it)
 
 import React from "react";
-import CSharpLayout from "./CSharpLayout";
-import CSharpCardSection from "./CSharpCardSection";
-import { C_SHARP_CLASSNAME } from "./utils";
+import { CSharpLayout } from "./CSharpLayout";
 import {
 	ABOUT_PAGE_NAME,
-	CSharpSection,
+	C_SHARP_CLASSNAME,
 	DISPLAY_NONE_CLASSNAME,
-	DOWNLOADER_URL,
-	GERMANY_APP_URL,
-	HARMONY_URL,
-	HUBB_CENTER_URL,
-	PLAYLIST_SYNCER_URL,
-	POWERSHELL_URL,
-	RESUME_URL,
 } from "../../../components/constants";
 
 import earlier3 from "../../../music/Earlier_03.mp3";
@@ -110,25 +101,18 @@ import p2p02Thumbnail from "../../../imgs/about/thumbnails/p2p-02-thumbnail.png"
 import p2p03Thumbnail from "../../../imgs/about/thumbnails/p2p-03-thumbnail.png";
 import p2p04Thumbnail from "../../../imgs/about/thumbnails/p2p-04-thumbnail.png";
 
-import AudioList from "../../../components/AudioPlayer/AudioList";
-import AudioPlayer from "../../../components/AudioPlayer/AudioPlayer";
-import LoadingSpinner from "../../../components/loading/LoadingSpinner";
-import Carousel from "../../../components/Carousel/Carousel";
-import {
-	closeCarouselItem,
-	functionToGetContainer,
-} from "../../../components/utils";
-import EmbeddedLink from "../../../components/EmbeddedLink";
-import Quote from "../../../components/Quote";
-import ClassToggler from "../../../components/ClassToggler";
-import Paragraph from "../../../typography/Paragraph";
+import { AudioList } from "../../../components/AudioPlayer/AudioList";
+import { LoadingSpinner } from "../../../components/loading/LoadingSpinner";
+import { Carousel } from "../../../components/Carousel/Carousel";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
+import { Quote } from "../../../components/Quote";
+import { CSharpCardSection } from "./CSharpCardSection";
+import { CSharpSection } from "../../../types";
+import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 
-const sectionNames = ["Summary", "Interests", "Music", "FAQ"];
-
+export const ABOUT_SECTION_NAMES = ["Overview", "Interests", "Music"];
 const germanyCarousel = (
-	<section
-		id="german-carousel"
-		className={`${DISPLAY_NONE_CLASSNAME} csharp__carousel padding-0`}>
+	<section className="csharp__carousel margin-top-0 padding-bottom-0">
 		<Carousel
 			items={[
 				{
@@ -183,13 +167,13 @@ const germanyCarousel = (
 			functionToRunOnClose={closeCarouselItem.bind(
 				null,
 				null as any,
-				`#${sectionNames[0].toLowerCase()}`,
+				`#${ABOUT_SECTION_NAMES[0].toLowerCase()}`,
 			)}
 		/>
 	</section>
 );
 
-const likesCarousel = (
+const travelCarousel = (
 	<section className="csharp__carousel margin-top-0 padding-bottom-0">
 		<Carousel
 			items={[
@@ -278,6 +262,41 @@ const likesCarousel = (
 					itemThumbnailSrc: oregon03Thumbnail,
 					description: "Another Oregonian Creek",
 				},
+				{
+					itemSrc: germany02,
+					itemThumbnailSrc: germany02Thumbnail,
+					description: "Haubinda, Germany",
+				},
+				{
+					itemSrc: germany03,
+					itemThumbnailSrc: germany03Thumbnail,
+					description: "Sunset in Hungary on the Balaton See",
+				},
+				{
+					itemSrc: germany04,
+					itemThumbnailSrc: germany04Thumbnail,
+					description: "Morning in South Tirol, Italy",
+				},
+				{
+					itemSrc: germany05,
+					itemThumbnailSrc: germany05Thumbnail,
+					description: "Not much left of the old city in Nuernberg",
+				},
+				{
+					itemSrc: germany07,
+					itemThumbnailSrc: germany07Thumbnail,
+					description: "The pain is real even if the equipment is not",
+				},
+				{
+					itemSrc: germany09,
+					itemThumbnailSrc: germany09Thumbnail,
+					description: "Shields only work if you know how to use them",
+				},
+				{
+					itemSrc: p2p01,
+					itemThumbnailSrc: p2p01Thumbnail,
+					description: "Abseiling an English Castle",
+				},
 			]}
 			numberOfItemsInCarouselWidthWise="3"
 			numberOfItemsToScrollOnClick="3"
@@ -285,7 +304,7 @@ const likesCarousel = (
 			functionToRunOnClose={closeCarouselItem.bind(
 				null,
 				null as any,
-				`#${sectionNames[1].toLowerCase()}`,
+				`#${ABOUT_SECTION_NAMES[1].toLowerCase()}`,
 			)}
 		/>
 	</section>
@@ -324,7 +343,7 @@ const peopleToPeopleCarousel = (
 			functionToRunOnClose={closeCarouselItem.bind(
 				null,
 				null as any,
-				`#${sectionNames[0].toLowerCase()}`,
+				`#${ABOUT_SECTION_NAMES[0].toLowerCase()}`,
 			)}
 		/>
 	</section>
@@ -367,12 +386,12 @@ const selfDoubtQuote = (
 
 const sections: CSharpSection[] = [
 	{
-		name: sectionNames[0],
+		name: ABOUT_SECTION_NAMES[0],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
 				{youngQuote}
-				<CSharpCardSection title="">
+				<CSharpCardSection>
 					My mind is always working, whether at work or at play. I enjoy
 					learning new things and bring a natural curiosity to everything I
 					encounter. While I enjoy being out in the world, I always look forward
@@ -380,8 +399,8 @@ const sections: CSharpSection[] = [
 					conversation. I can also find happiness on my own, working on a
 					project or reading a good book.  
 				</CSharpCardSection>
-				<CSharpCardSection title="">
-				 Learn about my personality <EmbeddedLink href="/the-big-five" addSpaces={false} isLocal={false}>here</EmbeddedLink> 
+				<CSharpCardSection>
+				 Learn about my personality <EmbeddedLink href="/the-big-five" addSpaces={false} isLocal={true} openInNewTab={false}>here</EmbeddedLink> 
 				</CSharpCardSection>
 			</React.Fragment>,
 		],
@@ -389,7 +408,7 @@ const sections: CSharpSection[] = [
 	},
 	{
 		hasCarousel: true,
-		name: sectionNames[1],
+		name: ABOUT_SECTION_NAMES[1],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
@@ -407,30 +426,26 @@ const sections: CSharpSection[] = [
 					feet.
 				</CSharpCardSection>
 				<CSharpCardSection title="Drums">
-					My dad was a drummer, so growing up I had the privilege of having
-					access to a drum kit while growing up.&nbsp; For what ever reason, the
-					way my brain works is well-suited to playing drums
+					I've been playing drums since I was 14.&nbsp; I'm not particularly great, but it's a nice way to relieve stress.
 				</CSharpCardSection>
 				<CSharpCardSection title="Guitar">
 					In high school, a few friends and I started a band.&nbsp; It was
 					during this time that I learned how to play guitar.&nbsp; While not as
-					naturally-inclined to it, playing guitar is something I find very
-					rewarding.&nbsp;
+					naturally-inclined to it, playing guitar is something I find rewarding.&nbsp;
 				</CSharpCardSection>
 				<CSharpCardSection title="Exercise">
 					Sort of a strange thing to put for an 'interest', but going to the gym
-					and exercising is the main way that I cope with stress.&nbsp; Without
-					it, I am but a pile of saggy mortality.
+					and exercising is the main way that I maintain a healthy mindset.
 				</CSharpCardSection>
-				<CSharpCardSection title="Proof of Concept">
-					Here are some photos of enjoyable moments I've had:
-					{likesCarousel}
+				<CSharpCardSection title="Seeing the world">
+					Here are some photos of enjoyable experiences:
+					{travelCarousel}
 				</CSharpCardSection>
 			</React.Fragment>,
 		],
 	},
 	{
-		name: sectionNames[2],
+		name: ABOUT_SECTION_NAMES[2],
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
@@ -562,161 +577,158 @@ const sections: CSharpSection[] = [
 			</React.Fragment>,
 		],
 	},
-	{
-		name: sectionNames[3],
-		pageName: C_SHARP_CLASSNAME,
-		children: [
-			<React.Fragment>
-				{regretQuote}
-				<CSharpCardSection title="Why Now?">
-					If you had asked me what my career goals were in January of 2020, I'd
-					have told to that I want to become a level 3 Tech Support Specialist
-					or a Systems Administrator (I didn't believe I could ever have the
-					necessary pre-requisites to becoming a programmer, which is what I
-					really wanted to do).&nbsp; When I left&nbsp;
-					<EmbeddedLink
-						href={`${RESUME_URL}#ricoh`}
-						openInNewTab={true}
-						isLocal={true}
-						addSpaces={false}>
-						Ricoh
-					</EmbeddedLink>
-					, I had more free time on my hands than I'd had in a while.&nbsp; I
-					used that free time to start learning c# (I was familiar with&nbsp;
-					<EmbeddedLink
-						href={POWERSHELL_URL}
-						openInNewTab={true}
-						isLocal={false}
-						addSpaces={false}>
-						Powershell
-					</EmbeddedLink>
-					, so c# seemed like a logical next step) with the intent of solving a
-					couple "problems" I had had at the time (see{" "}
-					<EmbeddedLink
-						isLocal={true}
-						href={DOWNLOADER_URL}
-						openInNewTab={true}>
-						Downloader
-					</EmbeddedLink>{" "}
-					and{" "}
-					<EmbeddedLink
-						isLocal={true}
-						href={PLAYLIST_SYNCER_URL}
-						openInNewTab={true}>
-						Playlist Syncer
-					</EmbeddedLink>
-					).&nbsp; One thing led to another until I eventually realized that I
-					would regret not pursuing a career in Programming/Web
-					Development.&nbsp;
-				</CSharpCardSection>
+	// {
+	// 	name: ABOUT_SECTION_NAMES[3],
+	// 	pageName: C_SHARP_CLASSNAME,
+	// 	children: [
+	// 		<React.Fragment>
+	// 			{regretQuote}
+	// 			<CSharpCardSection title="Why Now?">
+	// 				If you had asked me what my career goals were in January of 2020, I'd
+	// 				have told to that I want to become a level 3 Tech Support Specialist
+	// 				or a Systems Administrator (I didn't believe I could ever have the
+	// 				necessary pre-requisites to becoming a programmer, which is what I
+	// 				really wanted to do).&nbsp; When I left&nbsp;
+	// 				<EmbeddedLink
+	// 					href={`${RESUME_URL}#ricoh`}
+	// 					openInNewTab={true}
+	// 					isLocal={true}
+	// 					addSpaces={false}>
+	// 					Ricoh
+	// 				</EmbeddedLink>
+	// 				, I had more free time on my hands than I'd had in a while.&nbsp; I
+	// 				used that free time to start learning c# (I was familiar with&nbsp;
+	// 				<EmbeddedLink
+	// 					href={POWERSHELL_URL}
+	// 					openInNewTab={true}
+	// 					isLocal={false}
+	// 					addSpaces={false}>
+	// 					Powershell
+	// 				</EmbeddedLink>
+	// 				, so c# seemed like a logical next step) with the intent of solving a
+	// 				couple "problems" I had had at the time (see{" "}
+	// 				<EmbeddedLink
+	// 					isLocal={true}
+	// 					href={DOWNLOADER_URL}
+	// 					openInNewTab={true}>
+	// 					Downloader
+	// 				</EmbeddedLink>{" "}
+	// 				and{" "}
+	// 				<EmbeddedLink
+	// 					isLocal={true}
+	// 					href={PLAYLIST_SYNCER_URL}
+	// 					openInNewTab={true}>
+	// 					Playlist Syncer
+	// 				</EmbeddedLink>
+	// 				).&nbsp; One thing led to another until I eventually realized that I
+	// 				would regret not pursuing a career in Programming/Web
+	// 				Development.&nbsp;
+	// 			</CSharpCardSection>
 
-				<CSharpCardSection title="Why not Comp Sci?">
-					<div>
-						After I graduated high school, I wanted to learn more about the
-						world and its inhabitants (a desire that was fostered by my&nbsp;
-						<ClassToggler
-							classToToggle={DISPLAY_NONE_CLASSNAME}
-							targetSelector="#p2p-carousel">
-							People to People Experience
-						</ClassToggler>
-						&nbsp; to England, Ireland, and Whales in 10th Grade).&nbsp;
-						{peopleToPeopleCarousel} &nbsp;I had studied German throughout high
-						school and even won a scholarship to be used to further my knowledge
-						of German and/or German culture.&nbsp; I could've used the
-						scholarship to take German classes, but I was young and for some
-						reason believed that Europeans were "better" versions of
-						Americans.&nbsp;
-					</div>
-					<div className="margin-top-1">
-						I wanted to learn to be "better", so I began searching for ways to
-						go to Germany that involved total immersion.&nbsp; Eventually, I
-						found a posting online for an English Assistant at a boarding school
-						in Thuringia, Germany.&nbsp; It seemed like a good fit, so I&nbsp;
-						<EmbeddedLink
-							isLocal={false}
-							href={GERMANY_APP_URL}
-							addSpaces={false}>
-							applied
-						</EmbeddedLink>
-						&nbsp; to it. &nbsp; Overall, it was a very challenging and&nbsp;
-						<ClassToggler
-							classToToggle={DISPLAY_NONE_CLASSNAME}
-							targetSelector="#german-carousel">
-							rewarding experience
-						</ClassToggler>{" "}
-						.&nbsp; Frankly, I learned a lot about myself, my assumptions, human
-						nature, and what "being an American" means to me.
-						{germanyCarousel}
-					</div>
-					<Paragraph size="five" classNameToAdd="margin-top-1">
-						Upon returning home, I took some time re-acclimate myself to
-						American culture (I had been the only "American" at the school).
-						&nbsp;I wasn't sure what I wanted to study yet, so I spent the
-						summer volunteering at two English as a Second Language schools (
-						<EmbeddedLink
-							isLocal={false}
-							addSpaces={false}
-							href={HUBB_CENTER_URL}>
-							The Hubb Center
-						</EmbeddedLink>
-						&nbsp;and&nbsp;
-						<EmbeddedLink isLocal={false} addSpaces={false} href={HARMONY_URL}>
-							Harmony Learning Center
-						</EmbeddedLink>
-						).
-					</Paragraph>
-					<Paragraph size="five" classNameToAdd="margin-top-1">
-						&nbsp;As Summerwas winding up, my father had a talk to me about
-						finishing my bachelor's degree.&nbsp; At the time, my father was of
-						the opinion that the degree was less important than just having a
-						college degree (this was a time when many freshman would choose
-						majors like "Psychology", "Philosophy", and "English" without any
-						real clue as to how they would use those degrees upon graduation).
-					</Paragraph>
-					{selfDoubtQuote}
-					<Paragraph size="five" classNameToAdd="margin-top-1">
-						At that time, I was entertaining three choices: Astronomy, Computer
-						Science, and Linguistics. &nbsp;Astronomy involved a lot of math and
-						physics, which I enjoyed, but I ultimately doubted how well I would
-						be able to handle the highest levels of math needed to be a
-						successful astronomer, so I entertained other options.
-					</Paragraph>
-					<Paragraph size="five" classNameToAdd="margin-top-1">
-						Computer Science was the most appealing option at the time, but I
-						ultimately shied away from it for two reasons.&nbsp; First, my dad
-						had been promoted to a team leader (from a developer
-						position).&nbsp; I didn't realize it at the time, but his comments
-						and attitude toward the new position negatively affected by
-						perception of the whole field.&nbsp; Second, I had just spent 11
-						months learning and perfecting my German and I didn't want to the
-						proficiency I had built up.&nbsp;
-					</Paragraph>
-					<Paragraph size="five" classNameToAdd="margin-top-1">
-						Knowing what I know now, it's hard to understand why I chose to
-						major in Linguistics (I was ignorant of the fact that a B.A. degree
-						would limit my options in the job market as they are generally
-						considered inferior to B.S. degrees).&nbsp; I tell myself I made the
-						"best" choice with what I knew at the time, but if I could, I would
-						use inception to plant the idea that majoring in computer science is
-						the "best" choice, even if I thought I would end up with a 2.0 G.P.A.
-					</Paragraph>
-				</CSharpCardSection>
-			</React.Fragment>,
-		],
-		hasCarousel: false,
-	},
+	// 			<CSharpCardSection title="Why not Comp Sci?">
+	// 				<div>
+	// 					After I graduated high school, I wanted to learn more about the
+	// 					world and its inhabitants (a desire that was fostered by my&nbsp;
+	// 					<ClassToggler
+	// 						classToToggle={DISPLAY_NONE_CLASSNAME}
+	// 						targetSelector="#p2p-carousel">
+	// 						People to People Experience
+	// 					</ClassToggler>
+	// 					&nbsp; to England, Ireland, and Whales in 10th Grade).&nbsp;
+	// 					{peopleToPeopleCarousel} &nbsp;I had studied German throughout high
+	// 					school and even won a scholarship to be used to further my knowledge
+	// 					of German and/or German culture.&nbsp; I could've used the
+	// 					scholarship to take German classes, but I was young and for some
+	// 					reason believed that Europeans were "better" versions of
+	// 					Americans.&nbsp;
+	// 				</div>
+	// 				<div className="margin-top-1">
+	// 					I wanted to learn to be "better", so I began searching for ways to
+	// 					go to Germany that involved total immersion.&nbsp; Eventually, I
+	// 					found a posting online for an English Assistant at a boarding school
+	// 					in Thuringia, Germany.&nbsp; It seemed like a good fit, so I&nbsp;
+	// 					<EmbeddedLink
+	// 						isLocal={false}
+	// 						href={GERMANY_APP_URL}
+	// 						addSpaces={false}>
+	// 						applied
+	// 					</EmbeddedLink>
+	// 					&nbsp; to it. &nbsp; Overall, it was a very challenging and&nbsp;
+	// 					<ClassToggler
+	// 						classToToggle={DISPLAY_NONE_CLASSNAME}
+	// 						targetSelector="#german-carousel">
+	// 						rewarding experience
+	// 					</ClassToggler>{" "}
+	// 					.&nbsp; Frankly, I learned a lot about myself, my assumptions, human
+	// 					nature, and what "being an American" means to me.
+	// 					{germanyCarousel}
+	// 				</div>
+	// 				<Paragraph size="five" classNameToAdd="margin-top-1">
+	// 					Upon returning home, I took some time re-acclimate myself to
+	// 					American culture (I had been the only "American" at the school).
+	// 					&nbsp;I wasn't sure what I wanted to study yet, so I spent the
+	// 					summer volunteering at two English as a Second Language schools (
+	// 					<EmbeddedLink
+	// 						isLocal={false}
+	// 						addSpaces={false}
+	// 						href={HUBB_CENTER_URL}>
+	// 						The Hubb Center
+	// 					</EmbeddedLink>
+	// 					&nbsp;and&nbsp;
+	// 					<EmbeddedLink isLocal={false} addSpaces={false} href={HARMONY_URL}>
+	// 						Harmony Learning Center
+	// 					</EmbeddedLink>
+	// 					).
+	// 				</Paragraph>
+	// 				<Paragraph size="five" classNameToAdd="margin-top-1">
+	// 					&nbsp;As Summerwas winding up, my father had a talk to me about
+	// 					finishing my bachelor's degree.&nbsp; At the time, my father was of
+	// 					the opinion that the degree was less important than just having a
+	// 					college degree (this was a time when many freshman would choose
+	// 					majors like "Psychology", "Philosophy", and "English" without any
+	// 					real clue as to how they would use those degrees upon graduation).
+	// 				</Paragraph>
+	// 				{selfDoubtQuote}
+	// 				<Paragraph size="five" classNameToAdd="margin-top-1">
+	// 					At that time, I was entertaining three choices: Astronomy, Computer
+	// 					Science, and Linguistics. &nbsp;Astronomy involved a lot of math and
+	// 					physics, which I enjoyed, but I ultimately doubted how well I would
+	// 					be able to handle the highest levels of math needed to be a
+	// 					successful astronomer, so I entertained other options.
+	// 				</Paragraph>
+	// 				<Paragraph size="five" classNameToAdd="margin-top-1">
+	// 					Computer Science was the most appealing option at the time, but I
+	// 					ultimately shied away from it for two reasons.&nbsp; First, my dad
+	// 					had been promoted to a team leader (from a developer
+	// 					position).&nbsp; I didn't realize it at the time, but his comments
+	// 					and attitude toward the new position negatively affected by
+	// 					perception of the whole field.&nbsp; Second, I had just spent 11
+	// 					months learning and perfecting my German and I didn't want to the
+	// 					proficiency I had built up.&nbsp;
+	// 				</Paragraph>
+	// 				<Paragraph size="five" classNameToAdd="margin-top-1">
+	// 					Knowing what I know now, it's hard to understand why I chose to
+	// 					major in Linguistics (I was ignorant of the fact that a B.A. degree
+	// 					would limit my options in the job market as they are generally
+	// 					considered inferior to B.S. degrees).&nbsp; I tell myself I made the
+	// 					"best" choice with what I knew at the time, but if I could, I would
+	// 					use inception to plant the idea that majoring in computer science is
+	// 					the "best" choice, even if I thought I would end up with a 2.0 G.P.A.
+	// 				</Paragraph>
+	// 			</CSharpCardSection>
+	// 		</React.Fragment>,
+	// 	],
+	// 	hasCarousel: false,
+	// },
 ];
 
 interface AboutProps {}
 
-const About: React.FC<AboutProps> = () => {
+export const About: React.FC<AboutProps> = () => {
 	return (
 		<React.Fragment>
 			<CSharpLayout sections={sections} pageName={ABOUT_PAGE_NAME} />
-			<AudioPlayer />
 			<LoadingSpinner forceShow={false}/>
 		</React.Fragment>
 	);
 };
-
-export default About;

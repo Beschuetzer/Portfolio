@@ -1,6 +1,5 @@
 import React from "react";
-import { SKILLS_CLASSNAME } from "../../components/Skills/utils";
-import { EDUCATION_CLASSNAME } from "./utils";
+import { EDUCATION_CLASSNAME, SKILLS_CLASSNAME } from "../../components/constants";
 
 
 interface EducationItemProps{
@@ -12,7 +11,7 @@ interface EducationItemProps{
 	href: string,
 }
 
-const EducationItem: React.FC<EducationItemProps> = ({
+export const EducationItem: React.FC<EducationItemProps> = ({
 	startDate,
 	endDate,
 	degree,
@@ -49,5 +48,3 @@ const EducationItem: React.FC<EducationItemProps> = ({
 		</li>
 	);
 };
-
-export default EducationItem;

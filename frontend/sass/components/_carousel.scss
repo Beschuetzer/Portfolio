@@ -17,30 +17,28 @@
 
 .carousel {
 	position: relative;
-	grid-column: 2 / span 3;
+	grid-column: 1 / -1;
 	display: grid;
 	column-gap: $carousel-column-gap;
-	// row-gap: $carousel-column-gap;
-	// grid-template-columns: repeat(
-	// 	auto-fill,
-	// 	minmax($carousel-grid-width, var(--carousel-grid-max-column-width))
-	// );
-	padding: 0 0 0 0.2rem;
+	row-gap: $carousel-column-gap;
+	grid-template-columns: repeat(4, 1fr);
 	justify-items: flex-start;
 	align-items: flex-start;
 	overflow: hidden;
-	margin-left: $default-font-size * 2;
+	margin: 0 auto;
 	width: calc(100% - #{$default-font-size} * 3.75);
+	padding: $default-font-size * 2 0;
+	justify-items: center;
+	align-items: center;
 
 	@include respond(nav-switch) {
-		// width: 100%;
 		margin-left: 0;
 		justify-content: center;
 		column-gap: $default-font-size / 2;
-		grid-template-columns: repeat(
-			auto-fill,
-			minmax($default-font-size * 5, $carousel-item-card-size-nav-switch)
-		) !important;
+		// grid-template-columns: repeat(
+		// 	auto-fill,
+		// 	minmax($default-font-size * 5, $carousel-item-card-size-nav-switch)
+		// ) !important;
 		row-gap: $default-font-size * 0.5;
 	}
 
@@ -178,11 +176,10 @@
 		z-index: 1;
 		font-size: $font-size-four;
 		width: 95%;
-    	margin: 0 auto $default-font-size auto;
+    	// margin: 0 auto $default-font-size auto;
 		height: $default-font-size * 10.921;
 		border-radius: $default-font-size / 2;
 		overflow: hidden;
-		box-shadow: 0px 4px 8px rgba(var(--color-black-rgb), 0.5);
 		transition: 
 			border-radius $animation-duration $animation-easing-standard,
 			transform $animation-duration $animation-easing-standard;
@@ -193,7 +190,9 @@
 		}
 
 		&:hover {
-			border-radius: 0;
+			border-radius: 4px;
+			box-shadow: 0px 4px 8px rgba(var(--color-black-rgb), 0.5);
+			transform: translateY(-.5rem) !important;
 		}
 
 		& * {
@@ -321,10 +320,15 @@
 					font-size: $font-size-six;
 				}
 			}
+
+			&:hover {
+				transform: translate(0, 0) !important;
+			}
 		}
 	}
 
 	&__video {
+		background-color: rgb(var(--color-white-rgb));
 		&.fg-video {
 			@extend %item-filter;
 			opacity: 1;

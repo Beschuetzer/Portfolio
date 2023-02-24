@@ -1,61 +1,77 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { OVERFLOW_HIDDEN_ALWAYS_CLASSNAME } from "../constants";
-import { NAVBAR_CLASSNAME } from "./utils";
+import { Exclusive } from "../../types";
+import { NAVBAR_CLASSNAME, OVERFLOW_HIDDEN_ALWAYS_CLASSNAME } from "../constants";
+import { NavListItemExpanded, NavListItemExpandedDirections } from "./NavListItemExpanded";
 
-interface NavListItemProps {
-  isEmail?: boolean
-	isLink?: boolean
-  to: string;
-  label: string;
-  children?: any;
-  className?: string;
-  triangle?: any;
-  imageAlt?: string;
-  imageSource?: string;
-  rank?: string,
-  onMouseEnter: (e: any) => void;
-  onClick: (e: any) => void;
+export type NavListItemImage = {
+  alt?: string;
+  source?: string;
 }
 
-const NavListItem: React.FC<NavListItemProps> = ({
+type NavListItemLinkAndExpandedMenuExclusivity = Exclusive< {
+  /*
+   * the link to go to.  A expanded menu can not be a link
+   */
+  to: string;
+}, {
+    /*
+   * if this is specified, the item becomes an expandable menu.  This item can not be a link, so specify a 'to' prop will throw a type error
+   */
+  expandedItemOptions: {
+    items: NavListItemProps[];
+    direction?: NavListItemExpandedDirections;
+  };
+}>; 
+
+export type NavListItemProps = {
+  className?: string;
+  image?: NavListItemImage;
+  isEmail?: boolean;
+  label: string;
+  onClick: (e: any) => void;
+  onMouseEnter: (e: any) => void;
+} & NavListItemLinkAndExpandedMenuExclusivity;
+
+const defaults = {
+  liClassName: `${NAVBAR_CLASSNAME}__item`,
+  linkClassName: `${NAVBAR_CLASSNAME}__link`,
+  imageClassName: `${NAVBAR_CLASSNAME}__link-image`,
+};
+
+export const NavListItem: React.FC<NavListItemProps> = ({
+  expandedItemOptions = null,
 	isEmail = false,
-	isLink = true,
   onMouseEnter,
   onClick,
-  to,
+  to = '',
   label,
-  children,
-  className,
-  triangle,
-  rank,
-  imageAlt = "A picture",
-  imageSource = "",
+  className = '',
+  image = {
+    alt: '',
+    source: '',
+  }
 }) => {
-	
-  const defaults = {
-		liClassName: `${NAVBAR_CLASSNAME}__item`,
-		linkClassName: `${NAVBAR_CLASSNAME}__link`,
-		imageClassName: `${NAVBAR_CLASSNAME}__link-image`,
-	};
-
-  const classNamesToUse = className ? className : defaults.liClassName;
+  const expandedMenuClassname = `${NAVBAR_CLASSNAME}__item ${NAVBAR_CLASSNAME}__dropdown-container flex align-center justify-content-center`;
+  const classNameToUse = className || expandedItemOptions ? expandedMenuClassname : defaults.liClassName;
+  const triangle = <div className="triangle-down"/>;
   const getContent = () => {
     let content = (
       <React.Fragment>
-        <div className={`${NAVBAR_CLASSNAME}__dropdown-group`}>
-          {label}
-          {triangle}
-        </div>
-        {children}
+        {label}
       </React.Fragment>
     );
 
-    if (!triangle) {
+    if (expandedItemOptions) {
       content = (
         <React.Fragment>
-          {label}
-          {children}
+          <div className={`${NAVBAR_CLASSNAME}__dropdown-group`}>
+            {label}
+            {triangle}
+          </div>
+          <NavListItemExpanded direction={expandedItemOptions ? expandedItemOptions.direction : NavListItemExpandedDirections.vertical}>
+            {expandedItemOptions.items?.map((itemProps, index) => <NavListItem key={index} {...itemProps}/>)}
+          </NavListItemExpanded>
         </React.Fragment>
       );
     }
@@ -71,21 +87,24 @@ const NavListItem: React.FC<NavListItemProps> = ({
         </a>
       )
     }
-    else if (isLink === true) return (
-      <Link className={defaults.linkClassName} to={to}>
-        {getContent()}
-      </Link>
-    ) 
-    else if (isLink === false) return (
+    else if (!!to) {
+      return (
+        <Link className={defaults.linkClassName} to={to}>
+          {getContent()}
+        </Link>
+      ) 
+    }
+
+    return (
       <div
         className={`${defaults.linkClassName} ${
-          !isLink && imageSource ? "overflow-hidden" : ""
+          !to && image.source ? "overflow-hidden" : ""
         }`}>
-        {!isLink && imageSource ? (
+        {!to && image.source ? (
           <img
             className={defaults.imageClassName}
-            src={imageSource}
-            alt={imageAlt}
+            src={image.source}
+            alt={image.alt}
           />
         ) : null}
         {getContent()}
@@ -98,16 +117,16 @@ const NavListItem: React.FC<NavListItemProps> = ({
       aria-label={label}
       onMouseEnter={onMouseEnter}
       onClick={onClick}
-      className={`${classNamesToUse}  ${
-        isLink && imageSource ? OVERFLOW_HIDDEN_ALWAYS_CLASSNAME : ""
+      className={`${classNameToUse}  ${
+        !!to && image.source ? OVERFLOW_HIDDEN_ALWAYS_CLASSNAME : ""
       }`}>
         
-      {isLink && imageSource ? (
+      {!!to && image.source ? (
         <img
           aria-hidden="true"
           className={defaults.imageClassName}
-          src={imageSource}
-          alt={imageAlt}
+          src={image.source}
+          alt={image.alt}
         />
       ) : null}
 
@@ -115,5 +134,3 @@ const NavListItem: React.FC<NavListItemProps> = ({
     </li>
   );
 }
-
-export default NavListItem;

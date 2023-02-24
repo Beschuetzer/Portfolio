@@ -1,5 +1,5 @@
 import React from "react";
-import { REFERENCES_CLASSNAME } from "./utils";
+import { REFERENCES_CLASSNAME } from "../../components/constants";
 
 interface ReferenceItemProps { 
   number: string,
@@ -10,7 +10,7 @@ interface ReferenceItemProps {
   href?: string
 }
 
-const ReferenceItem: React.FC<ReferenceItemProps> = ({ 
+export const ReferenceItem: React.FC<ReferenceItemProps> = ({ 
   number,
   name,
   phone,
@@ -57,5 +57,3 @@ const ReferenceItem: React.FC<ReferenceItemProps> = ({
 		</React.Fragment>
 	);
 };
-
-export default ReferenceItem;

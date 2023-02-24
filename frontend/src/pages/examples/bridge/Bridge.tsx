@@ -1,20 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
-import { connect, RootStateOrAny } from "react-redux";
-
-import {
-	setClickedBridgeInfoButtonCount,
-	setCurrentBridgeSection,
-	setHasClickedALink,
-} from "../../../actions";
-
-import EmbeddedLink from "../../../components/EmbeddedLink";
-import BridgeCard from "./BridgeCard";
+import { EmbeddedLink } from "../../../components/EmbeddedLink";
+import { BridgeSection } from "./BridgeSection";
 import BridgeCardSection from "./BridgeCardSection";
-import SectionContainer from "../../../components/SectionContainer";
-import Card from "../../../components/Card/Card";
-import BridgeSectionLink from "./BridgeSectionLink";
-
+import { SectionContainer } from "../../../components/SectionContainer";
+import { Card } from "../../../components/Card/Card";
 import dealSummaryVideo from "../../../clips/bridge/dealSummary.mp4";
 import undoVideo from "../../../clips/bridge/undo.mp4";
 import claimSomeVideo from "../../../clips/bridge/claim-some-declarer-initial.mp4";
@@ -25,20 +15,9 @@ import cardPlayAndRoundEndVideo from "../../../clips/bridge/animation-roundEndDu
 import preferencesVideo from "../../../clips/bridge/preferences.mp4";
 import themesVideo from "../../../clips/bridge/themes.mp4";
 import saveGameVideo from "../../../clips/bridge/saveGame.mp4";
-import CardManager from "../../../components/Card/CardManager";
-import {
-	bridgeSections,
-	BRIDGE_BACKDROP_CLASSNAME,
-	BRIDGE_CLASSNAME,
-	BRIDGE_HERO_CLASSNAME,
-	BRIDGE_HERO_CLICKED_CLASSNAME,
-	BRIDGE_HERO_MORE__CLICKED_CLASSNAME,
-	resetBridgeHero,
-	setLinearGradientCssCustomProp,
-} from "./utils";
+import { CardManager } from "../../../components/Card/CardManager";
 import {
 	DISPLAY_NONE_CLASSNAME,
-	Reference,
 	LIVE_BRIDGE_URL,
 	GITHUB_URL,
 	WIKIPEDIA_BRIDGE_URL,
@@ -49,15 +28,28 @@ import {
 	RESUME_URL,
 	BRIDGE_PAGE_NAME,
 	BRIDGE_DEMO_URL,
+	bridgeSectionNames,
+	BRIDGE_BACKDROP_CLASSNAME,
+	BRIDGE_CLASSNAME,
+	BRIDGE_HERO_CLASSNAME,
+	BRIDGE_HERO_CLICKED_CLASSNAME,
+	BRIDGE_HERO_MORE__CLICKED_CLASSNAME,
 } from "../../../components/constants";
-import BridgeHero from "./BridgeHero";
-import SourceCodeLink from "../../../components/SourceCodeLink";
-import ArrowButton from "../../../components/ArrowButton";
-import Quote from "../../../components/Quote";
+import { BridgeHero } from "./BridgeHero";
+import { SourceCodeLink } from "../../../components/SourceCodeLink";
+import { ArrowButton } from "../../../components/ArrowButton";
+import { Quote } from "../../../components/Quote";
+import { BridgeSectionLink } from "./BridgeSectionLink";
+import { setHasClickedALink, setClickedBridgeInfoButtonCount, setCurrentBridgeSection } from "../../../slices/bridgeSlice";
+import { RootState } from "../../../store";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { isMobileSelector } from "../../../slices/generalSlice";
+import { Reference } from "../../../types";
+import { setLinearGradientCssCustomProp, resetBridgeHero } from "./utils";
 
 const sectionContents = [
-	<SectionContainer name={bridgeSections[0]} pageName={BRIDGE_PAGE_NAME}>
-		<BridgeCard titleSize="two" titleContent={bridgeSections[0]}>
+	<SectionContainer name={bridgeSectionNames[0]} pageName={BRIDGE_PAGE_NAME}>
+		<BridgeSection titleSize="two" titleContent={bridgeSectionNames[0]}>
 			<Quote author="Timothy Ferriss" className="padding-bottom-2">
 				What we fear doing most is usually what we most need to do.
 			</Quote>
@@ -132,13 +124,13 @@ const sectionContents = [
 					<EmbeddedLink href={LIVE_BRIDGE_URL}>A# Maj Bridge</EmbeddedLink>.
 				</p>
 			</BridgeCardSection>
-		</BridgeCard>
+		</BridgeSection>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSections[1]} pageName={BRIDGE_PAGE_NAME}>
-		<BridgeCard
+	<SectionContainer name={bridgeSectionNames[1]} pageName={BRIDGE_PAGE_NAME}>
+		<BridgeSection
+			selectorToUseForSubtitle={(state: RootState) => state.bridge.featureSectionTitle}
 			titleSize="two"
-			titleContent={bridgeSections[1]}
-			titleSubtitle="Pick a card any card...">
+			titleContent={bridgeSectionNames[1]}>
 			<CardManager>
 				<Card
 					video={cardPlayAndRoundEndVideo}
@@ -203,12 +195,11 @@ const sectionContents = [
 					title="Claim Some">
 					<div>
 						<p>
-							'Claim Some' allows the declarer (person playing the contract) to
+							The 'Claim Some' feature speeds up gameplay in some scenarios by allowing the declarer (person playing the contract) to
 							claim some number of tricks less than or equal to the number of
 							tricks remaining.&nbsp; The UI guides players through the
-							selection process, by graying out cards that are invalid and
-							displaying the selected cards in a table, allowing for a smooth
-							user experience.
+							selection process by disabling invalid choices and
+							displaying valid choices in a table.
 						</p>
 					</div>
 				</Card>
@@ -266,10 +257,10 @@ const sectionContents = [
 				</Card>
 			</CardManager>
 			<div className={BRIDGE_BACKDROP_CLASSNAME}></div>
-		</BridgeCard>
+		</BridgeSection>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSections[2]} pageName={BRIDGE_PAGE_NAME}>
-		<BridgeCard titleSize="two" titleContent={bridgeSections[2]}>
+	<SectionContainer name={bridgeSectionNames[2]} pageName={BRIDGE_PAGE_NAME}>
+		<BridgeSection titleSize="two" titleContent={bridgeSectionNames[2]}>
 			<Quote author="Walt Disney" className="padding-bottom-2">
 				There's no magic in magic, it's all in the details.
 			</Quote>
@@ -461,10 +452,10 @@ const sectionContents = [
 					</p>
 				</BridgeCardSection>
 			</BridgeCardSection>
-		</BridgeCard>
+		</BridgeSection>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSections[3]} pageName={BRIDGE_PAGE_NAME}>
-		<BridgeCard titleSize="two" titleContent={bridgeSections[3]}>
+	<SectionContainer name={bridgeSectionNames[3]} pageName={BRIDGE_PAGE_NAME}>
+		<BridgeSection titleSize="two" titleContent={bridgeSectionNames[3]}>
 			<Quote author="Zig Ziglar" className="padding-bottom-2">
 				If you are not willing to learn, no one can help you.&nbsp; If you are
 				determined to learn, no one can stop you.
@@ -502,42 +493,35 @@ const sectionContents = [
 					requirements).
 				</p>
 			</BridgeCardSection>
-		</BridgeCard>
+		</BridgeSection>
 	</SectionContainer>,
 ];
 
 interface BridgeProps {
-	isMobile: boolean;
-	setClickedBridgeInfoButtonCount: (value: number) => any;
-	setCurrentBridgeSection: (value: number) => any;
-	setHasClickedALink: (value: boolean) => any;
 }
 
-const Bridge: React.FC<BridgeProps> = ({
-	setHasClickedALink,
-	setClickedBridgeInfoButtonCount,
-	setCurrentBridgeSection,
-	isMobile,
-}) => {
+export const Bridge: React.FC<BridgeProps> = () => {
+	const dispatch = useAppDispatch();
+	const isMobile = useAppSelector(isMobileSelector);
 	const leftArrowProps = { direction: "left" };
 	const rightArrowProps = { direction: "right" };
 
 	useEffect(() => {
 		setLinearGradientCssCustomProp();
-		setHasClickedALink(false);
-	}, [setHasClickedALink]);
+		dispatch(setHasClickedALink(false));
+	}, [setHasClickedALink, dispatch]);
 
 	useEffect(() => {
 		const heroMore = document.querySelector(".hero__more");
 		resetBridgeHero({ current: heroMore } as Reference);
-		setClickedBridgeInfoButtonCount(0);
-		setCurrentBridgeSection(0);
+		dispatch(setClickedBridgeInfoButtonCount(0));
+		dispatch(setCurrentBridgeSection(0));
 
 		return () => {
-			setClickedBridgeInfoButtonCount(0);
-			setCurrentBridgeSection(0);
+			dispatch(setClickedBridgeInfoButtonCount(0));
+			dispatch(setCurrentBridgeSection(0));
 		};
-	}, [setClickedBridgeInfoButtonCount, setCurrentBridgeSection]);
+	}, [dispatch, setClickedBridgeInfoButtonCount, setCurrentBridgeSection]);
 
 	//adding scroll listener
 	useEffect(() => {
@@ -563,7 +547,7 @@ const Bridge: React.FC<BridgeProps> = ({
 					}
 					heroMore?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
 
-					setClickedBridgeInfoButtonCount(2);
+					dispatch(setClickedBridgeInfoButtonCount(2));
 				}
 			}
 		};
@@ -573,7 +557,7 @@ const Bridge: React.FC<BridgeProps> = ({
 		return () => {
 			window.removeEventListener("scroll", handleScroll as any);
 		};
-	}, [isMobile, setClickedBridgeInfoButtonCount]);
+	}, [isMobile, dispatch, setClickedBridgeInfoButtonCount]);
 
 	const renderSections = () => {
 		return sectionContents.map((item, index) => {
@@ -631,19 +615,6 @@ const Bridge: React.FC<BridgeProps> = ({
 		</div>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		isMobile: state.general.isMobile,
-		hasClickedALink: state.bridge.hasClickedALink,
-	};
-};
-
-export default connect(mapStateToProps, {
-	setHasClickedALink,
-	setClickedBridgeInfoButtonCount,
-	setCurrentBridgeSection,
-})(Bridge);
 
 /* <p>
 		Contract bridge, or simply bridge, is a trick-taking card game using a standard 52-card deck. In its basic format, it is played by four players in two competing partnerships, with partners sitting opposite each other around a table.

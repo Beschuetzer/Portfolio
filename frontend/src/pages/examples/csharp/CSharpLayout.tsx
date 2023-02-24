@@ -1,11 +1,10 @@
 import React from "react";
 import { capitalize, replaceCharacters } from "../../../helpers";
-import Section from "../../../components/Section";
-import SourceCodeLink from "../../../components/SourceCodeLink";
-import { C_SHARP_CLASSNAME } from "./utils";
-import { CSharpSection } from "../../../components/constants";
-import PageWrapper from "../../PageWrapper";
-
+import { Section } from "../../../components/Section";
+import { SourceCodeLink } from "../../../components/SourceCodeLink";
+import { PageWrapper } from "../../PageWrapper";
+import { CSharpSection } from "../../../types";
+import { C_SHARP_CLASSNAME } from "../../../components/constants";
 
 interface CSharpLayoutProps {
 	pageName: string;
@@ -19,7 +18,7 @@ interface CSharpLayoutProps {
 	headerSideContents?: any;
 }
 
-const CSharpLayout: React.FC<CSharpLayoutProps> = ({
+export const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 	href,
 	sections,
 	pageName,
@@ -101,5 +100,3 @@ const CSharpLayout: React.FC<CSharpLayoutProps> = ({
 		</PageWrapper>
 	);
 };
-
-export default CSharpLayout;

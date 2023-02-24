@@ -1,56 +1,30 @@
 import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { connect, RootStateOrAny } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { setHeaderHeightCSSPropertyValue } from "../../hooks/useSetHeaderCssStyle";
+import { headerHeightSelector, isSiteNavMinimizedSelector, setIsSiteNavMinimized, viewPortWidthSelector } from "../../slices/generalSlice";
+import { HEADER_TOGGLER_CSS_CLASSNAME, HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_TOGGLER_CLASSNAME } from "../constants";
 
-import {
-	viewPortPixelToRem,
-	headerTogglerWidth,
-} from "../constants";
-import { SITE_NAV_MINIMAL_CLASSNAME } from "./SiteNav/SiteNav";
-import { HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_TOGGLER_CLASSNAME, HEADER_TOGGLER_CSS_CLASSNAME } from "./SiteNav/utils";
-import { setHeaderHeaderCSSPropertyValue as setHeaderHeightCSSPropertyValue, toggleSiteNavMinimal } from "./utils";
+interface NavTogglerProps {}
 
-interface NavTogglerProps {
-	headerHeight: number;
-	viewPortWidth: number;
-}
+export const NavToggler: React.FC<NavTogglerProps> = () => {
+	const dispatch = useAppDispatch();
+	const headerHeight = useAppSelector(headerHeightSelector);
+	const viewPortWidth = useAppSelector(viewPortWidthSelector);
+	const isSiteNavMinimized = useAppSelector(isSiteNavMinimizedSelector);
 
-const NavToggler: React.FC<NavTogglerProps> = ({
-	headerHeight,
-	viewPortWidth,
-}) => {
 	//Adjusting NavToggler height to match header height as it changes on resizes
 	useEffect(() => {
-		const getPixelToRemConversionToUse = () => {
-			for (const [key, value] of Object.entries(viewPortPixelToRem)) {
-				if (
-					viewPortWidth >= viewPortPixelToRem[key].min &&
-					viewPortWidth <= viewPortPixelToRem[key].max
-				)
-					return viewPortPixelToRem[key].pixelsToRem;
-			}
-			return viewPortPixelToRem.full.pixelsToRem;
-		};
-
-		const pixelToRemConversionToUse = getPixelToRemConversionToUse();
+		const pixelToRemConversionToUse = 10;
 		const headerHeightInRem = headerHeight / pixelToRemConversionToUse;
 		const newWidth = `${
-			headerHeightInRem + parseFloat(headerTogglerWidth as any)
-		}rem`;
+			headerHeightInRem}rem`;
+		
 		document.documentElement.style.setProperty(
 			HEADER_TOGGLER_CSS_CLASSNAME,
 			newWidth,
 		);
-
-		//prevents bug regarding toggler being closed when going above nav-switch breakpoint
-		if (viewPortWidth >= viewPortPixelToRem?.navBreak.max) {
-			const toggler = document.querySelector(`.header-toggler`) as HTMLElement;
-			const siteNav = document.querySelector(`.site-nav`) as HTMLElement;
-			toggler.classList.remove(HEADER_TOGGLER_ACTIVE_CLASSNAME);
-			siteNav.classList.remove(SITE_NAV_MINIMAL_CLASSNAME);
-		}
-
 	}, [headerHeight, viewPortWidth]);
 
 	const handleOnClick = (e: MouseEvent) => {
@@ -63,8 +37,8 @@ const NavToggler: React.FC<NavTogglerProps> = ({
 
 		if (!togglerParent.classList.contains(HEADER_TOGGLER_ACTIVE_CLASSNAME)) setHeaderHeightCSSPropertyValue();
 		else setHeaderHeightCSSPropertyValue(0);
-
-		toggleSiteNavMinimal();
+		
+		dispatch(setIsSiteNavMinimized(!isSiteNavMinimized));
 	};
 
 	return ReactDOM.createPortal(
@@ -76,12 +50,3 @@ const NavToggler: React.FC<NavTogglerProps> = ({
 		document.body.querySelector(`.${HEADER_TOGGLER_CLASSNAME}`)!,
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		headerHeight: state.general.headerHeight,
-		viewPortWidth: state.general.viewPortWidth,
-	};
-};
-
-export default connect(mapStateToProps, {})(NavToggler);

@@ -1,23 +1,9 @@
-import React, { RefObject, useRef } from "react";
-import { connect, RootStateOrAny } from "react-redux";
-import CarouselItem, {
-	FULLSCREEN_CLASSNAME,
-	FULLSCREEN_PARENT_CLASSNAME,
-	PLAYING_CLASSNAME,
-	STOPPED_CLASSNAME,
+import React, { RefObject, useEffect, useRef } from "react";
+import {
+	CarouselItem,
 } from "./CarouselItem";
-import useInit from "./useInit";
 import CarouselArrow from "./CarouselArrow";
 import {
-	CarouselItemProps,
-	CAROUSEL_ARROW_BUTTONS_CLASSNAME,
-	CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
-	CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME,
-	CAROUSEL_CLASSNAME,
-	CAROUSEL_DOT_ACTIVE_CLASSNAME,
-	CAROUSEL_DOT_CLASSNAME,
-	CAROUSEL_ITEM_CLASSNAME,
-	CAROUSEL_MIN_IMAGE_COUNT,
 	setArrowButtonsHiddenClass,
 	setTranslationAmount,
 	handleSetTranslation as getNewCurrentTranslationFactor,
@@ -25,36 +11,38 @@ import {
 	getNthItemOpen,
 	toggleLeftAndRightArrows as handleWhetherToDisplayArrows,
 	resetCarouselVideo,
-	CAROUSEL_VIDEO_CLASSNAME,
 	getCarouselGridMaxColumnWidth,
-	CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT,
 	getArrangedItems,
 	toggleMobileDisplayIssueFixes,
+	getFirstItemAndParentCarousels,
+	setCarouselGridMaxColumnWidth,
 } from "./util";
-import { ArrowButtonDirection } from "../constants";
+import { CAROUSEL_ARROW_BUTTONS_CLASSNAME, CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME, CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME, CAROUSEL_DOT_ACTIVE_CLASSNAME, CAROUSEL_DOT_CLASSNAME, CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT, CAROUSEL_ITEM_CLASSNAME, CAROUSEL_MIN_IMAGE_COUNT, CAROUSEL_VIDEO_CLASSNAME, CONTAINS_CAROUSEL_CLASSNAME, FULLSCREEN_CLASSNAME, FULLSCREEN_PARENT_CLASSNAME, PLAYING_CLASSNAME, STOPPED_CLASSNAME } from "../constants";
 import { useState } from "react";
+import { ArrowButtonDirection, CarouselItemProps } from "../../types";
+import { toggleScrollability } from "../../helpers";
 
-interface CarouselProps {
-	viewPortWidth: number;
+export type CarouselProps = {
 	items: CarouselItemProps[];
-	numberOfItemsInCarouselWidthWise: number;
-	numberOfItemsToScrollOnClick: number;
+	numberOfItemsInCarouselWidthWise?: string;
+	numberOfItemsToScrollOnClick?: string;
 	functionToRunOnClose?: any;
 	functionToGetContainer?: any;
 	dotSVGXLinkHref?: string;
-	shouldRearrangeItems: boolean;
+	shouldRearrangeItems?: boolean;
 }
 
-const Carousel: React.FC<CarouselProps> = ({
-	viewPortWidth,
+export const Carousel: React.FC<CarouselProps> = ({
 	items,
-	numberOfItemsInCarouselWidthWise,
-	numberOfItemsToScrollOnClick,
 	functionToRunOnClose,
 	functionToGetContainer,
+	numberOfItemsInCarouselWidthWise = "3",
+	numberOfItemsToScrollOnClick = "3",
 	dotSVGXLinkHref = "/sprite.svg#icon-dot-single",
 	shouldRearrangeItems = true,
 }) => {
+	const numberOfItemsInCarouselWidthWiseConverted = Number(numberOfItemsInCarouselWidthWise);
+	const numberOfItemsToScrollOnClickConverted = Number(numberOfItemsToScrollOnClick);
 	let currentTranslationFactor = CAROUSEL_MIN_IMAGE_COUNT;
 	let itemsRef = useRef<NodeListOf<Element>>(null);
 	let itemsWidthRef = useRef<any>(null);
@@ -70,18 +58,6 @@ const Carousel: React.FC<CarouselProps> = ({
 
 	window.addEventListener("resize", handleResize);
 
-	useInit(
-		leftArrowRef,
-		rightArrowRef,
-		CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME,
-		CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
-		CAROUSEL_ITEM_CLASSNAME,
-		itemsRef,
-		items,
-		shouldRearrangeItems,
-		numberOfItemsInCarouselWidthWise,
-	);
-
 	const handleArrowClick = (e: Event) => {
 		const isFullSize = handleFullsizeArrowToggling(e);
 		if (isFullSize) return;
@@ -89,8 +65,8 @@ const Carousel: React.FC<CarouselProps> = ({
 		currentTranslationFactor = getNewCurrentTranslationFactor(
 			e,
 			currentTranslationFactor,
-			numberOfItemsToScrollOnClick,
-			numberOfItemsInCarouselWidthWise,
+			numberOfItemsToScrollOnClickConverted,
+			numberOfItemsInCarouselWidthWiseConverted,
 			items,
 		);
 
@@ -99,20 +75,20 @@ const Carousel: React.FC<CarouselProps> = ({
 
 	function setTranslationAmountFlow() {
 		setArrowButtonsHiddenClass(
-			numberOfItemsInCarouselWidthWise - 1,
+			numberOfItemsInCarouselWidthWiseConverted - 1,
 			items.length - 1,
 			currentTranslationFactor,
 			leftArrowRef as any,
 			rightArrowRef as any,
-			numberOfItemsInCarouselWidthWise,
-			numberOfItemsToScrollOnClick,
+			numberOfItemsInCarouselWidthWiseConverted,
+			numberOfItemsToScrollOnClickConverted,
 		);
 
 		setItemsWidthRef(itemsWidthRef);
 		const amountToTranslateImages =
 			(itemsWidthRef as any).current *
 			currentTranslationFactor *
-			numberOfItemsToScrollOnClick;
+			numberOfItemsToScrollOnClickConverted;
 
 		removeTransitionTimeout = setTranslationAmount(
 			amountToTranslateImages,
@@ -126,8 +102,8 @@ const Carousel: React.FC<CarouselProps> = ({
 		currentTranslationFactor = getNewCurrentTranslationFactor(
 			null,
 			currentTranslationFactor,
-			numberOfItemsToScrollOnClick,
-			numberOfItemsInCarouselWidthWise,
+			numberOfItemsToScrollOnClickConverted,
+			numberOfItemsInCarouselWidthWiseConverted,
 			items,
 		);
 		setTranslationAmountFlow();
@@ -163,8 +139,8 @@ const Carousel: React.FC<CarouselProps> = ({
 				itemsWidthRef as any,
 				leftArrowRef as any,
 				rightArrowRef as any,
-				numberOfItemsInCarouselWidthWise,
-				numberOfItemsToScrollOnClick,
+				numberOfItemsInCarouselWidthWiseConverted,
+				numberOfItemsToScrollOnClickConverted,
 				removeTransitionTimeout as any,
 			);
 	};
@@ -194,7 +170,7 @@ const Carousel: React.FC<CarouselProps> = ({
 				const itemToOpen = items[nthItemOpen];
 				const imageOrVideo = itemToOpen.children[0] as HTMLElement;
 				itemToOpen?.classList.add(FULLSCREEN_PARENT_CLASSNAME);
-				imageOrVideo.classList.add(FULLSCREEN_CLASSNAME);
+				imageOrVideo.classList.remove(FULLSCREEN_CLASSNAME);
 
 				let newItems = [...itemsToRenderFullScreen];
 				if (!itemsToRenderFullScreen.includes(nthItemOpen))
@@ -209,11 +185,12 @@ const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	const renderItems = () => {
-		const arrangedItems = getArrangedItems(
-			items,
-			shouldRearrangeItems,
-			numberOfItemsInCarouselWidthWise,
-		) as CarouselItemProps[];
+		// const arrangedItems = getArrangedItems(
+		// 	items,
+		// 	shouldRearrangeItems,
+		// 	numberOfItemsInCarouselWidthWiseConverted,
+		// ) as CarouselItemProps[];
+		const arrangedItems = items;
 
 		return arrangedItems.map((item, index) => {
 			const carouselItemProps: CarouselItemProps = {
@@ -291,7 +268,7 @@ const Carousel: React.FC<CarouselProps> = ({
 	};
 
 	const renderCarouselDots = () => {
-		if (!items.length || items.length <= numberOfItemsInCarouselWidthWise)
+		if (!items.length || items.length <= numberOfItemsInCarouselWidthWiseConverted)
 			return null;
 		const maxWidth = getCarouselGridMaxColumnWidth(items.length);
 
@@ -336,24 +313,64 @@ const Carousel: React.FC<CarouselProps> = ({
 	}
 
 	function renderArrows() {
-		if (items.length <= numberOfItemsInCarouselWidthWise) return null;
+		if (items.length <= numberOfItemsInCarouselWidthWiseConverted) return null;
 
 		return (
 			<React.Fragment>
 				<CarouselArrow
 					onClick={(e: any) => handleArrowClick(e)}
-					className={`hidden ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME}`}
+					className={`${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME}`}
 					svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
 				/>
 
 				<CarouselArrow
 					onClick={(e: any) => handleArrowClick(e)}
-					className={` ${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME} `}
+					className={`${CAROUSEL_ARROW_BUTTONS_CLASSNAME} ${CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME} `}
 					svgXLinkHref="/sprite.svg#icon-arrow-with-circle-down"
 				/>
 			</React.Fragment>
 		);
 	}
+
+	useEffect(() => {
+		const {csharpParentCarousel, parentCarousel }= getFirstItemAndParentCarousels(items);
+
+		if (parentCarousel) {
+			const parentSection = parentCarousel.closest('section.csharp__section');
+			parentSection?.classList.add(CONTAINS_CAROUSEL_CLASSNAME)
+		}
+
+		if (itemsRef && parentCarousel) {
+			const items = parentCarousel.querySelectorAll(`.${CAROUSEL_ITEM_CLASSNAME}`);
+			const arrangedItems = items;
+			// const arrangedItems = getArrangedItems(items, shouldRearrangeItems, numberOfItemsInCarouselWidthWiseConverted);
+			(itemsRef as any).current = arrangedItems;
+		}
+
+		if (leftArrowRef && csharpParentCarousel) (leftArrowRef as any).current = csharpParentCarousel.querySelector(
+			`.${CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME}`,
+		);
+		if (rightArrowRef && csharpParentCarousel) (rightArrowRef as any).current = csharpParentCarousel.querySelector(
+			`.${CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME}`,
+		);
+
+		setCarouselGridMaxColumnWidth(itemsRef);
+
+		return () => {
+			toggleScrollability();
+		}
+	}, [
+		leftArrowRef,
+		rightArrowRef,
+		CAROUSEL_ARROW_BUTTON_LEFT_CLASSNAME,
+		CAROUSEL_ARROW_BUTTON_RIGHT_CLASSNAME,
+		CAROUSEL_ITEM_CLASSNAME,
+		itemsRef,
+		items,
+		shouldRearrangeItems,
+		numberOfItemsInCarouselWidthWiseConverted,
+	]);
+
 
 	return (
 		<React.Fragment>
@@ -368,14 +385,3 @@ const Carousel: React.FC<CarouselProps> = ({
 		</React.Fragment>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny, ownProps: any) => {
-	return {
-		viewPortWidth: state.general.viewPortWidth,
-		numberOfItemsToScrollOnClick: +ownProps.numberOfItemsToScrollOnClick,
-		numberOfItemsInCarouselWidthWise:
-			+ownProps.numberOfItemsInCarouselWidthWise,
-	};
-};
-
-export default connect(mapStateToProps, {})(Carousel);

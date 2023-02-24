@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import { connect, RootStateOrAny } from "react-redux";
-import history from "../history";
-import { Howl } from "howler";
+import history from "./history";
 
 import {
 	ABOUT_URL,
@@ -13,45 +11,30 @@ import {
 	MOBILE_BREAK_POINT_WIDTH, PERSONALITY_URL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
 } from "./constants";
 
-import Home from "../pages/home/Home";
-import PlaylistSyncer from "../pages/examples/csharp/PlaylistSyncer";
-import Downloader from "../pages/examples/csharp/Downloader";
-import Bridge from "../pages/examples/bridge/Bridge";
-import Autobid from "../pages/examples/autobid/Autobid";
-import Resume from "../pages/resume/Resume";
-import SiteNav from "./navbar/SiteNav/SiteNav";
-import PageNav from "./navbar/PageNav/PageNav";
-import NavToggler from "./navbar/NavToggler";
+import { SiteNav } from "./navbar/SiteNav";
+import { PageNav } from "./navbar/PageNav";
+import { NavToggler } from "./navbar/NavToggler";
 import "../css/style.css";
-import GithubButton from "./GithubButton";
-import {
-	setIsMobile,
-	setViewPortWidth,
-	setSounds,
-} from "../actions";
-import soundsSpriteMp3 from "../sounds/soundsSprite.mp3";
-import soundsSpriteOgg from "../sounds/soundsSprite.ogg";
-import { keypressHandler } from "./utils";
-import ReplayViewer from "../pages/examples/csharp/ReplayViewer";
-import About from "../pages/examples/csharp/About";
-import BridgeDemo from "../pages/examples/csharp/BridgeDemo";
-import BigFive from "../pages/examples/csharp/BigFive/BigFive";
+import { GithubButton } from "./GithubButton";
+import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
+import { BigFive, AutoBid, Bridge, About, BridgeDemo, Downloader, PlaylistSyncer, ReplayViewer, Home, Resume } from "../pages";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { isMobileSelector, setIsMobile, setViewPortWidth } from "../slices/generalSlice";
+import { useSetHeaderCssStyle } from "../hooks/useSetHeaderCssStyle";
+import { keypressHandler } from "../helpers";
 
-interface AppProps {
-	isMobile: boolean,
-	setIsMobile: (value: boolean, windowWidth: number) => void,
-	setViewPortWidth: (value: number) => void,
-	setSounds: (value: {}) => void,
-}
+type AppProps = {}
 
-const App: React.FC<AppProps> = ({
-	isMobile,
-	setIsMobile,
-	setViewPortWidth,
-	setSounds,
+export const App: React.FC<AppProps> = ({
 }) => {
+	const dispatch = useAppDispatch();
+	const isMobile = useAppSelector(isMobileSelector);
 	const mobileBreakPointWidth = MOBILE_BREAK_POINT_WIDTH;
-	setIsMobile(window.innerWidth <= mobileBreakPointWidth, window.innerWidth);
+
+	useSetHeaderCssStyle();
+	useEffect(() => {
+		dispatch(setIsMobile({isMobile: window.innerWidth <= mobileBreakPointWidth, viewPortWidth: window.innerWidth}));
+	}, [dispatch, setIsMobile, mobileBreakPointWidth])
 
 	//setup window resize listener
 	useEffect(() => {
@@ -59,13 +42,14 @@ const App: React.FC<AppProps> = ({
 			if (window.innerWidth <= mobileBreakPointWidth && !isMobile) {
 				const newValue = `--bridge-gradient-direction: to bottom`;
 				document.documentElement.style.cssText += newValue;
-				return setIsMobile(true, window.innerWidth);
+				return dispatch(setIsMobile({isMobile: true, viewPortWidth: window.innerWidth}));
 			} else if (window.innerWidth > mobileBreakPointWidth && isMobile) {
 				const newValue = `--bridge-gradient-direction: to right`;
 				document.documentElement.style.cssText += newValue;
-				return setIsMobile(false, window.innerWidth);
+				return dispatch(setIsMobile({isMobile: false,viewPortWidth:  window.innerWidth}));
 			}
-			return setViewPortWidth(window.innerWidth);
+			dispatch(setViewPortWidth(window.innerWidth));
+			return;
 		};
 
 		window.addEventListener("resize", windowResize);
@@ -76,27 +60,28 @@ const App: React.FC<AppProps> = ({
 			window.removeEventListener("keydown", keypressHandler);
 		};
 	}, [
+		dispatch,
 		isMobile,
 		setIsMobile,
 		mobileBreakPointWidth,
 		setViewPortWidth,
 	]);
 
-	//Loading Sounds, etc
-	useEffect(() => {
-		const sounds = new Howl({
-			src: [soundsSpriteMp3, soundsSpriteOgg],
-			volume: 0.1,
-			sprite: {
-				doorFast: [0, 1500],
-				doorNormal: [1500, 1000],
-				sonicBoom: [2500, 1000],
-				siteNavOpen: [3500, 1000],
-				siteNavClose: [4500, 1000],
-			},
-		});
-		setSounds(sounds);
-	}, [setSounds]);
+	// //Loading Sounds, etc
+	// useEffect(() => {
+	// 	const sounds = new Howl({
+	// 		src: [soundsSpriteMp3, soundsSpriteOgg],
+	// 		volume: 0.1,
+	// 		sprite: {
+	// 			doorFast: [0, 1500],
+	// 			doorNormal: [1500, 1000],
+	// 			sonicBoom: [2500, 1000],
+	// 			siteNavOpen: [3500, 1000],
+	// 			siteNavClose: [4500, 1000],
+	// 		},
+	// 	});
+	// 	dispatch(setSounds(sounds as unknown as LoadedSounds));
+	// }, [setSounds]);
 
 	return (
 		<Router history={history}>
@@ -111,7 +96,7 @@ const App: React.FC<AppProps> = ({
 					component={PlaylistSyncer}
 				/>
 				<Route path={REPLAY_VIEWER_URL} exact component={ReplayViewer} />
-				<Route path={AUTO_BID_URL} exact component={Autobid} />
+				<Route path={AUTO_BID_URL} exact component={AutoBid} />
 				<Route path={ABOUT_URL} exact component={About} />
 				<Route path={RESUME_URL} exact component={Resume} />
 				<Route path={PERSONALITY_URL} exact component={BigFive} />
@@ -120,20 +105,9 @@ const App: React.FC<AppProps> = ({
 			<Route path="*" exact component={NavToggler} />
 			<Route path="*" exact component={PageNav} />
 			<Route path="*" exact component={SiteNav} />
+			<Route path="*" exact component={AudioPlayer} />
 			<Route path="*" exact component={GithubButton} />
 			{/* <Footer/> */}
 		</Router>
 	);
 };
-
-const mapStateToProps = (state: RootStateOrAny) => {
-	return {
-		isMobile: state.general.isMobile,
-	};
-};
-
-export default connect(mapStateToProps, {
-	setIsMobile,
-	setViewPortWidth,
-	setSounds,
-})(App as any);
