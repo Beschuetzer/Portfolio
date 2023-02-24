@@ -16,7 +16,7 @@
 	&__content {
 		overflow-y: auto;
 		overflow-x: hidden;
-		width: $default-font-size * 62.5;
+		width: $default-font-size * 70;
 		max-width: 90vw;
 		max-height: 90vh;
 		height: 100%;
@@ -71,7 +71,6 @@
 			border-bottom: $default-font-size * 0.1 solid var(--color-primary-1);
 			margin-bottom: $default-font-size * 0.5;
 			font-size: $font-size-six;
-			grid-template-columns: $skill-popup-grid-column-template-nav-switch;
 			padding: $default-font-size;
 		}
 
@@ -99,6 +98,12 @@
 				border-bottom: $default-font-size * 0.1 solid
 					var(--color-primary-1-light);
 			}
+		}
+
+		&-headers {
+			display: flex;
+			grid-column: 1 / -1;
+			justify-content: flex-start;
 		}
 
 		&-header {
@@ -205,6 +210,11 @@
 
 			&:nth-child(5n + 1) {
 				padding-left: $skills-popup-padding-amount;
+				word-break: break-word;
+
+				@include respond(nav-switch) {
+					padding-left: 0;
+				}
 			}
 
 			&:nth-child(5n + 5)  {

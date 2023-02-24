@@ -8,7 +8,6 @@ exports.githubController = async (req, res) => {
       Authorization: `Bearer ${process.env.REACT_APP_GITHUB}`,
     },
   })
-
   try {
     const data = await graphQLClient.request(gql`${req.query.query}`)
     res.send(data);
