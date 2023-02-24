@@ -7,6 +7,7 @@ import { checkForParentOfType, capitalize, addSpaceAfterPunctuationMarks, toggle
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { reposSelector, isMobileSelector } from "../../slices/generalSlice";
 import { SKILLS_CLASSNAME } from "../constants";
+import { SkillsPopupTableHeaders } from "./SkillsPopupTableHeaders";
 
 interface SkillsPopupProps {}
 
@@ -297,27 +298,6 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 		});
 	};
 
-	const renderTableHeaders = () => {
-		const headers = ["Name", "Description", "Created", "Updated", "Url"];
-		return isMobile
-			? // <div className={`${SKILLS_CLASSNAME}-popup__table-headers`}>
-			  //   {
-			  //     headers.map(header => {
-			  //       return (
-			  //         <div key={header} className={`${SKILLS_CLASSNAME}-popup__table-header`}>{header}</div>
-			  //       );
-			  //     })
-			  //   }
-			  // </div>
-			  null
-			: headers.map((header) => {
-					return (
-						<div key={header} className={`${SKILLS_CLASSNAME}-popup__table-header`}>
-							{header}
-						</div>
-					);
-			  });
-	};
 	return ReactDOM.createPortal(
 		<div className={`${SKILLS_CLASSNAME}-popup__content`}>
 			<div className={`${SKILLS_CLASSNAME}-popup__header`}>
@@ -328,7 +308,7 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 					<use xlinkHref="/sprite.svg#icon-close"></use>
 				</svg>
 				<h5 className={`${SKILLS_CLASSNAME}-popup__hint`}>* click the project name to view a working demo (when possible)</h5>
-				{renderTableHeaders()}
+				<SkillsPopupTableHeaders />
 			</div>
 			<div className={`${SKILLS_CLASSNAME}-popup__table`}>
 				{renderProjects()}
