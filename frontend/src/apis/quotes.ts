@@ -49,8 +49,6 @@ function getQuotableString(arr: any[]) {
 export async function getRandomQuote({ authors = [], tags = [] }: { authors?: string[]; tags?: QuoteTags[]; } = {}) {
   try {
     const url = `${QUOTE_API_URL}/${ENDPOINT}?tags=${getQuotableString(tags)}&author=${getQuotableString(authors)}`;
-    console.log(url);
-    
     const stream = await fetch(url, {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin

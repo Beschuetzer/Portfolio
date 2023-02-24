@@ -3236,7 +3236,7 @@ body {
 .skills-popup__content {
   overflow-y: auto;
   overflow-x: hidden;
-  width: 87.5rem;
+  width: 98rem;
   max-width: 90vw;
   max-height: 90vh;
   height: 100%;
@@ -3279,7 +3279,7 @@ body {
   font-weight: 100;
   text-align: center;
   display: grid;
-  grid-template-columns: minmax(200px, 1fr) minmax(400px, 2fr) 1fr 1fr min-content;
+  grid-template-columns: max-content 2fr min-content min-content min-content;
   position: sticky;
   top: 0;
   z-index: 5;
@@ -3291,7 +3291,6 @@ body {
     border-bottom: 0.14rem solid var(--color-primary-1);
     margin-bottom: 0.7rem;
     font-size: 2.1875rem;
-    grid-template-columns: 1fr 2fr min-content min-content min-content;
     padding: 1.4rem;
   }
 }
@@ -3301,7 +3300,7 @@ body {
 }
 .skills-popup__table {
   display: grid;
-  grid-template-columns: minmax(200px, 1fr) minmax(400px, 2fr) 1fr 1fr min-content;
+  grid-template-columns: max-content 2fr min-content min-content min-content;
 }
 @media only screen and (max-width: 68.75em) {
   .skills-popup__table {
@@ -3316,6 +3315,11 @@ body {
 }
 .skills-popup__table-repo:nth-last-child(n+2) {
   border-bottom: 0.14rem solid var(--color-primary-1-light);
+}
+.skills-popup__table-headers {
+  display: flex;
+  grid-column: 1/-1;
+  justify-content: flex-start;
 }
 .skills-popup__table-header {
   display: grid;
@@ -3399,6 +3403,12 @@ body {
 }
 .skills-popup__table-item:nth-child(5n+1) {
   padding-left: 2.8rem;
+  word-break: break-word;
+}
+@media only screen and (max-width: 68.75em) {
+  .skills-popup__table-item:nth-child(5n+1) {
+    padding-left: 0;
+  }
 }
 .skills-popup__table-item:nth-child(5n+5) {
   padding-right: 2.8rem;

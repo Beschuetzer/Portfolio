@@ -86,8 +86,7 @@ $skills-linear-gradient-hover: linear-gradient(
 	var(--color-primary-1),
 	var(--color-primary-1)
 );
-$skill-popup-grid-column-template: minmax(200px, 1fr) minmax(400px, 2fr) 1fr 1fr min-content;
-$skill-popup-grid-column-template-nav-switch: 1fr 2fr min-content min-content min-content;
+$skill-popup-grid-column-template:  max-content 2fr min-content min-content min-content;
 $skills-popup-padding-amount: $default-font-size * 2;
 //#endregion
 
