@@ -3595,7 +3595,11 @@ body {
   top: calc(calc(6.6752rem + 1.4rem * 1) + 6.6752rem);
 }
 .source-link__live {
-  top: calc(calc(6.6752rem + 1.4rem * 1) + 6.6752rem * 2);
+  --multiplier: 2;
+  top: calc(calc(6.6752rem + 1.4rem * 1) + 6.6752rem * var(--multiplier));
+}
+.resume .source-link__live {
+  --multiplier: 1;
 }
 
 :is(.csharp, .resume) .source-link__source-svg {

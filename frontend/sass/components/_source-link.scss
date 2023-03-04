@@ -89,7 +89,11 @@ $top-offset: 1.25vw;
 	}
 
 	&__live {
-		top: calc(#{$page-nav-top} + #{$navbar__logo-width} * 2);
+		--multiplier: 2;
+		.resume & {
+			--multiplier: 1;
+		}
+		top: calc(#{$page-nav-top} + #{$navbar__logo-width} * var(--multiplier));
 	}
 }
 
