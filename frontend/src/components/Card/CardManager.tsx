@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { useEffect, useCallback } from "react";
 import { checkForParentOfType } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { setLastSecondRowCardNumber, setBridgeCards, setIsCardVideoOpen, bridgeCardsSelector, isCardVideoOpenSelector, lastSecondRowCardNumberSelector } from "../../slices/bridgeSlice";
+import { setLastSecondRowCardNumber, setIsCardVideoOpen, isCardVideoOpenSelector, lastSecondRowCardNumberSelector } from "../../slices/bridgeSlice";
 import { isMobileSelector, viewPortWidthSelector } from "../../slices/generalSlice";
 import { CARD_OPEN_CLASSNAME, CARD_DEFAULT_CLASSNAME } from "../constants";
 import { FOREGROUND_VIDEO_CLASSNAME } from "../VideoPlayer/Video";
@@ -32,8 +32,8 @@ export const CardManager: React.FC<CardManagerProps> = ({
 	const isMobile = useAppSelector(isMobileSelector);
 	const viewPortWidth  = useAppSelector(viewPortWidthSelector);
 	const lastSecondRowCardNumber  = useAppSelector(lastSecondRowCardNumberSelector);
-	const bridgeCards  = useAppSelector(bridgeCardsSelector);
 	const isCardVideoOpen  = useAppSelector(isCardVideoOpenSelector);
+	const [bridgeCards, setBridgeCards] = useState<Array<HTMLElement>>([]);
 	//#endregion
 	
 	//#region Functions/Handlers
@@ -138,10 +138,6 @@ export const CardManager: React.FC<CardManagerProps> = ({
 		memoizedCheckForChanges();
 	}, [memoizedCheckForChanges]);
 
-	useEffect(() => {
-		dispatch(setBridgeCards(document.querySelectorAll(".card") as any));
-	}, [setBridgeCards, dispatch]);
-
 	//check if need to change transform origins when viewPortWidth changes
 	useEffect(() => {
 		if (!isMobile) return;
@@ -180,6 +176,10 @@ export const CardManager: React.FC<CardManagerProps> = ({
 			window.removeEventListener("click", handleClick);
 		};
 	}, [isCardVideoOpen, setIsCardVideoOpen, dispatch]);
+
+	useEffect(() => {
+		setBridgeCards(document.querySelectorAll(".card") as any);
+	}, [])
 	//#endregion
 
 	return <React.Fragment>{children}</React.Fragment>;
