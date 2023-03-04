@@ -2,6 +2,7 @@ import React, { ReactNode, useState } from "react";
 import { useEffect, useCallback } from "react";
 import { checkForParentOfType } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useGetBridgeCards } from "../../hooks/useGetBridgeCards";
 import { setLastSecondRowCardNumber, setIsCardVideoOpen, isCardVideoOpenSelector, lastSecondRowCardNumberSelector } from "../../slices/bridgeSlice";
 import { isMobileSelector, viewPortWidthSelector } from "../../slices/generalSlice";
 import { CARD_OPEN_CLASSNAME, CARD_DEFAULT_CLASSNAME } from "../constants";
@@ -30,10 +31,10 @@ export const CardManager: React.FC<CardManagerProps> = ({
 	//#region Init
 	const dispatch = useAppDispatch();
 	const isMobile = useAppSelector(isMobileSelector);
-	const viewPortWidth  = useAppSelector(viewPortWidthSelector);
-	const lastSecondRowCardNumber  = useAppSelector(lastSecondRowCardNumberSelector);
-	const isCardVideoOpen  = useAppSelector(isCardVideoOpenSelector);
-	const [bridgeCards, setBridgeCards] = useState<Array<HTMLElement>>([]);
+	const viewPortWidth = useAppSelector(viewPortWidthSelector);
+	const lastSecondRowCardNumber = useAppSelector(lastSecondRowCardNumberSelector);
+	const isCardVideoOpen = useAppSelector(isCardVideoOpenSelector);
+	const bridgeCards = useGetBridgeCards();
 	//#endregion
 	
 	//#region Functions/Handlers
@@ -176,10 +177,6 @@ export const CardManager: React.FC<CardManagerProps> = ({
 			window.removeEventListener("click", handleClick);
 		};
 	}, [isCardVideoOpen, setIsCardVideoOpen, dispatch]);
-
-	useEffect(() => {
-		setBridgeCards(document.querySelectorAll(".card") as any);
-	}, [])
 	//#endregion
 
 	return <React.Fragment>{children}</React.Fragment>;
