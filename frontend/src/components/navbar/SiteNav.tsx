@@ -60,6 +60,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useHandleChangePage } from "../../hooks/useHandleChangePage";
 import { Match } from "../../types";
 import { ABOUT_SECTION_NAMES, RESUME_SECTION_TITLES } from "../../pages";
+import { useRenderCount } from "../../hooks/CssClassCreater/useRenderCount";
 
 interface SiteNavProps {
 	match: Match
@@ -78,6 +79,7 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 	const toggleTransitioningTimeoutIdRef = useRef<any>(null);
 	const [isTransitioning, setIsTransitioning] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
+	const renderCountRef = useRenderCount();
 	const header = document.querySelector(`${HEADER_ID}`) as HTMLElement;
 	
 	if (currentlyViewingImage) {
@@ -175,7 +177,7 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 	useEffect(() => {
 		if (navRef.current) {
 			const siteNav = document.querySelector(`.${SITE_NAV_CLASSNAME}`) as HTMLDivElement;
-			if (!siteNav) return;
+			if (!siteNav || renderCountRef.current <= 2) return;
 			siteNav.classList.toggle(SITE_NAV_MINIMAL_CLASSNAME);
 		}
 	}, [isSiteNavMinimized, navRef])
