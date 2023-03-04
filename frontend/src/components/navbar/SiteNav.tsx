@@ -61,6 +61,7 @@ import { useHandleChangePage } from "../../hooks/useHandleChangePage";
 import { Match } from "../../types";
 import { ABOUT_SECTION_NAMES, RESUME_SECTION_TITLES } from "../../pages";
 import { useRenderCount } from "../../hooks/CssClassCreater/useRenderCount";
+import { setHeaderHeightCSSPropertyValue } from "../../hooks/useSetHeaderCssStyle";
 
 interface SiteNavProps {
 	match: Match
@@ -162,6 +163,7 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 			const headerHeight = (
 				document.querySelector(HEADER_ID) as HTMLElement
 			).getBoundingClientRect().height;
+			setHeaderHeightCSSPropertyValue();
 			dispatch(setHeaderHeight(headerHeight));
 		}, SET_INITIAL_HEADER_HEIGHT_DELAY);
 
