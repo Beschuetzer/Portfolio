@@ -3,7 +3,8 @@ import { useRef } from "react";
 import { BRIDGE_HERO_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAMES, BRIDGE_CLASSNAME } from "../../../components/constants";
 import { scrollToSection } from "../../../helpers";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { setCurrentBridgeSection, setClickedBridgeInfoButtonCount, setHasClickedALink, currentBridgeSectionSelector, bridgeSectionsSelector, hasClickedALinkSelector } from "../../../slices/bridgeSlice";
+import { useGetBridgeSections } from "../../../hooks/useGetBridgeSections";
+import { setCurrentBridgeSection, setClickedBridgeInfoButtonCount, setHasClickedALink, currentBridgeSectionSelector, hasClickedALinkSelector } from "../../../slices/bridgeSlice";
 import { headerHeightSelector, isMobileSelector } from "../../../slices/generalSlice";
 import { loadedSoundsSelector } from "../../../slices/soundsSlice";
 import {
@@ -25,8 +26,8 @@ export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 	name,
 	match,
 }) => {
+	const bridgeSections = useGetBridgeSections();
 	const currentBridgeSection = useAppSelector(currentBridgeSectionSelector);
-	const bridgeSections = useAppSelector(bridgeSectionsSelector);
 	const hasClickedALink = useAppSelector(hasClickedALinkSelector);
 	const headerHeight = useAppSelector(headerHeightSelector);
 	const isMobile = useAppSelector(isMobileSelector);

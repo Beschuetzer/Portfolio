@@ -36,9 +36,6 @@ export const bridgeSlice = createSlice({
     setBridgeFeatureSectionTitle: (state, action: PayloadAction<string>) => {
       state.featureSectionTitle = action.payload;
     },
-    setBridgeSections: (state, action: PayloadAction<NodeListOf<Element> | null>) => {
-      state.bridgeSections = action.payload as any;
-    },
     setClickedBridgeInfoButtonCount: (state, action: PayloadAction<number>) => {
       state.clickedBridgeInfoButtonCount = action.payload;
     },
@@ -58,7 +55,6 @@ export const bridgeSlice = createSlice({
 });
 
 //#region Selectors
-export const bridgeSectionsSelector = (state: RootState) => state[bridgeSlice.name].bridgeSections;
 export const clickedBridgeInfoButtonCountSelector = (state: RootState) => state[bridgeSlice.name].clickedBridgeInfoButtonCount;
 export const currentBridgeSectionSelector = (state: RootState) => state[bridgeSlice.name].currentBridgeSection;
 export const featureSectionTitleSelector = (state: RootState) => state[bridgeSlice.name].featureSectionTitle;
@@ -69,7 +65,6 @@ export const lastSecondRowCardNumberSelector = (state: RootState) => state[bridg
 
 export const { 
   setBridgeFeatureSectionTitle,
-  setBridgeSections,
   setClickedBridgeInfoButtonCount,
   setCurrentBridgeSection,
   setHasClickedALink,

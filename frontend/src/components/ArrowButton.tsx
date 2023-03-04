@@ -1,9 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { bridgeSectionsSelector, clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector, setBridgeSections, setCurrentBridgeSection } from "../slices";
-import { ANIMATION_DURATION, BRIDGE_CLASSNAME, COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
+import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector, setCurrentBridgeSection } from "../slices";
+import { ANIMATION_DURATION, COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "./constants";
 import { getComputedStyleCustom } from "../helpers";
+import { useGetBridgeSections } from "../hooks/useGetBridgeSections";
 
 interface ArrowButtonProps {
   	direction: string,
@@ -16,15 +17,8 @@ export const ArrowButton: React.FC<ArrowButtonProps> = ({
 }) => {
 	const dispatch = useAppDispatch();
 	const currentBridgeSection = useAppSelector(currentBridgeSectionSelector);
-	const bridgeSections = useAppSelector(bridgeSectionsSelector);
 	const clickedBridgeInfoButtonCount = useAppSelector(clickedBridgeInfoButtonCountSelector);
-
-	//Initial setup, storing sections
-	useEffect(() => {
-		// if (bridgeSections) return;
-		const sections = document.querySelectorAll(`.${BRIDGE_CLASSNAME}__section`);
-		dispatch(setBridgeSections(sections));
-	}, [dispatch, setBridgeSections]);
+	const bridgeSections = useGetBridgeSections();
 
 	//Handling Updates
 	useEffect(() => {
