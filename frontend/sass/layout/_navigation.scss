@@ -150,7 +150,6 @@ $scale-y-amount: .25;
 	}
 
 	&__list {
-		column-gap: $navbar__item-divider-width;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -213,6 +212,7 @@ $scale-y-amount: .25;
 	}
 
 	&__item {
+		border-left: $navbar__item-divider-width solid var(--color-primary-1);
 		position: relative;
 		background-color: var(--color-primary-4);
 		// background: linear-gradient(
@@ -255,6 +255,10 @@ $scale-y-amount: .25;
 			& a {
 				color: rgba(var(--color-primary-4-rgb), 0.95);
 				transition: color $animation-duration / 2 $animation-easing-standard;
+			}
+
+			& + * {
+				border-top: $navbar__item-divider-width solid transparent !important;
 			}
 		}
 		&:not(.navbar__dropdown-container) img,
@@ -341,8 +345,7 @@ $scale-y-amount: .25;
 	}
 
 	&__dropdown {
-		transform: translateY(-$navbar__item-margin-top) scaleY(0);
-		transform-origin: top;
+		z-index: -100000;
 		position: absolute;
 		top: 100%;
 		left: 0%;
@@ -351,7 +354,9 @@ $scale-y-amount: .25;
 		list-style: none;
 		display: flex;
 		flex-direction: column;
-		transition: transform $animation-duration $animation-easing-standard;
+		transform-origin: bottom;
+		transform: translateY(-100%) scaleY(1);
+		transition: transform $animation-duration / 4 ease-in;
 
 		@include respond(mobile) {
 			visibility: visible;
@@ -375,7 +380,6 @@ $scale-y-amount: .25;
 		& .navbar__item {
 			opacity: 0;
 			border: none;
-			margin-top: $navbar__item-divider-width;
 			transform-origin: top;
 			transition: 
 				padding $animation-duration $animation-easing-standard,
@@ -458,6 +462,7 @@ $scale-y-amount: .25;
 	&__dropdown-container:hover &__dropdown &__item {
 		height: 100%;
 		opacity: 1;
+		border-top: $navbar__item-divider-width solid var(--color-primary-1);
 
 		@include respond(nav-switch) {
 			width: 90%;
@@ -521,7 +526,6 @@ $scale-y-amount: .25;
 		}
 
 		& .navbar__button {
-			margin-right: $navbar__item-divider-width;
 			border-radius: $default-font-size * 10 $default-font-size * 0
 				$default-font-size * 0 $default-font-size * 10;
 			@include respond(nav-switch) {
