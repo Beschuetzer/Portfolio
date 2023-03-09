@@ -97,7 +97,7 @@ $scale-y-amount: .25;
 		}
 
 		//Change menu bars to 'A' on click
-		.navbar.navbar--active &-bar::before {
+		.navbar.navbar--active:not(.closed) &-bar::before {
 			transform:  $navbar__button-bar-before-rotation
 				translate($navbar__logo-width * .053, $navbar__logo-width * .38);
 			@include respond(nav-switch) {
@@ -105,10 +105,10 @@ $scale-y-amount: .25;
 				translate($default-font-size * 0.2857, $default-font-size * 2);
 			}
 		}
-		.navbar.navbar--active &-bar {
+		.navbar.navbar--active:not(.closed) &-bar {
 			width: calc(#{$navbar__logo_width} * .25);
 		}
-		.navbar.navbar--active &-bar::after {
+		.navbar.navbar--active:not(.closed) &-bar::after {
 			transform:  $navbar__button-bar-after-rotation
 				translate($navbar__logo-width * 0, $navbar__logo-width * -.1);
 			@include respond(nav-switch) {
@@ -259,6 +259,9 @@ $scale-y-amount: .25;
 
 			& + * {
 				border-top: $navbar__item-divider-width solid transparent !important;
+				@include respond(nav-switch) {
+					border-top: 1px solid var(--color-primary-1) !important;
+				}
 			}
 		}
 		&:not(.navbar__dropdown-container) img,
@@ -467,6 +470,11 @@ $scale-y-amount: .25;
 		@include respond(nav-switch) {
 			width: 90%;
 			max-width: $default-font-size * 30;
+			border-top: 1px solid transparent;
+
+			&:first-child{
+				border-top: 1px solid var(--color-primary-1);
+			}
 		}
 	}
 
@@ -525,7 +533,7 @@ $scale-y-amount: .25;
 			// }
 		}
 
-		& .navbar__button {
+		&:not(.closed) .navbar__button {
 			border-radius: $default-font-size * 10 $default-font-size * 0
 				$default-font-size * 0 $default-font-size * 10;
 			@include respond(nav-switch) {
@@ -558,7 +566,7 @@ $scale-y-amount: .25;
 			}
 		}
 
-		& .navbar__background {
+		&:not(.closed) .navbar__background {
 			visibility: visible;
 			transition: filter $animation-duration $animation-easing-standard;
 
@@ -600,6 +608,32 @@ $scale-y-amount: .25;
 		-moz-user-select: none; /* Old versions of Firefox */
 		-ms-user-select: none; /* Internet Explorer/Edge */
 		user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+	}
+}
+
+.closed {
+	& .navbar__list {
+		opacity: 0 !important;
+		visibility: hidden;
+		transition: opacity $animation-duration ease;
+		pointer-events: none;
+
+	}
+
+	& .navbar__button {
+		border-radius: 100% !important;
+		transition: border-radius $animation-duration ease !important;
+	}
+}
+
+.open {
+	& .navbar__list {
+		opacity: 1 !important;
+		pointer-events: all;
+		transition: opacity $animation-duration ease;
+	}
+	& .navbar__button {
+		transition: border-radius $animation-duration ease !important;
 	}
 }
 

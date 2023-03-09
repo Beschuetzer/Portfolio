@@ -1,4 +1,5 @@
 import React from "react";
+import { detect } from 'detect-browser';
 import { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { NavListItem, NavListItemImage, NavListItemProps } from "./NavListItem";
@@ -70,6 +71,8 @@ interface SiteNavProps {
 export const SiteNav: React.FC<SiteNavProps> = ({
 	match,
 }) => {
+	const browser = detect();
+	const useSimplifiedAnimations = browser?.name === "safari";
 	const isMobile = useAppSelector(isMobileSelector);
 	const isSiteNavMinimized = useAppSelector(isSiteNavMinimizedSelector);
 	const currentlyViewingImage = useAppSelector(currentlyViewingImageSelector);
@@ -82,6 +85,7 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 	const [isOpen, setIsOpen] = useState(false);
 	const renderCountRef = useRenderCount();
 	const header = document.querySelector(`${HEADER_ID}`) as HTMLElement;
+	console.log({browser});
 	
 	if (currentlyViewingImage) {
 		header?.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
@@ -186,18 +190,23 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 	//#endregion
 
 	//#region JSX
-	const dynamicClassnames = isOpen
-		? `
-			${NAVBAR_ACTIVE_CLASSNAME} 
-			${NAVBAR_DONE_CLASSNAME} 
-			${isTransitioning ? OVERFLOW_HIDDEN_CLASSNAME : ''}
-			${isTransitioning ? UNCLICKABLE_CLASSNAME : ''}
-		  `
-		: `
-			${isTransitioning ? NAVBAR_DONE_CLASSNAME : ''} 
-			${OVERFLOW_HIDDEN_CLASSNAME}
-			${isTransitioning ? NAVBAR_IS_ANIMATING_CLASSNAME : ''}
-		` ;
+	function getDynamicClassname() {
+		const showBackgroundClassname = `${NAVBAR_ACTIVE_CLASSNAME} ${NAVBAR_DONE_CLASSNAME}`;
+		const openClassname = `${isTransitioning ? OVERFLOW_HIDDEN_CLASSNAME : ''} ${isTransitioning ? UNCLICKABLE_CLASSNAME : ''}`;
+		const closedClassname = `${isTransitioning ? NAVBAR_DONE_CLASSNAME : ''} ${OVERFLOW_HIDDEN_CLASSNAME} ${isTransitioning ? NAVBAR_IS_ANIMATING_CLASSNAME : ''}`
+		const simplifiedClosedClassname = `${openClassname} ${NAVBAR_ACTIVE_CLASSNAME} closed`
+		const simplifiedOpenClassname = `${openClassname} ${showBackgroundClassname} open`;
+
+		if (useSimplifiedAnimations) {
+			if (isOpen) return simplifiedOpenClassname;
+			return simplifiedClosedClassname;
+		} else if (isOpen) {
+			return `${openClassname} ${showBackgroundClassname}`;
+		}
+		return closedClassname;
+	}
+	
+	const dynamicClassnames = getDynamicClassname()
 	return ReactDOM.createPortal(
 		<div
 			ref={navRef as any}

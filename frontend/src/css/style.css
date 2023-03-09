@@ -866,22 +866,22 @@ body {
 .navbar__menu:hover .navbar__menu-bar::after {
   transform: translate(-50%, calc((6.6752rem * .15) + 50%));
 }
-.navbar.navbar--active .navbar__menu-bar::before {
+.navbar.navbar--active:not(.closed) .navbar__menu-bar::before {
   transform: rotate(105deg) translate(0.3537856rem, 2.536576rem);
 }
 @media only screen and (max-width: 68.75em) {
-  .navbar.navbar--active .navbar__menu-bar::before {
+  .navbar.navbar--active:not(.closed) .navbar__menu-bar::before {
     transform: rotate(105deg) translate(0.39998rem, 2.8rem);
   }
 }
-.navbar.navbar--active .navbar__menu-bar {
+.navbar.navbar--active:not(.closed) .navbar__menu-bar {
   width: calc(6.6752rem * .25);
 }
-.navbar.navbar--active .navbar__menu-bar::after {
+.navbar.navbar--active:not(.closed) .navbar__menu-bar::after {
   transform: rotate(-105deg) translate(0rem, -0.66752rem);
 }
 @media only screen and (max-width: 68.75em) {
-  .navbar.navbar--active .navbar__menu-bar::after {
+  .navbar.navbar--active:not(.closed) .navbar__menu-bar::after {
     transform: rotate(-105deg) translate(-0.105rem, -0.7rem);
   }
 }
@@ -980,6 +980,11 @@ body {
 }
 .navbar__item:not(.navbar__dropdown-container):hover + * {
   border-top: 0.28rem solid transparent !important;
+}
+@media only screen and (max-width: 68.75em) {
+  .navbar__item:not(.navbar__dropdown-container):hover + * {
+    border-top: 1px solid var(--color-primary-1) !important;
+  }
 }
 .navbar__item:not(.navbar__dropdown-container) img,
 .navbar__item .navbar__link > img {
@@ -1165,6 +1170,10 @@ body {
   .navbar__dropdown-container:hover .navbar__dropdown .navbar__item {
     width: 90%;
     max-width: 42rem;
+    border-top: 1px solid transparent;
+  }
+  .navbar__dropdown-container:hover .navbar__dropdown .navbar__item:first-child {
+    border-top: 1px solid var(--color-primary-1);
   }
 }
 .navbar__dropdown-container:hover .navbar__dropdown .navbar__link {
@@ -1201,31 +1210,31 @@ body {
     padding-right: 0;
   }
 }
-.navbar.navbar--active .navbar__button {
+.navbar.navbar--active:not(.closed) .navbar__button {
   border-radius: 14rem 0rem 0rem 14rem;
 }
 @media only screen and (max-width: 68.75em) {
-  .navbar.navbar--active .navbar__button {
+  .navbar.navbar--active:not(.closed) .navbar__button {
     border-radius: 1.4rem 1.4rem 0rem 0rem;
   }
 }
-.navbar.navbar--active .navbar__button:hover .navbar__menu-bar::before {
+.navbar.navbar--active:not(.closed) .navbar__button:hover .navbar__menu-bar::before {
   transform: rotate(135deg) translate(1.134784rem, 1.134784rem);
 }
 @media only screen and (max-width: 68.75em) {
-  .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::before {
+  .navbar.navbar--active:not(.closed) .navbar__button:hover .navbar__menu-bar::before {
     transform: rotate(135deg) translate(1.19rem, 1.19rem);
   }
 }
-.navbar.navbar--active .navbar__button:hover .navbar__menu-bar::after {
+.navbar.navbar--active:not(.closed) .navbar__button:hover .navbar__menu-bar::after {
   transform: rotate(-135deg) translate(1.134784rem, -1.134784rem);
 }
 @media only screen and (max-width: 68.75em) {
-  .navbar.navbar--active .navbar__button:hover .navbar__menu-bar::after {
+  .navbar.navbar--active:not(.closed) .navbar__button:hover .navbar__menu-bar::after {
     transform: rotate(-135deg) translate(1.19rem, -1.19rem);
   }
 }
-.navbar.navbar--active .navbar__button:hover .navbar__menu-bar {
+.navbar.navbar--active:not(.closed) .navbar__button:hover .navbar__menu-bar {
   width: 0;
 }
 .navbar.navbar--active .navbar__link:not(.navbar.navbar--active__dropdown .navbar.navbar--active__link) {
@@ -1236,7 +1245,7 @@ body {
     padding: 1.4rem 0;
   }
 }
-.navbar.navbar--active .navbar__background {
+.navbar.navbar--active:not(.closed) .navbar__background {
   visibility: visible;
   transition: filter 0.5s ease;
   backdrop-filter: blur(0.7rem) brightness(0.5) drop-shadow(0px 1.4rem 2.8rem var(--color-grey-80));
@@ -1267,6 +1276,26 @@ body {
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+
+.closed .navbar__list {
+  opacity: 0 !important;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.closed .navbar__button {
+  border-radius: 100% !important;
+  transition: border-radius 0.5s ease !important;
+}
+
+.open .navbar__list {
+  opacity: 1 !important;
+  pointer-events: all;
+  transition: opacity 0.5s ease;
+}
+.open .navbar__button {
+  transition: border-radius 0.5s ease !important;
 }
 
 #root {
