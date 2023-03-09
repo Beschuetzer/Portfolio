@@ -1,5 +1,4 @@
 import React from "react";
-import { detect } from 'detect-browser';
 import { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { NavListItem, NavListItemImage, NavListItemProps } from "./NavListItem";
@@ -63,6 +62,7 @@ import { Match } from "../../types";
 import { ABOUT_SECTION_NAMES, RESUME_SECTION_TITLES } from "../../pages";
 import { useRenderCount } from "../../hooks/CssClassCreater/useRenderCount";
 import { setHeaderHeightCSSPropertyValue } from "../../hooks/useSetHeaderCssStyle";
+import { useBroswerDetection } from "../../hooks/useBrowserDetection";
 
 interface SiteNavProps {
 	match: Match
@@ -71,8 +71,8 @@ interface SiteNavProps {
 export const SiteNav: React.FC<SiteNavProps> = ({
 	match,
 }) => {
-	const browser = detect();
-	const useSimplifiedAnimations = browser?.name === "safari";
+	const browser = useBroswerDetection();
+	const useSimplifiedAnimations = browser?.name === "safari" || browser?.name.match(/edge/i);
 	const isMobile = useAppSelector(isMobileSelector);
 	const isSiteNavMinimized = useAppSelector(isSiteNavMinimizedSelector);
 	const currentlyViewingImage = useAppSelector(currentlyViewingImageSelector);
@@ -85,7 +85,6 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 	const [isOpen, setIsOpen] = useState(false);
 	const renderCountRef = useRenderCount();
 	const header = document.querySelector(`${HEADER_ID}`) as HTMLElement;
-	console.log({browser});
 	
 	if (currentlyViewingImage) {
 		header?.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
