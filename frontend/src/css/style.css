@@ -2092,6 +2092,11 @@ body {
   cursor: auto;
   filter: brightness(1) blur(0);
 }
+@media only screen and (hover: none) {
+  .carousel__image, .carousel__video.fg-video {
+    filter: brightness(1) blur(0px);
+  }
+}
 
 .carousel {
   position: relative;
