@@ -68,6 +68,7 @@ interface SiteNavProps {
 	match: Match
 }
 
+const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 export const SiteNav: React.FC<SiteNavProps> = ({
 	match,
 }) => {
@@ -77,20 +78,12 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 	const isSiteNavMinimized = useAppSelector(isSiteNavMinimizedSelector);
 	const currentlyViewingImage = useAppSelector(currentlyViewingImageSelector);
 	const dispatch = useAppDispatch();
-	const SET_INITIAL_HEADER_HEIGHT_DELAY = 100;
 	const location = useLocation();
 	const navRef = useRef<HTMLElement>(null);
 	const toggleTransitioningTimeoutIdRef = useRef<any>(null);
 	const [isTransitioning, setIsTransitioning] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const renderCountRef = useRenderCount();
-	const header = document.querySelector(`${HEADER_ID}`) as HTMLElement;
-	
-	if (currentlyViewingImage) {
-		header?.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
-	} else {
-		header?.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
-	}
 
 	//#region Functions/Handlers
 	const onBodyClick = (e: Event) => {
@@ -186,6 +179,15 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 			siteNav.classList.toggle(SITE_NAV_MINIMAL_CLASSNAME);
 		}
 	}, [isSiteNavMinimized, navRef])
+
+	useEffect(() => {
+		const header = document.querySelector(`${HEADER_ID}`) as HTMLElement;
+		if (currentlyViewingImage) {
+			header?.classList.remove(Z_INDEX_HIGHEST_CLASSNAME);
+		} else {
+			header?.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
+		}
+	})
 	//#endregion
 
 	//#region JSX

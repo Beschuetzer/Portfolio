@@ -1,21 +1,16 @@
 %item-filter {
 	transition: filter $animation-duration * 0.5 $animation-easing-standard;
-	filter: brightness(0.85) blur(2px);
+	filter: brightness(0.85);
 	cursor: pointer;
 
-	&:not(.full-screen):hover,
-	&:not(.full-screen)focus,
-	&:not(.full-screen)active {
+
+	.carousel__item--full-screen & {
+		cursor: auto;
 		filter: brightness(1);
 	}
 
-	&.full-screen {
-		cursor: auto;
-		filter: brightness(1) blur(0);
-	}
-
 	@include respond(mobile) {
-		filter: brightness(1) blur(0px);
+		filter: brightness(1);
 	}
 }
 

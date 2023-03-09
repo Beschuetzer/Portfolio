@@ -2116,19 +2116,16 @@ body {
 
 .carousel__image, .carousel__video.fg-video {
   transition: filter 0.25s ease;
-  filter: brightness(0.85) blur(2px);
+  filter: brightness(0.85);
   cursor: pointer;
 }
-.carousel__image:not(.full-screen):hover, .carousel__video.fg-video:not(.full-screen):hover, .carousel__image:not(.full-screen) focus, .carousel__video.fg-video:not(.full-screen) focus, .carousel__image:not(.full-screen) active, .carousel__video.fg-video:not(.full-screen) active {
-  filter: brightness(1);
-}
-.full-screen.carousel__image, .full-screen.carousel__video.fg-video {
+.carousel__item--full-screen .carousel__image, .carousel__item--full-screen .carousel__video.fg-video {
   cursor: auto;
-  filter: brightness(1) blur(0);
+  filter: brightness(1);
 }
 @media only screen and (hover: none) {
   .carousel__image, .carousel__video.fg-video {
-    filter: brightness(1) blur(0px);
+    filter: brightness(1);
   }
 }
 
