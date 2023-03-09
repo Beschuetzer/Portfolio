@@ -463,17 +463,23 @@ $scale-y-amount: .25;
 
 	//Styling dropdown items on dropdown-container hover
 	&__dropdown-container:hover &__dropdown &__item {
+		--color: var(--color-primary-1);
+		--size: #{$navbar__item-divider-width};
 		height: 100%;
 		opacity: 1;
-		border-top: $navbar__item-divider-width solid var(--color-primary-1);
+		border-top: var(--size) solid var(--color);
+		
+		&:hover {
+			--color: transparent;
+		}
 
 		@include respond(nav-switch) {
 			width: 90%;
 			max-width: $default-font-size * 30;
-			border-top: 1px solid transparent;
+			--size: 0px;
 
 			&:first-child{
-				border-top: 1px solid var(--color-primary-1);
+				--size: 1px;
 			}
 		}
 	}

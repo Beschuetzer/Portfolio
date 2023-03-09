@@ -1162,18 +1162,23 @@ body {
   }
 }
 .navbar__dropdown-container:hover .navbar__dropdown .navbar__item {
+  --color: var(--color-primary-1);
+  --size: 0.28rem;
   height: 100%;
   opacity: 1;
-  border-top: 0.28rem solid var(--color-primary-1);
+  border-top: var(--size) solid var(--color);
+}
+.navbar__dropdown-container:hover .navbar__dropdown .navbar__item:hover {
+  --color: transparent;
 }
 @media only screen and (max-width: 68.75em) {
   .navbar__dropdown-container:hover .navbar__dropdown .navbar__item {
     width: 90%;
     max-width: 42rem;
-    border-top: 1px solid transparent;
+    --size: 0px;
   }
   .navbar__dropdown-container:hover .navbar__dropdown .navbar__item:first-child {
-    border-top: 1px solid var(--color-primary-1);
+    --size: 1px;
   }
 }
 .navbar__dropdown-container:hover .navbar__dropdown .navbar__link {
