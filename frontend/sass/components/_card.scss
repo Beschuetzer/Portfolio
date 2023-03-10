@@ -261,7 +261,7 @@
 
 	&--hoverable {
 		&:hover {
-			--card-scale-amount: 1.5;
+			--card-scale-amount: 1.25;
 			z-index: $card-z-index + 1;
 
 			@include respond(phone) {

@@ -108,7 +108,7 @@
 			// top: var(--fullscreen-top);
 			display: block;
 			top: calc(#{$carousel-full-screen-item-height} / 2);
-			opacity: .25;
+			opacity: .75;
 			bottom: auto;
 			
 			@include respond(nav-switch) {
@@ -283,6 +283,7 @@
 			transition: none;
 			border: none;
 			border-radius: 0;
+			background-color: rgba(var(--color-black-rgb), 1);
 
 			& .card__progress {
 				opacity: 1;
@@ -398,6 +399,16 @@
 		-moz-user-select: none; /* Old versions of Firefox */
 		-ms-user-select: none; /* Internet Explorer/Edge */
 		user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+
+		.carousel__item--full-screen & {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translate(-50%, -0%);
+			width: auto;
+			height: $carousel-full-screen-item-height;
+		}
+
 		@extend %item-filter;
 
 		@include respond(nav-switch) {

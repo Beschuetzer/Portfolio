@@ -764,7 +764,7 @@ body {
 }
 
 .fill-red {
-  --opacity: .75;
+  --opacity: calc(1 * .9);
   fill: rgba(var(--color-primary-red-rgb), var(--opacity)) !important;
 }
 .fill-red:hover {
@@ -1990,7 +1990,7 @@ body {
   opacity: 0.25;
 }
 .card--hoverable:hover {
-  --card-scale-amount: 1.5;
+  --card-scale-amount: 1.25;
   z-index: 2;
 }
 @media only screen and (max-width: 40.9375em) {
@@ -2215,7 +2215,7 @@ body {
   z-index: 1000000;
   display: block;
   top: calc(87.5vh / 2);
-  opacity: 0.25;
+  opacity: 0.75;
   bottom: auto;
 }
 @media only screen and (max-width: 68.75em) {
@@ -2364,6 +2364,7 @@ body {
   transition: none;
   border: none;
   border-radius: 0;
+  background-color: rgba(var(--color-black-rgb), 1);
 }
 .carousel__item--full-screen .card__progress {
   opacity: 1;
@@ -2461,6 +2462,14 @@ body {
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+.carousel__item--full-screen .carousel__image {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: auto;
+  height: 87.5vh;
 }
 @media only screen and (max-width: 68.75em) {
   .carousel__image {
