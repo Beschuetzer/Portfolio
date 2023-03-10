@@ -1880,7 +1880,8 @@ body {
   font-size: 0.35rem;
   background-color: rgba(var(--color-primary-4-rgb), 0.95);
   border: 0.1px solid var(--color-primary-1);
-  width: 95%;
+  width: 75%;
+  max-width: 75%;
   display: flex;
   justify-content: center;
   align-items: center;

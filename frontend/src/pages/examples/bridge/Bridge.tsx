@@ -199,7 +199,7 @@ const sectionContents = [
 							claim some number of tricks less than or equal to the number of
 							tricks remaining.&nbsp; The UI guides players through the
 							selection process by disabling invalid choices and
-							displaying valid choices in a table.
+							displaying the choices made in a table.
 						</p>
 					</div>
 				</Card>
