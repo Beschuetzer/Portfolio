@@ -407,6 +407,11 @@
 			transform: translate(-50%, -0%);
 			width: auto;
 			height: $carousel-full-screen-item-height;
+
+			@include respond(nav-switch) {
+				width: 100%;
+				height: 74vh;
+			}
 		}
 
 		@extend %item-filter;
