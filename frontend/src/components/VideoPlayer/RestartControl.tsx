@@ -10,6 +10,7 @@ interface RestartControlProps {
 	doneClassname: string,
 	stoppedClassname: string,
 	functionToGetContainer?: (e: any) => void,
+	onClick?: () => void,
 }
 
 export const RestartControl: React.FC<RestartControlProps> = ({
@@ -22,6 +23,7 @@ export const RestartControl: React.FC<RestartControlProps> = ({
 	doneClassname,
 	stoppedClassname,
 	functionToGetContainer = null,
+	onClick = () => null,
 }) => {
   let hasProgressEventListener = false;
 
@@ -33,6 +35,7 @@ export const RestartControl: React.FC<RestartControlProps> = ({
 		if (!container && functionToGetContainer) container = functionToGetContainer(e);
 
 		restartVideo(videoRef.current, container);
+		onClick && onClick();
 	}
 
 	const restartVideo = (video: HTMLVideoElement, container: HTMLElement) => {

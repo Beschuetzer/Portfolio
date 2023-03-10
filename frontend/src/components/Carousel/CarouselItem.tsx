@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
 	getNthItemOpen,
 	handleVideo,
@@ -221,6 +221,7 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 					functionToRunOnClose && functionToRunOnClose();
 					dispatch(setCurrentlyViewingCarouselImage(''));
 				}}
+				onClose={() => setIsFullScreen(false)}
 			/>
 		);
 
@@ -270,7 +271,6 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 					doneClassname={DONE_CLASSNAME}
 					stoppedClassname={STOPPED_CLASSNAME}
 					functionToGetContainer={functionToGetContainer}
-					onClick={() => setShowOverlayText(true)}
 				/>
 
 				<RestartControl
@@ -286,11 +286,24 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 					doneClassname={DONE_CLASSNAME}
 					stoppedClassname={STOPPED_CLASSNAME}
 					functionToGetContainer={functionToGetContainer}
+					onClick={() => setShowOverlayText(true)}
 				/>
 				{closeControlToUse}
 			</React.Fragment>
 		);
 	};
+
+	//#region SideFx
+	useEffect(() => {
+		if (!isFullScreen) {
+			setShowOverlayText(true);
+		}
+		return () => {
+			setShowOverlayText(true);
+		}
+	}, [isFullScreen])
+	
+	//#endregion
 
 	//#region JSX
 	return (

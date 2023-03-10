@@ -101,9 +101,9 @@ export const OverlayText: React.FC<OverlayTextProps> = ({
   if (!isVisible) return null;
   return (
     <div ref={reference} className={`${cssClassname}`} style={stylesToUse ? stylesToUse : null}>
-      <div className={`${cssClassname}-title-container`} onClick={onClick}>
+      <div className={`${cssClassname}-title-container`}>
         <h3 className={`${cssClassname}-title` }>{titleText}</h3>
-        <svg className={`${cssClassname}-title-close`}>
+        <svg className={`${cssClassname}-title-close`} onClick={onClick}>
           <use xlinkHref="/sprite.svg#icon-close"/>
         </svg>
       </div>

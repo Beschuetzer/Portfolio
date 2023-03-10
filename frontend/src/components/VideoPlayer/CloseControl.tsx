@@ -14,6 +14,7 @@ interface CloseControlProps {
 	classNamesToRemove: string[] | string;
 	classNamesToRemoveFromElement?: [string, HTMLElement | null][];
 	functionToRunOnClose?: () => void;
+	onClose?: () => void;
 }
 
 export const CloseControl: React.FC<CloseControlProps> = ({
@@ -26,6 +27,7 @@ export const CloseControl: React.FC<CloseControlProps> = ({
 	classNamesToRemove,
 	classNamesToRemoveFromElement = [],
 	functionToRunOnClose = null,
+	onClose = () => null,
 }) => {
 	const handleCloseItem = (e: MouseEvent) => {
 		e.stopPropagation();
@@ -58,6 +60,7 @@ export const CloseControl: React.FC<CloseControlProps> = ({
 					elementToRemoveFrom.classList.remove(classNameToRemove);
 			}
 		}
+		onClose && onClose();
 	};
 
 	return (
