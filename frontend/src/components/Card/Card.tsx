@@ -32,6 +32,7 @@ interface CardProps {
 	cardName: string;
 	fileType?: string;
 	children: any;
+	videoSubTitle?: string;
 	video: string;
 }
 
@@ -41,6 +42,7 @@ export const Card: React.FC<CardProps> = ({
 	cardName,
 	fileType = "svg",
 	children,
+	videoSubTitle,
 	video,
 }) => {
 	//#region Init
@@ -577,7 +579,10 @@ export const Card: React.FC<CardProps> = ({
 							<svg onClick={onCloseChildren} className="card__children-close">
 								<use xlinkHref="/sprite.svg#icon-close"/>
 							</svg>
-							{children}
+							<div>
+								<p>{capitalize(videoSubTitle)}</p>
+								{children}
+							</div>
 						</div>
 					) : null}
 				</Video>

@@ -98,21 +98,16 @@
 			transform $animation-duration $animation-easing-standard-easeInOutBack;
 
 		@include respond(nav-break) {
-			font-size: $default-font-size * 0.3125;
+			// font-size: $default-font-size * 0.3125;
 		}
 
 		& ul {
 			list-style: decimal;
-			padding-left: $default-font-size * 0.5;
 			font-size: $default-font-size * 0.2;
-
-			@include respond(nav-break) {
-				font-size: $default-font-size * 0.4;
-			}
 		}
-
-		& li {
-			// margin-left: $default-font-size * .5;
+		
+		& *:not(li, &-close, p) {
+			padding-left: $default-font-size * 0.2;
 		}
 
 		&-toggler {

@@ -1888,20 +1888,12 @@ body {
   align-items: center;
   transition: opacity 1s ease, transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
-@media only screen and (max-width: 35.0625em) {
-  .card__children {
-    font-size: 0.4375rem;
-  }
-}
 .card__children ul {
   list-style: decimal;
-  padding-left: 0.7rem;
   font-size: 0.28rem;
 }
-@media only screen and (max-width: 35.0625em) {
-  .card__children ul {
-    font-size: 0.56rem;
-  }
+.card__children *:not(li, .card__children-close, p) {
+  padding-left: 0.28rem;
 }
 .card__children-close {
   height: 0.7rem;

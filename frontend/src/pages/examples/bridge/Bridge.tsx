@@ -135,51 +135,42 @@ const sectionContents = [
 				<Card
 					video={cardPlayAndRoundEndVideo}
 					cardName="ace-of-spades"
-					title="Animations">
-					<div>
-						There are two optional animations:
+					title="Animations"
+					videoSubTitle="Two Animations">
 						<ul>
 							<li>
 								Card Play - mimics a perfectly thrown card when others play
 							</li>
 							<li>Round End - mimics a rocket 'blasting off' of the table.</li>
 						</ul>
-					</div>
 				</Card>
 				<Card video={undoVideo} cardName="ace-of-hearts" title="Undo">
-					<div>
 						<p>
 							Players are able to undo during the bidding phase as well as the
 							playing phase.
 						</p>
-					</div>
 				</Card>
 				<Card
 					video={saveGameVideo}
 					cardName="ace-of-diamonds"
 					title="Save Games">
-					<div>
 						<p>
 							The server saves each play and bid automatically, allowing players
 							to resume playing at a later time without having to worry about
 							losing the game state.
 						</p>
-					</div>
 				</Card>
 				<Card
 					video={resizingVideo}
 					cardName="ace-of-clubs"
 					title="Dynamic Resizing">
-					<div>
 						<p>
 							The playing screen dynamically adjusts to the viewport, allowing
 							users to play on their Android phone or with the window only
 							taking up a fraction of the screen.
 						</p>
-					</div>
 				</Card>
 				<Card cardName="king-of-spades" title="Claim All" video={claimAllVideo}>
-					<div>
 						<p>
 							'Claim All' allows players to claim the rest of the tricks rather
 							than play them out. &nbsp;It does this by showing he claimer's
@@ -187,13 +178,11 @@ const sectionContents = [
 							the claim, the claimer gets the rest of the tricks and the game
 							moves to the deal summary screen.
 						</p>
-					</div>
 				</Card>
 				<Card
 					video={claimSomeVideo}
 					cardName="king-of-hearts"
 					title="Claim Some">
-					<div>
 						<p>
 							The 'Claim Some' feature speeds up gameplay in some scenarios by allowing the declarer (person playing the contract) to
 							claim some number of tricks less than or equal to the number of
@@ -201,13 +190,11 @@ const sectionContents = [
 							selection process by disabling invalid choices and
 							displaying the choices made in a table.
 						</p>
-					</div>
 				</Card>
 				<Card
 					video={dealSummaryVideo}
 					cardName="king-of-diamonds"
 					title="Deal Summary">
-					<div>
 						<p>
 							The Deal Summary screen allows players to review the bidding and
 							playing phases of the last deal.&nbsp; It does this by displaying
@@ -216,44 +203,35 @@ const sectionContents = [
 							information is useful for self-improvement and providing feedback
 							to others.
 						</p>
-					</div>
 				</Card>
 				<Card
 					video={preferencesVideo}
 					cardName="king-of-clubs"
 					title="Preferences">
-					<div>
 						<p>
 							Preferences allow each player to customize the experience of the
 							game.&nbsp; Card sorting order, sounds, animation toggling, color
 							themes, card back image, and other preferences are all
 							customizable via the preferences page.
 						</p>
-					</div>
 				</Card>
 				<Card video={themesVideo} cardName="queen-of-spades" title="Themes">
-					<div>
 						<p>
 							There are 8 different color themes available. Some are
 							intentionally strange, while others are meant to impress.
 						</p>
-					</div>
 				</Card>
 				<Card
 					video={playingACardVideo}
 					cardName="queen-of-hearts"
-					title="Card Play Options">
-					<div>
-						<p>
-							When it is your turn to play a card, you have three ways to play a
-							card:{" "}
-						</p>
+					title="Card Play Options"
+					videoSubTitle="three ways to play a
+					card">		
 						<ul>
 							<li>drag and drop the card</li>
 							<li>double click the card</li>
 							<li>use the keyboard shortcut for that card</li>
 						</ul>
-					</div>
 				</Card>
 			</CardManager>
 			<div className={BRIDGE_BACKDROP_CLASSNAME}></div>
