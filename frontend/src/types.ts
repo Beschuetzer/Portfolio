@@ -64,6 +64,12 @@ export type Repository = {
 //#endregion
 
 //#region Enums
+export enum BridgeSectionClassname {
+	empty = '',
+	slideLeft = "slide-left",
+	currentSection = "current-section",
+}
+
 export enum MaxCharCount {
 	song = 'song',
 }

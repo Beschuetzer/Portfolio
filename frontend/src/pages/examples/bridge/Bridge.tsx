@@ -48,7 +48,7 @@ import { Reference } from "../../../types";
 import { setLinearGradientCssCustomProp, resetBridgeHero } from "./utils";
 
 const sectionContents = [
-	<SectionContainer name={bridgeSectionNames[0]} pageName={BRIDGE_PAGE_NAME}>
+	<SectionContainer index={0} name={bridgeSectionNames[0]} pageName={BRIDGE_PAGE_NAME}>
 		<BridgeSection titleSize="two" titleContent={bridgeSectionNames[0]}>
 			<Quote author="Timothy Ferriss" className="padding-bottom-2">
 				What we fear doing most is usually what we most need to do.
@@ -126,7 +126,7 @@ const sectionContents = [
 			</BridgeCardSection>
 		</BridgeSection>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSectionNames[1]} pageName={BRIDGE_PAGE_NAME}>
+	<SectionContainer index={1} name={bridgeSectionNames[1]} pageName={BRIDGE_PAGE_NAME}>
 		<BridgeSection
 			selectorToUseForSubtitle={(state: RootState) => state.bridge.featureSectionTitle}
 			titleSize="two"
@@ -259,7 +259,7 @@ const sectionContents = [
 			<div className={BRIDGE_BACKDROP_CLASSNAME}></div>
 		</BridgeSection>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSectionNames[2]} pageName={BRIDGE_PAGE_NAME}>
+	<SectionContainer index={2} name={bridgeSectionNames[2]} pageName={BRIDGE_PAGE_NAME}>
 		<BridgeSection titleSize="two" titleContent={bridgeSectionNames[2]}>
 			<Quote author="Walt Disney" className="padding-bottom-2">
 				There's no magic in magic, it's all in the details.
@@ -454,7 +454,7 @@ const sectionContents = [
 			</BridgeCardSection>
 		</BridgeSection>
 	</SectionContainer>,
-	<SectionContainer name={bridgeSectionNames[3]} pageName={BRIDGE_PAGE_NAME}>
+	<SectionContainer index={3} name={bridgeSectionNames[3]} pageName={BRIDGE_PAGE_NAME}>
 		<BridgeSection titleSize="two" titleContent={bridgeSectionNames[3]}>
 			<Quote author="Zig Ziglar" className="padding-bottom-2">
 				If you are not willing to learn, no one can help you.&nbsp; If you are

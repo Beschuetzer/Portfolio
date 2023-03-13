@@ -39,25 +39,7 @@ export const BridgeArrowButton: React.FC<ArrowButtonProps> = ({
 			}
 		};
 
-		const handleSliding = () => {
-			for (let i = 0; i < bridgeSections.length; i++) {
-				const section = bridgeSections[i];
-				if (!section) return;
-
-				if (i !== currentBridgeSection)
-					section.classList.remove("current-section");
-
-				if (i < currentBridgeSection) {
-					section.classList.add("slide-left");
-				} else if (i === currentBridgeSection) {
-					section.classList.remove("slide-left");
-					section.classList.add("current-section");
-				} else {
-					section.classList.remove("slide-left");
-				}
-			}
-		};
-
+		
 		const handleArrowColors = () => {
 			const arrowColors: {
         [key: string]: {
@@ -127,7 +109,6 @@ export const BridgeArrowButton: React.FC<ArrowButtonProps> = ({
 
 		handleDisplay();
 		handleArrowColors();
-		handleSliding();
 	}, [currentBridgeSection, bridgeSections, clickedBridgeInfoButtonCount]);
 
 	const handleClick = (e: MouseEvent) => {
