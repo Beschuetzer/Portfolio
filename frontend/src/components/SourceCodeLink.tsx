@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { useAppSelector } from "../hooks";
+import { useBridgeSectionTransitionHiding } from "../hooks/useBridgeSectionTransitionHiding";
+import { useGetBridgeSections } from "../hooks/useGetBridgeSections";
+import { BridgeSectionHidingLogic } from "../pages/examples/bridge/BridgeSectionHidingLogic";
+import { currentBridgeSectionSelector, clickedBridgeInfoButtonCountSelector } from "../slices";
 
 interface  SourceCodeLinkProps { 
   href: string,
@@ -14,6 +19,9 @@ export const SourceCodeLink: React.FC<SourceCodeLinkProps> = ({
 	className,
 }) => {
 	const defaultClassname = `${blockName}__source`;
+	const isHiddenDuringBridgeSectionTransition = useBridgeSectionTransitionHiding();
+	
+	if (isHiddenDuringBridgeSectionTransition) return null;
 	return (
 		<a
 			target="_blank"

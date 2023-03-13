@@ -169,6 +169,7 @@
   --arrow-button-fill-left: var(--color-primary-bridge-1);
   --arrow-button-fill-right: var(--color-primary-bridge-1);
   --arrow-button-fill-hover: var(--color-primary-bridge-2);
+  --arrow-button-fill-hover-nav-switch: var(--color-primary-bridge-4);
   --arrow-button-right-fill-hover: var(--color-primary-bridge-2);
   --arrow-button-left-fill-hover: var(--color-primary-bridge-2);
   --card-scale-amount: 1;
@@ -3590,7 +3591,8 @@ body {
   align-items: center;
 }
 .source-link__container:not(.csharp .source-link__container) {
-  background-image: linear-gradient(rgba(var(--color-primary-2-rgb), 0.5), rgba(var(--color-primary-1-rgb), 0.5));
+  background-image: linear-gradient(rgba(var(--color-primary-1-rgb), 1), rgba(var(--color-primary-1-rgb), 0.5));
+  position: relative;
 }
 .source-link__source {
   font-family: "Merriweather", serif;
@@ -3651,6 +3653,11 @@ body {
 .source-link__source:hover .source-link__source-label {
   color: var(--arrow-button-right-fill-hover);
   transform: rotate(0deg);
+}
+@media only screen and (max-width: 68.75em) {
+  .source-link__source:hover .source-link__source-label {
+    color: var(--arrow-button-fill-hover-nav-switch);
+  }
 }
 .source-link__source:hover svg {
   fill: var(--arrow-button-right-fill);

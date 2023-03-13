@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
 import { capitalize, scrollToSection } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useBridgeSectionTransitionHiding } from "../../hooks/useBridgeSectionTransitionHiding";
 import { useUpdatePageNav } from "../../hooks/useUpdatePageNav";
 import { BridgeSectionLink } from "../../pages";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../slices/bridgeSlice";
@@ -338,6 +339,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 					name={bridgeSectionNames[index]}
 					sectionToSkipTo={bridgeSectionNames[index]}
 					match={match}
+					index={index}
 				/>
 			);
 		});

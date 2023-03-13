@@ -8,9 +8,11 @@ $top-offset: 1.25vw;
 
 		&:not(.csharp &) {
 			background-image: linear-gradient(
-				rgba(var(--color-primary-2-rgb), 0.5),
-				rgba(var(--color-primary-1-rgb), 0.5)
+				rgba(var(--color-primary-1-rgb), 1),
+				rgba(var(--color-primary-1-rgb), .5)
 			);
+			// background-color: var(--color-primary-1);
+			position: relative;
 		}
 	}
 
@@ -76,6 +78,10 @@ $top-offset: 1.25vw;
 			color: var(--arrow-button-right-fill-hover);
 			// color: rgba(var(--color-primary-4-rgb), .5);
 			transform: rotate(0deg);
+
+			@include respond(nav-switch) {
+				color: var(--arrow-button-fill-hover-nav-switch);
+			}
 		}
 
 		&:hover svg {

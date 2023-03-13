@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRef } from "react";
-import { BRIDGE_HERO_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAMES, BRIDGE_CLASSNAME } from "../../../components/constants";
+import { BRIDGE_HERO_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAMES, BRIDGE_CLASSNAME, BRIDGE_CURRENT_SECTION_CLASSNAME } from "../../../components/constants";
 import { scrollToSection } from "../../../helpers";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { useBridgeSectionTransitionHiding } from "../../../hooks/useBridgeSectionTransitionHiding";
 import { useGetBridgeSections } from "../../../hooks/useGetBridgeSections";
 import { setCurrentBridgeSection, setClickedBridgeInfoButtonCount, setHasClickedALink, currentBridgeSectionSelector, hasClickedALinkSelector } from "../../../slices/bridgeSlice";
 import { headerHeightSelector, isMobileSelector } from "../../../slices/generalSlice";
@@ -14,6 +15,7 @@ import {
 } from "./utils";
 
 interface BridgeSectionLinkProps {
+	index?: number,
 	isEmbeddedLink?: boolean,
 	sectionToSkipTo: string,
 	name: string,
@@ -21,11 +23,14 @@ interface BridgeSectionLinkProps {
 }
 
 export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
+	index,
 	isEmbeddedLink = false,
 	sectionToSkipTo,
 	name,
 	match,
 }) => {
+	const [isCurrentSection, setIsCurrentSection] = useState(false)
+	const isHiddenDuringTransition = useBridgeSectionTransitionHiding();
 	const bridgeSections = useGetBridgeSections();
 	const currentBridgeSection = useAppSelector(currentBridgeSectionSelector);
 	const hasClickedALink = useAppSelector(hasClickedALinkSelector);
@@ -95,12 +100,24 @@ export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 		}
 	};
 
-	let classToUse = BRIDGE_PAGE_NAV_LINK_CLASSNAMES;
-	if (isEmbeddedLink) classToUse = `${BRIDGE_CLASSNAME}__link`;
+	useEffect(() => {
+		const isCurrentSection = currentBridgeSection === index;
+		setIsCurrentSection(isCurrentSection);
+	}, [currentBridgeSection])
+	
 
+	//#region JSX
+	const linkClassname = isEmbeddedLink ? `${BRIDGE_CLASSNAME}__link` : BRIDGE_PAGE_NAV_LINK_CLASSNAMES;
+	const isCurrentSectionClassname = isCurrentSection ? BRIDGE_CURRENT_SECTION_CLASSNAME : '';
+	if (isHiddenDuringTransition) return null;
 	return (
-		<a ref={spanRef as any} onClick={(e: any) => navigateToSection(e)} className={classToUse}>
+		<a 
+			ref={spanRef as any} 
+			onClick={(e: any) => navigateToSection(e)} 
+			className={`${linkClassname} ${isCurrentSectionClassname}`}
+		>
 			{name}
 		</a>
 	);
+	//#endregion
 };

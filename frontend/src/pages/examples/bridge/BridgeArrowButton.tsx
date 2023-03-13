@@ -5,6 +5,8 @@ import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector, set
 import { ANIMATION_DURATION, COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "../../../components/constants";
 import { getComputedStyleCustom } from "../../../helpers";
 import { useGetBridgeSections } from "../../../hooks/useGetBridgeSections";
+import { useBridgeSectionTransitionHiding } from "../../../hooks/useBridgeSectionTransitionHiding";
+import { BridgeSectionHidingLogic } from "./BridgeSectionHidingLogic";
 
 interface ArrowButtonProps {
   	direction: 'left' | 'right',
@@ -19,27 +21,21 @@ export const BridgeArrowButton: React.FC<ArrowButtonProps> = ({
 	const currentBridgeSection = useAppSelector(currentBridgeSectionSelector);
 	const clickedBridgeInfoButtonCount = useAppSelector(clickedBridgeInfoButtonCountSelector);
 	const bridgeSections = useGetBridgeSections();
-	const [isHidden, setIsHidden] = useState(false);
-	const areSectionsVisible = clickedBridgeInfoButtonCount < 2;
-	const leftDisplayCondition = currentBridgeSection > 0 ? false : true;
-	const rightDisplayCondition = areSectionsVisible || currentBridgeSection >= bridgeSections.length - 1;
-
+	const bridgeTransitionHidingLogic = new BridgeSectionHidingLogic(clickedBridgeInfoButtonCount, currentBridgeSection, bridgeSections.length);
+	const isHiddenDuringTransition = useBridgeSectionTransitionHiding(
+		bridgeTransitionHidingLogic.areBridgeSectionsVisible ||
+		!bridgeTransitionHidingLogic.leftDisplayCondition ||
+		!bridgeTransitionHidingLogic.rightDisplayCondition
+	);
+	const [isHidden, setIsHidden] = useState(isHiddenDuringTransition);
+	
 	//Handling Updates
-	useEffect(() => {
-		if (areSectionsVisible || !leftDisplayCondition || !rightDisplayCondition) return;
-		setIsHidden(true);
-
-		setTimeout(() => {
-			setIsHidden(false);
-		}, ANIMATION_DURATION)
-	}, [currentBridgeSection])
-
 	useEffect(() => {
 		const handleDisplay = () => {
 			if (direction === 'left') {
-				setIsHidden(leftDisplayCondition);
+				setIsHidden(bridgeTransitionHidingLogic.leftDisplayCondition);
 			} else {
-				setIsHidden(rightDisplayCondition);
+				setIsHidden(bridgeTransitionHidingLogic.rightDisplayCondition);
 			}
 		};
 
