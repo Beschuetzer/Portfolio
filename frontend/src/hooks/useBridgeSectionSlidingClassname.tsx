@@ -9,7 +9,6 @@ export const useBridgeSectionSlidingClassname = (index: number | undefined | nul
 
     useEffect(() => {
 		if (index === undefined || index === null) return;
-        console.log("running");
         
 		let tempClassname = BridgeSectionClassname.empty;
 		const isLeftOfCurrentSection = index < currentBridgeSection;
