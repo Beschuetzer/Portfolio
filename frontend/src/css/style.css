@@ -2279,7 +2279,7 @@ body {
   height: 15.2894rem;
   border-radius: 0.7rem;
   overflow: hidden;
-  transition: border-radius 0.5s ease, transform 0.5s ease;
+  transition: border-radius 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
 }
 @media only screen and (max-width: 68.75em) {
   .carousel__item {

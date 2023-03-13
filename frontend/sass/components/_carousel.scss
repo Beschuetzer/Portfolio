@@ -181,8 +181,8 @@
 		overflow: hidden;
 		transition: 
 			border-radius $animation-duration $animation-easing-standard,
+			box-shadow $animation-duration $animation-easing-standard,
 			transform $animation-duration $animation-easing-standard;
-
 
 		@include respond(nav-switch) {
 			height: $carousel-item-card-size-nav-switch;
