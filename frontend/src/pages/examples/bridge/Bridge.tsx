@@ -37,7 +37,7 @@ import {
 } from "../../../components/constants";
 import { BridgeHero } from "./BridgeHero";
 import { SourceCodeLink } from "../../../components/SourceCodeLink";
-import { ArrowButton } from "../../../components/ArrowButton";
+import { BridgeArrowButton } from "./BridgeArrowButton";
 import { Quote } from "../../../components/Quote";
 import { BridgeSectionLink } from "./BridgeSectionLink";
 import { setHasClickedALink, setClickedBridgeInfoButtonCount, setCurrentBridgeSection } from "../../../slices/bridgeSlice";
@@ -503,8 +503,6 @@ interface BridgeProps {
 export const Bridge: React.FC<BridgeProps> = () => {
 	const dispatch = useAppDispatch();
 	const isMobile = useAppSelector(isMobileSelector);
-	const leftArrowProps = { direction: "left" };
-	const rightArrowProps = { direction: "right" };
 
 	useEffect(() => {
 		setLinearGradientCssCustomProp();
@@ -610,8 +608,8 @@ export const Bridge: React.FC<BridgeProps> = () => {
 
 			{renderSourceLinks()}
 			{renderSections()}
-			<ArrowButton {...leftArrowProps} />
-			<ArrowButton {...rightArrowProps} />
+			<BridgeArrowButton direction="left" />
+			<BridgeArrowButton direction="right" />
 		</div>
 	);
 };
