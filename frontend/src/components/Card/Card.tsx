@@ -249,7 +249,7 @@ export const Card: React.FC<CardProps> = ({
 		const transformOrigin = getComputedStyle(card)["transformOrigin"];
 		const split = transformOrigin.split(" ");
 		const yCornerOffset = isMobile ? 1.75 : 1.85;
-		const xCornerOffset = 1.1675;
+		const xCornerOffset = 1.235;
 		const cardScaleOnHoverAmount = getCardScaleOnHoverAmount(
 			card,
 			cardDimensions,
@@ -341,6 +341,7 @@ export const Card: React.FC<CardProps> = ({
 			cardToUseAsReference.getBoundingClientRect();
 		const valueToReturn =
 			cardDimensions.height / cardToUseAsReferenceDimensions.height;
+		
 		return valueToReturn;
 	};
 

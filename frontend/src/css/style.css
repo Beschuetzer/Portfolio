@@ -1983,13 +1983,8 @@ body {
   opacity: 0.25;
 }
 .card--hoverable:hover {
-  --card-scale-amount: 1.25;
+  --card-scale-amount: 1.5;
   z-index: 2;
-}
-@media only screen and (max-width: 40.9375em) {
-  .card--hoverable:hover {
-    --card-scale-amount: 1.15;
-  }
 }
 .card--hoverable:hover .card__children {
   z-index: 1;
