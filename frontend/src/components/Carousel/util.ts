@@ -8,7 +8,7 @@ import {
 	CAROUSEL_DOT_CLASSNAME,
 	CAROUSEL_GRID_MAX_COLUMN_WIDTHS,
 	CAROUSEL_GRID_MAX_COLUMN_WIDTH_DEFAULT,
-	CAROUSEL_GRID_WIDTH_CSS_PROPERTY_NAME,
+	CAROUSEL_GRID_WIDTH_CUSTOM_PROPERTY_NAME,
 	CAROUSEL_ITEM_CLASSNAME,
 	CAROUSEL_MIN_IMAGE_COUNT,
 	CONTAINS_CAROUSEL_CLASSNAME,
@@ -380,7 +380,7 @@ export function setCarouselGridMaxColumnWidth(
 		`.${CAROUSEL_CLASSNAME}`,
 	) as HTMLElement;
 
-	const carouselGridWidth = getComputedStyleCustom(CAROUSEL_GRID_WIDTH_CSS_PROPERTY_NAME);
+	const carouselGridWidth = getComputedStyleCustom(CAROUSEL_GRID_WIDTH_CUSTOM_PROPERTY_NAME);
 	const newValue = `repeat(auto-fill,	minmax(${carouselGridWidth}, ${maxWidthToUse}))`;
 	if (parentCarousel)
 		parentCarousel.style.setProperty("grid-template-columns", newValue);

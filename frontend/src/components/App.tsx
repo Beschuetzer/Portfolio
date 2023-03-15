@@ -6,6 +6,7 @@ import {
 	ABOUT_URL,
 	AUTO_BID_URL,
 	BRIDGE_DEMO_URL,
+	BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME,
 	BRIDGE_URL,
 	DOWNLOADER_URL,
 	MOBILE_BREAK_POINT_WIDTH, PERSONALITY_URL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
@@ -40,11 +41,11 @@ export const App: React.FC<AppProps> = ({
 	useEffect(() => {
 		const windowResize = (e: Event) => {
 			if (window.innerWidth <= mobileBreakPointWidth && !isMobile) {
-				const newValue = `--bridge-gradient-direction: to bottom`;
+				const newValue = `${BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME}: to bottom`;
 				document.documentElement.style.cssText += newValue;
 				return dispatch(setIsMobile({isMobile: true, viewPortWidth: window.innerWidth}));
 			} else if (window.innerWidth > mobileBreakPointWidth && isMobile) {
-				const newValue = `--bridge-gradient-direction: to right`;
+				const newValue = `${BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME}: to right`;
 				document.documentElement.style.cssText += newValue;
 				return dispatch(setIsMobile({isMobile: false,viewPortWidth:  window.innerWidth}));
 			}

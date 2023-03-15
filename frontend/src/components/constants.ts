@@ -73,23 +73,7 @@ export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const PAGE_NAV_WIDTH_AT_SWITCH_OFFSET = 192;
 //#endregion
 
-//#region CSS Property Names
-export const AUDIO_PLAYER_TOGGLER_ROTATION_CLOSED_CSS_PROPERTY_NAME = "--audio-player-toggler-rotation-closed";
-export const AUDIO_PLAYER_TOGGLER_ROTATION_OPEN_CSS_PROPERTY_NAME = "--audio-player-toggler-rotation-open";
-export const COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME = '--color-primary-bridge-1';
-export const COLOR_PRIMARY_BRIDGE_2_CSS_PROPERTY_NAME = '--color-primary-bridge-2';
-export const COLOR_PRIMARY_BRIDGE_3_CSS_PROPERTY_NAME = '--color-primary-bridge-3';
-export const COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME = '--color-primary-bridge-4';
-export const BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME = "--bridge-section-height";
-export const BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME = "--bridge-section-padding";
-export const CAROUSEL_GRID_WIDTH_CSS_PROPERTY_NAME = "--carousel-grid-width";
-export const HEADER_HEIGHT_CSS_PROPERTY_NAME = '--header-height';
-export const PAGE_NAV_MIN_COLUMN_WIDTH_CSS_PROPERTY_NAME = "--page-nav-min-column-width";
-export const QUOTE_POPUP_TRANSFORM_DEFAULT_CSS_PROPERTY_NAME = "--quote-popup-transform-default";
-//#endregion
-
 //#region CSS classnames
-export const BODY_BACKGROUND_CSS_CLASSNAME = "--body-background";
 export const BRIDGE_CLASSNAME = 'bridge';
 export const BRIDGE_BACKDROP_CLASSNAME = `${BRIDGE_CLASSNAME}__backdrop`;
 export const BRIDGE_CARD_SECTION_CLASSNAME = `${BRIDGE_CLASSNAME}__card-section`;
@@ -119,7 +103,6 @@ export const CAROUSEL_DESCRIPTION_CLASSNAME = `${CAROUSEL_ITEM_CLASSNAME}-descri
 export const CAROUSEL_DOT_ACTIVE_CLASSNAME = `${CAROUSEL_DOT_CLASSNAME}--active`;
 export const CAROUSEL_IMAGE_CLASSNAME = `${CAROUSEL_CLASSNAME}__image`;
 export const CAROUSEL_TRANSITION_CLASSNAME = "carousel-transition";
-export const CAROUSEL_TRANSLATION_CSS_CLASSNAME = `--${CAROUSEL_CLASSNAME}-item-translation-x`;
 export const CAROUSEL_VIDEO_CLASSNAME = `${CAROUSEL_CLASSNAME}__video`;
 export const CONTAINS_CAROUSEL_CLASSNAME = "contains-carousel";
 export const DISPLAY_NONE_CLASSNAME = "d-none";
@@ -154,6 +137,25 @@ export const Z_INDEX_HIGHEST_CLASSNAME = "z-index-highest";
 export const Z_INDEX_NAVBAR_CLASSNAME = "z-index-navbar";
 //#endregion
 
+//#region CSS Property Names
+export const AUDIO_PLAYER_TOGGLER_ROTATION_CLOSED_CUSTOM_PROPERTY_NAME = "--audio-player-toggler-rotation-closed";
+export const AUDIO_PLAYER_TOGGLER_ROTATION_OPEN_CUSTOM_PROPERTY_NAME = "--audio-player-toggler-rotation-open";
+export const COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME = '--color-primary-bridge-1';
+export const COLOR_PRIMARY_BRIDGE_2_CUSTOM_PROPERTY_NAME = '--color-primary-bridge-2';
+export const COLOR_PRIMARY_BRIDGE_3_CUSTOM_PROPERTY_NAME = '--color-primary-bridge-3';
+export const COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME = '--color-primary-bridge-4';
+export const BODY_BACKGROUND_CUSTOM_PROPERTY_NAME = "--body-background";
+export const BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME = "--bridge-gradient-direction";
+export const BRIDGE_SECTION_HEIGHT_CUSTOM_PROPERTY_NAME = "--bridge-section-height";
+export const BRIDGE_SECTION_PADDING_CUSTOM_PROPERTY_NAME = "--bridge-section-padding";
+export const CAROUSEL_GRID_WIDTH_CUSTOM_PROPERTY_NAME = "--carousel-grid-width";
+export const CAROUSEL_TRANSLATION_CUSTOM_PROPERTY_NAME = `--${CAROUSEL_CLASSNAME}-item-translation-x`;
+export const HEADER_HEIGHT_CUSTOM_PROPERTY_NAME = '--header-height';
+export const HEADER_TOGGLER_CUSTOM_PROPERTY_NAME = "--header-toggler-height";
+export const PAGE_NAV_MIN_COLUMN_WIDTH_CUSTOM_PROPERTY_NAME = "--page-nav-min-column-width";
+export const QUOTE_POPUP_TRANSFORM_DEFAULT_CUSTOM_PROPERTY_NAME = "--quote-popup-transform-default";
+//#endregion
+
 //#region Email Contact
 export const EMAIL = "adam.j.major@gmail.com";
 const SUBJECT = "";
@@ -177,7 +179,6 @@ export const BODY_BACKGROUND_CLASSNAME = "body-background";
 export const HEADER_ID = "#header";
 export const HEADER_TOGGLER_CLASSNAME = "header-toggler";
 export const HEADER_TOGGLER_ACTIVE_CLASSNAME = `${HEADER_TOGGLER_CLASSNAME}--active`;
-export const HEADER_TOGGLER_CSS_CLASSNAME = "--header-toggler-height";
 export const NAVBAR_Z_INDEX_CLASSNAME = "z-index-navbar";
 export const NAVBAR_CLASSNAME = "navbar";
 export const NAVBAR_ACTIVE_CLASSNAME = `${NAVBAR_CLASSNAME}--active`;
@@ -203,20 +204,20 @@ export const bridgeSectionNames = [
 //#region Misc
 export const BRIDGE_PAGE_NAV_LINKS_COLORS: BridgePageNavLinkColors[] = [
   {
-    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
-    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
   },
   {
-    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
-    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
   },
   {
-    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
-    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_2_CSS_PROPERTY_NAME),
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_2_CUSTOM_PROPERTY_NAME),
   },
   {
-    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CSS_PROPERTY_NAME),
-    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CSS_PROPERTY_NAME),
+    normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+    hover: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
   },
 ];
 

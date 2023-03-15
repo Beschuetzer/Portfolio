@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_ID, HEADER_HEIGHT_CSS_PROPERTY_NAME } from '../components/constants';
+import { HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_ID, HEADER_HEIGHT_CUSTOM_PROPERTY_NAME } from '../components/constants';
 import { useAppSelector } from '../hooks';
 import { viewPortWidthSelector } from '../slices';
 
@@ -25,7 +25,7 @@ export function setHeaderHeightCSSPropertyValue(valueToUse = -1) {
 	}
 	
 	document.documentElement.style.setProperty(
-		HEADER_HEIGHT_CSS_PROPERTY_NAME,
+		HEADER_HEIGHT_CUSTOM_PROPERTY_NAME,
 		`${newHeaderHeight}px`,
 	);
 }

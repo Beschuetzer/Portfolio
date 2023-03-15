@@ -226,7 +226,7 @@
 					$color-primary-bridge-1
 				));
 
-			@include respond(tab-land) {
+			@include respond(nav-switch) {
 				background-image: $bridge-card-section-3-gradient;
 			}
 

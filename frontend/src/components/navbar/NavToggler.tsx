@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setHeaderHeightCSSPropertyValue } from "../../hooks/useSetHeaderCssStyle";
 import { headerHeightSelector, isSiteNavMinimizedSelector, setIsSiteNavMinimized, viewPortWidthSelector } from "../../slices/generalSlice";
-import { HEADER_TOGGLER_CSS_CLASSNAME, HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_TOGGLER_CLASSNAME } from "../constants";
+import { HEADER_TOGGLER_ACTIVE_CLASSNAME, HEADER_TOGGLER_CLASSNAME, HEADER_TOGGLER_CUSTOM_PROPERTY_NAME } from "../constants";
 
 interface NavTogglerProps {}
 
@@ -22,7 +22,7 @@ export const NavToggler: React.FC<NavTogglerProps> = () => {
 			headerHeightInRem}rem`;
 		
 		document.documentElement.style.setProperty(
-			HEADER_TOGGLER_CSS_CLASSNAME,
+			HEADER_TOGGLER_CUSTOM_PROPERTY_NAME,
 			newWidth,
 		);
 	}, [headerHeight, viewPortWidth]);

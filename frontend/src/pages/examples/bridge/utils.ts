@@ -1,4 +1,4 @@
-import { ANIMATION_DURATION, BODY_BACKGROUND_CSS_CLASSNAME, bridgeSectionNames, BRIDGE_HERO_CLICKED_CLASSNAME, BRIDGE_HERO_MORE__CLICKED_CLASSNAME, BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME, BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SECOND_INFO_BUTTON_DELAY } from "../../../components/constants";
+import { ANIMATION_DURATION, BODY_BACKGROUND_CUSTOM_PROPERTY_NAME, bridgeSectionNames, BRIDGE_HERO_CLICKED_CLASSNAME, BRIDGE_HERO_MORE__CLICKED_CLASSNAME, BRIDGE_SECTION_HEIGHT_CUSTOM_PROPERTY_NAME, BRIDGE_SECTION_PADDING_CUSTOM_PROPERTY_NAME, HIDDEN_CLASSNAME, PAGE_NAV_CLASSNAME, SECOND_INFO_BUTTON_DELAY } from "../../../components/constants";
 import { getComputedStyleCustom, getLinearPercentOfMaxMatchWithinRange, scrollToSection } from "../../../helpers";
 import { LoadedSounds } from "../../../slices/";
 import { Reference } from "../../../types";
@@ -27,8 +27,8 @@ export const handleBridgeHeroSounds = (checkBox: HTMLInputElement, background: H
 
 export const resetBridgeHero = (heroMore: Reference) => {
   document.querySelector(PAGE_NAV_CLASSNAME)?.classList?.add(HIDDEN_CLASSNAME);
-  document.documentElement.style.setProperty(BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME, getComputedStyleCustom(BRIDGE_SECTION_HEIGHT_CSS_PROPERTY_NAME));
-  document.documentElement.style.setProperty(BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME, getComputedStyleCustom(BRIDGE_SECTION_PADDING_CSS_PROPERTY_NAME));
+  document.documentElement.style.setProperty(BRIDGE_SECTION_HEIGHT_CUSTOM_PROPERTY_NAME, getComputedStyleCustom(BRIDGE_SECTION_HEIGHT_CUSTOM_PROPERTY_NAME));
+  document.documentElement.style.setProperty(BRIDGE_SECTION_PADDING_CUSTOM_PROPERTY_NAME, getComputedStyleCustom(BRIDGE_SECTION_PADDING_CUSTOM_PROPERTY_NAME));
 
   heroMore.current?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
   (heroMore.current?.parentNode as HTMLElement)?.classList.remove(BRIDGE_HERO_CLICKED_CLASSNAME);
@@ -39,7 +39,7 @@ export const setLinearGradientCssCustomProp = () => {
       linear-gradient(to right, var(--color-primary-1), var(--color-primary-1));
     `;
 		document.documentElement.style.setProperty(
-			BODY_BACKGROUND_CSS_CLASSNAME,
+			BODY_BACKGROUND_CUSTOM_PROPERTY_NAME,
 			newLinearGradient,
 		);
 }
