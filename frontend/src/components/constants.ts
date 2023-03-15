@@ -246,7 +246,7 @@ export const BRIDGE_SECTION_COLORS: BridgeSectionColors = {
   2: {
     arrowNormal: {
       left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
-      right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+      right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_3_CUSTOM_PROPERTY_NAME),
     },
     arrowHover: {
       left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_2_CUSTOM_PROPERTY_NAME),

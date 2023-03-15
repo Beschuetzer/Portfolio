@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector, setCurrentBridgeSection } from "../../../slices";
@@ -18,6 +18,7 @@ export const BridgeArrowButton: React.FC<BridgeArrowButtonProps> = ({
 	direction,
 	reference,
 }) => {
+	const displayTimeoutRef = useRef<any>(-1);
 	const dispatch = useAppDispatch();
 	const currentBridgeSection = useAppSelector(currentBridgeSectionSelector);
 	const clickedBridgeInfoButtonCount = useAppSelector(clickedBridgeInfoButtonCountSelector);
@@ -33,11 +34,15 @@ export const BridgeArrowButton: React.FC<BridgeArrowButtonProps> = ({
 	//Handling Updates
 	useEffect(() => {
 		const handleDisplay = () => {
-			if (direction === 'left') {
-				setIsHidden(bridgeTransitionHidingLogic.leftDisplayCondition);
-			} else {
-				setIsHidden(bridgeTransitionHidingLogic.rightDisplayCondition);
-			}
+			setIsHidden(true);
+			clearTimeout(displayTimeoutRef.current)
+			displayTimeoutRef.current = setTimeout(() => {
+				if (direction === 'left') {
+					setIsHidden(bridgeTransitionHidingLogic.leftDisplayCondition);
+				} else {
+					setIsHidden(bridgeTransitionHidingLogic.rightDisplayCondition);
+				}
+			}, ANIMATION_DURATION)
 		};
 		
 		const handleArrowColors = () => {
@@ -83,7 +88,6 @@ export const BridgeArrowButton: React.FC<BridgeArrowButtonProps> = ({
 	const handleClick = (e: MouseEvent) => {
 		const MAX_BRIDGE_SECTION = 3;
 		if (currentBridgeSection === MAX_BRIDGE_SECTION && direction === 'right' || currentBridgeSection === 0 && direction === 'left') return;
-		hideContentDuringSlide()
 		if ((e.currentTarget as HTMLElement)?.className.match(/left/i)) {
 			if (currentBridgeSection > 0) {
 				return dispatch(setCurrentBridgeSection(currentBridgeSection - 1));
@@ -95,26 +99,6 @@ export const BridgeArrowButton: React.FC<BridgeArrowButtonProps> = ({
 		}
 
 	};
-
-	const hideContentDuringSlide = () => {
-		const pageNav = document.querySelector(`.${PAGE_NAV_CLASSNAME}`);
-		const leftArrow = document.querySelector(".arrow-button--left");
-		const rightArrow = document.querySelector(".arrow-button--right");
-		const toHide = [pageNav, leftArrow, rightArrow];
-
-		toHide.forEach(item => {
-			item?.classList.add(SLIDING_CLASSNAME);
-		})
-		
-		setTimeout(() => {
-			toHide.forEach(item => {
-				item?.classList.remove(SLIDING_CLASSNAME);
-			})
-
-		}, ANIMATION_DURATION / 2);
-
-	}
-
 
 	//#region JSX
 	if (isHidden) return null;

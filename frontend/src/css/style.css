@@ -1888,7 +1888,6 @@ body {
   width: 75%;
   max-width: 75%;
   display: flex;
-  justify-content: center;
   align-items: center;
   transition: opacity 1s ease, transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
