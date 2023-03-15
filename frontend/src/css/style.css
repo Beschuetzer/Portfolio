@@ -149,6 +149,7 @@
   --header-toggler-height: 12.75rem;
   --header-toggler-width: 4rem;
   --header-inner-width-nav-switch: 100%;
+  --navbar-logo-width: 6.6752rem;
   --page-padding-top: var(--header-height);
   --bridge-gradient-direction: to right;
   --bridge-arrow-button-fill-hover-nav-switch: var(--color-primary-bridge-4);

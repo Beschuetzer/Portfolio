@@ -259,6 +259,7 @@ $page-wrapper-padding-top-spacing: calc(#{$header-top} + #{$default-font-size});
 $page-nav-top: calc(#{$navbar__logo-width} + #{$default-font-size} * 1);
 //#endregion
 
+//NOTE: any new variables that you want to reference in React have to manually added to section for custom props in constants.ts
 :root {
 	scroll-behavior: smooth;
 	scroll-padding-top: $header-height * 1.2;
@@ -300,11 +301,8 @@ $page-nav-top: calc(#{$navbar__logo-width} + #{$default-font-size} * 1);
 	--header-toggler-height: #{$header-height + $header-toggler-width};
 	--header-toggler-width: #{$header-toggler-width};
 	--header-inner-width-nav-switch: 100%;
-
-
-
+	--navbar-logo-width: #{$navbar__logo-width};
 	--page-padding-top: var(--header-height);
-
 
 	//bridge page
 	--bridge-gradient-direction: to right;

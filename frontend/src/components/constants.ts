@@ -157,6 +157,7 @@ export const CAROUSEL_GRID_WIDTH_CUSTOM_PROPERTY_NAME = "--carousel-grid-width";
 export const CAROUSEL_TRANSLATION_CUSTOM_PROPERTY_NAME = `--${CAROUSEL_CLASSNAME}-item-translation-x`;
 export const HEADER_HEIGHT_CUSTOM_PROPERTY_NAME = '--header-height';
 export const HEADER_TOGGLER_CUSTOM_PROPERTY_NAME = "--header-toggler-height";
+export const NAVBAR_LOGO_WIDTH_CUSTOM_PROPERTY_NAME = '--navbar-logo-width';
 export const PAGE_NAV_MIN_COLUMN_WIDTH_CUSTOM_PROPERTY_NAME = "--page-nav-min-column-width";
 export const QUOTE_POPUP_TRANSFORM_DEFAULT_CUSTOM_PROPERTY_NAME = "--quote-popup-transform-default";
 //#endregion

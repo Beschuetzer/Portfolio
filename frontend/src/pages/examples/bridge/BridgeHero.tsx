@@ -54,7 +54,7 @@ export const BridgeHero: React.FC<BridgeHeroProps> = () => {
 		clearInterval(displayNoneTimeoutRef.current);
 		displayNoneTimeoutRef.current = setTimeout(() => {
 			setIsVisible(bridgeSectionHidingLogic.isBridgeHeroVisible);
-		}, ANIMATION_DURATION)
+		}, ANIMATION_DURATION * 1.25)
 	}, [clickedBridgeInfoButtonCount])
 	//#endregion
 
