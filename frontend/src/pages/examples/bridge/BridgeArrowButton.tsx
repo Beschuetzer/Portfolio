@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector, setCurrentBridgeSection } from "../../../slices";
-import { ANIMATION_DURATION, COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME, COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "../../../components/constants";
-import { getComputedStyleCustom } from "../../../helpers";
+import { ANIMATION_DURATION, BRIDGE_ARROW_BUTTON_LEFT_FILL_CUSTOM_PROPERTY_NAME, BRIDGE_ARROW_BUTTON_RIGHT_FILL_CUSTOM_PROPERTY_NAME, BRIDGE_LINK_SVG_FILL_CUSTOM_PROPERTY_NAME, BRIDGE_LINK_TEXT_COLOR_CUSTOM_PROPERTY_NAME, BRIDGE_SECTION_COLORS, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "../../../components/constants";
 import { useGetBridgeSections } from "../../../hooks/useGetBridgeSections";
 import { useBridgeSectionTransitionHiding } from "../../../hooks/useBridgeSectionTransitionHiding";
 import { BridgeSectionHidingLogic } from "./BridgeSectionHidingLogic";
 
-interface ArrowButtonProps {
+type BridgeArrowButtonProps = {
   	direction: 'left' | 'right',
 	reference?: any,
 }
 
-export const BridgeArrowButton: React.FC<ArrowButtonProps> = ({
+
+
+export const BridgeArrowButton: React.FC<BridgeArrowButtonProps> = ({
 	direction,
 	reference,
 }) => {
@@ -38,72 +39,40 @@ export const BridgeArrowButton: React.FC<ArrowButtonProps> = ({
 				setIsHidden(bridgeTransitionHidingLogic.rightDisplayCondition);
 			}
 		};
-
 		
 		const handleArrowColors = () => {
-			const arrowColors: {
-        [key: string]: {
-          normal: {left: () => string, right: () => string},
-          hover: {left: () => string, right: () => string},
-        },
-      } = {
-				0: {
-					normal: {
-						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
-						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
-					},
-					hover: {
-						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
-						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
-					},
-				},
-				1: {
-					normal: {
-						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
-						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
-					},
-					hover: {
-						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
-						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
-					},
-				},
-				2: {
-					normal: {
-						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
-						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
-					},
-					hover: {
-						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
-						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
-					},
-				},
-				3: {
-					normal: {
-						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
-						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
-					},
-					hover: {
-						left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
-						right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
-					},
-				},
-			};
+			document.documentElement.style.setProperty(
+				BRIDGE_ARROW_BUTTON_LEFT_FILL_CUSTOM_PROPERTY_NAME,
+				BRIDGE_SECTION_COLORS[currentBridgeSection].arrowNormal.left(),
+			);
+			document.documentElement.style.setProperty(
+				BRIDGE_ARROW_BUTTON_RIGHT_FILL_CUSTOM_PROPERTY_NAME,
+				BRIDGE_SECTION_COLORS[currentBridgeSection].arrowNormal.right(),
+			);
+			document.documentElement.style.setProperty(
+				`${BRIDGE_ARROW_BUTTON_LEFT_FILL_CUSTOM_PROPERTY_NAME}-hover`,
+				BRIDGE_SECTION_COLORS[currentBridgeSection].arrowHover.left(),
+			);
+			document.documentElement.style.setProperty(
+				`${BRIDGE_ARROW_BUTTON_RIGHT_FILL_CUSTOM_PROPERTY_NAME}-hover`,
+				BRIDGE_SECTION_COLORS[currentBridgeSection].arrowHover.right(),
+			);
 
 			document.documentElement.style.setProperty(
-				"--arrow-button-left-fill",
-				arrowColors[currentBridgeSection].normal.left(),
+				BRIDGE_LINK_SVG_FILL_CUSTOM_PROPERTY_NAME,
+				BRIDGE_SECTION_COLORS[currentBridgeSection].linkNormal.svg(),
 			);
 			document.documentElement.style.setProperty(
-				"--arrow-button-right-fill",
-				arrowColors[currentBridgeSection].normal.right(),
+				`${BRIDGE_LINK_SVG_FILL_CUSTOM_PROPERTY_NAME}-hover`,
+				BRIDGE_SECTION_COLORS[currentBridgeSection].linkHover.svg(),
 			);
 			document.documentElement.style.setProperty(
-				"--arrow-button-left-fill-hover",
-				arrowColors[currentBridgeSection].hover.left(),
+				BRIDGE_LINK_TEXT_COLOR_CUSTOM_PROPERTY_NAME,
+				BRIDGE_SECTION_COLORS[currentBridgeSection].linkNormal.text(),
 			);
 			document.documentElement.style.setProperty(
-				"--arrow-button-right-fill-hover",
-				arrowColors[currentBridgeSection].hover.right(),
+				`${BRIDGE_LINK_TEXT_COLOR_CUSTOM_PROPERTY_NAME}-hover`,
+				BRIDGE_SECTION_COLORS[currentBridgeSection].linkHover.text(),
 			);
 		};
 

@@ -133,7 +133,6 @@ export function getLinearPercentOfMaxMatchWithinRange(currentTrackedValue: numbe
   }
 }
 
-
 export function getMaxLengthString(str: string, maxCharCount = 30, addElliplse = true) {	
 	if (!str) {
 		return '';

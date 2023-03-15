@@ -1,5 +1,5 @@
 import { getComputedStyleCustom } from "../helpers";
-import { BridgePageNavLinkColors, MaxCharCount, MaxCharCounts } from "../types";
+import { BridgeColors as BridgeSectionColors, BridgePageNavLinkColors, MaxCharCount, MaxCharCounts } from "../types";
 
 //#region note: Add page names here
 export const ABOUT_PAGE_NAME = "about";
@@ -140,6 +140,10 @@ export const Z_INDEX_NAVBAR_CLASSNAME = "z-index-navbar";
 //#region CSS Property Names
 export const AUDIO_PLAYER_TOGGLER_ROTATION_CLOSED_CUSTOM_PROPERTY_NAME = "--audio-player-toggler-rotation-closed";
 export const AUDIO_PLAYER_TOGGLER_ROTATION_OPEN_CUSTOM_PROPERTY_NAME = "--audio-player-toggler-rotation-open";
+export const BRIDGE_ARROW_BUTTON_LEFT_FILL_CUSTOM_PROPERTY_NAME = "--bridge-arrow-button-left-fill";
+export const BRIDGE_ARROW_BUTTON_RIGHT_FILL_CUSTOM_PROPERTY_NAME = "--bridge-arrow-button-right-fill";
+export const BRIDGE_LINK_SVG_FILL_CUSTOM_PROPERTY_NAME = "--bridge-link-svg-fill";
+export const BRIDGE_LINK_TEXT_COLOR_CUSTOM_PROPERTY_NAME = "--bridge-link-text-fill";
 export const COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME = '--color-primary-bridge-1';
 export const COLOR_PRIMARY_BRIDGE_2_CUSTOM_PROPERTY_NAME = '--color-primary-bridge-2';
 export const COLOR_PRIMARY_BRIDGE_3_CUSTOM_PROPERTY_NAME = '--color-primary-bridge-3';
@@ -202,6 +206,80 @@ export const bridgeSectionNames = [
 //#endregion
 
 //#region Misc
+export const BRIDGE_SECTION_COLORS: BridgeSectionColors = {
+  0: {
+    arrowNormal: {
+      left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+      right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    },
+    arrowHover: {
+      left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+      right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+    },
+    linkNormal: {
+      svg: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_3_CUSTOM_PROPERTY_NAME),
+      text: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    },
+    linkHover: {
+      svg: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+      text: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    },
+  },
+  1: {
+    arrowNormal: {
+      left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+      right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    },
+    arrowHover: {
+      left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+      right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_2_CUSTOM_PROPERTY_NAME),
+    },
+    linkNormal: {
+      svg: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+      text: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    },
+    linkHover: {
+      svg: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_2_CUSTOM_PROPERTY_NAME),
+      text: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    },
+  },
+  2: {
+    arrowNormal: {
+      left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+      right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    },
+    arrowHover: {
+      left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_2_CUSTOM_PROPERTY_NAME),
+      right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+    },
+    linkNormal: {
+      svg: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_3_CUSTOM_PROPERTY_NAME),
+      text: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+    },
+    linkHover: {
+      svg: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+      text: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+    },
+  },
+  3: {
+    arrowNormal: {
+      left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+      right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+    },
+    arrowHover: {
+      left: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+      right: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    },
+    linkNormal: {
+      svg: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_3_CUSTOM_PROPERTY_NAME),
+      text: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    },
+    linkHover: {
+      svg: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),
+      text: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_1_CUSTOM_PROPERTY_NAME),
+    },
+  },
+};
 export const BRIDGE_PAGE_NAV_LINKS_COLORS: BridgePageNavLinkColors[] = [
   {
     normal: () => getComputedStyleCustom(COLOR_PRIMARY_BRIDGE_4_CUSTOM_PROPERTY_NAME),

@@ -64,6 +64,14 @@ export type Repository = {
 //#endregion
 
 //#region Enums
+export type BridgeColors = {
+	[key: string]: {
+		arrowNormal: {left: () => string, right: () => string},
+		arrowHover: {left: () => string, right: () => string},
+		linkNormal: {svg: () => string, text: () => string},
+		linkHover: {svg: () => string, text: () => string},
+	}
+} 
 export enum BridgeSectionClassname {
 	empty = '',
 	slideLeft = "slide-left",

@@ -307,34 +307,38 @@ $page-nav-top: calc(#{$navbar__logo-width} + #{$default-font-size} * 1);
 
 
 	//bridge page
-
-	--bridge-arrow-hover-scale-amount: 1.1;
 	--bridge-gradient-direction: to right;
 	@include respond(nav-switch) {
 		--bridge-gradient-direction: to bottom;
 	}
-	--bridge-page-nav-link-color: var(--color-primary-4);
-	--bridge-page-nav-link-color-hover: var(--color-primary-1);
-	--bridge-hero-translate-heading-1: (-50%, calc(-50% - 50vh));
-	--bridge-hero-translate-heading-2: (calc(-50% - 50vw), -50%);
-	--bridge-hero-translate-heading-3: (calc(50% + 50vw), -50%);
-	--bridge-hero-translate-heading-4: (-50%, calc(50% + 50vh));
+	
+	--bridge-arrow-button-fill-hover-nav-switch: var(--color-primary-bridge-4);
+	--bridge-arrow-button-fill-hover: var(--color-primary-bridge-2);
+	--bridge-arrow-button-fill-left: var(--color-primary-bridge-1);
+	--bridge-arrow-button-fill-right: var(--color-primary-bridge-1);
+	--bridge-arrow-button-left-fill-hover: var(--color-primary-bridge-2);
+	--bridge-arrow-button-right-fill-hover: var(--color-primary-bridge-2);
+	--bridge-arrow-button-rotation: 90deg;
+	--bridge-arrow-hover-scale-amount: 1.1;
 	--bridge-hero-rotate-heading-1: 0deg;
 	--bridge-hero-rotate-heading-2: 0deg;
 	--bridge-hero-rotate-heading-3: 0deg;
 	--bridge-hero-rotate-heading-4: 0deg;
-	--hero-more-y-translate: -50%;
+	--bridge-hero-translate-heading-1: (-50%, calc(-50% - 50vh));
+	--bridge-hero-translate-heading-2: (calc(-50% - 50vw), -50%);
+	--bridge-hero-translate-heading-3: (calc(50% + 50vw), -50%);
+	--bridge-hero-translate-heading-4: (-50%, calc(50% + 50vh));
+	--bridge-link-svg-fill: var(--color-primary-bridge-4);
+	--bridge-link-svg-fill-hover: var(--color-primary-bridge-1);
+	--bridge-link-text-fill: var(--color-primary-bridge-1);
+	--bridge-link-text-fill-hover: var(--color-primary-bridge-4);
+	--bridge-page-nav-link-color-hover: var(--color-primary-1);
+	--bridge-page-nav-link-color: var(--color-primary-4);
 	--bridge-section-height: 0px;
 	--bridge-section-padding: 0;
-	--arrow-button-rotation: 90deg;
-	--arrow-button-fill-left: var(--color-primary-bridge-1);
-	--arrow-button-fill-right: var(--color-primary-bridge-1);
-	--arrow-button-fill-hover: var(--color-primary-bridge-2);
-	--arrow-button-fill-hover-nav-switch: var(--color-primary-bridge-4);
-	--arrow-button-right-fill-hover: var(--color-primary-bridge-2);
-	--arrow-button-left-fill-hover: var(--color-primary-bridge-2);
-	--card-scale-amount: 1;
 	--card-playing-transform: translate(0, 0) scale(1);
+	--card-scale-amount: 1;
+	--hero-more-y-translate: -50%;
 
 	//csharp layout pages
 	--carousel-grid-width: #{$carousel-grid-width};

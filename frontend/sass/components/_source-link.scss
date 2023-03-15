@@ -46,7 +46,7 @@ $top-offset: 1.25vw;
 		&-svg {
 			width: $navbar__logo-width;
 			height: $navbar__logo-width;
-			fill: var(--arrow-button-left-fill-hover);
+			fill: var(--bridge-link-svg-fill);
 			opacity: 0.25;
 			transition: fill $animation-duration * 0.25 $animation-easing-modern;
 		}
@@ -64,28 +64,21 @@ $top-offset: 1.25vw;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			color: var(--arrow-button-right-fill);
+			color: var(--bridge-link-text-fill);
 			font-size: $font-size-four;
 			transition: transform $animation-duration * 0.25 $animation-easing-modern;
 
 			border-radius: 50%;
 			padding: $default-font-size * 0.25 $default-font-size * 0.5;
-			// color: rgba(var(--color-primary-4-rgb), 1);
-			// background-color: rgba(var(--color-primary-4-rgb), 0.1);
 		}
 
 		&:hover &-label {
-			color: var(--arrow-button-right-fill-hover);
-			// color: rgba(var(--color-primary-4-rgb), .5);
-			transform: rotate(0deg);
-
-			@include respond(nav-switch) {
-				color: var(--arrow-button-fill-hover-nav-switch);
-			}
+			color: var(--bridge-link-text-fill-hover);
+			transform: translate(4px, 6px);
 		}
 
 		&:hover svg {
-			fill: var(--arrow-button-right-fill);
+			fill: var(--bridge-link-svg-fill-hover);
 			opacity: .33;
 		}
 	}
