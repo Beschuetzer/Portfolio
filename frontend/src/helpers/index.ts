@@ -1,5 +1,5 @@
 import { RefObject } from "react";
-import { Z_INDEX_CONTENT_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME, ABOUT_URL, BRIDGE_URL, MAIL_TO_STRING, DOWNLOADER_URL, REPLAY_VIEWER_URL, RESUME_URL, PLAYLIST_SYNCER_URL, AUTO_BID_URL, FULLSCREEN_PARENT_CLASSNAME, CAROUSEL_CLASSNAME, FULLSCREEN_ARROW_BUTTON_CLASSNAME, FILL_RED_CLASSNAME, DEFAULT_FONT_SIZE, MOBILE_BREAK_POINT_WIDTH, HEADER_ID } from "../components/constants";
+import { Z_INDEX_CONTENT_CLASSNAME, CAROUSEL_VIDEO_CLASSNAME, ABOUT_URL, BRIDGE_URL, MAIL_TO_STRING, DOWNLOADER_URL, REPLAY_VIEWER_URL, RESUME_URL, PLAYLIST_SYNCER_URL, AUTO_BID_URL, FULLSCREEN_PARENT_CLASSNAME, CAROUSEL_CLASSNAME, FULLSCREEN_ARROW_BUTTON_CLASSNAME, FILL_RED_CLASSNAME, DEFAULT_FONT_SIZE, MOBILE_BREAK_POINT_WIDTH, HEADER_ID, HEADER_HEIGHT_CUSTOM_PROPERTY_NAME } from "../components/constants";
 import history from "../components/history";
 
 export const addSpaceAfterPunctuationMarks = (string: string) => {
@@ -312,7 +312,7 @@ export function rgbToHex(r: number, g: number, b: number) {
 	return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
-export const scrollToSection = (sectionToScrollTo: HTMLElement | null, addedHeight: number = (-DEFAULT_FONT_SIZE * 75)) => {
+export const scrollToSection = (sectionToScrollTo: HTMLElement | null, addedHeight?: number ) => {
 	if (!sectionToScrollTo) {
 		return window.scroll({
 			top: 0,
@@ -321,14 +321,13 @@ export const scrollToSection = (sectionToScrollTo: HTMLElement | null, addedHeig
 		});
 	}
 
-	const shouldAddHeaderHeight = window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
-	const headerHeight = document
-		.querySelector(HEADER_ID)!
-		.getBoundingClientRect().height;
+	const isMobile = window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
+	const addedHeightToUse = addedHeight || -DEFAULT_FONT_SIZE * (isMobile ? 4 : 100);
+	const headerHeight = isMobile ? parseFloat(getComputedStyleCustom(HEADER_HEIGHT_CUSTOM_PROPERTY_NAME) || "0") : 0;
 	const topScrollAmount =
 		window.scrollY +
-		sectionToScrollTo.getBoundingClientRect().top -
-		(shouldAddHeaderHeight ? headerHeight : 0) + addedHeight;
+		sectionToScrollTo.getBoundingClientRect().top +
+		(-headerHeight + addedHeightToUse);
 		
 	window.scroll({
 		top: topScrollAmount,

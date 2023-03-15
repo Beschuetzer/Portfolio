@@ -3,7 +3,7 @@ import { getComputedStyleCustom, getLinearPercentOfMaxMatchWithinRange, scrollTo
 import { LoadedSounds } from "../../../slices/";
 import { Reference } from "../../../types";
 
-export const handleBridgeNavigation = (checkBox: HTMLInputElement, background: HTMLElement, sounds: LoadedSounds, isMobile: boolean, headerHeight: number) => {
+export const handleBridgeNavigation = (checkBox: HTMLInputElement, background: HTMLElement, sounds: LoadedSounds, isMobile: boolean) => {
   if (!checkBox?.checked) {
     if (sounds?.loaded?.play) sounds.loaded.play('doorFast');
 

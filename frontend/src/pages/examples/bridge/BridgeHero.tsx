@@ -32,10 +32,6 @@ export const BridgeHero: React.FC<BridgeHeroProps> = () => {
 	//#endregion
 
 	//#region Functions/Handlers
-	const headerHeight = document
-		.querySelector(HEADER_ID)!
-		.getBoundingClientRect().height;
-
 	const onMoreClick = (e: MouseEvent) => {
 		if (clickedBridgeInfoButtonCount % 2 === 0) {
 			showBridgeHero(heroMore);
@@ -48,7 +44,6 @@ export const BridgeHero: React.FC<BridgeHeroProps> = () => {
 			backgroundRef.current,
 			sounds as any,
 			isMobile,
-			headerHeight,
 		  );
 		  dispatch(setClickedBridgeInfoButtonCount(clickedBridgeInfoButtonCount + 1));
 	};

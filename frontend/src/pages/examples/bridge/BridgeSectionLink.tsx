@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { useBridgeSectionTransitionHiding } from "../../../hooks/useBridgeSectionTransitionHiding";
 import { useGetBridgeSections } from "../../../hooks/useGetBridgeSections";
 import { setCurrentBridgeSection, setClickedBridgeInfoButtonCount, setHasClickedALink, currentBridgeSectionSelector, hasClickedALinkSelector } from "../../../slices/bridgeSlice";
-import { headerHeightSelector, isMobileSelector } from "../../../slices/generalSlice";
+import { isMobileSelector } from "../../../slices/generalSlice";
 import { loadedSoundsSelector } from "../../../slices/soundsSlice";
 import {
 	handleBridgeNavigation,
@@ -34,9 +34,9 @@ export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 	const bridgeSections = useGetBridgeSections();
 	const currentBridgeSection = useAppSelector(currentBridgeSectionSelector);
 	const hasClickedALink = useAppSelector(hasClickedALinkSelector);
-	const headerHeight = useAppSelector(headerHeightSelector);
 	const isMobile = useAppSelector(isMobileSelector);
 	const sounds = useAppSelector(loadedSoundsSelector);
+	
 	// numberOfSkips: parseInt(ownProps.numberOfSkips),
 	// const numberOfSkips = useAppSelector((state: RootState) => stat);
 	const dispatch = useAppDispatch();
@@ -93,7 +93,6 @@ export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 					backgroundRef,
 					sounds as any,
 					isMobile,
-					headerHeight,
 				);
 				dispatch(setHasClickedALink(true));
 			}
