@@ -4233,7 +4233,7 @@ body {
   position: fixed;
   font-weight: 100;
   font-size: 8.344rem;
-  transition: opacity 0.5s ease 0.5s, transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0.5s;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6), top 0.5s ease;
 }
 .hero__heading:first-of-type, .hero__heading:nth-of-type(4) {
   font-size: 13.0382rem;
@@ -4254,7 +4254,7 @@ body {
   }
 }
 .hero__heading:first-of-type {
-  top: 25vh;
+  top: calc(23vh + var(--header-height) / 2);
   left: 50vw;
 }
 .hero__heading:nth-of-type(2) {
@@ -4265,7 +4265,7 @@ body {
 @media only screen and (max-width: 29.3125em) {
   .hero__heading:nth-of-type(2) {
     left: 50vw;
-    top: 36vh;
+    top: calc(36vh + var(--header-height) / 2);
   }
 }
 .hero__heading:nth-of-type(3) {
@@ -4276,12 +4276,12 @@ body {
 @media only screen and (max-width: 29.3125em) {
   .hero__heading:nth-of-type(3) {
     left: 50vw;
-    top: 65vh;
+    top: calc(62.5vh + var(--header-height) / 2);
   }
 }
 .hero__heading:nth-of-type(4) {
   mix-blend-mode: hard-light;
-  top: 75vh;
+  top: calc(75vh + var(--header-height) / 2);
   left: 50vw;
 }
 .hero__more {
@@ -4290,12 +4290,13 @@ body {
   justify-content: center;
   z-index: 1;
   position: fixed;
-  top: 61.5vh;
+  top: calc(50vh + var(--header-height) / 2);
   left: 49vw;
   transform: translate(-50%, -50%);
   color: var(--color-primary-2);
   border-radius: 280rem;
-  animation: bridge-more 2.5s infinite;
+  animation: bridge-more 1s infinite alternate-reverse;
+  transition: top 0.5s ease;
 }
 .hero__more input {
   display: none;
@@ -4314,14 +4315,14 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, var(--hero-more-y-translate));
+  transform: translate(-50%, -50%);
   transition: transform 1s ease, opacity 1s ease, fill 0.5s ease;
   fill: var(--color-primary-2);
 }
 @media only screen and (max-width: 68.75em) {
   .hero__more svg {
-    width: 13.3504rem;
-    height: 13.3504rem;
+    width: 6.6752rem;
+    height: 6.6752rem;
   }
 }
 .hero__more svg:nth-of-type(1) {
@@ -4332,7 +4333,6 @@ body {
 }
 .hero__more--clicked {
   --hero-more-y-translate: calc(-50% - 9.8rem);
-  animation: bridge-hero-hover 10s infinite;
 }
 @media only screen and (max-width: 40.9375em) {
   .hero__more--clicked {

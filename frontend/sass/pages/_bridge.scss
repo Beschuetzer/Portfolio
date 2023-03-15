@@ -467,16 +467,16 @@
 		font-weight: 100;
 		font-size: $font-size-twelve;
 
-		transition: opacity $animation-duration $animation-easing-standard
-				$animation-duration,
-			transform $animation-duration $animation-easing-standard-easeInOutBack
-				$animation-duration,
+		transition: 
+			opacity $animation-duration $animation-easing-standard,
+			transform $animation-duration $animation-easing-standard-easeInOutBack,
+			top $animation-duration $animation-easing-standard,
+			
 			// top $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
 			// bottom $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
 			// left $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
 			// right $animation-duration $animation-easing-standard-easeInOutBack $animation-duration,
 ;
-
 		&:first-of-type,
 		&:nth-of-type(4) {
 			font-size: $font-size-fourteen;
@@ -498,7 +498,7 @@
 		}
 
 		&:first-of-type {
-			top: 25vh;
+			top: calc(23vh + var(--header-height) / 2);
 			left: 50vw;
 		}
 
@@ -509,7 +509,7 @@
 
 			@include respond(small-font) {
 				left: 50vw;
-				top: 36vh;
+				top: calc(36vh + var(--header-height) / 2);
 			}
 		}
 		&:nth-of-type(3) {
@@ -519,12 +519,12 @@
 
 			@include respond(small-font) {
 				left: 50vw;
-				top: 65vh;
+				top: calc(62.5vh + var(--header-height) / 2);
 			}
 		}
 		&:nth-of-type(4) {
 			mix-blend-mode: $hero-blend-mode;
-			top: 75vh;
+			top: calc(75vh + var(--header-height) / 2);
 			left: 50vw;
 		}
 	}
@@ -536,12 +536,13 @@
 		// font-size: $font-size-nine;
 		z-index: 1;
 		position: fixed;
-		top: 61.5vh;
+		top: calc(50vh + var(--header-height) /2);
 		left: 49vw;
 		transform: translate(-50%, -50%);
 		color: var(--color-primary-2);
 		border-radius: $default-font-size * 200;
-		animation: bridge-more 2.5s infinite;
+		animation: bridge-more 1s infinite alternate-reverse;
+		transition: top $animation-duration $animation-easing-standard;
 
 		& input {
 			display: none;
@@ -562,17 +563,16 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, var(--hero-more-y-translate));
-			transition: transform $animation-duration +
-					$bridge-hero-animation-duration / 2 $animation-easing-standard,
-				opacity $animation-duration + $bridge-hero-animation-duration / 2
-					$animation-easing-standard,
+			transform: translate(-50%, -50%);
+			transition: 
+				transform $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard,
+				opacity $animation-duration + $bridge-hero-animation-duration / 2 $animation-easing-standard,
 				fill $animation-duration $animation-easing-standard;
 			fill: var(--color-primary-2);
 
 			@include respond(nav-switch) {
-				width: $navbar__logo-width-nav-switch * 2;
-				height: $navbar__logo-width-nav-switch * 2;
+				width: $navbar__logo-width-nav-switch * 1;
+				height: $navbar__logo-width-nav-switch * 1;
 			}
 
 			&:nth-of-type(1) {
@@ -586,7 +586,6 @@
 
 		&--clicked {
 			--hero-more-y-translate: calc(-50% - #{$default-font-size * 7});
-			animation: bridge-hero-hover 10s infinite;
 
 			@include respond(phone) {
 				--hero-more-y-translate: calc(-50% - #{$default-font-size * 8});

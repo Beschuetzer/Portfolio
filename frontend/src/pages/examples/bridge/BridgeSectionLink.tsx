@@ -9,7 +9,7 @@ import { setCurrentBridgeSection, setClickedBridgeInfoButtonCount, setHasClicked
 import { headerHeightSelector, isMobileSelector } from "../../../slices/generalSlice";
 import { loadedSoundsSelector } from "../../../slices/soundsSlice";
 import {
-	handleBridgeHeroSounds,
+	handleBridgeNavigation,
 	showBridgeHero,
 	toggleSecondInfoButtonClick,
 } from "./utils";
@@ -88,7 +88,7 @@ export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 			dispatch(setClickedBridgeInfoButtonCount(2));
 
 			if (!hasClickedALink) {
-				handleBridgeHeroSounds(
+				handleBridgeNavigation(
 					checkBoxRef,
 					backgroundRef,
 					sounds as any,

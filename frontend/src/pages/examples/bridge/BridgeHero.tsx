@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import bgVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
 import {
-	handleBridgeHeroSounds,
+	handleBridgeNavigation,
 	showBridgeHero,
 	toggleSecondInfoButtonClick,
 } from "./utils";
@@ -43,7 +43,7 @@ export const BridgeHero: React.FC<BridgeHeroProps> = () => {
 			toggleSecondInfoButtonClick(hero.current, heroMore.current, isMobile);
 		  }
 		
-		handleBridgeHeroSounds(
+		handleBridgeNavigation(
 			checkBoxRef.current as any,
 			backgroundRef.current,
 			sounds as any,
@@ -88,7 +88,8 @@ export const BridgeHero: React.FC<BridgeHeroProps> = () => {
 				</div>
 				<div
 					className={`${BRIDGE_HERO_CLASSNAME}__background`}
-					ref={backgroundRef}></div>
+					ref={backgroundRef}>
+				</div>
 
 				<Video src={bgVideo} type="mp4" className="bg-video" />
 				<span className={`${BRIDGE_HERO_CLASSNAME}__heading heading--one`}>
