@@ -23,8 +23,8 @@ export const SkillsItemSection: React.FC<SkillsItemSectionProps> = ({
     (e.target as HTMLElement)?.classList?.toggle(SKILLS_SECTION_OPEN_CLASSNAME);
     const clickedElement = e.currentTarget;
     if (clickedElement && (clickedElement as HTMLElement).classList.contains(SKILLS_SECTION_OPEN_CLASSNAME)) {
-      const shouldAddHeaderHeight = window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
-	    const topOffset = (window.innerHeight - headerHeight) / 2 - (window.innerHeight / (shouldAddHeaderHeight ? 4 : 10));
+      const isMobile = window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
+	    const topOffset = (window.innerHeight - headerHeight) / 2 - (window.innerHeight / (isMobile ? 3 : 5));
       scrollToSection(clickedElement as HTMLElement, -topOffset)
     }
   }
