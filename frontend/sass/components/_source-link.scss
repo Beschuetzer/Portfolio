@@ -1,9 +1,15 @@
 $top-offset: 1.25vw;
 
+%nav-switch-color {
+	@include respond(nav-switch) {
+		color: var(--color-primary-4) !important;
+	}
+}
+
 .source-link {
 	&__container {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-evenly;
 		align-items: center;
 
 		&:not(.csharp &) {
@@ -11,7 +17,7 @@ $top-offset: 1.25vw;
 				rgba(var(--color-primary-1-rgb), 1),
 				rgba(var(--color-primary-1-rgb), .5)
 			);
-			// background-color: var(--color-primary-1);
+			padding-top: var(--header-height);
 			position: relative;
 		}
 	}
@@ -49,6 +55,7 @@ $top-offset: 1.25vw;
 			fill: var(--bridge-link-svg-fill);
 			opacity: 0.25;
 			transition: fill $animation-duration * 0.25 $animation-easing-modern;
+			@extend %nav-switch-color;
 		}
 
 		&-label {
@@ -70,16 +77,19 @@ $top-offset: 1.25vw;
 
 			border-radius: 50%;
 			padding: $default-font-size * 0.25 $default-font-size * 0.5;
+			@extend %nav-switch-color;
 		}
 
 		&:hover &-label {
 			color: var(--bridge-link-text-fill-hover);
 			transform: translate(4px, 6px);
+			@extend %nav-switch-color;
 		}
 
 		&:hover svg {
 			fill: var(--bridge-link-svg-fill-hover);
 			opacity: .33;
+			@extend %nav-switch-color;
 		}
 	}
 

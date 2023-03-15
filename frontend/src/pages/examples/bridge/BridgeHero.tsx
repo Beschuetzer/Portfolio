@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import bgVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
 import {
@@ -10,12 +10,15 @@ import { clickedBridgeInfoButtonCountSelector, setClickedBridgeInfoButtonCount }
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { isMobileSelector } from "../../../slices/generalSlice";
 import { loadedSoundsSelector } from "../../../slices/soundsSlice";
-import { BRIDGE_HERO_CLASSNAME, HEADER_ID } from "../../../components/constants";
+import { ANIMATION_DURATION, BRIDGE_HERO_CLASSNAME, HEADER_ID } from "../../../components/constants";
 import { Video } from "../../../components/VideoPlayer/Video";
+import { BridgeSectionHidingLogic } from "./BridgeSectionHidingLogic";
 
 type BridgeHeroProps = {}
 
 export const BridgeHero: React.FC<BridgeHeroProps> = () => {
+	//#region Init
+	const [isVisible, setIsVisible] = useState(true);
 	const dispatch = useAppDispatch();
 	const sounds = useAppSelector(loadedSoundsSelector);
 	const isMobile = useAppSelector(isMobileSelector);
@@ -24,6 +27,11 @@ export const BridgeHero: React.FC<BridgeHeroProps> = () => {
 	const backgroundRef = useRef<any>(null);
 	const hero = useRef<any>(null);
 	const heroMore = useRef<any>(null);
+	const displayNoneTimeoutRef = useRef<any>(null);
+	const bridgeSectionHidingLogic = new BridgeSectionHidingLogic(clickedBridgeInfoButtonCount, 0, 0);
+	//#endregion
+
+	//#region Functions/Handlers
 	const headerHeight = document
 		.querySelector(HEADER_ID)!
 		.getBoundingClientRect().height;
@@ -44,7 +52,19 @@ export const BridgeHero: React.FC<BridgeHeroProps> = () => {
 		  );
 		  dispatch(setClickedBridgeInfoButtonCount(clickedBridgeInfoButtonCount + 1));
 	};
+	//#endregion
 
+	//#region Side Fx
+	useEffect(() => {
+		clearInterval(displayNoneTimeoutRef.current);
+		displayNoneTimeoutRef.current = setTimeout(() => {
+			setIsVisible(bridgeSectionHidingLogic.isBridgeHeroVisible);
+		}, ANIMATION_DURATION)
+	}, [clickedBridgeInfoButtonCount])
+	//#endregion
+
+	//#region JSX
+	if (!isVisible) return null;
 	return (
 		<React.Fragment>
 			<input
@@ -86,4 +106,5 @@ export const BridgeHero: React.FC<BridgeHeroProps> = () => {
 			</div>
 		</React.Fragment>
 	);
+	//#endregion
 };

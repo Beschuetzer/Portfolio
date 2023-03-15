@@ -25,7 +25,7 @@ export const BridgeArrowButton: React.FC<BridgeArrowButtonProps> = ({
 	const bridgeSections = useGetBridgeSections();
 	const bridgeTransitionHidingLogic = new BridgeSectionHidingLogic(clickedBridgeInfoButtonCount, currentBridgeSection, bridgeSections.length);
 	const isHiddenDuringTransition = useBridgeSectionTransitionHiding(
-		bridgeTransitionHidingLogic.areBridgeSectionsVisible ||
+		bridgeTransitionHidingLogic.isBridgeHeroVisible ||
 		!bridgeTransitionHidingLogic.leftDisplayCondition ||
 		!bridgeTransitionHidingLogic.rightDisplayCondition
 	);
