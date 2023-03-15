@@ -30,7 +30,7 @@ export const handleBridgeNavigation = (checkBox: HTMLInputElement, background: H
     const remToPixelFactor = 10;
     const offset = 13; //this is needed to get the exact lining up to work
     const navbarLogoWidth = parseFloat(navbarLogoWidthProp.replace(/rem/i, '')) * remToPixelFactor - offset;
-    const heightOffset = isMobile ? navbarLogoWidth : 0;
+    const heightOffset = isMobile ? navbarLogoWidth : -100000;
     scrollToSection(document.getElementById(bridgeSectionNames[0].toLowerCase()) as HTMLElement, -heightOffset);
     if (background)  {
       background?.classList.remove('visible');
