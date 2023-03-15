@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
 import { capitalize, scrollToSection } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { useBridgeSectionTransitionHiding } from "../../hooks/useBridgeSectionTransitionHiding";
+import { useSetBridgeSectionColors } from "../../hooks/useSetBridgeSectionColors";
 import { useUpdatePageNav } from "../../hooks/useUpdatePageNav";
 import { BridgeSectionLink } from "../../pages";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../slices/bridgeSlice";
@@ -157,18 +157,12 @@ export const PageNav: React.FC<PageNavProps> = ({
 			} else {
 				sectionName.classList.add("full-opacity");
 			}
-		}
-	
-		//change CSS color var depending on currentBridgeSection
-		const newNormalValue = `${BRIDGE_PAGE_NAV_LINK_COLOR_CUSTOM_PROPERTY_NAME}: ${BRIDGE_SECTION_COLORS[currentBridgeSection].pageNav.normal()}`;
-		document.documentElement.style.cssText += newNormalValue;
-	
-		const newHoverValue = `${BRIDGE_PAGE_NAV_LINK_COLOR_CUSTOM_PROPERTY_NAME}-hover: ${BRIDGE_SECTION_COLORS[currentBridgeSection].pageNav.hover()}`;
-		document.documentElement.style.cssText += newHoverValue;
+		}		
 	};
 	//#endregion
 
 	//#region Side FX
+	useSetBridgeSectionColors();
 	useUpdatePageNav(pageNavElement);
 	useEffect(() => {
 		const handleScroll = (e: Event) => {

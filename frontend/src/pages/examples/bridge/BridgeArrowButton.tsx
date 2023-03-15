@@ -44,45 +44,8 @@ export const BridgeArrowButton: React.FC<BridgeArrowButtonProps> = ({
 				}
 			}, ANIMATION_DURATION)
 		};
-		
-		const handleArrowColors = () => {
-			document.documentElement.style.setProperty(
-				BRIDGE_ARROW_BUTTON_LEFT_FILL_CUSTOM_PROPERTY_NAME,
-				BRIDGE_SECTION_COLORS[currentBridgeSection].arrowNormal.left(),
-			);
-			document.documentElement.style.setProperty(
-				BRIDGE_ARROW_BUTTON_RIGHT_FILL_CUSTOM_PROPERTY_NAME,
-				BRIDGE_SECTION_COLORS[currentBridgeSection].arrowNormal.right(),
-			);
-			document.documentElement.style.setProperty(
-				`${BRIDGE_ARROW_BUTTON_LEFT_FILL_CUSTOM_PROPERTY_NAME}-hover`,
-				BRIDGE_SECTION_COLORS[currentBridgeSection].arrowHover.left(),
-			);
-			document.documentElement.style.setProperty(
-				`${BRIDGE_ARROW_BUTTON_RIGHT_FILL_CUSTOM_PROPERTY_NAME}-hover`,
-				BRIDGE_SECTION_COLORS[currentBridgeSection].arrowHover.right(),
-			);
-
-			document.documentElement.style.setProperty(
-				BRIDGE_LINK_SVG_FILL_CUSTOM_PROPERTY_NAME,
-				BRIDGE_SECTION_COLORS[currentBridgeSection].linkNormal.svg(),
-			);
-			document.documentElement.style.setProperty(
-				`${BRIDGE_LINK_SVG_FILL_CUSTOM_PROPERTY_NAME}-hover`,
-				BRIDGE_SECTION_COLORS[currentBridgeSection].linkHover.svg(),
-			);
-			document.documentElement.style.setProperty(
-				BRIDGE_LINK_TEXT_COLOR_CUSTOM_PROPERTY_NAME,
-				BRIDGE_SECTION_COLORS[currentBridgeSection].linkNormal.text(),
-			);
-			document.documentElement.style.setProperty(
-				`${BRIDGE_LINK_TEXT_COLOR_CUSTOM_PROPERTY_NAME}-hover`,
-				BRIDGE_SECTION_COLORS[currentBridgeSection].linkHover.text(),
-			);
-		};
 
 		handleDisplay();
-		handleArrowColors();
 	}, [currentBridgeSection, bridgeSections, clickedBridgeInfoButtonCount]);
 
 	const handleClick = (e: MouseEvent) => {
