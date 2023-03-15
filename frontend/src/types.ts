@@ -2,10 +2,6 @@ import { CSSProperties, RefObject } from "react";
 
 //#region Types and Interfaces
 export type ArrowButtonDirection = "left" | "right";
-export type BridgePageNavLinkColors = {
-	normal: () => string;
-	hover: () => string;
-}
 export type CarouselItemProps = {
 	descriptionClassname?: string | undefined;
 	itemClassName?: string | undefined;
@@ -70,6 +66,10 @@ export type BridgeColors = {
 		arrowHover: {left: () => string, right: () => string},
 		linkNormal: {svg: () => string, text: () => string},
 		linkHover: {svg: () => string, text: () => string},
+		pageNav: {
+			normal: () => string,
+			hover: () => string,
+		}
 	}
 } 
 export enum BridgeSectionClassname {

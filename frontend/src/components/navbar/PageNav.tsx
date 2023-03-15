@@ -9,7 +9,7 @@ import { BridgeSectionLink } from "../../pages";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../slices/bridgeSlice";
 import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../slices/generalSlice";
 import { Match } from "../../types";
-import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINKS_COLORS, BRIDGE_PAGE_NAV_LINK_CLASSNAME, PAGE_NAV_ACTIVE_CLASSNAME, PAGE_NAV_CLASSNAME } from "../constants";
+import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAME, BRIDGE_PAGE_NAV_LINK_COLOR_CUSTOM_PROPERTY_NAME, BRIDGE_SECTION_COLORS, PAGE_NAV_ACTIVE_CLASSNAME, PAGE_NAV_CLASSNAME } from "../constants";
 
 type PageNavProps = {
 	match: { url: string };
@@ -160,10 +160,10 @@ export const PageNav: React.FC<PageNavProps> = ({
 		}
 	
 		//change CSS color var depending on currentBridgeSection
-		const newNormalValue = `--bridge-page-nav-link-color: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].normal()}`;
+		const newNormalValue = `${BRIDGE_PAGE_NAV_LINK_COLOR_CUSTOM_PROPERTY_NAME}: ${BRIDGE_SECTION_COLORS[currentBridgeSection].pageNav.normal()}`;
 		document.documentElement.style.cssText += newNormalValue;
 	
-		const newHoverValue = `--bridge-page-nav-link-color-hover: ${BRIDGE_PAGE_NAV_LINKS_COLORS[currentBridgeSection].hover()}`;
+		const newHoverValue = `${BRIDGE_PAGE_NAV_LINK_COLOR_CUSTOM_PROPERTY_NAME}-hover: ${BRIDGE_SECTION_COLORS[currentBridgeSection].pageNav.hover()}`;
 		document.documentElement.style.cssText += newHoverValue;
 	};
 	//#endregion
