@@ -4027,7 +4027,7 @@ body {
 }
 .bridge__section:nth-of-type(2) .bridge__card {
   border: 2px solid var(--color-primary-2);
-  box-shadow: 0 0rem 2.1rem rgba(0, 64, 107, 0.5);
+  box-shadow: 0 0rem 2.8rem -0.7rem rgba(0, 64, 107, 0.5);
 }
 @media only screen and (max-width: 68.75em) {
   .bridge__section:nth-of-type(2) .bridge__card {
@@ -4117,7 +4117,7 @@ body {
   font-size: 1.4rem;
   overflow: hidden;
   border: 2px solid var(--color-primary-4);
-  box-shadow: 0 0rem 2.1rem rgba(245, 241, 219, 0.5);
+  box-shadow: 0 0rem 2.8rem -0.7rem rgba(245, 241, 219, 0.5);
   max-width: 74.375rem;
   margin: 0 auto;
   height: 100%;
