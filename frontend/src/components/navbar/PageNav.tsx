@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
 import { capitalize, scrollToSection } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useBroswerDetection } from "../../hooks/useBrowserDetection";
 import { useSetBridgeSectionColors } from "../../hooks/useSetBridgeSectionColors";
 import { useUpdatePageNav } from "../../hooks/useUpdatePageNav";
 import { BridgeSectionLink } from "../../pages";
@@ -20,6 +21,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 }) => {
 	//#region Init
 	const dispatch = useAppDispatch();
+	const browser = useBroswerDetection();
 	const location = useLocation();
 	const previousUrl  = useAppSelector(previousUrlSelector);
 	const isMobile  = useAppSelector(isMobileSelector);
@@ -33,7 +35,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 	let previousSectionBottom: number | null = 0;
 	const pageNavElement = document.querySelector(`.${PAGE_NAV_CLASSNAME}`) as HTMLElement;
 	const maxScrollOffsetPercent = 1;
-	const scrollRefreshLimit = isMobile ? 10 : 1;
+	const scrollRefreshLimit = browser?.os?.match(/ios/i) ? 50 : isMobile ? 10 : 1;
 	const scrollSectionDelimiterOffset = window.innerHeight / 6;
 	//#endregion
 
