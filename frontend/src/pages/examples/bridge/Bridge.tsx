@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect } from "react";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { BridgeSection } from "./BridgeSection";
@@ -479,8 +479,13 @@ interface BridgeProps {
 }
 
 export const Bridge: React.FC<BridgeProps> = () => {
+	const bridgeHeroRef = useRef<HTMLDivElement>(null);
 	const dispatch = useAppDispatch();
 	const isMobile = useAppSelector(isMobileSelector);
+	const hero = bridgeHeroRef.current?.querySelector(`.${BRIDGE_HERO_CLASSNAME}`);
+	const heroMore = bridgeHeroRef.current?.querySelector(
+		`.${BRIDGE_HERO_CLASSNAME}__more`,
+	);
 
 	useEffect(() => {
 		setLinearGradientCssCustomProp();
@@ -488,7 +493,6 @@ export const Bridge: React.FC<BridgeProps> = () => {
 	}, [setHasClickedALink, dispatch]);
 
 	useEffect(() => {
-		const heroMore = document.querySelector(".hero__more");
 		resetBridgeHero({ current: heroMore } as Reference);
 		dispatch(setClickedBridgeInfoButtonCount(0));
 		dispatch(setCurrentBridgeSection(0));
@@ -503,9 +507,7 @@ export const Bridge: React.FC<BridgeProps> = () => {
 	useEffect(() => {
 		const handleScroll = (e: React.UIEvent<HTMLElement>) => {
 			if (isMobile)
-				document
-					.querySelector(".hero")
-					?.classList.remove(DISPLAY_NONE_CLASSNAME);
+				hero?.classList.remove(DISPLAY_NONE_CLASSNAME);
 			if (window.scrollY >= window.innerHeight / 2) {
 				document
 					.querySelector(".arrow-button--right")
@@ -513,16 +515,12 @@ export const Bridge: React.FC<BridgeProps> = () => {
 			}
 			if (window.scrollY >= window.innerHeight) {
 				if (!isMobile) {
-					const hero = document.querySelector(`.${BRIDGE_HERO_CLASSNAME}`);
-					const heroMore = document.querySelector(
-						`.${BRIDGE_HERO_CLASSNAME}__more`,
-					);
+					
 					if (hero) {
 						hero.classList.add(DISPLAY_NONE_CLASSNAME);
 						hero.classList.remove(BRIDGE_HERO_CLICKED_CLASSNAME);
 					}
 					heroMore?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
-
 					dispatch(setClickedBridgeInfoButtonCount(2));
 				}
 			}
@@ -582,8 +580,7 @@ export const Bridge: React.FC<BridgeProps> = () => {
 
 	return (
 		<div className={BRIDGE_PAGE_NAME}>
-			<BridgeHero />
-
+			<BridgeHero ref={bridgeHeroRef}/>
 			{renderSourceLinks()}
 			{renderSections()}
 			<BridgeArrowButton direction="left" />

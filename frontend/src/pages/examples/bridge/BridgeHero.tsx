@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, forwardRef } from "react";
 import { useRef } from "react";
 import bgVideo from "../../../clips/bridge/animation-roundEndDummy.mp4";
 import {
@@ -10,13 +10,15 @@ import { clickedBridgeInfoButtonCountSelector, setClickedBridgeInfoButtonCount }
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { isMobileSelector } from "../../../slices/generalSlice";
 import { loadedSoundsSelector } from "../../../slices/soundsSlice";
-import { ANIMATION_DURATION, BRIDGE_HERO_CLASSNAME, HEADER_ID } from "../../../components/constants";
+import { ANIMATION_DURATION, BRIDGE_HERO_CLASSNAME } from "../../../components/constants";
 import { Video } from "../../../components/VideoPlayer/Video";
 import { BridgeSectionHidingLogic } from "./BridgeSectionHidingLogic";
 
 type BridgeHeroProps = {}
 
-export const BridgeHero: React.FC<BridgeHeroProps> = () => {
+export const BridgeHero = forwardRef<HTMLDivElement, BridgeHeroProps> (({
+
+}, ref) => {
 	//#region Init
 	const [isVisible, setIsVisible] = useState(true);
 	const dispatch = useAppDispatch();
@@ -61,7 +63,7 @@ export const BridgeHero: React.FC<BridgeHeroProps> = () => {
 	//#region JSX
 	if (!isVisible) return null;
 	return (
-		<React.Fragment>
+		<div ref={ref}>
 			<input
 				ref={checkBoxRef}
 				id={`${BRIDGE_HERO_CLASSNAME}__more-checkbox`}
@@ -100,7 +102,7 @@ export const BridgeHero: React.FC<BridgeHeroProps> = () => {
 					Bridge
 				</span>
 			</div>
-		</React.Fragment>
+		</div>
 	);
 	//#endregion
-};
+});

@@ -1,5 +1,6 @@
 React best practices re-work (branch = sitenav_rework)
-  -rework remaining places that directly modify the DOM
+  -bridge links move after clicking buttons (as opposed to github link)
+  -replace as many document.querySelector calls with refs
   -add onPress handler to ArrowButton to be able to hide the elements on bridge page when switching left/right 
   -add more complext logic in SkillPopup sort to weight created date?
   -re-work Carousel (should be pure re-useable component)
@@ -13,7 +14,7 @@ JOB STUFF------------------------------------
   -add challenges (make a 3js demo for horse jump code)
   -update downloadable resume
   -look into free options for other sites (dynamo are no longer free and don't work atm)
-  -add resume end date 11/12 for contract work and 11/13 for FTE work
+  -add resume end date 11/12 for contract work and 11/13 for FTE work?
   -add resume line talking point "10X increase in user base since starting" for Best Buy contract
   -minify SSK videos
   -add sort options of skill examples?
