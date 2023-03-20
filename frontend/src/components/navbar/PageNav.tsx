@@ -35,7 +35,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 	let previousSectionBottom: number | null = 0;
 	const pageNavElement = document.querySelector(`.${PAGE_NAV_CLASSNAME}`) as HTMLElement;
 	const maxScrollOffsetPercent = 1;
-	const scrollRefreshLimit = browser?.os?.match(/ios/i) ? 50 : isMobile ? 10 : 1;
+	const scrollRefreshLimit = browser?.os?.match(/mac/i) ? 50 : isMobile ? 10 : 1;
 	const scrollSectionDelimiterOffset = window.innerHeight / 6;
 	//#endregion
 
