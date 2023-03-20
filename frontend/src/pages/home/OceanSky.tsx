@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Water } from "three/examples/jsm/objects/Water.js";
@@ -28,7 +28,6 @@ import { HOME_CANVAS_CLASSNAME } from "../../components/constants";
 
 type FpsReturned = number[];
 //#region Variable Inits
-const clock = new THREE.Clock();
 let camera: PerspectiveCamera,
 	orbitControls: OrbitControls,
 	scene: THREE.Scene,
@@ -224,7 +223,6 @@ const cameraLookAtXStart = 0;
 const cameraLookAtYStart = 0;
 const cameraLookAtZStart = cameraPositionZStart;
 const cameraLookAtZEnd = -waterWidthSegments / 20;
-let currentCameraZLookAt = cameraLookAtZStart;
 
 
 //#endregion
@@ -460,6 +458,7 @@ function onWindowResize() {
 
 export const OceanSky = () => {
 	//#region Init
+	const clock = new THREE.Clock();
 	const POS_INITIAL_VALUE = 0;
 	const fpsReturned = [] as FpsReturned;
 
@@ -474,6 +473,7 @@ export const OceanSky = () => {
 	const [cloudZRotationRateChange, setCloudZRotationRateChange] = useState<number>(POS_INITIAL_VALUE);
 	const [cloudZPositionRateChange, setCloudZPositionRateChange] = useState<number>(POS_INITIAL_VALUE);
 	const [cubeRotationSpeed, setCubeRotationSpeed] = useState<number>(POS_INITIAL_VALUE);
+	const currentCameraZLookAt = useRef<number>(cameraLookAtZStart);
 	//#endregion
 
 	//Setting screen refresh rate and dependent POS
@@ -760,12 +760,12 @@ export const OceanSky = () => {
 						);
 					}
 	
-					if (currentCameraZLookAt >= cameraLookAtZEnd) {
-						currentCameraZLookAt += cameraLookAtZFactor as any;
+					if (currentCameraZLookAt.current >= cameraLookAtZEnd) {
+						currentCameraZLookAt.current += (cameraLookAtZFactor || 0);
 						camera.lookAt(
 							cameraLookAtXStart,
 							cameraLookAtYStart,
-							currentCameraZLookAt,
+							currentCameraZLookAt.current,
 						);
 					}
 				}
