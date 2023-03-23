@@ -22,14 +22,6 @@ export const AudioList: React.FC<AudioListProps> = ({ items, className}) => {
     const isLoadingSound = useAppSelector(isLoadingSoundSelector);
 
 	function handleItemClick(e: Event) {
-		const audioPlayer = document.querySelector(`.${AUDIO_PLAYER_CLASSNAME}`);
-		if (audioPlayer) {
-			if (audioPlayer.classList.contains(HIDDEN_CLASSNAME)) {
-				audioPlayer.classList.add(TRANSFORM_NONE_CLASSNAME);
-			}
-			audioPlayer.classList.remove(HIDDEN_CLASSNAME);
-		}
-
 		if (isLoadingSound) return;
 		const clickedItem = e.currentTarget as HTMLElement;
 		if (!clickedItem?.dataset?.item) return;
@@ -46,11 +38,11 @@ export const AudioList: React.FC<AudioListProps> = ({ items, className}) => {
 					key={index}
 					onClick={(e: any) => handleItemClick(e)}
 					className={AUDIO_LIST_ITEM_CLASSNAME}
-          data-item={JSON.stringify(item)}
-        >
-          <span>{index + 1}).</span>
-          <span>{item.name}</span>
-        </div>
+					data-item={JSON.stringify(item)}
+				>
+				<span>{index + 1}).</span>
+				<span>{item.name}</span>
+				</div>
 			);
 		});
 	}
