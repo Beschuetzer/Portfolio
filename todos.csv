@@ -1,4 +1,5 @@
 React best practices re-work (branch = sitenav_rework)
+  -pages with audio need to know when player is open and adjust padding bottom
   -bridge links move after clicking buttons (as opposed to github link)
   -replace as many document.querySelector calls with refs
   -add onPress handler to ArrowButton to be able to hide the elements on bridge page when switching left/right 
