@@ -70,9 +70,71 @@ import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/Carousel";
+import { Carousel as CarouselOriginal } from "../../../components/Carousel/Carousel";
 
 export const ABOUT_SECTION_NAMES = ["Overview", "Interests", "Music"];
 
+const germanyCarousel = (
+	<section className="csharp__carousel margin-top-0 padding-bottom-0">
+		<CarouselOriginal
+			items={[
+				{
+					itemSrc: germany06,
+					itemThumbnailSrc: germany06Thumbnail,
+					description: "Residence and its caretaker",
+				},
+				{
+					itemSrc: germany01,
+					itemThumbnailSrc: germany01Thumbnail,
+					description: "A Family I had the pleasure of meeting",
+				},
+				{
+					itemSrc: germany02,
+					itemThumbnailSrc: germany02Thumbnail,
+					description: "Learning is never-ending Path",
+				},
+				{
+					itemSrc: germany03,
+					itemThumbnailSrc: germany03Thumbnail,
+					description: "Sunset in Hungary on the Balaton See",
+				},
+				{
+					itemSrc: germany04,
+					itemThumbnailSrc: germany04Thumbnail,
+					description: "Morning in South Tirol, Italy",
+				},
+				{
+					itemSrc: germany05,
+					itemThumbnailSrc: germany05Thumbnail,
+					description: "Not much left of the old city in Nuernberg",
+				},
+				{
+					itemSrc: germany07,
+					itemThumbnailSrc: germany07Thumbnail,
+					description: "The pain is real even if the equipment is not",
+				},
+				{
+					itemSrc: germany09,
+					itemThumbnailSrc: germany09Thumbnail,
+					description: "Shields only work if you know how to use them",
+				},
+				{
+					itemSrc: germany08,
+					itemThumbnailSrc: germany08Thumbnail,
+					description: "WanderTag!  (Learn by doing)",
+				},
+			]}
+			numberOfItemsInCarouselWidthWise="3"
+			numberOfItemsToScrollOnClick="3"
+			functionToGetContainer={functionToGetContainer}
+			functionToRunOnClose={closeCarouselItem.bind(
+				null,
+				null as any,
+				`#${ABOUT_SECTION_NAMES[0].toLowerCase()}`,
+			)}
+		/>
+	</section>
+);
 const hobbyQuote = (
 	<Quote author="Phyllis McGinley" className="padding-top-1">
 		A hobby a day keeps the doldrums away.
@@ -87,30 +149,10 @@ const sections: CSharpSection[] = [
 		children: [
 			<React.Fragment>
 				{hobbyQuote}
-				<CSharpCardSection title="Biking">
-					One of the most enjoyable things I do on a regular basis is bike
-					riding.&nbsp; I enjoy it so much, that I even tried using it as my
-					main source of transportation for a year (quite a challenge given I
-					did it in Minnesota).&nbsp;
+				<CSharpCardSection title="Original">
+					{germanyCarousel}
 				</CSharpCardSection>
-				<CSharpCardSection title="Hiking">
-					Living in Oregon for two years really fostered a fondness for
-					hiking.&nbsp; I don't plan on hiking Everest anytime soon, but I will
-					definitely enjoy any chance I get to change my elevation by using my
-					feet.
-				</CSharpCardSection>
-				<CSharpCardSection title="Drums">
-					I've been playing drums since I was 14.&nbsp; I'm not particularly great, but it's a nice way to relieve stress.
-				</CSharpCardSection>
-				<CSharpCardSection title="Guitar">
-					In high school, a few friends and I started a band.&nbsp; It was
-					during this time that I learned how to play guitar.&nbsp; While not as
-					naturally-inclined to it, playing guitar is something I find rewarding.&nbsp;
-				</CSharpCardSection>
-				<CSharpCardSection title="Exercise">
-					Sort of a strange thing to put for an 'interest', but going to the gym
-					and exercising is the main way that I maintain a healthy mindset.
-				</CSharpCardSection>
+				
 				<CSharpCardSection title="Seeing the world">
 					Here are some photos of enjoyable experiences:
 					<Carousel
