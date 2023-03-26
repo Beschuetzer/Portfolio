@@ -23,7 +23,6 @@ $top-offset: 1.25vw;
 	}
 
 	&__source {
-		--right-offset: .725vw;
 		font-family: $font-family-headers;
 		position: fixed;
 		z-index: $navbar-full-z-index;
@@ -33,7 +32,7 @@ $top-offset: 1.25vw;
 		top: calc(#{$page-nav-top});
 		transform: translateY(33%);
 		text-decoration: none;
-		right: calc((100vw - #{$header-inner-width} - var(--right-offset)) / 2);
+		right: calc((100vw - #{$header-inner-width} - 1vw) / 2);
 
 		@include respond(nav-switch) {
 			top: auto;
@@ -51,7 +50,7 @@ $top-offset: 1.25vw;
 		}
 
 		.bridge & {
-			--right-offset: 0vw;
+			right: calc((100vw - #{$header-inner-width}) / 2);
 		}
 
 		&-svg {
