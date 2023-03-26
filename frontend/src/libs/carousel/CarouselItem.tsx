@@ -1,6 +1,6 @@
 import React from 'react'
 
-export type CarouselReworkItem = {
+export type CarouselItemProps = {
   /*
   * If undefined, there will be no 
   */
@@ -15,10 +15,10 @@ export type CarouselReworkItem = {
   srcThumbnail?: string | undefined;
 }
 
-export const CarouselReworkItem = ({
+export const CarouselItem = ({
 
-}: CarouselReworkItem) => {
+}: CarouselItemProps) => {
   return (
-    <div>CarouselReworkItem</div>
+    <div>CarouselItem</div>
   )
 }

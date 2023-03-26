@@ -23,6 +23,7 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { isMobileSelector, setIsMobile, setViewPortWidth } from "../slices/generalSlice";
 import { useSetHeaderCssStyle } from "../hooks/useSetHeaderCssStyle";
 import { keypressHandler } from "../helpers";
+import { Test } from "../pages/examples/csharp/Test";
 
 type AppProps = {}
 
@@ -88,6 +89,7 @@ export const App: React.FC<AppProps> = ({
 		<Router history={history}>
 			<Switch>
 				<Route path="/" exact component={Home} />
+				<Route path="/test" exact component={Test} />
 				<Route path={BRIDGE_URL} exact component={Bridge} />
 				<Route path={BRIDGE_DEMO_URL} exact component={BridgeDemo} />
 				<Route path={DOWNLOADER_URL} exact component={Downloader} />
