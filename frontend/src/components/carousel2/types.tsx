@@ -1,3 +1,3 @@
-export type CSSStyles = {
+export type CssStyles = {
 	[name: string]: React.CSSProperties;
 }

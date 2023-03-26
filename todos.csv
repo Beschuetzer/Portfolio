@@ -1,5 +1,6 @@
 Carousel rework:
   -setup context (the full size viewer should be sibling with children)
+  -setup viewer (allow passing in customer component and provide a sensible default with options?)
   -get thumbnails rendering
   -add styles
   -add features

@@ -29,7 +29,7 @@ export const Carousel = ({
 
 	//#region JSX
 	const renderItems = () =>{
-		return items.map(item => <CarouselItem {...item}/>);
+		return items.map((item, index) => <CarouselItem key={index} {...item}/>);
 	}
 
 	return (
