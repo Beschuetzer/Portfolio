@@ -3593,7 +3593,6 @@ body {
   position: relative;
 }
 .source-link__source {
-  --right-offset: .725vw;
   font-family: "Merriweather", serif;
   position: fixed;
   z-index: 5;
@@ -3605,7 +3604,7 @@ body {
   text-decoration: none;
   right: calc((100vw - calc(
 	74.375rem + ((100% - 74.375rem) / 2) + 6.6752rem
-) - .725vw) / 2);
+) - 1vw) / 2);
 }
 @media only screen and (max-width: 68.75em) {
   .source-link__source {
@@ -3624,7 +3623,9 @@ body {
   }
 }
 .bridge .source-link__source {
-  --right-offset: 0vw;
+  right: calc((100vw - calc(
+	74.375rem + ((100% - 74.375rem) / 2) + 6.6752rem
+)) / 2);
 }
 .source-link__source-svg {
   width: 6.6752rem;
