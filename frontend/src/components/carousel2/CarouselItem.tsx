@@ -16,9 +16,22 @@ export type CarouselItemProps = {
 }
 
 export const CarouselItem = ({
-
+  description,
+  srcMain,
+  srcThumbnail,
 }: CarouselItemProps) => {
   return (
-    <div>CarouselItem</div>
+    <div>
+      <p>
+        Desc: {description || "N/A"}
+      </p>
+      <p>
+        SrcMain: {srcMain || "N/A"}
+      </p>
+      <p>
+        SrcThumb: {srcThumbnail || "N/A"}
+      </p>
+      <br></br>
+    </div>
   )
 }

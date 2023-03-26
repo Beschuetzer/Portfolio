@@ -1,5 +1,6 @@
 import React from 'react'
-import { CarouselItemProps } from './CarouselItem';
+import { CarouselItem, CarouselItemProps } from './CarouselItem';
+
 
 type CarouselProps = {
     items: CarouselItemProps[];
@@ -17,7 +18,7 @@ const styles = {
 	} as React.CSSProperties,
 };
 
-export const CarouselRework = ({
+export const Carousel = ({
 	items,
 	onClose = () => null,
 	onOpen = () => null,
@@ -28,13 +29,7 @@ export const CarouselRework = ({
 
 	//#region JSX
 	const renderItems = () =>{
-		return items.map((item, index) => {
-			return (
-				<div>
-					Item-{index}
-				</div>
-			)
-		})
+		return items.map(item => <CarouselItem {...item}/>);
 	}
 
 	return (

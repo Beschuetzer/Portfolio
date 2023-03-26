@@ -1,26 +1,5 @@
 import React from "react";
 
-import earlier3 from "../../../music/Earlier_03.mp3";
-import earlier5 from "../../../music/Earlier_05.mp3";
-import earlier6 from "../../../music/Earlier_06.mp3";
-import earlier7 from "../../../music/Earlier_07.mp3";
-import earliest1 from "../../../music/Earliest_01.mp3";
-import earliest2 from "../../../music/Earliest_02.mp3";
-import earliest3 from "../../../music/Earliest_03.mp3";
-import othersEC from "../../../music/Others_EC.mp3";
-import othersLE from "../../../music/Others_LE.mp3";
-import othersQC from "../../../music/Others_QC.mp3";
-import othersReunited from "../../../music/Others_Reunited.mp3";
-import othersSweet from "../../../music/Others_Sweet.mp3";
-import selfHDIJC from "../../../music/Self_HIDJ_C.mp3";
-import selfHU from "../../../music/Self_HU.mp3";
-import selfMario from "../../../music/Self_Mario.mp3";
-import selfRS from "../../../music/Self_RS.mp3";
-import startliteBISM from "../../../music/Starlite_Five_BISM.mp3";
-import startliteJam from "../../../music/Starlite_Five_Jam.mp3";
-import startliteOMB from "../../../music/Starlite_Five_OMB.mp3";
-import startliteTF from "../../../music/Starlite_Five_TF.mp3";
-
 import germany01 from "../../../imgs/about/germany-01.jpg";
 import germany02 from "../../../imgs/about/germany-02.jpg";
 import germany03 from "../../../imgs/about/germany-03.jpg";
@@ -83,7 +62,6 @@ import p2p02Thumbnail from "../../../imgs/about/thumbnails/p2p-02-thumbnail.png"
 import p2p03Thumbnail from "../../../imgs/about/thumbnails/p2p-03-thumbnail.png";
 import p2p04Thumbnail from "../../../imgs/about/thumbnails/p2p-04-thumbnail.png";
 import { AudioList } from "../../../components/AudioPlayer/AudioList";
-import { Carousel } from "../../../components/Carousel/Carousel";
 import { DISPLAY_NONE_CLASSNAME, C_SHARP_CLASSNAME, ABOUT_PAGE_NAME } from "../../../components/constants";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { LoadingSpinner } from "../../../components/loading/LoadingSpinner";
@@ -91,145 +69,9 @@ import { Quote } from "../../../components/Quote";
 import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
 import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
+import { Carousel } from "../../../components/carousel2/Carousel";
 
 export const ABOUT_SECTION_NAMES = ["Overview", "Interests", "Music"];
-
-const travelCarousel = (
-	<section className="csharp__carousel margin-top-0 padding-bottom-0">
-		<Carousel
-			items={[
-				{
-					itemSrc: maui01,
-					itemThumbnailSrc: maui01Thumbnail,
-					description: "Cliff Jumping at Kapalua Cliff House",
-				},
-				{
-					itemSrc: maui02,
-					itemThumbnailSrc: maui02Thumbnail,
-					description: "Friendly Turtle Visit",
-				},
-				{
-					itemSrc: maui03,
-					itemThumbnailSrc: maui03Thumbnail,
-					description: "Bamboo Forest Waterfall on Maui",
-				},
-				{
-					itemSrc: maui04,
-					itemThumbnailSrc: maui04Thumbnail,
-					description: "Stunning Beach, Less than Ideal Sand",
-				},
-				{
-					itemSrc: maui05,
-					itemThumbnailSrc: maui05Thumbnail,
-					description: "Haleakalā Sunset",
-				},
-				{
-					itemSrc: maui06,
-					itemThumbnailSrc: maui06Thumbnail,
-					description: "Haleakalā Backside",
-				},
-				{
-					itemSrc: maui07,
-					itemThumbnailSrc: maui07Thumbnail,
-					description: "Haleakalā Backside 2",
-				},
-				{
-					itemSrc: joshuaTree01,
-					itemThumbnailSrc: joshuaTree01Thumbnail,
-					description: "Joshua Tree Sunset",
-				},
-				{
-					itemSrc: joshuaTree02,
-					itemThumbnailSrc: joshuaTree02Thumbnail,
-					description: "Joshua Tree Rock Formation",
-				},
-				{
-					itemSrc: molokai01,
-					itemThumbnailSrc: molokai01Thumbnail,
-					description: "Molokai Roots",
-				},
-				{
-					itemSrc: molokai02,
-					itemThumbnailSrc: molokai02Thumbnail,
-					description: "Make Horse Beach on Molokai",
-				},
-				{
-					itemSrc: molokai03,
-					itemThumbnailSrc: molokai03Thumbnail,
-					description: "Kaunakakai Harbor Sunet",
-				},
-				{
-					itemSrc: molokai04,
-					itemThumbnailSrc: molokai04Thumbnail,
-					description: "Double the Rainbow, Double the Treasure",
-				},
-				{
-					itemSrc: molokai05,
-					itemThumbnailSrc: molokai05Thumbnail,
-					description: "Molokai Biking Requires Preparedness",
-				},
-				{
-					itemSrc: oregon01,
-					itemThumbnailSrc: oregon01Thumbnail,
-					description: "Sweet Creek in Oregon",
-				},
-				{
-					itemSrc: oregon02,
-					itemThumbnailSrc: oregon02Thumbnail,
-					description: "Oregon Coast",
-				},
-				{
-					itemSrc: oregon03,
-					itemThumbnailSrc: oregon03Thumbnail,
-					description: "Another Oregonian Creek",
-				},
-				{
-					itemSrc: germany02,
-					itemThumbnailSrc: germany02Thumbnail,
-					description: "Haubinda, Germany",
-				},
-				{
-					itemSrc: germany03,
-					itemThumbnailSrc: germany03Thumbnail,
-					description: "Sunset in Hungary on the Balaton See",
-				},
-				{
-					itemSrc: germany04,
-					itemThumbnailSrc: germany04Thumbnail,
-					description: "Morning in South Tirol, Italy",
-				},
-				{
-					itemSrc: germany05,
-					itemThumbnailSrc: germany05Thumbnail,
-					description: "Not much left of the old city in Nuernberg",
-				},
-				{
-					itemSrc: germany07,
-					itemThumbnailSrc: germany07Thumbnail,
-					description: "The pain is real even if the equipment is not",
-				},
-				{
-					itemSrc: germany09,
-					itemThumbnailSrc: germany09Thumbnail,
-					description: "Shields only work if you know how to use them",
-				},
-				{
-					itemSrc: p2p01,
-					itemThumbnailSrc: p2p01Thumbnail,
-					description: "Abseiling an English Castle",
-				},
-			]}
-			numberOfItemsInCarouselWidthWise="3"
-			numberOfItemsToScrollOnClick="3"
-			functionToGetContainer={functionToGetContainer}
-			functionToRunOnClose={closeCarouselItem.bind(
-				null,
-				null as any,
-				`#${ABOUT_SECTION_NAMES[1].toLowerCase()}`,
-			)}
-		/>
-	</section>
-);
 
 const hobbyQuote = (
 	<Quote author="Phyllis McGinley" className="padding-top-1">
@@ -271,7 +113,129 @@ const sections: CSharpSection[] = [
 				</CSharpCardSection>
 				<CSharpCardSection title="Seeing the world">
 					Here are some photos of enjoyable experiences:
-					{travelCarousel}
+					<Carousel
+						items={[
+							{
+								//testing no description
+								srcMain: maui01,
+								srcThumbnail: maui01Thumbnail,
+							},
+							{
+								//testing only main item
+								srcMain: maui02,
+							},
+							{
+								//testing no thumbnail
+								srcMain: maui03,
+								description: "Bamboo Forest Waterfall on Maui",
+							},
+							{
+								srcMain: maui04,
+								srcThumbnail: maui04Thumbnail,
+								description: "Stunning Beach, Less than Ideal Sand",
+							},
+							{
+								srcMain: maui05,
+								srcThumbnail: maui05Thumbnail,
+								description: "Haleakalā Sunset",
+							},
+							{
+								srcMain: maui06,
+								srcThumbnail: maui06Thumbnail,
+								description: "Haleakalā Backside",
+							},
+							{
+								srcMain: maui07,
+								srcThumbnail: maui07Thumbnail,
+								description: "Haleakalā Backside 2",
+							},
+							{
+								srcMain: joshuaTree01,
+								srcThumbnail: joshuaTree01Thumbnail,
+								description: "Joshua Tree Sunset",
+							},
+							{
+								srcMain: joshuaTree02,
+								srcThumbnail: joshuaTree02Thumbnail,
+								description: "Joshua Tree Rock Formation",
+							},
+							{
+								srcMain: molokai01,
+								srcThumbnail: molokai01Thumbnail,
+								description: "Molokai Roots",
+							},
+							{
+								srcMain: molokai02,
+								srcThumbnail: molokai02Thumbnail,
+								description: "Make Horse Beach on Molokai",
+							},
+							{
+								srcMain: molokai03,
+								srcThumbnail: molokai03Thumbnail,
+								description: "Kaunakakai Harbor Sunet",
+							},
+							{
+								srcMain: molokai04,
+								srcThumbnail: molokai04Thumbnail,
+								description: "Double the Rainbow, Double the Treasure",
+							},
+							{
+								srcMain: molokai05,
+								srcThumbnail: molokai05Thumbnail,
+								description: "Molokai Biking Requires Preparedness",
+							},
+							{
+								srcMain: oregon01,
+								srcThumbnail: oregon01Thumbnail,
+								description: "Sweet Creek in Oregon",
+							},
+							{
+								srcMain: oregon02,
+								srcThumbnail: oregon02Thumbnail,
+								description: "Oregon Coast",
+							},
+							{
+								srcMain: oregon03,
+								srcThumbnail: oregon03Thumbnail,
+								description: "Another Oregonian Creek",
+							},
+							{
+								srcMain: germany02,
+								srcThumbnail: germany02Thumbnail,
+								description: "Haubinda, Germany",
+							},
+							{
+								srcMain: germany03,
+								srcThumbnail: germany03Thumbnail,
+								description: "Sunset in Hungary on the Balaton See",
+							},
+							{
+								srcMain: germany04,
+								srcThumbnail: germany04Thumbnail,
+								description: "Morning in South Tirol, Italy",
+							},
+							{
+								srcMain: germany05,
+								srcThumbnail: germany05Thumbnail,
+								description: "Not much left of the old city in Nuernberg",
+							},
+							{
+								srcMain: germany07,
+								srcThumbnail: germany07Thumbnail,
+								description: "The pain is real even if the equipment is not",
+							},
+							{
+								srcMain: germany09,
+								srcThumbnail: germany09Thumbnail,
+								description: "Shields only work if you know how to use them",
+							},
+							{
+								srcMain: p2p01,
+								srcThumbnail: p2p01Thumbnail,
+								description: "Abseiling an English Castle",
+							},
+						]}
+					/>
 				</CSharpCardSection>
 			</React.Fragment>,
 		],

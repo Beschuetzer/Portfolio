@@ -1,3 +1,9 @@
+Carousel rework:
+  -setup context (the full size viewer should be sibling with children)
+  -get thumbnails rendering
+  -add styles
+  -add features
+
 React best practices re-work (branch = sitenav_rework)
   -pages with audio need to know when player is open and adjust padding bottom
   -bridge links move after clicking buttons (as opposed to github link)
