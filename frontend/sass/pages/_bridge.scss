@@ -411,6 +411,10 @@
 			width: 100vw;
 		}
 
+		& ~ .source-link__source {
+			right: calc((100vw - #{$header-inner-width}) / 2);
+		}
+
 		&--clicked ~ .source-link__source {
 			right: calc(
 				(

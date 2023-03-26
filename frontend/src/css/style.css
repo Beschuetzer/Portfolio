@@ -4197,6 +4197,11 @@ body {
 .bridge .hero .bg-video {
   width: 100vw;
 }
+.bridge .hero ~ .source-link__source {
+  right: calc((100vw - calc(
+	74.375rem + ((100% - 74.375rem) / 2) + 6.6752rem
+)) / 2);
+}
 .bridge .hero--clicked ~ .source-link__source {
   right: calc((100vw - (
 								74.375rem + (
