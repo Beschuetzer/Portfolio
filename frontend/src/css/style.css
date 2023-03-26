@@ -3605,7 +3605,7 @@ body {
   text-decoration: none;
   right: calc((100vw - calc(
 	74.375rem + ((100% - 74.375rem) / 2) + 6.6752rem
-) - var(--right-offset)) / 2);
+) - .725vw) / 2);
 }
 @media only screen and (max-width: 68.75em) {
   .source-link__source {
