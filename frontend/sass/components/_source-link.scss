@@ -32,7 +32,7 @@ $top-offset: 1.25vw;
 		top: calc(#{$page-nav-top});
 		transform: translateY(33%);
 		text-decoration: none;
-		right: calc((100vw - #{$header-inner-width} - 1vw) / 2);
+		right: calc((100vw - #{$header-inner-width} - .8vw) / 2);
 
 		@include respond(nav-switch) {
 			top: auto;
