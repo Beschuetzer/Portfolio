@@ -162,12 +162,16 @@ const sections: CSharpSection[] = [
 						onItemChange={(currentItemSrc) => toggleScrollability(!currentItemSrc)}
 						items={[
 							{
+								description: "Applying Filters",
 								srcMain: clipFilters,
 								srcThumbnail: clipFiltersThumbnail,
-								description: "Applying Filters",
-								videoOverlayProps: {
-									title: "Applying Filters",
-									text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+								videoProps: {
+									overlayProps: {
+										title: "Applying Filters",
+										text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+									},
+									autoPlay: true,
+									muted: true,
 								}
 								// videoOverlayChildren: (
 								// 	<div>

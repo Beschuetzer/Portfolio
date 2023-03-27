@@ -14,12 +14,6 @@ type CarouselProps = {
 	rowWidth?: number;
 }
 
-const styles = {
-	container: {
-		
-	} as React.CSSProperties,
-};
-
 export const Carousel = ({
 	items,
 	onClose = () => null,
@@ -42,7 +36,7 @@ export const Carousel = ({
 	}
 
 	return (
-		<div style={styles.container}>
+		<div>
 			{renderItems()}
 		</div>
 	)

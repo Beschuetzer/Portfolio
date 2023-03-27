@@ -1,6 +1,6 @@
 import React from 'react'
 import { CarouselItemImage } from './CarouselItemImage';
-import { CarouselItemVideo } from './CarouselItemVideo';
+import { CarouselItemVideo, CarouselItemVideoProps } from './CarouselItemVideo';
 import { CarouselItemVideoOverlayProps } from './CarouselItemVideoOverlay';
 import { EMPTY_STRING, VIDEO_EXTENSIONS } from './constants';
 import { useCarouselContext } from './context';
@@ -25,7 +25,7 @@ export type CarouselItemProps = {
   /*
   *Props for optional overlay when item is a video
   */
-  videoOverlayProps?: CarouselItemVideoOverlayProps;
+  videoProps?: CarouselItemVideoProps;
 }
 
 export const CarouselItem = (props: CarouselItemProps) => {
@@ -35,10 +35,8 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemSrc } = useCarouselContext();
-  const isVideo = srcMain?.match(
-		getRegexStringFromStringArray(VIDEO_EXTENSIONS),
-	);
+  const { setCurrentItemProps, setCurrentItemSrc } = useCarouselContext();
+  
   //#endregion
 
   //#region Functions/Handlers
@@ -46,18 +44,21 @@ export const CarouselItem = (props: CarouselItemProps) => {
 
   function onPress() {
     setCurrentItemSrc(srcMain || EMPTY_STRING);
+    setCurrentItemProps(props);
   }
   //#endregion
 
   //#region JSX
-  const ItemToRender = isVideo ? CarouselItemVideo : CarouselItemImage;
 
+  //todo: have to use srcMain if srcThumbnail not present (should put default size in comment above for thumbnail once decided upon)
   return (
     <article onClick={onPress}>
       <br></br>
-			<ItemToRender {...props}/>
-			{/* <p className={descriptionClassname}>{imageAlt}</p>
-			{renderControls(isVideo as RegExpMatchArray)} */}
+      Thumbnail goes here
+      <br></br>
+      {srcThumbnail}
+      <br></br>
+      {srcMain}
 		</article>
   )
   //#endregion

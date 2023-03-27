@@ -1,4 +1,7 @@
 import React from 'react'
+import { useCarouselContext } from './context';
+import { globalStyles } from './styles';
+import { CssStyles } from './types';
 
 export type CarouselItemVideoOverlayProps = {
     /*
@@ -14,16 +17,26 @@ export type CarouselItemVideoOverlayProps = {
 
 export const CarouselItemVideoOverlay = (props: CarouselItemVideoOverlayProps) => {
     //#region Init
+    const { currentItemSrc } = useCarouselContext();
     const {title, text} = props;
     //#endregion
 
     //#region JSX
+    const visibilityStyle = !!currentItemSrc ? {} : globalStyles.hidden;
     return (
-        <div>
-            Overlay:
+        <div style={{...styles.container, ...visibilityStyle}}>
             <h3>{title}</h3>
             <p>{text}</p>
         </div>
         )
     //#endregion
 }
+
+const styles = {
+    container: {
+        position: 'absolute',
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+    },
+} as CssStyles

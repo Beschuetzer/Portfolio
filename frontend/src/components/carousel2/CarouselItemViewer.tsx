@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { EMPTY_STRING } from './constants';
+import { CarouselItemImage } from './CarouselItemImage';
+import { CarouselItemVideo } from './CarouselItemVideo';
+import { EMPTY_STRING, VIDEO_EXTENSIONS } from './constants';
 import { useCarouselContext } from './context'
+import { globalStyles } from './styles';
 import { CssStyles } from './types';
+import { getRegexStringFromStringArray } from './utils';
 
 
 export const CarouselItemViewer = () => {
     //#region Init
     //todo: needs to be hidden until an item is clicked
-    const { currentItemSrc, currentPage, setCurrentItemSrc } = useCarouselContext();
+    const { currentItemSrc, currentItemProps, currentPage, setCurrentItemSrc } = useCarouselContext();
     const [isVisible, setisVisible] = useState(!!currentItemSrc);
+    const isVideo = currentItemSrc?.match(
+		getRegexStringFromStringArray(VIDEO_EXTENSIONS),
+	);
 
     console.log({currentItemSrc, currentPage });
     //#endregion
@@ -27,7 +34,8 @@ export const CarouselItemViewer = () => {
     
     //#region JSX
     //todo: need to use stying here instead for smooth transitions?
-    const visibilityStyle = isVisible ? styles.visible : styles.hidden;
+    const ItemToRender = isVideo ? CarouselItemVideo : CarouselItemImage;
+    const visibilityStyle = isVisible ? {} : globalStyles.hidden;
     return (
         <section
             style={{
@@ -35,7 +43,7 @@ export const CarouselItemViewer = () => {
                 ...styles.containerLook,
                 ...visibilityStyle,
             }}>
-            CarouselItemViewer
+            <ItemToRender {...currentItemProps}/>
             <div onClick={onClose}>
                 Close
             </div>
@@ -57,13 +65,5 @@ const styles = {
     containerLook: {
         backgroundColor: 'black', //todo: allow styles to be passed in
         transition: "opacity .5s ease",
-    },
-    hidden: {
-        visibility: "hidden",
-        opacity: 0,
-        pointerEvents: "none",
-    },
-    visible: {
-
     },
 } as CssStyles
