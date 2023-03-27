@@ -50,7 +50,9 @@ export const CarouselItem = (props: CarouselItemProps) => {
 
   //#region JSX
 
-  //todo: have to use srcMain if srcThumbnail not present (should put default size in comment above for thumbnail once decided upon)
+  //todo: 
+  //  use a blank icon if srcThumbnail not present or require srcThumbnail? 
+  //  need to put default size in comment above for thumbnail once decided upon
   return (
     <article onClick={onPress}>
       <br></br>
