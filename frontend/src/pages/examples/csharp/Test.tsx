@@ -30,6 +30,8 @@ import p2p01 from "../../../imgs/about/p2p-01.png";
 import p2p02 from "../../../imgs/about/p2p-02.png";
 import p2p03 from "../../../imgs/about/p2p-03.png";
 import p2p04 from "../../../imgs/about/p2p-04.png";
+import clipFilters from "../../../clips/replay-viewer/filters.mp4";
+import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
 
 import germany01Thumbnail from "../../../imgs/about/thumbnails/germany-01-thumbnail.jpg";
 import germany02Thumbnail from "../../../imgs/about/thumbnails/germany-02-thumbnail.jpg";
@@ -93,6 +95,7 @@ const germanyCarousel = (
 					itemThumbnailSrc: germany02Thumbnail,
 					description: "Learning is never-ending Path",
 				},
+				
 				{
 					itemSrc: germany03,
 					itemThumbnailSrc: germany03Thumbnail,
@@ -158,6 +161,29 @@ const sections: CSharpSection[] = [
 					<Carousel
 						onItemChange={(currentItemSrc) => toggleScrollability(!currentItemSrc)}
 						items={[
+							{
+								srcMain: clipFilters,
+								srcThumbnail: clipFiltersThumbnail,
+								description: "Applying Filters",
+								videoOverlayProps: {
+									title: "Applying Filters",
+									text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+								}
+								// videoOverlayChildren: (
+								// 	<div>
+								// 		<CSharpCardSection title="Contract is 1&clubs;">
+								// 			The first part of the video highlights the process of
+								// 			applying the contract matching filter.&nbsp; There are two
+								// 			matches found.
+								// 		</CSharpCardSection>
+								// 		<CSharpCardSection title="Two Filters = Double the Filtering">
+								// 			The second filter applied requires 'Ann' to have the
+								// 			2&clubs;. In one of the filtered games, she does and in the
+								// 			other one she doesn't.
+								// 		</CSharpCardSection>
+								// 	</div>
+								// ),
+							},
 							{
 								//testing no description
 								srcMain: maui01,

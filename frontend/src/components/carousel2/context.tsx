@@ -1,6 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import { useContext } from "react";
 import { CarouselItemViewer } from "./CarouselItemViewer";
+import { EMPTY_STRING } from "./constants";
 
 type CarouselContextProps = {
     children: ReactNode | ReactNode[];
@@ -19,13 +20,12 @@ export function useCarouselContext() {
     return useContext(CarouselContext)
 }
 
-export const CURRENT_ITEM_SRC_INITIAL = "";
 export const CURRENT_PAGE_INITIAL = 0;
 
 export const CarouselProvider = ({
     children
 }: CarouselContextProps) => {
-    const [currentItemSrc, setCurrentItemSrc] = useState(CURRENT_ITEM_SRC_INITIAL);
+    const [currentItemSrc, setCurrentItemSrc] = useState(EMPTY_STRING);
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
 
     return (

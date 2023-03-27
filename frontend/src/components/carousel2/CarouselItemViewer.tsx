@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { CURRENT_ITEM_SRC_INITIAL, useCarouselContext } from './context'
+import { EMPTY_STRING } from './constants';
+import { useCarouselContext } from './context'
 import { CssStyles } from './types';
 
 
@@ -14,7 +15,7 @@ export const CarouselItemViewer = () => {
 
     //#region Function/Handlers
     function onClose() {
-        setCurrentItemSrc(CURRENT_ITEM_SRC_INITIAL);
+        setCurrentItemSrc(EMPTY_STRING);
     }
     //#endregion
 
