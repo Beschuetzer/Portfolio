@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { useCarouselContext } from './context'
+import { CURRENT_ITEM_SRC_INITIAL, useCarouselContext } from './context'
 import { CssStyles } from './types';
 
+
 export const CarouselItemViewer = () => {
+    //#region Init
     //todo: needs to be hidden until an item is clicked
-    const { currentItemSrc, currentPage } = useCarouselContext();
+    const { currentItemSrc, currentPage, setCurrentItemSrc } = useCarouselContext();
     const [isVisible, setisVisible] = useState(!!currentItemSrc);
 
     console.log({currentItemSrc, currentPage });
+    //#endregion
 
+    //#region Function/Handlers
+    function onClose() {
+        setCurrentItemSrc(CURRENT_ITEM_SRC_INITIAL);
+    }
+    //#endregion
+
+    //#region Side Fx
     useEffect(() => {
         setisVisible(!!currentItemSrc);
     }, [currentItemSrc])
+    //#endregion
     
     //#region JSX
     //todo: need to use stying here instead for smooth transitions?
@@ -24,6 +35,9 @@ export const CarouselItemViewer = () => {
                 ...visibilityStyle,
             }}>
             CarouselItemViewer
+            <div onClick={onClose}>
+                Close
+            </div>
         </section>
     )
     //#endregion
@@ -32,7 +46,7 @@ export const CarouselItemViewer = () => {
 const styles = {
     containerPosition: {
         display: "flex",
-        position: "absolute",
+        position: "fixed",
         top: 0,
         bottom: 0,
         left: 0,

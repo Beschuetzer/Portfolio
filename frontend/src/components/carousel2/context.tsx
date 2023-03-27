@@ -8,7 +8,9 @@ type CarouselContextProps = {
 
 type CarouselValueProps = {
     currentItemSrc: string,
-    currentPage: number
+    currentPage: number,
+    setCurrentItemSrc: React.Dispatch<React.SetStateAction<string>>,
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>,
 }
 
 const CarouselContext = React.createContext<CarouselValueProps>({} as any);
@@ -17,21 +19,22 @@ export function useCarouselContext() {
     return useContext(CarouselContext)
 }
 
+export const CURRENT_ITEM_SRC_INITIAL = "";
+export const CURRENT_PAGE_INITIAL = 0;
+
 export const CarouselProvider = ({
     children
 }: CarouselContextProps) => {
-    const [currentItemSrc, setcurrentItemSrc] = useState("");
-    const [currentPage, setCurrentPage] = useState(0);
-
-    setTimeout(() => {
-        setcurrentItemSrc("123");
-    }, 5000)
+    const [currentItemSrc, setCurrentItemSrc] = useState(CURRENT_ITEM_SRC_INITIAL);
+    const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
 
     return (
         <CarouselContext.Provider 
             value={{
                 currentItemSrc,
                 currentPage,
+                setCurrentItemSrc,
+                setCurrentPage
             }}
         >
             {children}

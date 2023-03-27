@@ -66,7 +66,7 @@ import { DISPLAY_NONE_CLASSNAME, C_SHARP_CLASSNAME, ABOUT_PAGE_NAME } from "../.
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { LoadingSpinner } from "../../../components/loading/LoadingSpinner";
 import { Quote } from "../../../components/Quote";
-import { functionToGetContainer, closeCarouselItem } from "../../../helpers";
+import { functionToGetContainer, closeCarouselItem, toggleScrollability } from "../../../helpers";
 import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/Carousel";
@@ -156,6 +156,7 @@ const sections: CSharpSection[] = [
 				<CSharpCardSection title="Seeing the world">
 					Here are some photos of enjoyable experiences:
 					<Carousel
+						onItemChange={(currentItemSrc) => toggleScrollability(!currentItemSrc)}
 						items={[
 							{
 								//testing no description

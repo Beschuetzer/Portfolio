@@ -1,4 +1,5 @@
 import React from 'react'
+import { CURRENT_ITEM_SRC_INITIAL, useCarouselContext } from './context';
 
 export type CarouselItemProps = {
   /*
@@ -20,8 +21,19 @@ export const CarouselItem = ({
   srcMain,
   srcThumbnail,
 }: CarouselItemProps) => {
+  //#region Init
+  const { setCurrentItemSrc } = useCarouselContext();
+  //#endregion
+
+  //#region Functions/Handlers
+  function onPress() {
+    setCurrentItemSrc(srcMain || CURRENT_ITEM_SRC_INITIAL);
+  }
+  //#endregion
+
+  //#region JSX
   return (
-    <div>
+    <div onClick={onPress}>
       <p>
         Desc: {description || "N/A"}
       </p>
@@ -34,4 +46,5 @@ export const CarouselItem = ({
       <br></br>
     </div>
   )
+  //#endregion
 }
