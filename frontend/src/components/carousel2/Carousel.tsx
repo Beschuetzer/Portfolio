@@ -4,6 +4,10 @@ import { useCarouselContext } from './context';
 
 
 type CarouselProps = {
+	/*
+	* if undefined, a standard 'X' will be used for the close button
+	*/
+	closeButtonSvgXlinkHref?: string;
     items: CarouselItemProps[];
 	onClose?: () => void;
 	onItemChange?: (currentItemSrc?: string) => void;
@@ -15,19 +19,24 @@ type CarouselProps = {
 }
 
 export const Carousel = ({
+	closeButtonSvgXlinkHref,
 	items,
 	onClose = () => null,
 	onItemChange = () => null,
 	onOpen = () => null,
 }: CarouselProps) => {
 	//#region Init
-	const { currentItemSrc } = useCarouselContext();
+	const { currentItemSrc, closeButtonSvgXlinkHrefRef } = useCarouselContext();
 	//#endregion
 
 	//#region Side Fx
 	useEffect(() => {
 		onItemChange && onItemChange(currentItemSrc);
 	}, [currentItemSrc])
+
+	useEffect(() => {
+		closeButtonSvgXlinkHrefRef.current = closeButtonSvgXlinkHref;
+	}, [])
 	//#endregion
 
 	//#region JSX

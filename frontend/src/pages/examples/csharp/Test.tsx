@@ -81,6 +81,26 @@ const germanyCarousel = (
 		<CarouselOriginal
 			items={[
 				{
+					itemSrc: clipFilters,
+					itemThumbnailSrc: clipFiltersThumbnail,
+					description: "Applying Filters",
+					videoOverlayText: "Applying Filters",
+					videoOverlayChildren: (
+						<div>
+							<CSharpCardSection title="Contract is 1&clubs;">
+								The first part of the video highlights the process of
+								applying the contract matching filter.&nbsp; There are two
+								matches found.
+							</CSharpCardSection>
+							<CSharpCardSection title="Two Filters = Double the Filtering">
+								The second filter applied requires 'Ann' to have the
+								2&clubs;. In one of the filtered games, she does and in the
+								other one she doesn't.
+							</CSharpCardSection>
+						</div>
+					),
+				},
+				{
 					itemSrc: germany06,
 					itemThumbnailSrc: germany06Thumbnail,
 					description: "Residence and its caretaker",
@@ -159,6 +179,7 @@ const sections: CSharpSection[] = [
 				<CSharpCardSection title="Seeing the world">
 					Here are some photos of enjoyable experiences:
 					<Carousel
+						closeButtonSvgXlinkHref="./sprite.svg#icon-close"
 						onItemChange={(currentItemSrc) => toggleScrollability(!currentItemSrc)}
 						items={[
 							{

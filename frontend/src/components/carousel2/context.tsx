@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useRef, useState } from "react";
 import { useContext } from "react";
 import { CarouselItemProps } from "./CarouselItem";
 import { CarouselItemVideoOverlayProps } from "./CarouselItemVideoOverlay";
@@ -10,6 +10,7 @@ type CarouselContextProps = {
 }
 
 type CarouselValueProps = {
+    closeButtonSvgXlinkHrefRef: React.MutableRefObject<string | undefined>;
     currentItemSrc: string;
     currentItemProps: CarouselItemProps;
     currentPage: number;
@@ -47,10 +48,12 @@ export const CarouselProvider = ({
     });
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
     const [currentVideoOverlayProps, setCurrentVideoOverlayProps] = useState<CarouselItemVideoOverlayProps>(OVERLAY_PROPS_INITIAL);
+    const closeButtonSvgXlinkHrefRef = useRef<string>()
 
     return (
         <CarouselContext.Provider 
             value={{
+                closeButtonSvgXlinkHrefRef,
                 currentItemProps,
                 currentItemSrc,
                 currentPage,

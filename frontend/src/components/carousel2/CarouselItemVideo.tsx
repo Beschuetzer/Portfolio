@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselItemVideoOverlay, CarouselItemVideoOverlayProps } from './CarouselItemVideoOverlay'
+import { CssStyles } from './types';
 
 export type CarouselItemVideoProps = {
     autoPlay?: boolean;
@@ -64,8 +65,13 @@ export const CarouselItemVideo = (props: CarouselItemProps) => {
     
     //#region JSX
     return (
-        <div>
-            <video ref={videoRef} autoPlay={!!autoPlay} muted={!!muted} loop={!!loop}>
+        <div style={styles.container}>
+            <video
+                style={styles.video}
+                ref={videoRef} 
+                autoPlay={!!autoPlay} 
+                muted={!!muted}
+                loop={!!loop}>
                 <source src={props.srcMain} type={`video/${type}`} />
             </video>
             <progress
@@ -77,3 +83,23 @@ export const CarouselItemVideo = (props: CarouselItemProps) => {
     );
     //#endregion
 }
+
+const styles = {
+    container: {
+        position: "absolute",
+        top: "0",
+        left: "50%",
+        transform: "translate(-50%, 0%)",
+        width: "auto",
+        height: "87.5vh",
+        maxWidth: "75%",
+    },
+    video: {
+        width: "100vw",
+        position: "fixed",
+        top: "0",
+        left: "50%",
+        transform: "translate(-50%, 0)",
+        objectFit: "contain",
+    }
+} as CssStyles

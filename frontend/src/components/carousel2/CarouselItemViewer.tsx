@@ -6,28 +6,27 @@ import { useCarouselContext } from './context'
 import { globalStyles } from './styles';
 import { CssStyles } from './types';
 import { getRegexStringFromStringArray } from './utils';
+import close from './resources/close.svg';
+import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton';
 
 
 export const CarouselItemViewer = () => {
     //#region Init
     //todo: needs to be hidden until an item is clicked
-    const { currentItemSrc, currentItemProps, currentPage, setCurrentItemSrc } = useCarouselContext();
+    const { currentItemSrc, currentItemProps, currentPage, closeButtonSvgXlinkHrefRef } = useCarouselContext();
     const [isVisible, setisVisible] = useState(!!currentItemSrc);
     const isVideo = currentItemSrc?.match(
 		getRegexStringFromStringArray(VIDEO_EXTENSIONS),
 	);
-
-    console.log({currentItemSrc, currentPage });
     //#endregion
 
     //#region Function/Handlers
-    function onClose() {
-        setCurrentItemSrc(EMPTY_STRING);
-    }
+    
     //#endregion
 
     //#region Side Fx
     useEffect(() => {
+        console.log({currentItemSrc, currentPage, closeButtonSvgXlinkHrefRef: closeButtonSvgXlinkHrefRef.current });
         setisVisible(!!currentItemSrc);
     }, [currentItemSrc])
     //#endregion
@@ -44,9 +43,7 @@ export const CarouselItemViewer = () => {
                 ...visibilityStyle,
             }}>
             <ItemToRender {...currentItemProps}/>
-            <div onClick={onClose}>
-                Close
-            </div>
+            <CarouselItemViewerCloseButton />
         </section>
     )
     //#endregion
@@ -66,4 +63,9 @@ const styles = {
         backgroundColor: 'black', //todo: allow styles to be passed in
         transition: "opacity .5s ease",
     },
+    svg: {
+        height: "28px",
+        width: "22px",
+        backgroundColor: "white",
+    }
 } as CssStyles

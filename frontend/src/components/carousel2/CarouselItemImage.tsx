@@ -5,13 +5,14 @@ export const CarouselItemImage = (props: CarouselItemProps) => {
     const { 
         description,
         srcMain,
-        srcThumbnail,
-        videoProps,
     } = props;
     
     console.log({props});
 
     return (
-        <div>CarouselItemImage Here</div>
+        <img
+            src={srcMain}
+            alt={description}
+        />
     )
 }
