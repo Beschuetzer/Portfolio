@@ -5,6 +5,8 @@ import { CarouselItemVideoOverlayProps } from "./CarouselItemVideoOverlay";
 import { CarouselItemViewer } from "./CarouselItemViewer";
 import { EMPTY_STRING } from "./constants";
 
+import './css/index.css';
+
 type CarouselContextProps = {
     children: ReactNode | ReactNode[];
 }
