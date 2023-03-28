@@ -5,7 +5,7 @@ import { CarouselItemVideoOverlayProps } from './CarouselItemVideoOverlay';
 import { EMPTY_STRING, VIDEO_EXTENSIONS } from './constants';
 import { useCarouselContext } from './context';
 import { CssStyles } from './types';
-import { getRegexStringFromStringArray } from './utils';
+import { getClassname, getRegexStringFromStringArray } from './utils';
 
 export type CarouselItemProps = {
   /*
@@ -57,9 +57,9 @@ export const CarouselItem = (props: CarouselItemProps) => {
   //  use a blank icon if srcThumbnail not present or require srcThumbnail? 
   //  need to put default size in comment above for thumbnail once decided upon
   return (
-    <article onClick={(e) => onPress(e as any)} style={styles.container}>
+    <article onClick={(e) => onPress(e as any)} className={getClassname({elementName: 'item'})}>
       <img
-        style={styles.image}
+        className={getClassname({elementName: 'item-image'})}
         src={srcThumbnail}
         alt={description}
       />
@@ -67,20 +67,3 @@ export const CarouselItem = (props: CarouselItemProps) => {
   )
   //#endregion
 }
-
-const styles = {
-  container: {
-    position: "relative",
-    height: "150px",
-    width: "150px",
-    borderRadius: "8px",
-    overflow: "hidden",
-    transition: "border-radius 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease",
-  },
-  image: {
-    objectFit: "cover",
-    objectPosition: "top",
-    height: "100%",
-    width: "100%",
-  }
-} as CssStyles

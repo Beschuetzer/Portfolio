@@ -1,2 +1,3 @@
 /* importing css files here*/
-/* @import url("test.css"); */
+@import url("carousel.css");
+@import url("carousel-item.css");

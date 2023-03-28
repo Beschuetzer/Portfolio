@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { CarouselItem, CarouselItemProps } from './CarouselItem';
+import { CLASSNAME_ROOT } from './constants';
 import { useCarouselContext } from './context';
 
 
@@ -45,7 +46,7 @@ export const Carousel = ({
 	}
 
 	return (
-		<div>
+		<div className={CLASSNAME_ROOT}>
 			{renderItems()}
 		</div>
 	)
