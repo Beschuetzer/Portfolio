@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useCarouselContext } from './context';
-import { globalStyles } from './styles';
-import { CssStyles } from './types';
+import { getClassname } from './utils';
 
 export type CarouselVideoOverlayProps = {
     /*
@@ -18,25 +17,21 @@ export type CarouselVideoOverlayProps = {
 export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#region Init
     const { currentItemSrc } = useCarouselContext();
-    const {title, text} = props;
+    const { title, text } = props;
+
+    //todo: change to visible when paused
+    const [isVisible, setIsVisible] = useState(false);
     //#endregion
 
     //#region JSX
-    const visibilityStyle = !!currentItemSrc ? {} : globalStyles.hidden;
+    const visibilityStyle = isVisible ? '' : getClassname({ elementName: "hidden" });
+    const classnameToUse = `${getClassname({ elementName: 'video-overlay' })} ${visibilityStyle}`;
+
     return (
-        <div style={{...styles.container, ...visibilityStyle}}>
+        <div className={classnameToUse}>
             <h3>{title}</h3>
             <p>{text}</p>
         </div>
-        )
+    )
     //#endregion
 }
-
-const styles = {
-    container: {
-        position: 'absolute',
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-    },
-} as CssStyles

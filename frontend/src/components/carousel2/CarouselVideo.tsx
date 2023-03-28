@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoOverlay as CarouselVideoOverlay, CarouselVideoOverlayProps } from './CarouselVideoOverlay'
-import { CssStyles } from './types';
 import { getClassname } from './utils';
 
 export type CarouselVideoProps = {

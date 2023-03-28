@@ -1,0 +1,26 @@
+.carousel2__item-viewer {
+    display: flex;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000000000000000000000;
+    background-color: black;
+    transition: opacity .5s ease;
+}
+
+.carousel2__item-viewer-close-button {
+    height: 5rem;
+    width: 5rem;
+    fill: white;
+    opacity: .75;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.carousel2__item-viewer-close-button:hover {
+    opacity: 1;
+    cursor: pointer;
+}

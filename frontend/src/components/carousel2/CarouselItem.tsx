@@ -1,11 +1,8 @@
 import React from 'react'
-import { CarouselImage } from './CarouselImage';
-import { CarouselVideo, CarouselVideoProps } from './CarouselVideo';
-import { CarouselVideoOverlayProps } from './CarouselVideoOverlay';
-import { EMPTY_STRING, VIDEO_EXTENSIONS } from './constants';
+import { CarouselVideoProps } from './CarouselVideo';
+import { EMPTY_STRING } from './constants';
 import { useCarouselContext } from './context';
-import { CssStyles } from './types';
-import { getClassname, getRegexStringFromStringArray } from './utils';
+import { getClassname } from './utils';
 
 export type CarouselItemProps = {
   /*

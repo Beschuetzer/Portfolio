@@ -1,7 +1,7 @@
 import React from 'react'
 import { EMPTY_STRING } from './constants';
 import { useCarouselContext } from './context';
-import { CssStyles } from './types';
+import { getClassname } from './utils';
 
 export const CarouselItemViewerCloseButton = () => {
     const { setCurrentItemSrc, closeButtonSvgXlinkHrefRef } = useCarouselContext();
@@ -11,7 +11,7 @@ export const CarouselItemViewerCloseButton = () => {
     }
 
     return !!closeButtonSvgXlinkHrefRef.current ? (
-        <svg onClick={onClose} style={styles.svg}>
+        <svg onClick={onClose}className={getClassname({elementName: 'item-viewer-close-button'})}>
             <use 
                 xlinkHref={closeButtonSvgXlinkHrefRef.current}
                 href={closeButtonSvgXlinkHrefRef.current}
@@ -23,15 +23,3 @@ export const CarouselItemViewerCloseButton = () => {
         </div>
     )
 }
-
-const styles = {
-    svg: {
-        height: "5rem",
-        width: "5rem",
-        fill: 'white',
-        position: "absolute",
-        top: "1rem",
-        right: "1rem",
-
-    }
-} as CssStyles;
