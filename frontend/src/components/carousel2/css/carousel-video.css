@@ -1,26 +1,24 @@
 .carousel2__video {
     width: 100vw;
-    height: 95%;
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
     object-fit: contain;
+    max-height: 92.5vh;
 }
 
 .carousel2__video-container {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    width: auto;
-    height: 92.5vh;
-    max-width: 75%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .carousel2__video-progress {
-    position: fixed;
-    bottom: 4%;
+    width: 97.5%;
+    margin: 1rem 0 0 0;
+    cursor: pointer;
+    height: .5rem;
+    appearance: none;
+    border: none;
 }
 
 .carousel2__video-overlay {

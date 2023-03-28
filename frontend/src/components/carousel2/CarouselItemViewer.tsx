@@ -32,11 +32,21 @@ export const CarouselItemViewer = () => {
     //todo: need to use stying here instead for smooth transitions?
     const ItemToRender = isVideo ? CarouselVideo : CarouselImage;
     const visibilityStyle = isVisible ? getClassname({elementName: 'visible'}) : getClassname({elementName: 'hidden'});
-    const classnameToUse = `${getClassname({elementName: 'item-viewer'})} ${visibilityStyle}`;
+    const containerClassname = `${getClassname({elementName: 'item-viewer'})} ${visibilityStyle}`;
+    const toolbarClassname = getClassname({elementName: 'item-viewer-toolbar'})
+    const toolbarLeftClassname = getClassname({elementName: 'item-viewer-toolbar-left'})
+    const toolbarRightClassname = getClassname({elementName: 'item-viewer-toolbar-right'})
     return (
-        <section className={classnameToUse}>
+        <section className={containerClassname}>
             <ItemToRender {...currentItemProps}/>
-            <CarouselItemViewerCloseButton />
+            <div className={toolbarClassname}>
+                <div  className={toolbarLeftClassname}>
+
+                </div>
+                <div  className={toolbarRightClassname}>
+                    <CarouselItemViewerCloseButton />
+                </div>
+            </div>
         </section>
     )
     //#endregion

@@ -1,6 +1,7 @@
 import React from 'react'
 import { EMPTY_STRING } from './constants';
 import { useCarouselContext } from './context';
+import { CssStyles } from './types';
 import { getClassname } from './utils';
 
 export const CarouselItemViewerCloseButton = () => {
