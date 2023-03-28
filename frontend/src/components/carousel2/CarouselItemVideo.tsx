@@ -65,7 +65,8 @@ export const CarouselItemVideo = (props: CarouselItemProps) => {
     
     //#region JSX
     return (
-        <div style={styles.container}>
+        // <div style={styles.container}>
+        <>
             <video
                 style={styles.video}
                 ref={videoRef} 
@@ -75,11 +76,13 @@ export const CarouselItemVideo = (props: CarouselItemProps) => {
                 <source src={props.srcMain} type={`video/${type}`} />
             </video>
             <progress
+                style={styles.progress}
                 onClick={onProgressBarClick as any}
                 value={progressBarValue}
             />
             <CarouselItemVideoOverlay {...props.videoProps?.overlayProps}/>
-        </div>
+        </>
+        // </div>
     );
     //#endregion
 }
@@ -91,11 +94,16 @@ const styles = {
         left: "50%",
         transform: "translate(-50%, 0%)",
         width: "auto",
-        height: "87.5vh",
+        height: "92.5vh",
         maxWidth: "75%",
+    },
+    progress: {
+        position: "fixed",
+        bottom: "4%",
     },
     video: {
         width: "100vw",
+        height: "95%",
         position: "fixed",
         top: "0",
         left: "50%",
