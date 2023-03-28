@@ -3,7 +3,7 @@ import { useCarouselContext } from './context';
 import { globalStyles } from './styles';
 import { CssStyles } from './types';
 
-export type CarouselItemVideoOverlayProps = {
+export type CarouselVideoOverlayProps = {
     /*
     * This only shows when the video is paused and is an <h3> tag under the hood.
     */
@@ -15,7 +15,7 @@ export type CarouselItemVideoOverlayProps = {
     text?: string | undefined;
 }
 
-export const CarouselItemVideoOverlay = (props: CarouselItemVideoOverlayProps) => {
+export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#region Init
     const { currentItemSrc } = useCarouselContext();
     const {title, text} = props;

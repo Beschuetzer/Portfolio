@@ -1,0 +1,24 @@
+.carousel2__video {
+    width: 100vw;
+    height: 95%;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    object-fit: contain;
+}
+
+.carousel2__video-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: auto;
+    height: 92.5vh;
+    max-width: 75%;
+}
+
+.carousel2__video-progress {
+    position: fixed;
+    bottom: 4%;
+}

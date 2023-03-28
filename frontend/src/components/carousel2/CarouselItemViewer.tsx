@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { CarouselItemImage } from './CarouselItemImage';
-import { CarouselItemVideo } from './CarouselItemVideo';
+import { CarouselImage } from './CarouselImage';
+import { CarouselVideo } from './CarouselVideo';
 import { EMPTY_STRING, VIDEO_EXTENSIONS } from './constants';
 import { useCarouselContext } from './context'
 import { globalStyles } from './styles';
@@ -33,7 +33,7 @@ export const CarouselItemViewer = () => {
     
     //#region JSX
     //todo: need to use stying here instead for smooth transitions?
-    const ItemToRender = isVideo ? CarouselItemVideo : CarouselItemImage;
+    const ItemToRender = isVideo ? CarouselVideo : CarouselImage;
     const visibilityStyle = isVisible ? {} : globalStyles.hidden;
     return (
         <section

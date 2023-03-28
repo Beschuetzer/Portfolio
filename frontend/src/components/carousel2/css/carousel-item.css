@@ -1,0 +1,15 @@
+.carousel2__item {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-radius 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
+}
+
+.carousel2__item-thumbnail {
+    object-fit: cover;
+    object-position: top;
+    height: 100%;
+    width: 100%;
+}

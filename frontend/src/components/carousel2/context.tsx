@@ -1,7 +1,7 @@
 import React, { ReactNode, useRef, useState } from "react";
 import { useContext } from "react";
 import { CarouselItemProps } from "./CarouselItem";
-import { CarouselItemVideoOverlayProps } from "./CarouselItemVideoOverlay";
+import { CarouselVideoOverlayProps } from "./CarouselVideoOverlay";
 import { CarouselItemViewer } from "./CarouselItemViewer";
 import { EMPTY_STRING } from "./constants";
 
@@ -16,11 +16,11 @@ type CarouselValueProps = {
     currentItemSrc: string;
     currentItemProps: CarouselItemProps;
     currentPage: number;
-    currentVideoOverlayProps: CarouselItemVideoOverlayProps;
+    currentVideoOverlayProps: CarouselVideoOverlayProps;
     setCurrentItemProps: React.Dispatch<React.SetStateAction<CarouselItemProps>>;
     setCurrentItemSrc: React.Dispatch<React.SetStateAction<string>>;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-    setCurrentVideoOverlayProps: React.Dispatch<React.SetStateAction<CarouselItemVideoOverlayProps>>;
+    setCurrentVideoOverlayProps: React.Dispatch<React.SetStateAction<CarouselVideoOverlayProps>>;
 
 }
 
@@ -34,7 +34,7 @@ export const CURRENT_PAGE_INITIAL = 0;
 const OVERLAY_PROPS_INITIAL = {
     text: EMPTY_STRING,
     title: EMPTY_STRING,
-} as CarouselItemVideoOverlayProps;
+} as CarouselVideoOverlayProps;
 
 export const CarouselProvider = ({
     children
@@ -49,7 +49,7 @@ export const CarouselProvider = ({
         }
     });
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
-    const [currentVideoOverlayProps, setCurrentVideoOverlayProps] = useState<CarouselItemVideoOverlayProps>(OVERLAY_PROPS_INITIAL);
+    const [currentVideoOverlayProps, setCurrentVideoOverlayProps] = useState<CarouselVideoOverlayProps>(OVERLAY_PROPS_INITIAL);
     const closeButtonSvgXlinkHrefRef = useRef<string>()
 
     return (

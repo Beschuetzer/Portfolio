@@ -1,7 +1,7 @@
 import React from 'react'
-import { CarouselItemImage } from './CarouselItemImage';
-import { CarouselItemVideo, CarouselItemVideoProps } from './CarouselItemVideo';
-import { CarouselItemVideoOverlayProps } from './CarouselItemVideoOverlay';
+import { CarouselImage } from './CarouselImage';
+import { CarouselVideo, CarouselVideoProps } from './CarouselVideo';
+import { CarouselVideoOverlayProps } from './CarouselVideoOverlay';
 import { EMPTY_STRING, VIDEO_EXTENSIONS } from './constants';
 import { useCarouselContext } from './context';
 import { CssStyles } from './types';
@@ -26,7 +26,7 @@ export type CarouselItemProps = {
   /*
   *Props for optional overlay when item is a video
   */
-  videoProps?: CarouselItemVideoProps;
+  videoProps?: CarouselVideoProps;
 }
 
 export const CarouselItem = (props: CarouselItemProps) => {
@@ -59,7 +59,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   return (
     <article onClick={(e) => onPress(e as any)} className={getClassname({elementName: 'item'})}>
       <img
-        className={getClassname({elementName: 'item-image'})}
+        className={getClassname({elementName: 'item-thumbnail'})}
         src={srcThumbnail}
         alt={description}
       />

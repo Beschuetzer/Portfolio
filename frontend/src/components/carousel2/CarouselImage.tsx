@@ -1,7 +1,7 @@
 import React from 'react'
 import { CarouselItemProps } from './CarouselItem'
 
-export const CarouselItemImage = (props: CarouselItemProps) => {
+export const CarouselImage = (props: CarouselItemProps) => {
     const { 
         description,
         srcMain,
