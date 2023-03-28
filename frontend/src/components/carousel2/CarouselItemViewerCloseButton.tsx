@@ -12,7 +12,10 @@ export const CarouselItemViewerCloseButton = () => {
 
     return !!closeButtonSvgXlinkHrefRef.current ? (
         <svg onClick={onClose} style={styles.svg}>
-            <use xlinkHref={closeButtonSvgXlinkHrefRef.current}></use>
+            <use 
+                xlinkHref={closeButtonSvgXlinkHrefRef.current}
+                href={closeButtonSvgXlinkHrefRef.current}
+            />
         </svg>
     ) : (
         <div>

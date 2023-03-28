@@ -1,5 +1,5 @@
 Carousel rework:
-  -setup context (the full size viewer should be sibling with children)
+  -finish default todo button (css version)
   -setup viewer (allow passing in customer component and provide a sensible default with options?)
   -get thumbnails rendering
   -add styles
