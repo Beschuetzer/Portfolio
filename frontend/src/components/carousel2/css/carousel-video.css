@@ -1,7 +1,7 @@
 .carousel2__video {
     width: 100vw;
     object-fit: contain;
-    max-height: 92.5vh;
+    max-height: calc(100vh - 7rem);
 }
 
 .carousel2__video-container {
@@ -13,7 +13,7 @@
 }
 
 .carousel2__video-progress {
-    width: 97.5%;
+    width: calc(100% - 2rem);
     margin: 1rem 0 0 0;
     cursor: pointer;
     height: .5rem;

@@ -1,7 +1,8 @@
 /* importing css files here*/
+@import url("global.css");
 @import url("carousel.css");
 @import url("carousel-image.css");
 @import url("carousel-item.css");
 @import url("carousel-item-viewer.css");
+@import url("carousel-item-viewer-close-button.css");
 @import url("carousel-video.css");
-@import url("global.css");
