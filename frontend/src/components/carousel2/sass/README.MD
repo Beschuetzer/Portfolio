@@ -1,0 +1,1 @@
+Create new scss files for each component and then build using sass tool from npm

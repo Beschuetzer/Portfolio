@@ -24,7 +24,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#endregion
 
     //#region JSX
-    const visibilityStyle = isVisible ? '' : getClassname({ elementName: "hidden" });
+    const visibilityStyle = isVisible ? '' : getClassname({ modifiedName: "hidden" });
     const classnameToUse = `${getClassname({ elementName: 'video-overlay' })} ${visibilityStyle}`;
 
     return (

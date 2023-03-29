@@ -31,7 +31,7 @@ export const CarouselItemViewer = () => {
     //#region JSX
     //todo: need to use stying here instead for smooth transitions?
     const ItemToRender = isVideo ? CarouselVideo : CarouselImage;
-    const visibilityStyle = isVisible ? getClassname({elementName: 'visible'}) : getClassname({elementName: 'hidden'});
+    const visibilityStyle = isVisible ? getClassname({modifiedName: 'visible'}) : getClassname({modifiedName: 'hidden'});
     const containerClassname = `${getClassname({elementName: 'item-viewer'})} ${visibilityStyle}`;
     const toolbarClassname = getClassname({elementName: 'item-viewer-toolbar'})
     const toolbarLeftClassname = getClassname({elementName: 'item-viewer-toolbar-left'})

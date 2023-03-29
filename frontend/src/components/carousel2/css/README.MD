@@ -1,1 +1,0 @@
-Create new css files for each component and import in index.css
