@@ -1,4 +1,5 @@
 import React from 'react'
+import { CarouselSvgHrefs } from './Carousel';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
 import { EMPTY_STRING } from './constants';
@@ -34,17 +35,15 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemProps, setCurrentItemSrc } = useCarouselContext();
+  const { setCurrentItemProps, setCurrentItemSrc, setCurrentSvgHrefs: setSvgHrefs } = useCarouselContext();
+  const { svgHrefInstance } = useCarouselInstanceContext();
   //#endregion
 
   //#region Functions/Handlers
-	
-
   function onPress(e: MouseEvent) {
-    console.log({srcMain, e});
-    
     setCurrentItemSrc(srcMain || EMPTY_STRING);
     setCurrentItemProps(props);
+    setSvgHrefs(svgHrefInstance);
   }
   //#endregion
 

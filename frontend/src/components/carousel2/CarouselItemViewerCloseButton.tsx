@@ -7,11 +7,11 @@ import { getClassname } from './utils';
 
 const elementName = 'item-viewer-close-button';
 export const CarouselItemViewerCloseButton = () => {
-    const { setCurrentItemSrc, svgHrefsRef } = useCarouselContext();
+    const { setCurrentItemSrc, currentSvgHrefs } = useCarouselContext();
     const { id } = useCarouselInstanceContext();
-    const closeButtonSvgHref = svgHrefsRef.current?.[id]?.closeButton || '';
+    const closeButtonSvgHref = currentSvgHrefs?.closeButton || '';
 
-    console.log({svgHrefsRef, id});
+    console.log({closeButtonSvgHref, id});
     
     const onClose = useCallback(() => {
         setCurrentItemSrc(EMPTY_STRING);

@@ -38,33 +38,18 @@ export const Carousel = ({
 	onOpen = () => null,
 }: CarouselProps) => {
 	//#region Init
-	const { currentItemSrc, svgHrefsRef } = useCarouselContext();
+	const { currentItemSrc, currentSvgHrefs: svgHrefsRef } = useCarouselContext();
 	const idRef = useRef<string>(getGuid());
 
 	//#endregion
 
 	//#region Functions/Handlers
-	function setHrefs() {
-	console.log({id: idRef.current});
-
-		if (svgHrefsRef?.current?.[idRef.current] && svgHrefs) {
-			svgHrefsRef.current[idRef.current] = svgHrefs;
-		}
-	}
 	//#endregion
 
 	//#region Side Fx
 	useEffect(() => {
 		onItemChange && onItemChange(currentItemSrc);
 	}, [currentItemSrc])
-
-	useEffect(() => {
-		if (svgHrefsRef?.current) {
-			setHrefs();
-		} else {
-			setTimeout(() => setHrefs(), 1000);
-		}
-	}, [])
 	//#endregion
 
 	//#region JSX
@@ -73,7 +58,9 @@ export const Carousel = ({
 	}
 
 	return (
-		<CarouselInstanceProvider id={idRef.current}>
+		<CarouselInstanceProvider 
+			id={idRef.current}
+			svgHrefInstance={svgHrefs}>
 			<div className={CLASSNAME_ROOT}>
 				{renderItems()}
 			</div>
