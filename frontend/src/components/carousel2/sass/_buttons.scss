@@ -1,0 +1,21 @@
+.close-button {
+    @extend %close-button;
+    --rotation: 45deg;
+
+    &-left, &-right {
+        width: $itemViewerCloseButtonLineWidth;
+        height: $itemViewerCloseButtonWidth;
+        background-color: white;
+        position: absolute;
+        left: 50%;
+        top:50%;
+        transform: translate(-50%, -50%) rotate(var(--rotation));
+    }
+
+    &-left {
+        --rotation: -45deg;
+    }
+
+    &-right {
+    }
+}

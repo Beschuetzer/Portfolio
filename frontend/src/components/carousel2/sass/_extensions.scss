@@ -1,0 +1,12 @@
+%close-button {
+    height: $itemViewerCloseButtonWidth;
+    width: $itemViewerCloseButtonWidth;
+    opacity: $itemViewerCloseButtonOpacityNormal;
+    border: none;
+    position: relative;
+
+    &:hover {
+        opacity: $itemViewerCloseButtonOpacityHover;
+        cursor: pointer;
+    }
+}

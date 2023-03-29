@@ -1,6 +1,5 @@
 Carousel rework:
   -how to handle multiple Carousel instances on a page (currently things like close button xlinkHref are setup for one instance)
-  -finish default todo button (css version)
   -setup viewer (allow passing in customer component and provide a sensible default with options?)
   -get thumbnails rendering
   -add styles

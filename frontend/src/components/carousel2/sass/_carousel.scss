@@ -28,36 +28,8 @@
         transition: opacity $itemViewerOpacityTransitionDuration ease;
 
         &-close-button {
-            height: $itemViewerCloseButtonWidth;
-            width: $itemViewerCloseButtonWidth;
+            @extend %close-button;
             fill: white;
-            opacity: $itemViewerCloseButtonOpacityNormal;
-            border: none;
-            // transform: translateX(6.75px);
-            position: relative;
-
-            &:hover {
-                opacity: $itemViewerCloseButtonOpacityHover;
-                cursor: pointer;
-            }
-
-            --rotation: 45deg;
-            &-left, &-right {
-                width: $itemViewerCloseButtonLineWidth;
-                height: $itemViewerCloseButtonWidth;
-                background-color: white;
-                position: absolute;
-                left: 50%;
-                top:50%;
-                transform: translate(-50%, -50%) rotate(var(--rotation));
-            }
-
-            &-left {
-                --rotation: -45deg;
-            }
-
-            &-right {
-            }
         }
 
         &-toolbar {
