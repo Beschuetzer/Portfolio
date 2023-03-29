@@ -21,7 +21,6 @@ type CarouselValueProps = {
     setCurrentItemSrc: React.Dispatch<React.SetStateAction<string>>;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
     setCurrentVideoOverlayProps: React.Dispatch<React.SetStateAction<CarouselVideoOverlayProps>>;
-
 }
 
 const CarouselContext = React.createContext<CarouselValueProps>({} as any);

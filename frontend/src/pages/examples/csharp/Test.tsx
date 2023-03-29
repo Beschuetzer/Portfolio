@@ -243,90 +243,59 @@ const sections: CSharpSection[] = [
 								srcThumbnail: maui07Thumbnail,
 								description: "Haleakalā Backside 2",
 							},
+						]}
+					/>
+				</CSharpCardSection>
+				<CSharpCardSection title="Seeing the world">
+					Here are some photos of enjoyable experiences:
+					<Carousel
+						onItemChange={(currentItemSrc) => toggleScrollability(!currentItemSrc)}
+						items={[
 							{
-								srcMain: joshuaTree01,
-								srcThumbnail: joshuaTree01Thumbnail,
-								description: "Joshua Tree Sunset",
+								description: "Applying Filters",
+								srcMain: clipFilters,
+								srcThumbnail: clipFiltersThumbnail,
+								videoProps: {
+									overlayProps: {
+										title: "Applying Filters",
+										text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+									},
+									autoPlay: true,
+									muted: true,
+								}
+								// videoOverlayChildren: (
+								// 	<div>
+								// 		<CSharpCardSection title="Contract is 1&clubs;">
+								// 			The first part of the video highlights the process of
+								// 			applying the contract matching filter.&nbsp; There are two
+								// 			matches found.
+								// 		</CSharpCardSection>
+								// 		<CSharpCardSection title="Two Filters = Double the Filtering">
+								// 			The second filter applied requires 'Ann' to have the
+								// 			2&clubs;. In one of the filtered games, she does and in the
+								// 			other one she doesn't.
+								// 		</CSharpCardSection>
+								// 	</div>
+								// ),
 							},
 							{
-								srcMain: joshuaTree02,
-								srcThumbnail: joshuaTree02Thumbnail,
-								description: "Joshua Tree Rock Formation",
+								//testing no description
+								srcMain: maui01,
+								srcThumbnail: maui01Thumbnail,
 							},
 							{
-								srcMain: molokai01,
-								srcThumbnail: molokai01Thumbnail,
-								description: "Molokai Roots",
+								//testing only main item
+								srcMain: maui02,
 							},
 							{
-								srcMain: molokai02,
-								srcThumbnail: molokai02Thumbnail,
-								description: "Make Horse Beach on Molokai",
+								//testing no thumbnail
+								srcMain: maui03,
+								description: "Bamboo Forest Waterfall on Maui",
 							},
 							{
-								srcMain: molokai03,
-								srcThumbnail: molokai03Thumbnail,
-								description: "Kaunakakai Harbor Sunet",
-							},
-							{
-								srcMain: molokai04,
-								srcThumbnail: molokai04Thumbnail,
-								description: "Double the Rainbow, Double the Treasure",
-							},
-							{
-								srcMain: molokai05,
-								srcThumbnail: molokai05Thumbnail,
-								description: "Molokai Biking Requires Preparedness",
-							},
-							{
-								srcMain: oregon01,
-								srcThumbnail: oregon01Thumbnail,
-								description: "Sweet Creek in Oregon",
-							},
-							{
-								srcMain: oregon02,
-								srcThumbnail: oregon02Thumbnail,
-								description: "Oregon Coast",
-							},
-							{
-								srcMain: oregon03,
-								srcThumbnail: oregon03Thumbnail,
-								description: "Another Oregonian Creek",
-							},
-							{
-								srcMain: germany02,
-								srcThumbnail: germany02Thumbnail,
-								description: "Haubinda, Germany",
-							},
-							{
-								srcMain: germany03,
-								srcThumbnail: germany03Thumbnail,
-								description: "Sunset in Hungary on the Balaton See",
-							},
-							{
-								srcMain: germany04,
-								srcThumbnail: germany04Thumbnail,
-								description: "Morning in South Tirol, Italy",
-							},
-							{
-								srcMain: germany05,
-								srcThumbnail: germany05Thumbnail,
-								description: "Not much left of the old city in Nuernberg",
-							},
-							{
-								srcMain: germany07,
-								srcThumbnail: germany07Thumbnail,
-								description: "The pain is real even if the equipment is not",
-							},
-							{
-								srcMain: germany09,
-								srcThumbnail: germany09Thumbnail,
-								description: "Shields only work if you know how to use them",
-							},
-							{
-								srcMain: p2p01,
-								srcThumbnail: p2p01Thumbnail,
-								description: "Abseiling an English Castle",
+								srcMain: maui04,
+								srcThumbnail: maui04Thumbnail,
+								description: "Stunning Beach, Less than Ideal Sand",
 							},
 						]}
 					/>

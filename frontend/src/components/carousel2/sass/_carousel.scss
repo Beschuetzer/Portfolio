@@ -25,13 +25,46 @@
         right: 0;
         z-index: 1000000000000000000000;
         background-color: black;
-        transition: opacity .5s ease;
+        transition: opacity $itemViewerOpacityTransitionDuration ease;
+
+        &-close-button {
+            height: $itemViewerCloseButtonWidth;
+            width: $itemViewerCloseButtonWidth;
+            fill: white;
+            opacity: $itemViewerCloseButtonOpacityNormal;
+            border: none;
+            // transform: translateX(6.75px);
+            position: relative;
+
+            &:hover {
+                opacity: $itemViewerCloseButtonOpacityHover;
+                cursor: pointer;
+            }
+
+            --rotation: 45deg;
+            &-left, &-right {
+                width: $itemViewerCloseButtonLineWidth;
+                height: $itemViewerCloseButtonWidth;
+                background-color: white;
+                position: absolute;
+                left: 50%;
+                top:50%;
+                transform: translate(-50%, -50%) rotate(var(--rotation));
+            }
+
+            &-left {
+                --rotation: -45deg;
+            }
+
+            &-right {
+            }
+        }
 
         &-toolbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin: 0 2rem;
+            margin: 0 $itemViewerToolbarMarginHorizontal;
 
             &-left {
                 display: flex;
@@ -45,26 +78,12 @@
                 justify-content: space-between;
             }
         }
-        
-        &-close-button {
-            height: 5rem;
-            width: 5rem;
-            fill: white;
-            opacity: .75;
-            border: none;
-            transform: translateX(6.75px);
-
-            &:hover {
-                opacity: 1;
-                cursor: pointer;
-            }
-        }
     }
 
     &__video {
         width: 100vw;
         object-fit: contain;
-        max-height: calc(100vh - 7rem);
+        max-height: calc(100vh - (#{$itemViewerCloseButtonWidth} + #{$itemViewerToolbarMarginHorizontal}));
 
         &-container {
             width: 100vw;

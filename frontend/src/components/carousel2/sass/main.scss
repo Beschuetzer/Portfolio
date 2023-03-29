@@ -1,2 +1,6 @@
-@import "carousel.scss";
+//pre-requisites
 @import "globals.scss";
+@import "variables.scss";
+
+// actual styles
+@import "carousel.scss";

@@ -1,5 +1,5 @@
 Carousel rework:
-  -make a css file for each component and use classnames instead of inline styles? (have to import each file into context.tsx or is there an more dynamic approach?)
+  -how to handle multiple Carousel instances on a page (currently things like close button xlinkHref are setup for one instance)
   -finish default todo button (css version)
   -setup viewer (allow passing in customer component and provide a sensible default with options?)
   -get thumbnails rendering
