@@ -1,4 +1,5 @@
 import React from 'react'
+import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
 import { EMPTY_STRING } from './constants';
 import { useCarouselContext } from './context';
@@ -34,7 +35,6 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcThumbnail,
   } = props;
   const { setCurrentItemProps, setCurrentItemSrc } = useCarouselContext();
-  
   //#endregion
 
   //#region Functions/Handlers

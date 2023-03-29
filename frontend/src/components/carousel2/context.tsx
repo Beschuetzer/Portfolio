@@ -6,13 +6,17 @@ import { CarouselItemViewer } from "./CarouselItemViewer";
 import { EMPTY_STRING } from "./constants";
 
 import './css/style.css';
+import { CarouselSvgHrefs } from "./Carousel";
 
 type CarouselContextProps = {
     children: ReactNode | ReactNode[];
 }
 
+type SvgHrefsRef = {
+    [id: string]: CarouselSvgHrefs;
+}
+
 type CarouselValueProps = {
-    closeButtonSvgXlinkHrefRef: React.MutableRefObject<string | undefined>;
     currentItemSrc: string;
     currentItemProps: CarouselItemProps;
     currentPage: number;
@@ -21,6 +25,7 @@ type CarouselValueProps = {
     setCurrentItemSrc: React.Dispatch<React.SetStateAction<string>>;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
     setCurrentVideoOverlayProps: React.Dispatch<React.SetStateAction<CarouselVideoOverlayProps>>;
+    svgHrefsRef: React.MutableRefObject<SvgHrefsRef | undefined>;
 }
 
 const CarouselContext = React.createContext<CarouselValueProps>({} as any);
@@ -49,12 +54,12 @@ export const CarouselProvider = ({
     });
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
     const [currentVideoOverlayProps, setCurrentVideoOverlayProps] = useState<CarouselVideoOverlayProps>(OVERLAY_PROPS_INITIAL);
-    const closeButtonSvgXlinkHrefRef = useRef<string>()
+    const svgHrefsRef = useRef<SvgHrefsRef>();
 
     return (
         <CarouselContext.Provider 
             value={{
-                closeButtonSvgXlinkHrefRef,
+                svgHrefsRef,
                 currentItemProps,
                 currentItemSrc,
                 currentPage,

@@ -1,14 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
+import { CarouselInstanceProvider } from './CarouselInstanceProvider';
 import { CarouselItem, CarouselItemProps } from './CarouselItem';
 import { CLASSNAME_ROOT } from './constants';
 import { useCarouselContext } from './context';
+import { getGuid } from './utils';
 
+export type CarouselSvgHrefs = {
+	closeButton?: string;
+	nextButton?: string;
+	pauseButton?: string;
+	playButton?: string;
+	previousButton?: string;
+	restartButton?: string;
+	stopButton?: string;
+}
 
 type CarouselProps = {
 	/*
-	* if undefined, a standard 'X' will be used for the close button
+	* if undefined, the default css version for each button will be used
 	*/
-	closeButtonSvgXlinkHref?: string;
+	svgHrefs?: CarouselSvgHrefs;
     items: CarouselItemProps[];
 	onClose?: () => void;
 	onItemChange?: (currentItemSrc?: string) => void;
@@ -20,14 +31,26 @@ type CarouselProps = {
 }
 
 export const Carousel = ({
-	closeButtonSvgXlinkHref,
+	svgHrefs = {},
 	items,
 	onClose = () => null,
 	onItemChange = () => null,
 	onOpen = () => null,
 }: CarouselProps) => {
 	//#region Init
-	const { currentItemSrc, closeButtonSvgXlinkHrefRef } = useCarouselContext();
+	const { currentItemSrc, svgHrefsRef } = useCarouselContext();
+	const idRef = useRef<string>(getGuid());
+
+	//#endregion
+
+	//#region Functions/Handlers
+	function setHrefs() {
+	console.log({id: idRef.current});
+
+		if (svgHrefsRef?.current?.[idRef.current] && svgHrefs) {
+			svgHrefsRef.current[idRef.current] = svgHrefs;
+		}
+	}
 	//#endregion
 
 	//#region Side Fx
@@ -36,7 +59,11 @@ export const Carousel = ({
 	}, [currentItemSrc])
 
 	useEffect(() => {
-		closeButtonSvgXlinkHrefRef.current = closeButtonSvgXlinkHref;
+		if (svgHrefsRef?.current) {
+			setHrefs();
+		} else {
+			setTimeout(() => setHrefs(), 1000);
+		}
 	}, [])
 	//#endregion
 
@@ -46,9 +73,11 @@ export const Carousel = ({
 	}
 
 	return (
-		<div className={CLASSNAME_ROOT}>
-			{renderItems()}
-		</div>
+		<CarouselInstanceProvider id={idRef.current}>
+			<div className={CLASSNAME_ROOT}>
+				{renderItems()}
+			</div>
+		</CarouselInstanceProvider>
 	)
 	//#endregion
 }

@@ -10,7 +10,7 @@ import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton';
 export const CarouselItemViewer = () => {
     //#region Init
     //todo: needs to be hidden until an item is clicked
-    const { currentItemSrc, currentItemProps, currentPage, closeButtonSvgXlinkHrefRef } = useCarouselContext();
+    const { currentItemSrc, currentItemProps, currentPage, svgHrefsRef: closeButtonSvgXlinkHrefRef } = useCarouselContext();
     const [isVisible, setisVisible] = useState(!!currentItemSrc);
     const isVideo = currentItemSrc?.match(
 		getRegexStringFromStringArray(VIDEO_EXTENSIONS),

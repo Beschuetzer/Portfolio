@@ -179,7 +179,9 @@ const sections: CSharpSection[] = [
 				<CSharpCardSection title="Seeing the world">
 					Here are some photos of enjoyable experiences:
 					<Carousel
-						closeButtonSvgXlinkHref="./sprite.svg#icon-close"
+						svgHrefs={{
+							closeButton: "./sprite.svg#icon-close",
+						}}
 						onItemChange={(currentItemSrc) => toggleScrollability(!currentItemSrc)}
 						items={[
 							{
