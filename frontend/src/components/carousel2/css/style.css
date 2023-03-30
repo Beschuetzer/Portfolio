@@ -206,6 +206,9 @@
   position: relative;
   background-color: transparent;
   fill: white;
+  stroke: black;
+  stroke-opacity: 0.15;
+  stroke-width: 2px;
 }
 .carousel2__item-viewer-button:hover {
   opacity: 1;
