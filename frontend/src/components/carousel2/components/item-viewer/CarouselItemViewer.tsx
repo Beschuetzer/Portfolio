@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { CarouselImage } from './CarouselImage';
-import { CarouselVideo } from './CarouselVideo';
-import { VIDEO_EXTENSIONS } from './constants';
-import { useCarouselContext } from './context'
-import { getClassname, getRegexStringFromStringArray } from './utils';
+import { CarouselImage } from '../CarouselImage';
+import { CarouselVideo } from '../CarouselVideo';
+import { VIDEO_EXTENSIONS } from '../../constants';
+import { useCarouselContext } from '../../context'
+import { getClassname, getRegexStringFromStringArray } from '../../utils';
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton';
+import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton';
 
 
 export const CarouselItemViewer = () => {
@@ -40,9 +41,9 @@ export const CarouselItemViewer = () => {
             <ItemToRender {...currentItemProps}/>
             <div className={toolbarClassname}>
                 <div  className={toolbarLeftClassname}>
-
+                    <CarouselItemViewerPlayButton />
                 </div>
-                <div  className={toolbarRightClassname}>
+                <div className={toolbarRightClassname}>
                     <CarouselItemViewerCloseButton />
                 </div>
             </div>

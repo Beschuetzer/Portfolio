@@ -71,7 +71,7 @@ import { Quote } from "../../../components/Quote";
 import { functionToGetContainer, closeCarouselItem, toggleScrollability } from "../../../helpers";
 import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
-import { Carousel } from "../../../components/carousel2/Carousel";
+import { Carousel } from "../../../components/carousel2/components/Carousel";
 import { Carousel as CarouselOriginal } from "../../../components/Carousel/Carousel";
 
 export const ABOUT_SECTION_NAMES = ["Overview", "Interests", "Music"];

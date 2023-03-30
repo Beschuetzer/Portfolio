@@ -27,8 +27,8 @@
         background-color: black;
         transition: opacity $itemViewerOpacityTransitionDuration ease;
 
-        &-close-button {
-            @extend %close-button;
+        &-button {
+            @extend %button;
             fill: white;
         }
 
@@ -67,18 +67,15 @@
         
         &-progress {
             width: calc(100% - 2rem);
-            margin: 1rem 0 0 0;
+            margin: $itemViewerProgressHeight 0 0 0;
             cursor: pointer;
-            height: .5rem;
+            height: $itemViewerProgressHeight;
             appearance: none;
             border: none;
         }
         
         &-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+           @include positionCentered();
         }
     }
 

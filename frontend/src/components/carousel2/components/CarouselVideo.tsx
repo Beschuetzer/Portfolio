@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
+import { getClassname } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoOverlay as CarouselVideoOverlay, CarouselVideoOverlayProps } from './CarouselVideoOverlay'
-import { getClassname } from './utils';
 
 export type CarouselVideoProps = {
     autoPlay?: boolean;

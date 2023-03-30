@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react'
+import { CLASSNAME_ROOT } from '../constants';
+import { useCarouselContext } from '../context';
+import { getGuid } from '../utils';
 import { CarouselInstanceProvider } from './CarouselInstanceProvider';
-import { CarouselItem, CarouselItemProps } from './CarouselItem';
-import { CLASSNAME_ROOT } from './constants';
-import { useCarouselContext } from './context';
-import { getGuid } from './utils';
+import { CarouselItemProps, CarouselItem } from './CarouselItem';
 
 export type CarouselSvgHrefs = {
 	closeButton?: string;

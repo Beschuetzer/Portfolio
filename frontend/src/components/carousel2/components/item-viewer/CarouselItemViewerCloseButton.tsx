@@ -1,18 +1,16 @@
 import React, { useCallback, useMemo } from 'react'
-import { useCarouselInstanceContext } from './CarouselInstanceProvider';
-import { CloseButton } from './CloseButton';
-import { EMPTY_STRING } from './constants';
-import { useCarouselContext } from './context';
-import { getClassname } from './utils';
+import { CloseButton } from '../buttons/CloseButton';
+import { useCarouselInstanceContext } from '../CarouselInstanceProvider';
+import { EMPTY_STRING } from '../../constants';
+import { useCarouselContext } from '../../context';
+import { getClassname } from '../../utils';
 
-const elementName = 'item-viewer-close-button';
+const elementName = 'item-viewer-button';
 export const CarouselItemViewerCloseButton = () => {
     const { setCurrentItemSrc, currentSvgHrefs } = useCarouselContext();
     const { id } = useCarouselInstanceContext();
     const closeButtonSvgHref = currentSvgHrefs?.closeButton || '';
 
-    console.log({closeButtonSvgHref, id});
-    
     const onClose = useCallback(() => {
         setCurrentItemSrc(EMPTY_STRING);
     }, [setCurrentItemSrc, EMPTY_STRING]);
@@ -24,5 +22,5 @@ export const CarouselItemViewerCloseButton = () => {
                 href={closeButtonSvgHref}
             />
         </svg>
-    ) : <CloseButton onClose={onClose}/>
+    ) : <CloseButton onClick={onClose}/>
 }

@@ -1,10 +1,9 @@
 import React from 'react'
-import { CarouselSvgHrefs } from './Carousel';
+import { EMPTY_STRING } from '../constants';
+import { useCarouselContext } from '../context';
+import { getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
-import { EMPTY_STRING } from './constants';
-import { useCarouselContext } from './context';
-import { getClassname } from './utils';
 
 export type CarouselItemProps = {
   /*
@@ -35,7 +34,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemProps, setCurrentItemSrc, setCurrentSvgHrefs: setSvgHrefs } = useCarouselContext();
+  const { setCurrentItemProps, setCurrentItemSrc, setCurrentSvgHrefs } = useCarouselContext();
   const { svgHrefInstance } = useCarouselInstanceContext();
   //#endregion
 
@@ -43,7 +42,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   function onPress(e: MouseEvent) {
     setCurrentItemSrc(srcMain || EMPTY_STRING);
     setCurrentItemProps(props);
-    setSvgHrefs(svgHrefInstance);
+    setCurrentSvgHrefs(svgHrefInstance);
   }
   //#endregion
 

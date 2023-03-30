@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useCarouselContext } from './context';
-import { getClassname } from './utils';
+import { useCarouselContext } from '../context';
+import { getClassname } from '../utils';
 
 export type CarouselVideoOverlayProps = {
     /*

@@ -1,17 +1,13 @@
-import React, { ReactNode, useRef, useState } from "react";
-import { useContext } from "react";
-import { CarouselItemProps } from "./CarouselItem";
-import { CarouselVideoOverlayProps } from "./CarouselVideoOverlay";
-import { CarouselItemViewer } from "./CarouselItemViewer";
+import React, { ReactNode, useContext, useRef, useState } from "react";
+import { CarouselSvgHrefs } from "./components/Carousel";
+import { CarouselItemProps } from "./components/CarouselItem";
+import { CarouselVideoOverlayProps } from "./components/CarouselVideoOverlay";
 import { EMPTY_STRING } from "./constants";
-
+import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
-import { CarouselSvgHrefs } from "./Carousel";
-
 type CarouselContextProps = {
     children: ReactNode | ReactNode[];
 }
-
 
 type CarouselValueProps = {
     currentItemSrc: string;

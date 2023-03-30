@@ -1,21 +1,35 @@
-.close-button {
-    @extend %close-button;
-    --rotation: 45deg;
+.button {
+    @extend %button;
+    margin-top: $itemViewerProgressHeight;
 
-    &-left, &-right {
-        width: $itemViewerCloseButtonLineWidth;
-        height: $itemViewerCloseButtonWidth;
-        background-color: white;
-        position: absolute;
-        left: 50%;
-        top:50%;
-        transform: translate(-50%, -50%) rotate(var(--rotation));
+    &--close {
+        &-left, &-right {
+            width: $itemViewerCloseButtonLineWidth;
+            height: $itemViewerCloseButtonWidth;
+            background-color: white;
+            @include positionCentered(var(--rotation));
+        }
+
+        &-left {
+            --rotation: -45deg;
+        }
+
+        &-right {
+            --rotation: 45deg;
+        }
     }
+    
+    &--play {
 
-    &-left {
-        --rotation: -45deg;
-    }
-
-    &-right {
+        &-triangle{
+            @include positionCentered();
+            width: 0;
+            height: 0;
+            border-top: calc(#{$itemViewerCloseButtonWidth} / 2.25) solid transparent;
+            border-left: calc(#{$itemViewerCloseButtonWidth} / 1.33) solid white;
+            
+            border-bottom: calc(#{$itemViewerCloseButtonWidth} / 2.25) solid transparent;
+        }
     }
 }
+
