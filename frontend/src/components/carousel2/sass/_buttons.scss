@@ -68,7 +68,7 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
             @include positionButton();
             right: 0;
             top: 0;
-            transform: translate(-10%, 15%);
+            transform: translate(0%, 15%);
             background-color: transparent;
             width: 0;
             height: 0;
@@ -139,7 +139,7 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
     &--stop {
         @include positionButton();
         height: $pauseButtonVerticalHeight;
-        width: $pauseButtonVerticalHeight;
+        width: calc(#{$pauseButtonVerticalHeight} * .95);
     }
 }
 

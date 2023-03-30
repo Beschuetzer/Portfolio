@@ -107,7 +107,7 @@
   transform: translate(-50%, -50%) rotate(0);
   right: 0;
   top: 0;
-  transform: translate(-10%, 15%);
+  transform: translate(0%, 15%);
   background-color: transparent;
   width: 0;
   height: 0;
@@ -192,7 +192,7 @@
   left: 50%;
   transform: translate(-50%, -50%) rotate(0);
   height: calc(3rem * .85);
-  width: calc(3rem * .85);
+  width: calc(calc(3rem * .85) * .95);
 }
 
 .carousel2__item {
