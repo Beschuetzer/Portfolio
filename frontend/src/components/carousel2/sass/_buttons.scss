@@ -20,19 +20,23 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
         }
     }
 
+    &--next {
+        &-left {
+            @include triangle;
+            @include positionButton($xTranslate: -75%);
+        }
+        &-right {
+            @include pauseBar($width: $itemViewerButtonLineWidth / 2);
+        }
+    }
+
     &--pause {
         &-left, &-right {
-            width: $itemViewerButtonLineWidth;
-            height: $pauseButtonVerticalHeight;
+            @include pauseBar;
         }
 
         &-left {
             @include positionButton($xTranslate: calc(-50% - #{$itemViewerButtonWidth * .25}), $yTranslate: -50%);
-        }
-        
-        &-right {
-            @include positionButton($xTranslate: calc(-50% + #{$itemViewerButtonWidth * .25}), $yTranslate: -50%);
-
         }
     }
  
@@ -53,7 +57,7 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
             @include positionButton();
             right: 0;
             top: 0;
-            transform: translate(-10%, 10%);
+            transform: translate(-10%, 15%);
             background-color: transparent;
             width: 0;
             height: 0;
@@ -97,12 +101,7 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
     
     &--seek-back {
         &-left, &-right {
-            background-color: transparent;
-            width: 0;
-            height: 0;
-            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-            border-left: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
-            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+            @include triangle;
         }
 
         &-left {
@@ -115,12 +114,7 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
 
     &--seek-forward {
         &-left, &-right {
-            background-color: transparent;
-            width: 0;
-            height: 0;
-            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-            border-left: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
-            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+            @include triangle;
         }
 
         &-left {

@@ -30,7 +30,31 @@
 .carousel2-button--close-right {
   --rotation: 45deg;
 }
+.carousel2-button--next-left {
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-top: calc(3rem / 2.25) solid transparent;
+  border-left: calc(3rem / 2.5) solid white;
+  border-bottom: calc(3rem / 2.25) solid transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-75%, -50%) rotate(0);
+}
+.carousel2-button--next-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% + 0.75rem), -50%) rotate(0);
+  width: 0.5rem;
+  height: calc(3rem * .85);
+}
 .carousel2-button--pause-left, .carousel2-button--pause-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% + 0.75rem), -50%) rotate(0);
   width: 1rem;
   height: calc(3rem * .85);
 }
@@ -39,12 +63,6 @@
   top: 50%;
   left: 50%;
   transform: translate(calc(-50% - 0.75rem), -50%) rotate(0);
-}
-.carousel2-button--pause-right {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(calc(-50% + 0.75rem), -50%) rotate(0);
 }
 .carousel2-button--play-triangle {
   position: absolute;
@@ -65,7 +83,7 @@
   transform: translate(-50%, -50%) rotate(0);
   right: 0;
   top: 0;
-  transform: translate(-10%, 10%);
+  transform: translate(-10%, 15%);
   background-color: transparent;
   width: 0;
   height: 0;

@@ -1,18 +1,18 @@
 import React, { useCallback } from 'react'
-import { CloseButton } from '../buttons/CloseButton';
 import { EMPTY_STRING } from '../../constants';
 import { useCarouselContext } from '../../context';
+import { NextButton } from '../buttons/NextButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 
-export const CarouselItemViewerCloseButton = () => {
+export const CarouselItemViewerNextButton = () => {
     const { setCurrentItemSrc, currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.closeButton || '';
+    const svgHref = currentSvgHrefs?.nextButton || '';
 
     const onClick = useCallback(() => {
-        setCurrentItemSrc(EMPTY_STRING);
+        
     }, [setCurrentItemSrc, EMPTY_STRING]);
 
     return !!svgHref ? 
         <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref}/> :
-        <CloseButton onClick={onClick}/>
+        <NextButton onClick={onClick}/>
 }
