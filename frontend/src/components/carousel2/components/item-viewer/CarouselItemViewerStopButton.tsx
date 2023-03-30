@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react'
-import { PlayButton } from '../buttons/PlayButton';
 import { EMPTY_STRING } from '../../constants';
 import { useCarouselContext } from '../../context';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
+import { StopButton } from '../buttons/StopButton';
 
-export const CarouselItemViewerPlayButton = () => {
+export const CarouselItemViewerStopButton = () => {
     const { setCurrentItemSrc, currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.playButton || '';
+    const svgHref = currentSvgHrefs?.stopButton || '';
 
     const onClick = useCallback(() => {
 
@@ -14,5 +14,5 @@ export const CarouselItemViewerPlayButton = () => {
 
     return !!svgHref ? 
         <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref}/> :
-        <PlayButton onClick={onClick}/>
+        <StopButton onClick={onClick}/>
 }

@@ -7,6 +7,7 @@ import { getClassname, getRegexStringFromStringArray } from '../../utils';
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton';
 import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton';
 import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton';
+import { CarouselItemViewerStopButton } from './CarouselItemViewerStopButton';
 
 
 export const CarouselItemViewer = () => {
@@ -44,6 +45,7 @@ export const CarouselItemViewer = () => {
                 <div  className={toolbarLeftClassname}>
                     <CarouselItemViewerPlayButton />
                     <CarouselItemViewerPauseButton />
+                    <CarouselItemViewerStopButton />
                 </div>
                 <div className={toolbarRightClassname}>
                     <CarouselItemViewerCloseButton />

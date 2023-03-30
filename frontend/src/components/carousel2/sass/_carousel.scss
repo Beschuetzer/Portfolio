@@ -31,7 +31,7 @@
         transition: opacity $animationDuration ease;
 
         &-button {
-            @extend %button;
+            @include button();
             fill: $itemViewerButtonColor;
         }
 

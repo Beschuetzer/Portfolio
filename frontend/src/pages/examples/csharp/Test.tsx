@@ -181,6 +181,12 @@ const sections: CSharpSection[] = [
 					<Carousel
 						svgHrefs={{
 							closeButton: "./sprite.svg#icon-close",
+							playButton: "./sprite.svg#icon-play",
+							pauseButton: "./sprite.svg#icon-pause",
+							stopButton: "./sprite.svg#icon-stop",
+							nextButton: "./sprite.svg#icon-forward",
+							previousButton: "./sprite.svg#icon-backward",
+							restartButton: "./sprite.svg#icon-restart",
 						}}
 						onItemChange={(currentItemSrc) => toggleScrollability(!currentItemSrc)}
 						items={[

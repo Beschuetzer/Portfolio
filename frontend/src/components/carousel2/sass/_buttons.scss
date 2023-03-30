@@ -1,3 +1,5 @@
+$pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
+
 .button {
     @include button();
     margin-top: $itemViewerProgressHeight;
@@ -6,7 +8,6 @@
         &-left, &-right {
             width: $itemViewerButtonLineWidth;
             height: $itemViewerButtonWidth;
-            background-color: $itemViewerButtonColor;
             @include positionButton(var(--rotation));
         }
 
@@ -22,6 +23,7 @@
     &--play {
         &-triangle{
             @include positionButton();
+            background-color: transparent;
             width: 0;
             height: 0;
             border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
@@ -31,12 +33,9 @@
     }
 
     &--pause {
-      
-
         &-left, &-right {
-            background-color: $itemViewerButtonColor;
             width: $itemViewerButtonLineWidth;
-            height: calc(#{$itemViewerButtonWidth} * .85);
+            height: $pauseButtonVerticalHeight;
         }
 
         &-left {
@@ -47,6 +46,12 @@
             @include positionButton($xTranslate: calc(-50% + #{$itemViewerButtonLineWidth * 1.25}), $yTranslate: -50%);
 
         }
+    }
+
+    &--stop {
+        @include positionButton();
+        height: $pauseButtonVerticalHeight;
+        width: $pauseButtonVerticalHeight;
     }
 }
 

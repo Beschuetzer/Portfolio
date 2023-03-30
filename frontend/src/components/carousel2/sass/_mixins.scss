@@ -2,7 +2,8 @@
     $height: $itemViewerButtonWidth,
     $width: $itemViewerButtonWidth,
     $opacity: $itemViewerButtonOpacityNormal, 
-    $opacityHover: $itemViewerButtonOpacityHover
+    $opacityHover: $itemViewerButtonOpacityHover,
+    $backgroundColor: $itemViewerButtonColor
 ) {
     height: $height;
     width: $width;
@@ -13,6 +14,11 @@
     &:hover {
         opacity: $opacityHover;
         cursor: pointer;
+    }
+
+    & * {
+        background-color: $backgroundColor;
+        fill: $backgroundColor;
     }
 }
 

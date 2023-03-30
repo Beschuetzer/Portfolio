@@ -1,26 +1,19 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import { CloseButton } from '../buttons/CloseButton';
 import { useCarouselInstanceContext } from '../CarouselInstanceProvider';
 import { EMPTY_STRING } from '../../constants';
 import { useCarouselContext } from '../../context';
-import { getClassname } from '../../utils';
+import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 
-const elementName = 'item-viewer-button';
 export const CarouselItemViewerCloseButton = () => {
     const { setCurrentItemSrc, currentSvgHrefs } = useCarouselContext();
-    const { id } = useCarouselInstanceContext();
-    const closeButtonSvgHref = currentSvgHrefs?.closeButton || '';
+    const svgHref = currentSvgHrefs?.closeButton || '';
 
     const onClick = useCallback(() => {
         setCurrentItemSrc(EMPTY_STRING);
     }, [setCurrentItemSrc, EMPTY_STRING]);
 
-    return !!closeButtonSvgHref ? (
-        <svg onClick={onClick} className={getClassname({ elementName })}>
-            <use 
-                xlinkHref={closeButtonSvgHref}
-                href={closeButtonSvgHref}
-            />
-        </svg>
-    ) : <CloseButton onClick={onClick}/>
+    return !!svgHref ? 
+        <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref}/> :
+        <CloseButton onClick={onClick}/>
 }

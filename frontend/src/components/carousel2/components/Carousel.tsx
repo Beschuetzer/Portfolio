@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { CLASSNAME_ROOT } from '../constants';
+import { CLASSNAME__ROOT } from '../constants';
 import { useCarouselContext } from '../context';
 import { getGuid } from '../utils';
 import { CarouselInstanceProvider } from './CarouselInstanceProvider';
@@ -61,7 +61,7 @@ export const Carousel = ({
 		<CarouselInstanceProvider 
 			id={idRef.current}
 			svgHrefInstance={svgHrefs}>
-			<div className={CLASSNAME_ROOT}>
+			<div className={CLASSNAME__ROOT}>
 				{renderItems()}
 			</div>
 		</CarouselInstanceProvider>

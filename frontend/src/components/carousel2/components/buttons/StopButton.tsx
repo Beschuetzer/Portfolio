@@ -1,17 +1,17 @@
 import { CLASSNAME__BUTTON } from "../../constants";
 
-type PlayButtonProps = {
+type StopButtonProps = {
     classname?: string;
     onClick: () => void;
 }
 
-export const PlayButton = ({
+export const StopButton = ({
     classname = CLASSNAME__BUTTON,
     onClick = () => null,
-}: PlayButtonProps) => {
+}: StopButtonProps) => {
   return (
     <div onClick={onClick} className={classname}>
-        <div className={`${classname}--play-triangle` }/>
+        <div className={`${classname}--stop` }/>
     </div>
   )
 }
