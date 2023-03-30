@@ -8,6 +8,7 @@ import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton';
 import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton';
 import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton';
 import { CarouselItemViewerStopButton } from './CarouselItemViewerStopButton';
+import { CarouselItemViewerRestartButton } from './CarouselItemViewerRestartButton';
 
 
 export const CarouselItemViewer = () => {
@@ -38,6 +39,7 @@ export const CarouselItemViewer = () => {
     const toolbarClassname = getClassname({elementName: 'item-viewer-toolbar'})
     const toolbarLeftClassname = getClassname({elementName: 'item-viewer-toolbar-left'})
     const toolbarRightClassname = getClassname({elementName: 'item-viewer-toolbar-right'})
+
     return (
         <section className={containerClassname}>
             <ItemToRender {...currentItemProps}/>
@@ -46,6 +48,7 @@ export const CarouselItemViewer = () => {
                     <CarouselItemViewerPlayButton />
                     <CarouselItemViewerPauseButton />
                     <CarouselItemViewerStopButton />
+                    <CarouselItemViewerRestartButton />
                 </div>
                 <div className={toolbarRightClassname}>
                     <CarouselItemViewerCloseButton />

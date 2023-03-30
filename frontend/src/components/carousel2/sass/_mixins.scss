@@ -5,6 +5,7 @@
     $opacityHover: $itemViewerButtonOpacityHover,
     $backgroundColor: $itemViewerButtonColor
 ) {
+    overflow: hidden;
     height: $height;
     width: $width;
     opacity: $opacity;

@@ -48,6 +48,53 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
         }
     }
 
+    &--restart {
+        &-arrow {
+            @include positionButton();
+            right: 0;
+            top: 0;
+            transform: translate(-10%, 10%);
+            background-color: transparent;
+            width: 0;
+            height: 0;
+            border-top: calc(#{$itemViewerButtonWidth} / 2.5) solid transparent;
+            border-right: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
+            border-bottom: none;
+        }
+
+        &-circle {
+            &-inner, &-outer {
+                border-radius: 50%;
+                @include positionButton();
+            }
+
+            &-inner {
+                height: calc($pauseButtonVerticalHeight - ($itemViewerButtonLineWidth * 2));
+                width: calc($pauseButtonVerticalHeight - ($itemViewerButtonLineWidth * 2));
+                background-color: $itemViewerBackgroundColor;
+            }
+
+            &-outer {
+                height: $pauseButtonVerticalHeight;
+                width: $pauseButtonVerticalHeight;
+            }
+        }
+
+        &-triangle-cutout {
+            @include positionButton();
+            bottom: 0;
+            right: 0;
+            transform: translate(0, -50%);
+            background-color: transparent;
+            width: 0;
+            height: 0;
+            border-top: calc(#{$itemViewerButtonWidth} / 1) solid transparent;
+            border-right: calc(#{$itemViewerButtonWidth} / 1) solid black;
+            border-bottom: calc(#{$itemViewerButtonWidth} / 1) solid transparent;
+        }
+
+    }
+
     &--stop {
         @include positionButton();
         height: $pauseButtonVerticalHeight;

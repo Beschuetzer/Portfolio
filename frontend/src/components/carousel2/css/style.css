@@ -1,4 +1,5 @@
 .button {
+  overflow: hidden;
   height: 5rem;
   width: 5rem;
   opacity: 0.75;
@@ -56,6 +57,52 @@
   left: 50%;
   transform: translate(calc(-50% + 1.25rem), -50%) rotate(0);
 }
+.button--restart-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0);
+  right: 0;
+  top: 0;
+  transform: translate(-10%, 10%);
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-top: calc(5rem / 2.5) solid transparent;
+  border-right: calc(5rem / 2.5) solid white;
+  border-bottom: none;
+}
+.button--restart-circle-inner, .button--restart-circle-outer {
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0);
+}
+.button--restart-circle-inner {
+  height: calc((5rem * .85) - 2rem);
+  width: calc((5rem * .85) - 2rem);
+  background-color: black;
+}
+.button--restart-circle-outer {
+  height: calc(5rem * .85);
+  width: calc(5rem * .85);
+}
+.button--restart-triangle-cutout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0);
+  bottom: 0;
+  right: 0;
+  transform: translate(0, -50%);
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-top: calc(5rem / 1) solid transparent;
+  border-right: calc(5rem / 1) solid black;
+  border-bottom: calc(5rem / 1) solid transparent;
+}
 .button--stop {
   position: absolute;
   top: 50%;
@@ -92,6 +139,7 @@
   transition: opacity 0.5s ease;
 }
 .carousel2__item-viewer-button {
+  overflow: hidden;
   height: 5rem;
   width: 5rem;
   opacity: 0.75;
