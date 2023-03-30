@@ -1,26 +1,26 @@
-import React, { useCallback } from 'react'
-import { PlayButton } from '../buttons/PlayButton';
+import React, { useCallback, useMemo } from 'react'
 import { useCarouselInstanceContext } from '../CarouselInstanceProvider';
 import { EMPTY_STRING } from '../../constants';
 import { useCarouselContext } from '../../context';
 import { getClassname } from '../../utils';
+import { PauseButton } from '../buttons/PauseButton';
 
 const elementName = 'item-viewer-button';
-export const CarouselItemViewerPlayButton = () => {
+export const CarouselItemViewerPauseButton = () => {
     const { setCurrentItemSrc, currentSvgHrefs } = useCarouselContext();
     const { id } = useCarouselInstanceContext();
-    const svgHref = currentSvgHrefs?.playButton || '';
+    const pauseButtonSvgHref = currentSvgHrefs?.pauseButton || '';
 
     const onClick = useCallback(() => {
         setCurrentItemSrc(EMPTY_STRING);
     }, [setCurrentItemSrc, EMPTY_STRING]);
 
-    return !!svgHref ? (
+    return !!pauseButtonSvgHref ? (
         <svg onClick={onClick} className={getClassname({ elementName })}>
             <use 
-                xlinkHref={svgHref}
-                href={svgHref}
+                xlinkHref={pauseButtonSvgHref}
+                href={pauseButtonSvgHref}
             />
         </svg>
-    ) : <PlayButton onClick={onClick}/>
+    ) : <PauseButton onClick={onClick}/>
 }

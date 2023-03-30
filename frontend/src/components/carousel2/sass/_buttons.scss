@@ -4,10 +4,10 @@
 
     &--close {
         &-left, &-right {
-            width: $itemViewerCloseButtonLineWidth;
-            height: $itemViewerCloseButtonWidth;
+            width: $itemViewerButtonLineWidth;
+            height: $itemViewerButtonWidth;
             background-color: white;
-            @include positionCentered(var(--rotation));
+            @include positionButton(var(--rotation));
         }
 
         &-left {
@@ -22,13 +22,18 @@
     &--play {
 
         &-triangle{
-            @include positionCentered();
+            @include positionButton();
             width: 0;
             height: 0;
-            border-top: calc(#{$itemViewerCloseButtonWidth} / 2.25) solid transparent;
-            border-left: calc(#{$itemViewerCloseButtonWidth} / 1.33) solid white;
-            
-            border-bottom: calc(#{$itemViewerCloseButtonWidth} / 2.25) solid transparent;
+            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+            border-left: calc(#{$itemViewerButtonWidth} / 1.33) solid white;
+            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+        }
+    }
+
+    &--pause {
+        &-left {
+            @include positionButton($xTranslate: -33%, $yTranslate: 33%);
         }
     }
 }

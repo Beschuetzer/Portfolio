@@ -1,12 +1,12 @@
 %button {
-    height: $itemViewerCloseButtonWidth;
-    width: $itemViewerCloseButtonWidth;
-    opacity: $itemViewerCloseButtonOpacityNormal;
+    height: $itemViewerButtonWidth;
+    width: $itemViewerButtonWidth;
+    opacity: $itemViewerButtonOpacityNormal;
     border: none;
     position: relative;
 
     &:hover {
-        opacity: $itemViewerCloseButtonOpacityHover;
+        opacity: $itemViewerButtonOpacityHover;
         cursor: pointer;
     }
 }

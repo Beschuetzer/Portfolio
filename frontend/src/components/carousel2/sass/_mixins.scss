@@ -1,6 +1,11 @@
-@mixin positionCentered($rotation: 0, $positioning: absolute) {
+@mixin positionButton(
+    $rotation: 0, 
+    $positioning: absolute,
+    $xTranslate: -50%,
+    $yTranslate: -50%,
+) {
     position: $positioning;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate($rotation);
+    transform: translate($xTranslate, $yTranslate) rotate($rotation);
 }

@@ -11,16 +11,16 @@ export const CarouselItemViewerCloseButton = () => {
     const { id } = useCarouselInstanceContext();
     const closeButtonSvgHref = currentSvgHrefs?.closeButton || '';
 
-    const onClose = useCallback(() => {
+    const onClick = useCallback(() => {
         setCurrentItemSrc(EMPTY_STRING);
     }, [setCurrentItemSrc, EMPTY_STRING]);
 
     return !!closeButtonSvgHref ? (
-        <svg onClick={onClose} className={getClassname({ elementName })}>
+        <svg onClick={onClick} className={getClassname({ elementName })}>
             <use 
                 xlinkHref={closeButtonSvgHref}
                 href={closeButtonSvgHref}
             />
         </svg>
-    ) : <CloseButton onClick={onClose}/>
+    ) : <CloseButton onClick={onClick}/>
 }

@@ -55,7 +55,7 @@
     &__video {
         width: 100vw;
         object-fit: contain;
-        max-height: calc(100vh - (#{$itemViewerCloseButtonWidth} + #{$itemViewerToolbarMarginHorizontal}));
+        max-height: calc(100vh - (#{$itemViewerButtonWidth} + #{$itemViewerToolbarMarginHorizontal}));
 
         &-container {
             width: 100vw;
@@ -75,7 +75,7 @@
         }
         
         &-overlay {
-           @include positionCentered();
+           @include positionButton();
         }
     }
 

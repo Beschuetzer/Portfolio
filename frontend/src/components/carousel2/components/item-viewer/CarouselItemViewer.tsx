@@ -6,6 +6,7 @@ import { useCarouselContext } from '../../context'
 import { getClassname, getRegexStringFromStringArray } from '../../utils';
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton';
 import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton';
+import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton';
 
 
 export const CarouselItemViewer = () => {
@@ -42,6 +43,7 @@ export const CarouselItemViewer = () => {
             <div className={toolbarClassname}>
                 <div  className={toolbarLeftClassname}>
                     <CarouselItemViewerPlayButton />
+                    <CarouselItemViewerPauseButton />
                 </div>
                 <div className={toolbarRightClassname}>
                     <CarouselItemViewerCloseButton />
