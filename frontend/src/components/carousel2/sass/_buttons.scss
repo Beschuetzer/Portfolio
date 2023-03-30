@@ -52,6 +52,17 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
         }
     }
 
+    &--previous {
+        &-left {
+            @include pauseBar($width: $itemViewerButtonLineWidth / 2);
+            @include positionButton($xTranslate: -175%);
+        }
+        &-right {
+            @include triangle($direction: left);
+            @include positionButton($xTranslate: -20%);
+        }
+    }
+
     &--restart {
         &-arrow {
             @include positionButton();

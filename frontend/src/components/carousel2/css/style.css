@@ -31,11 +31,11 @@
   --rotation: 45deg;
 }
 .carousel2-button--next-left {
+  border-left: calc(3rem / 2.5) solid white;
   background-color: transparent;
   width: 0;
   height: 0;
   border-top: calc(3rem / 2.25) solid transparent;
-  border-left: calc(3rem / 2.5) solid white;
   border-bottom: calc(3rem / 2.25) solid transparent;
   position: absolute;
   top: 50%;
@@ -75,6 +75,30 @@
   border-top: calc(3rem / 2.25) solid transparent;
   border-left: calc(3rem / 1.33) solid white;
   border-bottom: calc(3rem / 2.25) solid transparent;
+}
+.carousel2-button--previous-left {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% + 0.75rem), -50%) rotate(0);
+  width: 0.5rem;
+  height: calc(3rem * .85);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-175%, -50%) rotate(0);
+}
+.carousel2-button--previous-right {
+  border-right: calc(3rem / 2.5) solid white;
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-top: calc(3rem / 2.25) solid transparent;
+  border-bottom: calc(3rem / 2.25) solid transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-20%, -50%) rotate(0);
 }
 .carousel2-button--restart-arrow {
   position: absolute;
@@ -123,11 +147,11 @@
   border-bottom: calc(3rem / 1) solid transparent;
 }
 .carousel2-button--seek-back-left, .carousel2-button--seek-back-right {
+  border-left: calc(3rem / 2.5) solid white;
   background-color: transparent;
   width: 0;
   height: 0;
   border-top: calc(3rem / 2.25) solid transparent;
-  border-left: calc(3rem / 2.5) solid white;
   border-bottom: calc(3rem / 2.25) solid transparent;
 }
 .carousel2-button--seek-back-left {
@@ -143,11 +167,11 @@
   transform: translate(0%, -50%) rotate(180deg);
 }
 .carousel2-button--seek-forward-left, .carousel2-button--seek-forward-right {
+  border-left: calc(3rem / 2.5) solid white;
   background-color: transparent;
   width: 0;
   height: 0;
   border-top: calc(3rem / 2.25) solid transparent;
-  border-left: calc(3rem / 2.5) solid white;
   border-bottom: calc(3rem / 2.25) solid transparent;
 }
 .carousel2-button--seek-forward-left {

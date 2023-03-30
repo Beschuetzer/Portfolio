@@ -12,6 +12,7 @@ import { CarouselItemViewerRestartButton } from './CarouselItemViewerRestartButt
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton';
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton';
 import { CarouselItemViewerNextButton } from './CarouselItemViewerNextButton';
+import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousButton';
 
 export const CarouselItemViewer = () => {
     //#region Init
@@ -54,6 +55,7 @@ export const CarouselItemViewer = () => {
                     <CarouselItemViewerSeekForwardButton />
                     <CarouselItemViewerSeekBackButton />
                     <CarouselItemViewerNextButton />
+                    <CarouselItemViewerPreviousButton />
                 </div>
                 <div className={toolbarRightClassname}>
                     <CarouselItemViewerCloseButton />

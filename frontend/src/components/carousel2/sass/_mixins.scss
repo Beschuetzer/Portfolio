@@ -47,11 +47,17 @@
     transform: translate($xTranslate, $yTranslate) rotate($rotation);
 }
 
-@mixin triangle() {
+@mixin triangle($direction: right) {
+    @if ($direction == left) {
+        border-right: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
+    }
+    @if ($direction == right) {
+        border-left: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
+    }
+    
     background-color: transparent;
     width: 0;
     height: 0;
     border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-    border-left: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
     border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
 }
