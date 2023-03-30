@@ -1,11 +1,14 @@
 .carousel2 {
     &__item {
         position: relative;
-        height: 150px;
-        width: 150px;
+        height: $itemHeight;
+        width: $itemHeight;
         border-radius: 8px;
         overflow: hidden;
-        transition: border-radius 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
+        transition: 
+            border-radius $animationDuration ease,
+            box-shadow $animationDuration ease,
+            transform $animationDuration ease;
 
         &-thumbnail {
             object-fit: cover;
@@ -24,12 +27,12 @@
         left: 0;
         right: 0;
         z-index: 1000000000000000000000;
-        background-color: black;
-        transition: opacity $itemViewerOpacityTransitionDuration ease;
+        background-color: $itemViewerBackgroundColor;
+        transition: opacity $animationDuration ease;
 
         &-button {
             @extend %button;
-            fill: white;
+            fill: $itemViewerButtonColor;
         }
 
         &-toolbar {
@@ -66,7 +69,7 @@
         }
         
         &-progress {
-            width: calc(100% - 2rem);
+            width: calc(100% - $itemViewerToolbarMarginHorizontal);
             margin: $itemViewerProgressHeight 0 0 0;
             cursor: pointer;
             height: $itemViewerProgressHeight;

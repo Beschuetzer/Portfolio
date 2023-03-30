@@ -6,7 +6,7 @@
         &-left, &-right {
             width: $itemViewerButtonLineWidth;
             height: $itemViewerButtonWidth;
-            background-color: white;
+            background-color: $itemViewerButtonColor;
             @include positionButton(var(--rotation));
         }
 
@@ -20,13 +20,12 @@
     }
     
     &--play {
-
         &-triangle{
             @include positionButton();
             width: 0;
             height: 0;
             border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-            border-left: calc(#{$itemViewerButtonWidth} / 1.33) solid white;
+            border-left: calc(#{$itemViewerButtonWidth} / 1.33) solid $itemViewerButtonColor;
             border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
         }
     }
