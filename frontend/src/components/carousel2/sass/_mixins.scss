@@ -1,3 +1,21 @@
+@mixin button(
+    $height: $itemViewerButtonWidth,
+    $width: $itemViewerButtonWidth,
+    $opacity: $itemViewerButtonOpacityNormal, 
+    $opacityHover: $itemViewerButtonOpacityHover
+) {
+    height: $height;
+    width: $width;
+    opacity: $opacity;
+    border: none;
+    position: relative;
+
+    &:hover {
+        opacity: $opacityHover;
+        cursor: pointer;
+    }
+}
+
 @mixin positionButton(
     $rotation: 0, 
     $positioning: absolute,

@@ -1,17 +1,26 @@
-.carousel2__item-viewer-button, .button {
+.carousel2__item-viewer-button {
   height: 5rem;
   width: 5rem;
   opacity: 0.75;
   border: none;
   position: relative;
 }
-.carousel2__item-viewer-button:hover, .button:hover {
+.carousel2__item-viewer-button:hover {
   opacity: 1;
   cursor: pointer;
 }
 
 .button {
+  height: 5rem;
+  width: 5rem;
+  opacity: 0.75;
+  border: none;
+  position: relative;
   margin-top: 0.5rem;
+}
+.button:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 .button--close-left, .button--close-right {
   width: 1rem;
@@ -39,11 +48,22 @@
   border-left: calc(5rem / 1.33) solid white;
   border-bottom: calc(5rem / 2.25) solid transparent;
 }
+.button--pause-left, .button--pause-right {
+  background-color: white;
+  width: 1rem;
+  height: calc(5rem * .85);
+}
 .button--pause-left {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-33%, 33%) rotate(0);
+  transform: translate(calc(-50% - 1.25rem), -50%) rotate(0);
+}
+.button--pause-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% + 1.25rem), -50%) rotate(0);
 }
 
 .carousel2__item {

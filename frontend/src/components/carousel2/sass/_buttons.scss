@@ -1,5 +1,5 @@
 .button {
-    @extend %button;
+    @include button();
     margin-top: $itemViewerProgressHeight;
 
     &--close {
@@ -31,8 +31,21 @@
     }
 
     &--pause {
+      
+
+        &-left, &-right {
+            background-color: $itemViewerButtonColor;
+            width: $itemViewerButtonLineWidth;
+            height: calc(#{$itemViewerButtonWidth} * .85);
+        }
+
         &-left {
-            @include positionButton($xTranslate: -33%, $yTranslate: 33%);
+            @include positionButton($xTranslate: calc(-50% - #{$itemViewerButtonLineWidth * 1.25}), $yTranslate: -50%);
+        }
+        
+        &-right {
+            @include positionButton($xTranslate: calc(-50% + #{$itemViewerButtonLineWidth * 1.25}), $yTranslate: -50%);
+
         }
     }
 }

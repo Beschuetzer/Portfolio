@@ -1,4 +1,5 @@
 Carousel rework:
+  -finish buttons
   -setup viewer (allow passing in customer component and provide a sensible default with options?)
   -get thumbnails rendering
   -add styles
