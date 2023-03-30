@@ -11,6 +11,7 @@
     opacity: $opacity;
     border: none;
     position: relative;
+    background-color: transparent;
 
     &:hover {
         opacity: $opacityHover;
@@ -28,9 +29,11 @@
     $positioning: absolute,
     $xTranslate: -50%,
     $yTranslate: -50%,
+    $top: 50%,
+    $left: 50%,
 ) {
     position: $positioning;
-    top: 50%;
-    left: 50%;
+    top: $top;
+    left: $left;
     transform: translate($xTranslate, $yTranslate) rotate($rotation);
 }

@@ -8,8 +8,8 @@ export const StopButton = ({
     onClick = () => null,
 }: StopButtonProps) => {
   return (
-    <div onClick={onClick} className={classname}>
+    <button onClick={onClick} className={classname}>
         <div className={`${classname}--stop` }/>
-    </div>
+    </button>
   )
 }

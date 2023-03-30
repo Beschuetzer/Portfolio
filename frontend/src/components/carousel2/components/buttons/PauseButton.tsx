@@ -8,9 +8,9 @@ export const PauseButton = ({
     onClick = () => null,
 }: PauseButtonProps) => {
   return (
-    <div onClick={onClick} className={classname}>
+    <button onClick={onClick} className={classname}>
         <div className={`${classname}--pause-left` }/>
         <div className={`${classname}--pause-right` }/>
-    </div>
+    </button>
   )
 }

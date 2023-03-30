@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react'
 import { EMPTY_STRING } from '../../constants';
 import { useCarouselContext } from '../../context';
-import { NextButton } from '../buttons/NextButton';
+import { SeekBackButton } from '../buttons/SeekBackButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 
-export const CarouselItemViewerNextButton = () => {
+export const CarouselItemViewerSeekBackButton = () => {
     const { setCurrentItemSrc, currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.nextButton || '';
+    const svgHref = currentSvgHrefs?.seekBackButton || '';
 
     const onClick = useCallback(() => {
         
@@ -14,5 +14,5 @@ export const CarouselItemViewerNextButton = () => {
 
     return !!svgHref ? 
         <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref}/> :
-        <NextButton onClick={onClick}/>
+        <SeekBackButton onClick={onClick}/>
 }

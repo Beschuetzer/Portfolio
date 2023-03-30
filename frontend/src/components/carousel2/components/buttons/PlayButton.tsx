@@ -9,8 +9,8 @@ export const PlayButton = ({
     onClick = () => null,
 }: PlayButtonProps) => {
   return (
-    <div onClick={onClick} className={classname}>
+    <button onClick={onClick} className={classname}>
         <div className={`${classname}--play-triangle` }/>
-    </div>
+    </button>
   )
 }

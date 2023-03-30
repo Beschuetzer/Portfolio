@@ -1,6 +1,6 @@
 $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
 
-.button {
+.carousel2-button {
     @include button();
     margin-top: $itemViewerProgressHeight;
 
@@ -19,54 +19,6 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
             --rotation: 45deg;
         }
     }
-    
-    &--foward {
-        &-left, &-right {
-            background-color: transparent;
-            width: 0;
-            height: 0;
-            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-            border-left: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
-            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-        }
-
-        &-left {
-            @include positionButton($xTranslate: -95%, $rotation: 180deg);
-        }
-        &-right {
-            @include positionButton($xTranslate: 5%, $rotation: 180deg);
-        }
-    }
-
-    &--next {
-        &-left, &-right {
-            background-color: transparent;
-            width: 0;
-            height: 0;
-            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-            border-left: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
-            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-        }
-
-        &-left {
-            @include positionButton($xTranslate: -95%);
-        }
-        &-right {
-            @include positionButton($xTranslate: 5%);
-        }
-    }
-    
-    &--play {
-        &-triangle{
-            @include positionButton();
-            background-color: transparent;
-            width: 0;
-            height: 0;
-            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-            border-left: calc(#{$itemViewerButtonWidth} / 1.33) solid $itemViewerButtonColor;
-            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-        }
-    }
 
     &--pause {
         &-left, &-right {
@@ -75,12 +27,24 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
         }
 
         &-left {
-            @include positionButton($xTranslate: calc(-50% - #{$itemViewerButtonLineWidth * 1.25}), $yTranslate: -50%);
+            @include positionButton($xTranslate: calc(-50% - #{$itemViewerButtonWidth * .25}), $yTranslate: -50%);
         }
         
         &-right {
-            @include positionButton($xTranslate: calc(-50% + #{$itemViewerButtonLineWidth * 1.25}), $yTranslate: -50%);
+            @include positionButton($xTranslate: calc(-50% + #{$itemViewerButtonWidth * .25}), $yTranslate: -50%);
 
+        }
+    }
+ 
+    &--play {
+        &-triangle{
+            @include positionButton($xTranslate: 22.5%, $left: 0);
+            background-color: transparent;
+            width: 0;
+            height: 0;
+            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+            border-left: calc(#{$itemViewerButtonWidth} / 1.33) solid $itemViewerButtonColor;
+            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
         }
     }
 
@@ -105,8 +69,8 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
             }
 
             &-inner {
-                height: calc($pauseButtonVerticalHeight - ($itemViewerButtonLineWidth * 2));
-                width: calc($pauseButtonVerticalHeight - ($itemViewerButtonLineWidth * 2));
+                height: calc($pauseButtonVerticalHeight - ($itemViewerButtonWidth * .5));
+                width: calc($pauseButtonVerticalHeight - ($itemViewerButtonWidth * .5));
                 background-color: $itemViewerBackgroundColor;
             }
 
@@ -129,6 +93,42 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
             border-bottom: calc(#{$itemViewerButtonWidth} / 1) solid transparent;
         }
 
+    }
+    
+    &--seek-back {
+        &-left, &-right {
+            background-color: transparent;
+            width: 0;
+            height: 0;
+            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+            border-left: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
+            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+        }
+
+        &-left {
+            @include positionButton($xTranslate: -100%, $rotation: 180deg);
+        }
+        &-right {
+            @include positionButton($xTranslate: 0%, $rotation: 180deg);
+        }
+    }
+
+    &--seek-forward {
+        &-left, &-right {
+            background-color: transparent;
+            width: 0;
+            height: 0;
+            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+            border-left: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
+            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+        }
+
+        &-left {
+            @include positionButton($xTranslate: -95%);
+        }
+        &-right {
+            @include positionButton($xTranslate: 5%);
+        }
     }
 
     &--stop {

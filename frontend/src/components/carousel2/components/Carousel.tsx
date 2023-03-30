@@ -12,6 +12,8 @@ export type CarouselSvgHrefs = {
 	playButton?: string;
 	previousButton?: string;
 	restartButton?: string;
+	seekBackButton?: string;
+	seekForwardButton?: string;
 	stopButton?: string;
 }
 

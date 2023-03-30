@@ -1,16 +1,16 @@
 import { CLASSNAME__BUTTON } from "../../constants";
 import { ButtonProps } from "../../types";
 
-type CloseButtonProps = {} & ButtonProps;
+type SeekForwardButtonProps = {} & ButtonProps;
 
-export const CloseButton = ({
+export const SeekForwardButton = ({
     classname = CLASSNAME__BUTTON,
     onClick = () => null,
-}: CloseButtonProps) => {
+}: SeekForwardButtonProps) => {
   return (
     <button onClick={onClick} className={classname}>
-        <div className={`${classname}--close-left` }/>
-        <div className={`${classname}--close-right` }/>
+        <div className={`${classname}--seek-forward-left` }/>
+        <div className={`${classname}--seek-forward-right` }/>
     </button>
   )
 }

@@ -1,103 +1,64 @@
-.button {
+.carousel2-button {
   overflow: hidden;
-  height: 5rem;
-  width: 5rem;
+  height: 3rem;
+  width: 3rem;
   opacity: 0.75;
   border: none;
   position: relative;
+  background-color: transparent;
   margin-top: 0.5rem;
 }
-.button:hover {
+.carousel2-button:hover {
   opacity: 1;
   cursor: pointer;
 }
-.button * {
+.carousel2-button * {
   background-color: white;
   fill: white;
 }
-.button--close-left, .button--close-right {
+.carousel2-button--close-left, .carousel2-button--close-right {
   width: 1rem;
-  height: 5rem;
+  height: 3rem;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(var(--rotation));
 }
-.button--close-left {
+.carousel2-button--close-left {
   --rotation: -45deg;
 }
-.button--close-right {
+.carousel2-button--close-right {
   --rotation: 45deg;
 }
-.button--foward-left, .button--foward-right {
-  background-color: transparent;
-  width: 0;
-  height: 0;
-  border-top: calc(5rem / 2.25) solid transparent;
-  border-left: calc(5rem / 2.5) solid white;
-  border-bottom: calc(5rem / 2.25) solid transparent;
-}
-.button--foward-left {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-95%, -50%) rotate(180deg);
-}
-.button--foward-right {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(5%, -50%) rotate(180deg);
-}
-.button--next-left, .button--next-right {
-  background-color: transparent;
-  width: 0;
-  height: 0;
-  border-top: calc(5rem / 2.25) solid transparent;
-  border-left: calc(5rem / 2.5) solid white;
-  border-bottom: calc(5rem / 2.25) solid transparent;
-}
-.button--next-left {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-95%, -50%) rotate(0);
-}
-.button--next-right {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(5%, -50%) rotate(0);
-}
-.button--play-triangle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(0);
-  background-color: transparent;
-  width: 0;
-  height: 0;
-  border-top: calc(5rem / 2.25) solid transparent;
-  border-left: calc(5rem / 1.33) solid white;
-  border-bottom: calc(5rem / 2.25) solid transparent;
-}
-.button--pause-left, .button--pause-right {
+.carousel2-button--pause-left, .carousel2-button--pause-right {
   width: 1rem;
-  height: calc(5rem * .85);
+  height: calc(3rem * .85);
 }
-.button--pause-left {
+.carousel2-button--pause-left {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(calc(-50% - 1.25rem), -50%) rotate(0);
+  transform: translate(calc(-50% - 0.75rem), -50%) rotate(0);
 }
-.button--pause-right {
+.carousel2-button--pause-right {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(calc(-50% + 1.25rem), -50%) rotate(0);
+  transform: translate(calc(-50% + 0.75rem), -50%) rotate(0);
 }
-.button--restart-arrow {
+.carousel2-button--play-triangle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(22.5%, -50%) rotate(0);
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-top: calc(3rem / 2.25) solid transparent;
+  border-left: calc(3rem / 1.33) solid white;
+  border-bottom: calc(3rem / 2.25) solid transparent;
+}
+.carousel2-button--restart-arrow {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -108,27 +69,27 @@
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(5rem / 2.5) solid transparent;
-  border-right: calc(5rem / 2.5) solid white;
+  border-top: calc(3rem / 2.5) solid transparent;
+  border-right: calc(3rem / 2.5) solid white;
   border-bottom: none;
 }
-.button--restart-circle-inner, .button--restart-circle-outer {
+.carousel2-button--restart-circle-inner, .carousel2-button--restart-circle-outer {
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(0);
 }
-.button--restart-circle-inner {
-  height: calc((5rem * .85) - 2rem);
-  width: calc((5rem * .85) - 2rem);
+.carousel2-button--restart-circle-inner {
+  height: calc((3rem * .85) - 1.5rem);
+  width: calc((3rem * .85) - 1.5rem);
   background-color: black;
 }
-.button--restart-circle-outer {
-  height: calc(5rem * .85);
-  width: calc(5rem * .85);
+.carousel2-button--restart-circle-outer {
+  height: calc(3rem * .85);
+  width: calc(3rem * .85);
 }
-.button--restart-triangle-cutout {
+.carousel2-button--restart-triangle-cutout {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -139,17 +100,57 @@
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(5rem / 1) solid transparent;
-  border-right: calc(5rem / 1) solid black;
-  border-bottom: calc(5rem / 1) solid transparent;
+  border-top: calc(3rem / 1) solid transparent;
+  border-right: calc(3rem / 1) solid black;
+  border-bottom: calc(3rem / 1) solid transparent;
 }
-.button--stop {
+.carousel2-button--seek-back-left, .carousel2-button--seek-back-right {
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-top: calc(3rem / 2.25) solid transparent;
+  border-left: calc(3rem / 2.5) solid white;
+  border-bottom: calc(3rem / 2.25) solid transparent;
+}
+.carousel2-button--seek-back-left {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-100%, -50%) rotate(180deg);
+}
+.carousel2-button--seek-back-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(0%, -50%) rotate(180deg);
+}
+.carousel2-button--seek-forward-left, .carousel2-button--seek-forward-right {
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-top: calc(3rem / 2.25) solid transparent;
+  border-left: calc(3rem / 2.5) solid white;
+  border-bottom: calc(3rem / 2.25) solid transparent;
+}
+.carousel2-button--seek-forward-left {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-95%, -50%) rotate(0);
+}
+.carousel2-button--seek-forward-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(5%, -50%) rotate(0);
+}
+.carousel2-button--stop {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(0);
-  height: calc(5rem * .85);
-  width: calc(5rem * .85);
+  height: calc(3rem * .85);
+  width: calc(3rem * .85);
 }
 
 .carousel2__item {
@@ -180,11 +181,12 @@
 }
 .carousel2__item-viewer-button {
   overflow: hidden;
-  height: 5rem;
-  width: 5rem;
+  height: 3rem;
+  width: 3rem;
   opacity: 0.75;
   border: none;
   position: relative;
+  background-color: transparent;
   fill: white;
 }
 .carousel2__item-viewer-button:hover {
@@ -214,7 +216,7 @@
 .carousel2__video {
   width: 100vw;
   object-fit: contain;
-  max-height: calc(100vh - (5rem + 2rem));
+  max-height: calc(100vh - (3rem + 2rem));
 }
 .carousel2__video-container {
   width: 100vw;

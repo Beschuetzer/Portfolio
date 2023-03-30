@@ -9,8 +9,8 @@ import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton';
 import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton';
 import { CarouselItemViewerStopButton } from './CarouselItemViewerStopButton';
 import { CarouselItemViewerRestartButton } from './CarouselItemViewerRestartButton';
-import { CarouselItemViewerNextButton } from './CarouselItemViewerNextButton';
-
+import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton';
+import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton';
 
 export const CarouselItemViewer = () => {
     //#region Init
@@ -50,7 +50,8 @@ export const CarouselItemViewer = () => {
                     <CarouselItemViewerPauseButton />
                     <CarouselItemViewerStopButton />
                     <CarouselItemViewerRestartButton />
-                    <CarouselItemViewerNextButton />
+                    <CarouselItemViewerSeekForwardButton />
+                    <CarouselItemViewerSeekBackButton />
                 </div>
                 <div className={toolbarRightClassname}>
                     <CarouselItemViewerCloseButton />
