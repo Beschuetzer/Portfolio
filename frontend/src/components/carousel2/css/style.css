@@ -29,6 +29,46 @@
 .button--close-right {
   --rotation: 45deg;
 }
+.button--foward-left, .button--foward-right {
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-top: calc(5rem / 2.25) solid transparent;
+  border-left: calc(5rem / 2.5) solid white;
+  border-bottom: calc(5rem / 2.25) solid transparent;
+}
+.button--foward-left {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-95%, -50%) rotate(180deg);
+}
+.button--foward-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(5%, -50%) rotate(180deg);
+}
+.button--next-left, .button--next-right {
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-top: calc(5rem / 2.25) solid transparent;
+  border-left: calc(5rem / 2.5) solid white;
+  border-bottom: calc(5rem / 2.25) solid transparent;
+}
+.button--next-left {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-95%, -50%) rotate(0);
+}
+.button--next-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(5%, -50%) rotate(0);
+}
 .button--play-triangle {
   position: absolute;
   top: 50%;

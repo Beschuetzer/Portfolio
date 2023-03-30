@@ -1,9 +1,7 @@
 import { CLASSNAME__BUTTON } from "../../constants";
+import { ButtonProps } from "../../types";
 
-type RestartButtonProps = {
-    classname?: string;
-    onClick: () => void;
-}
+type RestartButtonProps = {} & ButtonProps;
 
 export const RestartButton = ({
     classname = CLASSNAME__BUTTON,

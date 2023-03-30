@@ -1,9 +1,8 @@
 import { CLASSNAME__BUTTON } from "../../constants";
+import { ButtonProps } from "../../types";
 
-type PlayButtonProps = {
-    classname?: string;
-    onClick: () => void;
-}
+
+type PlayButtonProps = {} & ButtonProps;
 
 export const PlayButton = ({
     classname = CLASSNAME__BUTTON,

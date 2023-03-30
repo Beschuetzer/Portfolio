@@ -20,6 +20,42 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
         }
     }
     
+    &--foward {
+        &-left, &-right {
+            background-color: transparent;
+            width: 0;
+            height: 0;
+            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+            border-left: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
+            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+        }
+
+        &-left {
+            @include positionButton($xTranslate: -95%, $rotation: 180deg);
+        }
+        &-right {
+            @include positionButton($xTranslate: 5%, $rotation: 180deg);
+        }
+    }
+
+    &--next {
+        &-left, &-right {
+            background-color: transparent;
+            width: 0;
+            height: 0;
+            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+            border-left: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
+            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+        }
+
+        &-left {
+            @include positionButton($xTranslate: -95%);
+        }
+        &-right {
+            @include positionButton($xTranslate: 5%);
+        }
+    }
+    
     &--play {
         &-triangle{
             @include positionButton();

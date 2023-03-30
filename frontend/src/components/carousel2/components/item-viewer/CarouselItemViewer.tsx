@@ -9,6 +9,7 @@ import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton';
 import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton';
 import { CarouselItemViewerStopButton } from './CarouselItemViewerStopButton';
 import { CarouselItemViewerRestartButton } from './CarouselItemViewerRestartButton';
+import { CarouselItemViewerNextButton } from './CarouselItemViewerNextButton';
 
 
 export const CarouselItemViewer = () => {
@@ -49,6 +50,7 @@ export const CarouselItemViewer = () => {
                     <CarouselItemViewerPauseButton />
                     <CarouselItemViewerStopButton />
                     <CarouselItemViewerRestartButton />
+                    <CarouselItemViewerNextButton />
                 </div>
                 <div className={toolbarRightClassname}>
                     <CarouselItemViewerCloseButton />

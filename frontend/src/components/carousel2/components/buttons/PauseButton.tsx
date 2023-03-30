@@ -1,9 +1,7 @@
 import { CLASSNAME__BUTTON } from "../../constants";
+import { ButtonProps } from "../../types";
 
-type PauseButtonProps = {
-    classname?: string;
-    onClick: () => void;
-}
+type PauseButtonProps = {} & ButtonProps;
 
 export const PauseButton = ({
     classname = CLASSNAME__BUTTON,
