@@ -6,9 +6,9 @@
         border-radius: 8px;
         overflow: hidden;
         transition:
-            border-radius $animationDuration ease,
-            box-shadow $animationDuration ease,
-            transform $animationDuration ease;
+            border-radius $carouselAnimationDuration ease,
+            box-shadow $carouselAnimationDuration ease,
+            transform $carouselAnimationDuration ease;
 
         &-thumbnail {
             object-fit: cover;
@@ -29,7 +29,7 @@
         z-index: 1000000000000000000000;
         background-color: $itemViewerBackgroundColor;
         transition:
-            opacity $animationDuration ease;
+            opacity $carouselAnimationDuration ease;
 
         &-button {
             @include button();
@@ -42,8 +42,8 @@
         &-toolbar {
             @extend %hidden;
             transition:
-                transform $animationDuration ease,
-                opacity $animationDuration ease;
+                transform $carouselAnimationDuration ease,
+                opacity $carouselAnimationDuration ease;
 
             display: flex;
             flex-direction: column;
@@ -85,6 +85,7 @@
             }
 
             &-progress {
+                transition: transform $carouselAnimationDuration;
                 width: calc(100vw - #{$itemViewerToolbarMarginHorizontal});
                 margin-bottom: $itemViewerProgressHeight;
                 cursor: pointer;
@@ -107,6 +108,9 @@
                     /* style rules */
                 }
 
+                &:hover {
+                    transform: scaleY(2);
+                }
             }
         }
     }
@@ -133,10 +137,6 @@
             }
             
             &--no-toolbar {
-
-                &:hover {
-                    cursor: cell !important;
-                }
                 & .#{$carouselClassname}__item-viewer-toolbar {
                     opacity: 0 !important;
                     pointer-events: none !important;

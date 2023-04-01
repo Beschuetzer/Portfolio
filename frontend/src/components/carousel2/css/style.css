@@ -300,6 +300,7 @@
   margin-top: 0.5rem;
 }
 .thumbnail-carousel__item-viewer-toolbar-progress {
+  transition: transform 0.5s;
   width: calc(100vw - 2rem);
   margin-bottom: 0.5rem;
   cursor: pointer;
@@ -316,6 +317,9 @@
 }
 .thumbnail-carousel__item-viewer-toolbar-progress::-moz-progress-bar {
   /* style rules */
+}
+.thumbnail-carousel__item-viewer-toolbar-progress:hover {
+  transform: scaleY(2);
 }
 .thumbnail-carousel__video {
   width: 100vw;
@@ -334,9 +338,6 @@
   .thumbnail-carousel__video-container {
     position: static;
   }
-}
-.thumbnail-carousel__video-container--no-toolbar:hover {
-  cursor: cell !important;
 }
 .thumbnail-carousel__video-container--no-toolbar .thumbnail-carousel__item-viewer-toolbar {
   opacity: 0 !important;
