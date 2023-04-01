@@ -1,0 +1,11 @@
+%hidden {
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+%visible {
+    pointer-events: all;
+    visibility: visible;
+    opacity: 1;
+}

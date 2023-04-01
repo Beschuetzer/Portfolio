@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { CLASSNAME__ITEM_VIEWER } from '../../constants'
 import { getClassname } from '../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
@@ -10,23 +10,24 @@ import { CarouselItemViewerRestartButton } from './CarouselItemViewerRestartButt
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
 import { CarouselItemViewerStopButton } from './CarouselItemViewerStopButton'
+import { log } from 'console'
 
 type CarouselItemViewerToolbarProps = {
     videoRef: React.RefObject<HTMLVideoElement>;
 }
 
-const toolbarClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar` })
-const toolbarLeftClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-left` })
-const toolbarRightClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` })
-const toolbarMiddleClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-middle` })
-const innerContainerClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-button-container` })
+const AUTO_HIDE_DURATION = 2500;
 export const CarouselItemViewerToolbar = ({
     videoRef
 }: CarouselItemViewerToolbarProps) => {
-    
+    //#region Init
     const [progressBarValue, setProgressBarValue] = useState(0);
-    const [isPlayingVideo, setIsPlayingVideo] = useState(true)
+    const [isPlayingVideo, setIsPlayingVideo] = useState(true);
+    const [isHidden, setIsHidden] = useState(false);
+    const shouldHideTimoutRef = useRef<any>(-1);
+    //#endregion
 
+    //#region Functions/handlers
     function onProgressBarClick(e: MouseEvent) {
         const clientX = e.clientX;
         const progressBar = e.currentTarget as HTMLProgressElement;
@@ -50,6 +51,35 @@ export const CarouselItemViewerToolbar = ({
         // 	(video as any).parentNode.classList.add(STOPPED_CLASSNAME);
         // }
     }
+    //#endregion
+
+    //#region Side Fx
+    //Auto-hide after 5sec
+    useEffect(() => {
+        function handleHide() {
+            console.log('handleHide')
+            setIsHidden(false);
+            clearTimeout(shouldHideTimoutRef.current);
+
+            shouldHideTimoutRef.current = setTimeout(() => {
+                console.log('hiding');
+                setIsHidden(true);
+            }, AUTO_HIDE_DURATION);
+        }
+
+        window.addEventListener('mousemove', handleHide);
+        return () => {
+            window.removeEventListener('mousemove', handleHide);
+        }
+    },[]);
+    //#endregion
+
+    //#region JSX
+    const toolbarClassname = `${getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar` })} ${isHidden ? getClassname({elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar--hidden`}) : ''}`
+    const toolbarLeftClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-left` })
+    const toolbarRightClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` })
+    const toolbarMiddleClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-middle` })
+    const innerContainerClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-button-container` })
 
     return (
         <div className={toolbarClassname}>
@@ -81,4 +111,5 @@ export const CarouselItemViewerToolbar = ({
             </div>
         </div>
     )
+    //#endregion
 }

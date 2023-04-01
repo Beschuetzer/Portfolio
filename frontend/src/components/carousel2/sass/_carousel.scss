@@ -28,7 +28,8 @@
         right: 0;
         z-index: 1000000000000000000000;
         background-color: $itemViewerBackgroundColor;
-        transition: opacity $animationDuration ease;
+        transition: 
+            opacity $animationDuration ease;
 
         &-button {
             @include button();
@@ -39,6 +40,12 @@
         }
 
         &-toolbar {
+            @extend %hidden;
+            transition: 
+                transform $animationDuration ease,
+                opacity $animationDuration ease
+            ;
+
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -85,6 +92,11 @@
                 appearance: none;
                 border: none;
             }
+
+            &--hidden {
+                opacity: 0 !important;
+                pointer-events: none !important;
+            }
         }
     }
 
@@ -101,12 +113,14 @@
             justify-content: center;
             position: relative;
 
+            &:hover .carousel2__item-viewer-toolbar {
+                @extend %visible;
+            }
+
             @include respond(phone) {
                 position: static;
             }
         }
-        
-        
         
         &-overlay {
            @include positionButton();
@@ -114,14 +128,10 @@
     }
 
     &--hidden {
-        pointer-events: none;
-        visibility: hidden;
-        opacity: 0;
+        @extend %hidden;
     }
     
     &--visible {
-        pointer-events: all;
-        visibility: visible;
-        opacity: 1;
+        @extend %visible;
     }
 }
