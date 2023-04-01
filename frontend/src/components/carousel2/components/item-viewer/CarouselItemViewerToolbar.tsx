@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { CLASSNAME__ITEM_VIEWER, CLASSNAME__ROOT } from '../../constants'
-import { getClassname } from '../../utils'
+import { getClassname, getIsPointInsideElement } from '../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerNextButton } from './CarouselItemViewerNextButton'
 import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton'
@@ -9,6 +9,7 @@ import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousBu
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
 import { log } from 'console'
+import { useMousePosition } from '../../hooks/useMousePosition'
 
 type CarouselItemViewerToolbarProps = {
     videoRef: React.RefObject<HTMLVideoElement>;
@@ -31,7 +32,8 @@ export const CarouselItemViewerToolbar = ({
     const [isPlayingVideo, setIsPlayingVideo] = useState(true);
     const [isHidden, setIsHidden] = useState(false);
     const shouldHideTimoutRef = useRef<any>(-1);
-    const progressBarRef = useRef<HTMLProgressElement>(null)
+    const progressBarRef = useRef<HTMLProgressElement>(null);
+    const mousePositionRef = useMousePosition();
     //#endregion
 
     //#region Functions/handlers
@@ -66,20 +68,30 @@ export const CarouselItemViewerToolbar = ({
     //Auto-hide after 5sec
     useEffect(() => {
         function handleHide() {
-            console.log('handleHide')
             setIsHidden(false);
 
             if (videoContainerRef?.current) {
+                videoContainerRef.current.style.cursor = 'auto';
                 videoContainerRef.current.classList?.remove(CLASSNAME_VIDEO_CONTAINER_NO_TOOLBAR);
             }
 
             clearTimeout(shouldHideTimoutRef.current);
-
             shouldHideTimoutRef.current = setTimeout(() => {
-                console.log('hiding');
                 setIsHidden(true);
                 if (videoContainerRef?.current) {
                     videoContainerRef.current.classList?.add(CLASSNAME_VIDEO_CONTAINER_NO_TOOLBAR);
+                }
+
+                //hide cursor too
+                const isInsideVideoContainer = getIsPointInsideElement(mousePositionRef.current, videoContainerRef.current);
+                if (isInsideVideoContainer) {
+                    console.log("none");
+
+                    setTimeout(() => {
+                        if (videoContainerRef.current) {
+                            videoContainerRef.current.style.cursor = 'none';
+                        }
+                    }, 1)
                 }
             }, AUTO_HIDE_DURATION);
         }
@@ -89,7 +101,6 @@ export const CarouselItemViewerToolbar = ({
         }
 
         window.addEventListener('mousemove', handleHide);
-
         if (progressBarRef.current) {
             progressBarRef.current.addEventListener('mousemove', handleMouseMove);
         }

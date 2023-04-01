@@ -4,5 +4,10 @@ export type ButtonProps = {
 }
 
 export type CssStyles = {
-	[name: string]: React.CSSProperties;
+    [name: string]: React.CSSProperties;
+}
+
+export type Point = {
+    x: number;
+    y: number;
 }

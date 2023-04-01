@@ -36,6 +36,10 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     }
     
     //#endregion
+
+    //#region SideFx
+    
+    //#endregion
     
     //#region JSX
     return (
