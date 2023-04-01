@@ -21,6 +21,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     } = props;    
     const { autoPlay, loop, muted } = videoProps || {};
     const videoRef = useRef<HTMLVideoElement>(null);
+    const videoContainerRef = useRef<HTMLDivElement>(null);
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
     //#endregion
 
@@ -38,7 +39,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     
     //#region JSX
     return (
-        <div className={getClassname({ elementName: 'video-container'})}>
+        <div ref={videoContainerRef} className={getClassname({ elementName: 'video-container'})}>
         <>
             <video
                 className={getClassname({ elementName: 'video'})}
@@ -49,7 +50,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                 <source src={props.srcMain} type={`video/${type}`} />
             </video>
             <CarouselVideoOverlay {...props.videoProps?.overlayProps}/>
-            <CarouselItemViewerToolbar videoRef={videoRef} />
+            <CarouselItemViewerToolbar videoRef={videoRef} videoContainerRef={videoContainerRef} />
         </>
         </div>
     );

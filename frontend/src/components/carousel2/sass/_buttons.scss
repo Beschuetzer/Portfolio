@@ -1,6 +1,6 @@
 $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
 
-.carousel2-button {
+.#{$carouselClassname}-button {
     @include button();
     margin-top: $itemViewerProgressHeight;
 

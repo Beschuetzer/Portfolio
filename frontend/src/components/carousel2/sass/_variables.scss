@@ -1,3 +1,5 @@
+$carouselClassname: 'thumbnail-carousel';
+
 $itemHeight: 150px;
 
 $itemViewerBackgroundColor: #000;
@@ -10,3 +12,7 @@ $itemViewerButtonWidth: 3rem;
 $itemViewerToolbarMarginHorizontal: 2rem;
 $itemViewerProgressHeight: .5rem;
 $animationDuration: .5s;
+
+:root {
+    --carousel-classname: #{$carouselClassname};
+}

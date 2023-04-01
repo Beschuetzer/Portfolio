@@ -1,11 +1,11 @@
-.carousel2 {
+.#{$carouselClassname} {
     &__item {
         position: relative;
         height: $itemHeight;
         width: $itemHeight;
         border-radius: 8px;
         overflow: hidden;
-        transition: 
+        transition:
             border-radius $animationDuration ease,
             box-shadow $animationDuration ease,
             transform $animationDuration ease;
@@ -28,7 +28,7 @@
         right: 0;
         z-index: 1000000000000000000000;
         background-color: $itemViewerBackgroundColor;
-        transition: 
+        transition:
             opacity $animationDuration ease;
 
         &-button {
@@ -41,21 +41,21 @@
 
         &-toolbar {
             @extend %hidden;
-            transition: 
+            transition:
                 transform $animationDuration ease,
-                opacity $animationDuration ease
-            ;
+                opacity $animationDuration ease;
 
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: calc($itemViewerToolbarMarginHorizontal / 2) $itemViewerToolbarMarginHorizontal; 
-            background: #000000cc;  /*this color is displayed if browser can't read the below properties*/
+            padding: calc($itemViewerToolbarMarginHorizontal / 2) $itemViewerToolbarMarginHorizontal;
+            background: #000000cc;
+            /*this color is displayed if browser can't read the below properties*/
             background: -moz-linear-gradient(180deg, #ffffff00 0%, #000000ff 100%);
             background: -webkit-linear-gradient(180deg, #ffffff00 0%, #000000ff 100%);
             background: linear-gradient(180deg, #ffffff00 0%, #000000ff 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8a96e6",endColorstr="#8a96e6",GradientType=1);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8a96e6", endColorstr="#8a96e6", GradientType=1);
             @include positionAbsolute($top: auto);
 
             &-button-container {
@@ -65,20 +65,20 @@
                 justify-content: space-between;
                 column-gap: $itemViewerToolbarMarginHorizontal;
 
-                & > * {
+                &>* {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
                     column-gap: $itemViewerToolbarMarginHorizontal;
                 }
 
-                & > *:nth-child(2) {
+                &>*:nth-child(2) {
                     justify-content: flex-start;
                     margin-right: auto;
                     font-size: 1.5rem;
                     color: $itemViewerButtonColor;
 
-                    & > * {
+                    &>* {
                         margin-top: $itemViewerProgressHeight;
                     }
                 }
@@ -91,11 +91,22 @@
                 height: $itemViewerProgressHeight;
                 appearance: none;
                 border: none;
-            }
+                // box-shadow: 10px 10px 4px rgba( 0, 0, 0, 0.2 );
 
-            &--hidden {
-                opacity: 0 !important;
-                pointer-events: none !important;
+                &::-webkit-progress-bar {
+                    background-color: #888;
+                }
+
+                &::-webkit-progress-value {
+                    background-color: #fff;
+                    // box-shadow: 1px 1px 5px 3px rgba(255, 0, 0, 0.8);
+                    position: relative;
+                }
+
+                &::-moz-progress-bar {
+                    /* style rules */
+                }
+
             }
         }
     }
@@ -113,24 +124,35 @@
             justify-content: center;
             position: relative;
 
-            &:hover .carousel2__item-viewer-toolbar {
+            &:hover .#{$carouselClassname}__item-viewer-toolbar {
                 @extend %visible;
             }
 
             @include respond(phone) {
                 position: static;
             }
+            
+            &--no-toolbar {
+
+                &:hover {
+                    cursor: cell !important;
+                }
+                & .#{$carouselClassname}__item-viewer-toolbar {
+                    opacity: 0 !important;
+                    pointer-events: none !important;
+                }
+            }
         }
-        
+
         &-overlay {
-           @include positionButton();
+            @include positionButton();
         }
     }
 
     &--hidden {
         @extend %hidden;
     }
-    
+
     &--visible {
         @extend %visible;
     }

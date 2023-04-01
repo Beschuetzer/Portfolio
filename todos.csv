@@ -3,7 +3,6 @@ Carousel rework:
   -get thumbnails rendering
   -add styles
   -add features
-  -rename 'carousel2' to 'carousel' in all css files and constant file
 
 React best practices re-work (branch = sitenav_rework)
   -pages with audio need to know when player is open and adjust padding bottom

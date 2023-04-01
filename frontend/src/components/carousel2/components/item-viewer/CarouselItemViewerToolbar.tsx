@@ -1,24 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { CLASSNAME__ITEM_VIEWER } from '../../constants'
+import { CLASSNAME__ITEM_VIEWER, CLASSNAME__ROOT } from '../../constants'
 import { getClassname } from '../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerNextButton } from './CarouselItemViewerNextButton'
 import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton'
 import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton'
 import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousButton'
-import { CarouselItemViewerRestartButton } from './CarouselItemViewerRestartButton'
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
-import { CarouselItemViewerStopButton } from './CarouselItemViewerStopButton'
-import { log } from 'console'
 
 type CarouselItemViewerToolbarProps = {
     videoRef: React.RefObject<HTMLVideoElement>;
+    videoContainerRef: React.RefObject<HTMLDivElement>;
 }
 
 const AUTO_HIDE_DURATION = 2500;
+const CLASSNAME_INNER_CONTAINER = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-button-container` });
+const CLASSNAME_TOOLBAR = `${getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar` })}`;
+const CLASSNAME_TOOLBAR_LEFT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-left` });
+const CLASSNAME_TOOLBAR_MIDDLE = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-middle` });
+const CLASSNAME_TOOLBAR_RIGHT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` });
+const CLASSNAME_VIDEO_CONTAINER_NO_TOOLBAR = getClassname({elementName: `video-container--no-toolbar`});
 export const CarouselItemViewerToolbar = ({
-    videoRef
+    videoRef,
+    videoContainerRef,
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
     const [progressBarValue, setProgressBarValue] = useState(0);
@@ -59,11 +64,19 @@ export const CarouselItemViewerToolbar = ({
         function handleHide() {
             console.log('handleHide')
             setIsHidden(false);
+
+            if (videoContainerRef?.current) {
+                videoContainerRef.current.classList?.remove(CLASSNAME_VIDEO_CONTAINER_NO_TOOLBAR);
+            }
+
             clearTimeout(shouldHideTimoutRef.current);
 
             shouldHideTimoutRef.current = setTimeout(() => {
                 console.log('hiding');
                 setIsHidden(true);
+                if (videoContainerRef?.current) {
+                    videoContainerRef.current.classList?.add(CLASSNAME_VIDEO_CONTAINER_NO_TOOLBAR);
+                }
             }, AUTO_HIDE_DURATION);
         }
 
@@ -75,21 +88,16 @@ export const CarouselItemViewerToolbar = ({
     //#endregion
 
     //#region JSX
-    const toolbarClassname = `${getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar` })} ${isHidden ? getClassname({elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar--hidden`}) : ''}`
-    const toolbarLeftClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-left` })
-    const toolbarRightClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` })
-    const toolbarMiddleClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-middle` })
-    const innerContainerClassname = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-button-container` })
-
+   
     return (
-        <div className={toolbarClassname}>
+        <div className={CLASSNAME_TOOLBAR}>
             <progress
                 className={getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })}
                 onClick={onProgressBarClick as any}
                 value={progressBarValue}
             />
-            <div className={innerContainerClassname}>
-                <div className={toolbarLeftClassname}>
+            <div className={CLASSNAME_INNER_CONTAINER}>
+                <div className={CLASSNAME_TOOLBAR_LEFT}>
                     {isPlayingVideo ?
                         <CarouselItemViewerPlayButton />
                         :
@@ -99,11 +107,11 @@ export const CarouselItemViewerToolbar = ({
                     <CarouselItemViewerSeekForwardButton />
 
                 </div>
-                <div className={toolbarMiddleClassname}>
+                <div className={CLASSNAME_TOOLBAR_MIDDLE}>
                     <span>0:00 / 2:42:32</span>
                     <span>Description here...</span>
                 </div>
-                <div className={toolbarRightClassname}>
+                <div className={CLASSNAME_TOOLBAR_RIGHT}>
                     <CarouselItemViewerPreviousButton />
                     <CarouselItemViewerNextButton />
                     <CarouselItemViewerCloseButton />

@@ -1,16 +1,20 @@
-.carousel2--hidden, .carousel2__item-viewer-toolbar {
+:root {
+  --carousel-classname: thumbnail-carousel;
+}
+
+.thumbnail-carousel--hidden, .thumbnail-carousel__item-viewer-toolbar {
   pointer-events: none;
   visibility: hidden;
   opacity: 0;
 }
 
-.carousel2--visible, .carousel2__video-container:hover .carousel2__item-viewer-toolbar {
+.thumbnail-carousel--visible, .thumbnail-carousel__video-container:hover .thumbnail-carousel__item-viewer-toolbar {
   pointer-events: all;
   visibility: visible;
   opacity: 1;
 }
 
-.carousel2-button {
+.thumbnail-carousel-button {
   overflow: hidden;
   height: 3rem;
   width: 3rem;
@@ -20,15 +24,15 @@
   background-color: transparent;
   margin-top: 0.5rem;
 }
-.carousel2-button:hover {
+.thumbnail-carousel-button:hover {
   opacity: 1;
   cursor: pointer;
 }
-.carousel2-button * {
+.thumbnail-carousel-button * {
   background-color: #fff;
   fill: #fff;
 }
-.carousel2-button--close-left, .carousel2-button--close-right {
+.thumbnail-carousel-button--close-left, .thumbnail-carousel-button--close-right {
   width: 1rem;
   height: 3rem;
   position: absolute;
@@ -36,13 +40,13 @@
   left: 50%;
   transform: translate(-50%, -50%) rotate(var(--rotation));
 }
-.carousel2-button--close-left {
+.thumbnail-carousel-button--close-left {
   --rotation: -45deg;
 }
-.carousel2-button--close-right {
+.thumbnail-carousel-button--close-right {
   --rotation: 45deg;
 }
-.carousel2-button--next-left {
+.thumbnail-carousel-button--next-left {
   border-left: calc(3rem / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
@@ -54,7 +58,7 @@
   left: 50%;
   transform: translate(-75%, -50%) rotate(0);
 }
-.carousel2-button--next-right {
+.thumbnail-carousel-button--next-right {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -62,7 +66,7 @@
   width: 0.5rem;
   height: calc(3rem * .85);
 }
-.carousel2-button--pause-left, .carousel2-button--pause-right {
+.thumbnail-carousel-button--pause-left, .thumbnail-carousel-button--pause-right {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -70,13 +74,13 @@
   width: 1rem;
   height: calc(3rem * .85);
 }
-.carousel2-button--pause-left {
+.thumbnail-carousel-button--pause-left {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(calc(-50% - 0.75rem), -50%) rotate(0);
 }
-.carousel2-button--play-triangle {
+.thumbnail-carousel-button--play-triangle {
   position: absolute;
   top: 50%;
   left: 0;
@@ -88,7 +92,7 @@
   border-left: calc(3rem / 1.33) solid #fff;
   border-bottom: calc(3rem / 2.25) solid transparent;
 }
-.carousel2-button--previous-left {
+.thumbnail-carousel-button--previous-left {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -100,7 +104,7 @@
   left: 50%;
   transform: translate(-175%, -50%) rotate(0);
 }
-.carousel2-button--previous-right {
+.thumbnail-carousel-button--previous-right {
   border-right: calc(3rem / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
@@ -112,7 +116,7 @@
   left: 50%;
   transform: translate(-20%, -50%) rotate(0);
 }
-.carousel2-button--restart-arrow {
+.thumbnail-carousel-button--restart-arrow {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -127,23 +131,23 @@
   border-right: calc(3rem / 2.5) solid #fff;
   border-bottom: none;
 }
-.carousel2-button--restart-circle-inner, .carousel2-button--restart-circle-outer {
+.thumbnail-carousel-button--restart-circle-inner, .thumbnail-carousel-button--restart-circle-outer {
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(0);
 }
-.carousel2-button--restart-circle-inner {
+.thumbnail-carousel-button--restart-circle-inner {
   height: calc((3rem * .85) - 1.5rem);
   width: calc((3rem * .85) - 1.5rem);
   background-color: rgba(0, 0, 0, 0);
 }
-.carousel2-button--restart-circle-outer {
+.thumbnail-carousel-button--restart-circle-outer {
   height: calc(3rem * .85);
   width: calc(3rem * .85);
 }
-.carousel2-button--restart-triangle-cutout {
+.thumbnail-carousel-button--restart-triangle-cutout {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -158,7 +162,7 @@
   border-right: calc(3rem / 1) solid rgba(0, 0, 0, 0);
   border-bottom: calc(3rem / 1) solid transparent;
 }
-.carousel2-button--seek-back-left, .carousel2-button--seek-back-right {
+.thumbnail-carousel-button--seek-back-left, .thumbnail-carousel-button--seek-back-right {
   border-left: calc(3rem / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
@@ -166,19 +170,19 @@
   border-top: calc(3rem / 2.25) solid transparent;
   border-bottom: calc(3rem / 2.25) solid transparent;
 }
-.carousel2-button--seek-back-left {
+.thumbnail-carousel-button--seek-back-left {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-100%, -50%) rotate(180deg);
 }
-.carousel2-button--seek-back-right {
+.thumbnail-carousel-button--seek-back-right {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(0%, -50%) rotate(180deg);
 }
-.carousel2-button--seek-forward-left, .carousel2-button--seek-forward-right {
+.thumbnail-carousel-button--seek-forward-left, .thumbnail-carousel-button--seek-forward-right {
   border-left: calc(3rem / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
@@ -186,19 +190,19 @@
   border-top: calc(3rem / 2.25) solid transparent;
   border-bottom: calc(3rem / 2.25) solid transparent;
 }
-.carousel2-button--seek-forward-left {
+.thumbnail-carousel-button--seek-forward-left {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-95%, -50%) rotate(0);
 }
-.carousel2-button--seek-forward-right {
+.thumbnail-carousel-button--seek-forward-right {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(5%, -50%) rotate(0);
 }
-.carousel2-button--stop {
+.thumbnail-carousel-button--stop {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -207,7 +211,7 @@
   width: calc(calc(3rem * .85) * .95);
 }
 
-.carousel2__item {
+.thumbnail-carousel__item {
   position: relative;
   height: 150px;
   width: 150px;
@@ -215,13 +219,13 @@
   overflow: hidden;
   transition: border-radius 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
 }
-.carousel2__item-thumbnail {
+.thumbnail-carousel__item-thumbnail {
   object-fit: cover;
   object-position: top;
   height: 100%;
   width: 100%;
 }
-.carousel2__item-viewer {
+.thumbnail-carousel__item-viewer {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -233,7 +237,7 @@
   background-color: #000;
   transition: opacity 0.5s ease;
 }
-.carousel2__item-viewer-button {
+.thumbnail-carousel__item-viewer-button {
   overflow: hidden;
   height: 3rem;
   width: 3rem;
@@ -246,55 +250,56 @@
   stroke-opacity: 0.15;
   stroke-width: 2px;
 }
-.carousel2__item-viewer-button:hover {
+.thumbnail-carousel__item-viewer-button:hover {
   opacity: 1;
   cursor: pointer;
 }
-.carousel2__item-viewer-button * {
+.thumbnail-carousel__item-viewer-button * {
   background-color: #fff;
   fill: #fff;
 }
-.carousel2__item-viewer-toolbar {
+.thumbnail-carousel__item-viewer-toolbar {
   transition: transform 0.5s ease, opacity 0.5s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.8); /*this color is displayed if browser can't read the below properties*/
+  background: rgba(0, 0, 0, 0.8);
+  /*this color is displayed if browser can't read the below properties*/
   background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, black 100%);
   background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, black 100%);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, black 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8a96e6",endColorstr="#8a96e6",GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8a96e6", endColorstr="#8a96e6", GradientType=1);
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   top: auto;
 }
-.carousel2__item-viewer-toolbar-button-container {
+.thumbnail-carousel__item-viewer-toolbar-button-container {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   column-gap: 2rem;
 }
-.carousel2__item-viewer-toolbar-button-container > * {
+.thumbnail-carousel__item-viewer-toolbar-button-container > * {
   display: flex;
   align-items: center;
   justify-content: space-between;
   column-gap: 2rem;
 }
-.carousel2__item-viewer-toolbar-button-container > *:nth-child(2) {
+.thumbnail-carousel__item-viewer-toolbar-button-container > *:nth-child(2) {
   justify-content: flex-start;
   margin-right: auto;
   font-size: 1.5rem;
   color: #fff;
 }
-.carousel2__item-viewer-toolbar-button-container > *:nth-child(2) > * {
+.thumbnail-carousel__item-viewer-toolbar-button-container > *:nth-child(2) > * {
   margin-top: 0.5rem;
 }
-.carousel2__item-viewer-toolbar-progress {
+.thumbnail-carousel__item-viewer-toolbar-progress {
   width: calc(100vw - 2rem);
   margin-bottom: 0.5rem;
   cursor: pointer;
@@ -302,16 +307,22 @@
   appearance: none;
   border: none;
 }
-.carousel2__item-viewer-toolbar--hidden {
-  opacity: 0 !important;
-  pointer-events: none !important;
+.thumbnail-carousel__item-viewer-toolbar-progress::-webkit-progress-bar {
+  background-color: #888;
 }
-.carousel2__video {
+.thumbnail-carousel__item-viewer-toolbar-progress::-webkit-progress-value {
+  background-color: #fff;
+  position: relative;
+}
+.thumbnail-carousel__item-viewer-toolbar-progress::-moz-progress-bar {
+  /* style rules */
+}
+.thumbnail-carousel__video {
   width: 100vw;
   object-fit: contain;
   max-height: 100vh;
 }
-.carousel2__video-container {
+.thumbnail-carousel__video-container {
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -320,11 +331,18 @@
   position: relative;
 }
 @media only screen and (max-width: 655px) {
-  .carousel2__video-container {
+  .thumbnail-carousel__video-container {
     position: static;
   }
 }
-.carousel2__video-overlay {
+.thumbnail-carousel__video-container--no-toolbar:hover {
+  cursor: cell !important;
+}
+.thumbnail-carousel__video-container--no-toolbar .thumbnail-carousel__item-viewer-toolbar {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.thumbnail-carousel__video-overlay {
   position: absolute;
   top: 50%;
   left: 50%;

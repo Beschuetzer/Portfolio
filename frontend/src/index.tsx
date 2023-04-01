@@ -2,7 +2,6 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import reportWebVitals from './reportWebVitals';
 import { App } from './components/App';
 import { CarouselProvider } from './components/carousel2/context';
 
