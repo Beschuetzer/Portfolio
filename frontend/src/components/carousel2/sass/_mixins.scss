@@ -47,6 +47,19 @@
     transform: translate($xTranslate, $yTranslate) rotate($rotation);
 }
 
+@mixin positionAbsolute(
+    $bottom: 0,
+    $left: 0,
+    $right: 0,
+    $top: 0,
+) {
+    position: absolute;
+    bottom: $bottom;
+    left: $left;
+    right: $right;
+    top: $top;
+}
+
 @mixin triangle($direction: right) {
     @if ($direction == left) {
         border-right: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
@@ -60,4 +73,23 @@
     height: 0;
     border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
     border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+}
+
+//Media Query Manager
+@mixin respond($breakpoint) {
+	@if $breakpoint == phone {
+		@media only screen and (max-width: 655px) {
+			@content;
+		}
+	}
+	@if $breakpoint == hover {
+		@media only screen and (hover) {
+			@content;
+		}
+	}
+	@if $breakpoint == mobile {
+		@media only screen and (hover: none) {
+			@content;
+		}
+	}
 }

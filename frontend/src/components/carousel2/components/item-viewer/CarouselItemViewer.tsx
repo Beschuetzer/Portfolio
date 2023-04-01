@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CarouselImage } from '../CarouselImage';
 import { CarouselVideo } from '../CarouselVideo';
-import { VIDEO_EXTENSIONS } from '../../constants';
+import { CLASSNAME__ITEM_VIEWER, VIDEO_EXTENSIONS } from '../../constants';
 import { useCarouselContext } from '../../context'
 import { getClassname, getRegexStringFromStringArray } from '../../utils';
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton';
@@ -13,6 +13,7 @@ import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackBu
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton';
 import { CarouselItemViewerNextButton } from './CarouselItemViewerNextButton';
 import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousButton';
+import { CarouselItemViewerToolbar } from './CarouselItemViewerToolbar';
 
 export const CarouselItemViewer = () => {
     //#region Init
@@ -38,29 +39,12 @@ export const CarouselItemViewer = () => {
     //todo: need to use stying here instead for smooth transitions?
     const ItemToRender = isVideo ? CarouselVideo : CarouselImage;
     const visibilityStyle = isVisible ? getClassname({modifiedName: 'visible'}) : getClassname({modifiedName: 'hidden'});
-    const containerClassname = `${getClassname({elementName: 'item-viewer'})} ${visibilityStyle}`;
-    const toolbarClassname = getClassname({elementName: 'item-viewer-toolbar'})
-    const toolbarLeftClassname = getClassname({elementName: 'item-viewer-toolbar-left'})
-    const toolbarRightClassname = getClassname({elementName: 'item-viewer-toolbar-right'})
+    const containerClassname = `${getClassname({elementName: CLASSNAME__ITEM_VIEWER})} ${visibilityStyle}`;
+  
 
     return (
         <section className={containerClassname}>
             <ItemToRender {...currentItemProps}/>
-            <div className={toolbarClassname}>
-                <div  className={toolbarLeftClassname}>
-                    <CarouselItemViewerPlayButton />
-                    <CarouselItemViewerPauseButton />
-                    <CarouselItemViewerStopButton />
-                    <CarouselItemViewerRestartButton />
-                    <CarouselItemViewerSeekForwardButton />
-                    <CarouselItemViewerSeekBackButton />
-                    <CarouselItemViewerNextButton />
-                    <CarouselItemViewerPreviousButton />
-                </div>
-                <div className={toolbarRightClassname}>
-                    <CarouselItemViewerCloseButton />
-                </div>
-            </div>
         </section>
     )
     //#endregion

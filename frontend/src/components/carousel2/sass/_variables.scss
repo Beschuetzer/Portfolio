@@ -1,8 +1,9 @@
 $itemHeight: 150px;
 
-$itemViewerBackgroundColor: black;
+$itemViewerBackgroundColor: #000;
+$itemViewerToolbarBackgroundColor: rgba($itemViewerBackgroundColor, 0);
 $itemViewerButtonLineWidth: 1rem;
-$itemViewerButtonColor: white;
+$itemViewerButtonColor: #fff;
 $itemViewerButtonOpacityHover: 1;
 $itemViewerButtonOpacityNormal: .75;
 $itemViewerButtonWidth: 3rem;

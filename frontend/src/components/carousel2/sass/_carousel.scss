@@ -40,20 +40,50 @@
 
         &-toolbar {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            margin: 0 $itemViewerToolbarMarginHorizontal;
+            padding: calc($itemViewerToolbarMarginHorizontal / 2) $itemViewerToolbarMarginHorizontal; 
+            background: #000000cc;  /*this color is displayed if browser can't read the below properties*/
+            background: -moz-linear-gradient(180deg, #ffffff00 0%, #000000ff 100%);
+            background: -webkit-linear-gradient(180deg, #ffffff00 0%, #000000ff 100%);
+            background: linear-gradient(180deg, #ffffff00 0%, #000000ff 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8a96e6",endColorstr="#8a96e6",GradientType=1);
+            @include positionAbsolute($top: auto);
 
-            &-left {
+            &-button-container {
+                width: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                column-gap: $itemViewerToolbarMarginHorizontal;
+
+                & > * {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    column-gap: $itemViewerToolbarMarginHorizontal;
+                }
+
+                & > *:nth-child(2) {
+                    justify-content: flex-start;
+                    margin-right: auto;
+                    font-size: 1.5rem;
+                    color: $itemViewerButtonColor;
+
+                    & > * {
+                        margin-top: $itemViewerProgressHeight;
+                    }
+                }
             }
-            
-            &-right {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+
+            &-progress {
+                width: calc(100vw - #{$itemViewerToolbarMarginHorizontal});
+                margin-bottom: $itemViewerProgressHeight;
+                cursor: pointer;
+                height: $itemViewerProgressHeight;
+                appearance: none;
+                border: none;
             }
         }
     }
@@ -61,7 +91,7 @@
     &__video {
         width: 100vw;
         object-fit: contain;
-        max-height: calc(100vh - (#{$itemViewerButtonWidth} + #{$itemViewerToolbarMarginHorizontal}));
+        max-height: 100vh;
 
         &-container {
             width: 100vw;
@@ -69,16 +99,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
+
+            @include respond(phone) {
+                position: static;
+            }
         }
         
-        &-progress {
-            width: calc(100% - $itemViewerToolbarMarginHorizontal);
-            margin: $itemViewerProgressHeight 0 0 0;
-            cursor: pointer;
-            height: $itemViewerProgressHeight;
-            appearance: none;
-            border: none;
-        }
+        
         
         &-overlay {
            @include positionButton();
