@@ -37,6 +37,20 @@ export const CarouselItemViewerToolbar = ({
     //#endregion
 
     //#region Functions/handlers
+    const onPauseClick = useCallback(() => {
+        setIsPlayingVideo((prev) => !prev);
+        if (videoRef.current) {
+            videoRef.current.pause();
+        }
+    }, [setIsPlayingVideo]);
+
+    const onPlayClick = useCallback(() => {
+        setIsPlayingVideo((prev) => !prev);
+        if (videoRef.current) {
+            videoRef.current.play();
+        }
+    }, [setIsPlayingVideo]);
+
     const onProgressBarClick = useCallback((e: MouseEvent) => {
         const clientX = e.clientX;
         const progressBar = e.currentTarget as HTMLProgressElement;
@@ -126,9 +140,9 @@ export const CarouselItemViewerToolbar = ({
             <div className={CLASSNAME_INNER_CONTAINER}>
                 <div className={CLASSNAME_TOOLBAR_LEFT}>
                     {isPlayingVideo ?
-                        <CarouselItemViewerPlayButton />
+                        <CarouselItemViewerPauseButton onClick={onPauseClick}  />
                         :
-                        <CarouselItemViewerPauseButton />
+                        <CarouselItemViewerPlayButton onClick={onPlayClick} />
                     }
                     <CarouselItemViewerSeekBackButton />
                     <CarouselItemViewerSeekForwardButton />

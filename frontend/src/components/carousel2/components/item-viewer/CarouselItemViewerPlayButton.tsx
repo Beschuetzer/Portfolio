@@ -1,16 +1,16 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { PlayButton } from '../buttons/PlayButton';
-import { EMPTY_STRING } from '../../constants';
 import { useCarouselContext } from '../../context';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 
-export const CarouselItemViewerPlayButton = () => {
+type CarouselItemViewerPlayButtonProps = {
+    onClick: () => void,
+}
+export const CarouselItemViewerPlayButton = ({
+    onClick,
+}: CarouselItemViewerPlayButtonProps) => {
     const { setCurrentItemSrc, currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.playButton || '';
-
-    const onClick = useCallback(() => {
-
-    }, [setCurrentItemSrc, EMPTY_STRING]);
 
     return !!svgHref ? 
         <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref}/> :

@@ -3,6 +3,7 @@ Carousel rework:
   -get thumbnails rendering
   -add styles
   -add features
+  -when not moving mouse but repeatedly clicking a button, the video toolbar hides after 2.5sec (click input should reset)
 
 React best practices re-work (branch = sitenav_rework)
   -pages with audio need to know when player is open and adjust padding bottom
