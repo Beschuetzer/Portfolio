@@ -1,4 +1,3 @@
-import { log } from "console";
 import { CLASSNAME__ROOT } from "./constants";
 import { Point } from "./types";
 type GetClassname = {
@@ -7,6 +6,16 @@ type GetClassname = {
 }
 export function getClassname({ elementName, modifiedName }: GetClassname) {
     return `${CLASSNAME__ROOT}${elementName ? `__${elementName}` : ``}${modifiedName ? `--${modifiedName}` : ``}`;
+}
+
+export function getFormattedTimeString(seconds: number) {
+    if (!seconds || seconds < 0) return 'N/A';
+    const hours = Math.floor(seconds / 3600);
+    let remaining = seconds % 3600;
+    const minutes = Math.floor(remaining / 60);
+    remaining %= 60;
+    const second = Math.floor(remaining);
+    return `${hours ? `${hours.toString()}:` : ''}${minutes.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`
 }
 
 export function getIsPointInsideElement(point: Point, element: HTMLElement | null) {

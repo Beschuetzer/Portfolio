@@ -4,25 +4,15 @@ import { useCarouselContext } from '../context';
 import { getGuid } from '../utils';
 import { CarouselInstanceProvider } from './CarouselInstanceProvider';
 import { CarouselItemProps, CarouselItem } from './CarouselItem';
-
-export type CarouselSvgHrefs = {
-	closeButton?: string;
-	nextButton?: string;
-	pauseButton?: string;
-	playButton?: string;
-	previousButton?: string;
-	restartButton?: string;
-	seekBackButton?: string;
-	seekForwardButton?: string;
-	stopButton?: string;
-}
+import { CarouselOptions, CarouselSvgHrefs } from '../types';
 
 type CarouselProps = {
 	/*
 	* if undefined, the default css version for each button will be used
 	*/
 	svgHrefs?: CarouselSvgHrefs;
-    items: CarouselItemProps[];
+	items: CarouselItemProps[];
+	options?: CarouselOptions;
 	onClose?: () => void;
 	onItemChange?: (currentItemSrc?: string) => void;
 	onOpen?: () => void;
@@ -35,12 +25,13 @@ type CarouselProps = {
 export const Carousel = ({
 	svgHrefs = {},
 	items,
+	options,
 	onClose = () => null,
 	onItemChange = () => null,
 	onOpen = () => null,
 }: CarouselProps) => {
 	//#region Init
-	const { currentItemSrc, currentSvgHrefs: svgHrefsRef } = useCarouselContext();
+	const { currentItemSrc } = useCarouselContext();
 	const idRef = useRef<string>(getGuid());
 
 	//#endregion
@@ -55,13 +46,14 @@ export const Carousel = ({
 	//#endregion
 
 	//#region JSX
-	const renderItems = () =>{
-		return items.map((item, index) => <CarouselItem key={index} {...item}/>);
+	const renderItems = () => {
+		return items.map((item, index) => <CarouselItem key={index} {...item} />);
 	}
 
 	return (
-		<CarouselInstanceProvider 
+		<CarouselInstanceProvider
 			id={idRef.current}
+			options={options}
 			svgHrefInstance={svgHrefs}>
 			<div className={CLASSNAME__ROOT}>
 				{renderItems()}

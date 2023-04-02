@@ -13,12 +13,12 @@ export type CarouselVideoProps = {
 
 export const CarouselVideo = (props: CarouselItemProps) => {
     //#region Init
-    const { 
+    const {
         description,
         srcMain,
         srcThumbnail,
         videoProps,
-    } = props;    
+    } = props;
     const { autoPlay, loop, muted } = videoProps || {};
     const videoRef = useRef<HTMLVideoElement>(null);
     const videoContainerRef = useRef<HTMLDivElement>(null);
@@ -34,28 +34,34 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
         return percent;
     }
-    
+
     //#endregion
 
     //#region SideFx
-    
+
     //#endregion
-    
+
     //#region JSX
     return (
-        <div ref={videoContainerRef} className={getClassname({ elementName: 'video-container'})}>
-        <>
-            <video
-                className={getClassname({ elementName: 'video'})}
-                ref={videoRef} 
-                autoPlay={!!autoPlay} 
-                muted={!!muted}
-                loop={!!loop}>
-                <source src={props.srcMain} type={`video/${type}`} />
-            </video>
-            <CarouselVideoOverlay {...props.videoProps?.overlayProps}/>
-            <CarouselItemViewerToolbar videoRef={videoRef} videoContainerRef={videoContainerRef} />
-        </>
+        <div ref={videoContainerRef} className={getClassname({ elementName: 'video-container' })}>
+            <>
+                <video
+                    className={getClassname({ elementName: 'video' })}
+                    ref={videoRef}
+                    autoPlay={!!autoPlay}
+                    muted={!!muted}
+                    loop={!!loop}>
+                    <source src={props.srcMain} type={`video/${type}`}
+                    onChange={(e) => console.log(e)}
+                    />
+                </video>
+                <CarouselVideoOverlay {...props.videoProps?.overlayProps} />
+                <CarouselItemViewerToolbar 
+                    description={description || ''}
+                    videoRef={videoRef} 
+                    videoContainerRef={videoContainerRef} 
+                    />
+            </>
         </div>
     );
     //#endregion

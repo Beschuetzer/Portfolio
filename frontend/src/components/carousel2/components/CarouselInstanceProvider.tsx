@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { useContext } from "react";
-import { CarouselSvgHrefs } from "./Carousel";
+import { CarouselOptions, CarouselSvgHrefs } from "../types";
 
 type CarouselInstanceProps = {
     children: ReactNode | ReactNode[];
@@ -8,6 +8,7 @@ type CarouselInstanceProps = {
 
 type CarouselInstanceContextProps = {
     id: string;
+    options: CarouselOptions | undefined;
     svgHrefInstance: CarouselSvgHrefs;
 }
 
@@ -20,12 +21,14 @@ export function useCarouselInstanceContext() {
 export const CarouselInstanceProvider = ({
     children,
     id,
+    options,
     svgHrefInstance,
 }: CarouselInstanceProps) => {
     return (
         <CarouselInstanceContext.Provider 
             value={{
                 id,
+                options,
                 svgHrefInstance,
             }}
         >

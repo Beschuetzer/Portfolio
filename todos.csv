@@ -1,4 +1,6 @@
 Carousel rework:
+  -figure out how to get time strings for video to stay in same spot
+  -add functionality to allow click on video to pause/play 
   -setup viewer (allow passing in customer component and provide a sensible default with options?)
   -get thumbnails rendering
   -add styles

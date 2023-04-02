@@ -1,6 +1,6 @@
 import React from 'react'
 import { EMPTY_STRING } from '../constants';
-import { useCarouselContext } from '../context';
+import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
 import { getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
@@ -34,8 +34,8 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemProps, setCurrentItemSrc, setCurrentSvgHrefs } = useCarouselContext();
-  const { svgHrefInstance } = useCarouselInstanceContext();
+  const { setCurrentItemProps, setCurrentItemSrc, setCurrentSvgHrefs, setOptions } = useCarouselContext();
+  const { svgHrefInstance, options } = useCarouselInstanceContext();
   //#endregion
 
   //#region Functions/Handlers
@@ -43,6 +43,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     setCurrentItemSrc(srcMain || EMPTY_STRING);
     setCurrentItemProps(props);
     setCurrentSvgHrefs(svgHrefInstance);
+		setOptions(options || OPTIONS_DEFAULT);
   }
   //#endregion
 

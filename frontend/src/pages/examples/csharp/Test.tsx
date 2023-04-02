@@ -179,6 +179,9 @@ const sections: CSharpSection[] = [
 				<CSharpCardSection title="Seeing the world">
 					Here are some photos of enjoyable experiences:
 					<Carousel
+						options={{
+							autoHideToolbarDuration: 500,
+						}}
 						svgHrefs={{
 							closeButton: "./sprite.svg#icon-close",
 							nextButton: "./sprite.svg#icon-skip-forward",
