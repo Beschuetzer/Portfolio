@@ -71,7 +71,7 @@ export const CarouselItemViewerToolbar = ({
             setIsHidden(false);
 
             if (videoContainerRef?.current) {
-                videoContainerRef.current.style.cursor = 'auto';
+                //todo: hide cursor? videoContainerRef.current.classList.remove(`${CLASSNAME__ROOT}--cursor-none`);
                 videoContainerRef.current.classList?.remove(CLASSNAME_VIDEO_CONTAINER_NO_TOOLBAR);
             }
 
@@ -82,22 +82,22 @@ export const CarouselItemViewerToolbar = ({
                     videoContainerRef.current.classList?.add(CLASSNAME_VIDEO_CONTAINER_NO_TOOLBAR);
                 }
 
-                //hide cursor too
-                const isInsideVideoContainer = getIsPointInsideElement(mousePositionRef.current, videoContainerRef.current);
-                if (isInsideVideoContainer) {
-                    console.log("none");
+                //todo: hide cursor too?
+                // const isInsideVideoContainer = getIsPointInsideElement(mousePositionRef.current, videoContainerRef.current);
+                // if (isInsideVideoContainer) {
+                //     console.log("none");
 
-                    setTimeout(() => {
-                        if (videoContainerRef.current) {
-                            videoContainerRef.current.style.cursor = 'none';
-                        }
-                    }, 1)
-                }
+                //     setTimeout(() => {
+                //         if (videoContainerRef.current) {
+                //             videoContainerRef.current.classList.add(`${CLASSNAME__ROOT}--cursor-none`);
+                //         }
+                //     }, 1)
+                // }
             }, AUTO_HIDE_DURATION);
         }
 
         function handleMouseMove(e: any) {
-            onProgressBarClick(e);
+            // onProgressBarClick(e);
         }
 
         window.addEventListener('mousemove', handleHide);

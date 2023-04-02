@@ -1,5 +1,4 @@
 Carousel rework:
-  -figure out how to tell if the cursor is inside the video container rectangle when the auto-hide occurs (can then call document.body.cursor = 'none')
   -setup viewer (allow passing in customer component and provide a sensible default with options?)
   -get thumbnails rendering
   -add styles
