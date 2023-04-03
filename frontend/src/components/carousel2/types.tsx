@@ -21,9 +21,14 @@ export type CarouselSvgHrefs = {
 
 export type CarouselVideoOptions = {
      /*
-    *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.  Otherwise, auto-hide occurs after this duration in milliseconds.
+    *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.  
+    *Otherwise, auto-hide occurs when there is no mouse input for this amount of time in milliseconds.  Default is 2.5 seconds.
     */
     autoHideToolbarDuration?: number;
+    /*
+    *How for forward/backward the seek buttons move a video.  Default is 5 seconds.
+    */
+    seekAmount?: number;
 }
 
 export type CssStyles = {
