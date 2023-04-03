@@ -16,7 +16,7 @@ export type CarouselVideoOverlayProps = {
 
 export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#region Init
-    const { currentItemSrc } = useCarouselContext();
+    const {  } = useCarouselContext();
     const { title, text } = props;
 
     //todo: change to visible when paused

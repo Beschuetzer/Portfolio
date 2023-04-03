@@ -5,12 +5,12 @@ import { RestartButton } from '../buttons/RestartButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 
 export const CarouselItemViewerRestartButton = () => {
-    const { setCurrentItemSrc, currentSvgHrefs } = useCarouselContext();
+    const { currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.restartButton || '';
 
     const onClick = useCallback(() => {
         
-    }, [setCurrentItemSrc, EMPTY_STRING]);
+    }, [EMPTY_STRING]);
 
     return !!svgHref ? 
     <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref}/> :

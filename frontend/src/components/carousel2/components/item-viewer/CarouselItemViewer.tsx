@@ -8,12 +8,12 @@ import { getClassname, getRegexStringFromStringArray } from '../../utils';
 export const CarouselItemViewer = () => {
     //#region Init
     //todo: needs to be hidden until an item is clicked
-    const { currentItemSrc, currentItemProps, currentPage, currentSvgHrefs: closeButtonSvgXlinkHrefRef } = useCarouselContext();
-    const [isVisible, setisVisible] = useState(!!currentItemSrc);
+    const { currentItem } = useCarouselContext();
+    const [isVisible, setisVisible] = useState(Object.keys(currentItem || {})?.length > 0);
+    const currentItemSrc = currentItem?.srcMain || '';
     const isVideo = currentItemSrc?.match(
 		getRegexStringFromStringArray(VIDEO_EXTENSIONS),
 	);
-
     //#endregion
 
     //#region Function/Handlers
@@ -32,10 +32,9 @@ export const CarouselItemViewer = () => {
     const visibilityStyle = isVisible ? getClassname({modifiedName: 'visible'}) : getClassname({modifiedName: 'hidden'});
     const containerClassname = `${getClassname({elementName: CLASSNAME__ITEM_VIEWER})} ${visibilityStyle}`;
   
-
     return (
         <section className={containerClassname}>
-            <ItemToRender {...currentItemProps}/>
+            <ItemToRender {...currentItem}/>
         </section>
     )
     //#endregion

@@ -16,7 +16,6 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const {
         description,
         srcMain,
-        srcThumbnail,
         videoProps,
     } = props;
     const { autoPlay, loop, muted } = videoProps || {};
@@ -26,19 +25,9 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     //#endregion
 
     //#region Functions/Handlers
-    function getPercentOfProgressBar(progressBar: HTMLProgressElement, clientX: number) {
-        const progressBarBoundingRect = progressBar.getBoundingClientRect();
-        const progressBarLeftX = progressBarBoundingRect.left;
-        const progressBarRightX = progressBarBoundingRect.right;
-        const amountPastLeft = (clientX - progressBarLeftX);
-        const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
-        return percent;
-    }
-
     //#endregion
 
     //#region SideFx
-
     //#endregion
 
     //#region JSX

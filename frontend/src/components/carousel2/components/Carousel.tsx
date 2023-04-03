@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { CLASSNAME__ROOT } from '../constants';
-import { useCarouselContext } from '../context';
+import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../context';
 import { getGuid } from '../utils';
 import { CarouselInstanceProvider } from './CarouselInstanceProvider';
 import { CarouselItemProps, CarouselItem } from './CarouselItem';
@@ -14,7 +14,7 @@ type CarouselProps = {
 	items: CarouselItemProps[];
 	options?: CarouselOptions;
 	onClose?: () => void;
-	onItemChange?: (currentItemSrc?: string) => void;
+	onItemChange?: (isViewerOpen?: boolean) => void;
 	onOpen?: () => void;
 	/*
 	*The number of items to display in the carousel at any given time
@@ -31,7 +31,7 @@ export const Carousel = ({
 	onOpen = () => null,
 }: CarouselProps) => {
 	//#region Init
-	const { currentItemSrc } = useCarouselContext();
+	const { currentItemIndex, currentItems, setCurrentItems, currentCarouselId } = useCarouselContext();
 	const idRef = useRef<string>(getGuid());
 
 	//#endregion
@@ -41,13 +41,18 @@ export const Carousel = ({
 
 	//#region Side Fx
 	useEffect(() => {
-		onItemChange && onItemChange(currentItemSrc);
-	}, [currentItemSrc])
+		onItemChange && onItemChange(!!currentItems?.[currentItemIndex] || false);
+	}, [currentItemIndex, currentItems])
+
+	useEffect(() => {
+		if (idRef.current !== currentCarouselId || currentItems?.length === items?.length || currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) return;
+		setCurrentItems(items);
+	}, [currentCarouselId, currentCarouselId, currentItems, currentItemIndex])
 	//#endregion
 
 	//#region JSX
 	const renderItems = () => {
-		return items.map((item, index) => <CarouselItem key={index} {...item} />);
+		return items.map((item, index) => <CarouselItem key={index} index={index} {...item} />);
 	}
 
 	return (

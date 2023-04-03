@@ -1,5 +1,4 @@
 import React from 'react'
-import { EMPTY_STRING } from '../constants';
 import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
 import { getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
@@ -11,6 +10,11 @@ export type CarouselItemProps = {
   */
   description?: string | undefined;
 
+  /*
+  *This is generated automatically if omitted.  
+  *If given, it will determine the 'next'/'previous' item to go to when clicking the next/previousButton
+  */
+  index?: number;
   /*
   * This is the source of the image to be used in full-size viewing as well as thumbnail viewing if no thumbnail is provided
   */
@@ -31,19 +35,20 @@ export const CarouselItem = (props: CarouselItemProps) => {
   //#region Init
   const {
     description,
+    index,
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemProps, setCurrentItemSrc, setCurrentSvgHrefs, setOptions } = useCarouselContext();
-  const { svgHrefInstance, options } = useCarouselInstanceContext();
+  const { setCurrentItemIndex, setCurrentSvgHrefs, setOptions, setCurrentCarouselId } = useCarouselContext();
+  const { id: carouselId, svgHrefInstance, options } = useCarouselInstanceContext();
   //#endregion
 
   //#region Functions/Handlers
   function onPress(e: MouseEvent) {
-    setCurrentItemSrc(srcMain || EMPTY_STRING);
-    setCurrentItemProps(props);
-    setCurrentSvgHrefs(svgHrefInstance);
 		setOptions(options || OPTIONS_DEFAULT);
+    setCurrentCarouselId(carouselId);
+    setCurrentItemIndex(index as any);
+    setCurrentSvgHrefs(svgHrefInstance);
   }
   //#endregion
 

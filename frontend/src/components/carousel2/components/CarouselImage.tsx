@@ -7,8 +7,6 @@ export const CarouselImage = (props: CarouselItemProps) => {
         srcMain,
     } = props;
     
-    console.log({props});
-
     return (
         <img
             src={srcMain}

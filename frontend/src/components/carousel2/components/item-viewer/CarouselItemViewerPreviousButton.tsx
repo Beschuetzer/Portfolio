@@ -5,12 +5,12 @@ import { PreviousButton } from '../buttons/PreviousButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 
 export const CarouselItemViewerPreviousButton = () => {
-    const { setCurrentItemSrc, currentSvgHrefs } = useCarouselContext();
+    const { currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.previousButton || '';
 
     const onClick = useCallback(() => {
         
-    }, [setCurrentItemSrc, EMPTY_STRING]);
+    }, [EMPTY_STRING]);
 
     return !!svgHref ? 
         <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref}/> :

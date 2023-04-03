@@ -32,6 +32,8 @@ import p2p03 from "../../../imgs/about/p2p-03.png";
 import p2p04 from "../../../imgs/about/p2p-04.png";
 import clipFilters from "../../../clips/replay-viewer/filters.mp4";
 import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
+import clipAnimations from "../../../clips/replay-viewer/animations.mp4";
+import clipAnimationsThumbnail from "../../../clips/replay-viewer/thumbnails/animations-thumbnail.png";
 
 import germany01Thumbnail from "../../../imgs/about/thumbnails/germany-01-thumbnail.jpg";
 import germany02Thumbnail from "../../../imgs/about/thumbnails/germany-02-thumbnail.jpg";
@@ -199,12 +201,12 @@ const sections: CSharpSection[] = [
 						onItemChange={(currentItemSrc) => toggleScrollability(!currentItemSrc)}
 						items={[
 							{
-								description: "Applying Filters",
-								srcMain: clipFilters,
-								srcThumbnail: clipFiltersThumbnail,
+								description: "Animations",
+								srcMain: clipAnimations,
+								srcThumbnail: clipAnimationsThumbnail,
 								videoProps: {
 									overlayProps: {
-										title: "Applying Filters",
+										title: "Animations",
 										text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
 									},
 									autoPlay: true,
