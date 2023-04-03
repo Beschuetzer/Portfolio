@@ -30,3 +30,8 @@ export type Point = {
     x: number;
     y: number;
 }
+
+export type VideoTimeStrings = {
+    durationStr: string;
+    currentTimeStr: string;
+}

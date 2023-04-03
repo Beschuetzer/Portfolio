@@ -20,8 +20,8 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         videoProps,
     } = props;
     const { autoPlay, loop, muted } = videoProps || {};
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const videoContainerRef = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>();
+    const videoContainerRef = useRef<HTMLDivElement>();
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
     //#endregion
 
@@ -43,11 +43,11 @@ export const CarouselVideo = (props: CarouselItemProps) => {
 
     //#region JSX
     return (
-        <div ref={videoContainerRef} className={getClassname({ elementName: 'video-container' })}>
+        <div ref={videoContainerRef as any} className={getClassname({ elementName: 'video-container' })}>
             <>
                 <video
                     className={getClassname({ elementName: 'video' })}
-                    ref={videoRef}
+                    ref={videoRef as any}
                     autoPlay={!!autoPlay}
                     muted={!!muted}
                     loop={!!loop}>

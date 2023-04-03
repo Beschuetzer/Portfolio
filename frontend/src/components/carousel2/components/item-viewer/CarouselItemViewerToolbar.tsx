@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { CLASSNAME__ITEM_VIEWER } from '../../constants'
-import { getClassname } from '../../utils'
+import { getClassname, getFormattedTimeString } from '../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerNextButton } from './CarouselItemViewerNextButton'
 import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton'
@@ -11,14 +11,19 @@ import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekFor
 import { useMousePosition } from '../../hooks/useMousePosition'
 import { useCarouselContext } from '../../context'
 import { CarouselItemViewerToolbarText, CarouselItemViewerToolbarTextProps } from './CarouselItemViewerToolbarText'
+import { CarouselItemViewerProgressBar } from './CarouselItemViewerProgressBar'
+import { VideoTimeStrings } from '../../types'
 
-type CarouselItemViewerToolbarProps = {
-    videoContainerRef: React.RefObject<HTMLDivElement>;
-} & CarouselItemViewerToolbarTextProps;
+export type CarouselItemViewerToolbarProps = {
+    description: string;
+    videoContainerRef: React.MutableRefObject<HTMLDivElement | undefined>;
+    videoRef: React.MutableRefObject<HTMLVideoElement | undefined>;
+};
 
 const CLASSNAME_INNER_CONTAINER = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-button-container` });
 const CLASSNAME_TOOLBAR = `${getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar` })}`;
 const CLASSNAME_TOOLBAR_LEFT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-left` });
+const CLASSNAME_TOOLBAR_MIDDLE = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-middle` });
 const CLASSNAME_TOOLBAR_RIGHT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` });
 const CLASSNAME_VIDEO_CONTAINER_NO_TOOLBAR = getClassname({ elementName: `video-container--no-toolbar` });
 export const CarouselItemViewerToolbar = ({
@@ -28,12 +33,16 @@ export const CarouselItemViewerToolbar = ({
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
     const { options } = useCarouselContext();
-    const [progressBarValue, setProgressBarValue] = useState(0);
     const [isPlayingVideo, setIsPlayingVideo] = useState(true);
     const [isHidden, setIsHidden] = useState(false);
     const shouldHideTimoutRef = useRef<any>(-1);
-    const progressBarRef = useRef<HTMLProgressElement>(null);
+    
     const mousePositionRef = useMousePosition();
+
+    const [timeStrings, setTimeStrings] = useState<VideoTimeStrings>({
+        durationStr: getFormattedTimeString((videoRef.current?.duration) || -1),
+        currentTimeStr: getFormattedTimeString((videoRef.current?.currentTime) || -1),
+    });
     //#endregion
 
     //#region Functions/handlers
@@ -50,49 +59,9 @@ export const CarouselItemViewerToolbar = ({
             videoRef.current.play();
         }
     }, [setIsPlayingVideo]);
-
-    const onProgressBarClick = useCallback((e: MouseEvent) => {
-        const clientX = e.clientX;
-        const progressBar = e.currentTarget as HTMLProgressElement;
-
-        if (!progressBar) return;
-
-        const progressBarBoundingRect = progressBar.getBoundingClientRect();
-        const progressBarLeftX = progressBarBoundingRect.left;
-        const progressBarRightX = progressBarBoundingRect.right;
-        const amountPastLeft = (clientX - progressBarLeftX);
-        const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
-
-        setProgressBarValue(percent);
-        if (videoRef.current) {
-            const video = videoRef.current;
-            video.currentTime = percent * video.duration;
-        }
-    }, [setProgressBarValue]);
     //#endregion
 
     //#region Side Fx
-    useEffect(() => {
-        function onVideoTimeUpdate(e: Event) {
-            const videoElement = e.currentTarget || e.target as any;
-            if (!videoElement) return;
-            const percent = videoElement.currentTime / videoElement.duration;
-            if (percent >= 0 && percent <= 1) {
-                setProgressBarValue(percent);
-            }
-        }
-
-        if (videoRef.current) {
-            videoRef.current.addEventListener('timeupdate', onVideoTimeUpdate);
-        }
-
-        return () => {
-            if (videoRef.current) {
-                videoRef.current.addEventListener('timeupdate', onVideoTimeUpdate);
-            }
-        }
-    })
-
     //Auto-hide after 5sec
     useEffect(() => {
         function handleHide() {
@@ -148,12 +117,7 @@ export const CarouselItemViewerToolbar = ({
 
     return (
         <div className={CLASSNAME_TOOLBAR}>
-            <progress
-                ref={progressBarRef}
-                className={getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })}
-                onClick={onProgressBarClick as any}
-                value={progressBarValue}
-            />
+            <CarouselItemViewerProgressBar videoRef={videoRef} setTimeStrings={setTimeStrings}/>
             <div className={CLASSNAME_INNER_CONTAINER}>
                 <div className={CLASSNAME_TOOLBAR_LEFT}>
                     {isPlayingVideo ?
@@ -165,7 +129,7 @@ export const CarouselItemViewerToolbar = ({
                     <CarouselItemViewerSeekForwardButton />
 
                 </div>
-                <CarouselItemViewerToolbarText description={description || ''} videoRef={videoRef} />
+                <CarouselItemViewerToolbarText description={description || ''} timeStrings={timeStrings} />
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
                     <CarouselItemViewerPreviousButton />
                     <CarouselItemViewerNextButton />
