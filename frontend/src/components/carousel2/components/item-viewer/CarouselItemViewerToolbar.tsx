@@ -72,7 +72,7 @@ export const CarouselItemViewerToolbar = ({
                 videoContainerRef.current.classList?.remove(CLASSNAME_VIDEO_CONTAINER_NO_TOOLBAR);
             }
 
-            if (!!options?.autoHideToolbarDuration && options.autoHideToolbarDuration > 0) {
+            if (!!options?.video?.autoHideToolbarDuration && options.video.autoHideToolbarDuration > 0) {
                 clearTimeout(shouldHideTimoutRef.current);
                 shouldHideTimoutRef.current = setTimeout(() => {
                     setIsHidden(true);
@@ -91,7 +91,7 @@ export const CarouselItemViewerToolbar = ({
                     //         }
                     //     }, 1)
                     // }
-                }, options.autoHideToolbarDuration);
+                }, options.video.autoHideToolbarDuration);
             }
 
         }

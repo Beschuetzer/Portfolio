@@ -180,7 +180,9 @@ const sections: CSharpSection[] = [
 					Here are some photos of enjoyable experiences:
 					<Carousel
 						options={{
-							autoHideToolbarDuration: 500,
+							video: {
+								autoHideToolbarDuration: 500,
+							}
 						}}
 						svgHrefs={{
 							closeButton: "./sprite.svg#icon-close",

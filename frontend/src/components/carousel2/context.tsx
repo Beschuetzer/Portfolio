@@ -29,7 +29,9 @@ export const CURRENT_PAGE_INITIAL = 0;
 export const AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT = 2500;
 
 export const OPTIONS_DEFAULT = {
-    autoHideToolbarDuration: AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT,
+    video: {
+        autoHideToolbarDuration: AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT,
+    },
 } as CarouselOptions;
 const OVERLAY_PROPS_DEFAULT = {
     text: EMPTY_STRING,
