@@ -1,11 +1,14 @@
 Carousel rework:
+  -finish seek and next/last item buttons
   -figure out how to get time strings for video to stay in same spot
+  -handle case where video ends (need to set isPlaying to false)
+  -when clicking play and video is done (at end), restart from beginning
+  -when not moving mouse but repeatedly clicking a button, the video toolbar hides after 2.5sec (click input should reset)
   -add functionality to allow click on video to pause/play 
   -setup viewer (allow passing in customer component and provide a sensible default with options?)
   -get thumbnails rendering
   -add styles
   -add features
-  -when not moving mouse but repeatedly clicking a button, the video toolbar hides after 2.5sec (click input should reset)
 
 React best practices re-work (branch = sitenav_rework)
   -pages with audio need to know when player is open and adjust padding bottom

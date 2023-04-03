@@ -9,7 +9,7 @@ export function getClassname({ elementName, modifiedName }: GetClassname) {
 }
 
 export function getFormattedTimeString(seconds: number) {
-    if (!seconds || seconds < 0) return 'N/A';
+    if (!seconds || seconds < 0) return '0:00';
     const hours = Math.floor(seconds / 3600);
     let remaining = seconds % 3600;
     const minutes = Math.floor(remaining / 60);

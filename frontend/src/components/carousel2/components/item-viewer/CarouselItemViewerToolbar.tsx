@@ -9,7 +9,7 @@ import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousBu
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
 import { useMousePosition } from '../../hooks/useMousePosition'
-import { useCarouselContext } from '../../context'
+import { SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../context'
 import { CarouselItemViewerToolbarText, CarouselItemViewerToolbarTextProps } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from './CarouselItemViewerProgressBar'
 import { VideoTimeStrings } from '../../types'
@@ -59,6 +59,18 @@ export const CarouselItemViewerToolbar = ({
             videoRef.current.play();
         }
     }, [setIsPlayingVideo]);
+
+    const onSeekBackClick = useCallback(() => {
+        if (videoRef.current) {
+            videoRef.current.currentTime -= (options.video?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
+        }
+    }, [setIsPlayingVideo, options, SEEK_AMOUNT_DEFAULT]);
+
+    const onSeekForwardClick = useCallback(() => {
+        if (videoRef.current) {
+            videoRef.current.currentTime += (options.video?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
+        }
+    }, [setIsPlayingVideo, options, SEEK_AMOUNT_DEFAULT])
     //#endregion
 
     //#region Side Fx
@@ -125,8 +137,8 @@ export const CarouselItemViewerToolbar = ({
                         :
                         <CarouselItemViewerPlayButton onClick={onPlayClick} />
                     }
-                    <CarouselItemViewerSeekBackButton />
-                    <CarouselItemViewerSeekForwardButton />
+                    <CarouselItemViewerSeekBackButton onClick={onSeekBackClick}/>
+                    <CarouselItemViewerSeekForwardButton onClick={onSeekForwardClick}/>
 
                 </div>
                 <CarouselItemViewerToolbarText description={description || ''} timeStrings={timeStrings} />

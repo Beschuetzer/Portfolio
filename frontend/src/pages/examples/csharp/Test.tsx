@@ -182,6 +182,7 @@ const sections: CSharpSection[] = [
 						options={{
 							video: {
 								autoHideToolbarDuration: 500,
+								seekAmount: 10000,
 							}
 						}}
 						svgHrefs={{

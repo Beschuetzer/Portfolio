@@ -1,4 +1,3 @@
-import React from 'react'
 import { PlayButton } from '../buttons/PlayButton';
 import { useCarouselContext } from '../../context';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
@@ -9,7 +8,7 @@ type CarouselItemViewerPlayButtonProps = {
 export const CarouselItemViewerPlayButton = ({
     onClick,
 }: CarouselItemViewerPlayButtonProps) => {
-    const { setCurrentItemSrc, currentSvgHrefs } = useCarouselContext();
+    const { currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.playButton || '';
 
     return !!svgHref ? 
