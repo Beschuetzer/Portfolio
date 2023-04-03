@@ -32,7 +32,7 @@ export const CarouselItemViewerToolbar = ({
     videoContainerRef,
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
-    const { options } = useCarouselContext();
+    const { options, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
     const [isPlayingVideo, setIsPlayingVideo] = useState(true);
     const [isHidden, setIsHidden] = useState(false);
     const shouldHideTimoutRef = useRef<any>(-1);
@@ -46,6 +46,16 @@ export const CarouselItemViewerToolbar = ({
     //#endregion
 
     //#region Functions/handlers
+    const onNextItemClick = useCallback(() => {
+        const newIndex = currentItemIndex === currentItems.length - 1 ? 0 : currentItemIndex + 1;
+        setCurrentItemIndex(newIndex);
+    }, [currentItemIndex, currentItems, setCurrentItemIndex])
+
+    const onPreviousItemClick = useCallback(() => {
+        const newIndex = currentItemIndex === 0 ? currentItems.length - 1 : currentItemIndex - 1;
+        setCurrentItemIndex(newIndex);
+    }, [currentItemIndex, currentItems, setCurrentItemIndex])
+
     const onPauseClick = useCallback(() => {
         if (videoRef.current) {
             setIsPlayingVideo((prev) => !prev);
@@ -143,8 +153,8 @@ export const CarouselItemViewerToolbar = ({
                 </div>
                 <CarouselItemViewerToolbarText description={description || ''} timeStrings={timeStrings} />
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
-                    <CarouselItemViewerPreviousButton />
-                    <CarouselItemViewerNextButton />
+                    <CarouselItemViewerPreviousButton onClick={onPreviousItemClick}  />
+                    <CarouselItemViewerNextButton onClick={onNextItemClick}/>
                     <CarouselItemViewerCloseButton />
                 </div>
             </div>
