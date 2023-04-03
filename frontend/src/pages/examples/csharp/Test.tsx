@@ -226,12 +226,12 @@ const sections: CSharpSection[] = [
 								// 		</CSharpCardSection>
 								// 	</div>
 								// ),
-							},
+							},		
 							{
-								//testing no description
-								srcMain: maui01,
-								srcThumbnail: maui01Thumbnail,
-							},
+								srcMain: maui05,
+								srcThumbnail: maui05Thumbnail,
+								description: "Haleakalā Sunset",
+							},					
 							{
 								//testing only main item
 								srcMain: maui02,
@@ -242,14 +242,9 @@ const sections: CSharpSection[] = [
 								description: "Bamboo Forest Waterfall on Maui",
 							},
 							{
-								srcMain: maui04,
-								srcThumbnail: maui04Thumbnail,
-								description: "Stunning Beach, Less than Ideal Sand",
-							},
-							{
-								srcMain: maui05,
-								srcThumbnail: maui05Thumbnail,
-								description: "Haleakalā Sunset",
+								//testing no description
+								srcMain: maui01,
+								srcThumbnail: maui01Thumbnail,
 							},
 							{
 								srcMain: maui06,
@@ -260,6 +255,11 @@ const sections: CSharpSection[] = [
 								srcMain: maui07,
 								srcThumbnail: maui07Thumbnail,
 								description: "Haleakalā Backside 2",
+							},
+							{
+								srcMain: maui04,
+								srcThumbnail: maui04Thumbnail,
+								description: "Stunning Beach, Less than Ideal Sand",
 							},
 						]}
 					/>

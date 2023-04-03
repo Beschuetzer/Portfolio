@@ -58,7 +58,6 @@ export const CarouselProvider = ({
     const [options, setOptions] = useState<CarouselOptions>(OPTIONS_DEFAULT);
 
     useEffect(() => {
-        console.log({currentItems, currentItemIndex, newCurrentItem: currentItems?.[currentItemIndex]})
         setCurrentItem(currentItems?.[currentItemIndex] || {});
     }, [currentItems, currentItemIndex])
 
