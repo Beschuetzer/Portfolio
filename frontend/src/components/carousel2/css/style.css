@@ -313,9 +313,6 @@
   font-size: 1.5rem;
   color: #fff;
 }
-.thumbnail-carousel__item-viewer-toolbar-middle > * {
-  margin-top: 0.5rem;
-}
 .thumbnail-carousel__item-viewer-toolbar-progress {
   transition: transform 0.5s;
   width: calc(100vw - 2rem);
