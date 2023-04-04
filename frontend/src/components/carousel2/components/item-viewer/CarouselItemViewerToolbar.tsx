@@ -126,6 +126,7 @@ export const CarouselItemViewerToolbar = ({
         // }
 
         window.addEventListener('mousemove', handleHide);
+        window.addEventListener('click', handleHide);
         // if (progressBarRef.current) {
         //     progressBarRef.current.addEventListener('mousemove', handleMouseMove);
         // }
@@ -134,6 +135,7 @@ export const CarouselItemViewerToolbar = ({
             //     progressBarRef.current.removeEventListener('mousemove', handleMouseMove);
             // }
             window.removeEventListener('mousemove', handleHide);
+            window.removeEventListener('click', handleHide);
         }
     }, []);
     //#endregion
