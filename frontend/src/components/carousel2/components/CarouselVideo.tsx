@@ -1,14 +1,14 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { getClassname } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
-import { CarouselVideoOverlay as CarouselVideoOverlay, CarouselVideoOverlayProps } from './CarouselVideoOverlay'
+import { CarouselVideoOverlay } from './CarouselVideoOverlay'
 import { CarouselItemViewerToolbar } from './item-viewer/CarouselItemViewerToolbar';
 
 export type CarouselVideoProps = {
     autoPlay?: boolean;
     loop?: boolean;
     muted?: boolean;
-    overlayProps: CarouselVideoOverlayProps;
+    overlayProps: CarouselVideoOverlay;
 }
 
 export const CarouselVideo = (props: CarouselItemProps) => {
@@ -19,6 +19,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         videoProps,
     } = props;
     const { autoPlay, loop, muted } = videoProps || {};
+    const [isVideoPlaying, setIsVideoPlaying] = useState(true);
     const videoRef = useRef<HTMLVideoElement>();
     const videoContainerRef = useRef<HTMLDivElement>();
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
@@ -30,7 +31,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     //#region SideFx
     //#endregion
 
-    //#region JSX
+    //#region JSX    
     return (
         <div ref={videoContainerRef as any} className={getClassname({ elementName: 'item-container' })}>
             <>
@@ -43,8 +44,13 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                     <source src={props.srcMain} type={`video/${type}`}
                 />
                 </video>
-                <CarouselVideoOverlay {...props.videoProps?.overlayProps} />
+                <CarouselVideoOverlay 
+                    isVideoPlaying={isVideoPlaying}
+                    {...props.videoProps?.overlayProps} 
+                />
                 <CarouselItemViewerToolbar
+                    setIsVideoPlaying={setIsVideoPlaying}
+                    isVideoPlaying={isVideoPlaying}
                     isVideo={true}
                     description={description || ''}
                     videoRef={videoRef}

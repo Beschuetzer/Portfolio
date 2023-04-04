@@ -145,6 +145,14 @@
 
         &-overlay {
             @include positionButton();
+            width: $itemViewerModalWidth;
+            max-height: 75%;
+            max-width: 75%;
+            background-color: white;
+            border-radius: calc($itemViewerToolbarMarginHorizontal / 4);
+            padding: $itemViewerToolbarMarginHorizontal;
+            box-shadow: 0 0 0 50vmax rgba(0, 0, 0, .15);
+            transition: opacity $carouselAnimationDuration ease;
         }
     }
 

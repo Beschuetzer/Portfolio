@@ -1,30 +1,31 @@
-import React, { useState } from 'react'
-import { useCarouselContext } from '../context';
+import React, { useEffect } from 'react'
 import { getClassname } from '../utils';
 
-export type CarouselVideoOverlayProps = {
-    /*
+export type CarouselVideoOverlay = {
+   /*
     * This only shows when the video is paused and is an <h3> tag under the hood.
     */
-    title?: string | undefined;
+   title?: string | undefined;
 
-    /*
-    * This only shows when the video is paused and is a <p> tag under the hood.
-    */
-    text?: string | undefined;
+   /*
+   * This only shows when the video is paused and is a <p> tag under the hood.
+   */
+   text?: string | undefined;
 }
+export type CarouselVideoOverlayProps = {
+    /*
+    *This is used internally and determines when the overlay is shown
+    */
+    isVideoPlaying?: boolean;
+} & CarouselVideoOverlay;
 
 export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#region Init
-    const {  } = useCarouselContext();
-    const { title, text } = props;
-
-    //todo: change to visible when paused
-    const [isVisible, setIsVisible] = useState(false);
+    const { isVideoPlaying, title, text } = props;
     //#endregion
 
     //#region JSX
-    const visibilityStyle = isVisible ? '' : getClassname({ modifiedName: "hidden" });
+    const visibilityStyle = isVideoPlaying ? getClassname({ modifiedName: "hidden" }) : '';
     const classnameToUse = `${getClassname({ elementName: 'video-overlay' })} ${visibilityStyle}`;
 
     return (

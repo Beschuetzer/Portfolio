@@ -8,7 +8,6 @@ import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton'
 import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousButton'
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
-import { useMousePosition } from '../../hooks/useMousePosition'
 import { SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../context'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from './CarouselItemViewerProgressBar'
@@ -18,7 +17,9 @@ export type CarouselItemViewerToolbarProps = {
     description: string;
     itemContainerRef: React.MutableRefObject<HTMLDivElement | undefined> | null;
     isVideo: boolean;
-    videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | null;
+    isVideoPlaying?: boolean;
+    setIsVideoPlaying?: React.Dispatch<React.SetStateAction<boolean>>;
+    videoRef?: React.MutableRefObject<HTMLVideoElement | undefined> | null;
 };
 
 const CLASSNAME_INNER_CONTAINER = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-container` });
@@ -30,11 +31,12 @@ export const CarouselItemViewerToolbar = ({
     description,
     isVideo,
     itemContainerRef,
+    isVideoPlaying,
+    setIsVideoPlaying,
     videoRef,
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
     const { options, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
-    const [isPlayingVideo, setIsPlayingVideo] = useState(true);
     const shouldHideTimoutRef = useRef<any>(-1);
     const [timeStrings, setTimeStrings] = useState<VideoTimeStrings>({
         durationStr: getFormattedTimeString((videoRef?.current?.duration) || -1),
@@ -54,30 +56,30 @@ export const CarouselItemViewerToolbar = ({
     }, [currentItemIndex, currentItems, setCurrentItemIndex])
 
     const onPauseClick = useCallback(() => {
-        if (videoRef?.current) {
-            setIsPlayingVideo((prev) => !prev);
+        if (videoRef?.current && setIsVideoPlaying) {
+            setIsVideoPlaying((prev) => !prev);
             videoRef?.current.pause();
         }
-    }, [setIsPlayingVideo]);
+    }, [setIsVideoPlaying]);
 
     const onPlayClick = useCallback(() => {
-        if (videoRef?.current) {
-            setIsPlayingVideo((prev) => !prev);
+        if (videoRef?.current && setIsVideoPlaying) {
+            setIsVideoPlaying((prev) => !prev);
             videoRef?.current.play();
         }
-    }, [setIsPlayingVideo]);
+    }, [setIsVideoPlaying]);
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
             videoRef.current.currentTime -= (options.video?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
-    }, [setIsPlayingVideo, options, SEEK_AMOUNT_DEFAULT]);
+    }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT]);
 
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
             videoRef.current.currentTime += (options.video?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
-    }, [setIsPlayingVideo, options, SEEK_AMOUNT_DEFAULT])
+    }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT])
     //#endregion
 
     //#region Side Fx
@@ -101,7 +103,7 @@ export const CarouselItemViewerToolbar = ({
         }
 
         function handleVideoEnd() {
-            setIsPlayingVideo(false);
+            setIsVideoPlaying && setIsVideoPlaying(false);
         }
 
         window.addEventListener('mousemove', handleAutoHide);
@@ -127,7 +129,7 @@ export const CarouselItemViewerToolbar = ({
             <div className={CLASSNAME_INNER_CONTAINER}>
                 {videoRef ? (
                     <div className={CLASSNAME_TOOLBAR_LEFT}>
-                        {isPlayingVideo ?
+                        {isVideoPlaying ?
                             <CarouselItemViewerPauseButton onClick={onPauseClick} />
                             :
                             <CarouselItemViewerPlayButton onClick={onPlayClick} />

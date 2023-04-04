@@ -20,7 +20,6 @@ export const CarouselImage = (props: CarouselItemProps) => {
                 <CarouselItemViewerToolbar
                     isVideo={false}
                     description={description || ''}
-                    videoRef={null}
                     itemContainerRef={containerRef}
                 />
             </>
