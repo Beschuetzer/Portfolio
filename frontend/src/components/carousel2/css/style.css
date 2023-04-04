@@ -8,7 +8,7 @@
   opacity: 0;
 }
 
-.thumbnail-carousel--visible, .thumbnail-carousel__video-container:hover .thumbnail-carousel__item-viewer-toolbar {
+.thumbnail-carousel--visible, .thumbnail-carousel__item-container:hover .thumbnail-carousel__item-viewer-toolbar {
   pointer-events: all;
   visibility: visible;
   opacity: 1;
@@ -219,6 +219,23 @@
   overflow: hidden;
   transition: border-radius 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
 }
+.thumbnail-carousel__item-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__item-viewer-toolbar {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.thumbnail-carousel__item-container img {
+  width: 100vw;
+  max-height: 100vh;
+  object-fit: contain;
+}
 .thumbnail-carousel__item-thumbnail {
   object-fit: cover;
   object-position: top;
@@ -277,26 +294,26 @@
   right: 0;
   top: auto;
 }
-.thumbnail-carousel__item-viewer-toolbar-button-container {
+.thumbnail-carousel__item-viewer-toolbar-container {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   column-gap: 2rem;
 }
-.thumbnail-carousel__item-viewer-toolbar-button-container > * {
+.thumbnail-carousel__item-viewer-toolbar-container > * {
   display: flex;
   align-items: center;
   justify-content: space-between;
   column-gap: 2rem;
 }
-.thumbnail-carousel__item-viewer-toolbar-button-container > *:nth-child(2) {
+.thumbnail-carousel__item-viewer-toolbar-middle {
   justify-content: flex-start;
   margin-right: auto;
   font-size: 1.5rem;
   color: #fff;
 }
-.thumbnail-carousel__item-viewer-toolbar-button-container > *:nth-child(2) > * {
+.thumbnail-carousel__item-viewer-toolbar-middle > * {
   margin-top: 0.5rem;
 }
 .thumbnail-carousel__item-viewer-toolbar-progress {
@@ -325,23 +342,6 @@
   width: 100vw;
   object-fit: contain;
   max-height: 100vh;
-}
-.thumbnail-carousel__video-container {
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-@media only screen and (max-width: 655px) {
-  .thumbnail-carousel__video-container {
-    position: static;
-  }
-}
-.thumbnail-carousel__video-container--no-toolbar .thumbnail-carousel__item-viewer-toolbar {
-  opacity: 0 !important;
-  pointer-events: none !important;
 }
 .thumbnail-carousel__video-overlay {
   position: absolute;

@@ -28,8 +28,8 @@ export const CarouselItemViewerProgressBar = ({
         const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
 
         setProgressBarValue(percent);
-        if (videoRef.current) {
-            const video = videoRef.current;
+        if (videoRef?.current) {
+            const video = videoRef?.current;
             video.currentTime = percent * video.duration;
         }
     }, [setProgressBarValue]);
@@ -53,12 +53,12 @@ export const CarouselItemViewerProgressBar = ({
             });
         }
 
-        if (videoRef.current) {
+        if (videoRef?.current) {
             videoRef.current.addEventListener('timeupdate', onVideoTimeUpdate);
         }
 
         return () => {
-            if (videoRef.current) {
+            if (videoRef?.current) {
                 videoRef.current.addEventListener('timeupdate', onVideoTimeUpdate);
             }
         }

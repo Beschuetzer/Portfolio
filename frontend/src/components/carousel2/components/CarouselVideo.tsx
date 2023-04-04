@@ -32,7 +32,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
 
     //#region JSX
     return (
-        <div ref={videoContainerRef as any} className={getClassname({ elementName: 'video-container' })}>
+        <div ref={videoContainerRef as any} className={getClassname({ elementName: 'item-container' })}>
             <>
                 <video
                     className={getClassname({ elementName: 'video' })}
@@ -46,10 +46,11 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                 </video>
                 <CarouselVideoOverlay {...props.videoProps?.overlayProps} />
                 <CarouselItemViewerToolbar 
+                    isVideo={true}
                     description={description || ''}
                     videoRef={videoRef} 
-                    videoContainerRef={videoContainerRef} 
-                    />
+                    itemContainerRef={videoContainerRef} 
+                />
             </>
         </div>
     );

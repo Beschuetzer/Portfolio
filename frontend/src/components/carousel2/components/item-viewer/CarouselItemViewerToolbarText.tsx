@@ -5,6 +5,7 @@ import { VideoTimeStrings } from '../../types';
 
 export type CarouselItemViewerToolbarTextProps = {
     description: string;
+    isVideo: boolean;
     timeStrings: VideoTimeStrings;
 }
 
@@ -12,13 +13,18 @@ const CLASSNAME_TOOLBAR_MIDDLE = getClassname({ elementName: `${CLASSNAME__ITEM_
 
 export const CarouselItemViewerToolbarText = ({
     description,
+    isVideo = false,
     timeStrings,
 }: CarouselItemViewerToolbarTextProps) => {
     return (
         <span className={CLASSNAME_TOOLBAR_MIDDLE}>
-            <span>{timeStrings.currentTimeStr}</span>
-            <span>/</span>
-            <span>{timeStrings.durationStr}</span>
+            {isVideo ? (
+                <>
+                    <span>{timeStrings.currentTimeStr}</span>
+                    <span>/</span>
+                    <span>{timeStrings.durationStr}</span>
+                </>
+            ) : null}
             <span>{description}</span>
         </span>
     )

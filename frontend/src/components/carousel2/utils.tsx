@@ -1,4 +1,4 @@
-import { CLASSNAME__ROOT } from "./constants";
+import { CLASSNAME__ROOT, VIDEO_EXTENSIONS } from "./constants";
 import { Point } from "./types";
 type GetClassname = {
     elementName?: string;
@@ -25,6 +25,12 @@ export function getIsPointInsideElement(point: Point, element: HTMLElement | nul
     const isValidX = x >= left && x <= right;
     const isValidY = y >= top && y <= bottom;
     return isValidX && isValidY;
+}
+
+export function getIsVideo(pathname: string) {
+    return pathname?.match(
+		getRegexStringFromStringArray(VIDEO_EXTENSIONS),
+	);
 }
 
 export function getRegexStringFromStringArray(fileExtensions: string[]) {

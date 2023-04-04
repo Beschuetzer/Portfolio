@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { CarouselImage } from '../CarouselImage';
 import { CarouselVideo } from '../CarouselVideo';
-import { CLASSNAME__ITEM_VIEWER, VIDEO_EXTENSIONS } from '../../constants';
+import { CLASSNAME__ITEM_VIEWER } from '../../constants';
 import { useCarouselContext } from '../../context'
-import { getClassname, getRegexStringFromStringArray } from '../../utils';
+import { getClassname, getIsVideo } from '../../utils';
 
 export const CarouselItemViewer = () => {
     //#region Init
@@ -11,9 +11,7 @@ export const CarouselItemViewer = () => {
     const { currentItem } = useCarouselContext();
     const [isVisible, setisVisible] = useState(Object.keys(currentItem || {})?.length > 0);
     const currentItemSrc = currentItem?.srcMain || '';
-    const isVideo = currentItemSrc?.match(
-		getRegexStringFromStringArray(VIDEO_EXTENSIONS),
-	);
+    const isVideo = getIsVideo(currentItemSrc);
     //#endregion
 
     //#region Function/Handlers
