@@ -41,15 +41,14 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                     muted={!!muted}
                     loop={!!loop}>
                     <source src={props.srcMain} type={`video/${type}`}
-                    onChange={(e) => console.log(e)}
-                    />
+                />
                 </video>
                 <CarouselVideoOverlay {...props.videoProps?.overlayProps} />
-                <CarouselItemViewerToolbar 
+                <CarouselItemViewerToolbar
                     isVideo={true}
                     description={description || ''}
-                    videoRef={videoRef} 
-                    itemContainerRef={videoContainerRef} 
+                    videoRef={videoRef}
+                    itemContainerRef={videoContainerRef}
                 />
             </>
         </div>

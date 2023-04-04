@@ -35,11 +35,7 @@ export const CarouselItemViewerToolbar = ({
     //#region Init
     const { options, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
     const [isPlayingVideo, setIsPlayingVideo] = useState(true);
-    const [isHidden, setIsHidden] = useState(false);
     const shouldHideTimoutRef = useRef<any>(-1);
-
-    const mousePositionRef = useMousePosition();
-
     const [timeStrings, setTimeStrings] = useState<VideoTimeStrings>({
         durationStr: getFormattedTimeString((videoRef?.current?.duration) || -1),
         currentTimeStr: getFormattedTimeString((videoRef?.current?.currentTime) || -1),
@@ -85,63 +81,46 @@ export const CarouselItemViewerToolbar = ({
     //#endregion
 
     //#region Side Fx
-    //Auto-hide after 5sec
     useEffect(() => {
-        function handleHide() {
-            setIsHidden(false);
+        function handleAutoHide() {
 
             if (itemContainerRef?.current) {
-                //todo: hide cursor? itemContainerRef.current.classList.remove(`${CLASSNAME__ROOT}--cursor-none`);
                 itemContainerRef.current.classList?.remove(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
             }
 
             if (!!options?.video?.autoHideToolbarDuration && options.video.autoHideToolbarDuration > 0) {
                 clearTimeout(shouldHideTimoutRef.current);
                 shouldHideTimoutRef.current = setTimeout(() => {
-                    setIsHidden(true);
-                    console.log({itemContainerRef})
 
                     if (itemContainerRef?.current) {
                         itemContainerRef.current.classList?.add(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
                     }
-
-                    //todo: hide cursor too?
-                    // const isInsideVideoContainer = getIsPointInsideElement(mousePositionRef.current, itemContainerRef.current);
-                    // if (isInsideVideoContainer) {
-                    //     console.log("none");
-
-                    //     setTimeout(() => {
-                    //         if (itemContainerRef.current) {
-                    //             itemContainerRef.current.classList.add(`${CLASSNAME__ROOT}--cursor-none`);
-                    //         }
-                    //     }, 1)
-                    // }
                 }, options.video.autoHideToolbarDuration);
             }
 
         }
 
-        // function handleMouseMove(e: any) {
-        // onProgressBarClick(e);
-        // }
+        function handleVideoEnd() {
+            setIsPlayingVideo(false);
+        }
 
-        window.addEventListener('mousemove', handleHide);
-        window.addEventListener('click', handleHide);
-        // if (progressBarRef.current) {
-        //     progressBarRef.current.addEventListener('mousemove', handleMouseMove);
-        // }
+        window.addEventListener('mousemove', handleAutoHide);
+        window.addEventListener('click', handleAutoHide);
+        if (videoRef?.current) {
+            videoRef.current.addEventListener('ended', handleVideoEnd);
+        }
+       
         return () => {
-            // if (progressBarRef.current) {
-            //     progressBarRef.current.removeEventListener('mousemove', handleMouseMove);
-            // }
-            window.removeEventListener('mousemove', handleHide);
-            window.removeEventListener('click', handleHide);
+            window.removeEventListener('mousemove', handleAutoHide);
+            window.removeEventListener('click', handleAutoHide);
+            if (videoRef?.current) {
+                videoRef.current.removeEventListener('ended', handleVideoEnd);
+            }
         }
     }, []);
     //#endregion
 
     //#region JSX
-
     return (
         <div className={CLASSNAME_TOOLBAR}>
             {videoRef ? <CarouselItemViewerProgressBar videoRef={videoRef} setTimeStrings={setTimeStrings} /> : null}
