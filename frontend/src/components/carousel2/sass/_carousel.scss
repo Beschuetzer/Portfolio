@@ -64,6 +64,14 @@
             stroke: $itemViewerBackgroundColor;
             stroke-opacity: .15;
             stroke-width: 2px;
+
+            &-inverse {
+                @include button--inverse;
+
+                & * {
+                   @include button--inverse;
+                }
+            }
         }
 
         &-toolbar {
@@ -154,6 +162,16 @@
             box-shadow: 0 0 0 50vmax rgba(0, 0, 0, .15);
             transition: opacity $carouselAnimationDuration ease;
             font-size: $carouselFontSize;
+
+            &-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            & p {
+                padding-right: $itemViewerOverlayParagraphPaddingRight;
+            }
         }
     }
 

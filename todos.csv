@@ -1,5 +1,4 @@
 Carousel rework:
-  -add X to close overlay (and state to remember if user closed it for that overlay)
   -setup viewer (allow passing in customer component and provide a sensible default with options?)
   -get thumbnails rendering
   -use thumbnails to create a preview box that pops up when hovering over next/previous item?

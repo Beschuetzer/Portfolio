@@ -5,11 +5,12 @@ $itemHeight: 150px;
 
 $itemViewerBackgroundColor: #000;
 $itemViewerToolbarBackgroundColor: rgba($itemViewerBackgroundColor, 0);
-$itemViewerButtonLineWidth: 1rem;
+$itemViewerButtonLineWidth: .75rem;
 $itemViewerButtonColor: #fff;
 $itemViewerButtonOpacityHover: 1;
 $itemViewerButtonOpacityNormal: .75;
 $itemViewerButtonWidth: 3rem;
+$itemViewerOverlayParagraphPaddingRight: 4rem;
 $itemViewerToolbarMarginHorizontal: 2rem;
 $itemViewerProgressHeight: .5rem;
 

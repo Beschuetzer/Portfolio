@@ -9,6 +9,13 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
             width: $itemViewerButtonLineWidth;
             height: $itemViewerButtonWidth;
             @include positionButton(var(--rotation));
+
+            &-inverse {
+                background-color: $itemViewerBackgroundColor;
+                margin-top: 0;
+                width: calc($itemViewerButtonLineWidth * .5);
+                height: calc($itemViewerButtonWidth * .75);
+            }
         }
 
         &-left {
@@ -28,6 +35,11 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
         &-right {
             @include pauseBar($width: calc($itemViewerButtonLineWidth / 2));
         }
+    }
+
+    &--inverse {
+        transform: translateX(calc($itemViewerButtonWidth * .2));
+        margin-top: 0;
     }
 
     &--pause {

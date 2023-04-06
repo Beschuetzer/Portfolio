@@ -4,13 +4,13 @@ import { ButtonProps } from "../../types";
 type PreviousButtonProps = {} & ButtonProps;
 
 export const PreviousButton = ({
-    classname = CLASSNAME__BUTTON,
+    className = CLASSNAME__BUTTON,
     onClick = () => null,
 }: PreviousButtonProps) => {
   return (
-    <button onClick={onClick} className={classname}>
-        <div className={`${classname}--previous-left` }/>
-        <div className={`${classname}--previous-right` }/>
+    <button onClick={onClick} className={className}>
+        <div className={`${className}--previous-left` }/>
+        <div className={`${className}--previous-right` }/>
     </button>
   )
 }

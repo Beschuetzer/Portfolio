@@ -1,5 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useState } from 'react'
 import { getClassname } from '../utils';
+import { CloseButton } from './buttons/CloseButton';
+import { CarouselItemViewerCloseButton } from './item-viewer/CarouselItemViewerCloseButton';
+import { useCarouselContext } from '../context';
+import { CarouselItemViewerCustomButton } from './item-viewer/CarouselItemViewerCustomButton';
 
 export type CarouselVideoOverlay = {
    /*
@@ -22,15 +26,38 @@ export type CarouselVideoOverlayProps = {
 export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#region Init
     const { isVideoPlaying, title, text } = props;
+    const [isVisible, setIsVisible] = useState(true);
+
+    const { currentSvgHrefs } = useCarouselContext();
+    const svgHref = currentSvgHrefs?.closeButton || '';
+    //#endregion
+
+    //#region Handlers/Functions
+    const onCloseClick = useCallback((e: MouseEvent) => {
+        stopPropagation(e)
+        setIsVisible(false);
+    }, [setIsVisible])
+
+    function stopPropagation(e: MouseEvent) {
+        e.stopPropagation();
+    }
     //#endregion
 
     //#region JSX
-    const visibilityStyle = isVideoPlaying ? getClassname({ modifiedName: "hidden" }) : '';
-    const classnameToUse = `${getClassname({ elementName: 'video-overlay' })} ${visibilityStyle}`;
+    const visibilityStyle = isVideoPlaying || !isVisible ? getClassname({ modifiedName: "hidden" }) : '';
+    const className = getClassname({ elementName: 'video-overlay' });
+    const classNameToUse = `${className} ${visibilityStyle}`;
 
     return (
-        <div className={classnameToUse}>
-            <h3>{title}</h3>
+        <div className={classNameToUse} onClick={stopPropagation as any}>
+            <div className={`${className}-header`}>
+                <h3>{title}</h3>
+                {!!svgHref ? (
+                    <CarouselItemViewerCustomButton onClick={onCloseClick as any} xlinkHref={svgHref} classNameModifier='inverse'/>
+                ) : (
+                    <CloseButton onClick={onCloseClick as any} classNameModifier='inverse'/>
+                )}
+            </div>
             <p>{text}</p>
         </div>
     )

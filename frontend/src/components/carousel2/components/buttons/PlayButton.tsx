@@ -5,12 +5,12 @@ import { ButtonProps } from "../../types";
 type PlayButtonProps = {} & ButtonProps;
 
 export const PlayButton = ({
-    classname = CLASSNAME__BUTTON,
+    className = CLASSNAME__BUTTON,
     onClick = () => null,
 }: PlayButtonProps) => {
   return (
-    <button onClick={onClick} className={classname}>
-        <div className={`${classname}--play-triangle` }/>
+    <button onClick={onClick} className={className}>
+        <div className={`${className}--play-triangle` }/>
     </button>
   )
 }

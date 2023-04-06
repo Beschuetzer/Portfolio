@@ -4,13 +4,13 @@ import { ButtonProps } from "../../types";
 type SeekForwardButtonProps = {} & ButtonProps;
 
 export const SeekForwardButton = ({
-    classname = CLASSNAME__BUTTON,
+    className = CLASSNAME__BUTTON,
     onClick = () => null,
 }: SeekForwardButtonProps) => {
   return (
-    <button onClick={onClick} className={classname}>
-        <div className={`${classname}--seek-forward-left` }/>
-        <div className={`${classname}--seek-forward-right` }/>
+    <button onClick={onClick} className={className}>
+        <div className={`${className}--seek-forward-left` }/>
+        <div className={`${className}--seek-forward-right` }/>
     </button>
   )
 }

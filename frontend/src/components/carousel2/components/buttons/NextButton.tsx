@@ -4,13 +4,13 @@ import { ButtonProps } from "../../types";
 type NextButtonProps = {} & ButtonProps;
 
 export const NextButton = ({
-    classname = CLASSNAME__BUTTON,
+    className = CLASSNAME__BUTTON,
     onClick = () => null,
 }: NextButtonProps) => {
   return (
-    <button onClick={onClick} className={classname}>
-        <div className={`${classname}--next-left` }/>
-        <div className={`${classname}--next-right` }/>
+    <button onClick={onClick} className={className}>
+        <div className={`${className}--next-left` }/>
+        <div className={`${className}--next-right` }/>
     </button>
   )
 }

@@ -24,6 +24,11 @@
     }
 }
 
+@mixin button--inverse {
+    fill: $itemViewerBackgroundColor;
+    stroke: $itemViewerButtonColor;
+}
+
 @mixin pauseBar(
     $width: $itemViewerButtonLineWidth,
     $height: $pauseButtonVerticalHeight,

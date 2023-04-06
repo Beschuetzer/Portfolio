@@ -4,13 +4,13 @@ import { ButtonProps } from "../../types";
 type PauseButtonProps = {} & ButtonProps;
 
 export const PauseButton = ({
-    classname = CLASSNAME__BUTTON,
+    className = CLASSNAME__BUTTON,
     onClick = () => null,
 }: PauseButtonProps) => {
   return (
-    <button onClick={onClick} className={classname}>
-        <div className={`${classname}--pause-left` }/>
-        <div className={`${classname}--pause-right` }/>
+    <button onClick={onClick} className={className}>
+        <div className={`${className}--pause-left` }/>
+        <div className={`${className}--pause-right` }/>
     </button>
   )
 }
