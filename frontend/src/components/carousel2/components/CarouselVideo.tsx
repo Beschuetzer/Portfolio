@@ -26,6 +26,16 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     //#endregion
 
     //#region Functions/Handlers
+    function onVideoClick() {
+        if (videoRef.current) {
+            if (isVideoPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+        }
+        setIsVideoPlaying((isPlaying) => !isPlaying);
+    }
     //#endregion
 
     //#region SideFx
@@ -33,7 +43,11 @@ export const CarouselVideo = (props: CarouselItemProps) => {
 
     //#region JSX    
     return (
-        <div ref={videoContainerRef as any} className={getClassname({ elementName: 'item-container' })}>
+        <div 
+            ref={videoContainerRef as any} 
+            className={getClassname({ elementName: 'item-container' })}
+            onClick={onVideoClick}
+        >
             <>
                 <video
                     className={getClassname({ elementName: 'video' })}

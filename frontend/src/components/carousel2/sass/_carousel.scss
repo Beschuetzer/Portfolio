@@ -153,6 +153,7 @@
             padding: $itemViewerToolbarMarginHorizontal;
             box-shadow: 0 0 0 50vmax rgba(0, 0, 0, .15);
             transition: opacity $carouselAnimationDuration ease;
+            font-size: $carouselFontSize;
         }
     }
 

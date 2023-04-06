@@ -80,6 +80,10 @@ export const CarouselItemViewerToolbar = ({
             videoRef.current.currentTime += (options.video?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
     }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT])
+
+    function onToolbarClick(e: MouseEvent) {
+        e.stopPropagation();
+    }
     //#endregion
 
     //#region Side Fx
@@ -124,7 +128,7 @@ export const CarouselItemViewerToolbar = ({
 
     //#region JSX
     return (
-        <div className={CLASSNAME_TOOLBAR}>
+        <div onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR}>
             {videoRef ? <CarouselItemViewerProgressBar videoRef={videoRef} setTimeStrings={setTimeStrings} /> : null}
             <div className={CLASSNAME_INNER_CONTAINER}>
                 {videoRef ? (
