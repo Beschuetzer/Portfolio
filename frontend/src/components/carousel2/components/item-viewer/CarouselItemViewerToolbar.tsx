@@ -8,7 +8,7 @@ import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton'
 import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousButton'
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
-import { SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../context'
+import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../context'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from './CarouselItemViewerProgressBar'
 import { VideoTimeStrings } from '../../types'
@@ -45,14 +45,35 @@ export const CarouselItemViewerToolbar = ({
     //#endregion
 
     //#region Functions/handlers
+    const handleAutoHide = useCallback(() => {
+        if (currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) return;
+        console.log("handleAutoHide");
+
+        if (itemContainerRef?.current) {
+            itemContainerRef.current.classList?.remove(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
+        }
+
+        if (!!options?.video?.autoHideToolbarDuration && options.video.autoHideToolbarDuration > 0) {
+            clearTimeout(shouldHideTimoutRef.current);
+            shouldHideTimoutRef.current = setTimeout(() => {
+
+                if (itemContainerRef?.current) {
+                    itemContainerRef.current.classList?.add(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
+                }
+            }, options.video.autoHideToolbarDuration);
+        }
+    }, [currentItemIndex, CURRENT_ITEM_INDEX_INITIAL, itemContainerRef, options, shouldHideTimoutRef, CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR]);
+
     const onNextItemClick = useCallback(() => {
         const newIndex = currentItemIndex === currentItems.length - 1 ? 0 : currentItemIndex + 1;
         setCurrentItemIndex(newIndex);
-    }, [currentItemIndex, currentItems, setCurrentItemIndex])
+        handleAutoHide();
+    }, [currentItemIndex, currentItems, setCurrentItemIndex, handleAutoHide])
 
     const onPreviousItemClick = useCallback(() => {
         const newIndex = currentItemIndex === 0 ? currentItems.length - 1 : currentItemIndex - 1;
         setCurrentItemIndex(newIndex);
+        handleAutoHide();
     }, [currentItemIndex, currentItems, setCurrentItemIndex])
 
     const onPauseClick = useCallback(() => {
@@ -60,6 +81,7 @@ export const CarouselItemViewerToolbar = ({
             setIsVideoPlaying((prev) => !prev);
             videoRef?.current.pause();
         }
+        handleAutoHide();
     }, [setIsVideoPlaying]);
 
     const onPlayClick = useCallback(() => {
@@ -67,18 +89,21 @@ export const CarouselItemViewerToolbar = ({
             setIsVideoPlaying((prev) => !prev);
             videoRef?.current.play();
         }
+        handleAutoHide();
     }, [setIsVideoPlaying]);
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
             videoRef.current.currentTime -= (options.video?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
+        handleAutoHide();
     }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT]);
 
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
             videoRef.current.currentTime += (options.video?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
+        handleAutoHide();
     }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT])
 
     function onToolbarClick(e: MouseEvent) {
@@ -88,24 +113,6 @@ export const CarouselItemViewerToolbar = ({
 
     //#region Side Fx
     useEffect(() => {
-        function handleAutoHide() {
-
-            if (itemContainerRef?.current) {
-                itemContainerRef.current.classList?.remove(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
-            }
-
-            if (!!options?.video?.autoHideToolbarDuration && options.video.autoHideToolbarDuration > 0) {
-                clearTimeout(shouldHideTimoutRef.current);
-                shouldHideTimoutRef.current = setTimeout(() => {
-
-                    if (itemContainerRef?.current) {
-                        itemContainerRef.current.classList?.add(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
-                    }
-                }, options.video.autoHideToolbarDuration);
-            }
-
-        }
-
         function handleVideoEnd() {
             setIsVideoPlaying && setIsVideoPlaying(false);
         }
@@ -115,7 +122,7 @@ export const CarouselItemViewerToolbar = ({
         if (videoRef?.current) {
             videoRef.current.addEventListener('ended', handleVideoEnd);
         }
-       
+
         return () => {
             window.removeEventListener('mousemove', handleAutoHide);
             window.removeEventListener('click', handleAutoHide);
@@ -123,7 +130,7 @@ export const CarouselItemViewerToolbar = ({
                 videoRef.current.removeEventListener('ended', handleVideoEnd);
             }
         }
-    }, []);
+    }, [handleAutoHide]);
     //#endregion
 
     //#region JSX
