@@ -115,6 +115,20 @@
                 color: $itemViewerButtonColor;
             }
 
+            &-preview {
+                --width: #{$itemViewerToolbarPreviewWidth};
+                --height: calc(var(--width) / 2);
+                @include positionAbsolute(
+                    $top: calc(-1 * var(--height)), 
+                    $left: auto, 
+                    $right: calc(#{$itemViewerToolbarMarginHorizontal} / 2), 
+                    $bottom: auto
+                );
+                width: var(--width);
+                height: var(--height);
+                background-color: $itemViewerBackgroundColor;
+            }
+
             &-progress {
                 transition: transform $carouselAnimationDuration;
                 width: calc(100vw - #{$itemViewerToolbarMarginHorizontal});

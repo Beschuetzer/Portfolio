@@ -12,6 +12,7 @@ import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton'
 import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousButton'
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
+import { CarouselItemViewerToolbarPreview } from './CarouselItemViewerToolbarPreview'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -134,6 +135,7 @@ export const CarouselItemViewerToolbar = ({
     //#region JSX
     return (
         <div onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR}>
+            <CarouselItemViewerToolbarPreview />
             {videoRef ? <CarouselItemViewerProgressBar videoRef={videoRef} setTimeStrings={setTimeStrings} /> : null}
             <div className={CLASSNAME_INNER_CONTAINER}>
                 {videoRef ? (

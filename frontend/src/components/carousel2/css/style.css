@@ -331,6 +331,18 @@
   font-size: 1.5rem;
   color: #fff;
 }
+.thumbnail-carousel__item-viewer-toolbar-preview {
+  --width: 20rem;
+  --height: calc(var(--width) / 2);
+  position: absolute;
+  bottom: auto;
+  left: auto;
+  right: calc(2rem / 2);
+  top: calc(-1 * var(--height));
+  width: var(--width);
+  height: var(--height);
+  background-color: #000;
+}
 .thumbnail-carousel__item-viewer-toolbar-progress {
   transition: transform 0.5s;
   width: calc(100vw - 2rem);
