@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { CLASSNAME__ROOT } from '../constants';
 import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../context';
-import { getGuid } from '../utils';
+import { getGuid, toggleFullScreenMode } from '../utils';
 import { CarouselInstanceProvider } from './CarouselInstanceProvider';
 import { CarouselItemProps, CarouselItem } from './CarouselItem';
 import { CarouselOptions, CarouselSvgHrefs } from '../types';
@@ -31,7 +31,7 @@ export const Carousel = ({
 	onOpen = () => null,
 }: CarouselProps) => {
 	//#region Init
-	const { currentItemIndex, currentItems, setCurrentItems, currentCarouselId } = useCarouselContext();
+	const { currentItemIndex, currentItems, setCurrentItems, currentCarouselId, itemViewerRef } = useCarouselContext();
 	const idRef = useRef<string>(getGuid());
 
 	//#endregion
@@ -41,7 +41,9 @@ export const Carousel = ({
 
 	//#region Side Fx
 	useEffect(() => {
+		if (currentCarouselId !== idRef.current) return;
 		onItemChange && onItemChange(!!currentItems?.[currentItemIndex] || false);
+		toggleFullScreenMode(itemViewerRef.current, currentItemIndex);
 	}, [currentItemIndex, currentItems])
 
 	useEffect(() => {

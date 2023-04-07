@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, forwardRef } from 'react'
 import { CarouselImage } from '../CarouselImage';
 import { CarouselVideo } from '../CarouselVideo';
 import { CLASSNAME__ITEM_VIEWER } from '../../constants';
 import { useCarouselContext } from '../../context'
 import { getClassname, getIsVideo } from '../../utils';
 
-export const CarouselItemViewer = () => {
+type CarouselItemViewerProps = {}
+export const CarouselItemViewer = forwardRef<HTMLElement, CarouselItemViewerProps> ((props, ref) => {
     //#region Init
     //todo: needs to be hidden until an item is clicked
     const { currentItem } = useCarouselContext();
@@ -31,9 +32,9 @@ export const CarouselItemViewer = () => {
     const containerClassname = `${getClassname({elementName: CLASSNAME__ITEM_VIEWER})} ${visibilityStyle}`;
   
     return (
-        <section className={containerClassname}>
+        <section ref={ref} className={containerClassname}>
             <ItemToRender {...currentItem}/>
         </section>
     )
     //#endregion
-}
+})

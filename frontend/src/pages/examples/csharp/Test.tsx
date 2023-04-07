@@ -198,7 +198,6 @@ const sections: CSharpSection[] = [
 							seekForwardButton: "./sprite.svg#icon-forward",
 							stopButton: "./sprite.svg#icon-stop",
 						}}
-						onItemChange={(currentItemSrc) => toggleScrollability(!currentItemSrc)}
 						items={[
 							{
 								description: "Animations",
@@ -267,7 +266,7 @@ const sections: CSharpSection[] = [
 				<CSharpCardSection title="Seeing the world">
 					Here are some photos of enjoyable experiences:
 					<Carousel
-						onItemChange={(currentItemSrc) => toggleScrollability(!currentItemSrc)}
+						onItemChange={() => console.log('test')}
 						items={[
 							{
 								description: "Applying Filters",

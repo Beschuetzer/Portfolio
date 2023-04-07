@@ -1,4 +1,5 @@
 import { CLASSNAME__ROOT, VIDEO_EXTENSIONS } from "./constants";
+import { CURRENT_ITEM_INDEX_INITIAL } from "./context";
 import { Point } from "./types";
 type GetClassname = {
     elementName?: string;
@@ -49,4 +50,20 @@ export function getGuid() {
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
+}
+
+export async function toggleFullScreenMode(element: HTMLElement | null, currentItemIndex: number) {
+	const isFullScreenPossible = document.fullscreenEnabled;
+    console.log({isFullScreenPossible, element});
+    
+    if (!isFullScreenPossible || !element) return;
+    const itemInFullScreenMode = document.fullscreenElement;
+    if (itemInFullScreenMode) {
+        if (currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) {
+            document.exitFullscreen();
+        }
+    } else {
+        const result = await element.requestFullscreen();
+        console.log({result});
+    }
 }

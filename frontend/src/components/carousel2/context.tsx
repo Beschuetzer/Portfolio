@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useEffect, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { CarouselItemProps } from "./components/CarouselItem";
 import { CarouselVideoOverlayProps } from "./components/CarouselVideoOverlay";
 import { EMPTY_STRING } from "./constants";
@@ -18,6 +18,7 @@ type CarouselValueProps = {
     currentPage: number;
     currentSvgHrefs: CarouselSvgHrefs | undefined;
     currentVideoOverlayProps: CarouselVideoOverlayProps;
+    itemViewerRef: React.RefObject<HTMLElement>;
     options: CarouselOptions;
     setCurrentCarouselId: React.Dispatch<React.SetStateAction<string>>; 
     setCurrentItemIndex: React.Dispatch<React.SetStateAction<number>>;
@@ -56,6 +57,7 @@ export const CarouselProvider = ({
     const [currentVideoOverlayProps, setCurrentVideoOverlayProps] = useState<CarouselVideoOverlayProps>(OVERLAY_PROPS_DEFAULT);
     const [currentSvgHrefs, setCurrentSvgHrefs] = useState<CarouselSvgHrefs>()
     const [options, setOptions] = useState<CarouselOptions>(OPTIONS_DEFAULT);
+    const itemViewerRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
         setCurrentItem(currentItems?.[currentItemIndex] || {});
@@ -71,6 +73,7 @@ export const CarouselProvider = ({
                 currentPage,
                 currentSvgHrefs,
                 currentVideoOverlayProps,
+                itemViewerRef,
                 options,
                 setCurrentCarouselId,
                 setCurrentItemIndex,
@@ -82,7 +85,7 @@ export const CarouselProvider = ({
             }}
         >
             {children}
-            <CarouselItemViewer />
+            <CarouselItemViewer ref={itemViewerRef} />
         </CarouselContext.Provider>
     )
 }
