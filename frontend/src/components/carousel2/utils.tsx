@@ -54,7 +54,6 @@ export function getGuid() {
 
 export async function toggleFullScreenMode(element: HTMLElement | null, currentItemIndex: number) {
 	const isFullScreenPossible = document.fullscreenEnabled;
-    console.log({isFullScreenPossible, element});
     
     if (!isFullScreenPossible || !element) return;
     const itemInFullScreenMode = document.fullscreenElement;
@@ -63,7 +62,6 @@ export async function toggleFullScreenMode(element: HTMLElement | null, currentI
             document.exitFullscreen();
         }
     } else {
-        const result = await element.requestFullscreen();
-        console.log({result});
+        await element.requestFullscreen();
     }
 }
