@@ -135,7 +135,6 @@ export const CarouselItemViewerToolbar = ({
     //#region JSX
     return (
         <div onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR}>
-            <CarouselItemViewerToolbarPreview />
             {videoRef ? <CarouselItemViewerProgressBar videoRef={videoRef} setTimeStrings={setTimeStrings} /> : null}
             <div className={CLASSNAME_INNER_CONTAINER}>
                 {videoRef ? (
@@ -157,6 +156,7 @@ export const CarouselItemViewerToolbar = ({
                     <CarouselItemViewerCloseButton />
                 </div>
             </div>
+            <CarouselItemViewerToolbarPreview />
         </div>
     )
     //#endregion

@@ -1,31 +1,46 @@
-import React from 'react'
 import { getClassname } from '../../../utils'
 import { useCarouselContext } from '../../../context'
 
-type CarouselItemViewerToolbarPreviewProps = {}
+type CarouselItemViewerToolbarPreviewProps = {
+    direction?: "previous" | "next";
+}
 
-export const CarouselItemViewerToolbarPreview = (props: CarouselItemViewerToolbarPreviewProps) => {
+export const CarouselItemViewerToolbarPreview = ({
+    direction = 'next',
+}: CarouselItemViewerToolbarPreviewProps) => {
     //#region Init
-    const { currentItem } = useCarouselContext();
-    const { srcThumbnail, description } = currentItem;
+    const { currentItemIndex, currentItems } = useCarouselContext();
+    const nextItemIndex = getNextItemIndex();
+    const itemToShow = currentItems[nextItemIndex];
+    const { srcThumbnail, description, srcMain } = itemToShow || {};
+    //#endregion
+
+    //#region Functions/Handlers
+    function getNextItemIndex() {
+        if (direction === 'next') {
+            if (currentItemIndex >= (currentItems.length - 1)) return 0;
+            return currentItemIndex + 1;
+        } else {
+            if (currentItemIndex <= 0) return currentItems.length - 1;
+            return currentItemIndex - 1;
+        }
+    }
     //#endregion
 
     //#region JSX
     const className = getClassname({elementName: 'item-viewer-toolbar-preview'})
 
-    if (!srcThumbnail) return null;
     return (
         <div className={className}>
             <div className={`${className}-image-container`}>
                 <img
-                    src={srcThumbnail}
+                    src={srcThumbnail || srcMain}
                     alt={description}
                 />
             </div>
             <div  className={`${className}-image-description`}>
-                {/* {description} */}
                 <p>
-                    Zombie ipsum reversus and something else longer than you'd like oit tkjld
+                   {description || 'No description'}
                 </p>
             </div>
         </div>
