@@ -69,7 +69,7 @@
                 @include button--inverse;
 
                 & * {
-                   @include button--inverse;
+                    @include button--inverse;
                 }
             }
         }
@@ -118,15 +118,51 @@
             &-preview {
                 --width: #{$itemViewerToolbarPreviewWidth};
                 --height: calc(var(--width) / 2);
-                @include positionAbsolute(
-                    $top: calc(-1 * var(--height)), 
-                    $left: auto, 
-                    $right: calc(#{$itemViewerToolbarMarginHorizontal} / 2), 
-                    $bottom: auto
-                );
+                @include positionAbsolute($top: calc(-1 * var(--height)),
+                    $left: auto,
+                    $right: calc(#{$itemViewerToolbarMarginHorizontal} / 2),
+                    $bottom: auto);
                 width: var(--width);
                 height: var(--height);
                 background-color: $itemViewerBackgroundColor;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: $carouselFontSize;
+                color: $itemViewerButtonColor;
+                border-radius: $itemViewerToolbarPreviewBorderRadius;
+                overflow: hidden;
+
+                & > * {
+                    width: calc(#{$itemViewerToolbarPreviewWidth} / 2);
+                }
+
+                &-image {
+                   &-container {
+                        border-right: 1px solid $itemViewerButtonColor;
+                        height: calc(100% - 0px);
+
+                        & img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: left;
+                        }
+                   }
+
+                   &-description {
+                        padding: calc($itemViewerToolbarMarginHorizontal / 2);
+                        text-align: center;
+
+                        & p {
+                            display: -webkit-box;
+                            -webkit-line-clamp: 4;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                   }
+                }
             }
 
             &-progress {

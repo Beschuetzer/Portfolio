@@ -342,6 +342,37 @@
   width: var(--width);
   height: var(--height);
   background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.thumbnail-carousel__item-viewer-toolbar-preview > * {
+  width: calc(20rem / 2);
+}
+.thumbnail-carousel__item-viewer-toolbar-preview-image-container {
+  border-right: 1px solid #fff;
+  height: calc(100% - 0px);
+}
+.thumbnail-carousel__item-viewer-toolbar-preview-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left;
+}
+.thumbnail-carousel__item-viewer-toolbar-preview-image-description {
+  padding: 1rem;
+  text-align: center;
+}
+.thumbnail-carousel__item-viewer-toolbar-preview-image-description p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .thumbnail-carousel__item-viewer-toolbar-progress {
   transition: transform 0.5s;

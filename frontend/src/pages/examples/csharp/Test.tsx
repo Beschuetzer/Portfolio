@@ -183,7 +183,7 @@ const sections: CSharpSection[] = [
 					<Carousel
 						options={{
 							video: {
-								autoHideToolbarDuration: 5000,
+								autoHideToolbarDuration: 500000,
 								seekAmount: 10000,
 							}
 						}}
