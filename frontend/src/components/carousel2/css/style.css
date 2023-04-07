@@ -341,7 +341,7 @@
   top: calc(-1 * var(--height));
   width: var(--width);
   height: var(--height);
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.66);
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -124,7 +124,7 @@
                     $bottom: auto);
                 width: var(--width);
                 height: var(--height);
-                background-color: $itemViewerBackgroundColor;
+                background-color: rgba($itemViewerBackgroundColor, $itemViewerToolbarPreviewOpacity);
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -139,7 +139,7 @@
 
                 &-image {
                    &-container {
-                        border-right: 1px solid rgba($itemViewerButtonColor, .66);
+                        border-right: 1px solid rgba($itemViewerButtonColor, $itemViewerToolbarPreviewOpacity);
                         height: calc(100% - 0px);
 
                         & img {
