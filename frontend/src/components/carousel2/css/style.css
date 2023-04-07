@@ -2,7 +2,7 @@
   --carousel-classname: thumbnail-carousel;
 }
 
-.thumbnail-carousel--hidden, .thumbnail-carousel__item-viewer-toolbar {
+.thumbnail-carousel--hidden {
   pointer-events: none;
   visibility: hidden;
   opacity: 0;
@@ -254,7 +254,6 @@
 }
 .thumbnail-carousel__item-viewer {
   display: flex;
-  flex-direction: column;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -317,19 +316,30 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  column-gap: 2rem;
+  column-gap: 0.75vw;
 }
 .thumbnail-carousel__item-viewer-toolbar-container > * {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  column-gap: 2rem;
+  column-gap: 0.75vw;
 }
 .thumbnail-carousel__item-viewer-toolbar-middle {
   justify-content: flex-start;
   margin-right: auto;
   font-size: 1.5rem;
   color: #fff;
+}
+.thumbnail-carousel__item-viewer-toolbar-middle div {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.thumbnail-carousel__item-viewer-toolbar-middle div span {
+  width: 6rem;
+  display: inline-block;
+}
+.thumbnail-carousel__item-viewer-toolbar-middle div span:nth-last-of-type(2) {
+  width: 1rem;
 }
 .thumbnail-carousel__item-viewer-toolbar-preview {
   --width: 20rem;

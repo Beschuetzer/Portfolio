@@ -1,4 +1,5 @@
 Carousel rework:
+  -add dynamic styling for itemviewer
   -setup viewer (allow passing in customer component and provide a sensible default with options?)
   -get thumbnails rendering
   -use thumbnails to create a preview box that pops up when hovering over next/previous item?

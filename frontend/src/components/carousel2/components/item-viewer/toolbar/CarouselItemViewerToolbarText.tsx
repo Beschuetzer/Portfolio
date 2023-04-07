@@ -15,14 +15,15 @@ export const CarouselItemViewerToolbarText = ({
     isVideo = false,
     timeStrings,
 }: CarouselItemViewerToolbarTextProps) => {
+
     return (
         <span className={CLASSNAME_TOOLBAR_MIDDLE}>
             {isVideo ? (
-                <>
+                <div>
                     <span>{timeStrings.currentTimeStr}</span>
-                    <span>/</span>
+                    <span>/</span> 
                     <span>{timeStrings.durationStr}</span>
-                </>
+                </div>
             ) : null}
             <span>{description}</span>
         </span>

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { CLASSNAME__ITEM_VIEWER } from '../../../constants'
+import { CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH } from '../../../constants'
 import { getClassname, getFormattedTimeString } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../../context'
@@ -47,6 +47,7 @@ export const CarouselItemViewerToolbar = ({
     });
     const [previewDirection, setPreviewDirection] = useState(ToolbarPreviewDirection.next);
     const [showPreview, setShowPreview] = useState(false);
+    const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     //#endregion
 
     //#region Functions/handlers
@@ -60,7 +61,7 @@ export const CarouselItemViewerToolbar = ({
             clearTimeout(shouldHideTimoutRef.current);
             shouldHideTimoutRef.current = setTimeout(() => {
 
-                if (itemContainerRef?.current) {
+                if (itemContainerRef?.current && !isMobile) {
                     itemContainerRef.current.classList?.add(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
                 }
             }, options.video.autoHideToolbarDuration);
@@ -150,7 +151,7 @@ export const CarouselItemViewerToolbar = ({
             previousButtonRef.current.addEventListener('mouseenter', handleMouseEnterPreviousButton);
             previousButtonRef.current.addEventListener('mouseleave', handleMouseLeaveButton);
         }
-        
+
         return () => {
             window.removeEventListener('mousemove', handleAutoHide);
             window.removeEventListener('click', handleAutoHide);

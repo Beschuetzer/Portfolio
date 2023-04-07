@@ -47,7 +47,9 @@
 
     &__item-viewer {
         display: flex;
-        flex-direction: column;
+
+        //add this if you want toolbar to stick to the video
+        // flex-direction: column;
         position: fixed;
         top: 0;
         bottom: 0;
@@ -75,7 +77,6 @@
         }
 
         &-toolbar {
-            @extend %hidden;
             transition:
                 transform $carouselAnimationDuration ease,
                 opacity $carouselAnimationDuration ease;
@@ -98,13 +99,13 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                column-gap: $itemViewerToolbarMarginHorizontal;
+                column-gap: $itemViewerToolbarColumnGap;
 
                 &>* {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    column-gap: $itemViewerToolbarMarginHorizontal;
+                    column-gap: $itemViewerToolbarColumnGap;
                 }
             }
 
@@ -113,6 +114,20 @@
                 margin-right: auto;
                 font-size: 1.5rem;
                 color: $itemViewerButtonColor;
+
+                & div {
+                    text-align: center;
+                    margin-top: $itemViewerProgressHeight;
+
+                    & span {
+                        width: 6rem;
+                        display: inline-block;
+    
+                        &:nth-last-of-type(2) {
+                            width: 1rem;
+                        }
+                    }
+                }
             }
 
             &-preview {
