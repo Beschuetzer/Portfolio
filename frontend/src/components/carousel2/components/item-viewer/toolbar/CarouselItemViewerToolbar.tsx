@@ -12,7 +12,7 @@ import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton'
 import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousButton'
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
-import { CarouselItemViewerToolbarPreview } from './CarouselItemViewerToolbarPreview'
+import { CarouselItemViewerToolbarPreview, ToolbarPreviewDirection } from './CarouselItemViewerToolbarPreview'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -39,10 +39,14 @@ export const CarouselItemViewerToolbar = ({
     //#region Init
     const { options, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
     const shouldHideTimoutRef = useRef<any>(-1);
+    const previousButtonRef = useRef<any>(null);
+    const nextButtonRef = useRef<any>(null);
     const [timeStrings, setTimeStrings] = useState<VideoTimeStrings>({
         durationStr: getFormattedTimeString((videoRef?.current?.duration) || -1),
         currentTimeStr: getFormattedTimeString((videoRef?.current?.currentTime) || -1),
     });
+    const [previewDirection, setPreviewDirection] = useState(ToolbarPreviewDirection.next);
+    const [showPreview, setShowPreview] = useState(false);
     //#endregion
 
     //#region Functions/handlers
@@ -112,21 +116,56 @@ export const CarouselItemViewerToolbar = ({
 
     //#region Side Fx
     useEffect(() => {
+        function handleMouseEnterNextButton() {
+            setPreviewDirection(ToolbarPreviewDirection.next);
+            setShowPreview(true);
+        }
+
+        function handleMouseEnterPreviousButton() {
+            setPreviewDirection(ToolbarPreviewDirection.previous);
+            setShowPreview(true);
+        }
+
+        function handleMouseLeaveButton() {
+            setShowPreview(false);
+        }
+        
         function handleVideoEnd() {
             setIsVideoPlaying && setIsVideoPlaying(false);
         }
 
         window.addEventListener('mousemove', handleAutoHide);
         window.addEventListener('click', handleAutoHide);
+        
         if (videoRef?.current) {
             videoRef.current.addEventListener('ended', handleVideoEnd);
         }
 
+        if (nextButtonRef?.current) {
+            nextButtonRef.current.addEventListener('mouseenter', handleMouseEnterNextButton);
+            nextButtonRef.current.addEventListener('mouseleave', handleMouseLeaveButton);
+        }
+
+        if (previousButtonRef?.current) {
+            previousButtonRef.current.addEventListener('mouseenter', handleMouseEnterPreviousButton);
+            previousButtonRef.current.addEventListener('mouseleave', handleMouseLeaveButton);
+        }
+        
         return () => {
             window.removeEventListener('mousemove', handleAutoHide);
             window.removeEventListener('click', handleAutoHide);
             if (videoRef?.current) {
                 videoRef.current.removeEventListener('ended', handleVideoEnd);
+            }
+
+            if (nextButtonRef?.current) {
+                nextButtonRef.current.removeEventListener('mouseenter', handleMouseEnterNextButton);
+                nextButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
+            }
+    
+            if (previousButtonRef?.current) {
+                previousButtonRef.current.removeEventListener('mouseenter', handleMouseEnterPreviousButton);
+                previousButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
             }
         }
     }, [handleAutoHide]);
@@ -151,12 +190,12 @@ export const CarouselItemViewerToolbar = ({
                 ) : null}
                 <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
-                    <CarouselItemViewerPreviousButton onClick={onPreviousItemClick} />
-                    <CarouselItemViewerNextButton onClick={onNextItemClick} />
+                    <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClick} />
+                    <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClick} />
                     <CarouselItemViewerCloseButton />
                 </div>
             </div>
-            <CarouselItemViewerToolbarPreview />
+            <CarouselItemViewerToolbarPreview show={showPreview} direction={previewDirection}/>
         </div>
     )
     //#endregion

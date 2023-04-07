@@ -1,12 +1,18 @@
 import { getClassname } from '../../../utils'
 import { useCarouselContext } from '../../../context'
 
+export enum ToolbarPreviewDirection {
+    previous,
+    next,
+}
 type CarouselItemViewerToolbarPreviewProps = {
-    direction?: "previous" | "next";
+    direction?: ToolbarPreviewDirection;
+    show: boolean;
 }
 
 export const CarouselItemViewerToolbarPreview = ({
-    direction = 'next',
+    direction,
+    show,
 }: CarouselItemViewerToolbarPreviewProps) => {
     //#region Init
     const { currentItemIndex, currentItems } = useCarouselContext();
@@ -17,7 +23,7 @@ export const CarouselItemViewerToolbarPreview = ({
 
     //#region Functions/Handlers
     function getNextItemIndex() {
-        if (direction === 'next') {
+        if (direction === ToolbarPreviewDirection.next) {
             if (currentItemIndex >= (currentItems.length - 1)) return 0;
             return currentItemIndex + 1;
         } else {
@@ -30,6 +36,7 @@ export const CarouselItemViewerToolbarPreview = ({
     //#region JSX
     const className = getClassname({elementName: 'item-viewer-toolbar-preview'})
 
+    if (!show) return null; 
     return (
         <div className={className}>
             <div className={`${className}-image-container`}>

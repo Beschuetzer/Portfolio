@@ -139,7 +139,7 @@
 
                 &-image {
                    &-container {
-                        border-right: 1px solid $itemViewerButtonColor;
+                        border-right: 1px solid rgba($itemViewerButtonColor, .66);
                         height: calc(100% - 0px);
 
                         & img {
