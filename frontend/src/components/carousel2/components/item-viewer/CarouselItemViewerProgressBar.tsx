@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState, useEffect } from 'react'
 import { CLASSNAME__ITEM_VIEWER } from '../../constants';
 import { getClassname, getFormattedTimeString } from '../../utils';
 import { VideoTimeStrings } from '../../types';
-import { CarouselItemViewerToolbarProps } from './CarouselItemViewerToolbar';
+import { CarouselItemViewerToolbarProps } from './toolbar/CarouselItemViewerToolbar';
 
 type CarouselItemViewerProgressBarProps = {
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;

@@ -1,5 +1,5 @@
-import { useCarouselContext } from '../../context';
-import { PreviousButton } from '../buttons/PreviousButton';
+import { useCarouselContext } from '../../../context';
+import { PreviousButton } from '../../buttons/PreviousButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 
 type CarouselItemViewerPreviousButtonProps = {

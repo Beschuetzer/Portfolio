@@ -1,17 +1,17 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { CLASSNAME__ITEM_VIEWER } from '../../constants'
-import { getClassname, getFormattedTimeString } from '../../utils'
+import { CLASSNAME__ITEM_VIEWER } from '../../../constants'
+import { getClassname, getFormattedTimeString } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
+import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../../context'
+import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
+import { CarouselItemViewerProgressBar } from '../CarouselItemViewerProgressBar'
+import { VideoTimeStrings } from '../../../types'
 import { CarouselItemViewerNextButton } from './CarouselItemViewerNextButton'
 import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton'
 import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton'
 import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousButton'
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
-import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../context'
-import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
-import { CarouselItemViewerProgressBar } from './CarouselItemViewerProgressBar'
-import { VideoTimeStrings } from '../../types'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -47,8 +47,6 @@ export const CarouselItemViewerToolbar = ({
     //#region Functions/handlers
     const handleAutoHide = useCallback(() => {
         if (currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) return;
-        console.log("handleAutoHide");
-
         if (itemContainerRef?.current) {
             itemContainerRef.current.classList?.remove(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
         }

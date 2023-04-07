@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react'
-import { EMPTY_STRING } from '../../constants';
-import { useCarouselContext } from '../../context';
+import { EMPTY_STRING } from '../../../constants';
+import { useCarouselContext } from '../../../context';
+import { StopButton } from '../../buttons/StopButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
-import { StopButton } from '../buttons/StopButton';
 
 export const CarouselItemViewerStopButton = () => {
     const { currentSvgHrefs } = useCarouselContext();

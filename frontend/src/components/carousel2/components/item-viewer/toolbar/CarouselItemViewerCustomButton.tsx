@@ -1,5 +1,5 @@
-import { CLASSNAME__ITEM_VIEWER_BUTTON } from '../../constants';
-import { getClassname } from '../../utils';
+import { CLASSNAME__ITEM_VIEWER_BUTTON } from "../../../constants";
+import { getClassname } from "../../../utils";
 
 type CarouselItemViewerCustomButtonProps = {
     classNameModifier?: string;

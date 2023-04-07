@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { CarouselItemProps } from './CarouselItem'
 import { getClassname } from '../utils';
-import { CarouselItemViewerToolbar } from './item-viewer/CarouselItemViewerToolbar';
+import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 
 export const CarouselImage = (props: CarouselItemProps) => {
     const containerRef = useRef<HTMLDivElement>();

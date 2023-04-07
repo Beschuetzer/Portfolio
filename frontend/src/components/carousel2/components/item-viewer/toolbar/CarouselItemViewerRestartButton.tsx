@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
-import { EMPTY_STRING } from '../../constants';
-import { useCarouselContext } from '../../context';
-import { RestartButton } from '../buttons/RestartButton';
+import { EMPTY_STRING } from '../../../constants';
+import { useCarouselContext } from '../../../context';
+import { RestartButton } from '../../buttons/RestartButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 
 export const CarouselItemViewerRestartButton = () => {

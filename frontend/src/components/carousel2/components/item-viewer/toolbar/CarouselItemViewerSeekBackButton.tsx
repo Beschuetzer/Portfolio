@@ -1,5 +1,5 @@
-import { useCarouselContext } from '../../context';
-import { SeekBackButton } from '../buttons/SeekBackButton';
+import { useCarouselContext } from '../../../context';
+import { SeekBackButton } from '../../buttons/SeekBackButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 type CarouselItemViewerSeekBackButtonProps = {
     onClick: () => void,

@@ -1,7 +1,6 @@
-import React from 'react'
-import { CLASSNAME__ITEM_VIEWER } from '../../constants';
-import { getClassname } from '../../utils';
-import { VideoTimeStrings } from '../../types';
+import { CLASSNAME__ITEM_VIEWER } from "../../../constants";
+import { VideoTimeStrings } from "../../../types";
+import { getClassname } from "../../../utils";
 
 export type CarouselItemViewerToolbarTextProps = {
     description: string;

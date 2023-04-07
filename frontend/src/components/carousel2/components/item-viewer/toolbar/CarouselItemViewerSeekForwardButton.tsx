@@ -1,5 +1,5 @@
-import { useCarouselContext } from '../../context';
-import { SeekForwardButton } from '../buttons/SeekForwardButton';
+import { useCarouselContext } from '../../../context';
+import { SeekForwardButton } from '../../buttons/SeekForwardButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 
 type CarouselItemViewerSeekForwardButtonProps = {

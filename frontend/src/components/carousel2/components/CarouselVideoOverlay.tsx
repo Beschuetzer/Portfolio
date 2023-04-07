@@ -1,9 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { getClassname } from '../utils';
 import { CloseButton } from './buttons/CloseButton';
-import { CarouselItemViewerCloseButton } from './item-viewer/CarouselItemViewerCloseButton';
 import { useCarouselContext } from '../context';
-import { CarouselItemViewerCustomButton } from './item-viewer/CarouselItemViewerCustomButton';
+import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
 
 export type CarouselVideoOverlay = {
    /*

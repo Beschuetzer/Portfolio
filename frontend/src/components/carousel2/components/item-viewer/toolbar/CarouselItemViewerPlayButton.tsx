@@ -1,5 +1,5 @@
-import { PlayButton } from '../buttons/PlayButton';
-import { useCarouselContext } from '../../context';
+import { useCarouselContext } from '../../../context';
+import { PlayButton } from '../../buttons/PlayButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 
 type CarouselItemViewerPlayButtonProps = {

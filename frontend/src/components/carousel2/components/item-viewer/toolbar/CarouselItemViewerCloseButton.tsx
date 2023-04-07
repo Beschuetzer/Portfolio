@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
-import { CloseButton } from '../buttons/CloseButton';
-import { EMPTY_STRING } from '../../constants';
-import { CURRENT_ITEMS_INITIAL, CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../context';
+import { CloseButton } from '../../buttons/CloseButton';
+import { EMPTY_STRING } from '../../../constants';
+import { CURRENT_ITEMS_INITIAL, CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../../context';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 
 export const CarouselItemViewerCloseButton = () => {
