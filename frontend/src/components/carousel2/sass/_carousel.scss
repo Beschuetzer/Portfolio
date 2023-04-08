@@ -107,6 +107,7 @@
             @include positionAbsolute($top: auto);
 
             &-container {
+                margin-top: $itemViewerProgressHeight;
                 width: 100%;
                 display: flex;
                 align-items: center;
@@ -129,7 +130,6 @@
 
                 & > * {
                     text-align: center;
-                    margin-top: $itemViewerProgressHeight;
 
                     & span {
                         width: 6rem;
