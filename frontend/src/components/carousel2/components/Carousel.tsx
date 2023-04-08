@@ -1,5 +1,4 @@
 import React, { CSSProperties, useEffect, useRef } from 'react'
-import { CLASSNAME__ROOT } from '../constants';
 import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../context';
 import { getClassname, getGuid, toggleFullScreenMode } from '../utils';
 import { CarouselInstanceProvider } from './CarouselInstanceProvider';

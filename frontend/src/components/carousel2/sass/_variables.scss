@@ -17,6 +17,10 @@ $itemViewerToolbarPreviewBorderRadius: .5rem;
 $itemViewerToolbarPreviewOpacity: .66;
 $itemViewerToolbarPreviewWidth: 20rem;
 
+$videoOverlayCustomButtonTop: 'video-overlay-custom-button-top';
+$videoOverlayCustomButtonRight: 'video-overlay-custom-button-right';
 :root {
-    --carousel-classname: #{$carouselClassname};
+    --#{$carouselClassname}-classname: #{$carouselClassname};
+    --#{$carouselClassname}-#{$videoOverlayCustomButtonTop}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
+    --#{$carouselClassname}-#{$videoOverlayCustomButtonRight}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
 }

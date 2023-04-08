@@ -52,6 +52,13 @@ export function getGuid() {
     );
 }
 
+export function setCssCustomProperty(propertyName: string, newValue: string) {
+    document.documentElement.style.setProperty(
+        `--${propertyName}`,
+        newValue,
+    );
+}
+
 export async function toggleFullScreenMode(element: HTMLElement | null, currentItemIndex: number) {
     try {
         const isFullScreenPossible = document.fullscreenEnabled;

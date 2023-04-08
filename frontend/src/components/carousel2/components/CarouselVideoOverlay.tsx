@@ -1,20 +1,37 @@
-import React, { useCallback, useState } from 'react'
+import React, { ReactNode, useCallback, useState } from 'react'
 import { getClassname } from '../utils';
 import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
+import { Exclusive } from '../types';
 
-export type CarouselVideoOverlay = {
-   /*
+export type CarouselVideoOverlay = Exclusive<{
+    /*
+    *Use this prop in order to specify a customer overlay layout
+    */
+    children?: ReactNode | ReactNode[]
+    closeButton?: {
+        /*
+        *The number of rem that the close button is from the top
+        */
+        topInRem?: number;
+        /*
+        *The number of rem that the close button is from the right
+        */
+        rightInRem?: number;
+    }
+}, {
+    /*
     * This only shows when the video is paused and is an <h3> tag under the hood.
     */
-   title?: string | undefined;
+    title?: string | undefined;
 
-   /*
-   * This only shows when the video is paused and is a <p> tag under the hood.
-   */
-   text?: string | undefined;
-}
+    /*
+    * This only shows when the video is paused and is a <p> tag under the hood.
+    */
+    text?: string | undefined;
+}>
+
 export type CarouselVideoOverlayProps = {
     /*
     *This is used internally and determines when the overlay is shown
@@ -24,7 +41,7 @@ export type CarouselVideoOverlayProps = {
 
 export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#region Init
-    const { isVideoPlaying, title, text } = props;
+    const { children, isVideoPlaying, title, text } = props;
     const [isVisible, setIsVisible] = useState(true);
 
     const { currentSvgHrefs } = useCarouselContext();
@@ -33,6 +50,8 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
 
     //#region Handlers/Functions
     const onCloseClick = useCallback((e: MouseEvent) => {
+        console.log({e});
+        
         stopPropagation(e)
         setIsVisible(false);
     }, [setIsVisible])
@@ -43,21 +62,43 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#endregion
 
     //#region JSX
+    const button =  !!svgHref ? (
+        <CarouselItemViewerCustomButton onClick={onCloseClick as any} xlinkHref={svgHref} classNameModifier='inverse' />
+    ) : (
+        <CloseButton onClick={onCloseClick as any} classNameModifier='inverse' />
+    );
+
+    function renderChildren() {
+        if (children) {
+            return (
+                <div>
+                    {children}
+                    {button}
+                </div>
+            )
+        }
+
+        return (
+            <>
+                <div className={`${className}-header`}>
+                    <h3 dangerouslySetInnerHTML={{__html: title || ''}}/>
+                    {button}
+                </div>
+                {text ? (
+                    <p dangerouslySetInnerHTML={{__html: text || ''}}/>
+                ) : null}
+            </>
+        )
+    }
+
     const visibilityStyle = isVideoPlaying || !isVisible ? getClassname({ modifiedName: "hidden" }) : '';
     const className = getClassname({ elementName: 'video-overlay' });
-    const classNameToUse = `${className} ${visibilityStyle}`;
+    const classNameCustom = getClassname({ elementName: 'video-overlay-custom' });
+    const classNameToUse = `${className} ${children ? classNameCustom : ''} ${visibilityStyle}`;
 
     return (
         <div className={classNameToUse} onClick={stopPropagation as any}>
-            <div className={`${className}-header`}>
-                <h3>{title}</h3>
-                {!!svgHref ? (
-                    <CarouselItemViewerCustomButton onClick={onCloseClick as any} xlinkHref={svgHref} classNameModifier='inverse'/>
-                ) : (
-                    <CloseButton onClick={onCloseClick as any} classNameModifier='inverse'/>
-                )}
-            </div>
-            <p>{text}</p>
+            {renderChildren()}
         </div>
     )
     //#endregion

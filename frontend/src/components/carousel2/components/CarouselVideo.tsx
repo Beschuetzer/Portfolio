@@ -8,7 +8,7 @@ export type CarouselVideoProps = {
     autoPlay?: boolean;
     loop?: boolean;
     muted?: boolean;
-    overlayProps: CarouselVideoOverlay;
+    overlayProps?: CarouselVideoOverlay;
 }
 
 export const CarouselVideo = (props: CarouselItemProps) => {
@@ -16,7 +16,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const {
         description,
         srcMain,
-        videoProps,
+        video: videoProps,
     } = props;
     const { autoPlay, loop, muted } = videoProps || {};
     const [isVideoPlaying, setIsVideoPlaying] = useState(true);
@@ -43,8 +43,8 @@ export const CarouselVideo = (props: CarouselItemProps) => {
 
     //#region JSX    
     return (
-        <div 
-            ref={videoContainerRef as any} 
+        <div
+            ref={videoContainerRef as any}
             className={getClassname({ elementName: 'item-container' })}
             onClick={onVideoClick}
         >
@@ -56,12 +56,14 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                     muted={!!muted}
                     loop={!!loop}>
                     <source src={props.srcMain} type={`video/${type}`}
-                />
+                    />
                 </video>
-                <CarouselVideoOverlay 
-                    isVideoPlaying={isVideoPlaying}
-                    {...props.videoProps?.overlayProps} 
-                />
+                {props.video?.overlayProps ? (
+                    <CarouselVideoOverlay
+                        isVideoPlaying={isVideoPlaying}
+                        {...props.video?.overlayProps}
+                    />
+                ) : null}
                 <CarouselItemViewerToolbar
                     setIsVideoPlaying={setIsVideoPlaying}
                     isVideoPlaying={isVideoPlaying}

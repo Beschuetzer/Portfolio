@@ -28,7 +28,7 @@ export type CarouselItemProps = {
   /*
   *Props for optional overlay when item is a video
   */
-  videoProps?: CarouselVideoProps;
+  video?: CarouselVideoProps;
 }
 
 export const CarouselItem = (props: CarouselItemProps) => {

@@ -249,6 +249,20 @@
             & p {
                 padding-right: $itemViewerOverlayParagraphPaddingRight;
             }
+
+            &-custom {
+                padding-top: 0;
+                padding-bottom: 0;
+
+                & .#{$carouselClassname}__item-viewer-button {
+                    @include positionAbsolute(
+                        $right: var(--#{$carouselClassname}-#{$videoOverlayCustomButtonRight}),
+                        $top: var(--#{$carouselClassname}-#{$videoOverlayCustomButtonTop}),
+                        $left: auto,
+                        $bottom: auto,
+                    )
+                }
+            }
         }
     }
 

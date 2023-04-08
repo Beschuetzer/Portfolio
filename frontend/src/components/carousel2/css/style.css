@@ -1,5 +1,7 @@
 :root {
-  --carousel-classname: thumbnail-carousel;
+  --thumbnail-carousel-classname: thumbnail-carousel;
+  --thumbnail-carousel-video-overlay-custom-button-top: calc(2rem * .5);
+  --thumbnail-carousel-video-overlay-custom-button-right: calc(2rem * .5);
 }
 
 .thumbnail-carousel--hidden {
@@ -445,6 +447,17 @@
 }
 .thumbnail-carousel__video-overlay p {
   padding-right: 4rem;
+}
+.thumbnail-carousel__video-overlay-custom {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button {
+  position: absolute;
+  bottom: auto;
+  left: auto;
+  right: var(--thumbnail-carousel-video-overlay-custom-button-right);
+  top: var(--thumbnail-carousel-video-overlay-custom-button-top);
 }
 
 /*# sourceMappingURL=style.css.map */

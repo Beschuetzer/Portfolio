@@ -203,28 +203,31 @@ const sections: CSharpSection[] = [
 								description: "Animations",
 								srcMain: clipAnimations,
 								srcThumbnail: clipAnimationsThumbnail,
-								videoProps: {
-									overlayProps: {
-										title: "Animations",
-										text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+								video: {
+									overlayProps: {								
+										// title: "Contract is 1&clubs;",
+										// text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found.",
+										children: (
+											<>
+										 		<CSharpCardSection title="Contract is 1&clubs;">
+										 			The first part of the video highlights the process of
+										 			applying the contract matching filter.&nbsp; There are two
+										 			matches found.
+										 		</CSharpCardSection>
+										 		<CSharpCardSection title="Two Filters = Double the Filtering">
+										 			The second filter applied requires 'Ann' to have the
+										 			2&clubs;. In one of the filtered games, she does and in the
+										 			other one she doesn't.
+										 		</CSharpCardSection>
+										 	</>
+										),
+										closeButton: {
+											rightInRem: 1,
+										},
 									},
 									autoPlay: true,
 									muted: true,
 								}
-								// videoOverlayChildren: (
-								// 	<div>
-								// 		<CSharpCardSection title="Contract is 1&clubs;">
-								// 			The first part of the video highlights the process of
-								// 			applying the contract matching filter.&nbsp; There are two
-								// 			matches found.
-								// 		</CSharpCardSection>
-								// 		<CSharpCardSection title="Two Filters = Double the Filtering">
-								// 			The second filter applied requires 'Ann' to have the
-								// 			2&clubs;. In one of the filtered games, she does and in the
-								// 			other one she doesn't.
-								// 		</CSharpCardSection>
-								// 	</div>
-								// ),
 							},		
 							{
 								srcMain: maui05,
@@ -272,7 +275,7 @@ const sections: CSharpSection[] = [
 								description: "Applying Filters",
 								srcMain: clipFilters,
 								srcThumbnail: clipFiltersThumbnail,
-								videoProps: {
+								video: {
 									overlayProps: {
 										title: "Applying Filters",
 										text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
