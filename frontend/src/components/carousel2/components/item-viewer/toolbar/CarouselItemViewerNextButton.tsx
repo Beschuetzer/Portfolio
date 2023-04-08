@@ -6,19 +6,15 @@ import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton
 type CarouselItemViewerNextButtonProps = {
     onClick: () => void;
 }
-export const CarouselItemViewerNextButton = forwardRef<HTMLDivElement, CarouselItemViewerNextButtonProps>(({
+export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNextButtonProps>(({
     onClick,
 }, ref) => {
     const { currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.nextButton || '';
 
     return (
-        <div ref={ref}>
-            {
-                !!svgHref ?
-                    <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref} /> :
-                    <NextButton onClick={onClick} />
-            }
-        </div>
+        !!svgHref ?
+            <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} /> :
+            <NextButton ref={ref} onClick={onClick} />
     )
 })

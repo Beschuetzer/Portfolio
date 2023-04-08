@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { CLASSNAME__ITEM_VIEWER_BUTTON } from "../../../constants";
 import { getClassname } from "../../../utils";
 
@@ -7,19 +8,19 @@ type CarouselItemViewerCustomButtonProps = {
     xlinkHref: string;
 }
 
-export const CarouselItemViewerCustomButton = ({
+export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, CarouselItemViewerCustomButtonProps> (({
     classNameModifier = '',
     onClick = () => null,
     xlinkHref,
-}: CarouselItemViewerCustomButtonProps) => {
+}, ref) => {
     const className = getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON });
     const classModifierName = `${className}-${classNameModifier}`
     return (
-        <svg onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''}`}>
+        <svg ref={ref} onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''}`}>
             <use 
                 xlinkHref={xlinkHref}
                 href={xlinkHref}
             />
         </svg>
     );
-}
+})

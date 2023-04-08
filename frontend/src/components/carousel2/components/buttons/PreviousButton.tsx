@@ -1,16 +1,17 @@
+import { forwardRef } from "react";
 import { CLASSNAME__BUTTON } from "../../constants";
 import { ButtonProps } from "../../types";
 
 type PreviousButtonProps = {} & ButtonProps;
 
-export const PreviousButton = ({
+export const PreviousButton = forwardRef<HTMLButtonElement, PreviousButtonProps>(({
     className = CLASSNAME__BUTTON,
     onClick = () => null,
-}: PreviousButtonProps) => {
+}, ref) => {
   return (
-    <button onClick={onClick} className={className}>
+    <button ref={ref} onClick={onClick} className={className}>
         <div className={`${className}--previous-left` }/>
         <div className={`${className}--previous-right` }/>
     </button>
   )
-}
+})

@@ -344,15 +344,15 @@
   font-size: 1.5rem;
   color: #fff;
 }
-.thumbnail-carousel__item-viewer-toolbar-middle div {
+.thumbnail-carousel__item-viewer-toolbar-middle > * {
   text-align: center;
   margin-top: 0.5rem;
 }
-.thumbnail-carousel__item-viewer-toolbar-middle div span {
+.thumbnail-carousel__item-viewer-toolbar-middle > * span {
   width: 6rem;
   display: inline-block;
 }
-.thumbnail-carousel__item-viewer-toolbar-middle div span:nth-last-of-type(2) {
+.thumbnail-carousel__item-viewer-toolbar-middle > * span:nth-last-of-type(2) {
   width: 1rem;
 }
 .thumbnail-carousel__item-viewer-toolbar-preview {
