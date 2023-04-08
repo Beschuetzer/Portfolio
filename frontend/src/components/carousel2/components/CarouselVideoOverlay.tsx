@@ -1,9 +1,10 @@
-import React, { ReactNode, useCallback, useState } from 'react'
-import { getClassname } from '../utils';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react'
+import { getClassname, setCssCustomProperty } from '../utils';
 import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
 import { Exclusive } from '../types';
+import { CLASSNAME__OVERLAY_BUTTON_RIGHT, CLASSNAME__OVERLAY_BUTTON_TOP } from '../constants';
 
 export type CarouselVideoOverlay = Exclusive<{
     /*
@@ -41,11 +42,12 @@ export type CarouselVideoOverlayProps = {
 
 export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#region Init
-    const { children, isVideoPlaying, title, text } = props;
+    const { children, isVideoPlaying, title, text, closeButton } = props;
     const [isVisible, setIsVisible] = useState(true);
 
     const { currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.closeButton || '';
+    const isCustom = !!children;
     //#endregion
 
     //#region Handlers/Functions
@@ -61,6 +63,16 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     }
     //#endregion
 
+    //#region Side Fx
+    useEffect(() => {
+        //update closeButton the top and left values
+        if (closeButton && isCustom) {
+            closeButton.topInRem && setCssCustomProperty(CLASSNAME__OVERLAY_BUTTON_TOP, `${closeButton.topInRem}rem`);
+            closeButton.rightInRem && setCssCustomProperty(CLASSNAME__OVERLAY_BUTTON_RIGHT, `${closeButton.rightInRem}rem`);
+        }
+    }, [])
+    //#endregion
+
     //#region JSX
     const button =  !!svgHref ? (
         <CarouselItemViewerCustomButton onClick={onCloseClick as any} xlinkHref={svgHref} classNameModifier='inverse' />
@@ -69,7 +81,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     );
 
     function renderChildren() {
-        if (children) {
+        if (isCustom) {
             return (
                 <div>
                     {children}
@@ -94,7 +106,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const visibilityStyle = isVideoPlaying || !isVisible ? getClassname({ modifiedName: "hidden" }) : '';
     const className = getClassname({ elementName: 'video-overlay' });
     const classNameCustom = getClassname({ elementName: 'video-overlay-custom' });
-    const classNameToUse = `${className} ${children ? classNameCustom : ''} ${visibilityStyle}`;
+    const classNameToUse = `${className} ${isCustom ? classNameCustom : ''} ${visibilityStyle}`;
 
     return (
         <div className={classNameToUse} onClick={stopPropagation as any}>

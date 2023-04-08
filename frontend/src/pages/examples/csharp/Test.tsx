@@ -222,7 +222,7 @@ const sections: CSharpSection[] = [
 										 	</>
 										),
 										closeButton: {
-											rightInRem: 1,
+											rightInRem: 1.5,
 										},
 									},
 									autoPlay: true,
