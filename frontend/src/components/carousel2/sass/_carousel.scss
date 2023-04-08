@@ -1,4 +1,16 @@
 .#{$carouselClassname} {
+    width: 100%;
+    height: calc($itemHeight + 5rem);
+    display: flex;
+    overflow: hidden;
+
+    &__container {
+        display: flex;
+        column-gap: 10rem;
+        width: 10000000vw;
+        transition: transform $carouselAnimationDuration ease;
+    }
+
     &__item {
         position: relative;
         height: $itemHeight;

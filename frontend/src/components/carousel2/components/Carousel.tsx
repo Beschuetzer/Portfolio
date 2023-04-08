@@ -1,12 +1,17 @@
-import React, { useEffect, useRef } from 'react'
+import React, { CSSProperties, useEffect, useRef } from 'react'
 import { CLASSNAME__ROOT } from '../constants';
 import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../context';
-import { getGuid, toggleFullScreenMode } from '../utils';
+import { getClassname, getGuid, toggleFullScreenMode } from '../utils';
 import { CarouselInstanceProvider } from './CarouselInstanceProvider';
 import { CarouselItemProps, CarouselItem } from './CarouselItem';
 import { CarouselOptions, CarouselSvgHrefs } from '../types';
 
+type CustomStyles = {
+	container?: CSSProperties;
+}
+
 type CarouselProps = {
+	customStyles?: CustomStyles;
 	/*
 	* if undefined, the default css version for each button will be used
 	*/
@@ -23,6 +28,7 @@ type CarouselProps = {
 }
 
 export const Carousel = ({
+	customStyles = {},
 	svgHrefs = {},
 	items,
 	options,
@@ -53,17 +59,17 @@ export const Carousel = ({
 	//#endregion
 
 	//#region JSX
-	const renderItems = () => {
-		return items.map((item, index) => <CarouselItem key={index} index={index} {...item} />);
-	}
-
 	return (
 		<CarouselInstanceProvider
 			id={idRef.current}
 			options={options}
 			svgHrefInstance={svgHrefs}>
-			<div className={CLASSNAME__ROOT}>
-				{renderItems()}
+			<div className={getClassname({elementName: ""})} style={customStyles.container}>
+				<div className={getClassname({elementName: "container"})}>
+					{
+						items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)
+					}
+				</div>
 			</div>
 		</CarouselInstanceProvider>
 	)

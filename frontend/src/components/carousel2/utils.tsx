@@ -53,15 +53,18 @@ export function getGuid() {
 }
 
 export async function toggleFullScreenMode(element: HTMLElement | null, currentItemIndex: number) {
-	const isFullScreenPossible = document.fullscreenEnabled;
+    try {
+        const isFullScreenPossible = document.fullscreenEnabled;
     
-    if (!isFullScreenPossible || !element) return;
-    const itemInFullScreenMode = document.fullscreenElement;
-    if (itemInFullScreenMode) {
-        if (currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) {
-            document.exitFullscreen();
+        if (!isFullScreenPossible || !element) return;
+        const itemInFullScreenMode = document.fullscreenElement;
+        if (itemInFullScreenMode) {
+            if (currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) {
+                document.exitFullscreen();
+            }
+        } else {
+            await element.requestFullscreen();
         }
-    } else {
-        await element.requestFullscreen();
-    }
+    } catch(e) {}
+	
 }

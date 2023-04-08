@@ -1,22 +1,21 @@
 $carouselAnimationDuration: .5s;
 $carouselClassname: 'thumbnail-carousel';
 $carouselFontSize: 14px;
-$itemHeight: 150px;
-
+$itemHeight: 15rem;
 $itemViewerBackgroundColor: #000;
-$itemViewerToolbarBackgroundColor: rgba($itemViewerBackgroundColor, 0);
-$itemViewerButtonLineWidth: .75rem;
 $itemViewerButtonColor: #fff;
+$itemViewerButtonLineWidth: .75rem;
 $itemViewerButtonOpacityHover: 1;
 $itemViewerButtonOpacityNormal: .75;
 $itemViewerButtonWidth: 3rem;
 $itemViewerOverlayParagraphPaddingRight: 4rem;
+$itemViewerProgressHeight: .5rem;
+$itemViewerToolbarBackgroundColor: rgba($itemViewerBackgroundColor, 0);
 $itemViewerToolbarColumnGap: .75vw;
 $itemViewerToolbarMarginHorizontal: 2rem;
+$itemViewerToolbarPreviewBorderRadius: .5rem;
 $itemViewerToolbarPreviewOpacity: .66;
 $itemViewerToolbarPreviewWidth: 20rem;
-$itemViewerToolbarPreviewBorderRadius: .5rem;
-$itemViewerProgressHeight: .5rem;
 
 :root {
     --carousel-classname: #{$carouselClassname};
