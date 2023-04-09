@@ -60,8 +60,6 @@
         }
 
         &>div {
-            background-color: var(#{string.unquote('--#{string.unquote($thumbnailBackgroundColorString)}')});
-            color: var(#{string.unquote('--#{string.unquote($thumbnailTextColorString)}')});
             @include positionAbsolute($top: auto, $bottom: -100%);
             transition: bottom $carouselAnimationDuration ease;
             padding: calc($itemViewerToolbarMarginHorizontal / 2) $itemViewerToolbarMarginHorizontal;

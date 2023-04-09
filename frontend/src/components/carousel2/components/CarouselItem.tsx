@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
-import { getClassname, setCssCustomProperty } from '../utils';
+import { getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
-import { CLASSNAME__THUMBNAIL_BACKGROUND_COLOR, CLASSNAME__THUMBNAIL_TEXT_COLOR } from '../constants';
 
 export type CarouselItemProps = {
   /*
@@ -54,25 +53,18 @@ export const CarouselItem = (props: CarouselItemProps) => {
   //#endregion
 
   //#region Side Fx
-  useEffect(() => {
-    if (options?.thumbnail) {
-      if (options.thumbnail?.backgroundColor) {
-          setCssCustomProperty(CLASSNAME__THUMBNAIL_BACKGROUND_COLOR, options.thumbnail.backgroundColor?.trim());
-      }
-
-      if (options.thumbnail?.textColor) {
-          setCssCustomProperty(CLASSNAME__THUMBNAIL_TEXT_COLOR, options.thumbnail.textColor?.trim());
-      }
-    }
-  }, [options, CLASSNAME__THUMBNAIL_TEXT_COLOR, setCssCustomProperty])
-  
   //#endregion
 
   //#region JSX
+  const thumbnailBackgroundStyle = {
+    backgroundColor: options?.thumbnail?.backgroundColor || 'black',
+    color: options?.thumbnail?.textColor || 'white',
+  } as React.CSSProperties
+
   return (
     <article onClick={(e) => onPress(e as any)} className={getClassname({ elementName: 'item' })}>
       {description ? (
-        <div>
+        <div style={thumbnailBackgroundStyle}>
           <h4>{description}</h4>
         </div>
       ) : null}

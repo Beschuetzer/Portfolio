@@ -185,6 +185,10 @@ const sections: CSharpSection[] = [
 							video: {
 								autoHideToolbarDuration: 2000,
 								seekAmount: 10000,
+							},
+							thumbnail: {
+								backgroundColor: getComputedStyleCustom('--color-primary-2'),
+								textColor: getComputedStyleCustom('--color-primary-4'),
 							}
 						}}
 						svgHrefs={{
