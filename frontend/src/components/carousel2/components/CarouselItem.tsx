@@ -59,7 +59,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   const thumbnailBackgroundStyle = {
     backgroundColor: options?.thumbnail?.backgroundColor || 'black',
     color: options?.thumbnail?.textColor || 'white',
-    bottom: options?.thumbnail?.alwaysShow === undefined || options.thumbnail.alwaysShow ? '0' : '-100%',
+    bottom: options?.thumbnail?.alwaysShowBackground === undefined || options.thumbnail.alwaysShowBackground ? '0' : '-100%',
   } as React.CSSProperties
 
   return (
@@ -72,7 +72,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
       <img
         className={getClassname({ elementName: 'item-thumbnail' })}
         src={srcThumbnail || srcMain}
-        alt={description || 'user picture'}
+        alt={description || 'user picture or video'}
       />
     </article>
   )
