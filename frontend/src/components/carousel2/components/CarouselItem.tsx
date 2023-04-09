@@ -58,7 +58,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
 
   //#region JSX
   const fontSizeStyle = options?.thumbnail ? {
-    fontSize: `${options.thumbnail.fontSize}rem`,
+    fontSize: `${options.thumbnail.fontSize}px`,
   } as React.CSSProperties : {};
   const maxLineCountStyle = {
     WebkitLineClamp: options?.thumbnail?.maxLineCount || 2,
@@ -78,11 +78,11 @@ export const CarouselItem = (props: CarouselItemProps) => {
     ...backgroundColorStyle,
   } as React.CSSProperties
   const itemStyle = options?.thumbnail?.size ? {
-    width: `${options.thumbnail?.size}rem`,
-    height: `${options.thumbnail?.size}rem`,
+    width: `${options.thumbnail?.size}px`,
+    height: `${options.thumbnail?.size}px`,
   } as React.CSSProperties : {
-    width: `${CAROUSEL_ITEM_SIZE_DEFAULT}rem`,
-    height: `${CAROUSEL_ITEM_SIZE_DEFAULT}rem`,
+    width: `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
+    height: `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
   };
   
   return (

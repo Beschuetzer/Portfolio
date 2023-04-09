@@ -26,7 +26,7 @@ export type CarouselThumbnailOptions = {
     */
     backgroundColor?: string;
     /*
-    *The size of the font in rem of the thumbnail description;  Default is 12px;
+    *The size of the font in px of the thumbnail description;  Default is 12px;
     */
     fontSize?: number;
      /*
@@ -37,7 +37,7 @@ export type CarouselThumbnailOptions = {
     */
     hideOverlayUnlessHovered?: boolean;
     /*
-    *The value in rem that the thumbnails are spaced apart.  
+    *The value in px that the thumbnails are spaced apart.  
     *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible
     */
     itemSpacing?: number;
@@ -46,7 +46,7 @@ export type CarouselThumbnailOptions = {
     */
     maxLineCount?: number;
     /*
-    *The size of the thumbnails in rem.  Default is 15rem.
+    *The size of the thumbnails in px.  Default is 150px.
     */
     size?: number;
     /*

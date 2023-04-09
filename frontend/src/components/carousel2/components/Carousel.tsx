@@ -1,6 +1,6 @@
 import React, { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
 import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../context';
-import { convertRemToPixels, getClassname, getGuid, toggleFullScreenMode } from '../utils';
+import { getClassname, getGuid, toggleFullScreenMode } from '../utils';
 import { CarouselInstanceProvider } from './CarouselInstanceProvider';
 import { CarouselItemProps, CarouselItem } from './CarouselItem';
 import { CarouselOptions, CarouselSvgHrefs } from '../types';
@@ -29,22 +29,22 @@ export const Carousel = ({
 	const idRef = useRef<string>(getGuid());
 	const carouselContainerRef = useRef<HTMLDivElement>();
 	const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
-	const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}rem`);
+	const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}px`);
 	const isCurrentCarousel = currentCarouselId === idRef.current;
 	//#endregion
 
 	//#region Functions/Handlers
 	const getInterItemSpacing = useCallback(() => {
 		//if there is itemSpacing is defined, the dynamic behavior is disabled
-		if (options?.thumbnail?.itemSpacing) return `${options?.thumbnail?.itemSpacing}rem`;
+		if (options?.thumbnail?.itemSpacing) return `${options?.thumbnail?.itemSpacing}px`;
 		//todo: figure out what the interitem spacing should be and set it here
 		const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
 		const itemSize = options?.thumbnail?.size || CAROUSEL_ITEM_SIZE_DEFAULT;
 		const numberOfItemsThatCanFit = Math.floor(containerWidth / itemSize);
 		const newInterItemSpacing = (containerWidth - (numberOfItemsThatCanFit * itemSize) / (currentItems?.length - 1));
 		
-		console.log({ containerWidth, itemSize, numberOfItemsThatCanFit, newInterItemSpacing, test: convertRemToPixels(10) });
-		return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}rem`;
+		console.log({ containerWidth, itemSize, numberOfItemsThatCanFit, newInterItemSpacing });
+		return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}px`;
 	}, [options?.thumbnail?.itemSpacing, carouselContainerRef]);
 	//#endregion
 

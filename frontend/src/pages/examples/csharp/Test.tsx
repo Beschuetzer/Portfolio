@@ -282,9 +282,9 @@ const sections: CSharpSection[] = [
 								textColor: getComputedStyleCustom('--color-primary-4'),
 								hideOverlayUnlessHovered: false,
 								maxLineCount: 1,
-								size: 10,
-								fontSize: 1,
-								itemSpacing: .25,
+								size: 100,
+								fontSize: 10,
+								itemSpacing: 10,
 							},
 						}}
 						onItemChange={() => console.log('onItemChang')}
