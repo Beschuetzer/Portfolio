@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
-import { getClassname } from '../utils';
+import { getClassname, setCssCustomProperty } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
+import { CLASSNAME__THUMBNAIL_BACKGROUND_COLOR, CLASSNAME__THUMBNAIL_TEXT_COLOR } from '../constants';
 
 export type CarouselItemProps = {
   /*
@@ -55,9 +56,15 @@ export const CarouselItem = (props: CarouselItemProps) => {
   //#region Side Fx
   useEffect(() => {
     if (options?.thumbnail) {
-      
+      if (options.thumbnail?.backgroundColor) {
+          setCssCustomProperty(CLASSNAME__THUMBNAIL_BACKGROUND_COLOR, options.thumbnail.backgroundColor?.trim());
+      }
+
+      if (options.thumbnail?.textColor) {
+          setCssCustomProperty(CLASSNAME__THUMBNAIL_TEXT_COLOR, options.thumbnail.textColor?.trim());
+      }
     }
-  }, [])
+  }, [options, CLASSNAME__THUMBNAIL_TEXT_COLOR, setCssCustomProperty])
   
   //#endregion
 
@@ -66,7 +73,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     <article onClick={(e) => onPress(e as any)} className={getClassname({ elementName: 'item' })}>
       {description ? (
         <div>
-          <p>{description}</p>
+          <h4>{description}</h4>
         </div>
       ) : null}
       <img

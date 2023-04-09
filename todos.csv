@@ -1,5 +1,4 @@
 Carousel rework:
-  -style thumbnail (make description text and background customizable with white and black defaults)
   -add three sizes and three spacings (sm, md, lg) to options.  Default to md for both?;
   -add swipe to scroll functionality to container?
   -add dots at bottom

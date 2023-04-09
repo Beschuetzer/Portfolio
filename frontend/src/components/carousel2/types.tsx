@@ -20,24 +20,16 @@ export type CarouselSvgHrefs = {
     stopButton?: string;
 }
 
-type CarouselColor = {
-    /*
-    *Default assumption is the value is a hexadecimal or color string.
-    */
-    type?: 'hexadecimal' | 'cssCustomProperty';
-    value: string;
-}
-
 export type CarouselThumbnailOptions = {
     /*
     *The hexadecimal value for the thumbnail's background
     */
-    backgroundColor?: CarouselColor;
+    backgroundColor?: string;
 
     /*
     *The hexadecimal value for the thumbnail background's text
     */
-    textColor?: CarouselColor;
+    textColor?: string;
 }
 
 export type CarouselVideoOptions = {

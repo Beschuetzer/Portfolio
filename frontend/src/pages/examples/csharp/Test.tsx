@@ -274,14 +274,8 @@ const sections: CSharpSection[] = [
 								autoHideToolbarDuration: 0,
 							},
 							thumbnail: {
-								backgroundColor: {
-									value: getComputedStyleCustom('--color-primary-1'),
-									type: 'cssCustomProperty',
-								},
-								textColor: {
-									value: getComputedStyleCustom('--color-primary-3'),
-									type: 'cssCustomProperty',
-								}
+								backgroundColor: getComputedStyleCustom('--color-primary-1'),
+								textColor: getComputedStyleCustom('--color-primary-3'),
 							}
 						}}
 						onItemChange={() => console.log('test')}
