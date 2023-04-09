@@ -6,7 +6,7 @@ import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton
 
 export const CarouselItemViewerCloseButton = () => {
     const { setCurrentItems, setCurrentItemIndex, currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.closeButton || '';
+    const svgHref = currentSvgHrefs?.itemViewer?.closeButton || '';
 
     const onClick = useCallback(() => {
         setCurrentItemIndex(CURRENT_ITEM_INDEX_INITIAL);

@@ -6,7 +6,7 @@ import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton
 
 export const CarouselItemViewerStopButton = () => {
     const { currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.stopButton || '';
+    const svgHref = currentSvgHrefs?.itemViewer?.stopButton || '';
 
     const onClick = useCallback(() => {
 

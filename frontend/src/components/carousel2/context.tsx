@@ -15,7 +15,6 @@ type CarouselValueProps = {
     currentItem: CarouselItemProps;
     currentItemIndex: number;
     currentItems: CarouselItemProps[];
-    currentPage: number;
     currentSvgHrefs: CarouselSvgHrefs | undefined;
     currentVideoOverlayProps: CarouselVideoOverlayProps;
     itemViewerRef: React.RefObject<HTMLElement>;
@@ -23,7 +22,6 @@ type CarouselValueProps = {
     setCurrentCarouselId: React.Dispatch<React.SetStateAction<string>>; 
     setCurrentItemIndex: React.Dispatch<React.SetStateAction<number>>;
     setCurrentItems: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
     setCurrentSvgHrefs: React.Dispatch<React.SetStateAction<CarouselSvgHrefs | undefined>>;
     setCurrentVideoOverlayProps: React.Dispatch<React.SetStateAction<CarouselVideoOverlayProps>>;
     setOptions: React.Dispatch<React.SetStateAction<CarouselOptions>>;
@@ -53,7 +51,6 @@ export const CarouselProvider = ({
     const [currentItems, setCurrentItems] = useState([] as CarouselItemProps[]);
     const [currentItemIndex, setCurrentItemIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
     const [currentCarouselId, setCurrentCarouselId] = useState(EMPTY_STRING);
-    const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
     const [currentVideoOverlayProps, setCurrentVideoOverlayProps] = useState<CarouselVideoOverlayProps>(OVERLAY_PROPS_DEFAULT);
     const [currentSvgHrefs, setCurrentSvgHrefs] = useState<CarouselSvgHrefs>()
     const [options, setOptions] = useState<CarouselOptions>(OPTIONS_DEFAULT);
@@ -70,7 +67,6 @@ export const CarouselProvider = ({
                 currentItem,
                 currentItemIndex,
                 currentItems,
-                currentPage,
                 currentSvgHrefs,
                 currentVideoOverlayProps,
                 itemViewerRef,
@@ -78,7 +74,6 @@ export const CarouselProvider = ({
                 setCurrentCarouselId,
                 setCurrentItemIndex,
                 setCurrentItems,
-                setCurrentPage,
                 setCurrentSvgHrefs,
                 setCurrentVideoOverlayProps,
                 setOptions,

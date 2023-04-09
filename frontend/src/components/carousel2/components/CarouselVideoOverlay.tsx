@@ -46,7 +46,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const [isVisible, setIsVisible] = useState(true);
 
     const { currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.closeButton || '';
+    const svgHref = currentSvgHrefs?.itemViewer?.closeButton || '';
     const isCustom = !!children;
     //#endregion
 

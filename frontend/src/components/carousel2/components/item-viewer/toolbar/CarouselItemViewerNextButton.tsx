@@ -10,7 +10,7 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
     onClick,
 }, ref) => {
     const { currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.nextButton || '';
+    const svgHref = currentSvgHrefs?.itemViewer?.nextButton || '';
 
     return (
         !!svgHref ?

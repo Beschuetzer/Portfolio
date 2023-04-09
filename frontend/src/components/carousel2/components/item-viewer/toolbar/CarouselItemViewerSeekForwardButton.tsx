@@ -9,7 +9,7 @@ export const CarouselItemViewerSeekForwardButton = ({
     onClick
 }: CarouselItemViewerSeekForwardButtonProps) => {
     const { currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.seekForwardButton || '';
+    const svgHref = currentSvgHrefs?.itemViewer?.seekForwardButton || '';
 
     return !!svgHref ? 
         <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref}/> :

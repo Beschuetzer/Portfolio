@@ -1,10 +1,11 @@
 import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
-import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../context';
+import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, useCarouselContext } from '../context';
 import { getClassname, getGuid, toggleFullScreenMode } from '../utils';
 import { CarouselInstanceProvider } from './CarouselInstanceProvider';
 import { CarouselItemProps, CarouselItem } from './CarouselItem';
 import { CarouselOptions, CarouselSvgHrefs } from '../types';
 import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT } from '../constants';
+import { CarouselDots } from './CarouselDots';
 
 type CarouselProps = {
 	style?: CSSProperties;
@@ -31,6 +32,7 @@ export const Carousel = ({
 	const hasCalculatedItemSpacingRef = useRef(false);
 	const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
 	const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}px`);
+	const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
 	const isCurrentCarousel = currentCarouselId === idRef.current;
 	//#endregion
 
@@ -94,7 +96,11 @@ export const Carousel = ({
 				</div>
 				<div className={getClassname({ elementName: "navigation" })}>
 					<h3>Add back arrow here</h3>
-					<h3>Add dots here</h3>
+					<CarouselDots
+						items={items || []}
+						setCurrentPage={setCurrentPage}
+						currentPage={currentPage}
+					/>
 					<h3>Add back arrow here</h3>
 				</div>
 			</div>

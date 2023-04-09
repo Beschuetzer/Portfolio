@@ -9,15 +9,24 @@ export type CarouselOptions = {
 }
 
 export type CarouselSvgHrefs = {
-    closeButton?: string;
-    nextButton?: string;
-    pauseButton?: string;
-    playButton?: string;
-    previousButton?: string;
-    restartButton?: string;
-    seekBackButton?: string;
-    seekForwardButton?: string;
-    stopButton?: string;
+    /*
+    *These are for the fullscreen modal that pops up when clicking a thumbnail in the carousel
+    */
+    itemViewer?: {
+        closeButton?: string;
+        nextButton?: string;
+        pauseButton?: string;
+        playButton?: string;
+        previousButton?: string;
+        restartButton?: string;
+        seekBackButton?: string;
+        seekForwardButton?: string;
+        stopButton?: string;
+    },
+    /*
+    *The dots at the bottom of the carousel indicating the number of pages
+    */
+    dots?: string;
 }
 
 export type CarouselThumbnailOptions = {

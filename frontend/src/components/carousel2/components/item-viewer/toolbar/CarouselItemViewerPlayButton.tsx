@@ -9,7 +9,7 @@ export const CarouselItemViewerPlayButton = ({
     onClick,
 }: CarouselItemViewerPlayButtonProps) => {
     const { currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.playButton || '';
+    const svgHref = currentSvgHrefs?.itemViewer?.playButton || '';
 
     return !!svgHref ? 
         <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref}/> :
