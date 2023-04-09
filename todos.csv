@@ -1,13 +1,12 @@
 Carousel rework:
   -finish dots (add generic css version with option to use an svg in svghrefs)
   -finish arrows for pages
-  -figure out how to calculate thumbnail sizes/spacing (have default be fit as many a possible in container with default width)
   -add swipe to scroll functionality to container?
   -add dynamic styling for itemviewer
   -add loading spinner for videos (test by throttling in responsive menu)
-  -convert backend to an apollo server?
 
 React best practices re-work (branch = sitenav_rework)
+  -convert backend to an apollo server?
   -pages with audio need to know when player is open and adjust padding bottom
   -bridge links move after clicking buttons (as opposed to github link)
   -replace as many document.querySelector calls with refs
