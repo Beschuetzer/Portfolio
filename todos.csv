@@ -1,5 +1,5 @@
 Carousel rework:
-  -make CarouselLayoutOptions customizable.  Spacing adjusts to fit the max number of items on screen with first and last items being aligned witht the ends of the container
+  -make layout.spacingStrategy customizable.  Spacing adjusts to fit the max number of items on screen with first and last items being aligned witht the ends of the container
   -figure out how to calculate thumbnail sizes/spacing (have default be fit as many a possible in container with default width)
   -add swipe to scroll functionality to container?
   -add dots at bottom
