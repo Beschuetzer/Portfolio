@@ -29,6 +29,14 @@
     stroke: $itemViewerButtonColor;
 }
 
+@mixin maxTextLineCount($maxLineCount: 4) {
+    display: -webkit-box;
+    -webkit-line-clamp: $maxLineCount;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @mixin pauseBar(
     $width: $itemViewerButtonLineWidth,
     $height: $pauseButtonVerticalHeight,

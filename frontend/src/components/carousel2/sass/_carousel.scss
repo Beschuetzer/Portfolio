@@ -1,14 +1,12 @@
-@use "sass:string";
-
 .#{$carouselClassname} {
     width: 100%;
-    height: calc($itemHeight + 5rem);
+    height: calc(#{$carouselThumbnailSize} + 5rem);
     display: flex;
     overflow: hidden;
 
     &__container {
         display: flex;
-        column-gap: 10rem;
+        column-gap: $carouselThumbnailItemSpacing;
         width: 10000000vw;
         transition: transform $carouselAnimationDuration ease;
     }
@@ -16,8 +14,8 @@
     &__item {
         margin-top: $carouselItemHoverTranslateUpAmount;
         position: relative;
-        height: $itemHeight;
-        width: $itemHeight;
+        height: $carouselThumbnailSize;
+        width: $carouselThumbnailSize;
         border-radius: 8px;
         overflow: hidden;
         transition:
@@ -64,6 +62,10 @@
             transition: bottom $carouselAnimationDuration ease;
             padding: calc($itemViewerToolbarMarginHorizontal / 2) $itemViewerToolbarMarginHorizontal;
             text-align: center;
+
+            & * {
+                @include maxTextLineCount($carouselThumbnailOverlayMaxLineCount);
+            }
         }
 
         &:hover {
@@ -200,11 +202,7 @@
                         text-align: center;
 
                         & p {
-                            display: -webkit-box;
-                            -webkit-line-clamp: 4;
-                            -webkit-box-orient: vertical;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
+                            @include maxTextLineCount();
                         }
                     }
                 }

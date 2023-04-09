@@ -3,9 +3,26 @@ export type ButtonProps = {
     onClick: () => void;
 }
 
+export type CarouselLayoutOptions = {
+    /*
+    *Default is dynamic;  If set to dynamic, the amount of spacing between items adjusts to fit the max number of thumbnails inside the container
+    *based on the thumbnailSize.  If set to 'fixed', the interItemSpacing value is used regardless of how many items will fit inside the container
+    */
+    spacingStrategy?: 'dynamic' | 'fixed';
+    /*
+    *The value in rem that the items are spaced apart.  Default is 1rem.
+    */
+    interItemSpacing?: number;
+    /*
+    *The size of the thumbnails in rem.  Default is 15rem.
+    */
+    thumbnailSize?: number;
+}
+
 export type CarouselOptions = {
     thumbnail?: CarouselThumbnailOptions;
     video?: CarouselVideoOptions;
+    layout?: CarouselLayoutOptions;
 }
 
 export type CarouselSvgHrefs = {
@@ -29,7 +46,10 @@ export type CarouselThumbnailOptions = {
     *The hexadecimal value for the thumbnail's background
     */
     backgroundColor?: string;
-
+    /*
+    *The number of lines to show before an ellipsis is inserted.  Default is 2.
+    */
+    maxLineCount?: number;
     /*
     *The hexadecimal value for the thumbnail background's text
     */

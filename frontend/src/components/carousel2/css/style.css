@@ -223,13 +223,13 @@
 
 .thumbnail-carousel {
   width: 100%;
-  height: 20rem;
+  height: calc(15rem + 5rem);
   display: flex;
   overflow: hidden;
 }
 .thumbnail-carousel__container {
   display: flex;
-  column-gap: 10rem;
+  column-gap: 1rem;
   width: 10000000vw;
   transition: transform 0.5s ease;
 }
@@ -274,6 +274,13 @@
   transition: bottom 0.5s ease;
   padding: 1rem 2rem;
   text-align: center;
+}
+.thumbnail-carousel__item > div * {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .thumbnail-carousel__item:hover {
   transform: translateY(-0.5rem);

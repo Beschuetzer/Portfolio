@@ -58,6 +58,9 @@ export const CarouselItem = (props: CarouselItemProps) => {
   //#endregion
 
   //#region JSX
+  const textStyle = {
+    WebkitLineClamp: options?.thumbnail?.maxLineCount || 2,
+  } as React.CSSProperties;
   const thumbnailBackgroundStyle = {
     backgroundColor: options?.thumbnail?.backgroundColor || 'black',
     color: options?.thumbnail?.textColor || 'white',
@@ -68,7 +71,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     <article onClick={(e) => onPress(e as any)} className={getClassname({ elementName: 'item' })}>
       {description ? (
         <div style={thumbnailBackgroundStyle}>
-          <h4>{description}</h4>
+          <h4 style={textStyle}>{description}</h4>
         </div>
       ) : null}
       <img

@@ -270,7 +270,7 @@ const sections: CSharpSection[] = [
 						]}
 					/>
 				</CSharpCardSection>
-				<CSharpCardSection title="Seeing the world">
+				<div style={{width: '66%'}}>
 					Here are some photos of enjoyable experiences:
 					<Carousel
 						options={{
@@ -280,7 +280,8 @@ const sections: CSharpSection[] = [
 							thumbnail: {
 								backgroundColor: getComputedStyleCustom('--color-primary-1'),
 								textColor: getComputedStyleCustom('--color-primary-4'),
-								alwaysShow: false,
+								alwaysShowBackground: false,
+								maxLineCount: 1,
 							}
 						}}
 						onItemChange={() => console.log('test')}
@@ -333,7 +334,7 @@ const sections: CSharpSection[] = [
 							},
 						]}
 					/>
-				</CSharpCardSection>
+				</div>
 			</React.Fragment>,
 		],
 	},
