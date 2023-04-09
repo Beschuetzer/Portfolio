@@ -22,6 +22,10 @@ export type CarouselSvgHrefs = {
 
 export type CarouselThumbnailOptions = {
     /*
+    *If true, the overlay with the description is always present;  Default is true
+    */
+    alwaysShow?: boolean;
+    /*
     *The hexadecimal value for the thumbnail's background
     */
     backgroundColor?: string;

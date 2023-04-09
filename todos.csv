@@ -1,8 +1,8 @@
 Carousel rework:
-  -add three sizes and three spacings (sm, md, lg) to options.  Default to md for both?;
+  -figure out how to calculate thumbnail sizes/spacing (have default be fit as many a possible in container with default width)
+  -add three sizes (sm, md, lg) to options.  Default to md;  Spacing adjusts to fit the max number of items on screen with first and last items being aligned witht the ends of the container
   -add swipe to scroll functionality to container?
   -add dots at bottom
-  -figure out how to calculate thumbnail sizes/spacing (have default be fit as many a possible in container with default width)
   -add dynamic styling for itemviewer
   -convert backend to an apollo server?
 

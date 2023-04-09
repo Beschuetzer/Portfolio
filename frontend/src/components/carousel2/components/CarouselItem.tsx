@@ -59,6 +59,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   const thumbnailBackgroundStyle = {
     backgroundColor: options?.thumbnail?.backgroundColor || 'black',
     color: options?.thumbnail?.textColor || 'white',
+    bottom: options?.thumbnail?.alwaysShow === undefined || options.thumbnail.alwaysShow ? '0' : '-100%',
   } as React.CSSProperties
 
   return (

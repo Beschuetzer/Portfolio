@@ -1,5 +1,4 @@
 :root {
-  --thumbnail-carousel-classname: thumbnail-carousel;
   --thumbnail-carousel-video-overlay-custom-button-top: calc(2rem * .5);
   --thumbnail-carousel-video-overlay-custom-button-right: calc(2rem * .5);
 }
@@ -268,7 +267,7 @@
 }
 .thumbnail-carousel__item > div {
   position: absolute;
-  bottom: -100%;
+  bottom: 0;
   left: 0;
   right: 0;
   top: auto;
@@ -281,7 +280,7 @@
   box-shadow: 0 0.5rem 1rem 0rem rgba(0, 0, 0, 0.33);
 }
 .thumbnail-carousel__item:hover > div {
-  bottom: 0;
+  bottom: 0 !important;
 }
 .thumbnail-carousel__item-viewer {
   display: flex;

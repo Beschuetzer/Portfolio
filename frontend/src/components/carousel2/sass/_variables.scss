@@ -21,7 +21,6 @@ $itemViewerToolbarPreviewWidth: 20rem;
 $videoOverlayCustomButtonTopString: '#{$carouselClassname}-video-overlay-custom-button-top';
 $videoOverlayCustomButtonRightString: '#{$carouselClassname}-video-overlay-custom-button-right';
 :root {
-    --#{$carouselClassname}-classname: #{$carouselClassname};
     --#{$videoOverlayCustomButtonTopString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
     --#{$videoOverlayCustomButtonRightString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
 }
