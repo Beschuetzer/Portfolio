@@ -38,6 +38,7 @@ export const Carousel = ({
 	//#region Init
 	const { currentItemIndex, currentItems, setCurrentItems, currentCarouselId, itemViewerRef } = useCarouselContext();
 	const idRef = useRef<string>(getGuid());
+	const carouselContainerRef = useRef<HTMLDivElement>();
 
 	//#endregion
 
@@ -60,10 +61,11 @@ export const Carousel = ({
 	//#region JSX
 	return (
 		<CarouselInstanceProvider
+			carouselContainerRef={carouselContainerRef as any}
 			id={idRef.current}
 			options={options}
 			svgHrefInstance={svgHrefs}>
-			<div className={getClassname({elementName: ""})} style={customStyles.container}>
+			<div ref={carouselContainerRef as any} className={getClassname({elementName: ""})} style={customStyles.container}>
 				<div className={getClassname({elementName: "container"})}>
 					{
 						items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)

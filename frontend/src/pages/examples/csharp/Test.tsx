@@ -280,7 +280,7 @@ const sections: CSharpSection[] = [
 							thumbnail: {
 								backgroundColor: getComputedStyleCustom('--color-primary-1'),
 								textColor: getComputedStyleCustom('--color-primary-4'),
-								alwaysShowBackground: false,
+								alwaysShow: false,
 							}
 						}}
 						onItemChange={() => console.log('test')}

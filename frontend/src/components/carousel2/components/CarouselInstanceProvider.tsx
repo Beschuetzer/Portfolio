@@ -7,6 +7,7 @@ type CarouselInstanceProps = {
 } & CarouselInstanceContextProps
 
 type CarouselInstanceContextProps = {
+    carouselContainerRef: React.MutableRefObject<HTMLDivElement>;
     id: string;
     options: CarouselOptions | undefined;
     svgHrefInstance: CarouselSvgHrefs;
@@ -19,6 +20,7 @@ export function useCarouselInstanceContext() {
 }
 
 export const CarouselInstanceProvider = ({
+    carouselContainerRef,
     children,
     id,
     options,
@@ -27,6 +29,7 @@ export const CarouselInstanceProvider = ({
     return (
         <CarouselInstanceContext.Provider 
             value={{
+                carouselContainerRef,
                 id,
                 options,
                 svgHrefInstance,

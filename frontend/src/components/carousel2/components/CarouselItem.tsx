@@ -40,9 +40,11 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcThumbnail,
   } = props;
   const { setCurrentItemIndex, setCurrentSvgHrefs, setOptions, setCurrentCarouselId } = useCarouselContext();
-  const { id: carouselId, svgHrefInstance, options } = useCarouselInstanceContext();
+  const { id: carouselId, svgHrefInstance, options, carouselContainerRef } = useCarouselInstanceContext();
   //#endregion
 
+  console.log({containerWidth: carouselContainerRef?.current?.getBoundingClientRect().width});
+  
   //#region Functions/Handlers
   function onPress(e: MouseEvent) {
     setOptions(options || OPTIONS_DEFAULT);
