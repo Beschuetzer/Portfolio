@@ -1,8 +1,10 @@
 Carousel rework:
+  -convert rems to px for all options;
   -make layout.spacingStrategy customizable.  Spacing adjusts to fit the max number of items on screen with first and last items being aligned witht the ends of the container
+  -finish dots (add generic css version with option to use an svg in svghrefs)
+  -finish arrows for pages
   -figure out how to calculate thumbnail sizes/spacing (have default be fit as many a possible in container with default width)
   -add swipe to scroll functionality to container?
-  -add dots at bottom
   -add dynamic styling for itemviewer
   -add loading spinner for videos (test by throttling in responsive menu)
   -convert backend to an apollo server?

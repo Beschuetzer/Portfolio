@@ -3,6 +3,7 @@ import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
 import { getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
+import { CAROUSEL_ITEM_SIZE_DEFAULT } from '../constants';
 
 export type CarouselItemProps = {
   /*
@@ -76,10 +77,13 @@ export const CarouselItem = (props: CarouselItemProps) => {
     ...colorStyle,
     ...backgroundColorStyle,
   } as React.CSSProperties
-  const itemStyle = options?.thumbnail ? {
+  const itemStyle = options?.thumbnail?.size ? {
     width: `${options.thumbnail?.size}rem`,
     height: `${options.thumbnail?.size}rem`,
-  } as React.CSSProperties : {};
+  } as React.CSSProperties : {
+    width: `${CAROUSEL_ITEM_SIZE_DEFAULT}rem`,
+    height: `${CAROUSEL_ITEM_SIZE_DEFAULT}rem`,
+  };
   
   return (
     <article onClick={(e) => onPress(e as any)} className={getClassname({ elementName: 'item' })} style={itemStyle}>

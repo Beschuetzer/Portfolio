@@ -1,11 +1,9 @@
 .#{$carouselClassname} {
     width: 100%;
-    // height: calc(#{$carouselThumbnailSize} + 5rem);
     overflow: hidden;
 
     &__container {
         display: flex;
-        column-gap: $carouselThumbnailItemSpacing;
         width: 10000000vw;
         transition: transform $carouselAnimationDuration ease;
     }
@@ -13,8 +11,6 @@
     &__item {
         margin-top: $carouselItemHoverTranslateUpAmount;
         position: relative;
-        height: $carouselThumbnailSize;
-        width: $carouselThumbnailSize;
         border-radius: 8px;
         overflow: hidden;
         transition:
@@ -244,7 +240,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: $carouselThumbnailItemSpacing;
+        margin-top: calc($itemViewerToolbarMarginHorizontal / 2);
     }
 
     &__video {
