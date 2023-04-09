@@ -71,6 +71,11 @@ export const Carousel = ({
 						items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)
 					}
 				</div>
+				<div className={getClassname({elementName: "navigation"})}>
+					<h3>Add back arrow here</h3>
+					<h3>Add dots here</h3>
+					<h3>Add back arrow here</h3>
+				</div>
 			</div>
 		</CarouselInstanceProvider>
 	)

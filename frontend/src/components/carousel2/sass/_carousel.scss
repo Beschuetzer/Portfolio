@@ -1,7 +1,6 @@
 .#{$carouselClassname} {
     width: 100%;
-    height: calc(#{$carouselThumbnailSize} + 5rem);
-    display: flex;
+    // height: calc(#{$carouselThumbnailSize} + 5rem);
     overflow: hidden;
 
     &__container {
@@ -62,6 +61,8 @@
             transition: bottom $carouselAnimationDuration ease;
             padding: calc($itemViewerToolbarMarginHorizontal / 2) $itemViewerToolbarMarginHorizontal;
             text-align: center;
+            font-weight: 700;
+            font-size: $carouselThumbnailFontSize;
 
             & * {
                 @include maxTextLineCount($carouselThumbnailOverlayMaxLineCount);
@@ -237,6 +238,13 @@
                 }
             }
         }
+    }
+
+    &__navigation {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: $carouselThumbnailItemSpacing;
     }
 
     &__video {

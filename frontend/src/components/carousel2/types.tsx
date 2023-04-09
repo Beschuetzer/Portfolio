@@ -13,10 +13,6 @@ export type CarouselLayoutOptions = {
     *The value in rem that the items are spaced apart.  Default is 1rem.
     */
     interItemSpacing?: number;
-    /*
-    *The size of the thumbnails in rem.  Default is 15rem.
-    */
-    thumbnailSize?: number;
 }
 
 export type CarouselOptions = {
@@ -39,17 +35,28 @@ export type CarouselSvgHrefs = {
 
 export type CarouselThumbnailOptions = {
     /*
-    *If true, the background with the description is always present;  Default is true
-    */
-    alwaysShowBackground?: boolean;
-    /*
     *The hexadecimal value for the thumbnail's background
     */
     backgroundColor?: string;
     /*
+    *The size of the font in rem of the thumbnail description;  Default is 12px;
+    */
+    fontSize?: number;
+     /*
+    *If false, the overlay with the description is always present.  
+    *If true, the overlay only shows when item is hovered.
+    *No overlay is shown if item.description is falsy
+    *Default is true
+    */
+    hideOverlayUnlessHovered?: boolean;
+    /*
     *The number of lines to show before an ellipsis is inserted.  Default is 2.
     */
     maxLineCount?: number;
+    /*
+    *The size of the thumbnails in rem.  Default is 15rem.
+    */
+    size?: number;
     /*
     *The hexadecimal value for the thumbnail background's text
     */

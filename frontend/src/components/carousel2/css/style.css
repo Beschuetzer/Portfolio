@@ -223,8 +223,6 @@
 
 .thumbnail-carousel {
   width: 100%;
-  height: calc(15rem + 5rem);
-  display: flex;
   overflow: hidden;
 }
 .thumbnail-carousel__container {
@@ -274,6 +272,8 @@
   transition: bottom 0.5s ease;
   padding: 1rem 2rem;
   text-align: center;
+  font-weight: 700;
+  font-size: 12px;
 }
 .thumbnail-carousel__item > div * {
   display: -webkit-box;
@@ -442,6 +442,12 @@
 }
 .thumbnail-carousel__item-viewer-toolbar-progress:hover {
   transform: scaleY(2);
+}
+.thumbnail-carousel__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
 .thumbnail-carousel__video {
   width: 100vw;

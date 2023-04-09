@@ -58,20 +58,36 @@ export const CarouselItem = (props: CarouselItemProps) => {
   //#endregion
 
   //#region JSX
-  const textStyle = {
+  const fontSizeStyle = options?.thumbnail ? {
+    fontSize: `${options.thumbnail.fontSize}rem`,
+  } as React.CSSProperties : {};
+  const maxLineCountStyle = {
     WebkitLineClamp: options?.thumbnail?.maxLineCount || 2,
   } as React.CSSProperties;
+  const backgroundColorStyle =  options?.thumbnail?.backgroundColor ? {
+    backgroundColor: options.thumbnail.backgroundColor,
+  } as React.CSSProperties : {};
+  const colorStyle =  options?.thumbnail?.textColor ? {
+    color: options.thumbnail.textColor,
+  } as React.CSSProperties : {};
+  const bottomStyle =  options?.thumbnail?.hideOverlayUnlessHovered === undefined || options.thumbnail.hideOverlayUnlessHovered ? {
+    bottom: '-100%',
+  } as React.CSSProperties : {};
   const thumbnailBackgroundStyle = {
-    backgroundColor: options?.thumbnail?.backgroundColor || 'black',
-    color: options?.thumbnail?.textColor || 'white',
-    bottom: options?.thumbnail?.alwaysShowBackground === undefined || options.thumbnail.alwaysShowBackground ? '0' : '-100%',
+    ...bottomStyle,
+    ...colorStyle,
+    ...backgroundColorStyle,
   } as React.CSSProperties
-
+  const itemStyle = options?.thumbnail ? {
+    width: `${options.thumbnail?.size}rem`,
+    height: `${options.thumbnail?.size}rem`,
+  } as React.CSSProperties : {};
+  
   return (
-    <article onClick={(e) => onPress(e as any)} className={getClassname({ elementName: 'item' })}>
+    <article onClick={(e) => onPress(e as any)} className={getClassname({ elementName: 'item' })} style={itemStyle}>
       {description ? (
         <div style={thumbnailBackgroundStyle}>
-          <h4 style={textStyle}>{description}</h4>
+          <p style={{...maxLineCountStyle, ...fontSizeStyle}}>{description}</p>
         </div>
       ) : null}
       <img
