@@ -284,7 +284,7 @@ const sections: CSharpSection[] = [
 								maxLineCount: 1,
 								size: 100,
 								fontSize: 10,
-								itemSpacing: 10,
+								itemSpacing: 8,
 							},
 						}}
 						onItemChange={() => console.log('onItemChang')}
