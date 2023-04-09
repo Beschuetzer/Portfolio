@@ -1,48 +1,66 @@
 import React, { useCallback } from 'react'
 import { CarouselItemProps } from './CarouselItem';
 import { getClassname } from '../utils';
-import { useCarouselContext } from '../context';
+import { CarouselSvgHrefs } from '../types';
 
 type CarouselDotsProps = {
     currentPage: number;
     items: CarouselItemProps[];
+    svgHrefs: CarouselSvgHrefs;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const CarouselDots = ({
     currentPage,
     items,
+    svgHrefs = {},
     setCurrentPage,
 }: CarouselDotsProps) => {
-    //todo: add customization of dots
-    const { currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.dots || '';
+    //#region Init
+    const { fillColor, svgHref } = svgHrefs.dots || {};
+    //#endregion
 
-    const onClick = useCallback(() => {
+    //#region Handlers/Functions
+    const onClick = useCallback((nthItem: number) => {
         //todo: set current page here
-        console.log("clicked");
-        
+        console.log("clicked " + nthItem);
     }, []);
+    //#endregion
 
-    console.log({svgHref});
-    
+
+    //#region Side Fx
+    //#endregion
+
+    //#region JSX
+    console.log({ svgHrefs });
+
+    const useStyles = !!fillColor ? {
+        fill: fillColor,
+    } as React.CSSProperties : {}
+    const divStyles = !!fillColor ? {
+        backgroundColor: fillColor,
+        opacity: .66,
+    } as React.CSSProperties : {}
     return (
         <div className={getClassname({ elementName: 'dots' })}>
             {items.map((_, index) => {
-                return  (
-                    <div key={index} onClick={onClick}>
-                        { !!svgHref ? (
-                        <svg key={index} onClick={onClick} >
+                return (
+                    !!svgHref ? (
+                        <svg key={index} >
                             <use
+                                style={useStyles}
                                 xlinkHref={svgHref}
                                 href={svgHref}
                             />
                         </svg>
-                    ) : <div/>}
-                    </div>
+                    ) : (
+                        <div key={index} onClick={() => onClick(index)}>
+                            <div style={divStyles} />
+                        </div>
+                    )
                 )
-                
             })}
         </div>
     )
+    //#endregion
 }

@@ -11,11 +11,11 @@
     &__dots {
         @include displayFlexCenter();
 
-        & > div {
+        & > div, & > svg {
             @include displayFlexCenter();
             --opacity: #{$itemViewerToolbarPreviewOpacity};
-            height: $carouselDotRadius * 2;
-            width: $carouselDotRadius * 2;
+            height: $carouselDotRadius * 6;
+            width: $carouselDotRadius * 4;
             background-color: transparent;
            
 
@@ -25,12 +25,18 @@
                 background-color: rgba($itemViewerBackgroundColor, var(--opacity));
                 border-radius: 100%;
             }
+
+            & use {
+                fill: $itemViewerBackgroundColor;
+                opacity: var(--opacity);
+            }
            
             &:hover {
                 cursor: pointer;
 
-                & > div {
+                & * {
                     --opacity: 1;
+                    opacity: 1 !important;
                 }
             }
         }
@@ -268,7 +274,6 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: calc($itemViewerToolbarMarginHorizontal / 2);
     }
 
     &__video {

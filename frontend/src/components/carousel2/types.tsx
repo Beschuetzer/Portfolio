@@ -8,6 +8,17 @@ export type CarouselOptions = {
     video?: CarouselVideoOptions;
 }
 
+export type CarouselSvgHref = {
+    /*
+    *Default is #000
+    */
+    fillColor?: string;
+    /*
+    *Href of the svg element
+    */
+    svgHref?: string;
+}
+
 export type CarouselSvgHrefs = {
     /*
     *These are for the fullscreen modal that pops up when clicking a thumbnail in the carousel
@@ -26,7 +37,7 @@ export type CarouselSvgHrefs = {
     /*
     *The dots at the bottom of the carousel indicating the number of pages
     */
-    dots?: string;
+    dots?: CarouselSvgHref;
 }
 
 export type CarouselThumbnailOptions = {

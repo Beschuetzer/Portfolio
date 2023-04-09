@@ -1,5 +1,5 @@
 Carousel rework:
-  -finish dots (add generic css version with option to use an svg in svghrefs)
+  -add customization for itemViewer.buttons (fill color like dots)
   -finish arrows for pages
   -add a listener to recalculate spacing when changing window's client width
   -add swipe to scroll functionality to container?

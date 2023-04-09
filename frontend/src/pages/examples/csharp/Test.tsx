@@ -203,7 +203,10 @@ const sections: CSharpSection[] = [
 								seekForwardButton: "./sprite.svg#icon-forward",
 								stopButton: "./sprite.svg#icon-stop",
 							},
-							dots: "./sprite.svg#icon-dot-single",
+							dots: {
+								svgHref: "./sprite.svg#icon-dot-single",
+								fillColor: getComputedStyleCustom('--color-primary-1'),
+							}
 						}}
 						items={[
 							{

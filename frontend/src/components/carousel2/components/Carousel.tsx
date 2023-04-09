@@ -95,13 +95,14 @@ export const Carousel = ({
 					}
 				</div>
 				<div className={getClassname({ elementName: "navigation" })}>
-					<h3>Add back arrow here</h3>
+					<h3>{'<--'}</h3>
 					<CarouselDots
+						svgHrefs={svgHrefs}
 						items={items || []}
 						setCurrentPage={setCurrentPage}
 						currentPage={currentPage}
 					/>
-					<h3>Add back arrow here</h3>
+					<h3>{'-->'}</h3>
 				</div>
 			</div>
 		</CarouselInstanceProvider>

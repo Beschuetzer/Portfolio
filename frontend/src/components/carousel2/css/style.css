@@ -235,26 +235,31 @@
   align-items: center;
   justify-content: center;
 }
-.thumbnail-carousel__dots > div {
+.thumbnail-carousel__dots > div, .thumbnail-carousel__dots > svg {
   display: flex;
   align-items: center;
   justify-content: center;
   --opacity: 0.66;
-  height: 16px;
-  width: 16px;
+  height: 30px;
+  width: 20px;
   background-color: transparent;
 }
-.thumbnail-carousel__dots > div > div {
-  height: 8px;
-  width: 8px;
+.thumbnail-carousel__dots > div > div, .thumbnail-carousel__dots > svg > div {
+  height: 5px;
+  width: 5px;
   background-color: rgba(0, 0, 0, var(--opacity));
   border-radius: 100%;
 }
-.thumbnail-carousel__dots > div:hover {
+.thumbnail-carousel__dots > div use, .thumbnail-carousel__dots > svg use {
+  fill: #000;
+  opacity: var(--opacity);
+}
+.thumbnail-carousel__dots > div:hover, .thumbnail-carousel__dots > svg:hover {
   cursor: pointer;
 }
-.thumbnail-carousel__dots > div:hover > div {
+.thumbnail-carousel__dots > div:hover *, .thumbnail-carousel__dots > svg:hover * {
   --opacity: 1;
+  opacity: 1 !important;
 }
 .thumbnail-carousel__item {
   margin-top: 0.5rem;
@@ -470,7 +475,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1rem;
 }
 .thumbnail-carousel__video {
   width: 100vw;
