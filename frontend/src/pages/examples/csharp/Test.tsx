@@ -286,10 +286,10 @@ const sections: CSharpSection[] = [
 								fontSize: 1,
 							},
 							layout: {
-								interItemSpacing: 2,
+								interItemSpacing: .25,
 							}
 						}}
-						onItemChange={() => console.log('test')}
+						onItemChange={() => console.log('onItemChang')}
 						items={[
 							{
 								description: "Applying Filters",

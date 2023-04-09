@@ -43,8 +43,6 @@ export const CarouselItem = (props: CarouselItemProps) => {
   const { id: carouselId, svgHrefInstance, options, carouselContainerRef } = useCarouselInstanceContext();
   //#endregion
 
-  console.log({containerWidth: carouselContainerRef?.current?.getBoundingClientRect().width});
-  
   //#region Functions/Handlers
   function onPress(e: MouseEvent) {
     setOptions(options || OPTIONS_DEFAULT);

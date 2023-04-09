@@ -5,35 +5,23 @@ import { CarouselInstanceProvider } from './CarouselInstanceProvider';
 import { CarouselItemProps, CarouselItem } from './CarouselItem';
 import { CarouselOptions, CarouselSvgHrefs } from '../types';
 
-type CustomStyles = {
-	container?: CSSProperties;
-}
-
 type CarouselProps = {
-	customStyles?: CustomStyles;
+	style?: CSSProperties;
 	/*
 	* if undefined, the default css version for each button will be used
 	*/
 	svgHrefs?: CarouselSvgHrefs;
 	items: CarouselItemProps[];
 	options?: CarouselOptions;
-	onClose?: () => void;
 	onItemChange?: (isViewerOpen?: boolean) => void;
-	onOpen?: () => void;
-	/*
-	*The number of items to display in the carousel at any given time
-	*/
-	rowWidth?: number;
 }
 
 export const Carousel = ({
-	customStyles = {},
+	style = {},
 	svgHrefs = {},
 	items,
 	options,
-	onClose = () => null,
 	onItemChange = () => null,
-	onOpen = () => null,
 }: CarouselProps) => {
 	//#region Init
 	const { currentItemIndex, currentItems, setCurrentItems, currentCarouselId, itemViewerRef } = useCarouselContext();
@@ -59,14 +47,20 @@ export const Carousel = ({
 	//#endregion
 
 	//#region JSX
+	const interItemSpacingStyle = options?.layout?.interItemSpacing ? {
+		columnGap: `${options.layout.interItemSpacing}rem`,
+	} as CSSProperties : {}
+	const containerStyle = {
+		...interItemSpacingStyle,
+	}
 	return (
 		<CarouselInstanceProvider
 			carouselContainerRef={carouselContainerRef as any}
 			id={idRef.current}
 			options={options}
 			svgHrefInstance={svgHrefs}>
-			<div ref={carouselContainerRef as any} className={getClassname({elementName: ""})} style={customStyles.container}>
-				<div className={getClassname({elementName: "container"})}>
+			<div ref={carouselContainerRef as any} className={getClassname({elementName: ""})} style={style}>
+				<div style={containerStyle} className={getClassname({elementName: "container"})}>
 					{
 						items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)
 					}
