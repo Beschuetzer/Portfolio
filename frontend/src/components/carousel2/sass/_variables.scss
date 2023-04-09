@@ -20,13 +20,12 @@ $itemViewerToolbarPreviewWidth: 20rem;
 
 $thumbnailBackgroundColorString: '#{$carouselClassname}-thumbnail-background-color';
 $thumbnailTextColorString: '#{$carouselClassname}-thumbnail-text-color';
-$videoOverlayCustomButtonTop: 'video-overlay-custom-button-top';
-$videoOverlayCustomButtonRight: 'video-overlay-custom-button-right';
+$videoOverlayCustomButtonTopString: '#{$carouselClassname}-video-overlay-custom-button-top';
+$videoOverlayCustomButtonRightString: '#{$carouselClassname}-video-overlay-custom-button-right';
 :root {
     --#{$carouselClassname}-classname: #{$carouselClassname};
-    --#{$carouselClassname}-#{$videoOverlayCustomButtonTop}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
-    --#{$carouselClassname}-#{$videoOverlayCustomButtonRight}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
+    --#{$videoOverlayCustomButtonTopString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
+    --#{$videoOverlayCustomButtonRightString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
     --#{$thumbnailBackgroundColorString}: #{$itemViewerBackgroundColor};
     --#{$thumbnailTextColorString}: #{$itemViewerButtonColor};
-
 }
