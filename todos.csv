@@ -1,5 +1,8 @@
 Carousel rework:
-  -style thumbnail (make description text and background customizable)
+  -style thumbnail (make description text and background customizable with white and black defaults)
+  -add three sizes and three spacings (sm, md, lg) to options.  Default to md for both?;
+  -add swipe to scroll functionality to container?
+  -add dots at bottom
   -figure out how to calculate thumbnail sizes/spacing (have default be fit as many a possible in container with default width)
   -add dynamic styling for itemviewer
   -convert backend to an apollo server?

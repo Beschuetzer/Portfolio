@@ -45,7 +45,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
 
   //#region Functions/Handlers
   function onPress(e: MouseEvent) {
-		setOptions(options || OPTIONS_DEFAULT);
+    setOptions(options || OPTIONS_DEFAULT);
     setCurrentCarouselId(carouselId);
     setCurrentItemIndex(index as any);
     setCurrentSvgHrefs(svgHrefInstance);
@@ -58,13 +58,18 @@ export const CarouselItem = (props: CarouselItemProps) => {
   //  use a blank icon if srcThumbnail not present or require srcThumbnail? 
   //  need to put default size in comment above for thumbnail once decided upon
   return (
-    <article onClick={(e) => onPress(e as any)} className={getClassname({elementName: 'item'})}>
+    <article onClick={(e) => onPress(e as any)} className={getClassname({ elementName: 'item' })}>
+      {description ? (
+        <div>
+          <p>{description}</p>
+        </div>
+      ) : null}
       <img
-        className={getClassname({elementName: 'item-thumbnail'})}
-        src={srcThumbnail}
-        alt={description}
+        className={getClassname({ elementName: 'item-thumbnail' })}
+        src={srcThumbnail || srcMain}
+        alt={description || 'user picture'}
       />
-		</article>
+    </article>
   )
   //#endregion
 }

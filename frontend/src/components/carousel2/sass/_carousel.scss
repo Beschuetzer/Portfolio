@@ -12,6 +12,7 @@
     }
 
     &__item {
+        margin-top: $carouselItemHoverTranslateUpAmount;
         position: relative;
         height: $itemHeight;
         width: $itemHeight;
@@ -54,6 +55,23 @@
             object-position: top;
             height: 100%;
             width: 100%;
+        }
+
+        &>div {
+            background-color: rgba($itemViewerBackgroundColor, $itemViewerToolbarPreviewOpacity);
+            color: $itemViewerButtonColor;
+            @include positionAbsolute($top: auto, $bottom: -100%);
+            transition: bottom $carouselAnimationDuration ease;
+            padding: calc($itemViewerToolbarMarginHorizontal / 2) $itemViewerToolbarMarginHorizontal;
+            text-align: center;
+        }
+
+        &:hover {
+            transform: translateY(-$carouselItemHoverTranslateUpAmount);
+            box-shadow: 0 .5rem 1rem 0rem rgba(black, .33);
+            &>div {
+                bottom: 0;
+            }
         }
     }
 
@@ -128,13 +146,13 @@
                 font-size: 1.5rem;
                 color: $itemViewerButtonColor;
 
-                & > * {
+                &>* {
                     text-align: center;
 
                     & span {
                         width: 6rem;
                         display: inline-block;
-    
+
                         &:nth-last-of-type(2) {
                             width: 1rem;
                         }
@@ -160,12 +178,12 @@
                 border-radius: $itemViewerToolbarPreviewBorderRadius;
                 overflow: hidden;
 
-                & > * {
+                &>* {
                     width: calc(#{$itemViewerToolbarPreviewWidth} / 2);
                 }
 
                 &-image {
-                   &-container {
+                    &-container {
                         border-right: 1px solid rgba($itemViewerButtonColor, $itemViewerToolbarPreviewOpacity);
                         height: calc(100% - 0px);
 
@@ -175,9 +193,9 @@
                             object-fit: cover;
                             object-position: left;
                         }
-                   }
+                    }
 
-                   &-description {
+                    &-description {
                         padding: calc($itemViewerToolbarMarginHorizontal / 2);
                         text-align: center;
 
@@ -188,7 +206,7 @@
                             overflow: hidden;
                             text-overflow: ellipsis;
                         }
-                   }
+                    }
                 }
             }
 
@@ -255,8 +273,7 @@
                 padding-bottom: 0;
 
                 & .#{$carouselClassname}__item-viewer-button {
-                    @include positionAbsolute(
-                        $right: var(--#{$carouselClassname}-#{$videoOverlayCustomButtonRight}),
+                    @include positionAbsolute($right: var(--#{$carouselClassname}-#{$videoOverlayCustomButtonRight}),
                         $top: var(--#{$carouselClassname}-#{$videoOverlayCustomButtonTop}),
                         $left: auto,
                         $bottom: auto,
