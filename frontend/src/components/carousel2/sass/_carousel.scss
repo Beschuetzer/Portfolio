@@ -8,6 +8,34 @@
         transition: transform $carouselAnimationDuration ease;
     }
 
+    &__dots {
+        @include displayFlexCenter();
+
+        & > div {
+            @include displayFlexCenter();
+            --opacity: #{$itemViewerToolbarPreviewOpacity};
+            height: $carouselDotRadius * 2;
+            width: $carouselDotRadius * 2;
+            background-color: transparent;
+           
+
+            & > div {
+                height: $carouselDotRadius;
+                width: $carouselDotRadius;
+                background-color: rgba($itemViewerBackgroundColor, var(--opacity));
+                border-radius: 100%;
+            }
+           
+            &:hover {
+                cursor: pointer;
+
+                & > div {
+                    --opacity: 1;
+                }
+            }
+        }
+    }
+
     &__item {
         margin-top: $carouselItemHoverTranslateUpAmount;
         position: relative;

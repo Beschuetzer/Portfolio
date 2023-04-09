@@ -15,26 +15,33 @@ export const CarouselDots = ({
     setCurrentPage,
 }: CarouselDotsProps) => {
     //todo: add customization of dots
-    const { setCurrentItems, setCurrentItemIndex, currentSvgHrefs } = useCarouselContext();
+    const { currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.dots || '';
 
     const onClick = useCallback(() => {
         //todo: set current page here
+        console.log("clicked");
+        
     }, []);
 
+    console.log({svgHref});
+    
     return (
         <div className={getClassname({ elementName: 'dots' })}>
             {items.map((_, index) => {
-                return (
-                    !!svgHref ? (
+                return  (
+                    <div key={index} onClick={onClick}>
+                        { !!svgHref ? (
                         <svg key={index} onClick={onClick} >
                             <use
                                 xlinkHref={svgHref}
                                 href={svgHref}
                             />
                         </svg>
-                    ) : <div key={index} onClick={onClick} />
+                    ) : <div/>}
+                    </div>
                 )
+                
             })}
         </div>
     )

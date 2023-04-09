@@ -230,6 +230,32 @@
   width: 10000000vw;
   transition: transform 0.5s ease;
 }
+.thumbnail-carousel__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.thumbnail-carousel__dots > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --opacity: 0.66;
+  height: 16px;
+  width: 16px;
+  background-color: transparent;
+}
+.thumbnail-carousel__dots > div > div {
+  height: 8px;
+  width: 8px;
+  background-color: rgba(0, 0, 0, var(--opacity));
+  border-radius: 100%;
+}
+.thumbnail-carousel__dots > div:hover {
+  cursor: pointer;
+}
+.thumbnail-carousel__dots > div:hover > div {
+  --opacity: 1;
+}
 .thumbnail-carousel__item {
   margin-top: 0.5rem;
   position: relative;
