@@ -70,7 +70,7 @@ import { DISPLAY_NONE_CLASSNAME, C_SHARP_CLASSNAME, ABOUT_PAGE_NAME } from "../.
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { LoadingSpinner } from "../../../components/loading/LoadingSpinner";
 import { Quote } from "../../../components/Quote";
-import { functionToGetContainer, closeCarouselItem, toggleScrollability } from "../../../helpers";
+import { functionToGetContainer, closeCarouselItem, toggleScrollability, getComputedStyleCustom } from "../../../helpers";
 import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/components/Carousel";
@@ -272,6 +272,16 @@ const sections: CSharpSection[] = [
 						options={{
 							video: {
 								autoHideToolbarDuration: 0,
+							},
+							thumbnail: {
+								backgroundColor: {
+									value: getComputedStyleCustom('--color-primary-1'),
+									type: 'cssCustomProperty',
+								},
+								textColor: {
+									value: getComputedStyleCustom('--color-primary-3'),
+									type: 'cssCustomProperty',
+								}
 							}
 						}}
 						onItemChange={() => console.log('test')}

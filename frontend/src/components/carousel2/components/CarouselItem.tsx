@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
 import { getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
@@ -52,11 +52,16 @@ export const CarouselItem = (props: CarouselItemProps) => {
   }
   //#endregion
 
-  //#region JSX
+  //#region Side Fx
+  useEffect(() => {
+    if (options?.thumbnail) {
+      
+    }
+  }, [])
+  
+  //#endregion
 
-  //todo: 
-  //  use a blank icon if srcThumbnail not present or require srcThumbnail? 
-  //  need to put default size in comment above for thumbnail once decided upon
+  //#region JSX
   return (
     <article onClick={(e) => onPress(e as any)} className={getClassname({ elementName: 'item' })}>
       {description ? (

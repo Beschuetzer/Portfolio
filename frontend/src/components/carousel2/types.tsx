@@ -4,6 +4,7 @@ export type ButtonProps = {
 }
 
 export type CarouselOptions = {
+    thumbnail?: CarouselThumbnailOptions;
     video?: CarouselVideoOptions;
 }
 
@@ -17,6 +18,26 @@ export type CarouselSvgHrefs = {
     seekBackButton?: string;
     seekForwardButton?: string;
     stopButton?: string;
+}
+
+type CarouselColor = {
+    /*
+    *Default assumption is the value is a hexadecimal or color string.
+    */
+    type?: 'hexadecimal' | 'cssCustomProperty';
+    value: string;
+}
+
+export type CarouselThumbnailOptions = {
+    /*
+    *The hexadecimal value for the thumbnail's background
+    */
+    backgroundColor?: CarouselColor;
+
+    /*
+    *The hexadecimal value for the thumbnail background's text
+    */
+    textColor?: CarouselColor;
 }
 
 export type CarouselVideoOptions = {

@@ -2,6 +2,8 @@
   --thumbnail-carousel-classname: thumbnail-carousel;
   --thumbnail-carousel-video-overlay-custom-button-top: calc(2rem * .5);
   --thumbnail-carousel-video-overlay-custom-button-right: calc(2rem * .5);
+  --thumbnail-carousel-thumbnail-background-color: #000;
+  --thumbnail-carousel-thumbnail-text-color: #fff;
 }
 
 .thumbnail-carousel--hidden {
@@ -267,8 +269,8 @@
   width: 100%;
 }
 .thumbnail-carousel__item > div {
-  background-color: rgba(0, 0, 0, 0.66);
-  color: #fff;
+  background-color: var(--thumbnail-carousel-thumbnail-background-color);
+  color: var(--thumbnail-carousel-thumbnail-text-color);
   position: absolute;
   bottom: -100%;
   left: 0;
