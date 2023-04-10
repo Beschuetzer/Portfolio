@@ -1,5 +1,7 @@
 Carousel rework:
-  -finish arrows for pages (need to test fill color with custom and create generic and test fillColor)
+  -finish arrows for pages:
+      create generic case and test fillColor
+      create click handlers
   -add a listener to recalculate spacing when changing window's client width
   -add swipe to scroll functionality to container?
   -add dynamic styling for itemviewer
