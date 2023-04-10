@@ -1,6 +1,6 @@
 @mixin button(
-    $height: $itemViewerButtonWidth,
-    $width: $itemViewerButtonWidth,
+    $height: $buttonWidth,
+    $width: $buttonWidth,
     $opacity: $itemViewerButtonOpacityNormal, 
     $opacityHover: $itemViewerButtonOpacityHover,
     $backgroundColor: $itemViewerButtonColor,
@@ -44,10 +44,10 @@
 }
 
 @mixin pauseBar(
-    $width: $itemViewerButtonLineWidth,
+    $width: $buttonLineWidth,
     $height: $pauseButtonVerticalHeight,
 ) {
-    @include positionButton($xTranslate: calc(-50% + #{$itemViewerButtonWidth * .25}), $yTranslate: -50%);
+    @include positionButton($xTranslate: calc(-50% + #{$buttonWidth * .25}), $yTranslate: -50%);
     width: $width;
     height: $height;
 }
@@ -81,17 +81,17 @@
 
 @mixin triangle($direction: right) {
     @if ($direction == left) {
-        border-right: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
+        border-right: calc(#{$buttonWidth} / 2.5) solid $itemViewerButtonColor;
     }
     @if ($direction == right) {
-        border-left: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
+        border-left: calc(#{$buttonWidth} / 2.5) solid $itemViewerButtonColor;
     }
     
     background-color: transparent;
     width: 0;
     height: 0;
-    border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-    border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+    border-top: calc(#{$buttonWidth} / 2.25) solid transparent;
+    border-bottom: calc(#{$buttonWidth} / 2.25) solid transparent;
 }
 
 //Media Query Manager

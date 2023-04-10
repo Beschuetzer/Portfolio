@@ -1,19 +1,36 @@
-$pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
+$pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
 
 .#{$carouselClassname}-button {
     @include button();
 
+    &--arrow {
+        &-left, &-right {
+            @include positionButton();
+            background-color: $itemViewerBackgroundColor;
+            width: $buttonWidth;
+            height: $buttonWidth;
+        }
+
+        &-left {
+            
+        }
+
+        &-right {
+
+        }
+    }
+
     &--close {
         &-left, &-right {
-            width: $itemViewerButtonLineWidth;
-            height: $itemViewerButtonWidth;
+            width: $buttonLineWidth;
+            height: $buttonWidth;
             @include positionButton(var(--rotation));
 
             &-inverse {
                 background-color: $itemViewerBackgroundColor;
                 margin-top: 0;
-                width: calc($itemViewerButtonLineWidth * .5);
-                height: calc($itemViewerButtonWidth * .75);
+                width: calc($buttonLineWidth * .5);
+                height: calc($buttonWidth * .75);
             }
         }
 
@@ -32,12 +49,12 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
             @include positionButton($xTranslate: -75%);
         }
         &-right {
-            @include pauseBar($width: calc($itemViewerButtonLineWidth / 2));
+            @include pauseBar($width: calc($buttonLineWidth / 2));
         }
     }
 
     &--inverse {
-        transform: translateX(calc($itemViewerButtonWidth * .2));
+        transform: translateX(calc($buttonWidth * .2));
         margin-top: 0;
     }
 
@@ -47,7 +64,7 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
         }
 
         &-left {
-            @include positionButton($xTranslate: calc(-50% - #{$itemViewerButtonWidth * .25}), $yTranslate: -50%);
+            @include positionButton($xTranslate: calc(-50% - #{$buttonWidth * .25}), $yTranslate: -50%);
         }
     }
  
@@ -57,15 +74,15 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
             background-color: transparent;
             width: 0;
             height: 0;
-            border-top: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
-            border-left: calc(#{$itemViewerButtonWidth} / 1.33) solid $itemViewerButtonColor;
-            border-bottom: calc(#{$itemViewerButtonWidth} / 2.25) solid transparent;
+            border-top: calc(#{$buttonWidth} / 2.25) solid transparent;
+            border-left: calc(#{$buttonWidth} / 1.33) solid $itemViewerButtonColor;
+            border-bottom: calc(#{$buttonWidth} / 2.25) solid transparent;
         }
     }
 
     &--previous {
         &-left {
-            @include pauseBar($width: calc($itemViewerButtonLineWidth / 2));
+            @include pauseBar($width: calc($buttonLineWidth / 2));
             @include positionButton($xTranslate: -175%);
         }
         &-right {
@@ -83,8 +100,8 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
             background-color: transparent;
             width: 0;
             height: 0;
-            border-top: calc(#{$itemViewerButtonWidth} / 2.5) solid transparent;
-            border-right: calc(#{$itemViewerButtonWidth} / 2.5) solid $itemViewerButtonColor;
+            border-top: calc(#{$buttonWidth} / 2.5) solid transparent;
+            border-right: calc(#{$buttonWidth} / 2.5) solid $itemViewerButtonColor;
             border-bottom: none;
         }
 
@@ -95,8 +112,8 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
             }
 
             &-inner {
-                height: calc($pauseButtonVerticalHeight - ($itemViewerButtonWidth * .5));
-                width: calc($pauseButtonVerticalHeight - ($itemViewerButtonWidth * .5));
+                height: calc($pauseButtonVerticalHeight - ($buttonWidth * .5));
+                width: calc($pauseButtonVerticalHeight - ($buttonWidth * .5));
                 background-color: $itemViewerToolbarBackgroundColor;
             }
 
@@ -114,9 +131,9 @@ $pauseButtonVerticalHeight: calc(#{$itemViewerButtonWidth} * .85);
             background-color: transparent;
             width: 0;
             height: 0;
-            border-top: calc(#{$itemViewerButtonWidth} / 1) solid transparent;
-            border-right: calc(#{$itemViewerButtonWidth} / 1) solid $itemViewerToolbarBackgroundColor;
-            border-bottom: calc(#{$itemViewerButtonWidth} / 1) solid transparent;
+            border-top: calc(#{$buttonWidth} / 1) solid transparent;
+            border-right: calc(#{$buttonWidth} / 1) solid $itemViewerToolbarBackgroundColor;
+            border-bottom: calc(#{$buttonWidth} / 1) solid transparent;
         }
 
     }

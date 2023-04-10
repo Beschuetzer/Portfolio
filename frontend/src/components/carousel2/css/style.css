@@ -32,6 +32,15 @@
   background-color: #fff;
   fill: #fff;
 }
+.thumbnail-carousel-button--arrow-left, .thumbnail-carousel-button--arrow-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0);
+  background-color: #000;
+  width: 3rem;
+  height: 3rem;
+}
 .thumbnail-carousel-button--close-left, .thumbnail-carousel-button--close-right {
   width: 0.75rem;
   height: 3rem;
@@ -312,7 +321,7 @@
 }
 .thumbnail-carousel__item:hover {
   transform: translateY(-0.5rem);
-  box-shadow: 0 0.5rem 1rem 0rem rgba(0, 0, 0, 0.33);
+  box-shadow: 0 0.5rem 0.1rem 0rem rgba(0, 0, 0, 0.33);
 }
 .thumbnail-carousel__item:hover > div {
   bottom: 0 !important;

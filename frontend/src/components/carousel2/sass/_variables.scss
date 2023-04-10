@@ -1,3 +1,5 @@
+$buttonLineWidth: .75rem;
+$buttonWidth: 3rem;
 $carouselAnimationDuration: .5s;
 $carouselClassname: 'thumbnail-carousel';
 $carouselDotRadius: 5px;
@@ -7,10 +9,8 @@ $carouselThumbnailFontSize: 12px;
 $carouselThumbnailOverlayMaxLineCount: 2;
 $itemViewerBackgroundColor: #000;
 $itemViewerButtonColor: #fff;
-$itemViewerButtonLineWidth: .75rem;
 $itemViewerButtonOpacityHover: 1;
 $itemViewerButtonOpacityNormal: .75;
-$itemViewerButtonWidth: 3rem;
 $itemViewerOverlayParagraphPaddingRight: 4rem;
 $itemViewerProgressHeight: .5rem;
 $itemViewerToolbarBackgroundColor: rgba($itemViewerBackgroundColor, 0);
