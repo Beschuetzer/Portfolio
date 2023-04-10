@@ -59,10 +59,14 @@
     $yTranslate: -50%,
     $top: 50%,
     $left: 50%,
+    $right: auto,
+    $bottom: auto,
 ) {
     position: $positioning;
     top: $top;
     left: $left;
+    right: $right;
+    bottom: $bottom;
     transform: translate($xTranslate, $yTranslate) rotate($rotation);
 }
 

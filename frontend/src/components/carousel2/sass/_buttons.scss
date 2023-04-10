@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
 
 .#{$carouselClassname}-button {
@@ -5,18 +7,31 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
 
     &--arrow {
         &-left, &-right {
-            @include positionButton();
-            background-color: $itemViewerBackgroundColor;
-            width: $buttonWidth;
-            height: $buttonWidth;
+            &-one, &-two {
+                background-color: $itemViewerBackgroundColor;
+                width: calc($buttonLineWidth / 2);
+                height: $carouselPageChangeButtonHeight;
+            }
         }
 
-        &-left {
-            
+        &-left { 
+            &-one {
+                @include positionButton($rotation: -45deg, $top: calc((50% + $carouselPageChangeButtonTranslationAmount) - $carouselPageChangeButtonTranslationAmountTwo));
+
+            }
+            &-two {
+                @include positionButton($rotation: 45deg, $top: calc((50% - $carouselPageChangeButtonTranslationAmount) + $carouselPageChangeButtonTranslationAmountTwo));
+            }
         }
 
         &-right {
+            &-one {
+                @include positionButton($rotation: -45deg,  $top: calc((50% - $carouselPageChangeButtonTranslationAmount) + $carouselPageChangeButtonTranslationAmountTwo));
 
+            }
+            &-two {
+                @include positionButton($rotation: 45deg, $top: calc((50% + $carouselPageChangeButtonTranslationAmount) - $carouselPageChangeButtonTranslationAmountTwo));
+            }
         }
     }
 

@@ -1,7 +1,7 @@
 Carousel rework:
   -finish arrows for pages:
-      create generic case and test fillColor
       create click handlers
+  -add carousel option to adjust button size (i.e. $buttonWidth)
   -add a listener to recalculate spacing when changing window's client width
   -add swipe to scroll functionality to container?
   -add dynamic styling for itemviewer

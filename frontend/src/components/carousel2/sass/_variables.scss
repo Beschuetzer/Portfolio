@@ -1,5 +1,10 @@
+@use "sass:math";
+
 $buttonLineWidth: .75rem;
 $buttonWidth: 3rem;
+$carouselPageChangeButtonHeight: calc(math.hypot($buttonWidth, calc($buttonWidth / 2)) / 3);
+$carouselPageChangeButtonTranslationAmount: calc(($carouselPageChangeButtonHeight / 2) / math.sqrt(2));
+$carouselPageChangeButtonTranslationAmountTwo: calc(($buttonLineWidth / 2) / math.sqrt(2) / 2);
 $carouselAnimationDuration: .5s;
 $carouselClassname: 'thumbnail-carousel';
 $carouselDotRadius: 5px;
