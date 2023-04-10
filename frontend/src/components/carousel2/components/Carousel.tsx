@@ -96,14 +96,14 @@ export const Carousel = ({
 					}
 				</div>
 				<div className={getClassname({ elementName: "navigation" })}>
-					<CarouselArrowButton direction={"left"} onClick={() => console.log('left clicked')} />
+					<CarouselArrowButton svgHrefs={svgHrefs} direction={"left"} onClick={() => console.log('left clicked')} />
 					<CarouselDots
 						svgHrefs={svgHrefs}
 						items={items || []}
 						setCurrentPage={setCurrentPage}
 						currentPage={currentPage}
 					/>
-					<CarouselArrowButton direction={"right"} onClick={() => console.log('right clicked')} />
+					<CarouselArrowButton svgHrefs={svgHrefs} direction={"right"} onClick={() => console.log('right clicked')} />
 				</div>
 			</div>
 		</CarouselInstanceProvider>

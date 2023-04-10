@@ -18,8 +18,9 @@ export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, Carousel
     const className = getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON });
     const classModifierName = `${className}-${classNameModifier}`
     const fillColorStyle = fillColor ? {
-        fillColor,
+        fill: fillColor,
     } as React.CSSProperties : {}
+    
     return (
         <svg ref={ref} onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''}`}>
             <use 

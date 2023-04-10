@@ -208,7 +208,7 @@ const sections: CSharpSection[] = [
 								fillColor: getComputedStyleCustom('--color-primary-1'),
 							},
 							arrowLeftButton: {
-								svgHref: "./sprite.svg#icon-angle-right",
+								svgHref: "./sprite.svg#icon-close",
 								fillColor: getComputedStyleCustom('--color-primary-1'),
 							},
 							arrowRightButton: {
