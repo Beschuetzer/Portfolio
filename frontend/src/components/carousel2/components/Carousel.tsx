@@ -6,6 +6,7 @@ import { CarouselItemProps, CarouselItem } from './CarouselItem';
 import { CarouselOptions, CarouselSvgHrefs } from '../types';
 import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT } from '../constants';
 import { CarouselDots } from './CarouselDots';
+import { CarouselArrowButton } from './CarouselArrowButton';
 
 type CarouselProps = {
 	style?: CSSProperties;
@@ -95,14 +96,14 @@ export const Carousel = ({
 					}
 				</div>
 				<div className={getClassname({ elementName: "navigation" })}>
-					<h3>{'<--'}</h3>
+					<CarouselArrowButton direction={"left"} onClick={() => console.log('left clicked')} />
 					<CarouselDots
 						svgHrefs={svgHrefs}
 						items={items || []}
 						setCurrentPage={setCurrentPage}
 						currentPage={currentPage}
 					/>
-					<h3>{'-->'}</h3>
+					<CarouselArrowButton direction={"right"} onClick={() => console.log('right clicked')} />
 				</div>
 			</div>
 		</CarouselInstanceProvider>

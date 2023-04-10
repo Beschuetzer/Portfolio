@@ -1,3 +1,8 @@
+export type ArrowProps = {
+    direction: 'left' | 'right';
+    fillColor?: string;
+}
+
 export type ButtonProps = {
     className?: string;
     onClick: () => void;
@@ -20,6 +25,14 @@ export type CarouselSvgHref = {
 }
 
 export type CarouselSvgHrefs = {
+    /*
+    *This is the button at the bottom of each carousel to the left of the dots
+    */
+    arrowLeftButton?: CarouselSvgHref;
+    /*
+    *This is the button at the bottom of each carousel to the right of the dots
+    */
+    arrowRightButton?: CarouselSvgHref;
     /*
     *These are for the fullscreen modal that pops up when clicking a thumbnail in the carousel
     */

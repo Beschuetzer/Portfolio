@@ -206,6 +206,14 @@ const sections: CSharpSection[] = [
 							dots: {
 								svgHref: "./sprite.svg#icon-dot-single",
 								fillColor: getComputedStyleCustom('--color-primary-1'),
+							},
+							arrowLeftButton: {
+								svgHref: "./sprite.svg#icon-angle-right",
+								fillColor: getComputedStyleCustom('--color-primary-1'),
+							},
+							arrowRightButton: {
+								svgHref: "./sprite.svg#icon-angle-right",
+								fillColor: getComputedStyleCustom('--color-primary-1'),
 							}
 						}}
 						items={[

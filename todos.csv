@@ -1,10 +1,10 @@
 Carousel rework:
-  -add customization for itemViewer.buttons (fill color like dots)
-  -finish arrows for pages
+  -finish arrows for pages (need to test fill color with custom and create generic and test fillColor)
   -add a listener to recalculate spacing when changing window's client width
   -add swipe to scroll functionality to container?
   -add dynamic styling for itemviewer
   -add loading spinner for videos (test by throttling in responsive menu)
+  -add customization for itemViewer.buttons? (fill color like dots);  would need to adjust the background gradient too?
 
 React best practices re-work (branch = sitenav_rework)
   -convert backend to an apollo server?
