@@ -296,11 +296,6 @@
   width: 100%;
   overflow: hidden;
 }
-.thumbnail-carousel__container {
-  display: flex;
-  width: 10000000vw;
-  transition: transform 0.5s ease;
-}
 .thumbnail-carousel__dots {
   display: flex;
   align-items: center;
@@ -383,10 +378,15 @@
 }
 .thumbnail-carousel__item:hover {
   transform: translateY(-0.5rem);
-  box-shadow: 0 0.5rem 0.1rem 0rem rgba(0, 0, 0, 0.33);
+  box-shadow: 0 0.5rem 0.4rem 0rem rgba(0, 0, 0, 0.5);
 }
 .thumbnail-carousel__item:hover > div {
   bottom: 0 !important;
+}
+.thumbnail-carousel__items {
+  display: flex;
+  width: 10000000vw;
+  transition: transform 0.5s ease;
 }
 .thumbnail-carousel__item-viewer {
   display: flex;

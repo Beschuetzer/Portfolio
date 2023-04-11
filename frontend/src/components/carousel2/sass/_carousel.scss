@@ -2,12 +2,6 @@
     width: 100%;
     overflow: hidden;
 
-    &__container {
-        display: flex;
-        width: 10000000vw;
-        transition: transform $carouselAnimationDuration ease;
-    }
-
     &__dots {
         @include displayFlexCenter();
 
@@ -101,11 +95,17 @@
 
         &:hover {
             transform: translateY(-$carouselItemHoverTranslateUpAmount);
-            box-shadow: 0 .5rem 0.1rem 0rem rgba(black, .33);
+            box-shadow: 0 $carouselItemHoverTranslateUpAmount 0.4rem 0rem rgba(black, .5);
             &>div {
                 bottom: 0 !important;
             }
         }
+    }
+
+    &__items {
+        display: flex;
+        width: 10000000vw;
+        transition: transform $carouselAnimationDuration ease;
     }
 
     &__item-viewer {
@@ -247,7 +247,6 @@
                 height: $itemViewerProgressHeight;
                 appearance: none;
                 border: none;
-                // box-shadow: 10px 10px 4px rgba( 0, 0, 0, 0.2 );
 
                 &::-webkit-progress-bar {
                     background-color: #888;
@@ -255,7 +254,6 @@
 
                 &::-webkit-progress-value {
                     background-color: #fff;
-                    // box-shadow: 1px 1px 5px 3px rgba(255, 0, 0, 0.8);
                     position: relative;
                 }
 
