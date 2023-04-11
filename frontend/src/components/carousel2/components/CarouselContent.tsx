@@ -6,6 +6,7 @@ import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__C
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { CURRENT_PAGE_INITIAL } from '../context';
+import { ArrowButtonDirection } from '../types';
 
 type CarouselContentProps = {
     carouselContainerRef: React.MutableRefObject<HTMLElement | undefined>;
@@ -23,7 +24,7 @@ export const CarouselContent = ({
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
     const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}px`);
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
-    const [numberOfDots, setNumberOfDots] = useState(0);
+    const [numberOfPages, setNumberOfPages] = useState(0);
     const itemsContainerRef = useRef<HTMLDivElement>(null);
     //#endregion
 
@@ -40,6 +41,14 @@ export const CarouselContent = ({
         return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}px`;
     }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT]);
 
+    const onArrowButtonClick = useCallback((direction: ArrowButtonDirection) => {
+        if (direction === 'left') {
+            setCurrentPage(currentPage <= 0 ? numberOfPages - 1 : currentPage - 1);
+        } else if (direction === 'right') {
+            setCurrentPage(currentPage >= numberOfPages - 1 ? 0 : currentPage + 1);
+        }
+    }, [currentPage, setCurrentPage, numberOfPages]);
+
     function setNumberOfDotsToDisplay() {
         //todo: use the items ref to get the left of the first item and the 
         if (!carouselContainerRef.current || !itemsContainerRef.current) return;
@@ -48,7 +57,7 @@ export const CarouselContent = ({
         const firstItemLeft = itemsInContainer?.[0].getBoundingClientRect().left;
         const lastItemRight = itemsInContainer?.[itemsInContainer.length - 1].getBoundingClientRect().right;
         const itemsContainerWidth = Math.abs((lastItemRight || 0) - (firstItemLeft || 0));
-        setNumberOfDots(Math.ceil(itemsContainerWidth / containerWidth));
+        setNumberOfPages(Math.ceil(itemsContainerWidth / containerWidth));
     }
     //#endregion
 
@@ -89,22 +98,22 @@ export const CarouselContent = ({
             </div>
             <div className={getClassname({ elementName: "navigation" })}>
                 <CarouselArrowButton
-                    numberOfDots={numberOfDots}
+                    numberOfDots={numberOfPages}
                     svgHrefs={svgHrefs}
                     direction={"left"}
-                    onClick={() => console.log('left clicked')} />
+                    onClick={() => onArrowButtonClick("left")} />
                 <CarouselDots
                     svgHrefs={svgHrefs}
                     items={items || []}
-                    numberOfDots={numberOfDots}
+                    numberOfDots={numberOfPages}
                     setCurrentPage={setCurrentPage}
                     currentPage={currentPage}
                 />
                 <CarouselArrowButton
-                    numberOfDots={numberOfDots}
+                    numberOfDots={numberOfPages}
                     svgHrefs={svgHrefs}
                     direction={"right"}
-                    onClick={() => console.log('right clicked')} />
+                    onClick={() => onArrowButtonClick("right")} />
             </div>
         </>
     )

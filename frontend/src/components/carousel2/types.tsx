@@ -1,6 +1,7 @@
 //#region Prop Types
+export type ArrowButtonDirection = 'left' | 'right';
 export type ArrowProps = {
-    direction: 'left' | 'right';
+    direction: ArrowButtonDirection;
     fillColor?: string;
 }
 
