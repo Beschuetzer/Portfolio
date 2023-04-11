@@ -1,3 +1,4 @@
+//#region Prop Types
 export type ArrowProps = {
     direction: 'left' | 'right';
     fillColor?: string;
@@ -104,12 +105,9 @@ export type CssStyles = {
     [name: string]: React.CSSProperties;
 }
 
-export type Exclusive<
-    T extends Record<PropertyKey, unknown>,
-    U extends Record<PropertyKey, unknown>
-> =
-    | (T & { [k in Exclude<keyof U, keyof T>]?: never })
-    | (U & { [k in Exclude<keyof T, keyof U>]?: never })
+export type NumberOfDots = {
+    numberOfDots: number;
+}
 
 export type Point = {
     x: number;
@@ -120,3 +118,13 @@ export type VideoTimeStrings = {
     durationStr: string;
     currentTimeStr: string;
 }
+//#endregion
+
+//#region Helpers
+export type Exclusive<
+    T extends Record<PropertyKey, unknown>,
+    U extends Record<PropertyKey, unknown>
+> =
+    | (T & { [k in Exclude<keyof U, keyof T>]?: never })
+    | (U & { [k in Exclude<keyof T, keyof U>]?: never })
+//#endregion

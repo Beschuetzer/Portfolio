@@ -2,7 +2,7 @@ import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { getClassname } from '../utils';
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT } from '../constants';
+import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { CURRENT_PAGE_INITIAL } from '../context';
@@ -18,12 +18,14 @@ export const CarouselContent = ({
     svgHrefs = {},
 }: CarouselContentProps) => {
     //#region Init
-
-    //#endregion
+    const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
     const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}px`);
-	const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
+    const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
+    const [numberOfDots, setNumberOfDots] = useState(0);
+    const itemsContainerRef = useRef<HTMLDivElement>(null);
+    //#endregion
 
     //#region Functions/Handlers
     const getInterItemSpacing = useCallback(() => {
@@ -37,6 +39,17 @@ export const CarouselContent = ({
         const newInterItemSpacing = (remainingSpace / numberOfGaps);
         return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}px`;
     }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT]);
+
+    function setNumberOfDotsToDisplay() {
+        //todo: use the items ref to get the left of the first item and the 
+        if (!carouselContainerRef.current || !itemsContainerRef.current) return;
+        const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
+        const itemsInContainer = itemsContainerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`);
+        const firstItemLeft = itemsInContainer?.[0].getBoundingClientRect().left;
+        const lastItemRight = itemsInContainer?.[itemsInContainer.length - 1].getBoundingClientRect().right;
+        const itemsContainerWidth = Math.abs((lastItemRight || 0) - (firstItemLeft || 0));
+        setNumberOfDots(Math.ceil(itemsContainerWidth / containerWidth));
+    }
     //#endregion
 
     //#region Side Fx
@@ -51,6 +64,12 @@ export const CarouselContent = ({
         hasCalculatedItemSpacingRef.current = true;
         setInterItemSpacing(getInterItemSpacing());
     }, [hasForcedRender, setHasForcedRender, setInterItemSpacing, getInterItemSpacing, hasCalculatedItemSpacingRef])
+
+    useEffect(() => {
+        if (hasCalculatedNumberOfDotsRef.current) return;
+        setNumberOfDotsToDisplay();
+        hasCalculatedNumberOfDotsRef.current = true;
+    }, [])
     //#endregion
 
     //#region JSX
@@ -63,20 +82,29 @@ export const CarouselContent = ({
 
     return (
         <>
-            <div style={containerStyle} className={getClassname({ elementName: "items" })}>
+            <div ref={itemsContainerRef} style={containerStyle} className={getClassname({ elementName: "items" })}>
                 {
                     items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)
                 }
             </div>
             <div className={getClassname({ elementName: "navigation" })}>
-                <CarouselArrowButton svgHrefs={svgHrefs} direction={"left"} onClick={() => console.log('left clicked')} />
+                <CarouselArrowButton
+                    numberOfDots={numberOfDots}
+                    svgHrefs={svgHrefs}
+                    direction={"left"}
+                    onClick={() => console.log('left clicked')} />
                 <CarouselDots
                     svgHrefs={svgHrefs}
                     items={items || []}
+                    numberOfDots={numberOfDots}
                     setCurrentPage={setCurrentPage}
                     currentPage={currentPage}
                 />
-                <CarouselArrowButton svgHrefs={svgHrefs} direction={"right"} onClick={() => console.log('right clicked')} />
+                <CarouselArrowButton
+                    numberOfDots={numberOfDots}
+                    svgHrefs={svgHrefs}
+                    direction={"right"}
+                    onClick={() => console.log('right clicked')} />
             </div>
         </>
     )

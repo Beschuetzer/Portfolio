@@ -3,7 +3,7 @@ import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
 import { getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
-import { CAROUSEL_ITEM_SIZE_DEFAULT } from '../constants';
+import { CAROUSEL_ITEM_SIZE_DEFAULT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
 
 export type CarouselItemProps = {
   /*
@@ -41,7 +41,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcThumbnail,
   } = props;
   const { setCurrentItemIndex, setCurrentSvgHrefs, setOptions, setCurrentCarouselId } = useCarouselContext();
-  const { id: carouselId, svgHrefInstance, options, carouselContainerRef } = useCarouselInstanceContext();
+  const { id: carouselId, svgHrefInstance, options } = useCarouselInstanceContext();
   //#endregion
 
   //#region Functions/Handlers
@@ -86,7 +86,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   };
   
   return (
-    <article onClick={(e) => onPress(e as any)} className={getClassname({ elementName: 'item' })} style={itemStyle}>
+    <article onClick={(e) => onPress(e as any)} className={CLASSNAME__CAROUSEL_ITEM} style={itemStyle}>
       {description ? (
         <div style={thumbnailBackgroundStyle}>
           <p style={{...maxLineCountStyle, ...fontSizeStyle}}>{description}</p>

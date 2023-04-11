@@ -1,6 +1,9 @@
 Carousel rework:
   -finish arrows for pages:
-      create click handlers
+      create click handlers (amount to translate is the -1 * currentPage * (interItemSpacing + containerWidth))
+  -need to make current dot a different style/color
+  -need to pass numberOfDots to the instance provider for use in arrows or can pass in directly (hide when <= 1)?
+  -need to handle only one page of items (the dynamic spacing is not working as expected)
   -add carousel option to adjust button size (i.e. $buttonWidth)
   -add a listener to recalculate spacing when changing window's client width
   -add swipe to scroll functionality to container?
