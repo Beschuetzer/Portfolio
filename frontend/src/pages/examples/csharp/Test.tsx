@@ -301,6 +301,11 @@ const sections: CSharpSection[] = [
 								itemSpacing: 8,
 							},
 						}}
+						svgHrefs={{
+							dots: {
+								fillColor: 'red',
+							}
+						}}
 						onItemChange={() => console.log('onItemChang')}
 						items={[
 							{

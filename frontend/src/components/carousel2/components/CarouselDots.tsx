@@ -23,14 +23,10 @@ export const CarouselDots = ({
     //#endregion
 
     //#region Handlers/Functions
-    const onClick = useCallback((nthItem: number) => {
-        //todo: set current page here
-        console.log("clicked " + nthItem);
-    }, []);
-    //#endregion
-
-
-    //#region Side Fx
+    const onDotClick = useCallback((index: number) => {
+        if (index === currentPage) return;
+        setCurrentPage(index);
+    }, [setCurrentPage, currentPage]);
     //#endregion
 
     //#region JSX
@@ -45,18 +41,29 @@ export const CarouselDots = ({
     function renderDots() {
         const dots = [];
         for (let index = 0; index < numberOfDots; index++) {
+            const isCurrentPage = index === currentPage;
+            const isSvg = !!svgHref;
+            console.log({isCurrentPage});
+            
+            const currentDotStyle = isCurrentPage && isSvg  ? {
+                opacity: 1,
+            } : isCurrentPage ? {
+                backgroundColor: fillColor || 'black',
+                opacity: 1,
+            } : {};
+
             dots.push((
-                !!svgHref ? (
-                    <svg key={index} >
+                isSvg ? (
+                    <svg key={index} onClick={() => onDotClick(index)}>
                         <use
-                            style={useStyles}
+                            style={{...useStyles, ...currentDotStyle}}
                             xlinkHref={svgHref}
                             href={svgHref}
                         />
                     </svg>
                 ) : (
-                    <div key={index} onClick={() => onClick(index)}>
-                        <div style={divStyles} />
+                    <div key={index} onClick={() => onDotClick(index)}>
+                        <div style={{...divStyles, ...currentDotStyle}} />
                     </div>
                 )
             ));
