@@ -173,11 +173,48 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: [
 			<React.Fragment>
-				{hobbyQuote}
-				<CSharpCardSection title="Original">
-					{germanyCarousel}
+				<CSharpCardSection title="Two Items - All Defaults">
+					<Carousel
+						items={[
+							{
+								
+								description: "Animations",
+								srcMain: clipAnimations,
+								srcThumbnail: clipAnimationsThumbnail,
+								video: {
+									overlayProps: {								
+										// title: "Contract is 1&clubs;",
+										// text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found.",
+										children: (
+											<>
+										 		<CSharpCardSection title="Contract is 1&clubs;">
+										 			The first part of the video highlights the process of
+										 			applying the contract matching filter.&nbsp; There are two
+										 			matches found.
+										 		</CSharpCardSection>
+										 		<CSharpCardSection title="Two Filters = Double the Filtering">
+										 			The second filter applied requires 'Ann' to have the
+										 			2&clubs;. In one of the filtered games, she does and in the
+										 			other one she doesn't.
+										 		</CSharpCardSection>
+										 	</>
+										),
+										closeButton: {
+											rightInRem: 1.5,
+										},
+									},
+									autoPlay: true,
+									muted: true,
+								}
+							},		
+							{
+								srcMain: maui05,
+								srcThumbnail: maui05Thumbnail,
+								description: "Haleakalā Sunset",
+							},					
+						]}
+					/>
 				</CSharpCardSection>
-				
 				<CSharpCardSection title="Seeing the world">
 					Here are some photos of enjoyable experiences:
 					<Carousel
@@ -284,6 +321,7 @@ const sections: CSharpSection[] = [
 						]}
 					/>
 				</CSharpCardSection>
+				
 				<div style={{width: '66%'}}>
 					Here are some photos of enjoyable experiences:
 					<Carousel

@@ -295,6 +295,7 @@
 .thumbnail-carousel {
   width: 100%;
   overflow: hidden;
+  margin-top: 0.5rem;
 }
 .thumbnail-carousel__dots {
   display: flex;

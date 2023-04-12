@@ -4,7 +4,7 @@ import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
 import { Exclusive } from '../types';
-import { CLASSNAME__OVERLAY_BUTTON_RIGHT, CLASSNAME__OVERLAY_BUTTON_TOP } from '../constants';
+import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__OVERLAY_BUTTON_RIGHT, CLASSNAME__OVERLAY_BUTTON_TOP } from '../constants';
 
 export type CarouselVideoOverlay = Exclusive<{
     /*
@@ -77,7 +77,11 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const button =  !!svgHref ? (
         <CarouselItemViewerCustomButton onClick={onCloseClick as any} xlinkHref={svgHref} classNameModifier='inverse' />
     ) : (
-        <CloseButton onClick={onCloseClick as any} classNameModifier='inverse' />
+        <CloseButton
+            onClick={onCloseClick as any}
+            className={isCustom ?getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON }) : '' }
+            classNameModifier='overlay' 
+        />
     );
 
     function renderChildren() {
