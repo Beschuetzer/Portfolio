@@ -1,7 +1,6 @@
 Carousel rework:
   -need to handle only one page of items (the dynamic spacing is not working as expected)
   -add carousel option to adjust button size (i.e. $buttonWidth)
-  -add a listener to recalculate spacing when changing window's client width
   -add swipe to scroll functionality to container?
   -add dynamic styling for itemviewer
   -add loading spinner for videos (test by throttling in responsive menu)

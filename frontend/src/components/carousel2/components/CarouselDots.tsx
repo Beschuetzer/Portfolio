@@ -43,7 +43,6 @@ export const CarouselDots = ({
         for (let index = 0; index < numberOfDots; index++) {
             const isCurrentPage = index === currentPage;
             const isSvg = !!svgHref;
-            console.log({isCurrentPage});
             
             const currentDotStyle = isCurrentPage && isSvg  ? {
                 opacity: 1,

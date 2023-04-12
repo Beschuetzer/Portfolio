@@ -32,9 +32,7 @@ export const CarouselContent = ({
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
         if (options?.thumbnail?.itemSpacing) return `${options?.thumbnail?.itemSpacing}${CAROUSEL_ITEM_SPACING_UNIT}`;
-        const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
-        const itemSize = options?.thumbnail?.size || CAROUSEL_ITEM_SIZE_DEFAULT;
-        const numberOfItemsThatCanFit = Math.floor(containerWidth / itemSize);
+        const {numberOfItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit();
         const numberOfGaps = numberOfItemsThatCanFit - 1;
         const remainingSpace = containerWidth - (numberOfItemsThatCanFit * itemSize);
         const newInterItemSpacing = (remainingSpace / numberOfGaps);
@@ -43,6 +41,16 @@ export const CarouselContent = ({
 
     function getItemsInContainer() {
         return itemsContainerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`);
+    }
+
+    function getNumberOfItemsThatCanFit() {
+        const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
+        const itemSize = options?.thumbnail?.size || CAROUSEL_ITEM_SIZE_DEFAULT;
+        return {
+            numberOfItemsThatCanFit: Math.floor(containerWidth / itemSize),
+            containerWidth,
+            itemSize,
+        }
     }
 
     function getTranslationAmount() {
@@ -67,14 +75,14 @@ export const CarouselContent = ({
     }, [currentPage, setCurrentPage, numberOfPages]);
 
     function setNumberOfDotsToDisplay() {
-        //todo: use the items ref to get the left of the first item and the 
         if (!carouselContainerRef.current || !itemsContainerRef.current) return;
-        const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
-        const itemsInContainer = getItemsInContainer();
-        const firstItemLeft = itemsInContainer?.[0].getBoundingClientRect().left;
-        const lastItemRight = itemsInContainer?.[itemsInContainer.length - 1].getBoundingClientRect().right;
-        const itemsContainerWidth = Math.abs((lastItemRight || 0) - (firstItemLeft || 0));
-        setNumberOfPages(Math.ceil(itemsContainerWidth / containerWidth));
+        const { numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit();
+        const newNumberOfPages = Math.ceil(items.length / numberOfItemsThatCanFit);
+        setNumberOfPages(newNumberOfPages);
+        
+        if (currentPage >= newNumberOfPages) {
+            setCurrentPage(newNumberOfPages - 1);
+        }
     }
     //#endregion
 
@@ -96,6 +104,18 @@ export const CarouselContent = ({
         setNumberOfDotsToDisplay();
         hasCalculatedNumberOfDotsRef.current = true;
     }, [])
+
+    useEffect(() => {
+        function handleResize() {
+            setNumberOfDotsToDisplay();
+            setInterItemSpacing(getInterItemSpacing());
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, [window.innerWidth])
     //#endregion
 
     //#region JSX
