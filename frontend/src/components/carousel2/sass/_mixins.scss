@@ -29,6 +29,31 @@
     stroke: $itemViewerButtonColor;
 }
 
+@mixin closeButton() {
+    &--close {
+        &-left, &-right {
+            width: $buttonLineWidth;
+            height: $buttonWidth;
+            @include positionButton(var(--rotation));
+
+            &-inverse {
+                background-color: $itemViewerBackgroundColor;
+                margin-top: 0;
+                width: calc($buttonLineWidth * .5);
+                height: calc($buttonWidth * .75);
+            }
+        }
+
+        &-left {
+            --rotation: -45deg;
+        }
+
+        &-right {
+            --rotation: 45deg;
+        }
+    }
+}
+
 @mixin displayFlexCenter() {
     display: flex;
     align-items: center;

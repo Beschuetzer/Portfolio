@@ -80,7 +80,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
         <CloseButton
             onClick={onCloseClick as any}
             className={isCustom ?getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON }) : '' }
-            classNameModifier='overlay' 
+            classNameModifier='inverse' 
         />
     );
 
