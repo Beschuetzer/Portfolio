@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { CarouselItemProps } from './CarouselItem';
 import { getClassname } from '../utils';
 import { CarouselSvgHrefs, NumberOfDots } from '../types';
-import { NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
+import { CAROUSEL_DOT_COLOR_DEFAULT, CAROUSEL_DOT_OPACITY_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
 
 type CarouselDotsProps = {
     currentPage: number;
@@ -35,7 +35,7 @@ export const CarouselDots = ({
     } as React.CSSProperties : {}
     const divStyles = !!fillColor ? {
         backgroundColor: fillColor,
-        opacity: .66,
+        opacity: CAROUSEL_DOT_OPACITY_DEFAULT,
     } as React.CSSProperties : {}
 
     function renderDots() {
@@ -48,7 +48,7 @@ export const CarouselDots = ({
             const currentDotStyle = isCurrentPage && isSvg  ? {
                 opacity: 1,
             } : isCurrentPage ? {
-                backgroundColor: fillColor || 'black',
+                backgroundColor: fillColor || CAROUSEL_DOT_COLOR_DEFAULT,
                 opacity: 1,
             } : {};
 
