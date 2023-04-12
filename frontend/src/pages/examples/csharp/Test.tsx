@@ -357,6 +357,237 @@ const sections: CSharpSection[] = [
 								srcThumbnail: maui04Thumbnail,
 								description: "Stunning Beach, Less than Ideal Sand",
 							},
+							{
+								description: "Applying Filters",
+								srcMain: clipFilters,
+								srcThumbnail: clipFiltersThumbnail,
+								video: {
+									overlayProps: {
+										title: "Applying Filters",
+										text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+									},
+									autoPlay: true,
+									muted: true,
+								}
+								// videoOverlayChildren: (
+								// 	<div>
+								// 		<CSharpCardSection title="Contract is 1&clubs;">
+								// 			The first part of the video highlights the process of
+								// 			applying the contract matching filter.&nbsp; There are two
+								// 			matches found.
+								// 		</CSharpCardSection>
+								// 		<CSharpCardSection title="Two Filters = Double the Filtering">
+								// 			The second filter applied requires 'Ann' to have the
+								// 			2&clubs;. In one of the filtered games, she does and in the
+								// 			other one she doesn't.
+								// 		</CSharpCardSection>
+								// 	</div>
+								// ),
+							},
+							{
+								//testing no description
+								srcMain: maui01,
+								srcThumbnail: maui01Thumbnail,
+							},
+							{
+								//testing only main item
+								srcMain: maui02,
+							},
+							{
+								//testing no thumbnail
+								srcMain: maui03,
+								description: "Bamboo Forest Waterfall on Maui",
+							},
+							{
+								srcMain: maui04,
+								srcThumbnail: maui04Thumbnail,
+								description: "Stunning Beach, Less than Ideal Sand",
+							},
+							{
+								description: "Applying Filters",
+								srcMain: clipFilters,
+								srcThumbnail: clipFiltersThumbnail,
+								video: {
+									overlayProps: {
+										title: "Applying Filters",
+										text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+									},
+									autoPlay: true,
+									muted: true,
+								}
+								// videoOverlayChildren: (
+								// 	<div>
+								// 		<CSharpCardSection title="Contract is 1&clubs;">
+								// 			The first part of the video highlights the process of
+								// 			applying the contract matching filter.&nbsp; There are two
+								// 			matches found.
+								// 		</CSharpCardSection>
+								// 		<CSharpCardSection title="Two Filters = Double the Filtering">
+								// 			The second filter applied requires 'Ann' to have the
+								// 			2&clubs;. In one of the filtered games, she does and in the
+								// 			other one she doesn't.
+								// 		</CSharpCardSection>
+								// 	</div>
+								// ),
+							},
+							{
+								//testing no description
+								srcMain: maui01,
+								srcThumbnail: maui01Thumbnail,
+							},
+							{
+								//testing only main item
+								srcMain: maui02,
+							},
+							{
+								//testing no thumbnail
+								srcMain: maui03,
+								description: "Bamboo Forest Waterfall on Maui",
+							},
+							{
+								srcMain: maui04,
+								srcThumbnail: maui04Thumbnail,
+								description: "Stunning Beach, Less than Ideal Sand",
+							},
+							{
+								description: "Applying Filters",
+								srcMain: clipFilters,
+								srcThumbnail: clipFiltersThumbnail,
+								video: {
+									overlayProps: {
+										title: "Applying Filters",
+										text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+									},
+									autoPlay: true,
+									muted: true,
+								}
+								// videoOverlayChildren: (
+								// 	<div>
+								// 		<CSharpCardSection title="Contract is 1&clubs;">
+								// 			The first part of the video highlights the process of
+								// 			applying the contract matching filter.&nbsp; There are two
+								// 			matches found.
+								// 		</CSharpCardSection>
+								// 		<CSharpCardSection title="Two Filters = Double the Filtering">
+								// 			The second filter applied requires 'Ann' to have the
+								// 			2&clubs;. In one of the filtered games, she does and in the
+								// 			other one she doesn't.
+								// 		</CSharpCardSection>
+								// 	</div>
+								// ),
+							},
+							{
+								//testing no description
+								srcMain: maui01,
+								srcThumbnail: maui01Thumbnail,
+							},
+							{
+								//testing only main item
+								srcMain: maui02,
+							},
+							{
+								//testing no thumbnail
+								srcMain: maui03,
+								description: "Bamboo Forest Waterfall on Maui",
+							},
+							{
+								srcMain: maui04,
+								srcThumbnail: maui04Thumbnail,
+								description: "Stunning Beach, Less than Ideal Sand",
+							},
+							{
+								description: "Applying Filters",
+								srcMain: clipFilters,
+								srcThumbnail: clipFiltersThumbnail,
+								video: {
+									overlayProps: {
+										title: "Applying Filters",
+										text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+									},
+									autoPlay: true,
+									muted: true,
+								}
+								// videoOverlayChildren: (
+								// 	<div>
+								// 		<CSharpCardSection title="Contract is 1&clubs;">
+								// 			The first part of the video highlights the process of
+								// 			applying the contract matching filter.&nbsp; There are two
+								// 			matches found.
+								// 		</CSharpCardSection>
+								// 		<CSharpCardSection title="Two Filters = Double the Filtering">
+								// 			The second filter applied requires 'Ann' to have the
+								// 			2&clubs;. In one of the filtered games, she does and in the
+								// 			other one she doesn't.
+								// 		</CSharpCardSection>
+								// 	</div>
+								// ),
+							},
+							{
+								//testing no description
+								srcMain: maui01,
+								srcThumbnail: maui01Thumbnail,
+							},
+							{
+								//testing only main item
+								srcMain: maui02,
+							},
+							{
+								//testing no thumbnail
+								srcMain: maui03,
+								description: "Bamboo Forest Waterfall on Maui",
+							},
+							{
+								srcMain: maui04,
+								srcThumbnail: maui04Thumbnail,
+								description: "Stunning Beach, Less than Ideal Sand",
+							},
+							{
+								description: "Applying Filters",
+								srcMain: clipFilters,
+								srcThumbnail: clipFiltersThumbnail,
+								video: {
+									overlayProps: {
+										title: "Applying Filters",
+										text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+									},
+									autoPlay: true,
+									muted: true,
+								}
+								// videoOverlayChildren: (
+								// 	<div>
+								// 		<CSharpCardSection title="Contract is 1&clubs;">
+								// 			The first part of the video highlights the process of
+								// 			applying the contract matching filter.&nbsp; There are two
+								// 			matches found.
+								// 		</CSharpCardSection>
+								// 		<CSharpCardSection title="Two Filters = Double the Filtering">
+								// 			The second filter applied requires 'Ann' to have the
+								// 			2&clubs;. In one of the filtered games, she does and in the
+								// 			other one she doesn't.
+								// 		</CSharpCardSection>
+								// 	</div>
+								// ),
+							},
+							{
+								//testing no description
+								srcMain: maui01,
+								srcThumbnail: maui01Thumbnail,
+							},
+							{
+								//testing only main item
+								srcMain: maui02,
+							},
+							{
+								//testing no thumbnail
+								srcMain: maui03,
+								description: "Bamboo Forest Waterfall on Maui",
+							},
+							{
+								srcMain: maui04,
+								srcThumbnail: maui04Thumbnail,
+								description: "Stunning Beach, Less than Ideal Sand",
+							},
+							
 						]}
 					/>
 				</div>

@@ -41,11 +41,19 @@ export const CarouselContent = ({
         return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_ITEM_SPACING_UNIT}`;
     }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT]);
 
+    function getItemsInContainer() {
+        return itemsContainerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`);
+    }
+
     function getTranslationAmount() {
         const itemSpacingGiven = options?.thumbnail?.itemSpacing;
         const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
         if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
-            return currentPage * containerWidth;
+            const itemsInContainer = getItemsInContainer();
+            const firstItemLeft = itemsInContainer?.[0].getBoundingClientRect().left;
+            const firstItemInNextPageIndex = Math.ceil(items.length / numberOfPages);
+            const firstItemInNextPage = itemsInContainer?.[firstItemInNextPageIndex].getBoundingClientRect().left;
+            return currentPage * (Math.abs((firstItemLeft || 0) - (firstItemInNextPage || 0)));
         }
         return currentPage * (parseFloat(interItemSpacing.replace(CAROUSEL_ITEM_SPACING_UNIT, '')) + containerWidth);
     }
@@ -62,7 +70,7 @@ export const CarouselContent = ({
         //todo: use the items ref to get the left of the first item and the 
         if (!carouselContainerRef.current || !itemsContainerRef.current) return;
         const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
-        const itemsInContainer = itemsContainerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`);
+        const itemsInContainer = getItemsInContainer();
         const firstItemLeft = itemsInContainer?.[0].getBoundingClientRect().left;
         const lastItemRight = itemsInContainer?.[itemsInContainer.length - 1].getBoundingClientRect().right;
         const itemsContainerWidth = Math.abs((lastItemRight || 0) - (firstItemLeft || 0));
