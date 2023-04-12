@@ -88,9 +88,11 @@
             text-align: center;
             font-weight: 700;
             font-size: $carouselThumbnailFontSize;
+            background-color: rgba($itemViewerBackgroundColor, $itemViewerToolbarPreviewOpacity);
 
             & * {
                 @include maxTextLineCount($carouselThumbnailOverlayMaxLineCount);
+                color: $itemViewerButtonColor;
             }
         }
 

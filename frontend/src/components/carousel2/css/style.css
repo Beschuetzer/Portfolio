@@ -369,6 +369,7 @@
   text-align: center;
   font-weight: 700;
   font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.66);
 }
 .thumbnail-carousel__item > div * {
   display: -webkit-box;
@@ -376,6 +377,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #fff;
 }
 .thumbnail-carousel__item:hover {
   transform: translateY(-0.5rem);
