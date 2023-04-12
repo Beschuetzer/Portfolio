@@ -11,6 +11,7 @@ export const CAROUSEL_DOT_OPACITY_DEFAULT = .5;
 export const CAROUSEL_DOT_COLOR_DEFAULT = "black";
 export const CAROUSEL_ITEM_SIZE_DEFAULT = 150;  //in px
 export const CAROUSEL_ITEM_SPACING_DEFAULT = 10; //in px
+export const CAROUSEL_ITEM_SPACING_UNIT = 'px'
 export const MOBILE_PIXEL_WIDTH = 655;
 export const NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS = 2;
 export const EMPTY_STRING = "";
