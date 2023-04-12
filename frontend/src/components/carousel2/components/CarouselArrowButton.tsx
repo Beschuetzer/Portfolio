@@ -1,13 +1,15 @@
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
-import { ArrowProps, CarouselSvgHrefs, NumberOfDots } from '../types';
+import { ArrowProps, CarouselSvgHrefs, CarouselNavigationProps } from '../types';
 import { ArrowButton } from './buttons/ArrowButton';
 import { NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
+import { EmptyFillerButton } from './buttons/EmptyFillerButton';
 
 type CarouselArrowButtonProps = {
   onClick: () => void;
   svgHrefs: CarouselSvgHrefs;
-} & ArrowProps & NumberOfDots
+} & ArrowProps & CarouselNavigationProps
 export const CarouselArrowButton = ({
+  currentPage,
   direction,
   numberOfDots,
   onClick,
@@ -17,8 +19,9 @@ export const CarouselArrowButton = ({
   if (direction === 'left') {
     svgHref = svgHrefs?.arrowLeftButton || {}
   }
-  
-  if (numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return null;
+  const isHidden = direction === 'left' ? currentPage === 0 : currentPage === numberOfDots - 1;
+
+  if (isHidden || numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return <EmptyFillerButton />;
   return !!svgHref?.svgHref ? 
       <CarouselItemViewerCustomButton fillColor={svgHref.fillColor} onClick={onClick} xlinkHref={svgHref.svgHref}/> :
       <ArrowButton fillColor={svgHref.fillColor} direction={direction} onClick={onClick}/>

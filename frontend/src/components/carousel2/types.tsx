@@ -10,6 +10,11 @@ export type ButtonProps = {
     onClick: () => void;
 }
 
+export type CarouselNavigationProps = {
+    currentPage: number;
+    numberOfDots: number;
+}
+
 export type CarouselOptions = {
     thumbnail?: CarouselThumbnailOptions;
     video?: CarouselVideoOptions;
@@ -104,10 +109,6 @@ export type CarouselVideoOptions = {
 
 export type CssStyles = {
     [name: string]: React.CSSProperties;
-}
-
-export type NumberOfDots = {
-    numberOfDots: number;
 }
 
 export type Point = {

@@ -1,5 +1,5 @@
 Carousel rework:
-  -create useEffect to set the amount to translate (is (-1 * currentPage * (interItemSpacing + containerWidth)) for dynamic case otherwise just (-1 * containerWidth))
+  -refine getTranslationAmount() for non-dynamic case
   -need to handle only one page of items (the dynamic spacing is not working as expected)
   -add carousel option to adjust button size (i.e. $buttonWidth)
   -add a listener to recalculate spacing when changing window's client width
