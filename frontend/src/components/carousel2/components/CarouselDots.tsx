@@ -10,6 +10,7 @@ type CarouselDotsProps = {
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 } & CarouselNavigationProps
 
+const DOTS_CLASSNAME = getClassname({ elementName: 'dots' });
 export const CarouselDots = ({
     currentPage,
     items,
@@ -51,9 +52,11 @@ export const CarouselDots = ({
                 opacity: 1,
             } : {};
 
+            const currentPageClassname = isCurrentPage ? `${DOTS_CLASSNAME}-current` : '';
+
             dots.push((
                 isSvg ? (
-                    <svg key={index} onClick={() => onDotClick(index)}>
+                    <svg key={index} onClick={() => onDotClick(index)} className={currentPageClassname}>
                         <use
                             style={{...useStyles, ...currentDotStyle}}
                             xlinkHref={svgHref}
@@ -61,7 +64,7 @@ export const CarouselDots = ({
                         />
                     </svg>
                 ) : (
-                    <div key={index} onClick={() => onDotClick(index)}>
+                    <div key={index} onClick={() => onDotClick(index)} className={currentPageClassname}>
                         <div style={{...divStyles, ...currentDotStyle}} />
                     </div>
                 )
@@ -72,7 +75,7 @@ export const CarouselDots = ({
 
     if (numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return null;
     return (
-        <div className={getClassname({ elementName: 'dots' })}>
+        <div className={DOTS_CLASSNAME}>
             {renderDots()}
         </div>
     )

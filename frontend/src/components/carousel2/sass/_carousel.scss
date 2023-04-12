@@ -25,12 +25,12 @@
                 opacity: var(--opacity);
             }
            
-            &:hover {
+            &:not(.#{$carouselClassname}__dots-current):hover {
                 cursor: pointer;
 
                 & * {
-                    --opacity: 1;
-                    opacity: 1 !important;
+                    --opacity: .75;
+                    opacity: .75 !important;
                 }
             }
         }

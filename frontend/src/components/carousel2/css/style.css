@@ -320,12 +320,12 @@
   fill: #000;
   opacity: var(--opacity);
 }
-.thumbnail-carousel__dots > div:hover, .thumbnail-carousel__dots > svg:hover {
+.thumbnail-carousel__dots > div:not(.thumbnail-carousel__dots-current):hover, .thumbnail-carousel__dots > svg:not(.thumbnail-carousel__dots-current):hover {
   cursor: pointer;
 }
-.thumbnail-carousel__dots > div:hover *, .thumbnail-carousel__dots > svg:hover * {
-  --opacity: 1;
-  opacity: 1 !important;
+.thumbnail-carousel__dots > div:not(.thumbnail-carousel__dots-current):hover *, .thumbnail-carousel__dots > svg:not(.thumbnail-carousel__dots-current):hover * {
+  --opacity: .75;
+  opacity: 0.75 !important;
 }
 .thumbnail-carousel__item {
   margin-top: 0.5rem;
