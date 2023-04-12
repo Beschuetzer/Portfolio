@@ -12,6 +12,7 @@ export const CarouselArrowButton = ({
   currentPage,
   direction,
   numberOfDots,
+  options,
   onClick,
   svgHrefs
 }: CarouselArrowButtonProps) => {
@@ -19,9 +20,10 @@ export const CarouselArrowButton = ({
   if (direction === 'left') {
     svgHref = svgHrefs?.arrowLeftButton || {}
   }
+  const shouldHide = !!options?.navigation?.hideArrowsAtFinalPage;
   const isHidden = direction === 'left' ? currentPage === 0 : currentPage === numberOfDots - 1;
 
-  if (isHidden || numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return <EmptyFillerButton />;
+  if ((shouldHide && isHidden) || numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return <EmptyFillerButton />;
   return !!svgHref?.svgHref ? 
       <CarouselItemViewerCustomButton fillColor={svgHref.fillColor} onClick={onClick} xlinkHref={svgHref.svgHref}/> :
       <ArrowButton fillColor={svgHref.fillColor} direction={direction} onClick={onClick}/>

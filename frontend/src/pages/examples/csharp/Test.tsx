@@ -288,6 +288,9 @@ const sections: CSharpSection[] = [
 					Here are some photos of enjoyable experiences:
 					<Carousel
 						options={{
+							navigation: {
+								hideArrowsAtFinalPage: true,
+							},
 							video: {
 								autoHideToolbarDuration: 0,
 							},

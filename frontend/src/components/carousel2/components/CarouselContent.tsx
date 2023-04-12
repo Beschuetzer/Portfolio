@@ -111,6 +111,7 @@ export const CarouselContent = ({
             </div>
             <div className={getClassname({ elementName: "navigation" })}>
                 <CarouselArrowButton
+                    options={options}
                     currentPage={currentPage}
                     numberOfDots={numberOfPages}
                     svgHrefs={svgHrefs}
@@ -124,6 +125,7 @@ export const CarouselContent = ({
                     currentPage={currentPage}
                 />
                 <CarouselArrowButton
+                    options={options}
                     currentPage={currentPage}
                     numberOfDots={numberOfPages}
                     svgHrefs={svgHrefs}

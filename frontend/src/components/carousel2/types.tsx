@@ -2,6 +2,7 @@
 export type ArrowButtonDirection = 'left' | 'right';
 export type ArrowProps = {
     direction: ArrowButtonDirection;
+    options?: CarouselOptions;
     fillColor?: string;
 }
 
@@ -10,12 +11,23 @@ export type ButtonProps = {
     onClick: () => void;
 }
 
+export type CarouselNavigationOptions = {
+    /*
+    *When true, the right arrow button will be hidden when when on the last page and the left arrow button will be hidden when on the first page.  
+    *When false, the right arrow button navigates to the first page when the currentPage is the final page
+    *and the left arrow button navigates to the last page when the currentPage is the first page.
+    *Default is false
+    */
+    hideArrowsAtFinalPage?: boolean;
+}
+
 export type CarouselNavigationProps = {
     currentPage: number;
     numberOfDots: number;
 }
 
 export type CarouselOptions = {
+    navigation?: CarouselNavigationOptions;
     thumbnail?: CarouselThumbnailOptions;
     video?: CarouselVideoOptions;
 }
