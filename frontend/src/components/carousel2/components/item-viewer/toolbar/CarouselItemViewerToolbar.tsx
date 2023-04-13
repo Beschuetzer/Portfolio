@@ -117,6 +117,7 @@ export const CarouselItemViewerToolbar = ({
 
     //#region Side Fx
     useEffect(() => {
+        handleAutoHide();
         function handleMouseEnterNextButton() {
             setPreviewDirection(ToolbarPreviewDirection.next);
             setShowPreview(true);
