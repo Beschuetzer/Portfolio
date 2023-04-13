@@ -54,7 +54,7 @@ export function getGuid() {
 
 export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT){
     let color: any;
-    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+    if(hex && /^#([A-Fa-f0-9]{3}){1,2}$/.test(hex.trim())){
         color= hex.substring(1).split('');
         if(color.length== 3){
             color= [color[0], color[0], color[1], color[1], color[2], color[2]];

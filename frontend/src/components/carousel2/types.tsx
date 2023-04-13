@@ -89,7 +89,7 @@ export type CarouselThumbnailBackgroundOptions = {
         *The number of degrees for the gradient.  Default is 180
         */
         angle?: number;
-        end?: {
+        end: {
             /*
             *This is the hexadecimal color value for the very bottom part of the gradient
             */
@@ -99,7 +99,7 @@ export type CarouselThumbnailBackgroundOptions = {
             */
             opacity: number;
         },
-        start?: {
+        start: {
             /*
             *This is the hexadecimal color value for the very top part of the gradient
             */

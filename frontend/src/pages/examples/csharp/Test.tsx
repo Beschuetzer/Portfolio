@@ -204,11 +204,11 @@ const customThumbnailGradient = (
 					angle: 270,
 					start: {
 						color: getComputedStyleCustom('--color-primary-4'),
-						opacity: 0,
+						opacity: .25,
 					},
 					end: {
 						color: getComputedStyleCustom('--color-primary-1'),
-						opacity: 1
+						opacity: .75
 					}
 				},
 			},
@@ -216,7 +216,7 @@ const customThumbnailGradient = (
 			hideOverlayUnlessHovered: false,
 			maxLineCount: 1,
 			size: 100,
-			textColor: getComputedStyleCustom('--color-primary-1'),
+			textColor: getComputedStyleCustom('--color-primary-4'),
 		}
 	}} />
 );
@@ -228,11 +228,11 @@ const customThumbnailGradientAndFallback = (
 					angle: 270,
 					start: {
 						color: getComputedStyleCustom('--color-primary-4'),
-						opacity: 0,
+						opacity: .9,
 					},
 					end: {
 						color: getComputedStyleCustom('--color-primary-1'),
-						opacity: 1
+						opacity: .1
 					}
 				},
 				solid: {
@@ -244,7 +244,7 @@ const customThumbnailGradientAndFallback = (
 			hideOverlayUnlessHovered: false,
 			maxLineCount: 1,
 			size: 100,
-			textColor: getComputedStyleCustom('--color-primary-1'),
+			textColor: getComputedStyleCustom('--color-primary-4'),
 		}
 	}} />
 );
