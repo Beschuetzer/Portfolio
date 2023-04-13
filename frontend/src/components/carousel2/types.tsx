@@ -69,11 +69,11 @@ export type CarouselSvgs = {
     *These are the buttons at the bottom of each carousel related to changing pages
     */
     navigation?: {
-        arrowLeftButton?: CarouselSvgHref;
+        arrowLeft?: CarouselSvgHref;
         /*
         *This is the button at the bottom of each carousel to the right of the dots
         */
-        arrowRightButton?: CarouselSvgHref;
+        arrowRight?: CarouselSvgHref;
         /*
         *These are for the fullscreen modal that pops up when clicking a thumbnail in the carousel
         */
@@ -85,7 +85,6 @@ export type CarouselSvgs = {
 }
 
 export type CarouselThumbnailBackgroundOptions = {
-
     /*
     *Specify what you want the gradient to be for browswers that support it.  The gradient starts at the top and goes down by default
     */

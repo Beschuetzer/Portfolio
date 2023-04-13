@@ -14,9 +14,9 @@ export const CarouselArrowButton = ({
   options,
   onClick,
 }: CarouselArrowButtonProps) => {
-  let svgHref = options?.svgs?.navigation?.arrowRightButton || {};
+  let svgHref = options?.svgs?.navigation?.arrowRight || {};
   if (direction === 'left') {
-    svgHref = options?.svgs?.navigation?.arrowLeftButton || {}
+    svgHref = options?.svgs?.navigation?.arrowLeft || {}
   }
   const shouldHide = !!options?.navigation?.hideArrowsAtFinalPage;
   const isHidden = direction === 'left' ? currentPage === 0 : currentPage === numberOfDots - 1;

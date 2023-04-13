@@ -142,14 +142,14 @@ const allCustomSettings = (
 						svgHref: "./sprite.svg#icon-dot-single",
 						fillColor: getComputedStyleCustom('--color-primary-1'),
 					},
-					arrowLeftButton: {
+					arrowLeft: {
 						svgHref: "./sprite.svg#icon-angle-right",
 						fillColor: getComputedStyleCustom('--color-primary-1'),
 						style: {
-							transform: 'rotate(180deg)',
+							transform: 'rotate(180deg) translateY(-5%)',
 						}
 					},
-					arrowRightButton: {
+					arrowRight: {
 						svgHref: "./sprite.svg#icon-angle-right",
 						fillColor: getComputedStyleCustom('--color-primary-1'),
 					}
