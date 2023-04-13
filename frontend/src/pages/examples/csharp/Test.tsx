@@ -175,6 +175,39 @@ const multiplePagesFixedItemSpacing = (
 		}
 	}} />
 );
+const customThumbnail = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			backgroundColor: 'gray',
+			fontSize: 8,
+			hideOverlayUnlessHovered: false,
+			maxLineCount: 1,
+			size: 100,
+			textColor: 'red'
+		}
+	}} />
+);
+const hideArrowsAtFinalPage = (
+	<Carousel items={items} options={{
+		navigation: {
+			hideArrowsAtFinalPage: true,
+		}
+	}} />
+);
+const itemViewerNoToolbarHide = (
+	<Carousel items={items.slice(0, 1)} options={{
+		video: {
+			autoHideToolbarDuration: 0,
+		}
+	}} />
+);
+const itemViewerHideAfter500ms = (
+	<Carousel items={items.slice(0, 1)} options={{
+		video: {
+			autoHideToolbarDuration: 500,
+		}
+	}} />
+);
 const noThumbnailHoverEffect = (
 	<Carousel items={items} options={{thumbnail: {hideOverlayUnlessHovered: false}}} />
 );
@@ -194,12 +227,20 @@ const itemsToRender: { label: string, jsx: ReactNode | ReactNode[] }[] = [
 		jsx: multiplePagesDynamicSizingAllDefaults
 	},
 	{
-		label: "Multiple Pages - No Thumbnail Hover Effect",
+		label: "No Thumbnail Hover Effect",
 		jsx: noThumbnailHoverEffect
 	},
 	{
-		label: "Multiple Pages - Fixed Item Spacing",
+		label: "Fixed Item Spacing",
 		jsx: multiplePagesFixedItemSpacing
+	},
+	{
+		label: "Custom Thumbnail",
+		jsx: customThumbnail
+	},
+	{
+		label: "Hide Navigation Arrows on First and Last Page",
+		jsx: hideArrowsAtFinalPage
 	},
 	{
 		label: "Side by Side - All Defaults",
@@ -231,6 +272,14 @@ const itemsToRender: { label: string, jsx: ReactNode | ReactNode[] }[] = [
 		label: "All Custom Settings",
 		jsx: allCustomSettings,
 	},
+	{
+		label: "ItemViewer (Click item to view) - Toolbar doesn't hide on inactivity",
+		jsx: itemViewerNoToolbarHide
+	},
+	{
+		label: "ItemViewer (Click item to view) - Toolbar hides after 500ms of inactivity",
+		jsx: itemViewerHideAfter500ms
+	},
 ]
 
 const sections: CSharpSection[] = [
@@ -240,7 +289,7 @@ const sections: CSharpSection[] = [
 		pageName: C_SHARP_CLASSNAME,
 		children: itemsToRender.map((item) => {
 			return (
-				<CSharpCardSection title={item.label}>
+				<CSharpCardSection title={item.label + ':'}>
 					{item.jsx}
 				</CSharpCardSection>
 			)
