@@ -184,7 +184,7 @@ const customThumbnailSolid = (
 		thumbnail: {
 			background: {
 				solid: {
-					color: getComputedStyleCustom('--color-primary-4'),
+					color: getComputedStyleCustom('--color-primary-1'),
 					opacity: .8,
 				}
 			},
@@ -192,7 +192,7 @@ const customThumbnailSolid = (
 			hideOverlayUnlessHovered: false,
 			maxLineCount: 1,
 			size: 100,
-			textColor: getComputedStyleCustom('--color-primary-1'),
+			textColor: getComputedStyleCustom('--color-primary-4'),
 		}
 	}} />
 );
@@ -228,16 +228,16 @@ const customThumbnailGradientAndFallback = (
 					angle: 270,
 					start: {
 						color: getComputedStyleCustom('--color-primary-4'),
-						opacity: .9,
+						opacity: .25,
 					},
 					end: {
 						color: getComputedStyleCustom('--color-primary-1'),
-						opacity: .1
+						opacity: .75
 					}
 				},
 				solid: {
-					color: getComputedStyleCustom('--color-primary-4'),
-					opacity: .8,
+					color: getComputedStyleCustom('--color-primary-1'),
+					opacity: .25,
 				}
 			},
 			fontSize: 8,

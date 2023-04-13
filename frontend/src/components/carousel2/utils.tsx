@@ -53,16 +53,19 @@ export function getGuid() {
 }
 
 export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT){
+    
     let color: any;
-    if(hex && /^#([A-Fa-f0-9]{3}){1,2}$/.test(hex.trim())){
-        color= hex.substring(1).split('');
+    const hexToUse = hex.trim();
+    if(hex && /^#([A-Fa-f0-9]{3}){1,2}$/.test(hexToUse)){
+        color= hexToUse.substring(1).split('');
         if(color.length== 3){
             color= [color[0], color[0], color[1], color[1], color[2], color[2]];
         }
         color= '0x'+color.join('');
         return `rgba(${[(color>>16)&255, (color>>8)&255, color&255].join(',')},${opacity > 1 ? 1 : opacity < 0 ? 0 : opacity})`;
     }
-    return hex;
+
+    return hexToUse;
 }
 
 export function setCssCustomProperty(propertyName: string, newValue: string) {
