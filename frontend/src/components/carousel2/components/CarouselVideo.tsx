@@ -19,7 +19,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         video: videoProps,
     } = props;
     const { autoPlay, loop, muted } = videoProps || {};
-    const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+    const [isVideoPlaying, setIsVideoPlaying] = useState(autoPlay || false);
     const videoRef = useRef<HTMLVideoElement>();
     const videoContainerRef = useRef<HTMLDivElement>();
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
