@@ -17,10 +17,9 @@ export const CarouselDots = ({
     numberOfDots = items?.length || NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS - 1,
     options,
     setCurrentPage,
-    style = {},
 }: CarouselDotsProps) => {
     //#region Init
-    const { fillColor, svgHref } = options?.svgs?.dots || {};
+    const { fillColor, svgHref, style } = options?.svgs?.dots || {};
     //#endregion
 
     //#region Handlers/Functions
