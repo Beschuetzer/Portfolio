@@ -59,7 +59,7 @@ export const CarouselContent = ({
         if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
             const itemsInContainer = getItemsInContainer();
             const firstItemLeft = itemsInContainer?.[0].getBoundingClientRect().left;
-            const firstItemInNextPageIndex = Math.ceil(items.length / numberOfPages);
+            const firstItemInNextPageIndex = Math.floor(items.length / numberOfPages) + 1;
             const firstItemInNextPage = itemsInContainer?.[firstItemInNextPageIndex].getBoundingClientRect().left;
             return currentPage * (Math.abs((firstItemLeft || 0) - (firstItemInNextPage || 0)));
         }

@@ -198,6 +198,10 @@ const itemsToRender: { label: string, jsx: ReactNode | ReactNode[] }[] = [
 		jsx: noThumbnailHoverEffect
 	},
 	{
+		label: "Multiple Pages - Fixed Item Spacing",
+		jsx: multiplePagesFixedItemSpacing
+	},
+	{
 		label: "Side by Side - All Defaults",
 		jsx: (
 			<div style={{ display: "flex" }}>
