@@ -51,6 +51,9 @@ export type CarouselSvgHref = {
 }
 
 export type CarouselSvgs = {
+    /*
+    *These are the buttons that are inside the Item Viewer (opens when you click a thumbnail)
+    */
     itemViewer?: {
         closeButton?: string;
         nextButton?: string;
