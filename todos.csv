@@ -1,5 +1,4 @@
 Carousel rework:
-  -need to handle only one page of items (the dynamic spacing is not working as expected)
   -add carousel option to adjust button size (i.e. $buttonWidth)
   -add swipe to scroll functionality to container?
   -add dynamic styling for itemviewer

@@ -151,6 +151,7 @@ export const CarouselContent = ({
                     numberOfDots={numberOfPages}
                     setCurrentPage={setCurrentPage}
                     currentPage={currentPage}
+                    style={svgHrefs.dots?.style}
                 />
                 <CarouselArrowButton
                     options={options}

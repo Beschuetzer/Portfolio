@@ -1,3 +1,5 @@
+import { CSSProperties } from "react";
+
 //#region Prop Types
 export type ArrowButtonDirection = 'left' | 'right';
 export type ArrowProps = {
@@ -41,6 +43,10 @@ export type CarouselSvgHref = {
     *Href of the svg element
     */
     svgHref?: string;
+    /*
+    *Styles passed directly to the underlying use element of the svg (for rotation purposes mainly)
+    */
+    style?: CSSProperties;
 }
 
 export type CarouselSvgHrefs = {

@@ -1,6 +1,6 @@
 :root {
-  --thumbnail-carousel-video-overlay-custom-button-top: calc(2rem * .5);
-  --thumbnail-carousel-video-overlay-custom-button-right: calc(2rem * .5);
+  --thumbnail-carousel-video-overlay-custom-button-top: calc(20px * .5);
+  --thumbnail-carousel-video-overlay-custom-button-right: calc(20px * .5);
 }
 
 .thumbnail-carousel--hidden {
@@ -17,8 +17,8 @@
 
 .thumbnail-carousel-button {
   overflow: hidden;
-  height: 3rem;
-  width: 3rem;
+  height: 30px;
+  width: 30px;
   opacity: 0.75;
   border: none;
   position: relative;
@@ -34,12 +34,12 @@
 }
 .thumbnail-carousel-button--arrow-left-one, .thumbnail-carousel-button--arrow-left-two, .thumbnail-carousel-button--arrow-right-one, .thumbnail-carousel-button--arrow-right-two {
   background-color: #000;
-  width: 0.375rem;
-  height: 1.1180339887rem;
+  width: 3.75px;
+  height: 11.1803398875px;
 }
 .thumbnail-carousel-button--arrow-left-one {
   position: absolute;
-  top: calc(50% + 0.3952847075rem - 0.1325825215rem);
+  top: calc(50% + 3.9528470752px - 1.3258252147px);
   left: 50%;
   right: auto;
   bottom: auto;
@@ -47,7 +47,7 @@
 }
 .thumbnail-carousel-button--arrow-left-two {
   position: absolute;
-  top: calc(50% - 0.3952847075rem + 0.1325825215rem);
+  top: calc(50% - 3.9528470752px + 1.3258252147px);
   left: 50%;
   right: auto;
   bottom: auto;
@@ -55,7 +55,7 @@
 }
 .thumbnail-carousel-button--arrow-right-one {
   position: absolute;
-  top: calc(50% - 0.3952847075rem + 0.1325825215rem);
+  top: calc(50% - 3.9528470752px + 1.3258252147px);
   left: 50%;
   right: auto;
   bottom: auto;
@@ -63,15 +63,15 @@
 }
 .thumbnail-carousel-button--arrow-right-two {
   position: absolute;
-  top: calc(50% + 0.3952847075rem - 0.1325825215rem);
+  top: calc(50% + 3.9528470752px - 1.3258252147px);
   left: 50%;
   right: auto;
   bottom: auto;
   transform: translate(-50%, -50%) rotate(45deg);
 }
 .thumbnail-carousel-button--close-left, .thumbnail-carousel-button--close-right {
-  width: 0.75rem;
-  height: 3rem;
+  width: 7.5px;
+  height: 30px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -82,8 +82,8 @@
 .thumbnail-carousel-button--close-left-inverse, .thumbnail-carousel-button--close-right-inverse {
   background-color: #000;
   margin-top: 0;
-  width: 0.375rem;
-  height: 2.25rem;
+  width: 3.75px;
+  height: 22.5px;
 }
 .thumbnail-carousel-button--close-left {
   --rotation: -45deg;
@@ -92,12 +92,12 @@
   --rotation: 45deg;
 }
 .thumbnail-carousel-button--next-left {
-  border-left: calc(3rem / 2.5) solid #fff;
+  border-left: calc(30px / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(3rem / 2.25) solid transparent;
-  border-bottom: calc(3rem / 2.25) solid transparent;
+  border-top: calc(30px / 2.25) solid transparent;
+  border-bottom: calc(30px / 2.25) solid transparent;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -111,12 +111,12 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(calc(-50% + 0.75rem), -50%) rotate(0);
-  width: 0.375rem;
-  height: calc(3rem * .85);
+  transform: translate(calc(-50% + 7.5px), -50%) rotate(0);
+  width: 3.75px;
+  height: calc(30px * .85);
 }
 .thumbnail-carousel-button--inverse {
-  transform: translateX(0.6rem);
+  transform: translateX(6px);
   margin-top: 0;
 }
 .thumbnail-carousel-button--pause-left, .thumbnail-carousel-button--pause-right {
@@ -125,9 +125,9 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(calc(-50% + 0.75rem), -50%) rotate(0);
-  width: 0.75rem;
-  height: calc(3rem * .85);
+  transform: translate(calc(-50% + 7.5px), -50%) rotate(0);
+  width: 7.5px;
+  height: calc(30px * .85);
 }
 .thumbnail-carousel-button--pause-left {
   position: absolute;
@@ -135,7 +135,7 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(calc(-50% - 0.75rem), -50%) rotate(0);
+  transform: translate(calc(-50% - 7.5px), -50%) rotate(0);
 }
 .thumbnail-carousel-button--play-triangle {
   position: absolute;
@@ -147,9 +147,9 @@
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(3rem / 2.25) solid transparent;
-  border-left: calc(3rem / 1.33) solid #fff;
-  border-bottom: calc(3rem / 2.25) solid transparent;
+  border-top: calc(30px / 2.25) solid transparent;
+  border-left: calc(30px / 1.33) solid #fff;
+  border-bottom: calc(30px / 2.25) solid transparent;
 }
 .thumbnail-carousel-button--previous-left {
   position: absolute;
@@ -157,9 +157,9 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(calc(-50% + 0.75rem), -50%) rotate(0);
-  width: 0.375rem;
-  height: calc(3rem * .85);
+  transform: translate(calc(-50% + 7.5px), -50%) rotate(0);
+  width: 3.75px;
+  height: calc(30px * .85);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -168,12 +168,12 @@
   transform: translate(-175%, -50%) rotate(0);
 }
 .thumbnail-carousel-button--previous-right {
-  border-right: calc(3rem / 2.5) solid #fff;
+  border-right: calc(30px / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(3rem / 2.25) solid transparent;
-  border-bottom: calc(3rem / 2.25) solid transparent;
+  border-top: calc(30px / 2.25) solid transparent;
+  border-bottom: calc(30px / 2.25) solid transparent;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -194,8 +194,8 @@
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(3rem / 2.5) solid transparent;
-  border-right: calc(3rem / 2.5) solid #fff;
+  border-top: calc(30px / 2.5) solid transparent;
+  border-right: calc(30px / 2.5) solid #fff;
   border-bottom: none;
 }
 .thumbnail-carousel-button--restart-circle-inner, .thumbnail-carousel-button--restart-circle-outer {
@@ -208,13 +208,13 @@
   transform: translate(-50%, -50%) rotate(0);
 }
 .thumbnail-carousel-button--restart-circle-inner {
-  height: calc((3rem * .85) - 1.5rem);
-  width: calc((3rem * .85) - 1.5rem);
+  height: calc((30px * .85) - 15px);
+  width: calc((30px * .85) - 15px);
   background-color: rgba(0, 0, 0, 0);
 }
 .thumbnail-carousel-button--restart-circle-outer {
-  height: calc(3rem * .85);
-  width: calc(3rem * .85);
+  height: calc(30px * .85);
+  width: calc(30px * .85);
 }
 .thumbnail-carousel-button--restart-triangle-cutout {
   position: absolute;
@@ -229,17 +229,17 @@
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(3rem / 1) solid transparent;
-  border-right: calc(3rem / 1) solid rgba(0, 0, 0, 0);
-  border-bottom: calc(3rem / 1) solid transparent;
+  border-top: calc(30px / 1) solid transparent;
+  border-right: calc(30px / 1) solid rgba(0, 0, 0, 0);
+  border-bottom: calc(30px / 1) solid transparent;
 }
 .thumbnail-carousel-button--seek-back-left, .thumbnail-carousel-button--seek-back-right {
-  border-left: calc(3rem / 2.5) solid #fff;
+  border-left: calc(30px / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(3rem / 2.25) solid transparent;
-  border-bottom: calc(3rem / 2.25) solid transparent;
+  border-top: calc(30px / 2.25) solid transparent;
+  border-bottom: calc(30px / 2.25) solid transparent;
 }
 .thumbnail-carousel-button--seek-back-left {
   position: absolute;
@@ -258,12 +258,12 @@
   transform: translate(0%, -50%) rotate(180deg);
 }
 .thumbnail-carousel-button--seek-forward-left, .thumbnail-carousel-button--seek-forward-right {
-  border-left: calc(3rem / 2.5) solid #fff;
+  border-left: calc(30px / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(3rem / 2.25) solid transparent;
-  border-bottom: calc(3rem / 2.25) solid transparent;
+  border-top: calc(30px / 2.25) solid transparent;
+  border-bottom: calc(30px / 2.25) solid transparent;
 }
 .thumbnail-carousel-button--seek-forward-left {
   position: absolute;
@@ -288,14 +288,14 @@
   right: auto;
   bottom: auto;
   transform: translate(-50%, -50%) rotate(0);
-  height: calc(3rem * .85);
-  width: calc(calc(3rem * .85) * .95);
+  height: calc(30px * .85);
+  width: calc(calc(30px * .85) * .95);
 }
 
 .thumbnail-carousel {
   width: 100%;
   overflow: hidden;
-  margin-top: 0.5rem;
+  margin-top: 5px;
 }
 .thumbnail-carousel__dots {
   display: flex;
@@ -325,11 +325,11 @@
   cursor: pointer;
 }
 .thumbnail-carousel__dots > div:not(.thumbnail-carousel__dots-current):hover *, .thumbnail-carousel__dots > svg:not(.thumbnail-carousel__dots-current):hover * {
-  --opacity: .75;
-  opacity: 0.75 !important;
+  --opacity: 0.8;
+  opacity: 0.8 !important;
 }
 .thumbnail-carousel__item {
-  margin-top: 0.5rem;
+  margin-top: 5px;
   position: relative;
   border-radius: 8px;
   overflow: hidden;
@@ -365,7 +365,7 @@
   right: 0;
   top: auto;
   transition: bottom 0.5s ease;
-  padding: 1rem 2rem;
+  padding: 10px 20px;
   text-align: center;
   font-weight: 700;
   font-size: 12px;
@@ -380,8 +380,8 @@
   color: #fff;
 }
 .thumbnail-carousel__item:hover {
-  transform: translateY(-0.5rem);
-  box-shadow: 0 0.5rem 0.4rem 0rem rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 0.4rem 0rem rgba(0, 0, 0, 0.5);
 }
 .thumbnail-carousel__item:hover > div {
   bottom: 0 !important;
@@ -404,8 +404,8 @@
 }
 .thumbnail-carousel__item-viewer-button {
   overflow: hidden;
-  height: 3rem;
-  width: 3rem;
+  height: 30px;
+  width: 30px;
   opacity: 0.75;
   border: none;
   position: relative;
@@ -437,7 +437,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 10px 20px;
   background: rgba(0, 0, 0, 0.8);
   /*this color is displayed if browser can't read the below properties*/
   background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, black 100%);
@@ -451,7 +451,7 @@
   top: auto;
 }
 .thumbnail-carousel__item-viewer-toolbar-container {
-  margin-top: 0.5rem;
+  margin-top: 5px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -481,12 +481,12 @@
   width: 1rem;
 }
 .thumbnail-carousel__item-viewer-toolbar-preview {
-  --width: 20rem;
+  --width: 200px;
   --height: calc(var(--width) / 2);
   position: absolute;
   bottom: auto;
   left: auto;
-  right: calc(2rem / 2);
+  right: calc(20px / 2);
   top: calc(-1 * var(--height));
   width: var(--width);
   height: var(--height);
@@ -496,11 +496,11 @@
   justify-content: space-between;
   font-size: 14px;
   color: #fff;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   overflow: hidden;
 }
 .thumbnail-carousel__item-viewer-toolbar-preview > * {
-  width: calc(20rem / 2);
+  width: calc(200px / 2);
 }
 .thumbnail-carousel__item-viewer-toolbar-preview-image-container {
   border-right: 1px solid rgba(255, 255, 255, 0.66);
@@ -513,7 +513,7 @@
   object-position: left;
 }
 .thumbnail-carousel__item-viewer-toolbar-preview-image-description {
-  padding: 1rem;
+  padding: 10px;
   text-align: center;
 }
 .thumbnail-carousel__item-viewer-toolbar-preview-image-description p {
@@ -525,10 +525,10 @@
 }
 .thumbnail-carousel__item-viewer-toolbar-progress {
   transition: transform 0.5s;
-  width: calc(100vw - 2rem);
-  margin-bottom: 0.5rem;
+  width: calc(100vw - 20px);
+  margin-bottom: 5px;
   cursor: pointer;
-  height: 0.5rem;
+  height: 5px;
   appearance: none;
   border: none;
 }
@@ -566,8 +566,8 @@
   max-height: 75%;
   max-width: 75%;
   background-color: white;
-  border-radius: 0.5rem;
-  padding: 2rem;
+  border-radius: 5px;
+  padding: 20px;
   box-shadow: 0 0 0 50vmax rgba(0, 0, 0, 0.15);
   transition: opacity 0.5s ease;
   font-size: 14px;
@@ -578,7 +578,7 @@
   justify-content: space-between;
 }
 .thumbnail-carousel__video-overlay p {
-  padding-right: 4rem;
+  padding-right: 20px;
 }
 .thumbnail-carousel__video-overlay-custom {
   padding-top: 0;
@@ -592,8 +592,8 @@
   top: var(--thumbnail-carousel-video-overlay-custom-button-top);
 }
 .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-left, .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-right {
-  width: 0.75rem;
-  height: 3rem;
+  width: 7.5px;
+  height: 30px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -604,8 +604,8 @@
 .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-left-inverse, .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-right-inverse {
   background-color: #000;
   margin-top: 0;
-  width: 0.375rem;
-  height: 2.25rem;
+  width: 3.75px;
+  height: 22.5px;
 }
 .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-left {
   --rotation: -45deg;

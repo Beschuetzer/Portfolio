@@ -7,6 +7,7 @@ import { CAROUSEL_DOT_COLOR_DEFAULT, CAROUSEL_DOT_OPACITY_DEFAULT, NUMBER_OF_DOT
 type CarouselDotsProps = {
     items: CarouselItemProps[];
     svgHrefs: CarouselSvgHrefs;
+    style?: React.CSSProperties;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 } & CarouselNavigationProps
 
@@ -15,8 +16,9 @@ export const CarouselDots = ({
     currentPage,
     items,
     numberOfDots = items?.length || NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS - 1,
-    svgHrefs = {},
     setCurrentPage,
+    style = {},
+    svgHrefs = {},
 }: CarouselDotsProps) => {
     //#region Init
     const { fillColor, svgHref } = svgHrefs.dots || {};
@@ -55,7 +57,7 @@ export const CarouselDots = ({
 
             dots.push((
                 isSvg ? (
-                    <svg key={index} onClick={() => onDotClick(index)} className={currentPageClassname}>
+                    <svg key={index} onClick={() => onDotClick(index)} className={currentPageClassname} style={style}>
                         <use
                             style={{...useStyles, ...currentDotStyle}}
                             xlinkHref={svgHref}

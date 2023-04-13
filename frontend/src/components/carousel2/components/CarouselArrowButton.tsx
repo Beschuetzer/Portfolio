@@ -25,6 +25,6 @@ export const CarouselArrowButton = ({
 
   if ((shouldHide && isHidden) || numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return <EmptyFillerButton />;
   return !!svgHref?.svgHref ? 
-      <CarouselItemViewerCustomButton fillColor={svgHref.fillColor} onClick={onClick} xlinkHref={svgHref.svgHref}/> :
+      <CarouselItemViewerCustomButton fillColor={svgHref.fillColor} onClick={onClick} xlinkHref={svgHref.svgHref} style={svgHref.style}/> :
       <ArrowButton fillColor={svgHref.fillColor} direction={direction} onClick={onClick}/>
 }
