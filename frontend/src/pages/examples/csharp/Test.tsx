@@ -393,7 +393,6 @@ const SECTIONS: Sections = [
 ];
 
 const sections: CSharpSection[] = SECTIONS.map((section) => ({
-	hasCarousel: true,
 	name: section[0],
 	pageName: C_SHARP_CLASSNAME,
 	children: section[1].map((item) => {
@@ -409,7 +408,7 @@ const sections: CSharpSection[] = SECTIONS.map((section) => ({
 export const Test = () => {
 	return (
 		<React.Fragment>
-			<CSharpLayout sections={sections} pageName={ABOUT_PAGE_NAME} />
+			<CSharpLayout sections={sections} pageName={"thumbnail-carousel Examples"} />
 			<LoadingSpinner forceShow={false} />
 		</React.Fragment>
 	);

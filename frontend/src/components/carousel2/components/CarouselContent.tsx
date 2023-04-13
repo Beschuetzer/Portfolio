@@ -57,9 +57,9 @@ export const CarouselContent = ({
         const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
         if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
             const itemsInContainer = getItemsInContainer();
-            const firstItemLeft = itemsInContainer?.[0].getBoundingClientRect().left;
+            const firstItemLeft = itemsInContainer?.[0]?.getBoundingClientRect().left;
             const firstItemInNextPageIndex = Math.floor(items.length / numberOfPages) + 1;
-            const firstItemInNextPage = itemsInContainer?.[firstItemInNextPageIndex].getBoundingClientRect().left;
+            const firstItemInNextPage = itemsInContainer?.[firstItemInNextPageIndex]?.getBoundingClientRect().left;
             return currentPage * (Math.abs((firstItemLeft || 0) - (firstItemInNextPage || 0)));
         }
         return currentPage * (parseFloat(interItemSpacing.replace(CAROUSEL_ITEM_SPACING_UNIT, '')) + containerWidth);
@@ -136,7 +136,8 @@ export const CarouselContent = ({
                     items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)
                 }
             </div>
-            <div className={getClassname({ elementName: "navigation" })}>
+            {numberOfPages > 1 ? (
+                <div className={getClassname({ elementName: "navigation" })}>
                 <CarouselArrowButton
                     options={options}
                     currentPage={currentPage}
@@ -157,6 +158,7 @@ export const CarouselContent = ({
                     direction={"right"}
                     onClick={() => onArrowButtonClick("right")} />
             </div>
+            ): null}
         </>
     )
     //#endregion

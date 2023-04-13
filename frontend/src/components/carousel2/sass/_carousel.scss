@@ -3,7 +3,7 @@
 .#{$carouselClassname} {
     width: 100%;
     overflow: hidden;
-    margin-top: $carouselItemHoverTranslateUpAmount;
+    // margin-top: $carouselItemHoverTranslateUpAmount;
 
     &__dots {
         @include displayFlexCenter();
@@ -40,7 +40,7 @@
     }
 
     &__item {
-        margin-top: $carouselItemHoverTranslateUpAmount;
+        margin: $carouselItemHoverTranslateUpAmount 0;
         position: relative;
         border-radius: 8px;
         overflow: hidden;
@@ -278,6 +278,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: $carouselItemHoverTranslateUpAmount;
     }
 
     &__video {
