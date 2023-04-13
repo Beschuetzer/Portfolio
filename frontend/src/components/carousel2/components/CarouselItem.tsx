@@ -63,7 +63,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   const backgroundColorStyle =  options?.thumbnail?.backgroundColor ? {
     backgroundColor: options.thumbnail.backgroundColor,
   } as React.CSSProperties : {};
-  const colorStyle =  options?.thumbnail?.textColor ? {
+  const textColorStyle =  options?.thumbnail?.textColor ? {
     color: options.thumbnail.textColor,
   } as React.CSSProperties : {};
   const bottomStyle =  options?.thumbnail?.hideOverlayUnlessHovered === undefined || options.thumbnail.hideOverlayUnlessHovered ? {
@@ -71,7 +71,6 @@ export const CarouselItem = (props: CarouselItemProps) => {
   } as React.CSSProperties : {};
   const thumbnailBackgroundStyle = {
     ...bottomStyle,
-    ...colorStyle,
     ...backgroundColorStyle,
   } as React.CSSProperties
   const itemStyle = options?.thumbnail?.size ? {
@@ -86,7 +85,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     <article onClick={(e) => onPress(e as any)} className={CLASSNAME__CAROUSEL_ITEM} style={itemStyle}>
       {description ? (
         <div style={thumbnailBackgroundStyle}>
-          <p style={{...maxLineCountStyle, ...fontSizeStyle}}>{description}</p>
+          <p style={{...maxLineCountStyle, ...fontSizeStyle, ...textColorStyle}}>{description}</p>
         </div>
       ) : null}
       <img

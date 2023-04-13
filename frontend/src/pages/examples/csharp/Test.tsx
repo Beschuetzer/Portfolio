@@ -178,12 +178,12 @@ const multiplePagesFixedItemSpacing = (
 const customThumbnail = (
 	<Carousel items={items} options={{
 		thumbnail: {
-			backgroundColor: 'gray',
+			backgroundColor: getComputedStyleCustom('--color-primary-3'),
 			fontSize: 8,
 			hideOverlayUnlessHovered: false,
 			maxLineCount: 1,
 			size: 100,
-			textColor: 'red'
+			textColor: getComputedStyleCustom('--color-primary-1'),
 		}
 	}} />
 );
@@ -205,6 +205,13 @@ const itemViewerHideAfter500ms = (
 	<Carousel items={items.slice(0, 1)} options={{
 		video: {
 			autoHideToolbarDuration: 500,
+		}
+	}} />
+);
+const itemViewerSeekAmount2Sec = (
+	<Carousel items={items.slice(0, 1)} options={{
+		video: {
+			seekAmount: 2000,
 		}
 	}} />
 );
@@ -279,6 +286,10 @@ const itemsToRender: { label: string, jsx: ReactNode | ReactNode[] }[] = [
 	{
 		label: "ItemViewer (Click item to view) - Toolbar hides after 500ms of inactivity",
 		jsx: itemViewerHideAfter500ms
+	},
+	{
+		label: "ItemViewer (Click item to view) - Seek amount 2 sec",
+		jsx: itemViewerSeekAmount2Sec
 	},
 ]
 
