@@ -3,7 +3,7 @@ import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../context';
 import { getClassname, getGuid, toggleFullScreenMode } from '../utils';
 import { CarouselInstanceProvider } from './CarouselInstanceProvider';
 import { CarouselItemProps } from './CarouselItem';
-import { CarouselOptions, CarouselSvgHrefs } from '../types';
+import { CarouselOptions, CarouselSvgs } from '../types';
 import { CarouselContent } from './CarouselContent';
 
 export type CarouselProps = {
@@ -11,7 +11,6 @@ export type CarouselProps = {
 	/*
 	* if undefined, the default css version for each button will be used
 	*/
-	svgHrefs?: CarouselSvgHrefs;
 	items: CarouselItemProps[];
 	options?: CarouselOptions;
 	onItemChange?: (isViewerOpen?: boolean) => void;
@@ -21,7 +20,6 @@ export const Carousel = (props: CarouselProps) => {
 	//#region Init
 	const {
 		style = {},
-		svgHrefs = {},
 		items,
 		options,
 		onItemChange = () => null,
@@ -50,8 +48,7 @@ export const Carousel = (props: CarouselProps) => {
 		<CarouselInstanceProvider
 			carouselContainerRef={carouselContainerRef as any}
 			id={idRef.current}
-			options={options}
-			svgHrefInstance={svgHrefs}>
+			options={options}>
 			<div ref={carouselContainerRef as any} className={getClassname({ elementName: "" })} style={style}>
 				<CarouselContent {...props} carouselContainerRef={carouselContainerRef} />
 			</div>

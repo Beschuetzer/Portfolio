@@ -119,37 +119,37 @@ const allCustomSettings = (
 				fontSize: 14,
 				hideOverlayUnlessHovered: false,
 				itemSpacing: 1,
-			}
-		}}
-		svgHrefs={{
-			itemViewer: {
-				closeButton: "./sprite.svg#icon-close",
-				nextButton: "./sprite.svg#icon-skip-forward",
-				pauseButton: "./sprite.svg#icon-pause",
-				playButton: "./sprite.svg#icon-play",
-				previousButton: "./sprite.svg#icon-skip-backward",
-				restartButton: "./sprite.svg#icon-restart",
-				seekBackButton: "./sprite.svg#icon-backward",
-				seekForwardButton: "./sprite.svg#icon-forward",
-				stopButton: "./sprite.svg#icon-stop",
 			},
-			dots: {
-				style: {
-					transform: 'scale(2)',
+			svgs: {
+				itemViewer: {
+					closeButton: "./sprite.svg#icon-close",
+					nextButton: "./sprite.svg#icon-skip-forward",
+					pauseButton: "./sprite.svg#icon-pause",
+					playButton: "./sprite.svg#icon-play",
+					previousButton: "./sprite.svg#icon-skip-backward",
+					restartButton: "./sprite.svg#icon-restart",
+					seekBackButton: "./sprite.svg#icon-backward",
+					seekForwardButton: "./sprite.svg#icon-forward",
+					stopButton: "./sprite.svg#icon-stop",
 				},
-				svgHref: "./sprite.svg#icon-dot-single",
-				fillColor: getComputedStyleCustom('--color-primary-1'),
-			},
-			arrowLeftButton: {
-				svgHref: "./sprite.svg#icon-angle-right",
-				fillColor: getComputedStyleCustom('--color-primary-1'),
-				style: {
-					transform: 'rotate(180deg)',
+				dots: {
+					style: {
+						transform: 'scale(2)',
+					},
+					svgHref: "./sprite.svg#icon-dot-single",
+					fillColor: getComputedStyleCustom('--color-primary-1'),
+				},
+				arrowLeftButton: {
+					svgHref: "./sprite.svg#icon-angle-right",
+					fillColor: getComputedStyleCustom('--color-primary-1'),
+					style: {
+						transform: 'rotate(180deg)',
+					}
+				},
+				arrowRightButton: {
+					svgHref: "./sprite.svg#icon-angle-right",
+					fillColor: getComputedStyleCustom('--color-primary-1'),
 				}
-			},
-			arrowRightButton: {
-				svgHref: "./sprite.svg#icon-angle-right",
-				fillColor: getComputedStyleCustom('--color-primary-1'),
 			}
 		}}
 		items={items}

@@ -37,8 +37,8 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemIndex, setCurrentSvgHrefs, setOptions, setCurrentCarouselId } = useCarouselContext();
-  const { id: carouselId, svgHrefInstance, options } = useCarouselInstanceContext();
+  const { setCurrentItemIndex, setCurrentSvgs: setCurrentSvgHrefs, setOptions, setCurrentCarouselId } = useCarouselContext();
+  const { id: carouselId, options } = useCarouselInstanceContext();
   //#endregion
 
   //#region Functions/Handlers
@@ -46,7 +46,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     setOptions(options || OPTIONS_DEFAULT);
     setCurrentCarouselId(carouselId);
     setCurrentItemIndex(index as any);
-    setCurrentSvgHrefs(svgHrefInstance);
+    setCurrentSvgHrefs(options?.svgs);
   }
   //#endregion
 

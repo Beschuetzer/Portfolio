@@ -8,7 +8,7 @@ type CarouselItemViewerPauseButtonProps = {
 export const CarouselItemViewerPauseButton = ({
     onClick
 }: CarouselItemViewerPauseButtonProps) => {
-    const { currentSvgHrefs } = useCarouselContext();
+    const { currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.pauseButton || '';
 
     return !!svgHref ? 

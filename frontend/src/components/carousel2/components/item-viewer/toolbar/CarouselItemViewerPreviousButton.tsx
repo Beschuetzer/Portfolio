@@ -9,7 +9,7 @@ type CarouselItemViewerPreviousButtonProps = {
 export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemViewerPreviousButtonProps>(({
     onClick,
 }, ref) => {
-    const { currentSvgHrefs } = useCarouselContext();
+    const { currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.previousButton || '';
 
     return (

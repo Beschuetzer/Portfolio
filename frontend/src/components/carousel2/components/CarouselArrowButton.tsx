@@ -1,12 +1,11 @@
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
-import { ArrowProps, CarouselSvgHrefs, CarouselNavigationProps } from '../types';
+import { ArrowProps, CarouselNavigationProps } from '../types';
 import { ArrowButton } from './buttons/ArrowButton';
 import { NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
 import { EmptyFillerButton } from './buttons/EmptyFillerButton';
 
 type CarouselArrowButtonProps = {
   onClick: () => void;
-  svgHrefs: CarouselSvgHrefs;
 } & ArrowProps & CarouselNavigationProps
 export const CarouselArrowButton = ({
   currentPage,
@@ -14,11 +13,10 @@ export const CarouselArrowButton = ({
   numberOfDots,
   options,
   onClick,
-  svgHrefs
 }: CarouselArrowButtonProps) => {
-  let svgHref = svgHrefs?.arrowRightButton || {};
+  let svgHref = options?.svgs?.arrowRightButton || {};
   if (direction === 'left') {
-    svgHref = svgHrefs?.arrowLeftButton || {}
+    svgHref = options?.svgs?.arrowLeftButton || {}
   }
   const shouldHide = !!options?.navigation?.hideArrowsAtFinalPage;
   const isHidden = direction === 'left' ? currentPage === 0 : currentPage === numberOfDots - 1;

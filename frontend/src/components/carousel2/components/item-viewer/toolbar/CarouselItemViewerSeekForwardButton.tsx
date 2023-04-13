@@ -8,7 +8,7 @@ type CarouselItemViewerSeekForwardButtonProps = {
 export const CarouselItemViewerSeekForwardButton = ({
     onClick
 }: CarouselItemViewerSeekForwardButtonProps) => {
-    const { currentSvgHrefs } = useCarouselContext();
+    const { currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.seekForwardButton || '';
 
     return !!svgHref ? 

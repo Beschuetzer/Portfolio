@@ -1,27 +1,26 @@
 import React, { useCallback } from 'react'
 import { CarouselItemProps } from './CarouselItem';
 import { getClassname } from '../utils';
-import { CarouselSvgHrefs, CarouselNavigationProps } from '../types';
 import { CAROUSEL_DOT_COLOR_DEFAULT, CAROUSEL_DOT_OPACITY_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
+import { ArrowProps, CarouselNavigationProps, CarouselOptions } from '../types';
 
 type CarouselDotsProps = {
     items: CarouselItemProps[];
-    svgHrefs: CarouselSvgHrefs;
     style?: React.CSSProperties;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-} & CarouselNavigationProps
+} & CarouselNavigationProps & Pick<ArrowProps, 'options'>
 
 const DOTS_CLASSNAME = getClassname({ elementName: 'dots' });
 export const CarouselDots = ({
     currentPage,
     items,
     numberOfDots = items?.length || NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS - 1,
+    options,
     setCurrentPage,
     style = {},
-    svgHrefs = {},
 }: CarouselDotsProps) => {
     //#region Init
-    const { fillColor, svgHref } = svgHrefs.dots || {};
+    const { fillColor, svgHref } = options?.svgs?.dots || {};
     //#endregion
 
     //#region Handlers/Functions

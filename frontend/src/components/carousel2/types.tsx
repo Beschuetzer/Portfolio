@@ -30,6 +30,7 @@ export type CarouselNavigationProps = {
 
 export type CarouselOptions = {
     navigation?: CarouselNavigationOptions;
+	svgs?: CarouselSvgs;
     thumbnail?: CarouselThumbnailOptions;
     video?: CarouselVideoOptions;
 }
@@ -49,7 +50,7 @@ export type CarouselSvgHref = {
     style?: CSSProperties;
 }
 
-export type CarouselSvgHrefs = {
+export type CarouselSvgs = {
     /*
     *This is the button at the bottom of each carousel to the left of the dots
     */

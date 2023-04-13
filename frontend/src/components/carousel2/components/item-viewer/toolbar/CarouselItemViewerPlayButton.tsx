@@ -8,7 +8,7 @@ type CarouselItemViewerPlayButtonProps = {
 export const CarouselItemViewerPlayButton = ({
     onClick,
 }: CarouselItemViewerPlayButtonProps) => {
-    const { currentSvgHrefs } = useCarouselContext();
+    const { currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.playButton || '';
 
     return !!svgHref ? 

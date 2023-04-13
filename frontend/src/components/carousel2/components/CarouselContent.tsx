@@ -16,7 +16,6 @@ export const CarouselContent = ({
     carouselContainerRef,
     items,
     options,
-    svgHrefs = {},
 }: CarouselContentProps) => {
     //#region Init
     const hasCalculatedNumberOfDotsRef = useRef(false);
@@ -142,22 +141,19 @@ export const CarouselContent = ({
                     options={options}
                     currentPage={currentPage}
                     numberOfDots={numberOfPages}
-                    svgHrefs={svgHrefs}
                     direction={"left"}
                     onClick={() => onArrowButtonClick("left")} />
                 <CarouselDots
-                    svgHrefs={svgHrefs}
                     items={items || []}
                     numberOfDots={numberOfPages}
                     setCurrentPage={setCurrentPage}
                     currentPage={currentPage}
-                    style={svgHrefs.dots?.style}
+                    options={options}
                 />
                 <CarouselArrowButton
                     options={options}
                     currentPage={currentPage}
                     numberOfDots={numberOfPages}
-                    svgHrefs={svgHrefs}
                     direction={"right"}
                     onClick={() => onArrowButtonClick("right")} />
             </div>
