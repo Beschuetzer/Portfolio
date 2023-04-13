@@ -25,8 +25,6 @@ import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/components/Carousel";
 
-export const ABOUT_SECTION_NAMES = ["Overview", "Carousel Test Cases", "Music"];
-
 //#region Carousel Items
 const items = [
 	{
@@ -281,107 +279,132 @@ const noThumbnailHoverEffect = (
 );
 //#endregion
 
-const itemsToRender: { label: string, jsx: ReactNode | ReactNode[] }[] = [
-	{
-		label: "Two Items - All Defaults",
-		jsx: twoItemsAllDefaults
-	},
-	{
-		label: "Three Items - All Defaults",
-		jsx: threeItemsAllDefaults
-	},
-	{
-		label: "Multiple Pages - All Defaults",
-		jsx: multiplePagesDynamicSizingAllDefaults
-	},
-	{
-		label: "No Thumbnail Hover Effect",
-		jsx: noThumbnailHoverEffect
-	},
-	{
-		label: "Fixed Item Spacing",
-		jsx: multiplePagesFixedItemSpacing
-	},
-	{
-		label: "Custom Thumbnail with Solid Background",
-		jsx: customThumbnailSolid
-	},
-	{
-		label: "Custom Thumbnail with Gradient Background",
-		jsx: customThumbnailGradient
-	},
-	{
-		label: "Custom Thumbnail with Gradient Background and Fallback",
-		jsx: customThumbnailGradientAndFallback
-	},
-	{
-		label: "Hide Navigation Arrows on First and Last Page",
-		jsx: hideArrowsAtFinalPage
-	},
-	{
-		label: "Side by Side - All Defaults",
-		jsx: (
-			<div style={{ display: "flex" }}>
-				<div style={{ width: '50%', marginRight: "4px" }}>
-					{multiplePagesDynamicSizingAllDefaults}
-				</div>
-				<div style={{ width: '50%', marginLeft: "4px" }}>
-					{multiplePagesDynamicSizingAllDefaults}
-				</div>
-			</div>
-		)
-	},
-	{
-		label: "Side by Side - All Custom Settings",
-		jsx: (
-			<div style={{ display: "flex" }}>
-				<div style={{ width: '50%', marginRight: "4px" }}>
-					{allCustomSettings}
-				</div>
-				<div style={{ width: '50%', marginLeft: "4px" }}>
-					{allCustomSettings}
-				</div>
-			</div>
-		)
-	},
-	{
-		label: "All Custom Settings",
-		jsx: allCustomSettings,
-	},
-	{
-		label: "ItemViewer (Click item to view) - Toolbar doesn't hide on inactivity",
-		jsx: itemViewerNoToolbarHide
-	},
-	{
-		label: "ItemViewer (Click item to view) - Toolbar hides after 500ms of inactivity",
-		jsx: itemViewerHideAfter500ms
-	},
-	{
-		label: "ItemViewer (Click item to view) - Seek amount 2 sec",
-		jsx: itemViewerSeekAmount2Sec
-	},
-]
-
-const sections: CSharpSection[] = [
-	{
-		hasCarousel: true,
-		name: ABOUT_SECTION_NAMES[1],
-		pageName: C_SHARP_CLASSNAME,
-		children: itemsToRender.map((item) => {
-			return (
-				<CSharpCardSection title={item.label + ':'}>
-					{item.jsx}
-				</CSharpCardSection>
-			)
-		}),
-	},
+type Sections = [string,  { label: string, jsx: ReactNode | ReactNode[] }[]][];
+const SECTIONS: Sections = [
+	[
+		"Layouts",
+		[
+			{
+				label: "Two Items - All Defaults",
+				jsx: twoItemsAllDefaults
+			},
+			{
+				label: "Three Items - All Defaults",
+				jsx: threeItemsAllDefaults
+			},
+			{
+				label: "Multiple Pages - All Defaults",
+				jsx: multiplePagesDynamicSizingAllDefaults
+			},
+		]
+	],
+	[
+		"Thumbnail Options",
+		[
+			{
+				label: "No Hover Effect",
+				jsx: noThumbnailHoverEffect
+			},
+			{
+				label: "Fixed Item Spacing",
+				jsx: multiplePagesFixedItemSpacing
+			},
+			{
+				label: "Solid Background",
+				jsx: customThumbnailSolid
+			},
+			{
+				label: "Gradient Background",
+				jsx: customThumbnailGradient
+			},
+			{
+				label: "Gradient Background and Fallback",
+				jsx: customThumbnailGradientAndFallback
+			},
+		]
+	],
+	[
+		"Navigation Options",
+		[
+			{
+				label: "Hide Arrows on First and Last Page",
+				jsx: hideArrowsAtFinalPage
+			},
+		]
+	],
+	[
+		"Item Viewer",
+		[
+			{
+				label: "Toolbar doesn't hide on inactivity (Click item to view)",
+				jsx: itemViewerNoToolbarHide
+			},
+			{
+				label: "Toolbar hides after 500ms of inactivity (Click item to view)",
+				jsx: itemViewerHideAfter500ms
+			},
+			{
+				label: "Seek amount 2 sec (Click item to view)",
+				jsx: itemViewerSeekAmount2Sec
+			},
+		]
+	],
+	[
+		"Side by Side",
+		[
+			{
+				label: "All Defaults",
+				jsx: (
+					<div style={{ display: "flex" }}>
+						<div style={{ width: '50%', marginRight: "4px" }}>
+							{multiplePagesDynamicSizingAllDefaults}
+						</div>
+						<div style={{ width: '50%', marginLeft: "4px" }}>
+							{multiplePagesDynamicSizingAllDefaults}
+						</div>
+					</div>
+				)
+			},
+			{
+				label: "All Custom Settings",
+				jsx: (
+					<div style={{ display: "flex" }}>
+						<div style={{ width: '50%', marginRight: "4px" }}>
+							{allCustomSettings}
+						</div>
+						<div style={{ width: '50%', marginLeft: "4px" }}>
+							{allCustomSettings}
+						</div>
+					</div>
+				)
+			},
+		]
+	], [
+		"All Custom",
+		[
+			{
+				label: "All Custom Settings",
+				jsx: allCustomSettings,
+			},
+		]
+	]
 ];
 
-type TestProps = {}
+const sections: CSharpSection[] = SECTIONS.map((section) => ({
+	hasCarousel: true,
+	name: section[0],
+	pageName: C_SHARP_CLASSNAME,
+	children: section[1].map((item) => {
+		return (
+			<CSharpCardSection title={item.label + ':'}>
+				{item.jsx}
+			</CSharpCardSection>
+		)
+	})
+}))
 
-export const Test = ({
 
-}: TestProps) => {
+export const Test = () => {
 	return (
 		<React.Fragment>
 			<CSharpLayout sections={sections} pageName={ABOUT_PAGE_NAME} />
