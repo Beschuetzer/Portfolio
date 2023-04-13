@@ -30,7 +30,7 @@ export type CarouselNavigationProps = {
 
 export type CarouselOptions = {
     navigation?: CarouselNavigationOptions;
-	svgs?: CarouselSvgs;
+    svgs?: CarouselSvgs;
     thumbnail?: CarouselThumbnailOptions;
     video?: CarouselVideoOptions;
 }
@@ -51,17 +51,6 @@ export type CarouselSvgHref = {
 }
 
 export type CarouselSvgs = {
-    /*
-    *This is the button at the bottom of each carousel to the left of the dots
-    */
-    arrowLeftButton?: CarouselSvgHref;
-    /*
-    *This is the button at the bottom of each carousel to the right of the dots
-    */
-    arrowRightButton?: CarouselSvgHref;
-    /*
-    *These are for the fullscreen modal that pops up when clicking a thumbnail in the carousel
-    */
     itemViewer?: {
         closeButton?: string;
         nextButton?: string;
@@ -73,14 +62,27 @@ export type CarouselSvgs = {
         seekForwardButton?: string;
         stopButton?: string;
     },
-    /*
-    *The dots at the bottom of the carousel indicating the number of pages
+    navigation?: {
+        /*
+    *This is the button at the bottom of each carousel to the left of the dots
     */
-    dots?: CarouselSvgHref;
+        arrowLeftButton?: CarouselSvgHref;
+        /*
+        *This is the button at the bottom of each carousel to the right of the dots
+        */
+        arrowRightButton?: CarouselSvgHref;
+        /*
+        *These are for the fullscreen modal that pops up when clicking a thumbnail in the carousel
+        */
+        /*
+        *The dots at the bottom of the carousel indicating the number of pages
+        */
+        dots?: CarouselSvgHref;
+    }
 }
 
 export type CarouselThumbnailBackgroundOptions = {
-   
+
     /*
     *Specify what you want the gradient to be for browswers that support it.  The gradient starts at the top and goes down by default
     */
@@ -114,9 +116,9 @@ export type CarouselThumbnailBackgroundOptions = {
     *This is a the fallback color and opacity of the background
     */
     solid?: {
-            /*
-        *The hexadecimal value for the thumbnail's background
-        */
+        /*
+    *The hexadecimal value for the thumbnail's background
+    */
         color?: string;
         /*
         *Default is 1 when specifying a custom color
@@ -135,12 +137,12 @@ export type CarouselThumbnailOptions = {
     *The size of the font in px of the thumbnail description;  Default is 12px;
     */
     fontSize?: number;
-     /*
-    *If false, the overlay with the description is always present.  
-    *If true, the overlay only shows when item is hovered.
-    *No overlay is shown if item.description is falsy
-    *Default is true
-    */
+    /*
+   *If false, the overlay with the description is always present.  
+   *If true, the overlay only shows when item is hovered.
+   *No overlay is shown if item.description is falsy
+   *Default is true
+   */
     hideOverlayUnlessHovered?: boolean;
     /*
     *The value in px that the thumbnails are spaced apart.  

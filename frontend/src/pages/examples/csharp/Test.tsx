@@ -134,23 +134,25 @@ const allCustomSettings = (
 					seekForwardButton: "./sprite.svg#icon-forward",
 					stopButton: "./sprite.svg#icon-stop",
 				},
-				dots: {
-					style: {
-						transform: 'scale(2)',
+				navigation: {
+					dots: {
+						style: {
+							transform: 'scale(2)',
+						},
+						svgHref: "./sprite.svg#icon-dot-single",
+						fillColor: getComputedStyleCustom('--color-primary-1'),
 					},
-					svgHref: "./sprite.svg#icon-dot-single",
-					fillColor: getComputedStyleCustom('--color-primary-1'),
-				},
-				arrowLeftButton: {
-					svgHref: "./sprite.svg#icon-angle-right",
-					fillColor: getComputedStyleCustom('--color-primary-1'),
-					style: {
-						transform: 'rotate(180deg)',
+					arrowLeftButton: {
+						svgHref: "./sprite.svg#icon-angle-right",
+						fillColor: getComputedStyleCustom('--color-primary-1'),
+						style: {
+							transform: 'rotate(180deg)',
+						}
+					},
+					arrowRightButton: {
+						svgHref: "./sprite.svg#icon-angle-right",
+						fillColor: getComputedStyleCustom('--color-primary-1'),
 					}
-				},
-				arrowRightButton: {
-					svgHref: "./sprite.svg#icon-angle-right",
-					fillColor: getComputedStyleCustom('--color-primary-1'),
 				}
 			}
 		}}
@@ -310,15 +312,15 @@ const SECTIONS: Sections = [
 				jsx: multiplePagesFixedItemSpacing
 			},
 			{
-				label: "Solid Background",
+				label: "Given Thumbnail Size with Custom Solid Background",
 				jsx: customThumbnailSolid
 			},
 			{
-				label: "Gradient Background",
+				label: "Given Thumbnail Size with Custom Gradient Background",
 				jsx: customThumbnailGradient
 			},
 			{
-				label: "Gradient Background and Fallback",
+				label: "Given Thumbnail Size with Custom Gradient Background and Fallback",
 				jsx: customThumbnailGradientAndFallback
 			},
 		]

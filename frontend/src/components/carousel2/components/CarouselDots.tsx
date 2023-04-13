@@ -19,7 +19,7 @@ export const CarouselDots = ({
     setCurrentPage,
 }: CarouselDotsProps) => {
     //#region Init
-    const { fillColor, svgHref, style } = options?.svgs?.dots || {};
+    const { fillColor, svgHref, style } = options?.svgs?.navigation?.dots || {};
     //#endregion
 
     //#region Handlers/Functions
