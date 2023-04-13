@@ -3,7 +3,7 @@ import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
 import { convertHexToRgba, getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
-import { CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
+import { CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_ITEM_SIZE_DEFAULT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
 
 export type CarouselItemProps = {
   /*
@@ -57,8 +57,9 @@ export const CarouselItem = (props: CarouselItemProps) => {
   const maxLineCountStyle = {
     WebkitLineClamp: options?.thumbnail?.maxLineCount || 2,
   } as React.CSSProperties;
-  const backgroundColorStyle =  options?.thumbnail?.backgroundColor ? {
-    backgroundColor: convertHexToRgba(options.thumbnail?.backgroundColor?.trim() || '#000', options.thumbnail?.backgroundOpacity || CAROUSEL_DOT_OPACITY_DEFAULT),
+  const backgroundSolidStyle =  options?.thumbnail?.background?.solid?.color ? {
+    background: 'none',
+    backgroundColor: convertHexToRgba(options.thumbnail?.background?.solid.color?.trim() || '#000', options.thumbnail?.background?.solid?.opacity || CAROUSEL_DOT_OPACITY_DEFAULT),
   } as React.CSSProperties : {};
   const textColorStyle =  options?.thumbnail?.textColor ? {
     color: options.thumbnail.textColor,
@@ -68,7 +69,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   } as React.CSSProperties : {};
   const thumbnailBackgroundStyle = {
     ...bottomStyle,
-    ...backgroundColorStyle,
+    ...backgroundSolidStyle,
   } as React.CSSProperties
   const itemStyle = options?.thumbnail?.size ? {
     width: `${options.thumbnail?.size}px`,

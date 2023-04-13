@@ -79,15 +79,58 @@ export type CarouselSvgs = {
     dots?: CarouselSvgHref;
 }
 
+export type CarouselThumbnailBackgroundOptions = {
+   
+    /*
+    *Specify what you want the gradient to be for browswers that support it.  The gradient starts at the top and goes down by default
+    */
+    gradient?: {
+        /*
+        *The number of degrees for the gradient.  Default is 180
+        */
+        angle?: number;
+        end?: {
+            /*
+            *This is the hexadecimal color value for the very bottom part of the gradient
+            */
+            color: string;
+            /*
+            *Valid values are 0-1 inclusive
+            */
+            opacity: number;
+        },
+        start?: {
+            /*
+            *This is the hexadecimal color value for the very top part of the gradient
+            */
+            color: string;
+            /*
+            *Valid values are 0-1 inclusive
+            */
+            opacity: number;
+        }
+    }
+    /*
+    *This is a the fallback color and opacity of the background
+    */
+    solid?: {
+            /*
+        *The hexadecimal value for the thumbnail's background
+        */
+        color?: string;
+        /*
+        *Default is 1 when specifying a custom color
+        */
+        opacity?: number;
+    }
+}
+
 export type CarouselThumbnailOptions = {
     /*
-    *The hexadecimal value for the thumbnail's background
+    *Options to specify how the background looks.  You can specify a starting an ending linear gradient for browsers that support it.
+    *As well as specifying a solid background color for those that don't
     */
-    backgroundColor?: string;
-    /*
-    *Default is 1 when specifying a custom color
-    */
-    backgroundOpacity?: number;
+    background?: CarouselThumbnailBackgroundOptions;
     /*
     *The size of the font in px of the thumbnail description;  Default is 12px;
     */

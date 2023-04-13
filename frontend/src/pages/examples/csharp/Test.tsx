@@ -114,7 +114,11 @@ const allCustomSettings = (
 				seekAmount: 10000,
 			},
 			thumbnail: {
-				backgroundColor: getComputedStyleCustom('--color-primary-2'),
+				background: {
+					solid: {
+						color: getComputedStyleCustom('--color-primary-2'),
+					}
+				},
 				textColor: getComputedStyleCustom('--color-primary-4'),
 				fontSize: 14,
 				hideOverlayUnlessHovered: false,
@@ -175,16 +179,72 @@ const multiplePagesFixedItemSpacing = (
 		}
 	}} />
 );
-const customThumbnail = (
+const customThumbnailSolid = (
 	<Carousel items={items} options={{
 		thumbnail: {
-			backgroundColor: getComputedStyleCustom('--color-primary-4'),
-			backgroundOpacity: .8,
+			background: {
+				solid: {
+					color: getComputedStyleCustom('--color-primary-4'),
+					opacity: .8,
+				}
+			},
 			fontSize: 8,
 			hideOverlayUnlessHovered: false,
 			maxLineCount: 1,
 			size: 100,
-			textColor: '#000',
+			textColor: getComputedStyleCustom('--color-primary-1'),
+		}
+	}} />
+);
+const customThumbnailGradient = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			background: {
+				gradient: {
+					angle: 270,
+					start: {
+						color: getComputedStyleCustom('--color-primary-4'),
+						opacity: 0,
+					},
+					end: {
+						color: getComputedStyleCustom('--color-primary-1'),
+						opacity: 1
+					}
+				},
+			},
+			fontSize: 8,
+			hideOverlayUnlessHovered: false,
+			maxLineCount: 1,
+			size: 100,
+			textColor: getComputedStyleCustom('--color-primary-1'),
+		}
+	}} />
+);
+const customThumbnailGradientAndFallback = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			background: {
+				gradient: {
+					angle: 270,
+					start: {
+						color: getComputedStyleCustom('--color-primary-4'),
+						opacity: 0,
+					},
+					end: {
+						color: getComputedStyleCustom('--color-primary-1'),
+						opacity: 1
+					}
+				},
+				solid: {
+					color: getComputedStyleCustom('--color-primary-4'),
+					opacity: .8,
+				}
+			},
+			fontSize: 8,
+			hideOverlayUnlessHovered: false,
+			maxLineCount: 1,
+			size: 100,
+			textColor: getComputedStyleCustom('--color-primary-1'),
 		}
 	}} />
 );
@@ -243,8 +303,16 @@ const itemsToRender: { label: string, jsx: ReactNode | ReactNode[] }[] = [
 		jsx: multiplePagesFixedItemSpacing
 	},
 	{
-		label: "Custom Thumbnail",
-		jsx: customThumbnail
+		label: "Custom Thumbnail with Solid Background",
+		jsx: customThumbnailSolid
+	},
+	{
+		label: "Custom Thumbnail with Gradient Background",
+		jsx: customThumbnailGradient
+	},
+	{
+		label: "Custom Thumbnail with Gradient Background and Fallback",
+		jsx: customThumbnailGradientAndFallback
 	},
 	{
 		label: "Hide Navigation Arrows on First and Last Page",
