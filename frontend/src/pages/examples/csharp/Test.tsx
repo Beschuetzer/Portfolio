@@ -178,12 +178,13 @@ const multiplePagesFixedItemSpacing = (
 const customThumbnail = (
 	<Carousel items={items} options={{
 		thumbnail: {
-			backgroundColor: getComputedStyleCustom('--color-primary-3'),
+			backgroundColor: getComputedStyleCustom('--color-primary-4'),
+			backgroundOpacity: .8,
 			fontSize: 8,
 			hideOverlayUnlessHovered: false,
 			maxLineCount: 1,
 			size: 100,
-			textColor: getComputedStyleCustom('--color-primary-1'),
+			textColor: '#000',
 		}
 	}} />
 );

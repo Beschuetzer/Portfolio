@@ -84,6 +84,10 @@ export type CarouselThumbnailOptions = {
     */
     backgroundColor?: string;
     /*
+    *Default is 1 when specifying a custom color
+    */
+    backgroundOpacity?: number;
+    /*
     *The size of the font in px of the thumbnail description;  Default is 12px;
     */
     fontSize?: number;

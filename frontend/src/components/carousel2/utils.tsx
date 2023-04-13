@@ -1,4 +1,4 @@
-import { CLASSNAME__ROOT, VIDEO_EXTENSIONS } from "./constants";
+import { CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, CLASSNAME__ROOT, VIDEO_EXTENSIONS } from "./constants";
 import { CURRENT_ITEM_INDEX_INITIAL } from "./context";
 import { Point } from "./types";
 type GetClassname = {
@@ -50,6 +50,19 @@ export function getGuid() {
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
+}
+
+export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT){
+    let color: any;
+    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+        color= hex.substring(1).split('');
+        if(color.length== 3){
+            color= [color[0], color[0], color[1], color[1], color[2], color[2]];
+        }
+        color= '0x'+color.join('');
+        return `rgba(${[(color>>16)&255, (color>>8)&255, color&255].join(',')},${opacity > 1 ? 1 : opacity < 0 ? 0 : opacity})`;
+    }
+    return hex;
 }
 
 export function setCssCustomProperty(propertyName: string, newValue: string) {
