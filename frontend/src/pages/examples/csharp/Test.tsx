@@ -1,16 +1,4 @@
-import React from "react";
-
-import germany01 from "../../../imgs/about/germany-01.jpg";
-import germany02 from "../../../imgs/about/germany-02.jpg";
-import germany03 from "../../../imgs/about/germany-03.jpg";
-import germany04 from "../../../imgs/about/germany-04.jpg";
-import germany05 from "../../../imgs/about/germany-05.jpg";
-import germany06 from "../../../imgs/about/germany-06.jpg";
-import germany07 from "../../../imgs/about/germany-07.jpg";
-import germany08 from "../../../imgs/about/germany-08.jpg";
-import germany09 from "../../../imgs/about/germany-09.jpg";
-import joshuaTree01 from "../../../imgs/about/joshua-tree-01.jpg";
-import joshuaTree02 from "../../../imgs/about/joshua-tree-02.jpg";
+import React, { ReactNode } from "react";
 import maui01 from "../../../imgs/about/maui-01.jpg";
 import maui02 from "../../../imgs/about/maui-02.jpg";
 import maui03 from "../../../imgs/about/maui-03.jpg";
@@ -36,10 +24,10 @@ import { getComputedStyleCustom } from "../../../helpers";
 import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/components/Carousel";
-import { CarouselVideoOverlay } from "../../../components/carousel2/components/CarouselVideoOverlay";
 
 export const ABOUT_SECTION_NAMES = ["Overview", "Carousel Test Cases", "Music"];
 
+//#region Carousel Items
 const items = [
 	{
 		description: "Complex Overlay (children)",
@@ -88,18 +76,17 @@ const items = [
 		description: "Haleakalā Sunset",
 	},
 	{
-		//testing only main item
+		description: "Close up Turtle Encounter",
 		srcMain: maui02,
 	},
 	{
-		//testing no thumbnail
 		srcMain: maui03,
-		description: "Bamboo Forest Waterfall on Maui",
+		description: "Item with no Thumbnail",
 	},
 	{
-		//testing no description
 		srcMain: maui01,
 		srcThumbnail: maui01Thumbnail,
+		description: "Cliff Jumping"
 	},
 	{
 		srcMain: maui06,
@@ -117,7 +104,8 @@ const items = [
 		description: "Stunning Beach, Less than Ideal Sand",
 	},
 ];
-
+//#endregion
+//#region Carousels
 const allCustomSettings = (
 	<Carousel
 		options={{
@@ -167,179 +155,92 @@ const allCustomSettings = (
 		items={items}
 	/>
 );
-
 const twoItemsAllDefaults = (
 	<Carousel
-						items={[
-							{
-
-								description: "Animations",
-								srcMain: clipAnimations,
-								srcThumbnail: clipAnimationsThumbnail,
-								video: {
-									overlayProps: {
-										// title: "Contract is 1&clubs;",
-										// text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found.",
-										children: (
-											<>
-												<CSharpCardSection title="Contract is 1&clubs;">
-													The first part of the video highlights the process of
-													applying the contract matching filter.&nbsp; There are two
-													matches found.
-												</CSharpCardSection>
-												<CSharpCardSection title="Two Filters = Double the Filtering">
-													The second filter applied requires 'Ann' to have the
-													2&clubs;. In one of the filtered games, she does and in the
-													other one she doesn't.
-												</CSharpCardSection>
-											</>
-										),
-										closeButton: {
-											rightInRem: 1.5,
-										},
-									},
-									autoPlay: true,
-									muted: true,
-								}
-							},
-							{
-								srcMain: maui05,
-								srcThumbnail: maui05Thumbnail,
-								description: "Haleakalā Sunset",
-							},
-						]}
-					/>
-);
-
-const multiplePagesDynamicSizing = (
-	<Carousel
-		items={[
-			{
-
-				description: "Animations",
-				srcMain: clipAnimations,
-				srcThumbnail: clipAnimationsThumbnail,
-				video: {
-					overlayProps: {
-						children: (
-							<>
-								<CSharpCardSection title="Contract is 1&clubs;">
-									The first part of the video highlights the process of
-									applying the contract matching filter.&nbsp; There are two
-									matches found.
-								</CSharpCardSection>
-								<CSharpCardSection title="Two Filters = Double the Filtering">
-									The second filter applied requires 'Ann' to have the
-									2&clubs;. In one of the filtered games, she does and in the
-									other one she doesn't.
-								</CSharpCardSection>
-							</>
-						),
-						closeButton: {
-							rightInRem: 1.5,
-						},
-					},
-					autoPlay: true,
-					muted: true,
-				}
-			},
-			{
-				srcMain: maui05,
-				srcThumbnail: maui05Thumbnail,
-				description: "Haleakalā Sunset",
-			},
-			{
-				srcMain: maui06,
-				srcThumbnail: maui06Thumbnail,
-				description: "Haleakalā Backside",
-			},
-			{
-				srcMain: maui07,
-				srcThumbnail: maui07Thumbnail,
-				description: "Haleakalā Backside 2",
-			},
-			{
-				srcMain: maui04,
-				srcThumbnail: maui04Thumbnail,
-				description: "Stunning Beach, Less than Ideal Sand",
-			},
-			{
-				srcMain: maui06,
-				srcThumbnail: maui06Thumbnail,
-				description: "Haleakalā Backside",
-			},
-			{
-				srcMain: maui07,
-				srcThumbnail: maui07Thumbnail,
-				description: "Haleakalā Backside 2",
-			},
-			{
-				srcMain: maui04,
-				srcThumbnail: maui04Thumbnail,
-				description: "Stunning Beach, Less than Ideal Sand",
-			},
-			{
-				srcMain: maui07,
-				srcThumbnail: maui07Thumbnail,
-				description: "Haleakalā Backside 2",
-			},
-			{
-				srcMain: maui04,
-				srcThumbnail: maui04Thumbnail,
-				description: "Stunning Beach, Less than Ideal Sand",
-			},
-			{
-				srcMain: maui06,
-				srcThumbnail: maui06Thumbnail,
-				description: "Haleakalā Backside",
-			},
-			{
-				srcMain: maui07,
-				srcThumbnail: maui07Thumbnail,
-				description: "Haleakalā Backside 2",
-			},
-			{
-				srcMain: maui04,
-				srcThumbnail: maui04Thumbnail,
-				description: "Stunning Beach, Less than Ideal Sand",
-			},
-		]}
+		items={items.slice(0, 2)}
 	/>
 );
+const threeItemsAllDefaults = (
+	<Carousel
+		items={items.slice(0, 3)}
+	/>
+);
+const multiplePagesDynamicSizingAllDefaults = (
+	<Carousel items={items} />
+);
+const multiplePagesFixedItemSpacing = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			itemSpacing: 2,
+		}
+	}} />
+);
+const noThumbnailHoverEffect = (
+	<Carousel items={items} options={{thumbnail: {hideOverlayUnlessHovered: false}}} />
+);
+//#endregion
+
+const itemsToRender: { label: string, jsx: ReactNode | ReactNode[] }[] = [
+	{
+		label: "Two Items - All Defaults",
+		jsx: twoItemsAllDefaults
+	},
+	{
+		label: "Three Items - All Defaults",
+		jsx: threeItemsAllDefaults
+	},
+	{
+		label: "Multiple Pages - All Defaults",
+		jsx: multiplePagesDynamicSizingAllDefaults
+	},
+	{
+		label: "Multiple Pages - No Thumbnail Hover Effect",
+		jsx: noThumbnailHoverEffect
+	},
+	{
+		label: "Side by Side - All Defaults",
+		jsx: (
+			<div style={{ display: "flex" }}>
+				<div style={{ width: '50%', marginRight: "4px" }}>
+					{multiplePagesDynamicSizingAllDefaults}
+				</div>
+				<div style={{ width: '50%', marginLeft: "4px" }}>
+					{multiplePagesDynamicSizingAllDefaults}
+				</div>
+			</div>
+		)
+	},
+	{
+		label: "Side by Side - All Custom Settings",
+		jsx: (
+			<div style={{ display: "flex" }}>
+				<div style={{ width: '50%', marginRight: "4px" }}>
+					{allCustomSettings}
+				</div>
+				<div style={{ width: '50%', marginLeft: "4px" }}>
+					{allCustomSettings}
+				</div>
+			</div>
+		)
+	},
+	{
+		label: "All Custom Settings",
+		jsx: allCustomSettings,
+	},
+]
 
 const sections: CSharpSection[] = [
 	{
 		hasCarousel: true,
 		name: ABOUT_SECTION_NAMES[1],
 		pageName: C_SHARP_CLASSNAME,
-		children: [
-			<React.Fragment>
-				<CSharpCardSection title="Two Items - All Defaults">
-					{twoItemsAllDefaults}
+		children: itemsToRender.map((item) => {
+			return (
+				<CSharpCardSection title={item.label}>
+					{item.jsx}
 				</CSharpCardSection>
-				<CSharpCardSection title="Multiple Pages - Dynamic Sizing">
-					{multiplePagesDynamicSizing}
-				</CSharpCardSection>
-				<CSharpCardSection title="All Custom Settings">
-					{allCustomSettings}
-				</CSharpCardSection>
-				<CSharpCardSection title="Side by Side - Dynamic Sizing">
-					<div style={{display: "flex"}}>
-						<div style={{ width: '50%', marginRight: "4px" }}>
-							{multiplePagesDynamicSizing}
-						</div>
-						<div style={{ width: '50%', marginLeft: "4px"  }}>
-							{multiplePagesDynamicSizing}
-						</div>
-					</div>
-				</CSharpCardSection>
-				<div style={{ width: '66%' }}>
-					<CSharpCardSection title="Smaller Viewport - All Custom Settings">
-						{allCustomSettings}
-					</CSharpCardSection>
-				</div>
-			</React.Fragment>,
-		],
+			)
+		}),
 	},
 ];
 

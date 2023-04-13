@@ -7,10 +7,9 @@ import { CAROUSEL_ITEM_SIZE_DEFAULT, CLASSNAME__CAROUSEL_ITEM } from '../constan
 
 export type CarouselItemProps = {
   /*
-  * If undefined, there will be no 
+  *This is displayed in the thumbnail and in the item viewer
   */
-  description?: string | undefined;
-
+  description: string | undefined;
   /*
   *This is generated automatically if omitted.  
   *If given, it will determine the 'next'/'previous' item to go to when clicking the next/previousButton
@@ -20,12 +19,10 @@ export type CarouselItemProps = {
   * This is the source of the image to be used in full-size viewing as well as thumbnail viewing if no thumbnail is provided
   */
   srcMain: string | undefined;
-
   /*
   * This is the source of the thumbnail image to be used when viewing thumbnails only
   */
   srcThumbnail?: string | undefined;
-
   /*
   *Props for optional overlay when item is a video
   */
