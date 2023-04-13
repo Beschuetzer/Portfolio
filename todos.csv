@@ -1,4 +1,5 @@
 Carousel rework:
+  -organize the tests in to sections by type
   -add customization for itemViewer.buttons? (fill color like dots);  would need to adjust the background gradient too?
   -add carousel option to adjust button size (i.e. $buttonWidth)
   -add swipe to scroll functionality to container?
