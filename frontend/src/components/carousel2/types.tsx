@@ -62,10 +62,10 @@ export type CarouselSvgs = {
         seekForwardButton?: string;
         stopButton?: string;
     },
-    navigation?: {
-        /*
-    *This is the button at the bottom of each carousel to the left of the dots
+    /*
+    *These are the buttons at the bottom of each carousel related to changing pages
     */
+    navigation?: {
         arrowLeftButton?: CarouselSvgHref;
         /*
         *This is the button at the bottom of each carousel to the right of the dots
