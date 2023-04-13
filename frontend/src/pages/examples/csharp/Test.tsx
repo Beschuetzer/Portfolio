@@ -28,7 +28,7 @@ import { Carousel } from "../../../components/carousel2/components/Carousel";
 //#region Carousel Items
 const items = [
 	{
-		description: "Complex Overlay (children)",
+		description: "Custom Overlay with auto play",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
 		video: {
@@ -56,13 +56,41 @@ const items = [
 		}
 	},
 	{
-		description: "No Auto play and simplified overlay",
+		description: "Default Overlay on Load (no auto play)",
 		srcMain: clipFilters,
 		srcThumbnail: clipFiltersThumbnail,
 		video: {
 			overlayProps: {
 				title: "Filtering",
 				text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+			},
+			autoPlay: false,
+			muted: true,
+		}
+	},
+	{
+		description: "Custom Overlay on Load (no auto play)",
+		srcMain: clipAnimations,
+		srcThumbnail: clipAnimationsThumbnail,
+		video: {
+			overlayProps: {
+				children: (
+					<>
+						<CSharpCardSection title="Contract is 1&clubs;">
+							The first part of the video highlights the process of
+							applying the contract matching filter.&nbsp; There are two
+							matches found.
+						</CSharpCardSection>
+						<CSharpCardSection title="Two Filters = Double the Filtering">
+							The second filter applied requires 'Ann' to have the
+							2&clubs;. In one of the filtered games, she does and in the
+							other one she doesn't.
+						</CSharpCardSection>
+					</>
+				),
+				closeButton: {
+					rightInRem: 1.5,
+				},
 			},
 			autoPlay: false,
 			muted: true,
@@ -255,6 +283,21 @@ const hideArrowsAtFinalPage = (
 		}
 	}} />
 );
+const itemViewerDefaultOverlayOnLoad = (
+	<Carousel items={items.slice(1, 2)} />
+);
+const itemViewerDefaultOverlayOnLoadWithCustomCloseButton = (
+	<Carousel items={items.slice(1, 2)} options={{
+		svgs: {
+			itemViewer: {
+				closeButton: "./sprite.svg#icon-close", 
+			},
+		},
+	}}/>
+);
+const itemViewerCustomOverlayOnLoad = (
+	<Carousel items={items.slice(2, 3)} />
+);
 const itemViewerNoToolbarHide = (
 	<Carousel items={items.slice(0, 1)} options={{
 		video: {
@@ -337,6 +380,18 @@ const SECTIONS: Sections = [
 	[
 		"Item Viewer",
 		[
+			{
+				label: "Default Overlay Displayed on Load",
+				jsx: itemViewerDefaultOverlayOnLoad
+			},
+			{
+				label: "Default Overlay Displayed on Load with Custom Close Button",
+				jsx: itemViewerDefaultOverlayOnLoadWithCustomCloseButton
+			},
+			{
+				label: "Custom Overlay Displayed on Load",
+				jsx: itemViewerCustomOverlayOnLoad
+			},
 			{
 				label: "Toolbar doesn't hide on inactivity (Click item to view)",
 				jsx: itemViewerNoToolbarHide

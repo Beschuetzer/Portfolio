@@ -4,7 +4,7 @@ import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
 import { Exclusive } from '../types';
-import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__OVERLAY_BUTTON_RIGHT, CLASSNAME__OVERLAY_BUTTON_TOP } from '../constants';
+import { CLASSNAME__BUTTON, CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__OVERLAY_BUTTON_RIGHT, CLASSNAME__OVERLAY_BUTTON_TOP } from '../constants';
 
 export type CarouselVideoOverlay = Exclusive<{
     /*
@@ -79,7 +79,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     ) : (
         <CloseButton
             onClick={onCloseClick as any}
-            className={isCustom ?getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON }) : '' }
+            className={isCustom ? getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON }) : undefined }
             classNameModifier='inverse' 
         />
     );

@@ -293,7 +293,7 @@
             max-width: 75%;
             background-color: white;
             border-radius: calc($itemViewerToolbarMarginHorizontal / 4);
-            padding: $itemViewerToolbarMarginHorizontal;
+            padding: $itemViewerToolbarMarginHorizontal calc(#{$itemViewerToolbarMarginHorizontal * 1.5});
             box-shadow: 0 0 0 50vmax rgba(0, 0, 0, .15);
             transition: opacity $carouselAnimationDuration ease;
             font-size: $carouselFontSize;
@@ -321,6 +321,7 @@
                     @include closeButton;
                 }
             }
+            // @include closeButton;
         }
     }
 
