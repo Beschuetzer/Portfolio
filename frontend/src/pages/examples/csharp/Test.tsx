@@ -24,8 +24,22 @@ import { getComputedStyleCustom } from "../../../helpers";
 import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/components/Carousel";
+import { CarouselSvgHref } from "../../../components/carousel2/types";
 
 //#region Carousel Items
+const itemViewerButtons = {
+	itemViewer: {
+		closeButton: "./sprite.svg#icon-close",
+		nextButton: "./sprite.svg#icon-skip-forward",
+		pauseButton: "./sprite.svg#icon-pause",
+		playButton: "./sprite.svg#icon-play",
+		previousButton: "./sprite.svg#icon-skip-backward",
+		restartButton: "./sprite.svg#icon-restart",
+		seekBackButton: "./sprite.svg#icon-backward",
+		seekForwardButton: "./sprite.svg#icon-forward",
+		stopButton: "./sprite.svg#icon-stop",
+	},
+}
 const items = [
 	{
 		description: "Custom Overlay with auto play",
@@ -151,17 +165,7 @@ const allCustomSettings = (
 				itemSpacing: 1,
 			},
 			svgs: {
-				itemViewer: {
-					closeButton: "./sprite.svg#icon-close",
-					nextButton: "./sprite.svg#icon-skip-forward",
-					pauseButton: "./sprite.svg#icon-pause",
-					playButton: "./sprite.svg#icon-play",
-					previousButton: "./sprite.svg#icon-skip-backward",
-					restartButton: "./sprite.svg#icon-restart",
-					seekBackButton: "./sprite.svg#icon-backward",
-					seekForwardButton: "./sprite.svg#icon-forward",
-					stopButton: "./sprite.svg#icon-stop",
-				},
+				...itemViewerButtons,
 				navigation: {
 					dots: {
 						style: {
@@ -286,13 +290,11 @@ const hideArrowsAtFinalPage = (
 const itemViewerDefaultOverlayOnLoad = (
 	<Carousel items={items.slice(1, 2)} />
 );
-const itemViewerDefaultOverlayOnLoadWithCustomCloseButton = (
+const itemViewerCustomButtons = (
 	<Carousel items={items.slice(1, 2)} options={{
 		svgs: {
-			itemViewer: {
-				closeButton: "./sprite.svg#icon-close", 
-			},
-		},
+			...itemViewerButtons,
+		}
 	}}/>
 );
 const itemViewerCustomOverlayOnLoad = (
@@ -385,8 +387,8 @@ const SECTIONS: Sections = [
 				jsx: itemViewerDefaultOverlayOnLoad
 			},
 			{
-				label: "Default Overlay Displayed on Load with Custom Close Button",
-				jsx: itemViewerDefaultOverlayOnLoadWithCustomCloseButton
+				label: "Default Overlay Displayed on Load with Custom Toolbar Buttons",
+				jsx: itemViewerCustomButtons
 			},
 			{
 				label: "Custom Overlay Displayed on Load",
