@@ -9,12 +9,12 @@ type CarouselItemViewerNextButtonProps = {
 export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNextButtonProps>(({
     onClick,
 }, ref) => {
-    const { currentSvgs: currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.itemViewer?.nextButton || '';
+    const { currentSvgs, toolbarLogic } = useCarouselContext();
+    const svgHref = currentSvgs?.itemViewer?.nextButton || '';
 
     return (
         !!svgHref ?
-            <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} /> :
-            <NextButton ref={ref} onClick={onClick} />
+            <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} /> :
+            <NextButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}/>
     )
 })

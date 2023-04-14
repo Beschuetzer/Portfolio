@@ -3,6 +3,7 @@ import { getClassname } from "./utils";
 export const CLASSNAME__ROOT = 'thumbnail-carousel';
 export const CLASSNAME__BUTTON = `${CLASSNAME__ROOT}-button`;
 export const CLASSNAME__CAROUSEL_ITEM = getClassname({ elementName: 'item' });
+export const CLASSNAME__HIDDEN = getClassname({ modifiedName: 'hidden' });
 export const CLASSNAME__ITEM_VIEWER = 'item-viewer';
 export const CLASSNAME__ITEM_VIEWER_BUTTON = `${CLASSNAME__ITEM_VIEWER}-button`;
 export const CLASSNAME__OVERLAY_BUTTON_TOP = `${CLASSNAME__ROOT}-video-overlay-custom-button-top`;

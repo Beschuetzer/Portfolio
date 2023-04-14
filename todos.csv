@@ -1,6 +1,6 @@
 Carousel rework:
-  -the initial on hover for a newly opened item doesn't cause preview to show
   -add loading spinner for next item thumbnails 
+  -add track next/previous button click by setting translation amount on the current carousel (may not currently be possible as designed)?
   -how to handle click on next/previous item in itemViewer when on low bandwidth device?
   -add swipe to scroll functionality to container?
   -add customization for itemViewer.buttons? (fill color like dots);  would need to adjust the background gradient too?

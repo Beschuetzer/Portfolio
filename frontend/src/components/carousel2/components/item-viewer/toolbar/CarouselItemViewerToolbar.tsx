@@ -194,12 +194,8 @@ export const CarouselItemViewerToolbar = ({
                 ) : null}
                 <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
-                    {currentItems.length > 1 ? (
-                        <>
-                            <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClick} />
-                            <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClick} />
-                        </>
-                    ) : null}
+                    <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClick} />
+                    <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClick} />
                     <CarouselItemViewerCloseButton onClick={onClose}/>
                 </div>
             </div>
