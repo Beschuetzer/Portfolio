@@ -31,7 +31,7 @@ export const CarouselContent = ({
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
         if (options?.thumbnail?.itemSpacing) return `${options?.thumbnail?.itemSpacing}${CAROUSEL_ITEM_SPACING_UNIT}`;
-        const {numberOfItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit();
+        const {numberOfWholeItemsThatCanFit: numberOfItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit();
         const numberOfGaps = numberOfItemsThatCanFit - 1;
         const remainingSpace = containerWidth - (numberOfItemsThatCanFit * itemSize);
         const newInterItemSpacing = (remainingSpace / numberOfGaps);
@@ -46,9 +46,10 @@ export const CarouselContent = ({
         const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
         const itemSize = options?.thumbnail?.size || CAROUSEL_ITEM_SIZE_DEFAULT;
         return {
-            numberOfItemsThatCanFit: Math.floor(containerWidth / itemSize),
             containerWidth,
             itemSize,
+            numberOfWholeItemsThatCanFit: Math.floor(containerWidth / itemSize),
+            numberOfItemsThatCanFit: containerWidth / itemSize,
         }
     }
 
@@ -56,9 +57,13 @@ export const CarouselContent = ({
         const itemSpacingGiven = options?.thumbnail?.itemSpacing;
         const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
         if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
+            const { numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit();
+
+            //if a bug occurs with translation amount in itemSpacingGiven case, check the > equality here as it may need to be >=
+            const isLastItemMoreThanHalfVisible = numberOfItemsThatCanFit % 1 > .5;
             const itemsInContainer = getItemsInContainer();
             const firstItemLeft = itemsInContainer?.[0]?.getBoundingClientRect().left;
-            const firstItemInNextPageIndex = Math.floor(items.length / numberOfPages) + 1;
+            const firstItemInNextPageIndex = Math.floor(items.length / numberOfPages) + (isLastItemMoreThanHalfVisible ? 1 : 0);
             const firstItemInNextPage = itemsInContainer?.[firstItemInNextPageIndex]?.getBoundingClientRect().left;
             return currentPage * (Math.abs((firstItemLeft || 0) - (firstItemInNextPage || 0)));
         }
@@ -75,7 +80,7 @@ export const CarouselContent = ({
 
     function setNumberOfDotsToDisplay() {
         if (!carouselContainerRef.current || !itemsContainerRef.current) return;
-        const { numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit();
+        const { numberOfWholeItemsThatCanFit: numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit();
         const newNumberOfPages = Math.ceil(items.length / numberOfItemsThatCanFit);
         setNumberOfPages(newNumberOfPages);
         

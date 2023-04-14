@@ -162,7 +162,7 @@ const allCustomSettings = (
 				textColor: getComputedStyleCustom('--color-primary-4'),
 				fontSize: 14,
 				hideOverlayUnlessHovered: false,
-				itemSpacing: 1,
+				itemSpacing: 3.9876,
 			},
 			svgs: {
 				...itemViewerButtons,
