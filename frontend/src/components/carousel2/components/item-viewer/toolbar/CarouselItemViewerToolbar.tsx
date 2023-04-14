@@ -19,6 +19,7 @@ export type CarouselItemViewerToolbarProps = {
     itemContainerRef: React.MutableRefObject<HTMLDivElement | undefined> | null;
     isVideo: boolean;
     isVideoPlaying?: boolean;
+    onClose?: () => void;
     setIsVideoPlaying?: React.Dispatch<React.SetStateAction<boolean>>;
     videoRef?: React.MutableRefObject<HTMLVideoElement | undefined> | null;
 };
@@ -33,6 +34,7 @@ export const CarouselItemViewerToolbar = ({
     isVideo,
     itemContainerRef,
     isVideoPlaying,
+    onClose = () => null,
     setIsVideoPlaying,
     videoRef,
 }: CarouselItemViewerToolbarProps) => {
@@ -198,7 +200,7 @@ export const CarouselItemViewerToolbar = ({
                             <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClick} />
                         </>
                     ) : null}
-                    <CarouselItemViewerCloseButton />
+                    <CarouselItemViewerCloseButton onClick={onClose}/>
                 </div>
             </div>
             <CarouselItemViewerToolbarPreview show={showPreview} direction={previewDirection} />

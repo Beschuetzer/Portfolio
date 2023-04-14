@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getClassname } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoOverlay } from './CarouselVideoOverlay'
@@ -41,6 +41,14 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     //#endregion
 
     //#region SideFx
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.onloadeddata = () => {
+                setIsLoaded(true);
+            }
+        }
+    }, [])
+
     //#endregion
 
     //#region JSX    
@@ -51,17 +59,16 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             onClick={onVideoClick}
         >
             <>
-                {isLoaded ? (
-                    <video
-                        className={getClassname({ elementName: 'video' })}
-                        ref={videoRef as any}
-                        autoPlay={!!autoPlay}
-                        muted={!!muted}
-                        loop={!!loop}>
-                        <source src={props.srcMain} type={`video/${type}`}
-                        />
-                    </video>
-                ) : <LoadingSpinner show={true} description={description} />}
+                {!isLoaded ? <LoadingSpinner show={true} description={description} /> : null}
+                <video
+                    className={getClassname({ elementName: 'video' })}
+                    ref={videoRef as any}
+                    autoPlay={!!autoPlay}
+                    muted={!!muted}
+                    loop={!!loop}>
+                    <source src={props.srcMain} type={`video/${type}`}
+                    />
+                </video>
                 {props.video?.overlayProps ? (
                     <CarouselVideoOverlay
                         isVideoPlaying={isVideoPlaying}
