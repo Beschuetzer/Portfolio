@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { getClassname } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoOverlay } from './CarouselVideoOverlay'
 import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemViewerToolbar';
+import { LoadingSpinner } from './LoadingSpinner';
 
 export type CarouselVideoProps = {
     autoPlay?: boolean;
@@ -20,6 +21,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     } = props;
     const { autoPlay, loop, muted } = videoProps || {};
     const [isVideoPlaying, setIsVideoPlaying] = useState(autoPlay || false);
+    const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
     const videoContainerRef = useRef<HTMLDivElement>();
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
@@ -49,15 +51,17 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             onClick={onVideoClick}
         >
             <>
-                <video
-                    className={getClassname({ elementName: 'video' })}
-                    ref={videoRef as any}
-                    autoPlay={!!autoPlay}
-                    muted={!!muted}
-                    loop={!!loop}>
-                    <source src={props.srcMain} type={`video/${type}`}
-                    />
-                </video>
+                {isLoaded ? (
+                    <video
+                        className={getClassname({ elementName: 'video' })}
+                        ref={videoRef as any}
+                        autoPlay={!!autoPlay}
+                        muted={!!muted}
+                        loop={!!loop}>
+                        <source src={props.srcMain} type={`video/${type}`}
+                        />
+                    </video>
+                ) : <LoadingSpinner show={true} description={description} />}
                 {props.video?.overlayProps ? (
                     <CarouselVideoOverlay
                         isVideoPlaying={isVideoPlaying}

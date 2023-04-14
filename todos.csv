@@ -1,9 +1,9 @@
 Carousel rework:
+  -add loading spinner for videos (test by throttling in responsive menu)
+  -add swipe to scroll functionality to container?
   -add customization for itemViewer.buttons? (fill color like dots);  would need to adjust the background gradient too?
   -add carousel option to adjust button size (i.e. $buttonWidth)
-  -add swipe to scroll functionality to container?
   -add dynamic styling for itemviewer
-  -add loading spinner for videos (test by throttling in responsive menu)
 
 React best practices re-work (branch = sitenav_rework)
   -convert backend to an apollo server?

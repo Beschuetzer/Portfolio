@@ -54,10 +54,17 @@
     }
 }
 
-@mixin displayFlexCenter() {
+@mixin displayFlexCenter(
+    $direction: row,
+    $rowGap: 0px,
+    $columnGap: 0px,
+) {
     display: flex;
+    flex-direction: $direction;
     align-items: center;
     justify-content: center;
+    row-gap: $rowGap;
+    column-gap: $columnGap;
 }
 
 @mixin maxTextLineCount($maxLineCount: 4) {
