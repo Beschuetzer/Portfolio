@@ -29,10 +29,10 @@ export type CarouselNavigationProps = {
 }
 
 export type CarouselOptions = {
+    itemViewer?: CarouselItemViewerOptions;
     navigation?: CarouselNavigationOptions;
     svgs?: CarouselSvgs;
     thumbnail?: CarouselThumbnailOptions;
-    video?: CarouselVideoOptions;
 }
 
 export type CarouselSvgHref = {
@@ -165,7 +165,7 @@ export type CarouselThumbnailOptions = {
     textColor?: string;
 }
 
-export type CarouselVideoOptions = {
+export type CarouselItemViewerOptions = {
     /*
    *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.  
    *Otherwise, auto-hide occurs when there is no mouse input for this amount of time in milliseconds.  Default is 2.5 seconds.

@@ -149,7 +149,7 @@ const items = [
 const allCustomSettings = (
 	<Carousel
 		options={{
-			video: {
+			itemViewer: {
 				autoHideToolbarDuration: 2000,
 				seekAmount: 10000,
 			},
@@ -189,6 +189,11 @@ const allCustomSettings = (
 			}
 		}}
 		items={items}
+	/>
+);
+const oneItemAllDefaults = (
+	<Carousel
+		items={items.slice(0, 1)}
 	/>
 );
 const twoItemsAllDefaults = (
@@ -302,21 +307,21 @@ const itemViewerCustomOverlayOnLoad = (
 );
 const itemViewerNoToolbarHide = (
 	<Carousel items={items.slice(0, 1)} options={{
-		video: {
+		itemViewer: {
 			autoHideToolbarDuration: 0,
 		}
 	}} />
 );
 const itemViewerHideAfter500ms = (
 	<Carousel items={items.slice(0, 1)} options={{
-		video: {
+		itemViewer: {
 			autoHideToolbarDuration: 500,
 		}
 	}} />
 );
 const itemViewerSeekAmount2Sec = (
 	<Carousel items={items.slice(0, 1)} options={{
-		video: {
+		itemViewer: {
 			seekAmount: 2000,
 		}
 	}} />
@@ -331,6 +336,10 @@ const SECTIONS: Sections = [
 	[
 		"Layouts",
 		[
+			{
+				label: "One Item - All Defaults",
+				jsx: oneItemAllDefaults
+			},
 			{
 				label: "Two Items - All Defaults",
 				jsx: twoItemsAllDefaults

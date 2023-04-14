@@ -57,14 +57,14 @@ export const CarouselItemViewerToolbar = ({
             itemContainerRef.current.classList?.remove(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
         }
 
-        if (!!options?.video?.autoHideToolbarDuration && options.video.autoHideToolbarDuration > 0) {
+        if (!!options?.itemViewer?.autoHideToolbarDuration && options.itemViewer.autoHideToolbarDuration > 0) {
             clearTimeout(shouldHideTimoutRef.current);
             shouldHideTimoutRef.current = setTimeout(() => {
 
                 if (itemContainerRef?.current && !isMobile) {
                     itemContainerRef.current.classList?.add(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
                 }
-            }, options.video.autoHideToolbarDuration);
+            }, options.itemViewer.autoHideToolbarDuration);
         }
     }, [currentItemIndex, CURRENT_ITEM_INDEX_INITIAL, itemContainerRef, options, shouldHideTimoutRef, CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR]);
 
@@ -98,14 +98,14 @@ export const CarouselItemViewerToolbar = ({
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.currentTime -= (options.video?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
+            videoRef.current.currentTime -= (options.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
     }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT]);
 
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.currentTime += (options.video?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
+            videoRef.current.currentTime += (options.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
     }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT])
@@ -131,14 +131,14 @@ export const CarouselItemViewerToolbar = ({
         function handleMouseLeaveButton() {
             setShowPreview(false);
         }
-        
+
         function handleVideoEnd() {
             setIsVideoPlaying && setIsVideoPlaying(false);
         }
 
         window.addEventListener('mousemove', handleAutoHide);
         window.addEventListener('click', handleAutoHide);
-        
+
         if (videoRef?.current) {
             videoRef.current.addEventListener('ended', handleVideoEnd);
         }
@@ -164,7 +164,7 @@ export const CarouselItemViewerToolbar = ({
                 nextButtonRef.current.removeEventListener('mouseenter', handleMouseEnterNextButton);
                 nextButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
             }
-    
+
             if (previousButtonRef?.current) {
                 previousButtonRef.current.removeEventListener('mouseenter', handleMouseEnterPreviousButton);
                 previousButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
@@ -192,12 +192,16 @@ export const CarouselItemViewerToolbar = ({
                 ) : null}
                 <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
-                    <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClick} />
-                    <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClick} />
+                    {currentItems.length > 1 ? (
+                        <>
+                            <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClick} />
+                            <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClick} />
+                        </>
+                    ) : null}
                     <CarouselItemViewerCloseButton />
                 </div>
             </div>
-            <CarouselItemViewerToolbarPreview show={showPreview} direction={previewDirection}/>
+            <CarouselItemViewerToolbarPreview show={showPreview} direction={previewDirection} />
         </div>
     )
     //#endregion
