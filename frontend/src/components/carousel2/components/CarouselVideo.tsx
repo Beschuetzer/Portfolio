@@ -59,8 +59,8 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             onClick={onVideoClick}
         >
             <>
-                {!isLoaded ? <LoadingSpinner show={true} description={description} /> : null}
-                <video
+                {!isLoaded ? <LoadingSpinner type='spinner' show={true} description={description} /> : null}
+                {/* <video
                     className={getClassname({ elementName: 'video' })}
                     ref={videoRef as any}
                     autoPlay={!!autoPlay}
@@ -68,7 +68,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                     loop={!!loop}>
                     <source src={props.srcMain} type={`video/${type}`}
                     />
-                </video>
+                </video> */}
                 {props.video?.overlayProps ? (
                     <CarouselVideoOverlay
                         isVideoPlaying={isVideoPlaying}
