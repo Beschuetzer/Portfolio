@@ -48,11 +48,20 @@ export const CarouselItemViewerToolbar = ({
         currentTimeStr: getFormattedTimeString((videoRef?.current?.currentTime) || -1),
     });
     const [previewDirection, setPreviewDirection] = useState(ToolbarPreviewDirection.next);
-    const [showPreview, setShowPreview] = useState(false);
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     //#endregion
 
     //#region Functions/handlers
+    function getPreviewItemIndex(direction: ToolbarPreviewDirection) {
+        if (direction === ToolbarPreviewDirection.next) {
+            if (currentItemIndex >= (currentItems.length - 1)) return 0;
+            return currentItemIndex + 1;
+        } else {
+            if (currentItemIndex <= 0) return currentItems.length - 1;
+            return currentItemIndex - 1;
+        }
+    }
+
     const handleAutoHide = useCallback(() => {
         if (currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) return;
         if (itemContainerRef?.current) {
@@ -122,16 +131,14 @@ export const CarouselItemViewerToolbar = ({
         handleAutoHide();
         function handleMouseEnterNextButton() {
             setPreviewDirection(ToolbarPreviewDirection.next);
-            setShowPreview(true);
         }
 
         function handleMouseEnterPreviousButton() {
             setPreviewDirection(ToolbarPreviewDirection.previous);
-            setShowPreview(true);
         }
 
         function handleMouseLeaveButton() {
-            setShowPreview(false);
+            setPreviewDirection(ToolbarPreviewDirection.none);
         }
 
         function handleVideoEnd() {
@@ -199,7 +206,16 @@ export const CarouselItemViewerToolbar = ({
                     <CarouselItemViewerCloseButton onClick={onClose}/>
                 </div>
             </div>
-            <CarouselItemViewerToolbarPreview show={showPreview} direction={previewDirection} />
+            <CarouselItemViewerToolbarPreview 
+                itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.previous)]} 
+                show={previewDirection === ToolbarPreviewDirection.previous} 
+                direction={previewDirection} 
+            />
+            <CarouselItemViewerToolbarPreview 
+                itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.next)]} 
+                show={previewDirection === ToolbarPreviewDirection.next} 
+                direction={previewDirection} 
+            />
         </div>
     )
     //#endregion
