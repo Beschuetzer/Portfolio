@@ -48,6 +48,8 @@ export const CarouselItemViewerToolbar = ({
         currentTimeStr: getFormattedTimeString((videoRef?.current?.currentTime) || -1),
     });
     const [previewDirection, setPreviewDirection] = useState(ToolbarPreviewDirection.next);
+    const [isPreviousItemPreviewLoaded, setIsPreviousItemPreviewLoaded] = useState(false);
+    const [isNextItemPreviewLoaded, setIsNextItemPreviewLoaded] = useState(false);
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     //#endregion
 
@@ -82,12 +84,14 @@ export const CarouselItemViewerToolbar = ({
     const onNextItemClick = useCallback(() => {
         const newIndex = currentItemIndex === currentItems.length - 1 ? 0 : currentItemIndex + 1;
         setCurrentItemIndex(newIndex);
+        resetPreviewItems();
         handleAutoHide();
     }, [currentItemIndex, currentItems, setCurrentItemIndex, handleAutoHide])
 
     const onPreviousItemClick = useCallback(() => {
         const newIndex = currentItemIndex === 0 ? currentItems.length - 1 : currentItemIndex - 1;
         setCurrentItemIndex(newIndex);
+        resetPreviewItems();
         handleAutoHide();
     }, [currentItemIndex, currentItems, setCurrentItemIndex])
 
@@ -123,6 +127,11 @@ export const CarouselItemViewerToolbar = ({
 
     function onToolbarClick(e: MouseEvent) {
         e.stopPropagation();
+    }
+
+    function resetPreviewItems() {
+        setIsNextItemPreviewLoaded(false);
+        setIsPreviousItemPreviewLoaded(false);
     }
     //#endregion
 
@@ -209,12 +218,14 @@ export const CarouselItemViewerToolbar = ({
             <CarouselItemViewerToolbarPreview 
                 itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.previous)]} 
                 show={previewDirection === ToolbarPreviewDirection.previous} 
-                direction={previewDirection} 
+                isLoaded={isPreviousItemPreviewLoaded}
+                setIsLoaded={setIsPreviousItemPreviewLoaded}
             />
             <CarouselItemViewerToolbarPreview 
                 itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.next)]} 
                 show={previewDirection === ToolbarPreviewDirection.next} 
-                direction={previewDirection} 
+                isLoaded={isNextItemPreviewLoaded}
+                setIsLoaded={setIsNextItemPreviewLoaded}
             />
         </div>
     )

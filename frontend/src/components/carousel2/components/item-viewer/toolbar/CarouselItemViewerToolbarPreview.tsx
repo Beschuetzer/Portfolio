@@ -1,6 +1,5 @@
 import { getClassname } from '../../../utils'
-import { useCarouselContext } from '../../../context'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { LoadingSpinner } from '../../LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../../../constants';
 import { CarouselItemProps } from '../../CarouselItem';
@@ -11,19 +10,20 @@ export enum ToolbarPreviewDirection {
     next,
 }
 type CarouselItemViewerToolbarPreviewProps = {
-    direction?: ToolbarPreviewDirection;
+    isLoaded: boolean;
     itemToShow: CarouselItemProps;
+    setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
     show: boolean;
 }
 
 export const CarouselItemViewerToolbarPreview = ({
-    direction,
+    isLoaded,
     itemToShow,
+    setIsLoaded,
     show,
 }: CarouselItemViewerToolbarPreviewProps) => {
     //#region Init
     const { description, srcMain, srcThumbnail } = itemToShow || {};
-    const [isLoaded, setIsLoaded] = useState(false);
     //#endregion
 
     //#region Functions/Handlers
@@ -53,6 +53,9 @@ export const CarouselItemViewerToolbarPreview = ({
                     src={srcThumbnail || srcMain}
                     alt={description}
                     onLoad={() => setIsLoaded(true)}
+                    onAbort={() => setIsLoaded(false)}
+                    onSuspend={() => setIsLoaded(false)}
+                    onBlur={(() => setIsLoaded(false))}
                 />
             </div>
             <div className={`${className}-image-description`}>
