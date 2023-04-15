@@ -20,7 +20,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         video: videoProps,
     } = props;
     const { autoPlay, loop, muted } = videoProps || {};
-    const [isVideoPlaying, setIsVideoPlaying] = useState(autoPlay || false);
+    const [isVideoPlaying, setIsVideoPlaying] = useState(!!autoPlay || false);
     const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
     const videoContainerRef = useRef<HTMLDivElement>();
@@ -59,7 +59,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             onClick={onVideoClick}
         >
             <>
-                {!isLoaded ? <LoadingSpinner type='spinner' show={true} description={description} /> : null}
+                {!isLoaded && isVideoPlaying ? <LoadingSpinner type='spinner' show={true} description={description} /> : null}
                 {/* <video
                     className={getClassname({ elementName: 'video' })}
                     ref={videoRef as any}
