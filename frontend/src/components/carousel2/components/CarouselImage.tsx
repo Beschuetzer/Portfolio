@@ -17,12 +17,12 @@ export const CarouselImage = (props: CarouselItemProps) => {
         <div ref={containerRef as any} className={getClassname({ elementName: 'item-container' })}>
             <>
                 {!isLoaded ? <LoadingSpinner show={true} description={description} /> : null}
-                <img
+                {/* <img
                     ref={imageRef as any}
                     src={srcMain}
                     alt={description}
                     onLoad={() => setIsLoaded(true)}
-                />
+                /> */}
                 <CarouselItemViewerToolbar
                     isVideo={false}
                     description={description || ''}
