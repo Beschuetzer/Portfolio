@@ -2,6 +2,10 @@ import { ReactNode } from "react";
 
 type RingOptions = {
 	/*
+	*default is 8px; The margin of the container
+	*/
+	containerMargin?: number | string;
+	/*
 	*default is 100px; The length and width of the container
 	*/
 	containerLength?: number;
@@ -56,11 +60,14 @@ export const LoadingSpinner = ({
 					</div>
 				);
 			case "ring":
-				const { radius, width, containerLength } = options as RingOptions;
+				const { radius, width, containerLength, containerMargin } = options as RingOptions;
 				const isContainerLengthLessThanRadius = containerLength && containerLength <= (radius || RING_RADIUS_DEFAULT);
 				const widthStyle = containerLength ? {
 					width: containerLength,
 					height: containerLength,
+				} as React.CSSProperties : {}
+				const marginStyle = containerMargin ? {
+					margin: containerMargin,
 				} as React.CSSProperties : {}
 				const divRadiusStyle = radius || isContainerLengthLessThanRadius ? {
 					width: Math.min((radius || Number.MAX_SAFE_INTEGER), containerLength || Number.MAX_SAFE_INTEGER),
@@ -77,7 +84,7 @@ export const LoadingSpinner = ({
 				return (
 					<>
 						{content}
-						<div className="lds-ring" style={widthStyle}>
+						<div className="lds-ring" style={{...widthStyle, ...marginStyle}}>
 							<div style={{...divRadiusStyle, ...divSizeStyle}}/>
 							<div style={{...divRadiusStyle, ...divSizeStyle}}/>
 							<div style={{...divRadiusStyle, ...divSizeStyle}}/>

@@ -1,5 +1,8 @@
 import { getClassname } from '../../../utils'
 import { useCarouselContext } from '../../../context'
+import { useState } from 'react';
+import { LoadingSpinner } from '../../LoadingSpinner';
+import { CLASSNAME__HIDDEN } from '../../../constants';
 
 export enum ToolbarPreviewDirection {
     previous,
@@ -19,6 +22,7 @@ export const CarouselItemViewerToolbarPreview = ({
     const nextItemIndex = getNextItemIndex();
     const itemToShow = currentItems[nextItemIndex];
     const { srcThumbnail, description, srcMain } = itemToShow || {};
+    const [isLoaded, setIsLoaded] = useState(false);
     //#endregion
 
     //#region Functions/Handlers
@@ -34,20 +38,25 @@ export const CarouselItemViewerToolbarPreview = ({
     //#endregion
 
     //#region JSX
-    const className = getClassname({elementName: 'item-viewer-toolbar-preview'})
-
-    if (!show) return null; 
+    const className = getClassname({ elementName: 'item-viewer-toolbar-preview' })
     return (
-        <div className={className}>
+        <div className={`${className} ${show ? '' : CLASSNAME__HIDDEN}`}>
             <div className={`${className}-image-container`}>
                 <img
                     src={srcThumbnail || srcMain}
                     alt={description}
+                    onLoad={() => setIsLoaded(true)}
                 />
+                {!isLoaded ? <LoadingSpinner type='ring' options={{
+                    containerLength: 100,
+                    radius: 32,
+                    width: 4,
+                    containerMargin: '0px',
+                }} description={''} show={true} /> : null}
             </div>
-            <div  className={`${className}-image-description`}>
+            <div className={`${className}-image-description`}>
                 <p>
-                   {description || 'No description'}
+                    {description || 'No description'}
                 </p>
             </div>
         </div>

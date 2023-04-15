@@ -216,6 +216,7 @@
                 color: $itemViewerButtonColor;
                 border-radius: $itemViewerToolbarPreviewBorderRadius;
                 overflow: hidden;
+                transition: opacity $carouselAnimationDuration ease;
 
                 &>* {
                     width: calc(#{$itemViewerToolbarPreviewWidth} / 2);

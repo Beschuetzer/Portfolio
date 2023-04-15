@@ -4,15 +4,13 @@
 }
 
 .thumbnail-carousel--hidden {
-  pointer-events: none;
-  visibility: hidden;
-  opacity: 0;
+  pointer-events: none !important;
+  opacity: 0 !important;
 }
 
 .thumbnail-carousel--visible, .thumbnail-carousel__item-container:hover .thumbnail-carousel__item-viewer-toolbar {
-  pointer-events: all;
-  visibility: visible;
-  opacity: 1;
+  pointer-events: all !important;
+  opacity: 1 !important;
 }
 
 .loading-container {
@@ -650,6 +648,7 @@
   color: #fff;
   border-radius: 5px;
   overflow: hidden;
+  transition: opacity 0.5s ease;
 }
 .thumbnail-carousel__item-viewer-toolbar-preview > * {
   width: calc(200px / 2);
