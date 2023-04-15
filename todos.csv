@@ -1,5 +1,5 @@
 Carousel rework:
-  -add loading spinner for next item thumbnails 
+  -figure out how to get the images to change when the next/previous butons are pressed
   -toolbar needs to remain visible on mobile devices?
   -add track next/previous button click by setting translation amount on the current carousel (may not currently be possible as designed)?
   -how to handle click on next/previous item in itemViewer when on low bandwidth device?
