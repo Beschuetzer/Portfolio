@@ -16,12 +16,14 @@ export const CarouselImage = (props: CarouselItemProps) => {
     return (
         <div ref={containerRef as any} className={getClassname({ elementName: 'item-container' })}>
             <>
-                {!isLoaded ? <LoadingSpinner type='ring' show={true} description={description} /> : null}
+                <LoadingSpinner type='ring' show={!isLoaded} description={description} />
                 <img
                     ref={imageRef as any}
                     src={srcMain}
                     alt={description}
                     onLoad={() => setIsLoaded(true)}
+                    onBlur={() => setIsLoaded(false)}
+                    onAbort={() => setIsLoaded(false)}
                 />
                 <CarouselItemViewerToolbar
                     isVideo={false}
