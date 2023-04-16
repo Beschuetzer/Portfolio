@@ -21,6 +21,11 @@ export type CarouselNavigationOptions = {
     *Default is false
     */
     hideArrowsAtFinalPage?: boolean;
+    /*
+    *If this is true, then the item that you last viewed in the itemViewer (full-screen mode) will determine which page is the current page
+    *in the carousel.  Default is true.
+    */
+    trackItemViewerChanges?: boolean;
 }
 
 export type CarouselNavigationProps = {

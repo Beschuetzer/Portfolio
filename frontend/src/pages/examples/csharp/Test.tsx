@@ -326,6 +326,16 @@ const itemViewerSeekAmount2Sec = (
 		}
 	}} />
 );
+const itemViewerNoTracking = (
+	<Carousel items={items} options={{
+		navigation: {
+			trackItemViewerChanges: false,
+		}
+	}} />
+);
+const itemViewerTracking = (
+	<Carousel items={items}/>
+);
 const noThumbnailHoverEffect = (
 	<Carousel items={items} options={{thumbnail: {hideOverlayUnlessHovered: false}}} />
 );
@@ -414,6 +424,14 @@ const SECTIONS: Sections = [
 			{
 				label: "Seek amount 2 sec (Click item to view)",
 				jsx: itemViewerSeekAmount2Sec
+			},
+			{
+				label: "Navigation tracks last viewed item in full-screen",
+				jsx: itemViewerTracking
+			},
+			{
+				label: "Navigation does not track last viewed item in full-screen",
+				jsx: itemViewerNoTracking
 			},
 		]
 	],
