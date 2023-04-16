@@ -11,6 +11,7 @@ export const DOWNLOADER_PAGE_NAME = "downloader";
 export const PLAYLIST_SYNCER_PAGE_NAME = "playlist-syncer";
 export const REPLAY_PAGE_NAME = "replay";
 export const RESUME_PAGE_NAME = "resume";
+export const THUMBNAIL_CAROUSEL_NAME = "thumbnail-carousel";
 
 //note: and here
 export const PAGE_NAMES = [
@@ -37,6 +38,7 @@ export const PERSONALITY_URL = `/${BIG_FIVE_PAGE_NAME}`;
 export const PLAYLIST_SYNCER_URL = `/examples/${PLAYLIST_SYNCER_PAGE_NAME}`;
 export const REPLAY_VIEWER_URL = `/examples/${REPLAY_PAGE_NAME}`;
 export const RESUME_URL = `/${RESUME_PAGE_NAME}`;
+export const THUMBNAIL_CAROUSEL_URL = `/${THUMBNAIL_CAROUSEL_NAME}`;
 //#endregion
 
 //#region External URLs

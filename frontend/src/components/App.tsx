@@ -9,7 +9,7 @@ import {
 	BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME,
 	BRIDGE_URL,
 	DOWNLOADER_URL,
-	MOBILE_BREAK_POINT_WIDTH, PERSONALITY_URL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
+	MOBILE_BREAK_POINT_WIDTH, PERSONALITY_URL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL, THUMBNAIL_CAROUSEL_URL,
 } from "./constants";
 
 import { SiteNav } from "./navbar/SiteNav";
@@ -23,7 +23,7 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { isMobileSelector, setIsMobile, setViewPortWidth } from "../slices/generalSlice";
 import { useSetHeaderCssStyle } from "../hooks/useSetHeaderCssStyle";
 import { keypressHandler } from "../helpers";
-import { Test } from "../pages/examples/csharp/Test";
+import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 
 type AppProps = {}
 
@@ -89,7 +89,7 @@ export const App: React.FC<AppProps> = ({
 		<Router history={history}>
 			<Switch>
 				<Route path="/" exact component={Home} />
-				<Route path="/test" exact component={Test} />
+				<Route path={THUMBNAIL_CAROUSEL_URL} exact component={ThumbnailCarouselTests} />
 				<Route path={BRIDGE_URL} exact component={Bridge} />
 				<Route path={BRIDGE_DEMO_URL} exact component={BridgeDemo} />
 				<Route path={DOWNLOADER_URL} exact component={Downloader} />

@@ -1,4 +1,5 @@
 Carousel rework:
+  -todo switching between videos doesn't work if they are right after another
   -how to handle click on next/previous item in itemViewer when on low bandwidth device?
   -add swipe to scroll functionality to container?
   -add customization for itemViewer.buttons? (fill color like dots);  would need to adjust the background gradient too?
