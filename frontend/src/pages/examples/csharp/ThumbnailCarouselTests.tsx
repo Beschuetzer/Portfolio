@@ -82,6 +82,11 @@ const items = [
 		}
 	},
 	{
+		srcMain: maui05,
+		srcThumbnail: maui05Thumbnail,
+		description: "Haleakalā Sunset",
+	},
+	{
 		description: "Custom Overlay on Load (no auto play)",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
@@ -108,11 +113,6 @@ const items = [
 			autoPlay: false,
 			muted: true,
 		}
-	},
-	{
-		srcMain: maui05,
-		srcThumbnail: maui05Thumbnail,
-		description: "Haleakalā Sunset",
 	},
 	{
 		description: "Close up Turtle Encounter",

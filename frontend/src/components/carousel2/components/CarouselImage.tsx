@@ -24,8 +24,6 @@ export const CarouselImage = (props: CarouselItemProps) => {
                     src={srcMain}
                     alt={description}
                     onLoad={() => setIsLoaded(true)}
-                    onBlur={() => setIsLoaded(false)}
-                    onAbort={() => setIsLoaded(false)}
                 />
                 <CarouselItemViewerToolbar
                     isVideo={false}

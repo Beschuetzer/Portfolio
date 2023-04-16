@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { getClassname } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoOverlay } from './CarouselVideoOverlay'
 import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
+import { CLASSNAME__HIDDEN } from '../constants';
 
 export type CarouselVideoProps = {
     autoPlay?: boolean;
@@ -28,30 +29,39 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     //#endregion
 
     //#region Functions/Handlers
-    function onVideoClick() {
+    const handleItemNavigation = useCallback(() => {
+        setIsLoaded(false);
+        setIsVideoPlaying(false);
+        
         if (videoRef.current) {
-            if (isVideoPlaying) {
+            videoRef.current.pause();
+            videoRef.current.currentTime = 0;
+        }
+    }, [setIsLoaded, setIsVideoPlaying, videoRef]);
+
+    function onVideoClick() {
+        setIsVideoPlaying((isPlaying) => !isPlaying);
+    }
+    //#endregion
+
+    //#region Side Fx
+    useEffect(() => {
+        if (videoRef.current) {
+            if (!isVideoPlaying) {
                 videoRef.current.pause();
             } else {
                 videoRef.current.play();
             }
         }
-        setIsVideoPlaying((isPlaying) => !isPlaying);
-    }
-    //#endregion
+    }, [isVideoPlaying, videoRef])
 
-    //#region SideFx
     useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.onloadeddata = () => {
-                setIsLoaded(true);
-            }
-        }
-    }, [])
-
+        setIsLoaded(false);
+    }, [srcMain])
     //#endregion
 
-    //#region JSX    
+    //#region JSX   
+    console.log({isLoaded, isVideoPlaying});
     return (
         <div
             ref={videoContainerRef as any}
@@ -65,13 +75,17 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                     description={description}
                 />
                 <video
-                    className={getClassname({ elementName: 'video' })}
+                    className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
                     ref={videoRef as any}
                     autoPlay={!!autoPlay}
                     muted={!!muted}
-                    loop={!!loop}>
-                    <source src={props.srcMain} type={`video/${type}`}
-                    />
+                    loop={!!loop}
+                    onLoadedData={() => setIsLoaded(true)}
+                    onAbort={() => console.log('onAbort')}
+                    onChange={() => console.log('change')}
+                    onBlur={() => console.log('blur')}
+                >
+                    <source src={srcMain} type={`video/${type}`} />
                 </video>
                 {props.video?.overlayProps ? (
                     <CarouselVideoOverlay
@@ -86,6 +100,8 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                     description={description || ''}
                     videoRef={videoRef}
                     itemContainerRef={videoContainerRef}
+                    onNextItemClick={handleItemNavigation}
+                    onPreviousItemClick={handleItemNavigation}
                 />
             </>
         </div>
