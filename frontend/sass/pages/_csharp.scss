@@ -63,12 +63,9 @@
 	}
 
 	&__headers {
+		--gradient: to bottom right, rgba(var(--color-primary-2-rgb), 1), rgba(var(--color-primary-1-rgb), 1);
 		color: var(--color-primary-4);
-		background-image: linear-gradient(
-			to bottom right,
-			rgba(var(--color-primary-1-rgb), 1),
-			rgba(var(--color-primary-1-rgb), 1)
-		);
+		@include linear-gradient($gradient: var(--gradient));
 	}
 
 	&__header {

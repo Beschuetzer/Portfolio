@@ -3604,7 +3604,7 @@ body {
   text-decoration: none;
   right: calc((100vw - calc(
 	74.375rem + ((100% - 74.375rem) / 2) + 6.6752rem
-) - 1vw) / 2);
+) - .8vw) / 2);
 }
 @media only screen and (max-width: 68.75em) {
   .source-link__source {
@@ -4592,8 +4592,12 @@ body {
   }
 }
 .csharp__headers {
+  --gradient: to bottom right, rgba(var(--color-primary-2-rgb), 1), rgba(var(--color-primary-1-rgb), 1);
   color: var(--color-primary-4);
-  background-image: linear-gradient(to bottom right, rgba(var(--color-primary-1-rgb), 1), rgba(var(--color-primary-1-rgb), 1));
+  background: var(--color-primary-1); /*this color is displayed if browser can't read the below properties*/
+  background: -moz-linear-gradient(var(--gradient));
+  background: -webkit-linear-gradientvar(var(--gradient));
+  background: linear-gradient(var(--gradient));
 }
 .csharp__header {
   display: grid;
