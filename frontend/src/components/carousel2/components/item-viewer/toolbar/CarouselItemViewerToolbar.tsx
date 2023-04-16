@@ -71,6 +71,8 @@ export const CarouselItemViewerToolbar = ({
     }
 
     const handleAutoHide = useCallback(() => {
+        console.log({isMobile, currentItemIndex, CURRENT_ITEM_INDEX_INITIAL, autoHideToolbarDuration: options?.itemViewer?.autoHideToolbarDuration});
+        
         if (currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) return;
         if (itemContainerRef?.current) {
             itemContainerRef.current.classList?.remove(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
@@ -79,7 +81,6 @@ export const CarouselItemViewerToolbar = ({
         if (!!options?.itemViewer?.autoHideToolbarDuration && options.itemViewer.autoHideToolbarDuration > 0) {
             clearTimeout(shouldHideTimoutRef.current);
             shouldHideTimoutRef.current = setTimeout(() => {
-
                 if (itemContainerRef?.current && !isMobile) {
                     itemContainerRef.current.classList?.add(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
                 }

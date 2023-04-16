@@ -8,15 +8,16 @@
     &__dots {
         @include displayFlexCenter();
 
-        & > div, & > svg {
+        &>div,
+        &>svg {
             @include displayFlexCenter();
             --opacity: #{$carouselDotOpacity};
             height: $carouselDotRadius * 6;
             width: $carouselDotRadius * 4;
             background-color: transparent;
-           
 
-            & > div {
+
+            &>div {
                 height: $carouselDotRadius;
                 width: $carouselDotRadius;
                 background-color: rgba($itemViewerBackgroundColor, var(--opacity));
@@ -27,7 +28,7 @@
                 fill: $itemViewerBackgroundColor;
                 opacity: var(--opacity);
             }
-           
+
             &:not(.#{$carouselClassname}__dots-current):hover {
                 cursor: pointer;
 
@@ -57,14 +58,19 @@
             justify-content: center;
             position: relative;
 
-            &:hover .#{$carouselClassname}__item-viewer-toolbar {
-                @extend %visible;
-            }
+            // &:hover .#{$carouselClassname}__item-viewer-toolbar {
+                // @extend %visible;
+            // }
 
             &--no-toolbar {
                 & .#{$carouselClassname}__item-viewer-toolbar {
                     @extend %hidden;
-                }               
+
+                    @include respond(mobile) {
+                        pointer-events: all !important;
+                        opacity: 1 !important;
+                    }
+                }
             }
 
             & img {
@@ -90,7 +96,7 @@
             font-weight: 700;
             font-size: $carouselThumbnailFontSize;
             background-color: rgba($itemViewerBackgroundColor, $itemViewerToolbarPreviewOpacity);
-            background: linear-gradient(180deg, rgba(color.red($itemViewerButtonColor), color.green($itemViewerButtonColor), color.blue($itemViewerButtonColor), 0) 0%, rgba(red($itemViewerBackgroundColor),green($itemViewerBackgroundColor),blue($itemViewerBackgroundColor), 1) 100%);
+            background: linear-gradient(180deg, rgba(color.red($itemViewerButtonColor), color.green($itemViewerButtonColor), color.blue($itemViewerButtonColor), 0) 0%, rgba(red($itemViewerBackgroundColor), green($itemViewerBackgroundColor), blue($itemViewerBackgroundColor), 1) 100%);
 
             & * {
                 @include maxTextLineCount($carouselThumbnailOverlayMaxLineCount);
@@ -101,6 +107,7 @@
         &:hover {
             transform: translateY(-$carouselItemHoverTranslateUpAmount);
             box-shadow: 0 $carouselItemHoverTranslateUpAmount 0.4rem 0rem rgba(black, .5);
+
             &>div {
                 bottom: 0 !important;
             }
@@ -248,6 +255,10 @@
                         }
                     }
                 }
+
+                @include respond(mobile) {
+                    display: none;
+                }
             }
 
             &-progress {
@@ -326,6 +337,7 @@
                     @include closeButton;
                 }
             }
+
             // @include closeButton;
         }
     }
