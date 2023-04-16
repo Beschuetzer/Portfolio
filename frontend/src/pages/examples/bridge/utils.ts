@@ -11,7 +11,7 @@ import {
   PAGE_NAV_CLASSNAME,
   SECOND_INFO_BUTTON_DELAY,
 } from "../../../components/constants";
-import { getComputedStyleCustom, scrollToSection } from "../../../helpers";
+import { getComputedStyleCustom, replaceCharacters, scrollToSection } from "../../../helpers";
 import { LoadedSounds } from "../../../slices/";
 import { Reference } from "../../../types";
 
@@ -29,7 +29,8 @@ export const handleBridgeNavigation = (checkBox: HTMLInputElement, background: H
     const navbarLogoWidthProp = getComputedStyleCustom(NAVBAR_LOGO_WIDTH_CUSTOM_PROPERTY_NAME);
     const remToPixelFactor = 10;
     const offset = 13; //this is needed to get the exact lining up to work
-    const navbarLogoWidth = parseFloat(navbarLogoWidthProp.replace(/rem/i, '')) * remToPixelFactor - offset;
+    const navbarLogoWidth = parseFloat(replaceCharacters(navbarLogoWidthProp, [['rem', '']])) * remToPixelFactor - offset;
+    console.log({navbarLogoWidth});
     const heightOffset = isMobile ? navbarLogoWidth : -100000;
     scrollToSection(document.getElementById(bridgeSectionNames[0].toLowerCase()) as HTMLElement, -heightOffset);
     if (background)  {
@@ -68,8 +69,8 @@ export const showBridgeHero = (heroMore: Reference) => {
   document.documentElement.style.setProperty('--bridge-section-padding', `${defaultFontSizeFloat * 1.5 }rem`);
   
 
-  heroMore.current?.classList.add(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
-  (heroMore.current?.parentNode as HTMLElement)?.classList.add(BRIDGE_HERO_CLICKED_CLASSNAME);
+  heroMore?.current?.classList?.add(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
+  (heroMore?.current?.parentNode as HTMLElement)?.classList?.add(BRIDGE_HERO_CLICKED_CLASSNAME);
 }
 
 export const toggleSecondInfoButtonClick = (hero: HTMLElement, heroMore: HTMLElement, isMobile: boolean, shouldWaitToHideHero = true, span: HTMLElement | null = null) => {

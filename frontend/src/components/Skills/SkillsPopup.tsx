@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { SkillsPopupName } from "./SkillsPopupName";
 import { clickSkill, addRepoToReposToDisplay, clickedSkillSelector, reposToDisplaySelector } from "../../slices/resumeSlice";
-import { checkForParentOfType, capitalize, addSpaceAfterPunctuationMarks, toggleScrollability } from "../../helpers";
+import { checkForParentOfType, capitalize, addSpaceAfterPunctuationMarks, toggleScrollability, replaceCharacters } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { reposSelector, isMobileSelector } from "../../slices/generalSlice";
 import { SKILLS_CLASSNAME } from "../constants";
@@ -46,7 +46,7 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 			const repo = repos[i];
 			for (let j = 0; j < repo.repositoryTopics.nodes?.length; j++) {
 				const node = repo.repositoryTopics.nodes[j];
-				if (clickedSkill && node?.topic?.name === clickedSkill?.trim().replace(' ', '-')) {
+				if (clickedSkill && node?.topic?.name === replaceCharacters(clickedSkill?.trim(), [[' ', '-']])) {
 					dispatch(addRepoToReposToDisplay(repos[i]));
 					break;
 				}
@@ -179,7 +179,7 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 					return (
 						<SkillsPopupName
 							key={key}
-							href={`/examples/csharp#${repo["name"].replace("-", "")}`}
+							href={`/examples/${repo["name"]}`}
 							repo={repo}
 						/>
 					);

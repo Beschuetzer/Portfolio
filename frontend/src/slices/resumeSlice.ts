@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
+import { replaceCharacters } from '../helpers';
 
 export type ResumeSliceState = {
   clickedSkill: string,
@@ -40,7 +41,7 @@ export const resumeSlice = createSlice({
         'dsa': 'data-structures-and-algorithms',
       };
       
-      let skill = action.payload?.replace(':', '').toLowerCase();
+      let skill = replaceCharacters(action.payload.toLowerCase(), [[":", '']]);
       if (skillsToReplace?.[skill]) skill = skillsToReplace[skill];
       state.clickedSkill = skill;
     },
