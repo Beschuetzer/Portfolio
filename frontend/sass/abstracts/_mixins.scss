@@ -27,6 +27,16 @@
 	}
 }
 
+@mixin linear-gradient(
+	$fallback: var(--color-primary-1),
+	$gradient: none,
+) {
+	background: $fallback;  /*this color is displayed if browser can't read the below properties*/
+	background: -moz-linear-gradient($gradient);
+	background: -webkit-linear-gradientvar($gradient);
+	background: linear-gradient($gradient);
+}
+
 @mixin positionCenter {
 	position: absolute;
 	top: 50%;
