@@ -55,7 +55,7 @@ import {
 } from "../constants";
 import { useLocation } from "react-router-dom";
 import { currentlyViewingImageSelector, isMobileSelector, isSiteNavMinimizedSelector, setHeaderHeight } from "../../slices/generalSlice";
-import { capitalize } from "../../helpers";
+import { capitalize, replaceCharacters } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useHandleChangePage } from "../../hooks/useHandleChangePage";
 import { Match } from "../../types";
@@ -239,7 +239,7 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 							expandedItemOptions={{
 								items: [
 									...RESUME_SECTION_TITLES.map((name, index) => {
-										const nameToUse = name.replace('-', ' ');
+										const nameToUse = replaceCharacters(name, [['-', ' ']]);
 
 										const resumeImgsToIndexMapping = [
 											{
@@ -299,7 +299,7 @@ export const SiteNav: React.FC<SiteNavProps> = ({
 							expandedItemOptions={{
 								items: [
 									...ABOUT_SECTION_NAMES.map((name, index) => {
-										const nameToUse = name.replace('-', ' ');
+										const nameToUse = replaceCharacters(name, [['-', ' ']]);
 
 										const aboutImgsToIndexMapping = [
 											{

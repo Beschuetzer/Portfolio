@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
-import { capitalize, scrollToSection } from "../../helpers";
+import { capitalize, replaceCharacters, scrollToSection } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useBroswerDetection } from "../../hooks/useBrowserDetection";
 import { useSetBridgeSectionColors } from "../../hooks/useSetBridgeSectionColors";
@@ -364,12 +364,12 @@ export const PageNav: React.FC<PageNavProps> = ({
 						onClick={(e: any) => {				
 							scrollToSection(
 								document.getElementById(
-									(e.currentTarget as any)?.textContent.toLowerCase().replace(' ', '-'),
+									replaceCharacters((e.currentTarget as any)?.textContent.toLowerCase(), [[' ', '-']]),
 								) as HTMLElement
 							);
 						}}
 						className={`${cssClass}__section ${cssClass}__section-${sectionName}`}>
-						{capitalize(sectionName.replace('-', ' '))}
+						{capitalize(replaceCharacters(sectionName, [['-', ' ']]))}
 					</h2>
 				</li>
 			);

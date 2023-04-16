@@ -16,7 +16,7 @@ import {
 	Z_INDEX_HIGHEST_CLASSNAME,
 } from "../constants";
 import { setIsCardVideoOpen } from "../../slices/bridgeSlice";
-import { attachProgressListener, capitalize, closeVideo, getIsVideoPlaying, getPercentOfProgressBar, handleVideoProgress, scrollToSection } from "../../helpers";
+import { attachProgressListener, capitalize, closeVideo, getIsVideoPlaying, getPercentOfProgressBar, handleVideoProgress, replaceCharacters, scrollToSection } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { isMobileSelector, viewPortWidthSelector } from "../../slices/generalSlice";
 import { Reference } from "../../types";
@@ -500,7 +500,7 @@ export const Card: React.FC<CardProps> = ({
 			className={CARD_DEFAULT_CLASSNAME}>
 			<img
 				className="card__image"
-				alt={capitalize(cardName.replace("-", " "))}
+				alt={replaceCharacters(capitalize(cardName), [["-", " "]])}
 				src={`/${cardName}.${fileType}`}
 			/>
 			<div className="card__content">

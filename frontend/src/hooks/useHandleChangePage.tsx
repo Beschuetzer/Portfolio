@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 import { BODY_BACKGROUND_CLASSNAME, PAGE_NAMES, DEFAULT_PAGE_NAME_INDEX, DISPLAY_NONE_CLASSNAME, HEADER_ID, HEADER_TOGGLER_CLASSNAME, TRANSPARENT_CLASSNAME, PAGE_NAV_CLASSNAME, HIDDEN_CLASSNAME } from '../components/constants';
 import { Match } from '../types';
 import { useLocation } from 'react-router-dom';
-import { scrollToSection } from '../helpers';
+import { replaceCharacters, scrollToSection } from '../helpers';
 
 //match is inserted into all components via react-router-dom
 export const useHandleChangePage = (match: Match) => {
@@ -78,8 +78,8 @@ export const useHandleChangePage = (match: Match) => {
 	useEffect(() => {
 		if (!!location.hash) {
 			setTimeout(() => {
-				let destination = location.hash?.replace('%20', '-');
-				destination = destination?.replace(' ', '-');
+				let destination = replaceCharacters(location.hash, [['%20', '-']]);
+				destination = replaceCharacters(destination, [[' ', '-']]);
 				scrollToSection(document.querySelector(destination));
 			}, 100)
 		}
