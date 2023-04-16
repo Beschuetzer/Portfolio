@@ -63,9 +63,8 @@
 
             &--no-toolbar {
                 & .#{$carouselClassname}__item-viewer-toolbar {
-                    opacity: 0 !important;
-                    pointer-events: none !important;
-                }
+                    @extend %hidden;
+                }               
             }
 
             & img {

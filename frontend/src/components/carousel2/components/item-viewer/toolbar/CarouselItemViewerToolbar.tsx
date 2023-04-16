@@ -223,13 +223,13 @@ export const CarouselItemViewerToolbar = ({
             </div>
             <CarouselItemViewerToolbarPreview 
                 itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.previous)]} 
-                show={previewDirection === ToolbarPreviewDirection.previous} 
+                show={currentItems.length > 1 && previewDirection === ToolbarPreviewDirection.previous} 
                 isLoaded={isPreviousItemPreviewLoaded}
                 setIsLoaded={setIsPreviousItemPreviewLoaded}
             />
             <CarouselItemViewerToolbarPreview 
                 itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.next)]} 
-                show={previewDirection === ToolbarPreviewDirection.next} 
+                show={currentItems.length > 1 && previewDirection === ToolbarPreviewDirection.next} 
                 isLoaded={isNextItemPreviewLoaded}
                 setIsLoaded={setIsNextItemPreviewLoaded}
             />
