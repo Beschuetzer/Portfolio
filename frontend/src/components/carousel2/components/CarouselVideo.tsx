@@ -55,9 +55,13 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         }
     }, [isVideoPlaying, videoRef])
 
-    useEffect(() => {
-        setIsLoaded(false);
-    }, [srcMain])
+      //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
+      useEffect(() => {
+        if (videoRef.current?.load) {
+            videoRef.current.load();
+        }
+        setIsVideoPlaying(!!videoProps?.autoPlay);
+    }, [srcMain, videoRef])
     //#endregion
 
     //#region JSX   
