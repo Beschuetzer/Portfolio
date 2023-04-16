@@ -65,7 +65,6 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     //#endregion
 
     //#region JSX   
-    console.log({isLoaded, isVideoPlaying});
     return (
         <div
             ref={videoContainerRef as any}
@@ -85,9 +84,6 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                     muted={!!muted}
                     loop={!!loop}
                     onLoadedData={() => setIsLoaded(true)}
-                    onAbort={() => console.log('onAbort')}
-                    onChange={() => console.log('change')}
-                    onBlur={() => console.log('blur')}
                 >
                     <source src={srcMain} type={`video/${type}`} />
                 </video>
