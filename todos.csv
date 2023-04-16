@@ -1,6 +1,4 @@
 Carousel rework:
-  -auto toolbar hide not working correctly
-  -toolbar needs to remain visible on mobile devices?
   -add track next/previous button click by setting translation amount on the current carousel (may not currently be possible as designed)?
   -how to handle click on next/previous item in itemViewer when on low bandwidth device?
   -add swipe to scroll functionality to container?
