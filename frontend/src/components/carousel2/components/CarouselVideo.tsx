@@ -59,7 +59,11 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             onClick={onVideoClick}
         >
             <>
-                {!isLoaded && isVideoPlaying ? <LoadingSpinner type='spinner' show={true} description={description} /> : null}
+                <LoadingSpinner
+                    type='roller'
+                    show={!isLoaded && isVideoPlaying}
+                    description={description}
+                />
                 <video
                     className={getClassname({ elementName: 'video' })}
                     ref={videoRef as any}

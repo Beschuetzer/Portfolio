@@ -20,6 +20,8 @@ export type CarouselItemViewerToolbarProps = {
     isVideo: boolean;
     isVideoPlaying?: boolean;
     onClose?: () => void;
+    onNextItemClick?: () => void;
+    onPreviousItemClick?: () => void;
     setIsVideoPlaying?: React.Dispatch<React.SetStateAction<boolean>>;
     videoRef?: React.MutableRefObject<HTMLVideoElement | undefined> | null;
 };
@@ -35,6 +37,8 @@ export const CarouselItemViewerToolbar = ({
     itemContainerRef,
     isVideoPlaying,
     onClose = () => null,
+    onNextItemClick = () => null,
+    onPreviousItemClick = () => null,
     setIsVideoPlaying,
     videoRef,
 }: CarouselItemViewerToolbarProps) => {
@@ -81,17 +85,19 @@ export const CarouselItemViewerToolbar = ({
         }
     }, [currentItemIndex, CURRENT_ITEM_INDEX_INITIAL, itemContainerRef, options, shouldHideTimoutRef, CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR]);
 
-    const onNextItemClick = useCallback(() => {
+    const onNextItemClickLocal = useCallback(() => {
         const newIndex = currentItemIndex === currentItems.length - 1 ? 0 : currentItemIndex + 1;
         setCurrentItemIndex(newIndex);
         resetPreviewItems();
+        onNextItemClick && onNextItemClick();
         handleAutoHide();
-    }, [currentItemIndex, currentItems, setCurrentItemIndex, handleAutoHide])
+    }, [currentItemIndex, currentItems, setCurrentItemIndex, handleAutoHide, onNextItemClick])
 
-    const onPreviousItemClick = useCallback(() => {
+    const onPreviousItemClickLocal = useCallback(() => {
         const newIndex = currentItemIndex === 0 ? currentItems.length - 1 : currentItemIndex - 1;
         setCurrentItemIndex(newIndex);
         resetPreviewItems();
+        onPreviousItemClick && onPreviousItemClick();
         handleAutoHide();
     }, [currentItemIndex, currentItems, setCurrentItemIndex])
 
@@ -210,8 +216,8 @@ export const CarouselItemViewerToolbar = ({
                 ) : null}
                 <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
-                    <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClick} />
-                    <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClick} />
+                    <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClickLocal} />
+                    <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClickLocal} />
                     <CarouselItemViewerCloseButton onClick={onClose}/>
                 </div>
             </div>

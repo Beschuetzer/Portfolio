@@ -3,6 +3,7 @@ import { CarouselItemProps } from './CarouselItem'
 import { getClassname } from '../utils';
 import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
+import { CLASSNAME__HIDDEN } from '../constants';
 
 export const CarouselImage = (props: CarouselItemProps) => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -18,6 +19,7 @@ export const CarouselImage = (props: CarouselItemProps) => {
             <>
                 <LoadingSpinner type='ring' show={!isLoaded} description={description} />
                 <img
+                    className={isLoaded ? '' : CLASSNAME__HIDDEN}
                     ref={imageRef as any}
                     src={srcMain}
                     alt={description}
@@ -33,6 +35,12 @@ export const CarouselImage = (props: CarouselItemProps) => {
                         setTimeout(() => {
                             setIsLoaded(false)
                         }, 100)
+                    }}
+                    onNextItemClick={() => {
+                        setIsLoaded(false)
+                    }}
+                    onPreviousItemClick={() => {
+                        setIsLoaded(false)
                     }}
                 />
             </>

@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { getClassname } from "../utils";
 
 type RingOptions = {
 	/*
@@ -23,15 +24,15 @@ type LoadingSpinnerCommonProps = {
 	description?: string;
 	show?: boolean;
 }
-type LoadingSpinnerProps =  {
+type LoadingSpinnerProps = {
 	type?: 'ring',
 	options?: RingOptions;
 } & LoadingSpinnerCommonProps | {
-	type?: 'spinner',
+	type?: 'roller',
 	options?: {};
 } & LoadingSpinnerCommonProps
 
-
+const CLASSNAME__LOADING = getClassname({ elementName: 'loading' });
 const RING_RADIUS_DEFAULT = 64;
 export const LoadingSpinner = ({
 	description = '',
@@ -43,11 +44,11 @@ export const LoadingSpinner = ({
 	function renderContent(content: ReactNode | ReactNode[]) {
 		if (!show) return null;
 		switch (type) {
-			case "spinner":
+			case "roller":
 				return (
-					<div className="lds-roller-container">
+					<>
 						{content}
-						<div className="lds-roller">
+						<div className={`${CLASSNAME__LOADING}-roller`}>
 							<div />
 							<div />
 							<div />
@@ -57,7 +58,7 @@ export const LoadingSpinner = ({
 							<div />
 							<div />
 						</div>
-					</div>
+					</>
 				);
 			case "ring":
 				const { radius, width, containerLength, containerMargin } = options as RingOptions;
@@ -84,20 +85,24 @@ export const LoadingSpinner = ({
 				return (
 					<>
 						{content}
-						<div className="lds-ring" style={{...widthStyle, ...marginStyle}}>
-							<div style={{...divRadiusStyle, ...divSizeStyle}}/>
-							<div style={{...divRadiusStyle, ...divSizeStyle}}/>
-							<div style={{...divRadiusStyle, ...divSizeStyle}}/>
-							<div style={{...divRadiusStyle, ...divSizeStyle}}/>
+						<div className={`${CLASSNAME__LOADING}-ring`} style={{ ...widthStyle, ...marginStyle }}>
+							<div style={{ ...divRadiusStyle, ...divSizeStyle }} />
+							<div style={{ ...divRadiusStyle, ...divSizeStyle }} />
+							<div style={{ ...divRadiusStyle, ...divSizeStyle }} />
+							<div style={{ ...divRadiusStyle, ...divSizeStyle }} />
 						</div>
 					</>
 				);
 		}
 	}
 
-	return renderContent((
-		<div className="loading-container">
-			{description ? <h2>Loading '{description}'</h2> : null}
+	return (
+		<div className={`${CLASSNAME__LOADING}-container`}>
+			{renderContent((
+				<div className={`${CLASSNAME__LOADING}-text`}>
+					{description ? <h2>Loading '{description}'</h2> : null}
+				</div>
+			))}
 		</div>
-	))
+	);
 }

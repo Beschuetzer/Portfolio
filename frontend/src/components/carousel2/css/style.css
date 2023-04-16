@@ -13,18 +13,28 @@
   opacity: 1 !important;
 }
 
-.loading-container {
+.thumbnail-carousel__loading-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 20px;
+  column-gap: 0px;
   color: #fff;
   text-align: center;
 }
-
-.lds-roller {
+.thumbnail-carousel__loading-roller {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
 }
-.lds-roller-container {
+.thumbnail-carousel__loading-roller-container {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -38,11 +48,11 @@
   column-gap: 0px;
   padding: 20px;
 }
-.lds-roller div {
-  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+.thumbnail-carousel__loading-roller div {
+  animation: roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   transform-origin: calc(80px / 2) calc(80px / 2);
 }
-.lds-roller div:after {
+.thumbnail-carousel__loading-roller div:after {
   content: " ";
   display: block;
   position: absolute;
@@ -52,64 +62,63 @@
   background: #fff;
   margin: -4px 0 0 -4px;
 }
-.lds-roller div:nth-child(1) {
+.thumbnail-carousel__loading-roller div:nth-child(1) {
   animation-delay: -0.036s;
 }
-.lds-roller div:nth-child(1)::after {
+.thumbnail-carousel__loading-roller div:nth-child(1)::after {
   top: 63px;
   left: 63px;
 }
-.lds-roller div:nth-child(2) {
+.thumbnail-carousel__loading-roller div:nth-child(2) {
   animation-delay: -0.072s;
 }
-.lds-roller div:nth-child(2)::after {
+.thumbnail-carousel__loading-roller div:nth-child(2)::after {
   top: 68px;
   left: 56px;
 }
-.lds-roller div:nth-child(3) {
+.thumbnail-carousel__loading-roller div:nth-child(3) {
   animation-delay: -0.108s;
 }
-.lds-roller div:nth-child(3)::after {
+.thumbnail-carousel__loading-roller div:nth-child(3)::after {
   top: 71px;
   left: 48px;
 }
-.lds-roller div:nth-child(4) {
+.thumbnail-carousel__loading-roller div:nth-child(4) {
   animation-delay: -0.144s;
 }
-.lds-roller div:nth-child(4)::after {
+.thumbnail-carousel__loading-roller div:nth-child(4)::after {
   top: 72px;
   left: 40px;
 }
-.lds-roller div:nth-child(5) {
+.thumbnail-carousel__loading-roller div:nth-child(5) {
   animation-delay: -0.18s;
 }
-.lds-roller div:nth-child(5)::after {
+.thumbnail-carousel__loading-roller div:nth-child(5)::after {
   top: 71px;
   left: 32px;
 }
-.lds-roller div:nth-child(6) {
+.thumbnail-carousel__loading-roller div:nth-child(6) {
   animation-delay: -0.216s;
 }
-.lds-roller div:nth-child(6)::after {
+.thumbnail-carousel__loading-roller div:nth-child(6)::after {
   top: 68px;
   left: 24px;
 }
-.lds-roller div:nth-child(7) {
+.thumbnail-carousel__loading-roller div:nth-child(7) {
   animation-delay: -0.252s;
 }
-.lds-roller div:nth-child(7)::after {
+.thumbnail-carousel__loading-roller div:nth-child(7)::after {
   top: 63px;
   left: 17px;
 }
-.lds-roller div:nth-child(8) {
+.thumbnail-carousel__loading-roller div:nth-child(8) {
   animation-delay: -0.288s;
 }
-.lds-roller div:nth-child(8)::after {
+.thumbnail-carousel__loading-roller div:nth-child(8)::after {
   top: 56px;
   left: 12px;
 }
-
-@keyframes lds-roller {
+@keyframes roller {
   0% {
     transform: rotate(0deg);
   }
@@ -117,7 +126,7 @@
     transform: rotate(360deg);
   }
 }
-.lds-ring {
+.thumbnail-carousel__loading-ring {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -125,33 +134,32 @@
   row-gap: 0px;
   column-gap: 0px;
   position: relative;
-  width: 100px;
-  height: 100px;
-  margin: 8px;
+  width: 80px;
+  height: 80px;
+  margin: 0;
 }
-.lds-ring div {
+.thumbnail-carousel__loading-ring div {
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   margin: 8px;
   border: 8px solid #fff;
   border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  animation: ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: #fff transparent transparent transparent;
 }
-.lds-ring div:nth-child(1) {
+.thumbnail-carousel__loading-ring div:nth-child(1) {
   animation-delay: -0.45s;
 }
-.lds-ring div:nth-child(2) {
+.thumbnail-carousel__loading-ring div:nth-child(2) {
   animation-delay: -0.3s;
 }
-.lds-ring div:nth-child(3) {
+.thumbnail-carousel__loading-ring div:nth-child(3) {
   animation-delay: -0.15s;
 }
-
-@keyframes lds-ring {
+@keyframes ring {
   0% {
     transform: rotate(0deg);
   }
@@ -159,6 +167,7 @@
     transform: rotate(360deg);
   }
 }
+
 .thumbnail-carousel-button {
   overflow: hidden;
   height: 30px;
