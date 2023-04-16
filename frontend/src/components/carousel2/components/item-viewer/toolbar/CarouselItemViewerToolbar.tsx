@@ -13,6 +13,7 @@ import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousBu
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
 import { CarouselItemViewerToolbarPreview, ToolbarPreviewDirection } from './CarouselItemViewerToolbarPreview'
+import { ToolbarLogic } from './ToolbarLogic'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -51,10 +52,11 @@ export const CarouselItemViewerToolbar = ({
         durationStr: getFormattedTimeString((videoRef?.current?.duration) || -1),
         currentTimeStr: getFormattedTimeString((videoRef?.current?.currentTime) || -1),
     });
-    const [previewDirection, setPreviewDirection] = useState(ToolbarPreviewDirection.next);
+    const [previewDirection, setPreviewDirection] = useState(ToolbarPreviewDirection.none);
     const [isPreviousItemPreviewLoaded, setIsPreviousItemPreviewLoaded] = useState(false);
     const [isNextItemPreviewLoaded, setIsNextItemPreviewLoaded] = useState(false);
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
+    const toolbarLogic = new ToolbarLogic(currentItems);
     //#endregion
 
     //#region Functions/handlers
@@ -218,18 +220,24 @@ export const CarouselItemViewerToolbar = ({
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
                     <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClickLocal} />
                     <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClickLocal} />
-                    <CarouselItemViewerCloseButton onClick={onClose}/>
+                    <CarouselItemViewerCloseButton onClick={onClose} />
                 </div>
             </div>
-            <CarouselItemViewerToolbarPreview 
-                itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.previous)]} 
-                show={currentItems.length > 1 && previewDirection === ToolbarPreviewDirection.previous} 
+            <CarouselItemViewerToolbarPreview
+                itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.previous)]}
+                show={
+                    toolbarLogic.getShouldDisplayNextAndBackButton() &&
+                    previewDirection === ToolbarPreviewDirection.previous
+                }
                 isLoaded={isPreviousItemPreviewLoaded}
                 setIsLoaded={setIsPreviousItemPreviewLoaded}
             />
-            <CarouselItemViewerToolbarPreview 
-                itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.next)]} 
-                show={currentItems.length > 1 && previewDirection === ToolbarPreviewDirection.next} 
+            <CarouselItemViewerToolbarPreview
+                itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.next)]}
+                show={
+                    toolbarLogic.getShouldDisplayNextAndBackButton() &&
+                    previewDirection === ToolbarPreviewDirection.next
+                }
                 isLoaded={isNextItemPreviewLoaded}
                 setIsLoaded={setIsNextItemPreviewLoaded}
             />
