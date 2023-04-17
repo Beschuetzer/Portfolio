@@ -22,7 +22,12 @@ export const CarouselItemViewer = forwardRef<HTMLElement, CarouselItemViewerProp
         {
             key: 't',
             modifier: 'alt',
-            action: () => console.log('it works with modifier!')
+            action: () => console.log('it works with alt modifier!')
+        },
+        {
+            key: 't',
+            modifier: 'shift',
+            action: () => console.log('it works with shift modifier!')
         }
     ], () => Object.keys(currentItem || {}).length === 0)
     //#endregion

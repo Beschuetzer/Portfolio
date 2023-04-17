@@ -57,16 +57,28 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
             if (skipCondition && skipCondition()) return;
             const { key: keyPressed, altKey: isAltKeyPressed, ctrlKey: isCtrlKeyPressed, shiftKey: isShiftKeyPressed } = e;
 
+            const shortcutsToCheck: KeyboardShortcut[] = [];
             for (const keyboardShortcut of keyboardShortcuts) {
-                const { action, key, modifier } = keyboardShortcut;
+                const { key, modifier } = keyboardShortcut;
                 const areModifiersEqual = getAreModifiersEqual(modifier, isCtrlKeyPressed, isAltKeyPressed, isShiftKeyPressed);
                 const areKeysEqual = key?.toLowerCase() === keyPressed.toLowerCase();
 
                 if (areKeysEqual && areModifiersEqual) {
-                    action && action();
+                    shortcutsToCheck.push(keyboardShortcut);
                 }   
             }
-          
+
+            if (shortcutsToCheck.length === 1) {
+                const { action } = shortcutsToCheck[0];
+                action && action();
+            } else {
+                for (const shortcut of shortcutsToCheck) {
+                    const shortcutHasModifier = !!shortcut?.modifier || false;
+                    if (!shortcutHasModifier) continue;
+                    const { action } = shortcut;
+                    action && action();
+                }
+            }
         }
 
         window.addEventListener('keydown', handleKeyDown);
