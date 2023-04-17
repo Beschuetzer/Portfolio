@@ -3,6 +3,7 @@ import { EMPTY_STRING } from '../../../constants';
 import { CURRENT_ITEMS_INITIAL, CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../../context';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CloseButton } from '../../buttons/CloseButton';
+import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
 
 type CarouselItemViewerCloseButtonProps = {
     onClick?: () => void;
@@ -12,6 +13,12 @@ export const CarouselItemViewerCloseButton = ({
 }: CarouselItemViewerCloseButtonProps) => {
     const { setCurrentItems, setCurrentItemIndex, currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.closeButton || '';
+    useKeyboardShortcuts([
+        {
+            keys: ['c'],
+            action: () => onClickLocal(),
+        },
+    ]);
 
     const onClickLocal = useCallback(() => {
         setCurrentItemIndex(CURRENT_ITEM_INDEX_INITIAL);

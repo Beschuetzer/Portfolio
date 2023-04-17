@@ -34,6 +34,8 @@ enum ValidKey {
     y = 'y',
     z = 'z',
     arrowLeft = 'arrowLeft',
+    arrowUp = 'arrowUp',
+    arrowDown = 'arrowDown',
     arrowRight = 'arrowRight',
 }
 

@@ -64,12 +64,20 @@ export const CarouselItemViewerToolbar = ({
             action: handleKeyboardPlay
         },
         {
-            keys: ['arrowLeft', 'b'],
+            keys: ['b'],
             action: handleKeyboardSeekBackward
         },
         {
-            keys: ['arrowRight', 'f'],
+            keys: ['f'],
             action: handleKeyboardSeekForward
+        },
+        {
+            keys: ['arrowRight', 'n'],
+            action: () => onNextItemClickLocal(),
+        },
+        {
+            keys: ['arrowLeft', 'p'],
+            action: () => onPreviousItemClickLocal(),
         },
     ]);
     //#endregion
