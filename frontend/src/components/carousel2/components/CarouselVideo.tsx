@@ -4,7 +4,8 @@ import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoOverlay } from './CarouselVideoOverlay'
 import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
-import { CLASSNAME__HIDDEN } from '../constants';
+import { CLASSNAME__BUTTON, CLASSNAME__HIDDEN } from '../constants';
+import { CarouselVideoCurrentStateIndicator } from './CarouselVideoCurrentStateIndicator';
 
 export type CarouselVideoProps = {
     autoPlay?: boolean;
@@ -72,6 +73,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             onClick={onVideoClick}
         >
             <>
+                <CarouselVideoCurrentStateIndicator isVideoPlaying={isVideoPlaying}/>
                 <LoadingSpinner
                     type='roller'
                     show={!isLoaded && isVideoPlaying}

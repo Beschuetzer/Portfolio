@@ -115,6 +115,13 @@
     top: $top;
 }
 
+@mixin positionCenter {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 @mixin triangle($direction: right) {
     @if ($direction == left) {
         border-right: calc(#{$buttonWidth} / 2.5) solid $itemViewerButtonColor;

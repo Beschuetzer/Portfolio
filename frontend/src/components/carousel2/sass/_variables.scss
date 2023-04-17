@@ -1,5 +1,6 @@
 @use "sass:math";
 
+$buttonVideoStateIndicatorWidth: 80px;
 $buttonLineWidth: 7.5px;
 $buttonWidth: 30px;
 $carouselPageChangeButtonHeight: calc(math.hypot($buttonWidth, calc($buttonWidth / 2)) / 3);

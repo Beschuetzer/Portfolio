@@ -1,10 +1,10 @@
-import React, { ReactNode, useCallback, useEffect, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useState } from 'react'
 import { getClassname, setCssCustomProperty } from '../utils';
 import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
 import { Exclusive } from '../types';
-import { CLASSNAME__BUTTON, CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__OVERLAY_BUTTON_RIGHT, CLASSNAME__OVERLAY_BUTTON_TOP } from '../constants';
+import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__OVERLAY_BUTTON_RIGHT, CLASSNAME__OVERLAY_BUTTON_TOP } from '../constants';
 
 export type CarouselVideoOverlay = Exclusive<{
     /*
