@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH } from '../../../constants'
+import { CLASSNAME__ITEM_VIEWER, ITEM_VIEWER_PLAY_SHORTCUTS, ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS, ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS, MOBILE_PIXEL_WIDTH } from '../../../constants'
 import { getClassname, getFormattedTimeString } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../../context'
@@ -60,23 +60,23 @@ export const CarouselItemViewerToolbar = ({
     const toolbarLogic = new ToolbarLogic(currentItems);
     useKeyboardShortcuts([
         {
-            keys: ['k'],
+            keys: ITEM_VIEWER_PLAY_SHORTCUTS,
             action: handleKeyboardPlay
         },
         {
-            keys: ['b'],
+            keys: ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS,
             action: handleKeyboardSeekBackward
         },
         {
-            keys: ['f'],
+            keys: ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS,
             action: handleKeyboardSeekForward
         },
         {
-            keys: ['arrowRight', 'n'],
+            keys: ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS,
             action: () => onNextItemClickLocal(),
         },
         {
-            keys: ['arrowLeft', 'p'],
+            keys: ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS,
             action: () => onPreviousItemClickLocal(),
         },
     ]);
@@ -123,6 +123,7 @@ export const CarouselItemViewerToolbar = ({
     }
 
     const onNextItemClickLocal = useCallback(() => {
+        if (currentItems.length <= 1) return;
         const newIndex = currentItemIndex === currentItems.length - 1 ? 0 : currentItemIndex + 1;
         setCurrentItemIndex(newIndex);
         resetPreviewItems();
@@ -131,6 +132,7 @@ export const CarouselItemViewerToolbar = ({
     }, [currentItemIndex, currentItems, setCurrentItemIndex, handleAutoHide, onNextItemClick])
 
     const onPreviousItemClickLocal = useCallback(() => {
+        if (currentItems.length <= 1) return;
         const newIndex = currentItemIndex === 0 ? currentItems.length - 1 : currentItemIndex - 1;
         setCurrentItemIndex(newIndex);
         resetPreviewItems();

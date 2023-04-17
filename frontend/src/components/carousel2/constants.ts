@@ -1,4 +1,6 @@
+import { Key } from "readline";
 import { getClassname } from "./utils";
+import { KeyInput } from "./hooks/useKeyboardShortcuts";
 
 export const CLASSNAME__ROOT = 'thumbnail-carousel';
 export const CLASSNAME__BUTTON = `${CLASSNAME__ROOT}-button`;
@@ -18,3 +20,12 @@ export const MOBILE_PIXEL_WIDTH = 655;
 export const NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS = 2;
 export const EMPTY_STRING = "";
 export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
+
+//#region ItemViewer Shortcuts
+export const ITEM_VIEWER_CLOSE_SHORTCUTS: KeyInput[] = ['c', 'x'];
+export const ITEM_VIEWER_PLAY_SHORTCUTS: KeyInput[] = ['k'];
+export const ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS: KeyInput[] = ['b', ['arrowLeft', 'shift']];
+export const ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS: KeyInput[] = ['f', ['arrowRight', 'shift']];
+export const ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS: KeyInput[] = ['arrowRight', 'n'];
+export const ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS: KeyInput[] = ['arrowLeft', 'p'];
+//#endregion

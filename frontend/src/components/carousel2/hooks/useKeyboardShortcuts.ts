@@ -39,10 +39,11 @@ enum ValidKey {
     arrowRight = 'arrowRight',
 }
 
+type KeyCombination = [keyof typeof ValidKey, keyof typeof ModifierKey];
+export type KeyInput = (keyof typeof ValidKey) | KeyCombination;
 type KeyboardShortcut = {
     action: () => void;
-    keys: (keyof typeof ValidKey)[];
-    modifier?: keyof typeof ModifierKey;
+    keys: KeyInput[];
 }
 
 /*
@@ -50,8 +51,13 @@ type KeyboardShortcut = {
 */
 export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skipCondition?: () => boolean) => {
     useEffect(() => {
-        function getAreModifiersEqual(modifier: keyof typeof ModifierKey | undefined, isCtrlKeyPressed: boolean, isAltKeyPressed: boolean, isShiftKeyPressed: boolean) {
-            if (modifier === undefined || modifier === null) return true;
+        function getAreModifiersEqual(modifier: (keyof typeof ModifierKey) | undefined, isCtrlKeyPressed: boolean, isAltKeyPressed: boolean, isShiftKeyPressed: boolean) {
+            if (
+                (modifier === undefined || modifier === null) &&
+                !isAltKeyPressed &&
+                !isCtrlKeyPressed &&
+                !isShiftKeyPressed
+            ) return true;
             if (isCtrlKeyPressed && modifier === 'ctrl') return true;
             if (isShiftKeyPressed && modifier === 'shift') return true;
             if (isAltKeyPressed && modifier === 'alt') return true;
@@ -62,27 +68,25 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
             if (skipCondition && skipCondition()) return;
             const { key: keyPressed, altKey: isAltKeyPressed, ctrlKey: isCtrlKeyPressed, shiftKey: isShiftKeyPressed } = e;
 
-            const shortcutsToCheck: KeyboardShortcut[] = [];
             for (const keyboardShortcut of keyboardShortcuts) {
-                const { keys, modifier } = keyboardShortcut;
-                const areModifiersEqual = getAreModifiersEqual(modifier, isCtrlKeyPressed, isAltKeyPressed, isShiftKeyPressed);
-                const areKeysEqual = keys.map(k => k.toLocaleLowerCase()).includes(keyPressed.toLocaleLowerCase());
+                const { keys, action } = keyboardShortcut;
+                
+                for(const key of keys) {
+                    const isKeyArray = Array.isArray(key);
+                    const keyToUse = isKeyArray ? key?.[0] : key;
+                    const modifierToUse = isKeyArray ? (key as KeyCombination)?.[1] : undefined;
+                    const areKeysEqual = keyPressed.toLowerCase() === keyToUse.toLowerCase();
+                    
+                    if (!areKeysEqual) continue;
 
-                if (areKeysEqual && areModifiersEqual) {
-                    shortcutsToCheck.push(keyboardShortcut);
-                }   
-            }
-
-            if (shortcutsToCheck.length === 1) {
-                const { action } = shortcutsToCheck[0];
-                action && action();
-            } else {
-                for (const shortcut of shortcutsToCheck) {
-                    const shortcutHasModifier = !!shortcut?.modifier || false;
-                    if (!shortcutHasModifier) continue;
-                    const { action } = shortcut;
-                    action && action();
+                    const areModifiersEqual = getAreModifiersEqual(modifierToUse, isCtrlKeyPressed, isAltKeyPressed, isShiftKeyPressed);
+                    if (areKeysEqual && areModifiersEqual) {
+                        action && action();
+                        return;
+                    }  
                 }
+                
+                 
             }
         }
 

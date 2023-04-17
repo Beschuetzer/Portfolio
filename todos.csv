@@ -1,5 +1,6 @@
 Carousel rework:
-  -add keyboard shortcuts and popups to display on hover what the shortcut is
+  -add popups to display on hover for keyboard shortcuts
+  -add option to customize keyboard shortcuts
   -toolbar should not hide when a key is pressed
   -add swipe to scroll functionality to container?
   -add customization for itemViewer.buttons? (fill color like dots);  would need to adjust the background gradient too?
