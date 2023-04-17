@@ -4,6 +4,7 @@ import { CarouselVideo } from '../CarouselVideo';
 import { CLASSNAME__ITEM_VIEWER } from '../../constants';
 import { useCarouselContext } from '../../context'
 import { getClassname, getIsVideo } from '../../utils';
+import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 
 type CarouselItemViewerProps = {}
 export const CarouselItemViewer = forwardRef<HTMLElement, CarouselItemViewerProps> ((props, ref) => {
@@ -13,6 +14,17 @@ export const CarouselItemViewer = forwardRef<HTMLElement, CarouselItemViewerProp
     const [isVisible, setisVisible] = useState(Object.keys(currentItem || {})?.length > 0);
     const currentItemSrc = currentItem?.srcMain || '';
     const isVideo = getIsVideo(currentItemSrc);
+    useKeyboardShortcuts([
+        {
+            key: 't',
+            action: () => console.log('it works with one!')
+        },
+        {
+            key: 't',
+            modifier: 'alt',
+            action: () => console.log('it works with modifier!')
+        }
+    ], () => Object.keys(currentItem || {}).length === 0)
     //#endregion
 
     //#region Function/Handlers
