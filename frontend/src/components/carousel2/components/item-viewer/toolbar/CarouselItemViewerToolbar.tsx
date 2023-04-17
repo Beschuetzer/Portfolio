@@ -60,15 +60,15 @@ export const CarouselItemViewerToolbar = ({
     const toolbarLogic = new ToolbarLogic(currentItems);
     useKeyboardShortcuts([
         {
-            key: 'k',
+            keys: ['k'],
             action: handleKeyboardPlay
         },
         {
-            key: 'arrowLeft',
+            keys: ['arrowLeft', 'b'],
             action: handleKeyboardSeekBackward
         },
         {
-            key: 'arrowRight',
+            keys: ['arrowRight', 'f'],
             action: handleKeyboardSeekForward
         },
     ]);

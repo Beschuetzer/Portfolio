@@ -39,7 +39,7 @@ enum ValidKey {
 
 type KeyboardShortcut = {
     action: () => void;
-    key: keyof typeof ValidKey;
+    keys: (keyof typeof ValidKey)[];
     modifier?: keyof typeof ModifierKey;
 }
 
@@ -62,9 +62,9 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
 
             const shortcutsToCheck: KeyboardShortcut[] = [];
             for (const keyboardShortcut of keyboardShortcuts) {
-                const { key, modifier } = keyboardShortcut;
+                const { keys, modifier } = keyboardShortcut;
                 const areModifiersEqual = getAreModifiersEqual(modifier, isCtrlKeyPressed, isAltKeyPressed, isShiftKeyPressed);
-                const areKeysEqual = key?.toLowerCase() === keyPressed.toLowerCase();
+                const areKeysEqual = keys.map(k => k.toLocaleLowerCase()).includes(keyPressed.toLocaleLowerCase());
 
                 if (areKeysEqual && areModifiersEqual) {
                     shortcutsToCheck.push(keyboardShortcut);
