@@ -14,6 +14,7 @@ import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackBu
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
 import { CarouselItemViewerToolbarPreview, ToolbarPreviewDirection } from './CarouselItemViewerToolbarPreview'
 import { ToolbarLogic } from './ToolbarLogic'
+import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -57,6 +58,20 @@ export const CarouselItemViewerToolbar = ({
     const [isNextItemPreviewLoaded, setIsNextItemPreviewLoaded] = useState(false);
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
+    useKeyboardShortcuts([
+        {
+            key: 'k',
+            action: handleKeyboardPlay
+        },
+        {
+            key: 'arrowLeft',
+            action: handleKeyboardSeekBackward
+        },
+        {
+            key: 'arrowRight',
+            action: handleKeyboardSeekForward
+        },
+    ]);
     //#endregion
 
     //#region Functions/handlers
@@ -85,6 +100,19 @@ export const CarouselItemViewerToolbar = ({
             }, options.itemViewer.autoHideToolbarDuration);
         }
     }, [currentItemIndex, CURRENT_ITEM_INDEX_INITIAL, itemContainerRef, options, shouldHideTimoutRef, CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR]);
+
+    function handleKeyboardPlay() {
+        setIsVideoPlaying && setIsVideoPlaying((current) => !current);
+        handleAutoHide();
+    }
+
+    function handleKeyboardSeekBackward() {
+        onSeekBackClick();
+    }
+
+    function handleKeyboardSeekForward() {
+        onSeekForwardClick();
+    }
 
     const onNextItemClickLocal = useCallback(() => {
         const newIndex = currentItemIndex === currentItems.length - 1 ? 0 : currentItemIndex + 1;

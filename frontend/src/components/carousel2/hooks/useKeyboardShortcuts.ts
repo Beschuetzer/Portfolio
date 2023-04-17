@@ -4,8 +4,9 @@ export enum ModifierKey {
     ctrl = 'ctrl',
     alt = 'alt',
     shift = 'shift',
+   
 }
-enum AlphanumericKey {
+enum ValidKey {
     a = 'a',
     b = 'b',
     c = 'c',
@@ -32,11 +33,13 @@ enum AlphanumericKey {
     x = 'x',
     y = 'y',
     z = 'z',
+    arrowLeft = 'arrowLeft',
+    arrowRight = 'arrowRight',
 }
 
 type KeyboardShortcut = {
     action: () => void;
-    key: keyof typeof AlphanumericKey;
+    key: keyof typeof ValidKey;
     modifier?: keyof typeof ModifierKey;
 }
 
