@@ -190,6 +190,7 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
         border-radius: 50%;
         background-color: $itemViewerBackgroundColor;
         opacity: 0;
+        pointer-events: none;
         z-index: 1000000000000;
         transform-origin: center;
 
@@ -205,11 +206,11 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
             //timingFunction = sets the animation speed ( linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier ).
             //direction = gives you the ability to change the loop direction, from start to end ,or from end to start, or both (normal | reverse | alternate | alternate-reverse).
             //fillMode = specifies which styles in keyframe will be applied to the element when our animation is finished ( none | forwards | backwards | both )
-            -webkit-animation: video-state-indicator calc(#{$carouselAnimationDuration} * 2) infinite ease normal none;
-            -moz-animation: video-state-indicator calc(#{$carouselAnimationDuration} * 2) infinite ease normal none;
-            -ms-animation: video-state-indicator calc(#{$carouselAnimationDuration} * 2) infinite ease normal none;
-            -o-animation: video-state-indicator calc(#{$carouselAnimationDuration} * 2) infinite ease normal none;
-            animation: video-state-indicator calc(#{$carouselAnimationDuration} * 2) infinite ease normal none;
+            -webkit-animation: video-state-indicator $buttonVideoStateIndictatorAnimationSpeed 1 linear alternate none;
+            -moz-animation: video-state-indicator $buttonVideoStateIndictatorAnimationSpeed 1 linear alternate none;
+            -ms-animation: video-state-indicator $buttonVideoStateIndictatorAnimationSpeed 1 linear alternate none;
+            -o-animation: video-state-indicator $buttonVideoStateIndictatorAnimationSpeed 1 linear alternate none;
+            animation: video-state-indicator $buttonVideoStateIndictatorAnimationSpeed 1 linear alternate none;
         }
     }
 
@@ -223,6 +224,6 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
 
     100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(1.5);
+        transform: translate(-50%, -50%) scale(2);
     }
 }
