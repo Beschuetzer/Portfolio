@@ -51,6 +51,8 @@ export const CarouselItemViewerToolbar = ({
     const previousButtonRef = useRef<any>(null);
     const nextButtonRef = useRef<any>(null);
     const closeButtonRef = useRef<any>(null);
+    const pauseButtonRef = useRef<any>(null);
+    const playButtonRef = useRef<any>(null);
 
     const [timeStrings, setTimeStrings] = useState<VideoTimeStrings>({
         durationStr: getFormattedTimeString((videoRef?.current?.duration) || -1),
@@ -60,6 +62,8 @@ export const CarouselItemViewerToolbar = ({
     const [isPreviousItemPreviewLoaded, setIsPreviousItemPreviewLoaded] = useState(false);
     const [isNextItemPreviewLoaded, setIsNextItemPreviewLoaded] = useState(false);
     const [showCloseButtonPopup, setShowCloseButtonPopup] = useState(false);
+    const [showPauseButtonPopup, setShowPauseButtonPopup] = useState(false);
+    const [showPlayButtonPopup, setShowPlayButtonPopup] = useState(false);
 
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
@@ -189,11 +193,15 @@ export const CarouselItemViewerToolbar = ({
     useEffect(() => {
         const boundDisplayCloseButton = handleDisplayPopup.bind(null, true, setShowCloseButtonPopup);
         const boundHideCloseButton = handleDisplayPopup.bind(null, false, setShowCloseButtonPopup);
+        const boundDisplayPauseButton = handleDisplayPopup.bind(null, true, setShowPauseButtonPopup);
+        const boundHidePauseButton = handleDisplayPopup.bind(null, false, setShowPauseButtonPopup);
+        const boundDisplayPlayButton = handleDisplayPopup.bind(null, true, setShowPlayButtonPopup);
+        const boundHidePlayButton = handleDisplayPopup.bind(null, false, setShowPlayButtonPopup);
 
         handleAutoHide();
         function handleDisplayPopup(shouldShowPopup: boolean, showPopupSetter: React.Dispatch<React.SetStateAction<boolean>>) {
-            console.log({shouldShowPopup, showPopupSetter});
-            
+            console.log({ shouldShowPopup, showPopupSetter });
+
             showPopupSetter(shouldShowPopup);
         }
 
@@ -235,6 +243,16 @@ export const CarouselItemViewerToolbar = ({
             closeButtonRef.current.addEventListener('mouseleave', boundHideCloseButton);
         }
 
+        if (pauseButtonRef?.current) {
+            pauseButtonRef.current.addEventListener('mouseenter', boundDisplayPauseButton);
+            pauseButtonRef.current.addEventListener('mouseleave', boundHidePauseButton);
+        }
+
+        if (playButtonRef?.current) {
+            playButtonRef.current.addEventListener('mouseenter', boundDisplayPlayButton);
+            playButtonRef.current.addEventListener('mouseleave', boundHidePlayButton);
+        }
+
         return () => {
             window.removeEventListener('mousemove', handleAutoHide);
             window.removeEventListener('click', handleAutoHide);
@@ -256,8 +274,26 @@ export const CarouselItemViewerToolbar = ({
                 closeButtonRef.current.removeEventListener('mouseenter', boundDisplayCloseButton);
                 closeButtonRef.current.removeEventListener('mouseleave', boundHideCloseButton);
             }
+
+            if (pauseButtonRef?.current) {
+                pauseButtonRef.current.removeEventListener('mouseenter', boundDisplayPauseButton);
+                pauseButtonRef.current.removeEventListener('mouseleave', boundHidePauseButton);
+            }
+
+            if (playButtonRef?.current) {
+                playButtonRef.current.removeEventListener('mouseenter', boundDisplayPlayButton);
+                playButtonRef.current.removeEventListener('mouseleave', boundHidePlayButton);
+            }
         }
-    }, [handleAutoHide]);
+    }, [
+        isVideoPlaying,
+        handleAutoHide,
+        nextButtonRef,
+        previousButtonRef,
+        closeButtonRef,
+        pauseButtonRef,
+        playButtonRef,
+    ]);
     //#endregion
 
     //#region JSX
@@ -267,13 +303,13 @@ export const CarouselItemViewerToolbar = ({
             <div className={CLASSNAME_INNER_CONTAINER}>
                 {videoRef ? (
                     <div className={CLASSNAME_TOOLBAR_LEFT}>
-                        {isVideoPlaying ?
-                            <CarouselItemViewerPauseButton onClick={onPauseClick} actionName='Pause' shortcuts={ITEM_VIEWER_PLAY_SHORTCUTS} position='left' />
-                            :
-                            <CarouselItemViewerPlayButton onClick={onPlayClick} actionName='Play' shortcuts={ITEM_VIEWER_PLAY_SHORTCUTS} position='left' />
-                        }
+                        {isVideoPlaying ? (
+                            <CarouselItemViewerPauseButton ref={pauseButtonRef} onClick={onPauseClick} actionName='Pause' shortcuts={ITEM_VIEWER_PLAY_SHORTCUTS} position='left' isShortcutVisible={showPauseButtonPopup} />
+                        ) : (
+                            <CarouselItemViewerPlayButton ref={playButtonRef} onClick={onPlayClick} actionName='Play' shortcuts={ITEM_VIEWER_PLAY_SHORTCUTS} position='left' isShortcutVisible={showPlayButtonPopup} />
+                        )}
                         <CarouselItemViewerSeekBackButton onClick={onSeekBackClick} actionName='Seek Back' shortcuts={ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS} position='left' />
-                        <CarouselItemViewerSeekForwardButton onClick={onSeekForwardClick} actionName='Seek Forward' shortcuts={ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS} position='left'/>
+                        <CarouselItemViewerSeekForwardButton onClick={onSeekForwardClick} actionName='Seek Forward' shortcuts={ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS} position='left' />
 
                     </div>
                 ) : null}
