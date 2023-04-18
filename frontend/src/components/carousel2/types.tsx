@@ -82,10 +82,8 @@ export type CarouselSvgs = {
         pauseButton?: string;
         playButton?: string;
         previousButton?: string;
-        restartButton?: string;
         seekBackButton?: string;
         seekForwardButton?: string;
-        stopButton?: string;
     },
     /*
     *These are the buttons at the bottom of each carousel related to changing pages

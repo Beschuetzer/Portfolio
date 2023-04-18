@@ -248,14 +248,14 @@ export const CarouselItemViewerToolbar = ({
                             :
                             <CarouselItemViewerPlayButton onClick={onPlayClick} actionName='Play' shortcuts={ITEM_VIEWER_PLAY_SHORTCUTS} position='left' />
                         }
-                        <CarouselItemViewerSeekBackButton onClick={onSeekBackClick} />
-                        <CarouselItemViewerSeekForwardButton onClick={onSeekForwardClick} />
+                        <CarouselItemViewerSeekBackButton onClick={onSeekBackClick} actionName='Seek Back' shortcuts={ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS} position='left' />
+                        <CarouselItemViewerSeekForwardButton onClick={onSeekForwardClick} actionName='Seek Forward' shortcuts={ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS} position='left'/>
 
                     </div>
                 ) : null}
                 <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
-                    <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClickLocal} />
+                    <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClickLocal} actionName='Previous' shortcuts={ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS} />
                     <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClickLocal} actionName='Next' shortcuts={ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS} position='right' />
                     <CarouselItemViewerCloseButton onClick={onClose} actionName='Exit' shortcuts={ITEM_VIEWER_CLOSE_SHORTCUTS} position='right' />
                 </div>

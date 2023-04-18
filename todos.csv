@@ -1,5 +1,5 @@
 Carousel rework:
-  -add popups to display on hover for keyboard shortcuts (use CarouselItemViewerCloseButton as template)
+  -finish hover for keyboard shortcuts and displaying (use CarouselItemViewerCloseButton as template)
   -add option to customize keyboard shortcuts
   -figure out how to make font customizable for the whole carousel
   -toolbar should not hide when a key is pressed

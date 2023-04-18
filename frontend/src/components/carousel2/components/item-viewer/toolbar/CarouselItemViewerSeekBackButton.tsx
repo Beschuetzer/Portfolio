@@ -1,16 +1,23 @@
 import { useCarouselContext } from '../../../context';
+import { CarouselItemViewerButtonProps } from '../../../types';
 import { SeekBackButton } from '../../buttons/SeekBackButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
-type CarouselItemViewerSeekBackButtonProps = {
-    onClick: () => void,
-}
+import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
+type CarouselItemViewerSeekBackButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerSeekBackButton = ({
-    onClick
+    actionName = '',
+    onClick = () => null,
+    position = 'center',
+    shortcuts = [],
 }: CarouselItemViewerSeekBackButtonProps) => {
     const { currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.seekBackButton || '';
 
-    return !!svgHref ? 
-        <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref}/> :
-        <SeekBackButton onClick={onClick}/>
+    return (
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} position={position}>
+            {!!svgHref ?
+                <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref} /> :
+                <SeekBackButton onClick={onClick} />}
+        </CarouselItemViewerShortcutIndicator>
+    )
 }
