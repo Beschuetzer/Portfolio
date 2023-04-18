@@ -649,6 +649,7 @@
   color: #fff;
   border-radius: 4px;
   font-size: 12px;
+  white-space: nowrap;
 }
 .thumbnail-carousel__item-viewer-toolbar {
   transition: transform 0.5s ease, opacity 0.5s ease;

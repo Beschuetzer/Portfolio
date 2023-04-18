@@ -31,7 +31,7 @@ export const CarouselItemViewerShortcutIndicator = ({
             }
 
             if (!isLastItem) {
-                result += ', '
+                result += ' or '
             }
         }
 
