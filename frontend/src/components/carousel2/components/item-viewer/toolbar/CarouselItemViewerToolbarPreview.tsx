@@ -1,8 +1,8 @@
-import { getClassname } from '../../../utils'
-import { useState } from 'react';
+import { capitalize, getClassname, getShortcutsString } from '../../../utils'
 import { LoadingSpinner } from '../../LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../../../constants';
 import { CarouselItemProps } from '../../CarouselItem';
+import { CarouselItemViewerButtonProps } from '../../../types';
 
 export enum ToolbarPreviewDirection {
     none,
@@ -14,23 +14,18 @@ type CarouselItemViewerToolbarPreviewProps = {
     itemToShow: CarouselItemProps;
     setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
     show: boolean;
-}
+} & Partial<Pick<CarouselItemViewerButtonProps, 'actionName' | 'shortcuts'>>
 
 export const CarouselItemViewerToolbarPreview = ({
+    actionName = '',
     isLoaded,
     itemToShow,
     setIsLoaded,
+    shortcuts = [],
     show,
 }: CarouselItemViewerToolbarPreviewProps) => {
     //#region Init
     const { description, srcMain, srcThumbnail } = itemToShow || {};
-    //#endregion
-
-    //#region Functions/Handlers
-    
-    //#endregion
-
-    //#region Side Fx
     //#endregion
 
     //#region JSX
@@ -60,6 +55,9 @@ export const CarouselItemViewerToolbarPreview = ({
                 />
             </div>
             <div className={`${className}-image-description`}>
+                <div>
+                    {capitalize(actionName)} ({getShortcutsString(shortcuts)})
+                </div>
                 <p>
                     {description || 'No description'}
                 </p>

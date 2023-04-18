@@ -1,10 +1,36 @@
 import { CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, CLASSNAME__ROOT, VIDEO_EXTENSIONS } from "./constants";
 import { CURRENT_ITEM_INDEX_INITIAL } from "./context";
+import { KeyInput } from "./hooks/useKeyboardShortcuts";
 import { Point } from "./types";
 type GetClassname = {
     elementName?: string;
     modifiedName?: string;
 }
+
+export function capitalize(str: string | undefined | null) {
+    if (!str) return "";
+    return str
+      .split(" ")
+      .map((word) => word[0].toUpperCase() + word.slice(1))
+      .join(" ");
+  }
+
+export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT){
+    
+    let color: any;
+    const hexToUse = hex.trim();
+    if(hex && /^#([A-Fa-f0-9]{3}){1,2}$/.test(hexToUse)){
+        color= hexToUse.substring(1).split('');
+        if(color.length== 3){
+            color= [color[0], color[0], color[1], color[1], color[2], color[2]];
+        }
+        color= '0x'+color.join('');
+        return `rgba(${[(color>>16)&255, (color>>8)&255, color&255].join(',')},${opacity > 1 ? 1 : opacity < 0 ? 0 : opacity})`;
+    }
+
+    return hexToUse;
+}
+
 export function getClassname({ elementName, modifiedName }: GetClassname) {
     return `${CLASSNAME__ROOT}${elementName ? `__${elementName}` : ``}${modifiedName ? `--${modifiedName}` : ``}`;
 }
@@ -52,20 +78,23 @@ export function getGuid() {
     );
 }
 
-export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT){
-    
-    let color: any;
-    const hexToUse = hex.trim();
-    if(hex && /^#([A-Fa-f0-9]{3}){1,2}$/.test(hexToUse)){
-        color= hexToUse.substring(1).split('');
-        if(color.length== 3){
-            color= [color[0], color[0], color[1], color[1], color[2], color[2]];
+export function getShortcutsString(shortcuts: KeyInput[]) {
+    let result = "";
+    for (let i = 0; i < shortcuts.length; i++) {
+        const shortcut = shortcuts[i];
+        const isLastItem = i === shortcuts.length - 1;
+        if (Array.isArray(shortcut)) {
+            result += shortcut.join('+');
+        } else {
+            result += shortcut;
         }
-        color= '0x'+color.join('');
-        return `rgba(${[(color>>16)&255, (color>>8)&255, color&255].join(',')},${opacity > 1 ? 1 : opacity < 0 ? 0 : opacity})`;
+
+        if (!isLastItem) {
+            result += ' or '
+        }
     }
 
-    return hexToUse;
+    return result;
 }
 
 export function setCssCustomProperty(propertyName: string, newValue: string) {

@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react'
-import { getClassname } from '../../../utils'
+import { capitalize, getClassname, getShortcutsString } from '../../../utils'
 import { KeyInput } from '../../../hooks/useKeyboardShortcuts';
-import { capitalize } from '../../../../../helpers';
 
 export type CarouselItemViewerShortcutIndicatorProps = {
     actionName: string;
@@ -20,27 +19,6 @@ export const CarouselItemViewerShortcutIndicator = ({
     shortcuts = [],
 }: CarouselItemViewerShortcutIndicatorProps) => {
     const hideShortcut = !isShortcutVisible || !actionName || shortcuts.length === 0;
-
-    function getShortcutsString() {
-        let result = "";
-        for (let i = 0; i < shortcuts.length; i++) {
-            const shortcut = shortcuts[i];
-            const isLastItem = i === shortcuts.length - 1;
-            if (Array.isArray(shortcut)) {
-                result += shortcut.join(' + ');
-            } else {
-                result += shortcut;
-
-            }
-
-            if (!isLastItem) {
-                result += ' or '
-            }
-        }
-
-        return result;
-    }
-
     const style = position === 'left' ? {
         left: 0,
         right: 'auto',
@@ -56,7 +34,7 @@ export const CarouselItemViewerShortcutIndicator = ({
             {hideShortcut ? null : (
                 <div style={style}>
                     <p>
-                        {capitalize(actionName)} ({getShortcutsString()})
+                        {capitalize(actionName)} ({getShortcutsString(shortcuts)})
                     </p>
                 </div>
             )}

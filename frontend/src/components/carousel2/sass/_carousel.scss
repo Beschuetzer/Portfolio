@@ -164,7 +164,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: $itemViewerShortcutPopupColor;
+                background-color: $itemViewerShortcutPopupBackgroundColor;
                 color: $itemViewerButtonColor;
                 border-radius: 4px;
                 font-size: 12px;
@@ -271,7 +271,12 @@
                         padding: calc($itemViewerToolbarMarginHorizontal / 2);
                         text-align: center;
 
-                        & p {
+                        & > div {
+                            text-transform: uppercase;
+                            color: $itemViewerShortcutPopupColor;
+                        }
+
+                        & > p {
                             @include maxTextLineCount();
                         }
                     }

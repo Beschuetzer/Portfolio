@@ -292,6 +292,8 @@ export const CarouselItemViewerToolbar = ({
                 }
                 isLoaded={isPreviousItemPreviewLoaded}
                 setIsLoaded={setIsPreviousItemPreviewLoaded}
+                shortcuts={ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS}
+                actionName={"Previous"}
             />
             <CarouselItemViewerToolbarPreview
                 itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.next)]}
@@ -301,6 +303,8 @@ export const CarouselItemViewerToolbar = ({
                 }
                 isLoaded={isNextItemPreviewLoaded}
                 setIsLoaded={setIsNextItemPreviewLoaded}
+                shortcuts={ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS}
+                actionName={"Next"}
             />
         </div>
     )

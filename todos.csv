@@ -2,6 +2,7 @@ Carousel rework:
   -finish hover for keyboard shortcuts and displaying (use CarouselItemViewerCloseButton as template)
   -add option to customize keyboard shortcuts
   -figure out how to make font customizable for the whole carousel
+  -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -toolbar should not hide when a key is pressed
   -add swipe to scroll functionality to container?
   -add customization for itemViewer.buttons? (fill color like dots);  would need to adjust the background gradient too?
