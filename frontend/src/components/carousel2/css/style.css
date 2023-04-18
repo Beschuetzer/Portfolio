@@ -632,6 +632,24 @@
   fill: #000;
   stroke: #fff;
 }
+.thumbnail-carousel__item-viewer-shortcut-indicator {
+  position: relative;
+}
+.thumbnail-carousel__item-viewer-shortcut-indicator > div:nth-child(1) {
+  padding: 4px 8px;
+  position: absolute;
+  top: -150%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(24, 24, 24);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 12px;
+}
 .thumbnail-carousel__item-viewer-toolbar {
   transition: transform 0.5s ease, opacity 0.5s ease;
   display: flex;

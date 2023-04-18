@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { CLASSNAME__ITEM_VIEWER, ITEM_VIEWER_PLAY_SHORTCUTS, ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS, ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS, MOBILE_PIXEL_WIDTH } from '../../../constants'
+import { CLASSNAME__ITEM_VIEWER, ITEM_VIEWER_CLOSE_SHORTCUTS, ITEM_VIEWER_PLAY_SHORTCUTS, ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS, ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS, MOBILE_PIXEL_WIDTH } from '../../../constants'
 import { getClassname, getFormattedTimeString } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../../context'
@@ -257,7 +257,7 @@ export const CarouselItemViewerToolbar = ({
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
                     <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClickLocal} />
                     <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClickLocal} />
-                    <CarouselItemViewerCloseButton onClick={onClose} />
+                    <CarouselItemViewerCloseButton onClick={onClose} actionName='Exit' shortcuts={ITEM_VIEWER_CLOSE_SHORTCUTS} />
                 </div>
             </div>
             <CarouselItemViewerToolbarPreview

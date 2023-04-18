@@ -4,12 +4,15 @@ import { CURRENT_ITEMS_INITIAL, CURRENT_ITEM_INDEX_INITIAL, useCarouselContext }
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CloseButton } from '../../buttons/CloseButton';
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
+import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
+import { CarouselItemViewerButtonProps } from '../../../types';
 
-type CarouselItemViewerCloseButtonProps = {
-    onClick?: () => void;
-}
+type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerCloseButton = ({
+    actionName = '',
     onClick = () => null,
+    position = 'right',
+    shortcuts = [],
 }: CarouselItemViewerCloseButtonProps) => {
     const { setCurrentItems, setCurrentItemIndex, currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.closeButton || '';
@@ -26,7 +29,12 @@ export const CarouselItemViewerCloseButton = ({
         onClick && onClick()
     }, [setCurrentItemIndex, EMPTY_STRING, onClick]);
 
-    return !!svgHref ? 
-        <CarouselItemViewerCustomButton onClick={onClickLocal} xlinkHref={svgHref}/> :
-        <CloseButton onClick={onClickLocal}/>
+    return (
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} position={position}>
+            {!!svgHref ?
+                <CarouselItemViewerCustomButton onClick={onClickLocal} xlinkHref={svgHref} /> :
+                <CloseButton onClick={onClickLocal} />
+            }
+        </CarouselItemViewerShortcutIndicator>
+    )
 }

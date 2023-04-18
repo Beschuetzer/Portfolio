@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import { CarouselItemViewerShortcutIndicatorProps } from "./components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
 
 //#region Prop Types
 export type ArrowButtonDirection = 'left' | 'right';
@@ -12,6 +13,22 @@ export type ButtonProps = {
     className?: string;
     onClick: () => void;
 }
+
+export type CarouselItemViewerOptions = {
+    /*
+   *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.  
+   *Otherwise, auto-hide occurs when there is no mouse input for this amount of time in milliseconds.  Default is 2.5 seconds.
+   */
+    autoHideToolbarDuration?: number;
+    /*
+    *How for forward/backward the seek buttons move a video.  Default is 5 seconds.
+    */
+    seekAmount?: number;
+}
+
+export type CarouselItemViewerButtonProps = {
+    onClick?: () => void;
+} & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children'>>
 
 export type CarouselNavigationOptions = {
     /*
@@ -168,18 +185,6 @@ export type CarouselThumbnailOptions = {
     *The hexadecimal value for the thumbnail background's text
     */
     textColor?: string;
-}
-
-export type CarouselItemViewerOptions = {
-    /*
-   *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.  
-   *Otherwise, auto-hide occurs when there is no mouse input for this amount of time in milliseconds.  Default is 2.5 seconds.
-   */
-    autoHideToolbarDuration?: number;
-    /*
-    *How for forward/backward the seek buttons move a video.  Default is 5 seconds.
-    */
-    seekAmount?: number;
 }
 
 export type CssStyles = {
