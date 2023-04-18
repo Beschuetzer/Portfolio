@@ -53,6 +53,7 @@ export const CarouselItemViewerToolbar = ({
     const closeButtonRef = useRef<any>(null);
     const pauseButtonRef = useRef<any>(null);
     const playButtonRef = useRef<any>(null);
+    const seekForwardButtonRef = useRef<any>(null);
 
     const [timeStrings, setTimeStrings] = useState<VideoTimeStrings>({
         durationStr: getFormattedTimeString((videoRef?.current?.duration) || -1),
@@ -64,6 +65,7 @@ export const CarouselItemViewerToolbar = ({
     const [showCloseButtonPopup, setShowCloseButtonPopup] = useState(false);
     const [showPauseButtonPopup, setShowPauseButtonPopup] = useState(false);
     const [showPlayButtonPopup, setShowPlayButtonPopup] = useState(false);
+    const [showSeekForwardButtonPopup, setShowSeekForwardButtonPopup] = useState(false);
 
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
@@ -197,6 +199,8 @@ export const CarouselItemViewerToolbar = ({
         const boundHidePauseButton = handleDisplayPopup.bind(null, false, setShowPauseButtonPopup);
         const boundDisplayPlayButton = handleDisplayPopup.bind(null, true, setShowPlayButtonPopup);
         const boundHidePlayButton = handleDisplayPopup.bind(null, false, setShowPlayButtonPopup);
+        const boundDisplaySeekForwardButton = handleDisplayPopup.bind(null, true, setShowSeekForwardButtonPopup);
+        const boundHideSeekForwardButton = handleDisplayPopup.bind(null, false, setShowSeekForwardButtonPopup);
 
         handleAutoHide();
         function handleDisplayPopup(shouldShowPopup: boolean, showPopupSetter: React.Dispatch<React.SetStateAction<boolean>>) {
@@ -253,6 +257,11 @@ export const CarouselItemViewerToolbar = ({
             playButtonRef.current.addEventListener('mouseleave', boundHidePlayButton);
         }
 
+        if (seekForwardButtonRef?.current) {
+            seekForwardButtonRef.current.addEventListener('mouseenter', boundDisplaySeekForwardButton);
+            seekForwardButtonRef.current.addEventListener('mouseleave', boundHideSeekForwardButton);
+        }
+
         return () => {
             window.removeEventListener('mousemove', handleAutoHide);
             window.removeEventListener('click', handleAutoHide);
@@ -284,6 +293,11 @@ export const CarouselItemViewerToolbar = ({
                 playButtonRef.current.removeEventListener('mouseenter', boundDisplayPlayButton);
                 playButtonRef.current.removeEventListener('mouseleave', boundHidePlayButton);
             }
+
+            if (seekForwardButtonRef?.current) {
+                seekForwardButtonRef.current.removeEventListener('mouseenter', boundDisplaySeekForwardButton);
+                seekForwardButtonRef.current.removeEventListener('mouseleave', boundHideSeekForwardButton);
+            }
         }
     }, [
         isVideoPlaying,
@@ -293,6 +307,7 @@ export const CarouselItemViewerToolbar = ({
         closeButtonRef,
         pauseButtonRef,
         playButtonRef,
+        seekForwardButtonRef,
     ]);
     //#endregion
 
@@ -309,7 +324,7 @@ export const CarouselItemViewerToolbar = ({
                             <CarouselItemViewerPlayButton ref={playButtonRef} onClick={onPlayClick} actionName='Play' shortcuts={ITEM_VIEWER_PLAY_SHORTCUTS} position='left' isShortcutVisible={showPlayButtonPopup} />
                         )}
                         <CarouselItemViewerSeekBackButton onClick={onSeekBackClick} actionName='Seek Back' shortcuts={ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS} position='left' />
-                        <CarouselItemViewerSeekForwardButton onClick={onSeekForwardClick} actionName='Seek Forward' shortcuts={ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS} position='left' />
+                        <CarouselItemViewerSeekForwardButton ref={seekForwardButtonRef} onClick={onSeekForwardClick} actionName='Seek Forward' shortcuts={ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS} position='left' isShortcutVisible={showSeekForwardButtonPopup}/>
 
                     </div>
                 ) : null}
