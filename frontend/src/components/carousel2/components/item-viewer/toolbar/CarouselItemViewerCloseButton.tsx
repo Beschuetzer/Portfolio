@@ -11,7 +11,7 @@ type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerCloseButton = ({
     actionName = '',
     onClick = () => null,
-    position = 'right',
+    position = 'center',
     shortcuts = [],
 }: CarouselItemViewerCloseButtonProps) => {
     const { setCurrentItems, setCurrentItemIndex, currentSvgs: currentSvgHrefs } = useCarouselContext();

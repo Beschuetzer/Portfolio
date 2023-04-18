@@ -1,17 +1,24 @@
 import { useCarouselContext } from '../../../context';
+import { CarouselItemViewerButtonProps } from '../../../types';
 import { PauseButton } from '../../buttons/PauseButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
+import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 
-type CarouselItemViewerPauseButtonProps = {
-    onClick: () => void,
-}
+type CarouselItemViewerPauseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerPauseButton = ({
-    onClick
+    actionName = '',
+    onClick = () => null,
+    position = 'center',
+    shortcuts = [],
 }: CarouselItemViewerPauseButtonProps) => {
     const { currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.pauseButton || '';
 
-    return !!svgHref ? 
-    <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref}/> :
-    <PauseButton onClick={onClick}/>
+    return (
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} position={position}>
+            {!!svgHref ?
+                <CarouselItemViewerCustomButton onClick={onClick} xlinkHref={svgHref} /> :
+                <PauseButton onClick={onClick} />}
+        </CarouselItemViewerShortcutIndicator>
+    )
 }
