@@ -56,7 +56,12 @@ export const CarouselItemViewerToolbarPreview = ({
             </div>
             <div className={`${className}-image-description`}>
                 <div>
-                    {capitalize(actionName)} ({getShortcutsString(shortcuts)})
+                    <div>
+                        {actionName.toUpperCase()} 
+                    </div>
+                    <div>
+                        ({getShortcutsString(shortcuts)})
+                    </div>
                 </div>
                 <p>
                     {description || 'No description'}

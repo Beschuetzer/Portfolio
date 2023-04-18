@@ -237,7 +237,7 @@
                 height: var(--height);
                 background-color: rgba($itemViewerBackgroundColor, $itemViewerToolbarPreviewOpacity);
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: space-between;
                 font-size: $carouselFontSize;
                 color: $itemViewerButtonColor;
@@ -245,7 +245,7 @@
                 overflow: hidden;
                 transition: opacity $carouselAnimationDuration ease;
 
-                &>* {
+                & > * {
                     width: calc(#{$itemViewerToolbarPreviewWidth} / 2);
                 }
 
@@ -272,7 +272,6 @@
                         text-align: center;
 
                         & > div {
-                            text-transform: uppercase;
                             color: $itemViewerShortcutPopupColor;
                         }
 

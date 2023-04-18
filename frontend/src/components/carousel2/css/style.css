@@ -712,7 +712,7 @@
   height: var(--height);
   background-color: rgba(10, 10, 10, 0.66);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   font-size: 14px;
   color: #fff;
@@ -742,7 +742,6 @@
   text-align: center;
 }
 .thumbnail-carousel__item-viewer-toolbar-preview-image-description > div {
-  text-transform: uppercase;
   color: #9b9b9b;
 }
 .thumbnail-carousel__item-viewer-toolbar-preview-image-description > p {
