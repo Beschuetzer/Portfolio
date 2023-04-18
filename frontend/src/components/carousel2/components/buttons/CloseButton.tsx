@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { CLASSNAME__BUTTON } from "../../constants";
 import { ButtonProps } from "../../types";
 
@@ -5,11 +6,11 @@ type CloseButtonProps = {
   classNameModifier?: string;
 } & ButtonProps;
 
-export const CloseButton = ({
+export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps> (({
     className = CLASSNAME__BUTTON,
     classNameModifier = '',
     onClick = () => null,
-}: CloseButtonProps) => {
+}, ref) => {
   const classModifierName = `${className}--${classNameModifier}`;
   const leftClassName = `${className}--close-left`;
   const leftModifierClassname = `${leftClassName}-${classNameModifier}`;
@@ -17,9 +18,9 @@ export const CloseButton = ({
   const rightModifierClassname = `${rightClassName}-${classNameModifier}`;
 
   return (
-    <button onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''}`}>
+    <button ref={ref} onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''}`}>
         <div className={`${leftClassName} ${classNameModifier ? leftModifierClassname : ''}`} />
         <div className={`${rightClassName} ${classNameModifier ? rightModifierClassname : ''}`} />
     </button>
   )
-}
+})

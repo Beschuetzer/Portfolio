@@ -46,9 +46,12 @@ export const CarouselItemViewerToolbar = ({
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
     const { options, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
+
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
     const nextButtonRef = useRef<any>(null);
+    const closeButtonRef = useRef<any>(null);
+
     const [timeStrings, setTimeStrings] = useState<VideoTimeStrings>({
         durationStr: getFormattedTimeString((videoRef?.current?.duration) || -1),
         currentTimeStr: getFormattedTimeString((videoRef?.current?.currentTime) || -1),
@@ -56,6 +59,8 @@ export const CarouselItemViewerToolbar = ({
     const [previewDirection, setPreviewDirection] = useState(ToolbarPreviewDirection.none);
     const [isPreviousItemPreviewLoaded, setIsPreviousItemPreviewLoaded] = useState(false);
     const [isNextItemPreviewLoaded, setIsNextItemPreviewLoaded] = useState(false);
+    const [showCloseButtonPopup, setShowCloseButtonPopup] = useState(false);
+
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
     useKeyboardShortcuts([
@@ -182,7 +187,16 @@ export const CarouselItemViewerToolbar = ({
 
     //#region Side Fx
     useEffect(() => {
+        const boundDisplayCloseButton = handleDisplayPopup.bind(null, true, setShowCloseButtonPopup);
+        const boundHideCloseButton = handleDisplayPopup.bind(null, false, setShowCloseButtonPopup);
+
         handleAutoHide();
+        function handleDisplayPopup(shouldShowPopup: boolean, showPopupSetter: React.Dispatch<React.SetStateAction<boolean>>) {
+            console.log({shouldShowPopup, showPopupSetter});
+            
+            showPopupSetter(shouldShowPopup);
+        }
+
         function handleMouseEnterNextButton() {
             setPreviewDirection(ToolbarPreviewDirection.next);
         }
@@ -216,6 +230,11 @@ export const CarouselItemViewerToolbar = ({
             previousButtonRef.current.addEventListener('mouseleave', handleMouseLeaveButton);
         }
 
+        if (closeButtonRef?.current) {
+            closeButtonRef.current.addEventListener('mouseenter', boundDisplayCloseButton);
+            closeButtonRef.current.addEventListener('mouseleave', boundHideCloseButton);
+        }
+
         return () => {
             window.removeEventListener('mousemove', handleAutoHide);
             window.removeEventListener('click', handleAutoHide);
@@ -231,6 +250,11 @@ export const CarouselItemViewerToolbar = ({
             if (previousButtonRef?.current) {
                 previousButtonRef.current.removeEventListener('mouseenter', handleMouseEnterPreviousButton);
                 previousButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
+            }
+
+            if (closeButtonRef?.current) {
+                closeButtonRef.current.removeEventListener('mouseenter', boundDisplayCloseButton);
+                closeButtonRef.current.removeEventListener('mouseleave', boundHideCloseButton);
             }
         }
     }, [handleAutoHide]);
@@ -257,7 +281,7 @@ export const CarouselItemViewerToolbar = ({
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
                     <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClickLocal} actionName='Previous' shortcuts={ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS} />
                     <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClickLocal} actionName='Next' shortcuts={ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS} position='right' />
-                    <CarouselItemViewerCloseButton onClick={onClose} actionName='Exit' shortcuts={ITEM_VIEWER_CLOSE_SHORTCUTS} position='right' />
+                    <CarouselItemViewerCloseButton ref={closeButtonRef} onClick={onClose} actionName='Exit' shortcuts={ITEM_VIEWER_CLOSE_SHORTCUTS} position='right' isShortcutVisible={showCloseButtonPopup} />
                 </div>
             </div>
             <CarouselItemViewerToolbarPreview

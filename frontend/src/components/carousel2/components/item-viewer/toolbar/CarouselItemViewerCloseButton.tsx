@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { forwardRef, useCallback } from 'react'
 import { EMPTY_STRING, ITEM_VIEWER_CLOSE_SHORTCUTS } from '../../../constants';
 import { CURRENT_ITEMS_INITIAL, CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../../context';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
@@ -8,12 +8,13 @@ import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcu
 import { CarouselItemViewerButtonProps } from '../../../types';
 
 type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
-export const CarouselItemViewerCloseButton = ({
+export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps> (({
     actionName = '',
+    isShortcutVisible = false,
     onClick = () => null,
     position = 'center',
     shortcuts = [],
-}: CarouselItemViewerCloseButtonProps) => {
+}, ref) => {
     const { setCurrentItems, setCurrentItemIndex, currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.closeButton || '';
     useKeyboardShortcuts([
@@ -30,11 +31,11 @@ export const CarouselItemViewerCloseButton = ({
     }, [setCurrentItemIndex, EMPTY_STRING, onClick]);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} position={position}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} position={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton onClick={onClickLocal} xlinkHref={svgHref} /> :
-                <CloseButton onClick={onClickLocal} />
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} /> :
+                <CloseButton ref={ref} onClick={onClickLocal} />
             }
         </CarouselItemViewerShortcutIndicator>
     )
-}
+})

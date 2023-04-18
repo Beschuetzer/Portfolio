@@ -4,19 +4,22 @@ import { KeyInput } from '../../../hooks/useKeyboardShortcuts';
 import { capitalize } from '../../../../../helpers';
 
 export type CarouselItemViewerShortcutIndicatorProps = {
+    actionName: string;
     children: ReactNode | ReactNode[];
+    isShortcutVisible?: boolean;
     position?: 'left' | 'center' | 'right';
     shortcuts: KeyInput[];
-    actionName: string;
 }
 
 const className = getClassname({ elementName: 'item-viewer-shortcut-indicator' });
 export const CarouselItemViewerShortcutIndicator = ({
     actionName = '',
     children,
+    isShortcutVisible = false,
     position = 'center',
     shortcuts = [],
 }: CarouselItemViewerShortcutIndicatorProps) => {
+    const hideShortcut = !isShortcutVisible || !actionName || shortcuts.length === 0;
 
     function getShortcutsString() {
         let result = "";
@@ -48,14 +51,15 @@ export const CarouselItemViewerShortcutIndicator = ({
         transform: 'translate(0%, -50%)',
     } as React.CSSProperties : {};
 
-    if (!actionName || shortcuts.length === 0) return null;
     return (
         <div className={className}>
-            <div style={style}>
-                <p>
-                    {capitalize(actionName)} ({getShortcutsString()})
-                </p>
-            </div>
+            {hideShortcut ? null : (
+                <div style={style}>
+                    <p>
+                        {capitalize(actionName)} ({getShortcutsString()})
+                    </p>
+                </div>
+            )}
             {children}
         </div>
     )
