@@ -37,6 +37,7 @@ export enum ValidKey {
     arrowUp = 'arrowUp',
     arrowDown = 'arrowDown',
     arrowRight = 'arrowRight',
+    escape = 'escape',
     spacebar = ' ',
 }
 
@@ -67,7 +68,7 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
             return false;
         }
 
-        function handleKeyDown(e: KeyboardEvent) {
+        function handleKeyDown(e: KeyboardEvent) {            
             if (shouldSkip) return;
 
             let { key: keyPressed, altKey: isAltKeyPressed, ctrlKey: isCtrlKeyPressed, shiftKey: isShiftKeyPressed } = e;

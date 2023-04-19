@@ -6,6 +6,7 @@ import { CloseButton } from '../../buttons/CloseButton';
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { CarouselItemViewerButtonProps } from '../../../types';
+import { exitFullScreen } from '../../../utils';
 
 type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps> (({
@@ -15,7 +16,7 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     position = 'center',
     shortcuts = [],
 }, ref) => {
-    const { currentItems, setCurrentItems, setCurrentItemIndex, currentSvgs } = useCarouselContext();
+    const { currentItems, setCurrentItems, setCurrentItemIndex, currentSvgs, itemViewerRef } = useCarouselContext();
     const svgHref = currentSvgs?.itemViewer?.closeButton || '';
     useKeyboardShortcuts([
         {
@@ -24,10 +25,11 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
         },
     ],  () => !currentItems || currentItems.length === 0);
 
-    const onClickLocal = useCallback(() => {
+    const onClickLocal = useCallback(async () => {
         setCurrentItemIndex(CURRENT_ITEM_INDEX_INITIAL);
         setCurrentItems(CURRENT_ITEMS_INITIAL);
         onClick && onClick()
+        exitFullScreen(itemViewerRef.current);
     }, [setCurrentItemIndex, EMPTY_STRING, onClick]);
 
     return (

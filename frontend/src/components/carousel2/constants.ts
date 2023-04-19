@@ -1,4 +1,3 @@
-import { Key } from "readline";
 import { getClassname } from "./utils";
 import { KeyInput, ModifierKey, ValidKey } from "./hooks/useKeyboardShortcuts";
 
@@ -22,7 +21,7 @@ export const EMPTY_STRING = "";
 export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
 
 //#region ItemViewer Shortcuts
-export const ITEM_VIEWER_CLOSE_SHORTCUTS: KeyInput[] = [ValidKey.c, ValidKey.x];
+export const ITEM_VIEWER_CLOSE_SHORTCUTS: KeyInput[] = [ValidKey.c, ValidKey.x, ValidKey.escape];
 export const ITEM_VIEWER_PLAY_SHORTCUTS: KeyInput[] = [ValidKey.k, ValidKey.spacebar];
 export const ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS: KeyInput[] = [ValidKey.b, [ModifierKey.shift, ValidKey.arrowLeft]];
 export const ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS: KeyInput[] = [ValidKey.f, [ModifierKey.shift, ValidKey.arrowRight]];

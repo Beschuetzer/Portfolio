@@ -1,9 +1,9 @@
 import { CSSProperties, useEffect, useRef } from 'react'
 import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../context';
-import { getClassname, getGuid, toggleFullScreenMode } from '../utils';
+import { getClassname, getGuid } from '../utils';
 import { CarouselInstanceProvider } from './CarouselInstanceProvider';
 import { CarouselItemProps } from './CarouselItem';
-import { CarouselOptions, CarouselSvgs } from '../types';
+import { CarouselOptions } from '../types';
 import { CarouselContent } from './CarouselContent';
 
 export type CarouselProps = {
@@ -24,7 +24,7 @@ export const Carousel = (props: CarouselProps) => {
 		options,
 		onItemChange = () => null,
 	} = props;
-	const { currentItemIndex, currentItems, setCurrentItems, currentCarouselId, itemViewerRef } = useCarouselContext();
+	const { currentItemIndex, currentItems, setCurrentItems, currentCarouselId } = useCarouselContext();
 	const idRef = useRef<string>(getGuid());
 	const carouselContainerRef = useRef<HTMLDivElement>();
 	const isCurrentCarousel = currentCarouselId === idRef.current;
@@ -33,9 +33,8 @@ export const Carousel = (props: CarouselProps) => {
 	//#region Side Fx
 	useEffect(() => {
 		if (!isCurrentCarousel) return;
-		onItemChange && onItemChange(!!currentItems?.[currentItemIndex] || false);
-		toggleFullScreenMode(itemViewerRef.current, currentItemIndex);
-	}, [currentItemIndex, currentItems, isCurrentCarousel, itemViewerRef])
+		onItemChange && onItemChange(!!currentItems?.[currentItemIndex] || false);		
+	}, [currentItemIndex, currentItems, isCurrentCarousel])
 
 	useEffect(() => {
 		if (!isCurrentCarousel || currentItems?.length === items?.length || currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) return;

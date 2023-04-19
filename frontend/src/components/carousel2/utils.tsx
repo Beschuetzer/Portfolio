@@ -86,21 +86,27 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
         [ValidKey.arrowLeft, '←'],
         [ValidKey.arrowRight, '→'],
         [ValidKey.spacebar, 'spacebar'],
+        [ValidKey.escape, 'esc'],
     ] as [string, string][];
 
     let result = "";
     for (let i = 0; i < shortcuts.length; i++) {
         const shortcut = shortcuts[i];
         const isLastItem = i === shortcuts.length - 1;
+
+        if (isLastItem) {
+            result += ' or '
+        }
+
         if (Array.isArray(shortcut)) {
             const replaced = shortcut.map(sc => replaceCharacters(sc, replacements))
             result += replaced.join('+');
         } else {
             result += replaceCharacters(shortcut, replacements);
         }
-
-        if (!isLastItem) {
-            result += ' or '
+        
+        if (shortcuts.length > 2 && !isLastItem) {
+            result += ', '
         }
     }
 
@@ -114,19 +120,20 @@ export function setCssCustomProperty(propertyName: string, newValue: string) {
     );
 }
 
-export async function toggleFullScreenMode(element: HTMLElement | null, currentItemIndex: number) {
+export async function enterFullScreen(element: HTMLElement | null) {
     try {
         const isFullScreenPossible = document.fullscreenEnabled;
-    
-        if (!isFullScreenPossible || !element) return;
         const itemInFullScreenMode = document.fullscreenElement;
-        if (itemInFullScreenMode) {
-            if (currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) {
-                document.exitFullscreen();
-            }
-        } else {
-            await element.requestFullscreen();
-        }
+        if (itemInFullScreenMode || !isFullScreenPossible || !element) return;
+        return await element.requestFullscreen();
     } catch(e) {}
-	
+}
+
+export async function exitFullScreen(element: HTMLElement | null) {
+    try {
+        const isFullScreenPossible = document.fullscreenEnabled;
+        const itemInFullScreenMode = document.fullscreenElement;
+        if (!itemInFullScreenMode || !isFullScreenPossible || !element) return;
+        return await document.exitFullscreen();
+    } catch(e) {}
 }

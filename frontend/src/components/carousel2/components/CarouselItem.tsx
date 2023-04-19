@@ -1,6 +1,6 @@
 import React from 'react'
 import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
-import { convertHexToRgba, getClassname } from '../utils';
+import { convertHexToRgba, enterFullScreen, getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
 import { CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_ITEM_SIZE_DEFAULT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
@@ -37,16 +37,17 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemIndex, setCurrentSvgs: setCurrentSvgHrefs, setOptions, setCurrentCarouselId } = useCarouselContext();
+  const { setCurrentItemIndex, setCurrentSvgs: setCurrentSvgHrefs, setOptions, setCurrentCarouselId, itemViewerRef } = useCarouselContext();
   const { id: carouselId, options } = useCarouselInstanceContext();
   //#endregion
 
   //#region Functions/Handlers
-  function onPress(e: MouseEvent) {
+  async function onPress(e: MouseEvent) {
     setOptions(options || OPTIONS_DEFAULT);
     setCurrentCarouselId(carouselId);
     setCurrentItemIndex(index as any);
     setCurrentSvgHrefs(options?.svgs);
+    enterFullScreen(itemViewerRef.current);
   }
   //#endregion
 

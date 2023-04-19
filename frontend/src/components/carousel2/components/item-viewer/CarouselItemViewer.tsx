@@ -1,18 +1,20 @@
-import { useEffect, useState, forwardRef } from 'react'
+import { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import { CarouselImage } from '../CarouselImage';
 import { CarouselVideo } from '../CarouselVideo';
+import { exitFullScreen, getClassname, getIsVideo } from '../../utils';
 import { CLASSNAME__ITEM_VIEWER } from '../../constants';
-import { useCarouselContext } from '../../context'
-import { getClassname, getIsVideo } from '../../utils';
+import { CURRENT_ITEMS_INITIAL, CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../context';
 
 type CarouselItemViewerProps = {}
 export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps> ((props, ref) => {
     //#region Init
     //todo: needs to be hidden until an item is clicked
-    const { currentItem } = useCarouselContext();
+    const { currentItem, setCurrentItems, setCurrentItemIndex } = useCarouselContext();
     const [isVisible, setisVisible] = useState(Object.keys(currentItem || {})?.length > 0);
     const currentItemSrc = currentItem?.srcMain || '';
     const isVideo = getIsVideo(currentItemSrc);
+    const innerRef = useRef<HTMLElement>(null);
+    useImperativeHandle(ref, () => innerRef.current);
     //#endregion
 
     //#region Function/Handlers
@@ -20,6 +22,26 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps> ((pro
     //#endregion
 
     //#region Side Fx
+    useEffect(() => {
+        function handleFullScreenChange(e: Event) {
+            const target = (e.target || e.currentTarget) as HTMLElement;
+            if (!target?.className?.match(/hidden/)) {
+                setCurrentItemIndex(CURRENT_ITEM_INDEX_INITIAL);
+                setCurrentItems(CURRENT_ITEMS_INITIAL);
+            }
+        }
+
+        if (innerRef.current) {
+            innerRef.current.addEventListener('fullscreenchange', handleFullScreenChange);
+        }
+
+        return () => {
+            if (innerRef.current) {
+                innerRef.current.removeEventListener('fullscreenchange', handleFullScreenChange);
+            }
+        }
+    }, [])
+
     useEffect(() => {
         setisVisible(!!currentItemSrc);
     }, [currentItemSrc])
@@ -32,7 +54,7 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps> ((pro
     const containerClassname = `${getClassname({elementName: CLASSNAME__ITEM_VIEWER})} ${visibilityStyle}`;
   
     return (
-        <div ref={ref} className={containerClassname}>
+        <div ref={innerRef as any} className={containerClassname}>
             <ItemToRender {...currentItem}/>
         </div>
     )
