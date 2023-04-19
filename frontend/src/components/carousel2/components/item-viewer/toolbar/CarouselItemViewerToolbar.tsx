@@ -197,6 +197,19 @@ export const CarouselItemViewerToolbar = ({
     //#endregion
 
     //#region Side Fx
+    useEffect(() => {
+        handleAutoHide();
+
+        window.addEventListener('mousemove', handleAutoHide);
+        window.addEventListener('click', handleAutoHide);
+        
+        return () => {
+            window.removeEventListener('mousemove', handleAutoHide);
+            window.removeEventListener('click', handleAutoHide);
+        }
+    }, [handleAutoHide]);
+
+    //handling events for buttons
     useEffect(() => {     
         const boundDisplayCloseButton = handleDisplayPopup.bind(null, true, setShowCloseButtonPopup);
         const boundHideCloseButton = handleDisplayPopup.bind(null, false, setShowCloseButtonPopup);
@@ -228,11 +241,6 @@ export const CarouselItemViewerToolbar = ({
         function handleVideoEnd() {
             setIsVideoPlaying && setIsVideoPlaying(false);
         }
-
-        handleAutoHide();
-
-        window.addEventListener('mousemove', handleAutoHide);
-        window.addEventListener('click', handleAutoHide);
 
         if (videoRef?.current) {
             videoRef.current.addEventListener('ended', handleVideoEnd);
@@ -274,8 +282,6 @@ export const CarouselItemViewerToolbar = ({
         }
 
         return () => {
-            window.removeEventListener('mousemove', handleAutoHide);
-            window.removeEventListener('click', handleAutoHide);
             if (videoRef?.current) {
                 videoRef.current.removeEventListener('ended', handleVideoEnd);
             }
@@ -317,7 +323,6 @@ export const CarouselItemViewerToolbar = ({
         }
     }, [
         isVideoPlaying,
-        handleAutoHide,
         nextButtonRef,
         previousButtonRef,
         closeButtonRef,
