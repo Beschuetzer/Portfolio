@@ -1,4 +1,5 @@
 Carousel rework:
+  -use ToolbarLogic for useKeyboardShortcuts skipCondition
   -add option to customize keyboard shortcuts
   -figure out how to make font customizable for the whole carousel
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
