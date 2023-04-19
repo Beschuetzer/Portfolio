@@ -48,9 +48,11 @@ type KeyboardShortcut = {
 }
 
 /*
-*If Skip condition resolves to true, then handleKeyDown() is short-circuited
+*If Skip condition resolves to true, then the listener is not added for that render cycle
 */
 export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skipCondition?: () => boolean) => {
+    const shouldSkip = skipCondition && skipCondition();
+
     useEffect(() => {
         function getAreModifiersEqual(modifier: (keyof typeof ModifierKey) | undefined, isCtrlKeyPressed: boolean, isAltKeyPressed: boolean, isShiftKeyPressed: boolean) {
             if (
@@ -66,9 +68,9 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
         }
 
         function handleKeyDown(e: KeyboardEvent) {
-            if (skipCondition && skipCondition()) return;
+            if (shouldSkip) return;
+
             let { key: keyPressed, altKey: isAltKeyPressed, ctrlKey: isCtrlKeyPressed, shiftKey: isShiftKeyPressed } = e;
-            
             for (const keyboardShortcut of keyboardShortcuts) {
                 const { keys, action } = keyboardShortcut;
                 
@@ -77,8 +79,6 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
                     const keyToUse = isKeyArray ? key?.[1] : key;
                     const modifierToUse = isKeyArray ? (key as KeyCombination)?.[0] : undefined;
                     const areKeysEqual = keyPressed.toLowerCase() === keyToUse.toLowerCase();
-                    
-                    console.log({keyPressed, keyToUse, modifierToUse, areKeysEqual});
                     
                     if (!areKeysEqual) continue;
 
@@ -93,6 +93,7 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
             }
         }
 
+        if (shouldSkip) return;
         window.addEventListener('keydown', handleKeyDown);
 
         return () => {

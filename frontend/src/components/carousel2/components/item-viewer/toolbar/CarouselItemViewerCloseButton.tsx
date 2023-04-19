@@ -15,14 +15,14 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     position = 'center',
     shortcuts = [],
 }, ref) => {
-    const { setCurrentItems, setCurrentItemIndex, currentSvgs: currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.itemViewer?.closeButton || '';
+    const { currentItems, setCurrentItems, setCurrentItemIndex, currentSvgs } = useCarouselContext();
+    const svgHref = currentSvgs?.itemViewer?.closeButton || '';
     useKeyboardShortcuts([
         {
             keys: ITEM_VIEWER_CLOSE_SHORTCUTS,
             action: () => onClickLocal(),
         },
-    ]);
+    ],  () => !currentItems || currentItems.length === 0);
 
     const onClickLocal = useCallback(() => {
         setCurrentItemIndex(CURRENT_ITEM_INDEX_INITIAL);

@@ -33,6 +33,7 @@ const CLASSNAME_TOOLBAR = `${getClassname({ elementName: `${CLASSNAME__ITEM_VIEW
 const CLASSNAME_TOOLBAR_LEFT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-left` });
 const CLASSNAME_TOOLBAR_RIGHT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` });
 const CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR = getClassname({ elementName: `item-container--no-toolbar` });
+
 export const CarouselItemViewerToolbar = ({
     description,
     isVideo,
@@ -63,6 +64,7 @@ export const CarouselItemViewerToolbar = ({
     const [previewDirection, setPreviewDirection] = useState(ToolbarPreviewDirection.none);
     const [isPreviousItemPreviewLoaded, setIsPreviousItemPreviewLoaded] = useState(false);
     const [isNextItemPreviewLoaded, setIsNextItemPreviewLoaded] = useState(false);
+
     const [showCloseButtonPopup, setShowCloseButtonPopup] = useState(false);
     const [showPauseButtonPopup, setShowPauseButtonPopup] = useState(false);
     const [showPlayButtonPopup, setShowPlayButtonPopup] = useState(false);
@@ -71,6 +73,7 @@ export const CarouselItemViewerToolbar = ({
 
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
+
     useKeyboardShortcuts([
         {
             keys: ITEM_VIEWER_PLAY_SHORTCUTS,
@@ -92,7 +95,7 @@ export const CarouselItemViewerToolbar = ({
             keys: ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS,
             action: () => onPreviousItemClickLocal(),
         },
-    ]);
+    ], () => !currentItems || currentItems.length === 0);
     //#endregion
 
     //#region Functions/handlers
@@ -194,7 +197,7 @@ export const CarouselItemViewerToolbar = ({
     //#endregion
 
     //#region Side Fx
-    useEffect(() => {
+    useEffect(() => {     
         const boundDisplayCloseButton = handleDisplayPopup.bind(null, true, setShowCloseButtonPopup);
         const boundHideCloseButton = handleDisplayPopup.bind(null, false, setShowCloseButtonPopup);
         const boundDisplayPauseButton = handleDisplayPopup.bind(null, true, setShowPauseButtonPopup);
