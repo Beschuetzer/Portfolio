@@ -6,7 +6,7 @@ import { useCarouselContext } from '../../context'
 import { getClassname, getIsVideo } from '../../utils';
 
 type CarouselItemViewerProps = {}
-export const CarouselItemViewer = forwardRef<HTMLElement, CarouselItemViewerProps> ((props, ref) => {
+export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps> ((props, ref) => {
     //#region Init
     //todo: needs to be hidden until an item is clicked
     const { currentItem } = useCarouselContext();
@@ -32,9 +32,9 @@ export const CarouselItemViewer = forwardRef<HTMLElement, CarouselItemViewerProp
     const containerClassname = `${getClassname({elementName: CLASSNAME__ITEM_VIEWER})} ${visibilityStyle}`;
   
     return (
-        <section ref={ref} className={containerClassname}>
+        <div ref={ref} className={containerClassname}>
             <ItemToRender {...currentItem}/>
-        </section>
+        </div>
     )
     //#endregion
 })

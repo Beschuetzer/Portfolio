@@ -1,5 +1,4 @@
 Carousel rework:
-  -replace all tags with div (setcion/article/etc)
   -add option to customize keyboard shortcuts
   -figure out how to make font customizable for the whole carousel
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
@@ -10,6 +9,7 @@ Carousel rework:
   -add customization for itemViewer.buttons? (fill color like dots);  would need to adjust the background gradient too?
   -add carousel option to adjust button size (i.e. $buttonWidth)
   -add dynamic styling for itemviewer
+  -figure out how to test and implement accessability
 
 React best practices re-work (branch = sitenav_rework)
   -convert backend to an apollo server?

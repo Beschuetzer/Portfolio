@@ -84,7 +84,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   };
   
   return (
-    <article onClick={(e) => onPress(e as any)} className={CLASSNAME__CAROUSEL_ITEM} style={itemStyle}>
+    <div onClick={(e) => onPress(e as any)} className={CLASSNAME__CAROUSEL_ITEM} style={itemStyle}>
       {description ? (
         <div style={thumbnailBackgroundStyle}>
           <p style={{...maxLineCountStyle, ...fontSizeStyle, ...textColorStyle}}>{description}</p>
@@ -95,7 +95,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
         src={srcThumbnail || srcMain}
         alt={description || 'user picture or video'}
       />
-    </article>
+    </div>
   )
   //#endregion
 }
