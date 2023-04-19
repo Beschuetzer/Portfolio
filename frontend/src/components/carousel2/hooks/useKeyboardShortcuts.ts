@@ -4,7 +4,7 @@ export enum ModifierKey {
     ctrl = 'ctrl',
     alt = 'alt',
     shift = 'shift',
-   
+
 }
 export enum ValidKey {
     a = 'a',
@@ -68,29 +68,29 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
             return false;
         }
 
-        function handleKeyDown(e: KeyboardEvent) {            
+        function handleKeyDown(e: KeyboardEvent) {
             if (shouldSkip) return;
 
             let { key: keyPressed, altKey: isAltKeyPressed, ctrlKey: isCtrlKeyPressed, shiftKey: isShiftKeyPressed } = e;
             for (const keyboardShortcut of keyboardShortcuts) {
                 const { keys, action } = keyboardShortcut;
-                
-                for(const key of keys) {
+
+                for (const key of keys) {
                     const isKeyArray = Array.isArray(key);
                     const keyToUse = isKeyArray ? key?.[1] : key;
                     const modifierToUse = isKeyArray ? (key as KeyCombination)?.[0] : undefined;
                     const areKeysEqual = keyPressed.toLowerCase() === keyToUse.toLowerCase();
-                    
+
                     if (!areKeysEqual) continue;
 
                     const areModifiersEqual = getAreModifiersEqual(modifierToUse, isCtrlKeyPressed, isAltKeyPressed, isShiftKeyPressed);
                     if (areKeysEqual && areModifiersEqual) {
                         action && action();
                         return;
-                    }  
+                    }
                 }
-                
-                 
+
+
             }
         }
 
@@ -100,5 +100,5 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         }
-    }, [keyboardShortcuts])
+    }, [keyboardShortcuts, skipCondition])
 }

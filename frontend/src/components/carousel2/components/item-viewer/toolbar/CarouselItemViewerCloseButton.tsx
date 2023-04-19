@@ -7,6 +7,7 @@ import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { CarouselItemViewerButtonProps } from '../../../types';
 import { exitFullScreen } from '../../../utils';
+import { ToolbarLogic } from './ToolbarLogic';
 
 type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps> (({
@@ -17,13 +18,14 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     shortcuts = [],
 }, ref) => {
     const { currentItems, setCurrentItems, setCurrentItemIndex, currentSvgs, itemViewerRef } = useCarouselContext();
+    const toolbarLogic = new ToolbarLogic(currentItems);
     const svgHref = currentSvgs?.itemViewer?.closeButton || '';
     useKeyboardShortcuts([
         {
             keys: ITEM_VIEWER_CLOSE_SHORTCUTS,
             action: () => onClickLocal(),
         },
-    ],  () => !currentItems || currentItems.length === 0);
+    ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
 
     const onClickLocal = useCallback(async () => {
         setCurrentItemIndex(CURRENT_ITEM_INDEX_INITIAL);

@@ -95,7 +95,7 @@ export const CarouselItemViewerToolbar = ({
             keys: ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS,
             action: () => onPreviousItemClickLocal(),
         },
-    ], () => !currentItems || currentItems.length === 0);
+    ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
     //#endregion
 
     //#region Functions/handlers
