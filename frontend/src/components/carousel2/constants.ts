@@ -1,6 +1,6 @@
 import { Key } from "readline";
 import { getClassname } from "./utils";
-import { KeyInput } from "./hooks/useKeyboardShortcuts";
+import { KeyInput, ModifierKey, ValidKey } from "./hooks/useKeyboardShortcuts";
 
 export const CLASSNAME__ROOT = 'thumbnail-carousel';
 export const CLASSNAME__BUTTON = `${CLASSNAME__ROOT}-button`;
@@ -22,10 +22,10 @@ export const EMPTY_STRING = "";
 export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
 
 //#region ItemViewer Shortcuts
-export const ITEM_VIEWER_CLOSE_SHORTCUTS: KeyInput[] = ['c', 'x'];
-export const ITEM_VIEWER_PLAY_SHORTCUTS: KeyInput[] = ['k'];
-export const ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS: KeyInput[] = ['b', ['shift', 'arrowLeft']];
-export const ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS: KeyInput[] = ['f', ['shift', 'arrowRight']];
-export const ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS: KeyInput[] = ['arrowRight', 'n'];
-export const ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS: KeyInput[] = ['arrowLeft', 'p'];
+export const ITEM_VIEWER_CLOSE_SHORTCUTS: KeyInput[] = [ValidKey.c, ValidKey.x];
+export const ITEM_VIEWER_PLAY_SHORTCUTS: KeyInput[] = [ValidKey.k, ValidKey.spacebar];
+export const ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS: KeyInput[] = [ValidKey.b, [ModifierKey.shift, ValidKey.arrowLeft]];
+export const ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS: KeyInput[] = [ValidKey.f, [ModifierKey.shift, ValidKey.arrowRight]];
+export const ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS: KeyInput[] = [ValidKey.arrowRight, ValidKey.n];
+export const ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS: KeyInput[] = [ValidKey.arrowLeft, ValidKey.p];
 //#endregion

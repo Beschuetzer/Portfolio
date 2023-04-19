@@ -37,10 +37,11 @@ export enum ValidKey {
     arrowUp = 'arrowUp',
     arrowDown = 'arrowDown',
     arrowRight = 'arrowRight',
+    spacebar = ' ',
 }
 
-type KeyCombination = [keyof typeof ModifierKey, keyof typeof ValidKey];
-export type KeyInput = (keyof typeof ValidKey) | KeyCombination;
+type KeyCombination = [ModifierKey, ValidKey];
+export type KeyInput = ValidKey | KeyCombination;
 type KeyboardShortcut = {
     action: () => void;
     keys: KeyInput[];
@@ -66,8 +67,8 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
 
         function handleKeyDown(e: KeyboardEvent) {
             if (skipCondition && skipCondition()) return;
-            const { key: keyPressed, altKey: isAltKeyPressed, ctrlKey: isCtrlKeyPressed, shiftKey: isShiftKeyPressed } = e;
-
+            let { key: keyPressed, altKey: isAltKeyPressed, ctrlKey: isCtrlKeyPressed, shiftKey: isShiftKeyPressed } = e;
+            
             for (const keyboardShortcut of keyboardShortcuts) {
                 const { keys, action } = keyboardShortcut;
                 
@@ -76,6 +77,8 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
                     const keyToUse = isKeyArray ? key?.[1] : key;
                     const modifierToUse = isKeyArray ? (key as KeyCombination)?.[0] : undefined;
                     const areKeysEqual = keyPressed.toLowerCase() === keyToUse.toLowerCase();
+                    
+                    console.log({keyPressed, keyToUse, modifierToUse, areKeysEqual});
                     
                     if (!areKeysEqual) continue;
 

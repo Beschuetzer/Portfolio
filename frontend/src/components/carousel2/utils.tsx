@@ -85,6 +85,7 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
         [ValidKey.arrowUp, '↑'],
         [ValidKey.arrowLeft, '←'],
         [ValidKey.arrowRight, '→'],
+        [ValidKey.spacebar, 'spacebar'],
     ] as [string, string][];
 
     let result = "";
