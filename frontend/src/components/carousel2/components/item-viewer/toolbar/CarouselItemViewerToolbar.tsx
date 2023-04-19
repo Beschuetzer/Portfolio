@@ -206,10 +206,7 @@ export const CarouselItemViewerToolbar = ({
         const boundDisplaySeekBackwardButton = handleDisplayPopup.bind(null, true, setShowSeekBackwardButtonPopup);
         const boundHideSeekBackwardButton = handleDisplayPopup.bind(null, false, setShowSeekBackwardButtonPopup);
 
-        handleAutoHide();
         function handleDisplayPopup(shouldShowPopup: boolean, showPopupSetter: React.Dispatch<React.SetStateAction<boolean>>) {
-            console.log({ shouldShowPopup, showPopupSetter });
-
             showPopupSetter(shouldShowPopup);
         }
 
@@ -228,6 +225,8 @@ export const CarouselItemViewerToolbar = ({
         function handleVideoEnd() {
             setIsVideoPlaying && setIsVideoPlaying(false);
         }
+
+        handleAutoHide();
 
         window.addEventListener('mousemove', handleAutoHide);
         window.addEventListener('click', handleAutoHide);

@@ -24,8 +24,8 @@ export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
 //#region ItemViewer Shortcuts
 export const ITEM_VIEWER_CLOSE_SHORTCUTS: KeyInput[] = ['c', 'x'];
 export const ITEM_VIEWER_PLAY_SHORTCUTS: KeyInput[] = ['k'];
-export const ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS: KeyInput[] = ['b', ['arrowLeft', 'shift']];
-export const ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS: KeyInput[] = ['f', ['arrowRight', 'shift']];
+export const ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS: KeyInput[] = ['b', ['shift', 'arrowLeft']];
+export const ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS: KeyInput[] = ['f', ['shift', 'arrowRight']];
 export const ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS: KeyInput[] = ['arrowRight', 'n'];
 export const ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS: KeyInput[] = ['arrowLeft', 'p'];
 //#endregion

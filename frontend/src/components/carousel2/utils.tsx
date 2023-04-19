@@ -1,6 +1,7 @@
+import { replaceCharacters } from "../../helpers";
 import { CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, CLASSNAME__ROOT, VIDEO_EXTENSIONS } from "./constants";
 import { CURRENT_ITEM_INDEX_INITIAL } from "./context";
-import { KeyInput } from "./hooks/useKeyboardShortcuts";
+import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
 import { Point } from "./types";
 type GetClassname = {
     elementName?: string;
@@ -79,14 +80,22 @@ export function getGuid() {
 }
 
 export function getShortcutsString(shortcuts: KeyInput[]) {
+    const replacements = [
+        [ValidKey.arrowDown, '↓'],
+        [ValidKey.arrowUp, '↑'],
+        [ValidKey.arrowLeft, '←'],
+        [ValidKey.arrowRight, '→'],
+    ] as [string, string][];
+
     let result = "";
     for (let i = 0; i < shortcuts.length; i++) {
         const shortcut = shortcuts[i];
         const isLastItem = i === shortcuts.length - 1;
         if (Array.isArray(shortcut)) {
-            result += shortcut.join('+');
+            const replaced = shortcut.map(sc => replaceCharacters(sc, replacements))
+            result += replaced.join('+');
         } else {
-            result += shortcut;
+            result += replaceCharacters(shortcut, replacements);
         }
 
         if (!isLastItem) {

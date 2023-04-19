@@ -6,7 +6,7 @@ export enum ModifierKey {
     shift = 'shift',
    
 }
-enum ValidKey {
+export enum ValidKey {
     a = 'a',
     b = 'b',
     c = 'c',
@@ -39,7 +39,7 @@ enum ValidKey {
     arrowRight = 'arrowRight',
 }
 
-type KeyCombination = [keyof typeof ValidKey, keyof typeof ModifierKey];
+type KeyCombination = [keyof typeof ModifierKey, keyof typeof ValidKey];
 export type KeyInput = (keyof typeof ValidKey) | KeyCombination;
 type KeyboardShortcut = {
     action: () => void;
@@ -73,8 +73,8 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
                 
                 for(const key of keys) {
                     const isKeyArray = Array.isArray(key);
-                    const keyToUse = isKeyArray ? key?.[0] : key;
-                    const modifierToUse = isKeyArray ? (key as KeyCombination)?.[1] : undefined;
+                    const keyToUse = isKeyArray ? key?.[1] : key;
+                    const modifierToUse = isKeyArray ? (key as KeyCombination)?.[0] : undefined;
                     const areKeysEqual = keyPressed.toLowerCase() === keyToUse.toLowerCase();
                     
                     if (!areKeysEqual) continue;
