@@ -5,6 +5,7 @@ Carousel rework:
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -toolbar should not hide when a key is pressed
   -make toolbar text unselectable?
+  -add lazy loading of items (only render the items up to the furtherst currentPage)?
   -add swipe to scroll functionality to container?
   -add customization for itemViewer.buttons? (fill color like dots);  would need to adjust the background gradient too?
   -add carousel option to adjust button size (i.e. $buttonWidth)
