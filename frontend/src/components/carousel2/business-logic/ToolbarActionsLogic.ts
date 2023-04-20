@@ -14,6 +14,8 @@ type GetAllResonse = {
 }
 type GetIndividualResponse = Required<CarouselAction>;
 export class ToolbarActionsLogic {
+    public isPauseSeparate: boolean;
+
     private _itemViewerShortcuts: CarouselItemViewerActions;
     private _doNothing = () => null;
     
@@ -55,6 +57,8 @@ export class ToolbarActionsLogic {
             onActionCompleted: this._itemViewerShortcuts.seekForwards?.onActionCompleted,
             keys: this._itemViewerShortcuts.seekForwards?.keys || ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS,
         }
+
+        this.isPauseSeparate =  !!this._itemViewerShortcuts.pause?.keys;
     }
 
     getAll(): GetAllResonse {

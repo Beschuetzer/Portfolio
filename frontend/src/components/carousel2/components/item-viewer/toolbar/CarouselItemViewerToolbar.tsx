@@ -75,11 +75,14 @@ export const CarouselItemViewerToolbar = ({
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
     const actionsLogic = new ToolbarActionsLogic(options);
-
     useKeyboardShortcuts([
         {
             keys: actionsLogic.getPlay().keys,
-            action: handleKeyboardPlay,
+            action: actionsLogic.isPauseSeparate ? handleKeyboardPlay : handlePlayPauseUnited,
+        },
+        {
+            keys: actionsLogic.getPause().keys,
+            action: handleKeyboardPause,
         },
         {
             keys: actionsLogic.getSeekBackwards().keys,
@@ -127,9 +130,20 @@ export const CarouselItemViewerToolbar = ({
         }
     }, [currentItemIndex, CURRENT_ITEM_INDEX_INITIAL, itemContainerRef, options, shouldHideTimoutRef, CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR]);
 
+    function handlePlayPauseUnited() {
+        if (isVideoPlaying) {
+            onPauseClick();
+        } else {
+            onPlayClick();
+        }
+    }
+
+    function handleKeyboardPause() {
+        onPauseClick();
+    }
+
     function handleKeyboardPlay() {
-        setIsVideoPlaying && setIsVideoPlaying((current) => !current);
-        handleAutoHide();
+        onPlayClick();
     }
 
     function handleKeyboardSeekBackward() {
@@ -162,7 +176,7 @@ export const CarouselItemViewerToolbar = ({
 
     const onPauseClick = useCallback(() => {
         if (videoRef?.current && setIsVideoPlaying) {
-            setIsVideoPlaying((prev) => !prev);
+            setIsVideoPlaying(false);
             videoRef?.current.pause();
         }
         handleAutoHide();
@@ -171,7 +185,7 @@ export const CarouselItemViewerToolbar = ({
 
     const onPlayClick = useCallback(() => {
         if (videoRef?.current && setIsVideoPlaying) {
-            setIsVideoPlaying((prev) => !prev);
+            setIsVideoPlaying(true);
             videoRef?.current.play();
         }
         handleAutoHide();
