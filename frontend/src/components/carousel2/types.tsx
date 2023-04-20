@@ -55,53 +55,53 @@ export type CarouselNavigationProps = {
 export type CarouselOptions = {
     itemViewer?: CarouselItemViewerOptions;
     navigation?: CarouselNavigationOptions;
-    shortcuts?: CarouselShortcuts;
+    shortcuts?: CarouselActions;
     svgs?: CarouselSvgs;
     thumbnail?: CarouselThumbnailOptions;
 }
 
-//#region Shortcuts
-export type CarouselShortcut = {
+//#region Actions
+export type CarouselAction = {
     /*
     *Runs after the shortcut's default action has been executed
     */
-    onActionCompleted?: CarouselShortcutOnActionCompleted;
+    onActionCompleted?: CarouselActionOnActionCompleted;
 } & Required<Pick<KeyboardShortcut, 'keys'>>
-export type CarouselShortcutOnActionCompleted = () => void;
+export type CarouselActionOnActionCompleted = () => void;
 
-export type CarouselItemViewerShortcuts = {
+export type CarouselItemViewerActions = {
     /*
     *Additional shortcuts for closing the item-viewer (full-screen mode).  The esc key is a hard-coded value here.
     */
-    close?: CarouselShortcut;
+    close?: CarouselAction;
     /*
     *Shortcuts for moving to the next item item in the item-viewer (full-screen mode).  Overrides defaults.
     */
-    nextItem?: CarouselShortcut;
+    nextItem?: CarouselAction;
     /*
     *Shortcuts for pausing a video in the item-viewer (full-screen mode).  Overrides defaults.
     */
-    pause?: CarouselShortcut;
+    pause?: CarouselAction;
     /*
     *Shortcuts for playing a video in the item-viewer (full-screen mode).  Overrides defaults.
     */
-    play?: CarouselShortcut;
+    play?: CarouselAction;
     /*
     *Shortcuts for moving to the previous item item in the item-viewer (full-screen mode).  Overrides defaults.
     */
-    previousItem?: CarouselShortcut;
+    previousItem?: CarouselAction;
      /*
     *Shortcuts for seeking a video backward in the item-viewer (full-screen mode).  Overrides defaults.
     */
-    seekBackwards?: CarouselShortcut;
+    seekBackwards?: CarouselAction;
     /*
     *Shortcuts for seeking a video forward in the item-viewer (full-screen mode).  Overrides defaults.
     */
-    seekForwards?: CarouselShortcut;
+    seekForwards?: CarouselAction;
 }
 
-export type CarouselShortcuts = {
-    itemViewer?: CarouselItemViewerShortcuts;
+export type CarouselActions = {
+    itemViewer?: CarouselItemViewerActions;
 }
 //#endregion
 

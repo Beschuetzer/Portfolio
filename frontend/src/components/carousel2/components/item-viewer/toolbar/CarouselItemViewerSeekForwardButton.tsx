@@ -4,7 +4,7 @@ import { CarouselItemViewerButtonProps } from '../../../types';
 import { SeekForwardButton } from '../../buttons/SeekForwardButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
-import { ShortcutLogic } from '../../../business-logic/ShortcutLogic';
+import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 
 type CarouselItemViewerSeekForwardButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerSeekForwardButton = forwardRef<any, CarouselItemViewerSeekForwardButtonProps>(({
@@ -16,7 +16,7 @@ export const CarouselItemViewerSeekForwardButton = forwardRef<any, CarouselItemV
 }, ref) => {
     const { currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.seekForwardButton || '';
-    const seekForwardShortcuts = new ShortcutLogic(options).getSeekForwards();
+    const seekForwardShortcuts = new ToolbarActionsLogic(options).getSeekForwards();
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={seekForwardShortcuts.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>

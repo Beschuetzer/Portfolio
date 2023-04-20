@@ -25,7 +25,7 @@ import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/components/Carousel";
 import { ModifierKey, ValidKey } from "../../../components/carousel2/hooks/useKeyboardShortcuts";
-import { CarouselShortcuts } from "../../../components/carousel2/types";
+import { CarouselActions } from "../../../components/carousel2/types";
 
 //#region Carousel Items
 const itemViewerButtons = {
@@ -86,7 +86,7 @@ const carouselShortcuts = {
 			},
 		},
 	}
-} as CarouselShortcuts
+} as CarouselActions
 
 const items = [
 	{

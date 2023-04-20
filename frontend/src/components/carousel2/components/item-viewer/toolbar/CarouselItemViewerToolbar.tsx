@@ -15,7 +15,7 @@ import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekFor
 import { CarouselItemViewerToolbarPreview, ToolbarPreviewDirection } from './CarouselItemViewerToolbarPreview'
 import { ToolbarLogic } from '../../../business-logic/ToolbarLogic'
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
-import { ShortcutLogic } from '../../../business-logic/ShortcutLogic'
+import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -74,27 +74,27 @@ export const CarouselItemViewerToolbar = ({
 
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
-    const shortCutLogic = new ShortcutLogic(options);
+    const actionsLogic = new ToolbarActionsLogic(options);
 
     useKeyboardShortcuts([
         {
-            keys: shortCutLogic.getPlay().keys,
+            keys: actionsLogic.getPlay().keys,
             action: handleKeyboardPlay,
         },
         {
-            keys: shortCutLogic.getSeekBackwards().keys,
+            keys: actionsLogic.getSeekBackwards().keys,
             action: handleKeyboardSeekBackward,
         },
         {
-            keys: shortCutLogic.getSeekForwards().keys,
+            keys: actionsLogic.getSeekForwards().keys,
             action: handleKeyboardSeekForward,
         },
         {
-            keys: shortCutLogic.getNextItem().keys,
+            keys: actionsLogic.getNextItem().keys,
             action: () => onNextItemClickLocal(),
         },
         {
-            keys: shortCutLogic.getPreviousItem().keys,
+            keys: actionsLogic.getPreviousItem().keys,
             action: () => onPreviousItemClickLocal(),
         },
     ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
@@ -392,7 +392,7 @@ export const CarouselItemViewerToolbar = ({
                 }
                 isLoaded={isPreviousItemPreviewLoaded}
                 setIsLoaded={setIsPreviousItemPreviewLoaded}
-                shortcuts={shortCutLogic.getPreviousItem().keys}
+                shortcuts={actionsLogic.getPreviousItem().keys}
                 actionName={"Previous"}
             />
             <CarouselItemViewerToolbarPreview
@@ -403,7 +403,7 @@ export const CarouselItemViewerToolbar = ({
                 }
                 isLoaded={isNextItemPreviewLoaded}
                 setIsLoaded={setIsNextItemPreviewLoaded}
-                shortcuts={shortCutLogic.getNextItem().keys}
+                shortcuts={actionsLogic.getNextItem().keys}
                 actionName={"Next"}
             />
         </div>

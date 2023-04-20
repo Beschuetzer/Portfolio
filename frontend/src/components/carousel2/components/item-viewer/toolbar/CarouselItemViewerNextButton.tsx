@@ -4,7 +4,7 @@ import { NextButton } from '../../buttons/NextButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerButtonProps } from '../../../types';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
-import { ShortcutLogic } from '../../../business-logic/ShortcutLogic';
+import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 
 type CarouselItemViewerNextButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNextButtonProps>(({
@@ -15,7 +15,7 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
 }, ref) => {
     const { currentSvgs, toolbarLogic } = useCarouselContext();
     const svgHref = currentSvgs?.itemViewer?.nextButton || '';
-    const nextItemShortcuts = new ShortcutLogic(options).getNextItem();
+    const nextItemShortcuts = new ToolbarActionsLogic(options).getNextItem();
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={nextItemShortcuts.keys} shortcutPosition={position}>

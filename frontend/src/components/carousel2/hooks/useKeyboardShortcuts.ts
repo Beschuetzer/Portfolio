@@ -44,6 +44,9 @@ export enum ValidKey {
 type KeyCombination = [ModifierKey, ValidKey];
 export type KeyInput = ValidKey | KeyCombination;
 export type KeyboardShortcut = {
+    /*
+    *This is what happens when you press any one of the key/key combinations specified in the 'keys' field
+    */
     action: () => void;
     /*
     *An example of a multi-key shortcut: [ValidKey.a, [ModifierKey.shift, ValidKey.arrowDown]].  The first is a ValidKey and the second a KeyCombination
