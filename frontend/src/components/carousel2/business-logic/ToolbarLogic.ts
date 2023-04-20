@@ -1,4 +1,4 @@
-import { CarouselItemProps } from "../../CarouselItem";
+import { CarouselItemProps } from "../components/CarouselItem";
 
 export class ToolbarLogic {
     constructor(public currentItems: CarouselItemProps[]) {

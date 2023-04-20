@@ -7,8 +7,8 @@ import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { CarouselItemViewerButtonProps } from '../../../types';
 import { exitFullScreen } from '../../../utils';
-import { ToolbarLogic } from './ToolbarLogic';
-import { ShortcutLogic } from './ToolbarShortcutLogic';
+import { ToolbarLogic } from '../../../business-logic/ToolbarLogic';
+import { ShortcutLogic } from '../../../business-logic/ShortcutLogic';
 
 type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps> (({

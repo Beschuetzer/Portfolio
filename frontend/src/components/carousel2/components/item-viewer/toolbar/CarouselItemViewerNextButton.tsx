@@ -4,7 +4,7 @@ import { NextButton } from '../../buttons/NextButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerButtonProps } from '../../../types';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
-import { ShortcutLogic } from './ToolbarShortcutLogic';
+import { ShortcutLogic } from '../../../business-logic/ShortcutLogic';
 
 type CarouselItemViewerNextButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNextButtonProps>(({

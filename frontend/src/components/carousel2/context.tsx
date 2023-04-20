@@ -5,7 +5,7 @@ import { EMPTY_STRING } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
 import { CarouselOptions, CarouselSvgs } from "./types";
-import { ToolbarLogic } from "./components/item-viewer/toolbar/ToolbarLogic";
+import { ToolbarLogic } from "./business-logic/ToolbarLogic";
 
 type CarouselContextProps = {
     children: ReactNode | ReactNode[];

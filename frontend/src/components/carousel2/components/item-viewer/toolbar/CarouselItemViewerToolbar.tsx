@@ -13,9 +13,9 @@ import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousBu
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
 import { CarouselItemViewerToolbarPreview, ToolbarPreviewDirection } from './CarouselItemViewerToolbarPreview'
-import { ToolbarLogic } from './ToolbarLogic'
+import { ToolbarLogic } from '../../../business-logic/ToolbarLogic'
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
-import { ShortcutLogic } from './ToolbarShortcutLogic'
+import { ShortcutLogic } from '../../../business-logic/ShortcutLogic'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
