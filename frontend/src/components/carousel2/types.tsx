@@ -63,7 +63,8 @@ export type CarouselOptions = {
 //#region Actions
 export type CarouselAction = {
     /*
-    *Runs after the shortcut's default action has been executed
+    *Runs after the the action's default action has been executed.  
+    *The 'play' field is called after pressing a shortcut for the play button or pressing the play button
     */
     onActionCompleted?: CarouselActionOnActionCompleted;
 } & Required<Pick<KeyboardShortcut, 'keys'>>

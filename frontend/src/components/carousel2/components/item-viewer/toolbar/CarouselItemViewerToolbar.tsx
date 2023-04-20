@@ -147,6 +147,7 @@ export const CarouselItemViewerToolbar = ({
         resetPreviewItems();
         onNextItemClick && onNextItemClick();
         handleAutoHide();
+        actionsLogic.getNextItem().onActionCompleted();
     }, [currentItemIndex, currentItems, setCurrentItemIndex, handleAutoHide, onNextItemClick])
 
     const onPreviousItemClickLocal = useCallback(() => {
@@ -156,6 +157,7 @@ export const CarouselItemViewerToolbar = ({
         resetPreviewItems();
         onPreviousItemClick && onPreviousItemClick();
         handleAutoHide();
+        actionsLogic.getPreviousItem().onActionCompleted();
     }, [currentItemIndex, currentItems, setCurrentItemIndex])
 
     const onPauseClick = useCallback(() => {
@@ -164,6 +166,7 @@ export const CarouselItemViewerToolbar = ({
             videoRef?.current.pause();
         }
         handleAutoHide();
+        actionsLogic.getPause().onActionCompleted();
     }, [setIsVideoPlaying]);
 
     const onPlayClick = useCallback(() => {
@@ -172,6 +175,7 @@ export const CarouselItemViewerToolbar = ({
             videoRef?.current.play();
         }
         handleAutoHide();
+        actionsLogic.getPlay().onActionCompleted();
     }, [setIsVideoPlaying]);
 
     const onSeekBackClick = useCallback(() => {
@@ -179,6 +183,7 @@ export const CarouselItemViewerToolbar = ({
             videoRef.current.currentTime -= (options.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
+        actionsLogic.getSeekBackwards().onActionCompleted();
     }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT]);
 
     const onSeekForwardClick = useCallback(() => {
@@ -186,6 +191,7 @@ export const CarouselItemViewerToolbar = ({
             videoRef.current.currentTime += (options.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
+        actionsLogic.getSeekForwards().onActionCompleted();
     }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT])
 
     function onToolbarClick(e: MouseEvent) {
