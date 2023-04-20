@@ -29,8 +29,6 @@ export const CarouselItemViewerToolbarPreview = ({
     //#region Init
     const { description, srcMain, srcThumbnail } = itemToShow || {};
     //#endregion
-
-    console.log({shortcuts, show});
     
     //#region JSX
     const className = getClassname({ elementName: 'item-viewer-toolbar-preview' })
