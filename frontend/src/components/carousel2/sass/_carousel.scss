@@ -1,6 +1,7 @@
 @use "sass:color";
 
 .#{$carouselClassname} {
+    @include unselectable();
     width: 100%;
     overflow: hidden;
     // margin-top: $carouselItemHoverTranslateUpAmount;
@@ -111,6 +112,10 @@
             &>div {
                 bottom: 0 !important;
             }
+        }
+          
+        &:hover, & *:hover {
+            cursor: pointer;
         }
     }
 
