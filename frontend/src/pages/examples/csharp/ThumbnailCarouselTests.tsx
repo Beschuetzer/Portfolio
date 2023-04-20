@@ -45,38 +45,44 @@ const carouselShortcuts = {
 	itemViewer: {
 		close: {
 			keys: [ValidKey.l, [ModifierKey.alt, ValidKey.l]],
-			onActionCompletion() {
+			onActionCompleted() {
 				console.log('close - it works as method')
 			},
 		},
-		forward: {
-			keys: [ValidKey.o, [ModifierKey.alt, ValidKey.o]],
-			onActionCompletion: () => {
-				console.log('forward - it works as field')
-			},
-		},
-		next: {
+		nextItem: {
 			keys: [ValidKey.e, [ModifierKey.alt, ValidKey.e]],
-			onActionCompletion() {
+			onActionCompleted() {
 				console.log('next - after')
 			},
 		},
 		pause: {
 			keys: [ValidKey.a, [ModifierKey.alt, ValidKey.a]],
-			onActionCompletion() {
+			onActionCompleted() {
 				console.log('pause - after')
 			},
 		},
 		play: {
 			keys: [ValidKey.p, [ModifierKey.alt, ValidKey.p]],
-			onActionCompletion() {
+			onActionCompleted() {
 				console.log('play - after')
 			},
 		},
-		previous: {
+		previousItem: {
 			keys: [ValidKey.r, [ModifierKey.alt, ValidKey.r]],
-			onActionCompletion() {
+			onActionCompleted() {
 				console.log('previous - after')
+			},
+		},
+		seekBackwards: {
+			keys: [ValidKey.k, [ModifierKey.alt, ValidKey.k]],
+			onActionCompleted: () => {
+				console.log('backward - it works as field')
+			},
+		},
+		seekForwards: {
+			keys: [ValidKey.w, [ModifierKey.alt, ValidKey.w]],
+			onActionCompleted: () => {
+				console.log('forward - it works as field')
 			},
 		},
 	}

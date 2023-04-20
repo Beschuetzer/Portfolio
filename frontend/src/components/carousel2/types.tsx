@@ -60,41 +60,50 @@ export type CarouselOptions = {
     thumbnail?: CarouselThumbnailOptions;
 }
 
+//#region Shortcuts
 export type CarouselShortcut = {
     /*
     *Runs after the shortcut's default action has been executed
     */
-    onActionCompletion?: () => void;
+    onActionCompleted?: CarouselShortcutOnActionCompleted;
 } & Required<Pick<KeyboardShortcut, 'keys'>>
+export type CarouselShortcutOnActionCompleted = () => void;
+
+export type CarouselItemViewerShortcuts = {
+    /*
+    *Additional shortcuts for closing the item-viewer (full-screen mode).  The esc key is a hard-coded value here.
+    */
+    close?: CarouselShortcut;
+    /*
+    *Shortcuts for moving to the next item item in the item-viewer (full-screen mode).  Overrides defaults.
+    */
+    nextItem?: CarouselShortcut;
+    /*
+    *Shortcuts for pausing a video in the item-viewer (full-screen mode).  Overrides defaults.
+    */
+    pause?: CarouselShortcut;
+    /*
+    *Shortcuts for playing a video in the item-viewer (full-screen mode).  Overrides defaults.
+    */
+    play?: CarouselShortcut;
+    /*
+    *Shortcuts for moving to the previous item item in the item-viewer (full-screen mode).  Overrides defaults.
+    */
+    previousItem?: CarouselShortcut;
+     /*
+    *Shortcuts for seeking a video backward in the item-viewer (full-screen mode).  Overrides defaults.
+    */
+    seekBackwards?: CarouselShortcut;
+    /*
+    *Shortcuts for seeking a video forward in the item-viewer (full-screen mode).  Overrides defaults.
+    */
+    seekForwards?: CarouselShortcut;
+}
 
 export type CarouselShortcuts = {
-    itemViewer?: {
-        /*
-        *Additional shortcuts for closing the item-viewer (full-screen mode).  The esc key is a hard-coded value here.
-        */
-        close?: CarouselShortcut;
-        /*
-        *Shortcuts for moving a video forward in the item-viewer (full-screen mode).  Overrides defaults.
-        */
-        forward?: CarouselShortcut;
-        /*
-        *Shortcuts for moving to the next item item in the item-viewer (full-screen mode).  Overrides defaults.
-        */
-        next?: CarouselShortcut;
-        /*
-        *Shortcuts for pausing a video in the item-viewer (full-screen mode).  Overrides defaults.
-        */
-        pause?: CarouselShortcut;
-        /*
-        *Shortcuts for playing a video in the item-viewer (full-screen mode).  Overrides defaults.
-        */
-        play?: CarouselShortcut;
-        /*
-        *Shortcuts for moving to the previous item item in the item-viewer (full-screen mode).  Overrides defaults.
-        */
-        previous?: CarouselShortcut;
-    }
+    itemViewer?: CarouselItemViewerShortcuts;
 }
+//#endregion
 
 export type CarouselSvgHref = {
     /*

@@ -25,6 +25,6 @@ export const ITEM_VIEWER_CLOSE_SHORTCUTS: KeyInput[] = [ValidKey.c, ValidKey.x, 
 export const ITEM_VIEWER_PLAY_SHORTCUTS: KeyInput[] = [ValidKey.k, ValidKey.spacebar];
 export const ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS: KeyInput[] = [ValidKey.b, [ModifierKey.shift, ValidKey.arrowLeft]];
 export const ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS: KeyInput[] = [ValidKey.f, [ModifierKey.shift, ValidKey.arrowRight]];
-export const ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS: KeyInput[] = [ValidKey.arrowRight, ValidKey.n];
-export const ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS: KeyInput[] = [ValidKey.arrowLeft, ValidKey.p];
+export const ITEM_VIEWER_NEXT_ITEM_SHORTCUTS: KeyInput[] = [ValidKey.arrowRight, ValidKey.n];
+export const ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS: KeyInput[] = [ValidKey.arrowLeft, ValidKey.p];
 //#endregion

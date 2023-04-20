@@ -3,6 +3,7 @@ import { LoadingSpinner } from '../../LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../../../constants';
 import { CarouselItemProps } from '../../CarouselItem';
 import { CarouselItemViewerButtonProps } from '../../../types';
+import { KeyInput } from '../../../hooks/useKeyboardShortcuts';
 
 export enum ToolbarPreviewDirection {
     none,
@@ -13,8 +14,9 @@ type CarouselItemViewerToolbarPreviewProps = {
     isLoaded: boolean;
     itemToShow: CarouselItemProps;
     setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+    shortcuts: KeyInput[];
     show: boolean;
-} & Partial<Pick<CarouselItemViewerButtonProps, 'actionName' | 'shortcuts'>>
+} & Partial<Pick<CarouselItemViewerButtonProps, 'actionName'>>
 
 export const CarouselItemViewerToolbarPreview = ({
     actionName = '',
@@ -28,6 +30,8 @@ export const CarouselItemViewerToolbarPreview = ({
     const { description, srcMain, srcThumbnail } = itemToShow || {};
     //#endregion
 
+    console.log({shortcuts, show});
+    
     //#region JSX
     const className = getClassname({ elementName: 'item-viewer-toolbar-preview' })
     return (

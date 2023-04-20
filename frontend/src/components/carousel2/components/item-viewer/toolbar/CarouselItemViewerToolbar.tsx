@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { CLASSNAME__ITEM_VIEWER, ITEM_VIEWER_CLOSE_SHORTCUTS, ITEM_VIEWER_PLAY_SHORTCUTS, ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS, ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS, MOBILE_PIXEL_WIDTH } from '../../../constants'
+import { CLASSNAME__ITEM_VIEWER, ITEM_VIEWER_PLAY_SHORTCUTS, ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS, ITEM_VIEWER_NEXT_ITEM_SHORTCUTS, ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS, MOBILE_PIXEL_WIDTH } from '../../../constants'
 import { getClassname, getFormattedTimeString } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../../context'
@@ -15,6 +15,7 @@ import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekFor
 import { CarouselItemViewerToolbarPreview, ToolbarPreviewDirection } from './CarouselItemViewerToolbarPreview'
 import { ToolbarLogic } from './ToolbarLogic'
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
+import { ShortcutLogic } from './ToolbarShortcutLogic'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -73,26 +74,27 @@ export const CarouselItemViewerToolbar = ({
 
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
+    const shortCutLogic = new ShortcutLogic(options);
 
     useKeyboardShortcuts([
         {
-            keys: ITEM_VIEWER_PLAY_SHORTCUTS,
-            action: handleKeyboardPlay
+            keys: shortCutLogic.getPlay().keys,
+            action: handleKeyboardPlay,
         },
         {
-            keys: ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS,
-            action: handleKeyboardSeekBackward
+            keys: shortCutLogic.getSeekBackwards().keys,
+            action: handleKeyboardSeekBackward,
         },
         {
-            keys: ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS,
-            action: handleKeyboardSeekForward
+            keys: shortCutLogic.getSeekForwards().keys,
+            action: handleKeyboardSeekForward,
         },
         {
-            keys: ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS,
+            keys: shortCutLogic.getNextItem().keys,
             action: () => onNextItemClickLocal(),
         },
         {
-            keys: ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS,
+            keys: shortCutLogic.getPreviousItem().keys,
             action: () => onPreviousItemClickLocal(),
         },
     ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
@@ -202,7 +204,7 @@ export const CarouselItemViewerToolbar = ({
 
         window.addEventListener('mousemove', handleAutoHide);
         window.addEventListener('click', handleAutoHide);
-        
+
         return () => {
             window.removeEventListener('mousemove', handleAutoHide);
             window.removeEventListener('click', handleAutoHide);
@@ -210,7 +212,7 @@ export const CarouselItemViewerToolbar = ({
     }, [handleAutoHide]);
 
     //handling events for buttons
-    useEffect(() => {     
+    useEffect(() => {
         const boundDisplayCloseButton = handleDisplayPopup.bind(null, true, setShowCloseButtonPopup);
         const boundHideCloseButton = handleDisplayPopup.bind(null, false, setShowCloseButtonPopup);
         const boundDisplayPauseButton = handleDisplayPopup.bind(null, true, setShowPauseButtonPopup);
@@ -345,18 +347,24 @@ export const CarouselItemViewerToolbar = ({
                         ) : (
                             <CarouselItemViewerPlayButton ref={playButtonRef} onClick={onPlayClick} actionName='Play' shortcuts={ITEM_VIEWER_PLAY_SHORTCUTS} shortcutPosition='left' isShortcutVisible={showPlayButtonPopup} />
                         )}
-                        <CarouselItemViewerSeekBackButton ref={seekBackwardButtonRef} onClick={onSeekBackClick} actionName='Seek Back' shortcuts={ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS} shortcutPosition='left' isShortcutVisible={showSeekBackwardButtonPopup}/>
-                        <CarouselItemViewerSeekForwardButton ref={seekForwardButtonRef} onClick={onSeekForwardClick} actionName='Seek Forward' shortcuts={ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS} shortcutPosition='left' isShortcutVisible={showSeekForwardButtonPopup}/>
+                        <CarouselItemViewerSeekBackButton ref={seekBackwardButtonRef} onClick={onSeekBackClick} actionName='Seek Back' shortcuts={ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS} shortcutPosition='left' isShortcutVisible={showSeekBackwardButtonPopup} />
+                        <CarouselItemViewerSeekForwardButton ref={seekForwardButtonRef} onClick={onSeekForwardClick} actionName='Seek Forward' shortcuts={ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS} shortcutPosition='left' isShortcutVisible={showSeekForwardButtonPopup} />
 
                     </div>
                 ) : null}
                 <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
-                    <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClickLocal} actionName='Previous' shortcuts={ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS} />
-                    <CarouselItemViewerNextButton ref={nextButtonRef} onClick={onNextItemClickLocal} actionName='Next' shortcuts={ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS} shortcutPosition='right' />
-                    <CarouselItemViewerCloseButton 
+                    <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClickLocal} actionName='Previous' shortcuts={ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS} />
+                    <CarouselItemViewerNextButton
+                        actionName='Next'
+                        onClick={onNextItemClickLocal}
+                        options={options}
+                        ref={nextButtonRef}
+                        shortcutPosition='right'
+                    />
+                    <CarouselItemViewerCloseButton
                         actionName='Exit'
-                        isShortcutVisible={showCloseButtonPopup} 
+                        isShortcutVisible={showCloseButtonPopup}
                         onClick={onClose}
                         options={options}
                         ref={closeButtonRef}
@@ -372,7 +380,7 @@ export const CarouselItemViewerToolbar = ({
                 }
                 isLoaded={isPreviousItemPreviewLoaded}
                 setIsLoaded={setIsPreviousItemPreviewLoaded}
-                shortcuts={ITEM_VIEWER_SEEK_PREVIOUS_ITEM_SHORTCUTS}
+                shortcuts={shortCutLogic.getPreviousItem().keys}
                 actionName={"Previous"}
             />
             <CarouselItemViewerToolbarPreview
@@ -383,7 +391,7 @@ export const CarouselItemViewerToolbar = ({
                 }
                 isLoaded={isNextItemPreviewLoaded}
                 setIsLoaded={setIsNextItemPreviewLoaded}
-                shortcuts={ITEM_VIEWER_SEEK_NEXT_ITEM_SHORTCUTS}
+                shortcuts={shortCutLogic.getNextItem().keys}
                 actionName={"Next"}
             />
         </div>

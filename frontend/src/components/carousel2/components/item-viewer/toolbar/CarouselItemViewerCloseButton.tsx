@@ -1,13 +1,14 @@
 import { forwardRef, useCallback } from 'react'
-import { EMPTY_STRING, ITEM_VIEWER_CLOSE_SHORTCUTS } from '../../../constants';
+import { EMPTY_STRING } from '../../../constants';
 import { CURRENT_ITEMS_INITIAL, CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../../context';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CloseButton } from '../../buttons/CloseButton';
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
-import { CarouselItemViewerButtonProps, CarouselShortcut } from '../../../types';
+import { CarouselItemViewerButtonProps } from '../../../types';
 import { exitFullScreen } from '../../../utils';
 import { ToolbarLogic } from './ToolbarLogic';
+import { ShortcutLogic } from './ToolbarShortcutLogic';
 
 type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps> (({
@@ -19,15 +20,14 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
 }, ref) => {
     const { currentItems, setCurrentItems, setCurrentItemIndex, currentSvgs, itemViewerRef } = useCarouselContext();
     const toolbarLogic = new ToolbarLogic(currentItems);
+    const closeButtonShortcut = new ShortcutLogic(options).getClose();
     const svgHref = currentSvgs?.itemViewer?.closeButton || '';
-    const customCloseShortcut = options?.shortcuts?.itemViewer?.close || {} as CarouselShortcut;
-    const shortcutsToUse =  customCloseShortcut?.keys || ITEM_VIEWER_CLOSE_SHORTCUTS;
     useKeyboardShortcuts([
         {
-            keys: shortcutsToUse,
+            keys: closeButtonShortcut.keys,
             action: () => {
                 onClickLocal();
-                customCloseShortcut?.onActionCompletion && customCloseShortcut.onActionCompletion();
+                closeButtonShortcut.onActionCompleted();
             },
         },
     ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
@@ -40,7 +40,7 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     }, [setCurrentItemIndex, EMPTY_STRING, onClick]);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcutsToUse} shortcutPosition={shortcutPosition} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={closeButtonShortcut.keys} shortcutPosition={shortcutPosition} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} /> :
                 <CloseButton ref={ref} onClick={onClickLocal} />
