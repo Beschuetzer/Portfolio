@@ -16,10 +16,10 @@ export const CarouselItemViewerSeekForwardButton = forwardRef<any, CarouselItemV
 }, ref) => {
     const { currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.seekForwardButton || '';
-    const seekForwardShortcuts = new ToolbarActionsLogic(options).getSeekForwards();
+    const seekForwardAction = new ToolbarActionsLogic(options).getSeekForwards();
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={seekForwardShortcuts.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={seekForwardAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} /> :
                 <SeekForwardButton ref={ref} onClick={onClick} />}

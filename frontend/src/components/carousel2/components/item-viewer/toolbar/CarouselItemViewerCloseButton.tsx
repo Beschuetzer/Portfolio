@@ -20,11 +20,11 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
 }, ref) => {
     const { currentItems, setCurrentItems, setCurrentItemIndex, currentSvgs, itemViewerRef } = useCarouselContext();
     const toolbarLogic = new ToolbarLogic(currentItems);
-    const closeButtonShortcut = new ToolbarActionsLogic(options).getClose();
+    const closeAction = new ToolbarActionsLogic(options).getClose();
     const svgHref = currentSvgs?.itemViewer?.closeButton || '';
     useKeyboardShortcuts([
         {
-            keys: closeButtonShortcut.keys,
+            keys: closeAction.keys,
             action: () => {
                 onClickLocal();
             },
@@ -39,7 +39,7 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     }, [setCurrentItemIndex, EMPTY_STRING, onClick]);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={closeButtonShortcut.keys} shortcutPosition={shortcutPosition} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={closeAction.keys} shortcutPosition={shortcutPosition} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} /> :
                 <CloseButton ref={ref} onClick={onClickLocal} />

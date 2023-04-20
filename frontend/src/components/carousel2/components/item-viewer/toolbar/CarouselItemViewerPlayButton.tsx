@@ -4,24 +4,26 @@ import { CarouselItemViewerButtonProps } from '../../../types';
 import { PlayButton } from '../../buttons/PlayButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
+import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 
 type CarouselItemViewerPlayButtonProps = {
 } & CarouselItemViewerButtonProps;
-export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPlayButtonProps> (({
+export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPlayButtonProps>(({
     actionName = '',
     isShortcutVisible = false,
     onClick = () => null,
+    options = {},
     shortcutPosition: position = 'center',
-    shortcuts = [],
 }, ref) => {
     const { currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.playButton || '';
+    const playAction = new ToolbarActionsLogic(options).getPlay();
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={playAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref}/> :
-                <PlayButton ref={ref} onClick={onClick}/>
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} /> :
+                <PlayButton ref={ref} onClick={onClick} />
             }
         </CarouselItemViewerShortcutIndicator>
     )

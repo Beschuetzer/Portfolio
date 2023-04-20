@@ -15,10 +15,10 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
 }, ref) => {
     const { currentSvgs, toolbarLogic } = useCarouselContext();
     const svgHref = currentSvgs?.itemViewer?.nextButton || '';
-    const nextItemShortcuts = new ToolbarActionsLogic(options).getNextItem();
+    const nextItemAction = new ToolbarActionsLogic(options).getNextItem();
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={nextItemShortcuts.keys} shortcutPosition={position}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={nextItemAction.keys} shortcutPosition={position}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} /> :
                 <NextButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} />}
