@@ -24,6 +24,8 @@ import { getComputedStyleCustom } from "../../../helpers";
 import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/components/Carousel";
+import { ModifierKey, ValidKey } from "../../../components/carousel2/hooks/useKeyboardShortcuts";
+import { CarouselShortcuts } from "../../../components/carousel2/types";
 
 //#region Carousel Items
 const itemViewerButtons = {
@@ -39,6 +41,47 @@ const itemViewerButtons = {
 		stopButton: "./sprite.svg#icon-stop",
 	},
 }
+const carouselShortcuts = {
+	itemViewer: {
+		close: {
+			keys: [ValidKey.l, [ModifierKey.alt, ValidKey.l]],
+			onActionCompletion() {
+				console.log('close - it works as method')
+			},
+		},
+		forward: {
+			keys: [ValidKey.o, [ModifierKey.alt, ValidKey.o]],
+			onActionCompletion: () => {
+				console.log('forward - it works as field')
+			},
+		},
+		next: {
+			keys: [ValidKey.e, [ModifierKey.alt, ValidKey.e]],
+			onActionCompletion() {
+				console.log('next - after')
+			},
+		},
+		pause: {
+			keys: [ValidKey.a, [ModifierKey.alt, ValidKey.a]],
+			onActionCompletion() {
+				console.log('pause - after')
+			},
+		},
+		play: {
+			keys: [ValidKey.p, [ModifierKey.alt, ValidKey.p]],
+			onActionCompletion() {
+				console.log('play - after')
+			},
+		},
+		previous: {
+			keys: [ValidKey.r, [ModifierKey.alt, ValidKey.r]],
+			onActionCompletion() {
+				console.log('previous - after')
+			},
+		},
+	}
+} as CarouselShortcuts
+
 const items = [
 	{
 		description: "Custom Overlay with auto play",
@@ -148,6 +191,7 @@ const items = [
 const allCustomSettings = (
 	<Carousel
 		options={{
+			shortcuts: carouselShortcuts,
 			itemViewer: {
 				autoHideToolbarDuration: 2000,
 				seekAmount: 10000,
@@ -332,6 +376,11 @@ const itemViewerNoTracking = (
 		}
 	}} />
 );
+const itemViewerCustomShortcuts = (
+	<Carousel items={items.slice(0,2)} options={{
+		shortcuts: carouselShortcuts,
+	}}/>
+);
 const itemViewerTracking = (
 	<Carousel items={items}/>
 );
@@ -432,6 +481,10 @@ const SECTIONS: Sections = [
 				label: "Seek amount 2 sec (Click item to view)",
 				jsx: itemViewerSeekAmount2Sec
 			},
+			{
+				label: "All custom keyboard shortcuts",
+				jsx: itemViewerCustomShortcuts,
+			}
 		]
 	],
 	[

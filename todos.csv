@@ -1,6 +1,5 @@
 Carousel rework:
   -add option to customize keyboard shortcuts
-  -add tests for keyboard shortcuts in ItemViewer section
   -figure out how to make font customizable for the whole carousel
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -add option to make another layout/mode where the itemViewer isn't opened when an item is clicked but rather the image is above the carousel

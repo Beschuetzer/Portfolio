@@ -45,6 +45,9 @@ type KeyCombination = [ModifierKey, ValidKey];
 export type KeyInput = ValidKey | KeyCombination;
 export type KeyboardShortcut = {
     action: () => void;
+    /*
+    *An example of a multi-key shortcut: [ValidKey.a, [ModifierKey.shift, ValidKey.arrowDown]].  The first is a ValidKey and the second a KeyCombination
+    */
     keys: KeyInput[];
 }
 

@@ -59,32 +59,39 @@ export type CarouselOptions = {
     thumbnail?: CarouselThumbnailOptions;
 }
 
+export type CarouselShortcut = {
+    /*
+    *Runs after the shortcut's default action has been executed
+    */
+    onActionCompletion?: () => void;
+} & Required<Pick<KeyboardShortcut, 'keys'>>
+
 export type CarouselShortcuts = {
     itemViewer?: {
         /*
         *Additional shortcuts for closing the item-viewer (full-screen mode).  The esc key is a hard-coded value here.
         */
-        close?: KeyboardShortcut;
+        close?: CarouselShortcut;
         /*
         *Shortcuts for moving a video forward in the item-viewer (full-screen mode).  Overrides defaults.
         */
-        forward?: KeyboardShortcut;
+        forward?: CarouselShortcut;
         /*
         *Shortcuts for moving to the next item item in the item-viewer (full-screen mode).  Overrides defaults.
         */
-        next?: KeyboardShortcut;
+        next?: CarouselShortcut;
         /*
         *Shortcuts for pausing a video in the item-viewer (full-screen mode).  Overrides defaults.
         */
-        pause?: KeyboardShortcut;
+        pause?: CarouselShortcut;
         /*
         *Shortcuts for playing a video in the item-viewer (full-screen mode).  Overrides defaults.
         */
-        play?: KeyboardShortcut;
+        play?: CarouselShortcut;
         /*
         *Shortcuts for moving to the previous item item in the item-viewer (full-screen mode).  Overrides defaults.
         */
-        previous?: KeyboardShortcut;
+        previous?: CarouselShortcut;
     }
 }
 
