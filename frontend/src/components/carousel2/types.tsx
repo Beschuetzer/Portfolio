@@ -1,5 +1,6 @@
 import { CSSProperties } from "react";
 import { CarouselItemViewerShortcutIndicatorProps } from "./components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
+import { KeyboardShortcut } from "./hooks/useKeyboardShortcuts";
 
 //#region Prop Types
 export type ArrowButtonDirection = 'left' | 'right';
@@ -53,8 +54,38 @@ export type CarouselNavigationProps = {
 export type CarouselOptions = {
     itemViewer?: CarouselItemViewerOptions;
     navigation?: CarouselNavigationOptions;
+    shortcuts?: CarouselShortcuts;
     svgs?: CarouselSvgs;
     thumbnail?: CarouselThumbnailOptions;
+}
+
+export type CarouselShortcuts = {
+    itemViewer?: {
+        /*
+        *Additional shortcuts for closing the item-viewer (full-screen mode).  The esc key is a hard-coded value here.
+        */
+        close?: KeyboardShortcut;
+        /*
+        *Shortcuts for moving a video forward in the item-viewer (full-screen mode).  Overrides defaults.
+        */
+        forward?: KeyboardShortcut;
+        /*
+        *Shortcuts for moving to the next item item in the item-viewer (full-screen mode).  Overrides defaults.
+        */
+        next?: KeyboardShortcut;
+        /*
+        *Shortcuts for pausing a video in the item-viewer (full-screen mode).  Overrides defaults.
+        */
+        pause?: KeyboardShortcut;
+        /*
+        *Shortcuts for playing a video in the item-viewer (full-screen mode).  Overrides defaults.
+        */
+        play?: KeyboardShortcut;
+        /*
+        *Shortcuts for moving to the previous item item in the item-viewer (full-screen mode).  Overrides defaults.
+        */
+        previous?: KeyboardShortcut;
+    }
 }
 
 export type CarouselSvgHref = {

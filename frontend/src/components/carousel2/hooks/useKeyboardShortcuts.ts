@@ -43,7 +43,7 @@ export enum ValidKey {
 
 type KeyCombination = [ModifierKey, ValidKey];
 export type KeyInput = ValidKey | KeyCombination;
-type KeyboardShortcut = {
+export type KeyboardShortcut = {
     action: () => void;
     keys: KeyInput[];
 }
