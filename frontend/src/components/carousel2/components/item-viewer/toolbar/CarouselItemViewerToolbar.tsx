@@ -268,6 +268,8 @@ export const CarouselItemViewerToolbar = ({
             videoRef.current.addEventListener('ended', handleVideoEnd);
         }
 
+        console.log({nextButtonRef, previousButtonRef});
+        
         if (nextButtonRef?.current) {
             nextButtonRef.current.addEventListener('mouseenter', handleMouseEnterNextButton);
             nextButtonRef.current.addEventListener('mouseleave', handleMouseLeaveButton);
@@ -344,6 +346,7 @@ export const CarouselItemViewerToolbar = ({
             }
         }
     }, [
+        currentItemIndex,
         isVideoPlaying,
         nextButtonRef,
         previousButtonRef,
