@@ -9,14 +9,14 @@ type CarouselItemViewerPreviousButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemViewerPreviousButtonProps>(({
     actionName = '',
     onClick = () => null,
-    position = 'center',
+    shortcutPosition: position = 'center',
     shortcuts = [],
 }, ref) => {
     const { currentSvgs, toolbarLogic } = useCarouselContext();
     const svgHref = currentSvgs?.itemViewer?.previousButton || '';
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} position={position}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} shortcutPosition={position}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} /> :
                 <PreviousButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} />}

@@ -5,7 +5,7 @@ import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton
 import { CloseButton } from '../../buttons/CloseButton';
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
-import { CarouselItemViewerButtonProps } from '../../../types';
+import { CarouselItemViewerButtonProps, CarouselShortcut } from '../../../types';
 import { exitFullScreen } from '../../../utils';
 import { ToolbarLogic } from './ToolbarLogic';
 
@@ -14,16 +14,21 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     actionName = '',
     isShortcutVisible = false,
     onClick = () => null,
-    position = 'center',
-    shortcuts = [],
+    options = {},
+    shortcutPosition = 'center',
 }, ref) => {
     const { currentItems, setCurrentItems, setCurrentItemIndex, currentSvgs, itemViewerRef } = useCarouselContext();
     const toolbarLogic = new ToolbarLogic(currentItems);
     const svgHref = currentSvgs?.itemViewer?.closeButton || '';
+    const customCloseShortcut = options?.shortcuts?.itemViewer?.close || {} as CarouselShortcut;
+    const shortcutsToUse =  customCloseShortcut?.keys || ITEM_VIEWER_CLOSE_SHORTCUTS;
     useKeyboardShortcuts([
         {
-            keys: ITEM_VIEWER_CLOSE_SHORTCUTS,
-            action: () => onClickLocal(),
+            keys: shortcutsToUse,
+            action: () => {
+                onClickLocal();
+                customCloseShortcut?.onActionCompletion && customCloseShortcut.onActionCompletion();
+            },
         },
     ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
 
@@ -35,7 +40,7 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     }, [setCurrentItemIndex, EMPTY_STRING, onClick]);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} position={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcutsToUse} shortcutPosition={shortcutPosition} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} /> :
                 <CloseButton ref={ref} onClick={onClickLocal} />

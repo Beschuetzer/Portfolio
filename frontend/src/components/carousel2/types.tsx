@@ -29,7 +29,8 @@ export type CarouselItemViewerOptions = {
 
 export type CarouselItemViewerButtonProps = {
     onClick?: () => void;
-} & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children'>>
+    options?: CarouselOptions;
+} & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children' | 'shortcuts'>>
 
 export type CarouselNavigationOptions = {
     /*

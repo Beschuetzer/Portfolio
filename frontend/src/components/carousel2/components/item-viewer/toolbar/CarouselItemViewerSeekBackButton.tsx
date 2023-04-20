@@ -9,14 +9,14 @@ export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemView
     actionName = '',
     isShortcutVisible = false,
     onClick = () => null,
-    position = 'center',
+    shortcutPosition: position = 'center',
     shortcuts = [],
 }, ref) => {
     const { currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.seekBackButton || '';
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} position={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} /> :
                 <SeekBackButton ref={ref} onClick={onClick} />}

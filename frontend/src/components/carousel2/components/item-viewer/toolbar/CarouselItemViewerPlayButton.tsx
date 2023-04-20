@@ -11,14 +11,14 @@ export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPl
     actionName = '',
     isShortcutVisible = false,
     onClick = () => null,
-    position = 'center',
+    shortcutPosition: position = 'center',
     shortcuts = [],
 }, ref) => {
     const { currentSvgs: currentSvgHrefs } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.playButton || '';
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} position={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={shortcuts} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref}/> :
                 <PlayButton ref={ref} onClick={onClick}/>
