@@ -1,5 +1,5 @@
 import { ITEM_VIEWER_CLOSE_SHORTCUTS, ITEM_VIEWER_NEXT_ITEM_SHORTCUTS, ITEM_VIEWER_PLAY_SHORTCUTS, ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS, ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS } from "../constants";
-import { KeyInput } from "../hooks/useKeyboardShortcuts";
+import { KeyInput, ValidKey } from "../hooks/useKeyboardShortcuts";
 import { CarouselItemViewerActions, CarouselOptions, CarouselAction, CarouselActionOnActionCompleted } from "../types";
 
 type GetAllKeysResponse = {
@@ -89,9 +89,14 @@ export class ToolbarActionsLogic {
     }
 
     getClose(): GetIndividualResponse {
+        const keysToUse = [...this._closeShortcut.keys];
+        if (!keysToUse.includes(ValidKey.escape)) {
+            keysToUse.push(ValidKey.escape);
+        }
+
         return {
             onActionCompleted: this._closeShortcut.onActionCompleted || this._doNothing,
-            keys: this._closeShortcut.keys,
+            keys: keysToUse,
         }
     }
 

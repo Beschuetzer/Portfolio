@@ -1,5 +1,4 @@
 Carousel rework:
-  -esc should always display for close button
   -play/pause are not separated, so either remove action for pause or separate 
   -in ShortcutsLogic figure out how to get the the GetAllResponse.onActionCompleted to be mapped/linked to CarouselShortcut.onActionCompleted key, so changing the original changes the GetAllResonse one (listener seeks to not get hooked up in this case)
   -figure out why the next/previous item preview doesn't show up for 'all custom' case when first opening an image but it no issues when first opening a video
