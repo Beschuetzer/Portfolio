@@ -354,7 +354,12 @@ export const CarouselItemViewerToolbar = ({
                 ) : null}
                 <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
-                    <CarouselItemViewerPreviousButton ref={previousButtonRef} onClick={onPreviousItemClickLocal} actionName='Previous' shortcuts={ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS} />
+                    <CarouselItemViewerPreviousButton
+                        ref={previousButtonRef}
+                        onClick={onPreviousItemClickLocal}
+                        options={options}
+                        actionName='Previous'
+                    />
                     <CarouselItemViewerNextButton
                         actionName='Next'
                         onClick={onNextItemClickLocal}
