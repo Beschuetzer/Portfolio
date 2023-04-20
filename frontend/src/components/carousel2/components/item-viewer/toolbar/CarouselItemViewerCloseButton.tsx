@@ -27,7 +27,6 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
             keys: closeButtonShortcut.keys,
             action: () => {
                 onClickLocal();
-                closeButtonShortcut.onActionCompleted();
             },
         },
     ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());

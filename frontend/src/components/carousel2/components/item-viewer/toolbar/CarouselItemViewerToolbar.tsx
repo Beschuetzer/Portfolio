@@ -348,17 +348,24 @@ export const CarouselItemViewerToolbar = ({
                             <CarouselItemViewerPlayButton ref={playButtonRef} onClick={onPlayClick} actionName='Play' shortcuts={ITEM_VIEWER_PLAY_SHORTCUTS} shortcutPosition='left' isShortcutVisible={showPlayButtonPopup} />
                         )}
                         <CarouselItemViewerSeekBackButton ref={seekBackwardButtonRef} onClick={onSeekBackClick} actionName='Seek Back' shortcuts={ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS} shortcutPosition='left' isShortcutVisible={showSeekBackwardButtonPopup} />
-                        <CarouselItemViewerSeekForwardButton ref={seekForwardButtonRef} onClick={onSeekForwardClick} actionName='Seek Forward' shortcuts={ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS} shortcutPosition='left' isShortcutVisible={showSeekForwardButtonPopup} />
+                        <CarouselItemViewerSeekForwardButton
+                            actionName='Seek Forward'
+                            isShortcutVisible={showSeekForwardButtonPopup}
+                            onClick={onSeekForwardClick}
+                            options={options}
+                            ref={seekForwardButtonRef}
+                            shortcutPosition='left'
+                        />
 
                     </div>
                 ) : null}
                 <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
                     <CarouselItemViewerPreviousButton
-                        ref={previousButtonRef}
+                        actionName='Previous'
                         onClick={onPreviousItemClickLocal}
                         options={options}
-                        actionName='Previous'
+                        ref={previousButtonRef}
                     />
                     <CarouselItemViewerNextButton
                         actionName='Next'

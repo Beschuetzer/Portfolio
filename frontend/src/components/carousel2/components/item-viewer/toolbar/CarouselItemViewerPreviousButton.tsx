@@ -17,17 +17,11 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
     const svgHref = currentSvgs?.itemViewer?.previousButton || '';
     const previousItemShortcuts = new ShortcutLogic(options).getPreviousItem();
 
-    const onClickToUse = useCallback(() => {
-        onClick && onClick();
-        previousItemShortcuts.onActionCompleted();
-    }, [onClick, previousItemShortcuts.onActionCompleted])
-    
-
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={previousItemShortcuts.keys} shortcutPosition={position}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClickToUse} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} /> :
-                <PreviousButton ref={ref} onClick={onClickToUse} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} />}
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} /> :
+                <PreviousButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} />}
         </CarouselItemViewerShortcutIndicator>
     )
 })
