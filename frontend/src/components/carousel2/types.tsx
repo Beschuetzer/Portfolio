@@ -61,6 +61,7 @@ export type CarouselOptions = {
 }
 
 //#region Actions
+//Any new additions here need to be added to ToolbarActionLogic as well
 export type CarouselAction = {
     /*
     *Runs after the the action's default action has been executed.  
