@@ -246,6 +246,22 @@ const allCustomSettings = (
 		items={items}
 	/>
 );
+const displayCurrentItemAbove = (
+	<Carousel
+		items={items}
+		options={{
+			itemDisplayLocation: 'above',
+		}}
+	/>
+);
+const displayCurrentItemBelow = (
+	<Carousel
+		items={items}
+		options={{
+			itemDisplayLocation: 'below',
+		}}
+	/>
+);
 const oneItemAllDefaults = (
 	<Carousel
 		items={items.slice(0, 1)}
@@ -449,6 +465,14 @@ const SECTIONS: Sections = [
 			{
 				label: "Multiple Pages - All Defaults",
 				jsx: multiplePagesDynamicSizingAllDefaults
+			},
+			{
+				label: "Display Current Item Above",
+				jsx: displayCurrentItemAbove,
+			},
+			{
+				label: "Display Current Item Below",
+				jsx: displayCurrentItemBelow,
 			},
 		]
 	],

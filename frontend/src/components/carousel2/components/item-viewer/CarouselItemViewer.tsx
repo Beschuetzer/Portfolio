@@ -4,16 +4,18 @@ import { CarouselVideo } from '../CarouselVideo';
 import { exitFullScreen, getClassname, getIsVideo } from '../../utils';
 import { CLASSNAME__ITEM_VIEWER } from '../../constants';
 import { CURRENT_ITEMS_INITIAL, CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../context';
+import { ItemDisplayLocationLogic } from '../../business-logic/ItemDisplayLocationLogic';
 
 type CarouselItemViewerProps = {}
 export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps> ((props, ref) => {
     //#region Init
     //todo: needs to be hidden until an item is clicked
-    const { currentItem, setCurrentItems, setCurrentItemIndex } = useCarouselContext();
+    const { currentItem, setCurrentItems, setCurrentItemIndex, options } = useCarouselContext();
     const [isVisible, setisVisible] = useState(Object.keys(currentItem || {})?.length > 0);
     const currentItemSrc = currentItem?.srcMain || '';
     const isVideo = getIsVideo(currentItemSrc);
     const innerRef = useRef<HTMLElement>(null);
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic(options);
     useImperativeHandle(ref, () => innerRef.current);
     //#endregion
 
@@ -53,6 +55,7 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps> ((pro
     const visibilityStyle = isVisible ? getClassname({modifiedName: 'visible'}) : getClassname({modifiedName: 'hidden'});
     const containerClassname = `${getClassname({elementName: CLASSNAME__ITEM_VIEWER})} ${visibilityStyle}`;
   
+    if (!itemDisplayLocationLogic.getShouldDisplayItemViewer()) return null;
     return (
         <div ref={innerRef as any} className={containerClassname}>
             <ItemToRender {...currentItem}/>

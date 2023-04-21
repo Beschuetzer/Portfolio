@@ -1,7 +1,9 @@
-Carousel rework:
-  -move all jsx styling stuff to StylingLogic?
-  -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
+Carousel rework
+  -need to make default item size smaller if itemDisplayLocation is not 'none'
+  -need to test different layout options with itemDisplayLocation, namely the custom item spacing
   -add option to make another layout/mode where the itemViewer isn't opened when an item is clicked but rather the image is above the carousel
+  -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
+  -move CarouselItem conditional styling logic to StylingLogic?
   -add volume button for videos?
   -add lazy loading of items (only render the items up to the furtherst currentPage)?
   -add swipe to scroll functionality to container?

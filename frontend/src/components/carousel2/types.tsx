@@ -53,29 +53,35 @@ export type CarouselNavigationProps = {
 }
 
 export type CarouselFontFamilyOptions = Exclusive<
-{
-    /*
-    *Setting the font-family for text in the item-viewer
-    */
-    itemViewer?: string;
-    /*
-    *Setting the font-family for the navigation items and the carousel itself
-    */
-    navigation?: string;
-   
-}, 
-{
-    /*
-    *Setting this sets both itemViewer and navigation to the same font-family
-    */
-    all?: string;
-}>
+    {
+        /*
+        *Setting the font-family for text in the item-viewer
+        */
+        itemViewer?: string;
+        /*
+        *Setting the font-family for the navigation items and the carousel itself
+        */
+        navigation?: string;
+
+    },
+    {
+        /*
+        *Setting this sets both itemViewer and navigation to the same font-family
+        */
+        all?: string;
+    }>
 
 export type CarouselStylingOptions = {
     fontFamily?: CarouselFontFamilyOptions;
 }
 
 export type CarouselOptions = {
+    /*
+    *If 'none', then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
+    *Otherwise the the item is displayed above or below the carousel.
+    *Default is 'none'.
+    */
+    itemDisplayLocation?: 'none' | 'above' | 'below';
     itemViewer?: CarouselItemViewerOptions;
     navigation?: CarouselNavigationOptions;
     shortcuts?: CarouselActions;
@@ -116,9 +122,9 @@ export type CarouselItemViewerActions = {
     *Shortcuts for moving to the previous item item in the item-viewer (full-screen mode).  Overrides defaults.
     */
     previousItem?: CarouselAction;
-     /*
-    *Shortcuts for seeking a video backward in the item-viewer (full-screen mode).  Overrides defaults.
-    */
+    /*
+   *Shortcuts for seeking a video backward in the item-viewer (full-screen mode).  Overrides defaults.
+   */
     seekBackwards?: CarouselAction;
     /*
     *Shortcuts for seeking a video forward in the item-viewer (full-screen mode).  Overrides defaults.
