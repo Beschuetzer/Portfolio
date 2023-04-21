@@ -1,6 +1,6 @@
 import { replaceCharacters } from "../../helpers";
+import { CarouselItemProps } from "./components/CarouselItem";
 import { CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, CLASSNAME__ROOT, VIDEO_EXTENSIONS } from "./constants";
-import { CURRENT_ITEM_INDEX_INITIAL } from "./context";
 import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
 import { Point } from "./types";
 type GetClassname = {
@@ -55,8 +55,9 @@ export function getIsPointInsideElement(point: Point, element: HTMLElement | nul
     return isValidX && isValidY;
 }
 
-export function getIsVideo(pathname: string) {
-    return pathname?.match(
+export function getIsVideo(item: CarouselItemProps) {
+    const currentItemSrc = item?.srcMain || '';
+    return currentItemSrc?.match(
 		getRegexStringFromStringArray(VIDEO_EXTENSIONS),
 	);
 }

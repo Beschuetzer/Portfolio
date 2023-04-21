@@ -1,4 +1,5 @@
 Carousel rework
+  -CarouselInstanceProvider needs to know about currentItem too (add POS)
   -need to make default item size smaller if itemDisplayLocation is not 'none'
   -need to test different layout options with itemDisplayLocation, namely the custom item spacing
   -add option to make another layout/mode where the itemViewer isn't opened when an item is clicked but rather the image is above the carousel

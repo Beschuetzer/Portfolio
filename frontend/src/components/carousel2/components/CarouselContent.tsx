@@ -8,6 +8,7 @@ import { CarouselDots } from './CarouselDots';
 import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
+import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 
 type CarouselContentProps = {
     carouselContainerRef: React.MutableRefObject<HTMLElement | undefined>;
@@ -19,7 +20,7 @@ export const CarouselContent = ({
     options,
 }: CarouselContentProps) => {
     //#region Init
-    const { currentItemIndex, currentCarouselId, currentItems } = useCarouselContext();
+    const { currentItemIndex, currentCarouselId, currentItems, currentItem } = useCarouselContext();
     const { id } = useCarouselInstanceContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
@@ -29,6 +30,7 @@ export const CarouselContent = ({
     const [numberOfPages, setNumberOfPages] = useState(0);
     const itemsContainerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndex = useRef(CURRENT_ITEM_INDEX_INITIAL);
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic(options || {}, currentItem);
     //#endregion
 
     //#region Functions/Handlers
@@ -171,6 +173,7 @@ export const CarouselContent = ({
     //#endregion
 
     //#region JSX
+    const ItemToRender = itemDisplayLocationLogic.getItemToRender();
     const interItemSpacingStyle = {
         columnGap: interItemSpacing,
     } as CSSProperties
@@ -184,6 +187,9 @@ export const CarouselContent = ({
 
     return (
         <>
+            {itemDisplayLocationLogic.getShouldDisplayItemAbove() ? (
+                <ItemToRender {...currentItem} />
+            ) : null}
             <div ref={itemsContainerRef} style={containerStyle} className={getClassname({ elementName: "items" })}>
                 {
                     items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)
@@ -211,6 +217,9 @@ export const CarouselContent = ({
                         direction={"right"}
                         onClick={() => onArrowButtonClick("right")} />
                 </div>
+            ) : null}
+            {itemDisplayLocationLogic.getShouldDisplayItemBelow() ? (
+                <ItemToRender {...currentItem} />
             ) : null}
         </>
     )
