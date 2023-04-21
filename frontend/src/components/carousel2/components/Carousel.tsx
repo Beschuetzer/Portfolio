@@ -47,6 +47,7 @@ export const Carousel = (props: CarouselProps) => {
 	//#region JSX
 	return (
 		<CarouselInstanceProvider
+			itemsInInstance={items}
 			carouselContainerRef={carouselContainerRef as any}
 			id={idRef.current}
 			options={options}>

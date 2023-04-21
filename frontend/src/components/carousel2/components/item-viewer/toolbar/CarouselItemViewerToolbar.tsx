@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { CLASSNAME__ITEM_VIEWER, ITEM_VIEWER_PLAY_SHORTCUTS, ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS, ITEM_VIEWER_NEXT_ITEM_SHORTCUTS, ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS, MOBILE_PIXEL_WIDTH } from '../../../constants'
 import { getClassname, getFormattedTimeString } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../../context'
@@ -17,6 +16,10 @@ import { ToolbarLogic } from '../../../business-logic/ToolbarLogic'
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic'
 import { StylingLogic } from '../../../business-logic/StylingLogic'
+import { useCarouselInstanceContext } from '../../CarouselInstanceProvider'
+import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic'
+import { CarouselItemProps } from '../../CarouselItem'
+import { CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH } from '../../../constants'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -49,6 +52,7 @@ export const CarouselItemViewerToolbar = ({
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
     const { options, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
+    const { setCurrentItemInInstanceIndex } = useCarouselInstanceContext();
 
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
@@ -77,6 +81,7 @@ export const CarouselItemViewerToolbar = ({
     const toolbarLogic = new ToolbarLogic(currentItems);
     const actionsLogic = new ToolbarActionsLogic(options);
     const stylingLogic = new StylingLogic(options);
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic(options, {} as CarouselItemProps);
 
     useKeyboardShortcuts([
         {
@@ -161,6 +166,7 @@ export const CarouselItemViewerToolbar = ({
         if (currentItems.length <= 1) return;
         const newIndex = currentItemIndex === currentItems.length - 1 ? 0 : currentItemIndex + 1;
         setCurrentItemIndex(newIndex);
+        !itemDisplayLocationLogic.getShouldDisplayItemViewer() && setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
         resetPreviewItems();
         onNextItemClick && onNextItemClick();
         handleAutoHide();
@@ -171,6 +177,7 @@ export const CarouselItemViewerToolbar = ({
         if (currentItems.length <= 1) return;
         const newIndex = currentItemIndex === 0 ? currentItems.length - 1 : currentItemIndex - 1;
         setCurrentItemIndex(newIndex);
+        !itemDisplayLocationLogic.getShouldDisplayItemViewer() && setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
         resetPreviewItems();
         onPreviousItemClick && onPreviousItemClick();
         handleAutoHide();
@@ -271,8 +278,6 @@ export const CarouselItemViewerToolbar = ({
             videoRef.current.addEventListener('ended', handleVideoEnd);
         }
 
-        console.log({nextButtonRef, previousButtonRef});
-        
         if (nextButtonRef?.current) {
             nextButtonRef.current.addEventListener('mouseenter', handleMouseEnterNextButton);
             nextButtonRef.current.addEventListener('mouseleave', handleMouseLeaveButton);

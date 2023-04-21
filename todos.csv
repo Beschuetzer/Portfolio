@@ -1,5 +1,4 @@
 Carousel rework
-  -CarouselInstanceProvider needs to know about currentItem too (add POS)
   -need to make default item size smaller if itemDisplayLocation is not 'none'
   -need to test different layout options with itemDisplayLocation, namely the custom item spacing
   -add option to make another layout/mode where the itemViewer isn't opened when an item is clicked but rather the image is above the carousel
@@ -20,7 +19,6 @@ React best practices re-work (branch = sitenav_rework)
   -replace as many document.querySelector calls with refs
   -add onPress handler to ArrowButton to be able to hide the elements on bridge page when switching left/right 
   -add more complext logic in SkillPopup sort to weight created date?
-  -re-work Carousel (should be pure re-useable component)
 
 
 JOB STUFF------------------------------------

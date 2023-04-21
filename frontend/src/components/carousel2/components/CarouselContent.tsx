@@ -20,7 +20,8 @@ export const CarouselContent = ({
     options,
 }: CarouselContentProps) => {
     //#region Init
-    const { currentItemIndex, currentCarouselId, currentItems, currentItem } = useCarouselContext();
+    const { currentItemIndex, currentCarouselId, currentItems } = useCarouselContext();
+    const { currentItemInInstance } = useCarouselInstanceContext();
     const { id } = useCarouselInstanceContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
@@ -30,7 +31,7 @@ export const CarouselContent = ({
     const [numberOfPages, setNumberOfPages] = useState(0);
     const itemsContainerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndex = useRef(CURRENT_ITEM_INDEX_INITIAL);
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic(options || {}, currentItem);
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic(options || {}, currentItemInInstance);
     //#endregion
 
     //#region Functions/Handlers
@@ -188,7 +189,7 @@ export const CarouselContent = ({
     return (
         <>
             {itemDisplayLocationLogic.getShouldDisplayItemAbove() ? (
-                <ItemToRender {...currentItem} />
+                <ItemToRender {...currentItemInInstance} />
             ) : null}
             <div ref={itemsContainerRef} style={containerStyle} className={getClassname({ elementName: "items" })}>
                 {
@@ -219,7 +220,7 @@ export const CarouselContent = ({
                 </div>
             ) : null}
             {itemDisplayLocationLogic.getShouldDisplayItemBelow() ? (
-                <ItemToRender {...currentItem} />
+                <ItemToRender {...currentItemInInstance} />
             ) : null}
         </>
     )
