@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react'
 import { CarouselItemProps } from './CarouselItem'
-import { getClassname } from '../utils';
 import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../constants';
+import { CarouselItemViewerContainer } from './item-viewer/toolbar/CarouselItemViewerContainer';
 
 export const CarouselImage = (props: CarouselItemProps) => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -15,33 +15,31 @@ export const CarouselImage = (props: CarouselItemProps) => {
     } = props;
 
     return (
-        <div ref={containerRef as any} className={getClassname({ elementName: 'item-container' })}>
-            <>
-                <LoadingSpinner type='ring' show={!isLoaded} description={description} />
-                <img
-                    className={isLoaded ? '' : CLASSNAME__HIDDEN}
-                    ref={imageRef as any}
-                    src={srcMain}
-                    alt={description}
-                    onLoad={() => setIsLoaded(true)}
-                />
-                <CarouselItemViewerToolbar
-                    isVideo={false}
-                    description={description || ''}
-                    itemContainerRef={containerRef}
-                    onClose={() => {
-                        setTimeout(() => {
-                            setIsLoaded(false)
-                        }, 100)
-                    }}
-                    onNextItemClick={() => {
+        <CarouselItemViewerContainer ref={containerRef}>
+            <LoadingSpinner type='ring' show={!isLoaded} description={description} />
+            <img
+                className={isLoaded ? '' : CLASSNAME__HIDDEN}
+                ref={imageRef as any}
+                src={srcMain}
+                alt={description}
+                onLoad={() => setIsLoaded(true)}
+            />
+            <CarouselItemViewerToolbar
+                isVideo={false}
+                description={description || ''}
+                itemContainerRef={containerRef}
+                onClose={() => {
+                    setTimeout(() => {
                         setIsLoaded(false)
-                    }}
-                    onPreviousItemClick={() => {
-                        setIsLoaded(false)
-                    }}
-                />
-            </>
-        </div>
+                    }, 100)
+                }}
+                onNextItemClick={() => {
+                    setIsLoaded(false)
+                }}
+                onPreviousItemClick={() => {
+                    setIsLoaded(false)
+                }}
+            />
+        </CarouselItemViewerContainer>
     );
 }

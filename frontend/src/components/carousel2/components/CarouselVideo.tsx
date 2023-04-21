@@ -6,6 +6,7 @@ import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemVie
 import { LoadingSpinner } from './LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../constants';
 import { CarouselVideoCurrentStateIndicator } from './CarouselVideoCurrentStateIndicator';
+import { CarouselItemViewerContainer } from './item-viewer/toolbar/CarouselItemViewerContainer';
 
 export type CarouselVideoProps = {
     autoPlay?: boolean;
@@ -25,7 +26,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(!!autoPlay || false);
     const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
-    const videoContainerRef = useRef<HTMLDivElement>();
+    const itemContainerRef = useRef<HTMLDivElement>();
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
     //#endregion
 
@@ -33,16 +34,16 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const handleItemNavigation = useCallback(() => {
         setIsLoaded(false);
         setIsVideoPlaying(false);
-        
+
         if (videoRef.current) {
             videoRef.current.pause();
             videoRef.current.currentTime = 0;
         }
     }, [setIsLoaded, setIsVideoPlaying, videoRef]);
 
-    function onVideoClick() {
+    const onContainerClick = useCallback(() => {
         setIsVideoPlaying((isPlaying) => !isPlaying);
-    }
+    }, [setIsVideoPlaying]);
     //#endregion
 
     //#region Side Fx
@@ -56,8 +57,8 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         }
     }, [isVideoPlaying, videoRef])
 
-      //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
-      useEffect(() => {
+    //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
+    useEffect(() => {
         if (videoRef.current?.load) {
             videoRef.current.load();
         }
@@ -67,46 +68,40 @@ export const CarouselVideo = (props: CarouselItemProps) => {
 
     //#region JSX   
     return (
-        <div
-            ref={videoContainerRef as any}
-            className={getClassname({ elementName: 'item-container' })}
-            onClick={onVideoClick}
-        >
-            <>
-                <CarouselVideoCurrentStateIndicator isVideoPlaying={isVideoPlaying}/>
-                <LoadingSpinner
-                    type='roller'
-                    show={!isLoaded && isVideoPlaying}
-                    description={description}
-                />
-                <video
-                    className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
-                    ref={videoRef as any}
-                    autoPlay={!!autoPlay}
-                    muted={!!muted}
-                    loop={!!loop}
-                    onLoadedData={() => setIsLoaded(true)}
-                >
-                    <source src={srcMain} type={`video/${type}`} />
-                </video>
-                {props.video?.overlayProps ? (
-                    <CarouselVideoOverlay
-                        isVideoPlaying={isVideoPlaying}
-                        {...props.video?.overlayProps}
-                    />
-                ) : null}
-                <CarouselItemViewerToolbar
-                    setIsVideoPlaying={setIsVideoPlaying}
+        <CarouselItemViewerContainer ref={itemContainerRef} onClick={onContainerClick}>
+            <CarouselVideoCurrentStateIndicator isVideoPlaying={isVideoPlaying} />
+            <LoadingSpinner
+                type='roller'
+                show={!isLoaded && isVideoPlaying}
+                description={description}
+            />
+            <video
+                className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
+                ref={videoRef as any}
+                autoPlay={!!autoPlay}
+                muted={!!muted}
+                loop={!!loop}
+                onLoadedData={() => setIsLoaded(true)}
+            >
+                <source src={srcMain} type={`video/${type}`} />
+            </video>
+            {props.video?.overlayProps ? (
+                <CarouselVideoOverlay
                     isVideoPlaying={isVideoPlaying}
-                    isVideo={true}
-                    description={description || ''}
-                    videoRef={videoRef}
-                    itemContainerRef={videoContainerRef}
-                    onNextItemClick={handleItemNavigation}
-                    onPreviousItemClick={handleItemNavigation}
+                    {...props.video?.overlayProps}
                 />
-            </>
-        </div>
+            ) : null}
+            <CarouselItemViewerToolbar
+                setIsVideoPlaying={setIsVideoPlaying}
+                isVideoPlaying={isVideoPlaying}
+                isVideo={true}
+                description={description || ''}
+                videoRef={videoRef}
+                itemContainerRef={itemContainerRef}
+                onNextItemClick={handleItemNavigation}
+                onPreviousItemClick={handleItemNavigation}
+            />
+        </CarouselItemViewerContainer>
     );
     //#endregion
 }
