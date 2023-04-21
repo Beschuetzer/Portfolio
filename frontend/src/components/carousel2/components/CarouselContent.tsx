@@ -21,7 +21,7 @@ export const CarouselContent = ({
 }: CarouselContentProps) => {
     //#region Init
     const { currentItemIndex, currentCarouselId, currentItems } = useCarouselContext();
-    const { currentItemInInstance } = useCarouselInstanceContext();
+    const { currentItemInInstance, setCurrentItemInInstanceIndex } = useCarouselInstanceContext();
     const { id } = useCarouselInstanceContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
@@ -171,6 +171,13 @@ export const CarouselContent = ({
     useEffect(() => {
         previousCurrentItemIndex.current = currentItemIndex;
     }, [currentItems])
+
+    //setting the currentItemIndex in carousel instance on load if condition met
+    useEffect(() => {
+        if (!itemDisplayLocationLogic.getShouldDisplayItemViewer()) {
+            setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(0);
+        }
+    }, [])
     //#endregion
 
     //#region JSX

@@ -2,6 +2,7 @@ import { CSSProperties } from "react";
 import { CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { CarouselItemProps } from "../components/CarouselItem";
+import { CAROUSEL_ITEM_SIZE_DEFAULT } from "../constants";
 
 export type StylingLogicConstructor = {
     options: CarouselOptions;
@@ -18,6 +19,8 @@ export class StylingLogic {
     private fontFamilyItemViewerStyle = {} as CSSProperties;
     private fontFamilyNavigationStyle = {} as CSSProperties;
     private carouselItemContainerStyle = {} as CSSProperties;
+    private carouselItemStyle = {} as CSSProperties;
+    private carouselVideoStyle = {} as CSSProperties;
 
     constructor(constructor: StylingLogicConstructor) {
         const { options, currentItemInInstance } = constructor;
@@ -39,7 +42,7 @@ export class StylingLogic {
         this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}, currentItem: currentItemInInstance});
         this.carouselItemContainerStyle = !this.itemDisplayLocationLogic.getShouldDisplayItemViewer() ? {
             width: "100%",
-            height: "50rem",
+            height: "auto",
             maxHeight: '50rem',
             display: "flex",
             flexDirection: "initial",
@@ -47,12 +50,32 @@ export class StylingLogic {
             justifyContent: "center",
             position: "relative",
             backgroundColor: "black",
+            marginBottom: "10px",
         } as CSSProperties : {}
 
+        this.carouselVideoStyle = !this.itemDisplayLocationLogic.getShouldDisplayItemViewer() ? {
+            width: "100%",
+            height: "100%",
+        } as CSSProperties : {}
+
+        this.carouselItemStyle = !this.itemDisplayLocationLogic.getShouldDisplayItemViewer() ? {
+            width: options?.thumbnail?.size || "100px",
+            height: options?.thumbnail?.size || "100px",
+        } as CSSProperties : {
+            width: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
+            height: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
+        }
     }
 
+    getCarouselItemStyle(): CSSProperties {
+        return this.carouselItemStyle;
+    }
     getCarouselItemContainerStyle(): CSSProperties {
         return this.carouselItemContainerStyle;
+    }
+
+    getCarouselVideoStyle(): CSSProperties {
+        return this.carouselVideoStyle;
     }
 
     getFontFamilyItemViewerStyle(): CSSProperties {

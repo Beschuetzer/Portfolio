@@ -209,6 +209,7 @@ const allCustomSettings = (
 				seekAmount: 10000,
 			},
 			thumbnail: {
+				size: 200,
 				background: {
 					solid: {
 						color: getComputedStyleCustom('--color-primary-2'),
@@ -254,11 +255,14 @@ const displayCurrentItemAbove = (
 		}}
 	/>
 );
-const displayCurrentItemBelow = (
+const displayCurrentItemBelowWithCustomThumbnailSize = (
 	<Carousel
 		items={items}
 		options={{
 			itemDisplayLocation: 'below',
+			thumbnail: {
+				size: 200,
+			}
 		}}
 	/>
 );
@@ -471,8 +475,8 @@ const SECTIONS: Sections = [
 				jsx: displayCurrentItemAbove,
 			},
 			{
-				label: "Display Current Item Below",
-				jsx: displayCurrentItemBelow,
+				label: "Display Current Item Below with Custom Thumbnail Size",
+				jsx: displayCurrentItemBelowWithCustomThumbnailSize,
 			},
 		]
 	],

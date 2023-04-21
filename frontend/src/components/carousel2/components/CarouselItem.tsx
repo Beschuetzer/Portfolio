@@ -5,6 +5,7 @@ import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
 import { CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_ITEM_SIZE_DEFAULT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
+import { StylingLogic } from '../business-logic/StylingLogic';
 
 export type CarouselItemProps = {
   /*
@@ -41,6 +42,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   const { setCurrentItemIndex, setCurrentSvgs: setCurrentSvgHrefs, setOptions, setCurrentCarouselId, itemViewerRef, } = useCarouselContext();
   const { id: carouselId, options, setCurrentItemInInstanceIndex } = useCarouselInstanceContext();
   const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}});
+  const stylingLogic = new StylingLogic({options: options || {}});
   //#endregion
 
   //#region Functions/Handlers
@@ -79,16 +81,9 @@ export const CarouselItem = (props: CarouselItemProps) => {
     ...backgroundSolidStyle,
     ...backgroundGradientStyle,
   } as React.CSSProperties
-  const itemStyle = options?.thumbnail?.size ? {
-    width: `${options.thumbnail?.size}px`,
-    height: `${options.thumbnail?.size}px`,
-  } as React.CSSProperties : {
-    width: `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
-    height: `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
-  };
 
   return (
-    <div onClick={(e) => onPress(e as any)} className={CLASSNAME__CAROUSEL_ITEM} style={itemStyle}>
+    <div onClick={(e) => onPress(e as any)} className={CLASSNAME__CAROUSEL_ITEM} style={stylingLogic.getCarouselItemStyle()}>
       {description ? (
         <div style={thumbnailBackgroundStyle}>
           <p style={{ ...maxLineCountStyle, ...fontSizeStyle, ...textColorStyle }}>{description}</p>

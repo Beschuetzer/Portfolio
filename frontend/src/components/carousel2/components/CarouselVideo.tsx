@@ -7,6 +7,8 @@ import { LoadingSpinner } from './LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../constants';
 import { CarouselVideoCurrentStateIndicator } from './CarouselVideoCurrentStateIndicator';
 import { CarouselItemViewerContainer } from './item-viewer/toolbar/CarouselItemViewerContainer';
+import { useCarouselInstanceContext } from './CarouselInstanceProvider';
+import { StylingLogic } from '../business-logic/StylingLogic';
 
 export type CarouselVideoProps = {
     autoPlay?: boolean;
@@ -22,12 +24,14 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         srcMain,
         video: videoProps,
     } = props;
+    const { options } = useCarouselInstanceContext();
     const { autoPlay, loop, muted } = videoProps || {};
     const [isVideoPlaying, setIsVideoPlaying] = useState(!!autoPlay || false);
     const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
     const itemContainerRef = useRef<HTMLDivElement>();
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
+    const stylingLogic = new StylingLogic({options: options || {}});
     //#endregion
 
     //#region Functions/Handlers
@@ -77,6 +81,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             />
             <video
                 className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
+                style={stylingLogic.getCarouselVideoStyle()}
                 ref={videoRef as any}
                 autoPlay={!!autoPlay}
                 muted={!!muted}
