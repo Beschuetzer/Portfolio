@@ -52,10 +52,34 @@ export type CarouselNavigationProps = {
     numberOfDots: number;
 }
 
+export type CarouselFontFamilyOptions = Exclusive<
+{
+    /*
+    *Setting the font-family for text in the item-viewer
+    */
+    itemViewer?: string;
+    /*
+    *Setting the font-family for the navigation items and the carousel itself
+    */
+    navigation?: string;
+   
+}, 
+{
+    /*
+    *Setting this sets both itemViewer and navigation to the same font-family
+    */
+    all?: string;
+}>
+
+export type CarouselStylingOptions = {
+    fontFamily?: CarouselFontFamilyOptions;
+}
+
 export type CarouselOptions = {
     itemViewer?: CarouselItemViewerOptions;
     navigation?: CarouselNavigationOptions;
     shortcuts?: CarouselActions;
+    styling?: CarouselStylingOptions
     svgs?: CarouselSvgs;
     thumbnail?: CarouselThumbnailOptions;
 }

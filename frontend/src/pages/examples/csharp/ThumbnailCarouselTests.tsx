@@ -197,6 +197,12 @@ const items = [
 const allCustomSettings = (
 	<Carousel
 		options={{
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
+					navigation: 'serif'
+				}
+			},
 			shortcuts: carouselShortcuts,
 			itemViewer: {
 				autoHideToolbarDuration: 2000,
@@ -351,6 +357,34 @@ const itemViewerCustomButtons = (
 		}
 	}}/>
 );
+const itemViewerCustomItemViewerFont = (
+	<Carousel items={items} options={{
+		styling: {
+			fontFamily: {
+				itemViewer: 'monospace',
+			}
+		}
+	}} />
+);
+const itemViewerCustomNavigationFont = (
+	<Carousel items={items} options={{
+		styling: {
+			fontFamily: {
+				navigation: 'monospace',
+			}
+		}
+	}} />
+);
+const itemViewerCustomFontBoth = (
+	<Carousel items={items} options={{
+		styling: {
+			fontFamily: {
+				all: 'monospace',
+			}
+		}
+	}} />
+);
+
 const itemViewerCustomOverlayOnLoad = (
 	<Carousel items={items.slice(2, 3)} />
 );
@@ -490,6 +524,18 @@ const SECTIONS: Sections = [
 			{
 				label: "All custom keyboard shortcuts",
 				jsx: itemViewerCustomShortcuts,
+			},
+			{
+				label: "Custom Item Viewer Font",
+				jsx: itemViewerCustomItemViewerFont,
+			},
+			{
+				label: "Custom Navigation Font",
+				jsx: itemViewerCustomNavigationFont,
+			},
+			{
+				label: "Custom Navigation and Item Viewer Fonts",
+				jsx: itemViewerCustomFontBoth,
 			}
 		]
 	],
