@@ -1,7 +1,7 @@
 import React, { ReactNode, forwardRef } from 'react'
 import { getClassname } from '../../../utils'
 import { StylingLogic } from '../../../business-logic/StylingLogic';
-import { useCarouselContext } from '../../../context';
+import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 
 type CarouselItemViewerContainerProps = {
     children: ReactNode | ReactNode[];
@@ -12,8 +12,8 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     children,
     onClick,
 }, ref) => {
-    const { options } = useCarouselContext();
-    const stylingLogic = new StylingLogic(options || {});
+    const { currentItemInInstance, options } = useCarouselInstanceContext();
+    const stylingLogic = new StylingLogic({options: options || {}, currentItemInInstance});
 
     return (
         <div

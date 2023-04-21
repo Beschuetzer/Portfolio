@@ -40,7 +40,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   } = props;
   const { setCurrentItemIndex, setCurrentSvgs: setCurrentSvgHrefs, setOptions, setCurrentCarouselId, itemViewerRef, } = useCarouselContext();
   const { id: carouselId, options, setCurrentItemInInstanceIndex } = useCarouselInstanceContext();
-  const itemDisplayLocationLogic = new ItemDisplayLocationLogic(options || {});
+  const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}});
   //#endregion
 
   //#region Functions/Handlers

@@ -3,6 +3,11 @@ import { CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { CarouselItemProps } from "../components/CarouselItem";
 
+export type StylingLogicConstructor = {
+    options: CarouselOptions;
+    currentItemInInstance?: CarouselItemProps;
+}
+
 /*
 *Use this when extending styling options
 */
@@ -14,7 +19,10 @@ export class StylingLogic {
     private fontFamilyNavigationStyle = {} as CSSProperties;
     private carouselItemContainerStyle = {} as CSSProperties;
 
-    constructor(options: CarouselOptions) {
+    constructor(constructor: StylingLogicConstructor) {
+        const { options, currentItemInInstance } = constructor;
+        const isCurrentItemInInstancePopulated = Object.keys(currentItemInInstance || {}).length > 0;
+
         const stylings = options.styling;
         if (stylings) {
             const fontFamily = stylings?.fontFamily || {};
@@ -28,16 +36,17 @@ export class StylingLogic {
 
         }
 
-        this.itemDisplayLocationLogic = new ItemDisplayLocationLogic(options || {}, {} as CarouselItemProps);
+        this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}, currentItem: currentItemInInstance});
         this.carouselItemContainerStyle = !this.itemDisplayLocationLogic.getShouldDisplayItemViewer() ? {
             width: "100%",
-            height: "auto",
+            height: "50rem",
             maxHeight: '50rem',
             display: "flex",
             flexDirection: "initial",
             alignItems: "initial",
             justifyContent: "center",
             position: "relative",
+            backgroundColor: "black",
         } as CSSProperties : {}
 
     }

@@ -49,7 +49,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const { currentSvgs: currentSvgHrefs, options } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.closeButton || '';
     const isCustom = !!children;
-    const styleLogic = new StylingLogic(options);
+    const styleLogic = new StylingLogic({options});
     //#endregion
 
     //#region Handlers/Functions

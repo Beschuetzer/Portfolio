@@ -715,7 +715,7 @@
   position: absolute;
   bottom: auto;
   left: auto;
-  right: calc(20px / 2);
+  right: calc(20px);
   top: calc(-1 * var(--height));
   width: var(--width);
   height: var(--height);

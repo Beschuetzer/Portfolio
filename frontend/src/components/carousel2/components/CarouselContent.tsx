@@ -31,7 +31,7 @@ export const CarouselContent = ({
     const [numberOfPages, setNumberOfPages] = useState(0);
     const itemsContainerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndex = useRef(CURRENT_ITEM_INDEX_INITIAL);
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic(options || {}, currentItemInInstance);
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}, currentItem: currentItemInInstance});
     //#endregion
 
     //#region Functions/Handlers

@@ -11,7 +11,7 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps> ((pro
     const { currentItem, setCurrentItems, setCurrentItemIndex, options } = useCarouselContext();
     const [isVisible, setisVisible] = useState(Object.keys(currentItem || {})?.length > 0);
     const innerRef = useRef<HTMLElement>(null);
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic(options, currentItem);
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options, currentItem});
     useImperativeHandle(ref, () => innerRef.current);
     //#endregion
 
