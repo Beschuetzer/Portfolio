@@ -5,6 +5,7 @@ import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
 import { Exclusive } from '../types';
 import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__OVERLAY_BUTTON_RIGHT, CLASSNAME__OVERLAY_BUTTON_TOP } from '../constants';
+import { StylingLogic } from '../business-logic/StylingLogic';
 
 export type CarouselVideoOverlay = Exclusive<{
     /*
@@ -45,15 +46,14 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const { children, isVideoPlaying, title, text, closeButton } = props;
     const [isVisible, setIsVisible] = useState(true);
 
-    const { currentSvgs: currentSvgHrefs } = useCarouselContext();
+    const { currentSvgs: currentSvgHrefs, options } = useCarouselContext();
     const svgHref = currentSvgHrefs?.itemViewer?.closeButton || '';
     const isCustom = !!children;
+    const styleLogic = new StylingLogic(options);
     //#endregion
 
     //#region Handlers/Functions
     const onCloseClick = useCallback((e: MouseEvent) => {
-        console.log({e});
-        
         stopPropagation(e)
         setIsVisible(false);
     }, [setIsVisible])
@@ -113,7 +113,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const classNameToUse = `${className} ${isCustom ? classNameCustom : ''} ${visibilityStyle}`;
 
     return (
-        <div className={classNameToUse} onClick={stopPropagation as any}>
+        <div className={classNameToUse} onClick={stopPropagation as any} style={styleLogic.getFontFamilyItemViewerStyle()}>
             {renderChildren()}
         </div>
     )

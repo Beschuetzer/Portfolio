@@ -13,6 +13,10 @@ type GetAllResonse = {
     onActionCompleted: GetAllOnActionCompleted;
 }
 type GetIndividualResponse = Required<CarouselAction>;
+
+/*
+*Use this if/when adding new actions/buttons to Item Viewer toolbar
+*/
 export class ToolbarActionsLogic {
     public isPauseSeparate: boolean;
 

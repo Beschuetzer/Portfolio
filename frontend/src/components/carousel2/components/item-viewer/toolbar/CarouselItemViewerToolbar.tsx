@@ -16,6 +16,7 @@ import { CarouselItemViewerToolbarPreview, ToolbarPreviewDirection } from './Car
 import { ToolbarLogic } from '../../../business-logic/ToolbarLogic'
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic'
+import { StylingLogic } from '../../../business-logic/StylingLogic'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -75,6 +76,8 @@ export const CarouselItemViewerToolbar = ({
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
     const actionsLogic = new ToolbarActionsLogic(options);
+    const stylingLogic = new StylingLogic(options);
+
     useKeyboardShortcuts([
         {
             keys: actionsLogic.getPlay().keys,
@@ -360,7 +363,7 @@ export const CarouselItemViewerToolbar = ({
 
     //#region JSX
     return (
-        <div onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR}>
+        <div onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR} style={stylingLogic.getFontFamilyItemViewerStyle()}>
             {videoRef ? <CarouselItemViewerProgressBar videoRef={videoRef} setTimeStrings={setTimeStrings} /> : null}
             <div className={CLASSNAME_INNER_CONTAINER}>
                 {videoRef ? (

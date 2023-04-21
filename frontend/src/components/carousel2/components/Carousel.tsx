@@ -5,6 +5,7 @@ import { CarouselInstanceProvider } from './CarouselInstanceProvider';
 import { CarouselItemProps } from './CarouselItem';
 import { CarouselOptions } from '../types';
 import { CarouselContent } from './CarouselContent';
+import { StylingLogic } from '../business-logic/StylingLogic';
 
 export type CarouselProps = {
 	style?: CSSProperties;
@@ -28,12 +29,13 @@ export const Carousel = (props: CarouselProps) => {
 	const idRef = useRef<string>(getGuid());
 	const carouselContainerRef = useRef<HTMLDivElement>();
 	const isCurrentCarousel = currentCarouselId === idRef.current;
+	const stylingLogic = new StylingLogic(options || {});
 	//#endregion
 
 	//#region Side Fx
 	useEffect(() => {
 		if (!isCurrentCarousel) return;
-		onItemChange && onItemChange(!!currentItems?.[currentItemIndex] || false);		
+		onItemChange && onItemChange(!!currentItems?.[currentItemIndex] || false);
 	}, [currentItemIndex, currentItems, isCurrentCarousel])
 
 	useEffect(() => {
@@ -48,7 +50,16 @@ export const Carousel = (props: CarouselProps) => {
 			carouselContainerRef={carouselContainerRef as any}
 			id={idRef.current}
 			options={options}>
-			<div ref={carouselContainerRef as any} className={getClassname({ elementName: "" })} style={style}>
+			<div
+				ref={carouselContainerRef as any}
+				className={getClassname({ elementName: "" })}
+				style={
+					{
+						...style,
+						...stylingLogic.getFontFamilyNavigationStyle(),
+					}
+				}
+			>
 				<CarouselContent {...props} carouselContainerRef={carouselContainerRef} />
 			</div>
 		</CarouselInstanceProvider>
