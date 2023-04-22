@@ -256,6 +256,10 @@ export type CarouselThumbnailOptions = {
     */
     itemSpacing?: number;
     /*
+    *The horizontal margin for the thumbnail container.
+    */
+    marginHorizontal?: number;
+    /*
     *The number of lines to show before an ellipsis is inserted.  Default is 2.
     */
     maxLineCount?: number;

@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import { CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { CarouselItemProps } from "../components/CarouselItem";
-import { CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT } from "../constants";
+import { CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT } from "../constants";
 
 export type StylingLogicConstructor = {
     options: CarouselOptions;
@@ -23,7 +23,7 @@ export class StylingLogic {
         this.options = options;
         this.currentItemInInstance = currentItemInInstance;
         const isCurrentItemInInstancePopulated = Object.keys(currentItemInInstance || {}).length > 0;
-        this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}, currentItem: currentItemInInstance});       
+        this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem: currentItemInInstance });
     }
 
     get carouselItemStyle() {
@@ -38,7 +38,7 @@ export class StylingLogic {
 
     get carouselItemContainerHeight() {
         return `${this.options?.itemHeight || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}px`;
-     }
+    }
 
     get carouselItemContainerStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
@@ -51,6 +51,14 @@ export class StylingLogic {
             position: "relative",
             backgroundColor: "black",
             marginBottom: "10px",
+        } as CSSProperties : {};
+    }
+
+    get carouselItemsContainerStyle() {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            margin: `0 ${this.thumbnailMarginHorizontal}px`,
+            overflow: 'hidden',
+            marginTop: `${this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? 0 : (this.thumbnailMarginHorizontal / 1)}px`,
         } as CSSProperties : {};
     }
 
@@ -75,5 +83,12 @@ export class StylingLogic {
         return fontFamily?.all || fontFamily?.navigation ? {
             fontFamily: fontFamily?.all || fontFamily?.navigation || this.DEFAULT_FONT_FAMILY,
         } : {};
+    }
+
+    get thumbnailMarginHorizontal() {
+        if (this.itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
+            return this.options.thumbnail?.marginHorizontal || CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT;
+        }
+        return this.options.thumbnail?.marginHorizontal || CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
     }
 }

@@ -9,6 +9,7 @@ import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, useCarouselContext } 
 import { ArrowButtonDirection } from '../types';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
+import { StylingLogic } from '../business-logic/StylingLogic';
 
 type CarouselContentProps = {
     carouselContainerRef: React.MutableRefObject<HTMLElement | undefined>;
@@ -21,7 +22,7 @@ export const CarouselContent = ({
 }: CarouselContentProps) => {
     //#region Init
     const { currentItemIndex, currentCarouselId, currentItems } = useCarouselContext();
-    const { currentItemInInstance, setCurrentItemInInstanceIndex, setItemsInInstance} = useCarouselInstanceContext();
+    const { currentItemInInstance, setCurrentItemInInstanceIndex, setItemsInInstance } = useCarouselInstanceContext();
     const { id } = useCarouselInstanceContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
@@ -31,10 +32,15 @@ export const CarouselContent = ({
     const [numberOfPages, setNumberOfPages] = useState(0);
     const itemsContainerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndex = useRef(CURRENT_ITEM_INDEX_INITIAL);
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}, currentItem: currentItemInInstance});
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem: currentItemInInstance });
+    const stylingLogic = new StylingLogic({ options: options || {} });
     //#endregion
 
     //#region Functions/Handlers
+    function getContainerWidth() {
+        return (carouselContainerRef.current?.getBoundingClientRect()?.width || 0) - (stylingLogic.thumbnailMarginHorizontal * 2);
+    }
+
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
         if (options?.thumbnail?.itemSpacing) return `${options?.thumbnail?.itemSpacing}${CAROUSEL_ITEM_SPACING_UNIT}`;
@@ -50,9 +56,9 @@ export const CarouselContent = ({
     }
 
     function getNumberOfItemsThatCanFit() {
-        const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
+        const containerWidth = getContainerWidth();
         const itemSize = itemDisplayLocationLogic.carouselItemSize;
-        
+
         return {
             containerWidth,
             itemSize,
@@ -63,7 +69,7 @@ export const CarouselContent = ({
 
     function getTranslationAmount() {
         const itemSpacingGiven = options?.thumbnail?.itemSpacing;
-        const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
+        const containerWidth = getContainerWidth();
         if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
             const { numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit();
 
@@ -200,10 +206,12 @@ export const CarouselContent = ({
             {itemDisplayLocationLogic.shouldDisplayItemAbove ? (
                 <ItemToRender {...currentItemInInstance} />
             ) : null}
-            <div ref={itemsContainerRef} style={containerStyle} className={getClassname({ elementName: "items" })}>
-                {
-                    items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)
-                }
+            <div style={stylingLogic.carouselItemsContainerStyle}>
+                <div ref={itemsContainerRef} style={containerStyle} className={getClassname({ elementName: "items" })}>
+                    {
+                        items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)
+                    }
+                </div>
             </div>
             {numberOfPages > 1 ? (
                 <div className={getClassname({ elementName: "navigation" })}>
