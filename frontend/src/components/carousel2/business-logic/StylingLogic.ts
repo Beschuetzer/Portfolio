@@ -188,4 +188,8 @@ export class StylingLogic {
         }
         return this.options.thumbnail?.marginHorizontal || CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
     }
+
+    getNavigationFillColor(svgRefColor: string | undefined) {
+        return this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? svgRefColor : CAROUSEL_COLOR_FIVE;
+    }
 }

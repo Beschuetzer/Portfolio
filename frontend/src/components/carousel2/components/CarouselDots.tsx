@@ -3,6 +3,7 @@ import { CarouselItemProps } from './CarouselItem';
 import { getClassname } from '../utils';
 import { CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
 import { ArrowProps, CarouselNavigationProps, CarouselOptions } from '../types';
+import { StylingLogic } from '../business-logic/StylingLogic';
 
 type CarouselDotsProps = {
     items: CarouselItemProps[];
@@ -19,7 +20,9 @@ export const CarouselDots = ({
     setCurrentPage,
 }: CarouselDotsProps) => {
     //#region Init
-    const { fillColor, svgHref, style } = options?.svgs?.navigation?.dots || {};
+    const { fillColor: fillColorTemp, svgHref, style } = options?.svgs?.navigation?.dots || {};
+    const stylingLogic = new StylingLogic({ options: options || {} });
+    const fillColor = stylingLogic.getNavigationFillColor(fillColorTemp);
     //#endregion
 
     //#region Handlers/Functions
@@ -43,8 +46,8 @@ export const CarouselDots = ({
         for (let index = 0; index < numberOfDots; index++) {
             const isCurrentPage = index === currentPage;
             const isSvg = !!svgHref;
-            
-            const currentDotStyle = isCurrentPage && isSvg  ? {
+
+            const currentDotStyle = isCurrentPage && isSvg ? {
                 opacity: 1,
             } : isCurrentPage ? {
                 backgroundColor: fillColor || CAROUSEL_COLOR_ONE,
@@ -57,14 +60,14 @@ export const CarouselDots = ({
                 isSvg ? (
                     <svg key={index} onClick={() => onDotClick(index)} className={currentPageClassname} style={style}>
                         <use
-                            style={{...useStyles, ...currentDotStyle}}
+                            style={{ ...useStyles, ...currentDotStyle }}
                             xlinkHref={svgHref}
                             href={svgHref}
                         />
                     </svg>
                 ) : (
                     <div key={index} onClick={() => onDotClick(index)} className={currentPageClassname}>
-                        <div style={{...divStyles, ...currentDotStyle}} />
+                        <div style={{ ...divStyles, ...currentDotStyle }} />
                     </div>
                 )
             ));
