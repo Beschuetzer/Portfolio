@@ -40,7 +40,7 @@ export class StylingLogic {
         }
 
         this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}, currentItem: currentItemInInstance});
-        this.carouselItemContainerStyle = !this.itemDisplayLocationLogic.getIsDefaultItemDisplayLocation() ? {
+        this.carouselItemContainerStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             height: "auto",
             maxHeight: '50rem',
@@ -53,12 +53,12 @@ export class StylingLogic {
             marginBottom: "10px",
         } as CSSProperties : {}
 
-        this.carouselVideoStyle = !this.itemDisplayLocationLogic.getIsDefaultItemDisplayLocation() ? {
+        this.carouselVideoStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             height: "100%",
         } as CSSProperties : {}
 
-        this.carouselItemStyle = !this.itemDisplayLocationLogic.getIsDefaultItemDisplayLocation() ? {
+        this.carouselItemStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}px`,
             height: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}px`,
         } as CSSProperties : {

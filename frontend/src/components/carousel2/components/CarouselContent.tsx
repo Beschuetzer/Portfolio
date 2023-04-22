@@ -175,7 +175,7 @@ export const CarouselContent = ({
 
     //setting the currentItemIndex in carousel instance on load if condition met
     useEffect(() => {
-        if (!itemDisplayLocationLogic.getIsDefaultItemDisplayLocation()) {
+        if (!itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
             setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(0);
             setItemsInInstance && setItemsInInstance(items);
         }
@@ -183,7 +183,7 @@ export const CarouselContent = ({
     //#endregion
 
     //#region JSX
-    const ItemToRender = itemDisplayLocationLogic.getItemToRender();
+    const ItemToRender = itemDisplayLocationLogic.itemToRender;
     const interItemSpacingStyle = {
         columnGap: interItemSpacing,
     } as CSSProperties
@@ -197,7 +197,7 @@ export const CarouselContent = ({
 
     return (
         <>
-            {itemDisplayLocationLogic.getShouldDisplayItemAbove() ? (
+            {itemDisplayLocationLogic.shouldDisplayItemAbove ? (
                 <ItemToRender {...currentItemInInstance} />
             ) : null}
             <div ref={itemsContainerRef} style={containerStyle} className={getClassname({ elementName: "items" })}>
@@ -228,7 +228,7 @@ export const CarouselContent = ({
                         onClick={() => onArrowButtonClick("right")} />
                 </div>
             ) : null}
-            {itemDisplayLocationLogic.getShouldDisplayItemBelow() ? (
+            {itemDisplayLocationLogic.shouldDisplayItemBelow ? (
                 <ItemToRender {...currentItemInInstance} />
             ) : null}
         </>

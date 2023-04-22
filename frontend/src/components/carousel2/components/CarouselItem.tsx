@@ -52,7 +52,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     setCurrentItemIndex(index as any);
     setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(index as any);
     setCurrentSvgHrefs(options?.svgs);
-    itemDisplayLocationLogic.getIsDefaultItemDisplayLocation() && enterFullScreen(itemViewerRef.current);
+    itemDisplayLocationLogic.isDefaultItemDisplayLocation && enterFullScreen(itemViewerRef.current);
   }
   //#endregion
 

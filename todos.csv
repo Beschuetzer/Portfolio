@@ -6,7 +6,7 @@ Carousel rework
     -progress bar styling
     -overlay styling
     -button and text sizing too large?
-    -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling
+    -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom)
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing
 
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?

@@ -166,7 +166,7 @@ export const CarouselItemViewerToolbar = ({
         if (currentItems.length <= 1) return;
         const newIndex = currentItemIndex === currentItems.length - 1 ? 0 : currentItemIndex + 1;
         setCurrentItemIndex(newIndex);
-        !itemDisplayLocationLogic.getIsDefaultItemDisplayLocation() && setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
+        !itemDisplayLocationLogic.isDefaultItemDisplayLocation && setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
         resetPreviewItems();
         onNextItemClick && onNextItemClick();
         handleAutoHide();
@@ -177,7 +177,7 @@ export const CarouselItemViewerToolbar = ({
         if (currentItems.length <= 1) return;
         const newIndex = currentItemIndex === 0 ? currentItems.length - 1 : currentItemIndex - 1;
         setCurrentItemIndex(newIndex);
-        !itemDisplayLocationLogic.getIsDefaultItemDisplayLocation() && setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
+        !itemDisplayLocationLogic.isDefaultItemDisplayLocation && setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
         resetPreviewItems();
         onPreviousItemClick && onPreviousItemClick();
         handleAutoHide();

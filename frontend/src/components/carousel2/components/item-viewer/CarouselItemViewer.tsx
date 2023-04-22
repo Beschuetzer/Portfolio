@@ -48,9 +48,9 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps> ((pro
     //#region JSX
     const visibilityStyle = isVisible ? getClassname({modifiedName: 'visible'}) : getClassname({modifiedName: 'hidden'});
     const containerClassname = `${getClassname({elementName: CLASSNAME__ITEM_VIEWER})} ${visibilityStyle}`;
-    const ItemToRender = itemDisplayLocationLogic.getItemToRender();
+    const ItemToRender = itemDisplayLocationLogic.itemToRender;
   
-    if (!itemDisplayLocationLogic.getIsDefaultItemDisplayLocation()) return null;
+    if (!itemDisplayLocationLogic.isDefaultItemDisplayLocation) return null;
     return (
         <div ref={innerRef as any} className={containerClassname}>
             <ItemToRender {...currentItem}/>
