@@ -31,7 +31,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const videoRef = useRef<HTMLVideoElement>();
     const itemContainerRef = useRef<HTMLDivElement>();
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
-    const stylingLogic = new StylingLogic({options: options || {}});
+    const stylingLogic = new StylingLogic({options});
     //#endregion
 
     //#region Functions/Handlers

@@ -21,7 +21,7 @@ export const CarouselArrowButton = ({
   }
   const shouldHide = !!options?.navigation?.hideArrowsAtFinalPage;
   const isHidden = direction === 'left' ? currentPage === 0 : currentPage === numberOfDots - 1;
-  const stylingLogic = new StylingLogic({options: options || {}});
+  const stylingLogic = new StylingLogic({options});
 
   if ((shouldHide && isHidden) || numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return <EmptyFillerButton />;
   return !!svgHref?.svgHref ? 

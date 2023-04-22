@@ -4,8 +4,11 @@ import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemVie
 import { LoadingSpinner } from './LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../constants';
 import { CarouselItemViewerContainer } from './item-viewer/toolbar/CarouselItemViewerContainer';
+import { StylingLogic } from '../business-logic/StylingLogic';
+import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 
 export const CarouselImage = (props: CarouselItemProps) => {
+    const { options } = useCarouselInstanceContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const containerRef = useRef<HTMLDivElement>();
     const imageRef = useRef<HTMLImageElement | undefined>();
@@ -13,11 +16,13 @@ export const CarouselImage = (props: CarouselItemProps) => {
         description,
         srcMain,
     } = props;
+    const stylingLogic = new StylingLogic({options});
 
     return (
         <CarouselItemViewerContainer ref={containerRef}>
             <LoadingSpinner type='ring' show={!isLoaded} description={description} />
             <img
+            style={stylingLogic.carouselImageStlye}
                 className={isLoaded ? '' : CLASSNAME__HIDDEN}
                 ref={imageRef as any}
                 src={srcMain}

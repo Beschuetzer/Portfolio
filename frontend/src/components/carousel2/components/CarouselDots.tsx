@@ -21,7 +21,7 @@ export const CarouselDots = ({
 }: CarouselDotsProps) => {
     //#region Init
     const { fillColor: fillColorTemp, svgHref, style } = options?.svgs?.navigation?.dots || {};
-    const stylingLogic = new StylingLogic({ options: options || {} });
+    const stylingLogic = new StylingLogic({ options});
     const fillColor = stylingLogic.getNavigationFillColor(fillColorTemp);
     //#endregion
 

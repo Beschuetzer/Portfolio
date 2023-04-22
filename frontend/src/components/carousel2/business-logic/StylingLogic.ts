@@ -7,7 +7,7 @@ import { CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_SPACING_UN
 
 export type StylingLogicConstructor = {
     currentItemInInstance?: CarouselItemProps;
-    options: CarouselOptions;
+    options: CarouselOptions | undefined;
     isCurrentItem?: boolean;
 }
 
@@ -27,11 +27,18 @@ export class StylingLogic {
             isCurrentItem,
             options
         } = constructor;
-        this.options = options;
+        this.options = options || {};
         this.currentItemInInstance = currentItemInInstance;
         this.isCurrentItem = isCurrentItem;
         const isCurrentItemInInstancePopulated = Object.keys(currentItemInInstance || {}).length > 0;
-        this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem: currentItemInInstance });
+        this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: this.options, currentItem: currentItemInInstance });
+    }
+
+    get carouselImageStlye(){
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            width: 'auto',
+            maxHeight: '100%',
+        } as CSSProperties : {} as CSSProperties;
     }
 
     get carouselStyle() {
@@ -76,10 +83,6 @@ export class StylingLogic {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             height: this.carouselItemContainerHeight,
-            display: "flex",
-            flexDirection: "initial",
-            alignItems: "initial",
-            justifyContent: "center",
             position: "relative",
             backgroundColor: CAROUSEL_COLOR_ONE,
             marginBottom: `10${CAROUSEL_SPACING_UNIT}`,
@@ -191,12 +194,10 @@ export class StylingLogic {
     }
 
     get toolbarStyle() {
-        console.log({options: this.options});
-        
         const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            background: CAROUSEL_COLOR_FIVE,
+            background: CAROUSEL_COLOR_ONE,
             position: "static",
-            justifyContent: "flex-start",
+            width: '100%',
         } as React.CSSProperties : {};
 
         return {

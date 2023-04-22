@@ -29,7 +29,7 @@ export const Carousel = (props: CarouselProps) => {
 	const idRef = useRef<string>(getGuid());
 	const carouselContainerRef = useRef<HTMLDivElement>();
 	const isCurrentCarousel = currentCarouselId === idRef.current;
-	const stylingLogic = new StylingLogic({options: options || {}});
+	const stylingLogic = new StylingLogic({options});
 	//#endregion
 
 	//#region Side Fx

@@ -13,7 +13,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     onClick,
 }, ref) => {
     const { currentItemInInstance, options } = useCarouselInstanceContext();
-    const stylingLogic = new StylingLogic({options: options || {}, currentItemInInstance});
+    const stylingLogic = new StylingLogic({options, currentItemInInstance});
 
     return (
         <div

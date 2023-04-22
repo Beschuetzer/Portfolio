@@ -42,7 +42,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   const { setCurrentItemIndex, setCurrentSvgs: setCurrentSvgHrefs, setOptions, setCurrentCarouselId, itemViewerRef, } = useCarouselContext();
   const { id: carouselId, options, setCurrentItemInInstanceIndex, currentItemInInstanceIndex } = useCarouselInstanceContext();
   const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}});
-  const stylingLogic = new StylingLogic({options: options || {}, isCurrentItem: index === currentItemInInstanceIndex});
+  const stylingLogic = new StylingLogic({options, isCurrentItem: index === currentItemInInstanceIndex});
   //#endregion
 
   //#region Functions/Handlers

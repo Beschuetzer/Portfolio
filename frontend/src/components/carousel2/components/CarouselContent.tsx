@@ -33,7 +33,7 @@ export const CarouselContent = ({
     const itemsContainerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndex = useRef(CURRENT_ITEM_INDEX_INITIAL);
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem: currentItemInInstance });
-    const stylingLogic = new StylingLogic({ options: options || {} });
+    const stylingLogic = new StylingLogic({ options});
     //#endregion
 
     //#region Functions/Handlers
