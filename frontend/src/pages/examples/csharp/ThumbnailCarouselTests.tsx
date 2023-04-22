@@ -259,7 +259,7 @@ const displayCurrentItemAboveWithItemHeightAndFontFamily = (
 	<Carousel
 		items={items}
 		options={{
-			itemHeight: 447,
+			itemHeight: 427,
 			itemDisplayLocation: 'above',
 			styling: {
 				fontFamily: {
