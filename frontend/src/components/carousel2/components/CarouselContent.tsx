@@ -214,7 +214,7 @@ export const CarouselContent = ({
                 </div>
             </div>
             {numberOfPages > 1 ? (
-                <div className={getClassname({ elementName: "navigation" })}>
+                <div style={stylingLogic.navigationStyle} className={getClassname({ elementName: "navigation" })}>
                     <CarouselArrowButton
                         options={options}
                         currentPage={currentPage}

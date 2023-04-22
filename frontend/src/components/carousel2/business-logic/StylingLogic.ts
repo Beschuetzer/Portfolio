@@ -120,6 +120,13 @@ export class StylingLogic {
         } : {};
     }
 
+    get navigationStyle() {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            marginBottom: 0,
+            padding: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2}${CAROUSEL_SPACING_UNIT} ${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
+        } as CSSProperties : {};
+    }
+
     get thumbnailBackgroundStyle() {
         const thumbnail = this.options?.thumbnail;
         const solid = thumbnail?.background?.solid;
