@@ -170,8 +170,8 @@
 
 .thumbnail-carousel-button {
   overflow: hidden;
-  height: 30px;
-  width: 30px;
+  height: 24px;
+  width: 24px;
   opacity: 0.875;
   border: none;
   position: relative;
@@ -187,12 +187,12 @@
 }
 .thumbnail-carousel-button--arrow-left-one, .thumbnail-carousel-button--arrow-left-two, .thumbnail-carousel-button--arrow-right-one, .thumbnail-carousel-button--arrow-right-two {
   background-color: #0a0a0a;
-  width: 3.75px;
-  height: 11.1803398875px;
+  width: 3px;
+  height: 8.94427191px;
 }
 .thumbnail-carousel-button--arrow-left-one {
   position: absolute;
-  top: calc(50% + 3.9528470752px - 1.3258252147px);
+  top: calc(50% + 3.1622776602px - 1.0606601718px);
   left: 50%;
   right: auto;
   bottom: auto;
@@ -200,7 +200,7 @@
 }
 .thumbnail-carousel-button--arrow-left-two {
   position: absolute;
-  top: calc(50% - 3.9528470752px + 1.3258252147px);
+  top: calc(50% - 3.1622776602px + 1.0606601718px);
   left: 50%;
   right: auto;
   bottom: auto;
@@ -208,7 +208,7 @@
 }
 .thumbnail-carousel-button--arrow-right-one {
   position: absolute;
-  top: calc(50% - 3.9528470752px + 1.3258252147px);
+  top: calc(50% - 3.1622776602px + 1.0606601718px);
   left: 50%;
   right: auto;
   bottom: auto;
@@ -216,15 +216,15 @@
 }
 .thumbnail-carousel-button--arrow-right-two {
   position: absolute;
-  top: calc(50% + 3.9528470752px - 1.3258252147px);
+  top: calc(50% + 3.1622776602px - 1.0606601718px);
   left: 50%;
   right: auto;
   bottom: auto;
   transform: translate(-50%, -50%) rotate(45deg);
 }
 .thumbnail-carousel-button--close-left, .thumbnail-carousel-button--close-right {
-  width: 7.5px;
-  height: 30px;
+  width: 6px;
+  height: 24px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -235,8 +235,8 @@
 .thumbnail-carousel-button--close-left-inverse, .thumbnail-carousel-button--close-right-inverse {
   background-color: #0a0a0a;
   margin-top: 0;
-  width: 3.75px;
-  height: 22.5px;
+  width: 3px;
+  height: 18px;
 }
 .thumbnail-carousel-button--close-left {
   --rotation: -45deg;
@@ -245,12 +245,12 @@
   --rotation: 45deg;
 }
 .thumbnail-carousel-button--next-left {
-  border-left: calc(30px / 2.5) solid #fff;
+  border-left: calc(24px / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(30px / 2.25) solid transparent;
-  border-bottom: calc(30px / 2.25) solid transparent;
+  border-top: calc(24px / 2.25) solid transparent;
+  border-bottom: calc(24px / 2.25) solid transparent;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -264,12 +264,12 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(calc(-50% + 7.5px), -50%) rotate(0);
-  width: 3.75px;
-  height: calc(30px * .85);
+  transform: translate(calc(-50% + 6px), -50%) rotate(0);
+  width: 3px;
+  height: calc(24px * .85);
 }
 .thumbnail-carousel-button--inverse {
-  transform: translateX(6px);
+  transform: translateX(4.8px);
   margin-top: 0;
 }
 .thumbnail-carousel-button--pause-left, .thumbnail-carousel-button--pause-right {
@@ -278,9 +278,9 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(calc(-50% + 7.5px), -50%) rotate(0);
-  width: 7.5px;
-  height: calc(30px * .85);
+  transform: translate(calc(-50% + 6px), -50%) rotate(0);
+  width: 6px;
+  height: calc(24px * .85);
 }
 .thumbnail-carousel-button--pause-left {
   position: absolute;
@@ -288,7 +288,7 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(calc(-50% - 7.5px), -50%) rotate(0);
+  transform: translate(calc(-50% - 6px), -50%) rotate(0);
 }
 .thumbnail-carousel-button--play-triangle {
   position: absolute;
@@ -300,9 +300,9 @@
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(30px / 2.25) solid transparent;
-  border-left: calc(30px / 1.33) solid #fff;
-  border-bottom: calc(30px / 2.25) solid transparent;
+  border-top: calc(24px / 2.25) solid transparent;
+  border-left: calc(24px / 1.33) solid #fff;
+  border-bottom: calc(24px / 2.25) solid transparent;
 }
 .thumbnail-carousel-button--previous-left {
   position: absolute;
@@ -310,9 +310,9 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(calc(-50% + 7.5px), -50%) rotate(0);
-  width: 3.75px;
-  height: calc(30px * .85);
+  transform: translate(calc(-50% + 6px), -50%) rotate(0);
+  width: 3px;
+  height: calc(24px * .85);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -321,12 +321,12 @@
   transform: translate(-175%, -50%) rotate(0);
 }
 .thumbnail-carousel-button--previous-right {
-  border-right: calc(30px / 2.5) solid #fff;
+  border-right: calc(24px / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(30px / 2.25) solid transparent;
-  border-bottom: calc(30px / 2.25) solid transparent;
+  border-top: calc(24px / 2.25) solid transparent;
+  border-bottom: calc(24px / 2.25) solid transparent;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -347,8 +347,8 @@
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(30px / 2.5) solid transparent;
-  border-right: calc(30px / 2.5) solid #fff;
+  border-top: calc(24px / 2.5) solid transparent;
+  border-right: calc(24px / 2.5) solid #fff;
   border-bottom: none;
 }
 .thumbnail-carousel-button--restart-circle-inner, .thumbnail-carousel-button--restart-circle-outer {
@@ -361,13 +361,13 @@
   transform: translate(-50%, -50%) rotate(0);
 }
 .thumbnail-carousel-button--restart-circle-inner {
-  height: calc((30px * .85) - 15px);
-  width: calc((30px * .85) - 15px);
+  height: calc((24px * .85) - 12px);
+  width: calc((24px * .85) - 12px);
   background-color: rgba(10, 10, 10, 0);
 }
 .thumbnail-carousel-button--restart-circle-outer {
-  height: calc(30px * .85);
-  width: calc(30px * .85);
+  height: calc(24px * .85);
+  width: calc(24px * .85);
 }
 .thumbnail-carousel-button--restart-triangle-cutout {
   position: absolute;
@@ -382,17 +382,17 @@
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(30px / 1) solid transparent;
-  border-right: calc(30px / 1) solid rgba(10, 10, 10, 0);
-  border-bottom: calc(30px / 1) solid transparent;
+  border-top: calc(24px / 1) solid transparent;
+  border-right: calc(24px / 1) solid rgba(10, 10, 10, 0);
+  border-bottom: calc(24px / 1) solid transparent;
 }
 .thumbnail-carousel-button--seek-back-left, .thumbnail-carousel-button--seek-back-right {
-  border-left: calc(30px / 2.5) solid #fff;
+  border-left: calc(24px / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(30px / 2.25) solid transparent;
-  border-bottom: calc(30px / 2.25) solid transparent;
+  border-top: calc(24px / 2.25) solid transparent;
+  border-bottom: calc(24px / 2.25) solid transparent;
 }
 .thumbnail-carousel-button--seek-back-left {
   position: absolute;
@@ -411,12 +411,12 @@
   transform: translate(0%, -50%) rotate(180deg);
 }
 .thumbnail-carousel-button--seek-forward-left, .thumbnail-carousel-button--seek-forward-right {
-  border-left: calc(30px / 2.5) solid #fff;
+  border-left: calc(24px / 2.5) solid #fff;
   background-color: transparent;
   width: 0;
   height: 0;
-  border-top: calc(30px / 2.25) solid transparent;
-  border-bottom: calc(30px / 2.25) solid transparent;
+  border-top: calc(24px / 2.25) solid transparent;
+  border-bottom: calc(24px / 2.25) solid transparent;
 }
 .thumbnail-carousel-button--seek-forward-left {
   position: absolute;
@@ -441,8 +441,8 @@
   right: auto;
   bottom: auto;
   transform: translate(-50%, -50%) rotate(0);
-  height: calc(30px * .85);
-  width: calc(calc(30px * .85) * .95);
+  height: calc(24px * .85);
+  width: calc(calc(24px * .85) * .95);
 }
 .thumbnail-carousel-button--video-state-indicator {
   display: flex;
@@ -614,8 +614,8 @@
 }
 .thumbnail-carousel__item-viewer-button {
   overflow: hidden;
-  height: 30px;
-  width: 30px;
+  height: 24px;
+  width: 24px;
   opacity: 0.875;
   border: none;
   position: relative;
@@ -835,8 +835,8 @@
   top: var(--thumbnail-carousel-video-overlay-custom-button-top);
 }
 .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-left, .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-right {
-  width: 7.5px;
-  height: 30px;
+  width: 6px;
+  height: 24px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -847,8 +847,8 @@
 .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-left-inverse, .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-right-inverse {
   background-color: #0a0a0a;
   margin-top: 0;
-  width: 3.75px;
-  height: 22.5px;
+  width: 3px;
+  height: 18px;
 }
 .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-left {
   --rotation: -45deg;

@@ -1,8 +1,8 @@
 @use "sass:math";
 $buttonVideoStateIndictatorAnimationSpeed: .5s;
 $buttonVideoStateIndicatorWidth: 66px;
-$buttonLineWidth: 7.5px;
-$buttonWidth: 30px;
+$buttonLineWidth: 6px;
+$buttonWidth: 24px;
 $carouselPageChangeButtonHeight: calc(math.hypot($buttonWidth, calc($buttonWidth / 2)) / 3);
 $carouselPageChangeButtonTranslationAmount: calc(($carouselPageChangeButtonHeight / 2) / math.sqrt(2));
 $carouselPageChangeButtonTranslationAmountTwo: calc(($buttonLineWidth / 2) / math.sqrt(2) / 2);

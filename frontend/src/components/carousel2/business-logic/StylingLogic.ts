@@ -2,8 +2,8 @@ import { CSSProperties } from "react";
 import { CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { CarouselItemProps } from "../components/CarouselItem";
-import { CAROUSEL_COLOR_FIVE, CAROUSEL_COLOR_ONE, CAROUSEL_COLOR_THREE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_SPACING_UNIT } from "../constants";
 import { convertHexToRgba } from "../utils";
+import { CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_SPACING_UNIT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_COLOR_FOUR, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_COLOR_FIVE, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT } from "../constants";
 
 export type StylingLogicConstructor = {
     currentItemInInstance?: CarouselItemProps;
@@ -50,7 +50,7 @@ export class StylingLogic {
         } as CSSProperties;
 
         const selectionStyle = this.isCurrentItemSelected ? {
-            border: `1${CAROUSEL_SPACING_UNIT} solid ${CAROUSEL_COLOR_THREE}`,
+            border: `1${CAROUSEL_SPACING_UNIT} dashed ${CAROUSEL_COLOR_FOUR}`,
             pointerEvents: 'none',
             ...this.carouselItemCursorStyle,
         } as CSSProperties : {} as CSSProperties;

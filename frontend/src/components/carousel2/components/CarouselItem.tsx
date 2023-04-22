@@ -65,6 +65,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
         </div>
       ) : null}
       <img
+        style={stylingLogic.carouselItemCursorStyle}
         className={getClassname({ elementName: 'item-thumbnail' })}
         src={srcThumbnail || srcMain}
         alt={description || 'user picture or video'}
