@@ -51,8 +51,9 @@ export const CarouselItemViewerToolbar = ({
     videoRef,
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
-    const { options, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
-    const { setCurrentItemInInstanceIndex } = useCarouselInstanceContext();
+    const { options: optionsGlobal, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
+    const { options: optionsLocal, setCurrentItemInInstanceIndex } = useCarouselInstanceContext();
+    const options = optionsLocal || optionsGlobal || {};
 
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
@@ -81,7 +82,7 @@ export const CarouselItemViewerToolbar = ({
     const toolbarLogic = new ToolbarLogic(currentItems);
     const actionsLogic = new ToolbarActionsLogic(options);
     const stylingLogic = new StylingLogic({options});
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options, currentItem: {} as CarouselItemProps});
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options, currentItem: {} as CarouselItemProps});
 
     useKeyboardShortcuts([
         {
@@ -204,7 +205,7 @@ export const CarouselItemViewerToolbar = ({
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.currentTime -= (options.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
+            videoRef.current.currentTime -= (options?.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
         actionsLogic.getSeekBackwards().onActionCompleted();
@@ -212,7 +213,7 @@ export const CarouselItemViewerToolbar = ({
 
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.currentTime += (options.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
+            videoRef.current.currentTime += (options?.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
         actionsLogic.getSeekForwards().onActionCompleted();
@@ -368,7 +369,7 @@ export const CarouselItemViewerToolbar = ({
 
     //#region JSX
     return (
-        <div onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR} style={stylingLogic.fontFamilyItemViewerStyle}>
+        <div onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR} style={stylingLogic.toolbarStyle}>
             {videoRef ? <CarouselItemViewerProgressBar videoRef={videoRef} setTimeStrings={setTimeStrings} /> : null}
             <div className={CLASSNAME_INNER_CONTAINER}>
                 {videoRef ? (

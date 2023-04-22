@@ -34,9 +34,10 @@ export class StylingLogic {
         this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem: currentItemInInstance });
     }
 
-    get carouselBackgroundStyle() {
+    get carouselStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             backgroundColor: CAROUSEL_COLOR_ONE,
+            borderRadius: 4,
         } as CSSProperties : {} as CSSProperties;
     }
 
@@ -165,21 +166,21 @@ export class StylingLogic {
 
         const fontSizeStyle = thumbnail ? {
             fontSize: `${thumbnail?.fontSize}${CAROUSEL_SPACING_UNIT}`,
-          } as React.CSSProperties : {};
-          const maxLineCountStyle = {
+        } as React.CSSProperties : {};
+        const maxLineCountStyle = {
             WebkitLineClamp: thumbnail?.maxLineCount || 2,
-          } as React.CSSProperties;
-        
-          const textColorStyle = thumbnail?.textColor ? {
-            color: thumbnail?.textColor,
-          } as React.CSSProperties : {};
+        } as React.CSSProperties;
 
-          return {
-            ...maxLineCountStyle, 
-            ...fontSizeStyle, 
+        const textColorStyle = thumbnail?.textColor ? {
+            color: thumbnail?.textColor,
+        } as React.CSSProperties : {};
+
+        return {
+            ...maxLineCountStyle,
+            ...fontSizeStyle,
             ...textColorStyle,
             ...this.carouselItemCursorStyle,
-          }
+        }
     }
 
     get thumbnailMarginHorizontal() {
@@ -187,6 +188,21 @@ export class StylingLogic {
             return this.options.thumbnail?.marginHorizontal || CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT;
         }
         return this.options.thumbnail?.marginHorizontal || CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+    }
+
+    get toolbarStyle() {
+        console.log({options: this.options});
+        
+        const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            background: CAROUSEL_COLOR_FIVE,
+            position: "static",
+            justifyContent: "flex-start",
+        } as React.CSSProperties : {};
+
+        return {
+            ...nonDefaultItemDisplayStyle,
+            ...this.fontFamilyItemViewerStyle,
+        }
     }
 
     getNavigationFillColor(svgRefColor: string | undefined) {

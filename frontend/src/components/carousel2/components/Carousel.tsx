@@ -56,7 +56,7 @@ export const Carousel = (props: CarouselProps) => {
 				className={getClassname({ elementName: "" })}
 				style={
 					{
-						...stylingLogic.carouselBackgroundStyle,
+						...stylingLogic.carouselStyle,
 						...style,
 						...stylingLogic.fontFamilyNavigationStyle,
 					}
