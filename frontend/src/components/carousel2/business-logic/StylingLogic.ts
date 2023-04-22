@@ -34,6 +34,12 @@ export class StylingLogic {
         this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem: currentItemInInstance });
     }
 
+    get carouselBackgroundStyle() {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            backgroundColor: CAROUSEL_COLOR_ONE,
+        } as CSSProperties : {} as CSSProperties;
+    }
+
     get carouselItemCursorStyle() {
         return this.isCurrentItemSelected ? {
             cursor: 'auto',

@@ -25,7 +25,7 @@
   justify-content: center;
   row-gap: 20px;
   column-gap: 0px;
-  color: #fff;
+  color: #fff9f5;
   text-align: center;
 }
 .thumbnail-carousel__loading-roller {
@@ -59,7 +59,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #fff;
+  background: #fff9f5;
   margin: -4px 0 0 -4px;
 }
 .thumbnail-carousel__loading-roller div:nth-child(1) {
@@ -145,10 +145,10 @@
   width: 72px;
   height: 72px;
   margin: 8px;
-  border: 8px solid #fff;
+  border: 8px solid #fff9f5;
   border-radius: 50%;
   animation: ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
+  border-color: #fff9f5 transparent transparent transparent;
 }
 .thumbnail-carousel__loading-ring div:nth-child(1) {
   animation-delay: -0.45s;
@@ -182,11 +182,11 @@
   cursor: pointer;
 }
 .thumbnail-carousel-button * {
-  background-color: #fff;
-  fill: #fff;
+  background-color: #fff9f5;
+  fill: #fff9f5;
 }
 .thumbnail-carousel-button--arrow-left-one, .thumbnail-carousel-button--arrow-left-two, .thumbnail-carousel-button--arrow-right-one, .thumbnail-carousel-button--arrow-right-two {
-  background-color: #0a0a0a;
+  background-color: #1d0e0b;
   width: 3px;
   height: 8.94427191px;
 }
@@ -233,7 +233,7 @@
   transform: translate(-50%, -50%) rotate(var(--rotation));
 }
 .thumbnail-carousel-button--close-left-inverse, .thumbnail-carousel-button--close-right-inverse {
-  background-color: #0a0a0a;
+  background-color: #1d0e0b;
   margin-top: 0;
   width: 3px;
   height: 18px;
@@ -245,7 +245,7 @@
   --rotation: 45deg;
 }
 .thumbnail-carousel-button--next-left {
-  border-left: calc(24px / 2.5) solid #fff;
+  border-left: calc(24px / 2.5) solid #fff9f5;
   background-color: transparent;
   width: 0;
   height: 0;
@@ -301,7 +301,7 @@
   width: 0;
   height: 0;
   border-top: calc(24px / 2.25) solid transparent;
-  border-left: calc(24px / 1.33) solid #fff;
+  border-left: calc(24px / 1.33) solid #fff9f5;
   border-bottom: calc(24px / 2.25) solid transparent;
 }
 .thumbnail-carousel-button--previous-left {
@@ -321,7 +321,7 @@
   transform: translate(-175%, -50%) rotate(0);
 }
 .thumbnail-carousel-button--previous-right {
-  border-right: calc(24px / 2.5) solid #fff;
+  border-right: calc(24px / 2.5) solid #fff9f5;
   background-color: transparent;
   width: 0;
   height: 0;
@@ -348,7 +348,7 @@
   width: 0;
   height: 0;
   border-top: calc(24px / 2.5) solid transparent;
-  border-right: calc(24px / 2.5) solid #fff;
+  border-right: calc(24px / 2.5) solid #fff9f5;
   border-bottom: none;
 }
 .thumbnail-carousel-button--restart-circle-inner, .thumbnail-carousel-button--restart-circle-outer {
@@ -363,7 +363,7 @@
 .thumbnail-carousel-button--restart-circle-inner {
   height: calc((24px * .85) - 12px);
   width: calc((24px * .85) - 12px);
-  background-color: rgba(10, 10, 10, 0);
+  background-color: rgba(29, 14, 11, 0);
 }
 .thumbnail-carousel-button--restart-circle-outer {
   height: calc(24px * .85);
@@ -383,11 +383,11 @@
   width: 0;
   height: 0;
   border-top: calc(24px / 1) solid transparent;
-  border-right: calc(24px / 1) solid rgba(10, 10, 10, 0);
+  border-right: calc(24px / 1) solid rgba(29, 14, 11, 0);
   border-bottom: calc(24px / 1) solid transparent;
 }
 .thumbnail-carousel-button--seek-back-left, .thumbnail-carousel-button--seek-back-right {
-  border-left: calc(24px / 2.5) solid #fff;
+  border-left: calc(24px / 2.5) solid #fff9f5;
   background-color: transparent;
   width: 0;
   height: 0;
@@ -411,7 +411,7 @@
   transform: translate(0%, -50%) rotate(180deg);
 }
 .thumbnail-carousel-button--seek-forward-left, .thumbnail-carousel-button--seek-forward-right {
-  border-left: calc(24px / 2.5) solid #fff;
+  border-left: calc(24px / 2.5) solid #fff9f5;
   background-color: transparent;
   width: 0;
   height: 0;
@@ -458,7 +458,7 @@
   height: 66px;
   width: 66px;
   border-radius: 50%;
-  background-color: #0a0a0a;
+  background-color: #1d0e0b;
   opacity: 0;
   pointer-events: none;
   z-index: 1000000000000;
@@ -518,11 +518,11 @@
 .thumbnail-carousel__dots > div > div, .thumbnail-carousel__dots > svg > div {
   height: 4px;
   width: 4px;
-  background-color: rgba(10, 10, 10, var(--opacity));
+  background-color: rgba(29, 14, 11, var(--opacity));
   border-radius: 100%;
 }
 .thumbnail-carousel__dots > div use, .thumbnail-carousel__dots > svg use {
-  fill: #0a0a0a;
+  fill: #1d0e0b;
   opacity: var(--opacity);
 }
 .thumbnail-carousel__dots > div:not(.thumbnail-carousel__dots-current):hover, .thumbnail-carousel__dots > svg:not(.thumbnail-carousel__dots-current):hover {
@@ -575,8 +575,8 @@
   text-align: center;
   font-weight: 700;
   font-size: 12px;
-  background-color: rgba(10, 10, 10, 0.66);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(10, 10, 10) 100%);
+  background-color: rgba(29, 14, 11, 0.66);
+  background: linear-gradient(180deg, rgba(255, 249, 245, 0) 0%, rgb(29, 14, 11) 100%);
 }
 .thumbnail-carousel__item > div * {
   display: -webkit-box;
@@ -584,7 +584,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #fff;
+  color: #fff9f5;
 }
 .thumbnail-carousel__item:hover {
   transform: translateY(-4px);
@@ -609,7 +609,7 @@
   left: 0;
   right: 0;
   z-index: 1000000000000000000000;
-  background-color: #0a0a0a;
+  background-color: #1d0e0b;
   transition: opacity 0.5s ease;
 }
 .thumbnail-carousel__item-viewer-button {
@@ -620,8 +620,8 @@
   border: none;
   position: relative;
   background-color: transparent;
-  fill: #fff;
-  stroke: #0a0a0a;
+  fill: #fff9f5;
+  stroke: #1d0e0b;
   stroke-opacity: 0.15;
   stroke-width: 2px;
 }
@@ -630,16 +630,16 @@
   cursor: pointer;
 }
 .thumbnail-carousel__item-viewer-button * {
-  background-color: #fff;
-  fill: #fff;
+  background-color: #fff9f5;
+  fill: #fff9f5;
 }
 .thumbnail-carousel__item-viewer-button-inverse {
-  fill: #0a0a0a;
-  stroke: #fff;
+  fill: #1d0e0b;
+  stroke: #fff9f5;
 }
 .thumbnail-carousel__item-viewer-button-inverse * {
-  fill: #0a0a0a;
-  stroke: #fff;
+  fill: #1d0e0b;
+  stroke: #fff9f5;
 }
 .thumbnail-carousel__item-viewer-shortcut-indicator {
   position: relative;
@@ -655,7 +655,7 @@
   align-items: center;
   justify-content: center;
   background-color: #28292f;
-  color: #fff;
+  color: #fff9f5;
   border-radius: 4px;
   font-size: 12px;
   white-space: nowrap;
@@ -667,7 +667,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background: rgba(0, 0, 0, 0.8);
+  background: #1d0e0b;
   /*this color is displayed if browser can't read the below properties*/
   background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, black 100%);
   background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, black 100%);
@@ -697,7 +697,7 @@
   justify-content: flex-start;
   margin-right: auto;
   font-size: 1.5rem;
-  color: #fff;
+  color: #fff9f5;
 }
 .thumbnail-carousel__item-viewer-toolbar-middle > * {
   text-align: center;
@@ -719,12 +719,12 @@
   top: calc(-1 * var(--height));
   width: var(--width);
   height: var(--height);
-  background-color: rgba(10, 10, 10, 0.66);
+  background-color: rgba(29, 14, 11, 0.66);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   font-size: 14px;
-  color: #fff;
+  color: #fff9f5;
   border-radius: 5px;
   overflow: hidden;
   transition: opacity 0.5s ease;
@@ -733,7 +733,7 @@
   width: calc(300px / 2);
 }
 .thumbnail-carousel__item-viewer-toolbar-preview-image-container {
-  border-right: 1px solid rgba(255, 255, 255, 0.66);
+  border-right: 1px solid rgba(255, 249, 245, 0.66);
   height: calc(100% - 0px);
   position: relative;
 }
@@ -805,10 +805,10 @@
   right: auto;
   bottom: auto;
   transform: translate(-50%, -50%) rotate(0);
-  color: black;
+  color: #1d0e0b;
   max-height: 75%;
   max-width: 75%;
-  background-color: white;
+  background-color: #fff9f5;
   border-radius: 5px;
   padding: 20px calc(30px);
   box-shadow: 0 0 0 50vmax rgba(0, 0, 0, 0.15);
@@ -845,7 +845,7 @@
   transform: translate(-50%, -50%) rotate(var(--rotation));
 }
 .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-left-inverse, .thumbnail-carousel__video-overlay-custom .thumbnail-carousel__item-viewer-button--close-right-inverse {
-  background-color: #0a0a0a;
+  background-color: #1d0e0b;
   margin-top: 0;
   width: 3px;
   height: 18px;

@@ -187,7 +187,7 @@
             align-items: center;
             justify-content: space-between;
             padding: calc($itemViewerToolbarMarginHorizontal / 2) $itemViewerToolbarMarginHorizontal;
-            background: #000000cc;
+            background: $itemViewerBackgroundColor;
             /*this color is displayed if browser can't read the below properties*/
             background: -moz-linear-gradient(180deg, #ffffff00 0%, #000000ff 100%);
             background: -webkit-linear-gradient(180deg, #ffffff00 0%, #000000ff 100%);
@@ -334,10 +334,10 @@
 
         &-overlay {
             @include positionButton();
-            color: black;
+            color: $itemViewerBackgroundColor;
             max-height: 75%;
             max-width: 75%;
-            background-color: white;
+            background-color: $itemViewerButtonColor;
             border-radius: calc($itemViewerToolbarMarginHorizontal / 4);
             padding: $itemViewerToolbarMarginHorizontal calc(#{$itemViewerToolbarMarginHorizontal * 1.5});
             box-shadow: 0 0 0 50vmax rgba(0, 0, 0, .15);
