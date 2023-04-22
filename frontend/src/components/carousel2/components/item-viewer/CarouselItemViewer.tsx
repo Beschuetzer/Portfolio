@@ -50,7 +50,7 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps> ((pro
     const containerClassname = `${getClassname({elementName: CLASSNAME__ITEM_VIEWER})} ${visibilityStyle}`;
     const ItemToRender = itemDisplayLocationLogic.getItemToRender();
   
-    if (!itemDisplayLocationLogic.getShouldDisplayItemViewer()) return null;
+    if (!itemDisplayLocationLogic.getIsDefaultItemDisplayLocation()) return null;
     return (
         <div ref={innerRef as any} className={containerClassname}>
             <ItemToRender {...currentItem}/>

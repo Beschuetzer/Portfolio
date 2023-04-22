@@ -1,6 +1,7 @@
 import { CarouselImage } from "../components/CarouselImage";
 import { CarouselItemProps } from "../components/CarouselItem";
 import { CarouselVideo } from "../components/CarouselVideo";
+import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT } from "../constants";
 import { CarouselOptions } from "../types";
 import { getIsVideo } from "../utils";
 
@@ -23,11 +24,24 @@ export class ItemDisplayLocationLogic {
         this.isCurrentItemPopulated = Object.keys(this.currentItem || {}).length > 0;
     }
 
+    get isDefaultItemDisplayLocation() {
+        return !this.options?.itemDisplayLocation || this.options.itemDisplayLocation === 'none';
+    }
+
+    get carouselItemSize() {
+        if (this.getIsDefaultItemDisplayLocation()) {
+            return this.options?.thumbnail?.size || CAROUSEL_ITEM_SIZE_DEFAULT;
+        }
+        return this.options?.thumbnail?.size || CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT;
+    }
+
     getItemToRender() {
         if (!this.currentItem) return null as any;
         const isVideo = getIsVideo(this.currentItem);
         return isVideo ? CarouselVideo : CarouselImage;
     }
+
+    
 
     getShouldDisplayItemAbove() {
         return this.options.itemDisplayLocation === 'above';
@@ -37,7 +51,7 @@ export class ItemDisplayLocationLogic {
         return this.options.itemDisplayLocation === 'below';
     }
     
-    getShouldDisplayItemViewer() {
+    getIsDefaultItemDisplayLocation() {
         return !this.options?.itemDisplayLocation || this.options.itemDisplayLocation === 'none';
     }
 }

@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import { CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { CarouselItemProps } from "../components/CarouselItem";
-import { CAROUSEL_ITEM_SIZE_DEFAULT } from "../constants";
+import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT } from "../constants";
 
 export type StylingLogicConstructor = {
     options: CarouselOptions;
@@ -40,7 +40,7 @@ export class StylingLogic {
         }
 
         this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}, currentItem: currentItemInInstance});
-        this.carouselItemContainerStyle = !this.itemDisplayLocationLogic.getShouldDisplayItemViewer() ? {
+        this.carouselItemContainerStyle = !this.itemDisplayLocationLogic.getIsDefaultItemDisplayLocation() ? {
             width: "100%",
             height: "auto",
             maxHeight: '50rem',
@@ -53,14 +53,14 @@ export class StylingLogic {
             marginBottom: "10px",
         } as CSSProperties : {}
 
-        this.carouselVideoStyle = !this.itemDisplayLocationLogic.getShouldDisplayItemViewer() ? {
+        this.carouselVideoStyle = !this.itemDisplayLocationLogic.getIsDefaultItemDisplayLocation() ? {
             width: "100%",
             height: "100%",
         } as CSSProperties : {}
 
-        this.carouselItemStyle = !this.itemDisplayLocationLogic.getShouldDisplayItemViewer() ? {
-            width: options?.thumbnail?.size || "100px",
-            height: options?.thumbnail?.size || "100px",
+        this.carouselItemStyle = !this.itemDisplayLocationLogic.getIsDefaultItemDisplayLocation() ? {
+            width: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}px`,
+            height: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}px`,
         } as CSSProperties : {
             width: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
             height: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,

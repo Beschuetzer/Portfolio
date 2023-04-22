@@ -17,6 +17,7 @@ type CarouselInstanceContextProps = {
     options: CarouselOptions | undefined;
     setCurrentItemInInstance?: React.Dispatch<React.SetStateAction<CarouselItemProps>>;
     setCurrentItemInInstanceIndex?: React.Dispatch<React.SetStateAction<number>>;
+    setItemsInInstance?: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
 }
 
 const CarouselInstanceContext = React.createContext<CarouselInstanceContextProps>({} as any);
@@ -52,6 +53,7 @@ export const CarouselInstanceProvider = ({
                 options,
                 setCurrentItemInInstance,
                 setCurrentItemInInstanceIndex,
+                setItemsInInstance,
             }}
         >
             {children}

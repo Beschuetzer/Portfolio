@@ -21,7 +21,7 @@ export const CarouselContent = ({
 }: CarouselContentProps) => {
     //#region Init
     const { currentItemIndex, currentCarouselId, currentItems } = useCarouselContext();
-    const { currentItemInInstance, setCurrentItemInInstanceIndex } = useCarouselInstanceContext();
+    const { currentItemInInstance, setCurrentItemInInstanceIndex, setItemsInInstance} = useCarouselInstanceContext();
     const { id } = useCarouselInstanceContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
@@ -43,7 +43,7 @@ export const CarouselContent = ({
         const remainingSpace = containerWidth - (numberOfWholeItemsThatCanFit * itemSize);
         const newInterItemSpacing = (remainingSpace / numberOfGaps);
         return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_ITEM_SPACING_UNIT}`;
-    }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT]);
+    }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_ITEM_SPACING_UNIT]);
 
     function getItemsInContainer() {
         return itemsContainerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`);
@@ -51,7 +51,8 @@ export const CarouselContent = ({
 
     function getNumberOfItemsThatCanFit() {
         const containerWidth = carouselContainerRef.current?.getBoundingClientRect()?.width || 0;
-        const itemSize = options?.thumbnail?.size || CAROUSEL_ITEM_SIZE_DEFAULT;
+        const itemSize = itemDisplayLocationLogic.carouselItemSize;
+        
         return {
             containerWidth,
             itemSize,
@@ -174,8 +175,9 @@ export const CarouselContent = ({
 
     //setting the currentItemIndex in carousel instance on load if condition met
     useEffect(() => {
-        if (!itemDisplayLocationLogic.getShouldDisplayItemViewer()) {
+        if (!itemDisplayLocationLogic.getIsDefaultItemDisplayLocation()) {
             setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(0);
+            setItemsInInstance && setItemsInInstance(items);
         }
     }, [])
     //#endregion

@@ -1,9 +1,14 @@
 Carousel rework
-  -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling
-  -finish styling for above and below cases
-  -need to make default item size smaller if itemDisplayLocation is not 'none'
-  -need to test different layout options with itemDisplayLocation, namely the custom item spacing
-  -add option to make another layout/mode where the itemViewer isn't opened when an item is clicked but rather the image is above the carousel
+  -organize StylingLogic and ItemDisplayLocationLogic (make methods getters)
+  -itemDisplay non-default stuff:
+    -next/previous buttons hidden on load
+    -X button should be full screen button
+    -progress bar styling
+    -overlay styling
+    -button and text sizing too large?
+    -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling
+    -need to test different layout options with itemDisplayLocation, namely the custom item spacing
+
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -move CarouselItem conditional styling logic to StylingLogic?
   -add volume button for videos?
