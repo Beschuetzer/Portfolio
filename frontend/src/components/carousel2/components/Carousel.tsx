@@ -57,7 +57,7 @@ export const Carousel = (props: CarouselProps) => {
 				style={
 					{
 						...style,
-						...stylingLogic.getFontFamilyNavigationStyle(),
+						...stylingLogic.fontFamilyNavigationStyle,
 					}
 				}
 			>

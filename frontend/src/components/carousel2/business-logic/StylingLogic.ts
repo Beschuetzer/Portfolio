@@ -13,34 +13,30 @@ export type StylingLogicConstructor = {
 *Use this when extending styling options
 */
 export class StylingLogic {
-    private itemDisplayLocationLogic: ItemDisplayLocationLogic;
-
     private DEFAULT_FONT_FAMILY: string = 'sans-serif';
-    private fontFamilyItemViewerStyle = {} as CSSProperties;
-    private fontFamilyNavigationStyle = {} as CSSProperties;
-    private carouselItemContainerStyle = {} as CSSProperties;
-    private carouselItemStyle = {} as CSSProperties;
-    private carouselVideoStyle = {} as CSSProperties;
+    private currentItemInInstance: CarouselItemProps | undefined;
+    private itemDisplayLocationLogic: ItemDisplayLocationLogic;
+    private options: CarouselOptions;
 
     constructor(constructor: StylingLogicConstructor) {
         const { options, currentItemInInstance } = constructor;
+        this.options = options;
+        this.currentItemInInstance = currentItemInInstance;
         const isCurrentItemInInstancePopulated = Object.keys(currentItemInInstance || {}).length > 0;
+        this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}, currentItem: currentItemInInstance});       
+    }
 
-        const stylings = options.styling;
-        if (stylings) {
-            const fontFamily = stylings?.fontFamily || {};
-            this.fontFamilyItemViewerStyle = fontFamily?.all || fontFamily?.itemViewer ? {
-                fontFamily: fontFamily?.all || fontFamily?.itemViewer || this.DEFAULT_FONT_FAMILY,
-            } : {}
-
-            this.fontFamilyNavigationStyle = fontFamily?.all || fontFamily?.navigation ? {
-                fontFamily: fontFamily?.all || fontFamily?.navigation || this.DEFAULT_FONT_FAMILY,
-            } : {}
-
-        }
-
-        this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}, currentItem: currentItemInInstance});
-        this.carouselItemContainerStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+    get carouselItemStyle() {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            width: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}px`,
+            height: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}px`,
+        } as CSSProperties : {
+            width: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
+            height: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
+        };
+    }
+    get carouselItemContainerStyle() {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             height: "auto",
             maxHeight: '50rem',
@@ -51,38 +47,29 @@ export class StylingLogic {
             position: "relative",
             backgroundColor: "black",
             marginBottom: "10px",
-        } as CSSProperties : {}
+        } as CSSProperties : {};
+    }
 
-        this.carouselVideoStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+    get carouselVideoStyle() {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             height: "100%",
-        } as CSSProperties : {}
-
-        this.carouselItemStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            width: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}px`,
-            height: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}px`,
-        } as CSSProperties : {
-            width: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
-            height: options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
-        }
+        } as CSSProperties : {};
     }
 
-    getCarouselItemStyle(): CSSProperties {
-        return this.carouselItemStyle;
-    }
-    getCarouselItemContainerStyle(): CSSProperties {
-        return this.carouselItemContainerStyle;
-    }
-
-    getCarouselVideoStyle(): CSSProperties {
-        return this.carouselVideoStyle;
+    get fontFamilyItemViewerStyle() {
+        const stylings = this.options?.styling;
+        const fontFamily = stylings?.fontFamily || {};
+        return fontFamily?.all || fontFamily?.itemViewer ? {
+            fontFamily: fontFamily?.all || fontFamily?.itemViewer || this.DEFAULT_FONT_FAMILY,
+        } : {};
     }
 
-    getFontFamilyItemViewerStyle(): CSSProperties {
-        return this.fontFamilyItemViewerStyle;
-    }
-
-    getFontFamilyNavigationStyle(): CSSProperties {
-        return this.fontFamilyNavigationStyle;
+    get fontFamilyNavigationStyle() {
+        const stylings = this.options?.styling;
+        const fontFamily = stylings?.fontFamily || {};
+        return fontFamily?.all || fontFamily?.navigation ? {
+            fontFamily: fontFamily?.all || fontFamily?.navigation || this.DEFAULT_FONT_FAMILY,
+        } : {};
     }
 }

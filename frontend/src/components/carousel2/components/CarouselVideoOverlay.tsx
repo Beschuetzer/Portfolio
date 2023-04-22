@@ -113,7 +113,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const classNameToUse = `${className} ${isCustom ? classNameCustom : ''} ${visibilityStyle}`;
 
     return (
-        <div className={classNameToUse} onClick={stopPropagation as any} style={styleLogic.getFontFamilyItemViewerStyle()}>
+        <div className={classNameToUse} onClick={stopPropagation as any} style={styleLogic.fontFamilyItemViewerStyle}>
             {renderChildren()}
         </div>
     )

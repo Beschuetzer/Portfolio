@@ -81,7 +81,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             />
             <video
                 className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
-                style={stylingLogic.getCarouselVideoStyle()}
+                style={stylingLogic.carouselVideoStyle}
                 ref={videoRef as any}
                 autoPlay={!!autoPlay}
                 muted={!!muted}

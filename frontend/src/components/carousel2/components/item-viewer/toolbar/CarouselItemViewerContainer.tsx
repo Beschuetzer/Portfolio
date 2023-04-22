@@ -18,7 +18,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     return (
         <div
             ref={ref}
-            style={stylingLogic.getCarouselItemContainerStyle()}
+            style={stylingLogic.carouselItemContainerStyle}
             className={getClassname({ elementName: 'item-container' })}
             onClick={onClick} >
                 {children}

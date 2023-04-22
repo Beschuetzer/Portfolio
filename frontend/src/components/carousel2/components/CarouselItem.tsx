@@ -83,7 +83,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   } as React.CSSProperties
 
   return (
-    <div onClick={(e) => onPress(e as any)} className={CLASSNAME__CAROUSEL_ITEM} style={stylingLogic.getCarouselItemStyle()}>
+    <div onClick={(e) => onPress(e as any)} className={CLASSNAME__CAROUSEL_ITEM} style={stylingLogic.carouselItemStyle}>
       {description ? (
         <div style={thumbnailBackgroundStyle}>
           <p style={{ ...maxLineCountStyle, ...fontSizeStyle, ...textColorStyle }}>{description}</p>
