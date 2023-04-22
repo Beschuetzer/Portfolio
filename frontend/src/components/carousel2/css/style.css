@@ -773,6 +773,7 @@
   height: 5px;
   appearance: none;
   border: none;
+  z-index: 100000000;
 }
 .thumbnail-carousel__item-viewer-toolbar-progress::-webkit-progress-bar {
   background-color: #888;

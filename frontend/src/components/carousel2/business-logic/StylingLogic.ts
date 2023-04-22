@@ -85,7 +85,7 @@ export class StylingLogic {
             height: this.carouselItemContainerHeight,
             position: "relative",
             backgroundColor: CAROUSEL_COLOR_ONE,
-            marginBottom: `10${CAROUSEL_SPACING_UNIT}`,
+            justifyContent: 'flex-end',
         } as CSSProperties : {};
     }
 
@@ -93,14 +93,19 @@ export class StylingLogic {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             margin: `0 ${this.thumbnailMarginHorizontal}${CAROUSEL_SPACING_UNIT}`,
             overflow: 'hidden',
-            marginTop: `${this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? 0 : (this.thumbnailMarginHorizontal / 1)}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties : {};
     }
 
     get carouselVideoStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            height: this.carouselItemContainerHeight,
+            objectPosition: 'bottom',
+        } as CSSProperties : {};
+    }
+
+    get carouselVideoProgressStyle() {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            width: "100%",
         } as CSSProperties : {};
     }
 

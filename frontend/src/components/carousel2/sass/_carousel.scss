@@ -299,6 +299,7 @@
                 height: $itemViewerProgressHeight;
                 appearance: none;
                 border: none;
+                z-index: 100000000;
 
                 &::-webkit-progress-bar {
                     background-color: #888;

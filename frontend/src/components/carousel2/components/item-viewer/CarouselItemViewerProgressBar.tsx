@@ -3,6 +3,8 @@ import { CLASSNAME__ITEM_VIEWER } from '../../constants';
 import { getClassname, getFormattedTimeString } from '../../utils';
 import { VideoTimeStrings } from '../../types';
 import { CarouselItemViewerToolbarProps } from './toolbar/CarouselItemViewerToolbar';
+import { useCarouselInstanceContext } from '../CarouselInstanceProvider';
+import { StylingLogic } from '../../business-logic/StylingLogic';
 
 type CarouselItemViewerProgressBarProps = {
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;
@@ -12,6 +14,8 @@ export const CarouselItemViewerProgressBar = ({
     setTimeStrings,
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
+    const { options } = useCarouselInstanceContext();
+    const stylingLogic = new StylingLogic({ options });
     const [progressBarValue, setProgressBarValue] = useState(0);
     const progressBarRef = useRef<HTMLProgressElement>(null);
 
@@ -66,6 +70,7 @@ export const CarouselItemViewerProgressBar = ({
 
     return (
         <progress
+            style={stylingLogic.carouselVideoProgressStyle}
             ref={progressBarRef}
             className={getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })}
             onClick={onProgressBarClick as any}
