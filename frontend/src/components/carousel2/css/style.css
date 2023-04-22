@@ -807,6 +807,7 @@
   bottom: auto;
   transform: translate(-50%, -50%) rotate(0);
   color: #1d0e0b;
+  width: auto;
   max-height: 75%;
   max-width: 75%;
   background-color: #fff9f5;

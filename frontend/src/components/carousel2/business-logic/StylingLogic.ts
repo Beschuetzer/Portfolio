@@ -96,10 +96,28 @@ export class StylingLogic {
         } as CSSProperties : {};
     }
 
+    get carouselVideoOverlayStyle() {
+        const widthStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            width: "75%",
+        } as CSSProperties : {};
+
+        return {
+            ...widthStyle,
+            ...this.fontFamilyItemViewerStyle,
+        }
+    }
+
+    get carouselVideoTimeTextStyle() {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            minWidth: "33%",
+        } as CSSProperties : {};
+    }
+
     get carouselVideoStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             objectPosition: 'bottom',
+            padding: `0 ${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties : {};
     }
 

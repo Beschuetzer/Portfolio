@@ -247,7 +247,7 @@ const allCustomSettings = (
 		items={items}
 	/>
 );
-const displayCurrentItemAbove = (
+const displayCurrentItemAboveDefaultItemHeight = (
 	<Carousel
 		items={items}
 		options={{
@@ -255,6 +255,21 @@ const displayCurrentItemAbove = (
 		}}
 	/>
 );
+const displayCurrentItemAboveWithItemHeightAndFontFamily = (
+	<Carousel
+		items={items}
+		options={{
+			itemHeight: 447,
+			itemDisplayLocation: 'above',
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
+				}
+			}
+		}}
+	/>
+);	
+
 const displayCurrentItemBelowWithCustomThumbnailSizeAndHeight = (
 	<Carousel
 		items={items}
@@ -263,7 +278,7 @@ const displayCurrentItemBelowWithCustomThumbnailSizeAndHeight = (
 			itemDisplayLocation: 'below',
 			thumbnail: {
 				size: 200,
-			}
+			},
 		}}
 	/>
 );
@@ -472,11 +487,15 @@ const SECTIONS: Sections = [
 				jsx: multiplePagesDynamicSizingAllDefaults
 			},
 			{
-				label: "Display Current Item Above",
-				jsx: displayCurrentItemAbove,
+				label: "Display Current Item Above Default itemHeight",
+				jsx: displayCurrentItemAboveDefaultItemHeight,
 			},
 			{
-				label: "Display Current Item Below with Custom Thumbnail Size and Height",
+				label: "Display Current Item Above with Custom itemHeight and Font Family",
+				jsx: displayCurrentItemAboveWithItemHeightAndFontFamily,
+			},
+			{
+				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
 				jsx: displayCurrentItemBelowWithCustomThumbnailSizeAndHeight,
 			},
 		]

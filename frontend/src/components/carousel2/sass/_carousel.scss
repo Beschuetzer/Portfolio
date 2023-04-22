@@ -336,6 +336,7 @@
         &-overlay {
             @include positionButton();
             color: $itemViewerBackgroundColor;
+            width: auto;
             max-height: 75%;
             max-width: 75%;
             background-color: $itemViewerButtonColor;

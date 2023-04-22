@@ -84,6 +84,8 @@ export type CarouselOptions = {
     itemDisplayLocation?: 'none' | 'above' | 'below';
     /*
     *The height in pixels of the visible carousel item.  This only applies when 'itemDisplayLocation' is 'none'.
+    *Currently there is no auto adjust based on the smallest item behavior, 
+    *so you have to adjust it and see how it works for the items given.
     */
     itemHeight?: number;
     itemViewer?: CarouselItemViewerOptions;

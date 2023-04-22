@@ -1,6 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -add background color style (black default)
+    -image heights need to be 100% - toolbar container height
     -add option to specify currentItem's border string
     -render a LoadingContainer of height 50rem with a spinner to show while loading (need new POS in CarouselInstanceProvider?)
     -next/previous buttons hidden on load
