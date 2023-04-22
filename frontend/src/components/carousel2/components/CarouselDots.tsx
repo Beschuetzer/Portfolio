@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { CarouselItemProps } from './CarouselItem';
 import { getClassname } from '../utils';
-import { CAROUSEL_DOT_COLOR_DEFAULT, CAROUSEL_DOT_OPACITY_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
+import { CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
 import { ArrowProps, CarouselNavigationProps, CarouselOptions } from '../types';
 
 type CarouselDotsProps = {
@@ -47,7 +47,7 @@ export const CarouselDots = ({
             const currentDotStyle = isCurrentPage && isSvg  ? {
                 opacity: 1,
             } : isCurrentPage ? {
-                backgroundColor: fillColor || CAROUSEL_DOT_COLOR_DEFAULT,
+                backgroundColor: fillColor || CAROUSEL_COLOR_ONE,
                 opacity: 1,
             } : {};
 

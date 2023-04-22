@@ -1,6 +1,7 @@
 Carousel rework
   -itemDisplay non-default stuff:
     -add border around current item to indicate which is current
+    -add option to specify currentItem's border string
     -add background color (black default)
     -render a LoadingContainer of height 50rem with a spinner to show while loading (need new POS in CarouselInstanceProvider?)
     -next/previous buttons hidden on load

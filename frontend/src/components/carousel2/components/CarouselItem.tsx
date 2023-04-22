@@ -57,22 +57,11 @@ export const CarouselItem = (props: CarouselItemProps) => {
   //#endregion
 
   //#region JSX
-  const fontSizeStyle = options?.thumbnail ? {
-    fontSize: `${options.thumbnail.fontSize}px`,
-  } as React.CSSProperties : {};
-  const maxLineCountStyle = {
-    WebkitLineClamp: options?.thumbnail?.maxLineCount || 2,
-  } as React.CSSProperties;
-
-  const textColorStyle = options?.thumbnail?.textColor ? {
-    color: options.thumbnail.textColor,
-  } as React.CSSProperties : {};
-
   return (
     <div onClick={(e) => onPress(e as any)} className={CLASSNAME__CAROUSEL_ITEM} style={stylingLogic.carouselItemStyle}>
       {description ? (
         <div style={stylingLogic.thumbnailBackgroundStyle}>
-          <p style={{ ...maxLineCountStyle, ...fontSizeStyle, ...textColorStyle }}>{description}</p>
+          <p style={stylingLogic.thumbnailTextStyle}>{description}</p>
         </div>
       ) : null}
       <img

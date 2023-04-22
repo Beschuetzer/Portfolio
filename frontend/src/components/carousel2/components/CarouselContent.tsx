@@ -2,7 +2,7 @@ import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { getClassname } from '../utils';
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_ITEM_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
+import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, useCarouselContext } from '../context';
@@ -27,7 +27,7 @@ export const CarouselContent = ({
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
-    const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_ITEM_SPACING_UNIT}`);
+    const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`);
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
     const [numberOfPages, setNumberOfPages] = useState(0);
     const itemsContainerRef = useRef<HTMLDivElement>(null);
@@ -43,13 +43,13 @@ export const CarouselContent = ({
 
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
-        if (options?.thumbnail?.itemSpacing) return `${options?.thumbnail?.itemSpacing}${CAROUSEL_ITEM_SPACING_UNIT}`;
+        if (options?.thumbnail?.itemSpacing) return `${options?.thumbnail?.itemSpacing}${CAROUSEL_SPACING_UNIT}`;
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit();
         const numberOfGaps = numberOfWholeItemsThatCanFit - 1;
         const remainingSpace = containerWidth - (numberOfWholeItemsThatCanFit * itemSize);
         const newInterItemSpacing = (remainingSpace / numberOfGaps);
-        return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_ITEM_SPACING_UNIT}`;
-    }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_ITEM_SPACING_UNIT]);
+        return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
+    }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT]);
 
     function getItemsInContainer() {
         return itemsContainerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`);
@@ -81,7 +81,7 @@ export const CarouselContent = ({
             const firstItemInNextPage = itemsInContainer?.[firstItemInNextPageIndex]?.getBoundingClientRect().left;
             return currentPage * (Math.abs((firstItemLeft || 0) - (firstItemInNextPage || 0)));
         }
-        return currentPage * (parseFloat(interItemSpacing.replace(CAROUSEL_ITEM_SPACING_UNIT, '')) + containerWidth);
+        return currentPage * (parseFloat(interItemSpacing.replace(CAROUSEL_SPACING_UNIT, '')) + containerWidth);
     }
 
     const onArrowButtonClick = useCallback((direction: ArrowButtonDirection) => {
@@ -194,7 +194,7 @@ export const CarouselContent = ({
         columnGap: interItemSpacing,
     } as CSSProperties
     const translationStyle = {
-        transform: `translateX(-${getTranslationAmount()}${CAROUSEL_ITEM_SPACING_UNIT})`,
+        transform: `translateX(-${getTranslationAmount()}${CAROUSEL_SPACING_UNIT})`,
     } as CSSProperties
     const containerStyle = {
         ...interItemSpacingStyle,
