@@ -11,6 +11,7 @@ export const CLASSNAME__OVERLAY_BUTTON_TOP = `${CLASSNAME__ROOT}-video-overlay-c
 export const CLASSNAME__OVERLAY_BUTTON_RIGHT = `${CLASSNAME__ROOT}-video-overlay-custom-button-right`;
 export const CAROUSEL_DOT_OPACITY_DEFAULT = .5;
 export const CAROUSEL_DOT_COLOR_DEFAULT = "black";
+export const CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT = 500;  //in px
 export const CAROUSEL_ITEM_SIZE_DEFAULT = 150;  //in px
 export const CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT = 100;  //in px
 export const CAROUSEL_ITEM_SPACING_DEFAULT = 10; //in px

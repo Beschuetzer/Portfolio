@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import { CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { CarouselItemProps } from "../components/CarouselItem";
-import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT } from "../constants";
+import { CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT } from "../constants";
 
 export type StylingLogicConstructor = {
     options: CarouselOptions;
@@ -39,7 +39,7 @@ export class StylingLogic {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             height: "auto",
-            maxHeight: '50rem',
+            maxHeight: `${CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}px`,
             display: "flex",
             flexDirection: "initial",
             alignItems: "initial",
@@ -53,7 +53,7 @@ export class StylingLogic {
     get carouselVideoStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            height: "100%",
+            height: `${CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}px`,
         } as CSSProperties : {};
     }
 
