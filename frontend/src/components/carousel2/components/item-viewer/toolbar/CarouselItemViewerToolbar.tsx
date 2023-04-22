@@ -52,7 +52,7 @@ export const CarouselItemViewerToolbar = ({
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
     const { options: optionsGlobal, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
-    const { options: optionsLocal, setCurrentItemInInstanceIndex } = useCarouselInstanceContext();
+    const { options: optionsLocal, setCurrentItemInInstanceIndex, itemViewerToolbarRef } = useCarouselInstanceContext();
     const options = optionsLocal || optionsGlobal || {};
 
     const shouldHideTimoutRef = useRef<any>(-1);
@@ -369,7 +369,7 @@ export const CarouselItemViewerToolbar = ({
 
     //#region JSX
     return (
-        <div onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR} style={stylingLogic.toolbarStyle}>
+        <div ref={itemViewerToolbarRef as any} onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR} style={stylingLogic.toolbarStyle}>
             {videoRef ? <CarouselItemViewerProgressBar videoRef={videoRef} setTimeStrings={setTimeStrings} /> : null}
             <div className={CLASSNAME_INNER_CONTAINER}>
                 {videoRef ? (

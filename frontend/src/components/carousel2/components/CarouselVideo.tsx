@@ -24,14 +24,14 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         srcMain,
         video: videoProps,
     } = props;
-    const { options } = useCarouselInstanceContext();
+    const { options, itemViewerToolbarRef } = useCarouselInstanceContext();
     const { autoPlay, loop, muted } = videoProps || {};
     const [isVideoPlaying, setIsVideoPlaying] = useState(!!autoPlay || false);
     const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
     const itemContainerRef = useRef<HTMLDivElement>();
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
-    const stylingLogic = new StylingLogic({options});
+    const stylingLogic = new StylingLogic({options, itemViewerToolbarRef});
     //#endregion
 
     //#region Functions/Handlers

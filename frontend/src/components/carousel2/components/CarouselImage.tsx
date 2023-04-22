@@ -8,7 +8,7 @@ import { StylingLogic } from '../business-logic/StylingLogic';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 
 export const CarouselImage = (props: CarouselItemProps) => {
-    const { options } = useCarouselInstanceContext();
+    const { options, itemViewerToolbarRef } = useCarouselInstanceContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const containerRef = useRef<HTMLDivElement>();
     const imageRef = useRef<HTMLImageElement | undefined>();
@@ -16,7 +16,7 @@ export const CarouselImage = (props: CarouselItemProps) => {
         description,
         srcMain,
     } = props;
-    const stylingLogic = new StylingLogic({options});
+    const stylingLogic = new StylingLogic({options, itemViewerToolbarRef});
 
     return (
         <CarouselItemViewerContainer ref={containerRef}>

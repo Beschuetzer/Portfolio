@@ -1,32 +1,33 @@
 import { CSSProperties } from "react";
 import { CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
-import { CarouselItemProps } from "../components/CarouselItem";
 import { convertHexToRgba } from "../utils";
 import { CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_SPACING_UNIT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_COLOR_FOUR, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_COLOR_FIVE, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT } from "../constants";
+import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 
 export type StylingLogicConstructor = {
-    currentItemInInstance?: CarouselItemProps;
     options: CarouselOptions | undefined;
     isCurrentItem?: boolean;
-}
-
+} & Partial<Pick<CarouselInstanceContextProps, 'itemViewerToolbarRef' | 'currentItemInInstance'>>;
 /*
 *Use this when extending styling options
 */
 export class StylingLogic {
     private DEFAULT_FONT_FAMILY: string = 'sans-serif';
-    private currentItemInInstance: CarouselItemProps | undefined;
+    private currentItemInInstance;
     private isCurrentItem: boolean | undefined;
     private itemDisplayLocationLogic: ItemDisplayLocationLogic;
+    private itemViewerToolbarRef: CarouselInstanceContextProps['itemViewerToolbarRef'];
     private options: CarouselOptions;
 
     constructor(constructor: StylingLogicConstructor) {
         const {
             currentItemInInstance,
             isCurrentItem,
-            options
+            itemViewerToolbarRef,
+            options,
         } = constructor;
+        this.itemViewerToolbarRef = itemViewerToolbarRef;
         this.options = options || {};
         this.currentItemInInstance = currentItemInInstance;
         this.isCurrentItem = isCurrentItem;
@@ -36,8 +37,8 @@ export class StylingLogic {
 
     get carouselImageStlye(){
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            width: 'auto',
-            maxHeight: '100%',
+            width: '100%',
+            maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
         } as CSSProperties : {} as CSSProperties;
     }
 
@@ -118,6 +119,7 @@ export class StylingLogic {
             width: "100%",
             objectPosition: 'bottom',
             padding: `0 ${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
+            maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
         } as CSSProperties : {};
     }
 
@@ -145,6 +147,10 @@ export class StylingLogic {
         return fontFamily?.all || fontFamily?.navigation ? {
             fontFamily: fontFamily?.all || fontFamily?.navigation || this.DEFAULT_FONT_FAMILY,
         } : {};
+    }
+
+    get maxHeightNonDefaultItemDisplayLocation() {
+        return  `calc(100% - ${this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.height || 0}${CAROUSEL_SPACING_UNIT})`;
     }
 
     get navigationStyle() {
