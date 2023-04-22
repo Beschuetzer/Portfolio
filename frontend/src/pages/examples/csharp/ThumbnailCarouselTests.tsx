@@ -255,10 +255,11 @@ const displayCurrentItemAbove = (
 		}}
 	/>
 );
-const displayCurrentItemBelowWithCustomThumbnailSize = (
+const displayCurrentItemBelowWithCustomThumbnailSizeAndHeight = (
 	<Carousel
 		items={items}
 		options={{
+			itemHeight: 333,
 			itemDisplayLocation: 'below',
 			thumbnail: {
 				size: 200,
@@ -475,8 +476,8 @@ const SECTIONS: Sections = [
 				jsx: displayCurrentItemAbove,
 			},
 			{
-				label: "Display Current Item Below with Custom Thumbnail Size",
-				jsx: displayCurrentItemBelowWithCustomThumbnailSize,
+				label: "Display Current Item Below with Custom Thumbnail Size and Height",
+				jsx: displayCurrentItemBelowWithCustomThumbnailSizeAndHeight,
 			},
 		]
 	],

@@ -82,6 +82,10 @@ export type CarouselOptions = {
     *Default is 'none'.
     */
     itemDisplayLocation?: 'none' | 'above' | 'below';
+    /*
+    *The height in pixels of the visible carousel item.  This only applies when 'itemDisplayLocation' is 'none'.
+    */
+    itemHeight?: number;
     itemViewer?: CarouselItemViewerOptions;
     navigation?: CarouselNavigationOptions;
     shortcuts?: CarouselActions;

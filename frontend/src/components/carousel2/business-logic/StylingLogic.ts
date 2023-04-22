@@ -35,11 +35,15 @@ export class StylingLogic {
             height: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
         };
     }
+
+    get carouselItemContainerHeight() {
+        return `${this.options?.itemHeight || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}px`;
+     }
+
     get carouselItemContainerStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            height: "auto",
-            maxHeight: `${CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}px`,
+            height: this.carouselItemContainerHeight,
             display: "flex",
             flexDirection: "initial",
             alignItems: "initial",
@@ -53,7 +57,7 @@ export class StylingLogic {
     get carouselVideoStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            height: `${CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}px`,
+            height: this.carouselItemContainerHeight,
         } as CSSProperties : {};
     }
 
