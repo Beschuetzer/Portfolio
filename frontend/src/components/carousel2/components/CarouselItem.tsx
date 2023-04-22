@@ -3,7 +3,7 @@ import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
 import { convertHexToRgba, enterFullScreen, getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
-import { CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_ITEM_SIZE_DEFAULT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
+import { CAROUSEL_DOT_OPACITY_DEFAULT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
 
@@ -40,9 +40,9 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcThumbnail,
   } = props;
   const { setCurrentItemIndex, setCurrentSvgs: setCurrentSvgHrefs, setOptions, setCurrentCarouselId, itemViewerRef, } = useCarouselContext();
-  const { id: carouselId, options, setCurrentItemInInstanceIndex } = useCarouselInstanceContext();
+  const { id: carouselId, options, setCurrentItemInInstanceIndex, currentItemInInstanceIndex } = useCarouselInstanceContext();
   const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}});
-  const stylingLogic = new StylingLogic({options: options || {}});
+  const stylingLogic = new StylingLogic({options: options || {}, isCurrentItem: index === currentItemInInstanceIndex});
   //#endregion
 
   //#region Functions/Handlers
@@ -63,29 +63,15 @@ export const CarouselItem = (props: CarouselItemProps) => {
   const maxLineCountStyle = {
     WebkitLineClamp: options?.thumbnail?.maxLineCount || 2,
   } as React.CSSProperties;
-  const backgroundSolidStyle = options?.thumbnail?.background?.solid?.color ? {
-    background: 'none',
-    backgroundColor: convertHexToRgba(options.thumbnail?.background?.solid.color?.trim() || '#000', options.thumbnail?.background?.solid?.opacity || CAROUSEL_DOT_OPACITY_DEFAULT),
-  } as React.CSSProperties : {};
-  const backgroundGradientStyle = options?.thumbnail?.background?.gradient ? {
-    background: `linear-gradient(${options.thumbnail.background.gradient?.angle || 180}deg, ${convertHexToRgba(options?.thumbnail?.background?.gradient.start.color || '#fff', options?.thumbnail?.background?.gradient.start?.opacity || 0)} 0%, ${convertHexToRgba(options?.thumbnail?.background?.gradient.end.color || '#000', options?.thumbnail?.background?.gradient.end?.opacity || 1)} 100%)`,
-  } as React.CSSProperties : {};
+
   const textColorStyle = options?.thumbnail?.textColor ? {
     color: options.thumbnail.textColor,
   } as React.CSSProperties : {};
-  const bottomStyle = options?.thumbnail?.hideOverlayUnlessHovered === undefined || options.thumbnail.hideOverlayUnlessHovered ? {
-    bottom: '-100%',
-  } as React.CSSProperties : {};
-  const thumbnailBackgroundStyle = {
-    ...bottomStyle,
-    ...backgroundSolidStyle,
-    ...backgroundGradientStyle,
-  } as React.CSSProperties
 
   return (
     <div onClick={(e) => onPress(e as any)} className={CLASSNAME__CAROUSEL_ITEM} style={stylingLogic.carouselItemStyle}>
       {description ? (
-        <div style={thumbnailBackgroundStyle}>
+        <div style={stylingLogic.thumbnailBackgroundStyle}>
           <p style={{ ...maxLineCountStyle, ...fontSizeStyle, ...textColorStyle }}>{description}</p>
         </div>
       ) : null}

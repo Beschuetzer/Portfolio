@@ -2,11 +2,13 @@ import { CSSProperties } from "react";
 import { CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { CarouselItemProps } from "../components/CarouselItem";
-import { CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT } from "../constants";
+import { CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT } from "../constants";
+import { convertHexToRgba } from "../utils";
 
 export type StylingLogicConstructor = {
-    options: CarouselOptions;
     currentItemInInstance?: CarouselItemProps;
+    options: CarouselOptions;
+    isCurrentItem?: boolean;
 }
 
 /*
@@ -15,25 +17,47 @@ export type StylingLogicConstructor = {
 export class StylingLogic {
     private DEFAULT_FONT_FAMILY: string = 'sans-serif';
     private currentItemInInstance: CarouselItemProps | undefined;
+    private isCurrentItem: boolean | undefined;
     private itemDisplayLocationLogic: ItemDisplayLocationLogic;
     private options: CarouselOptions;
 
     constructor(constructor: StylingLogicConstructor) {
-        const { options, currentItemInInstance } = constructor;
+        const {
+            currentItemInInstance,
+            isCurrentItem,
+            options
+        } = constructor;
         this.options = options;
         this.currentItemInInstance = currentItemInInstance;
+        this.isCurrentItem = isCurrentItem;
         const isCurrentItemInInstancePopulated = Object.keys(currentItemInInstance || {}).length > 0;
         this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem: currentItemInInstance });
     }
 
+    get carouselItemCursorStyle() {
+        return this.isCurrentItemSelected ? {
+            cursor: 'auto',
+        } as CSSProperties : {} as CSSProperties;
+    }
+
     get carouselItemStyle() {
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        const widthStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}px`,
             height: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}px`,
         } as CSSProperties : {
             width: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
             height: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}px`,
-        };
+        } as CSSProperties;
+
+        const selectionStyle = this.isCurrentItemSelected ? {
+            border: '1px solid red',
+            ...this.carouselItemCursorStyle,
+        } as CSSProperties : {} as CSSProperties;
+
+        return {
+            ...selectionStyle,
+            ...widthStyle,
+        } as CSSProperties;
     }
 
     get carouselItemContainerHeight() {
@@ -69,6 +93,10 @@ export class StylingLogic {
         } as CSSProperties : {};
     }
 
+    get isCurrentItemSelected() {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation && !!this.isCurrentItem;
+    }
+
     get fontFamilyItemViewerStyle() {
         const stylings = this.options?.styling;
         const fontFamily = stylings?.fontFamily || {};
@@ -83,6 +111,39 @@ export class StylingLogic {
         return fontFamily?.all || fontFamily?.navigation ? {
             fontFamily: fontFamily?.all || fontFamily?.navigation || this.DEFAULT_FONT_FAMILY,
         } : {};
+    }
+
+    get thumbnailBackgroundStyle() {
+        const thumbnail = this.options?.thumbnail;
+        const solid = thumbnail?.background?.solid;
+        const gradient = thumbnail?.background?.gradient;
+        const color = solid?.color;
+        const shouldHideOverlay = thumbnail?.hideOverlayUnlessHovered === undefined || !!thumbnail?.hideOverlayUnlessHovered;
+
+        const backgroundSolidStyle = color ? {
+            background: 'none',
+            backgroundColor: convertHexToRgba(
+                color?.trim() || '#000',
+                solid?.opacity || CAROUSEL_DOT_OPACITY_DEFAULT
+            ),
+        } as React.CSSProperties : {};
+
+        const backgroundGradientStyle = gradient ? {
+            background: `linear-gradient(${gradient?.angle || 180}deg, ${convertHexToRgba(gradient.start?.color || '#fff', gradient.start?.opacity || 0)} 0%, ${convertHexToRgba(gradient.end?.color || '#000', gradient.end?.opacity || 1)} 100%)`,
+        } as React.CSSProperties : {};
+
+        const bottomStyle = shouldHideOverlay ? {
+            bottom: '-100%',
+        } as React.CSSProperties : {};
+
+        const thumbnailBackgroundStyle = {
+            ...bottomStyle,
+            ...backgroundSolidStyle,
+            ...backgroundGradientStyle,
+            ...this.carouselItemCursorStyle,
+        } as React.CSSProperties
+
+        return thumbnailBackgroundStyle;
     }
 
     get thumbnailMarginHorizontal() {
