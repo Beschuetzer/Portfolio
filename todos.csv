@@ -1,5 +1,7 @@
 Carousel rework
   -itemDisplay non-default stuff:
+    -add option to specify background color
+    -add option for hiding thumbnail overlay (hide by default for non-none cases)
     -add option to specify currentItem's border string
     -selecting an image before the currently selected causes a page decrement
     -render a LoadingContainer of height 50rem with a spinner to show while loading (need new POS in CarouselInstanceProvider?)

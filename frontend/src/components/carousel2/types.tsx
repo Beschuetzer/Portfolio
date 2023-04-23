@@ -32,6 +32,21 @@ export type CarouselItemViewerButtonProps = {
     options?: CarouselOptions;
 } & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children' | 'shortcuts'>>
 
+export type CarouselLayoutOptions = {
+    /*
+       *If 'none', then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
+       *Otherwise the the item is displayed above or below the carousel.
+       *Default is 'none'.
+       */
+    itemDisplayLocation?: 'none' | 'above' | 'below';
+    /*
+    *The height in pixels of the visible carousel item.  This only applies when 'itemDisplayLocation' is 'none'.
+    *Currently there is no auto adjust based on the smallest item behavior, 
+    *so you have to adjust it and see how it works for the items given.
+    */
+    itemDisplayHeight?: number;
+}
+
 export type CarouselNavigationOptions = {
     /*
     *When true, the right arrow button will be hidden when when on the last page and the left arrow button will be hidden when on the first page.  
@@ -62,7 +77,6 @@ export type CarouselFontFamilyOptions = Exclusive<
         *Setting the font-family for the navigation items and the carousel itself
         */
         navigation?: string;
-
     },
     {
         /*
@@ -76,19 +90,9 @@ export type CarouselStylingOptions = {
 }
 
 export type CarouselOptions = {
-    /*
-    *If 'none', then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
-    *Otherwise the the item is displayed above or below the carousel.
-    *Default is 'none'.
-    */
-    itemDisplayLocation?: 'none' | 'above' | 'below';
-    /*
-    *The height in pixels of the visible carousel item.  This only applies when 'itemDisplayLocation' is 'none'.
-    *Currently there is no auto adjust based on the smallest item behavior, 
-    *so you have to adjust it and see how it works for the items given.
-    */
-    itemHeight?: number;
+
     itemViewer?: CarouselItemViewerOptions;
+    layout?: CarouselLayoutOptions;
     navigation?: CarouselNavigationOptions;
     shortcuts?: CarouselActions;
     styling?: CarouselStylingOptions

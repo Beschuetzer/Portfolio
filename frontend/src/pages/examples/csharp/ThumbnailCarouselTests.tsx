@@ -251,7 +251,9 @@ const displayCurrentItemAboveDefaultItemHeight = (
 	<Carousel
 		items={items}
 		options={{
-			itemDisplayLocation: 'above',
+			layout: {
+				itemDisplayLocation: 'above',
+			}
 		}}
 	/>
 );
@@ -259,8 +261,10 @@ const displayCurrentItemAboveWithItemHeightAndFontFamily = (
 	<Carousel
 		items={items}
 		options={{
-			itemHeight: 427,
-			itemDisplayLocation: 'above',
+			layout: {
+				itemDisplayHeight: 427,
+				itemDisplayLocation: 'above',
+			},
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
@@ -274,10 +278,12 @@ const displayCurrentItemBelowWithCustomThumbnailSizeAndHeight = (
 	<Carousel
 		items={items}
 		options={{
-			itemHeight: 333,
-			itemDisplayLocation: 'below',
+			layout: {
+				itemDisplayHeight: 333,
+				itemDisplayLocation: 'below',
+			},
 			thumbnail: {
-				size: 200,
+				size: 100,
 			},
 		}}
 	/>

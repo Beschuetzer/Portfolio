@@ -77,7 +77,7 @@ export class StylingLogic {
     }
 
     get carouselItemContainerHeight() {
-        return `${this.options?.itemHeight || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
+        return `${this.options?.layout?.itemDisplayHeight || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
     }
 
     get carouselItemContainerStyle() {

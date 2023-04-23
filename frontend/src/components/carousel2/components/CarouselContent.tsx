@@ -33,7 +33,7 @@ export const CarouselContent = ({
     const itemsContainerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndex = useRef(CURRENT_ITEM_INDEX_INITIAL);
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem: currentItemInInstance });
-    const stylingLogic = new StylingLogic({ options});
+    const stylingLogic = new StylingLogic({ options });
     //#endregion
 
     //#region Functions/Handlers
@@ -213,29 +213,31 @@ export const CarouselContent = ({
                     }
                 </div>
             </div>
-            {numberOfPages > 1 ? (
-                <div style={stylingLogic.navigationStyle} className={getClassname({ elementName: "navigation" })}>
-                    <CarouselArrowButton
-                        options={options}
-                        currentPage={currentPage}
-                        numberOfDots={numberOfPages}
-                        direction={"left"}
-                        onClick={() => onArrowButtonClick("left")} />
-                    <CarouselDots
-                        items={items || []}
-                        numberOfDots={numberOfPages}
-                        setCurrentPage={setCurrentPage}
-                        currentPage={currentPage}
-                        options={options}
-                    />
-                    <CarouselArrowButton
-                        options={options}
-                        currentPage={currentPage}
-                        numberOfDots={numberOfPages}
-                        direction={"right"}
-                        onClick={() => onArrowButtonClick("right")} />
-                </div>
-            ) : null}
+            <div style={stylingLogic.navigationStyle} className={getClassname({ elementName: "navigation" })}>
+                {numberOfPages > 1 ? (
+                    <>
+                        <CarouselArrowButton
+                            options={options}
+                            currentPage={currentPage}
+                            numberOfDots={numberOfPages}
+                            direction={"left"}
+                            onClick={() => onArrowButtonClick("left")} />
+                        <CarouselDots
+                            items={items || []}
+                            numberOfDots={numberOfPages}
+                            setCurrentPage={setCurrentPage}
+                            currentPage={currentPage}
+                            options={options}
+                        />
+                        <CarouselArrowButton
+                            options={options}
+                            currentPage={currentPage}
+                            numberOfDots={numberOfPages}
+                            direction={"right"}
+                            onClick={() => onArrowButtonClick("right")} />
+                    </>
+                ) : null}
+            </div>
             {itemDisplayLocationLogic.shouldDisplayItemBelow ? (
                 <ItemToRender {...currentItemInInstance} />
             ) : null}

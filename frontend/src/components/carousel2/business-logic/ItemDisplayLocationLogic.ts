@@ -32,7 +32,7 @@ export class ItemDisplayLocationLogic {
     }
     
     get isDefaultItemDisplayLocation() {
-        return !this.options?.itemDisplayLocation || this.options.itemDisplayLocation === 'none';
+        return !this.options?.layout?.itemDisplayLocation || this.options?.layout?.itemDisplayLocation === 'none';
     }
 
     get itemToRender() {
@@ -42,10 +42,10 @@ export class ItemDisplayLocationLogic {
     }
 
     get shouldDisplayItemAbove() {
-        return this.options.itemDisplayLocation === 'above';
+        return this.options?.layout?.itemDisplayLocation === 'above';
     }
 
     get shouldDisplayItemBelow() {
-        return this.options.itemDisplayLocation === 'below';
+        return this.options?.layout?.itemDisplayLocation === 'below';
     }
 }
