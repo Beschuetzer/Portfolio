@@ -50,11 +50,20 @@ export class StylingLogic {
     }
 
     get carouselStyle() {
+        const common = {
+            paddingTop: `${this.getPaddingAmount(SpacingDirection.top)}${CAROUSEL_SPACING_UNIT}`,
+            paddingBottom: `${this.getPaddingAmount(SpacingDirection.bottom)}${CAROUSEL_SPACING_UNIT}`,
+        } as CSSProperties;
+
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             backgroundColor: CAROUSEL_COLOR_ONE,
             borderRadius: 4,
-            padding: `${this.getPaddingAmount(SpacingDirection.top)}${CAROUSEL_SPACING_UNIT} 0 ${this.getPaddingAmount(SpacingDirection.bottom)}${CAROUSEL_SPACING_UNIT}`,
-        } as CSSProperties : {} as CSSProperties;
+            paddingRight: 0,
+            paddingLeft: 0,
+            ...common,
+        } as CSSProperties : {
+            ...common,
+        } as CSSProperties;
     }
 
     get carouselItemCursorStyle() {
@@ -95,13 +104,20 @@ export class StylingLogic {
     }
 
     get carouselItemsContainerStyle() {
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            marginTop: 0,
-            marginBottom: 0,
+        const common = {
             marginLeft: `${this.getPaddingAmount(SpacingDirection.left)}${CAROUSEL_SPACING_UNIT}`,
             marginRight: `${this.getPaddingAmount(SpacingDirection.right)}${CAROUSEL_SPACING_UNIT}`,
             overflow: 'hidden',
-        } as CSSProperties : {};
+        } as CSSProperties;
+
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            marginTop: 0,
+            marginBottom: 0,
+            overflow: 'hidden',
+            ...common,
+        } as CSSProperties : {
+            ...common,
+        };
     }
 
     get carouselVideoOverlayStyle() {
@@ -165,13 +181,19 @@ export class StylingLogic {
     }
 
     get navigationStyle() {
+        const common = {
+            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: `${this.getPaddingAmount(SpacingDirection.right)}${CAROUSEL_SPACING_UNIT}`,
+        } as CSSProperties;
+
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             marginBottom: 0,
             paddingTop: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2 - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT}`,
             paddingBottom: 0,
-            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left)}${CAROUSEL_SPACING_UNIT}`,
-            paddingRight: `${this.getPaddingAmount(SpacingDirection.right)}${CAROUSEL_SPACING_UNIT}`,
-        } as CSSProperties : {};
+            ...common,
+        } as CSSProperties : {
+            ...common,
+        };
     }
 
     get thumbnailBackgroundStyle() {

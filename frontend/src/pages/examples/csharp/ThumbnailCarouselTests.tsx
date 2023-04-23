@@ -247,32 +247,32 @@ const allCustomSettings = (
 		items={items}
 	/>
 );
-const oneItemAllDefaults = (
+const noItemDisplayedOneItemAllDefaults = (
 	<Carousel
 		items={items.slice(0, 1)}
 	/>
 );
-const twoItemsAllDefaults = (
+const noItemDisplayedTwoItemsAllDefaults = (
 	<Carousel
 		items={items.slice(0, 2)}
 	/>
 );
-const threeItemsAllDefaults = (
+const noItemDisplayedThreeItemsAllDefaults = (
 	<Carousel
 		items={items.slice(0, 3)}
 	/>
 );
-const multiplePagesDynamicSizingAllDefaults = (
+const noItemDisplayedMultiplePagesAllDefaults = (
 	<Carousel items={items} />
 );
 const multiplePagesCustomPadding = (
 	<Carousel items={items} options={{
 		layout: {
 			padding: {
-				left: 10,
-				right: 120,
-				bottom: 10,
-				top: 10,
+				left: 40,
+				right: 40,
+				bottom: 40,
+				top: 40,
 			}
 		}
 	}}/>
@@ -582,19 +582,19 @@ const SECTIONS: Sections = [
 		[
 			{
 				label: "One Item - All Defaults",
-				jsx: oneItemAllDefaults
+				jsx: noItemDisplayedOneItemAllDefaults
 			},
 			{
 				label: "Two Items - All Defaults",
-				jsx: twoItemsAllDefaults
+				jsx: noItemDisplayedTwoItemsAllDefaults
 			},
 			{
 				label: "Three Items - All Defaults",
-				jsx: threeItemsAllDefaults
+				jsx: noItemDisplayedThreeItemsAllDefaults
 			},
 			{
 				label: "Multiple Pages - All Defaults",
-				jsx: multiplePagesDynamicSizingAllDefaults
+				jsx: noItemDisplayedMultiplePagesAllDefaults
 			},
 			{
 				label: "Multiple Pages - Custom Padding",
@@ -725,7 +725,7 @@ const SECTIONS: Sections = [
 				jsx: (
 					<div style={{ display: "flex" }}>
 						<div style={{ width: '50%' }}>
-							{multiplePagesDynamicSizingAllDefaults}
+							{noItemDisplayedMultiplePagesAllDefaults}
 						</div>
 					</div>
 				)
@@ -735,10 +735,10 @@ const SECTIONS: Sections = [
 				jsx: (
 					<div style={{ display: "flex" }}>
 						<div style={{ width: '50%', marginRight: "4px" }}>
-							{multiplePagesDynamicSizingAllDefaults}
+							{noItemDisplayedMultiplePagesAllDefaults}
 						</div>
 						<div style={{ width: '50%', marginLeft: "4px" }}>
-							{multiplePagesDynamicSizingAllDefaults}
+							{noItemDisplayedMultiplePagesAllDefaults}
 						</div>
 					</div>
 				)
