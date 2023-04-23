@@ -6,6 +6,7 @@ import { CarouselItemProps } from './CarouselItem';
 import { CarouselOptions } from '../types';
 import { CarouselContent } from './CarouselContent';
 import { StylingLogic } from '../business-logic/StylingLogic';
+import { NUMBER_OF_PAGES_INITIAL } from '../constants';
 
 export type CarouselProps = {
 	style?: CSSProperties;
@@ -26,11 +27,10 @@ export const Carousel = (props: CarouselProps) => {
 		onItemChange = () => null,
 	} = props;
 	const { currentItemIndex, currentItems, setCurrentItems, currentCarouselId } = useCarouselContext();
-	const {  } = useCarouselInstanceContext();
 	const idRef = useRef<string>(getGuid());
 	const carouselContainerRef = useRef<HTMLDivElement>();
 	const isCurrentCarousel = currentCarouselId === idRef.current;
-	const stylingLogic = new StylingLogic({options});
+	const stylingLogic = new StylingLogic({ options });
 	//#endregion
 
 	//#region Side Fx
@@ -48,6 +48,7 @@ export const Carousel = (props: CarouselProps) => {
 	//#region JSX
 	return (
 		<CarouselInstanceProvider
+			numberOfPages={NUMBER_OF_PAGES_INITIAL}
 			itemsInInstance={items}
 			carouselContainerRef={carouselContainerRef as any}
 			id={idRef.current}

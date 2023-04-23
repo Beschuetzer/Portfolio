@@ -1,6 +1,8 @@
 import { replaceCharacters } from "../../helpers";
+import { ItemDisplayLocationLogic } from "./business-logic/ItemDisplayLocationLogic";
+import { StylingLogic } from "./business-logic/StylingLogic";
 import { CarouselItemProps } from "./components/CarouselItem";
-import { CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, CLASSNAME__ROOT, VIDEO_EXTENSIONS } from "./constants";
+import { CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, CLASSNAME__ROOT, NUMBER_OF_PAGES_INITIAL, VIDEO_EXTENSIONS } from "./constants";
 import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
 import { Point } from "./types";
 type GetClassname = {
@@ -11,22 +13,22 @@ type GetClassname = {
 export function capitalize(str: string | undefined | null) {
     if (!str) return "";
     return str
-      .split(" ")
-      .map((word) => word[0].toUpperCase() + word.slice(1))
-      .join(" ");
-  }
+        .split(" ")
+        .map((word) => word[0].toUpperCase() + word.slice(1))
+        .join(" ");
+}
 
-export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT){
-    
+export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT) {
+
     let color: any;
     const hexToUse = hex.trim();
-    if(hex && /^#([A-Fa-f0-9]{3}){1,2}$/.test(hexToUse)){
-        color= hexToUse.substring(1).split('');
-        if(color.length== 3){
-            color= [color[0], color[0], color[1], color[1], color[2], color[2]];
+    if (hex && /^#([A-Fa-f0-9]{3}){1,2}$/.test(hexToUse)) {
+        color = hexToUse.substring(1).split('');
+        if (color.length == 3) {
+            color = [color[0], color[0], color[1], color[1], color[2], color[2]];
         }
-        color= '0x'+color.join('');
-        return `rgba(${[(color>>16)&255, (color>>8)&255, color&255].join(',')},${opacity > 1 ? 1 : opacity < 0 ? 0 : opacity})`;
+        color = '0x' + color.join('');
+        return `rgba(${[(color >> 16) & 255, (color >> 8) & 255, color & 255].join(',')},${opacity > 1 ? 1 : opacity < 0 ? 0 : opacity})`;
     }
 
     return hexToUse;
@@ -34,6 +36,10 @@ export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_
 
 export function getClassname({ elementName, modifiedName }: GetClassname) {
     return `${CLASSNAME__ROOT}${elementName ? `__${elementName}` : ``}${modifiedName ? `--${modifiedName}` : ``}`;
+}
+
+export function getContainerWidth(htmlElement: HTMLElement, stylingLogic: StylingLogic) {
+    return (htmlElement?.getBoundingClientRect()?.width || 0) - (stylingLogic.horizontalPadding * 2);
 }
 
 export function getFormattedTimeString(seconds: number) {
@@ -58,8 +64,38 @@ export function getIsPointInsideElement(point: Point, element: HTMLElement | nul
 export function getIsVideo(item: CarouselItemProps) {
     const currentItemSrc = item?.srcMain || '';
     return currentItemSrc?.match(
-		getRegexStringFromStringArray(VIDEO_EXTENSIONS),
-	);
+        getRegexStringFromStringArray(VIDEO_EXTENSIONS),
+    );
+}
+
+export function getNumberOfItemsThatCanFit(
+    htmlElement: HTMLElement,
+    stylingLogic: StylingLogic,
+    itemDisplayLocationLogic: ItemDisplayLocationLogic
+) {
+    const containerWidth = getContainerWidth(htmlElement, stylingLogic);
+    const itemSize = itemDisplayLocationLogic.carouselItemSize;
+
+    return {
+        containerWidth,
+        itemSize,
+        numberOfWholeItemsThatCanFit: Math.floor(containerWidth / itemSize),
+        numberOfItemsThatCanFit: containerWidth / itemSize,
+    }
+}
+
+export function getNumberOfPages(
+    carouselContainerElement: HTMLElement,
+    itemsLength: number,
+    stylingLogic: StylingLogic,
+    itemDisplayLocationLogic: ItemDisplayLocationLogic
+) {
+    if (!carouselContainerElement) return NUMBER_OF_PAGES_INITIAL;
+    const { numberOfWholeItemsThatCanFit: numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit(
+        carouselContainerElement, stylingLogic, itemDisplayLocationLogic
+    );
+    const numberOfPages = Math.ceil(itemsLength / numberOfItemsThatCanFit);
+    return numberOfPages;
 }
 
 export function getRegexStringFromStringArray(fileExtensions: string[]) {
@@ -105,7 +141,7 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
         } else {
             result += replaceCharacters(shortcut, replacements);
         }
-        
+
         if (shortcuts.length > 2 && !isLastItem) {
             result += ', '
         }
@@ -127,7 +163,7 @@ export async function enterFullScreen(element: HTMLElement | null) {
         const itemInFullScreenMode = document.fullscreenElement;
         if (itemInFullScreenMode || !isFullScreenPossible || !element) return;
         return await element.requestFullscreen();
-    } catch(e) {}
+    } catch (e) { }
 }
 
 export async function exitFullScreen(element: HTMLElement | null) {
@@ -136,5 +172,5 @@ export async function exitFullScreen(element: HTMLElement | null) {
         const itemInFullScreenMode = document.fullscreenElement;
         if (!itemInFullScreenMode || !isFullScreenPossible || !element) return;
         return await document.exitFullscreen();
-    } catch(e) {}
+    } catch (e) { }
 }

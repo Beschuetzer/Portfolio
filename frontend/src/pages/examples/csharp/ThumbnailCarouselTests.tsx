@@ -469,6 +469,47 @@ const layoutAboveWithItemHeightAndThumbnailSize = (
 		}}
 	/>
 );	
+const layoutAboveWithItemHeightThumbnailSizeAndStyle = (
+	<Carousel
+		items={items}
+		style={{padding: 30}}
+		options={{
+			layout: {
+				itemDisplayHeight: 427,
+				itemDisplayLocation: 'above',
+			},
+			thumbnail: {
+				size: 100,
+			},
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
+				}
+			}
+		}}
+	/>
+);	
+const layoutAboveCompletelyFlush = (
+	<Carousel
+		style={{padding: 0}}
+		items={items}
+		options={{
+			layout: {
+				itemDisplayHeight: 445,
+				itemDisplayLocation: 'above',
+			},
+			thumbnail: {
+				horizontalPadding: 0,
+				size: 100,
+			},
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
+				}
+			}
+		}}
+	/>
+);	
 const layoutBelowWithCustomThumbnailSizeAndHeight = (
 	<Carousel
 		items={items}
@@ -520,6 +561,14 @@ const SECTIONS: Sections = [
 			{
 				label: "Display Current Item Above with Custom itemHeight and Thumbnail Size",
 				jsx: layoutAboveWithItemHeightAndThumbnailSize,
+			},
+			{
+				label: "Display Above with Custom itemHeight, Thumbnail Size, and Carousel Style (extra padding)",
+				jsx: layoutAboveWithItemHeightThumbnailSizeAndStyle,
+			},
+			{
+				label: "Display Above Flush",
+				jsx: layoutAboveCompletelyFlush,
 			},
 			{
 				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",

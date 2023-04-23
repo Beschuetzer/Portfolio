@@ -16,6 +16,7 @@ export const CAROUSEL_COLOR_FOUR = "#f3e7c9";
 export const CAROUSEL_COLOR_FIVE = "#fff9f5";
 export const CAROUSEL_DOT_OPACITY_DEFAULT = .5;
 export const CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT = 500;  //in px
+export const CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT = 4; //in px
 export const CAROUSEL_ITEM_SIZE_DEFAULT = 150;  //in px
 export const CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT = 50;  //in px
 export const CAROUSEL_ITEM_SPACING_DEFAULT = 10; //in px
@@ -25,6 +26,7 @@ export const CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT = 20;  //i
 export const CAROUSEL_SPACING_UNIT = 'px'
 export const MOBILE_PIXEL_WIDTH = 655;
 export const NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS = 2;
+export const NUMBER_OF_PAGES_INITIAL = 0;
 export const EMPTY_STRING = "";
 export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
 

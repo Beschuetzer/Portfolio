@@ -15,10 +15,12 @@ export type CarouselInstanceContextProps = {
     itemsInInstance: CarouselItemProps[];
     id: string;
     itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
+    numberOfPages: number;
     options: CarouselOptions | undefined;
     setCurrentItemInInstance?: React.Dispatch<React.SetStateAction<CarouselItemProps>>;
     setCurrentItemInInstanceIndex?: React.Dispatch<React.SetStateAction<number>>;
     setItemsInInstance?: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
+    setNumberOfPages?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CarouselInstanceContext = React.createContext<CarouselInstanceContextProps>({} as any);
@@ -32,11 +34,13 @@ export const CarouselInstanceProvider = ({
     children,
     id,
     itemsInInstance,
+    numberOfPages: numberOfPagesGiven,
     options,
 }: CarouselInstanceProps) => {
     const [currentItemInInstanceLocal, setCurrentItemInInstance] = useState<CarouselItemProps>({} as CarouselItemProps);
     const [currentItemInInstanceIndex, setCurrentItemInInstanceIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
     const [itemsInInstanceLocal, setItemsInInstance] = useState(itemsInInstance);
+    const [numberOfPages, setNumberOfPages] = useState(numberOfPagesGiven);
     const itemViewerToolbarRef = useRef<HTMLElement>();
 
     useEffect(() => {
@@ -53,10 +57,12 @@ export const CarouselInstanceProvider = ({
                 id,
                 itemsInInstance: itemsInInstanceLocal,
                 itemViewerToolbarRef,
+                numberOfPages,
                 options,
                 setCurrentItemInInstance,
                 setCurrentItemInInstanceIndex,
                 setItemsInInstance,
+                setNumberOfPages,
             }}
         >
             {children}

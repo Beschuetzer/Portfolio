@@ -257,14 +257,14 @@ export type CarouselThumbnailOptions = {
    */
     hideOverlayUnlessHovered?: boolean;
     /*
+    *The amount of padd
+    */
+    horizontalPadding?: number;
+    /*
     *The value in px that the thumbnails are spaced apart.  
     *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible
     */
     itemSpacing?: number;
-    /*
-    *The horizontal margin for the thumbnail container.
-    */
-    marginHorizontal?: number;
     /*
     *The number of lines to show before an ellipsis is inserted.  Default is 2.
     */

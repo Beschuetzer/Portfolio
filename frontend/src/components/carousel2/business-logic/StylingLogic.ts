@@ -2,12 +2,12 @@ import { CSSProperties } from "react";
 import { CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { convertHexToRgba } from "../utils";
-import { CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_SPACING_UNIT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_COLOR_FOUR, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_COLOR_FIVE, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT } from "../constants";
+import { CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_SPACING_UNIT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_COLOR_FOUR, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_COLOR_FIVE, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT, NUMBER_OF_PAGES_INITIAL, CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 
 export type StylingLogicConstructor = {
-    options: CarouselOptions | undefined;
     isCurrentItem?: boolean;
+    options: CarouselOptions | undefined;
 } & Partial<Pick<CarouselInstanceContextProps, 'itemViewerToolbarRef' | 'currentItemInInstance'>>;
 /*
 *Use this when extending styling options
@@ -27,15 +27,15 @@ export class StylingLogic {
             itemViewerToolbarRef,
             options,
         } = constructor;
-        this.itemViewerToolbarRef = itemViewerToolbarRef;
-        this.options = options || {};
         this.currentItemInInstance = currentItemInInstance;
         this.isCurrentItem = isCurrentItem;
+        this.itemViewerToolbarRef = itemViewerToolbarRef;
+        this.options = options || {};
         const isCurrentItemInInstancePopulated = Object.keys(currentItemInInstance || {}).length > 0;
         this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: this.options, currentItem: currentItemInInstance });
     }
 
-    get carouselImageStlye(){
+    get carouselImageStlye() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: '100%',
             maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
@@ -46,7 +46,7 @@ export class StylingLogic {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             backgroundColor: CAROUSEL_COLOR_ONE,
             borderRadius: 4,
-            padding: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT} 0 0`,
+            padding: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT} 0 16${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties : {} as CSSProperties;
     }
 
@@ -93,7 +93,7 @@ export class StylingLogic {
 
     get carouselItemsContainerStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            margin: `0 ${this.thumbnailMarginHorizontal}${CAROUSEL_SPACING_UNIT}`,
+            margin: `0 ${this.horizontalPadding}${CAROUSEL_SPACING_UNIT}`,
             overflow: 'hidden',
         } as CSSProperties : {};
     }
@@ -119,7 +119,7 @@ export class StylingLogic {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             objectPosition: 'bottom',
-            padding: `0 ${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
+            padding: `0 ${this.horizontalPadding}${CAROUSEL_SPACING_UNIT}`,
             maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
         } as CSSProperties : {};
     }
@@ -150,14 +150,21 @@ export class StylingLogic {
         } : {};
     }
 
+    get horizontalPadding() {
+        if (this.itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
+            return this.options.thumbnail?.horizontalPadding !== undefined ? this.options.thumbnail.horizontalPadding : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT;
+        }
+        return this.options.thumbnail?.horizontalPadding !== undefined ? this.options.thumbnail.horizontalPadding : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+    }
+
     get maxHeightNonDefaultItemDisplayLocation() {
-        return  `calc(100% - ${this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.height || 0}${CAROUSEL_SPACING_UNIT})`;
+        return `calc(100% - ${this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.height || 0}${CAROUSEL_SPACING_UNIT})`;
     }
 
     get navigationStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             marginBottom: 0,
-            padding: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2}${CAROUSEL_SPACING_UNIT} ${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
+            padding: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2 - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT} ${this.horizontalPadding}${CAROUSEL_SPACING_UNIT} 0`,
         } as CSSProperties : {};
     }
 
@@ -216,18 +223,13 @@ export class StylingLogic {
         }
     }
 
-    get thumbnailMarginHorizontal() {
-        if (this.itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
-            return this.options.thumbnail?.marginHorizontal || CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT;
-        }
-        return this.options.thumbnail?.marginHorizontal || CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-    }
-
     get toolbarStyle() {
         const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             background: CAROUSEL_COLOR_ONE,
             position: "static",
             width: '100%',
+            paddingBottom: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2 - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT}`,
+            paddingInline: this.horizontalPadding,
         } as React.CSSProperties : {};
 
         return {

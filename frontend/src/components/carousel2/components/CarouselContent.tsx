@@ -1,8 +1,7 @@
 import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
-import { getClassname } from '../utils';
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
+import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, useCarouselContext } from '../context';
@@ -10,6 +9,7 @@ import { ArrowButtonDirection } from '../types';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
+import { getNumberOfItemsThatCanFit, getContainerWidth, getClassname, getNumberOfPages } from '../utils';
 
 type CarouselContentProps = {
     carouselContainerRef: React.MutableRefObject<HTMLElement | undefined>;
@@ -22,29 +22,26 @@ export const CarouselContent = ({
 }: CarouselContentProps) => {
     //#region Init
     const { currentItemIndex, currentCarouselId, currentItems } = useCarouselContext();
-    const { currentItemInInstance, setCurrentItemInInstanceIndex, setItemsInInstance } = useCarouselInstanceContext();
+    const { currentItemInInstance, setCurrentItemInInstanceIndex, setItemsInInstance, numberOfPages, setNumberOfPages } = useCarouselInstanceContext();
     const { id } = useCarouselInstanceContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
     const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`);
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
-    const [numberOfPages, setNumberOfPages] = useState(0);
     const itemsContainerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndex = useRef(CURRENT_ITEM_INDEX_INITIAL);
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem: currentItemInInstance });
-    const stylingLogic = new StylingLogic({ options});
+    const stylingLogic = new StylingLogic({ options });
     //#endregion
 
     //#region Functions/Handlers
-    function getContainerWidth() {
-        return (carouselContainerRef.current?.getBoundingClientRect()?.width || 0) - (stylingLogic.thumbnailMarginHorizontal * 2);
-    }
-
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
         if (options?.thumbnail?.itemSpacing) return `${options?.thumbnail?.itemSpacing}${CAROUSEL_SPACING_UNIT}`;
-        const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit();
+        const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
+            carouselContainerRef.current as HTMLElement, stylingLogic, itemDisplayLocationLogic
+        );
         const numberOfGaps = numberOfWholeItemsThatCanFit - 1;
         const remainingSpace = containerWidth - (numberOfWholeItemsThatCanFit * itemSize);
         const newInterItemSpacing = (remainingSpace / numberOfGaps);
@@ -55,23 +52,14 @@ export const CarouselContent = ({
         return itemsContainerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`);
     }
 
-    function getNumberOfItemsThatCanFit() {
-        const containerWidth = getContainerWidth();
-        const itemSize = itemDisplayLocationLogic.carouselItemSize;
-
-        return {
-            containerWidth,
-            itemSize,
-            numberOfWholeItemsThatCanFit: Math.floor(containerWidth / itemSize),
-            numberOfItemsThatCanFit: containerWidth / itemSize,
-        }
-    }
 
     function getTranslationAmount() {
         const itemSpacingGiven = options?.thumbnail?.itemSpacing;
-        const containerWidth = getContainerWidth();
+        const containerWidth = getContainerWidth(carouselContainerRef.current as HTMLElement, stylingLogic);
         if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
-            const { numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit();
+            const { numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit(
+                carouselContainerRef.current as HTMLElement, stylingLogic, itemDisplayLocationLogic
+            );
 
             //if a bug occurs with translation amount in itemSpacingGiven case, check the > equality here as it may need to be >=
             const isLastItemMoreThanHalfVisible = numberOfItemsThatCanFit % 1 > .5;
@@ -93,11 +81,10 @@ export const CarouselContent = ({
     }, [currentPage, setCurrentPage, numberOfPages]);
 
     function setNumberOfDotsToDisplay() {
-        if (!carouselContainerRef.current || !itemsContainerRef.current) return;
-        const { numberOfWholeItemsThatCanFit: numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit();
-        const newNumberOfPages = Math.ceil(items.length / numberOfItemsThatCanFit);
-        setNumberOfPages(newNumberOfPages);
-
+        const newNumberOfPages = getNumberOfPages(
+            carouselContainerRef.current as HTMLElement, items.length, stylingLogic, itemDisplayLocationLogic
+        );
+        setNumberOfPages && setNumberOfPages(newNumberOfPages);
         if (currentPage >= newNumberOfPages) {
             setCurrentPage(newNumberOfPages - 1);
         }
@@ -151,7 +138,9 @@ export const CarouselContent = ({
             currentItems?.length <= 0
         ) return;
 
-        const { numberOfItemsThatCanFit, numberOfWholeItemsThatCanFit } = getNumberOfItemsThatCanFit();
+        const { numberOfItemsThatCanFit, numberOfWholeItemsThatCanFit } = getNumberOfItemsThatCanFit(
+            carouselContainerRef.current as HTMLElement, stylingLogic, itemDisplayLocationLogic
+        );
         const currentNthItem = currentItemIndex + 1;
         const isNextItemClick = getIsNextItemClick();
         // console.log({ isNextItemClick, previousCurrentItemIndex: previousCurrentItemIndex.current, currentNthItem, currentItemsLEngth: currentItems.length, numberOfWholeItemsThatCanFit, currentPage });
