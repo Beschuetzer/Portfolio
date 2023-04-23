@@ -107,6 +107,7 @@ export class StylingLogic {
     get carouselVideoOverlayStyle() {
         const widthStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "75%",
+            boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
 
         return {

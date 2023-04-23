@@ -33,6 +33,10 @@ export type CarouselItemViewerButtonProps = {
 } & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children' | 'shortcuts'>>
 
 export type CarouselLayoutOptions = {
+    /*
+    *The background color for the carousel.  Default is none.
+    */
+    backgroundColor?: string;
     padding?: {
         bottom?: number;
         left?: number;

@@ -265,6 +265,18 @@ const threeItemsAllDefaults = (
 const multiplePagesDynamicSizingAllDefaults = (
 	<Carousel items={items} />
 );
+const multiplePagesCustomPadding = (
+	<Carousel items={items} options={{
+		layout: {
+			padding: {
+				left: 10,
+				right: 120,
+				bottom: 10,
+				top: 10,
+			}
+		}
+	}}/>
+);
 const multiplePagesFixedItemSpacing = (
 	<Carousel items={items} options={{
 		thumbnail: {
@@ -578,6 +590,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Multiple Pages - All Defaults",
 				jsx: multiplePagesDynamicSizingAllDefaults
+			},
+			{
+				label: "Multiple Pages - Custom Padding",
+				jsx: multiplePagesCustomPadding
 			},
 			{
 				label: "Display Current Item Above Default itemHeight",
