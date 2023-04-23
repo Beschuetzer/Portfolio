@@ -46,6 +46,7 @@ export class StylingLogic {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             backgroundColor: CAROUSEL_COLOR_ONE,
             borderRadius: 4,
+            padding: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT} 0 0`,
         } as CSSProperties : {} as CSSProperties;
     }
 

@@ -247,47 +247,6 @@ const allCustomSettings = (
 		items={items}
 	/>
 );
-const displayCurrentItemAboveDefaultItemHeight = (
-	<Carousel
-		items={items}
-		options={{
-			layout: {
-				itemDisplayLocation: 'above',
-			}
-		}}
-	/>
-);
-const displayCurrentItemAboveWithItemHeightAndFontFamily = (
-	<Carousel
-		items={items}
-		options={{
-			layout: {
-				itemDisplayHeight: 427,
-				itemDisplayLocation: 'above',
-			},
-			styling: {
-				fontFamily: {
-					itemViewer: 'monospace',
-				}
-			}
-		}}
-	/>
-);	
-
-const displayCurrentItemBelowWithCustomThumbnailSizeAndHeight = (
-	<Carousel
-		items={items}
-		options={{
-			layout: {
-				itemDisplayHeight: 333,
-				itemDisplayLocation: 'below',
-			},
-			thumbnail: {
-				size: 100,
-			},
-		}}
-	/>
-);
 const oneItemAllDefaults = (
 	<Carousel
 		items={items.slice(0, 1)}
@@ -426,7 +385,6 @@ const itemViewerCustomFontBoth = (
 		}
 	}} />
 );
-
 const itemViewerCustomOverlayOnLoad = (
 	<Carousel items={items.slice(2, 3)} />
 );
@@ -466,6 +424,65 @@ const itemViewerCustomShortcuts = (
 const itemViewerTracking = (
 	<Carousel items={items}/>
 );
+const layoutAboveDefaultItemHeight = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayLocation: 'above',
+			}
+		}}
+	/>
+);
+const layoutAboveWithItemHeightAndFontFamily = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayHeight: 427,
+				itemDisplayLocation: 'above',
+			},
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
+				}
+			}
+		}}
+	/>
+);	
+const layoutAboveWithItemHeightAndThumbnailSize = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayHeight: 427,
+				itemDisplayLocation: 'above',
+			},
+			thumbnail: {
+				size: 100,
+			},
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
+				}
+			}
+		}}
+	/>
+);	
+const layoutBelowWithCustomThumbnailSizeAndHeight = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayHeight: 333,
+				itemDisplayLocation: 'below',
+			},
+			thumbnail: {
+				size: 100,
+			},
+		}}
+	/>
+);
 const noThumbnailHoverEffect = (
 	<Carousel items={items} options={{thumbnail: {hideOverlayUnlessHovered: false}}} />
 );
@@ -494,15 +511,19 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Current Item Above Default itemHeight",
-				jsx: displayCurrentItemAboveDefaultItemHeight,
+				jsx: layoutAboveDefaultItemHeight,
 			},
 			{
 				label: "Display Current Item Above with Custom itemHeight and Font Family",
-				jsx: displayCurrentItemAboveWithItemHeightAndFontFamily,
+				jsx: layoutAboveWithItemHeightAndFontFamily,
+			},
+			{
+				label: "Display Current Item Above with Custom itemHeight and Thumbnail Size",
+				jsx: layoutAboveWithItemHeightAndThumbnailSize,
 			},
 			{
 				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
-				jsx: displayCurrentItemBelowWithCustomThumbnailSizeAndHeight,
+				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
 			},
 		]
 	],

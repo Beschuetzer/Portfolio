@@ -1,7 +1,7 @@
 import { CSSProperties, useEffect, useRef } from 'react'
 import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../context';
 import { getClassname, getGuid } from '../utils';
-import { CarouselInstanceProvider } from './CarouselInstanceProvider';
+import { CarouselInstanceProvider, useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselItemProps } from './CarouselItem';
 import { CarouselOptions } from '../types';
 import { CarouselContent } from './CarouselContent';
@@ -26,6 +26,7 @@ export const Carousel = (props: CarouselProps) => {
 		onItemChange = () => null,
 	} = props;
 	const { currentItemIndex, currentItems, setCurrentItems, currentCarouselId } = useCarouselContext();
+	const {  } = useCarouselInstanceContext();
 	const idRef = useRef<string>(getGuid());
 	const carouselContainerRef = useRef<HTMLDivElement>();
 	const isCurrentCarousel = currentCarouselId === idRef.current;
