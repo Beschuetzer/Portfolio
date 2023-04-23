@@ -481,14 +481,19 @@ const layoutAboveWithItemHeightAndThumbnailSize = (
 		}}
 	/>
 );	
-const layoutAboveWithItemHeightThumbnailSizeAndStyle = (
+const layoutAboveExtraPadding = (
 	<Carousel
 		items={items}
-		style={{padding: 30}}
 		options={{
 			layout: {
 				itemDisplayHeight: 427,
 				itemDisplayLocation: 'above',
+				padding: {
+					top: 30,
+					bottom: 30,
+					right: 100,
+					left: 100,
+				}
 			},
 			thumbnail: {
 				size: 100,
@@ -608,8 +613,8 @@ const SECTIONS: Sections = [
 				jsx: layoutAboveWithItemHeightAndThumbnailSize,
 			},
 			{
-				label: "Display Above with Custom itemHeight, Thumbnail Size, and Carousel Style (extra padding)",
-				jsx: layoutAboveWithItemHeightThumbnailSizeAndStyle,
+				label: "Display Above with Extra Padding",
+				jsx: layoutAboveExtraPadding,
 			},
 			{
 				label: "Display Above Flush",
@@ -713,10 +718,20 @@ const SECTIONS: Sections = [
 		]
 	],
 	[
-		"Side by Side",
+		"Custom Width",
 		[
 			{
-				label: "All Defaults",
+				label: "Half width - All Defaults",
+				jsx: (
+					<div style={{ display: "flex" }}>
+						<div style={{ width: '50%' }}>
+							{multiplePagesDynamicSizingAllDefaults}
+						</div>
+					</div>
+				)
+			},
+			{
+				label: "Side by Side - All Defaults",
 				jsx: (
 					<div style={{ display: "flex" }}>
 						<div style={{ width: '50%', marginRight: "4px" }}>
@@ -729,7 +744,17 @@ const SECTIONS: Sections = [
 				)
 			},
 			{
-				label: "All Custom Settings",
+				label: "Half width - All Custom Settings",
+				jsx: (
+					<div style={{ display: "flex" }}>
+						<div style={{ width: '50%', marginRight: "4px" }}>
+							{allCustomSettings}
+						</div>
+					</div>
+				)
+			},
+			{
+				label: "Side by Side - All Custom Settings",
 				jsx: (
 					<div style={{ display: "flex" }}>
 						<div style={{ width: '50%', marginRight: "4px" }}>

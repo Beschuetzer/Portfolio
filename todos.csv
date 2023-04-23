@@ -1,6 +1,7 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -add option to specify background color
+    -figure out padding with default case
+    -add option to specify background color (Finish as the type is already added)
     -add option for hiding thumbnail overlay (hide by default for non-none cases)
     -add option to specify currentItem's border string
     -selecting an image before the currently selected causes a page decrement

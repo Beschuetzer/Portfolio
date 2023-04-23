@@ -9,7 +9,6 @@ import { StylingLogic } from '../business-logic/StylingLogic';
 import { NUMBER_OF_PAGES_INITIAL } from '../constants';
 
 export type CarouselProps = {
-	style?: CSSProperties;
 	/*
 	* if undefined, the default css version for each button will be used
 	*/
@@ -21,7 +20,6 @@ export type CarouselProps = {
 export const Carousel = (props: CarouselProps) => {
 	//#region Init
 	const {
-		style = {},
 		items,
 		options,
 		onItemChange = () => null,
@@ -59,7 +57,6 @@ export const Carousel = (props: CarouselProps) => {
 				style={
 					{
 						...stylingLogic.carouselStyle,
-						...style,
 						...stylingLogic.fontFamilyNavigationStyle,
 					}
 				}

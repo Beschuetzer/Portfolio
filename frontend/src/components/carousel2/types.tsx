@@ -100,7 +100,6 @@ export type CarouselStylingOptions = {
 }
 
 export type CarouselOptions = {
-
     itemViewer?: CarouselItemViewerOptions;
     layout?: CarouselLayoutOptions;
     navigation?: CarouselNavigationOptions;
