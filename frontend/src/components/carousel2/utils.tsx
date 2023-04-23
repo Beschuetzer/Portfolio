@@ -39,7 +39,7 @@ export function getClassname({ elementName, modifiedName }: GetClassname) {
 }
 
 export function getContainerWidth(htmlElement: HTMLElement, stylingLogic: StylingLogic) {
-    return (htmlElement?.getBoundingClientRect()?.width || 0) - (stylingLogic.horizontalPadding * 2);
+    return (htmlElement?.getBoundingClientRect()?.width || 0) - (stylingLogic.horizontalPadding);
 }
 
 export function getFormattedTimeString(seconds: number) {

@@ -1,7 +1,7 @@
 Carousel rework
   -itemDisplay non-default stuff:
     -add option to specify background color
-    -adjust box-shadow overlay styling to be none or smaller
+    -adjust video box-shadow overlay styling to be none or smaller
     -add option for hiding thumbnail overlay (hide by default for non-none cases)
     -add option to specify currentItem's border string
     -selecting an image before the currently selected causes a page decrement

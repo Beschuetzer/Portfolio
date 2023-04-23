@@ -33,6 +33,12 @@ export type CarouselItemViewerButtonProps = {
 } & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children' | 'shortcuts'>>
 
 export type CarouselLayoutOptions = {
+    padding?: {
+        bottom?: number;
+        left?: number;
+        right?: number;
+        top?: number;
+    }
     /*
        *If 'none', then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
        *Otherwise the the item is displayed above or below the carousel.
@@ -256,10 +262,6 @@ export type CarouselThumbnailOptions = {
    *Default is true
    */
     hideOverlayUnlessHovered?: boolean;
-    /*
-    *The amount of padd
-    */
-    horizontalPadding?: number;
     /*
     *The value in px that the thumbnails are spaced apart.  
     *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible

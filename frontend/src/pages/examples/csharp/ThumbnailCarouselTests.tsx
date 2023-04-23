@@ -491,15 +491,44 @@ const layoutAboveWithItemHeightThumbnailSizeAndStyle = (
 );	
 const layoutAboveCompletelyFlush = (
 	<Carousel
-		style={{padding: 0}}
 		items={items}
 		options={{
 			layout: {
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
+				padding: {
+					left: 0,
+					right: 0,
+					top: 0,
+					bottom: 0,
+				}
 			},
 			thumbnail: {
-				horizontalPadding: 0,
+				size: 100,
+			},
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
+				}
+			}
+		}}
+	/>
+);	
+const layoutAboveDifferentLeftAndRightPadding = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayHeight: 422,
+				itemDisplayLocation: 'above',
+				padding: {
+					left: 5,
+					right: 20,
+					top: 0,
+					bottom: 0,
+				}
+			},
+			thumbnail: {
 				size: 100,
 			},
 			styling: {
@@ -569,6 +598,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Display Above Flush",
 				jsx: layoutAboveCompletelyFlush,
+			},
+			{
+				label: "Display Above with Different Left and Right Padding",
+				jsx: layoutAboveDifferentLeftAndRightPadding,
 			},
 			{
 				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",

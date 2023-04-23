@@ -5,6 +5,12 @@ import { convertHexToRgba } from "../utils";
 import { CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_SPACING_UNIT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_COLOR_FOUR, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_COLOR_FIVE, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT, NUMBER_OF_PAGES_INITIAL, CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 
+export enum SpacingDirection {
+    bottom,
+    left,
+    right,
+    top,
+}
 export type StylingLogicConstructor = {
     isCurrentItem?: boolean;
     options: CarouselOptions | undefined;
@@ -35,6 +41,7 @@ export class StylingLogic {
         this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: this.options, currentItem: currentItemInInstance });
     }
 
+    //#region Public Getters
     get carouselImageStlye() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: '100%',
@@ -46,7 +53,7 @@ export class StylingLogic {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             backgroundColor: CAROUSEL_COLOR_ONE,
             borderRadius: 4,
-            padding: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT} 0 16${CAROUSEL_SPACING_UNIT}`,
+            padding: `${this.getPaddingAmount(SpacingDirection.top)}${CAROUSEL_SPACING_UNIT} 0 ${this.getPaddingAmount(SpacingDirection.bottom)}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties : {} as CSSProperties;
     }
 
@@ -77,10 +84,6 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselItemContainerHeight() {
-        return `${this.options?.layout?.itemDisplayHeight || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
-    }
-
     get carouselItemContainerStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
@@ -93,7 +96,10 @@ export class StylingLogic {
 
     get carouselItemsContainerStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            margin: `0 ${this.horizontalPadding}${CAROUSEL_SPACING_UNIT}`,
+            marginTop: 0,
+            marginBottom: 0,
+            marginLeft: `${this.getPaddingAmount(SpacingDirection.left)}${CAROUSEL_SPACING_UNIT}`,
+            marginRight: `${this.getPaddingAmount(SpacingDirection.right)}${CAROUSEL_SPACING_UNIT}`,
             overflow: 'hidden',
         } as CSSProperties : {};
     }
@@ -119,7 +125,10 @@ export class StylingLogic {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             objectPosition: 'bottom',
-            padding: `0 ${this.horizontalPadding}${CAROUSEL_SPACING_UNIT}`,
+            paddingTop: 0,
+            paddingBottom: 0,
+            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: `${this.getPaddingAmount(SpacingDirection.right)}${CAROUSEL_SPACING_UNIT}`,
             maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
         } as CSSProperties : {};
     }
@@ -151,20 +160,16 @@ export class StylingLogic {
     }
 
     get horizontalPadding() {
-        if (this.itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
-            return this.options.thumbnail?.horizontalPadding !== undefined ? this.options.thumbnail.horizontalPadding : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT;
-        }
-        return this.options.thumbnail?.horizontalPadding !== undefined ? this.options.thumbnail.horizontalPadding : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-    }
-
-    get maxHeightNonDefaultItemDisplayLocation() {
-        return `calc(100% - ${this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.height || 0}${CAROUSEL_SPACING_UNIT})`;
+        return this.getPaddingAmount(SpacingDirection.left) + this.getPaddingAmount(SpacingDirection.right);
     }
 
     get navigationStyle() {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             marginBottom: 0,
-            padding: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2 - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT} ${this.horizontalPadding}${CAROUSEL_SPACING_UNIT} 0`,
+            paddingTop: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2 - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT}`,
+            paddingBottom: 0,
+            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: `${this.getPaddingAmount(SpacingDirection.right)}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties : {};
     }
 
@@ -229,7 +234,8 @@ export class StylingLogic {
             position: "static",
             width: '100%',
             paddingBottom: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2 - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT}`,
-            paddingInline: this.horizontalPadding,
+            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: `${this.getPaddingAmount(SpacingDirection.right)}${CAROUSEL_SPACING_UNIT}`,
         } as React.CSSProperties : {};
 
         return {
@@ -237,8 +243,52 @@ export class StylingLogic {
             ...this.fontFamilyItemViewerStyle,
         }
     }
+    //#endregion
 
+    //#region Private Getters
+    private get carouselItemContainerHeight() {
+        return `${this.options?.layout?.itemDisplayHeight || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
+    }
+
+    private get maxHeightNonDefaultItemDisplayLocation() {
+        return `calc(100% - ${this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.height || 0}${CAROUSEL_SPACING_UNIT})`;
+    }
+
+    private get padding() {
+        return `${this.getPaddingAmount(SpacingDirection.top)}${CAROUSEL_SPACING_UNIT} ${this.getPaddingAmount(SpacingDirection.right)}${CAROUSEL_SPACING_UNIT} ${this.getPaddingAmount(SpacingDirection.bottom)}${CAROUSEL_SPACING_UNIT} ${this.getPaddingAmount(SpacingDirection.left)}${CAROUSEL_SPACING_UNIT}`;
+    }
+    //#endregion
+
+    //#region Public Methods
     getNavigationFillColor(svgRefColor: string | undefined) {
         return this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? svgRefColor : CAROUSEL_COLOR_FIVE;
     }
+    //#endregion
+
+    //#region Private Methods
+    private getPaddingAmount(direction: SpacingDirection) {
+        switch (direction) {
+            case SpacingDirection.bottom:
+                if (this.itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
+                    return this.options.layout?.padding?.bottom !== undefined ? this.options.layout.padding.bottom : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT;
+                }
+                return this.options.layout?.padding?.bottom !== undefined ? this.options.layout?.padding?.bottom : (CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT);
+            case SpacingDirection.left:
+                if (this.itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
+                    return this.options.layout?.padding?.left !== undefined ? this.options.layout.padding.left : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT;
+                }
+                return this.options.layout?.padding?.left !== undefined ? this.options.layout?.padding?.left : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+            case SpacingDirection.right:
+                if (this.itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
+                    return this.options.layout?.padding?.right !== undefined ? this.options.layout.padding.right : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT;
+                }
+                return this.options.layout?.padding?.right !== undefined ? this.options.layout?.padding?.right : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+            case SpacingDirection.top:
+                if (this.itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
+                    return this.options.layout?.padding?.top !== undefined ? this.options.layout.padding.top : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT;
+                }
+                return this.options.layout?.padding?.top !== undefined ? this.options.layout?.padding?.top : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+        }
+    }
+    //#endregion
 }
