@@ -766,6 +766,13 @@ const layoutBelowWithCustomThumbnailSizeAndHeight = (
 			layout: {
 				itemDisplayHeight: 333,
 				itemDisplayLocation: 'below',
+				items: {
+					all: {
+						padding: {
+							bottom: 0,
+						}
+					}
+				}
 			},
 			thumbnail: {
 				size: 100,
