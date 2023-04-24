@@ -15,9 +15,8 @@ export const CarouselItemViewerProgressBar = ({
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
     const { options } = useCarouselInstanceContext();
-    const stylingLogic = new StylingLogic({ options });
     const [progressBarValue, setProgressBarValue] = useState(0);
-    const progressBarRef = useRef<HTMLProgressElement>(null);
+    const stylingLogic = new StylingLogic({ options, progressBarValue });
 
     const onProgressBarClick = useCallback((e: MouseEvent) => {
         const clientX = e.clientX;
@@ -69,14 +68,13 @@ export const CarouselItemViewerProgressBar = ({
     }, [])
 
     return (
-        <progress
-            style={stylingLogic.carouselVideoProgressStyle}
-            ref={progressBarRef}
+        <div
+            style={stylingLogic.carouselVideoProgressBackgroundStyle}
             className={getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })}
             onClick={onProgressBarClick as any}
-            onDrag={() => console.log('drag')}
-            value={progressBarValue}
-        />
+        >
+            <div style={stylingLogic.carouselVideoProgressForegroundStyle} />
+        </div>
     )
 }
 

@@ -52,7 +52,7 @@ export const CarouselItemViewerToolbar = ({
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
     const { options: optionsGlobal, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
-    const { options: optionsLocal, setCurrentItemInInstanceIndex, itemViewerToolbarRef } = useCarouselInstanceContext();
+    const { options: optionsLocal, setCurrentItemInInstanceIndex, itemViewerToolbarRef, currentItemInInstance } = useCarouselInstanceContext();
     const options = optionsLocal || optionsGlobal || {};
 
     const shouldHideTimoutRef = useRef<any>(-1);
@@ -81,7 +81,7 @@ export const CarouselItemViewerToolbar = ({
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
     const actionsLogic = new ToolbarActionsLogic(options);
-    const stylingLogic = new StylingLogic({options});
+    const stylingLogic = new StylingLogic({options, currentItemInInstance});
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options, currentItem: {} as CarouselItemProps});
 
     useKeyboardShortcuts([

@@ -521,7 +521,8 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 					items: {
 						toolbar: {
 							progress: {
-								background: getComputedStyleCustom("--color-primary-4")
+								background: getComputedStyleCustom("--color-primary-4"),
+								foreground: getComputedStyleCustom("--color-primary-2"),
 							}
 						}
 					}

@@ -1,9 +1,10 @@
 import { CSSProperties } from "react";
 import { CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
-import { convertHexToRgba } from "../utils";
+import { convertHexToRgba, getIsVideo } from "../utils";
 import { CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_SPACING_UNIT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_COLOR_FOUR, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_COLOR_FIVE, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT, NUMBER_OF_PAGES_INITIAL, CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
+import { CarouselItemProps } from "../components/CarouselItem";
 
 export enum SpacingDirection {
     bottom,
@@ -14,6 +15,7 @@ export enum SpacingDirection {
 export type StylingLogicConstructor = {
     isCurrentItem?: boolean;
     options: CarouselOptions | undefined;
+    progressBarValue?: number;
 } & Partial<Pick<CarouselInstanceContextProps, 'itemViewerToolbarRef' | 'currentItemInInstance'>>;
 /*
 *Use this when extending styling options
@@ -25,6 +27,7 @@ export class StylingLogic {
     private itemDisplayLocationLogic: ItemDisplayLocationLogic;
     private itemViewerToolbarRef: CarouselInstanceContextProps['itemViewerToolbarRef'];
     private options: CarouselOptions;
+    private progressBarValue: number;
 
     constructor(constructor: StylingLogicConstructor) {
         const {
@@ -32,10 +35,12 @@ export class StylingLogic {
             isCurrentItem,
             itemViewerToolbarRef,
             options,
+            progressBarValue,
         } = constructor;
         this.currentItemInInstance = currentItemInInstance;
         this.isCurrentItem = isCurrentItem;
         this.itemViewerToolbarRef = itemViewerToolbarRef;
+        this.progressBarValue = progressBarValue || 0;
         this.options = options || {};
         const isCurrentItemInInstancePopulated = Object.keys(currentItemInInstance || {}).length > 0;
         this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: this.options, currentItem: currentItemInInstance });
@@ -150,21 +155,33 @@ export class StylingLogic {
         } as CSSProperties : {};
     }
 
-    get carouselVideoProgressStyle() {
+    get carouselVideoProgressBackgroundStyle() {
         const backgroundColor = this.options.layout?.colors?.items?.toolbar?.progress?.background;
-        const foregroundColor = this.options.layout?.colors?.items?.toolbar?.progress?.foreground;
-        if (
-            !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation &&
-            (!!backgroundColor || !!foregroundColor)
-        ) {
-            console.log({color: backgroundColor});
-            //todo may have to change progress to two divs?
-            // this.itemViewerProgressbarRef.current.style["::-webkit-progress-bar"] = "red";
-        }
+        const common = {
+            backgroundColor,
+        } as CSSProperties
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-        } as CSSProperties : {};
+            ...common,
+        } as CSSProperties : {
+            ...common,
+        } as CSSProperties;
+    }
+
+    get carouselVideoProgressForegroundStyle() {
+        const foregroundColor = this.options.layout?.colors?.items?.toolbar?.progress?.foreground;
+        const common = {
+            backgroundColor: foregroundColor,
+        } as CSSProperties
+
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            width: `${this.progressBarValue * 100}%`,
+            height: '100%',
+            ...common,
+        } as CSSProperties : {
+            ...common,
+        } as CSSProperties;
     }
 
     get isCurrentItemSelected() {
@@ -263,13 +280,14 @@ export class StylingLogic {
     }
 
     get toolbarStyle() {
+        const isItemVideo = getIsVideo(this.currentItemInInstance || {} as CarouselItemProps);
         const customColor = this.options.layout?.colors?.background?.toolbar || this.options.layout?.colors?.background?.all;
-
         const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             background: customColor || CAROUSEL_COLOR_ONE,
             position: "static",
             width: '100%',
-            paddingBottom: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2 - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT}`,
+            paddingTop: `${isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2}${CAROUSEL_SPACING_UNIT}`,
+            paddingBottom: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT}`,
             paddingLeft: `${this.getPaddingAmount(SpacingDirection.left)}${CAROUSEL_SPACING_UNIT}`,
             paddingRight: `${this.getPaddingAmount(SpacingDirection.right)}${CAROUSEL_SPACING_UNIT}`,
         } as React.CSSProperties : {};
