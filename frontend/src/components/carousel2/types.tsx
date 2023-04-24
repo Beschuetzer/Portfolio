@@ -15,6 +15,11 @@ export type ButtonProps = {
     onClick: () => void;
 }
 
+export type CarouselColorOptions = {
+    backgroundColor?: string;
+    foregroundColor?: string;
+}
+
 export type CarouselItemViewerOptions = {
     /*
    *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.  
@@ -32,62 +37,46 @@ export type CarouselItemViewerButtonProps = {
     options?: CarouselOptions;
 } & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children' | 'shortcuts'>>
 
-export type CarouselLayoutOptions = {
+
+export enum CarouselLayoutItem {
+    all = 'all',
+    itemViewer = 'itemViewer',
+    navigation = 'navigation',
+    toolbar = 'toolbar'
+}
+export type CarouselLayoutItems = {
+    [CarouselLayoutItem.all]?: {
+        padding?: CarouselPaddingOptions;
+    } & CarouselColorOptions
     /*
-    *The background color for the carousel.  Default is none.
+    *This is the container in which the currently viewing item sits
     */
-    colors?: {
-        background?: {
+    [CarouselLayoutItem.itemViewer]?: {
+        padding?: CarouselPaddingOptions;
+    } & CarouselColorOptions;
+    /*
+    *This is the where the dots, arrows, and thumbanils sit
+    */
+    [CarouselLayoutItem.navigation]?: {
+        padding?: CarouselPaddingOptions;
+    } & CarouselColorOptions;
+    /*
+    *This is where the buttons, progress bar, and item description sit
+    */
+    [CarouselLayoutItem.toolbar]?: {
+        buttons?: CarouselColorOptions;
+        padding?: CarouselPaddingOptions;
+        progressBar?: {
             /*
-            *Sets all of the background colors below.  Overriden by any colors given below.
+            *If true, the progress bar spans the entire width of the carousel itemViewer, otherwise it only spans the inner width of the toolbar container.
+            *Default is false
             */
-            all?: string;
-            /*
-            *This is the container that houses the item being viewed 
-            */
-            itemViewerContainer?: string;
-            /*
-            *This is the background color for carousel item gaps, arrows, and dots
-            */
-            navigation?: string;
-            /*
-            *This is where the item info and buttons are housed
-            */
-            toolbar?: string;
-        },
-        items?: {
-            /*
-            *Sets the fill/foreground color all of the below.  Overriden by any colors given below.
-            */
-            all?: string;
-            /*
-            *The arrows and dots
-            */
-            navigation?: string;
-            /*
-            *This is where the item info, progress bar and buttons are housed
-            */
-            toolbar?: {
-                buttons?: string;
-                progress?: {
-                    /*
-                    *Everything to the left of the current value color
-                    */
-                    foreground?: string;
-                    /*
-                    *Everything to the right of the current value
-                    */
-                    background?: string;
-                }
-            }
-        }
-    }
-    padding?: {
-        bottom?: number;
-        left?: number;
-        right?: number;
-        top?: number;
-    }
+            shouldSpanContainerWidth?: boolean;
+        } & CarouselColorOptions;
+    } & CarouselColorOptions;
+}
+
+export type CarouselLayoutOptions = {
     /*
        *If 'none', then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
        *Otherwise the the item is displayed above or below the carousel.
@@ -100,6 +89,7 @@ export type CarouselLayoutOptions = {
     *so you have to adjust it and see how it works for the items given.
     */
     itemDisplayHeight?: number;
+    items?: CarouselLayoutItems;
 }
 
 export type CarouselNavigationOptions = {
@@ -139,6 +129,13 @@ export type CarouselFontFamilyOptions = Exclusive<
         */
         all?: string;
     }>
+
+export type CarouselPaddingOptions = {
+    bottom?: number;
+    left?: number;
+    right?: number;
+    top?: number;
+}
 
 export type CarouselStylingOptions = {
     fontFamily?: CarouselFontFamilyOptions;

@@ -268,11 +268,15 @@ const noItemDisplayedMultiplePagesAllDefaults = (
 const multiplePagesCustomPadding = (
 	<Carousel items={items} options={{
 		layout: {
-			padding: {
-				left: 40,
-				right: 40,
-				bottom: 40,
-				top: 40,
+			items: {
+				all: {
+					padding: {
+						left: 40,
+						right: 40,
+						bottom: 40,
+						top: 40,
+					}
+				}
 			}
 		}
 	}} />
@@ -486,14 +490,108 @@ const layoutAboveExtraPadding = (
 		items={items}
 		options={{
 			layout: {
+				items: {
+					all: {
+						padding: {
+							top: 30,
+							bottom: 30,
+							right: 100,
+							left: 100,
+						}
+					},
+				},
 				itemDisplayHeight: 427,
 				itemDisplayLocation: 'above',
-				padding: {
-					top: 30,
-					bottom: 30,
-					right: 100,
-					left: 100,
+			},
+			thumbnail: {
+				size: 100,
+			},
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
 				}
+			}
+		}}
+	/>
+);
+const layoutAboveExtraNavigationPadding = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				items: {
+					navigation: {
+						padding: {
+							top: 30,
+							bottom: 30,
+							right: 100,
+							left: 100,
+						}
+					},
+				},
+				itemDisplayHeight: 427,
+				itemDisplayLocation: 'above',
+			},
+			thumbnail: {
+				size: 100,
+			},
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
+				}
+			}
+		}}
+	/>
+);
+const layoutAboveExtraItemViewerPadding = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				items: {
+					itemViewer: {
+						padding: {
+							top: 30,
+							bottom: 30,
+							right: 100,
+							left: 100,
+						}
+					},
+				},
+				itemDisplayHeight: 427,
+				itemDisplayLocation: 'above',
+			},
+			thumbnail: {
+				size: 100,
+			},
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
+				}
+			}
+		}}
+	/>
+);
+const layoutAboveExtraToolbarPadding = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				items: {
+					toolbar: {
+						padding: {
+							top: 30,
+							bottom: 30,
+							right: 100,
+							left: 100,
+						},
+						progressBar: {
+							shouldSpanContainerWidth: true,
+						}
+					},
+				},
+				itemDisplayHeight: 427,
+				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
 				size: 100,
@@ -511,30 +609,84 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 		items={items}
 		options={{
 			layout: {
-				colors: {
-					background: {
-						all: getComputedStyleCustom("--color-primary-3"),
-						navigation: getComputedStyleCustom("--color-primary-4"),
-						itemViewerContainer: getComputedStyleCustom("--color-primary-4"),
-						toolbar: getComputedStyleCustom("--color-primary-1"),
-					},
-					items: {
-						toolbar: {
-							progress: {
-								background: getComputedStyleCustom("--color-primary-4"),
-								foreground: getComputedStyleCustom("--color-primary-2"),
-							}
+				items: {
+					all: {
+						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+						padding: {
+							left: 0,
+							right: 0,
+							top: 0,
+							bottom: 0,
 						}
-					}
+					},
+					navigation: {
+						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					},
+					itemViewer: {
+						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					},
+					toolbar: {
+						progressBar: {
+							backgroundColor: getComputedStyleCustom("--color-primary-1"),
+							foregroundColor: getComputedStyleCustom("--color-primary-2"),
+						},
+						backgroundColor: getComputedStyleCustom("--color-primary-1"),
+						padding: {
+							left: 20,
+							right: 20,
+						}
+					},
 				},
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
-				padding: {
-					left: 0,
-					right: 0,
-					top: 0,
-					bottom: 0,
+			},
+			thumbnail: {
+				size: 100,
+			},
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
 				}
+			}
+		}}
+	/>
+);
+const layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				items: {
+					all: {
+						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+						padding: {
+							left: 0,
+							right: 0,
+							top: 0,
+							bottom: 0,
+						}
+					},
+					navigation: {
+						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					},
+					itemViewer: {
+						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					},
+					toolbar: {
+						progressBar: {
+							shouldSpanContainerWidth: true,
+							backgroundColor: getComputedStyleCustom("--color-primary-1"),
+							foregroundColor: getComputedStyleCustom("--color-primary-2"),
+						},
+						backgroundColor: getComputedStyleCustom("--color-primary-1"),
+						padding: {
+							left: 20,
+							right: 20,
+						}
+					},
+				},
+				itemDisplayHeight: 445,
+				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
 				size: 100,
@@ -552,22 +704,20 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 		items={items}
 		options={{
 			layout: {
-				colors: {
-					background: {
-						all: getComputedStyleCustom("--color-primary-4"),
+				items: {
+					all: {
+						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+						foregroundColor: getComputedStyleCustom("--color-primary-1"),
+						padding: {
+							left: 0,
+							right: 0,
+							top: 0,
+							bottom: 0,
+						}
 					},
-					items: {
-						all: getComputedStyleCustom("--color-primary-1"),
-					}
 				},
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
-				padding: {
-					left: 0,
-					right: 0,
-					top: 0,
-					bottom: 0,
-				}
 			},
 			thumbnail: {
 				size: 100,
@@ -585,14 +735,18 @@ const layoutAboveDifferentLeftAndRightPadding = (
 		items={items}
 		options={{
 			layout: {
+				items: {
+					all: {
+						padding: {
+							left: 5,
+							right: 20,
+							top: 0,
+							bottom: 0,
+						}
+					},
+				},
 				itemDisplayHeight: 422,
 				itemDisplayLocation: 'above',
-				padding: {
-					left: 5,
-					right: 20,
-					top: 0,
-					bottom: 0,
-				}
 			},
 			thumbnail: {
 				size: 100,
@@ -650,12 +804,21 @@ const SECTIONS: Sections = [
 				jsx: multiplePagesCustomPadding
 			},
 			{
-				label: "Display Current Item Above Default itemHeight",
-				jsx: layoutAboveDefaultItemHeight,
-			},
-			{
 				label: "Display Current Item Above with Custom itemHeight and Font Family",
 				jsx: layoutAboveWithItemHeightAndFontFamily,
+			},
+			{
+				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
+				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
+			},
+		]
+	],
+	[
+		'Above-Customization',
+		[
+			{
+				label: "Display Current Item Above Default itemHeight",
+				jsx: layoutAboveDefaultItemHeight,
 			},
 			{
 				label: "Display Current Item Above with Custom itemHeight and Thumbnail Size",
@@ -666,6 +829,18 @@ const SECTIONS: Sections = [
 				jsx: layoutAboveExtraPadding,
 			},
 			{
+				label: "Display Above with Extra Item Viewer Padding",
+				jsx: layoutAboveExtraItemViewerPadding
+			},
+			{
+				label: "Display Above with Extra Navigation Padding",
+				jsx: layoutAboveExtraNavigationPadding,
+			},
+			{
+				label: "Display Above with Extra Toolbar Padding",
+				jsx: layoutAboveExtraToolbarPadding
+			},
+			{
 				label: "Display Above with Different Left and Right Padding",
 				jsx: layoutAboveDifferentLeftAndRightPadding,
 			},
@@ -674,9 +849,18 @@ const SECTIONS: Sections = [
 				jsx: layoutAboveCompletelyFlushAndSameBackgroundColor,
 			},
 			{
+				label: "Display Above Flush with Progress Bar Whole Width",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole,
+			},
+			{
 				label: "Display Above Flush and Same Background Color using All option",
 				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
 			},
+		]
+	],
+	[
+		'Below-Customization',
+		[
 			{
 				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
 				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
