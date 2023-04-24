@@ -269,7 +269,7 @@ const multiplePagesCustomPadding = (
 	<Carousel items={items} options={{
 		layout: {
 			items: {
-				all: {
+				container: {
 					padding: {
 						left: 40,
 						right: 40,
@@ -485,22 +485,22 @@ const layoutAboveWithItemHeightAndThumbnailSize = (
 		}}
 	/>
 );
-const layoutAboveExtraPadding = (
+const layoutAboveContainerPadding = (
 	<Carousel
 		items={items}
 		options={{
 			layout: {
 				items: {
-					all: {
+					container: {
 						padding: {
-							top: 30,
-							bottom: 30,
+							top: 50,
+							bottom: 50,
 							right: 100,
 							left: 100,
 						}
 					},
 				},
-				itemDisplayHeight: 427,
+				itemDisplayHeight: 350,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -522,8 +522,6 @@ const layoutAboveExtraNavigationPadding = (
 				items: {
 					navigation: {
 						padding: {
-							top: 30,
-							bottom: 30,
 							right: 100,
 							left: 100,
 						}
@@ -551,8 +549,6 @@ const layoutAboveExtraItemViewerPadding = (
 				items: {
 					itemViewer: {
 						padding: {
-							top: 30,
-							bottom: 30,
 							right: 100,
 							left: 100,
 						}
@@ -580,8 +576,6 @@ const layoutAboveExtraToolbarPadding = (
 				items: {
 					toolbar: {
 						padding: {
-							top: 30,
-							bottom: 30,
 							right: 100,
 							left: 100,
 						},
@@ -610,7 +604,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 		options={{
 			layout: {
 				items: {
-					all: {
+					container: {
 						backgroundColor: getComputedStyleCustom("--color-primary-4"),
 						padding: {
 							left: 0,
@@ -657,7 +651,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole = (
 		options={{
 			layout: {
 				items: {
-					all: {
+					container: {
 						backgroundColor: getComputedStyleCustom("--color-primary-4"),
 						padding: {
 							left: 0,
@@ -705,7 +699,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 		options={{
 			layout: {
 				items: {
-					all: {
+					container: {
 						backgroundColor: getComputedStyleCustom("--color-primary-4"),
 						foregroundColor: getComputedStyleCustom("--color-primary-1"),
 						padding: {
@@ -736,7 +730,7 @@ const layoutAboveDifferentLeftAndRightPadding = (
 		options={{
 			layout: {
 				items: {
-					all: {
+					container: {
 						padding: {
 							left: 5,
 							right: 20,
@@ -767,7 +761,7 @@ const layoutBelowWithCustomThumbnailSizeAndHeight = (
 				itemDisplayHeight: 333,
 				itemDisplayLocation: 'below',
 				items: {
-					all: {
+					container: {
 						padding: {
 							bottom: 0,
 						}
@@ -832,11 +826,11 @@ const SECTIONS: Sections = [
 				jsx: layoutAboveWithItemHeightAndThumbnailSize,
 			},
 			{
-				label: "Display Above with Extra Padding",
-				jsx: layoutAboveExtraPadding,
+				label: "Display Above with Container Padding",
+				jsx: layoutAboveContainerPadding,
 			},
 			{
-				label: "Display Above with Extra Item Viewer Padding",
+				label: "Display Above with Item Viewer Padding",
 				jsx: layoutAboveExtraItemViewerPadding
 			},
 			{

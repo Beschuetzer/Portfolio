@@ -39,33 +39,33 @@ export type CarouselItemViewerButtonProps = {
 
 
 export enum CarouselLayoutItem {
-    all = 'all',
+    container = 'container',
     itemViewer = 'itemViewer',
     navigation = 'navigation',
     toolbar = 'toolbar'
 }
 export type CarouselLayoutItems = {
-    [CarouselLayoutItem.all]?: {
-        padding?: CarouselPaddingOptions;
+    [CarouselLayoutItem.container]?: {
+        padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
     } & CarouselColorOptions
     /*
     *This is the container in which the currently viewing item sits
     */
     [CarouselLayoutItem.itemViewer]?: {
-        padding?: CarouselPaddingOptions;
+        padding?: CarouselHorizontalPaddingOptions;
     } & CarouselColorOptions;
     /*
     *This is the where the dots, arrows, and thumbanils sit
     */
     [CarouselLayoutItem.navigation]?: {
-        padding?: CarouselPaddingOptions;
+        padding?: CarouselHorizontalPaddingOptions;
     } & CarouselColorOptions;
     /*
     *This is where the buttons, progress bar, and item description sit
     */
     [CarouselLayoutItem.toolbar]?: {
         buttons?: CarouselColorOptions;
-        padding?: CarouselPaddingOptions;
+        padding?: CarouselHorizontalPaddingOptions;
         progressBar?: {
             /*
             *If true, the progress bar spans the entire width of the carousel itemViewer, otherwise it only spans the inner width of the toolbar container.
@@ -130,10 +130,13 @@ export type CarouselFontFamilyOptions = Exclusive<
         all?: string;
     }>
 
-export type CarouselPaddingOptions = {
-    bottom?: number;
+export type CarouselHorizontalPaddingOptions = {
     left?: number;
     right?: number;
+}
+
+export type CarouselVerticalPaddingOptions = {
+    bottom?: number;
     top?: number;
 }
 
