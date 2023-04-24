@@ -275,7 +275,7 @@ const multiplePagesCustomPadding = (
 				top: 40,
 			}
 		}
-	}}/>
+	}} />
 );
 const multiplePagesFixedItemSpacing = (
 	<Carousel items={items} options={{
@@ -368,7 +368,7 @@ const itemViewerCustomButtons = (
 		svgs: {
 			...itemViewerButtons,
 		}
-	}}/>
+	}} />
 );
 const itemViewerCustomItemViewerFont = (
 	<Carousel items={items} options={{
@@ -429,12 +429,12 @@ const itemViewerNoTracking = (
 	}} />
 );
 const itemViewerCustomShortcuts = (
-	<Carousel items={items.slice(0,2)} options={{
+	<Carousel items={items.slice(0, 2)} options={{
 		shortcuts: carouselShortcuts,
-	}}/>
+	}} />
 );
 const itemViewerTracking = (
-	<Carousel items={items}/>
+	<Carousel items={items} />
 );
 const layoutAboveDefaultItemHeight = (
 	<Carousel
@@ -461,7 +461,7 @@ const layoutAboveWithItemHeightAndFontFamily = (
 			}
 		}}
 	/>
-);	
+);
 const layoutAboveWithItemHeightAndThumbnailSize = (
 	<Carousel
 		items={items}
@@ -480,7 +480,7 @@ const layoutAboveWithItemHeightAndThumbnailSize = (
 			}
 		}}
 	/>
-);	
+);
 const layoutAboveExtraPadding = (
 	<Carousel
 		items={items}
@@ -505,12 +505,27 @@ const layoutAboveExtraPadding = (
 			}
 		}}
 	/>
-);	
-const layoutAboveCompletelyFlush = (
+);
+const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 	<Carousel
 		items={items}
 		options={{
 			layout: {
+				colors: {
+					background: {
+						all: getComputedStyleCustom("--color-primary-3"),
+						navigation: getComputedStyleCustom("--color-primary-4"),
+						itemViewerContainer: getComputedStyleCustom("--color-primary-4"),
+						toolbar: getComputedStyleCustom("--color-primary-1"),
+					},
+					items: {
+						toolbar: {
+							progress: {
+								background: getComputedStyleCustom("--color-primary-4")
+							}
+						}
+					}
+				},
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
 				padding: {
@@ -530,7 +545,40 @@ const layoutAboveCompletelyFlush = (
 			}
 		}}
 	/>
-);	
+);
+const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				colors: {
+					background: {
+						all: getComputedStyleCustom("--color-primary-4"),
+					},
+					items: {
+						all: getComputedStyleCustom("--color-primary-1"),
+					}
+				},
+				itemDisplayHeight: 445,
+				itemDisplayLocation: 'above',
+				padding: {
+					left: 0,
+					right: 0,
+					top: 0,
+					bottom: 0,
+				}
+			},
+			thumbnail: {
+				size: 100,
+			},
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
+				}
+			}
+		}}
+	/>
+);
 const layoutAboveDifferentLeftAndRightPadding = (
 	<Carousel
 		items={items}
@@ -555,7 +603,7 @@ const layoutAboveDifferentLeftAndRightPadding = (
 			}
 		}}
 	/>
-);	
+);
 const layoutBelowWithCustomThumbnailSizeAndHeight = (
 	<Carousel
 		items={items}
@@ -571,11 +619,11 @@ const layoutBelowWithCustomThumbnailSizeAndHeight = (
 	/>
 );
 const noThumbnailHoverEffect = (
-	<Carousel items={items} options={{thumbnail: {hideOverlayUnlessHovered: false}}} />
+	<Carousel items={items} options={{ thumbnail: { hideOverlayUnlessHovered: false } }} />
 );
 //#endregion
 
-type Sections = [string,  { label: string, jsx: ReactNode | ReactNode[] }[]][];
+type Sections = [string, { label: string, jsx: ReactNode | ReactNode[] }[]][];
 const SECTIONS: Sections = [
 	[
 		"Layouts",
@@ -617,12 +665,16 @@ const SECTIONS: Sections = [
 				jsx: layoutAboveExtraPadding,
 			},
 			{
-				label: "Display Above Flush",
-				jsx: layoutAboveCompletelyFlush,
-			},
-			{
 				label: "Display Above with Different Left and Right Padding",
 				jsx: layoutAboveDifferentLeftAndRightPadding,
+			},
+			{
+				label: "Display Above Flush and Same Background Color",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColor,
+			},
+			{
+				label: "Display Above Flush and Same Background Color using All option",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
 			},
 			{
 				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",

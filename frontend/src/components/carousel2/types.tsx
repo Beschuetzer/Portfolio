@@ -36,7 +36,52 @@ export type CarouselLayoutOptions = {
     /*
     *The background color for the carousel.  Default is none.
     */
-    backgroundColor?: string;
+    colors?: {
+        background?: {
+            /*
+            *Sets all of the background colors below.  Overriden by any colors given below.
+            */
+            all?: string;
+            /*
+            *This is the container that houses the item being viewed 
+            */
+            itemViewerContainer?: string;
+            /*
+            *This is the background color for carousel item gaps, arrows, and dots
+            */
+            navigation?: string;
+            /*
+            *This is where the item info and buttons are housed
+            */
+            toolbar?: string;
+        },
+        items?: {
+            /*
+            *Sets the fill/foreground color all of the below.  Overriden by any colors given below.
+            */
+            all?: string;
+            /*
+            *The arrows and dots
+            */
+            navigation?: string;
+            /*
+            *This is where the item info, progress bar and buttons are housed
+            */
+            toolbar?: {
+                buttons?: string;
+                progress?: {
+                    /*
+                    *Everything to the left of the current value color
+                    */
+                    foreground?: string;
+                    /*
+                    *Everything to the right of the current value
+                    */
+                    background?: string;
+                }
+            }
+        }
+    }
     padding?: {
         bottom?: number;
         left?: number;

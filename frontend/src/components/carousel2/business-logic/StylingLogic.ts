@@ -56,7 +56,7 @@ export class StylingLogic {
         } as CSSProperties;
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            backgroundColor: CAROUSEL_COLOR_ONE,
+            backgroundColor: this.options?.layout?.colors?.background?.navigation || this.options.layout?.colors?.background?.all || CAROUSEL_COLOR_ONE,
             borderRadius: 4,
             paddingRight: 0,
             paddingLeft: 0,
@@ -98,7 +98,7 @@ export class StylingLogic {
             width: "100%",
             height: this.carouselItemContainerHeight,
             position: "relative",
-            backgroundColor: CAROUSEL_COLOR_ONE,
+            backgroundColor: this.options.layout?.colors?.background?.itemViewerContainer || this.options.layout?.colors?.background?.all || CAROUSEL_COLOR_ONE,
             justifyContent: 'flex-end',
         } as CSSProperties : {};
     }
@@ -151,6 +151,17 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressStyle() {
+        const backgroundColor = this.options.layout?.colors?.items?.toolbar?.progress?.background;
+        const foregroundColor = this.options.layout?.colors?.items?.toolbar?.progress?.foreground;
+        if (
+            !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation &&
+            (!!backgroundColor || !!foregroundColor)
+        ) {
+            console.log({color: backgroundColor});
+            //todo may have to change progress to two divs?
+            // this.itemViewerProgressbarRef.current.style["::-webkit-progress-bar"] = "red";
+        }
+
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
         } as CSSProperties : {};
@@ -252,8 +263,10 @@ export class StylingLogic {
     }
 
     get toolbarStyle() {
+        const customColor = this.options.layout?.colors?.background?.toolbar || this.options.layout?.colors?.background?.all;
+
         const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            background: CAROUSEL_COLOR_ONE,
+            background: customColor || CAROUSEL_COLOR_ONE,
             position: "static",
             width: '100%',
             paddingBottom: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2 - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT}`,

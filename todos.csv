@@ -1,6 +1,7 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -add option to specify background color (Finish as the type is already added)
+    -re-think how padding and color styling should work (either allow passing it style objects directly or sort by item type then padding/colors?)
+    -need to create individual paddings for toolbar (and others?)
     -add option for hiding thumbnail overlay (hide by default for non-none cases)
     -add option to specify currentItem's border string
     -selecting an image before the currently selected causes a page decrement
