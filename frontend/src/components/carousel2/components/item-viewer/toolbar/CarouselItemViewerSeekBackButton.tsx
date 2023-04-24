@@ -5,6 +5,7 @@ import { SeekBackButton } from '../../buttons/SeekBackButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
+import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 type CarouselItemViewerSeekBackButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemViewerSeekBackButtonProps>(({
     actionName = '',
@@ -13,8 +14,10 @@ export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemView
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentSvgs: currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.itemViewer?.seekBackButton || '';
+    const { currentSvgs: currentSvgsGlobal } = useCarouselContext();
+    const { currentSvgs: currentSvgsLocal } = useCarouselInstanceContext();
+    const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
+    const svgHref = currentSvgs?.itemViewer?.seekBackButton || '';
     const seekBackwardsAction = new ToolbarActionsLogic(options).getSeekBackwards();
 
     return (

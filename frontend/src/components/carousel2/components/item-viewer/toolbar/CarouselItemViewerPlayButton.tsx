@@ -5,6 +5,7 @@ import { PlayButton } from '../../buttons/PlayButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
+import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 
 type CarouselItemViewerPlayButtonProps = {
 } & CarouselItemViewerButtonProps;
@@ -15,8 +16,10 @@ export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPl
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentSvgs: currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.itemViewer?.playButton || '';
+    const { currentSvgs: currentSvgsGlobal } = useCarouselContext();
+    const { currentSvgs: currentSvgsLocal } = useCarouselInstanceContext();
+    const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
+    const svgHref = currentSvgs?.itemViewer?.playButton || '';
     const playAction = new ToolbarActionsLogic(options).getPlay();
 
     return (

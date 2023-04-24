@@ -1,10 +1,11 @@
-import { forwardRef, useCallback } from 'react';
+import { forwardRef } from 'react';
 import { useCarouselContext } from '../../../context';
 import { NextButton } from '../../buttons/NextButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerButtonProps } from '../../../types';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
+import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 
 type CarouselItemViewerNextButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNextButtonProps>(({
@@ -13,7 +14,11 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentSvgs, toolbarLogic } = useCarouselContext();
+    const { currentSvgs: currentSvgsGlobal, toolbarLogic } = useCarouselContext();
+    const { currentSvgs: currentSvgsLocal } = useCarouselInstanceContext();
+    const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
+
+
     const svgHref = currentSvgs?.itemViewer?.nextButton || '';
     const nextItemAction = new ToolbarActionsLogic(options).getNextItem();
 

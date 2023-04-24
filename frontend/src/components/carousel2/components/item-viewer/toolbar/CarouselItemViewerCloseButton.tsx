@@ -9,6 +9,7 @@ import { CarouselItemViewerButtonProps } from '../../../types';
 import { exitFullScreen } from '../../../utils';
 import { ToolbarLogic } from '../../../business-logic/ToolbarLogic';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
+import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 
 type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps> (({
@@ -18,7 +19,9 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     options = {},
     shortcutPosition = 'center',
 }, ref) => {
-    const { currentItems, setCurrentItems, setCurrentItemIndex, currentSvgs, itemViewerRef } = useCarouselContext();
+    const { currentItems, setCurrentItems, setCurrentItemIndex, currentSvgs: currentSvgsGlobal, itemViewerRef } = useCarouselContext();
+    const { currentSvgs: currentSvgsLocal } = useCarouselInstanceContext();
+    const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
     const toolbarLogic = new ToolbarLogic(currentItems);
     const closeAction = new ToolbarActionsLogic(options).getClose();
     const svgHref = currentSvgs?.itemViewer?.closeButton || '';
