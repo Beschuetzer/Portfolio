@@ -5,6 +5,7 @@ import { PauseButton } from '../../buttons/PauseButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
+import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 
 type CarouselItemViewerPauseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerPauseButtonProps>(({
@@ -14,8 +15,10 @@ export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerP
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentSvgs: currentSvgHrefs } = useCarouselContext();
-    const svgHref = currentSvgHrefs?.itemViewer?.pauseButton || '';
+    const { currentSvgs: currentSvgsGlobal } = useCarouselContext();
+    const { currentSvgs: currentSvgsLocal } = useCarouselInstanceContext();
+    const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
+    const svgHref = currentSvgs?.itemViewer?.pauseButton || '';
     const pauseAction = new ToolbarActionsLogic(options).getPause();
 
     return (

@@ -41,6 +41,28 @@ const itemViewerButtons = {
 		stopButton: "./sprite.svg#icon-stop",
 	},
 }
+const navigationSvgs = {
+	navigation: {
+		dots: {
+			style: {
+				transform: 'scale(2)',
+			},
+			svgHref: "./sprite.svg#icon-dot-single",
+			fillColor: getComputedStyleCustom('--color-primary-1'),
+		},
+		arrowLeft: {
+			svgHref: "./sprite.svg#icon-angle-right",
+			fillColor: getComputedStyleCustom('--color-primary-1'),
+			style: {
+				transform: 'rotate(180deg) translateY(-5%)',
+			}
+		},
+		arrowRight: {
+			svgHref: "./sprite.svg#icon-angle-right",
+			fillColor: getComputedStyleCustom('--color-primary-1'),
+		}
+	}
+}
 const carouselShortcuts = {
 	itemViewer: {
 		close: {
@@ -222,26 +244,7 @@ const allCustomSettings = (
 			},
 			svgs: {
 				...itemViewerButtons,
-				navigation: {
-					dots: {
-						style: {
-							transform: 'scale(2)',
-						},
-						svgHref: "./sprite.svg#icon-dot-single",
-						fillColor: getComputedStyleCustom('--color-primary-1'),
-					},
-					arrowLeft: {
-						svgHref: "./sprite.svg#icon-angle-right",
-						fillColor: getComputedStyleCustom('--color-primary-1'),
-						style: {
-							transform: 'rotate(180deg) translateY(-5%)',
-						}
-					},
-					arrowRight: {
-						svgHref: "./sprite.svg#icon-angle-right",
-						fillColor: getComputedStyleCustom('--color-primary-1'),
-					}
-				}
+				...navigationSvgs
 			}
 		}}
 		items={items}
@@ -724,6 +727,41 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 		}}
 	/>
 );
+const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
+	<Carousel
+		items={items}
+		options={{
+			svgs: {
+				...itemViewerButtons,
+				...navigationSvgs
+			},
+			layout: {
+				items: {
+					container: {
+						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+						foregroundColor: getComputedStyleCustom("--color-primary-1"),
+						padding: {
+							left: 0,
+							right: 0,
+							top: 0,
+							bottom: 0,
+						}
+					},
+				},
+				itemDisplayHeight: 445,
+				itemDisplayLocation: 'above',
+			},
+			thumbnail: {
+				size: 100,
+			},
+			styling: {
+				fontFamily: {
+					itemViewer: 'monospace',
+				}
+			}
+		}}
+	/>
+);
 const layoutAboveDifferentLeftAndRightPadding = (
 	<Carousel
 		items={items}
@@ -856,6 +894,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Display Above Flush and Same Background Color using All option",
 				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
+			},
+			{
+				label: "Display Above Custom Icons with Same Background Color",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons,
 			},
 		]
 	],

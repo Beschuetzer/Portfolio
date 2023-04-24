@@ -1,5 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
+    -need to pass in svgs to CarouselInstanceProvider and hook up with condition in buttons (try local first then global)
     -add tests for all of the background mix and match possibilities
     -finish foregroundColor for each item
     -need to create individual paddings for toolbar (and others?)

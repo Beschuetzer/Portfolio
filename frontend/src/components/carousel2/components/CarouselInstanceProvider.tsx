@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { useContext } from "react";
-import { CarouselOptions } from "../types";
+import { CarouselOptions, CarouselSvgs } from "../types";
 import { CarouselItemProps } from "./CarouselItem";
 import { CURRENT_ITEM_INDEX_INITIAL } from "../context";
 
@@ -11,6 +11,7 @@ type CarouselInstanceProps = {
 export type CarouselInstanceContextProps = {
     currentItemInInstance?: CarouselItemProps;
     currentItemInInstanceIndex?: number;
+    currentSvgs?: CarouselSvgs | undefined;
     carouselContainerRef: React.MutableRefObject<HTMLDivElement>;
     itemsInInstance: CarouselItemProps[];
     id: string;
@@ -19,6 +20,7 @@ export type CarouselInstanceContextProps = {
     options: CarouselOptions | undefined;
     setCurrentItemInInstance?: React.Dispatch<React.SetStateAction<CarouselItemProps>>;
     setCurrentItemInInstanceIndex?: React.Dispatch<React.SetStateAction<number>>;
+    setCurrentSvgs?: React.Dispatch<React.SetStateAction<CarouselSvgs | undefined>>;
     setItemsInInstance?: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
     setNumberOfPages?: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -32,11 +34,13 @@ export function useCarouselInstanceContext() {
 export const CarouselInstanceProvider = ({
     carouselContainerRef,
     children,
+    currentSvgs: currentSvgsLocal,
     id,
     itemsInInstance,
     numberOfPages: numberOfPagesGiven,
     options,
 }: CarouselInstanceProps) => {
+    const [currentSvgs, setCurrentSvgs] = useState<CarouselSvgs>(currentSvgsLocal || {} as CarouselSvgs)
     const [currentItemInInstanceLocal, setCurrentItemInInstance] = useState<CarouselItemProps>({} as CarouselItemProps);
     const [currentItemInInstanceIndex, setCurrentItemInInstanceIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
     const [itemsInInstanceLocal, setItemsInInstance] = useState(itemsInInstance);
@@ -54,6 +58,7 @@ export const CarouselInstanceProvider = ({
                 carouselContainerRef,
                 currentItemInInstance: currentItemInInstanceLocal,
                 currentItemInInstanceIndex,
+                currentSvgs,
                 id,
                 itemsInInstance: itemsInInstanceLocal,
                 itemViewerToolbarRef,

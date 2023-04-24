@@ -46,6 +46,7 @@ export const Carousel = (props: CarouselProps) => {
 	//#region JSX
 	return (
 		<CarouselInstanceProvider
+			currentSvgs={options?.svgs}
 			numberOfPages={NUMBER_OF_PAGES_INITIAL}
 			itemsInInstance={items}
 			carouselContainerRef={carouselContainerRef as any}

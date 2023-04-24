@@ -11,7 +11,7 @@ type CarouselContextProps = {
     children: ReactNode | ReactNode[];
 }
 
-type CarouselValueProps = {
+export type CarouselValueProps = {
     currentCarouselId: string;
     currentItem: CarouselItemProps;
     currentItemIndex: number;
