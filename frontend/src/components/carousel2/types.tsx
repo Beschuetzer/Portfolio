@@ -7,12 +7,13 @@ export type ArrowButtonDirection = 'left' | 'right';
 export type ArrowProps = {
     direction: ArrowButtonDirection;
     options?: CarouselOptions;
-    fillColor?: string;
 }
 
 export type ButtonProps = {
     className?: string;
+    fillColor?: string;
     onClick: () => void;
+    style?: CSSProperties;
 }
 
 export type CarouselColorOptions = {

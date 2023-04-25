@@ -734,7 +734,13 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 				size: 100,
 			},
 			styling: {
-				buttons: customButtons,
+				buttons: {
+					...customButtons,
+					closeButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+						svgHref: customButtons.closeButton.svgHref,
+					}
+				},
 				fontFamily: {
 					itemViewer: 'monospace',
 				},

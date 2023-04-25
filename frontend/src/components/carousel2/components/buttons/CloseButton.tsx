@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { CLASSNAME__BUTTON } from "../../constants";
+import { CAROUSEL_COLOR_FIVE, CLASSNAME__BUTTON } from "../../constants";
 import { ButtonProps } from "../../types";
 
 type CloseButtonProps = {
@@ -9,7 +9,9 @@ type CloseButtonProps = {
 export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps> (({
     className = CLASSNAME__BUTTON,
     classNameModifier = '',
+    fillColor = CAROUSEL_COLOR_FIVE,
     onClick = () => null,
+    style = {},
 }, ref) => {
   const classModifierName = `${className}--${classNameModifier}`;
   const leftClassName = `${className}--close-left`;
@@ -17,10 +19,15 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps> (({
   const rightClassName = `${className}--close-right`;
   const rightModifierClassname = `${rightClassName}-${classNameModifier}`;
 
+  const styleToUse = {
+    ...style,
+    backgroundColor: fillColor,
+  } as React.CSSProperties
+
   return (
     <button ref={ref} onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''}`}>
-        <div className={`${leftClassName} ${classNameModifier ? leftModifierClassname : ''}`} />
-        <div className={`${rightClassName} ${classNameModifier ? rightModifierClassname : ''}`} />
+        <div style={styleToUse} className={`${leftClassName} ${classNameModifier ? leftModifierClassname : ''}`} />
+        <div style={styleToUse} className={`${rightClassName} ${classNameModifier ? rightModifierClassname : ''}`} />
     </button>
   )
 })

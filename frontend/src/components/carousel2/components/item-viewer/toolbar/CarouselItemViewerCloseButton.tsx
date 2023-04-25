@@ -24,7 +24,7 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
     const toolbarLogic = new ToolbarLogic(currentItems);
     const closeAction = new ToolbarActionsLogic(options).getClose();
-    const { svgHref } = currentSvgs?.closeButton || {};
+    const { svgHref, style, fillColor } = currentSvgs?.closeButton || {};
     useKeyboardShortcuts([
         {
             keys: closeAction.keys,
@@ -44,8 +44,8 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={closeAction.keys} shortcutPosition={shortcutPosition} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} /> :
-                <CloseButton ref={ref} onClick={onClickLocal} />
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} style={style} fillColor={fillColor}/> :
+                <CloseButton ref={ref} onClick={onClickLocal} fillColor={fillColor} style={style} />
             }
         </CarouselItemViewerShortcutIndicator>
     )
