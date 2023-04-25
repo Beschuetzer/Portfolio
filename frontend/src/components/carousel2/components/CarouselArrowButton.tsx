@@ -19,12 +19,12 @@ export const CarouselArrowButton = ({
   if (direction === 'left') {
     customButton = options?.styling?.buttons?.arrowLeft || {}
   }
+  const { fillColor, style, svgHref } = customButton;
   const shouldHide = !!options?.navigation?.hideArrowsAtFinalPage;
   const isHidden = direction === 'left' ? currentPage === 0 : currentPage === numberOfDots - 1;
-  const stylingLogic = new StylingLogic({options});
 
   if ((shouldHide && isHidden) || numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return <EmptyFillerButton />;
-  return !!customButton?.svgHref ? 
-      <CarouselItemViewerCustomButton fillColor={stylingLogic.getNavigationFillColor(customButton.fillColor)} onClick={onClick} xlinkHref={customButton.svgHref} style={customButton.style}/> :
-      <ArrowButton fillColor={stylingLogic.getNavigationFillColor(customButton.fillColor)} direction={direction} onClick={onClick}/>
+  return !!svgHref ? 
+      <CarouselItemViewerCustomButton fillColor={fillColor} onClick={onClick} xlinkHref={svgHref} style={style} /> :
+      <ArrowButton fillColor={fillColor} direction={direction} onClick={onClick} style={style} />
 }

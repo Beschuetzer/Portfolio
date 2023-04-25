@@ -1,26 +1,26 @@
 import { forwardRef } from "react";
-import { CLASSNAME__BUTTON } from "../../constants";
-import { ArrowProps, ButtonProps } from "../../types";
+import { CAROUSEL_COLOR_ONE, CLASSNAME__BUTTON } from "../../constants";
+import { ArrowProps, ButtonProps, CarouselButton } from "../../types";
+import { StylingLogic } from "../../business-logic/StylingLogic";
 
 type ArrowButtonProps = {
 } & ButtonProps & ArrowProps;
 
 export const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(({
     className = CLASSNAME__BUTTON,
-    fillColor,
+    fillColor = CAROUSEL_COLOR_ONE,
     direction,
     onClick = () => null,
+    style = {},
 }, ref) => {
     const classNameToUse = `${className}--arrow-${direction}`;
     const leftClassName = `${classNameToUse}-one`;
     const rightClassName = `${classNameToUse}-two`;
-    const backgroundColorStyle = fillColor ? {
-        backgroundColor: fillColor,
-    } as React.CSSProperties : {}
+    const colorStyle = StylingLogic.getButtonColorStyle(style, fillColor, 'backgroundColor');
     return (
         <button ref={ref} onClick={onClick} className={`${className} ${classNameToUse}`}>
-            <div style={backgroundColorStyle} className={leftClassName} />
-            <div style={backgroundColorStyle} className={rightClassName} />
+            <div style={colorStyle} className={leftClassName} />
+            <div style={colorStyle} className={rightClassName} />
         </button>
     )
 })

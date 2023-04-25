@@ -19,14 +19,14 @@ export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPl
     const { currentButtons: currentSvgsGlobal } = useCarouselContext();
     const { currentButtons: currentSvgsLocal } = useCarouselInstanceContext();
     const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
-    const { svgHref } = currentSvgs?.playButton || {};
+    const { svgHref, fillColor, style } = currentSvgs?.playButton || {};
     const playAction = new ToolbarActionsLogic(options).getPlay();
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={playAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} /> :
-                <PlayButton ref={ref} onClick={onClick} />
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} style={style} fillColor={fillColor} /> :
+                <PlayButton ref={ref} onClick={onClick} style={style} fillColor={fillColor} />
             }
         </CarouselItemViewerShortcutIndicator>
     )

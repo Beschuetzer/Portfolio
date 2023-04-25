@@ -735,11 +735,109 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 			},
 			styling: {
 				buttons: {
-					...customButtons,
 					closeButton: {
 						fillColor: getComputedStyleCustom("--color-primary-1"),
 						svgHref: customButtons.closeButton.svgHref,
+					},
+					arrowLeft: {
+						...customButtons.arrowLeft,
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+						
+					},
+					arrowRight: {
+						...customButtons.arrowRight,
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					dots: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+						svgHref: customButtons.dots.svgHref,
+					},
+					nextButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+						svgHref: customButtons.nextButton.svgHref,
+					},
+					pauseButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+						svgHref: customButtons.pauseButton.svgHref,
+					},
+					playButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+						svgHref: customButtons.playButton.svgHref,
+					},
+					previousButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+						svgHref: customButtons.previousButton.svgHref,
+					},
+					seekBackButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+						svgHref: customButtons.seekBackButton.svgHref,
+					},
+					seekForwardButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+						svgHref: customButtons.seekForwardButton.svgHref,
+					},
+				},
+				fontFamily: {
+					itemViewer: 'monospace',
+				},
+				container: {
+					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					foregroundColor: getComputedStyleCustom("--color-primary-1"),
+					padding: {
+						left: 0,
+						right: 0,
+						top: 0,
+						bottom: 0,
 					}
+				},
+			}
+		}}
+	/>
+);
+const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
+	<Carousel
+		items={items}
+		options={{
+			
+			layout: {
+				itemDisplayHeight: 445,
+				itemDisplayLocation: 'above',
+			},
+			thumbnail: {
+				size: 100,
+			},
+			styling: {
+				buttons: {
+					closeButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					arrowLeft: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					arrowRight: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					dots: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					nextButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					pauseButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					playButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					previousButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					seekBackButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					seekForwardButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
 				},
 				fontFamily: {
 					itemViewer: 'monospace',
@@ -892,6 +990,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Display Above Custom Icons with Same Background Color",
 				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons,
+			},
+			{
+				label: "Display Above Custom Icons with Default Icons using Custom Colors",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors,
 			},
 		]
 	],

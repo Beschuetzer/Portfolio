@@ -17,14 +17,14 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
     const { currentButtons: currentSvgsGlobal, toolbarLogic } = useCarouselContext();
     const { currentButtons: currentSvgsLocal } = useCarouselInstanceContext();
     const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
-    const { svgHref } = currentSvgs?.nextButton || {};
+    const { svgHref, style, fillColor } = currentSvgs?.nextButton || {};
     const nextItemAction = new ToolbarActionsLogic(options).getNextItem();
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={nextItemAction.keys} shortcutPosition={position}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} /> :
-                <NextButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} />}
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} style={style} fillColor={fillColor}/> :
+                <NextButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} style={style} fillColor={fillColor}/>}
         </CarouselItemViewerShortcutIndicator>
     )
 })

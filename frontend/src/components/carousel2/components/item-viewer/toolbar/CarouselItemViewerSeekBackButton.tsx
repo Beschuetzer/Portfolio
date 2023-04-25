@@ -17,14 +17,14 @@ export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemView
     const { currentButtons: currentSvgsGlobal } = useCarouselContext();
     const { currentButtons: currentSvgsLocal } = useCarouselInstanceContext();
     const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
-    const { svgHref } = currentSvgs?.seekBackButton || {};
+    const { svgHref,fillColor, style } = currentSvgs?.seekBackButton || {};
     const seekBackwardsAction = new ToolbarActionsLogic(options).getSeekBackwards();
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={seekBackwardsAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} /> :
-                <SeekBackButton ref={ref} onClick={onClick} />}
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref}  style={style} fillColor={fillColor} /> :
+                <SeekBackButton ref={ref} onClick={onClick}  style={style} fillColor={fillColor} />}
         </CarouselItemViewerShortcutIndicator>
     )
 })

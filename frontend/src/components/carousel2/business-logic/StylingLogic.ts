@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { CarouselItem, CarouselOptions } from "../types";
+import { CarouselButton, CarouselItem, CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { convertHexToRgba, getIsVideo } from "../utils";
 import { CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_SPACING_UNIT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_COLOR_FOUR, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_COLOR_FIVE, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT, NUMBER_OF_PAGES_INITIAL, CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT } from "../constants";
@@ -312,8 +312,11 @@ export class StylingLogic {
     //#endregion
 
     //#region Public Methods
-    getNavigationFillColor(svgRefColor: string | undefined) {
-        return this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? svgRefColor : CAROUSEL_COLOR_FIVE;
+    static getButtonColorStyle(style: CSSProperties, fillColor: string, propertyName: keyof CSSProperties) {
+        return {
+            ...style,
+            [propertyName]: fillColor,
+        } as CSSProperties;
     }
     //#endregion
 

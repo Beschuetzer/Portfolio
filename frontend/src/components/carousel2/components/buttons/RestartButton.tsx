@@ -1,18 +1,24 @@
-import { CLASSNAME__BUTTON } from "../../constants";
-import { ButtonProps } from "../../types";
+import { StylingLogic } from "../../business-logic/StylingLogic";
+import { CAROUSEL_COLOR_FIVE, CLASSNAME__BUTTON } from "../../constants";
+import { ButtonProps, CarouselButton } from "../../types";
 
 type RestartButtonProps = {} & ButtonProps;
 
 export const RestartButton = ({
-    className = CLASSNAME__BUTTON,
-    onClick = () => null,
+  className = CLASSNAME__BUTTON,
+  fillColor = CAROUSEL_COLOR_FIVE,
+  onClick = () => null,
+  style = {},
 }: RestartButtonProps) => {
+  //todo: if deciding to not use can delete this file and scss stuff
+  // const colorStyle = StylingLogic.getButtonColorStyle(style, fillColor, CarouselButton.restartButton);
+  const colorStyle = {}
   return (
     <button onClick={onClick} className={className}>
-        <div className={`${className}--restart-circle-outer` }/>
-        <div className={`${className}--restart-circle-inner` }/>
-        <div className={`${className}--restart-triangle-cutout` }/>
-        <div className={`${className}--restart-arrow` }/>
+      <div style={colorStyle} className={`${className}--restart-circle-outer`} />
+      <div style={colorStyle} className={`${className}--restart-circle-inner`} />
+      <div style={colorStyle} className={`${className}--restart-triangle-cutout`} />
+      <div style={colorStyle} className={`${className}--restart-arrow`} />
     </button>
   )
 }
