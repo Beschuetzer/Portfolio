@@ -89,7 +89,6 @@ export type CarouselLayoutOptions = {
     *so you have to adjust it and see how it works for the items given.
     */
     itemDisplayHeight?: number;
-    items?: CarouselLayoutItems;
 }
 
 export type CarouselNavigationOptions = {
@@ -142,7 +141,7 @@ export type CarouselVerticalPaddingOptions = {
 
 export type CarouselStylingOptions = {
     fontFamily?: CarouselFontFamilyOptions;
-}
+} & CarouselLayoutItems;
 
 export type CarouselOptions = {
     itemViewer?: CarouselItemViewerOptions;

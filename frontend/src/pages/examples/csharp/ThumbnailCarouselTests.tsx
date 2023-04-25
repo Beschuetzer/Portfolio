@@ -270,15 +270,13 @@ const noItemDisplayedMultiplePagesAllDefaults = (
 );
 const multiplePagesCustomPadding = (
 	<Carousel items={items} options={{
-		layout: {
-			items: {
-				container: {
-					padding: {
-						left: 40,
-						right: 40,
-						bottom: 40,
-						top: 40,
-					}
+		styling: {
+			container: {
+				padding: {
+					left: 40,
+					right: 40,
+					bottom: 40,
+					top: 40,
 				}
 			}
 		}
@@ -492,17 +490,7 @@ const layoutAboveContainerPadding = (
 	<Carousel
 		items={items}
 		options={{
-			layout: {
-				items: {
-					container: {
-						padding: {
-							top: 50,
-							bottom: 50,
-							right: 100,
-							left: 100,
-						}
-					},
-				},
+			layout: {					
 				itemDisplayHeight: 350,
 				itemDisplayLocation: 'above',
 			},
@@ -512,7 +500,15 @@ const layoutAboveContainerPadding = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
-				}
+				},
+				container: {
+					padding: {
+						top: 50,
+						bottom: 50,
+						right: 100,
+						left: 100,
+					}
+				},
 			}
 		}}
 	/>
@@ -522,14 +518,6 @@ const layoutAboveExtraNavigationPadding = (
 		items={items}
 		options={{
 			layout: {
-				items: {
-					navigation: {
-						padding: {
-							right: 100,
-							left: 100,
-						}
-					},
-				},
 				itemDisplayHeight: 427,
 				itemDisplayLocation: 'above',
 			},
@@ -539,7 +527,13 @@ const layoutAboveExtraNavigationPadding = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
-				}
+				},
+				navigation: {
+					padding: {
+						right: 100,
+						left: 100,
+					}
+				},
 			}
 		}}
 	/>
@@ -549,14 +543,6 @@ const layoutAboveExtraItemViewerPadding = (
 		items={items}
 		options={{
 			layout: {
-				items: {
-					itemViewer: {
-						padding: {
-							right: 100,
-							left: 100,
-						}
-					},
-				},
 				itemDisplayHeight: 427,
 				itemDisplayLocation: 'above',
 			},
@@ -566,7 +552,13 @@ const layoutAboveExtraItemViewerPadding = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
-				}
+				},
+				itemViewer: {
+					padding: {
+						right: 100,
+						left: 100,
+					}
+				},
 			}
 		}}
 	/>
@@ -575,18 +567,7 @@ const layoutAboveExtraToolbarPadding = (
 	<Carousel
 		items={items}
 		options={{
-			layout: {
-				items: {
-					toolbar: {
-						padding: {
-							right: 100,
-							left: 100,
-						},
-						progressBar: {
-							shouldSpanContainerWidth: true,
-						}
-					},
-				},
+			layout: {			
 				itemDisplayHeight: 427,
 				itemDisplayLocation: 'above',
 			},
@@ -596,7 +577,16 @@ const layoutAboveExtraToolbarPadding = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
-				}
+				},
+				toolbar: {
+					padding: {
+						right: 100,
+						left: 100,
+					},
+					progressBar: {
+						shouldSpanContainerWidth: true,
+					}
+				},
 			}
 		}}
 	/>
@@ -606,34 +596,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 		items={items}
 		options={{
 			layout: {
-				items: {
-					container: {
-						backgroundColor: getComputedStyleCustom("--color-primary-4"),
-						padding: {
-							left: 0,
-							right: 0,
-							top: 0,
-							bottom: 0,
-						}
-					},
-					navigation: {
-						backgroundColor: getComputedStyleCustom("--color-primary-4"),
-					},
-					itemViewer: {
-						backgroundColor: getComputedStyleCustom("--color-primary-4"),
-					},
-					toolbar: {
-						progressBar: {
-							backgroundColor: getComputedStyleCustom("--color-primary-1"),
-							foregroundColor: getComputedStyleCustom("--color-primary-2"),
-						},
-						backgroundColor: getComputedStyleCustom("--color-primary-1"),
-						padding: {
-							left: 20,
-							right: 20,
-						}
-					},
-				},
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
 			},
@@ -643,7 +605,33 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
-				}
+				},
+				container: {
+					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					padding: {
+						left: 0,
+						right: 0,
+						top: 0,
+						bottom: 0,
+					}
+				},
+				navigation: {
+					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+				},
+				itemViewer: {
+					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+				},
+				toolbar: {
+					progressBar: {
+						backgroundColor: getComputedStyleCustom("--color-primary-1"),
+						foregroundColor: getComputedStyleCustom("--color-primary-2"),
+					},
+					backgroundColor: getComputedStyleCustom("--color-primary-1"),
+					padding: {
+						left: 20,
+						right: 20,
+					}
+				},
 			}
 		}}
 	/>
@@ -653,35 +641,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole = (
 		items={items}
 		options={{
 			layout: {
-				items: {
-					container: {
-						backgroundColor: getComputedStyleCustom("--color-primary-4"),
-						padding: {
-							left: 0,
-							right: 0,
-							top: 0,
-							bottom: 0,
-						}
-					},
-					navigation: {
-						backgroundColor: getComputedStyleCustom("--color-primary-4"),
-					},
-					itemViewer: {
-						backgroundColor: getComputedStyleCustom("--color-primary-4"),
-					},
-					toolbar: {
-						progressBar: {
-							shouldSpanContainerWidth: true,
-							backgroundColor: getComputedStyleCustom("--color-primary-1"),
-							foregroundColor: getComputedStyleCustom("--color-primary-2"),
-						},
-						backgroundColor: getComputedStyleCustom("--color-primary-1"),
-						padding: {
-							left: 20,
-							right: 20,
-						}
-					},
-				},
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
 			},
@@ -691,7 +650,34 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
-				}
+				},
+				container: {
+					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					padding: {
+						left: 0,
+						right: 0,
+						top: 0,
+						bottom: 0,
+					}
+				},
+				navigation: {
+					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+				},
+				itemViewer: {
+					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+				},
+				toolbar: {
+					progressBar: {
+						shouldSpanContainerWidth: true,
+						backgroundColor: getComputedStyleCustom("--color-primary-1"),
+						foregroundColor: getComputedStyleCustom("--color-primary-2"),
+					},
+					backgroundColor: getComputedStyleCustom("--color-primary-1"),
+					padding: {
+						left: 20,
+						right: 20,
+					}
+				},
 			}
 		}}
 	/>
@@ -701,18 +687,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 		items={items}
 		options={{
 			layout: {
-				items: {
-					container: {
-						backgroundColor: getComputedStyleCustom("--color-primary-4"),
-						foregroundColor: getComputedStyleCustom("--color-primary-1"),
-						padding: {
-							left: 0,
-							right: 0,
-							top: 0,
-							bottom: 0,
-						}
-					},
-				},
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
 			},
@@ -722,7 +696,17 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
-				}
+				},
+				container: {
+					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					foregroundColor: getComputedStyleCustom("--color-primary-1"),
+					padding: {
+						left: 0,
+						right: 0,
+						top: 0,
+						bottom: 0,
+					}
+				},
 			}
 		}}
 	/>
@@ -736,18 +720,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 				...navigationSvgs
 			},
 			layout: {
-				items: {
-					container: {
-						backgroundColor: getComputedStyleCustom("--color-primary-4"),
-						foregroundColor: getComputedStyleCustom("--color-primary-1"),
-						padding: {
-							left: 0,
-							right: 0,
-							top: 0,
-							bottom: 0,
-						}
-					},
-				},
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
 			},
@@ -757,7 +729,17 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
-				}
+				},
+				container: {
+					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					foregroundColor: getComputedStyleCustom("--color-primary-1"),
+					padding: {
+						left: 0,
+						right: 0,
+						top: 0,
+						bottom: 0,
+					}
+				},
 			}
 		}}
 	/>
@@ -766,17 +748,7 @@ const layoutAboveDifferentLeftAndRightPadding = (
 	<Carousel
 		items={items}
 		options={{
-			layout: {
-				items: {
-					container: {
-						padding: {
-							left: 5,
-							right: 20,
-							top: 0,
-							bottom: 0,
-						}
-					},
-				},
+			layout: {				
 				itemDisplayHeight: 422,
 				itemDisplayLocation: 'above',
 			},
@@ -786,7 +758,15 @@ const layoutAboveDifferentLeftAndRightPadding = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
-				}
+				},
+				container: {
+					padding: {
+						left: 5,
+						right: 20,
+						top: 0,
+						bottom: 0,
+					}
+				},
 			}
 		}}
 	/>
@@ -798,17 +778,17 @@ const layoutBelowWithCustomThumbnailSizeAndHeight = (
 			layout: {
 				itemDisplayHeight: 333,
 				itemDisplayLocation: 'below',
-				items: {
-					container: {
-						padding: {
-							bottom: 0,
-						}
-					}
-				}
 			},
 			thumbnail: {
 				size: 100,
 			},
+			styling: {
+				container: {
+					padding: {
+						bottom: 0,
+					}
+				}
+			}
 		}}
 	/>
 );

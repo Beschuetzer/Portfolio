@@ -61,7 +61,7 @@ export class StylingLogic {
         } as CSSProperties;
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            backgroundColor: this.options?.layout?.items?.navigation?.backgroundColor || this.options.layout?.items?.container?.backgroundColor || CAROUSEL_COLOR_ONE,
+            backgroundColor: this.options?.styling?.navigation?.backgroundColor || this.options.styling?.container?.backgroundColor || CAROUSEL_COLOR_ONE,
             borderRadius: 4,
             paddingRight: 0,
             paddingLeft: 0,
@@ -103,7 +103,7 @@ export class StylingLogic {
             width: "100%",
             height: this.carouselItemContainerHeight,
             position: "relative",
-            backgroundColor: this.options.layout?.items?.itemViewer?.backgroundColor || this.options.layout?.items?.container?.backgroundColor || CAROUSEL_COLOR_ONE,
+            backgroundColor: this.options.styling?.itemViewer?.backgroundColor || this.options.styling?.container?.backgroundColor || CAROUSEL_COLOR_ONE,
             justifyContent: 'flex-end',
         } as CSSProperties : {};
     }
@@ -156,8 +156,8 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressBackgroundStyle() {
-        const backgroundColor = this.options.layout?.items?.toolbar?.progressBar?.backgroundColor;
-        const shouldSpanWholeWidth = this.options.layout?.items?.toolbar?.progressBar?.shouldSpanContainerWidth;
+        const backgroundColor = this.options.styling?.toolbar?.progressBar?.backgroundColor;
+        const shouldSpanWholeWidth = this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth;
         const common = {
             backgroundColor,
         } as CSSProperties
@@ -171,7 +171,7 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressForegroundStyle() {
-        const foregroundColor = this.options.layout?.items?.toolbar?.progressBar?.foregroundColor;
+        const foregroundColor = this.options.styling?.toolbar?.progressBar?.foregroundColor;
         const common = {
             backgroundColor: foregroundColor,
         } as CSSProperties
@@ -283,7 +283,7 @@ export class StylingLogic {
 
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItemInInstance || {} as CarouselItemProps);
-        const customColor = this.options.layout?.items?.toolbar?.backgroundColor || this.options.layout?.items?.container?.backgroundColor;
+        const customColor = this.options.styling?.toolbar?.backgroundColor || this.options.styling?.container?.backgroundColor;
         const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             background: customColor || CAROUSEL_COLOR_ONE,
             position: "static",
@@ -327,26 +327,26 @@ export class StylingLogic {
         switch (direction) {
             case SpacingDirection.bottom:
                 defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : (CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT);
-                allPadding = this.options.layout?.items?.container?.padding?.bottom;
-                // specificElementPadding = this.options.layout?.items?.[item]?.padding?.bottom;
+                allPadding = this.options.styling?.container?.padding?.bottom;
+                // specificElementPadding = this.options.styling?.[item]?.padding?.bottom;
                 customPadding = specificElementPadding || allPadding;
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.left:
                 defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = this.options.layout?.items?.container?.padding?.left;
-                specificElementPadding = this.options.layout?.items?.[item]?.padding?.left;
+                allPadding = this.options.styling?.container?.padding?.left;
+                specificElementPadding = this.options.styling?.[item]?.padding?.left;
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.right:
                 defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = this.options.layout?.items?.container?.padding?.right;
-                specificElementPadding = this.options.layout?.items?.[item]?.padding?.right;
+                allPadding = this.options.styling?.container?.padding?.right;
+                specificElementPadding = this.options.styling?.[item]?.padding?.right;
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.top:
                 defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = this.options.layout?.items?.container?.padding?.top;
-                // specificElementPadding = this.options.layout?.items?.[item]?.padding?.top;
+                allPadding = this.options.styling?.container?.padding?.top;
+                // specificElementPadding = this.options.styling?.[item]?.padding?.top;
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
         }
