@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -move dot styling to StylingLogic
     -add an style.buttons.all option to set all at once
     -add tests for all of the background mix and match possibilities
     -add api for text color in options.styling

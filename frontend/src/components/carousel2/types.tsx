@@ -216,6 +216,10 @@ export type CarouselButtonCustomization = {
 }
 
 export enum CarouselButton {
+    /*
+    *Setting this will change all the 
+    */
+    all = 'all',
      /*
     *These are the buttons at the bottom of each carousel related to changing pages
     */
@@ -238,7 +242,7 @@ export enum CarouselButton {
 }
 
 export type CarouselButtons = {
-    [button in CarouselButton]?: CarouselButtonCustomization;
+    [button in CarouselButton]?: button extends 'all' ? Pick<CarouselButtonCustomization, 'fillColor'> : CarouselButtonCustomization;
 }
 
 export type CarouselThumbnailBackgroundOptions = {

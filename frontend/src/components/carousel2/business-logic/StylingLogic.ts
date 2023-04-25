@@ -2,7 +2,19 @@ import { CSSProperties } from "react";
 import { CarouselButton, CarouselItem, CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { convertHexToRgba, getIsVideo } from "../utils";
-import { CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_SPACING_UNIT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_COLOR_FOUR, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_COLOR_FIVE, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT, NUMBER_OF_PAGES_INITIAL, CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT } from "../constants";
+import {
+    CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_SPACING_UNIT,
+    CAROUSEL_ITEM_SIZE_DEFAULT,
+    CAROUSEL_COLOR_FOUR,
+    CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_COLOR_ONE,
+    CAROUSEL_DOT_OPACITY_DEFAULT,
+    CAROUSEL_COLOR_FIVE,
+    CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT,
+    CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT
+} from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 import { CarouselItemProps } from "../components/CarouselItem";
 
@@ -312,6 +324,12 @@ export class StylingLogic {
     //#endregion
 
     //#region Public Methods
+    getButtonColor(buttonName: CarouselButton, fallbackColor = CAROUSEL_COLOR_FIVE) {
+        const specificFillColor = this.options.styling?.buttons?.[buttonName]?.fillColor;
+        const allFillColor = this.options.styling?.buttons?.all?.fillColor;
+        return specificFillColor || allFillColor || fallbackColor;
+    }
+
     static getButtonColorStyle(fillColor: string, propertyName: keyof CSSProperties, style = {} as CSSProperties) {
         return {
             ...style,

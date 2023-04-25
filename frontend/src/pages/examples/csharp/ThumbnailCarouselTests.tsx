@@ -862,6 +862,56 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
 		}}
 	/>
 );
+const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColorsSetUsingAll = (
+	<Carousel
+		items={items}
+		options={{
+			
+			layout: {
+				itemDisplayHeight: 445,
+				itemDisplayLocation: 'above',
+			},
+			thumbnail: {
+				size: 100,
+			},
+			styling: {
+				buttons: {
+					all: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					arrowLeft: {
+						fillColor: getComputedStyleCustom("--color-primary-2"),
+					},
+					arrowRight: {
+						fillColor: getComputedStyleCustom("--color-primary-2"),
+					},
+					dots: {
+						fillColor: getComputedStyleCustom("--color-primary-2"),
+					},
+				},
+				fontFamily: {
+					itemViewer: 'monospace',
+				},
+				container: {
+					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					foregroundColor: getComputedStyleCustom("--color-primary-1"),
+					padding: {
+						left: 0,
+						right: 0,
+						top: 0,
+						bottom: 0,
+					}
+				},
+				toolbar: {
+					progressBar: {
+						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+						foregroundColor: getComputedStyleCustom("--color-primary-1"),
+					}
+				}
+			}
+		}}
+	/>
+);
 const layoutAboveDifferentLeftAndRightPadding = (
 	<Carousel
 		items={items}
@@ -1000,6 +1050,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Display Above Custom Icons with Default Icons using Custom Colors",
 				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors,
+			},
+			{
+				label: "Display Above Custom Icons with Default Icons using buttons.all to Set Colors",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColorsSetUsingAll,
 			},
 		]
 	],

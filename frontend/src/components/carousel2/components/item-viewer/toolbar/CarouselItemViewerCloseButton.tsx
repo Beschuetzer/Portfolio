@@ -5,11 +5,12 @@ import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton
 import { CloseButton } from '../../buttons/CloseButton';
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
-import { CarouselItemViewerButtonProps } from '../../../types';
+import { CarouselButton, CarouselItemViewerButtonProps } from '../../../types';
 import { exitFullScreen } from '../../../utils';
 import { ToolbarLogic } from '../../../business-logic/ToolbarLogic';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
+import { StylingLogic } from '../../../business-logic/StylingLogic';
 
 type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps> (({
@@ -24,7 +25,9 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
     const toolbarLogic = new ToolbarLogic(currentItems);
     const closeAction = new ToolbarActionsLogic(options).getClose();
-    const { svgHref, style, fillColor } = currentSvgs?.closeButton || {};
+    const stylingLogic = new StylingLogic({options});
+    const { svgHref, style } = currentSvgs?.closeButton || {};
+    const fillColor = stylingLogic.getButtonColor(CarouselButton.closeButton);
     useKeyboardShortcuts([
         {
             keys: closeAction.keys,

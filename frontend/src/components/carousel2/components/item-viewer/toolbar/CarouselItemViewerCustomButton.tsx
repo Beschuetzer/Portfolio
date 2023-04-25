@@ -1,6 +1,7 @@
 import { CSSProperties, forwardRef } from "react";
 import { CLASSNAME__HIDDEN, CLASSNAME__ITEM_VIEWER_BUTTON } from "../../../constants";
 import { getClassname } from "../../../utils";
+import { StylingLogic } from "../../../business-logic/StylingLogic";
 
 type CarouselItemViewerCustomButtonProps = {
     classNameModifier?: string;
@@ -13,7 +14,7 @@ type CarouselItemViewerCustomButtonProps = {
 
 export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, CarouselItemViewerCustomButtonProps>(({
     classNameModifier = '',
-    fillColor,
+    fillColor = '',
     onClick = () => null,
     showButton = true,
     style = {},
@@ -21,10 +22,9 @@ export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, Carousel
 }, ref) => {
     const className = getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON });
     const classModifierName = `${className}-${classNameModifier}`
-    const defaultStyles = fillColor ? {
-        fill: fillColor,
+    const defaultStyles = StylingLogic.getButtonColorStyle(fillColor, 'fill', {
         transformOrigin: 'center',
-    } as React.CSSProperties : {}
+    })
 
     return (
         <svg ref={ref} onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''} ${!showButton ? CLASSNAME__HIDDEN : ''}`}>
