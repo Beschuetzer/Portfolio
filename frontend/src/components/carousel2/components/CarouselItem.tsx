@@ -39,7 +39,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemIndex, setCurrentSvgs: setCurrentSvgHrefs, setOptions, setCurrentCarouselId, itemViewerRef, } = useCarouselContext();
+  const { setCurrentItemIndex, setCurrentButtons: setCurrentSvgHrefs, setOptions, setCurrentCarouselId, itemViewerRef, } = useCarouselContext();
   const { id: carouselId, options, setCurrentItemInInstanceIndex, currentItemInInstanceIndex } = useCarouselInstanceContext();
   const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}});
   const stylingLogic = new StylingLogic({options, isCurrentItem: index === currentItemInInstanceIndex});
@@ -51,7 +51,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     setCurrentCarouselId(carouselId);
     setCurrentItemIndex(index as any);
     setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(index as any);
-    setCurrentSvgHrefs(options?.svgs);
+    setCurrentSvgHrefs(options?.styling?.buttons);
     itemDisplayLocationLogic.isDefaultItemDisplayLocation && enterFullScreen(itemViewerRef.current);
   }
   //#endregion

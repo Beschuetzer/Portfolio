@@ -14,10 +14,10 @@ export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemView
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentSvgs: currentSvgsGlobal } = useCarouselContext();
-    const { currentSvgs: currentSvgsLocal } = useCarouselInstanceContext();
+    const { currentButtons: currentSvgsGlobal } = useCarouselContext();
+    const { currentButtons: currentSvgsLocal } = useCarouselInstanceContext();
     const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
-    const svgHref = currentSvgs?.itemViewer?.seekBackButton || '';
+    const { svgHref } = currentSvgs?.seekBackButton || {};
     const seekBackwardsAction = new ToolbarActionsLogic(options).getSeekBackwards();
 
     return (

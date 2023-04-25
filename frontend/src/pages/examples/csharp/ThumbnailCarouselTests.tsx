@@ -28,21 +28,34 @@ import { ModifierKey, ValidKey } from "../../../components/carousel2/hooks/useKe
 import { CarouselActions } from "../../../components/carousel2/types";
 
 //#region Carousel Items
-const itemViewerButtons = {
-	itemViewer: {
-		closeButton: "./sprite.svg#icon-close",
-		nextButton: "./sprite.svg#icon-skip-forward",
-		pauseButton: "./sprite.svg#icon-pause",
-		playButton: "./sprite.svg#icon-play",
-		previousButton: "./sprite.svg#icon-skip-backward",
-		restartButton: "./sprite.svg#icon-restart",
-		seekBackButton: "./sprite.svg#icon-backward",
-		seekForwardButton: "./sprite.svg#icon-forward",
-		stopButton: "./sprite.svg#icon-stop",
-	},
-}
-const navigationSvgs = {
-	navigation: {
+const customButtons = {
+		closeButton: {
+			svgHref: "./sprite.svg#icon-close",
+		},
+		nextButton: {
+			svgHref: "./sprite.svg#icon-skip-forward",
+		},
+		pauseButton: {
+			svgHref: "./sprite.svg#icon-pause",
+		},
+		playButton: {
+			svgHref: "./sprite.svg#icon-play",
+		},
+		previousButton: {
+			svgHref: "./sprite.svg#icon-skip-backward",
+		},
+		restartButton: {
+			svgHref: "./sprite.svg#icon-restart",
+		},
+		seekBackButton: {
+			svgHref: "./sprite.svg#icon-backward",
+		},
+		seekForwardButton: {
+			svgHref: "./sprite.svg#icon-forward",
+		},
+		stopButton: {
+			svgHref: "./sprite.svg#icon-stop",
+		},
 		dots: {
 			style: {
 				transform: 'scale(2)',
@@ -61,7 +74,6 @@ const navigationSvgs = {
 			svgHref: "./sprite.svg#icon-angle-right",
 			fillColor: getComputedStyleCustom('--color-primary-1'),
 		}
-	}
 }
 const carouselShortcuts = {
 	itemViewer: {
@@ -223,7 +235,8 @@ const allCustomSettings = (
 				fontFamily: {
 					itemViewer: 'monospace',
 					navigation: 'serif'
-				}
+				},
+				buttons: customButtons,
 			},
 			shortcuts: carouselShortcuts,
 			itemViewer: {
@@ -242,10 +255,7 @@ const allCustomSettings = (
 				hideOverlayUnlessHovered: false,
 				itemSpacing: 3.9876,
 			},
-			svgs: {
-				...itemViewerButtons,
-				...navigationSvgs
-			}
+			
 		}}
 		items={items}
 	/>
@@ -370,8 +380,8 @@ const itemViewerDefaultOverlayOnLoad = (
 );
 const itemViewerCustomButtons = (
 	<Carousel items={items.slice(1, 2)} options={{
-		svgs: {
-			...itemViewerButtons,
+		styling:{
+			buttons: customButtons,
 		}
 	}} />
 );
@@ -715,10 +725,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 	<Carousel
 		items={items}
 		options={{
-			svgs: {
-				...itemViewerButtons,
-				...navigationSvgs
-			},
+			
 			layout: {
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
@@ -727,6 +734,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 				size: 100,
 			},
 			styling: {
+				buttons: customButtons,
 				fontFamily: {
 					itemViewer: 'monospace',
 				},

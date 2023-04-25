@@ -16,10 +16,10 @@ export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPl
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentSvgs: currentSvgsGlobal } = useCarouselContext();
-    const { currentSvgs: currentSvgsLocal } = useCarouselInstanceContext();
+    const { currentButtons: currentSvgsGlobal } = useCarouselContext();
+    const { currentButtons: currentSvgsLocal } = useCarouselInstanceContext();
     const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
-    const svgHref = currentSvgs?.itemViewer?.playButton || '';
+    const { svgHref } = currentSvgs?.playButton || {};
     const playAction = new ToolbarActionsLogic(options).getPlay();
 
     return (

@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { CarouselLayoutItem, CarouselLayoutItems, CarouselOptions } from "../types";
+import { CarouselItem, CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { convertHexToRgba, getIsVideo } from "../utils";
 import { CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_SPACING_UNIT, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_COLOR_FOUR, CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_COLOR_FIVE, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT, NUMBER_OF_PAGES_INITIAL, CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT } from "../constants";
@@ -56,8 +56,8 @@ export class StylingLogic {
 
     get carouselStyle() {
         const common = {
-            paddingTop: `${this.getPaddingAmount(SpacingDirection.top, CarouselLayoutItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
-            paddingBottom: `${this.getPaddingAmount(SpacingDirection.bottom, CarouselLayoutItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingTop: `${this.getPaddingAmount(SpacingDirection.top, CarouselItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingBottom: `${this.getPaddingAmount(SpacingDirection.bottom, CarouselItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties;
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
@@ -110,8 +110,8 @@ export class StylingLogic {
 
     get carouselItemsContainerStyle() {
         const common = {
-            marginLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselLayoutItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
-            marginRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselLayoutItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            marginLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            marginRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
             overflow: 'hidden',
         } as CSSProperties;
 
@@ -149,8 +149,8 @@ export class StylingLogic {
             objectPosition: 'bottom',
             paddingTop: 0,
             paddingBottom: 0,
-            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselLayoutItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
-            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselLayoutItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
             maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
         } as CSSProperties : {};
     }
@@ -163,7 +163,7 @@ export class StylingLogic {
         } as CSSProperties
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            width: shouldSpanWholeWidth ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselLayoutItem.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselLayoutItem.toolbar)}${CAROUSEL_SPACING_UNIT})` : '100%',
+            width: shouldSpanWholeWidth ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselItem.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselItem.toolbar)}${CAROUSEL_SPACING_UNIT})` : '100%',
             ...common,
         } as CSSProperties : {
             ...common,
@@ -206,14 +206,14 @@ export class StylingLogic {
     }
 
     get navigationContainerHorizontalPadding() {
-        const navigationPadding = this.getPaddingAmount(SpacingDirection.left, CarouselLayoutItem.navigation) + this.getPaddingAmount(SpacingDirection.right, CarouselLayoutItem.navigation);
+        const navigationPadding = this.getPaddingAmount(SpacingDirection.left, CarouselItem.navigation) + this.getPaddingAmount(SpacingDirection.right, CarouselItem.navigation);
         return navigationPadding;
     }
 
     get navigationStyle() {
         const common = {
-            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselLayoutItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
-            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselLayoutItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties;
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
@@ -290,8 +290,8 @@ export class StylingLogic {
             width: '100%',
             paddingTop: `${isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2}${CAROUSEL_SPACING_UNIT}`,
             paddingBottom: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT}`,
-            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselLayoutItem.toolbar)}${CAROUSEL_SPACING_UNIT}`,
-            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselLayoutItem.toolbar)}${CAROUSEL_SPACING_UNIT}`,
+            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselItem.toolbar)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselItem.toolbar)}${CAROUSEL_SPACING_UNIT}`,
         } as React.CSSProperties : {};
 
         return {
@@ -318,7 +318,7 @@ export class StylingLogic {
     //#endregion
 
     //#region Private Methods
-    private getPaddingAmount(direction: SpacingDirection, item: CarouselLayoutItem) {
+    private getPaddingAmount(direction: SpacingDirection, item: CarouselItem) {
         let defaultPadding: number;
         let allPadding: number | undefined;
         let customPadding: number | undefined;

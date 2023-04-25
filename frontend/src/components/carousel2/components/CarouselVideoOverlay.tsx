@@ -44,14 +44,14 @@ export type CarouselVideoOverlayProps = {
 
 export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#region Init
-    const { currentSvgs: currentSvgHrefs, options: optionsGlobal } = useCarouselContext();
+    const { currentButtons: currentSvgHrefs, options: optionsGlobal } = useCarouselContext();
     const { options: optionsLocal } = useCarouselInstanceContext();
     
     const { children, isVideoPlaying, title, text, closeButton } = props;
     const [isVisible, setIsVisible] = useState(true);
 
     const options = optionsLocal || optionsGlobal;
-    const svgHref = currentSvgHrefs?.itemViewer?.closeButton || '';
+    const { svgHref } = currentSvgHrefs?.closeButton || {};
     const isCustom = !!children;
     const styleLogic = new StylingLogic({options});
     //#endregion

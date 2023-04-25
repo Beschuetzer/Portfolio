@@ -38,33 +38,32 @@ export type CarouselItemViewerButtonProps = {
 } & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children' | 'shortcuts'>>
 
 
-export enum CarouselLayoutItem {
+export enum CarouselItem {
     container = 'container',
     itemViewer = 'itemViewer',
     navigation = 'navigation',
     toolbar = 'toolbar'
 }
-export type CarouselLayoutItems = {
-    [CarouselLayoutItem.container]?: {
+export type CarouselItems = {
+    [CarouselItem.container]?: {
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
     } & CarouselColorOptions
     /*
     *This is the container in which the currently viewing item sits
     */
-    [CarouselLayoutItem.itemViewer]?: {
+    [CarouselItem.itemViewer]?: {
         padding?: CarouselHorizontalPaddingOptions;
     } & CarouselColorOptions;
     /*
     *This is the where the dots, arrows, and thumbanils sit
     */
-    [CarouselLayoutItem.navigation]?: {
+    [CarouselItem.navigation]?: {
         padding?: CarouselHorizontalPaddingOptions;
     } & CarouselColorOptions;
     /*
     *This is where the buttons, progress bar, and item description sit
     */
-    [CarouselLayoutItem.toolbar]?: {
-        buttons?: CarouselColorOptions;
+    [CarouselItem.toolbar]?: {
         padding?: CarouselHorizontalPaddingOptions;
         progressBar?: {
             /*
@@ -141,7 +140,8 @@ export type CarouselVerticalPaddingOptions = {
 
 export type CarouselStylingOptions = {
     fontFamily?: CarouselFontFamilyOptions;
-} & CarouselLayoutItems;
+    buttons?: CarouselButtons;
+} & CarouselItems;
 
 export type CarouselOptions = {
     itemViewer?: CarouselItemViewerOptions;
@@ -149,7 +149,6 @@ export type CarouselOptions = {
     navigation?: CarouselNavigationOptions;
     shortcuts?: CarouselActions;
     styling?: CarouselStylingOptions
-    svgs?: CarouselSvgs;
     thumbnail?: CarouselThumbnailOptions;
 }
 
@@ -200,7 +199,7 @@ export type CarouselActions = {
 }
 //#endregion
 
-export type CarouselSvgHref = {
+export type CarouselButtonCustomization = {
     /*
     *Default is #000
     */
@@ -215,36 +214,30 @@ export type CarouselSvgHref = {
     style?: CSSProperties;
 }
 
-export type CarouselSvgs = {
-    /*
-    *These are the buttons that are inside the Item Viewer (opens when you click a thumbnail)
-    */
-    itemViewer?: {
-        closeButton?: string;
-        nextButton?: string;
-        pauseButton?: string;
-        playButton?: string;
-        previousButton?: string;
-        seekBackButton?: string;
-        seekForwardButton?: string;
-    },
-    /*
+export enum CarouselButton {
+     /*
     *These are the buttons at the bottom of each carousel related to changing pages
     */
-    navigation?: {
-        arrowLeft?: CarouselSvgHref;
-        /*
-        *This is the button at the bottom of each carousel to the right of the dots
-        */
-        arrowRight?: CarouselSvgHref;
-        /*
-        *These are for the fullscreen modal that pops up when clicking a thumbnail in the carousel
-        */
-        /*
-        *The dots at the bottom of the carousel indicating the number of pages
-        */
-        dots?: CarouselSvgHref;
-    }
+    arrowLeft = 'arrowLeft',
+      /*
+    *This is the button at the bottom of each carousel to the right of the dots
+    */
+    arrowRight = 'arrowRight',
+    closeButton = 'closeButton',
+     /*
+    *The dots at the bottom of the carousel indicating the number of pages
+    */
+    dots = 'dots',
+    nextButton = 'nextButton',
+    pauseButton = 'pauseButton',
+    playButton = 'playButton',
+    previousButton = 'previousButton',
+    seekBackButton = 'seekBackButton',
+    seekForwardButton = 'seekForwardButton',
+}
+
+export type CarouselButtons = {
+    [button in CarouselButton]?: CarouselButtonCustomization;
 }
 
 export type CarouselThumbnailBackgroundOptions = {

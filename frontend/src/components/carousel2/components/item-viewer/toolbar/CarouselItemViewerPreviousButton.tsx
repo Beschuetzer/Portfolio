@@ -14,10 +14,10 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const {  currentSvgs: currentSvgsGlobal, toolbarLogic } = useCarouselContext();
-    const { currentSvgs: currentSvgsLocal } = useCarouselInstanceContext();
+    const {  currentButtons: currentSvgsGlobal, toolbarLogic } = useCarouselContext();
+    const { currentButtons: currentSvgsLocal } = useCarouselInstanceContext();
     const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
-    const svgHref = currentSvgs?.itemViewer?.previousButton || '';
+    const { svgHref } = currentSvgs?.previousButton || {};
     const previousItemAction = new ToolbarActionsLogic(options).getPreviousItem();
 
     return (

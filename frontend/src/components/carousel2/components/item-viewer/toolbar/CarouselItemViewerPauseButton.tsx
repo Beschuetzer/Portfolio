@@ -15,10 +15,10 @@ export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerP
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentSvgs: currentSvgsGlobal } = useCarouselContext();
-    const { currentSvgs: currentSvgsLocal } = useCarouselInstanceContext();
+    const { currentButtons: currentSvgsGlobal } = useCarouselContext();
+    const { currentButtons: currentSvgsLocal } = useCarouselInstanceContext();
     const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
-    const svgHref = currentSvgs?.itemViewer?.pauseButton || '';
+    const { svgHref } = currentSvgs?.pauseButton || {};
     const pauseAction = new ToolbarActionsLogic(options).getPause();
 
     return (
