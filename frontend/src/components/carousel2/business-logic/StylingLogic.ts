@@ -312,7 +312,7 @@ export class StylingLogic {
     //#endregion
 
     //#region Public Methods
-    static getButtonColorStyle(style: CSSProperties, fillColor: string, propertyName: keyof CSSProperties) {
+    static getButtonColorStyle(fillColor: string, propertyName: keyof CSSProperties, style = {} as CSSProperties) {
         return {
             ...style,
             [propertyName]: fillColor,

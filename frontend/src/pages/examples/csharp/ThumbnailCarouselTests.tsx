@@ -852,6 +852,12 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
 						bottom: 0,
 					}
 				},
+				toolbar: {
+					progressBar: {
+						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+						foregroundColor: getComputedStyleCustom("--color-primary-1"),
+					}
+				}
 			}
 		}}
 	/>

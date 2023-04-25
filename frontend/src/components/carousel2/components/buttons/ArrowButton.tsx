@@ -16,7 +16,7 @@ export const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(({
     const classNameToUse = `${className}--arrow-${direction}`;
     const leftClassName = `${classNameToUse}-one`;
     const rightClassName = `${classNameToUse}-two`;
-    const colorStyle = StylingLogic.getButtonColorStyle(style, fillColor, 'backgroundColor');
+    const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', style);
     return (
         <button ref={ref} onClick={onClick} className={`${className} ${classNameToUse}`}>
             <div style={colorStyle} className={leftClassName} />

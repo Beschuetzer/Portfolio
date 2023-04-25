@@ -19,7 +19,7 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(({
   const leftModifierClassname = `${leftClassName}-${classNameModifier}`;
   const rightClassName = `${className}--close-right`;
   const rightModifierClassname = `${rightClassName}-${classNameModifier}`;
-  const colorStyle = StylingLogic.getButtonColorStyle(style, fillColor, 'backgroundColor');
+  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', style);
   return (
     <button ref={ref} onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''}`}>
       <div style={colorStyle} className={`${leftClassName} ${classNameModifier ? leftModifierClassname : ''}`} />

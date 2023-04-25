@@ -20,8 +20,8 @@ export const CarouselDots = ({
     setCurrentPage,
 }: CarouselDotsProps) => {
     //#region Init
-    const { fillColor, svgHref, style } = options?.styling?.buttons?.dots || {};
-    const stylingLogic = new StylingLogic({ options});
+    const { fillColor: fillColorTemp, svgHref, style } = options?.styling?.buttons?.dots || {};
+    const fillColor = fillColorTemp || CAROUSEL_COLOR_ONE;
     //#endregion
 
     //#region Handlers/Functions
@@ -32,14 +32,10 @@ export const CarouselDots = ({
     //#endregion
 
     //#region JSX
-    const useStyles = !!fillColor ? {
-        fill: fillColor,
-    } as React.CSSProperties : {}
-    const divStyles = !!fillColor ? {
-        backgroundColor: fillColor,
+    const useStyles = StylingLogic.getButtonColorStyle(fillColor, 'fill');
+    const divStyles = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', {
         opacity: CAROUSEL_DOT_OPACITY_DEFAULT,
-    } as React.CSSProperties : {}
-
+    });
     function renderDots() {
         const dots = [];
         for (let index = 0; index < numberOfDots; index++) {

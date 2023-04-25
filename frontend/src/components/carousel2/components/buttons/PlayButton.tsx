@@ -11,7 +11,7 @@ export const PlayButton = forwardRef<HTMLButtonElement, PlayButtonProps>(({
   fillColor = CAROUSEL_COLOR_FIVE,
   style = {},
 }, ref) => {
-  const colorStyle = StylingLogic.getButtonColorStyle(style, fillColor, 'borderLeftColor');
+  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderLeftColor', style);
   return (
     <button ref={ref} onClick={onClick} className={`${className}`}>
       <div style={colorStyle} className={`${className}--play-triangle`} />
