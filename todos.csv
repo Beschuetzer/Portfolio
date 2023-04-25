@@ -1,6 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -convert types for other buttons to CarouselSvgHref instead of string
+    -hook up style and fillColor for other buttons (arrows and dots done)
     -add tests for all of the background mix and match possibilities
     -finish foregroundColor for each item
     -need to create individual paddings for toolbar (and others?)
