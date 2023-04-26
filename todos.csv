@@ -1,11 +1,14 @@
 Carousel rework
   -itemDisplay non-default stuff:
+    -add overlay as customizable item
+    -add videoContainer as customizable item (namely the background color); or add videoBackgroundColor to itemContainer options
+    -add option for video to change object-fit type?
     -add api for text color in options.styling
     -add tests for all of the background mix and match possibilities?
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'
     -need to create individual paddings for toolbar (and others?)
     -add option for hiding thumbnail overlay (hide by default for non-none cases)
-    -add option to specify currentItem's border string
+    -add option to specify currentItem's border string (make it so that the buttons.all option changes the color too?;  would need some renaming though of 'buttons')
     -selecting an image before the currently selected causes a page decrement
     -render a LoadingContainer of height 50rem with a spinner to show while loading (need new POS in CarouselInstanceProvider?)
     -next/previous buttons hidden on load

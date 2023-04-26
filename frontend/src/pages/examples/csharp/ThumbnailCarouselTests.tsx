@@ -688,6 +688,17 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole = (
 						right: 20,
 					}
 				},
+				buttons: {
+					dots: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					arrowLeft: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					arrowRight: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					}
+				}
 			}
 		}}
 	/>
@@ -717,7 +728,12 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 						bottom: 0,
 					}
 				},
-			}
+				buttons: {
+					all: {
+						fillColor:  getComputedStyleCustom("--color-primary-1"),
+					}
+				}
+			},
 		}}
 	/>
 );
@@ -862,7 +878,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
 		}}
 	/>
 );
-const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColorsSetUsingAll = (
+const layoutAboveButtonsAllWithSpecificFillColors = (
 	<Carousel
 		items={items}
 		options={{
@@ -905,7 +921,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColorsSetUsingAl
 				toolbar: {
 					progressBar: {
 						backgroundColor: getComputedStyleCustom("--color-primary-4"),
-						foregroundColor: getComputedStyleCustom("--color-primary-1"),
+						foregroundColor: getComputedStyleCustom("--color-primary-2"),
 					}
 				}
 			}
@@ -1052,8 +1068,8 @@ const SECTIONS: Sections = [
 				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors,
 			},
 			{
-				label: "Display Above Custom Icons with Default Icons using buttons.all to Set Colors",
-				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColorsSetUsingAll,
+				label: "Display Above buttons.all with Specific Item Fill Colors",
+				jsx: layoutAboveButtonsAllWithSpecificFillColors,
 			},
 		]
 	],

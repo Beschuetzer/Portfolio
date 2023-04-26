@@ -31,7 +31,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const videoRef = useRef<HTMLVideoElement>();
     const itemContainerRef = useRef<HTMLDivElement>();
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
-    const stylingLogic = new StylingLogic({options, itemViewerToolbarRef});
+    const stylingLogic = new StylingLogic({ options, itemViewerToolbarRef });
     //#endregion
 
     //#region Functions/Handlers
@@ -73,29 +73,32 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     //#region JSX   
     return (
         <CarouselItemViewerContainer ref={itemContainerRef} onClick={onContainerClick}>
-            <CarouselVideoCurrentStateIndicator isVideoPlaying={isVideoPlaying} />
-            <LoadingSpinner
-                type='roller'
-                show={!isLoaded && isVideoPlaying}
-                description={description}
-            />
-            <video
-                className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
-                style={stylingLogic.carouselVideoStyle}
-                ref={videoRef as any}
-                autoPlay={!!autoPlay}
-                muted={!!muted}
-                loop={!!loop}
-                onLoadedData={() => setIsLoaded(true)}
-            >
-                <source src={srcMain} type={`video/${type}`} />
-            </video>
-            {props.video?.overlayProps ? (
-                <CarouselVideoOverlay
-                    isVideoPlaying={isVideoPlaying}
-                    {...props.video?.overlayProps}
+            <div style={stylingLogic.carouselVideoContainerStyle}>
+                <CarouselVideoCurrentStateIndicator isVideoPlaying={isVideoPlaying} />
+                <LoadingSpinner
+                    type='roller'
+                    show={!isLoaded && isVideoPlaying}
+                    description={description}
                 />
-            ) : null}
+                <video
+                    className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
+                    style={stylingLogic.carouselVideoStyle}
+                    ref={videoRef as any}
+                    autoPlay={!!autoPlay}
+                    muted={!!muted}
+                    loop={!!loop}
+                    onLoadedData={() => setIsLoaded(true)}
+                >
+                    <source src={srcMain} type={`video/${type}`} />
+                </video>
+                {props.video?.overlayProps ? (
+                    <CarouselVideoOverlay
+                        videoRef={videoRef}
+                        isVideoPlaying={isVideoPlaying}
+                        {...props.video?.overlayProps}
+                    />
+                ) : null}
+            </div>
             <CarouselItemViewerToolbar
                 setIsVideoPlaying={setIsVideoPlaying}
                 isVideoPlaying={isVideoPlaying}

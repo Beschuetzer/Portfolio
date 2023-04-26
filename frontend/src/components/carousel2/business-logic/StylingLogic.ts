@@ -17,6 +17,7 @@ import {
 } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 import { CarouselItemProps } from "../components/CarouselItem";
+import { CarouselVideoOverlayProps } from "../components/CarouselVideoOverlay";
 
 export enum SpacingDirection {
     bottom,
@@ -28,7 +29,9 @@ export type StylingLogicConstructor = {
     isCurrentItem?: boolean;
     options: CarouselOptions | undefined;
     progressBarValue?: number;
-} & Partial<Pick<CarouselInstanceContextProps, 'itemViewerToolbarRef' | 'currentItemInInstance'>>;
+    overlayRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
+} & Partial<Pick<CarouselInstanceContextProps, 'itemViewerToolbarRef' | 'currentItemInInstance'>>
+& Partial<Pick<CarouselVideoOverlayProps, 'videoRef'>>
 /*
 *Use this when extending styling options
 */
@@ -39,7 +42,9 @@ export class StylingLogic {
     private itemDisplayLocationLogic: ItemDisplayLocationLogic;
     private itemViewerToolbarRef: CarouselInstanceContextProps['itemViewerToolbarRef'];
     private options: CarouselOptions;
+    private overlayRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
     private progressBarValue: number;
+    private videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined;
 
     constructor(constructor: StylingLogicConstructor) {
         const {
@@ -47,12 +52,16 @@ export class StylingLogic {
             isCurrentItem,
             itemViewerToolbarRef,
             options,
+            overlayRef,
             progressBarValue,
+            videoRef,
         } = constructor;
         this.currentItemInInstance = currentItemInInstance;
         this.isCurrentItem = isCurrentItem;
         this.itemViewerToolbarRef = itemViewerToolbarRef;
         this.progressBarValue = progressBarValue || 0;
+        this.videoRef = videoRef;
+        this.overlayRef = overlayRef;
         this.options = options || {};
         const isCurrentItemInInstancePopulated = Object.keys(currentItemInInstance || {}).length > 0;
         this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: this.options, currentItem: currentItemInInstance });
@@ -143,8 +152,16 @@ export class StylingLogic {
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
 
+        const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
+        const overlayHeight = this.overlayRef?.current?.getBoundingClientRect().height || 0;
+        const positionStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            transform: 'translate(-50%, 0)',
+            top: videoHeight && overlayHeight ? `${Math.abs(videoHeight - overlayHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
+        } as CSSProperties : {};
+
         return {
             ...widthStyle,
+            ...positionStyle,
             ...this.fontFamilyItemViewerStyle,
         }
     }
@@ -154,16 +171,33 @@ export class StylingLogic {
             minWidth: "33%",
         } as CSSProperties : {};
     }
-
-    get carouselVideoStyle() {
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+    
+    get carouselVideoContainerStyle() {
+        const common = {
+            position: 'relative',
+        } as CSSProperties;
+        const layoutStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            objectPosition: 'bottom',
             paddingTop: 0,
             paddingBottom: 0,
             paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
             paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
             maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
+        } as CSSProperties : {
+
+        };
+
+        return {
+            ...common,
+            ...layoutStyle,
+        }
+    }
+
+    get carouselVideoStyle() {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            width: "100%",
+            objectPosition: 'bottom',
+            height: '100%',
         } as CSSProperties : {};
     }
 
@@ -298,7 +332,7 @@ export class StylingLogic {
         const customColor = this.options.styling?.toolbar?.backgroundColor || this.options.styling?.container?.backgroundColor;
         const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             background: customColor || CAROUSEL_COLOR_ONE,
-            position: "static",
+            position: "relative",
             width: '100%',
             paddingTop: `${isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2}${CAROUSEL_SPACING_UNIT}`,
             paddingBottom: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT}`,

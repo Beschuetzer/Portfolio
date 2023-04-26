@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import { getClassname, setCssCustomProperty } from '../utils';
 import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
@@ -40,20 +40,25 @@ export type CarouselVideoOverlayProps = {
     *This is used internally and determines when the overlay is shown
     */
     isVideoPlaying?: boolean;
+    /*
+    *This is used internally to determine where the overlay is shown
+    */
+    videoRef?: React.MutableRefObject<HTMLVideoElement | undefined>;
 } & CarouselVideoOverlay;
 
 export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#region Init
     const { currentButtons: currentSvgHrefs, options: optionsGlobal } = useCarouselContext();
     const { options: optionsLocal } = useCarouselInstanceContext();
-    
-    const { children, isVideoPlaying, title, text, closeButton } = props;
+
+    const { children, isVideoPlaying, title, text, closeButton, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
+    const overlayRef = useRef<HTMLElement>();
 
     const options = optionsLocal || optionsGlobal;
     const { svgHref } = currentSvgHrefs?.closeButton || {};
     const isCustom = !!children;
-    const styleLogic = new StylingLogic({options});
+    const styleLogic = new StylingLogic({ options, videoRef, overlayRef });
     //#endregion
 
     //#region Handlers/Functions
@@ -78,13 +83,13 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#endregion
 
     //#region JSX
-    const button =  !!svgHref ? (
+    const button = !!svgHref ? (
         <CarouselItemViewerCustomButton onClick={onCloseClick as any} xlinkHref={svgHref} classNameModifier='inverse' />
     ) : (
         <CloseButton
             onClick={onCloseClick as any}
-            className={isCustom ? getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON }) : undefined }
-            classNameModifier='inverse' 
+            className={isCustom ? getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON }) : undefined}
+            classNameModifier='inverse'
         />
     );
 
@@ -101,11 +106,11 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
         return (
             <>
                 <div className={`${className}-header`}>
-                    <h3 dangerouslySetInnerHTML={{__html: title || ''}}/>
+                    <h3 dangerouslySetInnerHTML={{ __html: title || '' }} />
                     {button}
                 </div>
                 {text ? (
-                    <p dangerouslySetInnerHTML={{__html: text || ''}}/>
+                    <p dangerouslySetInnerHTML={{ __html: text || '' }} />
                 ) : null}
             </>
         )
@@ -117,7 +122,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const classNameToUse = `${className} ${isCustom ? classNameCustom : ''} ${visibilityStyle}`;
 
     return (
-        <div className={classNameToUse} onClick={stopPropagation as any} style={styleLogic.carouselVideoOverlayStyle}>
+        <div ref={overlayRef as any} className={classNameToUse} onClick={stopPropagation as any} style={styleLogic.carouselVideoOverlayStyle}>
             {renderChildren()}
         </div>
     )

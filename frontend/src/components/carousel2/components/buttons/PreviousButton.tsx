@@ -15,7 +15,7 @@ export const PreviousButton = forwardRef<HTMLButtonElement, PreviousButtonProps>
   style = {},
 }, ref) => {
   const firstStyle = StylingLogic.getButtonColorStyle(fillColor, 'background', style);
-  const secondStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderLeftColor', style);
+  const secondStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderRightColor', style);
 
   return (
     <button ref={ref} onClick={onClick} className={`${className}  ${showButton ? '' : CLASSNAME__HIDDEN}`}>
