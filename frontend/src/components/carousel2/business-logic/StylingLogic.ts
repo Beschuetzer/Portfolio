@@ -14,7 +14,8 @@ import {
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
-    CAROUSEL_ITEM_SPACING_DEFAULT
+    CAROUSEL_ITEM_SPACING_DEFAULT,
+    CAROUSEL_OVERLAY_ITEM_PADDING_TOP
 } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 import { CarouselItemProps } from "../components/CarouselItem";
@@ -370,6 +371,12 @@ export class StylingLogic {
             ...style,
             [propertyName]: fillColor,
         } as CSSProperties;
+    }
+
+    static getCarouselVideoOverlayChildStyle(index: number) {
+        return {
+            paddingTop: index === 0 ? 0 : CAROUSEL_OVERLAY_ITEM_PADDING_TOP
+        } as CSSProperties;     
     }
     //#endregion
 

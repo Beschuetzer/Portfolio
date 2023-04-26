@@ -26,54 +26,55 @@ import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/components/Carousel";
 import { ModifierKey, ValidKey } from "../../../components/carousel2/hooks/useKeyboardShortcuts";
 import { CarouselActions } from "../../../components/carousel2/types";
+import { CarouselItemProps } from "../../../components/carousel2/components/CarouselItem";
 
 //#region Carousel Items
 const customButtons = {
-		closeButton: {
-			svgHref: "./sprite.svg#icon-close",
+	closeButton: {
+		svgHref: "./sprite.svg#icon-close",
+	},
+	nextButton: {
+		svgHref: "./sprite.svg#icon-skip-forward",
+	},
+	pauseButton: {
+		svgHref: "./sprite.svg#icon-pause",
+	},
+	playButton: {
+		svgHref: "./sprite.svg#icon-play",
+	},
+	previousButton: {
+		svgHref: "./sprite.svg#icon-skip-backward",
+	},
+	restartButton: {
+		svgHref: "./sprite.svg#icon-restart",
+	},
+	seekBackButton: {
+		svgHref: "./sprite.svg#icon-backward",
+	},
+	seekForwardButton: {
+		svgHref: "./sprite.svg#icon-forward",
+	},
+	stopButton: {
+		svgHref: "./sprite.svg#icon-stop",
+	},
+	dots: {
+		style: {
+			transform: 'scale(2)',
 		},
-		nextButton: {
-			svgHref: "./sprite.svg#icon-skip-forward",
-		},
-		pauseButton: {
-			svgHref: "./sprite.svg#icon-pause",
-		},
-		playButton: {
-			svgHref: "./sprite.svg#icon-play",
-		},
-		previousButton: {
-			svgHref: "./sprite.svg#icon-skip-backward",
-		},
-		restartButton: {
-			svgHref: "./sprite.svg#icon-restart",
-		},
-		seekBackButton: {
-			svgHref: "./sprite.svg#icon-backward",
-		},
-		seekForwardButton: {
-			svgHref: "./sprite.svg#icon-forward",
-		},
-		stopButton: {
-			svgHref: "./sprite.svg#icon-stop",
-		},
-		dots: {
-			style: {
-				transform: 'scale(2)',
-			},
-			svgHref: "./sprite.svg#icon-dot-single",
-			fillColor: getComputedStyleCustom('--color-primary-1'),
-		},
-		arrowLeft: {
-			svgHref: "./sprite.svg#icon-angle-right",
-			fillColor: getComputedStyleCustom('--color-primary-1'),
-			style: {
-				transform: 'rotate(180deg) translateY(-5%)',
-			}
-		},
-		arrowRight: {
-			svgHref: "./sprite.svg#icon-angle-right",
-			fillColor: getComputedStyleCustom('--color-primary-1'),
+		svgHref: "./sprite.svg#icon-dot-single",
+		fillColor: getComputedStyleCustom('--color-primary-1'),
+	},
+	arrowLeft: {
+		svgHref: "./sprite.svg#icon-angle-right",
+		fillColor: getComputedStyleCustom('--color-primary-1'),
+		style: {
+			transform: 'rotate(180deg) translateY(-5%)',
 		}
+	},
+	arrowRight: {
+		svgHref: "./sprite.svg#icon-angle-right",
+		fillColor: getComputedStyleCustom('--color-primary-1'),
+	}
 }
 const carouselShortcuts = {
 	itemViewer: {
@@ -157,8 +158,16 @@ const items = [
 		srcThumbnail: clipFiltersThumbnail,
 		video: {
 			overlayProps: {
-				title: "Filtering",
-				text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+				sections: [
+					{
+						title: "Section 1",
+						text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+					},
+					{
+						title: "Section 2",
+						text: "This is where the second section text goes."
+					}
+				],
 			},
 			autoPlay: false,
 			muted: true,
@@ -225,7 +234,7 @@ const items = [
 		srcThumbnail: maui04Thumbnail,
 		description: "Stunning Beach, Less than Ideal Sand",
 	},
-];
+] as CarouselItemProps[];
 //#endregion
 //#region Carousels
 const allCustomSettings = (
@@ -255,7 +264,7 @@ const allCustomSettings = (
 				hideOverlayUnlessHovered: false,
 				itemSpacing: 3.9876,
 			},
-			
+
 		}}
 		items={items}
 	/>
@@ -380,7 +389,7 @@ const itemViewerDefaultOverlayOnLoad = (
 );
 const itemViewerCustomButtons = (
 	<Carousel items={items.slice(1, 2)} options={{
-		styling:{
+		styling: {
 			buttons: customButtons,
 		}
 	}} />
@@ -505,7 +514,7 @@ const layoutAboveContainerPadding = (
 	<Carousel
 		items={items}
 		options={{
-			layout: {					
+			layout: {
 				itemDisplayHeight: 350,
 				itemDisplayLocation: 'above',
 			},
@@ -582,7 +591,7 @@ const layoutAboveExtraToolbarPadding = (
 	<Carousel
 		items={items}
 		options={{
-			layout: {			
+			layout: {
 				itemDisplayHeight: 427,
 				itemDisplayLocation: 'above',
 			},
@@ -735,7 +744,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 				},
 				buttons: {
 					all: {
-						fillColor:  getComputedStyleCustom("--color-primary-1"),
+						fillColor: getComputedStyleCustom("--color-primary-1"),
 					}
 				}
 			},
@@ -746,7 +755,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 	<Carousel
 		items={items}
 		options={{
-			
+
 			layout: {
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
@@ -763,7 +772,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 					arrowLeft: {
 						...customButtons.arrowLeft,
 						fillColor: getComputedStyleCustom("--color-primary-1"),
-						
+
 					},
 					arrowRight: {
 						...customButtons.arrowRight,
@@ -819,7 +828,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
 	<Carousel
 		items={items}
 		options={{
-			
+
 			layout: {
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
@@ -887,7 +896,7 @@ const layoutAboveButtonsAllWithSpecificFillColors = (
 	<Carousel
 		items={items}
 		options={{
-			
+
 			layout: {
 				itemDisplayHeight: 445,
 				itemDisplayLocation: 'above',
@@ -937,7 +946,7 @@ const layoutAboveDifferentLeftAndRightPadding = (
 	<Carousel
 		items={items}
 		options={{
-			layout: {				
+			layout: {
 				itemDisplayHeight: 422,
 				itemDisplayLocation: 'above',
 			},

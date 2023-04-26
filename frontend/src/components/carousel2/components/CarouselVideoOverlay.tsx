@@ -8,6 +8,17 @@ import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__OVERLAY_BUTTON_RIGHT, CLASSNA
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 
+export type CarouselVideoOverlaySection = {
+     /*
+    * This only shows when the video is paused and is an <h3> tag under the hood.
+    */
+     title?: string | undefined;
+
+     /*
+     * This only shows when the video is paused and is a <p> tag under the hood.
+     */
+     text?: string | undefined;
+}
 export type CarouselVideoOverlay = Exclusive<{
     /*
     *Use this prop in order to specify a customer overlay layout
@@ -24,15 +35,7 @@ export type CarouselVideoOverlay = Exclusive<{
         rightInRem?: number;
     }
 }, {
-    /*
-    * This only shows when the video is paused and is an <h3> tag under the hood.
-    */
-    title?: string | undefined;
-
-    /*
-    * This only shows when the video is paused and is a <p> tag under the hood.
-    */
-    text?: string | undefined;
+    sections?: CarouselVideoOverlaySection[];
 }>
 
 export type CarouselVideoOverlayProps = {
@@ -51,14 +54,14 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const { currentButtons: currentSvgHrefs, options: optionsGlobal } = useCarouselContext();
     const { options: optionsLocal } = useCarouselInstanceContext();
 
-    const { children, isVideoPlaying, title, text, closeButton, videoRef } = props;
+    const { children, isVideoPlaying, sections, closeButton, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
     const overlayRef = useRef<HTMLElement>();
 
     const options = optionsLocal || optionsGlobal;
     const { svgHref } = currentSvgHrefs?.closeButton || {};
     const isCustom = !!children;
-    const styleLogic = new StylingLogic({ options, videoRef, overlayRef });
+    const stylingLogic = new StylingLogic({ options, videoRef, overlayRef });
     //#endregion
 
     //#region Handlers/Functions
@@ -92,7 +95,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
             classNameModifier='inverse'
         />
     );
-
+    
     function renderChildren() {
         if (isCustom) {
             return (
@@ -103,8 +106,10 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
             )
         }
 
-        return (
-            <>
+        
+        if (!sections || sections.length === 0) return null;
+        return sections.map(({text, title}, index) => (
+            <div style={StylingLogic.getCarouselVideoOverlayChildStyle(index)}>
                 <div className={`${className}-header`}>
                     <h3 dangerouslySetInnerHTML={{ __html: title || '' }} />
                     {button}
@@ -112,8 +117,8 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
                 {text ? (
                     <p dangerouslySetInnerHTML={{ __html: text || '' }} />
                 ) : null}
-            </>
-        )
+            </div>
+        ));
     }
 
     const visibilityStyle = isVideoPlaying || !isVisible ? getClassname({ modifiedName: "hidden" }) : '';
@@ -122,7 +127,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const classNameToUse = `${className} ${isCustom ? classNameCustom : ''} ${visibilityStyle}`;
 
     return (
-        <div ref={overlayRef as any} className={classNameToUse} onClick={stopPropagation as any} style={styleLogic.carouselVideoOverlayStyle}>
+        <div ref={overlayRef as any} className={classNameToUse} onClick={stopPropagation as any} style={stylingLogic.carouselVideoOverlayStyle}>
             {renderChildren()}
         </div>
     )
