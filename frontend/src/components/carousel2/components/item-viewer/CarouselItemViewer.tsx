@@ -3,20 +3,25 @@ import { getClassname } from '../../utils';
 import { CLASSNAME__ITEM_VIEWER } from '../../constants';
 import { CURRENT_ITEMS_INITIAL, CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../context';
 import { ItemDisplayLocationLogic } from '../../business-logic/ItemDisplayLocationLogic';
+import { StylingLogic } from '../../business-logic/StylingLogic';
+import { useCarouselInstanceContext } from '../CarouselInstanceProvider';
 
 type CarouselItemViewerProps = {}
-export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps> ((props, ref) => {
+export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps>((props, ref) => {
     //#region Init
     //todo: needs to be hidden until an item is clicked
-    const { currentItem, setCurrentItems, setCurrentItemIndex, options } = useCarouselContext();
+    const { currentItem, setCurrentItems, setCurrentItemIndex, options: optionsGlobal } = useCarouselContext();
+    const { options: optionsLocal } = useCarouselInstanceContext();
+    const options = optionsLocal || optionsGlobal || {};
     const [isVisible, setisVisible] = useState(Object.keys(currentItem || {})?.length > 0);
     const innerRef = useRef<HTMLElement>(null);
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options, currentItem});
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem });
+    const stylingLogic = new StylingLogic({ options })
     useImperativeHandle(ref, () => innerRef.current);
     //#endregion
 
     //#region Function/Handlers
-    
+
     //#endregion
 
     //#region Side Fx
@@ -44,16 +49,16 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps> ((pro
         setisVisible(!!currentItem?.srcMain);
     }, [currentItem])
     //#endregion
-    
+
     //#region JSX
-    const visibilityStyle = isVisible ? getClassname({modifiedName: 'visible'}) : getClassname({modifiedName: 'hidden'});
-    const containerClassname = `${getClassname({elementName: CLASSNAME__ITEM_VIEWER})} ${visibilityStyle}`;
+    const visibilityStyle = isVisible ? getClassname({ modifiedName: 'visible' }) : getClassname({ modifiedName: 'hidden' });
+    const containerClassname = `${getClassname({ elementName: CLASSNAME__ITEM_VIEWER })} ${visibilityStyle}`;
     const ItemToRender = itemDisplayLocationLogic.itemToRender;
-  
+
     if (!itemDisplayLocationLogic.isDefaultItemDisplayLocation) return null;
     return (
-        <div ref={innerRef as any} className={containerClassname}>
-            <ItemToRender {...currentItem}/>
+        <div ref={innerRef as any} className={containerClassname} style={stylingLogic.carouselItemViewerStyle}>
+            <ItemToRender {...currentItem} />
         </div>
     )
     //#endregion

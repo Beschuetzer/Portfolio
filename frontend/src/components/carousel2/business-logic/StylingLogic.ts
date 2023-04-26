@@ -36,7 +36,7 @@ export type StylingLogicConstructor = {
     progressBarValue?: number;
     overlayRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
 } & Partial<Pick<CarouselInstanceContextProps, 'itemViewerToolbarRef' | 'currentItemInInstance'>>
-& Partial<Pick<CarouselVideoOverlayProps, 'videoRef'>>
+    & Partial<Pick<CarouselVideoOverlayProps, 'videoRef'>>
 /*
 *Use this when extending styling options
 */
@@ -129,9 +129,15 @@ export class StylingLogic {
             width: "100%",
             height: this.carouselItemContainerHeight,
             position: "relative",
-            backgroundColor: this.options.styling?.itemViewer?.backgroundColor || this.options.styling?.container?.backgroundColor || CAROUSEL_COLOR_ONE,
+            backgroundColor: this.itemViewerBackgroundColor,
             justifyContent: 'flex-end',
         } as CSSProperties : {};
+    }
+
+    get carouselItemViewerStyle() {
+        return {
+            backgroundColor: this.itemViewerBackgroundColor,
+        } as CSSProperties;
     }
 
     get carouselItemsContainerStyle() {
@@ -152,8 +158,8 @@ export class StylingLogic {
     }
 
     get carouselVideoOverlayStyle() {
-        const { fontSize: customFontSize, backgroundColor } = this.options.styling?.videoOverlay || {};
-        const {bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoOverlay?.padding || {};
+        const { fontSize: customFontSize, backgroundColor, textColor } = this.options.styling?.videoOverlay || {};
+        const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoOverlay?.padding || {};
         const isDefault = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
         const overlayHeight = this.overlayRef?.current?.getBoundingClientRect().height || 0;
@@ -162,16 +168,17 @@ export class StylingLogic {
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
         const paddingStyle = {
-            paddingTop: paddingTop !== undefined ? paddingTop : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5 ,
-            paddingBottom: paddingBottom !== undefined ? paddingBottom : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5 ,
-            paddingLeft: paddingLeft !== undefined ? paddingLeft : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT ,
-            paddingRight: paddingRight !== undefined ? paddingRight : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT ,
+            paddingTop: paddingTop !== undefined ? paddingTop : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
+            paddingBottom: paddingBottom !== undefined ? paddingBottom : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
+            paddingLeft: paddingLeft !== undefined ? paddingLeft : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
+            paddingRight: paddingRight !== undefined ? paddingRight : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
         } as CSSProperties;
         const positionStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             transform: 'translate(-50%, 0)',
             top: videoHeight && overlayHeight ? `${Math.abs(videoHeight - overlayHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
         } as CSSProperties : {};
-        const textSizeStyle = {
+        const textStyle = {
+            color: textColor || CAROUSEL_COLOR_ONE,
             fontSize: customFontSize !== undefined ? customFontSize : this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
         } as CSSProperties;
         const backgroundColorStyle = {
@@ -183,7 +190,7 @@ export class StylingLogic {
             ...paddingStyle,
             ...widthStyle,
             ...positionStyle,
-            ...textSizeStyle,
+            ...textStyle,
             ...this.fontFamilyItemViewerStyle,
         }
     }
@@ -192,7 +199,7 @@ export class StylingLogic {
         const customColor = this.options.styling?.videoOverlay?.closeButtonColor || CAROUSEL_COLOR_ONE;
         return customColor;
     }
-    
+
     get carouselVideoContainerStyle() {
         const common = {
             position: 'relative',
@@ -276,6 +283,10 @@ export class StylingLogic {
         return fontFamily?.all || fontFamily?.navigation ? {
             fontFamily: fontFamily?.all || fontFamily?.navigation || this.DEFAULT_FONT_FAMILY,
         } : {};
+    }
+
+    get itemViewerBackgroundColor() {
+        return this.options.styling?.itemViewer?.backgroundColor || this.options.styling?.container?.backgroundColor || CAROUSEL_COLOR_ONE;
     }
 
     get navigationContainerHorizontalPadding() {
@@ -401,7 +412,7 @@ export class StylingLogic {
     static getCarouselVideoOverlayChildStyle(index: number) {
         return {
             paddingTop: index === 0 ? 0 : CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
-        } as CSSProperties;     
+        } as CSSProperties;
     }
     //#endregion
 

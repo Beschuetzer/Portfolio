@@ -301,13 +301,18 @@ const multiplePagesCustomPadding = (
 		}
 	}} />
 );
-const noItemDisplayedMultiplePagesCustomOverlayColors = (
+const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 	<Carousel items={items} options={{
 		styling: {
 			videoOverlay: {
 				backgroundColor: getComputedStyleCustom('--color-primary-4'),
 				textColor: getComputedStyleCustom('--color-primary-1'),
 				closeButtonColor: getComputedStyleCustom('--color-primary-1'),
+			},
+			itemViewer: {
+				backgroundColor: getComputedStyleCustom('--color-primary-4'),
+				foregroundColor: getComputedStyleCustom('--color-primary-1'),
+				
 			}
 		}
 	}} />
@@ -1006,6 +1011,7 @@ const layoutAboveCustomOverlay = (
 						left: 60,
 						right: 60,
 					},
+					closeButtonColor: getComputedStyleCustom("--color-primary-1"),
 					backgroundColor: getComputedStyleCustom("--color-primary-4"),
 					textColor: getComputedStyleCustom("--color-primary-1"),
 					widthInPercent: 100,
@@ -1093,8 +1099,8 @@ const SECTIONS: Sections = [
 				jsx: multiplePagesCustomPadding
 			},
 			{
-				label: "Multiple Pages - Custom Overlay Colors",
-				jsx: noItemDisplayedMultiplePagesCustomOverlayColors
+				label: "Multiple Pages - Custom Item Viewer Colors",
+				jsx: noItemDisplayedMultiplePagesCustomItemViewerColors
 			},
 			{
 				label: "Display Current Item Above with Custom itemHeight and Font Family",
