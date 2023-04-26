@@ -188,10 +188,9 @@ export class StylingLogic {
         }
     }
 
-    get carouselVideoTimeTextStyle() {
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            minWidth: "33%",
-        } as CSSProperties : {};
+    get carouselVideoCloseButtonColor() {
+        const customColor = this.options.styling?.videoOverlay?.closeButtonColor || CAROUSEL_COLOR_ONE;
+        return customColor;
     }
     
     get carouselVideoContainerStyle() {
@@ -251,6 +250,12 @@ export class StylingLogic {
         } as CSSProperties : {
             ...common,
         } as CSSProperties;
+    }
+
+    get carouselVideoTimeTextStyle() {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+            minWidth: "33%",
+        } as CSSProperties : {};
     }
 
     get isCurrentItemSelected() {

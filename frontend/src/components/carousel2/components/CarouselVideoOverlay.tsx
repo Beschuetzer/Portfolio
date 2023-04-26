@@ -62,6 +62,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const { svgHref } = currentSvgHrefs?.closeButton || {};
     const isCustom = !!children;
     const stylingLogic = new StylingLogic({ options, videoRef, overlayRef });
+    const closeButtonColor = stylingLogic.carouselVideoCloseButtonColor;
     //#endregion
 
     //#region Handlers/Functions
@@ -87,12 +88,13 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
 
     //#region JSX
     const button = !!svgHref ? (
-        <CarouselItemViewerCustomButton onClick={onCloseClick as any} xlinkHref={svgHref} classNameModifier='inverse' />
+        <CarouselItemViewerCustomButton onClick={onCloseClick as any} xlinkHref={svgHref} classNameModifier='inverse' fillColor={closeButtonColor} />
     ) : (
         <CloseButton
             onClick={onCloseClick as any}
             className={isCustom ? getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON }) : undefined}
             classNameModifier='inverse'
+            fillColor={closeButtonColor}
         />
     );
     
