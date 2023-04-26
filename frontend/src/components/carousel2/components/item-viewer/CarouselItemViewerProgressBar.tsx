@@ -5,6 +5,7 @@ import { VideoTimeStrings } from '../../types';
 import { CarouselItemViewerToolbarProps } from './toolbar/CarouselItemViewerToolbar';
 import { useCarouselInstanceContext } from '../CarouselInstanceProvider';
 import { StylingLogic } from '../../business-logic/StylingLogic';
+import { useCarouselContext } from '../../context';
 
 type CarouselItemViewerProgressBarProps = {
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;
@@ -14,7 +15,9 @@ export const CarouselItemViewerProgressBar = ({
     setTimeStrings,
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
-    const { options } = useCarouselInstanceContext();
+    const { options: optionsLocal } = useCarouselContext();
+    const { options: optionsGlobal } = useCarouselInstanceContext();
+    const options = optionsLocal || optionsGlobal;
     const [progressBarValue, setProgressBarValue] = useState(0);
     const stylingLogic = new StylingLogic({ options, progressBarValue });
 

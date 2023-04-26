@@ -1,5 +1,6 @@
 import { StylingLogic } from "../../../business-logic/StylingLogic";
 import { CLASSNAME__ITEM_VIEWER } from "../../../constants";
+import { useCarouselContext } from "../../../context";
 import { VideoTimeStrings } from "../../../types";
 import { getClassname } from "../../../utils";
 import { useCarouselInstanceContext } from "../../CarouselInstanceProvider";
@@ -17,10 +18,12 @@ export const CarouselItemViewerToolbarText = ({
     isVideo = false,
     timeStrings,
 }: CarouselItemViewerToolbarTextProps) => {
-    const { options } = useCarouselInstanceContext();
+    const { options: optionsLocal } = useCarouselInstanceContext();
+    const { options: optionsGlobal } = useCarouselContext();
+    const options = optionsLocal || optionsGlobal;
     const stylingLogic = new StylingLogic({options});
     return (
-        <span className={CLASSNAME_TOOLBAR_MIDDLE}>
+        <span style={stylingLogic.carouselToolbarTextStyle} className={CLASSNAME_TOOLBAR_MIDDLE}>
             {isVideo ? (
                 <div style={stylingLogic.carouselVideoTimeTextStyle}>
                     <span>{timeStrings.currentTimeStr}</span>

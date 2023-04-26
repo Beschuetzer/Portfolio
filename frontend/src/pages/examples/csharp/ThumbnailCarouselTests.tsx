@@ -312,7 +312,19 @@ const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 			itemViewer: {
 				backgroundColor: getComputedStyleCustom('--color-primary-4'),
 				foregroundColor: getComputedStyleCustom('--color-primary-1'),
-				
+
+			},
+			toolbar: {
+				progressBar: {
+					backgroundColor: getComputedStyleCustom('--color-primary-4'),
+					foregroundColor: getComputedStyleCustom('--color-primary-1'),
+				},
+				textColor: getComputedStyleCustom('--color-primary-2'),
+			},
+			buttons: {
+				all: {
+					fillColor: getComputedStyleCustom('--color-primary-2'),
+				}
 			}
 		}
 	}} />
@@ -1001,7 +1013,8 @@ const layoutAboveCustomOverlay = (
 					progressBar: {
 						backgroundColor: getComputedStyleCustom("--color-primary-4"),
 						foregroundColor: getComputedStyleCustom("--color-primary-2"),
-					}
+					},
+					textColor: getComputedStyleCustom('--color-primary-2'),
 				},
 				videoOverlay: {
 					fontSize: 16,

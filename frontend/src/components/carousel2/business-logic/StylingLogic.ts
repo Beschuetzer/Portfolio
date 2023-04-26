@@ -156,6 +156,13 @@ export class StylingLogic {
             ...common,
         };
     }
+    
+    get carouselToolbarTextStyle() {
+        const customTextColor = this.options.styling?.toolbar?.textColor || this.options.styling?.buttons?.all?.fillColor;
+        return {
+            color: customTextColor || CAROUSEL_COLOR_FIVE,
+        } as CSSProperties;
+    }
 
     get carouselVideoOverlayStyle() {
         const { fontSize: customFontSize, backgroundColor, textColor } = this.options.styling?.videoOverlay || {};
@@ -248,11 +255,11 @@ export class StylingLogic {
         const foregroundColor = this.options.styling?.toolbar?.progressBar?.foregroundColor;
         const common = {
             backgroundColor: foregroundColor,
+            width: `${this.progressBarValue * 100}%`,
+            height: '100%',
         } as CSSProperties
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            width: `${this.progressBarValue * 100}%`,
-            height: '100%',
             ...common,
         } as CSSProperties : {
             ...common,

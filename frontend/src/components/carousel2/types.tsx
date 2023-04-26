@@ -74,7 +74,8 @@ export type CarouselItems = {
             */
             shouldSpanContainerWidth?: boolean;
         } & CarouselColorOptions;
-    } & CarouselColorOptions;
+        textColor?: string;
+    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
      /*
     *This is the the overlay text that displays when a video is paused
     */
