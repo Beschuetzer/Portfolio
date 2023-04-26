@@ -112,7 +112,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
             <div key={index} style={StylingLogic.getCarouselVideoOverlayChildStyle(index)}>
                 <div className={`${className}-header`}>
                     <h3 dangerouslySetInnerHTML={{ __html: title || '' }} />
-                    {button}
+                    {index === 0 ? button : null}
                 </div>
                 {text ? (
                     <p dangerouslySetInnerHTML={{ __html: text || '' }} />

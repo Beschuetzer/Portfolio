@@ -301,6 +301,17 @@ const multiplePagesCustomPadding = (
 		}
 	}} />
 );
+const noItemDisplayedMultiplePagesCustomOverlayColors = (
+	<Carousel items={items} options={{
+		styling: {
+			videoOverlay: {
+				backgroundColor: getComputedStyleCustom('--color-primary-4'),
+				textColor: getComputedStyleCustom('--color-primary-1'),
+				closeButtonColor: getComputedStyleCustom('--color-primary-1'),
+			}
+		}
+	}} />
+);
 const multiplePagesFixedItemSpacing = (
 	<Carousel items={items} options={{
 		thumbnail: {
@@ -1080,6 +1091,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Multiple Pages - Custom Padding",
 				jsx: multiplePagesCustomPadding
+			},
+			{
+				label: "Multiple Pages - Custom Overlay Colors",
+				jsx: noItemDisplayedMultiplePagesCustomOverlayColors
 			},
 			{
 				label: "Display Current Item Above with Custom itemHeight and Font Family",

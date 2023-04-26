@@ -79,6 +79,7 @@ export type CarouselItems = {
     *This is the the overlay text that displays when a video is paused
     */
     [CarouselItem.videoOverlay]?: {
+        closeButtonColor?: string;
         /*
         *This is in px
         */
