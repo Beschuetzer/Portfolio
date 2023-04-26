@@ -17,7 +17,8 @@ export const CarouselItemViewerProgressBar = ({
 }: CarouselItemViewerProgressBarProps) => {
     const { options: optionsLocal } = useCarouselContext();
     const { options: optionsGlobal } = useCarouselInstanceContext();
-    const options = optionsLocal || optionsGlobal;
+    const options = { ...optionsLocal, ...optionsGlobal};  //for some reason some setting only appear in one or the other
+    
     const [progressBarValue, setProgressBarValue] = useState(0);
     const stylingLogic = new StylingLogic({ options, progressBarValue });
 

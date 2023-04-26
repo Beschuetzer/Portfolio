@@ -241,10 +241,10 @@ export class StylingLogic {
         const shouldSpanWholeWidth = this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth;
         const common = {
             backgroundColor,
+            width: shouldSpanWholeWidth ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselItem.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselItem.toolbar)}${CAROUSEL_SPACING_UNIT})` : '100%',
         } as CSSProperties
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            width: shouldSpanWholeWidth ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselItem.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselItem.toolbar)}${CAROUSEL_SPACING_UNIT})` : '100%',
             ...common,
         } as CSSProperties : {
             ...common,
