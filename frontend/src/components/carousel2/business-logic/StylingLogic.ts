@@ -13,7 +13,8 @@ import {
     CAROUSEL_COLOR_FIVE,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
-    CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT
+    CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
+    CAROUSEL_ITEM_SPACING_DEFAULT
 } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 import { CarouselItemProps } from "../components/CarouselItem";
@@ -265,7 +266,7 @@ export class StylingLogic {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             marginBottom: 0,
             paddingTop: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2 - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT}`,
-            paddingBottom: 0,
+            paddingBottom: this.itemDisplayLocationLogic.shouldDisplayItemBelow ? (CAROUSEL_ITEM_SPACING_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT) : 0,
             ...common,
         } as CSSProperties : {
             ...common,

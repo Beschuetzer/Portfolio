@@ -491,6 +491,11 @@ const layoutAboveWithItemHeightAndThumbnailSize = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
+				},
+				container: {
+					padding: {
+						bottom: 10,
+					}
 				}
 			}
 		}}
