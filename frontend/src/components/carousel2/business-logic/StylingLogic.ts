@@ -152,6 +152,7 @@ export class StylingLogic {
     }
 
     get carouselVideoOverlayStyle() {
+        const { fontSize: customFontSize } = this.options.styling?.videoOverlay || {};
         const {bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoOverlay?.padding || {};
         const isDefault = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
@@ -171,7 +172,7 @@ export class StylingLogic {
             top: videoHeight && overlayHeight ? `${Math.abs(videoHeight - overlayHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
         } as CSSProperties : {};
         const textSizeStyle = {
-            fontSize: this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
+            fontSize: customFontSize !== undefined ? customFontSize : this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
         } as CSSProperties;
 
         return {

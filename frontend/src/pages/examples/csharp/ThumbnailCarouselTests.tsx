@@ -988,6 +988,7 @@ const layoutAboveCustomOverlay = (
 					}
 				},
 				videoOverlay: {
+					fontSize: 16,
 					padding: {
 						top: 30,
 						bottom: 30,

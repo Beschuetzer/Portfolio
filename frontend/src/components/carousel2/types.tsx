@@ -79,6 +79,14 @@ export type CarouselItems = {
     *This is the the overlay text that displays when a video is paused
     */
     [CarouselItem.videoOverlay]?: {
+        /*
+        *This is in px
+        */
+        fontSize?: number;
+         /*
+        *this is a percent of the item container height
+        */
+        heightInPercent?: number;
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
         textColor?: string;
         /*
