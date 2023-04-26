@@ -1,6 +1,7 @@
 Carousel rework
   -itemDisplay non-default stuff:
     -add overlay as customizable item (fontSize and width)
+    -overlay close button not getting fill color correctly
     -need to reset progress bar and time string on new thumbnail click
     -add videoContainer as customizable item (namely the background color); or add videoBackgroundColor to itemContainer options
     -add option for video to change object-fit type?

@@ -43,7 +43,8 @@ export enum CarouselItem {
     container = 'container',
     itemViewer = 'itemViewer',
     navigation = 'navigation',
-    toolbar = 'toolbar'
+    toolbar = 'toolbar',
+    videoOverlay = 'videoOverlay',
 }
 export type CarouselItems = {
     [CarouselItem.container]?: {
@@ -74,6 +75,17 @@ export type CarouselItems = {
             shouldSpanContainerWidth?: boolean;
         } & CarouselColorOptions;
     } & CarouselColorOptions;
+     /*
+    *This is the the overlay text that displays when a video is paused
+    */
+    [CarouselItem.videoOverlay]?: {
+        padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
+        textColor?: string;
+        /*
+        *this is a percent of the item container width
+        */
+        widthInPercent?: number;
+    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
 }
 
 export type CarouselLayoutOptions = {

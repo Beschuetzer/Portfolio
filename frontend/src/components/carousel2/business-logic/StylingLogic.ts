@@ -17,7 +17,8 @@ import {
     CAROUSEL_ITEM_SPACING_DEFAULT,
     CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
     CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT,
-    CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT
+    CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT
 } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 import { CarouselItemProps } from "../components/CarouselItem";
@@ -151,13 +152,20 @@ export class StylingLogic {
     }
 
     get carouselVideoOverlayStyle() {
+        const {bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoOverlay?.padding || {};
+        const isDefault = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation;
+        const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
+        const overlayHeight = this.overlayRef?.current?.getBoundingClientRect().height || 0;
         const widthStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "75%",
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
-
-        const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
-        const overlayHeight = this.overlayRef?.current?.getBoundingClientRect().height || 0;
+        const paddingStyle = {
+            paddingTop: paddingTop !== undefined ? paddingTop : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5 ,
+            paddingBottom: paddingBottom !== undefined ? paddingBottom : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5 ,
+            paddingLeft: paddingLeft !== undefined ? paddingLeft : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT ,
+            paddingRight: paddingRight !== undefined ? paddingRight : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT ,
+        } as CSSProperties;
         const positionStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             transform: 'translate(-50%, 0)',
             top: videoHeight && overlayHeight ? `${Math.abs(videoHeight - overlayHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
@@ -167,6 +175,7 @@ export class StylingLogic {
         } as CSSProperties;
 
         return {
+            ...paddingStyle,
             ...widthStyle,
             ...positionStyle,
             ...textSizeStyle,

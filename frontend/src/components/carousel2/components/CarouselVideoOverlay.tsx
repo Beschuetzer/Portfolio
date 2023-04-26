@@ -57,7 +57,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const { children, isVideoPlaying, sections, closeButton, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
     const overlayRef = useRef<HTMLElement>();
-
+    
     const options = optionsLocal || optionsGlobal;
     const { svgHref } = currentSvgHrefs?.closeButton || {};
     const isCustom = !!children;
@@ -109,7 +109,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
         
         if (!sections || sections.length === 0) return null;
         return sections.map(({text, title}, index) => (
-            <div style={StylingLogic.getCarouselVideoOverlayChildStyle(index)}>
+            <div key={index} style={StylingLogic.getCarouselVideoOverlayChildStyle(index)}>
                 <div className={`${className}-header`}>
                     <h3 dangerouslySetInnerHTML={{ __html: title || '' }} />
                     {button}
