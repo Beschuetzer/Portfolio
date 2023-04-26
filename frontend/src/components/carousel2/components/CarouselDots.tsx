@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react'
 import { CarouselItemProps } from './CarouselItem';
 import { getClassname } from '../utils';
-import { CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
+import { CAROUSEL_COLOR_FIVE, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
 import { ArrowProps, CarouselButton, CarouselNavigationProps, CarouselOptions } from '../types';
 import { StylingLogic } from '../business-logic/StylingLogic';
+import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 
 type CarouselDotsProps = {
     items: CarouselItemProps[];
@@ -16,13 +17,15 @@ export const CarouselDots = ({
     currentPage,
     items,
     numberOfDots = items?.length || NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS - 1,
-    options,
+    options = {},
     setCurrentPage,
 }: CarouselDotsProps) => {
     //#region Init
     const { svgHref, style } = options?.styling?.buttons?.dots || {};
     const stylingLogic = new StylingLogic({ options });
-    const fillColor = stylingLogic.getButtonColor(CarouselButton.dots, CAROUSEL_COLOR_ONE);
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options });
+    const defaultColor = itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;
+    const fillColor = stylingLogic.getButtonColor(CarouselButton.dots, defaultColor);
     //#endregion
 
     //#region Handlers/Functions

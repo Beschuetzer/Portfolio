@@ -1,8 +1,8 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -add tests for all of the background mix and match possibilities
-    -change ArrowButtonDirection to enum with values being 'next' and 'previous'
     -add api for text color in options.styling
+    -add tests for all of the background mix and match possibilities?
+    -change ArrowButtonDirection to enum with values being 'next' and 'previous'
     -need to create individual paddings for toolbar (and others?)
     -add option for hiding thumbnail overlay (hide by default for non-none cases)
     -add option to specify currentItem's border string
