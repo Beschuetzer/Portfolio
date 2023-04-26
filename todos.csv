@@ -1,7 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -add option to create multiple sections for video overlay
-    -add overlay as customizable item
+    -add overlay as customizable item (fontSize and width)
     -need to reset progress bar and time string on new thumbnail click
     -add videoContainer as customizable item (namely the background color); or add videoBackgroundColor to itemContainer options
     -add option for video to change object-fit type?

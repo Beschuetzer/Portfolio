@@ -15,7 +15,9 @@ import {
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
     CAROUSEL_ITEM_SPACING_DEFAULT,
-    CAROUSEL_OVERLAY_ITEM_PADDING_TOP
+    CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
+    CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT,
+    CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT
 } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 import { CarouselItemProps } from "../components/CarouselItem";
@@ -160,10 +162,14 @@ export class StylingLogic {
             transform: 'translate(-50%, 0)',
             top: videoHeight && overlayHeight ? `${Math.abs(videoHeight - overlayHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
         } as CSSProperties : {};
+        const textSizeStyle = {
+            fontSize: this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
+        } as CSSProperties;
 
         return {
             ...widthStyle,
             ...positionStyle,
+            ...textSizeStyle,
             ...this.fontFamilyItemViewerStyle,
         }
     }
@@ -375,7 +381,7 @@ export class StylingLogic {
 
     static getCarouselVideoOverlayChildStyle(index: number) {
         return {
-            paddingTop: index === 0 ? 0 : CAROUSEL_OVERLAY_ITEM_PADDING_TOP
+            paddingTop: index === 0 ? 0 : CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
         } as CSSProperties;     
     }
     //#endregion
