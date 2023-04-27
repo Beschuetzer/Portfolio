@@ -245,7 +245,7 @@ const allCustomSettings = (
 					itemViewer: 'monospace',
 					navigation: 'serif'
 				},
-				buttons: customButtons,
+				elements: customButtons,
 			},
 			shortcuts: carouselShortcuts,
 			itemViewer: {
@@ -321,7 +321,7 @@ const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 				},
 				textColor: getComputedStyleCustom('--color-primary-2'),
 			},
-			buttons: {
+			elements: {
 				all: {
 					fillColor: getComputedStyleCustom('--color-primary-2'),
 				}
@@ -418,7 +418,7 @@ const itemViewerDefaultOverlayOnLoad = (
 const itemViewerCustomButtons = (
 	<Carousel items={items.slice(1, 2)} options={{
 		styling: {
-			buttons: customButtons,
+			elements: customButtons,
 		}
 	}} />
 );
@@ -657,6 +657,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
+
 				},
 				container: {
 					backgroundColor: getComputedStyleCustom("--color-primary-4"),
@@ -682,11 +683,14 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 					padding: {
 						left: 20,
 						right: 20,
-					}
+					},
 				},
-				buttons: {
+				elements: {
 					allNavigation: {
 						fillColor: getComputedStyleCustom("--color-primary-2"),
+					},
+					allButtons: {
+						fillColor: getComputedStyleCustom("--color-primary-4"),
 					},
 				}
 			}
@@ -735,7 +739,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole = (
 						right: 20,
 					}
 				},
-				buttons: {
+				elements: {
 					dots: {
 						fillColor: getComputedStyleCustom("--color-primary-1"),
 					},
@@ -775,7 +779,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 						bottom: 0,
 					}
 				},
-				buttons: {
+				elements: {
 					all: {
 						fillColor: getComputedStyleCustom("--color-primary-1"),
 					}
@@ -797,7 +801,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 				size: 100,
 			},
 			styling: {
-				buttons: {
+				elements: {
 					closeButton: {
 						fillColor: getComputedStyleCustom("--color-primary-1"),
 						svgHref: customButtons.closeButton.svgHref,
@@ -870,7 +874,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
 				size: 100,
 			},
 			styling: {
-				buttons: {
+				elements: {
 					closeButton: {
 						fillColor: getComputedStyleCustom("--color-primary-1"),
 					},
@@ -938,7 +942,7 @@ const layoutAboveButtonsAllWithSpecificFillColors = (
 				size: 100,
 			},
 			styling: {
-				buttons: {
+				elements: {
 					all: {
 						fillColor: getComputedStyleCustom("--color-primary-1"),
 					},
@@ -987,7 +991,7 @@ const layoutAboveCustomOverlay = (
 				size: 100,
 			},
 			styling: {
-				buttons: {
+				elements: {
 					all: {
 						fillColor: getComputedStyleCustom("--color-primary-1"),
 					},

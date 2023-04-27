@@ -47,7 +47,7 @@ export enum CarouselSection {
     toolbar = 'toolbar',
     videoOverlay = 'videoOverlay',
 }
-export type CarouselItems = {
+export type CarouselSections = {
     [CarouselSection.container]?: {
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
     } & CarouselColorOptions
@@ -160,8 +160,8 @@ export type CarouselVerticalPaddingOptions = {
 
 export type CarouselStylingOptions = {
     fontFamily?: CarouselFontFamilyOptions;
-    buttons?: CarouselButtons;
-} & CarouselItems;
+    elements?: CarouselButtons;
+} & CarouselSections;
 
 export type CarouselOptions = {
     itemViewer?: CarouselItemViewerOptions;
@@ -236,9 +236,13 @@ export type CarouselButtonCustomization = {
 
 export enum CarouselButton {
     /*
-    *Setting this will change all the items
+    *Setting this will change all the items.  allNavigation and allButton will override this
     */
     all = 'all',
+    /*
+    *Setting this will change all the buttons.
+    */
+    allButtons = 'allButtons',
     /*
     *Setting this will change arrowLeft, arrowRight, and dots
     */
@@ -265,7 +269,7 @@ export enum CarouselButton {
 }
 
 export type CarouselButtons = {
-    [button in CarouselButton]?: button extends 'all' | 'allNavigation' ? Pick<CarouselButtonCustomization, 'fillColor'> : CarouselButtonCustomization;
+    [button in CarouselButton]?: button extends CarouselButton.all | CarouselButton.allButtons | CarouselButton.allNavigation ? Pick<CarouselButtonCustomization, 'fillColor'> : CarouselButtonCustomization;
 }
 
 export type CarouselThumbnailBackgroundOptions = {

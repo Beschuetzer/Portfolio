@@ -158,7 +158,7 @@ export class StylingLogic {
     }
 
     get carouselToolbarTextStyle() {
-        const customTextColor = this.options.styling?.toolbar?.textColor || this.options.styling?.buttons?.all?.fillColor;
+        const customTextColor = this.options.styling?.toolbar?.textColor || this.options.styling?.elements?.all?.fillColor;
         return {
             color: customTextColor || CAROUSEL_COLOR_FIVE,
         } as CSSProperties;
@@ -422,14 +422,14 @@ export class StylingLogic {
 
     //#region Public Methods
     getButtonColor(buttonName: CarouselButton, fallbackColor = CAROUSEL_COLOR_FIVE) {
-        const specificFillColor = this.options.styling?.buttons?.[buttonName]?.fillColor;
-        const allFillColor = this.options.styling?.buttons?.all?.fillColor;
+        const specificFillColor = this.options.styling?.elements?.[buttonName]?.fillColor;
+        const allFillColor = this.options.styling?.elements?.all?.fillColor;
 
         switch (buttonName) {
             case CarouselButton.arrowLeft:
             case CarouselButton.arrowRight:
             case CarouselButton.dots:
-                const allNavigationColor = this.options.styling?.buttons?.allNavigation?.fillColor;
+                const allNavigationColor = this.options.styling?.elements?.allNavigation?.fillColor;
                 return specificFillColor || allNavigationColor || allFillColor || fallbackColor;
             default:
                 return specificFillColor || allFillColor || fallbackColor;

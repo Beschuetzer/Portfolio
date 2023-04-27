@@ -21,7 +21,7 @@ export const CarouselDots = ({
     setCurrentPage,
 }: CarouselDotsProps) => {
     //#region Init
-    const { svgHref, style } = options?.styling?.buttons?.dots || {};
+    const { svgHref, style } = options?.styling?.elements?.dots || {};
     const stylingLogic = new StylingLogic({ options });
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options });
     const defaultColor = itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;

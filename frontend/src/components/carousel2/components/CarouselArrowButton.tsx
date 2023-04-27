@@ -16,9 +16,9 @@ export const CarouselArrowButton = ({
   options = {},
   onClick,
 }: CarouselArrowButtonProps) => {
-  let customButton = options?.styling?.buttons?.arrowRight || {};
+  let customButton = options?.styling?.elements?.arrowRight || {};
   if (direction === 'left') {
-    customButton = options?.styling?.buttons?.arrowLeft || {}
+    customButton = options?.styling?.elements?.arrowLeft || {}
   }
   const { style, svgHref } = customButton;
   const shouldHide = !!options?.navigation?.hideArrowsAtFinalPage;

@@ -51,7 +51,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     setCurrentCarouselId(carouselId);
     setCurrentItemIndex(index as any);
     setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(index as any);
-    setCurrentSvgHrefs(options?.styling?.buttons);
+    setCurrentSvgHrefs(options?.styling?.elements);
     itemDisplayLocationLogic.isDefaultItemDisplayLocation && enterFullScreen(itemViewerRef.current);
   }
   //#endregion
