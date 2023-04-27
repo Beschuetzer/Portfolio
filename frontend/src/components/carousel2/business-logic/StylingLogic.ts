@@ -22,7 +22,7 @@ import {
 } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 import { CarouselVideoOverlayProps } from "../components/CarouselVideoOverlay";
-import { LoadingSpinnerProps, RingOptions } from "../components/LoadingSpinner";
+import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
 
 export enum SpacingDirection {
     bottom,
@@ -162,7 +162,7 @@ export class StylingLogic {
     }
 
     get carouselLoadingSpinnerRingContainerStyle() {
-        const { containerLength, containerMargin } = this.loadingSpinnerOptions as RingOptions;
+        const { containerLength, containerMargin } = this.loadingSpinnerOptions as LoadingSpinnerOptions;
         const widthStyle = containerLength ? {
             width: containerLength,
             height: containerLength,
@@ -177,10 +177,20 @@ export class StylingLogic {
         }
     }
 
+    get carouselLoadingSpinnerColor() {
+        const { color, spinnerColor } = this.loadingSpinnerOptions as LoadingSpinnerOptions;
+        return spinnerColor || color;
+    }
+
+    get carouselLoadingSpinnerCircleItemStyle() {
+        return {
+            backgroundColor: this.carouselLoadingSpinnerColor,
+        } as CSSProperties;
+    }
+
     get carouselLoadingSpinnerRingItemStyle() {
         const RING_RADIUS_DEFAULT = 64;
-        const { radius, width, containerLength, color, spinnerColor } = this.loadingSpinnerOptions as RingOptions;
-        const customColor = spinnerColor || color;
+        const { radius, width, containerLength } = this.loadingSpinnerOptions as LoadingSpinnerOptions;
         const isContainerLengthLessThanRadius = containerLength && containerLength <= (radius || RING_RADIUS_DEFAULT);
 
         const divRadiusStyle = radius || isContainerLengthLessThanRadius ? {
@@ -189,15 +199,16 @@ export class StylingLogic {
         } as React.CSSProperties : {}
         const divSizeStyle = width || containerLength ? {
             margin: width ? width : isContainerLengthLessThanRadius ? containerLength / 4 : 4,
-            border: `${width ? width : isContainerLengthLessThanRadius ? containerLength / 4 : 4}px solid #fff`,
+            border: `${width ? width : isContainerLengthLessThanRadius ? containerLength / 4 : 4}${CAROUSEL_SPACING_UNIT} solid ${CAROUSEL_COLOR_FIVE}`,
         } as React.CSSProperties : {}
+
         const colorStyle = {
-            borderTopColor: customColor || CAROUSEL_COLOR_FIVE,
+            borderTopColor: this.carouselLoadingSpinnerColor,
             borderRightColor: `transparent`,
             borderBottomColor: `transparent`,
             borderLeftColor: `transparent`,
-        }
-
+        } as CSSProperties;
+       
         return {
             ...divRadiusStyle,
             ...divSizeStyle,
@@ -206,7 +217,7 @@ export class StylingLogic {
     }
 
     get carouselLoadingSpinnerTextStyle() {
-        const { color, textColor } = this.loadingSpinnerOptions as RingOptions;
+        const { color, textColor } = this.loadingSpinnerOptions as LoadingSpinnerOptions;
         const customColor = textColor || color;
         return {
             color: customColor,

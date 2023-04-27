@@ -1001,6 +1001,7 @@ const layoutAboveCustomOverlayAndSpinner = (
 				},
 				itemViewer: {
 					loadingSpinner: {
+						type: 'circle',
 						options: {
 							textColor: getComputedStyleCustom("--color-primary-4"),
 							spinnerColor: getComputedStyleCustom("--color-primary-3"),

@@ -4,7 +4,7 @@ import { StylingLogic } from "../business-logic/StylingLogic";
 import { useCarouselInstanceContext } from "./CarouselInstanceProvider";
 import { useCarouselContext } from "../context";
 
-export type RingOptions = {
+export type LoadingSpinnerOptions = {
 	/*
 	*Changes both text and spinner color
 	*/
@@ -41,10 +41,13 @@ type LoadingSpinnerCommonProps = {
 }
 export type LoadingSpinnerProps = {
 	type?: 'ring',
-	options?: RingOptions;
+	options?: LoadingSpinnerOptions;
 } & LoadingSpinnerCommonProps | {
 	type?: 'roller',
 	options?: {};
+} & LoadingSpinnerCommonProps | {
+	type?: 'circle',
+	options?: LoadingSpinnerOptions;
 } & LoadingSpinnerCommonProps
 
 const CLASSNAME__LOADING = getClassname({ elementName: 'loading' });
@@ -56,11 +59,11 @@ export const LoadingSpinner = ({
 }: LoadingSpinnerProps) => {
 	const { options: carouselOptionsLocal } = useCarouselInstanceContext();
 	const { options: carouselOptionsGlobal } = useCarouselContext();
-	
-	const carouselOptions = carouselOptionsLocal || carouselOptionsGlobal;
-	const stylingLogic = new StylingLogic({options: carouselOptions, loadingSpinnerOptions: options});
 
-	
+	const carouselOptions = carouselOptionsLocal || carouselOptionsGlobal;
+	const stylingLogic = new StylingLogic({ options: carouselOptions, loadingSpinnerOptions: options });
+
+
 	function renderContent(content: ReactNode | ReactNode[]) {
 		if (!show) return null;
 		switch (type) {
@@ -81,8 +84,6 @@ export const LoadingSpinner = ({
 					</>
 				);
 			case "ring":
-				console.log({style: stylingLogic.carouselLoadingSpinnerRingItemStyle});
-
 				return (
 					<>
 						{content}
@@ -94,6 +95,27 @@ export const LoadingSpinner = ({
 						</div>
 					</>
 				);
+			case 'circle':
+				return (
+					<>
+						{content}
+						<div style={stylingLogic.carouselLoadingSpinnerRingContainerStyle} className={`${CLASSNAME__LOADING}-circle`}>
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+						</div>
+
+					</>
+				)
 		}
 	}
 
