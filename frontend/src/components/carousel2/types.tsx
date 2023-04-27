@@ -40,7 +40,7 @@ export type CarouselItemViewerButtonProps = {
 } & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children' | 'shortcuts'>>
 
 
-export enum CarouselItem {
+export enum CarouselSection {
     container = 'container',
     itemViewer = 'itemViewer',
     navigation = 'navigation',
@@ -48,25 +48,25 @@ export enum CarouselItem {
     videoOverlay = 'videoOverlay',
 }
 export type CarouselItems = {
-    [CarouselItem.container]?: {
+    [CarouselSection.container]?: {
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
     } & CarouselColorOptions
     /*
     *This is the container in which the currently viewing item sits
     */
-    [CarouselItem.itemViewer]?: {
+    [CarouselSection.itemViewer]?: {
         padding?: CarouselHorizontalPaddingOptions;
     } & CarouselColorOptions;
     /*
     *This is the where the dots, arrows, and thumbanils sit
     */
-    [CarouselItem.navigation]?: {
+    [CarouselSection.navigation]?: {
         padding?: CarouselHorizontalPaddingOptions;
     } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
     /*
     *This is where the buttons, progress bar, and item description sit
     */
-    [CarouselItem.toolbar]?: {
+    [CarouselSection.toolbar]?: {
         padding?: CarouselHorizontalPaddingOptions;
         progressBar?: {
             /*
@@ -80,7 +80,7 @@ export type CarouselItems = {
      /*
     *This is the the overlay text that displays when a video is paused
     */
-    [CarouselItem.videoOverlay]?: {
+    [CarouselSection.videoOverlay]?: {
         closeButtonColor?: string;
         /*
         *This is in px
@@ -239,6 +239,10 @@ export enum CarouselButton {
     *Setting this will change all the items
     */
     all = 'all',
+    /*
+    *Setting this will change arrowLeft, arrowRight, and dots
+    */
+    allNavigation = 'allNavigation',
      /*
     *These are the buttons at the bottom of each carousel related to changing pages
     */

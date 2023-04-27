@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { CarouselButton, CarouselItem, CarouselOptions } from "../types";
+import { CarouselButton, CarouselSection, CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { convertHexToRgba, getIsVideo } from "../utils";
 import {
@@ -82,8 +82,8 @@ export class StylingLogic {
 
     get carouselStyle() {
         const common = {
-            paddingTop: `${this.getPaddingAmount(SpacingDirection.top, CarouselItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
-            paddingBottom: `${this.getPaddingAmount(SpacingDirection.bottom, CarouselItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingTop: `${this.getPaddingAmount(SpacingDirection.top, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingBottom: `${this.getPaddingAmount(SpacingDirection.bottom, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties;
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
@@ -142,8 +142,8 @@ export class StylingLogic {
 
     get carouselItemsContainerStyle() {
         const common = {
-            marginLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
-            marginRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            marginLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            marginRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
             overflow: 'hidden',
         } as CSSProperties;
 
@@ -156,7 +156,7 @@ export class StylingLogic {
             ...common,
         };
     }
-    
+
     get carouselToolbarTextStyle() {
         const customTextColor = this.options.styling?.toolbar?.textColor || this.options.styling?.buttons?.all?.fillColor;
         return {
@@ -233,8 +233,8 @@ export class StylingLogic {
             width: "100%",
             paddingTop: 0,
             paddingBottom: 0,
-            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
-            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselItem.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
             maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
         } as CSSProperties : {
 
@@ -259,7 +259,7 @@ export class StylingLogic {
         const shouldSpanWholeWidth = this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth;
         const common = {
             backgroundColor,
-            width: shouldSpanWholeWidth ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselItem.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselItem.toolbar)}${CAROUSEL_SPACING_UNIT})` : '100%',
+            width: shouldSpanWholeWidth ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})` : '100%',
         } as CSSProperties
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
@@ -315,14 +315,14 @@ export class StylingLogic {
     }
 
     get navigationContainerHorizontalPadding() {
-        const navigationPadding = this.getPaddingAmount(SpacingDirection.left, CarouselItem.navigation) + this.getPaddingAmount(SpacingDirection.right, CarouselItem.navigation);
+        const navigationPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation);
         return navigationPadding;
     }
 
     get navigationStyle() {
         const common = {
-            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
-            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselItem.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties;
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
@@ -399,8 +399,8 @@ export class StylingLogic {
             width: '100%',
             paddingTop: `${isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT / 2}${CAROUSEL_SPACING_UNIT}`,
             paddingBottom: `${CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT}${CAROUSEL_SPACING_UNIT}`,
-            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselItem.toolbar)}${CAROUSEL_SPACING_UNIT}`,
-            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselItem.toolbar)}${CAROUSEL_SPACING_UNIT}`,
+            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT}`,
         } as React.CSSProperties : {};
 
         return {
@@ -424,7 +424,16 @@ export class StylingLogic {
     getButtonColor(buttonName: CarouselButton, fallbackColor = CAROUSEL_COLOR_FIVE) {
         const specificFillColor = this.options.styling?.buttons?.[buttonName]?.fillColor;
         const allFillColor = this.options.styling?.buttons?.all?.fillColor;
-        return specificFillColor || allFillColor || fallbackColor;
+
+        switch (buttonName) {
+            case CarouselButton.arrowLeft:
+            case CarouselButton.arrowRight:
+            case CarouselButton.dots:
+                const allNavigationColor = this.options.styling?.buttons?.allNavigation?.fillColor;
+                return specificFillColor || allNavigationColor || allFillColor || fallbackColor;
+            default:
+                return specificFillColor || allFillColor || fallbackColor;
+        }
     }
 
     static getButtonColorStyle(fillColor: string, propertyName: keyof CSSProperties, style = {} as CSSProperties) {
@@ -442,7 +451,7 @@ export class StylingLogic {
     //#endregion
 
     //#region Private Methods
-    private getPaddingAmount(direction: SpacingDirection, item: CarouselItem) {
+    private getPaddingAmount(direction: SpacingDirection, item: CarouselSection) {
         let defaultPadding: number;
         let allPadding: number | undefined;
         let customPadding: number | undefined;

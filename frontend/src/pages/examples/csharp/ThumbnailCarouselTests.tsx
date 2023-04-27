@@ -685,15 +685,9 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 					}
 				},
 				buttons: {
-					dots: {
-						fillColor: getComputedStyleCustom("--color-primary-1"),
+					allNavigation: {
+						fillColor: getComputedStyleCustom("--color-primary-2"),
 					},
-					arrowLeft: {
-						fillColor: getComputedStyleCustom("--color-primary-1"),
-					},
-					arrowRight: {
-						fillColor: getComputedStyleCustom("--color-primary-1"),
-					}
 				}
 			}
 		}}
