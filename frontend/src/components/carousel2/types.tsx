@@ -11,6 +11,7 @@ export type ArrowProps = {
 
 export type ButtonProps = {
     className?: string;
+    childStyle?: CSSProperties;
     fillColor?: string;
     onClick: () => void;
     style?: CSSProperties;
@@ -85,10 +86,6 @@ export type CarouselItems = {
         *This is in px
         */
         fontSize?: number;
-         /*
-        *this is a percent of the item container height
-        */
-        heightInPercent?: number;
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
         textColor?: string;
         /*

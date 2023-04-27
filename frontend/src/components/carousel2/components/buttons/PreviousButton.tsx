@@ -12,10 +12,10 @@ export const PreviousButton = forwardRef<HTMLButtonElement, PreviousButtonProps>
   fillColor = CAROUSEL_COLOR_FIVE,
   onClick = () => null,
   showButton = true,
-  style = {},
+  childStyle = {},
 }, ref) => {
-  const firstStyle = StylingLogic.getButtonColorStyle(fillColor, 'background', style);
-  const secondStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderRightColor', style);
+  const firstStyle = StylingLogic.getButtonColorStyle(fillColor, 'background', childStyle);
+  const secondStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderRightColor', childStyle);
 
   return (
     <button ref={ref} onClick={onClick} className={`${className}  ${showButton ? '' : CLASSNAME__HIDDEN}`}>

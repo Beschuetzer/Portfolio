@@ -1027,7 +1027,7 @@ const layoutAboveCustomOverlay = (
 					closeButtonColor: getComputedStyleCustom("--color-primary-1"),
 					backgroundColor: getComputedStyleCustom("--color-primary-4"),
 					textColor: getComputedStyleCustom("--color-primary-1"),
-					widthInPercent: 100,
+					widthInPercent: 90,
 				}
 			}
 		}}

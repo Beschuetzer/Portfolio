@@ -5,10 +5,10 @@ import { ButtonProps, CarouselButton } from "../../types";
 type RestartButtonProps = {} & ButtonProps;
 
 export const RestartButton = ({
+  childStyle = {},
   className = CLASSNAME__BUTTON,
   fillColor = CAROUSEL_COLOR_FIVE,
   onClick = () => null,
-  style = {},
 }: RestartButtonProps) => {
   //todo: if deciding to not use can delete this file and scss stuff
   // const colorStyle = StylingLogic.getButtonColorStyle(style, fillColor, CarouselButton.restartButton);

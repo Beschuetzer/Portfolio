@@ -9,9 +9,9 @@ export const SeekForwardButton = forwardRef<HTMLButtonElement, SeekForwardButton
   className = CLASSNAME__BUTTON,
   fillColor = CAROUSEL_COLOR_FIVE,
   onClick = () => null,
-  style = {},
+  childStyle = {},
 }, ref) => {
-  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderLeftColor', style);
+  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderLeftColor', childStyle);
   return (
     <button ref={ref} onClick={onClick} className={className}>
       <div style={colorStyle} className={`${className}--seek-forward-left`} />

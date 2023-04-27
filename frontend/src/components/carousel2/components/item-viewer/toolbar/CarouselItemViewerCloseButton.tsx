@@ -47,8 +47,8 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={closeAction.keys} shortcutPosition={shortcutPosition} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} style={style} fillColor={fillColor}/> :
-                <CloseButton ref={ref} onClick={onClickLocal} fillColor={fillColor} style={style} />
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor}/> :
+                <CloseButton ref={ref} onClick={onClickLocal} fillColor={fillColor} childStyle={style} />
             }
         </CarouselItemViewerShortcutIndicator>
     )

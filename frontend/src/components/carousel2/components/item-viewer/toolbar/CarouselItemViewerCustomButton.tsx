@@ -10,6 +10,7 @@ type CarouselItemViewerCustomButtonProps = {
     showButton?: boolean;
     style?: CSSProperties;
     xlinkHref: string;
+    useElementStyle?: CSSProperties;
 }
 
 export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, CarouselItemViewerCustomButtonProps>(({
@@ -18,6 +19,7 @@ export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, Carousel
     onClick = () => null,
     showButton = true,
     style = {},
+    useElementStyle = {},
     xlinkHref,
 }, ref) => {
     const className = getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON });
@@ -27,9 +29,9 @@ export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, Carousel
     })
 
     return (
-        <svg ref={ref} onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''} ${!showButton ? CLASSNAME__HIDDEN : ''}`}>
+        <svg style={style} ref={ref} onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''} ${!showButton ? CLASSNAME__HIDDEN : ''}`}>
             <use
-                style={{ ...style, ...defaultStyles }}
+                style={{ ...useElementStyle, ...defaultStyles }}
                 xlinkHref={xlinkHref}
                 href={xlinkHref}
             />

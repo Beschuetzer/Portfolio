@@ -8,6 +8,7 @@ type CloseButtonProps = {
 } & ButtonProps;
 
 export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(({
+  childStyle = {},
   className = CLASSNAME__BUTTON,
   classNameModifier = '',
   fillColor = CAROUSEL_COLOR_FIVE,
@@ -19,9 +20,9 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(({
   const leftModifierClassname = `${leftClassName}-${classNameModifier}`;
   const rightClassName = `${className}--close-right`;
   const rightModifierClassname = `${rightClassName}-${classNameModifier}`;
-  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', style);
+  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
   return (
-    <button ref={ref} onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''}`}>
+    <button style={style} ref={ref} onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''}`}>
       <div style={colorStyle} className={`${leftClassName} ${classNameModifier ? leftModifierClassname : ''}`} />
       <div style={colorStyle} className={`${rightClassName} ${classNameModifier ? rightModifierClassname : ''}`} />
     </button>

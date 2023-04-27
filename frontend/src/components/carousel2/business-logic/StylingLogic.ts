@@ -164,14 +164,32 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
+    get carouselVideoOverlayCloseButtonStyle() {
+        const { right: paddingRight, top: paddingTop } = this.options.styling?.videoOverlay?.padding || {};
+        const rightStyle = paddingRight !== undefined ? {
+            right: `${paddingRight}${CAROUSEL_SPACING_UNIT}`
+        } as CSSProperties : {};
+        const topStyle = paddingTop !== undefined ? {
+            top: `${paddingTop}${CAROUSEL_SPACING_UNIT}`
+        } as CSSProperties : {};
+
+        return {
+            ...rightStyle,
+            ...topStyle,
+        } as CSSProperties;
+    }
+
     get carouselVideoOverlayStyle() {
-        const { fontSize: customFontSize, backgroundColor, textColor } = this.options.styling?.videoOverlay || {};
+        const { fontSize: customFontSize, backgroundColor, textColor, widthInPercent } = this.options.styling?.videoOverlay || {};
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoOverlay?.padding || {};
         const isDefault = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
         const overlayHeight = this.overlayRef?.current?.getBoundingClientRect().height || 0;
+        const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : "75%";
+
         const widthStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            width: "75%",
+            width: widthToUse,
+            maxWidth: widthToUse,
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
         const paddingStyle = {

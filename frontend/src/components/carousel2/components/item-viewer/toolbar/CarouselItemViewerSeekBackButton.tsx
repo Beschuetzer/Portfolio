@@ -26,8 +26,8 @@ export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemView
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={seekBackwardsAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref}  style={style} fillColor={fillColor} /> :
-                <SeekBackButton ref={ref} onClick={onClick}  style={style} fillColor={fillColor} />}
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref}  useElementStyle={style} fillColor={fillColor} /> :
+                <SeekBackButton ref={ref} onClick={onClick}  childStyle={style} fillColor={fillColor} />}
         </CarouselItemViewerShortcutIndicator>
     )
 })

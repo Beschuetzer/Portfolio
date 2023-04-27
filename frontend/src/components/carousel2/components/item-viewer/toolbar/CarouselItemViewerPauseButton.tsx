@@ -23,12 +23,12 @@ export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerP
     const pauseAction = new ToolbarActionsLogic(options).getPause();
     const stylingLogic = new StylingLogic({ options });
     const fillColor = stylingLogic.getButtonColor(CarouselButton.pauseButton);
-    
+
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={pauseAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} style={style} fillColor={fillColor}/> :
-                <PauseButton ref={ref} onClick={onClick} style={style} fillColor={fillColor}/>}
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor}/> :
+                <PauseButton ref={ref} onClick={onClick} childStyle={style} fillColor={fillColor}/>}
         </CarouselItemViewerShortcutIndicator>
     )
 })

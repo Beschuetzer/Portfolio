@@ -11,12 +11,12 @@ export const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(({
     fillColor = CAROUSEL_COLOR_ONE,
     direction,
     onClick = () => null,
-    style = {},
+    childStyle = {},
 }, ref) => {
     const classNameToUse = `${className}--arrow-${direction}`;
     const leftClassName = `${classNameToUse}-one`;
     const rightClassName = `${classNameToUse}-two`;
-    const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', style);
+    const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
     return (
         <button ref={ref} onClick={onClick} className={`${className} ${classNameToUse}`}>
             <div style={colorStyle} className={leftClassName} />

@@ -9,9 +9,9 @@ export const PauseButton = forwardRef<HTMLButtonElement, PauseButtonProps>(({
   className = CLASSNAME__BUTTON,
   onClick = () => null,
   fillColor = CAROUSEL_COLOR_FIVE,
-  style = {},
+  childStyle = {},
 }, ref) => {
-  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', style);
+  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
   return (
     <button ref={ref} onClick={onClick} className={className}>
       <div style={colorStyle} className={`${className}--pause-left`} />

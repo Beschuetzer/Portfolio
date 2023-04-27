@@ -26,8 +26,8 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={previousItemAction.keys} shortcutPosition={position}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}  style={style} fillColor={fillColor} /> :
-                <PreviousButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}  style={style} fillColor={fillColor} />}
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}  useElementStyle={style} fillColor={fillColor} /> :
+                <PreviousButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}  childStyle={style} fillColor={fillColor} />}
         </CarouselItemViewerShortcutIndicator>
     )
 })
