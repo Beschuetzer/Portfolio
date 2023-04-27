@@ -63,6 +63,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
 
     //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
     useEffect(() => {
+        setIsLoaded(false);
         if (videoRef.current?.load) {
             videoRef.current.load();
         }
@@ -77,7 +78,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                 <CarouselVideoCurrentStateIndicator isVideoPlaying={isVideoPlaying} />
                 <LoadingSpinner
                     type='roller'
-                    show={!isLoaded && isVideoPlaying}
+                    show={!isLoaded}
                     description={description}
                 />
                 <video
