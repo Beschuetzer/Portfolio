@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { getClassname, getFormattedTimeString, getIsVideo } from '../../../utils'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { getClassname, getFormattedTimeString } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../../context'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
@@ -20,6 +20,7 @@ import { useCarouselInstanceContext } from '../../CarouselInstanceProvider'
 import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic'
 import { CarouselItemProps } from '../../CarouselItem'
 import { CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH } from '../../../constants'
+import { useUpdateTimeString } from '../../../hooks/useUpdateTimeStrings'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -63,8 +64,6 @@ export const CarouselItemViewerToolbar = ({
     const playButtonRef = useRef<any>(null);
     const seekForwardButtonRef = useRef<any>(null);
     const seekBackwardButtonRef = useRef<any>(null);
-    const checkVideoTimeStringIntervalRef = useRef<any>();
-    const checkVideoTimeStringCountRef = useRef<any>(0);
 
     const [timeStrings, setTimeStrings] = useState<VideoTimeStrings>({
         durationStr: getFormattedTimeString((videoRef?.current?.duration) || -1),
@@ -112,6 +111,7 @@ export const CarouselItemViewerToolbar = ({
             action: () => onPreviousItemClickLocal(),
         },
     ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
+    useUpdateTimeString(currentItemInInstance, setTimeStrings, videoRef);
     //#endregion
 
     //#region Functions/handlers
@@ -368,30 +368,7 @@ export const CarouselItemViewerToolbar = ({
         seekBackwardButtonRef,
     ]);
 
-    //updating time string on item change when autoplay is false
-    useEffect(() => {
-        clearInterval(checkVideoTimeStringIntervalRef.current);
-        
-        if (!getIsVideo(currentItemInInstance)) return;
-        const isAutoPlay = currentItemInInstance?.video?.autoPlay;
-        if (isAutoPlay) return;
-
-        checkVideoTimeStringIntervalRef.current = setInterval(() => {
-            checkVideoTimeStringCountRef.current++;
-            if (videoRef?.current?.duration) {
-                clearInterval(checkVideoTimeStringIntervalRef.current);
-                checkVideoTimeStringCountRef.current = 0;
-                setTimeStrings({
-                    durationStr: getFormattedTimeString((videoRef?.current?.duration) || 0),
-                    currentTimeStr: getFormattedTimeString((videoRef?.current?.currentTime) || 0),
-                });
-            }
-            if (checkVideoTimeStringCountRef.current >= 50) {
-                clearInterval(checkVideoTimeStringIntervalRef.current);
-                checkVideoTimeStringCountRef.current = 0;
-            }
-        }, 250)
-    }, [currentItemInInstance])
+   
     //#endregion
 
     //#region JSX
