@@ -265,7 +265,7 @@ export enum CarouselButton {
 }
 
 export type CarouselButtons = {
-    [button in CarouselButton]?: button extends 'all' ? Pick<CarouselButtonCustomization, 'fillColor'> : CarouselButtonCustomization;
+    [button in CarouselButton]?: button extends 'all' | 'allNavigation' ? Pick<CarouselButtonCustomization, 'fillColor'> : CarouselButtonCustomization;
 }
 
 export type CarouselThumbnailBackgroundOptions = {

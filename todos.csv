@@ -1,5 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
+    -add button.allToolbar options for fill
     -overlay close button not getting fill color correctly
     -need to reset progress bar and time string on new thumbnail click
     -check to make sure that the loading spinner text is customizable too
