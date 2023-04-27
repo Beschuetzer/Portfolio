@@ -78,7 +78,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                 <CarouselVideoCurrentStateIndicator isVideoPlaying={isVideoPlaying} />
                 <LoadingSpinner
                     type='ring'
-                    show={true}
+                    show={!isLoaded}
                     description={description}
                     {...options?.styling?.itemViewer?.loadingSpinner}
                 />

@@ -182,7 +182,7 @@ export class StylingLogic {
         return spinnerColor || color;
     }
 
-    get carouselLoadingSpinnerCircleItemStyle() {
+    get carouselLoadingSpinnerBackgroundColorStyle() {
         return {
             backgroundColor: this.carouselLoadingSpinnerColor,
         } as CSSProperties;

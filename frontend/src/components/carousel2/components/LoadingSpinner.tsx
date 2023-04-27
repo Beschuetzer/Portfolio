@@ -48,6 +48,9 @@ export type LoadingSpinnerProps = {
 } & LoadingSpinnerCommonProps | {
 	type?: 'circle',
 	options?: LoadingSpinnerOptions;
+} & LoadingSpinnerCommonProps | {
+	type?: 'grid',
+	options?: LoadingSpinnerOptions;
 } & LoadingSpinnerCommonProps
 
 const CLASSNAME__LOADING = getClassname({ elementName: 'loading' });
@@ -100,20 +103,37 @@ export const LoadingSpinner = ({
 					<>
 						{content}
 						<div style={stylingLogic.carouselLoadingSpinnerRingContainerStyle} className={`${CLASSNAME__LOADING}-circle`}>
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
-							<div style={stylingLogic.carouselLoadingSpinnerCircleItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
 						</div>
 
+					</>
+				)
+			case 'grid':
+				return (
+					<>
+						{content}
+						<div className={`${CLASSNAME__LOADING}-grid`}>
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
+						</div>
 					</>
 				)
 		}

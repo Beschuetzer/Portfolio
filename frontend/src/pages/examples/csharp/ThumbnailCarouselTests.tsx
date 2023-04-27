@@ -1006,7 +1006,7 @@ const layoutAboveCustomOverlayAndSpinner = (
 							textColor: getComputedStyleCustom("--color-primary-4"),
 							spinnerColor: getComputedStyleCustom("--color-primary-3"),
 							radius: 100,
-							width: 25,
+							width: 15,
 						},
 					}
 				},
