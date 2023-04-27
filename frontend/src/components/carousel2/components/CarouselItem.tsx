@@ -1,9 +1,8 @@
-import React from 'react'
 import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
-import { convertHexToRgba, enterFullScreen, getClassname } from '../utils';
+import { enterFullScreen, getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
-import { CAROUSEL_DOT_OPACITY_DEFAULT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
+import { CLASSNAME__CAROUSEL_ITEM } from '../constants';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
 

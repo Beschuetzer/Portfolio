@@ -682,7 +682,7 @@
   opacity: 0.8 !important;
 }
 .thumbnail-carousel__item {
-  margin: 4px 0;
+  margin: 4px 0 0 0;
   position: relative;
   border-radius: 8px;
   overflow: hidden;
@@ -829,7 +829,6 @@
   top: auto;
 }
 .thumbnail-carousel__item-viewer-toolbar-container {
-  margin-top: 5px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -917,7 +916,7 @@
 .thumbnail-carousel__item-viewer-toolbar-progress {
   transition: transform 0.5s;
   width: calc(100vw - 20px);
-  margin-bottom: 5px;
+  margin-bottom: calc(5px * 3);
   cursor: pointer;
   height: 5px;
   appearance: none;

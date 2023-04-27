@@ -171,6 +171,8 @@ const items = [
 			},
 			autoPlay: false,
 			muted: true,
+			objectFit: 'cover',
+			objectPosition: 'left',
 		}
 	},
 	{
@@ -529,11 +531,6 @@ const layoutAboveWithItemHeightAndThumbnailSize = (
 				fontFamily: {
 					itemViewer: 'monospace',
 				},
-				container: {
-					padding: {
-						bottom: 10,
-					}
-				}
 			}
 		}}
 	/>
@@ -1003,8 +1000,8 @@ const layoutAboveCustomOverlayAndSpinner = (
 					loadingSpinner: {
 						type: 'circle',
 						options: {
-							textColor: getComputedStyleCustom("--color-primary-4"),
-							spinnerColor: getComputedStyleCustom("--color-primary-3"),
+							textColor: getComputedStyleCustom("--color-primary-1"),
+							spinnerColor: getComputedStyleCustom("--color-primary-2"),
 							radius: 100,
 							width: 15,
 						},
@@ -1067,7 +1064,6 @@ const layoutAboveDifferentLeftAndRightPadding = (
 						left: 5,
 						right: 20,
 						top: 0,
-						bottom: 0,
 					}
 				},
 			}

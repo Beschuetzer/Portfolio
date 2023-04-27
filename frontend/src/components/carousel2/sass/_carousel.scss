@@ -42,7 +42,7 @@
     }
 
     &__item {
-        margin: $carouselItemHoverTranslateUpAmount 0;
+        margin: $carouselItemHoverTranslateUpAmount 0 0 0;
         position: relative;
         border-radius: 8px;
         overflow: hidden;
@@ -196,7 +196,6 @@
             @include positionAbsolute($top: auto);
 
             &-container {
-                margin-top: $itemViewerProgressHeight;
                 width: 100%;
                 display: flex;
                 align-items: center;
@@ -294,7 +293,7 @@
             &-progress {
                 transition: transform $carouselAnimationDuration;
                 width: calc(100vw - #{$itemViewerToolbarMarginHorizontal});
-                margin-bottom: $itemViewerProgressHeight;
+                margin-bottom: calc(#{$itemViewerProgressHeight} * 3);
                 cursor: pointer;
                 height: $itemViewerProgressHeight;
                 appearance: none;

@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -add option object-fit and object-position to videoProps (can customize on an item by item basis)
     -add api for text color in options.styling
     -add tests for all of the background mix and match possibilities?
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'

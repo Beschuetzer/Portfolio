@@ -14,6 +14,8 @@ export type CarouselVideoProps = {
     autoPlay?: boolean;
     loop?: boolean;
     muted?: boolean;
+    objectFit?: React.CSSProperties["objectFit"];
+    objectPosition?: React.CSSProperties["objectPosition"];
     overlayProps?: CarouselVideoOverlay;
 }
 
@@ -24,14 +26,14 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         srcMain,
         video: videoProps,
     } = props;
-    const { options, itemViewerToolbarRef } = useCarouselInstanceContext();
+    const { options, itemViewerToolbarRef, currentItemInInstance } = useCarouselInstanceContext();
     const { autoPlay, loop, muted } = videoProps || {};
     const [isVideoPlaying, setIsVideoPlaying] = useState(!!autoPlay || false);
     const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
     const itemContainerRef = useRef<HTMLDivElement>();
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
-    const stylingLogic = new StylingLogic({ options, itemViewerToolbarRef });
+    const stylingLogic = new StylingLogic({ options, itemViewerToolbarRef, currentItemInInstance });
     //#endregion
 
     //#region Functions/Handlers
