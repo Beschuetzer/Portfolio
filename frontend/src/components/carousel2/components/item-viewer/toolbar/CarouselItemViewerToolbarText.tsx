@@ -22,6 +22,7 @@ export const CarouselItemViewerToolbarText = ({
     const { options: optionsGlobal } = useCarouselContext();
     const options = optionsLocal || optionsGlobal;
     const stylingLogic = new StylingLogic({options});
+
     return (
         <span style={stylingLogic.carouselToolbarTextStyle} className={CLASSNAME_TOOLBAR_MIDDLE}>
             {isVideo ? (

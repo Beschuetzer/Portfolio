@@ -11,15 +11,16 @@ type CarouselItemViewerProgressBarProps = {
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
 
+const INITIAL_VALUE = 0;
 export const CarouselItemViewerProgressBar = ({
     setTimeStrings,
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
     const { options: optionsLocal } = useCarouselContext();
-    const { options: optionsGlobal } = useCarouselInstanceContext();
+    const { options: optionsGlobal, currentItemInInstance } = useCarouselInstanceContext();
     const options = { ...optionsLocal, ...optionsGlobal};  //for some reason some setting only appear in one or the other
     
-    const [progressBarValue, setProgressBarValue] = useState(0);
+    const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
     const stylingLogic = new StylingLogic({ options, progressBarValue });
 
     const onProgressBarClick = useCallback((e: MouseEvent) => {
@@ -70,6 +71,10 @@ export const CarouselItemViewerProgressBar = ({
             }
         }
     }, [])
+
+    useEffect(() => {
+       setProgressBarValue(INITIAL_VALUE);
+    }, [currentItemInInstance])
 
     return (
         <div

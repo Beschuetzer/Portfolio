@@ -21,7 +21,6 @@ import {
     CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT
 } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
-import { CarouselItemProps } from "../components/CarouselItem";
 import { CarouselVideoOverlayProps } from "../components/CarouselVideoOverlay";
 
 export enum SpacingDirection {
@@ -391,7 +390,7 @@ export class StylingLogic {
     }
 
     get toolbarStyle() {
-        const isItemVideo = getIsVideo(this.currentItemInInstance || {} as CarouselItemProps);
+        const isItemVideo = getIsVideo(this.currentItemInInstance);
         const customColor = this.options.styling?.toolbar?.backgroundColor || this.options.styling?.container?.backgroundColor;
         const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             background: customColor || CAROUSEL_COLOR_ONE,

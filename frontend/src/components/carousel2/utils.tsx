@@ -61,7 +61,7 @@ export function getIsPointInsideElement(point: Point, element: HTMLElement | nul
     return isValidX && isValidY;
 }
 
-export function getIsVideo(item: CarouselItemProps) {
+export function getIsVideo(item: CarouselItemProps | undefined) {
     const currentItemSrc = item?.srcMain || '';
     return currentItemSrc?.match(
         getRegexStringFromStringArray(VIDEO_EXTENSIONS),
