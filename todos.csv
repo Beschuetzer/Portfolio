@@ -1,18 +1,16 @@
 Carousel rework
   -itemDisplay non-default stuff:
+    -add option for hiding thumbnail overlay (hide by default for non-none cases)
+    -add option to specify currentItem's border string (make it so that the buttons.all option changes the color too?;  would need some renaming though of 'buttons')
+    -selecting an image before the currently selected causes a page decrement
+    -X button should be full screen button
+    -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom)
+    -need to test different layout options with itemDisplayLocation, namely the custom item spacing
     -add api for text color in options.styling
     -add tests for all of the background mix and match possibilities?
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'
     -need to create individual paddings for toolbar (and others?)
-    -add option for hiding thumbnail overlay (hide by default for non-none cases)
-    -add option to specify currentItem's border string (make it so that the buttons.all option changes the color too?;  would need some renaming though of 'buttons')
-    -selecting an image before the currently selected causes a page decrement
-    -render a LoadingContainer of height 50rem with a spinner to show while loading (need new POS in CarouselInstanceProvider?)
     -next/previous buttons hidden on load
-    -X button should be full screen button
-    -text sizing too large?
-    -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom)
-    -need to test different layout options with itemDisplayLocation, namely the custom item spacing
 
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -move CarouselItem conditional styling logic to StylingLogic?
