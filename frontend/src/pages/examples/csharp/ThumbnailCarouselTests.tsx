@@ -684,6 +684,17 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 						right: 20,
 					}
 				},
+				buttons: {
+					dots: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					arrowLeft: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
+					arrowRight: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					}
+				}
 			}
 		}}
 	/>

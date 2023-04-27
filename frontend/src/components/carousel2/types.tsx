@@ -62,7 +62,7 @@ export type CarouselItems = {
     */
     [CarouselItem.navigation]?: {
         padding?: CarouselHorizontalPaddingOptions;
-    } & CarouselColorOptions;
+    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
     /*
     *This is where the buttons, progress bar, and item description sit
     */
@@ -236,7 +236,7 @@ export type CarouselButtonCustomization = {
 
 export enum CarouselButton {
     /*
-    *Setting this will change all the 
+    *Setting this will change all the items
     */
     all = 'all',
      /*
