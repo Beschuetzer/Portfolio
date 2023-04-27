@@ -52,7 +52,7 @@ export type CarouselVideoOverlayProps = {
 export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     //#region Init
     const { currentButtons: currentSvgHrefs, options: optionsGlobal } = useCarouselContext();
-    const { options: optionsLocal } = useCarouselInstanceContext();
+    const { options: optionsLocal, currentItemInInstance } = useCarouselInstanceContext();
 
     const { children, isVideoPlaying, sections, closeButton, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
@@ -61,7 +61,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     const options = optionsLocal || optionsGlobal;
     const { svgHref } = currentSvgHrefs?.closeButton || {};
     const isCustom = !!children;
-    const stylingLogic = new StylingLogic({ options, videoRef, overlayRef });
+    const stylingLogic = new StylingLogic({ options, videoRef, overlayRef, currentItemInInstance });
     const closeButtonColor = stylingLogic.carouselVideoCloseButtonColor;
     //#endregion
 

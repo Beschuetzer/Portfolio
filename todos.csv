@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -overlay close button not correct why using standard format item
     -add videoContainer as customizable item (namely the background color); or add videoBackgroundColor to itemContainer options
     -add option for video to change object-fit type?
     -add api for text color in options.styling

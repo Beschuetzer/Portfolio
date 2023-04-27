@@ -232,6 +232,7 @@ export class StylingLogic {
     }
 
     get carouselVideoOverlayCloseButtonStyle() {
+        const areChildrenPresent = !!this.currentItemInInstance?.video?.overlayProps?.children;
         const { right: paddingRight, top: paddingTop } = this.options.styling?.videoOverlay?.padding || {};
         const rightStyle = paddingRight !== undefined ? {
             right: `${paddingRight}${CAROUSEL_SPACING_UNIT}`
@@ -240,10 +241,10 @@ export class StylingLogic {
             top: `${paddingTop}${CAROUSEL_SPACING_UNIT}`
         } as CSSProperties : {};
 
-        return {
+        return areChildrenPresent ? {
             ...rightStyle,
             ...topStyle,
-        } as CSSProperties;
+        } as CSSProperties : {} as CSSProperties;
     }
 
     get carouselVideoOverlayStyle() {
