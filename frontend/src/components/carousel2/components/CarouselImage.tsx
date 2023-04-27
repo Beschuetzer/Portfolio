@@ -20,7 +20,7 @@ export const CarouselImage = (props: CarouselItemProps) => {
 
     return (
         <CarouselItemViewerContainer ref={containerRef}>
-            <LoadingSpinner type='ring' show={!isLoaded} description={description} />
+            <LoadingSpinner type='ring' show={!isLoaded} description={description} {...options?.styling?.itemViewer?.loadingSpinner} />
             <img
             style={stylingLogic.carouselImageStlye}
                 className={isLoaded ? '' : CLASSNAME__HIDDEN}

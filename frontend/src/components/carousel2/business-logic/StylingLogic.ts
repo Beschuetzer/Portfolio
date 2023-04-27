@@ -22,6 +22,7 @@ import {
 } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 import { CarouselVideoOverlayProps } from "../components/CarouselVideoOverlay";
+import { LoadingSpinnerProps, RingOptions } from "../components/LoadingSpinner";
 
 export enum SpacingDirection {
     bottom,
@@ -34,6 +35,7 @@ export type StylingLogicConstructor = {
     options: CarouselOptions | undefined;
     progressBarValue?: number;
     overlayRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
+    loadingSpinnerOptions?: LoadingSpinnerProps['options'];
 } & Partial<Pick<CarouselInstanceContextProps, 'itemViewerToolbarRef' | 'currentItemInInstance'>>
     & Partial<Pick<CarouselVideoOverlayProps, 'videoRef'>>
 /*
@@ -45,6 +47,7 @@ export class StylingLogic {
     private isCurrentItem: boolean | undefined;
     private itemDisplayLocationLogic: ItemDisplayLocationLogic;
     private itemViewerToolbarRef: CarouselInstanceContextProps['itemViewerToolbarRef'];
+    private loadingSpinnerOptions: LoadingSpinnerProps['options'];
     private options: CarouselOptions;
     private overlayRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
     private progressBarValue: number;
@@ -55,6 +58,7 @@ export class StylingLogic {
             currentItemInInstance,
             isCurrentItem,
             itemViewerToolbarRef,
+            loadingSpinnerOptions,
             options,
             overlayRef,
             progressBarValue,
@@ -62,6 +66,7 @@ export class StylingLogic {
         } = constructor;
         this.currentItemInInstance = currentItemInInstance;
         this.isCurrentItem = isCurrentItem;
+        this.loadingSpinnerOptions = loadingSpinnerOptions;
         this.itemViewerToolbarRef = itemViewerToolbarRef;
         this.progressBarValue = progressBarValue || 0;
         this.videoRef = videoRef;
@@ -156,8 +161,60 @@ export class StylingLogic {
         };
     }
 
+    get carouselLoadingSpinnerRingContainerStyle() {
+        const { containerLength, containerMargin } = this.loadingSpinnerOptions as RingOptions;
+        const widthStyle = containerLength ? {
+            width: containerLength,
+            height: containerLength,
+        } as React.CSSProperties : {}
+        const marginStyle = containerMargin ? {
+            margin: containerMargin,
+        } as React.CSSProperties : {}
+
+        return {
+            ...widthStyle,
+            ...marginStyle,
+        }
+    }
+
+    get carouselLoadingSpinnerRingItemStyle() {
+        const RING_RADIUS_DEFAULT = 64;
+        const { radius, width, containerLength, color, spinnerColor } = this.loadingSpinnerOptions as RingOptions;
+        const customColor = spinnerColor || color;
+        const isContainerLengthLessThanRadius = containerLength && containerLength <= (radius || RING_RADIUS_DEFAULT);
+
+        const divRadiusStyle = radius || isContainerLengthLessThanRadius ? {
+            width: Math.min((radius || Number.MAX_SAFE_INTEGER), containerLength || Number.MAX_SAFE_INTEGER),
+            height: Math.min(radius || Number.MAX_SAFE_INTEGER, containerLength || Number.MAX_SAFE_INTEGER),
+        } as React.CSSProperties : {}
+        const divSizeStyle = width || containerLength ? {
+            margin: width ? width : isContainerLengthLessThanRadius ? containerLength / 4 : 4,
+            border: `${width ? width : isContainerLengthLessThanRadius ? containerLength / 4 : 4}px solid #fff`,
+        } as React.CSSProperties : {}
+        const colorStyle = {
+            borderTopColor: customColor || CAROUSEL_COLOR_FIVE,
+            borderRightColor: `transparent`,
+            borderBottomColor: `transparent`,
+            borderLeftColor: `transparent`,
+        }
+
+        return {
+            ...divRadiusStyle,
+            ...divSizeStyle,
+            ...colorStyle,
+        } as CSSProperties;
+    }
+
+    get carouselLoadingSpinnerTextStyle() {
+        const { color, textColor } = this.loadingSpinnerOptions as RingOptions;
+        const customColor = textColor || color;
+        return {
+            color: customColor,
+        } as CSSProperties;
+    }
+
     get carouselToolbarTextStyle() {
-        const customTextColor = this.options.styling?.toolbar?.textColor || this.options.styling?.elements?.all?.fillColor;
+        const customTextColor = this.options.styling?.toolbar?.textColor || this.allFillColor;
         return {
             color: customTextColor || CAROUSEL_COLOR_FIVE,
         } as CSSProperties;
@@ -410,6 +467,10 @@ export class StylingLogic {
     //#endregion
 
     //#region Private Getters
+    private get allFillColor() {
+        return this.options.styling?.elements?.all?.fillColor;
+    }
+
     private get carouselItemContainerHeight() {
         return `${this.options?.layout?.itemDisplayHeight || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
     }
@@ -422,14 +483,13 @@ export class StylingLogic {
     //#region Public Methods
     getButtonColor(buttonName: CarouselElement, fallbackColor = CAROUSEL_COLOR_FIVE) {
         const specificFillColor = this.options.styling?.elements?.[buttonName]?.fillColor;
-        const allFillColor = this.options.styling?.elements?.all?.fillColor;
 
         switch (buttonName) {
             case CarouselElement.arrowLeft:
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
                 const navigationElementsColor = this.options.styling?.navigation?.elementColor;
-                return specificFillColor || navigationElementsColor || allFillColor || fallbackColor;
+                return specificFillColor || navigationElementsColor || this.allFillColor || fallbackColor;
             case CarouselElement.closeButton:
             case CarouselElement.nextButton:
             case CarouselElement.pauseButton:
@@ -438,9 +498,9 @@ export class StylingLogic {
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
                 const toolbarElementsColor = this.options.styling?.toolbar?.elementColor;
-                return specificFillColor || toolbarElementsColor || allFillColor || fallbackColor;
+                return specificFillColor || toolbarElementsColor || this.allFillColor || fallbackColor;
             default:
-                return specificFillColor || allFillColor || fallbackColor;
+                return specificFillColor || this.allFillColor || fallbackColor;
         }
     }
 

@@ -1,7 +1,14 @@
 import { ReactNode } from "react";
 import { getClassname } from "../utils";
+import { StylingLogic } from "../business-logic/StylingLogic";
+import { useCarouselInstanceContext } from "./CarouselInstanceProvider";
+import { useCarouselContext } from "../context";
 
-type RingOptions = {
+export type RingOptions = {
+	/*
+	*Changes both text and spinner color
+	*/
+	color?: string;
 	/*
 	*default is 8px; The margin of the container
 	*/
@@ -15,6 +22,14 @@ type RingOptions = {
 	*/
 	radius?: number;
 	/*
+	*Changes the spinner color.  Overrides any value for 'color'.
+	*/
+	spinnerColor?: string;
+	/*
+	*Changes text color.  Overrides any value for 'color'.
+	*/
+	textColor?: string;
+	/*
 	*Default is 8px;  How thick the line is
 	*/
 	width?: number;
@@ -24,7 +39,7 @@ type LoadingSpinnerCommonProps = {
 	description?: string;
 	show?: boolean;
 }
-type LoadingSpinnerProps = {
+export type LoadingSpinnerProps = {
 	type?: 'ring',
 	options?: RingOptions;
 } & LoadingSpinnerCommonProps | {
@@ -33,14 +48,19 @@ type LoadingSpinnerProps = {
 } & LoadingSpinnerCommonProps
 
 const CLASSNAME__LOADING = getClassname({ elementName: 'loading' });
-const RING_RADIUS_DEFAULT = 64;
 export const LoadingSpinner = ({
 	description = '',
 	options = {},
 	show = false,
 	type = 'ring',
 }: LoadingSpinnerProps) => {
+	const { options: carouselOptionsLocal } = useCarouselInstanceContext();
+	const { options: carouselOptionsGlobal } = useCarouselContext();
+	
+	const carouselOptions = carouselOptionsLocal || carouselOptionsGlobal;
+	const stylingLogic = new StylingLogic({options: carouselOptions, loadingSpinnerOptions: options});
 
+	
 	function renderContent(content: ReactNode | ReactNode[]) {
 		if (!show) return null;
 		switch (type) {
@@ -61,35 +81,16 @@ export const LoadingSpinner = ({
 					</>
 				);
 			case "ring":
-				const { radius, width, containerLength, containerMargin } = options as RingOptions;
-				const isContainerLengthLessThanRadius = containerLength && containerLength <= (radius || RING_RADIUS_DEFAULT);
-				const widthStyle = containerLength ? {
-					width: containerLength,
-					height: containerLength,
-				} as React.CSSProperties : {}
-				const marginStyle = containerMargin ? {
-					margin: containerMargin,
-				} as React.CSSProperties : {}
-				const divRadiusStyle = radius || isContainerLengthLessThanRadius ? {
-					width: Math.min((radius || Number.MAX_SAFE_INTEGER), containerLength || Number.MAX_SAFE_INTEGER),
-					height: Math.min(radius || Number.MAX_SAFE_INTEGER, containerLength || Number.MAX_SAFE_INTEGER),
-				} as React.CSSProperties : {}
-				const divSizeStyle = width || containerLength ? {
-					margin: width ? width : isContainerLengthLessThanRadius ? containerLength / 4 : 4,
-					border: `${width ? width : isContainerLengthLessThanRadius ? containerLength / 4 : 4}px solid #fff`,
-					borderTopColor: `#fff`,
-					borderRightColor: `transparent`,
-					borderBottomColor: `transparent`,
-					borderLeftColor: `transparent`,
-				} as React.CSSProperties : {}
+				console.log({style: stylingLogic.carouselLoadingSpinnerRingItemStyle});
+
 				return (
 					<>
 						{content}
-						<div className={`${CLASSNAME__LOADING}-ring`} style={{ ...widthStyle, ...marginStyle }}>
-							<div style={{ ...divRadiusStyle, ...divSizeStyle }} />
-							<div style={{ ...divRadiusStyle, ...divSizeStyle }} />
-							<div style={{ ...divRadiusStyle, ...divSizeStyle }} />
-							<div style={{ ...divRadiusStyle, ...divSizeStyle }} />
+						<div className={`${CLASSNAME__LOADING}-ring`} style={stylingLogic.carouselLoadingSpinnerRingContainerStyle}>
+							<div style={stylingLogic.carouselLoadingSpinnerRingItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerRingItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerRingItemStyle} />
+							<div style={stylingLogic.carouselLoadingSpinnerRingItemStyle} />
 						</div>
 					</>
 				);
@@ -99,7 +100,7 @@ export const LoadingSpinner = ({
 	return (
 		<div className={`${CLASSNAME__LOADING}-container`}>
 			{renderContent((
-				<div className={`${CLASSNAME__LOADING}-text`}>
+				<div style={stylingLogic.carouselLoadingSpinnerTextStyle} className={`${CLASSNAME__LOADING}-text`}>
 					{description ? <h2>Loading '{description}'</h2> : null}
 				</div>
 			))}

@@ -973,7 +973,7 @@ const layoutAboveButtonsAllWithSpecificFillColors = (
 		}}
 	/>
 );
-const layoutAboveCustomOverlay = (
+const layoutAboveCustomOverlayAndSpinner = (
 	<Carousel
 		items={items}
 		options={{
@@ -998,6 +998,16 @@ const layoutAboveCustomOverlay = (
 					dots: {
 						fillColor: getComputedStyleCustom("--color-primary-2"),
 					},
+				},
+				itemViewer: {
+					loadingSpinner: {
+						options: {
+							textColor: getComputedStyleCustom("--color-primary-4"),
+							spinnerColor: getComputedStyleCustom("--color-primary-3"),
+							radius: 100,
+							width: 25,
+						},
+					}
 				},
 				fontFamily: {
 					itemViewer: 'monospace',
@@ -1184,8 +1194,8 @@ const SECTIONS: Sections = [
 				jsx: layoutAboveButtonsAllWithSpecificFillColors,
 			},
 			{
-				label: "Display Above Custom Overlay Style",
-				jsx: layoutAboveCustomOverlay,
+				label: "Display Above Custom Overlay Style and Loading Spinner",
+				jsx: layoutAboveCustomOverlayAndSpinner,
 			},
 		]
 	],

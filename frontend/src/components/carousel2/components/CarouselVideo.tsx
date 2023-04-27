@@ -77,9 +77,10 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             <div style={stylingLogic.carouselVideoContainerStyle}>
                 <CarouselVideoCurrentStateIndicator isVideoPlaying={isVideoPlaying} />
                 <LoadingSpinner
-                    type='roller'
-                    show={!isLoaded}
+                    type='ring'
+                    show={true}
                     description={description}
+                    {...options?.styling?.itemViewer?.loadingSpinner}
                 />
                 <video
                     className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}

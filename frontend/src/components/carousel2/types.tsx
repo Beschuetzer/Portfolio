@@ -1,6 +1,7 @@
 import { CSSProperties } from "react";
 import { CarouselItemViewerShortcutIndicatorProps } from "./components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
 import { KeyboardShortcut } from "./hooks/useKeyboardShortcuts";
+import { LoadingSpinnerProps } from "./components/LoadingSpinner";
 
 //#region Prop Types
 export type ArrowButtonDirection = 'left' | 'right';
@@ -55,6 +56,7 @@ export type CarouselSections = {
     *This is the container in which the currently viewing item sits
     */
     [CarouselSection.itemViewer]?: {
+        loadingSpinner?: Partial<Omit<LoadingSpinnerProps, 'description' | 'show'>>;
         padding?: CarouselHorizontalPaddingOptions;
     } & CarouselColorOptions;
     /*
@@ -244,7 +246,7 @@ export type CarouselButtonCustomization = {
 
 export enum CarouselElement {
     /*
-    *Setting this will change all the items.  'elementColor' specified in a given section will override this value
+    *Setting this will change all the items below.  'elementColor' specified in a given section will override this value
     */
     all = 'all',
      /*
