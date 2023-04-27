@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { CarouselButton, CarouselSection, CarouselOptions } from "../types";
+import { CarouselElement, CarouselSection, CarouselOptions } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 import { convertHexToRgba, getIsVideo } from "../utils";
 import {
@@ -421,16 +421,25 @@ export class StylingLogic {
     //#endregion
 
     //#region Public Methods
-    getButtonColor(buttonName: CarouselButton, fallbackColor = CAROUSEL_COLOR_FIVE) {
+    getButtonColor(buttonName: CarouselElement, fallbackColor = CAROUSEL_COLOR_FIVE) {
         const specificFillColor = this.options.styling?.elements?.[buttonName]?.fillColor;
         const allFillColor = this.options.styling?.elements?.all?.fillColor;
 
         switch (buttonName) {
-            case CarouselButton.arrowLeft:
-            case CarouselButton.arrowRight:
-            case CarouselButton.dots:
-                const allNavigationColor = this.options.styling?.elements?.allNavigation?.fillColor;
-                return specificFillColor || allNavigationColor || allFillColor || fallbackColor;
+            case CarouselElement.arrowLeft:
+            case CarouselElement.arrowRight:
+            case CarouselElement.dots:
+                const navigationElementsColor = this.options.styling?.navigation?.elementColor;
+                return specificFillColor || navigationElementsColor || allFillColor || fallbackColor;
+            case CarouselElement.closeButton:
+            case CarouselElement.nextButton:
+            case CarouselElement.pauseButton:
+            case CarouselElement.playButton:
+            case CarouselElement.previousButton:
+            case CarouselElement.seekBackButton:
+            case CarouselElement.seekForwardButton:
+                const toolbarElementsColor = this.options.styling?.toolbar?.elementColor;
+                return specificFillColor || toolbarElementsColor || allFillColor || fallbackColor;
             default:
                 return specificFillColor || allFillColor || fallbackColor;
         }

@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { useCarouselContext } from '../../../context';
 import { PreviousButton } from '../../buttons/PreviousButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
-import { CarouselButton, CarouselItemViewerButtonProps } from '../../../types';
+import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
@@ -21,7 +21,7 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
     const { svgHref, style } = currentSvgs?.previousButton || {};
     const previousItemAction = new ToolbarActionsLogic(options).getPreviousItem();
     const stylingLogic = new StylingLogic({ options });
-    const fillColor = stylingLogic.getButtonColor(CarouselButton.previousButton);
+    const fillColor = stylingLogic.getButtonColor(CarouselElement.previousButton);
     
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={previousItemAction.keys} shortcutPosition={position}>

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { useCarouselContext } from '../../../context';
-import { CarouselButton, CarouselItemViewerButtonProps } from '../../../types';
+import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { PauseButton } from '../../buttons/PauseButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
@@ -22,7 +22,7 @@ export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerP
     const { svgHref, style } = currentSvgs?.pauseButton || {};
     const pauseAction = new ToolbarActionsLogic(options).getPause();
     const stylingLogic = new StylingLogic({ options });
-    const fillColor = stylingLogic.getButtonColor(CarouselButton.pauseButton);
+    const fillColor = stylingLogic.getButtonColor(CarouselElement.pauseButton);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={pauseAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>

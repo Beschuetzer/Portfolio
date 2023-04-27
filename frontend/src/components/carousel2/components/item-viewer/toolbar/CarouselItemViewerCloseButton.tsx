@@ -5,7 +5,7 @@ import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton
 import { CloseButton } from '../../buttons/CloseButton';
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
-import { CarouselButton, CarouselItemViewerButtonProps } from '../../../types';
+import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { exitFullScreen } from '../../../utils';
 import { ToolbarLogic } from '../../../business-logic/ToolbarLogic';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
@@ -27,7 +27,7 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     const closeAction = new ToolbarActionsLogic(options).getClose();
     const stylingLogic = new StylingLogic({options});
     const { svgHref, style } = currentSvgs?.closeButton || {};
-    const fillColor = stylingLogic.getButtonColor(CarouselButton.closeButton);
+    const fillColor = stylingLogic.getButtonColor(CarouselElement.closeButton);
     useKeyboardShortcuts([
         {
             keys: closeAction.keys,

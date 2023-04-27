@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { useCarouselContext } from '../../../context';
 import { NextButton } from '../../buttons/NextButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
-import { CarouselButton, CarouselItemViewerButtonProps } from '../../../types';
+import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
@@ -21,7 +21,7 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
     const { svgHref, style } = currentSvgs?.nextButton || {};
     const nextItemAction = new ToolbarActionsLogic(options).getNextItem();
     const stylingLogic = new StylingLogic({ options });
-    const fillColor = stylingLogic.getButtonColor(CarouselButton.nextButton);
+    const fillColor = stylingLogic.getButtonColor(CarouselElement.nextButton);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={nextItemAction.keys} shortcutPosition={position}>

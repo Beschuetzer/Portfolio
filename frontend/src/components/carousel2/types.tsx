@@ -61,6 +61,10 @@ export type CarouselSections = {
     *This is the where the dots, arrows, and thumbanils sit
     */
     [CarouselSection.navigation]?: {
+        /*
+        *This changes the dots and arrows
+        */
+        elementColor?: string;
         padding?: CarouselHorizontalPaddingOptions;
     } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
     /*
@@ -75,6 +79,10 @@ export type CarouselSections = {
             */
             shouldSpanContainerWidth?: boolean;
         } & CarouselColorOptions;
+        /*
+        *This changes all of the button colors.  To change individual ones, use styling.elements.buttonNameHere
+        */
+        elementColor?: string;
         textColor?: string;
     } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
      /*
@@ -234,19 +242,11 @@ export type CarouselButtonCustomization = {
     style?: CSSProperties;
 }
 
-export enum CarouselButton {
+export enum CarouselElement {
     /*
-    *Setting this will change all the items.  allNavigation and allButton will override this
+    *Setting this will change all the items.  'elementColor' specified in a given section will override this value
     */
     all = 'all',
-    /*
-    *Setting this will change all the buttons.
-    */
-    allButtons = 'allButtons',
-    /*
-    *Setting this will change arrowLeft, arrowRight, and dots
-    */
-    allNavigation = 'allNavigation',
      /*
     *These are the buttons at the bottom of each carousel related to changing pages
     */
@@ -269,7 +269,7 @@ export enum CarouselButton {
 }
 
 export type CarouselButtons = {
-    [button in CarouselButton]?: button extends CarouselButton.all | CarouselButton.allButtons | CarouselButton.allNavigation ? Pick<CarouselButtonCustomization, 'fillColor'> : CarouselButtonCustomization;
+    [button in CarouselElement]?: button extends CarouselElement.all ? Pick<CarouselButtonCustomization, 'fillColor'> : CarouselButtonCustomization;
 }
 
 export type CarouselThumbnailBackgroundOptions = {

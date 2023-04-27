@@ -657,7 +657,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 			styling: {
 				fontFamily: {
 					itemViewer: 'monospace',
-
 				},
 				container: {
 					backgroundColor: getComputedStyleCustom("--color-primary-4"),
@@ -670,7 +669,8 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 				},
 				navigation: {
 					backgroundColor: getComputedStyleCustom("--color-primary-4"),
-				},
+					elementColor: getComputedStyleCustom("--color-primary-1"),
+				},	
 				itemViewer: {
 					backgroundColor: getComputedStyleCustom("--color-primary-4"),
 				},
@@ -684,15 +684,9 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 						left: 20,
 						right: 20,
 					},
+					elementColor:  getComputedStyleCustom("--color-primary-4"),
+					textColor:  getComputedStyleCustom("--color-primary-4"),
 				},
-				elements: {
-					allNavigation: {
-						fillColor: getComputedStyleCustom("--color-primary-2"),
-					},
-					allButtons: {
-						fillColor: getComputedStyleCustom("--color-primary-4"),
-					},
-				}
 			}
 		}}
 	/>

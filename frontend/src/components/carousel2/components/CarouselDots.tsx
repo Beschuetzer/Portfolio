@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { CarouselItemProps } from './CarouselItem';
 import { getClassname } from '../utils';
 import { CAROUSEL_COLOR_FIVE, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
-import { ArrowProps, CarouselButton, CarouselNavigationProps, CarouselOptions } from '../types';
+import { ArrowProps, CarouselElement, CarouselNavigationProps, CarouselOptions } from '../types';
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 
@@ -25,7 +25,7 @@ export const CarouselDots = ({
     const stylingLogic = new StylingLogic({ options });
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options });
     const defaultColor = itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;
-    const fillColor = stylingLogic.getButtonColor(CarouselButton.dots, defaultColor);
+    const fillColor = stylingLogic.getButtonColor(CarouselElement.dots, defaultColor);
     //#endregion
 
     //#region Handlers/Functions

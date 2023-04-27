@@ -1,6 +1,5 @@
-import { StylingLogic } from "../../business-logic/StylingLogic";
 import { CAROUSEL_COLOR_FIVE, CLASSNAME__BUTTON } from "../../constants";
-import { ButtonProps, CarouselButton } from "../../types";
+import { ButtonProps } from "../../types";
 
 type RestartButtonProps = {} & ButtonProps;
 

@@ -4,7 +4,7 @@ import { CarouselVideoOverlayProps } from "./components/CarouselVideoOverlay";
 import { EMPTY_STRING } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
-import { CarouselOptions, CarouselButton, CarouselButtons } from "./types";
+import { CarouselOptions, CarouselButtons } from "./types";
 import { ToolbarLogic } from "./business-logic/ToolbarLogic";
 
 type CarouselContextProps = {

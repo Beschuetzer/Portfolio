@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { useCarouselContext } from '../../../context';
-import { CarouselButton, CarouselItemViewerButtonProps } from '../../../types';
+import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { PlayButton } from '../../buttons/PlayButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
@@ -23,7 +23,7 @@ export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPl
     const { svgHref, style } = currentSvgs?.playButton || {};
     const playAction = new ToolbarActionsLogic(options).getPlay();
     const stylingLogic = new StylingLogic({ options });
-    const fillColor = stylingLogic.getButtonColor(CarouselButton.playButton);
+    const fillColor = stylingLogic.getButtonColor(CarouselElement.playButton);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={playAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>

@@ -1,6 +1,6 @@
 import { forwardRef, useCallback } from 'react';
 import { useCarouselContext } from '../../../context';
-import { CarouselButton, CarouselItemViewerButtonProps } from '../../../types';
+import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { SeekForwardButton } from '../../buttons/SeekForwardButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
@@ -22,7 +22,7 @@ export const CarouselItemViewerSeekForwardButton = forwardRef<any, CarouselItemV
     const { svgHref, style } = currentSvgs?.seekForwardButton || {};
     const seekForwardAction = new ToolbarActionsLogic(options).getSeekForwards();
     const stylingLogic = new StylingLogic({ options });
-    const fillColor = stylingLogic.getButtonColor(CarouselButton.seekForwardButton);
+    const fillColor = stylingLogic.getButtonColor(CarouselElement.seekForwardButton);
     
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={seekForwardAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>

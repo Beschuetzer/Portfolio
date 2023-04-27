@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { CAROUSEL_COLOR_FIVE, CLASSNAME__BUTTON } from "../../constants";
-import { ButtonProps, CarouselButton } from "../../types";
+import { ButtonProps } from "../../types";
 import { StylingLogic } from '../../business-logic/StylingLogic';
 
 type SeekBackButtonProps = {} & ButtonProps;
