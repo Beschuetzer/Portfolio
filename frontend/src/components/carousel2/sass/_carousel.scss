@@ -322,6 +322,7 @@
 
     &__video {
         width: 100vw;
+        object-fit: contain;
         max-height: 100vh;
 
         &-overlay {

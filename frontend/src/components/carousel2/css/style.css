@@ -939,6 +939,7 @@
 }
 .thumbnail-carousel__video {
   width: 100vw;
+  object-fit: contain;
   max-height: 100vh;
 }
 .thumbnail-carousel__video-overlay {
