@@ -84,6 +84,10 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
             closeButton.rightInRem && setCssCustomProperty(CLASSNAME__OVERLAY_BUTTON_RIGHT, `${closeButton.rightInRem}rem`);
         }
     }, [])
+
+    useEffect(() => {
+        setIsVisible(true);
+    }, [currentItemInInstance])
     //#endregion
 
     //#region JSX
