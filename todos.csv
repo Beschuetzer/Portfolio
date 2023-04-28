@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -selecting an image before the currently selected causes a page decrement
     -rename CarouselVideoOverlay to CarouselVideoModal?
     -X button should be full screen button
     -next/previous buttons hidden on load

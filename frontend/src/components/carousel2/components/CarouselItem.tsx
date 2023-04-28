@@ -46,12 +46,15 @@ export const CarouselItem = (props: CarouselItemProps) => {
 
   //#region Functions/Handlers
   async function onPress(e: MouseEvent) {
-    setOptions(options || OPTIONS_DEFAULT);
-    setCurrentCarouselId(carouselId);
-    setCurrentItemIndex(index as any);
-    setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(index as any);
-    setCurrentSvgHrefs(options?.styling?.elements);
-    itemDisplayLocationLogic.isDefaultItemDisplayLocation && enterFullScreen(itemViewerRef.current);
+    if (itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
+      setOptions(options || OPTIONS_DEFAULT);
+      setCurrentCarouselId(carouselId);
+      setCurrentItemIndex(index as any);
+      setCurrentSvgHrefs(options?.styling?.elements);
+      enterFullScreen(itemViewerRef.current);
+    } else {
+      setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(index as any);
+    }
   }
   //#endregion
 

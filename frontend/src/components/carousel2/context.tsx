@@ -29,6 +29,7 @@ export type CarouselValueProps = {
     toolbarLogic: ToolbarLogic;
 }
 
+export const TRANSLATION_AMOUNT_INITIAL = 0;
 export const CURRENT_ITEM_INDEX_INITIAL = -1;
 export const CURRENT_ITEMS_INITIAL = [];
 export const CURRENT_PAGE_INITIAL = 0;

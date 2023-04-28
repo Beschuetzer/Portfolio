@@ -4,7 +4,7 @@ import { CarouselProps } from './Carousel';
 import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
-import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, useCarouselContext } from '../context';
+import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, TRANSLATION_AMOUNT_INITIAL, useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
@@ -22,13 +22,13 @@ export const CarouselContent = ({
 }: CarouselContentProps) => {
     //#region Init
     const { currentItemIndex, currentCarouselId, currentItems } = useCarouselContext();
-    const { currentItemInInstance, setCurrentItemInInstanceIndex, setItemsInInstance, numberOfPages, setNumberOfPages } = useCarouselInstanceContext();
-    const { id } = useCarouselInstanceContext();
+    const { currentItemInInstance, setCurrentItemInInstanceIndex, setItemsInInstance, numberOfPages, setNumberOfPages, id } = useCarouselInstanceContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
     const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`);
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
+    const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     const itemsContainerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndex = useRef(CURRENT_ITEM_INDEX_INITIAL);
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem: currentItemInInstance });
@@ -47,30 +47,6 @@ export const CarouselContent = ({
         const newInterItemSpacing = (remainingSpace / numberOfGaps);
         return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
     }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT]);
-
-    function getItemsInContainer() {
-        return itemsContainerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`);
-    }
-
-
-    function getTranslationAmount() {
-        const itemSpacingGiven = options?.thumbnail?.itemSpacing;
-        const containerWidth = getContainerWidth(carouselContainerRef.current as HTMLElement, stylingLogic);
-        if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
-            const { numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit(
-                carouselContainerRef.current as HTMLElement, stylingLogic, itemDisplayLocationLogic
-            );
-
-            //if a bug occurs with translation amount in itemSpacingGiven case, check the > equality here as it may need to be >=
-            const isLastItemMoreThanHalfVisible = numberOfItemsThatCanFit % 1 > .5;
-            const itemsInContainer = getItemsInContainer();
-            const firstItemLeft = itemsInContainer?.[0]?.getBoundingClientRect().left;
-            const firstItemInNextPageIndex = Math.floor(items.length / numberOfPages) + (isLastItemMoreThanHalfVisible ? 1 : 0);
-            const firstItemInNextPage = itemsInContainer?.[firstItemInNextPageIndex]?.getBoundingClientRect().left;
-            return currentPage * (Math.abs((firstItemLeft || 0) - (firstItemInNextPage || 0)));
-        }
-        return currentPage * (parseFloat(interItemSpacing.replace(CAROUSEL_SPACING_UNIT, '')) + containerWidth);
-    }
 
     const onArrowButtonClick = useCallback((direction: ArrowButtonDirection) => {
         if (direction === 'left') {
@@ -175,6 +151,46 @@ export const CarouselContent = ({
             setItemsInInstance && setItemsInInstance(items);
         }
     }, [])
+
+    //updating translation amount
+    useEffect(() => {
+        function getItemsInContainer() {
+            return itemsContainerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`);
+        }
+
+        function getTranslationAmount() {
+            const itemSpacingGiven = options?.thumbnail?.itemSpacing;
+            const containerWidth = getContainerWidth(carouselContainerRef.current as HTMLElement, stylingLogic);
+            
+            if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
+                const { numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit(
+                    carouselContainerRef.current as HTMLElement, stylingLogic, itemDisplayLocationLogic
+                );
+    
+                //if a bug occurs with translation amount in itemSpacingGiven case, check the > equality here as it may need to be >=
+                const isLastItemMoreThanHalfVisible = numberOfItemsThatCanFit % 1 > .5;
+                const itemsInContainer = getItemsInContainer();
+                const firstItemLeft = itemsInContainer?.[0]?.getBoundingClientRect().left;
+                const firstItemInNextPageIndex = Math.floor(items.length / numberOfPages) + (isLastItemMoreThanHalfVisible ? 1 : 0);
+                const firstItemInNextPage = itemsInContainer?.[firstItemInNextPageIndex]?.getBoundingClientRect().left;
+                return currentPage * (Math.abs((firstItemLeft || 0) - (firstItemInNextPage || 0)));
+            }
+            return currentPage * (parseFloat(interItemSpacing.replace(CAROUSEL_SPACING_UNIT, '')) + containerWidth);
+        }
+
+        setTranslationAmount(getTranslationAmount());
+    }, [
+        currentPage,
+        interItemSpacing,
+        CAROUSEL_SPACING_UNIT,
+        options?.thumbnail?.itemSpacing,
+        carouselContainerRef,
+        stylingLogic,
+        itemDisplayLocationLogic,
+        itemsContainerRef,
+        items,
+        numberOfPages
+    ])
     //#endregion
 
     //#region JSX
@@ -183,7 +199,7 @@ export const CarouselContent = ({
         columnGap: interItemSpacing,
     } as CSSProperties
     const translationStyle = {
-        transform: `translateX(-${getTranslationAmount()}${CAROUSEL_SPACING_UNIT})`,
+        transform: `translateX(-${translationAmount}${CAROUSEL_SPACING_UNIT})`,
     } as CSSProperties
     const containerStyle = {
         ...interItemSpacingStyle,
