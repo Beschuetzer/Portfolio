@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { CarouselItemProps } from "./components/CarouselItem";
-import { CarouselVideoOverlayProps } from "./components/CarouselVideoOverlay";
+import { CarouselVideoModalProps } from "./components/CarouselVideoModal";
 import { EMPTY_STRING } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
@@ -17,14 +17,14 @@ export type CarouselValueProps = {
     currentItem: CarouselItemProps;
     currentItemIndex: number;
     currentItems: CarouselItemProps[];
-    currentVideoOverlayProps: CarouselVideoOverlayProps;
+    currentVideoOverlayProps: CarouselVideoModalProps;
     itemViewerRef: React.RefObject<HTMLElement>;
     options: CarouselOptions;
     setCurrentButtons: React.Dispatch<React.SetStateAction<CarouselButtons | undefined>>;
     setCurrentCarouselId: React.Dispatch<React.SetStateAction<string>>; 
     setCurrentItemIndex: React.Dispatch<React.SetStateAction<number>>;
     setCurrentItems: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
-    setCurrentVideoOverlayProps: React.Dispatch<React.SetStateAction<CarouselVideoOverlayProps>>;
+    setCurrentVideoOverlayProps: React.Dispatch<React.SetStateAction<CarouselVideoModalProps>>;
     setOptions: React.Dispatch<React.SetStateAction<CarouselOptions>>;
     toolbarLogic: ToolbarLogic;
 }
@@ -44,7 +44,7 @@ export const OPTIONS_DEFAULT = {
 const OVERLAY_PROPS_DEFAULT = {
     text: EMPTY_STRING,
     title: EMPTY_STRING,
-} as CarouselVideoOverlayProps;
+} as CarouselVideoModalProps;
 
 export const CarouselProvider = ({
     children
@@ -54,7 +54,7 @@ export const CarouselProvider = ({
     const [currentItems, setCurrentItems] = useState([] as CarouselItemProps[]);
     const [currentItemIndex, setCurrentItemIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
     const [currentCarouselId, setCurrentCarouselId] = useState(EMPTY_STRING);
-    const [currentVideoOverlayProps, setCurrentVideoOverlayProps] = useState<CarouselVideoOverlayProps>(OVERLAY_PROPS_DEFAULT);
+    const [currentVideoOverlayProps, setCurrentVideoOverlayProps] = useState<CarouselVideoModalProps>(OVERLAY_PROPS_DEFAULT);
     const [currentButtons, setCurrentButtons] = useState<CarouselButtons>()
     const [options, setOptions] = useState<CarouselOptions>(OPTIONS_DEFAULT);
     const itemViewerRef = useRef<HTMLElement>(null);

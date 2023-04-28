@@ -22,7 +22,7 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT
 } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
-import { CarouselVideoOverlayProps } from "../components/CarouselVideoOverlay";
+import { CarouselVideoModalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
 
 export enum SpacingDirection {
@@ -38,7 +38,7 @@ export type StylingLogicConstructor = {
     overlayRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
     loadingSpinnerOptions?: LoadingSpinnerProps['options'];
 } & Partial<Pick<CarouselInstanceContextProps, 'itemViewerToolbarRef' | 'currentItemInInstance'>>
-    & Partial<Pick<CarouselVideoOverlayProps, 'videoRef'>>
+    & Partial<Pick<CarouselVideoModalProps, 'videoRef'>>
 /*
 *Use this when extending styling options.  Many default styles are currently in _carousel.scss or _buttons_scss
 */
@@ -233,9 +233,9 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoOverlayCloseButtonStyle() {
+    get carouselVideoModalCloseButtonStyle() {
         const areChildrenPresent = !!this.currentItemInInstance?.video?.overlayProps?.children;
-        const { right: paddingRight, top: paddingTop } = this.options.styling?.videoOverlay?.padding || {};
+        const { right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
         const rightStyle = paddingRight !== undefined ? {
             right: `${paddingRight}${CAROUSEL_SPACING_UNIT}`
         } as CSSProperties : {};
@@ -249,9 +249,9 @@ export class StylingLogic {
         } as CSSProperties : {} as CSSProperties;
     }
 
-    get carouselVideoOverlayStyle() {
-        const { fontSize: customFontSize, backgroundColor, textColor, widthInPercent } = this.options.styling?.videoOverlay || {};
-        const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoOverlay?.padding || {};
+    get carouselVideoModalStyle() {
+        const { fontSize: customFontSize, backgroundColor, textColor, widthInPercent } = this.options.styling?.videoModal || {};
+        const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
         const isDefault = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
         const overlayHeight = this.overlayRef?.current?.getBoundingClientRect().height || 0;
@@ -291,7 +291,7 @@ export class StylingLogic {
     }
 
     get carouselVideoCloseButtonColor() {
-        const customColor = this.options.styling?.videoOverlay?.closeButtonColor || CAROUSEL_COLOR_ONE;
+        const customColor = this.options.styling?.videoModal?.closeButtonColor || CAROUSEL_COLOR_ONE;
         return customColor;
     }
 
@@ -539,7 +539,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    static getCarouselVideoOverlayChildStyle(index: number) {
+    static getCarouselVideoModalChildStyle(index: number) {
         return {
             paddingTop: index === 0 ? 0 : CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
         } as CSSProperties;

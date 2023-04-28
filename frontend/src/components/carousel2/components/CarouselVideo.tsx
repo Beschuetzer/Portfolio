@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { getClassname } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
-import { CarouselVideoOverlay } from './CarouselVideoOverlay'
+import { CarouselVideoModal } from './CarouselVideoModal'
 import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../constants';
@@ -16,7 +16,7 @@ export type CarouselVideoProps = {
     muted?: boolean;
     objectFit?: React.CSSProperties["objectFit"];
     objectPosition?: React.CSSProperties["objectPosition"];
-    overlayProps?: CarouselVideoOverlay;
+    overlayProps?: CarouselVideoModal;
 }
 
 export const CarouselVideo = (props: CarouselItemProps) => {
@@ -96,7 +96,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                     <source src={srcMain} type={`video/${type}`} />
                 </video>
                 {props.video?.overlayProps ? (
-                    <CarouselVideoOverlay
+                    <CarouselVideoModal
                         videoRef={videoRef}
                         isVideoPlaying={isVideoPlaying}
                         {...props.video?.overlayProps}

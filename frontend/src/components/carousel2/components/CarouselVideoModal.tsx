@@ -4,11 +4,11 @@ import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
 import { Exclusive } from '../types';
-import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__OVERLAY_BUTTON_RIGHT, CLASSNAME__OVERLAY_BUTTON_TOP } from '../constants';
+import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__VIDEO_MODAL_BUTTON_RIGHT, CLASSNAME__VIDEO_MODAL_BUTTON_TOP } from '../constants';
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 
-export type CarouselVideoOverlaySection = {
+export type CarouselVideoModalSection = {
      /*
     * This only shows when the video is paused and is an <h3> tag under the hood.
     */
@@ -19,7 +19,7 @@ export type CarouselVideoOverlaySection = {
      */
      text?: string | undefined;
 }
-export type CarouselVideoOverlay = Exclusive<{
+export type CarouselVideoModal = Exclusive<{
     /*
     *Use this prop in order to specify a customer overlay layout
     */
@@ -35,10 +35,10 @@ export type CarouselVideoOverlay = Exclusive<{
         rightInRem?: number;
     }
 }, {
-    sections?: CarouselVideoOverlaySection[];
+    sections?: CarouselVideoModalSection[];
 }>
 
-export type CarouselVideoOverlayProps = {
+export type CarouselVideoModalProps = {
     /*
     *This is used internally and determines when the overlay is shown
     */
@@ -47,9 +47,9 @@ export type CarouselVideoOverlayProps = {
     *This is used internally to determine where the overlay is shown
     */
     videoRef?: React.MutableRefObject<HTMLVideoElement | undefined>;
-} & CarouselVideoOverlay;
+} & CarouselVideoModal;
 
-export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
+export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
     //#region Init
     const { currentButtons: currentSvgHrefs, options: optionsGlobal } = useCarouselContext();
     const { options: optionsLocal, currentItemInInstance } = useCarouselInstanceContext();
@@ -80,8 +80,8 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     useEffect(() => {
         //update closeButton the top and left values
         if (closeButton && isCustom) {
-            closeButton.topInRem && setCssCustomProperty(CLASSNAME__OVERLAY_BUTTON_TOP, `${closeButton.topInRem}rem`);
-            closeButton.rightInRem && setCssCustomProperty(CLASSNAME__OVERLAY_BUTTON_RIGHT, `${closeButton.rightInRem}rem`);
+            closeButton.topInRem && setCssCustomProperty(CLASSNAME__VIDEO_MODAL_BUTTON_TOP, `${closeButton.topInRem}rem`);
+            closeButton.rightInRem && setCssCustomProperty(CLASSNAME__VIDEO_MODAL_BUTTON_RIGHT, `${closeButton.rightInRem}rem`);
         }
     }, [])
 
@@ -92,14 +92,14 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
 
     //#region JSX
     const button = !!svgHref ? (
-        <CarouselItemViewerCustomButton onClick={onCloseClick as any} xlinkHref={svgHref} classNameModifier='inverse' fillColor={closeButtonColor} style={stylingLogic.carouselVideoOverlayCloseButtonStyle}/>
+        <CarouselItemViewerCustomButton onClick={onCloseClick as any} xlinkHref={svgHref} classNameModifier='inverse' fillColor={closeButtonColor} style={stylingLogic.carouselVideoModalCloseButtonStyle}/>
     ) : (
         <CloseButton
             onClick={onCloseClick as any}
             className={isCustom ? getClassname({ elementName: CLASSNAME__ITEM_VIEWER_BUTTON }) : undefined}
             classNameModifier='inverse'
             fillColor={closeButtonColor}
-            style={stylingLogic.carouselVideoOverlayCloseButtonStyle}
+            style={stylingLogic.carouselVideoModalCloseButtonStyle}
         />
     );
     
@@ -116,7 +116,7 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
         
         if (!sections || sections.length === 0) return null;
         return sections.map(({text, title}, index) => (
-            <div key={index} style={StylingLogic.getCarouselVideoOverlayChildStyle(index)}>
+            <div key={index} style={StylingLogic.getCarouselVideoModalChildStyle(index)}>
                 <div className={`${className}-header`}>
                     <h3 dangerouslySetInnerHTML={{ __html: title || '' }} />
                     {index === 0 ? button : null}
@@ -129,12 +129,12 @@ export const CarouselVideoOverlay = (props: CarouselVideoOverlayProps) => {
     }
 
     const visibilityStyle = isVideoPlaying || !isVisible ? getClassname({ modifiedName: "hidden" }) : '';
-    const className = getClassname({ elementName: 'video-overlay' });
-    const classNameCustom = getClassname({ elementName: 'video-overlay-custom' });
+    const className = getClassname({ elementName: 'video-modal' });
+    const classNameCustom = getClassname({ elementName: 'video-modal-custom' });
     const classNameToUse = `${className} ${isCustom ? classNameCustom : ''} ${visibilityStyle}`;
 
     return (
-        <div ref={overlayRef as any} className={classNameToUse} onClick={stopPropagation as any} style={stylingLogic.carouselVideoOverlayStyle}>
+        <div ref={overlayRef as any} className={classNameToUse} onClick={stopPropagation as any} style={stylingLogic.carouselVideoModalStyle}>
             {renderChildren()}
         </div>
     )

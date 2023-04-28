@@ -46,7 +46,7 @@ export enum CarouselSection {
     itemViewer = 'itemViewer',
     navigation = 'navigation',
     toolbar = 'toolbar',
-    videoOverlay = 'videoOverlay',
+    videoModal = 'videoModal',
 }
 export type CarouselSections = {
     [CarouselSection.container]?: {
@@ -88,9 +88,9 @@ export type CarouselSections = {
         textColor?: string;
     } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
     /*
-   *This is the the overlay text that displays when a video is paused
+   *This is the the modal that displays when a video is paused, allowing for more info about the video
    */
-    [CarouselSection.videoOverlay]?: {
+    [CarouselSection.videoModal]?: {
         closeButtonColor?: string;
         /*
         *This is in px

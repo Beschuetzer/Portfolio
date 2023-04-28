@@ -21,7 +21,7 @@ $itemViewerShortcutPopupBackgroundColor: #28292f;
 $itemViewerShortcutPopupColor: #9b9b9b;
 $itemViewerButtonOpacityHover: 1;
 $itemViewerButtonOpacityNormal: .875;
-$itemViewerOverlayParagraphPaddingRight: 20px;
+$itemViewerModalParagraphPaddingRight: 20px;
 $itemViewerProgressHeight: 5px;
 $itemViewerToolbarBackgroundColor: rgba($itemViewerBackgroundColor, 0);
 $itemViewerToolbarColumnGap: .75vw;
@@ -30,9 +30,9 @@ $itemViewerToolbarPreviewBorderRadius: 5px;
 $itemViewerToolbarPreviewOpacity: .66;
 $itemViewerToolbarPreviewWidth: 300px;
 
-$videoOverlayCustomButtonTopString: '#{$carouselClassname}-video-overlay-custom-button-top';
-$videoOverlayCustomButtonRightString: '#{$carouselClassname}-video-overlay-custom-button-right';
+$videoModalCustomButtonTopString: '#{$carouselClassname}-video-modal-custom-button-top';
+$videoModalCustomButtonRightString: '#{$carouselClassname}-video-modal-custom-button-right';
 :root {
-    --#{$videoOverlayCustomButtonTopString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
-    --#{$videoOverlayCustomButtonRightString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
+    --#{$videoModalCustomButtonTopString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
+    --#{$videoModalCustomButtonRightString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
 }

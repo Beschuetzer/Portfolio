@@ -324,7 +324,7 @@
         object-fit: contain;
         max-height: 100vh;
 
-        &-overlay {
+        &-modal {
             @include positionButton();
             color: $itemViewerBackgroundColor;
             width: auto;
@@ -344,7 +344,7 @@
             }
 
             & p {
-                padding-right: $itemViewerOverlayParagraphPaddingRight;
+                padding-right: $itemViewerModalParagraphPaddingRight;
             }
 
             &-custom {
@@ -352,8 +352,8 @@
                 padding-bottom: 0;
 
                 & .#{$carouselClassname}__item-viewer-button {
-                    @include positionAbsolute($right: var(--#{$videoOverlayCustomButtonRightString}),
-                        $top: var(--#{$videoOverlayCustomButtonTopString}),
+                    @include positionAbsolute($right: var(--#{$videoModalCustomButtonRightString}),
+                        $top: var(--#{$videoModalCustomButtonTopString}),
                         $left: auto,
                         $bottom: auto,
                     );

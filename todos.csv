@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -rename CarouselVideoOverlay to CarouselVideoModal?
     -X button should be full screen button
     -next/previous buttons hidden on load
     -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom);  appears to be a problem when all defaults too

@@ -308,7 +308,7 @@ const multiplePagesCustomPadding = (
 const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 	<Carousel items={items} options={{
 		styling: {
-			videoOverlay: {
+			videoModal: {
 				backgroundColor: getComputedStyleCustom('--color-primary-4'),
 				textColor: getComputedStyleCustom('--color-primary-1'),
 				closeButtonColor: getComputedStyleCustom('--color-primary-1'),
@@ -1036,7 +1036,7 @@ const layoutAboveCustomOverlayAndSpinner = (
 					},
 					textColor: getComputedStyleCustom('--color-primary-2'),
 				},
-				videoOverlay: {
+				videoModal: {
 					fontSize: 16,
 					padding: {
 						top: 30,
