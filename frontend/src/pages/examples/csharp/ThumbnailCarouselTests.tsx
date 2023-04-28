@@ -256,15 +256,17 @@ const allCustomSettings = (
 			},
 			thumbnail: {
 				size: 200,
-				background: {
-					solid: {
-						color: getComputedStyleCustom('--color-primary-2'),
-					}
-				},
-				textColor: getComputedStyleCustom('--color-primary-4'),
-				fontSize: 14,
-				hideOverlayUnlessHovered: false,
 				itemSpacing: 3.9876,
+				descriptionOverlay: {
+					background: {
+						solid: {
+							color: getComputedStyleCustom('--color-primary-2'),
+						}
+					},
+					textColor: getComputedStyleCustom('--color-primary-4'),
+					fontSize: 14,
+					hideDescriptionOverlayUnlessHovered: false,
+				},
 			},
 
 		}}
@@ -341,69 +343,76 @@ const multiplePagesFixedItemSpacing = (
 const customThumbnailSolid = (
 	<Carousel items={items} options={{
 		thumbnail: {
-			background: {
-				solid: {
-					color: getComputedStyleCustom('--color-primary-1'),
-					opacity: .8,
-				}
+			descriptionOverlay: {
+				background: {
+					solid: {
+						color: getComputedStyleCustom('--color-primary-1'),
+						opacity: .8,
+					}
+				},
+				fontSize: 8,
+				hideDescriptionOverlayUnlessHovered: false,
+				maxLineCount: 1,
+				textColor: getComputedStyleCustom('--color-primary-4'),
 			},
-			fontSize: 8,
-			hideOverlayUnlessHovered: false,
-			maxLineCount: 1,
 			size: 100,
-			textColor: getComputedStyleCustom('--color-primary-4'),
 		}
 	}} />
 );
 const customThumbnailGradient = (
 	<Carousel items={items} options={{
 		thumbnail: {
-			background: {
-				gradient: {
-					angle: 270,
-					start: {
-						color: getComputedStyleCustom('--color-primary-4'),
-						opacity: .25,
+			descriptionOverlay: {
+
+				background: {
+					gradient: {
+						angle: 270,
+						start: {
+							color: getComputedStyleCustom('--color-primary-4'),
+							opacity: .25,
+						},
+						end: {
+							color: getComputedStyleCustom('--color-primary-1'),
+							opacity: .75
+						}
 					},
-					end: {
-						color: getComputedStyleCustom('--color-primary-1'),
-						opacity: .75
-					}
 				},
+				fontSize: 8,
+				hideDescriptionOverlayUnlessHovered: false,
+				maxLineCount: 1,
+				textColor: getComputedStyleCustom('--color-primary-4'),
 			},
-			fontSize: 8,
-			hideOverlayUnlessHovered: false,
-			maxLineCount: 1,
 			size: 100,
-			textColor: getComputedStyleCustom('--color-primary-4'),
 		}
 	}} />
 );
 const customThumbnailGradientAndFallback = (
 	<Carousel items={items} options={{
 		thumbnail: {
-			background: {
-				gradient: {
-					angle: 270,
-					start: {
-						color: getComputedStyleCustom('--color-primary-4'),
-						opacity: .25,
+			descriptionOverlay: {
+				background: {
+					gradient: {
+						angle: 270,
+						start: {
+							color: getComputedStyleCustom('--color-primary-4'),
+							opacity: .25,
+						},
+						end: {
+							color: getComputedStyleCustom('--color-primary-1'),
+							opacity: .75
+						}
 					},
-					end: {
+					solid: {
 						color: getComputedStyleCustom('--color-primary-1'),
-						opacity: .75
+						opacity: .25,
 					}
 				},
-				solid: {
-					color: getComputedStyleCustom('--color-primary-1'),
-					opacity: .25,
-				}
+				fontSize: 8,
+				hideDescriptionOverlayUnlessHovered: false,
+				maxLineCount: 1,
+				textColor: getComputedStyleCustom('--color-primary-4'),
 			},
-			fontSize: 8,
-			hideOverlayUnlessHovered: false,
-			maxLineCount: 1,
 			size: 100,
-			textColor: getComputedStyleCustom('--color-primary-4'),
 		}
 	}} />
 );
@@ -667,7 +676,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 				navigation: {
 					backgroundColor: getComputedStyleCustom("--color-primary-4"),
 					elementColor: getComputedStyleCustom("--color-primary-1"),
-				},	
+				},
 				itemViewer: {
 					backgroundColor: getComputedStyleCustom("--color-primary-4"),
 				},
@@ -681,8 +690,8 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 						left: 20,
 						right: 20,
 					},
-					elementColor:  getComputedStyleCustom("--color-primary-4"),
-					textColor:  getComputedStyleCustom("--color-primary-4"),
+					elementColor: getComputedStyleCustom("--color-primary-4"),
+					textColor: getComputedStyleCustom("--color-primary-4"),
 				},
 			}
 		}}
@@ -1080,6 +1089,9 @@ const layoutBelowWithCustomThumbnailSizeAndHeight = (
 			},
 			thumbnail: {
 				size: 100,
+				descriptionOverlay: {
+					isDisabled: false,
+				}
 			},
 			styling: {
 				container: {
@@ -1092,7 +1104,22 @@ const layoutBelowWithCustomThumbnailSizeAndHeight = (
 	/>
 );
 const noThumbnailHoverEffect = (
-	<Carousel items={items} options={{ thumbnail: { hideOverlayUnlessHovered: false } }} />
+	<Carousel items={items} options={{
+		thumbnail: {
+			descriptionOverlay: {
+				hideDescriptionOverlayUnlessHovered: false
+			}
+		}
+	}} />
+);
+const noThumbnailDescriptionOverlay = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			descriptionOverlay: {
+				isDisabled: true,
+			}
+		}
+	}} />
 );
 //#endregion
 
@@ -1209,8 +1236,16 @@ const SECTIONS: Sections = [
 		"Thumbnail Options",
 		[
 			{
-				label: "No Hover Effect",
+				label: "All Default",
+				jsx: noItemDisplayedMultiplePagesAllDefaults,
+			},
+			{
+				label: "Description Overlay Always Shown",
 				jsx: noThumbnailHoverEffect
+			},
+			{
+				label: "Description Overlay Disabled",
+				jsx: noThumbnailDescriptionOverlay
 			},
 			{
 				label: "Fixed Item Spacing",
@@ -1228,6 +1263,7 @@ const SECTIONS: Sections = [
 				label: "Given Thumbnail Size with Custom Gradient Background and Fallback",
 				jsx: customThumbnailGradientAndFallback
 			},
+			
 		]
 	],
 	[

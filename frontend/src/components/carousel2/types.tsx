@@ -87,9 +87,9 @@ export type CarouselSections = {
         elementColor?: string;
         textColor?: string;
     } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
-     /*
-    *This is the the overlay text that displays when a video is paused
-    */
+    /*
+   *This is the the overlay text that displays when a video is paused
+   */
     [CarouselSection.videoOverlay]?: {
         closeButtonColor?: string;
         /*
@@ -249,18 +249,18 @@ export enum CarouselElement {
     *Setting this will change all the items below.  'elementColor' specified in a given section will override this value
     */
     all = 'all',
-     /*
-    *These are the buttons at the bottom of each carousel related to changing pages
-    */
+    /*
+   *These are the buttons at the bottom of each carousel related to changing pages
+   */
     arrowLeft = 'arrowLeft',
-      /*
-    *This is the button at the bottom of each carousel to the right of the dots
-    */
+    /*
+  *This is the button at the bottom of each carousel to the right of the dots
+  */
     arrowRight = 'arrowRight',
     closeButton = 'closeButton',
-     /*
-    *The dots at the bottom of the carousel indicating the number of pages
-    */
+    /*
+   *The dots at the bottom of the carousel indicating the number of pages
+   */
     dots = 'dots',
     nextButton = 'nextButton',
     pauseButton = 'pauseButton',
@@ -319,40 +319,52 @@ export type CarouselThumbnailBackgroundOptions = {
     }
 }
 
-export type CarouselThumbnailOptions = {
+export type CarouselThumbnailDescriptionOverlayOptions = {
     /*
     *Options to specify how the background looks.  You can specify a starting an ending linear gradient for browsers that support it.
     *As well as specifying a solid background color for those that don't
     */
     background?: CarouselThumbnailBackgroundOptions;
     /*
+    *If true the description is disabled in the thumbnail.  Default is false is `layout.itemDisplayLocation` is 'none' otherwise true.
+    */
+    isDisabled?: boolean;
+    /*
     *The size of the font in px of the thumbnail description;  Default is 12px;
     */
     fontSize?: number;
     /*
-   *If false, the overlay with the description is always present.  
-   *If true, the overlay only shows when item is hovered.
-   *No overlay is shown if item.description is falsy
-   *Default is true
-   */
-    hideOverlayUnlessHovered?: boolean;
+    *If false, the overlay with the description is always present.  
+    *If true, the overlay only shows when item is hovered.
+    *No overlay is shown if item.description is falsy
+    *Default is true
+    */
+    hideDescriptionOverlayUnlessHovered?: boolean;
+    /*
+    *The number of lines to show before an ellipsis is inserted.  Default is 2.
+    */
+    maxLineCount?: number;
+    /*
+    *The hexadecimal value for the thumbnail background's text
+    */
+    textColor?: string;
+
+}
+
+export type CarouselThumbnailOptions = {
+    /*
+    *This is the background and text that displays with the description text when hovering a thumbnail
+    */
+    descriptionOverlay?: CarouselThumbnailDescriptionOverlayOptions;
     /*
     *The value in px that the thumbnails are spaced apart.  
     *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible
     */
     itemSpacing?: number;
     /*
-    *The number of lines to show before an ellipsis is inserted.  Default is 2.
-    */
-    maxLineCount?: number;
-    /*
     *The size of the thumbnails in px.  Default is 150px.
     */
     size?: number;
-    /*
-    *The hexadecimal value for the thumbnail background's text
-    */
-    textColor?: string;
 }
 
 export type CssStyles = {

@@ -18,7 +18,9 @@ import {
     CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
     CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT,
     CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
-    CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT
+    CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
+    CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
+    CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT
 } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 import { CarouselVideoOverlayProps } from "../components/CarouselVideoOverlay";
@@ -410,10 +412,14 @@ export class StylingLogic {
 
     get thumbnailBackgroundStyle() {
         const thumbnail = this.options?.thumbnail;
-        const solid = thumbnail?.background?.solid;
-        const gradient = thumbnail?.background?.gradient;
+        const solid = thumbnail?.descriptionOverlay?.background?.solid;
+        const gradient = thumbnail?.descriptionOverlay?.background?.gradient;
         const color = solid?.color;
-        const shouldHideOverlay = thumbnail?.hideOverlayUnlessHovered === undefined || !!thumbnail?.hideOverlayUnlessHovered;
+        const shouldHideOverlay = thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered === undefined || !!thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered;
+        const isDefaultItemDisplayLocation = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation;
+        const isDescriptionOverDisabledUndefined = thumbnail?.descriptionOverlay?.isDisabled === undefined;
+        const shouldDisableDescriptionOverlayDefault = !isDefaultItemDisplayLocation;
+        const shouldDisableDescriptionOverlay = isDescriptionOverDisabledUndefined ? shouldDisableDescriptionOverlayDefault : thumbnail?.descriptionOverlay?.isDisabled;
 
         const backgroundSolidStyle = color ? {
             background: 'none',
@@ -421,6 +427,10 @@ export class StylingLogic {
                 color?.trim() || CAROUSEL_COLOR_ONE,
                 solid?.opacity || CAROUSEL_DOT_OPACITY_DEFAULT
             ),
+        } as React.CSSProperties : {};
+
+        const disabledStyle = shouldDisableDescriptionOverlay ? {
+           display: 'none'
         } as React.CSSProperties : {};
 
         const backgroundGradientStyle = gradient ? {
@@ -436,6 +446,7 @@ export class StylingLogic {
             ...backgroundSolidStyle,
             ...backgroundGradientStyle,
             ...this.carouselItemCursorStyle,
+            ...disabledStyle,
         } as React.CSSProperties
 
         return thumbnailBackgroundStyle;
@@ -445,14 +456,14 @@ export class StylingLogic {
         const thumbnail = this.options?.thumbnail;
 
         const fontSizeStyle = thumbnail ? {
-            fontSize: `${thumbnail?.fontSize}${CAROUSEL_SPACING_UNIT}`,
+            fontSize: `${thumbnail?.descriptionOverlay?.fontSize}${CAROUSEL_SPACING_UNIT}`,
         } as React.CSSProperties : {};
         const maxLineCountStyle = {
-            WebkitLineClamp: thumbnail?.maxLineCount || 2,
+            WebkitLineClamp: thumbnail?.descriptionOverlay?.maxLineCount || CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
         } as React.CSSProperties;
 
-        const textColorStyle = thumbnail?.textColor ? {
-            color: thumbnail?.textColor,
+        const textColorStyle = thumbnail?.descriptionOverlay?.textColor ? {
+            color: thumbnail?.descriptionOverlay?.textColor,
         } as React.CSSProperties : {};
 
         return {
