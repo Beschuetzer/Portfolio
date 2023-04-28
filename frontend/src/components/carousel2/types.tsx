@@ -353,6 +353,11 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
 
 export type CarouselThumbnailOptions = {
     /*
+    *This is the border used to indicate which thumbnail is active when 'layout.itemDisplayLocation' is not 'none'.  
+    *Must be in the CSS border property format (e.g. '1px solid #000').  Will use default if the value provided is deemed invalid.
+    */
+    currentItemBorder?: string;
+    /*
     *This is the background and text that displays with the description text when hovering a thumbnail
     */
     descriptionOverlay?: CarouselThumbnailDescriptionOverlayOptions;

@@ -19,7 +19,6 @@ import {
     CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT,
     CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
-    CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT
 } from "../constants";
 import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
@@ -41,7 +40,7 @@ export type StylingLogicConstructor = {
 } & Partial<Pick<CarouselInstanceContextProps, 'itemViewerToolbarRef' | 'currentItemInInstance'>>
     & Partial<Pick<CarouselVideoOverlayProps, 'videoRef'>>
 /*
-*Use this when extending styling options
+*Use this when extending styling options.  Many default styles are currently in _carousel.scss or _buttons_scss
 */
 export class StylingLogic {
     private DEFAULT_FONT_FAMILY: string = 'sans-serif';
@@ -110,6 +109,8 @@ export class StylingLogic {
     }
 
     get carouselItemStyle() {
+        const customCurrenItemBorder = this.options.thumbnail?.currentItemBorder || '';
+
         const widthStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
             height: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
@@ -117,9 +118,8 @@ export class StylingLogic {
             width: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
             height: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties;
-
         const selectionStyle = this.isCurrentItemSelected ? {
-            border: `1${CAROUSEL_SPACING_UNIT} dashed ${CAROUSEL_COLOR_FOUR}`,
+            border: this.getBorderStringToUse(customCurrenItemBorder),
             pointerEvents: 'none',
             ...this.carouselItemCursorStyle,
         } as CSSProperties : {} as CSSProperties;
@@ -547,6 +547,16 @@ export class StylingLogic {
     //#endregion
 
     //#region Private Methods
+    /*
+    *Only accepts three argument versions or border https://developer.mozilla.org/en-US/docs/Web/CSS/border
+    *Currently there is no keyword recognition so something like 'thickest double #000' will be considered valid.
+    *If the border isn't showing up, check your string to make sure it is valid.
+    */
+    private getBorderStringToUse(borderStr: string, defaultValue = `1${CAROUSEL_SPACING_UNIT} solid ${CAROUSEL_COLOR_FOUR}`) {
+        const isValid = borderStr && borderStr?.trim()?.split(/(\s+|rgb.+\))/)?.filter(item => !!item && item?.match(/\w+/))?.length === 3;
+        return isValid ? borderStr : defaultValue;
+    }
+
     private getPaddingAmount(direction: SpacingDirection, item: CarouselSection) {
         let defaultPadding: number;
         let allPadding: number | undefined;

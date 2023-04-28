@@ -2,7 +2,7 @@ import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
 import { enterFullScreen, getClassname } from '../utils';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { CarouselVideoProps } from './CarouselVideo';
-import { CLASSNAME__CAROUSEL_ITEM } from '../constants';
+import { CLASSNAME__CAROUSEL_ITEM, CLASSNAME__CAROUSEL_ITEM_THUMBNAIL } from '../constants';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
 
@@ -65,7 +65,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
       ) : null}
       <img
         style={stylingLogic.carouselItemCursorStyle}
-        className={getClassname({ elementName: 'item-thumbnail' })}
+        className={CLASSNAME__CAROUSEL_ITEM_THUMBNAIL}
         src={srcThumbnail || srcMain}
         alt={description || 'user picture or video'}
       />

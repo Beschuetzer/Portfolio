@@ -1112,6 +1112,36 @@ const noThumbnailHoverEffect = (
 		}
 	}} />
 );
+const customThumbnailCurrentItemBorderOne = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: "above"
+		},
+		thumbnail: {
+			currentItemBorder: `2px dotted ${getComputedStyleCustom("--color-primary-3")}`,
+		}
+	}} />
+)
+const customThumbnailCurrentItemBorderTwo = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: "above"
+		},
+		thumbnail: {
+			currentItemBorder: `  1mm  ridge  rgba(255,  255,  255,   .75) `,
+		}
+	}} />
+)
+const customThumbnailCurrentItemBorderThree = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: "above"
+		},
+		thumbnail: {
+			currentItemBorder: 'thick double #9b9b9b'
+		}
+	}} />
+)
 const noThumbnailDescriptionOverlay = (
 	<Carousel items={items} options={{
 		thumbnail: {
@@ -1263,7 +1293,18 @@ const SECTIONS: Sections = [
 				label: "Given Thumbnail Size with Custom Gradient Background and Fallback",
 				jsx: customThumbnailGradientAndFallback
 			},
-			
+			{
+				label: "Custom Current Item Border - Input Format One",
+				jsx: customThumbnailCurrentItemBorderOne
+			},
+			{
+				label: "Custom Current Item Border - Input Format Two",
+				jsx: customThumbnailCurrentItemBorderTwo
+			},
+			{
+				label: "Custom Current Item Border - Input Format Three",
+				jsx: customThumbnailCurrentItemBorderThree
+			},
 		]
 	],
 	[

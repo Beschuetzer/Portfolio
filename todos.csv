@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -add option to specify currentItem's border string (make it so that the buttons.all option changes the color too?;  would need some renaming though of 'buttons')
     -selecting an image before the currently selected causes a page decrement
     -rename CarouselVideoOverlay to CarouselVideoModal?
     -X button should be full screen button
