@@ -92,7 +92,7 @@ export class StylingLogic {
         } as CSSProperties;
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
-            backgroundColor: this.options?.styling?.navigation?.backgroundColor || this.options.styling?.container?.backgroundColor || CAROUSEL_COLOR_ONE,
+            background: this.options?.styling?.navigation?.background || this.options.styling?.container?.background || CAROUSEL_COLOR_ONE,
             borderRadius: 4,
             paddingRight: 0,
             paddingLeft: 0,
@@ -250,7 +250,7 @@ export class StylingLogic {
     }
 
     get carouselVideoModalStyle() {
-        const { fontSize: customFontSize, backgroundColor, textColor, widthInPercent } = this.options.styling?.videoModal || {};
+        const { fontSize: customFontSize, background, textColor, widthInPercent } = this.options.styling?.videoModal || {};
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
         const isDefault = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
@@ -276,12 +276,12 @@ export class StylingLogic {
             color: textColor || CAROUSEL_COLOR_ONE,
             fontSize: customFontSize !== undefined ? customFontSize : this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
         } as CSSProperties;
-        const backgroundColorStyle = {
-            backgroundColor: backgroundColor !== undefined ? backgroundColor : CAROUSEL_COLOR_FIVE,
+        const backgroundStyle = {
+            background: background !== undefined ? background : CAROUSEL_COLOR_FIVE,
         } as CSSProperties;
 
         return {
-            ...backgroundColorStyle,
+            ...backgroundStyle,
             ...paddingStyle,
             ...widthStyle,
             ...positionStyle,
@@ -330,10 +330,10 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressBackgroundStyle() {
-        const backgroundColor = this.options.styling?.toolbar?.progressBar?.backgroundColor;
+        const background = this.options.styling?.toolbar?.progressBar?.background;
         const shouldSpanWholeWidth = this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth;
         const common = {
-            backgroundColor,
+            background,
             width: shouldSpanWholeWidth ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})` : '100%',
         } as CSSProperties
 
@@ -347,7 +347,7 @@ export class StylingLogic {
     get carouselVideoProgressForegroundStyle() {
         const foregroundColor = this.options.styling?.toolbar?.progressBar?.foregroundColor;
         const common = {
-            backgroundColor: foregroundColor,
+            background: foregroundColor,
             width: `${this.progressBarValue * 100}%`,
             height: '100%',
         } as CSSProperties
@@ -386,7 +386,7 @@ export class StylingLogic {
     }
 
     get itemViewerBackgroundColor() {
-        return this.options.styling?.itemViewer?.backgroundColor || this.options.styling?.container?.backgroundColor || CAROUSEL_COLOR_ONE;
+        return this.options.styling?.itemViewer?.background || this.options.styling?.container?.background || CAROUSEL_COLOR_ONE;
     }
 
     get navigationContainerHorizontalPadding() {
@@ -476,7 +476,7 @@ export class StylingLogic {
 
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItemInInstance);
-        const customColor = this.options.styling?.toolbar?.backgroundColor || this.options.styling?.container?.backgroundColor;
+        const customColor = this.options.styling?.toolbar?.background || this.options.styling?.container?.background;
         const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             background: customColor || CAROUSEL_COLOR_ONE,
             position: "relative",

@@ -56,12 +56,12 @@ export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
 
     const { children, isVideoPlaying, sections, closeButton, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
-    const modalRef = useRef<HTMLElement>();
+    const videoModalRef = useRef<HTMLElement>();
     
     const options = optionsLocal || optionsGlobal;
     const { svgHref } = currentSvgHrefs?.closeButton || {};
     const isCustom = !!children;
-    const stylingLogic = new StylingLogic({ options, videoRef, modalRef, currentItemInInstance });
+    const stylingLogic = new StylingLogic({ options, videoRef, videoModalRef, currentItemInInstance });
     const closeButtonColor = stylingLogic.carouselVideoCloseButtonColor;
     //#endregion
 
@@ -134,7 +134,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
     const classNameToUse = `${className} ${isCustom ? classNameCustom : ''} ${visibilityStyle}`;
     
     return (
-        <div ref={modalRef as any} className={classNameToUse} onClick={stopPropagation as any} style={stylingLogic.carouselVideoModalStyle}>
+        <div ref={videoModalRef as any} className={classNameToUse} onClick={stopPropagation as any} style={stylingLogic.carouselVideoModalStyle}>
             {renderChildren()}
         </div>
     )

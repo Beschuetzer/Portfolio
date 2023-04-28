@@ -19,7 +19,11 @@ export type ButtonProps = {
 }
 
 export type CarouselColorOptions = {
-    backgroundColor?: string;
+    /*
+    *This can be any background string that the CSS property accepts
+    *https://developer.mozilla.org/en-US/docs/Web/CSS/background
+    */
+    background?: string;
     foregroundColor?: string;
 }
 
@@ -68,7 +72,7 @@ export type CarouselSections = {
         */
         elementColor?: string;
         padding?: CarouselHorizontalPaddingOptions;
-    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+    } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
     *This is where the buttons, progress bar, and item description sit
     */
@@ -86,7 +90,7 @@ export type CarouselSections = {
         */
         elementColor?: string;
         textColor?: string;
-    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+    } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
    *This is the the modal that displays when a video is paused, allowing for more info about the video
    */
@@ -102,7 +106,7 @@ export type CarouselSections = {
         *this is a percent of the item container width
         */
         widthInPercent?: number;
-    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+    } & Partial<Pick<CarouselColorOptions, 'background'>>;
 }
 
 export type CarouselLayoutOptions = {

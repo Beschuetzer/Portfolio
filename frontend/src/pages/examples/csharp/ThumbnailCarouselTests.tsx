@@ -309,18 +309,18 @@ const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 	<Carousel items={items} options={{
 		styling: {
 			videoModal: {
-				backgroundColor: getComputedStyleCustom('--color-primary-4'),
+				background: getComputedStyleCustom('--color-primary-4'),
 				textColor: getComputedStyleCustom('--color-primary-1'),
 				closeButtonColor: getComputedStyleCustom('--color-primary-1'),
 			},
 			itemViewer: {
-				backgroundColor: getComputedStyleCustom('--color-primary-4'),
+				background: getComputedStyleCustom('--color-primary-4'),
 				foregroundColor: getComputedStyleCustom('--color-primary-1'),
 
 			},
 			toolbar: {
 				progressBar: {
-					backgroundColor: getComputedStyleCustom('--color-primary-4'),
+					background: getComputedStyleCustom('--color-primary-4'),
 					foregroundColor: getComputedStyleCustom('--color-primary-1'),
 				},
 				textColor: getComputedStyleCustom('--color-primary-2'),
@@ -665,7 +665,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 					itemViewer: 'monospace',
 				},
 				container: {
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: getComputedStyleCustom("--color-primary-4"),
 					padding: {
 						left: 0,
 						right: 0,
@@ -674,18 +674,18 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 					}
 				},
 				navigation: {
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: getComputedStyleCustom("--color-primary-4"),
 					elementColor: getComputedStyleCustom("--color-primary-1"),
 				},
 				itemViewer: {
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: getComputedStyleCustom("--color-primary-4"),
 				},
 				toolbar: {
 					progressBar: {
-						backgroundColor: getComputedStyleCustom("--color-primary-1"),
+						background: getComputedStyleCustom("--color-primary-1"),
 						foregroundColor: getComputedStyleCustom("--color-primary-2"),
 					},
-					backgroundColor: getComputedStyleCustom("--color-primary-1"),
+					background: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 20,
 						right: 20,
@@ -713,7 +713,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole = (
 					itemViewer: 'monospace',
 				},
 				container: {
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: getComputedStyleCustom("--color-primary-4"),
 					padding: {
 						left: 0,
 						right: 0,
@@ -722,18 +722,18 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole = (
 					}
 				},
 				navigation: {
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: getComputedStyleCustom("--color-primary-4"),
 				},
 				itemViewer: {
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: getComputedStyleCustom("--color-primary-4"),
 				},
 				toolbar: {
 					progressBar: {
 						shouldSpanContainerWidth: true,
-						backgroundColor: getComputedStyleCustom("--color-primary-1"),
+						background: getComputedStyleCustom("--color-primary-1"),
 						foregroundColor: getComputedStyleCustom("--color-primary-2"),
 					},
-					backgroundColor: getComputedStyleCustom("--color-primary-1"),
+					background: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 20,
 						right: 20,
@@ -770,7 +770,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 					itemViewer: 'monospace',
 				},
 				container: {
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: getComputedStyleCustom("--color-primary-4"),
 					foregroundColor: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 0,
@@ -848,7 +848,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 					itemViewer: 'monospace',
 				},
 				container: {
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: getComputedStyleCustom("--color-primary-4"),
 					foregroundColor: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 0,
@@ -910,7 +910,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
 					itemViewer: 'monospace',
 				},
 				container: {
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: getComputedStyleCustom("--color-primary-4"),
 					foregroundColor: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 0,
@@ -921,7 +921,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
 				},
 				toolbar: {
 					progressBar: {
-						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+						background: getComputedStyleCustom("--color-primary-4"),
 						foregroundColor: getComputedStyleCustom("--color-primary-1"),
 					}
 				}
@@ -960,7 +960,7 @@ const layoutAboveButtonsAllWithSpecificFillColors = (
 					itemViewer: 'monospace',
 				},
 				container: {
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: getComputedStyleCustom("--color-primary-4"),
 					foregroundColor: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 0,
@@ -971,7 +971,7 @@ const layoutAboveButtonsAllWithSpecificFillColors = (
 				},
 				toolbar: {
 					progressBar: {
-						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+						background: getComputedStyleCustom("--color-primary-4"),
 						foregroundColor: getComputedStyleCustom("--color-primary-2"),
 					}
 				}
@@ -1020,7 +1020,7 @@ const layoutAboveCustomOverlayAndSpinner = (
 					itemViewer: 'monospace',
 				},
 				container: {
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: getComputedStyleCustom("--color-primary-4"),
 					foregroundColor: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 0,
@@ -1031,7 +1031,7 @@ const layoutAboveCustomOverlayAndSpinner = (
 				},
 				toolbar: {
 					progressBar: {
-						backgroundColor: getComputedStyleCustom("--color-primary-4"),
+						background: getComputedStyleCustom("--color-primary-4"),
 						foregroundColor: getComputedStyleCustom("--color-primary-2"),
 					},
 					textColor: getComputedStyleCustom('--color-primary-2'),
@@ -1045,7 +1045,7 @@ const layoutAboveCustomOverlayAndSpinner = (
 						right: 60,
 					},
 					closeButtonColor: getComputedStyleCustom("--color-primary-1"),
-					backgroundColor: getComputedStyleCustom("--color-primary-4"),
+					background: `linear-gradient(270deg, #fff, #ccc)`,
 					textColor: getComputedStyleCustom("--color-primary-1"),
 					widthInPercent: 90,
 				}
