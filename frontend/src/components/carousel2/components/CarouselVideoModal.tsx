@@ -51,17 +51,17 @@ export type CarouselVideoModalProps = {
 
 export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
     //#region Init
-    const { currentButtons: currentSvgHrefs, options: optionsGlobal } = useCarouselContext();
+    const { currentButtons: currentSvgHrefs, options: optionsGlobal, currentItemIndex } = useCarouselContext();
     const { options: optionsLocal, currentItemInInstance } = useCarouselInstanceContext();
 
     const { children, isVideoPlaying, sections, closeButton, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
-    const overlayRef = useRef<HTMLElement>();
+    const modalRef = useRef<HTMLElement>();
     
     const options = optionsLocal || optionsGlobal;
     const { svgHref } = currentSvgHrefs?.closeButton || {};
     const isCustom = !!children;
-    const stylingLogic = new StylingLogic({ options, videoRef, overlayRef, currentItemInInstance });
+    const stylingLogic = new StylingLogic({ options, videoRef, modalRef, currentItemInInstance });
     const closeButtonColor = stylingLogic.carouselVideoCloseButtonColor;
     //#endregion
 
@@ -87,7 +87,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
 
     useEffect(() => {
         setIsVisible(true);
-    }, [currentItemInInstance])
+    }, [currentItemInInstance, currentItemIndex])
     //#endregion
 
     //#region JSX
@@ -132,9 +132,9 @@ export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
     const className = getClassname({ elementName: 'video-modal' });
     const classNameCustom = getClassname({ elementName: 'video-modal-custom' });
     const classNameToUse = `${className} ${isCustom ? classNameCustom : ''} ${visibilityStyle}`;
-
+    
     return (
-        <div ref={overlayRef as any} className={classNameToUse} onClick={stopPropagation as any} style={stylingLogic.carouselVideoModalStyle}>
+        <div ref={modalRef as any} className={classNameToUse} onClick={stopPropagation as any} style={stylingLogic.carouselVideoModalStyle}>
             {renderChildren()}
         </div>
     )

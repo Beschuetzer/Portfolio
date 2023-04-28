@@ -35,7 +35,7 @@ export type StylingLogicConstructor = {
     isCurrentItem?: boolean;
     options: CarouselOptions | undefined;
     progressBarValue?: number;
-    overlayRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
+    videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
     loadingSpinnerOptions?: LoadingSpinnerProps['options'];
 } & Partial<Pick<CarouselInstanceContextProps, 'itemViewerToolbarRef' | 'currentItemInInstance'>>
     & Partial<Pick<CarouselVideoModalProps, 'videoRef'>>
@@ -50,7 +50,7 @@ export class StylingLogic {
     private itemViewerToolbarRef: CarouselInstanceContextProps['itemViewerToolbarRef'];
     private loadingSpinnerOptions: LoadingSpinnerProps['options'];
     private options: CarouselOptions;
-    private overlayRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
+    private videoModalRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
     private progressBarValue: number;
     private videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined;
 
@@ -61,7 +61,7 @@ export class StylingLogic {
             itemViewerToolbarRef,
             loadingSpinnerOptions,
             options,
-            overlayRef,
+            videoModalRef,
             progressBarValue,
             videoRef,
         } = constructor;
@@ -71,7 +71,7 @@ export class StylingLogic {
         this.itemViewerToolbarRef = itemViewerToolbarRef;
         this.progressBarValue = progressBarValue || 0;
         this.videoRef = videoRef;
-        this.overlayRef = overlayRef;
+        this.videoModalRef = videoModalRef;
         this.options = options || {};
         const isCurrentItemInInstancePopulated = Object.keys(currentItemInInstance || {}).length > 0;
         this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: this.options, currentItem: currentItemInInstance });
@@ -254,7 +254,7 @@ export class StylingLogic {
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
         const isDefault = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
-        const overlayHeight = this.overlayRef?.current?.getBoundingClientRect().height || 0;
+        const videoModalHeight = this.videoModalRef?.current?.getBoundingClientRect().height || 0;
         const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : "75%";
 
         const widthStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
@@ -270,7 +270,7 @@ export class StylingLogic {
         } as CSSProperties;
         const positionStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             transform: 'translate(-50%, 0)',
-            top: videoHeight && overlayHeight ? `${Math.abs(videoHeight - overlayHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
+            top: videoHeight && videoModalHeight ? `${Math.abs(videoHeight - videoModalHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
         } as CSSProperties : {};
         const textStyle = {
             color: textColor || CAROUSEL_COLOR_ONE,
