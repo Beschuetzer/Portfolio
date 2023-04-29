@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -useKeyboardShortcut is registering default keys? (All custom shortcuts => press 'p' and it move back an item)
     -need to remove shortcuts for nonDefaultItemDisplayStyle case (should display popup with action name still though)
     -current item not being selected when exiting an non default itemDisplayLocation after changing items (may not be possible as currently designed?)
     -next/previous buttons hidden on load
@@ -11,6 +10,7 @@ Carousel rework
     -add tests for all of the background mix and match possibilities?
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'
     -need to create individual paddings for toolbar (and others?)
+    -default shortcut keys for next/previous item and close are getting registered? (All custom shortcuts => press 'p' and it move back an item)
 
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -move CarouselItem conditional styling logic to StylingLogic?
