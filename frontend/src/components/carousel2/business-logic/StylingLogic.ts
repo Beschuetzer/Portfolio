@@ -409,6 +409,8 @@ export class StylingLogic {
             ...common,
         } as CSSProperties : {
             ...common,
+            paddingTop: CAROUSEL_ITEM_SPACING_DEFAULT,
+
         };
     }
 
