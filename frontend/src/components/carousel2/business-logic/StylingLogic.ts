@@ -405,7 +405,7 @@ export class StylingLogic {
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             marginBottom: 0,
             paddingTop: CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
-            paddingBottom: this.itemDisplayLocationLogic.shouldDisplayItemBelow ? CAROUSEL_ITEM_SPACING_DEFAULT * 2 : 0,
+            paddingBottom: this.itemDisplayLocationLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEM_SPACING_DEFAULT * 2 : 0,
             ...common,
         } as CSSProperties : {
             ...common,
@@ -479,12 +479,12 @@ export class StylingLogic {
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItemInInstance);
         const customColor = this.options.styling?.toolbar?.background || this.options.styling?.container?.background;
-        const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.shouldDisplayCloseButton ? {
+        const nonDefaultItemDisplayStyle = this.itemDisplayLocationLogic.isFullscreenButtonVisible ? {
             background: customColor || CAROUSEL_COLOR_ONE,
             position: "relative",
             width: '100%',
             paddingTop: `${isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
-            paddingBottom: this.itemDisplayLocationLogic.shouldDisplayItemBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
+            paddingBottom: this.itemDisplayLocationLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
             paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT}`,
             paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT}`,
         } as React.CSSProperties : {};
@@ -585,7 +585,7 @@ export class StylingLogic {
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.top:
-                defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.itemDisplayLocationLogic.shouldDisplayItemBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+                defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.itemDisplayLocationLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = this.options.styling?.container?.padding?.top;
                 // specificElementPadding = this.options.styling?.[item]?.padding?.top;
                 customPadding = specificElementPadding || allPadding

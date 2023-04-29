@@ -38,22 +38,22 @@ export class ItemDisplayLocationLogic {
     get isDefaultItemDisplayLocation() {
         return !this.options?.layout?.itemDisplayLocation || this.options?.layout?.itemDisplayLocation === 'none';
     }
+    
+    get isItemDisplayLocationAbove() {
+        return this.options?.layout?.itemDisplayLocation === 'above';
+    }
+
+    get isItemDisplayLocationBelow() {
+        return this.options?.layout?.itemDisplayLocation === 'below';
+    }
+    
+    get isFullscreenButtonVisible() {
+        return !this.isDefaultItemDisplayLocation && this.currentItemIndex === CURRENT_ITEM_INDEX_INITIAL;
+    }
 
     get itemToRender() {
         if (!this.currentItem) return null as any;
         const isVideo = getIsVideo(this.currentItem);
         return isVideo ? CarouselVideo : CarouselImage;
-    }
-
-    get shouldDisplayCloseButton() {
-        return this.isDefaultItemDisplayLocation || this.currentItemIndex !== CURRENT_ITEM_INDEX_INITIAL;
-    }
-
-    get shouldDisplayItemAbove() {
-        return this.options?.layout?.itemDisplayLocation === 'above';
-    }
-
-    get shouldDisplayItemBelow() {
-        return this.options?.layout?.itemDisplayLocation === 'below';
     }
 }

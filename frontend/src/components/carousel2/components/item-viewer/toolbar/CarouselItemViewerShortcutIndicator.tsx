@@ -23,10 +23,12 @@ export const CarouselItemViewerShortcutIndicator = ({
         left: 0,
         right: 'auto',
         transform: 'translate(0%, -50%)',
+        zIndex: 1000000000000,
     } as React.CSSProperties : position === 'right' ? {
         right: 0,
         left: 'auto',
         transform: 'translate(0%, -50%)',
+        zIndex: 1000000000000,
     } as React.CSSProperties : {};
 
     return (

@@ -431,20 +431,20 @@ export const CarouselItemViewerToolbar = ({
                         ref={nextButtonRef}
                         shortcutPosition='right'
                     />
-                    {itemDisplayLocationLogic.shouldDisplayCloseButton ? (
-                        <CarouselItemViewerCloseButton
-                            actionName='Exit'
-                            isShortcutVisible={showCloseButtonPopup}
-                            onClick={onClose}
+                    {itemDisplayLocationLogic.isFullscreenButtonVisible ? (
+                        <CarouselItemViewerFullscreenButton
+                            actionName='Enter Fullscreen'
+                            // isShortcutVisible={showCloseButtonPopup}
+                            onClick={() => null}
                             options={options}
                             ref={closeButtonRef}
                             shortcutPosition='right'
                         />
                     ) : (
-                        <CarouselItemViewerFullscreenButton
-                            actionName='Enter Fullscreen'
-                            // isShortcutVisible={showCloseButtonPopup}
-                            onClick={() => null}
+                        <CarouselItemViewerCloseButton
+                            actionName='Exit'
+                            isShortcutVisible={showCloseButtonPopup}
+                            onClick={onClose}
                             options={options}
                             ref={closeButtonRef}
                             shortcutPosition='right'

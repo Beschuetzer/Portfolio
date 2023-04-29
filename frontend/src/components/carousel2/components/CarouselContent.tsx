@@ -208,7 +208,7 @@ export const CarouselContent = ({
 
     return (
         <>
-            {itemDisplayLocationLogic.shouldDisplayItemAbove ? (
+            {itemDisplayLocationLogic.isItemDisplayLocationAbove ? (
                 <ItemToRender {...currentItemInInstance} />
             ) : null}
             <div style={stylingLogic.carouselItemsContainerStyle}>
@@ -241,7 +241,7 @@ export const CarouselContent = ({
                         onClick={() => onArrowButtonClick("right")} />
                 </div>
             ) : null}
-            {itemDisplayLocationLogic.shouldDisplayItemBelow ? (
+            {itemDisplayLocationLogic.isItemDisplayLocationBelow ? (
                 <ItemToRender {...currentItemInInstance} />
             ) : null}
         </>

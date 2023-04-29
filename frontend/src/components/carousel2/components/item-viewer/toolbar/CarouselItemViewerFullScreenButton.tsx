@@ -2,7 +2,7 @@ import { forwardRef, useCallback } from 'react'
 import { EMPTY_STRING } from '../../../constants';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
-import { enterFullScreen, exitFullScreen, getIsInFullscreen } from '../../../utils';
+import { enterFullScreen, exitFullScreen } from '../../../utils';
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
 import { OPTIONS_DEFAULT, useCarouselContext } from '../../../context';
