@@ -122,6 +122,13 @@
 	transform: translate(-50%, -50%);
 }
 
+@mixin scaleOnHover($scaleAmount: 1.15) {
+    &:hover {
+        transition: transform $carouselAnimationDuration ease;
+        transform: scale($scaleAmount);
+    }
+}
+
 @mixin triangle($direction: right) {
     @if ($direction == left) {
         border-right: calc(#{$buttonWidth} / 2.5) solid $itemViewerButtonColor;

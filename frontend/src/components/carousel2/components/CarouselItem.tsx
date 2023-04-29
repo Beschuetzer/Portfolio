@@ -38,7 +38,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemIndex, setCurrentButtons, setOptions, setCurrentCarouselId, itemViewerRef, } = useCarouselContext();
+  const { setCurrentItemIndex, setCurrentElements, setOptions, setCurrentCarouselId, itemViewerRef, } = useCarouselContext();
   const { id: carouselId, options, setCurrentItemInInstanceIndex, currentItemInInstanceIndex } = useCarouselInstanceContext();
   const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}});
   const stylingLogic = new StylingLogic({options, isCurrentItem: index === currentItemInInstanceIndex});
@@ -49,7 +49,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   async function onPress(e: MouseEvent) {
     setOptions(options || OPTIONS_DEFAULT);
     setCurrentCarouselId(carouselId);
-    setCurrentButtons(options?.styling?.elements);
+    setCurrentElements(options?.styling?.elements);
 
     if (itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
       setCurrentItemIndex(index as any);

@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { CAROUSEL_COLOR_FIVE, CLASSNAME__BUTTON } from "../../constants";
 import { ButtonProps } from "../../types";
 import { StylingLogic } from "../../business-logic/StylingLogic";
+import { useCarouselInstanceContext } from "../CarouselInstanceProvider";
 
 type FullscreenButtonProps = {
   classNameModifier?: string;
@@ -15,14 +16,17 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
   onClick = () => null,
   style = {},
 }, ref) => {
+  const { options } = useCarouselInstanceContext();
+  const stylingLogic = new StylingLogic({options})
   const fullScreenClassname = `${className}--fullscreen`
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
+  
   return (
     <button ref={ref} onClick={onClick} className={`${className} ${fullScreenClassname}`}>
       <div style={colorStyle} className={`${fullScreenClassname}-square-outer`} />
-      <div style={{}} className={`${fullScreenClassname}-square-inner`} />
-      <div style={{}} className={`${fullScreenClassname}-rect-horizontal`} />
-      <div style={{}} className={`${fullScreenClassname}-rect-vertical`} />
+      <div style={stylingLogic.toolbarBackgroundColorStyle} className={`${fullScreenClassname}-square-inner`} />
+      <div style={stylingLogic.toolbarBackgroundColorStyle} className={`${fullScreenClassname}-rect-horizontal`} />
+      <div style={stylingLogic.toolbarBackgroundColorStyle} className={`${fullScreenClassname}-rect-vertical`} />
     </button>
   )
 })

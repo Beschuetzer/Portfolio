@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { useContext } from "react";
-import { CarouselOptions, CarouselButtons } from "../types";
+import { CarouselOptions, CarouselElements } from "../types";
 import { CarouselItemProps } from "./CarouselItem";
 import { CURRENT_ITEM_INDEX_INITIAL } from "../context";
 
@@ -9,7 +9,7 @@ type CarouselInstanceProps = {
 } & CarouselInstanceContextProps
 
 export type CarouselInstanceContextProps = {
-    currentButtons?: CarouselButtons | undefined;
+    currentElements?: CarouselElements | undefined;
     currentItemInInstance?: CarouselItemProps;
     currentItemInInstanceIndex?: number;
     carouselContainerRef: React.MutableRefObject<HTMLDivElement>;
@@ -18,7 +18,7 @@ export type CarouselInstanceContextProps = {
     itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
     numberOfPages: number;
     options: CarouselOptions | undefined;
-    setCurrentButtons?: React.Dispatch<React.SetStateAction<CarouselButtons | undefined>>;
+    setCurrentElements?: React.Dispatch<React.SetStateAction<CarouselElements | undefined>>;
     setCurrentItemInInstance?: React.Dispatch<React.SetStateAction<CarouselItemProps>>;
     setCurrentItemInInstanceIndex?: React.Dispatch<React.SetStateAction<number>>;
     setItemsInInstance?: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
@@ -34,13 +34,13 @@ export function useCarouselInstanceContext() {
 export const CarouselInstanceProvider = ({
     carouselContainerRef,
     children,
-    currentButtons: currentSvgsLocal,
+    currentElements: currentElementsLocal,
     id,
     itemsInInstance,
     numberOfPages: numberOfPagesGiven,
     options,
 }: CarouselInstanceProps) => {
-    const [currentButtons, setCurrentButtons] = useState<CarouselButtons>(currentSvgsLocal || {} as CarouselButtons)
+    const [currentElements, setCurrentElements] = useState<CarouselElements>(currentElementsLocal || {} as CarouselElements)
     const [currentItemInInstanceLocal, setCurrentItemInInstance] = useState<CarouselItemProps>({} as CarouselItemProps);
     const [currentItemInInstanceIndex, setCurrentItemInInstanceIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
     const [itemsInInstanceLocal, setItemsInInstance] = useState(itemsInInstance);
@@ -58,7 +58,7 @@ export const CarouselInstanceProvider = ({
                 carouselContainerRef,
                 currentItemInInstance: currentItemInInstanceLocal,
                 currentItemInInstanceIndex,
-                currentButtons,
+                currentElements,
                 id,
                 itemsInInstance: itemsInInstanceLocal,
                 itemViewerToolbarRef,

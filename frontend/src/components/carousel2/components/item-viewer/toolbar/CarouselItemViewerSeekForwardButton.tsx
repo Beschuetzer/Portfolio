@@ -16,10 +16,10 @@ export const CarouselItemViewerSeekForwardButton = forwardRef<any, CarouselItemV
     onClick = () => null,
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentButtons: currentSvgsGlobal } = useCarouselContext();
-    const { currentButtons: currentSvgsLocal } = useCarouselInstanceContext();
-    const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
-    const { svgHref, style } = currentSvgs?.seekForwardButton || {};
+    const { currentElements: currentElementsGlobal } = useCarouselContext();
+    const { currentElements: currentElementsLocal } = useCarouselInstanceContext();
+    const currentElements = currentElementsLocal || currentElementsGlobal;
+    const { svgHref, style } = currentElements?.seekForwardButton || {};
     const seekForwardAction = new ToolbarActionsLogic(options).getSeekForwards();
     const stylingLogic = new StylingLogic({ options });
     const fillColor = stylingLogic.getButtonColor(CarouselElement.seekForwardButton);

@@ -27,11 +27,16 @@ import { Carousel } from "../../../components/carousel2/components/Carousel";
 import { ModifierKey, ValidKey } from "../../../components/carousel2/hooks/useKeyboardShortcuts";
 import { CarouselActions } from "../../../components/carousel2/types";
 import { CarouselItemProps } from "../../../components/carousel2/components/CarouselItem";
+import { FullscreenButton } from "../../../components/carousel2/components/buttons/FullscreenButton";
 
 //#region Carousel Items
 const customButtons = {
 	closeButton: {
 		svgHref: "./sprite.svg#icon-close",
+	},
+	fullScreenButton: {
+		svgHref: "./sprite.svg#icon-help",
+		fillColor: getComputedStyleCustom('--color-primary-1'),
 	},
 	nextButton: {
 		svgHref: "./sprite.svg#icon-skip-forward",
@@ -74,7 +79,7 @@ const customButtons = {
 	arrowRight: {
 		svgHref: "./sprite.svg#icon-angle-right",
 		fillColor: getComputedStyleCustom('--color-primary-1'),
-	}
+	},
 }
 const carouselShortcuts = {
 	itemViewer: {
@@ -802,6 +807,10 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 			},
 			styling: {
 				elements: {
+					fullscreenButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+						svgHref: customButtons.fullScreenButton.svgHref,
+					},
 					closeButton: {
 						fillColor: getComputedStyleCustom("--color-primary-1"),
 						svgHref: customButtons.closeButton.svgHref,

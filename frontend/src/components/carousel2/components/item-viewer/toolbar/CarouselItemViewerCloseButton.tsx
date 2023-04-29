@@ -20,13 +20,13 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     options = {},
     shortcutPosition = 'center',
 }, ref) => {
-    const { currentItems, setCurrentItems, setCurrentItemIndex, currentButtons: currentSvgsGlobal, itemViewerRef } = useCarouselContext();
-    const { currentButtons: currentSvgsLocal } = useCarouselInstanceContext();
-    const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
+    const { currentItems, setCurrentItems, setCurrentItemIndex, currentElements: currentElementsGlobal, itemViewerRef } = useCarouselContext();
+    const { currentElements: currentElementsLocal } = useCarouselInstanceContext();
+    const currentElements = currentElementsLocal || currentElementsGlobal;
     const toolbarLogic = new ToolbarLogic(currentItems);
     const closeAction = new ToolbarActionsLogic(options).getClose();
     const stylingLogic = new StylingLogic({options});
-    const { svgHref, style } = currentSvgs?.closeButton || {};
+    const { svgHref, style } = currentElements?.closeButton || {};
     const fillColor = stylingLogic.getButtonColor(CarouselElement.closeButton);
     useKeyboardShortcuts([
         {

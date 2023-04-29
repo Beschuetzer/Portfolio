@@ -476,11 +476,17 @@ export class StylingLogic {
         }
     }
 
+    get toolbarBackgroundColorStyle() {
+        const customColor = this.options.styling?.toolbar?.background || this.options.styling?.container?.background;
+        return {
+            background: customColor || CAROUSEL_COLOR_ONE,
+        } as CSSProperties;
+    }
+
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItemInInstance);
-        const customColor = this.options.styling?.toolbar?.background || this.options.styling?.container?.background;
         const nonDefaultItemDisplayStyle = this.itemDisplayLocationLogic.isFullscreenButtonVisible ? {
-            background: customColor || CAROUSEL_COLOR_ONE,
+            ...this.toolbarBackgroundColorStyle,
             position: "relative",
             width: '100%',
             paddingTop: `${isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,

@@ -14,24 +14,24 @@ export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemVi
     onClick = () => null,
     options = {},
 }, ref) => {
-    const { setOptions, setCurrentCarouselId, setCurrentButtons, setCurrentItemIndex, currentButtons: currentButtonsGlobal, itemViewerRef } = useCarouselContext();
-    const { currentItemInInstanceIndex, currentButtons: currentButtonsLocal, id: carouselId } = useCarouselInstanceContext();
-    const currentSvgs = currentButtonsLocal || currentButtonsGlobal;
+    const { setOptions, setCurrentCarouselId, setCurrentElements, setCurrentItemIndex, currentElements: currentElementsGlobal, itemViewerRef } = useCarouselContext();
+    const { currentItemInInstanceIndex, currentElements: currentElementsLocal, id: carouselId } = useCarouselInstanceContext();
+    const currentElements = currentElementsLocal || currentElementsGlobal;
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options, currentItemIndex: currentItemInInstanceIndex})
     const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
-    const { svgHref, style } = currentSvgs?.closeButton || {};  //todo: change
-    const fillColor = stylingLogic.getButtonColor(CarouselElement.closeButton); //todo: change
+    const { svgHref, style } = currentElements?.fullscreenButton || {};  //todo: change
+    const fillColor = stylingLogic.getButtonColor(CarouselElement.fullscreenButton); //todo: change
 
     const onClickLocal = useCallback(async () => {
         setOptions(options || OPTIONS_DEFAULT);
         setCurrentCarouselId(carouselId);
-        setCurrentButtons(options?.styling?.elements);
+        setCurrentElements(options?.styling?.elements);
         setCurrentItemIndex(currentItemInInstanceIndex || 0);
         onClick && onClick();
         enterFullScreen(itemViewerRef.current);
     }, [
         setOptions,
-        setCurrentButtons,
+        setCurrentElements,
         setCurrentCarouselId,
         setCurrentItemIndex,
         exitFullScreen,

@@ -4,7 +4,7 @@ import { CarouselVideoModalProps } from "./components/CarouselVideoModal";
 import { EMPTY_STRING } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
-import { CarouselOptions, CarouselButtons } from "./types";
+import { CarouselOptions, CarouselElements } from "./types";
 import { ToolbarLogic } from "./business-logic/ToolbarLogic";
 
 type CarouselContextProps = {
@@ -12,7 +12,7 @@ type CarouselContextProps = {
 }
 
 export type CarouselValueProps = {
-    currentButtons: CarouselButtons | undefined;
+    currentElements: CarouselElements | undefined;
     currentCarouselId: string;
     currentItem: CarouselItemProps;
     currentItemIndex: number;
@@ -20,7 +20,7 @@ export type CarouselValueProps = {
     currentVideoOverlayProps: CarouselVideoModalProps;
     itemViewerRef: React.RefObject<HTMLElement>;
     options: CarouselOptions;
-    setCurrentButtons: React.Dispatch<React.SetStateAction<CarouselButtons | undefined>>;
+    setCurrentElements: React.Dispatch<React.SetStateAction<CarouselElements | undefined>>;
     setCurrentCarouselId: React.Dispatch<React.SetStateAction<string>>; 
     setCurrentItemIndex: React.Dispatch<React.SetStateAction<number>>;
     setCurrentItems: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
@@ -55,7 +55,7 @@ export const CarouselProvider = ({
     const [currentItemIndex, setCurrentItemIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
     const [currentCarouselId, setCurrentCarouselId] = useState(EMPTY_STRING);
     const [currentVideoOverlayProps, setCurrentVideoOverlayProps] = useState<CarouselVideoModalProps>(OVERLAY_PROPS_DEFAULT);
-    const [currentButtons, setCurrentButtons] = useState<CarouselButtons>()
+    const [currentElements, setCurrentElements] = useState<CarouselElements>()
     const [options, setOptions] = useState<CarouselOptions>(OPTIONS_DEFAULT);
     const itemViewerRef = useRef<HTMLElement>(null);
     const toolbarLogic = new ToolbarLogic(currentItems);
@@ -71,14 +71,14 @@ export const CarouselProvider = ({
                 currentItem,
                 currentItemIndex,
                 currentItems,
-                currentButtons,
+                currentElements,
                 currentVideoOverlayProps,
                 itemViewerRef,
                 options,
                 setCurrentCarouselId,
                 setCurrentItemIndex,
                 setCurrentItems,
-                setCurrentButtons,
+                setCurrentElements,
                 setCurrentVideoOverlayProps,
                 setOptions,
                 toolbarLogic,

@@ -421,8 +421,9 @@
   transform: translateX(4.8px);
   margin-top: 0;
 }
-.thumbnail-carousel-button--fullscreen {
+.thumbnail-carousel-button--fullscreen:hover {
   transition: transform 0.5s ease;
+  transform: scale(1.15);
 }
 .thumbnail-carousel-button--fullscreen-square-outer {
   position: absolute;
@@ -467,9 +468,6 @@
   background-color: #1d0e0b;
   height: 100%;
   width: 5px;
-}
-.thumbnail-carousel-button--fullscreen:hover {
-  transform: scale(1.15);
 }
 .thumbnail-carousel-button--pause-left, .thumbnail-carousel-button--pause-right {
   position: absolute;
@@ -672,6 +670,11 @@
   -ms-animation: video-state-indicator 0.5s 1 linear alternate none;
   -o-animation: video-state-indicator 0.5s 1 linear alternate none;
   animation: video-state-indicator 0.5s 1 linear alternate none;
+}
+
+.thumbnail-carousel-button--scale-on-hover:hover {
+  transition: transform 0.5s ease;
+  transform: scale(1.15);
 }
 
 @keyframes video-state-indicator {

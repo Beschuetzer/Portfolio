@@ -60,7 +60,7 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
     }
 
     &--fullscreen {
-        transition: transform $carouselAnimationDuration ease;
+        @include scaleOnHover();
         &-square-outer {
             @include positionButton();
             background-color: $itemViewerButtonColor;
@@ -89,10 +89,6 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
                 height: 100%;
                 width: 5px;
             }
-        }
-
-        &:hover {
-            transform: scale(1.15);
         }
     }
 
@@ -251,6 +247,10 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
         }
     }
 
+}
+
+.#{$carouselClassname}-button--scale-on-hover {
+    @include scaleOnHover();
 }
 
 @keyframes video-state-indicator {

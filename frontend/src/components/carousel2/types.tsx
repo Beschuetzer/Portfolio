@@ -174,7 +174,7 @@ export type CarouselVerticalPaddingOptions = {
 
 export type CarouselStylingOptions = {
     fontFamily?: CarouselFontFamilyOptions;
-    elements?: CarouselButtons;
+    elements?: CarouselElements;
 } & CarouselSections;
 
 export type CarouselOptions = {
@@ -266,6 +266,7 @@ export enum CarouselElement {
    *The dots at the bottom of the carousel indicating the number of pages
    */
     dots = 'dots',
+    fullscreenButton = 'fullscreenButton',
     nextButton = 'nextButton',
     pauseButton = 'pauseButton',
     playButton = 'playButton',
@@ -274,7 +275,7 @@ export enum CarouselElement {
     seekForwardButton = 'seekForwardButton',
 }
 
-export type CarouselButtons = {
+export type CarouselElements = {
     [button in CarouselElement]?: button extends CarouselElement.all ? Pick<CarouselButtonCustomization, 'fillColor'> : CarouselButtonCustomization;
 }
 

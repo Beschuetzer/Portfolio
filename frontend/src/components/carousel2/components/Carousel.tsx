@@ -46,7 +46,7 @@ export const Carousel = (props: CarouselProps) => {
 	//#region JSX
 	return (
 		<CarouselInstanceProvider
-			currentButtons={options?.styling?.elements}
+			currentElements={options?.styling?.elements}
 			numberOfPages={NUMBER_OF_PAGES_INITIAL}
 			itemsInInstance={items}
 			carouselContainerRef={carouselContainerRef as any}
