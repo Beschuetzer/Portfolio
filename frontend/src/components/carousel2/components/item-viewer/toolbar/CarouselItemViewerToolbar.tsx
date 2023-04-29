@@ -21,7 +21,7 @@ import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLoc
 import { CarouselItemProps } from '../../CarouselItem'
 import { CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH } from '../../../constants'
 import { useUpdateTimeString } from '../../../hooks/useUpdateTimeStrings'
-import { CarouselItemViewerFullscreenButton } from './CarouselItemViewerFullScreenButton'
+import { CarouselItemViewerFullscreenButton } from './CarouselItemViewerFullscreenButton'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;

@@ -15,11 +15,14 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
   onClick = () => null,
   style = {},
 }, ref) => {
+  const fullScreenClassname = `${className}--fullscreen`
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
   return (
-    <button ref={ref} onClick={onClick} className={className}>
-      <div style={colorStyle} className={`${className}--seek-back-left`} />
-      <div style={colorStyle} className={`${className}--seek-back-right`} />
+    <button ref={ref} onClick={onClick} className={`${className} ${fullScreenClassname}`}>
+      <div style={colorStyle} className={`${fullScreenClassname}-square-outer`} />
+      <div style={{}} className={`${fullScreenClassname}-square-inner`} />
+      <div style={{}} className={`${fullScreenClassname}-rect-horizontal`} />
+      <div style={{}} className={`${fullScreenClassname}-rect-vertical`} />
     </button>
   )
 })

@@ -59,6 +59,43 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
         margin-top: 0;
     }
 
+    &--fullscreen {
+        transition: transform $carouselAnimationDuration ease;
+        &-square-outer {
+            @include positionButton();
+            background-color: $itemViewerButtonColor;
+            width: 20px;
+            height: 20px;
+        }
+
+        &-square-inner {
+            @include positionButton();
+            background-color: $itemViewerBackgroundColor;
+            width: 15px;
+            height: 15px;
+        }
+
+        &-rect {
+            &-horizontal {
+                @include positionButton();
+                background-color: $itemViewerBackgroundColor;
+                width: 100%;
+                height: 5px;
+            }
+
+            &-vertical {
+                @include positionButton();
+                background-color: $itemViewerBackgroundColor;
+                height: 100%;
+                width: 5px;
+            }
+        }
+
+        &:hover {
+            transform: scale(1.15);
+        }
+    }
+
     &--pause {
 
         &-left,
