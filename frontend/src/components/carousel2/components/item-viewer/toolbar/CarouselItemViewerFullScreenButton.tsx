@@ -10,6 +10,7 @@ import { FullscreenButton } from '../../buttons/FullscreenButton';
 import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 
+//note: Full-screen button doesn't have any shortcuts since it is only visible when itemDisplayLocation is not 'none'
 type CarouselItemViewerFullscreenButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemViewerFullscreenButtonProps>(({
     actionName = '',

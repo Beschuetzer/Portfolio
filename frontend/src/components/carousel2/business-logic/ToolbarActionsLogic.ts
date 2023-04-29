@@ -1,6 +1,7 @@
 import { ITEM_VIEWER_CLOSE_SHORTCUTS, ITEM_VIEWER_NEXT_ITEM_SHORTCUTS, ITEM_VIEWER_PLAY_SHORTCUTS, ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS, ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS } from "../constants";
 import { KeyInput, ValidKey } from "../hooks/useKeyboardShortcuts";
 import { CarouselItemViewerActions, CarouselOptions, CarouselAction, CarouselActionOnActionCompleted, CarouselElement } from "../types";
+import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
 
 type GetAllKeysResponse = {
     [name in keyof CarouselItemViewerActions]: KeyInput[];
@@ -30,9 +31,16 @@ export class ToolbarActionsLogic {
     private _previousItemShortcut: CarouselAction;
     private _seekBackwardsShortcut: CarouselAction;
     private _seekForwardsShortcut: CarouselAction;
+    private _itemDisplayLocationLogic;
+
+    private _emptyAction = {
+        onActionCompleted: this._doNothing,
+        keys: [],
+    } as Required<CarouselAction>;
     
-    constructor(public options: CarouselOptions) {
+    constructor(public options: CarouselOptions, public itemViewerDisplayLogic?: ItemDisplayLocationLogic ) {
         this._itemViewerShortcuts = options?.shortcuts?.itemViewer || {};
+        this._itemDisplayLocationLogic = itemViewerDisplayLogic || new ItemDisplayLocationLogic({options});
         this._closeShortcut =  {
             onActionCompleted: this._itemViewerShortcuts?.[CarouselElement.closeButton]?.onActionCompleted,
             keys: this._itemViewerShortcuts?.[CarouselElement.closeButton]?.keys || ITEM_VIEWER_CLOSE_SHORTCUTS,
@@ -63,6 +71,10 @@ export class ToolbarActionsLogic {
         }
 
         this.isPauseSeparate =  !!this._itemViewerShortcuts[CarouselElement.pauseButton]?.keys;
+    }
+
+    get shouldReturnEmptyAction() {
+        return !!this._itemDisplayLocationLogic?.isFullscreenButtonVisible;
     }
 
     getAll(): GetAllResonse {
@@ -97,6 +109,7 @@ export class ToolbarActionsLogic {
     }
 
     getClose(): GetIndividualResponse {
+        if (this.shouldReturnEmptyAction) return this._emptyAction;
         const keysToUse = [...this._closeShortcut.keys];
         if (!keysToUse.includes(ValidKey.escape)) {
             keysToUse.push(ValidKey.escape);
@@ -109,6 +122,7 @@ export class ToolbarActionsLogic {
     }
 
     getNextItem(): GetIndividualResponse {
+        if (this.shouldReturnEmptyAction) return this._emptyAction;
         return {
             onActionCompleted: this._nextItemShortcut.onActionCompleted || this._doNothing,
             keys: this._nextItemShortcut.keys,
@@ -116,6 +130,7 @@ export class ToolbarActionsLogic {
     }
 
     getPause(): GetIndividualResponse {
+        if (this.shouldReturnEmptyAction) return this._emptyAction;
         return {
             onActionCompleted: this._pauseShortcut.onActionCompleted || this._doNothing,
             keys: this._pauseShortcut.keys,
@@ -123,6 +138,7 @@ export class ToolbarActionsLogic {
     }
 
     getPlay(): GetIndividualResponse {
+        if (this.shouldReturnEmptyAction) return this._emptyAction;
         return {
             onActionCompleted: this._playShortcut.onActionCompleted || this._doNothing,
             keys: this._playShortcut.keys,
@@ -130,6 +146,7 @@ export class ToolbarActionsLogic {
     }
 
     getPreviousItem(): GetIndividualResponse {
+        if (this.shouldReturnEmptyAction) return this._emptyAction;
         return {
             onActionCompleted: this._previousItemShortcut.onActionCompleted || this._doNothing,
             keys: this._previousItemShortcut.keys,
@@ -137,6 +154,7 @@ export class ToolbarActionsLogic {
     }
 
     getSeekForwards(): GetIndividualResponse {
+        if (this.shouldReturnEmptyAction) return this._emptyAction;
         return {
             onActionCompleted: this._seekForwardsShortcut.onActionCompleted || this._doNothing,
             keys: this._seekForwardsShortcut.keys,
@@ -144,6 +162,7 @@ export class ToolbarActionsLogic {
     }
 
     getSeekBackwards(): GetIndividualResponse {
+        if (this.shouldReturnEmptyAction) return this._emptyAction;
         return {
             onActionCompleted: this._seekBackwardsShortcut.onActionCompleted || this._doNothing,
             keys: this._seekBackwardsShortcut.keys,

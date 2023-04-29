@@ -84,8 +84,8 @@ export const CarouselItemViewerToolbar = ({
 
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
-    const actionsLogic = new ToolbarActionsLogic(options);
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem: {} as CarouselItemProps, currentItemIndex });
+    const actionsLogic = new ToolbarActionsLogic(options, itemDisplayLocationLogic);
     const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
 
     useKeyboardShortcuts([

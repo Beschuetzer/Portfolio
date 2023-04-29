@@ -7,6 +7,7 @@ import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcu
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
+import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
 type CarouselItemViewerSeekBackButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemViewerSeekBackButtonProps>(({
     actionName = '',
@@ -15,11 +16,12 @@ export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemView
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentElements: currentElementsGlobal } = useCarouselContext();
+    const { currentItemIndex, currentElements: currentElementsGlobal } = useCarouselContext();
     const { currentElements: currentElementsLocal } = useCarouselInstanceContext();
     const currentElements = currentElementsLocal || currentElementsGlobal;
     const { svgHref, style } = currentElements?.seekBackButton || {};
-    const seekBackwardsAction = new ToolbarActionsLogic(options).getSeekBackwards();
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
+    const seekBackwardsAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getSeekBackwards();
     const stylingLogic = new StylingLogic({ options });
     const fillColor = stylingLogic.getButtonColor(CarouselElement.seekBackButton);
 

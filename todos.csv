@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -need to remove shortcuts for nonDefaultItemDisplayStyle case (should display popup with action name still though)
     -current item not being selected when exiting an non default itemDisplayLocation after changing items (may not be possible as currently designed?)
     -next/previous buttons hidden on load
     -use isFullscreenButtonVisible to reset the overlay style for full-screen non default itemDisplayLocation case

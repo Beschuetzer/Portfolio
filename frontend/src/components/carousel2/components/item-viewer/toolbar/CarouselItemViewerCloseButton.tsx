@@ -11,6 +11,7 @@ import { ToolbarLogic } from '../../../business-logic/ToolbarLogic';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
+import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
 
 type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps> (({
@@ -20,11 +21,12 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     options = {},
     shortcutPosition = 'center',
 }, ref) => {
-    const { currentItems, setCurrentItems, setCurrentItemIndex, currentElements: currentElementsGlobal, itemViewerRef } = useCarouselContext();
+    const { currentItemIndex, currentItems, setCurrentItems, setCurrentItemIndex, currentElements: currentElementsGlobal, itemViewerRef } = useCarouselContext();
     const { currentElements: currentElementsLocal } = useCarouselInstanceContext();
     const currentElements = currentElementsLocal || currentElementsGlobal;
     const toolbarLogic = new ToolbarLogic(currentItems);
-    const closeAction = new ToolbarActionsLogic(options).getClose();
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
+    const closeAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getClose();
     const stylingLogic = new StylingLogic({options});
     const { svgHref, style } = currentElements?.closeButton || {};
     const fillColor = stylingLogic.getButtonColor(CarouselElement.closeButton);

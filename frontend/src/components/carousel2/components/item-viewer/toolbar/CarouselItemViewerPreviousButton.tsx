@@ -7,6 +7,7 @@ import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcu
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
+import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
 
 type CarouselItemViewerPreviousButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemViewerPreviousButtonProps>(({
@@ -15,11 +16,12 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const {  currentElements: currentElementsGlobal, toolbarLogic } = useCarouselContext();
+    const { currentItemIndex, currentElements: currentElementsGlobal, toolbarLogic } = useCarouselContext();
     const { currentElements: currentElementsLocal } = useCarouselInstanceContext();
     const currentElements = currentElementsLocal || currentElementsGlobal;
     const { svgHref, style } = currentElements?.previousButton || {};
-    const previousItemAction = new ToolbarActionsLogic(options).getPreviousItem();
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
+    const previousItemAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getPreviousItem();
     const stylingLogic = new StylingLogic({ options });
     const fillColor = stylingLogic.getButtonColor(CarouselElement.previousButton);
     

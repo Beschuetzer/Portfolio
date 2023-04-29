@@ -7,6 +7,7 @@ import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcu
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
+import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
 
 type CarouselItemViewerPauseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerPauseButtonProps>(({
@@ -16,11 +17,12 @@ export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerP
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentElements: currentElementsGlobal } = useCarouselContext();
+    const { currentItemIndex, currentElements: currentElementsGlobal } = useCarouselContext();
     const { currentElements: currentElementsLocal } = useCarouselInstanceContext();
     const currentElements = currentElementsLocal || currentElementsGlobal;
     const { svgHref, style } = currentElements?.pauseButton || {};
-    const pauseAction = new ToolbarActionsLogic(options).getPause();
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
+    const pauseAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getPause();
     const stylingLogic = new StylingLogic({ options });
     const fillColor = stylingLogic.getButtonColor(CarouselElement.pauseButton);
 

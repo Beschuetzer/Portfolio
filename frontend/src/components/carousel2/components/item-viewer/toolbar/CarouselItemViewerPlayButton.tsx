@@ -7,6 +7,7 @@ import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcu
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
+import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
 
 type CarouselItemViewerPlayButtonProps = {
 } & CarouselItemViewerButtonProps;
@@ -17,11 +18,12 @@ export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPl
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentElements: currentElementsGlobal } = useCarouselContext();
+    const { currentItemIndex, currentElements: currentElementsGlobal } = useCarouselContext();
     const { currentElements: currentElementsLocal } = useCarouselInstanceContext();
     const currentElements = currentElementsLocal || currentElementsGlobal;
     const { svgHref, style } = currentElements?.playButton || {};
-    const playAction = new ToolbarActionsLogic(options).getPlay();
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
+    const playAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getPlay();
     const stylingLogic = new StylingLogic({ options });
     const fillColor = stylingLogic.getButtonColor(CarouselElement.playButton);
 
