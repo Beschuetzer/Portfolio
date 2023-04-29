@@ -1,39 +1,48 @@
 import { forwardRef, useCallback } from 'react'
 import { EMPTY_STRING } from '../../../constants';
-import { CURRENT_ITEMS_INITIAL, CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../../context';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
-import { CloseButton } from '../../buttons/CloseButton';
-import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
-import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
-import { exitFullScreen } from '../../../utils';
-import { ToolbarLogic } from '../../../business-logic/ToolbarLogic';
-import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
+import { enterFullScreen, exitFullScreen, getIsInFullscreen } from '../../../utils';
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
+import { OPTIONS_DEFAULT, useCarouselContext } from '../../../context';
+import { FullscreenButton } from '../../buttons/FullscreenButton';
+import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
 
-type CarouselItemViewerFullScreenButtonProps = {} & CarouselItemViewerButtonProps;
-export const CarouselItemViewerFullScreenButton = forwardRef<any, CarouselItemViewerFullScreenButtonProps>(({
+type CarouselItemViewerFullscreenButtonProps = {} & CarouselItemViewerButtonProps;
+export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemViewerFullscreenButtonProps>(({
     onClick = () => null,
     options = {},
 }, ref) => {
-    const { setCurrentItems, setCurrentItemIndex, currentButtons: currentSvgsGlobal, itemViewerRef } = useCarouselContext();
-    const { currentButtons: currentSvgsLocal } = useCarouselInstanceContext();
-    const currentSvgs = currentSvgsLocal || currentSvgsGlobal;
-    const stylingLogic = new StylingLogic({ options });
-    const { svgHref, style } = currentSvgs?.closeButton || {};
-    const fillColor = stylingLogic.getButtonColor(CarouselElement.closeButton);
+    const { setOptions, setCurrentCarouselId, setCurrentButtons, setCurrentItemIndex, currentButtons: currentButtonsGlobal, itemViewerRef } = useCarouselContext();
+    const { currentItemInInstanceIndex, currentButtons: currentButtonsLocal, id: carouselId } = useCarouselInstanceContext();
+    const currentSvgs = currentButtonsLocal || currentButtonsGlobal;
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options, currentItemIndex: currentItemInInstanceIndex})
+    const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
+    const { svgHref, style } = currentSvgs?.closeButton || {};  //todo: change
+    const fillColor = stylingLogic.getButtonColor(CarouselElement.closeButton); //todo: change
 
     const onClickLocal = useCallback(async () => {
-        setCurrentItemIndex(CURRENT_ITEM_INDEX_INITIAL);
-        setCurrentItems(CURRENT_ITEMS_INITIAL);
-        onClick && onClick()
-        exitFullScreen(itemViewerRef.current);
-    }, [setCurrentItemIndex, EMPTY_STRING, onClick]);
+        setOptions(options || OPTIONS_DEFAULT);
+        setCurrentCarouselId(carouselId);
+        setCurrentButtons(options?.styling?.elements);
+        setCurrentItemIndex(currentItemInInstanceIndex || 0);
+        onClick && onClick();
+        enterFullScreen(itemViewerRef.current);
+    }, [
+        setOptions,
+        setCurrentButtons,
+        setCurrentCarouselId,
+        setCurrentItemIndex,
+        exitFullScreen,
+        enterFullScreen,
+        EMPTY_STRING,
+        onClick
+    ]);
 
     return (
         !!svgHref ?
             <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
-            <CloseButton ref={ref} onClick={onClickLocal} fillColor={fillColor} childStyle={style} />
+            <FullscreenButton ref={ref} onClick={onClickLocal} fillColor={fillColor} childStyle={style} />
     )
 })

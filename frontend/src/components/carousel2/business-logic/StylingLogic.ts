@@ -33,6 +33,7 @@ export enum SpacingDirection {
 }
 export type StylingLogicConstructor = {
     isCurrentItem?: boolean;
+    itemDisplayLocationLogic?: ItemDisplayLocationLogic;
     options: CarouselOptions | undefined;
     progressBarValue?: number;
     videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
@@ -58,6 +59,7 @@ export class StylingLogic {
         const {
             currentItemInInstance,
             isCurrentItem,
+            itemDisplayLocationLogic,
             itemViewerToolbarRef,
             loadingSpinnerOptions,
             options,
@@ -74,7 +76,7 @@ export class StylingLogic {
         this.videoModalRef = videoModalRef;
         this.options = options || {};
         const isCurrentItemInInstancePopulated = Object.keys(currentItemInInstance || {}).length > 0;
-        this.itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: this.options, currentItem: currentItemInInstance });
+        this.itemDisplayLocationLogic = itemDisplayLocationLogic || new ItemDisplayLocationLogic({ options: this.options });
     }
 
     //#region Public Getters
@@ -210,7 +212,7 @@ export class StylingLogic {
             borderBottomColor: `transparent`,
             borderLeftColor: `transparent`,
         } as CSSProperties;
-       
+
         return {
             ...divRadiusStyle,
             ...divSizeStyle,
@@ -430,7 +432,7 @@ export class StylingLogic {
         } as React.CSSProperties : {};
 
         const disabledStyle = shouldDisableDescriptionOverlay ? {
-           display: 'none'
+            display: 'none'
         } as React.CSSProperties : {};
 
         const backgroundGradientStyle = gradient ? {
@@ -477,7 +479,7 @@ export class StylingLogic {
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItemInInstance);
         const customColor = this.options.styling?.toolbar?.background || this.options.styling?.container?.background;
-        const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        const nonDefaultItemDisplayStyle = !this.itemDisplayLocationLogic.shouldDisplayCloseButton ? {
             background: customColor || CAROUSEL_COLOR_ONE,
             position: "relative",
             width: '100%',

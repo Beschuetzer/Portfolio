@@ -7,6 +7,8 @@ import { Exclusive } from '../types';
 import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__VIDEO_MODAL_BUTTON_RIGHT, CLASSNAME__VIDEO_MODAL_BUTTON_TOP } from '../constants';
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { useCarouselInstanceContext } from './CarouselInstanceProvider';
+import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
+import { CarouselItemProps } from './CarouselItem';
 
 export type CarouselVideoModalSection = {
      /*
@@ -61,7 +63,8 @@ export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
     const options = optionsLocal || optionsGlobal;
     const { svgHref } = currentSvgHrefs?.closeButton || {};
     const isCustom = !!children;
-    const stylingLogic = new StylingLogic({ options, videoRef, videoModalRef, currentItemInInstance });
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
+    const stylingLogic = new StylingLogic({ options, videoRef, videoModalRef, itemDisplayLocationLogic });
     const closeButtonColor = stylingLogic.carouselVideoCloseButtonColor;
     //#endregion
 

@@ -1,8 +1,8 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -add type for full-screen button
     -add css for full screen button
-    -add shortcuts for full-screen button in ToolbarActionsLogic
+    -add shortcuts for full-screen button?
+    -current item not being selected when exiting an non default itemDisplayLocation after changing items (may not be possible as currently designed?)
     -next/previous buttons hidden on load
     -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom);  appears to be a problem when all defaults too
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing

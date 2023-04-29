@@ -38,17 +38,18 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemIndex, setCurrentButtons: setCurrentSvgHrefs, setOptions, setCurrentCarouselId, itemViewerRef, } = useCarouselContext();
+  const { setCurrentItemIndex, setCurrentButtons, setOptions, setCurrentCarouselId, itemViewerRef, } = useCarouselContext();
   const { id: carouselId, options, setCurrentItemInInstanceIndex, currentItemInInstanceIndex } = useCarouselInstanceContext();
   const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}});
   const stylingLogic = new StylingLogic({options, isCurrentItem: index === currentItemInInstanceIndex});
   //#endregion
 
   //#region Functions/Handlers
+  //note: Similar functionality in CarouselItemViewerFullScreenButton.tsx
   async function onPress(e: MouseEvent) {
     setOptions(options || OPTIONS_DEFAULT);
     setCurrentCarouselId(carouselId);
-    setCurrentSvgHrefs(options?.styling?.elements);
+    setCurrentButtons(options?.styling?.elements);
 
     if (itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
       setCurrentItemIndex(index as any);

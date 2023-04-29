@@ -160,8 +160,7 @@ export function setCssCustomProperty(propertyName: string, newValue: string) {
 export async function enterFullScreen(element: HTMLElement | null) {
     try {
         const isFullScreenPossible = document.fullscreenEnabled;
-        const itemInFullScreenMode = document.fullscreenElement;
-        if (itemInFullScreenMode || !isFullScreenPossible || !element) return;
+        if (!isFullScreenPossible || !element) return;
         return await element.requestFullscreen();
     } catch (e) { }
 }
@@ -169,8 +168,7 @@ export async function enterFullScreen(element: HTMLElement | null) {
 export async function exitFullScreen(element: HTMLElement | null) {
     try {
         const isFullScreenPossible = document.fullscreenEnabled;
-        const itemInFullScreenMode = document.fullscreenElement;
-        if (!itemInFullScreenMode || !isFullScreenPossible || !element) return;
+        if (!isFullScreenPossible || !element) return;
         return await document.exitFullscreen();
     } catch (e) { }
 }

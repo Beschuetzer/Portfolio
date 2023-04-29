@@ -21,6 +21,7 @@ import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLoc
 import { CarouselItemProps } from '../../CarouselItem'
 import { CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH } from '../../../constants'
 import { useUpdateTimeString } from '../../../hooks/useUpdateTimeStrings'
+import { CarouselItemViewerFullscreenButton } from './CarouselItemViewerFullScreenButton'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -82,8 +83,8 @@ export const CarouselItemViewerToolbar = ({
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
     const toolbarLogic = new ToolbarLogic(currentItems);
     const actionsLogic = new ToolbarActionsLogic(options);
-    const stylingLogic = new StylingLogic({ options, currentItemInInstance });
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem: {} as CarouselItemProps });
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem: {} as CarouselItemProps, currentItemIndex });
+    const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
 
     useKeyboardShortcuts([
         {
@@ -368,7 +369,7 @@ export const CarouselItemViewerToolbar = ({
         seekBackwardButtonRef,
     ]);
 
-   
+
     //#endregion
 
     //#region JSX
@@ -413,7 +414,6 @@ export const CarouselItemViewerToolbar = ({
                             ref={seekForwardButtonRef}
                             shortcutPosition='left'
                         />
-
                     </div>
                 ) : null}
                 <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
@@ -431,14 +431,25 @@ export const CarouselItemViewerToolbar = ({
                         ref={nextButtonRef}
                         shortcutPosition='right'
                     />
-                    <CarouselItemViewerCloseButton
-                        actionName='Exit'
-                        isShortcutVisible={showCloseButtonPopup}
-                        onClick={onClose}
-                        options={options}
-                        ref={closeButtonRef}
-                        shortcutPosition='right'
-                    />
+                    {itemDisplayLocationLogic.shouldDisplayCloseButton ? (
+                        <CarouselItemViewerCloseButton
+                            actionName='Exit'
+                            isShortcutVisible={showCloseButtonPopup}
+                            onClick={onClose}
+                            options={options}
+                            ref={closeButtonRef}
+                            shortcutPosition='right'
+                        />
+                    ) : (
+                        <CarouselItemViewerFullscreenButton
+                            actionName='Enter Fullscreen'
+                            // isShortcutVisible={showCloseButtonPopup}
+                            onClick={() => null}
+                            options={options}
+                            ref={closeButtonRef}
+                            shortcutPosition='right'
+                        />
+                    )}
                 </div>
             </div>
             <CarouselItemViewerToolbarPreview
