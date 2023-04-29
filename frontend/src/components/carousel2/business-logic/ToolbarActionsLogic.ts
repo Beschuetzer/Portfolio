@@ -34,32 +34,32 @@ export class ToolbarActionsLogic {
     constructor(public options: CarouselOptions) {
         this._itemViewerShortcuts = options?.shortcuts?.itemViewer || {};
         this._closeShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts[CarouselElement.closeButton]?.onActionCompleted,
-            keys: this._itemViewerShortcuts[CarouselElement.closeButton]?.keys || ITEM_VIEWER_CLOSE_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts?.[CarouselElement.closeButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts?.[CarouselElement.closeButton]?.keys || ITEM_VIEWER_CLOSE_SHORTCUTS,
         }
         this._nextItemShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts[CarouselElement.nextButton]?.onActionCompleted,
-            keys: this._itemViewerShortcuts[CarouselElement.nextButton]?.keys || ITEM_VIEWER_NEXT_ITEM_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts?.[CarouselElement.nextButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts?.[CarouselElement.nextButton]?.keys || ITEM_VIEWER_NEXT_ITEM_SHORTCUTS,
         }
         this._pauseShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts[CarouselElement.pauseButton]?.onActionCompleted,
-            keys: this._itemViewerShortcuts[CarouselElement.pauseButton]?.keys || ITEM_VIEWER_PLAY_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts?.[CarouselElement.pauseButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts?.[CarouselElement.pauseButton]?.keys || ITEM_VIEWER_PLAY_SHORTCUTS,
         }
         this._playShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts[CarouselElement.playButton]?.onActionCompleted,
-            keys: this._itemViewerShortcuts[CarouselElement.playButton]?.keys || ITEM_VIEWER_PLAY_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts?.[CarouselElement.playButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts?.[CarouselElement.playButton]?.keys || ITEM_VIEWER_PLAY_SHORTCUTS,
         }
         this._previousItemShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts[CarouselElement.previousButton]?.onActionCompleted,
-            keys: this._itemViewerShortcuts[CarouselElement.previousButton]?.keys || ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts?.[CarouselElement.previousButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts?.[CarouselElement.previousButton]?.keys || ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS,
         }
         this._seekBackwardsShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts[CarouselElement.seekBackButton]?.onActionCompleted,
-            keys: this._itemViewerShortcuts[CarouselElement.seekBackButton]?.keys || ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts?.[CarouselElement.seekBackButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts?.[CarouselElement.seekBackButton]?.keys || ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS,
         }
         this._seekForwardsShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts[CarouselElement.seekForwardButton]?.onActionCompleted,
-            keys: this._itemViewerShortcuts[CarouselElement.seekForwardButton]?.keys || ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts?.[CarouselElement.seekForwardButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts?.[CarouselElement.seekForwardButton]?.keys || ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS,
         }
 
         this.isPauseSeparate =  !!this._itemViewerShortcuts[CarouselElement.pauseButton]?.keys;
