@@ -117,6 +117,9 @@ export function getGuid() {
 }
 
 export function getShortcutsString(shortcuts: KeyInput[]) {
+    let result = "";
+    if (!shortcuts || shortcuts.length === 0) return result;
+
     const replacements = [
         [ValidKey.arrowDown, '↓'],
         [ValidKey.arrowUp, '↑'],
@@ -126,7 +129,6 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
         [ValidKey.escape, 'esc'],
     ] as [string, string][];
 
-    let result = "";
     for (let i = 0; i < shortcuts.length; i++) {
         const shortcut = shortcuts[i];
         const isLastItem = i === shortcuts.length - 1;

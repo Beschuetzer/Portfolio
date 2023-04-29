@@ -83,43 +83,43 @@ const customButtons = {
 }
 const carouselShortcuts = {
 	itemViewer: {
-		close: {
+		closeButton: {
 			keys: [ValidKey.l, [ModifierKey.alt, ValidKey.l]],
 			onActionCompleted() {
 				console.log('close - it works as method')
 			},
 		},
-		nextItem: {
+		nextButton: {
 			keys: [ValidKey.e, [ModifierKey.alt, ValidKey.e]],
 			onActionCompleted() {
 				console.log('next - after')
 			},
 		},
-		pause: {
+		pauseButton: {
 			keys: [ValidKey.a, [ModifierKey.alt, ValidKey.a]],
 			onActionCompleted() {
 				console.log('pause - after')
 			},
 		},
-		play: {
+		playButton: {
 			keys: [ValidKey.p, [ModifierKey.alt, ValidKey.p]],
 			onActionCompleted() {
 				console.log('play - after')
 			},
 		},
-		previousItem: {
+		previousButton: {
 			keys: [ValidKey.r, [ModifierKey.alt, ValidKey.r]],
 			onActionCompleted() {
 				console.log('previous - after')
 			},
 		},
-		seekBackwards: {
+		seekBackButton: {
 			keys: [ValidKey.k, [ModifierKey.alt, ValidKey.k]],
 			onActionCompleted: () => {
 				console.log('backward - it works as field')
 			},
 		},
-		seekForwards: {
+		seekForwardButton: {
 			keys: [ValidKey.w, [ModifierKey.alt, ValidKey.w]],
 			onActionCompleted: () => {
 				console.log('forward - it works as field')

@@ -7,7 +7,7 @@ export type CarouselItemViewerShortcutIndicatorProps = {
     children: ReactNode | ReactNode[];
     isShortcutVisible?: boolean;
     shortcutPosition?: 'left' | 'center' | 'right';
-    shortcuts: KeyInput[];
+    shortcuts?: KeyInput[];
 }
 
 const className = getClassname({ elementName: 'item-viewer-shortcut-indicator' });
@@ -18,8 +18,8 @@ export const CarouselItemViewerShortcutIndicator = ({
     shortcutPosition: position = 'center',
     shortcuts = [],
 }: CarouselItemViewerShortcutIndicatorProps) => {
-    const hideShortcut = !isShortcutVisible || !actionName || shortcuts.length === 0;
-    
+    const hideShortcut = !isShortcutVisible || !actionName;
+
     const commonStyle = {
         zIndex: 1000000000000,
     }
@@ -39,9 +39,14 @@ export const CarouselItemViewerShortcutIndicator = ({
         <div className={className}>
             {hideShortcut ? null : (
                 <div style={style}>
-                    <p>
-                        {capitalize(actionName)} ({getShortcutsString(shortcuts)})
-                    </p>
+                    <span>
+                        {capitalize(actionName)}
+                    </span>
+                    {shortcuts.length > 0 ? (
+                        <span>
+                            ({getShortcutsString(shortcuts)})
+                        </span>
+                    ) : null}
                 </div>
             )}
             {children}

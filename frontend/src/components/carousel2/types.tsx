@@ -201,31 +201,31 @@ export type CarouselItemViewerActions = {
     /*
     *Additional shortcuts for closing the item-viewer (full-screen mode).  The esc key is a hard-coded value here.
     */
-    close?: CarouselAction;
+    [CarouselElement.closeButton]?: CarouselAction;
     /*
     *Shortcuts for moving to the next item item in the item-viewer (full-screen mode).  Overrides defaults.
     */
-    nextItem?: CarouselAction;
+    [CarouselElement.nextButton]?: CarouselAction;
     /*
     *Shortcuts for pausing a video in the item-viewer (full-screen mode).  Overrides defaults.
     */
-    pause?: CarouselAction;
+    [CarouselElement.pauseButton]?: CarouselAction;
     /*
     *Shortcuts for playing a video in the item-viewer (full-screen mode).  Overrides defaults.
     */
-    play?: CarouselAction;
+    [CarouselElement.playButton]?: CarouselAction;
     /*
     *Shortcuts for moving to the previous item item in the item-viewer (full-screen mode).  Overrides defaults.
     */
-    previousItem?: CarouselAction;
+    [CarouselElement.previousButton]?: CarouselAction;
     /*
    *Shortcuts for seeking a video backward in the item-viewer (full-screen mode).  Overrides defaults.
    */
-    seekBackwards?: CarouselAction;
+    [CarouselElement.seekBackButton]?: CarouselAction;
     /*
     *Shortcuts for seeking a video forward in the item-viewer (full-screen mode).  Overrides defaults.
     */
-    seekForwards?: CarouselAction;
+    [CarouselElement.seekForwardButton]?: CarouselAction;
 }
 
 export type CarouselActions = {

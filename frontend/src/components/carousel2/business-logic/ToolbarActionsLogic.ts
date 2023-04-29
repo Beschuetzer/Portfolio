@@ -1,6 +1,6 @@
 import { ITEM_VIEWER_CLOSE_SHORTCUTS, ITEM_VIEWER_NEXT_ITEM_SHORTCUTS, ITEM_VIEWER_PLAY_SHORTCUTS, ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS, ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS } from "../constants";
 import { KeyInput, ValidKey } from "../hooks/useKeyboardShortcuts";
-import { CarouselItemViewerActions, CarouselOptions, CarouselAction, CarouselActionOnActionCompleted } from "../types";
+import { CarouselItemViewerActions, CarouselOptions, CarouselAction, CarouselActionOnActionCompleted, CarouselElement } from "../types";
 
 type GetAllKeysResponse = {
     [name in keyof CarouselItemViewerActions]: KeyInput[];
@@ -34,35 +34,35 @@ export class ToolbarActionsLogic {
     constructor(public options: CarouselOptions) {
         this._itemViewerShortcuts = options?.shortcuts?.itemViewer || {};
         this._closeShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts.close?.onActionCompleted,
-            keys: this._itemViewerShortcuts.close?.keys || ITEM_VIEWER_CLOSE_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts[CarouselElement.closeButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts[CarouselElement.closeButton]?.keys || ITEM_VIEWER_CLOSE_SHORTCUTS,
         }
         this._nextItemShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts.nextItem?.onActionCompleted,
-            keys: this._itemViewerShortcuts.nextItem?.keys || ITEM_VIEWER_NEXT_ITEM_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts[CarouselElement.nextButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts[CarouselElement.nextButton]?.keys || ITEM_VIEWER_NEXT_ITEM_SHORTCUTS,
         }
         this._pauseShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts.pause?.onActionCompleted,
-            keys: this._itemViewerShortcuts.pause?.keys || ITEM_VIEWER_PLAY_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts[CarouselElement.pauseButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts[CarouselElement.pauseButton]?.keys || ITEM_VIEWER_PLAY_SHORTCUTS,
         }
         this._playShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts.play?.onActionCompleted,
-            keys: this._itemViewerShortcuts.play?.keys || ITEM_VIEWER_PLAY_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts[CarouselElement.playButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts[CarouselElement.playButton]?.keys || ITEM_VIEWER_PLAY_SHORTCUTS,
         }
         this._previousItemShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts.previousItem?.onActionCompleted,
-            keys: this._itemViewerShortcuts.previousItem?.keys || ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts[CarouselElement.previousButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts[CarouselElement.previousButton]?.keys || ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS,
         }
         this._seekBackwardsShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts.seekBackwards?.onActionCompleted,
-            keys: this._itemViewerShortcuts.seekBackwards?.keys || ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts[CarouselElement.seekBackButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts[CarouselElement.seekBackButton]?.keys || ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS,
         }
         this._seekForwardsShortcut =  {
-            onActionCompleted: this._itemViewerShortcuts.seekForwards?.onActionCompleted,
-            keys: this._itemViewerShortcuts.seekForwards?.keys || ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS,
+            onActionCompleted: this._itemViewerShortcuts[CarouselElement.seekForwardButton]?.onActionCompleted,
+            keys: this._itemViewerShortcuts[CarouselElement.seekForwardButton]?.keys || ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS,
         }
 
-        this.isPauseSeparate =  !!this._itemViewerShortcuts.pause?.keys;
+        this.isPauseSeparate =  !!this._itemViewerShortcuts[CarouselElement.pauseButton]?.keys;
     }
 
     getAll(): GetAllResonse {
@@ -74,25 +74,25 @@ export class ToolbarActionsLogic {
 
     getAllKeys(): GetAllKeysResponse {
         return {
-            close: this._closeShortcut.keys,
-            nextItem: this._nextItemShortcut.keys,
-            pause: this._pauseShortcut.keys,
-            play: this._playShortcut.keys,
-            previousItem: this._previousItemShortcut.keys,
-            seekBackwards: this._seekBackwardsShortcut.keys,
-            seekForwards: this._seekForwardsShortcut.keys,
+            [CarouselElement.closeButton]: this._closeShortcut.keys,
+            [CarouselElement.nextButton]: this._nextItemShortcut.keys,
+            [CarouselElement.pauseButton]: this._pauseShortcut.keys,
+            [CarouselElement.playButton]: this._playShortcut.keys,
+            [CarouselElement.previousButton]: this._previousItemShortcut.keys,
+            [CarouselElement.seekBackButton]: this._seekBackwardsShortcut.keys,
+            [CarouselElement.seekForwardButton]: this._seekForwardsShortcut.keys,
         }
     }
 
     getAllOnActionCompleted(): GetAllOnActionCompleted {
         return {
-            close: this._closeShortcut.onActionCompleted,
-            nextItem: this._nextItemShortcut.onActionCompleted,
-            pause: this._pauseShortcut.onActionCompleted,
-            play: this._playShortcut.onActionCompleted,
-            previousItem: this._previousItemShortcut.onActionCompleted,
-            seekBackwards: this._seekBackwardsShortcut.onActionCompleted,
-            seekForwards: this._seekForwardsShortcut.onActionCompleted,
+            [CarouselElement.closeButton]: this._closeShortcut.onActionCompleted,
+            [CarouselElement.nextButton]: this._nextItemShortcut.onActionCompleted,
+            [CarouselElement.pauseButton]: this._pauseShortcut.onActionCompleted,
+            [CarouselElement.playButton]: this._playShortcut.onActionCompleted,
+            [CarouselElement.previousButton]: this._previousItemShortcut.onActionCompleted,
+            [CarouselElement.seekBackButton]: this._seekBackwardsShortcut.onActionCompleted,
+            [CarouselElement.seekForwardButton]: this._seekForwardsShortcut.onActionCompleted,
         }
     }
 

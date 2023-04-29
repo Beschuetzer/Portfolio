@@ -61,6 +61,7 @@ export const CarouselItemViewerToolbar = ({
     const previousButtonRef = useRef<any>(null);
     const nextButtonRef = useRef<any>(null);
     const closeButtonRef = useRef<any>(null);
+    const fullscreenButtonRef = useRef<any>(null);
     const pauseButtonRef = useRef<any>(null);
     const playButtonRef = useRef<any>(null);
     const seekForwardButtonRef = useRef<any>(null);
@@ -75,6 +76,7 @@ export const CarouselItemViewerToolbar = ({
     const [isNextItemPreviewLoaded, setIsNextItemPreviewLoaded] = useState(false);
 
     const [showCloseButtonPopup, setShowCloseButtonPopup] = useState(false);
+    const [showFullscreenButtonPopup, setShowFullscreenButtonPopup] = useState(false);
     const [showPauseButtonPopup, setShowPauseButtonPopup] = useState(false);
     const [showPlayButtonPopup, setShowPlayButtonPopup] = useState(false);
     const [showSeekForwardButtonPopup, setShowSeekForwardButtonPopup] = useState(false);
@@ -249,6 +251,8 @@ export const CarouselItemViewerToolbar = ({
     useEffect(() => {
         const boundDisplayCloseButton = handleDisplayPopup.bind(null, true, setShowCloseButtonPopup);
         const boundHideCloseButton = handleDisplayPopup.bind(null, false, setShowCloseButtonPopup);
+        const boundDisplayFullscreenButton = handleDisplayPopup.bind(null, true, setShowFullscreenButtonPopup);
+        const boundHideFullscreenButton = handleDisplayPopup.bind(null, false, setShowFullscreenButtonPopup);
         const boundDisplayPauseButton = handleDisplayPopup.bind(null, true, setShowPauseButtonPopup);
         const boundHidePauseButton = handleDisplayPopup.bind(null, false, setShowPauseButtonPopup);
         const boundDisplayPlayButton = handleDisplayPopup.bind(null, true, setShowPlayButtonPopup);
@@ -282,19 +286,19 @@ export const CarouselItemViewerToolbar = ({
             videoRef.current.addEventListener('ended', handleVideoEnd);
         }
 
-        if (nextButtonRef?.current) {
-            nextButtonRef.current.addEventListener('mouseenter', handleMouseEnterNextButton);
-            nextButtonRef.current.addEventListener('mouseleave', handleMouseLeaveButton);
-        }
-
-        if (previousButtonRef?.current) {
-            previousButtonRef.current.addEventListener('mouseenter', handleMouseEnterPreviousButton);
-            previousButtonRef.current.addEventListener('mouseleave', handleMouseLeaveButton);
-        }
-
         if (closeButtonRef?.current) {
             closeButtonRef.current.addEventListener('mouseenter', boundDisplayCloseButton);
             closeButtonRef.current.addEventListener('mouseleave', boundHideCloseButton);
+        }
+        
+        if (fullscreenButtonRef?.current) {
+            fullscreenButtonRef.current.addEventListener('mouseenter', boundDisplayFullscreenButton);
+            fullscreenButtonRef.current.addEventListener('mouseleave', boundHideFullscreenButton);
+        }
+
+        if (nextButtonRef?.current) {
+            nextButtonRef.current.addEventListener('mouseenter', handleMouseEnterNextButton);
+            nextButtonRef.current.addEventListener('mouseleave', handleMouseLeaveButton);
         }
 
         if (pauseButtonRef?.current) {
@@ -306,10 +310,10 @@ export const CarouselItemViewerToolbar = ({
             playButtonRef.current.addEventListener('mouseenter', boundDisplayPlayButton);
             playButtonRef.current.addEventListener('mouseleave', boundHidePlayButton);
         }
-
-        if (seekForwardButtonRef?.current) {
-            seekForwardButtonRef.current.addEventListener('mouseenter', boundDisplaySeekForwardButton);
-            seekForwardButtonRef.current.addEventListener('mouseleave', boundHideSeekForwardButton);
+      
+        if (previousButtonRef?.current) {
+            previousButtonRef.current.addEventListener('mouseenter', handleMouseEnterPreviousButton);
+            previousButtonRef.current.addEventListener('mouseleave', handleMouseLeaveButton);
         }
 
         if (seekBackwardButtonRef?.current) {
@@ -317,19 +321,13 @@ export const CarouselItemViewerToolbar = ({
             seekBackwardButtonRef.current.addEventListener('mouseleave', boundHideSeekBackwardButton);
         }
 
+        if (seekForwardButtonRef?.current) {
+            seekForwardButtonRef.current.addEventListener('mouseenter', boundDisplaySeekForwardButton);
+            seekForwardButtonRef.current.addEventListener('mouseleave', boundHideSeekForwardButton);
+        }
         return () => {
             if (videoRef?.current) {
                 videoRef.current.removeEventListener('ended', handleVideoEnd);
-            }
-
-            if (nextButtonRef?.current) {
-                nextButtonRef.current.removeEventListener('mouseenter', handleMouseEnterNextButton);
-                nextButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
-            }
-
-            if (previousButtonRef?.current) {
-                previousButtonRef.current.removeEventListener('mouseenter', handleMouseEnterPreviousButton);
-                previousButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
             }
 
             if (closeButtonRef?.current) {
@@ -337,6 +335,16 @@ export const CarouselItemViewerToolbar = ({
                 closeButtonRef.current.removeEventListener('mouseleave', boundHideCloseButton);
             }
 
+            if (fullscreenButtonRef?.current) {
+                fullscreenButtonRef.current.removeEventListener('mouseenter', boundDisplayFullscreenButton);
+                fullscreenButtonRef.current.removeEventListener('mouseleave', boundHideFullscreenButton);
+            }
+            
+            if (nextButtonRef?.current) {
+                nextButtonRef.current.removeEventListener('mouseenter', handleMouseEnterNextButton);
+                nextButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
+            }
+    
             if (pauseButtonRef?.current) {
                 pauseButtonRef.current.removeEventListener('mouseenter', boundDisplayPauseButton);
                 pauseButtonRef.current.removeEventListener('mouseleave', boundHidePauseButton);
@@ -347,26 +355,32 @@ export const CarouselItemViewerToolbar = ({
                 playButtonRef.current.removeEventListener('mouseleave', boundHidePlayButton);
             }
 
-            if (seekForwardButtonRef?.current) {
-                seekForwardButtonRef.current.removeEventListener('mouseenter', boundDisplaySeekForwardButton);
-                seekForwardButtonRef.current.removeEventListener('mouseleave', boundHideSeekForwardButton);
+            if (previousButtonRef?.current) {
+                previousButtonRef.current.removeEventListener('mouseenter', handleMouseEnterPreviousButton);
+                previousButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
             }
 
             if (seekBackwardButtonRef?.current) {
                 seekBackwardButtonRef.current.removeEventListener('mouseenter', boundDisplaySeekBackwardButton);
                 seekBackwardButtonRef.current.removeEventListener('mouseleave', boundHideSeekBackwardButton);
             }
+
+            if (seekForwardButtonRef?.current) {
+                seekForwardButtonRef.current.removeEventListener('mouseenter', boundDisplaySeekForwardButton);
+                seekForwardButtonRef.current.removeEventListener('mouseleave', boundHideSeekForwardButton);
+            }
         }
     }, [
+        closeButtonRef,
         currentItemIndex,
+        fullscreenButtonRef,
         isVideoPlaying,
         nextButtonRef,
-        previousButtonRef,
-        closeButtonRef,
         pauseButtonRef,
         playButtonRef,
-        seekForwardButtonRef,
+        previousButtonRef,
         seekBackwardButtonRef,
+        seekForwardButtonRef,
     ]);
 
 
@@ -433,12 +447,11 @@ export const CarouselItemViewerToolbar = ({
                     />
                     {itemDisplayLocationLogic.isFullscreenButtonVisible ? (
                         <CarouselItemViewerFullscreenButton
-                            actionName='Enter Fullscreen'
-                            // isShortcutVisible={showCloseButtonPopup}
+                            actionName='Fullscreen'
+                            isShortcutVisible={showFullscreenButtonPopup}
                             onClick={() => null}
                             options={options}
-                            ref={closeButtonRef}
-                            shortcutPosition='right'
+                            ref={fullscreenButtonRef}
                         />
                     ) : (
                         <CarouselItemViewerCloseButton
