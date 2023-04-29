@@ -19,16 +19,20 @@ export const CarouselItemViewerShortcutIndicator = ({
     shortcuts = [],
 }: CarouselItemViewerShortcutIndicatorProps) => {
     const hideShortcut = !isShortcutVisible || !actionName || shortcuts.length === 0;
+    
+    const commonStyle = {
+        zIndex: 1000000000000,
+    }
     const style = position === 'left' ? {
+        ...commonStyle,
         left: 0,
         right: 'auto',
         transform: 'translate(0%, -50%)',
-        zIndex: 1000000000000,
     } as React.CSSProperties : position === 'right' ? {
+        ...commonStyle,
         right: 0,
         left: 'auto',
         transform: 'translate(0%, -50%)',
-        zIndex: 1000000000000,
     } as React.CSSProperties : {};
 
     return (
