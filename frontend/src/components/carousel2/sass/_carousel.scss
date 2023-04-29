@@ -146,6 +146,7 @@
             stroke: $itemViewerBackgroundColor;
             stroke-opacity: .15;
             stroke-width: 2px;
+            display: flex;
 
             &-inverse {
                 @include button--inverse;

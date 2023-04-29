@@ -3,6 +3,7 @@ import { KeyInput, ModifierKey, ValidKey } from "./hooks/useKeyboardShortcuts";
 
 export const CLASSNAME__ROOT = 'thumbnail-carousel';
 export const CLASSNAME__BUTTON = `${CLASSNAME__ROOT}-button`;
+export const CLASSNAME__BUTTON_SCALE_ON_HOVER = `${CLASSNAME__BUTTON}--scale-on-hover`
 export const CLASSNAME__CAROUSEL_ITEM = getClassname({ elementName: 'item' });
 export const CLASSNAME__CAROUSEL_ITEM_THUMBNAIL = getClassname({ elementName: 'item-thumbnail' });
 export const CLASSNAME__HIDDEN = getClassname({ modifiedName: 'hidden' });

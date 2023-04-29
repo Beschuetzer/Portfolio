@@ -35,7 +35,7 @@ const customButtons = {
 		svgHref: "./sprite.svg#icon-close",
 	},
 	fullScreenButton: {
-		svgHref: "./sprite.svg#icon-help",
+		svgHref: "./sprite.svg#icon-fullscreen",
 		fillColor: getComputedStyleCustom('--color-primary-1'),
 	},
 	nextButton: {

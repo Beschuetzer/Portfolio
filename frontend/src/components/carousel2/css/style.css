@@ -325,6 +325,7 @@
   border: none;
   position: relative;
   background-color: transparent;
+  display: flex;
 }
 .thumbnail-carousel-button:hover {
   opacity: 1;
@@ -822,10 +823,12 @@
   border: none;
   position: relative;
   background-color: transparent;
+  display: flex;
   fill: #fff9f5;
   stroke: #1d0e0b;
   stroke-opacity: 0.15;
   stroke-width: 2px;
+  display: flex;
 }
 .thumbnail-carousel__item-viewer-button:hover {
   opacity: 1;

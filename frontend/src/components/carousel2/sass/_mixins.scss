@@ -12,6 +12,7 @@
     border: none;
     position: relative;
     background-color: transparent;
+    display: flex;
 
     &:hover {
         opacity: $opacityHover;

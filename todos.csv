@@ -1,7 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -add classname to Custom button for CarouselFullscreenButton to make the custom icon scale on hover
-    -add css for full screen button
     -add shortcuts for full-screen button?
     -current item not being selected when exiting an non default itemDisplayLocation after changing items (may not be possible as currently designed?)
     -next/previous buttons hidden on load

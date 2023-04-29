@@ -1,5 +1,5 @@
 import { forwardRef, useCallback } from 'react'
-import { EMPTY_STRING } from '../../../constants';
+import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__BUTTON_SCALE_ON_HOVER, EMPTY_STRING } from '../../../constants';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { enterFullScreen, exitFullScreen } from '../../../utils';
@@ -17,7 +17,7 @@ export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemVi
     const { setOptions, setCurrentCarouselId, setCurrentElements, setCurrentItemIndex, currentElements: currentElementsGlobal, itemViewerRef } = useCarouselContext();
     const { currentItemInInstanceIndex, currentElements: currentElementsLocal, id: carouselId } = useCarouselInstanceContext();
     const currentElements = currentElementsLocal || currentElementsGlobal;
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options, currentItemIndex: currentItemInInstanceIndex})
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex: currentItemInInstanceIndex })
     const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
     const { svgHref, style } = currentElements?.fullscreenButton || {};  //todo: change
     const fillColor = stylingLogic.getButtonColor(CarouselElement.fullscreenButton); //todo: change
@@ -42,7 +42,19 @@ export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemVi
 
     return (
         !!svgHref ?
-            <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
-            <FullscreenButton ref={ref} onClick={onClickLocal} fillColor={fillColor} childStyle={style} />
+            <CarouselItemViewerCustomButton
+                ref={ref}
+                onClick={onClickLocal}
+                xlinkHref={svgHref}
+                useElementStyle={style}
+                fillColor={fillColor}
+                classNamesToInclude={[CLASSNAME__BUTTON_SCALE_ON_HOVER]}
+            /> :
+            <FullscreenButton
+                ref={ref}
+                onClick={onClickLocal}
+                fillColor={fillColor}
+                childStyle={style}
+            />
     )
 })
