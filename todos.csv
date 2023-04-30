@@ -1,7 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -add only start auto-play videos if the video is inside the viewport (need to use scroll event handler for this and getBoundingClientRect of video)
-    -auto play videos don't start initially (diff between 4c23ec0 and 858bc causes behavior but not helpful)
     -when you hit play and a video is at the end, it doesn't restart as expected
     -current item not being selected when exiting an non default itemDisplayLocation after changing items (may not be possible as currently designed?)
     -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom);  appears to be a problem when all defaults too

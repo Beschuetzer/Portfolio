@@ -11,6 +11,10 @@ import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { StylingLogic } from '../business-logic/StylingLogic';
 
 export type CarouselVideoProps = {
+    /*
+    * If true, the video will start playing when it first comes into focus 
+    * e.g. when user scrolls down to it or when the user clicks the thumbnail to load it
+    */
     autoPlay?: boolean;
     loop?: boolean;
     muted?: boolean;
@@ -106,7 +110,6 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             const videoMiddle = videoBoundingRect.top + (videoBoundingRect.height / 2);
             const isVideoAroundCenterOfViewport = Math.abs(videoMiddle - viewPortMiddle) <= WIGGLE_ROOM;
             if (isVideoAroundCenterOfViewport) {
-                console.log({isVideoAroundCenterOfViewport});
                 setHasEnteredViewport(true);
             }
         }
@@ -117,6 +120,12 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             window.removeEventListener('scroll', handleScroll);
         }
     }, [])
+
+    //start playing video when when visible
+    useEffect(() => {
+        if (!autoPlay) return;
+        tryPlaying();
+    }, [hasEnteredViewport, autoPlay])
     //#endregion
 
     //#region JSX   
