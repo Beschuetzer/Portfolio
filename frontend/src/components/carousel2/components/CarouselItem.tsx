@@ -64,8 +64,8 @@ export const CarouselItem = (props: CarouselItemProps) => {
   return (
     <div onClick={(e) => onPress(e as any)} className={CLASSNAME__CAROUSEL_ITEM} style={stylingLogic.carouselItemStyle}>
       {description ? (
-        <div style={stylingLogic.thumbnailBackgroundStyle}>
-          <p style={stylingLogic.thumbnailTextStyle}>{description}</p>
+        <div style={stylingLogic.thumbnailOverlayBackgroundStyle}>
+          <p style={stylingLogic.thumbnailOverlayTextStyle}>{description}</p>
         </div>
       ) : null}
       <img

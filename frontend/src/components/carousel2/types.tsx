@@ -103,7 +103,7 @@ export type CarouselSections = {
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
         textColor?: string;
         /*
-        *this is a percent of the item container width
+        *this is a percent of the item container width when the 'itemDisplayLocation' is not 'none'.  It has no effect otherwise.
         */
         widthInPercent?: number;
     } & Partial<Pick<CarouselColorOptions, 'background'>>;

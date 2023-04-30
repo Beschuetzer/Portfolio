@@ -255,11 +255,12 @@ export class StylingLogic {
         const { fontSize: customFontSize, background, textColor, widthInPercent } = this.options.styling?.videoModal || {};
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
         const isDefault = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation;
+        const isFullscreenButtonVisible = this.itemDisplayLocationLogic.isFullscreenButtonVisible;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
         const videoModalHeight = this.videoModalRef?.current?.getBoundingClientRect().height || 0;
         const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : "75%";
 
-        const widthStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        const widthStyle = isFullscreenButtonVisible ? {
             width: widthToUse,
             maxWidth: widthToUse,
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
@@ -270,13 +271,13 @@ export class StylingLogic {
             paddingLeft: paddingLeft !== undefined ? paddingLeft : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
             paddingRight: paddingRight !== undefined ? paddingRight : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
         } as CSSProperties;
-        const positionStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        const positionStyle = isFullscreenButtonVisible ? {
             transform: 'translate(-50%, 0)',
             top: videoHeight && videoModalHeight ? `${Math.abs(videoHeight - videoModalHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
         } as CSSProperties : {};
         const textStyle = {
             color: textColor || CAROUSEL_COLOR_ONE,
-            fontSize: customFontSize !== undefined ? customFontSize : this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
+            fontSize: customFontSize !== undefined ? customFontSize : !isFullscreenButtonVisible ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
         } as CSSProperties;
         const backgroundStyle = {
             background: background !== undefined ? background : CAROUSEL_COLOR_FIVE,
@@ -414,7 +415,7 @@ export class StylingLogic {
         };
     }
 
-    get thumbnailBackgroundStyle() {
+    get thumbnailOverlayBackgroundStyle() {
         const thumbnail = this.options?.thumbnail;
         const solid = thumbnail?.descriptionOverlay?.background?.solid;
         const gradient = thumbnail?.descriptionOverlay?.background?.gradient;
@@ -456,7 +457,7 @@ export class StylingLogic {
         return thumbnailBackgroundStyle;
     }
 
-    get thumbnailTextStyle() {
+    get thumbnailOverlayTextStyle() {
         const thumbnail = this.options?.thumbnail;
 
         const fontSizeStyle = thumbnail ? {
