@@ -104,11 +104,11 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         function handleScroll() {
             if (!videoRef.current) return;
 
-            const WIGGLE_ROOM = window.innerHeight / 8;
+            const OFFSET_AMOUNT = window.innerHeight / 8;
             const videoBoundingRect = videoRef.current.getBoundingClientRect();
             const viewPortMiddle =  window.innerHeight / 2;
             const videoMiddle = videoBoundingRect.top + (videoBoundingRect.height / 2);
-            const isVideoAroundCenterOfViewport = Math.abs(videoMiddle - viewPortMiddle) <= WIGGLE_ROOM;
+            const isVideoAroundCenterOfViewport = Math.abs(videoMiddle - viewPortMiddle) <= OFFSET_AMOUNT;
             if (isVideoAroundCenterOfViewport) {
                 setHasEnteredViewport(true);
             }

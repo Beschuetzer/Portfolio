@@ -54,8 +54,8 @@ export const CarouselItemViewerToolbar = ({
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
     const { options: optionsGlobal, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
-    const { options: optionsLocal, setCurrentItemInInstanceIndex, itemViewerToolbarRef, currentItemInInstance } = useCarouselInstanceContext();
-    const options = optionsLocal || optionsGlobal || {};
+    const { options: optionsLocal, setCurrentItemInInstanceIndex, itemViewerToolbarRef, currentItemInInstance, currentItemInInstanceIndex, itemsInInstance } = useCarouselInstanceContext();
+    const options = optionsLocal || optionsGlobal || {};    
 
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
@@ -82,11 +82,14 @@ export const CarouselItemViewerToolbar = ({
     const [showSeekForwardButtonPopup, setShowSeekForwardButtonPopup] = useState(false);
     const [showSeekBackwardButtonPopup, setShowSeekBackwardButtonPopup] = useState(false);
 
-    const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
-    const toolbarLogic = new ToolbarLogic(currentItems);
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem: {} as CarouselItemProps, currentItemIndex });
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem: currentItemInInstance, currentItemIndex });
     const actionsLogic = new ToolbarActionsLogic(options, itemDisplayLocationLogic);
     const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
+    const isDefaultItemDisplayLocation = itemDisplayLocationLogic.isDefaultItemDisplayLocation;
+    const itemsToUse = isDefaultItemDisplayLocation ? currentItems : itemsInInstance;
+    const indexToUse = isDefaultItemDisplayLocation ? (currentItemIndex || 0) : (currentItemInInstanceIndex || 0);
+    const toolbarLogic = new ToolbarLogic(itemsToUse);
+    const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
 
     useKeyboardShortcuts([
         {
@@ -169,26 +172,36 @@ export const CarouselItemViewerToolbar = ({
     }
 
     const onNextItemClickLocal = useCallback(() => {
-        if (currentItems.length <= 1) return;
-        const newIndex = currentItemIndex === currentItems.length - 1 ? 0 : currentItemIndex + 1;
-        setCurrentItemIndex(newIndex);
-        !itemDisplayLocationLogic.isDefaultItemDisplayLocation && setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
+        if (itemsToUse.length <= 1) return;
+        const newIndex = indexToUse === itemsToUse.length - 1 ? 0 : indexToUse + 1;
+
+        if (isDefaultItemDisplayLocation) {
+            setCurrentItemIndex(newIndex);
+        } else {
+            setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
+        }
+
         resetPreviewItems();
         onNextItemClick && onNextItemClick();
         handleAutoHide();
         actionsLogic.getNextItem().onActionCompleted();
-    }, [currentItemIndex, currentItems, setCurrentItemIndex, handleAutoHide, onNextItemClick])
+    }, [indexToUse, itemsToUse, setCurrentItemIndex, handleAutoHide, onNextItemClick])
 
     const onPreviousItemClickLocal = useCallback(() => {
-        if (currentItems.length <= 1) return;
-        const newIndex = currentItemIndex === 0 ? currentItems.length - 1 : currentItemIndex - 1;
-        setCurrentItemIndex(newIndex);
-        !itemDisplayLocationLogic.isDefaultItemDisplayLocation && setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
+        if (itemsToUse.length <= 1) return;
+        const newIndex = indexToUse === 0 ? itemsToUse.length - 1 : indexToUse - 1;
+
+        if (isDefaultItemDisplayLocation) {
+            setCurrentItemIndex(newIndex);
+        } else {
+            setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
+        }
+
         resetPreviewItems();
         onPreviousItemClick && onPreviousItemClick();
         handleAutoHide();
         actionsLogic.getPreviousItem().onActionCompleted();
-    }, [currentItemIndex, currentItems, setCurrentItemIndex])
+    }, [indexToUse, itemsToUse, setCurrentItemIndex])
 
     const onPauseClick = useCallback(() => {
         if (videoRef?.current && setIsVideoPlaying) {
@@ -213,6 +226,7 @@ export const CarouselItemViewerToolbar = ({
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
+            videoRef.current.pause();
             videoRef.current.currentTime -= (options?.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
@@ -221,6 +235,7 @@ export const CarouselItemViewerToolbar = ({
 
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
+            videoRef.current.pause();
             videoRef.current.currentTime += (options?.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();

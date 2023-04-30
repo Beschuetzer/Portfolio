@@ -68,6 +68,11 @@ export function getIsVideo(item: CarouselItemProps | undefined) {
     );
 }
 
+export function getIsVideoPlaying(videoRef: HTMLVideoElement | undefined) {
+    if (!videoRef) return false;
+    return !videoRef.paused && !videoRef.ended && videoRef.currentTime > 0
+}
+
 export function getNumberOfItemsThatCanFit(
     htmlElement: HTMLElement,
     stylingLogic: StylingLogic,
@@ -179,8 +184,12 @@ export async function tryPlayingVideo(videoRef: HTMLVideoElement | undefined, on
     const playPromise = videoRef?.play();
     if (playPromise !== undefined) {
         playPromise.then(() => {
+            console.log("success");
+            
             onSuccess && onSuccess();
         }).catch(() => {
+            console.log("failure");
+
             onFailure && onFailure();
         })
     }
