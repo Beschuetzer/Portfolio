@@ -5,7 +5,6 @@ import { EMPTY_STRING } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
 import { CarouselOptions, CarouselElements } from "./types";
-import { ToolbarLogic } from "./business-logic/ToolbarLogic";
 
 type CarouselContextProps = {
     children: ReactNode | ReactNode[];
@@ -26,7 +25,6 @@ export type CarouselValueProps = {
     setCurrentItems: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
     setCurrentVideoOverlayProps: React.Dispatch<React.SetStateAction<CarouselVideoModalProps>>;
     setOptions: React.Dispatch<React.SetStateAction<CarouselOptions>>;
-    toolbarLogic: ToolbarLogic;
 }
 
 export const TRANSLATION_AMOUNT_INITIAL = 0;
@@ -58,7 +56,6 @@ export const CarouselProvider = ({
     const [currentElements, setCurrentElements] = useState<CarouselElements>()
     const [options, setOptions] = useState<CarouselOptions>(OPTIONS_DEFAULT);
     const itemViewerRef = useRef<HTMLElement>(null);
-    const toolbarLogic = new ToolbarLogic(currentItems);
 
     useEffect(() => {
         setCurrentItem(currentItems?.[currentItemIndex] || {});
@@ -81,7 +78,6 @@ export const CarouselProvider = ({
                 setCurrentElements,
                 setCurrentVideoOverlayProps,
                 setOptions,
-                toolbarLogic,
             }}
         >
             {children}

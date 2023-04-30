@@ -8,6 +8,7 @@ import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
 import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
+import { ToolbarLogic } from '../../../business-logic/ToolbarLogic';
 
 type CarouselItemViewerNextButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNextButtonProps>(({
@@ -16,13 +17,15 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentItemIndex, currentElements: currentElementsGlobal, toolbarLogic } = useCarouselContext();
-    const { currentElements: currentElementsLocal } = useCarouselInstanceContext();
+    const { currentItems, currentItemIndex, currentElements: currentElementsGlobal } = useCarouselContext();
+    const { itemsInInstance, currentElements: currentElementsLocal } = useCarouselInstanceContext();
+    const itemsToUse = currentItems?.length > 0 ? currentItems : itemsInInstance;
     const currentElements = currentElementsLocal || currentElementsGlobal;
     const { svgHref, style } = currentElements?.nextButton || {};
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
     const nextItemAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getNextItem();
     const stylingLogic = new StylingLogic({ options });
+    const toolbarLogic = new ToolbarLogic(itemsToUse);
     const fillColor = stylingLogic.getButtonColor(CarouselElement.nextButton);
 
     return (

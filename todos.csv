@@ -1,7 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
     -current item not being selected when exiting an non default itemDisplayLocation after changing items (may not be possible as currently designed?)
-    -next/previous buttons hidden on load
     -use isFullscreenButtonVisible to reset the overlay style for full-screen non default itemDisplayLocation case
     -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom);  appears to be a problem when all defaults too
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing
