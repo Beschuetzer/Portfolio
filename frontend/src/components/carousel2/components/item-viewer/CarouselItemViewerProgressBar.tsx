@@ -40,7 +40,7 @@ export const CarouselItemViewerProgressBar = ({
             const video = videoRef?.current;
             video.currentTime = percent * video.duration;
         }
-    }, [setProgressBarValue]);
+    }, [setProgressBarValue, videoRef]);
 
     useEffect(() => {
         function onVideoTimeUpdate(e: Event) {

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { getClassname, getFormattedTimeString } from '../../../utils'
+import { getClassname, getFormattedTimeString, tryPlayingVideo } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../../context'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
@@ -201,8 +201,11 @@ export const CarouselItemViewerToolbar = ({
 
     const onPlayClick = useCallback(() => {
         if (videoRef?.current && setIsVideoPlaying) {
-            setIsVideoPlaying(true);
-            videoRef?.current.play();
+            tryPlayingVideo(
+                videoRef.current,
+                () => setIsVideoPlaying(true),
+                () => setIsVideoPlaying(false),
+            )
         }
         handleAutoHide();
         actionsLogic.getPlay().onActionCompleted();

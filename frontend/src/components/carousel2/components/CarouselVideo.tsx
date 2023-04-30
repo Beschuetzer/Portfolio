@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { getClassname } from '../utils';
+import { getClassname, tryPlayingVideo } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoModal } from './CarouselVideoModal'
 import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemViewerToolbar';
@@ -47,21 +47,41 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         }
     }, [setIsLoaded, setIsVideoPlaying, videoRef]);
 
+    function handleOnLoadedData() {
+        setIsLoaded(true);
+        if (autoPlay) {
+            tryPlaying();
+        }
+    }
+
     const onContainerClick = useCallback(() => {
         setIsVideoPlaying((isPlaying) => !isPlaying);
     }, [setIsVideoPlaying]);
+
+    
+    const tryPlaying = useCallback(() => {
+        tryPlayingVideo(
+            videoRef.current,
+            () => setIsVideoPlaying(true),
+            () => setIsVideoPlaying(false),
+        )
+    }, [tryPlayingVideo, setIsVideoPlaying, videoRef])
     //#endregion
 
     //#region Side Fx
     useEffect(() => {
-        if (videoRef.current) {
-            if (!isVideoPlaying) {
-                videoRef.current.pause();
-            } else {
-                videoRef.current.play();
+        async function handlePlayPause() {
+            if (videoRef.current) {
+                if (!isVideoPlaying) {
+                    videoRef.current.pause();
+                } else {
+                    tryPlaying();
+                }
             }
         }
-    }, [isVideoPlaying, videoRef])
+
+        handlePlayPause();
+    }, [isVideoPlaying, videoRef, tryPlaying])
 
     //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
     useEffect(() => {
@@ -91,7 +111,9 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                     autoPlay={!!autoPlay}
                     muted={!!muted}
                     loop={!!loop}
-                    onLoadedData={() => setIsLoaded(true)}
+                    onLoadedData={handleOnLoadedData}
+                    onPlay={() => setIsVideoPlaying(true)}
+                    onPause={() => setIsVideoPlaying(false)}
                 >
                     <source src={srcMain} type={`video/${type}`} />
                 </video>

@@ -174,3 +174,14 @@ export async function exitFullScreen(element: HTMLElement | null) {
         return await document.exitFullscreen();
     } catch (e) { }
 }
+
+export async function tryPlayingVideo(videoRef: HTMLVideoElement | undefined, onSuccess?: () => void, onFailure?: () => void) {
+    const playPromise = videoRef?.play();
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            onSuccess && onSuccess();
+        }).catch(() => {
+            onFailure && onFailure();
+        })
+    }
+}
