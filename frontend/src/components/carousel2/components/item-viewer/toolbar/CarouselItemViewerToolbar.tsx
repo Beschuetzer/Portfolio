@@ -85,9 +85,9 @@ export const CarouselItemViewerToolbar = ({
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem: currentItemInInstance, currentItemIndex });
     const actionsLogic = new ToolbarActionsLogic(options, itemDisplayLocationLogic);
     const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
-    const isDefaultItemDisplayLocation = itemDisplayLocationLogic.isDefaultItemDisplayLocation;
-    const itemsToUse = isDefaultItemDisplayLocation ? currentItems : itemsInInstance;
-    const indexToUse = isDefaultItemDisplayLocation ? (currentItemIndex || 0) : (currentItemInInstanceIndex || 0);
+    const isFullScreenButtonVisible = itemDisplayLocationLogic.isFullscreenButtonVisible;
+    const itemsToUse = isFullScreenButtonVisible ? (itemsInInstance || []) : (currentItems || []);
+    const indexToUse = isFullScreenButtonVisible ? (currentItemInInstanceIndex || 0) : (currentItemIndex || 0);
     const toolbarLogic = new ToolbarLogic(itemsToUse);
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
 
@@ -175,10 +175,10 @@ export const CarouselItemViewerToolbar = ({
         if (itemsToUse.length <= 1) return;
         const newIndex = indexToUse === itemsToUse.length - 1 ? 0 : indexToUse + 1;
 
-        if (isDefaultItemDisplayLocation) {
-            setCurrentItemIndex(newIndex);
-        } else {
+        if (isFullScreenButtonVisible) {
             setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
+        } else {
+            setCurrentItemIndex(newIndex);
         }
 
         resetPreviewItems();
@@ -191,10 +191,10 @@ export const CarouselItemViewerToolbar = ({
         if (itemsToUse.length <= 1) return;
         const newIndex = indexToUse === 0 ? itemsToUse.length - 1 : indexToUse - 1;
 
-        if (isDefaultItemDisplayLocation) {
-            setCurrentItemIndex(newIndex);
-        } else {
+        if (isFullScreenButtonVisible) {
             setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
+        } else {
+            setCurrentItemIndex(newIndex);
         }
 
         resetPreviewItems();
@@ -484,9 +484,9 @@ export const CarouselItemViewerToolbar = ({
                 </div>
             </div>
             <CarouselItemViewerToolbarPreview
-                itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.previous)]}
+                itemToShow={itemsToUse[getPreviewItemIndex(ToolbarPreviewDirection.previous)]}
                 show={
-                    toolbarLogic.getShouldDisplayNextAndBackButton() &&
+                    !itemDisplayLocationLogic.isFullscreenButtonVisible &&
                     previewDirection === ToolbarPreviewDirection.previous
                 }
                 isLoaded={isPreviousItemPreviewLoaded}
@@ -495,9 +495,9 @@ export const CarouselItemViewerToolbar = ({
                 actionName={"Previous"}
             />
             <CarouselItemViewerToolbarPreview
-                itemToShow={currentItems[getPreviewItemIndex(ToolbarPreviewDirection.next)]}
+                itemToShow={itemsToUse[getPreviewItemIndex(ToolbarPreviewDirection.next)]}
                 show={
-                    toolbarLogic.getShouldDisplayNextAndBackButton() &&
+                    !itemDisplayLocationLogic.isFullscreenButtonVisible &&
                     previewDirection === ToolbarPreviewDirection.next
                 }
                 isLoaded={isNextItemPreviewLoaded}
