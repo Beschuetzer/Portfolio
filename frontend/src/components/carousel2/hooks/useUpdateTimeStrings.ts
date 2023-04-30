@@ -35,5 +35,5 @@ export const useUpdateTimeString = (
                 checkVideoTimeStringCountRef.current = 0;
             }
         }, TIME_STRING_UPDATE_INTERVAL_DURATION)
-    }, [currentItemInInstance])
+    }, [currentItemInInstance, videoRef])
 }
