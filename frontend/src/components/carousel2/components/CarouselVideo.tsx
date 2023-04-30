@@ -32,6 +32,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
     const itemContainerRef = useRef<HTMLDivElement>();
+    const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
     const stylingLogic = new StylingLogic({ options, itemViewerToolbarRef, currentItemInInstance });
     //#endregion
@@ -55,17 +56,19 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     }
 
     const onContainerClick = useCallback(() => {
+        setHasEnteredViewport(true);
         setIsVideoPlaying((isPlaying) => !isPlaying);
     }, [setIsVideoPlaying]);
 
     
     const tryPlaying = useCallback(() => {
+        if (!hasEnteredViewport) return;
         tryPlayingVideo(
             videoRef.current,
             () => setIsVideoPlaying(true),
             () => setIsVideoPlaying(false),
         )
-    }, [tryPlayingVideo, setIsVideoPlaying, videoRef])
+    }, [tryPlayingVideo, setIsVideoPlaying, videoRef, hasEnteredViewport])
     //#endregion
 
     //#region Side Fx
@@ -91,6 +94,29 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         }
         setIsVideoPlaying(!!videoProps?.autoPlay);
     }, [srcMain, videoRef])
+
+    //track whether video is in user's view
+    useEffect(() => {
+        function handleScroll() {
+            if (!videoRef.current) return;
+
+            const WIGGLE_ROOM = window.innerHeight / 8;
+            const videoBoundingRect = videoRef.current.getBoundingClientRect();
+            const viewPortMiddle =  window.innerHeight / 2;
+            const videoMiddle = videoBoundingRect.top + (videoBoundingRect.height / 2);
+            const isVideoAroundCenterOfViewport = Math.abs(videoMiddle - viewPortMiddle) <= WIGGLE_ROOM;
+            if (isVideoAroundCenterOfViewport) {
+                console.log({isVideoAroundCenterOfViewport});
+                setHasEnteredViewport(true);
+            }
+        }
+
+        handleScroll(); //check on load if is in viewport
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, [])
     //#endregion
 
     //#region JSX   
