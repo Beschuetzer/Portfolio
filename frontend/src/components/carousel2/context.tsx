@@ -6,9 +6,6 @@ import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer"
 import './css/style.css';
 import { CarouselOptions, CarouselElementStyles } from "./types";
 
-//notes for changes 
-//todo: 'currentElements' => 'elementStlyings'
-//todo: 'currentItems => 'items'
 export type CarouselContextInputProps = {
     carouselContainerRef: React.MutableRefObject<HTMLDivElement>;
     children: ReactNode | ReactNode[];
@@ -27,8 +24,6 @@ export type CarouselContextOutputProps = {
     setItems: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
     setNumberOfPages: React.Dispatch<React.SetStateAction<number>>;
     setOptions: React.Dispatch<React.SetStateAction<CarouselOptions>>;
-    // videoOverlayProps: CarouselVideoModalProps;
-    // setCurrentVideoOverlayProps: React.Dispatch<React.SetStateAction<CarouselVideoModalProps>>;
 } & Required<Omit<CarouselContextInputProps, 'children'>>
 
 export const TRANSLATION_AMOUNT_INITIAL = 0;
@@ -55,8 +50,7 @@ export const CarouselProvider = ({
     options: optionsInput,
 
 }: CarouselContextInputProps) => {
-    //note: setCurrentItem is set internally upon change of currentItems or currentItemIndex
-    const [currentItem, setCurrentItem] = useState({} as CarouselItemProps);
+    const [currentItem, setCurrentItem] = useState(itemsInput[0]);
     const [currentItemIndex, setCurrentItemIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
     const [items, setItems] = useState(itemsInput);
     const [numberOfPages, setNumberOfPages] = useState(0);

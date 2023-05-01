@@ -13,7 +13,7 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps>((prop
     const innerRef = useRef<HTMLElement>(null);
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem });
     const stylingLogic = new StylingLogic({ options })
-    const isVisible = Object.keys(currentItem || {})?.length > 0 ;
+    const isVisible = Object.keys(currentItem || {})?.length > 0 && itemDisplayLocationLogic.isDefaultItemDisplayLocation;
     useImperativeHandle(ref, () => innerRef.current);
     //#endregion
 

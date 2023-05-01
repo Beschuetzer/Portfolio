@@ -3,6 +3,7 @@ import { enterFullScreen } from '../utils';
 import { CarouselVideoProps } from './CarouselVideo';
 import { CLASSNAME__CAROUSEL_ITEM, CLASSNAME__CAROUSEL_ITEM_THUMBNAIL } from '../constants';
 import { StylingLogic } from '../business-logic/StylingLogic';
+import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 
 export type CarouselItemProps = {
   /*
@@ -38,12 +39,16 @@ export const CarouselItem = (props: CarouselItemProps) => {
   } = props;
   const { setCurrentItemIndex, itemViewerRef, options, currentItemIndex } = useCarouselContext();
   const stylingLogic = new StylingLogic({options, isCurrentItem: index === currentItemIndex});
+  const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options});
   //#endregion
 
   //#region Functions/Handlers
   async function onPress(e: MouseEvent) {
       setCurrentItemIndex(index as any);
-      enterFullScreen(itemViewerRef.current);
+
+      if (itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
+        enterFullScreen(itemViewerRef.current);
+      }
   }
   //#endregion
 
