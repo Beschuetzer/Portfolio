@@ -11,20 +11,18 @@ export const CarouselImage = (props: CarouselItemProps) => {
     const { options, itemViewerToolbarRef } = useCarouselContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const containerRef = useRef<HTMLDivElement>();
-    const imageRef = useRef<HTMLImageElement | undefined>();
     const {
         description,
         srcMain,
     } = props;
-    const stylingLogic = new StylingLogic({options, itemViewerToolbarRef});
+    const stylingLogic = new StylingLogic({ options, itemViewerToolbarRef });
 
     return (
         <CarouselItemViewerContainer ref={containerRef}>
             <LoadingSpinner type='ring' show={!isLoaded} description={description} {...options?.styling?.itemViewer?.loadingSpinner} />
             <img
-            style={stylingLogic.carouselImageStlye}
+                style={stylingLogic.carouselImageStlye}
                 className={isLoaded ? '' : CLASSNAME__HIDDEN}
-                ref={imageRef as any}
                 src={srcMain}
                 alt={description}
                 onLoad={() => setIsLoaded(true)}

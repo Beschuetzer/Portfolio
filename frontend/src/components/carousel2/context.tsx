@@ -51,13 +51,14 @@ const OVERLAY_PROPS_DEFAULT = {
 export const CarouselProvider = ({
     carouselContainerRef,
     children,
+    items: itemsInput,
     options: optionsInput,
 
 }: CarouselContextInputProps) => {
     //note: setCurrentItem is set internally upon change of currentItems or currentItemIndex
     const [currentItem, setCurrentItem] = useState({} as CarouselItemProps);
     const [currentItemIndex, setCurrentItemIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
-    const [items, setItems] = useState([] as CarouselItemProps[]);
+    const [items, setItems] = useState(itemsInput);
     const [numberOfPages, setNumberOfPages] = useState(0);
     const [options, setOptions] = useState<CarouselOptions>(optionsInput || OPTIONS_DEFAULT);
     const itemViewerRef = useRef<HTMLElement>(null);
