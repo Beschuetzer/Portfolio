@@ -1,15 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -need to figure out how to load the items in the viewer but hide them until clicked (for default case);  may need POS for isFullscreen
-
-        //todo: need to add these in StylingLogic for fullscreen item viewer
-        // display: flex;
-        // position: fixed;
-        // top: 0;
-        // bottom: 0;
-        // left: 0;
-        // right: 0;
-        // z-index: 1000000000000000000000;
+    -the full screen button is displayed for non default itemDisplayLocation case in full screen mode
 
 
     -Need to remove global context and add ItemViewer to each Carousel then try addressing the issues below

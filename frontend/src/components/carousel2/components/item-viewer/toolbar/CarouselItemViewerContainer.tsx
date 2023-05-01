@@ -8,12 +8,12 @@ type CarouselItemViewerContainerProps = {
     onClick?: () => void;
 }
 
-export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerContainerProps> (({
+export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerContainerProps>(({
     children,
     onClick,
 }, ref) => {
-    const { currentItem, options } = useCarouselContext();
-    const stylingLogic = new StylingLogic({options, currentItem});
+    const { currentItem, options, isFullscreenMode } = useCarouselContext();
+    const stylingLogic = new StylingLogic({ options, currentItem, isFullscreenMode });
 
     return (
         <div
@@ -21,7 +21,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
             style={stylingLogic.carouselItemContainerStyle}
             className={getClassname({ elementName: 'item-container' })}
             onClick={onClick} >
-                {children}
+            {children}
         </div>
     )
 });
