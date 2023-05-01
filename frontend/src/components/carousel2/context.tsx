@@ -5,6 +5,7 @@ import { EMPTY_STRING } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
 import { CarouselOptions, CarouselElementStyles } from "./types";
+import { enterFullScreen, exitFullScreen } from "./utils";
 
 export type CarouselContextInputProps = {
     carouselContainerRef: React.MutableRefObject<HTMLDivElement>;
@@ -17,10 +18,11 @@ export type CarouselContextOutputProps = {
     currentItem: CarouselItemProps;
     currentItemIndex: number;
     elementStylings: CarouselElementStyles | undefined;
-    itemViewerRef: React.RefObject<HTMLElement>;
+    isFullscreenMode: boolean;
     itemViewerToolbarRef: React.RefObject<HTMLElement>;
     numberOfPages: number;
     setCurrentItemIndex: React.Dispatch<React.SetStateAction<number>>;
+    setIsFullscreenMode: React.Dispatch<React.SetStateAction<boolean>>;
     setItems: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
     setNumberOfPages: React.Dispatch<React.SetStateAction<number>>;
     setOptions: React.Dispatch<React.SetStateAction<CarouselOptions>>;
@@ -52,6 +54,7 @@ export const CarouselProvider = ({
 }: CarouselContextInputProps) => {
     const [currentItem, setCurrentItem] = useState(itemsInput[0]);
     const [currentItemIndex, setCurrentItemIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
+    const [isFullscreenMode, setIsFullscreenMode] = useState(false);
     const [items, setItems] = useState(itemsInput);
     const [numberOfPages, setNumberOfPages] = useState(0);
     const [options, setOptions] = useState<CarouselOptions>(optionsInput || OPTIONS_DEFAULT);
@@ -63,19 +66,28 @@ export const CarouselProvider = ({
         setCurrentItem(items?.[currentItemIndex]);
     }, [items, currentItemIndex, setCurrentItem])
 
+    useEffect(() => {
+        if (isFullscreenMode) {
+            enterFullScreen(itemViewerRef.current)
+        } else {
+            exitFullScreen(itemViewerRef.current)
+        }
+    }, [isFullscreenMode, enterFullScreen, exitFullScreen])
+
     return (
         <CarouselContext.Provider 
             value={{
                 carouselContainerRef,
                 currentItem: currentItemToUse,
                 currentItemIndex,
+                isFullscreenMode,
                 items,
                 elementStylings: options.styling?.elements,
-                itemViewerRef,
                 itemViewerToolbarRef,
                 numberOfPages,
                 options,
                 setCurrentItemIndex,
+                setIsFullscreenMode,
                 setItems,
                 setOptions,
                 setNumberOfPages,

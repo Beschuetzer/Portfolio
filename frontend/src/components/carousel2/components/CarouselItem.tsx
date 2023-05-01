@@ -37,7 +37,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemIndex, itemViewerRef, options, currentItemIndex } = useCarouselContext();
+  const { setCurrentItemIndex, options, currentItemIndex, setIsFullscreenMode } = useCarouselContext();
   const stylingLogic = new StylingLogic({options, isCurrentItem: index === currentItemIndex});
   const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options});
   //#endregion
@@ -47,7 +47,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
       setCurrentItemIndex(index as any);
 
       if (itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
-        enterFullScreen(itemViewerRef.current);
+        setIsFullscreenMode(true);
       }
   }
   //#endregion

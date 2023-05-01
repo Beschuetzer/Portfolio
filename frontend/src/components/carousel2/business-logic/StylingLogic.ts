@@ -38,7 +38,7 @@ export type StylingLogicConstructor = {
     progressBarValue?: number;
     videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
     loadingSpinnerOptions?: LoadingSpinnerProps['options'];
-} & Partial<Pick<CarouselContextOutputProps, 'itemViewerToolbarRef' | 'currentItem'>>
+} & Partial<Pick<CarouselContextOutputProps, 'itemViewerToolbarRef' | 'currentItem' | 'isFullscreenMode'>>
     & Partial<Pick<CarouselVideoModalProps, 'videoRef'>>
 /*
 *Use this when extending styling options.  Many default styles are currently in _carousel.scss or _buttons_scss
@@ -49,6 +49,7 @@ export class StylingLogic {
     private isCurrentItem: boolean | undefined;
     private itemDisplayLocationLogic: ItemDisplayLocationLogic;
     private itemViewerToolbarRef: CarouselContextOutputProps['itemViewerToolbarRef'];
+    private isFullscreenMode: boolean;
     private loadingSpinnerOptions: LoadingSpinnerProps['options'];
     private options: CarouselOptions;
     private videoModalRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
@@ -59,6 +60,7 @@ export class StylingLogic {
         const {
             currentItem,
             isCurrentItem,
+            isFullscreenMode,
             itemDisplayLocationLogic,
             itemViewerToolbarRef,
             loadingSpinnerOptions,
@@ -69,6 +71,7 @@ export class StylingLogic {
         } = constructor;
         this.currentItem = currentItem;
         this.isCurrentItem = isCurrentItem;
+        this.isFullscreenMode = !!isFullscreenMode;
         this.loadingSpinnerOptions = loadingSpinnerOptions;
         this.itemViewerToolbarRef = itemViewerToolbarRef || { current: null };
         this.progressBarValue = progressBarValue || 0;
@@ -144,6 +147,7 @@ export class StylingLogic {
 
     get carouselItemViewerStyle() {
         return {
+            display: this.isFullscreenMode ? 'flex' : 'none',
             backgroundColor: this.itemViewerBackgroundColor,
         } as CSSProperties;
     }
@@ -488,6 +492,8 @@ export class StylingLogic {
 
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItem);
+        console.log({isItemVideo, currentItem: this.currentItem, isFullscreenButtonVisible: this.itemDisplayLocationLogic.isFullscreenButtonVisible});
+        
         const nonDefaultItemDisplayStyle = this.itemDisplayLocationLogic.isFullscreenButtonVisible ? {
             ...this.toolbarBackgroundColorStyle,
             position: "relative",

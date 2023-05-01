@@ -83,7 +83,6 @@ export const CarouselItemViewerToolbar = ({
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem, currentItemIndex });
     const actionsLogic = new ToolbarActionsLogic(options, itemDisplayLocationLogic);
     const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
-    const { isFullscreenButtonVisible, isDefaultItemDisplayLocation } = itemDisplayLocationLogic || {};
     const toolbarLogic = new ToolbarLogic(items);
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
 

@@ -18,25 +18,17 @@ export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemVi
     options = {},
     shortcutPosition = 'right',
 }, ref) => {
-    const { elementStylings, itemViewerRef, currentItemIndex } = useCarouselContext();
+    const { elementStylings, currentItemIndex, setIsFullscreenMode } = useCarouselContext();
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex })
     const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
     const { svgHref, style } = elementStylings?.fullscreenButton || {};
     const fillColor = stylingLogic.getButtonColor(CarouselElement.fullscreenButton);
 
     const onClickLocal = useCallback(async () => {
-        //todo: these are not needed anymore
-        // setOptions(options || OPTIONS_DEFAULT);
-        // setCurrentElements(options?.styling?.elements);
-        // setCurrentItemIndex(currentItemInInstanceIndex || 0);
         onClick && onClick();
-        enterFullScreen(itemViewerRef.current);
+        setIsFullscreenMode(true);
     }, [
-        // setCurrentItemIndex,
-        exitFullScreen,
-        enterFullScreen,
-        EMPTY_STRING,
-        itemViewerRef,
+        setIsFullscreenMode,
         onClick
     ]);
 
