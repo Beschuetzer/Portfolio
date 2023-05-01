@@ -44,7 +44,7 @@ export const CarouselItemViewerShortcutIndicator = ({
                     </span>
                     {shortcuts.length > 0 ? (
                         <span>
-                            ({getShortcutsString(shortcuts)})
+                            &nbsp;({getShortcutsString(shortcuts)})
                         </span>
                     ) : null}
                 </div>
