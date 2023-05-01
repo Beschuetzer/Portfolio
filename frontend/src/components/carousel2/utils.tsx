@@ -185,11 +185,9 @@ export async function tryPlayingVideo(videoRef: HTMLVideoElement | undefined, on
     if (playPromise !== undefined) {
         playPromise.then(() => {
             console.log("success");
-            
             onSuccess && onSuccess();
         }).catch(() => {
             console.log("failure");
-
             onFailure && onFailure();
         })
     }

@@ -210,7 +210,7 @@ export const CarouselItemViewerToolbar = ({
         }
         handleAutoHide();
         actionsLogic.getPause().onActionCompleted();
-    }, [setIsVideoPlaying]);
+    }, [setIsVideoPlaying, videoRef]);
 
     const onPlayClick = useCallback(() => {
         if (videoRef?.current && setIsVideoPlaying) {
@@ -222,7 +222,7 @@ export const CarouselItemViewerToolbar = ({
         }
         handleAutoHide();
         actionsLogic.getPlay().onActionCompleted();
-    }, [setIsVideoPlaying]);
+    }, [setIsVideoPlaying, videoRef]);
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
@@ -231,7 +231,7 @@ export const CarouselItemViewerToolbar = ({
         }
         handleAutoHide();
         actionsLogic.getSeekBackwards().onActionCompleted();
-    }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT]);
+    }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT, videoRef]);
 
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
@@ -240,7 +240,7 @@ export const CarouselItemViewerToolbar = ({
         }
         handleAutoHide();
         actionsLogic.getSeekForwards().onActionCompleted();
-    }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT])
+    }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT, videoRef])
 
     function onToolbarClick(e: MouseEvent) {
         e.stopPropagation();
