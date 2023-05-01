@@ -3,7 +3,6 @@ import { CLASSNAME__ITEM_VIEWER } from "../../../constants";
 import { useCarouselContext } from "../../../context";
 import { VideoTimeStrings } from "../../../types";
 import { getClassname } from "../../../utils";
-import { useCarouselInstanceContext } from "../../CarouselInstanceProvider";
 
 export type CarouselItemViewerToolbarTextProps = {
     description: string;
@@ -18,9 +17,7 @@ export const CarouselItemViewerToolbarText = ({
     isVideo = false,
     timeStrings,
 }: CarouselItemViewerToolbarTextProps) => {
-    const { options: optionsLocal } = useCarouselInstanceContext();
-    const { options: optionsGlobal } = useCarouselContext();
-    const options = optionsLocal || optionsGlobal;
+    const { options } = useCarouselContext();
     const stylingLogic = new StylingLogic({options});
 
     return (

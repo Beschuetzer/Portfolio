@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { getClassname } from "../utils";
 import { StylingLogic } from "../business-logic/StylingLogic";
-import { useCarouselInstanceContext } from "./CarouselInstanceProvider";
 import { useCarouselContext } from "../context";
 
 export type LoadingSpinnerOptions = {
@@ -60,10 +59,7 @@ export const LoadingSpinner = ({
 	show = false,
 	type = 'ring',
 }: LoadingSpinnerProps) => {
-	const { options: carouselOptionsLocal } = useCarouselInstanceContext();
-	const { options: carouselOptionsGlobal } = useCarouselContext();
-
-	const carouselOptions = carouselOptionsLocal || carouselOptionsGlobal;
+	const { options: carouselOptions } = useCarouselContext();
 	const stylingLogic = new StylingLogic({ options: carouselOptions, loadingSpinnerOptions: options });
 
 

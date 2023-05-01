@@ -1,9 +1,7 @@
-import { OPTIONS_DEFAULT, useCarouselContext } from '../context';
-import { enterFullScreen, getClassname } from '../utils';
-import { useCarouselInstanceContext } from './CarouselInstanceProvider';
+import { useCarouselContext } from '../context';
+import { enterFullScreen } from '../utils';
 import { CarouselVideoProps } from './CarouselVideo';
 import { CLASSNAME__CAROUSEL_ITEM, CLASSNAME__CAROUSEL_ITEM_THUMBNAIL } from '../constants';
-import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
 
 export type CarouselItemProps = {
@@ -38,25 +36,14 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcMain,
     srcThumbnail,
   } = props;
-  const { setCurrentItemIndex, setCurrentElements, setOptions, setCurrentCarouselId, itemViewerRef, } = useCarouselContext();
-  const { id: carouselId, options, setCurrentItemInInstanceIndex, currentItemInInstanceIndex } = useCarouselInstanceContext();
-  const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options: options || {}});
-  const stylingLogic = new StylingLogic({options, isCurrentItem: index === currentItemInInstanceIndex});
+  const { setCurrentItemIndex, itemViewerRef, options, currentItemIndex } = useCarouselContext();
+  const stylingLogic = new StylingLogic({options, isCurrentItem: index === currentItemIndex});
   //#endregion
 
   //#region Functions/Handlers
-  //note: Similar functionality in CarouselItemViewerFullScreenButton.tsx
   async function onPress(e: MouseEvent) {
-    setOptions(options || OPTIONS_DEFAULT);
-    setCurrentCarouselId(carouselId);
-    setCurrentElements(options?.styling?.elements);
-
-    if (itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
       setCurrentItemIndex(index as any);
       enterFullScreen(itemViewerRef.current);
-    } else {
-      setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(index as any);
-    }
   }
   //#endregion
 

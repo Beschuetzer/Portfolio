@@ -5,10 +5,10 @@ import { LoadingSpinner } from './LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../constants';
 import { CarouselItemViewerContainer } from './item-viewer/toolbar/CarouselItemViewerContainer';
 import { StylingLogic } from '../business-logic/StylingLogic';
-import { useCarouselInstanceContext } from './CarouselInstanceProvider';
+import { useCarouselContext } from '../context';
 
 export const CarouselImage = (props: CarouselItemProps) => {
-    const { options, itemViewerToolbarRef } = useCarouselInstanceContext();
+    const { options, itemViewerToolbarRef } = useCarouselContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const containerRef = useRef<HTMLDivElement>();
     const imageRef = useRef<HTMLImageElement | undefined>();

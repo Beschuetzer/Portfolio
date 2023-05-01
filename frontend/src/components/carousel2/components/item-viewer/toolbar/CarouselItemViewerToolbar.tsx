@@ -16,7 +16,6 @@ import { ToolbarLogic } from '../../../business-logic/ToolbarLogic'
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic'
 import { StylingLogic } from '../../../business-logic/StylingLogic'
-import { useCarouselInstanceContext } from '../../CarouselInstanceProvider'
 import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic'
 import { CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH } from '../../../constants'
 import { useUpdateTimeString } from '../../../hooks/useUpdateTimeStrings'
@@ -54,9 +53,7 @@ export const CarouselItemViewerToolbar = ({
     videoRef,
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
-    const { options: optionsGlobal, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
-    const { options: optionsLocal, setCurrentItemInInstanceIndex, itemViewerToolbarRef, currentItemInInstance, currentItemInInstanceIndex, itemsInInstance } = useCarouselInstanceContext();
-    const options = optionsLocal || optionsGlobal || {};
+    const { options, items, currentItemIndex, setCurrentItemIndex, itemViewerToolbarRef, currentItem } = useCarouselContext();
 
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
@@ -83,13 +80,11 @@ export const CarouselItemViewerToolbar = ({
     const [showSeekForwardButtonPopup, setShowSeekForwardButtonPopup] = useState(false);
     const [showSeekBackwardButtonPopup, setShowSeekBackwardButtonPopup] = useState(false);
 
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem: currentItemInInstance, currentItemIndex });
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem, currentItemIndex });
     const actionsLogic = new ToolbarActionsLogic(options, itemDisplayLocationLogic);
     const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
     const { isFullscreenButtonVisible, isDefaultItemDisplayLocation } = itemDisplayLocationLogic || {};
-    const itemsToUse = isFullscreenButtonVisible ? (itemsInInstance || []) : (currentItems || []);
-    const indexToUse = isFullscreenButtonVisible ? (currentItemInInstanceIndex || 0) : (currentItemIndex || 0);
-    const toolbarLogic = new ToolbarLogic(itemsToUse);
+    const toolbarLogic = new ToolbarLogic(items);
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
 
     useKeyboardShortcuts([
@@ -118,16 +113,16 @@ export const CarouselItemViewerToolbar = ({
             action: () => onPreviousItemClickLocal(),
         },
     ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
-    useUpdateTimeString(currentItemInInstance, setTimeStrings, videoRef);
+    useUpdateTimeString(currentItem, setTimeStrings, videoRef);
     //#endregion
 
     //#region Functions/handlers
     function getPreviewItemIndex(direction: ToolbarPreviewDirection) {
         if (direction === ToolbarPreviewDirection.next) {
-            if (currentItemIndex >= (currentItems.length - 1)) return 0;
+            if (currentItemIndex >= (items.length - 1)) return 0;
             return currentItemIndex + 1;
         } else {
-            if (currentItemIndex <= 0) return currentItems.length - 1;
+            if (currentItemIndex <= 0) return items.length - 1;
             return currentItemIndex - 1;
         }
     }
@@ -173,36 +168,24 @@ export const CarouselItemViewerToolbar = ({
     }
 
     const onNextItemClickLocal = useCallback(() => {
-        if (itemsToUse.length <= 1) return;
-        const newIndex = indexToUse === itemsToUse.length - 1 ? 0 : indexToUse + 1;
-
-        if (isFullscreenButtonVisible) {
-            setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
-        } else {
-            setCurrentItemIndex(newIndex);
-        }
-
+        if (items.length <= 1) return;
+        const newIndex = currentItemIndex === items.length - 1 ? 0 : currentItemIndex + 1;
+        setCurrentItemIndex(newIndex);
         resetPreviewItems();
         onNextItemClick && onNextItemClick();
         handleAutoHide();
         actionsLogic.getNextItem().onActionCompleted();
-    }, [indexToUse, itemsToUse, setCurrentItemIndex, handleAutoHide, onNextItemClick])
+    }, [currentItemIndex, items, setCurrentItemIndex, resetPreviewItems, handleAutoHide, onNextItemClick, actionsLogic])
 
     const onPreviousItemClickLocal = useCallback(() => {
-        if (itemsToUse.length <= 1) return;
-        const newIndex = indexToUse === 0 ? itemsToUse.length - 1 : indexToUse - 1;
-        
-        if (isFullscreenButtonVisible) {
-            setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
-        } else {
-            setCurrentItemIndex(newIndex);
-        }
-
+        if (items.length <= 1) return;
+        const newIndex = currentItemIndex === 0 ? items.length - 1 : currentItemIndex - 1;
+        setCurrentItemIndex(newIndex);
         resetPreviewItems();
         onPreviousItemClick && onPreviousItemClick();
         handleAutoHide();
         actionsLogic.getPreviousItem().onActionCompleted();
-    }, [indexToUse, itemsToUse, setCurrentItemIndex])
+    }, [currentItemIndex, items, setCurrentItemIndex, resetPreviewItems, handleAutoHide, onPreviousItemClick, actionsLogic])
 
     const onPauseClick = useCallback(() => {
         if (videoRef?.current && setIsVideoPlaying) {
@@ -479,7 +462,7 @@ export const CarouselItemViewerToolbar = ({
                 </div>
             </div>
             <CarouselItemViewerToolbarPreview
-                itemToShow={itemsToUse[getPreviewItemIndex(ToolbarPreviewDirection.previous)]}
+                itemToShow={items[getPreviewItemIndex(ToolbarPreviewDirection.previous)]}
                 show={
                     !itemDisplayLocationLogic.isFullscreenButtonVisible &&
                     previewDirection === ToolbarPreviewDirection.previous
@@ -490,7 +473,7 @@ export const CarouselItemViewerToolbar = ({
                 actionName={"Previous"}
             />
             <CarouselItemViewerToolbarPreview
-                itemToShow={itemsToUse[getPreviewItemIndex(ToolbarPreviewDirection.next)]}
+                itemToShow={items[getPreviewItemIndex(ToolbarPreviewDirection.next)]}
                 show={
                     !itemDisplayLocationLogic.isFullscreenButtonVisible &&
                     previewDirection === ToolbarPreviewDirection.next

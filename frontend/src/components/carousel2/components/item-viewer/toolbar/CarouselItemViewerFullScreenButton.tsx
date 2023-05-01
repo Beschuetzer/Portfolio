@@ -3,9 +3,8 @@ import { CLASSNAME__BUTTON_SCALE_ON_HOVER, EMPTY_STRING } from '../../../constan
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { enterFullScreen, exitFullScreen } from '../../../utils';
-import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
-import { OPTIONS_DEFAULT, useCarouselContext } from '../../../context';
+import { useCarouselContext } from '../../../context';
 import { FullscreenButton } from '../../buttons/FullscreenButton';
 import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
@@ -19,29 +18,25 @@ export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemVi
     options = {},
     shortcutPosition = 'right',
 }, ref) => {
-    const { setOptions, setCurrentCarouselId, setCurrentElements, setCurrentItemIndex, currentElements: currentElementsGlobal, itemViewerRef } = useCarouselContext();
-    const { currentItemInInstanceIndex, currentElements: currentElementsLocal, id: carouselId } = useCarouselInstanceContext();
-    const currentElements = currentElementsLocal || currentElementsGlobal;
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex: currentItemInInstanceIndex })
+    const { elementStylings, itemViewerRef, currentItemIndex } = useCarouselContext();
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex })
     const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
-    const { svgHref, style } = currentElements?.fullscreenButton || {};
+    const { svgHref, style } = elementStylings?.fullscreenButton || {};
     const fillColor = stylingLogic.getButtonColor(CarouselElement.fullscreenButton);
 
     const onClickLocal = useCallback(async () => {
-        setOptions(options || OPTIONS_DEFAULT);
-        setCurrentCarouselId(carouselId);
-        setCurrentElements(options?.styling?.elements);
-        setCurrentItemIndex(currentItemInInstanceIndex || 0);
+        //todo: these are not needed anymore
+        // setOptions(options || OPTIONS_DEFAULT);
+        // setCurrentElements(options?.styling?.elements);
+        // setCurrentItemIndex(currentItemInInstanceIndex || 0);
         onClick && onClick();
         enterFullScreen(itemViewerRef.current);
     }, [
-        setOptions,
-        setCurrentElements,
-        setCurrentCarouselId,
-        setCurrentItemIndex,
+        // setCurrentItemIndex,
         exitFullScreen,
         enterFullScreen,
         EMPTY_STRING,
+        itemViewerRef,
         onClick
     ]);
 

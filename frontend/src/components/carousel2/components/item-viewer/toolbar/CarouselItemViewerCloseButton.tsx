@@ -9,7 +9,6 @@ import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { exitFullScreen } from '../../../utils';
 import { ToolbarLogic } from '../../../business-logic/ToolbarLogic';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
-import { useCarouselInstanceContext } from '../../CarouselInstanceProvider';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
 import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
 
@@ -21,14 +20,12 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     options = {},
     shortcutPosition = 'center',
 }, ref) => {
-    const { currentItemIndex, currentItems, setCurrentItems, setCurrentItemIndex, currentElements: currentElementsGlobal, itemViewerRef } = useCarouselContext();
-    const { currentElements: currentElementsLocal } = useCarouselInstanceContext();
-    const currentElements = currentElementsLocal || currentElementsGlobal;
-    const toolbarLogic = new ToolbarLogic(currentItems);
+    const { currentItemIndex, items, setCurrentItemIndex, elementStylings, itemViewerRef } = useCarouselContext();
+    const toolbarLogic = new ToolbarLogic(items);
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
     const closeAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getClose();
     const stylingLogic = new StylingLogic({ options });
-    const { svgHref, style } = currentElements?.closeButton || {};
+    const { svgHref, style } = elementStylings?.closeButton || {};
     const fillColor = stylingLogic.getButtonColor(CarouselElement.closeButton);
     useKeyboardShortcuts([
         {
@@ -41,10 +38,9 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
 
     const onClickLocal = useCallback(async () => {
         setCurrentItemIndex(CURRENT_ITEM_INDEX_INITIAL);
-        setCurrentItems(CURRENT_ITEMS_INITIAL);
         onClick && onClick()
         exitFullScreen(itemViewerRef.current);
-    }, [exitFullScreen, setCurrentItemIndex, EMPTY_STRING, CURRENT_ITEM_INDEX_INITIAL, CURRENT_ITEMS_INITIAL, itemViewerRef, onClick, setCurrentItems]);
+    }, [exitFullScreen, setCurrentItemIndex, EMPTY_STRING, CURRENT_ITEM_INDEX_INITIAL, CURRENT_ITEMS_INITIAL, itemViewerRef, onClick]);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={closeAction.keys} shortcutPosition={shortcutPosition} isShortcutVisible={isShortcutVisible}>

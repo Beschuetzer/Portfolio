@@ -3,7 +3,6 @@ import { CLASSNAME__ITEM_VIEWER } from '../../constants';
 import { getClassname, getFormattedTimeString } from '../../utils';
 import { VideoTimeStrings } from '../../types';
 import { CarouselItemViewerToolbarProps } from './toolbar/CarouselItemViewerToolbar';
-import { useCarouselInstanceContext } from '../CarouselInstanceProvider';
 import { StylingLogic } from '../../business-logic/StylingLogic';
 import { useCarouselContext } from '../../context';
 
@@ -17,9 +16,7 @@ export const CarouselItemViewerProgressBar = ({
     setTimeStrings,
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
-    const { options: optionsLocal } = useCarouselContext();
-    const { options: optionsGlobal, currentItemInInstance } = useCarouselInstanceContext();
-    const options = { ...optionsLocal, ...optionsGlobal};  //for some reason some setting only appear in one or the other
+    const { options, currentItem } = useCarouselContext();
     
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
     const stylingLogic = new StylingLogic({ options, progressBarValue });
@@ -78,7 +75,7 @@ export const CarouselItemViewerProgressBar = ({
 
     useEffect(() => {
        setProgressBarValue(INITIAL_VALUE);
-    }, [currentItemInInstance])
+    }, [currentItem])
 
     return (
         <div

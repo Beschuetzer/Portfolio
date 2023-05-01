@@ -6,7 +6,6 @@ import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselIt
 import { Exclusive } from '../types';
 import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__VIDEO_MODAL_BUTTON_RIGHT, CLASSNAME__VIDEO_MODAL_BUTTON_TOP } from '../constants';
 import { StylingLogic } from '../business-logic/StylingLogic';
-import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 
 export type CarouselVideoModalSection = {
@@ -52,15 +51,13 @@ export type CarouselVideoModalProps = {
 
 export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
     //#region Init
-    const { currentElements, options: optionsGlobal, currentItemIndex } = useCarouselContext();
-    const { options: optionsLocal, currentItemInInstance } = useCarouselInstanceContext();
+    const { elementStylings, options, currentItemIndex, currentItem } = useCarouselContext();
 
     const { children, isVideoPlaying, sections, closeButton, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
     const videoModalRef = useRef<HTMLElement>();
 
-    const options = optionsLocal || optionsGlobal;
-    const { svgHref } = currentElements?.closeButton || {};
+    const { svgHref } = elementStylings?.closeButton || {};
     const isCustom = !!children;
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
     const stylingLogic = new StylingLogic({ options, videoRef, videoModalRef, itemDisplayLocationLogic });
@@ -89,7 +86,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
 
     useEffect(() => {
         setIsVisible(true);
-    }, [currentItemInInstance, currentItemIndex])
+    }, [currentItem, currentItemIndex])
     //#endregion
 
     //#region JSX
