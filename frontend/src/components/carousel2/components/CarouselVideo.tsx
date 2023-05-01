@@ -35,6 +35,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(!!autoPlay || false);
     const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
+    const isProgressBarClickRef = useRef(false);
     const itemContainerRef = useRef<HTMLDivElement>();
     const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
@@ -43,6 +44,8 @@ export const CarouselVideo = (props: CarouselItemProps) => {
 
     //#region Functions/Handlers
     const handleItemNavigation = useCallback(() => {
+        console.log("handleItemNavigation");
+        
         setIsLoaded(false);
         setIsVideoPlaying(false);
 
@@ -53,6 +56,8 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     }, [setIsLoaded, setIsVideoPlaying, videoRef]);
 
     function handleOnLoadedData() {
+        console.log("handleOnLoadedData");
+
         setIsLoaded(true);
         if (autoPlay) {
             tryPlaying();
@@ -60,6 +65,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     }
 
     const onContainerClick = useCallback(() => {
+        console.log("onContainerClick");
         setHasEnteredViewport(true);
         setIsVideoPlaying((isPlaying) => !isPlaying);
     }, [setIsVideoPlaying]);
@@ -67,6 +73,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     
     const tryPlaying = useCallback(() => {
         if (!hasEnteredViewport) return;
+        console.log("tryPlaying");
         tryPlayingVideo(
             videoRef.current,
             () => setIsVideoPlaying(true),
@@ -79,7 +86,14 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     useEffect(() => {
         async function handlePlayPause() {
             if (videoRef.current) {
-                if (!isVideoPlaying) {
+            console.log("handlePlayPause and isPlaying: " + isVideoPlaying);
+            console.log({isProgressBarClickRef: isProgressBarClickRef.current});
+            if (isProgressBarClickRef.current) {
+                isProgressBarClickRef.current = false;
+                tryPlaying();
+                return;
+            }
+            if (!isVideoPlaying) {
                     videoRef.current.pause();
                 } else {
                     tryPlaying();
@@ -92,6 +106,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
 
     //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
     useEffect(() => {
+        console.log("triggering load event");
         setIsLoaded(false);
         if (videoRef.current?.load) {
             videoRef.current.load();
@@ -101,6 +116,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
 
     //track whether video is in user's view
     useEffect(() => {
+        console.log("handleScroll");
         function handleScroll() {
             if (!videoRef.current) return;
 
@@ -124,6 +140,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     //start playing video when when visible
     useEffect(() => {
         if (!autoPlay) return;
+        console.log("start playing video when visible");
         tryPlaying();
     }, [hasEnteredViewport, autoPlay])
     //#endregion
@@ -161,6 +178,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                 ) : null}
             </div>
             <CarouselItemViewerToolbar
+                isProgressBarClickRef={isProgressBarClickRef}
                 setIsVideoPlaying={setIsVideoPlaying}
                 isVideoPlaying={isVideoPlaying}
                 isVideo={true}

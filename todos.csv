@@ -1,7 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -when you hit play and a video is at the end, it doesn't restart as expected
-    -when you click the progress bar, the video pauses even if it was playing when you pressed it
+    -when you hit play and a video is at the end, it doesn't restart as expected (there is handle in Toolbar file)
     -current item not being selected when exiting an non default itemDisplayLocation after changing items (may not be possible as currently designed?)
     -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom);  appears to be a problem when all defaults too
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing

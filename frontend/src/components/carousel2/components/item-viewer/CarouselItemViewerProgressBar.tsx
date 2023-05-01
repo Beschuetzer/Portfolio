@@ -9,10 +9,11 @@ import { useCarouselContext } from '../../context';
 
 type CarouselItemViewerProgressBarProps = {
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;
-} & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
+} & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'isProgressBarClickRef'>;
 
 const INITIAL_VALUE = 0;
 export const CarouselItemViewerProgressBar = ({
+    isProgressBarClickRef,
     setTimeStrings,
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
@@ -37,6 +38,9 @@ export const CarouselItemViewerProgressBar = ({
 
         setProgressBarValue(percent);
         if (videoRef?.current) {
+            if (isProgressBarClickRef) {
+                isProgressBarClickRef.current = true;
+            }
             const video = videoRef?.current;
             video.currentTime = percent * video.duration;
         }

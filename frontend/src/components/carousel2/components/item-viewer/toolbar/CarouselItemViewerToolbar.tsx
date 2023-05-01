@@ -18,7 +18,6 @@ import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic
 import { StylingLogic } from '../../../business-logic/StylingLogic'
 import { useCarouselInstanceContext } from '../../CarouselInstanceProvider'
 import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic'
-import { CarouselItemProps } from '../../CarouselItem'
 import { CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH } from '../../../constants'
 import { useUpdateTimeString } from '../../../hooks/useUpdateTimeStrings'
 import { CarouselItemViewerFullscreenButton } from './CarouselItemViewerFullScreenButton'
@@ -26,6 +25,7 @@ import { CarouselItemViewerFullscreenButton } from './CarouselItemViewerFullScre
 export type CarouselItemViewerToolbarProps = {
     description: string;
     itemContainerRef: React.MutableRefObject<HTMLDivElement | undefined> | null;
+    isProgressBarClickRef?: React.MutableRefObject<boolean>;
     isVideo: boolean;
     isVideoPlaying?: boolean;
     onClose?: () => void;
@@ -45,6 +45,7 @@ export const CarouselItemViewerToolbar = ({
     description,
     isVideo,
     itemContainerRef,
+    isProgressBarClickRef,
     isVideoPlaying,
     onClose = () => null,
     onNextItemClick = () => null,
@@ -55,7 +56,7 @@ export const CarouselItemViewerToolbar = ({
     //#region Init
     const { options: optionsGlobal, currentItems, currentItemIndex, setCurrentItemIndex } = useCarouselContext();
     const { options: optionsLocal, setCurrentItemInInstanceIndex, itemViewerToolbarRef, currentItemInInstance, currentItemInInstanceIndex, itemsInInstance } = useCarouselInstanceContext();
-    const options = optionsLocal || optionsGlobal || {};    
+    const options = optionsLocal || optionsGlobal || {};
 
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
@@ -308,7 +309,7 @@ export const CarouselItemViewerToolbar = ({
             closeButtonRef.current.addEventListener('mouseenter', boundDisplayCloseButton);
             closeButtonRef.current.addEventListener('mouseleave', boundHideCloseButton);
         }
-        
+
         if (fullscreenButtonRef?.current) {
             fullscreenButtonRef.current.addEventListener('mouseenter', boundDisplayFullscreenButton);
             fullscreenButtonRef.current.addEventListener('mouseleave', boundHideFullscreenButton);
@@ -328,7 +329,7 @@ export const CarouselItemViewerToolbar = ({
             playButtonRef.current.addEventListener('mouseenter', boundDisplayPlayButton);
             playButtonRef.current.addEventListener('mouseleave', boundHidePlayButton);
         }
-      
+
         if (previousButtonRef?.current) {
             previousButtonRef.current.addEventListener('mouseenter', handleMouseEnterPreviousButton);
             previousButtonRef.current.addEventListener('mouseleave', handleMouseLeaveButton);
@@ -357,12 +358,12 @@ export const CarouselItemViewerToolbar = ({
                 fullscreenButtonRef.current.removeEventListener('mouseenter', boundDisplayFullscreenButton);
                 fullscreenButtonRef.current.removeEventListener('mouseleave', boundHideFullscreenButton);
             }
-            
+
             if (nextButtonRef?.current) {
                 nextButtonRef.current.removeEventListener('mouseenter', handleMouseEnterNextButton);
                 nextButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
             }
-    
+
             if (pauseButtonRef?.current) {
                 pauseButtonRef.current.removeEventListener('mouseenter', boundDisplayPauseButton);
                 pauseButtonRef.current.removeEventListener('mouseleave', boundHidePauseButton);
@@ -407,7 +408,13 @@ export const CarouselItemViewerToolbar = ({
     //#region JSX
     return (
         <div ref={itemViewerToolbarRef as any} onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR} style={stylingLogic.toolbarStyle}>
-            {videoRef ? <CarouselItemViewerProgressBar videoRef={videoRef} setTimeStrings={setTimeStrings} /> : null}
+            {videoRef ?
+                <CarouselItemViewerProgressBar
+                    isProgressBarClickRef={isProgressBarClickRef}
+                    videoRef={videoRef}
+                    setTimeStrings={setTimeStrings}
+                /> : null
+            }
             <div className={CLASSNAME_INNER_CONTAINER}>
                 {videoRef ? (
                     <div className={CLASSNAME_TOOLBAR_LEFT}>
