@@ -21,9 +21,9 @@ import {
     CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT
 } from "../constants";
-import { CarouselInstanceContextProps } from "../components/CarouselInstanceProvider";
 import { CarouselVideoModalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
+import { CarouselContextOutputProps } from "../context";
 
 export enum SpacingDirection {
     bottom,
@@ -38,17 +38,17 @@ export type StylingLogicConstructor = {
     progressBarValue?: number;
     videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
     loadingSpinnerOptions?: LoadingSpinnerProps['options'];
-} & Partial<Pick<CarouselInstanceContextProps, 'itemViewerToolbarRef' | 'currentItemInInstance'>>
+} & Partial<Pick<CarouselContextOutputProps, 'itemViewerToolbarRef' | 'currentItem'>>
     & Partial<Pick<CarouselVideoModalProps, 'videoRef'>>
 /*
 *Use this when extending styling options.  Many default styles are currently in _carousel.scss or _buttons_scss
 */
 export class StylingLogic {
     private DEFAULT_FONT_FAMILY: string = 'sans-serif';
-    private currentItemInInstance;
+    private currentItem;
     private isCurrentItem: boolean | undefined;
     private itemDisplayLocationLogic: ItemDisplayLocationLogic;
-    private itemViewerToolbarRef: CarouselInstanceContextProps['itemViewerToolbarRef'];
+    private itemViewerToolbarRef: CarouselContextOutputProps['itemViewerToolbarRef'];
     private loadingSpinnerOptions: LoadingSpinnerProps['options'];
     private options: CarouselOptions;
     private videoModalRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
@@ -57,7 +57,7 @@ export class StylingLogic {
 
     constructor(constructor: StylingLogicConstructor) {
         const {
-            currentItemInInstance,
+            currentItem,
             isCurrentItem,
             itemDisplayLocationLogic,
             itemViewerToolbarRef,
@@ -67,15 +67,15 @@ export class StylingLogic {
             progressBarValue,
             videoRef,
         } = constructor;
-        this.currentItemInInstance = currentItemInInstance;
+        this.currentItem = currentItem;
         this.isCurrentItem = isCurrentItem;
         this.loadingSpinnerOptions = loadingSpinnerOptions;
-        this.itemViewerToolbarRef = itemViewerToolbarRef;
+        this.itemViewerToolbarRef = itemViewerToolbarRef || { current: null };
         this.progressBarValue = progressBarValue || 0;
         this.videoRef = videoRef;
         this.videoModalRef = videoModalRef;
         this.options = options || {};
-        const isCurrentItemInInstancePopulated = Object.keys(currentItemInInstance || {}).length > 0;
+        const iscurrentItemPopulated = Object.keys(currentItem || {}).length > 0;
         this.itemDisplayLocationLogic = itemDisplayLocationLogic || new ItemDisplayLocationLogic({ options: this.options });
     }
 
@@ -236,7 +236,7 @@ export class StylingLogic {
     }
 
     get carouselVideoModalCloseButtonStyle() {
-        const areChildrenPresent = !!this.currentItemInInstance?.video?.overlayProps?.children;
+        const areChildrenPresent = !!this.currentItem?.video?.overlayProps?.children;
         const { right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
         const rightStyle = paddingRight !== undefined ? {
             right: `${paddingRight}${CAROUSEL_SPACING_UNIT}`
@@ -321,8 +321,8 @@ export class StylingLogic {
 
     get carouselVideoStyle() {
         const objectStyles = {
-            objectFit: this.currentItemInInstance?.video?.objectFit || 'contain',
-            objectPosition: this.currentItemInInstance?.video?.objectPosition || 'bottom',
+            objectFit: this.currentItem?.video?.objectFit || 'contain',
+            objectPosition: this.currentItem?.video?.objectPosition || 'bottom',
         } as CSSProperties;
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
@@ -487,7 +487,7 @@ export class StylingLogic {
     }
 
     get toolbarStyle() {
-        const isItemVideo = getIsVideo(this.currentItemInInstance);
+        const isItemVideo = getIsVideo(this.currentItem);
         const nonDefaultItemDisplayStyle = this.itemDisplayLocationLogic.isFullscreenButtonVisible ? {
             ...this.toolbarBackgroundColorStyle,
             position: "relative",

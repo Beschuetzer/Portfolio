@@ -1,12 +1,10 @@
-import { CSSProperties, useEffect, useRef } from 'react'
-import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../context';
-import { getClassname, getGuid } from '../utils';
-import { CarouselInstanceProvider, useCarouselInstanceContext } from './CarouselInstanceProvider';
+import { useEffect, useRef } from 'react'
+import { CURRENT_ITEM_INDEX_INITIAL, CarouselProvider, useCarouselContext } from '../context';
+import { getClassname } from '../utils';
 import { CarouselItemProps } from './CarouselItem';
 import { CarouselOptions } from '../types';
 import { CarouselContent } from './CarouselContent';
 import { StylingLogic } from '../business-logic/StylingLogic';
-import { NUMBER_OF_PAGES_INITIAL } from '../constants';
 
 export type CarouselProps = {
 	/*
@@ -22,36 +20,19 @@ export const Carousel = (props: CarouselProps) => {
 	const {
 		items,
 		options,
-		onItemChange = () => null,
+		onItemChange = () => null,  //todo: remove this from tests as not really necessary
 	} = props;
-	const { currentItemIndex, currentItems, setCurrentItems, currentCarouselId } = useCarouselContext();
-	const idRef = useRef<string>(getGuid());
 	const carouselContainerRef = useRef<HTMLDivElement>();
-	const isCurrentCarousel = currentCarouselId === idRef.current;
 	const stylingLogic = new StylingLogic({ options });
-	//#endregion
-
-	//#region Side Fx
-	useEffect(() => {
-		if (!isCurrentCarousel) return;
-		onItemChange && onItemChange(!!currentItems?.[currentItemIndex] || false);
-	}, [currentItemIndex, currentItems, isCurrentCarousel])
-
-	useEffect(() => {
-		if (!isCurrentCarousel || currentItems?.length === items?.length || currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) return;
-		setCurrentItems(items);
-	}, [isCurrentCarousel, currentCarouselId, currentItems, items, currentItemIndex, CURRENT_ITEM_INDEX_INITIAL])
 	//#endregion
 
 	//#region JSX
 	return (
-		<CarouselInstanceProvider
-			currentElements={options?.styling?.elements}
-			numberOfPages={NUMBER_OF_PAGES_INITIAL}
-			itemsInInstance={items}
+		<CarouselProvider
+			items={items}
 			carouselContainerRef={carouselContainerRef as any}
-			id={idRef.current}
-			options={options}>
+			options={options || {}}
+		>
 			<div
 				ref={carouselContainerRef as any}
 				className={getClassname({ elementName: "" })}
@@ -64,7 +45,7 @@ export const Carousel = (props: CarouselProps) => {
 			>
 				<CarouselContent {...props} carouselContainerRef={carouselContainerRef} />
 			</div>
-		</CarouselInstanceProvider>
+		</CarouselProvider>
 	)
 	//#endregion
 }

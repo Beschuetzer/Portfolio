@@ -4,28 +4,32 @@ import { CarouselVideoModalProps } from "./components/CarouselVideoModal";
 import { EMPTY_STRING } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
-import { CarouselOptions, CarouselElements } from "./types";
+import { CarouselOptions, CarouselElementStyles } from "./types";
 
-type CarouselContextProps = {
+//notes for changes 
+//todo: 'currentElements' => 'elementStlyings'
+//todo: 'currentItems => 'items'
+export type CarouselContextInputProps = {
+    carouselContainerRef: React.MutableRefObject<HTMLDivElement>;
     children: ReactNode | ReactNode[];
+    items: CarouselItemProps[];
+    options: CarouselOptions;
 }
 
-export type CarouselValueProps = {
-    currentElements: CarouselElements | undefined;
-    currentCarouselId: string;
+export type CarouselContextOutputProps = {
     currentItem: CarouselItemProps;
     currentItemIndex: number;
-    currentItems: CarouselItemProps[];
-    currentVideoOverlayProps: CarouselVideoModalProps;
+    elementStylings: CarouselElementStyles | undefined;
     itemViewerRef: React.RefObject<HTMLElement>;
-    options: CarouselOptions;
-    setCurrentElements: React.Dispatch<React.SetStateAction<CarouselElements | undefined>>;
-    setCurrentCarouselId: React.Dispatch<React.SetStateAction<string>>; 
+    itemViewerToolbarRef: React.RefObject<HTMLElement>;
+    numberOfPages: number;
     setCurrentItemIndex: React.Dispatch<React.SetStateAction<number>>;
-    setCurrentItems: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
-    setCurrentVideoOverlayProps: React.Dispatch<React.SetStateAction<CarouselVideoModalProps>>;
+    setItems: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
+    setNumberOfPages: React.Dispatch<React.SetStateAction<number>>;
     setOptions: React.Dispatch<React.SetStateAction<CarouselOptions>>;
-}
+    // videoOverlayProps: CarouselVideoModalProps;
+    // setCurrentVideoOverlayProps: React.Dispatch<React.SetStateAction<CarouselVideoModalProps>>;
+} & Required<Omit<CarouselContextInputProps, 'children'>>
 
 export const TRANSLATION_AMOUNT_INITIAL = 0;
 export const CURRENT_ITEM_INDEX_INITIAL = -1;
@@ -45,39 +49,40 @@ const OVERLAY_PROPS_DEFAULT = {
 } as CarouselVideoModalProps;
 
 export const CarouselProvider = ({
-    children
-}: CarouselContextProps) => {
+    carouselContainerRef,
+    children,
+    options: optionsInput,
+
+}: CarouselContextInputProps) => {
     //note: setCurrentItem is set internally upon change of currentItems or currentItemIndex
     const [currentItem, setCurrentItem] = useState({} as CarouselItemProps);
-    const [currentItems, setCurrentItems] = useState([] as CarouselItemProps[]);
     const [currentItemIndex, setCurrentItemIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
-    const [currentCarouselId, setCurrentCarouselId] = useState(EMPTY_STRING);
-    const [currentVideoOverlayProps, setCurrentVideoOverlayProps] = useState<CarouselVideoModalProps>(OVERLAY_PROPS_DEFAULT);
-    const [currentElements, setCurrentElements] = useState<CarouselElements>()
-    const [options, setOptions] = useState<CarouselOptions>(OPTIONS_DEFAULT);
+    const [items, setItems] = useState([] as CarouselItemProps[]);
+    const [numberOfPages, setNumberOfPages] = useState(0);
+    const [options, setOptions] = useState<CarouselOptions>(optionsInput || OPTIONS_DEFAULT);
     const itemViewerRef = useRef<HTMLElement>(null);
+    const itemViewerToolbarRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
-        setCurrentItem(currentItems?.[currentItemIndex] || {});
-    }, [currentItems, currentItemIndex])
+        setCurrentItem(items?.[currentItemIndex] || {});
+    }, [items, currentItemIndex, setCurrentItem])
 
     return (
         <CarouselContext.Provider 
             value={{
-                currentCarouselId,
+                carouselContainerRef,
                 currentItem,
                 currentItemIndex,
-                currentItems,
-                currentElements,
-                currentVideoOverlayProps,
+                items,
+                elementStylings: options.styling?.elements,
                 itemViewerRef,
+                itemViewerToolbarRef,
+                numberOfPages,
                 options,
-                setCurrentCarouselId,
                 setCurrentItemIndex,
-                setCurrentItems,
-                setCurrentElements,
-                setCurrentVideoOverlayProps,
+                setItems,
                 setOptions,
+                setNumberOfPages,
             }}
         >
             {children}
@@ -86,7 +91,7 @@ export const CarouselProvider = ({
     )
 }
 
-const CarouselContext = React.createContext<CarouselValueProps>({} as any);
+const CarouselContext = React.createContext<CarouselContextOutputProps>({} as any);
 
 export function useCarouselContext() {
     return useContext(CarouselContext)

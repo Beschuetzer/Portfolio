@@ -6,7 +6,6 @@ import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, TRANSLATION_AMOUNT_INITIAL, useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
-import { useCarouselInstanceContext } from './CarouselInstanceProvider';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { getNumberOfItemsThatCanFit, getContainerWidth, getClassname, getNumberOfPages } from '../utils';
@@ -21,8 +20,7 @@ export const CarouselContent = ({
     options,
 }: CarouselContentProps) => {
     //#region Init
-    const { currentItemIndex, currentCarouselId, currentItems } = useCarouselContext();
-    const { currentItemInInstance, setCurrentItemInInstanceIndex, setItemsInInstance, numberOfPages, setNumberOfPages, id } = useCarouselInstanceContext();
+    const { currentItemIndex, numberOfPages, setNumberOfPages, currentItem } = useCarouselContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
@@ -31,7 +29,7 @@ export const CarouselContent = ({
     const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     const itemsContainerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndex = useRef(CURRENT_ITEM_INDEX_INITIAL);
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem: currentItemInInstance });
+    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem });
     const stylingLogic = new StylingLogic({ options });
     //#endregion
 
@@ -101,17 +99,16 @@ export const CarouselContent = ({
     //Tracking the itemViewer item and moving the corresponding carousel to match the page the item is on
     useEffect(() => {
         function getIsNextItemClick() {
-            if (previousCurrentItemIndex.current === 0 && currentNthItem == currentItems.length) return false;
-            else if (previousCurrentItemIndex.current === currentItems.length - 1 && currentItemIndex === 0) return true;
+            if (previousCurrentItemIndex.current === 0 && currentNthItem == items.length) return false;
+            else if (previousCurrentItemIndex.current === items.length - 1 && currentItemIndex === 0) return true;
             return previousCurrentItemIndex.current < currentItemIndex;
         }
 
         if (
             (options?.navigation?.trackItemViewerChanges !== undefined &&
                 !options?.navigation?.trackItemViewerChanges) ||
-            id !== currentCarouselId ||
             currentItemIndex === CURRENT_ITEM_INDEX_INITIAL ||
-            currentItems?.length <= 0
+            items?.length <= 0
         ) return;
 
         const { numberOfItemsThatCanFit, numberOfWholeItemsThatCanFit } = getNumberOfItemsThatCanFit(
@@ -119,16 +116,16 @@ export const CarouselContent = ({
         );
         const currentNthItem = currentItemIndex + 1;
         const isNextItemClick = getIsNextItemClick();
-        // console.log({ isNextItemClick, previousCurrentItemIndex: previousCurrentItemIndex.current, currentNthItem, currentItemsLEngth: currentItems.length, numberOfWholeItemsThatCanFit, currentPage });
+        // console.log({ isNextItemClick, previousCurrentItemIndex: previousCurrentItemIndex.current, currentNthItem, itemsLEngth: items.length, numberOfWholeItemsThatCanFit, currentPage });
         if (isNextItemClick) {
-            if (currentNthItem === 1 && previousCurrentItemIndex.current === currentItems.length - 1) {
+            if (currentNthItem === 1 && previousCurrentItemIndex.current === items.length - 1) {
                 setCurrentPage(0);
             }
             else if ((currentNthItem) > ((currentPage * numberOfItemsThatCanFit) + numberOfWholeItemsThatCanFit)) {
                 setCurrentPage(currentPage + 1);
             }
         } else {
-            if (currentNthItem >= currentItems.length) {
+            if (currentNthItem >= items.length) {
                 setCurrentPage(numberOfPages - 1);
             }
             else if ((currentNthItem) < ((currentPage * numberOfItemsThatCanFit) + numberOfWholeItemsThatCanFit)) {
@@ -142,15 +139,14 @@ export const CarouselContent = ({
     //need this for the above useEffect to work correctly
     useEffect(() => {
         previousCurrentItemIndex.current = currentItemIndex;
-    }, [currentItems])
+    }, [items])
 
-    //setting the currentItemIndex in carousel instance on load if condition met
-    useEffect(() => {
-        if (!itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
-            setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(0);
-            setItemsInInstance && setItemsInInstance(items);
-        }
-    }, [])
+    // //setting the currentItemIndex in carousel instance on load if condition met
+    // useEffect(() => {
+    //     if (!itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
+    //         setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(0);
+    //     }
+    // }, [])
 
     //updating translation amount
     useEffect(() => {
@@ -209,7 +205,7 @@ export const CarouselContent = ({
     return (
         <>
             {itemDisplayLocationLogic.isItemDisplayLocationAbove ? (
-                <ItemToRender {...currentItemInInstance} />
+                <ItemToRender {...currentItem} />
             ) : null}
             <div style={stylingLogic.carouselItemsContainerStyle}>
                 <div ref={itemsContainerRef} style={containerStyle} className={getClassname({ elementName: "items" })}>
@@ -242,7 +238,7 @@ export const CarouselContent = ({
                 </div>
             ) : null}
             {itemDisplayLocationLogic.isItemDisplayLocationBelow ? (
-                <ItemToRender {...currentItemInInstance} />
+                <ItemToRender {...currentItem} />
             ) : null}
         </>
     )

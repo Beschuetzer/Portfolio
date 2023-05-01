@@ -174,7 +174,7 @@ export type CarouselVerticalPaddingOptions = {
 
 export type CarouselStylingOptions = {
     fontFamily?: CarouselFontFamilyOptions;
-    elements?: CarouselElements;
+    elements?: CarouselElementStyles;
 } & CarouselSections;
 
 export type CarouselOptions = {
@@ -275,7 +275,7 @@ export enum CarouselElement {
     seekForwardButton = 'seekForwardButton',
 }
 
-export type CarouselElements = {
+export type CarouselElementStyles = {
     [button in CarouselElement]?: button extends CarouselElement.all ? Pick<CarouselButtonCustomization, 'fillColor'> : CarouselButtonCustomization;
 }
 
