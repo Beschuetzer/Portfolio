@@ -297,14 +297,6 @@ export const CarouselItemViewerToolbar = ({
             setPreviewDirection(ToolbarPreviewDirection.none);
         }
 
-        function handleVideoEnd() {
-            setIsVideoPlaying && setIsVideoPlaying(false);
-        }
-
-        if (videoRef?.current) {
-            videoRef.current.addEventListener('ended', handleVideoEnd);
-        }
-
         if (closeButtonRef?.current) {
             closeButtonRef.current.addEventListener('mouseenter', boundDisplayCloseButton);
             closeButtonRef.current.addEventListener('mouseleave', boundHideCloseButton);
@@ -345,10 +337,6 @@ export const CarouselItemViewerToolbar = ({
             seekForwardButtonRef.current.addEventListener('mouseleave', boundHideSeekForwardButton);
         }
         return () => {
-            if (videoRef?.current) {
-                videoRef.current.removeEventListener('ended', handleVideoEnd);
-            }
-
             if (closeButtonRef?.current) {
                 closeButtonRef.current.removeEventListener('mouseenter', boundDisplayCloseButton);
                 closeButtonRef.current.removeEventListener('mouseleave', boundHideCloseButton);

@@ -130,10 +130,25 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             }
         }
 
+        function handleVideoEnd() {
+            setIsVideoPlaying(false);
+            if (videoRef.current) {
+                videoRef.current.pause();
+                videoRef.current.currentTime = 0;
+            }
+        }
+
         handleScroll(); //check on load if is in viewport
         window.addEventListener('scroll', handleScroll);
+
+        if (videoRef?.current) {
+            videoRef.current.addEventListener('ended', handleVideoEnd);
+        }
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            if (videoRef?.current) {
+                videoRef.current.removeEventListener('ended', handleVideoEnd);
+            }
         }
     }, [])
 
