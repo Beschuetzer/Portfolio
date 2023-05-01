@@ -1,5 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
+    -Need to remove global context and add ItemViewer to each Carousel then try addressing the issues below
     -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom);  appears to be a problem when all defaults too
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing
     -add api for text color in options.styling
@@ -8,7 +9,6 @@ Carousel rework
     -need to create individual paddings for toolbar (and others?)
     -default shortcut keys for next/previous item and close are getting registered? (All custom shortcuts => press 'p' and it move back an item)
 
-  -Need to remove global context and add ItemViewer to each Carousel then try addressing the issues below
     -current item not being selected when exiting an non default itemDisplayLocation after changing items (may not be possible as currently designed?)
     -pressing seek in either direction pausing video
     -when you hit play and a video is at the end, it doesn't restart as expected (there is handle in Toolbar file)
