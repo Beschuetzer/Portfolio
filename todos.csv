@@ -1,5 +1,17 @@
 Carousel rework
   -itemDisplay non-default stuff:
+    -need to figure out how to load the items in the viewer but hide them until clicked (for default case);  may need POS for isFullscreen
+
+        //todo: need to add these in StylingLogic for fullscreen item viewer
+        // display: flex;
+        // position: fixed;
+        // top: 0;
+        // bottom: 0;
+        // left: 0;
+        // right: 0;
+        // z-index: 1000000000000000000000;
+
+
     -Need to remove global context and add ItemViewer to each Carousel then try addressing the issues below
     -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom);  appears to be a problem when all defaults too
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing

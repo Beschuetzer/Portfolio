@@ -57,16 +57,17 @@ export const CarouselProvider = ({
     const [options, setOptions] = useState<CarouselOptions>(optionsInput || OPTIONS_DEFAULT);
     const itemViewerRef = useRef<HTMLElement>(null);
     const itemViewerToolbarRef = useRef<HTMLElement>(null);
+    const currentItemToUse = Object.keys(currentItem || {}).length > 0 ? currentItem : items[0];
 
     useEffect(() => {
-        setCurrentItem(items?.[currentItemIndex] || {});
+        setCurrentItem(items?.[currentItemIndex]);
     }, [items, currentItemIndex, setCurrentItem])
 
     return (
         <CarouselContext.Provider 
             value={{
                 carouselContainerRef,
-                currentItem,
+                currentItem: currentItemToUse,
                 currentItemIndex,
                 items,
                 elementStylings: options.styling?.elements,

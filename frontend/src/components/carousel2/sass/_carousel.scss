@@ -126,16 +126,9 @@
     }
 
     &__item-viewer {
-        display: flex;
-
         //add this if you want toolbar to stick to the video
         // flex-direction: column;
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000000000000000000000;
+        display: none;
         background-color: $itemViewerBackgroundColor;
         transition:
             opacity $carouselAnimationDuration ease;
