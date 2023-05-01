@@ -44,8 +44,6 @@ export const CarouselVideo = (props: CarouselItemProps) => {
 
     //#region Functions/Handlers
     const handleItemNavigation = useCallback(() => {
-        console.log("handleItemNavigation");
-        
         setIsLoaded(false);
         setIsVideoPlaying(false);
 

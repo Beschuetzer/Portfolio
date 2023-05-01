@@ -86,9 +86,9 @@ export const CarouselItemViewerToolbar = ({
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem: currentItemInInstance, currentItemIndex });
     const actionsLogic = new ToolbarActionsLogic(options, itemDisplayLocationLogic);
     const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
-    const isFullScreenButtonVisible = itemDisplayLocationLogic.isFullscreenButtonVisible;
-    const itemsToUse = isFullScreenButtonVisible ? (itemsInInstance || []) : (currentItems || []);
-    const indexToUse = isFullScreenButtonVisible ? (currentItemInInstanceIndex || 0) : (currentItemIndex || 0);
+    const { isFullscreenButtonVisible, isDefaultItemDisplayLocation } = itemDisplayLocationLogic || {};
+    const itemsToUse = isFullscreenButtonVisible ? (itemsInInstance || []) : (currentItems || []);
+    const indexToUse = isFullscreenButtonVisible ? (currentItemInInstanceIndex || 0) : (currentItemIndex || 0);
     const toolbarLogic = new ToolbarLogic(itemsToUse);
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
 
@@ -176,7 +176,7 @@ export const CarouselItemViewerToolbar = ({
         if (itemsToUse.length <= 1) return;
         const newIndex = indexToUse === itemsToUse.length - 1 ? 0 : indexToUse + 1;
 
-        if (isFullScreenButtonVisible) {
+        if (isFullscreenButtonVisible) {
             setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
         } else {
             setCurrentItemIndex(newIndex);
@@ -191,8 +191,8 @@ export const CarouselItemViewerToolbar = ({
     const onPreviousItemClickLocal = useCallback(() => {
         if (itemsToUse.length <= 1) return;
         const newIndex = indexToUse === 0 ? itemsToUse.length - 1 : indexToUse - 1;
-
-        if (isFullScreenButtonVisible) {
+        
+        if (isFullscreenButtonVisible) {
             setCurrentItemInInstanceIndex && setCurrentItemInInstanceIndex(newIndex);
         } else {
             setCurrentItemIndex(newIndex);

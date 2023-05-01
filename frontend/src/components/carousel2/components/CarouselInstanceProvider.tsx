@@ -50,7 +50,7 @@ export const CarouselInstanceProvider = ({
     useEffect(() => {
         if (CURRENT_ITEM_INDEX_INITIAL === currentItemInInstanceIndex) return;
         setCurrentItemInInstance(itemsInInstanceLocal[currentItemInInstanceIndex]);
-    }, [itemsInInstanceLocal, currentItemInInstanceIndex])
+    }, [itemsInInstanceLocal, currentItemInInstanceIndex, setCurrentItemInInstance, CURRENT_ITEM_INDEX_INITIAL])
 
     return (
         <CarouselInstanceContext.Provider
