@@ -33,11 +33,6 @@ export const CarouselImage = (props: CarouselItemProps) => {
                 isVideo={false}
                 description={description || ''}
                 itemContainerRef={containerRef}
-                onClose={() => {
-                    setTimeout(() => {
-                        setIsLoaded(false)
-                    }, 100)
-                }}
                 onNextItemClick={() => {
                     setIsLoaded(false)
                 }}

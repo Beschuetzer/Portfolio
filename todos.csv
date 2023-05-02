@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -clicking and re-oping the same image doesn't work right
     -add click an image goes to fullscreen?
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing
     -add tests for all of the background mix and match possibilities?
