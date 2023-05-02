@@ -27,7 +27,6 @@ import { Carousel } from "../../../components/carousel2/components/Carousel";
 import { ModifierKey, ValidKey } from "../../../components/carousel2/hooks/useKeyboardShortcuts";
 import { CarouselActions } from "../../../components/carousel2/types";
 import { CarouselItemProps } from "../../../components/carousel2/components/CarouselItem";
-import { FullscreenButton } from "../../../components/carousel2/components/buttons/FullscreenButton";
 
 //#region Carousel Items
 const customButtons = {
@@ -177,7 +176,7 @@ const items = [
 			autoPlay: false,
 			muted: true,
 			objectFit: 'cover',
-			objectPosition: 'left',
+			objectPosition: 'top',
 		}
 	},
 	{
@@ -1291,8 +1290,116 @@ const SECTIONS: Sections = [
 		'Below-Customization',
 		[
 			{
-				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
-				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
+				label: "All Defaults",
+				jsx: React.cloneElement(layoutAboveDefaultItemHeight, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Current Item Below with Custom itemHeight and Thumbnail Size",
+				jsx: React.cloneElement(layoutAboveWithItemHeightAndThumbnailSize, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below with Container Padding",
+				jsx: React.cloneElement(layoutAboveContainerPadding, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below with Item Viewer Padding",
+				jsx: React.cloneElement(layoutAboveExtraItemViewerPadding, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below with Extra Navigation Padding",
+				jsx: React.cloneElement(layoutAboveExtraNavigationPadding, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below with Extra Toolbar Padding",
+				jsx: React.cloneElement(layoutAboveExtraToolbarPadding, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below with Different Left and Right Padding",
+				jsx: React.cloneElement(layoutAboveDifferentLeftAndRightPadding, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below Flush and Same Background Color",
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColor, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below Flush with Progress Bar Whole Width",
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below Flush and Same Background Color using All option",
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorAll, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below Custom Icons with Same Background Color",
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below Custom Icons with Default Icons using Custom Colors",
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below buttons.all with Specific Item Fill Colors",
+				jsx: React.cloneElement(layoutAboveButtonsAllWithSpecificFillColors, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below Custom Overlay Style and Loading Spinner",
+				jsx: React.cloneElement(layoutAboveCustomOverlayAndSpinner, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
 			},
 		]
 	],

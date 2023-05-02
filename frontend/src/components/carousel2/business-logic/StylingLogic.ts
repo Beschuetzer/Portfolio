@@ -305,6 +305,7 @@ export class StylingLogic {
     get carouselVideoContainerStyle() {
         const common = {
             position: 'relative',
+            display: 'flex',
         } as CSSProperties;
         const layoutStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
@@ -579,7 +580,7 @@ export class StylingLogic {
 
         switch (direction) {
             case SpacingDirection.bottom:
-                defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+                defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.itemDisplayLocationLogic.isItemDisplayLocationBelow ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = this.options.styling?.container?.padding?.bottom;
                 // specificElementPadding = this.options.styling?.[item]?.padding?.bottom;
                 customPadding = specificElementPadding || allPadding;
