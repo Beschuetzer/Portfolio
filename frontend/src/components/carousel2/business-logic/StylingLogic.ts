@@ -331,7 +331,6 @@ export class StylingLogic {
 
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            height: '100%',
             ...objectStyles,
         } as CSSProperties : {};
     }
