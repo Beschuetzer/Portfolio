@@ -1,8 +1,7 @@
 import { CarouselImage } from "../components/CarouselImage";
 import { CarouselItemProps } from "../components/CarouselItem";
 import { CarouselVideo } from "../components/CarouselVideo";
-import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT } from "../constants";
-import { CURRENT_ITEM_INDEX_INITIAL } from "../context";
+import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CURRENT_ITEM_INDEX_INITIAL } from "../constants";
 import { CarouselOptions } from "../types";
 import { getIsVideo } from "../utils";
 

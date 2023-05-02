@@ -1,7 +1,6 @@
 import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import { getClassname, getFormattedTimeString, tryPlayingVideo } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
-import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../../context'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from '../CarouselItemViewerProgressBar'
 import { VideoTimeStrings } from '../../../types'
@@ -17,9 +16,10 @@ import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic'
 import { StylingLogic } from '../../../business-logic/StylingLogic'
 import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic'
-import { CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH } from '../../../constants'
+import { AUTO_HIDE_DISABLED_VALUE, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH, SEEK_AMOUNT_DEFAULT } from '../../../constants'
 import { useUpdateTimeString } from '../../../hooks/useUpdateTimeStrings'
 import { CarouselItemViewerFullscreenButton } from './CarouselItemViewerFullScreenButton'
+import { useCarouselContext } from '../../../context'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -126,20 +126,26 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     }
 
     const handleAutoHide = useCallback(() => {
-        if (currentItemIndex === CURRENT_ITEM_INDEX_INITIAL) return;
+        if (!isFullscreenMode || options?.itemViewer?.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
         if (itemContainerRef?.current) {
             itemContainerRef.current.classList?.remove(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
         }
 
-        if (!!options?.itemViewer?.autoHideToolbarDuration && options.itemViewer.autoHideToolbarDuration > 0) {
-            clearTimeout(shouldHideTimoutRef.current);
-            shouldHideTimoutRef.current = setTimeout(() => {
-                if (itemContainerRef?.current && !isMobile) {
-                    itemContainerRef.current.classList?.add(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
-                }
-            }, options.itemViewer.autoHideToolbarDuration);
-        }
-    }, [currentItemIndex, CURRENT_ITEM_INDEX_INITIAL, itemContainerRef, options, shouldHideTimoutRef, CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR]);
+        clearTimeout(shouldHideTimoutRef.current);
+        shouldHideTimoutRef.current = setTimeout(() => {
+            if (itemContainerRef?.current && !isMobile) {
+                itemContainerRef.current.classList?.add(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
+            }
+        }, options?.itemViewer?.autoHideToolbarDuration || AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT);
+    }, [
+        isFullscreenMode,
+        currentItemIndex,
+        itemContainerRef,
+        options,
+        shouldHideTimoutRef,
+        CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR,
+        AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT
+    ]);
 
     function handlePlayPauseUnited() {
         if (isVideoPlaying) {

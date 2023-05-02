@@ -1,6 +1,18 @@
 import { getClassname } from "./utils";
 import { KeyInput, ModifierKey, ValidKey } from "./hooks/useKeyboardShortcuts";
 
+export const AUTO_HIDE_DISABLED_VALUE = 0;
+export const AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT = 2500;
+export const CURRENT_ITEM_INDEX_INITIAL = -1;
+export const CURRENT_PAGE_INITIAL = 0;
+export const EMPTY_STRING = "";
+export const NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS = 2;
+export const NUMBER_OF_PAGES_INITIAL = 0;
+export const SEEK_AMOUNT_DEFAULT = 5000;
+export const TRANSLATION_AMOUNT_INITIAL = 0;
+export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
+
+//#region ClassNames
 export const CLASSNAME__ROOT = 'thumbnail-carousel';
 export const CLASSNAME__BUTTON = `${CLASSNAME__ROOT}-button`;
 export const CLASSNAME__BUTTON_SCALE_ON_HOVER = `${CLASSNAME__BUTTON}--scale-on-hover`
@@ -11,6 +23,9 @@ export const CLASSNAME__ITEM_VIEWER = 'item-viewer';
 export const CLASSNAME__ITEM_VIEWER_BUTTON = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-button` });
 export const CLASSNAME__VIDEO_MODAL_BUTTON_TOP = `${CLASSNAME__ROOT}-video-modal-custom-button-top`;
 export const CLASSNAME__VIDEO_MODAL_BUTTON_RIGHT = `${CLASSNAME__ROOT}-video-modal-custom-button-right`;
+//#endregion
+
+//#region Styling
 export const CAROUSEL_COLOR_ONE = "#1d0e0b";
 export const CAROUSEL_COLOR_TWO = "#774023";
 export const CAROUSEL_COLOR_THREE = "#d88c51";
@@ -32,10 +47,7 @@ export const CAROUSEL_OVERLAY_ITEM_PADDING_TOP = 10;  //in px
 export const CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT = 20;  //in px
 export const CAROUSEL_SPACING_UNIT = 'px'
 export const MOBILE_PIXEL_WIDTH = 655;
-export const NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS = 2;
-export const NUMBER_OF_PAGES_INITIAL = 0;
-export const EMPTY_STRING = "";
-export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
+//#endregion
 
 //#region ItemViewer Shortcuts
 export const ITEM_VIEWER_CLOSE_SHORTCUTS: KeyInput[] = [ValidKey.c, ValidKey.x, ValidKey.escape];

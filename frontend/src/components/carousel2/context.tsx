@@ -1,7 +1,7 @@
 import React, { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { CarouselItemProps } from "./components/CarouselItem";
 import { CarouselVideoModalProps } from "./components/CarouselVideoModal";
-import { EMPTY_STRING } from "./constants";
+import { CURRENT_ITEM_INDEX_INITIAL, EMPTY_STRING } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
 import { CarouselOptions, CarouselElementStyles } from "./types";
@@ -27,18 +27,7 @@ export type CarouselContextOutputProps = {
     setOptions: React.Dispatch<React.SetStateAction<CarouselOptions>>;
 } & Required<Omit<CarouselContextInputProps, 'children'>>
 
-export const TRANSLATION_AMOUNT_INITIAL = 0;
-export const CURRENT_ITEM_INDEX_INITIAL = -1;
-export const CURRENT_ITEMS_INITIAL = [];
-export const CURRENT_PAGE_INITIAL = 0;
-export const AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT = 2500;
-export const SEEK_AMOUNT_DEFAULT = 5000;
-export const OPTIONS_DEFAULT = {
-    itemViewer: {
-        autoHideToolbarDuration: AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT,
-        seekAmount: SEEK_AMOUNT_DEFAULT,
-    },
-} as CarouselOptions;
+
 const OVERLAY_PROPS_DEFAULT = {
     text: EMPTY_STRING,
     title: EMPTY_STRING,
@@ -56,7 +45,7 @@ export const CarouselProvider = ({
     const [isFullscreenMode, setIsFullscreenMode] = useState(false);
     const [items, setItems] = useState(itemsInput);
     const [numberOfPages, setNumberOfPages] = useState(0);
-    const [options, setOptions] = useState<CarouselOptions>(optionsInput || OPTIONS_DEFAULT);
+    const [options, setOptions] = useState<CarouselOptions>(optionsInput || {});
     const itemViewerRef = useRef<HTMLElement>(null);
     const currentItemToUse = Object.keys(currentItem || {}).length > 0 ? currentItem : items[0];
 

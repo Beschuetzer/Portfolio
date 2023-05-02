@@ -1,10 +1,10 @@
 import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM } from '../constants';
+import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
-import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, TRANSLATION_AMOUNT_INITIAL, useCarouselContext } from '../context';
+import { useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
@@ -103,7 +103,13 @@ export const CarouselContent = ({
 
     //Tracking the itemViewer item and moving the corresponding carousel to match the page the item is on
     useEffect(() => {
-        if (!isFullscreenMode) return;
+        if (
+            !isFullscreenMode || 
+            (options?.navigation?.trackItemViewerChanges === false) || 
+            items?.length <= 0
+        )  {
+            return;
+        }
         if (previousCurrentItemIndexRef.current === CURRENT_ITEM_INDEX_INITIAL) {
             previousCurrentItemIndexRef.current = currentItemIndex;
             return;
@@ -139,13 +145,6 @@ export const CarouselContent = ({
             else if (previousCurrentItemIndexRef.current === items.length - 1 && currentItemIndex === 0) return true;
             return previousCurrentItemIndexRef.current < currentItemIndex;
         }
-
-        if (
-            (options?.navigation?.trackItemViewerChanges !== undefined &&
-                !options?.navigation?.trackItemViewerChanges) ||
-            currentItemIndex === CURRENT_ITEM_INDEX_INITIAL ||
-            items?.length <= 0
-        ) return;
     }, [
         items,
         options?.navigation?.trackItemViewerChanges,

@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react'
-import { CURRENT_ITEM_INDEX_INITIAL, CarouselProvider, useCarouselContext } from '../context';
+import { useRef } from 'react'
+import { CarouselProvider } from '../context';
 import { getClassname } from '../utils';
 import { CarouselItemProps } from './CarouselItem';
 import { CarouselOptions } from '../types';

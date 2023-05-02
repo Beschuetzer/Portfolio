@@ -1,5 +1,5 @@
 import { forwardRef, useCallback } from 'react'
-import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../../context';
+import { useCarouselContext } from '../../../context';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CloseButton } from '../../buttons/CloseButton';
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
@@ -8,7 +8,6 @@ import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { ToolbarLogic } from '../../../business-logic/ToolbarLogic';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
-import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
 
 type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps>(({
