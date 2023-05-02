@@ -1,9 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -Need to remove global context and add ItemViewer to each Carousel then try addressing the issues below
-    -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom);  appears to be a problem when all defaults too
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing
-    -add api for text color in options.styling
     -add tests for all of the background mix and match possibilities?
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'
     -need to create individual paddings for toolbar (and others?)

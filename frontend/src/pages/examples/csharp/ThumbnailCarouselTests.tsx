@@ -345,6 +345,16 @@ const multiplePagesFixedItemSpacing = (
 		}
 	}} />
 );
+const customSizeOnly = (
+	<Carousel
+		options={{
+			thumbnail: {
+				size: 200,
+			}
+		}}
+		items={items}
+	/>
+);
 const customThumbnailSolid = (
 	<Carousel items={items} options={{
 		thumbnail: {
@@ -1289,6 +1299,14 @@ const SECTIONS: Sections = [
 			{
 				label: "Fixed Item Spacing",
 				jsx: multiplePagesFixedItemSpacing
+			},
+			{
+				label: "Custom Item Size",
+				jsx: customSizeOnly,
+			},
+			{
+				label: "Fixed Item Spacing and Custom Item Size",
+				jsx: allCustomSettings
 			},
 			{
 				label: "Given Thumbnail Size with Custom Solid Background",
