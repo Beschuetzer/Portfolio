@@ -18,7 +18,7 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     options = {},
     shortcutPosition = 'center',
 }, ref) => {
-    const { items, setCurrentItemIndex, elementStylings, setIsFullscreenMode, isFullscreenMode } = useCarouselContext();
+    const { items, elementStylings, setIsFullscreenMode, isFullscreenMode } = useCarouselContext();
     const toolbarLogic = new ToolbarLogic(items);
     const closeAction = new ToolbarActionsLogic({ options, isFullscreenMode }).getClose();
     const stylingLogic = new StylingLogic({ options, isFullscreenMode });
@@ -34,10 +34,9 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
 
     const onClickLocal = useCallback(async () => {
-        setCurrentItemIndex(CURRENT_ITEM_INDEX_INITIAL);
         onClick && onClick()
         setIsFullscreenMode(false);
-    }, [setCurrentItemIndex, CURRENT_ITEM_INDEX_INITIAL, onClick]);
+    }, [onClick, setIsFullscreenMode]);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={closeAction.keys} shortcutPosition={shortcutPosition} isShortcutVisible={isShortcutVisible}>

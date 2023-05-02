@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -todo after exiting full-screen, the current item should be in the itemViewer
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing
     -add tests for all of the background mix and match possibilities?
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'
