@@ -440,7 +440,7 @@ export const CarouselItemViewerToolbar = ({
                         ref={nextButtonRef}
                         shortcutPosition='right'
                     />
-                    {isFullscreenMode ? (
+                    {!isFullscreenMode ? (
                         <CarouselItemViewerFullscreenButton
                             actionName='Fullscreen'
                             isShortcutVisible={showFullscreenButtonPopup}
