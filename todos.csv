@@ -1,8 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -the full screen button is displayed for non default itemDisplayLocation case in full screen mode
-
-
     -Need to remove global context and add ItemViewer to each Carousel then try addressing the issues below
     -fix issue where specifying thumbnail.size messes up the navigation dots and scrolling for default case (see All Custom);  appears to be a problem when all defaults too
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing

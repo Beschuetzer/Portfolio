@@ -519,7 +519,7 @@ const layoutAboveWithItemHeightAndFontFamily = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 427,
+				itemDisplayHeight: 444,
 				itemDisplayLocation: 'above',
 			},
 			styling: {
@@ -1093,7 +1093,7 @@ const layoutBelowWithCustomThumbnailSizeAndHeight = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 333,
+				itemDisplayHeight: 450,
 				itemDisplayLocation: 'below',
 			},
 			thumbnail: {

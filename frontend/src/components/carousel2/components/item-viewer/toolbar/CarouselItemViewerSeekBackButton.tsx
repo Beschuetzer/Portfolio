@@ -15,18 +15,17 @@ export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemView
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentItemIndex, elementStylings } = useCarouselContext();
+    const { elementStylings, isFullscreenMode } = useCarouselContext();
     const { svgHref, style } = elementStylings?.seekBackButton || {};
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
-    const seekBackwardsAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getSeekBackwards();
-    const stylingLogic = new StylingLogic({ options });
+    const seekBackwardsAction = new ToolbarActionsLogic({ options, isFullscreenMode }).getSeekBackwards();
+    const stylingLogic = new StylingLogic({ options, isFullscreenMode });
     const fillColor = stylingLogic.getButtonColor(CarouselElement.seekBackButton);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={seekBackwardsAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref}  useElementStyle={style} fillColor={fillColor} /> :
-                <SeekBackButton ref={ref} onClick={onClick}  childStyle={style} fillColor={fillColor} />}
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
+                <SeekBackButton ref={ref} onClick={onClick} childStyle={style} fillColor={fillColor} />}
         </CarouselItemViewerShortcutIndicator>
     )
 })

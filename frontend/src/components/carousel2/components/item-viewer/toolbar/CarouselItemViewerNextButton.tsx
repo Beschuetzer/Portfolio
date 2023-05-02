@@ -16,11 +16,10 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { items, currentItemIndex, elementStylings } = useCarouselContext();
+    const { items, elementStylings, isFullscreenMode } = useCarouselContext();
     const { svgHref, style } = elementStylings?.nextButton || {};
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
-    const nextItemAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getNextItem();
-    const stylingLogic = new StylingLogic({ options });
+    const nextItemAction = new ToolbarActionsLogic({ options, isFullscreenMode }).getNextItem();
+    const stylingLogic = new StylingLogic({ options, isFullscreenMode });
     const toolbarLogic = new ToolbarLogic(items);
     const fillColor = stylingLogic.getButtonColor(CarouselElement.nextButton);
 

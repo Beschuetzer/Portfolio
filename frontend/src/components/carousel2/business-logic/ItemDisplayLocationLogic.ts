@@ -46,10 +46,6 @@ export class ItemDisplayLocationLogic {
     get isItemDisplayLocationBelow() {
         return this.options?.layout?.itemDisplayLocation === 'below';
     }
-    
-    get isFullscreenButtonVisible() {
-        return !this.isDefaultItemDisplayLocation && this.currentItemIndex === CURRENT_ITEM_INDEX_INITIAL;
-    }
 
     get itemToRender() {
         if (!this.currentItem) return null as any;

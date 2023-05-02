@@ -16,11 +16,10 @@ export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerP
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentItemIndex, elementStylings } = useCarouselContext();
+    const { elementStylings, isFullscreenMode } = useCarouselContext();
     const { svgHref, style } = elementStylings?.pauseButton || {};
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
-    const pauseAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getPause();
-    const stylingLogic = new StylingLogic({ options });
+    const pauseAction = new ToolbarActionsLogic({options, isFullscreenMode}).getPause();
+    const stylingLogic = new StylingLogic({ options, isFullscreenMode });
     const fillColor = stylingLogic.getButtonColor(CarouselElement.pauseButton);
 
     return (

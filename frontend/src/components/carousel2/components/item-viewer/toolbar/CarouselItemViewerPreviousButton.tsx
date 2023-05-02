@@ -16,19 +16,18 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { items, currentItemIndex, elementStylings } = useCarouselContext();
+    const { items, elementStylings, isFullscreenMode } = useCarouselContext();
     const { svgHref, style } = elementStylings?.previousButton || {};
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
-    const previousItemAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getPreviousItem();
-    const stylingLogic = new StylingLogic({ options });
+    const previousItemAction = new ToolbarActionsLogic({ options, isFullscreenMode }).getPreviousItem();
+    const stylingLogic = new StylingLogic({ options, isFullscreenMode });
     const toolbarLogic = new ToolbarLogic(items);
     const fillColor = stylingLogic.getButtonColor(CarouselElement.previousButton);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={previousItemAction.keys} shortcutPosition={position}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}  useElementStyle={style} fillColor={fillColor} /> :
-                <PreviousButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}  childStyle={style} fillColor={fillColor} />}
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} useElementStyle={style} fillColor={fillColor} /> :
+                <PreviousButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} childStyle={style} fillColor={fillColor} />}
         </CarouselItemViewerShortcutIndicator>
     )
 })

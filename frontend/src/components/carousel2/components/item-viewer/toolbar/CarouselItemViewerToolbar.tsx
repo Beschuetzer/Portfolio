@@ -53,7 +53,7 @@ export const CarouselItemViewerToolbar = ({
     videoRef,
 }: CarouselItemViewerToolbarProps) => {
     //#region Init
-    const { options, items, currentItemIndex, setCurrentItemIndex, itemViewerToolbarRef, currentItem } = useCarouselContext();
+    const { options, items, currentItemIndex, setCurrentItemIndex, itemViewerToolbarRef, currentItem, isFullscreenMode } = useCarouselContext();
 
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
@@ -81,8 +81,8 @@ export const CarouselItemViewerToolbar = ({
     const [showSeekBackwardButtonPopup, setShowSeekBackwardButtonPopup] = useState(false);
 
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem, currentItemIndex });
-    const actionsLogic = new ToolbarActionsLogic(options, itemDisplayLocationLogic);
-    const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic });
+    const actionsLogic = new ToolbarActionsLogic({ options, isFullscreenMode });
+    const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic, isFullscreenMode });
     const toolbarLogic = new ToolbarLogic(items);
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
 
@@ -440,7 +440,7 @@ export const CarouselItemViewerToolbar = ({
                         ref={nextButtonRef}
                         shortcutPosition='right'
                     />
-                    {itemDisplayLocationLogic.isFullscreenButtonVisible ? (
+                    {isFullscreenMode ? (
                         <CarouselItemViewerFullscreenButton
                             actionName='Fullscreen'
                             isShortcutVisible={showFullscreenButtonPopup}
@@ -463,7 +463,7 @@ export const CarouselItemViewerToolbar = ({
             <CarouselItemViewerToolbarPreview
                 itemToShow={items[getPreviewItemIndex(ToolbarPreviewDirection.previous)]}
                 show={
-                    !itemDisplayLocationLogic.isFullscreenButtonVisible &&
+                    isFullscreenMode &&
                     previewDirection === ToolbarPreviewDirection.previous
                 }
                 isLoaded={isPreviousItemPreviewLoaded}
@@ -474,7 +474,7 @@ export const CarouselItemViewerToolbar = ({
             <CarouselItemViewerToolbarPreview
                 itemToShow={items[getPreviewItemIndex(ToolbarPreviewDirection.next)]}
                 show={
-                    !itemDisplayLocationLogic.isFullscreenButtonVisible &&
+                    isFullscreenMode &&
                     previewDirection === ToolbarPreviewDirection.next
                 }
                 isLoaded={isNextItemPreviewLoaded}

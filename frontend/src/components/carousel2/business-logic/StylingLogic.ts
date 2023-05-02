@@ -491,9 +491,7 @@ export class StylingLogic {
 
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItem);
-        console.log({isItemVideo, currentItem: this.currentItem, isFullscreenButtonVisible: this.itemDisplayLocationLogic.isFullscreenButtonVisible});
-        
-        const nonDefaultItemDisplayStyle = this.itemDisplayLocationLogic.isFullscreenButtonVisible ? {
+        const nonDefaultItemDisplayStyle = !this.isFullscreenMode ? {
             ...this.toolbarBackgroundColorStyle,
             position: "relative",
             width: '100%',

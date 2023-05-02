@@ -1,4 +1,5 @@
 import { ITEM_VIEWER_CLOSE_SHORTCUTS, ITEM_VIEWER_NEXT_ITEM_SHORTCUTS, ITEM_VIEWER_PLAY_SHORTCUTS, ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS, ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS } from "../constants";
+import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
 import { KeyInput, ValidKey } from "../hooks/useKeyboardShortcuts";
 import { CarouselItemViewerActions, CarouselOptions, CarouselAction, CarouselActionOnActionCompleted, CarouselElement } from "../types";
 import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
@@ -14,6 +15,11 @@ type GetAllResonse = {
     onActionCompleted: GetAllOnActionCompleted;
 }
 type GetIndividualResponse = Required<CarouselAction>;
+
+type ToolbarActionsLogicConstructor = {
+
+} & Pick<CarouselContextOutputProps, 'options'>
+& Partial<Pick<CarouselContextOutputProps, 'isFullscreenMode'>>
 
 /*
 *Use this if/when adding new actions/buttons to Item Viewer toolbar
@@ -31,16 +37,23 @@ export class ToolbarActionsLogic {
     private _previousItemShortcut: CarouselAction;
     private _seekBackwardsShortcut: CarouselAction;
     private _seekForwardsShortcut: CarouselAction;
-    private _itemDisplayLocationLogic;
+    private _options; 
+    private _isFullscreenMode;
 
     private _emptyAction = {
         onActionCompleted: this._doNothing,
         keys: [],
     } as Required<CarouselAction>;
     
-    constructor(public options: CarouselOptions, public itemViewerDisplayLogic?: ItemDisplayLocationLogic ) {
+    constructor(constructor: ToolbarActionsLogicConstructor) {
+        const {
+            options,
+            isFullscreenMode,
+        } = constructor;
+
+        this._options = options;
+        this._isFullscreenMode = isFullscreenMode;
         this._itemViewerShortcuts = options?.shortcuts?.itemViewer || {};
-        this._itemDisplayLocationLogic = itemViewerDisplayLogic || new ItemDisplayLocationLogic({options});
         this._closeShortcut =  {
             onActionCompleted: this._itemViewerShortcuts?.[CarouselElement.closeButton]?.onActionCompleted,
             keys: this._itemViewerShortcuts?.[CarouselElement.closeButton]?.keys || ITEM_VIEWER_CLOSE_SHORTCUTS,
@@ -74,7 +87,7 @@ export class ToolbarActionsLogic {
     }
 
     get shouldReturnEmptyAction() {
-        return !!this._itemDisplayLocationLogic?.isFullscreenButtonVisible;
+        return !this._isFullscreenMode;
     }
 
     getAll(): GetAllResonse {

@@ -1,12 +1,10 @@
 import { forwardRef, useCallback } from 'react'
-import { EMPTY_STRING } from '../../../constants';
-import { CURRENT_ITEMS_INITIAL, CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../../context';
+import { CURRENT_ITEM_INDEX_INITIAL, useCarouselContext } from '../../../context';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CloseButton } from '../../buttons/CloseButton';
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
-import { exitFullScreen } from '../../../utils';
 import { ToolbarLogic } from '../../../business-logic/ToolbarLogic';
 import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
 import { StylingLogic } from '../../../business-logic/StylingLogic';
@@ -20,11 +18,10 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     options = {},
     shortcutPosition = 'center',
 }, ref) => {
-    const { currentItemIndex, items, setCurrentItemIndex, elementStylings, setIsFullscreenMode } = useCarouselContext();
+    const { items, setCurrentItemIndex, elementStylings, setIsFullscreenMode, isFullscreenMode } = useCarouselContext();
     const toolbarLogic = new ToolbarLogic(items);
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
-    const closeAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getClose();
-    const stylingLogic = new StylingLogic({ options });
+    const closeAction = new ToolbarActionsLogic({ options, isFullscreenMode }).getClose();
+    const stylingLogic = new StylingLogic({ options, isFullscreenMode });
     const { svgHref, style } = elementStylings?.closeButton || {};
     const fillColor = stylingLogic.getButtonColor(CarouselElement.closeButton);
     useKeyboardShortcuts([

@@ -16,13 +16,12 @@ export const CarouselItemViewerSeekForwardButton = forwardRef<any, CarouselItemV
     onClick = () => null,
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { currentItemIndex, elementStylings } = useCarouselContext();
+    const { elementStylings, isFullscreenMode } = useCarouselContext();
     const { svgHref, style } = elementStylings?.seekForwardButton || {};
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItemIndex });
-    const seekForwardAction = new ToolbarActionsLogic(options, itemDisplayLocationLogic).getSeekForwards();
-    const stylingLogic = new StylingLogic({ options });
+    const seekForwardAction = new ToolbarActionsLogic({ options, isFullscreenMode }).getSeekForwards();
+    const stylingLogic = new StylingLogic({ options, isFullscreenMode });
     const fillColor = stylingLogic.getButtonColor(CarouselElement.seekForwardButton);
-    
+
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={seekForwardAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
