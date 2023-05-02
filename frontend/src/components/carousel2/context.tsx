@@ -39,10 +39,6 @@ export const OPTIONS_DEFAULT = {
         seekAmount: SEEK_AMOUNT_DEFAULT,
     },
 } as CarouselOptions;
-const OVERLAY_PROPS_DEFAULT = {
-    text: EMPTY_STRING,
-    title: EMPTY_STRING,
-} as CarouselVideoModalProps;
 
 export const CarouselProvider = ({
     carouselContainerRef,
@@ -78,16 +74,16 @@ export const CarouselProvider = ({
                 carouselContainerRef,
                 currentItem: currentItemToUse,
                 currentItemIndex,
+                elementStylings: options.styling?.elements,
                 isFullscreenMode,
                 items,
-                elementStylings: options.styling?.elements,
                 numberOfPages,
                 options,
                 setCurrentItemIndex,
                 setIsFullscreenMode,
                 setItems,
-                setOptions,
                 setNumberOfPages,
+                setOptions,
             }}
         >
             {children}
