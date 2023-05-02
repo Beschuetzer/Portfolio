@@ -23,6 +23,7 @@ export const CarouselContent = ({
     const { currentItemIndex, numberOfPages, setNumberOfPages, currentItem, setCurrentItemIndex, isFullscreenMode } = useCarouselContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
+    const resizeWindowDebounceRef = useRef<any>();
     const translationAmountDifferenceRef = useRef(0);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
     const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`);
@@ -45,7 +46,7 @@ export const CarouselContent = ({
         const remainingSpace = containerWidth - (numberOfWholeItemsThatCanFit * itemSize);
         const newInterItemSpacing = (remainingSpace / numberOfGaps);
         return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
-    }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT]);
+    }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, getNumberOfItemsThatCanFit, stylingLogic, itemDisplayLocationLogic]);
 
     const onArrowButtonClick = useCallback((direction: ArrowButtonDirection) => {
         if (direction === 'left') {
@@ -55,7 +56,7 @@ export const CarouselContent = ({
         }
     }, [currentPage, setCurrentPage, numberOfPages]);
 
-    function setNumberOfDotsToDisplay() {
+    const setNumberOfDotsToDisplay = useCallback(() => {
         const newNumberOfPages = getNumberOfPages(
             carouselContainerRef.current as HTMLElement, items.length, stylingLogic, itemDisplayLocationLogic
         );
@@ -63,7 +64,7 @@ export const CarouselContent = ({
         if (currentPage >= newNumberOfPages) {
             setCurrentPage(newNumberOfPages - 1);
         }
-    }
+    }, [getNumberOfPages, setNumberOfPages, setCurrentPage, currentPage, carouselContainerRef, items, stylingLogic, itemDisplayLocationLogic])
     //#endregion
 
     //#region Side Fx
@@ -83,19 +84,22 @@ export const CarouselContent = ({
         if (hasCalculatedNumberOfDotsRef.current) return;
         setNumberOfDotsToDisplay();
         hasCalculatedNumberOfDotsRef.current = true;
-    }, [])
+    }, [hasCalculatedNumberOfDotsRef, setNumberOfDotsToDisplay])
 
     useEffect(() => {
         function handleResize() {
-            setNumberOfDotsToDisplay();
-            setInterItemSpacing(getInterItemSpacing());
+            clearTimeout(resizeWindowDebounceRef.current);
+            resizeWindowDebounceRef.current = setTimeout(() => {
+                setNumberOfDotsToDisplay();
+                setInterItemSpacing(getInterItemSpacing());
+            }, 100)
         }
 
         window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
         }
-    }, [window.innerWidth])
+    }, [window.innerWidth, setNumberOfDotsToDisplay, setInterItemSpacing, getInterItemSpacing])
 
     //Tracking the itemViewer item and moving the corresponding carousel to match the page the item is on
     useEffect(() => {
