@@ -1,14 +1,12 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -issue with selecting a thumbnail to the left of the current item as it resets the currentPage and dots?
-
+    -todo after exiting full-screen, the current item should be in the itemViewer
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing
     -add tests for all of the background mix and match possibilities?
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'
     -need to create individual paddings for toolbar (and others?)
     -default shortcut keys for next/previous item and close are getting registered? (All custom shortcuts => press 'p' and it move back an item)
 
-    -current item not being selected when exiting an non default itemDisplayLocation after changing items (may not be possible as currently designed?)
     -pressing seek in either direction pausing video
     -when you hit play and a video is at the end, it doesn't restart as expected (there is handle in Toolbar file)
 

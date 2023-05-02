@@ -20,7 +20,7 @@ export const CarouselContent = ({
     options,
 }: CarouselContentProps) => {
     //#region Init
-    const { currentItemIndex, numberOfPages, setNumberOfPages, currentItem, setCurrentItemIndex } = useCarouselContext();
+    const { currentItemIndex, numberOfPages, setNumberOfPages, currentItem, setCurrentItemIndex, isFullscreenMode } = useCarouselContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
     const translationAmountDifferenceRef = useRef(0);
@@ -29,7 +29,7 @@ export const CarouselContent = ({
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
     const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     const itemsContainerRef = useRef<HTMLDivElement>(null);
-    const previousCurrentItemIndex = useRef(CURRENT_ITEM_INDEX_INITIAL);
+    const previousCurrentItemIndexRef = useRef(CURRENT_ITEM_INDEX_INITIAL);
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem });
     const stylingLogic = new StylingLogic({ options });
     //#endregion
@@ -99,10 +99,41 @@ export const CarouselContent = ({
 
     //Tracking the itemViewer item and moving the corresponding carousel to match the page the item is on
     useEffect(() => {
+        if (!isFullscreenMode) return;
+        if (previousCurrentItemIndexRef.current === CURRENT_ITEM_INDEX_INITIAL) {
+            previousCurrentItemIndexRef.current = currentItemIndex;
+            return;
+        }
+
+        const { numberOfWholeItemsThatCanFit } = getNumberOfItemsThatCanFit(
+            carouselContainerRef.current as HTMLElement, stylingLogic, itemDisplayLocationLogic
+        );
+        const currentNthItem = currentItemIndex + 1;
+        const isNextItemClick = getIsNextItemClick();
+        const lastItemInViewIndex = currentPage * numberOfWholeItemsThatCanFit + numberOfWholeItemsThatCanFit;
+        const firstItemInViewIndex = currentPage * numberOfWholeItemsThatCanFit + 1;
+        // console.log({ currentNthItem, lastItemInViewIndex, isNextItemClick, currentPage, numberOfWholeItemsThatCanFit, previousCurrentItemIndex: previousCurrentItemIndex.current, itemsLEngth: items.length});
+        if (isNextItemClick) {
+            if (currentNthItem === 1 && previousCurrentItemIndexRef.current === items.length - 1) {
+                setCurrentPage(0);
+            }
+            else if (currentNthItem > lastItemInViewIndex) {
+                setCurrentPage(currentPage + 1);
+            }
+        } else {
+            if (currentNthItem >= items.length) {
+                setCurrentPage(numberOfPages - 1);
+            }
+            else if (currentNthItem < firstItemInViewIndex) {
+                setCurrentPage(currentPage - 1);
+            }
+        }
+        previousCurrentItemIndexRef.current = currentItemIndex;
+
         function getIsNextItemClick() {
-            if (previousCurrentItemIndex.current === 0 && currentNthItem == items.length) return false;
-            else if (previousCurrentItemIndex.current === items.length - 1 && currentItemIndex === 0) return true;
-            return previousCurrentItemIndex.current < currentItemIndex;
+            if (previousCurrentItemIndexRef.current === 0 && currentNthItem == items.length) return false;
+            else if (previousCurrentItemIndexRef.current === items.length - 1 && currentItemIndex === 0) return true;
+            return previousCurrentItemIndexRef.current < currentItemIndex;
         }
 
         if (
@@ -111,35 +142,21 @@ export const CarouselContent = ({
             currentItemIndex === CURRENT_ITEM_INDEX_INITIAL ||
             items?.length <= 0
         ) return;
-
-        const { numberOfItemsThatCanFit, numberOfWholeItemsThatCanFit } = getNumberOfItemsThatCanFit(
-            carouselContainerRef.current as HTMLElement, stylingLogic, itemDisplayLocationLogic
-        );
-        const currentNthItem = currentItemIndex + 1;
-        const isNextItemClick = getIsNextItemClick();
-        // console.log({ isNextItemClick, previousCurrentItemIndex: previousCurrentItemIndex.current, currentNthItem, itemsLEngth: items.length, numberOfWholeItemsThatCanFit, currentPage });
-        if (isNextItemClick) {
-            if (currentNthItem === 1 && previousCurrentItemIndex.current === items.length - 1) {
-                setCurrentPage(0);
-            }
-            else if ((currentNthItem) > ((currentPage * numberOfItemsThatCanFit) + numberOfWholeItemsThatCanFit)) {
-                setCurrentPage(currentPage + 1);
-            }
-        } else {
-            if (currentNthItem >= items.length) {
-                setCurrentPage(numberOfPages - 1);
-            }
-            else if ((currentNthItem) < ((currentPage * numberOfItemsThatCanFit) + numberOfWholeItemsThatCanFit)) {
-                setCurrentPage(currentPage - 1);
-            }
-        }
-        previousCurrentItemIndex.current = currentItemIndex;
-    }, [currentItemIndex, previousCurrentItemIndex])
+    }, [
+        items,
+        options?.navigation?.trackItemViewerChanges,
+        currentItemIndex,
+        previousCurrentItemIndexRef,
+        isFullscreenMode,
+        setCurrentPage,
+        previousCurrentItemIndexRef,
+        CURRENT_ITEM_INDEX_INITIAL
+    ])
 
     //need to track the previous item index whenever an item is opened
     //need this for the above useEffect to work correctly
     useEffect(() => {
-        previousCurrentItemIndex.current = currentItemIndex;
+        previousCurrentItemIndexRef.current = currentItemIndex;
     }, [items])
 
     // //setting the currentItemIndex in carousel instance on load if condition met
@@ -172,7 +189,7 @@ export const CarouselContent = ({
         function getTranslationAmount() {
             const itemSpacingGiven = options?.thumbnail?.itemSpacing;
             const containerWidth = getContainerWidth(carouselContainerRef.current as HTMLElement, stylingLogic);
-            const defaultAmount =  parseFloat(interItemSpacing.replace(CAROUSEL_SPACING_UNIT, '')) + containerWidth;
+            const defaultAmount = parseFloat(interItemSpacing.replace(CAROUSEL_SPACING_UNIT, '')) + containerWidth;
 
             if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
                 if (!translationAmountDifferenceRef.current) {
