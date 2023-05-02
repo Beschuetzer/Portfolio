@@ -19,7 +19,6 @@ export type CarouselContextOutputProps = {
     currentItemIndex: number;
     elementStylings: CarouselElementStyles | undefined;
     isFullscreenMode: boolean;
-    itemViewerToolbarRef: React.RefObject<HTMLElement>;
     numberOfPages: number;
     setCurrentItemIndex: React.Dispatch<React.SetStateAction<number>>;
     setIsFullscreenMode: React.Dispatch<React.SetStateAction<boolean>>;
@@ -59,7 +58,6 @@ export const CarouselProvider = ({
     const [numberOfPages, setNumberOfPages] = useState(0);
     const [options, setOptions] = useState<CarouselOptions>(optionsInput || OPTIONS_DEFAULT);
     const itemViewerRef = useRef<HTMLElement>(null);
-    const itemViewerToolbarRef = useRef<HTMLElement>(null);
     const currentItemToUse = Object.keys(currentItem || {}).length > 0 ? currentItem : items[0];
 
     useEffect(() => {
@@ -83,7 +81,6 @@ export const CarouselProvider = ({
                 isFullscreenMode,
                 items,
                 elementStylings: options.styling?.elements,
-                itemViewerToolbarRef,
                 numberOfPages,
                 options,
                 setCurrentItemIndex,

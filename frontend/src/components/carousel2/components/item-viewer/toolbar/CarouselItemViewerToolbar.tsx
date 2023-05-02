@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import { getClassname, getFormattedTimeString, tryPlayingVideo } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CURRENT_ITEM_INDEX_INITIAL, SEEK_AMOUNT_DEFAULT, useCarouselContext } from '../../../context'
@@ -40,7 +40,7 @@ const CLASSNAME_TOOLBAR_LEFT = getClassname({ elementName: `${CLASSNAME__ITEM_VI
 const CLASSNAME_TOOLBAR_RIGHT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` });
 const CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR = getClassname({ elementName: `item-container--no-toolbar` });
 
-export const CarouselItemViewerToolbar = ({
+export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemViewerToolbarProps>(({
     description,
     isVideo,
     itemContainerRef,
@@ -51,10 +51,9 @@ export const CarouselItemViewerToolbar = ({
     onPreviousItemClick = () => null,
     setIsVideoPlaying,
     videoRef,
-}: CarouselItemViewerToolbarProps) => {
+}, ref) => {
     //#region Init
-    const { options, items, currentItemIndex, setCurrentItemIndex, itemViewerToolbarRef, currentItem, isFullscreenMode } = useCarouselContext();
-
+    const { options, items, currentItemIndex, setCurrentItemIndex, currentItem, isFullscreenMode } = useCarouselContext();
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
     const nextButtonRef = useRef<any>(null);
@@ -371,13 +370,11 @@ export const CarouselItemViewerToolbar = ({
         seekBackwardButtonRef,
         seekForwardButtonRef,
     ]);
-
-
     //#endregion
 
     //#region JSX
     return (
-        <div ref={itemViewerToolbarRef as any} onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR} style={stylingLogic.toolbarStyle}>
+        <div ref={ref as any} onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR} style={stylingLogic.toolbarStyle}>
             {videoRef ?
                 <CarouselItemViewerProgressBar
                     isProgressBarClickRef={isProgressBarClickRef}
@@ -485,4 +482,4 @@ export const CarouselItemViewerToolbar = ({
         </div>
     )
     //#endregion
-}
+})

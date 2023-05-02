@@ -8,8 +8,9 @@ import { StylingLogic } from '../business-logic/StylingLogic';
 import { useCarouselContext } from '../context';
 
 export const CarouselImage = (props: CarouselItemProps) => {
-    const { options, itemViewerToolbarRef } = useCarouselContext();
+    const { options } = useCarouselContext();
     const [isLoaded, setIsLoaded] = useState(false);
+    const itemViewerToolbarRef = useRef<HTMLElement>();
     const containerRef = useRef<HTMLDivElement>();
     const {
         description,
@@ -28,6 +29,7 @@ export const CarouselImage = (props: CarouselItemProps) => {
                 onLoad={() => setIsLoaded(true)}
             />
             <CarouselItemViewerToolbar
+                ref={itemViewerToolbarRef as any}
                 isVideo={false}
                 description={description || ''}
                 itemContainerRef={containerRef}

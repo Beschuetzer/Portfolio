@@ -34,11 +34,12 @@ export enum SpacingDirection {
 export type StylingLogicConstructor = {
     isCurrentItem?: boolean;
     itemDisplayLocationLogic?: ItemDisplayLocationLogic;
+    itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
     options: CarouselOptions | undefined;
     progressBarValue?: number;
     videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
     loadingSpinnerOptions?: LoadingSpinnerProps['options'];
-} & Partial<Pick<CarouselContextOutputProps, 'itemViewerToolbarRef' | 'currentItem' | 'isFullscreenMode'>>
+} & Partial<Pick<CarouselContextOutputProps, 'currentItem' | 'isFullscreenMode'>>
     & Partial<Pick<CarouselVideoModalProps, 'videoRef'>>
 /*
 *Use this when extending styling options.  Many default styles are currently in _carousel.scss or _buttons_scss
@@ -48,7 +49,7 @@ export class StylingLogic {
     private currentItem;
     private isCurrentItem: boolean | undefined;
     private itemDisplayLocationLogic: ItemDisplayLocationLogic;
-    private itemViewerToolbarRef: CarouselContextOutputProps['itemViewerToolbarRef'];
+    private itemViewerToolbarRef;
     private isFullscreenMode: boolean;
     private loadingSpinnerOptions: LoadingSpinnerProps['options'];
     private options: CarouselOptions;
