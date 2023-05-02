@@ -1,5 +1,7 @@
 Carousel rework
   -itemDisplay non-default stuff:
+    -itemDisplayHeight is affecting the video and image positioning (maxHeight is also not getting calculated right for image and video style)
+
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing
     -add tests for all of the background mix and match possibilities?
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'
