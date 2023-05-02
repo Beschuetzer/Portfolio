@@ -355,6 +355,21 @@ const customSizeOnly = (
 		items={items}
 	/>
 );
+const customSizeAndSpacingNonDefaultItemDisplayCase = (
+	<Carousel
+		options={{
+			thumbnail: {
+				size: 200,
+				itemSpacing: 5,
+			},
+			layout: {
+				itemDisplayHeight: 444,
+				itemDisplayLocation: "above",
+			}
+		}}
+		items={items}
+	/>
+);
 const customThumbnailSolid = (
 	<Carousel items={items} options={{
 		thumbnail: {
@@ -1307,6 +1322,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Fixed Item Spacing and Custom Item Size",
 				jsx: allCustomSettings
+			},
+			{
+				label: "Fixed Item Spacing and Custom Item Size with Non-default Item Display Location",
+				jsx: customSizeAndSpacingNonDefaultItemDisplayCase
 			},
 			{
 				label: "Given Thumbnail Size with Custom Solid Background",
