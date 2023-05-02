@@ -1,5 +1,7 @@
 Carousel rework
   -itemDisplay non-default stuff:
+    -issue with selecting a thumbnail to the left of the current item as it resets the currentPage and dots?
+
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing
     -add tests for all of the background mix and match possibilities?
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'
