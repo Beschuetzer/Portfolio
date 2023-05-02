@@ -76,7 +76,7 @@ export const showBridgeHero = (heroMore: Reference) => {
 export const toggleSecondInfoButtonClick = (hero: HTMLElement, heroMore: HTMLElement, isMobile: boolean, shouldWaitToHideHero = true, span: HTMLElement | null = null) => {
   heroMore?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
   setTimeout(() => {
-    (heroMore.parentNode as HTMLElement)?.classList.remove(BRIDGE_HERO_CLICKED_CLASSNAME);
+    (heroMore?.parentNode as HTMLElement)?.classList.remove(BRIDGE_HERO_CLICKED_CLASSNAME);
   }, ANIMATION_DURATION);
 
   if (shouldWaitToHideHero) {
