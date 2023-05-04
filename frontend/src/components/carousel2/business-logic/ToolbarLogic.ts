@@ -4,13 +4,13 @@ import { CarouselItemProps } from "../components/CarouselItem";
 *Use this for logic related to the Item Viewer toolbar
 */
 export class ToolbarLogic {
-    constructor(public currentItems: CarouselItemProps[]) {}
+    constructor(public items: CarouselItemProps[]) {}
 
     getShouldDisplayNextAndBackButton() {
-        return this.currentItems?.length > 1;
+        return this.items?.length > 1;
     }
 
     getShouldSkipKeyboardShortcuts() {
-        return !this.currentItems || this.currentItems?.length === 0;
+        return !this.items || this.items?.length === 0;
     }
 }

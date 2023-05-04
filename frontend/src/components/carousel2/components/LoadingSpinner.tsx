@@ -62,7 +62,6 @@ export const LoadingSpinner = ({
 	const { options: carouselOptions } = useCarouselContext();
 	const stylingLogic = new StylingLogic({ options: carouselOptions, loadingSpinnerOptions: options });
 
-
 	function renderContent(content: ReactNode | ReactNode[]) {
 		if (!show) return null;
 		switch (type) {
