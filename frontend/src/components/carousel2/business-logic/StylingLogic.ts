@@ -97,6 +97,8 @@ export class StylingLogic {
             paddingBottom: `${this.getPaddingAmount(SpacingDirection.bottom, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties;
 
+        console.log({isDefaultItemDisplayLocation: this.itemDisplayLocationLogic.isDefaultItemDisplayLocation});
+        
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             background: this.options?.styling?.navigation?.background || this.options.styling?.container?.background || CAROUSEL_COLOR_ONE,
             borderRadius: 4,

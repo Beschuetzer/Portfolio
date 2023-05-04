@@ -1,5 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
+    -figure out why useBusinessLogic is not working with styling of carouselStyle (revert back and copy over todos if not able to fix)
     -close button has no shortcut when going fullscreen from non-default case
     -going fullscreen then back causes toolbar to be open to hide?
     -create a hook (useBusinessLogic) that can return all of the business logic objects (e.g. stylingLogic, ...) to guarantee things are passed in appropriately
