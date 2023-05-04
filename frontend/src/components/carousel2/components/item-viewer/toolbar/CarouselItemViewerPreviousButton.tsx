@@ -20,7 +20,7 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
     const { svgHref, style } = elementStylings?.previousButton || {};
     const previousItemAction = new ToolbarActionsLogic({ options, isFullscreenMode }).getPreviousItem();
     const stylingLogic = new StylingLogic({ options, isFullscreenMode });
-    const toolbarLogic = new ToolbarLogic(items);
+    const toolbarLogic = new ToolbarLogic({ items });
     const fillColor = stylingLogic.getButtonColor(CarouselElement.previousButton);
 
     return (

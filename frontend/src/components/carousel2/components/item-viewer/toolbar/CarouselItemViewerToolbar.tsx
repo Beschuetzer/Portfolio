@@ -82,7 +82,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem, currentItemIndex });
     const actionsLogic = new ToolbarActionsLogic({ options, isFullscreenMode });
     const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic, isFullscreenMode });
-    const toolbarLogic = new ToolbarLogic(items);
+    const toolbarLogic = new ToolbarLogic({ items });
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
 
     useKeyboardShortcuts([

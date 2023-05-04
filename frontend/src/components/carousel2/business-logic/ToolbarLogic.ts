@@ -1,10 +1,20 @@
 import { CarouselItemProps } from "../components/CarouselItem";
 
+export type ToolbarLogicConstructor = {
+    items: CarouselItemProps[];
+}
+
 /*
 *Use this for logic related to the Item Viewer toolbar
 */
 export class ToolbarLogic {
-    constructor(public items: CarouselItemProps[]) {}
+    private items;
+
+    constructor({
+        items,
+    }: ToolbarLogicConstructor) {
+        this.items = items;
+    }
 
     getShouldDisplayNextAndBackButton() {
         return this.items?.length > 1;
