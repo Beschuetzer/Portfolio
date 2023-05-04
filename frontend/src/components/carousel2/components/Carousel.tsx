@@ -4,7 +4,7 @@ import { getClassname } from '../utils';
 import { CarouselItemProps } from './CarouselItem';
 import { CarouselOptions } from '../types';
 import { CarouselContent } from './CarouselContent';
-import { StylingLogic } from '../business-logic/StylingLogic';
+import { useBusinessLogic } from '../hooks/useBusinessLogic';
 
 export type CarouselProps = {
 	/*
@@ -23,7 +23,7 @@ export const Carousel = (props: CarouselProps) => {
 		onItemChange = () => null,  //todo: remove this from tests as not really necessary
 	} = props;
 	const carouselContainerRef = useRef<HTMLDivElement>();
-	const stylingLogic = new StylingLogic({ options });
+	const { stylingLogic } = useBusinessLogic({});
 	//#endregion
 
 	//#region JSX

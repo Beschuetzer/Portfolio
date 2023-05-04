@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useCarouselContext } from "../context"
+import { CarouselContextOutputProps, useCarouselContext } from "../context"
 import { StylingLogic, StylingLogicConstructor } from "../business-logic/StylingLogic";
 import { ToolbarLogic, ToolbarLogicConstructor } from "../business-logic/ToolbarLogic";
 import { ItemDisplayLocationLogic, ItemDisplayLocationLogicConstructor } from "../business-logic/ItemDisplayLocationLogic";
@@ -12,15 +12,15 @@ export type UseBusinessLogicResponse = {
     toolbarActionsLogic: ToolbarActionsLogic;
 }
 
-export type UseBusinessLogicInput = Partial<Omit<{
-
-} &
-    ItemDisplayLocationLogicConstructor &
-    StylingLogicConstructor &
-    ToolbarActionsLogicConstructor &
-    ToolbarLogicConstructor,
-    'currentItem' | 'currentItemIndex' | 'items' | 'isFullscreenMode' | 'itemDisplayLocationLogic' | 'options'>>
-
+export type UseBusinessLogicInput = Partial<
+    Omit<{} &
+        ItemDisplayLocationLogicConstructor &
+        StylingLogicConstructor &
+        ToolbarActionsLogicConstructor &
+        ToolbarLogicConstructor,
+        keyof CarouselContextOutputProps | 'itemDisplayLocationLogic'
+    >
+>
 
 export const useBusinessLogic = ({
     isCurrentItem,

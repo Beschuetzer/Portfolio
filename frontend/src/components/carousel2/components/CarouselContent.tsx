@@ -9,6 +9,7 @@ import { ArrowButtonDirection } from '../types';
 import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { getNumberOfItemsThatCanFit, getContainerWidth, getClassname, getNumberOfPages } from '../utils';
+import { useBusinessLogic } from '../hooks/useBusinessLogic';
 
 type CarouselContentProps = {
     carouselContainerRef: React.MutableRefObject<HTMLElement | undefined>;
@@ -31,8 +32,10 @@ export const CarouselContent = ({
     const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     const itemsContainerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndexRef = useRef(CURRENT_ITEM_INDEX_INITIAL);
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options: options || {}, currentItem });
-    const stylingLogic = new StylingLogic({ options });
+    const {
+        itemDisplayLocationLogic,
+        stylingLogic,
+    } = useBusinessLogic({});
     //#endregion
 
     //#region Functions/Handlers
