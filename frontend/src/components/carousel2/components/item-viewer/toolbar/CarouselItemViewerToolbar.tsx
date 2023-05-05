@@ -126,12 +126,13 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     }
 
     const handleAutoHide = useCallback(() => {
+        clearTimeout(shouldHideTimoutRef.current);
+        
         if (!isFullscreenMode || options?.itemViewer?.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
         if (itemContainerRef?.current) {
             itemContainerRef.current.classList?.remove(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
         }
 
-        clearTimeout(shouldHideTimoutRef.current);
         shouldHideTimoutRef.current = setTimeout(() => {
             if (itemContainerRef?.current && !isMobile) {
                 itemContainerRef.current.classList?.add(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
