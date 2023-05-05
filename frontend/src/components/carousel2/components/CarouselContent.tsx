@@ -6,8 +6,6 @@ import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
-import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
-import { StylingLogic } from '../business-logic/StylingLogic';
 import { getNumberOfItemsThatCanFit, getContainerWidth, getClassname, getNumberOfPages } from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 

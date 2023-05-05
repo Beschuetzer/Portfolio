@@ -1,9 +1,8 @@
 import { useCarouselContext } from '../context';
-import { enterFullScreen } from '../utils';
 import { CarouselVideoProps } from './CarouselVideo';
 import { CLASSNAME__CAROUSEL_ITEM, CLASSNAME__CAROUSEL_ITEM_THUMBNAIL } from '../constants';
 import { StylingLogic } from '../business-logic/StylingLogic';
-import { ItemDisplayLocationLogic } from '../business-logic/ItemDisplayLocationLogic';
+import { useBusinessLogic } from '../hooks/useBusinessLogic';
 
 export type CarouselItemProps = {
   /*
@@ -39,7 +38,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
   } = props;
   const { setCurrentItemIndex, options, currentItemIndex, setIsFullscreenMode } = useCarouselContext();
   const stylingLogic = new StylingLogic({options, isCurrentItem: index === currentItemIndex});
-  const itemDisplayLocationLogic = new ItemDisplayLocationLogic({options});
+  const { itemDisplayLocationLogic } = useBusinessLogic({});
   //#endregion
 
   //#region Functions/Handlers
