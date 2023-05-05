@@ -23,7 +23,7 @@ export const Carousel = (props: CarouselProps) => {
 		onItemChange = () => null,  //todo: remove this from tests as not really necessary
 	} = props;
 	const carouselContainerRef = useRef<HTMLDivElement>();
-	const { stylingLogic } = useBusinessLogic({});
+	const { stylingLogic } = useBusinessLogic({options});
 	//#endregion
 
 	//#region JSX

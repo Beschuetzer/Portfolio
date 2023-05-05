@@ -4,6 +4,7 @@ import { StylingLogic, StylingLogicConstructor } from "../business-logic/Styling
 import { ToolbarLogic, ToolbarLogicConstructor } from "../business-logic/ToolbarLogic";
 import { ItemDisplayLocationLogic, ItemDisplayLocationLogicConstructor } from "../business-logic/ItemDisplayLocationLogic";
 import { ToolbarActionsLogic, ToolbarActionsLogicConstructor } from "../business-logic/ToolbarActionsLogic";
+import { CarouselProps } from "../components/Carousel";
 
 export type UseBusinessLogicResponse = {
     itemDisplayLocationLogic: ItemDisplayLocationLogic;
@@ -12,8 +13,10 @@ export type UseBusinessLogicResponse = {
     toolbarActionsLogic: ToolbarActionsLogic;
 }
 
-export type UseBusinessLogicInput = Partial<
-    Omit<{} &
+export type UseBusinessLogicInput = {
+    options?: CarouselProps["options"];
+} & Partial<
+    Omit<
         ItemDisplayLocationLogicConstructor &
         StylingLogicConstructor &
         ToolbarActionsLogicConstructor &
@@ -26,6 +29,7 @@ export const useBusinessLogic = ({
     isCurrentItem,
     itemViewerToolbarRef,
     loadingSpinnerOptions,
+    options: optionsInput,
     progressBarValue,
     videoModalRef,
     videoRef
@@ -38,12 +42,33 @@ export const useBusinessLogic = ({
         isFullscreenMode,
         items,
         numberOfPages,
-        options,
+        options: optionsGlobal,
     } = useCarouselContext();
-    const [toolbarLogic, setToolbarLogic] = useState<ToolbarLogic | null>(null);
-    const [toolbarActionsLogic, setToolbarActionsLogic] = useState<ToolbarActionsLogic | null>(null);
-    const [stylingLogic, setStylingLogic] = useState<StylingLogic | null>(null);
-    const [itemDisplayLocationLogic, setItemDisplayLocationLogic] = useState<ItemDisplayLocationLogic | null>(null);
+    const options = optionsInput || optionsGlobal;
+    const [itemDisplayLocationLogic, setItemDisplayLocationLogic] = useState<ItemDisplayLocationLogic>(getItemDisplayLogic({
+        options,
+        currentItem,
+        currentItemIndex
+    }));
+    const [toolbarLogic, setToolbarLogic] = useState<ToolbarLogic>(getToolbarLogic({
+        items,
+    }));
+    const [toolbarActionsLogic, setToolbarActionsLogic] = useState<ToolbarActionsLogic>(getToolbarActionsLogic({
+        options,
+        isFullscreenMode,
+    }));
+    const [stylingLogic, setStylingLogic] = useState<StylingLogic>(getStylingLogic({
+        options,
+        currentItem,
+        isFullscreenMode,
+        isCurrentItem,
+        itemDisplayLocationLogic,
+        itemViewerToolbarRef,
+        loadingSpinnerOptions,
+        progressBarValue,
+        videoModalRef,
+        videoRef
+    }));
 
     useEffect(() => {
         const newItemDisplayLocationLogic = getItemDisplayLogic({
@@ -78,6 +103,7 @@ export const useBusinessLogic = ({
         currentItem,
         currentItemIndex,
         elementStylings,
+        isCurrentItem,
         isFullscreenMode,
         items,
         numberOfPages,
@@ -86,38 +112,18 @@ export const useBusinessLogic = ({
         setStylingLogic,
         setToolbarActionsLogic,
         setToolbarLogic,
+        itemViewerToolbarRef,
+        loadingSpinnerOptions,
+        progressBarValue,
+        videoModalRef,
+        videoRef,
     ])
 
-
     return {
-        itemDisplayLocationLogic: itemDisplayLocationLogic || getItemDisplayLogic({
-            options,
-            currentItem,
-            currentItemIndex
-        }),
-        stylingLogic: stylingLogic || getStylingLogic({
-            options,
-            currentItem,
-            isFullscreenMode,
-            isCurrentItem,
-            itemDisplayLocationLogic: itemDisplayLocationLogic || getItemDisplayLogic({
-                options,
-                currentItem,
-                currentItemIndex
-            }),
-            itemViewerToolbarRef,
-            loadingSpinnerOptions,
-            progressBarValue,
-            videoModalRef,
-            videoRef
-        }),
-        toolbarActionsLogic: toolbarActionsLogic || getToolbarActionsLogic({
-            options,
-            isFullscreenMode,
-        }),
-        toolbarLogic: toolbarLogic || getToolbarLogic({
-            items,
-        }),
+        itemDisplayLocationLogic,
+        stylingLogic,
+        toolbarActionsLogic,
+        toolbarLogic,
     }
 }
 
