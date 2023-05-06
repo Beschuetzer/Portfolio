@@ -210,7 +210,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.pause();
             videoRef.current.currentTime -= (options?.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
@@ -219,7 +218,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.pause();
             videoRef.current.currentTime += (options?.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
