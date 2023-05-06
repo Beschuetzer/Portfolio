@@ -8,11 +8,10 @@ import { useBusinessLogic } from '../../hooks/useBusinessLogic';
 
 type CarouselItemViewerProgressBarProps = {
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;
-} & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'isProgressBarClickRef'>;
+} & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
 
 const INITIAL_VALUE = 0;
 export const CarouselItemViewerProgressBar = ({
-    isProgressBarClickRef,
     setTimeStrings,
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
@@ -35,13 +34,10 @@ export const CarouselItemViewerProgressBar = ({
 
         setProgressBarValue(percent);
         if (videoRef?.current) {
-            if (isProgressBarClickRef) {
-                isProgressBarClickRef.current = true;
-            }
             const video = videoRef?.current;
             video.currentTime = percent * video.duration;
         }
-    }, [isProgressBarClickRef, videoRef]);
+    }, [videoRef]);
 
     useEffect(() => {
         const videoRefCopy = videoRef?.current;

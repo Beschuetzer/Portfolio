@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -finish useBusinessLogic implementation
     -fullscreen tooltip remains when clicking full screen and going back
     -close button has no shortcut when going fullscreen from non-default case
     -create a hook (useBusinessLogic) that can return all of the business logic objects (e.g. stylingLogic, ...) to guarantee things are passed in appropriately
@@ -10,9 +9,8 @@ Carousel rework
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'
     -need to create individual paddings for toolbar (and others?)
     -default shortcut keys for next/previous item and close are getting registered? (All custom shortcuts => press 'p' and it move back an item)
-
     -pressing seek in either direction pausing video
-    -when you hit play and a video is at the end, it doesn't restart as expected (there is handle in Toolbar file)
+
 
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -move CarouselItem conditional styling logic to StylingLogic?

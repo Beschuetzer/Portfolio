@@ -21,7 +21,6 @@ import { useBusinessLogic } from '../../../hooks/useBusinessLogic'
 export type CarouselItemViewerToolbarProps = {
     description: string;
     itemContainerRef: React.MutableRefObject<HTMLDivElement | undefined> | null;
-    isProgressBarClickRef?: React.MutableRefObject<boolean>;
     isVideo: boolean;
     isVideoPlaying?: boolean;
     onClose?: () => void;
@@ -41,7 +40,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     description,
     isVideo,
     itemContainerRef,
-    isProgressBarClickRef,
     isVideoPlaying,
     onClose = () => null,
     onNextItemClick = () => null,
@@ -386,7 +384,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         <div ref={ref as any} onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR} style={stylingLogic.toolbarStyle}>
             {videoRef ?
                 <CarouselItemViewerProgressBar
-                    isProgressBarClickRef={isProgressBarClickRef}
                     videoRef={videoRef}
                     setTimeStrings={setTimeStrings}
                 /> : null

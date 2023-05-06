@@ -36,7 +36,6 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const [isVideoPlaying, setIsVideoPlaying] = useState(!!autoPlay || false);
     const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
-    const isProgressBarClickRef = useRef(false);
     const itemViewerToolbarRef = useRef<HTMLElement>();
     const itemContainerRef = useRef<HTMLDivElement>();
     const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
@@ -91,11 +90,11 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             if (videoRef.current) {
                 // console.log("handlePlayPause and isPlaying: " + isVideoPlaying);
                 // console.log({isProgressBarClickRef: isProgressBarClickRef.current});
-                if (isProgressBarClickRef.current) {
-                    isProgressBarClickRef.current = false;
-                    tryPlaying();
-                    return;
-                }
+                // if (isProgressBarClickRef.current) {
+                //     isProgressBarClickRef.current = false;
+                //     tryPlaying();
+                //     return;
+                // }
                 if (!isVideoPlaying) {
                     videoRef.current.pause();
                 } else {
@@ -116,52 +115,6 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         }
         setIsVideoPlaying(!!videoProps?.autoPlay);
     }, [srcMain, videoRef, videoProps?.autoPlay])
-
-    //track whether video is in user's view
-    useEffect(() => {
-        const videoRefCopy = videoRef.current;
-        // console.log("handleScroll");
-        function handleScroll() {
-            if (!videoRef.current) return;
-
-            const OFFSET_AMOUNT = window.innerHeight / 8;
-            const videoBoundingRect = videoRef.current.getBoundingClientRect();
-            const viewPortMiddle = window.innerHeight / 2;
-            const videoMiddle = videoBoundingRect.top + (videoBoundingRect.height / 2);
-            const isVideoAroundCenterOfViewport = Math.abs(videoMiddle - viewPortMiddle) <= OFFSET_AMOUNT;
-            if (isVideoAroundCenterOfViewport) {
-                setHasEnteredViewport(true);
-            }
-        }
-
-        function handleVideoEnd() {
-            setIsVideoPlaying(false);
-            if (videoRef.current) {
-                videoRef.current.pause();
-                videoRef.current.currentTime = 0;
-            }
-        }
-
-        handleScroll(); //check on load if is in viewport
-        window.addEventListener('scroll', handleScroll);
-
-        if (videoRef?.current) {
-            videoRef.current.addEventListener('ended', handleVideoEnd);
-        }
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            if (videoRefCopy) {
-                videoRefCopy.removeEventListener('ended', handleVideoEnd);
-            }
-        }
-    }, [])
-
-    //start playing video when when visible
-    useEffect(() => {
-        if (!autoPlay) return;
-        // console.log("start playing video when visible");
-        tryPlaying();
-    }, [hasEnteredViewport, autoPlay, tryPlaying])
     //#endregion
 
     //#region JSX   
@@ -185,6 +138,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                     onLoadedData={handleOnLoadedData}
                     onPlay={() => setIsVideoPlaying(true)}
                     onPause={() => setIsVideoPlaying(false)}
+                    onEnded={() => setIsVideoPlaying(false)}
                 >
                     <source src={srcMain} type={`video/${type}`} />
                 </video>
@@ -198,7 +152,6 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             </div>
             <CarouselItemViewerToolbar
                 ref={itemViewerToolbarRef as any}
-                isProgressBarClickRef={isProgressBarClickRef}
                 setIsVideoPlaying={setIsVideoPlaying}
                 isVideoPlaying={isVideoPlaying}
                 isVideo={true}
