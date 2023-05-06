@@ -8,7 +8,7 @@ import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 
 export const CarouselImage = (props: CarouselItemProps) => {
-    const { options } = useCarouselContext();
+    const { options, setIsFullscreenMode } = useCarouselContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const itemViewerToolbarRef = useRef<HTMLElement>();
     const containerRef = useRef<HTMLDivElement>();
@@ -19,7 +19,7 @@ export const CarouselImage = (props: CarouselItemProps) => {
     const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
 
     return (
-        <CarouselItemViewerContainer ref={containerRef}>
+        <CarouselItemViewerContainer ref={containerRef} onClick={() => setIsFullscreenMode((current) => !current)}>
             <LoadingSpinner type='ring' show={!isLoaded} description={description} {...options?.styling?.itemViewer?.loadingSpinner} />
             <img
                 style={stylingLogic.carouselImageStlye}

@@ -84,9 +84,18 @@ export class StylingLogic {
 
     //#region Public Getters
     get carouselImageStlye() {
+        const cursorStyle = this.isFullscreenMode ?  {
+            zIndex: 0,
+            cursor: "zoom-out",
+        } as CSSProperties : {
+            zIndex: 10,
+            cursor: "zoom-in",
+        }as CSSProperties;
+
         return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
             width: '100%',
             maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
+            ...cursorStyle,
         } as CSSProperties : {} as CSSProperties;
     }
 

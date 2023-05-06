@@ -1,8 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -create a hook (useBusinessLogic) that can return all of the business logic objects (e.g. stylingLogic, ...) to guarantee things are passed in appropriately
-    -add click an image goes to fullscreen?
-    -need to test different layout options with itemDisplayLocation, namely the custom item spacing
+    -need to re-add listener for exiting fullscreen mode (pressing esc doesn't change state to false)
     -add tests for all of the background mix and match possibilities?
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'
     -need to create individual paddings for toolbar (and others?)
