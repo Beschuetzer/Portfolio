@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { getClassname, tryPlayingVideo } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
-import { CarouselVideoModal } from './CarouselVideoModal'
+import { CarouselVideoModal, CarouselVideoModalProps } from './CarouselVideoModal'
 import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../constants';
@@ -20,7 +20,7 @@ export type CarouselVideoProps = {
     muted?: boolean;
     objectFit?: React.CSSProperties["objectFit"];
     objectPosition?: React.CSSProperties["objectPosition"];
-    overlayProps?: CarouselVideoModal;
+    overlayProps?: CarouselVideoModalProps;
 }
 
 export const CarouselVideo = (props: CarouselItemProps) => {
@@ -82,7 +82,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             () => setIsVideoPlaying(true),
             () => setIsVideoPlaying(false),
         )
-    }, [tryPlayingVideo, setIsVideoPlaying, videoRef, hasEnteredViewport])
+    }, [setIsVideoPlaying, videoRef, hasEnteredViewport])
     //#endregion
 
     //#region Side Fx
@@ -115,10 +115,11 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             videoRef.current.load();
         }
         setIsVideoPlaying(!!videoProps?.autoPlay);
-    }, [srcMain, videoRef])
+    }, [srcMain, videoRef, videoProps?.autoPlay])
 
     //track whether video is in user's view
     useEffect(() => {
+        const videoRefCopy = videoRef.current;
         // console.log("handleScroll");
         function handleScroll() {
             if (!videoRef.current) return;
@@ -149,8 +150,8 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         }
         return () => {
             window.removeEventListener('scroll', handleScroll);
-            if (videoRef?.current) {
-                videoRef.current.removeEventListener('ended', handleVideoEnd);
+            if (videoRefCopy) {
+                videoRefCopy.removeEventListener('ended', handleVideoEnd);
             }
         }
     }, [])
@@ -160,7 +161,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         if (!autoPlay) return;
         // console.log("start playing video when visible");
         tryPlaying();
-    }, [hasEnteredViewport, autoPlay])
+    }, [hasEnteredViewport, autoPlay, tryPlaying])
     //#endregion
 
     //#region JSX   

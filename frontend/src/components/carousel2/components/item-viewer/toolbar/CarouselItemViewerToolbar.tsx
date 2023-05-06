@@ -109,6 +109,11 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     //#endregion
 
     //#region Functions/handlers
+    const resetPreviewItems = useCallback(() => {
+        setIsNextItemPreviewLoaded(false);
+        setIsPreviousItemPreviewLoaded(false);
+    }, [])
+
     function getPreviewItemIndex(direction: ToolbarPreviewDirection) {
         if (direction === ToolbarPreviewDirection.next) {
             if (currentItemIndex >= (items.length - 1)) return 0;
@@ -133,13 +138,11 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             }
         }, options?.itemViewer?.autoHideToolbarDuration || AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT);
     }, [
+        isMobile,
         isFullscreenMode,
-        currentItemIndex,
         itemContainerRef,
         options,
         shouldHideTimoutRef,
-        CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR,
-        AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT
     ]);
 
     function handlePlayPauseUnited() {
@@ -193,7 +196,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         }
         handleAutoHide();
         toolbarActionsLogic.getPause().onActionCompleted();
-    }, [setIsVideoPlaying, videoRef]);
+    }, [setIsVideoPlaying, videoRef, handleAutoHide, toolbarActionsLogic]);
 
     const onPlayClick = useCallback(() => {
         if (videoRef?.current && setIsVideoPlaying) {
@@ -205,7 +208,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         }
         handleAutoHide();
         toolbarActionsLogic.getPlay().onActionCompleted();
-    }, [setIsVideoPlaying, videoRef]);
+    }, [setIsVideoPlaying, videoRef, handleAutoHide, toolbarActionsLogic]);
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
@@ -214,7 +217,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         }
         handleAutoHide();
         toolbarActionsLogic.getSeekBackwards().onActionCompleted();
-    }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT, videoRef]);
+    }, [options, videoRef, handleAutoHide, toolbarActionsLogic]);
 
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
@@ -223,16 +226,12 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         }
         handleAutoHide();
         toolbarActionsLogic.getSeekForwards().onActionCompleted();
-    }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT, videoRef])
+    }, [options, videoRef, handleAutoHide, toolbarActionsLogic])
 
     function onToolbarClick(e: MouseEvent) {
         e.stopPropagation();
     }
 
-    function resetPreviewItems() {
-        setIsNextItemPreviewLoaded(false);
-        setIsPreviousItemPreviewLoaded(false);
-    }
     //#endregion
 
     //#region Side Fx

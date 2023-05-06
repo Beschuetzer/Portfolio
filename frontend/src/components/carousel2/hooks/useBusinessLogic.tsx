@@ -35,13 +35,13 @@ export const useBusinessLogic = ({
     videoRef
 }: UseBusinessLogicInput): UseBusinessLogicResponse => {
     const {
-        carouselContainerRef,
+        // carouselContainerRef,
         currentItem,
         currentItemIndex,
-        elementStylings,
+        // elementStylings,
         isFullscreenMode,
         items,
-        numberOfPages,
+        // numberOfPages,
         options: optionsGlobal,
     } = useCarouselContext();
     const options = optionsInput || optionsGlobal;
@@ -99,19 +99,12 @@ export const useBusinessLogic = ({
         setToolbarLogic(newToolbarLogic);
         setToolbarActionsLogic(newToolbarActionsLogic);
     }, [
-        carouselContainerRef,
         currentItem,
         currentItemIndex,
-        elementStylings,
         isCurrentItem,
         isFullscreenMode,
         items,
-        numberOfPages,
         options,
-        setItemDisplayLocationLogic,
-        setStylingLogic,
-        setToolbarActionsLogic,
-        setToolbarLogic,
         itemViewerToolbarRef,
         loadingSpinnerOptions,
         progressBarValue,

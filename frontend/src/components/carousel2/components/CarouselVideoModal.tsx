@@ -19,7 +19,7 @@ export type CarouselVideoModalSection = {
     */
     text?: string | undefined;
 }
-export type CarouselVideoModal = Exclusive<{
+export type CarouselVideoModalProps = Exclusive<{
     /*
     *Use this prop in order to specify a customer overlay layout
     */
@@ -38,7 +38,7 @@ export type CarouselVideoModal = Exclusive<{
     sections?: CarouselVideoModalSection[];
 }>
 
-export type CarouselVideoModalProps = {
+export type CarouselVideoModalInternalProps = {
     /*
     *This is used internally and determines when the overlay is shown
     */
@@ -47,9 +47,9 @@ export type CarouselVideoModalProps = {
     *This is used internally to determine where the overlay is shown
     */
     videoRef?: React.MutableRefObject<HTMLVideoElement | undefined>;
-} & CarouselVideoModal;
+} & CarouselVideoModalProps;
 
-export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
+export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
 
@@ -81,7 +81,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
             closeButton.topInRem && setCssCustomProperty(CLASSNAME__VIDEO_MODAL_BUTTON_TOP, `${closeButton.topInRem}rem`);
             closeButton.rightInRem && setCssCustomProperty(CLASSNAME__VIDEO_MODAL_BUTTON_RIGHT, `${closeButton.rightInRem}rem`);
         }
-    }, [])
+    }, [closeButton, isCustom])
 
     useEffect(() => {
         setIsVisible(true);

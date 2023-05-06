@@ -41,9 +41,11 @@ export const CarouselItemViewerProgressBar = ({
             const video = videoRef?.current;
             video.currentTime = percent * video.duration;
         }
-    }, [setProgressBarValue, videoRef]);
+    }, [isProgressBarClickRef, videoRef]);
 
     useEffect(() => {
+        const videoRefCopy = videoRef?.current;
+
         function onVideoTimeUpdate(e: Event) {
             const videoElement = e.currentTarget || e.target as any;
             if (!videoElement) return;
@@ -67,11 +69,11 @@ export const CarouselItemViewerProgressBar = ({
         }
 
         return () => {
-            if (videoRef?.current) {
-                videoRef.current.addEventListener('timeupdate', onVideoTimeUpdate);
+            if (videoRefCopy) {
+                videoRefCopy.addEventListener('timeupdate', onVideoTimeUpdate);
             }
         }
-    }, [])
+    }, [setTimeStrings, videoRef])
 
     useEffect(() => {
         setProgressBarValue(INITIAL_VALUE);

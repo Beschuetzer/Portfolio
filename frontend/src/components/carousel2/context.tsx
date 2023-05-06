@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { CarouselItemProps } from "./components/CarouselItem";
-import { CarouselVideoModalProps } from "./components/CarouselVideoModal";
+import { CarouselVideoModalInternalProps } from "./components/CarouselVideoModal";
 import { CURRENT_ITEM_INDEX_INITIAL, EMPTY_STRING } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
@@ -31,7 +31,7 @@ export type CarouselContextOutputProps = {
 const OVERLAY_PROPS_DEFAULT = {
     text: EMPTY_STRING,
     title: EMPTY_STRING,
-} as CarouselVideoModalProps;
+} as CarouselVideoModalInternalProps;
 
 export const CarouselProvider = ({
     carouselContainerRef,

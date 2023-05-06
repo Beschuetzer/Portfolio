@@ -1,6 +1,5 @@
 import { ReactNode, forwardRef } from 'react'
 import { getClassname } from '../../../utils'
-import { useCarouselContext } from '../../../context';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 type CarouselItemViewerContainerProps = {

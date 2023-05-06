@@ -12,7 +12,6 @@ export type CarouselProps = {
 	*/
 	items: CarouselItemProps[];
 	options?: CarouselOptions;
-	onItemChange?: (isViewerOpen?: boolean) => void;
 }
 
 export const Carousel = (props: CarouselProps) => {
@@ -20,10 +19,9 @@ export const Carousel = (props: CarouselProps) => {
 	const {
 		items,
 		options,
-		onItemChange = () => null,  //todo: remove this from tests as not really necessary
 	} = props;
 	const carouselContainerRef = useRef<HTMLDivElement>();
-	const { stylingLogic } = useBusinessLogic({options});
+	const { stylingLogic } = useBusinessLogic({options}); //need to pass in options here since it is outside of context
 	//#endregion
 
 	//#region JSX

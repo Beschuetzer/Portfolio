@@ -21,7 +21,7 @@ import {
     CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT
 } from "../constants";
-import { CarouselVideoModalProps } from "../components/CarouselVideoModal";
+import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
 import { CarouselContextOutputProps } from "../context";
 
@@ -40,7 +40,7 @@ export type StylingLogicConstructor = {
     videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
     loadingSpinnerOptions?: LoadingSpinnerProps['options'];
 } & Partial<Pick<CarouselContextOutputProps, 'currentItem' | 'isFullscreenMode'>>
-    & Partial<Pick<CarouselVideoModalProps, 'videoRef'>>
+    & Partial<Pick<CarouselVideoModalInternalProps, 'videoRef'>>
 /*
 *Use this when extending styling options.  Many default styles are currently in _carousel.scss or _buttons_scss
 */
@@ -79,7 +79,6 @@ export class StylingLogic {
         this.videoRef = videoRef;
         this.videoModalRef = videoModalRef;
         this.options = options || {};
-        const iscurrentItemPopulated = Object.keys(currentItem || {}).length > 0;
         this.itemDisplayLocationLogic = itemDisplayLocationLogic || new ItemDisplayLocationLogic({ options: this.options });
     }
 
