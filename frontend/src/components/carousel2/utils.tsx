@@ -24,7 +24,7 @@ export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_
     const hexToUse = hex.trim();
     if (hex && /^#([A-Fa-f0-9]{3}){1,2}$/.test(hexToUse)) {
         color = hexToUse.substring(1).split('');
-        if (color.length == 3) {
+        if (color.length === 3) {
             color = [color[0], color[0], color[1], color[1], color[2], color[2]];
         }
         color = '0x' + color.join('');
@@ -111,14 +111,6 @@ export function getRegexStringFromStringArray(fileExtensions: string[]) {
     });
     const result = ".+" + mapped.join("") + "$";
     return result;
-}
-
-
-export function getGuid() {
-    // @ts-ignore
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
 }
 
 export function getShortcutsString(shortcuts: KeyInput[]) {
