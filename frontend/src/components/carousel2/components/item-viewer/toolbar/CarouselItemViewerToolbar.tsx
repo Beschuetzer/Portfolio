@@ -249,6 +249,15 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     //handling events for buttons
     useEffect(() => {
+        const closeButtonRefCopy = closeButtonRef.current;
+        const fullScreenButtonRefCopy = fullscreenButtonRef.current;
+        const nextButtonRefCopy = nextButtonRef.current;
+        const pauseButtonRefCopy = pauseButtonRef.current;
+        const playButtonRefCopy = playButtonRef.current;
+        const previousButtonRefCopy = previousButtonRef.current;
+        const seekBackwardButtonRefCopy = seekBackwardButtonRef.current;
+        const seekForwardButtonRefCopy = seekForwardButtonRef.current;
+
         const boundDisplayCloseButton = handleDisplayPopup.bind(null, true, setShowCloseButtonPopup);
         const boundHideCloseButton = handleDisplayPopup.bind(null, false, setShowCloseButtonPopup);
         const boundDisplayFullscreenButton = handleDisplayPopup.bind(null, true, setShowFullscreenButtonPopup);
@@ -318,44 +327,44 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             seekForwardButtonRef.current.addEventListener('mouseleave', boundHideSeekForwardButton);
         }
         return () => {
-            if (closeButtonRef?.current) {
-                closeButtonRef.current.removeEventListener('mouseenter', boundDisplayCloseButton);
-                closeButtonRef.current.removeEventListener('mouseleave', boundHideCloseButton);
+            if (closeButtonRefCopy) {
+                closeButtonRefCopy.removeEventListener('mouseenter', boundDisplayCloseButton);
+                closeButtonRefCopy.removeEventListener('mouseleave', boundHideCloseButton);
             }
 
-            if (fullscreenButtonRef?.current) {
-                fullscreenButtonRef.current.removeEventListener('mouseenter', boundDisplayFullscreenButton);
-                fullscreenButtonRef.current.removeEventListener('mouseleave', boundHideFullscreenButton);
+            if (fullScreenButtonRefCopy) {
+                fullScreenButtonRefCopy.removeEventListener('mouseenter', boundDisplayFullscreenButton);
+                fullScreenButtonRefCopy.removeEventListener('mouseleave', boundHideFullscreenButton);
             }
 
-            if (nextButtonRef?.current) {
-                nextButtonRef.current.removeEventListener('mouseenter', handleMouseEnterNextButton);
-                nextButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
+            if (nextButtonRefCopy) {
+                nextButtonRefCopy.removeEventListener('mouseenter', handleMouseEnterNextButton);
+                nextButtonRefCopy.removeEventListener('mouseleave', handleMouseLeaveButton);
             }
 
-            if (pauseButtonRef?.current) {
-                pauseButtonRef.current.removeEventListener('mouseenter', boundDisplayPauseButton);
-                pauseButtonRef.current.removeEventListener('mouseleave', boundHidePauseButton);
+            if (pauseButtonRefCopy) {
+                pauseButtonRefCopy.removeEventListener('mouseenter', boundDisplayPauseButton);
+                pauseButtonRefCopy.removeEventListener('mouseleave', boundHidePauseButton);
             }
 
-            if (playButtonRef?.current) {
-                playButtonRef.current.removeEventListener('mouseenter', boundDisplayPlayButton);
-                playButtonRef.current.removeEventListener('mouseleave', boundHidePlayButton);
+            if (playButtonRefCopy) {
+                playButtonRefCopy.removeEventListener('mouseenter', boundDisplayPlayButton);
+                playButtonRefCopy.removeEventListener('mouseleave', boundHidePlayButton);
             }
 
-            if (previousButtonRef?.current) {
-                previousButtonRef.current.removeEventListener('mouseenter', handleMouseEnterPreviousButton);
-                previousButtonRef.current.removeEventListener('mouseleave', handleMouseLeaveButton);
+            if (previousButtonRefCopy) {
+                previousButtonRefCopy.removeEventListener('mouseenter', handleMouseEnterPreviousButton);
+                previousButtonRefCopy.removeEventListener('mouseleave', handleMouseLeaveButton);
             }
 
-            if (seekBackwardButtonRef?.current) {
-                seekBackwardButtonRef.current.removeEventListener('mouseenter', boundDisplaySeekBackwardButton);
-                seekBackwardButtonRef.current.removeEventListener('mouseleave', boundHideSeekBackwardButton);
+            if (seekBackwardButtonRefCopy) {
+                seekBackwardButtonRefCopy.removeEventListener('mouseenter', boundDisplaySeekBackwardButton);
+                seekBackwardButtonRefCopy.removeEventListener('mouseleave', boundHideSeekBackwardButton);
             }
 
-            if (seekForwardButtonRef?.current) {
-                seekForwardButtonRef.current.removeEventListener('mouseenter', boundDisplaySeekForwardButton);
-                seekForwardButtonRef.current.removeEventListener('mouseleave', boundHideSeekForwardButton);
+            if (seekForwardButtonRefCopy) {
+                seekForwardButtonRefCopy.removeEventListener('mouseenter', boundDisplaySeekForwardButton);
+                seekForwardButtonRefCopy.removeEventListener('mouseleave', boundHideSeekForwardButton);
             }
         }
     }, [

@@ -1,7 +1,6 @@
 import React, { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { CarouselItemProps } from "./components/CarouselItem";
-import { CarouselVideoModalInternalProps } from "./components/CarouselVideoModal";
-import { CURRENT_ITEM_INDEX_INITIAL, EMPTY_STRING } from "./constants";
+import { CURRENT_ITEM_INDEX_INITIAL } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
 import { CarouselOptions, CarouselElementStyles } from "./types";
@@ -26,12 +25,6 @@ export type CarouselContextOutputProps = {
     setNumberOfPages: React.Dispatch<React.SetStateAction<number>>;
     setOptions: React.Dispatch<React.SetStateAction<CarouselOptions>>;
 } & Required<Omit<CarouselContextInputProps, 'children'>>
-
-
-const OVERLAY_PROPS_DEFAULT = {
-    text: EMPTY_STRING,
-    title: EMPTY_STRING,
-} as CarouselVideoModalInternalProps;
 
 export const CarouselProvider = ({
     carouselContainerRef,
@@ -59,7 +52,7 @@ export const CarouselProvider = ({
         } else {
             exitFullScreen(itemViewerRef.current)
         }
-    }, [isFullscreenMode, enterFullScreen, exitFullScreen])
+    }, [isFullscreenMode])
 
     return (
         <CarouselContext.Provider 

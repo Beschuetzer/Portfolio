@@ -27,6 +27,33 @@ export type CarouselColorOptions = {
     foregroundColor?: string;
 }
 
+export enum CarouselElement {
+    /*
+    *Setting this will change all the items below.  'elementColor' specified in a given section will override this value
+    */
+    all = 'all',
+    /*
+   *These are the buttons at the bottom of each carousel related to changing pages
+   */
+    arrowLeft = 'arrowLeft',
+    /*
+  *This is the button at the bottom of each carousel to the right of the dots
+  */
+    arrowRight = 'arrowRight',
+    closeButton = 'closeButton',
+    /*
+   *The dots at the bottom of the carousel indicating the number of pages
+   */
+    dots = 'dots',
+    fullscreenButton = 'fullscreenButton',
+    nextButton = 'nextButton',
+    pauseButton = 'pauseButton',
+    playButton = 'playButton',
+    previousButton = 'previousButton',
+    seekBackButton = 'seekBackButton',
+    seekForwardButton = 'seekForwardButton',
+}
+
 export type CarouselItemViewerOptions = {
     /*
    *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.  
@@ -246,33 +273,6 @@ export type CarouselButtonCustomization = {
     *Styles passed directly to the underlying use element of the svg (for rotation purposes mainly)
     */
     style?: CSSProperties;
-}
-
-export enum CarouselElement {
-    /*
-    *Setting this will change all the items below.  'elementColor' specified in a given section will override this value
-    */
-    all = 'all',
-    /*
-   *These are the buttons at the bottom of each carousel related to changing pages
-   */
-    arrowLeft = 'arrowLeft',
-    /*
-  *This is the button at the bottom of each carousel to the right of the dots
-  */
-    arrowRight = 'arrowRight',
-    closeButton = 'closeButton',
-    /*
-   *The dots at the bottom of the carousel indicating the number of pages
-   */
-    dots = 'dots',
-    fullscreenButton = 'fullscreenButton',
-    nextButton = 'nextButton',
-    pauseButton = 'pauseButton',
-    playButton = 'playButton',
-    previousButton = 'previousButton',
-    seekBackButton = 'seekBackButton',
-    seekForwardButton = 'seekForwardButton',
 }
 
 export type CarouselElementStyles = {

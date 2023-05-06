@@ -12,8 +12,6 @@ import clipAnimations from "../../../clips/replay-viewer/animations.mp4";
 import clipAnimationsThumbnail from "../../../clips/replay-viewer/thumbnails/animations-thumbnail.png";
 
 import maui01Thumbnail from "../../../imgs/about/thumbnails/maui-01-thumbnail.jpg";
-import maui02Thumbnail from "../../../imgs/about/thumbnails/maui-02-thumbnail.jpg";
-import maui03Thumbnail from "../../../imgs/about/thumbnails/maui-03-thumbnail.jpg";
 import maui04Thumbnail from "../../../imgs/about/thumbnails/maui-04-thumbnail.jpg";
 import maui05Thumbnail from "../../../imgs/about/thumbnails/maui-05-thumbnail.jpg";
 import maui06Thumbnail from "../../../imgs/about/thumbnails/maui-06-thumbnail.jpg";
