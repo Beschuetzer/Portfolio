@@ -4,8 +4,8 @@ import { CarouselItemViewerToolbar } from './item-viewer/toolbar/CarouselItemVie
 import { LoadingSpinner } from './LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../constants';
 import { CarouselItemViewerContainer } from './item-viewer/toolbar/CarouselItemViewerContainer';
-import { StylingLogic } from '../business-logic/StylingLogic';
 import { useCarouselContext } from '../context';
+import { useBusinessLogic } from '../hooks/useBusinessLogic';
 
 export const CarouselImage = (props: CarouselItemProps) => {
     const { options } = useCarouselContext();
@@ -16,7 +16,7 @@ export const CarouselImage = (props: CarouselItemProps) => {
         description,
         srcMain,
     } = props;
-    const stylingLogic = new StylingLogic({ options, itemViewerToolbarRef });
+    const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
 
     return (
         <CarouselItemViewerContainer ref={containerRef}>

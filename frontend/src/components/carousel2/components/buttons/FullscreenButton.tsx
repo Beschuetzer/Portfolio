@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { CAROUSEL_COLOR_FIVE, CLASSNAME__BUTTON } from "../../constants";
 import { ButtonProps } from "../../types";
 import { StylingLogic } from "../../business-logic/StylingLogic";
-import { useCarouselContext } from "../../context";
+import { useBusinessLogic } from "../../hooks/useBusinessLogic";
 
 type FullscreenButtonProps = {
   classNameModifier?: string;
@@ -16,8 +16,7 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
   onClick = () => null,
   style = {},
 }, ref) => {
-  const { options } = useCarouselContext();
-  const stylingLogic = new StylingLogic({options})
+  const { stylingLogic } = useBusinessLogic({});
   const fullScreenClassname = `${className}--fullscreen`
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
   

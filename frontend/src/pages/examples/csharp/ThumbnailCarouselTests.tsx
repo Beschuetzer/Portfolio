@@ -938,6 +938,9 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
 					seekForwardButton: {
 						fillColor: getComputedStyleCustom("--color-primary-1"),
 					},
+					fullscreenButton: {
+						fillColor: getComputedStyleCustom("--color-primary-1"),
+					},
 				},
 				fontFamily: {
 					itemViewer: 'monospace',

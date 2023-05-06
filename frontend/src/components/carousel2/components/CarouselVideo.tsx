@@ -7,8 +7,8 @@ import { LoadingSpinner } from './LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../constants';
 import { CarouselVideoCurrentStateIndicator } from './CarouselVideoCurrentStateIndicator';
 import { CarouselItemViewerContainer } from './item-viewer/toolbar/CarouselItemViewerContainer';
-import { StylingLogic } from '../business-logic/StylingLogic';
 import { useCarouselContext } from '../context';
+import { useBusinessLogic } from '../hooks/useBusinessLogic';
 
 export type CarouselVideoProps = {
     /*
@@ -30,7 +30,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         srcMain,
         video: videoProps,
     } = props;
-    const { options, currentItem } = useCarouselContext();
+    const { options } = useCarouselContext();
 
     const { autoPlay, loop, muted } = videoProps || {};
     const [isVideoPlaying, setIsVideoPlaying] = useState(!!autoPlay || false);
@@ -41,7 +41,8 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const itemContainerRef = useRef<HTMLDivElement>();
     const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
-    const stylingLogic = new StylingLogic({ options, currentItem, itemViewerToolbarRef });
+    const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
+
     // console.log({currentItem});
 
     //#endregion

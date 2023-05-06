@@ -51,7 +51,7 @@ export type CarouselVideoModalProps = {
 
 export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
     //#region Init
-    const { elementStylings, options, currentItemIndex, currentItem, isFullscreenMode } = useCarouselContext();
+    const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
 
     const { children, isVideoPlaying, sections, closeButton, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
@@ -59,8 +59,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalProps) => {
 
     const { svgHref } = elementStylings?.closeButton || {};
     const isCustom = !!children;
-    const { itemDisplayLocationLogic } = useBusinessLogic({});
-    const stylingLogic = new StylingLogic({ options, videoRef, videoModalRef, itemDisplayLocationLogic, isFullscreenMode });
+    const { stylingLogic } = useBusinessLogic({ videoRef, videoModalRef })
     const closeButtonColor = stylingLogic.carouselVideoCloseButtonColor;
     //#endregion
 

@@ -1,6 +1,5 @@
 import { getClassname } from '../../utils';
 import { CLASSNAME__ITEM_VIEWER } from '../../constants';
-import { StylingLogic } from '../../business-logic/StylingLogic';
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 import { useCarouselContext } from '../../context';
 import { useBusinessLogic } from '../../hooks/useBusinessLogic';
@@ -9,10 +8,9 @@ type CarouselItemViewerProps = {}
 export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps>((props, ref) => {
     //#region Init
     //todo: needs to be hidden until an item is clicked
-    const { currentItem, options, isFullscreenMode } = useCarouselContext();
+    const { currentItem, isFullscreenMode } = useCarouselContext();
     const innerRef = useRef<HTMLElement>(null);
-    const { itemDisplayLocationLogic } = useBusinessLogic({});
-    const stylingLogic = new StylingLogic({ options, isFullscreenMode })
+    const { itemDisplayLocationLogic, stylingLogic } = useBusinessLogic({});
     const isVisible = Object.keys(currentItem || {})?.length > 0 && isFullscreenMode;
     useImperativeHandle(ref, () => innerRef.current);
     //#endregion

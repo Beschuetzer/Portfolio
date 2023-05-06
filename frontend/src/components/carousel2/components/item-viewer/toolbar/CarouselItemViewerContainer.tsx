@@ -1,7 +1,7 @@
-import React, { ReactNode, forwardRef } from 'react'
+import { ReactNode, forwardRef } from 'react'
 import { getClassname } from '../../../utils'
-import { StylingLogic } from '../../../business-logic/StylingLogic';
 import { useCarouselContext } from '../../../context';
+import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 type CarouselItemViewerContainerProps = {
     children: ReactNode | ReactNode[];
@@ -12,8 +12,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     children,
     onClick,
 }, ref) => {
-    const { currentItem, options, isFullscreenMode } = useCarouselContext();
-    const stylingLogic = new StylingLogic({ options, currentItem, isFullscreenMode });
+    const {stylingLogic} = useBusinessLogic({});
 
     return (
         <div

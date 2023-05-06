@@ -1,10 +1,10 @@
-import React, { useCallback, useRef, useState, useEffect } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { CLASSNAME__ITEM_VIEWER } from '../../constants';
 import { getClassname, getFormattedTimeString } from '../../utils';
 import { VideoTimeStrings } from '../../types';
 import { CarouselItemViewerToolbarProps } from './toolbar/CarouselItemViewerToolbar';
-import { StylingLogic } from '../../business-logic/StylingLogic';
 import { useCarouselContext } from '../../context';
+import { useBusinessLogic } from '../../hooks/useBusinessLogic';
 
 type CarouselItemViewerProgressBarProps = {
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;
@@ -16,10 +16,10 @@ export const CarouselItemViewerProgressBar = ({
     setTimeStrings,
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
-    const { options, currentItem } = useCarouselContext();
-    
+    const { currentItem } = useCarouselContext();
+
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
-    const stylingLogic = new StylingLogic({ options, progressBarValue });
+    const { stylingLogic } = useBusinessLogic({ progressBarValue });
 
     const onProgressBarClick = useCallback((e: MouseEvent) => {
         const clientX = e.clientX;
@@ -74,7 +74,7 @@ export const CarouselItemViewerProgressBar = ({
     }, [])
 
     useEffect(() => {
-       setProgressBarValue(INITIAL_VALUE);
+        setProgressBarValue(INITIAL_VALUE);
     }, [currentItem])
 
     return (

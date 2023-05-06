@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { getClassname } from "../utils";
-import { StylingLogic } from "../business-logic/StylingLogic";
-import { useCarouselContext } from "../context";
+import { useBusinessLogic } from "../hooks/useBusinessLogic";
 
 export type LoadingSpinnerOptions = {
 	/*
@@ -59,8 +58,7 @@ export const LoadingSpinner = ({
 	show = false,
 	type = 'ring',
 }: LoadingSpinnerProps) => {
-	const { options: carouselOptions } = useCarouselContext();
-	const stylingLogic = new StylingLogic({ options: carouselOptions, loadingSpinnerOptions: options });
+    const { stylingLogic } = useBusinessLogic({  loadingSpinnerOptions: options })
 
 	function renderContent(content: ReactNode | ReactNode[]) {
 		if (!show) return null;
