@@ -4,10 +4,7 @@ import { NextButton } from '../../buttons/NextButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
-import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
-import { StylingLogic } from '../../../business-logic/StylingLogic';
-import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
-import { ToolbarLogic } from '../../../business-logic/ToolbarLogic';
+import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 type CarouselItemViewerNextButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNextButtonProps>(({
@@ -16,11 +13,14 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { items, elementStylings, isFullscreenMode } = useCarouselContext();
+    const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.nextButton || {};
-    const nextItemAction = new ToolbarActionsLogic({ options, isFullscreenMode }).getNextItem();
-    const stylingLogic = new StylingLogic({ options, isFullscreenMode });
-    const toolbarLogic = new ToolbarLogic({ items });
+    const { 
+        stylingLogic,
+        toolbarActionsLogic,
+        toolbarLogic
+     } = useBusinessLogic({});
+    const nextItemAction = toolbarActionsLogic.getNextItem();
     const fillColor = stylingLogic.getButtonColor(CarouselElement.nextButton);
 
     return (

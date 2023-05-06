@@ -4,9 +4,7 @@ import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { PauseButton } from '../../buttons/PauseButton';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
-import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic';
-import { StylingLogic } from '../../../business-logic/StylingLogic';
-import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic';
+import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 type CarouselItemViewerPauseButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerPauseButtonProps>(({
@@ -16,17 +14,17 @@ export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerP
     options = {},
     shortcutPosition: position = 'center',
 }, ref) => {
-    const { elementStylings, isFullscreenMode } = useCarouselContext();
+    const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.pauseButton || {};
-    const pauseAction = new ToolbarActionsLogic({options, isFullscreenMode}).getPause();
-    const stylingLogic = new StylingLogic({ options, isFullscreenMode });
+    const { stylingLogic, toolbarActionsLogic } = useBusinessLogic({});
+    const pauseAction = toolbarActionsLogic.getPause();
     const fillColor = stylingLogic.getButtonColor(CarouselElement.pauseButton);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={pauseAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor}/> :
-                <PauseButton ref={ref} onClick={onClick} childStyle={style} fillColor={fillColor}/>}
+                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
+                <PauseButton ref={ref} onClick={onClick} childStyle={style} fillColor={fillColor} />}
         </CarouselItemViewerShortcutIndicator>
     )
 })

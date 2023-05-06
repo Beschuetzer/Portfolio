@@ -11,15 +11,12 @@ import { CarouselItemViewerPreviousButton } from './CarouselItemViewerPreviousBu
 import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackButton'
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
 import { CarouselItemViewerToolbarPreview, ToolbarPreviewDirection } from './CarouselItemViewerToolbarPreview'
-import { ToolbarLogic } from '../../../business-logic/ToolbarLogic'
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
-import { ToolbarActionsLogic } from '../../../business-logic/ToolbarActionsLogic'
-import { StylingLogic } from '../../../business-logic/StylingLogic'
-import { ItemDisplayLocationLogic } from '../../../business-logic/ItemDisplayLocationLogic'
 import { AUTO_HIDE_DISABLED_VALUE, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH, SEEK_AMOUNT_DEFAULT } from '../../../constants'
 import { useUpdateTimeString } from '../../../hooks/useUpdateTimeStrings'
 import { CarouselItemViewerFullscreenButton } from './CarouselItemViewerFullScreenButton'
 import { useCarouselContext } from '../../../context'
+import { useBusinessLogic } from '../../../hooks/useBusinessLogic'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -79,35 +76,32 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const [showSeekForwardButtonPopup, setShowSeekForwardButtonPopup] = useState(false);
     const [showSeekBackwardButtonPopup, setShowSeekBackwardButtonPopup] = useState(false);
 
-    const itemDisplayLocationLogic = new ItemDisplayLocationLogic({ options, currentItem, currentItemIndex });
-    const actionsLogic = new ToolbarActionsLogic({ options, isFullscreenMode });
-    const stylingLogic = new StylingLogic({ options, itemDisplayLocationLogic, isFullscreenMode });
-    const toolbarLogic = new ToolbarLogic({ items });
+    const { stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic({});
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
 
     useKeyboardShortcuts([
         {
-            keys: actionsLogic.getPlay().keys,
-            action: actionsLogic.isPauseSeparate ? handleKeyboardPlay : handlePlayPauseUnited,
+            keys: toolbarActionsLogic.getPlay().keys,
+            action: toolbarActionsLogic.isPauseSeparate ? handleKeyboardPlay : handlePlayPauseUnited,
         },
         {
-            keys: actionsLogic.getPause().keys,
+            keys: toolbarActionsLogic.getPause().keys,
             action: handleKeyboardPause,
         },
         {
-            keys: actionsLogic.getSeekBackwards().keys,
+            keys: toolbarActionsLogic.getSeekBackwards().keys,
             action: handleKeyboardSeekBackward,
         },
         {
-            keys: actionsLogic.getSeekForwards().keys,
+            keys: toolbarActionsLogic.getSeekForwards().keys,
             action: handleKeyboardSeekForward,
         },
         {
-            keys: actionsLogic.getNextItem().keys,
+            keys: toolbarActionsLogic.getNextItem().keys,
             action: () => onNextItemClickLocal(),
         },
         {
-            keys: actionsLogic.getPreviousItem().keys,
+            keys: toolbarActionsLogic.getPreviousItem().keys,
             action: () => onPreviousItemClickLocal(),
         },
     ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
@@ -127,7 +121,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     const handleAutoHide = useCallback(() => {
         clearTimeout(shouldHideTimoutRef.current);
-        
+
         if (!isFullscreenMode || options?.itemViewer?.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
         if (itemContainerRef?.current) {
             itemContainerRef.current.classList?.remove(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
@@ -179,8 +173,8 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         resetPreviewItems();
         onNextItemClick && onNextItemClick();
         handleAutoHide();
-        actionsLogic.getNextItem().onActionCompleted();
-    }, [currentItemIndex, items, setCurrentItemIndex, resetPreviewItems, handleAutoHide, onNextItemClick, actionsLogic])
+        toolbarActionsLogic.getNextItem().onActionCompleted();
+    }, [currentItemIndex, items, setCurrentItemIndex, resetPreviewItems, handleAutoHide, onNextItemClick, toolbarActionsLogic])
 
     const onPreviousItemClickLocal = useCallback(() => {
         if (items.length <= 1) return;
@@ -189,8 +183,8 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         resetPreviewItems();
         onPreviousItemClick && onPreviousItemClick();
         handleAutoHide();
-        actionsLogic.getPreviousItem().onActionCompleted();
-    }, [currentItemIndex, items, setCurrentItemIndex, resetPreviewItems, handleAutoHide, onPreviousItemClick, actionsLogic])
+        toolbarActionsLogic.getPreviousItem().onActionCompleted();
+    }, [currentItemIndex, items, setCurrentItemIndex, resetPreviewItems, handleAutoHide, onPreviousItemClick, toolbarActionsLogic])
 
     const onPauseClick = useCallback(() => {
         if (videoRef?.current && setIsVideoPlaying) {
@@ -198,7 +192,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             videoRef?.current.pause();
         }
         handleAutoHide();
-        actionsLogic.getPause().onActionCompleted();
+        toolbarActionsLogic.getPause().onActionCompleted();
     }, [setIsVideoPlaying, videoRef]);
 
     const onPlayClick = useCallback(() => {
@@ -210,7 +204,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             )
         }
         handleAutoHide();
-        actionsLogic.getPlay().onActionCompleted();
+        toolbarActionsLogic.getPlay().onActionCompleted();
     }, [setIsVideoPlaying, videoRef]);
 
     const onSeekBackClick = useCallback(() => {
@@ -219,7 +213,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             videoRef.current.currentTime -= (options?.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
-        actionsLogic.getSeekBackwards().onActionCompleted();
+        toolbarActionsLogic.getSeekBackwards().onActionCompleted();
     }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT, videoRef]);
 
     const onSeekForwardClick = useCallback(() => {
@@ -228,7 +222,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             videoRef.current.currentTime += (options?.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
-        actionsLogic.getSeekForwards().onActionCompleted();
+        toolbarActionsLogic.getSeekForwards().onActionCompleted();
     }, [setIsVideoPlaying, options, SEEK_AMOUNT_DEFAULT, videoRef])
 
     function onToolbarClick(e: MouseEvent) {
@@ -472,7 +466,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                 }
                 isLoaded={isPreviousItemPreviewLoaded}
                 setIsLoaded={setIsPreviousItemPreviewLoaded}
-                shortcuts={actionsLogic.getPreviousItem().keys}
+                shortcuts={toolbarActionsLogic.getPreviousItem().keys}
                 actionName={"Previous"}
             />
             <CarouselItemViewerToolbarPreview
@@ -483,7 +477,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                 }
                 isLoaded={isNextItemPreviewLoaded}
                 setIsLoaded={setIsNextItemPreviewLoaded}
-                shortcuts={actionsLogic.getNextItem().keys}
+                shortcuts={toolbarActionsLogic.getNextItem().keys}
                 actionName={"Next"}
             />
         </div>
