@@ -21,7 +21,7 @@ export const Carousel = (props: CarouselProps) => {
 		options,
 	} = props;
 	const carouselContainerRef = useRef<HTMLDivElement>();
-	const { stylingLogic } = useBusinessLogic({options}); //need to pass in options here since it is outside of context
+	const { stylingLogic } = useBusinessLogic({ options }); //need to pass in options here since it is outside of context
 	//#endregion
 
 	//#region JSX

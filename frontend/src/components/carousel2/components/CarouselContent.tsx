@@ -19,7 +19,7 @@ export const CarouselContent = ({
     options,
 }: CarouselContentProps) => {
     //#region Init
-    const { currentItemIndex, numberOfPages, setNumberOfPages, currentItem, setCurrentItemIndex, isFullscreenMode } = useCarouselContext();
+    const { currentItemIndex, numberOfPages, setNumberOfPages, currentItem, setCurrentItemIndex, isFullscreenMode, setIsFullscreenMode } = useCarouselContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
     const resizeWindowDebounceRef = useRef<any>();
@@ -47,7 +47,7 @@ export const CarouselContent = ({
         const remainingSpace = containerWidth - (numberOfWholeItemsThatCanFit * itemSize);
         const newInterItemSpacing = (remainingSpace / numberOfGaps);
         return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
-    }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, getNumberOfItemsThatCanFit, stylingLogic, itemDisplayLocationLogic]);
+    }, [options?.thumbnail, carouselContainerRef, stylingLogic, itemDisplayLocationLogic]);
 
     const onArrowButtonClick = useCallback((direction: ArrowButtonDirection) => {
         if (direction === 'left') {
@@ -65,14 +65,14 @@ export const CarouselContent = ({
         if (currentPage >= newNumberOfPages) {
             setCurrentPage(newNumberOfPages - 1);
         }
-    }, [getNumberOfPages, setNumberOfPages, setCurrentPage, currentPage, carouselContainerRef, items, stylingLogic, itemDisplayLocationLogic])
+    }, [setNumberOfPages, currentPage, carouselContainerRef, items, stylingLogic, itemDisplayLocationLogic])
     //#endregion
 
     //#region Side Fx
     //have to reset hasCalculatedItemSpacingRef if the dependencies for the getInterItemSpacing callback change
     useEffect(() => {
         hasCalculatedItemSpacingRef.current = false;
-    }, [options?.thumbnail, carouselContainerRef, CAROUSEL_ITEM_SPACING_DEFAULT, hasCalculatedItemSpacingRef])
+    }, [options?.thumbnail, carouselContainerRef, hasCalculatedItemSpacingRef])
 
     useEffect(() => {
         if (!hasForcedRender) return setHasForcedRender(true);
@@ -100,7 +100,7 @@ export const CarouselContent = ({
         return () => {
             window.removeEventListener('resize', handleResize);
         }
-    }, [window.innerWidth, setNumberOfDotsToDisplay, setInterItemSpacing, getInterItemSpacing])
+    }, [setNumberOfDotsToDisplay, setInterItemSpacing, getInterItemSpacing])
 
     //Tracking the itemViewer item and moving the corresponding carousel to match the page the item is on
     useEffect(() => {
@@ -142,33 +142,50 @@ export const CarouselContent = ({
         previousCurrentItemIndexRef.current = currentItemIndex;
 
         function getIsNextItemClick() {
-            if (previousCurrentItemIndexRef.current === 0 && currentNthItem == items.length) return false;
+            if (previousCurrentItemIndexRef.current === 0 && currentNthItem === items.length) return false;
             else if (previousCurrentItemIndexRef.current === items.length - 1 && currentItemIndex === 0) return true;
             return previousCurrentItemIndexRef.current < currentItemIndex;
         }
     }, [
+        carouselContainerRef,
+        currentPage,
         items,
+        itemDisplayLocationLogic,
+        stylingLogic,
+        numberOfPages,
         options?.navigation?.trackItemViewerChanges,
         currentItemIndex,
         previousCurrentItemIndexRef,
         isFullscreenMode,
         setCurrentPage,
-        previousCurrentItemIndexRef,
-        CURRENT_ITEM_INDEX_INITIAL
     ])
 
     //need to track the previous item index whenever an item is opened
     //need this for the above useEffect to work correctly
     useEffect(() => {
         previousCurrentItemIndexRef.current = currentItemIndex;
-    }, [items])
+    }, [items, currentItemIndex])
 
     // //setting the currentItemIndex in carousel instance on load if condition met
     useEffect(() => {
         if (!itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
             setCurrentItemIndex(0);
         }
-    }, [])
+    }, [itemDisplayLocationLogic, setCurrentItemIndex])
+
+    //resetting state when exiting full screen via esc key
+	useEffect(() => {
+		function handleFullscreenChange() {
+            
+			// setIsFullscreenMode(false);
+		}
+
+		window.addEventListener('fullscreenchange', handleFullscreenChange);
+		return () => {
+			window.removeEventListener('fullscreenchange', handleFullscreenChange);
+
+		}
+	}, [setIsFullscreenMode])
 
     //updating translation amount
     useEffect(() => {
@@ -210,7 +227,6 @@ export const CarouselContent = ({
     }, [
         currentPage,
         interItemSpacing,
-        CAROUSEL_SPACING_UNIT,
         options?.thumbnail?.itemSpacing,
         carouselContainerRef,
         stylingLogic,
