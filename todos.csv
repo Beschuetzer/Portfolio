@@ -1,6 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -need to re-add listener for exiting fullscreen mode (pressing esc doesn't change state to false)
     -add tests for all of the background mix and match possibilities?
     -change ArrowButtonDirection to enum with values being 'next' and 'previous'
     -need to create individual paddings for toolbar (and others?)

@@ -176,14 +176,23 @@ export const CarouselContent = ({
     //resetting state when exiting full screen via esc key
 	useEffect(() => {
 		function handleFullscreenChange() {
-            
-			// setIsFullscreenMode(false);
+            //@ts-ignore
+            const wasFullscreen = !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement;
+            if (wasFullscreen) {
+                setIsFullscreenMode(false);
+            }
 		}
 
-		window.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+        document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+		// window.addEventListener('fullscreenchange', handleFullscreenChange);
 		return () => {
-			window.removeEventListener('fullscreenchange', handleFullscreenChange);
-
+            document.removeEventListener('fullscreenchange', handleFullscreenChange);
+            document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+            document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
 		}
 	}, [setIsFullscreenMode])
 
