@@ -396,7 +396,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                 onClick={onPauseClick}
                                 options={options}
                                 ref={pauseButtonRef}
-                                shortcutPosition='left'
+                                position='left'
                             />
                         ) : (
                             <CarouselItemViewerPlayButton
@@ -405,7 +405,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                 onClick={onPlayClick}
                                 options={options}
                                 ref={playButtonRef}
-                                shortcutPosition='left'
+                                position='left'
                             />
                         )}
                         <CarouselItemViewerSeekBackButton
@@ -414,7 +414,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                             onClick={onSeekBackClick}
                             options={options}
                             ref={seekBackwardButtonRef}
-                            shortcutPosition='left'
+                            position='left'
                         />
                         <CarouselItemViewerSeekForwardButton
                             actionName='Seek Forward'
@@ -422,7 +422,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                             onClick={onSeekForwardClick}
                             options={options}
                             ref={seekForwardButtonRef}
-                            shortcutPosition='left'
+                            position='left'
                         />
                     </div>
                 ) : null}
@@ -439,26 +439,23 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                         onClick={onNextItemClickLocal}
                         options={options}
                         ref={nextButtonRef}
-                        shortcutPosition='right'
+                        position='right'
                     />
-                    {!isFullscreenMode ? (
-                        <CarouselItemViewerFullscreenButton
-                            actionName='Fullscreen'
-                            isShortcutVisible={showFullscreenButtonPopup}
-                            onClick={() => null}
-                            options={options}
-                            ref={fullscreenButtonRef}
-                        />
-                    ) : (
-                        <CarouselItemViewerCloseButton
-                            actionName='Exit'
-                            isShortcutVisible={showCloseButtonPopup}
-                            onClick={onClose}
-                            options={options}
-                            ref={closeButtonRef}
-                            shortcutPosition='right'
-                        />
-                    )}
+                    <CarouselItemViewerFullscreenButton
+                        actionName='Fullscreen'
+                        isShortcutVisible={!isFullscreenMode && showFullscreenButtonPopup}
+                        onClick={() => null}
+                        options={options}
+                        ref={fullscreenButtonRef}
+                    />
+                    <CarouselItemViewerCloseButton
+                        actionName='Exit'
+                        isShortcutVisible={isFullscreenMode && showCloseButtonPopup}
+                        onClick={onClose}
+                        options={options}
+                        ref={closeButtonRef}
+                        position='right'
+                    />
                 </div>
             </div>
             <CarouselItemViewerToolbarPreview

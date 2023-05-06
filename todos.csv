@@ -1,7 +1,5 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -fullscreen tooltip remains when clicking full screen and going back
-    -close button has no shortcut when going fullscreen from non-default case
     -create a hook (useBusinessLogic) that can return all of the business logic objects (e.g. stylingLogic, ...) to guarantee things are passed in appropriately
     -add click an image goes to fullscreen?
     -need to test different layout options with itemDisplayLocation, namely the custom item spacing

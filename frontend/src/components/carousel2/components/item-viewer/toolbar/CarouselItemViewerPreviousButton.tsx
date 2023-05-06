@@ -11,7 +11,7 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
     actionName = '',
     onClick = () => null,
     options = {},
-    shortcutPosition: position = 'center',
+    position = 'center',
 }, ref) => {
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.previousButton || {};
@@ -20,7 +20,7 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
     const fillColor = stylingLogic.getButtonColor(CarouselElement.previousButton);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={previousItemAction.keys} shortcutPosition={position}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={previousItemAction.keys} position={position}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} useElementStyle={style} fillColor={fillColor} /> :
                 <PreviousButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} childStyle={style} fillColor={fillColor} />}

@@ -14,9 +14,9 @@ export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemVi
     isShortcutVisible = false,
     onClick = () => null,
     options = {},
-    shortcutPosition = 'right',
+    position = 'right',
 }, ref) => {
-    const { elementStylings, setIsFullscreenMode } = useCarouselContext();
+    const { elementStylings, setIsFullscreenMode, isFullscreenMode } = useCarouselContext();
     const { stylingLogic } = useBusinessLogic({});
     const { svgHref, style } = elementStylings?.fullscreenButton || {};
     const fillColor = stylingLogic.getButtonColor(CarouselElement.fullscreenButton);
@@ -30,7 +30,12 @@ export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemVi
     ]);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcutPosition={shortcutPosition} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator
+            actionName={actionName}
+            isShortcutVisible={isShortcutVisible}
+            position={position}
+            showButton={!isFullscreenMode}
+        >
             {!!svgHref ?
                 <CarouselItemViewerCustomButton
                     ref={ref}

@@ -13,9 +13,9 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     isShortcutVisible = false,
     onClick = () => null,
     options = {},
-    shortcutPosition = 'center',
+    position: shortcutPosition = 'center',
 }, ref) => {
-    const { elementStylings, setIsFullscreenMode } = useCarouselContext();
+    const { elementStylings, setIsFullscreenMode, isFullscreenMode } = useCarouselContext();
     const {
         stylingLogic,
         toolbarActionsLogic,
@@ -39,7 +39,13 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     }, [onClick, setIsFullscreenMode]);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={closeAction.keys} shortcutPosition={shortcutPosition} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator
+            actionName={actionName}
+            isShortcutVisible={isShortcutVisible}
+            position={shortcutPosition}
+            shortcuts={closeAction.keys}
+            showButton={isFullscreenMode}
+        >
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
                 <CloseButton ref={ref} onClick={onClickLocal} fillColor={fillColor} childStyle={style} />

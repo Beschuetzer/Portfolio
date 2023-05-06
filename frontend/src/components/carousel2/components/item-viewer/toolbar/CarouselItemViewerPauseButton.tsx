@@ -12,7 +12,7 @@ export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerP
     isShortcutVisible = false,
     onClick = () => null,
     options = {},
-    shortcutPosition: position = 'center',
+    position = 'center',
 }, ref) => {
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.pauseButton || {};
@@ -21,7 +21,7 @@ export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerP
     const fillColor = stylingLogic.getButtonColor(CarouselElement.pauseButton);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={pauseAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={pauseAction.keys} position={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
                 <PauseButton ref={ref} onClick={onClick} childStyle={style} fillColor={fillColor} />}

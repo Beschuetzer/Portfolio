@@ -12,7 +12,7 @@ export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemView
     isShortcutVisible = false,
     onClick = () => null,
     options = {},
-    shortcutPosition: position = 'center',
+    position = 'center',
 }, ref) => {
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.seekBackButton || {};
@@ -21,7 +21,7 @@ export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemView
     const fillColor = stylingLogic.getButtonColor(CarouselElement.seekBackButton);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={seekBackwardsAction.keys} shortcutPosition={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={seekBackwardsAction.keys} position={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
                 <SeekBackButton ref={ref} onClick={onClick} childStyle={style} fillColor={fillColor} />}

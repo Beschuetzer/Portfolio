@@ -6,8 +6,13 @@ export type CarouselItemViewerShortcutIndicatorProps = {
     actionName: string;
     children: ReactNode | ReactNode[];
     isShortcutVisible?: boolean;
-    shortcutPosition?: 'left' | 'center' | 'right';
+    position?: 'left' | 'center' | 'right';
     shortcuts?: KeyInput[];
+
+    /*
+    *This is needed to be able to pass the refs while hiding the button (conditional null rendering doesn't work)
+    */
+    showButton?: boolean;
 }
 
 const className = getClassname({ elementName: 'item-viewer-shortcut-indicator' });
@@ -15,15 +20,19 @@ export const CarouselItemViewerShortcutIndicator = ({
     actionName = '',
     children,
     isShortcutVisible = false,
-    shortcutPosition: position = 'center',
+    position = 'center',
     shortcuts = [],
+    showButton = true,
 }: CarouselItemViewerShortcutIndicatorProps) => {
     const hideShortcut = !isShortcutVisible || !actionName;
+    const containerStyle = !showButton ? {
+        display: 'none',
+    } as React.CSSProperties : {}
 
     const commonStyle = {
         zIndex: 1000000000000,
     }
-    const style = position === 'left' ? {
+    const shortcutStyle = position === 'left' ? {
         ...commonStyle,
         left: 0,
         right: 'auto',
@@ -36,9 +45,9 @@ export const CarouselItemViewerShortcutIndicator = ({
     } as React.CSSProperties : {};
 
     return (
-        <div className={className}>
+        <div className={className} style={containerStyle}>
             {hideShortcut ? null : (
-                <div style={style}>
+                <div style={shortcutStyle}>
                     <span>
                         {capitalize(actionName)}
                     </span>
