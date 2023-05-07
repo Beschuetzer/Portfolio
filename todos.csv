@@ -1,6 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -extra padding in fullscreen mode for items
+    -pressing next button doesn't change the translation amount (i.e. move to the next page)
     -add tests for all of the background mix and match possibilities?
 
 

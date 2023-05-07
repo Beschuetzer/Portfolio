@@ -319,8 +319,8 @@ export class StylingLogic {
             width: "100%",
             paddingTop: 0,
             paddingBottom: 0,
-            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
-            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingLeft: this.isFullscreenMode ? 0 : `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: this.isFullscreenMode ? 0 : `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
             maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
         } as CSSProperties : {
 
