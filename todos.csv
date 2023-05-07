@@ -1,10 +1,4 @@
 Carousel rework
-  -itemDisplay non-default stuff:
-    -thumnbail size doesn't work right for bottom case (see "Display Below No Tracking Current Item")
-    -when only one page of navigation items and bottom case, the padding should be 10px but is currently 0px (see "Display Below No Tracking Current Item")
-    -add tests for all of the background mix and match possibilities?
-
-
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -move CarouselItem conditional styling logic to StylingLogic?
   -add volume button for videos?
