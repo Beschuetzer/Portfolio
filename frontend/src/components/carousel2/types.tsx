@@ -155,6 +155,11 @@ export type CarouselLayoutOptions = {
 }
 
 export type CarouselNavigationOptions = {
+     /*
+    *If true, the navigation automatically changes pages based on the current item viewed 
+    *Default is true.
+    */
+    autoChangePage?: boolean;
     /*
     *When true, the right arrow button will be hidden when when on the last page and the left arrow button will be hidden when on the first page.  
     *When false, the right arrow button navigates to the first page when the currentPage is the final page
@@ -162,11 +167,6 @@ export type CarouselNavigationOptions = {
     *Default is false
     */
     hideArrowsAtFinalPage?: boolean;
-    /*
-    *If this is true, then the item that you last viewed in the itemViewer (full-screen mode) will determine which page is the current page
-    *in the carousel.  Default is true.
-    */
-    trackItemViewerChanges?: boolean;
 }
 
 export type CarouselNavigationProps = {

@@ -514,7 +514,7 @@ const itemViewerSeekAmount2Sec = (
 const itemViewerNoTracking = (
 	<Carousel items={items} options={{
 		navigation: {
-			trackItemViewerChanges: false,
+			autoChangePage: false,
 		}
 	}} />
 );
@@ -1087,6 +1087,23 @@ const layoutAboveCustomOverlayAndSpinner = (
 		}}
 	/>
 );
+const layoutAboveNoTrackingItemViewerChanges = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayHeight: 445,
+				itemDisplayLocation: 'above',
+			},
+			thumbnail: {
+				size: 100,
+			},
+			navigation: {
+				autoChangePage: false,
+			}
+		}}
+	/>
+);
 const layoutAboveDifferentLeftAndRightPadding = (
 	<Carousel
 		items={items}
@@ -1285,6 +1302,10 @@ const SECTIONS: Sections = [
 				label: "Display Above Custom Overlay Style and Loading Spinner",
 				jsx: layoutAboveCustomOverlayAndSpinner,
 			},
+			{
+				label: "Display Above No Tracking Current Item",
+				jsx: layoutAboveNoTrackingItemViewerChanges,
+			},
 		]
 	],
 	[
@@ -1397,6 +1418,14 @@ const SECTIONS: Sections = [
 			{
 				label: "Display Below Custom Overlay Style and Loading Spinner",
 				jsx: React.cloneElement(layoutAboveCustomOverlayAndSpinner, { options: {
+					layout: {
+						itemDisplayLocation: 'below',
+					}
+				}}),
+			},
+			{
+				label: "Display Below No Tracking Current Item",
+				jsx: React.cloneElement(layoutAboveNoTrackingItemViewerChanges, { options: {
 					layout: {
 						itemDisplayLocation: 'below',
 					}

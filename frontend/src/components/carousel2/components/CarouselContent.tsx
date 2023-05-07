@@ -105,14 +105,14 @@ export const CarouselContent = ({
     //Tracking the itemViewer item and moving the corresponding carousel to match the page the item is on
     useEffect(() => {
         if (
-            (options?.navigation?.trackItemViewerChanges === false) || 
+            (!isFullscreenMode && itemDisplayLocationLogic.isDefaultItemDisplayLocation) ||
+            (options?.navigation?.autoChangePage === false) ||
             items?.length <= 0
-        )  {
+        ) {
             return;
         }
-        if (previousCurrentItemIndexRef.current === CURRENT_ITEM_INDEX_INITIAL) {
-            previousCurrentItemIndexRef.current = currentItemIndex;
-            return;
+        if (previousCurrentItemIndexRef.current === currentItemIndex) {
+            return
         }
 
         const { numberOfWholeItemsThatCanFit } = getNumberOfItemsThatCanFit(
@@ -122,7 +122,7 @@ export const CarouselContent = ({
         const isNextItemClick = getIsNextItemClick();
         const lastItemInViewIndex = currentPage * numberOfWholeItemsThatCanFit + numberOfWholeItemsThatCanFit;
         const firstItemInViewIndex = currentPage * numberOfWholeItemsThatCanFit + 1;
-        // console.log({ currentNthItem, lastItemInViewIndex, isNextItemClick, currentPage, numberOfWholeItemsThatCanFit, previousCurrentItemIndex: previousCurrentItemIndex.current, itemsLEngth: items.length});
+        // console.log({ currentNthItem, lastItemInViewIndex, isNextItemClick, currentPage, numberOfWholeItemsThatCanFit, previousCurrentItemIndexRef: previousCurrentItemIndexRef.current, itemsLEngth: items.length});
         if (isNextItemClick) {
             if (currentNthItem === 1 && previousCurrentItemIndexRef.current === items.length - 1) {
                 setCurrentPage(0);
@@ -152,7 +152,7 @@ export const CarouselContent = ({
         itemDisplayLocationLogic,
         stylingLogic,
         numberOfPages,
-        options?.navigation?.trackItemViewerChanges,
+        options?.navigation?.autoChangePage,
         currentItemIndex,
         previousCurrentItemIndexRef,
         isFullscreenMode,
@@ -166,27 +166,27 @@ export const CarouselContent = ({
     }, [items, currentItemIndex])
 
     //resetting state when exiting full screen via esc key
-	useEffect(() => {
-		function handleFullscreenChange() {
+    useEffect(() => {
+        function handleFullscreenChange() {
             //@ts-ignore
             const wasFullscreen = !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement;
             if (wasFullscreen) {
                 setIsFullscreenMode(false);
             }
-		}
+        }
 
         document.addEventListener('fullscreenchange', handleFullscreenChange);
         document.addEventListener('mozfullscreenchange', handleFullscreenChange);
         document.addEventListener('MSFullscreenChange', handleFullscreenChange);
         document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-		// window.addEventListener('fullscreenchange', handleFullscreenChange);
-		return () => {
+        // window.addEventListener('fullscreenchange', handleFullscreenChange);
+        return () => {
             document.removeEventListener('fullscreenchange', handleFullscreenChange);
             document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
             document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
             document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
-		}
-	}, [setIsFullscreenMode])
+        }
+    }, [setIsFullscreenMode])
 
     //updating translation amount
     useEffect(() => {
