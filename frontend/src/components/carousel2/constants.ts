@@ -3,7 +3,7 @@ import { KeyInput, ModifierKey, ValidKey } from "./hooks/useKeyboardShortcuts";
 
 export const AUTO_HIDE_DISABLED_VALUE = 0;
 export const AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT = 2500;
-export const CURRENT_ITEM_INDEX_INITIAL = -1;
+export const CURRENT_ITEM_INDEX_INITIAL = 0;
 export const CURRENT_PAGE_INITIAL = 0;
 export const EMPTY_STRING = "";
 export const NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS = 2;

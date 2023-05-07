@@ -1,7 +1,7 @@
 Carousel rework
   -itemDisplay non-default stuff:
+    -clicking an image, then fullscreen, then exiting fullscreen causes image to not be the right height
     -add tests for all of the background mix and match possibilities?
-    -need to create individual paddings for toolbar (and others?)
 
 
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?

@@ -19,7 +19,7 @@ export const CarouselContent = ({
     options,
 }: CarouselContentProps) => {
     //#region Init
-    const { currentItemIndex, numberOfPages, setNumberOfPages, currentItem, setCurrentItemIndex, isFullscreenMode, setIsFullscreenMode } = useCarouselContext();
+    const { currentItemIndex, numberOfPages, setNumberOfPages, currentItem, isFullscreenMode, setIsFullscreenMode } = useCarouselContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
     const resizeWindowDebounceRef = useRef<any>();
@@ -161,17 +161,10 @@ export const CarouselContent = ({
     ])
 
     //need to track the previous item index whenever an item is opened
-    //need this for the above useEffect to work correctly
+    //needed for the above useEffect to work correctly
     useEffect(() => {
         previousCurrentItemIndexRef.current = currentItemIndex;
     }, [items, currentItemIndex])
-
-    // //setting the currentItemIndex in carousel instance on load if condition met
-    useEffect(() => {
-        if (!itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
-            setCurrentItemIndex(0);
-        }
-    }, [itemDisplayLocationLogic, setCurrentItemIndex])
 
     //resetting state when exiting full screen via esc key
 	useEffect(() => {
