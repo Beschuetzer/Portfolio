@@ -105,7 +105,6 @@ export const CarouselContent = ({
     //Tracking the itemViewer item and moving the corresponding carousel to match the page the item is on
     useEffect(() => {
         if (
-            !isFullscreenMode || 
             (options?.navigation?.trackItemViewerChanges === false) || 
             items?.length <= 0
         )  {
