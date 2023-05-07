@@ -50,9 +50,9 @@ export const CarouselContent = ({
     }, [options?.thumbnail, carouselContainerRef, stylingLogic, itemDisplayLocationLogic]);
 
     const onArrowButtonClick = useCallback((direction: ArrowButtonDirection) => {
-        if (direction === 'left') {
+        if (direction === ArrowButtonDirection.previous) {
             setCurrentPage(currentPage <= 0 ? numberOfPages - 1 : currentPage - 1);
-        } else if (direction === 'right') {
+        } else if (direction === ArrowButtonDirection.next) {
             setCurrentPage(currentPage >= numberOfPages - 1 ? 0 : currentPage + 1);
         }
     }, [currentPage, setCurrentPage, numberOfPages]);
@@ -277,8 +277,8 @@ export const CarouselContent = ({
                         options={options}
                         currentPage={currentPage}
                         numberOfDots={numberOfPages}
-                        direction={"left"}
-                        onClick={() => onArrowButtonClick("left")} />
+                        direction={ArrowButtonDirection.previous}
+                        onClick={() => onArrowButtonClick(ArrowButtonDirection.previous)} />
                     <CarouselDots
                         items={items || []}
                         numberOfDots={numberOfPages}
@@ -290,8 +290,8 @@ export const CarouselContent = ({
                         options={options}
                         currentPage={currentPage}
                         numberOfDots={numberOfPages}
-                        direction={"right"}
-                        onClick={() => onArrowButtonClick("right")} />
+                        direction={ArrowButtonDirection.next}
+                        onClick={() => onArrowButtonClick(ArrowButtonDirection.next)} />
                 </div>
             ) : null}
             {itemDisplayLocationLogic.isItemDisplayLocationBelow ? (

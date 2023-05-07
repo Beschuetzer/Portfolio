@@ -7,8 +7,8 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
 
     &--arrow {
 
-        &-left,
-        &-right {
+        &-previous,
+        &-next {
 
             &-one,
             &-two {
@@ -18,7 +18,7 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
             }
         }
 
-        &-left {
+        &-previous {
             &-one {
                 @include positionButton($rotation: -45deg, $top: calc((50% + $carouselPageChangeButtonTranslationAmount) - $carouselPageChangeButtonTranslationAmountTwo));
 
@@ -29,7 +29,7 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
             }
         }
 
-        &-right {
+        &-next {
             &-one {
                 @include positionButton($rotation: -45deg, $top: calc((50% - $carouselPageChangeButtonTranslationAmount) + $carouselPageChangeButtonTranslationAmountTwo));
 

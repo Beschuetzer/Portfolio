@@ -335,12 +335,12 @@
   background-color: #fff9f5;
   fill: #fff9f5;
 }
-.thumbnail-carousel-button--arrow-left-one, .thumbnail-carousel-button--arrow-left-two, .thumbnail-carousel-button--arrow-right-one, .thumbnail-carousel-button--arrow-right-two {
+.thumbnail-carousel-button--arrow-previous-one, .thumbnail-carousel-button--arrow-previous-two, .thumbnail-carousel-button--arrow-next-one, .thumbnail-carousel-button--arrow-next-two {
   background-color: #1d0e0b;
   width: 3px;
   height: 8.94427191px;
 }
-.thumbnail-carousel-button--arrow-left-one {
+.thumbnail-carousel-button--arrow-previous-one {
   position: absolute;
   top: calc(50% + 3.1622776602px - 1.0606601718px);
   left: 50%;
@@ -348,7 +348,7 @@
   bottom: auto;
   transform: translate(-50%, -50%) rotate(-45deg);
 }
-.thumbnail-carousel-button--arrow-left-two {
+.thumbnail-carousel-button--arrow-previous-two {
   position: absolute;
   top: calc(50% - 3.1622776602px + 1.0606601718px);
   left: 50%;
@@ -356,7 +356,7 @@
   bottom: auto;
   transform: translate(-50%, -50%) rotate(45deg);
 }
-.thumbnail-carousel-button--arrow-right-one {
+.thumbnail-carousel-button--arrow-next-one {
   position: absolute;
   top: calc(50% - 3.1622776602px + 1.0606601718px);
   left: 50%;
@@ -364,7 +364,7 @@
   bottom: auto;
   transform: translate(-50%, -50%) rotate(-45deg);
 }
-.thumbnail-carousel-button--arrow-right-two {
+.thumbnail-carousel-button--arrow-next-two {
   position: absolute;
   top: calc(50% + 3.1622776602px - 1.0606601718px);
   left: 50%;

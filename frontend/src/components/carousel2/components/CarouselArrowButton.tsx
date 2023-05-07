@@ -1,5 +1,5 @@
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
-import { ArrowProps, CarouselElement, CarouselNavigationProps } from '../types';
+import { ArrowButtonDirection, ArrowProps, CarouselElement, CarouselNavigationProps } from '../types';
 import { ArrowButton } from './buttons/ArrowButton';
 import { CAROUSEL_COLOR_FIVE, CAROUSEL_COLOR_ONE, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
 import { EmptyFillerButton } from './buttons/EmptyFillerButton';
@@ -16,18 +16,18 @@ export const CarouselArrowButton = ({
   onClick,
 }: CarouselArrowButtonProps) => {
   let customButton = options?.styling?.elements?.arrowRight || {};
-  if (direction === 'left') {
+  if (direction === ArrowButtonDirection.previous) {
     customButton = options?.styling?.elements?.arrowLeft || {}
   }
   const { style, svgHref } = customButton;
   const shouldHide = !!options?.navigation?.hideArrowsAtFinalPage;
-  const isHidden = direction === 'left' ? currentPage === 0 : currentPage === numberOfDots - 1;
+  const isHidden = direction === ArrowButtonDirection.previous ? currentPage === 0 : currentPage === numberOfDots - 1;
   const {
     itemDisplayLocationLogic,
     stylingLogic,
   } = useBusinessLogic({});
   const defaultColor = itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;
-  const fillColor = stylingLogic.getButtonColor(direction === 'left' ? CarouselElement.arrowLeft : CarouselElement.arrowRight, defaultColor);
+  const fillColor = stylingLogic.getButtonColor(direction === ArrowButtonDirection.previous ? CarouselElement.arrowLeft : CarouselElement.arrowRight, defaultColor);
 
   if ((shouldHide && isHidden) || numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return <EmptyFillerButton />;
   return !!svgHref ? 

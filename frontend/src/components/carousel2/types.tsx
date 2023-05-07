@@ -4,7 +4,10 @@ import { KeyboardShortcut } from "./hooks/useKeyboardShortcuts";
 import { LoadingSpinnerProps } from "./components/LoadingSpinner";
 
 //#region Prop Types
-export type ArrowButtonDirection = 'left' | 'right';
+export enum ArrowButtonDirection {
+    next = 'next',
+    previous = 'previous',
+}
 export type ArrowProps = {
     direction: ArrowButtonDirection;
     options?: CarouselOptions;
