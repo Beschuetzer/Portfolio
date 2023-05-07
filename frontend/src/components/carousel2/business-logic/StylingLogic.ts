@@ -375,7 +375,7 @@ export class StylingLogic {
     }
 
     get carouselVideoTimeTextStyle() {
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation && !this.isFullscreenMode ? {
             minWidth: "33%",
         } as CSSProperties : {};
     }
