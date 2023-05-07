@@ -6,6 +6,7 @@ import { CLASSNAME__HIDDEN } from '../constants';
 import { CarouselItemViewerContainer } from './item-viewer/toolbar/CarouselItemViewerContainer';
 import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
+import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 
 export const CarouselImage = (props: CarouselItemProps) => {
     const { options, setIsFullscreenMode } = useCarouselContext();
@@ -17,6 +18,7 @@ export const CarouselImage = (props: CarouselItemProps) => {
         srcMain,
     } = props;
     const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
+    useRerenderOnExitFullscreenMode();
 
     return (
         <CarouselItemViewerContainer ref={containerRef} onClick={() => setIsFullscreenMode((current) => !current)}>

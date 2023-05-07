@@ -1,6 +1,6 @@
 Carousel rework
   -itemDisplay non-default stuff:
-    -clicking an image, then fullscreen, then exiting fullscreen causes image to not be the right height
+    -extra padding in fullscreen mode for items
     -add tests for all of the background mix and match possibilities?
 
 

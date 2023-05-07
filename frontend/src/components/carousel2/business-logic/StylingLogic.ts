@@ -527,7 +527,8 @@ export class StylingLogic {
     }
 
     private get maxHeightNonDefaultItemDisplayLocation() {
-        return `calc(100% - ${this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.height || 0}${CAROUSEL_SPACING_UNIT})`;
+        const heightToUse = !this.isFullscreenMode ? this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.height || 0 : 0;
+        return `calc(100% - ${heightToUse}${CAROUSEL_SPACING_UNIT})`;
     }
     //#endregion
 

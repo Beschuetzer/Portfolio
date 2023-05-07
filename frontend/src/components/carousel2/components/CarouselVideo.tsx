@@ -9,6 +9,7 @@ import { CarouselVideoCurrentStateIndicator } from './CarouselVideoCurrentStateI
 import { CarouselItemViewerContainer } from './item-viewer/toolbar/CarouselItemViewerContainer';
 import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
+import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 
 export type CarouselVideoProps = {
     /*
@@ -41,9 +42,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
     const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
-
-    // console.log({currentItem});
-
+    useRerenderOnExitFullscreenMode();
     //#endregion
 
     //#region Functions/Handlers
