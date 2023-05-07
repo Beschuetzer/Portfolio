@@ -4,9 +4,6 @@ Carousel rework
   -add volume button for videos?
   -add lazy loading of items (only render the items up to the furtherst currentPage)?
   -add swipe to scroll functionality to container?
-  -add customization for itemViewer.buttons? (fill color like dots);  would need to adjust the background gradient too?
-  -add carousel option to adjust button size (i.e. $buttonWidth)
-  -add dynamic styling for itemviewer
   -figure out how to test and implement accessability
 
 React best practices re-work (branch = sitenav_rework)
