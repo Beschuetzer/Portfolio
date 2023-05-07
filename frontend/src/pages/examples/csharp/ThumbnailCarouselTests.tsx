@@ -1313,123 +1313,182 @@ const SECTIONS: Sections = [
 		[
 			{
 				label: "All Defaults",
-				jsx: React.cloneElement(layoutAboveDefaultItemHeight, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveDefaultItemHeight, { 
+					options: {
+						...layoutAboveDefaultItemHeight.props.options,
+						layout: {
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Current Item Below with Custom itemHeight and Thumbnail Size",
-				jsx: React.cloneElement(layoutAboveWithItemHeightAndThumbnailSize, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveWithItemHeightAndThumbnailSize, { 
+					options: {
+						...layoutAboveWithItemHeightAndThumbnailSize.props.options,
+						layout: {
+							...layoutAboveWithItemHeightAndThumbnailSize.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below with Container Padding",
-				jsx: React.cloneElement(layoutAboveContainerPadding, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveContainerPadding, { 
+					options: {
+						...layoutAboveContainerPadding.props.options,
+						layout: {
+							...layoutAboveContainerPadding.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below with Item Viewer Padding",
-				jsx: React.cloneElement(layoutAboveExtraItemViewerPadding, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveExtraItemViewerPadding, { 
+					options: {
+						...layoutAboveExtraItemViewerPadding.props.options,
+						layout: {
+							...layoutAboveExtraItemViewerPadding.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below with Extra Navigation Padding",
-				jsx: React.cloneElement(layoutAboveExtraNavigationPadding, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveExtraNavigationPadding, { 
+					options: {
+						...layoutAboveExtraNavigationPadding.props.options,
+						layout: {
+							...layoutAboveExtraNavigationPadding.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below with Extra Toolbar Padding",
-				jsx: React.cloneElement(layoutAboveExtraToolbarPadding, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveExtraToolbarPadding, { 
+					options: {
+						...layoutAboveExtraToolbarPadding.props.options,
+						layout: {
+							...layoutAboveExtraToolbarPadding.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below with Different Left and Right Padding",
-				jsx: React.cloneElement(layoutAboveDifferentLeftAndRightPadding, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveDifferentLeftAndRightPadding, { 
+					options: {
+						...layoutAboveDifferentLeftAndRightPadding.props.options,
+						layout: {
+							...layoutAboveDifferentLeftAndRightPadding.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below Flush and Same Background Color",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColor, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColor, { 
+					options: {
+						...layoutAboveCompletelyFlushAndSameBackgroundColor.props.options,
+						layout: {
+							...layoutAboveCompletelyFlushAndSameBackgroundColor.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below Flush with Progress Bar Whole Width",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole, { 
+					options: {
+						...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options,
+						layout: {
+							...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below Flush and Same Background Color using All option",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorAll, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorAll, { 
+					options: {
+						...layoutAboveCompletelyFlushAndSameBackgroundColorAll.props.options,
+						layout: {
+							...layoutAboveCompletelyFlushAndSameBackgroundColorAll.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below Custom Icons with Same Background Color",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons, { 
+					options: {
+						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons.props.options,
+						layout: {
+							...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below Custom Icons with Default Icons using Custom Colors",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors, { 
+					options: {
+						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors.props.options,
+						layout: {
+							...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below buttons.all with Specific Item Fill Colors",
-				jsx: React.cloneElement(layoutAboveButtonsAllWithSpecificFillColors, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveButtonsAllWithSpecificFillColors, { 
+					options: {
+						...layoutAboveButtonsAllWithSpecificFillColors.props.options,
+						layout: {
+							...layoutAboveButtonsAllWithSpecificFillColors.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below Custom Overlay Style and Loading Spinner",
-				jsx: React.cloneElement(layoutAboveCustomOverlayAndSpinner, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveCustomOverlayAndSpinner, { 
+					options: {
+						...layoutAboveCustomOverlayAndSpinner.props.options,
+						layout: {
+							...layoutAboveCustomOverlayAndSpinner.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 			{
 				label: "Display Below No Tracking Current Item",
-				jsx: React.cloneElement(layoutAboveNoTrackingItemViewerChanges, { options: {
-					layout: {
-						itemDisplayLocation: 'below',
+				jsx: React.cloneElement(layoutAboveNoTrackingItemViewerChanges, { 
+					options: {
+						...layoutAboveNoTrackingItemViewerChanges.props.options,
+						layout: {
+							...layoutAboveNoTrackingItemViewerChanges.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
 					}
-				}}),
+				}),
 			},
 		]
 	],
