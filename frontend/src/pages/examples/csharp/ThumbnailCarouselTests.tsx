@@ -528,7 +528,7 @@ const itemViewerTracking = (
 );
 const layoutAboveDefaultItemHeight = (
 	<Carousel
-		items={items}
+		items={items.slice(1)}
 		options={{
 			layout: {
 				itemDisplayLocation: 'above',
@@ -1247,7 +1247,7 @@ const SECTIONS: Sections = [
 		'Above-Customization',
 		[
 			{
-				label: "Display Current Item Above Default itemHeight",
+				label: "Display Current Item Above Default itemHeight and No Autoplay Video First",
 				jsx: layoutAboveDefaultItemHeight,
 			},
 			{

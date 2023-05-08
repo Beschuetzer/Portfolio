@@ -13,7 +13,7 @@ import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFulls
 
 export type CarouselVideoProps = {
     /*
-    * If true, the video will start playing when it first comes into focus 
+    * If true and muted is undefined or true, the video will start playing when it first comes into focus 
     * e.g. when user scrolls down to it or when the user clicks the thumbnail to load it
     */
     autoPlay?: boolean;
@@ -39,7 +39,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     const videoRef = useRef<HTMLVideoElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
     const itemContainerRef = useRef<HTMLDivElement>();
-    const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
+    const [hasClickedContainer, setHasClickedContainer] = useState(false);
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
     const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
     useRerenderOnExitFullscreenMode();
@@ -57,43 +57,29 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     }, [setIsLoaded, setIsVideoPlaying, videoRef]);
 
     function handleOnLoadedData() {
-        // console.log("handleOnLoadedData");
-
         setIsLoaded(true);
-        if (autoPlay) {
-            tryPlaying();
-        }
     }
 
     const onContainerClick = useCallback(() => {
-        // console.log("onContainerClick");
-        setHasEnteredViewport(true);
+        setHasClickedContainer(true);
         setIsVideoPlaying((isPlaying) => !isPlaying);
     }, [setIsVideoPlaying]);
 
 
     const tryPlaying = useCallback(() => {
-        if (!hasEnteredViewport) return;
-        // console.log("tryPlaying");
+        if (!hasClickedContainer) return;
         tryPlayingVideo(
             videoRef.current,
             () => setIsVideoPlaying(true),
             () => setIsVideoPlaying(false),
         )
-    }, [setIsVideoPlaying, videoRef, hasEnteredViewport])
+    }, [setIsVideoPlaying, videoRef, hasClickedContainer])
     //#endregion
 
     //#region Side Fx
     useEffect(() => {
         async function handlePlayPause() {
             if (videoRef.current) {
-                // console.log("handlePlayPause and isPlaying: " + isVideoPlaying);
-                // console.log({isProgressBarClickRef: isProgressBarClickRef.current});
-                // if (isProgressBarClickRef.current) {
-                //     isProgressBarClickRef.current = false;
-                //     tryPlaying();
-                //     return;
-                // }
                 if (!isVideoPlaying) {
                     videoRef.current.pause();
                 } else {
@@ -107,7 +93,6 @@ export const CarouselVideo = (props: CarouselItemProps) => {
 
     //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
     useEffect(() => {
-        // console.log("triggering load event");
         setIsLoaded(false);
         if (videoRef.current?.load) {
             videoRef.current.load();
