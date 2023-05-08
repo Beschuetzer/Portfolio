@@ -8,6 +8,7 @@ import { useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
 import { getNumberOfItemsThatCanFit, getContainerWidth, getClassname, getNumberOfPages } from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
+import { useOnSwipe } from '../hooks/useOnSwipe';
 
 type CarouselContentProps = {
     carouselContainerRef: React.MutableRefObject<HTMLElement | undefined>;
@@ -34,6 +35,12 @@ export const CarouselContent = ({
         itemDisplayLocationLogic,
         stylingLogic,
     } = useBusinessLogic({});
+    useOnSwipe(itemsContainerRef.current, {
+        left: () => console.log('left'),
+        right: () => console.log('right'),
+        bottom: () => console.log('bottom'),
+        top: () => console.log('top'),
+    })
     //#endregion
 
     //#region Functions/Handlers
