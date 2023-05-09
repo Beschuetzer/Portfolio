@@ -47,15 +47,15 @@ export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwip
         if (horizontalDiffAbsolute !== smallerDiff) {
             //is horizontal
             if (horizontalDiff > 0) {
-                swipeHandlers.right && swipeHandlers.right();
-            } else {
                 swipeHandlers.left && swipeHandlers.left();
+            } else {
+                swipeHandlers.right && swipeHandlers.right();
             }
         } else {
             if (verticalDiff > 0) {
-                swipeHandlers.bottom && swipeHandlers.bottom();
-            } else {
                 swipeHandlers.top && swipeHandlers.top();
+            } else {
+                swipeHandlers.bottom && swipeHandlers.bottom();
             }
         }
     }, [swipeHandlers])
