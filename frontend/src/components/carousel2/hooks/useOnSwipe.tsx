@@ -20,7 +20,6 @@ export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwip
     const startCoordinateRef = useRef<Coordinate>();
 
     const handleDragStart = useCallback((e: DragEvent) => {
-        console.log({ e });
         startCoordinateRef.current = {
             x: e.x || e.clientX || e.pageX,
             y: e.y || e.clientY || e.pageY,
@@ -32,7 +31,6 @@ export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwip
         const endX = e.x || e.clientX || e.pageX;
         const endY = e.y || e.clientY || e.pageY;
         const { x: startX, y: startY } = startCoordinateRef.current
-
         
         const verticalDiff = endY - startY;
         const horizontalDiff = endX - startX;
@@ -65,11 +63,9 @@ export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwip
         element.addEventListener('dragstart', handleDragStart);
         element.addEventListener('dragend', handleDragEnd);
 
-
         return () => {
             element.removeEventListener('dragstart', handleDragStart);
-            element.addEventListener('dragend', handleDragEnd);
+            element.removeEventListener('dragend', handleDragEnd);
         }
     }, [element, swipeHandlers, handleDragStart, handleDragEnd])
-
 }

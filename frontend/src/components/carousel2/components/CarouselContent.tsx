@@ -36,10 +36,8 @@ export const CarouselContent = ({
         stylingLogic,
     } = useBusinessLogic({});
     useOnSwipe(itemsContainerRef.current, {
-        left: () => console.log('left'),
-        right: () => console.log('right'),
-        bottom: () => console.log('bottom'),
-        top: () => console.log('top'),
+        left: () => onArrowButtonClick(ArrowButtonDirection.previous),
+        right: () => onArrowButtonClick(ArrowButtonDirection.next),
     })
     //#endregion
 
