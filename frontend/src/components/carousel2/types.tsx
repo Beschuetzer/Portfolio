@@ -161,12 +161,17 @@ export type CarouselNavigationOptions = {
     */
     autoChangePage?: boolean;
     /*
+    *If true, then grabbing a thumbnail and swiping will not change the page.  Default is false.
+    */
+    disableSwiping?: boolean;
+    /*
     *When true, the right arrow button will be hidden when when on the last page and the left arrow button will be hidden when on the first page.  
     *When false, the right arrow button navigates to the first page when the currentPage is the final page
     *and the left arrow button navigates to the last page when the currentPage is the first page.
     *Default is false
     */
     hideArrowsAtFinalPage?: boolean;
+    
 }
 
 export type CarouselNavigationProps = {

@@ -46,6 +46,10 @@ export class ItemDisplayLocationLogic {
         return this.options?.layout?.itemDisplayLocation === 'below';
     }
 
+    get isSwipingDisabled() {
+        return this.options?.navigation?.disableSwiping || false;
+    }
+
     get itemToRender() {
         if (!this.currentItem) return null as any;
         const isVideo = getIsVideo(this.currentItem);

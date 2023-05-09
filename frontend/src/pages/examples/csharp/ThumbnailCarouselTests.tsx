@@ -443,13 +443,7 @@ const customThumbnailGradientAndFallback = (
 		}
 	}} />
 );
-const hideArrowsAtFinalPage = (
-	<Carousel items={items} options={{
-		navigation: {
-			hideArrowsAtFinalPage: true,
-		}
-	}} />
-);
+
 const itemViewerDefaultOverlayOnLoad = (
 	<Carousel items={items.slice(1, 2)} />
 );
@@ -511,10 +505,27 @@ const itemViewerSeekAmount2Sec = (
 		}
 	}} />
 );
-const itemViewerNoTracking = (
+const navigationTracking = (
+	<Carousel items={items} />
+);
+const navigationNoTracking = (
 	<Carousel items={items} options={{
 		navigation: {
 			autoChangePage: false,
+		}
+	}} />
+);
+const navigationNoSwiping = (
+	<Carousel items={items} options={{
+		navigation: {
+			disableSwiping: true,
+		}
+	}} />
+);
+const navigationHideArrowsAtFinalPage = (
+	<Carousel items={items} options={{
+		navigation: {
+			hideArrowsAtFinalPage: true,
 		}
 	}} />
 );
@@ -523,9 +534,7 @@ const itemViewerCustomShortcuts = (
 		shortcuts: carouselShortcuts,
 	}} />
 );
-const itemViewerTracking = (
-	<Carousel items={items} />
-);
+
 const layoutAboveDefaultItemHeight = (
 	<Carousel
 		items={items.slice(1)}
@@ -1554,15 +1563,19 @@ const SECTIONS: Sections = [
 		[
 			{
 				label: "Hide Arrows on First and Last Page",
-				jsx: hideArrowsAtFinalPage
+				jsx: navigationHideArrowsAtFinalPage
 			},
 			{
 				label: "Current Page follows last viewed item in item viewer (full-screen)",
-				jsx: itemViewerTracking
+				jsx: navigationTracking
 			},
 			{
 				label: "Current Page does not follow last viewed item in item viewer (full-screen)",
-				jsx: itemViewerNoTracking
+				jsx: navigationNoTracking
+			},
+			{
+				label: "Swiping a Thumbnail Disabled",
+				jsx: navigationNoSwiping
 			},
 		]
 	],
