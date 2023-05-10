@@ -33,7 +33,10 @@ export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwip
         if (styleCase === "end") {
             cursorType = 'auto';
         }
-        element.style.cursor = cursorType;
+        const image = element.querySelector('img');
+        
+        if (image) image.style.cursor = 'grab';
+        console.log({image, cursorType, cursor: image?.style.cursor});
     }, [element])
 
     const handleMouseDown = useCallback((e: MouseEvent) => {
@@ -57,10 +60,11 @@ export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwip
             mouseUpSourceElement.current = e.target as HTMLElement;
         }
         if (mouseDownSourceElement.current === mouseUpSourceElement.current) return;
-
+        
         const endX = e.x || e.clientX || e.pageX;
         const endY = e.y || e.clientY || e.pageY;
         const { x: startX, y: startY } = startCoordinateRef.current
+        startCoordinateRef.current = undefined;
 
         const verticalDiff = endY - startY;
         const horizontalDiff = endX - startX;
