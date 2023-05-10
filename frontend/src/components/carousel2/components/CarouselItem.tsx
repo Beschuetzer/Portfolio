@@ -58,6 +58,8 @@ export const CarouselItem = (props: CarouselItemProps) => {
         </div>
       ) : null}
       <img
+        data-index={index}
+        draggable={false}
         style={stylingLogic.carouselItemCursorStyle}
         className={CLASSNAME__CAROUSEL_ITEM_THUMBNAIL}
         src={srcThumbnail || srcMain}

@@ -29,16 +29,17 @@ export const CarouselContent = ({
     const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`);
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
     const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
-    const itemsContainerRef = useRef<HTMLDivElement>(null);
+    const itemsContainerOuterRef = useRef<HTMLDivElement>(null);
+    const itemsContainerInnerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndexRef = useRef(CURRENT_ITEM_INDEX_INITIAL);
     const {
         itemDisplayLocationLogic,
         stylingLogic,
     } = useBusinessLogic({});
-    useOnSwipe(itemsContainerRef.current, {
-        left: () => !itemDisplayLocationLogic.isSwipingDisabled && onArrowButtonClick(ArrowButtonDirection.previous),
-        right: () => !itemDisplayLocationLogic.isSwipingDisabled && onArrowButtonClick(ArrowButtonDirection.next),
-    })
+    useOnSwipe(itemsContainerOuterRef.current, {
+        left: () => onArrowButtonClick(ArrowButtonDirection.previous),
+        right: () => onArrowButtonClick(ArrowButtonDirection.next),
+    }, itemDisplayLocationLogic.isSwipingDisabled)
     //#endregion
 
     //#region Functions/Handlers
@@ -196,8 +197,8 @@ export const CarouselContent = ({
     //updating translation amount
     useEffect(() => {
         function getDifferenceBetweenContainerAndLastItem() {
-            const containerRight = itemsContainerRef.current?.parentElement?.getBoundingClientRect()?.right || 0;
-            const items = (itemsContainerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`) || []) as HTMLElement[];
+            const containerRight = itemsContainerInnerRef.current?.parentElement?.getBoundingClientRect()?.right || 0;
+            const items = (itemsContainerInnerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`) || []) as HTMLElement[];
 
             let currentItemLeft = 0, previousItemLeft = 0;
             for (let item of items) {
@@ -237,7 +238,7 @@ export const CarouselContent = ({
         carouselContainerRef,
         stylingLogic,
         itemDisplayLocationLogic,
-        itemsContainerRef,
+        itemsContainerInnerRef,
         items,
         numberOfPages
     ])
@@ -261,8 +262,8 @@ export const CarouselContent = ({
             {itemDisplayLocationLogic.isItemDisplayLocationAbove ? (
                 <ItemToRender {...currentItem} />
             ) : null}
-            <div style={stylingLogic.carouselItemsContainerStyle}>
-                <div ref={itemsContainerRef} style={containerStyle} className={getClassname({ elementName: "items" })}>
+            <div ref={itemsContainerOuterRef}  style={stylingLogic.carouselItemsContainerStyle}>
+                <div ref={itemsContainerInnerRef} style={containerStyle} className={getClassname({ elementName: "items" })}>
                     {
                         items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)
                     }

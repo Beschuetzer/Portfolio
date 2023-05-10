@@ -13,12 +13,19 @@ enum SwipeDirections {
 }
 export type UseOnSwipeHandlers = {
     [direction in SwipeDirections]?: () => void;
+} & {
+    /*
+    *The minimum number of pixels in the given direction that must be made to register a valid event
+    */
+    minThreshold?: number;
 }
 
 //positive horizontal diff means right and positive vertical diff means down
-export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwipeHandlers) => {
+export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwipeHandlers, isDisabled = false) => {
     //todo: need to add handlers to swiping on a phone too?
     const startCoordinateRef = useRef<Coordinate>();
+    const mouseDownSourceElement = useRef<HTMLElement>();
+    const mouseUpSourceElement = useRef<HTMLElement>();
 
     const handleStyleChanges = useCallback((styleCase: StylingCases) => {
         if (!element) return;
@@ -29,17 +36,28 @@ export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwip
         element.style.cursor = cursorType;
     }, [element])
 
-    const handleDragStart = useCallback((e: DragEvent) => {
+    const handleMouseDown = useCallback((e: MouseEvent) => {
+        if (isDisabled) return;
+
+        if (mouseDownSourceElement) {
+            mouseDownSourceElement.current = e.target as HTMLElement;
+        }
+
         startCoordinateRef.current = {
             x: e.x || e.clientX || e.pageX,
             y: e.y || e.clientY || e.pageY,
         }
 
         handleStyleChanges('start')
-    }, [handleStyleChanges])
+    }, [handleStyleChanges, isDisabled])
 
-    const handleDragEnd = useCallback((e: DragEvent) => {
-        if (!startCoordinateRef.current) return;
+    const handleMouseUp = useCallback((e: MouseEvent) => {
+        if (!startCoordinateRef.current || isDisabled) return;
+        if (mouseUpSourceElement) {
+            mouseUpSourceElement.current = e.target as HTMLElement;
+        }
+        if (mouseDownSourceElement.current === mouseUpSourceElement.current) return;
+
         const endX = e.x || e.clientX || e.pageX;
         const endY = e.y || e.clientY || e.pageY;
         const { x: startX, y: startY } = startCoordinateRef.current
@@ -51,17 +69,19 @@ export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwip
         const absoluteDiff = Math.abs(verticalDiffAbsolute - horizontalDiffAbsolute);
         const smallerDiff = Math.min(verticalDiffAbsolute, horizontalDiffAbsolute);
         const isAmbiguous = absoluteDiff < smallerDiff;
-        // console.log({verticalDiffAbsolute, horizontalDiffAbsolute, absoluteDiff, smallerDiff, isAmbiguous });
+        // console.log({ verticalDiffAbsolute, horizontalDiffAbsolute, absoluteDiff, smallerDiff, isAmbiguous });
 
         if (isAmbiguous) return;
         if (horizontalDiffAbsolute !== smallerDiff) {
             //is horizontal
+            if (swipeHandlers.minThreshold && swipeHandlers.minThreshold > horizontalDiffAbsolute) return;
             if (horizontalDiff > 0) {
                 swipeHandlers.left && swipeHandlers.left();
             } else {
                 swipeHandlers.right && swipeHandlers.right();
             }
         } else {
+            if (swipeHandlers.minThreshold && swipeHandlers.minThreshold > verticalDiffAbsolute) return;
             if (verticalDiff > 0) {
                 swipeHandlers.top && swipeHandlers.top();
             } else {
@@ -70,17 +90,17 @@ export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwip
         }
 
         handleStyleChanges('end');
-    }, [handleStyleChanges, swipeHandlers])
+    }, [handleStyleChanges, isDisabled, swipeHandlers])
 
 
     useEffect(() => {
         if (!element) return;
-        element.addEventListener('dragstart', handleDragStart);
-        element.addEventListener('dragend', handleDragEnd);
+        element.addEventListener('mousedown', handleMouseDown);
+        window.addEventListener('mouseup', handleMouseUp);
 
         return () => {
-            element.removeEventListener('dragstart', handleDragStart);
-            element.removeEventListener('dragend', handleDragEnd);
+            element.removeEventListener('mousedown', handleMouseDown);
+            window.removeEventListener('mouseup', handleMouseUp);
         }
-    }, [element, swipeHandlers, handleDragStart, handleDragEnd])
+    }, [element, handleMouseDown, handleMouseUp, swipeHandlers])
 }

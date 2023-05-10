@@ -796,7 +796,7 @@
 .thumbnail-carousel__item:hover > div {
   bottom: 0 !important;
 }
-.thumbnail-carousel__item:hover, .thumbnail-carousel__item *:hover {
+.thumbnail-carousel__item *:hover {
   cursor: pointer;
 }
 .thumbnail-carousel__items {

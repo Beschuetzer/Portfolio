@@ -162,6 +162,7 @@ export type CarouselNavigationOptions = {
     autoChangePage?: boolean;
     /*
     *If true, then grabbing a thumbnail and swiping will not change the page.  Default is false.
+    *Swiping only occurs if mouseup and mousedown targets are different
     */
     disableSwiping?: boolean;
     /*
