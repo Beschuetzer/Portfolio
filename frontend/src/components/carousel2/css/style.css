@@ -796,13 +796,19 @@
 .thumbnail-carousel__item:hover > div {
   bottom: 0 !important;
 }
-.thumbnail-carousel__item *:hover {
+.thumbnail-carousel__item img:hover {
   cursor: pointer;
 }
 .thumbnail-carousel__items {
   display: flex;
   width: 10000000vw;
   transition: transform 0.5s ease;
+}
+.thumbnail-carousel__items.grabbing {
+  cursor: grabbing;
+}
+.thumbnail-carousel__items.grabbing img {
+  cursor: grabbing;
 }
 .thumbnail-carousel__item-viewer {
   display: none;

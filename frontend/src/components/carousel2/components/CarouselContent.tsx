@@ -1,14 +1,14 @@
 import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
+import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
 import { getNumberOfItemsThatCanFit, getContainerWidth, getClassname, getNumberOfPages } from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
-import { useOnSwipe } from '../hooks/useOnSwipe';
+import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 
 type CarouselContentProps = {
     carouselContainerRef: React.MutableRefObject<HTMLElement | undefined>;
@@ -36,10 +36,22 @@ export const CarouselContent = ({
         itemDisplayLocationLogic,
         stylingLogic,
     } = useBusinessLogic({});
-    useOnSwipe(itemsContainerOuterRef.current, {
-        left: () => onArrowButtonClick(ArrowButtonDirection.previous),
-        right: () => onArrowButtonClick(ArrowButtonDirection.next),
-    }, itemDisplayLocationLogic.isSwipingDisabled)
+    useOnSwipe({
+        element: itemsContainerInnerRef.current as HTMLElement,
+        isDisabled: itemDisplayLocationLogic.isSwipingDisabled,
+        swipeHandlers: {
+            left: () => onArrowButtonClick(ArrowButtonDirection.previous),
+            right: () => onArrowButtonClick(ArrowButtonDirection.next),
+        },
+        handleStyleChanges: (element: HTMLElement, styleCase: StylingCase) => {
+            if (!element || numberOfPages <= 1) return;
+            if (styleCase === 'start') {
+                element.classList.add(CLASSNAME__GRABBING)
+            } else {
+                element.classList.remove(CLASSNAME__GRABBING)
+            }
+        }
+    })
     //#endregion
 
     //#region Functions/Handlers
@@ -262,7 +274,7 @@ export const CarouselContent = ({
             {itemDisplayLocationLogic.isItemDisplayLocationAbove ? (
                 <ItemToRender {...currentItem} />
             ) : null}
-            <div ref={itemsContainerOuterRef}  style={stylingLogic.carouselItemsContainerStyle}>
+            <div ref={itemsContainerOuterRef} style={stylingLogic.carouselItemsContainerStyle}>
                 <div ref={itemsContainerInnerRef} style={containerStyle} className={getClassname({ elementName: "items" })}>
                     {
                         items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)

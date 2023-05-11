@@ -15,6 +15,7 @@ $carouselFontSize: 14px;
 $carouselItemHoverTranslateUpAmount: 4px;
 $carouselThumbnailFontSize: 12px;
 $carouselThumbnailOverlayMaxLineCount: 2;
+
 $itemViewerBackgroundColor: #1d0e0b;
 $itemViewerButtonColor: #fff9f5;
 $itemViewerShortcutPopupBackgroundColor: #28292f;
@@ -30,9 +31,12 @@ $itemViewerToolbarPreviewBorderRadius: 5px;
 $itemViewerToolbarPreviewOpacity: .66;
 $itemViewerToolbarPreviewWidth: 300px;
 
+$classname__grabbing: 'grabbing';
+
 $videoModalCustomButtonTopString: '#{$carouselClassname}-video-modal-custom-button-top';
 $videoModalCustomButtonRightString: '#{$carouselClassname}-video-modal-custom-button-right';
 :root {
     --#{$videoModalCustomButtonTopString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
     --#{$videoModalCustomButtonRightString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
 }
+

@@ -1,18 +1,18 @@
 import { useCallback, useEffect, useRef } from "react"
 
-type StylingCases = 'start' | 'end';
+export type StylingCase = 'start' | 'end';
 type Coordinate = {
     x: number;
     y: number;
 }
-enum SwipeDirections {
+enum SwipeDirection {
     bottom = 'bottom',
     left = 'left',
     right = 'right',
     top = 'top',
 }
 export type UseOnSwipeHandlers = {
-    [direction in SwipeDirections]?: () => void;
+    [direction in SwipeDirection]?: () => void;
 } & {
     /*
     *The minimum number of pixels in the given direction that must be made to register a valid event
@@ -20,27 +20,28 @@ export type UseOnSwipeHandlers = {
     minThreshold?: number;
 }
 
+export type UseOnSwipeProps = {
+    element: HTMLElement;
+    isDisabled?: boolean;
+    handleStyleChanges: (element: HTMLElement, stylingCase: StylingCase) => void;
+    swipeHandlers?: UseOnSwipeHandlers;
+}
+
 //positive horizontal diff means right and positive vertical diff means down
-export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwipeHandlers, isDisabled = false) => {
+export const useOnSwipe = ({
+    element,
+    isDisabled = false,
+    swipeHandlers = {},
+    handleStyleChanges,
+}: UseOnSwipeProps) => {
     //todo: need to add handlers to swiping on a phone too?
     const startCoordinateRef = useRef<Coordinate>();
     const mouseDownSourceElement = useRef<HTMLElement>();
     const mouseUpSourceElement = useRef<HTMLElement>();
 
-    const handleStyleChanges = useCallback((styleCase: StylingCases) => {
-        if (!element) return;
-        let cursorType = 'grabbing';
-        if (styleCase === "end") {
-            cursorType = 'auto';
-        }
-        const image = element.querySelector('img');
-        
-        if (image) image.style.cursor = 'grab';
-        console.log({image, cursorType, cursor: image?.style.cursor});
-    }, [element])
-
     const handleMouseDown = useCallback((e: MouseEvent) => {
         if (isDisabled) return;
+        handleStyleChanges && handleStyleChanges(element, 'start')
 
         if (mouseDownSourceElement) {
             mouseDownSourceElement.current = e.target as HTMLElement;
@@ -50,17 +51,17 @@ export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwip
             x: e.x || e.clientX || e.pageX,
             y: e.y || e.clientY || e.pageY,
         }
-
-        handleStyleChanges('start')
-    }, [handleStyleChanges, isDisabled])
+    }, [element, handleStyleChanges, isDisabled])
 
     const handleMouseUp = useCallback((e: MouseEvent) => {
         if (!startCoordinateRef.current || isDisabled) return;
+        handleStyleChanges && handleStyleChanges(element, 'end');
+
         if (mouseUpSourceElement) {
             mouseUpSourceElement.current = e.target as HTMLElement;
         }
         if (mouseDownSourceElement.current === mouseUpSourceElement.current) return;
-        
+
         const endX = e.x || e.clientX || e.pageX;
         const endY = e.y || e.clientY || e.pageY;
         const { x: startX, y: startY } = startCoordinateRef.current
@@ -92,9 +93,7 @@ export const useOnSwipe = (element: HTMLElement | null, swipeHandlers: UseOnSwip
                 swipeHandlers.bottom && swipeHandlers.bottom();
             }
         }
-
-        handleStyleChanges('end');
-    }, [handleStyleChanges, isDisabled, swipeHandlers])
+    }, [element, handleStyleChanges, isDisabled, swipeHandlers])
 
 
     useEffect(() => {
