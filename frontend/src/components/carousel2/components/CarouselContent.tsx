@@ -43,11 +43,13 @@ export const CarouselContent = ({
             left: () => onArrowButtonClick(ArrowButtonDirection.previous),
             right: () => onArrowButtonClick(ArrowButtonDirection.next),
         },
-        handleStyleChanges: (element: HTMLElement, styleCase: StylingCase) => {
+        handleStyleChanges: (styleCase: StylingCase, element: HTMLElement) => {
             if (!element || numberOfPages <= 1) return;
             if (styleCase === 'start') {
+                document.body.classList.add(CLASSNAME__GRABBING);
                 element.classList.add(CLASSNAME__GRABBING)
             } else {
+                document.body.classList.remove(CLASSNAME__GRABBING);
                 element.classList.remove(CLASSNAME__GRABBING)
             }
         }

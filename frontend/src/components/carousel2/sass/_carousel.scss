@@ -373,3 +373,9 @@
         @extend %visible;
     }
 }
+
+body {
+    &.#{$classname__grabbing} * {
+        cursor: grabbing;
+    }
+}

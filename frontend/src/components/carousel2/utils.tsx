@@ -172,6 +172,13 @@ export async function exitFullScreen(element: HTMLElement | null) {
     } catch (e) { }
 }
 
+export function stopPropagation(e: Event)
+{
+    let event = e || window.event;
+	event.cancelBubble = true;
+	if (event.stopPropagation) event.stopPropagation();
+}
+
 export async function tryPlayingVideo(videoRef: HTMLVideoElement | undefined, onSuccess?: () => void, onFailure?: () => void) {
     const playPromise = videoRef?.play();
     if (playPromise !== undefined) {

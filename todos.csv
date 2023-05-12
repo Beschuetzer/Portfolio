@@ -1,7 +1,9 @@
 Carousel rework
-  -can disable click event on mouseup?
+  -disable click of an item if swiping is enabled and the mouse has moved more than 10 px since mouse down
+  -add stopPropagaton to all the relevant event listeners via stopPropagation util func
   -make grabbing change the translation amount dynamically and call passed in func if another function returns true (e.g. if the amount moved is more than half the width of the container then call setCurrentPage)
   -rename ItemDisplayLocationLogic to OptionsLogic
+  -default case can close images by clicking on them but no zoom-out icon (need to pick one and unify experience)
   -how to intelligently add themes or default colors?
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -add volume button for videos?

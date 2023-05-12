@@ -1056,5 +1056,8 @@
 .thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-right {
   --rotation: 45deg;
 }
+body.grabbing * {
+  cursor: grabbing;
+}
 
 /*# sourceMappingURL=style.css.map */

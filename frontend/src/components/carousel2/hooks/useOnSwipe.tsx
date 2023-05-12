@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from "react"
+import { stopPropagation } from "../utils";
 
 export type StylingCase = 'start' | 'end';
 type Coordinate = {
@@ -23,7 +24,7 @@ export type UseOnSwipeHandlers = {
 export type UseOnSwipeProps = {
     element: HTMLElement;
     isDisabled?: boolean;
-    handleStyleChanges: (element: HTMLElement, stylingCase: StylingCase) => void;
+    handleStyleChanges: (stylingCase: StylingCase, element: HTMLElement) => void;
     swipeHandlers?: UseOnSwipeHandlers;
 }
 
@@ -40,8 +41,9 @@ export const useOnSwipe = ({
     const mouseUpSourceElement = useRef<HTMLElement>();
 
     const handleMouseDown = useCallback((e: MouseEvent) => {
+        stopPropagation(e)
         if (isDisabled) return;
-        handleStyleChanges && handleStyleChanges(element, 'start')
+        handleStyleChanges && handleStyleChanges('start', element)
 
         if (mouseDownSourceElement) {
             mouseDownSourceElement.current = e.target as HTMLElement;
@@ -54,8 +56,9 @@ export const useOnSwipe = ({
     }, [element, handleStyleChanges, isDisabled])
 
     const handleMouseUp = useCallback((e: MouseEvent) => {
+        stopPropagation(e)
         if (!startCoordinateRef.current || isDisabled) return;
-        handleStyleChanges && handleStyleChanges(element, 'end');
+        handleStyleChanges && handleStyleChanges('end', element);
 
         if (mouseUpSourceElement) {
             mouseUpSourceElement.current = e.target as HTMLElement;
