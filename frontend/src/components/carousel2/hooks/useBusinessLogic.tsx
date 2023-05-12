@@ -21,7 +21,7 @@ export type UseBusinessLogicInput = {
         StylingLogicConstructor &
         ToolbarActionsLogicConstructor &
         ToolbarLogicConstructor,
-        keyof CarouselContextOutputProps | 'itemDisplayLocationLogic'
+        keyof CarouselContextOutputProps | 'optionsLogic'
     >
 >
 
