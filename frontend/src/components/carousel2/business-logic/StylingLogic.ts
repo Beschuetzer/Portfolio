@@ -170,7 +170,7 @@ export class StylingLogic {
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             marginTop: 0,
-            marginBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : 0,
+            marginBottom: 0,
             overflow: 'hidden',
             ...common,
         } as CSSProperties : {
