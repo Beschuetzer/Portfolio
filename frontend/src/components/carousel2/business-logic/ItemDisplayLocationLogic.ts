@@ -1,30 +1,28 @@
 import { CarouselImage } from "../components/CarouselImage";
 import { CarouselItemProps } from "../components/CarouselItem";
 import { CarouselVideo } from "../components/CarouselVideo";
-import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CURRENT_ITEM_INDEX_INITIAL } from "../constants";
+import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT } from "../constants";
 import { CarouselOptions } from "../types";
 import { getIsVideo } from "../utils";
 
 export type ItemDisplayLocationLogicConstructor = {
     options: CarouselOptions;
     currentItem?: CarouselItemProps;
-    currentItemIndex?: number;
+    numberOfPages?: number;
 }
 /*
 *Logic related to itemDisplayLocation option
 */
 export class ItemDisplayLocationLogic {
-    private isCurrentItemPopulated;
     private options;
     private currentItem;
-    private currentItemIndex;
+    private numberOfPages;
 
     constructor(constructor: ItemDisplayLocationLogicConstructor) {
-        const { options, currentItem, currentItemIndex } = constructor;
+        const { options, currentItem, numberOfPages } = constructor;
         this.options = options;
         this.currentItem = currentItem;
-        this.currentItemIndex = currentItemIndex !== undefined ? currentItemIndex : CURRENT_ITEM_INDEX_INITIAL;
-        this.isCurrentItemPopulated = Object.keys(this.currentItem || {}).length > 0;
+        this.numberOfPages = numberOfPages || 0;
     }
 
     get carouselItemSize() {
@@ -47,7 +45,7 @@ export class ItemDisplayLocationLogic {
     }
 
     get isSwipingDisabled() {
-        return this.options?.navigation?.disableSwiping || false;
+        return this.numberOfPages <= 1 ? true : this.options?.navigation?.disableSwiping || false;
     }
 
     get itemToRender() {

@@ -40,6 +40,19 @@ export const useOnSwipe = ({
     const mouseDownSourceElement = useRef<HTMLElement>();
     const mouseUpSourceElement = useRef<HTMLElement>();
 
+    const handleClick = useCallback((e: Event) => {
+        console.log({handleClickIsDisabled: isDisabled});
+    }, [isDisabled])
+
+    const handleClickStop = useCallback((e: Event) => {
+        console.log({handleClickStopIsDisabled: isDisabled});
+        
+        if (!isDisabled) {
+            stopPropagation(e);
+        }
+        window.removeEventListener('click', handleClickStop, true);
+    }, [isDisabled])
+
     const handleMouseDown = useCallback((e: MouseEvent) => {
         stopPropagation(e)
         if (isDisabled) return;
@@ -59,11 +72,13 @@ export const useOnSwipe = ({
         stopPropagation(e)
         if (!startCoordinateRef.current || isDisabled) return;
         handleStyleChanges && handleStyleChanges('end', element);
+        window.addEventListener('click', handleClickStop, true);
 
         if (mouseUpSourceElement) {
             mouseUpSourceElement.current = e.target as HTMLElement;
         }
         if (mouseDownSourceElement.current === mouseUpSourceElement.current) return;
+
 
         const endX = e.x || e.clientX || e.pageX;
         const endY = e.y || e.clientY || e.pageY;
@@ -96,17 +111,19 @@ export const useOnSwipe = ({
                 swipeHandlers.bottom && swipeHandlers.bottom();
             }
         }
-    }, [element, handleStyleChanges, isDisabled, swipeHandlers])
+    }, [element, handleClickStop, handleStyleChanges, isDisabled, swipeHandlers])
 
 
     useEffect(() => {
         if (!element) return;
+        element.addEventListener('click', handleClick);
         element.addEventListener('mousedown', handleMouseDown);
         window.addEventListener('mouseup', handleMouseUp);
 
         return () => {
+            element.removeEventListener('click', handleClick);
             element.removeEventListener('mousedown', handleMouseDown);
             window.removeEventListener('mouseup', handleMouseUp);
         }
-    }, [element, handleMouseDown, handleMouseUp, swipeHandlers])
+    }, [element, handleClickStop, handleMouseDown, handleMouseUp, swipeHandlers])
 }

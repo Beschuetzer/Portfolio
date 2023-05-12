@@ -41,14 +41,14 @@ export const useBusinessLogic = ({
         // elementStylings,
         isFullscreenMode,
         items,
-        // numberOfPages,
+        numberOfPages,
         options: optionsGlobal,
     } = useCarouselContext();
     const options = optionsInput || optionsGlobal;
     const [itemDisplayLocationLogic, setItemDisplayLocationLogic] = useState<ItemDisplayLocationLogic>(getItemDisplayLogic({
         options,
         currentItem,
-        currentItemIndex
+        numberOfPages
     }));
     const [toolbarLogic, setToolbarLogic] = useState<ToolbarLogic>(getToolbarLogic({
         items,
@@ -74,7 +74,7 @@ export const useBusinessLogic = ({
         const newItemDisplayLocationLogic = getItemDisplayLogic({
             options,
             currentItem,
-            currentItemIndex
+            numberOfPages,
         })
         const newToolbarActionsLogic = getToolbarActionsLogic({
             options,
@@ -104,6 +104,7 @@ export const useBusinessLogic = ({
         isCurrentItem,
         isFullscreenMode,
         items,
+        numberOfPages,
         options,
         itemViewerToolbarRef,
         loadingSpinnerOptions,
