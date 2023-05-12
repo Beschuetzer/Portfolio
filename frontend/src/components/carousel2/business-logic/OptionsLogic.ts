@@ -5,20 +5,20 @@ import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_
 import { CarouselOptions } from "../types";
 import { getIsVideo } from "../utils";
 
-export type ItemDisplayLocationLogicConstructor = {
+export type OptionsConstructor = {
     options: CarouselOptions;
     currentItem?: CarouselItemProps;
     numberOfPages?: number;
 }
 /*
-*Logic related to itemDisplayLocation option
+*Logic related to options that are not style-related
 */
-export class ItemDisplayLocationLogic {
+export class OptionsLogic {
     private options;
     private currentItem;
     private numberOfPages;
 
-    constructor(constructor: ItemDisplayLocationLogicConstructor) {
+    constructor(constructor: OptionsConstructor) {
         const { options, currentItem, numberOfPages } = constructor;
         this.options = options;
         this.currentItem = currentItem;

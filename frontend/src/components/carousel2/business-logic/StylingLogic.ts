@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import { CarouselElement, CarouselSection, CarouselOptions } from "../types";
-import { ItemDisplayLocationLogic } from "./ItemDisplayLocationLogic";
+import { OptionsLogic } from "./OptionsLogic";
 import { convertHexToRgba, getIsVideo } from "../utils";
 import {
     CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT,
@@ -33,7 +33,7 @@ export enum SpacingDirection {
 }
 export type StylingLogicConstructor = {
     isCurrentItem?: boolean;
-    itemDisplayLocationLogic?: ItemDisplayLocationLogic;
+    optionsLogic?: OptionsLogic;
     itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
     options: CarouselOptions | undefined;
     progressBarValue?: number;
@@ -48,7 +48,7 @@ export class StylingLogic {
     private DEFAULT_FONT_FAMILY: string = 'sans-serif';
     private currentItem;
     private isCurrentItem: boolean | undefined;
-    private itemDisplayLocationLogic: ItemDisplayLocationLogic;
+    private optionsLogic: OptionsLogic;
     private itemViewerToolbarRef;
     private isFullscreenMode: boolean;
     private loadingSpinnerOptions: LoadingSpinnerProps['options'];
@@ -62,7 +62,7 @@ export class StylingLogic {
             currentItem,
             isCurrentItem,
             isFullscreenMode,
-            itemDisplayLocationLogic,
+            optionsLogic,
             itemViewerToolbarRef,
             loadingSpinnerOptions,
             options,
@@ -79,7 +79,7 @@ export class StylingLogic {
         this.videoRef = videoRef;
         this.videoModalRef = videoModalRef;
         this.options = options || {};
-        this.itemDisplayLocationLogic = itemDisplayLocationLogic || new ItemDisplayLocationLogic({ options: this.options });
+        this.optionsLogic = optionsLogic || new OptionsLogic({ options: this.options });
     }
 
     //#region Public Getters
@@ -92,7 +92,7 @@ export class StylingLogic {
             cursor: "zoom-in",
         }as CSSProperties;
 
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: '100%',
             maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
             ...cursorStyle,
@@ -105,7 +105,7 @@ export class StylingLogic {
             paddingBottom: `${this.getPaddingAmount(SpacingDirection.bottom, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties;
 
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             background: this.options?.styling?.navigation?.background || this.options.styling?.container?.background || CAROUSEL_COLOR_ONE,
             borderRadius: 4,
             paddingRight: 0,
@@ -125,7 +125,7 @@ export class StylingLogic {
     get carouselItemStyle() {
         const customCurrenItemBorder = this.options.thumbnail?.currentItemBorder || '';
 
-        const widthStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        const widthStyle = !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
             height: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties : {
@@ -145,7 +145,7 @@ export class StylingLogic {
     }
 
     get carouselItemContainerStyle() {
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             height: this.isFullscreenMode ? '100vh' : this.carouselItemContainerHeight,
             position: "relative",
@@ -168,9 +168,9 @@ export class StylingLogic {
             overflow: 'hidden',
         } as CSSProperties;
 
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             marginTop: 0,
-            marginBottom: this.itemDisplayLocationLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : 0,
+            marginBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : 0,
             overflow: 'hidden',
             ...common,
         } as CSSProperties : {
@@ -267,7 +267,7 @@ export class StylingLogic {
     get carouselVideoModalStyle() {
         const { fontSize: customFontSize, background, textColor, widthInPercent } = this.options.styling?.videoModal || {};
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
-        const isDefault = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation;
+        const isDefault = this.optionsLogic.isDefaultItemDisplayLocation;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
         const videoModalHeight = this.videoModalRef?.current?.getBoundingClientRect().height || 0;
         const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : "75%";
@@ -315,7 +315,7 @@ export class StylingLogic {
             position: 'relative',
             display: 'flex',
         } as CSSProperties;
-        const layoutStyle = !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        const layoutStyle = !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             paddingTop: 0,
             paddingBottom: 0,
@@ -338,7 +338,7 @@ export class StylingLogic {
             objectPosition: this.currentItem?.video?.objectPosition || 'bottom',
         } as CSSProperties;
 
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             ...objectStyles,
         } as CSSProperties : {};
@@ -352,7 +352,7 @@ export class StylingLogic {
             width: shouldSpanWholeWidth ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})` : '100%',
         } as CSSProperties
 
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             ...common,
         } as CSSProperties : {
             ...common,
@@ -367,7 +367,7 @@ export class StylingLogic {
             height: '100%',
         } as CSSProperties
 
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             ...common,
         } as CSSProperties : {
             ...common,
@@ -375,13 +375,13 @@ export class StylingLogic {
     }
 
     get carouselVideoTimeTextStyle() {
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation && !this.isFullscreenMode ? {
+        return !this.optionsLogic.isDefaultItemDisplayLocation && !this.isFullscreenMode ? {
             minWidth: "33%",
         } as CSSProperties : {};
     }
 
     get isCurrentItemSelected() {
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation && !!this.isCurrentItem;
+        return !this.optionsLogic.isDefaultItemDisplayLocation && !!this.isCurrentItem;
     }
 
     get fontFamilyItemViewerStyle() {
@@ -415,10 +415,10 @@ export class StylingLogic {
             paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties;
 
-        return !this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? {
+        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             marginBottom: 0,
             paddingTop: CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
-            paddingBottom: this.itemDisplayLocationLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEM_SPACING_DEFAULT * 2 : 0,
+            paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEM_SPACING_DEFAULT * 2 : 0,
             ...common,
         } as CSSProperties : {
             ...common,
@@ -433,7 +433,7 @@ export class StylingLogic {
         const gradient = thumbnail?.descriptionOverlay?.background?.gradient;
         const color = solid?.color;
         const shouldHideOverlay = thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered === undefined || !!thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered;
-        const isDefaultItemDisplayLocation = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation;
+        const isDefaultItemDisplayLocation = this.optionsLogic.isDefaultItemDisplayLocation;
         const isDescriptionOverDisabledUndefined = thumbnail?.descriptionOverlay?.isDisabled === undefined;
         const shouldDisableDescriptionOverlayDefault = !isDefaultItemDisplayLocation;
         const shouldDisableDescriptionOverlay = isDescriptionOverDisabledUndefined ? shouldDisableDescriptionOverlayDefault : thumbnail?.descriptionOverlay?.isDisabled;
@@ -505,7 +505,7 @@ export class StylingLogic {
             position: "relative",
             width: '100%',
             paddingTop: `${isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
-            paddingBottom: this.itemDisplayLocationLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
+            paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
             paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT}`,
             paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT}`,
         } as React.CSSProperties : {};
@@ -589,25 +589,25 @@ export class StylingLogic {
 
         switch (direction) {
             case SpacingDirection.bottom:
-                defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.itemDisplayLocationLogic.isItemDisplayLocationBelow ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+                defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.optionsLogic.isItemDisplayLocationBelow ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = this.options.styling?.container?.padding?.bottom;
                 // specificElementPadding = this.options.styling?.[item]?.padding?.bottom;
                 customPadding = specificElementPadding || allPadding;
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.left:
-                defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+                defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = this.options.styling?.container?.padding?.left;
                 specificElementPadding = this.options.styling?.[item]?.padding?.left;
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.right:
-                defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+                defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = this.options.styling?.container?.padding?.right;
                 specificElementPadding = this.options.styling?.[item]?.padding?.right;
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.top:
-                defaultPadding = this.itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.itemDisplayLocationLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+                defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = this.options.styling?.container?.padding?.top;
                 // specificElementPadding = this.options.styling?.[item]?.padding?.top;
                 customPadding = specificElementPadding || allPadding

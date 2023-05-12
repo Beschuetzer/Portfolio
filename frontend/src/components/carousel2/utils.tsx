@@ -1,5 +1,5 @@
 import { replaceCharacters } from "../../helpers";
-import { ItemDisplayLocationLogic } from "./business-logic/ItemDisplayLocationLogic";
+import { OptionsLogic } from "./business-logic/OptionsLogic";
 import { StylingLogic } from "./business-logic/StylingLogic";
 import { CarouselItemProps } from "./components/CarouselItem";
 import { CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, CLASSNAME__ROOT, NUMBER_OF_PAGES_INITIAL, VIDEO_EXTENSIONS } from "./constants";
@@ -91,10 +91,10 @@ export function getIsVideoPlaying(videoRef: HTMLVideoElement | undefined) {
 export function getNumberOfItemsThatCanFit(
     htmlElement: HTMLElement,
     stylingLogic: StylingLogic,
-    itemDisplayLocationLogic: ItemDisplayLocationLogic
+    optionsLogic: OptionsLogic
 ) {
     const containerWidth = getContainerWidth(htmlElement, stylingLogic);
-    const itemSize = itemDisplayLocationLogic.carouselItemSize;
+    const itemSize = optionsLogic.carouselItemSize;
 
     return {
         containerWidth,
@@ -108,11 +108,11 @@ export function getNumberOfPages(
     carouselContainerElement: HTMLElement,
     itemsLength: number,
     stylingLogic: StylingLogic,
-    itemDisplayLocationLogic: ItemDisplayLocationLogic
+    optionsLogic: OptionsLogic
 ) {
     if (!carouselContainerElement) return NUMBER_OF_PAGES_INITIAL;
     const { numberOfWholeItemsThatCanFit: numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit(
-        carouselContainerElement, stylingLogic, itemDisplayLocationLogic
+        carouselContainerElement, stylingLogic, optionsLogic
     );
     const numberOfPages = Math.ceil(itemsLength / numberOfItemsThatCanFit);
     return numberOfPages;

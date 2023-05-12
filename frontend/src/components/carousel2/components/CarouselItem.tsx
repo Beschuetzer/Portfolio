@@ -36,14 +36,14 @@ export const CarouselItem = (props: CarouselItemProps) => {
     srcThumbnail,
   } = props;
   const { setCurrentItemIndex, currentItemIndex, setIsFullscreenMode } = useCarouselContext();
-  const { stylingLogic, itemDisplayLocationLogic } = useBusinessLogic({ isCurrentItem: index === currentItemIndex });
+  const { stylingLogic, optionsLogic } = useBusinessLogic({ isCurrentItem: index === currentItemIndex });
   //#endregion
 
   //#region Functions/Handlers
   async function onPress(e: MouseEvent) {
       setCurrentItemIndex(index as any);
 
-      if (itemDisplayLocationLogic.isDefaultItemDisplayLocation) {
+      if (optionsLogic.isDefaultItemDisplayLocation) {
         setIsFullscreenMode(true);
       }
   }

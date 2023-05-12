@@ -33,13 +33,13 @@ export const CarouselContent = ({
     const itemsContainerInnerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndexRef = useRef(CURRENT_ITEM_INDEX_INITIAL);
     const {
-        itemDisplayLocationLogic,
+        optionsLogic,
         stylingLogic,
     } = useBusinessLogic({});
     useOnSwipe({
         element: itemsContainerInnerRef.current as HTMLElement,
-        isDisabled: itemDisplayLocationLogic.isSwipingDisabled,
-        maxClickThreshold: itemDisplayLocationLogic.maxClickThreshold,
+        isDisabled: optionsLogic.isSwipingDisabled,
+        maxClickThreshold: optionsLogic.maxClickThreshold,
         swipeHandlers: {
             left: () => onArrowButtonClick(ArrowButtonDirection.previous),
             right: () => onArrowButtonClick(ArrowButtonDirection.next),
@@ -62,13 +62,13 @@ export const CarouselContent = ({
         //if there is itemSpacing is defined, the dynamic behavior is disabled
         if (options?.thumbnail?.itemSpacing) return `${options?.thumbnail?.itemSpacing}${CAROUSEL_SPACING_UNIT}`;
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
-            carouselContainerRef.current as HTMLElement, stylingLogic, itemDisplayLocationLogic
+            carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
         );
         const numberOfGaps = numberOfWholeItemsThatCanFit - 1;
         const remainingSpace = containerWidth - (numberOfWholeItemsThatCanFit * itemSize);
         const newInterItemSpacing = (remainingSpace / numberOfGaps);
         return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
-    }, [options?.thumbnail, carouselContainerRef, stylingLogic, itemDisplayLocationLogic]);
+    }, [options?.thumbnail, carouselContainerRef, stylingLogic, optionsLogic]);
 
     const onArrowButtonClick = useCallback((direction: ArrowButtonDirection) => {
         if (direction === ArrowButtonDirection.previous) {
@@ -80,13 +80,13 @@ export const CarouselContent = ({
 
     const setNumberOfDotsToDisplay = useCallback(() => {
         const newNumberOfPages = getNumberOfPages(
-            carouselContainerRef.current as HTMLElement, items.length, stylingLogic, itemDisplayLocationLogic
+            carouselContainerRef.current as HTMLElement, items.length, stylingLogic, optionsLogic
         );
         setNumberOfPages && setNumberOfPages(newNumberOfPages);
         if (currentPage >= newNumberOfPages) {
             setCurrentPage(newNumberOfPages - 1);
         }
-    }, [setNumberOfPages, currentPage, carouselContainerRef, items, stylingLogic, itemDisplayLocationLogic])
+    }, [setNumberOfPages, currentPage, carouselContainerRef, items, stylingLogic, optionsLogic])
     //#endregion
 
     //#region Side Fx
@@ -126,7 +126,7 @@ export const CarouselContent = ({
     //Tracking the itemViewer item and moving the corresponding carousel to match the page the item is on
     useEffect(() => {
         if (
-            (!isFullscreenMode && itemDisplayLocationLogic.isDefaultItemDisplayLocation) ||
+            (!isFullscreenMode && optionsLogic.isDefaultItemDisplayLocation) ||
             (options?.navigation?.autoChangePage === false) ||
             items?.length <= 0
         ) {
@@ -137,7 +137,7 @@ export const CarouselContent = ({
         }
 
         const { numberOfWholeItemsThatCanFit } = getNumberOfItemsThatCanFit(
-            carouselContainerRef.current as HTMLElement, stylingLogic, itemDisplayLocationLogic
+            carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
         );
         const currentNthItem = currentItemIndex + 1;
         const isNextItemClick = getIsNextItemClick();
@@ -170,7 +170,7 @@ export const CarouselContent = ({
         carouselContainerRef,
         currentPage,
         items,
-        itemDisplayLocationLogic,
+        optionsLogic,
         stylingLogic,
         numberOfPages,
         options?.navigation?.autoChangePage,
@@ -252,7 +252,7 @@ export const CarouselContent = ({
         options?.thumbnail?.itemSpacing,
         carouselContainerRef,
         stylingLogic,
-        itemDisplayLocationLogic,
+        optionsLogic,
         itemsContainerInnerRef,
         items,
         numberOfPages
@@ -260,7 +260,7 @@ export const CarouselContent = ({
     //#endregion
 
     //#region JSX
-    const ItemToRender = itemDisplayLocationLogic.itemToRender;
+    const ItemToRender = optionsLogic.itemToRender;
     const interItemSpacingStyle = {
         columnGap: interItemSpacing,
     } as CSSProperties
@@ -274,7 +274,7 @@ export const CarouselContent = ({
 
     return (
         <>
-            {itemDisplayLocationLogic.isItemDisplayLocationAbove ? (
+            {optionsLogic.isItemDisplayLocationAbove ? (
                 <ItemToRender {...currentItem} />
             ) : null}
             <div ref={itemsContainerOuterRef} style={stylingLogic.carouselItemsContainerStyle}>
@@ -307,7 +307,7 @@ export const CarouselContent = ({
                         onClick={() => onArrowButtonClick(ArrowButtonDirection.next)} />
                 </div>
             ) : null}
-            {itemDisplayLocationLogic.isItemDisplayLocationBelow ? (
+            {optionsLogic.isItemDisplayLocationBelow ? (
                 <ItemToRender {...currentItem} />
             ) : null}
         </>

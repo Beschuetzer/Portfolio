@@ -22,8 +22,8 @@ export const CarouselDots = ({
 }: CarouselDotsProps) => {
     //#region Init
     const { svgHref, style } = options?.styling?.elements?.dots || {};
-    const { itemDisplayLocationLogic, stylingLogic } = useBusinessLogic({});
-    const defaultColor = itemDisplayLocationLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;
+    const { optionsLogic, stylingLogic } = useBusinessLogic({});
+    const defaultColor = optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;
     const fillColor = stylingLogic.getButtonColor(CarouselElement.dots, defaultColor);
     //#endregion
 

@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { CarouselContextOutputProps, useCarouselContext } from "../context"
 import { StylingLogic, StylingLogicConstructor } from "../business-logic/StylingLogic";
 import { ToolbarLogic, ToolbarLogicConstructor } from "../business-logic/ToolbarLogic";
-import { ItemDisplayLocationLogic, ItemDisplayLocationLogicConstructor } from "../business-logic/ItemDisplayLocationLogic";
+import { OptionsLogic, OptionsConstructor } from "../business-logic/OptionsLogic";
 import { ToolbarActionsLogic, ToolbarActionsLogicConstructor } from "../business-logic/ToolbarActionsLogic";
 import { CarouselProps } from "../components/Carousel";
 
 export type UseBusinessLogicResponse = {
-    itemDisplayLocationLogic: ItemDisplayLocationLogic;
+    optionsLogic: OptionsLogic;
     stylingLogic: StylingLogic;
     toolbarLogic: ToolbarLogic;
     toolbarActionsLogic: ToolbarActionsLogic;
@@ -17,7 +17,7 @@ export type UseBusinessLogicInput = {
     options?: CarouselProps["options"];
 } & Partial<
     Omit<
-        ItemDisplayLocationLogicConstructor &
+        OptionsConstructor &
         StylingLogicConstructor &
         ToolbarActionsLogicConstructor &
         ToolbarLogicConstructor,
@@ -45,7 +45,7 @@ export const useBusinessLogic = ({
         options: optionsGlobal,
     } = useCarouselContext();
     const options = optionsInput || optionsGlobal;
-    const [itemDisplayLocationLogic, setItemDisplayLocationLogic] = useState<ItemDisplayLocationLogic>(getItemDisplayLogic({
+    const [optionsLogic, setOptionsLogic] = useState<OptionsLogic>(getOptionsLogic({
         options,
         currentItem,
         numberOfPages
@@ -62,7 +62,7 @@ export const useBusinessLogic = ({
         currentItem,
         isFullscreenMode,
         isCurrentItem,
-        itemDisplayLocationLogic,
+        optionsLogic,
         itemViewerToolbarRef,
         loadingSpinnerOptions,
         progressBarValue,
@@ -71,7 +71,7 @@ export const useBusinessLogic = ({
     }));
 
     useEffect(() => {
-        const newItemDisplayLocationLogic = getItemDisplayLogic({
+        const newOptionsLogic = getOptionsLogic({
             options,
             currentItem,
             numberOfPages,
@@ -86,7 +86,7 @@ export const useBusinessLogic = ({
             currentItem,
             isFullscreenMode,
             isCurrentItem,
-            itemDisplayLocationLogic: newItemDisplayLocationLogic,
+            optionsLogic: newOptionsLogic,
             itemViewerToolbarRef,
             loadingSpinnerOptions,
             progressBarValue,
@@ -94,7 +94,7 @@ export const useBusinessLogic = ({
             videoRef
         })
 
-        setItemDisplayLocationLogic(newItemDisplayLocationLogic);
+        setOptionsLogic(newOptionsLogic);
         setStylingLogic(newStylingLogic);
         setToolbarLogic(newToolbarLogic);
         setToolbarActionsLogic(newToolbarActionsLogic);
@@ -114,15 +114,15 @@ export const useBusinessLogic = ({
     ])
 
     return {
-        itemDisplayLocationLogic,
+        optionsLogic,
         stylingLogic,
         toolbarActionsLogic,
         toolbarLogic,
     }
 }
 
-function getItemDisplayLogic(constructor: ItemDisplayLocationLogicConstructor) {
-    return new ItemDisplayLocationLogic(constructor);
+function getOptionsLogic(constructor: OptionsConstructor) {
+    return new OptionsLogic(constructor);
 }
 function getStylingLogic(constructor: StylingLogicConstructor) {
     return new StylingLogic(constructor);

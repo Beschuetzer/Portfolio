@@ -10,7 +10,7 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps>((prop
     //todo: needs to be hidden until an item is clicked
     const { currentItem, isFullscreenMode } = useCarouselContext();
     const innerRef = useRef<HTMLElement>(null);
-    const { itemDisplayLocationLogic, stylingLogic } = useBusinessLogic({});
+    const { optionsLogic, stylingLogic } = useBusinessLogic({});
     const isVisible = Object.keys(currentItem || {})?.length > 0 && isFullscreenMode;
     useImperativeHandle(ref, () => innerRef.current);
     //#endregion
@@ -24,7 +24,7 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps>((prop
     //#region JSX
     const visibilityStyle = isVisible ? getClassname({ modifiedName: 'visible' }) : getClassname({ modifiedName: 'hidden' });
     const containerClassname = `${getClassname({ elementName: CLASSNAME__ITEM_VIEWER })} ${visibilityStyle}`;
-    const ItemToRender = itemDisplayLocationLogic.itemToRender;
+    const ItemToRender = optionsLogic.itemToRender;
 
     return (
         <div ref={innerRef as any} className={containerClassname} style={stylingLogic.carouselItemViewerStyle}>
