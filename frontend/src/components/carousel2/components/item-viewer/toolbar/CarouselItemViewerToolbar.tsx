@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
-import { getClassname, getFormattedTimeString, tryPlayingVideo } from '../../../utils'
+import { getClassname, getFormattedTimeString, stopPropagation, tryPlayingVideo } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from '../CarouselItemViewerProgressBar'
@@ -122,7 +122,8 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         }
     }
 
-    const handleAutoHide = useCallback(() => {
+    const handleAutoHide = useCallback((e?: MouseEvent) => {
+        stopPropagation(e);
         clearTimeout(shouldHideTimoutRef.current);
 
         if (!isFullscreenMode || options?.itemViewer?.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
@@ -267,7 +268,8 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         const boundDisplaySeekBackwardButton = handleDisplayPopup.bind(null, true, setShowSeekBackwardButtonPopup);
         const boundHideSeekBackwardButton = handleDisplayPopup.bind(null, false, setShowSeekBackwardButtonPopup);
 
-        function handleDisplayPopup(shouldShowPopup: boolean, showPopupSetter: React.Dispatch<React.SetStateAction<boolean>>) {
+        function handleDisplayPopup(shouldShowPopup: boolean, showPopupSetter: React.Dispatch<React.SetStateAction<boolean>>, e: MouseEvent) {
+            stopPropagation(e);
             showPopupSetter(shouldShowPopup);
         }
 

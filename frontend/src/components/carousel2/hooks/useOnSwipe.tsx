@@ -52,8 +52,6 @@ export const useOnSwipe = ({
         // console.log({ startCoordinate: startCoordinateRef.current, endCoordinate: endCoordinateRef.current, downSource: mouseDownSourceElement.current, upSource: mouseUpSourceElement.current });
         if (startCoordinateRef?.current && endCoordinateRef?.current) {
             const distanceMoved = getCoordinateDifference(startCoordinateRef.current, endCoordinateRef.current);
-            console.log({ distanceMoved, maxClickThreshold });
-
             if (distanceMoved > maxClickThreshold && mouseDownSourceElement.current === mouseUpSourceElement.current) {
                 stopPropagation(e);
             }

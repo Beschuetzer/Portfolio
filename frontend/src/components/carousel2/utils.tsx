@@ -187,9 +187,10 @@ export async function exitFullScreen(element: HTMLElement | null) {
     } catch (e) { }
 }
 
-export function stopPropagation(e: Event)
+export function stopPropagation(e?: Event)
 {
     let event = e || window.event;
+    if (!event) return;
 	event.cancelBubble = true;
 	if (event.stopPropagation) event.stopPropagation();
 }

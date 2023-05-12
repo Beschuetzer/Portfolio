@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { stopPropagation } from "../utils";
 
 export enum ModifierKey {
     ctrl = 'ctrl',
@@ -75,6 +76,7 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
         }
 
         function handleKeyDown(e: KeyboardEvent) {
+            stopPropagation(e);
             if (shouldSkip) return;
 
             let { key: keyPressed, altKey: isAltKeyPressed, ctrlKey: isCtrlKeyPressed, shiftKey: isShiftKeyPressed } = e;
@@ -106,5 +108,5 @@ export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skip
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         }
-    }, [keyboardShortcuts, skipCondition])
+    }, [keyboardShortcuts, shouldSkip, skipCondition])
 }
