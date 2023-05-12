@@ -1,7 +1,7 @@
 import { CarouselImage } from "../components/CarouselImage";
 import { CarouselItemProps } from "../components/CarouselItem";
 import { CarouselVideo } from "../components/CarouselVideo";
-import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT } from "../constants";
+import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, MAX_CLICK_THRESHOLD_DEFAULT } from "../constants";
 import { CarouselOptions } from "../types";
 import { getIsVideo } from "../utils";
 
@@ -52,5 +52,10 @@ export class ItemDisplayLocationLogic {
         if (!this.currentItem) return null as any;
         const isVideo = getIsVideo(this.currentItem);
         return isVideo ? CarouselVideo : CarouselImage;
+    }
+
+    get maxClickThreshold() {
+        const maxClickThreshold = this.options.navigation?.maxClickThreshold;
+        return maxClickThreshold !== undefined ? maxClickThreshold : MAX_CLICK_THRESHOLD_DEFAULT;
     }
 }

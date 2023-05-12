@@ -4,7 +4,7 @@ import { StylingLogic } from "./business-logic/StylingLogic";
 import { CarouselItemProps } from "./components/CarouselItem";
 import { CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, CLASSNAME__ROOT, NUMBER_OF_PAGES_INITIAL, VIDEO_EXTENSIONS } from "./constants";
 import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
-import { Point } from "./types";
+import { Coordinate, Point } from "./types";
 type GetClassname = {
     elementName?: string;
     modifiedName?: string;
@@ -40,6 +40,21 @@ export function getClassname({ elementName, modifiedName }: GetClassname) {
 
 export function getContainerWidth(htmlElement: HTMLElement, stylingLogic: StylingLogic) {
     return (htmlElement?.getBoundingClientRect()?.width || 0) - (stylingLogic.navigationContainerHorizontalPadding);
+}
+
+export function getCoordinateDifference(coordinateOne: Coordinate, coordinateTwo: Coordinate) {
+    if (
+        !coordinateOne ||
+        !coordinateTwo ||
+        coordinateOne.x === undefined ||
+        coordinateOne.y === undefined ||
+        coordinateTwo.x === undefined ||
+        coordinateTwo.y === undefined
+    ) return 0;
+
+    const xDiff = coordinateOne.x - coordinateTwo.x;
+    const yDiff = coordinateOne.y - coordinateTwo.y;
+    return Math.hypot(xDiff, yDiff);
 }
 
 export function getFormattedTimeString(seconds: number) {

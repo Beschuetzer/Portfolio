@@ -39,6 +39,7 @@ export const CarouselContent = ({
     useOnSwipe({
         element: itemsContainerInnerRef.current as HTMLElement,
         isDisabled: itemDisplayLocationLogic.isSwipingDisabled,
+        maxClickThreshold: itemDisplayLocationLogic.maxClickThreshold,
         swipeHandlers: {
             left: () => onArrowButtonClick(ArrowButtonDirection.previous),
             right: () => onArrowButtonClick(ArrowButtonDirection.next),

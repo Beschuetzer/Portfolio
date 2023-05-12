@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useRef } from "react"
-import { stopPropagation } from "../utils";
+import { getCoordinateDifference, stopPropagation } from "../utils";
+import { CarouselNavigationOptions, Coordinate } from "../types";
 
 export type StylingCase = 'start' | 'end';
-type Coordinate = {
-    x: number;
-    y: number;
-}
+
 enum SwipeDirection {
     bottom = 'bottom',
     left = 'left',
@@ -16,9 +14,13 @@ export type UseOnSwipeHandlers = {
     [direction in SwipeDirection]?: () => void;
 } & {
     /*
-    *The minimum number of pixels in the given direction that must be made to register a valid event
+    *see types.ts for description on how this works
     */
-    minThreshold?: number;
+    maxClickThreshold?: number;
+    /*
+    *The minimum number of pixels in the given direction that must be made to register a valid swipe event
+    */
+    minSwipeThreshold?: number;
 }
 
 export type UseOnSwipeProps = {
@@ -26,32 +28,40 @@ export type UseOnSwipeProps = {
     isDisabled?: boolean;
     handleStyleChanges: (stylingCase: StylingCase, element: HTMLElement) => void;
     swipeHandlers?: UseOnSwipeHandlers;
-}
+} & Partial<Pick<CarouselNavigationOptions, 'maxClickThreshold'>>
 
 //positive horizontal diff means right and positive vertical diff means down
 export const useOnSwipe = ({
     element,
     isDisabled = false,
+    maxClickThreshold = 0,
     swipeHandlers = {},
     handleStyleChanges,
 }: UseOnSwipeProps) => {
     //todo: need to add handlers to swiping on a phone too?
     const startCoordinateRef = useRef<Coordinate>();
+    const endCoordinateRef = useRef<Coordinate>();
     const mouseDownSourceElement = useRef<HTMLElement>();
     const mouseUpSourceElement = useRef<HTMLElement>();
 
     const handleClick = useCallback((e: Event) => {
-        console.log({handleClickIsDisabled: isDisabled});
-    }, [isDisabled])
+        //this is needed to be able to use handleClickStop
+    }, [])
 
     const handleClickStop = useCallback((e: Event) => {
-        console.log({handleClickStopIsDisabled: isDisabled});
-        
-        if (!isDisabled) {
-            stopPropagation(e);
+        // console.log({ startCoordinate: startCoordinateRef.current, endCoordinate: endCoordinateRef.current, downSource: mouseDownSourceElement.current, upSource: mouseUpSourceElement.current });
+        if (startCoordinateRef?.current && endCoordinateRef?.current) {
+            const distanceMoved = getCoordinateDifference(startCoordinateRef.current, endCoordinateRef.current);
+            console.log({ distanceMoved, maxClickThreshold });
+
+            if (distanceMoved > maxClickThreshold && mouseDownSourceElement.current === mouseUpSourceElement.current) {
+                stopPropagation(e);
+            }
         }
+
+        startCoordinateRef.current = undefined;
         window.removeEventListener('click', handleClickStop, true);
-    }, [isDisabled])
+    }, [maxClickThreshold])
 
     const handleMouseDown = useCallback((e: MouseEvent) => {
         stopPropagation(e)
@@ -61,29 +71,20 @@ export const useOnSwipe = ({
         if (mouseDownSourceElement) {
             mouseDownSourceElement.current = e.target as HTMLElement;
         }
-
-        startCoordinateRef.current = {
-            x: e.x || e.clientX || e.pageX,
-            y: e.y || e.clientY || e.pageY,
-        }
+        setCoordinate(startCoordinateRef, e);
     }, [element, handleStyleChanges, isDisabled])
 
-    const handleMouseUp = useCallback((e: MouseEvent) => {
-        stopPropagation(e)
-        if (!startCoordinateRef.current || isDisabled) return;
-        handleStyleChanges && handleStyleChanges('end', element);
-        window.addEventListener('click', handleClickStop, true);
-
-        if (mouseUpSourceElement) {
-            mouseUpSourceElement.current = e.target as HTMLElement;
-        }
-        if (mouseDownSourceElement.current === mouseUpSourceElement.current) return;
-
-
+    /*
+    *Determines whether the swipe actually occurs and which callback to trigger
+    */
+    const handleSwiping = useCallback((e: MouseEvent) => {
         const endX = e.x || e.clientX || e.pageX;
         const endY = e.y || e.clientY || e.pageY;
-        const { x: startX, y: startY } = startCoordinateRef.current
-        startCoordinateRef.current = undefined;
+        const { x: startX, y: startY } = startCoordinateRef.current as Coordinate;
+        const distanceMoved = getCoordinateDifference(startCoordinateRef.current as Coordinate, endCoordinateRef.current as Coordinate);
+
+        //no need to do anything if event is being registered as a click rather than swipe
+        if (distanceMoved <= maxClickThreshold) return;
 
         const verticalDiff = endY - startY;
         const horizontalDiff = endX - startX;
@@ -92,27 +93,40 @@ export const useOnSwipe = ({
         const absoluteDiff = Math.abs(verticalDiffAbsolute - horizontalDiffAbsolute);
         const smallerDiff = Math.min(verticalDiffAbsolute, horizontalDiffAbsolute);
         const isAmbiguous = absoluteDiff < smallerDiff;
-        // console.log({ verticalDiffAbsolute, horizontalDiffAbsolute, absoluteDiff, smallerDiff, isAmbiguous });
 
+        // console.log({ verticalDiffAbsolute, horizontalDiffAbsolute, absoluteDiff, smallerDiff, isAmbiguous });
         if (isAmbiguous) return;
         if (horizontalDiffAbsolute !== smallerDiff) {
             //is horizontal
-            if (swipeHandlers.minThreshold && swipeHandlers.minThreshold > horizontalDiffAbsolute) return;
+            if (swipeHandlers.minSwipeThreshold && swipeHandlers.minSwipeThreshold > horizontalDiffAbsolute) return;
             if (horizontalDiff > 0) {
                 swipeHandlers.left && swipeHandlers.left();
             } else {
                 swipeHandlers.right && swipeHandlers.right();
             }
         } else {
-            if (swipeHandlers.minThreshold && swipeHandlers.minThreshold > verticalDiffAbsolute) return;
+            if (swipeHandlers.minSwipeThreshold && swipeHandlers.minSwipeThreshold > verticalDiffAbsolute) return;
             if (verticalDiff > 0) {
                 swipeHandlers.top && swipeHandlers.top();
             } else {
                 swipeHandlers.bottom && swipeHandlers.bottom();
             }
         }
-    }, [element, handleClickStop, handleStyleChanges, isDisabled, swipeHandlers])
+    }, [maxClickThreshold, swipeHandlers])
 
+    const handleMouseUp = useCallback((e: MouseEvent) => {
+        stopPropagation(e)
+        if (!startCoordinateRef.current || isDisabled) return;
+        setCoordinate(endCoordinateRef, e);
+        handleStyleChanges && handleStyleChanges('end', element);
+        window.addEventListener('click', handleClickStop, true);
+
+        if (mouseUpSourceElement) {
+            mouseUpSourceElement.current = e.target as HTMLElement;
+        }
+
+        handleSwiping(e);
+    }, [element, handleClickStop, handleStyleChanges, handleSwiping, isDisabled])
 
     useEffect(() => {
         if (!element) return;
@@ -125,5 +139,13 @@ export const useOnSwipe = ({
             element.removeEventListener('mousedown', handleMouseDown);
             window.removeEventListener('mouseup', handleMouseUp);
         }
-    }, [element, handleClickStop, handleMouseDown, handleMouseUp, swipeHandlers])
+    }, [element, handleClick, handleClickStop, handleMouseDown, handleMouseUp, swipeHandlers])
+}
+
+
+function setCoordinate(ref: React.MutableRefObject<Coordinate | undefined>, e: MouseEvent) {
+    ref.current = {
+        x: e.x || e.clientX || e.pageX,
+        y: e.y || e.clientY || e.pageY,
+    }
 }

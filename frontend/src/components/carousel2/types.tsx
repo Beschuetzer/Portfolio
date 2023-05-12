@@ -162,7 +162,7 @@ export type CarouselNavigationOptions = {
     autoChangePage?: boolean;
     /*
     *If true, then grabbing a thumbnail and swiping will not change the page.  Default is false.
-    *Swiping only occurs if mouseup and mousedown targets are different
+    *Swiping only occurs if mouseup and mousedown coordinate distances are greater than `maxClickThreshold` 
     */
     disableSwiping?: boolean;
     /*
@@ -172,7 +172,14 @@ export type CarouselNavigationOptions = {
     *Default is false
     */
     hideArrowsAtFinalPage?: boolean;
-    
+    /*
+    *The max number of pixels that can be moved between mousedown and mouseup to still register a 'click' event
+    *This is used to prevent opening of an item when mousedown and mouseup targets are the same
+    *Higher values mean the user can move the cursor more and still open the item
+    *0 would mean if the user moved the cursor at all between mouseup and mousedown then the item would not open
+    *Default is 15 when swiping is enabled to allow for slight movement (swiping is disabled if only 1 page or `disableSwiping` is false)
+    */
+    maxClickThreshold?: number;
 }
 
 export type CarouselNavigationProps = {
@@ -402,6 +409,10 @@ export type VideoTimeStrings = {
 //#endregion
 
 //#region Helpers
+export type Coordinate = {
+    x: number;
+    y: number;
+}
 export type Exclusive<
     T extends Record<PropertyKey, unknown>,
     U extends Record<PropertyKey, unknown>

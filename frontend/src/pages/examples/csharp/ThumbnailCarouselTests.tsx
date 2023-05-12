@@ -522,6 +522,13 @@ const navigationNoSwiping = (
 		}
 	}} />
 );
+const navigationZeroMaxClickThreshold = (
+	<Carousel items={items} options={{
+		navigation: {
+			maxClickThreshold: 0,
+		}
+	}} />
+);
 const navigationHideArrowsAtFinalPage = (
 	<Carousel items={items} options={{
 		navigation: {
@@ -1572,6 +1579,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Current Page does not follow last viewed item in item viewer (full-screen)",
 				jsx: navigationNoTracking
+			},
+			{
+				label: "0 Max Click Threshold",
+				jsx: navigationZeroMaxClickThreshold
 			},
 			{
 				label: "Swiping a Thumbnail Disabled",
