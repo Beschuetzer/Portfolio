@@ -43,6 +43,12 @@ export const CarouselContent = ({
         swipeHandlers: {
             left: () => onArrowButtonClick(ArrowButtonDirection.previous),
             right: () => onArrowButtonClick(ArrowButtonDirection.next),
+            onMoveWhenGrabbing(xDiff, yDiff) {
+                setTranslationAmount((current) => {
+                    const offset = xDiff;
+                    return current - offset;
+                });
+            },
         },
         handleStyleChanges: (styleCase: StylingCase, element: HTMLElement) => {
             if (!element || numberOfPages <= 1) return;
@@ -265,7 +271,7 @@ export const CarouselContent = ({
         columnGap: interItemSpacing,
     } as CSSProperties
     const translationStyle = {
-        transform: `translateX(-${translationAmount}${CAROUSEL_SPACING_UNIT})`,
+        transform: `translateX(${translationAmount < 0 ? '' : '-'}${Math.abs(translationAmount)}${CAROUSEL_SPACING_UNIT})`,
     } as CSSProperties
     const containerStyle = {
         ...interItemSpacingStyle,

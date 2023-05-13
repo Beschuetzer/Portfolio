@@ -42,19 +42,27 @@ export function getContainerWidth(htmlElement: HTMLElement, stylingLogic: Stylin
     return (htmlElement?.getBoundingClientRect()?.width || 0) - (stylingLogic.navigationContainerHorizontalPadding);
 }
 
-export function getCoordinateDifference(coordinateOne: Coordinate, coordinateTwo: Coordinate) {
+export function getCoordinateDifference(mostRecentCoordinate: Coordinate, previousCoordinate: Coordinate) {
     if (
-        !coordinateOne ||
-        !coordinateTwo ||
-        coordinateOne.x === undefined ||
-        coordinateOne.y === undefined ||
-        coordinateTwo.x === undefined ||
-        coordinateTwo.y === undefined
-    ) return 0;
+        !mostRecentCoordinate ||
+        !previousCoordinate ||
+        mostRecentCoordinate.x === undefined ||
+        mostRecentCoordinate.y === undefined ||
+        previousCoordinate.x === undefined ||
+        previousCoordinate.y === undefined
+    ) return {
+        distance: 0,
+        xDiff: 0,
+        yDiff: 0,
+    }
 
-    const xDiff = coordinateOne.x - coordinateTwo.x;
-    const yDiff = coordinateOne.y - coordinateTwo.y;
-    return Math.hypot(xDiff, yDiff);
+    const xDiff = mostRecentCoordinate.x - previousCoordinate.x;
+    const yDiff = mostRecentCoordinate.y - previousCoordinate.y;
+    return {
+        distance: Math.hypot(xDiff, yDiff),
+        xDiff,
+        yDiff,
+    }
 }
 
 export function getFormattedTimeString(seconds: number) {

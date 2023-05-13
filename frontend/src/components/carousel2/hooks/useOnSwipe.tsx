@@ -21,6 +21,12 @@ export type UseOnSwipeHandlers = {
     *The minimum number of pixels in the given direction that must be made to register a valid swipe event
     */
     minSwipeThreshold?: number;
+    /*
+    *This event is triggered whenever the mouse moves after the initial mousedown event.  
+    *Positive xDiff means the cursor is to the right of where the mousedown event occured
+    *Positive yDiff means the cursor is below where the mousedown event occured
+    */
+    onMoveWhenGrabbing?: (xDiff: number, yDiff: number) => void;
 }
 
 export type UseOnSwipeProps = {
@@ -30,6 +36,7 @@ export type UseOnSwipeProps = {
     swipeHandlers?: UseOnSwipeHandlers;
 } & Partial<Pick<CarouselNavigationOptions, 'maxClickThreshold'>>
 
+const ON_MOVE_WHEN_GRABBING_SHORT_CIRCUIT_AMOUNT = 10;
 //positive horizontal diff means right and positive vertical diff means down
 export const useOnSwipe = ({
     element,
@@ -40,6 +47,7 @@ export const useOnSwipe = ({
 }: UseOnSwipeProps) => {
     //todo: need to add handlers to swiping on a phone too?
     const lastCoordinateRef = useRef<Coordinate>();
+    const currentCoordinateRef = useRef<Coordinate>();
     const startCoordinateRef = useRef<Coordinate>();
     const endCoordinateRef = useRef<Coordinate>();
     const mouseDownSourceElement = useRef<HTMLElement>();
@@ -50,14 +58,20 @@ export const useOnSwipe = ({
         endCoordinateRef.current = undefined;
         mouseDownSourceElement.current = undefined;
         mouseUpSourceElement.current = undefined;
+        lastCoordinateRef.current = undefined;
     }, []);
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
-        
         if (mouseDownSourceElement.current) {
-            console.log("dragging");
+            setCoordinate(currentCoordinateRef, e);
+            if (lastCoordinateRef.current) {
+                const { xDiff, yDiff } = getCoordinateDifference(currentCoordinateRef.current as Coordinate, lastCoordinateRef.current as Coordinate);
+                if (Math.abs(xDiff) > ON_MOVE_WHEN_GRABBING_SHORT_CIRCUIT_AMOUNT || Math.abs(yDiff) > ON_MOVE_WHEN_GRABBING_SHORT_CIRCUIT_AMOUNT) return;
+                swipeHandlers.onMoveWhenGrabbing && swipeHandlers.onMoveWhenGrabbing(xDiff, yDiff);
+            }
+            setCoordinate(lastCoordinateRef, e);
         }
-    }, [])
+    }, [swipeHandlers])
 
     const handleClick = useCallback((e: Event) => {
         //this is needed to be able to use handleClickStop
@@ -66,14 +80,14 @@ export const useOnSwipe = ({
     const handleClickStop = useCallback((e: Event) => {
         // console.log({ startCoordinate: startCoordinateRef.current, endCoordinate: endCoordinateRef.current, downSource: mouseDownSourceElement.current, upSource: mouseUpSourceElement.current });
         if (startCoordinateRef?.current && endCoordinateRef?.current) {
-            const distanceMoved = getCoordinateDifference(startCoordinateRef.current, endCoordinateRef.current);
-            if (distanceMoved > maxClickThreshold && mouseDownSourceElement.current === mouseUpSourceElement.current) {
+            const { distance } = getCoordinateDifference(startCoordinateRef.current, endCoordinateRef.current);
+            if (distance > maxClickThreshold && mouseDownSourceElement.current === mouseUpSourceElement.current) {
                 stopPropagation(e);
             }
         }
 
-       reset();
-       window.removeEventListener('click', handleClickStop, true);
+        reset();
+        window.removeEventListener('click', handleClickStop, true);
     }, [maxClickThreshold, reset])
 
     const handleMouseDown = useCallback((e: MouseEvent) => {
@@ -94,10 +108,10 @@ export const useOnSwipe = ({
         const endX = e.x || e.clientX || e.pageX;
         const endY = e.y || e.clientY || e.pageY;
         const { x: startX, y: startY } = startCoordinateRef.current as Coordinate;
-        const distanceMoved = getCoordinateDifference(startCoordinateRef.current as Coordinate, endCoordinateRef.current as Coordinate);
+        const { distance } = getCoordinateDifference(startCoordinateRef.current as Coordinate, endCoordinateRef.current as Coordinate);
 
         //no need to do anything if event is being registered as a click rather than swipe
-        if (distanceMoved <= maxClickThreshold) return;
+        if (distance <= maxClickThreshold) return;
 
         const verticalDiff = endY - startY;
         const horizontalDiff = endX - startX;
@@ -154,7 +168,7 @@ export const useOnSwipe = ({
             window.removeEventListener('mouseup', handleMouseUp);
             window.removeEventListener('mousemove', handleMouseMove);
         }
-    }, [element, handleClick, handleClickStop, handleMouseDown, handleMouseUp, swipeHandlers])
+    }, [element, handleClick, handleClickStop, handleMouseDown, handleMouseMove, handleMouseUp, swipeHandlers])
 }
 
 
