@@ -529,10 +529,18 @@ const navigationZeroMaxClickThreshold = (
 		}
 	}} />
 );
+const navigationZeroMaxClickHideArrows = (
+	<Carousel items={items} options={{
+		navigation: {
+			disableWrapping: true,
+			maxClickThreshold: 0,
+		}
+	}} />
+);
 const navigationHideArrowsAtFinalPage = (
 	<Carousel items={items} options={{
 		navigation: {
-			hideArrowsAtFinalPage: true,
+			disableWrapping: true,
 		}
 	}} />
 );
@@ -1583,6 +1591,10 @@ const SECTIONS: Sections = [
 			{
 				label: "0 Max Click Threshold",
 				jsx: navigationZeroMaxClickThreshold
+			},
+			{
+				label: "0 Max Click Threshold, Hide arrows",
+				jsx: navigationZeroMaxClickHideArrows
 			},
 			{
 				label: "Swiping a Thumbnail Disabled",

@@ -47,6 +47,10 @@ export class OptionsLogic {
     get isSwipingDisabled() {
         return this.numberOfPages <= 1 ? true : this.options?.navigation?.disableSwiping || false;
     }
+    
+    get isWrappingDisabled() {
+        return !!this.options.navigation?.disableWrapping;
+    }
 
     get itemToRender() {
         if (!this.currentItem) return null as any;

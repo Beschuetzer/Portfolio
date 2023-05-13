@@ -166,12 +166,12 @@ export type CarouselNavigationOptions = {
     */
     disableSwiping?: boolean;
     /*
-    *When true, the right arrow button will be hidden when when on the last page and the left arrow button will be hidden when on the first page.  
+    *When true, the carousel can not go from beginning to end directly.
     *When false, the right arrow button navigates to the first page when the currentPage is the final page
     *and the left arrow button navigates to the last page when the currentPage is the first page.
     *Default is false
     */
-    hideArrowsAtFinalPage?: boolean;
+    disableWrapping?: boolean;
     /*
     *The max number of pixels that can be moved between mousedown and mouseup to still register a 'click' event
     *This is used to prevent opening of an item when mousedown and mouseup targets are the same

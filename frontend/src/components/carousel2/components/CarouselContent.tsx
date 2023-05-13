@@ -41,11 +41,25 @@ export const CarouselContent = ({
         isDisabled: optionsLogic.isSwipingDisabled,
         maxClickThreshold: optionsLogic.maxClickThreshold,
         swipeHandlers: {
-            left: () => onArrowButtonClick(ArrowButtonDirection.previous),
-            right: () => onArrowButtonClick(ArrowButtonDirection.next),
+            left: () => {
+                if (optionsLogic.isWrappingDisabled && currentPage === 0) {
+                    return;
+                };
+                onArrowButtonClick(ArrowButtonDirection.previous)
+            },
+            right: () => {
+                if (optionsLogic.isWrappingDisabled && currentPage === (numberOfPages - 1)) {
+                    return;
+                };
+                onArrowButtonClick(ArrowButtonDirection.next)
+            },
             onMoveWhenGrabbing(xDiff, yDiff) {
                 setTranslationAmount((current) => {
                     const offset = xDiff;
+                    console.log({current, offset, currentPage, numberOfPages, isDisabled: optionsLogic.isWrappingDisabled});
+                    
+                    if (optionsLogic.isWrappingDisabled && current <= 0 && offset >= 0) return current;
+                    if (optionsLogic.isWrappingDisabled && currentPage === (numberOfPages - 1) && offset <= 0) return current;
                     return current - offset;
                 });
             },

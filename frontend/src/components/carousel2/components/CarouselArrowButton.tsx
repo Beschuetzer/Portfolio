@@ -20,12 +20,12 @@ export const CarouselArrowButton = ({
     customButton = options?.styling?.elements?.arrowLeft || {}
   }
   const { style, svgHref } = customButton;
-  const shouldHide = !!options?.navigation?.hideArrowsAtFinalPage;
-  const isHidden = direction === ArrowButtonDirection.previous ? currentPage === 0 : currentPage === numberOfDots - 1;
   const {
     optionsLogic,
     stylingLogic,
   } = useBusinessLogic({});
+  const isHidden = direction === ArrowButtonDirection.previous ? currentPage === 0 : currentPage === numberOfDots - 1;
+  const shouldHide = optionsLogic.isWrappingDisabled;
   const defaultColor = optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;
   const fillColor = stylingLogic.getButtonColor(direction === ArrowButtonDirection.previous ? CarouselElement.arrowLeft : CarouselElement.arrowRight, defaultColor);
 
