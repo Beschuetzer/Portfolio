@@ -160,6 +160,7 @@
             position: relative;
 
             & > div:nth-child(1) {
+                z-index: $zIndexShortcutPopup;
                 padding: 4px 8px;
                 position: absolute;
                 top: -127.5%;
@@ -298,7 +299,7 @@
                 height: $itemViewerProgressHeight;
                 appearance: none;
                 border: none;
-                z-index: 100000000;
+                z-index: $zIndexProgressBar;
                 background-color: $itemViewerShortcutPopupColor;
 
                 & > div {

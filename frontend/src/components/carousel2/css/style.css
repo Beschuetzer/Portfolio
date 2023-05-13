@@ -659,7 +659,7 @@
   background-color: #1d0e0b;
   opacity: 0;
   pointer-events: none;
-  z-index: 1000000000000;
+  z-index: 1000;
   transform-origin: center;
 }
 .thumbnail-carousel-button--video-state-indicator * {
@@ -850,6 +850,7 @@
   position: relative;
 }
 .thumbnail-carousel__item-viewer-shortcut-indicator > div:nth-child(1) {
+  z-index: 10000;
   padding: 4px 8px;
   position: absolute;
   top: -127.5%;
@@ -977,7 +978,7 @@
   height: 5px;
   appearance: none;
   border: none;
-  z-index: 100000000;
+  z-index: 100;
   background-color: #9b9b9b;
 }
 .thumbnail-carousel__item-viewer-toolbar-progress > div {

@@ -73,6 +73,8 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const [showPlayButtonPopup, setShowPlayButtonPopup] = useState(false);
     const [showSeekForwardButtonPopup, setShowSeekForwardButtonPopup] = useState(false);
     const [showSeekBackwardButtonPopup, setShowSeekBackwardButtonPopup] = useState(false);
+    const [showNextButtonPopup, setShowNextButtonPopup] = useState(false);
+    const [showPreviousButtonPopup, setShowPreviousButtonPopup] = useState(false);
 
     const { stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic({});
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
@@ -273,16 +275,20 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             showPopupSetter(shouldShowPopup);
         }
 
-        function handleMouseEnterNextButton() {
+        function handleMouseEnterNextButton(e: MouseEvent) {
             setPreviewDirection(ToolbarPreviewDirection.next);
+            handleDisplayPopup(true, setShowNextButtonPopup, e);
         }
 
-        function handleMouseEnterPreviousButton() {
+        function handleMouseEnterPreviousButton(e: MouseEvent) {
             setPreviewDirection(ToolbarPreviewDirection.previous);
+            handleDisplayPopup(true, setShowPreviousButtonPopup, e);
         }
 
-        function handleMouseLeaveButton() {
+        function handleMouseLeaveButton(e: MouseEvent) {
             setPreviewDirection(ToolbarPreviewDirection.none);
+            handleDisplayPopup(false, setShowNextButtonPopup, e);
+            handleDisplayPopup(false, setShowPreviousButtonPopup, e);
         }
 
         if (closeButtonRef?.current) {
@@ -432,16 +438,18 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                 <div className={CLASSNAME_TOOLBAR_RIGHT}>
                     <CarouselItemViewerPreviousButton
                         actionName='Previous'
+                        isShortcutVisible={!isFullscreenMode && showPreviousButtonPopup}
                         onClick={onPreviousItemClickLocal}
                         options={options}
                         ref={previousButtonRef}
                     />
                     <CarouselItemViewerNextButton
                         actionName='Next'
+                        isShortcutVisible={!isFullscreenMode && showNextButtonPopup}
                         onClick={onNextItemClickLocal}
                         options={options}
-                        ref={nextButtonRef}
                         position='right'
+                        ref={nextButtonRef}
                     />
                     <CarouselItemViewerFullscreenButton
                         actionName='Fullscreen'

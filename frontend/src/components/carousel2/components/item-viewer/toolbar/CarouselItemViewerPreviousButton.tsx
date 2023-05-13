@@ -9,6 +9,7 @@ import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 type CarouselItemViewerPreviousButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemViewerPreviousButtonProps>(({
     actionName = '',
+    isShortcutVisible,
     onClick = () => null,
     options = {},
     position = 'center',
@@ -20,7 +21,7 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
     const fillColor = stylingLogic.getButtonColor(CarouselElement.previousButton);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={previousItemAction.keys} position={position}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={previousItemAction.keys} position={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} useElementStyle={style} fillColor={fillColor} /> :
                 <PreviousButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} childStyle={style} fillColor={fillColor} />}
