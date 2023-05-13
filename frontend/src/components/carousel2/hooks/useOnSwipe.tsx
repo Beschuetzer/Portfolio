@@ -39,10 +39,25 @@ export const useOnSwipe = ({
     handleStyleChanges,
 }: UseOnSwipeProps) => {
     //todo: need to add handlers to swiping on a phone too?
+    const lastCoordinateRef = useRef<Coordinate>();
     const startCoordinateRef = useRef<Coordinate>();
     const endCoordinateRef = useRef<Coordinate>();
     const mouseDownSourceElement = useRef<HTMLElement>();
     const mouseUpSourceElement = useRef<HTMLElement>();
+
+    const reset = useCallback(() => {
+        startCoordinateRef.current = undefined;
+        endCoordinateRef.current = undefined;
+        mouseDownSourceElement.current = undefined;
+        mouseUpSourceElement.current = undefined;
+    }, []);
+
+    const handleMouseMove = useCallback((e: MouseEvent) => {
+        
+        if (mouseDownSourceElement.current) {
+            console.log("dragging");
+        }
+    }, [])
 
     const handleClick = useCallback((e: Event) => {
         //this is needed to be able to use handleClickStop
@@ -57,9 +72,9 @@ export const useOnSwipe = ({
             }
         }
 
-        startCoordinateRef.current = undefined;
-        window.removeEventListener('click', handleClickStop, true);
-    }, [maxClickThreshold])
+       reset();
+       window.removeEventListener('click', handleClickStop, true);
+    }, [maxClickThreshold, reset])
 
     const handleMouseDown = useCallback((e: MouseEvent) => {
         stopPropagation(e)
@@ -131,11 +146,13 @@ export const useOnSwipe = ({
         element.addEventListener('click', handleClick);
         element.addEventListener('mousedown', handleMouseDown);
         window.addEventListener('mouseup', handleMouseUp);
+        window.addEventListener('mousemove', handleMouseMove);
 
         return () => {
             element.removeEventListener('click', handleClick);
             element.removeEventListener('mousedown', handleMouseDown);
             window.removeEventListener('mouseup', handleMouseUp);
+            window.removeEventListener('mousemove', handleMouseMove);
         }
     }, [element, handleClick, handleClickStop, handleMouseDown, handleMouseUp, swipeHandlers])
 }
