@@ -1,6 +1,4 @@
 Carousel rework
-
-  -make grabbing change the translation amount dynamically and call passed in func if another function returns true (e.g. if the amount moved is more than half the width of the container then call setCurrentPage)
   -default case can close images by clicking on them but no zoom-out icon (need to pick one and unify experience)
   -add swipe to switch items when in full-screen mode?
   -add volume button for videos?

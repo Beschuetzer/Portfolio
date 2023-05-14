@@ -1577,7 +1577,7 @@ const SECTIONS: Sections = [
 		"Navigation Options",
 		[
 			{
-				label: "Hide Arrows on First and Last Page",
+				label: "No Wrapping",
 				jsx: navigationHideArrowsAtFinalPage
 			},
 			{
@@ -1593,7 +1593,7 @@ const SECTIONS: Sections = [
 				jsx: navigationZeroMaxClickThreshold
 			},
 			{
-				label: "0 Max Click Threshold, Hide arrows",
+				label: "0 Max Click Threshold No Wrapping",
 				jsx: navigationZeroMaxClickHideArrows
 			},
 			{
