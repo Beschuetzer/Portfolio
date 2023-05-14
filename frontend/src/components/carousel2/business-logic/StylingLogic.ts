@@ -96,7 +96,9 @@ export class StylingLogic {
             width: '100%',
             maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
             ...cursorStyle,
-        } as CSSProperties : {} as CSSProperties;
+        } as CSSProperties : {
+            ...cursorStyle,
+        } as CSSProperties;
     }
 
     get carouselStyle() {

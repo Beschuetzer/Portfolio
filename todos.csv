@@ -1,5 +1,4 @@
 Carousel rework
-  -default case can close images by clicking on them but no zoom-out icon (need to pick one and unify experience)
   -add swipe to switch items when in full-screen mode?
   -add volume button for videos?
   -how to intelligently add themes or default colors?
