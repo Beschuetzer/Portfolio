@@ -12,11 +12,12 @@ import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackBu
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
 import { CarouselItemViewerToolbarPreview, ToolbarPreviewDirection } from './CarouselItemViewerToolbarPreview'
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
-import { AUTO_HIDE_DISABLED_VALUE, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH, SEEK_AMOUNT_DEFAULT } from '../../../constants'
+import { AUTO_HIDE_DISABLED_VALUE, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, CLASSNAME__GRABBING, CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH, SEEK_AMOUNT_DEFAULT } from '../../../constants'
 import { useUpdateTimeString } from '../../../hooks/useUpdateTimeStrings'
 import { CarouselItemViewerFullscreenButton } from './CarouselItemViewerFullScreenButton'
 import { useCarouselContext } from '../../../context'
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic'
+import { useOnSwipe, StylingCase } from '../../../hooks/useOnSwipe'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -48,7 +49,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     videoRef,
 }, ref) => {
     //#region Init
-    const { options, items, currentItemIndex, setCurrentItemIndex, currentItem, isFullscreenMode } = useCarouselContext();
+    const { options, items, currentItemIndex, setCurrentItemIndex, currentItem, isFullscreenMode, currentPage } = useCarouselContext();
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
     const nextButtonRef = useRef<any>(null);
@@ -76,7 +77,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const [showNextButtonPopup, setShowNextButtonPopup] = useState(false);
     const [showPreviousButtonPopup, setShowPreviousButtonPopup] = useState(false);
 
-    const { stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic({});
+    const { optionsLogic, stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic({});
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
 
     useKeyboardShortcuts([
@@ -105,6 +106,30 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             action: () => onPreviousItemClickLocal(),
         },
     ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
+    useOnSwipe({
+        element: itemContainerRef?.current as HTMLElement,
+        maxClickThreshold: optionsLogic.maxClickThreshold,
+        swipeHandlers: {
+            left: () => {
+                console.log({isWrappingDisabled: optionsLogic.isWrappingDisabled, currentPage});
+                onPreviousItemClickLocal();
+            },
+            right: () => {
+                console.log({isWrappingDisabled: optionsLogic.isWrappingDisabled, currentPage});
+                onNextItemClickLocal();
+            },
+        },
+        handleStyleChanges: (styleCase: StylingCase, element: HTMLElement) => {
+            if (!element) return;
+            if (styleCase === 'start') {
+                document.body.classList.add(CLASSNAME__GRABBING);
+                element.classList.add(CLASSNAME__GRABBING)
+            } else {
+                document.body.classList.remove(CLASSNAME__GRABBING);
+                element.classList.remove(CLASSNAME__GRABBING)
+            }
+        }
+    })
     useUpdateTimeString(currentItem, setTimeStrings, videoRef);
     //#endregion
 

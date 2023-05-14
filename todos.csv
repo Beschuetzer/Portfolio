@@ -1,5 +1,6 @@
 Carousel rework
-  -add swipe to switch items when in full-screen mode?
+  -add an option to prevent swiping if the starting target mathes any in an array given
+  -add test case and option to disable swiping swiping in full-screen mode
   -add volume button for videos?
   -how to intelligently add themes or default colors?
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?

@@ -9,10 +9,10 @@ import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 
 export const CarouselImage = (props: CarouselItemProps) => {
-    const { options, setIsFullscreenMode } = useCarouselContext();
+    const { options } = useCarouselContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const itemViewerToolbarRef = useRef<HTMLElement>();
-    const containerRef = useRef<HTMLDivElement>();
+    const itemContainerRef = useRef<HTMLDivElement>();
     const {
         description,
         srcMain,
@@ -21,9 +21,10 @@ export const CarouselImage = (props: CarouselItemProps) => {
     useRerenderOnExitFullscreenMode();
 
     return (
-        <CarouselItemViewerContainer ref={containerRef} onClick={() => setIsFullscreenMode((current) => !current)}>
+        <CarouselItemViewerContainer ref={itemContainerRef}>
             <LoadingSpinner type='ring' show={!isLoaded} description={description} {...options?.styling?.itemViewer?.loadingSpinner} />
             <img
+                draggable={false}
                 style={stylingLogic.carouselImageStlye}
                 className={isLoaded ? '' : CLASSNAME__HIDDEN}
                 src={srcMain}
@@ -34,7 +35,7 @@ export const CarouselImage = (props: CarouselItemProps) => {
                 ref={itemViewerToolbarRef as any}
                 isVideo={false}
                 description={description || ''}
-                itemContainerRef={containerRef}
+                itemContainerRef={itemContainerRef}
                 onNextItemClick={() => {
                     setIsLoaded(false)
                 }}

@@ -113,6 +113,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
                     {...options?.styling?.itemViewer?.loadingSpinner}
                 />
                 <video
+                    draggable={false}
                     className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
                     style={stylingLogic.carouselVideoStyle}
                     ref={videoRef as any}

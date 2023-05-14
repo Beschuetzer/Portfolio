@@ -171,7 +171,6 @@ export const useOnSwipe = ({
     }, [element, handleClick, handleClickStop, handleMouseDown, handleMouseMove, handleMouseUp, swipeHandlers])
 }
 
-
 function setCoordinate(ref: React.MutableRefObject<Coordinate | undefined>, e: MouseEvent) {
     ref.current = {
         x: e.x || e.clientX || e.pageX,
