@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import { CarouselItemProps } from "./components/CarouselItem";
-import { CURRENT_ITEM_INDEX_INITIAL } from "./constants";
+import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
 import { CarouselOptions, CarouselElementStyles } from "./types";
@@ -16,10 +16,12 @@ export type CarouselContextInputProps = {
 export type CarouselContextOutputProps = {
     currentItem: CarouselItemProps;
     currentItemIndex: number;
+    currentPage: number;
     elementStylings: CarouselElementStyles | undefined;
     isFullscreenMode: boolean;
     numberOfPages: number;
     setCurrentItemIndex: React.Dispatch<React.SetStateAction<number>>;
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
     setIsFullscreenMode: React.Dispatch<React.SetStateAction<boolean>>;
     setItems: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
     setNumberOfPages: React.Dispatch<React.SetStateAction<number>>;
@@ -35,6 +37,7 @@ export const CarouselProvider = ({
 }: CarouselContextInputProps) => {
     const [currentItem, setCurrentItem] = useState(itemsInput[0]);
     const [currentItemIndex, setCurrentItemIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
+    const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
     const [isFullscreenMode, setIsFullscreenMode] = useState(false);
     const [items, setItems] = useState(itemsInput);
     const [numberOfPages, setNumberOfPages] = useState(0);
@@ -60,12 +63,14 @@ export const CarouselProvider = ({
                 carouselContainerRef,
                 currentItem: currentItemToUse,
                 currentItemIndex,
+                currentPage,
                 elementStylings: options.styling?.elements,
                 isFullscreenMode,
                 items,
                 numberOfPages,
                 options,
                 setCurrentItemIndex,
+                setCurrentPage,
                 setIsFullscreenMode,
                 setItems,
                 setNumberOfPages,

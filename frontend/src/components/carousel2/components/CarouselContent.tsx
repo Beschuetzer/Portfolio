@@ -1,12 +1,12 @@
 import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
+import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
-import { getNumberOfItemsThatCanFit, getContainerWidth, getClassname, getNumberOfPages } from '../utils';
+import { getNumberOfItemsThatCanFit, getContainerWidth, getClassname, getNumberOfPages, onArrowButtonClick } from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 
@@ -20,14 +20,13 @@ export const CarouselContent = ({
     options,
 }: CarouselContentProps) => {
     //#region Init
-    const { currentItemIndex, numberOfPages, setNumberOfPages, currentItem, isFullscreenMode, setIsFullscreenMode } = useCarouselContext();
+    const { currentItemIndex, numberOfPages, setNumberOfPages, currentItem, isFullscreenMode, setIsFullscreenMode, currentPage, setCurrentPage } = useCarouselContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
     const resizeWindowDebounceRef = useRef<any>();
     const translationAmountDifferenceRef = useRef(0);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
     const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`);
-    const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
     const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     const itemsContainerOuterRef = useRef<HTMLDivElement>(null);
     const itemsContainerInnerRef = useRef<HTMLDivElement>(null);
@@ -45,19 +44,27 @@ export const CarouselContent = ({
                 if (optionsLogic.isWrappingDisabled && currentPage === 0) {
                     return;
                 };
-                onArrowButtonClick(ArrowButtonDirection.previous)
+                onArrowButtonClick(
+                    ArrowButtonDirection.previous,
+                    currentPage,
+                    numberOfPages,
+                    setCurrentPage,
+                )
             },
             right: () => {
                 if (optionsLogic.isWrappingDisabled && currentPage === (numberOfPages - 1)) {
                     return;
                 };
-                onArrowButtonClick(ArrowButtonDirection.next)
+                onArrowButtonClick(
+                    ArrowButtonDirection.next,
+                    currentPage,
+                    numberOfPages,
+                    setCurrentPage,
+                )
             },
             onMoveWhenGrabbing(xDiff, yDiff) {
                 setTranslationAmount((current) => {
                     const offset = xDiff;
-                    console.log({current, offset, currentPage, numberOfPages, isDisabled: optionsLogic.isWrappingDisabled});
-                    
                     if (optionsLogic.isWrappingDisabled && current <= 0 && offset >= 0) return current;
                     if (optionsLogic.isWrappingDisabled && currentPage === (numberOfPages - 1) && offset <= 0) return current;
                     return current - offset;
@@ -90,14 +97,6 @@ export const CarouselContent = ({
         return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
     }, [options?.thumbnail, carouselContainerRef, stylingLogic, optionsLogic]);
 
-    const onArrowButtonClick = useCallback((direction: ArrowButtonDirection) => {
-        if (direction === ArrowButtonDirection.previous) {
-            setCurrentPage(currentPage <= 0 ? numberOfPages - 1 : currentPage - 1);
-        } else if (direction === ArrowButtonDirection.next) {
-            setCurrentPage(currentPage >= numberOfPages - 1 ? 0 : currentPage + 1);
-        }
-    }, [currentPage, setCurrentPage, numberOfPages]);
-
     const setNumberOfDotsToDisplay = useCallback(() => {
         const newNumberOfPages = getNumberOfPages(
             carouselContainerRef.current as HTMLElement, items.length, stylingLogic, optionsLogic
@@ -106,7 +105,7 @@ export const CarouselContent = ({
         if (currentPage >= newNumberOfPages) {
             setCurrentPage(newNumberOfPages - 1);
         }
-    }, [setNumberOfPages, currentPage, carouselContainerRef, items, stylingLogic, optionsLogic])
+    }, [carouselContainerRef, items.length, stylingLogic, optionsLogic, setNumberOfPages, currentPage, setCurrentPage])
     //#endregion
 
     //#region Side Fx
@@ -311,7 +310,12 @@ export const CarouselContent = ({
                         currentPage={currentPage}
                         numberOfDots={numberOfPages}
                         direction={ArrowButtonDirection.previous}
-                        onClick={() => onArrowButtonClick(ArrowButtonDirection.previous)} />
+                        onClick={() => onArrowButtonClick(
+                            ArrowButtonDirection.previous,
+                            currentPage,
+                            numberOfPages,
+                            setCurrentPage,
+                        )} />
                     <CarouselDots
                         items={items || []}
                         numberOfDots={numberOfPages}
@@ -324,7 +328,12 @@ export const CarouselContent = ({
                         currentPage={currentPage}
                         numberOfDots={numberOfPages}
                         direction={ArrowButtonDirection.next}
-                        onClick={() => onArrowButtonClick(ArrowButtonDirection.next)} />
+                        onClick={() =>  onArrowButtonClick(
+                            ArrowButtonDirection.next,
+                            currentPage,
+                            numberOfPages,
+                            setCurrentPage,
+                        )} />
                 </div>
             ) : null}
             {optionsLogic.isItemDisplayLocationBelow ? (

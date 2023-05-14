@@ -4,7 +4,7 @@ import { StylingLogic } from "./business-logic/StylingLogic";
 import { CarouselItemProps } from "./components/CarouselItem";
 import { CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, CLASSNAME__ROOT, NUMBER_OF_PAGES_INITIAL, VIDEO_EXTENSIONS } from "./constants";
 import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
-import { Coordinate, Point } from "./types";
+import { Coordinate, Point, ArrowButtonDirection } from "./types";
 type GetClassname = {
     elementName?: string;
     modifiedName?: string;
@@ -193,6 +193,20 @@ export async function exitFullScreen(element: HTMLElement | null) {
         if (!isFullScreenPossible || !element) return;
         return await document.exitFullscreen();
     } catch (e) { }
+}
+
+
+export function onArrowButtonClick(
+    direction: ArrowButtonDirection,
+    currentPage: number,
+    numberOfPages: number,
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>,
+) {
+    if (direction === ArrowButtonDirection.previous) {
+        setCurrentPage(currentPage <= 0 ? numberOfPages - 1 : currentPage - 1);
+    } else if (direction === ArrowButtonDirection.next) {
+        setCurrentPage(currentPage >= numberOfPages - 1 ? 0 : currentPage + 1);
+    }
 }
 
 export function stopPropagation(e?: Event)
