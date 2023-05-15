@@ -160,13 +160,19 @@ export const useOnSwipe = ({
         element.addEventListener('click', handleClick);
         element.addEventListener('mousedown', handleMouseDown);
         window.addEventListener('mouseup', handleMouseUp);
-        window.addEventListener('mousemove', handleMouseMove);
+
+        if (swipeHandlers?.onMoveWhenGrabbing) {
+            window.addEventListener('mousemove', handleMouseMove);
+        }
 
         return () => {
             element.removeEventListener('click', handleClick);
             element.removeEventListener('mousedown', handleMouseDown);
             window.removeEventListener('mouseup', handleMouseUp);
-            window.removeEventListener('mousemove', handleMouseMove);
+
+            if (swipeHandlers?.onMoveWhenGrabbing) {
+                window.removeEventListener('mousemove', handleMouseMove);
+            }
         }
     }, [element, handleClick, handleClickStop, handleMouseDown, handleMouseMove, handleMouseUp, swipeHandlers])
 }
