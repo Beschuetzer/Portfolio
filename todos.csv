@@ -2,7 +2,7 @@ Carousel rework
   -mobile stuff:
     -swiping not working
     -popups remain visible 
-    -video modal max-height needs to be unrestricted 
+    -video modal styling needs to adjusted on a case-by-case basis
     -buttons should be slightly smaller?
     -re-enable the rest of the tests (breaks when running all in responsive mode)
   -add option to use default video tag controls
