@@ -1,7 +1,7 @@
 import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
+import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CLASSNAME__ITEM_VIEWER_TOOLBAR, CURRENT_ITEM_INDEX_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { useCarouselContext } from '../context';
@@ -41,18 +41,17 @@ export const CarouselContent = ({
         maxClickThreshold: optionsLogic.maxClickThreshold,
         swipeHandlers: {
             left: {
-                callback:
-                    () => {
-                        if (optionsLogic.isWrappingDisabled && currentPage === 0) {
-                            return;
-                        };
-                        onArrowButtonClick(
-                            ArrowButtonDirection.previous,
-                            currentPage,
-                            numberOfPages,
-                            setCurrentPage,
-                        )
-                    }
+                callback: () => {
+                    if (optionsLogic.isWrappingDisabled && currentPage === 0) {
+                        return;
+                    };
+                    onArrowButtonClick(
+                        ArrowButtonDirection.previous,
+                        currentPage,
+                        numberOfPages,
+                        setCurrentPage,
+                    )
+                },
             },
             right: {
                 callback: () => {
@@ -65,7 +64,7 @@ export const CarouselContent = ({
                         numberOfPages,
                         setCurrentPage,
                     )
-                }
+                },
             },
             onMoveWhenGrabbing(xDiff, yDiff) {
                 setTranslationAmount((current) => {

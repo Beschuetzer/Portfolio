@@ -16,7 +16,7 @@ export type UseOnSwipeHandlerDirection = {
     /*
     *If the `mouseDownSourceElement` is in this array, then the callback is skipped
     */
-    mouseDownSkipTargets?: Array<HTMLElement>;
+    mouseDownSkipTargets?: Array<HTMLElement | undefined>;
 }
 export type UseOnSwipeHandlers = {
     [direction in SwipeDirection]?: UseOnSwipeHandlerDirection;
@@ -70,8 +70,10 @@ export const useOnSwipe = ({
     }, []);
 
     const getSkipTargetMatchFound = useCallback((swipeDirection: SwipeDirection) => {
-        const isSkipTargetsGiven = swipeHandlers[swipeDirection]?.mouseDownSkipTargets;
-        if (!isSkipTargetsGiven || !mouseDownSourceElement.current) return false;
+        const skipTargets = swipeHandlers[swipeDirection]?.mouseDownSkipTargets;
+        console.log({skipTargets, swipeHandlers});
+        
+        if (!skipTargets || skipTargets.length === 0 || !mouseDownSourceElement.current) return false;
         return swipeHandlers[swipeDirection]?.mouseDownSkipTargets?.includes(mouseDownSourceElement.current);
     }, [swipeHandlers])
 

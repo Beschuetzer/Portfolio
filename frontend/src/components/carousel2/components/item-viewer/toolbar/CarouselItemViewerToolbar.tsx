@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
-import { getClassname, getFormattedTimeString, stopPropagation, tryPlayingVideo } from '../../../utils'
+import { getFormattedTimeString, stopPropagation, tryPlayingVideo } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from '../CarouselItemViewerProgressBar'
@@ -12,7 +12,18 @@ import { CarouselItemViewerSeekBackButton } from './CarouselItemViewerSeekBackBu
 import { CarouselItemViewerSeekForwardButton } from './CarouselItemViewerSeekForwardButton'
 import { CarouselItemViewerToolbarPreview, ToolbarPreviewDirection } from './CarouselItemViewerToolbarPreview'
 import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
-import { AUTO_HIDE_DISABLED_VALUE, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, CLASSNAME__GRABBING, CLASSNAME__ITEM_VIEWER, MOBILE_PIXEL_WIDTH, SEEK_AMOUNT_DEFAULT } from '../../../constants'
+import {
+    AUTO_HIDE_DISABLED_VALUE,
+    AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT,
+    CLASSNAME__GRABBING,
+    CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR,
+    CLASSNAME__ITEM_VIEWER_TOOLBAR,
+    CLASSNAME__TOOLBAR_CONTAINER,
+    CLASSNAME__TOOLBAR_LEFT,
+    CLASSNAME__TOOLBAR_RIGHT,
+    MOBILE_PIXEL_WIDTH,
+    SEEK_AMOUNT_DEFAULT
+} from '../../../constants'
 import { useUpdateTimeString } from '../../../hooks/useUpdateTimeStrings'
 import { CarouselItemViewerFullscreenButton } from './CarouselItemViewerFullScreenButton'
 import { useCarouselContext } from '../../../context'
@@ -31,11 +42,6 @@ export type CarouselItemViewerToolbarProps = {
     videoRef?: React.MutableRefObject<HTMLVideoElement | undefined> | null;
 };
 
-const CLASSNAME_INNER_CONTAINER = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-container` });
-const CLASSNAME_TOOLBAR = `${getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar` })}`;
-const CLASSNAME_TOOLBAR_LEFT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-left` });
-const CLASSNAME_TOOLBAR_RIGHT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` });
-const CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR = getClassname({ elementName: `item-container--no-toolbar` });
 
 export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemViewerToolbarProps>(({
     description,
@@ -49,7 +55,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     videoRef,
 }, ref) => {
     //#region Init
-    const { options, items, currentItemIndex, setCurrentItemIndex, currentItem, isFullscreenMode, currentPage } = useCarouselContext();
+    const { options, items, currentItemIndex, setCurrentItemIndex, currentItem, isFullscreenMode } = useCarouselContext();
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
     const nextButtonRef = useRef<any>(null);
@@ -157,12 +163,12 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
         if (!isFullscreenMode || options?.itemViewer?.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
         if (itemContainerRef?.current) {
-            itemContainerRef.current.classList?.remove(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
+            itemContainerRef.current.classList?.remove(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
         }
 
         shouldHideTimoutRef.current = setTimeout(() => {
             if (itemContainerRef?.current && !isMobile) {
-                itemContainerRef.current.classList?.add(CLASSNAME_ITEM_CONTAINER_NO_TOOLBAR);
+                itemContainerRef.current.classList?.add(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
             }
         }, options?.itemViewer?.autoHideToolbarDuration || AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT);
     }, [
@@ -414,16 +420,16 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     //#region JSX
     return (
-        <div ref={ref as any} onClick={onToolbarClick as any} className={CLASSNAME_TOOLBAR} style={stylingLogic.toolbarStyle}>
+        <div ref={ref as any} onClick={onToolbarClick as any} className={CLASSNAME__ITEM_VIEWER_TOOLBAR} style={stylingLogic.toolbarStyle}>
             {videoRef ?
                 <CarouselItemViewerProgressBar
                     videoRef={videoRef}
                     setTimeStrings={setTimeStrings}
                 /> : null
             }
-            <div className={CLASSNAME_INNER_CONTAINER}>
+            <div className={CLASSNAME__TOOLBAR_CONTAINER}>
                 {videoRef ? (
-                    <div className={CLASSNAME_TOOLBAR_LEFT}>
+                    <div className={CLASSNAME__TOOLBAR_LEFT}>
                         {isVideoPlaying ? (
                             <CarouselItemViewerPauseButton
                                 actionName='Pause'
@@ -462,7 +468,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                     </div>
                 ) : null}
                 <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
-                <div className={CLASSNAME_TOOLBAR_RIGHT}>
+                <div className={CLASSNAME__TOOLBAR_RIGHT}>
                     <CarouselItemViewerPreviousButton
                         actionName='Previous'
                         isShortcutVisible={!isFullscreenMode && showPreviousButtonPopup}

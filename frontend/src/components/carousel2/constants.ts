@@ -21,8 +21,13 @@ export const CLASSNAME__CAROUSEL_ITEM = getClassname({ elementName: 'item' });
 export const CLASSNAME__CAROUSEL_ITEM_THUMBNAIL = getClassname({ elementName: 'item-thumbnail' });
 export const CLASSNAME__GRABBING = 'grabbing';
 export const CLASSNAME__HIDDEN = getClassname({ modifiedName: 'hidden' });
+export const CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR = getClassname({ elementName: `item-container--no-toolbar` });
 export const CLASSNAME__ITEM_VIEWER = 'item-viewer';
 export const CLASSNAME__ITEM_VIEWER_BUTTON = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-button` });
+export const CLASSNAME__ITEM_VIEWER_TOOLBAR = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar` });
+export const CLASSNAME__TOOLBAR_CONTAINER = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-container` });
+export const CLASSNAME__TOOLBAR_LEFT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-left` });
+export const CLASSNAME__TOOLBAR_RIGHT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` });
 export const CLASSNAME__VIDEO_MODAL_BUTTON_TOP = `${CLASSNAME__ROOT}-video-modal-custom-button-top`;
 export const CLASSNAME__VIDEO_MODAL_BUTTON_RIGHT = `${CLASSNAME__ROOT}-video-modal-custom-button-right`;
 //#endregion
