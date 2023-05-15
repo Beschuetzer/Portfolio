@@ -1,5 +1,8 @@
 Carousel rework
-  -make sure swiping works on touch devices
+  -mobile stuff:
+    -swiping not working
+    -popups remain visible 
+    -re-enable the rest of the tests (breaks when running all in responsive mode)
   -add option to use default video tag controls
   -add volume button for videos?
   -how to intelligently add themes or default colors?
