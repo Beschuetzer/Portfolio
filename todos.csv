@@ -1,5 +1,4 @@
 Carousel rework
-  -add test case and option to disable swiping in full-screen mode
   -add volume button for videos?
   -how to intelligently add themes or default colors?
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?

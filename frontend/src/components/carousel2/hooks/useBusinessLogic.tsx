@@ -48,7 +48,8 @@ export const useBusinessLogic = ({
     const [optionsLogic, setOptionsLogic] = useState<OptionsLogic>(getOptionsLogic({
         options,
         currentItem,
-        numberOfPages
+        numberOfPages,
+        items,
     }));
     const [toolbarLogic, setToolbarLogic] = useState<ToolbarLogic>(getToolbarLogic({
         items,
@@ -75,6 +76,7 @@ export const useBusinessLogic = ({
             options,
             currentItem,
             numberOfPages,
+            items,
         })
         const newToolbarActionsLogic = getToolbarActionsLogic({
             options,

@@ -113,7 +113,8 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
     useOnSwipe({
         element: itemContainerRef?.current as HTMLElement,
-        maxClickThreshold: optionsLogic.maxClickThreshold,
+        maxClickThreshold: optionsLogic.itemViewerMaxClickThreshold,
+        isDisabled: optionsLogic.isItemViewerSwipingDisabled,
         swipeHandlers: {
             left: {
                 callback: () => {

@@ -67,7 +67,7 @@ export type CarouselItemViewerOptions = {
     *How for forward/backward the seek buttons move a video.  Default is 5 seconds.
     */
     seekAmount?: number;
-}
+} & CarouselSwipingOptions
 
 export type CarouselItemViewerButtonProps = {
     onClick?: () => void;
@@ -154,25 +154,15 @@ export type CarouselLayoutOptions = {
     itemDisplayHeight?: number;
 }
 
-export type CarouselNavigationOptions = {
-     /*
-    *If true, the navigation automatically changes pages based on the current item viewed 
-    *Default is true.
-    */
-    autoChangePage?: boolean;
-    /*
-    *If true, then grabbing a thumbnail and swiping will not change the page.  Default is false.
+export type CarouselSwipingOptions = {
+ /*
+    *If true, then swiping will be disabled.  For navigation, this means grabbing a thumbnail and swiping will not change the page.  
+    *For `itemViewer`, this means that grabbing and swiping will not change the currently viewing item.
+    *Default is false.
     *Swiping only occurs if mouseup and mousedown coordinate distances are greater than `maxClickThreshold` 
     */
     disableSwiping?: boolean;
-    /*
-    *When true, the carousel can not go from beginning to end directly.
-    *When false, the right arrow button navigates to the first page when the currentPage is the final page
-    *and the left arrow button navigates to the last page when the currentPage is the first page.
-    *Default is false
-    */
-    disableWrapping?: boolean;
-    /*
+     /*
     *The max number of pixels that can be moved between mousedown and mouseup to still register a 'click' event
     *This is used to prevent opening of an item when mousedown and mouseup targets are the same
     *Higher values mean the user can move the cursor more and still open the item
@@ -181,6 +171,21 @@ export type CarouselNavigationOptions = {
     */
     maxClickThreshold?: number;
 }
+
+export type CarouselNavigationOptions = {
+     /*
+    *If true, the navigation automatically changes pages based on the current item viewed 
+    *Default is true.
+    */
+    autoChangePage?: boolean;
+    /*
+    *When true, the carousel can not go from beginning to end directly.
+    *When false, the right arrow button navigates to the first page when the currentPage is the final page
+    *and the left arrow button navigates to the last page when the currentPage is the first page.
+    *Default is false
+    */
+    disableWrapping?: boolean;
+} & CarouselSwipingOptions
 
 export type CarouselNavigationProps = {
     currentPage: number;

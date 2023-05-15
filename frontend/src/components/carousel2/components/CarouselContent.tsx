@@ -37,8 +37,8 @@ export const CarouselContent = ({
     } = useBusinessLogic({});
     useOnSwipe({
         element: itemsContainerInnerRef.current as HTMLElement,
-        isDisabled: optionsLogic.isSwipingDisabled,
-        maxClickThreshold: optionsLogic.maxClickThreshold,
+        isDisabled: optionsLogic.isNavigationSwipingDisabled,
+        maxClickThreshold: optionsLogic.navigationMaxClickThreshold,
         swipeHandlers: {
             left: {
                 callback: () => {

@@ -481,6 +481,20 @@ const itemViewerCustomFontBoth = (
 		}
 	}} />
 );
+const itemViewerSwipingDisabled = (
+	<Carousel items={items} options={{
+		itemViewer: {
+			disableSwiping: true,
+		}
+	}} />
+);
+const itemViewerMaxClickThresholdZero = (
+	<Carousel items={items} options={{
+		itemViewer: {
+			maxClickThreshold: 0,
+		}
+	}} />
+);
 const itemViewerCustomOverlayOnLoad = (
 	<Carousel items={items.slice(2, 3)} />
 );
@@ -1644,7 +1658,15 @@ const SECTIONS: Sections = [
 			{
 				label: "Custom Navigation and Item Viewer Fonts",
 				jsx: itemViewerCustomFontBoth,
-			}
+			},
+			{
+				label: "Full-screen Swiping Disabled",
+				jsx: itemViewerSwipingDisabled
+			},
+			{
+				label: "Full-screen Max Click Threshold 0",
+				jsx: itemViewerMaxClickThresholdZero
+			},
 		]
 	],
 	[

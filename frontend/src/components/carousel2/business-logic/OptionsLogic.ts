@@ -9,6 +9,7 @@ export type OptionsConstructor = {
     options: CarouselOptions;
     currentItem?: CarouselItemProps;
     numberOfPages?: number;
+    items?: CarouselItemProps[];
 }
 /*
 *Logic related to options that are not style-related
@@ -17,12 +18,14 @@ export class OptionsLogic {
     private options;
     private currentItem;
     private numberOfPages;
+    private items;
 
     constructor(constructor: OptionsConstructor) {
-        const { options, currentItem, numberOfPages } = constructor;
+        const { options, currentItem, numberOfPages, items } = constructor;
         this.options = options;
         this.currentItem = currentItem;
         this.numberOfPages = numberOfPages || 0;
+        this.items = items || [];
     }
 
     get carouselItemSize() {
@@ -44,7 +47,11 @@ export class OptionsLogic {
         return this.options?.layout?.itemDisplayLocation === 'below';
     }
 
-    get isSwipingDisabled() {
+    get isItemViewerSwipingDisabled() {
+        return this.items.length <= 1 || this.options?.itemViewer?.disableSwiping || false;
+    }
+    
+    get isNavigationSwipingDisabled() {
         return this.numberOfPages <= 1 ? true : this.options?.navigation?.disableSwiping || false;
     }
     
@@ -58,7 +65,12 @@ export class OptionsLogic {
         return isVideo ? CarouselVideo : CarouselImage;
     }
 
-    get maxClickThreshold() {
+    get itemViewerMaxClickThreshold() {
+        const maxClickThreshold = this.options.itemViewer?.maxClickThreshold;
+        return maxClickThreshold !== undefined ? maxClickThreshold : MAX_CLICK_THRESHOLD_DEFAULT;
+    }
+
+    get navigationMaxClickThreshold() {
         const maxClickThreshold = this.options.navigation?.maxClickThreshold;
         return maxClickThreshold !== undefined ? maxClickThreshold : MAX_CLICK_THRESHOLD_DEFAULT;
     }
