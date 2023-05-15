@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { getFormattedTimeString, stopPropagation, tryPlayingVideo } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
@@ -85,7 +85,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     const { optionsLogic, stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic({});
     const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
-
     useKeyboardShortcuts([
         {
             keys: toolbarActionsLogic.getPlay().keys,
@@ -119,12 +118,14 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             left: {
                 callback: () => {
                     onPreviousItemClickLocal();
-                }
+                },
+                mouseDownSkipTargetQueries: [`.${CLASSNAME__ITEM_VIEWER_TOOLBAR}`],
             },
             right: {
                 callback: () => {
                     onNextItemClickLocal();
-                }
+                },
+                mouseDownSkipTargetQueries: [`.${CLASSNAME__ITEM_VIEWER_TOOLBAR}`],
             },
         },
         handleStyleChanges: (styleCase: StylingCase, element: HTMLElement) => {

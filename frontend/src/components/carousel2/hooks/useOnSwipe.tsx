@@ -14,9 +14,11 @@ enum SwipeDirection {
 export type UseOnSwipeHandlerDirection = {
     callback: () => void;
     /*
-    *If the `mouseDownSourceElement` is in this array, then the callback is skipped
+    *This is a list of strings that will be passed into element.querySelector(STRING_HERE)
+    *This will get a list of DOM elements that will be compared against the `mouseDownSourceElement` to determine if the swipe callback should be fired
+    *This also includes all children of each skipTargetQuery
     */
-    mouseDownSkipTargets?: Array<HTMLElement | undefined>;
+    mouseDownSkipTargetQueries?: Array<string>;
 }
 export type UseOnSwipeHandlers = {
     [direction in SwipeDirection]?: UseOnSwipeHandlerDirection;
@@ -70,12 +72,17 @@ export const useOnSwipe = ({
     }, []);
 
     const getSkipTargetMatchFound = useCallback((swipeDirection: SwipeDirection) => {
-        const skipTargets = swipeHandlers[swipeDirection]?.mouseDownSkipTargets;
-        console.log({skipTargets, swipeHandlers});
-        
+
+        const skipTargets = swipeHandlers[swipeDirection]?.mouseDownSkipTargetQueries;
         if (!skipTargets || skipTargets.length === 0 || !mouseDownSourceElement.current) return false;
-        return swipeHandlers[swipeDirection]?.mouseDownSkipTargets?.includes(mouseDownSourceElement.current);
-    }, [swipeHandlers])
+
+
+        //todo: it works but the mouse down source element is not the toolbar but rather the child of the toolbar
+        //todo: need a way to see if the mouseDownSourceElement is in the sub tree for each skipElement
+        const skipElements = skipTargets?.map(query => element?.querySelector(query));
+        console.log({element, skipElements, mouseDownSourceElement: mouseDownSourceElement.current});
+        return skipElements?.includes(mouseDownSourceElement.current);
+    }, [element, swipeHandlers])
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
         if (mouseDownSourceElement.current) {
