@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react"
-import { getCoordinateDifference, stopPropagation } from "../utils";
+import { getAncestorContainsClassname, getCoordinateDifference, stopPropagation } from "../utils";
 import { CarouselNavigationOptions, Coordinate } from "../types";
 
 export type StylingCase = 'start' | 'end';
@@ -14,11 +14,10 @@ enum SwipeDirection {
 export type UseOnSwipeHandlerDirection = {
     callback: () => void;
     /*
-    *This is a list of strings that will be passed into element.querySelector(STRING_HERE)
-    *This will get a list of DOM elements that will be compared against the `mouseDownSourceElement` to determine if the swipe callback should be fired
-    *This also includes all children of each skipTargetQuery
+    *If the mouseDownSourceElement is a child node of a node with any of the given classnames, then the callback will be skipped.
+    *Needed in order to prevent the swipes starting on the toolbar from changing items
     */
-    mouseDownSkipTargetQueries?: Array<string>;
+    skipCallbackParentClassnames?: string[];
 }
 export type UseOnSwipeHandlers = {
     [direction in SwipeDirection]?: UseOnSwipeHandlerDirection;
@@ -71,18 +70,15 @@ export const useOnSwipe = ({
         lastCoordinateRef.current = undefined;
     }, []);
 
-    const getSkipTargetMatchFound = useCallback((swipeDirection: SwipeDirection) => {
-
-        const skipTargets = swipeHandlers[swipeDirection]?.mouseDownSkipTargetQueries;
+    const getShouldSkipCallback = useCallback((swipeDirection: SwipeDirection) => {
+        const skipTargets = swipeHandlers[swipeDirection]?.skipCallbackParentClassnames;
         if (!skipTargets || skipTargets.length === 0 || !mouseDownSourceElement.current) return false;
-
-
-        //todo: it works but the mouse down source element is not the toolbar but rather the child of the toolbar
-        //todo: need a way to see if the mouseDownSourceElement is in the sub tree for each skipElement
-        const skipElements = skipTargets?.map(query => element?.querySelector(query));
-        console.log({element, skipElements, mouseDownSourceElement: mouseDownSourceElement.current});
-        return skipElements?.includes(mouseDownSourceElement.current);
-    }, [element, swipeHandlers])
+        for(const skipTarget of skipTargets) {
+            const isChildOfSkipElement = getAncestorContainsClassname(mouseDownSourceElement.current, skipTarget);
+            if (isChildOfSkipElement) return true;
+        }
+        return false;
+    }, [swipeHandlers])
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
         if (mouseDownSourceElement.current) {
@@ -150,31 +146,31 @@ export const useOnSwipe = ({
             //is horizontal
             if (swipeHandlers.minSwipeThreshold && swipeHandlers.minSwipeThreshold > horizontalDiffAbsolute) return;
             if (horizontalDiff > 0) {
-                const matchFound = getSkipTargetMatchFound(SwipeDirection.left)
-                if (swipeHandlers.left?.callback && !matchFound) {
+                const shouldSkipCallback = getShouldSkipCallback(SwipeDirection.left)
+                if (swipeHandlers.left?.callback && !shouldSkipCallback) {
                     swipeHandlers.left.callback();
                 }
             } else {
-                const matchFound = getSkipTargetMatchFound(SwipeDirection.right)
-                if (swipeHandlers.right?.callback && !matchFound) {
+                const shouldSkipCallback = getShouldSkipCallback(SwipeDirection.right)
+                if (swipeHandlers.right?.callback && !shouldSkipCallback) {
                     swipeHandlers.right.callback();
                 }
             }
         } else {
             if (swipeHandlers.minSwipeThreshold && swipeHandlers.minSwipeThreshold > verticalDiffAbsolute) return;
             if (verticalDiff > 0) {
-                const matchFound = getSkipTargetMatchFound(SwipeDirection.top)
-                if (swipeHandlers.top?.callback && !matchFound) {
+                const shouldSkipCallback = getShouldSkipCallback(SwipeDirection.top)
+                if (swipeHandlers.top?.callback && !shouldSkipCallback) {
                     swipeHandlers.top.callback();
                 }
             } else {
-                const matchFound = getSkipTargetMatchFound(SwipeDirection.bottom)
-                if (swipeHandlers.bottom?.callback && !matchFound) {
+                const shouldSkipCallback = getShouldSkipCallback(SwipeDirection.bottom)
+                if (swipeHandlers.bottom?.callback && !shouldSkipCallback) {
                     swipeHandlers.bottom.callback();
                 }
             }
         }
-    }, [maxClickThreshold, swipeHandlers, getSkipTargetMatchFound])
+    }, [maxClickThreshold, swipeHandlers, getShouldSkipCallback])
 
     const handleMouseUp = useCallback((e: MouseEvent) => {
         stopPropagation(e)

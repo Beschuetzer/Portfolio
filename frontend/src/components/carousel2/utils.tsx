@@ -34,6 +34,19 @@ export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_
     return hexToUse;
 }
 
+export function getAncestorContainsClassname(elementToCheck: HTMLElement | null, classname: string, stoppingElementType = 'body'): boolean {
+    try {
+        const regex = new RegExp(classname, 'i');
+        if (!classname || !elementToCheck) return false;
+        if (elementToCheck?.className?.match(regex)) return true;
+        if (elementToCheck?.localName?.toLocaleLowerCase() === stoppingElementType) return false;
+        const parent = elementToCheck?.parentElement || null;
+        return getAncestorContainsClassname(parent, classname, stoppingElementType);
+    } catch (error) {
+        return true;
+    }
+}
+
 export function getClassname({ elementName, modifiedName }: GetClassname) {
     return `${CLASSNAME__ROOT}${elementName ? `__${elementName}` : ``}${modifiedName ? `--${modifiedName}` : ``}`;
 }
@@ -172,13 +185,6 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
     return result;
 }
 
-export function setCssCustomProperty(propertyName: string, newValue: string) {
-    document.documentElement.style.setProperty(
-        `--${propertyName}`,
-        newValue,
-    );
-}
-
 export async function enterFullScreen(element: HTMLElement | null) {
     try {
         const isFullScreenPossible = document.fullscreenEnabled;
@@ -195,7 +201,6 @@ export async function exitFullScreen(element: HTMLElement | null) {
     } catch (e) { }
 }
 
-
 export function onArrowButtonClick(
     direction: ArrowButtonDirection,
     currentPage: number,
@@ -209,12 +214,18 @@ export function onArrowButtonClick(
     }
 }
 
-export function stopPropagation(e?: Event)
-{
+export function setCssCustomProperty(propertyName: string, newValue: string) {
+    document.documentElement.style.setProperty(
+        `--${propertyName}`,
+        newValue,
+    );
+}
+
+export function stopPropagation(e?: Event) {
     let event = e || window.event;
     if (!event) return;
-	event.cancelBubble = true;
-	if (event.stopPropagation) event.stopPropagation();
+    event.cancelBubble = true;
+    if (event.stopPropagation) event.stopPropagation();
 }
 
 export async function tryPlayingVideo(videoRef: HTMLVideoElement | undefined, onSuccess?: () => void, onFailure?: () => void) {

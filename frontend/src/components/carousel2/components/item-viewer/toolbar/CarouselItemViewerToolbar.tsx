@@ -119,13 +119,13 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                 callback: () => {
                     onPreviousItemClickLocal();
                 },
-                mouseDownSkipTargetQueries: [`.${CLASSNAME__ITEM_VIEWER_TOOLBAR}`],
+                skipCallbackParentClassnames: [CLASSNAME__ITEM_VIEWER_TOOLBAR],
             },
             right: {
                 callback: () => {
                     onNextItemClickLocal();
                 },
-                mouseDownSkipTargetQueries: [`.${CLASSNAME__ITEM_VIEWER_TOOLBAR}`],
+                skipCallbackParentClassnames: [CLASSNAME__ITEM_VIEWER_TOOLBAR],
             },
         },
         handleStyleChanges: (styleCase: StylingCase, element: HTMLElement) => {
