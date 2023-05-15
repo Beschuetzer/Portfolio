@@ -10,8 +10,16 @@ enum SwipeDirection {
     right = 'right',
     top = 'top',
 }
+
+export type UseOnSwipeHandlerDirection = {
+    callback: () => void;
+    /*
+    *If the `mouseDownSourceElement` is in this array, then the callback is skipped
+    */
+    mouseDownSkipTargets?: Array<HTMLElement>;
+}
 export type UseOnSwipeHandlers = {
-    [direction in SwipeDirection]?: () => void;
+    [direction in SwipeDirection]?: UseOnSwipeHandlerDirection;
 } & {
     /*
     *see types.ts for description on how this works
@@ -60,6 +68,12 @@ export const useOnSwipe = ({
         mouseUpSourceElement.current = undefined;
         lastCoordinateRef.current = undefined;
     }, []);
+
+    const getSkipTargetMatchFound = useCallback((swipeDirection: SwipeDirection) => {
+        const isSkipTargetsGiven = swipeHandlers[swipeDirection]?.mouseDownSkipTargets;
+        if (!isSkipTargetsGiven || !mouseDownSourceElement.current) return false;
+        return swipeHandlers[swipeDirection]?.mouseDownSkipTargets?.includes(mouseDownSourceElement.current);
+    }, [swipeHandlers])
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
         if (mouseDownSourceElement.current) {
@@ -127,19 +141,31 @@ export const useOnSwipe = ({
             //is horizontal
             if (swipeHandlers.minSwipeThreshold && swipeHandlers.minSwipeThreshold > horizontalDiffAbsolute) return;
             if (horizontalDiff > 0) {
-                swipeHandlers.left && swipeHandlers.left();
+                const matchFound = getSkipTargetMatchFound(SwipeDirection.left)
+                if (swipeHandlers.left?.callback && !matchFound) {
+                    swipeHandlers.left.callback();
+                }
             } else {
-                swipeHandlers.right && swipeHandlers.right();
+                const matchFound = getSkipTargetMatchFound(SwipeDirection.right)
+                if (swipeHandlers.right?.callback && !matchFound) {
+                    swipeHandlers.right.callback();
+                }
             }
         } else {
             if (swipeHandlers.minSwipeThreshold && swipeHandlers.minSwipeThreshold > verticalDiffAbsolute) return;
             if (verticalDiff > 0) {
-                swipeHandlers.top && swipeHandlers.top();
+                const matchFound = getSkipTargetMatchFound(SwipeDirection.top)
+                if (swipeHandlers.top?.callback && !matchFound) {
+                    swipeHandlers.top.callback();
+                }
             } else {
-                swipeHandlers.bottom && swipeHandlers.bottom();
+                const matchFound = getSkipTargetMatchFound(SwipeDirection.bottom)
+                if (swipeHandlers.bottom?.callback && !matchFound) {
+                    swipeHandlers.bottom.callback();
+                }
             }
         }
-    }, [maxClickThreshold, swipeHandlers])
+    }, [maxClickThreshold, swipeHandlers, getSkipTargetMatchFound])
 
     const handleMouseUp = useCallback((e: MouseEvent) => {
         stopPropagation(e)

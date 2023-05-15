@@ -110,13 +110,15 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         element: itemContainerRef?.current as HTMLElement,
         maxClickThreshold: optionsLogic.maxClickThreshold,
         swipeHandlers: {
-            left: () => {
-                console.log({isWrappingDisabled: optionsLogic.isWrappingDisabled, currentPage});
-                onPreviousItemClickLocal();
+            left: {
+                callback: () => {
+                    onPreviousItemClickLocal();
+                }
             },
-            right: () => {
-                console.log({isWrappingDisabled: optionsLogic.isWrappingDisabled, currentPage});
-                onNextItemClickLocal();
+            right: {
+                callback: () => {
+                    onNextItemClickLocal();
+                }
             },
         },
         handleStyleChanges: (styleCase: StylingCase, element: HTMLElement) => {

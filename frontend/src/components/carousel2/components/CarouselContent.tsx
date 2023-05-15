@@ -40,27 +40,32 @@ export const CarouselContent = ({
         isDisabled: optionsLogic.isSwipingDisabled,
         maxClickThreshold: optionsLogic.maxClickThreshold,
         swipeHandlers: {
-            left: () => {
-                if (optionsLogic.isWrappingDisabled && currentPage === 0) {
-                    return;
-                };
-                onArrowButtonClick(
-                    ArrowButtonDirection.previous,
-                    currentPage,
-                    numberOfPages,
-                    setCurrentPage,
-                )
+            left: {
+                callback:
+                    () => {
+                        if (optionsLogic.isWrappingDisabled && currentPage === 0) {
+                            return;
+                        };
+                        onArrowButtonClick(
+                            ArrowButtonDirection.previous,
+                            currentPage,
+                            numberOfPages,
+                            setCurrentPage,
+                        )
+                    }
             },
-            right: () => {
-                if (optionsLogic.isWrappingDisabled && currentPage === (numberOfPages - 1)) {
-                    return;
-                };
-                onArrowButtonClick(
-                    ArrowButtonDirection.next,
-                    currentPage,
-                    numberOfPages,
-                    setCurrentPage,
-                )
+            right: {
+                callback: () => {
+                    if (optionsLogic.isWrappingDisabled && currentPage === (numberOfPages - 1)) {
+                        return;
+                    };
+                    onArrowButtonClick(
+                        ArrowButtonDirection.next,
+                        currentPage,
+                        numberOfPages,
+                        setCurrentPage,
+                    )
+                }
             },
             onMoveWhenGrabbing(xDiff, yDiff) {
                 setTranslationAmount((current) => {
@@ -328,7 +333,7 @@ export const CarouselContent = ({
                         currentPage={currentPage}
                         numberOfDots={numberOfPages}
                         direction={ArrowButtonDirection.next}
-                        onClick={() =>  onArrowButtonClick(
+                        onClick={() => onArrowButtonClick(
                             ArrowButtonDirection.next,
                             currentPage,
                             numberOfPages,
