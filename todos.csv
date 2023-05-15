@@ -1,4 +1,5 @@
 Carousel rework
+  -add option to use default video tag controls
   -add volume button for videos?
   -how to intelligently add themes or default colors?
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
@@ -15,7 +16,6 @@ React best practices re-work (branch = sitenav_rework)
   -replace as many document.querySelector calls with refs
   -add onPress handler to ArrowButton to be able to hide the elements on bridge page when switching left/right 
   -add more complext logic in SkillPopup sort to weight created date?
-
 
 JOB STUFF------------------------------------
   -Portoflio repo is Private so make Public when the search starts
