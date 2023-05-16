@@ -1,6 +1,8 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import { capitalize, getClassname, getShortcutsString } from '../../../utils'
 import { KeyInput } from '../../../hooks/useKeyboardShortcuts';
+import { MOBILE_PIXEL_WIDTH } from '../../../constants';
+import { useRenderCount } from '../../../hooks/useRenderCountRef';
 
 export type CarouselItemViewerShortcutIndicatorProps = {
     actionName: string;
@@ -15,6 +17,7 @@ export type CarouselItemViewerShortcutIndicatorProps = {
     showButton?: boolean;
 }
 
+const TIMEOUT_DURATION = 1000;
 const className = getClassname({ elementName: 'item-viewer-shortcut-indicator' });
 export const CarouselItemViewerShortcutIndicator = ({
     actionName = '',
@@ -24,10 +27,12 @@ export const CarouselItemViewerShortcutIndicator = ({
     shortcuts = [],
     showButton = true,
 }: CarouselItemViewerShortcutIndicatorProps) => {
-    const hideShortcut = !isShortcutVisible || !actionName;
+    const timeoutRef = useRef<any>(null);
+    const [hideShortcut, setHideShortcut] = useState(!isShortcutVisible || !actionName)
     const containerStyle = !showButton ? {
         display: 'none',
     } as React.CSSProperties : {}
+    const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
 
     const commonStyle = {
         zIndex: 1000000000000,
@@ -43,6 +48,16 @@ export const CarouselItemViewerShortcutIndicator = ({
         left: 'auto',
         transform: 'translate(0%, -50%)',
     } as React.CSSProperties : {};
+
+    useEffect(() => {
+        setHideShortcut(!isShortcutVisible || !actionName);
+        if (isMobile) {
+            clearInterval(timeoutRef.current)
+            timeoutRef.current = setTimeout(() => {
+                setHideShortcut(true);
+            }, TIMEOUT_DURATION)
+        }
+    }, [isMobile, isShortcutVisible, actionName])
 
     return (
         <div className={className} style={containerStyle}>
