@@ -1,6 +1,6 @@
 Carousel rework
   -mobile stuff:
-    -swiping not working
+    -swiping not causing items to move (finish the handleMove for TouchEvent case)
     -video modal styling needs to adjusted on a case-by-case basis
     -buttons should be slightly smaller?
     -re-enable the rest of the tests (breaks when running all in responsive mode)

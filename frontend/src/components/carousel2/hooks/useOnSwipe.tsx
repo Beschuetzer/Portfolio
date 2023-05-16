@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from "react"
 import { getAncestorContainsClassname, getCoordinateDifference, stopPropagation } from "../utils";
 import { CarouselNavigationOptions, Coordinate } from "../types";
+import { MOBILE_PIXEL_WIDTH } from "../constants";
 
 export type StylingCase = 'start' | 'end';
 
@@ -61,6 +62,7 @@ export const useOnSwipe = ({
     const endCoordinateRef = useRef<Coordinate>();
     const mouseDownSourceElement = useRef<HTMLElement>();
     const mouseUpSourceElement = useRef<HTMLElement>();
+    const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH
 
     const reset = useCallback(() => {
         startCoordinateRef.current = undefined;
@@ -73,14 +75,14 @@ export const useOnSwipe = ({
     const getShouldSkipCallback = useCallback((swipeDirection: SwipeDirection) => {
         const skipTargets = swipeHandlers[swipeDirection]?.skipCallbackParentClassnames;
         if (!skipTargets || skipTargets.length === 0 || !mouseDownSourceElement.current) return false;
-        for(const skipTarget of skipTargets) {
+        for (const skipTarget of skipTargets) {
             const isChildOfSkipElement = getAncestorContainsClassname(mouseDownSourceElement.current, skipTarget);
             if (isChildOfSkipElement) return true;
         }
         return false;
     }, [swipeHandlers])
 
-    const handleMouseMove = useCallback((e: MouseEvent) => {
+    const handleMove = useCallback((e: Event) => {
         if (mouseDownSourceElement.current) {
             setCoordinate(currentCoordinateRef, e);
             if (lastCoordinateRef.current) {
@@ -109,7 +111,7 @@ export const useOnSwipe = ({
         window.removeEventListener('click', handleClickStop, true);
     }, [maxClickThreshold, reset])
 
-    const handleMouseDown = useCallback((e: MouseEvent) => {
+    const handleStart = useCallback((e: Event) => {
         stopPropagation(e)
         if (isDisabled) return;
         handleStyleChanges && handleStyleChanges('start', element)
@@ -117,15 +119,20 @@ export const useOnSwipe = ({
         if (mouseDownSourceElement) {
             mouseDownSourceElement.current = e.target as HTMLElement;
         }
-        setCoordinate(startCoordinateRef, e);
+
+        if (getIsTouchEvent(e)) {
+            setCoordinateWithTouchEvent(startCoordinateRef, e as TouchEvent);
+        } else {
+            setCoordinateWithMouseEvent(startCoordinateRef, e as MouseEvent);
+        }
     }, [element, handleStyleChanges, isDisabled])
 
     /*
     *Determines whether the swipe actually occurs and which callback to trigger
     */
-    const handleSwiping = useCallback((e: MouseEvent) => {
-        const endX = e.x || e.clientX || e.pageX;
-        const endY = e.y || e.clientY || e.pageY;
+    const handleSwiping = useCallback((e: Event) => {
+
+        const { endX, endY } = getEndCoordinate(e);
         const { x: startX, y: startY } = startCoordinateRef.current as Coordinate;
         const { distance } = getCoordinateDifference(startCoordinateRef.current as Coordinate, endCoordinateRef.current as Coordinate);
 
@@ -172,10 +179,11 @@ export const useOnSwipe = ({
         }
     }, [maxClickThreshold, swipeHandlers, getShouldSkipCallback])
 
-    const handleMouseUp = useCallback((e: MouseEvent) => {
+    const handleEnd = useCallback((e: Event) => {
         stopPropagation(e)
         if (!startCoordinateRef.current || isDisabled) return;
         setCoordinate(endCoordinateRef, e);
+
         handleStyleChanges && handleStyleChanges('end', element);
         window.addEventListener('click', handleClickStop, true);
 
@@ -189,28 +197,86 @@ export const useOnSwipe = ({
     useEffect(() => {
         if (!element) return;
         element.addEventListener('click', handleClick);
-        element.addEventListener('mousedown', handleMouseDown);
-        window.addEventListener('mouseup', handleMouseUp);
+        element.addEventListener('mousedown', handleStart);
+        window.addEventListener('mouseup', handleEnd);
 
         if (swipeHandlers?.onMoveWhenGrabbing) {
-            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mousemove', handleMove);
+        }
+
+        if (isMobile) {
+            element.addEventListener('touchstart', handleStart);
+            window.addEventListener('touchend', handleEnd);
+            window.addEventListener('touchmove', handleMove);
         }
 
         return () => {
             element.removeEventListener('click', handleClick);
-            element.removeEventListener('mousedown', handleMouseDown);
-            window.removeEventListener('mouseup', handleMouseUp);
+            element.removeEventListener('mousedown', handleStart);
+            window.removeEventListener('mouseup', handleEnd);
+            element.removeEventListener('touchstart', handleStart);
+            window.removeEventListener('touchend', handleEnd);
+            window.removeEventListener('touchmove', handleMove);
 
             if (swipeHandlers?.onMoveWhenGrabbing) {
-                window.removeEventListener('mousemove', handleMouseMove);
+                window.removeEventListener('mousemove', handleMove);
             }
+
         }
-    }, [element, handleClick, handleClickStop, handleMouseDown, handleMouseMove, handleMouseUp, swipeHandlers])
+    }, [
+        element,
+        handleClick,
+        handleClickStop,
+        handleStart,
+        handleMove,
+        handleEnd,
+        isMobile,
+        swipeHandlers
+    ])
 }
 
-function setCoordinate(ref: React.MutableRefObject<Coordinate | undefined>, e: MouseEvent) {
+//#region Helpers
+function getEndCoordinate(e: Event) {
+    let endX, endY;
+    if (getIsTouchEvent(e)) {
+        const event = (e as TouchEvent);
+        const changedTouch = event.changedTouches?.[0] || {};
+        endX = changedTouch?.pageX || changedTouch.clientX;
+        endY = changedTouch?.pageY || changedTouch.clientY;
+    } else {
+        const event = (e as MouseEvent);
+        endX = event?.x || event?.clientX || event?.pageX;
+        endY = event?.y || event?.clientY || event?.pageY;
+    }
+    return { endX, endY };
+}
+
+function getIsTouchEvent(e: Event) {
+    return !!(e as TouchEvent)?.changedTouches;
+}
+
+function setCoordinate(ref: React.MutableRefObject<Coordinate | undefined>, e: Event) {
+    if (getIsTouchEvent(e)) {
+        setCoordinateWithTouchEvent(ref, e as TouchEvent);
+    } else {
+        setCoordinateWithMouseEvent(ref, e as MouseEvent);
+    }
+}
+
+function setCoordinateWithMouseEvent(ref: React.MutableRefObject<Coordinate | undefined>,
+    e: MouseEvent) {
     ref.current = {
         x: e.x || e.clientX || e.pageX,
         y: e.y || e.clientY || e.pageY,
     }
 }
+
+function setCoordinateWithTouchEvent(ref: React.MutableRefObject<Coordinate | undefined>,
+    e: TouchEvent) {
+    const event = e.changedTouches?.[0] || {};
+    ref.current = {
+        x: event.pageX || event.clientX,
+        y: event.pageY || event.clientY,
+    }
+}
+//#endregion
