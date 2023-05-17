@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { CarouselElement, CarouselSection, CarouselOptions } from "../types";
 import { OptionsLogic } from "./OptionsLogic";
-import { convertHexToRgba, getIsVideo } from "../utils";
+import { convertHexToRgba, getIsMobile, getIsVideo } from "../utils";
 import {
     CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_SPACING_UNIT,
@@ -49,6 +49,7 @@ export class StylingLogic {
     private currentItem;
     private isCurrentItem: boolean | undefined;
     private optionsLogic: OptionsLogic;
+    private isMobile: boolean;
     private itemViewerToolbarRef;
     private isFullscreenMode: boolean;
     private loadingSpinnerOptions: LoadingSpinnerProps['options'];
@@ -80,6 +81,7 @@ export class StylingLogic {
         this.videoModalRef = videoModalRef;
         this.options = options || {};
         this.optionsLogic = optionsLogic || new OptionsLogic({ options: this.options });
+        this.isMobile = getIsMobile();
     }
 
     //#region Public Getters

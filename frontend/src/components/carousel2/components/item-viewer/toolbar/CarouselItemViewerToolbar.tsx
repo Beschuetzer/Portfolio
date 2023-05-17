@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
-import { getFormattedTimeString, stopPropagation, tryPlayingVideo } from '../../../utils'
+import { getFormattedTimeString, getIsMobile, stopPropagation, tryPlayingVideo } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from '../CarouselItemViewerProgressBar'
@@ -21,7 +21,6 @@ import {
     CLASSNAME__TOOLBAR_CONTAINER,
     CLASSNAME__TOOLBAR_LEFT,
     CLASSNAME__TOOLBAR_RIGHT,
-    MOBILE_PIXEL_WIDTH,
     SEEK_AMOUNT_DEFAULT
 } from '../../../constants'
 import { useUpdateTimeString } from '../../../hooks/useUpdateTimeStrings'
@@ -84,7 +83,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const [showPreviousButtonPopup, setShowPreviousButtonPopup] = useState(false);
 
     const { optionsLogic, stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic({});
-    const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
+    const isMobile = getIsMobile();
     useKeyboardShortcuts([
         {
             keys: toolbarActionsLogic.getPlay().keys,

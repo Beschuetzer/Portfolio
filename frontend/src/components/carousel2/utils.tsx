@@ -2,7 +2,13 @@ import { replaceCharacters } from "../../helpers";
 import { OptionsLogic } from "./business-logic/OptionsLogic";
 import { StylingLogic } from "./business-logic/StylingLogic";
 import { CarouselItemProps } from "./components/CarouselItem";
-import { CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, CLASSNAME__ROOT, NUMBER_OF_PAGES_INITIAL, VIDEO_EXTENSIONS } from "./constants";
+import {
+    CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
+    CLASSNAME__ROOT,
+    MOBILE_PIXEL_WIDTH,
+    NUMBER_OF_PAGES_INITIAL,
+    VIDEO_EXTENSIONS
+} from "./constants";
 import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
 import { Coordinate, Point, ArrowButtonDirection } from "./types";
 type GetClassname = {
@@ -76,6 +82,10 @@ export function getCoordinateDifference(mostRecentCoordinate: Coordinate, previo
         xDiff,
         yDiff,
     }
+}
+
+export function getIsMobile() {
+    return window.innerWidth <= MOBILE_PIXEL_WIDTH;
 }
 
 export function getFormattedTimeString(seconds: number) {

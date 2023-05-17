@@ -1,5 +1,6 @@
 Carousel rework
   -mobile stuff:
+    -replace all cases of MOBILE_PIXEL_WIDTH with getIsMobile()
     -video modal styling needs to adjusted on a case-by-case basis
     -buttons should be slightly smaller?
     -re-enable the rest of the tests (breaks when running all in responsive mode)

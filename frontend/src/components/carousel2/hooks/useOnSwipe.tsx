@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef } from "react"
-import { getAncestorContainsClassname, getCoordinateDifference, stopPropagation } from "../utils";
+import { getAncestorContainsClassname, getCoordinateDifference, getIsMobile, stopPropagation } from "../utils";
 import { CarouselNavigationOptions, Coordinate } from "../types";
-import { MOBILE_PIXEL_WIDTH } from "../constants";
 
 export type StylingCase = 'start' | 'end';
 
@@ -46,7 +45,7 @@ export type UseOnSwipeProps = {
     swipeHandlers?: UseOnSwipeHandlers;
 } & Partial<Pick<CarouselNavigationOptions, 'maxClickThreshold'>>
 
-const ON_MOVE_WHEN_GRABBING_SHORT_CIRCUIT_AMOUNT = 10;
+const ON_MOVE_WHEN_GRABBING_SHORT_CIRCUIT_AMOUNT = 100;
 //positive horizontal diff means right and positive vertical diff means down
 export const useOnSwipe = ({
     element,
@@ -62,7 +61,7 @@ export const useOnSwipe = ({
     const endCoordinateRef = useRef<Coordinate>();
     const mouseDownSourceElement = useRef<HTMLElement>();
     const mouseUpSourceElement = useRef<HTMLElement>();
-    const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH
+    const isMobile = getIsMobile();
 
     const reset = useCallback(() => {
         startCoordinateRef.current = undefined;

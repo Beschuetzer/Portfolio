@@ -1,8 +1,6 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react'
-import { capitalize, getClassname, getShortcutsString } from '../../../utils'
+import { capitalize, getClassname, getIsMobile, getShortcutsString } from '../../../utils'
 import { KeyInput } from '../../../hooks/useKeyboardShortcuts';
-import { MOBILE_PIXEL_WIDTH } from '../../../constants';
-import { useRenderCount } from '../../../hooks/useRenderCountRef';
 
 export type CarouselItemViewerShortcutIndicatorProps = {
     actionName: string;
@@ -32,7 +30,7 @@ export const CarouselItemViewerShortcutIndicator = ({
     const containerStyle = !showButton ? {
         display: 'none',
     } as React.CSSProperties : {}
-    const isMobile = window.innerWidth <= MOBILE_PIXEL_WIDTH;
+    const isMobile = getIsMobile();
 
     const commonStyle = {
         zIndex: 1000000000000,
