@@ -126,11 +126,13 @@ export function getNumberOfItemsThatCanFit(
 ) {
     const containerWidth = getContainerWidth(htmlElement, stylingLogic);
     const itemSize = optionsLogic.carouselItemSize;
+    const calculatedNumberOfWholeItemsThatCanFit = Math.floor(containerWidth / itemSize);
 
     return {
         containerWidth,
         itemSize,
-        numberOfWholeItemsThatCanFit: Math.floor(containerWidth / itemSize),
+        //logic needed to prevent crashing at smaller viewport
+        numberOfWholeItemsThatCanFit: calculatedNumberOfWholeItemsThatCanFit <= 0 ? 1 : calculatedNumberOfWholeItemsThatCanFit, 
         numberOfItemsThatCanFit: containerWidth / itemSize,
     }
 }

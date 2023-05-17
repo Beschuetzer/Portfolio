@@ -97,7 +97,8 @@ export const CarouselContent = ({
         );
         const numberOfGaps = numberOfWholeItemsThatCanFit - 1;
         const remainingSpace = containerWidth - (numberOfWholeItemsThatCanFit * itemSize);
-        const newInterItemSpacing = (remainingSpace / numberOfGaps);
+        //numberOfGaps logic needed to prevent crashing at smaller viewport, since divide by <= 0 
+        const newInterItemSpacing = (remainingSpace / (numberOfGaps <= 0 ? 1 : numberOfGaps));
         return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
     }, [options?.thumbnail, carouselContainerRef, stylingLogic, optionsLogic]);
 
