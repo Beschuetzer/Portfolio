@@ -87,7 +87,10 @@ export const useOnSwipe = ({
             setCoordinate(currentCoordinateRef, e);
             if (lastCoordinateRef.current) {
                 const { xDiff, yDiff } = getCoordinateDifference(currentCoordinateRef.current as Coordinate, lastCoordinateRef.current as Coordinate);
-                if (Math.abs(xDiff) > ON_MOVE_WHEN_GRABBING_SHORT_CIRCUIT_AMOUNT || Math.abs(yDiff) > ON_MOVE_WHEN_GRABBING_SHORT_CIRCUIT_AMOUNT) return;
+                if (Math.abs(xDiff) > ON_MOVE_WHEN_GRABBING_SHORT_CIRCUIT_AMOUNT || Math.abs(yDiff) > ON_MOVE_WHEN_GRABBING_SHORT_CIRCUIT_AMOUNT) {
+                    setCoordinate(lastCoordinateRef, e);
+                    return;
+                };
                 swipeHandlers.onMoveWhenGrabbing && swipeHandlers.onMoveWhenGrabbing(xDiff, yDiff);
             }
             setCoordinate(lastCoordinateRef, e);
