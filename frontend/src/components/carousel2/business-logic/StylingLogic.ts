@@ -273,9 +273,9 @@ export class StylingLogic {
         const isDefault = this.optionsLogic.isDefaultItemDisplayLocation;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
         const videoModalHeight = this.videoModalRef?.current?.getBoundingClientRect().height || 0;
-        const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : "75%";
+        const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : this.isMobile ? "100%" : "75%";
 
-        const widthStyle = !this.isFullscreenMode ? {
+        const widthStyle = !this.isFullscreenMode || this.isMobile ? {
             width: widthToUse,
             maxWidth: widthToUse,
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
@@ -288,7 +288,7 @@ export class StylingLogic {
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
             transform: 'translate(-50%, 0)',
-            top: videoHeight && videoModalHeight ? `${Math.abs(videoHeight - videoModalHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
+            top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${Math.abs(videoHeight - videoModalHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
         } as CSSProperties : {};
         const textStyle = {
             color: textColor || CAROUSEL_COLOR_ONE,

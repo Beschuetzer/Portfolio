@@ -115,7 +115,7 @@ const sections: CSharpSection[] = [
 									</CSharpCardSection>
 									<CSharpCardSection title="Two Filters = Double the Filtering">
 										The second filter applied requires 'Ann' to have the
-										2&clubs;. In one of the filtered games, she does and in the
+										2&clubs;. In one of the filtered games she does, and in the
 										other one she doesn't.
 									</CSharpCardSection>
 								</div>
