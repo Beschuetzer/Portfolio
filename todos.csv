@@ -1,5 +1,6 @@
 Carousel rework
   -mobile stuff:
+    -going below 280~ px width causes page to crash (seems to be due to auto item adjustment in CarouselContent)
     -replace all cases of MOBILE_PIXEL_WIDTH with getIsMobile()
     -buttons should be slightly smaller?
     -re-enable the rest of the tests (breaks when running all in responsive mode)
