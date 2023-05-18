@@ -33,15 +33,11 @@
 @mixin closeButton() {
     &--close {
         &-left, &-right {
-            width: $buttonLineWidth;
-            height: $buttonWidth;
             @include positionButton(var(--rotation));
 
             &-inverse {
                 background-color: $itemViewerBackgroundColor;
                 margin-top: 0;
-                width: calc($buttonLineWidth * .5);
-                height: calc($buttonWidth * .75);
             }
         }
 

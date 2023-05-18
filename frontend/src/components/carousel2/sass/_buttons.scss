@@ -64,15 +64,11 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
         &-square-outer {
             @include positionButton();
             background-color: $itemViewerButtonColor;
-            width: 20px;
-            height: 20px;
         }
 
         &-square-inner {
             @include positionButton();
             background-color: $itemViewerBackgroundColor;
-            width: 15px;
-            height: 15px;
         }
 
         &-rect {
@@ -80,14 +76,12 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
                 @include positionButton();
                 background-color: $itemViewerBackgroundColor;
                 width: 100%;
-                height: 5px;
             }
 
             &-vertical {
                 @include positionButton();
                 background-color: $itemViewerBackgroundColor;
                 height: 100%;
-                width: 5px;
             }
         }
     }

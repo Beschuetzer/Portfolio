@@ -587,21 +587,21 @@ export class StylingLogic {
                 switch (subElementName) {
                     case "square-outer":
                         return {
-                            width: parsedWidth * .85,
-                            height: parsedWidth * .85,
+                            width: parsedWidth * .8333333,
+                            height: parsedWidth * .8333333,
                         }
                     case "square-inner":
                         return {
-                            width: parsedWidth * 2 / 3,
-                            height: parsedWidth * 2 / 3,
+                            width: parsedWidth * .625,
+                            height: parsedWidth * .625,
                         }
                     case "rect-horizontal":
                         return {
-                            height: parsedWidth * .25,
+                            height: parsedWidth * .2083333333,
                         }
                     case "rect-vertical":
                         return {
-                            width: parsedWidth * .25,
+                            width: parsedWidth * .2083333333,
                         }
                     default:
                         return buttonSizeStyle;

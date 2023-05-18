@@ -373,8 +373,6 @@
   transform: translate(-50%, -50%) rotate(45deg);
 }
 .thumbnail-carousel-button--close-left, .thumbnail-carousel-button--close-right {
-  width: 6px;
-  height: 24px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -385,8 +383,6 @@
 .thumbnail-carousel-button--close-left-inverse, .thumbnail-carousel-button--close-right-inverse {
   background-color: #1d0e0b;
   margin-top: 0;
-  width: 3px;
-  height: 18px;
 }
 .thumbnail-carousel-button--close-left {
   --rotation: -45deg;
@@ -434,8 +430,6 @@
   bottom: auto;
   transform: translate(-50%, -50%) rotate(0);
   background-color: #fff9f5;
-  width: 20px;
-  height: 20px;
 }
 .thumbnail-carousel-button--fullscreen-square-inner {
   position: absolute;
@@ -445,8 +439,6 @@
   bottom: auto;
   transform: translate(-50%, -50%) rotate(0);
   background-color: #1d0e0b;
-  width: 15px;
-  height: 15px;
 }
 .thumbnail-carousel-button--fullscreen-rect-horizontal {
   position: absolute;
@@ -457,7 +449,6 @@
   transform: translate(-50%, -50%) rotate(0);
   background-color: #1d0e0b;
   width: 100%;
-  height: 5px;
 }
 .thumbnail-carousel-button--fullscreen-rect-vertical {
   position: absolute;
@@ -468,7 +459,6 @@
   transform: translate(-50%, -50%) rotate(0);
   background-color: #1d0e0b;
   height: 100%;
-  width: 5px;
 }
 .thumbnail-carousel-button--pause-left, .thumbnail-carousel-button--pause-right {
   position: absolute;
@@ -1035,8 +1025,6 @@
   top: var(--thumbnail-carousel-video-modal-custom-button-top);
 }
 .thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-left, .thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-right {
-  width: 6px;
-  height: 24px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1047,8 +1035,6 @@
 .thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-left-inverse, .thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-right-inverse {
   background-color: #1d0e0b;
   margin-top: 0;
-  width: 3px;
-  height: 18px;
 }
 .thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-left {
   --rotation: -45deg;
