@@ -1,12 +1,12 @@
 import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CLASSNAME__ITEM_VIEWER_TOOLBAR, CURRENT_ITEM_INDEX_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
+import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
-import { getNumberOfItemsThatCanFit, getContainerWidth, getClassname, getNumberOfPages, onArrowButtonClick } from '../utils';
+import { getNumberOfItemsThatCanFit, getClassname, getNumberOfPages, onArrowButtonClick } from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 
@@ -255,17 +255,21 @@ export const CarouselContent = ({
 
         function getTranslationAmount() {
             const itemSpacingGiven = options?.thumbnail?.itemSpacing;
-            const containerWidth = getContainerWidth(carouselContainerRef.current as HTMLElement, stylingLogic);
+            const { numberOfWholeItemsThatCanFit, containerWidth } = getNumberOfItemsThatCanFit(
+                carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
+            );
             const defaultAmount = parseFloat(interItemSpacing.replace(CAROUSEL_SPACING_UNIT, '')) + containerWidth;
 
             if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
                 if (!translationAmountDifferenceRef.current) {
                     translationAmountDifferenceRef.current = defaultAmount - getDifferenceBetweenContainerAndLastItem() - itemSpacingGiven;
                 }
+            } else if (numberOfWholeItemsThatCanFit <= 1) {
+                translationAmountDifferenceRef.current = containerWidth;
             } else {
                 translationAmountDifferenceRef.current = defaultAmount;
             }
-
+            
             return currentPage * translationAmountDifferenceRef.current;
         }
 

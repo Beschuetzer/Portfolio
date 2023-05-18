@@ -1,6 +1,5 @@
 Carousel rework
   -mobile stuff:
-    -if width is so small that only 1 item is visible, everything gets messed up (maybe add behavior to always ensure that two items are able to fit across the width of the screen?)
     -buttons should be slightly smaller?
     -re-enable the rest of the tests (breaks when running all in responsive mode)
   -add option for centering and right aligning navigation items (but make clear that only happens when using auto-spacing and the items don't span entire width of container;  will need to use margin-left/right?)
