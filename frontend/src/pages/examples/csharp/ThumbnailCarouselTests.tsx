@@ -519,6 +519,15 @@ const itemViewerSeekAmount2Sec = (
 		}
 	}} />
 );
+const customToolbarButtonSize = (
+	<Carousel items={items.slice(0, 1)} options={{
+		styling: {
+			toolbar: {
+				buttonSize: 40,
+			}
+		}
+	}} />
+);
 const navigationTracking = (
 	<Carousel items={items} />
 );
@@ -1616,59 +1625,63 @@ const SECTIONS: Sections = [
 	// 		},
 	// 	]
 	// ],
-	// [
-	// 	"Item Viewer",
-	// 	[
-	// 		{
-	// 			label: "Default Overlay Displayed on Load",
-	// 			jsx: itemViewerDefaultOverlayOnLoad
-	// 		},
-	// 		{
-	// 			label: "Default Overlay Displayed on Load with Custom Toolbar Buttons",
-	// 			jsx: itemViewerCustomButtons
-	// 		},
-	// 		{
-	// 			label: "Custom Overlay Displayed on Load",
-	// 			jsx: itemViewerCustomOverlayOnLoad
-	// 		},
-	// 		{
-	// 			label: "Toolbar doesn't hide on inactivity (Click item to view)",
-	// 			jsx: itemViewerNoToolbarHide
-	// 		},
-	// 		{
-	// 			label: "Toolbar hides after 500ms of inactivity (Click item to view)",
-	// 			jsx: itemViewerHideAfter500ms
-	// 		},
-	// 		{
-	// 			label: "Seek amount 2 sec (Click item to view)",
-	// 			jsx: itemViewerSeekAmount2Sec
-	// 		},
-	// 		{
-	// 			label: "All custom keyboard shortcuts",
-	// 			jsx: itemViewerCustomShortcuts,
-	// 		},
-	// 		{
-	// 			label: "Custom Item Viewer Font",
-	// 			jsx: itemViewerCustomItemViewerFont,
-	// 		},
-	// 		{
-	// 			label: "Custom Navigation Font",
-	// 			jsx: itemViewerCustomNavigationFont,
-	// 		},
-	// 		{
-	// 			label: "Custom Navigation and Item Viewer Fonts",
-	// 			jsx: itemViewerCustomFontBoth,
-	// 		},
-	// 		{
-	// 			label: "Full-screen Swiping Disabled",
-	// 			jsx: itemViewerSwipingDisabled
-	// 		},
-	// 		{
-	// 			label: "Full-screen Max Click Threshold 0",
-	// 			jsx: itemViewerMaxClickThresholdZero
-	// 		},
-	// 	]
-	// ],
+	[
+		"Item Viewer",
+		[
+			{
+				label: "Default Overlay Displayed on Load",
+				jsx: itemViewerDefaultOverlayOnLoad
+			},
+			{
+				label: "Default Overlay Displayed on Load with Custom Toolbar Buttons",
+				jsx: itemViewerCustomButtons
+			},
+			{
+				label: "Custom Overlay Displayed on Load",
+				jsx: itemViewerCustomOverlayOnLoad
+			},
+			{
+				label: "Toolbar doesn't hide on inactivity (Click item to view)",
+				jsx: itemViewerNoToolbarHide
+			},
+			{
+				label: "Toolbar hides after 500ms of inactivity (Click item to view)",
+				jsx: itemViewerHideAfter500ms
+			},
+			{
+				label: "Custom Toolbar button Size",
+				jsx: customToolbarButtonSize
+			},
+			{
+				label: "Seek amount 2 sec (Click item to view)",
+				jsx: itemViewerSeekAmount2Sec
+			},
+			{
+				label: "All custom keyboard shortcuts",
+				jsx: itemViewerCustomShortcuts,
+			},
+			{
+				label: "Custom Item Viewer Font",
+				jsx: itemViewerCustomItemViewerFont,
+			},
+			{
+				label: "Custom Navigation Font",
+				jsx: itemViewerCustomNavigationFont,
+			},
+			{
+				label: "Custom Navigation and Item Viewer Fonts",
+				jsx: itemViewerCustomFontBoth,
+			},
+			{
+				label: "Full-screen Swiping Disabled",
+				jsx: itemViewerSwipingDisabled
+			},
+			{
+				label: "Full-screen Max Click Threshold 0",
+				jsx: itemViewerMaxClickThresholdZero
+			},
+		]
+	],
 	// [
 	// 	"Custom Width",
 	// 	[

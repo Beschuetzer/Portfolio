@@ -19,7 +19,9 @@ import {
     CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT,
     CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
-    CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT
+    CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
+    CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT,
+    CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -85,6 +87,17 @@ export class StylingLogic {
     }
 
     //#region Public Getters
+    get carouselButtonSizeStlye() {
+        const givenButtonSize = this.options.styling?.toolbar?.buttonSize;
+        const defaultButtonSize = this.isMobile ? CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT : CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT;
+        const valueToUse = givenButtonSize || defaultButtonSize;
+
+        return {
+            width: valueToUse,
+            height: valueToUse,
+        } as CSSProperties
+    }
+
     get carouselImageStlye() {
         // const cursorStyle = this.isFullscreenMode ?  {
         //     zIndex: 0,
@@ -556,6 +569,26 @@ export class StylingLogic {
                 return specificFillColor || toolbarElementsColor || this.allFillColor || fallbackColor;
             default:
                 return specificFillColor || this.allFillColor || fallbackColor;
+        }
+    }
+    
+    getToolbarButtonSizeStlye(buttonName: CarouselElement, subElementName?: string) {
+        const buttonSizeStyle = this.carouselButtonSizeStlye;
+
+        switch (buttonName) {
+            case CarouselElement.closeButton:
+                return {
+                    height: parseInt(buttonSizeStyle.width as string, 10),
+                    width: parseInt(buttonSizeStyle.width as string, 10) / 4,
+                } as CSSProperties;
+            case CarouselElement.nextButton:
+            case CarouselElement.pauseButton:
+            case CarouselElement.playButton:
+            case CarouselElement.previousButton:
+            case CarouselElement.seekBackButton:
+            case CarouselElement.seekForwardButton:
+            default:
+                return buttonSizeStyle;
         }
     }
 

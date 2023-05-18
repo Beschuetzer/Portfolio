@@ -107,6 +107,10 @@ export type CarouselSections = {
     *This is where the buttons, progress bar, and item description sit
     */
     [CarouselSection.toolbar]?: {
+        /*
+        This sets the size of the buttons in the toolbar in px.  The default is 24px
+        */
+        buttonSize?: number;
         padding?: CarouselHorizontalPaddingOptions;
         progressBar?: {
             /*
@@ -155,28 +159,28 @@ export type CarouselLayoutOptions = {
 }
 
 export type CarouselSwipingOptions = {
- /*
-    *If true, then swiping will be disabled.  For navigation, this means grabbing a thumbnail and swiping will not change the page.  
-    *For `itemViewer`, this means that grabbing and swiping will not change the currently viewing item.
-    *Default is false.
-    *Swiping only occurs if mouseup and mousedown coordinate distances are greater than `maxClickThreshold` 
-    */
+    /*
+       *If true, then swiping will be disabled.  For navigation, this means grabbing a thumbnail and swiping will not change the page.  
+       *For `itemViewer`, this means that grabbing and swiping will not change the currently viewing item.
+       *Default is false.
+       *Swiping only occurs if mouseup and mousedown coordinate distances are greater than `maxClickThreshold` 
+       */
     disableSwiping?: boolean;
-     /*
-    *The max number of pixels that can be moved between mousedown and mouseup to still register a 'click' event
-    *This is used to prevent opening of an item when mousedown and mouseup targets are the same
-    *Higher values mean the user can move the cursor more and still open the item
-    *0 would mean if the user moved the cursor at all between mouseup and mousedown then the item would not open
-    *Default is 15 when swiping is enabled to allow for slight movement (swiping is disabled if only 1 page or `disableSwiping` is false)
-    */
+    /*
+   *The max number of pixels that can be moved between mousedown and mouseup to still register a 'click' event
+   *This is used to prevent opening of an item when mousedown and mouseup targets are the same
+   *Higher values mean the user can move the cursor more and still open the item
+   *0 would mean if the user moved the cursor at all between mouseup and mousedown then the item would not open
+   *Default is 15 when swiping is enabled to allow for slight movement (swiping is disabled if only 1 page or `disableSwiping` is false)
+   */
     maxClickThreshold?: number;
 }
 
 export type CarouselNavigationOptions = {
-     /*
-    *If true, the navigation automatically changes pages based on the current item viewed 
-    *Default is true.
-    */
+    /*
+   *If true, the navigation automatically changes pages based on the current item viewed 
+   *Default is true.
+   */
     autoChangePage?: boolean;
     /*
     *When true, the carousel can not go from beginning to end directly.
@@ -221,8 +225,8 @@ export type CarouselVerticalPaddingOptions = {
 }
 
 export type CarouselStylingOptions = {
-    fontFamily?: CarouselFontFamilyOptions;
     elements?: CarouselElementStyles;
+    fontFamily?: CarouselFontFamilyOptions;
 } & CarouselSections;
 
 export type CarouselOptions = {
