@@ -73,12 +73,8 @@
 }
 
 @mixin pauseBar(
-    $width: $buttonLineWidth,
-    $height: $pauseButtonVerticalHeight,
 ) {
     @include positionButton($xTranslate: calc(-50% + #{$buttonWidth * .25}), $yTranslate: -50%);
-    width: $width;
-    height: $height;
 }
 
 @mixin positionButton(

@@ -411,8 +411,6 @@
   right: auto;
   bottom: auto;
   transform: translate(calc(-50% + 6px), -50%) rotate(0);
-  width: 3px;
-  height: calc(24px * .85);
 }
 .thumbnail-carousel-button--inverse {
   transform: translateX(4.8px);
@@ -467,8 +465,6 @@
   right: auto;
   bottom: auto;
   transform: translate(calc(-50% + 6px), -50%) rotate(0);
-  width: 6px;
-  height: calc(24px * .85);
 }
 .thumbnail-carousel-button--pause-left {
   position: absolute;
@@ -499,8 +495,6 @@
   right: auto;
   bottom: auto;
   transform: translate(calc(-50% + 6px), -50%) rotate(0);
-  width: 3px;
-  height: calc(24px * .85);
   position: absolute;
   top: 50%;
   left: 50%;

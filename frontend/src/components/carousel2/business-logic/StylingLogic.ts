@@ -576,6 +576,7 @@ export class StylingLogic {
     getToolbarButtonSizeStlye(buttonName: CarouselElement, subElementName?: string, style?: CSSProperties) {
         const buttonSizeStyle = this.carouselButtonSizeStlye;
         const parsedWidth = parseInt(buttonSizeStyle.width as string, 10);
+        const maxHeightFactor = .8333333;
 
         switch (buttonName) {
             case CarouselElement.closeButton:
@@ -587,8 +588,8 @@ export class StylingLogic {
                 switch (subElementName) {
                     case "square-outer":
                         return {
-                            width: parsedWidth * .8333333,
-                            height: parsedWidth * .8333333,
+                            width: parsedWidth * maxHeightFactor,
+                            height: parsedWidth * maxHeightFactor,
                         }
                     case "square-inner":
                         return {
@@ -607,25 +608,31 @@ export class StylingLogic {
                         return buttonSizeStyle;
                 }
             case CarouselElement.nextButton:
+            case CarouselElement.previousButton:
                 switch (subElementName) {
-                    case "next-left":
+                    case "triangle":
                         return {
-                            borderTop: `${parsedWidth / 2.25}px solid transparent`,
-                            borderBottom: `${parsedWidth / 2.25}px solid transparent`,
-                            borderLeft: `${parsedWidth / 2.25}px solid ${style?.borderLeftColor}`,
+                            borderTop: `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid transparent`,
+                            borderBottom: `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid transparent`,
+                            borderLeft: buttonName === CarouselElement.nextButton ? `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid ${style?.borderLeftColor}` : undefined,
+                            borderRight: buttonName === CarouselElement.previousButton ? `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid ${style?.borderRightColor}` : undefined,
                         }
-                    case "next-right":
+                    case "bar":
                         return {
                             width: parsedWidth / 8,
-                            height: parsedWidth * .85,
+                            height: parsedWidth * maxHeightFactor,
                         }
-
                     default:
                         return buttonSizeStyle;
                 }
             case CarouselElement.pauseButton:
+                const pauseBarWidth = parsedWidth * .25;
+                return {
+                    width: pauseBarWidth,
+                    height: parsedWidth * maxHeightFactor,
+                    transform: `translate(calc(-50% + ${subElementName === 'left' ? '-' : ''}${pauseBarWidth}${CAROUSEL_SPACING_UNIT}), -50%) rotate(0)`,
+                }
             case CarouselElement.playButton:
-            case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
             default:
