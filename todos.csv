@@ -1,6 +1,5 @@
 Carousel rework
-  -fullscreen button doesn't have colors setup
-  -finish buttonSize changes (see CloseButton for example)
+  -finish buttonSize changes (down to nextButton done)
   -make sure buttonSize works with custom icons
   -add option for centering and right aligning navigation items (but make clear that only happens when using auto-spacing and the items don't span entire width of container;  will need to use margin-left/right?)
   -add option to use default video tag controls

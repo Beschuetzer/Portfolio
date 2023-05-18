@@ -19,13 +19,14 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
   const { stylingLogic } = useBusinessLogic({});
   const fullScreenClassname = `${className}--fullscreen`
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
+  const fillStyle = StylingLogic.getButtonColorStyle(fillColor, 'fill', childStyle);
 
   return (
     <button style={stylingLogic.carouselButtonSizeStlye} ref={ref} onClick={onClick} className={`${className} ${fullScreenClassname}`}>
       <div style={{...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'square-outer') }} className={`${fullScreenClassname}-square-outer`} />
-      <div style={{...stylingLogic.toolbarBackgroundColorStyle,  ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'square-inner') }} className={`${fullScreenClassname}-square-inner`} />
-      <div style={{...stylingLogic.toolbarBackgroundColorStyle,  ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'rect-horizontal') }} className={`${fullScreenClassname}-rect-horizontal`} />
-      <div style={{...stylingLogic.toolbarBackgroundColorStyle,  ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'rect-vertical') }} className={`${fullScreenClassname}-rect-vertical`} />
+      <div style={{...fillStyle, ...stylingLogic.toolbarBackgroundColorStyle,  ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'square-inner') }} className={`${fullScreenClassname}-square-inner`} />
+      <div style={{...fillStyle, ...stylingLogic.toolbarBackgroundColorStyle,  ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'rect-horizontal') }} className={`${fullScreenClassname}-rect-horizontal`} />
+      <div style={{...fillStyle, ...stylingLogic.toolbarBackgroundColorStyle,  ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'rect-vertical') }} className={`${fullScreenClassname}-rect-vertical`} />
     </button>
   )
 })

@@ -559,6 +559,7 @@ export class StylingLogic {
                 const navigationElementsColor = this.options.styling?.navigation?.elementColor;
                 return specificFillColor || navigationElementsColor || this.allFillColor || fallbackColor;
             case CarouselElement.closeButton:
+            case CarouselElement.fullscreenButton:
             case CarouselElement.nextButton:
             case CarouselElement.pauseButton:
             case CarouselElement.playButton:
@@ -607,7 +608,7 @@ export class StylingLogic {
                 }
             case CarouselElement.nextButton:
                 switch (subElementName) {
-                    case "next-left": 
+                    case "next-left":
                         return {
                             borderTop: `${parsedWidth / 2.25}px solid transparent`,
                             borderBottom: `${parsedWidth / 2.25}px solid transparent`,
@@ -618,7 +619,7 @@ export class StylingLogic {
                             width: parsedWidth / 8,
                             height: parsedWidth * .85,
                         }
-                    
+
                     default:
                         return buttonSizeStyle;
                 }
