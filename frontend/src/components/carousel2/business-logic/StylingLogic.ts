@@ -571,7 +571,7 @@ export class StylingLogic {
                 return specificFillColor || this.allFillColor || fallbackColor;
         }
     }
-    
+
     getToolbarButtonSizeStlye(buttonName: CarouselElement, subElementName?: string) {
         const buttonSizeStyle = this.carouselButtonSizeStlye;
 
@@ -581,6 +581,29 @@ export class StylingLogic {
                     height: parseInt(buttonSizeStyle.width as string, 10),
                     width: parseInt(buttonSizeStyle.width as string, 10) / 4,
                 } as CSSProperties;
+            case CarouselElement.fullscreenButton:
+                switch (subElementName) {
+                    case "square-outer":
+                        return {
+                            width: parseInt(buttonSizeStyle.width as string, 10) - 4,
+                            height: parseInt(buttonSizeStyle.width as string, 10) - 4,
+                        }
+                    case "square-inner":
+                        return {
+                            width: parseInt(buttonSizeStyle.width as string, 10) * 2 / 3,
+                            height: parseInt(buttonSizeStyle.width as string, 10) * 2 / 3,
+                        }
+                    case "rect-horizontal":
+                        return {
+                            height: parseInt(buttonSizeStyle.width as string, 10) / 4,
+                        }
+                    case "rect-vertical":
+                        return {
+                            width: parseInt(buttonSizeStyle.width as string, 10) / 4,
+                        }
+                    default:
+                        return buttonSizeStyle;
+                }
             case CarouselElement.nextButton:
             case CarouselElement.pauseButton:
             case CarouselElement.playButton:

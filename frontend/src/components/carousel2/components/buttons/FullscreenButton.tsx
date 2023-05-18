@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { CAROUSEL_COLOR_FIVE, CLASSNAME__BUTTON } from "../../constants";
-import { ButtonProps } from "../../types";
+import { ButtonProps, CarouselElement } from "../../types";
 import { StylingLogic } from "../../business-logic/StylingLogic";
 import { useBusinessLogic } from "../../hooks/useBusinessLogic";
 
@@ -19,13 +19,13 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
   const { stylingLogic } = useBusinessLogic({});
   const fullScreenClassname = `${className}--fullscreen`
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
-  
+
   return (
-    <button ref={ref} onClick={onClick} className={`${className} ${fullScreenClassname}`}>
-      <div style={colorStyle} className={`${fullScreenClassname}-square-outer`} />
-      <div style={stylingLogic.toolbarBackgroundColorStyle} className={`${fullScreenClassname}-square-inner`} />
-      <div style={stylingLogic.toolbarBackgroundColorStyle} className={`${fullScreenClassname}-rect-horizontal`} />
-      <div style={stylingLogic.toolbarBackgroundColorStyle} className={`${fullScreenClassname}-rect-vertical`} />
+    <button style={stylingLogic.carouselButtonSizeStlye} ref={ref} onClick={onClick} className={`${className} ${fullScreenClassname}`}>
+      <div style={{...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'square-outer') }} className={`${fullScreenClassname}-square-outer`} />
+      <div style={{...stylingLogic.toolbarBackgroundColorStyle,  ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'square-inner') }} className={`${fullScreenClassname}-square-inner`} />
+      <div style={{...stylingLogic.toolbarBackgroundColorStyle,  ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'rect-horizontal') }} className={`${fullScreenClassname}-rect-horizontal`} />
+      <div style={{...stylingLogic.toolbarBackgroundColorStyle,  ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'rect-vertical') }} className={`${fullScreenClassname}-rect-vertical`} />
     </button>
   )
 })

@@ -525,6 +525,9 @@ const customToolbarButtonSize = (
 			toolbar: {
 				buttonSize: 40,
 			}
+		},
+		layout: {
+			itemDisplayLocation: "above",
 		}
 	}} />
 );
