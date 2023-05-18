@@ -113,27 +113,10 @@ export const useOnSwipe = ({
         window.removeEventListener('click', handleClickStop, true);
     }, [maxClickThreshold, reset])
 
-    const handleStart = useCallback((e: Event) => {
-        stopPropagation(e)
-        if (isDisabled) return;
-        handleStyleChanges && handleStyleChanges('start', element)
-
-        if (mouseDownSourceElement) {
-            mouseDownSourceElement.current = e.target as HTMLElement;
-        }
-
-        if (getIsTouchEvent(e)) {
-            setCoordinateWithTouchEvent(startCoordinateRef, e as TouchEvent);
-        } else {
-            setCoordinateWithMouseEvent(startCoordinateRef, e as MouseEvent);
-        }
-    }, [element, handleStyleChanges, isDisabled])
-
     /*
     *Determines whether the swipe actually occurs and which callback to trigger
     */
     const handleSwiping = useCallback((e: Event) => {
-
         const { endX, endY } = getEndCoordinate(e);
         const { x: startX, y: startY } = startCoordinateRef.current as Coordinate;
         const { distance } = getCoordinateDifference(startCoordinateRef.current as Coordinate, endCoordinateRef.current as Coordinate);
@@ -193,8 +176,36 @@ export const useOnSwipe = ({
             mouseUpSourceElement.current = e.target as HTMLElement;
         }
 
+        if (getIsTouchEvent(e)) {
+            //have to remove these listeners here to prevent bug where swiping anywhere on the screen would cause any 
+            //carousel that had been previously iteracted with to register the swipe
+            window.removeEventListener('touchend', handleEnd);
+            window.removeEventListener('touchmove', handleMove);
+        }
         handleSwiping(e);
-    }, [element, handleClickStop, handleStyleChanges, handleSwiping, isDisabled])
+    }, [element, handleClickStop, handleMove, handleStyleChanges, handleSwiping, isDisabled])
+
+
+    const handleStart = useCallback((e: Event) => {
+        stopPropagation(e)
+        if (isDisabled) return;
+        handleStyleChanges && handleStyleChanges('start', element)
+
+        if (mouseDownSourceElement) {
+            mouseDownSourceElement.current = e.target as HTMLElement;
+        }
+
+        if (getIsTouchEvent(e)) {
+            setCoordinateWithTouchEvent(startCoordinateRef, e as TouchEvent);
+
+            //have to add these listeners here to prevent bug where swiping anywhere on the screen would cause any 
+            //carousel that had been previously iteracted with to register the swipe
+            window.addEventListener('touchend', handleEnd);
+            window.addEventListener('touchmove', handleMove);
+        } else {
+            setCoordinateWithMouseEvent(startCoordinateRef, e as MouseEvent);
+        }
+    }, [element, handleEnd, handleMove, handleStyleChanges, isDisabled])
 
     useEffect(() => {
         if (!element) return;
@@ -208,8 +219,6 @@ export const useOnSwipe = ({
 
         if (isMobile) {
             element.addEventListener('touchstart', handleStart);
-            window.addEventListener('touchend', handleEnd);
-            window.addEventListener('touchmove', handleMove);
         }
 
         return () => {
@@ -217,13 +226,10 @@ export const useOnSwipe = ({
             element.removeEventListener('mousedown', handleStart);
             window.removeEventListener('mouseup', handleEnd);
             element.removeEventListener('touchstart', handleStart);
-            window.removeEventListener('touchend', handleEnd);
-            window.removeEventListener('touchmove', handleMove);
 
             if (swipeHandlers?.onMoveWhenGrabbing) {
                 window.removeEventListener('mousemove', handleMove);
             }
-
         }
     }, [
         element,
