@@ -520,11 +520,20 @@ const itemViewerSeekAmount2Sec = (
 	}} />
 );
 const customToolbarButtonSize = (
-	<Carousel items={items.slice(0, 1)} options={{
+	<Carousel items={items.slice(0, 3)} options={{
 		styling: {
 			toolbar: {
 				buttonSize: 40,
-			}
+				elementColor: 'red',
+			}, 
+			// elements: {
+			// 	nextButton: {
+			// 		fillColor: 'red',
+			// 	},
+			// 	fullscreenButton: {
+			// 		fillColor: 'red',
+			// 	},
+			// }
 		},
 		layout: {
 			itemDisplayLocation: "above",
@@ -1363,7 +1372,7 @@ const SECTIONS: Sections = [
 		[
 			{
 				label: "All Defaults",
-				jsx: React.cloneElement(layoutAboveDefaultItemHeight, { 
+				jsx: React.cloneElement(layoutAboveDefaultItemHeight, {
 					options: {
 						...layoutAboveDefaultItemHeight.props.options,
 						layout: {
@@ -1374,7 +1383,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Current Item Below with Custom itemHeight and Thumbnail Size",
-				jsx: React.cloneElement(layoutAboveWithItemHeightAndThumbnailSize, { 
+				jsx: React.cloneElement(layoutAboveWithItemHeightAndThumbnailSize, {
 					options: {
 						...layoutAboveWithItemHeightAndThumbnailSize.props.options,
 						layout: {
@@ -1386,7 +1395,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below with Container Padding",
-				jsx: React.cloneElement(layoutAboveContainerPadding, { 
+				jsx: React.cloneElement(layoutAboveContainerPadding, {
 					options: {
 						...layoutAboveContainerPadding.props.options,
 						layout: {
@@ -1398,7 +1407,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below with Item Viewer Padding",
-				jsx: React.cloneElement(layoutAboveExtraItemViewerPadding, { 
+				jsx: React.cloneElement(layoutAboveExtraItemViewerPadding, {
 					options: {
 						...layoutAboveExtraItemViewerPadding.props.options,
 						layout: {
@@ -1410,7 +1419,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below with Extra Navigation Padding",
-				jsx: React.cloneElement(layoutAboveExtraNavigationPadding, { 
+				jsx: React.cloneElement(layoutAboveExtraNavigationPadding, {
 					options: {
 						...layoutAboveExtraNavigationPadding.props.options,
 						layout: {
@@ -1422,7 +1431,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below with Extra Toolbar Padding",
-				jsx: React.cloneElement(layoutAboveExtraToolbarPadding, { 
+				jsx: React.cloneElement(layoutAboveExtraToolbarPadding, {
 					options: {
 						...layoutAboveExtraToolbarPadding.props.options,
 						layout: {
@@ -1434,7 +1443,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below with Different Left and Right Padding",
-				jsx: React.cloneElement(layoutAboveDifferentLeftAndRightPadding, { 
+				jsx: React.cloneElement(layoutAboveDifferentLeftAndRightPadding, {
 					options: {
 						...layoutAboveDifferentLeftAndRightPadding.props.options,
 						layout: {
@@ -1446,7 +1455,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below Flush and Same Background Color",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColor, { 
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColor, {
 					options: {
 						...layoutAboveCompletelyFlushAndSameBackgroundColor.props.options,
 						layout: {
@@ -1458,7 +1467,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below Flush with Progress Bar Whole Width",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole, { 
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole, {
 					options: {
 						...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options,
 						layout: {
@@ -1470,7 +1479,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below Flush and Same Background Color using All option",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorAll, { 
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorAll, {
 					options: {
 						...layoutAboveCompletelyFlushAndSameBackgroundColorAll.props.options,
 						layout: {
@@ -1482,7 +1491,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below Custom Icons with Same Background Color",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons, { 
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons, {
 					options: {
 						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons.props.options,
 						layout: {
@@ -1494,7 +1503,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below Custom Icons with Default Icons using Custom Colors",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors, { 
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors, {
 					options: {
 						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors.props.options,
 						layout: {
@@ -1506,7 +1515,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below buttons.all with Specific Item Fill Colors",
-				jsx: React.cloneElement(layoutAboveButtonsAllWithSpecificFillColors, { 
+				jsx: React.cloneElement(layoutAboveButtonsAllWithSpecificFillColors, {
 					options: {
 						...layoutAboveButtonsAllWithSpecificFillColors.props.options,
 						layout: {
@@ -1518,7 +1527,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below Custom Overlay Style and Loading Spinner",
-				jsx: React.cloneElement(layoutAboveCustomOverlayAndSpinner, { 
+				jsx: React.cloneElement(layoutAboveCustomOverlayAndSpinner, {
 					options: {
 						...layoutAboveCustomOverlayAndSpinner.props.options,
 						layout: {
@@ -1530,7 +1539,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Display Below No Tracking Current Item",
-				jsx: React.cloneElement(layoutAboveNoTrackingItemViewerChanges, { 
+				jsx: React.cloneElement(layoutAboveNoTrackingItemViewerChanges, {
 					options: {
 						...layoutAboveNoTrackingItemViewerChanges.props.options,
 						layout: {

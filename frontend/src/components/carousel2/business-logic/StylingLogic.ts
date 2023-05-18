@@ -572,39 +572,56 @@ export class StylingLogic {
         }
     }
 
-    getToolbarButtonSizeStlye(buttonName: CarouselElement, subElementName?: string) {
+    getToolbarButtonSizeStlye(buttonName: CarouselElement, subElementName?: string, style?: CSSProperties) {
         const buttonSizeStyle = this.carouselButtonSizeStlye;
+        const parsedWidth = parseInt(buttonSizeStyle.width as string, 10);
 
         switch (buttonName) {
             case CarouselElement.closeButton:
                 return {
-                    height: parseInt(buttonSizeStyle.width as string, 10),
-                    width: parseInt(buttonSizeStyle.width as string, 10) / 4,
+                    height: parsedWidth,
+                    width: parsedWidth / 4,
                 } as CSSProperties;
             case CarouselElement.fullscreenButton:
                 switch (subElementName) {
                     case "square-outer":
                         return {
-                            width: parseInt(buttonSizeStyle.width as string, 10) - 4,
-                            height: parseInt(buttonSizeStyle.width as string, 10) - 4,
+                            width: parsedWidth * .85,
+                            height: parsedWidth * .85,
                         }
                     case "square-inner":
                         return {
-                            width: parseInt(buttonSizeStyle.width as string, 10) * 2 / 3,
-                            height: parseInt(buttonSizeStyle.width as string, 10) * 2 / 3,
+                            width: parsedWidth * 2 / 3,
+                            height: parsedWidth * 2 / 3,
                         }
                     case "rect-horizontal":
                         return {
-                            height: parseInt(buttonSizeStyle.width as string, 10) / 4,
+                            height: parsedWidth * .25,
                         }
                     case "rect-vertical":
                         return {
-                            width: parseInt(buttonSizeStyle.width as string, 10) / 4,
+                            width: parsedWidth * .25,
                         }
                     default:
                         return buttonSizeStyle;
                 }
             case CarouselElement.nextButton:
+                switch (subElementName) {
+                    case "next-left": 
+                        return {
+                            borderTop: `${parsedWidth / 2.25}px solid transparent`,
+                            borderBottom: `${parsedWidth / 2.25}px solid transparent`,
+                            borderLeft: `${parsedWidth / 2.25}px solid ${style?.borderLeftColor}`,
+                        }
+                    case "next-right":
+                        return {
+                            width: parsedWidth / 8,
+                            height: parsedWidth * .85,
+                        }
+                    
+                    default:
+                        return buttonSizeStyle;
+                }
             case CarouselElement.pauseButton:
             case CarouselElement.playButton:
             case CarouselElement.previousButton:
