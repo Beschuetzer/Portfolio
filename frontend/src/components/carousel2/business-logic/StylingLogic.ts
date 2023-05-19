@@ -41,7 +41,7 @@ export type StylingLogicConstructor = {
     progressBarValue?: number;
     videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
     loadingSpinnerOptions?: LoadingSpinnerProps['options'];
-} & Partial<Pick<CarouselContextOutputProps, 'currentItem' | 'isFullscreenMode'>>
+} & Partial<Pick<CarouselContextOutputProps, 'currentItem' | 'isFullscreenMode' | 'numberOfPages'>>
     & Partial<Pick<CarouselVideoModalInternalProps, 'videoRef'>>
 /*
 *Use this when extending styling options.  Many default styles are currently in _carousel.scss or _buttons_scss
@@ -55,6 +55,7 @@ export class StylingLogic {
     private itemViewerToolbarRef;
     private isFullscreenMode: boolean;
     private loadingSpinnerOptions: LoadingSpinnerProps['options'];
+    private numberOfPages;
     private options: CarouselOptions;
     private videoModalRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
     private progressBarValue: number;
@@ -68,6 +69,7 @@ export class StylingLogic {
             optionsLogic,
             itemViewerToolbarRef,
             loadingSpinnerOptions,
+            numberOfPages,
             options,
             videoModalRef,
             progressBarValue,
@@ -78,6 +80,7 @@ export class StylingLogic {
         this.isFullscreenMode = !!isFullscreenMode;
         this.loadingSpinnerOptions = loadingSpinnerOptions;
         this.itemViewerToolbarRef = itemViewerToolbarRef || { current: null };
+        this.numberOfPages = numberOfPages || 0;
         this.progressBarValue = progressBarValue || 0;
         this.videoRef = videoRef;
         this.videoModalRef = videoModalRef;
@@ -186,7 +189,7 @@ export class StylingLogic {
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             marginTop: 0,
-            marginBottom: 0,
+            marginBottom: this.numberOfPages <= 1 && this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : 0,
             overflow: 'hidden',
             ...common,
         } as CSSProperties : {
