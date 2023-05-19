@@ -37,7 +37,7 @@ export const useBusinessLogic = ({
     const {
         // carouselContainerRef,
         currentItem,
-        currentItemIndex,
+        // currentItemIndex,
         // elementStylings,
         isFullscreenMode,
         items,
@@ -79,11 +79,6 @@ export const useBusinessLogic = ({
             numberOfPages,
             items,
         })
-        const newToolbarActionsLogic = getToolbarActionsLogic({
-            options,
-            isFullscreenMode
-        })
-        const newToolbarLogic = getToolbarLogic({ items })
         const newStylingLogic = getStylingLogic({
             options,
             currentItem,
@@ -100,11 +95,8 @@ export const useBusinessLogic = ({
 
         setOptionsLogic(newOptionsLogic);
         setStylingLogic(newStylingLogic);
-        setToolbarLogic(newToolbarLogic);
-        setToolbarActionsLogic(newToolbarActionsLogic);
     }, [
         currentItem,
-        currentItemIndex,
         isCurrentItem,
         isFullscreenMode,
         items,
@@ -116,6 +108,19 @@ export const useBusinessLogic = ({
         videoModalRef,
         videoRef,
     ])
+
+    useEffect(() => {
+        const newToolbarActionsLogic = getToolbarActionsLogic({
+            options,
+            isFullscreenMode
+        })
+        setToolbarActionsLogic(newToolbarActionsLogic);
+    }, [isFullscreenMode, options])
+
+    useEffect(() => {
+        const newToolbarLogic = getToolbarLogic({ items })
+        setToolbarLogic(newToolbarLogic);
+    }, [items])
 
     return {
         optionsLogic,

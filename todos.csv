@@ -1,7 +1,7 @@
 Carousel rework
   -finish buttonSize changes (down to nextButton done)
   -need to have option to set buttons for video modal and VideoStateIndicator separately
-  -refactor how useBusinessLogic updates is state (use multiple useStates)
+  -add option to specify full-screen button size and non-fullscreen button size (only applies when non-default display location)
   -make sure buttonSize works with custom icons
   -when done with buttonSize stuff, clean up css styles
   -add option for centering and right aligning navigation items (but make clear that only happens when using auto-spacing and the items don't span entire width of container;  will need to use margin-left/right?)
