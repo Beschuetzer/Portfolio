@@ -613,24 +613,28 @@ export class StylingLogic {
             case CarouselElement.playButton:
             case CarouselElement.nextButton:
             case CarouselElement.previousButton:
+            case CarouselElement.seekBackButton:
+            case CarouselElement.seekForwardButton:
                 const isPlayButton = buttonName === CarouselElement.playButton;
                 const isNextButton = buttonName === CarouselElement.nextButton;
                 const isPreviousButton = buttonName === CarouselElement.previousButton;
-                const triangleSizeFactorNonPlayCase = 2.25;
+                const isSeekButton = buttonName === CarouselElement.seekBackButton || buttonName === CarouselElement.seekForwardButton;
+                const triangleSizeFactorDefaultCase = 2.25;
                 const triangleSizeFactorPlayCase = 1.5;
+                const triangleSizeFactorSeekCase = 3;
 
                 switch (subElementName) {
                     case "triangle":
                         return {
-                            borderTop: `${parsedWidth / triangleSizeFactorNonPlayCase}${CAROUSEL_SPACING_UNIT} solid transparent`,
-                            borderBottom: `${parsedWidth / triangleSizeFactorNonPlayCase}${CAROUSEL_SPACING_UNIT} solid transparent`,
+                            borderTop: `${parsedWidth / triangleSizeFactorDefaultCase}${CAROUSEL_SPACING_UNIT} solid transparent`,
+                            borderBottom: `${parsedWidth / triangleSizeFactorDefaultCase}${CAROUSEL_SPACING_UNIT} solid transparent`,
                             borderLeft:
-                                isNextButton || isPlayButton ?
-                                    `${parsedWidth / (isPlayButton ? triangleSizeFactorPlayCase : triangleSizeFactorNonPlayCase)}${CAROUSEL_SPACING_UNIT} solid ${style?.borderLeftColor}` :
+                                isNextButton || isPlayButton || isSeekButton ?
+                                    `${parsedWidth / (isPlayButton ? triangleSizeFactorPlayCase : isSeekButton ? triangleSizeFactorSeekCase : triangleSizeFactorDefaultCase)}${CAROUSEL_SPACING_UNIT} solid ${style?.borderLeftColor}` :
                                     undefined,
                             borderRight:
                                 isPreviousButton ?
-                                    `${parsedWidth / triangleSizeFactorNonPlayCase}${CAROUSEL_SPACING_UNIT} solid ${style?.borderRightColor}` :
+                                    `${parsedWidth / triangleSizeFactorDefaultCase}${CAROUSEL_SPACING_UNIT} solid ${style?.borderRightColor}` :
                                     undefined,
                         }
                     case "bar":
@@ -656,8 +660,6 @@ export class StylingLogic {
                         `translate(calc(-50% - ${pauseBarWidth * maxHeightFactor * maxHeightFactor}${CAROUSEL_SPACING_UNIT}), -50%) rotate(0)` :
                         `translate(calc(-50% + ${pauseBarWidth * maxHeightFactor * (1 / maxHeightFactor)}${CAROUSEL_SPACING_UNIT}), -50%) rotate(0)`,
                 }
-            case CarouselElement.seekBackButton:
-            case CarouselElement.seekForwardButton:
             default:
                 return buttonSizeStyle;
         }

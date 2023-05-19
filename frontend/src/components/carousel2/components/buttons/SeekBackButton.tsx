@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { CAROUSEL_COLOR_FIVE, CLASSNAME__BUTTON } from "../../constants";
-import { ButtonProps } from "../../types";
+import { ButtonProps, CarouselElement } from "../../types";
 import { StylingLogic } from '../../business-logic/StylingLogic';
 import { useBusinessLogic } from '../../hooks/useBusinessLogic';
 
@@ -17,8 +17,8 @@ export const SeekBackButton = forwardRef<HTMLButtonElement, SeekBackButtonProps>
   
   return (
     <button style={stylingLogic.carouselButtonSizeStlye}  ref={ref} onClick={onClick} className={className}>
-      <div style={colorStyle} className={`${className}--seek-back-left`} />
-      <div style={colorStyle} className={`${className}--seek-back-right`} />
+      <div style={{...colorStyle,  ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.seekBackButton, 'triangle', colorStyle)}} className={`${className}--seek-back-left`} />
+      <div style={{...colorStyle,  ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.seekBackButton, 'triangle', colorStyle)}} className={`${className}--seek-back-right`} />
     </button>
   )
 })

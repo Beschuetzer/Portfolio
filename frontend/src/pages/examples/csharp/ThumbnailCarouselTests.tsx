@@ -524,7 +524,7 @@ const customToolbarButtonSize = (
 		styling: {
 			toolbar: {
 				buttonSize: 40,
-				elementColor: 'red',
+				elementColor: getComputedStyleCustom('--color-primary-3'),
 			}, 
 			// elements: {
 			// 	nextButton: {
