@@ -643,11 +643,15 @@ export class StylingLogic {
                         return buttonSizeStyle;
                 }
             case CarouselElement.pauseButton:
+                const pauseBarHeight = parsedWidth * maxHeightFactor;
                 const pauseBarWidth = parsedWidth * .25;
+                const isLeftSide = subElementName === 'left';
                 return {
                     width: pauseBarWidth,
-                    height: parsedWidth * maxHeightFactor,
-                    transform: `translate(calc(-50% + ${subElementName === 'left' ? '-' : ''}${pauseBarWidth}${CAROUSEL_SPACING_UNIT}), -50%) rotate(0)`,
+                    height: pauseBarHeight,
+                    transform: isLeftSide ?
+                        `translate(calc(-50% - ${pauseBarWidth * maxHeightFactor * maxHeightFactor}${CAROUSEL_SPACING_UNIT}), -50%) rotate(0)` :
+                        `translate(calc(-50% + ${pauseBarWidth * maxHeightFactor * (1 / maxHeightFactor)}${CAROUSEL_SPACING_UNIT}), -50%) rotate(0)`,
                 }
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
