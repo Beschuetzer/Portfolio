@@ -607,15 +607,25 @@ export class StylingLogic {
                     default:
                         return buttonSizeStyle;
                 }
+            case CarouselElement.playButton:
             case CarouselElement.nextButton:
             case CarouselElement.previousButton:
+                const isPlayButton = buttonName === CarouselElement.playButton;
+                const isNextButton = buttonName === CarouselElement.nextButton;
+                const isPreviousButton = buttonName === CarouselElement.previousButton;
                 switch (subElementName) {
                     case "triangle":
                         return {
                             borderTop: `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid transparent`,
                             borderBottom: `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid transparent`,
-                            borderLeft: buttonName === CarouselElement.nextButton ? `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid ${style?.borderLeftColor}` : undefined,
-                            borderRight: buttonName === CarouselElement.previousButton ? `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid ${style?.borderRightColor}` : undefined,
+                            borderLeft:
+                                isNextButton || isPlayButton ?
+                                    `${parsedWidth / (isPlayButton ? 1.33 : 2.25)}${CAROUSEL_SPACING_UNIT} solid ${style?.borderLeftColor}` :
+                                    undefined,
+                            borderRight:
+                                isPreviousButton ?
+                                    `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid ${style?.borderRightColor}` :
+                                    undefined,
                         }
                     case "bar":
                         return {
@@ -632,7 +642,6 @@ export class StylingLogic {
                     height: parsedWidth * maxHeightFactor,
                     transform: `translate(calc(-50% + ${subElementName === 'left' ? '-' : ''}${pauseBarWidth}${CAROUSEL_SPACING_UNIT}), -50%) rotate(0)`,
                 }
-            case CarouselElement.playButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
             default:
