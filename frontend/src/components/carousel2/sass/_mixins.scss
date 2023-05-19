@@ -72,11 +72,6 @@
     text-overflow: ellipsis;
 }
 
-@mixin pauseBar(
-) {
-    @include positionButton($xTranslate: calc(-50% + #{$buttonWidth * .25}), $yTranslate: -50%);
-}
-
 @mixin positionButton(
     $rotation: 0, 
     $positioning: absolute,

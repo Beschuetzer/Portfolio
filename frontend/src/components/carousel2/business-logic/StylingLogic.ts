@@ -613,24 +613,31 @@ export class StylingLogic {
                 const isPlayButton = buttonName === CarouselElement.playButton;
                 const isNextButton = buttonName === CarouselElement.nextButton;
                 const isPreviousButton = buttonName === CarouselElement.previousButton;
+                const triangleSizeFactorNonPlayCase = 2.25;
+                const triangleSizeFactorPlayCase = 1.5;
+
                 switch (subElementName) {
                     case "triangle":
                         return {
-                            borderTop: `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid transparent`,
-                            borderBottom: `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid transparent`,
+                            borderTop: `${parsedWidth / triangleSizeFactorNonPlayCase}${CAROUSEL_SPACING_UNIT} solid transparent`,
+                            borderBottom: `${parsedWidth / triangleSizeFactorNonPlayCase}${CAROUSEL_SPACING_UNIT} solid transparent`,
                             borderLeft:
                                 isNextButton || isPlayButton ?
-                                    `${parsedWidth / (isPlayButton ? 1.33 : 2.25)}${CAROUSEL_SPACING_UNIT} solid ${style?.borderLeftColor}` :
+                                    `${parsedWidth / (isPlayButton ? triangleSizeFactorPlayCase : triangleSizeFactorNonPlayCase)}${CAROUSEL_SPACING_UNIT} solid ${style?.borderLeftColor}` :
                                     undefined,
                             borderRight:
                                 isPreviousButton ?
-                                    `${parsedWidth / 2.25}${CAROUSEL_SPACING_UNIT} solid ${style?.borderRightColor}` :
+                                    `${parsedWidth / triangleSizeFactorNonPlayCase}${CAROUSEL_SPACING_UNIT} solid ${style?.borderRightColor}` :
                                     undefined,
                         }
                     case "bar":
                         return {
                             width: parsedWidth / 8,
                             height: parsedWidth * maxHeightFactor,
+                            transform:
+                                isNextButton || isPreviousButton ?
+                                    `translate(calc(-50% ${isNextButton ? '+' : '-'} ${parsedWidth * maxHeightFactor / 3 * (isPreviousButton ? .85 : 1)}${CAROUSEL_SPACING_UNIT}), -50%) rotate(0)`
+                                    : undefined,
                         }
                     default:
                         return buttonSizeStyle;

@@ -46,11 +46,11 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
     &--next {
         &-left {
             @include triangle;
-            @include positionButton($xTranslate: -75%);
+            @include positionButton($xTranslate: -66%);
         }
 
         &-right {
-            @include pauseBar();
+            @include positionButton();
         }
     }
 
@@ -90,7 +90,7 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
 
         &-left,
         &-right {
-            @include pauseBar;
+            @include positionButton;
         }
 
         &-left {
@@ -100,25 +100,21 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
 
     &--play {
         &-triangle {
-            @include positionButton($xTranslate: 22.5%, $left: 0);
+            @include positionButton($xTranslate: 33.3%, $left: 0);
             background-color: transparent;
             width: 0;
             height: 0;
-            border-top: calc(#{$buttonWidth} / 2.25) solid transparent;
-            border-left: calc(#{$buttonWidth} / 1.33) solid $itemViewerButtonColor;
-            border-bottom: calc(#{$buttonWidth} / 2.25) solid transparent;
         }
     }
 
     &--previous {
         &-left {
-            @include pauseBar();
-            @include positionButton($xTranslate: -175%);
+            @include positionButton();
         }
 
         &-right {
             @include triangle($direction: left);
-            @include positionButton($xTranslate: -20%);
+            @include positionButton($xTranslate: -25%);
         }
     }
 
