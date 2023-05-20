@@ -60,7 +60,6 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
     }
 
     &--fullscreen {
-        @include scaleOnHover();
         &-square-outer {
             @include positionButton();
             background-color: $itemViewerButtonColor;
@@ -84,6 +83,20 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
                 height: 100%;
             }
         }
+
+        &:hover {
+            -webkit-animation: fullscreen $animationSpeedFullscreenButton 1 ease normal none;
+            -moz-animation: fullscreen $animationSpeedFullscreenButton 1 ease normal none;
+            -ms-animation: fullscreen $animationSpeedFullscreenButton 1 ease normal none;
+            -o-animation: fullscreen $animationSpeedFullscreenButton 1 ease normal none;
+            animation: fullscreen $animationSpeedFullscreenButton 1 ease normal none;
+
+            transition: all calc($animationSpeedFullscreenButton * 1.5) ease;
+            -webkit-transition: all calc($animationSpeedFullscreenButton * 1.5) ease;
+            -moz-transition: all calc($animationSpeedFullscreenButton * 1.5) ease;
+            -o-transition: all calc($animationSpeedFullscreenButton * 1.5) ease;
+        }
+
     }
 
     &--pause {
@@ -229,11 +242,11 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
             //timingFunction = sets the animation speed ( linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier ).
             //direction = gives you the ability to change the loop direction, from start to end ,or from end to start, or both (normal | reverse | alternate | alternate-reverse).
             //fillMode = specifies which styles in keyframe will be applied to the element when our animation is finished ( none | forwards | backwards | both )
-            -webkit-animation: video-state-indicator $buttonVideoStateIndictatorAnimationSpeed 1 linear alternate none;
-            -moz-animation: video-state-indicator $buttonVideoStateIndictatorAnimationSpeed 1 linear alternate none;
-            -ms-animation: video-state-indicator $buttonVideoStateIndictatorAnimationSpeed 1 linear alternate none;
-            -o-animation: video-state-indicator $buttonVideoStateIndictatorAnimationSpeed 1 linear alternate none;
-            animation: video-state-indicator $buttonVideoStateIndictatorAnimationSpeed 1 linear alternate none;
+            -webkit-animation: video-state-indicator $animationSpeedVideoStateIndicatorButton 1 linear alternate none;
+            -moz-animation: video-state-indicator $animationSpeedVideoStateIndicatorButton 1 linear alternate none;
+            -ms-animation: video-state-indicator $animationSpeedVideoStateIndicatorButton 1 linear alternate none;
+            -o-animation: video-state-indicator $animationSpeedVideoStateIndicatorButton 1 linear alternate none;
+            animation: video-state-indicator $animationSpeedVideoStateIndicatorButton 1 linear alternate none;
         }
     }
 
@@ -252,5 +265,17 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
     100% {
         opacity: 0;
         transform: translate(-50%, -50%) scale(2);
+    }
+}
+
+@keyframes fullscreen { 
+    0% { 
+        scale: 1;
+    }
+    50% {
+        scale: 1.15;
+    }
+    100% {
+        scale: 1;
     }
 }
