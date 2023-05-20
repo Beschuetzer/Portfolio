@@ -11,14 +11,33 @@ export const PauseButton = forwardRef<HTMLButtonElement, PauseButtonProps>(({
   onClick = () => null,
   fillColor = CAROUSEL_COLOR_FIVE,
   childStyle = {},
+  style = {},
 }, ref) => {
   const { stylingLogic } = useBusinessLogic({});
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
+  const instanceWidth = parseInt(style.width as string, 10) || 0;
 
   return (
-    <button style={stylingLogic.getCarouselButtonSizeStlye()} ref={ref} onClick={onClick} className={className}>
-      <div style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.pauseButton, 'left') }} className={`${className}--pause-left`} />
-      <div style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.pauseButton, 'right') }} className={`${className}--pause-right`} />
+    <button
+      style={stylingLogic.getCarouselButtonSizeStlye(instanceWidth)}
+      ref={ref}
+      onClick={onClick}
+      className={className}
+    >
+      <div
+        style={{
+          ...colorStyle,
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.pauseButton, subElementName: 'left', style })
+        }}
+        className={`${className}--pause-left`}
+      />
+      <div
+        style={{
+          ...colorStyle,
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.pauseButton, subElementName: 'right', style })
+        }}
+        className={`${className}--pause-right`}
+      />
     </button>
   )
 })

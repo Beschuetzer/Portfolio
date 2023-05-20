@@ -26,9 +26,20 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(({
   const instanceWidth = parseInt(style.width as string, 10) || 0;
 
   return (
-    <button style={{ ...style, ...stylingLogic.getCarouselButtonSizeStlye(instanceWidth) }} ref={ref} onClick={onClick} className={`${className} ${classNameModifier ? classModifierName : ''}`}>
-      <div style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.closeButton, '', style) }} className={`${leftClassName} ${classNameModifier ? leftModifierClassname : ''}`} />
-      <div style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.closeButton, '', style) }} className={`${rightClassName} ${classNameModifier ? rightModifierClassname : ''}`} />
+    <button
+      style={{ ...style, ...stylingLogic.getCarouselButtonSizeStlye(instanceWidth) }}
+      ref={ref}
+      onClick={onClick}
+      className={`${className} ${classNameModifier ? classModifierName : ''}`}
+    >
+      <div
+        style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.closeButton, style }) }}
+        className={`${leftClassName} ${classNameModifier ? leftModifierClassname : ''}`}
+      />
+      <div
+        style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.closeButton, style }) }}
+        className={`${rightClassName} ${classNameModifier ? rightModifierClassname : ''}`}
+      />
     </button>
   )
 })

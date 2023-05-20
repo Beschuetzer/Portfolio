@@ -14,15 +14,34 @@ export const PreviousButton = forwardRef<HTMLButtonElement, PreviousButtonProps>
   onClick = () => null,
   showButton = true,
   childStyle = {},
+  style = {},
 }, ref) => {
   const { stylingLogic } = useBusinessLogic({});
   const firstStyle = StylingLogic.getButtonColorStyle(fillColor, 'background', childStyle);
   const secondStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderRightColor', childStyle);
+  const instanceWidth = parseInt(style.width as string, 10) || 0;
 
   return (
-    <button style={stylingLogic.getCarouselButtonSizeStlye()} ref={ref} onClick={onClick} className={`${className}  ${showButton ? '' : CLASSNAME__HIDDEN}`}>
-      <div style={{...firstStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.previousButton, 'bar', firstStyle)}} className={`${className}--previous-left`} />
-      <div style={{...secondStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.previousButton, 'triangle', secondStyle)}} className={`${className}--previous-right`} />
+    <button
+      style={stylingLogic.getCarouselButtonSizeStlye(instanceWidth)}
+      ref={ref}
+      onClick={onClick}
+      className={`${className}  ${showButton ? '' : CLASSNAME__HIDDEN}`}
+    >
+      <div
+        style={{
+          ...firstStyle,
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.previousButton, subElementName: 'bar', style: { ...style, ...firstStyle } })
+        }}
+        className={`${className}--previous-left`}
+      />
+      <div
+        style={{
+          ...secondStyle,
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.previousButton, subElementName: 'triangle', style: { ...style, ...secondStyle } })
+        }}
+        className={`${className}--previous-right`}
+      />
     </button>
   )
 })

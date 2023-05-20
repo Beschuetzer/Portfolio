@@ -44,6 +44,13 @@ export type StylingLogicConstructor = {
     loadingSpinnerOptions?: LoadingSpinnerProps['options'];
 } & Partial<Pick<CarouselContextOutputProps, 'currentItem' | 'isFullscreenMode' | 'numberOfPages'>>
     & Partial<Pick<CarouselVideoModalInternalProps, 'videoRef'>>
+
+export type GetToolbarButtonSizeStlye = {
+    buttonName: CarouselElement;
+    subElementName?: string;
+    style?: CSSProperties;
+}
+
 /*
 *Use this when extending styling options.  Many default styles are currently in _carousel.scss or _buttons_scss
 */
@@ -578,7 +585,7 @@ export class StylingLogic {
         } as CSSProperties
     }
 
-    getToolbarButtonSizeStlye(buttonName: CarouselElement, subElementName?: string, style?: CSSProperties) {
+    getToolbarButtonSizeStlye({ buttonName, subElementName, style }: GetToolbarButtonSizeStlye) {
         const buttonSizeStyle = this.getCarouselButtonSizeStlye(parseInt(style?.width as string, 10) || 0);
         const parsedWidth = parseInt(buttonSizeStyle.width as string, 10);
         const maxHeightFactor = .8333333;

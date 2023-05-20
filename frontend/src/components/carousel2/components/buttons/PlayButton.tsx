@@ -11,13 +11,26 @@ export const PlayButton = forwardRef<HTMLButtonElement, PlayButtonProps>(({
   onClick = () => null,
   fillColor = CAROUSEL_COLOR_FIVE,
   childStyle = {},
+  style = {},
 }, ref) => {
   const { stylingLogic } = useBusinessLogic({});
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderLeftColor', childStyle);
+  const instanceWidth = parseInt(style.width as string, 10) || 0;
 
   return (
-    <button style={stylingLogic.getCarouselButtonSizeStlye()} ref={ref} onClick={onClick} className={`${className}`}>
-      <div style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.playButton, 'triangle', colorStyle) }} className={`${className}--play-triangle`} />
+    <button
+      style={stylingLogic.getCarouselButtonSizeStlye(instanceWidth)}
+      ref={ref}
+      onClick={onClick}
+      className={`${className}`}
+    >
+      <div
+        style={{
+          ...colorStyle,
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.playButton, subElementName: 'triangle', style: { ...style, ...colorStyle } })
+        }}
+        className={`${className}--play-triangle`}
+      />
     </button>
   )
 })

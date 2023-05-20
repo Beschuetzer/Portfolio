@@ -1,6 +1,5 @@
 Carousel rework
   -need to have option to set button for VideoStateIndicator separately
-  -add style to each button's .getToolbarButtonSizeStlye() call and turn into a object to pass in
   -add option to specify full-screen button size and non-fullscreen button size (only applies when non-default display location)
   -make sure buttonSize works with custom icons
   -when done with buttonSize stuff, clean up css styles

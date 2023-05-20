@@ -20,13 +20,46 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
   const fullScreenClassname = `${className}--fullscreen`
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
   const fillStyle = StylingLogic.getButtonColorStyle(fillColor, 'fill', childStyle);
+  const instanceWidth = parseInt(style.width as string, 10) || 0;
 
   return (
-    <button style={stylingLogic.getCarouselButtonSizeStlye()} ref={ref} onClick={onClick} className={`${className} ${fullScreenClassname}`}>
-      <div style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'square-outer') }} className={`${fullScreenClassname}-square-outer`} />
-      <div style={{ ...fillStyle, ...stylingLogic.toolbarBackgroundColorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'square-inner') }} className={`${fullScreenClassname}-square-inner`} />
-      <div style={{ ...fillStyle, ...stylingLogic.toolbarBackgroundColorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'rect-horizontal') }} className={`${fullScreenClassname}-rect-horizontal`} />
-      <div style={{ ...fillStyle, ...stylingLogic.toolbarBackgroundColorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.fullscreenButton, 'rect-vertical') }} className={`${fullScreenClassname}-rect-vertical`} />
+    <button
+      style={stylingLogic.getCarouselButtonSizeStlye(instanceWidth)}
+      ref={ref}
+      onClick={onClick}
+      className={`${className} ${fullScreenClassname}`}
+    >
+      <div
+        style={{
+          ...colorStyle,
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.fullscreenButton, subElementName: 'square-outer', style })
+        }}
+        className={`${fullScreenClassname}-square-outer`}
+      />
+      <div
+        style={{
+          ...fillStyle,
+          ...stylingLogic.toolbarBackgroundColorStyle,
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.fullscreenButton, subElementName: 'square-inner', style })
+        }}
+        className={`${fullScreenClassname}-square-inner`}
+      />
+      <div
+        style={{
+          ...fillStyle,
+          ...stylingLogic.toolbarBackgroundColorStyle,
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.fullscreenButton, subElementName: 'rect-horizontal', style })
+        }}
+        className={`${fullScreenClassname}-rect-horizontal`}
+      />
+      <div
+        style={{
+          ...fillStyle,
+          ...stylingLogic.toolbarBackgroundColorStyle,
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.fullscreenButton, subElementName: 'rect-vertical', style })
+        }}
+        className={`${fullScreenClassname}-rect-vertical`}
+      />
     </button>
   )
 })

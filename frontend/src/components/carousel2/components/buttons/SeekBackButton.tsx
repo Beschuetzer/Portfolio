@@ -11,14 +11,33 @@ export const SeekBackButton = forwardRef<HTMLButtonElement, SeekBackButtonProps>
   fillColor = CAROUSEL_COLOR_FIVE,
   onClick = () => null,
   childStyle = {},
+  style = {},
 }, ref) => {
   const { stylingLogic } = useBusinessLogic({});
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderLeftColor', childStyle);
+  const instanceWidth = parseInt(style.width as string, 10) || 0;
 
   return (
-    <button style={stylingLogic.getCarouselButtonSizeStlye()} ref={ref} onClick={onClick} className={className}>
-      <div style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.seekBackButton, 'triangle', colorStyle) }} className={`${className}--seek-back-left`} />
-      <div style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.seekBackButton, 'triangle', colorStyle) }} className={`${className}--seek-back-right`} />
+    <button
+      style={stylingLogic.getCarouselButtonSizeStlye(instanceWidth)}
+      ref={ref}
+      onClick={onClick}
+      className={className}
+    >
+      <div
+        style={{
+          ...colorStyle,
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.seekBackButton, subElementName: 'triangle', style: { ...style, ...colorStyle } })
+        }}
+        className={`${className}--seek-back-left`}
+      />
+      <div
+        style={{
+          ...colorStyle,
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.seekBackButton, subElementName: 'triangle', style: { ...style, ...colorStyle } })
+        }}
+        className={`${className}--seek-back-right`}
+      />
     </button>
   )
 })
