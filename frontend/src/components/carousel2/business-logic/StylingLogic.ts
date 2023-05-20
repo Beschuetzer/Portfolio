@@ -270,7 +270,7 @@ export class StylingLogic {
         return areChildrenPresent ? {
             ...rightStyle,
             ...topStyle,
-            width: CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_DEFAULT,
+            width: this.isFullscreenMode ? undefined : CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_DEFAULT,
         } as CSSProperties : {} as CSSProperties;
     }
 
