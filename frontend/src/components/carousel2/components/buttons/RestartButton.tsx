@@ -10,8 +10,10 @@ export const RestartButton = ({
   onClick = () => null,
 }: RestartButtonProps) => {
   //todo: if deciding to not use can delete this file and scss stuff
+  //todo: would need to follow pattern in other buttons if using though and test
   // const colorStyle = StylingLogic.getButtonColorStyle(style, fillColor, CarouselButton.restartButton);
   const colorStyle = {}
+
   return (
     <button onClick={onClick} className={className}>
       <div style={colorStyle} className={`${className}--restart-circle-outer`} />
