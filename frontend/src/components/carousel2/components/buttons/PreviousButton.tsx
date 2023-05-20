@@ -20,7 +20,7 @@ export const PreviousButton = forwardRef<HTMLButtonElement, PreviousButtonProps>
   const secondStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderRightColor', childStyle);
 
   return (
-    <button style={stylingLogic.carouselButtonSizeStlye} ref={ref} onClick={onClick} className={`${className}  ${showButton ? '' : CLASSNAME__HIDDEN}`}>
+    <button style={stylingLogic.getCarouselButtonSizeStlye()} ref={ref} onClick={onClick} className={`${className}  ${showButton ? '' : CLASSNAME__HIDDEN}`}>
       <div style={{...firstStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.previousButton, 'bar', firstStyle)}} className={`${className}--previous-left`} />
       <div style={{...secondStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.previousButton, 'triangle', secondStyle)}} className={`${className}--previous-right`} />
     </button>

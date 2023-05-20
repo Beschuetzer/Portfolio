@@ -21,7 +21,8 @@ import {
     CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
     CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT,
-    CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT
+    CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
+    CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_DEFAULT
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -90,17 +91,6 @@ export class StylingLogic {
     }
 
     //#region Public Getters
-    get carouselButtonSizeStlye() {
-        const givenButtonSize = this.options.styling?.toolbar?.buttonSize;
-        const defaultButtonSize = this.isMobile ? CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT : CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT;
-        const valueToUse = givenButtonSize || defaultButtonSize;
-
-        return {
-            width: valueToUse,
-            height: valueToUse,
-        } as CSSProperties
-    }
-
     get carouselImageStlye() {
         // const cursorStyle = this.isFullscreenMode ?  {
         //     zIndex: 0,
@@ -280,6 +270,7 @@ export class StylingLogic {
         return areChildrenPresent ? {
             ...rightStyle,
             ...topStyle,
+            width: CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_DEFAULT,
         } as CSSProperties : {} as CSSProperties;
     }
 
@@ -576,8 +567,19 @@ export class StylingLogic {
         }
     }
 
+    getCarouselButtonSizeStlye(size = 0) {
+        const givenButtonSize = this.options.styling?.toolbar?.buttonSize;
+        const defaultButtonSize = this.isMobile ? CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT : CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT;
+        const valueToUse = size || givenButtonSize || defaultButtonSize;
+
+        return {
+            width: valueToUse,
+            height: valueToUse,
+        } as CSSProperties
+    }
+
     getToolbarButtonSizeStlye(buttonName: CarouselElement, subElementName?: string, style?: CSSProperties) {
-        const buttonSizeStyle = this.carouselButtonSizeStlye;
+        const buttonSizeStyle = this.getCarouselButtonSizeStlye(parseInt(style?.width as string, 10) || 0);
         const parsedWidth = parseInt(buttonSizeStyle.width as string, 10);
         const maxHeightFactor = .8333333;
 

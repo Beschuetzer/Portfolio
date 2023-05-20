@@ -16,7 +16,7 @@ export const SeekForwardButton = forwardRef<HTMLButtonElement, SeekForwardButton
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderLeftColor', childStyle);
 
   return (
-    <button style={stylingLogic.carouselButtonSizeStlye} ref={ref} onClick={onClick} className={className}>
+    <button style={stylingLogic.getCarouselButtonSizeStlye()} ref={ref} onClick={onClick} className={className}>
       <div style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.seekBackButton, 'triangle', colorStyle) }} className={`${className}--seek-forward-left`} />
       <div style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye(CarouselElement.seekBackButton, 'triangle', colorStyle) }} className={`${className}--seek-forward-right`} />
     </button>
