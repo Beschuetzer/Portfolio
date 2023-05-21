@@ -529,8 +529,18 @@ const itemViewerSeekAmount2Sec = (
 	}} />
 );
 const customToolbarButtonSize = (
-	<Carousel items={items.slice(0, 3)} options={{
+	<Carousel items={items} options={{
+		thumbnail: {
+			size: 150,
+		},
 		styling: {
+			elements: {
+				arrowLeft: {
+					style: {
+						width: 28,
+					}
+				}
+			},
 			toolbar: {
 				buttonSize: 40,
 				elementColor: getComputedStyleCustom('--color-primary-3'),
@@ -687,6 +697,7 @@ const layoutAboveExtraNavigationPadding = (
 						left: 100,
 					}
 				},
+
 			}
 		}}
 	/>

@@ -1,6 +1,8 @@
 Carousel rework
+  -size of arrows not working right
   -add option to specify full-screen button size and non-fullscreen button size (only applies when non-default display location)
   -add options to set videomodal close button size and VideoCurrentStateIndicatorButton?
+  -need to work on individual options for each button size
   -make sure buttonSize works with custom icons
   -when done with buttonSize stuff, clean up css styles
   -add option for centering and right aligning navigation items (but make clear that only happens when using auto-spacing and the items don't span entire width of container;  will need to use margin-left/right?)
