@@ -155,6 +155,15 @@ const items = [
 		}
 	},
 	{
+		description: "No overlay with auto play",
+		srcMain: clipAnimations,
+		srcThumbnail: clipAnimationsThumbnail,
+		video: {
+			autoPlay: true,
+			muted: true,
+		}
+	},
+	{
 		description: "Default Overlay on Load (no auto play)",
 		srcMain: clipFilters,
 		srcThumbnail: clipFiltersThumbnail,

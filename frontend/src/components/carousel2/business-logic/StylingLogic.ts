@@ -349,6 +349,12 @@ export class StylingLogic {
         }
     }
 
+    get carouselVideoCurrentStateIndicatorButtonStyle() {
+        return {
+            width: CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
+        } as CSSProperties;
+    }
+
     get carouselVideoStyle() {
         const objectStyles = {
             objectFit: this.currentItem?.video?.objectFit || 'contain',
