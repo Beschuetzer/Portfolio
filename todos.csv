@@ -1,5 +1,4 @@
 Carousel rework
-  -work on size of dots with navigation sizing
   -add option to specify full-screen button size and non-fullscreen button size (only applies when non-default display location)
   -add options to set videomodal close button size and VideoCurrentStateIndicatorButton?
   -need to work on individual options for each button size

@@ -20,7 +20,7 @@ export const PlayButton = forwardRef<HTMLButtonElement, PlayButtonProps>(({
 
   return (
     <button
-      style={stylingLogic.getCarouselButtonSizeStlye(buttonName, instanceWidth)}
+      style={stylingLogic.getCarouselElementSizeStlye(buttonName, instanceWidth)}
       ref={ref}
       onClick={onClick}
       className={`${className}`}
@@ -28,7 +28,7 @@ export const PlayButton = forwardRef<HTMLButtonElement, PlayButtonProps>(({
       <div
         style={{
           ...colorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'triangle', style: { ...style, ...colorStyle } })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'triangle', style: { ...style, ...colorStyle } })
         }}
         className={`${className}--play-triangle`}
       />

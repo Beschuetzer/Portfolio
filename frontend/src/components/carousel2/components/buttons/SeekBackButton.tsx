@@ -20,7 +20,7 @@ export const SeekBackButton = forwardRef<HTMLButtonElement, SeekBackButtonProps>
 
   return (
     <button
-      style={stylingLogic.getCarouselButtonSizeStlye(buttonName, instanceWidth)}
+      style={stylingLogic.getCarouselElementSizeStlye(buttonName, instanceWidth)}
       ref={ref}
       onClick={onClick}
       className={className}
@@ -28,14 +28,14 @@ export const SeekBackButton = forwardRef<HTMLButtonElement, SeekBackButtonProps>
       <div
         style={{
           ...colorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'triangle', style: { ...style, ...colorStyle } })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'triangle', style: { ...style, ...colorStyle } })
         }}
         className={`${className}--seek-back-left`}
       />
       <div
         style={{
           ...colorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'triangle', style: { ...style, ...colorStyle } })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'triangle', style: { ...style, ...colorStyle } })
         }}
         className={`${className}--seek-back-right`}
       />

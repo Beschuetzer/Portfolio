@@ -582,7 +582,8 @@ export class StylingLogic {
 
     //todo: this is currently setup with the assumption that givenButtonSize comes from toolbar.buttonSize
     //need to generalize for other cases (think individual button options)
-    getCarouselButtonSizeStlye(buttonName: CarouselElement, size = 0) {
+    //this is used on the button container for each button and the dots
+    getCarouselElementSizeStlye(buttonName: CarouselElement, size = 0) {
         let sectionButtonSize;
         switch (buttonName) {
             case CarouselElement.arrowLeft:
@@ -611,8 +612,9 @@ export class StylingLogic {
         } as CSSProperties
     }
 
-    getToolbarButtonSizeStlye({ buttonName, subElementName, style }: GetToolbarButtonSizeStlye) {
-        const buttonSizeStyle = this.getCarouselButtonSizeStlye(buttonName, parseInt(style?.width as string, 10) || 0);
+    //this is used on the individual divs within a given button
+    getCarouselElementChildSizeStlye({ buttonName, subElementName, style }: GetToolbarButtonSizeStlye) {
+        const buttonSizeStyle = this.getCarouselElementSizeStlye(buttonName, parseInt(style?.width as string, 10) || 0);
         const parsedWidth = parseInt(buttonSizeStyle.width as string, 10);
         const maxHeightFactor = .8333333;
 

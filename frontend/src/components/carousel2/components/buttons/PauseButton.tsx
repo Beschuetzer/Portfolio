@@ -20,7 +20,7 @@ export const PauseButton = forwardRef<HTMLButtonElement, PauseButtonProps>(({
 
   return (
     <button
-      style={stylingLogic.getCarouselButtonSizeStlye(buttonName, instanceWidth)}
+      style={stylingLogic.getCarouselElementSizeStlye(buttonName, instanceWidth)}
       ref={ref}
       onClick={onClick}
       className={className}
@@ -28,14 +28,14 @@ export const PauseButton = forwardRef<HTMLButtonElement, PauseButtonProps>(({
       <div
         style={{
           ...colorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'left', style })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'left', style })
         }}
         className={`${className}--pause-left`}
       />
       <div
         style={{
           ...colorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'right', style })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'right', style })
         }}
         className={`${className}--pause-right`}
       />

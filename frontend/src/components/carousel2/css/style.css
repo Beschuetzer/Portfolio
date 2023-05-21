@@ -710,8 +710,6 @@
   background-color: transparent;
 }
 .thumbnail-carousel__dots > div > div, .thumbnail-carousel__dots > svg > div {
-  height: 4px;
-  width: 4px;
   background-color: rgba(29, 14, 11, var(--opacity));
   border-radius: 100%;
 }

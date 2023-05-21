@@ -13,14 +13,11 @@
         &>svg {
             @include displayFlexCenter();
             --opacity: #{$carouselDotOpacity};
-            height: $carouselDotRadius * 6;
-            width: $carouselDotRadius * 4;
+            height: 24px;
+            width: 16px;
             background-color: transparent;
 
-
             &>div {
-                height: $carouselDotRadius;
-                width: $carouselDotRadius;
                 background-color: rgba($itemViewerBackgroundColor, var(--opacity));
                 border-radius: 100%;
             }

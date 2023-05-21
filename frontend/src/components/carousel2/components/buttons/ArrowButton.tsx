@@ -25,17 +25,17 @@ export const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(({
 
     return (
         <button
-            style={{ ...style, ...stylingLogic.getCarouselButtonSizeStlye(buttonName, instanceWidth) }}
+            style={{ ...style, ...stylingLogic.getCarouselElementSizeStlye(buttonName, instanceWidth) }}
             ref={ref}
             onClick={onClick}
             className={`${className} ${classNameToUse}`}
         >
             <div
-                style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, style, subElementName: 'first' }) }}
+                style={{ ...colorStyle, ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style, subElementName: 'first' }) }}
                 className={leftClassName}
             />
             <div
-                style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, style, subElementName: 'second' }) }}
+                style={{ ...colorStyle, ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style, subElementName: 'second' }) }}
                 className={rightClassName}
             />
         </button>

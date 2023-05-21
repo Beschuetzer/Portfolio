@@ -24,7 +24,7 @@ export const PreviousButton = forwardRef<HTMLButtonElement, PreviousButtonProps>
 
   return (
     <button
-      style={stylingLogic.getCarouselButtonSizeStlye(buttonName, instanceWidth)}
+      style={stylingLogic.getCarouselElementSizeStlye(buttonName, instanceWidth)}
       ref={ref}
       onClick={onClick}
       className={`${className}  ${showButton ? '' : CLASSNAME__HIDDEN}`}
@@ -32,14 +32,14 @@ export const PreviousButton = forwardRef<HTMLButtonElement, PreviousButtonProps>
       <div
         style={{
           ...firstStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'bar', style: { ...style, ...firstStyle } })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'bar', style: { ...style, ...firstStyle } })
         }}
         className={`${className}--previous-left`}
       />
       <div
         style={{
           ...secondStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'triangle', style: { ...style, ...secondStyle } })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'triangle', style: { ...style, ...secondStyle } })
         }}
         className={`${className}--previous-right`}
       />

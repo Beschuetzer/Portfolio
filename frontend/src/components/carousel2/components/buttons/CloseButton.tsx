@@ -28,17 +28,17 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(({
 
   return (
     <button
-      style={{ ...style, ...stylingLogic.getCarouselButtonSizeStlye(buttonName, instanceWidth) }}
+      style={{ ...style, ...stylingLogic.getCarouselElementSizeStlye(buttonName, instanceWidth) }}
       ref={ref}
       onClick={onClick}
       className={`${className} ${classNameModifier ? classModifierName : ''}`}
     >
       <div
-        style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, style }) }}
+        style={{ ...colorStyle, ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style }) }}
         className={`${leftClassName} ${classNameModifier ? leftModifierClassname : ''}`}
       />
       <div
-        style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, style }) }}
+        style={{ ...colorStyle, ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style }) }}
         className={`${rightClassName} ${classNameModifier ? rightModifierClassname : ''}`}
       />
     </button>

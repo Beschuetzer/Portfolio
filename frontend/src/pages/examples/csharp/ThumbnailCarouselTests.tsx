@@ -542,14 +542,15 @@ const customButtonSizes = (
 				buttonSize: 40,
 				elementColor: getComputedStyleCustom('--color-primary-3'),
 			}, 
-			// elements: {
-			// 	nextButton: {
-			// 		fillColor: 'red',
-			// 	},
-			// 	fullscreenButton: {
-			// 		fillColor: 'red',
-			// 	},
-			// }
+			elements: {
+				// nextButton: {
+				// 	fillColor: 'red',
+				// },
+				// fullscreenButton: {
+				// 	fillColor: 'red',
+				// },
+				dots: {}
+			}
 		},
 		layout: {
 			itemDisplayLocation: "above",

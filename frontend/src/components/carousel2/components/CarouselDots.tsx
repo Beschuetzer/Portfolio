@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { CarouselItemProps } from './CarouselItem';
 import { getClassname } from '../utils';
-import { CAROUSEL_COLOR_FIVE, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS } from '../constants';
+import { CAROUSEL_COLOR_FIVE, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_DOT_HEIGHT_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS, CAROUSEL_DOT_WIDTH_DEFAULT } from '../constants';
 import { ArrowProps, CarouselElement, CarouselNavigationProps } from '../types';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
@@ -39,6 +39,17 @@ export const CarouselDots = ({
     const divStyles = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', {
         opacity: CAROUSEL_DOT_OPACITY_DEFAULT,
     });
+    const containerHeight = (stylingLogic.getCarouselElementSizeStlye(CarouselElement.dots)?.width || CAROUSEL_DOT_HEIGHT_DEFAULT) as number;
+    const containerWidth = (stylingLogic.getCarouselElementSizeStlye(CarouselElement.dots)?.width || CAROUSEL_DOT_HEIGHT_DEFAULT) as number * 2 / 3;
+    const dotContainerSizeStyle = {
+        width: CAROUSEL_DOT_WIDTH_DEFAULT + (Math.abs(containerWidth - CAROUSEL_DOT_WIDTH_DEFAULT) / CAROUSEL_DOT_WIDTH_DEFAULT),
+        height: containerHeight,
+    }
+    const dotSizeStyle = {
+        width: containerHeight / 6,
+        height: containerHeight / 6,
+    }
+
     function renderDots() {
         const dots = [];
         for (let index = 0; index < numberOfDots; index++) {
@@ -64,8 +75,8 @@ export const CarouselDots = ({
                         />
                     </svg>
                 ) : (
-                    <div key={index} onClick={() => onDotClick(index)} className={currentPageClassname}>
-                        <div style={{ ...divStyles, ...currentDotStyle }} />
+                    <div key={index} style={dotContainerSizeStyle} onClick={() => onDotClick(index)} className={currentPageClassname}>
+                        <div style={{ ...divStyles, ...currentDotStyle, ...dotSizeStyle }} />
                     </div>
                 )
             ));

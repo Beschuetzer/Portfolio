@@ -25,7 +25,7 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
 
   return (
     <button
-      style={stylingLogic.getCarouselButtonSizeStlye(buttonName, instanceWidth)}
+      style={stylingLogic.getCarouselElementSizeStlye(buttonName, instanceWidth)}
       ref={ref}
       onClick={onClick}
       className={`${className} ${fullScreenClassname}`}
@@ -33,7 +33,7 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
       <div
         style={{
           ...colorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'square-outer', style })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'square-outer', style })
         }}
         className={`${fullScreenClassname}-square-outer`}
       />
@@ -41,7 +41,7 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
         style={{
           ...fillStyle,
           ...stylingLogic.toolbarBackgroundColorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'square-inner', style })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'square-inner', style })
         }}
         className={`${fullScreenClassname}-square-inner`}
       />
@@ -49,7 +49,7 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
         style={{
           ...fillStyle,
           ...stylingLogic.toolbarBackgroundColorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'rect-horizontal', style })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'rect-horizontal', style })
         }}
         className={`${fullScreenClassname}-rect-horizontal`}
       />
@@ -57,7 +57,7 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
         style={{
           ...fillStyle,
           ...stylingLogic.toolbarBackgroundColorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'rect-vertical', style })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'rect-vertical', style })
         }}
         className={`${fullScreenClassname}-rect-vertical`}
       />
