@@ -580,8 +580,27 @@ export class StylingLogic {
         }
     }
 
-    getCarouselButtonSizeStlye(size = 0) {
-        const givenButtonSize = this.options.styling?.toolbar?.buttonSize;
+    //todo: this is currently setup with the assumption that givenButtonSize comes from toolbar.buttonSize
+    //need to generalize for other cases (think individual button options)
+    getCarouselButtonSizeStlye(buttonName: CarouselElement, size = 0) {
+        let givenButtonSize;
+        switch (buttonName) {
+            case CarouselElement.arrowLeft:
+            case CarouselElement.arrowRight:
+            case CarouselElement.dots:
+                break;
+            case CarouselElement.closeButton:
+            case CarouselElement.fullscreenButton:
+            case CarouselElement.nextButton:
+            case CarouselElement.pauseButton:
+            case CarouselElement.playButton:
+            case CarouselElement.previousButton:
+            case CarouselElement.seekBackButton:
+            case CarouselElement.seekForwardButton:
+                givenButtonSize = this.options.styling?.toolbar?.buttonSize;
+                break;
+        }
+
         const defaultButtonSize = this.isMobile ? CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT : CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT;
         const valueToUse = size || givenButtonSize || defaultButtonSize;
 
@@ -592,11 +611,16 @@ export class StylingLogic {
     }
 
     getToolbarButtonSizeStlye({ buttonName, subElementName, style }: GetToolbarButtonSizeStlye) {
-        const buttonSizeStyle = this.getCarouselButtonSizeStlye(parseInt(style?.width as string, 10) || 0);
+        const buttonSizeStyle = this.getCarouselButtonSizeStlye(buttonName, parseInt(style?.width as string, 10) || 0);
         const parsedWidth = parseInt(buttonSizeStyle.width as string, 10);
         const maxHeightFactor = .8333333;
 
         switch (buttonName) {
+            case CarouselElement.arrowLeft:
+            case CarouselElement.arrowRight:
+                return {
+                    // width: parsedWidth / 8,
+                } as CSSProperties;
             case CarouselElement.closeButton:
                 return {
                     height: parsedWidth,

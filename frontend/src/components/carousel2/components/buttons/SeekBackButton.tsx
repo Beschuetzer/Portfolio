@@ -16,10 +16,11 @@ export const SeekBackButton = forwardRef<HTMLButtonElement, SeekBackButtonProps>
   const { stylingLogic } = useBusinessLogic({});
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderLeftColor', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
+  const buttonName = CarouselElement.seekBackButton;
 
   return (
     <button
-      style={stylingLogic.getCarouselButtonSizeStlye(instanceWidth)}
+      style={stylingLogic.getCarouselButtonSizeStlye(buttonName, instanceWidth)}
       ref={ref}
       onClick={onClick}
       className={className}
@@ -27,14 +28,14 @@ export const SeekBackButton = forwardRef<HTMLButtonElement, SeekBackButtonProps>
       <div
         style={{
           ...colorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.seekBackButton, subElementName: 'triangle', style: { ...style, ...colorStyle } })
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'triangle', style: { ...style, ...colorStyle } })
         }}
         className={`${className}--seek-back-left`}
       />
       <div
         style={{
           ...colorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.seekBackButton, subElementName: 'triangle', style: { ...style, ...colorStyle } })
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'triangle', style: { ...style, ...colorStyle } })
         }}
         className={`${className}--seek-back-right`}
       />

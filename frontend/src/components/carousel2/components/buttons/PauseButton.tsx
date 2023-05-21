@@ -16,10 +16,11 @@ export const PauseButton = forwardRef<HTMLButtonElement, PauseButtonProps>(({
   const { stylingLogic } = useBusinessLogic({});
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
+  const buttonName = CarouselElement.pauseButton;
 
   return (
     <button
-      style={stylingLogic.getCarouselButtonSizeStlye(instanceWidth)}
+      style={stylingLogic.getCarouselButtonSizeStlye(buttonName, instanceWidth)}
       ref={ref}
       onClick={onClick}
       className={className}
@@ -27,14 +28,14 @@ export const PauseButton = forwardRef<HTMLButtonElement, PauseButtonProps>(({
       <div
         style={{
           ...colorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.pauseButton, subElementName: 'left', style })
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'left', style })
         }}
         className={`${className}--pause-left`}
       />
       <div
         style={{
           ...colorStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.pauseButton, subElementName: 'right', style })
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'right', style })
         }}
         className={`${className}--pause-right`}
       />

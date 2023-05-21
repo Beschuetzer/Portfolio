@@ -20,10 +20,11 @@ export const NextButton = forwardRef<HTMLButtonElement, NextButtonProps>(({
   const firstStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderLeftColor', childStyle);
   const secondStyle = StylingLogic.getButtonColorStyle(fillColor, 'background', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
+  const buttonName = CarouselElement.nextButton;
 
   return (
     <button
-      style={stylingLogic.getCarouselButtonSizeStlye(instanceWidth)}
+      style={stylingLogic.getCarouselButtonSizeStlye(buttonName, instanceWidth)}
       ref={ref}
       onClick={onClick}
       className={`${className} ${showButton ? '' : CLASSNAME__HIDDEN}`}
@@ -31,14 +32,14 @@ export const NextButton = forwardRef<HTMLButtonElement, NextButtonProps>(({
       <div
         style={{
           ...firstStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.nextButton, subElementName: 'triangle', style: { ...style, ...firstStyle } })
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'triangle', style: { ...style, ...firstStyle } })
         }}
         className={`${className}--next-left`}
       />
       <div
         style={{
           ...secondStyle,
-          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.nextButton, subElementName: 'bar', style: { ...style, ...secondStyle } })
+          ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, subElementName: 'bar', style: { ...style, ...secondStyle } })
         }}
         className={`${className}--next-right`}
       />

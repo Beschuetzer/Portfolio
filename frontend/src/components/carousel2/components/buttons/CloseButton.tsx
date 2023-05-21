@@ -24,20 +24,21 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(({
   const { stylingLogic } = useBusinessLogic({});
   const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
+  const buttonName = CarouselElement.closeButton;
 
   return (
     <button
-      style={{ ...style, ...stylingLogic.getCarouselButtonSizeStlye(instanceWidth) }}
+      style={{ ...style, ...stylingLogic.getCarouselButtonSizeStlye(buttonName, instanceWidth) }}
       ref={ref}
       onClick={onClick}
       className={`${className} ${classNameModifier ? classModifierName : ''}`}
     >
       <div
-        style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.closeButton, style }) }}
+        style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, style }) }}
         className={`${leftClassName} ${classNameModifier ? leftModifierClassname : ''}`}
       />
       <div
-        style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName: CarouselElement.closeButton, style }) }}
+        style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, style }) }}
         className={`${rightClassName} ${classNameModifier ? rightModifierClassname : ''}`}
       />
     </button>
