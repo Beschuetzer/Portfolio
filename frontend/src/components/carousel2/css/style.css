@@ -337,12 +337,10 @@
 }
 .thumbnail-carousel-button--arrow-previous-one, .thumbnail-carousel-button--arrow-previous-two, .thumbnail-carousel-button--arrow-next-one, .thumbnail-carousel-button--arrow-next-two {
   background-color: #1d0e0b;
-  width: 3px;
-  height: 8.94427191px;
 }
 .thumbnail-carousel-button--arrow-previous-one {
   position: absolute;
-  top: calc(50% + 3.1622776602px - 1.0606601718px);
+  top: 50%;
   left: 50%;
   right: auto;
   bottom: auto;
@@ -350,7 +348,7 @@
 }
 .thumbnail-carousel-button--arrow-previous-two {
   position: absolute;
-  top: calc(50% - 3.1622776602px + 1.0606601718px);
+  top: 50%;
   left: 50%;
   right: auto;
   bottom: auto;
@@ -358,7 +356,7 @@
 }
 .thumbnail-carousel-button--arrow-next-one {
   position: absolute;
-  top: calc(50% - 3.1622776602px + 1.0606601718px);
+  top: 50%;
   left: 50%;
   right: auto;
   bottom: auto;
@@ -366,7 +364,7 @@
 }
 .thumbnail-carousel-button--arrow-next-two {
   position: absolute;
-  top: calc(50% + 3.1622776602px - 1.0606601718px);
+  top: 50%;
   left: 50%;
   right: auto;
   bottom: auto;

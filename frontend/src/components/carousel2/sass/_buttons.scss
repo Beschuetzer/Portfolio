@@ -13,30 +13,28 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
             &-one,
             &-two {
                 background-color: $itemViewerBackgroundColor;
-                width: calc($buttonLineWidth / 2);
-                height: $carouselPageChangeButtonHeight;
             }
         }
 
         &-previous {
             &-one {
-                @include positionButton($rotation: -45deg, $top: calc((50% + $carouselPageChangeButtonTranslationAmount) - $carouselPageChangeButtonTranslationAmountTwo));
+                @include positionButton($rotation: -45deg);
 
             }
 
             &-two {
-                @include positionButton($rotation: 45deg, $top: calc((50% - $carouselPageChangeButtonTranslationAmount) + $carouselPageChangeButtonTranslationAmountTwo));
+                @include positionButton($rotation: 45deg);
             }
         }
 
         &-next {
             &-one {
-                @include positionButton($rotation: -45deg, $top: calc((50% - $carouselPageChangeButtonTranslationAmount) + $carouselPageChangeButtonTranslationAmountTwo));
+                @include positionButton($rotation: -45deg);
 
             }
 
             &-two {
-                @include positionButton($rotation: 45deg, $top: calc((50% + $carouselPageChangeButtonTranslationAmount) - $carouselPageChangeButtonTranslationAmountTwo));
+                @include positionButton($rotation: 45deg);
             }
         }
     }

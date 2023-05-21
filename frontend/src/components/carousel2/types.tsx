@@ -100,6 +100,7 @@ export type CarouselSections = {
         /*
         *This changes the dots and arrows
         */
+        buttonSize?: number;
         elementColor?: string;
         padding?: CarouselHorizontalPaddingOptions;
     } & Partial<Pick<CarouselColorOptions, 'background'>>;

@@ -528,18 +528,15 @@ const itemViewerSeekAmount2Sec = (
 		}
 	}} />
 );
-const customToolbarButtonSize = (
+const customButtonSizes = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			size: 150,
 		},
 		styling: {
-			elements: {
-				arrowLeft: {
-					style: {
-						width: 28,
-					}
-				}
+			navigation: {
+				buttonSize: 40,
+				elementColor: getComputedStyleCustom('--color-primary-3'),
 			},
 			toolbar: {
 				buttonSize: 40,
@@ -1681,10 +1678,6 @@ const SECTIONS: Sections = [
 				jsx: itemViewerHideAfter500ms
 			},
 			{
-				label: "Custom Toolbar button Size",
-				jsx: customToolbarButtonSize
-			},
-			{
 				label: "Seek amount 2 sec (Click item to view)",
 				jsx: itemViewerSeekAmount2Sec
 			},
@@ -1765,11 +1758,15 @@ const SECTIONS: Sections = [
 			},
 		]
 	], [
-		"All Custom",
+		"Custom",
 		[
 			{
 				label: "All Custom Settings",
 				jsx: allCustomSettings,
+			},
+			{
+				label: "Custom Button Sizes",
+				jsx: customButtonSizes
 			},
 		]
 	]

@@ -31,11 +31,11 @@ export const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(({
             className={`${className} ${classNameToUse}`}
         >
             <div
-                style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, style }) }}
+                style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, style, subElementName: 'first' }) }}
                 className={leftClassName}
             />
             <div
-                style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, style }) }}
+                style={{ ...colorStyle, ...stylingLogic.getToolbarButtonSizeStlye({ buttonName, style, subElementName: 'second' }) }}
                 className={rightClassName}
             />
         </button>

@@ -583,11 +583,12 @@ export class StylingLogic {
     //todo: this is currently setup with the assumption that givenButtonSize comes from toolbar.buttonSize
     //need to generalize for other cases (think individual button options)
     getCarouselButtonSizeStlye(buttonName: CarouselElement, size = 0) {
-        let givenButtonSize;
+        let sectionButtonSize;
         switch (buttonName) {
             case CarouselElement.arrowLeft:
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
+                sectionButtonSize = this.options.styling?.navigation?.buttonSize;
                 break;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
@@ -597,12 +598,12 @@ export class StylingLogic {
             case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
-                givenButtonSize = this.options.styling?.toolbar?.buttonSize;
+                sectionButtonSize = this.options.styling?.toolbar?.buttonSize;
                 break;
         }
 
         const defaultButtonSize = this.isMobile ? CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT : CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT;
-        const valueToUse = size || givenButtonSize || defaultButtonSize;
+        const valueToUse = size || sectionButtonSize || defaultButtonSize;
 
         return {
             width: valueToUse,
@@ -615,12 +616,49 @@ export class StylingLogic {
         const parsedWidth = parseInt(buttonSizeStyle.width as string, 10);
         const maxHeightFactor = .8333333;
 
+        const arrowButtonHeight = Math.hypot(parsedWidth, parsedWidth / 2) / 3;
+        const commonArrowButtonStyle = {
+            width: parsedWidth / 8,
+            height: arrowButtonHeight,
+        };
+        const arrowButtonTranslationAmountOne = arrowButtonHeight / 2 / Math.sqrt(2);
+        const arrowButtonTranslationAmountTwo = parsedWidth / 16 / Math.sqrt(2);
+        const arrowButtonTopOneStlye = {
+            top: `calc((50% + ${arrowButtonTranslationAmountOne}${CAROUSEL_SPACING_UNIT}) - ${arrowButtonTranslationAmountTwo}${CAROUSEL_SPACING_UNIT})`,
+        } as CSSProperties
+        const arrowButtonTopTwoStlye = {
+            top: `calc((50% - ${arrowButtonTranslationAmountOne}${CAROUSEL_SPACING_UNIT}) + ${arrowButtonTranslationAmountTwo}${CAROUSEL_SPACING_UNIT})`,
+        } as CSSProperties
+
         switch (buttonName) {
             case CarouselElement.arrowLeft:
+                switch (subElementName) {
+                    case "first":
+                        return {
+                            ...commonArrowButtonStyle,
+                            ...arrowButtonTopOneStlye,
+                        }
+                    case "second":
+                        return {
+                            ...commonArrowButtonStyle,
+                            ...arrowButtonTopTwoStlye,
+                        }
+                    default: return {};
+                }
             case CarouselElement.arrowRight:
-                return {
-                    // width: parsedWidth / 8,
-                } as CSSProperties;
+                switch (subElementName) {
+                    case "first":
+                        return {
+                            ...commonArrowButtonStyle,
+                            ...arrowButtonTopTwoStlye,
+                        }
+                    case "second":
+                        return {
+                            ...commonArrowButtonStyle,
+                            ...arrowButtonTopOneStlye,
+                        }
+                    default: return {};
+                }
             case CarouselElement.closeButton:
                 return {
                     height: parsedWidth,
