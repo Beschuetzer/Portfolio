@@ -57,6 +57,21 @@ export enum CarouselElement {
     seekForwardButton = 'seekForwardButton',
 }
 
+export type CarouselElementButtonSizeType = "min-width" | "max-width";
+export type CarouselElementButtonSize = {
+    /*
+    *Default buttonSize is 24px above 655px and 18px otherwise
+    *A tuple where the first element is the size of the button in px, the second element is the breakpoint in px, and the third element is the breakpoint type (default is max-width)
+    *Max width is equal to <= and min-width is equal to >= the 2nd element's number
+    *Default 2nd element and 3rd element are positive infinity and max-width, so giving only a number will result in that size always being used
+    *Examples: 
+    *   [[18, 400, "max-width"]] => when window.innerWidth <= 400 then the button size is set to 18
+    *   [[18, 400, "max-width"], [30, 1600, "min-width"]] => when window.innerWidth <= 400 then the button size is set to 18, when window.innerWidth >= 1600 then button size is 30, otherwise button size is default of 24px.
+    */
+    buttonSize?: CarouselElementButtonSizeTuple[];
+}
+export type CarouselElementButtonSizeTuple = [number, number?, CarouselElementButtonSizeType?];
+
 export type CarouselItemViewerOptions = {
     /*
    *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.  
@@ -100,10 +115,9 @@ export type CarouselSections = {
         /*
         *This changes the dots and arrows
         */
-        buttonSize?: number;
         elementColor?: string;
         padding?: CarouselHorizontalPaddingOptions;
-    } & Partial<Pick<CarouselColorOptions, 'background'>>;
+    } & Partial<Pick<CarouselColorOptions, 'background'>> & CarouselElementButtonSize;
     /*
     *This is where the buttons, progress bar, and item description sit
     */
