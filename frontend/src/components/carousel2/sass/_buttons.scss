@@ -18,23 +18,23 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
 
         &-previous {
             &-one {
-                @include positionButton($rotation: -45deg);
+                @include positionButton($rotation: 45deg);
 
             }
 
             &-two {
-                @include positionButton($rotation: 45deg);
+                @include positionButton($rotation: -45deg);
             }
         }
 
         &-next {
             &-one {
-                @include positionButton($rotation: -45deg);
+                @include positionButton($rotation: 45deg);
 
             }
 
             &-two {
-                @include positionButton($rotation: 45deg);
+                @include positionButton($rotation: -45deg);
             }
         }
     }

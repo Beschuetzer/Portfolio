@@ -344,7 +344,7 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 .thumbnail-carousel-button--arrow-previous-two {
   position: absolute;
@@ -352,7 +352,7 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 .thumbnail-carousel-button--arrow-next-one {
   position: absolute;
@@ -360,7 +360,7 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 .thumbnail-carousel-button--arrow-next-two {
   position: absolute;
@@ -368,7 +368,7 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(-50%, -50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 .thumbnail-carousel-button--close-left, .thumbnail-carousel-button--close-right {
   position: absolute;

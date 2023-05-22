@@ -535,7 +535,7 @@ const customButtonSizes = (
 		},
 		styling: {
 			navigation: {
-				buttonSize: [[16, 550, "max-width"], [18, 655, "max-width"], [42, 1200, "min-width"]],
+				buttonSize: [[16, 550, "max-width"], [18, 655, "max-width"], [40, 1200, "min-width"]],
 				elementColor: getComputedStyleCustom('--color-primary-3'),
 			},
 			toolbar: {
