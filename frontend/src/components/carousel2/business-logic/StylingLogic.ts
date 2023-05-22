@@ -594,7 +594,6 @@ export class StylingLogic {
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
                 sectionButtonSize = this.getButtonSize(this.options.styling?.navigation?.buttonSize);
-                console.log({sectionButtonSize});
                 break;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
@@ -604,7 +603,7 @@ export class StylingLogic {
             case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
-                sectionButtonSize = this.options.styling?.toolbar?.buttonSize;
+                sectionButtonSize = this.getButtonSize(this.options.styling?.toolbar?.buttonSize);
                 break;
         }
 
@@ -627,8 +626,8 @@ export class StylingLogic {
             width: parsedWidth / 8,
             height: arrowButtonHeight,
         };
-        const arrowButtonTranslationAmountOne = arrowButtonHeight / Math.sqrt(40) ;
-        const arrowButtonTranslationAmountTwo = parsedWidth / Math.sqrt(40) ;
+        const arrowButtonTranslationAmountOne = arrowButtonHeight / Math.sqrt(40); //no idea why 40 works here
+        const arrowButtonTranslationAmountTwo = parsedWidth / Math.sqrt(40);
         const arrowButtonTopOneStlye = {
             top: `calc((50% + ${arrowButtonTranslationAmountOne}${CAROUSEL_SPACING_UNIT}) - ${arrowButtonTranslationAmountTwo}${CAROUSEL_SPACING_UNIT})`,
         } as CSSProperties
@@ -780,15 +779,15 @@ export class StylingLogic {
         const windowWidth = window.innerWidth;
         // console.log({buttonSizeTuple});
 
-        for(const tuple of buttonSizeTuple || []) {
+        for (const tuple of buttonSizeTuple || []) {
             const [buttonSize, breakpoint, breakpointType] = tuple || [];
             const buttonSizeToUse = buttonSize > 0 ? buttonSize : this.defaultButtonSize;
             const breakpointTypeToUse = breakpointType || "max-width";
-    
+
             if (!breakpoint) {
                 return buttonSizeToUse;
-            } 
-    
+            }
+
             if (breakpointTypeToUse === "max-width") {
                 if (windowWidth <= breakpoint) return buttonSizeToUse;
             } else if (breakpointTypeToUse === "min-width") {

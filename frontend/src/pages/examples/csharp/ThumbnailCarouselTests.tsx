@@ -535,11 +535,11 @@ const customButtonSizes = (
 		},
 		styling: {
 			navigation: {
-				buttonSize: [[18, 550, "max-width"], [20, 655, "max-width"], [40, 1200, "min-width"]],
+				buttonSize: [[18, 550, "max-width"], [20, 655, "max-width"], [30, 900, "min-width"]],
 				elementColor: getComputedStyleCustom('--color-primary-3'),
 			},
 			toolbar: {
-				buttonSize: 40,
+				buttonSize: [[18, 550, "max-width"], [20, 655, "max-width"], [30, 900, "min-width"]],
 				elementColor: getComputedStyleCustom('--color-primary-3'),
 			}, 
 			elements: {

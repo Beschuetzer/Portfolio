@@ -1,6 +1,4 @@
 Carousel rework
-  -add option to specify full-screen button size and non-fullscreen button size (only applies when non-default display location)
-  -button size only gets changes when the content re-renders
   -add options to set videomodal close button size and VideoCurrentStateIndicatorButton?
   -need to work on individual options for each button size
   -make sure buttonSize works with custom icons
@@ -14,6 +12,7 @@ Carousel rework
   -figure out how to test and implement accessability
 
 Known Issues with Carousel rework:
+  -button size only updates when CarouselContent re-renders
   -cursor only changes properly after going into full screen once
 
 React best practices re-work (branch = sitenav_rework)

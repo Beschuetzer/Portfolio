@@ -129,7 +129,6 @@ export type CarouselSections = {
         /*
         This sets the size of the buttons in the toolbar in px.  The default is 24px
         */
-        buttonSize?: number;
         padding?: CarouselHorizontalPaddingOptions;
         progressBar?: {
             /*
@@ -143,7 +142,7 @@ export type CarouselSections = {
         */
         elementColor?: string;
         textColor?: string;
-    } & Partial<Pick<CarouselColorOptions, 'background'>>;
+    } & Partial<Pick<CarouselColorOptions, 'background'>> & CarouselElementButtonSize;
     /*
    *This is the the modal that displays when a video is paused, allowing for more info about the video
    */
