@@ -202,11 +202,11 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
         }
 
         &-left {
-            @include positionButton($xTranslate: -95%);
+            @include positionButton($xTranslate: -87.5%);
         }
 
         &-right {
-            @include positionButton($xTranslate: 5%);
+            @include positionButton($xTranslate: 12.5%);
         }
     }
 

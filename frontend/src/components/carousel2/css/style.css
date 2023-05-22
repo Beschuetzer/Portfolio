@@ -602,7 +602,7 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(-95%, -50%) rotate(0);
+  transform: translate(-87.5%, -50%) rotate(0);
 }
 .thumbnail-carousel-button--seek-forward-right {
   position: absolute;
@@ -610,7 +610,7 @@
   left: 50%;
   right: auto;
   bottom: auto;
-  transform: translate(5%, -50%) rotate(0);
+  transform: translate(12.5%, -50%) rotate(0);
 }
 .thumbnail-carousel-button--stop {
   position: absolute;
