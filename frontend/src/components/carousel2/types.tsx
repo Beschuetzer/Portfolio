@@ -67,6 +67,10 @@ export type CarouselElementButtonSize = {
     *Examples: 
     *   [[18, 400, "max-width"]] => when window.innerWidth <= 400 then the button size is set to 18
     *   [[18, 400, "max-width"], [30, 1600, "min-width"]] => when window.innerWidth <= 400 then the button size is set to 18, when window.innerWidth >= 1600 then button size is 30, otherwise button size is default of 24px.
+    *Known Issues:
+    *   1). Changing the window width after first load doesn't necessarily change the buttonSize when changing breakpoints.  
+    *       Currently the sizing only takes affect if the CarouselContenxt component re-renders.  
+    *       This only happens if the numberOfPages changes or the thumbnail spacing changes.
     */
     buttonSize?: CarouselElementButtonSizeTuple[];
 }
