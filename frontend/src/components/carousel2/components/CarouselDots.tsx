@@ -39,15 +39,15 @@ export const CarouselDots = ({
     const divStyles = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', {
         opacity: CAROUSEL_DOT_OPACITY_DEFAULT,
     });
-    const containerHeight = (stylingLogic.getCarouselElementSizeStlye(CarouselElement.dots)?.width || CAROUSEL_DOT_HEIGHT_DEFAULT) as number;
+    const containerHeight = (stylingLogic.getCarouselElementSizeStlye(CarouselElement.dots)?.width || CAROUSEL_DOT_HEIGHT_DEFAULT) as number * 2 / 3;
     const containerWidth = (stylingLogic.getCarouselElementSizeStlye(CarouselElement.dots)?.width || CAROUSEL_DOT_HEIGHT_DEFAULT) as number * 2 / 3;
     const dotContainerSizeStyle = {
         width: CAROUSEL_DOT_WIDTH_DEFAULT + (Math.abs(containerWidth - CAROUSEL_DOT_WIDTH_DEFAULT) / CAROUSEL_DOT_WIDTH_DEFAULT),
         height: containerHeight,
     }
     const dotSizeStyle = {
-        width: containerHeight / 6,
-        height: containerHeight / 6,
+        width: containerHeight / 4,
+        height: containerHeight / 4,
     }
 
     function renderDots() {
