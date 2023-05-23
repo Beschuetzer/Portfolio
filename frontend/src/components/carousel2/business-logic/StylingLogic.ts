@@ -278,8 +278,6 @@ export class StylingLogic {
             width: !!sizeGiven ? this.getButtonSize(sizeGiven) : this.isFullscreenMode ? undefined : CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
         } as CSSProperties;
 
-        console.log({sizeGiven, sizeToUse: this.getButtonSize(sizeGiven)});
-        
         return areChildrenPresent ? {
             ...rightStyle,
             ...topStyle,

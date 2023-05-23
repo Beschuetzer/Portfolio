@@ -1,4 +1,5 @@
 Carousel rework
+  -fix CarouselItemViewerPreview not working for videos after navigating a bunch; d2d5cf839ed30b20f862a167ba2467ede32ca7d1 and beyond not working with video loading and 021c2baa9972bd7667d39c2dc04fea7f13eecea9 works (test by navigating between videos quickly)
   -add options to set videomodal close button size and VideoCurrentStateIndicatorButton?
   -need to work on individual options for each button size
   -make sure buttonSize works with custom icons

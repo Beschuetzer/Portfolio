@@ -54,10 +54,14 @@ export const CarouselVideo = (props: CarouselItemProps) => {
             videoRef.current.pause();
             videoRef.current.currentTime = 0;
         }
+        if (videoRef.current?.load) {
+            videoRef.current.load();
+        }
     }, [setIsLoaded, setIsVideoPlaying, videoRef]);
 
     function handleOnLoadedData() {
         setIsLoaded(true);
+        setIsVideoPlaying(!!videoProps?.autoPlay);
     }
 
     const onContainerClick = useCallback(() => {
@@ -79,6 +83,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     //#region Side Fx
     useEffect(() => {
         async function handlePlayPause() {
+            if (!isLoaded) return;
             if (videoRef.current) {
                 if (!isVideoPlaying) {
                     videoRef.current.pause();
@@ -89,7 +94,7 @@ export const CarouselVideo = (props: CarouselItemProps) => {
         }
 
         handlePlayPause();
-    }, [isVideoPlaying, videoRef, tryPlaying])
+    }, [isVideoPlaying, videoRef, tryPlaying, isLoaded])
 
     //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
     useEffect(() => {
