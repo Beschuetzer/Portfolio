@@ -324,7 +324,7 @@ const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 				textColor: getComputedStyleCustom('--color-primary-1'),
 				closeButton: {
 					fill: getComputedStyleCustom('--color-primary-1'),
-					buttonSize: [[18, 550, "max-width"], [20, 655, "max-width"], [24, 900, "min-width"]],
+					size: [[18, 550, "max-width"], [20, 655, "max-width"], [24, 900, "min-width"]],
 				}
 			},
 			itemViewer: {

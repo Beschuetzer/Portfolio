@@ -22,7 +22,7 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
     CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT,
     CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
-    CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_DEFAULT,
+    CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -265,6 +265,7 @@ export class StylingLogic {
     }
 
     get carouselVideoModalCloseButtonStyle() {
+        const sizeGiven = this.options.styling?.videoModal?.closeButton?.size;
         const areChildrenPresent = !!this.currentItem?.video?.overlayProps?.children;
         const { right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
         const rightStyle = paddingRight !== undefined ? {
@@ -273,12 +274,19 @@ export class StylingLogic {
         const topStyle = paddingTop !== undefined ? {
             top: `${paddingTop}${CAROUSEL_SPACING_UNIT}`
         } as CSSProperties : {};
+        const widthStyle = {
+            width: !!sizeGiven ? this.getButtonSize(sizeGiven) : this.isFullscreenMode ? undefined : CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
+        } as CSSProperties;
 
+        console.log({sizeGiven, sizeToUse: this.getButtonSize(sizeGiven)});
+        
         return areChildrenPresent ? {
             ...rightStyle,
             ...topStyle,
-            width: this.isFullscreenMode ? undefined : CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_DEFAULT,
-        } as CSSProperties : {} as CSSProperties;
+            ...widthStyle,
+        } as CSSProperties : {
+            ...widthStyle,
+        } as CSSProperties;
     }
 
     get carouselVideoModalStyle() {
@@ -777,7 +785,6 @@ export class StylingLogic {
     */
     private getButtonSize(buttonSizeTuple: CarouselElementButtonSizeTuple[] | undefined) {
         const windowWidth = window.innerWidth;
-        // console.log({buttonSizeTuple});
 
         for (const tuple of buttonSizeTuple || []) {
             const [buttonSize, breakpoint, breakpointType] = tuple || [];
