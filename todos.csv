@@ -14,6 +14,7 @@ Carousel rework
   -figure out how to test and implement accessability
 
 Known Issues with Carousel rework:
+  -changing items with mid-tier and below setting is sluggish
   -button size only updates when CarouselContent re-renders
   -cursor only changes properly after going into full screen once
 

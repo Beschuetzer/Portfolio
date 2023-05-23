@@ -41,7 +41,6 @@ export type CarouselItemViewerToolbarProps = {
     videoRef?: React.MutableRefObject<HTMLVideoElement | undefined> | null;
 };
 
-
 export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemViewerToolbarProps>(({
     description,
     isVideo,
