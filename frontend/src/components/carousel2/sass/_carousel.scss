@@ -244,8 +244,8 @@
                 font-size: $carouselFontSize;
                 color: $itemViewerButtonColor;
                 border-radius: $itemViewerToolbarPreviewBorderRadius;
+                border: 1px solid $itemViewerButtonColor;
                 overflow: hidden;
-                transition: opacity $carouselAnimationDuration ease;
 
                 & > * {
                     width: calc(#{$itemViewerToolbarPreviewWidth} / 2);
@@ -258,6 +258,8 @@
                         position: relative;
 
                         & img {
+                            position: relative;
+                            z-index: $zShortcutPreviewImage;
                             width: 100%;
                             height: 100%;
                             object-fit: cover;

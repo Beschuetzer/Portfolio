@@ -44,10 +44,10 @@ export const CarouselItemViewerToolbarPreview = ({
                         containerMargin: '0px',
                     }}
                     description={''}
-                    show={!show}
+                    show={!isLoaded}
                 />
                 <img
-                    className={show ? '' : CLASSNAME__HIDDEN}
+                    className={isLoaded ? '' : CLASSNAME__HIDDEN}
                     src={srcThumbnail || srcMain}
                     alt={description}
                     onLoad={() => setIsLoaded(true)}

@@ -1,5 +1,6 @@
 Carousel rework
   -when clicking fullscreen button on a video, the video times don't match up (they are independent and continue playing).  Ideally this would be seemless
+  -add option to specify the border on the CarouselItemViewerToolbarPreview?
   -add options to set videomodal close button size and VideoCurrentStateIndicatorButton?
   -need to work on individual options for each button size
   -make sure buttonSize works with custom icons
