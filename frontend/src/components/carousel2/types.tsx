@@ -147,7 +147,9 @@ export type CarouselSections = {
    *This is the the modal that displays when a video is paused, allowing for more info about the video
    */
     [CarouselSection.videoModal]?: {
-        closeButtonColor?: string;
+        closeButton?: {
+            fill?: string;
+        } & CarouselElementButtonSize;
         /*
         *This is in px
         */

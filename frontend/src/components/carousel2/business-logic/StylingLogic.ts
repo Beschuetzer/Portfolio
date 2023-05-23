@@ -323,7 +323,7 @@ export class StylingLogic {
     }
 
     get carouselVideoCloseButtonColor() {
-        const customColor = this.options.styling?.videoModal?.closeButtonColor || CAROUSEL_COLOR_ONE;
+        const customColor = this.options.styling?.videoModal?.closeButton?.fill || CAROUSEL_COLOR_ONE;
         return customColor;
     }
 

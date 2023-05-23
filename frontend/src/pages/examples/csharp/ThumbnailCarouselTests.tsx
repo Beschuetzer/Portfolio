@@ -322,7 +322,10 @@ const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 			videoModal: {
 				background: getComputedStyleCustom('--color-primary-4'),
 				textColor: getComputedStyleCustom('--color-primary-1'),
-				closeButtonColor: getComputedStyleCustom('--color-primary-1'),
+				closeButton: {
+					fill: getComputedStyleCustom('--color-primary-1'),
+					buttonSize: [[18, 550, "max-width"], [20, 655, "max-width"], [24, 900, "min-width"]],
+				}
 			},
 			itemViewer: {
 				background: getComputedStyleCustom('--color-primary-4'),
@@ -541,7 +544,7 @@ const customButtonSizes = (
 			toolbar: {
 				buttonSize: [[18, 550, "max-width"], [20, 655, "max-width"], [30, 900, "min-width"]],
 				elementColor: getComputedStyleCustom('--color-primary-3'),
-			}, 
+			},
 			elements: {
 				// nextButton: {
 				// 	fillColor: 'red',
@@ -1155,7 +1158,9 @@ const layoutAboveCustomOverlayAndSpinner = (
 						left: 60,
 						right: 60,
 					},
-					closeButtonColor: getComputedStyleCustom("--color-primary-1"),
+					closeButton: {
+						fill: getComputedStyleCustom("--color-primary-1")
+					},
 					background: `linear-gradient(270deg, #fff, #ccc)`,
 					textColor: getComputedStyleCustom("--color-primary-1"),
 					widthInPercent: 90,
