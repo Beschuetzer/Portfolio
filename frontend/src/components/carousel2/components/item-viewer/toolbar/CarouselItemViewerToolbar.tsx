@@ -490,6 +490,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                         onClick={() => null}
                         options={options}
                         ref={fullscreenButtonRef}
+                        videoRef={videoRef}
                     />
                     <CarouselItemViewerCloseButton
                         actionName='Exit'
@@ -498,6 +499,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                         options={options}
                         ref={closeButtonRef}
                         position='right'
+                        videoRef={videoRef}
                     />
                 </div>
             </div>

@@ -1,22 +1,24 @@
 import { forwardRef, useCallback } from 'react'
-import { CLASSNAME__BUTTON_SCALE_ON_HOVER } from '../../../constants';
+import { CLASSNAME__BUTTON_SCALE_ON_HOVER, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from '../../../constants';
 import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton';
 import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { useCarouselContext } from '../../../context';
 import { FullscreenButton } from '../../buttons/FullscreenButton';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
+import { CarouselItemViewerToolbarProps } from './CarouselItemViewerToolbar';
 
 //note: Full-screen button doesn't have any shortcuts since it is only visible when itemDisplayLocation is not 'none'
-type CarouselItemViewerFullscreenButtonProps = {} & CarouselItemViewerButtonProps;
+type CarouselItemViewerFullscreenButtonProps = {} & CarouselItemViewerButtonProps & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
 export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemViewerFullscreenButtonProps>(({
     actionName = '',
     isShortcutVisible = false,
     onClick = () => null,
     options = {},
     position = 'right',
+    videoRef,
 }, ref) => {
-    const { elementStylings, setIsFullscreenMode, isFullscreenMode } = useCarouselContext();
+    const { elementStylings, setIsFullscreenMode, isFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
     const { stylingLogic } = useBusinessLogic({});
     const { svgHref, style } = elementStylings?.fullscreenButton || {};
     const fillColor = stylingLogic.getButtonColor(CarouselElement.fullscreenButton);
@@ -24,10 +26,8 @@ export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemVi
     const onClickLocal = useCallback(async () => {
         onClick && onClick();
         setIsFullscreenMode(true);
-    }, [
-        setIsFullscreenMode,
-        onClick
-    ]);
+        setCurrentVideoCurrentTime(videoRef?.current?.currentTime || CURRENT_VIDEO_CURRENT_TIME_DEFAULT);
+    }, [onClick, setIsFullscreenMode, setCurrentVideoCurrentTime, videoRef]);
 
     return (
         <CarouselItemViewerShortcutIndicator

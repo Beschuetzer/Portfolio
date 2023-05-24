@@ -6,16 +6,19 @@ import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
+import { CarouselItemViewerToolbarProps } from './CarouselItemViewerToolbar';
+import { CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from '../../../constants';
 
-type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps;
+type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
 export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps>(({
     actionName = '',
     isShortcutVisible = false,
     onClick = () => null,
     options = {},
     position: shortcutPosition = 'center',
+    videoRef,
 }, ref) => {
-    const { elementStylings, setIsFullscreenMode, isFullscreenMode } = useCarouselContext();
+    const { elementStylings, setIsFullscreenMode, isFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
     const {
         stylingLogic,
         toolbarActionsLogic,
@@ -36,7 +39,8 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     const onClickLocal = useCallback(async () => {
         onClick && onClick()
         setIsFullscreenMode(false);
-    }, [onClick, setIsFullscreenMode]);
+        setCurrentVideoCurrentTime(videoRef?.current?.currentTime || CURRENT_VIDEO_CURRENT_TIME_DEFAULT)
+    }, [onClick, setCurrentVideoCurrentTime, setIsFullscreenMode, videoRef]);
 
     return (
         <CarouselItemViewerShortcutIndicator
