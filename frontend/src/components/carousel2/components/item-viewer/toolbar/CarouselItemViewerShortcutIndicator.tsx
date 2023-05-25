@@ -1,11 +1,13 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react'
 import { capitalize, getClassname, getIsMobile, getShortcutsString } from '../../../utils'
 import { KeyInput } from '../../../hooks/useKeyboardShortcuts';
+import { CLASSNAME__DISPLAY_NONE } from '../../../constants';
 
 export type CarouselItemViewerShortcutIndicatorProps = {
     actionName: string;
     children: ReactNode | ReactNode[];
     isShortcutVisible?: boolean;
+    isVisible?: boolean;
     position?: 'left' | 'center' | 'right';
     shortcuts?: KeyInput[];
 
@@ -21,6 +23,7 @@ export const CarouselItemViewerShortcutIndicator = ({
     actionName = '',
     children,
     isShortcutVisible = false,
+    isVisible = true,
     position = 'center',
     shortcuts = [],
     showButton = true,
@@ -46,6 +49,7 @@ export const CarouselItemViewerShortcutIndicator = ({
         left: 'auto',
         transform: 'translate(0%, -50%)',
     } as React.CSSProperties : {};
+    const hiddenClassName = isVisible ? "" : CLASSNAME__DISPLAY_NONE;
 
     useEffect(() => {
         setHideShortcut(!isShortcutVisible || !actionName);
@@ -58,7 +62,7 @@ export const CarouselItemViewerShortcutIndicator = ({
     }, [isMobile, isShortcutVisible, actionName])
 
     return (
-        <div className={className} style={containerStyle}>
+        <div className={`${className} ${hiddenClassName}`} style={containerStyle}>
             {hideShortcut ? null : (
                 <div style={shortcutStyle}>
                     <span>

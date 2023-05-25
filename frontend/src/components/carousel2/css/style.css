@@ -1043,6 +1043,9 @@
 .thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-right {
   --rotation: 45deg;
 }
+.thumbnail-carousel--d-none {
+  display: none;
+}
 body.grabbing * {
   cursor: grabbing;
 }

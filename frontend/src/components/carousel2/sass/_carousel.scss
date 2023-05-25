@@ -366,6 +366,10 @@
         }
     }
 
+    &--d-none {
+        display: none;
+    }
+
     &--hidden {
         @extend %hidden;
     }

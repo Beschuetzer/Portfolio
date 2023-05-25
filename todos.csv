@@ -1,4 +1,5 @@
 Carousel rework
+  -issue with video reaching end and sometime clicking not starting it (try changing full screen modes)
   -add option to specify the border on the CarouselItemViewerToolbarPreview?
   -add options to set videomodal close button size and VideoCurrentStateIndicatorButton?
   -need to work on individual options for each button size

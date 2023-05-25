@@ -6,11 +6,11 @@ import { CarouselItemViewerCustomButton } from './CarouselItemViewerCustomButton
 import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcutIndicator';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
-type CarouselItemViewerPlayButtonProps = {
-} & CarouselItemViewerButtonProps;
+type CarouselItemViewerPlayButtonProps = {} & CarouselItemViewerButtonProps;
 export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPlayButtonProps>(({
     actionName = '',
     isShortcutVisible = false,
+    isVisible = true,
     onClick = () => null,
     options = {},
     position = 'center',
@@ -22,7 +22,7 @@ export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPl
     const fillColor = stylingLogic.getButtonColor(CarouselElement.playButton);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={playAction.keys} position={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={playAction.keys} position={position} isShortcutVisible={isShortcutVisible} isVisible={isVisible}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
                 <PlayButton ref={ref} onClick={onClick} childStyle={style} fillColor={fillColor} />

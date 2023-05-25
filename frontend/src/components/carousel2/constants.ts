@@ -19,6 +19,7 @@ export const CLASSNAME__BUTTON = `${CLASSNAME__ROOT}-button`;
 export const CLASSNAME__BUTTON_SCALE_ON_HOVER = `${CLASSNAME__BUTTON}--scale-on-hover`
 export const CLASSNAME__CAROUSEL_ITEM = getClassname({ elementName: 'item' });
 export const CLASSNAME__CAROUSEL_ITEM_THUMBNAIL = getClassname({ elementName: 'item-thumbnail' });
+export const CLASSNAME__DISPLAY_NONE = getClassname({ modifiedName: 'd-none' });
 export const CLASSNAME__GRABBING = 'grabbing';
 export const CLASSNAME__HIDDEN = getClassname({ modifiedName: 'hidden' });
 export const CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR = getClassname({ elementName: `item-container--no-toolbar` });

@@ -430,25 +430,24 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             <div className={CLASSNAME__TOOLBAR_CONTAINER}>
                 {videoRef ? (
                     <div className={CLASSNAME__TOOLBAR_LEFT}>
-                        {isVideoPlaying ? (
-                            <CarouselItemViewerPauseButton
-                                actionName='Pause'
-                                isShortcutVisible={showPauseButtonPopup}
-                                onClick={onPauseClick}
-                                options={options}
-                                ref={pauseButtonRef}
-                                position='left'
-                            />
-                        ) : (
-                            <CarouselItemViewerPlayButton
-                                actionName='Play'
-                                isShortcutVisible={showPlayButtonPopup}
-                                onClick={onPlayClick}
-                                options={options}
-                                ref={playButtonRef}
-                                position='left'
-                            />
-                        )}
+                        <CarouselItemViewerPlayButton
+                            actionName='Play'
+                            isShortcutVisible={showPlayButtonPopup}
+                            isVisible={!isVideoPlaying}
+                            onClick={onPlayClick}
+                            options={options}
+                            ref={playButtonRef}
+                            position='left'
+                        />
+                        <CarouselItemViewerPauseButton
+                            actionName='Pause'
+                            isShortcutVisible={showPauseButtonPopup}
+                            isVisible={isVideoPlaying}
+                            onClick={onPauseClick}
+                            options={options}
+                            ref={pauseButtonRef}
+                            position='left'
+                        />
                         <CarouselItemViewerSeekBackButton
                             actionName='Seek Back'
                             isShortcutVisible={showSeekBackwardButtonPopup}
