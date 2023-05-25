@@ -257,6 +257,17 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
+    get carouselToolbarTextDescriptionStyle() {
+        return {
+            display: "-webkit-box",
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            flex: 1,
+        } as CSSProperties;
+    }
+    
     get carouselToolbarTextStyle() {
         const customTextColor = this.options.styling?.toolbar?.textColor || this.allFillColor;
         return {
@@ -403,9 +414,16 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
+    get carouselVideoTimeTextDividierStyle() {
+        return {
+            paddingInline: CAROUSEL_ITEM_SPACING_DEFAULT / 2,
+        } as CSSProperties;
+    }
+
     get carouselVideoTimeTextStyle() {
         return !this.optionsLogic.isDefaultItemDisplayLocation && !this.isFullscreenMode ? {
-            minWidth: "33%",
+            paddingInline: CAROUSEL_ITEM_SPACING_DEFAULT / 2,
+            flexGrow: 0,
         } as CSSProperties : {};
     }
 

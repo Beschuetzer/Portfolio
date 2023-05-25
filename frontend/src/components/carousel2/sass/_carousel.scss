@@ -210,22 +210,9 @@
 
             &-middle {
                 justify-content: flex-start;
-                margin-right: auto;
+                width: 100%;
                 font-size: 1.5rem;
                 color: $itemViewerButtonColor;
-
-                &>* {
-                    text-align: center;
-
-                    & span {
-                        width: 6rem;
-                        display: inline-block;
-
-                        &:nth-last-of-type(2) {
-                            width: 1rem;
-                        }
-                    }
-                }
             }
 
             &-preview {

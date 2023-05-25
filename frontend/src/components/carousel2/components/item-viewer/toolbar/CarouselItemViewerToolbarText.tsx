@@ -16,18 +16,21 @@ export const CarouselItemViewerToolbarText = ({
     isVideo = false,
     timeStrings,
 }: CarouselItemViewerToolbarTextProps) => {
-    const {stylingLogic} = useBusinessLogic({});
+    const { stylingLogic } = useBusinessLogic({});
 
     return (
         <span style={stylingLogic.carouselToolbarTextStyle} className={CLASSNAME_TOOLBAR_MIDDLE}>
             {isVideo ? (
-                <div style={stylingLogic.carouselVideoTimeTextStyle}>
-                    <span>{timeStrings.currentTimeStr}</span>
-                    <span>/</span> 
-                    <span>{timeStrings.durationStr}</span>
-                </div>
+                <>
+                    <div style={stylingLogic.carouselVideoTimeTextStyle}>
+                        <span>{timeStrings.currentTimeStr}</span>
+                        <span style={stylingLogic.carouselVideoTimeTextDividierStyle}>/</span>
+                        <span>{timeStrings.durationStr}</span>
+                    </div>
+                    <span>&#x2022;</span>
+                </>
             ) : null}
-            <span>{description}</span>
+            <span style={stylingLogic.carouselToolbarTextDescriptionStyle}>{description}</span>
         </span>
     )
 }
