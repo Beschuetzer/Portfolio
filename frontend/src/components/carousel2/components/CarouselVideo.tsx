@@ -108,9 +108,16 @@ export const CarouselVideo = (props: CarouselItemProps) => {
     useEffect(() => {
         if (videoRef.current) {
             videoRef.current.currentTime = currentVideoCurrentTime;
+            if (isFullscreenMode) return;
             tryPlaying();
         }
     }, [currentVideoCurrentTime, isFullscreenMode, tryPlaying])
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+        }
+    }, [])
     //#endregion
 
     //#region JSX   
