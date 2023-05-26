@@ -41,7 +41,7 @@ export const Carousel = (props: CarouselProps) => {
 					}
 				}
 			>
-				<CarouselContent {...props} carouselContainerRef={carouselContainerRef} />
+				<CarouselContent {...props} carouselContainerRef={carouselContainerRef as any} />
 			</div>
 		</CarouselProvider>
 	)

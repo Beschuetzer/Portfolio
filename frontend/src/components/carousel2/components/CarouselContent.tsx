@@ -4,15 +4,13 @@ import { CarouselProps } from './Carousel';
 import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
-import { useCarouselContext } from '../context';
+import { CarouselContextInputProps, useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
 import { getNumberOfItemsThatCanFit, getClassname, getNumberOfPages, onArrowButtonClick } from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 
-type CarouselContentProps = {
-    carouselContainerRef: React.MutableRefObject<HTMLElement | undefined>;
-} & Omit<CarouselProps, 'style' | 'onItemChange'>
+type CarouselContentProps = {} & Omit<CarouselProps, 'style' | 'onItemChange'> & Pick<CarouselContextInputProps, 'carouselContainerRef'>;
 
 export const CarouselContent = ({
     carouselContainerRef,
