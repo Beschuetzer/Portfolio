@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { CarouselElement, CarouselSection, CarouselOptions, CarouselElementButtonSizeTuple } from "../types";
 import { OptionsLogic } from "./OptionsLogic";
-import { convertHexToRgba, getIsMobile, getIsVideo } from "../utils";
+import { convertHexToRgba, getIsMobile, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
 import {
     CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_SPACING_UNIT,
@@ -26,7 +26,7 @@ import {
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
-import { CarouselContextOutputProps } from "../context";
+import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
 
 export enum SpacingDirection {
     bottom,
@@ -43,6 +43,7 @@ export type StylingLogicConstructor = {
     progressBarValue?: number;
     videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
 } & Partial<Pick<CarouselContextOutputProps, 'currentItem' | 'isFullscreenMode' | 'numberOfPages'>>
+    & Partial<Pick<CarouselContextInputProps, 'carouselContainerRef'>>
     & Partial<Pick<CarouselVideoModalInternalProps, 'videoRef'>>
 
 export type GetToolbarButtonSizeStlye = {
@@ -56,6 +57,7 @@ export type GetToolbarButtonSizeStlye = {
 */
 export class StylingLogic {
     private DEFAULT_FONT_FAMILY: string = 'sans-serif';
+    private carouselContainerRef;
     private currentItem;
     private isCurrentItem: boolean | undefined;
     private optionsLogic: OptionsLogic;
@@ -71,6 +73,7 @@ export class StylingLogic {
 
     constructor(constructor: StylingLogicConstructor) {
         const {
+            carouselContainerRef,
             currentItem,
             isCurrentItem,
             isFullscreenMode,
@@ -83,6 +86,7 @@ export class StylingLogic {
             progressBarValue,
             videoRef,
         } = constructor;
+        this.carouselContainerRef = carouselContainerRef;
         this.currentItem = currentItem;
         this.isCurrentItem = isCurrentItem;
         this.isFullscreenMode = !!isFullscreenMode;
@@ -267,7 +271,7 @@ export class StylingLogic {
             flex: 1,
         } as CSSProperties;
     }
-    
+
     get carouselToolbarTextStyle() {
         const customTextColor = this.options.styling?.toolbar?.textColor || this.allFillColor;
         return {
@@ -772,8 +776,24 @@ export class StylingLogic {
     }
 
     getCarouselItemsInnerContainerStyle(interItemSpacing: string, translationAmount: number) {
+        //(containerWidth / (numberOfWholeItems * itemSize) + ((numberOfWholeItems - 1) * itemSpacingAmount )) / 2)
+        const {numberOfWholeItemsThatCanFit, containerWidth, itemSize} = getNumberOfItemsThatCanFit(this.carouselContainerRef?.current, this, this.optionsLogic);
+        const itemPositioning = this.options.layout?.itemPositioning;
+        const numberOfSpaces = numberOfWholeItemsThatCanFit - 1;
+        const itemSpacingToUse = itemPositioning !== undefined ? this.options.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT : parseFloat(interItemSpacing);
+        const widthOfInterItemSpacing = numberOfSpaces * itemSpacingToUse;
+        const widthOfItems = numberOfWholeItemsThatCanFit * itemSize;
+
+        console.log({containerWidth,numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing: parseFloat(interItemSpacing), numberOfSpaces});
+        
+
+        const positioningStyle = itemPositioning === 'center' ? {
+            marginLeft: Math.max((containerWidth - (widthOfItems + widthOfInterItemSpacing)) / 2, 0),
+        } as CSSProperties : itemPositioning === 'right' ? {
+            marginLeft: 20,
+        } : {} as CSSProperties;
         const interItemSpacingStyle = {
-            columnGap: interItemSpacing,
+            columnGap: itemSpacingToUse,
         } as CSSProperties
         const translationStyle = {
             transform: `translateX(${translationAmount < 0 ? '' : '-'}${Math.abs(translationAmount)}${CAROUSEL_SPACING_UNIT})`,
@@ -782,6 +802,7 @@ export class StylingLogic {
         return {
             ...interItemSpacingStyle,
             ...translationStyle,
+            ...positioningStyle,
         } as CSSProperties
     }
 

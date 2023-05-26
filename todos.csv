@@ -1,4 +1,5 @@
 Carousel rework
+  -figure out why test layoutThumbnailPositioningCenterWithItemSpacingGiven works but not test layoutThumbnailPositioningCenter
   -add option for centering and right aligning navigation items (but make clear that only happens when using auto-spacing and the items don't span entire width of container;  for center take (containerWidth / (numberOfWholeItems * itemSize) + ((numberOfWholeItems - 1) * itemSpacingAmount )) / 2)
   -for layout.itemPositioning, make it effective even if thumbnail.itemSpacing is not given but just add a default itemSpacing of something like 10?
   -allow for thumbnail.itemSpacing and size to be given in a tuple format like (CarouselElementButtonSizeTuple)

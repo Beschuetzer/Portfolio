@@ -57,7 +57,7 @@ export function getClassname({ elementName, modifiedName }: GetClassname) {
     return `${CLASSNAME__ROOT}${elementName ? `__${elementName}` : ``}${modifiedName ? `--${modifiedName}` : ``}`;
 }
 
-export function getContainerWidth(htmlElement: HTMLElement, stylingLogic: StylingLogic) {
+export function getContainerWidth(htmlElement: HTMLElement | undefined, stylingLogic: StylingLogic) {
     return (htmlElement?.getBoundingClientRect()?.width || 0) - (stylingLogic.navigationContainerHorizontalPadding);
 }
 
@@ -120,7 +120,7 @@ export function getIsVideoPlaying(videoRef: HTMLVideoElement | undefined) {
 }
 
 export function getNumberOfItemsThatCanFit(
-    htmlElement: HTMLElement,
+    htmlElement: HTMLElement | undefined,
     stylingLogic: StylingLogic,
     optionsLogic: OptionsLogic
 ) {

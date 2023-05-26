@@ -1246,11 +1246,36 @@ const layoutThumbnailPositioningCenter = (
 				itemPositioning: 'center',
 			},
 			thumbnail: {
-				size: 100,
+				size: 200,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
+			},
+			styling: {
+				container: {
+					padding: {
+						bottom: 0,
+					}
+				}
+			}
+		}}
+	/>
+);
+const layoutThumbnailPositioningCenterWithItemSpacingGiven = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayHeight: 450,
+				itemDisplayLocation: 'below',
+				itemPositioning: 'center',
+			},
+			thumbnail: {
+				size: 200,
 				itemSpacing: 5,
+				descriptionOverlay: {
+					isDisabled: false,
+				},
 			},
 			styling: {
 				container: {
@@ -1376,8 +1401,12 @@ const SECTIONS: Sections = [
 				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
 			},
 			{
-				label: "Thumbnails Positioned Center in Container",
+				label: "Thumbnails Positioned Center in Container with Default Spacing",
 				jsx: layoutThumbnailPositioningCenter,
+			},
+			{
+				label: "Thumbnails Positioned Center in Container with Given spacing",
+				jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
 			},
 			{
 				label: "Thumbnails Positioned Right in Container",

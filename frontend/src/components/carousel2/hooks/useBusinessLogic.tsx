@@ -35,7 +35,7 @@ export const useBusinessLogic = ({
     videoRef
 }: UseBusinessLogicInput): UseBusinessLogicResponse => {
     const {
-        // carouselContainerRef,
+        carouselContainerRef,
         currentItem,
         // currentItemIndex,
         // elementStylings,
@@ -80,14 +80,15 @@ export const useBusinessLogic = ({
             items,
         })
         const newStylingLogic = getStylingLogic({
-            options,
+            carouselContainerRef,
             currentItem,
-            isFullscreenMode,
             isCurrentItem,
-            numberOfPages,
-            optionsLogic: newOptionsLogic,
+            isFullscreenMode,
             itemViewerToolbarRef,
             loadingSpinnerOptions,
+            numberOfPages,
+            options,
+            optionsLogic: newOptionsLogic,
             progressBarValue,
             videoModalRef,
             videoRef
@@ -96,6 +97,7 @@ export const useBusinessLogic = ({
         setOptionsLogic(newOptionsLogic);
         setStylingLogic(newStylingLogic);
     }, [
+        carouselContainerRef,
         currentItem,
         isCurrentItem,
         isFullscreenMode,
