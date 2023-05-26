@@ -177,7 +177,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselItemsContainerStyle() {
+    get carouselItemsOuterContainerStyle() {
         const common = {
             marginLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
             marginRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
@@ -769,6 +769,20 @@ export class StylingLogic {
             default:
                 return buttonSizeStyle;
         }
+    }
+
+    getCarouselItemsInnerContainerStyle(interItemSpacing: string, translationAmount: number) {
+        const interItemSpacingStyle = {
+            columnGap: interItemSpacing,
+        } as CSSProperties
+        const translationStyle = {
+            transform: `translateX(${translationAmount < 0 ? '' : '-'}${Math.abs(translationAmount)}${CAROUSEL_SPACING_UNIT})`,
+        } as CSSProperties
+
+        return {
+            ...interItemSpacingStyle,
+            ...translationStyle,
+        } as CSSProperties
     }
 
     static getButtonColorStyle(fillColor: string, propertyName: keyof CSSProperties, style = {} as CSSProperties) {

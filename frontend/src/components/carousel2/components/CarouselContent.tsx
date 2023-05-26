@@ -1,4 +1,4 @@
-import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
 import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
@@ -269,7 +269,7 @@ export const CarouselContent = ({
             } else {
                 translationAmountDifferenceRef.current = defaultAmount;
             }
-            
+
             return currentPage * translationAmountDifferenceRef.current;
         }
 
@@ -289,24 +289,18 @@ export const CarouselContent = ({
 
     //#region JSX
     const ItemToRender = optionsLogic.itemToRender;
-    const interItemSpacingStyle = {
-        columnGap: interItemSpacing,
-    } as CSSProperties
-    const translationStyle = {
-        transform: `translateX(${translationAmount < 0 ? '' : '-'}${Math.abs(translationAmount)}${CAROUSEL_SPACING_UNIT})`,
-    } as CSSProperties
-    const containerStyle = {
-        ...interItemSpacingStyle,
-        ...translationStyle,
-    }
-
     return (
         <>
             {optionsLogic.isItemDisplayLocationAbove ? (
                 <ItemToRender {...currentItem} />
             ) : null}
-            <div ref={itemsContainerOuterRef} style={stylingLogic.carouselItemsContainerStyle}>
-                <div ref={itemsContainerInnerRef} style={containerStyle} className={getClassname({ elementName: "items" })}>
+            <div ref={itemsContainerOuterRef}
+                style={stylingLogic.carouselItemsOuterContainerStyle}
+            >
+                <div ref={itemsContainerInnerRef}
+                    style={stylingLogic.getCarouselItemsInnerContainerStyle(interItemSpacing, translationAmount)}
+                    className={getClassname({ elementName: "items" })}
+                >
                     {
                         items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)
                     }
