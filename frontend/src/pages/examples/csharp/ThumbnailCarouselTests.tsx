@@ -23,7 +23,7 @@ import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/components/Carousel";
 import { ModifierKey, ValidKey } from "../../../components/carousel2/hooks/useKeyboardShortcuts";
-import { CarouselActions, CarouselThumbnailPositioning } from "../../../components/carousel2/types";
+import { CarouselActions } from "../../../components/carousel2/types";
 import { CarouselItemProps } from "../../../components/carousel2/components/CarouselItem";
 
 //#region Carousel Items
