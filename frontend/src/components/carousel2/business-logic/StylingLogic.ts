@@ -780,7 +780,7 @@ export class StylingLogic {
         const {numberOfWholeItemsThatCanFit, containerWidth, itemSize} = getNumberOfItemsThatCanFit(this.carouselContainerRef?.current, this, this.optionsLogic);
         const itemPositioning = this.options.layout?.itemPositioning;
         const numberOfSpaces = numberOfWholeItemsThatCanFit - 1;
-        const itemSpacingToUse = itemPositioning !== undefined ? this.options.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT : parseFloat(interItemSpacing);
+        const itemSpacingToUse = itemPositioning !== undefined ? this.options.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT / 2 : parseFloat(interItemSpacing);
         const widthOfInterItemSpacing = numberOfSpaces * itemSpacingToUse;
         const widthOfItems = numberOfWholeItemsThatCanFit * itemSize;
 
