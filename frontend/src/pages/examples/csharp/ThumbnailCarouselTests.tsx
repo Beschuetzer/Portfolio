@@ -23,7 +23,7 @@ import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/components/Carousel";
 import { ModifierKey, ValidKey } from "../../../components/carousel2/hooks/useKeyboardShortcuts";
-import { CarouselActions } from "../../../components/carousel2/types";
+import { CarouselActions, CarouselThumbnailPositioning } from "../../../components/carousel2/types";
 import { CarouselItemProps } from "../../../components/carousel2/components/CarouselItem";
 
 //#region Carousel Items
@@ -1236,6 +1236,58 @@ const layoutBelowWithCustomThumbnailSizeAndHeight = (
 		}}
 	/>
 );
+const layoutThumbnailPositioningCenter = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayHeight: 450,
+				itemDisplayLocation: 'below',
+				itemPositioning: 'center',
+			},
+			thumbnail: {
+				size: 100,
+				descriptionOverlay: {
+					isDisabled: false,
+				},
+				itemSpacing: 5,
+			},
+			styling: {
+				container: {
+					padding: {
+						bottom: 0,
+					}
+				}
+			}
+		}}
+	/>
+);
+const layoutThumbnailPositioningRight = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayHeight: 450,
+				itemDisplayLocation: 'below',
+				itemPositioning: 'right',
+			},
+			thumbnail: {
+				size: 100,
+				descriptionOverlay: {
+					isDisabled: false,
+				},
+				itemSpacing: 5,
+			},
+			styling: {
+				container: {
+					padding: {
+						bottom: 0,
+					}
+				}
+			}
+		}}
+	/>
+);
 const noThumbnailHoverEffect = (
 	<Carousel items={items} options={{
 		thumbnail: {
@@ -1322,6 +1374,14 @@ const SECTIONS: Sections = [
 			{
 				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
 				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
+			},
+			{
+				label: "Thumbnails Positioned Center in Container",
+				jsx: layoutThumbnailPositioningCenter,
+			},
+			{
+				label: "Thumbnails Positioned Right in Container",
+				jsx: layoutThumbnailPositioningRight,
 			},
 		]
 	],

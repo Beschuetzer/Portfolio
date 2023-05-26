@@ -1,10 +1,12 @@
 Carousel rework
+  -add option for centering and right aligning navigation items (but make clear that only happens when using auto-spacing and the items don't span entire width of container;  for center take (containerWidth / (numberOfWholeItems * itemSize) + ((numberOfWholeItems - 1) * itemSpacingAmount )) / 2)
+  -for layout.itemPositioning, make it effective even if thumbnail.itemSpacing is not given but just add a default itemSpacing of something like 10?
+  -allow for thumbnail.itemSpacing and size to be given in a tuple format like (CarouselElementButtonSizeTuple)
   -add option to specify the border on the CarouselItemViewerToolbarPreview?
   -add options to set videomodal close button size and VideoCurrentStateIndicatorButton?
   -need to work on individual options for each button size
   -make sure buttonSize works with custom icons
   -when done with buttonSize stuff, clean up css styles
-  -add option for centering and right aligning navigation items (but make clear that only happens when using auto-spacing and the items don't span entire width of container;  will need to use margin-left/right?)
   -add option to use default video tag controls
   -add volume button for videos?
   -how to intelligently add themes or default colors?

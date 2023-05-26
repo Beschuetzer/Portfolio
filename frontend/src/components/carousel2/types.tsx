@@ -177,6 +177,14 @@ export type CarouselLayoutOptions = {
     *so you have to adjust it and see how it works for the items given.
     */
     itemDisplayHeight?: number;
+     /*
+    *This only applies if the `thumbnail.itemSpacing` is given.
+    *Default is `left`
+    *`left` => the left-most thumbnail item on a given page is positioned flush with the container
+    *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the container ends
+    *`right` => the right-most thumbnail item on a given page is positioned flush with the container
+    */
+    itemPositioning?: 'left' | 'center' | 'right';
 }
 
 export type CarouselSwipingOptions = {
