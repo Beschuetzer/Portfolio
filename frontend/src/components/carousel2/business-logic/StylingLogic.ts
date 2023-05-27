@@ -780,8 +780,8 @@ export class StylingLogic {
         const {numberOfWholeItemsThatCanFit, containerWidth, itemSize} = getNumberOfItemsThatCanFit(this.carouselContainerRef?.current, this, this.optionsLogic);
         const itemPositioning = this.options.layout?.itemPositioning;
         const numberOfSpaces = numberOfWholeItemsThatCanFit - 1;
-        const itemSpacingToUse = itemPositioning !== undefined ? this.options.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT / 2 : interItemSpacing;
-        const widthOfInterItemSpacing = numberOfSpaces * itemSpacingToUse;
+        const itemSpacing = this.optionsLogic.getItemSpacing(interItemSpacing);
+        const widthOfInterItemSpacing = numberOfSpaces * itemSpacing;
         const widthOfItems = numberOfWholeItemsThatCanFit * itemSize;
 
         // console.log({containerWidth,itemSpacingToUse, givenItemSpacing: this.options.thumbnail?.itemSpacing, itemPositioning, numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing, numberOfSpaces});
@@ -791,7 +791,7 @@ export class StylingLogic {
             marginLeft: Math.max((containerWidth - (widthOfItems + widthOfInterItemSpacing)), 0),
         } : {} as CSSProperties;
         const interItemSpacingStyle = {
-            columnGap: itemSpacingToUse,
+            columnGap: itemSpacing,
         } as CSSProperties
         const translationStyle = {
             transform: `translateX(${translationAmount < 0 ? '' : '-'}${Math.abs(translationAmount)}${CAROUSEL_SPACING_UNIT})`,

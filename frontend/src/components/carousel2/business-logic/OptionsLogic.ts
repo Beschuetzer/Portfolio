@@ -1,7 +1,7 @@
 import { CarouselImage } from "../components/CarouselImage";
 import { CarouselItemProps } from "../components/CarouselItem";
 import { CarouselVideo } from "../components/CarouselVideo";
-import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, MAX_CLICK_THRESHOLD_DEFAULT } from "../constants";
+import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT, MAX_CLICK_THRESHOLD_DEFAULT } from "../constants";
 import { CarouselOptions } from "../types";
 import { getIsVideo } from "../utils";
 
@@ -28,6 +28,7 @@ export class OptionsLogic {
         this.items = items || [];
     }
 
+    //#region Getters
     get carouselItemSize() {
         if (this.isDefaultItemDisplayLocation) {
             return this.options?.thumbnail?.size || CAROUSEL_ITEM_SIZE_DEFAULT;
@@ -74,4 +75,12 @@ export class OptionsLogic {
         const maxClickThreshold = this.options.navigation?.maxClickThreshold;
         return maxClickThreshold !== undefined ? maxClickThreshold : MAX_CLICK_THRESHOLD_DEFAULT;
     }
+    //#endregion
+
+    //#region Methods
+    getItemSpacing(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SIZE_DEFAULT / 2) {
+        const itemPositioning = this.options.layout?.itemPositioning;
+        return itemPositioning !== undefined ? this.options.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT / 2 : valueToUseIfNoPositioningGiven;
+    }
+    //#endregion
 }

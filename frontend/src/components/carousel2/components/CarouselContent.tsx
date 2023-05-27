@@ -252,10 +252,8 @@ export const CarouselContent = ({
         }
 
         function getTranslationAmount() {
-            const itemSpacingGiven = options?.thumbnail?.itemSpacing;
-            const itemPositioning = options?.layout?.itemPositioning;
-            const interItemSpacingToUse = itemPositioning !== undefined ? itemSpacingGiven || CAROUSEL_ITEM_SPACING_DEFAULT / 2 : interItemSpacing;
-            const isDefaultCase = itemSpacingGiven === undefined && itemPositioning === undefined;
+            const interItemSpacingToUse = optionsLogic.getItemSpacing(interItemSpacing);
+            const isDefaultCase = options?.thumbnail?.itemSpacing === undefined && options?.layout?.itemPositioning === undefined;
             const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
                 carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
             );
