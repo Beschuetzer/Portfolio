@@ -1241,8 +1241,6 @@ const layoutThumbnailPositioningCenter = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 450,
-				itemDisplayLocation: 'below',
 				itemPositioning: 'center',
 			},
 			thumbnail: {
@@ -1251,13 +1249,6 @@ const layoutThumbnailPositioningCenter = (
 					isDisabled: false,
 				},
 			},
-			styling: {
-				container: {
-					padding: {
-						bottom: 0,
-					}
-				}
-			}
 		}}
 	/>
 );
@@ -1266,8 +1257,6 @@ const layoutThumbnailPositioningCenterWithItemSpacingGiven = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 450,
-				itemDisplayLocation: 'below',
 				itemPositioning: 'center',
 			},
 			thumbnail: {
@@ -1277,13 +1266,6 @@ const layoutThumbnailPositioningCenterWithItemSpacingGiven = (
 					isDisabled: false,
 				},
 			},
-			styling: {
-				container: {
-					padding: {
-						bottom: 0,
-					}
-				}
-			}
 		}}
 	/>
 );
@@ -1292,24 +1274,14 @@ const layoutThumbnailPositioningRight = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 450,
-				itemDisplayLocation: 'below',
 				itemPositioning: 'right',
 			},
 			thumbnail: {
-				size: 100,
+				size: 200,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
-				itemSpacing: 5,
 			},
-			styling: {
-				container: {
-					padding: {
-						bottom: 0,
-					}
-				}
-			}
 		}}
 	/>
 );
