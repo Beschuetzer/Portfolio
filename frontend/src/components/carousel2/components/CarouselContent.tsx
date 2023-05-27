@@ -24,7 +24,7 @@ export const CarouselContent = ({
     const resizeWindowDebounceRef = useRef<any>();
     const translationAmountDifferenceRef = useRef(0);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
-    const [interItemSpacing, setInterItemSpacing] = useState(`${options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`);
+    const [interItemSpacing, setInterItemSpacing] = useState(options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT);
     const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     const itemsContainerOuterRef = useRef<HTMLDivElement>(null);
     const itemsContainerInnerRef = useRef<HTMLDivElement>(null);
@@ -89,7 +89,7 @@ export const CarouselContent = ({
     //#region Functions/Handlers
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
-        if (options?.thumbnail?.itemSpacing) return `${options?.thumbnail?.itemSpacing}${CAROUSEL_SPACING_UNIT}`;
+        if (options?.thumbnail?.itemSpacing) return options?.thumbnail?.itemSpacing;
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
             carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
         );
@@ -97,7 +97,7 @@ export const CarouselContent = ({
         const remainingSpace = containerWidth - (numberOfWholeItemsThatCanFit * itemSize);
         //numberOfGaps logic needed to prevent crashing at smaller viewport, since divide by <= 0 
         const newInterItemSpacing = (remainingSpace / (numberOfGaps <= 0 ? 1 : numberOfGaps));
-        return `${newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
+        return newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT;
     }, [options?.thumbnail, carouselContainerRef, stylingLogic, optionsLogic]);
 
     const setNumberOfDotsToDisplay = useCallback(() => {
@@ -256,7 +256,7 @@ export const CarouselContent = ({
             const { numberOfWholeItemsThatCanFit, containerWidth } = getNumberOfItemsThatCanFit(
                 carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
             );
-            const defaultAmount = parseFloat(interItemSpacing.replace(CAROUSEL_SPACING_UNIT, '')) + containerWidth;
+            const defaultAmount = interItemSpacing + containerWidth;
 
             if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
                 if (!translationAmountDifferenceRef.current) {

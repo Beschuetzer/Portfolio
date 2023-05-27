@@ -775,16 +775,16 @@ export class StylingLogic {
         }
     }
 
-    getCarouselItemsInnerContainerStyle(interItemSpacing: string, translationAmount: number) {
+    getCarouselItemsInnerContainerStyle(interItemSpacing: number, translationAmount: number) {
         //(containerWidth / (numberOfWholeItems * itemSize) + ((numberOfWholeItems - 1) * itemSpacingAmount )) / 2)
         const {numberOfWholeItemsThatCanFit, containerWidth, itemSize} = getNumberOfItemsThatCanFit(this.carouselContainerRef?.current, this, this.optionsLogic);
         const itemPositioning = this.options.layout?.itemPositioning;
         const numberOfSpaces = numberOfWholeItemsThatCanFit - 1;
-        const itemSpacingToUse = itemPositioning !== undefined ? this.options.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT / 2 : parseFloat(interItemSpacing);
+        const itemSpacingToUse = itemPositioning !== undefined ? this.options.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT / 2 : interItemSpacing;
         const widthOfInterItemSpacing = numberOfSpaces * itemSpacingToUse;
         const widthOfItems = numberOfWholeItemsThatCanFit * itemSize;
 
-        console.log({containerWidth,numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing: parseFloat(interItemSpacing), numberOfSpaces});
+        console.log({containerWidth,numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing, numberOfSpaces});
         
 
         const positioningStyle = itemPositioning === 'center' ? {
