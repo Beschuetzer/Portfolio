@@ -253,17 +253,22 @@ export const CarouselContent = ({
 
         function getTranslationAmount() {
             const itemSpacingGiven = options?.thumbnail?.itemSpacing;
+            const itemPositioning = options?.layout?.itemPositioning;
+            const interItemSpacingToUse = itemPositioning !== undefined ? itemSpacingGiven || CAROUSEL_ITEM_SPACING_DEFAULT / 2 : interItemSpacing;
+            const isDefaultCase = itemSpacingGiven === undefined && itemPositioning === undefined;
             const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
                 carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
             );
-            const defaultAmount = interItemSpacing + containerWidth;
+            const defaultAmount = interItemSpacingToUse + containerWidth;
 
-            if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
-                if (itemSpacingGiven === 0) {
+            if (isDefaultCase) {
+                translationAmountDifferenceRef.current = containerWidth + interItemSpacing;
+            } else if (interItemSpacingToUse !== undefined && interItemSpacingToUse >= 0) {
+                if (interItemSpacingToUse === 0) {
                     translationAmountDifferenceRef.current = numberOfWholeItemsThatCanFit * itemSize;
                 }
                 else if (!translationAmountDifferenceRef.current) {
-                    translationAmountDifferenceRef.current = defaultAmount - getDifferenceBetweenContainerAndLastItem() - itemSpacingGiven;
+                    translationAmountDifferenceRef.current = defaultAmount - getDifferenceBetweenContainerAndLastItem() - interItemSpacingToUse;
                 }
             } else if (numberOfWholeItemsThatCanFit <= 1) {
                 translationAmountDifferenceRef.current = containerWidth;
@@ -271,22 +276,23 @@ export const CarouselContent = ({
                 translationAmountDifferenceRef.current = defaultAmount;
             }
 
-            console.log({itemSpacingGiven, interItemSpacing, containerWidth, numberOfWholeItemsThatCanFit, translationAmountDifferenceRef: translationAmountDifferenceRef.current});
-            
+            console.log({ interItemSpacing, interItemSpacingToUse, containerWidth, numberOfWholeItemsThatCanFit, translationAmountDifferenceRef: translationAmountDifferenceRef.current });
+
             return currentPage * translationAmountDifferenceRef.current;
         }
 
         setTranslationAmount(getTranslationAmount());
     }, [
+        carouselContainerRef,
         currentPage,
         interItemSpacing,
-        options?.thumbnail?.itemSpacing,
-        carouselContainerRef,
-        stylingLogic,
-        optionsLogic,
-        itemsContainerInnerRef,
         items,
-        numberOfPages
+        itemsContainerInnerRef,
+        numberOfPages,
+        options?.layout?.itemPositioning,
+        options?.thumbnail?.itemSpacing,
+        optionsLogic,
+        stylingLogic,
     ])
     //#endregion
 

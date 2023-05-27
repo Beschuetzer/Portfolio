@@ -119,6 +119,7 @@
         display: flex;
         width: 10000000vw;
         transition: transform $carouselAnimationDuration ease;
+        backface-visibility: hidden;
         
         &.#{$classname__grabbing} {
             cursor: grabbing;
