@@ -1261,7 +1261,7 @@ const layoutThumbnailPositioningCenterWithItemSpacingGiven = (
 			},
 			thumbnail: {
 				size: 200,
-				itemSpacing: 5,
+				itemSpacing: 10,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -1294,7 +1294,7 @@ const layoutThumbnailPositioningLeftWithItemSpacingGiven = (
 			},
 			thumbnail: {
 				size: 200,
-				itemSpacing: 5,
+				itemSpacing: 10,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -1327,7 +1327,7 @@ const layoutThumbnailPositioningRightWithItemSpacingGiven = (
 			},
 			thumbnail: {
 				size: 200,
-				itemSpacing: 5,
+				itemSpacing: 10,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -1423,11 +1423,11 @@ const SECTIONS: Sections = [
 				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
 			},
 			{
-				label: "Thumbnails Positioned Left in Container",
+				label: "Thumbnails Positioned Left in Container with Default Spacing",
 				jsx: layoutThumbnailPositioningLeft,
 			},
 			{
-				label: "Thumbnails Positioned Left in Container with Given Spacing",
+				label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
 				jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
 			},
 			{
@@ -1435,15 +1435,15 @@ const SECTIONS: Sections = [
 				jsx: layoutThumbnailPositioningCenter,
 			},
 			{
-				label: "Thumbnails Positioned Center in Container with Given Spacing",
+				label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
 				jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
 			},
 			{
-				label: "Thumbnails Positioned Right in Container",
+				label: "Thumbnails Positioned Right in Container with Default Spacing",
 				jsx: layoutThumbnailPositioningRight,
 			},
 			{
-				label: "Thumbnails Positioned Right in Container with Given Spacing",
+				label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
 				jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
 			},
 		]
