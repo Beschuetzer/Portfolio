@@ -253,13 +253,16 @@ export const CarouselContent = ({
 
         function getTranslationAmount() {
             const itemSpacingGiven = options?.thumbnail?.itemSpacing;
-            const { numberOfWholeItemsThatCanFit, containerWidth } = getNumberOfItemsThatCanFit(
+            const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
                 carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
             );
             const defaultAmount = interItemSpacing + containerWidth;
 
             if (itemSpacingGiven !== undefined && itemSpacingGiven >= 0) {
-                if (!translationAmountDifferenceRef.current) {
+                if (itemSpacingGiven === 0) {
+                    translationAmountDifferenceRef.current = numberOfWholeItemsThatCanFit * itemSize;
+                }
+                else if (!translationAmountDifferenceRef.current) {
                     translationAmountDifferenceRef.current = defaultAmount - getDifferenceBetweenContainerAndLastItem() - itemSpacingGiven;
                 }
             } else if (numberOfWholeItemsThatCanFit <= 1) {
@@ -268,6 +271,8 @@ export const CarouselContent = ({
                 translationAmountDifferenceRef.current = defaultAmount;
             }
 
+            console.log({itemSpacingGiven, interItemSpacing, containerWidth, numberOfWholeItemsThatCanFit, translationAmountDifferenceRef: translationAmountDifferenceRef.current});
+            
             return currentPage * translationAmountDifferenceRef.current;
         }
 

@@ -784,9 +784,7 @@ export class StylingLogic {
         const widthOfInterItemSpacing = numberOfSpaces * itemSpacingToUse;
         const widthOfItems = numberOfWholeItemsThatCanFit * itemSize;
 
-        console.log({containerWidth,itemSpacingToUse, givenItemSpacing: this.options.thumbnail?.itemSpacing, itemPositioning, numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing, numberOfSpaces});
-        
-
+        // console.log({containerWidth,itemSpacingToUse, givenItemSpacing: this.options.thumbnail?.itemSpacing, itemPositioning, numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing, numberOfSpaces});
         const positioningStyle = itemPositioning === 'center' ? {
             marginLeft: Math.max((containerWidth - (widthOfItems + widthOfInterItemSpacing)) / 2, 0),
         } as CSSProperties : itemPositioning === 'right' ? {
