@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SPACING_DEFAULT, CAROUSEL_SPACING_UNIT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
+import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { CarouselContextInputProps, useCarouselContext } from '../context';
@@ -89,7 +89,7 @@ export const CarouselContent = ({
     //#region Functions/Handlers
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
-        if (options?.thumbnail?.itemSpacing) return options?.thumbnail?.itemSpacing;
+        if (options?.thumbnail?.itemSpacing !== undefined && options.thumbnail.itemSpacing >= 0) return options?.thumbnail?.itemSpacing;
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
             carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
         );

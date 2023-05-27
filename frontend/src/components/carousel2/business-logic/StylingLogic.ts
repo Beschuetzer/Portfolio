@@ -784,7 +784,7 @@ export class StylingLogic {
         const widthOfInterItemSpacing = numberOfSpaces * itemSpacingToUse;
         const widthOfItems = numberOfWholeItemsThatCanFit * itemSize;
 
-        console.log({containerWidth,numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing, numberOfSpaces});
+        console.log({containerWidth,itemSpacingToUse, givenItemSpacing: this.options.thumbnail?.itemSpacing, itemPositioning, numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing, numberOfSpaces});
         
 
         const positioningStyle = itemPositioning === 'center' ? {

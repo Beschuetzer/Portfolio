@@ -1,5 +1,6 @@
 Carousel rework
   -itemSpacing === 0 case not working
+  -for non-default case, the currentItemBorder doesn't display all the way (need x px offset for the width of the border?)
   -figure out why not giving itemSpacing when giving itemPositioning causes issues
   -add option for centering and right aligning navigation items (but make clear that only happens when using auto-spacing and the items don't span entire width of container;  for center take (containerWidth / (numberOfWholeItems * itemSize) + ((numberOfWholeItems - 1) * itemSpacingAmount )) / 2)
   -for layout.itemPositioning, make it effective even if thumbnail.itemSpacing is not given but just add a default itemSpacing of something like 10?
