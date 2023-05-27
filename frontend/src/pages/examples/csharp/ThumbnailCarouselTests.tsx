@@ -267,7 +267,7 @@ const allCustomSettings = (
 			},
 			thumbnail: {
 				size: 200,
-				itemSpacing: 3.9876,
+				itemSpacing: 2.5,
 				descriptionOverlay: {
 					background: {
 						solid: {
@@ -347,10 +347,10 @@ const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 		}
 	}} />
 );
-const multiplePagesFixedItemSpacing = (
+const multiplePagesNoItemSpacing = (
 	<Carousel items={items} options={{
 		thumbnail: {
-			itemSpacing: 2,
+			itemSpacing: 0,
 		}
 	}} />
 );
@@ -1269,6 +1269,39 @@ const layoutThumbnailPositioningCenterWithItemSpacingGiven = (
 		}}
 	/>
 );
+const layoutThumbnailPositioningLeft = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemPositioning: 'left',
+			},
+			thumbnail: {
+				size: 200,
+				descriptionOverlay: {
+					isDisabled: false,
+				},
+			},
+		}}
+	/>
+);
+const layoutThumbnailPositioningLeftWithItemSpacingGiven = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemPositioning: 'left',
+			},
+			thumbnail: {
+				size: 200,
+				itemSpacing: 5,
+				descriptionOverlay: {
+					isDisabled: false,
+				},
+			},
+		}}
+	/>
+);
 const layoutThumbnailPositioningRight = (
 	<Carousel
 		items={items}
@@ -1278,6 +1311,23 @@ const layoutThumbnailPositioningRight = (
 			},
 			thumbnail: {
 				size: 200,
+				descriptionOverlay: {
+					isDisabled: false,
+				},
+			},
+		}}
+	/>
+);
+const layoutThumbnailPositioningRightWithItemSpacingGiven = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemPositioning: 'right',
+			},
+			thumbnail: {
+				size: 200,
+				itemSpacing: 5,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -1373,16 +1423,28 @@ const SECTIONS: Sections = [
 				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
 			},
 			{
+				label: "Thumbnails Positioned Left in Container",
+				jsx: layoutThumbnailPositioningLeft,
+			},
+			{
+				label: "Thumbnails Positioned Left in Container with Given Spacing",
+				jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
+			},
+			{
 				label: "Thumbnails Positioned Center in Container with Default Spacing",
 				jsx: layoutThumbnailPositioningCenter,
 			},
 			{
-				label: "Thumbnails Positioned Center in Container with Given spacing",
+				label: "Thumbnails Positioned Center in Container with Given Spacing",
 				jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
 			},
 			{
 				label: "Thumbnails Positioned Right in Container",
 				jsx: layoutThumbnailPositioningRight,
+			},
+			{
+				label: "Thumbnails Positioned Right in Container with Given Spacing",
+				jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
 			},
 		]
 	],
@@ -1651,8 +1713,8 @@ const SECTIONS: Sections = [
 				jsx: noThumbnailDescriptionOverlay
 			},
 			{
-				label: "Fixed Item Spacing",
-				jsx: multiplePagesFixedItemSpacing
+				label: "0 Item Spacing",
+				jsx: multiplePagesNoItemSpacing
 			},
 			{
 				label: "Custom Item Size",

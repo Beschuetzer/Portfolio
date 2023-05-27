@@ -178,10 +178,10 @@ export type CarouselLayoutOptions = {
     */
     itemDisplayHeight?: number;
      /*
-    *This only applies if the `thumbnail.itemSpacing` is given.
+    *If `thumbnail.itemSpacing` is not given, then it defaults to 5 if `itemPositioning` is not undefined
     *Default is `left`
     *`left` => the left-most thumbnail item on a given page is positioned flush with the container
-    *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the container ends
+    *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the navigation container's ends
     *`right` => the right-most thumbnail item on a given page is positioned flush with the container
     */
     itemPositioning?: 'left' | 'center' | 'right';

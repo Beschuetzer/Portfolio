@@ -790,7 +790,7 @@ export class StylingLogic {
         const positioningStyle = itemPositioning === 'center' ? {
             marginLeft: Math.max((containerWidth - (widthOfItems + widthOfInterItemSpacing)) / 2, 0),
         } as CSSProperties : itemPositioning === 'right' ? {
-            marginLeft: 20,
+            marginLeft: Math.max((containerWidth - (widthOfItems + widthOfInterItemSpacing)), 0),
         } : {} as CSSProperties;
         const interItemSpacingStyle = {
             columnGap: itemSpacingToUse,
