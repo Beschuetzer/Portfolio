@@ -1,7 +1,7 @@
 Carousel rework
+  -the translation amount doesn't change properly for left cases specified after resizing window
   -allow for thumbnail.size to be given in a tuple format like (CarouselElementButtonSizeTuple)
   -need to test how getCurrentValue works with unsorted items (may need to sort on breakpoint width first )
-  -when itemSpacing (works when 0 though) or itemPositioning are specified and the viewport changes (drastically?), then the translation amount doesn't change properly
   -add option to specify the border on the CarouselItemViewerToolbarPreview?
   -add options to set videomodal close button size and VideoCurrentStateIndicatorButton?
   -need to work on individual options for each button size

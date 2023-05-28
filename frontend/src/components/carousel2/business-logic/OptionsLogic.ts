@@ -80,9 +80,7 @@ export class OptionsLogic {
     //#region Methods
     getItemSpacing(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SPACING_DEFAULT / 2) {
         const itemPositioning = this.options.layout?.itemPositioning;
-        
         const currentItemSpacing = getCurrentValue(this.options.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT / 2);
-        console.log({valueToUseIfNoPositioningGiven, itemPositioning, currentItemSpacing});
         return itemPositioning !== undefined ? currentItemSpacing : valueToUseIfNoPositioningGiven;
     }
     //#endregion

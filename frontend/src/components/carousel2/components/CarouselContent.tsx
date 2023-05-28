@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, GET_CURRENT_VALUE_DEFAULT, TRANSLATION_AMOUNT_INITIAL } from '../constants';
+import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { CarouselContextInputProps, useCarouselContext } from '../context';
@@ -12,6 +12,7 @@ import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 
 type CarouselContentProps = {} & Omit<CarouselProps, 'style' | 'onItemChange'> & Pick<CarouselContextInputProps, 'carouselContainerRef'>;
 
+const WINDOW_RESIZE_DEBOUNCE_INTERVAL = 1000;
 export const CarouselContent = ({
     carouselContainerRef,
     items,
@@ -87,6 +88,24 @@ export const CarouselContent = ({
     //#endregion
 
     //#region Functions/Handlers
+    const getDifferenceBetweenContainerAndLastItem = useCallback(() => {
+        const containerRight = itemsContainerInnerRef.current?.parentElement?.getBoundingClientRect()?.right || 0;
+        const items = (itemsContainerInnerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`) || []) as HTMLElement[];
+
+        let currentItemLeft = 0, previousItemLeft = 0;
+        for (let item of items) {
+            previousItemLeft = currentItemLeft;
+            currentItemLeft = item?.getBoundingClientRect()?.left;
+
+            //in the unlikely case they are exactly equal
+            if (currentItemLeft === containerRight) return 0;
+            if (currentItemLeft > containerRight && previousItemLeft <= containerRight) {
+                return Math.abs(containerRight - previousItemLeft);
+            }
+        }
+        return 0;
+    }, []);
+
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
         if (options?.thumbnail?.itemSpacing !== undefined) {
@@ -102,6 +121,42 @@ export const CarouselContent = ({
         const newInterItemSpacing = (remainingSpace / (numberOfGaps <= 0 ? 1 : numberOfGaps));
         return newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT;
     }, [options?.thumbnail, carouselContainerRef, stylingLogic, optionsLogic]);
+
+    const getTranslationAmount = useCallback(() => {
+        const interItemSpacingToUse = optionsLogic.getItemSpacing(interItemSpacing);
+        const isDefaultCase = options?.thumbnail?.itemSpacing === undefined && options?.layout?.itemPositioning === undefined;
+        const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
+            carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
+        );
+        const defaultAmount = interItemSpacingToUse + containerWidth;
+
+        if (isDefaultCase) {
+            translationAmountDifferenceRef.current = containerWidth + interItemSpacing;
+        } else if (interItemSpacingToUse !== undefined && interItemSpacingToUse >= 0) {
+            if (interItemSpacingToUse === 0) {
+                translationAmountDifferenceRef.current = numberOfWholeItemsThatCanFit * itemSize;
+            }
+            else if (!translationAmountDifferenceRef.current) {
+                translationAmountDifferenceRef.current = numberOfWholeItemsThatCanFit * itemSize + (numberOfWholeItemsThatCanFit) * interItemSpacingToUse
+            }
+        } else if (numberOfWholeItemsThatCanFit <= 1) {
+            translationAmountDifferenceRef.current = containerWidth;
+        } else {
+            translationAmountDifferenceRef.current = defaultAmount;
+        }
+
+        console.log({ interItemSpacing, interItemSpacingToUse, containerWidth, numberOfWholeItemsThatCanFit, translationAmountDifferenceRef: translationAmountDifferenceRef.current });
+
+        return currentPage * translationAmountDifferenceRef.current;
+    }, [
+        carouselContainerRef,
+        currentPage,
+        interItemSpacing,
+        options?.layout?.itemPositioning,
+        options?.thumbnail?.itemSpacing,
+        optionsLogic,
+        stylingLogic
+    ]);
 
     const setNumberOfDotsToDisplay = useCallback(() => {
         const newNumberOfPages = getNumberOfPages(
@@ -137,16 +192,17 @@ export const CarouselContent = ({
         function handleResize() {
             clearTimeout(resizeWindowDebounceRef.current);
             resizeWindowDebounceRef.current = setTimeout(() => {
+                translationAmountDifferenceRef.current = 0;
                 setNumberOfDotsToDisplay();
                 setInterItemSpacing(getInterItemSpacing());
-            }, 100)
+            }, WINDOW_RESIZE_DEBOUNCE_INTERVAL)
         }
 
         window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
         }
-    }, [setNumberOfDotsToDisplay, setInterItemSpacing, getInterItemSpacing])
+    }, [setNumberOfDotsToDisplay, setInterItemSpacing, getInterItemSpacing, getTranslationAmount, setCurrentPage])
 
     //Tracking the itemViewer item and moving the corresponding carousel to match the page the item is on
     useEffect(() => {
@@ -236,65 +292,8 @@ export const CarouselContent = ({
 
     //updating translation amount
     useEffect(() => {
-        function getDifferenceBetweenContainerAndLastItem() {
-            const containerRight = itemsContainerInnerRef.current?.parentElement?.getBoundingClientRect()?.right || 0;
-            const items = (itemsContainerInnerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`) || []) as HTMLElement[];
-
-            let currentItemLeft = 0, previousItemLeft = 0;
-            for (let item of items) {
-                previousItemLeft = currentItemLeft;
-                currentItemLeft = item?.getBoundingClientRect()?.left;
-
-                //in the unlikely case they are exactly equal
-                if (currentItemLeft === containerRight) return 0;
-                if (currentItemLeft > containerRight && previousItemLeft <= containerRight) {
-                    return Math.abs(containerRight - previousItemLeft);
-                }
-            }
-            return 0;
-        }
-
-        function getTranslationAmount() {
-            const interItemSpacingToUse = optionsLogic.getItemSpacing(interItemSpacing);
-            const isDefaultCase = options?.thumbnail?.itemSpacing === undefined && options?.layout?.itemPositioning === undefined;
-            const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
-                carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
-            );
-            const defaultAmount = interItemSpacingToUse + containerWidth;
-
-            if (isDefaultCase) {
-                translationAmountDifferenceRef.current = containerWidth + interItemSpacing;
-            } else if (interItemSpacingToUse !== undefined && interItemSpacingToUse >= 0) {
-                if (interItemSpacingToUse === 0) {
-                    translationAmountDifferenceRef.current = numberOfWholeItemsThatCanFit * itemSize;
-                }
-                else if (!translationAmountDifferenceRef.current) {
-                    translationAmountDifferenceRef.current = defaultAmount - getDifferenceBetweenContainerAndLastItem() - interItemSpacingToUse;
-                }
-            } else if (numberOfWholeItemsThatCanFit <= 1) {
-                translationAmountDifferenceRef.current = containerWidth;
-            } else {
-                translationAmountDifferenceRef.current = defaultAmount;
-            }
-
-            console.log({ interItemSpacing, interItemSpacingToUse, containerWidth, numberOfWholeItemsThatCanFit, translationAmountDifferenceRef: translationAmountDifferenceRef.current });
-
-            return currentPage * translationAmountDifferenceRef.current;
-        }
-
         setTranslationAmount(getTranslationAmount());
-    }, [
-        carouselContainerRef,
-        currentPage,
-        interItemSpacing,
-        items,
-        itemsContainerInnerRef,
-        numberOfPages,
-        options?.layout?.itemPositioning,
-        options?.thumbnail?.itemSpacing,
-        optionsLogic,
-        stylingLogic,
-    ])
+    }, [getTranslationAmount])
     //#endregion
 
     //#region JSX
