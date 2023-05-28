@@ -1,5 +1,7 @@
 Carousel rework
-  -allow for thumbnail.itemSpacing and size to be given in a tuple format like (CarouselElementButtonSizeTuple)
+  -allow for thumbnail.itemSpacing to be given in a tuple format like (CarouselElementButtonSizeTuple)
+  -allow for thumbnail.size to be given in a tuple format like (CarouselElementButtonSizeTuple)
+  -need to test how getCurrentValue works with unsorted items (may need to sort on breakpoint width first )
   -add option to specify the border on the CarouselItemViewerToolbarPreview?
   -add options to set videomodal close button size and VideoCurrentStateIndicatorButton?
   -need to work on individual options for each button size

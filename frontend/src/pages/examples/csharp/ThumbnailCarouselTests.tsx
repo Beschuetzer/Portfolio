@@ -267,7 +267,7 @@ const allCustomSettings = (
 			},
 			thumbnail: {
 				size: 200,
-				itemSpacing: 2.5,
+				itemSpacing: [[2.5]],
 				descriptionOverlay: {
 					background: {
 						solid: {
@@ -350,7 +350,14 @@ const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 const multiplePagesNoItemSpacing = (
 	<Carousel items={items} options={{
 		thumbnail: {
-			itemSpacing: 0,
+			itemSpacing: [[0]],
+		}
+	}} />
+);
+const multiplePagesDynamicSpacing = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			itemSpacing: [[10, 800, 'max-width'], [15, 1200, 'min-width'], [0]],
 		}
 	}} />
 );
@@ -369,7 +376,7 @@ const customSizeAndSpacingNonDefaultItemDisplayCase = (
 		options={{
 			thumbnail: {
 				size: 200,
-				itemSpacing: 5,
+				itemSpacing: [[5]],
 			},
 			layout: {
 				itemDisplayHeight: 444,
@@ -1261,7 +1268,7 @@ const layoutThumbnailPositioningCenterWithItemSpacingGiven = (
 			},
 			thumbnail: {
 				size: 200,
-				itemSpacing: 10,
+				itemSpacing: [[10]],		
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -1294,7 +1301,7 @@ const layoutThumbnailPositioningLeftWithItemSpacingGiven = (
 			},
 			thumbnail: {
 				size: 200,
-				itemSpacing: 10,
+				itemSpacing: [[10]],
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -1327,7 +1334,7 @@ const layoutThumbnailPositioningRightWithItemSpacingGiven = (
 			},
 			thumbnail: {
 				size: 200,
-				itemSpacing: 10,
+				itemSpacing: [[10]],
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -1715,6 +1722,10 @@ const SECTIONS: Sections = [
 			{
 				label: "0 Item Spacing",
 				jsx: multiplePagesNoItemSpacing
+			},
+			{
+				label: "Dynamic Item Spacing",
+				jsx: multiplePagesDynamicSpacing,
 			},
 			{
 				label: "Custom Item Size",

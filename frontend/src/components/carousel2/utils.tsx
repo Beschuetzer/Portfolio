@@ -4,13 +4,15 @@ import { StylingLogic } from "./business-logic/StylingLogic";
 import { CarouselItemProps } from "./components/CarouselItem";
 import {
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
+    CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
     CLASSNAME__ROOT,
+    GET_CURRENT_VALUE_DEFAULT as GET_CURRENT_VALUE_DEFAULT_SIZE,
     MOBILE_PIXEL_WIDTH,
     NUMBER_OF_PAGES_INITIAL,
     VIDEO_EXTENSIONS
 } from "./constants";
 import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
-import { Coordinate, Point, ArrowButtonDirection } from "./types";
+import { Coordinate, Point, ArrowButtonDirection, CarouselElementSizeTuple } from "./types";
 type GetClassname = {
     elementName?: string;
     modifiedName?: string;
@@ -132,7 +134,7 @@ export function getNumberOfItemsThatCanFit(
         containerWidth,
         itemSize,
         //logic needed to prevent crashing at smaller viewport
-        numberOfWholeItemsThatCanFit: calculatedNumberOfWholeItemsThatCanFit <= 0 ? 1 : calculatedNumberOfWholeItemsThatCanFit, 
+        numberOfWholeItemsThatCanFit: calculatedNumberOfWholeItemsThatCanFit <= 0 ? 1 : calculatedNumberOfWholeItemsThatCanFit,
         numberOfItemsThatCanFit: containerWidth / itemSize,
     }
 }
@@ -195,6 +197,32 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
     }
 
     return result;
+}
+
+/*
+*The idea here is to get the current value for the current window width from the list of tuples
+*Will need to make generic if need to support multiple types in the future
+*/
+export function getCurrentValue(valueTuple: CarouselElementSizeTuple[] | undefined, defaultSize = GET_CURRENT_VALUE_DEFAULT_SIZE) {
+    const windowWidth = window.innerWidth;
+
+    for (const tuple of valueTuple || []) {
+        const [value, breakpoint, breakpointType] = tuple || [];
+        const valueToUse = value >= 0 ? value : defaultSize;
+        const breakpointTypeToUse = breakpointType || "max-width";
+
+        if (!breakpoint) {
+            return valueToUse;
+        }
+
+        if (breakpointTypeToUse === "max-width") {
+            if (windowWidth <= breakpoint) return valueToUse;
+        } else if (breakpointTypeToUse === "min-width") {
+            if (windowWidth >= breakpoint) return valueToUse;
+        }
+    }
+
+    return defaultSize;
 }
 
 export async function enterFullScreen(element: HTMLElement | null) {

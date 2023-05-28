@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, TRANSLATION_AMOUNT_INITIAL } from '../constants';
+import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, GET_CURRENT_VALUE_DEFAULT, TRANSLATION_AMOUNT_INITIAL } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { CarouselContextInputProps, useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
-import { getNumberOfItemsThatCanFit, getClassname, getNumberOfPages, onArrowButtonClick } from '../utils';
+import { getNumberOfItemsThatCanFit, getClassname, getNumberOfPages, onArrowButtonClick, getCurrentValue } from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 
@@ -24,7 +24,7 @@ export const CarouselContent = ({
     const resizeWindowDebounceRef = useRef<any>();
     const translationAmountDifferenceRef = useRef(0);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
-    const [interItemSpacing, setInterItemSpacing] = useState(options?.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT);
+    const [interItemSpacing, setInterItemSpacing] = useState(getCurrentValue(options?.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT));
     const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     const itemsContainerOuterRef = useRef<HTMLDivElement>(null);
     const itemsContainerInnerRef = useRef<HTMLDivElement>(null);
@@ -89,7 +89,10 @@ export const CarouselContent = ({
     //#region Functions/Handlers
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
-        if (options?.thumbnail?.itemSpacing !== undefined && options.thumbnail.itemSpacing >= 0) return options?.thumbnail?.itemSpacing;
+        if (options?.thumbnail?.itemSpacing !== undefined) {
+            const currentItemSpacing = getCurrentValue(options.thumbnail.itemSpacing);
+            if (currentItemSpacing >= 0) return currentItemSpacing;
+        }
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
             carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
         );

@@ -3,7 +3,7 @@ import { CarouselItemProps } from "../components/CarouselItem";
 import { CarouselVideo } from "../components/CarouselVideo";
 import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT, MAX_CLICK_THRESHOLD_DEFAULT } from "../constants";
 import { CarouselOptions } from "../types";
-import { getIsVideo } from "../utils";
+import { getCurrentValue, getIsVideo } from "../utils";
 
 export type OptionsConstructor = {
     options: CarouselOptions;
@@ -78,9 +78,12 @@ export class OptionsLogic {
     //#endregion
 
     //#region Methods
-    getItemSpacing(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SIZE_DEFAULT / 2) {
+    getItemSpacing(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SPACING_DEFAULT / 2) {
         const itemPositioning = this.options.layout?.itemPositioning;
-        return itemPositioning !== undefined ? this.options.thumbnail?.itemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT / 2 : valueToUseIfNoPositioningGiven;
+        
+        const currentItemSpacing = getCurrentValue(this.options.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT / 2);
+        console.log({valueToUseIfNoPositioningGiven, itemPositioning, currentItemSpacing});
+        return itemPositioning !== undefined ? currentItemSpacing : valueToUseIfNoPositioningGiven;
     }
     //#endregion
 }

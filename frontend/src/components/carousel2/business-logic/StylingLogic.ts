@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
-import { CarouselElement, CarouselSection, CarouselOptions, CarouselElementButtonSizeTuple } from "../types";
+import { CarouselElement, CarouselSection, CarouselOptions } from "../types";
 import { OptionsLogic } from "./OptionsLogic";
-import { convertHexToRgba, getIsMobile, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
+import { convertHexToRgba, getCurrentValue, getIsMobile, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
 import {
     CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_SPACING_UNIT,
@@ -290,7 +290,7 @@ export class StylingLogic {
             top: `${paddingTop}${CAROUSEL_SPACING_UNIT}`
         } as CSSProperties : {};
         const widthStyle = {
-            width: !!sizeGiven ? this.getButtonSize(sizeGiven) : this.isFullscreenMode ? undefined : CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
+            width: !!sizeGiven ? getCurrentValue(sizeGiven, this.defaultButtonSize) : this.isFullscreenMode ? undefined : CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
         } as CSSProperties;
 
         return areChildrenPresent ? {
@@ -621,7 +621,7 @@ export class StylingLogic {
             case CarouselElement.arrowLeft:
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
-                sectionButtonSize = this.getButtonSize(this.options.styling?.navigation?.buttonSize);
+                sectionButtonSize = getCurrentValue(this.options.styling?.navigation?.buttonSize, this.defaultButtonSize);
                 break;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
@@ -631,7 +631,7 @@ export class StylingLogic {
             case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
-                sectionButtonSize = this.getButtonSize(this.options.styling?.toolbar?.buttonSize);
+                sectionButtonSize = getCurrentValue(this.options.styling?.toolbar?.buttonSize, this.defaultButtonSize);
                 break;
         }
 
@@ -777,7 +777,7 @@ export class StylingLogic {
 
     getCarouselItemsInnerContainerStyle(interItemSpacing: number, translationAmount: number) {
         //(containerWidth / (numberOfWholeItems * itemSize) + ((numberOfWholeItems - 1) * itemSpacingAmount )) / 2)
-        const {numberOfWholeItemsThatCanFit, containerWidth, itemSize} = getNumberOfItemsThatCanFit(this.carouselContainerRef?.current, this, this.optionsLogic);
+        const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(this.carouselContainerRef?.current, this, this.optionsLogic);
         const itemPositioning = this.options.layout?.itemPositioning;
         const numberOfSpaces = numberOfWholeItemsThatCanFit - 1;
         const itemSpacing = this.optionsLogic.getItemSpacing(interItemSpacing);
@@ -827,31 +827,6 @@ export class StylingLogic {
     private getBorderStringToUse(borderStr: string, defaultValue = `1${CAROUSEL_SPACING_UNIT} solid ${CAROUSEL_COLOR_FOUR}`) {
         const isValid = borderStr && borderStr?.trim()?.split(/(\s+|rgb.+\))/)?.filter(item => !!item && item?.match(/\w+/))?.length === 3;
         return isValid ? borderStr : defaultValue;
-    }
-
-    /*
-    *This process the buttonSize tuples to get the correct buttonSize for the current window width
-    */
-    private getButtonSize(buttonSizeTuple: CarouselElementButtonSizeTuple[] | undefined) {
-        const windowWidth = window.innerWidth;
-
-        for (const tuple of buttonSizeTuple || []) {
-            const [buttonSize, breakpoint, breakpointType] = tuple || [];
-            const buttonSizeToUse = buttonSize > 0 ? buttonSize : this.defaultButtonSize;
-            const breakpointTypeToUse = breakpointType || "max-width";
-
-            if (!breakpoint) {
-                return buttonSizeToUse;
-            }
-
-            if (breakpointTypeToUse === "max-width") {
-                if (windowWidth <= breakpoint) return buttonSizeToUse;
-            } else if (breakpointTypeToUse === "min-width") {
-                if (windowWidth >= breakpoint) return buttonSizeToUse;
-            }
-        }
-
-        return this.defaultButtonSize;
     }
 
     private getPaddingAmount(direction: SpacingDirection, item: CarouselSection) {

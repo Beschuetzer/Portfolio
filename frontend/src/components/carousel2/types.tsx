@@ -72,9 +72,9 @@ export type CarouselElementButtonSize = {
     *       Currently the sizing only takes affect if the CarouselContenxt component re-renders.  
     *       This only happens if the numberOfPages changes or the thumbnail spacing changes.
     */
-    buttonSize?: CarouselElementButtonSizeTuple[];
+    buttonSize?: CarouselElementSizeTuple[];
 }
-export type CarouselElementButtonSizeTuple = [number, number?, CarouselElementButtonSizeType?];
+export type CarouselElementSizeTuple = [number, number?, CarouselElementButtonSizeType?];
 
 export type CarouselItemViewerOptions = {
     /*
@@ -149,7 +149,7 @@ export type CarouselSections = {
     [CarouselSection.videoModal]?: {
         closeButton?: {
             fill?: string;
-            size?: CarouselElementButtonSizeTuple[];
+            size?: CarouselElementSizeTuple[];
         };
         /*
         *This is in px
@@ -424,7 +424,7 @@ export type CarouselThumbnailOptions = {
     *The value in px that the thumbnails are spaced apart.  
     *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible
     */
-    itemSpacing?: number;
+    itemSpacing?: CarouselElementSizeTuple[];
     /*
     *The size of the thumbnails in px.  Default is 150px.
     */
