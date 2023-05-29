@@ -9,6 +9,7 @@ import { ArrowButtonDirection } from '../types';
 import { getNumberOfItemsThatCanFit, getClassname, getNumberOfPages, onArrowButtonClick, getCurrentValue } from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
+import { CarouselItemToRender } from './CarouselItemToRender';
 
 type CarouselContentProps = {} & Omit<CarouselProps, 'style' | 'onItemChange'> & Pick<CarouselContextInputProps, 'carouselContainerRef'>;
 
@@ -296,11 +297,10 @@ export const CarouselContent = ({
     //#endregion
 
     //#region JSX
-    const ItemToRender = optionsLogic.itemToRender;
     return (
         <>
             {optionsLogic.isItemDisplayLocationAbove ? (
-                <ItemToRender {...currentItem} />
+                <CarouselItemToRender />
             ) : null}
             <div ref={itemsContainerOuterRef}
                 style={stylingLogic.carouselItemsOuterContainerStyle}
@@ -348,7 +348,7 @@ export const CarouselContent = ({
                 </div>
             ) : null}
             {optionsLogic.isItemDisplayLocationBelow ? (
-                <ItemToRender {...currentItem} />
+                <CarouselItemToRender />
             ) : null}
         </>
     )

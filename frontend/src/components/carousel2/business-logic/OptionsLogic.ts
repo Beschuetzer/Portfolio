@@ -1,9 +1,7 @@
-import { CarouselImage } from "../components/CarouselImage";
 import { CarouselItemProps } from "../components/CarouselItem";
-import { CarouselVideo } from "../components/CarouselVideo";
 import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT, MAX_CLICK_THRESHOLD_DEFAULT } from "../constants";
 import { CarouselOptions } from "../types";
-import { getCurrentValue, getIsVideo } from "../utils";
+import { getCurrentValue } from "../utils";
 
 export type OptionsConstructor = {
     options: CarouselOptions;
@@ -58,12 +56,6 @@ export class OptionsLogic {
     
     get isWrappingDisabled() {
         return !!this.options.navigation?.disableWrapping;
-    }
-
-    get itemToRender() {
-        if (!this.currentItem) return null as any;
-        const isVideo = getIsVideo(this.currentItem);
-        return isVideo ? CarouselVideo : CarouselImage;
     }
 
     get itemViewerMaxClickThreshold() {
