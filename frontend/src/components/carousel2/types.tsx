@@ -181,12 +181,6 @@ export type CarouselLayoutOptions = {
        *Default is 'none'.
        */
     itemDisplayLocation?: 'none' | 'above' | 'below';
-    /*
-    *The height in pixels of the visible carousel item.  This only applies when 'itemDisplayLocation' is 'none'.
-    *Currently there is no auto adjust based on the smallest item behavior, 
-    *so you have to adjust it and see how it works for the items given.
-    */
-    itemDisplayHeight?: number;
      /*
     *If `thumbnail.itemSpacing` is not given, then it defaults to 5 if `itemPositioning` is not undefined
     *Default is `left`

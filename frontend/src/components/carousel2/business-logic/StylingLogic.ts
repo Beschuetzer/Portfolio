@@ -7,7 +7,6 @@ import {
     CAROUSEL_SPACING_UNIT,
     CAROUSEL_ITEM_SIZE_DEFAULT,
     CAROUSEL_COLOR_FOUR,
-    CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_COLOR_ONE,
     CAROUSEL_DOT_OPACITY_DEFAULT,
     CAROUSEL_COLOR_FIVE,
@@ -23,6 +22,7 @@ import {
     CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT,
     CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
     CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -113,7 +113,7 @@ export class StylingLogic {
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: '100%',
-            maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
+            height: this.imageHeight,
             // ...cursorStyle,
         } as CSSProperties : {
         } as CSSProperties;
@@ -167,7 +167,7 @@ export class StylingLogic {
     get carouselItemContainerStyle() {
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            height: this.isFullscreenMode ? '100vh' : this.carouselItemContainerHeight,
+            height: this.isFullscreenMode ? '100vh' : `auto`,
             position: "relative",
             backgroundColor: this.itemViewerBackgroundColor,
             justifyContent: this.isFullscreenMode ? 'center' : 'flex-end',
@@ -359,7 +359,6 @@ export class StylingLogic {
             paddingBottom: 0,
             paddingLeft: this.isFullscreenMode ? 0 : `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
             paddingRight: this.isFullscreenMode ? 0 : `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
-            maxHeight: this.maxHeightNonDefaultItemDisplayLocation,
         } as CSSProperties : {
 
         };
@@ -437,6 +436,11 @@ export class StylingLogic {
 
     get isCurrentItemSelected() {
         return !this.optionsLogic.isDefaultItemDisplayLocation && !!this.isCurrentItem;
+    }
+    
+    get itemViewerContainerHorizontalPadding() {
+        const padding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
+        return padding;
     }
 
     get fontFamilyItemViewerStyle() {
@@ -577,13 +581,10 @@ export class StylingLogic {
         return this.options.styling?.elements?.all?.fillColor;
     }
 
-    private get carouselItemContainerHeight() {
-        return `${this.options?.layout?.itemDisplayHeight || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
-    }
-
-    private get maxHeightNonDefaultItemDisplayLocation() {
-        const heightToUse = !this.isFullscreenMode ? this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.height || 0 : 0;
-        return `calc(100% - ${heightToUse}${CAROUSEL_SPACING_UNIT})`;
+    private get imageHeight() {
+        const toolbarWidth = this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.width || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT;
+        const toolbarPadding = this.itemViewerContainerHorizontalPadding;
+        return (toolbarWidth - toolbarPadding) * 9 / 16;
     }
     //#endregion
 

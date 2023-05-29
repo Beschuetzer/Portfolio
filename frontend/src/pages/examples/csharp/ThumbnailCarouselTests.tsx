@@ -379,7 +379,6 @@ const customSizeAndSpacingNonDefaultItemDisplayCase = (
 				itemSpacing: [[5]],
 			},
 			layout: {
-				itemDisplayHeight: 444,
 				itemDisplayLocation: "above",
 			}
 		}}
@@ -631,7 +630,6 @@ const layoutAboveWithItemHeightAndFontFamily = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 444,
 				itemDisplayLocation: 'above',
 			},
 			styling: {
@@ -647,7 +645,6 @@ const layoutAboveWithItemHeightAndThumbnailSize = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 427,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -666,7 +663,6 @@ const layoutAboveContainerPadding = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 350,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -693,7 +689,6 @@ const layoutAboveExtraNavigationPadding = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 427,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -719,7 +714,6 @@ const layoutAboveExtraItemViewerPadding = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 427,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -744,7 +738,6 @@ const layoutAboveExtraToolbarPadding = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 427,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -772,7 +765,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -824,7 +816,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -881,7 +872,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -916,7 +906,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 		options={{
 
 			layout: {
-				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -993,7 +982,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
 		options={{
 
 			layout: {
-				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -1064,7 +1052,6 @@ const layoutAboveButtonsAllWithSpecificFillColors = (
 		options={{
 
 			layout: {
-				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -1113,7 +1100,6 @@ const layoutAboveCustomOverlayAndSpinner = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -1189,7 +1175,6 @@ const layoutAboveNoTrackingItemViewerChanges = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -1206,7 +1191,6 @@ const layoutAboveDifferentLeftAndRightPadding = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 422,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -1220,7 +1204,7 @@ const layoutAboveDifferentLeftAndRightPadding = (
 					padding: {
 						left: 5,
 						right: 20,
-						top: 0,
+						// top: 0,
 					}
 				},
 			}
@@ -1232,7 +1216,6 @@ const layoutBelowWithCustomThumbnailSizeAndHeight = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 450,
 				itemDisplayLocation: 'below',
 			},
 			thumbnail: {
@@ -1467,7 +1450,7 @@ const SECTIONS: Sections = [
 		'Above-Customization',
 		[
 			{
-				label: "Display Current Item Above Default itemHeight and No Autoplay Video First",
+				label: "Display Current Item Above Default itemHeight and No Overlay Video First",
 				jsx: layoutAboveDefaultItemHeight,
 			},
 			{
