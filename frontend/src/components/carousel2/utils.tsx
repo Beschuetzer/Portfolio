@@ -4,7 +4,6 @@ import { StylingLogic } from "./business-logic/StylingLogic";
 import { CarouselItemProps } from "./components/CarouselItem";
 import {
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
-    CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
     CLASSNAME__ROOT,
     GET_CURRENT_VALUE_DEFAULT as GET_CURRENT_VALUE_DEFAULT_SIZE,
     MOBILE_PIXEL_WIDTH,
@@ -201,14 +200,22 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
 
 /*
 *The idea here is to get the current value for the current window width from the list of tuples
-*Will need to make generic if need to support multiple types in the future
 */
-export function getCurrentValue(valueTuple: CarouselElementSizeTuple[] | undefined, defaultSize = GET_CURRENT_VALUE_DEFAULT_SIZE) {
+export function getCurrentValue<T>(valueTuple: CarouselElementSizeTuple<T>[] | undefined, defaultSize: T) {
     const windowWidth = window.innerWidth;
 
     for (const tuple of valueTuple || []) {
         const [value, breakpoint, breakpointType] = tuple || [];
-        const valueToUse = value >= 0 ? value : defaultSize;
+        let valueToUse;
+
+        switch (typeof value) {
+            case "number":
+                valueToUse = value >= 0 ? value : defaultSize;
+                break;
+            default:
+                valueToUse = value || defaultSize;
+        }
+
         const breakpointTypeToUse = breakpointType || "max-width";
 
         if (!breakpoint) {
