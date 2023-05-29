@@ -545,12 +545,16 @@ const customButtonSizes = (
 		},
 		styling: {
 			navigation: {
-				buttonSize: [[18, 550, "max-width"], [20, 655, "max-width"], [30, 900, "min-width"]],
-				elementColor: getComputedStyleCustom('--color-primary-3'),
+				elements: {
+					size: [[18, 550, "max-width"], [20, 655, "max-width"], [30, 900, "min-width"]],
+					color: getComputedStyleCustom('--color-primary-3'),
+				},
 			},
 			toolbar: {
-				buttonSize: [[18, 550, "max-width"], [20, 655, "max-width"], [30, 900, "min-width"]],
-				elementColor: getComputedStyleCustom('--color-primary-3'),
+				elements: {
+					size: [[18, 550, "max-width"], [20, 655, "max-width"], [30, 900, "min-width"]],
+					color: getComputedStyleCustom('--color-primary-4'),
+				}
 			},
 			elements: {
 				// nextButton: {
@@ -768,7 +772,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 445,
+				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -789,7 +793,9 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 				},
 				navigation: {
 					background: getComputedStyleCustom("--color-primary-4"),
-					elementColor: getComputedStyleCustom("--color-primary-1"),
+					elements: {
+						color: getComputedStyleCustom("--color-primary-1"),
+					},
 				},
 				itemViewer: {
 					background: getComputedStyleCustom("--color-primary-4"),
@@ -804,7 +810,9 @@ const layoutAboveCompletelyFlushAndSameBackgroundColor = (
 						left: 20,
 						right: 20,
 					},
-					elementColor: getComputedStyleCustom("--color-primary-4"),
+					elements: {
+						color: getComputedStyleCustom("--color-primary-4"),
+					},
 					textColor: getComputedStyleCustom("--color-primary-4"),
 				},
 			}
@@ -816,7 +824,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 445,
+				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -873,7 +881,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 445,
+				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -908,7 +916,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 		options={{
 
 			layout: {
-				itemDisplayHeight: 445,
+				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -985,7 +993,7 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
 		options={{
 
 			layout: {
-				itemDisplayHeight: 445,
+				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -1056,7 +1064,7 @@ const layoutAboveButtonsAllWithSpecificFillColors = (
 		options={{
 
 			layout: {
-				itemDisplayHeight: 445,
+				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -1105,7 +1113,7 @@ const layoutAboveCustomOverlayAndSpinner = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 445,
+				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -1181,7 +1189,7 @@ const layoutAboveNoTrackingItemViewerChanges = (
 		items={items}
 		options={{
 			layout: {
-				itemDisplayHeight: 445,
+				itemDisplayHeight: 451,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -1268,7 +1276,7 @@ const layoutThumbnailPositioningCenterWithItemSpacingGiven = (
 			},
 			thumbnail: {
 				size: 200,
-				itemSpacing: [[10]],		
+				itemSpacing: [[10]],
 				descriptionOverlay: {
 					isDisabled: false,
 				},

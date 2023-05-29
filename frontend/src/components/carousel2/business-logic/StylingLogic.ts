@@ -273,7 +273,7 @@ export class StylingLogic {
     }
 
     get carouselToolbarTextStyle() {
-        const customTextColor = this.options.styling?.toolbar?.textColor || this.allFillColor;
+        const customTextColor = this.options.styling?.toolbar?.textColor ||  this.options.styling?.toolbar?.elements?.color || this.allFillColor;
         return {
             color: customTextColor || CAROUSEL_COLOR_FIVE,
         } as CSSProperties;
@@ -595,7 +595,7 @@ export class StylingLogic {
             case CarouselElement.arrowLeft:
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
-                const navigationElementsColor = this.options.styling?.navigation?.elementColor;
+                const navigationElementsColor = this.options.styling?.navigation?.elements?.color;
                 return specificFillColor || navigationElementsColor || this.allFillColor || fallbackColor;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
@@ -605,7 +605,7 @@ export class StylingLogic {
             case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
-                const toolbarElementsColor = this.options.styling?.toolbar?.elementColor;
+                const toolbarElementsColor = this.options.styling?.toolbar?.elements?.color;
                 return specificFillColor || toolbarElementsColor || this.allFillColor || fallbackColor;
             default:
                 return specificFillColor || this.allFillColor || fallbackColor;
@@ -621,7 +621,7 @@ export class StylingLogic {
             case CarouselElement.arrowLeft:
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
-                sectionButtonSize = getCurrentValue(this.options.styling?.navigation?.buttonSize, this.defaultButtonSize);
+                sectionButtonSize = getCurrentValue(this.options.styling?.navigation?.elements?.size, this.defaultButtonSize);
                 break;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
@@ -631,7 +631,7 @@ export class StylingLogic {
             case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
-                sectionButtonSize = getCurrentValue(this.options.styling?.toolbar?.buttonSize, this.defaultButtonSize);
+                sectionButtonSize = getCurrentValue(this.options.styling?.toolbar?.elements?.size, this.defaultButtonSize);
                 break;
         }
 

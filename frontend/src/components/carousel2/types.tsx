@@ -58,7 +58,13 @@ export enum CarouselElement {
 }
 
 export type CarouselElementButtonSizeType = "min-width" | "max-width";
-export type CarouselElementButtonSize = {
+export type CarouselElementColor = {
+    /*
+    *this can be any color string (e.g. `#abc123`, `rgba(255,0,122, .5)`, or `yellow`)
+    */
+    color?: string;
+}
+export type CarouselElementSize = {
     /*
     *Default buttonSize is 24px above 655px and 18px otherwise
     *A tuple where the first element is the size of the button in px, the second element is the breakpoint in px, and the third element is the breakpoint type (default is max-width)
@@ -72,7 +78,7 @@ export type CarouselElementButtonSize = {
     *       Currently the sizing only takes affect if the CarouselContenxt component re-renders.  
     *       This only happens if the numberOfPages changes or the thumbnail spacing changes.
     */
-    buttonSize?: CarouselElementSizeTuple[];
+    size?: CarouselElementSizeTuple[];
 }
 export type CarouselElementSizeTuple = [number, number?, CarouselElementButtonSizeType?];
 
@@ -119,9 +125,9 @@ export type CarouselSections = {
         /*
         *This changes the dots and arrows
         */
-        elementColor?: string;
+        elements?: CarouselElementSize & CarouselElementColor;
         padding?: CarouselHorizontalPaddingOptions;
-    } & Partial<Pick<CarouselColorOptions, 'background'>> & CarouselElementButtonSize;
+    } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
     *This is where the buttons, progress bar, and item description sit
     */
@@ -138,11 +144,14 @@ export type CarouselSections = {
             shouldSpanContainerWidth?: boolean;
         } & CarouselColorOptions;
         /*
-        *This changes all of the button colors.  To change individual ones, use styling.elements.buttonNameHere
+        *This changes all of the button colors as well as the text.  To change individual ones, use styling.elements.buttonNameHere
         */
-        elementColor?: string;
+        elements?: CarouselElementSize & CarouselElementColor;
+        /*
+        *This overrides any value given in toolbar.elements.color above
+        */
         textColor?: string;
-    } & Partial<Pick<CarouselColorOptions, 'background'>> & CarouselElementButtonSize;
+    } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
    *This is the the modal that displays when a video is paused, allowing for more info about the video
    */
