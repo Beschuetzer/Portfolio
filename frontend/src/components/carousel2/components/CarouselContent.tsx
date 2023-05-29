@@ -12,7 +12,7 @@ import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 
 type CarouselContentProps = {} & Omit<CarouselProps, 'style' | 'onItemChange'> & Pick<CarouselContextInputProps, 'carouselContainerRef'>;
 
-const WINDOW_RESIZE_DEBOUNCE_INTERVAL = 1000;
+const WINDOW_RESIZE_DEBOUNCE_INTERVAL = 100;
 export const CarouselContent = ({
     carouselContainerRef,
     items,
@@ -145,8 +145,7 @@ export const CarouselContent = ({
             translationAmountDifferenceRef.current = defaultAmount;
         }
 
-        console.log({ interItemSpacing, interItemSpacingToUse, containerWidth, numberOfWholeItemsThatCanFit, translationAmountDifferenceRef: translationAmountDifferenceRef.current });
-
+        // console.log({ interItemSpacing, interItemSpacingToUse, containerWidth, numberOfWholeItemsThatCanFit, translationAmountDifferenceRef: translationAmountDifferenceRef.current });
         return currentPage * translationAmountDifferenceRef.current;
     }, [
         carouselContainerRef,
