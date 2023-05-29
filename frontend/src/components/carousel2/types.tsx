@@ -16,7 +16,7 @@ export type ArrowProps = {
 export type ButtonProps = {
     className?: string;
     childStyle?: CSSProperties;
-    fillColor?: string;
+    fillColor?: Color;
     onClick: () => void;
     style?: CSSProperties;
 }
@@ -27,7 +27,7 @@ export type CarouselColorOptions = {
     *https://developer.mozilla.org/en-US/docs/Web/CSS/background
     */
     background?: string;
-    foregroundColor?: string;
+    foregroundColor?: Color;
 }
 
 export enum CarouselElement {
@@ -58,11 +58,12 @@ export enum CarouselElement {
 }
 
 export type CarouselElementButtonSizeType = "min-width" | "max-width";
+/*
+*this can be any color string (e.g. `#abc123`, `rgba(255,0,122, .5)`, or `yellow`)
+*/
+export type Color = string;
 export type CarouselElementColor = {
-    /*
-    *this can be any color string (e.g. `#abc123`, `rgba(255,0,122, .5)`, or `yellow`)
-    */
-    color?: string;
+    color?: Color;
 }
 export type CarouselElementSize = {
     /*
@@ -150,14 +151,14 @@ export type CarouselSections = {
         /*
         *This overrides any value given in toolbar.elements.color above
         */
-        textColor?: string;
+        textColor?: Color;
     } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
    *This is the the modal that displays when a video is paused, allowing for more info about the video
    */
     [CarouselSection.videoModal]?: {
         closeButton?: {
-            fill?: string;
+            fill?: Color;
             size?: CarouselElementSizeTuple[];
         };
         /*
@@ -165,7 +166,7 @@ export type CarouselSections = {
         */
         fontSize?: number;
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
-        textColor?: string;
+        textColor?: Color;
         /*
         *this is a percent of the item container width when the 'itemDisplayLocation' is not 'none'.  It has no effect otherwise.
         */
@@ -327,7 +328,7 @@ export type CarouselButtonCustomization = {
     /*
     *Default is #000
     */
-    fillColor?: string;
+    fillColor?: Color;
     /*
     *Href of the svg element
     */
@@ -355,7 +356,7 @@ export type CarouselThumbnailBackgroundOptions = {
             /*
             *This is the hexadecimal color value for the very bottom part of the gradient
             */
-            color: string;
+            color: Color;
             /*
             *Valid values are 0-1 inclusive
             */
@@ -365,7 +366,7 @@ export type CarouselThumbnailBackgroundOptions = {
             /*
             *This is the hexadecimal color value for the very top part of the gradient
             */
-            color: string;
+            color: Color;
             /*
             *Valid values are 0-1 inclusive
             */
@@ -379,7 +380,7 @@ export type CarouselThumbnailBackgroundOptions = {
         /*
     *The hexadecimal value for the thumbnail's background
     */
-        color?: string;
+        color?: Color;
         /*
         *Default is 1 when specifying a custom color
         */
@@ -415,7 +416,7 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
     /*
     *The hexadecimal value for the thumbnail background's text
     */
-    textColor?: string;
+    textColor?: Color;
 
 }
 
@@ -438,10 +439,6 @@ export type CarouselThumbnailOptions = {
     *The size of the thumbnails in px.  Default is 150px.
     */
     size?: number;
-}
-
-export type CssStyles = {
-    [name: string]: React.CSSProperties;
 }
 
 export type Point = {
