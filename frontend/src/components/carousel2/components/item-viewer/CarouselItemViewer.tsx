@@ -10,9 +10,9 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps>((prop
     //#region Init
     //todo: needs to be hidden until an item is clicked
     const { currentItem, isFullscreenMode } = useCarouselContext();
-    const innerRef = useRef<HTMLElement>(null);
     const { stylingLogic } = useBusinessLogic({});
     const isVisible = Object.keys(currentItem || {})?.length > 0 && isFullscreenMode;
+    const innerRef = useRef<HTMLElement>(null);
     useImperativeHandle(ref, () => innerRef.current);
     //#endregion
 
