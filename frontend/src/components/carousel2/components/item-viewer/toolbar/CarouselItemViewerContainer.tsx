@@ -1,4 +1,4 @@
-import { ReactNode, forwardRef, useEffect, useRef, useState, useImperativeHandle, useCallback } from 'react'
+import { ReactNode, forwardRef, useEffect, useRef, useState, useImperativeHandle, useCallback, useLayoutEffect } from 'react'
 import { getClassname } from '../../../utils'
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { useCarouselContext } from '../../../context';
@@ -8,6 +8,8 @@ type CarouselItemViewerContainerProps = {
     onClick?: () => void;
 }
 
+const CURRENT_INTERVAL_INITIAL = 0;
+const HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL = false;
 const HEIGHT_INITIAL = 0;
 const DATA_POINT_COLLECTION_INTERVAL = 50;
 const NUMBER_OF_DATA_POINTS = 25;
@@ -19,10 +21,9 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     const { stylingLogic, optionsLogic } = useBusinessLogic({});
     const heightsRef = useRef<number[]>([]);
     const [height, setHeight] = useState(HEIGHT_INITIAL);
-    const [shouldSetHeight, setShouldSetHeight] = useState(false);
     const intervalRef = useRef<any>(-1);
-    const hasCurrentItemIndexChangedRef = useRef(false);
-    const currentInvervalRef = useRef(0);
+    const hasCurrentItemIndexChangedRef = useRef(HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL);
+    const currentInvervalRef = useRef(CURRENT_INTERVAL_INITIAL);
     const itemContainerRef = useRef<HTMLDivElement>(null);
     useImperativeHandle(ref, () => itemContainerRef.current)
 
@@ -30,12 +31,40 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     const setCurrentMaxHeight = useCallback(() => {
         if (heightsRef?.current?.length === 0) return;
         setHeight(Math.max(...heightsRef.current));
-        setShouldSetHeight(false);
         clearInterval(intervalRef.current)
+    }, [])
+
+    const startInterval = useCallback(() => {
+        return setInterval(() => {
+            console.log({ itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current });
+            if (currentInvervalRef.current > NUMBER_OF_DATA_POINTS || hasCurrentItemIndexChangedRef.current) {
+                clearInterval(intervalRef.current);
+                
+                if (!hasCurrentItemIndexChangedRef.current) {
+                    setCurrentMaxHeight();
+                }
+                return;
+            }
+            currentInvervalRef.current++;
+            const heightLocal = itemContainerRef.current?.getBoundingClientRect().height || HEIGHT_INITIAL;
+            if (heightLocal === HEIGHT_INITIAL) return;
+            heightsRef.current.push(heightLocal);
+        }, DATA_POINT_COLLECTION_INTERVAL)
+    }, [setCurrentMaxHeight])
+
+    const reset = useCallback(() => {
+        heightsRef.current = [];
+        currentInvervalRef.current = CURRENT_INTERVAL_INITIAL;        
+        hasCurrentItemIndexChangedRef.current = HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL;
+        setHeight(HEIGHT_INITIAL);
     }, [])
     //#endregion
 
     //#region Side FX
+    useLayoutEffect(() => {
+        reset();
+    }, [window.innerWidth])
+
     useEffect(() => {
         if (currentItemIndex !== 0 && !hasCurrentItemIndexChangedRef.current) {
             hasCurrentItemIndexChangedRef.current = true;
@@ -46,28 +75,10 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     useEffect(() => {
         if (optionsLogic.isDefaultItemDisplayLocation) return;
         clearInterval(intervalRef.current);
-        intervalRef.current = setInterval(() => {
-            if (currentInvervalRef.current > NUMBER_OF_DATA_POINTS || hasCurrentItemIndexChangedRef.current) {
-                clearInterval(intervalRef.current);
-                if (!hasCurrentItemIndexChangedRef.current) {
-                    setShouldSetHeight(true);
-                }
-                return;
-            }
-            currentInvervalRef.current++;
-            const heightLocal = itemContainerRef.current?.getBoundingClientRect().height || HEIGHT_INITIAL;
-            // console.log({ itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), heightLocal, currentInvervalRef: currentInvervalRef.current });
-            if (heightLocal === HEIGHT_INITIAL) return;
-            heightsRef.current.push(heightLocal);
-        }, DATA_POINT_COLLECTION_INTERVAL)
+        intervalRef.current = startInterval();
 
         return () => clearInterval(intervalRef.current);
-    }, [currentItemIndex, optionsLogic.isDefaultItemDisplayLocation])
-
-    useEffect(() => {
-        if (!shouldSetHeight) return;
-        setCurrentMaxHeight();
-    }, [shouldSetHeight, setCurrentMaxHeight])
+    }, [currentItemIndex, optionsLogic.isDefaultItemDisplayLocation, startInterval, window.innerWidth])
     //#endregion
 
     return (

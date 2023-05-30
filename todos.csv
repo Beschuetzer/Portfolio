@@ -1,5 +1,4 @@
 Carousel rework
-  -check change viewport auto adjusts itemContainer height in CarouselItemViewerContainer
   -allow for thumbnail.size to be given in a tuple format like (CarouselElementButtonSizeTuple)
   -allow for CarouselElementColor to be given in a tuple format
   -is it possible to have the thumbnail hover effect when non-default case (check tests or create one first)?
