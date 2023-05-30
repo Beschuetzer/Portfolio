@@ -164,16 +164,6 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselItemContainerStyle() {
-        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
-            width: "100%",
-            height: this.isFullscreenMode ? '100vh' : `auto`,
-            position: "relative",
-            backgroundColor: this.itemViewerBackgroundColor,
-            justifyContent: this.isFullscreenMode ? 'center' : 'flex-end',
-        } as CSSProperties : {};
-    }
-
     get carouselItemViewerStyle() {
         return {
             display: this.isFullscreenMode ? 'flex' : 'none',
@@ -776,8 +766,18 @@ export class StylingLogic {
         }
     }
 
+    //This is a function rather than a getter to allow for setting of itemContainer height manually which prevent "jumping" when switching between item types
+    getCarouselItemContainerStyle(height: number | string = 'auto') {
+        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
+            width: "100%",
+            height: this.isFullscreenMode ? '100vh' : height,
+            position: "relative",
+            backgroundColor: this.itemViewerBackgroundColor,
+            justifyContent: this.isFullscreenMode ? 'center' : 'flex-end',
+        } as CSSProperties : {};
+    }
+
     getCarouselItemsInnerContainerStyle(interItemSpacing: number, translationAmount: number) {
-        //(containerWidth / (numberOfWholeItems * itemSize) + ((numberOfWholeItems - 1) * itemSpacingAmount )) / 2)
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(this.carouselContainerRef?.current, this, this.optionsLogic);
         const itemPositioning = this.options.layout?.itemPositioning;
         const numberOfSpaces = numberOfWholeItemsThatCanFit - 1;
