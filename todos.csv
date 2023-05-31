@@ -1,6 +1,4 @@
 Carousel rework
-  -center and right cases not working for itemPositioning at full screen (>= 1800px wide)
-  -spacing for thumbnails doesn't take up full width in some cases (see "Display Current Item Above with Custom itemHeight and Font Family") at fullscreen
   -allow for thumbnail.size to be given in a tuple format like (CarouselElementButtonSizeTuple)
   -allow for CarouselElementColor to be given in a tuple format
   -add a single option for full width single item per page with only circular buttons
