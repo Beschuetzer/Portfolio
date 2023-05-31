@@ -63,7 +63,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         setIsVideoPlaying(!!videoProps?.autoPlay);
     }
 
-    const onContainerClick = useCallback(() => {
+    const onVideoClick = useCallback(() => {
         setHasClickedContainer(true);
         setIsVideoPlaying((isPlaying) => !isPlaying);
     }, [setIsVideoPlaying]);
@@ -138,6 +138,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                     autoPlay={!!autoPlay}
                     muted={!!muted}
                     loop={!!loop}
+                    onClick={onVideoClick}
                     onLoadedData={handleOnLoadedData}
                     onPlay={() => setIsVideoPlaying(true)}
                     onPause={() => setIsVideoPlaying(false)}
