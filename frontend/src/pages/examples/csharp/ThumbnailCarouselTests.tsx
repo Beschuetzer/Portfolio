@@ -1388,62 +1388,62 @@ const SECTIONS: Sections = [
 	[
 		"Layouts",
 		[
-			{
-				label: "One Item - All Defaults",
-				jsx: noItemDisplayedOneItemAllDefaults
-			},
-			{
-				label: "Two Items - All Defaults",
-				jsx: noItemDisplayedTwoItemsAllDefaults
-			},
-			{
-				label: "Three Items - All Defaults",
-				jsx: noItemDisplayedThreeItemsAllDefaults
-			},
-			{
-				label: "Multiple Pages - All Defaults",
-				jsx: noItemDisplayedMultiplePagesAllDefaults
-			},
-			{
-				label: "Multiple Pages - Custom Padding",
-				jsx: multiplePagesCustomPadding
-			},
-			{
-				label: "Multiple Pages - Custom Item Viewer Colors",
-				jsx: noItemDisplayedMultiplePagesCustomItemViewerColors
-			},
+			// {
+			// 	label: "One Item - All Defaults",
+			// 	jsx: noItemDisplayedOneItemAllDefaults
+			// },
+			// {
+			// 	label: "Two Items - All Defaults",
+			// 	jsx: noItemDisplayedTwoItemsAllDefaults
+			// },
+			// {
+			// 	label: "Three Items - All Defaults",
+			// 	jsx: noItemDisplayedThreeItemsAllDefaults
+			// },
+			// {
+			// 	label: "Multiple Pages - All Defaults",
+			// 	jsx: noItemDisplayedMultiplePagesAllDefaults
+			// },
+			// {
+			// 	label: "Multiple Pages - Custom Padding",
+			// 	jsx: multiplePagesCustomPadding
+			// },
+			// {
+			// 	label: "Multiple Pages - Custom Item Viewer Colors",
+			// 	jsx: noItemDisplayedMultiplePagesCustomItemViewerColors
+			// },
 			{
 				label: "Display Current Item Above with Custom itemHeight and Font Family",
 				jsx: layoutAboveWithItemHeightAndFontFamily,
 			},
-			{
-				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
-				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
-			},
-			{
-				label: "Thumbnails Positioned Left in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningLeft,
-			},
-			{
-				label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
-			},
-			{
-				label: "Thumbnails Positioned Center in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningCenter,
-			},
-			{
-				label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
-			},
-			{
-				label: "Thumbnails Positioned Right in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningRight,
-			},
-			{
-				label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
-			},
+			// {
+			// 	label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
+			// 	jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Left in Container with Default Spacing",
+			// 	jsx: layoutThumbnailPositioningLeft,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
+			// 	jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Center in Container with Default Spacing",
+			// 	jsx: layoutThumbnailPositioningCenter,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
+			// 	jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Right in Container with Default Spacing",
+			// 	jsx: layoutThumbnailPositioningRight,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
+			// 	jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
+			// },
 		]
 	],
 	// [

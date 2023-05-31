@@ -3,9 +3,7 @@ import { CarouselElement, CarouselSection, CarouselOptions } from "../types";
 import { OptionsLogic } from "./OptionsLogic";
 import { convertHexToRgba, getCurrentValue, getIsMobile, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
 import {
-    CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_SPACING_UNIT,
-    CAROUSEL_ITEM_SIZE_DEFAULT,
     CAROUSEL_COLOR_FOUR,
     CAROUSEL_COLOR_ONE,
     CAROUSEL_DOT_OPACITY_DEFAULT,
@@ -786,7 +784,7 @@ export class StylingLogic {
         const widthOfInterItemSpacing = numberOfSpaces * itemSpacing;
         const widthOfItems = numberOfWholeItemsThatCanFit * itemSize;
 
-        // console.log({containerWidth,itemSpacingToUse, givenItemSpacing: this.options.thumbnail?.itemSpacing, itemPositioning, numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing, numberOfSpaces});
+        console.log({containerWidth, givenItemSpacing: this.options.thumbnail?.itemSpacing, itemPositioning, numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing, numberOfSpaces});
         const positioningStyle = itemPositioning === 'center' ? {
             marginLeft: Math.max((containerWidth - (widthOfItems + widthOfInterItemSpacing)) / 2, 0),
         } as CSSProperties : itemPositioning === 'right' ? {

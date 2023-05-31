@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, GET_CURRENT_VALUE_DEFAULT, TRANSLATION_AMOUNT_INITIAL } from '../constants';
+import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, GET_CURRENT_VALUE_DEFAULT, TRANSLATION_AMOUNT_INITIAL } from '../constants';
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { CarouselContextInputProps, useCarouselContext } from '../context';
@@ -20,7 +20,7 @@ export const CarouselContent = ({
     options,
 }: CarouselContentProps) => {
     //#region Init
-    const { currentItemIndex, numberOfPages, setNumberOfPages, currentItem, isFullscreenMode, setIsFullscreenMode, currentPage, setCurrentPage } = useCarouselContext();
+    const { currentItemIndex, numberOfPages, setNumberOfPages, isFullscreenMode, setIsFullscreenMode, currentPage, setCurrentPage } = useCarouselContext();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
     const resizeWindowDebounceRef = useRef<any>();
@@ -89,24 +89,6 @@ export const CarouselContent = ({
     //#endregion
 
     //#region Functions/Handlers
-    const getDifferenceBetweenContainerAndLastItem = useCallback(() => {
-        const containerRight = itemsContainerInnerRef.current?.parentElement?.getBoundingClientRect()?.right || 0;
-        const items = (itemsContainerInnerRef.current?.querySelectorAll(`.${CLASSNAME__CAROUSEL_ITEM}`) || []) as HTMLElement[];
-
-        let currentItemLeft = 0, previousItemLeft = 0;
-        for (let item of items) {
-            previousItemLeft = currentItemLeft;
-            currentItemLeft = item?.getBoundingClientRect()?.left;
-
-            //in the unlikely case they are exactly equal
-            if (currentItemLeft === containerRight) return 0;
-            if (currentItemLeft > containerRight && previousItemLeft <= containerRight) {
-                return Math.abs(containerRight - previousItemLeft);
-            }
-        }
-        return 0;
-    }, []);
-
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
         if (options?.thumbnail?.itemSpacing !== undefined) {
