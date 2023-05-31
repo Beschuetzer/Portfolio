@@ -57,7 +57,7 @@ export enum CarouselElement {
     seekForwardButton = 'seekForwardButton',
 }
 
-export type CarouselElementButtonSizeType = "min-width" | "max-width";
+export type CarouselElementValueType = "min-width" | "max-width";
 /*
 *this can be any color string (e.g. `#abc123`, `rgba(255,0,122, .5)`, or `yellow`)
 */
@@ -79,9 +79,9 @@ export type CarouselElementSize = {
     *       Currently the sizing only takes affect if the CarouselContenxt component re-renders.  
     *       This only happens if the numberOfPages changes or the thumbnail spacing changes.
     */
-    size?: CarouselElementSizeTuple<number>[];
+    size?: CarouselElementValueTuple<number>[];
 }
-export type CarouselElementSizeTuple<T> = [T, number?, CarouselElementButtonSizeType?];
+export type CarouselElementValueTuple<T> = [T, number?, CarouselElementValueType?];
 
 export type CarouselItemViewerOptions = {
     /*
@@ -159,7 +159,7 @@ export type CarouselSections = {
     [CarouselSection.videoModal]?: {
         closeButton?: {
             fill?: Color;
-            size?: CarouselElementSizeTuple<number>[];
+            size?: CarouselElementValueTuple<number>[];
         };
         /*
         *This is in px
@@ -428,7 +428,7 @@ export type CarouselThumbnailOptions = {
     *The value in px that the thumbnails are spaced apart.  
     *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible
     */
-    itemSpacing?: CarouselElementSizeTuple<number>[];
+    itemSpacing?: CarouselElementValueTuple<number>[];
     /*
     *Default is `min`
     *Determines how the thumbnails are spaced out if there is only one page and `itemSpacing` is not given (i.e. dynamic spacing is active)

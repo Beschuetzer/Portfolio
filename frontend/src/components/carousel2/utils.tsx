@@ -10,7 +10,7 @@ import {
     VIDEO_EXTENSIONS
 } from "./constants";
 import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
-import { Coordinate, Point, ArrowButtonDirection, CarouselElementSizeTuple } from "./types";
+import { Coordinate, Point, ArrowButtonDirection, CarouselElementValueTuple } from "./types";
 type GetClassname = {
     elementName?: string;
     modifiedName?: string;
@@ -203,8 +203,9 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
 
 /*
 *The idea here is to get the current value for the current window width from the list of tuples
+*Items given are sorted by max-width, then min-width, then unspecified 
 */
-export function getCurrentValue<T>(valueTuple: CarouselElementSizeTuple<T>[] | undefined, defaultSize: T) {
+export function getCurrentValue<T>(valueTuple: CarouselElementValueTuple<T>[] | undefined, defaultSize: T) {
     const windowWidth = window.innerWidth;
 
     for (const tuple of valueTuple || []) {

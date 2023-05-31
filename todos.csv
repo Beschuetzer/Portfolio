@@ -1,8 +1,8 @@
 Carousel rework
+  -need to test how getCurrentValue works with unsorted items (may need to sort on breakpoint width first )
   -allow for thumbnail.size to be given in a tuple format like (CarouselElementButtonSizeTuple)
   -allow for CarouselElementColor to be given in a tuple format
   -add a single option for full width single item per page with only circular buttons
-  -need to test how getCurrentValue works with unsorted items (may need to sort on breakpoint width first )
   -add option to specify the border on the CarouselItemViewerToolbarPreview?
   -add options to set videomodal close button size and VideoCurrentStateIndicatorButton?
   -need to work on individual options for each button size
@@ -14,6 +14,7 @@ Carousel rework
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -add lazy loading of items (only render the items up to the furtherst currentPage)?
   -figure out how to test and implement accessability
+  -write jest tests for utils and other functions?
 
 Known Issues with Carousel rework:
   -changing items with mid-tier and below setting is sluggish
