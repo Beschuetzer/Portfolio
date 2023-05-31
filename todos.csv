@@ -1,7 +1,7 @@
 Carousel rework
+  -spacing for thumbnails doesn't take up full width in some cases (see "Display Current Item Above with Custom itemHeight and Font Family") at fullscreen
   -allow for thumbnail.size to be given in a tuple format like (CarouselElementButtonSizeTuple)
   -allow for CarouselElementColor to be given in a tuple format
-  -is it possible to have the thumbnail hover effect when non-default case (check tests or create one first)?
   -add a single option for full width single item per page with only circular buttons
   -need to test how getCurrentValue works with unsorted items (may need to sort on breakpoint width first )
   -add option to specify the border on the CarouselItemViewerToolbarPreview?

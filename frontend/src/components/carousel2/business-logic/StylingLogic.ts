@@ -145,12 +145,9 @@ export class StylingLogic {
     get carouselItemStyle() {
         const customCurrenItemBorder = this.options.thumbnail?.currentItemBorder || '';
 
-        const widthStyle = !this.optionsLogic.isDefaultItemDisplayLocation ? {
-            width: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
-            height: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
-        } as CSSProperties : {
-            width: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
-            height: this.options?.thumbnail?.size || `${CAROUSEL_ITEM_SIZE_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
+        const widthStyle = {
+            width: this.optionsLogic.carouselItemSize,
+            height: this.optionsLogic.carouselItemSize,
         } as CSSProperties;
         const selectionStyle = this.isCurrentItemSelected ? {
             border: this.getBorderStringToUse(customCurrenItemBorder),
@@ -263,7 +260,7 @@ export class StylingLogic {
     }
 
     get carouselToolbarTextStyle() {
-        const customTextColor = this.options.styling?.toolbar?.textColor ||  this.options.styling?.toolbar?.elements?.color || this.allFillColor;
+        const customTextColor = this.options.styling?.toolbar?.textColor || this.options.styling?.toolbar?.elements?.color || this.allFillColor;
         return {
             color: customTextColor || CAROUSEL_COLOR_FIVE,
         } as CSSProperties;
@@ -427,7 +424,7 @@ export class StylingLogic {
     get isCurrentItemSelected() {
         return !this.optionsLogic.isDefaultItemDisplayLocation && !!this.isCurrentItem;
     }
-    
+
     get itemViewerContainerHorizontalPadding() {
         const padding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
         return padding;
@@ -482,10 +479,9 @@ export class StylingLogic {
         const gradient = thumbnail?.descriptionOverlay?.background?.gradient;
         const color = solid?.color;
         const shouldHideOverlay = thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered === undefined || !!thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered;
-        const isDefaultItemDisplayLocation = this.optionsLogic.isDefaultItemDisplayLocation;
-        const isDescriptionOverDisabledUndefined = thumbnail?.descriptionOverlay?.isDisabled === undefined;
-        const shouldDisableDescriptionOverlayDefault = !isDefaultItemDisplayLocation;
-        const shouldDisableDescriptionOverlay = isDescriptionOverDisabledUndefined ? shouldDisableDescriptionOverlayDefault : thumbnail?.descriptionOverlay?.isDisabled;
+        const shouldDisableDescriptionOverlay = thumbnail?.descriptionOverlay?.isDisabled === undefined
+            ? !this.optionsLogic.isDefaultItemDisplayLocation
+            : thumbnail?.descriptionOverlay?.isDisabled;
 
         const backgroundSolidStyle = color ? {
             background: 'none',
@@ -493,27 +489,32 @@ export class StylingLogic {
                 color?.trim() || CAROUSEL_COLOR_ONE,
                 solid?.opacity || CAROUSEL_DOT_OPACITY_DEFAULT
             ),
-        } as React.CSSProperties : {};
+        } as CSSProperties : {};
 
         const disabledStyle = shouldDisableDescriptionOverlay ? {
             display: 'none'
-        } as React.CSSProperties : {};
+        } as CSSProperties : {};
 
         const backgroundGradientStyle = gradient ? {
             background: `linear-gradient(${gradient?.angle || 180}deg, ${convertHexToRgba(gradient.start?.color || CAROUSEL_COLOR_FIVE, gradient.start?.opacity || 0)} 0%, ${convertHexToRgba(gradient.end?.color || CAROUSEL_COLOR_ONE, gradient.end?.opacity || 1)} 100%)`,
-        } as React.CSSProperties : {};
+        } as CSSProperties : {};
 
         const bottomStyle = shouldHideOverlay ? {
             bottom: '-100%',
-        } as React.CSSProperties : {};
+        } as CSSProperties : {};
+
+        const paddingStyle = {
+            padding: this.optionsLogic.carouselItemSize * 0.06666667
+        } as CSSProperties
 
         const thumbnailBackgroundStyle = {
+            ...paddingStyle,
             ...bottomStyle,
             ...backgroundSolidStyle,
             ...backgroundGradientStyle,
             ...this.carouselItemCursorStyle,
             ...disabledStyle,
-        } as React.CSSProperties
+        } as CSSProperties
 
         return thumbnailBackgroundStyle;
     }
