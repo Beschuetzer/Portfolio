@@ -36,7 +36,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
 
     const startInterval = useCallback(() => {
         return setInterval(() => {
-            console.log({ itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current });
+            // console.log({ itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current });
             if (currentInvervalRef.current > NUMBER_OF_DATA_POINTS || hasCurrentItemIndexChangedRef.current) {
                 clearInterval(intervalRef.current);
                 
@@ -63,7 +63,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     //#region Side FX
     useLayoutEffect(() => {
         reset();
-    }, [window.innerWidth])
+    }, [window.innerWidth, reset]) //need innerwidth as dep here
 
     useEffect(() => {
         if (currentItemIndex !== 0 && !hasCurrentItemIndexChangedRef.current) {
@@ -78,7 +78,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         intervalRef.current = startInterval();
 
         return () => clearInterval(intervalRef.current);
-    }, [currentItemIndex, optionsLogic.isDefaultItemDisplayLocation, startInterval, window.innerWidth])
+    }, [currentItemIndex, optionsLogic.isDefaultItemDisplayLocation, startInterval, window.innerWidth]) //need innerwidth as dep here
     //#endregion
 
     return (

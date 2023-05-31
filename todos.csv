@@ -1,5 +1,4 @@
 Carousel rework
-  -opening fullscreen then clicking next item 3 times quickly then quickly pressing exit fullscreen causes toolbar to disappear ()
   -clicking video play/pause
   -allow for thumbnail.size to be given in a tuple format like (CarouselElementButtonSizeTuple)
   -allow for CarouselElementColor to be given in a tuple format

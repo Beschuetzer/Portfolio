@@ -161,10 +161,10 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         stopPropagation(e);
         clearTimeout(shouldHideTimoutRef.current);
 
-        if (!isFullscreenMode || options?.itemViewer?.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
         if (itemContainerRef?.current) {
             itemContainerRef.current.classList?.remove(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
         }
+        if (!isFullscreenMode || options?.itemViewer?.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
 
         shouldHideTimoutRef.current = setTimeout(() => {
             if (itemContainerRef?.current && !isMobile) {
