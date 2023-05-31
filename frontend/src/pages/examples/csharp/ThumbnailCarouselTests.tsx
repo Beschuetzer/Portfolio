@@ -1265,7 +1265,7 @@ const layoutThumbnailPositioningCenter = (
 				itemPositioning: 'center',
 			},
 			thumbnail: {
-				size: 200,
+				size: 175,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -1281,7 +1281,7 @@ const layoutThumbnailPositioningCenterWithItemSpacingGiven = (
 				itemPositioning: 'center',
 			},
 			thumbnail: {
-				size: 200,
+				size: 175,
 				itemSpacing: [[10]],
 				descriptionOverlay: {
 					isDisabled: false,
@@ -1298,7 +1298,7 @@ const layoutThumbnailPositioningLeft = (
 				itemPositioning: 'left',
 			},
 			thumbnail: {
-				size: 200,
+				size: 175,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -1314,7 +1314,7 @@ const layoutThumbnailPositioningLeftWithItemSpacingGiven = (
 				itemPositioning: 'left',
 			},
 			thumbnail: {
-				size: 200,
+				size: 175,
 				itemSpacing: [[10]],
 				descriptionOverlay: {
 					isDisabled: false,
@@ -1331,7 +1331,7 @@ const layoutThumbnailPositioningRight = (
 				itemPositioning: 'right',
 			},
 			thumbnail: {
-				size: 200,
+				size: 175,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -1347,7 +1347,7 @@ const layoutThumbnailPositioningRightWithItemSpacingGiven = (
 				itemPositioning: 'right',
 			},
 			thumbnail: {
-				size: 200,
+				size: 175,
 				itemSpacing: [[10]],
 				descriptionOverlay: {
 					isDisabled: false,
