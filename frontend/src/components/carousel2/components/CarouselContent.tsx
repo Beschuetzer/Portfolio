@@ -96,20 +96,20 @@ export const CarouselContent = ({
             if (currentItemSpacing >= GET_CURRENT_VALUE_DEFAULT) return currentItemSpacing;
         }
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
-            carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
+            items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
         );
         const numberOfGaps = numberOfWholeItemsThatCanFit - 1;
         const remainingSpace = containerWidth - (numberOfWholeItemsThatCanFit * itemSize);
         //numberOfGaps logic needed to prevent crashing at smaller viewport, since divide by <= 0 
         const newInterItemSpacing = (remainingSpace / (numberOfGaps <= 0 ? 1 : numberOfGaps));
         return newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT;
-    }, [options?.thumbnail, carouselContainerRef, stylingLogic, optionsLogic]);
+    }, [options?.thumbnail?.itemSpacing, items.length, carouselContainerRef, stylingLogic, optionsLogic]);
 
     const getTranslationAmount = useCallback(() => {
         const interItemSpacingToUse = optionsLogic.getItemSpacing(interItemSpacing);
         const isDefaultCase = options?.thumbnail?.itemSpacing === undefined && options?.layout?.itemPositioning === undefined;
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
-            carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
+            items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
         );
         const defaultAmount = interItemSpacingToUse + containerWidth;
 
@@ -134,6 +134,7 @@ export const CarouselContent = ({
         carouselContainerRef,
         currentPage,
         interItemSpacing,
+        items.length,
         options?.layout?.itemPositioning,
         options?.thumbnail?.itemSpacing,
         optionsLogic,
@@ -200,7 +201,7 @@ export const CarouselContent = ({
         }
 
         const { numberOfWholeItemsThatCanFit } = getNumberOfItemsThatCanFit(
-            carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
+            items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
         );
         const currentNthItem = currentItemIndex + 1;
         const isNextItemClick = getIsNextItemClick();

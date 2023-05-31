@@ -120,20 +120,24 @@ export function getIsVideoPlaying(videoRef: HTMLVideoElement | undefined) {
 }
 
 export function getNumberOfItemsThatCanFit(
+    itemsLength: number,
     htmlElement: HTMLElement | undefined,
     stylingLogic: StylingLogic,
     optionsLogic: OptionsLogic
 ) {
     const containerWidth = getContainerWidth(htmlElement, stylingLogic);
     const itemSize = optionsLogic.carouselItemSize;
-    const calculatedNumberOfWholeItemsThatCanFit = Math.floor(containerWidth / itemSize);
+    const numberOfItemsThatCanFit = containerWidth / itemSize;
+    const calculatedNumberOfWholeItemsThatCanFit = Math.floor(numberOfItemsThatCanFit);
+    const itemSpacingStrategy = optionsLogic.itemSpacingStrategy;
+    //logic needed to prevent crashing at smaller viewport
+    const numberOfWholeItemsThatCanFit = calculatedNumberOfWholeItemsThatCanFit <= 0 ? 1 : calculatedNumberOfWholeItemsThatCanFit;
 
     return {
         containerWidth,
         itemSize,
-        //logic needed to prevent crashing at smaller viewport
-        numberOfWholeItemsThatCanFit: calculatedNumberOfWholeItemsThatCanFit <= 0 ? 1 : calculatedNumberOfWholeItemsThatCanFit,
-        numberOfItemsThatCanFit: containerWidth / itemSize,
+        numberOfWholeItemsThatCanFit: itemSpacingStrategy === 'max' ? Math.min(itemsLength, numberOfWholeItemsThatCanFit) : numberOfWholeItemsThatCanFit,
+        numberOfItemsThatCanFit: itemSpacingStrategy === 'max' ? Math.min(itemsLength, numberOfItemsThatCanFit) : numberOfItemsThatCanFit,
     }
 }
 
@@ -145,7 +149,7 @@ export function getNumberOfPages(
 ) {
     if (!carouselContainerElement) return NUMBER_OF_PAGES_INITIAL;
     const { numberOfWholeItemsThatCanFit: numberOfItemsThatCanFit } = getNumberOfItemsThatCanFit(
-        carouselContainerElement, stylingLogic, optionsLogic
+        itemsLength, carouselContainerElement, stylingLogic, optionsLogic
     );
     const numberOfPages = Math.ceil(itemsLength / numberOfItemsThatCanFit);
     return numberOfPages;

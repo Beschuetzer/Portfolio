@@ -58,6 +58,10 @@ export class OptionsLogic {
         return !!this.options.navigation?.disableWrapping;
     }
 
+    get itemSpacingStrategy() {
+        return this.options.thumbnail?.itemSpacingStrategy || 'min';
+    }
+
     get itemViewerMaxClickThreshold() {
         const maxClickThreshold = this.options.itemViewer?.maxClickThreshold;
         return maxClickThreshold !== undefined ? maxClickThreshold : MAX_CLICK_THRESHOLD_DEFAULT;

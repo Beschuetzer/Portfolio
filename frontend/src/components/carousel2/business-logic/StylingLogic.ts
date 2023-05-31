@@ -40,7 +40,7 @@ export type StylingLogicConstructor = {
     optionsLogic?: OptionsLogic;
     progressBarValue?: number;
     videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
-} & Partial<Pick<CarouselContextOutputProps, 'currentItem' | 'isFullscreenMode' | 'numberOfPages'>>
+} & Partial<Pick<CarouselContextOutputProps, 'currentItem' | 'isFullscreenMode' | 'numberOfPages' | 'items'>>
     & Partial<Pick<CarouselContextInputProps, 'carouselContainerRef'>>
     & Partial<Pick<CarouselVideoModalInternalProps, 'videoRef'>>
 
@@ -60,6 +60,7 @@ export class StylingLogic {
     private isCurrentItem: boolean | undefined;
     private optionsLogic: OptionsLogic;
     private isMobile: boolean;
+    private items;
     private itemViewerToolbarRef;
     private isFullscreenMode: boolean;
     private loadingSpinnerOptions: LoadingSpinnerProps['options'];
@@ -76,6 +77,7 @@ export class StylingLogic {
             isCurrentItem,
             isFullscreenMode,
             optionsLogic,
+            items,
             itemViewerToolbarRef,
             loadingSpinnerOptions,
             numberOfPages,
@@ -88,6 +90,7 @@ export class StylingLogic {
         this.currentItem = currentItem;
         this.isCurrentItem = isCurrentItem;
         this.isFullscreenMode = !!isFullscreenMode;
+        this.items = items || [];
         this.loadingSpinnerOptions = loadingSpinnerOptions;
         this.itemViewerToolbarRef = itemViewerToolbarRef || { current: null };
         this.numberOfPages = numberOfPages || 0;
@@ -777,14 +780,19 @@ export class StylingLogic {
     }
 
     getCarouselItemsInnerContainerStyle(interItemSpacing: number, translationAmount: number) {
-        const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(this.carouselContainerRef?.current, this, this.optionsLogic);
+        const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
+            this.items.length,
+            this.carouselContainerRef?.current,
+            this,
+            this.optionsLogic
+        );
         const itemPositioning = this.options.layout?.itemPositioning;
         const numberOfSpaces = numberOfWholeItemsThatCanFit - 1;
         const itemSpacing = this.optionsLogic.getItemSpacing(interItemSpacing);
         const widthOfInterItemSpacing = numberOfSpaces * itemSpacing;
         const widthOfItems = numberOfWholeItemsThatCanFit * itemSize;
 
-        console.log({containerWidth, givenItemSpacing: this.options.thumbnail?.itemSpacing, itemPositioning, numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing, numberOfSpaces});
+        // console.log({ containerWidth, givenItemSpacing: this.options.thumbnail?.itemSpacing, itemPositioning, numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing, numberOfSpaces });
         const positioningStyle = itemPositioning === 'center' ? {
             marginLeft: Math.max((containerWidth - (widthOfItems + widthOfInterItemSpacing)) / 2, 0),
         } as CSSProperties : itemPositioning === 'right' ? {

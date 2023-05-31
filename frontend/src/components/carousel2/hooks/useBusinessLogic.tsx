@@ -59,14 +59,16 @@ export const useBusinessLogic = ({
         isFullscreenMode,
     }));
     const [stylingLogic, setStylingLogic] = useState<StylingLogic>(getStylingLogic({
-        options,
+        carouselContainerRef,
         currentItem,
-        isFullscreenMode,
         isCurrentItem,
-        numberOfPages,
-        optionsLogic,
+        isFullscreenMode,
+        items,
         itemViewerToolbarRef,
         loadingSpinnerOptions,
+        numberOfPages,
+        options,
+        optionsLogic,
         progressBarValue,
         videoModalRef,
         videoRef
@@ -84,6 +86,7 @@ export const useBusinessLogic = ({
             currentItem,
             isCurrentItem,
             isFullscreenMode,
+            items,
             itemViewerToolbarRef,
             loadingSpinnerOptions,
             numberOfPages,
