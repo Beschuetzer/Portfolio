@@ -367,9 +367,9 @@ const multiplePagesNoItemSpacing = (
 const multiplePagesDynamicSpacing = (
 	<Carousel items={items} options={{
 		thumbnail: {
-			itemSpacing: [[10, 800, 'max-width'], [15, 1200, 'min-width'], [0]],
+			// itemSpacing: [[10, 800, 'max-width'], [15, 1200, 'min-width'], [0]],
 			//todo: test this one
-			// itemSpacing: [[0], [20, 1500, 'min-width'], [10, 800, 'max-width'], [8, 500, 'max-width'], [6, 400, 'max-width'], [15, 1200, 'min-width']],
+			itemSpacing: [[0], [20, 1500, 'min-width'], [10, 800, 'max-width'], [8, 500, 'max-width'], [6, 400, 'max-width'], [15, 1200, 'min-width']],
 		}
 	}} />
 );
@@ -1410,531 +1410,531 @@ const noThumbnailDescriptionOverlay = (
 
 type Sections = [string, { label: string, jsx: ReactNode | ReactNode[] }[]][];
 const SECTIONS: Sections = [
-	[
-		"Layouts",
-		[
-			{
-				label: "One Item - All Defaults",
-				jsx: noItemDisplayedOneItemAllDefaults
-			},
-			{
-				label: "Two Items - All Defaults",
-				jsx: noItemDisplayedTwoItemsAllDefaults
-			},
-			{
-				label: "Three Items - All Defaults",
-				jsx: noItemDisplayedThreeItemsAllDefaults
-			},
-			{
-				label: "Three Items - Max Spacing Strategy",
-				jsx: noItemDisplayedThreeItemsMaxSpacing
-			},
-			{
-				label: "Multiple Pages - All Defaults",
-				jsx: noItemDisplayedMultiplePagesAllDefaults
-			},
-			{
-				label: "Multiple Pages - Custom Padding",
-				jsx: multiplePagesCustomPadding
-			},
-			{
-				label: "Multiple Pages - Custom Item Viewer Colors",
-				jsx: noItemDisplayedMultiplePagesCustomItemViewerColors
-			},
-			{
-				label: "Display Current Item Above with Custom itemHeight and Font Family",
-				jsx: layoutAboveWithItemHeightAndFontFamily,
-			},
-			{
-				label: "Display Current Item Above with Max Spacing Strategy",
-				jsx: layoutAboveWithMaxSpacingStrategy,
-			},
-			{
-				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
-				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
-			},
-			{
-				label: "Thumbnails Positioned Left in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningLeft,
-			},
-			{
-				label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
-			},
-			{
-				label: "Thumbnails Positioned Center in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningCenter,
-			},
-			{
-				label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
-			},
-			{
-				label: "Thumbnails Positioned Right in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningRight,
-			},
-			{
-				label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
-			},
-		]
-	],
-	[
-		'Above-Customization',
-		[
-			{
-				label: "Display Current Item Above Default itemHeight and No Overlay Video First",
-				jsx: layoutAboveDefaultItemHeight,
-			},
-			{
-				label: "Display Current Item Above with Custom itemHeight and Thumbnail Size",
-				jsx: layoutAboveWithItemHeightAndThumbnailSize,
-			},
-			{
-				label: "Display Above with Container Padding",
-				jsx: layoutAboveContainerPadding,
-			},
-			{
-				label: "Display Above with Item Viewer Padding",
-				jsx: layoutAboveExtraItemViewerPadding
-			},
-			{
-				label: "Display Above with Extra Navigation Padding",
-				jsx: layoutAboveExtraNavigationPadding,
-			},
-			{
-				label: "Display Above with Extra Toolbar Padding",
-				jsx: layoutAboveExtraToolbarPadding
-			},
-			{
-				label: "Display Above with Different Left and Right Padding",
-				jsx: layoutAboveDifferentLeftAndRightPadding,
-			},
-			{
-				label: "Display Above Flush and Same Background Color",
-				jsx: layoutAboveCompletelyFlushAndSameBackgroundColor,
-			},
-			{
-				label: "Display Above Flush with Progress Bar Whole Width",
-				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole,
-			},
-			{
-				label: "Display Above Flush and Same Background Color using All option",
-				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
-			},
-			{
-				label: "Display Above Custom Icons with Same Background Color",
-				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons,
-			},
-			{
-				label: "Display Above Custom Icons with Default Icons using Custom Colors",
-				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors,
-			},
-			{
-				label: "Display Above buttons.all with Specific Item Fill Colors",
-				jsx: layoutAboveButtonsAllWithSpecificFillColors,
-			},
-			{
-				label: "Display Above Custom Overlay Style and Loading Spinner",
-				jsx: layoutAboveCustomOverlayAndSpinner,
-			},
-			{
-				label: "Display Above No Tracking Current Item",
-				jsx: layoutAboveNoTrackingItemViewerChanges,
-			},
-		]
-	],
-	[
-		'Below-Customization',
-		[
-			{
-				label: "All Defaults",
-				jsx: React.cloneElement(layoutAboveDefaultItemHeight, {
-					options: {
-						...layoutAboveDefaultItemHeight.props.options,
-						layout: {
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Current Item Below with Custom itemHeight and Thumbnail Size",
-				jsx: React.cloneElement(layoutAboveWithItemHeightAndThumbnailSize, {
-					options: {
-						...layoutAboveWithItemHeightAndThumbnailSize.props.options,
-						layout: {
-							...layoutAboveWithItemHeightAndThumbnailSize.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below with Container Padding",
-				jsx: React.cloneElement(layoutAboveContainerPadding, {
-					options: {
-						...layoutAboveContainerPadding.props.options,
-						layout: {
-							...layoutAboveContainerPadding.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below with Item Viewer Padding",
-				jsx: React.cloneElement(layoutAboveExtraItemViewerPadding, {
-					options: {
-						...layoutAboveExtraItemViewerPadding.props.options,
-						layout: {
-							...layoutAboveExtraItemViewerPadding.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below with Extra Navigation Padding",
-				jsx: React.cloneElement(layoutAboveExtraNavigationPadding, {
-					options: {
-						...layoutAboveExtraNavigationPadding.props.options,
-						layout: {
-							...layoutAboveExtraNavigationPadding.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below with Extra Toolbar Padding",
-				jsx: React.cloneElement(layoutAboveExtraToolbarPadding, {
-					options: {
-						...layoutAboveExtraToolbarPadding.props.options,
-						layout: {
-							...layoutAboveExtraToolbarPadding.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below with Different Left and Right Padding",
-				jsx: React.cloneElement(layoutAboveDifferentLeftAndRightPadding, {
-					options: {
-						...layoutAboveDifferentLeftAndRightPadding.props.options,
-						layout: {
-							...layoutAboveDifferentLeftAndRightPadding.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below Flush and Same Background Color",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColor, {
-					options: {
-						...layoutAboveCompletelyFlushAndSameBackgroundColor.props.options,
-						layout: {
-							...layoutAboveCompletelyFlushAndSameBackgroundColor.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below Flush with Progress Bar Whole Width",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole, {
-					options: {
-						...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options,
-						layout: {
-							...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below Flush and Same Background Color using All option",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorAll, {
-					options: {
-						...layoutAboveCompletelyFlushAndSameBackgroundColorAll.props.options,
-						layout: {
-							...layoutAboveCompletelyFlushAndSameBackgroundColorAll.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below Custom Icons with Same Background Color",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons, {
-					options: {
-						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons.props.options,
-						layout: {
-							...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below Custom Icons with Default Icons using Custom Colors",
-				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors, {
-					options: {
-						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors.props.options,
-						layout: {
-							...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below buttons.all with Specific Item Fill Colors",
-				jsx: React.cloneElement(layoutAboveButtonsAllWithSpecificFillColors, {
-					options: {
-						...layoutAboveButtonsAllWithSpecificFillColors.props.options,
-						layout: {
-							...layoutAboveButtonsAllWithSpecificFillColors.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below Custom Overlay Style and Loading Spinner",
-				jsx: React.cloneElement(layoutAboveCustomOverlayAndSpinner, {
-					options: {
-						...layoutAboveCustomOverlayAndSpinner.props.options,
-						layout: {
-							...layoutAboveCustomOverlayAndSpinner.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-			{
-				label: "Display Below No Tracking Current Item",
-				jsx: React.cloneElement(layoutAboveNoTrackingItemViewerChanges, {
-					options: {
-						...layoutAboveNoTrackingItemViewerChanges.props.options,
-						layout: {
-							...layoutAboveNoTrackingItemViewerChanges.props.options.layout,
-							itemDisplayLocation: 'below',
-						}
-					}
-				}),
-			},
-		]
-	],
+	// [
+	// 	"Layouts",
+	// 	[
+	// 		{
+	// 			label: "One Item - All Defaults",
+	// 			jsx: noItemDisplayedOneItemAllDefaults
+	// 		},
+	// 		{
+	// 			label: "Two Items - All Defaults",
+	// 			jsx: noItemDisplayedTwoItemsAllDefaults
+	// 		},
+	// 		{
+	// 			label: "Three Items - All Defaults",
+	// 			jsx: noItemDisplayedThreeItemsAllDefaults
+	// 		},
+	// 		{
+	// 			label: "Three Items - Max Spacing Strategy",
+	// 			jsx: noItemDisplayedThreeItemsMaxSpacing
+	// 		},
+	// 		{
+	// 			label: "Multiple Pages - All Defaults",
+	// 			jsx: noItemDisplayedMultiplePagesAllDefaults
+	// 		},
+	// 		{
+	// 			label: "Multiple Pages - Custom Padding",
+	// 			jsx: multiplePagesCustomPadding
+	// 		},
+	// 		{
+	// 			label: "Multiple Pages - Custom Item Viewer Colors",
+	// 			jsx: noItemDisplayedMultiplePagesCustomItemViewerColors
+	// 		},
+	// 		{
+	// 			label: "Display Current Item Above with Custom itemHeight and Font Family",
+	// 			jsx: layoutAboveWithItemHeightAndFontFamily,
+	// 		},
+	// 		{
+	// 			label: "Display Current Item Above with Max Spacing Strategy",
+	// 			jsx: layoutAboveWithMaxSpacingStrategy,
+	// 		},
+	// 		{
+	// 			label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
+	// 			jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
+	// 		},
+	// 		{
+	// 			label: "Thumbnails Positioned Left in Container with Default Spacing",
+	// 			jsx: layoutThumbnailPositioningLeft,
+	// 		},
+	// 		{
+	// 			label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
+	// 			jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
+	// 		},
+	// 		{
+	// 			label: "Thumbnails Positioned Center in Container with Default Spacing",
+	// 			jsx: layoutThumbnailPositioningCenter,
+	// 		},
+	// 		{
+	// 			label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
+	// 			jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
+	// 		},
+	// 		{
+	// 			label: "Thumbnails Positioned Right in Container with Default Spacing",
+	// 			jsx: layoutThumbnailPositioningRight,
+	// 		},
+	// 		{
+	// 			label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
+	// 			jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
+	// 		},
+	// 	]
+	// ],
+	// [
+	// 	'Above-Customization',
+	// 	[
+	// 		{
+	// 			label: "Display Current Item Above Default itemHeight and No Overlay Video First",
+	// 			jsx: layoutAboveDefaultItemHeight,
+	// 		},
+	// 		{
+	// 			label: "Display Current Item Above with Custom itemHeight and Thumbnail Size",
+	// 			jsx: layoutAboveWithItemHeightAndThumbnailSize,
+	// 		},
+	// 		{
+	// 			label: "Display Above with Container Padding",
+	// 			jsx: layoutAboveContainerPadding,
+	// 		},
+	// 		{
+	// 			label: "Display Above with Item Viewer Padding",
+	// 			jsx: layoutAboveExtraItemViewerPadding
+	// 		},
+	// 		{
+	// 			label: "Display Above with Extra Navigation Padding",
+	// 			jsx: layoutAboveExtraNavigationPadding,
+	// 		},
+	// 		{
+	// 			label: "Display Above with Extra Toolbar Padding",
+	// 			jsx: layoutAboveExtraToolbarPadding
+	// 		},
+	// 		{
+	// 			label: "Display Above with Different Left and Right Padding",
+	// 			jsx: layoutAboveDifferentLeftAndRightPadding,
+	// 		},
+	// 		{
+	// 			label: "Display Above Flush and Same Background Color",
+	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColor,
+	// 		},
+	// 		{
+	// 			label: "Display Above Flush with Progress Bar Whole Width",
+	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole,
+	// 		},
+	// 		{
+	// 			label: "Display Above Flush and Same Background Color using All option",
+	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
+	// 		},
+	// 		{
+	// 			label: "Display Above Custom Icons with Same Background Color",
+	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons,
+	// 		},
+	// 		{
+	// 			label: "Display Above Custom Icons with Default Icons using Custom Colors",
+	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors,
+	// 		},
+	// 		{
+	// 			label: "Display Above buttons.all with Specific Item Fill Colors",
+	// 			jsx: layoutAboveButtonsAllWithSpecificFillColors,
+	// 		},
+	// 		{
+	// 			label: "Display Above Custom Overlay Style and Loading Spinner",
+	// 			jsx: layoutAboveCustomOverlayAndSpinner,
+	// 		},
+	// 		{
+	// 			label: "Display Above No Tracking Current Item",
+	// 			jsx: layoutAboveNoTrackingItemViewerChanges,
+	// 		},
+	// 	]
+	// ],
+	// [
+	// 	'Below-Customization',
+	// 	[
+	// 		{
+	// 			label: "All Defaults",
+	// 			jsx: React.cloneElement(layoutAboveDefaultItemHeight, {
+	// 				options: {
+	// 					...layoutAboveDefaultItemHeight.props.options,
+	// 					layout: {
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Current Item Below with Custom itemHeight and Thumbnail Size",
+	// 			jsx: React.cloneElement(layoutAboveWithItemHeightAndThumbnailSize, {
+	// 				options: {
+	// 					...layoutAboveWithItemHeightAndThumbnailSize.props.options,
+	// 					layout: {
+	// 						...layoutAboveWithItemHeightAndThumbnailSize.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below with Container Padding",
+	// 			jsx: React.cloneElement(layoutAboveContainerPadding, {
+	// 				options: {
+	// 					...layoutAboveContainerPadding.props.options,
+	// 					layout: {
+	// 						...layoutAboveContainerPadding.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below with Item Viewer Padding",
+	// 			jsx: React.cloneElement(layoutAboveExtraItemViewerPadding, {
+	// 				options: {
+	// 					...layoutAboveExtraItemViewerPadding.props.options,
+	// 					layout: {
+	// 						...layoutAboveExtraItemViewerPadding.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below with Extra Navigation Padding",
+	// 			jsx: React.cloneElement(layoutAboveExtraNavigationPadding, {
+	// 				options: {
+	// 					...layoutAboveExtraNavigationPadding.props.options,
+	// 					layout: {
+	// 						...layoutAboveExtraNavigationPadding.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below with Extra Toolbar Padding",
+	// 			jsx: React.cloneElement(layoutAboveExtraToolbarPadding, {
+	// 				options: {
+	// 					...layoutAboveExtraToolbarPadding.props.options,
+	// 					layout: {
+	// 						...layoutAboveExtraToolbarPadding.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below with Different Left and Right Padding",
+	// 			jsx: React.cloneElement(layoutAboveDifferentLeftAndRightPadding, {
+	// 				options: {
+	// 					...layoutAboveDifferentLeftAndRightPadding.props.options,
+	// 					layout: {
+	// 						...layoutAboveDifferentLeftAndRightPadding.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below Flush and Same Background Color",
+	// 			jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColor, {
+	// 				options: {
+	// 					...layoutAboveCompletelyFlushAndSameBackgroundColor.props.options,
+	// 					layout: {
+	// 						...layoutAboveCompletelyFlushAndSameBackgroundColor.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below Flush with Progress Bar Whole Width",
+	// 			jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole, {
+	// 				options: {
+	// 					...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options,
+	// 					layout: {
+	// 						...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below Flush and Same Background Color using All option",
+	// 			jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorAll, {
+	// 				options: {
+	// 					...layoutAboveCompletelyFlushAndSameBackgroundColorAll.props.options,
+	// 					layout: {
+	// 						...layoutAboveCompletelyFlushAndSameBackgroundColorAll.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below Custom Icons with Same Background Color",
+	// 			jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons, {
+	// 				options: {
+	// 					...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons.props.options,
+	// 					layout: {
+	// 						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below Custom Icons with Default Icons using Custom Colors",
+	// 			jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors, {
+	// 				options: {
+	// 					...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors.props.options,
+	// 					layout: {
+	// 						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below buttons.all with Specific Item Fill Colors",
+	// 			jsx: React.cloneElement(layoutAboveButtonsAllWithSpecificFillColors, {
+	// 				options: {
+	// 					...layoutAboveButtonsAllWithSpecificFillColors.props.options,
+	// 					layout: {
+	// 						...layoutAboveButtonsAllWithSpecificFillColors.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below Custom Overlay Style and Loading Spinner",
+	// 			jsx: React.cloneElement(layoutAboveCustomOverlayAndSpinner, {
+	// 				options: {
+	// 					...layoutAboveCustomOverlayAndSpinner.props.options,
+	// 					layout: {
+	// 						...layoutAboveCustomOverlayAndSpinner.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 		{
+	// 			label: "Display Below No Tracking Current Item",
+	// 			jsx: React.cloneElement(layoutAboveNoTrackingItemViewerChanges, {
+	// 				options: {
+	// 					...layoutAboveNoTrackingItemViewerChanges.props.options,
+	// 					layout: {
+	// 						...layoutAboveNoTrackingItemViewerChanges.props.options.layout,
+	// 						itemDisplayLocation: 'below',
+	// 					}
+	// 				}
+	// 			}),
+	// 		},
+	// 	]
+	// ],
 	[
 		"Thumbnail Options",
 		[
-			{
-				label: "All Default",
-				jsx: noItemDisplayedMultiplePagesAllDefaults,
-			},
-			{
-				label: "Description Overlay Always Shown",
-				jsx: noThumbnailHoverEffect
-			},
-			{
-				label: "Description Overlay Disabled",
-				jsx: noThumbnailDescriptionOverlay
-			},
-			{
-				label: "0 Item Spacing",
-				jsx: multiplePagesNoItemSpacing
-			},
+	// 		{
+	// 			label: "All Default",
+	// 			jsx: noItemDisplayedMultiplePagesAllDefaults,
+	// 		},
+	// 		{
+	// 			label: "Description Overlay Always Shown",
+	// 			jsx: noThumbnailHoverEffect
+	// 		},
+	// 		{
+	// 			label: "Description Overlay Disabled",
+	// 			jsx: noThumbnailDescriptionOverlay
+	// 		},
+	// 		{
+	// 			label: "0 Item Spacing",
+	// 			jsx: multiplePagesNoItemSpacing
+	// 		},
 			{
 				label: "Dynamic Item Spacing",
 				jsx: multiplePagesDynamicSpacing,
 			},
-			{
-				label: "Custom Item Size",
-				jsx: customSizeOnly,
-			},
-			{
-				label: "Fixed Item Spacing and Custom Item Size",
-				jsx: allCustomSettings
-			},
-			{
-				label: "Fixed Item Spacing and Custom Item Size with Non-default Item Display Location",
-				jsx: customSizeAndSpacingNonDefaultItemDisplayCase
-			},
-			{
-				label: "Given Thumbnail Size with Custom Solid Background",
-				jsx: customThumbnailSolid
-			},
-			{
-				label: "Given Thumbnail Size with Custom Gradient Background",
-				jsx: customThumbnailGradient
-			},
-			{
-				label: "Given Thumbnail Size with Custom Gradient Background and Fallback",
-				jsx: customThumbnailGradientAndFallback
-			},
-			{
-				label: "Custom Current Item Border - Input Format One",
-				jsx: customThumbnailCurrentItemBorderOne
-			},
-			{
-				label: "Custom Current Item Border - Input Format Two",
-				jsx: customThumbnailCurrentItemBorderTwo
-			},
-			{
-				label: "Custom Current Item Border - Input Format Three",
-				jsx: customThumbnailCurrentItemBorderThree
-			},
+	// 		{
+	// 			label: "Custom Item Size",
+	// 			jsx: customSizeOnly,
+	// 		},
+	// 		{
+	// 			label: "Fixed Item Spacing and Custom Item Size",
+	// 			jsx: allCustomSettings
+	// 		},
+	// 		{
+	// 			label: "Fixed Item Spacing and Custom Item Size with Non-default Item Display Location",
+	// 			jsx: customSizeAndSpacingNonDefaultItemDisplayCase
+	// 		},
+	// 		{
+	// 			label: "Given Thumbnail Size with Custom Solid Background",
+	// 			jsx: customThumbnailSolid
+	// 		},
+	// 		{
+	// 			label: "Given Thumbnail Size with Custom Gradient Background",
+	// 			jsx: customThumbnailGradient
+	// 		},
+	// 		{
+	// 			label: "Given Thumbnail Size with Custom Gradient Background and Fallback",
+	// 			jsx: customThumbnailGradientAndFallback
+	// 		},
+	// 		{
+	// 			label: "Custom Current Item Border - Input Format One",
+	// 			jsx: customThumbnailCurrentItemBorderOne
+	// 		},
+	// 		{
+	// 			label: "Custom Current Item Border - Input Format Two",
+	// 			jsx: customThumbnailCurrentItemBorderTwo
+	// 		},
+	// 		{
+	// 			label: "Custom Current Item Border - Input Format Three",
+	// 			jsx: customThumbnailCurrentItemBorderThree
+	// 		},
 		]
 	],
-	[
-		"Navigation Options",
-		[
-			{
-				label: "No Wrapping",
-				jsx: navigationHideArrowsAtFinalPage
-			},
-			{
-				label: "Current Page follows last viewed item in item viewer (full-screen)",
-				jsx: navigationTracking
-			},
-			{
-				label: "Current Page does not follow last viewed item in item viewer (full-screen)",
-				jsx: navigationNoTracking
-			},
-			{
-				label: "0 Max Click Threshold",
-				jsx: navigationZeroMaxClickThreshold
-			},
-			{
-				label: "0 Max Click Threshold No Wrapping",
-				jsx: navigationZeroMaxClickHideArrows
-			},
-			{
-				label: "Swiping a Thumbnail Disabled",
-				jsx: navigationNoSwiping
-			},
-		]
-	],
-	[
-		"Item Viewer",
-		[
-			{
-				label: "Default Overlay Displayed on Load",
-				jsx: itemViewerDefaultOverlayOnLoad
-			},
-			{
-				label: "Default Overlay Displayed on Load with Custom Toolbar Buttons",
-				jsx: itemViewerCustomButtons
-			},
-			{
-				label: "Custom Overlay Displayed on Load",
-				jsx: itemViewerCustomOverlayOnLoad
-			},
-			{
-				label: "Toolbar doesn't hide on inactivity (Click item to view)",
-				jsx: itemViewerNoToolbarHide
-			},
-			{
-				label: "Toolbar hides after 500ms of inactivity (Click item to view)",
-				jsx: itemViewerHideAfter500ms
-			},
-			{
-				label: "Seek amount 2 sec (Click item to view)",
-				jsx: itemViewerSeekAmount2Sec
-			},
-			{
-				label: "All custom keyboard shortcuts",
-				jsx: itemViewerCustomShortcuts,
-			},
-			{
-				label: "Custom Item Viewer Font",
-				jsx: itemViewerCustomItemViewerFont,
-			},
-			{
-				label: "Custom Navigation Font",
-				jsx: itemViewerCustomNavigationFont,
-			},
-			{
-				label: "Custom Navigation and Item Viewer Fonts",
-				jsx: itemViewerCustomFontBoth,
-			},
-			{
-				label: "Full-screen Swiping Disabled",
-				jsx: itemViewerSwipingDisabled
-			},
-			{
-				label: "Full-screen Max Click Threshold 0",
-				jsx: itemViewerMaxClickThresholdZero
-			},
-		]
-	],
-	[
-		"Custom Width",
-		[
-			{
-				label: "Half width - All Defaults",
-				jsx: (
-					<div style={{ display: "flex" }}>
-						<div style={{ width: '50%' }}>
-							{noItemDisplayedMultiplePagesAllDefaults}
-						</div>
-					</div>
-				)
-			},
-			{
-				label: "Side by Side - All Defaults",
-				jsx: (
-					<div style={{ display: "flex" }}>
-						<div style={{ width: '50%', marginRight: "4px" }}>
-							{noItemDisplayedMultiplePagesAllDefaults}
-						</div>
-						<div style={{ width: '50%', marginLeft: "4px" }}>
-							{noItemDisplayedMultiplePagesAllDefaults}
-						</div>
-					</div>
-				)
-			},
-			{
-				label: "Half width - All Custom Settings",
-				jsx: (
-					<div style={{ display: "flex" }}>
-						<div style={{ width: '50%', marginRight: "4px" }}>
-							{allCustomSettings}
-						</div>
-					</div>
-				)
-			},
-			{
-				label: "Side by Side - All Custom Settings",
-				jsx: (
-					<div style={{ display: "flex" }}>
-						<div style={{ width: '50%', marginRight: "4px" }}>
-							{allCustomSettings}
-						</div>
-						<div style={{ width: '50%', marginLeft: "4px" }}>
-							{allCustomSettings}
-						</div>
-					</div>
-				)
-			},
-		]
-	], 
-	[
-		"Custom",
-		[
-			{
-				label: "All Custom Settings",
-				jsx: allCustomSettings,
-			},
-			{
-				label: "Custom Button Sizes",
-				jsx: customButtonSizes
-			},
-		]
-	]
+	// [
+	// 	"Navigation Options",
+	// 	[
+	// 		{
+	// 			label: "No Wrapping",
+	// 			jsx: navigationHideArrowsAtFinalPage
+	// 		},
+	// 		{
+	// 			label: "Current Page follows last viewed item in item viewer (full-screen)",
+	// 			jsx: navigationTracking
+	// 		},
+	// 		{
+	// 			label: "Current Page does not follow last viewed item in item viewer (full-screen)",
+	// 			jsx: navigationNoTracking
+	// 		},
+	// 		{
+	// 			label: "0 Max Click Threshold",
+	// 			jsx: navigationZeroMaxClickThreshold
+	// 		},
+	// 		{
+	// 			label: "0 Max Click Threshold No Wrapping",
+	// 			jsx: navigationZeroMaxClickHideArrows
+	// 		},
+	// 		{
+	// 			label: "Swiping a Thumbnail Disabled",
+	// 			jsx: navigationNoSwiping
+	// 		},
+	// 	]
+	// ],
+	// [
+	// 	"Item Viewer",
+	// 	[
+	// 		{
+	// 			label: "Default Overlay Displayed on Load",
+	// 			jsx: itemViewerDefaultOverlayOnLoad
+	// 		},
+	// 		{
+	// 			label: "Default Overlay Displayed on Load with Custom Toolbar Buttons",
+	// 			jsx: itemViewerCustomButtons
+	// 		},
+	// 		{
+	// 			label: "Custom Overlay Displayed on Load",
+	// 			jsx: itemViewerCustomOverlayOnLoad
+	// 		},
+	// 		{
+	// 			label: "Toolbar doesn't hide on inactivity (Click item to view)",
+	// 			jsx: itemViewerNoToolbarHide
+	// 		},
+	// 		{
+	// 			label: "Toolbar hides after 500ms of inactivity (Click item to view)",
+	// 			jsx: itemViewerHideAfter500ms
+	// 		},
+	// 		{
+	// 			label: "Seek amount 2 sec (Click item to view)",
+	// 			jsx: itemViewerSeekAmount2Sec
+	// 		},
+	// 		{
+	// 			label: "All custom keyboard shortcuts",
+	// 			jsx: itemViewerCustomShortcuts,
+	// 		},
+	// 		{
+	// 			label: "Custom Item Viewer Font",
+	// 			jsx: itemViewerCustomItemViewerFont,
+	// 		},
+	// 		{
+	// 			label: "Custom Navigation Font",
+	// 			jsx: itemViewerCustomNavigationFont,
+	// 		},
+	// 		{
+	// 			label: "Custom Navigation and Item Viewer Fonts",
+	// 			jsx: itemViewerCustomFontBoth,
+	// 		},
+	// 		{
+	// 			label: "Full-screen Swiping Disabled",
+	// 			jsx: itemViewerSwipingDisabled
+	// 		},
+	// 		{
+	// 			label: "Full-screen Max Click Threshold 0",
+	// 			jsx: itemViewerMaxClickThresholdZero
+	// 		},
+	// 	]
+	// ],
+	// [
+	// 	"Custom Width",
+	// 	[
+	// 		{
+	// 			label: "Half width - All Defaults",
+	// 			jsx: (
+	// 				<div style={{ display: "flex" }}>
+	// 					<div style={{ width: '50%' }}>
+	// 						{noItemDisplayedMultiplePagesAllDefaults}
+	// 					</div>
+	// 				</div>
+	// 			)
+	// 		},
+	// 		{
+	// 			label: "Side by Side - All Defaults",
+	// 			jsx: (
+	// 				<div style={{ display: "flex" }}>
+	// 					<div style={{ width: '50%', marginRight: "4px" }}>
+	// 						{noItemDisplayedMultiplePagesAllDefaults}
+	// 					</div>
+	// 					<div style={{ width: '50%', marginLeft: "4px" }}>
+	// 						{noItemDisplayedMultiplePagesAllDefaults}
+	// 					</div>
+	// 				</div>
+	// 			)
+	// 		},
+	// 		{
+	// 			label: "Half width - All Custom Settings",
+	// 			jsx: (
+	// 				<div style={{ display: "flex" }}>
+	// 					<div style={{ width: '50%', marginRight: "4px" }}>
+	// 						{allCustomSettings}
+	// 					</div>
+	// 				</div>
+	// 			)
+	// 		},
+	// 		{
+	// 			label: "Side by Side - All Custom Settings",
+	// 			jsx: (
+	// 				<div style={{ display: "flex" }}>
+	// 					<div style={{ width: '50%', marginRight: "4px" }}>
+	// 						{allCustomSettings}
+	// 					</div>
+	// 					<div style={{ width: '50%', marginLeft: "4px" }}>
+	// 						{allCustomSettings}
+	// 					</div>
+	// 				</div>
+	// 			)
+	// 		},
+	// 	]
+	// ], 
+	// [
+	// 	"Custom",
+	// 	[
+	// 		{
+	// 			label: "All Custom Settings",
+	// 			jsx: allCustomSettings,
+	// 		},
+	// 		{
+	// 			label: "Custom Button Sizes",
+	// 			jsx: customButtonSizes
+	// 		},
+	// 	]
+	// ]
 ];
 
 const sections: CSharpSection[] = SECTIONS.map((section) => ({

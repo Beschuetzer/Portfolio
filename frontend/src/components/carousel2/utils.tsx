@@ -10,7 +10,7 @@ import {
     VIDEO_EXTENSIONS
 } from "./constants";
 import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
-import { Coordinate, Point, ArrowButtonDirection, CarouselElementValueTuple } from "./types";
+import { Coordinate, Point, ArrowButtonDirection, CarouselElementValueTuple, CarouselElementValueType } from "./types";
 type GetClassname = {
     elementName?: string;
     modifiedName?: string;
@@ -206,9 +206,48 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
 *Items given are sorted by max-width, then min-width, then unspecified 
 */
 export function getCurrentValue<T>(valueTuple: CarouselElementValueTuple<T>[] | undefined, defaultSize: T) {
+    if (!valueTuple) return 0;
     const windowWidth = window.innerWidth;
+    let sorted = valueTuple;
+    const valueType = typeof valueTuple?.[0]?.[0];
 
-    for (const tuple of valueTuple || []) {
+    switch (valueType) {
+        case "number": {
+            sorted = valueTuple?.sort((a: CarouselElementValueTuple<T>, b: CarouselElementValueTuple<T>) => {
+                const priority = ['max-width', 'min-width', undefined] as (CarouselElementValueType | undefined)[]
+                const firstTypeIndex = priority.indexOf(a?.[2]);
+                const secondTypeIndex = priority.indexOf(b?.[2]);
+                const firstBreakpoint = a?.[1] || 0;
+                const secondBreakpoint = b?.[1] || 0;
+
+                const sortFirstBeforeSecond = -1;
+                const sortFirstAfterSecond = 1;
+                const keepOrder = 0;
+                const sortByBreakpoint = firstBreakpoint < secondBreakpoint ? sortFirstBeforeSecond : sortFirstAfterSecond;
+
+                if (firstTypeIndex === -1 && secondTypeIndex === -1) {
+                    return sortByBreakpoint;
+                } else if (firstTypeIndex === -1) {
+                    return sortFirstAfterSecond;
+                } else if (secondTypeIndex === -1) {
+                    return sortFirstBeforeSecond;
+                } else if (firstTypeIndex === secondTypeIndex) {
+                    return sortByBreakpoint;
+                } else if (firstTypeIndex > secondTypeIndex) {
+                    return sortFirstAfterSecond;
+                } else if (firstTypeIndex < secondTypeIndex) {
+                    return sortFirstBeforeSecond;
+                } else {
+                    //this should never happen
+                    return keepOrder;
+                }
+            })
+        }
+    }
+    
+    console.log({sorted});
+
+    for (const tuple of sorted || []) {
         const [value, breakpoint, breakpointType] = tuple || [];
         let valueToUse;
 
