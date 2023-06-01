@@ -203,9 +203,11 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
 
 /*
 *The idea here is to get the current value for the current window width from the list of tuples
-*Items given are sorted by max-width, then min-width, then unspecified 
-*max-width items are sorted ascending by breakpoint and min-width descending by breakpoint
-*items with a breakpoint specified but no type are considered to be 'max-width' type
+*Tuples given are sorted by max-width, then min-width, then unspecified 
+*max-width tuples are sorted ascending by breakpoint and min-width descending by breakpoint
+*Tuples with a breakpoint specified but no type are considered to be 'max-width' type
+*If there is more than one tuple with just a value, the first one in the sorted array is used (e.g. for numbers it is the smallest one)
+*When extending the supported types, the only thing that needs to be modified is adding another case in the switch statement for said type
 */
 export function getCurrentValue<T>(valueTuple: CarouselElementValueTuple<T>[] | undefined, defaultSize: T) {
     if (!valueTuple) return 0;
@@ -213,40 +215,45 @@ export function getCurrentValue<T>(valueTuple: CarouselElementValueTuple<T>[] | 
     let sorted = valueTuple;
     const valueType = typeof valueTuple?.[0]?.[0];
 
-    switch (valueType) {
-        case "number": {
-            sorted = valueTuple?.sort((a: CarouselElementValueTuple<T>, b: CarouselElementValueTuple<T>) => {
-                const priority = ['max-width', 'min-width', undefined] as (CarouselElementValueType | undefined)[]
-                const firstBreakpoint = a?.[1] || 0;
-                const secondBreakpoint = b?.[1] || 0;
-                const firstType = firstBreakpoint ? a?.[2] || 'max-width' : undefined;
-                const secondType = secondBreakpoint ? b?.[2] || 'max-width' : undefined;
-                const firstValue = a[0];
-                const secondValue = b[0];
-                const firstTypeIndex = priority.indexOf(firstType);
-                const secondTypeIndex = priority.indexOf(secondType);
-                const sortFirstBeforeSecond = -1;
-                const sortFirstAfterSecond = 1;
-                const keepOrder = 0;
-                const sortByMaxWidthBreakpoint = firstBreakpoint < secondBreakpoint ? sortFirstBeforeSecond : sortFirstAfterSecond;
-                const sortByMinWidthBreakpoint = firstBreakpoint > secondBreakpoint ? sortFirstBeforeSecond : sortFirstAfterSecond;
-                const sortByValue = firstValue < secondValue ? sortFirstBeforeSecond : sortFirstAfterSecond;
+    sorted = valueTuple?.sort((a: CarouselElementValueTuple<T>, b: CarouselElementValueTuple<T>) => {
+        const priority = ['max-width', 'min-width', undefined] as (CarouselElementValueType | undefined)[]
+        const firstBreakpoint = a?.[1] || 0;
+        const secondBreakpoint = b?.[1] || 0;
+        const firstType = firstBreakpoint ? a?.[2] || 'max-width' : undefined;
+        const secondType = secondBreakpoint ? b?.[2] || 'max-width' : undefined;
+        const firstValue = a[0];
+        const secondValue = b[0];
+        const firstTypeIndex = priority.indexOf(firstType);
+        const secondTypeIndex = priority.indexOf(secondType);
+        const sortFirstBeforeSecond = -1;
+        const sortFirstAfterSecond = 1;
+        const keepOrder = 0;
+        const sortByMaxWidthBreakpoint = firstBreakpoint < secondBreakpoint ? sortFirstBeforeSecond : sortFirstAfterSecond;
+        const sortByMinWidthBreakpoint = firstBreakpoint > secondBreakpoint ? sortFirstBeforeSecond : sortFirstAfterSecond;
 
-
-                //assuming the index values are never -1
-                if (firstTypeIndex === secondTypeIndex) {
-                    if (firstType === 'max-width') return sortByMaxWidthBreakpoint;
-                    else if (firstType === 'min-width') return sortByMinWidthBreakpoint;
-                    return sortByValue;
-                } else if (firstTypeIndex > secondTypeIndex) {
-                    return sortFirstAfterSecond;
-                } else if (firstTypeIndex < secondTypeIndex) {
-                    return sortFirstBeforeSecond;
-                }
-                return keepOrder;
-            })
+        //each type may need to evalute equality differently       
+        let sortByValue;
+        switch (valueType) {
+            //this is the number case
+            default:
+                sortByValue = firstValue < secondValue ? sortFirstBeforeSecond : sortFirstAfterSecond;
         }
-    }
+
+
+        //assuming the index values are never -1
+        if (firstTypeIndex === secondTypeIndex) {
+            if (firstType === 'max-width') return sortByMaxWidthBreakpoint;
+            else if (firstType === 'min-width') return sortByMinWidthBreakpoint;
+            return sortByValue;
+        } else if (firstTypeIndex > secondTypeIndex) {
+            return sortFirstAfterSecond;
+        } else if (firstTypeIndex < secondTypeIndex) {
+            return sortFirstBeforeSecond;
+        }
+        return keepOrder;
+    })
+
+    console.log({ sorted })
 
     for (const tuple of sorted || []) {
         const [value, breakpoint, breakpointType] = tuple || [];
@@ -263,12 +270,15 @@ export function getCurrentValue<T>(valueTuple: CarouselElementValueTuple<T>[] | 
         const breakpointTypeToUse = breakpointType || "max-width";
 
         if (!breakpoint) {
+            console.log({valueToUse});
             return valueToUse;
         }
 
         if (breakpointTypeToUse === "max-width") {
+            console.log({valueToUse});
             if (windowWidth <= breakpoint) return valueToUse;
         } else if (breakpointTypeToUse === "min-width") {
+            console.log({valueToUse});
             if (windowWidth >= breakpoint) return valueToUse;
         }
     }
