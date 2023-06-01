@@ -364,7 +364,7 @@ const multiplePagesNoItemSpacing = (
 		}
 	}} />
 );
-const multiplePagesDynamicSpacing = (
+const dynamicSpacingOnly = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			// itemSpacing: 4,
@@ -372,12 +372,61 @@ const multiplePagesDynamicSpacing = (
 		}
 	}} />
 );
-const customSizeOnly = (
+const dynamicSizeOnly = (
 	<Carousel
 		options={{
 			thumbnail: {
-				size: 200,
+				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
 			}
+		}}
+		items={items}
+	/>
+);
+const dynamicSizeAndSpacing = (
+	<Carousel
+		options={{
+			thumbnail: {
+				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
+				itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+			}
+		}}
+		items={items}
+	/>
+);
+const dynamicSpacingOnlyDisplayAbove = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			// itemSpacing: 4,
+			itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+		},
+		layout: {
+			itemDisplayLocation: 'above',
+		},
+	}} />
+);
+const dynamicSizeOnlyDisplayAbove = (
+	<Carousel
+		options={{
+			thumbnail: {
+				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
+			},
+			layout: {
+				itemDisplayLocation: 'above',
+			},
+		}}
+		items={items}
+	/>
+);
+const dynamicSizeAndSpacingDisplayAbove = (
+	<Carousel
+		options={{
+			thumbnail: {
+				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
+				itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+			},
+			layout: {
+				itemDisplayLocation: 'above',
+			},
 		}}
 		items={items}
 	/>
@@ -1727,9 +1776,9 @@ const SECTIONS: Sections = [
 	// 		},
 	// 	]
 	// ],
-	[
-		"Thumbnail Options",
-		[
+	// [
+	// 	"Thumbnail Options",
+	// 	[
 	// 		{
 	// 			label: "All Default",
 	// 			jsx: noItemDisplayedMultiplePagesAllDefaults,
@@ -1746,10 +1795,6 @@ const SECTIONS: Sections = [
 	// 			label: "0 Item Spacing",
 	// 			jsx: multiplePagesNoItemSpacing
 	// 		},
-			{
-				label: "Dynamic Item Spacing",
-				jsx: multiplePagesDynamicSpacing,
-			},
 	// 		{
 	// 			label: "Custom Item Size",
 	// 			jsx: customSizeOnly,
@@ -1786,8 +1831,37 @@ const SECTIONS: Sections = [
 	// 			label: "Custom Current Item Border - Input Format Three",
 	// 			jsx: customThumbnailCurrentItemBorderThree
 	// 		},
+	// 	]
+	// ],
+	[
+		"Dynamic Settings",
+		[
+			{
+				label: "Dynamic Thumbnail Spacing",
+				jsx: dynamicSpacingOnly,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Automatic Spacing",
+				jsx: dynamicSizeOnly,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Spacing",
+				jsx: dynamicSizeAndSpacing,
+			},
+			{
+				label: "Dynamic Thumbnail Spacing",
+				jsx: dynamicSpacingOnlyDisplayAbove,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Automatic Spacing",
+				jsx: dynamicSizeOnlyDisplayAbove,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Spacing",
+				jsx: dynamicSizeAndSpacingDisplayAbove,
+			},
 		]
-	],
+	]
 	// [
 	// 	"Navigation Options",
 	// 	[

@@ -210,7 +210,7 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
 *When extending the supported types, the only thing that needs to be modified is adding another case in the switch statement for said type
 */
 export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefined, defaultSize: T) {
-    if (!valueTuple) return 0;
+    if (!valueTuple) return defaultSize;
     if (!Array.isArray(valueTuple)) return valueTuple;
     const windowWidth = window.innerWidth;
     let sorted = valueTuple;
@@ -254,8 +254,6 @@ export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefin
         return keepOrder;
     })
 
-    console.log({ sorted })
-
     for (const tuple of sorted || []) {
         const [value, breakpoint, breakpointType] = tuple || [];
         let valueToUse;
@@ -271,15 +269,12 @@ export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefin
         const breakpointTypeToUse = breakpointType || "max-width";
 
         if (!breakpoint) {
-            console.log({valueToUse});
             return valueToUse;
         }
 
         if (breakpointTypeToUse === "max-width") {
-            console.log({valueToUse});
             if (windowWidth <= breakpoint) return valueToUse;
         } else if (breakpointTypeToUse === "min-width") {
-            console.log({valueToUse});
             if (windowWidth >= breakpoint) return valueToUse;
         }
     }

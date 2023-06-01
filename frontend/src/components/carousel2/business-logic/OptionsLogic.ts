@@ -29,9 +29,9 @@ export class OptionsLogic {
     //#region Getters
     get carouselItemSize() {
         if (this.isDefaultItemDisplayLocation) {
-            return this.options?.thumbnail?.size || CAROUSEL_ITEM_SIZE_DEFAULT;
+            return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT);
         }
-        return this.options?.thumbnail?.size || CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT;
+        return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT);
     }
     
     get isDefaultItemDisplayLocation() {

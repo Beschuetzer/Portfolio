@@ -438,7 +438,7 @@ export type CarouselThumbnailOptions = {
     /*
     *The size of the thumbnails in px.  Default is 150px.
     */
-    size?: number;
+    size?: CarouselElementValue<number>;
 }
 
 export type Point = {
