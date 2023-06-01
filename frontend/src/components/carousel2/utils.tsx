@@ -10,7 +10,7 @@ import {
     VIDEO_EXTENSIONS
 } from "./constants";
 import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
-import { Coordinate, Point, ArrowButtonDirection, CarouselElementValueTuple, CarouselElementValueType } from "./types";
+import { Coordinate, Point, ArrowButtonDirection, CarouselElementValue, CarouselElementValueType, CarouselElementValueTuple } from "./types";
 type GetClassname = {
     elementName?: string;
     modifiedName?: string;
@@ -209,13 +209,14 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
 *If there is more than one tuple with just a value, the first one in the sorted array is used (e.g. for numbers it is the smallest one)
 *When extending the supported types, the only thing that needs to be modified is adding another case in the switch statement for said type
 */
-export function getCurrentValue<T>(valueTuple: CarouselElementValueTuple<T>[] | undefined, defaultSize: T) {
+export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefined, defaultSize: T) {
     if (!valueTuple) return 0;
+    if (!Array.isArray(valueTuple)) return valueTuple;
     const windowWidth = window.innerWidth;
     let sorted = valueTuple;
     const valueType = typeof valueTuple?.[0]?.[0];
 
-    sorted = valueTuple?.sort((a: CarouselElementValueTuple<T>, b: CarouselElementValueTuple<T>) => {
+    sorted = valueTuple?.sort((a, b) => {
         const priority = ['max-width', 'min-width', undefined] as (CarouselElementValueType | undefined)[]
         const firstBreakpoint = a?.[1] || 0;
         const secondBreakpoint = b?.[1] || 0;
@@ -242,8 +243,8 @@ export function getCurrentValue<T>(valueTuple: CarouselElementValueTuple<T>[] | 
 
         //assuming the index values are never -1
         if (firstTypeIndex === secondTypeIndex) {
-            if (firstType === 'max-width') return sortByMaxWidthBreakpoint;
-            else if (firstType === 'min-width') return sortByMinWidthBreakpoint;
+            if (firstTypeIndex === priority.indexOf('max-width')) return sortByMaxWidthBreakpoint;
+            else if (firstTypeIndex === priority.indexOf('min-width')) return sortByMinWidthBreakpoint;
             return sortByValue;
         } else if (firstTypeIndex > secondTypeIndex) {
             return sortFirstAfterSecond;

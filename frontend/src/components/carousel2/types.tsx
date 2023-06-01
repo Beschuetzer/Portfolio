@@ -79,10 +79,10 @@ export type CarouselElementSize = {
     *       Currently the sizing only takes affect if the CarouselContenxt component re-renders.  
     *       This only happens if the numberOfPages changes or the thumbnail spacing changes.
     */
-    size?: CarouselElementValueTuple<number>[];
+    size?: CarouselElementValue<number>;
 }
-export type CarouselElementValueTuple<T> = [T, number?, CarouselElementValueType?];
-
+export type CarouselElementValue<T> = CarouselElementValueTuple<T> | T;
+export type CarouselElementValueTuple<T> = [T, number?, CarouselElementValueType?][];
 export type CarouselItemViewerOptions = {
     /*
    *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.  
@@ -159,8 +159,7 @@ export type CarouselSections = {
     [CarouselSection.videoModal]?: {
         closeButton?: {
             fill?: Color;
-            size?: CarouselElementValueTuple<number>[];
-        };
+        } & CarouselElementSize;
         /*
         *This is in px
         */
@@ -428,7 +427,7 @@ export type CarouselThumbnailOptions = {
     *The value in px that the thumbnails are spaced apart.  
     *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible
     */
-    itemSpacing?: CarouselElementValueTuple<number>[];
+    itemSpacing?: CarouselElementValue<number>;
     /*
     *Default is `min`
     *Determines how the thumbnails are spaced out if there is only one page and `itemSpacing` is not given (i.e. dynamic spacing is active)

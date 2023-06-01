@@ -367,6 +367,7 @@ const multiplePagesNoItemSpacing = (
 const multiplePagesDynamicSpacing = (
 	<Carousel items={items} options={{
 		thumbnail: {
+			// itemSpacing: 4,
 			itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
 		}
 	}} />
@@ -386,7 +387,7 @@ const customSizeAndSpacingNonDefaultItemDisplayCase = (
 		options={{
 			thumbnail: {
 				size: 200,
-				itemSpacing: [[5]],
+				itemSpacing: 5,
 			},
 			layout: {
 				itemDisplayLocation: "above",
