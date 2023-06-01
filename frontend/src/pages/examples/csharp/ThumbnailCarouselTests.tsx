@@ -431,6 +431,51 @@ const dynamicSizeAndSpacingDisplayAbove = (
 		items={items}
 	/>
 );
+const dynamicSizeAndSpacingDisplayAbovePositionedLeft = (
+	<Carousel
+		options={{
+			thumbnail: {
+				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
+				itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+			},
+			layout: {
+				itemDisplayLocation: 'above',
+				itemPositioning: 'left',
+			},
+		}}
+		items={items}
+	/>
+);
+const dynamicSizeAndSpacingDisplayAbovePositionedCenter = (
+	<Carousel
+		options={{
+			thumbnail: {
+				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
+				itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+			},
+			layout: {
+				itemDisplayLocation: 'above',
+				itemPositioning: 'center',
+			},
+		}}
+		items={items}
+	/>
+);
+const dynamicSizeAndSpacingDisplayAbovePositionedRight = (
+	<Carousel
+		options={{
+			thumbnail: {
+				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
+				itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+			},
+			layout: {
+				itemDisplayLocation: 'above',
+				itemPositioning: 'right',
+			},
+		}}
+		items={items}
+	/>
+);
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -1859,6 +1904,18 @@ const SECTIONS: Sections = [
 			{
 				label: "Dynamic Thumbnail Sizing and Spacing",
 				jsx: dynamicSizeAndSpacingDisplayAbove,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Spacing and Positioned Left",
+				jsx: dynamicSizeAndSpacingDisplayAbovePositionedLeft,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Spacing and Positioned Center",
+				jsx: dynamicSizeAndSpacingDisplayAbovePositionedCenter,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Spacing and Positioned Right",
+				jsx: dynamicSizeAndSpacingDisplayAbovePositionedRight,
 			},
 		]
 	]
