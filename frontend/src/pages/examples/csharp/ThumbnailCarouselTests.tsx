@@ -1503,9 +1503,9 @@ const noThumbnailDescriptionOverlay = (
 
 type Sections = [string, { label: string, jsx: ReactNode | ReactNode[] }[]][];
 const SECTIONS: Sections = [
-	// [
-	// 	"Layouts",
-	// 	[
+	[
+		"Layouts",
+		[
 	// 		{
 	// 			label: "One Item - All Defaults",
 	// 			jsx: noItemDisplayedOneItemAllDefaults
@@ -1546,32 +1546,32 @@ const SECTIONS: Sections = [
 	// 			label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
 	// 			jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
 	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Left in Container with Default Spacing",
-	// 			jsx: layoutThumbnailPositioningLeft,
-	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
-	// 			jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
-	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Center in Container with Default Spacing",
-	// 			jsx: layoutThumbnailPositioningCenter,
-	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
-	// 			jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
-	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Right in Container with Default Spacing",
-	// 			jsx: layoutThumbnailPositioningRight,
-	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
-	// 			jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
-	// 		},
-	// 	]
-	// ],
+			{
+				label: "Thumbnails Positioned Left in Container with Default Spacing",
+				jsx: layoutThumbnailPositioningLeft,
+			},
+			{
+				label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
+				jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
+			},
+			{
+				label: "Thumbnails Positioned Center in Container with Default Spacing",
+				jsx: layoutThumbnailPositioningCenter,
+			},
+			{
+				label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
+				jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
+			},
+			{
+				label: "Thumbnails Positioned Right in Container with Default Spacing",
+				jsx: layoutThumbnailPositioningRight,
+			},
+			{
+				label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
+				jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
+			},
+		]
+	],
 	// [
 	// 	'Above-Customization',
 	// 	[

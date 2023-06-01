@@ -127,17 +127,29 @@ export function getNumberOfItemsThatCanFit(
 ) {
     const containerWidth = getContainerWidth(htmlElement, stylingLogic);
     const itemSize = optionsLogic.carouselItemSize;
-    const numberOfItemsThatCanFit = containerWidth / itemSize;
-    const calculatedNumberOfWholeItemsThatCanFit = Math.floor(numberOfItemsThatCanFit);
+    const itemSpacing = optionsLogic.getItemSpacing();
+    const numberOfItemsThatCanFitWithZeroSpacing = containerWidth / itemSize;
+    let calculatedNumberOfWholeItemsThatCanFitWithZeroSpacing = Math.floor(numberOfItemsThatCanFitWithZeroSpacing);
     const itemSpacingStrategy = optionsLogic.itemSpacingStrategy;
+
+    //logic needed for cases when itemSpacing is given and can't be 0
+    const numberOfSpaces = calculatedNumberOfWholeItemsThatCanFitWithZeroSpacing - 1;
+    const totalSpaceOfItems = calculatedNumberOfWholeItemsThatCanFitWithZeroSpacing * itemSize + numberOfSpaces * itemSpacing;
+    if (totalSpaceOfItems > containerWidth) {
+        calculatedNumberOfWholeItemsThatCanFitWithZeroSpacing -= 1;
+    }
+
     //logic needed to prevent crashing at smaller viewport
-    const numberOfWholeItemsThatCanFit = calculatedNumberOfWholeItemsThatCanFit <= 0 ? 1 : calculatedNumberOfWholeItemsThatCanFit;
+    const numberOfWholeItemsThatCanFit = calculatedNumberOfWholeItemsThatCanFitWithZeroSpacing <= 0
+        ? 1
+        : calculatedNumberOfWholeItemsThatCanFitWithZeroSpacing;
 
     return {
         containerWidth,
         itemSize,
-        numberOfWholeItemsThatCanFit: itemSpacingStrategy === 'max' ? Math.min(itemsLength, numberOfWholeItemsThatCanFit) : numberOfWholeItemsThatCanFit,
-        numberOfItemsThatCanFit: itemSpacingStrategy === 'max' ? Math.min(itemsLength, numberOfItemsThatCanFit) : numberOfItemsThatCanFit,
+        numberOfWholeItemsThatCanFit: itemSpacingStrategy === 'max'
+            ? Math.min(itemsLength, numberOfWholeItemsThatCanFit)
+            : numberOfWholeItemsThatCanFit,
     }
 }
 
