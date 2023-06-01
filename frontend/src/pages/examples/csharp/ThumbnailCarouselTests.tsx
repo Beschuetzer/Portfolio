@@ -367,9 +367,7 @@ const multiplePagesNoItemSpacing = (
 const multiplePagesDynamicSpacing = (
 	<Carousel items={items} options={{
 		thumbnail: {
-			// itemSpacing: [[10, 800, 'max-width'], [15, 1200, 'min-width'], [0]],
-			//todo: test this one
-			itemSpacing: [[0], [20, 1500, 'min-width'], [10, 800, 'max-width'], [8, 500, 'max-width'], [6, 400, 'max-width'], [15, 1200, 'min-width']],
+			itemSpacing: [[10], [5], [1, 1199], [20, 1500, 'min-width'], [10, 800, 'max-width'], [8, 500, 'max-width'], [6, 400, 'max-width'], [15, 1200, 'min-width']],
 		}
 	}} />
 );
