@@ -647,6 +647,13 @@ const dynamicFontFamilyNavigation = (
 		}
 	}} />
 );
+const dynamicWrappingDisabled = (
+	<Carousel items={items.slice(2)} options={{
+		navigation: {
+			disableWrapping: [[false], [true, 800]]
+		},
+	}} />
+);
 const dynamicFontFamilyItemViewer = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
@@ -2145,6 +2152,11 @@ const SECTIONS: Sections = [
 				label: "Font Changes in Navigation at 800px",
 				jsx: dynamicFontFamilyNavigation,
 			},
+			{
+				label: "Wrapping Disabled < 800px",
+				jsx: dynamicWrappingDisabled,
+			},
+
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",
 			// 	jsx: dynamicMaxLineCount,

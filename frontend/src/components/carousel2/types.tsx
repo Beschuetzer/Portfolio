@@ -220,7 +220,7 @@ export type CarouselNavigationOptions = {
     *and the left arrow button navigates to the last page when the currentPage is the first page.
     *Default is false
     */
-    disableWrapping?: boolean;
+    disableWrapping?: CarouselElementValue<boolean>;
 } & CarouselSwipingOptions
 
 export type CarouselNavigationProps = {

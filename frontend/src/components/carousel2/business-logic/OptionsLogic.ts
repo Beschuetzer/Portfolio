@@ -55,7 +55,7 @@ export class OptionsLogic {
     }
 
     get isWrappingDisabled() {
-        return !!this.options.navigation?.disableWrapping;
+        return getCurrentValue(this.options.navigation?.disableWrapping, false);
     }
 
     get itemSpacingStrategy() {
