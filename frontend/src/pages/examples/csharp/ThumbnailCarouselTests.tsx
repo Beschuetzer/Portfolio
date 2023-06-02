@@ -551,6 +551,21 @@ const dynamicDisablingOfThumbnailOverlayBelow800 = (
 		},
 	}} />
 );
+const dynamicThumbnailBackgroundOpacity = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			descriptionOverlay: {
+				hideDescriptionOverlayUnlessHovered: false,
+				background: {
+					solid: {
+						color: getComputedStyleCustom('--color-primary-1'),
+						opacity: [[1], [.5, 800]],
+					}
+				},
+			},
+		},
+	}} />
+);
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -2009,6 +2024,11 @@ const SECTIONS: Sections = [
 				label: "Thumbnail Overlay Hiding Behavior Changes at 800px",
 				jsx: dynamicHidingOfThumbnailOverlay,
 			},
+			{
+				label: "Thumbnail Background Opacity Changes at 800px",
+				jsx: dynamicThumbnailBackgroundOpacity,
+			},
+			
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",
 			// 	jsx: dynamicMaxLineCount,

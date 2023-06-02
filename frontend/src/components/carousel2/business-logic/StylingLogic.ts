@@ -21,6 +21,7 @@ import {
     CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
     CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -486,7 +487,7 @@ export class StylingLogic {
             background: 'none',
             backgroundColor: convertHexToRgba(
                 color?.trim() || CAROUSEL_COLOR_ONE,
-                solid?.opacity || CAROUSEL_DOT_OPACITY_DEFAULT
+                getCurrentValue(solid?.opacity, CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT),
             ),
         } as CSSProperties : {};
 

@@ -377,7 +377,7 @@ export type CarouselThumbnailBackgroundOptions = {
         /*
         *Default is 1 when specifying a custom color
         */
-        opacity?: number;
+        opacity?: CarouselElementValue<number>;
     }
 }
 
