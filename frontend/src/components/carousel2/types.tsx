@@ -409,7 +409,7 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
     /*
     *The hexadecimal value for the thumbnail background's text
     */
-    textColor?: Color;
+    textColor?: CarouselElementValue<Color>;
 
 }
 

@@ -531,7 +531,7 @@ export class StylingLogic {
         } as React.CSSProperties;
 
         const textColorStyle = thumbnail?.descriptionOverlay?.textColor ? {
-            color: thumbnail?.descriptionOverlay?.textColor,
+            color: getCurrentValue(thumbnail?.descriptionOverlay?.textColor, CAROUSEL_COLOR_FIVE),
         } as React.CSSProperties : {};
 
         return {

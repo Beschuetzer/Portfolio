@@ -476,6 +476,18 @@ const dynamicSizeAndSpacingDisplayAbovePositionedRight = (
 		items={items}
 	/>
 );
+const dynamicThumbnailDescriptionTextColor = (
+	<Carousel
+		options={{
+			thumbnail: {
+				descriptionOverlay: {
+					textColor: [['red'], ['green'], ['yellow', 1100], ['blue', 1500, 'min-width'], ['orange', 800, 'max-width'], ['white', 600, 'max-width'], ['grey', 400, 'max-width'], ['purple', 1200, 'min-width']],
+				}
+			},
+		}}
+		items={items}
+	/>
+);
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -1503,9 +1515,9 @@ const noThumbnailDescriptionOverlay = (
 
 type Sections = [string, { label: string, jsx: ReactNode | ReactNode[] }[]][];
 const SECTIONS: Sections = [
-	[
-		"Layouts",
-		[
+	// [
+	// 	"Layouts",
+	// 	[
 	// 		{
 	// 			label: "One Item - All Defaults",
 	// 			jsx: noItemDisplayedOneItemAllDefaults
@@ -1546,32 +1558,32 @@ const SECTIONS: Sections = [
 	// 			label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
 	// 			jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
 	// 		},
-			{
-				label: "Thumbnails Positioned Left in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningLeft,
-			},
-			{
-				label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
-			},
-			{
-				label: "Thumbnails Positioned Center in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningCenter,
-			},
-			{
-				label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
-			},
-			{
-				label: "Thumbnails Positioned Right in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningRight,
-			},
-			{
-				label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
-			},
-		]
-	],
+			// {
+			// 	label: "Thumbnails Positioned Left in Container with Default Spacing",
+			// 	jsx: layoutThumbnailPositioningLeft,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
+			// 	jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Center in Container with Default Spacing",
+			// 	jsx: layoutThumbnailPositioningCenter,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
+			// 	jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Right in Container with Default Spacing",
+			// 	jsx: layoutThumbnailPositioningRight,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
+			// 	jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
+			// },
+	// 	]
+	// ],
 	// [
 	// 	'Above-Customization',
 	// 	[
@@ -1878,47 +1890,56 @@ const SECTIONS: Sections = [
 	// 		},
 	// 	]
 	// ],
+	// [
+	// 	"Dynamic Layout Settings",
+	// 	[
+	// 		{
+	// 			label: "Dynamic Thumbnail Spacing",
+	// 			jsx: dynamicSpacingOnly,
+	// 		},
+	// 		{
+	// 			label: "Dynamic Thumbnail Sizing and Automatic Spacing",
+	// 			jsx: dynamicSizeOnly,
+	// 		},
+	// 		{
+	// 			label: "Dynamic Thumbnail Sizing and Spacing",
+	// 			jsx: dynamicSizeAndSpacing,
+	// 		},
+	// 		{
+	// 			label: "Dynamic Thumbnail Spacing",
+	// 			jsx: dynamicSpacingOnlyDisplayAbove,
+	// 		},
+	// 		{
+	// 			label: "Dynamic Thumbnail Sizing and Automatic Spacing",
+	// 			jsx: dynamicSizeOnlyDisplayAbove,
+	// 		},
+	// 		{
+	// 			label: "Dynamic Thumbnail Sizing and Spacing",
+	// 			jsx: dynamicSizeAndSpacingDisplayAbove,
+	// 		},
+	// 		{
+	// 			label: "Dynamic Thumbnail Sizing and Spacing and Positioned Left",
+	// 			jsx: dynamicSizeAndSpacingDisplayAbovePositionedLeft,
+	// 		},
+	// 		{
+	// 			label: "Dynamic Thumbnail Sizing and Spacing and Positioned Center",
+	// 			jsx: dynamicSizeAndSpacingDisplayAbovePositionedCenter,
+	// 		},
+	// 		{
+	// 			label: "Dynamic Thumbnail Sizing and Spacing and Positioned Right",
+	// 			jsx: dynamicSizeAndSpacingDisplayAbovePositionedRight,
+	// 		},
+	// 	]
+	// ],
 	[
-		"Dynamic Settings",
+		"Dynamic Color Settings",
 		[
 			{
-				label: "Dynamic Thumbnail Spacing",
-				jsx: dynamicSpacingOnly,
-			},
-			{
-				label: "Dynamic Thumbnail Sizing and Automatic Spacing",
-				jsx: dynamicSizeOnly,
-			},
-			{
-				label: "Dynamic Thumbnail Sizing and Spacing",
-				jsx: dynamicSizeAndSpacing,
-			},
-			{
-				label: "Dynamic Thumbnail Spacing",
-				jsx: dynamicSpacingOnlyDisplayAbove,
-			},
-			{
-				label: "Dynamic Thumbnail Sizing and Automatic Spacing",
-				jsx: dynamicSizeOnlyDisplayAbove,
-			},
-			{
-				label: "Dynamic Thumbnail Sizing and Spacing",
-				jsx: dynamicSizeAndSpacingDisplayAbove,
-			},
-			{
-				label: "Dynamic Thumbnail Sizing and Spacing and Positioned Left",
-				jsx: dynamicSizeAndSpacingDisplayAbovePositionedLeft,
-			},
-			{
-				label: "Dynamic Thumbnail Sizing and Spacing and Positioned Center",
-				jsx: dynamicSizeAndSpacingDisplayAbovePositionedCenter,
-			},
-			{
-				label: "Dynamic Thumbnail Sizing and Spacing and Positioned Right",
-				jsx: dynamicSizeAndSpacingDisplayAbovePositionedRight,
+				label: "Dynamic Thumbnail Text Color",
+				jsx: dynamicThumbnailDescriptionTextColor,
 			},
 		]
-	]
+	],
 	// [
 	// 	"Navigation Options",
 	// 	[
