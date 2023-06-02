@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { CarouselItemProps } from './CarouselItem';
-import { getClassname } from '../utils';
+import { getClassname, getCurrentValue } from '../utils';
 import { CAROUSEL_COLOR_FIVE, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_DOT_HEIGHT_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS, CAROUSEL_DOT_WIDTH_DEFAULT } from '../constants';
 import { ArrowProps, CarouselElement, CarouselNavigationProps } from '../types';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
@@ -54,9 +54,9 @@ export const CarouselDots = ({
         const dots = [];
         for (let index = 0; index < numberOfDots; index++) {
             const isCurrentPage = index === currentPage;
-            const isSvg = !!svgHref;
+            const svgToUse = getCurrentValue(svgHref, '');
 
-            const currentDotStyle = isCurrentPage && isSvg ? {
+            const currentDotStyle = isCurrentPage && !!svgToUse ? {
                 opacity: 1,
             } : isCurrentPage ? {
                 backgroundColor: fillColor || CAROUSEL_COLOR_ONE,
@@ -66,12 +66,12 @@ export const CarouselDots = ({
             const currentPageClassname = isCurrentPage ? `${DOTS_CLASSNAME}-current` : '';
 
             dots.push((
-                isSvg ? (
+                !!svgToUse ? (
                     <svg key={index} onClick={() => onDotClick(index)} className={currentPageClassname} style={style}>
                         <use
                             style={{ ...useStyles, ...currentDotStyle }}
-                            xlinkHref={svgHref}
-                            href={svgHref}
+                            xlinkHref={svgToUse}
+                            href={svgToUse}
                         />
                     </svg>
                 ) : (

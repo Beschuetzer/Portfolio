@@ -588,7 +588,20 @@ const dynamicThumbnailBackgroundGradient = (
 		},
 	}} />
 );
-
+const dynamicSvgHref = (
+	<Carousel items={items} options={{
+		styling: {
+			elements: {
+				arrowRight: {
+					svgHref: [[customButtons.arrowRight.svgHref], [customButtons.nextButton.svgHref, 800]]
+				},
+				dots: {
+					svgHref: [[customButtons.dots.svgHref], [customButtons.playButton.svgHref, 800]]
+				}
+			}
+		}
+	}} />
+);
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -2047,15 +2060,18 @@ const SECTIONS: Sections = [
 			// 	label: "Thumbnail Overlay Hiding Behavior Changes at 800px",
 			// 	jsx: dynamicHidingOfThumbnailOverlay,
 			// },
-			{
-				label: "Thumbnail Background Opacity and Color Change at 800px",
-				jsx: dynamicThumbnailBackground,
-			},
+			// {
+			// 	label: "Thumbnail Background Opacity and Color Change at 800px",
+			// 	jsx: dynamicThumbnailBackground,
+			// },
 			{
 				label: "Thumbnail Background Gradient Change at 800px",
 				jsx: dynamicThumbnailBackgroundGradient,
 			},
-			
+			{
+				label: "Dots and Left Arrow Change Svgs at 800px",
+				jsx: dynamicSvgHref,
+			},
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",
 			// 	jsx: dynamicMaxLineCount,

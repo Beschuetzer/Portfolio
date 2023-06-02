@@ -1,7 +1,7 @@
 import { ITEM_VIEWER_CLOSE_SHORTCUTS, ITEM_VIEWER_NEXT_ITEM_SHORTCUTS, ITEM_VIEWER_PLAY_SHORTCUTS, ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS, ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS, ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS } from "../constants";
 import { CarouselContextOutputProps } from "../context";
 import { KeyInput, ValidKey } from "../hooks/useKeyboardShortcuts";
-import { CarouselItemViewerActions, CarouselOptions, CarouselAction, CarouselActionOnActionCompleted, CarouselElement } from "../types";
+import { CarouselItemViewerActions, CarouselAction, CarouselActionOnActionCompleted, CarouselElement } from "../types";
 
 type GetAllKeysResponse = {
     [name in keyof CarouselItemViewerActions]: KeyInput[];

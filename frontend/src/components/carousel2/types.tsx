@@ -325,9 +325,10 @@ export type CarouselButtonCustomization = {
     /*
     *Href of the svg element
     */
-    svgHref?: string;
+    svgHref?: CarouselElementValue<string>;
     /*
-    *Styles passed directly to the underlying use element of the svg (for rotation purposes mainly)
+    *Styles passed directly to the underlying use element of the svg (for rotation purposes mainly).
+    *It's best to make changes to the svg element directly though
     */
     style?: CSSProperties;
 }

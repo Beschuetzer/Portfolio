@@ -1,6 +1,8 @@
 import { CSSProperties, forwardRef } from "react";
 import { CLASSNAME__HIDDEN, CLASSNAME__ITEM_VIEWER_BUTTON } from "../../../constants";
 import { StylingLogic } from "../../../business-logic/StylingLogic";
+import { getCurrentValue } from "../../../utils";
+import { CarouselButtonCustomization } from "../../../types";
 
 type CarouselItemViewerCustomButtonProps = {
     classNamesToInclude?: string[];
@@ -8,7 +10,7 @@ type CarouselItemViewerCustomButtonProps = {
     onClick?: () => void;
     showButton?: boolean;
     style?: CSSProperties;
-    xlinkHref: string;
+    xlinkHref: CarouselButtonCustomization['svgHref'];
     useElementStyle?: CSSProperties;
 }
 
@@ -30,8 +32,8 @@ export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, Carousel
         <svg style={style} ref={ref} onClick={onClick} className={`${CLASSNAME__ITEM_VIEWER_BUTTON} ${classNamesToIncludeClassname} ${!showButton ? CLASSNAME__HIDDEN : ''}`}>
             <use
                 style={{ ...useElementStyle, ...defaultStyles }}
-                xlinkHref={xlinkHref}
-                href={xlinkHref}
+                xlinkHref={getCurrentValue(xlinkHref, '')}
+                href={getCurrentValue(xlinkHref, '')}
             />
         </svg>
     );
