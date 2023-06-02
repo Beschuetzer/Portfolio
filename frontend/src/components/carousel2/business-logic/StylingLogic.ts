@@ -480,9 +480,7 @@ export class StylingLogic {
         const gradient = thumbnail?.descriptionOverlay?.background?.gradient;
         const color = solid?.color;
         const shouldHideOverlay = this.optionsLogic.shouldHideThumbnailOverlay;
-        const shouldDisableDescriptionOverlay = thumbnail?.descriptionOverlay?.isDisabled === undefined
-            ? !this.optionsLogic.isDefaultItemDisplayLocation
-            : thumbnail?.descriptionOverlay?.isDisabled;
+        const shouldDisableDescriptionOverlay = this.optionsLogic.shouldDisableThumbnailOverlay;
 
         const backgroundSolidStyle = color ? {
             background: 'none',

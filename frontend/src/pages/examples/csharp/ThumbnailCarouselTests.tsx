@@ -541,6 +541,16 @@ const dynamicHidingOfThumbnailFontSize = (
 		}
 	}} />
 );
+const dynamicDisablingOfThumbnailOverlayBelow800 = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			descriptionOverlay: {
+				hideDescriptionOverlayUnlessHovered: false,
+				isDisabled: [[false], [true, 800]]
+			},
+		},
+	}} />
+);
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -1987,6 +1997,10 @@ const SECTIONS: Sections = [
 	[
 		"Other Dynamic Settings",
 		[
+			{
+				label: "Thumbnail Overlay Disabled <= 800px",
+				jsx: dynamicDisablingOfThumbnailOverlayBelow800,
+			},
 			{
 				label: "Thumbnail Overlay Font Size Changes at 800px",
 				jsx: dynamicHidingOfThumbnailFontSize,

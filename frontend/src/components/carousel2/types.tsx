@@ -390,7 +390,7 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
     /*
     *If true the description is disabled in the thumbnail.  Default is false is `layout.itemDisplayLocation` is 'none' otherwise true.
     */
-    isDisabled?: boolean;
+    isDisabled?: CarouselElementValue<boolean>;
     /*
     *The size of the font in px of the thumbnail description;  Default is 12px;
     */

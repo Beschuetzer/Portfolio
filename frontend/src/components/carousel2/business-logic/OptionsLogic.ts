@@ -33,11 +33,11 @@ export class OptionsLogic {
         }
         return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT);
     }
-    
+
     get isDefaultItemDisplayLocation() {
         return !this.options?.layout?.itemDisplayLocation || this.options?.layout?.itemDisplayLocation === 'none';
     }
-    
+
     get isItemDisplayLocationAbove() {
         return this.options?.layout?.itemDisplayLocation === 'above';
     }
@@ -49,11 +49,11 @@ export class OptionsLogic {
     get isItemViewerSwipingDisabled() {
         return this.items.length <= 1 || this.options?.itemViewer?.disableSwiping || false;
     }
-    
+
     get isNavigationSwipingDisabled() {
         return this.numberOfPages <= 1 ? true : this.options?.navigation?.disableSwiping || false;
     }
-    
+
     get isWrappingDisabled() {
         return !!this.options.navigation?.disableWrapping;
     }
@@ -70,6 +70,10 @@ export class OptionsLogic {
     get navigationMaxClickThreshold() {
         const maxClickThreshold = this.options.navigation?.maxClickThreshold;
         return maxClickThreshold !== undefined ? maxClickThreshold : MAX_CLICK_THRESHOLD_DEFAULT;
+    }
+
+    get shouldDisableThumbnailOverlay() {
+        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.isDisabled, !this.isDefaultItemDisplayLocation);
     }
 
     get shouldHideThumbnailOverlay() {
