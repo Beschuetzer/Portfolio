@@ -16,7 +16,7 @@ Carousel rework
 
 Known Issues with Carousel rework:
   -changing items with mid-tier and below setting is sluggish
-  -CarouselElementValue only updates when CarouselContent re-renders
+  -CarouselElementValue only updates when CarouselContent re-renders; if dynamic spacing is on, then re-renders occur much more often
   -cursor only changes properly after going into full screen once
 
 React best practices re-work (branch = sitenav_rework)

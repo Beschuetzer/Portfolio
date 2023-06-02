@@ -394,7 +394,7 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
     /*
     *The size of the font in px of the thumbnail description;  Default is 12px;
     */
-    fontSize?: number;
+    fontSize?: CarouselElementValue<number>;
     /*
     *If false, the overlay with the description is always present.  
     *If true, the overlay only shows when item is hovered.

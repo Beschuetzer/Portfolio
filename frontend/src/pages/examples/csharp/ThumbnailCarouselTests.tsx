@@ -482,7 +482,7 @@ const dynamicThumbnailDescriptionTextColor = (
 			thumbnail: {
 				descriptionOverlay: {
 					textColor: [['red'], ['green'], ['yellow', 1100], ['blue', 1500, 'min-width'], ['orange', 800, 'max-width'], ['teal', 600, 'max-width'], ['grey', 400, 'max-width'], ['purple', 1200, 'min-width']],
-				}
+				},
 			},
 		}}
 		items={items}
@@ -496,7 +496,7 @@ const dynamicThumbnailBorder = (
 			},
 			layout: {
 				itemDisplayLocation: 'above',
-			}
+			},
 		}}
 		items={items}
 	/>
@@ -527,6 +527,16 @@ const dynamicHidingOfThumbnailOverlay = (
 		thumbnail: {
 			descriptionOverlay: {
 				hideDescriptionOverlayUnlessHovered: [[true], [false, 800], [true, 1000, 'min-width'], [false, 1200, 'min-width']],
+			},
+		}
+	}} />
+);
+const dynamicHidingOfThumbnailFontSize = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			descriptionOverlay: {
+				hideDescriptionOverlayUnlessHovered: false,
+				fontSize: [[14], [10, 800], [16, 1000, 'min-width'], [18, 1200, 'min-width']],
 			},
 		}
 	}} />
@@ -1977,6 +1987,10 @@ const SECTIONS: Sections = [
 	[
 		"Other Dynamic Settings",
 		[
+			{
+				label: "Thumbnail Overlay Font Size Changes at 800px",
+				jsx: dynamicHidingOfThumbnailFontSize,
+			},
 			{
 				label: "Thumbnail Overlay Hiding Behavior Changes at 800px",
 				jsx: dynamicHidingOfThumbnailOverlay,
