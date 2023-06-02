@@ -248,7 +248,7 @@ export type CarouselFontFamilyOptions = Exclusive<
 
 export type CarouselHorizontalPaddingOptions = {
     left?: number;
-    right?: number;
+    right?: CarouselElementValue<number>;
 }
 
 export type CarouselVerticalPaddingOptions = {

@@ -273,7 +273,7 @@ export class StylingLogic {
         const areChildrenPresent = !!this.currentItem?.video?.overlayProps?.children;
         const { right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
         const rightStyle = paddingRight !== undefined ? {
-            right: `${paddingRight}${CAROUSEL_SPACING_UNIT}`
+            right: getCurrentValue(paddingRight, 0),
         } as CSSProperties : {};
         const topStyle = paddingTop !== undefined ? {
             top: getCurrentValue(paddingTop, 0),
@@ -308,7 +308,7 @@ export class StylingLogic {
             paddingTop: paddingTop !== undefined ? getCurrentValue(paddingTop, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
             paddingBottom: paddingBottom !== undefined ? getCurrentValue(paddingBottom, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
             paddingLeft: paddingLeft !== undefined ? paddingLeft : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
-            paddingRight: paddingRight !== undefined ? paddingRight : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
+            paddingRight: paddingRight !== undefined ? getCurrentValue(paddingRight, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
             transform: 'translate(-50%, 0)',
@@ -856,8 +856,8 @@ export class StylingLogic {
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.right:
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = this.options.styling?.container?.padding?.right;
-                specificElementPadding = this.options.styling?.[item]?.padding?.right;
+                allPadding = getCurrentValue(this.options.styling?.container?.padding?.right, undefined);
+                specificElementPadding = getCurrentValue(this.options.styling?.[item]?.padding?.right, undefined);
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.top:
