@@ -511,7 +511,17 @@ const dynamicItemSpacingStrategy = (
 		}}
 	/>
 );
-
+const dynamicMaxLineCount = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			descriptionOverlay: {
+				hideDescriptionOverlayUnlessHovered: false,
+				maxLineCount: [[2], [1, 800]],
+				textColor: getComputedStyleCustom('--color-primary-4'),
+			},
+		}
+	}} />
+);
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -1958,6 +1968,10 @@ const SECTIONS: Sections = [
 	[
 		"Other Dynamic Settings",
 		[
+			{
+				label: "Thumbnail Max Line Count Changes at 800px",
+				jsx: dynamicMaxLineCount,
+			},
 			{
 				label: "Thumbnail Text Color Changes Based on Viewport",
 				jsx: dynamicThumbnailDescriptionTextColor,

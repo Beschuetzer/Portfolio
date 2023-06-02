@@ -405,7 +405,7 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
     /*
     *The number of lines to show before an ellipsis is inserted.  Default is 2.
     */
-    maxLineCount?: number;
+    maxLineCount?: CarouselElementValue<number>;
     /*
     *The hexadecimal value for the thumbnail background's text
     */

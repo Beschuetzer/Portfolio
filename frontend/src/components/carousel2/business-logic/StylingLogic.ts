@@ -527,7 +527,7 @@ export class StylingLogic {
             fontSize: `${thumbnail?.descriptionOverlay?.fontSize}${CAROUSEL_SPACING_UNIT}`,
         } as React.CSSProperties : {};
         const maxLineCountStyle = {
-            WebkitLineClamp: thumbnail?.descriptionOverlay?.maxLineCount || CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
+            WebkitLineClamp: getCurrentValue(thumbnail?.descriptionOverlay?.maxLineCount, CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT),
         } as React.CSSProperties;
 
         const textColorStyle = thumbnail?.descriptionOverlay?.textColor ? {
