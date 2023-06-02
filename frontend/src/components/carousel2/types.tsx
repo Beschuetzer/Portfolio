@@ -373,7 +373,7 @@ export type CarouselThumbnailBackgroundOptions = {
         /*
     *The hexadecimal value for the thumbnail's background
     */
-        color?: Color;
+        color?: CarouselElementValue<Color>;
         /*
         *Default is 1 when specifying a custom color
         */

@@ -479,14 +479,13 @@ export class StylingLogic {
         const thumbnail = this.options?.thumbnail;
         const solid = thumbnail?.descriptionOverlay?.background?.solid;
         const gradient = thumbnail?.descriptionOverlay?.background?.gradient;
-        const color = solid?.color;
         const shouldHideOverlay = this.optionsLogic.shouldHideThumbnailOverlay;
         const shouldDisableDescriptionOverlay = this.optionsLogic.shouldDisableThumbnailOverlay;
 
-        const backgroundSolidStyle = color ? {
+        const backgroundSolidStyle = !!solid ? {
             background: 'none',
             backgroundColor: convertHexToRgba(
-                color?.trim() || CAROUSEL_COLOR_ONE,
+                getCurrentValue(solid?.color, CAROUSEL_COLOR_ONE).trim(),
                 getCurrentValue(solid?.opacity, CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT),
             ),
         } as CSSProperties : {};

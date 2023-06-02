@@ -551,14 +551,14 @@ const dynamicDisablingOfThumbnailOverlayBelow800 = (
 		},
 	}} />
 );
-const dynamicThumbnailBackgroundOpacity = (
+const dynamicThumbnailBackground = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			descriptionOverlay: {
 				hideDescriptionOverlayUnlessHovered: false,
 				background: {
 					solid: {
-						color: getComputedStyleCustom('--color-primary-1'),
+						color: [[getComputedStyleCustom('--color-primary-3')], [getComputedStyleCustom('--color-primary-1'), 800]],
 						opacity: [[1], [.5, 800]],
 					}
 				},
@@ -2012,21 +2012,21 @@ const SECTIONS: Sections = [
 	[
 		"Other Dynamic Settings",
 		[
+			// {
+			// 	label: "Thumbnail Overlay Disabled <= 800px",
+			// 	jsx: dynamicDisablingOfThumbnailOverlayBelow800,
+			// },
+			// {
+			// 	label: "Thumbnail Overlay Font Size Changes at 800px",
+			// 	jsx: dynamicHidingOfThumbnailFontSize,
+			// },
+			// {
+			// 	label: "Thumbnail Overlay Hiding Behavior Changes at 800px",
+			// 	jsx: dynamicHidingOfThumbnailOverlay,
+			// },
 			{
-				label: "Thumbnail Overlay Disabled <= 800px",
-				jsx: dynamicDisablingOfThumbnailOverlayBelow800,
-			},
-			{
-				label: "Thumbnail Overlay Font Size Changes at 800px",
-				jsx: dynamicHidingOfThumbnailFontSize,
-			},
-			{
-				label: "Thumbnail Overlay Hiding Behavior Changes at 800px",
-				jsx: dynamicHidingOfThumbnailOverlay,
-			},
-			{
-				label: "Thumbnail Background Opacity Changes at 800px",
-				jsx: dynamicThumbnailBackgroundOpacity,
+				label: "Thumbnail Background Opacity and Color Change at 800px",
+				jsx: dynamicThumbnailBackground,
 			},
 			
 			// {
