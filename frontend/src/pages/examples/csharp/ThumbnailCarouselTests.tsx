@@ -501,6 +501,16 @@ const dynamicThumbnailBorder = (
 		items={items}
 	/>
 );
+const dynamicItemSpacingStrategy = (
+	<Carousel
+		items={items.slice(0, 3)}
+		options={{
+			thumbnail: {
+				itemSpacingStrategy: [['max'], ['min', 800]],
+			}
+		}}
+	/>
+);
 
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
@@ -1956,6 +1966,11 @@ const SECTIONS: Sections = [
 				label: "Current Item's Border Changes Based on Viewport",
 				jsx: dynamicThumbnailBorder,
 			},
+			{
+				label: "Item Spacing Strategy Changes at 800px",
+				jsx: dynamicItemSpacingStrategy,
+			},
+			
 		]
 	],
 	// [

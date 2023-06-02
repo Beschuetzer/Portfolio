@@ -434,7 +434,7 @@ export type CarouselThumbnailOptions = {
     *`min` means that the `itemSpacing` will be reduced to a value that would allow for the most number of thumbnails to fit within the container with even spacing
     *`max` means that the `itemSpacing` will be maximized such that the thumbnails will span the entire width of the container when there is only one page
     */
-    itemSpacingStrategy?: 'min' | 'max';
+    itemSpacingStrategy?: CarouselElementValue<'min' | 'max'>;
     /*
     *The size of the thumbnails in px.  Default is 150px.
     */

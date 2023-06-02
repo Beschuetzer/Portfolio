@@ -59,7 +59,7 @@ export class OptionsLogic {
     }
 
     get itemSpacingStrategy() {
-        return this.options.thumbnail?.itemSpacingStrategy || 'min';
+        return getCurrentValue(this.options.thumbnail?.itemSpacingStrategy, 'min')
     }
 
     get itemViewerMaxClickThreshold() {
