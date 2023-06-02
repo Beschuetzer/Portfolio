@@ -6,7 +6,6 @@ import {
     CAROUSEL_SPACING_UNIT,
     CAROUSEL_COLOR_FOUR,
     CAROUSEL_COLOR_ONE,
-    CAROUSEL_DOT_OPACITY_DEFAULT,
     CAROUSEL_COLOR_FIVE,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
@@ -307,7 +306,7 @@ export class StylingLogic {
         const paddingStyle = {
             paddingTop: paddingTop !== undefined ? getCurrentValue(paddingTop, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
             paddingBottom: paddingBottom !== undefined ? getCurrentValue(paddingBottom, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
-            paddingLeft: paddingLeft !== undefined ? paddingLeft : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
+            paddingLeft: paddingLeft !== undefined ? getCurrentValue(paddingLeft, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
             paddingRight: paddingRight !== undefined ? getCurrentValue(paddingRight, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
@@ -850,8 +849,8 @@ export class StylingLogic {
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.left:
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = this.options.styling?.container?.padding?.left;
-                specificElementPadding = this.options.styling?.[item]?.padding?.left;
+                allPadding = getCurrentValue(this.options.styling?.container?.padding?.left, undefined);
+                specificElementPadding = getCurrentValue(this.options.styling?.[item]?.padding?.left, undefined);
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.right:

@@ -613,8 +613,9 @@ const dynamicVideoModalPadding = (
 			videoModal: {
 				padding: {
 					top: [[20], [5, 800]],
+					right: [[30], [10, 800]],
 					bottom: [[20], [5, 800]],
-					right: [[40], [10, 800]],
+					left: [[30], [10, 800]],
 				}
 			}
 		}
