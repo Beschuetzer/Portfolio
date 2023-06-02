@@ -606,7 +606,7 @@ const dynamicElementsCustomization = (
 );
 const dynamicVideoModalPadding = (
 	<Carousel items={items.slice(2)} options={{
-		layout: { 
+		layout: {
 			itemDisplayLocation: 'above',
 		},
 		styling: {
@@ -617,6 +617,44 @@ const dynamicVideoModalPadding = (
 					bottom: [[20], [5, 800]],
 					left: [[30], [10, 800]],
 				}
+			}
+		}
+	}} />
+);
+const dynamicFontFamilyAll = (
+	<Carousel items={items.slice(2)} options={{
+		layout: {
+			itemDisplayLocation: 'above',
+		},
+		styling: {
+			fontFamily: {
+				all: [['monospace'], ['sans-serif', 800]],
+			}
+		}
+	}} />
+);
+const dynamicFontFamilyNavigation = (
+	<Carousel items={items.slice(2)} options={{
+		thumbnail: {
+			descriptionOverlay: {
+				hideDescriptionOverlayUnlessHovered: false,
+			}
+		},
+		styling: {
+			fontFamily: {
+				navigation: [['monospace'], ['sans-serif', 800]],
+			}
+		}
+	}} />
+);
+const dynamicFontFamilyItemViewer = (
+	<Carousel items={items.slice(2)} options={{
+		layout: {
+			itemDisplayLocation: 'above',
+		},
+		styling: {
+			fontFamily: {
+				itemViewer: [['monospace'], ['sans-serif', 800]],
 			}
 		}
 	}} />
@@ -1691,30 +1729,30 @@ const SECTIONS: Sections = [
 	// 			label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
 	// 			jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
 	// 		},
-			// {
-			// 	label: "Thumbnails Positioned Left in Container with Default Spacing",
-			// 	jsx: layoutThumbnailPositioningLeft,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
-			// 	jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Center in Container with Default Spacing",
-			// 	jsx: layoutThumbnailPositioningCenter,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
-			// 	jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Right in Container with Default Spacing",
-			// 	jsx: layoutThumbnailPositioningRight,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
-			// 	jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
-			// },
+	// {
+	// 	label: "Thumbnails Positioned Left in Container with Default Spacing",
+	// 	jsx: layoutThumbnailPositioningLeft,
+	// },
+	// {
+	// 	label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
+	// 	jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
+	// },
+	// {
+	// 	label: "Thumbnails Positioned Center in Container with Default Spacing",
+	// 	jsx: layoutThumbnailPositioningCenter,
+	// },
+	// {
+	// 	label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
+	// 	jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
+	// },
+	// {
+	// 	label: "Thumbnails Positioned Right in Container with Default Spacing",
+	// 	jsx: layoutThumbnailPositioningRight,
+	// },
+	// {
+	// 	label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
+	// 	jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
+	// },
 	// 	]
 	// ],
 	// [
@@ -2091,9 +2129,21 @@ const SECTIONS: Sections = [
 			// 	label: "Dots and Left Arrow Change Svgs and Color at 800px",
 			// 	jsx: dynamicElementsCustomization,
 			// },
+			// {
+			// 	label: "Video Modal Padding Changes at 800px",
+			// 	jsx: dynamicVideoModalPadding,
+			// },
+			// {
+			// 	label: "Font Changes Everywhere at 800px",
+			// 	jsx: dynamicFontFamilyAll,
+			// },
+			// {
+			// 	label: "Font Changes in ItemViewer at 800px",
+			// 	jsx: dynamicFontFamilyItemViewer,
+			// },
 			{
-				label: "Video Modal Padding Changes at 800px",
-				jsx: dynamicVideoModalPadding,
+				label: "Font Changes in Navigation at 800px",
+				jsx: dynamicFontFamilyNavigation,
 			},
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",

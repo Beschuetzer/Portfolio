@@ -435,7 +435,7 @@ export class StylingLogic {
         const stylings = this.options?.styling;
         const fontFamily = stylings?.fontFamily || {};
         return fontFamily?.all || fontFamily?.itemViewer ? {
-            fontFamily: fontFamily?.all || fontFamily?.itemViewer || this.DEFAULT_FONT_FAMILY,
+            fontFamily: getCurrentValue(fontFamily?.all, undefined) || getCurrentValue(fontFamily?.itemViewer, undefined) || this.DEFAULT_FONT_FAMILY,
         } : {};
     }
 
@@ -443,7 +443,7 @@ export class StylingLogic {
         const stylings = this.options?.styling;
         const fontFamily = stylings?.fontFamily || {};
         return fontFamily?.all || fontFamily?.navigation ? {
-            fontFamily: fontFamily?.all || fontFamily?.navigation || this.DEFAULT_FONT_FAMILY,
+            fontFamily: getCurrentValue(fontFamily?.all, undefined) || getCurrentValue(fontFamily?.navigation, undefined) || this.DEFAULT_FONT_FAMILY,
         } : {};
     }
 

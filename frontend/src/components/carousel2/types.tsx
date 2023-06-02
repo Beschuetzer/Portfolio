@@ -233,17 +233,17 @@ export type CarouselFontFamilyOptions = Exclusive<
         /*
         *Setting the font-family for text in the item-viewer
         */
-        itemViewer?: string;
+        itemViewer?: CarouselElementValue<string>;
         /*
         *Setting the font-family for the navigation items and the carousel itself
         */
-        navigation?: string;
+        navigation?: CarouselElementValue<string>;
     },
     {
         /*
         *Setting this sets both itemViewer and navigation to the same font-family
         */
-        all?: string;
+        all?: CarouselElementValue<string>;
     }>
 
 export type CarouselHorizontalPaddingOptions = {
