@@ -306,7 +306,7 @@ export class StylingLogic {
         } as CSSProperties : {};
         const paddingStyle = {
             paddingTop: paddingTop !== undefined ? getCurrentValue(paddingTop, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
-            paddingBottom: paddingBottom !== undefined ? paddingBottom : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
+            paddingBottom: paddingBottom !== undefined ? getCurrentValue(paddingBottom, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
             paddingLeft: paddingLeft !== undefined ? paddingLeft : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
             paddingRight: paddingRight !== undefined ? paddingRight : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
         } as CSSProperties;
@@ -844,7 +844,7 @@ export class StylingLogic {
         switch (direction) {
             case SpacingDirection.bottom:
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.optionsLogic.isItemDisplayLocationBelow ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = this.options.styling?.container?.padding?.bottom;
+                allPadding = getCurrentValue(this.options.styling?.container?.padding?.bottom, undefined);
                 // specificElementPadding = this.options.styling?.[item]?.padding?.bottom;
                 customPadding = specificElementPadding || allPadding;
                 return customPadding !== undefined ? customPadding : defaultPadding;
