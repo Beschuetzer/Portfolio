@@ -221,8 +221,8 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
 *If there is more than one tuple with just a value, the first one in the sorted array is used (e.g. for numbers it is the smallest one)
 *When extending the supported types, the only thing that needs to be modified is adding another case in the switch statement for said type
 */
-export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefined, defaultSize: T) {
-    if (!valueTuple) return defaultSize;
+export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefined, defaultValue: T) {
+    if (valueTuple === undefined || valueTuple === null) return defaultValue;
     if (!Array.isArray(valueTuple)) return valueTuple;
     const windowWidth = window.innerWidth;
     let sorted = valueTuple;
@@ -252,7 +252,6 @@ export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefin
                 sortByValue = firstValue < secondValue ? sortFirstBeforeSecond : sortFirstAfterSecond;
         }
 
-
         //assuming the index values are never -1
         if (firstTypeIndex === secondTypeIndex) {
             if (firstTypeIndex === priority.indexOf('max-width')) return sortByMaxWidthBreakpoint;
@@ -274,10 +273,13 @@ export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefin
 
         switch (typeof value) {
             case "number":
-                valueToUse = value >= 0 ? value : defaultSize;
+                valueToUse = value >= 0 ? value : defaultValue;
+                break;
+            case "boolean":
+                valueToUse = value;
                 break;
             default:
-                valueToUse = value || defaultSize;
+                valueToUse = value || defaultValue;
         }
 
         const breakpointTypeToUse = breakpointType || "max-width";
@@ -293,7 +295,7 @@ export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefin
         }
     }
 
-    return defaultSize;
+    return defaultValue;
 }
 
 export async function enterFullScreen(element: HTMLElement | null) {

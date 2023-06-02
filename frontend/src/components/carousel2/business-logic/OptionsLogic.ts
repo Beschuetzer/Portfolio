@@ -71,6 +71,10 @@ export class OptionsLogic {
         const maxClickThreshold = this.options.navigation?.maxClickThreshold;
         return maxClickThreshold !== undefined ? maxClickThreshold : MAX_CLICK_THRESHOLD_DEFAULT;
     }
+
+    get shouldHideThumbnailOverlay() {
+        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true);
+    }
     //#endregion
 
     //#region Methods

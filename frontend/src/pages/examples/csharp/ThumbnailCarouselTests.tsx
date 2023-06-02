@@ -522,6 +522,15 @@ const dynamicMaxLineCount = (
 		}
 	}} />
 );
+const dynamicHidingOfThumbnailOverlay = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			descriptionOverlay: {
+				hideDescriptionOverlayUnlessHovered: [[true], [false, 800], [true, 1000, 'min-width'], [false, 1200, 'min-width']],
+			},
+		}
+	}} />
+);
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -1969,22 +1978,25 @@ const SECTIONS: Sections = [
 		"Other Dynamic Settings",
 		[
 			{
-				label: "Thumbnail Max Line Count Changes at 800px",
-				jsx: dynamicMaxLineCount,
+				label: "Thumbnail Overlay Hiding Behavior Changes at 800px",
+				jsx: dynamicHidingOfThumbnailOverlay,
 			},
-			{
-				label: "Thumbnail Text Color Changes Based on Viewport",
-				jsx: dynamicThumbnailDescriptionTextColor,
-			},
-			{
-				label: "Current Item's Border Changes Based on Viewport",
-				jsx: dynamicThumbnailBorder,
-			},
-			{
-				label: "Item Spacing Strategy Changes at 800px",
-				jsx: dynamicItemSpacingStrategy,
-			},
-			
+			// {
+			// 	label: "Thumbnail Max Line Count Changes at 800px",
+			// 	jsx: dynamicMaxLineCount,
+			// },
+			// {
+			// 	label: "Thumbnail Text Color Changes Based on Viewport",
+			// 	jsx: dynamicThumbnailDescriptionTextColor,
+			// },
+			// {
+			// 	label: "Current Item's Border Changes Based on Viewport",
+			// 	jsx: dynamicThumbnailBorder,
+			// },
+			// {
+			// 	label: "Item Spacing Strategy Changes at 800px",
+			// 	jsx: dynamicItemSpacingStrategy,
+			// },
 		]
 	],
 	// [

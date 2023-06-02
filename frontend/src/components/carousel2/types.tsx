@@ -401,7 +401,7 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
     *No overlay is shown if item.description is falsy
     *Default is true
     */
-    hideDescriptionOverlayUnlessHovered?: boolean;
+    hideDescriptionOverlayUnlessHovered?: CarouselElementValue<boolean>;
     /*
     *The number of lines to show before an ellipsis is inserted.  Default is 2.
     */
