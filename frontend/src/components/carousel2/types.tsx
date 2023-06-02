@@ -180,13 +180,13 @@ export type CarouselLayoutOptions = {
        *Default is 'none'.
        */
     itemDisplayLocation?: 'none' | 'above' | 'below';
-     /*
-    *If `thumbnail.itemSpacing` is not given, then it defaults to 5 if `itemPositioning` is not undefined
-    *Default is `left`
-    *`left` => the left-most thumbnail item on a given page is positioned flush with the container
-    *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the navigation container's ends
-    *`right` => the right-most thumbnail item on a given page is positioned flush with the container
-    */
+    /*
+   *If `thumbnail.itemSpacing` is not given, then it defaults to 5 if `itemPositioning` is not undefined
+   *Default is `left`
+   *`left` => the left-most thumbnail item on a given page is positioned flush with the container
+   *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the navigation container's ends
+   *`right` => the right-most thumbnail item on a given page is positioned flush with the container
+   */
     itemPositioning?: 'left' | 'center' | 'right';
 }
 
@@ -338,47 +338,27 @@ export type CarouselElementStyles = {
 
 export type CarouselThumbnailBackgroundOptions = {
     /*
-    *Specify what you want the gradient to be for browswers that support it.  The gradient starts at the top and goes down by default
+    *Specify what you want the gradient to be for browswers that support it.  The gradient starts at the top and goes down by default (180deg angle)
     */
     gradient?: {
-        /*
-        *The number of degrees for the gradient.  Default is 180
-        */
-        angle?: number;
-        end: {
-            /*
-            *This is the hexadecimal color value for the very bottom part of the gradient
-            */
-            color: Color;
-            /*
-            *Valid values are 0-1 inclusive
-            */
-            opacity: number;
-        },
-        start: {
-            /*
-            *This is the hexadecimal color value for the very top part of the gradient
-            */
-            color: Color;
-            /*
-            *Valid values are 0-1 inclusive
-            */
-            opacity: number;
-        }
+        angle?: CarouselElementValue<number>;
+        end: CarouselThumbnailBackground;
+        start: CarouselThumbnailBackground;
     }
     /*
-    *This is a the fallback color and opacity of the background
+    *The hexadecimal value for the thumbnail's fallback background
     */
-    solid?: {
-        /*
-    *The hexadecimal value for the thumbnail's background
+    solid?: CarouselThumbnailBackground;
+}
+export type CarouselThumbnailBackground = {
+    /*
+    *This is a hexadecimal color
     */
-        color?: CarouselElementValue<Color>;
-        /*
-        *Default is 1 when specifying a custom color
-        */
-        opacity?: CarouselElementValue<number>;
-    }
+    color?: CarouselElementValue<Color>;
+    /*
+    *Valid values are 0-1 inclusive
+    */
+    opacity?: CarouselElementValue<number>;
 }
 
 export type CarouselThumbnailDescriptionOverlayOptions = {

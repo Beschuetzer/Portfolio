@@ -495,7 +495,7 @@ export class StylingLogic {
         } as CSSProperties : {};
 
         const backgroundGradientStyle = gradient ? {
-            background: `linear-gradient(${gradient?.angle || 180}deg, ${convertHexToRgba(gradient.start?.color || CAROUSEL_COLOR_FIVE, gradient.start?.opacity || 0)} 0%, ${convertHexToRgba(gradient.end?.color || CAROUSEL_COLOR_ONE, gradient.end?.opacity || 1)} 100%)`,
+            background: `linear-gradient(${getCurrentValue(gradient?.angle, 180)}deg, ${convertHexToRgba(getCurrentValue(gradient.start?.color, CAROUSEL_COLOR_FIVE), getCurrentValue(gradient.start?.opacity, 0))} 0%, ${convertHexToRgba(getCurrentValue(gradient.end?.color, CAROUSEL_COLOR_ONE), getCurrentValue(gradient.end?.opacity, 1))} 100%)`,
         } as CSSProperties : {};
 
         const bottomStyle = shouldHideOverlay ? {

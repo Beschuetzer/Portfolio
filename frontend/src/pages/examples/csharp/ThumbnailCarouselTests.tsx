@@ -566,6 +566,29 @@ const dynamicThumbnailBackground = (
 		},
 	}} />
 );
+const dynamicThumbnailBackgroundGradient = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			descriptionOverlay: {
+				hideDescriptionOverlayUnlessHovered: false,
+				background: {
+					gradient: {
+						angle: [[270], [90, 800]],
+						start: {
+							color: [[getComputedStyleCustom('--color-primary-4')], [getComputedStyleCustom('--color-primary-2'), 800]],
+							opacity: [[.25], [.1, 800]],
+						},
+						end: {
+							color: [[getComputedStyleCustom('--color-primary-1')], [getComputedStyleCustom('--color-primary-4'), 800]],
+							opacity: [[.75], [.5, 800]]
+						}
+					},
+				},
+			},
+		},
+	}} />
+);
+
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -2027,6 +2050,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Thumbnail Background Opacity and Color Change at 800px",
 				jsx: dynamicThumbnailBackground,
+			},
+			{
+				label: "Thumbnail Background Gradient Change at 800px",
+				jsx: dynamicThumbnailBackgroundGradient,
 			},
 			
 			// {
