@@ -588,15 +588,17 @@ const dynamicThumbnailBackgroundGradient = (
 		},
 	}} />
 );
-const dynamicSvgHref = (
+const dynamicElementsCustomization = (
 	<Carousel items={items} options={{
 		styling: {
 			elements: {
 				arrowRight: {
-					svgHref: [[customButtons.arrowRight.svgHref], [customButtons.nextButton.svgHref, 800]]
+					svgHref: [[customButtons.arrowRight.svgHref], [customButtons.nextButton.svgHref, 800]],
+					fillColor: [['red'], ['green', 800]],
 				},
 				dots: {
-					svgHref: [[customButtons.dots.svgHref], [customButtons.playButton.svgHref, 800]]
+					svgHref: [[customButtons.dots.svgHref], [customButtons.playButton.svgHref, 800]],
+					fillColor: [['red'], ['green', 800]],
 				}
 			}
 		}
@@ -2069,8 +2071,8 @@ const SECTIONS: Sections = [
 				jsx: dynamicThumbnailBackgroundGradient,
 			},
 			{
-				label: "Dots and Left Arrow Change Svgs at 800px",
-				jsx: dynamicSvgHref,
+				label: "Dots and Left Arrow Change Svgs and Color at 800px",
+				jsx: dynamicElementsCustomization,
 			},
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",
@@ -2223,19 +2225,19 @@ const SECTIONS: Sections = [
 	// 		},
 	// 	]
 	// ], 
-	// [
-	// 	"Custom",
-	// 	[
-	// 		{
-	// 			label: "All Custom Settings",
-	// 			jsx: allCustomSettings,
-	// 		},
-	// 		{
-	// 			label: "Custom Button Sizes",
-	// 			jsx: customButtonSizes
-	// 		},
-	// 	]
-	// ]
+	[
+		"Custom",
+		[
+			{
+				label: "All Custom Settings",
+				jsx: allCustomSettings,
+			},
+			{
+				label: "Custom Button Sizes",
+				jsx: customButtonSizes
+			},
+		]
+	]
 ];
 
 const sections: CSharpSection[] = SECTIONS.map((section) => ({

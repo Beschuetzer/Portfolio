@@ -317,11 +317,11 @@ export type CarouselActions = {
 }
 //#endregion
 
-export type CarouselButtonCustomization = {
+export type CarouselElementCustomization = {
     /*
     *Default is #000
     */
-    fillColor?: Color;
+    fillColor?: CarouselElementValue<Color>;
     /*
     *Href of the svg element
     */
@@ -334,7 +334,7 @@ export type CarouselButtonCustomization = {
 }
 
 export type CarouselElementStyles = {
-    [button in CarouselElement]?: button extends CarouselElement.all ? Pick<CarouselButtonCustomization, 'fillColor'> : CarouselButtonCustomization;
+    [button in CarouselElement]?: button extends CarouselElement.all ? Pick<CarouselElementCustomization, 'fillColor'> : CarouselElementCustomization;
 }
 
 export type CarouselThumbnailBackgroundOptions = {

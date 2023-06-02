@@ -568,7 +568,7 @@ export class StylingLogic {
 
     //#region Private Getters
     private get allFillColor() {
-        return this.options.styling?.elements?.all?.fillColor;
+        return getCurrentValue(this.options.styling?.elements?.all?.fillColor, undefined);
     }
 
     private get imageHeight() {
@@ -580,7 +580,7 @@ export class StylingLogic {
 
     //#region Public Methods
     getButtonColor(buttonName: CarouselElement, fallbackColor = CAROUSEL_COLOR_FIVE) {
-        const specificFillColor = this.options.styling?.elements?.[buttonName]?.fillColor;
+        const specificFillColor = getCurrentValue(this.options.styling?.elements?.[buttonName]?.fillColor, undefined);
 
         switch (buttonName) {
             case CarouselElement.arrowLeft:

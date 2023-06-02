@@ -2,7 +2,7 @@ import { CSSProperties, forwardRef } from "react";
 import { CLASSNAME__HIDDEN, CLASSNAME__ITEM_VIEWER_BUTTON } from "../../../constants";
 import { StylingLogic } from "../../../business-logic/StylingLogic";
 import { getCurrentValue } from "../../../utils";
-import { CarouselButtonCustomization } from "../../../types";
+import { CarouselElementCustomization } from "../../../types";
 
 type CarouselItemViewerCustomButtonProps = {
     classNamesToInclude?: string[];
@@ -10,7 +10,7 @@ type CarouselItemViewerCustomButtonProps = {
     onClick?: () => void;
     showButton?: boolean;
     style?: CSSProperties;
-    xlinkHref: CarouselButtonCustomization['svgHref'];
+    xlinkHref: CarouselElementCustomization['svgHref'];
     useElementStyle?: CSSProperties;
 }
 
