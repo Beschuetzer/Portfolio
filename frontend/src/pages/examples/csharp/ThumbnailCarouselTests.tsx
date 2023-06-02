@@ -604,6 +604,20 @@ const dynamicElementsCustomization = (
 		}
 	}} />
 );
+const dynamicVideoModalPadding = (
+	<Carousel items={items.slice(2)} options={{
+		layout: { 
+			itemDisplayLocation: 'above',
+		},
+		styling: {
+			videoModal: {
+				padding: {
+					top: [[50], [20, 800]]
+				}
+			}
+		}
+	}} />
+);
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -2066,13 +2080,17 @@ const SECTIONS: Sections = [
 			// 	label: "Thumbnail Background Opacity and Color Change at 800px",
 			// 	jsx: dynamicThumbnailBackground,
 			// },
+			// {
+			// 	label: "Thumbnail Background Gradient Change at 800px",
+			// 	jsx: dynamicThumbnailBackgroundGradient,
+			// },
+			// {
+			// 	label: "Dots and Left Arrow Change Svgs and Color at 800px",
+			// 	jsx: dynamicElementsCustomization,
+			// },
 			{
-				label: "Thumbnail Background Gradient Change at 800px",
-				jsx: dynamicThumbnailBackgroundGradient,
-			},
-			{
-				label: "Dots and Left Arrow Change Svgs and Color at 800px",
-				jsx: dynamicElementsCustomization,
+				label: "Video Modal Padding Changes at 800px",
+				jsx: dynamicVideoModalPadding,
 			},
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",
@@ -2225,19 +2243,19 @@ const SECTIONS: Sections = [
 	// 		},
 	// 	]
 	// ], 
-	[
-		"Custom",
-		[
-			{
-				label: "All Custom Settings",
-				jsx: allCustomSettings,
-			},
-			{
-				label: "Custom Button Sizes",
-				jsx: customButtonSizes
-			},
-		]
-	]
+	// [
+	// 	"Custom",
+	// 	[
+	// 		{
+	// 			label: "All Custom Settings",
+	// 			jsx: allCustomSettings,
+	// 		},
+	// 		{
+	// 			label: "Custom Button Sizes",
+	// 			jsx: customButtonSizes
+	// 		},
+	// 	]
+	// ]
 ];
 
 const sections: CSharpSection[] = SECTIONS.map((section) => ({

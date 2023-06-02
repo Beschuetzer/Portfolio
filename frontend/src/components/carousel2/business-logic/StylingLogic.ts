@@ -276,7 +276,7 @@ export class StylingLogic {
             right: `${paddingRight}${CAROUSEL_SPACING_UNIT}`
         } as CSSProperties : {};
         const topStyle = paddingTop !== undefined ? {
-            top: `${paddingTop}${CAROUSEL_SPACING_UNIT}`
+            top: getCurrentValue(paddingTop, 0),
         } as CSSProperties : {};
         const widthStyle = {
             width: !!sizeGiven ? getCurrentValue(sizeGiven, this.defaultButtonSize) : this.isFullscreenMode ? undefined : CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
@@ -305,7 +305,7 @@ export class StylingLogic {
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
         const paddingStyle = {
-            paddingTop: paddingTop !== undefined ? paddingTop : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
+            paddingTop: paddingTop !== undefined ? getCurrentValue(paddingTop, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
             paddingBottom: paddingBottom !== undefined ? paddingBottom : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
             paddingLeft: paddingLeft !== undefined ? paddingLeft : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
             paddingRight: paddingRight !== undefined ? paddingRight : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
@@ -862,7 +862,7 @@ export class StylingLogic {
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.top:
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = this.options.styling?.container?.padding?.top;
+                allPadding = getCurrentValue(this.options.styling?.container?.padding?.top, undefined);
                 // specificElementPadding = this.options.styling?.[item]?.padding?.top;
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;

@@ -253,7 +253,7 @@ export type CarouselHorizontalPaddingOptions = {
 
 export type CarouselVerticalPaddingOptions = {
     bottom?: number;
-    top?: number;
+    top?: CarouselElementValue<number>;
 }
 
 export type CarouselStylingOptions = {
