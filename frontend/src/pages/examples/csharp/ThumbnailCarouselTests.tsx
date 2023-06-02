@@ -481,13 +481,27 @@ const dynamicThumbnailDescriptionTextColor = (
 		options={{
 			thumbnail: {
 				descriptionOverlay: {
-					textColor: [['red'], ['green'], ['yellow', 1100], ['blue', 1500, 'min-width'], ['orange', 800, 'max-width'], ['white', 600, 'max-width'], ['grey', 400, 'max-width'], ['purple', 1200, 'min-width']],
+					textColor: [['red'], ['green'], ['yellow', 1100], ['blue', 1500, 'min-width'], ['orange', 800, 'max-width'], ['teal', 600, 'max-width'], ['grey', 400, 'max-width'], ['purple', 1200, 'min-width']],
 				}
 			},
 		}}
 		items={items}
 	/>
 );
+const dynamicThumbnailBorder = (
+	<Carousel
+		options={{
+			thumbnail: {
+				currentItemBorder: [['3px solid red'], ['3px dashed green'], ['1px dotted  yellow', 1100], ['5px solid blue', 1500, 'min-width'], ['2px dotted orange', 800, 'max-width'], ['1px ridge teal', 600, 'max-width'], ['3px solid grey', 400, 'max-width'], ['thick double purple', 1200, 'min-width']],
+			},
+			layout: {
+				itemDisplayLocation: 'above',
+			}
+		}}
+		items={items}
+	/>
+);
+
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -1932,11 +1946,15 @@ const SECTIONS: Sections = [
 	// 	]
 	// ],
 	[
-		"Dynamic Color Settings",
+		"Other Dynamic Settings",
 		[
 			{
-				label: "Dynamic Thumbnail Text Color",
+				label: "Thumbnail Text Color Changes Based on Viewport",
 				jsx: dynamicThumbnailDescriptionTextColor,
+			},
+			{
+				label: "Current Item's Border Changes Based on Viewport",
+				jsx: dynamicThumbnailBorder,
 			},
 		]
 	],

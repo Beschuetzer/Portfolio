@@ -144,7 +144,7 @@ export class StylingLogic {
     }
 
     get carouselItemStyle() {
-        const customCurrenItemBorder = this.options.thumbnail?.currentItemBorder || '';
+        const customCurrenItemBorder = getCurrentValue(this.options.thumbnail?.currentItemBorder, '');
 
         const widthStyle = {
             width: this.optionsLogic.carouselItemSize,
