@@ -187,7 +187,7 @@ export type CarouselLayoutOptions = {
    *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the navigation container's ends
    *`right` => the right-most thumbnail item on a given page is positioned flush with the container
    */
-    itemPositioning?: 'left' | 'center' | 'right';
+    itemPositioning?: CarouselElementValue<'left' | 'center' | 'right'>;
 }
 
 export type CarouselSwipingOptions = {

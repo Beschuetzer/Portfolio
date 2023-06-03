@@ -58,6 +58,10 @@ export class OptionsLogic {
         return getCurrentValue(this.options.navigation?.disableWrapping, false);
     }
 
+    get itemPositioning() {
+        return getCurrentValue(this.options.layout?.itemPositioning, undefined);
+    }
+
     get itemSpacingStrategy() {
         return getCurrentValue(this.options.thumbnail?.itemSpacingStrategy, 'min')
     }
@@ -81,9 +85,8 @@ export class OptionsLogic {
 
     //#region Methods
     getItemSpacing(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SPACING_DEFAULT / 2) {
-        const itemPositioning = this.options.layout?.itemPositioning;
         const currentItemSpacing = getCurrentValue(this.options.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT / 2);
-        return itemPositioning !== undefined ? currentItemSpacing : valueToUseIfNoPositioningGiven;
+        return this.itemPositioning !== undefined ? currentItemSpacing : valueToUseIfNoPositioningGiven;
     }
     //#endregion
 }

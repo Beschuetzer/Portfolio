@@ -107,7 +107,7 @@ export const CarouselContent = ({
 
     const getTranslationAmount = useCallback(() => {
         const interItemSpacingToUse = optionsLogic.getItemSpacing(interItemSpacing);
-        const isDefaultCase = options?.thumbnail?.itemSpacing === undefined && options?.layout?.itemPositioning === undefined;
+        const isDefaultCase = options?.thumbnail?.itemSpacing === undefined && optionsLogic.itemPositioning === undefined;
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
             items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
         );
@@ -135,7 +135,6 @@ export const CarouselContent = ({
         currentPage,
         interItemSpacing,
         items.length,
-        options?.layout?.itemPositioning,
         options?.thumbnail?.itemSpacing,
         optionsLogic,
         stylingLogic

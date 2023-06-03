@@ -687,6 +687,16 @@ const dynamicDisablingOfSwiping = (
 		}
 	}} />
 );
+const dynamicItemPositioning = (
+	<Carousel items={items} options={{
+		layout: {
+			itemPositioning: [["center"], ["right", 800]]
+		},
+		thumbnail: {
+			size: 200,
+		}
+	}} />
+);
 const dynamicFontFamilyItemViewer = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
@@ -2201,7 +2211,10 @@ const SECTIONS: Sections = [
 				label: "Swiping Disabled < 800px",
 				jsx: dynamicDisablingOfSwiping,
 			},
-			
+			{
+				label: "Item Positioning Right < 800px Otherwise Center",
+				jsx: dynamicItemPositioning,
+			},
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",
 			// 	jsx: dynamicMaxLineCount,

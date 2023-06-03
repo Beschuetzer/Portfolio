@@ -783,7 +783,7 @@ export class StylingLogic {
             this,
             this.optionsLogic
         );
-        const itemPositioning = this.options.layout?.itemPositioning;
+        const itemPositioning = this.optionsLogic.itemPositioning;
         const numberOfSpaces = numberOfWholeItemsThatCanFit - 1;
         const itemSpacing = this.optionsLogic.getItemSpacing(interItemSpacing);
         const widthOfInterItemSpacing = numberOfSpaces * itemSpacing;
