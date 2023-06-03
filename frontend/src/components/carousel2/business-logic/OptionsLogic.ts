@@ -35,15 +35,19 @@ export class OptionsLogic {
     }
 
     get isDefaultItemDisplayLocation() {
-        return !this.options?.layout?.itemDisplayLocation || this.options?.layout?.itemDisplayLocation === 'none';
+        return this.itemDisplayLocation === 'none' ;
+    }
+
+    get itemDisplayLocation() {
+        return getCurrentValue(this.options?.layout?.itemDisplayLocation, 'none');
     }
 
     get isItemDisplayLocationAbove() {
-        return this.options?.layout?.itemDisplayLocation === 'above';
+        return this.itemDisplayLocation === 'above';
     }
 
     get isItemDisplayLocationBelow() {
-        return this.options?.layout?.itemDisplayLocation === 'below';
+        return this.itemDisplayLocation === 'below';
     }
 
     get isItemViewerSwipingDisabled() {

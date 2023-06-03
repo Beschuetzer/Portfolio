@@ -179,7 +179,7 @@ export type CarouselLayoutOptions = {
        *Otherwise the the item is displayed above or below the carousel.
        *Default is 'none'.
        */
-    itemDisplayLocation?: 'none' | 'above' | 'below';
+    itemDisplayLocation?: CarouselElementValue<'none' | 'above' | 'below'>;
     /*
    *If `thumbnail.itemSpacing` is not given, then it defaults to 5 if `itemPositioning` is not undefined
    *Default is `left`

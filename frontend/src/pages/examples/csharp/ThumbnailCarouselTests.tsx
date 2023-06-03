@@ -697,6 +697,16 @@ const dynamicItemPositioning = (
 		}
 	}} />
 );
+const dynamicItemDisplayLocation = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: [["above"], ["none", 800]]
+		},
+		thumbnail: {
+			size: 200,
+		}
+	}} />
+);
 const dynamicFontFamilyItemViewer = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
@@ -2215,6 +2225,11 @@ const SECTIONS: Sections = [
 				label: "Item Positioning Right < 800px Otherwise Center",
 				jsx: dynamicItemPositioning,
 			},
+			{
+				label: "Item Display Location None < 800px Otherwise Above",
+				jsx: dynamicItemDisplayLocation,
+			},
+			
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",
 			// 	jsx: dynamicMaxLineCount,
