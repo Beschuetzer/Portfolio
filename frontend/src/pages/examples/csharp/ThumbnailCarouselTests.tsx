@@ -667,6 +667,16 @@ const dynamicAutoChangePage = (
 		},
 	}} />
 );
+const dynamicMaxClickThreshold = (
+	<Carousel items={items.slice(2)} options={{
+		navigation: {
+			maxClickThreshold: [[0], [100, 800]],
+		},
+		itemViewer: {
+			maxClickThreshold: [[0], [100, 800]],
+		}
+	}} />
+);
 const dynamicFontFamilyItemViewer = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
@@ -2172,6 +2182,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Auto Change Page Disabled < 800px",
 				jsx: dynamicAutoChangePage,
+			},
+			{
+				label: "The amount of horiztonal movement needed to register swipe event increases < 800px",
+				jsx: dynamicMaxClickThreshold,
 			},
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",

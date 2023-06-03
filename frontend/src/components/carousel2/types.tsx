@@ -205,7 +205,7 @@ export type CarouselSwipingOptions = {
    *0 would mean if the user moved the cursor at all between mouseup and mousedown then the item would not open
    *Default is 15 when swiping is enabled to allow for slight movement (swiping is disabled if only 1 page or `disableSwiping` is false)
    */
-    maxClickThreshold?: number;
+    maxClickThreshold?: CarouselElementValue<number>;
 }
 
 export type CarouselNavigationOptions = {

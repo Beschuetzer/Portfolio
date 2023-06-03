@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react"
-import { getAncestorContainsClassname, getCoordinateDifference, getIsMobile, stopPropagation } from "../utils";
+import { getAncestorContainsClassname, getCoordinateDifference, getCurrentValue, getIsMobile, stopPropagation } from "../utils";
 import { CarouselNavigationOptions, Coordinate } from "../types";
 
 export type StylingCase = 'start' | 'end';
@@ -55,6 +55,7 @@ export const useOnSwipe = ({
     handleStyleChanges,
 }: UseOnSwipeProps) => {
     //todo: need to add handlers to swiping on a phone too?
+    const maxClickThresholdToUse = getCurrentValue(maxClickThreshold, 0);
     const lastCoordinateRef = useRef<Coordinate>();
     const currentCoordinateRef = useRef<Coordinate>();
     const startCoordinateRef = useRef<Coordinate>();
@@ -104,14 +105,14 @@ export const useOnSwipe = ({
         // console.log({ startCoordinate: startCoordinateRef.current, endCoordinate: endCoordinateRef.current, downSource: mouseDownSourceElement.current, upSource: mouseUpSourceElement.current });
         if (startCoordinateRef?.current && endCoordinateRef?.current) {
             const { distance } = getCoordinateDifference(startCoordinateRef.current, endCoordinateRef.current);
-            if (distance > maxClickThreshold && mouseDownSourceElement.current === mouseUpSourceElement.current) {
+            if (distance > maxClickThresholdToUse && mouseDownSourceElement.current === mouseUpSourceElement.current) {
                 stopPropagation(e);
             }
         }
 
         reset();
         window.removeEventListener('click', handleClickStop, true);
-    }, [maxClickThreshold, reset])
+    }, [maxClickThresholdToUse, reset])
 
     /*
     *Determines whether the swipe actually occurs and which callback to trigger
@@ -122,7 +123,7 @@ export const useOnSwipe = ({
         const { distance } = getCoordinateDifference(startCoordinateRef.current as Coordinate, endCoordinateRef.current as Coordinate);
 
         //no need to do anything if event is being registered as a click rather than swipe
-        if (distance <= maxClickThreshold) return;
+        if (distance <= maxClickThresholdToUse) return;
 
         const verticalDiff = endY - startY;
         const horizontalDiff = endX - startX;
@@ -162,7 +163,15 @@ export const useOnSwipe = ({
                 }
             }
         }
-    }, [maxClickThreshold, swipeHandlers, getShouldSkipCallback])
+    }, [
+        maxClickThresholdToUse,
+        swipeHandlers.minSwipeThreshold,
+        swipeHandlers.left,
+        swipeHandlers.right,
+        swipeHandlers.top,
+        swipeHandlers.bottom,
+        getShouldSkipCallback
+    ])
 
     const handleEnd = useCallback((e: Event) => {
         stopPropagation(e)

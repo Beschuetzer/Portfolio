@@ -63,13 +63,11 @@ export class OptionsLogic {
     }
 
     get itemViewerMaxClickThreshold() {
-        const maxClickThreshold = this.options.itemViewer?.maxClickThreshold;
-        return maxClickThreshold !== undefined ? maxClickThreshold : MAX_CLICK_THRESHOLD_DEFAULT;
+        return getCurrentValue(this.options.itemViewer?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT);
     }
 
     get navigationMaxClickThreshold() {
-        const maxClickThreshold = this.options.navigation?.maxClickThreshold;
-        return maxClickThreshold !== undefined ? maxClickThreshold : MAX_CLICK_THRESHOLD_DEFAULT;
+        return getCurrentValue(this.options.navigation?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT);
     }
 
     get shouldDisableThumbnailOverlay() {
