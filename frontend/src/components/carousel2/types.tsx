@@ -197,7 +197,7 @@ export type CarouselSwipingOptions = {
        *Default is false.
        *Swiping only occurs if mouseup and mousedown coordinate distances are greater than `maxClickThreshold` 
        */
-    disableSwiping?: boolean;
+    disableSwiping?: CarouselElementValue<boolean>;
     /*
    *The max number of pixels that can be moved between mousedown and mouseup to still register a 'click' event
    *This is used to prevent opening of an item when mousedown and mouseup targets are the same

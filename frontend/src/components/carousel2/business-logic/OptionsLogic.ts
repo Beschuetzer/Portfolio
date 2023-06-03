@@ -47,11 +47,11 @@ export class OptionsLogic {
     }
 
     get isItemViewerSwipingDisabled() {
-        return this.items.length <= 1 || this.options?.itemViewer?.disableSwiping || false;
+        return this.items.length <= 1 || getCurrentValue(this.options?.itemViewer?.disableSwiping, false);
     }
 
     get isNavigationSwipingDisabled() {
-        return this.numberOfPages <= 1 ? true : this.options?.navigation?.disableSwiping || false;
+        return this.numberOfPages <= 1 || getCurrentValue(this.options?.navigation?.disableSwiping, false);
     }
 
     get isWrappingDisabled() {

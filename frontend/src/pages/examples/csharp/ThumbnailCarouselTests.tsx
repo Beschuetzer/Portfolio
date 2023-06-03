@@ -677,6 +677,16 @@ const dynamicMaxClickThreshold = (
 		}
 	}} />
 );
+const dynamicDisablingOfSwiping = (
+	<Carousel items={items.slice(2)} options={{
+		navigation: {
+			disableSwiping: [[false], [true, 800]],
+		},
+		itemViewer: {
+			disableSwiping: [[false], [true, 800]],
+		}
+	}} />
+);
 const dynamicFontFamilyItemViewer = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
@@ -2187,6 +2197,11 @@ const SECTIONS: Sections = [
 				label: "The amount of horiztonal movement needed to register swipe event increases < 800px",
 				jsx: dynamicMaxClickThreshold,
 			},
+			{
+				label: "Swiping Disabled < 800px",
+				jsx: dynamicDisablingOfSwiping,
+			},
+			
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",
 			// 	jsx: dynamicMaxLineCount,
