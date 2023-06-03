@@ -213,7 +213,7 @@ export type CarouselNavigationOptions = {
    *If true, the navigation automatically changes pages based on the current item viewed 
    *Default is true.
    */
-    autoChangePage?: boolean;
+    autoChangePage?: CarouselElementValue<boolean>;
     /*
     *When true, the carousel can not go from beginning to end directly.
     *When false, the right arrow button navigates to the first page when the currentPage is the final page

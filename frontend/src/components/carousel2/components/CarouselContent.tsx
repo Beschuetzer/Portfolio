@@ -191,8 +191,8 @@ export const CarouselContent = ({
     useEffect(() => {
         if (
             (!isFullscreenMode && optionsLogic.isDefaultItemDisplayLocation) ||
-            (options?.navigation?.autoChangePage === false) ||
-            items?.length <= 0
+            items?.length <= 0 ||
+            (getCurrentValue(options?.navigation?.autoChangePage, undefined) === false)
         ) {
             return;
         }

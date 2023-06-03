@@ -654,6 +654,19 @@ const dynamicWrappingDisabled = (
 		},
 	}} />
 );
+const dynamicAutoChangePage = (
+	<Carousel items={items.slice(2)} options={{
+		layout: {
+			itemDisplayLocation: 'above',
+		},
+		thumbnail: {
+			size: 100,
+		},
+		navigation: {
+			autoChangePage: [[true], [false, 800]]
+		},
+	}} />
+);
 const dynamicFontFamilyItemViewer = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
@@ -2156,7 +2169,10 @@ const SECTIONS: Sections = [
 				label: "Wrapping Disabled < 800px",
 				jsx: dynamicWrappingDisabled,
 			},
-
+			{
+				label: "Auto Change Page Disabled < 800px",
+				jsx: dynamicAutoChangePage,
+			},
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",
 			// 	jsx: dynamicMaxLineCount,
