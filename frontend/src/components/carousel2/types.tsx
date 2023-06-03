@@ -169,7 +169,7 @@ export type CarouselSections = {
         /*
         *this is a percent of the item container width when the 'itemDisplayLocation' is not 'none'.  It has no effect otherwise.
         */
-        widthInPercent?: number;
+        widthInPercent?: CarouselElementValue<number>;
     } & Partial<Pick<CarouselColorOptions, 'background'>>;
 }
 

@@ -707,6 +707,18 @@ const dynamicItemDisplayLocation = (
 		}
 	}} />
 );
+const dynamicVideoModalWidth = (
+	<Carousel items={items.slice(2)} options={{
+		layout: {
+			itemDisplayLocation: 'above',
+		},
+		styling: {
+			videoModal: {
+				widthInPercent: [[100], [50, 800]],
+			},
+		},
+	}} />
+);
 const dynamicFontFamilyItemViewer = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
@@ -2201,35 +2213,38 @@ const SECTIONS: Sections = [
 			// 	label: "Font Changes in ItemViewer at 800px",
 			// 	jsx: dynamicFontFamilyItemViewer,
 			// },
+			// {
+			// 	label: "Font Changes in Navigation at 800px",
+			// 	jsx: dynamicFontFamilyNavigation,
+			// },
+			// {
+			// 	label: "Wrapping Disabled < 800px",
+			// 	jsx: dynamicWrappingDisabled,
+			// },
+			// {
+			// 	label: "Auto Change Page Disabled < 800px",
+			// 	jsx: dynamicAutoChangePage,
+			// },
+			// {
+			// 	label: "The amount of horiztonal movement needed to register swipe event increases < 800px",
+			// 	jsx: dynamicMaxClickThreshold,
+			// },
+			// {
+			// 	label: "Swiping Disabled < 800px",
+			// 	jsx: dynamicDisablingOfSwiping,
+			// },
+			// {
+			// 	label: "Item Positioning Right < 800px Otherwise Center",
+			// 	jsx: dynamicItemPositioning,
+			// },
+			// {
+			// 	label: "Item Display Location None < 800px Otherwise Above",
+			// 	jsx: dynamicItemDisplayLocation,
+			// },
 			{
-				label: "Font Changes in Navigation at 800px",
-				jsx: dynamicFontFamilyNavigation,
+				label: "Video Modal Width Changes < 800px",
+				jsx: dynamicVideoModalWidth,
 			},
-			{
-				label: "Wrapping Disabled < 800px",
-				jsx: dynamicWrappingDisabled,
-			},
-			{
-				label: "Auto Change Page Disabled < 800px",
-				jsx: dynamicAutoChangePage,
-			},
-			{
-				label: "The amount of horiztonal movement needed to register swipe event increases < 800px",
-				jsx: dynamicMaxClickThreshold,
-			},
-			{
-				label: "Swiping Disabled < 800px",
-				jsx: dynamicDisablingOfSwiping,
-			},
-			{
-				label: "Item Positioning Right < 800px Otherwise Center",
-				jsx: dynamicItemPositioning,
-			},
-			{
-				label: "Item Display Location None < 800px Otherwise Above",
-				jsx: dynamicItemDisplayLocation,
-			},
-			
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",
 			// 	jsx: dynamicMaxLineCount,

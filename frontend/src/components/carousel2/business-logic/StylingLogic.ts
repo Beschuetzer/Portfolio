@@ -291,11 +291,12 @@ export class StylingLogic {
     }
 
     get carouselVideoModalStyle() {
-        const { fontSize: customFontSize, background, textColor, widthInPercent } = this.options.styling?.videoModal || {};
+        const { fontSize: customFontSize, background, textColor, widthInPercent: widthInPercentTemp } = this.options.styling?.videoModal || {};
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
         const isDefault = this.optionsLogic.isDefaultItemDisplayLocation;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
         const videoModalHeight = this.videoModalRef?.current?.getBoundingClientRect().height || 0;
+        const widthInPercent = getCurrentValue(widthInPercentTemp, undefined)
         const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : this.isMobile ? "100%" : "75%";
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
