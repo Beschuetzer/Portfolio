@@ -265,8 +265,6 @@ export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefin
         return keepOrder;
     })
 
-    console.log({sorted})
-
     for (const tuple of sorted || []) {
         const [value, breakpoint, breakpointType] = tuple || [];
         let valueToUse;

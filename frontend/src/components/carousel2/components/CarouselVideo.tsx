@@ -4,7 +4,7 @@ import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoModal, CarouselVideoModalProps } from './CarouselVideoModal'
 import { CarouselItemViewerToolbar, CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
-import { CLASSNAME__HIDDEN } from '../constants';
+import { CLASSNAME__HIDDEN, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from '../constants';
 import { CarouselVideoCurrentStateIndicator } from './CarouselVideoCurrentStateIndicator';
 import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
@@ -31,7 +31,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         srcMain,
         video: videoProps,
     } = props;
-    const { options, isFullscreenMode, currentVideoCurrentTime } = useCarouselContext();
+    const { options, isFullscreenMode, currentVideoCurrentTime, setIsFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
 
     const { autoPlay, loop, muted } = videoProps || {};
     const [isVideoPlaying, setIsVideoPlaying] = useState(!!autoPlay || false);
@@ -63,11 +63,15 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         setIsVideoPlaying(!!videoProps?.autoPlay);
     }
 
-    const onVideoClick = useCallback(() => {
-        setHasClickedContainer(true);
-        setIsVideoPlaying((isPlaying) => !isPlaying);
-    }, [setIsVideoPlaying]);
-
+    const onVideoClick = useCallback((e: MouseEvent) => {
+        if (e.detail === 2) {
+            setIsFullscreenMode((current) => !current);
+            setCurrentVideoCurrentTime(videoRef.current?.currentTime || CURRENT_VIDEO_CURRENT_TIME_DEFAULT);
+        } else {
+            setHasClickedContainer(true);
+            setIsVideoPlaying((isPlaying) => !isPlaying);    
+        }
+    }, [setCurrentVideoCurrentTime, setIsFullscreenMode]);
 
     const tryPlaying = useCallback(() => {
         if (!hasClickedContainer) return;
@@ -138,7 +142,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                     autoPlay={!!autoPlay}
                     muted={!!muted}
                     loop={!!loop}
-                    onClick={onVideoClick}
+                    onClick={onVideoClick as any}
                     onLoadedData={handleOnLoadedData}
                     onPlay={() => setIsVideoPlaying(true)}
                     onPause={() => setIsVideoPlaying(false)}
