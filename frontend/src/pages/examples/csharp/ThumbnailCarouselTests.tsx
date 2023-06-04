@@ -707,7 +707,7 @@ const dynamicItemDisplayLocation = (
 		}
 	}} />
 );
-const dynamicVideoModalWidth = (
+const dynamicVideoModal = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
 			itemDisplayLocation: 'above',
@@ -715,6 +715,7 @@ const dynamicVideoModalWidth = (
 		styling: {
 			videoModal: {
 				widthInPercent: [[100], [50, 800]],
+				textColor: [["red"], ['blue', 800]]
 			},
 		},
 	}} />
@@ -2242,8 +2243,8 @@ const SECTIONS: Sections = [
 			// 	jsx: dynamicItemDisplayLocation,
 			// },
 			{
-				label: "Video Modal Width Changes < 800px",
-				jsx: dynamicVideoModalWidth,
+				label: "Video Modal Styling Changes < 800px",
+				jsx: dynamicVideoModal,
 			},
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",

@@ -315,7 +315,7 @@ export class StylingLogic {
             top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${Math.abs(videoHeight - videoModalHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
         } as CSSProperties : {};
         const textStyle = {
-            color: textColor || CAROUSEL_COLOR_ONE,
+            color: getCurrentValue(textColor, CAROUSEL_COLOR_ONE),
             fontSize: customFontSize !== undefined ? customFontSize : this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
         } as CSSProperties;
         const backgroundStyle = {

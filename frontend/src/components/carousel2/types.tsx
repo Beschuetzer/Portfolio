@@ -165,7 +165,7 @@ export type CarouselSections = {
         */
         fontSize?: number;
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
-        textColor?: Color;
+        textColor?: CarouselElementValue<Color>;
         /*
         *this is a percent of the item container width when the 'itemDisplayLocation' is not 'none'.  It has no effect otherwise.
         */
