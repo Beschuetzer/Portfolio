@@ -717,6 +717,9 @@ const dynamicVideoModal = (
 				widthInPercent: [[100], [50, 800]],
 				textColor: [["red"], ['blue', 800]],
 				fontSize: [[14], [10, 800]],
+				closeButton: {
+					fill: [['red'], ['black', 800]]
+				}
 			},
 		},
 	}} />

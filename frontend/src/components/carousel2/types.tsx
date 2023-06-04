@@ -158,7 +158,7 @@ export type CarouselSections = {
    */
     [CarouselSection.videoModal]?: {
         closeButton?: {
-            fill?: Color;
+            fill?: CarouselElementValue<Color>;
         } & CarouselElementSize;
         /*
         *This is in px
