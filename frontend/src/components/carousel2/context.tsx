@@ -1,6 +1,6 @@
-import React, { ReactNode, useContext, useEffect, useRef, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CarouselItemProps } from "./components/CarouselItem";
-import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from "./constants";
+import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, CURRENT_VIDEO_CURRENT_TIME_DEFAULT, WINDOW_RESIZE_DEBOUNCE } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
 import { CarouselOptions, CarouselElementStyles } from "./types";
@@ -21,6 +21,7 @@ export type CarouselContextOutputProps = {
     elementStylings: CarouselElementStyles | undefined;
     isFullscreenMode: boolean;
     numberOfPages: number;
+    viewPortWidth: number;
     setCurrentItemIndex: React.Dispatch<React.SetStateAction<number>>;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
     setCurrentVideoCurrentTime: React.Dispatch<React.SetStateAction<number>>;
@@ -28,6 +29,7 @@ export type CarouselContextOutputProps = {
     setItems: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
     setNumberOfPages: React.Dispatch<React.SetStateAction<number>>;
     setOptions: React.Dispatch<React.SetStateAction<CarouselOptions>>;
+    setViewPortWidth: React.Dispatch<React.SetStateAction<number>>;
 } & Required<Omit<CarouselContextInputProps, 'children'>>
 
 export const CarouselProvider = ({
@@ -45,8 +47,10 @@ export const CarouselProvider = ({
     const [items, setItems] = useState(itemsInput);
     const [numberOfPages, setNumberOfPages] = useState(0);
     const [options, setOptions] = useState<CarouselOptions>(optionsInput || {});
+    const [viewPortWidth, setViewPortWidth] = useState(0);
     const itemViewerRef = useRef<HTMLElement>(null);
     const currentItemToUse = Object.keys(currentItem || {}).length > 0 ? currentItem : items[0];
+    const resizeIntervalRef = useRef<any>(-1);
 
     useEffect(() => {
         setCurrentItem(items?.[currentItemIndex]);
@@ -59,6 +63,22 @@ export const CarouselProvider = ({
             exitFullScreen(itemViewerRef.current)
         }
     }, [isFullscreenMode])
+
+    useLayoutEffect(() => {
+        function handleResize() {
+            clearInterval(resizeIntervalRef.current);
+            resizeIntervalRef.current = setInterval(() => {
+                const width = window.innerWidth;
+                clearInterval(resizeIntervalRef.current)
+                console.log({width, viewPortWidth});
+                setViewPortWidth(width);
+            }, WINDOW_RESIZE_DEBOUNCE)
+        }
+        
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, [viewPortWidth])
 
     return (
         <CarouselContext.Provider 
@@ -73,6 +93,7 @@ export const CarouselProvider = ({
                 items,
                 numberOfPages,
                 options,
+                viewPortWidth,
                 setCurrentItemIndex,
                 setCurrentPage,
                 setCurrentVideoCurrentTime,
@@ -80,6 +101,7 @@ export const CarouselProvider = ({
                 setItems,
                 setNumberOfPages,
                 setOptions,
+                setViewPortWidth,
             }}
         >
             {children}

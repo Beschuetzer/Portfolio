@@ -13,6 +13,7 @@ export const NUMBER_OF_PAGES_INITIAL = 0;
 export const SEEK_AMOUNT_DEFAULT = 5000;
 export const TRANSLATION_AMOUNT_INITIAL = 0;
 export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
+export const WINDOW_RESIZE_DEBOUNCE = 250;
 
 //#region ClassNames
 export const CLASSNAME__ROOT = 'thumbnail-carousel';
