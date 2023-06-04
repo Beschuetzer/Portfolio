@@ -751,6 +751,13 @@ const dynamicFontFamilyItemViewer = (
 		}
 	}} />
 );
+const dynamicSeekAmount = (
+	<Carousel items={items.slice(2)} options={{
+		itemViewer: {
+			seekAmount: [[4000], [8000, 800]]
+		}
+	}} />
+);
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -2233,6 +2240,10 @@ const SECTIONS: Sections = [
 			// 	label: "Font Changes in ItemViewer at 800px",
 			// 	jsx: dynamicFontFamilyItemViewer,
 			// },
+			{
+				label: "Seek Amount in ItemViewer Changes at 800px",
+				jsx: dynamicSeekAmount,
+			},
 			// {
 			// 	label: "Font Changes in Navigation at 800px",
 			// 	jsx: dynamicFontFamilyNavigation,
@@ -2265,10 +2276,10 @@ const SECTIONS: Sections = [
 			// 	label: "Video Modal Styling Changes < 800px",
 			// 	jsx: dynamicVideoModal,
 			// },
-			{
-				label: "Toolbar Styling Changes < 800px",
-				jsx: dynamicToolbar,
-			},
+			// {
+			// 	label: "Toolbar Styling Changes < 800px",
+			// 	jsx: dynamicToolbar,
+			// },
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",
 			// 	jsx: dynamicMaxLineCount,

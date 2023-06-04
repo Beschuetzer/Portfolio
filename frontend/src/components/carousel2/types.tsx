@@ -92,7 +92,7 @@ export type CarouselItemViewerOptions = {
     /*
     *How for forward/backward the seek buttons move a video.  Default is 5 seconds.
     */
-    seekAmount?: number;
+    seekAmount?: CarouselElementValue<number>;
 } & CarouselSwipingOptions
 
 export type CarouselItemViewerButtonProps = {

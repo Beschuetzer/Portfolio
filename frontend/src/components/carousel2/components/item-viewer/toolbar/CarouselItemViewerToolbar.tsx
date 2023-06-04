@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
-import { getFormattedTimeString, getIsMobile, stopPropagation, tryPlayingVideo } from '../../../utils'
+import { getCurrentValue, getFormattedTimeString, getIsMobile, stopPropagation, tryPlayingVideo } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from '../CarouselItemViewerProgressBar'
@@ -246,7 +246,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.currentTime -= (options?.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
+            videoRef.current.currentTime -= getCurrentValue(options?.itemViewer?.seekAmount, SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
         toolbarActionsLogic.getSeekBackwards().onActionCompleted();
@@ -254,7 +254,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.currentTime += (options?.itemViewer?.seekAmount || SEEK_AMOUNT_DEFAULT) / 1000;
+            videoRef.current.currentTime += getCurrentValue(options?.itemViewer?.seekAmount, SEEK_AMOUNT_DEFAULT) / 1000;
         }
         handleAutoHide();
         toolbarActionsLogic.getSeekForwards().onActionCompleted();
