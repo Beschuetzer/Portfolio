@@ -1,4 +1,5 @@
 Carousel rework
+  -issue when changing width of viewport in fullscreen then exiting out of fullscreen (auto height update not working right)
   -add POS in context called viewPortWidth which update on every render (only update when changes though); have to undo/rework any other window.innerWidth stuff?
   -aftering adding viewPortWidth POS to context check dynamicItemDisplayLocation test and whether the styles update properly
   -remove changing fullscreen mode starts video

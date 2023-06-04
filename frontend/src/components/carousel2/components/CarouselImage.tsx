@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselItemViewerToolbar, CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
@@ -8,7 +8,7 @@ import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 
 export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewerToolbarProps, 'itemContainerRef'> ) => {
-    const { options } = useCarouselContext();
+    const { options, setIsFullscreenMode } = useCarouselContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const itemViewerToolbarRef = useRef<HTMLElement>();
     const {
@@ -19,10 +19,17 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
     const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
     useRerenderOnExitFullscreenMode();
 
+    const onImageClick = useCallback((e: MouseEvent) => {
+        if (e.detail === 2) {
+            setIsFullscreenMode((current) => !current);
+        }
+    }, [setIsFullscreenMode]);
+
     return (
         <>
             <LoadingSpinner type='ring' show={!isLoaded} description={description} {...options?.styling?.itemViewer?.loadingSpinner} />
             <img
+                onClick={onImageClick as any}
                 draggable={false}
                 style={stylingLogic.carouselImageStlye}
                 className={isLoaded ? '' : CLASSNAME__HIDDEN}

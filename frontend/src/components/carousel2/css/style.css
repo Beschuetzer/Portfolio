@@ -746,6 +746,7 @@
   }
 }
 .thumbnail-carousel__item-container img {
+  z-index: 1;
   width: 100vw;
   max-height: 100vh;
   object-fit: contain;
@@ -857,6 +858,7 @@
   white-space: nowrap;
 }
 .thumbnail-carousel__item-viewer-toolbar {
+  z-index: 10;
   transition: transform 0.5s ease, opacity 0.5s ease;
   display: flex;
   flex-direction: column;
