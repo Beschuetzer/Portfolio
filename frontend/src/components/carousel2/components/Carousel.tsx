@@ -1,10 +1,11 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { CarouselProvider } from '../context';
 import { getClassname } from '../utils';
 import { CarouselItemProps } from './CarouselItem';
 import { CarouselOptions } from '../types';
 import { CarouselContent } from './CarouselContent';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
+import { useOnResize } from '../hooks/useOnResize';
 
 export type CarouselProps = {
 	/*
@@ -22,6 +23,8 @@ export const Carousel = (props: CarouselProps) => {
 	} = props;
 	const carouselContainerRef = useRef<HTMLDivElement>();
 	const { stylingLogic } = useBusinessLogic({ options }); //need to pass in options here since it is outside of context
+	const [, setShouldRerender] = useState(false);
+	useOnResize(() => setShouldRerender((current) => !current));
 	//#endregion
 
 	//#region JSX

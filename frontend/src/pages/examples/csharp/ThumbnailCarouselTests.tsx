@@ -812,6 +812,10 @@ const dynamicBackgroundColor = (
 			},
 			videoModal: {
 				background: [['red'], ['black', 800]],
+				textColor: 'white',
+				closeButton: {
+					fill: 'white',
+				}
 			},
 		}
 	}} />
@@ -2257,54 +2261,54 @@ const SECTIONS: Sections = [
 	[
 		"Other Dynamic Settings",
 		[
-			// {
-			// 	label: "Thumbnail Overlay Disabled <= 800px",
-			// 	jsx: dynamicDisablingOfThumbnailOverlayBelow800,
-			// },
-			// {
-			// 	label: "Thumbnail Overlay Font Size Changes at 800px",
-			// 	jsx: dynamicHidingOfThumbnailFontSize,
-			// },
-			// {
-			// 	label: "Thumbnail Overlay Hiding Behavior Changes at 800px",
-			// 	jsx: dynamicHidingOfThumbnailOverlay,
-			// },
-			// {
-			// 	label: "Thumbnail Background Opacity and Color Change at 800px",
-			// 	jsx: dynamicThumbnailBackground,
-			// },
-			// {
-			// 	label: "Thumbnail Background Gradient Change at 800px",
-			// 	jsx: dynamicThumbnailBackgroundGradient,
-			// },
-			// {
-			// 	label: "Dots and Left Arrow Change Svgs and Color at 800px",
-			// 	jsx: dynamicElementsCustomization,
-			// },
-			// {
-			// 	label: "Video Modal Padding Changes at 800px",
-			// 	jsx: dynamicVideoModalPadding,
-			// },
-			// {
-			// 	label: "Font Changes Everywhere at 800px",
-			// 	jsx: dynamicFontFamilyAll,
-			// },
-			// {
-			// 	label: "Font Changes in ItemViewer at 800px",
-			// 	jsx: dynamicFontFamilyItemViewer,
-			// },
-			// {
-			// 	label: "Seek Amount in ItemViewer Changes at 800px",
-			// 	jsx: dynamicSeekAmount,
-			// },
-			// {
-			// 	label: "Item Viewer Auto Hide Duration Changes at 800px",
-			// 	jsx: dynamicAutoHideDurationInItemViewer,
-			// },
-			// {
-			// 	label: "Toolbar Elements' Color Changes at 800px",
-			// 	jsx: dynamicToolbarColor,
-			// },
+			{
+				label: "Thumbnail Overlay Disabled <= 800px",
+				jsx: dynamicDisablingOfThumbnailOverlayBelow800,
+			},
+			{
+				label: "Thumbnail Overlay Font Size Changes at 800px",
+				jsx: dynamicHidingOfThumbnailFontSize,
+			},
+			{
+				label: "Thumbnail Overlay Hiding Behavior Changes at 800px",
+				jsx: dynamicHidingOfThumbnailOverlay,
+			},
+			{
+				label: "Thumbnail Background Opacity and Color Change at 800px",
+				jsx: dynamicThumbnailBackground,
+			},
+			{
+				label: "Thumbnail Background Gradient Change at 800px",
+				jsx: dynamicThumbnailBackgroundGradient,
+			},
+			{
+				label: "Dots and Left Arrow Change Svgs and Color at 800px",
+				jsx: dynamicElementsCustomization,
+			},
+			{
+				label: "Video Modal Padding Changes at 800px",
+				jsx: dynamicVideoModalPadding,
+			},
+			{
+				label: "Font Changes Everywhere at 800px",
+				jsx: dynamicFontFamilyAll,
+			},
+			{
+				label: "Font Changes in ItemViewer at 800px",
+				jsx: dynamicFontFamilyItemViewer,
+			},
+			{
+				label: "Seek Amount in ItemViewer Changes at 800px",
+				jsx: dynamicSeekAmount,
+			},
+			{
+				label: "Item Viewer Auto Hide Duration Changes at 800px",
+				jsx: dynamicAutoHideDurationInItemViewer,
+			},
+			{
+				label: "Toolbar Elements' Color Changes at 800px",
+				jsx: dynamicToolbarColor,
+			},
 			{
 				label: "ProgressBar Color Changes at 800px",
 				jsx: dynamicProgressBarColor,
@@ -2313,58 +2317,58 @@ const SECTIONS: Sections = [
 				label: "All Background Colors Changes at 800px",
 				jsx: dynamicBackgroundColor,
 			},
-			// {
-			// 	label: "Font Changes in Navigation at 800px",
-			// 	jsx: dynamicFontFamilyNavigation,
-			// },
-			// {
-			// 	label: "Wrapping Disabled < 800px",
-			// 	jsx: dynamicWrappingDisabled,
-			// },
-			// {
-			// 	label: "Auto Change Page Disabled < 800px",
-			// 	jsx: dynamicAutoChangePage,
-			// },
-			// {
-			// 	label: "The amount of horiztonal movement needed to register swipe event increases < 800px",
-			// 	jsx: dynamicMaxClickThreshold,
-			// },
-			// {
-			// 	label: "Swiping Disabled < 800px",
-			// 	jsx: dynamicDisablingOfSwiping,
-			// },
-			// {
-			// 	label: "Item Positioning Right < 800px Otherwise Center",
-			// 	jsx: dynamicItemPositioning,
-			// },
-			// {
-			// 	label: "Item Display Location None < 800px Otherwise Above",
-			// 	jsx: dynamicItemDisplayLocation,
-			// },
-			// {
-			// 	label: "Video Modal Styling Changes < 800px",
-			// 	jsx: dynamicVideoModal,
-			// },
-			// {
-			// 	label: "Toolbar Styling Changes < 800px",
-			// 	jsx: dynamicToolbar,
-			// },
-			// {
-			// 	label: "Thumbnail Max Line Count Changes at 800px",
-			// 	jsx: dynamicMaxLineCount,
-			// },
-			// {
-			// 	label: "Thumbnail Text Color Changes Based on Viewport",
-			// 	jsx: dynamicThumbnailDescriptionTextColor,
-			// },
-			// {
-			// 	label: "Current Item's Border Changes Based on Viewport",
-			// 	jsx: dynamicThumbnailBorder,
-			// },
-			// {
-			// 	label: "Item Spacing Strategy Changes at 800px",
-			// 	jsx: dynamicItemSpacingStrategy,
-			// },
+			{
+				label: "Font Changes in Navigation at 800px",
+				jsx: dynamicFontFamilyNavigation,
+			},
+			{
+				label: "Wrapping Disabled < 800px",
+				jsx: dynamicWrappingDisabled,
+			},
+			{
+				label: "Auto Change Page Disabled < 800px",
+				jsx: dynamicAutoChangePage,
+			},
+			{
+				label: "The amount of horiztonal movement needed to register swipe event increases < 800px",
+				jsx: dynamicMaxClickThreshold,
+			},
+			{
+				label: "Swiping Disabled < 800px",
+				jsx: dynamicDisablingOfSwiping,
+			},
+			{
+				label: "Item Positioning Right < 800px Otherwise Center",
+				jsx: dynamicItemPositioning,
+			},
+			{
+				label: "Item Display Location None < 800px Otherwise Above",
+				jsx: dynamicItemDisplayLocation,
+			},
+			{
+				label: "Video Modal Styling Changes < 800px",
+				jsx: dynamicVideoModal,
+			},
+			{
+				label: "Toolbar Styling Changes < 800px",
+				jsx: dynamicToolbar,
+			},
+			{
+				label: "Thumbnail Max Line Count Changes at 800px",
+				jsx: dynamicMaxLineCount,
+			},
+			{
+				label: "Thumbnail Text Color Changes Based on Viewport",
+				jsx: dynamicThumbnailDescriptionTextColor,
+			},
+			{
+				label: "Current Item's Border Changes Based on Viewport",
+				jsx: dynamicThumbnailBorder,
+			},
+			{
+				label: "Item Spacing Strategy Changes at 800px",
+				jsx: dynamicItemSpacingStrategy,
+			},
 		]
 	],
 	// [

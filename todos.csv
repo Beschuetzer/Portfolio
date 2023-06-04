@@ -1,8 +1,7 @@
 Carousel rework
   -issue when changing width of viewport in fullscreen then exiting out of fullscreen (auto height update not working right)
-  -add POS in context called viewPortWidth which update on every render (only update when changes though); have to undo/rework any other window.innerWidth stuff?
-  -aftering adding viewPortWidth POS to context check dynamicItemDisplayLocation test and whether the styles update properly
-  -remove changing fullscreen mode starts video
+  -fine tune changing fullscreen mode starts video?
+  -when clicking next/previous button in non-default case, add option to set translationAmount to currentPage the currentItem is on (idea is that the currentItem should be visible in the thumbnails)
   -add a single option for full width single item per page with only circular buttons
   -add option to specify the border on the CarouselItemViewerToolbarPreview?
   -add options to set videomodal close button size and VideoCurrentStateIndicatorButton?
