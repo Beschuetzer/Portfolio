@@ -1,5 +1,4 @@
 Carousel rework
-  -change all types to use CarouselElementValue (left off with autoChangePage); done below that
   -add double click an item enters fullscreen
   -add POS in context called viewPortWidth which update on every render (only update when changes though); have to undo/rework any other window.innerWidth stuff?
   -aftering adding viewPortWidth POS to context check dynamicItemDisplayLocation test and whether the styles update properly
