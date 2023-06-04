@@ -36,10 +36,10 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
 
     const startInterval = useCallback(() => {
         return setInterval(() => {
-            // console.log({ itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current });
+            console.log({ itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current });
             if (currentInvervalRef.current > NUMBER_OF_DATA_POINTS || hasCurrentItemIndexChangedRef.current) {
                 clearInterval(intervalRef.current);
-                
+
                 if (!hasCurrentItemIndexChangedRef.current) {
                     setCurrentMaxHeight();
                 }
@@ -54,17 +54,13 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
 
     const reset = useCallback(() => {
         heightsRef.current = [];
-        currentInvervalRef.current = CURRENT_INTERVAL_INITIAL;        
+        currentInvervalRef.current = CURRENT_INTERVAL_INITIAL;
         hasCurrentItemIndexChangedRef.current = HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL;
         setHeight(HEIGHT_INITIAL);
     }, [])
     //#endregion
 
     //#region Side FX
-    useLayoutEffect(() => {
-        reset();
-    }, [window.innerWidth, reset]) //need innerwidth as dep here
-
     useEffect(() => {
         if (currentItemIndex !== 0 && !hasCurrentItemIndexChangedRef.current) {
             hasCurrentItemIndexChangedRef.current = true;
@@ -73,12 +69,20 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     }, [currentItemIndex, setCurrentMaxHeight])
 
     useEffect(() => {
-        if (optionsLogic.isDefaultItemDisplayLocation) return;
-        clearInterval(intervalRef.current);
-        intervalRef.current = startInterval();
+        function onResize() {
+            reset();
+            if (optionsLogic.isDefaultItemDisplayLocation) return;
+            clearInterval(intervalRef.current);
+            intervalRef.current = startInterval();
+        }
 
-        return () => clearInterval(intervalRef.current);
-    }, [currentItemIndex, optionsLogic.isDefaultItemDisplayLocation, startInterval, window.innerWidth]) //need innerwidth as dep here
+        onResize();
+        window.addEventListener('resize', onResize);
+        return () => {
+            window.removeEventListener('resize', onResize);
+            clearInterval(intervalRef.current);
+        }
+    }, [optionsLogic.isDefaultItemDisplayLocation, reset, startInterval]) //need innerwidth as dep here
     //#endregion
 
     return (
