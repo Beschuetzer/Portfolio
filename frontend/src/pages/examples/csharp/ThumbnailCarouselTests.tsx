@@ -765,6 +765,20 @@ const dynamicAutoHideDurationInItemViewer = (
 		}
 	}} />
 );
+const dynamicToolbarColor = (
+	<Carousel items={items.slice(2)} options={{
+		layout: {
+			itemDisplayLocation: "above",
+		},
+		styling: {
+			toolbar: {
+				elements: {
+					color: [['white'], ['red', 800]]
+				},
+			}
+		}
+	}} />
+);
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -2254,6 +2268,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Item Viewer Auto Hide Duration Changes at 800px",
 				jsx: dynamicAutoHideDurationInItemViewer,
+			},
+			{
+				label: "Toolbar Elements' Color Changes at 800px",
+				jsx: dynamicToolbarColor,
 			},
 			// {
 			// 	label: "Font Changes in Navigation at 800px",

@@ -261,7 +261,7 @@ export class StylingLogic {
     }
 
     get carouselToolbarTextStyle() {
-        const customTextColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined) || this.options.styling?.toolbar?.elements?.color || this.allFillColor;
+        const customTextColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined) || getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined) || this.allFillColor;
         return {
             color: customTextColor || CAROUSEL_COLOR_FIVE,
         } as CSSProperties;
@@ -586,7 +586,7 @@ export class StylingLogic {
             case CarouselElement.arrowLeft:
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
-                const navigationElementsColor = this.options.styling?.navigation?.elements?.color;
+                const navigationElementsColor = getCurrentValue(this.options.styling?.navigation?.elements?.color, undefined);
                 return specificFillColor || navigationElementsColor || this.allFillColor || fallbackColor;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
@@ -596,7 +596,7 @@ export class StylingLogic {
             case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
-                const toolbarElementsColor = this.options.styling?.toolbar?.elements?.color;
+                const toolbarElementsColor = getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined);
                 return specificFillColor || toolbarElementsColor || this.allFillColor || fallbackColor;
             default:
                 return specificFillColor || this.allFillColor || fallbackColor;

@@ -63,7 +63,7 @@ export type CarouselElementValueType = "min-width" | "max-width";
 */
 export type Color = string;
 export type CarouselElementColor = {
-    color?: Color;
+    color?: CarouselElementValue<Color>;
 }
 export type CarouselElementSize = {
     /*
