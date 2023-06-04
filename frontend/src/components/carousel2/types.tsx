@@ -142,7 +142,7 @@ export type CarouselSections = {
             *If true, the progress bar spans the entire width of the carousel itemViewer, otherwise it only spans the inner width of the toolbar container.
             *Default is false
             */
-            shouldSpanContainerWidth?: boolean;
+            shouldSpanContainerWidth?: CarouselElementValue<boolean>;
         } & CarouselColorOptions;
         /*
         *This changes all of the button colors as well as the text.  To change individual ones, use styling.elements.buttonNameHere

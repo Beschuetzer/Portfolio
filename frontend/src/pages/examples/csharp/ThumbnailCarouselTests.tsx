@@ -732,6 +732,9 @@ const dynamicToolbar = (
 		styling: {
 			toolbar: {
 				textColor: [['white'], ['red', 800]],
+				progressBar: {
+					shouldSpanContainerWidth: [[false], [true, 800]],
+				},
 			},
 		},
 	}} />
