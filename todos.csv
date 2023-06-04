@@ -1,5 +1,4 @@
 Carousel rework
-  -issue when changing width of viewport in fullscreen then exiting out of fullscreen (auto height update not working right)
   -fine tune changing fullscreen mode starts video?
   -when clicking next/previous button in non-default case, add option to set translationAmount to currentPage the currentItem is on (idea is that the currentItem should be visible in the thumbnails)
   -add a single option for full width single item per page with only circular buttons
