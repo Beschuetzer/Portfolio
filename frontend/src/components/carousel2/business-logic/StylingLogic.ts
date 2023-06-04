@@ -291,13 +291,14 @@ export class StylingLogic {
     }
 
     get carouselVideoModalStyle() {
-        const { fontSize: customFontSize, background, textColor, widthInPercent: widthInPercentTemp } = this.options.styling?.videoModal || {};
+        const { fontSize: fontSizeTemp, background, textColor, widthInPercent: widthInPercentTemp } = this.options.styling?.videoModal || {};
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
         const isDefault = this.optionsLogic.isDefaultItemDisplayLocation;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
         const videoModalHeight = this.videoModalRef?.current?.getBoundingClientRect().height || 0;
         const widthInPercent = getCurrentValue(widthInPercentTemp, undefined)
         const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : this.isMobile ? "100%" : "75%";
+        const customFontSize = getCurrentValue(fontSizeTemp, this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT);
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
             width: widthToUse,
@@ -316,7 +317,7 @@ export class StylingLogic {
         } as CSSProperties : {};
         const textStyle = {
             color: getCurrentValue(textColor, CAROUSEL_COLOR_ONE),
-            fontSize: customFontSize !== undefined ? customFontSize : this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
+            fontSize: customFontSize,
         } as CSSProperties;
         const backgroundStyle = {
             background: background !== undefined ? background : CAROUSEL_COLOR_FIVE,

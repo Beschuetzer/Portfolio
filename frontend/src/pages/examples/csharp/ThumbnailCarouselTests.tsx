@@ -715,7 +715,8 @@ const dynamicVideoModal = (
 		styling: {
 			videoModal: {
 				widthInPercent: [[100], [50, 800]],
-				textColor: [["red"], ['blue', 800]]
+				textColor: [["red"], ['blue', 800]],
+				fontSize: [[14], [10, 800]],
 			},
 		},
 	}} />

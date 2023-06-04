@@ -163,7 +163,7 @@ export type CarouselSections = {
         /*
         *This is in px
         */
-        fontSize?: number;
+        fontSize?: CarouselElementValue<number>;
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
         textColor?: CarouselElementValue<Color>;
         /*
