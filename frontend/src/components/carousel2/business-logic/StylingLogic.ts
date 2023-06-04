@@ -127,7 +127,7 @@ export class StylingLogic {
         } as CSSProperties;
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
-            background: this.options?.styling?.navigation?.background || this.options.styling?.container?.background || CAROUSEL_COLOR_ONE,
+            background: getCurrentValue(this.options?.styling?.navigation?.background, undefined) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE),
             borderRadius: 4,
             paddingRight: 0,
             paddingLeft: 0,
@@ -320,7 +320,7 @@ export class StylingLogic {
             fontSize: customFontSize,
         } as CSSProperties;
         const backgroundStyle = {
-            background: background !== undefined ? background : CAROUSEL_COLOR_FIVE,
+            background: getCurrentValue(background, CAROUSEL_COLOR_FIVE),
         } as CSSProperties;
 
         return {
@@ -377,7 +377,7 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressBackgroundStyle() {
-        const background = this.options.styling?.toolbar?.progressBar?.background;
+        const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, undefined);
         const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined);
         const common = {
             background,
@@ -392,7 +392,7 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressForegroundStyle() {
-        const foregroundColor = this.options.styling?.toolbar?.progressBar?.foregroundColor;
+        const foregroundColor = getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, undefined);
         const common = {
             background: foregroundColor,
             width: `${this.progressBarValue * 100}%`,
@@ -449,7 +449,7 @@ export class StylingLogic {
     }
 
     get itemViewerBackgroundColor() {
-        return this.options.styling?.itemViewer?.background || this.options.styling?.container?.background || CAROUSEL_COLOR_ONE;
+        return getCurrentValue(this.options.styling?.itemViewer?.background, undefined) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE);
     }
 
     get navigationContainerHorizontalPadding() {
@@ -541,9 +541,9 @@ export class StylingLogic {
     }
 
     get toolbarBackgroundColorStyle() {
-        const customColor = this.options.styling?.toolbar?.background || this.options.styling?.container?.background;
+        const customColor = getCurrentValue(this.options.styling?.toolbar?.background, undefined) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE);
         return {
-            background: customColor || CAROUSEL_COLOR_ONE,
+            background: customColor,
         } as CSSProperties;
     }
 

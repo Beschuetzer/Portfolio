@@ -26,8 +26,8 @@ export type CarouselColorOptions = {
     *This can be any background string that the CSS property accepts
     *https://developer.mozilla.org/en-US/docs/Web/CSS/background
     */
-    background?: string;
-    foregroundColor?: Color;
+    background?: CarouselElementValue<string>;
+    foregroundColor?: CarouselElementValue<Color>;
 }
 
 export enum CarouselElement {
@@ -111,14 +111,14 @@ export enum CarouselSection {
 export type CarouselSections = {
     [CarouselSection.container]?: {
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
-    } & CarouselColorOptions
+    } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
     *This is the container in which the currently viewing item sits
     */
     [CarouselSection.itemViewer]?: {
         loadingSpinner?: Partial<Omit<LoadingSpinnerProps, 'description' | 'show'>>;
         padding?: CarouselHorizontalPaddingOptions;
-    } & CarouselColorOptions;
+    } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
     *This is the where the dots, arrows, and thumbanils sit
     */

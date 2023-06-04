@@ -339,8 +339,6 @@ const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 			},
 			itemViewer: {
 				background: getComputedStyleCustom('--color-primary-4'),
-				foregroundColor: getComputedStyleCustom('--color-primary-1'),
-
 			},
 			toolbar: {
 				progressBar: {
@@ -776,6 +774,45 @@ const dynamicToolbarColor = (
 					color: [['white'], ['red', 800]]
 				},
 			}
+		}
+	}} />
+);
+const dynamicProgressBarColor = (
+	<Carousel items={items.slice(2)} options={{
+		layout: {
+			itemDisplayLocation: "above",
+		},
+		styling: {
+			toolbar: {
+				progressBar: {
+					foregroundColor: [['red'], ['black', 800]],
+					background: [['black'], ['white', 800]],
+				}
+			}
+		}
+	}} />
+);
+const dynamicBackgroundColor = (
+	<Carousel items={items.slice(2)} options={{
+		layout: {
+			itemDisplayLocation: "above",
+		},
+		styling: {
+			toolbar: {
+				background: [['red'], ['black', 800]],
+			},
+			container: {
+				background: [['red'], ['black', 800]],
+			},
+			itemViewer: {
+				background: [['red'], ['black', 800]],
+			},
+			navigation: {
+				background: [['red'], ['black', 800]],
+			},
+			videoModal: {
+				background: [['red'], ['black', 800]],
+			},
 		}
 	}} />
 );
@@ -1304,7 +1341,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 				},
 				container: {
 					background: getComputedStyleCustom("--color-primary-4"),
-					foregroundColor: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 0,
 						right: 0,
@@ -1385,7 +1421,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons = (
 				},
 				container: {
 					background: getComputedStyleCustom("--color-primary-4"),
-					foregroundColor: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 0,
 						right: 0,
@@ -1449,7 +1484,6 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors = (
 				},
 				container: {
 					background: getComputedStyleCustom("--color-primary-4"),
-					foregroundColor: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 0,
 						right: 0,
@@ -1498,7 +1532,6 @@ const layoutAboveButtonsAllWithSpecificFillColors = (
 				},
 				container: {
 					background: getComputedStyleCustom("--color-primary-4"),
-					foregroundColor: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 0,
 						right: 0,
@@ -1557,7 +1590,6 @@ const layoutAboveCustomOverlayAndSpinner = (
 				},
 				container: {
 					background: getComputedStyleCustom("--color-primary-4"),
-					foregroundColor: getComputedStyleCustom("--color-primary-1"),
 					padding: {
 						left: 0,
 						right: 0,
@@ -2265,13 +2297,21 @@ const SECTIONS: Sections = [
 			// 	label: "Seek Amount in ItemViewer Changes at 800px",
 			// 	jsx: dynamicSeekAmount,
 			// },
+			// {
+			// 	label: "Item Viewer Auto Hide Duration Changes at 800px",
+			// 	jsx: dynamicAutoHideDurationInItemViewer,
+			// },
+			// {
+			// 	label: "Toolbar Elements' Color Changes at 800px",
+			// 	jsx: dynamicToolbarColor,
+			// },
 			{
-				label: "Item Viewer Auto Hide Duration Changes at 800px",
-				jsx: dynamicAutoHideDurationInItemViewer,
+				label: "ProgressBar Color Changes at 800px",
+				jsx: dynamicProgressBarColor,
 			},
 			{
-				label: "Toolbar Elements' Color Changes at 800px",
-				jsx: dynamicToolbarColor,
+				label: "All Background Colors Changes at 800px",
+				jsx: dynamicBackgroundColor,
 			},
 			// {
 			// 	label: "Font Changes in Navigation at 800px",
