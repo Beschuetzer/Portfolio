@@ -524,7 +524,7 @@ const dynamicHidingOfThumbnailOverlay = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			descriptionOverlay: {
-				hideDescriptionOverlayUnlessHovered: [[true], [false, 800], [true, 1000, 'min-width'], [false, 1200, 'min-width']],
+				hideDescriptionOverlayUnlessHovered: [[false], [true, 800]],
 			},
 		}
 	}} />
@@ -624,6 +624,12 @@ const dynamicFontFamilyAll = (
 		layout: {
 			itemDisplayLocation: 'above',
 		},
+		thumbnail: {
+			size: 100,
+			descriptionOverlay: {
+				hideDescriptionOverlayUnlessHovered: false,
+			},
+		},
 		styling: {
 			fontFamily: {
 				all: [['monospace'], ['sans-serif', 800]],
@@ -633,7 +639,11 @@ const dynamicFontFamilyAll = (
 );
 const dynamicFontFamilyNavigation = (
 	<Carousel items={items.slice(2)} options={{
+		layout: {
+			itemDisplayLocation: 'above',
+		},
 		thumbnail: {
+			size: 100,
 			descriptionOverlay: {
 				hideDescriptionOverlayUnlessHovered: false,
 			}
@@ -641,6 +651,24 @@ const dynamicFontFamilyNavigation = (
 		styling: {
 			fontFamily: {
 				navigation: [['monospace'], ['sans-serif', 800]],
+			}
+		}
+	}} />
+);
+const dynamicFontFamilyItemViewer = (
+	<Carousel items={items.slice(2)} options={{
+		layout: {
+			itemDisplayLocation: 'above',
+		},
+		thumbnail: {
+			size: 100,
+			descriptionOverlay: {
+				hideDescriptionOverlayUnlessHovered: false,
+			},
+		},
+		styling: {
+			fontFamily: {
+				itemViewer: [['monospace'], ['sans-serif', 800]],
 			}
 		}
 	}} />
@@ -735,18 +763,6 @@ const dynamicToolbar = (
 				},
 			},
 		},
-	}} />
-);
-const dynamicFontFamilyItemViewer = (
-	<Carousel items={items.slice(2)} options={{
-		layout: {
-			itemDisplayLocation: 'above',
-		},
-		styling: {
-			fontFamily: {
-				itemViewer: [['monospace'], ['sans-serif', 800]],
-			}
-		}
 	}} />
 );
 const dynamicSeekAmount = (
@@ -2270,7 +2286,7 @@ const SECTIONS: Sections = [
 				jsx: dynamicHidingOfThumbnailFontSize,
 			},
 			{
-				label: "Thumbnail Overlay Hiding Behavior Changes at 800px",
+				label: "Thumbnail Overlay Always Shown > 800px",
 				jsx: dynamicHidingOfThumbnailOverlay,
 			},
 			{
@@ -2298,6 +2314,10 @@ const SECTIONS: Sections = [
 				jsx: dynamicFontFamilyItemViewer,
 			},
 			{
+				label: "Font Changes in Thumbnails at 800px",
+				jsx: dynamicFontFamilyNavigation,
+			},
+			{
 				label: "Seek Amount in ItemViewer Changes at 800px",
 				jsx: dynamicSeekAmount,
 			},
@@ -2316,10 +2336,6 @@ const SECTIONS: Sections = [
 			{
 				label: "All Background Colors Changes at 800px",
 				jsx: dynamicBackgroundColor,
-			},
-			{
-				label: "Font Changes in Navigation at 800px",
-				jsx: dynamicFontFamilyNavigation,
 			},
 			{
 				label: "Wrapping Disabled < 800px",

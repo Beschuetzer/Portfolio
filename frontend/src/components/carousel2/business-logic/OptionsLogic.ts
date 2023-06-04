@@ -79,7 +79,7 @@ export class OptionsLogic {
     }
 
     get shouldDisableThumbnailOverlay() {
-        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.isDisabled, !this.isDefaultItemDisplayLocation);
+        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.isDisabled, !this.isDefaultItemDisplayLocation && this.shouldHideThumbnailOverlay)
     }
 
     get shouldHideThumbnailOverlay() {

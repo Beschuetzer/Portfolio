@@ -285,7 +285,10 @@ export const CarouselContent = ({
                 <CarouselItemToRender />
             ) : null}
             <div ref={itemsContainerOuterRef}
-                style={stylingLogic.carouselItemsOuterContainerStyle}
+                style={{
+                    ...stylingLogic.carouselItemsOuterContainerStyle,
+                    ...stylingLogic.fontFamilyNavigationStyle,
+                }}
             >
                 <div ref={itemsContainerInnerRef}
                     style={stylingLogic.getCarouselItemsInnerContainerStyle(interItemSpacing, translationAmount)}

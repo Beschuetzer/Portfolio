@@ -40,7 +40,6 @@ export const Carousel = (props: CarouselProps) => {
 				style={
 					{
 						...stylingLogic.carouselStyle,
-						...stylingLogic.fontFamilyNavigationStyle,
 					}
 				}
 			>

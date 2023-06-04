@@ -95,7 +95,8 @@
             font-size: $carouselThumbnailFontSize;
             background-color: rgba($itemViewerBackgroundColor, $itemViewerToolbarPreviewOpacity);
             background: linear-gradient(180deg, rgba(color.red($itemViewerButtonColor), color.green($itemViewerButtonColor), color.blue($itemViewerButtonColor), 0) 0%, rgba(red($itemViewerBackgroundColor), green($itemViewerBackgroundColor), blue($itemViewerBackgroundColor), 1) 100%);
-
+            cursor: pointer;
+            
             & * {
                 @include maxTextLineCount($carouselThumbnailOverlayMaxLineCount);
                 color: $itemViewerButtonColor;
