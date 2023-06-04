@@ -164,13 +164,13 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         if (itemContainerRef?.current) {
             itemContainerRef.current.classList?.remove(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
         }
-        if (!isFullscreenMode || options?.itemViewer?.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
+        if (!isFullscreenMode || getCurrentValue(options?.itemViewer?.autoHideToolbarDuration, undefined) === AUTO_HIDE_DISABLED_VALUE) return;
 
         shouldHideTimoutRef.current = setTimeout(() => {
             if (itemContainerRef?.current && !isMobile) {
                 itemContainerRef.current.classList?.add(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
             }
-        }, options?.itemViewer?.autoHideToolbarDuration || AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT);
+        }, getCurrentValue(options?.itemViewer?.autoHideToolbarDuration, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT));
     }, [
         isMobile,
         isFullscreenMode,

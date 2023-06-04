@@ -758,6 +758,13 @@ const dynamicSeekAmount = (
 		}
 	}} />
 );
+const dynamicAutoHideDurationInItemViewer = (
+	<Carousel items={items.slice(2)} options={{
+		itemViewer: {
+			autoHideToolbarDuration: [[1000], [5000, 800]]
+		}
+	}} />
+);
 const customSizeAndSpacingNonDefaultItemDisplayCase = (
 	<Carousel
 		options={{
@@ -2240,9 +2247,13 @@ const SECTIONS: Sections = [
 			// 	label: "Font Changes in ItemViewer at 800px",
 			// 	jsx: dynamicFontFamilyItemViewer,
 			// },
+			// {
+			// 	label: "Seek Amount in ItemViewer Changes at 800px",
+			// 	jsx: dynamicSeekAmount,
+			// },
 			{
-				label: "Seek Amount in ItemViewer Changes at 800px",
-				jsx: dynamicSeekAmount,
+				label: "Item Viewer Auto Hide Duration Changes at 800px",
+				jsx: dynamicAutoHideDurationInItemViewer,
 			},
 			// {
 			// 	label: "Font Changes in Navigation at 800px",
