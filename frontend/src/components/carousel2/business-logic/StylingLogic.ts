@@ -261,7 +261,7 @@ export class StylingLogic {
     }
 
     get carouselToolbarTextStyle() {
-        const customTextColor = this.options.styling?.toolbar?.textColor || this.options.styling?.toolbar?.elements?.color || this.allFillColor;
+        const customTextColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined) || this.options.styling?.toolbar?.elements?.color || this.allFillColor;
         return {
             color: customTextColor || CAROUSEL_COLOR_FIVE,
         } as CSSProperties;

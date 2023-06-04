@@ -724,6 +724,18 @@ const dynamicVideoModal = (
 		},
 	}} />
 );
+const dynamicToolbar = (
+	<Carousel items={items.slice(2)} options={{
+		layout: {
+			itemDisplayLocation: 'above',
+		},
+		styling: {
+			toolbar: {
+				textColor: [['white'], ['red', 800]],
+			},
+		},
+	}} />
+);
 const dynamicFontFamilyItemViewer = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
@@ -2246,9 +2258,13 @@ const SECTIONS: Sections = [
 			// 	label: "Item Display Location None < 800px Otherwise Above",
 			// 	jsx: dynamicItemDisplayLocation,
 			// },
+			// {
+			// 	label: "Video Modal Styling Changes < 800px",
+			// 	jsx: dynamicVideoModal,
+			// },
 			{
-				label: "Video Modal Styling Changes < 800px",
-				jsx: dynamicVideoModal,
+				label: "Toolbar Styling Changes < 800px",
+				jsx: dynamicToolbar,
 			},
 			// {
 			// 	label: "Thumbnail Max Line Count Changes at 800px",

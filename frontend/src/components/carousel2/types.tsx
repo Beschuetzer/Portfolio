@@ -151,7 +151,7 @@ export type CarouselSections = {
         /*
         *This overrides any value given in toolbar.elements.color above
         */
-        textColor?: Color;
+        textColor?: CarouselElementValue<Color>;
     } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
    *This is the the modal that displays when a video is paused, allowing for more info about the video
