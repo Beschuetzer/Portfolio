@@ -2357,10 +2357,10 @@ const SECTIONS: Sections = [
 			// 	label: "Item Positioning Right < 800px Otherwise Center",
 			// 	jsx: dynamicItemPositioning,
 			// },
-			// {
-			// 	label: "Item Display Location None < 800px Otherwise Above",
-			// 	jsx: dynamicItemDisplayLocation,
-			// },
+			{
+				label: "Item Display Location None < 800px Otherwise Above",
+				jsx: dynamicItemDisplayLocation,
+			},
 			// {
 			// 	label: "Video Modal Styling Changes < 800px",
 			// 	jsx: dynamicVideoModal,
