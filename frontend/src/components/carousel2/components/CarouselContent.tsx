@@ -105,7 +105,7 @@ export const CarouselContent = ({
         return newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT;
     }, [options?.thumbnail?.itemSpacing, items.length, carouselContainerRef, stylingLogic, optionsLogic]);
 
-    const getTranslationAmountByCurrentPage = useCallback(() => {
+    const doTranslationAmountCommon = useCallback(() => {
         const interItemSpacingToUse = optionsLogic.getItemSpacing(interItemSpacing);
         const isDefaultCase = options?.thumbnail?.itemSpacing === undefined && optionsLogic.itemPositioning === undefined;
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
@@ -128,53 +128,27 @@ export const CarouselContent = ({
             translationAmountDifferenceRef.current = defaultAmount;
         }
 
-        return currentPage * translationAmountDifferenceRef.current;
+        return  { numberOfWholeItemsThatCanFit, containerWidth, itemSize };
     }, [
         carouselContainerRef,
-        currentPage,
         interItemSpacing,
         items.length,
         options?.thumbnail?.itemSpacing,
         optionsLogic,
         stylingLogic
-    ]);
+    ])
+
+    const getTranslationAmountByCurrentPage = useCallback(() => {
+        doTranslationAmountCommon();
+        return currentPage * translationAmountDifferenceRef.current;
+    }, [currentPage, doTranslationAmountCommon]);
 
     const getTranslationAmountByCurrentItemIndex = useCallback(() => {
-        const interItemSpacingToUse = optionsLogic.getItemSpacing(interItemSpacing);
-        const isDefaultCase = options?.thumbnail?.itemSpacing === undefined && optionsLogic.itemPositioning === undefined;
-        const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
-            items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
-        );
-        const defaultAmount = interItemSpacingToUse + containerWidth;
-
-        if (isDefaultCase) {
-            translationAmountDifferenceRef.current = containerWidth + interItemSpacing;
-        } else if (interItemSpacingToUse !== undefined && interItemSpacingToUse >= 0) {
-            if (interItemSpacingToUse === 0) {
-                translationAmountDifferenceRef.current = numberOfWholeItemsThatCanFit * itemSize;
-            }
-            else if (!translationAmountDifferenceRef.current) {
-                translationAmountDifferenceRef.current = numberOfWholeItemsThatCanFit * itemSize + (numberOfWholeItemsThatCanFit) * interItemSpacingToUse
-            }
-        } else if (numberOfWholeItemsThatCanFit <= 1) {
-            translationAmountDifferenceRef.current = containerWidth;
-        } else {
-            translationAmountDifferenceRef.current = defaultAmount;
-        }
-
+        const { numberOfWholeItemsThatCanFit } = doTranslationAmountCommon();
         const newCurrentPage = Math.floor((currentItemIndex) / numberOfWholeItemsThatCanFit)
         setCurrentPage(newCurrentPage);
         return newCurrentPage * translationAmountDifferenceRef.current;
-    }, [
-        carouselContainerRef,
-        currentItemIndex,
-        interItemSpacing,
-        items.length,
-        options?.thumbnail?.itemSpacing,
-        optionsLogic,
-        setCurrentPage,
-        stylingLogic
-    ]);
+    }, [currentItemIndex, setCurrentPage, doTranslationAmountCommon]);
 
     const setNumberOfDotsToDisplay = useCallback(() => {
         const newNumberOfPages = getNumberOfPages(
@@ -259,7 +233,7 @@ export const CarouselContent = ({
             }
         }
         console.log("setting");
-        
+
         previousCurrentItemIndexRef.current = currentItemIndex;
 
         function getIsNextItemClick() {

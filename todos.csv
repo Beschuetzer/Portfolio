@@ -1,5 +1,4 @@
 Carousel rework
-  -refactor getTranslationAmount and getTranslationAmountTwo
   -add option to disable the auto-move the navigation based on currentItemIndex (option to make independent)
   -fine tune changing fullscreen mode starts video?
   -add a single option for full width single item per page with only circular buttons
