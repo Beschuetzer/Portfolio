@@ -201,7 +201,7 @@ export const CarouselContent = ({
         if (
             (!isFullscreenMode && optionsLogic.isDefaultItemDisplayLocation) ||
             items?.length <= 0 ||
-            (getCurrentValue(options?.navigation?.autoChangePage, undefined) === false)
+            (optionsLogic.autoChangePage === false)
         ) {
             return;
         }
@@ -248,7 +248,6 @@ export const CarouselContent = ({
         optionsLogic,
         stylingLogic,
         numberOfPages,
-        options?.navigation?.autoChangePage,
         currentItemIndex,
         previousCurrentItemIndexRef,
         isFullscreenMode,
@@ -289,8 +288,9 @@ export const CarouselContent = ({
     }, [getTranslationAmountByCurrentPage])
 
     useEffect(() => {
+        if (!optionsLogic.autoChangePage) return;
         setTranslationAmount(getTranslationAmountByCurrentItemIndex());
-    }, [getTranslationAmountByCurrentItemIndex])
+    }, [getTranslationAmountByCurrentItemIndex, optionsLogic.autoChangePage])
     //#endregion
 
     //#region JSX

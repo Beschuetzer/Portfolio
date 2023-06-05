@@ -27,6 +27,10 @@ export class OptionsLogic {
     }
 
     //#region Getters
+    get autoChangePage() {
+        return getCurrentValue(this.options?.navigation?.autoChangePage, true)
+    }
+
     get carouselItemSize() {
         if (this.isDefaultItemDisplayLocation) {
             return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT);
@@ -35,7 +39,7 @@ export class OptionsLogic {
     }
 
     get isDefaultItemDisplayLocation() {
-        return this.itemDisplayLocation === 'none' ;
+        return this.itemDisplayLocation === 'none';
     }
 
     get itemDisplayLocation() {
