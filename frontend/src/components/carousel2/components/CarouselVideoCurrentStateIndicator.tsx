@@ -1,19 +1,18 @@
 import { CLASSNAME__BUTTON } from '../constants'
-import { PlayButton } from './buttons/PlayButton';
-import { PauseButton } from './buttons/PauseButton';
 import { useEffect, useRef, useState } from 'react';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
-import { getIsVideoPlaying } from '../utils';
-import { current } from '@reduxjs/toolkit';
+import { PauseButton } from './buttons/PauseButton';
+import { PlayButton } from './buttons/PlayButton';
 
-type CarouselVideoCurrentStateIndicatorProps = {} & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
+type CarouselVideoCurrentStateIndicatorProps = {
+    isVideoPlaying?: boolean,
+} & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
 
 export const CarouselVideoCurrentStateIndicator = ({
-    videoRef,
+    isVideoPlaying,
 }: CarouselVideoCurrentStateIndicatorProps) => {
     const { stylingLogic } = useBusinessLogic({});
-    const isVideoPlaying = getIsVideoPlaying(videoRef?.current);
     const [isAnimating, setIsAnimating] = useState(isVideoPlaying);
     // const [shouldRerender, setShouldRerender] = useState(false);
     const timeoutRef = useRef<any>(-1);

@@ -35,11 +35,14 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
 
     const { autoPlay, loop, muted } = videoProps || {};
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
     const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
     useRerenderOnExitFullscreenMode();
+    console.log({isVideoPlaying});
+    
     //#endregion
 
     //#region Functions/Handlers
@@ -67,8 +70,10 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         if (videoRef.current) {
             if (getIsVideoPlaying(videoRef.current)) {
                 videoRef.current?.pause();
+                setIsVideoPlaying(false);
             } else {
                 videoRef.current?.play();
+                setIsVideoPlaying(true);
             }
         }
     }, [setCurrentVideoCurrentTime, setIsFullscreenMode]);
@@ -97,8 +102,10 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
             if (videoRef.current) {
                 if (getIsVideoPlaying(videoRef.current)) {
                     videoRef.current?.pause();
+                    setIsVideoPlaying(false);
                 } else {
                     videoRef.current?.play();
+                    setIsVideoPlaying(true);
                 }
             }
         }
@@ -121,7 +128,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     return (
         <>
             <div style={stylingLogic.carouselVideoContainerStyle}>
-                <CarouselVideoCurrentStateIndicator videoRef={videoRef} />
+                <CarouselVideoCurrentStateIndicator isVideoPlaying={isVideoPlaying} />
                 <LoadingSpinner
                     type='ring'
                     show={!isLoaded}
