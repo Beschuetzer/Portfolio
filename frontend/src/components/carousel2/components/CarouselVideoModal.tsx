@@ -7,6 +7,7 @@ import { Exclusive } from '../types';
 import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__VIDEO_MODAL_BUTTON_RIGHT, CLASSNAME__VIDEO_MODAL_BUTTON_TOP } from '../constants';
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
+import { CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 
 export type CarouselVideoModalSection = {
     /*
@@ -46,8 +47,7 @@ export type CarouselVideoModalInternalProps = {
     /*
     *This is used internally to determine where the overlay is shown
     */
-    videoRef?: React.MutableRefObject<HTMLVideoElement | undefined>;
-} & CarouselVideoModalProps;
+} & CarouselVideoModalProps & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
 
 export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     //#region Init

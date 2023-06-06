@@ -114,9 +114,9 @@ export function getIsVideo(item: CarouselItemProps | undefined) {
     );
 }
 
-export function getIsVideoPlaying(videoRef: HTMLVideoElement | undefined) {
-    if (!videoRef) return false;
-    return !videoRef.paused && !videoRef.ended && videoRef.currentTime > 0
+export function getIsVideoPlaying(video: HTMLVideoElement | undefined) {
+    if (!video) return false;
+    return !video.paused && !video.ended && video.currentTime > 0
 }
 
 export function getNumberOfItemsThatCanFit(

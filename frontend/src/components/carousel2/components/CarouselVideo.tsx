@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { getClassname, tryPlayingVideo } from '../utils';
+import { getClassname, getIsVideoPlaying, tryPlayingVideo } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoModal, CarouselVideoModalProps } from './CarouselVideoModal'
 import { CarouselItemViewerToolbar, CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
@@ -31,14 +31,12 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         srcMain,
         video: videoProps,
     } = props;
-    const { options, isFullscreenMode, currentVideoCurrentTime, setIsFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
+    const { options, currentVideoCurrentTime, setIsFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
 
     const { autoPlay, loop, muted } = videoProps || {};
-    const [isVideoPlaying, setIsVideoPlaying] = useState(!!autoPlay || false);
     const [isLoaded, setIsLoaded] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
-    const [hasClickedContainer, setHasClickedContainer] = useState(false);
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
     const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
     useRerenderOnExitFullscreenMode();
@@ -47,7 +45,6 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     //#region Functions/Handlers
     const handleItemNavigation = useCallback(() => {
         setIsLoaded(false);
-        setIsVideoPlaying(false);
 
         if (videoRef.current) {
             videoRef.current.pause();
@@ -56,69 +53,66 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         if (videoRef.current?.load) {
             videoRef.current.load();
         }
-    }, [setIsLoaded, setIsVideoPlaying, videoRef]);
+    }, [setIsLoaded, videoRef]);
 
     function handleOnLoadedData() {
         setIsLoaded(true);
-        setIsVideoPlaying(!!videoProps?.autoPlay);
     }
 
     const onVideoClick = useCallback((e: MouseEvent) => {
         if (e.detail === 2) {
             setIsFullscreenMode((current) => !current);
             setCurrentVideoCurrentTime(videoRef.current?.currentTime || CURRENT_VIDEO_CURRENT_TIME_DEFAULT);
-        } else {
-            setHasClickedContainer(true);
-            setIsVideoPlaying((isPlaying) => !isPlaying);    
+        }
+        if (videoRef.current) {
+            if (getIsVideoPlaying(videoRef.current)) {
+                videoRef.current?.pause();
+            } else {
+                videoRef.current?.play();
+            }
         }
     }, [setCurrentVideoCurrentTime, setIsFullscreenMode]);
 
-    const tryPlaying = useCallback(() => {
-        if (!hasClickedContainer) return;
-        tryPlayingVideo(
-            videoRef.current,
-            () => setIsVideoPlaying(true),
-            () => setIsVideoPlaying(false),
-        )
-    }, [setIsVideoPlaying, videoRef, hasClickedContainer])
-    //#endregion
-
     //#region Side Fx
-    useEffect(() => {
-        async function handlePlayPause() {
-            if (!isLoaded) return;
-            if (videoRef.current) {
-                if (!isVideoPlaying) {
-                    videoRef.current.pause();
-                } else {
-                    tryPlaying();
-                }
-            }
-        }
-
-        handlePlayPause();
-    }, [isVideoPlaying, videoRef, tryPlaying, isLoaded])
-
     //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
     useEffect(() => {
         setIsLoaded(false);
         if (videoRef.current?.load) {
             videoRef.current.load();
         }
-        setIsVideoPlaying(!!videoProps?.autoPlay);
     }, [srcMain, videoRef, videoProps?.autoPlay])
 
     useEffect(() => {
         if (videoRef.current) {
             videoRef.current.currentTime = currentVideoCurrentTime;
-            if (isFullscreenMode) return;
-            tryPlaying();
         }
-    }, [currentVideoCurrentTime, isFullscreenMode, tryPlaying])
+    }, [currentVideoCurrentTime])
 
     useEffect(() => {
         if (videoRef.current) {
             videoRef.current.currentTime = 0;
+        }
+
+        function handleFullscreenChange(e: Event) {
+            if (videoRef.current) {
+                if (getIsVideoPlaying(videoRef.current)) {
+                    videoRef.current?.pause();
+                } else {
+                    videoRef.current?.play();
+                }
+            }
+        }
+
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+        document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        
+        return () => {
+            document.removeEventListener('fullscreenchange', handleFullscreenChange);
+            document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+            document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
         }
     }, [])
     //#endregion
@@ -127,7 +121,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     return (
         <>
             <div style={stylingLogic.carouselVideoContainerStyle}>
-                <CarouselVideoCurrentStateIndicator isVideoPlaying={isVideoPlaying} />
+                <CarouselVideoCurrentStateIndicator videoRef={videoRef} />
                 <LoadingSpinner
                     type='ring'
                     show={!isLoaded}
@@ -144,24 +138,19 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                     loop={!!loop}
                     onClick={onVideoClick as any}
                     onLoadedData={handleOnLoadedData}
-                    onPlay={() => setIsVideoPlaying(true)}
-                    onPause={() => setIsVideoPlaying(false)}
-                    onEnded={() => setIsVideoPlaying(false)}
                 >
                     <source src={srcMain} type={`video/${type}`} />
                 </video>
                 {props.video?.overlayProps ? (
                     <CarouselVideoModal
                         videoRef={videoRef}
-                        isVideoPlaying={isVideoPlaying}
+                        isVideoPlaying={getIsVideoPlaying(videoRef?.current)}
                         {...props.video?.overlayProps}
                     />
                 ) : null}
             </div>
             <CarouselItemViewerToolbar
                 ref={itemViewerToolbarRef as any}
-                setIsVideoPlaying={setIsVideoPlaying}
-                isVideoPlaying={isVideoPlaying}
                 isVideo={true}
                 description={description || ''}
                 videoRef={videoRef}

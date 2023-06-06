@@ -68,7 +68,7 @@ export class StylingLogic {
     private options: CarouselOptions;
     private videoModalRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
     private progressBarValue: number;
-    private videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined;
+    private videoRef;
 
     constructor(constructor: StylingLogicConstructor) {
         const {

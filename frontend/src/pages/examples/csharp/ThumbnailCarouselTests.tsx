@@ -1901,97 +1901,97 @@ const SECTIONS: Sections = [
 	// 			label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
 	// 			jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
 	// 		},
-	// {
-	// 	label: "Thumbnails Positioned Left in Container with Default Spacing",
-	// 	jsx: layoutThumbnailPositioningLeft,
-	// },
-	// {
-	// 	label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
-	// 	jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
-	// },
-	// {
-	// 	label: "Thumbnails Positioned Center in Container with Default Spacing",
-	// 	jsx: layoutThumbnailPositioningCenter,
-	// },
-	// {
-	// 	label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
-	// 	jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
-	// },
-	// {
-	// 	label: "Thumbnails Positioned Right in Container with Default Spacing",
-	// 	jsx: layoutThumbnailPositioningRight,
-	// },
-	// {
-	// 	label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
-	// 	jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
-	// },
-	// 	]
-	// ],
-	// [
-	// 	'Above-Customization',
-	// 	[
 	// 		{
-	// 			label: "Display Current Item Above Default itemHeight and No Overlay Video First",
-	// 			jsx: layoutAboveDefaultItemHeight,
+	// 			label: "Thumbnails Positioned Left in Container with Default Spacing",
+	// 			jsx: layoutThumbnailPositioningLeft,
 	// 		},
 	// 		{
-	// 			label: "Display Current Item Above with Custom itemHeight and Thumbnail Size",
-	// 			jsx: layoutAboveWithItemHeightAndThumbnailSize,
+	// 			label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
+	// 			jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
 	// 		},
 	// 		{
-	// 			label: "Display Above with Container Padding",
-	// 			jsx: layoutAboveContainerPadding,
+	// 			label: "Thumbnails Positioned Center in Container with Default Spacing",
+	// 			jsx: layoutThumbnailPositioningCenter,
 	// 		},
 	// 		{
-	// 			label: "Display Above with Item Viewer Padding",
-	// 			jsx: layoutAboveExtraItemViewerPadding
+	// 			label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
+	// 			jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
 	// 		},
 	// 		{
-	// 			label: "Display Above with Extra Navigation Padding",
-	// 			jsx: layoutAboveExtraNavigationPadding,
+	// 			label: "Thumbnails Positioned Right in Container with Default Spacing",
+	// 			jsx: layoutThumbnailPositioningRight,
 	// 		},
 	// 		{
-	// 			label: "Display Above with Extra Toolbar Padding",
-	// 			jsx: layoutAboveExtraToolbarPadding
-	// 		},
-	// 		{
-	// 			label: "Display Above with Different Left and Right Padding",
-	// 			jsx: layoutAboveDifferentLeftAndRightPadding,
-	// 		},
-	// 		{
-	// 			label: "Display Above Flush and Same Background Color",
-	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColor,
-	// 		},
-	// 		{
-	// 			label: "Display Above Flush with Progress Bar Whole Width",
-	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole,
-	// 		},
-	// 		{
-	// 			label: "Display Above Flush and Same Background Color using All option",
-	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
-	// 		},
-	// 		{
-	// 			label: "Display Above Custom Icons with Same Background Color",
-	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons,
-	// 		},
-	// 		{
-	// 			label: "Display Above Custom Icons with Default Icons using Custom Colors",
-	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors,
-	// 		},
-	// 		{
-	// 			label: "Display Above buttons.all with Specific Item Fill Colors",
-	// 			jsx: layoutAboveButtonsAllWithSpecificFillColors,
-	// 		},
-	// 		{
-	// 			label: "Display Above Custom Overlay Style and Loading Spinner",
-	// 			jsx: layoutAboveCustomOverlayAndSpinner,
-	// 		},
-	// 		{
-	// 			label: "Display Above No Tracking Current Item",
-	// 			jsx: layoutAboveNoTrackingItemViewerChanges,
+	// 			label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
+	// 			jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
 	// 		},
 	// 	]
 	// ],
+	[
+		'Above-Customization',
+		[
+			{
+				label: "Display Current Item Above Default itemHeight and No Overlay Video First",
+				jsx: layoutAboveDefaultItemHeight,
+			},
+			// {
+			// 	label: "Display Current Item Above with Custom itemHeight and Thumbnail Size",
+			// 	jsx: layoutAboveWithItemHeightAndThumbnailSize,
+			// },
+			// {
+			// 	label: "Display Above with Container Padding",
+			// 	jsx: layoutAboveContainerPadding,
+			// },
+			// {
+			// 	label: "Display Above with Item Viewer Padding",
+			// 	jsx: layoutAboveExtraItemViewerPadding
+			// },
+			// {
+			// 	label: "Display Above with Extra Navigation Padding",
+			// 	jsx: layoutAboveExtraNavigationPadding,
+			// },
+			// {
+			// 	label: "Display Above with Extra Toolbar Padding",
+			// 	jsx: layoutAboveExtraToolbarPadding
+			// },
+			// {
+			// 	label: "Display Above with Different Left and Right Padding",
+			// 	jsx: layoutAboveDifferentLeftAndRightPadding,
+			// },
+			// {
+			// 	label: "Display Above Flush and Same Background Color",
+			// 	jsx: layoutAboveCompletelyFlushAndSameBackgroundColor,
+			// },
+			// {
+			// 	label: "Display Above Flush with Progress Bar Whole Width",
+			// 	jsx: layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole,
+			// },
+			// {
+			// 	label: "Display Above Flush and Same Background Color using All option",
+			// 	jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
+			// },
+			// {
+			// 	label: "Display Above Custom Icons with Same Background Color",
+			// 	jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons,
+			// },
+			// {
+			// 	label: "Display Above Custom Icons with Default Icons using Custom Colors",
+			// 	jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors,
+			// },
+			// {
+			// 	label: "Display Above buttons.all with Specific Item Fill Colors",
+			// 	jsx: layoutAboveButtonsAllWithSpecificFillColors,
+			// },
+			// {
+			// 	label: "Display Above Custom Overlay Style and Loading Spinner",
+			// 	jsx: layoutAboveCustomOverlayAndSpinner,
+			// },
+			// {
+			// 	label: "Display Above No Tracking Current Item",
+			// 	jsx: layoutAboveNoTrackingItemViewerChanges,
+			// },
+		]
+	],
 	// [
 	// 	'Below-Customization',
 	// 	[
@@ -2341,10 +2341,10 @@ const SECTIONS: Sections = [
 			// 	label: "Wrapping Disabled < 800px",
 			// 	jsx: dynamicWrappingDisabled,
 			// },
-			{
-				label: "Auto Change Page Disabled < 800px",
-				jsx: dynamicAutoChangePage,
-			},
+			// {
+			// 	label: "Auto Change Page Disabled < 800px",
+			// 	jsx: dynamicAutoChangePage,
+			// },
 			// {
 			// 	label: "The amount of horiztonal movement needed to register swipe event increases < 800px",
 			// 	jsx: dynamicMaxClickThreshold,

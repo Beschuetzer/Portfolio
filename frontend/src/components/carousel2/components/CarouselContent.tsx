@@ -128,7 +128,7 @@ export const CarouselContent = ({
             translationAmountDifferenceRef.current = defaultAmount;
         }
 
-        return  { numberOfWholeItemsThatCanFit, containerWidth, itemSize };
+        return { numberOfWholeItemsThatCanFit, containerWidth, itemSize };
     }, [
         carouselContainerRef,
         interItemSpacing,
@@ -232,7 +232,6 @@ export const CarouselContent = ({
                 setCurrentPage(currentPage - 1);
             }
         }
-        console.log("setting");
 
         previousCurrentItemIndexRef.current = currentItemIndex;
 
