@@ -145,13 +145,15 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                     loop={!!loop}
                     onClick={onVideoClick as any}
                     onLoadedData={handleOnLoadedData}
+                    onPlay={() => setIsVideoPlaying(true)}
+                    onEnded={() => setIsVideoPlaying(false)}
                 >
                     <source src={srcMain} type={`video/${type}`} />
                 </video>
                 {props.video?.overlayProps ? (
                     <CarouselVideoModal
                         videoRef={videoRef}
-                        isVideoPlaying={getIsVideoPlaying(videoRef?.current)}
+                        isVideoPlaying={isVideoPlaying}
                         {...props.video?.overlayProps}
                     />
                 ) : null}
