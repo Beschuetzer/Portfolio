@@ -58,6 +58,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
 
     function handleOnLoadedData() {
         setIsLoaded(true);
+        setIsVideoPlaying(false);
     }
 
     const onVideoClick = useCallback((e: MouseEvent) => {
