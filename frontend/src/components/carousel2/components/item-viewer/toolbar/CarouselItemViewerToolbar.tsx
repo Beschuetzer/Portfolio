@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
-import { getCurrentValue, getFormattedTimeString, getIsMobile, getIsVideoPlaying, stopPropagation, tryPlayingVideo } from '../../../utils'
+import { getCurrentValue, getFormattedTimeString, getIsMobile, getIsVideoPlaying, stopPropagation } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from '../CarouselItemViewerProgressBar'
@@ -36,6 +36,7 @@ export type CarouselItemViewerToolbarProps = {
     onClose?: () => void;
     onNextItemClick?: () => void;
     onPreviousItemClick?: () => void;
+    setIsVideoPlaying?: React.Dispatch<React.SetStateAction<boolean>>;
     videoRef?: React.MutableRefObject<HTMLVideoElement | undefined> | null;
 };
 
@@ -46,6 +47,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     onClose = () => null,
     onNextItemClick = () => null,
     onPreviousItemClick = () => null,
+    setIsVideoPlaying = () => null,
     videoRef,
 }, ref) => {
     //#region Init
@@ -224,18 +226,20 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const onPauseClick = useCallback(() => {
         if (videoRef?.current) {
             videoRef?.current.pause();
+            setIsVideoPlaying(false);
         }
         handleAutoHide();
         toolbarActionsLogic.getPause().onActionCompleted();
-    }, [videoRef, handleAutoHide, toolbarActionsLogic]);
+    }, [videoRef, setIsVideoPlaying, handleAutoHide, toolbarActionsLogic]);
 
     const onPlayClick = useCallback(() => {
         if (videoRef?.current) {
             videoRef?.current.play();
+            setIsVideoPlaying(true);
         }
         handleAutoHide();
         toolbarActionsLogic.getPlay().onActionCompleted();
-    }, [videoRef, handleAutoHide, toolbarActionsLogic]);
+    }, [videoRef, handleAutoHide, toolbarActionsLogic, setIsVideoPlaying]);
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {

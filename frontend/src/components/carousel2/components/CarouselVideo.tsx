@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { getClassname, getIsVideoPlaying, tryPlayingVideo } from '../utils';
+import { getClassname, getIsVideoPlaying } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoModal, CarouselVideoModalProps } from './CarouselVideoModal'
 import { CarouselItemViewerToolbar, CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
@@ -41,8 +41,6 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
     const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
     useRerenderOnExitFullscreenMode();
-    console.log({isVideoPlaying});
-    
     //#endregion
 
     //#region Functions/Handlers
@@ -166,6 +164,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 itemContainerRef={itemContainerRef}
                 onNextItemClick={handleItemNavigation}
                 onPreviousItemClick={handleItemNavigation}
+                setIsVideoPlaying={setIsVideoPlaying}
             />
         </>
     );
