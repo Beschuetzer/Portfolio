@@ -81,7 +81,7 @@ export type CarouselElementSize = {
     */
     size?: CarouselElementValue<number>;
 }
-export type CarouselElementValue<T> = CarouselElementValueTuple<T> | T;
+export type CarouselElementValue<T> = CarouselElementCustomizations<T> | CarouselElementValueTuple<T> | T;
 export type CarouselElementValueTuple<T> = [T, number?, CarouselElementValueType?][];
 export type CarouselItemViewerOptions = {
     /*
@@ -317,6 +317,17 @@ export type CarouselActions = {
 }
 //#endregion
 
+export type CarouselElementCustomizations<T> = {
+    /*
+    *These setting only apply when in fullscreen mode.  Otherwise default settings are used
+    */
+    fullscreen?: CarouselElementValueTuple<T>;
+    /*
+    *These setting only apply when not in fullscreen mode.  Otherwise default settings are used
+    *Elements only visible when `layout.itemDisplayLocation` is not `none`, will not be affected by this unless `itemDisplayLocation` is also set.
+    */
+    nonFullscreen?: CarouselElementValueTuple<T>;
+}
 export type CarouselElementCustomization = {
     /*
     *Default is #000
@@ -331,6 +342,7 @@ export type CarouselElementCustomization = {
     *It's best to make changes to the svg element directly though
     */
     style?: CSSProperties;
+    // style?: CarouselElementValue<CSSProperties>;
 }
 
 export type CarouselElementStyles = {

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react"
-import { getAncestorContainsClassname, getCoordinateDifference, getCurrentValue, getIsMobile, stopPropagation } from "../utils";
-import { CarouselNavigationOptions, Coordinate } from "../types";
+import { getAncestorContainsClassname, getCoordinateDifference, getIsMobile, stopPropagation } from "../utils";
+import { Coordinate } from "../types";
 
 export type StylingCase = 'start' | 'end';
 
@@ -42,8 +42,9 @@ export type UseOnSwipeProps = {
     element: HTMLElement;
     isDisabled?: boolean;
     handleStyleChanges: (stylingCase: StylingCase, element: HTMLElement) => void;
+    maxClickThreshold?: number;
     swipeHandlers?: UseOnSwipeHandlers;
-} & Partial<Pick<CarouselNavigationOptions, 'maxClickThreshold'>>
+}
 
 const ON_MOVE_WHEN_GRABBING_SHORT_CIRCUIT_AMOUNT = 100;
 //positive horizontal diff means right and positive vertical diff means down
@@ -55,7 +56,6 @@ export const useOnSwipe = ({
     handleStyleChanges,
 }: UseOnSwipeProps) => {
     //todo: need to add handlers to swiping on a phone too?
-    const maxClickThresholdToUse = getCurrentValue(maxClickThreshold, 0);
     const lastCoordinateRef = useRef<Coordinate>();
     const currentCoordinateRef = useRef<Coordinate>();
     const startCoordinateRef = useRef<Coordinate>();
@@ -105,14 +105,14 @@ export const useOnSwipe = ({
         // console.log({ startCoordinate: startCoordinateRef.current, endCoordinate: endCoordinateRef.current, downSource: mouseDownSourceElement.current, upSource: mouseUpSourceElement.current });
         if (startCoordinateRef?.current && endCoordinateRef?.current) {
             const { distance } = getCoordinateDifference(startCoordinateRef.current, endCoordinateRef.current);
-            if (distance > maxClickThresholdToUse && mouseDownSourceElement.current === mouseUpSourceElement.current) {
+            if (distance > maxClickThreshold && mouseDownSourceElement.current === mouseUpSourceElement.current) {
                 stopPropagation(e);
             }
         }
 
         reset();
         window.removeEventListener('click', handleClickStop, true);
-    }, [maxClickThresholdToUse, reset])
+    }, [maxClickThreshold, reset])
 
     /*
     *Determines whether the swipe actually occurs and which callback to trigger
@@ -123,7 +123,7 @@ export const useOnSwipe = ({
         const { distance } = getCoordinateDifference(startCoordinateRef.current as Coordinate, endCoordinateRef.current as Coordinate);
 
         //no need to do anything if event is being registered as a click rather than swipe
-        if (distance <= maxClickThresholdToUse) return;
+        if (distance <= maxClickThreshold) return;
 
         const verticalDiff = endY - startY;
         const horizontalDiff = endX - startX;
@@ -164,7 +164,7 @@ export const useOnSwipe = ({
             }
         }
     }, [
-        maxClickThresholdToUse,
+        maxClickThreshold,
         swipeHandlers.minSwipeThreshold,
         swipeHandlers.left,
         swipeHandlers.right,

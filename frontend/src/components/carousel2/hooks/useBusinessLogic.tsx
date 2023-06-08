@@ -48,6 +48,7 @@ export const useBusinessLogic = ({
     const [optionsLogic, setOptionsLogic] = useState<OptionsLogic>(getOptionsLogic({
         options,
         currentItem,
+        isFullscreenMode,
         numberOfPages,
         items,
     }));
@@ -78,6 +79,7 @@ export const useBusinessLogic = ({
         const newOptionsLogic = getOptionsLogic({
             options,
             currentItem,
+            isFullscreenMode,
             numberOfPages,
             items,
         })

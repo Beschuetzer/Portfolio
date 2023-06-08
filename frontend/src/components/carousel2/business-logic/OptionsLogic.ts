@@ -6,6 +6,7 @@ import { getCurrentValue } from "../utils";
 export type OptionsConstructor = {
     options: CarouselOptions;
     currentItem?: CarouselItemProps;
+    isFullscreenMode: boolean;
     numberOfPages?: number;
     items?: CarouselItemProps[];
 }
@@ -15,27 +16,29 @@ export type OptionsConstructor = {
 export class OptionsLogic {
     private options;
     private currentItem;
+    private isFullscreenMode;
     private numberOfPages;
     private items;
 
     constructor(constructor: OptionsConstructor) {
-        const { options, currentItem, numberOfPages, items } = constructor;
+        const { options, currentItem, numberOfPages, items, isFullscreenMode } = constructor;
         this.options = options;
         this.currentItem = currentItem;
+        this.isFullscreenMode = isFullscreenMode;
         this.numberOfPages = numberOfPages || 0;
         this.items = items || [];
     }
 
     //#region Getters
     get autoChangePage() {
-        return getCurrentValue(this.options?.navigation?.autoChangePage, true)
+        return getCurrentValue(this.options?.navigation?.autoChangePage, true, this.isFullscreenMode);
     }
 
     get carouselItemSize() {
         if (this.isDefaultItemDisplayLocation) {
-            return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT);
+            return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
         }
-        return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT);
+        return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
     }
 
     get isDefaultItemDisplayLocation() {
@@ -43,7 +46,7 @@ export class OptionsLogic {
     }
 
     get itemDisplayLocation() {
-        return getCurrentValue(this.options?.layout?.itemDisplayLocation, 'none');
+        return getCurrentValue(this.options?.layout?.itemDisplayLocation, 'none', this.isFullscreenMode);
     }
 
     get isItemDisplayLocationAbove() {
@@ -55,45 +58,45 @@ export class OptionsLogic {
     }
 
     get isItemViewerSwipingDisabled() {
-        return this.items.length <= 1 || getCurrentValue(this.options?.itemViewer?.disableSwiping, false);
+        return this.items.length <= 1 || getCurrentValue(this.options?.itemViewer?.disableSwiping, false, this.isFullscreenMode);
     }
 
     get isNavigationSwipingDisabled() {
-        return this.numberOfPages <= 1 || getCurrentValue(this.options?.navigation?.disableSwiping, false);
+        return this.numberOfPages <= 1 || getCurrentValue(this.options?.navigation?.disableSwiping, false, this.isFullscreenMode);
     }
 
     get isWrappingDisabled() {
-        return getCurrentValue(this.options.navigation?.disableWrapping, false);
+        return getCurrentValue(this.options.navigation?.disableWrapping, false, this.isFullscreenMode);
     }
 
     get itemPositioning() {
-        return getCurrentValue(this.options.layout?.itemPositioning, undefined);
+        return getCurrentValue(this.options.layout?.itemPositioning, undefined, this.isFullscreenMode);
     }
 
     get itemSpacingStrategy() {
-        return getCurrentValue(this.options.thumbnail?.itemSpacingStrategy, 'min')
+        return getCurrentValue(this.options.thumbnail?.itemSpacingStrategy, 'min', this.isFullscreenMode);
     }
 
     get itemViewerMaxClickThreshold() {
-        return getCurrentValue(this.options.itemViewer?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT);
+        return getCurrentValue(this.options.itemViewer?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
     }
 
     get navigationMaxClickThreshold() {
-        return getCurrentValue(this.options.navigation?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT);
+        return getCurrentValue(this.options.navigation?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
     }
 
     get shouldDisableThumbnailOverlay() {
-        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.isDisabled, !this.isDefaultItemDisplayLocation && this.shouldHideThumbnailOverlay)
+        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.isDisabled, !this.isDefaultItemDisplayLocation && this.shouldHideThumbnailOverlay, this.isFullscreenMode);
     }
 
     get shouldHideThumbnailOverlay() {
-        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true);
+        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true, this.isFullscreenMode);
     }
     //#endregion
 
     //#region Methods
     getItemSpacing(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SPACING_DEFAULT / 2) {
-        const currentItemSpacing = getCurrentValue(this.options.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT / 2);
+        const currentItemSpacing = getCurrentValue(this.options.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT / 2, this.isFullscreenMode);
         return this.itemPositioning !== undefined ? currentItemSpacing : valueToUseIfNoPositioningGiven;
     }
     //#endregion

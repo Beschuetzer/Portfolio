@@ -5,6 +5,7 @@ import { CAROUSEL_COLOR_FIVE, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, 
 import { ArrowProps, CarouselElement, CarouselNavigationProps } from '../types';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
+import { useCarouselContext } from '../context';
 
 type CarouselDotsProps = {
     items: CarouselItemProps[];
@@ -23,6 +24,7 @@ export const CarouselDots = ({
     //#region Init
     const { svgHref, style } = options?.styling?.elements?.dots || {};
     const { optionsLogic, stylingLogic } = useBusinessLogic({});
+    const { isFullscreenMode } = useCarouselContext();
     const defaultColor = optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;
     const fillColor = stylingLogic.getButtonColor(CarouselElement.dots, defaultColor);
     //#endregion
@@ -54,7 +56,7 @@ export const CarouselDots = ({
         const dots = [];
         for (let index = 0; index < numberOfDots; index++) {
             const isCurrentPage = index === currentPage;
-            const svgToUse = getCurrentValue(svgHref, '');
+            const svgToUse = getCurrentValue(svgHref, undefined, isFullscreenMode);
 
             const currentDotStyle = isCurrentPage && !!svgToUse ? {
                 opacity: 1,

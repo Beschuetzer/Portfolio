@@ -10,7 +10,7 @@ import {
     VIDEO_EXTENSIONS
 } from "./constants";
 import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
-import { Coordinate, Point, ArrowButtonDirection, CarouselElementValue, CarouselElementValueType } from "./types";
+import { Coordinate, Point, ArrowButtonDirection, CarouselElementValue, CarouselElementValueType, CarouselElementCustomizations, CarouselElementValueTuple } from "./types";
 type GetClassname = {
     elementName?: string;
     modifiedName?: string;
@@ -214,21 +214,29 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
 }
 
 /*
-*The idea here is to get the current value for the current window width from the list of tuples
-*Tuples given are sorted by max-width, then min-width, then unspecified 
-*max-width tuples are sorted ascending by breakpoint and min-width descending by breakpoint
-*Tuples with a breakpoint specified but no type are considered to be 'max-width' type
-*If there is more than one tuple with just a value, the first one in the sorted array is used (e.g. for numbers it is the smallest one)
-*When extending the supported types, the only thing that needs to be modified is adding another case in the switch statement for said type
-*/
-export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefined, defaultValue: T) {
-    if (valueTuple === undefined || valueTuple === null) return defaultValue;
-    if (!Array.isArray(valueTuple)) return valueTuple;
-    const windowWidth = window.innerWidth;
-    let sorted = valueTuple;
-    const valueType = typeof valueTuple?.[0]?.[0];
+    *The idea here is to get the current value for the current window width from the list of tuples
+    *Tuples given are sorted by max-width, then min-width, then unspecified 
+    *max-width tuples are sorted ascending by breakpoint and min-width descending by breakpoint
+    *Tuples with a breakpoint specified but no type are considered to be 'max-width' type
+    *If there is more than one tuple with just a value, the first one in the sorted array is used (e.g. for numbers it is the smallest one)
+    *When extending the supported types, the only thing that needs to be modified is adding another case in the switch statement for said type
+    */
+export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefined, defaultValue: T, isFullscreenMode: boolean) {
+    let valueTupleToUse: T | CarouselElementValueTuple<T> | undefined;
+    if (typeof (valueTuple) === 'object') {
+        valueTupleToUse = (isFullscreenMode ? (valueTuple as CarouselElementCustomizations<T>).fullscreen : (valueTuple as CarouselElementCustomizations<T>).nonFullscreen) || valueTuple as CarouselElementValueTuple<T>;
+    } else {
+        valueTupleToUse = valueTuple;
+    }
 
-    sorted = valueTuple?.sort((a, b) => {
+    if (valueTupleToUse === undefined || valueTupleToUse === null) return defaultValue;
+    if (!Array.isArray(valueTupleToUse)) return valueTupleToUse;
+
+    const windowWidth = window.innerWidth;
+    let sorted = valueTupleToUse;
+    const valueType = typeof valueTupleToUse?.[0]?.[0];
+
+    sorted = valueTupleToUse?.sort((a, b) => {
         const priority = ['max-width', 'min-width', undefined] as (CarouselElementValueType | undefined)[]
         const firstBreakpoint = a?.[1] || 0;
         const secondBreakpoint = b?.[1] || 0;

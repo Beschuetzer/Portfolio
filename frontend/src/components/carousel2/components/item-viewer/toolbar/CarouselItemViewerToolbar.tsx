@@ -164,13 +164,13 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         if (itemContainerRef?.current) {
             itemContainerRef.current.classList?.remove(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
         }
-        if (!isFullscreenMode || getCurrentValue(options?.itemViewer?.autoHideToolbarDuration, undefined) === AUTO_HIDE_DISABLED_VALUE) return;
+        if (!isFullscreenMode || getCurrentValue(options?.itemViewer?.autoHideToolbarDuration, undefined, isFullscreenMode) === AUTO_HIDE_DISABLED_VALUE) return;
 
         shouldHideTimoutRef.current = setTimeout(() => {
             if (itemContainerRef?.current && !isMobile) {
                 itemContainerRef.current.classList?.add(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
             }
-        }, getCurrentValue(options?.itemViewer?.autoHideToolbarDuration, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT));
+        }, getCurrentValue(options?.itemViewer?.autoHideToolbarDuration, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, isFullscreenMode));
     }, [
         isMobile,
         isFullscreenMode,
@@ -243,19 +243,19 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.currentTime -= getCurrentValue(options?.itemViewer?.seekAmount, SEEK_AMOUNT_DEFAULT) / 1000;
+            videoRef.current.currentTime -= getCurrentValue(options?.itemViewer?.seekAmount, SEEK_AMOUNT_DEFAULT, isFullscreenMode) / 1000;
         }
         handleAutoHide();
         toolbarActionsLogic.getSeekBackwards().onActionCompleted();
-    }, [options, videoRef, handleAutoHide, toolbarActionsLogic]);
+    }, [options, videoRef, handleAutoHide, toolbarActionsLogic, isFullscreenMode]);
 
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.currentTime += getCurrentValue(options?.itemViewer?.seekAmount, SEEK_AMOUNT_DEFAULT) / 1000;
+            videoRef.current.currentTime += getCurrentValue(options?.itemViewer?.seekAmount, SEEK_AMOUNT_DEFAULT, isFullscreenMode) / 1000;
         }
         handleAutoHide();
         toolbarActionsLogic.getSeekForwards().onActionCompleted();
-    }, [options, videoRef, handleAutoHide, toolbarActionsLogic])
+    }, [options, videoRef, handleAutoHide, toolbarActionsLogic, isFullscreenMode])
 
     function onToolbarClick(e: MouseEvent) {
         e.stopPropagation();

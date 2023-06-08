@@ -499,16 +499,6 @@ const dynamicThumbnailBorder = (
 		items={items}
 	/>
 );
-const dynamicItemSpacingStrategy = (
-	<Carousel
-		items={items.slice(0, 3)}
-		options={{
-			thumbnail: {
-				itemSpacingStrategy: [['max'], ['min', 800]],
-			}
-		}}
-	/>
-);
 const dynamicMaxLineCount = (
 	<Carousel items={items} options={{
 		thumbnail: {
@@ -1854,6 +1844,24 @@ const noThumbnailDescriptionOverlay = (
 		}
 	}} />
 );
+const viewingModeVideoModalBackground = (
+	<Carousel
+		items={items.slice(0, 3)}
+		options={{
+			layout: {
+				itemDisplayLocation: 'above'
+			},
+			styling: {
+				videoModal: {
+					background: {
+						fullscreen: [['red'], ['green', 800]],
+						nonFullscreen: [['blue'], ['yellow', 800]],
+					}
+				}
+			}
+		}}
+	/>
+);
 //#endregion
 
 type Sections = [string, { label: string, jsx: ReactNode | ReactNode[] }[]][];
@@ -1930,10 +1938,10 @@ const SECTIONS: Sections = [
 	[
 		'Above-Customization',
 		[
-			{
-				label: "Display Current Item Above Default itemHeight and No Overlay Video First",
-				jsx: layoutAboveDefaultItemHeight,
-			},
+			// {
+			// 	label: "Display Current Item Above Default itemHeight and No Overlay Video First",
+			// 	jsx: layoutAboveDefaultItemHeight,
+			// },
 			// {
 			// 	label: "Display Current Item Above with Custom itemHeight and Thumbnail Size",
 			// 	jsx: layoutAboveWithItemHeightAndThumbnailSize,
@@ -1966,30 +1974,30 @@ const SECTIONS: Sections = [
 			// 	label: "Display Above Flush with Progress Bar Whole Width",
 			// 	jsx: layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole,
 			// },
-			// {
-			// 	label: "Display Above Flush and Same Background Color using All option",
-			// 	jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
-			// },
-			// {
-			// 	label: "Display Above Custom Icons with Same Background Color",
-			// 	jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons,
-			// },
-			// {
-			// 	label: "Display Above Custom Icons with Default Icons using Custom Colors",
-			// 	jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors,
-			// },
-			// {
-			// 	label: "Display Above buttons.all with Specific Item Fill Colors",
-			// 	jsx: layoutAboveButtonsAllWithSpecificFillColors,
-			// },
-			// {
-			// 	label: "Display Above Custom Overlay Style and Loading Spinner",
-			// 	jsx: layoutAboveCustomOverlayAndSpinner,
-			// },
-			// {
-			// 	label: "Display Above No Tracking Current Item",
-			// 	jsx: layoutAboveNoTrackingItemViewerChanges,
-			// },
+			{
+				label: "Display Above Flush and Same Background Color using All option",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
+			},
+			{
+				label: "Display Above Custom Icons with Same Background Color",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons,
+			},
+			{
+				label: "Display Above Custom Icons with Default Icons using Custom Colors",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors,
+			},
+			{
+				label: "Display Above buttons.all with Specific Item Fill Colors",
+				jsx: layoutAboveButtonsAllWithSpecificFillColors,
+			},
+			{
+				label: "Display Above Custom Overlay Style and Loading Spinner",
+				jsx: layoutAboveCustomOverlayAndSpinner,
+			},
+			{
+				label: "Display Above No Tracking Current Item",
+				jsx: layoutAboveNoTrackingItemViewerChanges,
+			},
 		]
 	],
 	// [
@@ -2274,9 +2282,9 @@ const SECTIONS: Sections = [
 	// 		},
 	// 	]
 	// ],
-	[
-		"Other Dynamic Settings",
-		[
+	// [
+	// 	"Other Dynamic Settings",
+	// 	[
 			// {
 			// 	label: "Thumbnail Overlay Disabled <= 800px",
 			// 	jsx: dynamicDisablingOfThumbnailOverlayBelow800,
@@ -2385,6 +2393,15 @@ const SECTIONS: Sections = [
 			// 	label: "Item Spacing Strategy Changes at 800px",
 			// 	jsx: dynamicItemSpacingStrategy,
 			// },
+	// 	]
+	// ],
+	[
+		"Dynamic based on Viewing Mode",
+		[
+			{
+				label: "Video Modal Background Changes Dynamically based on Viewing Mode",
+				jsx: viewingModeVideoModalBackground,
+			},
 		]
 	],
 	// [

@@ -26,7 +26,7 @@ export const CarouselContent = ({
     const resizeWindowDebounceRef = useRef<any>();
     const translationAmountDifferenceRef = useRef(0);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
-    const [interItemSpacing, setInterItemSpacing] = useState(getCurrentValue(options?.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT));
+    const [interItemSpacing, setInterItemSpacing] = useState(getCurrentValue(options?.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT, isFullscreenMode));
     const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     const itemsContainerOuterRef = useRef<HTMLDivElement>(null);
     const itemsContainerInnerRef = useRef<HTMLDivElement>(null);
@@ -92,7 +92,7 @@ export const CarouselContent = ({
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
         if (options?.thumbnail?.itemSpacing !== undefined) {
-            const currentItemSpacing = getCurrentValue(options.thumbnail.itemSpacing, GET_CURRENT_VALUE_DEFAULT);
+            const currentItemSpacing = getCurrentValue(options.thumbnail.itemSpacing, GET_CURRENT_VALUE_DEFAULT, isFullscreenMode);
             if (currentItemSpacing >= GET_CURRENT_VALUE_DEFAULT) return currentItemSpacing;
         }
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
@@ -103,7 +103,7 @@ export const CarouselContent = ({
         //numberOfGaps logic needed to prevent crashing at smaller viewport, since divide by <= 0 
         const newInterItemSpacing = (remainingSpace / (numberOfGaps <= 0 ? 1 : numberOfGaps));
         return newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT;
-    }, [options?.thumbnail?.itemSpacing, items.length, carouselContainerRef, stylingLogic, optionsLogic]);
+    }, [options?.thumbnail?.itemSpacing, items.length, carouselContainerRef, stylingLogic, optionsLogic, isFullscreenMode]);
 
     const doTranslationAmountCommon = useCallback(() => {
         const interItemSpacingToUse = optionsLogic.getItemSpacing(interItemSpacing);

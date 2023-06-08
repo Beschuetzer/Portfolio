@@ -98,7 +98,7 @@ export class StylingLogic {
         this.videoRef = videoRef;
         this.videoModalRef = videoModalRef;
         this.options = options || {};
-        this.optionsLogic = optionsLogic || new OptionsLogic({ options: this.options });
+        this.optionsLogic = optionsLogic || new OptionsLogic({ options: this.options, isFullscreenMode: false });
         this.isMobile = getIsMobile();
     }
 
@@ -127,7 +127,7 @@ export class StylingLogic {
         } as CSSProperties;
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
-            background: getCurrentValue(this.options?.styling?.navigation?.background, undefined) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE),
+            background: getCurrentValue(this.options?.styling?.navigation?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode),
             borderRadius: 4,
             paddingRight: 0,
             paddingLeft: 0,
@@ -144,7 +144,7 @@ export class StylingLogic {
     }
 
     get carouselItemStyle() {
-        const customCurrenItemBorder = getCurrentValue(this.options.thumbnail?.currentItemBorder, '');
+        const customCurrenItemBorder = getCurrentValue(this.options.thumbnail?.currentItemBorder, '', this.isFullscreenMode);
 
         const widthStyle = {
             width: this.optionsLogic.carouselItemSize,
@@ -261,7 +261,7 @@ export class StylingLogic {
     }
 
     get carouselToolbarTextStyle() {
-        const customTextColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined) || getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined) || this.allFillColor;
+        const customTextColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode) || this.allFillColor;
         return {
             color: customTextColor || CAROUSEL_COLOR_FIVE,
         } as CSSProperties;
@@ -272,13 +272,13 @@ export class StylingLogic {
         const areChildrenPresent = !!this.currentItem?.video?.overlayProps?.children;
         const { right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
         const rightStyle = paddingRight !== undefined ? {
-            right: getCurrentValue(paddingRight, 0),
+            right: getCurrentValue(paddingRight, 0, this.isFullscreenMode),
         } as CSSProperties : {};
         const topStyle = paddingTop !== undefined ? {
-            top: getCurrentValue(paddingTop, 0),
+            top: getCurrentValue(paddingTop, 0, this.isFullscreenMode),
         } as CSSProperties : {};
         const widthStyle = {
-            width: !!sizeGiven ? getCurrentValue(sizeGiven, this.defaultButtonSize) : this.isFullscreenMode ? undefined : CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
+            width: !!sizeGiven ? getCurrentValue(sizeGiven, this.defaultButtonSize, this.isFullscreenMode) : this.isFullscreenMode ? undefined : CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
         } as CSSProperties;
 
         return areChildrenPresent ? {
@@ -296,9 +296,9 @@ export class StylingLogic {
         const isDefault = this.optionsLogic.isDefaultItemDisplayLocation;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
         const videoModalHeight = this.videoModalRef?.current?.getBoundingClientRect().height || 0;
-        const widthInPercent = getCurrentValue(widthInPercentTemp, undefined)
+        const widthInPercent = getCurrentValue(widthInPercentTemp, undefined, this.isFullscreenMode)
         const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : this.isMobile ? "100%" : "75%";
-        const customFontSize = getCurrentValue(fontSizeTemp, this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT);
+        const customFontSize = getCurrentValue(fontSizeTemp, this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
             width: widthToUse,
@@ -306,21 +306,21 @@ export class StylingLogic {
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
         const paddingStyle = {
-            paddingTop: paddingTop !== undefined ? getCurrentValue(paddingTop, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
-            paddingBottom: paddingBottom !== undefined ? getCurrentValue(paddingBottom, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
-            paddingLeft: paddingLeft !== undefined ? getCurrentValue(paddingLeft, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
-            paddingRight: paddingRight !== undefined ? getCurrentValue(paddingRight, 0) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
+            paddingTop: paddingTop !== undefined ? getCurrentValue(paddingTop, 0, this.isFullscreenMode) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
+            paddingBottom: paddingBottom !== undefined ? getCurrentValue(paddingBottom, 0, this.isFullscreenMode) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
+            paddingLeft: paddingLeft !== undefined ? getCurrentValue(paddingLeft, 0, this.isFullscreenMode) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
+            paddingRight: paddingRight !== undefined ? getCurrentValue(paddingRight, 0, this.isFullscreenMode) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
             transform: 'translate(-50%, 0)',
             top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${Math.abs(videoHeight - videoModalHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
         } as CSSProperties : {};
         const textStyle = {
-            color: getCurrentValue(textColor, CAROUSEL_COLOR_ONE),
+            color: getCurrentValue(textColor, CAROUSEL_COLOR_ONE, this.isFullscreenMode),
             fontSize: customFontSize,
         } as CSSProperties;
         const backgroundStyle = {
-            background: getCurrentValue(background, CAROUSEL_COLOR_FIVE),
+            background: getCurrentValue(background, CAROUSEL_COLOR_FIVE, this.isFullscreenMode),
         } as CSSProperties;
 
         return {
@@ -334,7 +334,7 @@ export class StylingLogic {
     }
 
     get carouselVideoCloseButtonColor() {
-        return getCurrentValue(this.options.styling?.videoModal?.closeButton?.fill, CAROUSEL_COLOR_ONE);
+        return getCurrentValue(this.options.styling?.videoModal?.closeButton?.fill, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
     }
 
     get carouselVideoContainerStyle() {
@@ -377,8 +377,8 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressBackgroundStyle() {
-        const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, undefined);
-        const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined);
+        const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, undefined, this.isFullscreenMode);
+        const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
         const common = {
             background,
             width: shouldSpanWholeWidth ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})` : '100%',
@@ -392,7 +392,7 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressForegroundStyle() {
-        const foregroundColor = getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, undefined);
+        const foregroundColor = getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, undefined, this.isFullscreenMode);
         const common = {
             background: foregroundColor,
             width: `${this.progressBarValue * 100}%`,
@@ -436,7 +436,7 @@ export class StylingLogic {
         const stylings = this.options?.styling;
         const fontFamily = stylings?.fontFamily || {};
         return fontFamily?.all || fontFamily?.itemViewer ? {
-            fontFamily: getCurrentValue(fontFamily?.all, undefined) || getCurrentValue(fontFamily?.itemViewer, undefined) || this.DEFAULT_FONT_FAMILY,
+            fontFamily: getCurrentValue(fontFamily?.all, undefined, this.isFullscreenMode) || getCurrentValue(fontFamily?.itemViewer, undefined, this.isFullscreenMode) || this.DEFAULT_FONT_FAMILY,
         } : {};
     }
 
@@ -444,12 +444,12 @@ export class StylingLogic {
         const stylings = this.options?.styling;
         const fontFamily = stylings?.fontFamily || {};
         return fontFamily?.all || fontFamily?.navigation ? {
-            fontFamily: getCurrentValue(fontFamily?.all, undefined) || getCurrentValue(fontFamily?.navigation, undefined) || this.DEFAULT_FONT_FAMILY,
+            fontFamily: getCurrentValue(fontFamily?.all, undefined, this.isFullscreenMode) || getCurrentValue(fontFamily?.navigation, undefined, this.isFullscreenMode) || this.DEFAULT_FONT_FAMILY,
         } : {};
     }
 
     get itemViewerBackgroundColor() {
-        return getCurrentValue(this.options.styling?.itemViewer?.background, undefined) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE);
+        return getCurrentValue(this.options.styling?.itemViewer?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
     }
 
     get navigationContainerHorizontalPadding() {
@@ -485,8 +485,8 @@ export class StylingLogic {
         const backgroundSolidStyle = !!solid ? {
             background: 'none',
             backgroundColor: convertHexToRgba(
-                getCurrentValue(solid?.color, CAROUSEL_COLOR_ONE).trim(),
-                getCurrentValue(solid?.opacity, CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT),
+                getCurrentValue(solid?.color, CAROUSEL_COLOR_ONE, this.isFullscreenMode).trim(),
+                getCurrentValue(solid?.opacity, CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, this.isFullscreenMode),
             ),
         } as CSSProperties : {};
 
@@ -495,7 +495,7 @@ export class StylingLogic {
         } as CSSProperties : {};
 
         const backgroundGradientStyle = gradient ? {
-            background: `linear-gradient(${getCurrentValue(gradient?.angle, 180)}deg, ${convertHexToRgba(getCurrentValue(gradient.start?.color, CAROUSEL_COLOR_FIVE), getCurrentValue(gradient.start?.opacity, 0))} 0%, ${convertHexToRgba(getCurrentValue(gradient.end?.color, CAROUSEL_COLOR_ONE), getCurrentValue(gradient.end?.opacity, 1))} 100%)`,
+            background: `linear-gradient(${getCurrentValue(gradient?.angle, 180, this.isFullscreenMode)}deg, ${convertHexToRgba(getCurrentValue(gradient.start?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode), getCurrentValue(gradient.start?.opacity, 0, this.isFullscreenMode))} 0%, ${convertHexToRgba(getCurrentValue(gradient.end?.color, CAROUSEL_COLOR_ONE, this.isFullscreenMode), getCurrentValue(gradient.end?.opacity, 1, this.isFullscreenMode))} 100%)`,
         } as CSSProperties : {};
 
         const bottomStyle = shouldHideOverlay ? {
@@ -522,14 +522,14 @@ export class StylingLogic {
         const thumbnail = this.options?.thumbnail;
 
         const fontSizeStyle = thumbnail ? {
-            fontSize: getCurrentValue(thumbnail?.descriptionOverlay?.fontSize, -1),
+            fontSize: getCurrentValue(thumbnail?.descriptionOverlay?.fontSize, -1, this.isFullscreenMode),
         } as React.CSSProperties : {};
         const maxLineCountStyle = {
-            WebkitLineClamp: getCurrentValue(thumbnail?.descriptionOverlay?.maxLineCount, CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT),
+            WebkitLineClamp: getCurrentValue(thumbnail?.descriptionOverlay?.maxLineCount, CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT, this.isFullscreenMode),
         } as React.CSSProperties;
 
         const textColorStyle = thumbnail?.descriptionOverlay?.textColor ? {
-            color: getCurrentValue(thumbnail?.descriptionOverlay?.textColor, CAROUSEL_COLOR_FIVE),
+            color: getCurrentValue(thumbnail?.descriptionOverlay?.textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode),
         } as React.CSSProperties : {};
 
         return {
@@ -541,7 +541,7 @@ export class StylingLogic {
     }
 
     get toolbarBackgroundColorStyle() {
-        const customColor = getCurrentValue(this.options.styling?.toolbar?.background, undefined) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE);
+        const customColor = getCurrentValue(this.options.styling?.toolbar?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
         return {
             background: customColor,
         } as CSSProperties;
@@ -568,7 +568,7 @@ export class StylingLogic {
 
     //#region Private Getters
     private get allFillColor() {
-        return getCurrentValue(this.options.styling?.elements?.all?.fillColor, undefined);
+        return getCurrentValue(this.options.styling?.elements?.all?.fillColor, undefined, this.isFullscreenMode);
     }
 
     private get imageHeight() {
@@ -580,13 +580,13 @@ export class StylingLogic {
 
     //#region Public Methods
     getButtonColor(buttonName: CarouselElement, fallbackColor = CAROUSEL_COLOR_FIVE) {
-        const specificFillColor = getCurrentValue(this.options.styling?.elements?.[buttonName]?.fillColor, undefined);
+        const specificFillColor = getCurrentValue(this.options.styling?.elements?.[buttonName]?.fillColor, undefined, this.isFullscreenMode);
 
         switch (buttonName) {
             case CarouselElement.arrowLeft:
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
-                const navigationElementsColor = getCurrentValue(this.options.styling?.navigation?.elements?.color, undefined);
+                const navigationElementsColor = getCurrentValue(this.options.styling?.navigation?.elements?.color, undefined, this.isFullscreenMode);
                 return specificFillColor || navigationElementsColor || this.allFillColor || fallbackColor;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
@@ -596,7 +596,7 @@ export class StylingLogic {
             case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
-                const toolbarElementsColor = getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined);
+                const toolbarElementsColor = getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode);
                 return specificFillColor || toolbarElementsColor || this.allFillColor || fallbackColor;
             default:
                 return specificFillColor || this.allFillColor || fallbackColor;
@@ -612,7 +612,7 @@ export class StylingLogic {
             case CarouselElement.arrowLeft:
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
-                sectionButtonSize = getCurrentValue(this.options.styling?.navigation?.elements?.size, this.defaultButtonSize);
+                sectionButtonSize = getCurrentValue(this.options.styling?.navigation?.elements?.size, this.defaultButtonSize, this.isFullscreenMode);
                 break;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
@@ -622,7 +622,7 @@ export class StylingLogic {
             case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
-                sectionButtonSize = getCurrentValue(this.options.styling?.toolbar?.elements?.size, this.defaultButtonSize);
+                sectionButtonSize = getCurrentValue(this.options.styling?.toolbar?.elements?.size, this.defaultButtonSize, this.isFullscreenMode);
                 break;
         }
 
@@ -844,25 +844,25 @@ export class StylingLogic {
         switch (direction) {
             case SpacingDirection.bottom:
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.optionsLogic.isItemDisplayLocationBelow ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = getCurrentValue(this.options.styling?.container?.padding?.bottom, undefined);
+                allPadding = getCurrentValue(this.options.styling?.container?.padding?.bottom, undefined, this.isFullscreenMode);
                 // specificElementPadding = this.options.styling?.[item]?.padding?.bottom;
                 customPadding = specificElementPadding || allPadding;
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.left:
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = getCurrentValue(this.options.styling?.container?.padding?.left, undefined);
-                specificElementPadding = getCurrentValue(this.options.styling?.[item]?.padding?.left, undefined);
+                allPadding = getCurrentValue(this.options.styling?.container?.padding?.left, undefined, this.isFullscreenMode);
+                specificElementPadding = getCurrentValue(this.options.styling?.[item]?.padding?.left, undefined, this.isFullscreenMode);
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.right:
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = getCurrentValue(this.options.styling?.container?.padding?.right, undefined);
-                specificElementPadding = getCurrentValue(this.options.styling?.[item]?.padding?.right, undefined);
+                allPadding = getCurrentValue(this.options.styling?.container?.padding?.right, undefined, this.isFullscreenMode);
+                specificElementPadding = getCurrentValue(this.options.styling?.[item]?.padding?.right, undefined, this.isFullscreenMode);
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.top:
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = getCurrentValue(this.options.styling?.container?.padding?.top, undefined);
+                allPadding = getCurrentValue(this.options.styling?.container?.padding?.top, undefined, this.isFullscreenMode);
                 // specificElementPadding = this.options.styling?.[item]?.padding?.top;
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;

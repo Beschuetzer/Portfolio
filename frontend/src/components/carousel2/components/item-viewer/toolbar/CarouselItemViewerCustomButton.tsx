@@ -3,6 +3,7 @@ import { CLASSNAME__HIDDEN, CLASSNAME__ITEM_VIEWER_BUTTON } from "../../../const
 import { StylingLogic } from "../../../business-logic/StylingLogic";
 import { getCurrentValue } from "../../../utils";
 import { CarouselElementCustomization } from "../../../types";
+import { useCarouselContext } from "../../../context";
 
 type CarouselItemViewerCustomButtonProps = {
     classNamesToInclude?: string[];
@@ -23,6 +24,7 @@ export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, Carousel
     useElementStyle = {},
     xlinkHref,
 }, ref) => {
+    const { isFullscreenMode } = useCarouselContext();
     const classNamesToIncludeClassname = classNamesToInclude.join(' ');
     const defaultStyles = StylingLogic.getButtonColorStyle(fillColor, 'fill', {
         transformOrigin: 'center',
@@ -32,8 +34,8 @@ export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, Carousel
         <svg style={style} ref={ref} onClick={onClick} className={`${CLASSNAME__ITEM_VIEWER_BUTTON} ${classNamesToIncludeClassname} ${!showButton ? CLASSNAME__HIDDEN : ''}`}>
             <use
                 style={{ ...useElementStyle, ...defaultStyles }}
-                xlinkHref={getCurrentValue(xlinkHref, '')}
-                href={getCurrentValue(xlinkHref, '')}
+                xlinkHref={getCurrentValue(xlinkHref, undefined, isFullscreenMode)}
+                href={getCurrentValue(xlinkHref, undefined, isFullscreenMode)}
             />
         </svg>
     );
