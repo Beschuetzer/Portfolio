@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react'
+import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { capitalize, getClassname, getIsMobile, getShortcutsString } from '../../../utils'
 import { KeyInput } from '../../../hooks/useKeyboardShortcuts';
 import { CLASSNAME__DISPLAY_NONE } from '../../../constants';
@@ -30,15 +30,15 @@ export const CarouselItemViewerShortcutIndicator = ({
 }: CarouselItemViewerShortcutIndicatorProps) => {
     const timeoutRef = useRef<any>(null);
     const [hideShortcut, setHideShortcut] = useState(!isShortcutVisible || !actionName)
-    const containerStyle = !showButton ? {
+    const containerStyle = useMemo(() => !showButton ? {
         display: 'none',
-    } as React.CSSProperties : {}
+    } as React.CSSProperties : {}, [showButton]);
     const isMobile = getIsMobile();
 
-    const commonStyle = {
+    const commonStyle = useMemo(() => ({
         zIndex: 1000000000000,
-    }
-    const shortcutStyle = position === 'left' ? {
+    }), []);
+    const shortcutStyle = useMemo(() => position === 'left' ? {
         ...commonStyle,
         left: 0,
         right: 'auto',
@@ -48,8 +48,8 @@ export const CarouselItemViewerShortcutIndicator = ({
         right: 0,
         left: 'auto',
         transform: 'translate(0%, -50%)',
-    } as React.CSSProperties : {};
-    const hiddenClassName = isVisible ? "" : CLASSNAME__DISPLAY_NONE;
+    } as React.CSSProperties : {}, [commonStyle, position]);
+    const hiddenClassName = useMemo(() => isVisible ? "" : CLASSNAME__DISPLAY_NONE, [isVisible]);
 
     useEffect(() => {
         setHideShortcut(!isShortcutVisible || !actionName);
