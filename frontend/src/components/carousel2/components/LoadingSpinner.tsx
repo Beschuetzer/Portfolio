@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useCallback } from "react";
 import { getClassname } from "../utils";
 import { StylingLogic } from "../business-logic/StylingLogic";
 import { useCarouselContext } from "../context";
@@ -63,7 +63,7 @@ export const LoadingSpinner = ({
 	const { options: carouselOptions } = useCarouselContext();
 	const stylingLogic = new StylingLogic({ options: carouselOptions, loadingSpinnerOptions: options });
 
-	function renderContent(content: ReactNode | ReactNode[]) {
+	const renderContent = useCallback((content: ReactNode | ReactNode[]) => {
 		if (!show) return null;
 		switch (type) {
 			case "roller":
@@ -133,7 +133,13 @@ export const LoadingSpinner = ({
 					</>
 				)
 		}
-	}
+	}, [
+		show,
+		stylingLogic.carouselLoadingSpinnerBackgroundColorStyle,
+		stylingLogic.carouselLoadingSpinnerRingContainerStyle,
+		stylingLogic.carouselLoadingSpinnerRingItemStyle,
+		type
+	]);
 
 	return (
 		<div className={`${CLASSNAME__LOADING}-container`}>

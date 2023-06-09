@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { getClassname, getIsVideoPlaying } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoModal, CarouselVideoModalProps } from './CarouselVideoModal'
@@ -38,7 +38,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const videoRef = useRef<HTMLVideoElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
-    const type = srcMain?.slice(srcMain?.lastIndexOf('.') + 1);
+    const type = useMemo(() => srcMain?.slice(srcMain?.lastIndexOf('.') + 1), [srcMain]);
     const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
     useRerenderOnExitFullscreenMode();
     //#endregion
@@ -56,10 +56,10 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         }
     }, [setIsLoaded, videoRef]);
 
-    function handleOnLoadedData() {
+    const handleOnLoadedData = useCallback(() => {
         setIsLoaded(true);
         setIsVideoPlaying(false);
-    }
+    }, [])
 
     const onVideoClick = useCallback((e: MouseEvent) => {
         if (e.detail === 2) {

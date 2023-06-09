@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { CarouselItemProps } from './CarouselItem';
 import { getClassname, getCurrentValue } from '../utils';
 import { CAROUSEL_COLOR_FIVE, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_DOT_HEIGHT_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS, CAROUSEL_DOT_WIDTH_DEFAULT } from '../constants';
@@ -37,22 +37,22 @@ export const CarouselDots = ({
     //#endregion
 
     //#region JSX
-    const useStyles = StylingLogic.getButtonColorStyle(fillColor, 'fill');
-    const divStyles = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', {
+    const useStyles = useMemo(() => StylingLogic.getButtonColorStyle(fillColor, 'fill'), [fillColor]);
+    const divStyles = useMemo(() => StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', {
         opacity: CAROUSEL_DOT_OPACITY_DEFAULT,
-    });
-    const containerHeight = (stylingLogic.getCarouselElementSizeStlye(CarouselElement.dots)?.width || CAROUSEL_DOT_HEIGHT_DEFAULT) as number * 2 / 3;
-    const containerWidth = (stylingLogic.getCarouselElementSizeStlye(CarouselElement.dots)?.width || CAROUSEL_DOT_HEIGHT_DEFAULT) as number * 2 / 3;
-    const dotContainerSizeStyle = {
+    }), [fillColor]);
+    const containerHeight = useMemo(() => (stylingLogic.getCarouselElementSizeStlye(CarouselElement.dots)?.width || CAROUSEL_DOT_HEIGHT_DEFAULT) as number * 2 / 3, [stylingLogic]);
+    const containerWidth = useMemo(() => (stylingLogic.getCarouselElementSizeStlye(CarouselElement.dots)?.width || CAROUSEL_DOT_HEIGHT_DEFAULT) as number * 2 / 3, [stylingLogic]);
+    const dotContainerSizeStyle = useMemo(() => ({
         width: CAROUSEL_DOT_WIDTH_DEFAULT + (Math.abs(containerWidth - CAROUSEL_DOT_WIDTH_DEFAULT) / CAROUSEL_DOT_WIDTH_DEFAULT),
         height: containerHeight,
-    }
-    const dotSizeStyle = {
+    }), [containerHeight, containerWidth]);
+    const dotSizeStyle = useMemo(() => ({
         width: containerHeight / 4,
         height: containerHeight / 4,
-    }
+    }), [containerHeight]);
 
-    function renderDots() {
+    const renderDots = useCallback(() => {
         const dots = [];
         for (let index = 0; index < numberOfDots; index++) {
             const isCurrentPage = index === currentPage;
@@ -84,7 +84,19 @@ export const CarouselDots = ({
             ));
         }
         return dots;
-    }
+    }, [
+        currentPage,
+        divStyles,
+        dotContainerSizeStyle,
+        dotSizeStyle,
+        fillColor,
+        isFullscreenMode,
+        numberOfDots,
+        onDotClick,
+        style,
+        svgHref,
+        useStyles
+    ]);
 
     if (numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return null;
     return (

@@ -55,7 +55,6 @@ export const useOnSwipe = ({
     swipeHandlers = {},
     handleStyleChanges,
 }: UseOnSwipeProps) => {
-    //todo: need to add handlers to swiping on a phone too?
     const lastCoordinateRef = useRef<Coordinate>();
     const currentCoordinateRef = useRef<Coordinate>();
     const startCoordinateRef = useRef<Coordinate>();

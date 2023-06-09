@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useEffect, useRef, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { CarouselItemProps } from "./components/CarouselItem";
 import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
@@ -46,7 +46,7 @@ export const CarouselProvider = ({
     const [numberOfPages, setNumberOfPages] = useState(0);
     const [options, setOptions] = useState<CarouselOptions>(optionsInput || {});
     const itemViewerRef = useRef<HTMLElement>(null);
-    const currentItemToUse = Object.keys(currentItem || {}).length > 0 ? currentItem : items[0];
+    const currentItemToUse = useMemo(() => Object.keys(currentItem || {}).length > 0 ? currentItem : items[0], [currentItem, items]);
 
     useEffect(() => {
         setCurrentItem(items?.[currentItemIndex]);

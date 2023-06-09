@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { getClassname, setCssCustomProperty } from '../utils';
 import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
@@ -58,9 +58,9 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     const videoModalRef = useRef<HTMLElement>();
 
     const { svgHref } = elementStylings?.closeButton || {};
-    const isCustom = !!children;
+    const isCustom = useMemo(() => !!children, [children]);
     const { stylingLogic } = useBusinessLogic({ videoRef, videoModalRef })
-    const closeButtonColor = stylingLogic.carouselVideoCloseButtonColor;
+    const closeButtonColor = useMemo(() => stylingLogic.carouselVideoCloseButtonColor, [stylingLogic.carouselVideoCloseButtonColor]);
     //#endregion
 
     //#region Handlers/Functions
@@ -89,7 +89,16 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     //#endregion
 
     //#region JSX
-    const button = !!svgHref ? (
+    const visibilityStyle = useMemo(() => isVideoPlaying || !isVisible ? getClassname({ modifiedName: "hidden" }) : '', [isVideoPlaying, isVisible]);
+    const className = useMemo(() => getClassname({ elementName: 'video-modal' }), []);
+    const classNameCustom = useMemo(() => getClassname({ elementName: 'video-modal-custom' }), []);
+    const classNameToUse = useMemo(() => `${className} ${isCustom ? classNameCustom : ''} ${visibilityStyle}`, [
+        className,
+        classNameCustom,
+        isCustom,
+        visibilityStyle
+    ]);
+    const button = useMemo(() => !!svgHref ? (
         <CarouselItemViewerCustomButton
             onClick={onCloseClick as any}
             xlinkHref={svgHref}
@@ -105,9 +114,16 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
             fillColor={closeButtonColor}
             style={stylingLogic.carouselVideoModalCloseButtonStyle}
         />
-    );
+    ),
+        [
+            closeButtonColor,
+            isCustom,
+            onCloseClick,
+            stylingLogic.carouselVideoModalCloseButtonStyle,
+            svgHref
+        ]);
 
-    function renderChildren() {
+    const renderChildren = useCallback(() => {
         if (isCustom) {
             return (
                 <div>
@@ -130,12 +146,8 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
                 ) : null}
             </div>
         ));
-    }
+    }, [button, children, className, isCustom, sections]);
 
-    const visibilityStyle = isVideoPlaying || !isVisible ? getClassname({ modifiedName: "hidden" }) : '';
-    const className = getClassname({ elementName: 'video-modal' });
-    const classNameCustom = getClassname({ elementName: 'video-modal-custom' });
-    const classNameToUse = `${className} ${isCustom ? classNameCustom : ''} ${visibilityStyle}`;
 
     return (
         <div ref={videoModalRef as any} className={classNameToUse} onClick={stopPropagation as any} style={stylingLogic.carouselVideoModalStyle}>

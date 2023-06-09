@@ -1,4 +1,4 @@
-import { CSSProperties, forwardRef } from "react";
+import { CSSProperties, forwardRef, useMemo } from "react";
 import { CLASSNAME__HIDDEN, CLASSNAME__ITEM_VIEWER_BUTTON } from "../../../constants";
 import { StylingLogic } from "../../../business-logic/StylingLogic";
 import { getCurrentValue } from "../../../utils";
@@ -25,7 +25,7 @@ export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, Carousel
     xlinkHref,
 }, ref) => {
     const { isFullscreenMode } = useCarouselContext();
-    const classNamesToIncludeClassname = classNamesToInclude.join(' ');
+    const classNamesToIncludeClassname = useMemo(() => classNamesToInclude.join(' '), [classNamesToInclude]);
     const defaultStyles = StylingLogic.getButtonColorStyle(fillColor, 'fill', {
         transformOrigin: 'center',
     })

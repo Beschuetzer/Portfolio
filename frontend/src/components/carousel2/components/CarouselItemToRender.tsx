@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import { CarouselItemViewerContainer } from './item-viewer/toolbar/CarouselItemViewerContainer';
 import { useCarouselContext } from '../context';
 import { getIsVideo } from '../utils';
@@ -10,7 +10,7 @@ type CarouselItemToRenderProps = {}
 export const CarouselItemToRender = (props: CarouselItemToRenderProps) => {
     const { currentItem } = useCarouselContext();
     const itemContainerRef = useRef<HTMLDivElement>();
-    const isVideo = getIsVideo(currentItem);
+    const isVideo = useMemo(() => getIsVideo(currentItem), [currentItem]);
     
     return (
         <CarouselItemViewerContainer ref={itemContainerRef}>
