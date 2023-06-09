@@ -1,7 +1,7 @@
 Carousel rework
-  -add option for each element to be able to change fullscreen styles vs non-fullscreen styles?
-  -check how fullscreen looks on phone (should rotate)
+  -go through components and use useMemo whereever a variable is declared
   -add options to set VideoCurrentStateIndicatorButton?
+  -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
   -add option to specify the border on the CarouselItemViewerToolbarPreview?
   -need to work on individual options for each button size

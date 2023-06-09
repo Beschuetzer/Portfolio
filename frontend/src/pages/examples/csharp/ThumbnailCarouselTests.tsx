@@ -2404,6 +2404,10 @@ const SECTIONS: Sections = [
 				label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
 				jsx: viewingModeToolbarButtons,
 			},
+			// {
+			// 	label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
+			// 	jsx: viewingModeToolbarButtons,
+			// },
 		]
 	],
 	// [
