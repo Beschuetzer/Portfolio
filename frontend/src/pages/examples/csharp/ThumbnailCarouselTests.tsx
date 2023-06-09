@@ -1844,7 +1844,7 @@ const noThumbnailDescriptionOverlay = (
 		}
 	}} />
 );
-const viewingModeVideoModalBackground = (
+const viewingModeToolbarButtons = (
 	<Carousel
 		items={items.slice(0, 3)}
 		options={{
@@ -1852,10 +1852,12 @@ const viewingModeVideoModalBackground = (
 				itemDisplayLocation: 'above'
 			},
 			styling: {
-				videoModal: {
-					background: {
-						fullscreen: [['red'], ['green', 800]],
-						nonFullscreen: [['blue'], ['yellow', 800]],
+				toolbar: {
+					elements: {
+						color: {
+							fullscreen: [['red'], ['blue', 800]],
+							nonFullscreen: [['yellow'], ['green', 800]],
+						}
 					}
 				}
 			}
@@ -2399,8 +2401,8 @@ const SECTIONS: Sections = [
 		"Dynamic based on Viewing Mode",
 		[
 			{
-				label: "Video Modal Background Changes Dynamically based on Viewing Mode",
-				jsx: viewingModeVideoModalBackground,
+				label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
+				jsx: viewingModeToolbarButtons,
 			},
 		]
 	],

@@ -19,6 +19,7 @@ Known Issues with Carousel rework:
   -changing items with mid-tier and below setting is sluggish
   -CarouselElementValue only updates when CarouselContent re-renders; if dynamic spacing is on, then re-renders occur much more often
   -cursor only changes properly after going into full screen once
+  -having more than 10 instance on the same page can cause issues (need to benchmark this)?
 
 React best practices re-work (branch = sitenav_rework)
   -convert backend to an apollo server?
