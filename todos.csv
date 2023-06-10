@@ -1,5 +1,4 @@
 Carousel rework
-  -seek buttons should display the amount that seekAmount is set to (e.g. 5s or 10s, etc)
   -itemPositioning not correct when itemDisplayLocation is not 'none' and only 1 page of items (need to add test) (needs to be set to left regardless of given value?)
   -add option to set translation amount when last page such that the last item is the furthest right?
   -add options to set VideoCurrentStateIndicatorButton?

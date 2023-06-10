@@ -243,19 +243,19 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.currentTime -= getCurrentValue(options?.itemViewer?.seekAmount, SEEK_AMOUNT_DEFAULT, isFullscreenMode) / 1000;
+            videoRef.current.currentTime -= optionsLogic.videoSeekAmount;
         }
         handleAutoHide();
         toolbarActionsLogic.getSeekBackwards().onActionCompleted();
-    }, [options, videoRef, handleAutoHide, toolbarActionsLogic, isFullscreenMode]);
+    }, [videoRef, handleAutoHide, toolbarActionsLogic, optionsLogic.videoSeekAmount]);
 
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
-            videoRef.current.currentTime += getCurrentValue(options?.itemViewer?.seekAmount, SEEK_AMOUNT_DEFAULT, isFullscreenMode) / 1000;
+            videoRef.current.currentTime += optionsLogic.videoSeekAmount;
         }
         handleAutoHide();
         toolbarActionsLogic.getSeekForwards().onActionCompleted();
-    }, [options, videoRef, handleAutoHide, toolbarActionsLogic, isFullscreenMode])
+    }, [videoRef, handleAutoHide, toolbarActionsLogic, optionsLogic.videoSeekAmount])
 
     function onToolbarClick(e: MouseEvent) {
         e.stopPropagation();

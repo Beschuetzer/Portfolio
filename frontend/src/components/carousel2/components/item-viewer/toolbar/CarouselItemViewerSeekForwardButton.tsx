@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import { useCarouselContext } from '../../../context';
 import { CarouselElement, CarouselItemViewerButtonProps } from '../../../types';
 import { SeekForwardButton } from '../../buttons/SeekForwardButton';
@@ -16,12 +16,13 @@ export const CarouselItemViewerSeekForwardButton = forwardRef<any, CarouselItemV
 }, ref) => {
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.seekForwardButton || {};
-    const { stylingLogic, toolbarActionsLogic } = useBusinessLogic({});
+    const { optionsLogic, stylingLogic, toolbarActionsLogic } = useBusinessLogic({});
     const seekForwardAction = toolbarActionsLogic.getSeekForwards();
     const fillColor = stylingLogic.getButtonColor(CarouselElement.seekForwardButton);
+    const actionNameToUse = useMemo(() => `${actionName} ${optionsLogic.videoSeekAmount} seconds`, [actionName, optionsLogic.videoSeekAmount]);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={seekForwardAction.keys} position={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator actionName={actionNameToUse} shortcuts={seekForwardAction.keys} position={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
                 <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
                 <SeekForwardButton ref={ref} onClick={onClick} childStyle={style} fillColor={fillColor} />}
