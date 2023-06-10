@@ -186,6 +186,7 @@ export type CarouselLayoutOptions = {
    *`left` => the left-most thumbnail item on a given page is positioned flush with the container
    *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the navigation container's ends
    *`right` => the right-most thumbnail item on a given page is positioned flush with the container
+   *Overrides any value given in `thumbnail.itemSpacingStrategy`
    */
     itemPositioning?: CarouselElementValue<'left' | 'center' | 'right'>;
 }
@@ -426,6 +427,7 @@ export type CarouselThumbnailOptions = {
     *Determines how the thumbnails are spaced out if there is only one page and `itemSpacing` is not given (i.e. dynamic spacing is active)
     *`min` means that the `itemSpacing` will be reduced to a value that would allow for the most number of thumbnails to fit within the container with even spacing
     *`max` means that the `itemSpacing` will be maximized such that the thumbnails will span the entire width of the container when there is only one page
+    *If `layout.itemPositioning` is given, then this value is ignored
     */
     itemSpacingStrategy?: CarouselElementValue<'min' | 'max'>;
     /*

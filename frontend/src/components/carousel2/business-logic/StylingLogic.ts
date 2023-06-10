@@ -785,12 +785,20 @@ export class StylingLogic {
             this.optionsLogic
         );
         const itemPositioning = this.optionsLogic.itemPositioning;
-        const numberOfSpaces = numberOfWholeItemsThatCanFit - 1;
+        const numberOfItemsToUse = Math.min(numberOfWholeItemsThatCanFit, (this.items?.length || Number.MAX_SAFE_INTEGER));
+        const numberOfSpaces = numberOfItemsToUse - 1;
         const itemSpacing = this.optionsLogic.getItemSpacing(interItemSpacing);
         const widthOfInterItemSpacing = numberOfSpaces * itemSpacing;
-        const widthOfItems = numberOfWholeItemsThatCanFit * itemSize;
+        const widthOfItems = numberOfItemsToUse * itemSize;
 
-        // console.log({ containerWidth, givenItemSpacing: this.options.thumbnail?.itemSpacing, itemPositioning, numberOfWholeItemsThatCanFit, widthOfItems, widthOfInterItemSpacing, interItemSpacing, numberOfSpaces });
+        // console.log({
+        //     numberOfItemsToUse,
+        //     containerWidth,
+        //     givenItemSpacing: this.options.thumbnail?.itemSpacing,
+        //     itemPositioning,
+        //     widthOfItems,
+        //     widthOfInterItemSpacing, interItemSpacing, numberOfSpaces
+        // });
         const positioningStyle = itemPositioning === 'center' ? {
             marginLeft: Math.max((containerWidth - (widthOfItems + widthOfInterItemSpacing)) / 2, 0),
         } as CSSProperties : itemPositioning === 'right' ? {

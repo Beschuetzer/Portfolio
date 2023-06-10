@@ -23,7 +23,7 @@ import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/components/Carousel";
 import { ModifierKey, ValidKey } from "../../../components/carousel2/hooks/useKeyboardShortcuts";
-import { CarouselActions } from "../../../components/carousel2/types";
+import { CarouselActions, CarouselSection } from "../../../components/carousel2/types";
 import { CarouselItemProps } from "../../../components/carousel2/components/CarouselItem";
 
 //#region Carousel Items
@@ -1760,6 +1760,39 @@ const layoutThumbnailPositioningCenterWithItemSpacingGiven = (
 		}}
 	/>
 );
+const layoutThumbnailPositioningLeftNonDefaultCaseOnePage = (
+	<Carousel
+		items={items.slice(3)}
+		options={{
+			layout: {
+				itemPositioning: 'left',
+				itemDisplayLocation: "above",
+			},
+		}}
+	/>
+);
+const layoutThumbnailPositioningCenterNonDefaultCaseOnePage = (
+	<Carousel
+		items={items.slice(3)}
+		options={{
+			layout: {
+				itemPositioning: 'center',
+				itemDisplayLocation: "above",
+			},
+		}}
+	/>
+);
+const layoutThumbnailPositioningRightNonDefaultCaseOnePage = (
+	<Carousel
+		items={items.slice(3)}
+		options={{
+			layout: {
+				itemPositioning: 'right',
+				itemDisplayLocation: "above",
+			},
+		}}
+	/>
+);
 const layoutThumbnailPositioningLeft = (
 	<Carousel
 		items={items}
@@ -1896,556 +1929,580 @@ const viewingModeToolbarButtons = (
 );
 //#endregion
 
-type Sections = [string, { label: string, jsx: ReactNode | ReactNode[] }[]][];
+type Sections = [SectionNames, { label: string, jsx: ReactNode | ReactNode[] }[]][];
+enum SectionNames {
+	aboveCustomization = "Above Customization",
+	belowCustomization = "Below Customization",
+	custom = "Custom",
+	customWidth = "Custom Width",
+	dynamicBasedOnViewingMode = "Dynamic based on Viewing Mode",
+	dynamicLayout = "Dynamic Layout Settings",
+	itemPositioning = "Item Positioning",
+	itemViewer = "Item Viewer",
+	layouts = "Layouts",
+	navigationOptions = "Navigation Options",
+	otherDynamicSettings = "Other Dynamic Settings",
+	thumbnailOptions = "Thumbnail Options",
+}
 const SECTIONS: Sections = [
-	// [
-	// 	"Layouts",
-	// 	[
-	// 		{
-	// 			label: "One Item - All Defaults",
-	// 			jsx: noItemDisplayedOneItemAllDefaults
-	// 		},
-	// 		{
-	// 			label: "Two Items - All Defaults",
-	// 			jsx: noItemDisplayedTwoItemsAllDefaults
-	// 		},
-	// 		{
-	// 			label: "Three Items - All Defaults",
-	// 			jsx: noItemDisplayedThreeItemsAllDefaults
-	// 		},
-	// 		{
-	// 			label: "Three Items - Max Spacing Strategy",
-	// 			jsx: noItemDisplayedThreeItemsMaxSpacing
-	// 		},
-	// 		{
-	// 			label: "Multiple Pages - All Defaults",
-	// 			jsx: noItemDisplayedMultiplePagesAllDefaults
-	// 		},
-	// 		{
-	// 			label: "Multiple Pages - Custom Padding",
-	// 			jsx: multiplePagesCustomPadding
-	// 		},
-	// 		{
-	// 			label: "Multiple Pages - Custom Item Viewer Colors",
-	// 			jsx: noItemDisplayedMultiplePagesCustomItemViewerColors
-	// 		},
-	// 		{
-	// 			label: "Display Current Item Above with Custom itemHeight and Font Family",
-	// 			jsx: layoutAboveWithItemHeightAndFontFamily,
-	// 		},
-	// 		{
-	// 			label: "Display Current Item Above with Max Spacing Strategy",
-	// 			jsx: layoutAboveWithMaxSpacingStrategy,
-	// 		},
-	// 		{
-	// 			label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
-	// 			jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
-	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Left in Container with Default Spacing",
-	// 			jsx: layoutThumbnailPositioningLeft,
-	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
-	// 			jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
-	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Center in Container with Default Spacing",
-	// 			jsx: layoutThumbnailPositioningCenter,
-	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
-	// 			jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
-	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Right in Container with Default Spacing",
-	// 			jsx: layoutThumbnailPositioningRight,
-	// 		},
-	// 		{
-	// 			label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
-	// 			jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
-	// 		},
-	// 	]
-	// ],
-	// [
-	// 	'Above-Customization',
-	// 	[
-			// {
-			// 	label: "Display Current Item Above Default itemHeight and No Overlay Video First",
-			// 	jsx: layoutAboveDefaultItemHeight,
-			// },
-			// {
-			// 	label: "Display Current Item Above with Custom itemHeight and Thumbnail Size",
-			// 	jsx: layoutAboveWithItemHeightAndThumbnailSize,
-			// },
-			// {
-			// 	label: "Display Above with Container Padding",
-			// 	jsx: layoutAboveContainerPadding,
-			// },
-			// {
-			// 	label: "Display Above with Item Viewer Padding",
-			// 	jsx: layoutAboveExtraItemViewerPadding
-			// },
-			// {
-			// 	label: "Display Above with Extra Navigation Padding",
-			// 	jsx: layoutAboveExtraNavigationPadding,
-			// },
-			// {
-			// 	label: "Display Above with Extra Toolbar Padding",
-			// 	jsx: layoutAboveExtraToolbarPadding
-			// },
-			// {
-			// 	label: "Display Above with Different Left and Right Padding",
-			// 	jsx: layoutAboveDifferentLeftAndRightPadding,
-			// },
-			// {
-			// 	label: "Display Above Flush and Same Background Color",
-			// 	jsx: layoutAboveCompletelyFlushAndSameBackgroundColor,
-			// },
-			// {
-			// 	label: "Display Above Flush with Progress Bar Whole Width",
-			// 	jsx: layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole,
-			// },
-	// 		{
-	// 			label: "Display Above Flush and Same Background Color using All option",
-	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
-	// 		},
-	// 		{
-	// 			label: "Display Above Custom Icons with Same Background Color",
-	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons,
-	// 		},
-	// 		{
-	// 			label: "Display Above Custom Icons with Default Icons using Custom Colors",
-	// 			jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors,
-	// 		},
-	// 		{
-	// 			label: "Display Above buttons.all with Specific Item Fill Colors",
-	// 			jsx: layoutAboveButtonsAllWithSpecificFillColors,
-	// 		},
-	// 		{
-	// 			label: "Display Above Custom Overlay Style and Loading Spinner",
-	// 			jsx: layoutAboveCustomOverlayAndSpinner,
-	// 		},
-	// 		{
-	// 			label: "Display Above No Tracking Current Item",
-	// 			jsx: layoutAboveNoTrackingItemViewerChanges,
-	// 		},
-	// 	]
-	// ],
-	// [
-	// 	'Below-Customization',
-	// 	[
-	// 		{
-	// 			label: "All Defaults",
-	// 			jsx: React.cloneElement(layoutAboveDefaultItemHeight, {
-	// 				options: {
-	// 					...layoutAboveDefaultItemHeight.props.options,
-	// 					layout: {
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Current Item Below with Custom itemHeight and Thumbnail Size",
-	// 			jsx: React.cloneElement(layoutAboveWithItemHeightAndThumbnailSize, {
-	// 				options: {
-	// 					...layoutAboveWithItemHeightAndThumbnailSize.props.options,
-	// 					layout: {
-	// 						...layoutAboveWithItemHeightAndThumbnailSize.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below with Container Padding",
-	// 			jsx: React.cloneElement(layoutAboveContainerPadding, {
-	// 				options: {
-	// 					...layoutAboveContainerPadding.props.options,
-	// 					layout: {
-	// 						...layoutAboveContainerPadding.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below with Item Viewer Padding",
-	// 			jsx: React.cloneElement(layoutAboveExtraItemViewerPadding, {
-	// 				options: {
-	// 					...layoutAboveExtraItemViewerPadding.props.options,
-	// 					layout: {
-	// 						...layoutAboveExtraItemViewerPadding.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below with Extra Navigation Padding",
-	// 			jsx: React.cloneElement(layoutAboveExtraNavigationPadding, {
-	// 				options: {
-	// 					...layoutAboveExtraNavigationPadding.props.options,
-	// 					layout: {
-	// 						...layoutAboveExtraNavigationPadding.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below with Extra Toolbar Padding",
-	// 			jsx: React.cloneElement(layoutAboveExtraToolbarPadding, {
-	// 				options: {
-	// 					...layoutAboveExtraToolbarPadding.props.options,
-	// 					layout: {
-	// 						...layoutAboveExtraToolbarPadding.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below with Different Left and Right Padding",
-	// 			jsx: React.cloneElement(layoutAboveDifferentLeftAndRightPadding, {
-	// 				options: {
-	// 					...layoutAboveDifferentLeftAndRightPadding.props.options,
-	// 					layout: {
-	// 						...layoutAboveDifferentLeftAndRightPadding.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below Flush and Same Background Color",
-	// 			jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColor, {
-	// 				options: {
-	// 					...layoutAboveCompletelyFlushAndSameBackgroundColor.props.options,
-	// 					layout: {
-	// 						...layoutAboveCompletelyFlushAndSameBackgroundColor.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below Flush with Progress Bar Whole Width",
-	// 			jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole, {
-	// 				options: {
-	// 					...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options,
-	// 					layout: {
-	// 						...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below Flush and Same Background Color using All option",
-	// 			jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorAll, {
-	// 				options: {
-	// 					...layoutAboveCompletelyFlushAndSameBackgroundColorAll.props.options,
-	// 					layout: {
-	// 						...layoutAboveCompletelyFlushAndSameBackgroundColorAll.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below Custom Icons with Same Background Color",
-	// 			jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons, {
-	// 				options: {
-	// 					...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons.props.options,
-	// 					layout: {
-	// 						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below Custom Icons with Default Icons using Custom Colors",
-	// 			jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors, {
-	// 				options: {
-	// 					...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors.props.options,
-	// 					layout: {
-	// 						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below buttons.all with Specific Item Fill Colors",
-	// 			jsx: React.cloneElement(layoutAboveButtonsAllWithSpecificFillColors, {
-	// 				options: {
-	// 					...layoutAboveButtonsAllWithSpecificFillColors.props.options,
-	// 					layout: {
-	// 						...layoutAboveButtonsAllWithSpecificFillColors.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below Custom Overlay Style and Loading Spinner",
-	// 			jsx: React.cloneElement(layoutAboveCustomOverlayAndSpinner, {
-	// 				options: {
-	// 					...layoutAboveCustomOverlayAndSpinner.props.options,
-	// 					layout: {
-	// 						...layoutAboveCustomOverlayAndSpinner.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 		{
-	// 			label: "Display Below No Tracking Current Item",
-	// 			jsx: React.cloneElement(layoutAboveNoTrackingItemViewerChanges, {
-	// 				options: {
-	// 					...layoutAboveNoTrackingItemViewerChanges.props.options,
-	// 					layout: {
-	// 						...layoutAboveNoTrackingItemViewerChanges.props.options.layout,
-	// 						itemDisplayLocation: 'below',
-	// 					}
-	// 				}
-	// 			}),
-	// 		},
-	// 	]
-	// ],
-	// [
-	// 	"Thumbnail Options",
-	// 	[
-	// 		{
-	// 			label: "All Default",
-	// 			jsx: noItemDisplayedMultiplePagesAllDefaults,
-	// 		},
-	// 		{
-	// 			label: "Description Overlay Always Shown",
-	// 			jsx: noThumbnailHoverEffect
-	// 		},
-	// 		{
-	// 			label: "Description Overlay Disabled",
-	// 			jsx: noThumbnailDescriptionOverlay
-	// 		},
-	// 		{
-	// 			label: "0 Item Spacing",
-	// 			jsx: multiplePagesNoItemSpacing
-	// 		},
-	// 		{
-	// 			label: "Custom Item Size",
-	// 			jsx: customSizeOnly,
-	// 		},
-	// 		{
-	// 			label: "Fixed Item Spacing and Custom Item Size",
-	// 			jsx: allCustomSettings
-	// 		},
-	// 		{
-	// 			label: "Fixed Item Spacing and Custom Item Size with Non-default Item Display Location",
-	// 			jsx: customSizeAndSpacingNonDefaultItemDisplayCase
-	// 		},
-	// 		{
-	// 			label: "Given Thumbnail Size with Custom Solid Background",
-	// 			jsx: customThumbnailSolid
-	// 		},
-	// 		{
-	// 			label: "Given Thumbnail Size with Custom Gradient Background",
-	// 			jsx: customThumbnailGradient
-	// 		},
-	// 		{
-	// 			label: "Given Thumbnail Size with Custom Gradient Background and Fallback",
-	// 			jsx: customThumbnailGradientAndFallback
-	// 		},
-	// 		{
-	// 			label: "Custom Current Item Border - Input Format One",
-	// 			jsx: customThumbnailCurrentItemBorderOne
-	// 		},
-	// 		{
-	// 			label: "Custom Current Item Border - Input Format Two",
-	// 			jsx: customThumbnailCurrentItemBorderTwo
-	// 		},
-	// 		{
-	// 			label: "Custom Current Item Border - Input Format Three",
-	// 			jsx: customThumbnailCurrentItemBorderThree
-	// 		},
-	// 	]
-	// ],
-	// [
-	// 	"Dynamic Layout Settings",
-	// 	[
-	// 		{
-	// 			label: "Dynamic Thumbnail Spacing",
-	// 			jsx: dynamicSpacingOnly,
-	// 		},
-	// 		{
-	// 			label: "Dynamic Thumbnail Sizing and Automatic Spacing",
-	// 			jsx: dynamicSizeOnly,
-	// 		},
-	// 		{
-	// 			label: "Dynamic Thumbnail Sizing and Spacing",
-	// 			jsx: dynamicSizeAndSpacing,
-	// 		},
-	// 		{
-	// 			label: "Dynamic Thumbnail Spacing",
-	// 			jsx: dynamicSpacingOnlyDisplayAbove,
-	// 		},
-	// 		{
-	// 			label: "Dynamic Thumbnail Sizing and Automatic Spacing",
-	// 			jsx: dynamicSizeOnlyDisplayAbove,
-	// 		},
-	// 		{
-	// 			label: "Dynamic Thumbnail Sizing and Spacing",
-	// 			jsx: dynamicSizeAndSpacingDisplayAbove,
-	// 		},
-	// 		{
-	// 			label: "Dynamic Thumbnail Sizing and Spacing and Positioned Left",
-	// 			jsx: dynamicSizeAndSpacingDisplayAbovePositionedLeft,
-	// 		},
-	// 		{
-	// 			label: "Dynamic Thumbnail Sizing and Spacing and Positioned Center",
-	// 			jsx: dynamicSizeAndSpacingDisplayAbovePositionedCenter,
-	// 		},
-	// 		{
-	// 			label: "Dynamic Thumbnail Sizing and Spacing and Positioned Right",
-	// 			jsx: dynamicSizeAndSpacingDisplayAbovePositionedRight,
-	// 		},
-	// 	]
-	// ],
-	// [
-	// 	"Other Dynamic Settings",
-	// 	[
-	// 		{
-	// 			label: "Thumbnail Overlay Disabled <= 800px",
-	// 			jsx: dynamicDisablingOfThumbnailOverlayBelow800,
-	// 		},
-	// 		{
-	// 			label: "Thumbnail Overlay Font Size Changes at 800px",
-	// 			jsx: dynamicHidingOfThumbnailFontSize,
-	// 		},
-	// 		{
-	// 			label: "Thumbnail Overlay Always Shown > 800px",
-	// 			jsx: dynamicHidingOfThumbnailOverlay,
-	// 		},
-	// 		{
-	// 			label: "Thumbnail Background Opacity and Color Change at 800px",
-	// 			jsx: dynamicThumbnailBackground,
-	// 		},
-	// 		{
-	// 			label: "Thumbnail Background Gradient Change at 800px",
-	// 			jsx: dynamicThumbnailBackgroundGradient,
-	// 		},
-	// 		{
-	// 			label: "Dots and Left Arrow Change Svgs and Color at 800px",
-	// 			jsx: dynamicElementsCustomization,
-	// 		},
-	// 		{
-	// 			label: "Video Modal Padding Changes at 800px",
-	// 			jsx: dynamicVideoModalPadding,
-	// 		},
-	// 		{
-	// 			label: "Font Changes Everywhere at 800px",
-	// 			jsx: dynamicFontFamilyAll,
-	// 		},
-	// 		{
-	// 			label: "Font Changes in ItemViewer at 800px",
-	// 			jsx: dynamicFontFamilyItemViewer,
-	// 		},
-	// 		{
-	// 			label: "Font Changes in Thumbnails at 800px",
-	// 			jsx: dynamicFontFamilyNavigation,
-	// 		},
-	// 		{
-	// 			label: "Seek Amount in ItemViewer Changes at 800px",
-	// 			jsx: dynamicSeekAmount,
-	// 		},
-	// 		{
-	// 			label: "Item Viewer Auto Hide Duration Changes at 800px",
-	// 			jsx: dynamicAutoHideDurationInItemViewer,
-	// 		},
-	// 		{
-	// 			label: "Toolbar Elements' Color Changes at 800px",
-	// 			jsx: dynamicToolbarColor,
-	// 		},
-	// 		{
-	// 			label: "ProgressBar Color Changes at 800px",
-	// 			jsx: dynamicProgressBarColor,
-	// 		},
-	// 		{
-	// 			label: "All Background Colors Changes at 800px",
-	// 			jsx: dynamicBackgroundColor,
-	// 		},
-	// 		{
-	// 			label: "Wrapping Disabled < 800px",
-	// 			jsx: dynamicWrappingDisabled,
-	// 		},
-	// 		{
-	// 			label: "Auto Change Page Disabled < 800px",
-	// 			jsx: dynamicAutoChangePage,
-	// 		},
-	// 		{
-	// 			label: "The amount of horiztonal movement needed to register swipe event increases < 800px",
-	// 			jsx: dynamicMaxClickThreshold,
-	// 		},
-	// 		{
-	// 			label: "Swiping Disabled < 800px",
-	// 			jsx: dynamicDisablingOfSwiping,
-	// 		},
-	// 		{
-	// 			label: "Thumbnail Positioning Right < 800px Otherwise Center",
-	// 			jsx: dynamicItemPositioning,
-	// 		},
-	// 		{
-	// 			label: "Display Above Thumbnail Positioning Right < 800px Otherwise Center",
-	// 			jsx: dynamicPoistioning,
-	// 		},
-	// 		{
-	// 			label: "Item Display Location None < 800px Otherwise Above",
-	// 			jsx: dynamicItemDisplayLocation,
-	// 		},
-	// 		{
-	// 			label: "Video Modal Styling Changes < 800px",
-	// 			jsx: dynamicVideoModal,
-	// 		},
-	// 		{
-	// 			label: "Toolbar Items and Progress Bar Width Change < 800px",
-	// 			jsx: dynamicToolbar,
-	// 		},
-	// 		{
-	// 			label: "Thumbnail Max Line Count Changes at 800px",
-	// 			jsx: dynamicMaxLineCount,
-	// 		},
-	// 		{
-	// 			label: "Thumbnail Text Color Changes Based on Viewport",
-	// 			jsx: dynamicThumbnailDescriptionTextColor,
-	// 		},
-	// 		{
-	// 			label: "Current Item's Border Changes Based on Viewport",
-	// 			jsx: dynamicThumbnailBorder,
-	// 		},
-	// 		{
-	// 			label: "Item Spacing Strategy Changes at 800px",
-	// 			jsx: dynamicItemSpacingStrategy,
-	// 		},
-	// 	]
-	// ],
 	[
-		"Dynamic based on Viewing Mode",
+		SectionNames.layouts,
+		[
+			{
+				label: "One Item - All Defaults",
+				jsx: noItemDisplayedOneItemAllDefaults
+			},
+			{
+				label: "Two Items - All Defaults",
+				jsx: noItemDisplayedTwoItemsAllDefaults
+			},
+			{
+				label: "Three Items - All Defaults",
+				jsx: noItemDisplayedThreeItemsAllDefaults
+			},
+			{
+				label: "Three Items - Max Spacing Strategy",
+				jsx: noItemDisplayedThreeItemsMaxSpacing
+			},
+			{
+				label: "Multiple Pages - All Defaults",
+				jsx: noItemDisplayedMultiplePagesAllDefaults
+			},
+			{
+				label: "Multiple Pages - Custom Padding",
+				jsx: multiplePagesCustomPadding
+			},
+			{
+				label: "Multiple Pages - Custom Item Viewer Colors",
+				jsx: noItemDisplayedMultiplePagesCustomItemViewerColors
+			},
+			{
+				label: "Display Current Item Above with Custom itemHeight and Font Family",
+				jsx: layoutAboveWithItemHeightAndFontFamily,
+			},
+			{
+				label: "Display Current Item Above with Max Spacing Strategy",
+				jsx: layoutAboveWithMaxSpacingStrategy,
+			},
+			{
+				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
+				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
+			},
+		]
+	],
+	[
+		SectionNames.itemPositioning,
+		[
+			{
+				label: "Thumbnails Positioned Left in Container with Default Spacing",
+				jsx: layoutThumbnailPositioningLeft,
+			},
+			{
+				label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
+				jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
+			},
+			{
+				label: "Thumbnails Positioned Center in Container with Default Spacing",
+				jsx: layoutThumbnailPositioningCenter,
+			},
+			{
+				label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
+				jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
+			},
+			
+			{
+				label: "Thumbnails Positioned Right in Container with Default Spacing",
+				jsx: layoutThumbnailPositioningRight,
+			},
+			{
+				label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
+				jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
+			},
+			{
+				label: "Thumbnails Positioned Left in Container One Page",
+				jsx: layoutThumbnailPositioningLeftNonDefaultCaseOnePage
+			},
+			{
+				label: "Thumbnails Positioned Center in Container One Page",
+				jsx: layoutThumbnailPositioningCenterNonDefaultCaseOnePage
+			},
+			{
+				label: "Thumbnails Positioned Right in Container One Page",
+				jsx: layoutThumbnailPositioningRightNonDefaultCaseOnePage
+			},
+		]
+	],
+	[
+		SectionNames.aboveCustomization,
+		[
+			{
+				label: "Display Current Item Above Default itemHeight and No Overlay Video First",
+				jsx: layoutAboveDefaultItemHeight,
+			},
+			{
+				label: "Display Current Item Above with Custom itemHeight and Thumbnail Size",
+				jsx: layoutAboveWithItemHeightAndThumbnailSize,
+			},
+			{
+				label: "Display Above with Container Padding",
+				jsx: layoutAboveContainerPadding,
+			},
+			{
+				label: "Display Above with Item Viewer Padding",
+				jsx: layoutAboveExtraItemViewerPadding
+			},
+			{
+				label: "Display Above with Extra Navigation Padding",
+				jsx: layoutAboveExtraNavigationPadding,
+			},
+			{
+				label: "Display Above with Extra Toolbar Padding",
+				jsx: layoutAboveExtraToolbarPadding
+			},
+			{
+				label: "Display Above with Different Left and Right Padding",
+				jsx: layoutAboveDifferentLeftAndRightPadding,
+			},
+			{
+				label: "Display Above Flush and Same Background Color",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColor,
+			},
+			{
+				label: "Display Above Flush with Progress Bar Whole Width",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole,
+			},
+			{
+				label: "Display Above Flush and Same Background Color using All option",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
+			},
+			{
+				label: "Display Above Custom Icons with Same Background Color",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons,
+			},
+			{
+				label: "Display Above Custom Icons with Default Icons using Custom Colors",
+				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors,
+			},
+			{
+				label: "Display Above buttons.all with Specific Item Fill Colors",
+				jsx: layoutAboveButtonsAllWithSpecificFillColors,
+			},
+			{
+				label: "Display Above Custom Overlay Style and Loading Spinner",
+				jsx: layoutAboveCustomOverlayAndSpinner,
+			},
+			{
+				label: "Display Above No Tracking Current Item",
+				jsx: layoutAboveNoTrackingItemViewerChanges,
+			},
+		]
+	],
+	[
+		SectionNames.belowCustomization,
+		[
+			{
+				label: "All Defaults",
+				jsx: React.cloneElement(layoutAboveDefaultItemHeight, {
+					options: {
+						...layoutAboveDefaultItemHeight.props.options,
+						layout: {
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Current Item Below with Custom itemHeight and Thumbnail Size",
+				jsx: React.cloneElement(layoutAboveWithItemHeightAndThumbnailSize, {
+					options: {
+						...layoutAboveWithItemHeightAndThumbnailSize.props.options,
+						layout: {
+							...layoutAboveWithItemHeightAndThumbnailSize.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below with Container Padding",
+				jsx: React.cloneElement(layoutAboveContainerPadding, {
+					options: {
+						...layoutAboveContainerPadding.props.options,
+						layout: {
+							...layoutAboveContainerPadding.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below with Item Viewer Padding",
+				jsx: React.cloneElement(layoutAboveExtraItemViewerPadding, {
+					options: {
+						...layoutAboveExtraItemViewerPadding.props.options,
+						layout: {
+							...layoutAboveExtraItemViewerPadding.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below with Extra Navigation Padding",
+				jsx: React.cloneElement(layoutAboveExtraNavigationPadding, {
+					options: {
+						...layoutAboveExtraNavigationPadding.props.options,
+						layout: {
+							...layoutAboveExtraNavigationPadding.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below with Extra Toolbar Padding",
+				jsx: React.cloneElement(layoutAboveExtraToolbarPadding, {
+					options: {
+						...layoutAboveExtraToolbarPadding.props.options,
+						layout: {
+							...layoutAboveExtraToolbarPadding.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below with Different Left and Right Padding",
+				jsx: React.cloneElement(layoutAboveDifferentLeftAndRightPadding, {
+					options: {
+						...layoutAboveDifferentLeftAndRightPadding.props.options,
+						layout: {
+							...layoutAboveDifferentLeftAndRightPadding.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below Flush and Same Background Color",
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColor, {
+					options: {
+						...layoutAboveCompletelyFlushAndSameBackgroundColor.props.options,
+						layout: {
+							...layoutAboveCompletelyFlushAndSameBackgroundColor.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below Flush with Progress Bar Whole Width",
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole, {
+					options: {
+						...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options,
+						layout: {
+							...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below Flush and Same Background Color using All option",
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorAll, {
+					options: {
+						...layoutAboveCompletelyFlushAndSameBackgroundColorAll.props.options,
+						layout: {
+							...layoutAboveCompletelyFlushAndSameBackgroundColorAll.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below Custom Icons with Same Background Color",
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons, {
+					options: {
+						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons.props.options,
+						layout: {
+							...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomIcons.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below Custom Icons with Default Icons using Custom Colors",
+				jsx: React.cloneElement(layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors, {
+					options: {
+						...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors.props.options,
+						layout: {
+							...layoutAboveCompletelyFlushAndSameBackgroundColorWithCustomColors.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below buttons.all with Specific Item Fill Colors",
+				jsx: React.cloneElement(layoutAboveButtonsAllWithSpecificFillColors, {
+					options: {
+						...layoutAboveButtonsAllWithSpecificFillColors.props.options,
+						layout: {
+							...layoutAboveButtonsAllWithSpecificFillColors.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below Custom Overlay Style and Loading Spinner",
+				jsx: React.cloneElement(layoutAboveCustomOverlayAndSpinner, {
+					options: {
+						...layoutAboveCustomOverlayAndSpinner.props.options,
+						layout: {
+							...layoutAboveCustomOverlayAndSpinner.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Display Below No Tracking Current Item",
+				jsx: React.cloneElement(layoutAboveNoTrackingItemViewerChanges, {
+					options: {
+						...layoutAboveNoTrackingItemViewerChanges.props.options,
+						layout: {
+							...layoutAboveNoTrackingItemViewerChanges.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+		]
+	],
+	[
+		SectionNames.thumbnailOptions,
+		[
+			{
+				label: "All Default",
+				jsx: noItemDisplayedMultiplePagesAllDefaults,
+			},
+			{
+				label: "Description Overlay Always Shown",
+				jsx: noThumbnailHoverEffect
+			},
+			{
+				label: "Description Overlay Disabled",
+				jsx: noThumbnailDescriptionOverlay
+			},
+			{
+				label: "0 Item Spacing",
+				jsx: multiplePagesNoItemSpacing
+			},
+			{
+				label: "Fixed Item Spacing and Custom Item Size",
+				jsx: allCustomSettings
+			},
+			{
+				label: "Fixed Item Spacing and Custom Item Size with Non-default Item Display Location",
+				jsx: customSizeAndSpacingNonDefaultItemDisplayCase
+			},
+			{
+				label: "Given Thumbnail Size with Custom Solid Background",
+				jsx: customThumbnailSolid
+			},
+			{
+				label: "Given Thumbnail Size with Custom Gradient Background",
+				jsx: customThumbnailGradient
+			},
+			{
+				label: "Given Thumbnail Size with Custom Gradient Background and Fallback",
+				jsx: customThumbnailGradientAndFallback
+			},
+			{
+				label: "Custom Current Item Border - Input Format One",
+				jsx: customThumbnailCurrentItemBorderOne
+			},
+			{
+				label: "Custom Current Item Border - Input Format Two",
+				jsx: customThumbnailCurrentItemBorderTwo
+			},
+			{
+				label: "Custom Current Item Border - Input Format Three",
+				jsx: customThumbnailCurrentItemBorderThree
+			},
+		]
+	],
+	[
+		SectionNames.dynamicLayout,
+		[
+			{
+				label: "Dynamic Thumbnail Spacing",
+				jsx: dynamicSpacingOnly,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Automatic Spacing",
+				jsx: dynamicSizeOnly,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Spacing",
+				jsx: dynamicSizeAndSpacing,
+			},
+			{
+				label: "Dynamic Thumbnail Spacing",
+				jsx: dynamicSpacingOnlyDisplayAbove,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Automatic Spacing",
+				jsx: dynamicSizeOnlyDisplayAbove,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Spacing",
+				jsx: dynamicSizeAndSpacingDisplayAbove,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Spacing and Positioned Left",
+				jsx: dynamicSizeAndSpacingDisplayAbovePositionedLeft,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Spacing and Positioned Center",
+				jsx: dynamicSizeAndSpacingDisplayAbovePositionedCenter,
+			},
+			{
+				label: "Dynamic Thumbnail Sizing and Spacing and Positioned Right",
+				jsx: dynamicSizeAndSpacingDisplayAbovePositionedRight,
+			},
+		]
+	],
+	[
+		SectionNames.otherDynamicSettings,
+		[
+			{
+				label: "Thumbnail Overlay Disabled <= 800px",
+				jsx: dynamicDisablingOfThumbnailOverlayBelow800,
+			},
+			{
+				label: "Thumbnail Overlay Font Size Changes at 800px",
+				jsx: dynamicHidingOfThumbnailFontSize,
+			},
+			{
+				label: "Thumbnail Overlay Always Shown > 800px",
+				jsx: dynamicHidingOfThumbnailOverlay,
+			},
+			{
+				label: "Thumbnail Background Opacity and Color Change at 800px",
+				jsx: dynamicThumbnailBackground,
+			},
+			{
+				label: "Thumbnail Background Gradient Change at 800px",
+				jsx: dynamicThumbnailBackgroundGradient,
+			},
+			{
+				label: "Dots and Left Arrow Change Svgs and Color at 800px",
+				jsx: dynamicElementsCustomization,
+			},
+			{
+				label: "Video Modal Padding Changes at 800px",
+				jsx: dynamicVideoModalPadding,
+			},
+			{
+				label: "Font Changes Everywhere at 800px",
+				jsx: dynamicFontFamilyAll,
+			},
+			{
+				label: "Font Changes in ItemViewer at 800px",
+				jsx: dynamicFontFamilyItemViewer,
+			},
+			{
+				label: "Font Changes in Thumbnails at 800px",
+				jsx: dynamicFontFamilyNavigation,
+			},
+			{
+				label: "Seek Amount in ItemViewer Changes at 800px",
+				jsx: dynamicSeekAmount,
+			},
+			{
+				label: "Item Viewer Auto Hide Duration Changes at 800px",
+				jsx: dynamicAutoHideDurationInItemViewer,
+			},
+			{
+				label: "Toolbar Elements' Color Changes at 800px",
+				jsx: dynamicToolbarColor,
+			},
+			{
+				label: "ProgressBar Color Changes at 800px",
+				jsx: dynamicProgressBarColor,
+			},
+			{
+				label: "All Background Colors Changes at 800px",
+				jsx: dynamicBackgroundColor,
+			},
+			{
+				label: "Wrapping Disabled < 800px",
+				jsx: dynamicWrappingDisabled,
+			},
+			{
+				label: "Auto Change Page Disabled < 800px",
+				jsx: dynamicAutoChangePage,
+			},
+			{
+				label: "The amount of horiztonal movement needed to register swipe event increases < 800px",
+				jsx: dynamicMaxClickThreshold,
+			},
+			{
+				label: "Swiping Disabled < 800px",
+				jsx: dynamicDisablingOfSwiping,
+			},
+			{
+				label: "Thumbnail Positioning Right < 800px Otherwise Center",
+				jsx: dynamicItemPositioning,
+			},
+			{
+				label: "Display Above Thumbnail Positioning Right < 800px Otherwise Center",
+				jsx: dynamicPoistioning,
+			},
+			{
+				label: "Item Display Location None < 800px Otherwise Above",
+				jsx: dynamicItemDisplayLocation,
+			},
+			{
+				label: "Video Modal Styling Changes < 800px",
+				jsx: dynamicVideoModal,
+			},
+			{
+				label: "Toolbar Items and Progress Bar Width Change < 800px",
+				jsx: dynamicToolbar,
+			},
+			{
+				label: "Thumbnail Max Line Count Changes at 800px",
+				jsx: dynamicMaxLineCount,
+			},
+			{
+				label: "Thumbnail Text Color Changes Based on Viewport",
+				jsx: dynamicThumbnailDescriptionTextColor,
+			},
+			{
+				label: "Current Item's Border Changes Based on Viewport",
+				jsx: dynamicThumbnailBorder,
+			},
+			{
+				label: "Item Spacing Strategy Changes at 800px",
+				jsx: dynamicItemSpacingStrategy,
+			},
+		]
+	],
+	[
+		SectionNames.dynamicBasedOnViewingMode,
 		[
 			{
 				label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
 				jsx: viewingModeToolbarButtons,
 			},
-			// {
-			// 	label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
-			// 	jsx: viewingModeToolbarButtons,
-			// },
 		]
 	],
 	[
-		"Navigation Options",
+		SectionNames.navigationOptions,
 		[
 			{
 				label: "No Wrapping",
@@ -2474,7 +2531,7 @@ const SECTIONS: Sections = [
 		]
 	],
 	[
-		"Item Viewer",
+		SectionNames.itemViewer,
 		[
 			{
 				label: "Default Overlay Displayed on Load",
@@ -2527,7 +2584,7 @@ const SECTIONS: Sections = [
 		]
 	],
 	[
-		"Custom Width",
+		SectionNames.customWidth,
 		[
 			{
 				label: "Half width - All Defaults",
@@ -2578,7 +2635,7 @@ const SECTIONS: Sections = [
 		]
 	],
 	[
-		"Custom",
+		SectionNames.custom,
 		[
 			{
 				label: "All Custom Settings",
@@ -2592,17 +2649,23 @@ const SECTIONS: Sections = [
 	]
 ];
 
-const sections: CSharpSection[] = SECTIONS.map((section) => ({
-	name: section[0],
-	pageName: C_SHARP_CLASSNAME,
-	children: section[1].map((item) => {
-		return (
-			<CSharpCardSection title={item.label + ':'}>
-				{item.jsx}
-			</CSharpCardSection>
-		)
-	})
-}))
+const ENABLED_SECTIONS: SectionNames[] = [
+	SectionNames.itemPositioning,
+	// ...Object.values(SectionNames),
+];
+const sections: CSharpSection[] = SECTIONS.filter((section) => ENABLED_SECTIONS.includes(section[0])).map((section) => {
+	return {
+		name: section[0],
+		pageName: C_SHARP_CLASSNAME,
+		children: section[1].map((item) => {
+			return (
+				<CSharpCardSection title={item.label + ':'}>
+					{item.jsx}
+				</CSharpCardSection>
+			)
+		})
+	}
+})
 
 
 export const ThumbnailCarouselTests = () => {

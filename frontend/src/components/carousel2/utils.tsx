@@ -10,7 +10,15 @@ import {
     VIDEO_EXTENSIONS
 } from "./constants";
 import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
-import { Coordinate, Point, ArrowButtonDirection, CarouselElementValue, CarouselElementValueType, CarouselElementCustomizations, CarouselElementValueTuple } from "./types";
+import {
+    Coordinate,
+    Point,
+    ArrowButtonDirection,
+    CarouselElementValue,
+    CarouselElementValueType,
+    CarouselElementCustomizations,
+    CarouselElementValueTuple
+} from "./types";
 type GetClassname = {
     elementName?: string;
     modifiedName?: string;
