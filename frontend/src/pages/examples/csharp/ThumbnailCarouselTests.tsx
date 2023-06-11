@@ -1072,6 +1072,13 @@ const navigationNoSwiping = (
 		}
 	}} />
 );
+const navigationLastPageNotFlush = (
+	<Carousel items={items} options={{
+		navigation: {
+			isLastPageFlush: false,
+		}
+	}} />
+);
 const navigationZeroMaxClickThreshold = (
 	<Carousel items={items} options={{
 		navigation: {
@@ -1743,6 +1750,66 @@ const layoutThumbnailPositioningCenter = (
 		}}
 	/>
 );
+const layoutThumbnailPositioningLeftWithCustomItemSizeAndLastPageNotFlush = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemPositioning: 'left',
+			},
+			navigation: {
+				isLastPageFlush: false,
+			},
+			thumbnail: {
+				size: 175,
+				itemSpacing: 10,
+				descriptionOverlay: {
+					isDisabled: false,
+				},
+			},
+		}}
+	/>
+);
+const layoutThumbnailPositioningCenterWithCustomItemSizeAndLastPageNotFlush = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemPositioning: 'center',
+			},
+			navigation: {
+				isLastPageFlush: false,
+			},
+			thumbnail: {
+				size: 175,
+				itemSpacing: 10,
+				descriptionOverlay: {
+					isDisabled: false,
+				},
+			},
+		}}
+	/>
+);
+const layoutThumbnailPositioningRightWithCustomItemSizeAndLastPageNotFlush = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemPositioning: 'right',
+			},
+			navigation: {
+				isLastPageFlush: false,
+			},
+			thumbnail: {
+				size: 175,
+				itemSpacing: 10,
+				descriptionOverlay: {
+					isDisabled: false,
+				},
+			},
+		}}
+	/>
+);
 const layoutThumbnailPositioningCenterWithItemSpacingGiven = (
 	<Carousel
 		items={items}
@@ -2002,6 +2069,10 @@ const SECTIONS: Sections = [
 				jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
 			},
 			{
+				label: "Thumbnails Positioned Left in Container with Custom Item Spacing and Last Page not Flush",
+				jsx: layoutThumbnailPositioningLeftWithCustomItemSizeAndLastPageNotFlush,
+			},
+			{
 				label: "Thumbnails Positioned Center in Container with Default Spacing",
 				jsx: layoutThumbnailPositioningCenter,
 			},
@@ -2009,7 +2080,10 @@ const SECTIONS: Sections = [
 				label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
 				jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
 			},
-			
+			{
+				label: "Thumbnails Positioned Center in Container with Custom Item Spacing and Last Page not Flush",
+				jsx: layoutThumbnailPositioningCenterWithCustomItemSizeAndLastPageNotFlush,
+			},
 			{
 				label: "Thumbnails Positioned Right in Container with Default Spacing",
 				jsx: layoutThumbnailPositioningRight,
@@ -2017,6 +2091,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
 				jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
+			},
+			{
+				label: "Thumbnails Positioned Right in Container with Custom Item Spacing and Last Page not Flush",
+				jsx: layoutThumbnailPositioningRightWithCustomItemSizeAndLastPageNotFlush,
 			},
 			{
 				label: "Thumbnails Positioned Left in Container One Page",
@@ -2528,6 +2606,10 @@ const SECTIONS: Sections = [
 				label: "Swiping a Thumbnail Disabled",
 				jsx: navigationNoSwiping
 			},
+			{
+				label: "Last Page is not Flush",
+				jsx: navigationLastPageNotFlush
+			},
 		]
 	],
 	[
@@ -2650,6 +2732,7 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
+	SectionNames.navigationOptions,
 	SectionNames.itemPositioning,
 	// ...Object.values(SectionNames),
 ];

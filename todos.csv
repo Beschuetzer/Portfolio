@@ -1,5 +1,4 @@
 Carousel rework
-  -add option to set translation amount when last page such that the last item is the furthest right?
   -add options to set VideoCurrentStateIndicatorButton?
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons

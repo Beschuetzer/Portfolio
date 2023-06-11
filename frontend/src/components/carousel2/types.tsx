@@ -222,6 +222,11 @@ export type CarouselNavigationOptions = {
     *Default is false
     */
     disableWrapping?: CarouselElementValue<boolean>;
+    /*
+    *If true, the last page ends with the last item in the list otherwise there may be blank space after the last item
+    *Default is true
+    */
+    isLastPageFlush?: boolean;
 } & CarouselSwipingOptions
 
 export type CarouselNavigationProps = {

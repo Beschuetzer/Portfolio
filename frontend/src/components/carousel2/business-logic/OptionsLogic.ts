@@ -61,6 +61,10 @@ export class OptionsLogic {
         return this.items.length <= 1 || getCurrentValue(this.options?.itemViewer?.disableSwiping, false, this.isFullscreenMode);
     }
 
+    get isLastPageFlush() {
+        return this.options?.navigation?.isLastPageFlush === undefined ? true : this.options.navigation.isLastPageFlush;
+    }
+
     get isNavigationSwipingDisabled() {
         return this.numberOfPages <= 1 || getCurrentValue(this.options?.navigation?.disableSwiping, false, this.isFullscreenMode);
     }

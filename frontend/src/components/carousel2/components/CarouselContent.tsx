@@ -138,6 +138,18 @@ export const CarouselContent = ({
         stylingLogic
     ])
 
+    const getLastPageOffset = useCallback((numberOfWholeItemsThatCanFit: number, itemSize: number) => {
+        let offset = 0;
+        if (numberOfPages > 1 && currentPage === numberOfPages - 1 && items?.length > 0) {
+            const numberOfAlreadyDisplayedItems = currentPage * numberOfWholeItemsThatCanFit;
+            const numberOfRemainingItems = items.length - numberOfAlreadyDisplayedItems;
+            const widthOfRemainingSpaces = numberOfRemainingItems * optionsLogic.getItemSpacing(interItemSpacing);
+            const widthOfRemainingItems = numberOfRemainingItems * itemSize;
+            offset = (translationAmountDifferenceRef.current - (widthOfRemainingSpaces + widthOfRemainingItems))
+        }
+        return offset;
+    }, [currentPage, interItemSpacing, items.length, numberOfPages, optionsLogic])
+
     const getTranslationAmountByCurrentPage = useCallback(() => {
         doTranslationAmountCommon();
         return currentPage * translationAmountDifferenceRef.current;
@@ -145,7 +157,7 @@ export const CarouselContent = ({
 
     const getTranslationAmountByCurrentItemIndex = useCallback(() => {
         const { numberOfWholeItemsThatCanFit } = doTranslationAmountCommon();
-        const newCurrentPage = Math.floor((currentItemIndex) / numberOfWholeItemsThatCanFit)
+        const newCurrentPage = Math.floor(currentItemIndex / numberOfWholeItemsThatCanFit);
         setCurrentPage(newCurrentPage);
         return newCurrentPage * translationAmountDifferenceRef.current;
     }, [currentItemIndex, setCurrentPage, doTranslationAmountCommon]);
@@ -290,6 +302,18 @@ export const CarouselContent = ({
         if (!optionsLogic.autoChangePage) return;
         setTranslationAmount(getTranslationAmountByCurrentItemIndex());
     }, [getTranslationAmountByCurrentItemIndex, optionsLogic.autoChangePage])
+
+    //adjusting the translation amount based on isLastPageFlush
+    useEffect(() => {
+        if (!optionsLogic.isLastPageFlush) return;
+        const { numberOfWholeItemsThatCanFit, itemSize } = getNumberOfItemsThatCanFit(
+            items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
+        );
+        let offset = getLastPageOffset(numberOfWholeItemsThatCanFit, itemSize);
+        if (offset > 0) {
+            setTranslationAmount((current) => current - offset);
+        }
+    }, [carouselContainerRef, currentPage, getLastPageOffset, items.length, optionsLogic, stylingLogic])
     //#endregion
 
     //#region JSX
