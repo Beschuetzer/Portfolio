@@ -11,6 +11,7 @@ Carousel rework
   -how to intelligently add themes or default colors?
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -add lazy loading of items (only render the items up to the furtherst currentPage)?
+  -update all custom test case
   -figure out how to test and implement accessability
   -write jest tests for utils and other functions?
 
