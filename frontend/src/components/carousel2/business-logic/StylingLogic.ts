@@ -833,16 +833,16 @@ export class StylingLogic {
         } as CSSProperties
     }
 
-    static getButtonColorStyle(fillColor: string, propertyName: keyof CSSProperties, style = {} as CSSProperties) {
-        return {
-            ...style,
-            [propertyName]: fillColor,
-        } as CSSProperties;
-    }
-
     static getCarouselVideoModalChildStyle(index: number) {
         return {
             paddingTop: index === 0 ? 0 : CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
+        } as CSSProperties;
+    }
+    
+    static getColorStyle(fillColor: string, propertyName: keyof CSSProperties, style = {} as CSSProperties) {
+        return {
+            ...style,
+            [propertyName]: fillColor,
         } as CSSProperties;
     }
     //#endregion
@@ -874,13 +874,13 @@ export class StylingLogic {
             case SpacingDirection.left:
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = getCurrentValue(this.options.styling?.container?.padding?.left, undefined, this.isFullscreenMode);
-                specificElementPadding = getCurrentValue(this.options.styling?.[item]?.padding?.left, undefined, this.isFullscreenMode);
+                specificElementPadding = getCurrentValue((this.options.styling?.[item] as any)?.padding?.left, undefined, this.isFullscreenMode);
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.right:
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = getCurrentValue(this.options.styling?.container?.padding?.right, undefined, this.isFullscreenMode);
-                specificElementPadding = getCurrentValue(this.options.styling?.[item]?.padding?.right, undefined, this.isFullscreenMode);
+                specificElementPadding = getCurrentValue((this.options.styling?.[item] as any)?.padding?.right, undefined, this.isFullscreenMode);
                 customPadding = specificElementPadding || allPadding
                 return customPadding !== undefined ? customPadding : defaultPadding;
             case SpacingDirection.top:

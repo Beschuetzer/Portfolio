@@ -14,7 +14,7 @@ export const PauseButton = forwardRef<HTMLButtonElement, PauseButtonProps>(({
   style = {},
 }, ref) => {
   const { stylingLogic } = useBusinessLogic({});
-  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
+  const colorStyle = StylingLogic.getColorStyle(fillColor, 'backgroundColor', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
   const buttonName = CarouselElement.pauseButton;
 

@@ -1,5 +1,5 @@
 import { CarouselItemProps } from "../components/CarouselItem";
-import { CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT, MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT } from "../constants";
+import { CAROUSEL_COLOR_ONE, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT, MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT } from "../constants";
 import { CarouselOptions } from "../types";
 import { getCurrentValue } from "../utils";
 
@@ -99,6 +99,10 @@ export class OptionsLogic {
 
     get videoSeekAmount() {
         return getCurrentValue(this.options?.itemViewer?.seekAmount, SEEK_AMOUNT_DEFAULT, this.isFullscreenMode) / 1000;
+    }
+    
+    get videoCurrentStateIndicatorBackgroundColor() {
+        return getCurrentValue(this.options.styling?.videoCurrentStateIndicator?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
     }
     //#endregion
 

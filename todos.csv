@@ -1,5 +1,5 @@
 Carousel rework
-  -finish and test options for VideoCurrentStateIndicatorButton (done: size)
+  -finish and test options for VideoCurrentStateIndicatorButton (done: size, background)
   -going fullscreen on one carousel video causes other videos to start playing (check event listener)
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons

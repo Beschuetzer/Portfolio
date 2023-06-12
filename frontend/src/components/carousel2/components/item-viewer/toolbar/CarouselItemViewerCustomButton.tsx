@@ -26,7 +26,7 @@ export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, Carousel
 }, ref) => {
     const { isFullscreenMode } = useCarouselContext();
     const classNamesToIncludeClassname = useMemo(() => classNamesToInclude.join(' '), [classNamesToInclude]);
-    const defaultStyles = useMemo(() => StylingLogic.getButtonColorStyle(fillColor, 'fill', {
+    const defaultStyles = useMemo(() => StylingLogic.getColorStyle(fillColor, 'fill', {
         transformOrigin: 'center',
     }), [fillColor]);
 

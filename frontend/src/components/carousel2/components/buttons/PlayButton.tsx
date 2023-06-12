@@ -14,7 +14,7 @@ export const PlayButton = forwardRef<HTMLButtonElement, PlayButtonProps>(({
   style = {},
 }, ref) => {
   const { stylingLogic } = useBusinessLogic({});
-  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderLeftColor', childStyle);
+  const colorStyle = StylingLogic.getColorStyle(fillColor, 'borderLeftColor', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
   const buttonName = CarouselElement.playButton;
 

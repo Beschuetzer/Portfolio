@@ -17,8 +17,8 @@ export const NextButton = forwardRef<HTMLButtonElement, NextButtonProps>(({
   style = {},
 }, ref) => {
   const { stylingLogic } = useBusinessLogic({});
-  const firstStyle = StylingLogic.getButtonColorStyle(fillColor, 'borderLeftColor', childStyle);
-  const secondStyle = StylingLogic.getButtonColorStyle(fillColor, 'background', childStyle);
+  const firstStyle = StylingLogic.getColorStyle(fillColor, 'borderLeftColor', childStyle);
+  const secondStyle = StylingLogic.getColorStyle(fillColor, 'background', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
   const buttonName = CarouselElement.nextButton;
 

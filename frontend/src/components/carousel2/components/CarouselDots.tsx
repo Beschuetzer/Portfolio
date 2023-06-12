@@ -37,8 +37,8 @@ export const CarouselDots = ({
     //#endregion
 
     //#region JSX
-    const useStyles = useMemo(() => StylingLogic.getButtonColorStyle(fillColor, 'fill'), [fillColor]);
-    const divStyles = useMemo(() => StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', {
+    const useStyles = useMemo(() => StylingLogic.getColorStyle(fillColor, 'fill'), [fillColor]);
+    const divStyles = useMemo(() => StylingLogic.getColorStyle(fillColor, 'backgroundColor', {
         opacity: CAROUSEL_DOT_OPACITY_DEFAULT,
     }), [fillColor]);
     const containerHeight = useMemo(() => (stylingLogic.getCarouselElementSizeStlye(CarouselElement.dots)?.width || CAROUSEL_DOT_HEIGHT_DEFAULT) as number * 2 / 3, [stylingLogic]);

@@ -2009,12 +2009,6 @@ const viewingModeVideoCurrentStateIndicator = (
 					fullscreen: [[getComputedStyleCustom('--color-primary-3')], [getComputedStyleCustom('--color-primary-4'), 800]],
 					nonFullscreen: [[getComputedStyleCustom('--color-primary-1')], [getComputedStyleCustom('--color-primary-2'), 800]],
 				},
-				padding: {
-					bottom: 10,
-					top: 10,
-					left: 10,
-					right: 10,
-				},
 				size: {
 					fullscreen: [[32], [26, 800]],
 					nonFullscreen: [[24], [20, 800]],

@@ -18,8 +18,8 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
 }, ref) => {
   const { stylingLogic } = useBusinessLogic({});
   const fullScreenClassname = `${className}--fullscreen`
-  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
-  const fillStyle = StylingLogic.getButtonColorStyle(fillColor, 'fill', childStyle);
+  const colorStyle = StylingLogic.getColorStyle(fillColor, 'backgroundColor', childStyle);
+  const fillStyle = StylingLogic.getColorStyle(fillColor, 'fill', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
   const buttonName = CarouselElement.fullscreenButton;
 

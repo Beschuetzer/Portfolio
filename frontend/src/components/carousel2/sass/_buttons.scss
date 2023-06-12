@@ -222,7 +222,6 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
         height: $buttonVideoStateIndicatorWidth;
         width: $buttonVideoStateIndicatorWidth;
         border-radius: 50%;
-        background-color: $itemViewerBackgroundColor;
         opacity: 0;
         pointer-events: none;
         z-index: $zIndexVideoStateIndicator;

@@ -22,7 +22,7 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(({
   const rightClassName = `${className}--close-right`;
   const rightModifierClassname = `${rightClassName}-${classNameModifier}`;
   const { stylingLogic } = useBusinessLogic({});
-  const colorStyle = StylingLogic.getButtonColorStyle(fillColor, 'backgroundColor', childStyle);
+  const colorStyle = StylingLogic.getColorStyle(fillColor, 'backgroundColor', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
   const buttonName = CarouselElement.closeButton;
 
