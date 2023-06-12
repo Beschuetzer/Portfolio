@@ -2006,12 +2006,28 @@ const viewingModeVideoCurrentStateIndicator = (
 					nonFullscreen: [[getComputedStyleCustom('--color-primary-3')], [getComputedStyleCustom('--color-primary-4'), 800]],
 				},
 				foregroundColor: {
-					fullscreen: [[getComputedStyleCustom('--color-primary-3')], [getComputedStyleCustom('--color-primary-4'), 800]],
-					nonFullscreen: [[getComputedStyleCustom('--color-primary-1')], [getComputedStyleCustom('--color-primary-2'), 800]],
+					fullscreen: [['red'], ['green', 800]],
+					nonFullscreen: [['yellow'], ['blue', 800]],
 				},
 				size: {
 					fullscreen: [[32], [26, 800]],
 					nonFullscreen: [[24], [20, 800]],
+				},
+				playIcon: {
+					fillColor: [['purple'], ['black', 800]],
+					svgHref: {
+						fullscreen: [["./sprite.svg#icon-play"], ["./sprite.svg#icon-forward", 800]],
+						nonFullscreen: [["./sprite.svg#icon-forward"], ["./sprite.svg#icon-play", 800]],
+					},					
+				},
+				pauseIcon: {
+					svgHref: {
+						fullscreen: [["./sprite.svg#icon-pause"], ["./sprite.svg#icon-backward", 800]],
+						nonFullscreen: [["./sprite.svg#icon-backward"], ["./sprite.svg#icon-pause", 800]],
+					},
+					style: {
+						transform: 'translate(-10%, 0)',
+					}
 				}
 			},
 		},

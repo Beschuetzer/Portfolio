@@ -157,7 +157,13 @@ export type CarouselSections = {
     /*
     *This is the the button that appears when changing play/pause state
     */
-    [CarouselSection.videoCurrentStateIndicator]?: {} & Partial<CarouselColorOptions> & Partial<CarouselElementSize>;
+    [CarouselSection.videoCurrentStateIndicator]?: {
+        /*
+        *The button to indicate that a video is paused
+        */
+        pauseIcon?: CarouselElementCustomization;
+        playIcon?: CarouselElementCustomization;
+    } & Partial<CarouselColorOptions> & Partial<CarouselElementSize>;
     /*
     *This is the the modal that displays when a video is paused, allowing for more info about the video
     */

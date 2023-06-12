@@ -833,12 +833,26 @@ export class StylingLogic {
         } as CSSProperties
     }
 
+    getVideoCurrentStateIndicatorForegroundColor(isPlayButton: boolean) {
+        const foregroundColor = getCurrentValue(
+            this.options.styling?.videoCurrentStateIndicator?.foregroundColor,
+            CAROUSEL_COLOR_FIVE,
+            this.isFullscreenMode
+        );
+        const buttonColor = getCurrentValue(
+            this.options.styling?.videoCurrentStateIndicator?.[isPlayButton ? 'playIcon' : 'pauseIcon']?.fillColor,
+            undefined,
+            this.isFullscreenMode
+        );
+        return buttonColor || foregroundColor;
+    }
+
     static getCarouselVideoModalChildStyle(index: number) {
         return {
             paddingTop: index === 0 ? 0 : CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
         } as CSSProperties;
     }
-    
+
     static getColorStyle(fillColor: string, propertyName: keyof CSSProperties, style = {} as CSSProperties) {
         return {
             ...style,

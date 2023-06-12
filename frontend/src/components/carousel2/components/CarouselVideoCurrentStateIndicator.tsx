@@ -1,9 +1,9 @@
 import { CLASSNAME__BUTTON } from '../constants'
-import { PlayButton } from './buttons/PlayButton';
-import { PauseButton } from './buttons/PauseButton';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
+import { CarouselVideoCurrentStateIndicatorPlayButton } from './CarouselVideoCurrentStateIndicatorPlayButton';
+import { CarouselVideoCurrentStateIndicatorPauseButton } from './CarouselVideoCurrentStateIndicatorPauseButton';
 
 type CarouselVideoCurrentStateIndicatorProps = {
     isVideoPlaying: boolean;
@@ -27,10 +27,10 @@ export const CarouselVideoCurrentStateIndicator = ({
     //#region JSX
     const className = `${CLASSNAME__BUTTON}--video-state-indicator`;
     const isAnimatingClassName = isAnimating ? `${CLASSNAME__BUTTON}--video-state-indicator-is-animating` : '';
-    const backgroundColorStyle = StylingLogic.getColorStyle(
+    const backgroundColorStyle = useMemo(() => StylingLogic.getColorStyle(
         optionsLogic.videoCurrentStateIndicatorBackgroundColor,
         'backgroundColor'
-    );
+    ), [optionsLogic.videoCurrentStateIndicatorBackgroundColor]);
 
     return (
         <div
@@ -41,16 +41,9 @@ export const CarouselVideoCurrentStateIndicator = ({
             onAnimationEnd={() => setIsAnimating(false)} className={`${className} ${isAnimatingClassName}`}
         >
             {!isVideoPlaying ?
-                <PauseButton
-                    style={stylingLogic.carouselVideoCurrentStateIndicatorButtonStyle}
-                    onClick={() => null}
-                />
-                : (
-                    <PlayButton
-                        style={stylingLogic.carouselVideoCurrentStateIndicatorButtonStyle}
-                        onClick={() => null}
-                    />
-                )}
+                <CarouselVideoCurrentStateIndicatorPauseButton /> :
+                <CarouselVideoCurrentStateIndicatorPlayButton />
+            }
         </div>
     )
     //#endregion
