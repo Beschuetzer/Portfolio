@@ -106,6 +106,7 @@ export enum CarouselSection {
     itemViewer = 'itemViewer',
     navigation = 'navigation',
     toolbar = 'toolbar',
+    videoCurrentStateIndicator = 'videoCurrentStateIndicator',
     videoModal = 'videoModal',
 }
 export type CarouselSections = {
@@ -154,8 +155,14 @@ export type CarouselSections = {
         textColor?: CarouselElementValue<Color>;
     } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
-   *This is the the modal that displays when a video is paused, allowing for more info about the video
-   */
+    *This is the the button that appears when changing play/pause state
+    */
+    [CarouselSection.videoCurrentStateIndicator]?: {
+        padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
+    } & Partial<CarouselColorOptions> & Partial<CarouselElementSize>;
+    /*
+    *This is the the modal that displays when a video is paused, allowing for more info about the video
+    */
     [CarouselSection.videoModal]?: {
         closeButton?: {
             fill?: CarouselElementValue<Color>;

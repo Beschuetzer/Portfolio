@@ -20,7 +20,7 @@ export const PauseButton = forwardRef<HTMLButtonElement, PauseButtonProps>(({
 
   return (
     <button
-      style={stylingLogic.getCarouselElementSizeStlye(buttonName, instanceWidth)}
+      style={{ ...style, ...stylingLogic.getCarouselElementSizeStlye(buttonName, instanceWidth) }}
       ref={ref}
       onClick={onClick}
       className={className}

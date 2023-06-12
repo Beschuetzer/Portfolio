@@ -28,11 +28,20 @@ export const CarouselVideoCurrentStateIndicator = ({
     const isAnimatingClassName = isAnimating ? `${CLASSNAME__BUTTON}--video-state-indicator-is-animating` : '';
 
     return (
-        <div onAnimationEnd={() => setIsAnimating(false)} className={`${className} ${isAnimatingClassName}`}>
+        <div
+            style={stylingLogic.carouselVideoCurrentStateIndicatorContainerStyle}
+            onAnimationEnd={() => setIsAnimating(false)} className={`${className} ${isAnimatingClassName}`}
+        >
             {!isVideoPlaying ?
-                <PauseButton style={ stylingLogic.carouselVideoCurrentStateIndicatorButtonStyle } onClick={() => null} />
+                <PauseButton
+                    style={stylingLogic.carouselVideoCurrentStateIndicatorButtonStyle}
+                    onClick={() => null}
+                />
                 : (
-                    <PlayButton style={ stylingLogic.carouselVideoCurrentStateIndicatorButtonStyle } onClick={() => null} />
+                    <PlayButton
+                        style={stylingLogic.carouselVideoCurrentStateIndicatorButtonStyle}
+                        onClick={() => null}
+                    />
                 )}
         </div>
     )

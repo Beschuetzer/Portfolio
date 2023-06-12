@@ -23,7 +23,7 @@ import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 import { Carousel } from "../../../components/carousel2/components/Carousel";
 import { ModifierKey, ValidKey } from "../../../components/carousel2/hooks/useKeyboardShortcuts";
-import { CarouselActions, CarouselSection } from "../../../components/carousel2/types";
+import { CarouselActions } from "../../../components/carousel2/types";
 import { CarouselItemProps } from "../../../components/carousel2/components/CarouselItem";
 
 //#region Carousel Items
@@ -1994,6 +1994,35 @@ const viewingModeToolbarButtons = (
 		}}
 	/>
 );
+const viewingModeVideoCurrentStateIndicator = (
+	<Carousel items={items.slice(2)} options={{
+		layout: {
+			itemDisplayLocation: 'above',
+		},
+		styling: {
+			videoCurrentStateIndicator: {
+				background: {
+					fullscreen: [[getComputedStyleCustom('--color-primary-1')], [getComputedStyleCustom('--color-primary-2'), 800]],
+					nonFullscreen: [[getComputedStyleCustom('--color-primary-3')], [getComputedStyleCustom('--color-primary-4'), 800]],
+				},
+				foregroundColor: {
+					fullscreen: [[getComputedStyleCustom('--color-primary-3')], [getComputedStyleCustom('--color-primary-4'), 800]],
+					nonFullscreen: [[getComputedStyleCustom('--color-primary-1')], [getComputedStyleCustom('--color-primary-2'), 800]],
+				},
+				padding: {
+					bottom: 10,
+					top: 10,
+					left: 10,
+					right: 10,
+				},
+				size: {
+					fullscreen: [[32], [26, 800]],
+					nonFullscreen: [[24], [20, 800]],
+				}
+			},
+		},
+	}} />
+);
 //#endregion
 
 type Sections = [SectionNames, { label: string, jsx: ReactNode | ReactNode[] }[]][];
@@ -2577,6 +2606,10 @@ const SECTIONS: Sections = [
 				label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
 				jsx: viewingModeToolbarButtons,
 			},
+			{
+				label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
+				jsx: viewingModeVideoCurrentStateIndicator,
+			},
 		]
 	],
 	[
@@ -2732,23 +2765,26 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	SectionNames.navigationOptions,
-	SectionNames.itemPositioning,
+	SectionNames.dynamicBasedOnViewingMode,
+	// SectionNames.navigationOptions,
+	// SectionNames.itemPositioning,
 	// ...Object.values(SectionNames),
 ];
-const sections: CSharpSection[] = SECTIONS.filter((section) => ENABLED_SECTIONS.includes(section[0])).map((section) => {
-	return {
-		name: section[0],
-		pageName: C_SHARP_CLASSNAME,
-		children: section[1].map((item) => {
-			return (
-				<CSharpCardSection title={item.label + ':'}>
-					{item.jsx}
-				</CSharpCardSection>
-			)
-		})
-	}
-})
+const sections: CSharpSection[] = SECTIONS
+	.filter((section) => ENABLED_SECTIONS.includes(section[0]))
+	.map((section) => {
+		return {
+			name: section[0],
+			pageName: C_SHARP_CLASSNAME,
+			children: section[1].map((item) => {
+				return (
+					<CSharpCardSection title={item.label + ':'}>
+						{item.jsx}
+					</CSharpCardSection>
+				)
+			})
+		}
+	})
 
 
 export const ThumbnailCarouselTests = () => {

@@ -359,8 +359,23 @@ export class StylingLogic {
     }
 
     get carouselVideoCurrentStateIndicatorButtonStyle() {
+        const widthToUse = getCurrentValue(
+            this.options.styling?.videoCurrentStateIndicator?.size,
+            this.defaultButtonSize,
+            this.isFullscreenMode
+        );
+
         return {
-            width: CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
+            height: widthToUse,
+            width: widthToUse,
+        } as CSSProperties;
+    }
+
+    get carouselVideoCurrentStateIndicatorContainerStyle() {
+        const buttonStyle = this.carouselVideoCurrentStateIndicatorButtonStyle;
+        return {
+            height: parseInt(buttonStyle?.width as string, 10) * 2.75,
+            width: parseInt(buttonStyle?.width as string, 10) * 2.75,
         } as CSSProperties;
     }
 
