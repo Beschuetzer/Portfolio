@@ -16,9 +16,11 @@ import {
     ArrowButtonDirection,
     CarouselElementValue,
     CarouselElementValueType,
-    CarouselElementCustomizations,
+    CarouselElementViewingMode,
+    CarouselElementTuple,
     CarouselElementValueTuple
 } from "./types";
+
 type GetClassname = {
     elementName?: string;
     modifiedName?: string;
@@ -222,17 +224,17 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
 }
 
 /*
-    *The idea here is to get the current value for the current window width from the list of tuples
-    *Tuples given are sorted by max-width, then min-width, then unspecified 
-    *max-width tuples are sorted ascending by breakpoint and min-width descending by breakpoint
-    *Tuples with a breakpoint specified but no type are considered to be 'max-width' type
-    *If there is more than one tuple with just a value, the first one in the sorted array is used (e.g. for numbers it is the smallest one)
-    *When extending the supported types, the only thing that needs to be modified is adding another case in the switch statement for said type
-    */
+*The idea here is to get the current value for the current window width from the list of tuples
+*Tuples given are sorted by max-width, then min-width, then unspecified 
+*max-width tuples are sorted ascending by breakpoint and min-width descending by breakpoint
+*Tuples with a breakpoint specified but no type are considered to be 'max-width' type
+*If there is more than one tuple with just a value, the first one in the sorted array is used (e.g. for numbers it is the smallest one)
+*When extending the supported types, the only thing that needs to be modified is adding another case in the switch statement for said type
+*/
 export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefined, defaultValue: T, isFullscreenMode: boolean) {
-    let valueTupleToUse: T | CarouselElementValueTuple<T> | undefined;
+    let valueTupleToUse: CarouselElementValueTuple<T> | undefined;
     if (typeof (valueTuple) === 'object') {
-        valueTupleToUse = (isFullscreenMode ? (valueTuple as CarouselElementCustomizations<T>).fullscreen : (valueTuple as CarouselElementCustomizations<T>).nonFullscreen) || valueTuple as CarouselElementValueTuple<T>;
+        valueTupleToUse = (isFullscreenMode ? (valueTuple as CarouselElementViewingMode<T>)?.fullscreen : (valueTuple as CarouselElementViewingMode<T>)?.nonFullscreen) || valueTuple as CarouselElementTuple<T>;
     } else {
         valueTupleToUse = valueTuple;
     }

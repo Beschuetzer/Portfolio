@@ -1979,7 +1979,7 @@ const viewingModeToolbarButtons = (
 		items={items.slice(0, 3)}
 		options={{
 			layout: {
-				itemDisplayLocation: 'above'
+				itemDisplayLocation: 'below'
 			},
 			styling: {
 				toolbar: {
@@ -2018,7 +2018,7 @@ const viewingModeVideoCurrentStateIndicator = (
 					svgHref: {
 						fullscreen: [["./sprite.svg#icon-play"], ["./sprite.svg#icon-forward", 800]],
 						nonFullscreen: [["./sprite.svg#icon-forward"], ["./sprite.svg#icon-play", 800]],
-					},					
+					},
 				},
 				pauseIcon: {
 					svgHref: {
@@ -2032,6 +2032,63 @@ const viewingModeVideoCurrentStateIndicator = (
 			},
 		},
 	}} />
+);
+const viewingModeItemViewerPreview = (
+	<Carousel
+		items={items.slice(0, 3)}
+		options={{
+			layout: {
+				itemDisplayLocation: 'below'
+			},
+			styling: {
+				itemViewerPreview: {
+					isVisibleInNonFullscreenMode: [[true], [false, 800]],
+					background: {
+						fullscreen: [[getComputedStyleCustom('--color-primary-1')], [getComputedStyleCustom('--color-primary-2'), 800]],
+						nonFullscreen: [[getComputedStyleCustom('--color-primary-3')], [getComputedStyleCustom('--color-primary-4'), 800]],
+					},
+					border: {
+						nonFullscreen: [['3px solid red'], ['3px dashed green'], ['1px dotted  yellow', 1100], ['5px solid blue', 1500, 'min-width'], ['2px dotted orange', 800, 'max-width'], ['1px ridge teal', 600, 'max-width'], ['3px solid grey', 400, 'max-width'], ['thick double purple', 1200, 'min-width']],
+					},
+					width: {
+						nonFullscreen: [[300], [250, 800]],
+					},
+					height: {
+						fullscreen: [[250], [150, 800]],
+					},
+					opacity: [[.9], [.25, 800]],
+					swapImageAndText: {
+						fullscreen: [[true], [false, 800]],
+						nonFullscreen: [[false], [true, 800]],
+					},
+					textPadding: {
+						fullscreen: [[{
+							top: 20,
+							bottom: 20,
+							left: 0,
+							right: 0,
+						}], [{
+							top: 0,
+							bottom: 0,
+							left: 20,
+							right: 20,
+						}, 800]],
+						nonFullscreen: [[{
+							top: 0,
+							bottom: 0,
+							left: 20,
+							right: 20,
+						}], [{
+							top: 20,
+							bottom: 20,
+							left: 0,
+							right: 0,
+						}, 800]]
+					}
+				}
+			}
+		}}
+	/>
 );
 //#endregion
 
@@ -2619,6 +2676,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
 				jsx: viewingModeVideoCurrentStateIndicator,
+			},
+			{
+				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
+				jsx: viewingModeItemViewerPreview,
 			},
 		]
 	],

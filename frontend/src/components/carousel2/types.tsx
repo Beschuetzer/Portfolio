@@ -81,8 +81,20 @@ export type CarouselElementSize = {
     */
     size?: CarouselElementValue<number>;
 }
-export type CarouselElementValue<T> = CarouselElementCustomizations<T> | CarouselElementValueTuple<T> | T;
-export type CarouselElementValueTuple<T> = [T, number?, CarouselElementValueType?][];
+export type CarouselElementViewingMode<T> = {
+    /*
+    *These setting only apply when in fullscreen mode.  Otherwise default settings are used
+    */
+    fullscreen?: CarouselElementTuple<T>;
+    /*
+    *These setting only apply when not in fullscreen mode.  Otherwise default settings are used
+    *Elements only visible when `layout.itemDisplayLocation` is not `none`, will not be affected by this unless `itemDisplayLocation` is also set.
+    */
+    nonFullscreen?: CarouselElementTuple<T>;
+}
+export type CarouselElementValue<T> = CarouselElementViewingMode<T> | CarouselElementValueTuple<T>;
+export type CarouselElementValueTuple<T> = CarouselElementTuple<T> | T;
+export type CarouselElementTuple<T> = [T, number?, CarouselElementValueType?][];
 export type CarouselItemViewerOptions = {
     /*
    *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.  
@@ -104,6 +116,7 @@ export type CarouselItemViewerButtonProps = {
 export enum CarouselSection {
     container = 'container',
     itemViewer = 'itemViewer',
+    itemViewerPreview = 'itemViewerPreview',
     navigation = 'navigation',
     toolbar = 'toolbar',
     videoCurrentStateIndicator = 'videoCurrentStateIndicator',
@@ -119,6 +132,39 @@ export type CarouselSections = {
     [CarouselSection.itemViewer]?: {
         loadingSpinner?: Partial<Omit<LoadingSpinnerProps, 'description' | 'show'>>;
         padding?: CarouselHorizontalPaddingOptions;
+    } & Partial<Pick<CarouselColorOptions, 'background'>>;
+    /*
+    *This is the popup that you see when you hover over the next/previous buttons when in fullscreen mode
+    *This element is only visible in fullscreen mode by default
+    */
+    [CarouselSection.itemViewerPreview]?: {
+        /*
+        *Must be in the CSS border property format (e.g. '1px solid #000').  
+        *Will use default white value, if the value provided is deemed invalid.
+        */
+        border?: CarouselElementValue<string>;
+        /*
+        *Height in px.  If left blank, then it is half of the width
+        */
+        height?: CarouselElementValue<number>;
+        /*
+        *Default is false
+        */
+        isVisibleInNonFullscreenMode?: CarouselElementValueTuple<boolean>;
+        /*
+        *The opacity of the background
+        */
+        opacity?: CarouselElementValue<number>
+        /*
+        *This changes which side the image and text are on
+        *Default is image on left and text on right
+        */
+        swapImageAndText?: CarouselElementValue<boolean>
+        textPadding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
+        /*
+        *Width in px
+        */
+        width?: CarouselElementValue<number>;
     } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
     *This is the where the dots, arrows, and thumbanils sit
@@ -334,17 +380,6 @@ export type CarouselActions = {
 }
 //#endregion
 
-export type CarouselElementCustomizations<T> = {
-    /*
-    *These setting only apply when in fullscreen mode.  Otherwise default settings are used
-    */
-    fullscreen?: CarouselElementValueTuple<T>;
-    /*
-    *These setting only apply when not in fullscreen mode.  Otherwise default settings are used
-    *Elements only visible when `layout.itemDisplayLocation` is not `none`, will not be affected by this unless `itemDisplayLocation` is also set.
-    */
-    nonFullscreen?: CarouselElementValueTuple<T>;
-}
 export type CarouselElementCustomization = {
     /*
     *Default is #000
