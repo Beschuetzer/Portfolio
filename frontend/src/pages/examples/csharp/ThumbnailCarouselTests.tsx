@@ -2669,14 +2669,14 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.dynamicBasedOnViewingMode,
 		[
-			{
-				label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
-				jsx: viewingModeToolbarButtons,
-			},
-			{
-				label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
-				jsx: viewingModeVideoCurrentStateIndicator,
-			},
+			// {
+			// 	label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
+			// 	jsx: viewingModeToolbarButtons,
+			// },
+			// {
+			// 	label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
+			// 	jsx: viewingModeVideoCurrentStateIndicator,
+			// },
 			{
 				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
 				jsx: viewingModeItemViewerPreview,

@@ -4,6 +4,8 @@ import { CLASSNAME__HIDDEN } from '../../../constants';
 import { CarouselItemProps } from '../../CarouselItem';
 import { CarouselItemViewerButtonProps } from '../../../types';
 import { KeyInput } from '../../../hooks/useKeyboardShortcuts';
+import { useMemo } from 'react';
+import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 export enum ToolbarPreviewDirection {
     none,
@@ -27,13 +29,17 @@ export const CarouselItemViewerToolbarPreview = ({
     show,
 }: CarouselItemViewerToolbarPreviewProps) => {
     //#region Init
+    const { optionsLogic } = useBusinessLogic({});
     const { description, srcMain, srcThumbnail } = itemToShow || {};
     //#endregion
-    
+
     //#region JSX
-    const className = getClassname({ elementName: 'item-viewer-toolbar-preview' })
+    const className = useMemo(() => getClassname({ elementName: 'item-viewer-toolbar-preview' }), []);
+    const isVisible = useMemo(() => optionsLogic.itemViewerPreviewIsVisible, [optionsLogic.itemViewerPreviewIsVisible]);
+    const shortcutString = useMemo(() => getShortcutsString(shortcuts), [shortcuts]);
+
     return (
-        <div className={`${className} ${show ? '' : CLASSNAME__HIDDEN}`}>
+        <div className={`${className} ${show && isVisible ? '' : CLASSNAME__HIDDEN}`}>
             <div className={`${className}-image-container`}>
                 <LoadingSpinner
                     type='ring'
@@ -59,11 +65,13 @@ export const CarouselItemViewerToolbarPreview = ({
             <div className={`${className}-image-description`}>
                 <div>
                     <div>
-                        {actionName.toUpperCase()} 
+                        {actionName.toUpperCase()}
                     </div>
-                    <div>
-                        ({getShortcutsString(shortcuts)})
-                    </div>
+                    {shortcutString ? (
+                        <div>
+                            ({shortcutString})
+                        </div>
+                    ) : null}
                 </div>
                 <p>
                     {description || 'No description'}

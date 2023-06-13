@@ -466,14 +466,14 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                 <div className={CLASSNAME__TOOLBAR_RIGHT}>
                     <CarouselItemViewerPreviousButton
                         actionName='Previous'
-                        isShortcutVisible={!isFullscreenMode && showPreviousButtonPopup}
+                        isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showPreviousButtonPopup}
                         onClick={onPreviousItemClickLocal}
                         options={options}
                         ref={previousButtonRef}
                     />
                     <CarouselItemViewerNextButton
                         actionName='Next'
-                        isShortcutVisible={!isFullscreenMode && showNextButtonPopup}
+                        isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showNextButtonPopup}
                         onClick={onNextItemClickLocal}
                         options={options}
                         position='right'
@@ -501,7 +501,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             <CarouselItemViewerToolbarPreview
                 itemToShow={items[getPreviewItemIndex(ToolbarPreviewDirection.previous)]}
                 show={
-                    isFullscreenMode &&
                     previewDirection === ToolbarPreviewDirection.previous
                 }
                 isLoaded={isPreviousItemPreviewLoaded}
@@ -512,7 +511,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             <CarouselItemViewerToolbarPreview
                 itemToShow={items[getPreviewItemIndex(ToolbarPreviewDirection.next)]}
                 show={
-                    isFullscreenMode &&
                     previewDirection === ToolbarPreviewDirection.next
                 }
                 isLoaded={isNextItemPreviewLoaded}

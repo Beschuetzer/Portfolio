@@ -85,6 +85,11 @@ export class OptionsLogic {
         return getCurrentValue(this.options.itemViewer?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
     }
 
+    get itemViewerPreviewIsVisible() {
+        const value = getCurrentValue(this.options.styling?.itemViewerPreview?.isVisibleInNonFullscreenMode, false, this.isFullscreenMode);
+        return this.isFullscreenMode ? true : value;
+    }
+
     get navigationMaxClickThreshold() {
         return getCurrentValue(this.options.navigation?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
     }
