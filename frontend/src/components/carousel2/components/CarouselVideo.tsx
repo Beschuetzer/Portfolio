@@ -31,7 +31,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         srcMain,
         video: videoProps,
     } = props;
-    const { options, currentVideoCurrentTime, setIsFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
+    const { options, currentVideoCurrentTime, isFullscreenMode, setIsFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
 
     const { autoPlay, loop, muted } = videoProps || {};
     const [isLoaded, setIsLoaded] = useState(false);
@@ -93,11 +93,8 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     }, [currentVideoCurrentTime])
 
     useEffect(() => {
-        if (videoRef.current) {
-            videoRef.current.currentTime = 0;
-        }
-
         function handleFullscreenChange(e: Event) {
+            if (!isFullscreenMode) return;
             if (videoRef.current) {
                 if (getIsVideoPlaying(videoRef.current)) {
                     videoRef.current?.pause();
@@ -120,7 +117,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
             document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
             document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
         }
-    }, [])
+    }, [isFullscreenMode])
     //#endregion
 
     //#region JSX   
