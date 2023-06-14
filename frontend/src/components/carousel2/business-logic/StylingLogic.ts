@@ -30,6 +30,7 @@ import {
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
 import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
+import { Regexs } from "./Regexs";
 
 export enum SpacingDirection {
     bottom,
@@ -180,13 +181,11 @@ export class StylingLogic {
         const borderTemp = getCurrentValue(border, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT, this.isFullscreenMode);
         const splitBorder = borderTemp?.toString().trim().split(/(\s|rgba.*?\)$)/)?.filter(item => !!item) || [];
         const lastBorderElement = splitBorder[splitBorder?.length - 1]?.trim();
-
-        const isHex = lastBorderElement?.match(/^#([abcef0-9]{6}|[abcef0-9]{8})$/);
-        const isRgb = lastBorderElement?.match(/rgb\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)/);
-        const isRgba = lastBorderElement?.match(/rgba\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d+|\d+\.\d+|\.\d+\s*\)/);
+        const isHex = lastBorderElement?.match(Regexs.hexColor);
+        const isRgb = lastBorderElement?.match(Regexs.rgbColor);
+        const isRgba = lastBorderElement?.match(Regexs.rgbaColor);
         const color = isHex || isRgb || isRgba ? lastBorderElement : convertColorNameToHex(lastBorderElement);
         const borderToUse = `1px solid ${convertHexToRgba(color || CAROUSEL_COLOR_FIVE, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT)}`;
-        console.log({borderToUse, color, lastBorderElement});
         
         return {
             borderLeft: swapImageAndTextToUse ? borderToUse : undefined,

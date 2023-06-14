@@ -2048,7 +2048,7 @@ const viewingModeItemViewerPreview = (
 						nonFullscreen: [['orange'], ['yellow', 900]],
 					},
 					border: {
-						nonFullscreen: [['3px solid #abc123'], ['5px dotted purple', 800, 'max-width'], ['1px ridge teal', 600, 'max-width'], ['thick double green', 1000, 'min-width']],
+						nonFullscreen: [['3px solid #abc123'], ['5px dotted purple', 900, 'max-width'], ['1px ridge teal', 750, 'max-width'], ['thick double green', 1000, 'min-width']],
 					},
 					borderRadius: {
 						fullscreen: [[0], [100, 800]],
