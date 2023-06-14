@@ -1,4 +1,6 @@
 Carousel rework
+  -figure out regex carouselItemViewerPreviewImageContainerStyle
+
   -add option to specify the border on the CarouselItemViewerToolbarPreview?
   -go through types and figure out which should have fullscreen/nonFullscreen option;  replace with CarouselElementValueTuple for those that don't need
   -check how fullscreen looks on phone (should rotate)
@@ -10,6 +12,7 @@ Carousel rework
   -add volume button for videos?
   -how to intelligently add themes or default colors?
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
+  -figure out how to memoize options and styling logic (e.g. when playing a video, the styling getters run each time)
   -add lazy loading of items (only render the items up to the furtherst currentPage)?
   -update all custom test case
   -figure out how to test and implement accessability

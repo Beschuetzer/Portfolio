@@ -919,7 +919,6 @@
   width: calc(300px / 2);
 }
 .thumbnail-carousel__item-viewer-toolbar-preview-image-container {
-  border-right: 1px solid rgba(255, 249, 245, 0.66);
   height: calc(100% - 0px);
   position: relative;
 }

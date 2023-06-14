@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { CarouselElement, CarouselSection, CarouselOptions } from "../types";
 import { OptionsLogic } from "./OptionsLogic";
-import { convertHexToRgba, getCurrentValue, getIsMobile, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
+import { convertColorNameToHex, convertHexToRgba, getCurrentValue, getIsMobile, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
 import {
     CAROUSEL_SPACING_UNIT,
     CAROUSEL_COLOR_FOUR,
@@ -22,6 +22,10 @@ import {
     CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT,
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -170,12 +174,40 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
+    get carouselItemViewerPreviewImageContainerStyle() {
+        const { border, swapImageAndText } = this.options.styling?.itemViewerPreview || {};
+        const swapImageAndTextToUse = getCurrentValue(swapImageAndText, CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT, this.isFullscreenMode);
+        const borderTemp = getCurrentValue(border, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT, this.isFullscreenMode);
+        const splitBorder = borderTemp?.toString().trim().split(/(\s|rgba.*?\)$)/)?.filter(item => !!item) || [];
+        const lastBorderElement = splitBorder[splitBorder?.length - 1]?.trim();
+
+        //todo: figure out the regex here
+        const isHexRegex = '^#([abcef0-9]{6}|[abcef0-9]{8})$';
+        const isRgbRegex = 'rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)';
+        const isRgbaRegex = 'rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)';
+        // const isRgbaRegex = 'rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1})\s*\)';
+        const regexToUse = new RegExp(`(${isRgbRegex}|${isHexRegex}|${isRgbaRegex})`, 'ig');
+        const color = lastBorderElement?.match(regexToUse) ? lastBorderElement : convertColorNameToHex(lastBorderElement);
+        const borderToUse = `1px solid ${convertHexToRgba(color || CAROUSEL_COLOR_FIVE, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT)}`;
+        console.log({borderToUse, color, lastBorderElement});
+        
+        return {
+            borderLeft: swapImageAndTextToUse ? borderToUse : undefined,
+            borderRight: swapImageAndTextToUse ? undefined : borderToUse,
+        } as CSSProperties;
+    }
+
     get carouselItemViewerPreviewStyle() {
-        const { background, opacity } = this.options.styling?.itemViewerPreview || {};
+        const { background, opacity, borderRadius, border } = this.options.styling?.itemViewerPreview || {};
         const backgroundToUse = getCurrentValue(background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        const borderToUse = getCurrentValue(border, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT, this.isFullscreenMode);
+        const borderRadiusToUse = getCurrentValue(borderRadius, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT, this.isFullscreenMode);
         const opacityToUse = getCurrentValue(opacity, CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, this.isFullscreenMode);
+
         return {
             backgroundColor: convertHexToRgba(backgroundToUse, parseInt(opacityToUse as string, 10)),
+            border: borderToUse,
+            borderRadius: borderRadiusToUse,
         } as CSSProperties;
     }
 

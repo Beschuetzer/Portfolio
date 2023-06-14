@@ -1,4 +1,4 @@
-import { getClassname, getShortcutsString } from '../../../utils'
+import { getClassname, getCurrentValue, getShortcutsString } from '../../../utils'
 import { LoadingSpinner } from '../../LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../../../constants';
 import { CarouselItemProps } from '../../CarouselItem';
@@ -38,48 +38,67 @@ export const CarouselItemViewerToolbarPreview = ({
     const isVisible = useMemo(() => optionsLogic.itemViewerPreviewIsVisible, [optionsLogic.itemViewerPreviewIsVisible]);
     const shortcutString = useMemo(() => getShortcutsString(shortcuts), [shortcuts]);
 
+    const imageJSX = useMemo(() => (
+        <div
+            style={stylingLogic.carouselItemViewerPreviewImageContainerStyle}
+            className={`${className}-image-container`}
+        >
+            <LoadingSpinner
+                type='ring'
+                options={{
+                    containerLength: 100,
+                    radius: 32,
+                    width: 4,
+                    containerMargin: '0px',
+                }}
+                description={''}
+                show={true}
+            />
+            <img
+                className={show ? '' : CLASSNAME__HIDDEN}
+                src={srcThumbnail || srcMain}
+                alt={description}
+                onLoad={() => setIsLoaded(true)}
+                onAbort={() => setIsLoaded(false)}
+                onSuspend={() => setIsLoaded(false)}
+                onBlur={(() => setIsLoaded(false))}
+            />
+        </div>
+    ), [className, description, setIsLoaded, show, srcMain, srcThumbnail, stylingLogic.carouselItemViewerPreviewImageContainerStyle]);
+    const textJSX = useMemo(() => (
+        <div className={`${className}-image-description`}>
+            <div>
+                <div>
+                    {actionName.toUpperCase()}
+                </div>
+                {shortcutString ? (
+                    <div>
+                        ({shortcutString})
+                    </div>
+                ) : null}
+            </div>
+            <p>
+                {description || 'No description'}
+            </p>
+        </div>
+    ), [actionName, className, description, shortcutString]);
     return (
         <div
             style={stylingLogic.carouselItemViewerPreviewStyle}
             className={`${className} ${show && isVisible ? '' : CLASSNAME__HIDDEN}`}
         >
-            <div className={`${className}-image-container`}>
-                <LoadingSpinner
-                    type='ring'
-                    options={{
-                        containerLength: 100,
-                        radius: 32,
-                        width: 4,
-                        containerMargin: '0px',
-                    }}
-                    description={''}
-                    show={true}
-                />
-                <img
-                    className={show ? '' : CLASSNAME__HIDDEN}
-                    src={srcThumbnail || srcMain}
-                    alt={description}
-                    onLoad={() => setIsLoaded(true)}
-                    onAbort={() => setIsLoaded(false)}
-                    onSuspend={() => setIsLoaded(false)}
-                    onBlur={(() => setIsLoaded(false))}
-                />
-            </div>
-            <div className={`${className}-image-description`}>
-                <div>
-                    <div>
-                        {actionName.toUpperCase()}
-                    </div>
-                    {shortcutString ? (
-                        <div>
-                            ({shortcutString})
-                        </div>
-                    ) : null}
-                </div>
-                <p>
-                    {description || 'No description'}
-                </p>
-            </div>
+            {optionsLogic.itemViewerPreviewSwapImageAndText ? (
+                <>
+                    {textJSX}
+                    {imageJSX}
+                </>
+            ) : (
+                <>
+                    {imageJSX}
+                    {textJSX}
+                </>
+            )}
+
         </div>
     )
     //#endregion

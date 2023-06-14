@@ -167,7 +167,10 @@ export type CarouselSections = {
         *Default is image on left and text on right
         */
         swapImageAndText?: CarouselElementValue<boolean>
-        textPadding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
+        text?: {
+            color?: CarouselElementValue<CSSProperties['color']>;
+            padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
+        }
         /*
         *Default is 400px
         */

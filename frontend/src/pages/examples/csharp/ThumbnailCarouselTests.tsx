@@ -2042,16 +2042,16 @@ const viewingModeItemViewerPreview = (
 			},
 			styling: {
 				itemViewerPreview: {
-					isVisibleInNonFullscreenMode: [[true], [false, 800]],
+					isVisibleInNonFullscreenMode: [[true], [false, 600]],
 					background: {
 						fullscreen: [['green'], ['rgba(200,00,100,1)', 800]],
 						nonFullscreen: [['orange'], ['yellow', 900]],
 					},
 					border: {
-						nonFullscreen: [['3px solid red'], ['3px dashed green'], ['1px dotted  yellow', 1100], ['5px solid blue', 1500, 'min-width'], ['2px dotted orange', 800, 'max-width'], ['1px ridge teal', 600, 'max-width'], ['3px solid grey', 400, 'max-width'], ['thick double purple', 1200, 'min-width']],
+						nonFullscreen: [['3px solid #abc123'], ['5px dotted purple', 800, 'max-width'], ['1px ridge teal', 600, 'max-width'], ['thick double green', 1000, 'min-width']],
 					},
 					borderRadius: {
-						fullscreen: [['3'], [10, 800]],
+						fullscreen: [[0], [100, 800]],
 					},
 					width: {
 						nonFullscreen: [[300], [250, 800]],
@@ -2064,29 +2064,35 @@ const viewingModeItemViewerPreview = (
 						fullscreen: [[true], [false, 800]],
 						nonFullscreen: [[false], [true, 800]],
 					},
-					textPadding: {
-						fullscreen: [[{
-							top: 20,
-							bottom: 20,
-							left: 0,
-							right: 0,
-						}], [{
-							top: 0,
-							bottom: 0,
-							left: 20,
-							right: 20,
-						}, 800]],
-						nonFullscreen: [[{
-							top: 0,
-							bottom: 0,
-							left: 20,
-							right: 20,
-						}], [{
-							top: 20,
-							bottom: 20,
-							left: 0,
-							right: 0,
-						}, 800]]
+					text: {
+						padding: {
+							fullscreen: [[{
+								top: 20,
+								bottom: 20,
+								left: 0,
+								right: 0,
+							}], [{
+								top: 0,
+								bottom: 0,
+								left: 20,
+								right: 20,
+							}, 800]],
+							nonFullscreen: [[{
+								top: 0,
+								bottom: 0,
+								left: 20,
+								right: 20,
+							}], [{
+								top: 20,
+								bottom: 20,
+								left: 0,
+								right: 0,
+							}, 800]]
+						},
+						color: {
+							fullscreen: [['black'], ['purple', 800]],
+							nonFullscreen: [['purle'], ['black', 800]],
+						}
 					},
 					image: {
 						fit: {
@@ -2686,10 +2692,10 @@ const SECTIONS: Sections = [
 			// 	label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeToolbarButtons,
 			// },
-			// {
-			// 	label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
-			// 	jsx: viewingModeVideoCurrentStateIndicator,
-			// },
+			{
+				label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
+				jsx: viewingModeVideoCurrentStateIndicator,
+			},
 			{
 				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
 				jsx: viewingModeItemViewerPreview,

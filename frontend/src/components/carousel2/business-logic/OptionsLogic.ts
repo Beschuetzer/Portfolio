@@ -90,6 +90,10 @@ export class OptionsLogic {
         return this.isFullscreenMode ? true : value;
     }
 
+    get itemViewerPreviewSwapImageAndText() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.swapImageAndText, false, this.isFullscreenMode);
+    }
+
     get navigationMaxClickThreshold() {
         return getCurrentValue(this.options.navigation?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
     }
