@@ -147,6 +147,10 @@ export type CarouselSections = {
         *Height in px.  If left blank, then it is half of the width
         */
         height?: CarouselElementValue<number>;
+        image?: {
+            fit?: CarouselElementValue<CSSProperties['objectFit']>
+            position?: CarouselElementValue<CSSProperties['objectPosition']>;
+        }
         /*
         *Default is false
         */

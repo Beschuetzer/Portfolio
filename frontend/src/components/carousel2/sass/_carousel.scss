@@ -228,7 +228,6 @@
                     $bottom: auto);
                 width: var(--width);
                 height: var(--height);
-                background-color: rgba($itemViewerBackgroundColor, $itemViewerToolbarPreviewOpacity);
                 display: flex;
                 align-items: flex-start;
                 justify-content: space-between;

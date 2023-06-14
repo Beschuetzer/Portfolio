@@ -2084,6 +2084,16 @@ const viewingModeItemViewerPreview = (
 							left: 0,
 							right: 0,
 						}, 800]]
+					},
+					image: {
+						fit: {
+							fullscreen: [['fill'], ['contain', 800]],
+							nonFullscreen: [['contain'], ['fill', 800]],
+						},
+						position: {
+							fullscreen: [['left'], ['top', 800]],
+							nonFullscreen: [['top'], ['right', 800]],
+						}
 					}
 				}
 			}
@@ -2673,10 +2683,10 @@ const SECTIONS: Sections = [
 			// 	label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeToolbarButtons,
 			// },
-			// {
-			// 	label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
-			// 	jsx: viewingModeVideoCurrentStateIndicator,
-			// },
+			{
+				label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
+				jsx: viewingModeVideoCurrentStateIndicator,
+			},
 			{
 				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
 				jsx: viewingModeItemViewerPreview,

@@ -21,6 +21,7 @@ import {
     CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT,
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -166,6 +167,15 @@ export class StylingLogic {
         return {
             display: this.isFullscreenMode ? 'flex' : 'none',
             backgroundColor: this.itemViewerBackgroundColor,
+        } as CSSProperties;
+    }
+
+    get carouselItemViewerPreviewStyle() {
+        const { background, opacity } = this.options.styling?.itemViewerPreview || {};
+        const backgroundToUse = getCurrentValue(background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        const opacityToUse = getCurrentValue(opacity, CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, this.isFullscreenMode);
+        return {
+            backgroundColor: convertHexToRgba(backgroundToUse, opacityToUse),
         } as CSSProperties;
     }
 

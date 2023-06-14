@@ -29,7 +29,7 @@ export const CarouselItemViewerToolbarPreview = ({
     show,
 }: CarouselItemViewerToolbarPreviewProps) => {
     //#region Init
-    const { optionsLogic } = useBusinessLogic({});
+    const { optionsLogic, stylingLogic } = useBusinessLogic({});
     const { description, srcMain, srcThumbnail } = itemToShow || {};
     //#endregion
 
@@ -39,7 +39,10 @@ export const CarouselItemViewerToolbarPreview = ({
     const shortcutString = useMemo(() => getShortcutsString(shortcuts), [shortcuts]);
 
     return (
-        <div className={`${className} ${show && isVisible ? '' : CLASSNAME__HIDDEN}`}>
+        <div
+            style={stylingLogic.carouselItemViewerPreviewStyle}
+            className={`${className} ${show && isVisible ? '' : CLASSNAME__HIDDEN}`}
+        >
             <div className={`${className}-image-container`}>
                 <LoadingSpinner
                     type='ring'
