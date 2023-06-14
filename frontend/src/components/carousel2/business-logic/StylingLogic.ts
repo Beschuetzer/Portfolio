@@ -181,13 +181,10 @@ export class StylingLogic {
         const splitBorder = borderTemp?.toString().trim().split(/(\s|rgba.*?\)$)/)?.filter(item => !!item) || [];
         const lastBorderElement = splitBorder[splitBorder?.length - 1]?.trim();
 
-        //todo: figure out the regex here
-        const isHexRegex = '^#([abcef0-9]{6}|[abcef0-9]{8})$';
-        const isRgbRegex = 'rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)';
-        const isRgbaRegex = 'rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)';
-        // const isRgbaRegex = 'rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1})\s*\)';
-        const regexToUse = new RegExp(`(${isRgbRegex}|${isHexRegex}|${isRgbaRegex})`, 'ig');
-        const color = lastBorderElement?.match(regexToUse) ? lastBorderElement : convertColorNameToHex(lastBorderElement);
+        const isHex = lastBorderElement?.match(/^#([abcef0-9]{6}|[abcef0-9]{8})$/);
+        const isRgb = lastBorderElement?.match(/rgb\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)/);
+        const isRgba = lastBorderElement?.match(/rgba\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d+|\d+\.\d+|\.\d+\s*\)/);
+        const color = isHex || isRgb || isRgba ? lastBorderElement : convertColorNameToHex(lastBorderElement);
         const borderToUse = `1px solid ${convertHexToRgba(color || CAROUSEL_COLOR_FIVE, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT)}`;
         console.log({borderToUse, color, lastBorderElement});
         

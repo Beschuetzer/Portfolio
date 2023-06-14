@@ -1,6 +1,4 @@
 Carousel rework
-  -figure out regex carouselItemViewerPreviewImageContainerStyle
-
   -add option to specify the border on the CarouselItemViewerToolbarPreview?
   -go through types and figure out which should have fullscreen/nonFullscreen option;  replace with CarouselElementValueTuple for those that don't need
   -check how fullscreen looks on phone (should rotate)
