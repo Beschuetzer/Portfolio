@@ -139,14 +139,17 @@ export type CarouselSections = {
     */
     [CarouselSection.itemViewerPreview]?: {
         /*
-        *Must be in the CSS border property format (e.g. '1px solid #000').  
         *Will use default white value, if the value provided is deemed invalid.
         */
-        border?: CarouselElementValue<string>;
+        border?: CarouselElementValue<CSSProperties['border']>;
+        /*
+        *Default is 5px
+        */
+        borderRadius?: CarouselElementValue<CSSProperties['borderRadius']>;
         /*
         *Height in px.  If left blank, then it is half of the width
         */
-        height?: CarouselElementValue<number>;
+        height?: CarouselElementValue<CSSProperties['height']>;
         image?: {
             fit?: CarouselElementValue<CSSProperties['objectFit']>
             position?: CarouselElementValue<CSSProperties['objectPosition']>;
@@ -158,7 +161,7 @@ export type CarouselSections = {
         /*
         *The opacity of the background
         */
-        opacity?: CarouselElementValue<number>
+        opacity?: CarouselElementValue<CSSProperties['opacity']>
         /*
         *This changes which side the image and text are on
         *Default is image on left and text on right
@@ -166,9 +169,9 @@ export type CarouselSections = {
         swapImageAndText?: CarouselElementValue<boolean>
         textPadding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
         /*
-        *Width in px
+        *Default is 400px
         */
-        width?: CarouselElementValue<number>;
+        width?: CarouselElementValue<CSSProperties['width']>;
     } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
     *This is the where the dots, arrows, and thumbanils sit
@@ -467,7 +470,7 @@ export type CarouselThumbnailOptions = {
     *This is the border used to indicate which thumbnail is active when 'layout.itemDisplayLocation' is not 'none'.  
     *Must be in the CSS border property format (e.g. '1px solid #000').  Will use default if the value provided is deemed invalid.
     */
-    currentItemBorder?: CarouselElementValue<string>;
+    currentItemBorder?: CarouselElementValue<CSSProperties['border']>;
     /*
     *This is the background and text that displays with the description text when hovering a thumbnail
     */

@@ -2044,11 +2044,14 @@ const viewingModeItemViewerPreview = (
 				itemViewerPreview: {
 					isVisibleInNonFullscreenMode: [[true], [false, 800]],
 					background: {
-						fullscreen: [[getComputedStyleCustom('--color-primary-1')], [getComputedStyleCustom('--color-primary-2'), 800]],
-						nonFullscreen: [[getComputedStyleCustom('--color-primary-3')], [getComputedStyleCustom('--color-primary-4'), 800]],
+						fullscreen: [['green'], ['rgba(200,00,100,1)', 800]],
+						nonFullscreen: [['orange'], ['yellow', 900]],
 					},
 					border: {
 						nonFullscreen: [['3px solid red'], ['3px dashed green'], ['1px dotted  yellow', 1100], ['5px solid blue', 1500, 'min-width'], ['2px dotted orange', 800, 'max-width'], ['1px ridge teal', 600, 'max-width'], ['3px solid grey', 400, 'max-width'], ['thick double purple', 1200, 'min-width']],
+					},
+					borderRadius: {
+						fullscreen: [['3'], [10, 800]],
 					},
 					width: {
 						nonFullscreen: [[300], [250, 800]],

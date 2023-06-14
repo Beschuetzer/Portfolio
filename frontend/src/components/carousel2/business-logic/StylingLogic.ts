@@ -175,7 +175,7 @@ export class StylingLogic {
         const backgroundToUse = getCurrentValue(background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
         const opacityToUse = getCurrentValue(opacity, CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, this.isFullscreenMode);
         return {
-            backgroundColor: convertHexToRgba(backgroundToUse, opacityToUse),
+            backgroundColor: convertHexToRgba(backgroundToUse, parseInt(opacityToUse as string, 10)),
         } as CSSProperties;
     }
 
@@ -877,8 +877,9 @@ export class StylingLogic {
     *Currently there is no keyword recognition so something like 'thickest double #000' will be considered valid.
     *If the border isn't showing up, check your string to make sure it is valid.
     */
-    private getBorderStringToUse(borderStr: string, defaultValue = `1${CAROUSEL_SPACING_UNIT} solid ${CAROUSEL_COLOR_FOUR}`) {
-        const isValid = borderStr && borderStr?.trim()?.split(/(\s+|rgb.+\))/)?.filter(item => !!item && item?.match(/\w+/))?.length === 3;
+    private getBorderStringToUse(borderStr: CSSProperties['border'], defaultValue = `1${CAROUSEL_SPACING_UNIT} solid ${CAROUSEL_COLOR_FOUR}`) {
+        const borderStrToUse = borderStr?.toString();
+        const isValid = borderStr && borderStrToUse?.trim()?.split(/(\s+|rgb.+\))/)?.filter(item => !!item && item?.match(/\w+/))?.length === 3;
         return isValid ? borderStr : defaultValue;
     }
 
