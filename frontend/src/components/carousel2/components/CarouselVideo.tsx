@@ -145,6 +145,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                     onEnded={() => setIsVideoPlaying(false)}
                 >
                     <source src={srcMain} type={`video/${type}`} />
+                    Your browser does not support the HTML5 video tag. Try using a different browser.
                 </video>
                 {props.video?.overlayProps ? (
                     <CarouselVideoModal
