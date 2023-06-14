@@ -37,7 +37,7 @@ export function capitalize(str: string | undefined | null) {
 export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT) {
 
     let color: any;
-    const hexToUse = hex.trim();
+    const hexToUse = hex?.trim();
     if (hex && /^#([A-Fa-f0-9]{3}){1,2}$/.test(hexToUse)) {
         color = hexToUse.substring(1).split('');
         if (color.length === 3) {
@@ -234,7 +234,12 @@ export function getShortcutsString(shortcuts: KeyInput[]) {
 export function getCurrentValue<T>(valueTuple: CarouselElementValue<T> | undefined, defaultValue: T, isFullscreenMode: boolean) {
     let valueTupleToUse: CarouselElementValueTuple<T> | undefined;
     if (typeof (valueTuple) === 'object') {
-        valueTupleToUse = (isFullscreenMode ? (valueTuple as CarouselElementViewingMode<T>)?.fullscreen : (valueTuple as CarouselElementViewingMode<T>)?.nonFullscreen) || valueTuple as CarouselElementTuple<T>;
+        valueTupleToUse = ((isFullscreenMode ? (valueTuple as CarouselElementViewingMode<T>)?.fullscreen : (valueTuple as CarouselElementViewingMode<T>)?.nonFullscreen)) || valueTuple as CarouselElementTuple<T>;
+        if ((valueTupleToUse as CarouselElementViewingMode<T>)?.fullscreen) {
+            valueTupleToUse = isFullscreenMode ? (valueTupleToUse as CarouselElementViewingMode<T>)?.fullscreen : undefined;
+        } else if ((valueTupleToUse as CarouselElementViewingMode<T>)?.nonFullscreen) {
+            valueTupleToUse = !isFullscreenMode ? (valueTupleToUse as CarouselElementViewingMode<T>)?.nonFullscreen : undefined;
+        }
     } else {
         valueTupleToUse = valueTuple;
     }
