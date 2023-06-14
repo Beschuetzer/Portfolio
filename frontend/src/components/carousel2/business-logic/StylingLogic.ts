@@ -201,7 +201,7 @@ export class StylingLogic {
         const opacityToUse = getCurrentValue(opacity, CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, this.isFullscreenMode);
 
         return {
-            backgroundColor: convertHexToRgba(backgroundToUse, parseInt(opacityToUse as string, 10)),
+            backgroundColor: convertHexToRgba(backgroundToUse, parseFloat(opacityToUse as string)),
             border: borderToUse,
             borderRadius: borderRadiusToUse,
         } as CSSProperties;

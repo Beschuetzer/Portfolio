@@ -1,5 +1,6 @@
 import { replaceCharacters } from "../../helpers";
 import { OptionsLogic } from "./business-logic/OptionsLogic";
+import { Regexs } from "./business-logic/Regexs";
 import { StylingLogic } from "./business-logic/StylingLogic";
 import { CarouselItemProps } from "./components/CarouselItem";
 import {
@@ -72,7 +73,8 @@ export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_
 
     let color: any;
     const hexToUse = hex?.trim();
-    if (hex && /^#([A-Fa-f0-9]{3}){1,2}$/.test(hexToUse)) {
+    
+    if (hexToUse && Regexs.hexColor.test(hexToUse)) {
         color = hexToUse.substring(1).split('');
         if (color.length === 3) {
             color = [color[0], color[0], color[1], color[1], color[2], color[2]];

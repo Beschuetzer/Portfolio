@@ -2044,8 +2044,8 @@ const viewingModeItemViewerPreview = (
 				itemViewerPreview: {
 					isVisibleInNonFullscreenMode: [[true], [false, 600]],
 					background: {
-						fullscreen: [['green'], ['rgba(200,00,100,1)', 800]],
-						nonFullscreen: [['orange'], ['yellow', 900]],
+						fullscreen: [['grey'], ['rgba(0,0,2323,.9)', 800]],
+						nonFullscreen: [['#f00'], ['rgb(0,25500,00)', 800]],
 					},
 					border: {
 						nonFullscreen: [['3px solid #abc123'], ['5px dotted purple', 900, 'max-width'], ['1px ridge teal', 750, 'max-width'], ['thick double green', 1000, 'min-width']],
