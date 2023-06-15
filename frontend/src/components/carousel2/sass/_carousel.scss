@@ -229,8 +229,6 @@
                 justify-content: space-between;
                 font-size: $carouselFontSize;
                 color: $itemViewerButtonColor;
-                border-radius: $itemViewerToolbarPreviewBorderRadius;
-                border: 1px solid $itemViewerButtonColor;
                 overflow: hidden;
 
                 &-image {

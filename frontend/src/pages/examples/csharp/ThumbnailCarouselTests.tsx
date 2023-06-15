@@ -2082,6 +2082,14 @@ const viewingModeItemViewerPreview = (
 						nonFullscreen: [[false], [true, 800]],
 					},
 					text: {
+						size: {
+							fullscreen: [[16], [12, 800]],
+							nonFullscreen: [[14], [10, 800]],
+						},
+						fontFamily: {
+							fullscreen: [['monospace'], ['cursive', 800]],
+							nonFullscreen: [['serif'], ['fantasy', 800]],
+						},
 						padding: {
 							fullscreen: [[{
 								top: 20,

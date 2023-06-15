@@ -169,9 +169,10 @@ export type CarouselSections = {
         swapImageAndText?: CarouselElementValue<boolean>
         text?: {
             color?: CarouselElementValue<CSSProperties['color']>;
+            fontFamily?: CarouselElementValue<CSSProperties['fontFamily']>;
             padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
             verticalAlignment?: CarouselElementValue<CSSProperties['alignItems']>
-        }
+        } & CarouselElementSize;
         /*
         *Width in px.  Default is 400px.
         */
