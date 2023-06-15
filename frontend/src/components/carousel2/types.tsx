@@ -170,6 +170,7 @@ export type CarouselSections = {
         text?: {
             color?: CarouselElementValue<CSSProperties['color']>;
             padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
+            verticalAlignment?: CarouselElementValue<CSSProperties['alignItems']>
         }
         /*
         *Default is 400px

@@ -2045,7 +2045,7 @@ const viewingModeItemViewerPreview = (
 					isVisibleInNonFullscreenMode: [[true], [false, 600]],
 					background: {
 						fullscreen: [['grey'], ['rgba(0,0,2323,.9)', 800]],
-						nonFullscreen: [['#f00'], ['rgb(0,25500,00)', 800]],
+						nonFullscreen: [['#ff0'], ['rgb(0,25500,00)', 800]],
 					},
 					border: {
 						nonFullscreen: [['3px solid #abc123'], ['5px dotted purple', 900, 'max-width'], ['1px ridge teal', 750, 'max-width'], ['thick double green', 1000, 'min-width']],
@@ -2092,6 +2092,10 @@ const viewingModeItemViewerPreview = (
 						color: {
 							fullscreen: [['black'], ['purple', 800]],
 							nonFullscreen: [['purle'], ['black', 800]],
+						},
+						verticalAlignment: { 
+							fullscreen: [['center'], ['flex-end', 800]],
+							nonFullscreen: [['flex-end'], ['center', 800]],
 						}
 					},
 					image: {
