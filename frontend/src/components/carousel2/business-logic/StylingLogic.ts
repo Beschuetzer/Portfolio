@@ -176,9 +176,9 @@ export class StylingLogic {
     }
 
     get carouselItemViewerPreviewImageContainerStyle() {
-        const { border, swapImageAndText } = this.options.styling?.itemViewerPreview || {};
-        const swapImageAndTextToUse = getCurrentValue(swapImageAndText, CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT, this.isFullscreenMode);
-        const borderTemp = getCurrentValue(border, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT, this.isFullscreenMode);
+        const width = this.optionsLogic.itemViewerPreviewWidth;
+        const swapImageAndTextToUse = this.optionsLogic.itemViewerPreviewSwapImageAndText;
+        const borderTemp = this.optionsLogic.itemViewerPreviewBorder;
         const splitBorder = borderTemp?.toString().trim().split(RegexpPattern.splitAtSpaceAndRgb)?.filter(item => !!item) || [];
         const lastBorderElement = splitBorder[splitBorder?.length - 1]?.trim();
         const isHex = lastBorderElement?.match(RegexpPattern.hexColor);
@@ -186,24 +186,44 @@ export class StylingLogic {
         const isRgba = lastBorderElement?.match(RegexpPattern.rgbaColor);
         const color = isHex || isRgb || isRgba ? lastBorderElement : convertColorNameToHex(lastBorderElement);
         const borderToUse = `1px solid ${convertHexToRgba(color || CAROUSEL_COLOR_FIVE, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT)}`;
-        
+
         return {
+            width: width / 2,
             borderLeft: swapImageAndTextToUse ? borderToUse : undefined,
             borderRight: swapImageAndTextToUse ? undefined : borderToUse,
         } as CSSProperties;
     }
 
-    get carouselItemViewerPreviewStyle() {
-        const { background, opacity, borderRadius, border } = this.options.styling?.itemViewerPreview || {};
-        const backgroundToUse = getCurrentValue(background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
-        const borderToUse = getCurrentValue(border, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT, this.isFullscreenMode);
-        const borderRadiusToUse = getCurrentValue(borderRadius, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT, this.isFullscreenMode);
-        const opacityToUse = getCurrentValue(opacity, CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, this.isFullscreenMode);
+    get carouselItemViewerPreviewImageStyle() {
+        return {
+            objectPosition: this.optionsLogic.itemViewerPreviewImagePosition,
+        } as CSSProperties
+    }
+
+    get carouselItemViewerPreviewTextContainerStyle() {
+        const width = this.optionsLogic.itemViewerPreviewWidth;
 
         return {
-            backgroundColor: convertHexToRgba(backgroundToUse, parseFloat(opacityToUse as string)),
-            border: borderToUse,
-            borderRadius: borderRadiusToUse,
+            width: width / 2,
+        } as CSSProperties;
+    }
+
+    get carouselItemViewerPreviewStyle() {
+        const background = this.optionsLogic.itemViewerPreviewBackground;
+        const border = this.optionsLogic.itemViewerPreviewBorder;
+        const borderRadius = this.optionsLogic.itemViewerPreviewBorderRadius;
+        const opacity = this.optionsLogic.itemViewerPreviewOpacity;
+        const width = this.optionsLogic.itemViewerPreviewWidth;
+        const height = this.optionsLogic.itemViewerPreviewHeight;
+
+        return {
+            width,
+            height,
+            top: height * -1 - this.getPaddingAmount(SpacingDirection.top, CarouselSection.toolbar),
+            right: this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar),
+            backgroundColor: convertHexToRgba(background, parseFloat(opacity as string)),
+            border: border,
+            borderRadius: borderRadius,
         } as CSSProperties;
     }
 

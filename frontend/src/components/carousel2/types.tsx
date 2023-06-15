@@ -149,7 +149,7 @@ export type CarouselSections = {
         /*
         *Height in px.  If left blank, then it is half of the width
         */
-        height?: CarouselElementValue<CSSProperties['height']>;
+        height?: CarouselElementValue<number>;
         image?: {
             fit?: CarouselElementValue<CSSProperties['objectFit']>
             position?: CarouselElementValue<CSSProperties['objectPosition']>;
@@ -173,9 +173,9 @@ export type CarouselSections = {
             verticalAlignment?: CarouselElementValue<CSSProperties['alignItems']>
         }
         /*
-        *Default is 400px
+        *Width in px.  Default is 400px.
         */
-        width?: CarouselElementValue<CSSProperties['width']>;
+        width?: CarouselElementValue<number>;
     } & Partial<Pick<CarouselColorOptions, 'background'>>;
     /*
     *This is the where the dots, arrows, and thumbanils sit

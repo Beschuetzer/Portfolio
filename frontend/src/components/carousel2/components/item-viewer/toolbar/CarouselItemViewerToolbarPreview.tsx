@@ -37,7 +37,6 @@ export const CarouselItemViewerToolbarPreview = ({
     const className = useMemo(() => getClassname({ elementName: 'item-viewer-toolbar-preview' }), []);
     const isVisible = useMemo(() => optionsLogic.itemViewerPreviewIsVisible, [optionsLogic.itemViewerPreviewIsVisible]);
     const shortcutString = useMemo(() => getShortcutsString(shortcuts), [shortcuts]);
-
     const imageJSX = useMemo(() => (
         <div
             style={stylingLogic.carouselItemViewerPreviewImageContainerStyle}
@@ -55,6 +54,7 @@ export const CarouselItemViewerToolbarPreview = ({
                 show={true}
             />
             <img
+                style={stylingLogic.carouselItemViewerPreviewImageStyle}
                 className={show ? '' : CLASSNAME__HIDDEN}
                 src={srcThumbnail || srcMain}
                 alt={description}
@@ -64,9 +64,21 @@ export const CarouselItemViewerToolbarPreview = ({
                 onBlur={(() => setIsLoaded(false))}
             />
         </div>
-    ), [className, description, setIsLoaded, show, srcMain, srcThumbnail, stylingLogic.carouselItemViewerPreviewImageContainerStyle]);
+    ), [
+        className,
+        description,
+        setIsLoaded,
+        show,
+        srcMain,
+        srcThumbnail,
+        stylingLogic.carouselItemViewerPreviewImageContainerStyle,
+        stylingLogic.carouselItemViewerPreviewImageStyle
+    ]);
     const textJSX = useMemo(() => (
-        <div className={`${className}-image-description`}>
+        <div
+            style={stylingLogic.carouselItemViewerPreviewTextContainerStyle}
+            className={`${className}-image-description`}
+        >
             <div>
                 <div>
                     {actionName.toUpperCase()}
@@ -81,7 +93,13 @@ export const CarouselItemViewerToolbarPreview = ({
                 {description || 'No description'}
             </p>
         </div>
-    ), [actionName, className, description, shortcutString]);
+    ), [
+        actionName,
+        className,
+        description,
+        shortcutString,
+        stylingLogic.carouselItemViewerPreviewTextContainerStyle
+    ]);
     return (
         <div
             style={stylingLogic.carouselItemViewerPreviewStyle}

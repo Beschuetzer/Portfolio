@@ -2041,6 +2041,12 @@ const viewingModeItemViewerPreview = (
 				itemDisplayLocation: 'below'
 			},
 			styling: {
+				toolbar: {
+					padding: {
+						right: 30,
+						left: 30,
+					}
+				},
 				itemViewerPreview: {
 					isVisibleInNonFullscreenMode: [[true], [false, 600]],
 					background: {
@@ -2054,10 +2060,11 @@ const viewingModeItemViewerPreview = (
 						fullscreen: [[0], [100, 800]],
 					},
 					width: {
-						nonFullscreen: [[300], [250, 800]],
+						nonFullscreen: [[500, 800]],
 					},
 					height: {
 						fullscreen: [[250], [150, 800]],
+						nonFullscreen: [[200, 800]],
 					},
 					opacity: [[.9], [.25, 800]],
 					swapImageAndText: {

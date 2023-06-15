@@ -1,5 +1,22 @@
 import { CarouselItemProps } from "../components/CarouselItem";
-import { CAROUSEL_COLOR_ONE, CAROUSEL_ITEM_SIZE_DEFAULT, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, CAROUSEL_ITEM_SPACING_DEFAULT, MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT } from "../constants";
+import {
+    CAROUSEL_COLOR_FIVE,
+    CAROUSEL_COLOR_ONE,
+    CAROUSEL_ITEM_SIZE_DEFAULT,
+    CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_ITEM_SPACING_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_FIT_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_POSITION_WHEN_NO_SWAP_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_POSITION_WHEN_SWAP_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_PADDING_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT,
+    MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT
+} from "../constants";
 import { CarouselOptions } from "../types";
 import { getCurrentValue } from "../utils";
 
@@ -85,13 +102,58 @@ export class OptionsLogic {
         return getCurrentValue(this.options.itemViewer?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
     }
 
+    get itemViewerPreviewBackground() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewBorder() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.border, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewBorderRadius() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.borderRadius, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewHeight() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.height, CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT / 2, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewImageFit() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.image?.fit, CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_FIT_DEFAULT, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewImagePosition() {
+        const defaultToUse = this.itemViewerPreviewSwapImageAndText ? CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_POSITION_WHEN_SWAP_DEFAULT : CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_POSITION_WHEN_NO_SWAP_DEFAULT;
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.image?.position, defaultToUse, this.isFullscreenMode);
+    }
+
     get itemViewerPreviewIsVisible() {
-        const value = getCurrentValue(this.options.styling?.itemViewerPreview?.isVisibleInNonFullscreenMode, false, this.isFullscreenMode);
+        const value = getCurrentValue(this.options.styling?.itemViewerPreview?.isVisibleInNonFullscreenMode, CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT, this.isFullscreenMode);
         return this.isFullscreenMode ? true : value;
     }
 
+    get itemViewerPreviewOpacity() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.opacity, CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, this.isFullscreenMode);
+    }
+
     get itemViewerPreviewSwapImageAndText() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.swapImageAndText, false, this.isFullscreenMode);
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.swapImageAndText, CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewTextColor() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewTextPadding() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.padding, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_PADDING_DEFAULT, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewTextVerticalAlignment() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.verticalAlignment, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewWidth() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.width, CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT, this.isFullscreenMode);
     }
 
     get navigationMaxClickThreshold() {
@@ -109,7 +171,7 @@ export class OptionsLogic {
     get videoSeekAmount() {
         return getCurrentValue(this.options?.itemViewer?.seekAmount, SEEK_AMOUNT_DEFAULT, this.isFullscreenMode) / 1000;
     }
-    
+
     get videoCurrentStateIndicatorBackgroundColor() {
         return getCurrentValue(this.options.styling?.videoCurrentStateIndicator?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
     }

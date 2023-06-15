@@ -220,14 +220,10 @@
             }
 
             &-preview {
-                --width: #{$itemViewerToolbarPreviewWidth};
-                --height: calc(var(--width) / 2);
-                @include positionAbsolute($top: calc(-1 * var(--height)),
+                @include positionAbsolute(
                     $left: auto,
-                    $right: calc(#{$itemViewerToolbarMarginHorizontal}),
-                    $bottom: auto);
-                width: var(--width);
-                height: var(--height);
+                    $bottom: auto
+                );
                 display: flex;
                 align-items: flex-start;
                 justify-content: space-between;
@@ -236,10 +232,6 @@
                 border-radius: $itemViewerToolbarPreviewBorderRadius;
                 border: 1px solid $itemViewerButtonColor;
                 overflow: hidden;
-
-                & > * {
-                    width: calc(#{$itemViewerToolbarPreviewWidth} / 2);
-                }
 
                 &-image {
                     &-container {
