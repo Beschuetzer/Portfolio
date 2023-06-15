@@ -196,6 +196,7 @@ export class StylingLogic {
 
     get carouselItemViewerPreviewImageStyle() {
         return {
+            objectFit: this.optionsLogic.itemViewerPreviewImageFit,
             objectPosition: this.optionsLogic.itemViewerPreviewImagePosition,
         } as CSSProperties
     }

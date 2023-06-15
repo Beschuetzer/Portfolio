@@ -2066,6 +2066,16 @@ const viewingModeItemViewerPreview = (
 						fullscreen: [[250], [150, 800]],
 						nonFullscreen: [[200, 800]],
 					},
+					image: {
+						fit: {
+							fullscreen: [['contain', 800]],
+							nonFullscreen: [['contain'], ['fill', 800]],
+						},
+						position: {
+							fullscreen: [['left'], ['center', 800]],
+							nonFullscreen: [['top'], ['right', 800]],
+						}
+					},
 					opacity: [[.9], [.25, 800]],
 					swapImageAndText: {
 						fullscreen: [[true], [false, 800]],
@@ -2105,16 +2115,6 @@ const viewingModeItemViewerPreview = (
 							nonFullscreen: [['flex-end'], ['center', 800]],
 						}
 					},
-					image: {
-						fit: {
-							fullscreen: [['fill'], ['contain', 800]],
-							nonFullscreen: [['contain'], ['fill', 800]],
-						},
-						position: {
-							fullscreen: [['left'], ['top', 800]],
-							nonFullscreen: [['top'], ['right', 800]],
-						}
-					}
 				}
 			}
 		}}
