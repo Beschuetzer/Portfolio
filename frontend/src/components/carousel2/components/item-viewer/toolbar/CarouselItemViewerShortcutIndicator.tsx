@@ -2,13 +2,15 @@ import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { capitalize, getClassname, getIsMobile, getShortcutsString } from '../../../utils'
 import { KeyInput } from '../../../hooks/useKeyboardShortcuts';
 import { CLASSNAME__DISPLAY_NONE } from '../../../constants';
+import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
+export type CarouselItemViewerShortcutIndicatorPosition = 'left' | 'center' | 'right';
 export type CarouselItemViewerShortcutIndicatorProps = {
     actionName: string;
     children: ReactNode | ReactNode[];
     isShortcutVisible?: boolean;
     isVisible?: boolean;
-    position?: 'left' | 'center' | 'right';
+    position?: CarouselItemViewerShortcutIndicatorPosition;
     shortcuts?: KeyInput[];
 
     /*
@@ -28,28 +30,10 @@ export const CarouselItemViewerShortcutIndicator = ({
     shortcuts = [],
     showButton = true,
 }: CarouselItemViewerShortcutIndicatorProps) => {
+    const { stylingLogic } = useBusinessLogic({});
     const timeoutRef = useRef<any>(null);
     const [hideShortcut, setHideShortcut] = useState(!isShortcutVisible || !actionName)
-    const containerStyle = useMemo(() => !showButton ? {
-        display: 'none',
-    } as React.CSSProperties : {}, [showButton]);
     const isMobile = getIsMobile();
-
-    const commonStyle = useMemo(() => ({
-        zIndex: 1000000000000,
-    }), []);
-    const shortcutStyle = useMemo(() => position === 'left' ? {
-        ...commonStyle,
-        left: 0,
-        right: 'auto',
-        transform: 'translate(0%, -50%)',
-    } as React.CSSProperties : position === 'right' ? {
-        ...commonStyle,
-        right: 0,
-        left: 'auto',
-        transform: 'translate(0%, -50%)',
-    } as React.CSSProperties : {}, [commonStyle, position]);
-    const hiddenClassName = useMemo(() => isVisible ? "" : CLASSNAME__DISPLAY_NONE, [isVisible]);
 
     useEffect(() => {
         setHideShortcut(!isShortcutVisible || !actionName);
@@ -61,10 +45,17 @@ export const CarouselItemViewerShortcutIndicator = ({
         }
     }, [isMobile, isShortcutVisible, actionName])
 
+    //#region JSX
+    const hiddenClassName = useMemo(() => isVisible ? "" : CLASSNAME__DISPLAY_NONE, [isVisible]);
     return (
-        <div className={`${className} ${hiddenClassName}`} style={containerStyle}>
+        <div
+            className={`${className} ${hiddenClassName}`}
+            style={stylingLogic.getCarouselShortcutIndicatorContainerStlye(showButton)}
+        >
             {hideShortcut ? null : (
-                <div style={shortcutStyle}>
+                <div
+                    style={stylingLogic.getCarouselShortcutIndicatorTextStlye(position)}
+                >
                     <span>
                         {capitalize(actionName)}
                     </span>
@@ -78,4 +69,5 @@ export const CarouselItemViewerShortcutIndicator = ({
             {children}
         </div>
     )
+    //#endregion
 }

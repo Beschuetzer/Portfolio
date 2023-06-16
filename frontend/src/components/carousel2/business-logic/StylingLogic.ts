@@ -28,6 +28,7 @@ import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModa
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
 import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
 import { RegexpPattern } from "./RegexpPattern";
+import { CarouselItemViewerShortcutIndicatorPosition } from "../components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
 
 export enum SpacingDirection {
     bottom,
@@ -920,6 +921,37 @@ export class StylingLogic {
             ...translationStyle,
             ...positioningStyle,
         } as CSSProperties
+    }
+
+    getCarouselShortcutIndicatorContainerStlye(showButton: boolean) {
+        const containerStyle = !showButton ? {
+            display: 'none',
+        } as React.CSSProperties : {};
+        
+        return {
+            ...containerStyle,
+        } as CSSProperties;
+    }
+    
+    getCarouselShortcutIndicatorTextStlye(position: CarouselItemViewerShortcutIndicatorPosition) {
+        const commonStyle = {
+            zIndex: 1000000000000,
+        } as CSSProperties;
+        const shortcutStyle = position === 'left' ? {
+            ...commonStyle,
+            left: 0,
+            right: 'auto',
+            transform: 'translate(0%, -50%)',
+        } as React.CSSProperties : position === 'right' ? {
+            ...commonStyle,
+            right: 0,
+            left: 'auto',
+            transform: 'translate(0%, -50%)',
+        } as React.CSSProperties  : {};
+
+        return {
+            ...shortcutStyle
+        } as CSSProperties;
     }
 
     getVideoCurrentStateIndicatorForegroundColor(isPlayButton: boolean) {

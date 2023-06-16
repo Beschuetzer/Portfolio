@@ -476,7 +476,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                         isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showNextButtonPopup}
                         onClick={onNextItemClickLocal}
                         options={options}
-                        position='right'
                         ref={nextButtonRef}
                     />
                     <CarouselItemViewerFullscreenButton
