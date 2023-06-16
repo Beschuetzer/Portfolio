@@ -2049,7 +2049,8 @@ const viewingModeItemViewerPreview = (
 						left: 30,
 					},
 					progressBar: {
-						height: 10,
+						height: 15,
+						shouldSpanContainerWidth: true,
 					},
 				},
 				itemViewerPreview: {

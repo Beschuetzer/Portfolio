@@ -264,19 +264,16 @@
             }
 
             &-progress {
-                transition: transform $carouselAnimationDuration;
+                transition: transform calc(#{$carouselAnimationDuration} / 2);
                 width: calc(100vw - #{$itemViewerToolbarMarginHorizontal});
                 cursor: pointer;
                 appearance: none;
                 border: none;
                 z-index: $zIndexProgressBar;
 
-                & > div {
-                    background-color: $itemViewerButtonColor;
-                }
-
                 &:hover {
                     transform: scaleY(2);
+                    backface-visibility: hidden;
                 }
             }
         }

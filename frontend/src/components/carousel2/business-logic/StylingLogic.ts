@@ -26,6 +26,7 @@ import {
     CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT,
     CAROUSEL_PROGRESS_BAR_HEIGHT_MAX,
     CAROUSEL_PROGRESS_BAR_HEIGHT_MIN,
+    CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -489,7 +490,7 @@ export class StylingLogic {
         const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, CAROUSEL_COLOR_GREY_ONE, this.isFullscreenMode);
         const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
         const heightToUse = height > CAROUSEL_PROGRESS_BAR_HEIGHT_MAX ? CAROUSEL_PROGRESS_BAR_HEIGHT_MAX : height < CAROUSEL_PROGRESS_BAR_HEIGHT_MIN ? CAROUSEL_PROGRESS_BAR_HEIGHT_MIN : height;
-        const marginBottom = CAROUSEL_PROGRESS_BAR_HEIGHT_MAX - heightToUse;
+        const marginBottom = CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT - heightToUse;
 
         const common = {
             marginBottom,
@@ -506,7 +507,7 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressForegroundStyle() {
-        const foregroundColor = getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, undefined, this.isFullscreenMode);
+        const foregroundColor = getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
         const common = {
             background: foregroundColor,
             width: `${this.progressBarValue * 100}%`,

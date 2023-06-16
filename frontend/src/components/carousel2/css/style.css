@@ -939,18 +939,16 @@
   }
 }
 .thumbnail-carousel__item-viewer-toolbar-progress {
-  transition: transform 0.5s;
+  transition: transform calc(0.5s / 2);
   width: calc(100vw - 20px);
   cursor: pointer;
   appearance: none;
   border: none;
   z-index: 100;
 }
-.thumbnail-carousel__item-viewer-toolbar-progress > div {
-  background-color: #fff9f5;
-}
 .thumbnail-carousel__item-viewer-toolbar-progress:hover {
   transform: scaleY(2);
+  backface-visibility: hidden;
 }
 .thumbnail-carousel__navigation {
   display: flex;

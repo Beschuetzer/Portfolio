@@ -214,9 +214,9 @@ export type CarouselSections = {
             */
             shouldSpanContainerWidth?: CarouselElementValue<boolean>;
             /*
-            *Height in px.  Default is 5px. Min is 1px and max is 20px.  
+            *Height in px.  Default is 5px. Min is 1px and max is 13px.  
             *Any number given smaller than 1px will be set to 1px.
-            *Any number given larger than 20px will be set to 20px.
+            *Any number given larger than 13px will be set to 13px.
             */
             height?: CarouselElementValue<number>;
         } & CarouselColorOptions;
