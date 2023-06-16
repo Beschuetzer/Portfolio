@@ -201,11 +201,13 @@ export class StylingLogic {
         } as CSSProperties
     }
 
-    get carouselItemViewerPreviewTextContainerStyle() {
+    get carouselItemViewerPreviewImageDescriptionContainerStyle() {
         const width = this.optionsLogic.itemViewerPreviewWidth;
+        const fontFamily = this.optionsLogic.itemViewerPreviewTextFontFamily;
 
         return {
             width: width / 2,
+            fontFamily,
         } as CSSProperties;
     }
 

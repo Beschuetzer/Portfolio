@@ -76,7 +76,7 @@ export const CarouselItemViewerToolbarPreview = ({
     ]);
     const textJSX = useMemo(() => (
         <div
-            style={stylingLogic.carouselItemViewerPreviewTextContainerStyle}
+            style={stylingLogic.carouselItemViewerPreviewImageDescriptionContainerStyle}
             className={`${className}-image-description`}
         >
             <div>
@@ -98,7 +98,7 @@ export const CarouselItemViewerToolbarPreview = ({
         className,
         description,
         shortcutString,
-        stylingLogic.carouselItemViewerPreviewTextContainerStyle
+        stylingLogic.carouselItemViewerPreviewImageDescriptionContainerStyle
     ]);
     return (
         <div

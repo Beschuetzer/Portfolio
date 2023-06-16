@@ -12,6 +12,7 @@ import {
     CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_POSITION_WHEN_SWAP_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_PADDING_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT,
@@ -142,6 +143,10 @@ export class OptionsLogic {
 
     get itemViewerPreviewTextColor() {
         return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+    }
+    
+    get itemViewerPreviewTextFontFamily() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.fontFamily, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewTextPadding() {
