@@ -2040,12 +2040,13 @@ const viewingModeItemViewerPreview = (
 			layout: {
 				itemDisplayLocation: 'below'
 			},
+
 			styling: {
 				toolbar: {
 					padding: {
 						right: 30,
 						left: 30,
-					}
+					},
 				},
 				itemViewerPreview: {
 					isVisibleInNonFullscreenMode: [[true], [false, 600]],
@@ -2115,24 +2116,24 @@ const viewingModeItemViewerPreview = (
 								fullscreen: [[{
 									top: 20,
 									bottom: 20,
-									left: 0,
-									right: 0,
+									left: 10,
+									right: 10,
 								}], [{
-									top: 0,
-									bottom: 0,
+									top: 10,
+									bottom: 10,
 									left: 20,
 									right: 20,
 								}, 800]],
 								nonFullscreen: [[{
-									top: 0,
-									bottom: 0,
+									top: 10,
+									bottom: 10,
 									left: 20,
 									right: 20,
 								}], [{
 									top: 20,
 									bottom: 20,
-									left: 0,
-									right: 0,
+									left: 10,
+									right: 10,
 								}, 800]]
 							},							
 							verticalAlignment: {

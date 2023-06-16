@@ -239,6 +239,8 @@ export class StylingLogic {
         const opacity = this.optionsLogic.itemViewerPreviewOpacity;
         const width = this.optionsLogic.itemViewerPreviewWidth;
         const height = this.optionsLogic.itemViewerPreviewHeight;
+        const padding = this.optionsLogic.itemViewerPreviewTextContainerPadding;
+        const verticalAlignment = this.optionsLogic.itemViewerPreviewTextContainerVerticalAlignment;
 
         return {
             width,
@@ -248,6 +250,11 @@ export class StylingLogic {
             backgroundColor: convertHexToRgba(background, parseFloat(opacity as string)),
             border: border,
             borderRadius: borderRadius,
+            paddingTop: padding.top,
+            paddingBottom: padding.bottom,
+            paddingLeft: padding.left,
+            paddingRight: padding.right,
+            alignItems: verticalAlignment,
         } as CSSProperties;
     }
 
