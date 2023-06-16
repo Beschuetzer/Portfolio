@@ -1,4 +1,5 @@
 Carousel rework
+  -work on progressbar hovering issue (looks bad with custom height)
   -finish ItemViewerPreview options
   -move styling.itemViewerPreview to options.itemViewerPreview?
   -go through types and figure out which should have fullscreen/nonFullscreen option;  replace with CarouselElementValueTuple for those that don't need
