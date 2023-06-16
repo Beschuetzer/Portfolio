@@ -1,6 +1,7 @@
 import { CarouselItemProps } from "../components/CarouselItem";
 import {
     CAROUSEL_COLOR_FIVE,
+    CAROUSEL_COLOR_GREY_ONE,
     CAROUSEL_COLOR_ONE,
     CAROUSEL_ITEM_SIZE_DEFAULT,
     CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT,
@@ -14,6 +15,7 @@ import {
     CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_PADDING_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_SIZE_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT,
     MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT
@@ -140,21 +142,37 @@ export class OptionsLogic {
     get itemViewerPreviewSwapImageAndText() {
         return getCurrentValue(this.options.styling?.itemViewerPreview?.swapImageAndText, CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT, this.isFullscreenMode);
     }
-
-    get itemViewerPreviewTextColor() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+    
+    get itemViewerPreviewTextBodyColor() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.body?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
     }
     
-    get itemViewerPreviewTextFontFamily() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.fontFamily, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT, this.isFullscreenMode);
+    get itemViewerPreviewTextBodyFontFamily() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.body?.fontFamily, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT, this.isFullscreenMode);
     }
 
-    get itemViewerPreviewTextPadding() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.padding, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_PADDING_DEFAULT, this.isFullscreenMode);
+    get itemViewerPreviewTextBodySize() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.body?.size, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_SIZE_DEFAULT, this.isFullscreenMode);
     }
 
-    get itemViewerPreviewTextVerticalAlignment() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.verticalAlignment, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT, this.isFullscreenMode);
+    get itemViewerPreviewTextHeaderColor() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.header?.color, CAROUSEL_COLOR_GREY_ONE, this.isFullscreenMode);
+    }
+    
+    get itemViewerPreviewTextHeaderFontFamily() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.header?.fontFamily, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewTextHeaderSize() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.header?.size, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_SIZE_DEFAULT, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewTextContainerPadding() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.container?.padding, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_PADDING_DEFAULT, this.isFullscreenMode);
+    }
+
+    get itemViewerPreviewTextContainerVerticalAlignment() {
+        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.container?.verticalAlignment, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewWidth() {

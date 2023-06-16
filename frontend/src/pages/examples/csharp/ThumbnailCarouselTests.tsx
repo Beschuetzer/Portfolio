@@ -2082,46 +2082,65 @@ const viewingModeItemViewerPreview = (
 						nonFullscreen: [[false], [true, 800]],
 					},
 					text: {
-						size: {
-							fullscreen: [[16], [12, 800]],
-							nonFullscreen: [[14], [10, 800]],
+						body: {
+							color: {
+								fullscreen: [['green'], ['red', 800]],
+								nonFullscreen: [['red'], ['green', 800]],
+							},
+							size: {
+								fullscreen: [[16], [12, 800]],
+								nonFullscreen: [[14], [10, 800]],
+							},
+							fontFamily: {
+								fullscreen: [['monospace'], ['cursive', 800]],
+								nonFullscreen: [['serif'], ['fantasy', 800]],
+							},
 						},
-						fontFamily: {
-							fullscreen: [['monospace'], ['cursive', 800]],
-							nonFullscreen: [['serif'], ['fantasy', 800]],
+						header: {
+							color: {
+								fullscreen: [['red'], ['green', 800]],
+								nonFullscreen: [['green'], ['red', 800]],
+							},
+							size: {
+								fullscreen: [[18], [14, 800]],
+								nonFullscreen: [[16], [12, 800]],
+							},
+							fontFamily: {
+								fullscreen: [['monospace'], ['cursive', 800]],
+								nonFullscreen: [['serif'], ['fantasy', 800]],
+							},
 						},
-						padding: {
-							fullscreen: [[{
-								top: 20,
-								bottom: 20,
-								left: 0,
-								right: 0,
-							}], [{
-								top: 0,
-								bottom: 0,
-								left: 20,
-								right: 20,
-							}, 800]],
-							nonFullscreen: [[{
-								top: 0,
-								bottom: 0,
-								left: 20,
-								right: 20,
-							}], [{
-								top: 20,
-								bottom: 20,
-								left: 0,
-								right: 0,
-							}, 800]]
-						},
-						color: {
-							fullscreen: [['black'], ['purple', 800]],
-							nonFullscreen: [['purle'], ['black', 800]],
-						},
-						verticalAlignment: { 
-							fullscreen: [['center'], ['flex-end', 800]],
-							nonFullscreen: [['flex-end'], ['center', 800]],
+						container: {
+							padding: {
+								fullscreen: [[{
+									top: 20,
+									bottom: 20,
+									left: 0,
+									right: 0,
+								}], [{
+									top: 0,
+									bottom: 0,
+									left: 20,
+									right: 20,
+								}, 800]],
+								nonFullscreen: [[{
+									top: 0,
+									bottom: 0,
+									left: 20,
+									right: 20,
+								}], [{
+									top: 20,
+									bottom: 20,
+									left: 0,
+									right: 0,
+								}, 800]]
+							},							
+							verticalAlignment: {
+								fullscreen: [['center'], ['flex-end', 800]],
+								nonFullscreen: [['flex-end'], ['center', 800]],
+							}
 						}
+
 					},
 				}
 			}

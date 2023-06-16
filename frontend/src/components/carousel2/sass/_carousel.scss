@@ -254,10 +254,6 @@
                         padding: calc($itemViewerToolbarMarginHorizontal / 2);
                         text-align: center;
 
-                        & > div {
-                            color: $itemViewerShortcutPopupColor;
-                        }
-
                         & > p {
                             @include maxTextLineCount();
                         }
@@ -278,7 +274,6 @@
                 appearance: none;
                 border: none;
                 z-index: $zIndexProgressBar;
-                background-color: $itemViewerShortcutPopupColor;
 
                 & > div {
                     background-color: $itemViewerButtonColor;

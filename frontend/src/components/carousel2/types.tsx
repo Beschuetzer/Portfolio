@@ -168,11 +168,22 @@ export type CarouselSections = {
         */
         swapImageAndText?: CarouselElementValue<boolean>
         text?: {
-            color?: CarouselElementValue<CSSProperties['color']>;
-            fontFamily?: CarouselElementValue<CSSProperties['fontFamily']>;
-            padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
-            verticalAlignment?: CarouselElementValue<CSSProperties['alignItems']>
-        } & CarouselElementSize;
+            /*
+            *These affect only the text body
+            */
+            body?: CarouselItemViewerPreviewTextOptions;
+            /*
+            *These affect the layout of the entire text block
+            */
+            container?: {
+                padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
+                verticalAlignment?: CarouselElementValue<CSSProperties['alignItems']>
+            }
+            /*
+            *The header text displaying the action and it's shortcuts
+            */
+            header?: CarouselItemViewerPreviewTextOptions;
+        };
         /*
         *Width in px.  Default is 400px.
         */
@@ -498,6 +509,11 @@ export type CarouselThumbnailOptions = {
     */
     size?: CarouselElementValue<number>;
 }
+
+export type CarouselItemViewerPreviewTextOptions = {
+    color?: CarouselElementValue<CSSProperties['color']>;
+    fontFamily?: CarouselElementValue<CSSProperties['fontFamily']>;
+} & CarouselElementSize;
 
 export type Point = {
     x: number;

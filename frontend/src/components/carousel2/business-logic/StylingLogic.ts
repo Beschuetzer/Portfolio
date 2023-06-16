@@ -21,11 +21,8 @@ import {
     CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
-    CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT,
-    CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT,
-    CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT,
-    CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT,
+    CAROUSEL_COLOR_GREY_ONE,
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -201,9 +198,33 @@ export class StylingLogic {
         } as CSSProperties
     }
 
+    get carouselItemViewerPreviewImageDescriptionBodyStyle() {
+        const size = this.optionsLogic.itemViewerPreviewTextBodySize;
+        const color = this.optionsLogic.itemViewerPreviewTextBodyColor;
+        const fontFamily = this.optionsLogic.itemViewerPreviewTextBodyFontFamily;
+
+        return {
+            fontFamily,
+            color,
+            fontSize: size,
+        } as CSSProperties;
+    }
+
+    get carouselItemViewerPreviewImageDescriptionHeaderStyle() {
+        const size = this.optionsLogic.itemViewerPreviewTextHeaderSize;
+        const color = this.optionsLogic.itemViewerPreviewTextHeaderColor;
+        const fontFamily = this.optionsLogic.itemViewerPreviewTextHeaderFontFamily;
+
+        return {
+            fontFamily,
+            color,
+            fontSize: size,
+        } as CSSProperties;
+    }
+
     get carouselItemViewerPreviewImageDescriptionContainerStyle() {
         const width = this.optionsLogic.itemViewerPreviewWidth;
-        const fontFamily = this.optionsLogic.itemViewerPreviewTextFontFamily;
+        const fontFamily = this.optionsLogic.itemViewerPreviewTextHeaderFontFamily;
 
         return {
             width: width / 2,
@@ -453,7 +474,7 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressBackgroundStyle() {
-        const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, undefined, this.isFullscreenMode);
+        const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, CAROUSEL_COLOR_GREY_ONE, this.isFullscreenMode);
         const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
         const common = {
             background,

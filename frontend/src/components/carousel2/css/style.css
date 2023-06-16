@@ -928,9 +928,6 @@
   padding: 10px;
   text-align: center;
 }
-.thumbnail-carousel__item-viewer-toolbar-preview-image-description > div {
-  color: #9b9b9b;
-}
 .thumbnail-carousel__item-viewer-toolbar-preview-image-description > p {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -952,7 +949,6 @@
   appearance: none;
   border: none;
   z-index: 100;
-  background-color: #9b9b9b;
 }
 .thumbnail-carousel__item-viewer-toolbar-progress > div {
   background-color: #fff9f5;

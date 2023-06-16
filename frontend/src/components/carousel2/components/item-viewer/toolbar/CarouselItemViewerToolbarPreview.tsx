@@ -79,7 +79,9 @@ export const CarouselItemViewerToolbarPreview = ({
             style={stylingLogic.carouselItemViewerPreviewImageDescriptionContainerStyle}
             className={`${className}-image-description`}
         >
-            <div>
+            <div
+                style={stylingLogic.carouselItemViewerPreviewImageDescriptionHeaderStyle}
+            >
                 <div>
                     {actionName.toUpperCase()}
                 </div>
@@ -89,7 +91,9 @@ export const CarouselItemViewerToolbarPreview = ({
                     </div>
                 ) : null}
             </div>
-            <p>
+            <p
+                style={stylingLogic.carouselItemViewerPreviewImageDescriptionBodyStyle}
+            >
                 {description || 'No description'}
             </p>
         </div>
@@ -98,7 +102,9 @@ export const CarouselItemViewerToolbarPreview = ({
         className,
         description,
         shortcutString,
-        stylingLogic.carouselItemViewerPreviewImageDescriptionContainerStyle
+        stylingLogic.carouselItemViewerPreviewImageDescriptionBodyStyle,
+        stylingLogic.carouselItemViewerPreviewImageDescriptionContainerStyle,
+        stylingLogic.carouselItemViewerPreviewImageDescriptionHeaderStyle,
     ]);
     return (
         <div
