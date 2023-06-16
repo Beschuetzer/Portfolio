@@ -1,5 +1,4 @@
 Carousel rework
-  -adjust shortcut indicator placement to be equidistant from progressbar (same padding a navigation top)
   -finish ItemViewerPreview options
   -move styling.itemViewerPreview to options.itemViewerPreview?
   -go through types and figure out which should have fullscreen/nonFullscreen option;  replace with CarouselElementValueTuple for those that don't need

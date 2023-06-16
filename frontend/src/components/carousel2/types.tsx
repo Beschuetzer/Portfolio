@@ -213,6 +213,12 @@ export type CarouselSections = {
             *Default is false
             */
             shouldSpanContainerWidth?: CarouselElementValue<boolean>;
+            /*
+            *Height in px.  Default is 5px. Min is 1px and max is 20px.  
+            *Any number given smaller than 1px will be set to 1px.
+            *Any number given larger than 20px will be set to 20px.
+            */
+            height?: CarouselElementValue<number>;
         } & CarouselColorOptions;
         /*
         *This changes all of the button colors as well as the text.  To change individual ones, use styling.elements.buttonNameHere

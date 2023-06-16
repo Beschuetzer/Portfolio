@@ -813,7 +813,7 @@ const dynamicToolbarColor = (
 		}
 	}} />
 );
-const dynamicProgressBarColor = (
+const dynamicProgressBarColorAndHeight = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
 			itemDisplayLocation: "above",
@@ -823,6 +823,7 @@ const dynamicProgressBarColor = (
 				progressBar: {
 					foregroundColor: [['red'], ['black', 800]],
 					background: [['black'], ['white', 800]],
+					height: [[10], [3, 800]],
 				}
 			}
 		}
@@ -2047,6 +2048,9 @@ const viewingModeItemViewerPreview = (
 						right: 30,
 						left: 30,
 					},
+					progressBar: {
+						height: 10,
+					},
 				},
 				itemViewerPreview: {
 					isVisibleInNonFullscreenMode: [[true], [false, 600]],
@@ -2663,8 +2667,8 @@ const SECTIONS: Sections = [
 				jsx: dynamicToolbarColor,
 			},
 			{
-				label: "ProgressBar Color Changes at 800px",
-				jsx: dynamicProgressBarColor,
+				label: "ProgressBar Color and Height Change at 800px",
+				jsx: dynamicProgressBarColorAndHeight,
 			},
 			{
 				label: "All Background Colors Changes at 800px",
@@ -2895,6 +2899,7 @@ const SECTIONS: Sections = [
 
 const ENABLED_SECTIONS: SectionNames[] = [
 	SectionNames.dynamicBasedOnViewingMode,
+	// SectionNames.otherDynamicSettings,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
 	// ...Object.values(SectionNames),

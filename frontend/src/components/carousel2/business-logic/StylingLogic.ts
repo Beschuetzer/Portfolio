@@ -23,6 +23,9 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT,
     CAROUSEL_COLOR_GREY_ONE,
+    CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT,
+    CAROUSEL_PROGRESS_BAR_HEIGHT_MAX,
+    CAROUSEL_PROGRESS_BAR_HEIGHT_MIN,
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -482,9 +485,15 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressBackgroundStyle() {
+        const height = getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
         const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, CAROUSEL_COLOR_GREY_ONE, this.isFullscreenMode);
         const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
+        const heightToUse = height > CAROUSEL_PROGRESS_BAR_HEIGHT_MAX ? CAROUSEL_PROGRESS_BAR_HEIGHT_MAX : height < CAROUSEL_PROGRESS_BAR_HEIGHT_MIN ? CAROUSEL_PROGRESS_BAR_HEIGHT_MIN : height;
+        const marginBottom = CAROUSEL_PROGRESS_BAR_HEIGHT_MAX - heightToUse;
+
         const common = {
+            marginBottom,
+            height: heightToUse,
             background,
             width: shouldSpanWholeWidth ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})` : '100%',
         } as CSSProperties
@@ -927,27 +936,31 @@ export class StylingLogic {
         const containerStyle = !showButton ? {
             display: 'none',
         } as React.CSSProperties : {};
-        
+
         return {
             ...containerStyle,
         } as CSSProperties;
     }
-    
+
     getCarouselShortcutIndicatorTextStlye(position: CarouselItemViewerShortcutIndicatorPosition) {
         const commonStyle = {
             zIndex: 1000000000000,
+            top: -this.getPaddingAmount(SpacingDirection.top, CarouselSection.navigation) * 2 - 4, //no sure why 4 is needed here
         } as CSSProperties;
         const shortcutStyle = position === 'left' ? {
             ...commonStyle,
             left: 0,
             right: 'auto',
-            transform: 'translate(0%, -50%)',
+            transform: 'translate(0%, -100%)',
         } as React.CSSProperties : position === 'right' ? {
             ...commonStyle,
             right: 0,
             left: 'auto',
-            transform: 'translate(0%, -50%)',
-        } as React.CSSProperties  : {};
+            transform: 'translate(0%, -100%)',
+        } as React.CSSProperties : {
+            ...commonStyle,
+            transform: 'translate(-50%, -100%)',
+        };
 
         return {
             ...shortcutStyle

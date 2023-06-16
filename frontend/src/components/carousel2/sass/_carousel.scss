@@ -163,8 +163,6 @@
                 z-index: $zIndexShortcutPopup;
                 padding: 4px 8px;
                 position: absolute;
-                top: -127.5%;
-                transform: translate(-50%, -50%);
                 left: 50%;
                 background: white;
                 display: flex;
@@ -268,9 +266,7 @@
             &-progress {
                 transition: transform $carouselAnimationDuration;
                 width: calc(100vw - #{$itemViewerToolbarMarginHorizontal});
-                margin-bottom: calc(#{$itemViewerProgressHeight} * 3);
                 cursor: pointer;
-                height: $itemViewerProgressHeight;
                 appearance: none;
                 border: none;
                 z-index: $zIndexProgressBar;

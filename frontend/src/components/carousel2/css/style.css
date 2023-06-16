@@ -844,8 +844,6 @@
   z-index: 10000;
   padding: 4px 8px;
   position: absolute;
-  top: -127.5%;
-  transform: translate(-50%, -50%);
   left: 50%;
   background: white;
   display: flex;
@@ -943,9 +941,7 @@
 .thumbnail-carousel__item-viewer-toolbar-progress {
   transition: transform 0.5s;
   width: calc(100vw - 20px);
-  margin-bottom: calc(5px * 3);
   cursor: pointer;
-  height: 5px;
   appearance: none;
   border: none;
   z-index: 100;
