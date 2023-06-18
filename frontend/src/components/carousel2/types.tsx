@@ -97,12 +97,15 @@ export type CarouselElementValueTuple<T> = CarouselElementTuple<T> | T;
 export type CarouselElementTuple<T> = [T, number?, CarouselElementValueType?][];
 export type CarouselItemViewerOptions = {
     /*
-   *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.  
+   *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.
    *Otherwise, auto-hide occurs when there is no mouse input for this amount of time in milliseconds.  Default is 2.5 seconds.
+   *Only applies when in fullscreen mode
    */
-    autoHideToolbarDuration?: CarouselElementValue<number>;
+    autoHideToolbarDuration?: CarouselElementValueTuple<number>;
     /*
-    *How for forward/backward the seek buttons move a video.  Default is 5 seconds.
+    *How for forward/backward the seek buttons move a video.  
+    *Default is 5 seconds.
+    *Only applies when in fullscreen mode
     */
     seekAmount?: CarouselElementValue<number>;
 } & CarouselSwipingOptions
@@ -265,7 +268,7 @@ export type CarouselLayoutOptions = {
        *Otherwise the the item is displayed above or below the carousel.
        *Default is 'none'.
        */
-    itemDisplayLocation?: CarouselElementValue<'none' | 'above' | 'below'>;
+    itemDisplayLocation?: CarouselElementValueTuple<'none' | 'above' | 'below'>;
     /*
    *If `thumbnail.itemSpacing` is not given, then it defaults to 5 if `itemPositioning` is not undefined
    *Default is `left`
@@ -274,17 +277,17 @@ export type CarouselLayoutOptions = {
    *`right` => the right-most thumbnail item on a given page is positioned flush with the container
    *Overrides any value given in `thumbnail.itemSpacingStrategy`
    */
-    itemPositioning?: CarouselElementValue<'left' | 'center' | 'right'>;
+    itemPositioning?: CarouselElementValueTuple<'left' | 'center' | 'right'>;
 }
 
 export type CarouselSwipingOptions = {
     /*
-       *If true, then swiping will be disabled.  For navigation, this means grabbing a thumbnail and swiping will not change the page.  
-       *For `itemViewer`, this means that grabbing and swiping will not change the currently viewing item.
-       *Default is false.
-       *Swiping only occurs if mouseup and mousedown coordinate distances are greater than `maxClickThreshold` 
-       */
-    disableSwiping?: CarouselElementValue<boolean>;
+    *If true, then swiping will be disabled.  For `navigation`, this means grabbing a thumbnail and swiping will not change the page (non-fullscreen mode).  
+    *For `itemViewer`, this means that grabbing and swiping will not change the currently viewing item (fullscreen mode).
+    *Default is false.
+    *Swiping only occurs if mouseup and mousedown coordinate distances are greater than `maxClickThreshold` 
+    */
+    disableSwiping?: CarouselElementValueTuple<boolean>;
     /*
    *The max number of pixels that can be moved between mousedown and mouseup to still register a 'click' event
    *This is used to prevent opening of an item when mousedown and mouseup targets are the same
@@ -292,7 +295,7 @@ export type CarouselSwipingOptions = {
    *0 would mean if the user moved the cursor at all between mouseup and mousedown then the item would not open
    *Default is 15 when swiping is enabled to allow for slight movement (swiping is disabled if only 1 page or `disableSwiping` is false)
    */
-    maxClickThreshold?: CarouselElementValue<number>;
+    maxClickThreshold?: CarouselElementValueTuple<number>;
 }
 
 export type CarouselNavigationOptions = {
@@ -306,13 +309,15 @@ export type CarouselNavigationOptions = {
     *When false, the right arrow button navigates to the first page when the currentPage is the final page
     *and the left arrow button navigates to the last page when the currentPage is the first page.
     *Default is false
+    *Only applicable when not in fullscreen mode
     */
-    disableWrapping?: CarouselElementValue<boolean>;
+    disableWrapping?: CarouselElementValueTuple<boolean>;
     /*
     *If true, the last page ends with the last item in the list otherwise there may be blank space after the last item
     *Default is true
+    *Only applicable when not in fullscreen mode
     */
-    isLastPageFlush?: boolean;
+    isLastPageFlush?: CarouselElementValueTuple<boolean>;
 } & CarouselSwipingOptions
 
 export type CarouselNavigationProps = {
@@ -430,12 +435,15 @@ export type CarouselElementStyles = {
     [button in CarouselElement]?: button extends CarouselElement.all ? Pick<CarouselElementCustomization, 'fillColor'> : CarouselElementCustomization;
 }
 
+/*
+*Only applicable in fullscreen mode since thumbnails not visible otherwise
+*/
 export type CarouselThumbnailBackgroundOptions = {
     /*
     *Specify what you want the gradient to be for browswers that support it.  The gradient starts at the top and goes down by default (180deg angle)
     */
     gradient?: {
-        angle?: CarouselElementValue<number>;
+        angle?: CarouselElementValueTuple<number>;
         end: CarouselThumbnailBackground;
         start: CarouselThumbnailBackground;
     }
@@ -444,17 +452,24 @@ export type CarouselThumbnailBackgroundOptions = {
     */
     solid?: CarouselThumbnailBackground;
 }
+
+/*
+*Only applicable in fullscreen mode since thumbnails not visible otherwise
+*/
 export type CarouselThumbnailBackground = {
     /*
     *This is a hexadecimal color
     */
-    color?: CarouselElementValue<Color>;
+    color?: CarouselElementValueTuple<Color>;
     /*
     *Valid values are 0-1 inclusive
     */
-    opacity?: CarouselElementValue<number>;
+    opacity?: CarouselElementValueTuple<number>;
 }
 
+/*
+*Only applicable in fullscreen mode since thumbnails not visible otherwise
+*/
 export type CarouselThumbnailDescriptionOverlayOptions = {
     /*
     *Options to specify how the background looks.  You can specify a starting an ending linear gradient for browsers that support it.
@@ -464,35 +479,38 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
     /*
     *If true the description is disabled in the thumbnail.  Default is false is `layout.itemDisplayLocation` is 'none' otherwise true.
     */
-    isDisabled?: CarouselElementValue<boolean>;
+    isDisabled?: CarouselElementValueTuple<boolean>;
     /*
     *The size of the font in px of the thumbnail description;  Default is 12px;
     */
-    fontSize?: CarouselElementValue<number>;
+    fontSize?: CarouselElementValueTuple<number>;
     /*
     *If false, the overlay with the description is always present.  
     *If true, the overlay only shows when item is hovered.
     *No overlay is shown if item.description is falsy
     *Default is true
     */
-    hideDescriptionOverlayUnlessHovered?: CarouselElementValue<boolean>;
+    hideDescriptionOverlayUnlessHovered?: CarouselElementValueTuple<boolean>;
     /*
     *The number of lines to show before an ellipsis is inserted.  Default is 2.
     */
-    maxLineCount?: CarouselElementValue<number>;
+    maxLineCount?: CarouselElementValueTuple<number>;
     /*
     *The hexadecimal value for the thumbnail background's text
     */
-    textColor?: CarouselElementValue<Color>;
+    textColor?: CarouselElementValueTuple<Color>;
 
 }
 
+/*
+*Only applicable in fullscreen mode since thumbnails not visible otherwise
+*/
 export type CarouselThumbnailOptions = {
     /*
     *This is the border used to indicate which thumbnail is active when 'layout.itemDisplayLocation' is not 'none'.  
     *Must be in the CSS border property format (e.g. '1px solid #000').  Will use default if the value provided is deemed invalid.
     */
-    currentItemBorder?: CarouselElementValue<CSSProperties['border']>;
+    currentItemBorder?: CarouselElementValueTuple<CSSProperties['border']>;
     /*
     *This is the background and text that displays with the description text when hovering a thumbnail
     */
@@ -501,7 +519,7 @@ export type CarouselThumbnailOptions = {
     *The value in px that the thumbnails are spaced apart.  
     *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible
     */
-    itemSpacing?: CarouselElementValue<number>;
+    itemSpacing?: CarouselElementValueTuple<number>;
     /*
     *Default is `min`
     *Determines how the thumbnails are spaced out if there is only one page and `itemSpacing` is not given (i.e. dynamic spacing is active)
@@ -509,11 +527,11 @@ export type CarouselThumbnailOptions = {
     *`max` means that the `itemSpacing` will be maximized such that the thumbnails will span the entire width of the container when there is only one page
     *If `layout.itemPositioning` is given, then this value is ignored
     */
-    itemSpacingStrategy?: CarouselElementValue<'min' | 'max'>;
+    itemSpacingStrategy?: CarouselElementValueTuple<'min' | 'max'>;
     /*
     *The size of the thumbnails in px.  Default is 150px.
     */
-    size?: CarouselElementValue<number>;
+    size?: CarouselElementValueTuple<number>;
 }
 
 export type CarouselItemViewerPreviewTextOptions = {

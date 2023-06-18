@@ -82,7 +82,7 @@ export class OptionsLogic {
     }
 
     get isLastPageFlush() {
-        return this.options?.navigation?.isLastPageFlush === undefined ? true : this.options.navigation.isLastPageFlush;
+        return getCurrentValue(this.options?.navigation?.isLastPageFlush, true, this.isFullscreenMode);
     }
 
     get isNavigationSwipingDisabled() {

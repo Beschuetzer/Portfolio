@@ -1,6 +1,6 @@
 Carousel rework
-  -work on progressbar hovering issue (looks bad with custom height); add container around progress bar which sets the value when clicked
   -go through types and figure out which should have fullscreen/nonFullscreen option;  replace with CarouselElementValueTuple for those that don't need
+  -work on progressbar hovering issue (looks bad with custom height); add container around progress bar which sets the value when clicked
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
   -need to work on individual options for each button size

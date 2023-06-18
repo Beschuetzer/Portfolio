@@ -2039,10 +2039,14 @@ const viewingModeItemViewerPreview = (
 		items={items.slice(0, 3)}
 		options={{
 			layout: {
-				itemDisplayLocation: 'below'
+				itemDisplayLocation: 'below',
 			},
-
 			styling: {
+				container: {
+					background: {
+						
+					}
+				}
 				toolbar: {
 					padding: {
 						right: 30,
