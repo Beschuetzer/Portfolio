@@ -2911,11 +2911,11 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	SectionNames.dynamicBasedOnViewingMode,
+	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
-	// ...Object.values(SectionNames),
+	...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS
 	.filter((section) => ENABLED_SECTIONS.includes(section[0]))
