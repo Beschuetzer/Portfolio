@@ -2039,18 +2039,26 @@ const viewingModeItemViewerPreview = (
 		items={items.slice(0, 3)}
 		options={{
 			layout: {
-				itemDisplayLocation: 'below',
+				itemDisplayLocation: 'above',
 			},
 			styling: {
 				container: {
-					background: {
-						
-					}
-				}
+					padding: {
+
+					}					
+				},
 				toolbar: {
 					padding: {
-						right: 30,
-						left: 30,
+						left: 100,
+						// top: 40,
+						fullscreen: {
+							left: [[30], [1, 800]],
+							right: [[60], [10,800]],
+						},
+						// nonFullscreen: {
+						// 	right: [[30], [1, 800]],
+						// 	left: [[60], [10,800]],
+						// },
 					},
 					progressBar: {
 						height: 15,

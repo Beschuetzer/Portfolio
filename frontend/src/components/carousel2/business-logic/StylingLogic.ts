@@ -664,15 +664,20 @@ export class StylingLogic {
 
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItem);
+        const paddingHorizontalStyle = {
+            paddingLeft: this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar),
+            paddingRight: this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar),
+        } as CSSProperties;
         const nonDefaultItemDisplayStyle = !this.isFullscreenMode ? {
             ...this.toolbarBackgroundColorStyle,
+            ...paddingHorizontalStyle,
             position: "relative",
             width: '100%',
-            paddingTop: `${isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT}${CAROUSEL_SPACING_UNIT}`,
+            paddingTop: isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
             paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
-            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT}`,
-            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT}`,
-        } as React.CSSProperties : {};
+        } as React.CSSProperties : {
+            ...paddingHorizontalStyle,
+        };
 
         return {
             ...nonDefaultItemDisplayStyle,
@@ -1015,30 +1020,49 @@ export class StylingLogic {
         let specificElementPadding: number | undefined;
 
         switch (direction) {
-            case SpacingDirection.bottom:
+            case SpacingDirection.bottom: {
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.optionsLogic.isItemDisplayLocationBelow ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = getCurrentValue(this.options.styling?.container?.padding?.bottom, undefined, this.isFullscreenMode);
-                // specificElementPadding = this.options.styling?.[item]?.padding?.bottom;
-                customPadding = specificElementPadding || allPadding;
+                const specificElementPaddingFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.bottom, undefined, this.isFullscreenMode);
+                const specificElementPaddingNonFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.bottom, undefined, this.isFullscreenMode);
+                const specificElementPaddingBoth = getCurrentValue((this.options.styling?.[item] as any)?.padding?.bottom, undefined, this.isFullscreenMode);
+                const specificElementPaddingToUse = this.isFullscreenMode ? (specificElementPaddingFullscreen || specificElementPaddingBoth) : (specificElementPaddingNonFullscreen || specificElementPaddingBoth);
+                customPadding = specificElementPaddingToUse || allPadding;
                 return customPadding !== undefined ? customPadding : defaultPadding;
-            case SpacingDirection.left:
+            }
+            case SpacingDirection.left: {
+
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = getCurrentValue(this.options.styling?.container?.padding?.left, undefined, this.isFullscreenMode);
-                specificElementPadding = getCurrentValue((this.options.styling?.[item] as any)?.padding?.left, undefined, this.isFullscreenMode);
-                customPadding = specificElementPadding || allPadding
+                const specificElementPaddingFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.left, undefined, this.isFullscreenMode);
+                const specificElementPaddingNonFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.left, undefined, this.isFullscreenMode);
+                const specificElementPaddingBoth = getCurrentValue((this.options.styling?.[item] as any)?.padding?.left, undefined, this.isFullscreenMode);
+                const specificElementPaddingToUse = this.isFullscreenMode ? (specificElementPaddingFullscreen || specificElementPaddingBoth) : (specificElementPaddingNonFullscreen || specificElementPaddingBoth);
+                customPadding = specificElementPaddingToUse || allPadding;
+                console.log({specificElementPaddingBoth, specificElementPaddingToUse, specificElementPaddingFullscreen, specificElementPaddingNonFullscreen});
+                
                 return customPadding !== undefined ? customPadding : defaultPadding;
-            case SpacingDirection.right:
+            }
+            case SpacingDirection.right: {
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = getCurrentValue(this.options.styling?.container?.padding?.right, undefined, this.isFullscreenMode);
-                specificElementPadding = getCurrentValue((this.options.styling?.[item] as any)?.padding?.right, undefined, this.isFullscreenMode);
-                customPadding = specificElementPadding || allPadding
+                const specificElementPaddingBoth = getCurrentValue((this.options.styling?.[item] as any)?.padding?.right, undefined, this.isFullscreenMode);
+                const specificElementPaddingFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.right, undefined, this.isFullscreenMode);
+                const specificElementPaddingNonFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.right, undefined, this.isFullscreenMode);
+                const specificElementPaddingToUse = this.isFullscreenMode ? (specificElementPaddingFullscreen || specificElementPaddingBoth) : (specificElementPaddingNonFullscreen || specificElementPaddingBoth);
+                customPadding = specificElementPaddingToUse || allPadding;
                 return customPadding !== undefined ? customPadding : defaultPadding;
-            case SpacingDirection.top:
+            }
+            case SpacingDirection.top: {
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = getCurrentValue(this.options.styling?.container?.padding?.top, undefined, this.isFullscreenMode);
-                // specificElementPadding = this.options.styling?.[item]?.padding?.top;
-                customPadding = specificElementPadding || allPadding
+                const specificElementPaddingFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.top, undefined, this.isFullscreenMode);
+                const specificElementPaddingNonFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.top, undefined, this.isFullscreenMode);
+                const specificElementPaddingBoth = getCurrentValue((this.options.styling?.[item] as any)?.padding?.top, undefined, this.isFullscreenMode);
+                const specificElementPaddingToUse = this.isFullscreenMode ? (specificElementPaddingFullscreen || specificElementPaddingBoth) : (specificElementPaddingNonFullscreen || specificElementPaddingBoth);
+                customPadding = specificElementPaddingToUse || allPadding;
                 return customPadding !== undefined ? customPadding : defaultPadding;
+            }
         }
         //#endregion
     }

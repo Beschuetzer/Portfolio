@@ -85,12 +85,12 @@ export type CarouselElementViewingMode<T> = {
     /*
     *These setting only apply when in fullscreen mode.  Otherwise default settings are used
     */
-    fullscreen?: CarouselElementTuple<T>;
+    fullscreen?: CarouselElementValueTuple<T>;
     /*
     *These setting only apply when not in fullscreen mode.  Otherwise default settings are used
     *Elements only visible when `layout.itemDisplayLocation` is not `none`, will not be affected by this unless `itemDisplayLocation` is also set.
     */
-    nonFullscreen?: CarouselElementTuple<T>;
+    nonFullscreen?: CarouselElementValueTuple<T>;
 }
 export type CarouselElementValue<T> = CarouselElementViewingMode<T> | CarouselElementValueTuple<T>;
 export type CarouselElementValueTuple<T> = CarouselElementTuple<T> | T;
@@ -209,7 +209,7 @@ export type CarouselSections = {
         /*
         This sets the size of the buttons in the toolbar in px.  The default is 24px
         */
-        padding?: CarouselHorizontalPaddingOptions;
+        padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
         progressBar?: {
             /*
             *If true, the progress bar spans the entire width of the carousel itemViewer, otherwise it only spans the inner width of the toolbar container.
@@ -344,13 +344,13 @@ export type CarouselFontFamilyOptions = Exclusive<
     }>
 
 export type CarouselHorizontalPaddingOptions = {
-    left?: CarouselElementValue<number>;
-    right?: CarouselElementValue<number>;
+    left?: CarouselElementValueTuple<number>;
+    right?: CarouselElementValueTuple<number>;
 }
 
 export type CarouselVerticalPaddingOptions = {
-    bottom?: CarouselElementValue<number>;
-    top?: CarouselElementValue<number>;
+    bottom?: CarouselElementValueTuple<number>;
+    top?: CarouselElementValueTuple<number>;
 }
 
 export type CarouselStylingOptions = {
