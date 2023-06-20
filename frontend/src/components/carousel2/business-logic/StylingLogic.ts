@@ -246,11 +246,12 @@ export class StylingLogic {
         const height = this.optionsLogic.itemViewerPreviewHeight;
         const padding = this.optionsLogic.itemViewerPreviewTextContainerPadding;
         const verticalAlignment = this.optionsLogic.itemViewerPreviewTextContainerVerticalAlignment;
+        const top = (height * -1) - CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
 
         return {
             width,
             height,
-            top: height * -1 - this.getPaddingAmount(SpacingDirection.top, CarouselSection.toolbar),
+            top,
             right: this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar),
             backgroundColor: convertHexToRgba(background, parseFloat(opacity as string)),
             border: border,
@@ -951,7 +952,7 @@ export class StylingLogic {
     getCarouselShortcutIndicatorTextStlye(position: CarouselItemViewerShortcutIndicatorPosition) {
         const commonStyle = {
             zIndex: 1000000000000,
-            top: -this.getPaddingAmount(SpacingDirection.top, CarouselSection.navigation) * 2 - 4, //no sure why 4 is needed here
+            top: CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT * -2,
         } as CSSProperties;
         const shortcutStyle = position === 'left' ? {
             ...commonStyle,
