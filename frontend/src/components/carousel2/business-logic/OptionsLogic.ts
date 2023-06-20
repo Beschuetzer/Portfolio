@@ -168,7 +168,17 @@ export class OptionsLogic {
     }
 
     get itemViewerPreviewTextContainerPadding() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.container?.padding, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_PADDING_DEFAULT, this.isFullscreenMode);
+        const padding = getCurrentValue(this.options.styling?.itemViewerPreview?.text?.container?.padding, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_PADDING_DEFAULT, this.isFullscreenMode);
+        const paddingLeftStatic = (this.options.styling?.itemViewerPreview?.text?.container?.padding as any)?.left;
+        const paddingRightStatic = (this.options.styling?.itemViewerPreview?.text?.container?.padding as any)?.right;
+        const paddingBottomStatic = (this.options.styling?.itemViewerPreview?.text?.container?.padding as any)?.bottom;
+        const paddingTopStatic = (this.options.styling?.itemViewerPreview?.text?.container?.padding as any)?.top;
+        return {
+            top: paddingTopStatic !== undefined ? paddingTopStatic : padding.top,
+            bottom: paddingBottomStatic !== undefined ? paddingBottomStatic : padding.bottom,
+            left: paddingLeftStatic !== undefined ? paddingLeftStatic : padding.left,
+            right: paddingRightStatic !== undefined ? paddingRightStatic : padding.right,
+        }
     }
 
     get itemViewerPreviewTextContainerVerticalAlignment() {

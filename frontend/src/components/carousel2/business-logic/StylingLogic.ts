@@ -1029,7 +1029,6 @@ export class StylingLogic {
                 return customPadding !== undefined ? customPadding : defaultPadding;
             }
             case SpacingDirection.left: {
-
                 defaultPadding = this.optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
                 allPadding = getCurrentValue(this.options.styling?.container?.padding?.left, undefined, this.isFullscreenMode);
                 const specificElementPaddingFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.left, undefined, this.isFullscreenMode);
@@ -1037,8 +1036,6 @@ export class StylingLogic {
                 const specificElementPaddingBoth = getCurrentValue((this.options.styling?.[item] as any)?.padding?.left, undefined, this.isFullscreenMode);
                 const specificElementPaddingToUse = this.isFullscreenMode ? (specificElementPaddingFullscreen || specificElementPaddingBoth) : (specificElementPaddingNonFullscreen || specificElementPaddingBoth);
                 customPadding = specificElementPaddingToUse || allPadding;
-                console.log({specificElementPaddingBoth, specificElementPaddingToUse, specificElementPaddingFullscreen, specificElementPaddingNonFullscreen});
-                
                 return customPadding !== undefined ? customPadding : defaultPadding;
             }
             case SpacingDirection.right: {

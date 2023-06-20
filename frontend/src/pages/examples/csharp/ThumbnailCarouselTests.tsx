@@ -2130,11 +2130,11 @@ const viewingModeItemViewerPreview = (
 						},
 						container: {
 							padding: {
+								top: 50,
 								fullscreen: [[{
-									top: 20,
-									bottom: 20,
 									left: 10,
 									right: 10,
+									bottom: 25,
 								}], [{
 									top: 10,
 									bottom: 10,
@@ -2748,10 +2748,10 @@ const SECTIONS: Sections = [
 			// 	label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeToolbarButtons,
 			// },
-			{
-				label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
-				jsx: viewingModeVideoCurrentStateIndicator,
-			},
+			// {
+			// 	label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
+			// 	jsx: viewingModeVideoCurrentStateIndicator,
+			// },
 			{
 				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
 				jsx: viewingModeItemViewerPreview,
@@ -2911,11 +2911,11 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	// SectionNames.dynamicBasedOnViewingMode,
+	SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
-	...Object.values(SectionNames),
+	// ...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS
 	.filter((section) => ENABLED_SECTIONS.includes(section[0]))
