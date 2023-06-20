@@ -2182,6 +2182,95 @@ const viewingModeItemViewerPreview = (
 		}}
 	/>
 );
+const viewingModePaddingEverywhere = (
+	<Carousel
+		items={items.slice(0, 3)}
+		options={{
+			layout: {
+				itemDisplayLocation: 'above',
+			},
+			styling: {
+				itemViewer: {
+					padding: {
+						left: [[30], [1, 800]],
+						right: [[60], [10,800]],
+					}
+				},
+				navigation: {
+					padding: {
+						left: [[60], [10,800]],
+						right: [[30], [1, 800]],
+					}
+				},
+				videoModal: {
+					padding: {
+						top: 40,
+						fullscreen: {
+							bottom: [[30], [1, 800]],
+							right: [[60], [10,800]],
+							top: 80,
+						},
+						nonFullscreen: {
+							right: [[30], [1, 800]],
+							left: [[60], [10,800]],
+						},
+					}
+				},
+				container: {
+					padding: {
+						bottom: [[50], [10, 800]],
+						top: [[50], [10, 800]],
+						left: [[50], [10, 800]],
+						right: [[50], [10, 800]],
+					},		
+				},
+				toolbar: {
+					padding: {
+						top: 40,
+						fullscreen: {
+							left: [[30], [1, 800]],
+							right: [[60], [10,800]],
+						},
+						nonFullscreen: {
+							right: [[30], [1, 800]],
+							left: [[60], [10,800]],
+						},
+					},
+				},
+				itemViewerPreview: {
+					text: {
+						container: {
+							padding: {
+								top: 50,
+								fullscreen: [[{
+									left: 10,
+									right: 10,
+									bottom: 25,
+								}], [{
+									top: 10,
+									bottom: 10,
+									left: 20,
+									right: 20,
+								}, 800]],
+								nonFullscreen: [[{
+									top: 10,
+									bottom: 10,
+									left: 20,
+									right: 20,
+								}], [{
+									top: 20,
+									bottom: 20,
+									left: 10,
+									right: 10,
+								}, 800]]
+							},							
+						}
+					},
+				}
+			}
+		}}
+	/>
+);
 //#endregion
 
 type Sections = [SectionNames, { label: string, jsx: ReactNode | ReactNode[] }[]][];
@@ -2761,6 +2850,10 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.dynamicBasedOnViewingMode,
 		[
+			{
+				label: "Padding Everywhere Changes Dynamically based on Viewing Mode",
+				jsx: viewingModePaddingEverywhere,
+			},
 			// {
 			// 	label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeToolbarButtons,
@@ -2770,9 +2863,9 @@ const SECTIONS: Sections = [
 			// 	jsx: viewingModeVideoCurrentStateIndicator,
 			// },
 			{
-				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode and Padding Everywhere Changes Dynamically",
+				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
 				jsx: viewingModeItemViewerPreview,
-			},
+			},			
 		]
 	],
 	[
