@@ -14,11 +14,11 @@ import {
     CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT,
-    CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_PADDING_DEFAULT,
+    CAROUSEL_PADDING_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_SIZE_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT,
-    MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT
+    MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT
 } from "../constants";
 import { CarouselOptions } from "../types";
 import { getCurrentValue } from "../utils";
@@ -142,11 +142,11 @@ export class OptionsLogic {
     get itemViewerPreviewSwapImageAndText() {
         return getCurrentValue(this.options.styling?.itemViewerPreview?.swapImageAndText, CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT, this.isFullscreenMode);
     }
-    
+
     get itemViewerPreviewTextBodyColor() {
         return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.body?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
     }
-    
+
     get itemViewerPreviewTextBodyFontFamily() {
         return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.body?.fontFamily, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT, this.isFullscreenMode);
     }
@@ -158,7 +158,7 @@ export class OptionsLogic {
     get itemViewerPreviewTextHeaderColor() {
         return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.header?.color, CAROUSEL_COLOR_GREY_ONE, this.isFullscreenMode);
     }
-    
+
     get itemViewerPreviewTextHeaderFontFamily() {
         return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.header?.fontFamily, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT, this.isFullscreenMode);
     }
@@ -168,7 +168,7 @@ export class OptionsLogic {
     }
 
     get itemViewerPreviewTextContainerPadding() {
-        const padding = getCurrentValue(this.options.styling?.itemViewerPreview?.text?.container?.padding, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_PADDING_DEFAULT, this.isFullscreenMode);
+        const padding = getCurrentValue(this.options.styling?.itemViewerPreview?.text?.container?.padding, CAROUSEL_PADDING_DEFAULT, this.isFullscreenMode);
         const paddingLeftStatic = (this.options.styling?.itemViewerPreview?.text?.container?.padding as any)?.left;
         const paddingRightStatic = (this.options.styling?.itemViewerPreview?.text?.container?.padding as any)?.right;
         const paddingBottomStatic = (this.options.styling?.itemViewerPreview?.text?.container?.padding as any)?.bottom;
@@ -199,6 +199,28 @@ export class OptionsLogic {
 
     get shouldHideThumbnailOverlay() {
         return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true, this.isFullscreenMode);
+    }
+
+    get videoModalPadding() {
+        const padding = getCurrentValue(this.options.styling?.videoModal?.padding, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT, this.isFullscreenMode);
+        const paddingLeftStatic = (this.options.styling?.videoModal?.padding as any)?.left;
+        const paddingRightStatic = (this.options.styling?.videoModal?.padding as any)?.right;
+        const paddingBottomStatic = (this.options.styling?.videoModal?.padding as any)?.bottom;
+        const paddingTopStatic = (this.options.styling?.videoModal?.padding as any)?.top;
+        return {
+            top: paddingTopStatic !== undefined ?
+                paddingTopStatic :
+                getCurrentValue(padding.top, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.top, this.isFullscreenMode),
+            bottom: paddingBottomStatic !== undefined ?
+                paddingBottomStatic :
+                getCurrentValue(padding.bottom, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.bottom, this.isFullscreenMode),
+            left: paddingLeftStatic !== undefined ?
+                paddingLeftStatic :
+                getCurrentValue(padding.left, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.left, this.isFullscreenMode),
+            right: paddingRightStatic !== undefined ?
+                paddingRightStatic :
+                getCurrentValue(padding.right, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.right, this.isFullscreenMode),
+        }
     }
 
     get videoSeekAmount() {

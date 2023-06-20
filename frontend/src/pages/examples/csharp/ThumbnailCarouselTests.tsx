@@ -2042,6 +2042,20 @@ const viewingModeItemViewerPreview = (
 				itemDisplayLocation: 'above',
 			},
 			styling: {
+				videoModal: {
+					padding: {
+						top: 40,
+						fullscreen: {
+							bottom: [[30], [1, 800]],
+							right: [[60], [10,800]],
+							top: 80,
+						},
+						nonFullscreen: {
+							right: [[30], [1, 800]],
+							left: [[60], [10,800]],
+						},
+					}
+				},
 				container: {
 					padding: {
 						bottom: 100,
@@ -2756,7 +2770,7 @@ const SECTIONS: Sections = [
 			// 	jsx: viewingModeVideoCurrentStateIndicator,
 			// },
 			{
-				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
+				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode and Padding Everywhere Changes Dynamically",
 				jsx: viewingModeItemViewerPreview,
 			},
 		]

@@ -365,7 +365,7 @@ export class StylingLogic {
     get carouselVideoModalCloseButtonStyle() {
         const sizeGiven = this.options.styling?.videoModal?.closeButton?.size;
         const areChildrenPresent = !!this.currentItem?.video?.overlayProps?.children;
-        const { right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
+        const { right: paddingRight, top: paddingTop } = this.optionsLogic.videoModalPadding;
         const rightStyle = paddingRight !== undefined ? {
             right: getCurrentValue(paddingRight, 0, this.isFullscreenMode),
         } as CSSProperties : {};
@@ -387,8 +387,7 @@ export class StylingLogic {
 
     get carouselVideoModalStyle() {
         const { fontSize: fontSizeTemp, background, textColor, widthInPercent: widthInPercentTemp } = this.options.styling?.videoModal || {};
-        const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.options.styling?.videoModal?.padding || {};
-        const isDefault = this.optionsLogic.isDefaultItemDisplayLocation;
+        const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.videoModalPadding;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
         const videoModalHeight = this.videoModalRef?.current?.getBoundingClientRect().height || 0;
         const widthInPercent = getCurrentValue(widthInPercentTemp, undefined, this.isFullscreenMode)
@@ -403,10 +402,10 @@ export class StylingLogic {
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
         const paddingStyle = {
-            paddingTop: paddingTop !== undefined ? getCurrentValue(paddingTop, 0, this.isFullscreenMode) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
-            paddingBottom: paddingBottom !== undefined ? getCurrentValue(paddingBottom, 0, this.isFullscreenMode) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * .5,
-            paddingLeft: paddingLeft !== undefined ? getCurrentValue(paddingLeft, 0, this.isFullscreenMode) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
-            paddingRight: paddingRight !== undefined ? getCurrentValue(paddingRight, 0, this.isFullscreenMode) : isDefault ? CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT * 1.5 : CAROUSEL_OVERLAY_PADDING_TOP_DEFAULT,
+            paddingTop,
+            paddingBottom,
+            paddingLeft,
+            paddingRight,
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
             transform: 'translate(-50%, 0)',
