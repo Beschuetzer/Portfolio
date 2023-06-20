@@ -393,10 +393,12 @@ export class StylingLogic {
         const widthInPercent = getCurrentValue(widthInPercentTemp, undefined, this.isFullscreenMode)
         const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : this.isMobile ? "100%" : "75%";
         const customFontSize = getCurrentValue(fontSizeTemp, this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
+        const itemViewerLeftPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer);
+        const itemViewerRightPadding = this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
             width: widthToUse,
-            maxWidth: widthToUse,
+            maxWidth: `calc(${widthToUse} - ${(itemViewerLeftPadding + itemViewerRightPadding) / 2}${CAROUSEL_SPACING_UNIT})`,
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
         const paddingStyle = {

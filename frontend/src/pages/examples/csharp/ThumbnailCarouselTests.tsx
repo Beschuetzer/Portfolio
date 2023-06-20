@@ -2044,8 +2044,11 @@ const viewingModeItemViewerPreview = (
 			styling: {
 				container: {
 					padding: {
-
-					}					
+						bottom: 100,
+						top: 100,
+						right: 100,
+						left: 100,
+					},		
 				},
 				toolbar: {
 					padding: {
