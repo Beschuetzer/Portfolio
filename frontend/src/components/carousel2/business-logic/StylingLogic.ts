@@ -489,8 +489,9 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressBackgroundStyle() {
+        const backgroundColorToUse = this.optionsLogic.isToolbarInVideo ? convertHexToRgba(CAROUSEL_COLOR_GREY_ONE, .25) : CAROUSEL_COLOR_GREY_ONE;
         const height = getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
-        const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, CAROUSEL_COLOR_GREY_ONE, this.isFullscreenMode);
+        const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
         const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
         const heightToUse = height > CAROUSEL_PROGRESS_BAR_HEIGHT_MAX ? CAROUSEL_PROGRESS_BAR_HEIGHT_MAX : height < CAROUSEL_PROGRESS_BAR_HEIGHT_MIN ? CAROUSEL_PROGRESS_BAR_HEIGHT_MIN : height;
         const marginBottom = CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT - heightToUse;
@@ -658,24 +659,19 @@ export class StylingLogic {
         }
     }
 
-    get toolbarBackgroundColorStyle() {
-        const customColor = getCurrentValue(this.options.styling?.toolbar?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
-        return {
-            background: customColor,
-        } as CSSProperties;
-    }
-
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItem);
         const paddingHorizontalStyle = {
-            paddingLeft: this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar),
-            paddingRight: this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar),
+            paddingLeft: this.optionsLogic.isToolbarInVideo ? 0 : this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar),
+            paddingRight: this.optionsLogic.isToolbarInVideo ? 0 : this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar),
+            marginLeft: !this.optionsLogic.isToolbarInVideo ? 0 : this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar),
+            marginRight: !this.optionsLogic.isToolbarInVideo ? 0 : this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar),
         } as CSSProperties;
         const nonDefaultItemDisplayStyle = !this.isFullscreenMode ? {
-            ...this.toolbarBackgroundColorStyle,
+            ...this.getToolbarBackgroundColorStyle(),
             ...paddingHorizontalStyle,
-            position: "relative",
-            width: '100%',
+            position: this.optionsLogic.isToolbarInVideo ? "absolute" : "relative",
+            width: this.optionsLogic.isToolbarInVideo ? undefined : '100%',
             paddingTop: isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
             paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
         } as React.CSSProperties : {
@@ -977,6 +973,15 @@ export class StylingLogic {
         return {
             ...shortcutStyle
         } as CSSProperties;
+    }
+
+    getToolbarBackgroundColorStyle(shouldUseSolidColor = false) {
+        const customColor = getCurrentValue(this.options.styling?.toolbar?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        return this.optionsLogic.isToolbarInVideo && !shouldUseSolidColor ? {
+            background: `linear-gradient(0deg, ${customColor}, transparent)`,
+        } as CSSProperties : {
+            background: customColor,
+        };
     }
 
     getVideoCurrentStateIndicatorForegroundColor(isPlayButton: boolean) {

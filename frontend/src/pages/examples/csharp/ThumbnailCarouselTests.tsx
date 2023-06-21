@@ -512,6 +512,17 @@ const dynamicItemSpacingStrategy = (
 		items={items.slice(6)}
 	/>
 );
+const dynamicToolbarPositioning = (
+	<Carousel
+		options={{
+			layout: {
+				itemDisplayLocation: 'above',
+				isToolbarPositionedInVideo: [[true], [false, 800]]
+			},
+		}}
+		items={items}
+	/>
+);
 const dynamicPoistioning = (
 	<Carousel
 		options={{
@@ -2845,6 +2856,10 @@ const SECTIONS: Sections = [
 				label: "Item Spacing Strategy Changes at 800px",
 				jsx: dynamicItemSpacingStrategy,
 			},
+			{
+				label: "Toolbar Position Changes at 800px",
+				jsx: dynamicToolbarPositioning,
+			},
 		]
 	],
 	[
@@ -2865,7 +2880,7 @@ const SECTIONS: Sections = [
 			{
 				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
 				jsx: viewingModeItemViewerPreview,
-			},			
+			},	
 		]
 	],
 	[
@@ -3021,8 +3036,8 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	SectionNames.dynamicBasedOnViewingMode,
-	// SectionNames.otherDynamicSettings,
+	// SectionNames.dynamicBasedOnViewingMode,
+	SectionNames.otherDynamicSettings,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
 	// ...Object.values(SectionNames),

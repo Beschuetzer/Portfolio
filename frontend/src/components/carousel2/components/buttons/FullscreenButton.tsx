@@ -40,7 +40,7 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
       <div
         style={{
           ...fillStyle,
-          ...stylingLogic.toolbarBackgroundColorStyle,
+          ...stylingLogic.getToolbarBackgroundColorStyle(true),
           ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'square-inner', style })
         }}
         className={`${fullScreenClassname}-square-inner`}
@@ -48,7 +48,7 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
       <div
         style={{
           ...fillStyle,
-          ...stylingLogic.toolbarBackgroundColorStyle,
+          ...stylingLogic.getToolbarBackgroundColorStyle(true),
           ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'rect-horizontal', style })
         }}
         className={`${fullScreenClassname}-rect-horizontal`}
@@ -56,7 +56,7 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
       <div
         style={{
           ...fillStyle,
-          ...stylingLogic.toolbarBackgroundColorStyle,
+          ...stylingLogic.getToolbarBackgroundColorStyle(true),
           ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'rect-vertical', style })
         }}
         className={`${fullScreenClassname}-rect-vertical`}

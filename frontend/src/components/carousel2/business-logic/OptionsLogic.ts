@@ -89,6 +89,10 @@ export class OptionsLogic {
         return this.numberOfPages <= 1 || getCurrentValue(this.options?.navigation?.disableSwiping, false, this.isFullscreenMode);
     }
 
+    get isToolbarInVideo() {
+        return getCurrentValue(this.options.layout?.isToolbarPositionedInVideo, false, this.isFullscreenMode);
+    }
+
     get isWrappingDisabled() {
         return getCurrentValue(this.options.navigation?.disableWrapping, false, this.isFullscreenMode);
     }

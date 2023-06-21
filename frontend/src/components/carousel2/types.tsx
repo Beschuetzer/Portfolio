@@ -264,19 +264,25 @@ export type CarouselSections = {
 
 export type CarouselLayoutOptions = {
     /*
-       *If 'none', then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
-       *Otherwise the the item is displayed above or below the carousel.
-       *Default is 'none'.
-       */
+    *If 'none', then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
+    *Otherwise the the item is displayed above or below the carousel.
+    *Default is 'none'.
+    */
     itemDisplayLocation?: CarouselElementValueTuple<'none' | 'above' | 'below'>;
     /*
-   *If `thumbnail.itemSpacing` is not given, then it defaults to 5 if `itemPositioning` is not undefined
-   *Default is `left`
-   *`left` => the left-most thumbnail item on a given page is positioned flush with the container
-   *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the navigation container's ends
-   *`right` => the right-most thumbnail item on a given page is positioned flush with the container
-   *Overrides any value given in `thumbnail.itemSpacingStrategy`
-   */
+    *Default is false.  If true, the toolbar will sit within the video element when `itemDisplayLocation` is not 'none' and 
+    *the auto-hide behavior will change to hide the toolbar when the video is playing and the mouse leaves the video element.
+    *Does not affect fullscreen mode.
+    */
+    isToolbarPositionedInVideo?: CarouselElementValueTuple<boolean>;
+    /*
+    *If `thumbnail.itemSpacing` is not given, then it defaults to 5 if `itemPositioning` is not undefined
+    *Default is `left`
+    *`left` => the left-most thumbnail item on a given page is positioned flush with the container
+    *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the navigation container's ends
+    *`right` => the right-most thumbnail item on a given page is positioned flush with the container
+    *Overrides any value given in `thumbnail.itemSpacingStrategy`
+    */
     itemPositioning?: CarouselElementValueTuple<'left' | 'center' | 'right'>;
 }
 
