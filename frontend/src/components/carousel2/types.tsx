@@ -263,11 +263,11 @@ export type CarouselSections = {
 }
 
 export type CarouselLayoutOptions = {
-    /*
-    *If 'none', then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
-    *Otherwise the the item is displayed above or below the carousel.
-    *Default is 'none'.
-    */
+    /**
+        *If 'none', then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
+        *Otherwise the the item is displayed above or below the carousel.
+        *Default is 'none'.
+    **/
     itemDisplayLocation?: CarouselElementValueTuple<'none' | 'above' | 'below'>;
     /*
     *Default is false.  If true, the toolbar will sit within the video element when `itemDisplayLocation` is not 'none' and 

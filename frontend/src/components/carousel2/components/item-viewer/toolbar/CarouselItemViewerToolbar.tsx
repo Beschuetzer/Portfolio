@@ -3,7 +3,7 @@ import { getCurrentValue, getFormattedTimeString, getIsMobile, getIsVideoPlaying
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from '../CarouselItemViewerProgressBar'
-import { VideoTimeStrings } from '../../../types'
+import { Point, VideoTimeStrings } from '../../../types'
 import { CarouselItemViewerNextButton } from './CarouselItemViewerNextButton'
 import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton'
 import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton'
@@ -21,13 +21,13 @@ import {
     CLASSNAME__TOOLBAR_CONTAINER,
     CLASSNAME__TOOLBAR_LEFT,
     CLASSNAME__TOOLBAR_RIGHT,
-    SEEK_AMOUNT_DEFAULT
 } from '../../../constants'
 import { useUpdateTimeString } from '../../../hooks/useUpdateTimeStrings'
 import { CarouselItemViewerFullscreenButton } from './CarouselItemViewerFullScreenButton'
 import { useCarouselContext } from '../../../context'
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic'
 import { useOnSwipe, StylingCase } from '../../../hooks/useOnSwipe'
+import { getIsPointInsideElement } from '../../../utils'
 
 export type CarouselItemViewerToolbarProps = {
     description: string;
@@ -264,18 +264,23 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         e.stopPropagation();
     }
 
-    const handleEnterVideo = useCallback((e: MouseEvent) => {
-        showToolbar();
-    }, [showToolbar])
-    
-    const handleLeaveVideo = useCallback((e: MouseEvent) => {
-        if (!getIsVideoPlaying(videoRef?.current)) return;
+    const handleVideoRefMouseLeave = useCallback((e: MouseEvent) => {
+         const point: Point = {
+            x: e.clientX || e.screenX,
+            y: e.clientY || e.screenY,
+        }
+        const isInVideoBox = getIsPointInsideElement(point, videoRef?.current as HTMLElement);
+        if (isInVideoBox) return;
         hideToolbar();
     }, [hideToolbar, videoRef])
 
+    const handleVideoRefMouseMove = useCallback((e: MouseEvent) => {
+        showToolbar();
+    }, [showToolbar])
     //#endregion
 
     //#region Side Fx
+
     useEffect(() => {
         handleAutoHide();
 
@@ -290,16 +295,16 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     useEffect(() => {
         const videoRefCopy = videoRef?.current;
-        if (optionsLogic.isToolbarInVideo) {
-            videoRef?.current?.addEventListener('mouseenter', handleEnterVideo);
-            videoRef?.current?.addEventListener('mouseleave', handleLeaveVideo);
+        if (optionsLogic.isToolbarInVideo) {            
+            videoRef?.current?.addEventListener('mousemove', handleVideoRefMouseMove);
+            videoRef?.current?.addEventListener('mouseleave', handleVideoRefMouseLeave);
         }
 
         return () => {
-            videoRefCopy?.removeEventListener('mouseenter', handleEnterVideo);
-            videoRefCopy?.removeEventListener('mouseleave', handleLeaveVideo);
+            videoRefCopy?.removeEventListener('mousemove', handleVideoRefMouseMove);
+            videoRefCopy?.removeEventListener('mouseleave', handleVideoRefMouseLeave);
         }
-    }, [handleAutoHide, handleEnterVideo, handleLeaveVideo, hideToolbar, optionsLogic.isToolbarInVideo, videoRef])
+    }, [handleAutoHide, handleVideoRefMouseLeave, handleVideoRefMouseMove, hideToolbar, optionsLogic.isToolbarInVideo, videoRef])
 
     //handling events for buttons
     useEffect(() => {
