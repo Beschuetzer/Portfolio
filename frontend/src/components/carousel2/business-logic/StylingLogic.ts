@@ -677,7 +677,9 @@ export class StylingLogic {
             width: '100%',
             paddingTop: isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
             paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
-        } as React.CSSProperties : {};
+        } as React.CSSProperties : {
+            ...paddingHorizontalStyle,
+        };
 
         return {
             ...nonDefaultItemDisplayStyle,
