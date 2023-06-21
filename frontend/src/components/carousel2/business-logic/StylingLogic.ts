@@ -246,7 +246,8 @@ export class StylingLogic {
         const height = this.optionsLogic.itemViewerPreviewHeight;
         const padding = this.optionsLogic.itemViewerPreviewTextContainerPadding;
         const verticalAlignment = this.optionsLogic.itemViewerPreviewTextContainerVerticalAlignment;
-        const top = (height * -1) - CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+        const topFactor = this.isFullscreenMode ? 0 : .458;
+        const top = (height * -1) - CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT * topFactor;
 
         return {
             width,
@@ -951,9 +952,12 @@ export class StylingLogic {
     }
 
     getCarouselShortcutIndicatorTextStlye(position: CarouselItemViewerShortcutIndicatorPosition) {
+        const topStyle = {
+            top: CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT * -1.5,
+        };
         const commonStyle = {
             zIndex: 1000000000000,
-            top: CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT * -2,
+            ...topStyle,
         } as CSSProperties;
         const shortcutStyle = position === 'left' ? {
             ...commonStyle,
