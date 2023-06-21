@@ -157,27 +157,30 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         }
     }
 
-    const handleAutoHide = useCallback((e?: MouseEvent) => {
-        stopPropagation(e);
-        clearTimeout(shouldHideTimoutRef.current);
+    const hideToolbar = useCallback(() => {
+        if (itemContainerRef?.current && !isMobile) {
+            itemContainerRef.current.classList?.add(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
+        }
+    }, [isMobile, itemContainerRef])
 
+    const showToolbar = useCallback(() => {
         if (itemContainerRef?.current) {
             itemContainerRef.current.classList?.remove(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
         }
+    }, [itemContainerRef])
+
+    const handleAutoHide = useCallback((e?: MouseEvent) => {
+        if (optionsLogic.isToolbarInVideo) return;
+        stopPropagation(e);
+        clearTimeout(shouldHideTimoutRef.current);
+
+        showToolbar();
         if (!isFullscreenMode || getCurrentValue(options?.itemViewer?.autoHideToolbarDuration, undefined, isFullscreenMode) === AUTO_HIDE_DISABLED_VALUE) return;
 
         shouldHideTimoutRef.current = setTimeout(() => {
-            if (itemContainerRef?.current && !isMobile) {
-                itemContainerRef.current.classList?.add(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
-            }
+            hideToolbar();
         }, getCurrentValue(options?.itemViewer?.autoHideToolbarDuration, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, isFullscreenMode));
-    }, [
-        isMobile,
-        isFullscreenMode,
-        itemContainerRef,
-        options,
-        shouldHideTimoutRef,
-    ]);
+    }, [optionsLogic.isToolbarInVideo, showToolbar, isFullscreenMode, options?.itemViewer?.autoHideToolbarDuration, hideToolbar]);
 
     function handlePlayPauseUnited() {
         if (getIsVideoPlaying(videoRef?.current)) {
@@ -261,6 +264,15 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         e.stopPropagation();
     }
 
+    const handleEnterVideo = useCallback((e: MouseEvent) => {
+        showToolbar();
+    }, [showToolbar])
+    
+    const handleLeaveVideo = useCallback((e: MouseEvent) => {
+        if (!getIsVideoPlaying(videoRef?.current)) return;
+        hideToolbar();
+    }, [hideToolbar, videoRef])
+
     //#endregion
 
     //#region Side Fx
@@ -275,6 +287,19 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             window.removeEventListener('click', handleAutoHide);
         }
     }, [handleAutoHide]);
+
+    useEffect(() => {
+        const videoRefCopy = videoRef?.current;
+        if (optionsLogic.isToolbarInVideo) {
+            videoRef?.current?.addEventListener('mouseenter', handleEnterVideo);
+            videoRef?.current?.addEventListener('mouseleave', handleLeaveVideo);
+        }
+
+        return () => {
+            videoRefCopy?.removeEventListener('mouseenter', handleEnterVideo);
+            videoRefCopy?.removeEventListener('mouseleave', handleLeaveVideo);
+        }
+    }, [handleAutoHide, handleEnterVideo, handleLeaveVideo, hideToolbar, optionsLogic.isToolbarInVideo, videoRef])
 
     //handling events for buttons
     useEffect(() => {

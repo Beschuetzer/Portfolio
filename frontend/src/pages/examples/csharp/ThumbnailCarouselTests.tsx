@@ -516,7 +516,7 @@ const dynamicToolbarPositioning = (
 	<Carousel
 		options={{
 			layout: {
-				itemDisplayLocation: 'above',
+				itemDisplayLocation: [['above'], ['below', 1200]],
 				isToolbarPositionedInVideo: [[true], [false, 800]]
 			},
 		}}

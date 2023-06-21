@@ -130,8 +130,8 @@ export class StylingLogic {
 
     get carouselStyle() {
         const common = {
-            paddingTop: `${this.getPaddingAmount(SpacingDirection.top, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
-            paddingBottom: `${this.getPaddingAmount(SpacingDirection.bottom, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingTop: this.getPaddingAmount(SpacingDirection.top, CarouselSection.itemViewer),
+            paddingBottom: this.getPaddingAmount(SpacingDirection.bottom, CarouselSection.itemViewer),
         } as CSSProperties;
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
@@ -273,7 +273,7 @@ export class StylingLogic {
         } as CSSProperties;
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
-            marginTop: 0,
+            marginTop: this.optionsLogic.isToolbarInVideo && this.optionsLogic.isItemDisplayLocationAbove ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : 0,
             marginBottom: this.numberOfPages <= 1 && this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : 0,
             overflow: 'hidden',
             ...common,
