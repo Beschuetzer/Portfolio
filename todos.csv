@@ -1,5 +1,6 @@
 Carousel rework
-  -fix comments by change /* to /** and */ to **/ start with (types.ts)
+  -figure out why 'Thumbnail Overlay Disabled <= 800px' test has no padding for toolbar in fullscreen
+  -make CarouselElementCustomization.style a CarouselElementValue?
   -work on progressbar hovering issue (looks bad with custom height); add container around progress bar which sets the value when clicked
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons

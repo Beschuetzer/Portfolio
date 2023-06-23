@@ -4,33 +4,33 @@ import { StylingLogic } from "../business-logic/StylingLogic";
 import { useCarouselContext } from "../context";
 
 export type LoadingSpinnerOptions = {
-	/*
+	/**
 	*Changes both text and spinner color
-	*/
+	**/
 	color?: string;
-	/*
+	/**
 	*default is 8px; The margin of the container
-	*/
+	**/
 	containerMargin?: number | string;
-	/*
+	/**
 	*default is 100px; The length and width of the container
-	*/
+	**/
 	containerLength?: number;
-	/*
+	/**
 	*Default is 64px; How big the circle is
-	*/
+	**/
 	radius?: number;
-	/*
+	/**
 	*Changes the spinner color.  Overrides any value for 'color'.
-	*/
+	**/
 	spinnerColor?: string;
-	/*
+	/**
 	*Changes text color.  Overrides any value for 'color'.
-	*/
+	**/
 	textColor?: string;
-	/*
+	/**
 	*Default is 8px;  How thick the line is
-	*/
+	**/
 	width?: number;
 }
 

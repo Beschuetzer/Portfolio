@@ -8,9 +8,6 @@ import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useOnResize } from '../hooks/useOnResize';
 
 export type CarouselProps = {
-	/*
-	* if undefined, the default css version for each button will be used
-	*/
 	items: CarouselItemProps[];
 	options?: CarouselOptions;
 }

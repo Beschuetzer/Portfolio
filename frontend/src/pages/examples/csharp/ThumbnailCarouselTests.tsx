@@ -146,9 +146,6 @@ const items = [
 						</CSharpCardSection>
 					</>
 				),
-				closeButton: {
-					rightInRem: 1.5,
-				},
 			},
 			autoPlay: true,
 			muted: true,
@@ -211,9 +208,6 @@ const items = [
 						</CSharpCardSection>
 					</>
 				),
-				closeButton: {
-					rightInRem: 1.5,
-				},
 			},
 			autoPlay: false,
 			muted: true,

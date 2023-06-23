@@ -8,18 +8,11 @@ import { CarouselItemToRender } from '../CarouselItemToRender';
 type CarouselItemViewerProps = {}
 export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps>((props, ref) => {
     //#region Init
-    //todo: needs to be hidden until an item is clicked
     const { currentItem, isFullscreenMode } = useCarouselContext();
     const { stylingLogic } = useBusinessLogic({});
     const isVisible = useMemo(() => Object.keys(currentItem || {})?.length > 0 && isFullscreenMode, [currentItem, isFullscreenMode]);
     const innerRef = useRef<HTMLElement>(null);
     useImperativeHandle(ref, () => innerRef.current);
-    //#endregion
-
-    //#region Function/Handlers
-    //#endregion
-
-    //#region Side Fx
     //#endregion
 
     //#region JSX

@@ -13,9 +13,9 @@ export type CarouselItemViewerShortcutIndicatorProps = {
     position?: CarouselItemViewerShortcutIndicatorPosition;
     shortcuts?: KeyInput[];
 
-    /*
+    /**
     *This is needed to be able to pass the refs while hiding the button (conditional null rendering doesn't work)
-    */
+    **/
     showButton?: boolean;
 }
 

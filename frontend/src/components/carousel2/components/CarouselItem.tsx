@@ -1,30 +1,30 @@
 import { useCarouselContext } from '../context';
-import { CarouselVideoProps } from './CarouselVideo';
+import { CarouselVideoOptions } from './CarouselVideo';
 import { CLASSNAME__CAROUSEL_ITEM, CLASSNAME__CAROUSEL_ITEM_THUMBNAIL } from '../constants';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 
 export type CarouselItemProps = {
-  /*
+  /**
   *This is displayed in the thumbnail and in the item viewer
-  */
+  **/
   description: string | undefined;
-  /*
+  /**
   *This is generated automatically if omitted.  
-  *If given, it will determine the 'next'/'previous' item to go to when clicking the next/previousButton
-  */
+  *If given, it will determine the next/previous item to go to when clicking the next/previous button
+  **/
   index?: number;
-  /*
+  /**
   * This is the source of the image to be used in full-size viewing as well as thumbnail viewing if no thumbnail is provided
-  */
+  **/
   srcMain: string | undefined;
-  /*
+  /**
   * This is the source of the thumbnail image to be used when viewing thumbnails only
-  */
+  **/
   srcThumbnail?: string | undefined;
-  /*
-  *Props for optional overlay when item is a video
-  */
-  video?: CarouselVideoProps;
+  /**
+  *How to set options for video items
+  **/
+  video?: CarouselVideoOptions;
 }
 
 export const CarouselItem = (props: CarouselItemProps) => {

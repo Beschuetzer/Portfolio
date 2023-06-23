@@ -10,11 +10,11 @@ import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 
-export type CarouselVideoProps = {
-    /*
-    * If true and muted is undefined or true, the video will start playing when it first comes into focus 
+export type CarouselVideoOptions = {
+    /**
+    * If true and muted is `undefined` or `true`, the video will start playing when it first comes into focus 
     * e.g. when user scrolls down to it or when the user clicks the thumbnail to load it
-    */
+    **/
     autoPlay?: boolean;
     loop?: boolean;
     muted?: boolean;
