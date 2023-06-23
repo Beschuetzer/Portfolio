@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { getCurrentValue, getFormattedTimeString, getIsMobile, getIsVideoPlaying, stopPropagation } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
@@ -61,6 +61,8 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const playButtonRef = useRef<any>(null);
     const seekForwardButtonRef = useRef<any>(null);
     const seekBackwardButtonRef = useRef<any>(null);
+    const innerRef = useRef<HTMLElement>(null);
+    useImperativeHandle(ref, () => innerRef.current as any);
 
     const [timeStrings, setTimeStrings] = useState<VideoTimeStrings>({
         durationStr: getFormattedTimeString((videoRef?.current?.duration) || -1),
@@ -265,7 +267,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     }
 
     const handleVideoRefMouseLeave = useCallback((e: MouseEvent) => {
-         const point: Point = {
+        const point: Point = {
             x: e.clientX || e.screenX,
             y: e.clientY || e.screenY,
         }
@@ -296,14 +298,17 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     useEffect(() => {
         const videoRefCopy = videoRef?.current;
-        if (optionsLogic.isToolbarInVideo) {            
+        const innerRefCopy = innerRef?.current;
+        if (optionsLogic.isToolbarInVideo) {
             videoRef?.current?.addEventListener('mousemove', handleVideoRefMouseMove);
             videoRef?.current?.addEventListener('mouseleave', handleVideoRefMouseLeave);
+            innerRef?.current?.addEventListener('mouseleave', handleVideoRefMouseLeave);
         }
 
         return () => {
             videoRefCopy?.removeEventListener('mousemove', handleVideoRefMouseMove);
             videoRefCopy?.removeEventListener('mouseleave', handleVideoRefMouseLeave);
+            innerRefCopy?.removeEventListener('mouseleave', handleVideoRefMouseLeave);
         }
     }, [handleAutoHide, handleVideoRefMouseLeave, handleVideoRefMouseMove, hideToolbar, optionsLogic.isToolbarInVideo, videoRef])
 
@@ -447,14 +452,22 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     //#region JSX
     return (
-        <div ref={ref as any} onClick={onToolbarClick as any} className={CLASSNAME__ITEM_VIEWER_TOOLBAR} style={stylingLogic.toolbarStyle}>
+        <div
+            ref={innerRef as any}
+            onClick={onToolbarClick as any}
+            className={CLASSNAME__ITEM_VIEWER_TOOLBAR}
+            style={stylingLogic.toolbarStyle}
+        >
             {videoRef ?
                 <CarouselItemViewerProgressBar
                     videoRef={videoRef}
                     setTimeStrings={setTimeStrings}
                 /> : null
             }
-            <div className={CLASSNAME__TOOLBAR_CONTAINER}>
+            <div
+                style={stylingLogic.toolbarContainerStyle}
+                className={CLASSNAME__TOOLBAR_CONTAINER}
+            >
                 {videoRef ? (
                     <div className={CLASSNAME__TOOLBAR_LEFT}>
                         <CarouselItemViewerPlayButton

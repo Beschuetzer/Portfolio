@@ -512,13 +512,13 @@ const dynamicItemSpacingStrategy = (
 		items={items.slice(6)}
 	/>
 );
-const dynamicToolbarPositioning = (
+const dynamicToolbarPositioningInVideo = (
 	<Carousel
 		options={{
 			layout: {
 				itemDisplayLocation: [['above'], ['below', 1200]],
 				isToolbarPositionedInVideo: [[true], [false, 800]]
-			},
+			}
 		}}
 		items={items}
 	/>
@@ -2857,8 +2857,8 @@ const SECTIONS: Sections = [
 				jsx: dynamicItemSpacingStrategy,
 			},
 			{
-				label: "Toolbar Position Changes at 800px",
-				jsx: dynamicToolbarPositioning,
+				label: "Toolbar Embedded in Video > 800px",
+				jsx: dynamicToolbarPositioningInVideo,
 			},
 		]
 	],

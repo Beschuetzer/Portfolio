@@ -683,6 +683,13 @@ export class StylingLogic {
             ...this.fontFamilyItemViewerStyle,
         }
     }
+
+    get toolbarContainerStyle() {
+        return {
+            paddingLeft: this.optionsLogic.isToolbarInVideo ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
+            paddingRight: this.optionsLogic.isToolbarInVideo ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
+        } as CSSProperties;
+    }
     //#endregion
 
     //#region Private Getters
@@ -1028,7 +1035,6 @@ export class StylingLogic {
         let defaultPadding: number;
         let allPadding: number | undefined;
         let customPadding: number | undefined;
-        let specificElementPadding: number | undefined;
 
         switch (direction) {
             case SpacingDirection.bottom: {

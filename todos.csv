@@ -1,5 +1,4 @@
 Carousel rework
-  -figure out how to fix issue where if leaving a video with isToolbarPositionedInVideo to true via the toolbar causes the toolbar to stay open (may need to move the listener to the container rather than the video ref)
   -fix comments by change /* to /** and */ to **/ start with (types.ts)
   -work on progressbar hovering issue (looks bad with custom height); add container around progress bar which sets the value when clicked
   -check how fullscreen looks on phone (should rotate)
