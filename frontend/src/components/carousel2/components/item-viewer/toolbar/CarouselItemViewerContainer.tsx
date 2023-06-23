@@ -9,11 +9,11 @@ type CarouselItemViewerContainerProps = {
     onClick?: () => void;
 }
 
-const LAST_VIEWPORT_WIDTH_REF_INITIAL = 0;
 const CURRENT_INTERVAL_INITIAL = 0;
+const DATA_POINT_COLLECTION_INTERVAL = 75;
 const HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL = false;
 const HEIGHT_INITIAL = 0;
-const DATA_POINT_COLLECTION_INTERVAL = 50;
+const LAST_VIEWPORT_WIDTH_REF_INITIAL = 0;
 const NUMBER_OF_DATA_POINTS = 25;
 export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerContainerProps>(({
     children,
