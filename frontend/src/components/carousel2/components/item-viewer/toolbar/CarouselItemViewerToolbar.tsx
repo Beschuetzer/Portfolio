@@ -270,7 +270,8 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             y: e.clientY || e.screenY,
         }
         const isInVideoBox = getIsPointInsideElement(point, videoRef?.current as HTMLElement);
-        if (isInVideoBox) return;
+        const isVideoPlaying = getIsVideoPlaying(videoRef?.current);
+        if (isInVideoBox || !isVideoPlaying) return;
         hideToolbar();
     }, [hideToolbar, videoRef])
 
