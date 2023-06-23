@@ -3030,8 +3030,8 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	// SectionNames.dynamicBasedOnViewingMode,
 	SectionNames.otherDynamicSettings,
+	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
 	// ...Object.values(SectionNames),

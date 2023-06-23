@@ -1,5 +1,5 @@
 Carousel rework
-  -figure out why 'Thumbnail Overlay Disabled <= 800px' test has no padding for toolbar in fullscreen
+  -fix issue with height when isToolbarPositionedInVideo is true (need to ignore toolbar height in that case)
   -make CarouselElementCustomization.style a CarouselElementValue?
   -work on progressbar hovering issue (looks bad with custom height); add container around progress bar which sets the value when clicked
   -check how fullscreen looks on phone (should rotate)
