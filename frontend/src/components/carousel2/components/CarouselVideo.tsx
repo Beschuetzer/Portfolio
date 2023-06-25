@@ -62,6 +62,14 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     }, [])
 
     const onVideoClick = useCallback((e: MouseEvent) => {
+        if (optionsLogic.useDefaultVideoControls) {
+            if (videoRef.current) {
+                //note: this doesn't seem to work when in fullscreen mode
+                setIsVideoPlaying(current => !current)
+            }
+            return;
+        }
+
         if (e.detail === 2) {
             setIsFullscreenMode((current) => !current);
             setCurrentVideoCurrentTime(videoRef.current?.currentTime || CURRENT_VIDEO_CURRENT_TIME_DEFAULT);
@@ -75,7 +83,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 setIsVideoPlaying(true);
             }
         }
-    }, [setCurrentVideoCurrentTime, setIsFullscreenMode]);
+    }, [optionsLogic.useDefaultVideoControls, setCurrentVideoCurrentTime, setIsFullscreenMode]);
 
     //#region Side Fx
     //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)

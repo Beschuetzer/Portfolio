@@ -1,9 +1,9 @@
 Carousel rework
-  -fix issue with height when isToolbarPositionedInVideo is true (need to ignore toolbar height in that case)
-  -make CarouselElementCustomization.style a CarouselElementValue?
-  -work on progressbar hovering issue (looks bad with custom height); add container around progress bar which sets the value when clicked
+  -embedded toolbar hide behavior not disabled in fullscreen mode
+  -work on progressbar rework.  A container with 3 divs (one for current value, one for background full width, one for seek value (snapshot in here?))
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
+  -make CarouselElementCustomization.style a CarouselElementValue?
   -need to work on individual options for each button size
   -make sure buttonSize works with custom icons
   -when done with buttonSize stuff, clean up css styles

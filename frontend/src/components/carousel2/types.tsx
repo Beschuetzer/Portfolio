@@ -284,6 +284,7 @@ export type CarouselLayoutOptions = {
     *If true, then the default, embedded controls will be used for video items.
     *Default is false.
     *Only applicable when `itemDisplayLocation` is not `none` and the carousel is in non-fullscreen mode
+    *Issue when in fullscreen mode and this is true where play/pause indicator and video modal don't appear anymore
     **/
     useDefaultVideoControls?: CarouselElementValueTuple<boolean>
 }

@@ -664,10 +664,10 @@ export class StylingLogic {
         const rightSpacing = this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT);
 
         const paddingHorizontalStyle = {
-            paddingLeft: this.optionsLogic.isToolbarInVideo ? 0 : leftSpacing,
-            paddingRight: this.optionsLogic.isToolbarInVideo ? 0 : rightSpacing,
-            marginLeft: !this.optionsLogic.isToolbarInVideo ? 0 : leftSpacing,
-            marginRight: !this.optionsLogic.isToolbarInVideo ? 0 : rightSpacing,
+            paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : leftSpacing,
+            paddingRight: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : rightSpacing,
+            marginLeft: !this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? 0 : leftSpacing,
+            marginRight: !this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? 0 : rightSpacing,
         } as CSSProperties;
         const nonDefaultItemDisplayStyle = !this.isFullscreenMode ? {
             ...this.getToolbarBackgroundColorStyle(),
@@ -688,8 +688,8 @@ export class StylingLogic {
 
     get toolbarContainerStyle() {
         return {
-            paddingLeft: this.optionsLogic.isToolbarInVideo ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
-            paddingRight: this.optionsLogic.isToolbarInVideo ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
+            paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
+            paddingRight: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
         } as CSSProperties;
     }
     //#endregion
