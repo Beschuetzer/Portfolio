@@ -1,4 +1,5 @@
 Carousel rework
+  -toolbar embedded case: switching viewport width when image is current item sets a different height value for container than if video is current item
   -work on progressbar rework.  A container with 3 divs (one for current value, one for background full width, one for seek value (snapshot in here?))
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
