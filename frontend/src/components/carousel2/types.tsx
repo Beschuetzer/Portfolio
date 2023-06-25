@@ -280,6 +280,12 @@ export type CarouselLayoutOptions = {
     *`right` => the right-most thumbnail item on a given page is positioned flush to the container
     **/
     itemPositioning?: CarouselElementValueTuple<'left' | 'center' | 'right'>;
+    /**
+    *If true, then the default, embedded controls will be used for video items.
+    *Default is false.
+    *Only applicable when `itemDisplayLocation` is not `none` and the carousel is in non-fullscreen mode
+    **/
+    useDefaultVideoControls?: CarouselElementValueTuple<boolean>
 }
 
 export type CarouselSwipingOptions = {

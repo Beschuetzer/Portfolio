@@ -7,7 +7,6 @@ Carousel rework
   -need to work on individual options for each button size
   -make sure buttonSize works with custom icons
   -when done with buttonSize stuff, clean up css styles
-  -add option to use default video tag controls
   -add volume button for videos?
   -how to intelligently add themes or default colors?
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?

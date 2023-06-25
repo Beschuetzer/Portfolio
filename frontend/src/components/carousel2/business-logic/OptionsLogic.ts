@@ -205,6 +205,10 @@ export class OptionsLogic {
         return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true, this.isFullscreenMode);
     }
 
+    get useDefaultVideoControls() {
+        return getCurrentValue(this.options.layout?.useDefaultVideoControls, false, this.isFullscreenMode);
+    }
+
     get videoModalPadding() {
         const padding = getCurrentValue(this.options.styling?.videoModal?.padding, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT, this.isFullscreenMode);
         const paddingLeftStatic = (this.options.styling?.videoModal?.padding as any)?.left;

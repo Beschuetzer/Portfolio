@@ -39,7 +39,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     const videoRef = useRef<HTMLVideoElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
     const type = useMemo(() => srcMain?.slice(srcMain?.lastIndexOf('.') + 1), [srcMain]);
-    const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
+    const { stylingLogic, optionsLogic } = useBusinessLogic({ itemViewerToolbarRef });
     useRerenderOnExitFullscreenMode();
     //#endregion
 
@@ -132,6 +132,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                     {...options?.styling?.itemViewer?.loadingSpinner}
                 />
                 <video
+                    controls={optionsLogic.useDefaultVideoControls}
                     draggable={false}
                     className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
                     style={stylingLogic.carouselVideoStyle}

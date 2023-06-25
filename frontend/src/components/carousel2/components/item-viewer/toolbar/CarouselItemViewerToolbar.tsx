@@ -458,109 +458,114 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             className={CLASSNAME__ITEM_VIEWER_TOOLBAR}
             style={stylingLogic.toolbarStyle}
         >
-            {videoRef ?
-                <CarouselItemViewerProgressBar
-                    videoRef={videoRef}
-                    setTimeStrings={setTimeStrings}
-                /> : null
-            }
-            <div
-                style={stylingLogic.toolbarContainerStyle}
-                className={CLASSNAME__TOOLBAR_CONTAINER}
-            >
-                {videoRef ? (
-                    <div className={CLASSNAME__TOOLBAR_LEFT}>
-                        <CarouselItemViewerPlayButton
-                            actionName='Play'
-                            isShortcutVisible={showPlayButtonPopup}
-                            isVisible={!isVideoPlaying}
-                            onClick={onPlayClick}
-                            options={options}
-                            ref={playButtonRef}
-                            position='left'
-                        />
-                        <CarouselItemViewerPauseButton
-                            actionName='Pause'
-                            isShortcutVisible={showPauseButtonPopup}
-                            isVisible={isVideoPlaying}
-                            onClick={onPauseClick}
-                            options={options}
-                            ref={pauseButtonRef}
-                            position='left'
-                        />
-                        <CarouselItemViewerSeekBackButton
-                            actionName='Seek Back'
-                            isShortcutVisible={showSeekBackwardButtonPopup}
-                            onClick={onSeekBackClick}
-                            options={options}
-                            ref={seekBackwardButtonRef}
-                            position='left'
-                        />
-                        <CarouselItemViewerSeekForwardButton
-                            actionName='Seek Forward'
-                            isShortcutVisible={showSeekForwardButtonPopup}
-                            onClick={onSeekForwardClick}
-                            options={options}
-                            ref={seekForwardButtonRef}
-                            position='left'
-                        />
+            {isVideo && !isFullscreenMode && optionsLogic.useDefaultVideoControls ? null : (
+                <>
+                    {
+                        videoRef ?
+                            <CarouselItemViewerProgressBar
+                                videoRef={videoRef}
+                                setTimeStrings={setTimeStrings}
+                            /> : null
+                    }
+                    <div
+                        style={stylingLogic.toolbarContainerStyle}
+                        className={CLASSNAME__TOOLBAR_CONTAINER}
+                    >
+                        {videoRef ? (
+                            <div className={CLASSNAME__TOOLBAR_LEFT}>
+                                <CarouselItemViewerPlayButton
+                                    actionName='Play'
+                                    isShortcutVisible={showPlayButtonPopup}
+                                    isVisible={!isVideoPlaying}
+                                    onClick={onPlayClick}
+                                    options={options}
+                                    ref={playButtonRef}
+                                    position='left'
+                                />
+                                <CarouselItemViewerPauseButton
+                                    actionName='Pause'
+                                    isShortcutVisible={showPauseButtonPopup}
+                                    isVisible={isVideoPlaying}
+                                    onClick={onPauseClick}
+                                    options={options}
+                                    ref={pauseButtonRef}
+                                    position='left'
+                                />
+                                <CarouselItemViewerSeekBackButton
+                                    actionName='Seek Back'
+                                    isShortcutVisible={showSeekBackwardButtonPopup}
+                                    onClick={onSeekBackClick}
+                                    options={options}
+                                    ref={seekBackwardButtonRef}
+                                    position='left'
+                                />
+                                <CarouselItemViewerSeekForwardButton
+                                    actionName='Seek Forward'
+                                    isShortcutVisible={showSeekForwardButtonPopup}
+                                    onClick={onSeekForwardClick}
+                                    options={options}
+                                    ref={seekForwardButtonRef}
+                                    position='left'
+                                />
+                            </div>
+                        ) : null}
+                        <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
+                        <div className={CLASSNAME__TOOLBAR_RIGHT}>
+                            <CarouselItemViewerPreviousButton
+                                actionName='Previous'
+                                isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showPreviousButtonPopup}
+                                onClick={onPreviousItemClickLocal}
+                                options={options}
+                                ref={previousButtonRef}
+                            />
+                            <CarouselItemViewerNextButton
+                                actionName='Next'
+                                isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showNextButtonPopup}
+                                onClick={onNextItemClickLocal}
+                                options={options}
+                                ref={nextButtonRef}
+                            />
+                            <CarouselItemViewerFullscreenButton
+                                actionName='Fullscreen'
+                                isShortcutVisible={!isFullscreenMode && showFullscreenButtonPopup}
+                                onClick={() => null}
+                                options={options}
+                                ref={fullscreenButtonRef}
+                                videoRef={videoRef}
+                            />
+                            <CarouselItemViewerCloseButton
+                                actionName='Exit'
+                                isShortcutVisible={isFullscreenMode && showCloseButtonPopup}
+                                onClick={onClose}
+                                options={options}
+                                ref={closeButtonRef}
+                                position='right'
+                                videoRef={videoRef}
+                            />
+                        </div>
                     </div>
-                ) : null}
-                <CarouselItemViewerToolbarText isVideo={isVideo} description={description || ''} timeStrings={timeStrings} />
-                <div className={CLASSNAME__TOOLBAR_RIGHT}>
-                    <CarouselItemViewerPreviousButton
-                        actionName='Previous'
-                        isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showPreviousButtonPopup}
-                        onClick={onPreviousItemClickLocal}
-                        options={options}
-                        ref={previousButtonRef}
+                    <CarouselItemViewerToolbarPreview
+                        itemToShow={items[getPreviewItemIndex(ToolbarPreviewDirection.previous)]}
+                        show={
+                            previewDirection === ToolbarPreviewDirection.previous
+                        }
+                        isLoaded={isPreviousItemPreviewLoaded}
+                        setIsLoaded={setIsPreviousItemPreviewLoaded}
+                        shortcuts={toolbarActionsLogic.getPreviousItem().keys}
+                        actionName={"Previous"}
                     />
-                    <CarouselItemViewerNextButton
-                        actionName='Next'
-                        isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showNextButtonPopup}
-                        onClick={onNextItemClickLocal}
-                        options={options}
-                        ref={nextButtonRef}
+                    <CarouselItemViewerToolbarPreview
+                        itemToShow={items[getPreviewItemIndex(ToolbarPreviewDirection.next)]}
+                        show={
+                            previewDirection === ToolbarPreviewDirection.next
+                        }
+                        isLoaded={isNextItemPreviewLoaded}
+                        setIsLoaded={setIsNextItemPreviewLoaded}
+                        shortcuts={toolbarActionsLogic.getNextItem().keys}
+                        actionName={"Next"}
                     />
-                    <CarouselItemViewerFullscreenButton
-                        actionName='Fullscreen'
-                        isShortcutVisible={!isFullscreenMode && showFullscreenButtonPopup}
-                        onClick={() => null}
-                        options={options}
-                        ref={fullscreenButtonRef}
-                        videoRef={videoRef}
-                    />
-                    <CarouselItemViewerCloseButton
-                        actionName='Exit'
-                        isShortcutVisible={isFullscreenMode && showCloseButtonPopup}
-                        onClick={onClose}
-                        options={options}
-                        ref={closeButtonRef}
-                        position='right'
-                        videoRef={videoRef}
-                    />
-                </div>
-            </div>
-            <CarouselItemViewerToolbarPreview
-                itemToShow={items[getPreviewItemIndex(ToolbarPreviewDirection.previous)]}
-                show={
-                    previewDirection === ToolbarPreviewDirection.previous
-                }
-                isLoaded={isPreviousItemPreviewLoaded}
-                setIsLoaded={setIsPreviousItemPreviewLoaded}
-                shortcuts={toolbarActionsLogic.getPreviousItem().keys}
-                actionName={"Previous"}
-            />
-            <CarouselItemViewerToolbarPreview
-                itemToShow={items[getPreviewItemIndex(ToolbarPreviewDirection.next)]}
-                show={
-                    previewDirection === ToolbarPreviewDirection.next
-                }
-                isLoaded={isNextItemPreviewLoaded}
-                setIsLoaded={setIsNextItemPreviewLoaded}
-                shortcuts={toolbarActionsLogic.getNextItem().keys}
-                actionName={"Next"}
-            />
+                </>
+            )}
         </div>
     )
     //#endregion

@@ -2276,6 +2276,18 @@ const viewingModePaddingEverywhere = (
 		}}
 	/>
 );
+const viewingModeVideoControls = (
+	<Carousel
+		options={{
+			layout: {
+				itemDisplayLocation: 'above',
+				useDefaultVideoControls: [[false], [true, 800]],
+				isToolbarPositionedInVideo: [[true], [false, 1200, 'min-width']]
+			}
+		}}
+		items={items}
+	/>
+);
 //#endregion
 
 type Sections = [SectionNames, { label: string, jsx: ReactNode | ReactNode[] }[]][];
@@ -2875,6 +2887,10 @@ const SECTIONS: Sections = [
 				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
 				jsx: viewingModeItemViewerPreview,
 			},	
+			{
+				label: "Video Controls Change Dynamically based on Viewing Mode",
+				jsx: viewingModeVideoControls,
+			},
 		]
 	],
 	[
@@ -3030,8 +3046,8 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	SectionNames.otherDynamicSettings,
-	// SectionNames.dynamicBasedOnViewingMode,
+	// SectionNames.otherDynamicSettings,
+	SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
 	// ...Object.values(SectionNames),
