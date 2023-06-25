@@ -267,6 +267,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     }
 
     const handleVideoRefMouseLeave = useCallback((e: MouseEvent) => {
+        if (isFullscreenMode) return;
         const point: Point = {
             x: e.clientX || e.screenX,
             y: e.clientY || e.screenY,
@@ -275,7 +276,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         const isVideoPlaying = getIsVideoPlaying(videoRef?.current);
         if (isInVideoBox || !isVideoPlaying) return;
         hideToolbar();
-    }, [hideToolbar, videoRef])
+    }, [hideToolbar, isFullscreenMode, videoRef])
 
     const handleVideoRefMouseMove = useCallback((e: MouseEvent) => {
         showToolbar();

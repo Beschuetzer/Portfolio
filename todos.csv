@@ -1,5 +1,4 @@
 Carousel rework
-  -embedded toolbar hide behavior not disabled in fullscreen mode
   -work on progressbar rework.  A container with 3 divs (one for current value, one for background full width, one for seek value (snapshot in here?))
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
