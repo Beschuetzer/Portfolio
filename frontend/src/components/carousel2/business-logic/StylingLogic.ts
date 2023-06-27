@@ -673,6 +673,7 @@ export class StylingLogic {
             ...this.getToolbarBackgroundColorStyle(),
             ...paddingHorizontalStyle,
             position: this.optionsLogic.isToolbarInVideo ? "absolute" : "relative",
+            bottom: this.optionsLogic.isToolbarInVideo ? -2 : 0,
             width: this.optionsLogic.isToolbarInVideo ? undefined : '100%',
             paddingTop: isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
             paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
