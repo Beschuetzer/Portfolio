@@ -702,7 +702,7 @@ export class StylingLogic {
 
     private get imageHeight() {
         const toolbarWidth = this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.width || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT;
-        const toolbarPadding = this.itemViewerContainerHorizontalPadding;
+        const toolbarPadding = this.optionsLogic.isToolbarInVideo ? 0 : this.itemViewerContainerHorizontalPadding;
         return this.isFullscreenMode ? 'auto' : (toolbarWidth - toolbarPadding) * 9 / 16;
     }
     //#endregion
