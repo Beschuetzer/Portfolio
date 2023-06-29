@@ -257,10 +257,14 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const onSeekForwardClick = useCallback(() => {
         if (videoRef?.current) {
             videoRef.current.currentTime += optionsLogic.videoSeekAmount;
+
+            if (videoRef.current.currentTime >= videoRef.current.duration) {
+                setIsVideoPlaying(false);
+            }
         }
         handleAutoHide();
         toolbarActionsLogic.getSeekForwards().onActionCompleted();
-    }, [videoRef, handleAutoHide, toolbarActionsLogic, optionsLogic.videoSeekAmount])
+    }, [videoRef, handleAutoHide, toolbarActionsLogic, optionsLogic.videoSeekAmount, setIsVideoPlaying])
 
     function onToolbarClick(e: MouseEvent) {
         e.stopPropagation();
