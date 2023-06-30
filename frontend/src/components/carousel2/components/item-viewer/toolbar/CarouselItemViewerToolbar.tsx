@@ -32,6 +32,7 @@ import { getIsPointInsideElement } from '../../../utils'
 export type CarouselItemViewerToolbarProps = {
     description: string;
     itemContainerRef: React.MutableRefObject<HTMLDivElement | undefined> | null;
+    imageRef?: React.MutableRefObject<HTMLImageElement | undefined> | null;
     isVideo: boolean;
     onClose?: () => void;
     onNextItemClick?: () => void;
@@ -42,6 +43,7 @@ export type CarouselItemViewerToolbarProps = {
 
 export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemViewerToolbarProps>(({
     description,
+    imageRef,
     isVideo,
     itemContainerRef,
     onClose = () => null,
@@ -61,6 +63,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const playButtonRef = useRef<any>(null);
     const seekForwardButtonRef = useRef<any>(null);
     const seekBackwardButtonRef = useRef<any>(null);
+    const showToolbarOnItemChangeTimeoutRef = useRef<any>();
     const innerRef = useRef<HTMLElement>(null);
     useImperativeHandle(ref, () => innerRef.current as any);
 
@@ -271,18 +274,20 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     }
 
     const handleVideoRefMouseLeave = useCallback((e: MouseEvent) => {
+        clearTimeout(showToolbarOnItemChangeTimeoutRef.current);
         if (isFullscreenMode) return;
         const point: Point = {
             x: e.clientX || e.screenX,
             y: e.clientY || e.screenY,
         }
-        const isInVideoBox = getIsPointInsideElement(point, videoRef?.current as HTMLElement);
-        const isVideoPlaying = getIsVideoPlaying(videoRef?.current);
+        const isInVideoBox = getIsPointInsideElement(point, (videoRef?.current || imageRef?.current) as HTMLElement);
+        const isVideoPlaying = !!imageRef?.current ? true : getIsVideoPlaying(videoRef?.current);
         if (isInVideoBox || !isVideoPlaying) return;
         hideToolbar();
-    }, [hideToolbar, isFullscreenMode, videoRef])
+    }, [hideToolbar, isFullscreenMode, videoRef, imageRef])
 
     const handleVideoRefMouseMove = useCallback((e: MouseEvent) => {
+        clearTimeout(showToolbarOnItemChangeTimeoutRef.current);
         showToolbar();
     }, [showToolbar])
     //#endregion
@@ -303,19 +308,34 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     useEffect(() => {
         const videoRefCopy = videoRef?.current;
+        const imageRefCopy = imageRef?.current;
         const innerRefCopy = innerRef?.current;
         if (optionsLogic.isToolbarInVideo) {
             videoRef?.current?.addEventListener('mousemove', handleVideoRefMouseMove);
             videoRef?.current?.addEventListener('mouseleave', handleVideoRefMouseLeave);
+            imageRef?.current?.addEventListener('mousemove', handleVideoRefMouseMove);
+            imageRef?.current?.addEventListener('mouseleave', handleVideoRefMouseLeave);
             innerRef?.current?.addEventListener('mouseleave', handleVideoRefMouseLeave);
         }
 
         return () => {
             videoRefCopy?.removeEventListener('mousemove', handleVideoRefMouseMove);
             videoRefCopy?.removeEventListener('mouseleave', handleVideoRefMouseLeave);
+            imageRefCopy?.removeEventListener('mousemove', handleVideoRefMouseMove);
+            imageRefCopy?.removeEventListener('mouseleave', handleVideoRefMouseLeave);
             innerRefCopy?.removeEventListener('mouseleave', handleVideoRefMouseLeave);
         }
-    }, [handleAutoHide, handleVideoRefMouseLeave, handleVideoRefMouseMove, hideToolbar, optionsLogic.isToolbarInVideo, videoRef])
+    }, [
+        handleAutoHide,
+        handleVideoRefMouseLeave,
+        handleVideoRefMouseMove,
+        hideToolbar,
+        imageRef,
+        isVideo,
+        optionsLogic.isToolbarInVideo,
+        showToolbar,
+        videoRef
+    ])
 
     //handling events for buttons
     useEffect(() => {
@@ -453,6 +473,17 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         seekBackwardButtonRef,
         seekForwardButtonRef,
     ]);
+
+    //show the toolbar for SHOW_TOOLBAR_ON_ITEM_CHANGE_DURATION on item change then hide
+    useEffect(() => {
+        if (!optionsLogic.isToolbarInVideo) return;
+        clearInterval(showToolbarOnItemChangeTimeoutRef.current);
+        showToolbar();
+
+        showToolbarOnItemChangeTimeoutRef.current = setTimeout(() => {
+            hideToolbar();
+        }, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT)
+    }, [currentItemIndex, hideToolbar, isVideo, optionsLogic.isToolbarInVideo, showToolbar])
     //#endregion
 
     //#region JSX

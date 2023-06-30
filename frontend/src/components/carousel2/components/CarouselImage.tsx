@@ -10,6 +10,7 @@ import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFulls
 export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewerToolbarProps, 'itemContainerRef'> ) => {
     const { options, setIsFullscreenMode } = useCarouselContext();
     const [isLoaded, setIsLoaded] = useState(false);
+    const imageRef = useRef<HTMLImageElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
     const {
         description,
@@ -29,6 +30,7 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
         <>
             <LoadingSpinner type='ring' show={!isLoaded} description={description} {...options?.styling?.itemViewer?.loadingSpinner} />
             <img
+                ref={imageRef as any}
                 onClick={onImageClick as any}
                 draggable={false}
                 style={stylingLogic.carouselImageStlye}
@@ -48,6 +50,7 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
                 onPreviousItemClick={() => {
                     setIsLoaded(false)
                 }}
+                imageRef={imageRef}
             />
         </>
     );
