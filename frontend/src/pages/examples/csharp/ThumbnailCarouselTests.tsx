@@ -2283,7 +2283,7 @@ const viewingModeVideoControls = (
 				itemDisplayLocation: 'above',
 				useDefaultVideoControls: [[false], [true, 800]],
 				isToolbarPositionedInVideo: [[true], [false, 1200, 'min-width']]
-			}
+			},
 		}}
 		items={items}
 	/>

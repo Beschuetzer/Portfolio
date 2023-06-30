@@ -2,7 +2,7 @@ import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef,
 import { getCurrentValue, getFormattedTimeString, getIsMobile, getIsVideoPlaying, stopPropagation } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
-import { CarouselItemViewerProgressBar } from '../CarouselItemViewerProgressBar'
+import { CarouselItemViewerProgressBar } from '../progress-bar/CarouselItemViewerProgressBar'
 import { Point, VideoTimeStrings } from '../../../types'
 import { CarouselItemViewerNextButton } from './CarouselItemViewerNextButton'
 import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton'
@@ -464,7 +464,9 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             style={stylingLogic.toolbarStyle}
         >
             {isVideo && !isFullscreenMode && optionsLogic.useDefaultVideoControls ? null : (
-                <>
+                <div
+                    style={stylingLogic.toolbarOuterContainerStyle}
+                >
                     {
                         videoRef ?
                             <CarouselItemViewerProgressBar
@@ -473,7 +475,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                             /> : null
                     }
                     <div
-                        style={stylingLogic.toolbarContainerStyle}
+                        style={stylingLogic.toolbarInnerContainerStyle}
                         className={CLASSNAME__TOOLBAR_CONTAINER}
                     >
                         {videoRef ? (
@@ -569,7 +571,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                         shortcuts={toolbarActionsLogic.getNextItem().keys}
                         actionName={"Next"}
                     />
-                </>
+                </div>
             )}
         </div>
     )

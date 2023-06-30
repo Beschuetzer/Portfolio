@@ -1,10 +1,10 @@
 import React, { useCallback, useState, useEffect } from 'react'
-import { CLASSNAME__ITEM_VIEWER } from '../../constants';
-import { getClassname, getFormattedTimeString } from '../../utils';
-import { VideoTimeStrings } from '../../types';
-import { CarouselItemViewerToolbarProps } from './toolbar/CarouselItemViewerToolbar';
-import { useCarouselContext } from '../../context';
-import { useBusinessLogic } from '../../hooks/useBusinessLogic';
+import { CLASSNAME__ITEM_VIEWER } from '../../../constants';
+import { getClassname, getFormattedTimeString } from '../../../utils';
+import { VideoTimeStrings } from '../../../types';
+import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
+import { useCarouselContext } from '../../../context';
+import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 type CarouselItemViewerProgressBarProps = {
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;

@@ -494,12 +494,17 @@ export class StylingLogic {
         const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
         const heightToUse = height > CAROUSEL_PROGRESS_BAR_HEIGHT_MAX ? CAROUSEL_PROGRESS_BAR_HEIGHT_MAX : height < CAROUSEL_PROGRESS_BAR_HEIGHT_MIN ? CAROUSEL_PROGRESS_BAR_HEIGHT_MIN : height;
         const marginBottom = CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT - heightToUse;
+        const widthToUse = shouldSpanWholeWidth
+            ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})`
+            : this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode
+                ? `calc(100% - ${CAROUSEL_ITEM_SPACING_DEFAULT * 2}${CAROUSEL_SPACING_UNIT})`
+                : '100%';
 
         const common = {
             marginBottom,
             height: heightToUse,
             background,
-            width: shouldSpanWholeWidth ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})` : '100%',
+            width: widthToUse,
         } as CSSProperties
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
@@ -677,6 +682,10 @@ export class StylingLogic {
             width: this.optionsLogic.isToolbarInVideo ? undefined : '100%',
             paddingTop: isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
             paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
+            top: this.optionsLogic.isToolbarInVideo ? '50%' : undefined,
+            justifyContent: 'flex-end',
+            pointerEvents: 'none',
+
         } as React.CSSProperties : {
             ...paddingHorizontalStyle,
         };
@@ -687,10 +696,22 @@ export class StylingLogic {
         }
     }
 
-    get toolbarContainerStyle() {
+    get toolbarInnerContainerStyle() {
         return {
             paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
             paddingRight: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
+        } as CSSProperties;
+    }
+
+
+    get toolbarOuterContainerStyle() {
+        return {
+            pointerEvents: "all",
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flexEnd",
+            alignItems: "center",
         } as CSSProperties;
     }
     //#endregion
