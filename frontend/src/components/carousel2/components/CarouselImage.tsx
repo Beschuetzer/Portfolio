@@ -27,7 +27,7 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
     }, [setIsFullscreenMode]);
 
     return (
-        <>
+        <div style={stylingLogic.carouselImageContainerStlye}>
             <LoadingSpinner type='ring' show={!isLoaded} description={description} {...options?.styling?.itemViewer?.loadingSpinner} />
             <img
                 ref={imageRef as any}
@@ -52,6 +52,6 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
                 }}
                 imageRef={imageRef}
             />
-        </>
+        </div>
     );
 }

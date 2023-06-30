@@ -110,6 +110,19 @@ export class StylingLogic {
     }
 
     //#region Public Getters
+    get carouselImageContainerStlye() {
+        return {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            width: '100%',
+            height: '100%',
+            paddingLeft: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer),
+            paddingRight: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer),
+        } as CSSProperties;
+    }
+
     get carouselImageStlye() {
         // const cursorStyle = this.isFullscreenMode ?  {
         //     zIndex: 0,
@@ -122,6 +135,7 @@ export class StylingLogic {
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: '100%',
             height: this.imageHeight,
+            objectPosition: this.isFullscreenMode ? 'center' : 'bottom',
             // ...cursorStyle,
         } as CSSProperties : {
         } as CSSProperties;
@@ -442,8 +456,8 @@ export class StylingLogic {
             width: "100%",
             paddingTop: 0,
             paddingBottom: 0,
-            paddingLeft: this.isFullscreenMode ? 0 : `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
-            paddingRight: this.isFullscreenMode ? 0 : `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer)}${CAROUSEL_SPACING_UNIT}`,
+            paddingLeft: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer),
+            paddingRight: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer),
         } as CSSProperties : {
 
         };
@@ -669,8 +683,8 @@ export class StylingLogic {
         const rightSpacing = this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT);
 
         const paddingHorizontalStyle = {
-            paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : leftSpacing,
-            paddingRight: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : rightSpacing,
+            paddingLeft: (this.optionsLogic.isToolbarInVideo || !isItemVideo) && !this.isFullscreenMode ? 0 : leftSpacing,
+            paddingRight: (this.optionsLogic.isToolbarInVideo || !isItemVideo) && !this.isFullscreenMode ? 0 : rightSpacing,
             marginLeft: !this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? 0 : leftSpacing,
             marginRight: !this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? 0 : rightSpacing,
         } as CSSProperties;
@@ -723,8 +737,7 @@ export class StylingLogic {
 
     private get imageHeight() {
         const toolbarWidth = this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.width || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT;
-        const toolbarPadding = this.optionsLogic.isToolbarInVideo ? 0 : this.itemViewerContainerHorizontalPadding;
-        return this.isFullscreenMode ? 'auto' : (toolbarWidth - toolbarPadding) * 9 / 16;
+        return this.isFullscreenMode ? '100%' : (toolbarWidth) * 9 / 16;
     }
     //#endregion
 
