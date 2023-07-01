@@ -17,6 +17,7 @@ export type CarouselItemViewerShortcutIndicatorProps = {
     *This is needed to be able to pass the refs while hiding the button (conditional null rendering doesn't work)
     **/
     showButton?: boolean;
+    style?: React.CSSProperties;
 }
 
 const TIMEOUT_DURATION = 1000;
@@ -29,6 +30,7 @@ export const CarouselItemViewerShortcutIndicator = ({
     position = 'center',
     shortcuts = [],
     showButton = true,
+    style = {},
 }: CarouselItemViewerShortcutIndicatorProps) => {
     const { stylingLogic } = useBusinessLogic({});
     const timeoutRef = useRef<any>(null);
@@ -50,7 +52,7 @@ export const CarouselItemViewerShortcutIndicator = ({
     return (
         <div
             className={`${className} ${hiddenClassName}`}
-            style={stylingLogic.getCarouselShortcutIndicatorContainerStlye(showButton)}
+            style={{ ...stylingLogic.getCarouselShortcutIndicatorContainerStlye(showButton), ...style }}
         >
             {hideShortcut ? null : (
                 <div

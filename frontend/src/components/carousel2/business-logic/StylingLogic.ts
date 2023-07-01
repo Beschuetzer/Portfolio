@@ -510,9 +510,7 @@ export class StylingLogic {
         const marginBottom = CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT - heightToUse;
         const widthToUse = shouldSpanWholeWidth
             ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})`
-            : this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode
-                ? `calc(100% - ${CAROUSEL_ITEM_SPACING_DEFAULT * 2}${CAROUSEL_SPACING_UNIT})`
-                : '100%';
+            : '100%';
 
         const common = {
             marginBottom,

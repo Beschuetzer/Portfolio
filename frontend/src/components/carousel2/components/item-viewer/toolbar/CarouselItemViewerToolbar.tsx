@@ -570,6 +570,9 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                 options={options}
                                 ref={fullscreenButtonRef}
                                 videoRef={videoRef}
+                                style={{
+                                    paddingRight: 2,
+                                }}
                             />
                             <CarouselItemViewerCloseButton
                                 actionName='Exit'
