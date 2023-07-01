@@ -545,7 +545,6 @@ export class StylingLogic {
     }
 
     getCarouselVideoProgressSeekDotStyle(percentWidthDecimal: number){ 
-        
         const diameter = 10;
 
         return {
@@ -555,7 +554,7 @@ export class StylingLogic {
             background: this.optionsLogic.videoProgressBarForegroundColor,
             height: diameter,
             width: diameter,
-            top: this.optionsLogic.isToolbarInVideo ? '50%' : 0,
+            top: this.optionsLogic.isToolbarInVideo ? '50%' : 3,
             transform: 'translate(0, -50%)',
         } as CSSProperties;
     }

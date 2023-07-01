@@ -34,6 +34,17 @@ export const CarouselItemViewerProgressBar = ({
         return amountPastLeft / (progressBarRightX - progressBarLeftX);
     }, [])
 
+    const onMouseUp = useCallback((e: MouseEvent) => {
+        console.log("mouse up");
+        
+        isMouseDownRef.current = false;
+        setIsVideoPlaying && setIsVideoPlaying(true);
+        if (videoRef?.current) {
+            videoRef.current.currentTime = progressBarValue * videoRef.current.duration;
+            videoRef?.current?.play();
+        }
+    }, [progressBarValue, setIsVideoPlaying, videoRef]);
+
     const onMouseDown = useCallback((e: MouseEvent) => {
         isMouseDownRef.current = true;
         setIsVideoPlaying && setIsVideoPlaying(false);
@@ -45,13 +56,18 @@ export const CarouselItemViewerProgressBar = ({
         setProgressBarValue(percent);
         if (videoRef?.current) {
             const video = videoRef?.current;
+            setSeekWidth(video.currentTime / video.duration);
             video.currentTime = percent * video.duration;
         }
     }, [getPercent, setIsVideoPlaying, videoRef]);
 
     const onMouseLeave = useCallback((e: MouseEvent) => {
+        if (isMouseDownRef.current) {
+            onMouseUp(e);
+            return;
+        };
         setSeekWidth(INITIAL_VALUE);
-    }, [])
+    }, [onMouseUp])
 
     const onMouseMove = useCallback((e: MouseEvent) => {
         const progressBar = e.currentTarget as HTMLDivElement;
@@ -63,15 +79,6 @@ export const CarouselItemViewerProgressBar = ({
             setSeekWidth(percent);
         }
     }, [getPercent])
-
-    const onMouseUp = useCallback((e: MouseEvent) => {
-        isMouseDownRef.current = false;
-        setIsVideoPlaying && setIsVideoPlaying(true);
-        if (videoRef?.current) {
-            videoRef.current.currentTime = progressBarValue * videoRef.current.duration;
-            videoRef?.current?.play();
-        }
-    }, [progressBarValue, setIsVideoPlaying, videoRef]);
 
     useEffect(() => {
         const videoRefCopy = videoRef?.current;

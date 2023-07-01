@@ -1,6 +1,6 @@
 Carousel rework
   -work on progressbar rework:
-    --figure out how to get the seek value to take on the current value of the video when dragging bar
+    --work on scale on enter functionality
     --add option to customize getCarouselVideoProgressSeekDotStyle's diameter
     --add the circular dot at the end of the bar (hidden when not on the progress bar)
     --add transition behavior for circular dot
