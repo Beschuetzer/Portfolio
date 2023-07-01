@@ -973,6 +973,7 @@ export class StylingLogic {
             position: "relative",
             backgroundColor: this.itemViewerBackgroundColor,
             justifyContent: this.isFullscreenMode ? 'center' : 'flex-end',
+            overflow: "hidden",
         } as CSSProperties : {};
     }
 
