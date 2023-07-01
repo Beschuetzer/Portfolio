@@ -31,6 +31,10 @@ export const CarouselItemViewerProgressBar = ({
         return amountPastLeft / (progressBarRightX - progressBarLeftX);
     }, [])
 
+    const onMouseLeave = useCallback((e: MouseEvent) => {
+        setSeekWidth(0);
+    }, [])
+
     const onMouseMove = useCallback((e: MouseEvent) => {
         const progressBar = e.currentTarget as HTMLDivElement;
         if (!progressBar) return;
@@ -91,6 +95,7 @@ export const CarouselItemViewerProgressBar = ({
             className={getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })}
             onClick={onProgressBarClick as any}
             onMouseMove={onMouseMove as any}
+            onMouseLeave={onMouseLeave as any}
         >
             <div style={stylingLogic.carouselVideoProgressBackgroundStyle} />
             <div style={stylingLogic.getCarouselVideoProgressSeekStyle(seekWidth)} />
