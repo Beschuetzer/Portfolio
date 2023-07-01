@@ -77,10 +77,11 @@ export const CarouselItemViewerProgressBar = ({
 
     return (
         <div
-            style={stylingLogic.carouselVideoProgressBackgroundStyle}
+            style={stylingLogic.carouselVideoProgressContainerStyle}
             className={getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })}
             onClick={onProgressBarClick as any}
         >
+            <div style={stylingLogic.carouselVideoProgressBackgroundStyle} />
             <div style={stylingLogic.carouselVideoProgressForegroundStyle} />
         </div>
     )

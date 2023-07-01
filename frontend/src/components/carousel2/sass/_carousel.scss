@@ -264,17 +264,10 @@
             }
 
             &-progress {
-                transition: transform calc(#{$carouselAnimationDuration} / 2);
-                width: calc(100vw - #{$itemViewerToolbarMarginHorizontal});
                 cursor: pointer;
                 appearance: none;
                 border: none;
                 z-index: $zIndexProgressBar;
-
-                &:hover {
-                    transform: scaleY(2);
-                    backface-visibility: hidden;
-                }
             }
         }
     }

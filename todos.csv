@@ -1,5 +1,8 @@
 Carousel rework
-  -work on progressbar rework.  A container with 3 divs (one for current value, one for background full width, one for seek value (snapshot in here?))
+  -work on progressbar rework:
+    --A container with 3 divs (one for current value, one for background full width, one for seek value (snapshot in here?))
+    --verify all of the progress bar customization options still work when done 
+
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
   -make CarouselElementCustomization.style a CarouselElementValue?

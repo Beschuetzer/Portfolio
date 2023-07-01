@@ -501,22 +501,21 @@ export class StylingLogic {
         } as CSSProperties : {};
     }
 
-    get carouselVideoProgressBackgroundStyle() {
-        const backgroundColorToUse = this.optionsLogic.isToolbarInVideo ? convertHexToRgba(CAROUSEL_COLOR_GREY_ONE, .25) : CAROUSEL_COLOR_GREY_ONE;
-        const height = getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
-        const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
+    get carouselVideoProgressContainerStyle() {
         const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
-        const heightToUse = height > CAROUSEL_PROGRESS_BAR_HEIGHT_MAX ? CAROUSEL_PROGRESS_BAR_HEIGHT_MAX : height < CAROUSEL_PROGRESS_BAR_HEIGHT_MIN ? CAROUSEL_PROGRESS_BAR_HEIGHT_MIN : height;
-        const marginBottom = CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT - heightToUse;
         const widthToUse = shouldSpanWholeWidth
             ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})`
             : '100%';
+        const heightToUse = this.optionsLogic.isToolbarInVideo ? 'auto' : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT;
+        const paddingVertical = this.optionsLogic.isToolbarInVideo ? CAROUSEL_ITEM_SPACING_DEFAULT * 2 : undefined;
 
         const common = {
-            marginBottom,
             height: heightToUse,
-            background,
+            background: 'transparent',
             width: widthToUse,
+            position: 'relative',
+            paddingTop: paddingVertical,
+            paddingBottom: paddingVertical,
         } as CSSProperties
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
@@ -526,18 +525,39 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
+    get carouselVideoProgressBackgroundStyle() {
+        const backgroundColorToUse = this.optionsLogic.isToolbarInVideo ? convertHexToRgba(CAROUSEL_COLOR_GREY_ONE, .25) : CAROUSEL_COLOR_GREY_ONE;
+        const height = getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
+        const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
+
+        return {
+            width: '100%',
+            height,
+            background,
+            ...this.carouselVideoProgressPositioningStyle,
+        } as CSSProperties;
+    }
+
     get carouselVideoProgressForegroundStyle() {
+        const height = getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
         const foregroundColor = getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
-        const common = {
+
+        return {
             background: foregroundColor,
             width: `${this.progressBarValue * 100}%`,
-            height: '100%',
-        } as CSSProperties
+            height,
+            ...this.carouselVideoProgressPositioningStyle,
+        }
+    }
 
-        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
-            ...common,
-        } as CSSProperties : {
-            ...common,
+    get carouselVideoProgressPositioningStyle() {
+        const isToolbarInVideo = this.optionsLogic.isToolbarInVideo;
+
+        return {
+            position: 'absolute',
+            top: isToolbarInVideo ? '50%' : 0,
+            transform: isToolbarInVideo ? 'translate(0, -50%)' : undefined,
+            left: 0,
         } as CSSProperties;
     }
 
