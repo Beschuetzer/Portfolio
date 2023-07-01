@@ -1,6 +1,7 @@
 Carousel rework
   -work on progressbar rework:
     --work on scale on enter functionality
+    --work on show/hide dot on move/leave
     --add option to customize getCarouselVideoProgressSeekDotStyle's diameter
     --add the circular dot at the end of the bar (hidden when not on the progress bar)
     --add transition behavior for circular dot
