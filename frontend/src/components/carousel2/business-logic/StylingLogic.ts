@@ -551,6 +551,18 @@ export class StylingLogic {
         }
     }
 
+    getCarouselVideoProgressSeekStyle(percentWidthDecimal: number){
+        const height = getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
+        const seekColor = getCurrentValue(this.options.styling?.toolbar?.progressBar?.seekColor, convertHexToRgba(CAROUSEL_COLOR_FIVE, .5), this.isFullscreenMode);
+
+        return {
+            background: seekColor,
+            width: `${percentWidthDecimal * 100}%`,
+            height,
+            ...this.carouselVideoProgressPositioningStyle,
+        }
+    }
+
     get carouselVideoProgressPositioningStyle() {
         const isToolbarInVideo = this.optionsLogic.isToolbarInVideo;
 

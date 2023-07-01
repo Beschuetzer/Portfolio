@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useCallback, useState, useEffect, MouseEventHandler } from 'react'
 import { CLASSNAME__ITEM_VIEWER } from '../../../constants';
 import { getClassname, getFormattedTimeString } from '../../../utils';
 import { VideoTimeStrings } from '../../../types';
@@ -18,26 +18,36 @@ export const CarouselItemViewerProgressBar = ({
     const { currentItem } = useCarouselContext();
 
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
+    const [seekWidth, setSeekWidth] = useState(INITIAL_VALUE);
     const { stylingLogic } = useBusinessLogic({ progressBarValue });
 
-    const onProgressBarClick = useCallback((e: MouseEvent) => {
+    const getPercent = useCallback((e: MouseEvent, progressBar: HTMLDivElement) => {
+        if (!e || !progressBar) return 0;
         const clientX = e.clientX;
-        const progressBar = e.currentTarget as HTMLProgressElement;
-
-        if (!progressBar) return;
-
         const progressBarBoundingRect = progressBar.getBoundingClientRect();
         const progressBarLeftX = progressBarBoundingRect.left;
         const progressBarRightX = progressBarBoundingRect.right;
         const amountPastLeft = (clientX - progressBarLeftX);
-        const percent = amountPastLeft / (progressBarRightX - progressBarLeftX);
+        return amountPastLeft / (progressBarRightX - progressBarLeftX);
+    }, [])
 
+    const onMouseMove = useCallback((e: MouseEvent) => {
+        const progressBar = e.currentTarget as HTMLDivElement;
+        if (!progressBar) return;
+        const percent = getPercent(e, progressBar);
+        setSeekWidth(percent);
+    }, [getPercent])
+
+    const onProgressBarClick = useCallback((e: MouseEvent) => {
+        const progressBar = e.currentTarget as HTMLDivElement;
+        if (!progressBar) return;
+        const percent = getPercent(e, progressBar);
         setProgressBarValue(percent);
         if (videoRef?.current) {
             const video = videoRef?.current;
             video.currentTime = percent * video.duration;
         }
-    }, [videoRef]);
+    }, [getPercent, videoRef]);
 
     useEffect(() => {
         const videoRefCopy = videoRef?.current;
@@ -80,8 +90,10 @@ export const CarouselItemViewerProgressBar = ({
             style={stylingLogic.carouselVideoProgressContainerStyle}
             className={getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })}
             onClick={onProgressBarClick as any}
+            onMouseMove={onMouseMove as any}
         >
             <div style={stylingLogic.carouselVideoProgressBackgroundStyle} />
+            <div style={stylingLogic.getCarouselVideoProgressSeekStyle(seekWidth)} />
             <div style={stylingLogic.carouselVideoProgressForegroundStyle} />
         </div>
     )

@@ -218,6 +218,7 @@ export type CarouselSections = {
             *Any number given larger than 13px will be set to 13px.
             **/
             height?: CarouselElementValue<number>;
+            seekColor?: CarouselElementValue<string>;
         } & CarouselColorOptions;
         /**
         *This changes all of the button colors as well as the text.  To change individual ones, use `styling.elements.buttonNameHere`
