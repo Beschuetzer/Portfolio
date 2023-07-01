@@ -527,38 +527,44 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressBackgroundStyle() {
-        const backgroundColorToUse = this.optionsLogic.isToolbarInVideo ? convertHexToRgba(CAROUSEL_COLOR_GREY_ONE, .25) : CAROUSEL_COLOR_GREY_ONE;
-        const height = getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
-        const background = getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
-
         return {
             width: '100%',
-            height,
-            background,
+            height: this.optionsLogic.videoProgressBarHeight,
+            background: this.optionsLogic.videoProgressBarBackgroundColor,
             ...this.carouselVideoProgressPositioningStyle,
         } as CSSProperties;
     }
 
     get carouselVideoProgressForegroundStyle() {
-        const height = getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
-        const foregroundColor = getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_THREE, this.isFullscreenMode);
-
         return {
-            background: foregroundColor,
+            background: this.optionsLogic.videoProgressBarForegroundColor,
             width: `${this.progressBarValue * 100}%`,
-            height,
+            height: this.optionsLogic.videoProgressBarHeight,
             ...this.carouselVideoProgressPositioningStyle,
         }
     }
 
-    getCarouselVideoProgressSeekStyle(percentWidthDecimal: number){
-        const height = getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
-        const seekColor = getCurrentValue(this.options.styling?.toolbar?.progressBar?.seekColor, convertHexToRgba(CAROUSEL_COLOR_FIVE, .5), this.isFullscreenMode);
+    getCarouselVideoProgressSeekDotStyle(percentWidthDecimal: number){ 
+        
+        const diameter = 10;
 
         return {
-            background: seekColor,
+            left: `calc(${percentWidthDecimal * 100}% - ${diameter / 2}${CAROUSEL_SPACING_UNIT})`,
+            borderRadius: '50%',
+            position: 'absolute',
+            background: this.optionsLogic.videoProgressBarForegroundColor,
+            height: diameter,
+            width: diameter,
+            top: this.optionsLogic.isToolbarInVideo ? '50%' : 0,
+            transform: 'translate(0, -50%)',
+        } as CSSProperties;
+    }
+
+    getCarouselVideoProgressSeekStyle(percentWidthDecimal: number){
+        return {
+            background: this.optionsLogic.videoProgressBarSeekColor,
             width: `${percentWidthDecimal * 100}%`,
-            height,
+            height: this.optionsLogic.videoProgressBarHeight,
             ...this.carouselVideoProgressPositioningStyle,
         }
     }

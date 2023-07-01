@@ -18,10 +18,10 @@ import {
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_SIZE_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT,
-    MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT
+    MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT, CAROUSEL_COLOR_THREE, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT
 } from "../constants";
 import { CarouselOptions } from "../types";
-import { getCurrentValue } from "../utils";
+import { convertHexToRgba, getCurrentValue } from "../utils";
 
 export type OptionsConstructor = {
     options: CarouselOptions;
@@ -207,6 +207,23 @@ export class OptionsLogic {
 
     get useDefaultVideoControls() {
         return getCurrentValue(this.options.layout?.useDefaultVideoControls, false, this.isFullscreenMode);
+    }
+
+    get videoProgressBarBackgroundColor() {
+        const backgroundColorToUse = this.isToolbarInVideo ? convertHexToRgba(CAROUSEL_COLOR_GREY_ONE, .25) : CAROUSEL_COLOR_GREY_ONE;
+        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
+    }
+
+    get videoProgressBarForegroundColor() {
+        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_THREE, this.isFullscreenMode);
+    }
+
+    get videoProgressBarSeekColor() {
+        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.seekColor, convertHexToRgba(CAROUSEL_COLOR_FIVE, .5), this.isFullscreenMode);
+    }
+
+    get videoProgressBarHeight() {
+        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
     }
 
     get videoModalPadding() {

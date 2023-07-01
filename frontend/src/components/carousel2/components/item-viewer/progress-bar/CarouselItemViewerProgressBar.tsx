@@ -31,19 +31,10 @@ export const CarouselItemViewerProgressBar = ({
         return amountPastLeft / (progressBarRightX - progressBarLeftX);
     }, [])
 
-    const onMouseLeave = useCallback((e: MouseEvent) => {
-        setSeekWidth(0);
-    }, [])
-
-    const onMouseMove = useCallback((e: MouseEvent) => {
+    const onMouseDown = useCallback((e: MouseEvent) => {
         const progressBar = e.currentTarget as HTMLDivElement;
-        if (!progressBar) return;
-        const percent = getPercent(e, progressBar);
-        setSeekWidth(percent);
-    }, [getPercent])
-
-    const onProgressBarClick = useCallback((e: MouseEvent) => {
-        const progressBar = e.currentTarget as HTMLDivElement;
+        console.log({progressBar});
+        
         if (!progressBar) return;
         const percent = getPercent(e, progressBar);
         setProgressBarValue(percent);
@@ -52,6 +43,17 @@ export const CarouselItemViewerProgressBar = ({
             video.currentTime = percent * video.duration;
         }
     }, [getPercent, videoRef]);
+
+    const onMouseLeave = useCallback((e: MouseEvent) => {
+        setSeekWidth(INITIAL_VALUE);
+    }, [])
+
+    const onMouseMove = useCallback((e: MouseEvent) => {
+        const progressBar = e.currentTarget as HTMLDivElement;
+        if (!progressBar) return;
+        const percent = getPercent(e, progressBar);
+        setSeekWidth(percent);
+    }, [getPercent])
 
     useEffect(() => {
         const videoRefCopy = videoRef?.current;
@@ -93,12 +95,13 @@ export const CarouselItemViewerProgressBar = ({
         <div
             style={stylingLogic.carouselVideoProgressContainerStyle}
             className={getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })}
-            onClick={onProgressBarClick as any}
-            onMouseMove={onMouseMove as any}
+            onMouseDownCapture={onMouseDown as any}
+            onMouseMoveCapture={onMouseMove as any}
             onMouseLeave={onMouseLeave as any}
         >
             <div style={stylingLogic.carouselVideoProgressBackgroundStyle} />
             <div style={stylingLogic.getCarouselVideoProgressSeekStyle(seekWidth)} />
+            <div style={stylingLogic.getCarouselVideoProgressSeekDotStyle(progressBarValue)} />
             <div style={stylingLogic.carouselVideoProgressForegroundStyle} />
         </div>
     )

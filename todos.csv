@@ -1,9 +1,11 @@
 Carousel rework
   -work on progressbar rework:
+    --add option to customize getCarouselVideoProgressSeekDotStyle's diameter
+    --add the circular dot at the end of the bar (hidden when not on the progress bar)
+    --add transition behavior for circular dot
     --add the white seek bar behavior
     --add the thumbnail container
     --add the options to add section titles (need new component(s) to handle this as well as type)
-    --add the circular dot at the end of the bar (hidden when not on the progress bar)
     --verify all of the progress bar customization options still work when done 
 
   -check how fullscreen looks on phone (should rotate)
