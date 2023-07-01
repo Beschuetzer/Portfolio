@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, MouseEventHandler } from 'react'
+import React, { useCallback, useState, useEffect, MouseEventHandler, useRef } from 'react'
 import { CLASSNAME__ITEM_VIEWER } from '../../../constants';
 import { getClassname, getFormattedTimeString } from '../../../utils';
 import { VideoTimeStrings } from '../../../types';
@@ -8,15 +8,18 @@ import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 type CarouselItemViewerProgressBarProps = {
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;
-} & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
+} & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
+    & Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying'>;
 
 const INITIAL_VALUE = 0;
 export const CarouselItemViewerProgressBar = ({
+    setIsVideoPlaying,
     setTimeStrings,
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
     const { currentItem } = useCarouselContext();
 
+    const isMouseDownRef = useRef(false);
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
     const [seekWidth, setSeekWidth] = useState(INITIAL_VALUE);
     const { stylingLogic } = useBusinessLogic({ progressBarValue });
@@ -32,9 +35,11 @@ export const CarouselItemViewerProgressBar = ({
     }, [])
 
     const onMouseDown = useCallback((e: MouseEvent) => {
+        isMouseDownRef.current = true;
+        setIsVideoPlaying && setIsVideoPlaying(false);
+        videoRef?.current?.pause();
+
         const progressBar = e.currentTarget as HTMLDivElement;
-        console.log({progressBar});
-        
         if (!progressBar) return;
         const percent = getPercent(e, progressBar);
         setProgressBarValue(percent);
@@ -42,7 +47,7 @@ export const CarouselItemViewerProgressBar = ({
             const video = videoRef?.current;
             video.currentTime = percent * video.duration;
         }
-    }, [getPercent, videoRef]);
+    }, [getPercent, setIsVideoPlaying, videoRef]);
 
     const onMouseLeave = useCallback((e: MouseEvent) => {
         setSeekWidth(INITIAL_VALUE);
@@ -52,8 +57,21 @@ export const CarouselItemViewerProgressBar = ({
         const progressBar = e.currentTarget as HTMLDivElement;
         if (!progressBar) return;
         const percent = getPercent(e, progressBar);
-        setSeekWidth(percent);
+        if (isMouseDownRef.current) {
+            setProgressBarValue(percent)
+        } else {
+            setSeekWidth(percent);
+        }
     }, [getPercent])
+
+    const onMouseUp = useCallback((e: MouseEvent) => {
+        isMouseDownRef.current = false;
+        setIsVideoPlaying && setIsVideoPlaying(true);
+        if (videoRef?.current) {
+            videoRef.current.currentTime = progressBarValue * videoRef.current.duration;
+            videoRef?.current?.play();
+        }
+    }, [progressBarValue, setIsVideoPlaying, videoRef]);
 
     useEffect(() => {
         const videoRefCopy = videoRef?.current;
@@ -96,6 +114,7 @@ export const CarouselItemViewerProgressBar = ({
             style={stylingLogic.carouselVideoProgressContainerStyle}
             className={getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })}
             onMouseDownCapture={onMouseDown as any}
+            onMouseUp={onMouseUp as any}
             onMouseMoveCapture={onMouseMove as any}
             onMouseLeave={onMouseLeave as any}
         >

@@ -501,6 +501,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                     {
                         videoRef ?
                             <CarouselItemViewerProgressBar
+                                setIsVideoPlaying={setIsVideoPlaying}
                                 videoRef={videoRef}
                                 setTimeStrings={setTimeStrings}
                             /> : null
