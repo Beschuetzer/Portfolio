@@ -1,6 +1,9 @@
 Carousel rework
   -work on progressbar rework:
-    --A container with 3 divs (one for current value, one for background full width, one for seek value (snapshot in here?))
+    --add the white seek bar behavior
+    --add the thumbnail container
+    --add the options to add section titles (need new component(s) to handle this as well as type)
+    --add the circular dot at the end of the bar (hidden when not on the progress bar)
     --verify all of the progress bar customization options still work when done 
 
   -check how fullscreen looks on phone (should rotate)

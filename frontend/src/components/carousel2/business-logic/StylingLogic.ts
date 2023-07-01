@@ -26,6 +26,7 @@ import {
     CAROUSEL_PROGRESS_BAR_HEIGHT_MAX,
     CAROUSEL_PROGRESS_BAR_HEIGHT_MIN,
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
+    CAROUSEL_COLOR_THREE,
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -540,7 +541,7 @@ export class StylingLogic {
 
     get carouselVideoProgressForegroundStyle() {
         const height = getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
-        const foregroundColor = getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        const foregroundColor = getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_THREE, this.isFullscreenMode);
 
         return {
             background: foregroundColor,
