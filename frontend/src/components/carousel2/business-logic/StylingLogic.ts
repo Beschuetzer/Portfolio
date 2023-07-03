@@ -521,12 +521,22 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoProgressBackgroundStyle() {
+    get carouselVideoBackgroundDivsContainer() {
         return {
+            display: 'flex',
+            flexDirection: 'row',
             width: '100%',
-            height: this.optionsLogic.videoProgressBarHeight,
-            background: this.optionsLogic.videoProgressBarBackgroundColor,
+            ...this.carouselVideoProgressBackgroundCommon,
             ...this.carouselVideoProgressPositioningStyle,
+        } as CSSProperties;
+    }
+
+    getCarouselVideoProgressBackgroundStyle(width: number, left: number) {
+        return {
+            width: width >= 0 && width <= 1 ? `${width * 100}%` : width,
+            position: 'absolute',
+            left: `${left * 100}%`,
+            ...this.carouselVideoProgressBackgroundCommon,
         } as CSSProperties;
     }
 
@@ -562,6 +572,13 @@ export class StylingLogic {
             height: this.optionsLogic.videoProgressBarHeight,
             ...this.carouselVideoProgressPositioningStyle,
         }
+    }
+
+    get carouselVideoProgressBackgroundCommon() {
+        return {
+            height: this.optionsLogic.videoProgressBarHeight,
+            background: this.optionsLogic.videoProgressBarBackgroundColor,
+        } as CSSProperties;
     }
 
     get carouselVideoProgressPositioningStyle() {

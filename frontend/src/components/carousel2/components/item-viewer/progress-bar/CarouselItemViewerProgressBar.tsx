@@ -124,13 +124,17 @@ export const CarouselItemViewerProgressBar = ({
             const newWidth = toolbarRef?.current?.getBoundingClientRect().width;
             if (newWidth !== undefined && newWidth > 0 && toolbarWidth !== undefined) {
                 console.log("setting width to: " + newWidth);
-                
+
                 setToolbarWidth(newWidth);
             }
         }
     }, [setToolbarWidth, toolbarWidth])
 
     //#region JSX
+    const getBackgroundDiv = useCallback((width: number, left = 0) => {
+        return <div style={stylingLogic.getCarouselVideoProgressBackgroundStyle(width, left)} />
+    }, [stylingLogic])
+
     const getForegroundDiv = useCallback((percent: number) => {
         return <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(percent)} />
     }, [stylingLogic]);
@@ -148,27 +152,35 @@ export const CarouselItemViewerProgressBar = ({
         if (!sections || sections.length <= 1 || !videoRef?.current) {
             return (
                 <>
+                    {getBackgroundDiv(1)}
                     {currentSeekSection}
                     {currentForegroundSection}
                 </>
             );
         }
 
+        const backgroundDivs = [];
+        let amountBeforeCurrent = 0;
+        for (let index = 0; index < sections.length; index++) {
+            const section = sections[index];
+            const [text, duration] = section;
+            const isLastSection = index === sections.length - 1;
+            const percentAcross = duration / 1000 / videoRef?.current?.duration;
+            const backgroundLeft = amountBeforeCurrent / 1000 / videoRef.current.duration;
 
-        console.log({toolbarWidth});
-        
-        const items = [];
-
-        // for (const section of sections) {
-        //     const [text, duration] = section;
-        //     const percentAcross = duration / videoRef?.current?.duration
-        //     const jsxToUse = 
-        // }
+            //background div stuff
+            backgroundDivs.push(getBackgroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, backgroundLeft ));
+            amountBeforeCurrent += duration;
+            console.log({ text, duration, videoDuration: videoRef.current.duration, percentAcross, isLastSection });
+        }
 
         return (
             <>
-                {currentSeekSection}
-                {currentForegroundSection}
+                <div style={stylingLogic.carouselVideoBackgroundDivsContainer}>
+                    {backgroundDivs}
+                </div>
+                {/* {currentSeekSection}
+                {currentForegroundSection} */}
             </>
         );
 
@@ -185,7 +197,6 @@ export const CarouselItemViewerProgressBar = ({
             onMouseMoveCapture={onMouseMove as any}
             onMouseLeave={onMouseLeave as any}
         >
-            <div style={stylingLogic.carouselVideoProgressBackgroundStyle} />
             <div style={stylingLogic.getCarouselVideoProgressSeekDotStyle(progressBarValue, showDot)} />
             {renderSections()}
         </div>
