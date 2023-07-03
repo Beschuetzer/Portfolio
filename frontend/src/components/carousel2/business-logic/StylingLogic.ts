@@ -21,12 +21,7 @@ import {
     CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT,
-    CAROUSEL_COLOR_GREY_ONE,
-    CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT,
-    CAROUSEL_PROGRESS_BAR_HEIGHT_MAX,
-    CAROUSEL_PROGRESS_BAR_HEIGHT_MIN,
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
-    CAROUSEL_COLOR_THREE,
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -544,9 +539,8 @@ export class StylingLogic {
         }
     }
 
-    getCarouselVideoProgressSeekDotStyle(percentWidthDecimal: number){ 
-        const diameter = 10;
-
+    getCarouselVideoProgressSeekDotStyle(percentWidthDecimal: number, isVisible: boolean) {
+        const { diameter, isAlwaysVisible, transitionDuration } = this.optionsLogic.videoProgressBarDotSettings;
         return {
             left: `calc(${percentWidthDecimal * 100}% - ${diameter / 2}${CAROUSEL_SPACING_UNIT})`,
             borderRadius: '50%',
@@ -555,11 +549,12 @@ export class StylingLogic {
             height: diameter,
             width: diameter,
             top: this.optionsLogic.isToolbarInVideo ? '50%' : 3,
-            transform: 'translate(0, -50%)',
+            transform: `translate(0, -50%) scale(${isVisible || !isAlwaysVisible ? '1' : '0'})`,
+            transition: `opacity ${transitionDuration} ease, transform ${transitionDuration} ease`,
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressSeekStyle(percentWidthDecimal: number){
+    getCarouselVideoProgressSeekStyle(percentWidthDecimal: number) {
         return {
             background: this.optionsLogic.videoProgressBarSeekColor,
             width: `${percentWidthDecimal * 100}%`,
@@ -735,7 +730,6 @@ export class StylingLogic {
             top: this.optionsLogic.isToolbarInVideo ? '50%' : undefined,
             justifyContent: 'flex-end',
             pointerEvents: 'none',
-
         } as React.CSSProperties : {
             ...paddingHorizontalStyle,
         };
@@ -1058,11 +1052,10 @@ export class StylingLogic {
 
     getToolbarBackgroundColorStyle(shouldUseSolidColor = false) {
         const customColor = getCurrentValue(this.options.styling?.toolbar?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
-        return this.optionsLogic.isToolbarInVideo && !shouldUseSolidColor ? {
-            background: `linear-gradient(0deg, ${customColor}, transparent)`,
-        } as CSSProperties : {
-            background: customColor,
-        };
+        const backgroundToUse = this.optionsLogic.useDefaultVideoControls ? 'transparent' : this.optionsLogic.isToolbarInVideo && !shouldUseSolidColor ? `linear-gradient(0deg, ${customColor}, transparent)` : customColor;
+        return {
+            background: backgroundToUse,
+        } as CSSProperties
     }
 
     getVideoCurrentStateIndicatorForegroundColor(isPlayButton: boolean) {

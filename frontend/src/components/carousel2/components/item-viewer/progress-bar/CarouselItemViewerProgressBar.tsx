@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, MouseEventHandler, useRef } from 'react'
+import React, { useCallback, useState, useEffect, useRef } from 'react'
 import { CLASSNAME__ITEM_VIEWER } from '../../../constants';
 import { getClassname, getFormattedTimeString } from '../../../utils';
 import { VideoTimeStrings } from '../../../types';
@@ -21,6 +21,7 @@ export const CarouselItemViewerProgressBar = ({
 
     const isMouseDownRef = useRef(false);
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
+    const [showDot, setShowDot] = useState(false);
     const [seekWidth, setSeekWidth] = useState(INITIAL_VALUE);
     const { stylingLogic } = useBusinessLogic({ progressBarValue });
 
@@ -35,8 +36,6 @@ export const CarouselItemViewerProgressBar = ({
     }, [])
 
     const onMouseUp = useCallback((e: MouseEvent) => {
-        console.log("mouse up");
-        
         isMouseDownRef.current = false;
         setIsVideoPlaying && setIsVideoPlaying(true);
         if (videoRef?.current) {
@@ -66,6 +65,7 @@ export const CarouselItemViewerProgressBar = ({
             onMouseUp(e);
             return;
         };
+       setShowDot(false);
         setSeekWidth(INITIAL_VALUE);
     }, [onMouseUp])
 
@@ -78,6 +78,7 @@ export const CarouselItemViewerProgressBar = ({
         } else {
             setSeekWidth(percent);
         }
+       setShowDot(true);
     }, [getPercent])
 
     useEffect(() => {
@@ -127,7 +128,7 @@ export const CarouselItemViewerProgressBar = ({
         >
             <div style={stylingLogic.carouselVideoProgressBackgroundStyle} />
             <div style={stylingLogic.getCarouselVideoProgressSeekStyle(seekWidth)} />
-            <div style={stylingLogic.getCarouselVideoProgressSeekDotStyle(progressBarValue)} />
+            <div style={stylingLogic.getCarouselVideoProgressSeekDotStyle(progressBarValue, showDot)} />
             <div style={stylingLogic.carouselVideoProgressForegroundStyle} />
         </div>
     )

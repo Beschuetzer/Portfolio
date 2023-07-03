@@ -2052,12 +2052,12 @@ const viewingModeItemViewerPreview = (
 						top: 40,
 						fullscreen: {
 							bottom: [[30], [1, 800]],
-							right: [[60], [10,800]],
+							right: [[60], [10, 800]],
 							top: 80,
 						},
 						nonFullscreen: {
 							right: [[30], [1, 800]],
-							left: [[60], [10,800]],
+							left: [[60], [10, 800]],
 						},
 					}
 				},
@@ -2067,7 +2067,7 @@ const viewingModeItemViewerPreview = (
 						top: 100,
 						right: 100,
 						left: 100,
-					},		
+					},
 				},
 				toolbar: {
 					padding: {
@@ -2075,7 +2075,7 @@ const viewingModeItemViewerPreview = (
 						// top: 40,
 						fullscreen: {
 							left: [[30], [1, 800]],
-							right: [[60], [10,800]],
+							right: [[60], [10, 800]],
 						},
 						// nonFullscreen: {
 						// 	right: [[30], [1, 800]],
@@ -2174,7 +2174,7 @@ const viewingModeItemViewerPreview = (
 									left: 10,
 									right: 10,
 								}, 800]]
-							},							
+							},
 							verticalAlignment: {
 								fullscreen: [['center'], ['flex-end', 800]],
 								nonFullscreen: [['flex-end'], ['center', 800]],
@@ -2198,12 +2198,12 @@ const viewingModePaddingEverywhere = (
 				itemViewer: {
 					padding: {
 						left: [[30], [1, 800]],
-						right: [[60], [10,800]],
+						right: [[60], [10, 800]],
 					}
 				},
 				navigation: {
 					padding: {
-						left: [[60], [10,800]],
+						left: [[60], [10, 800]],
 						right: [[30], [1, 800]],
 					}
 				},
@@ -2212,12 +2212,12 @@ const viewingModePaddingEverywhere = (
 						top: 40,
 						fullscreen: {
 							bottom: [[30], [1, 800]],
-							right: [[60], [10,800]],
+							right: [[60], [10, 800]],
 							top: 80,
 						},
 						nonFullscreen: {
 							right: [[30], [1, 800]],
-							left: [[60], [10,800]],
+							left: [[60], [10, 800]],
 						},
 					}
 				},
@@ -2227,18 +2227,18 @@ const viewingModePaddingEverywhere = (
 						top: [[50], [10, 800]],
 						left: [[50], [10, 800]],
 						right: [[50], [10, 800]],
-					},		
+					},
 				},
 				toolbar: {
 					padding: {
 						top: 40,
 						fullscreen: {
 							left: [[30], [1, 800]],
-							right: [[60], [10,800]],
+							right: [[60], [10, 800]],
 						},
 						nonFullscreen: {
 							right: [[30], [1, 800]],
-							left: [[60], [10,800]],
+							left: [[60], [10, 800]],
 						},
 					},
 				},
@@ -2268,7 +2268,7 @@ const viewingModePaddingEverywhere = (
 									left: 10,
 									right: 10,
 								}, 800]]
-							},							
+							},
 						}
 					},
 				}
@@ -2284,6 +2284,19 @@ const viewingModeVideoControls = (
 				useDefaultVideoControls: [[false], [true, 800]],
 				isToolbarPositionedInVideo: [[true], [false, 1000, 'min-width']]
 			},
+			styling: {
+				toolbar: {
+					progressBar: {
+						dot: {
+							diameter: {
+								nonFullscreen: [[16], [10, 900]]
+							},
+							isAlwaysVisible: [[false], [true, 900]],
+							transitionDuration: [[.25], [.1, 850]]
+						}
+					}
+				},
+			}
 		}}
 		items={items}
 	/>

@@ -18,7 +18,14 @@ import {
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_SIZE_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT,
-    MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT, CAROUSEL_COLOR_THREE, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT
+    MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT,
+    CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT,
+    CAROUSEL_COLOR_THREE,
+    CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED,
+    CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED,
+    CAROUSEL_PROGRESS_BAR_DOT_DIAMETER,
+    CAROUSEL_PROGRESS_BAR_DOT_IS_ALWAYS_VISIBLE,
+    CAROUSEL_PROGRESS_BAR_DOT_TRANSITION_DURATION
 } from "../constants";
 import { CarouselOptions } from "../types";
 import { convertHexToRgba, getCurrentValue } from "../utils";
@@ -214,6 +221,17 @@ export class OptionsLogic {
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
     }
 
+    get videoProgressBarDotSettings() {
+        const diameter = getCurrentValue(this.options.styling?.toolbar?.progressBar?.dot?.diameter, CAROUSEL_PROGRESS_BAR_DOT_DIAMETER, this.isFullscreenMode);
+        const isAlwaysVisible = getCurrentValue(this.options.styling?.toolbar?.progressBar?.dot?.isAlwaysVisible, CAROUSEL_PROGRESS_BAR_DOT_IS_ALWAYS_VISIBLE, this.isFullscreenMode);
+        const transitionDuration = getCurrentValue(this.options.styling?.toolbar?.progressBar?.dot?.transitionDuration, CAROUSEL_PROGRESS_BAR_DOT_TRANSITION_DURATION, this.isFullscreenMode);
+        return {
+            diameter,
+            isAlwaysVisible,
+            transitionDuration
+        }
+    }
+
     get videoProgressBarForegroundColor() {
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_THREE, this.isFullscreenMode);
     }
@@ -223,7 +241,8 @@ export class OptionsLogic {
     }
 
     get videoProgressBarHeight() {
-        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT, this.isFullscreenMode);
+        const isEmbedded = this.isToolbarInVideo;
+        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, isEmbedded ? CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED : CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED, this.isFullscreenMode);
     }
 
     get videoModalPadding() {

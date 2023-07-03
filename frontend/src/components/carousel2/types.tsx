@@ -207,6 +207,24 @@ export type CarouselSections = {
         padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
         progressBar?: {
             /**
+            *This is the dot at the end of the progress bar, which is only visible on when hovering the progress bar.  
+            **/
+            dot?: {
+                /**
+                *Default is 12px
+                **/
+                diameter?: CarouselElementValue<number>;
+                /**
+                *Default is `false`
+                **/
+                isAlwaysVisible?: CarouselElementValue<boolean>;
+                /**
+                *The amount of time (in seconds) it takes to show the dot on hovering of the progress bar
+                *Default is .25 and only applicable if `isAlwaysVisible` is `false`
+                **/
+                transitionDuration?: CarouselElementValue<number>;
+            }
+            /**
             *If true, the progress bar spans the entire width of the carousel itemViewer,
             *otherwise it only spans the inner width of the toolbar container.
             *Default is false
