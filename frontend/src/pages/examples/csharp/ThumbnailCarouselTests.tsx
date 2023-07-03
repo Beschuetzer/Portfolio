@@ -127,6 +127,37 @@ const carouselShortcuts = {
 
 const items = [
 	{
+		description: "Video Sub-sections",
+		srcMain: clipAnimations,
+		srcThumbnail: clipAnimationsThumbnail,
+		video: {
+			overlayProps: {
+				children: (
+					<>
+						<CSharpCardSection title="Contract is 1&clubs;">
+							The first part of the video highlights the process of
+							applying the contract matching filter.&nbsp; There are two
+							matches found.
+						</CSharpCardSection>
+						<CSharpCardSection title="Two Filters = Double the Filtering">
+							The second filter applied requires 'Ann' to have the
+							2&clubs;. In one of the filtered games, she does and in the
+							other one she doesn't.
+						</CSharpCardSection>
+					</>
+				),
+			},
+			autoPlay: true,
+			muted: true,
+			sections: [
+				['Section 1', 2000],
+				['Section 2 is really long, so it looks like this.', 2000],
+				['Section 3', 2000],
+				['Section 4'],
+			]
+		}
+	},
+	{
 		description: "Custom Overlay with auto play",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,

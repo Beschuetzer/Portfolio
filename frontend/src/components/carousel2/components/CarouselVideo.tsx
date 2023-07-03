@@ -10,6 +10,12 @@ import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 
+/**
+*Each section is comprised of a description string and a duration (in ms)
+*Each section starts 1ms after the previous section ended
+*The last section goes to the end by default
+**/
+export type CarouselVideoSection =  [string, number];
 export type CarouselVideoOptions = {
     /**
     * If true and muted is `undefined` or `true`, the video will start playing when it first comes into focus 
@@ -21,6 +27,7 @@ export type CarouselVideoOptions = {
     objectFit?: React.CSSProperties["objectFit"];
     objectPosition?: React.CSSProperties["objectPosition"];
     overlayProps?: CarouselVideoModalProps;
+    sections?: CarouselVideoSection[];
 };
 
 export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewerToolbarProps, 'itemContainerRef'>) => {
