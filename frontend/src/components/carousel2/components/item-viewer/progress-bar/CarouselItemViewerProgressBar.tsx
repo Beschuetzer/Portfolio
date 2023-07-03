@@ -18,7 +18,7 @@ export const CarouselItemViewerProgressBar = ({
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
     const { currentItem } = useCarouselContext();
-
+    const { sections } = currentItem?.video || {};
     const isMouseDownRef = useRef(false);
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
     const [showDot, setShowDot] = useState(false);
@@ -65,7 +65,7 @@ export const CarouselItemViewerProgressBar = ({
             onMouseUp(e);
             return;
         };
-       setShowDot(false);
+        setShowDot(false);
         setSeekWidth(INITIAL_VALUE);
     }, [onMouseUp])
 
@@ -78,7 +78,7 @@ export const CarouselItemViewerProgressBar = ({
         } else {
             setSeekWidth(percent);
         }
-       setShowDot(true);
+        setShowDot(true);
     }, [getPercent])
 
     useEffect(() => {
@@ -117,6 +117,31 @@ export const CarouselItemViewerProgressBar = ({
         setProgressBarValue(INITIAL_VALUE);
     }, [currentItem])
 
+    //#region JSX
+    function renderSections() {
+        const currentForegroundSection = <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(progressBarValue)} />;
+        const currentSeekSection = <div style={stylingLogic.getCarouselVideoProgressSeekStyle(seekWidth)} />;
+        const fullForegroundSection = <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(1)} />;
+        const fullSeekSection = <div style={stylingLogic.getCarouselVideoProgressSeekStyle(1)} />;
+
+        if (!sections || sections.length <= 1) {
+            return (
+                <>
+                    {currentSeekSection}
+                    {currentForegroundSection}
+                </>
+            );
+        }
+        return (
+            <>
+                {currentSeekSection}
+                {currentForegroundSection}
+            </>
+        );
+
+    }
+
+    //#endregion
     return (
         <div
             style={stylingLogic.carouselVideoProgressContainerStyle}
@@ -127,9 +152,8 @@ export const CarouselItemViewerProgressBar = ({
             onMouseLeave={onMouseLeave as any}
         >
             <div style={stylingLogic.carouselVideoProgressBackgroundStyle} />
-            <div style={stylingLogic.getCarouselVideoProgressSeekStyle(seekWidth)} />
             <div style={stylingLogic.getCarouselVideoProgressSeekDotStyle(progressBarValue, showDot)} />
-            <div style={stylingLogic.carouselVideoProgressForegroundStyle} />
+            {renderSections()}
         </div>
     )
 }

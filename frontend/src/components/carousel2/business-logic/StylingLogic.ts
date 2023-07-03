@@ -530,10 +530,10 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoProgressForegroundStyle() {
+    getCarouselVideoProgressForegroundStyle(percentFull: number) {
         return {
             background: this.optionsLogic.videoProgressBarForegroundColor,
-            width: `${this.progressBarValue * 100}%`,
+            width: `${percentFull * 100}%`,
             height: this.optionsLogic.videoProgressBarHeight,
             ...this.carouselVideoProgressPositioningStyle,
         }
@@ -551,6 +551,7 @@ export class StylingLogic {
             top: this.optionsLogic.isToolbarInVideo ? '50%' : 3,
             transform: `translate(0, -50%) scale(${isVisible || !isAlwaysVisible ? '1' : '0'})`,
             transition: `opacity ${transitionDuration} ease, transform ${transitionDuration} ease`,
+            zIndex: 10,
         } as CSSProperties;
     }
 
