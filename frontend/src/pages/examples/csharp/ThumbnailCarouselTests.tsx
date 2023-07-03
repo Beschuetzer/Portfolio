@@ -147,7 +147,7 @@ const items = [
 					</>
 				),
 			},
-			autoPlay: true,
+			autoPlay: false,
 			muted: true,
 			sections: [
 				['Section 1', 2000],

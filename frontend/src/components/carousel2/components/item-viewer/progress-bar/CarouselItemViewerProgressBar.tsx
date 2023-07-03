@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef } from 'react'
+import React, { useCallback, useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { CLASSNAME__ITEM_VIEWER } from '../../../constants';
 import { getClassname, getFormattedTimeString } from '../../../utils';
 import { VideoTimeStrings } from '../../../types';
@@ -20,6 +20,8 @@ export const CarouselItemViewerProgressBar = ({
     const { currentItem } = useCarouselContext();
     const { sections } = currentItem?.video || {};
     const isMouseDownRef = useRef(false);
+    const toolbarRef = useRef<HTMLDivElement>();
+    const [toolbarWidth, setToolbarWidth] = useState(INITIAL_VALUE)
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
     const [showDot, setShowDot] = useState(false);
     const [seekWidth, setSeekWidth] = useState(INITIAL_VALUE);
@@ -117,14 +119,33 @@ export const CarouselItemViewerProgressBar = ({
         setProgressBarValue(INITIAL_VALUE);
     }, [currentItem])
 
-    //#region JSX
-    function renderSections() {
-        const currentForegroundSection = <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(progressBarValue)} />;
-        const currentSeekSection = <div style={stylingLogic.getCarouselVideoProgressSeekStyle(seekWidth)} />;
-        const fullForegroundSection = <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(1)} />;
-        const fullSeekSection = <div style={stylingLogic.getCarouselVideoProgressSeekStyle(1)} />;
+    useLayoutEffect(() => {
+        if (toolbarWidth !== undefined && toolbarWidth <= INITIAL_VALUE) {
+            const newWidth = toolbarRef?.current?.getBoundingClientRect().width;
+            if (newWidth !== undefined && newWidth > 0 && toolbarWidth !== undefined) {
+                console.log("setting width to: " + newWidth);
+                
+                setToolbarWidth(newWidth);
+            }
+        }
+    }, [setToolbarWidth, toolbarWidth])
 
-        if (!sections || sections.length <= 1) {
+    //#region JSX
+    const getForegroundDiv = useCallback((percent: number) => {
+        return <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(percent)} />
+    }, [stylingLogic]);
+
+    const getSeekDiv = useCallback((percent: number) => {
+        return <div style={stylingLogic.getCarouselVideoProgressSeekStyle(percent)} />
+    }, [stylingLogic]);
+
+    function renderSections() {
+        const currentForegroundSection = getForegroundDiv(progressBarValue);
+        const currentSeekSection = getSeekDiv(seekWidth);
+        const fullForegroundSection = getForegroundDiv(1);
+        const fullSeekSection = getSeekDiv(1);
+
+        if (!sections || sections.length <= 1 || !videoRef?.current) {
             return (
                 <>
                     {currentSeekSection}
@@ -132,6 +153,18 @@ export const CarouselItemViewerProgressBar = ({
                 </>
             );
         }
+
+
+        console.log({toolbarWidth});
+        
+        const items = [];
+
+        // for (const section of sections) {
+        //     const [text, duration] = section;
+        //     const percentAcross = duration / videoRef?.current?.duration
+        //     const jsxToUse = 
+        // }
+
         return (
             <>
                 {currentSeekSection}
@@ -144,6 +177,7 @@ export const CarouselItemViewerProgressBar = ({
     //#endregion
     return (
         <div
+            ref={toolbarRef as any}
             style={stylingLogic.carouselVideoProgressContainerStyle}
             className={getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })}
             onMouseDownCapture={onMouseDown as any}
