@@ -523,20 +523,23 @@ export class StylingLogic {
 
     get carouselVideoBackgroundDivsContainer() {
         return {
-            display: 'flex',
-            flexDirection: 'row',
-            width: '100%',
             ...this.carouselVideoProgressBackgroundCommon,
             ...this.carouselVideoProgressPositioningStyle,
+            width: '100%',
+            background: 'transparent',
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressBackgroundStyle(width: number, left: number) {
+    getCarouselVideoProgressBackgroundSectionStyle(width: number, left: number, isLast = false) {
+        const dividerWidth = this.optionsLogic.videoProgressBarDividerWidth;
+        const dividerWidthToUse = isLast ? 0 : dividerWidth;
+
         return {
             ...this.carouselVideoProgressPositioningStyle,
             ...this.carouselVideoProgressBackgroundCommon,
-            width: width >= 0 && width <= 1 ? `${width * 100}%` : width,
-            left: `${left * 100}%`,
+            width: width >= 0 && width <= 1 ? `calc(${width * 100}% - ${dividerWidthToUse}${CAROUSEL_SPACING_UNIT})` : width - dividerWidthToUse,
+            left: `calc(${left * 100}%)`,
+            marginRight: isLast ? 0 : dividerWidth,
         } as CSSProperties;
     }
 

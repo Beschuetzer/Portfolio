@@ -25,7 +25,8 @@ import {
     CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED,
     CAROUSEL_PROGRESS_BAR_DOT_DIAMETER,
     CAROUSEL_PROGRESS_BAR_DOT_IS_ALWAYS_VISIBLE,
-    CAROUSEL_PROGRESS_BAR_DOT_TRANSITION_DURATION
+    CAROUSEL_PROGRESS_BAR_DOT_TRANSITION_DURATION,
+    CAROUSEL_PROGRESS_BAR_DIVIDER_WIDTH
 } from "../constants";
 import { CarouselOptions } from "../types";
 import { convertHexToRgba, getCurrentValue } from "../utils";
@@ -219,6 +220,10 @@ export class OptionsLogic {
     get videoProgressBarBackgroundColor() {
         const backgroundColorToUse = this.isToolbarInVideo ? convertHexToRgba(CAROUSEL_COLOR_GREY_ONE, .25) : CAROUSEL_COLOR_GREY_ONE;
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
+    }
+
+    get videoProgressBarDividerWidth() {
+        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.dividerWidth, CAROUSEL_PROGRESS_BAR_DIVIDER_WIDTH, this.isFullscreenMode);
     }
 
     get videoProgressBarDotSettings() {

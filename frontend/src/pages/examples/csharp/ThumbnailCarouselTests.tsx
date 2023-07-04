@@ -150,10 +150,9 @@ const items = [
 			autoPlay: false,
 			muted: true,
 			sections: [
-				['Section 1', 2000],
-				['Section 2 is really long, so it looks like this.', 2000],
-				['Section 3', 2000],
-				['Section 4'],
+				['Search Section', 2500],
+				['Filter Section', 5000],
+				['Options Section'],
 			]
 		}
 	},
@@ -2324,7 +2323,8 @@ const viewingModeVideoControls = (
 							},
 							isAlwaysVisible: [[false], [true, 900]],
 							transitionDuration: [[.25], [.1, 850]]
-						}
+						},
+						dividerWidth: 4
 					}
 				},
 			}
