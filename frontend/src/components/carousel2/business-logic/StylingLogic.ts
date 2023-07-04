@@ -533,10 +533,10 @@ export class StylingLogic {
 
     getCarouselVideoProgressBackgroundStyle(width: number, left: number) {
         return {
-            width: width >= 0 && width <= 1 ? `${width * 100}%` : width,
-            position: 'absolute',
-            left: `${left * 100}%`,
+            ...this.carouselVideoProgressPositioningStyle,
             ...this.carouselVideoProgressBackgroundCommon,
+            width: width >= 0 && width <= 1 ? `${width * 100}%` : width,
+            left: `${left * 100}%`,
         } as CSSProperties;
     }
 
