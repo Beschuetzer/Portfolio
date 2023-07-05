@@ -498,7 +498,7 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressHitSlop() {
-        const paddingVertical = CAROUSEL_ITEM_SPACING_DEFAULT * 2;
+        const paddingVertical = CAROUSEL_ITEM_SPACING_DEFAULT;
         return {
             paddingTop: paddingVertical,
             paddingBottom: paddingVertical,
@@ -543,25 +543,36 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressBackgroundSectionContainerStyle(width: number, left: number, isLast = false, sectionLength = 0) {
+    getCarouselVideoProgressBackgroundSectionContainerStyle(width: number, left: number, isLast = false, sectionLength = 0, isCurrentSection = false) {
         const dividerWidth = this.optionsLogic.videoProgressBarDividerWidth;
         const dividerWidthToUse = isLast ? 0 : dividerWidth;
+        const SCALE_AMOUNT = 2;
 
+        const common = {
+            backfaceVisibility: 'hidden',
+            transition: `transform .125s ease`,
+            transformOrigin: 'center',
+        } as CSSProperties;
+        
         if (sectionLength <= 0) {
             return {
+                ...common,
                 width: '100%',
                 position: 'absolute',
                 ...this.carouselVideoProgressHitSlop,
                 ...this.carouselVideoProgressHitSlopTop,
+                transform: isCurrentSection ? `scaleY(${SCALE_AMOUNT})` : undefined,
             } as CSSProperties;
         }
         return {
+            ...common,
             ...this.carouselVideoProgressPositioningStyle,
             ...this.carouselVideoProgressHitSlop,
             width: width >= 0 && width <= 1 ? `calc(${width * 100}% - ${dividerWidthToUse}${CAROUSEL_SPACING_UNIT})` : width - dividerWidthToUse,
             left: `calc(${left * 100}%)`,
             marginRight: isLast ? 0 : dividerWidth,
             background: 'transparent',
+            transform: isCurrentSection ? `${this.carouselVideoProgressPositioningStyle.transform || ''} scaleY(${SCALE_AMOUNT})` : undefined,
         } as CSSProperties;
     }
 

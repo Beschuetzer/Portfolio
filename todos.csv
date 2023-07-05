@@ -1,6 +1,8 @@
 Carousel rework
   -work on progressbar rework:
+    --make the width px only (the % amount is causing jumping)
     --add listeners to each section
+    --add option for hitslop amount
     --dynamically change hitslop amount on mousedown and revert to normal on mouse up
     --work on subsections
     --work on scale on enter functionality

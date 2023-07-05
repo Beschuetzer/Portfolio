@@ -11,6 +11,7 @@ type CarouselItemViewerProgressBarProps = {
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
     & Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying'>;
 
+const CURRENT_SECTION_INITIAL = -1;
 const INITIAL_VALUE = 0;
 export const CarouselItemViewerProgressBar = ({
     setIsVideoPlaying,
@@ -24,6 +25,7 @@ export const CarouselItemViewerProgressBar = ({
     const toolbarRef = useRef<HTMLDivElement>();
     const [toolbarWidth, setToolbarWidth] = useState(INITIAL_VALUE)
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
+    const [currentSection, setCurrentSection] = useState(CURRENT_SECTION_INITIAL);
     const [showDot, setShowDot] = useState(false);
     const [seekWidth, setSeekWidth] = useState(INITIAL_VALUE);
     const { stylingLogic } = useBusinessLogic({ progressBarValue });
@@ -68,6 +70,7 @@ export const CarouselItemViewerProgressBar = ({
             onMouseUp(e);
             return;
         };
+        setCurrentSection(CURRENT_SECTION_INITIAL);
         setShowDot(false);
         setSeekWidth(INITIAL_VALUE);
     }, [onMouseUp])
@@ -88,6 +91,7 @@ export const CarouselItemViewerProgressBar = ({
 
     const onMouseMoveBackground = useCallback((index: number, e: MouseEvent) => {
         console.log({ e, index });
+        setCurrentSection(index);
     }, [])
 
     useEffect(() => {
@@ -142,16 +146,16 @@ export const CarouselItemViewerProgressBar = ({
         if (isNaN(width)) return null;
         return (
             <div
-                style={stylingLogic.getCarouselVideoProgressBackgroundSectionContainerStyle(width, left, isLast, sections?.length)}
+                key={index}
+                style={stylingLogic.getCarouselVideoProgressBackgroundSectionContainerStyle(width, left, isLast, sections?.length, index === currentSection)}
+                onMouseMove={onMouseMoveBackground.bind(null, index) as any}
             >
                 <div
-                    key={index}
                     style={stylingLogic.carouselVideoProgressBackgroundSectionStyle}
-                    onMouseMove={onMouseMoveBackground.bind(null, index) as any}
                 />
             </div>
         )
-    }, [onMouseMoveBackground, sections?.length, stylingLogic])
+    }, [currentSection, onMouseMoveBackground, sections?.length, stylingLogic])
 
     const getForegroundDiv = useCallback((percent: number) => {
         return <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(percent)} />
