@@ -497,7 +497,7 @@ export class StylingLogic {
         } as CSSProperties : {};
     }
 
-    get carouselVideoProgressPadding() {
+    get carouselVideoProgressHitSlop() {
         const paddingVertical = CAROUSEL_ITEM_SPACING_DEFAULT * 2;
         return {
             paddingTop: paddingVertical,
@@ -517,7 +517,7 @@ export class StylingLogic {
             background: 'transparent',
             width: widthToUse,
             position: 'relative',
-            ...(this.optionsLogic.isToolbarInVideo ? this.carouselVideoProgressPadding : {}),
+            ...(this.optionsLogic.isToolbarInVideo ? this.carouselVideoProgressHitSlop : {}),
         } as CSSProperties
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
@@ -531,6 +531,7 @@ export class StylingLogic {
         return {
             ...this.carouselVideoProgressBackgroundCommon,
             ...this.carouselVideoProgressPositioningStyle,
+            top: !this.optionsLogic.isToolbarInVideo ? -this.carouselVideoProgressHitSlop.paddingTop : undefined,
             width: '100%',
             background: 'transparent',
         } as CSSProperties;
@@ -542,7 +543,7 @@ export class StylingLogic {
 
         return {
             ...this.carouselVideoProgressPositioningStyle,
-            ...this.carouselVideoProgressPadding,
+            ...this.carouselVideoProgressHitSlop,
             width: width >= 0 && width <= 1 ? `calc(${width * 100}% - ${dividerWidthToUse}${CAROUSEL_SPACING_UNIT})` : width - dividerWidthToUse,
             left: `calc(${left * 100}%)`,
             marginRight: isLast ? 0 : dividerWidth,
