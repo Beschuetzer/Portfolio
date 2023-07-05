@@ -41,9 +41,8 @@ export const CarouselItemViewerProgressBar = ({
     }, [])
 
     const onMouseUp = useCallback((e: MouseEvent) => {
-        console.log("mouse up");
-        
         isMouseDownRef.current = false;
+        setCurrentSection(CURRENT_SECTION_INITIAL);
         setIsVideoPlaying && setIsVideoPlaying(true);
         if (videoRef?.current) {
             videoRef.current.currentTime = progressBarValue * videoRef.current.duration;
@@ -78,7 +77,6 @@ export const CarouselItemViewerProgressBar = ({
     }, [])
 
     const onMouseMove = useCallback((e: MouseEvent) => {
-        console.log({e});
         setShowDot(true);
         if (areSectionsGiven) return;
         const percent = getPercent(e);
@@ -99,6 +97,12 @@ export const CarouselItemViewerProgressBar = ({
         const movementAmount = xMovement / (progressBarRightX - progressBarLeftX);
         setProgressBarValue((current) => current + movementAmount);
     }, [])
+
+    const onMouseUpGlobal = useCallback((e: MouseEvent) => {
+        if (!isMouseDownRef.current) return;
+        onMouseUp(e);
+        setSeekWidth(INITIAL_VALUE);
+    }, [onMouseUp])
 
     const onMouseMoveBackground = useCallback((index: number, e: MouseEvent) => {
         setCurrentSection(index);
@@ -153,11 +157,13 @@ export const CarouselItemViewerProgressBar = ({
 
     useEffect(() => {
         document.addEventListener('mousemove', onMouseMoveGlobal);
+        document.addEventListener('mouseup', onMouseUpGlobal);
 
         return () => {
             document.removeEventListener('mousemove', onMouseMoveGlobal);
+            document.removeEventListener('mouseup', onMouseUpGlobal);
         }
-    }, [onMouseMoveGlobal])
+    }, [onMouseMoveGlobal, onMouseUpGlobal])
 
     //#region JSX
     const getBackgroundDiv = useCallback((width: number, index: number, left = 0, isLast = false) => {
@@ -179,13 +185,13 @@ export const CarouselItemViewerProgressBar = ({
         return <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(percent, isCurrent)} />
     }, [stylingLogic]);
 
-    const getSeekDiv = useCallback((percent: number) => {
-        return <div style={stylingLogic.getCarouselVideoProgressSeekStyle(percent)} />
+    const getSeekDiv = useCallback((percent: number, isCurrent = false) => {
+        return <div style={stylingLogic.getCarouselVideoProgressSeekStyle(percent, isCurrent)} />
     }, [stylingLogic]);
 
     function renderSections() {
         const currentForegroundSection = getForegroundDiv(progressBarValue, currentSection !== CURRENT_SECTION_INITIAL);
-        const currentSeekSection = getSeekDiv(seekWidth);
+        const currentSeekSection = getSeekDiv(seekWidth, currentSection !== CURRENT_SECTION_INITIAL);
         const fullForegroundSection = getForegroundDiv(1);
         const fullSeekSection = getSeekDiv(1);
 
@@ -218,7 +224,7 @@ export const CarouselItemViewerProgressBar = ({
         return (
             <>
                 {/* <div style={stylingLogic.carouselVideoProgressBackgroundDivsContainer}> */}
-                    {backgroundDivs}
+                {backgroundDivs}
                 {/* </div> */}
                 {/* {currentSeekSection}
                 {currentForegroundSection} */}

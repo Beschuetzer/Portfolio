@@ -519,7 +519,7 @@ export class StylingLogic {
             width: widthToUse,
             position: 'relative',
             ...(this.optionsLogic.isToolbarInVideo ? {
-                marginBottom: CAROUSEL_ITEM_SPACING_DEFAULT * 2,
+                marginBottom: this.getCarouselVideoProgressHitSlop().paddingBottom * 2,
             } as CSSProperties : {}),
         } as CSSProperties
 
@@ -594,11 +594,11 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressSeekStyle(percentWidthDecimal: number) {
+    getCarouselVideoProgressSeekStyle(percentWidthDecimal: number, isCurrent = false) {
         return {
             background: this.optionsLogic.videoProgressBarSeekColor,
             width: `${percentWidthDecimal * 100}%`,
-            height: this.optionsLogic.videoProgressBarHeight * this.optionsLogic.videoProgressBarScaleAmount,
+            height: this.optionsLogic.videoProgressBarHeight * (isCurrent ? this.optionsLogic.videoProgressBarScaleAmount : 1),
             ...this.carouselVideoProgressPositioningStyle,
         }
     }
