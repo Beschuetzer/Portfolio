@@ -1,5 +1,6 @@
 Carousel rework
   -work on progressbar rework:
+    --add -20px for top value when not embedded case
     --work on subsections
     --work on scale on enter functionality
     --add option to customize getCarouselVideoProgressSeekDotStyle's diameter

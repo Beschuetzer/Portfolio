@@ -497,21 +497,27 @@ export class StylingLogic {
         } as CSSProperties : {};
     }
 
+    get carouselVideoProgressPadding() {
+        const paddingVertical = CAROUSEL_ITEM_SPACING_DEFAULT * 2;
+        return {
+            paddingTop: paddingVertical,
+            paddingBottom: paddingVertical,
+        }
+    }
+
     get carouselVideoProgressContainerStyle() {
         const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
         const widthToUse = shouldSpanWholeWidth
             ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})`
             : '100%';
         const heightToUse = this.optionsLogic.isToolbarInVideo ? 'auto' : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT;
-        const paddingVertical = this.optionsLogic.isToolbarInVideo ? CAROUSEL_ITEM_SPACING_DEFAULT * 2 : undefined;
 
         const common = {
             height: heightToUse,
             background: 'transparent',
             width: widthToUse,
             position: 'relative',
-            paddingTop: paddingVertical,
-            paddingBottom: paddingVertical,
+            ...(this.optionsLogic.isToolbarInVideo ? this.carouselVideoProgressPadding : {}),
         } as CSSProperties
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
@@ -521,7 +527,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoBackgroundDivsContainer() {
+    get carouselVideoProgressBackgroundDivsContainer() {
         return {
             ...this.carouselVideoProgressBackgroundCommon,
             ...this.carouselVideoProgressPositioningStyle,
@@ -530,16 +536,24 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressBackgroundSectionStyle(width: number, left: number, isLast = false) {
+    getCarouselVideoProgressBackgroundSectionContainerStyle(width: number, left: number, isLast = false) {
         const dividerWidth = this.optionsLogic.videoProgressBarDividerWidth;
         const dividerWidthToUse = isLast ? 0 : dividerWidth;
 
         return {
             ...this.carouselVideoProgressPositioningStyle,
-            ...this.carouselVideoProgressBackgroundCommon,
+            ...this.carouselVideoProgressPadding,
             width: width >= 0 && width <= 1 ? `calc(${width * 100}% - ${dividerWidthToUse}${CAROUSEL_SPACING_UNIT})` : width - dividerWidthToUse,
             left: `calc(${left * 100}%)`,
             marginRight: isLast ? 0 : dividerWidth,
+            background: 'transparent',
+        } as CSSProperties;
+    }
+
+    get carouselVideoProgressBackgroundSectionStyle() {
+        return {
+            ...this.carouselVideoProgressBackgroundCommon,
+            width: '100%',
         } as CSSProperties;
     }
 
