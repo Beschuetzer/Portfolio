@@ -157,8 +157,8 @@ export const CarouselItemViewerProgressBar = ({
         )
     }, [currentSection, onMouseMoveBackground, sections?.length, stylingLogic])
 
-    const getForegroundDiv = useCallback((percent: number) => {
-        return <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(percent)} />
+    const getForegroundDiv = useCallback((percent: number, isCurrent = false) => {
+        return <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(percent, isCurrent)} />
     }, [stylingLogic]);
 
     const getSeekDiv = useCallback((percent: number) => {
@@ -166,7 +166,7 @@ export const CarouselItemViewerProgressBar = ({
     }, [stylingLogic]);
 
     function renderSections() {
-        const currentForegroundSection = getForegroundDiv(progressBarValue);
+        const currentForegroundSection = getForegroundDiv(progressBarValue, currentSection !== CURRENT_SECTION_INITIAL);
         const currentSeekSection = getSeekDiv(seekWidth);
         const fullForegroundSection = getForegroundDiv(1);
         const fullSeekSection = getSeekDiv(1);

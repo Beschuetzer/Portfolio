@@ -569,11 +569,11 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressForegroundStyle(percentFull: number) {
+    getCarouselVideoProgressForegroundStyle(percentFull: number, isCurrent = false) {
         return {
             background: this.optionsLogic.videoProgressBarForegroundColor,
             width: `${percentFull * 100}%`,
-            height: this.optionsLogic.videoProgressBarHeight,
+            height: this.optionsLogic.videoProgressBarHeight * (isCurrent ? this.optionsLogic.videoProgressBarScaleAmount : 1),
             ...this.carouselVideoProgressPositioningStyle,
         }
     }
