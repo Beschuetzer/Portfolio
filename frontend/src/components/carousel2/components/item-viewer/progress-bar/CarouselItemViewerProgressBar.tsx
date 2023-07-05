@@ -72,7 +72,7 @@ export const CarouselItemViewerProgressBar = ({
     }, [onMouseUp])
 
     const onMouseMove = useCallback((e: MouseEvent) => {
-        const progressBar = e.currentTarget as HTMLDivElement;
+        const progressBar = (e.currentTarget || e.target) as HTMLDivElement;
         if (!progressBar) return;
         const percent = getPercent(e, progressBar);
         if (isMouseDownRef.current) {
@@ -131,8 +131,9 @@ export const CarouselItemViewerProgressBar = ({
     }, [setToolbarWidth, toolbarWidth])
 
     //#region JSX
-    const getBackgroundDiv = useCallback((width: number, left = 0, isLast = false) => {
-        return <div style={stylingLogic.getCarouselVideoProgressBackgroundSectionStyle(width, left, isLast)} />
+    const getBackgroundDiv = useCallback((width: number, key: number, left = 0, isLast = false) => {
+        if (isNaN(width)) return null;
+        return <div key={key} style={stylingLogic.getCarouselVideoProgressBackgroundSectionStyle(width, left, isLast)} />
     }, [stylingLogic])
 
     const getForegroundDiv = useCallback((percent: number) => {
@@ -152,7 +153,7 @@ export const CarouselItemViewerProgressBar = ({
         if (!sections || sections.length <= 1 || !videoRef?.current) {
             return (
                 <>
-                    {getBackgroundDiv(1)}
+                    {getBackgroundDiv(1, 0)}
                     {currentSeekSection}
                     {currentForegroundSection}
                 </>
@@ -166,13 +167,13 @@ export const CarouselItemViewerProgressBar = ({
             const [text, duration] = section;
             const isFirstSection = index === 0;
             const isLastSection = index === sections.length - 1;
-            const percentAcross = duration / 1000 / videoRef?.current?.duration;
+            const percentAcross = duration / 1000 / (videoRef?.current?.duration || 1);
             const backgroundLeft = amountBeforeCurrent / 1000 / videoRef.current.duration;
 
             //background div stuff
-            backgroundDivs.push(getBackgroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, backgroundLeft, isLastSection ));
+            backgroundDivs.push(getBackgroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, index, backgroundLeft, isLastSection ));
             amountBeforeCurrent += duration;
-            console.log({ text, duration, videoDuration: videoRef.current.duration, percentAcross, isLastSection });
+            // console.log({ text, duration, videoDuration: videoRef.current.duration, percentAcross, isLastSection });
         }
 
         return (
