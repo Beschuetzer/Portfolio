@@ -6,6 +6,7 @@ Carousel rework
     --figure out how how to listener for left/right after clicking mousedown on progress bar (dynamically change hitslop amount on mousedown and revert to normal on mouse up?) or use global listener?
     --work on subsections
     --work on scale on enter functionality
+    --figure out how to handle fullscreen button styling when toolbar is embedded in video (could use a default svg?)
     --add option to customize getCarouselVideoProgressSeekDotStyle's diameter
     --add the circular dot at the end of the bar (hidden when not on the progress bar)
     --add transition behavior for circular dot
