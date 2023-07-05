@@ -1,6 +1,7 @@
 Carousel rework
   -work on progressbar rework:
     --add listeners to each section
+    --dynamically change hitslop amount on mousedown and revert to normal on mouse up
     --work on subsections
     --work on scale on enter functionality
     --add option to customize getCarouselVideoProgressSeekDotStyle's diameter

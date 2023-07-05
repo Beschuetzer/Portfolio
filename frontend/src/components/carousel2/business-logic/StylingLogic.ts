@@ -505,6 +505,12 @@ export class StylingLogic {
         }
     }
 
+    get carouselVideoProgressHitSlopTop() {
+        return {
+            top: !this.optionsLogic.isToolbarInVideo ? -this.carouselVideoProgressHitSlop.paddingTop : undefined,
+        }
+    }
+
     get carouselVideoProgressContainerStyle() {
         const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
         const widthToUse = shouldSpanWholeWidth
@@ -531,16 +537,24 @@ export class StylingLogic {
         return {
             ...this.carouselVideoProgressBackgroundCommon,
             ...this.carouselVideoProgressPositioningStyle,
-            top: !this.optionsLogic.isToolbarInVideo ? -this.carouselVideoProgressHitSlop.paddingTop : undefined,
+            ...this.carouselVideoProgressHitSlopTop,
             width: '100%',
             background: 'transparent',
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressBackgroundSectionContainerStyle(width: number, left: number, isLast = false) {
+    getCarouselVideoProgressBackgroundSectionContainerStyle(width: number, left: number, isLast = false, sectionLength = 0) {
         const dividerWidth = this.optionsLogic.videoProgressBarDividerWidth;
         const dividerWidthToUse = isLast ? 0 : dividerWidth;
 
+        if (sectionLength <= 0) {
+            return {
+                width: '100%',
+                position: 'absolute',
+                ...this.carouselVideoProgressHitSlop,
+                ...this.carouselVideoProgressHitSlopTop,
+            } as CSSProperties;
+        }
         return {
             ...this.carouselVideoProgressPositioningStyle,
             ...this.carouselVideoProgressHitSlop,

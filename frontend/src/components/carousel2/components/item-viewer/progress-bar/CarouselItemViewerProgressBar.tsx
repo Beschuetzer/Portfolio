@@ -142,7 +142,7 @@ export const CarouselItemViewerProgressBar = ({
         if (isNaN(width)) return null;
         return (
             <div
-                style={stylingLogic.getCarouselVideoProgressBackgroundSectionContainerStyle(width, left, isLast)}
+                style={stylingLogic.getCarouselVideoProgressBackgroundSectionContainerStyle(width, left, isLast, sections?.length)}
             >
                 <div
                     key={index}
@@ -151,7 +151,7 @@ export const CarouselItemViewerProgressBar = ({
                 />
             </div>
         )
-    }, [onMouseMoveBackground, stylingLogic])
+    }, [onMouseMoveBackground, sections?.length, stylingLogic])
 
     const getForegroundDiv = useCallback((percent: number) => {
         return <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(percent)} />
