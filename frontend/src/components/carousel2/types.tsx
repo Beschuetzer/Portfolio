@@ -229,6 +229,11 @@ export type CarouselSections = {
                 transitionDuration?: CarouselElementValue<number>;
             }
             /**
+            *The amount the progress bar scales on the Y axis when hovered
+            *Default is `5`
+            **/
+            scaleAmount?: CarouselElementValue<number>
+            /**
             *If true, the progress bar spans the entire width of the carousel itemViewer,
             *otherwise it only spans the inner width of the toolbar container.
             *Default is false

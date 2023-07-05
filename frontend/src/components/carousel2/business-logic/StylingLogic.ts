@@ -497,17 +497,12 @@ export class StylingLogic {
         } as CSSProperties : {};
     }
 
-    get carouselVideoProgressHitSlop() {
-        const paddingVertical = CAROUSEL_ITEM_SPACING_DEFAULT;
+    getCarouselVideoProgressHitSlop(isCurrentSection = false) {
+        const scaleAmount = this.optionsLogic.videoProgressBarScaleAmount;
+        const paddingVertical = CAROUSEL_ITEM_SPACING_DEFAULT / (isCurrentSection ? scaleAmount: 1);
         return {
             paddingTop: paddingVertical,
             paddingBottom: paddingVertical,
-        }
-    }
-
-    get carouselVideoProgressHitSlopTop() {
-        return {
-            top: !this.optionsLogic.isToolbarInVideo ? -this.carouselVideoProgressHitSlop.paddingTop : undefined,
         }
     }
 
@@ -523,7 +518,9 @@ export class StylingLogic {
             background: 'transparent',
             width: widthToUse,
             position: 'relative',
-            ...(this.optionsLogic.isToolbarInVideo ? this.carouselVideoProgressHitSlop : {}),
+            ...(this.optionsLogic.isToolbarInVideo ? {
+                marginBottom: CAROUSEL_ITEM_SPACING_DEFAULT * 2,
+            } as CSSProperties : {}),
         } as CSSProperties
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
@@ -533,46 +530,35 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoProgressBackgroundDivsContainer() {
-        return {
-            ...this.carouselVideoProgressBackgroundCommon,
-            ...this.carouselVideoProgressPositioningStyle,
-            ...this.carouselVideoProgressHitSlopTop,
-            width: '100%',
-            background: 'transparent',
-        } as CSSProperties;
-    }
-
     getCarouselVideoProgressBackgroundSectionContainerStyle(width: number, left: number, isLast = false, sectionLength = 0, isCurrentSection = false) {
         const dividerWidth = this.optionsLogic.videoProgressBarDividerWidth;
         const dividerWidthToUse = isLast ? 0 : dividerWidth;
-        const SCALE_AMOUNT = 2;
+        const scaleAmount = this.optionsLogic.videoProgressBarScaleAmount;
 
         const common = {
             backfaceVisibility: 'hidden',
             transition: `transform .125s ease`,
-            transformOrigin: 'center',
+            transformOrigin: sectionLength <= 0 ? 'bottom' : 'center',
+            top: 0,
+            ...this.getCarouselVideoProgressHitSlop(isCurrentSection),
         } as CSSProperties;
         
         if (sectionLength <= 0) {
             return {
-                ...common,
                 width: '100%',
                 position: 'absolute',
-                ...this.carouselVideoProgressHitSlop,
-                ...this.carouselVideoProgressHitSlopTop,
-                transform: isCurrentSection ? `scaleY(${SCALE_AMOUNT})` : undefined,
+                transform: isCurrentSection ? `scaleY(${scaleAmount})` : this.carouselVideoProgressPositioningStyle.transform,
+                ...common,
             } as CSSProperties;
         }
         return {
-            ...common,
             ...this.carouselVideoProgressPositioningStyle,
-            ...this.carouselVideoProgressHitSlop,
             width: width >= 0 && width <= 1 ? `calc(${width * 100}% - ${dividerWidthToUse}${CAROUSEL_SPACING_UNIT})` : width - dividerWidthToUse,
             left: `calc(${left * 100}%)`,
             marginRight: isLast ? 0 : dividerWidth,
             background: 'transparent',
-            transform: isCurrentSection ? `${this.carouselVideoProgressPositioningStyle.transform || ''} scaleY(${SCALE_AMOUNT})` : undefined,
+            transform: isCurrentSection ? `${this.carouselVideoProgressPositioningStyle.transform || ''} scaleY(${scaleAmount})` : this.carouselVideoProgressPositioningStyle.transform,
+            ...common,
         } as CSSProperties;
     }
 
@@ -787,7 +773,7 @@ export class StylingLogic {
             bottom: this.optionsLogic.isToolbarInVideo ? -2 : 0,
             width: this.optionsLogic.isToolbarInVideo ? undefined : '100%',
             paddingTop: isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
-            paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
+            paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - (this.optionsLogic.isToolbarInVideo ? 0 : CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT),
             top: this.optionsLogic.isToolbarInVideo ? '50%' : undefined,
             justifyContent: 'flex-end',
             pointerEvents: 'none',

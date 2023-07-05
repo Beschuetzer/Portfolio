@@ -199,9 +199,9 @@ export const CarouselItemViewerProgressBar = ({
 
         return (
             <>
-                <div style={stylingLogic.carouselVideoProgressBackgroundDivsContainer}>
+                {/* <div style={stylingLogic.carouselVideoProgressBackgroundDivsContainer}> */}
                     {backgroundDivs}
-                </div>
+                {/* </div> */}
                 {/* {currentSeekSection}
                 {currentForegroundSection} */}
             </>
