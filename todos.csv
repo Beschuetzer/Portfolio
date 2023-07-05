@@ -3,7 +3,7 @@ Carousel rework
     --make the width px only (the % amount is causing jumping)
     --add listeners to each section
     --add option for hitslop amount
-    --dynamically change hitslop amount on mousedown and revert to normal on mouse up
+    --figure out how how to listener for left/right after clicking mousedown on progress bar (dynamically change hitslop amount on mousedown and revert to normal on mouse up?) or use global listener?
     --work on subsections
     --work on scale on enter functionality
     --add option to customize getCarouselVideoProgressSeekDotStyle's diameter

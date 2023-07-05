@@ -538,7 +538,7 @@ export class StylingLogic {
         const common = {
             backfaceVisibility: 'hidden',
             transition: `transform .125s ease`,
-            transformOrigin: sectionLength <= 0 ? 'bottom' : 'center',
+            transformOrigin: 'center',
             top: 0,
             ...this.getCarouselVideoProgressHitSlop(isCurrentSection),
         } as CSSProperties;
@@ -547,7 +547,7 @@ export class StylingLogic {
             return {
                 width: '100%',
                 position: 'absolute',
-                transform: isCurrentSection ? `scaleY(${scaleAmount})` : this.carouselVideoProgressPositioningStyle.transform,
+                transform: isCurrentSection ? `${this.carouselVideoProgressPositioningStyle.transform} scaleY(${scaleAmount})` : this.carouselVideoProgressPositioningStyle.transform,
                 ...common,
             } as CSSProperties;
         }
@@ -598,7 +598,7 @@ export class StylingLogic {
         return {
             background: this.optionsLogic.videoProgressBarSeekColor,
             width: `${percentWidthDecimal * 100}%`,
-            height: this.optionsLogic.videoProgressBarHeight,
+            height: this.optionsLogic.videoProgressBarHeight * this.optionsLogic.videoProgressBarScaleAmount,
             ...this.carouselVideoProgressPositioningStyle,
         }
     }

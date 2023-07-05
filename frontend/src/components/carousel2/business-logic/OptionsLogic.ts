@@ -27,7 +27,8 @@ import {
     CAROUSEL_PROGRESS_BAR_DOT_IS_ALWAYS_VISIBLE,
     CAROUSEL_PROGRESS_BAR_DOT_TRANSITION_DURATION,
     CAROUSEL_PROGRESS_BAR_DIVIDER_WIDTH,
-    CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_DEFAULT
+    CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT,
+    CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT
 } from "../constants";
 import { CarouselOptions } from "../types";
 import { convertHexToRgba, getCurrentValue } from "../utils";
@@ -241,9 +242,11 @@ export class OptionsLogic {
     get videoProgressBarForegroundColor() {
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_THREE, this.isFullscreenMode);
     }
-    
+
     get videoProgressBarScaleAmount() {
-        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.scaleAmount, CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_DEFAULT, this.isFullscreenMode);
+        const sections = this.currentItem?.video?.sections;
+        const defaultToUse = sections && sections?.length > 1 ? CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT : CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT;
+        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.scaleAmount, defaultToUse, this.isFullscreenMode);
     }
 
     get videoProgressBarSeekColor() {
