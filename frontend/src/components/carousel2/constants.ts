@@ -9,6 +9,7 @@ export const GET_CURRENT_VALUE_DEFAULT = 0;
 export const EMPTY_STRING = "";
 export const MAX_CLICK_THRESHOLD_DEFAULT = 15;
 export const NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS = 2;
+export const NUMBER_OF_MS_IN_A_SECOND = 1000;
 export const NUMBER_OF_PAGES_INITIAL = 0;
 export const SEEK_AMOUNT_DEFAULT = 5000;
 export const TRANSLATION_AMOUNT_INITIAL = 0;

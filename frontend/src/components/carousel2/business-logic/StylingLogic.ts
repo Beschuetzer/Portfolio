@@ -535,17 +535,20 @@ export class StylingLogic {
         left: number,
         index: number,
         sectionsLength: number,
+        isBackgroundDiv = false,
     ) {
         const isFirst = index === 0;
         const isLast = index === sectionsLength - 1;
         const sectionGap = this.optionsLogic.videoProgressBarSectionGap;
         const borderString = `${sectionGap / 2}${CAROUSEL_SPACING_UNIT} solid transparent`;
-        const borderLeftToUse = isFirst ? undefined : borderString;
-        const borderRightToUse = isLast ? undefined : borderString;
+        const borderLeftToUse = !isBackgroundDiv || isFirst ? undefined : borderString;
+        const borderRightToUse = !isBackgroundDiv || isLast ? undefined : borderString;
+        const widthOffset = isBackgroundDiv ? 0 : isFirst ? sectionGap / 2 : sectionGap;
+        const leftOffset = isBackgroundDiv || isFirst ? 0 : -sectionGap / 2;
         
         return {
-            width: percent >= 0 && percent <= 1 ? `${percent * 100}%` : percent,
-            left: sectionsLength <= 1 ? 0 : `calc(${left * 100}%)`,
+            width: percent >= 0 && percent <= 1 ? `calc(${percent * 100}% - ${widthOffset}${CAROUSEL_SPACING_UNIT})` : percent - widthOffset,
+            left: sectionsLength <= 1 ? 0 : `calc(${left * 100}% - ${leftOffset}${CAROUSEL_SPACING_UNIT})`,
             borderLeft: borderLeftToUse,
             borderRight: borderRightToUse,
         }
@@ -567,7 +570,7 @@ export class StylingLogic {
             transformOrigin: 'center',
             top: 0,
             ...this.getCarouselVideoProgressHitSlop(isCurrentSection),
-            ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength),
+            ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength, true),
         } as CSSProperties;
 
         if (sectionsLength <= 0) {
@@ -607,6 +610,7 @@ export class StylingLogic {
             height: this.optionsLogic.videoProgressBarHeight * (isCurrent ? this.optionsLogic.videoProgressBarScaleAmount : 1),
             ...this.carouselVideoProgressPositioningStyle,
             ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength),
+            zIndex: 2,
         }
     }
 
