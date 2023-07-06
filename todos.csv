@@ -1,7 +1,6 @@
 Carousel rework
   -work on progressbar rework:
-    --calculate the percent value that each section starts and ends at on load (useEffect)
-    --use start/end percent values to set currentSection on scroll
+    --
     --add listeners to each section
     --add option for hitslop amount
     --figure out how how to listener for left/right after clicking mousedown on progress bar (dynamically change hitslop amount on mousedown and revert to normal on mouse up?) or use global listener?

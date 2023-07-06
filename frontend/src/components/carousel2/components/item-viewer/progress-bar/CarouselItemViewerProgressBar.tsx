@@ -174,8 +174,8 @@ export const CarouselItemViewerProgressBar = ({
         }
     }, [setToolbarWidth, toolbarWidth])
 
+    //calculate the sectionToProgressBarValueMapping
     useEffect(() => {
-
         function mapSection() {
             clearTimeout(mapSectionToProgressBarTimeoutRef.current);
             if (!sections || sections.length <= 0 || !videoRef?.current) {
@@ -198,7 +198,7 @@ export const CarouselItemViewerProgressBar = ({
                 const sectionDuration = section[1];
                 const start = index === 0 ? 0 : sectionToProgressBarValueMapping.current[index - 1].end + NEXT_SECTION_START_OFFSET;
                 amountBefore += sectionDuration;
-                const end = amountBefore / videoDuration;
+                const end = index === sections.length - 1 ? 1 : amountBefore / videoDuration;
                 sectionToProgressBarValueMapping.current[index] = {
                     start,
                     end
@@ -210,6 +210,20 @@ export const CarouselItemViewerProgressBar = ({
         mapSection();
     }, [sections, videoRef])
 
+    //use sectionToProgressBarValueMapping to set currentSection on progressBarValue change
+    useEffect(() => {
+        if (
+            !isMouseDownRef.current ||
+            progressBarValue < 0 ||
+            progressBarValue > 1 ||
+            Object.keys(sectionToProgressBarValueMapping.current || {}).length <= 0
+        ) return;
+        for (const [sectionIndex, sectionRange] of Object.entries(sectionToProgressBarValueMapping.current)) {
+            if (progressBarValue >= sectionRange.start && progressBarValue <= sectionRange.end) setCurrentSection(Number(sectionIndex));
+        }
+    }, [progressBarValue])
+
+    //setup global listeners
     useEffect(() => {
         document.addEventListener('mousemove', onMouseMoveGlobal);
         document.addEventListener('mouseup', onMouseUpGlobal);
