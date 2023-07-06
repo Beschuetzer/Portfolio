@@ -499,7 +499,7 @@ export class StylingLogic {
 
     getCarouselVideoProgressHitSlop(isCurrentSection = false) {
         const scaleAmount = this.optionsLogic.videoProgressBarScaleAmount;
-        const paddingVertical = CAROUSEL_ITEM_SPACING_DEFAULT / (isCurrentSection ? scaleAmount: 1);
+        const paddingVertical = CAROUSEL_ITEM_SPACING_DEFAULT / (isCurrentSection ? scaleAmount : 1);
         return {
             paddingTop: paddingVertical,
             paddingBottom: paddingVertical,
@@ -530,7 +530,13 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressBackgroundSectionContainerStyle(width: number, left: number, index: number, sectionsLength: number, currentSectionIndex: number) {
+    getCarouselVideoProgressBackgroundSectionContainerStyle(
+        percent: number,
+        left: number,
+        index: number,
+        sectionsLength: number,
+        currentSectionIndex: number
+    ) {
         const isLast = index === sectionsLength - 1;
         const isFirst = index === 0;
         const isCurrentSection = index === currentSectionIndex;
@@ -549,7 +555,7 @@ export class StylingLogic {
             borderRight: borderRightToUse,
             ...this.getCarouselVideoProgressHitSlop(isCurrentSection),
         } as CSSProperties;
-        
+
         if (sectionsLength <= 0) {
             return {
                 width: '100%',
@@ -560,7 +566,7 @@ export class StylingLogic {
         }
         return {
             ...this.carouselVideoProgressPositioningStyle,
-            width: width >= 0 && width <= 1 ? `${width * 100}%` : width,
+            width: percent >= 0 && percent <= 1 ? `${percent * 100}%` : percent,
             left: `calc(${left * 100}%)`,
             background: 'transparent',
             transform: isCurrentSection ? `${this.carouselVideoProgressPositioningStyle.transform || ''} scaleY(${scaleAmount})` : this.carouselVideoProgressPositioningStyle.transform,
@@ -575,10 +581,18 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressForegroundStyle(percentFull: number, isCurrent = false) {
+    getCarouselVideoProgressForegroundStyle(
+        percent: number,
+        left: number,
+        index: number,
+        sectionsLength: number,
+        currentSectionIndex: number
+    ) {
+        const isCurrent = index === currentSectionIndex;
+
         return {
             background: this.optionsLogic.videoProgressBarForegroundColor,
-            width: `${percentFull * 100}%`,
+            width: `${percent * 100}%`,
             height: this.optionsLogic.videoProgressBarHeight * (isCurrent ? this.optionsLogic.videoProgressBarScaleAmount : 1),
             ...this.carouselVideoProgressPositioningStyle,
         }
@@ -600,10 +614,17 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressSeekStyle(percentWidthDecimal: number, isCurrent = false) {
+    getCarouselVideoProgressSeekStyle(
+        percent: number,
+        left: number,
+        index: number,
+        sectionsLength: number,
+        currentSectionIndex: number
+    ) {
+        const isCurrent = index === currentSectionIndex;
         return {
             background: this.optionsLogic.videoProgressBarSeekColor,
-            width: `${percentWidthDecimal * 100}%`,
+            width: `${percent * 100}%`,
             height: this.optionsLogic.videoProgressBarHeight * (isCurrent ? this.optionsLogic.videoProgressBarScaleAmount : 1),
             ...this.carouselVideoProgressPositioningStyle,
         }

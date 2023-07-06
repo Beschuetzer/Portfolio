@@ -254,12 +254,12 @@ export const CarouselItemViewerProgressBar = ({
     //#endregion
 
     //#region JSX
-    const getBackgroundDiv = useCallback((width: number, index: number, left = 0, isLast = false) => {
-        if (isNaN(width)) return null;
+    const getBackgroundDiv = useCallback((percent: number, index: number, left = 0) => {
+        if (isNaN(percent)) return null;
         return (
             <div
                 key={index}
-                style={stylingLogic.getCarouselVideoProgressBackgroundSectionContainerStyle(width, left, index, sections?.length || 1, currentSection)}
+                style={stylingLogic.getCarouselVideoProgressBackgroundSectionContainerStyle(percent, left, index, sections?.length || 1, currentSection)}
                 onMouseMove={onMouseMoveBackground.bind(null, index) as any}
                 onMouseLeave={onMouseLeave.bind(null, index) as any}
             >
@@ -270,17 +270,17 @@ export const CarouselItemViewerProgressBar = ({
         )
     }, [currentSection, onMouseLeave, onMouseMoveBackground, sections?.length, stylingLogic])
 
-    const getForegroundDiv = useCallback((percent: number, isCurrent = false) => {
-        return <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(percent, isCurrent)} />
-    }, [stylingLogic]);
+    const getForegroundDiv = useCallback((percent: number, index = 0, left = 0) => {
+        return <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(percent, left, index, sections?.length || 1, currentSection)} />
+    }, [currentSection, sections?.length, stylingLogic]);
 
-    const getSeekDiv = useCallback((percent: number, isCurrent = false) => {
-        return <div style={stylingLogic.getCarouselVideoProgressSeekStyle(percent, isCurrent)} />
-    }, [stylingLogic]);
+    const getSeekDiv = useCallback((percent: number, index = 0, left = 0) => {
+        return <div style={stylingLogic.getCarouselVideoProgressSeekStyle(percent, left, index, sections?.length || 1, currentSection)} />
+    }, [currentSection, sections?.length, stylingLogic]);
 
     function renderSections() {
-        const currentForegroundSection = getForegroundDiv(progressBarValue, currentSection !== CURRENT_SECTION_INITIAL);
-        const currentSeekSection = getSeekDiv(seekWidth, currentSection !== CURRENT_SECTION_INITIAL);
+        const currentForegroundSection = getForegroundDiv(progressBarValue, 0);
+        const currentSeekSection = getSeekDiv(seekWidth, 0);
         const fullForegroundSection = getForegroundDiv(1);
         const fullSeekSection = getSeekDiv(1);
 
@@ -295,17 +295,21 @@ export const CarouselItemViewerProgressBar = ({
         }
 
         const backgroundDivs = [];
+        const foregroundDivs = [];
         let amountBeforeCurrent = 0;
         for (let index = 0; index < sections.length; index++) {
             const section = sections[index];
             const [text, duration] = section;
-            const isFirstSection = index === 0;
             const isLastSection = index === sections.length - 1;
             const percentAcross = duration / NUMBER_OF_MS_IN_A_SECOND / (videoRef?.current?.duration || 1);
             const backgroundLeft = amountBeforeCurrent / NUMBER_OF_MS_IN_A_SECOND / videoRef.current.duration;
 
-            //background div stuff
-            backgroundDivs.push(getBackgroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, index, backgroundLeft, isLastSection));
+            backgroundDivs.push(getBackgroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, index, backgroundLeft));
+            if (index < currentSection) {
+                foregroundDivs.push(getForegroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, index, backgroundLeft))
+            }
+
+
             amountBeforeCurrent += duration;
             // console.log({ text, duration, videoDuration: videoRef.current.duration, percentAcross, isLastSection });
         }
@@ -314,6 +318,7 @@ export const CarouselItemViewerProgressBar = ({
             <>
                 {/* <div style={stylingLogic.carouselVideoProgressBackgroundDivsContainer}> */}
                 {backgroundDivs}
+                {foregroundDivs}
                 {/* </div> */}
                 {/* {currentSeekSection}
                 {currentForegroundSection} */}
