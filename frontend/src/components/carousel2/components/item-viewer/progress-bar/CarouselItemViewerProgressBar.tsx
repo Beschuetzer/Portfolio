@@ -254,7 +254,7 @@ export const CarouselItemViewerProgressBar = ({
     //#endregion
 
     //#region JSX
-    const getBackgroundDiv = useCallback((percent: number, index = 0, left = 0) => {
+    const getBackgroundDiv = useCallback((percent: number, left = 0, index = 0) => {
         if (isNaN(percent)) return null;
         return (
             <div
@@ -270,12 +270,12 @@ export const CarouselItemViewerProgressBar = ({
         )
     }, [currentSection, onMouseLeave, onMouseMoveBackground, sections?.length, stylingLogic])
 
-    const getForegroundDiv = useCallback((percent: number, index = 0, left = 0) => {
+    const getForegroundDiv = useCallback((percent: number, left = 0, index = 0) => {
         if (isNaN(percent)) return null;
         return <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(percent, left, index, sections?.length || 1, currentSection)} />
     }, [currentSection, sections?.length, stylingLogic]);
 
-    const getSeekDiv = useCallback((percent: number, index = 0, left = 0) => {
+    const getSeekDiv = useCallback((percent: number, left = 0, index = 0) => {
         if (isNaN(percent)) return null;
         return <div style={stylingLogic.getCarouselVideoProgressSeekStyle(percent, left, index, sections?.length || 1, currentSection)} />
     }, [currentSection, sections?.length, stylingLogic]);
@@ -302,9 +302,9 @@ export const CarouselItemViewerProgressBar = ({
             const percentAcross = duration / NUMBER_OF_MS_IN_A_SECOND / (videoRef?.current?.duration || 1);
             const backgroundLeft = amountBeforeCurrent / NUMBER_OF_MS_IN_A_SECOND / videoRef.current.duration;
 
-            backgroundDivs.push(getBackgroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, index, backgroundLeft));
+            backgroundDivs.push(getBackgroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, backgroundLeft, index));
             if (index < currentSection) {
-                seekDivs.push(getSeekDiv(isLastSection ? 1 - backgroundLeft : percentAcross, index, backgroundLeft))
+                seekDivs.push(getSeekDiv(isLastSection ? 1 - backgroundLeft : percentAcross, backgroundLeft, index))
             }
 
 

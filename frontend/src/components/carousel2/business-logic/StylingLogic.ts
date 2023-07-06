@@ -532,9 +532,9 @@ export class StylingLogic {
 
     getCarouselVideoProgressSectionCommonStyle(
         percent: number,
+        left: number,
         index: number,
         sectionsLength: number,
-        left: number,
     ) {
         const isFirst = index === 0;
         const isLast = index === sectionsLength - 1;
@@ -567,7 +567,7 @@ export class StylingLogic {
             transformOrigin: 'center',
             top: 0,
             ...this.getCarouselVideoProgressHitSlop(isCurrentSection),
-            ...this.getCarouselVideoProgressSectionCommonStyle(percent, index, sectionsLength, left),
+            ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength),
         } as CSSProperties;
 
         if (sectionsLength <= 0) {
@@ -606,7 +606,7 @@ export class StylingLogic {
             background: this.optionsLogic.videoProgressBarForegroundColor,
             height: this.optionsLogic.videoProgressBarHeight * (isCurrent ? this.optionsLogic.videoProgressBarScaleAmount : 1),
             ...this.carouselVideoProgressPositioningStyle,
-            ...this.getCarouselVideoProgressSectionCommonStyle(percent, index, sectionsLength, left),
+            ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength),
         }
     }
 
@@ -639,7 +639,7 @@ export class StylingLogic {
             background: this.optionsLogic.videoProgressBarSeekColor,
             height: this.optionsLogic.videoProgressBarHeight * (isCurrent ? this.optionsLogic.videoProgressBarScaleAmount : 1),
             ...this.carouselVideoProgressPositioningStyle,
-            ...this.getCarouselVideoProgressSectionCommonStyle(percent, index, sectionsLength, left),
+            ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength),
         } as CSSProperties;
     }
 
