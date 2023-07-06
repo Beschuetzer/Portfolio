@@ -18,6 +18,8 @@ type CarouselItemViewerProgressBarProps = {
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
     & Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying'>;
 
+const NUMBER_OF_MS_IN_A_SECOND = 1000;
+const NEXT_SECTION_START_OFFSET = .0000000000000001;
 const CURRENT_SECTION_INITIAL = -1;
 const INITIAL_VALUE = 0;
 export const CarouselItemViewerProgressBar = ({
@@ -182,7 +184,7 @@ export const CarouselItemViewerProgressBar = ({
             }
             if (Object.values(sectionToProgressBarValueMapping.current).length > 0) return;
 
-            const videoDuration = videoRef.current.duration * 1000
+            const videoDuration = videoRef.current.duration * NUMBER_OF_MS_IN_A_SECOND
             if (isNaN(videoDuration)) {
                 mapSectionToProgressBarTimeoutRef.current = setTimeout(() => {
                     mapSection();
@@ -194,11 +196,9 @@ export const CarouselItemViewerProgressBar = ({
             for (let index = 0; index < sections.length; index++) {
                 const section = sections[index];
                 const sectionDuration = section[1];
-                const start = index === 0 ? 0 : sectionToProgressBarValueMapping.current[index - 1].end + .0000000000000001;
+                const start = index === 0 ? 0 : sectionToProgressBarValueMapping.current[index - 1].end + NEXT_SECTION_START_OFFSET;
                 amountBefore += sectionDuration;
                 const end = amountBefore / videoDuration;
-                console.log({ sectionDuration, videoDuration, start, end, amountBefore });
-
                 sectionToProgressBarValueMapping.current[index] = {
                     start,
                     end
@@ -268,8 +268,8 @@ export const CarouselItemViewerProgressBar = ({
             const [text, duration] = section;
             const isFirstSection = index === 0;
             const isLastSection = index === sections.length - 1;
-            const percentAcross = duration / 1000 / (videoRef?.current?.duration || 1);
-            const backgroundLeft = amountBeforeCurrent / 1000 / videoRef.current.duration;
+            const percentAcross = duration / NUMBER_OF_MS_IN_A_SECOND / (videoRef?.current?.duration || 1);
+            const backgroundLeft = amountBeforeCurrent / NUMBER_OF_MS_IN_A_SECOND / videoRef.current.duration;
 
             //background div stuff
             backgroundDivs.push(getBackgroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, index, backgroundLeft, isLastSection));
