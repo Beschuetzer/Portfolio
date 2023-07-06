@@ -543,7 +543,7 @@ export class StylingLogic {
         const borderString = `${sectionGap / 2}${CAROUSEL_SPACING_UNIT} solid transparent`;
         const borderLeftToUse = !isBackgroundDiv || isFirst ? undefined : borderString;
         const borderRightToUse = !isBackgroundDiv || isLast ? undefined : borderString;
-        const widthOffset = isBackgroundDiv ? 0 : isFirst ? sectionGap / 2 : sectionGap;
+        const widthOffset = isBackgroundDiv ? 0 : isFirst ? sectionGap / 2 : (isLast ? sectionGap / 2 : sectionGap);
         const leftOffset = isBackgroundDiv || isFirst ? 0 : -sectionGap / 2;
         
         return {

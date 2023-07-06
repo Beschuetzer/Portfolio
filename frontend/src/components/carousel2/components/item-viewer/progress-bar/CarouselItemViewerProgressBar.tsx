@@ -298,21 +298,27 @@ export const CarouselItemViewerProgressBar = ({
             const section = sections[index];
             const [text, duration] = section;
             const isLastSection = index === sections.length - 1;
-            const percentAcross = duration / NUMBER_OF_MS_IN_A_SECOND / (videoRef?.current?.duration || 1);
+            const durationToUse = duration || Math.abs(amountBeforeCurrent - videoRef?.current?.duration);
+            const percentAcross = durationToUse / NUMBER_OF_MS_IN_A_SECOND / (videoRef?.current?.duration || 1);
             const backgroundLeft = amountBeforeCurrent / NUMBER_OF_MS_IN_A_SECOND / videoRef.current.duration;
+            const percentPlayedAlready = videoRef.current.currentTime / videoRef.current.duration;
+            const percentToUse = isLastSection ? 1 - backgroundLeft : percentAcross
 
-            backgroundDivs.push(getBackgroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, backgroundLeft, index));
+            backgroundDivs.push(getBackgroundDiv(percentToUse, backgroundLeft, index));
             if (index < currentSection) {
-                seekDivs.push(getSeekDiv(isLastSection ? 1 - backgroundLeft : percentAcross, backgroundLeft, index))
-            }
+                seekDivs.push(getSeekDiv(percentToUse, backgroundLeft, index))
+            } 
 
             const currentSectionTime = sectionToProgressBarValueMapping.current[index];
-            if (videoRef.current.currentTime / videoRef.current.duration >= currentSectionTime?.end) {
-                foregroundDivs.push(getForegroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, backgroundLeft, index))
+            if (percentPlayedAlready >= currentSectionTime?.end) {
+                foregroundDivs.push(getForegroundDiv(percentToUse, backgroundLeft, index))
+            } else if (percentPlayedAlready >= currentSectionTime?.start && percentPlayedAlready <= currentSectionTime?.end) {
+                const percentAcrossCurrentSectionFactor = (percentPlayedAlready - currentSectionTime?.start) / (currentSectionTime?.end - currentSectionTime?.start)
+                foregroundDivs.push(getForegroundDiv(percentToUse * percentAcrossCurrentSectionFactor, backgroundLeft, index))
             }
 
             amountBeforeCurrent += duration;
-            // console.log({ text, duration, videoDuration: videoRef.current.duration, percentAcross, isLastSection });
+            console.log({ percentPlayedAlready,currentSectionTime, index, durationToUse, duration, videoDuration: videoRef.current.duration, percentAcross, isLastSection });
         }
 
         return (
