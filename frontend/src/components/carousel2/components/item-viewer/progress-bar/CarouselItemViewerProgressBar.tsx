@@ -19,6 +19,7 @@ type CarouselItemViewerProgressBarProps = {
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
     & Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying'>;
 
+const MAP_SECTION_INTERVAL = 100;
 const NUMBER_OF_MS_IN_A_SECOND = 1000;
 const NEXT_SECTION_START_OFFSET = .0000000000000001;
 const CURRENT_SECTION_INITIAL = -1;
@@ -196,7 +197,7 @@ export const CarouselItemViewerProgressBar = ({
             if (isNaN(videoDuration)) {
                 mapSectionToProgressBarTimeoutRef.current = setTimeout(() => {
                     mapSection();
-                }, 100)
+                }, MAP_SECTION_INTERVAL)
                 return;
             }
 
@@ -212,7 +213,6 @@ export const CarouselItemViewerProgressBar = ({
                     end
                 }
             }
-            console.log({ sectionToProgressBarValueMapping });
         }
 
         mapSection();
