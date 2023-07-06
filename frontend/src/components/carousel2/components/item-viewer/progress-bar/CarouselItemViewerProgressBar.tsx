@@ -92,10 +92,13 @@ export const CarouselItemViewerProgressBar = ({
         const xMovement = e.movementX;
         const toolbarRect = toolbarRef?.current?.getBoundingClientRect();
         if (!toolbarRect) return;
-        const progressBarLeftX = toolbarRect.left;
-        const progressBarRightX = toolbarRect.right;
-        const movementAmount = xMovement / (progressBarRightX - progressBarLeftX);
-        setProgressBarValue((current) => current + movementAmount);
+        const movementAmount = xMovement / (toolbarRect.right - toolbarRect.left);
+        setProgressBarValue((current) => {
+            const newValue = current + movementAmount;
+            if (newValue >= 1) return 1;
+            else if (newValue <= 0) return 0;
+            return newValue
+        });
     }, [])
 
     const onMouseUpGlobal = useCallback((e: MouseEvent) => {
