@@ -279,17 +279,12 @@ export const CarouselItemViewerProgressBar = ({
     }, [currentSection, sections?.length, stylingLogic]);
 
     function renderSections() {
-        const currentForegroundSection = getForegroundDiv(progressBarValue, 0);
-        const currentSeekSection = getSeekDiv(seekWidth, 0);
-        const fullForegroundSection = getForegroundDiv(1);
-        const fullSeekSection = getSeekDiv(1);
-
         if (!sections || sections.length <= 1 || !videoRef?.current) {
             return (
                 <>
                     {getBackgroundDiv(1, 0)}
-                    {currentSeekSection}
-                    {currentForegroundSection}
+                    {getSeekDiv(seekWidth, 0)}
+                    {getForegroundDiv(progressBarValue, 0)}
                 </>
             );
         }
