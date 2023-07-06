@@ -6,6 +6,13 @@ import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToo
 import { useCarouselContext } from '../../../context';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
+type SectionToProgressBarValueMapping = {
+    [number: number]: {
+        start: number;
+        end: number;
+    }
+}
+
 type CarouselItemViewerProgressBarProps = {
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
@@ -18,18 +25,23 @@ export const CarouselItemViewerProgressBar = ({
     setTimeStrings,
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
+    //#region Init
     const { currentItem } = useCarouselContext();
     const { sections } = currentItem?.video || {};
     const areSectionsGiven = sections && sections.length > 0;
     const isMouseDownRef = useRef(false);
     const toolbarRef = useRef<HTMLDivElement>();
+    const sectionToProgressBarValueMapping = useRef<SectionToProgressBarValueMapping>({});
+    const mapSectionToProgressBarTimeoutRef = useRef<any>(-1);
     const [toolbarWidth, setToolbarWidth] = useState(INITIAL_VALUE)
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
     const [currentSection, setCurrentSection] = useState(CURRENT_SECTION_INITIAL);
     const [showDot, setShowDot] = useState(false);
     const [seekWidth, setSeekWidth] = useState(INITIAL_VALUE);
     const { stylingLogic } = useBusinessLogic({ progressBarValue });
+    //#endregion
 
+    //#region Functions/Handlers
     const getPercent = useCallback((e: MouseEvent) => {
         const toolbarRect = toolbarRef?.current?.getBoundingClientRect();
         if (!e || !toolbarRect) return 0;
@@ -110,7 +122,9 @@ export const CarouselItemViewerProgressBar = ({
     const onMouseMoveBackground = useCallback((index: number, e: MouseEvent) => {
         setCurrentSection(index);
     }, [])
+    //#endregion
 
+    //#region Side FX
     useEffect(() => {
         const videoRefCopy = videoRef?.current;
 
@@ -159,6 +173,44 @@ export const CarouselItemViewerProgressBar = ({
     }, [setToolbarWidth, toolbarWidth])
 
     useEffect(() => {
+
+        function mapSection() {
+            clearTimeout(mapSectionToProgressBarTimeoutRef.current);
+            if (!sections || sections.length <= 0 || !videoRef?.current) {
+                sectionToProgressBarValueMapping.current = {};
+                return;
+            }
+            if (Object.values(sectionToProgressBarValueMapping.current).length > 0) return;
+
+            const videoDuration = videoRef.current.duration * 1000
+            if (isNaN(videoDuration)) {
+                mapSectionToProgressBarTimeoutRef.current = setTimeout(() => {
+                    mapSection();
+                }, 100)
+                return;
+            }
+
+            let amountBefore = 0;
+            for (let index = 0; index < sections.length; index++) {
+                const section = sections[index];
+                const sectionDuration = section[1];
+                const start = index === 0 ? 0 : sectionToProgressBarValueMapping.current[index - 1].end + .0000000000000001;
+                amountBefore += sectionDuration;
+                const end = amountBefore / videoDuration;
+                console.log({ sectionDuration, videoDuration, start, end, amountBefore });
+
+                sectionToProgressBarValueMapping.current[index] = {
+                    start,
+                    end
+                }
+            }
+            console.log({ sectionToProgressBarValueMapping });
+        }
+
+        mapSection();
+    }, [sections, videoRef])
+
+    useEffect(() => {
         document.addEventListener('mousemove', onMouseMoveGlobal);
         document.addEventListener('mouseup', onMouseUpGlobal);
 
@@ -167,6 +219,7 @@ export const CarouselItemViewerProgressBar = ({
             document.removeEventListener('mouseup', onMouseUpGlobal);
         }
     }, [onMouseMoveGlobal, onMouseUpGlobal])
+    //#endregion
 
     //#region JSX
     const getBackgroundDiv = useCallback((width: number, index: number, left = 0, isLast = false) => {
