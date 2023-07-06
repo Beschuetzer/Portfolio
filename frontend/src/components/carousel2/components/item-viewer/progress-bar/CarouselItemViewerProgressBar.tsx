@@ -19,6 +19,7 @@ type CarouselItemViewerProgressBarProps = {
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
     & Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying'>;
 
+const SET_CURRENT_SECTION_INTERVAL_THRESHOLD = 100;
 const MAP_SECTION_INTERVAL = 100;
 const NUMBER_OF_MS_IN_A_SECOND = 1000;
 const NEXT_SECTION_START_OFFSET = .0000000000000001;
@@ -37,6 +38,7 @@ export const CarouselItemViewerProgressBar = ({
     const toolbarRef = useRef<HTMLDivElement>();
     const sectionToProgressBarValueMapping = useRef<SectionToProgressBarValueMapping>({});
     const mapSectionToProgressBarTimeoutRef = useRef<any>(-1);
+    const timeOfLastCurrentSectionChangeRef = useRef<any>(-1);
     const [toolbarWidth, setToolbarWidth] = useState(INITIAL_VALUE)
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
     const [currentSection, setCurrentSection] = useState(CURRENT_SECTION_INITIAL);
@@ -94,7 +96,11 @@ export const CarouselItemViewerProgressBar = ({
             // onMouseUp(e);
             return;
         };
-        setCurrentSection(CURRENT_SECTION_INITIAL);
+
+        if (Date.now() - timeOfLastCurrentSectionChangeRef.current > SET_CURRENT_SECTION_INTERVAL_THRESHOLD) {
+            setCurrentSection(CURRENT_SECTION_INITIAL);
+        }
+
         setShowDot(false);
         setSeekWidth(INITIAL_VALUE);
     }, [isMouseDownRef])
@@ -131,7 +137,9 @@ export const CarouselItemViewerProgressBar = ({
     }, [isMouseDownRef, onMouseUp])
 
     const onMouseMoveBackground = useCallback((index: number, e: MouseEvent) => {
-        setCurrentSection(index);
+        if (Date.now() - timeOfLastCurrentSectionChangeRef.current > SET_CURRENT_SECTION_INTERVAL_THRESHOLD) {
+            setCurrentSection(index);
+        }
     }, [])
     //#endregion
 
@@ -237,6 +245,12 @@ export const CarouselItemViewerProgressBar = ({
             document.removeEventListener('mouseup', onMouseUpGlobal);
         }
     }, [onMouseMoveGlobal, onMouseUpGlobal])
+
+    //timeOfLastCurrentSectionChangeRef is a hack to improve the section hover recognition
+    useEffect(() => {
+        const now = Date.now();
+        timeOfLastCurrentSectionChangeRef.current = now;
+    }, [currentSection])
     //#endregion
 
     //#region JSX

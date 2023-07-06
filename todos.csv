@@ -1,5 +1,6 @@
 Carousel rework
   -work on progressbar rework:
+    --use transparent border to create the "gaps" instead of margin-right
     --add listeners to each section
     --add option for hitslop amount
     --figure out how how to listener for left/right after clicking mousedown on progress bar (dynamically change hitslop amount on mousedown and revert to normal on mouse up?) or use global listener?
