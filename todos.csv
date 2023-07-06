@@ -1,5 +1,6 @@
 Carousel rework
   -work on progressbar rework:
+    --figure out why gap between background divs and other divs when CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT <= 4
     --figure out how to handle the current section divs for seek
     --add option for hitslop amount
     --figure out how how to listener for left/right after clicking mousedown on progress bar (dynamically change hitslop amount on mousedown and revert to normal on mouse up?) or use global listener?
