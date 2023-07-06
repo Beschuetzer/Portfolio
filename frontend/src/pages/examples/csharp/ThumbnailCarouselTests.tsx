@@ -2324,7 +2324,7 @@ const viewingModeVideoControls = (
 							isAlwaysVisible: [[false], [true, 900]],
 							transitionDuration: [[.25], [.1, 850]]
 						},
-						dividerWidth: 4
+						sectionGap: 4
 					}
 				},
 			}

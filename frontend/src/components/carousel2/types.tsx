@@ -207,10 +207,6 @@ export type CarouselSections = {
         padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
         progressBar?: {
             /**
-            *The width of the section dividers at the end of each video section
-            **/
-            dividerWidth?: CarouselElementValue<number>;
-            /**
             *This is the dot at the end of the progress bar, which is only visible on when hovering the progress bar.  
             **/
             dot?: {
@@ -228,6 +224,11 @@ export type CarouselSections = {
                 **/
                 transitionDuration?: CarouselElementValue<number>;
             }
+            /**
+            *The amount of space between each video section. 
+            *Only applicable if `CarouselItemProps.video.sections` is given.
+            **/
+            sectionGap?: CarouselElementValue<number>;
             /**
             *The amount the progress bar scales on the Y axis when hovered
             *Default is `5`

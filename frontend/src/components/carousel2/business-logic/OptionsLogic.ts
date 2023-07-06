@@ -26,7 +26,7 @@ import {
     CAROUSEL_PROGRESS_BAR_DOT_DIAMETER,
     CAROUSEL_PROGRESS_BAR_DOT_IS_ALWAYS_VISIBLE,
     CAROUSEL_PROGRESS_BAR_DOT_TRANSITION_DURATION,
-    CAROUSEL_PROGRESS_BAR_DIVIDER_WIDTH,
+    CAROUSEL_PROGRESS_BAR_SECTION_GAP,
     CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT,
     CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT
 } from "../constants";
@@ -224,8 +224,8 @@ export class OptionsLogic {
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
     }
 
-    get videoProgressBarDividerWidth() {
-        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.dividerWidth, CAROUSEL_PROGRESS_BAR_DIVIDER_WIDTH, this.isFullscreenMode);
+    get videoProgressBarSectionGap() {
+        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.sectionGap, CAROUSEL_PROGRESS_BAR_SECTION_GAP, this.isFullscreenMode);
     }
 
     get videoProgressBarDotSettings() {

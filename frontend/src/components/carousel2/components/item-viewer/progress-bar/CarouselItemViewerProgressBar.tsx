@@ -259,7 +259,7 @@ export const CarouselItemViewerProgressBar = ({
         return (
             <div
                 key={index}
-                style={stylingLogic.getCarouselVideoProgressBackgroundSectionContainerStyle(width, left, isLast, sections?.length, index === currentSection)}
+                style={stylingLogic.getCarouselVideoProgressBackgroundSectionContainerStyle(width, left, index, sections?.length || 1, currentSection)}
                 onMouseMove={onMouseMoveBackground.bind(null, index) as any}
                 onMouseLeave={onMouseLeave.bind(null, index) as any}
             >

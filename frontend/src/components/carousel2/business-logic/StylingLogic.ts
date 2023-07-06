@@ -530,20 +530,27 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressBackgroundSectionContainerStyle(width: number, left: number, isLast = false, sectionLength = 0, isCurrentSection = false) {
-        const dividerWidth = this.optionsLogic.videoProgressBarDividerWidth;
-        const dividerWidthToUse = isLast ? 0 : dividerWidth;
+    getCarouselVideoProgressBackgroundSectionContainerStyle(width: number, left: number, index: number, sectionsLength: number, currentSectionIndex: number) {
+        const isLast = index === sectionsLength - 1;
+        const isFirst = index === 0;
+        const isCurrentSection = index === currentSectionIndex;
+        const sectionGap = this.optionsLogic.videoProgressBarSectionGap;
         const scaleAmount = this.optionsLogic.videoProgressBarScaleAmount;
+        const borderString = `${sectionGap / 2}${CAROUSEL_SPACING_UNIT} solid transparent`;
+        const borderLeftToUse = isFirst ? undefined : borderString;
+        const borderRightToUse = isLast ? undefined : borderString;
 
         const common = {
             backfaceVisibility: 'hidden',
             transition: `transform .125s ease`,
             transformOrigin: 'center',
             top: 0,
+            borderLeft: borderLeftToUse,
+            borderRight: borderRightToUse,
             ...this.getCarouselVideoProgressHitSlop(isCurrentSection),
         } as CSSProperties;
         
-        if (sectionLength <= 0) {
+        if (sectionsLength <= 0) {
             return {
                 width: '100%',
                 position: 'absolute',
@@ -553,9 +560,8 @@ export class StylingLogic {
         }
         return {
             ...this.carouselVideoProgressPositioningStyle,
-            width: width >= 0 && width <= 1 ? `calc(${width * 100}% - ${dividerWidthToUse}${CAROUSEL_SPACING_UNIT})` : width - dividerWidthToUse,
+            width: width >= 0 && width <= 1 ? `${width * 100}%` : width,
             left: `calc(${left * 100}%)`,
-            marginRight: isLast ? 0 : dividerWidth,
             background: 'transparent',
             transform: isCurrentSection ? `${this.carouselVideoProgressPositioningStyle.transform || ''} scaleY(${scaleAmount})` : this.carouselVideoProgressPositioningStyle.transform,
             ...common,
