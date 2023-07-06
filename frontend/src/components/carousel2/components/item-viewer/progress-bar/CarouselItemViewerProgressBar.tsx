@@ -125,7 +125,7 @@ export const CarouselItemViewerProgressBar = ({
             const newValue = current + movementAmount;
             if (newValue >= 1) return 1;
             else if (newValue <= 0) return 0;
-            return newValue
+            return newValue;
         });
     }, [isMouseDownRef])
 
@@ -304,21 +304,26 @@ export const CarouselItemViewerProgressBar = ({
             const percentPlayedAlready = videoRef.current.currentTime / videoRef.current.duration;
             const percentToUse = isLastSection ? 1 - backgroundLeft : percentAcross
 
+            //background stuff
             backgroundDivs.push(getBackgroundDiv(percentToUse, backgroundLeft, index));
+
+            //seek stuff
             if (index < currentSection) {
                 seekDivs.push(getSeekDiv(percentToUse, backgroundLeft, index))
             } 
-
+            
+            //foreground stuff
             const currentSectionTime = sectionToProgressBarValueMapping.current[index];
-            if (percentPlayedAlready >= currentSectionTime?.end) {
+            const itemToTrack = isMouseDownRef.current ? progressBarValue : percentPlayedAlready;
+            if (itemToTrack >= currentSectionTime?.end) {
                 foregroundDivs.push(getForegroundDiv(percentToUse, backgroundLeft, index))
-            } else if (percentPlayedAlready >= currentSectionTime?.start && percentPlayedAlready <= currentSectionTime?.end) {
-                const percentAcrossCurrentSectionFactor = (percentPlayedAlready - currentSectionTime?.start) / (currentSectionTime?.end - currentSectionTime?.start)
+            } else if (itemToTrack >= currentSectionTime?.start && itemToTrack <= currentSectionTime?.end) {
+                const percentAcrossCurrentSectionFactor = (itemToTrack - currentSectionTime?.start) / (currentSectionTime?.end - currentSectionTime?.start)
                 foregroundDivs.push(getForegroundDiv(percentToUse * percentAcrossCurrentSectionFactor, backgroundLeft, index))
             }
 
             amountBeforeCurrent += duration;
-            console.log({ percentPlayedAlready,currentSectionTime, index, durationToUse, duration, videoDuration: videoRef.current.duration, percentAcross, isLastSection });
+            // console.log({progressBarValue, itemToTrack ,currentSectionTime, index, durationToUse, duration, videoDuration: videoRef.current.duration, percentAcross, isLastSection });
         }
 
         return (
