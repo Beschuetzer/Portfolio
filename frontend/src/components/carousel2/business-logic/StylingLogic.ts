@@ -530,6 +530,27 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
+    getCarouselVideoProgressSectionCommonStyle(
+        percent: number,
+        index: number,
+        sectionsLength: number,
+        left: number,
+    ) {
+        const isFirst = index === 0;
+        const isLast = index === sectionsLength - 1;
+        const sectionGap = this.optionsLogic.videoProgressBarSectionGap;
+        const borderString = `${sectionGap / 2}${CAROUSEL_SPACING_UNIT} solid transparent`;
+        const borderLeftToUse = isFirst ? undefined : borderString;
+        const borderRightToUse = isLast ? undefined : borderString;
+        
+        return {
+            width: percent >= 0 && percent <= 1 ? `${percent * 100}%` : percent,
+            left: sectionsLength <= 1 ? 0 : `calc(${left * 100}%)`,
+            borderLeft: borderLeftToUse,
+            borderRight: borderRightToUse,
+        }
+    }
+
     getCarouselVideoProgressBackgroundSectionContainerStyle(
         percent: number,
         left: number,
@@ -537,23 +558,16 @@ export class StylingLogic {
         sectionsLength: number,
         currentSectionIndex: number
     ) {
-        const isLast = index === sectionsLength - 1;
-        const isFirst = index === 0;
         const isCurrentSection = index === currentSectionIndex;
-        const sectionGap = this.optionsLogic.videoProgressBarSectionGap;
         const scaleAmount = this.optionsLogic.videoProgressBarScaleAmount;
-        const borderString = `${sectionGap / 2}${CAROUSEL_SPACING_UNIT} solid transparent`;
-        const borderLeftToUse = isFirst ? undefined : borderString;
-        const borderRightToUse = isLast ? undefined : borderString;
 
         const common = {
             backfaceVisibility: 'hidden',
             transition: `transform .125s ease`,
             transformOrigin: 'center',
             top: 0,
-            borderLeft: borderLeftToUse,
-            borderRight: borderRightToUse,
             ...this.getCarouselVideoProgressHitSlop(isCurrentSection),
+            ...this.getCarouselVideoProgressSectionCommonStyle(percent, index, sectionsLength, left),
         } as CSSProperties;
 
         if (sectionsLength <= 0) {
@@ -566,8 +580,6 @@ export class StylingLogic {
         }
         return {
             ...this.carouselVideoProgressPositioningStyle,
-            width: percent >= 0 && percent <= 1 ? `${percent * 100}%` : percent,
-            left: `calc(${left * 100}%)`,
             background: 'transparent',
             transform: isCurrentSection ? `${this.carouselVideoProgressPositioningStyle.transform || ''} scaleY(${scaleAmount})` : this.carouselVideoProgressPositioningStyle.transform,
             ...common,
@@ -592,9 +604,9 @@ export class StylingLogic {
 
         return {
             background: this.optionsLogic.videoProgressBarForegroundColor,
-            width: `${percent * 100}%`,
             height: this.optionsLogic.videoProgressBarHeight * (isCurrent ? this.optionsLogic.videoProgressBarScaleAmount : 1),
             ...this.carouselVideoProgressPositioningStyle,
+            ...this.getCarouselVideoProgressSectionCommonStyle(percent, index, sectionsLength, left),
         }
     }
 
@@ -623,11 +635,12 @@ export class StylingLogic {
     ) {
         const isCurrent = index === currentSectionIndex;
         return {
+            position: 'absolute',
             background: this.optionsLogic.videoProgressBarSeekColor,
-            width: `${percent * 100}%`,
             height: this.optionsLogic.videoProgressBarHeight * (isCurrent ? this.optionsLogic.videoProgressBarScaleAmount : 1),
             ...this.carouselVideoProgressPositioningStyle,
-        }
+            ...this.getCarouselVideoProgressSectionCommonStyle(percent, index, sectionsLength, left),
+        } as CSSProperties;
     }
 
     get carouselVideoProgressBackgroundCommon() {

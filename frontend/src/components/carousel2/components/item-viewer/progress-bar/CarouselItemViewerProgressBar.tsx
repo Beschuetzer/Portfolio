@@ -254,7 +254,7 @@ export const CarouselItemViewerProgressBar = ({
     //#endregion
 
     //#region JSX
-    const getBackgroundDiv = useCallback((percent: number, index: number, left = 0) => {
+    const getBackgroundDiv = useCallback((percent: number, index = 0, left = 0) => {
         if (isNaN(percent)) return null;
         return (
             <div
@@ -271,10 +271,12 @@ export const CarouselItemViewerProgressBar = ({
     }, [currentSection, onMouseLeave, onMouseMoveBackground, sections?.length, stylingLogic])
 
     const getForegroundDiv = useCallback((percent: number, index = 0, left = 0) => {
+        if (isNaN(percent)) return null;
         return <div style={stylingLogic.getCarouselVideoProgressForegroundStyle(percent, left, index, sections?.length || 1, currentSection)} />
     }, [currentSection, sections?.length, stylingLogic]);
 
     const getSeekDiv = useCallback((percent: number, index = 0, left = 0) => {
+        if (isNaN(percent)) return null;
         return <div style={stylingLogic.getCarouselVideoProgressSeekStyle(percent, left, index, sections?.length || 1, currentSection)} />
     }, [currentSection, sections?.length, stylingLogic]);
 
@@ -282,15 +284,16 @@ export const CarouselItemViewerProgressBar = ({
         if (!sections || sections.length <= 1 || !videoRef?.current) {
             return (
                 <>
-                    {getBackgroundDiv(1, 0)}
-                    {getSeekDiv(seekWidth, 0)}
-                    {getForegroundDiv(progressBarValue, 0)}
+                    {getBackgroundDiv(1)}
+                    {getSeekDiv(seekWidth)}
+                    {getForegroundDiv(progressBarValue)}
                 </>
             );
         }
 
         const backgroundDivs = [];
         const foregroundDivs = [];
+        const seekDivs = [];
         let amountBeforeCurrent = 0;
         for (let index = 0; index < sections.length; index++) {
             const section = sections[index];
@@ -301,7 +304,7 @@ export const CarouselItemViewerProgressBar = ({
 
             backgroundDivs.push(getBackgroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, index, backgroundLeft));
             if (index < currentSection) {
-                foregroundDivs.push(getForegroundDiv(isLastSection ? 1 - backgroundLeft : percentAcross, index, backgroundLeft))
+                seekDivs.push(getSeekDiv(isLastSection ? 1 - backgroundLeft : percentAcross, index, backgroundLeft))
             }
 
 
@@ -311,12 +314,9 @@ export const CarouselItemViewerProgressBar = ({
 
         return (
             <>
-                {/* <div style={stylingLogic.carouselVideoProgressBackgroundDivsContainer}> */}
                 {backgroundDivs}
-                {foregroundDivs}
-                {/* </div> */}
-                {/* {currentSeekSection}
-                {currentForegroundSection} */}
+                {/* {foregroundDivs} */}
+                {seekDivs}
             </>
         );
 
