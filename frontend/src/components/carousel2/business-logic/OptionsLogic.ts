@@ -88,7 +88,8 @@ export class OptionsLogic {
     }
 
     get isItemViewerSwipingDisabled() {
-        return this.items.length <= 1 || getCurrentValue(this.options?.itemViewer?.disableSwiping, false, this.isFullscreenMode);
+        const defaultToUse = this.isToolbarInVideo && !this.isFullscreenMode ? true : false;
+        return this.items.length <= 1 || getCurrentValue(this.options?.itemViewer?.disableSwiping, defaultToUse, this.isFullscreenMode);
     }
 
     get isLastPageFlush() {

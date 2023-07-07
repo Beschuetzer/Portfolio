@@ -65,7 +65,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const seekBackwardButtonRef = useRef<any>(null);
     const showToolbarOnItemChangeTimeoutRef = useRef<any>();
     const innerRef = useRef<HTMLElement>(null);
-    const isMouseDownRef = useRef(false);
+    const isProgressBarMouseDownRef = useRef(false);
     useImperativeHandle(ref, () => innerRef.current as any);
 
     const [timeStrings, setTimeStrings] = useState<VideoTimeStrings>({
@@ -119,13 +119,13 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         isDisabled: optionsLogic.isItemViewerSwipingDisabled,
         swipeHandlers: {
             left: {
-                callback: () => {
+                callback: (e: Event) => {
                     onPreviousItemClickLocal();
                 },
                 skipCallbackParentClassnames: [CLASSNAME__ITEM_VIEWER_TOOLBAR],
             },
             right: {
-                callback: () => {
+                callback: (e: Event) => {
                     onNextItemClickLocal();
                 },
                 skipCallbackParentClassnames: [CLASSNAME__ITEM_VIEWER_TOOLBAR],
@@ -164,7 +164,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     }
 
     const hideToolbar = useCallback(() => {
-        if (itemContainerRef?.current && !isMobile && !isMouseDownRef.current) {
+        if (itemContainerRef?.current && !isMobile && !isProgressBarMouseDownRef.current) {
             itemContainerRef.current.classList?.add(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
         }
     }, [isMobile, itemContainerRef])
@@ -505,7 +505,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                 setIsVideoPlaying={setIsVideoPlaying}
                                 videoRef={videoRef}
                                 setTimeStrings={setTimeStrings}
-                                isMouseDownRef={isMouseDownRef}
+                                isMouseDownRef={isProgressBarMouseDownRef}
                             /> : null
                     }
                     <div

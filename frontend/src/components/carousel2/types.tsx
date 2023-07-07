@@ -323,7 +323,7 @@ export type CarouselSwipingOptions = {
     *If true, then swiping will be disabled.  For `navigation`, this means grabbing a thumbnail
     *and swiping will not change the page (non-fullscreen mode).  
     *For `itemViewer`, this means that grabbing and swiping will not change the currently viewing item (fullscreen mode).
-    *Default is false.
+    *Default is `true` when `layout.isToolbarPositionedInVideo` is `true` and not fullscreen otherwise default is `false`.
     *Swiping only occurs if mouseup and mousedown coordinate distances are greater than `maxClickThreshold`. 
     **/
     disableSwiping?: CarouselElementValueTuple<boolean>;

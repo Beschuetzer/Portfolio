@@ -12,7 +12,7 @@ enum SwipeDirection {
 }
 
 export type UseOnSwipeHandlerDirection = {
-    callback: () => void;
+    callback: (e: Event) => void;
     /**
     *If the `mouseDownSourceElement` is a child node of a node with any of the given classnames, then the callback will be skipped.
     *Needed in order to prevent the swipes starting on the toolbar from changing items
@@ -140,12 +140,12 @@ export const useOnSwipe = ({
             if (horizontalDiff > 0) {
                 const shouldSkipCallback = getShouldSkipCallback(SwipeDirection.left)
                 if (swipeHandlers.left?.callback && !shouldSkipCallback) {
-                    swipeHandlers.left.callback();
+                    swipeHandlers.left.callback(e);
                 }
             } else {
                 const shouldSkipCallback = getShouldSkipCallback(SwipeDirection.right)
                 if (swipeHandlers.right?.callback && !shouldSkipCallback) {
-                    swipeHandlers.right.callback();
+                    swipeHandlers.right.callback(e);
                 }
             }
         } else {
@@ -153,12 +153,12 @@ export const useOnSwipe = ({
             if (verticalDiff > 0) {
                 const shouldSkipCallback = getShouldSkipCallback(SwipeDirection.top)
                 if (swipeHandlers.top?.callback && !shouldSkipCallback) {
-                    swipeHandlers.top.callback();
+                    swipeHandlers.top.callback(e);
                 }
             } else {
                 const shouldSkipCallback = getShouldSkipCallback(SwipeDirection.bottom)
                 if (swipeHandlers.bottom?.callback && !shouldSkipCallback) {
-                    swipeHandlers.bottom.callback();
+                    swipeHandlers.bottom.callback(e);
                 }
             }
         }

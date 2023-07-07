@@ -499,7 +499,7 @@ export class StylingLogic {
 
     getCarouselVideoProgressHitSlop(isCurrentSection = false) {
         const scaleAmount = this.optionsLogic.videoProgressBarScaleAmount;
-        const paddingVertical = CAROUSEL_ITEM_SPACING_DEFAULT / (isCurrentSection ? scaleAmount : 1);
+        const paddingVertical = Math.ceil(CAROUSEL_ITEM_SPACING_DEFAULT * (isCurrentSection ? 1 / scaleAmount : 1));
         return {
             paddingTop: paddingVertical,
             paddingBottom: paddingVertical,
