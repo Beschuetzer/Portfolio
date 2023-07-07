@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect, useRef, useLayoutEffect } from 'react'
-import { CLASSNAME__ITEM_VIEWER, NUMBER_OF_MS_IN_A_SECOND } from '../../../constants';
+import { CLASSNAME__ITEM_VIEWER, NUMBER_OF_MS_IN_A_SECOND, SEEK_AMOUNT_DEFAULT } from '../../../constants';
 import { getClassname, getFormattedTimeString } from '../../../utils';
 import { VideoTimeStrings } from '../../../types';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
@@ -19,7 +19,7 @@ type CarouselItemViewerProgressBarProps = {
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
     & Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying'>;
 
-const SET_CURRENT_SECTION_INTERVAL_THRESHOLD = 100;
+const SET_CURRENT_SECTION_INTERVAL_THRESHOLD = 200;
 const MAP_SECTION_INTERVAL = 100;
 const NEXT_SECTION_START_OFFSET = .0000000000000001;
 const CURRENT_SECTION_INITIAL = -1;
@@ -139,7 +139,14 @@ export const CarouselItemViewerProgressBar = ({
         if (Date.now() - timeOfLastCurrentSectionChangeRef.current > SET_CURRENT_SECTION_INTERVAL_THRESHOLD) {
             setCurrentSection(index);
         }
-    }, [])
+        if (!areSectionsGiven) return;
+        if (!isMouseDownRef.current) {
+            const percent = getPercent(e);
+            setSeekWidth(percent);
+        } else {
+            setSeekWidth((current) => current);
+        }
+    }, [areSectionsGiven, getPercent, isMouseDownRef])
     //#endregion
 
     //#region Side FX
@@ -303,6 +310,8 @@ export const CarouselItemViewerProgressBar = ({
             const backgroundLeft = amountBeforeCurrent / NUMBER_OF_MS_IN_A_SECOND / videoRef.current.duration;
             const percentPlayedAlready = videoRef.current.currentTime / videoRef.current.duration;
             const percentToUse = isLastSection ? 1 - backgroundLeft : percentAcross
+            const currentSectionTime = sectionToProgressBarValueMapping.current[index];
+            const itemToTrack = isMouseDownRef.current ? progressBarValue : percentPlayedAlready;
 
             //background stuff
             backgroundDivs.push(getBackgroundDiv(percentToUse, backgroundLeft, index));
@@ -310,11 +319,12 @@ export const CarouselItemViewerProgressBar = ({
             //seek stuff
             if (index < currentSection) {
                 seekDivs.push(getSeekDiv(percentToUse, backgroundLeft, index))
-            } 
-            
+            } else if (index === currentSection) {
+                const percentAcrossCurrentSectionFactor = (seekWidth - currentSectionTime?.start) / (currentSectionTime?.end - currentSectionTime?.start)
+                foregroundDivs.push(getSeekDiv(percentToUse * percentAcrossCurrentSectionFactor, backgroundLeft, index))
+            }
+
             //foreground stuff
-            const currentSectionTime = sectionToProgressBarValueMapping.current[index];
-            const itemToTrack = isMouseDownRef.current ? progressBarValue : percentPlayedAlready;
             if (itemToTrack >= currentSectionTime?.end) {
                 foregroundDivs.push(getForegroundDiv(percentToUse, backgroundLeft, index))
             } else if (itemToTrack >= currentSectionTime?.start && itemToTrack <= currentSectionTime?.end) {
