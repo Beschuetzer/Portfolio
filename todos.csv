@@ -1,5 +1,6 @@
 Carousel rework
   -work on progressbar rework:
+    --figure out issue where the dot causes hover effect to change (hold cursor in a spot and let the dot go past it)
     --figure out how to handle the current section divs for seek
     --add option for hitslop amount
     --figure out how how to listener for left/right after clicking mousedown on progress bar (dynamically change hitslop amount on mousedown and revert to normal on mouse up?) or use global listener?
