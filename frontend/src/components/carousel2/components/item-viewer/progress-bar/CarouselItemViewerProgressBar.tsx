@@ -6,7 +6,7 @@ import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToo
 import { useCarouselContext } from '../../../context';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
-type SectionToProgressBarValueMapping = {
+export type SectionToProgressBarValueMapping = {
     [number: number]: {
         start: number;
         end: number;
@@ -54,6 +54,10 @@ export const CarouselItemViewerProgressBar = ({
         }
         return CURRENT_SECTION_INITIAL;
     }, [])
+
+    const getIsInCurrentSection = useCallback((percent: number) => {
+        return getCurrentSection(percent) === currentSection;
+    }, [currentSection, getCurrentSection])
 
     const setCurrentSectionFromPercent = useCallback((percent: number) => {
         if (percent < 0 || percent > 1) return;
@@ -366,7 +370,7 @@ export const CarouselItemViewerProgressBar = ({
             onMouseMoveCapture={onMouseMove as any}
             onMouseLeave={onMouseLeave as any}
         >
-            <div style={stylingLogic.getCarouselVideoProgressSeekDotStyle(progressBarValue, showDot)} />
+            <div style={stylingLogic.getCarouselVideoProgressSeekDotStyle(progressBarValue, showDot, getIsInCurrentSection(progressBarValue))} />
             {renderSections()}
         </div>
     )

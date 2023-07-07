@@ -614,7 +614,8 @@ export class StylingLogic {
         }
     }
 
-    getCarouselVideoProgressSeekDotStyle(percentWidthDecimal: number, isVisible: boolean) {
+    getCarouselVideoProgressSeekDotStyle(percentWidthDecimal: number, isVisible: boolean, isInCurrentSection: boolean) {
+        const scaleAmount = this.optionsLogic.videoProgressBarScaleAmount;
         const { diameter, isAlwaysVisible, transitionDuration } = this.optionsLogic.videoProgressBarDotSettings;
         return {
             left: `calc(${percentWidthDecimal * 100}% - ${diameter / 2}${CAROUSEL_SPACING_UNIT})`,
@@ -624,7 +625,7 @@ export class StylingLogic {
             height: diameter,
             width: diameter,
             top: this.optionsLogic.isToolbarInVideo ? '50%' : 3,
-            transform: `translate(0, -50%) scale(${isVisible || !isAlwaysVisible ? '1' : '0'})`,
+            transform: `translate(0, -50%) scale(${isVisible || !isAlwaysVisible ? (isInCurrentSection ? scaleAmount / 2 : '1') : '0'})`,
             transition: `opacity ${transitionDuration} ease, transform ${transitionDuration} ease`,
             zIndex: 10,
         } as CSSProperties;

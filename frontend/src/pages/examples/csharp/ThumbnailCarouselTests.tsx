@@ -2318,9 +2318,9 @@ const viewingModeVideoControls = (
 				toolbar: {
 					progressBar: {
 						dot: {
-							diameter: {
-								nonFullscreen: [[16], [10, 900]]
-							},
+							// diameter: {
+							// 	nonFullscreen: [[16], [10, 900]]
+							// },
 							isAlwaysVisible: [[false], [true, 900]],
 							transitionDuration: [[.25], [.1, 850]]
 						},
