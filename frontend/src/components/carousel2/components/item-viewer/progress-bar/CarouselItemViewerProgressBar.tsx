@@ -43,7 +43,7 @@ export const CarouselItemViewerProgressBar = ({
     const [currentSection, setCurrentSection] = useState(CURRENT_SECTION_INITIAL);
     const [showDot, setShowDot] = useState(false);
     const [seekWidth, setSeekWidth] = useState(INITIAL_VALUE);
-    const { stylingLogic } = useBusinessLogic({ progressBarValue });
+    const { stylingLogic, optionsLogic } = useBusinessLogic({ progressBarValue });
     //#endregion
 
     //#region Functions/Handlers
@@ -370,7 +370,10 @@ export const CarouselItemViewerProgressBar = ({
             onMouseMoveCapture={onMouseMove as any}
             onMouseLeave={onMouseLeave as any}
         >
-            <div style={stylingLogic.getCarouselVideoProgressSeekDotStyle(progressBarValue, showDot, getIsInCurrentSection(progressBarValue))} />
+            {optionsLogic.isToolbarInVideo ?
+                <div style={stylingLogic.getCarouselVideoProgressSeekDotStyle(progressBarValue, showDot, getIsInCurrentSection(progressBarValue))} /> :
+                null
+            }
             {renderSections()}
         </div>
     )

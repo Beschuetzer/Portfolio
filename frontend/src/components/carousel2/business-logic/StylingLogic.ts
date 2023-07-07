@@ -551,7 +551,8 @@ export class StylingLogic {
             left: sectionsLength <= 1 ? 0 : `calc(${left * 100}% - ${leftOffset}${CAROUSEL_SPACING_UNIT})`,
             borderLeft: borderLeftToUse,
             borderRight: borderRightToUse,
-        }
+            backfaceVisibility: 'hidden',
+        } as CSSProperties;
     }
 
     getCarouselVideoProgressBackgroundSectionContainerStyle(
@@ -563,13 +564,14 @@ export class StylingLogic {
     ) {
         const isCurrentSection = index === currentSectionIndex;
         const scaleAmount = this.optionsLogic.videoProgressBarScaleAmount;
+        const isToolbarInVideo = this.optionsLogic.isToolbarInVideo;
 
         const common = {
             backfaceVisibility: 'hidden',
             transition: `transform .125s ease`,
-            transformOrigin: 'center',
+            transformOrigin: isToolbarInVideo ? 'center' : 'top',
             top: 0,
-            ...this.getCarouselVideoProgressHitSlop(isCurrentSection),
+            ...(isToolbarInVideo ? this.getCarouselVideoProgressHitSlop(isCurrentSection) : {}),
             ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength, true),
         } as CSSProperties;
 

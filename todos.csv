@@ -1,5 +1,7 @@
 Carousel rework
   -work on progressbar rework:
+    --add option to use youtube chapter specification (use string like '0:00' and '2:31')
+    --how to update refresh rate so re-renders occur multiple times per second?
     --figure out how to better handle seek div marking current location when multiple sections
     --add option for hitslop amount
     --figure out how how to listener for left/right after clicking mousedown on progress bar (dynamically change hitslop amount on mousedown and revert to normal on mouse up?) or use global listener?
