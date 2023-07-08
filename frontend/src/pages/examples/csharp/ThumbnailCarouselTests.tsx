@@ -3112,7 +3112,7 @@ const SECTIONS: Sections = [
 
 const ENABLED_SECTIONS: SectionNames[] = [
 	// SectionNames.otherDynamicSettings,
-	SectionNames.layouts,
+	// SectionNames.layouts,
 	SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,

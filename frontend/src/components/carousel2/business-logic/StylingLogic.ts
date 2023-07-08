@@ -520,6 +520,7 @@ export class StylingLogic {
             position: 'relative',
             ...(this.optionsLogic.isToolbarInVideo ? {
                 marginBottom: this.getCarouselVideoProgressHitSlop().paddingBottom * 2,
+                paddingTop: this.getCarouselVideoProgressHitSlop().paddingBottom * 2,
             } as CSSProperties : {}),
         } as CSSProperties
 
@@ -570,7 +571,6 @@ export class StylingLogic {
             backfaceVisibility: 'hidden',
             transition: `transform .125s ease`,
             transformOrigin: isToolbarInVideo ? 'center' : 'top',
-            top: 0,
             ...(isToolbarInVideo ? this.getCarouselVideoProgressHitSlop(isCurrentSection) : {}),
             ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength, true),
         } as CSSProperties;
@@ -626,7 +626,6 @@ export class StylingLogic {
             background: this.optionsLogic.videoProgressBarForegroundColor,
             height: diameter,
             width: diameter,
-            top: this.optionsLogic.isToolbarInVideo ? '50%' : 3,
             transform: `translate(0, -50%) scale(${isVisible || !isAlwaysVisible ? (isInCurrentSection ? scaleAmount / 2 : '1') : '0'})`,
             transition: `opacity ${transitionDuration} ease, transform ${transitionDuration} ease`,
             zIndex: 10,
@@ -662,7 +661,6 @@ export class StylingLogic {
 
         return {
             position: 'absolute',
-            top: isToolbarInVideo ? '50%' : 0,
             transform: isToolbarInVideo ? 'translate(0, -50%)' : undefined,
             left: 0,
         } as CSSProperties;
@@ -817,7 +815,6 @@ export class StylingLogic {
             ...this.getToolbarBackgroundColorStyle(),
             ...paddingHorizontalStyle,
             position: this.optionsLogic.isToolbarInVideo ? "absolute" : "relative",
-            bottom: this.optionsLogic.isToolbarInVideo ? -2 : 0,
             width: this.optionsLogic.isToolbarInVideo ? undefined : '100%',
             paddingTop: isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
             paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - (this.optionsLogic.isToolbarInVideo ? 0 : CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT),
