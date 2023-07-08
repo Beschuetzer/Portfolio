@@ -245,8 +245,9 @@ export class OptionsLogic {
     }
 
     get videoProgressBarScaleAmount() {
+        const isToolbarInVideo = this.isToolbarInVideo;
         const sections = this.currentItem?.video?.sections;
-        const defaultToUse = sections && sections?.length > 1 ? CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT : CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT;
+        const defaultToUse = isToolbarInVideo && sections && sections?.length > 1 ? CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT : CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT;
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.scaleAmount, defaultToUse, this.isFullscreenMode);
     }
 
