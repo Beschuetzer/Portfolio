@@ -187,8 +187,6 @@ export const CarouselItemViewerProgressBar = ({
         if (toolbarWidth !== undefined && toolbarWidth <= INITIAL_VALUE) {
             const newWidth = toolbarRef?.current?.getBoundingClientRect().width;
             if (newWidth !== undefined && newWidth > 0 && toolbarWidth !== undefined) {
-                console.log("setting width to: " + newWidth);
-
                 setToolbarWidth(newWidth);
             }
         }

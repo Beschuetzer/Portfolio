@@ -806,8 +806,8 @@ export class StylingLogic {
         const rightSpacing = this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT);
 
         const paddingHorizontalStyle = {
-            paddingLeft: (this.optionsLogic.isToolbarInVideo || !isItemVideo) && !this.isFullscreenMode ? 0 : leftSpacing,
-            paddingRight: (this.optionsLogic.isToolbarInVideo || !isItemVideo) && !this.isFullscreenMode ? 0 : rightSpacing,
+            paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : leftSpacing,
+            paddingRight: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : rightSpacing,
             marginLeft: !this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? 0 : leftSpacing,
             marginRight: !this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? 0 : rightSpacing,
         } as CSSProperties;
@@ -1143,7 +1143,7 @@ export class StylingLogic {
 
     getToolbarBackgroundColorStyle(shouldUseSolidColor = false) {
         const customColor = getCurrentValue(this.options.styling?.toolbar?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
-        const backgroundToUse = this.optionsLogic.useDefaultVideoControls ? 'transparent' : this.optionsLogic.isToolbarInVideo && !shouldUseSolidColor ? `linear-gradient(0deg, ${customColor}, transparent)` : customColor;
+        const backgroundToUse = this.optionsLogic.useDefaultVideoControls && getIsVideo(this.currentItem) ? 'transparent' : this.optionsLogic.isToolbarInVideo && !shouldUseSolidColor ? `linear-gradient(0deg, ${customColor}, transparent)` : customColor;
         return {
             background: backgroundToUse,
         } as CSSProperties

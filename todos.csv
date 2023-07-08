@@ -1,6 +1,5 @@
 Carousel rework
   -work on progressbar rework:
-    --small gap at bottom of toolbar for images (seems to be related to the fact that the div is in the same container as img tag)
     --exiting videos below doesn't hide toolbar (change the exit video logic to use a global mouse move handler that checks if the point is inside the video)?
     --move currentSection pos to context and add a mouse move handler on the carousel to handle setting state? (to better handle the mouse leave issues)
     --fix issue where mouse down event doesn't re-activate hover (may be solved by above)
@@ -37,6 +36,7 @@ Carousel rework
   -write jest tests for utils and other functions?
 
 Known Issues with Carousel rework:
+  -small gap at bottom of toolbar (only appears a smaller viewports around 845px)
   -changing items with mid-tier and below setting is sluggish
   -CarouselElementValue only updates when CarouselContent re-renders; if dynamic spacing is on, then re-renders occur much more often
   -cursor only changes properly after going into full screen once

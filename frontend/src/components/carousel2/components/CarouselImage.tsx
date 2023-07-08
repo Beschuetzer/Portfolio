@@ -7,7 +7,7 @@ import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 
-export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewerToolbarProps, 'itemContainerRef'> ) => {
+export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewerToolbarProps, 'itemContainerRef'>) => {
     const { options, setIsFullscreenMode } = useCarouselContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const imageRef = useRef<HTMLImageElement>();
@@ -27,18 +27,20 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
     }, [setIsFullscreenMode]);
 
     return (
-        <div style={stylingLogic.carouselImageContainerStlye}>
-            <LoadingSpinner type='ring' show={!isLoaded} description={description} {...options?.styling?.itemViewer?.loadingSpinner} />
-            <img
-                ref={imageRef as any}
-                onClick={onImageClick as any}
-                draggable={false}
-                style={stylingLogic.carouselImageStlye}
-                className={isLoaded ? '' : CLASSNAME__HIDDEN}
-                src={srcMain}
-                alt={description}
-                onLoad={() => setIsLoaded(true)}
-            />
+        <>
+            <div style={stylingLogic.carouselImageContainerStlye}>
+                <LoadingSpinner type='ring' show={!isLoaded} description={description} {...options?.styling?.itemViewer?.loadingSpinner} />
+                <img
+                    ref={imageRef as any}
+                    onClick={onImageClick as any}
+                    draggable={false}
+                    style={stylingLogic.carouselImageStlye}
+                    className={isLoaded ? '' : CLASSNAME__HIDDEN}
+                    src={srcMain}
+                    alt={description}
+                    onLoad={() => setIsLoaded(true)}
+                />
+            </div>
             <CarouselItemViewerToolbar
                 ref={itemViewerToolbarRef as any}
                 isVideo={false}
@@ -52,6 +54,6 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
                 }}
                 imageRef={imageRef}
             />
-        </div>
+        </>
     );
 }
