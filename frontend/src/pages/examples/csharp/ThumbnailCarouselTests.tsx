@@ -1770,6 +1770,23 @@ const layoutBelowWithCustomThumbnailSizeAndHeight = (
 		}}
 	/>
 );
+const layoutToolbarNotEmbedded = (
+	<Carousel
+		items={items.slice(0, 4)}
+		options={{
+			layout: {
+				itemDisplayLocation: 'above',
+				isToolbarPositionedInVideo: false,
+			},
+			thumbnail: {
+				size: 100,
+				descriptionOverlay: {
+					isDisabled: false,
+				}
+			},
+		}}
+	/>
+)
 const layoutThumbnailPositioningCenter = (
 	<Carousel
 		items={items}
@@ -2393,6 +2410,10 @@ const SECTIONS: Sections = [
 				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
 				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
 			},
+			{
+				label: "Video Toolbar not Embedded Inside Video",
+				jsx: layoutToolbarNotEmbedded,
+			},
 		]
 	],
 	[
@@ -2930,7 +2951,7 @@ const SECTIONS: Sections = [
 			// {
 			// 	label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeItemViewerPreview,
-			// },	
+			// },				
 			{
 				label: "Video Controls Change Dynamically based on Viewing Mode",
 				jsx: viewingModeVideoControls,
@@ -3091,6 +3112,7 @@ const SECTIONS: Sections = [
 
 const ENABLED_SECTIONS: SectionNames[] = [
 	// SectionNames.otherDynamicSettings,
+	SectionNames.layouts,
 	SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,

@@ -101,7 +101,7 @@ export class OptionsLogic {
     }
 
     get isToolbarInVideo() {
-        return getCurrentValue(this.options.layout?.isToolbarPositionedInVideo, false, this.isFullscreenMode);
+        return getCurrentValue(this.options.layout?.isToolbarPositionedInVideo, true, this.isFullscreenMode);
     }
 
     get isWrappingDisabled() {
