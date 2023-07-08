@@ -543,9 +543,9 @@ export class StylingLogic {
         const borderString = `${sectionGap / 2}${CAROUSEL_SPACING_UNIT} solid transparent`;
         const borderLeftToUse = !isBackgroundDiv || isFirst ? undefined : borderString;
         const borderRightToUse = !isBackgroundDiv || isLast ? undefined : borderString;
-        const widthOffset = isBackgroundDiv ? 0 : isFirst ? sectionGap / 2 : (isLast ? sectionGap / 2 : sectionGap);
+        const widthOffset = isBackgroundDiv || sectionsLength <= 1 ? 0 : isFirst ? sectionGap / 2 : (isLast ? sectionGap / 2 : sectionGap);
         const leftOffset = isBackgroundDiv || isFirst ? 0 : -sectionGap / 2;
-        
+
         return {
             width: percent >= 0 && percent <= 1 ? `calc(${percent * 100}% - ${widthOffset}${CAROUSEL_SPACING_UNIT})` : percent - widthOffset,
             left: sectionsLength <= 1 ? 0 : `calc(${left * 100}% - ${leftOffset}${CAROUSEL_SPACING_UNIT})`,

@@ -1,6 +1,5 @@
 Carousel rework
   -work on progressbar rework:
-    --non-embedded, one section case needs length 100%
     --make scale amount same for all items when not embedded?
     --make embedded option default and add test case for non embedded case
     --add option to use youtube chapter specification (use string like '0:00' and '2:31')
