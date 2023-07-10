@@ -1,7 +1,6 @@
 Carousel rework
   -work on progressbar rework:
     --exiting videos below doesn't hide toolbar (change the exit video logic to use a global mouse move handler that checks if the point is inside the video)?
-    --move currentSection pos to context and add a mouse move handler on the carousel to handle setting state? (to better handle the mouse leave issues)
     --fix issue where mouse down event doesn't re-activate hover (may be solved by above)
     --try changing widths to flat px amount (width of middle section, non embedded case grows on hover)
     --add option to use youtube chapter specification (use string like '0:00' and '2:31')

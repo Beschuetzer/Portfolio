@@ -31,6 +31,7 @@ export const CLASSNAME__ITEM_VIEWER_BUTTON = getClassname({ elementName: `${CLAS
 export const CLASSNAME__ITEM_VIEWER_TOOLBAR = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar` });
 export const CLASSNAME__TOOLBAR_CONTAINER = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-container` });
 export const CLASSNAME__TOOLBAR_LEFT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-left` });
+export const CLASSNAME__TOOLBAR_PROGRESS = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })
 export const CLASSNAME__TOOLBAR_RIGHT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` });
 export const CLASSNAME__VIDEO_MODAL_BUTTON_TOP = `${CLASSNAME__ROOT}-video-modal-custom-button-top`;
 export const CLASSNAME__VIDEO_MODAL_BUTTON_RIGHT = `${CLASSNAME__ROOT}-video-modal-custom-button-right`;

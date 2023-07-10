@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect, useRef, useLayoutEffect } from 'react'
-import { CLASSNAME__ITEM_VIEWER, NUMBER_OF_MS_IN_A_SECOND } from '../../../constants';
+import { CLASSNAME__ITEM_VIEWER, CLASSNAME__TOOLBAR_PROGRESS, NUMBER_OF_MS_IN_A_SECOND } from '../../../constants';
 import { getClassname, getFormattedTimeString } from '../../../utils';
 import { VideoTimeStrings } from '../../../types';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
@@ -174,7 +174,7 @@ export const CarouselItemViewerProgressBar = ({
 
         return () => {
             if (videoRefCopy) {
-                videoRefCopy.addEventListener('timeupdate', onVideoTimeUpdate);
+                videoRefCopy.removeEventListener('timeupdate', onVideoTimeUpdate);
             }
         }
     }, [setTimeStrings, videoRef])
@@ -362,7 +362,7 @@ export const CarouselItemViewerProgressBar = ({
         <div
             ref={toolbarRef as any}
             style={stylingLogic.carouselVideoProgressContainerStyle}
-            className={getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-progress` })}
+            className={CLASSNAME__TOOLBAR_PROGRESS}
             onMouseDownCapture={onMouseDown as any}
             onMouseUp={onMouseUp as any}
             onMouseMoveCapture={onMouseMove as any}

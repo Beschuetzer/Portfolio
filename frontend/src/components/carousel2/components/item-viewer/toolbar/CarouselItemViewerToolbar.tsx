@@ -181,12 +181,12 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         clearTimeout(shouldHideTimoutRef.current);
 
         showToolbar();
-        if (!isFullscreenMode || getCurrentValue(options?.itemViewer?.autoHideToolbarDuration, undefined, isFullscreenMode) === AUTO_HIDE_DISABLED_VALUE) return;
+        if (!isFullscreenMode || optionsLogic.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
 
         shouldHideTimoutRef.current = setTimeout(() => {
             hideToolbar();
-        }, getCurrentValue(options?.itemViewer?.autoHideToolbarDuration, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, isFullscreenMode));
-    }, [optionsLogic.isToolbarInVideo, showToolbar, isFullscreenMode, options?.itemViewer?.autoHideToolbarDuration, hideToolbar]);
+        }, optionsLogic.autoHideToolbarDuration);
+    }, [optionsLogic.isToolbarInVideo, optionsLogic.autoHideToolbarDuration, showToolbar, isFullscreenMode, hideToolbar]);
 
     function handlePlayPauseUnited() {
         if (getIsVideoPlaying(videoRef?.current)) {
@@ -478,13 +478,18 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     //show the toolbar for SHOW_TOOLBAR_ON_ITEM_CHANGE_DURATION on item change then hide
     useEffect(() => {
         if (!optionsLogic.isToolbarInVideo) return;
-        clearInterval(showToolbarOnItemChangeTimeoutRef.current);
+        clearTimeout(showToolbarOnItemChangeTimeoutRef.current);
         showToolbar();
 
+        if (isVideo && !isVideoPlaying) return;
         showToolbarOnItemChangeTimeoutRef.current = setTimeout(() => {
             hideToolbar();
         }, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT)
-    }, [currentItemIndex, hideToolbar, isVideo, optionsLogic.isToolbarInVideo, showToolbar])
+
+        return () => {
+            clearTimeout(showToolbarOnItemChangeTimeoutRef.current);
+        }
+    }, [currentItemIndex, hideToolbar, isVideo, isVideoPlaying, optionsLogic.isToolbarInVideo, showToolbar])
     //#endregion
 
     //#region JSX

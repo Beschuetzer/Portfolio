@@ -28,7 +28,8 @@ import {
     CAROUSEL_PROGRESS_BAR_DOT_TRANSITION_DURATION,
     CAROUSEL_PROGRESS_BAR_SECTION_GAP,
     CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT,
-    CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT
+    CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT,
+    AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT
 } from "../constants";
 import { CarouselOptions } from "../types";
 import { convertHexToRgba, getCurrentValue } from "../utils";
@@ -62,6 +63,10 @@ export class OptionsLogic {
     //#region Getters
     get autoChangePage() {
         return getCurrentValue(this.options?.navigation?.autoChangePage, true, this.isFullscreenMode);
+    }
+
+    get autoHideToolbarDuration() {
+        return getCurrentValue(this.options?.itemViewer?.autoHideToolbarDuration, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, this.isFullscreenMode);
     }
 
     get carouselItemSize() {

@@ -2332,7 +2332,7 @@ const viewingModeVideoControls = (
 				isToolbarPositionedInVideo: [[true], [false, 1200, 'max-width']]
 			},
 			itemViewer: {
-				disableSwiping: false,
+				// disableSwiping: false,
 			},
 			styling: {
 				toolbar: {
