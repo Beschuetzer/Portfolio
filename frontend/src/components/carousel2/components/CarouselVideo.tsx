@@ -4,18 +4,19 @@ import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoModal, CarouselVideoModalProps } from './CarouselVideoModal'
 import { CarouselItemViewerToolbar, CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
-import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL, CLASSNAME__HIDDEN, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from '../constants';
+import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL, CLASSNAME__HIDDEN, CLASSNAME__TOOLBAR_PROGRESS, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from '../constants';
 import { CarouselVideoCurrentStateIndicator } from './CarouselVideoCurrentStateIndicator';
 import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
+import { useResetCarouselVideoCurrentSection } from '../hooks/useResetCarouselVideoCurrentSection';
 
 /**
 *Each section is comprised of a description string and a duration (in ms)
 *Each section starts 1ms after the previous section ended
 *The last section goes to the end by default
 **/
-export type CarouselVideoSection =  [string, number];
+export type CarouselVideoSection = [string, number];
 export type CarouselVideoOptions = {
     /**
     * If true and muted is `undefined` or `true`, the video will start playing when it first comes into focus 
@@ -46,9 +47,17 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     const [currentVideoSection, setCurrentVideoSection] = useState(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
     const videoRef = useRef<HTMLVideoElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
+    const isProgressBarMouseDownRef = useRef(false);
     const type = useMemo(() => srcMain?.slice(srcMain?.lastIndexOf('.') + 1), [srcMain]);
     const { stylingLogic, optionsLogic } = useBusinessLogic({ itemViewerToolbarRef });
     useRerenderOnExitFullscreenMode();
+    useResetCarouselVideoCurrentSection(
+        itemContainerRef?.current,
+        itemContainerRef?.current?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`),
+        currentVideoSection,
+        setCurrentVideoSection,
+        isProgressBarMouseDownRef
+    );
     //#endregion
 
     //#region Functions/Handlers
@@ -92,6 +101,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
             }
         }
     }, [optionsLogic.useDefaultVideoControls, setCurrentVideoCurrentTime, setIsFullscreenMode]);
+    //#endregion
 
     //#region Side Fx
     //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
@@ -126,7 +136,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         document.addEventListener('mozfullscreenchange', handleFullscreenChange);
         document.addEventListener('MSFullscreenChange', handleFullscreenChange);
         document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-        
+
         return () => {
             document.removeEventListener('fullscreenchange', handleFullscreenChange);
             document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
@@ -173,16 +183,17 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 ) : null}
             </div>
             <CarouselItemViewerToolbar
-                ref={itemViewerToolbarRef as any}
-                isVideo={true}
+                currentVideoSection={currentVideoSection}
                 description={description || ''}
-                videoRef={videoRef}
+                isProgressBarMouseDownRef={isProgressBarMouseDownRef}
+                isVideo={true}
                 itemContainerRef={itemContainerRef}
                 onNextItemClick={handleItemNavigation}
                 onPreviousItemClick={handleItemNavigation}
-                setIsVideoPlaying={setIsVideoPlaying}
-                currentVideoSection={currentVideoSection}
+                ref={itemViewerToolbarRef as any}
                 setCurrentVideoSection={setCurrentVideoSection}
+                setIsVideoPlaying={setIsVideoPlaying}
+                videoRef={videoRef}
             />
         </>
     );

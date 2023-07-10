@@ -147,7 +147,7 @@ export function getFormattedTimeString(seconds: number) {
     return `${hours ? `${hours.toString()}:` : ''}${minutes.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}`
 }
 
-export function getIsPointInsideElement(point: Point, element: Element | null) {
+export function getIsPointInsideElement(point: Point, element: Element | null | undefined) {
     if (!point || !point.x || !point.y || !element) return false;
     const { top, bottom, left, right } = element.getBoundingClientRect();
     const { x, y } = point;

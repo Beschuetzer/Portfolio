@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import { getCurrentValue, getFormattedTimeString, getIsMobile, getIsVideoPlaying, stopPropagation } from '../../../utils'
+import { getFormattedTimeString, getIsMobile, getIsVideoPlaying, stopPropagation } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from '../progress-bar/CarouselItemViewerProgressBar'
@@ -33,9 +33,10 @@ import { getIsPointInsideElement } from '../../../utils'
 export type CarouselItemViewerToolbarProps = {
     currentVideoSection?: number;
     description: string;
-    itemContainerRef: React.MutableRefObject<HTMLDivElement | undefined> | null;
     imageRef?: React.MutableRefObject<HTMLImageElement | undefined> | null;
+    isProgressBarMouseDownRef?: React.MutableRefObject<boolean | undefined>;
     isVideo: boolean;
+    itemContainerRef: React.MutableRefObject<HTMLDivElement | undefined> | null;
     onClose?: () => void;
     onNextItemClick?: () => void;
     onPreviousItemClick?: () => void;
@@ -48,6 +49,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     currentVideoSection,
     description,
     imageRef,
+    isProgressBarMouseDownRef,
     isVideo,
     itemContainerRef,
     onClose = () => null,
@@ -70,7 +72,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const seekBackwardButtonRef = useRef<any>(null);
     const showToolbarOnItemChangeTimeoutRef = useRef<any>();
     const innerRef = useRef<HTMLElement>(null);
-    const isProgressBarMouseDownRef = useRef(false);
     useImperativeHandle(ref, () => innerRef.current as any);
     const doNothing = () => null;
 
@@ -170,10 +171,10 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     }
 
     const hideToolbar = useCallback(() => {
-        if (itemContainerRef?.current && !isMobile && !isProgressBarMouseDownRef.current) {
+        if (itemContainerRef?.current && !isMobile && !isProgressBarMouseDownRef?.current) {
             itemContainerRef.current.classList?.add(CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR);
         }
-    }, [isMobile, itemContainerRef])
+    }, [isMobile, isProgressBarMouseDownRef, itemContainerRef])
 
     const showToolbar = useCallback(() => {
         if (itemContainerRef?.current) {

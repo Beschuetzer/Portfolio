@@ -14,7 +14,7 @@ export type SectionToProgressBarValueMapping = {
 }
 
 type CarouselItemViewerProgressBarProps = {
-    isMouseDownRef: React.MutableRefObject<boolean>;
+    isMouseDownRef: React.MutableRefObject<boolean | undefined> | undefined;
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
     & Required<Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying' | 'currentVideoSection' | 'setCurrentVideoSection'>>;
@@ -75,7 +75,9 @@ export const CarouselItemViewerProgressBar = ({
     }, [])
 
     const onMouseUp = useCallback((e: MouseEvent) => {
-        isMouseDownRef.current = false;
+        if (isMouseDownRef) {
+            isMouseDownRef.current = false;
+        }
         setCurrentVideoSection && setCurrentVideoSection(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
         setIsVideoPlaying && setIsVideoPlaying(true);
         if (videoRef?.current) {
@@ -85,7 +87,9 @@ export const CarouselItemViewerProgressBar = ({
     }, [isMouseDownRef, progressBarValue, setCurrentVideoSection, setIsVideoPlaying, videoRef]);
 
     const onMouseDown = useCallback((e: MouseEvent) => {
-        isMouseDownRef.current = true;
+        if (isMouseDownRef) {
+            isMouseDownRef.current = true;
+        }
         setIsVideoPlaying && setIsVideoPlaying(false);
         videoRef?.current?.pause();
 
@@ -101,7 +105,7 @@ export const CarouselItemViewerProgressBar = ({
     }, [getPercent, isMouseDownRef, setIsVideoPlaying, videoRef]);
 
     const onMouseLeave = useCallback((index: number, e: MouseEvent) => {
-        if (isMouseDownRef.current) {
+        if (isMouseDownRef?.current) {
             return;
         };
         if (Date.now() - timeOfLastCurrentSectionChangeRef.current > SET_CURRENT_SECTION_INTERVAL_THRESHOLD) {
@@ -118,7 +122,7 @@ export const CarouselItemViewerProgressBar = ({
             setCurrentVideoSection && setCurrentVideoSection(areSectionsGiven ? getCurrentSection(percent) : 0);
         }
 
-        if (isMouseDownRef.current) {
+        if (isMouseDownRef?.current) {
             setProgressBarValue(percent)
         } else {
             setSeekWidth(percent);
@@ -126,7 +130,7 @@ export const CarouselItemViewerProgressBar = ({
     }, [areSectionsGiven, getCurrentSection, getPercent, isMouseDownRef, setCurrentVideoSection])
 
     const onMouseMoveGlobal = useCallback((e: MouseEvent) => {
-        if (!isMouseDownRef.current) return;
+        if (!isMouseDownRef?.current) return;
         const xMovement = e.movementX;
         const toolbarRect = toolbarRef?.current?.getBoundingClientRect();
         if (!toolbarRect) return;
@@ -140,7 +144,7 @@ export const CarouselItemViewerProgressBar = ({
     }, [isMouseDownRef])
 
     const onMouseUpGlobal = useCallback((e: MouseEvent) => {
-        if (!isMouseDownRef.current) return;
+        if (!isMouseDownRef?.current) return;
         onMouseUp(e);
         setSeekWidth(INITIAL_VALUE);
     }, [isMouseDownRef, onMouseUp])
@@ -230,7 +234,7 @@ export const CarouselItemViewerProgressBar = ({
     //use sectionToProgressBarValueMapping to set currentVideoSection on progressBarValue change
     useEffect(() => {
         if (
-            !isMouseDownRef.current ||
+            !isMouseDownRef?.current ||
             Object.keys(sectionToProgressBarValueMapping.current || {}).length <= 0
         ) return;
         setCurrentSectionFromPercent(progressBarValue);
@@ -322,7 +326,7 @@ export const CarouselItemViewerProgressBar = ({
             const percentPlayedAlready = videoRef.current.currentTime / videoRef.current.duration;
             const percentToUse = isLastSection ? 1 - backgroundLeft : percentAcross
             const currentSectionTime = sectionToProgressBarValueMapping.current[index];
-            const itemToTrack = isMouseDownRef.current ? progressBarValue : percentPlayedAlready;
+            const itemToTrack = isMouseDownRef?.current ? progressBarValue : percentPlayedAlready;
 
             //background stuff
             backgroundDivs.push(getBackgroundDiv(percentToUse, backgroundLeft, index));

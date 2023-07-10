@@ -519,7 +519,7 @@ export class StylingLogic {
             width: widthToUse,
             position: 'relative',
             ...(this.optionsLogic.isToolbarInVideo ? {
-                marginBottom: this.getCarouselVideoProgressHitSlop().paddingBottom * 2,
+                paddingBottom: this.getCarouselVideoProgressHitSlop().paddingBottom * 2,
                 paddingTop: this.getCarouselVideoProgressHitSlop().paddingBottom * 2,
             } as CSSProperties : {}),
         } as CSSProperties
