@@ -19,7 +19,6 @@ type CarouselItemViewerProgressBarProps = {
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
     & Required<Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying' | 'currentVideoSection' | 'setCurrentVideoSection'>>;
 
-const SET_CURRENT_SECTION_INTERVAL_THRESHOLD = 66;
 const MAP_SECTION_INTERVAL = 100;
 const NEXT_SECTION_START_OFFSET = .0000000000000001;
 const INITIAL_VALUE = 0;
@@ -38,7 +37,6 @@ export const CarouselItemViewerProgressBar = ({
     const toolbarRef = useRef<HTMLDivElement>();
     const sectionToProgressBarValueMapping = useRef<SectionToProgressBarValueMapping>({});
     const mapSectionToProgressBarTimeoutRef = useRef<any>(-1);
-    const timeOfLastCurrentSectionChangeRef = useRef<any>(-1);
     const [toolbarWidth, setToolbarWidth] = useState(INITIAL_VALUE)
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
     const [showDot, setShowDot] = useState(false);
@@ -108,19 +106,14 @@ export const CarouselItemViewerProgressBar = ({
         if (isMouseDownRef?.current) {
             return;
         };
-        if (Date.now() - timeOfLastCurrentSectionChangeRef.current > SET_CURRENT_SECTION_INTERVAL_THRESHOLD) {
-            setCurrentVideoSection && setCurrentVideoSection(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
-        }
         setShowDot(false);
         setSeekWidth(INITIAL_VALUE);
-    }, [isMouseDownRef, setCurrentVideoSection])
+    }, [isMouseDownRef])
 
     const onMouseMove = useCallback((e: MouseEvent) => {
         setShowDot(true);
         const percent = getPercent(e);
-        if (Date.now() - timeOfLastCurrentSectionChangeRef.current > SET_CURRENT_SECTION_INTERVAL_THRESHOLD) {
-            setCurrentVideoSection && setCurrentVideoSection(areSectionsGiven ? getCurrentSection(percent) : 0);
-        }
+        setCurrentVideoSection && setCurrentVideoSection(areSectionsGiven ? getCurrentSection(percent) : 0);
 
         if (isMouseDownRef?.current) {
             setProgressBarValue(percent)
@@ -250,12 +243,6 @@ export const CarouselItemViewerProgressBar = ({
             document.removeEventListener('mouseup', onMouseUpGlobal);
         }
     }, [onMouseMoveGlobal, onMouseUpGlobal])
-
-    //timeOfLastCurrentSectionChangeRef is a hack to improve the section hover recognition
-    useEffect(() => {
-        const now = Date.now();
-        timeOfLastCurrentSectionChangeRef.current = now;
-    }, [currentVideoSection])
     //#endregion
 
     //#region JSX
