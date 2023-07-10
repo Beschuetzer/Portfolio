@@ -1,6 +1,5 @@
 Carousel rework
   -work on progressbar rework:
-    --fix issue where mouse down event doesn't re-activate hover
     --try changing widths to flat px amount (width of middle section, non embedded case grows on hover)
     --add option to use youtube chapter specification (use string like '0:00' and '2:31')
     --how to update refresh rate so re-renders occur multiple times per second?
