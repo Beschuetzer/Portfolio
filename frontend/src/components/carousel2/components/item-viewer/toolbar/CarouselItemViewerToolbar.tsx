@@ -3,7 +3,7 @@ import { getFormattedTimeString, getIsMobile, getIsVideoPlaying, getPoint, stopP
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from '../progress-bar/CarouselItemViewerProgressBar'
-import { Point, VideoTimeStrings } from '../../../types'
+import { VideoTimeStrings } from '../../../types'
 import { CarouselItemViewerNextButton } from './CarouselItemViewerNextButton'
 import { CarouselItemViewerPauseButton } from './CarouselItemViewerPauseButton'
 import { CarouselItemViewerPlayButton } from './CarouselItemViewerPlayButton'
@@ -183,17 +183,21 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     }, [itemContainerRef])
 
     const handleAutoHide = useCallback((e?: MouseEvent) => {
-        if (optionsLogic.isToolbarInVideo) return;
         stopPropagation(e);
         clearTimeout(shouldHideTimoutRef.current);
 
-        showToolbar();
-        if (!isFullscreenMode || optionsLogic.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
+        if ((!isFullscreenMode && isVideo && !isVideoPlaying) || optionsLogic.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
 
+        const point = getPoint(e);
+        const isInsideVideo = getIsPointInsideElement(point, videoRef?.current);
+
+        if (isInsideVideo) {
+            showToolbar();
+        }
         shouldHideTimoutRef.current = setTimeout(() => {
             hideToolbar();
         }, optionsLogic.autoHideToolbarDuration);
-    }, [optionsLogic.isToolbarInVideo, optionsLogic.autoHideToolbarDuration, showToolbar, isFullscreenMode, hideToolbar]);
+    }, [isFullscreenMode, isVideo, isVideoPlaying, optionsLogic.autoHideToolbarDuration, videoRef, showToolbar, hideToolbar]);
 
     function handlePlayPauseUnited() {
         if (getIsVideoPlaying(videoRef?.current)) {

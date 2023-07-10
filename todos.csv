@@ -1,7 +1,5 @@
 Carousel rework
   -work on progressbar rework:
-    --figure out why cursor not hiding after 2s (even if video playing)
-    --figure out why toolbar hides sometimes when moving mouse and video playing
     --create a hook that takes a ref/element and add a mouse move listener to reset the video's currentSection POS (use in toolbar and CarouselVideo)
     --exiting videos below doesn't hide toolbar (change the exit video logic to use a global mouse move handler that checks if the point is inside the video)?
     --fix issue where mouse down event doesn't re-activate hover (may be solved by above)

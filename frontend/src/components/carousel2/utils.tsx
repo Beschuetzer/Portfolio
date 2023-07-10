@@ -216,10 +216,10 @@ export function getNumberOfPages(
     return numberOfPages;
 }
 
-export function getPoint(e: MouseEvent) {
+export function getPoint(e: MouseEvent | undefined) {
     return {
-        x: e.x || e.clientX,
-        y: e.y || e.clientY,
+        x: e?.x || e?.clientX || 0,
+        y: e?.y || e?.clientY || 0,
     } as Point;
 }
 
