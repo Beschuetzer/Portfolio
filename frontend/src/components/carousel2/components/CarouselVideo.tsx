@@ -4,7 +4,7 @@ import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoModal, CarouselVideoModalProps } from './CarouselVideoModal'
 import { CarouselItemViewerToolbar, CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
-import { CLASSNAME__HIDDEN, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from '../constants';
+import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL, CLASSNAME__HIDDEN, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from '../constants';
 import { CarouselVideoCurrentStateIndicator } from './CarouselVideoCurrentStateIndicator';
 import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
@@ -43,6 +43,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     const { autoPlay, loop, muted } = videoProps || {};
     const [isLoaded, setIsLoaded] = useState(false);
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+    const [currentVideoSection, setCurrentVideoSection] = useState(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
     const videoRef = useRef<HTMLVideoElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
     const type = useMemo(() => srcMain?.slice(srcMain?.lastIndexOf('.') + 1), [srcMain]);
@@ -180,6 +181,8 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 onNextItemClick={handleItemNavigation}
                 onPreviousItemClick={handleItemNavigation}
                 setIsVideoPlaying={setIsVideoPlaying}
+                currentVideoSection={currentVideoSection}
+                setCurrentVideoSection={setCurrentVideoSection}
             />
         </>
     );

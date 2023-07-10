@@ -15,6 +15,7 @@ import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts'
 import {
     AUTO_HIDE_DISABLED_VALUE,
     AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT,
+    CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL,
     CLASSNAME__GRABBING,
     CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR,
     CLASSNAME__ITEM_VIEWER_TOOLBAR,
@@ -30,6 +31,7 @@ import { useOnSwipe, StylingCase } from '../../../hooks/useOnSwipe'
 import { getIsPointInsideElement } from '../../../utils'
 
 export type CarouselItemViewerToolbarProps = {
+    currentVideoSection?: number;
     description: string;
     itemContainerRef: React.MutableRefObject<HTMLDivElement | undefined> | null;
     imageRef?: React.MutableRefObject<HTMLImageElement | undefined> | null;
@@ -37,11 +39,13 @@ export type CarouselItemViewerToolbarProps = {
     onClose?: () => void;
     onNextItemClick?: () => void;
     onPreviousItemClick?: () => void;
+    setCurrentVideoSection?: React.Dispatch<React.SetStateAction<number>>;
     setIsVideoPlaying?: React.Dispatch<React.SetStateAction<boolean>>;
     videoRef?: React.MutableRefObject<HTMLVideoElement | undefined> | null;
 };
 
 export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemViewerToolbarProps>(({
+    currentVideoSection,
     description,
     imageRef,
     isVideo,
@@ -49,6 +53,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     onClose = () => null,
     onNextItemClick = () => null,
     onPreviousItemClick = () => null,
+    setCurrentVideoSection,
     setIsVideoPlaying = () => null,
     videoRef,
 }, ref) => {
@@ -67,6 +72,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const innerRef = useRef<HTMLElement>(null);
     const isProgressBarMouseDownRef = useRef(false);
     useImperativeHandle(ref, () => innerRef.current as any);
+    const doNothing = () => null;
 
     const [timeStrings, setTimeStrings] = useState<VideoTimeStrings>({
         durationStr: getFormattedTimeString((videoRef?.current?.duration) || -1),
@@ -507,10 +513,12 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                     {
                         videoRef ?
                             <CarouselItemViewerProgressBar
-                                setIsVideoPlaying={setIsVideoPlaying}
-                                videoRef={videoRef}
-                                setTimeStrings={setTimeStrings}
+                                currentVideoSection={currentVideoSection === undefined ? CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL : currentVideoSection}
                                 isMouseDownRef={isProgressBarMouseDownRef}
+                                setCurrentVideoSection={setCurrentVideoSection || doNothing}
+                                setIsVideoPlaying={setIsVideoPlaying}
+                                setTimeStrings={setTimeStrings}
+                                videoRef={videoRef}
                             /> : null
                     }
                     <div

@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect, useRef, useLayoutEffect } from 'react'
-import { CLASSNAME__TOOLBAR_PROGRESS, NUMBER_OF_MS_IN_A_SECOND } from '../../../constants';
+import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL, CLASSNAME__TOOLBAR_PROGRESS, NUMBER_OF_MS_IN_A_SECOND } from '../../../constants';
 import { getFormattedTimeString } from '../../../utils';
 import { VideoTimeStrings } from '../../../types';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
@@ -17,15 +17,16 @@ type CarouselItemViewerProgressBarProps = {
     isMouseDownRef: React.MutableRefObject<boolean>;
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
-    & Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying'>;
+    & Required<Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying' | 'currentVideoSection' | 'setCurrentVideoSection'>>;
 
 const SET_CURRENT_SECTION_INTERVAL_THRESHOLD = 66;
 const MAP_SECTION_INTERVAL = 100;
 const NEXT_SECTION_START_OFFSET = .0000000000000001;
-const CURRENT_SECTION_INITIAL = -1;
 const INITIAL_VALUE = 0;
 export const CarouselItemViewerProgressBar = ({
+    currentVideoSection,
     isMouseDownRef,
+    setCurrentVideoSection,
     setIsVideoPlaying,
     setTimeStrings,
     videoRef,
@@ -40,7 +41,6 @@ export const CarouselItemViewerProgressBar = ({
     const timeOfLastCurrentSectionChangeRef = useRef<any>(-1);
     const [toolbarWidth, setToolbarWidth] = useState(INITIAL_VALUE)
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
-    const [currentSection, setCurrentSection] = useState(CURRENT_SECTION_INITIAL);
     const [showDot, setShowDot] = useState(false);
     const [seekWidth, setSeekWidth] = useState(INITIAL_VALUE);
     const { stylingLogic, optionsLogic } = useBusinessLogic({ progressBarValue });
@@ -48,21 +48,21 @@ export const CarouselItemViewerProgressBar = ({
 
     //#region Functions/Handlers
     const getCurrentSection = useCallback((percent: number) => {
-        if (percent === undefined || percent === null) return CURRENT_SECTION_INITIAL;
+        if (percent === undefined || percent === null) return CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL;
         for (const [index, sectionRange] of Object.entries(sectionToProgressBarValueMapping.current)) {
             if (percent >= sectionRange.start && percent <= sectionRange.end) return Number(index);
         }
-        return CURRENT_SECTION_INITIAL;
+        return CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL;
     }, [])
 
     const getIsInCurrentSection = useCallback((percent: number) => {
-        return getCurrentSection(percent) === currentSection;
-    }, [currentSection, getCurrentSection])
+        return getCurrentSection(percent) === currentVideoSection;
+    }, [currentVideoSection, getCurrentSection])
 
     const setCurrentSectionFromPercent = useCallback((percent: number) => {
         if (percent < 0 || percent > 1) return;
-        setCurrentSection(getCurrentSection(percent));
-    }, [getCurrentSection]);
+        setCurrentVideoSection && setCurrentVideoSection(getCurrentSection(percent));
+    }, [getCurrentSection, setCurrentVideoSection]);
 
     const getPercent = useCallback((e: MouseEvent) => {
         const toolbarRect = toolbarRef?.current?.getBoundingClientRect();
@@ -76,13 +76,13 @@ export const CarouselItemViewerProgressBar = ({
 
     const onMouseUp = useCallback((e: MouseEvent) => {
         isMouseDownRef.current = false;
-        setCurrentSection(CURRENT_SECTION_INITIAL);
+        setCurrentVideoSection && setCurrentVideoSection(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
         setIsVideoPlaying && setIsVideoPlaying(true);
         if (videoRef?.current) {
             videoRef.current.currentTime = progressBarValue * videoRef.current.duration;
             videoRef?.current?.play();
         }
-    }, [isMouseDownRef, progressBarValue, setIsVideoPlaying, videoRef]);
+    }, [isMouseDownRef, progressBarValue, setCurrentVideoSection, setIsVideoPlaying, videoRef]);
 
     const onMouseDown = useCallback((e: MouseEvent) => {
         isMouseDownRef.current = true;
@@ -105,17 +105,17 @@ export const CarouselItemViewerProgressBar = ({
             return;
         };
         if (Date.now() - timeOfLastCurrentSectionChangeRef.current > SET_CURRENT_SECTION_INTERVAL_THRESHOLD) {
-            setCurrentSection(CURRENT_SECTION_INITIAL);
+            setCurrentVideoSection && setCurrentVideoSection(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
         }
         setShowDot(false);
         setSeekWidth(INITIAL_VALUE);
-    }, [isMouseDownRef])
+    }, [isMouseDownRef, setCurrentVideoSection])
 
     const onMouseMove = useCallback((e: MouseEvent) => {
         setShowDot(true);
         const percent = getPercent(e);
         if (Date.now() - timeOfLastCurrentSectionChangeRef.current > SET_CURRENT_SECTION_INTERVAL_THRESHOLD) {
-            setCurrentSection(areSectionsGiven ? getCurrentSection(percent) : 0);
+            setCurrentVideoSection && setCurrentVideoSection(areSectionsGiven ? getCurrentSection(percent) : 0);
         }
 
         if (isMouseDownRef.current) {
@@ -123,7 +123,7 @@ export const CarouselItemViewerProgressBar = ({
         } else {
             setSeekWidth(percent);
         }
-    }, [areSectionsGiven, getCurrentSection, getPercent, isMouseDownRef])
+    }, [areSectionsGiven, getCurrentSection, getPercent, isMouseDownRef, setCurrentVideoSection])
 
     const onMouseMoveGlobal = useCallback((e: MouseEvent) => {
         if (!isMouseDownRef.current) return;
@@ -227,7 +227,7 @@ export const CarouselItemViewerProgressBar = ({
         mapSection();
     }, [sections, videoRef])
 
-    //use sectionToProgressBarValueMapping to set currentSection on progressBarValue change
+    //use sectionToProgressBarValueMapping to set currentVideoSection on progressBarValue change
     useEffect(() => {
         if (
             !isMouseDownRef.current ||
@@ -251,7 +251,7 @@ export const CarouselItemViewerProgressBar = ({
     useEffect(() => {
         const now = Date.now();
         timeOfLastCurrentSectionChangeRef.current = now;
-    }, [currentSection])
+    }, [currentVideoSection])
     //#endregion
 
     //#region JSX
@@ -265,7 +265,7 @@ export const CarouselItemViewerProgressBar = ({
                     left,
                     index,
                     sections?.length || 1,
-                    currentSection
+                    currentVideoSection
                 )}
             >
                 <div
@@ -273,7 +273,7 @@ export const CarouselItemViewerProgressBar = ({
                 />
             </div>
         )
-    }, [currentSection, sections?.length, stylingLogic])
+    }, [currentVideoSection, sections?.length, stylingLogic])
 
     const getForegroundDiv = useCallback((percent: number, left = 0, index = 0) => {
         if (isNaN(percent)) return null;
@@ -282,9 +282,9 @@ export const CarouselItemViewerProgressBar = ({
             left,
             index,
             sections?.length || 1,
-            currentSection
+            currentVideoSection
         )} />
-    }, [currentSection, sections?.length, stylingLogic]);
+    }, [currentVideoSection, sections?.length, stylingLogic]);
 
     const getSeekDiv = useCallback((percent: number, left = 0, index = 0) => {
         if (isNaN(percent)) return null;
@@ -293,9 +293,9 @@ export const CarouselItemViewerProgressBar = ({
             left,
             index,
             sections?.length || 1,
-            currentSection
+            currentVideoSection
         )} />
-    }, [currentSection, sections?.length, stylingLogic]);
+    }, [currentVideoSection, sections?.length, stylingLogic]);
 
     function renderSections() {
         if (!sections || sections.length <= 1 || !videoRef?.current) {
@@ -328,9 +328,9 @@ export const CarouselItemViewerProgressBar = ({
             backgroundDivs.push(getBackgroundDiv(percentToUse, backgroundLeft, index));
 
             //seek stuff
-            if (index < currentSection) {
+            if (index < currentVideoSection) {
                 seekDivs.push(getSeekDiv(percentToUse, backgroundLeft, index))
-            } else if (index === currentSection) {
+            } else if (index === currentVideoSection) {
                 const percentAcrossCurrentSectionFactor = (seekWidth - currentSectionTime?.start) / (currentSectionTime?.end - currentSectionTime?.start)
                 foregroundDivs.push(getSeekDiv(percentToUse * percentAcrossCurrentSectionFactor, backgroundLeft, index))
             }
