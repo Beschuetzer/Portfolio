@@ -1,5 +1,6 @@
 Carousel rework
   -work on progressbar rework:
+    --is it possible to programatically move the cursor to trigger the hide style?
     --adjust top for video overlay when embedded
     --add option to use youtube chapter specification (use string like '0:00' and '2:31')
     --try changing widths to flat px amount (width of middle section, non embedded case grows on hover)
