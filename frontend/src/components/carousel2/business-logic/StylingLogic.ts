@@ -626,7 +626,7 @@ export class StylingLogic {
             background: this.optionsLogic.videoProgressBarForegroundColor,
             height: diameter,
             width: diameter,
-            transform: `translate(0, -50%) scale(${isVisible || !isAlwaysVisible ? (isInCurrentSection ? scaleAmount / 2 : '1') : '0'})`,
+            transform: `translate(0, -50%) scale(${(isVisible || isAlwaysVisible) ? (isInCurrentSection ? scaleAmount / 2 : '1') : '0'})`,
             transition: `opacity ${transitionDuration} ease, transform ${transitionDuration} ease`,
             zIndex: 10,
         } as CSSProperties;

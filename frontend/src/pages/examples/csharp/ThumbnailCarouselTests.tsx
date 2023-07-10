@@ -2341,7 +2341,7 @@ const viewingModeVideoControls = (
 							// diameter: {
 							// 	nonFullscreen: [[16], [10, 900]]
 							// },
-							isAlwaysVisible: [[false], [true, 900]],
+							isAlwaysVisible: [[false], [true, 1400]],
 							transitionDuration: [[.25], [.1, 850]]
 						},
 						sectionGap: 4
