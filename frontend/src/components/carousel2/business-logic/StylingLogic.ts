@@ -571,7 +571,7 @@ export class StylingLogic {
             backfaceVisibility: 'hidden',
             transition: `transform .125s ease`,
             transformOrigin: isToolbarInVideo ? 'center' : 'top',
-            ...(isToolbarInVideo ? this.getCarouselVideoProgressHitSlop(isCurrentSection) : {}),
+            // ...(isToolbarInVideo ? this.getCarouselVideoProgressHitSlop(isCurrentSection) : {}),
             ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength, true),
         } as CSSProperties;
 

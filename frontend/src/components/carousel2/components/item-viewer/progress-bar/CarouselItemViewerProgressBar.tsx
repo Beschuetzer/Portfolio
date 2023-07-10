@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect, useRef, useLayoutEffect } from 'react'
-import { CLASSNAME__ITEM_VIEWER, CLASSNAME__TOOLBAR_PROGRESS, NUMBER_OF_MS_IN_A_SECOND } from '../../../constants';
-import { getClassname, getFormattedTimeString } from '../../../utils';
+import { CLASSNAME__TOOLBAR_PROGRESS, NUMBER_OF_MS_IN_A_SECOND } from '../../../constants';
+import { getFormattedTimeString } from '../../../utils';
 import { VideoTimeStrings } from '../../../types';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
 import { useCarouselContext } from '../../../context';
