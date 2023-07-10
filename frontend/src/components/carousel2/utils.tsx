@@ -216,6 +216,13 @@ export function getNumberOfPages(
     return numberOfPages;
 }
 
+export function getPoint(e: MouseEvent) {
+    return {
+        x: e.x || e.clientX,
+        y: e.y || e.clientY,
+    } as Point;
+}
+
 export function getRegexStringFromStringArray(fileExtensions: string[]) {
     const mapped = fileExtensions.map((ext, index) => {
         let orChar = "|";

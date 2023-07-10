@@ -1,6 +1,5 @@
 import { useCallback, useEffect } from "react"
-import { getIsPointInsideElement } from "../utils";
-import { Point } from "../types";
+import { getIsPointInsideElement, getPoint } from "../utils";
 import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL } from "../constants";
 
 type ElementToUse = Element | undefined | null;
@@ -13,12 +12,8 @@ export const useResetCarouselVideoCurrentSection = (
 ) => {
     const handleMove = useCallback((e: MouseEvent) => {
         if (currentSection === CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL || isMouseDownRef.current) return;
-        const point: Point = {
-            x: e.clientX,
-            y: e.clientY,
-        }
+        const point = getPoint(e);
         const isInsideProgressBar = getIsPointInsideElement(point, progressBarElement);
-        console.log({e, progressBarElement, isInsideProgressBar, currentSection});
         if (isInsideProgressBar) return;
         setCurrentSection(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
     }, [currentSection, isMouseDownRef, progressBarElement, setCurrentSection])

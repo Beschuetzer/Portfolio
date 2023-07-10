@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import { getFormattedTimeString, getIsMobile, getIsVideoPlaying, stopPropagation } from '../../../utils'
+import { getFormattedTimeString, getIsMobile, getIsVideoPlaying, getPoint, stopPropagation } from '../../../utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from '../progress-bar/CarouselItemViewerProgressBar'
@@ -284,10 +284,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const handleVideoRefMouseLeave = useCallback((e: MouseEvent) => {
         clearTimeout(showToolbarOnItemChangeTimeoutRef.current);
         if (isFullscreenMode) return;
-        const point: Point = {
-            x: e.clientX || e.screenX,
-            y: e.clientY || e.screenY,
-        }
+        const point = getPoint(e);
         const isInVideoBox = getIsPointInsideElement(point, (videoRef?.current || imageRef?.current) as HTMLElement);
         const isVideoPlaying = !!imageRef?.current ? true : getIsVideoPlaying(videoRef?.current);
         if (isInVideoBox || !isVideoPlaying) return;
