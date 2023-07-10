@@ -405,6 +405,7 @@ export class StylingLogic {
         const customFontSize = getCurrentValue(fontSizeTemp, this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
         const itemViewerLeftPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer);
         const itemViewerRightPadding = this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
+        const topOffsetForEmbeddedCase = (this.optionsLogic.isToolbarInVideo ? (this.itemViewerToolbarRef.current?.querySelector('div')?.getBoundingClientRect().height || 0) / 2 : 0);
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
             width: widthToUse,
@@ -419,7 +420,7 @@ export class StylingLogic {
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
             transform: 'translate(-50%, 0)',
-            top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${Math.abs(videoHeight - videoModalHeight) / 2}${CAROUSEL_SPACING_UNIT}` : '50%',
+            top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${((Math.abs(videoHeight - videoModalHeight) / 2) - topOffsetForEmbeddedCase)}${CAROUSEL_SPACING_UNIT}` : '50%',
         } as CSSProperties : {};
         const textStyle = {
             color: getCurrentValue(textColor, CAROUSEL_COLOR_ONE, this.isFullscreenMode),

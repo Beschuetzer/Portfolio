@@ -34,22 +34,20 @@ export type CarouselVideoModalInternalProps = {
     *This is used internally and determines when the overlay is shown
     **/
     isVideoPlaying?: boolean;
-    /**
-    *This is used internally to determine where the overlay is shown
-    **/
+    itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
 } & CarouselVideoModalProps & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
 
 export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
 
-    const { children, isVideoPlaying, sections, videoRef } = props;
+    const { children, isVideoPlaying, sections, itemViewerToolbarRef, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
     const videoModalRef = useRef<HTMLElement>();
 
     const { svgHref } = elementStylings?.closeButton || {};
     const isCustom = useMemo(() => !!children, [children]);
-    const { stylingLogic } = useBusinessLogic({ videoRef, videoModalRef })
+    const { stylingLogic } = useBusinessLogic({ videoRef, videoModalRef, itemViewerToolbarRef })
     const closeButtonColor = useMemo(() => stylingLogic.carouselVideoCloseButtonColor, [stylingLogic.carouselVideoCloseButtonColor]);
     //#endregion
 

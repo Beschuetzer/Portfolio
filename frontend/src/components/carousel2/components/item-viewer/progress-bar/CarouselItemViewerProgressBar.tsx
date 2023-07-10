@@ -6,7 +6,7 @@ import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToo
 import { useCarouselContext } from '../../../context';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
-export type SectionToProgressBarValueMapping = {
+type SectionToProgressBarValueMapping = {
     [number: number]: {
         start: number;
         end: number;

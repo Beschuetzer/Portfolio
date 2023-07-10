@@ -176,6 +176,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 </video>
                 {props.video?.overlayProps ? (
                     <CarouselVideoModal
+                        itemViewerToolbarRef={itemViewerToolbarRef}
                         videoRef={videoRef}
                         isVideoPlaying={isVideoPlaying}
                         {...props.video?.overlayProps}

@@ -1,7 +1,8 @@
 Carousel rework
   -work on progressbar rework:
-    --try changing widths to flat px amount (width of middle section, non embedded case grows on hover)
+    --adjust top for video overlay when embedded
     --add option to use youtube chapter specification (use string like '0:00' and '2:31')
+    --try changing widths to flat px amount (width of middle section, non embedded case grows on hover)
     --how to update refresh rate so re-renders occur multiple times per second?
     --add option for hitslop amount
     --figure out how how to listener for left/right after clicking mousedown on progress bar (dynamically change hitslop amount on mousedown and revert to normal on mouse up?) or use global listener?
