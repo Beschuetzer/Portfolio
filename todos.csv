@@ -1,8 +1,6 @@
 Carousel rework
   -work on progressbar rework:
-    --create a hook that takes a ref/element and add a mouse move listener to reset the video's currentSection POS (use in toolbar and CarouselVideo)
-    --exiting videos below doesn't hide toolbar (change the exit video logic to use a global mouse move handler that checks if the point is inside the video)?
-    --fix issue where mouse down event doesn't re-activate hover (may be solved by above)
+    --fix issue where mouse down event doesn't re-activate hover
     --try changing widths to flat px amount (width of middle section, non embedded case grows on hover)
     --add option to use youtube chapter specification (use string like '0:00' and '2:31')
     --how to update refresh rate so re-renders occur multiple times per second?
