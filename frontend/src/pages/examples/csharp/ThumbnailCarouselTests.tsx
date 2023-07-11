@@ -182,7 +182,7 @@ const items = [
 			sections: [
 				['Search Section'],
 				['Filter Section', "0:05:00"],
-				['Options Section', "0:07:00"],
+				['Options Section', "0:08:00"],
 			]
 		}
 	},

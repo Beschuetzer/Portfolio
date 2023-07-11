@@ -1,6 +1,6 @@
 Carousel rework
   -work on progressbar rework:
-    --add option to use youtube chapter specification (use string like '0:00' and '2:31')
+    --need validation for sections (previous ones must be before next ones); what if the last section for string case is after the video duration?;  handle both cases
     --try changing widths to flat px amount (width of middle section, non embedded case grows on hover)
     --how to update refresh rate so re-renders occur multiple times per second?
     --add option for hitslop amount

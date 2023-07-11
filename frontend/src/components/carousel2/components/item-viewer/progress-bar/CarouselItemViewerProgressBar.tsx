@@ -71,7 +71,6 @@ export const CarouselItemViewerProgressBar = ({
         }
 
         const toReturn = minutes * NUMBER_OF_MS_IN_A_SECOND * NUMBER_OF_MS_IN_A_SECOND + seconds * NUMBER_OF_MS_IN_A_SECOND + milliseconds;
-        console.log({ timestamp, minutes, seconds, milliseconds, toReturn });
         return toReturn;
     }, [])
 
@@ -368,9 +367,31 @@ export const CarouselItemViewerProgressBar = ({
             const section = sections[index];
             const [, duration] = section;
             const isLastSection = index === sections.length - 1;
-            const durationToUse = duration || Math.abs(amountBeforeCurrent - videoRef?.current?.duration);
-            const percentAcross = durationToUse as number / NUMBER_OF_MS_IN_A_SECOND / (videoRef?.current?.duration || 1);
-            const backgroundLeft = amountBeforeCurrent / NUMBER_OF_MS_IN_A_SECOND / videoRef.current.duration;
+
+            let backgroundLeft = 0, percentAcross = 0;
+
+            //calculating backgroundLeft and percentAcross for both input cases
+            if (typeof duration === "string" || (duration === undefined && index === 0)) {
+                const nextSection = sections[index + 1];
+                let sectionDiff = 0;
+                
+                //all sections but the last one
+                if (nextSection !== undefined) {
+                    const nextSectionTimestamp = nextSection?.[1] as string;
+                    const nextConverted = convertTimeStringToDuration(nextSectionTimestamp, index + 1);
+                    sectionDiff = Math.abs(nextConverted - amountBeforeCurrent);
+                }
+                percentAcross = sectionDiff as number / NUMBER_OF_MS_IN_A_SECOND / (videoRef?.current?.duration || 1);
+                backgroundLeft = index === 0 ? 0 : amountBeforeCurrent / NUMBER_OF_MS_IN_A_SECOND / videoRef.current.duration;
+                amountBeforeCurrent += sectionDiff;
+            } else {
+                const durationToUse = duration || Math.abs(amountBeforeCurrent - videoRef?.current?.duration);
+                percentAcross = durationToUse as number / NUMBER_OF_MS_IN_A_SECOND / (videoRef?.current?.duration || 1);
+                backgroundLeft = amountBeforeCurrent / NUMBER_OF_MS_IN_A_SECOND / videoRef.current.duration;
+                amountBeforeCurrent += duration as number;
+            }
+
+            //rendering the divs
             const percentPlayedAlready = videoRef.current.currentTime / videoRef.current.duration;
             const percentToUse = isLastSection ? 1 - backgroundLeft : percentAcross
             const currentSectionTime = sectionToProgressBarValueMapping.current[index];
@@ -394,8 +415,6 @@ export const CarouselItemViewerProgressBar = ({
                 const percentAcrossCurrentSectionFactor = (itemToTrack - currentSectionTime?.start) / (currentSectionTime?.end - currentSectionTime?.start)
                 foregroundDivs.push(getForegroundDiv(percentToUse * percentAcrossCurrentSectionFactor, backgroundLeft, index))
             }
-
-            amountBeforeCurrent += duration as number;
             // console.log({progressBarValue, itemToTrack ,currentSectionTime, index, durationToUse, duration, videoDuration: videoRef.current.duration, percentAcross, isLastSection });
         }
 
