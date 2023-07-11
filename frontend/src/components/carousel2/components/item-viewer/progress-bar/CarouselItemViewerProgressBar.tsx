@@ -265,8 +265,8 @@ export const CarouselItemViewerProgressBar = ({
                     start,
                     end
                 }
-                console.log({ sectionToProgressBarValueMapping: sectionToProgressBarValueMapping.current });
             }
+            // console.log({ sectionToProgressBarValueMapping: sectionToProgressBarValueMapping.current });
         }
 
         function validateSections() {
@@ -392,7 +392,6 @@ export const CarouselItemViewerProgressBar = ({
             currentVideoSection
         )} />
     }, [currentVideoSection, sections?.length, stylingLogic]);
-
 
     function renderSections() {
         if (!sections || sections.length <= 1 || !videoRef?.current) {

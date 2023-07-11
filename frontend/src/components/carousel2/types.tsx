@@ -225,6 +225,14 @@ export type CarouselSections = {
                 transitionDuration?: CarouselElementValue<number>;
             }
             /**
+            *The amount of space above the actual progress bar that counts as the a registered hover event 
+            *Default is 20px for both `top` and `bottom`
+            **/
+            hitSlop?: {
+                top?: number;
+                bottom?: number;
+            }
+            /**
             *The amount of space between each video section. 
             *Only applicable if `CarouselItemProps.video.sections` is given.
             **/

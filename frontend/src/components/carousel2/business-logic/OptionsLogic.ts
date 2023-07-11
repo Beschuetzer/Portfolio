@@ -29,7 +29,8 @@ import {
     CAROUSEL_PROGRESS_BAR_SECTION_GAP,
     CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT,
     CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT,
-    AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT
+    AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT,
+    CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT
 } from "../constants";
 import { CarouselOptions } from "../types";
 import { convertHexToRgba, getCurrentValue } from "../utils";
@@ -247,6 +248,16 @@ export class OptionsLogic {
 
     get videoProgressBarForegroundColor() {
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_THREE, this.isFullscreenMode);
+    }
+
+    get videoProgressBarHitSlop() {
+        const top = getCurrentValue(this.options.styling?.toolbar?.progressBar?.hitSlop?.top, CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.5, this.isFullscreenMode);
+        const bottom = getCurrentValue(this.options.styling?.toolbar?.progressBar?.hitSlop?.bottom, CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT / 2, this.isFullscreenMode);
+
+         return {
+            top,
+            bottom,
+         }
     }
 
     get videoProgressBarScaleAmount() {

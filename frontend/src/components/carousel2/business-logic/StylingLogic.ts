@@ -504,12 +504,11 @@ export class StylingLogic {
         } as CSSProperties : {};
     }
 
-    getCarouselVideoProgressHitSlop(isCurrentSection = false) {
-        const scaleAmount = this.optionsLogic.videoProgressBarScaleAmount;
-        const paddingVertical = Math.ceil(CAROUSEL_ITEM_SPACING_DEFAULT * (isCurrentSection ? 1 / scaleAmount : 1));
+    getCarouselVideoProgressHitSlop() {
+        const hitSlop = this.optionsLogic.videoProgressBarHitSlop;
         return {
-            paddingTop: paddingVertical,
-            paddingBottom: paddingVertical,
+            paddingTop: hitSlop.top,
+            paddingBottom: hitSlop.bottom,
         }
     }
 
@@ -525,10 +524,7 @@ export class StylingLogic {
             background: 'transparent',
             width: widthToUse,
             position: 'relative',
-            ...(this.optionsLogic.isToolbarInVideo ? {
-                paddingBottom: this.getCarouselVideoProgressHitSlop().paddingBottom * 2,
-                paddingTop: this.getCarouselVideoProgressHitSlop().paddingBottom * 2,
-            } as CSSProperties : {}),
+            ...(this.optionsLogic.isToolbarInVideo ? this.getCarouselVideoProgressHitSlop() : {}),
         } as CSSProperties
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
@@ -839,9 +835,11 @@ export class StylingLogic {
     }
 
     get toolbarInnerContainerStyle() {
+        const progressBarHitSlop = this.optionsLogic.videoProgressBarHitSlop;
         return {
             paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
             paddingRight: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
+            marginTop: Math.max(CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT - progressBarHitSlop.bottom, 0),
         } as CSSProperties;
     }
 
