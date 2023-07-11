@@ -60,7 +60,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     videoRef,
 }, ref) => {
     //#region Init
-    const { options, items, currentItemIndex, setCurrentItemIndex, currentItem, isFullscreenMode } = useCarouselContext();
+    const { options, items, currentItemIndex, setCurrentItemIndex, currentItem, isFullscreenMode, hiddenInputRef } = useCarouselContext();
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
     const nextButtonRef = useRef<any>(null);
@@ -185,19 +185,23 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const handleAutoHide = useCallback((e?: MouseEvent) => {
         stopPropagation(e);
         clearTimeout(shouldHideTimoutRef.current);
-
+        document.body.style.removeProperty('cursor');
+        
         if ((!isFullscreenMode && isVideo && !isVideoPlaying) || optionsLogic.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
-
+        
         const point = getPoint(e);
         const isInsideVideo = getIsPointInsideElement(point, videoRef?.current);
 
         if (isInsideVideo) {
             showToolbar();
+
         }
         shouldHideTimoutRef.current = setTimeout(() => {
             hideToolbar();
+            document.body.style.setProperty('cursor', 'none', 'important');
+            hiddenInputRef.current?.focus();
         }, optionsLogic.autoHideToolbarDuration);
-    }, [isFullscreenMode, isVideo, isVideoPlaying, optionsLogic.autoHideToolbarDuration, videoRef, showToolbar, hideToolbar]);
+    }, [isFullscreenMode, isVideo, isVideoPlaying, optionsLogic.autoHideToolbarDuration, videoRef, showToolbar, hideToolbar, hiddenInputRef]);
 
     function handlePlayPauseUnited() {
         if (getIsVideoPlaying(videoRef?.current)) {

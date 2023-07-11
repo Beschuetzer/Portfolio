@@ -9,6 +9,7 @@ import { enterFullScreen, exitFullScreen } from "./utils";
 export type CarouselContextInputProps = {
     carouselContainerRef: React.MutableRefObject<HTMLDivElement>;
     children: ReactNode | ReactNode[];
+    hiddenInputRef: React.MutableRefObject<HTMLInputElement>;
     items: CarouselItemProps[];
     options: CarouselOptions;
 }
@@ -33,6 +34,7 @@ export type CarouselContextOutputProps = {
 export const CarouselProvider = ({
     carouselContainerRef,
     children,
+    hiddenInputRef,
     items: itemsInput,
     options: optionsInput,
 
@@ -69,6 +71,7 @@ export const CarouselProvider = ({
                 currentPage,
                 currentVideoCurrentTime,
                 elementStylings: options.styling?.elements,
+                hiddenInputRef,
                 isFullscreenMode,
                 items,
                 numberOfPages,

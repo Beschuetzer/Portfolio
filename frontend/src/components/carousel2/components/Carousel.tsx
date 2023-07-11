@@ -19,6 +19,7 @@ export const Carousel = (props: CarouselProps) => {
 		options,
 	} = props;
 	const carouselContainerRef = useRef<HTMLDivElement>();
+	const hiddenInputRef = useRef<HTMLInputElement>();
 	const { stylingLogic } = useBusinessLogic({ options }); //need to pass in options here since it is outside of context
 	const [, setShouldRerender] = useState(false);
 	useOnResize(() => setShouldRerender((current) => !current));
@@ -29,8 +30,10 @@ export const Carousel = (props: CarouselProps) => {
 		<CarouselProvider
 			items={items}
 			carouselContainerRef={carouselContainerRef as any}
+			hiddenInputRef={hiddenInputRef as any}
 			options={options || {}}
 		>
+			<input ref={hiddenInputRef as any} style={stylingLogic.carouselHiddenInputStyle}/>
 			<div
 				ref={carouselContainerRef as any}
 				className={getClassname({ elementName: "" })}

@@ -154,6 +154,12 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
+    get carouselHiddenInputStyle() {
+        return {
+            display: 'none',
+        } as CSSProperties;
+    }
+
     get carouselItemCursorStyle() {
         return this.isCurrentItemSelected ? {
             cursor: 'auto',
