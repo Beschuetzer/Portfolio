@@ -7,10 +7,11 @@ import { useCarouselContext } from '../../../context';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 type SectionToProgressBarValueMapping = {
-    [number: number]: {
-        start: number;
-        end: number;
-    }
+    [number: number]: SectionToProgressBarValueMappingValue;
+}
+type SectionToProgressBarValueMappingValue = {
+    start: number;
+    end: number;
 }
 
 type CarouselItemViewerProgressBarProps = {
@@ -20,7 +21,7 @@ type CarouselItemViewerProgressBarProps = {
     & Required<Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying' | 'currentVideoSection' | 'setCurrentVideoSection'>>;
 
 const MAP_SECTION_INTERVAL = 100;
-const NEXT_SECTION_START_OFFSET = .0000000000000001;
+const NEXT_SECTION_OFFSET = .0000000000000001;
 const INITIAL_VALUE = 0;
 export const CarouselItemViewerProgressBar = ({
     currentVideoSection,
@@ -45,6 +46,35 @@ export const CarouselItemViewerProgressBar = ({
     //#endregion
 
     //#region Functions/Handlers
+    /**
+    *Takes a time stamp that uses the following format `mm:ss:ms`.  
+    *E.g. `1:23:920` would mean at 1 minute 23 seconds and 920 milliseconds
+    *`1:23` would mean at 1 second and 23 milleseconds
+    *Will throw an alert if any of the sections are > 60 or <= 0
+    *@returns a number representing the number of ms at which the section begins
+    **/
+    const convertTimeStringToDuration = useCallback((timestamp: string, index: number) => {
+        if (!timestamp)
+            alert(`${timestamp} is not a valid time stamp`);
+
+        const split = timestamp.split(':');
+        const milliseconds = parseInt(split[split?.length - 1], 10) || 0;
+        const seconds = parseInt(split[split?.length - 2], 10) || 0;
+        const minutes = parseInt(split[split?.length - 3], 10) || 0;
+
+        if (milliseconds >= 1000 || milliseconds < 0) {
+            alert(`The number of milliseconds must be between 0 and 999.  ${timestamp} has ${milliseconds}`);
+        } else if (seconds >= 60 || seconds < 0) {
+            alert(`The number of seconds must be between 0 and 59.  ${timestamp} has ${seconds}`);
+        } else if (minutes >= 60 || minutes < 0) {
+            alert(`The number of seconds must be between 0 and 59.  ${timestamp} has ${minutes}`);
+        }
+
+        const toReturn = minutes * NUMBER_OF_MS_IN_A_SECOND * NUMBER_OF_MS_IN_A_SECOND + seconds * NUMBER_OF_MS_IN_A_SECOND + milliseconds;
+        console.log({ timestamp, minutes, seconds, milliseconds, toReturn });
+        return toReturn;
+    }, [])
+
     const getCurrentSection = useCallback((percent: number) => {
         if (percent === undefined || percent === null) return CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL;
         for (const [index, sectionRange] of Object.entries(sectionToProgressBarValueMapping.current)) {
@@ -215,21 +245,44 @@ export const CarouselItemViewerProgressBar = ({
             }
 
             let amountBefore = 0;
+            const isUsingNumberedSections = typeof sections[0][1] === 'number';
+            let indexToUse = 0;
+
             for (let index = 0; index < sections.length; index++) {
-                const section = sections[index];
-                const sectionDuration = section[1];
-                const start = index === 0 ? 0 : sectionToProgressBarValueMapping.current[index - 1].end + NEXT_SECTION_START_OFFSET;
-                amountBefore += sectionDuration;
-                const end = index === sections.length - 1 ? 1 : amountBefore / videoDuration;
-                sectionToProgressBarValueMapping.current[index] = {
+                indexToUse = index;
+                if (isUsingNumberedSections) {
+                    const section = sections[index];
+                    const sectionDuration = section[1] as number;
+                    amountBefore += sectionDuration as number;
+
+                } else {
+                    const nextSection = sections[index + 1];
+
+                    //all sections but the last one
+                    if (nextSection !== undefined) {
+                        const nextSectionTimestamp = nextSection?.[1] as string;
+                        const nextConverted = convertTimeStringToDuration(nextSectionTimestamp, index + 1);
+                        const sectionDiff = Math.abs(nextConverted - amountBefore);
+                        amountBefore += sectionDiff;
+                    }
+                }
+
+                const start = indexToUse === 0 ? 0 : sectionToProgressBarValueMapping.current[indexToUse - 1]?.end + NEXT_SECTION_OFFSET;
+                const end = indexToUse === sections.length - 1 ? 1 : amountBefore / videoDuration;
+                sectionToProgressBarValueMapping.current[indexToUse] = {
                     start,
                     end
                 }
+                console.log({ sectionToProgressBarValueMapping: sectionToProgressBarValueMapping.current });
             }
         }
 
         mapSection();
-    }, [sections, videoRef])
+
+        return () => {
+            sectionToProgressBarValueMapping.current = {};
+        }
+    }, [convertTimeStringToDuration, sections, videoRef])
 
     //use sectionToProgressBarValueMapping to set currentVideoSection on progressBarValue change
     useEffect(() => {
@@ -295,6 +348,7 @@ export const CarouselItemViewerProgressBar = ({
         )} />
     }, [currentVideoSection, sections?.length, stylingLogic]);
 
+
     function renderSections() {
         if (!sections || sections.length <= 1 || !videoRef?.current) {
             return (
@@ -315,7 +369,7 @@ export const CarouselItemViewerProgressBar = ({
             const [, duration] = section;
             const isLastSection = index === sections.length - 1;
             const durationToUse = duration || Math.abs(amountBeforeCurrent - videoRef?.current?.duration);
-            const percentAcross = durationToUse / NUMBER_OF_MS_IN_A_SECOND / (videoRef?.current?.duration || 1);
+            const percentAcross = durationToUse as number / NUMBER_OF_MS_IN_A_SECOND / (videoRef?.current?.duration || 1);
             const backgroundLeft = amountBeforeCurrent / NUMBER_OF_MS_IN_A_SECOND / videoRef.current.duration;
             const percentPlayedAlready = videoRef.current.currentTime / videoRef.current.duration;
             const percentToUse = isLastSection ? 1 - backgroundLeft : percentAcross
@@ -341,7 +395,7 @@ export const CarouselItemViewerProgressBar = ({
                 foregroundDivs.push(getForegroundDiv(percentToUse * percentAcrossCurrentSectionFactor, backgroundLeft, index))
             }
 
-            amountBeforeCurrent += duration;
+            amountBeforeCurrent += duration as number;
             // console.log({progressBarValue, itemToTrack ,currentSectionTime, index, durationToUse, duration, videoDuration: videoRef.current.duration, percentAcross, isLastSection });
         }
 

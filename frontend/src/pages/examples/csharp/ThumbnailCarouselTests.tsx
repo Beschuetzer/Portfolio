@@ -127,7 +127,7 @@ const carouselShortcuts = {
 
 const items = [
 	{
-		description: "Video Sub-sections",
+		description: "Video Sub-sections using numbers",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
 		video: {
@@ -150,9 +150,39 @@ const items = [
 			autoPlay: false,
 			muted: true,
 			sections: [
-				['Search Section', 2521],
-				['Filter Section', 5000],
+				['Search Section', 5000],
+				['Filter Section', 2000],
 				['Options Section'],
+			]
+		}
+	},
+	{
+		description: "Video Sub-sections using strings",
+		srcMain: clipAnimations,
+		srcThumbnail: clipAnimationsThumbnail,
+		video: {
+			overlayProps: {
+				children: (
+					<>
+						<CSharpCardSection title="Contract is 1&clubs;">
+							The first part of the video highlights the process of
+							applying the contract matching filter.&nbsp; There are two
+							matches found.
+						</CSharpCardSection>
+						<CSharpCardSection title="Two Filters = Double the Filtering">
+							The second filter applied requires 'Ann' to have the
+							2&clubs;. In one of the filtered games, she does and in the
+							other one she doesn't.
+						</CSharpCardSection>
+					</>
+				),
+			},
+			autoPlay: false,
+			muted: true,
+			sections: [
+				['Search Section'],
+				['Filter Section', "0:05:00"],
+				['Options Section', "0:07:00"],
 			]
 		}
 	},

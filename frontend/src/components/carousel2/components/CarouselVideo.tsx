@@ -16,7 +16,7 @@ import { useResetCarouselVideoCurrentSection } from '../hooks/useResetCarouselVi
 *Each section starts 1ms after the previous section ended
 *The last section goes to the end by default
 **/
-export type CarouselVideoSection = [string, number];
+export type CarouselVideoSection = [string, number] | [string, string];
 export type CarouselVideoOptions = {
     /**
     * If true and muted is `undefined` or `true`, the video will start playing when it first comes into focus 
