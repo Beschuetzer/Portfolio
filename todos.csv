@@ -1,6 +1,5 @@
 Carousel rework
   -work on progressbar rework:
-    --need validation for sections (previous ones must be before next ones); what if the last section for string case is after the video duration?;  handle both cases
     --try changing widths to flat px amount (width of middle section, non embedded case grows on hover)
     --how to update refresh rate so re-renders occur multiple times per second?
     --add option for hitslop amount
@@ -16,6 +15,7 @@ Carousel rework
     --add the options to add section titles (need new component(s) to handle this as well as type)
     --verify all of the progress bar customization options still work when done 
 
+  -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
   -make CarouselElementCustomization.style a CarouselElementValue?

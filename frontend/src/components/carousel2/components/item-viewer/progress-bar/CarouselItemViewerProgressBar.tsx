@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect, useRef, useLayoutEffect } from 'react'
-import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL, CLASSNAME__TOOLBAR_PROGRESS, NUMBER_OF_MS_IN_A_SECOND } from '../../../constants';
+import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL, CAROUSEL_VIDEO_SECTION_MIN_LENGTH, CLASSNAME__TOOLBAR_PROGRESS, NUMBER_OF_MS_IN_A_SECOND } from '../../../constants';
 import { getFormattedTimeString, getIsPointInsideElement, getPoint } from '../../../utils';
 import { VideoTimeStrings } from '../../../types';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
@@ -37,7 +37,7 @@ export const CarouselItemViewerProgressBar = ({
     const areSectionsGiven = sections && sections.length > 0;
     const progressBarRef = useRef<HTMLDivElement>();
     const sectionToProgressBarValueMapping = useRef<SectionToProgressBarValueMapping>({});
-    const mapSectionToProgressBarTimeoutRef = useRef<any>(-1);
+    const checkIsVideoLoadedTimoutRef = useRef<any>(-1);
     const [toolbarWidth, setToolbarWidth] = useState(INITIAL_VALUE)
     const [progressBarValue, setProgressBarValue] = useState(INITIAL_VALUE);
     const [showDot, setShowDot] = useState(false);
@@ -53,9 +53,10 @@ export const CarouselItemViewerProgressBar = ({
     *Will throw an alert if any of the sections are > 60 or <= 0
     *@returns a number representing the number of ms at which the section begins
     **/
-    const convertTimeStringToDuration = useCallback((timestamp: string, index: number) => {
-        if (!timestamp)
-            alert(`${timestamp} is not a valid time stamp`);
+    const convertTimeStringToMilliseconds = useCallback((timestamp: string) => {
+        if (!timestamp) {
+            return 0;
+        }
 
         const split = timestamp.split(':');
         const milliseconds = parseInt(split[split?.length - 1], 10) || 0;
@@ -227,23 +228,15 @@ export const CarouselItemViewerProgressBar = ({
 
     //calculate the sectionToProgressBarValueMapping
     useEffect(() => {
-        function mapSection() {
-            clearTimeout(mapSectionToProgressBarTimeoutRef.current);
+        function mapSectionRanges() {
             if (!sections || sections.length <= 0 || !videoRef?.current) {
                 sectionToProgressBarValueMapping.current = {};
                 return;
             }
             if (Object.values(sectionToProgressBarValueMapping.current).length > 0) return;
 
-            const videoDuration = videoRef.current.duration * NUMBER_OF_MS_IN_A_SECOND
-            if (isNaN(videoDuration)) {
-                mapSectionToProgressBarTimeoutRef.current = setTimeout(() => {
-                    mapSection();
-                }, MAP_SECTION_INTERVAL)
-                return;
-            }
-
             let amountBefore = 0;
+            const videoDuration = (videoRef?.current?.duration || 0) * NUMBER_OF_MS_IN_A_SECOND
             const isUsingNumberedSections = typeof sections[0][1] === 'number';
             let indexToUse = 0;
 
@@ -260,7 +253,7 @@ export const CarouselItemViewerProgressBar = ({
                     //all sections but the last one
                     if (nextSection !== undefined) {
                         const nextSectionTimestamp = nextSection?.[1] as string;
-                        const nextConverted = convertTimeStringToDuration(nextSectionTimestamp, index + 1);
+                        const nextConverted = convertTimeStringToMilliseconds(nextSectionTimestamp);
                         const sectionDiff = Math.abs(nextConverted - amountBefore);
                         amountBefore += sectionDiff;
                     }
@@ -276,12 +269,65 @@ export const CarouselItemViewerProgressBar = ({
             }
         }
 
-        mapSection();
+        function validateSections() {
+            if (sections && sections?.length <= 0) return;
+            const isString = typeof sections?.[0]?.[1] === 'string' || typeof sections?.[0]?.[1] === 'undefined';
+            const videoDuration = videoRef?.current?.duration || 0;
+            let sum = 0;
+
+            if (isString && sections) {
+                for (let index = 0; index < sections.length; index++) {
+                    const currentSection = sections[index];
+                    const nextSection = sections[index + 1];
+
+                    if (nextSection !== undefined) {
+                        const currentSectionStart = convertTimeStringToMilliseconds(currentSection[1] as string);
+                        const nextSectionStart = convertTimeStringToMilliseconds(nextSection[1] as string);
+
+                        if (!currentSectionStart || !nextSectionStart) continue;
+                        if (currentSectionStart >= nextSectionStart) {
+                            alert("Developer warning: Check your section values for this video.  One section starts before the next one ends.");
+                            throw new Error();
+                        }
+                        else if (Math.abs(currentSectionStart - nextSectionStart) < CAROUSEL_VIDEO_SECTION_MIN_LENGTH) {
+                            alert(`Developer warning: The length of the section titled '${currentSection?.[0]}' does not exceed the minimum length of ${CAROUSEL_VIDEO_SECTION_MIN_LENGTH}ms`)
+                            throw new Error();
+                        }
+                    }
+                }
+            }
+
+            if (!isString && sections) {
+                sum = sections?.map(section => section[1]).reduce((a, b) => {
+                    if (b === undefined) return a as number;
+                    return ((a as number) + (b as number));
+                }, 0) as number / NUMBER_OF_MS_IN_A_SECOND;
+            }
+
+            if (sum > videoDuration) alert("The sum of the sections is greater than the video duration")
+        }
+
+        function checkIfVideoLoaded() {
+            clearTimeout(checkIsVideoLoadedTimoutRef.current);
+
+            const videoDuration = (videoRef?.current?.duration || 0) * NUMBER_OF_MS_IN_A_SECOND
+            if (!videoDuration || isNaN(videoDuration)) {
+                checkIsVideoLoadedTimoutRef.current = setTimeout(() => {
+                    checkIfVideoLoaded();
+                }, MAP_SECTION_INTERVAL)
+                return;
+            } else {
+                mapSectionRanges();
+                validateSections();
+            }
+        }
+
+        checkIfVideoLoaded();
 
         return () => {
             sectionToProgressBarValueMapping.current = {};
         }
-    }, [convertTimeStringToDuration, sections, videoRef])
+    }, [convertTimeStringToMilliseconds, sections, videoRef])
 
     //use sectionToProgressBarValueMapping to set currentVideoSection on progressBarValue change
     useEffect(() => {
@@ -374,11 +420,11 @@ export const CarouselItemViewerProgressBar = ({
             if (typeof duration === "string" || (duration === undefined && index === 0)) {
                 const nextSection = sections[index + 1];
                 let sectionDiff = 0;
-                
+
                 //all sections but the last one
                 if (nextSection !== undefined) {
                     const nextSectionTimestamp = nextSection?.[1] as string;
-                    const nextConverted = convertTimeStringToDuration(nextSectionTimestamp, index + 1);
+                    const nextConverted = convertTimeStringToMilliseconds(nextSectionTimestamp);
                     sectionDiff = Math.abs(nextConverted - amountBeforeCurrent);
                 }
                 percentAcross = sectionDiff as number / NUMBER_OF_MS_IN_A_SECOND / (videoRef?.current?.duration || 1);

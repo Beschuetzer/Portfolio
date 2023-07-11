@@ -150,7 +150,7 @@ const items = [
 			autoPlay: false,
 			muted: true,
 			sections: [
-				['Search Section', 5000],
+				['Search Section', 4400],
 				['Filter Section', 2000],
 				['Options Section'],
 			]
@@ -181,8 +181,8 @@ const items = [
 			muted: true,
 			sections: [
 				['Search Section'],
-				['Filter Section', "0:05:00"],
-				['Options Section', "0:08:00"],
+				['Filter Section', "0:02:00"],
+				['Options Section', "0:08:550"],
 			]
 		}
 	},
