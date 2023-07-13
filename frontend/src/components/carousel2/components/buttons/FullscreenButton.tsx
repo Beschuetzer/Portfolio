@@ -33,33 +33,59 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
       <div
         style={{
           ...colorStyle,
-          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'square-outer', style })
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style })
         }}
-        className={`${fullScreenClassname}-square-outer`}
+        className={`${fullScreenClassname}-top ${fullScreenClassname}-top-left-horizontal`}
       />
       <div
         style={{
-          ...fillStyle,
-          ...stylingLogic.getToolbarBackgroundColorStyle(true),
-          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'square-inner', style })
+          ...colorStyle,
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style })
         }}
-        className={`${fullScreenClassname}-square-inner`}
+        className={`${fullScreenClassname}-top ${fullScreenClassname}-top-right-horizontal`}
       />
       <div
         style={{
-          ...fillStyle,
-          ...stylingLogic.getToolbarBackgroundColorStyle(true),
-          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'rect-horizontal', style })
+          ...colorStyle,
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style })
         }}
-        className={`${fullScreenClassname}-rect-horizontal`}
+        className={`${fullScreenClassname}-bottom ${fullScreenClassname}-bottom-left-horizontal`}
       />
       <div
         style={{
-          ...fillStyle,
-          ...stylingLogic.getToolbarBackgroundColorStyle(true),
-          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, subElementName: 'rect-vertical', style })
+          ...colorStyle,
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style })
         }}
-        className={`${fullScreenClassname}-rect-vertical`}
+        className={`${fullScreenClassname}-bottom ${fullScreenClassname}-bottom-right-horizontal`}
+      />
+
+      <div
+        style={{
+          ...colorStyle,
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style })
+        }}
+        className={`${fullScreenClassname}-top ${fullScreenClassname}-top-left-vertical`}
+      />
+      <div
+        style={{
+          ...colorStyle,
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style })
+        }}
+        className={`${fullScreenClassname}-top ${fullScreenClassname}-top-right-vertical`}
+      />
+      <div
+        style={{
+          ...colorStyle,
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style })
+        }}
+        className={`${fullScreenClassname}-bottom ${fullScreenClassname}-bottom-left-vertical`}
+      />
+      <div
+        style={{
+          ...colorStyle,
+          ...stylingLogic.getCarouselElementChildSizeStlye({ buttonName, style })
+        }}
+        className={`${fullScreenClassname}-bottom ${fullScreenClassname}-bottom-right-vertical`}
       />
     </button>
   )

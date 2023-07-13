@@ -978,27 +978,8 @@ export class StylingLogic {
                     width: parsedWidth / 4,
                 } as CSSProperties;
             case CarouselElement.fullscreenButton:
-                switch (subElementName) {
-                    case "square-outer":
-                        return {
-                            width: parsedWidth * maxHeightFactor,
-                            height: parsedWidth * maxHeightFactor,
-                        }
-                    case "square-inner":
-                        return {
-                            width: parsedWidth * .625,
-                            height: parsedWidth * .625,
-                        }
-                    case "rect-horizontal":
-                        return {
-                            height: parsedWidth * .2083333333,
-                        }
-                    case "rect-vertical":
-                        return {
-                            width: parsedWidth * .2083333333,
-                        }
-                    default:
-                        return buttonSizeStyle;
+                return {
+                    height: parsedWidth / 8,
                 }
             case CarouselElement.playButton:
             case CarouselElement.nextButton:

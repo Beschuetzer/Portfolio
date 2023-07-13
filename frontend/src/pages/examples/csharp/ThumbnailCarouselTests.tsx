@@ -2375,7 +2375,11 @@ const viewingModeVideoControls = (
 							transitionDuration: [[.25], [.1, 850]]
 						},
 						sectionGap: 4,
-					}
+					},
+					// elements: {
+					// 	size: 30,
+					// 	color: 'red',
+					// },
 				},
 			}
 		}}

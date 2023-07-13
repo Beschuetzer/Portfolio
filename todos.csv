@@ -3,7 +3,6 @@ Carousel rework
     --work on thumbnail preview
     --how to update refresh rate so re-renders occur multiple times per second?
     --figure out why swipe handler gets trigger sometimes
-    --figure out how to handle fullscreen button styling when toolbar is embedded in video (could use a default svg?)
     --verify all of the progress bar customization options still work when done 
 
   -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)

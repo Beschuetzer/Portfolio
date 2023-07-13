@@ -57,28 +57,57 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
         margin-top: 0;
     }
 
+    //height is set in StylingLogic.ts
     &--fullscreen {
-        &-square-outer {
-            @include positionButton();
-            background-color: $itemViewerButtonColor;
-        }
+        --size: 3px;
+        --length: calc(50% - (var(--size) * 1.33));
+        --edgeOffset: 2px;
 
-        &-square-inner {
-            @include positionButton();
-            background-color: $itemViewerBackgroundColor;
-        }
+        &-top {
+            width: var(--length);
 
-        &-rect {
-            &-horizontal {
-                @include positionButton();
-                background-color: $itemViewerBackgroundColor;
-                width: 100%;
+            &-left-horizontal {
+                @include positionButton($top: var(--edgeOffset), $left: var(--edgeOffset), $xTranslate: 0, $yTranslate: 0);
             }
 
-            &-vertical {
-                @include positionButton();
-                background-color: $itemViewerBackgroundColor;
-                height: 100%;
+            &-right-horizontal {
+                @include positionButton($top: var(--edgeOffset), $right: var(--edgeOffset), $left: auto, $xTranslate: 0, $yTranslate: 0);
+            }
+
+            &-left-vertical {
+                @include positionButton($top: var(--edgeOffset), $left: var(--edgeOffset), $xTranslate: 0, $yTranslate: 0);
+                transform-origin: top left;
+                transform: rotate(90deg) translate(0%, -100%);
+            }
+
+            &-right-vertical {
+                @include positionButton($top: var(--edgeOffset), $right: var(--edgeOffset), $left: auto, $xTranslate: 0, $yTranslate: 0);
+                transform-origin: top right;
+                transform: rotate(90deg) translate(100%, 0%);
+            }
+        }
+
+        &-bottom {
+            width: var(--length);
+
+            &-left-horizontal {
+                @include positionButton($bottom: var(--edgeOffset), $left: var(--edgeOffset), $top: 'auto', $xTranslate: 0, $yTranslate: 0);
+            }
+
+            &-right-horizontal {
+                @include positionButton($bottom: var(--edgeOffset), $right: var(--edgeOffset), $left: 'auto', $top: 'auto', $xTranslate: 0, $yTranslate: 0);
+            }
+
+            &-left-vertical {
+                @include positionButton($bottom: var(--edgeOffset), $left: var(--edgeOffset), $top: 'auto', $xTranslate: 0, $yTranslate: 0);
+                transform-origin: bottom left;
+                transform: rotate(-90deg) translate(0%, 100%);
+            }
+
+            &-right-vertical {
+                @include positionButton($bottom: var(--edgeOffset), $right: var(--edgeOffset), $left: 'auto', $top: 'auto', $xTranslate: 0, $yTranslate: 0);
+                transform-origin: bottom right;
+                transform: rotate(-90deg) translate(100%, 0%);
             }
         }
 
@@ -265,13 +294,15 @@ $pauseButtonVerticalHeight: calc(#{$buttonWidth} * .85);
     }
 }
 
-@keyframes fullscreen { 
-    0% { 
+@keyframes fullscreen {
+    0% {
         scale: 1;
     }
+
     50% {
         scale: 1.15;
     }
+
     100% {
         scale: 1;
     }
