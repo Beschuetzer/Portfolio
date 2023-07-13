@@ -1,6 +1,7 @@
 Carousel rework
   -work on progressbar rework:
-    --work on thumbnail preview
+    --finish draw snapshot thumbnail
+    --add options for thubnail snapshot 
     --how to update refresh rate so re-renders occur multiple times per second?
     --figure out why swipe handler gets trigger sometimes
     --verify all of the progress bar customization options still work when done 

@@ -648,6 +648,33 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
+    get carouselVideoProgressSeekThumbnailCanvasStyle() {
+        return {
+            height: 100, 
+            width: 178, //1.78x the height for 16:9 ratio
+        } as CSSProperties;
+    }
+
+    get carouselVideoProgressSeekThumbnailContainerStyle() {
+        const progressBarPaddingTop = this.getCarouselVideoProgressHitSlop().paddingTop;
+        const progressBarHeight = this.optionsLogic.videoProgressBarHeight;
+        return {
+            textAlign: 'center',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            background: 'transparent',
+            transform: `translateY(calc(-100% + ${progressBarPaddingTop}${CAROUSEL_SPACING_UNIT} - ${progressBarHeight}${CAROUSEL_SPACING_UNIT}))`,
+        } as CSSProperties;
+    }
+
+    get carouselVideoProgressSeekThumbnailTextStyle() {
+        return {
+            color: 'white',
+            padding: CAROUSEL_ITEM_SPACING_DEFAULT,
+        } as CSSProperties;
+    }
+
     get carouselVideoProgressBackgroundCommon() {
         return {
             height: this.optionsLogic.videoProgressBarHeight,
