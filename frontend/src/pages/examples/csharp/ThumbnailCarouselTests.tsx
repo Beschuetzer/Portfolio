@@ -150,7 +150,7 @@ const items = [
 			autoPlay: false,
 			muted: true,
 			sections: [
-				['Search Section', 4400],
+				['Search Section that is also a really long title', 4400],
 				['Filter Section', 2000],
 				['Options Section'],
 			]

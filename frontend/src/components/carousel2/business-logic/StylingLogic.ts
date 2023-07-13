@@ -28,6 +28,7 @@ import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/Loadin
 import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
 import { RegexpPattern } from "./RegexpPattern";
 import { CarouselItemViewerShortcutIndicatorPosition } from "../components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
+import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBar";
 
 export enum SpacingDirection {
     bottom,
@@ -655,16 +656,21 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoProgressSeekThumbnailContainerStyle() {
+    getCarouselVideoProgressSeekThumbnailContainerStyle(percent: number) {
         const progressBarPaddingTop = this.getCarouselVideoProgressHitSlop().paddingTop;
         const progressBarHeight = this.optionsLogic.videoProgressBarHeight;
+        const left = percent < 0 ? '0%' : percent > 1 ? '100%' : `${percent * 100}%`;
+
+        if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return {
+            display: 'none'
+        } as CSSProperties;
         return {
             textAlign: 'center',
             position: 'absolute',
             top: 0,
-            left: 0,
+            left,
             background: 'transparent',
-            transform: `translateY(calc(-100% + ${progressBarPaddingTop}${CAROUSEL_SPACING_UNIT} - ${progressBarHeight}${CAROUSEL_SPACING_UNIT}))`,
+            transform: `translateY(calc(-100% + ${progressBarPaddingTop}${CAROUSEL_SPACING_UNIT} - ${progressBarHeight}${CAROUSEL_SPACING_UNIT})) translateX(-50%)`,
         } as CSSProperties;
     }
 

@@ -37,7 +37,7 @@ type CarouselItemViewerProgressBarProps = {
 
 const MAP_SECTION_INTERVAL = 100;
 const NEXT_SECTION_OFFSET = .0000000000000001;
-const INITIAL_VALUE = 0;
+export const PROGRESS_BAR_PERCENT_INITIAL_VALUE = 0;
 export const CarouselItemViewerProgressBar = ({
     currentVideoSection,
     isMouseDownRef,
@@ -54,9 +54,9 @@ export const CarouselItemViewerProgressBar = ({
     const screenShotRef = useRef<HTMLCanvasElement>();
     const sectionToProgressBarValueMapping = useRef<SectionToProgressBarValueMapping>({});
     const checkIsVideoLoadedTimoutRef = useRef<any>(-1);
-    const [toolbarWidth, setToolbarWidth] = useState(INITIAL_VALUE)
-    const [percent, setPercent] = useState(INITIAL_VALUE);
-    const [seekPercent, setSeekPercent] = useState(INITIAL_VALUE);
+    const [toolbarWidth, setToolbarWidth] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE)
+    const [percent, setPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
+    const [seekPercent, setSeekPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     const [showDot, setShowDot] = useState(false);
     const { stylingLogic, optionsLogic } = useBusinessLogic({});
     //#endregion
@@ -129,7 +129,7 @@ export const CarouselItemViewerProgressBar = ({
             setCurrentVideoSection && setCurrentVideoSection(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
         }
 
-        setSeekPercent(INITIAL_VALUE);
+        setSeekPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
         setIsVideoPlaying && setIsVideoPlaying(true);
 
         if (videoRef?.current) {
@@ -161,7 +161,7 @@ export const CarouselItemViewerProgressBar = ({
             return;
         };
         setShowDot(false);
-        setSeekPercent(INITIAL_VALUE);
+        setSeekPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     }, [isMouseDownRef])
 
     const onMouseMove = useCallback((e: MouseEvent) => {
@@ -230,11 +230,11 @@ export const CarouselItemViewerProgressBar = ({
     }, [setTimeStrings, videoRef])
 
     useEffect(() => {
-        setPercent(INITIAL_VALUE);
+        setPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     }, [currentItem])
 
     useLayoutEffect(() => {
-        if (toolbarWidth !== undefined && toolbarWidth <= INITIAL_VALUE) {
+        if (toolbarWidth !== undefined && toolbarWidth <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) {
             const newWidth = progressBarRef?.current?.getBoundingClientRect().width;
             if (newWidth !== undefined && newWidth > 0 && toolbarWidth !== undefined) {
                 setToolbarWidth(newWidth);
@@ -462,9 +462,9 @@ export const CarouselItemViewerProgressBar = ({
             backgroundDivs.push(getBackgroundDiv(percentToUse, backgroundLeft, index));
 
             //seek stuff
-            if (seekPercent !== INITIAL_VALUE && index < currentVideoSection) {
+            if (seekPercent !== PROGRESS_BAR_PERCENT_INITIAL_VALUE && index < currentVideoSection) {
                 seekDivs.push(getSeekDiv(percentToUse, backgroundLeft, index))
-            } else if (seekPercent !== INITIAL_VALUE && index === currentVideoSection) {
+            } else if (seekPercent !== PROGRESS_BAR_PERCENT_INITIAL_VALUE && index === currentVideoSection) {
                 const percentAcrossCurrentSectionFactor = (seekPercent - currentSectionTime?.start) / (currentSectionTime?.end - currentSectionTime?.start)
                 foregroundDivs.push(getSeekDiv(percentToUse * percentAcrossCurrentSectionFactor, backgroundLeft, index))
             }
@@ -506,7 +506,7 @@ export const CarouselItemViewerProgressBar = ({
             }
             {renderSections()}
             <div
-                style={stylingLogic.carouselVideoProgressSeekThumbnailContainerStyle}
+                style={stylingLogic.getCarouselVideoProgressSeekThumbnailContainerStyle(seekPercent)}
             >
                 <canvas
                     ref={screenShotRef as any}
