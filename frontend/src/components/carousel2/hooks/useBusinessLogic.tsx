@@ -30,7 +30,6 @@ export const useBusinessLogic = ({
     itemViewerToolbarRef,
     loadingSpinnerOptions,
     options: optionsInput,
-    progressBarValue,
     videoModalRef,
     videoRef
 }: UseBusinessLogicInput): UseBusinessLogicResponse => {
@@ -70,7 +69,6 @@ export const useBusinessLogic = ({
         numberOfPages,
         options,
         optionsLogic,
-        progressBarValue,
         videoModalRef,
         videoRef
     }));
@@ -94,7 +92,6 @@ export const useBusinessLogic = ({
             numberOfPages,
             options,
             optionsLogic: newOptionsLogic,
-            progressBarValue,
             videoModalRef,
             videoRef
         })
@@ -111,7 +108,6 @@ export const useBusinessLogic = ({
         options,
         itemViewerToolbarRef,
         loadingSpinnerOptions,
-        progressBarValue,
         videoModalRef,
         videoRef,
     ])

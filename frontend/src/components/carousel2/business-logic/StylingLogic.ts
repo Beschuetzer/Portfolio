@@ -41,7 +41,6 @@ export type StylingLogicConstructor = {
     loadingSpinnerOptions?: LoadingSpinnerProps['options'];
     options: CarouselOptions | undefined;
     optionsLogic?: OptionsLogic;
-    progressBarValue?: number;
     videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
 } & Partial<Pick<CarouselContextOutputProps, 'currentItem' | 'isFullscreenMode' | 'numberOfPages' | 'items'>>
     & Partial<Pick<CarouselContextInputProps, 'carouselContainerRef'>>
@@ -70,7 +69,6 @@ export class StylingLogic {
     private numberOfPages;
     private options: CarouselOptions;
     private videoModalRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
-    private progressBarValue: number;
     private videoRef;
 
     constructor(constructor: StylingLogicConstructor) {
@@ -86,7 +84,6 @@ export class StylingLogic {
             numberOfPages,
             options,
             videoModalRef,
-            progressBarValue,
             videoRef,
         } = constructor;
         this.carouselContainerRef = carouselContainerRef;
@@ -97,7 +94,6 @@ export class StylingLogic {
         this.loadingSpinnerOptions = loadingSpinnerOptions;
         this.itemViewerToolbarRef = itemViewerToolbarRef || { current: null };
         this.numberOfPages = numberOfPages || 0;
-        this.progressBarValue = progressBarValue || 0;
         this.videoRef = videoRef;
         this.videoModalRef = videoModalRef;
         this.options = options || {};
