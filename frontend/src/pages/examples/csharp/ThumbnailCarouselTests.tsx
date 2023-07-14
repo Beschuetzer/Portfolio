@@ -2370,7 +2370,6 @@ const viewingModeVideoControls = (
 					isVisibleInNonFullscreenMode: true,
 				},
 				toolbar: {
-					
 					progressBar: {
 						dot: {
 							// diameter: {

@@ -33,7 +33,10 @@ type CarouselItemViewerProgressBarProps = {
     isMouseDownRef: React.MutableRefObject<boolean | undefined> | undefined;
     setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>;
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
-    & Required<Pick<CarouselItemViewerToolbarProps, 'setIsVideoPlaying' | 'currentVideoSection' | 'setCurrentVideoSection'>>;
+    & Required<Pick<
+        CarouselItemViewerToolbarProps,
+        'setIsVideoPlaying' | 'currentVideoSection' | 'setCurrentVideoSection' | 'seekPercent' | 'setSeekPercent'
+    >>;
 
 const MAP_SECTION_INTERVAL = 100;
 const NEXT_SECTION_OFFSET = .0000000000000001;
@@ -41,8 +44,10 @@ export const PROGRESS_BAR_PERCENT_INITIAL_VALUE = 0;
 export const CarouselItemViewerProgressBar = ({
     currentVideoSection,
     isMouseDownRef,
+    seekPercent,
     setCurrentVideoSection,
     setIsVideoPlaying,
+    setSeekPercent,
     setTimeStrings,
     videoRef,
 }: CarouselItemViewerProgressBarProps) => {
@@ -51,12 +56,10 @@ export const CarouselItemViewerProgressBar = ({
     const { sections } = currentItem?.video || {};
     const areSectionsGiven = sections && sections.length > 0;
     const progressBarRef = useRef<HTMLDivElement>();
-    const screenShotRef = useRef<HTMLCanvasElement>();
     const sectionToProgressBarValueMapping = useRef<SectionToProgressBarValueMapping>({});
     const checkIsVideoLoadedTimoutRef = useRef<any>(-1);
     const [toolbarWidth, setToolbarWidth] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE)
     const [percent, setPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
-    const [seekPercent, setSeekPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     const [showDot, setShowDot] = useState(false);
     const { stylingLogic, optionsLogic } = useBusinessLogic({});
     //#endregion
@@ -136,7 +139,7 @@ export const CarouselItemViewerProgressBar = ({
             videoRef.current.currentTime = percent * videoRef.current.duration;
             videoRef?.current?.play();
         }
-    }, [isMouseDownRef, percent, setCurrentVideoSection, setIsVideoPlaying, videoRef]);
+    }, [isMouseDownRef, percent, setCurrentVideoSection, setIsVideoPlaying, setSeekPercent, videoRef]);
 
     const onMouseDown = useCallback((e: MouseEvent) => {
         if (isMouseDownRef) {
@@ -154,7 +157,7 @@ export const CarouselItemViewerProgressBar = ({
             setSeekPercent(video.currentTime / video.duration);
             video.currentTime = percent * video.duration;
         }
-    }, [getPercent, isMouseDownRef, setIsVideoPlaying, videoRef]);
+    }, [getPercent, isMouseDownRef, setIsVideoPlaying, setSeekPercent, videoRef]);
 
     const onMouseLeave = useCallback((index: number, e: MouseEvent) => {
         if (isMouseDownRef?.current) {
@@ -162,7 +165,7 @@ export const CarouselItemViewerProgressBar = ({
         };
         setShowDot(false);
         setSeekPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
-    }, [isMouseDownRef])
+    }, [isMouseDownRef, setSeekPercent])
 
     const onMouseMove = useCallback((e: MouseEvent) => {
         setShowDot(true);
@@ -174,7 +177,7 @@ export const CarouselItemViewerProgressBar = ({
         } else {
             setSeekPercent(percent);
         }
-    }, [areSectionsGiven, getCurrentSection, getPercent, isMouseDownRef, setCurrentVideoSection])
+    }, [areSectionsGiven, getCurrentSection, getPercent, isMouseDownRef, setCurrentVideoSection, setSeekPercent])
 
     const onMouseMoveGlobal = useCallback((e: MouseEvent) => {
         if (!isMouseDownRef?.current) return;
@@ -505,24 +508,6 @@ export const CarouselItemViewerProgressBar = ({
                 null
             }
             {renderSections()}
-            <div
-                style={stylingLogic.getCarouselVideoProgressSeekThumbnailContainerStyle(seekPercent)}
-            >
-                <canvas
-                    ref={screenShotRef as any}
-                    style={stylingLogic.carouselVideoProgressSeekThumbnailCanvasStyle}
-                />
-                <div
-                    style={stylingLogic.carouselVideoProgressSeekThumbnailTextStyle}
-                >
-                    <div>
-                        {sections?.[currentVideoSection]?.[0] || ''}
-                    </div>
-                    <div>
-                        {videoRef?.current && !isNaN(seekPercent * videoRef?.current?.duration) ? getFormattedTimeString(seekPercent * videoRef?.current?.duration) : ''}
-                    </div>
-                </div>
-            </div>
         </div>
     )
 }

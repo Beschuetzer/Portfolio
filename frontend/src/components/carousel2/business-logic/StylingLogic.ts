@@ -22,6 +22,7 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT,
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
+    CLASSNAME__TOOLBAR_PROGRESS,
 } from "../constants";
 import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -661,21 +662,30 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressSeekThumbnailContainerStyle(percent: number) {
-        const progressBarPaddingTop = this.getCarouselVideoProgressHitSlop().paddingTop;
-        const progressBarHeight = this.optionsLogic.videoProgressBarHeight;
-        const left = percent < 0 ? '0%' : percent > 1 ? '100%' : `${percent * 100}%`;
+    getCarouselVideoProgressSeekThumbnailContainerStyle(percent: number, toolbarElement: Element) {
+        const isEmbedded = this.optionsLogic.isToolbarInVideo;
+        const toolbarInnerContainerRect = toolbarElement?.querySelector('div')?.getBoundingClientRect();
+        const progressBarRect = toolbarElement?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`)?.getBoundingClientRect();
+        const {paddingBottom: hitSlopBottom} = this.getCarouselVideoProgressHitSlop();
 
-        if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return {
-            display: 'none'
-        } as CSSProperties;
+        const bottom = toolbarInnerContainerRect?.height && progressBarRect?.height ? toolbarInnerContainerRect.height - progressBarRect.height + hitSlopBottom + this.toolbarPaddingBottom + CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT : '25%';
+        const left = percent < 0 ? '0%' : percent > 1 ? '100%' : `${percent * 100}%`;
+        console.log({toolbarInnerContainerRect, bottom});
+        
+
+        // if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return {
+        //     display: 'none'
+        // } as CSSProperties;
         return {
+            pointerEvents:'none',
+            borderRadius: 4,
             textAlign: 'center',
             position: 'absolute',
-            top: 0,
+            bottom,
             left,
-            background: 'transparent',
-            transform: `translateY(calc(-100% + ${progressBarPaddingTop}${CAROUSEL_SPACING_UNIT} - ${progressBarHeight}${CAROUSEL_SPACING_UNIT})) translateX(-50%)`,
+            background: 'red',
+            zIndex: 100000000,
+            transform: `translateX(-50%)`,
         } as CSSProperties;
     }
 
@@ -683,6 +693,7 @@ export class StylingLogic {
         return {
             color: 'white',
             padding: CAROUSEL_ITEM_SPACING_DEFAULT,
+            paddingBottom: 0,
         } as CSSProperties;
     }
 
@@ -854,7 +865,7 @@ export class StylingLogic {
             position: this.optionsLogic.isToolbarInVideo ? "absolute" : "relative",
             width: this.optionsLogic.isToolbarInVideo ? undefined : '100%',
             paddingTop: isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
-            paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - (this.optionsLogic.isToolbarInVideo ? 0 : CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT),
+            paddingBottom: this.toolbarPaddingBottom,
             top: this.optionsLogic.isToolbarInVideo ? '50%' : undefined,
             justifyContent: 'flex-end',
             pointerEvents: 'none',
@@ -890,6 +901,10 @@ export class StylingLogic {
             justifyContent: "flexEnd",
             alignItems: "center",
         } as CSSProperties;
+    }
+
+    get toolbarPaddingBottom() {
+        return this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - (this.optionsLogic.isToolbarInVideo ? 0 : CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT);
     }
     //#endregion
 

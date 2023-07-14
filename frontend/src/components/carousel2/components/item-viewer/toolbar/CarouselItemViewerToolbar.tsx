@@ -40,8 +40,10 @@ export type CarouselItemViewerToolbarProps = {
     onClose?: () => void;
     onNextItemClick?: () => void;
     onPreviousItemClick?: () => void;
+    seekPercent?: number;
     setCurrentVideoSection?: React.Dispatch<React.SetStateAction<number>>;
     setIsVideoPlaying?: React.Dispatch<React.SetStateAction<boolean>>;
+    setSeekPercent?: React.Dispatch<React.SetStateAction<number>>;
     videoRef?: React.MutableRefObject<HTMLVideoElement | undefined> | null;
 };
 
@@ -55,8 +57,10 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     onClose = () => null,
     onNextItemClick = () => null,
     onPreviousItemClick = () => null,
+    seekPercent = 0,
     setCurrentVideoSection,
     setIsVideoPlaying = () => null,
+    setSeekPercent = () => null,
     videoRef,
 }, ref) => {
     //#region Init
@@ -538,6 +542,8 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                 setCurrentVideoSection={setCurrentVideoSection || doNothing}
                                 setIsVideoPlaying={setIsVideoPlaying}
                                 setTimeStrings={setTimeStrings}
+                                setSeekPercent={setSeekPercent}
+                                seekPercent={seekPercent}
                                 videoRef={videoRef}
                             /> : null
                     }

@@ -10,6 +10,8 @@ import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 import { useResetCarouselVideoCurrentSection } from '../hooks/useResetCarouselVideoCurrentSection';
+import { CarouselVideoProgressBarScreenshotPreview } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotPreview';
+import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from './item-viewer/progress-bar/CarouselItemViewerProgressBar';
 
 /**
 *Each section is comprised of a description string and a duration (in ms)
@@ -43,6 +45,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
 
     const { autoPlay, loop, muted } = videoProps || {};
     const [isLoaded, setIsLoaded] = useState(false);
+    const [seekPercent, setSeekPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [currentVideoSection, setCurrentVideoSection] = useState(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
     const videoRef = useRef<HTMLVideoElement>();
@@ -192,8 +195,16 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 onNextItemClick={handleItemNavigation}
                 onPreviousItemClick={handleItemNavigation}
                 ref={itemViewerToolbarRef as any}
+                seekPercent={seekPercent}
                 setCurrentVideoSection={setCurrentVideoSection}
                 setIsVideoPlaying={setIsVideoPlaying}
+                setSeekPercent={setSeekPercent}
+                videoRef={videoRef}
+            />
+            <CarouselVideoProgressBarScreenshotPreview
+                currentVideoSection={currentVideoSection}
+                seekPercent={seekPercent}
+                toolbarRef={itemViewerToolbarRef as any}
                 videoRef={videoRef}
             />
         </>
