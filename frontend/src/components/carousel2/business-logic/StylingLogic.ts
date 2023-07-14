@@ -869,11 +869,12 @@ export class StylingLogic {
     }
 
     get toolbarInnerContainerStyle() {
+        const isVideo = getIsVideo(this.currentItem);
         const progressBarHitSlop = this.optionsLogic.videoProgressBarHitSlop;
         return {
             paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
             paddingRight: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
-            marginTop: Math.max(CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT - progressBarHitSlop.bottom, 0),
+            marginTop: isVideo ? Math.max(CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT - progressBarHitSlop.bottom, 0) : 0,
         } as CSSProperties;
     }
 
@@ -1135,8 +1136,10 @@ export class StylingLogic {
     }
 
     getCarouselShortcutIndicatorTextStlye(position: CarouselItemViewerShortcutIndicatorPosition) {
+        const isVideo = getIsVideo(this.currentItem);
+        const { paddingTop: hitSlopTop, paddingBottom: hitSlopBottom } = this.getCarouselVideoProgressHitSlop();
         const topStyle = {
-            top: CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT * -1.5,
+            top: this.optionsLogic.isToolbarInVideo ? -hitSlopTop - hitSlopBottom + (!isVideo ? CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT : 0) : -hitSlopBottom - (isVideo ? 2 : .5) * CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT
         };
         const commonStyle = {
             zIndex: 1000000000000,
