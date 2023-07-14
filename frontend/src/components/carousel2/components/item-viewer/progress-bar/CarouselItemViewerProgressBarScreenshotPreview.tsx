@@ -5,13 +5,12 @@ import { useCarouselContext } from '../../../context';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
 
 type CarouselItemViewerProgressBarScreenshotPreviewProps = {
-    seekPercent: number;
     toolbarRef: React.MutableRefObject<HTMLDivElement>;
-} & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'currentVideoSection'>
+} & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'currentVideoSection' | 'percent'>
 
 export const CarouselVideoProgressBarScreenshotPreview = ({
     currentVideoSection,
-    seekPercent,
+    percent = 0,
     toolbarRef,
     videoRef,
 }: CarouselItemViewerProgressBarScreenshotPreviewProps) => {
@@ -23,7 +22,7 @@ export const CarouselVideoProgressBarScreenshotPreview = ({
 
     return (
         <div
-            style={stylingLogic.getCarouselVideoProgressSeekThumbnailContainerStyle(seekPercent, toolbarRef.current)}
+            style={stylingLogic.getCarouselVideoProgressSeekThumbnailContainerStyle(percent, toolbarRef.current)}
         >
             <canvas
                 ref={screenShotRef as any}
@@ -36,7 +35,7 @@ export const CarouselVideoProgressBarScreenshotPreview = ({
                     {currentVideoSection !== undefined ? sections?.[currentVideoSection]?.[0] : ''}
                 </div>
                 <div>
-                    {videoRef?.current && !isNaN(seekPercent * videoRef?.current?.duration) ? getFormattedTimeString(seekPercent * videoRef?.current?.duration) : ''}
+                    {videoRef?.current && !isNaN(percent * videoRef?.current?.duration) ? getFormattedTimeString(percent * videoRef?.current?.duration) : ''}
                 </div>
             </div>
         </div>

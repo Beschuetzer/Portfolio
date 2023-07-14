@@ -45,6 +45,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
 
     const { autoPlay, loop, muted } = videoProps || {};
     const [isLoaded, setIsLoaded] = useState(false);
+    const [percent, setPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     const [seekPercent, setSeekPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [currentVideoSection, setCurrentVideoSection] = useState(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
@@ -195,6 +196,8 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 onNextItemClick={handleItemNavigation}
                 onPreviousItemClick={handleItemNavigation}
                 ref={itemViewerToolbarRef as any}
+                percent={percent}
+                setPercent={setPercent}
                 seekPercent={seekPercent}
                 setCurrentVideoSection={setCurrentVideoSection}
                 setIsVideoPlaying={setIsVideoPlaying}
@@ -203,7 +206,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
             />
             <CarouselVideoProgressBarScreenshotPreview
                 currentVideoSection={currentVideoSection}
-                seekPercent={seekPercent}
+                percent={isProgressBarMouseDownRef.current ? percent : seekPercent}
                 toolbarRef={itemViewerToolbarRef as any}
                 videoRef={videoRef}
             />

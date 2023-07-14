@@ -29,7 +29,6 @@ import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/Loadin
 import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
 import { RegexpPattern } from "./RegexpPattern";
 import { CarouselItemViewerShortcutIndicatorPosition } from "../components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
-import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBar";
 
 export enum SpacingDirection {
     bottom,
@@ -663,7 +662,6 @@ export class StylingLogic {
     }
 
     getCarouselVideoProgressSeekThumbnailContainerStyle(percent: number, toolbarElement: Element) {
-        const isEmbedded = this.optionsLogic.isToolbarInVideo;
         const toolbarInnerContainerRect = toolbarElement?.querySelector('div')?.getBoundingClientRect();
         const progressBarRect = toolbarElement?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`)?.getBoundingClientRect();
         const {paddingBottom: hitSlopBottom} = this.getCarouselVideoProgressHitSlop();
