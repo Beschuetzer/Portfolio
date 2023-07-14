@@ -258,14 +258,18 @@ export class StylingLogic {
         const height = this.optionsLogic.itemViewerPreviewHeight;
         const padding = this.optionsLogic.itemViewerPreviewTextContainerPadding;
         const verticalAlignment = this.optionsLogic.itemViewerPreviewTextContainerVerticalAlignment;
-        const topFactor = this.isFullscreenMode ? 0 : .458;
-        const top = (height * -1) - CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT * topFactor;
+        const hitSlopTop = this.getCarouselVideoProgressHitSlop().paddingTop
+        const top = 0;
+        const right = this.toolbarInnerContainerStyle.paddingRight;
+        const isVideo = getIsVideo(this.currentItem);
+        const translateYSpacing = `-${CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT}${CAROUSEL_SPACING_UNIT}`;
+        const translateYAmount = this.optionsLogic.isToolbarInVideo && isVideo ? `calc(-100% + ${hitSlopTop}${CAROUSEL_SPACING_UNIT} + ${translateYSpacing})` : `calc(-100% + ${translateYSpacing})`;
 
         return {
             width,
             height,
             top,
-            right: this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar),
+            right,
             backgroundColor: convertHexToRgba(background, parseFloat(opacity as string)),
             border: border,
             borderRadius: borderRadius,
@@ -274,6 +278,7 @@ export class StylingLogic {
             paddingLeft: padding.left,
             paddingRight: padding.right,
             alignItems: verticalAlignment,
+            transform: `translateY(${translateYAmount})`
         } as CSSProperties;
     }
 
@@ -875,6 +880,7 @@ export class StylingLogic {
 
     get toolbarOuterContainerStyle() {
         return {
+            position: 'relative',
             pointerEvents: "all",
             width: "100%",
             display: "flex",

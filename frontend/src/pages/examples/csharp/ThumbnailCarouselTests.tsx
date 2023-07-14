@@ -2364,8 +2364,13 @@ const viewingModeVideoControls = (
 			itemViewer: {
 				// disableSwiping: false,
 			},
+			
 			styling: {
+				itemViewerPreview: {
+					isVisibleInNonFullscreenMode: true,
+				},
 				toolbar: {
+					
 					progressBar: {
 						dot: {
 							// diameter: {
