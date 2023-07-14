@@ -870,11 +870,12 @@ export class StylingLogic {
 
     get toolbarInnerContainerStyle() {
         const isVideo = getIsVideo(this.currentItem);
+        const isEmbedded = this.optionsLogic.isToolbarInVideo;
         const progressBarHitSlop = this.optionsLogic.videoProgressBarHitSlop;
         return {
-            paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
-            paddingRight: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
-            marginTop: isVideo ? Math.max(CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT - progressBarHitSlop.bottom, 0) : 0,
+            paddingLeft: isEmbedded && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
+            paddingRight: isEmbedded && !this.isFullscreenMode ? CAROUSEL_ITEM_SPACING_DEFAULT : undefined,
+            marginTop: isVideo && isEmbedded ? Math.max(CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT - progressBarHitSlop.bottom, 0) : 0,
         } as CSSProperties;
     }
 

@@ -183,12 +183,16 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     }, [itemContainerRef])
 
     const handleAutoHide = useCallback((e?: MouseEvent) => {
+        if (!optionsLogic.isToolbarInVideo) {
+            showToolbar();
+            return;
+        }
         stopPropagation(e);
         clearTimeout(shouldHideTimoutRef.current);
         document.body.style.removeProperty('cursor');
-        
+
         if ((!isFullscreenMode && isVideo && !isVideoPlaying) || optionsLogic.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
-        
+
         const point = getPoint(e);
         const isInsideVideo = getIsPointInsideElement(point, videoRef?.current);
 
@@ -201,7 +205,17 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             document.body.style.setProperty('cursor', 'none', 'important');
             hiddenInputRef.current?.focus();
         }, optionsLogic.autoHideToolbarDuration);
-    }, [isFullscreenMode, isVideo, isVideoPlaying, optionsLogic.autoHideToolbarDuration, videoRef, showToolbar, hideToolbar, hiddenInputRef]);
+    }, [
+        optionsLogic.isToolbarInVideo,
+        optionsLogic.autoHideToolbarDuration,
+        isFullscreenMode,
+        isVideo,
+        isVideoPlaying,
+        videoRef,
+        showToolbar,
+        hideToolbar,
+        hiddenInputRef
+    ]);
 
     function handlePlayPauseUnited() {
         if (getIsVideoPlaying(videoRef?.current)) {

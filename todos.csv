@@ -1,6 +1,4 @@
 Carousel rework
-  -fix issue where toolbar hides in non embedded case
-  -fix issue with margin top on toolbar description for non-embedded case
   -work on progressbar rework:
     --finish draw snapshot thumbnail
     --add options for thubnail snapshot 
