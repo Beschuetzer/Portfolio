@@ -699,19 +699,14 @@ export class StylingLogic {
             const leftBound = progressBarRect?.left;
             console.log({ viewerLeft, leftBound });
 
-            // if (viewerLeft <= leftBound) {
-            //     // left = "0%"
-
-            //     if (screenShotTextContainerRect?.left < screenShotCanvasRect.left) {
-            //         translateX = `${Math.abs(screenShotTextContainerRect?.left - screenShotCanvasRect.left)}${CAROUSEL_SPACING_UNIT}`
-            //     } else {
-            //         translateX = '0%'
-            //     }
-            // }
+            if (viewerLeft <= leftBound) {
+                left = paddingBetweenContainerAndVideo;
+                translateX = `${Math.abs(screenShotTextContainerRect?.left - screenShotCanvasRect.left) - paddingBetweenContainerAndVideo}${CAROUSEL_SPACING_UNIT}`
+            }
         }
 
 
-        console.log({ paddingBetweenContainerAndVideo, videoRectWidth: videoRect?.width, percentToUse, left, toolbarInnerContainerRect, videoRef: videoRef?.current, toolbarElement, bottom });
+        // console.log({ paddingBetweenContainerAndVideo, videoRectWidth: videoRect?.width, percentToUse, left, toolbarInnerContainerRect, videoRef: videoRef?.current, toolbarElement, bottom });
 
         // if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return {
         //     display: 'none'
