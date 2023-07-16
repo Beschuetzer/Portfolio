@@ -669,12 +669,15 @@ export class StylingLogic {
 
     getCarouselVideoProgressSeekThumbnailContainerStyle(
         percent: number,
+        videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined | null,
         toolbarElement: Element,
         screenShotTextElement: Element | undefined | null,
         screenShotCanvasElement: Element | undefined
     ) {
         const { width } = this.optionsLogic.videoProgressBarScreenshotViewer;
+        const { left: paddingBetweenContainerAndVideo } = this.toolbarHorizontalSpacing;
 
+        const videoRect = videoRef?.current?.getBoundingClientRect();
         const toolbarInnerContainerRect = toolbarElement?.querySelector('div')?.getBoundingClientRect();
         const screenShotTextContainerRect = screenShotTextElement?.getBoundingClientRect();
         const screenShotCanvasRect = screenShotCanvasElement?.getBoundingClientRect();
@@ -688,25 +691,27 @@ export class StylingLogic {
 
 
         let translateX = '-50%'
-        let left = percent < 0 ? '0%' : percent > 1 ? '100%' : `${percent * 100}%`;
-        if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect) {
+
+        const percentToUse = percent <= 0 ? 0 : percent >= 1 ? 1 : percent;
+        let left = paddingBetweenContainerAndVideo + (videoRect?.width || 200) * percentToUse;
+        if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect && videoRect) {
             const viewerLeft = Math.min(screenShotTextContainerRect?.left, screenShotCanvasRect.left);
             const leftBound = progressBarRect?.left;
-            console.log({viewerLeft, leftBound});
-            
-            if (viewerLeft <= leftBound) {
-                left = "0%"
+            console.log({ viewerLeft, leftBound });
 
-                if (screenShotTextContainerRect?.left < screenShotCanvasRect.left) {
-                    translateX = `${Math.abs(screenShotTextContainerRect?.left - screenShotCanvasRect.left)}${CAROUSEL_SPACING_UNIT}`
-                } else {
-                    translateX = '0%'
-                }
-            }
+            // if (viewerLeft <= leftBound) {
+            //     // left = "0%"
+
+            //     if (screenShotTextContainerRect?.left < screenShotCanvasRect.left) {
+            //         translateX = `${Math.abs(screenShotTextContainerRect?.left - screenShotCanvasRect.left)}${CAROUSEL_SPACING_UNIT}`
+            //     } else {
+            //         translateX = '0%'
+            //     }
+            // }
         }
-        
-        
-        // console.log({ toolbarInnerContainerRect, bottom });
+
+
+        console.log({ paddingBetweenContainerAndVideo, videoRectWidth: videoRect?.width, percentToUse, left, toolbarInnerContainerRect, videoRef: videoRef?.current, toolbarElement, bottom });
 
         // if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return {
         //     display: 'none'
@@ -719,7 +724,7 @@ export class StylingLogic {
             textAlign: 'center',
             position: 'absolute',
             bottom,
-            left,
+            left: `${left}${CAROUSEL_SPACING_UNIT}`,
             background: 'transparent',
             zIndex: 100000000,
             transform: `translateX(${translateX})`,
@@ -736,8 +741,8 @@ export class StylingLogic {
         return {
             color: 'white',
             position: 'absolute',
-            width: '10000px',
-            transform: 'translateX(-4909px)',
+            width: '10000px', //this is a hack to align this centered since translateX(-50%) doesn't work
+            transform: 'translateX(-4912px)', //this is a hack to align this centered since translateX(-50%) doesn't work
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -896,10 +901,18 @@ export class StylingLogic {
         }
     }
 
+    get toolbarHorizontalSpacing() {
+        const left = this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT);
+        const right = this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT);
+        return {
+            left,
+            right
+        }
+    }
+
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItem);
-        const leftSpacing = this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT);
-        const rightSpacing = this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT);
+        const { left: leftSpacing, right: rightSpacing } = this.toolbarHorizontalSpacing;
 
         const paddingHorizontalStyle = {
             paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : leftSpacing,

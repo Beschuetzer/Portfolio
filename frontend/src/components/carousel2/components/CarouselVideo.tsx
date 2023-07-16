@@ -10,7 +10,7 @@ import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 import { useResetCarouselVideoCurrentSection } from '../hooks/useResetCarouselVideoCurrentSection';
-import { CarouselVideoProgressBarScreenshotViewer } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotPreview';
+import { CarouselVideoProgressBarScreenshotViewer } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer';
 import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from './item-viewer/progress-bar/CarouselItemViewerProgressBar';
 
 /**
