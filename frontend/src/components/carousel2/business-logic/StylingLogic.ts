@@ -29,6 +29,7 @@ import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/Loadin
 import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
 import { RegexpPattern } from "./RegexpPattern";
 import { CarouselItemViewerShortcutIndicatorPosition } from "../components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
+import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBar";
 
 export enum SpacingDirection {
     bottom,
@@ -666,22 +667,46 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressSeekThumbnailContainerStyle(percent: number, toolbarElement: Element, screenShotTextContainerElement: Element | undefined) {
+    getCarouselVideoProgressSeekThumbnailContainerStyle(
+        percent: number,
+        toolbarElement: Element,
+        screenShotTextElement: Element | undefined | null,
+        screenShotCanvasElement: Element | undefined
+    ) {
         const { width } = this.optionsLogic.videoProgressBarScreenshotViewer;
 
         const toolbarInnerContainerRect = toolbarElement?.querySelector('div')?.getBoundingClientRect();
-        const screenShotTextContainerRect = screenShotTextContainerElement?.getBoundingClientRect();
-        const progressBarRect = toolbarElement?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`)?.getBoundingClientRect();
+        const screenShotTextContainerRect = screenShotTextElement?.getBoundingClientRect();
+        const screenShotCanvasRect = screenShotCanvasElement?.getBoundingClientRect();
+        const progressBarElement = toolbarElement?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`);
+        const progressBarRect = progressBarElement?.getBoundingClientRect();
         const { paddingBottom: hitSlopBottom } = this.getCarouselVideoProgressHitSlop();
 
         const bottom = toolbarInnerContainerRect?.height && progressBarRect?.height && screenShotTextContainerRect?.height
             ? toolbarInnerContainerRect.height - progressBarRect.height + screenShotTextContainerRect.height + hitSlopBottom + this.toolbarPaddingBottom + CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT
             : '25%';
 
-        const left = percent < 0 ? '0%' : percent > 1 ? '100%' : `${percent * 100}%`;
-        const translateX = '-50%'
-        console.log({ toolbarInnerContainerRect, bottom });
 
+        let translateX = '-50%'
+        let left = percent < 0 ? '0%' : percent > 1 ? '100%' : `${percent * 100}%`;
+        if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect) {
+            const viewerLeft = Math.min(screenShotTextContainerRect?.left, screenShotCanvasRect.left);
+            const leftBound = progressBarRect?.left;
+            console.log({viewerLeft, leftBound});
+            
+            if (viewerLeft <= leftBound) {
+                left = "0%"
+
+                if (screenShotTextContainerRect?.left < screenShotCanvasRect.left) {
+                    translateX = `${Math.abs(screenShotTextContainerRect?.left - screenShotCanvasRect.left)}${CAROUSEL_SPACING_UNIT}`
+                } else {
+                    translateX = '0%'
+                }
+            }
+        }
+        
+        
+        // console.log({ toolbarInnerContainerRect, bottom });
 
         // if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return {
         //     display: 'none'

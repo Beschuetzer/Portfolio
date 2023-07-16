@@ -4,6 +4,7 @@ import { getFormattedTimeString } from '../../../utils';
 import { useCarouselContext } from '../../../context';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
 import { CLASSNAME__VIDEO_SCREENSHOT_VIEWER, CLASSNAME__VIDEO_SCREENSHOT_VIEWER_TEXT_CONTAINER } from '../../../constants';
+import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from './CarouselItemViewerProgressBar';
 
 type CarouselItemViewerProgressBarScreenshotPreviewProps = {
     toolbarRef: React.MutableRefObject<HTMLDivElement>;
@@ -22,10 +23,13 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
     const screenShotCanvasRef = useRef<HTMLCanvasElement>();
     const screenShotTextContainerRef = useRef<HTMLDivElement>();
 
+    if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return null;
     return (
         <div
             className={CLASSNAME__VIDEO_SCREENSHOT_VIEWER}
-            style={stylingLogic.getCarouselVideoProgressSeekThumbnailContainerStyle(percent, toolbarRef.current, screenShotTextContainerRef.current)}
+            style={stylingLogic.getCarouselVideoProgressSeekThumbnailContainerStyle(
+                percent, toolbarRef.current, screenShotTextContainerRef.current?.querySelector('div'), screenShotCanvasRef.current
+            )}
         >
             <canvas
                 ref={screenShotCanvasRef as any}
