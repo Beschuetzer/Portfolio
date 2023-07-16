@@ -35,6 +35,7 @@ export const CLASSNAME__TOOLBAR_PROGRESS = getClassname({ elementName: `${CLASSN
 export const CLASSNAME__TOOLBAR_RIGHT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` });
 export const CLASSNAME__VIDEO_MODAL_BUTTON_TOP = `${CLASSNAME__ROOT}-video-modal-custom-button-top`;
 export const CLASSNAME__VIDEO_MODAL_BUTTON_RIGHT = `${CLASSNAME__ROOT}-video-modal-custom-button-right`;
+export const CLASSNAME__VIDEO_SCREENSHOT_VIEWER = `${getClassname({elementName: 'video-screenshot-viewer'})}`;
 //#endregion
 
 //#region Styling
@@ -89,9 +90,10 @@ export const CAROUSEL_SPACING_UNIT = 'px'
 export const CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT = 24;
 export const CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT = 18;
 export const CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL = -1;
-export const CAROUSEL_VIDEO_SECTION_MIN_LENGTH = 500;
-export const CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT = 18;
 export const CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT = {top: 20, bottom: 20, left: 20, right: 20};
+export const CAROUSEL_VIDEO_SECTION_MIN_LENGTH = 500;
+export const CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT = 175;
+export const CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT = 18;
 export const CURRENT_VIDEO_CURRENT_TIME_DEFAULT = 0;
 export const MOBILE_PIXEL_WIDTH = 655;
 //#endregion

@@ -10,7 +10,7 @@ import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 import { useResetCarouselVideoCurrentSection } from '../hooks/useResetCarouselVideoCurrentSection';
-import { CarouselVideoProgressBarScreenshotPreview } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotPreview';
+import { CarouselVideoProgressBarScreenshotViewer } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotPreview';
 import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from './item-viewer/progress-bar/CarouselItemViewerProgressBar';
 
 /**
@@ -204,7 +204,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 setSeekPercent={setSeekPercent}
                 videoRef={videoRef}
             />
-            <CarouselVideoProgressBarScreenshotPreview
+            <CarouselVideoProgressBarScreenshotViewer
                 currentVideoSection={currentVideoSection}
                 percent={isProgressBarMouseDownRef.current ? percent : seekPercent}
                 toolbarRef={itemViewerToolbarRef as any}

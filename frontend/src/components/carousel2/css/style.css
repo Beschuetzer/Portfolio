@@ -1054,6 +1054,13 @@
 .thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-right {
   --rotation: 45deg;
 }
+.thumbnail-carousel__video-screenshot-viewer div {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .thumbnail-carousel--d-none {
   display: none;
 }

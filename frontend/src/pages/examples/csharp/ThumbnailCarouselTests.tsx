@@ -2379,7 +2379,11 @@ const viewingModeVideoControls = (
 							transitionDuration: [[.25], [.1, 850]]
 						},
 						sectionGap: 4,
+						screenshotViewer: {
+							// width: 125,
+						},
 					},
+					
 					// elements: {
 					// 	size: 30,
 					// 	color: 'red',

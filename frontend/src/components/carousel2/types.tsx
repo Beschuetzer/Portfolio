@@ -233,6 +233,17 @@ export type CarouselSections = {
                 bottom?: number;
             }
             /**
+            *This is the popup that shows a screenshot of the video at a given time (on hover/seek)
+            **/
+            screenshotViewer?: {
+                /**
+                *Width of the viewer in px.  
+                *Default is 150px.  
+                *Height is .5625 of this value (16:9 aspect ratio)
+                **/
+                width?: number;
+            }
+            /**
             *The amount of space between each video section. 
             *Only applicable if `CarouselItemProps.video.sections` is given.
             **/

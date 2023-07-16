@@ -324,6 +324,12 @@
 
             // @include closeButton;
         }
+
+        &-screenshot-viewer {
+            & div {
+                @include maxTextLineCount(1);
+            }
+        }
     }
 
     &--d-none {

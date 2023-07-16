@@ -655,19 +655,28 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressSeekThumbnailCanvasStyle() {
+        const { width, height } = this.optionsLogic.videoProgressBarScreenshotViewer;
+
         return {
-            height: 100, 
-            width: 178, //1.78x the height for 16:9 ratio
+            border: '2px solid white',
+            borderRadius: 2,
+            backgroundColor: 'blue',
+            height,
+            width,
         } as CSSProperties;
     }
 
     getCarouselVideoProgressSeekThumbnailContainerStyle(percent: number, toolbarElement: Element) {
+        const { width } = this.optionsLogic.videoProgressBarScreenshotViewer;
+
         const toolbarInnerContainerRect = toolbarElement?.querySelector('div')?.getBoundingClientRect();
         const progressBarRect = toolbarElement?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`)?.getBoundingClientRect();
         const {paddingBottom: hitSlopBottom} = this.getCarouselVideoProgressHitSlop();
 
         const bottom = toolbarInnerContainerRect?.height && progressBarRect?.height ? toolbarInnerContainerRect.height - progressBarRect.height + hitSlopBottom + this.toolbarPaddingBottom + CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT : '25%';
+
         const left = percent < 0 ? '0%' : percent > 1 ? '100%' : `${percent * 100}%`;
+        const translateX = '-50%'
         console.log({toolbarInnerContainerRect, bottom});
         
 
@@ -675,23 +684,29 @@ export class StylingLogic {
         //     display: 'none'
         // } as CSSProperties;
         return {
+            padding: 10,
+            width: width + 20,
             pointerEvents:'none',
             borderRadius: 4,
             textAlign: 'center',
             position: 'absolute',
             bottom,
             left,
-            background: 'red',
+            background: 'transparent',
             zIndex: 100000000,
-            transform: `translateX(-50%)`,
+            transform: `translateX(${translateX})`,
         } as CSSProperties;
     }
 
     get carouselVideoProgressSeekThumbnailTextStyle() {
         return {
+            display: 'webkit-box',
+            webkitLineClamp: 1,
+            webkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
             color: 'white',
-            padding: CAROUSEL_ITEM_SPACING_DEFAULT,
-            paddingBottom: 0,
+            paddingInline: CAROUSEL_ITEM_SPACING_DEFAULT,
         } as CSSProperties;
     }
 

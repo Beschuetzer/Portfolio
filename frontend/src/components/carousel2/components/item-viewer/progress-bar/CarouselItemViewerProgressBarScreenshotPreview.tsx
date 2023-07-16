@@ -3,12 +3,13 @@ import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { getFormattedTimeString } from '../../../utils';
 import { useCarouselContext } from '../../../context';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
+import { CLASSNAME__VIDEO_SCREENSHOT_VIEWER } from '../../../constants';
 
 type CarouselItemViewerProgressBarScreenshotPreviewProps = {
     toolbarRef: React.MutableRefObject<HTMLDivElement>;
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'currentVideoSection' | 'percent'>
 
-export const CarouselVideoProgressBarScreenshotPreview = ({
+export const CarouselVideoProgressBarScreenshotViewer = ({
     currentVideoSection,
     percent = 0,
     toolbarRef,
@@ -22,6 +23,7 @@ export const CarouselVideoProgressBarScreenshotPreview = ({
 
     return (
         <div
+            className={CLASSNAME__VIDEO_SCREENSHOT_VIEWER}
             style={stylingLogic.getCarouselVideoProgressSeekThumbnailContainerStyle(percent, toolbarRef.current)}
         >
             <canvas

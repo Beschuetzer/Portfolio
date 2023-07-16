@@ -30,7 +30,8 @@ import {
     CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT,
     CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT,
     AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT,
-    CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT
+    CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
+    CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT
 } from "../constants";
 import { CarouselOptions } from "../types";
 import { convertHexToRgba, getCurrentValue } from "../utils";
@@ -231,10 +232,6 @@ export class OptionsLogic {
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
     }
 
-    get videoProgressBarSectionGap() {
-        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.sectionGap, CAROUSEL_PROGRESS_BAR_SECTION_GAP, this.isFullscreenMode);
-    }
-
     get videoProgressBarDotSettings() {
         const diameter = getCurrentValue(this.options.styling?.toolbar?.progressBar?.dot?.diameter, CAROUSEL_PROGRESS_BAR_DOT_DIAMETER, this.isFullscreenMode);
         const isAlwaysVisible = getCurrentValue(this.options.styling?.toolbar?.progressBar?.dot?.isAlwaysVisible, CAROUSEL_PROGRESS_BAR_DOT_IS_ALWAYS_VISIBLE, this.isFullscreenMode);
@@ -265,6 +262,19 @@ export class OptionsLogic {
         const sections = this.currentItem?.video?.sections;
         const defaultToUse = isToolbarInVideo && sections && sections?.length > 1 ? CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT : CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT;
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.scaleAmount, defaultToUse, this.isFullscreenMode);
+    }
+
+    get videoProgressBarScreenshotViewer() {
+        const width = getCurrentValue(this.options.styling?.toolbar?.progressBar?.screenshotViewer?.width, CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT, this.isFullscreenMode);
+
+        return {
+            width,
+            height: width * 9 / 16
+        }
+    }
+    
+    get videoProgressBarSectionGap() {
+        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.sectionGap, CAROUSEL_PROGRESS_BAR_SECTION_GAP, this.isFullscreenMode);
     }
 
     get videoProgressBarSeekColor() {
