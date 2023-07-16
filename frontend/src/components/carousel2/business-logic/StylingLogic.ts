@@ -690,21 +690,21 @@ export class StylingLogic {
             : '25%';
 
 
-        let translateX = '-50%'
 
         const percentToUse = percent <= 0 ? 0 : percent >= 1 ? 1 : percent;
+        let translateX = '-50%'
         let left = paddingBetweenContainerAndVideo + (videoRect?.width || 200) * percentToUse;
         if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect && videoRect) {
             const viewerLeft = Math.min(screenShotTextContainerRect?.left, screenShotCanvasRect.left);
             const leftBound = progressBarRect?.left;
-            console.log({ viewerLeft, leftBound });
+            const pixelsFromVideoLeft = videoRect.width * percentToUse;
+            const screenShotViewerCenter = Math.abs(leftBound - screenShotCanvasRect.left) + screenShotCanvasRect.width / 2;
 
-            if (viewerLeft <= leftBound) {
+            if (viewerLeft <= leftBound && pixelsFromVideoLeft < screenShotViewerCenter) {
                 left = paddingBetweenContainerAndVideo;
                 translateX = `${Math.abs(screenShotTextContainerRect?.left - screenShotCanvasRect.left) - paddingBetweenContainerAndVideo}${CAROUSEL_SPACING_UNIT}`
             }
         }
-
 
         // console.log({ paddingBetweenContainerAndVideo, videoRectWidth: videoRect?.width, percentToUse, left, toolbarInnerContainerRect, videoRef: videoRef?.current, toolbarElement, bottom });
 
