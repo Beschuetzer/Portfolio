@@ -693,19 +693,47 @@ export class StylingLogic {
 
         const percentToUse = percent <= 0 ? 0 : percent >= 1 ? 1 : percent;
         let translateX = '-50%'
-        let left = paddingBetweenContainerAndVideo + (videoRect?.width || 200) * percentToUse;
-        if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect && videoRect) {
-            const viewerLeft = Math.min(screenShotTextContainerRect?.left, screenShotCanvasRect.left);
-            const leftBound = progressBarRect?.left;
-            const pixelsFromVideoLeft = videoRect.width * percentToUse;
-            const screenShotViewerCenter = Math.abs(leftBound - screenShotCanvasRect.left) + screenShotCanvasRect.width / 2;
+        let left = `${paddingBetweenContainerAndVideo + (videoRect?.width || 200) * percentToUse}${CAROUSEL_SPACING_UNIT}`;
+        let right = "auto";
 
-            if (viewerLeft <= leftBound && pixelsFromVideoLeft < screenShotViewerCenter) {
-                left = paddingBetweenContainerAndVideo;
-                translateX = `${Math.abs(screenShotTextContainerRect?.left - screenShotCanvasRect.left) - paddingBetweenContainerAndVideo}${CAROUSEL_SPACING_UNIT}`
+        //handling right-bound case
+        if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect && videoRect) {
+            const viewerRight = Math.max(screenShotTextContainerRect?.right, screenShotCanvasRect.right);
+            const rightBound = progressBarRect?.right;
+            const cursorLeftPosition = videoRect.left + videoRect.width * percentToUse;
+
+            let offset = 0;
+            if (screenShotCanvasRect.right < screenShotTextContainerRect.right) {
+                offset = Math.abs(screenShotCanvasRect.right - screenShotTextContainerRect.right);
+            }
+
+            const maxCursorLeftValue = videoRect.right - (screenShotCanvasRect.width / 2) - offset;
+
+            if (viewerRight >= rightBound && cursorLeftPosition >= maxCursorLeftValue) {
+                left = 'auto';
+                right = `0px`;
+                translateX = `${-paddingBetweenContainerAndVideo / 2 - offset}px`;
             }
         }
 
+        //handling left-bound case
+        if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect && videoRect) {
+            const viewerLeft = Math.min(screenShotTextContainerRect?.left, screenShotCanvasRect.left);
+            const leftBound = progressBarRect?.left;
+            const cursorLeftPosition = videoRect.left + videoRect.width * percentToUse;
+            let minCursorLeftValue = videoRect.left + (screenShotCanvasRect.width / 2);
+
+            if (screenShotCanvasRect.left > screenShotTextContainerRect.left) {
+                minCursorLeftValue += Math.abs(screenShotCanvasRect.left - screenShotTextContainerRect.left);
+            }
+
+            console.log({cursorLeftPosition, minCursorLeftValue});
+            
+            if (viewerLeft <= leftBound && cursorLeftPosition <= minCursorLeftValue) {
+                left = `${paddingBetweenContainerAndVideo}${CAROUSEL_SPACING_UNIT}`;
+                translateX = `${Math.abs(screenShotTextContainerRect?.left - screenShotCanvasRect.left) - paddingBetweenContainerAndVideo}${CAROUSEL_SPACING_UNIT}`
+            }
+        }
         // console.log({ paddingBetweenContainerAndVideo, videoRectWidth: videoRect?.width, percentToUse, left, toolbarInnerContainerRect, videoRef: videoRef?.current, toolbarElement, bottom });
 
         // if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return {
@@ -719,7 +747,8 @@ export class StylingLogic {
             textAlign: 'center',
             position: 'absolute',
             bottom,
-            left: `${left}${CAROUSEL_SPACING_UNIT}`,
+            left,
+            right,
             background: 'transparent',
             zIndex: 100000000,
             transform: `translateX(${translateX})`,
