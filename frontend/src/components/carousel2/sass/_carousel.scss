@@ -326,7 +326,7 @@
         }
 
         &-screenshot-viewer {
-            & div {
+            & > div > div {
                 @include maxTextLineCount(1);
             }
         }

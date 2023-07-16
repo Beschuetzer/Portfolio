@@ -265,7 +265,7 @@ export class OptionsLogic {
     }
 
     get videoProgressBarScreenshotViewer() {
-        const width = getCurrentValue(this.options.styling?.toolbar?.progressBar?.screenshotViewer?.width, CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT, this.isFullscreenMode);
+        const width = getCurrentValue(this.options.styling?.toolbar?.progressBar?.screenshotViewer?.thumbnailWidth, CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT, this.isFullscreenMode);
 
         return {
             width,

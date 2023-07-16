@@ -36,6 +36,7 @@ export const CLASSNAME__TOOLBAR_RIGHT = getClassname({ elementName: `${CLASSNAME
 export const CLASSNAME__VIDEO_MODAL_BUTTON_TOP = `${CLASSNAME__ROOT}-video-modal-custom-button-top`;
 export const CLASSNAME__VIDEO_MODAL_BUTTON_RIGHT = `${CLASSNAME__ROOT}-video-modal-custom-button-right`;
 export const CLASSNAME__VIDEO_SCREENSHOT_VIEWER = `${getClassname({elementName: 'video-screenshot-viewer'})}`;
+export const CLASSNAME__VIDEO_SCREENSHOT_VIEWER_TEXT_CONTAINER = `${CLASSNAME__VIDEO_SCREENSHOT_VIEWER}-text-container`;
 //#endregion
 
 //#region Styling

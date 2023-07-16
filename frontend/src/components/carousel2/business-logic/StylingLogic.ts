@@ -666,19 +666,22 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressSeekThumbnailContainerStyle(percent: number, toolbarElement: Element) {
+    getCarouselVideoProgressSeekThumbnailContainerStyle(percent: number, toolbarElement: Element, screenShotTextContainerElement: Element | undefined) {
         const { width } = this.optionsLogic.videoProgressBarScreenshotViewer;
 
         const toolbarInnerContainerRect = toolbarElement?.querySelector('div')?.getBoundingClientRect();
+        const screenShotTextContainerRect = screenShotTextContainerElement?.getBoundingClientRect();
         const progressBarRect = toolbarElement?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`)?.getBoundingClientRect();
-        const {paddingBottom: hitSlopBottom} = this.getCarouselVideoProgressHitSlop();
+        const { paddingBottom: hitSlopBottom } = this.getCarouselVideoProgressHitSlop();
 
-        const bottom = toolbarInnerContainerRect?.height && progressBarRect?.height ? toolbarInnerContainerRect.height - progressBarRect.height + hitSlopBottom + this.toolbarPaddingBottom + CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT : '25%';
+        const bottom = toolbarInnerContainerRect?.height && progressBarRect?.height && screenShotTextContainerRect?.height
+            ? toolbarInnerContainerRect.height - progressBarRect.height + screenShotTextContainerRect.height + hitSlopBottom + this.toolbarPaddingBottom + CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT
+            : '25%';
 
         const left = percent < 0 ? '0%' : percent > 1 ? '100%' : `${percent * 100}%`;
         const translateX = '-50%'
-        console.log({toolbarInnerContainerRect, bottom});
-        
+        console.log({ toolbarInnerContainerRect, bottom });
+
 
         // if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return {
         //     display: 'none'
@@ -686,7 +689,7 @@ export class StylingLogic {
         return {
             padding: 10,
             width: width + 20,
-            pointerEvents:'none',
+            pointerEvents: 'none',
             borderRadius: 4,
             textAlign: 'center',
             position: 'absolute',
@@ -698,15 +701,22 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
+    get carouselVideoProgressSeekThumbnailTextContainerStyle() {
+        return {
+            // paddingInline: CAROUSEL_ITEM_SPACING_DEFAULT,
+        } as CSSProperties;
+    }
+
     get carouselVideoProgressSeekThumbnailTextStyle() {
         return {
-            display: 'webkit-box',
-            webkitLineClamp: 1,
-            webkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
             color: 'white',
-            paddingInline: CAROUSEL_ITEM_SPACING_DEFAULT,
+            position: 'absolute',
+            width: '10000px',
+            transform: 'translateX(-4909px)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
         } as CSSProperties;
     }
 

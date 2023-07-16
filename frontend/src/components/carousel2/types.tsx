@@ -237,11 +237,11 @@ export type CarouselSections = {
             **/
             screenshotViewer?: {
                 /**
-                *Width of the viewer in px.  
+                *Width of the thumbnail in px.  
                 *Default is 150px.  
                 *Height is .5625 of this value (16:9 aspect ratio)
                 **/
-                width?: number;
+                thumbnailWidth?: number;
             }
             /**
             *The amount of space between each video section. 
