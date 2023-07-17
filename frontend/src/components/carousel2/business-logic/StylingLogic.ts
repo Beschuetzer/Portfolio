@@ -29,6 +29,7 @@ import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/Loadin
 import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
 import { RegexpPattern } from "./RegexpPattern";
 import { CarouselItemViewerShortcutIndicatorPosition } from "../components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
+import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBar";
 
 export enum SpacingDirection {
     bottom,
@@ -676,6 +677,7 @@ export class StylingLogic {
         const { width } = this.optionsLogic.videoProgressBarScreenshotViewer;
         const { left: paddingBetweenContainerAndVideo } = this.toolbarHorizontalSpacing;
 
+        const isEmbedded = this.optionsLogic.isToolbarInVideo;
         const videoRect = videoRef?.current?.getBoundingClientRect();
         const toolbarInnerContainerRect = toolbarElement?.querySelector('div')?.getBoundingClientRect();
         const screenShotTextContainerRect = screenShotTextElement?.getBoundingClientRect();
@@ -684,11 +686,9 @@ export class StylingLogic {
         const progressBarRect = progressBarElement?.getBoundingClientRect();
         const { paddingBottom: hitSlopBottom } = this.getCarouselVideoProgressHitSlop();
 
-        const bottom = toolbarInnerContainerRect?.height && progressBarRect?.height && screenShotTextContainerRect?.height
-            ? toolbarInnerContainerRect.height - progressBarRect.height + screenShotTextContainerRect.height + hitSlopBottom + this.toolbarPaddingBottom + CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT
-            : '25%';
-
-
+        const bottom = toolbarInnerContainerRect?.height && progressBarRect?.height
+            ? toolbarInnerContainerRect.height - progressBarRect.height + (screenShotTextContainerRect?.height || 20) + hitSlopBottom + this.toolbarPaddingBottom + CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT
+            : (isEmbedded ? 103 : 90);
 
         const percentToUse = percent <= 0 ? 0 : percent >= 1 ? 1 : percent;
         let translateX = '-50%'
@@ -707,8 +707,9 @@ export class StylingLogic {
             }
 
             const maxCursorLeftValue = videoRect.right - (screenShotCanvasRect.width / 2) - offset;
+            // console.log({ rightBound, viewerRight, cursorLeftPosition, maxCursorLeftValue });
 
-            if (viewerRight >= rightBound && cursorLeftPosition >= maxCursorLeftValue) {
+            if ((viewerRight && viewerRight > rightBound) || cursorLeftPosition >= maxCursorLeftValue) {
                 left = 'auto';
                 right = `0${CAROUSEL_SPACING_UNIT}`;
                 translateX = `${-paddingBetweenContainerAndVideo / 2 - offset}px`;
@@ -728,12 +729,23 @@ export class StylingLogic {
 
             const minCursorLeftValue = videoRect.left + (screenShotCanvasRect.width / 2) + offset;
 
-            if (viewerLeft <= leftBound && cursorLeftPosition <= minCursorLeftValue) {
+            // console.log({ leftBound, viewerLeft, cursorLeftPosition, minCursorLeftValue });
+            if ((viewerLeft && viewerLeft < leftBound) || cursorLeftPosition <= minCursorLeftValue) {
                 left = `0${CAROUSEL_SPACING_UNIT}`;
                 translateX = `${paddingBetweenContainerAndVideo / 2 + offset}px`;
             }
         }
-      
+
+        if (
+            !screenShotCanvasRect ||
+            !screenShotTextContainerRect ||
+            !progressBarRect ||
+            !videoRect ||
+            percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE
+        ) return {
+            display: 'none',
+            left: '-1000px',
+        } as CSSProperties;
         return {
             padding: 10,
             width: width + 20,

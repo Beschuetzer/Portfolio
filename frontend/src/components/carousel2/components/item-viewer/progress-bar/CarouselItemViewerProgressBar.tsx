@@ -40,7 +40,7 @@ type CarouselItemViewerProgressBarProps = {
 
 const MAP_SECTION_INTERVAL = 100;
 const NEXT_SECTION_OFFSET = .0000000000000001;
-export const PROGRESS_BAR_PERCENT_INITIAL_VALUE = 0;
+export const PROGRESS_BAR_PERCENT_INITIAL_VALUE = -1;
 export const CarouselItemViewerProgressBar = ({
     currentVideoSection,
     isMouseDownRef,
