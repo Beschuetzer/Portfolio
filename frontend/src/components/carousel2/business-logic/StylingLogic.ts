@@ -697,42 +697,29 @@ export class StylingLogic {
 
         //handling right-bound case
         if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect && videoRect) {
-            const viewerRight = Math.max(screenShotTextContainerRect?.right, screenShotCanvasRect.right);
+            const viewerRight = screenShotCanvasRect.right;
             const rightBound = progressBarRect?.right;
             const cursorLeftPosition = videoRect.left + videoRect.width * percentToUse;
-
-            let offset = 0;
-            if (screenShotCanvasRect.right < screenShotTextContainerRect.right) {
-                offset = Math.abs(screenShotCanvasRect.right - screenShotTextContainerRect.right);
-            }
-
-            const maxCursorLeftValue = videoRect.right - (screenShotCanvasRect.width / 2) - offset;
-            // console.log({ rightBound, viewerRight, cursorLeftPosition, maxCursorLeftValue });
+            const maxCursorLeftValue = videoRect.right - (screenShotCanvasRect.width / 2);
 
             if ((viewerRight && viewerRight > rightBound) || cursorLeftPosition >= maxCursorLeftValue) {
                 left = 'auto';
                 right = `0${CAROUSEL_SPACING_UNIT}`;
-                translateX = `${-paddingBetweenContainerAndVideo / 2 - offset}px`;
+                translateX = `${-paddingBetweenContainerAndVideo / 2}${CAROUSEL_SPACING_UNIT}`;
             }
         }
 
         //handling left-bound case
         if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect && videoRect) {
-            const viewerLeft = Math.min(screenShotTextContainerRect?.left, screenShotCanvasRect.left);
+            const viewerLeft = screenShotCanvasRect.left;
             const leftBound = progressBarRect?.left;
             const cursorLeftPosition = videoRect.left + videoRect.width * percentToUse;
-
-            let offset = 0;
-            if (screenShotCanvasRect.left > screenShotTextContainerRect.left) {
-                offset = Math.abs(screenShotCanvasRect.left - screenShotTextContainerRect.left);
-            }
-
-            const minCursorLeftValue = videoRect.left + (screenShotCanvasRect.width / 2) + offset;
+            const minCursorLeftValue = videoRect.left + (screenShotCanvasRect.width / 2);
 
             // console.log({ leftBound, viewerLeft, cursorLeftPosition, minCursorLeftValue });
             if ((viewerLeft && viewerLeft < leftBound) || cursorLeftPosition <= minCursorLeftValue) {
                 left = `0${CAROUSEL_SPACING_UNIT}`;
-                translateX = `${paddingBetweenContainerAndVideo / 2 + offset}px`;
+                translateX = `${paddingBetweenContainerAndVideo / 2}${CAROUSEL_SPACING_UNIT}`;
             }
         }
 
@@ -768,7 +755,32 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoProgressSeekThumbnailTextStyle() {
+    getCarouselVideoProgressSeekThumbnailTextStyle(
+        videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined | null,
+        screenShotTextElement: Element | undefined | null,
+        screenShotCanvasElement: Element | undefined,
+    ) {
+        const videoRect = videoRef?.current?.getBoundingClientRect();
+        const screenShotCanvasRect = screenShotCanvasElement?.getBoundingClientRect();
+        const screenShotTextContainerRect = screenShotTextElement?.getBoundingClientRect();
+
+        if (videoRect && screenShotCanvasRect && screenShotTextContainerRect) {
+            let leftOffset = 0;
+            if (screenShotCanvasRect.left > screenShotTextContainerRect.left) {
+                leftOffset = Math.abs(screenShotCanvasRect.left - screenShotTextContainerRect.left);
+            }
+
+            let rightOffset = 0;
+            if (screenShotCanvasRect.right < screenShotTextContainerRect.right) {
+                rightOffset = Math.abs(screenShotCanvasRect.right - screenShotTextContainerRect.right);
+            }
+
+            const minCursorLeftValue = videoRect?.left + (screenShotCanvasRect.width / 2) + leftOffset;
+            const maxCursorLeftValue = videoRect.right - (screenShotCanvasRect.width / 2) - rightOffset;
+
+            console.log({minCursorLeftValue, maxCursorLeftValue});
+        }
+
         return {
             color: 'white',
             position: 'absolute',
