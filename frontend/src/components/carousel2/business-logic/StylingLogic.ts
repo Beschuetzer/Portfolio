@@ -722,16 +722,16 @@ export class StylingLogic {
             }
         }
 
-        if (
-            !screenShotCanvasRect ||
-            !screenShotTextContainerRect ||
-            !progressBarRect ||
-            !videoRect ||
-            percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE
-        ) return {
-            display: 'none',
-            left: '-1000px',
-        } as CSSProperties;
+        // if (
+        //     !screenShotCanvasRect ||
+        //     !screenShotTextContainerRect ||
+        //     !progressBarRect ||
+        //     !videoRect ||
+        //     percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE
+        // ) return {
+        //     display: 'none',
+        //     left: '-1000px',
+        // } as CSSProperties;
         return {
             padding: 10,
             width: width + 20,
@@ -750,7 +750,14 @@ export class StylingLogic {
 
     get carouselVideoProgressSeekThumbnailTextContainerStyle() {
         return {
-            // paddingInline: CAROUSEL_ITEM_SPACING_DEFAULT,
+            color: 'white',
+            position: 'absolute',
+            width: '10000px', //this is a hack to align this centered since translateX(-50%) doesn't work
+            transform: `translateX(calc(-4912${CAROUSEL_SPACING_UNIT})`, //this is a hack to align this centered since translateX(-50%) doesn't work
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
         } as CSSProperties;
     }
 
@@ -763,8 +770,11 @@ export class StylingLogic {
         const videoRect = videoRef?.current?.getBoundingClientRect();
         const screenShotCanvasRect = screenShotCanvasElement?.getBoundingClientRect();
         const screenShotTextContainerRect = screenShotTextElement?.getBoundingClientRect();
+        let translateOffset;
 
         if (videoRect && screenShotCanvasRect && screenShotTextContainerRect) {
+            const cursorLeftPosition = videoRect.left + videoRect.width * percent;
+
             let leftOffset = 0;
             if (screenShotCanvasRect.left > screenShotTextContainerRect.left) {
                 leftOffset = Math.abs(screenShotCanvasRect.left - screenShotTextContainerRect.left);
@@ -778,18 +788,22 @@ export class StylingLogic {
             const minCursorLeftValue = videoRect?.left + (screenShotCanvasRect.width / 2) + leftOffset;
             const maxCursorLeftValue = videoRect.right - (screenShotCanvasRect.width / 2) - rightOffset;
 
-            console.log({minCursorLeftValue, maxCursorLeftValue});
+            if (cursorLeftPosition > maxCursorLeftValue) {
+                console.log("right");
+                if (screenShotCanvasRect.right < screenShotTextContainerRect.right) {
+                    translateOffset = Math.abs(screenShotCanvasRect.right - screenShotTextContainerRect.right);
+                }
+            } else if (cursorLeftPosition < minCursorLeftValue) {
+                console.log("left");
+                if (screenShotCanvasRect.left > screenShotTextContainerRect.left) {
+                    translateOffset = Math.abs(screenShotCanvasRect.left - screenShotTextContainerRect.left);
+                }
+            }
+            console.log({ translateOffset, cursorLeftPosition, minCursorLeftValue, maxCursorLeftValue });
         }
 
         return {
-            color: 'white',
-            position: 'absolute',
-            width: '10000px', //this is a hack to align this centered since translateX(-50%) doesn't work
-            transform: 'translateX(-4912px)', //this is a hack to align this centered since translateX(-50%) doesn't work
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+            transform: translateOffset !== undefined ? `translateX(${translateOffset}${CAROUSEL_SPACING_UNIT})` : 'none',
         } as CSSProperties;
     }
 

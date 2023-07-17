@@ -23,7 +23,7 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
     const screenShotCanvasRef = useRef<HTMLCanvasElement>();
     const screenShotTextContainerRef = useRef<HTMLDivElement>();
 
-    if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return null;
+    // if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return null;
     return (
         <div
             className={CLASSNAME__VIDEO_SCREENSHOT_VIEWER}
@@ -39,12 +39,14 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
             <div
                 ref={screenShotTextContainerRef as any}
                 className={CLASSNAME__VIDEO_SCREENSHOT_VIEWER_TEXT_CONTAINER}
-                style={stylingLogic.getCarouselVideoProgressSeekThumbnailTextStyle(
-                    percent, videoRef, screenShotTextContainerRef.current?.querySelector('div'), screenShotCanvasRef.current
-                )}
+                style={stylingLogic.carouselVideoProgressSeekThumbnailTextContainerStyle}
             >
-                <div>
-                    {currentVideoSection !== undefined ? sections?.[currentVideoSection]?.[0] : ''}
+                <div
+                    style={stylingLogic.getCarouselVideoProgressSeekThumbnailTextStyle(
+                        percent, videoRef, screenShotTextContainerRef.current?.querySelector('div'), screenShotCanvasRef.current
+                    )}
+                >
+                    {currentVideoSection !== undefined ? sections?.[0]?.[0] : ''}
                 </div>
                 <div>
                     {videoRef?.current && !isNaN(percent * videoRef?.current?.duration) ? getFormattedTimeString(percent * videoRef?.current?.duration) : ''}

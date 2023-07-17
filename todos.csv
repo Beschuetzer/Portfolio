@@ -1,5 +1,6 @@
 Carousel rework
   -work on progressbar rework:
+    --add a ref to calculate the translateX amount for the title (left and right cases) with a hook that resets it whenever the currentItem changes
     --left and right case to align based on screenshot but the text alignment changes (see youtube https://www.youtube.com/watch?v=xGy5cUPgJcU)
     --finish draw snapshot thumbnail
     --add component in CarouselVideo to show the snapshot when changing percent via bar
