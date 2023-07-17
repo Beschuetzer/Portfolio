@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { getClassname, getIsVideoPlaying } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselVideoModal, CarouselVideoModalProps } from './CarouselVideoModal'
@@ -108,6 +108,15 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     //#endregion
 
     //#region Side Fx
+    //Ensuring percent is valid value
+    useLayoutEffect(() => {
+        if (percent > 1) {
+            setPercent(1);
+        } else if (percent < 0) {
+            setPercent(0);
+        }
+    }, [percent])
+
     //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
     useEffect(() => {
         setIsLoaded(false);

@@ -40,7 +40,7 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
                 ref={screenShotTextContainerRef as any}
                 className={CLASSNAME__VIDEO_SCREENSHOT_VIEWER_TEXT_CONTAINER}
                 style={stylingLogic.getCarouselVideoProgressSeekThumbnailTextStyle(
-                    videoRef, screenShotTextContainerRef.current?.querySelector('div'), screenShotCanvasRef.current
+                    percent, videoRef, screenShotTextContainerRef.current?.querySelector('div'), screenShotCanvasRef.current
                 )}
             >
                 <div>

@@ -687,19 +687,18 @@ export class StylingLogic {
         const { paddingBottom: hitSlopBottom } = this.getCarouselVideoProgressHitSlop();
 
         const bottom = toolbarInnerContainerRect?.height && progressBarRect?.height
-            ? toolbarInnerContainerRect.height - progressBarRect.height + (screenShotTextContainerRect?.height || 20) + hitSlopBottom + this.toolbarPaddingBottom + CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT
+            ? toolbarInnerContainerRect.height - progressBarRect.height + (screenShotTextContainerRect?.height || 20) + hitSlopBottom + this.toolbarPaddingBottom + CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.33
             : (isEmbedded ? 103 : 90);
 
-        const percentToUse = percent <= 0 ? 0 : percent >= 1 ? 1 : percent;
         let translateX = '-50%'
-        let left = `${paddingBetweenContainerAndVideo + (videoRect?.width || 200) * percentToUse}${CAROUSEL_SPACING_UNIT}`;
+        let left = `${paddingBetweenContainerAndVideo + (videoRect?.width || 200) * percent}${CAROUSEL_SPACING_UNIT}`;
         let right = "auto";
 
         //handling right-bound case
         if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect && videoRect) {
             const viewerRight = screenShotCanvasRect.right;
             const rightBound = progressBarRect?.right;
-            const cursorLeftPosition = videoRect.left + videoRect.width * percentToUse;
+            const cursorLeftPosition = videoRect.left + videoRect.width * percent;
             const maxCursorLeftValue = videoRect.right - (screenShotCanvasRect.width / 2);
 
             if ((viewerRight && viewerRight > rightBound) || cursorLeftPosition >= maxCursorLeftValue) {
@@ -713,7 +712,7 @@ export class StylingLogic {
         if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect && videoRect) {
             const viewerLeft = screenShotCanvasRect.left;
             const leftBound = progressBarRect?.left;
-            const cursorLeftPosition = videoRect.left + videoRect.width * percentToUse;
+            const cursorLeftPosition = videoRect.left + videoRect.width * percent;
             const minCursorLeftValue = videoRect.left + (screenShotCanvasRect.width / 2);
 
             // console.log({ leftBound, viewerLeft, cursorLeftPosition, minCursorLeftValue });
@@ -756,6 +755,7 @@ export class StylingLogic {
     }
 
     getCarouselVideoProgressSeekThumbnailTextStyle(
+        percent: number,
         videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined | null,
         screenShotTextElement: Element | undefined | null,
         screenShotCanvasElement: Element | undefined,

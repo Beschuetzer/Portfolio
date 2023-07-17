@@ -152,7 +152,7 @@ const items = [
 			sections: [
 				['Search Section that is also a really long title', 4400],
 				['Filter Section', 2000],
-				['Options Section'],
+				['Options Section that is also a really long title'],
 			]
 		}
 	},
