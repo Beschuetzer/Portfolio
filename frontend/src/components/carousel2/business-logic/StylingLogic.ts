@@ -29,7 +29,6 @@ import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/Loadin
 import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
 import { RegexpPattern } from "./RegexpPattern";
 import { CarouselItemViewerShortcutIndicatorPosition } from "../components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
-import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBar";
 
 export enum SpacingDirection {
     bottom,
@@ -711,7 +710,7 @@ export class StylingLogic {
 
             if (viewerRight >= rightBound && cursorLeftPosition >= maxCursorLeftValue) {
                 left = 'auto';
-                right = `0px`;
+                right = `0${CAROUSEL_SPACING_UNIT}`;
                 translateX = `${-paddingBetweenContainerAndVideo / 2 - offset}px`;
             }
         }
@@ -721,24 +720,20 @@ export class StylingLogic {
             const viewerLeft = Math.min(screenShotTextContainerRect?.left, screenShotCanvasRect.left);
             const leftBound = progressBarRect?.left;
             const cursorLeftPosition = videoRect.left + videoRect.width * percentToUse;
-            let minCursorLeftValue = videoRect.left + (screenShotCanvasRect.width / 2);
 
+            let offset = 0;
             if (screenShotCanvasRect.left > screenShotTextContainerRect.left) {
-                minCursorLeftValue += Math.abs(screenShotCanvasRect.left - screenShotTextContainerRect.left);
+                offset = Math.abs(screenShotCanvasRect.left - screenShotTextContainerRect.left);
             }
 
-            console.log({cursorLeftPosition, minCursorLeftValue});
-            
+            const minCursorLeftValue = videoRect.left + (screenShotCanvasRect.width / 2) + offset;
+
             if (viewerLeft <= leftBound && cursorLeftPosition <= minCursorLeftValue) {
-                left = `${paddingBetweenContainerAndVideo}${CAROUSEL_SPACING_UNIT}`;
-                translateX = `${Math.abs(screenShotTextContainerRect?.left - screenShotCanvasRect.left) - paddingBetweenContainerAndVideo}${CAROUSEL_SPACING_UNIT}`
+                left = `0${CAROUSEL_SPACING_UNIT}`;
+                translateX = `${paddingBetweenContainerAndVideo / 2 + offset}px`;
             }
         }
-        // console.log({ paddingBetweenContainerAndVideo, videoRectWidth: videoRect?.width, percentToUse, left, toolbarInnerContainerRect, videoRef: videoRef?.current, toolbarElement, bottom });
-
-        // if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return {
-        //     display: 'none'
-        // } as CSSProperties;
+      
         return {
             padding: 10,
             width: width + 20,

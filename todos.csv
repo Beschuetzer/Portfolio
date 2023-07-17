@@ -1,6 +1,7 @@
 Carousel rework
   -work on progressbar rework:
     --finish draw snapshot thumbnail
+    --add component in CarouselVideo to show the snapshot when changing percent via bar
     --add options for thubnail snapshot 
     --figure out why swipe handler gets trigger sometimes
     --verify all of the progress bar customization options still work when done 
