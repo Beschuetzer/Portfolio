@@ -30,7 +30,7 @@ import { CarouselContextInputProps, CarouselContextOutputProps } from "../contex
 import { RegexpPattern } from "./RegexpPattern";
 import { CarouselItemViewerShortcutIndicatorPosition } from "../components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
 import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBar";
-import { TextTranslateOffset } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer";
+import { TEXT_TRANSLATION_AMOUNT_REF_INITIAL, TextTranslateOffset } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer";
 
 export enum SpacingDirection {
     bottom,
@@ -807,19 +807,23 @@ export class StylingLogic {
                         minCursorLeftValue,
                         right: Math.abs(screenShotCanvasRect.right - screenShotTextContainerRect.right),
                     }
-                    console.log({ textTranslateOffsetRef: textTranslateOffsetRef.current });
                 }
 
                 //tracking cursor against textTranslateOffsetRef and setting textTranslationAmountRef
                 if (isTextTranslateOffsetRefDone && videoRect) {
                     const cursorLeftPosition = videoRect.left + videoRect.width * percent;
 
-                    if (cursorLeftPosition > textTranslateOffsetRef.current.maxCursorLeftValue) {
+                    if (cursorLeftPosition >= textTranslateOffsetRef.current.maxCursorLeftValue) {
                         textTranslationAmountRef.current = -textTranslateOffsetRef.current.right;
-                    } else if (cursorLeftPosition < textTranslateOffsetRef.current.minCursorLeftValue) {
+                    } else if (cursorLeftPosition <= textTranslateOffsetRef.current.minCursorLeftValue) {
                         textTranslationAmountRef.current = textTranslateOffsetRef.current.left;
+                    } else if (
+                        cursorLeftPosition > textTranslateOffsetRef.current.minCursorLeftValue &&
+                        cursorLeftPosition < textTranslateOffsetRef.current.maxCursorLeftValue
+                    ) {
+                        textTranslationAmountRef.current = TEXT_TRANSLATION_AMOUNT_REF_INITIAL;
                     }
-                    console.log({ cursorLeftPosition, minCursorLeftValue: textTranslateOffsetRef.current.minCursorLeftValue, maxCursorLeftValue: textTranslateOffsetRef.current.maxCursorLeftValue });
+                    // console.log({ cursorLeftPosition, minCursorLeftValue: textTranslateOffsetRef.current.minCursorLeftValue, maxCursorLeftValue: textTranslateOffsetRef.current.maxCursorLeftValue });
                 }
             }
         }
