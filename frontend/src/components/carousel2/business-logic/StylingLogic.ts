@@ -30,6 +30,7 @@ import { CarouselContextInputProps, CarouselContextOutputProps } from "../contex
 import { RegexpPattern } from "./RegexpPattern";
 import { CarouselItemViewerShortcutIndicatorPosition } from "../components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
 import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBar";
+import { TextTranslateOffset } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer";
 
 export enum SpacingDirection {
     bottom,
@@ -672,7 +673,8 @@ export class StylingLogic {
         videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined | null,
         toolbarElement: Element,
         screenShotTextElement: Element | undefined | null,
-        screenShotCanvasElement: Element | undefined
+        screenShotCanvasElement: Element | undefined,
+        textTranslateOffsetRef: React.MutableRefObject<TextTranslateOffset>,
     ) {
         const { width } = this.optionsLogic.videoProgressBarScreenshotViewer;
         const { left: paddingBetweenContainerAndVideo } = this.toolbarHorizontalSpacing;
@@ -694,33 +696,35 @@ export class StylingLogic {
         let left = `${paddingBetweenContainerAndVideo + (videoRect?.width || 200) * percent}${CAROUSEL_SPACING_UNIT}`;
         let right = "auto";
 
-        //handling right-bound case
-        if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect && videoRect) {
-            const viewerRight = screenShotCanvasRect.right;
-            const rightBound = progressBarRect?.right;
+        if (videoRect && screenShotCanvasRect && screenShotTextContainerRect && progressBarRect) {
             const cursorLeftPosition = videoRect.left + videoRect.width * percent;
+            const minCursorLeftValue = videoRect.left + (screenShotCanvasRect.width / 2);
             const maxCursorLeftValue = videoRect.right - (screenShotCanvasRect.width / 2);
+            const viewerLeft = screenShotCanvasRect.left;
+            const viewerRight = screenShotCanvasRect.right;
+            const leftBound = progressBarRect?.left;
+            const rightBound = progressBarRect?.right;
 
+            //handling right-bound case
             if ((viewerRight && viewerRight > rightBound) || cursorLeftPosition >= maxCursorLeftValue) {
                 left = 'auto';
                 right = `0${CAROUSEL_SPACING_UNIT}`;
                 translateX = `${-paddingBetweenContainerAndVideo / 2}${CAROUSEL_SPACING_UNIT}`;
             }
-        }
 
-        //handling left-bound case
-        if (screenShotCanvasRect && screenShotTextContainerRect && progressBarRect && videoRect) {
-            const viewerLeft = screenShotCanvasRect.left;
-            const leftBound = progressBarRect?.left;
-            const cursorLeftPosition = videoRect.left + videoRect.width * percent;
-            const minCursorLeftValue = videoRect.left + (screenShotCanvasRect.width / 2);
-
+            //handling left-bound case
             // console.log({ leftBound, viewerLeft, cursorLeftPosition, minCursorLeftValue });
             if ((viewerLeft && viewerLeft < leftBound) || cursorLeftPosition <= minCursorLeftValue) {
                 left = `0${CAROUSEL_SPACING_UNIT}`;
                 translateX = `${paddingBetweenContainerAndVideo / 2}${CAROUSEL_SPACING_UNIT}`;
             }
+
+            //resetting
+            if (cursorLeftPosition < maxCursorLeftValue && cursorLeftPosition > minCursorLeftValue) {
+                // textTranslateOffsetRef.current = 0;
+            }
         }
+
 
         // if (
         //     !screenShotCanvasRect ||
@@ -766,44 +770,62 @@ export class StylingLogic {
         videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined | null,
         screenShotTextElement: Element | undefined | null,
         screenShotCanvasElement: Element | undefined,
+        textTranslateOffsetRef: React.MutableRefObject<TextTranslateOffset>,
+        textTranslationAmountRef: React.MutableRefObject<number>,
     ) {
-        const videoRect = videoRef?.current?.getBoundingClientRect();
         const screenShotCanvasRect = screenShotCanvasElement?.getBoundingClientRect();
         const screenShotTextContainerRect = screenShotTextElement?.getBoundingClientRect();
-        let translateOffset;
 
-        if (videoRect && screenShotCanvasRect && screenShotTextContainerRect) {
-            const cursorLeftPosition = videoRect.left + videoRect.width * percent;
+        if (screenShotCanvasRect && screenShotTextContainerRect) {
+            const isTextOusdieCanvasBound = screenShotCanvasRect.right < screenShotTextContainerRect.right || screenShotCanvasRect.left > screenShotTextContainerRect.left;
+            if (isTextOusdieCanvasBound) {
+                const isTextTranslateOffsetRefDone = Object.keys(textTranslateOffsetRef?.current || {}).length > 0
+                const videoRect = videoRef?.current?.getBoundingClientRect();
 
-            let leftOffset = 0;
-            if (screenShotCanvasRect.left > screenShotTextContainerRect.left) {
-                leftOffset = Math.abs(screenShotCanvasRect.left - screenShotTextContainerRect.left);
-            }
+                //setting textTranslateOffsetRef
+                if (
+                    !isTextTranslateOffsetRefDone &&
+                    videoRect &&
+                    textTranslateOffsetRef.current
+                ) {
+                    let leftOffset = 0;
+                    if (screenShotCanvasRect.left > screenShotTextContainerRect.left) {
+                        leftOffset = Math.abs(screenShotCanvasRect.left - screenShotTextContainerRect.left);
+                    }
 
-            let rightOffset = 0;
-            if (screenShotCanvasRect.right < screenShotTextContainerRect.right) {
-                rightOffset = Math.abs(screenShotCanvasRect.right - screenShotTextContainerRect.right);
-            }
+                    let rightOffset = 0;
+                    if (screenShotCanvasRect.right < screenShotTextContainerRect.right) {
+                        rightOffset = Math.abs(screenShotCanvasRect.right - screenShotTextContainerRect.right);
+                    }
 
-            const minCursorLeftValue = videoRect?.left + (screenShotCanvasRect.width / 2) + leftOffset;
-            const maxCursorLeftValue = videoRect.right - (screenShotCanvasRect.width / 2) - rightOffset;
+                    const minCursorLeftValue = videoRect?.left + (screenShotCanvasRect.width / 2) + leftOffset;
+                    const maxCursorLeftValue = videoRect.right - (screenShotCanvasRect.width / 2) - rightOffset;
 
-            if (cursorLeftPosition > maxCursorLeftValue) {
-                console.log("right");
-                if (screenShotCanvasRect.right < screenShotTextContainerRect.right) {
-                    translateOffset = Math.abs(screenShotCanvasRect.right - screenShotTextContainerRect.right);
+                    textTranslateOffsetRef.current = {
+                        left: Math.abs(screenShotCanvasRect.left - screenShotTextContainerRect.left),
+                        maxCursorLeftValue,
+                        minCursorLeftValue,
+                        right: Math.abs(screenShotCanvasRect.right - screenShotTextContainerRect.right),
+                    }
+                    console.log({ textTranslateOffsetRef: textTranslateOffsetRef.current });
                 }
-            } else if (cursorLeftPosition < minCursorLeftValue) {
-                console.log("left");
-                if (screenShotCanvasRect.left > screenShotTextContainerRect.left) {
-                    translateOffset = Math.abs(screenShotCanvasRect.left - screenShotTextContainerRect.left);
+
+                //tracking cursor against textTranslateOffsetRef and setting textTranslationAmountRef
+                if (isTextTranslateOffsetRefDone && videoRect) {
+                    const cursorLeftPosition = videoRect.left + videoRect.width * percent;
+
+                    if (cursorLeftPosition > textTranslateOffsetRef.current.maxCursorLeftValue) {
+                        textTranslationAmountRef.current = -textTranslateOffsetRef.current.right;
+                    } else if (cursorLeftPosition < textTranslateOffsetRef.current.minCursorLeftValue) {
+                        textTranslationAmountRef.current = textTranslateOffsetRef.current.left;
+                    }
+                    console.log({ cursorLeftPosition, minCursorLeftValue: textTranslateOffsetRef.current.minCursorLeftValue, maxCursorLeftValue: textTranslateOffsetRef.current.maxCursorLeftValue });
                 }
             }
-            console.log({ translateOffset, cursorLeftPosition, minCursorLeftValue, maxCursorLeftValue });
         }
 
         return {
-            transform: translateOffset !== undefined ? `translateX(${translateOffset}${CAROUSEL_SPACING_UNIT})` : 'none',
+            transform: !!textTranslationAmountRef.current ? `translateX(${textTranslationAmountRef.current}${CAROUSEL_SPACING_UNIT})` : 'none',
         } as CSSProperties;
     }
 

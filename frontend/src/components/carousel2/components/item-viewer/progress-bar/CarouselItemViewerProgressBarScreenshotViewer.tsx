@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { getFormattedTimeString } from '../../../utils';
 import { useCarouselContext } from '../../../context';
@@ -10,6 +10,14 @@ type CarouselItemViewerProgressBarScreenshotPreviewProps = {
     toolbarRef: React.MutableRefObject<HTMLDivElement>;
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'currentVideoSection' | 'percent'>
 
+export type TextTranslateOffset = {
+    left: number;
+    maxCursorLeftValue: number;
+    minCursorLeftValue: number;
+    right: number;
+}
+
+export const TEXT_TRANSLATION_AMOUNT_REF_INITIAL = 0;
 export const CarouselVideoProgressBarScreenshotViewer = ({
     currentVideoSection,
     percent = 0,
@@ -22,13 +30,28 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
     const { stylingLogic } = useBusinessLogic({});
     const screenShotCanvasRef = useRef<HTMLCanvasElement>();
     const screenShotTextContainerRef = useRef<HTMLDivElement>();
+    const textTranslateOffsetRef = useRef<TextTranslateOffset>({} as TextTranslateOffset);
+    const textTranslationAmountRef = useRef<number>(TEXT_TRANSLATION_AMOUNT_REF_INITIAL);
+
+    useLayoutEffect(() => {
+        if (textTranslateOffsetRef?.current !== undefined && textTranslateOffsetRef?.current !== undefined) {
+            textTranslateOffsetRef.current = {} as TextTranslateOffset;
+            textTranslationAmountRef.current = TEXT_TRANSLATION_AMOUNT_REF_INITIAL;
+        }
+
+    }, [currentVideoSection, currentItem])
 
     // if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return null;
     return (
         <div
             className={CLASSNAME__VIDEO_SCREENSHOT_VIEWER}
             style={stylingLogic.getCarouselVideoProgressSeekThumbnailContainerStyle(
-                percent, videoRef, toolbarRef.current, screenShotTextContainerRef.current?.querySelector('div'), screenShotCanvasRef.current
+                percent,
+                videoRef,
+                toolbarRef.current,
+                screenShotTextContainerRef.current?.querySelector('div'),
+                screenShotCanvasRef.current,
+                textTranslateOffsetRef
             )}
         >
             <canvas
@@ -43,10 +66,15 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
             >
                 <div
                     style={stylingLogic.getCarouselVideoProgressSeekThumbnailTextStyle(
-                        percent, videoRef, screenShotTextContainerRef.current?.querySelector('div'), screenShotCanvasRef.current
+                        percent,
+                        videoRef,
+                        screenShotTextContainerRef.current?.querySelector('div'),
+                        screenShotCanvasRef.current,
+                        textTranslateOffsetRef,
+                        textTranslationAmountRef
                     )}
                 >
-                    {currentVideoSection !== undefined ? sections?.[0]?.[0] : ''}
+                    {currentVideoSection !== undefined ? sections?.[currentVideoSection]?.[0] : ''}
                 </div>
                 <div>
                     {videoRef?.current && !isNaN(percent * videoRef?.current?.duration) ? getFormattedTimeString(percent * videoRef?.current?.duration) : ''}
