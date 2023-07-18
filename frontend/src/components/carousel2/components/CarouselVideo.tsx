@@ -50,6 +50,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [currentVideoSection, setCurrentVideoSection] = useState(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
     const videoRef = useRef<HTMLVideoElement>();
+    const videoThumbnailRef = useRef<HTMLVideoElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
     const isProgressBarMouseDownRef = useRef(false);
     const type = useMemo(() => srcMain?.slice(srcMain?.lastIndexOf('.') + 1), [srcMain]);
@@ -123,6 +124,9 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         if (videoRef.current?.load) {
             videoRef.current.load();
         }
+        if (videoThumbnailRef.current?.load) {
+            videoThumbnailRef.current.load();
+        }
     }, [srcMain, videoRef, videoProps?.autoPlay])
 
     useEffect(() => {
@@ -187,6 +191,15 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                     <source src={srcMain} type={`video/${type}`} />
                     Your browser does not support the HTML5 video tag. Try using a different browser.
                 </video>
+                <video
+                    style={stylingLogic.carouselVideoThumbnailStyle}
+                    ref={videoThumbnailRef as any}
+                    autoPlay={false}
+                    muted={true}
+                    loop={!!loop}
+                >
+                    <source src={srcMain} type={`video/${type}`} />
+                </video>
                 {props.video?.overlayProps ? (
                     <CarouselVideoModal
                         itemViewerToolbarRef={itemViewerToolbarRef}
@@ -218,6 +231,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 percent={isProgressBarMouseDownRef.current ? percent : seekPercent}
                 toolbarRef={itemViewerToolbarRef as any}
                 videoRef={videoRef}
+                videoThumbnailRef={videoThumbnailRef}
             />
         </>
     );

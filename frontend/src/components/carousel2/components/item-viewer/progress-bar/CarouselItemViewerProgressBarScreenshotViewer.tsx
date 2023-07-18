@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react'
+import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { getFormattedTimeString } from '../../../utils';
 import { useCarouselContext } from '../../../context';
@@ -8,6 +8,7 @@ import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from './CarouselItemViewerProgress
 
 type CarouselItemViewerProgressBarScreenshotPreviewProps = {
     toolbarRef: React.MutableRefObject<HTMLDivElement>;
+    videoThumbnailRef: CarouselItemViewerToolbarProps['videoRef'];
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'currentVideoSection' | 'percent'>
 
 export type TextTranslateOffset = {
@@ -23,6 +24,7 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
     percent = 0,
     toolbarRef,
     videoRef,
+    videoThumbnailRef,
 }: CarouselItemViewerProgressBarScreenshotPreviewProps) => {
     const { currentItem } = useCarouselContext();
     const { sections } = currentItem?.video || {};
@@ -41,7 +43,27 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
 
     }, [currentVideoSection, currentItem])
 
-    // if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return null;
+    useLayoutEffect(() => {
+        if (screenShotCanvasRef?.current && videoThumbnailRef?.current && percent !== undefined) {
+            const duration = videoThumbnailRef.current?.duration;
+            const boundingRect = videoThumbnailRef.current?.getBoundingClientRect();
+
+            if (boundingRect && isFinite(duration)) {
+                console.log({percent, boundingRect, duration});
+                
+                videoThumbnailRef.current.currentTime = percent * duration;
+                screenShotCanvasRef.current?.getContext('2d')?.drawImage(
+                    videoThumbnailRef.current,
+                    0,
+                    0,
+                    boundingRect.width * 1.71, //why are these needed?
+                    boundingRect.height * 1.516, //why are these needed?
+                );
+            }
+        }
+    }, [percent, videoThumbnailRef])
+
+    if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return null;
     return (
         <div
             className={CLASSNAME__VIDEO_SCREENSHOT_VIEWER}
