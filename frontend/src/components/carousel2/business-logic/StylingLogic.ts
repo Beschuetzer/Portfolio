@@ -508,19 +508,6 @@ export class StylingLogic {
         } as CSSProperties : {};
     }
 
-    get carouselVideoThumbnailStyle() {
-        const { width, height } = this.optionsLogic.videoProgressBarScreenshotViewer;
-
-        return !this.optionsLogic.isDefaultItemDisplayLocation ? {
-            opacity: 0,
-            pointerEvents: 'none',
-            visibility: 'hidden',
-            position: 'absolute',
-            width: width,
-            height: height,
-        } as CSSProperties : {};
-    }
-
     getCarouselVideoProgressHitSlop() {
         const hitSlop = this.optionsLogic.videoProgressBarHitSlop;
         return {
@@ -669,15 +656,13 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoProgressSeekThumbnailCanvasStyle() {
-        const { width, height } = this.optionsLogic.videoProgressBarScreenshotViewer;
-
+    get carouselVideoProgressSeekThumbnailScreenShotStyle() {
         return {
+            pointerEvents: 'none',
             border: '2px solid white',
             borderRadius: 2,
             backgroundColor: 'transparent',
-            height,
-            width,
+            width: '100%'
         } as CSSProperties;
     }
 
