@@ -18,7 +18,7 @@ export type TextTranslateOffset = {
     right: number;
 }
 
-const DRAW_LAST_IMAGE_TIMEOUT_AMOUNT = 100;
+const IMAGE_DRAW_INTERVAL = 150;
 export const TEXT_TRANSLATION_AMOUNT_REF_INITIAL = 0;
 export const CarouselVideoProgressBarScreenshotViewer = ({
     currentVideoSection,
@@ -32,29 +32,21 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
     const { sections } = currentItem?.video || {};
 
     const { stylingLogic } = useBusinessLogic({});
-    // const [shouldRedraw, setShouldRedraw] = useState(false);
+    const [shouldRedraw, setShouldRedraw] = useState(false);
     const screenShotCanvasRef = useRef<HTMLCanvasElement>();
     const screenShotTextContainerRef = useRef<HTMLDivElement>();
     const textTranslateOffsetRef = useRef<TextTranslateOffset>({} as TextTranslateOffset);
     const textTranslationAmountRef = useRef<number>(TEXT_TRANSLATION_AMOUNT_REF_INITIAL);
     const lastDrawTimeRef = useRef<number>(0);
+    const shouldRedrawTimeoutRef = useRef<any>();
     //#endregion
 
     //#region Functions/Handlers
-    const drawSnapshot = useCallback(() => {
-        if (screenShotCanvasRef?.current && videoThumbnailRef?.current && percent !== undefined) {
-            const now = Date.now();
-            const hasEnoughTimePassed = Math.abs(now - lastDrawTimeRef.current) > DRAW_LAST_IMAGE_TIMEOUT_AMOUNT;
-            if (!hasEnoughTimePassed) return;
+    const drawSnapshot = useCallback((boundingRect: DOMRect, duration: number) => {
+        if (!screenShotCanvasRef?.current || !videoThumbnailRef?.current || percent === undefined) return;
 
-            const duration = videoThumbnailRef.current?.duration;
-            const boundingRect = videoThumbnailRef.current?.getBoundingClientRect();
-
-            if (boundingRect && isFinite(duration)) {
                 console.log({ percent, boundingRect, duration });
-
-
-                lastDrawTimeRef.current = now;
+                
                 videoThumbnailRef.current.currentTime = percent * duration;
                 screenShotCanvasRef.current?.getContext('2d')?.drawImage(
                     videoThumbnailRef.current,
@@ -63,9 +55,30 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
                     boundingRect.width * 1.71, //why are these needed?
                     boundingRect.height * 1.516, //why are these needed?
                 );
+    }, [percent, videoThumbnailRef])
+
+    const handleDrawSnapshot = useCallback(() => {
+        if (screenShotCanvasRef?.current && videoThumbnailRef?.current && percent !== undefined) {
+            clearTimeout(shouldRedrawTimeoutRef.current);
+            const duration = videoThumbnailRef.current?.duration;
+            const boundingRect = videoThumbnailRef.current?.getBoundingClientRect();
+
+            shouldRedrawTimeoutRef.current = setTimeout(() => {
+                console.log("last");
+
+                drawSnapshot(boundingRect, duration);
+            }, IMAGE_DRAW_INTERVAL * 3)
+
+            const now = Date.now();
+            const hasEnoughTimePassed = Math.abs(now - lastDrawTimeRef.current) > IMAGE_DRAW_INTERVAL;
+            if (!hasEnoughTimePassed) return;
+            if (boundingRect && isFinite(duration)) {
+                console.log({ percent, boundingRect, duration });
+                lastDrawTimeRef.current = now;
+                drawSnapshot(boundingRect, duration);
             }
         }
-    }, [percent, videoThumbnailRef])
+    }, [drawSnapshot, percent, videoThumbnailRef])
     //#endregion
 
     //#region Side FX
@@ -78,8 +91,8 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
     }, [currentVideoSection, currentItem])
 
     useLayoutEffect(() => {
-        drawSnapshot();
-    }, [drawSnapshot])
+        handleDrawSnapshot();
+    }, [handleDrawSnapshot])
     //#endregion
 
     //#region JSX
