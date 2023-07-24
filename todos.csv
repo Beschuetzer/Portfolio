@@ -1,5 +1,6 @@
 Carousel rework
   -work on progressbar rework:
+    --try using a lastDrawTimeRef and instead of using a timeout, check if the time is >= 125ms
     --fix issue with scroll across large percent values and the snapshot is not updating at the end.  (trigger re-render of snapshot 100ms or so after stopping moving (percent hasn't changed for 50ms or so))
     --add component in CarouselVideo to show the snapshot when changing percent via bar
     --add options for thubnail snapshot 
