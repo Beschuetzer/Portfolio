@@ -18,7 +18,7 @@ export type TextTranslateOffset = {
     right: number;
 }
 
-const DRAW_LAST_IMAGE_TIMEOUT_AMOUNT = 250;
+const DRAW_LAST_IMAGE_TIMEOUT_AMOUNT = 100;
 export const TEXT_TRANSLATION_AMOUNT_REF_INITIAL = 0;
 export const CarouselVideoProgressBarScreenshotViewer = ({
     currentVideoSection,
@@ -32,27 +32,29 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
     const { sections } = currentItem?.video || {};
 
     const { stylingLogic } = useBusinessLogic({});
-    const [shouldRedraw, setShouldRedraw] = useState(false);
+    // const [shouldRedraw, setShouldRedraw] = useState(false);
     const screenShotCanvasRef = useRef<HTMLCanvasElement>();
     const screenShotTextContainerRef = useRef<HTMLDivElement>();
     const textTranslateOffsetRef = useRef<TextTranslateOffset>({} as TextTranslateOffset);
     const textTranslationAmountRef = useRef<number>(TEXT_TRANSLATION_AMOUNT_REF_INITIAL);
-    const shoudRerenderTimeoutRef = useRef<any>();
-    const lastRenderPercentRef = useRef<number>();
+    const lastDrawTimeRef = useRef<number>(0);
     //#endregion
 
     //#region Functions/Handlers
     const drawSnapshot = useCallback(() => {
         if (screenShotCanvasRef?.current && videoThumbnailRef?.current && percent !== undefined) {
+            const now = Date.now();
+            const hasEnoughTimePassed = Math.abs(now - lastDrawTimeRef.current) > DRAW_LAST_IMAGE_TIMEOUT_AMOUNT;
+            if (!hasEnoughTimePassed) return;
 
             const duration = videoThumbnailRef.current?.duration;
             const boundingRect = videoThumbnailRef.current?.getBoundingClientRect();
 
             if (boundingRect && isFinite(duration)) {
-                clearTimeout(shoudRerenderTimeoutRef.current)
-
                 console.log({ percent, boundingRect, duration });
 
+
+                lastDrawTimeRef.current = now;
                 videoThumbnailRef.current.currentTime = percent * duration;
                 screenShotCanvasRef.current?.getContext('2d')?.drawImage(
                     videoThumbnailRef.current,
@@ -61,12 +63,6 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
                     boundingRect.width * 1.71, //why are these needed?
                     boundingRect.height * 1.516, //why are these needed?
                 );
-                shoudRerenderTimeoutRef.current = setTimeout(() => {
-                    if (lastRenderPercentRef.current === percent) return;
-                    console.log("rerendering");
-                    lastRenderPercentRef.current = percent;
-                    setShouldRedraw(current => !current);
-                }, DRAW_LAST_IMAGE_TIMEOUT_AMOUNT)
             }
         }
     }, [percent, videoThumbnailRef])
@@ -83,7 +79,7 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
 
     useLayoutEffect(() => {
         drawSnapshot();
-    }, [drawSnapshot, shouldRedraw])
+    }, [drawSnapshot])
     //#endregion
 
     //#region JSX
