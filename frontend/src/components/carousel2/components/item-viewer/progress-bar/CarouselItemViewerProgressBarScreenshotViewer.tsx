@@ -48,7 +48,6 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
     const drawSnapshot = useCallback((duration: number) => {
         if (!videoThumbnailRef?.current || percent === undefined || !isFinite(duration)) return;
         console.log({duration, percent});
-        
         videoThumbnailRef.current.currentTime = percent * duration;
     }, [percent])
 
@@ -58,7 +57,6 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
             const duration = videoThumbnailRef.current?.duration;
 
             lastRenderTimeoutRef.current = setTimeout(() => {
-                console.log("last");
                 drawSnapshot(duration);
             }, LAST_DRAW_INTERVAL)
 

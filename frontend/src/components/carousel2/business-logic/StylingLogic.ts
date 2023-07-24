@@ -29,7 +29,6 @@ import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/Loadin
 import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
 import { RegexpPattern } from "./RegexpPattern";
 import { CarouselItemViewerShortcutIndicatorPosition } from "../components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
-import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBar";
 import { TEXT_TRANSLATION_AMOUNT_REF_INITIAL, TextTranslateOffset } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer";
 
 export enum SpacingDirection {
@@ -661,7 +660,7 @@ export class StylingLogic {
             pointerEvents: 'none',
             border: '2px solid white',
             borderRadius: 2,
-            backgroundColor: 'transparent',
+            backgroundColor: 'white',
             width: '100%'
         } as CSSProperties;
     }
