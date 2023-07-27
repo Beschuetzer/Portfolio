@@ -12,6 +12,7 @@ import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFulls
 import { useResetCarouselVideoCurrentSection } from '../hooks/useResetCarouselVideoCurrentSection';
 import { CarouselVideoProgressBarScreenshotViewer } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer';
 import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from './item-viewer/progress-bar/CarouselItemViewerProgressBar';
+import { useSetVideoCurrentTime } from '../hooks/useSetVideoCurrentTime';
 
 /**
 *Each section is comprised of a description string and a duration (in ms)
@@ -62,6 +63,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         setCurrentVideoSection,
         isProgressBarMouseDownRef
     );
+    useSetVideoCurrentTime({percent: isVideoPlaying ? undefined : percent, video: videoRef?.current});
     //#endregion
 
     //#region Functions/Handlers
