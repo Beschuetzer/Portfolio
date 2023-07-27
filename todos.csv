@@ -1,6 +1,5 @@
 Carousel rework
   -work on progressbar rework:
-    --bug: the screenshot viewer doesn't account for padding on itemViewer
     --bug: select a diff video then select a video with string sections (the seek value is not right)
     --add component in CarouselVideo to show the snapshot when changing percent via bar
     --add options for thubnail snapshot 

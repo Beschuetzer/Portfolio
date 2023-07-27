@@ -659,7 +659,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoProgressSeekThumbnailScreenShotStyle() {
+    get carouselVideoProgressScreenshotViewerVideoStyle() {
         return {
             pointerEvents: 'none',
             border: '2px solid white',
@@ -669,7 +669,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressSeekThumbnailContainerStyle(
+    getCarouselVideoProgressScreenshotViewerContainerStyle(
         percent: number,
         videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined | null,
         toolbarElement: Element,
@@ -678,7 +678,7 @@ export class StylingLogic {
         textTranslateOffsetRef: React.MutableRefObject<TextTranslateOffset>,
     ) {
         const { width } = this.optionsLogic.videoProgressBarScreenshotViewer;
-        const { left: paddingBetweenContainerAndVideo } = this.toolbarHorizontalSpacing;
+        const { left: paddingBetweenContainerAndVideoLeft, right: paddingBetweenContainerAndVideoRight} = this.itemViewerHorizontalSpacing;
 
         const isEmbedded = this.optionsLogic.isToolbarInVideo;
         const videoRect = videoRef?.current?.getBoundingClientRect();
@@ -694,7 +694,7 @@ export class StylingLogic {
             : (isEmbedded ? 103 : 90);
 
         let translateX = '-50%'
-        let left = `${paddingBetweenContainerAndVideo + (videoRect?.width || 200) * percent}${CAROUSEL_SPACING_UNIT}`;
+        let left = `${paddingBetweenContainerAndVideoLeft + (videoRect?.width || 200) * percent}${CAROUSEL_SPACING_UNIT}`;
         let right = "auto";
 
         if (videoRect && screenShotCanvasRect && screenShotTextContainerRect && progressBarRect) {
@@ -710,36 +710,21 @@ export class StylingLogic {
             if ((viewerRight && viewerRight > rightBound) || cursorLeftPosition >= maxCursorLeftValue) {
                 left = 'auto';
                 right = `0${CAROUSEL_SPACING_UNIT}`;
-                translateX = `${-paddingBetweenContainerAndVideo / 2}${CAROUSEL_SPACING_UNIT}`;
+                translateX = `${-paddingBetweenContainerAndVideoRight}${CAROUSEL_SPACING_UNIT}`;
             }
-
+            
             //handling left-bound case
             // console.log({ leftBound, viewerLeft, cursorLeftPosition, minCursorLeftValue });
             if ((viewerLeft && viewerLeft < leftBound) || cursorLeftPosition <= minCursorLeftValue) {
                 left = `0${CAROUSEL_SPACING_UNIT}`;
-                translateX = `${paddingBetweenContainerAndVideo / 2}${CAROUSEL_SPACING_UNIT}`;
-            }
-
-            //resetting
-            if (cursorLeftPosition < maxCursorLeftValue && cursorLeftPosition > minCursorLeftValue) {
-                // textTranslateOffsetRef.current = 0;
+                translateX = `${paddingBetweenContainerAndVideoLeft}${CAROUSEL_SPACING_UNIT}`;
             }
         }
 
-
-        // if (
-        //     !screenShotCanvasRect ||
-        //     !screenShotTextContainerRect ||
-        //     !progressBarRect ||
-        //     !videoRect ||
-        //     percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE
-        // ) return {
-        //     display: 'none',
-        //     left: '-1000px',
-        // } as CSSProperties;
         return {
-            padding: 10,
-            width: width + 20,
+            padding: CAROUSEL_ITEM_SPACING_DEFAULT,
+            paddingInline: 0,
+            width: width + CAROUSEL_ITEM_SPACING_DEFAULT * 2,
             pointerEvents: 'none',
             borderRadius: 4,
             textAlign: 'center',
@@ -753,12 +738,12 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoProgressSeekThumbnailTextContainerStyle() {
+    get carouselVideoProgressScreenshotViewerTextContainerStyle() {
         return {
             color: 'white',
             position: 'absolute',
             width: '10000px', //this is a hack to align this centered since translateX(-50%) doesn't work
-            transform: `translateX(calc(-4912${CAROUSEL_SPACING_UNIT})`, //this is a hack to align this centered since translateX(-50%) doesn't work
+            transform: `translateX(calc(-4903${CAROUSEL_SPACING_UNIT})`, //this is a hack to align this centered since translateX(-50%) doesn't work
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -766,7 +751,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoProgressSeekThumbnailTextStyle(
+    getCarouselVideoProgressScreenshotViewerTextStyle(
         percent: number,
         videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | undefined | null,
         screenShotTextElement: Element | undefined | null,

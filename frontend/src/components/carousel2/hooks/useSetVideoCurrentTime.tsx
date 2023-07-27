@@ -19,7 +19,6 @@ export const useSetVideoCurrentTime = ({
 
     const drawSnapshot = useCallback((duration: number) => {
         if (!video || percent === undefined || !isFinite(duration)) return;
-        console.log({duration, percent});
         video.currentTime = percent * duration;
     }, [percent, video])
 

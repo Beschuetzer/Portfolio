@@ -60,7 +60,7 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
     return (
         <div
             className={CLASSNAME__VIDEO_SCREENSHOT_VIEWER}
-            style={stylingLogic.getCarouselVideoProgressSeekThumbnailContainerStyle(
+            style={stylingLogic.getCarouselVideoProgressScreenshotViewerContainerStyle(
                 percent,
                 videoRef,
                 toolbarRef.current,
@@ -70,7 +70,7 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
             )}
         >
             <video
-                style={stylingLogic.carouselVideoProgressSeekThumbnailScreenShotStyle}
+                style={stylingLogic.carouselVideoProgressScreenshotViewerVideoStyle}
                 ref={videoThumbnailRef as any}
                 autoPlay={false}
                 muted={true}
@@ -81,10 +81,10 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
             <div
                 ref={screenShotTextContainerRef as any}
                 className={CLASSNAME__VIDEO_SCREENSHOT_VIEWER_TEXT_CONTAINER}
-                style={stylingLogic.carouselVideoProgressSeekThumbnailTextContainerStyle}
+                style={stylingLogic.carouselVideoProgressScreenshotViewerTextContainerStyle}
             >
                 <div
-                    style={stylingLogic.getCarouselVideoProgressSeekThumbnailTextStyle(
+                    style={stylingLogic.getCarouselVideoProgressScreenshotViewerTextStyle(
                         percent,
                         videoRef,
                         screenShotTextContainerRef.current?.querySelector('div'),
