@@ -42,7 +42,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         srcMain,
         video: videoProps,
     } = props;
-    const { options, currentVideoCurrentTime, isFullscreenMode, setIsFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
+    const { options, currentItemIndex, currentVideoCurrentTime, isFullscreenMode, setIsFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
 
     const { autoPlay, loop, muted } = videoProps || {};
     const [isLoaded, setIsLoaded] = useState(false);
@@ -125,7 +125,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         if (videoRef.current?.load) {
             videoRef.current.load();
         }
-    }, [srcMain, videoRef, videoProps?.autoPlay])
+    }, [currentItemIndex, srcMain, videoRef, videoProps?.autoPlay])
 
     useEffect(() => {
         if (videoRef.current) {
