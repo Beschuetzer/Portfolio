@@ -105,6 +105,8 @@ export class StylingLogic {
 
     //#region Public Getters
     get carouselImageContainerStlye() {
+        const {left: leftSpacing, right: rightSpacing} = this.itemViewerHorizontalSpacing;
+
         return {
             display: "flex",
             flexDirection: "column",
@@ -112,8 +114,8 @@ export class StylingLogic {
             alignItems: "center",
             width: '100%',
             height: '100%',
-            paddingLeft: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer),
-            paddingRight: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer),
+            paddingLeft: leftSpacing,
+            paddingRight: rightSpacing,
         } as CSSProperties;
     }
 
@@ -454,6 +456,8 @@ export class StylingLogic {
     }
 
     get carouselVideoContainerStyle() {
+        const {left: leftSpacing, right: rightSpacing} = this.itemViewerHorizontalSpacing;
+
         const common = {
             position: 'relative',
             display: 'flex',
@@ -462,8 +466,8 @@ export class StylingLogic {
             width: "100%",
             paddingTop: 0,
             paddingBottom: 0,
-            paddingLeft: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer),
-            paddingRight: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer),
+            paddingLeft: leftSpacing,
+            paddingRight: rightSpacing,
         } as CSSProperties : {
 
         };
@@ -893,6 +897,13 @@ export class StylingLogic {
         return getCurrentValue(this.options.styling?.itemViewer?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
     }
 
+    get itemViewerHorizontalSpacing() {
+        return {
+            left: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT),
+            right: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT),
+        }
+    }
+
     get navigationContainerHorizontalPadding() {
         const navigationPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation);
         return navigationPadding;
@@ -992,7 +1003,7 @@ export class StylingLogic {
 
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItem);
-        const { left: leftSpacing, right: rightSpacing } = this.toolbarHorizontalSpacing;
+        const {left: leftSpacing, right: rightSpacing} = this.itemViewerHorizontalSpacing;
 
         const paddingHorizontalStyle = {
             paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : leftSpacing,

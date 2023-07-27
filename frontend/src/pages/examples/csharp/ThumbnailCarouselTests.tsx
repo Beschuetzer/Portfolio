@@ -2266,7 +2266,7 @@ const viewingModeItemViewerPreview = (
 );
 const viewingModePaddingEverywhere = (
 	<Carousel
-		items={items.slice(0, 3)}
+		items={items.slice(0, 6)}
 		options={{
 			layout: {
 				itemDisplayLocation: 'above',
