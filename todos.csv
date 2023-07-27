@@ -1,4 +1,5 @@
-React best practices re-work (branch = sitenav_rework)
+React best practices re-working
+  -use lazy loading (https://www.youtube.com/watch?v=JU6sl_yyZqs) for images in carousel?
   -pages with audio need to know when player is open and adjust padding bottom
   -bridge links move after clicking buttons (as opposed to github link)
   -replace as many document.querySelector calls with refs
