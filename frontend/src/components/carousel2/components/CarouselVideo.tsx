@@ -63,7 +63,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         setCurrentVideoSection,
         isProgressBarMouseDownRef
     );
-    useSetVideoCurrentTime({percent: isVideoPlaying ? undefined : percent, video: videoRef?.current});
+    // useSetVideoCurrentTime({percent: isVideoPlaying ? undefined : percent, video: videoRef?.current});
     //#endregion
 
     //#region Functions/Handlers
