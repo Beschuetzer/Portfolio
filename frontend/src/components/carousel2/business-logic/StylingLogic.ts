@@ -1021,19 +1021,17 @@ export class StylingLogic {
             marginLeft: !this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? 0 : leftSpacing,
             marginRight: !this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? 0 : rightSpacing,
         } as CSSProperties;
-        const nonDefaultItemDisplayStyle = !this.isFullscreenMode ? {
+        const nonDefaultItemDisplayStyle = {
             ...this.getToolbarBackgroundColorStyle(),
             ...paddingHorizontalStyle,
             position: this.optionsLogic.isToolbarInVideo ? "absolute" : "relative",
             width: this.optionsLogic.isToolbarInVideo ? undefined : '100%',
             paddingTop: isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
             paddingBottom: this.toolbarPaddingBottom,
-            top: this.optionsLogic.isToolbarInVideo ? '50%' : undefined,
+            top: this.optionsLogic.isToolbarInVideo ? (this.isFullscreenMode ? '75%' : '50%') : undefined,
             justifyContent: 'flex-end',
             pointerEvents: 'none',
-        } as React.CSSProperties : {
-            ...paddingHorizontalStyle,
-        };
+        } as CSSProperties;
 
         return {
             ...nonDefaultItemDisplayStyle,
