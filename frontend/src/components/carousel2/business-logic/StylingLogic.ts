@@ -406,7 +406,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoModalStyle() {
+    getCarouselVideoModalStyle(shouldHide: boolean) {
         const { fontSize: fontSizeTemp, background, textColor, widthInPercent: widthInPercentTemp } = this.options.styling?.videoModal || {};
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.videoModalPadding;
         const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
@@ -448,7 +448,8 @@ export class StylingLogic {
             ...positionStyle,
             ...textStyle,
             ...this.fontFamilyItemViewerStyle,
-        }
+            zIndex: shouldHide ? -1 : 1,
+        } as CSSProperties;
     }
 
     get carouselVideoCloseButtonColor() {
@@ -499,7 +500,23 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoStyle() {
+    getCarouselVideoCurrentTimeViewerStyle(shouldShow: boolean) {
+        if (!shouldShow) return {
+            display: 'none',
+        } as CSSProperties;
+        return {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            paddingLeft: this.carouselVideoContainerStyle.paddingLeft,
+            paddingRight: this.carouselVideoContainerStyle.paddingRight,
+        } as CSSProperties;
+    }
+
+    getCarouselVideoStyle(shouldHide: boolean) {
         const objectStyles = {
             objectFit: this.currentItem?.video?.objectFit || 'contain',
             objectPosition: this.currentItem?.video?.objectPosition || 'bottom',
@@ -508,6 +525,7 @@ export class StylingLogic {
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             ...objectStyles,
+            zIndex: shouldHide ? -1 : 1,
         } as CSSProperties : {};
     }
 
@@ -722,6 +740,7 @@ export class StylingLogic {
         }
 
         return {
+            display: percent < 0 ? 'none' : 'block',
             padding: CAROUSEL_ITEM_SPACING_DEFAULT,
             paddingInline: 0,
             width: width + CAROUSEL_ITEM_SPACING_DEFAULT * 2,

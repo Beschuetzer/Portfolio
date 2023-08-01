@@ -12,7 +12,7 @@ import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFulls
 import { useResetCarouselVideoCurrentSection } from '../hooks/useResetCarouselVideoCurrentSection';
 import { CarouselVideoProgressBarScreenshotViewer } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer';
 import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from './item-viewer/progress-bar/CarouselItemViewerProgressBar';
-import { useSetVideoCurrentTime } from '../hooks/useSetVideoCurrentTime';
+import { CarouselVideoCurrentTimeViewer } from './CarouselVideoCurrentTimeViewer';
 
 /**
 *Each section is comprised of a description string and a duration (in ms)
@@ -63,7 +63,6 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
         setCurrentVideoSection,
         isProgressBarMouseDownRef
     );
-    // useSetVideoCurrentTime({percent: isVideoPlaying ? undefined : percent, video: videoRef?.current});
     //#endregion
 
     //#region Functions/Handlers
@@ -172,11 +171,18 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                     description={description}
                     {...options?.styling?.itemViewer?.loadingSpinner}
                 />
+                <CarouselVideoCurrentTimeViewer
+                    isProgressBarMouseDownRef={isProgressBarMouseDownRef}
+                    isVideoPlaying={isVideoPlaying}
+                    percent={percent}
+                    srcMain={srcMain}
+                    type={type}
+                />
                 <video
                     controls={optionsLogic.useDefaultVideoControls}
                     draggable={false}
                     className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
-                    style={stylingLogic.carouselVideoStyle}
+                    style={stylingLogic.getCarouselVideoStyle(!!isProgressBarMouseDownRef.current)}
                     ref={videoRef as any}
                     autoPlay={!!autoPlay}
                     muted={!!muted}
@@ -188,12 +194,13 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 >
                     <source src={srcMain} type={`video/${type}`} />
                     Your browser does not support the HTML5 video tag. Try using a different browser.
-                </video>               
+                </video>
                 {props.video?.overlayProps ? (
                     <CarouselVideoModal
                         itemViewerToolbarRef={itemViewerToolbarRef}
                         videoRef={videoRef}
                         isVideoPlaying={isVideoPlaying}
+                        isProgressBarMouseDownRef={isProgressBarMouseDownRef}
                         {...props.video?.overlayProps}
                     />
                 ) : null}
@@ -219,8 +226,8 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 currentVideoSection={currentVideoSection}
                 percent={isProgressBarMouseDownRef.current ? percent : seekPercent}
                 toolbarRef={itemViewerToolbarRef as any}
-                videoRef={videoRef}   
-                srcMain={srcMain}             
+                videoRef={videoRef}
+                srcMain={srcMain}
                 type={type}
             />
         </>

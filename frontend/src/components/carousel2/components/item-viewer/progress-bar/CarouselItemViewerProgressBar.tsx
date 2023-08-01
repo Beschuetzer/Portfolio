@@ -403,7 +403,7 @@ export const CarouselItemViewerProgressBar = ({
     }, [currentVideoSection, sections?.length, stylingLogic]);
 
     const getSeekDiv = useCallback((percent: number, left = 0, index = 0) => {
-        if (isNaN(percent)) return null;
+        if (isNaN(percent) || percent <= 0) return null;
         return <div key={`seekDiv-${index}`} style={stylingLogic.getCarouselVideoProgressSeekStyle(
             percent,
             left,

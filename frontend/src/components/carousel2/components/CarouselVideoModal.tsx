@@ -35,13 +35,13 @@ export type CarouselVideoModalInternalProps = {
     **/
     isVideoPlaying?: boolean;
     itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
-} & CarouselVideoModalProps & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
+} & CarouselVideoModalProps & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'isProgressBarMouseDownRef'>;
 
 export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
 
-    const { children, isVideoPlaying, sections, itemViewerToolbarRef, videoRef } = props;
+    const { children, isVideoPlaying, sections, isProgressBarMouseDownRef, itemViewerToolbarRef, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
     const videoModalRef = useRef<HTMLElement>();
 
@@ -130,7 +130,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
 
 
     return (
-        <div ref={videoModalRef as any} className={classNameToUse} onClick={stopPropagation as any} style={stylingLogic.carouselVideoModalStyle}>
+        <div ref={videoModalRef as any} className={classNameToUse} onClick={stopPropagation as any} style={stylingLogic.getCarouselVideoModalStyle(!!isProgressBarMouseDownRef?.current)}>
             {renderChildren()}
         </div>
     )

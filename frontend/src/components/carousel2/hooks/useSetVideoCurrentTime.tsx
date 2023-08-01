@@ -1,4 +1,5 @@
 import { useRef, useCallback, useLayoutEffect } from "react";
+import { useCarouselContext } from "../context";
 
 export type UseSetVideoCurrentTimeInput = {
     percent: number | undefined;
@@ -14,11 +15,12 @@ export const useSetVideoCurrentTime = ({
     percent,
     video,
 }: UseSetVideoCurrentTimeInput) => {
+    const { currentItemIndex } = useCarouselContext();
     const lastRenderTimeoutRef = useRef<any>();
     const lastDrawTimeRef = useRef<number>(0);
 
     const drawSnapshot = useCallback((duration: number) => {
-        if (!video || percent === undefined || !isFinite(duration)) return;
+        if (!video || percent === undefined || percent < 0 || !isFinite(duration)) return;
         video.currentTime = percent * duration;
     }, [percent, video])
 
@@ -47,5 +49,5 @@ export const useSetVideoCurrentTime = ({
         if (video?.load) {
             video.load();
         }
-    }, [video])
+    }, [video, currentItemIndex])
 }

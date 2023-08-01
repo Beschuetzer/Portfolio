@@ -8,7 +8,7 @@ import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from './CarouselItemViewerProgress
 import { CarouselItemProps } from '../../CarouselItem';
 import { useSetVideoCurrentTime } from '../../../hooks/useSetVideoCurrentTime';
 
-type CarouselItemViewerProgressBarScreenshotPreviewProps = {
+export type CarouselItemViewerProgressBarScreenshotPreviewProps = {
     toolbarRef: React.MutableRefObject<HTMLDivElement>;
     type: string | undefined;
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'currentVideoSection' | 'percent'>
@@ -56,7 +56,6 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
     //#endregion
 
     //#region JSX
-    if (percent <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) return null;
     return (
         <div
             className={CLASSNAME__VIDEO_SCREENSHOT_VIEWER}

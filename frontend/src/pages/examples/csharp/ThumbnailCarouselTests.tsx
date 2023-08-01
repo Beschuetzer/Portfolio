@@ -244,6 +244,34 @@ const items = [
 		}
 	},
 	{
+		description: "Default Overlay on Load with Sections (no auto play)",
+		srcMain: clipFilters,
+		srcThumbnail: clipFiltersThumbnail,
+		video: {
+			overlayProps: {
+				sections: [
+					{
+						title: "Section 1",
+						text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+					},
+					{
+						title: "Section 2",
+						text: "This is where the second section text goes."
+					}
+				],
+			},
+			autoPlay: false,
+			muted: true,
+			objectFit: 'cover',
+			objectPosition: 'top',
+			sections: [
+				['Search Section that is also a really long title', 12000],
+				['Filter Section', 8000],
+				['Options Section that is also a really long title'],
+			]
+		}
+	},
+	{
 		srcMain: maui05,
 		srcThumbnail: maui05Thumbnail,
 		description: "Haleakalā Sunset",
@@ -2364,7 +2392,7 @@ const viewingModeVideoControls = (
 			itemViewer: {
 				// disableSwiping: false,
 			},
-			
+
 			styling: {
 				itemViewerPreview: {
 					isVisibleInNonFullscreenMode: true,
@@ -2383,7 +2411,7 @@ const viewingModeVideoControls = (
 							// width: 125,
 						},
 					},
-					
+
 					// elements: {
 					// 	size: 30,
 					// 	color: 'red',
