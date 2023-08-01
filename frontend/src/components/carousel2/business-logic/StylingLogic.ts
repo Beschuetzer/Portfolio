@@ -105,7 +105,7 @@ export class StylingLogic {
 
     //#region Public Getters
     get carouselImageContainerStlye() {
-        const {left: leftSpacing, right: rightSpacing} = this.itemViewerHorizontalSpacing;
+        const {left: leftSpacing, right: rightSpacing} = this.getItemViewerHorizontalSpacing(0);
 
         return {
             display: "flex",
@@ -457,7 +457,7 @@ export class StylingLogic {
     }
 
     get carouselVideoContainerStyle() {
-        const {left: leftSpacing, right: rightSpacing} = this.itemViewerHorizontalSpacing;
+        const {left: leftSpacing, right: rightSpacing} = this.getItemViewerHorizontalSpacing(0);
 
         const common = {
             position: 'relative',
@@ -696,7 +696,7 @@ export class StylingLogic {
         textTranslateOffsetRef: React.MutableRefObject<TextTranslateOffset>,
     ) {
         const { width } = this.optionsLogic.videoProgressBarScreenshotViewer;
-        const { left: paddingBetweenContainerAndVideoLeft, right: paddingBetweenContainerAndVideoRight} = this.itemViewerHorizontalSpacing;
+        const { left: paddingBetweenContainerAndVideoLeft, right: paddingBetweenContainerAndVideoRight} = this.getItemViewerHorizontalSpacing();
 
         const isEmbedded = this.optionsLogic.isToolbarInVideo;
         const videoRect = videoRef?.current?.getBoundingClientRect();
@@ -709,10 +709,10 @@ export class StylingLogic {
 
         const bottom = toolbarInnerContainerRect?.height && progressBarRect?.height
             ? toolbarInnerContainerRect.height - progressBarRect.height + (screenShotTextContainerRect?.height || 20) + hitSlopBottom + this.toolbarPaddingBottom + CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.33
-            : (isEmbedded ? 103 : 90);
+            : (isEmbedded ? 103 : 90); //fallback
 
         let translateX = '-50%'
-        let left = `${paddingBetweenContainerAndVideoLeft + (videoRect?.width || 200) * percent}${CAROUSEL_SPACING_UNIT}`;
+        let left = `${paddingBetweenContainerAndVideoLeft + ((videoRect?.width || 200) - (this.isFullscreenMode ? (paddingBetweenContainerAndVideoLeft + paddingBetweenContainerAndVideoRight) : 0)) * percent}${CAROUSEL_SPACING_UNIT}`;
         let right = "auto";
 
         if (videoRect && screenShotCanvasRect && screenShotTextContainerRect && progressBarRect) {
@@ -862,10 +862,16 @@ export class StylingLogic {
     }
 
     get carouselVideoTimeTextStyle() {
+        const selectStyle = {
+            userSelect: 'none',
+        } as CSSProperties;
         return !this.optionsLogic.isDefaultItemDisplayLocation && !this.isFullscreenMode ? {
             paddingInline: CAROUSEL_ITEM_SPACING_DEFAULT / 2,
             flexGrow: 0,
-        } as CSSProperties : {};
+            ...selectStyle,
+        } as CSSProperties : {
+            ...selectStyle
+        };
     }
 
     get defaultButtonSize() {
@@ -901,10 +907,10 @@ export class StylingLogic {
         return getCurrentValue(this.options.styling?.itemViewer?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
     }
 
-    get itemViewerHorizontalSpacing() {
+    getItemViewerHorizontalSpacing(fullscreenValue = CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT) {
         return {
-            left: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT),
-            right: this.isFullscreenMode ? 0 : this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT),
+            left: this.isFullscreenMode ? fullscreenValue : this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT),
+            right: this.isFullscreenMode ? fullscreenValue : this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT),
         }
     }
 
@@ -1007,7 +1013,7 @@ export class StylingLogic {
 
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItem);
-        const {left: leftSpacing, right: rightSpacing} = this.itemViewerHorizontalSpacing;
+        const {left: leftSpacing, right: rightSpacing} = this.getItemViewerHorizontalSpacing();
 
         const paddingHorizontalStyle = {
             paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : leftSpacing,
