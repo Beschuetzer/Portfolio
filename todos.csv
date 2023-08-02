@@ -1,5 +1,6 @@
 Carousel rework
   -work on progressbar rework:
+    --for below, try adding isLastPage useMemo then passing that, isLastPageFlush, and numberOfWholeItemsThatCanFit into the styling logic and keeping track of the min translataionAmount as a private field inside StlyingLogic but only when isLastPage && isLastPageFlush && items.length % numberOfWholeItemsThatCanFit !== 0
     --when isLastPageFlush is true (default) then there is some glitchiness in rendering when selecting an item on any page other than the 1st page
     --figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
     --add component in CarouselVideo to show the snapshot when changing percent via bar
