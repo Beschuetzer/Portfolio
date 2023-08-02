@@ -2392,6 +2392,12 @@ const viewingModeVideoControls = (
 			itemViewer: {
 				// disableSwiping: false,
 			},
+			navigation: {
+				// isLastPageFlush: false,
+			},
+			thumbnail: {
+				// size: 100,
+			},
 
 			styling: {
 				itemViewerPreview: {
