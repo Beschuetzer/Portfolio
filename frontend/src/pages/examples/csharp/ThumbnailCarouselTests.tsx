@@ -2394,6 +2394,7 @@ const viewingModeVideoControls = (
 			},
 			navigation: {
 				// isLastPageFlush: false,
+				// autoChangePage: false,
 			},
 			thumbnail: {
 				// size: 100,

@@ -30,6 +30,7 @@ import { CarouselContextInputProps, CarouselContextOutputProps } from "../contex
 import { RegexpPattern } from "./RegexpPattern";
 import { CarouselItemViewerShortcutIndicatorPosition } from "../components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
 import { TEXT_TRANSLATION_AMOUNT_REF_INITIAL, TextTranslateOffset } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer";
+import { TranslationAmountChange } from "../components/CarouselContent";
 
 export enum SpacingDirection {
     bottom,
@@ -59,6 +60,8 @@ export type GetToolbarButtonSizeStlye = {
 */
 export class StylingLogic {
     private DEFAULT_FONT_FAMILY: string = 'sans-serif';
+    private LAST_PAGE_CAROUSEL_AMOUNT_INITIAL = 0;
+
     private carouselContainerRef;
     private currentItem;
     private isCurrentItem: boolean | undefined;
@@ -67,6 +70,7 @@ export class StylingLogic {
     private items;
     private itemViewerToolbarRef;
     private isFullscreenMode: boolean;
+    private lastPageCarouselTranslationAmount: number;
     private loadingSpinnerOptions: LoadingSpinnerProps['options'];
     private numberOfPages;
     private options: CarouselOptions;
@@ -91,21 +95,22 @@ export class StylingLogic {
         this.carouselContainerRef = carouselContainerRef;
         this.currentItem = currentItem;
         this.isCurrentItem = isCurrentItem;
+        this.isMobile = getIsMobile();
         this.isFullscreenMode = !!isFullscreenMode;
         this.items = items || [];
         this.loadingSpinnerOptions = loadingSpinnerOptions;
         this.itemViewerToolbarRef = itemViewerToolbarRef || { current: null };
+        this.lastPageCarouselTranslationAmount = this.LAST_PAGE_CAROUSEL_AMOUNT_INITIAL;
         this.numberOfPages = numberOfPages || 0;
         this.videoRef = videoRef;
         this.videoModalRef = videoModalRef;
         this.options = options || {};
         this.optionsLogic = optionsLogic || new OptionsLogic({ options: this.options, isFullscreenMode: false });
-        this.isMobile = getIsMobile();
     }
 
     //#region Public Getters
     get carouselImageContainerStlye() {
-        const {left: leftSpacing, right: rightSpacing} = this.getItemViewerHorizontalSpacing(0);
+        const { left: leftSpacing, right: rightSpacing } = this.getItemViewerHorizontalSpacing(0);
 
         return {
             display: "flex",
@@ -457,7 +462,7 @@ export class StylingLogic {
     }
 
     get carouselVideoContainerStyle() {
-        const {left: leftSpacing, right: rightSpacing} = this.getItemViewerHorizontalSpacing(0);
+        const { left: leftSpacing, right: rightSpacing } = this.getItemViewerHorizontalSpacing(0);
 
         const common = {
             position: 'relative',
@@ -696,7 +701,7 @@ export class StylingLogic {
         textTranslateOffsetRef: React.MutableRefObject<TextTranslateOffset>,
     ) {
         const { width } = this.optionsLogic.videoProgressBarScreenshotViewer;
-        const { left: paddingBetweenContainerAndVideoLeft, right: paddingBetweenContainerAndVideoRight} = this.getItemViewerHorizontalSpacing();
+        const { left: paddingBetweenContainerAndVideoLeft, right: paddingBetweenContainerAndVideoRight } = this.getItemViewerHorizontalSpacing();
 
         const isEmbedded = this.optionsLogic.isToolbarInVideo;
         const videoRect = videoRef?.current?.getBoundingClientRect();
@@ -730,7 +735,7 @@ export class StylingLogic {
                 right = `0${CAROUSEL_SPACING_UNIT}`;
                 translateX = `${-paddingBetweenContainerAndVideoRight}${CAROUSEL_SPACING_UNIT}`;
             }
-            
+
             //handling left-bound case
             // console.log({ leftBound, viewerLeft, cursorLeftPosition, minCursorLeftValue });
             if ((viewerLeft && viewerLeft < leftBound) || cursorLeftPosition <= minCursorLeftValue) {
@@ -1013,7 +1018,7 @@ export class StylingLogic {
 
     get toolbarStyle() {
         const isItemVideo = getIsVideo(this.currentItem);
-        const {left: leftSpacing, right: rightSpacing} = this.getItemViewerHorizontalSpacing();
+        const { left: leftSpacing, right: rightSpacing } = this.getItemViewerHorizontalSpacing();
 
         const paddingHorizontalStyle = {
             paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : leftSpacing,
@@ -1260,13 +1265,29 @@ export class StylingLogic {
         } as CSSProperties : {};
     }
 
-    getCarouselItemsInnerContainerStyle(interItemSpacing: number, translationAmount: number) {
+    getCarouselItemsInnerContainerStyle(
+        interItemSpacing: number,
+        translationAmount: number,
+        isLastPage: boolean,
+        translationAmountChangeRef: React.MutableRefObject<TranslationAmountChange>,
+    ) {
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
             this.items.length,
             this.carouselContainerRef?.current,
             this,
             this.optionsLogic
         );
+
+        let translationAmountToUse = translationAmount;
+        const isValidChange = translationAmountChangeRef.current !== TranslationAmountChange.swipe;
+        if (isValidChange && isLastPage && !!translationAmountChangeRef.current) {
+            console.log({ isLastPage, translationAmount, lastPageCarouselTranslationAmount: this.lastPageCarouselTranslationAmount });
+            if (translationAmount > 0 && this.lastPageCarouselTranslationAmount === this.LAST_PAGE_CAROUSEL_AMOUNT_INITIAL) {
+                this.lastPageCarouselTranslationAmount = translationAmount;
+            }
+            translationAmountToUse = this.lastPageCarouselTranslationAmount;
+        }
+
         const itemPositioning = this.optionsLogic.itemPositioning;
         const numberOfItemsToUse = Math.min(numberOfWholeItemsThatCanFit, (this.items?.length || Number.MAX_SAFE_INTEGER));
         const numberOfSpaces = numberOfItemsToUse - 1;
@@ -1291,7 +1312,7 @@ export class StylingLogic {
             columnGap: itemSpacing,
         } as CSSProperties
         const translationStyle = {
-            transform: `translateX(${translationAmount < 0 ? '' : '-'}${Math.abs(translationAmount)}${CAROUSEL_SPACING_UNIT})`,
+            transform: `translateX(${translationAmountToUse < 0 ? '' : '-'}${Math.abs(translationAmountToUse)}${CAROUSEL_SPACING_UNIT})`,
         } as CSSProperties
 
         return {

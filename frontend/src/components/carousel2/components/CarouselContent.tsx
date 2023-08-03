@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
 import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, GET_CURRENT_VALUE_DEFAULT, TRANSLATION_AMOUNT_INITIAL } from '../constants';
@@ -11,6 +11,16 @@ import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 import { CarouselItemToRender } from './CarouselItemToRender';
 
+/**
+*Tracks why the translation amount changed.  Used to fix issue with translation amount when `isLastPageFlush` is `true`
+**/
+export enum TranslationAmountChange {
+    currentItemIndex,
+    currentPage,
+    isLastPageFlushAdjustment,
+    swipe,
+    none,
+}
 type CarouselContentProps = {} & Omit<CarouselProps, 'style' | 'onItemChange'> & Pick<CarouselContextInputProps, 'carouselContainerRef'>;
 
 const WINDOW_RESIZE_DEBOUNCE_INTERVAL = 100;
@@ -25,12 +35,14 @@ export const CarouselContent = ({
     const hasCalculatedItemSpacingRef = useRef(false);
     const resizeWindowDebounceRef = useRef<any>();
     const translationAmountDifferenceRef = useRef(0);
-    const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
-    const [interItemSpacing, setInterItemSpacing] = useState(getCurrentValue(options?.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT, isFullscreenMode));
-    const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     const itemsContainerOuterRef = useRef<HTMLDivElement>(null);
     const itemsContainerInnerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndexRef = useRef(CURRENT_ITEM_INDEX_INITIAL);
+    const translationAmountChangeRef = useRef<TranslationAmountChange>(TranslationAmountChange.none);
+    const isLastPage = useMemo(() => currentPage + 1 === numberOfPages, [currentPage, numberOfPages]);
+    const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
+    const [interItemSpacing, setInterItemSpacing] = useState(getCurrentValue(options?.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT, isFullscreenMode));
+    const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     const {
         optionsLogic,
         stylingLogic,
@@ -67,6 +79,7 @@ export const CarouselContent = ({
                 },
             },
             onMoveWhenGrabbing(xDiff, yDiff) {
+                translationAmountChangeRef.current = TranslationAmountChange.swipe;
                 setTranslationAmount((current) => {
                     const offset = xDiff;
                     if (optionsLogic.isWrappingDisabled && current <= 0 && offset >= 0) return current;
@@ -295,13 +308,18 @@ export const CarouselContent = ({
 
     //updating translation amount
     useEffect(() => {
-        setTranslationAmount(getTranslationAmountByCurrentPage());
-    }, [getTranslationAmountByCurrentPage])
+        if (!optionsLogic.autoChangePage || translationAmountChangeRef?.current !== TranslationAmountChange.currentPage) return;
+        translationAmountChangeRef.current = TranslationAmountChange.currentItemIndex;
+        const newTranslationAmount = getTranslationAmountByCurrentItemIndex();
+        setTranslationAmount(newTranslationAmount);
+    }, [optionsLogic.autoChangePage, getTranslationAmountByCurrentItemIndex])
 
     useEffect(() => {
-        if (!optionsLogic.autoChangePage) return;
-        setTranslationAmount(getTranslationAmountByCurrentItemIndex());
-    }, [getTranslationAmountByCurrentItemIndex, optionsLogic.autoChangePage])
+        if (!optionsLogic.autoChangePage && translationAmountChangeRef?.current === TranslationAmountChange.currentItemIndex) return;
+        translationAmountChangeRef.current = TranslationAmountChange.currentPage;
+        const newTranslationAmount = getTranslationAmountByCurrentPage();
+        setTranslationAmount(newTranslationAmount);
+    }, [getTranslationAmountByCurrentPage, optionsLogic.autoChangePage])
 
     //adjusting the translation amount based on isLastPageFlush
     useEffect(() => {
@@ -311,6 +329,7 @@ export const CarouselContent = ({
         );
         let offset = getLastPageOffset(numberOfWholeItemsThatCanFit, itemSize);
         if (offset > 0) {
+            translationAmountChangeRef.current = TranslationAmountChange.isLastPageFlushAdjustment;
             setTranslationAmount((current) => current - offset);
         }
     }, [carouselContainerRef, currentPage, getLastPageOffset, items.length, optionsLogic, stylingLogic])
@@ -329,7 +348,7 @@ export const CarouselContent = ({
                 }}
             >
                 <div ref={itemsContainerInnerRef}
-                    style={stylingLogic.getCarouselItemsInnerContainerStyle(interItemSpacing, translationAmount)}
+                    style={stylingLogic.getCarouselItemsInnerContainerStyle(interItemSpacing, translationAmount, isLastPage, translationAmountChangeRef)}
                     className={getClassname({ elementName: "items" })}
                 >
                     {
