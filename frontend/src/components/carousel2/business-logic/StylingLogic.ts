@@ -436,7 +436,7 @@ export class StylingLogic {
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
             transform: 'translate(-50%, 0)',
-            top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${((Math.abs(videoHeight - videoModalHeight) / 2) - topOffsetForEmbeddedCase)}${CAROUSEL_SPACING_UNIT}` : '50%',
+            top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${Math.max(((Math.abs(videoHeight - videoModalHeight) / 2) - topOffsetForEmbeddedCase), 0)}${CAROUSEL_SPACING_UNIT}` : '50%',
         } as CSSProperties : {};
         const textStyle = {
             color: getCurrentValue(textColor, CAROUSEL_COLOR_ONE, this.isFullscreenMode),
