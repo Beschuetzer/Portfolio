@@ -3,7 +3,7 @@
   --thumbnail-carousel-video-modal-custom-button-right: calc(20px * .5);
 }
 
-.thumbnail-carousel--hidden, .thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__item-viewer-toolbar {
+.thumbnail-carousel--hidden, .thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__item-viewer-toolbar, .thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__video-screenshot-viewer {
   pointer-events: none !important;
   opacity: 0 !important;
 }
@@ -784,10 +784,13 @@
   position: relative;
 }
 @media only screen and (hover: none) {
-  .thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__item-viewer-toolbar {
+  .thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__item-viewer-toolbar, .thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__video-screenshot-viewer {
     pointer-events: all !important;
     opacity: 1 !important;
   }
+}
+.thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__item-viewer-shortcut-indicator {
+  pointer-events: none !important;
 }
 .thumbnail-carousel__item-container img {
   z-index: 1;

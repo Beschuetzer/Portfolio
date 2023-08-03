@@ -1033,7 +1033,7 @@ export class StylingLogic {
             width: this.optionsLogic.isToolbarInVideo ? undefined : '100%',
             paddingTop: isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
             paddingBottom: this.toolbarPaddingBottom,
-            top: this.optionsLogic.isToolbarInVideo ? (this.isFullscreenMode ? '75%' : '50%') : undefined,
+            top: this.optionsLogic.isToolbarInVideo ? (this.isFullscreenMode ? '75%' : '0%') : undefined,
             justifyContent: 'flex-end',
             pointerEvents: 'none',
         } as CSSProperties;

@@ -61,13 +61,17 @@
             // }
 
             &--no-toolbar {
-                & .#{$carouselClassname}__item-viewer-toolbar {
+                & .#{$carouselClassname}__item-viewer-toolbar, & .#{$carouselClassname}__video-screenshot-viewer {
                     @extend %hidden;
 
                     @include respond(mobile) {
                         pointer-events: all !important;
                         opacity: 1 !important;
                     }
+                }
+
+                & .#{$carouselClassname}__item-viewer-shortcut-indicator {
+                    pointer-events: none !important;
                 }
             }
 
