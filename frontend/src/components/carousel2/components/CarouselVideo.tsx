@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { getClassname, getIsVideoPlaying } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
-import { CarouselVideoModal, CarouselVideoModalProps } from './CarouselVideoModal'
+import { CarouselVideoModalProps } from './CarouselVideoModal'
 import { CarouselItemViewerToolbar, CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
 import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL, CLASSNAME__HIDDEN, CLASSNAME__TOOLBAR_PROGRESS, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from '../constants';
@@ -194,16 +194,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 >
                     <source src={srcMain} type={`video/${type}`} />
                     Your browser does not support the HTML5 video tag. Try using a different browser.
-                </video>
-                {props.video?.overlayProps ? (
-                    <CarouselVideoModal
-                        itemViewerToolbarRef={itemViewerToolbarRef}
-                        videoRef={videoRef}
-                        isVideoPlaying={isVideoPlaying}
-                        isProgressBarMouseDownRef={isProgressBarMouseDownRef}
-                        {...props.video?.overlayProps}
-                    />
-                ) : null}
+                </video>               
             </div>
             <CarouselItemViewerToolbar
                 currentVideoSection={currentVideoSection}
