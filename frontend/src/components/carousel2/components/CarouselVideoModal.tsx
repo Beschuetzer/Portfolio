@@ -130,7 +130,12 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
 
 
     return (
-        <div ref={videoModalRef as any} className={classNameToUse} onClick={stopPropagation as any} style={stylingLogic.getCarouselVideoModalStyle(!!isProgressBarMouseDownRef?.current)}>
+        <div
+            ref={videoModalRef as any}
+            className={classNameToUse}
+            onClick={stopPropagation as any}
+            style={stylingLogic.getCarouselVideoModalStyle(!!isProgressBarMouseDownRef?.current)}
+        >
             {renderChildren()}
         </div>
     )

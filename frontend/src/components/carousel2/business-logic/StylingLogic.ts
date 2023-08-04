@@ -414,14 +414,19 @@ export class StylingLogic {
     getCarouselVideoModalStyle(shouldHide: boolean) {
         const { fontSize: fontSizeTemp, background, textColor, widthInPercent: widthInPercentTemp } = this.options.styling?.videoModal || {};
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.videoModalPadding;
-        const videoHeight = this.videoRef?.current?.getBoundingClientRect().height || 0;
-        const videoModalHeight = this.videoModalRef?.current?.getBoundingClientRect().height || 0;
         const widthInPercent = getCurrentValue(widthInPercentTemp, undefined, this.isFullscreenMode)
         const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : this.isMobile ? "100%" : "75%";
         const customFontSize = getCurrentValue(fontSizeTemp, this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
         const itemViewerLeftPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer);
         const itemViewerRightPadding = this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
         const topOffsetForEmbeddedCase = (this.optionsLogic.isToolbarInVideo ? (this.itemViewerToolbarRef.current?.querySelector('div')?.getBoundingClientRect().height || 0) / 2 : 0);
+        const carouselContainerRect = this.carouselContainerRef?.current?.getBoundingClientRect();
+        const toolbar = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`)?.parentElement;
+        const progressRect = toolbar?.getBoundingClientRect();
+        const carouselPaddingTop = this.getPaddingAmount(SpacingDirection.top, CarouselSection.container);
+
+        console.log({progressRect, carouselContainerRect, carouselPaddingTop});
+        
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
             width: widthToUse,
@@ -436,7 +441,7 @@ export class StylingLogic {
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
             position: 'absolute',
-            // transform: 'translate(-50%, 0)',
+            top: -(Math.abs((progressRect?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + CAROUSEL_ITEM_SPACING_DEFAULT * 2,
             // top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${Math.max(((Math.abs(videoHeight - videoModalHeight) / 2) - topOffsetForEmbeddedCase), 0)}${CAROUSEL_SPACING_UNIT}` : '50%',
             bottom: 'auto',
             left: 'auto',
