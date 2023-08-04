@@ -27,8 +27,7 @@ import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarous
 
 type AppProps = {}
 
-export const App: React.FC<AppProps> = ({
-}) => {
+export const App: React.FC<AppProps> = () => {
 	const dispatch = useAppDispatch();
 	const isMobile = useAppSelector(isMobileSelector);
 	const mobileBreakPointWidth = MOBILE_BREAK_POINT_WIDTH;
@@ -36,7 +35,7 @@ export const App: React.FC<AppProps> = ({
 	useSetHeaderCssStyle();
 	useEffect(() => {
 		dispatch(setIsMobile({isMobile: window.innerWidth <= mobileBreakPointWidth, viewPortWidth: window.innerWidth}));
-	}, [dispatch, setIsMobile, mobileBreakPointWidth])
+	}, [dispatch, mobileBreakPointWidth])
 
 	//setup window resize listener
 	useEffect(() => {
@@ -61,13 +60,7 @@ export const App: React.FC<AppProps> = ({
 			window.removeEventListener("resize", windowResize);
 			window.removeEventListener("keydown", keypressHandler);
 		};
-	}, [
-		dispatch,
-		isMobile,
-		setIsMobile,
-		mobileBreakPointWidth,
-		setViewPortWidth,
-	]);
+	}, [dispatch, isMobile, mobileBreakPointWidth]);
 
 	// //Loading Sounds, etc
 	// useEffect(() => {

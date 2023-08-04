@@ -3016,10 +3016,10 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.dynamicBasedOnViewingMode,
 		[
-			{
-				label: "Padding Everywhere Changes Dynamically based on Viewing Mode",
-				jsx: viewingModePaddingEverywhere,
-			},
+			// {
+			// 	label: "Padding Everywhere Changes Dynamically based on Viewing Mode",
+			// 	jsx: viewingModePaddingEverywhere,
+			// },
 			// {
 			// 	label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeToolbarButtons,
