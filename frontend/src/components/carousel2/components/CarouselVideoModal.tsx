@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { getClassname } from '../utils';
 import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
@@ -44,6 +44,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     const { children, isVideoPlaying, sections, isProgressBarMouseDownRef, itemViewerToolbarRef, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
     const videoModalRef = useRef<HTMLElement>();
+    const videoModalHeightRef = useRef<number>(0);
 
     const { svgHref } = elementStylings?.closeButton || {};
     const isCustom = useMemo(() => !!children, [children]);
@@ -66,6 +67,14 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     useEffect(() => {
         setIsVisible(true);
     }, [currentItem, currentItemIndex])
+
+    useEffect(() => {
+        if (videoModalHeightRef.current > 0) return;
+        const height = videoModalRef.current?.getBoundingClientRect().height;
+        if (height !== undefined && height > 0) {
+            videoModalHeightRef.current = height;
+        }
+    })
     //#endregion
 
     //#region JSX
@@ -134,7 +143,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
             ref={videoModalRef as any}
             className={classNameToUse}
             onClick={stopPropagation as any}
-            style={stylingLogic.getCarouselVideoModalStyle(!!isProgressBarMouseDownRef?.current)}
+            style={stylingLogic.getCarouselVideoModalStyle(!!isProgressBarMouseDownRef?.current, videoModalHeightRef.current)}
         >
             {renderChildren()}
         </div>

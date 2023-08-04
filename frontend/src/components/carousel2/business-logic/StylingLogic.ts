@@ -75,6 +75,7 @@ export class StylingLogic {
     private numberOfPages;
     private options: CarouselOptions;
     private videoModalRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
+    private videoModalHeight: number;
     private videoRef;
 
     constructor(constructor: StylingLogicConstructor) {
@@ -104,6 +105,7 @@ export class StylingLogic {
         this.numberOfPages = numberOfPages || 0;
         this.videoRef = videoRef;
         this.videoModalRef = videoModalRef;
+        this.videoModalHeight = 0;
         this.options = options || {};
         this.optionsLogic = optionsLogic || new OptionsLogic({ options: this.options, isFullscreenMode: false });
     }
@@ -411,7 +413,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoModalStyle(shouldHide: boolean) {
+    getCarouselVideoModalStyle(shouldHide: boolean, modalHeight: number) {
         const { fontSize: fontSizeTemp, background, textColor, widthInPercent: widthInPercentTemp } = this.options.styling?.videoModal || {};
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.videoModalPadding;
         const widthInPercent = getCurrentValue(widthInPercentTemp, undefined, this.isFullscreenMode)
@@ -419,13 +421,20 @@ export class StylingLogic {
         const customFontSize = getCurrentValue(fontSizeTemp, this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
         const itemViewerLeftPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer);
         const itemViewerRightPadding = this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
-        const topOffsetForEmbeddedCase = (this.optionsLogic.isToolbarInVideo ? (this.itemViewerToolbarRef.current?.querySelector('div')?.getBoundingClientRect().height || 0) / 2 : 0);
         const carouselContainerRect = this.carouselContainerRef?.current?.getBoundingClientRect();
         const toolbar = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`)?.parentElement;
         const progressRect = toolbar?.getBoundingClientRect();
         const carouselPaddingTop = this.getPaddingAmount(SpacingDirection.top, CarouselSection.container);
+        const progressBarPaddingTop = this.getCarouselVideoProgressHitSlop().paddingTop;
+        this.videoModalHeight = Math.max(this.videoModalHeight, modalHeight);
 
-        console.log({progressRect, carouselContainerRect, carouselPaddingTop});
+        let heightBetweenVideoTopAndProgressBarTop = 270;
+        if (carouselContainerRect && progressRect) {
+            heightBetweenVideoTopAndProgressBarTop = (carouselContainerRect.y) + carouselPaddingTop - progressRect.y + progressBarPaddingTop;
+        }
+
+        const centeringOffset = Math.abs(Math.abs(heightBetweenVideoTopAndProgressBarTop) - Math.abs(this.videoModalHeight)) / 2;
+        console.log({heightBetweenVideoTopAndProgressBarTop, modalHeight: this.videoModalHeight});
         
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
@@ -441,7 +450,7 @@ export class StylingLogic {
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
             position: 'absolute',
-            top: -(Math.abs((progressRect?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + CAROUSEL_ITEM_SPACING_DEFAULT * 2,
+            top: -(Math.abs((progressRect?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + CAROUSEL_ITEM_SPACING_DEFAULT * 2 + centeringOffset,
             // top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${Math.max(((Math.abs(videoHeight - videoModalHeight) / 2) - topOffsetForEmbeddedCase), 0)}${CAROUSEL_SPACING_UNIT}` : '50%',
             bottom: 'auto',
             left: 'auto',
