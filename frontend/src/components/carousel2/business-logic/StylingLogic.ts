@@ -435,15 +435,21 @@ export class StylingLogic {
             paddingRight,
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
-            transform: 'translate(-50%, 0)',
-            top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${Math.max(((Math.abs(videoHeight - videoModalHeight) / 2) - topOffsetForEmbeddedCase), 0)}${CAROUSEL_SPACING_UNIT}` : '50%',
+            position: 'absolute',
+            // transform: 'translate(-50%, 0)',
+            // top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${Math.max(((Math.abs(videoHeight - videoModalHeight) / 2) - topOffsetForEmbeddedCase), 0)}${CAROUSEL_SPACING_UNIT}` : '50%',
+            bottom: 'auto',
+            left: 'auto',
+            right: 'auto',
         } as CSSProperties : {};
         const textStyle = {
-            color: getCurrentValue(textColor, CAROUSEL_COLOR_ONE, this.isFullscreenMode),
+            color: getCurrentValue(textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode),
             fontSize: customFontSize,
         } as CSSProperties;
         const backgroundStyle = {
-            background: getCurrentValue(background, CAROUSEL_COLOR_FIVE, this.isFullscreenMode),
+            transition: `opacity .5s ease`,
+            borderRadius: 5,
+            background: getCurrentValue(background, CAROUSEL_COLOR_ONE, this.isFullscreenMode),
         } as CSSProperties;
 
         return {

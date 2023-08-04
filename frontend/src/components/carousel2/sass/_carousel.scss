@@ -289,19 +289,6 @@
         max-height: 100vh;
 
         &-modal {
-            @include positionButton();
-            color: $itemViewerBackgroundColor;
-            width: auto;
-            // max-height: 75%;
-            // max-width: 75%;
-            background-color: $itemViewerButtonColor;
-            border-radius: calc($itemViewerToolbarMarginHorizontal / 4);
-            padding: $itemViewerToolbarMarginHorizontal calc(#{$itemViewerToolbarMarginHorizontal * 1.5});
-            box-shadow: 0 0 0 50vmax rgba(0, 0, 0, .15);
-            transition: opacity $carouselAnimationDuration ease;
-            font-size: $carouselFontSize;
-            z-index: $zIndexVideoModal;
-
             &-header {
                 display: flex;
                 align-items: center;

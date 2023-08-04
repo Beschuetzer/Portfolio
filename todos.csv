@@ -3,7 +3,6 @@ Carousel rework
     --rework CarouselVideoModal:
       --make it a scrollable box with a max height that leaves 10px above the top of video and between the progressbar
       --if the height is below max, then the box is centered vertically so spacing above and below is the same
-      --invert background and text colors (for screenshot viewer visibility)
     --todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)
     --figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
     --add component in CarouselVideo to show the snapshot when changing percent via bar

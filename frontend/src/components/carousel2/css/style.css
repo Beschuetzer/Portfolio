@@ -1003,23 +1003,6 @@
   object-fit: contain;
   max-height: 100vh;
 }
-.thumbnail-carousel__video-modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  transform: translate(-50%, -50%) rotate(0);
-  color: #1d0e0b;
-  width: auto;
-  background-color: #fff9f5;
-  border-radius: 5px;
-  padding: 20px calc(30px);
-  box-shadow: 0 0 0 50vmax rgba(0, 0, 0, 0.15);
-  transition: opacity 0.5s ease;
-  font-size: 14px;
-  z-index: 100000;
-}
 .thumbnail-carousel__video-modal-header {
   display: flex;
   align-items: center;
