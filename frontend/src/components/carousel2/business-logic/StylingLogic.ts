@@ -433,9 +433,10 @@ export class StylingLogic {
             heightBetweenVideoTopAndProgressBarTop = Math.abs((carouselContainerRect.y + carouselPaddingTop) - (progressRect.y + progressBarPaddingTop));
         }
 
-        const maxHeight = Math.floor(heightBetweenVideoTopAndProgressBarTop - CAROUSEL_ITEM_SPACING_DEFAULT * 4);
-        const centeringOffset = Math.abs(heightBetweenVideoTopAndProgressBarTop - Math.abs(this.videoModalHeight)) / 2;
-        const minTopValue = -(Math.abs((progressRect?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + CAROUSEL_ITEM_SPACING_DEFAULT * 2;
+        const spaceBetweenModalTopAndVideoTop = CAROUSEL_ITEM_SPACING_DEFAULT * 2;
+        const maxHeight = Math.floor(heightBetweenVideoTopAndProgressBarTop - spaceBetweenModalTopAndVideoTop * 2);
+        const centeringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((progressRect?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndVideoTop)) / 2;
+        const minTopValue = -(Math.abs((progressRect?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndVideoTop;
         const centeredTopValue = minTopValue + centeringOffset;
         console.log({minTopValue, centeredTopValue, heightBetweenVideoTopAndProgressBarTop, centeringOffset, modalHeight});
 
