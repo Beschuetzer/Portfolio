@@ -144,6 +144,16 @@ const items = [
 							2&clubs;. In one of the filtered games, she does and in the
 							other one she doesn't.
 						</CSharpCardSection>
+						<CSharpCardSection title="Two Filters = Double the Filtering">
+							The second filter applied requires 'Ann' to have the
+							2&clubs;. In one of the filtered games, she does and in the
+							other one she doesn't.
+						</CSharpCardSection>
+						<CSharpCardSection title="Two Filters = Double the Filtering">
+							The second filter applied requires 'Ann' to have the
+							2&clubs;. In one of the filtered games, she does and in the
+							other one she doesn't.
+						</CSharpCardSection>
 					</>
 				),
 			},
@@ -3016,10 +3026,10 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.dynamicBasedOnViewingMode,
 		[
-			// {
-			// 	label: "Padding Everywhere Changes Dynamically based on Viewing Mode",
-			// 	jsx: viewingModePaddingEverywhere,
-			// },
+			{
+				label: "Padding Everywhere Changes Dynamically based on Viewing Mode",
+				jsx: viewingModePaddingEverywhere,
+			},
 			// {
 			// 	label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeToolbarButtons,
@@ -3032,10 +3042,10 @@ const SECTIONS: Sections = [
 			// 	label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeItemViewerPreview,
 			// },				
-			{
-				label: "Video Controls Change Dynamically based on Viewing Mode",
-				jsx: viewingModeVideoControls,
-			},
+			// {
+			// 	label: "Video Controls Change Dynamically based on Viewing Mode",
+			// 	jsx: viewingModeVideoControls,
+			// },
 		]
 	],
 	[

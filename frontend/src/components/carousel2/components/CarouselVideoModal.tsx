@@ -37,6 +37,7 @@ export type CarouselVideoModalInternalProps = {
     itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
 } & CarouselVideoModalProps & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'isProgressBarMouseDownRef'>;
 
+const VIDEO_MODAL_HEIGHT_INITIAL = 0;
 export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
@@ -44,7 +45,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     const { children, isVideoPlaying, sections, isProgressBarMouseDownRef, itemViewerToolbarRef, videoRef } = props;
     const [isVisible, setIsVisible] = useState(true);
     const videoModalRef = useRef<HTMLElement>();
-    const videoModalHeightRef = useRef<number>(0);
+    const videoModalHeightRef = useRef<number>(VIDEO_MODAL_HEIGHT_INITIAL);
 
     const { svgHref } = elementStylings?.closeButton || {};
     const isCustom = useMemo(() => !!children, [children]);
@@ -69,12 +70,16 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     }, [currentItem, currentItemIndex])
 
     useEffect(() => {
-        if (videoModalHeightRef.current > 0) return;
+        // if (videoModalHeightRef.current > VIDEO_MODAL_HEIGHT_INITIAL) return;
         const height = videoModalRef.current?.getBoundingClientRect().height;
-        if (height !== undefined && height > 0) {
-            videoModalHeightRef.current = height;
+        if (height !== undefined && height > VIDEO_MODAL_HEIGHT_INITIAL) {
+            videoModalHeightRef.current = Math.max(height, videoModalHeightRef.current);
         }
     })
+
+    useEffect(() => {
+        videoModalHeightRef.current = VIDEO_MODAL_HEIGHT_INITIAL;
+    }, [currentItem])
     //#endregion
 
     //#region JSX

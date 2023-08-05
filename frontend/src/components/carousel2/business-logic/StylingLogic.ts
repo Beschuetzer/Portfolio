@@ -430,12 +430,14 @@ export class StylingLogic {
 
         let heightBetweenVideoTopAndProgressBarTop = 270;
         if (carouselContainerRect && progressRect) {
-            heightBetweenVideoTopAndProgressBarTop = (carouselContainerRect.y) + carouselPaddingTop - progressRect.y + progressBarPaddingTop;
+            heightBetweenVideoTopAndProgressBarTop = Math.abs((carouselContainerRect.y + carouselPaddingTop) - (progressRect.y + progressBarPaddingTop));
         }
 
-        const centeringOffset = Math.abs(Math.abs(heightBetweenVideoTopAndProgressBarTop) - Math.abs(this.videoModalHeight)) / 2;
-        console.log({heightBetweenVideoTopAndProgressBarTop, modalHeight: this.videoModalHeight});
-        
+        const maxHeight = Math.floor(heightBetweenVideoTopAndProgressBarTop - CAROUSEL_ITEM_SPACING_DEFAULT * 4);
+        const centeringOffset = Math.abs(heightBetweenVideoTopAndProgressBarTop - Math.abs(this.videoModalHeight)) / 2;
+        const minTopValue = -(Math.abs((progressRect?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + CAROUSEL_ITEM_SPACING_DEFAULT * 2;
+        const centeredTopValue = minTopValue + centeringOffset;
+        console.log({minTopValue, centeredTopValue, heightBetweenVideoTopAndProgressBarTop, centeringOffset, modalHeight});
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
             width: widthToUse,
@@ -449,9 +451,7 @@ export class StylingLogic {
             paddingRight,
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
-            position: 'absolute',
-            top: -(Math.abs((progressRect?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + CAROUSEL_ITEM_SPACING_DEFAULT * 2 + centeringOffset,
-            // top: this.isMobile ? 0 : videoHeight && videoModalHeight ? `${Math.max(((Math.abs(videoHeight - videoModalHeight) / 2) - topOffsetForEmbeddedCase), 0)}${CAROUSEL_SPACING_UNIT}` : '50%',
+            top: this.videoModalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue),
             bottom: 'auto',
             left: 'auto',
             right: 'auto',
@@ -460,14 +460,18 @@ export class StylingLogic {
             color: getCurrentValue(textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode),
             fontSize: customFontSize,
         } as CSSProperties;
-        const backgroundStyle = {
+        const generalStyle = {
+            position: 'absolute',
             transition: `opacity .5s ease`,
             borderRadius: 5,
             background: getCurrentValue(background, CAROUSEL_COLOR_ONE, this.isFullscreenMode),
+            maxHeight: maxHeight,
+            overflowY: 'auto',
+            overflowX: 'hidden',
         } as CSSProperties;
 
         return {
-            ...backgroundStyle,
+            ...generalStyle,
             ...paddingStyle,
             ...widthStyle,
             ...positionStyle,
