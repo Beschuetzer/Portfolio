@@ -131,7 +131,7 @@ const items = [
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
 		video: {
-			overlayProps: {
+			modalProps: {
 				children: (
 					<>
 						<CSharpCardSection title="Contract is 1&clubs;">
@@ -171,7 +171,7 @@ const items = [
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
 		video: {
-			overlayProps: {
+			modalProps: {
 				children: (
 					<>
 						<CSharpCardSection title="Contract is 1&clubs;">
@@ -197,11 +197,11 @@ const items = [
 		}
 	},
 	{
-		description: "Custom Overlay with auto play",
+		description: "Custom Modal with auto play",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
 		video: {
-			overlayProps: {
+			modalProps: {
 				children: (
 					<>
 						<CSharpCardSection title="Contract is 1&clubs;">
@@ -222,7 +222,7 @@ const items = [
 		}
 	},
 	{
-		description: "No overlay with auto play",
+		description: "No Modal with auto play",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
 		video: {
@@ -231,11 +231,11 @@ const items = [
 		}
 	},
 	{
-		description: "Default Overlay on Load (no auto play)",
+		description: "Default Modal on Load (no auto play)",
 		srcMain: clipFilters,
 		srcThumbnail: clipFiltersThumbnail,
 		video: {
-			overlayProps: {
+			modalProps: {
 				sections: [
 					{
 						title: "Section 1",
@@ -254,11 +254,11 @@ const items = [
 		}
 	},
 	{
-		description: "Default Overlay on Load with Sections (no auto play)",
+		description: "Default Modal on Load with Sections (no auto play)",
 		srcMain: clipFilters,
 		srcThumbnail: clipFiltersThumbnail,
 		video: {
-			overlayProps: {
+			modalProps: {
 				sections: [
 					{
 						title: "Section 1",
@@ -291,7 +291,7 @@ const items = [
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
 		video: {
-			overlayProps: {
+			modalProps: {
 				children: (
 					<>
 						<CSharpCardSection title="Contract is 1&clubs;">

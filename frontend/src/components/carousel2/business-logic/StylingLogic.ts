@@ -392,7 +392,7 @@ export class StylingLogic {
 
     get carouselVideoModalCloseButtonStyle() {
         const sizeGiven = this.options.styling?.videoModal?.closeButton?.size;
-        const areChildrenPresent = !!this.currentItem?.video?.overlayProps?.children;
+        const areChildrenPresent = !!this.currentItem?.video?.modalProps?.children;
         const { right: paddingRight, top: paddingTop } = this.optionsLogic.videoModalPadding;
         const rightStyle = paddingRight !== undefined ? {
             right: getCurrentValue(paddingRight, 0, this.isFullscreenMode),

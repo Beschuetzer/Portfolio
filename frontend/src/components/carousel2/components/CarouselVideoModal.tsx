@@ -51,6 +51,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
     const isCustom = useMemo(() => !!children, [children]);
     const { stylingLogic } = useBusinessLogic({ videoRef, videoModalRef, itemViewerToolbarRef })
     const closeButtonColor = useMemo(() => stylingLogic.carouselVideoCloseButtonColor, [stylingLogic.carouselVideoCloseButtonColor]);
+    const [, setShouldRerender] = useState(false);
     //#endregion
 
     //#region Handlers/Functions
@@ -79,6 +80,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
 
     useEffect(() => {
         videoModalHeightRef.current = VIDEO_MODAL_HEIGHT_INITIAL;
+        setShouldRerender(current => !current);
     }, [currentItem])
     //#endregion
 
@@ -128,7 +130,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
         }
 
 
-        if (!sections || sections.length === 0) return null;
+        if (!sections || sections.length === 0 || isVideoPlaying) return null;
         return sections.map(({ text, title }, index) => (
             <div key={index} style={StylingLogic.getCarouselVideoModalChildStyle(index)}>
                 <div className={`${className}-header`}>
@@ -140,8 +142,7 @@ export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
                 ) : null}
             </div>
         ));
-    }, [button, children, className, isCustom, sections]);
-
+    }, [button, children, className, isCustom, isVideoPlaying, sections]);
 
     return (
         <div

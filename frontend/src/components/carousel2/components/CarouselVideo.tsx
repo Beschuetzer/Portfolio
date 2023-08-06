@@ -30,7 +30,7 @@ export type CarouselVideoOptions = {
     muted?: boolean;
     objectFit?: React.CSSProperties["objectFit"];
     objectPosition?: React.CSSProperties["objectPosition"];
-    overlayProps?: CarouselVideoModalProps;
+    modalProps?: CarouselVideoModalProps;
     sections?: CarouselVideoSection[];
 };
 

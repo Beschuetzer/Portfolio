@@ -654,13 +654,13 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                         shortcuts={toolbarActionsLogic.getNextItem().keys}
                         actionName={"Next"}
                     />
-                    {currentItem.video?.overlayProps ? (
+                    {currentItem.video?.modalProps ? (
                         <CarouselVideoModal
                             itemViewerToolbarRef={innerRef as any}
                             videoRef={videoRef}
                             isVideoPlaying={isVideoPlaying}
                             isProgressBarMouseDownRef={isProgressBarMouseDownRef}
-                            {...currentItem.video?.overlayProps}
+                            {...currentItem.video?.modalProps}
                         />
                     ) : null}
                 </div>
