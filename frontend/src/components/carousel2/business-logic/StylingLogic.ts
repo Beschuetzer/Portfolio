@@ -414,6 +414,7 @@ export class StylingLogic {
     }
 
     getCarouselVideoModalStyle(shouldHide: boolean, modalHeight: number) {
+        const isToolbarEmbedded = this.optionsLogic.isToolbarInVideo;
         const { fontSize: fontSizeTemp, background, textColor, widthInPercent: widthInPercentTemp } = this.options.styling?.videoModal || {};
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.videoModalPadding;
         const widthInPercent = getCurrentValue(widthInPercentTemp, undefined, this.isFullscreenMode)
@@ -422,7 +423,7 @@ export class StylingLogic {
         const itemViewerLeftPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer);
         const itemViewerRightPadding = this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
         const carouselContainerRect = this.carouselContainerRef?.current?.getBoundingClientRect();
-        const toolbar = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`)?.parentElement;
+        const toolbar = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`);
         const progressRect = toolbar?.getBoundingClientRect();
         const carouselPaddingTop = this.getPaddingAmount(SpacingDirection.top, CarouselSection.container);
         const progressBarPaddingTop = this.getCarouselVideoProgressHitSlop().paddingTop;
@@ -433,12 +434,13 @@ export class StylingLogic {
             heightBetweenVideoTopAndProgressBarTop = Math.abs((carouselContainerRect.y + carouselPaddingTop) - (progressRect.y + progressBarPaddingTop));
         }
 
+        const embeddedOffset = isToolbarEmbedded ? 0 : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.33;
         const spaceBetweenModalTopAndVideoTop = CAROUSEL_ITEM_SPACING_DEFAULT * 2;
-        const maxHeight = Math.floor(heightBetweenVideoTopAndProgressBarTop - spaceBetweenModalTopAndVideoTop * 2);
-        const centeringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((progressRect?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndVideoTop)) / 2;
+        const maxHeight = Math.floor(heightBetweenVideoTopAndProgressBarTop - spaceBetweenModalTopAndVideoTop * 2) - embeddedOffset ;
+        const centeringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((progressRect?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndVideoTop)) / 2 - embeddedOffset / 2;
         const minTopValue = -(Math.abs((progressRect?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndVideoTop;
         const centeredTopValue = minTopValue + centeringOffset;
-        console.log({minTopValue, centeredTopValue, heightBetweenVideoTopAndProgressBarTop, centeringOffset, modalHeight});
+        // console.log({toolbar, minTopValue, centeredTopValue, heightBetweenVideoTopAndProgressBarTop, centeringOffset, modalHeight});
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
             width: widthToUse,

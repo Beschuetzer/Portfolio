@@ -3026,10 +3026,10 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.dynamicBasedOnViewingMode,
 		[
-			{
-				label: "Padding Everywhere Changes Dynamically based on Viewing Mode",
-				jsx: viewingModePaddingEverywhere,
-			},
+			// {
+			// 	label: "Padding Everywhere Changes Dynamically based on Viewing Mode",
+			// 	jsx: viewingModePaddingEverywhere,
+			// },
 			// {
 			// 	label: "Toolbar Buttons Change Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeToolbarButtons,
@@ -3042,10 +3042,10 @@ const SECTIONS: Sections = [
 			// 	label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeItemViewerPreview,
 			// },				
-			// {
-			// 	label: "Video Controls Change Dynamically based on Viewing Mode",
-			// 	jsx: viewingModeVideoControls,
-			// },
+			{
+				label: "Video Controls Change Dynamically based on Viewing Mode",
+				jsx: viewingModeVideoControls,
+			},
 		]
 	],
 	[
