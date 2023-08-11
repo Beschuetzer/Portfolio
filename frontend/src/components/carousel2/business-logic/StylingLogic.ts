@@ -24,7 +24,7 @@ import {
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
     CLASSNAME__TOOLBAR_PROGRESS,
 } from "../constants";
-import { CarouselVideoModalInternalProps } from "../components/CarouselVideoModal";
+import { CarouselModalInternalProps } from "../components/CarouselModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
 import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
 import { RegexpPattern } from "./RegexpPattern";
@@ -47,7 +47,7 @@ export type StylingLogicConstructor = {
     videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
 } & Partial<Pick<CarouselContextOutputProps, 'currentItem' | 'isFullscreenMode' | 'numberOfPages' | 'items'>>
     & Partial<Pick<CarouselContextInputProps, 'carouselContainerRef'>>
-    & Partial<Pick<CarouselVideoModalInternalProps, 'videoRef'>>
+    & Partial<Pick<CarouselModalInternalProps, 'videoRef'>>
 
 export type GetToolbarButtonSizeStlye = {
     buttonName: CarouselElement;

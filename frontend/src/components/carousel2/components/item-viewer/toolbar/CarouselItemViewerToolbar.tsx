@@ -29,7 +29,7 @@ import { useCarouselContext } from '../../../context'
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic'
 import { useOnSwipe, StylingCase } from '../../../hooks/useOnSwipe'
 import { getIsPointInsideElement } from '../../../utils'
-import { CarouselVideoModal } from '../../CarouselVideoModal'
+import { CarouselModal } from '../../CarouselModal'
 
 export type CarouselItemViewerToolbarProps = {
     currentVideoSection?: number;
@@ -655,7 +655,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                         actionName={"Next"}
                     />
                     {currentItem.video?.modalProps ? (
-                        <CarouselVideoModal
+                        <CarouselModal
                             itemViewerToolbarRef={innerRef as any}
                             videoRef={videoRef}
                             isVideoPlaying={isVideoPlaying}

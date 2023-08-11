@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { getClassname } from '../utils';
 import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
@@ -9,7 +9,7 @@ import { StylingLogic } from '../business-logic/StylingLogic';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 
-export type CarouselVideoModalSection = {
+export type CarouselModalSection = {
     /**
     * This only shows when the video is paused and is an `<h3>` tag under the hood.
     **/
@@ -20,25 +20,25 @@ export type CarouselVideoModalSection = {
     **/
     text?: string | undefined;
 }
-export type CarouselVideoModalProps = Exclusive<{
+export type CarouselModalProps = Exclusive<{
     /**
     *Use this prop in order to specify a customer overlay layout
     **/
     children?: ReactNode | ReactNode[]
 }, {
-    sections?: CarouselVideoModalSection[];
+    sections?: CarouselModalSection[];
 }>
 
-export type CarouselVideoModalInternalProps = {
+export type CarouselModalInternalProps = {
     /**
     *This is used internally and determines when the overlay is shown
     **/
     isVideoPlaying?: boolean;
     itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
-} & CarouselVideoModalProps & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'isProgressBarMouseDownRef'>;
+} & CarouselModalProps & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'isProgressBarMouseDownRef'>;
 
 const VIDEO_MODAL_HEIGHT_INITIAL = 0;
-export const CarouselVideoModal = (props: CarouselVideoModalInternalProps) => {
+export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
 
