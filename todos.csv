@@ -1,6 +1,7 @@
 Carousel rework
   -work on progressbar rework:
-    --add Modal for images as well (rename file to CarouselModal from CarouselVideoModal)
+    --figure out top for the CarouselImage case of CarouselModal (StylingLogic.getCarouselModalStyle())
+    --bottom case for CarouselModal in correct spot
     --todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)
     --figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
     --add component in CarouselVideo to show the snapshot when changing percent via bar

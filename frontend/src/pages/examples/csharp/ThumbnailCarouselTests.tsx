@@ -130,33 +130,33 @@ const items = [
 		description: "Video Sub-sections using numbers",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
+		modal: {
+			children: (
+				<>
+					<CSharpCardSection title="Contract is 1&clubs;">
+						The first part of the video highlights the process of
+						applying the contract matching filter.&nbsp; There are two
+						matches found.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+				</>
+			),
+		},
 		video: {
-			modalProps: {
-				children: (
-					<>
-						<CSharpCardSection title="Contract is 1&clubs;">
-							The first part of the video highlights the process of
-							applying the contract matching filter.&nbsp; There are two
-							matches found.
-						</CSharpCardSection>
-						<CSharpCardSection title="Two Filters = Double the Filtering">
-							The second filter applied requires 'Ann' to have the
-							2&clubs;. In one of the filtered games, she does and in the
-							other one she doesn't.
-						</CSharpCardSection>
-						<CSharpCardSection title="Two Filters = Double the Filtering">
-							The second filter applied requires 'Ann' to have the
-							2&clubs;. In one of the filtered games, she does and in the
-							other one she doesn't.
-						</CSharpCardSection>
-						<CSharpCardSection title="Two Filters = Double the Filtering">
-							The second filter applied requires 'Ann' to have the
-							2&clubs;. In one of the filtered games, she does and in the
-							other one she doesn't.
-						</CSharpCardSection>
-					</>
-				),
-			},
 			autoPlay: false,
 			muted: true,
 			sections: [
@@ -170,23 +170,23 @@ const items = [
 		description: "Video Sub-sections using strings",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
+		modal: {
+			children: (
+				<>
+					<CSharpCardSection title="Contract is 1&clubs;">
+						The first part of the video highlights the process of
+						applying the contract matching filter.&nbsp; There are two
+						matches found.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+				</>
+			),
+		},
 		video: {
-			modalProps: {
-				children: (
-					<>
-						<CSharpCardSection title="Contract is 1&clubs;">
-							The first part of the video highlights the process of
-							applying the contract matching filter.&nbsp; There are two
-							matches found.
-						</CSharpCardSection>
-						<CSharpCardSection title="Two Filters = Double the Filtering">
-							The second filter applied requires 'Ann' to have the
-							2&clubs;. In one of the filtered games, she does and in the
-							other one she doesn't.
-						</CSharpCardSection>
-					</>
-				),
-			},
 			autoPlay: false,
 			muted: true,
 			sections: [
@@ -200,23 +200,23 @@ const items = [
 		description: "Custom Modal with auto play",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
+		modal: {
+			children: (
+				<>
+					<CSharpCardSection title="Contract is 1&clubs;">
+						The first part of the video highlights the process of
+						applying the contract matching filter.&nbsp; There are two
+						matches found.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+				</>
+			),
+		},
 		video: {
-			modalProps: {
-				children: (
-					<>
-						<CSharpCardSection title="Contract is 1&clubs;">
-							The first part of the video highlights the process of
-							applying the contract matching filter.&nbsp; There are two
-							matches found.
-						</CSharpCardSection>
-						<CSharpCardSection title="Two Filters = Double the Filtering">
-							The second filter applied requires 'Ann' to have the
-							2&clubs;. In one of the filtered games, she does and in the
-							other one she doesn't.
-						</CSharpCardSection>
-					</>
-				),
-			},
 			autoPlay: true,
 			muted: true,
 		}
@@ -234,19 +234,19 @@ const items = [
 		description: "Default Modal on Load (no auto play)",
 		srcMain: clipFilters,
 		srcThumbnail: clipFiltersThumbnail,
+		modal: {
+			sections: [
+				{
+					title: "Section 1",
+					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+				},
+				{
+					title: "Section 2",
+					text: "This is where the second section text goes."
+				}
+			],
+		},
 		video: {
-			modalProps: {
-				sections: [
-					{
-						title: "Section 1",
-						text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
-					},
-					{
-						title: "Section 2",
-						text: "This is where the second section text goes."
-					}
-				],
-			},
 			autoPlay: false,
 			muted: true,
 			objectFit: 'cover',
@@ -257,19 +257,19 @@ const items = [
 		description: "Default Modal on Load with Sections (no auto play)",
 		srcMain: clipFilters,
 		srcThumbnail: clipFiltersThumbnail,
+		modal: {
+			sections: [
+				{
+					title: "Section 1",
+					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+				},
+				{
+					title: "Section 2",
+					text: "This is where the second section text goes."
+				}
+			],
+		},
 		video: {
-			modalProps: {
-				sections: [
-					{
-						title: "Section 1",
-						text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
-					},
-					{
-						title: "Section 2",
-						text: "This is where the second section text goes."
-					}
-				],
-			},
 			autoPlay: false,
 			muted: true,
 			objectFit: 'cover',
@@ -290,30 +290,42 @@ const items = [
 		description: "Custom Overlay on Load (no auto play)",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
+		modal: {
+			children: (
+				<>
+					<CSharpCardSection title="Contract is 1&clubs;">
+						The first part of the video highlights the process of
+						applying the contract matching filter.&nbsp; There are two
+						matches found.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+				</>
+			),
+		},
 		video: {
-			modalProps: {
-				children: (
-					<>
-						<CSharpCardSection title="Contract is 1&clubs;">
-							The first part of the video highlights the process of
-							applying the contract matching filter.&nbsp; There are two
-							matches found.
-						</CSharpCardSection>
-						<CSharpCardSection title="Two Filters = Double the Filtering">
-							The second filter applied requires 'Ann' to have the
-							2&clubs;. In one of the filtered games, she does and in the
-							other one she doesn't.
-						</CSharpCardSection>
-					</>
-				),
-			},
 			autoPlay: false,
 			muted: true,
 		}
 	},
 	{
-		description: "Close up Turtle Encounter",
+		description: "Close up Turtle Encounter ",
 		srcMain: maui02,
+		modal: {
+			sections: [
+				{
+					title: "Section 1",
+					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+				},
+				{
+					title: "Section 2",
+					text: "This is where the second section text goes."
+				}
+			],
+		},
 	},
 	{
 		srcMain: maui03,
@@ -421,7 +433,7 @@ const multiplePagesCustomPadding = (
 const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 	<Carousel items={items} options={{
 		styling: {
-			videoModal: {
+			modal: {
 				background: getComputedStyleCustom('--color-primary-4'),
 				textColor: getComputedStyleCustom('--color-primary-1'),
 				closeButton: {
@@ -722,13 +734,13 @@ const dynamicElementsCustomization = (
 		}
 	}} />
 );
-const dynamicVideoModalPadding = (
+const dynamicmodalPadding = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
 			itemDisplayLocation: 'above',
 		},
 		styling: {
-			videoModal: {
+			modal: {
 				padding: {
 					top: [[20], [5, 800]],
 					right: [[30], [10, 800]],
@@ -853,13 +865,13 @@ const dynamicItemDisplayLocation = (
 		}
 	}} />
 );
-const dynamicVideoModal = (
+const dynamicmodal = (
 	<Carousel items={items.slice(2)} options={{
 		layout: {
 			itemDisplayLocation: 'above',
 		},
 		styling: {
-			videoModal: {
+			modal: {
 				widthInPercent: [[100], [50, 800]],
 				textColor: [["red"], ['blue', 800]],
 				fontSize: [[14], [10, 800]],
@@ -950,7 +962,7 @@ const dynamicBackgroundColor = (
 			navigation: {
 				background: [['red'], ['black', 800]],
 			},
-			videoModal: {
+			modal: {
 				background: [['red'], ['black', 800]],
 				textColor: 'white',
 				closeButton: {
@@ -1755,7 +1767,7 @@ const layoutAboveCustomOverlayAndSpinner = (
 					},
 					textColor: getComputedStyleCustom('--color-primary-2'),
 				},
-				videoModal: {
+				modal: {
 					fontSize: 16,
 					padding: {
 						top: 30,
@@ -2162,7 +2174,7 @@ const viewingModeItemViewerPreview = (
 				itemDisplayLocation: 'above',
 			},
 			styling: {
-				videoModal: {
+				modal: {
 					padding: {
 						top: 40,
 						fullscreen: {
@@ -2322,7 +2334,7 @@ const viewingModePaddingEverywhere = (
 						right: [[30], [1, 800]],
 					}
 				},
-				videoModal: {
+				modal: {
 					padding: {
 						top: 40,
 						fullscreen: {
@@ -2931,7 +2943,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Video Modal Padding Changes at 800px",
-				jsx: dynamicVideoModalPadding,
+				jsx: dynamicmodalPadding,
 			},
 			{
 				label: "Font Changes Everywhere at 800px",
@@ -2995,7 +3007,7 @@ const SECTIONS: Sections = [
 			},
 			{
 				label: "Video Modal Styling Changes < 800px",
-				jsx: dynamicVideoModal,
+				jsx: dynamicmodal,
 			},
 			{
 				label: "Toolbar Items and Progress Bar Width Change < 800px",

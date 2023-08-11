@@ -2,6 +2,7 @@ import { useCarouselContext } from '../context';
 import { CarouselVideoOptions } from './CarouselVideo';
 import { CLASSNAME__CAROUSEL_ITEM, CLASSNAME__CAROUSEL_ITEM_THUMBNAIL } from '../constants';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
+import { CarouselModalProps } from './CarouselModal';
 
 export type CarouselItemProps = {
   /**
@@ -13,6 +14,10 @@ export type CarouselItemProps = {
   *If given, it will determine the next/previous item to go to when clicking the next/previous button
   **/
   index?: number;
+  /**
+  *Props used to modify the modal displayed for this item.  If undefined, then modal is not displayed
+  **/
+  modal?: CarouselModalProps;
   /**
   * This is the source of the image to be used in full-size viewing as well as thumbnail viewing if no thumbnail is provided
   **/

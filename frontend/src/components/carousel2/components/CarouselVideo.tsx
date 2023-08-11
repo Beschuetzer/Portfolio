@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { getClassname, getIsVideoPlaying } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
-import { CarouselModalProps } from './CarouselModal'
 import { CarouselItemViewerToolbar, CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
 import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL, CLASSNAME__HIDDEN, CLASSNAME__TOOLBAR_PROGRESS, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from '../constants';
@@ -30,7 +29,6 @@ export type CarouselVideoOptions = {
     muted?: boolean;
     objectFit?: React.CSSProperties["objectFit"];
     objectPosition?: React.CSSProperties["objectPosition"];
-    modalProps?: CarouselModalProps;
     sections?: CarouselVideoSection[];
 };
 

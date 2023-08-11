@@ -158,7 +158,7 @@ export function getIsPointInsideElement(point: Point, element: Element | null | 
 
 export function getIsVideo(item: CarouselItemProps | undefined) {
     const currentItemSrc = item?.srcMain || '';
-    return currentItemSrc?.match(
+    return !!currentItemSrc?.match(
         getRegexStringFromStringArray(VIDEO_EXTENSIONS),
     );
 }

@@ -211,6 +211,28 @@ export class OptionsLogic {
         return getCurrentValue(this.options.styling?.itemViewerPreview?.width, CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT, this.isFullscreenMode);
     }
 
+    get modalPadding() {
+        const padding = getCurrentValue(this.options.styling?.modal?.padding, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT, this.isFullscreenMode);
+        const paddingLeftStatic = (this.options.styling?.modal?.padding as any)?.left;
+        const paddingRightStatic = (this.options.styling?.modal?.padding as any)?.right;
+        const paddingBottomStatic = (this.options.styling?.modal?.padding as any)?.bottom;
+        const paddingTopStatic = (this.options.styling?.modal?.padding as any)?.top;
+        return {
+            top: paddingTopStatic !== undefined ?
+                paddingTopStatic :
+                getCurrentValue(padding.top, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.top, this.isFullscreenMode),
+            bottom: paddingBottomStatic !== undefined ?
+                paddingBottomStatic :
+                getCurrentValue(padding.bottom, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.bottom, this.isFullscreenMode),
+            left: paddingLeftStatic !== undefined ?
+                paddingLeftStatic :
+                getCurrentValue(padding.left, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.left, this.isFullscreenMode),
+            right: paddingRightStatic !== undefined ?
+                paddingRightStatic :
+                getCurrentValue(padding.right, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.right, this.isFullscreenMode),
+        }
+    }
+
     get navigationMaxClickThreshold() {
         return getCurrentValue(this.options.navigation?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
     }
@@ -284,28 +306,6 @@ export class OptionsLogic {
     get videoProgressBarHeight() {
         const isEmbedded = this.isToolbarInVideo;
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, isEmbedded ? CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED : CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED, this.isFullscreenMode);
-    }
-
-    get videoModalPadding() {
-        const padding = getCurrentValue(this.options.styling?.videoModal?.padding, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT, this.isFullscreenMode);
-        const paddingLeftStatic = (this.options.styling?.videoModal?.padding as any)?.left;
-        const paddingRightStatic = (this.options.styling?.videoModal?.padding as any)?.right;
-        const paddingBottomStatic = (this.options.styling?.videoModal?.padding as any)?.bottom;
-        const paddingTopStatic = (this.options.styling?.videoModal?.padding as any)?.top;
-        return {
-            top: paddingTopStatic !== undefined ?
-                paddingTopStatic :
-                getCurrentValue(padding.top, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.top, this.isFullscreenMode),
-            bottom: paddingBottomStatic !== undefined ?
-                paddingBottomStatic :
-                getCurrentValue(padding.bottom, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.bottom, this.isFullscreenMode),
-            left: paddingLeftStatic !== undefined ?
-                paddingLeftStatic :
-                getCurrentValue(padding.left, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.left, this.isFullscreenMode),
-            right: paddingRightStatic !== undefined ?
-                paddingRightStatic :
-                getCurrentValue(padding.right, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.right, this.isFullscreenMode),
-        }
     }
 
     get videoSeekAmount() {

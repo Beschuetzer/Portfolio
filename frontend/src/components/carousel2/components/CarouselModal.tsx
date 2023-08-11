@@ -35,22 +35,23 @@ export type CarouselModalInternalProps = {
     **/
     isVideoPlaying?: boolean;
     itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
-} & CarouselModalProps & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'isProgressBarMouseDownRef'>;
+    itemRef?: React.MutableRefObject<HTMLElement | undefined>;
+} & CarouselModalProps & Pick<CarouselItemViewerToolbarProps, 'isProgressBarMouseDownRef'>;
 
-const VIDEO_MODAL_HEIGHT_INITIAL = 0;
+const MODAL_HEIGHT_INITIAL = 0;
 export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
 
-    const { children, isVideoPlaying, sections, isProgressBarMouseDownRef, itemViewerToolbarRef, videoRef } = props;
+    const { children, isVideoPlaying, sections, isProgressBarMouseDownRef, itemViewerToolbarRef, itemRef } = props;
     const [isVisible, setIsVisible] = useState(true);
-    const videoModalRef = useRef<HTMLElement>();
-    const videoModalHeightRef = useRef<number>(VIDEO_MODAL_HEIGHT_INITIAL);
+    const modalRef = useRef<HTMLElement>();
+    const modalHeightRef = useRef<number>(MODAL_HEIGHT_INITIAL);
 
     const { svgHref } = elementStylings?.closeButton || {};
     const isCustom = useMemo(() => !!children, [children]);
-    const { stylingLogic } = useBusinessLogic({ videoRef, videoModalRef, itemViewerToolbarRef })
-    const closeButtonColor = useMemo(() => stylingLogic.carouselVideoCloseButtonColor, [stylingLogic.carouselVideoCloseButtonColor]);
+    const { stylingLogic } = useBusinessLogic({ itemRef, modalRef, itemViewerToolbarRef })
+    const closeButtonColor = useMemo(() => stylingLogic.carouselModalCloseButtonColor, [stylingLogic.carouselModalCloseButtonColor]);
     const [, setShouldRerender] = useState(false);
     //#endregion
 
@@ -71,15 +72,14 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
     }, [currentItem, currentItemIndex])
 
     useEffect(() => {
-        // if (videoModalHeightRef.current > VIDEO_MODAL_HEIGHT_INITIAL) return;
-        const height = videoModalRef.current?.getBoundingClientRect().height;
-        if (height !== undefined && height > VIDEO_MODAL_HEIGHT_INITIAL) {
-            videoModalHeightRef.current = Math.max(height, videoModalHeightRef.current);
+        const height = modalRef.current?.getBoundingClientRect().height;
+        if (height !== undefined && height > MODAL_HEIGHT_INITIAL) {
+            modalHeightRef.current = Math.max(height, modalHeightRef.current);
         }
     })
 
     useEffect(() => {
-        videoModalHeightRef.current = VIDEO_MODAL_HEIGHT_INITIAL;
+        modalHeightRef.current = MODAL_HEIGHT_INITIAL;
         setShouldRerender(current => !current);
     }, [currentItem])
     //#endregion
@@ -100,7 +100,7 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
             xlinkHref={svgHref}
             classNamesToInclude={[`${CLASSNAME__ITEM_VIEWER_BUTTON}-inverse`]}
             fillColor={closeButtonColor}
-            style={stylingLogic.carouselVideoModalCloseButtonStyle}
+            style={stylingLogic.carouselModalCloseButtonStyle}
         />
     ) : (
         <CloseButton
@@ -108,14 +108,14 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
             className={isCustom ? CLASSNAME__ITEM_VIEWER_BUTTON : undefined}
             classNameModifier='inverse'
             fillColor={closeButtonColor}
-            style={stylingLogic.carouselVideoModalCloseButtonStyle}
+            style={stylingLogic.carouselModalCloseButtonStyle}
         />
     ),
         [
             closeButtonColor,
             isCustom,
             onCloseClick,
-            stylingLogic.carouselVideoModalCloseButtonStyle,
+            stylingLogic.carouselModalCloseButtonStyle,
             svgHref
         ]);
 
@@ -129,10 +129,9 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
             )
         }
 
-
         if (!sections || sections.length === 0 || isVideoPlaying) return null;
         return sections.map(({ text, title }, index) => (
-            <div key={index} style={StylingLogic.getCarouselVideoModalChildStyle(index)}>
+            <div key={index} style={StylingLogic.getCarouselModalChildStyle(index)}>
                 <div className={`${className}-header`}>
                     <h3 dangerouslySetInnerHTML={{ __html: title || '' }} />
                     {index === 0 ? button : null}
@@ -146,10 +145,10 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
 
     return (
         <div
-            ref={videoModalRef as any}
+            ref={modalRef as any}
             className={classNameToUse}
             onClick={stopPropagation as any}
-            style={stylingLogic.getCarouselVideoModalStyle(!!isProgressBarMouseDownRef?.current, videoModalHeightRef.current)}
+            style={stylingLogic.getCarouselModalStyle(!!isProgressBarMouseDownRef?.current, modalHeightRef.current)}
         >
             {renderChildren()}
         </div>

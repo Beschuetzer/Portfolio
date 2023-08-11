@@ -115,10 +115,10 @@ export enum CarouselSection {
     container = 'container',
     itemViewer = 'itemViewer',
     itemViewerPreview = 'itemViewerPreview',
+    modal = 'modal',
     navigation = 'navigation',
     toolbar = 'toolbar',
     videoCurrentStateIndicator = 'videoCurrentStateIndicator',
-    videoModal = 'videoModal',
 }
 export type CarouselSections = {
     [CarouselSection.container]?: {
@@ -287,9 +287,9 @@ export type CarouselSections = {
         playIcon?: CarouselElementCustomization;
     } & Partial<CarouselColorOptions> & Partial<CarouselElementSize>;
     /**
-    *This is the the modal that displays when a video is paused, allowing for more info about the video
+    *This is the the modal that displays when an item is paused, allowing for more info about the item
     **/
-    [CarouselSection.videoModal]?: {
+    [CarouselSection.modal]?: {
         closeButton?: {
             fill?: CarouselElementValue<Color>;
         } & CarouselElementSize;

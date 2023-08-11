@@ -23,6 +23,8 @@ import {
     CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT,
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
     CLASSNAME__TOOLBAR_PROGRESS,
+    CLASSNAME__TOOLBAR_CONTAINER,
+    CLASSNAME__ITEM_VIEWER_TOOLBAR,
 } from "../constants";
 import { CarouselModalInternalProps } from "../components/CarouselModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -42,12 +44,12 @@ export type StylingLogicConstructor = {
     isCurrentItem?: boolean;
     itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
     loadingSpinnerOptions?: LoadingSpinnerProps['options'];
+    modalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
     options: CarouselOptions | undefined;
     optionsLogic?: OptionsLogic;
-    videoModalRef?: React.MutableRefObject<HTMLElement | undefined> | undefined;
 } & Partial<Pick<CarouselContextOutputProps, 'currentItem' | 'isFullscreenMode' | 'numberOfPages' | 'items'>>
     & Partial<Pick<CarouselContextInputProps, 'carouselContainerRef'>>
-    & Partial<Pick<CarouselModalInternalProps, 'videoRef'>>
+    & Partial<Pick<CarouselModalInternalProps, 'itemRef'>>
 
 export type GetToolbarButtonSizeStlye = {
     buttonName: CarouselElement;
@@ -65,6 +67,7 @@ export class StylingLogic {
     private carouselContainerRef;
     private currentItem;
     private isCurrentItem: boolean | undefined;
+    private isCurrentItemVideo: boolean;
     private optionsLogic: OptionsLogic;
     private isMobile: boolean;
     private items;
@@ -74,9 +77,9 @@ export class StylingLogic {
     private loadingSpinnerOptions: LoadingSpinnerProps['options'];
     private numberOfPages;
     private options: CarouselOptions;
-    private videoModalRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
-    private videoModalHeight: number;
-    private videoRef;
+    private modalRef: React.MutableRefObject<HTMLElement | undefined> | undefined;
+    private modalHeight: number;
+    private itemRef;
 
     constructor(constructor: StylingLogicConstructor) {
         const {
@@ -90,12 +93,13 @@ export class StylingLogic {
             loadingSpinnerOptions,
             numberOfPages,
             options,
-            videoModalRef,
-            videoRef,
+            modalRef,
+            itemRef,
         } = constructor;
         this.carouselContainerRef = carouselContainerRef;
         this.currentItem = currentItem;
         this.isCurrentItem = isCurrentItem;
+        this.isCurrentItemVideo = getIsVideo(currentItem);
         this.isMobile = getIsMobile();
         this.isFullscreenMode = !!isFullscreenMode;
         this.items = items || [];
@@ -103,9 +107,9 @@ export class StylingLogic {
         this.itemViewerToolbarRef = itemViewerToolbarRef || { current: null };
         this.lastPageCarouselTranslationAmount = this.LAST_PAGE_CAROUSEL_AMOUNT_INITIAL;
         this.numberOfPages = numberOfPages || 0;
-        this.videoRef = videoRef;
-        this.videoModalRef = videoModalRef;
-        this.videoModalHeight = 0;
+        this.itemRef = itemRef;
+        this.modalRef = modalRef;
+        this.modalHeight = 0;
         this.options = options || {};
         this.optionsLogic = optionsLogic || new OptionsLogic({ options: this.options, isFullscreenMode: false });
     }
@@ -372,28 +376,14 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselToolbarTextDescriptionStyle() {
-        return {
-            display: "-webkit-box",
-            WebkitLineClamp: 1,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            flex: 1,
-        } as CSSProperties;
+    get carouselModalCloseButtonColor() {
+        return getCurrentValue(this.options.styling?.modal?.closeButton?.fill, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
     }
 
-    get carouselToolbarTextStyle() {
-        const customTextColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode) || this.allFillColor;
-        return {
-            color: customTextColor || CAROUSEL_COLOR_FIVE,
-        } as CSSProperties;
-    }
-
-    get carouselVideoModalCloseButtonStyle() {
-        const sizeGiven = this.options.styling?.videoModal?.closeButton?.size;
-        const areChildrenPresent = !!this.currentItem?.video?.modalProps?.children;
-        const { right: paddingRight, top: paddingTop } = this.optionsLogic.videoModalPadding;
+    get carouselModalCloseButtonStyle() {
+        const sizeGiven = this.options.styling?.modal?.closeButton?.size;
+        const areChildrenPresent = !!this.currentItem?.modal?.children;
+        const { right: paddingRight, top: paddingTop } = this.optionsLogic.modalPadding;
         const rightStyle = paddingRight !== undefined ? {
             right: getCurrentValue(paddingRight, 0, this.isFullscreenMode),
         } as CSSProperties : {};
@@ -413,34 +403,34 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoModalStyle(shouldHide: boolean, modalHeight: number) {
+    getCarouselModalStyle(shouldHide: boolean, modalHeight: number) {
         const isToolbarEmbedded = this.optionsLogic.isToolbarInVideo;
-        const { fontSize: fontSizeTemp, background, textColor, widthInPercent: widthInPercentTemp } = this.options.styling?.videoModal || {};
-        const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.videoModalPadding;
+        const { fontSize: fontSizeTemp, background, textColor, widthInPercent: widthInPercentTemp } = this.options.styling?.modal || {};
+        const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.modalPadding;
         const widthInPercent = getCurrentValue(widthInPercentTemp, undefined, this.isFullscreenMode)
         const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : this.isMobile ? "100%" : "75%";
         const customFontSize = getCurrentValue(fontSizeTemp, this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
         const itemViewerLeftPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer);
         const itemViewerRightPadding = this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
         const carouselContainerRect = this.carouselContainerRef?.current?.getBoundingClientRect();
-        const toolbar = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`);
+        const toolbar = this.carouselContainerRef?.current?.querySelector(`.${(this.isCurrentItemVideo ? CLASSNAME__TOOLBAR_PROGRESS : CLASSNAME__ITEM_VIEWER_TOOLBAR)}`);
         const progressRect = toolbar?.getBoundingClientRect();
         const carouselPaddingTop = this.getPaddingAmount(SpacingDirection.top, CarouselSection.container);
         const progressBarPaddingTop = this.getCarouselVideoProgressHitSlop().paddingTop;
-        this.videoModalHeight = Math.max(this.videoModalHeight, modalHeight);
+        this.modalHeight = Math.max(this.modalHeight, modalHeight);
 
-        let heightBetweenVideoTopAndProgressBarTop = 270;
+        let heightBetweenItemTopAndProgressBarTop = 270;
         if (carouselContainerRect && progressRect) {
-            heightBetweenVideoTopAndProgressBarTop = Math.abs((carouselContainerRect.y + carouselPaddingTop) - (progressRect.y + progressBarPaddingTop));
+            heightBetweenItemTopAndProgressBarTop = Math.abs((carouselContainerRect.y + carouselPaddingTop) - (progressRect.y + progressBarPaddingTop));
         }
 
         const embeddedOffset = isToolbarEmbedded ? 0 : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.33;
-        const spaceBetweenModalTopAndVideoTop = CAROUSEL_ITEM_SPACING_DEFAULT * 2;
-        const maxHeight = Math.floor(heightBetweenVideoTopAndProgressBarTop - spaceBetweenModalTopAndVideoTop * 2) - embeddedOffset ;
-        const centeringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((progressRect?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndVideoTop)) / 2 - embeddedOffset / 2;
-        const minTopValue = -(Math.abs((progressRect?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndVideoTop;
+        const spaceBetweenModalTopAndItemTop = CAROUSEL_ITEM_SPACING_DEFAULT * 2;
+        const maxHeight = Math.floor(heightBetweenItemTopAndProgressBarTop - spaceBetweenModalTopAndItemTop * 2) - embeddedOffset ;
+        const centeringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((progressRect?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndItemTop)) / 2 - embeddedOffset / 2;
+        const minTopValue = -(Math.abs((progressRect?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndItemTop;
         const centeredTopValue = minTopValue + centeringOffset;
-        // console.log({toolbar, minTopValue, centeredTopValue, heightBetweenVideoTopAndProgressBarTop, centeringOffset, modalHeight});
+        console.log({toolbar, minTopValue, centeredTopValue, centeringOffset, modalHeight});
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
             width: widthToUse,
@@ -454,7 +444,7 @@ export class StylingLogic {
             paddingRight,
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
-            top: this.videoModalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue),
+            top: this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue),
             bottom: 'auto',
             left: 'auto',
             right: 'auto',
@@ -484,8 +474,22 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoCloseButtonColor() {
-        return getCurrentValue(this.options.styling?.videoModal?.closeButton?.fill, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+    get carouselToolbarTextDescriptionStyle() {
+        return {
+            display: "-webkit-box",
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            flex: 1,
+        } as CSSProperties;
+    }
+
+    get carouselToolbarTextStyle() {
+        const customTextColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode) || this.allFillColor;
+        return {
+            color: customTextColor || CAROUSEL_COLOR_FIVE,
+        } as CSSProperties;
     }
 
     get carouselVideoContainerStyle() {
@@ -1411,7 +1415,7 @@ export class StylingLogic {
         return buttonColor || foregroundColor;
     }
 
-    static getCarouselVideoModalChildStyle(index: number) {
+    static getCarouselModalChildStyle(index: number) {
         return {
             paddingTop: index === 0 ? 0 : CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
         } as CSSProperties;

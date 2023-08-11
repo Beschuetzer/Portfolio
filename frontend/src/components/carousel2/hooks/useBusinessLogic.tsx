@@ -27,11 +27,11 @@ export type UseBusinessLogicInput = {
 
 export const useBusinessLogic = ({
     isCurrentItem,
+    itemRef,
     itemViewerToolbarRef,
     loadingSpinnerOptions,
     options: optionsInput,
-    videoModalRef,
-    videoRef
+    modalRef,
 }: UseBusinessLogicInput): UseBusinessLogicResponse => {
     const {
         carouselContainerRef,
@@ -69,8 +69,8 @@ export const useBusinessLogic = ({
         numberOfPages,
         options,
         optionsLogic,
-        videoModalRef,
-        videoRef
+        modalRef,
+        itemRef
     }));
 
     useEffect(() => {
@@ -92,8 +92,8 @@ export const useBusinessLogic = ({
             numberOfPages,
             options,
             optionsLogic: newOptionsLogic,
-            videoModalRef,
-            videoRef
+            modalRef,
+            itemRef
         })
 
         setOptionsLogic(newOptionsLogic);
@@ -103,13 +103,13 @@ export const useBusinessLogic = ({
         currentItem,
         isCurrentItem,
         isFullscreenMode,
+        itemRef,
         items,
+        modalRef,
         numberOfPages,
         options,
         itemViewerToolbarRef,
         loadingSpinnerOptions,
-        videoModalRef,
-        videoRef,
     ])
 
     useEffect(() => {
