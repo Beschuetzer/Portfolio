@@ -414,23 +414,35 @@ export class StylingLogic {
         const itemViewerRightPadding = this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
         const carouselContainerRect = this.carouselContainerRef?.current?.getBoundingClientRect();
         const toolbar = this.carouselContainerRef?.current?.querySelector(`.${(this.isCurrentItemVideo ? CLASSNAME__TOOLBAR_PROGRESS : CLASSNAME__ITEM_VIEWER_TOOLBAR)}`);
-        const progressRect = toolbar?.getBoundingClientRect();
+        const toolbarRect = toolbar?.getBoundingClientRect();
+        const toolbarFirstDiv = toolbar?.querySelector(`div`);
+        const toolbarFirstDivRect = toolbarFirstDiv?.getBoundingClientRect();
         const carouselPaddingTop = this.getPaddingAmount(SpacingDirection.top, CarouselSection.container);
         const progressBarPaddingTop = this.getCarouselVideoProgressHitSlop().paddingTop;
+        const toolbarPaddingBottom = this.getPaddingAmount(SpacingDirection.bottom, CarouselSection.toolbar);
         this.modalHeight = Math.max(this.modalHeight, modalHeight);
 
-        let heightBetweenItemTopAndProgressBarTop = 270;
-        if (carouselContainerRect && progressRect) {
-            heightBetweenItemTopAndProgressBarTop = Math.abs((carouselContainerRect.y + carouselPaddingTop) - (progressRect.y + progressBarPaddingTop));
+        let heightBetweenItemTopAndToolbarBarTop = 270;
+        if (carouselContainerRect && toolbarRect && toolbarFirstDivRect) {
+            const toolbarTop = this.isCurrentItemVideo ? (toolbarRect.y + progressBarPaddingTop) : (toolbarFirstDivRect.y + toolbarPaddingBottom)
+            heightBetweenItemTopAndToolbarBarTop = Math.abs((carouselContainerRect.y + carouselPaddingTop) - toolbarTop);
         }
 
         const embeddedOffset = isToolbarEmbedded ? 0 : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.33;
         const spaceBetweenModalTopAndItemTop = CAROUSEL_ITEM_SPACING_DEFAULT * 2;
-        const maxHeight = Math.floor(heightBetweenItemTopAndProgressBarTop - spaceBetweenModalTopAndItemTop * 2) - embeddedOffset ;
-        const centeringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((progressRect?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndItemTop)) / 2 - embeddedOffset / 2;
-        const minTopValue = -(Math.abs((progressRect?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndItemTop;
+        const rectToUse = this.isCurrentItemVideo ? toolbarRect : toolbarFirstDivRect;
+        const maxHeight = Math.floor(heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 2) - embeddedOffset;
+        const centeringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((rectToUse?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndItemTop)) / 2 - embeddedOffset / 2;
+        const minTopValue = -(Math.abs((rectToUse?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndItemTop;
         const centeredTopValue = minTopValue + centeringOffset;
-        console.log({toolbar, minTopValue, centeredTopValue, centeringOffset, modalHeight});
+        const videoTop = this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue);
+        const imageTop = this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue);
+        // const imageTop = toolbarRect && toolbarFirstDivRect ? -(toolbarRect?.height - toolbarFirstDivRect?.height - carouselPaddingTop) : -200;
+        const top = this.isCurrentItemVideo ? videoTop : imageTop;
+
+        console.log({thisModalHeight: this.modalHeight, maxHeight,toolbarFirstDivRect, toolbarRect, heightBetweenItemTopAndProgressBarTop: heightBetweenItemTopAndToolbarBarTop, toolbarPaddingBottom});
+        
+        console.log({ toolbar, minTopValue, centeredTopValue, centeringOffset, modalHeight: this.modalHeight, tooblarHeight: -(toolbarRect?.height || 0) / 2});
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
             width: widthToUse,
@@ -444,7 +456,7 @@ export class StylingLogic {
             paddingRight,
         } as CSSProperties;
         const positionStyle = !this.isFullscreenMode ? {
-            top: this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue),
+            top,
             bottom: 'auto',
             left: 'auto',
             right: 'auto',
