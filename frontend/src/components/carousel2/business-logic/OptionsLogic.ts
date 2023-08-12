@@ -19,7 +19,7 @@ import {
     CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT,
     MAX_CLICK_THRESHOLD_DEFAULT, SEEK_AMOUNT_DEFAULT,
-    CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT,
+    CAROUSEL_MODAL_PADDING_DEFAULT,
     CAROUSEL_COLOR_THREE,
     CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED,
     CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED,
@@ -212,7 +212,7 @@ export class OptionsLogic {
     }
 
     get modalPadding() {
-        const padding = getCurrentValue(this.options.styling?.modal?.padding, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT, this.isFullscreenMode);
+        const padding = getCurrentValue(this.options.styling?.modal?.padding, CAROUSEL_MODAL_PADDING_DEFAULT, this.isFullscreenMode);
         const paddingLeftStatic = (this.options.styling?.modal?.padding as any)?.left;
         const paddingRightStatic = (this.options.styling?.modal?.padding as any)?.right;
         const paddingBottomStatic = (this.options.styling?.modal?.padding as any)?.bottom;
@@ -220,16 +220,16 @@ export class OptionsLogic {
         return {
             top: paddingTopStatic !== undefined ?
                 paddingTopStatic :
-                getCurrentValue(padding.top, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.top, this.isFullscreenMode),
+                getCurrentValue(padding.top, CAROUSEL_MODAL_PADDING_DEFAULT.top, this.isFullscreenMode),
             bottom: paddingBottomStatic !== undefined ?
                 paddingBottomStatic :
-                getCurrentValue(padding.bottom, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.bottom, this.isFullscreenMode),
+                getCurrentValue(padding.bottom, CAROUSEL_MODAL_PADDING_DEFAULT.bottom, this.isFullscreenMode),
             left: paddingLeftStatic !== undefined ?
                 paddingLeftStatic :
-                getCurrentValue(padding.left, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.left, this.isFullscreenMode),
+                getCurrentValue(padding.left, CAROUSEL_MODAL_PADDING_DEFAULT.left, this.isFullscreenMode),
             right: paddingRightStatic !== undefined ?
                 paddingRightStatic :
-                getCurrentValue(padding.right, CAROUSEL_VIDEO_MODAL_PADDING_DEFAULT.right, this.isFullscreenMode),
+                getCurrentValue(padding.right, CAROUSEL_MODAL_PADDING_DEFAULT.right, this.isFullscreenMode),
         }
     }
 

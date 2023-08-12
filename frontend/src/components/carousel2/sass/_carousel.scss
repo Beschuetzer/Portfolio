@@ -288,37 +288,41 @@
         object-fit: contain;
         max-height: 100vh;
 
-        &-modal {
-            &-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            & p {
-                padding-right: $itemViewerModalParagraphPaddingRight;
-            }
-
-            &-custom {
-                padding-top: 0;
-                padding-bottom: 0;
-
-                & .#{$carouselClassname}__item-viewer-button {
-                    @include positionAbsolute($right: var(--#{$videoModalCustomButtonRightString}),
-                        $top: var(--#{$videoModalCustomButtonTopString}),
-                        $left: auto,
-                        $bottom: auto,
-                    );
-                    @include closeButton;
-                }
-            }
-
-            // @include closeButton;
-        }
-
         &-screenshot-viewer {
             & > div > div {
                 @include maxTextLineCount(1);
+            }
+        }
+    }
+
+    &__modal {
+        &-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        & p {
+            padding-right: $itemViewerModalParagraphPaddingRight;
+        }
+
+        &-custom {
+            & .#{$carouselClassname}__item-viewer-button {
+                @include positionAbsolute($right: var(--#{$modalCustomButtonRightString}),
+                    $top: var(--#{$modalCustomButtonTopString}),
+                    $left: auto,
+                    $bottom: auto,
+                );
+                @include closeButton;
+            }
+        }
+
+        &::-webkit-scrollbar {
+            &-track {
+                background-color: red;
+            }
+            &-thumb {
+                background-color: yellow;
             }
         }
     }

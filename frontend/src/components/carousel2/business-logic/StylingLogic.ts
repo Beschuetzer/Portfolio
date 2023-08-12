@@ -17,13 +17,12 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
     CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT,
     CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
-    CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT,
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
     CLASSNAME__TOOLBAR_PROGRESS,
-    CLASSNAME__TOOLBAR_CONTAINER,
     CLASSNAME__ITEM_VIEWER_TOOLBAR,
 } from "../constants";
 import { CarouselModalInternalProps } from "../components/CarouselModal";
@@ -391,7 +390,7 @@ export class StylingLogic {
             top: getCurrentValue(paddingTop, 0, this.isFullscreenMode),
         } as CSSProperties : {};
         const widthStyle = {
-            width: !!sizeGiven ? getCurrentValue(sizeGiven, this.defaultButtonSize, this.isFullscreenMode) : this.isFullscreenMode ? undefined : CAROUSEL_VIDEO_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
+            width: !!sizeGiven ? getCurrentValue(sizeGiven, this.defaultButtonSize, this.isFullscreenMode) : this.isFullscreenMode ? undefined : CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
         } as CSSProperties;
 
         return areChildrenPresent ? {

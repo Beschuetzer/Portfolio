@@ -28,16 +28,19 @@ $zIndexItemViewerImage: 1;
 $zIndexToolbar: 1000000;
 $zIndexShortcutPopup: 10000;
 $zIndexProgressBar: 100;
-$zIndexVideoModal: 100000;
 $zIndexVideoStateIndicator: 1000;
 $zShortcutPreviewImage: 1000000;
 
 $classname__grabbing: 'grabbing';
 
-$videoModalCustomButtonTopString: '#{$carouselClassname}-video-modal-custom-button-top';
-$videoModalCustomButtonRightString: '#{$carouselClassname}-video-modal-custom-button-right';
+$modalCustomButtonTopString: '#{$carouselClassname}-modal-custom-button-top';
+$modalCustomButtonRightString: '#{$carouselClassname}-modal-custom-button-right';
+$modalScrollbarBackgroundColor: '#{$carouselClassname}-modal-scrollbar-background-color';
+$modalScrollbarForegroundColor: '#{$carouselClassname}-modal-scrollbar-foreground-color';
 :root {
-    --#{$videoModalCustomButtonTopString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
-    --#{$videoModalCustomButtonRightString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
+    --#{$modalCustomButtonTopString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
+    --#{$modalCustomButtonRightString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
+    --#{$modalScrollbarBackgroundColor}: '#000';
+    --#{$modalScrollbarForegroundColor}: '#fff';
 }
 

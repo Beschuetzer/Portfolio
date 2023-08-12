@@ -1,6 +1,8 @@
 :root {
-  --thumbnail-carousel-video-modal-custom-button-top: calc(20px * .5);
-  --thumbnail-carousel-video-modal-custom-button-right: calc(20px * .5);
+  --thumbnail-carousel-modal-custom-button-top: calc(20px * .5);
+  --thumbnail-carousel-modal-custom-button-right: calc(20px * .5);
+  --thumbnail-carousel-modal-scrollbar-background-color: "#000";
+  --thumbnail-carousel-modal-scrollbar-foreground-color: "#fff";
 }
 
 .thumbnail-carousel--hidden, .thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__item-viewer-toolbar, .thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__video-screenshot-viewer {
@@ -1003,26 +1005,29 @@
   object-fit: contain;
   max-height: 100vh;
 }
-.thumbnail-carousel__video-modal-header {
+.thumbnail-carousel__video-screenshot-viewer > div > div {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.thumbnail-carousel__modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.thumbnail-carousel__video-modal p {
+.thumbnail-carousel__modal p {
   padding-right: 20px;
 }
-.thumbnail-carousel__video-modal-custom {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button {
+.thumbnail-carousel__modal-custom .thumbnail-carousel__item-viewer-button {
   position: absolute;
   bottom: auto;
   left: auto;
-  right: var(--thumbnail-carousel-video-modal-custom-button-right);
-  top: var(--thumbnail-carousel-video-modal-custom-button-top);
+  right: var(--thumbnail-carousel-modal-custom-button-right);
+  top: var(--thumbnail-carousel-modal-custom-button-top);
 }
-.thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-left, .thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-right {
+.thumbnail-carousel__modal-custom .thumbnail-carousel__item-viewer-button--close-left, .thumbnail-carousel__modal-custom .thumbnail-carousel__item-viewer-button--close-right {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1030,22 +1035,21 @@
   bottom: auto;
   transform: translate(-50%, -50%) rotate(var(--rotation));
 }
-.thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-left-inverse, .thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-right-inverse {
+.thumbnail-carousel__modal-custom .thumbnail-carousel__item-viewer-button--close-left-inverse, .thumbnail-carousel__modal-custom .thumbnail-carousel__item-viewer-button--close-right-inverse {
   background-color: #1d0e0b;
   margin-top: 0;
 }
-.thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-left {
+.thumbnail-carousel__modal-custom .thumbnail-carousel__item-viewer-button--close-left {
   --rotation: -45deg;
 }
-.thumbnail-carousel__video-modal-custom .thumbnail-carousel__item-viewer-button--close-right {
+.thumbnail-carousel__modal-custom .thumbnail-carousel__item-viewer-button--close-right {
   --rotation: 45deg;
 }
-.thumbnail-carousel__video-screenshot-viewer > div > div {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.thumbnail-carousel__modal::-webkit-scrollbar-track {
+  background-color: red;
+}
+.thumbnail-carousel__modal::-webkit-scrollbar-thumb {
+  background-color: yellow;
 }
 .thumbnail-carousel--d-none {
   display: none;

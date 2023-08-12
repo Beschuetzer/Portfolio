@@ -4,7 +4,7 @@ import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
 import { Exclusive } from '../types';
-import { CLASSNAME__ITEM_VIEWER_BUTTON } from '../constants';
+import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__MODAL, CLASSNAME__MODAL_CUSTOM, CLASSNAME__MODAL_HEADER } from '../constants';
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
@@ -86,11 +86,7 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
 
     //#region JSX
     const visibilityStyle = useMemo(() => isVideoPlaying || !isVisible ? getClassname({ modifiedName: "hidden" }) : '', [isVideoPlaying, isVisible]);
-    const className = useMemo(() => getClassname({ elementName: 'video-modal' }), []);
-    const classNameCustom = useMemo(() => getClassname({ elementName: 'video-modal-custom' }), []);
-    const classNameToUse = useMemo(() => `${className} ${isCustom ? classNameCustom : ''} ${visibilityStyle}`, [
-        className,
-        classNameCustom,
+    const classNameToUse = useMemo(() => `${CLASSNAME__MODAL} ${isCustom ? CLASSNAME__MODAL_CUSTOM : ''} ${visibilityStyle}`, [
         isCustom,
         visibilityStyle
     ]);
@@ -132,7 +128,7 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
         if (!sections || sections.length === 0 || isVideoPlaying) return null;
         return sections.map(({ text, title }, index) => (
             <div key={index} style={StylingLogic.getCarouselModalChildStyle(index)}>
-                <div className={`${className}-header`}>
+                <div className={CLASSNAME__MODAL_HEADER}>
                     <h3 dangerouslySetInnerHTML={{ __html: title || '' }} />
                     {index === 0 ? button : null}
                 </div>
@@ -141,7 +137,7 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
                 ) : null}
             </div>
         ));
-    }, [button, children, className, isCustom, isVideoPlaying, sections]);
+    }, [button, children, isCustom, isVideoPlaying, sections]);
 
     return (
         <div
