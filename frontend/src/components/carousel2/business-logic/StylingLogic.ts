@@ -376,7 +376,8 @@ export class StylingLogic {
     }
 
     get carouselModalCloseButtonColor() {
-        return getCurrentValue(this.options.styling?.modal?.closeButton?.fill, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        const defaultColor = getCurrentValue(this.options.styling?.modal?.textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        return getCurrentValue(this.options.styling?.modal?.closeButton?.fill, defaultColor, this.isFullscreenMode);
     }
 
     get carouselModalCloseButtonStyle() {

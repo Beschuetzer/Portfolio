@@ -1,7 +1,6 @@
 Carousel rework
   -work on progressbar rework:
     --figure out how to change scrollbar colors for modal to match background and text values
-    --modal close button doesn't change colors
     --move all instances of getCurrentValue calls from StylingLogic to OptionsLogic
     --need to remove cursor: none on body when a re-size occurs
     --bottom case for CarouselModal in correct spot
