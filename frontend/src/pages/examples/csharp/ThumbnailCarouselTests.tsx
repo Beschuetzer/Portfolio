@@ -312,7 +312,7 @@ const items = [
 		}
 	},
 	{
-		description: "Close up Turtle Encounter ",
+		description: "Close up Turtle Encounter (Overlay centered) ",
 		srcMain: maui02,
 		modal: {
 			sections: [
@@ -329,7 +329,39 @@ const items = [
 	},
 	{
 		srcMain: maui03,
-		description: "Item with no Thumbnail",
+		description: "Item with no Thumbnail (Overlay overflow)",
+		modal: {
+			sections: [
+				{
+					title: "Section 1",
+					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+				},
+				{
+					title: "Section 2",
+					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
+				},
+				{
+					title: "Section 3",
+					text: "The modal box should still be displayed nicely inside the video frame."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				}
+			],
+		},
 	},
 	{
 		srcMain: maui01,

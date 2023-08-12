@@ -1,5 +1,6 @@
 Carousel rework
   -work on progressbar rework:
+    --need to remove cursor: none on body when a re-size occurs
     --figure out top for the CarouselImage case of CarouselModal (StylingLogic.getCarouselModalStyle()) when centered
     --figure out top for the CarouselImage case of CarouselModal (StylingLogic.getCarouselModalStyle()) when fullsize
     --bottom case for CarouselModal in correct spot

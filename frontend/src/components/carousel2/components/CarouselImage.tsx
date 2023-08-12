@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselItemViewerToolbar, CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
@@ -7,11 +7,14 @@ import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 
+const RE_RENDER_DURATION = 85;
 export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewerToolbarProps, 'itemContainerRef'>) => {
-    const { options, setIsFullscreenMode } = useCarouselContext();
+    const { options, setIsFullscreenMode, currentItemIndex } = useCarouselContext();
     const [isLoaded, setIsLoaded] = useState(false);
+    const [, setShouldRerender] = useState(false);
     const imageRef = useRef<HTMLImageElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
+    const rerenderTimoutRef = useRef<any>();
     const {
         description,
         itemContainerRef,
@@ -25,6 +28,13 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
             setIsFullscreenMode((current) => !current);
         }
     }, [setIsFullscreenMode]);
+
+    useLayoutEffect(() => {
+        clearTimeout(rerenderTimoutRef.current);
+        rerenderTimoutRef.current = setTimeout(() => {
+            setShouldRerender((current) => !current);
+        }, RE_RENDER_DURATION)
+    }, [currentItemIndex])
 
     return (
         <>

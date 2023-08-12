@@ -482,7 +482,7 @@ export class StylingLogic {
             ...positionStyle,
             ...textStyle,
             ...this.fontFamilyItemViewerStyle,
-            zIndex: shouldHide ? -1 : 1,
+            zIndex: -1,
         } as CSSProperties;
     }
 
