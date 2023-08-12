@@ -428,21 +428,18 @@ export class StylingLogic {
             heightBetweenItemTopAndToolbarBarTop = Math.abs((carouselContainerRect.y + carouselPaddingTop) - toolbarTop);
         }
 
-        const embeddedOffset = isToolbarEmbedded ? 0 : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.33;
+        const embeddedOffset = isToolbarEmbedded && this.isCurrentItemVideo ? 0 : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * (this.isCurrentItemVideo ? 1.33 : 2);
         const spaceBetweenModalTopAndItemTop = CAROUSEL_ITEM_SPACING_DEFAULT * 2;
         const rectToUse = this.isCurrentItemVideo ? toolbarRect : toolbarFirstDivRect;
         const maxHeight = Math.floor(heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 2) - embeddedOffset;
         const centeringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((rectToUse?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndItemTop)) / 2 - embeddedOffset / 2;
         const minTopValue = -(Math.abs((rectToUse?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndItemTop;
         const centeredTopValue = minTopValue + centeringOffset;
-        const videoTop = this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue);
-        const imageTop = this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue);
-        // const imageTop = toolbarRect && toolbarFirstDivRect ? -(toolbarRect?.height - toolbarFirstDivRect?.height - carouselPaddingTop) : -200;
-        const top = this.isCurrentItemVideo ? videoTop : imageTop;
+        const top = this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue);
 
-        console.log({thisModalHeight: this.modalHeight, maxHeight,toolbarFirstDivRect, toolbarRect, heightBetweenItemTopAndProgressBarTop: heightBetweenItemTopAndToolbarBarTop, toolbarPaddingBottom});
+        console.log({carouselContainerRect, rectToUse, maxHeight, modalHeight: this.modalHeight});
         
-        console.log({ toolbar, minTopValue, centeredTopValue, centeringOffset, modalHeight: this.modalHeight, tooblarHeight: -(toolbarRect?.height || 0) / 2});
+        // console.log({ toolbar, minTopValue, centeredTopValue, centeringOffset, modalHeight: this.modalHeight, tooblarHeight: -(toolbarRect?.height || 0) / 2});
 
         const widthStyle = !this.isFullscreenMode || this.isMobile ? {
             width: widthToUse,

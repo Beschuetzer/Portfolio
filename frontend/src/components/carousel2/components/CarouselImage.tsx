@@ -7,7 +7,7 @@ import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 
-const RE_RENDER_DURATION = 85;
+const RE_RENDER_DURATION = 1;
 export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewerToolbarProps, 'itemContainerRef'>) => {
     const { options, setIsFullscreenMode, currentItemIndex } = useCarouselContext();
     const [isLoaded, setIsLoaded] = useState(false);
@@ -19,6 +19,7 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
         description,
         itemContainerRef,
         srcMain,
+        modal
     } = props;
     const { stylingLogic } = useBusinessLogic({ itemViewerToolbarRef });
     useRerenderOnExitFullscreenMode();
@@ -30,11 +31,17 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
     }, [setIsFullscreenMode]);
 
     useLayoutEffect(() => {
+        //only re-render if there is a modal to display
+        if (!modal) return;
         clearTimeout(rerenderTimoutRef.current);
         rerenderTimoutRef.current = setTimeout(() => {
             setShouldRerender((current) => !current);
         }, RE_RENDER_DURATION)
-    }, [currentItemIndex])
+
+        return () => {
+            clearTimeout(rerenderTimoutRef.current);
+        }
+    }, [currentItemIndex, modal])
 
     return (
         <>
