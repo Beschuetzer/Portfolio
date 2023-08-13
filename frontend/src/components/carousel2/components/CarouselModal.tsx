@@ -8,6 +8,7 @@ import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__MODAL, CLASSNAME__MODAL_CUSTO
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
+import { useSetCustomCssProperties } from '../hooks/useSetCustomCssProperties';
 
 export type CarouselModalSection = {
     /**
@@ -42,7 +43,7 @@ const MODAL_HEIGHT_INITIAL = 0;
 export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
-    const { optionsLogic } = useBusinessLogic({})
+    const { optionsLogic } = useBusinessLogic({});
 
     const { children, isVideoPlaying, sections, isProgressBarMouseDownRef, itemViewerToolbarRef, itemRef } = props;
     const [isVisible, setIsVisible] = useState(true);
@@ -54,6 +55,13 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
     const { stylingLogic } = useBusinessLogic({ itemRef, modalRef, itemViewerToolbarRef })
     const closeButtonColor = useMemo(() => stylingLogic.carouselModalCloseButtonColor, [stylingLogic.carouselModalCloseButtonColor]);
     const [, setShouldRerender] = useState(false);
+    useSetCustomCssProperties({
+        element: modalRef?.current as HTMLElement,
+        properties: [
+            [CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR, optionsLogic?.modalBackgroundColor],
+            [CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR, optionsLogic?.modalTextColor]
+        ]
+    })
     //#endregion
 
     //#region Handlers/Functions
@@ -83,15 +91,6 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
         modalHeightRef.current = MODAL_HEIGHT_INITIAL;
         setShouldRerender(current => !current);
     }, [currentItem])
-
-    useEffect(() => {
-        if (modalRef?.current) {
-            console.log({modalRef, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR});
-            
-            modalRef.current.style.setProperty(`--${CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR}`, 'red');
-            modalRef.current.style.setProperty(`--${CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR}`, 'yellow');
-        }
-    }, [])
     //#endregion
 
     //#region JSX

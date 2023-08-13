@@ -995,11 +995,8 @@ const dynamicBackgroundColor = (
 				background: [['red'], ['black', 800]],
 			},
 			modal: {
-				background: [['red'], ['black', 800]],
-				textColor: 'white',
-				closeButton: {
-					fill: 'white',
-				}
+				background: [['white'], ['black', 800]],
+				textColor: [['black'], ['white', 800]],
 			},
 		}
 	}} />
@@ -2456,8 +2453,8 @@ const viewingModeVideoControls = (
 
 			styling: {
 				modal: {
-					background: 'red',
-					textColor: 'yellow',
+					background: [['red'], ['blue', 1200]],
+					textColor: [['blue'], ['red', 1200]],
 				},
 				itemViewerPreview: {
 					isVisibleInNonFullscreenMode: true,
