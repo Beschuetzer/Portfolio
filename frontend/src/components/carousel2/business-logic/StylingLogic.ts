@@ -405,11 +405,10 @@ export class StylingLogic {
 
     getCarouselModalStyle(shouldHide: boolean, modalHeight: number) {
         const isToolbarEmbedded = this.optionsLogic.isToolbarInVideo;
-        const { fontSize: fontSizeTemp, background, textColor, widthInPercent: widthInPercentTemp } = this.options.styling?.modal || {};
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.modalPadding;
-        const widthInPercent = getCurrentValue(widthInPercentTemp, undefined, this.isFullscreenMode)
+        const widthInPercent = this.optionsLogic.modalWidth;
+        const customFontSize = this.optionsLogic.modalFontSize;
         const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : this.isMobile ? "100%" : "75%";
-        const customFontSize = getCurrentValue(fontSizeTemp, this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
         const itemViewerLeftPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer);
         const itemViewerRightPadding = this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
         const carouselContainerRect = this.carouselContainerRef?.current?.getBoundingClientRect();
@@ -459,14 +458,14 @@ export class StylingLogic {
             right: 'auto',
         } as CSSProperties : {};
         const textStyle = {
-            color: getCurrentValue(textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode),
+            color: this.optionsLogic.modalTextColor,
             fontSize: customFontSize,
         } as CSSProperties;
         const generalStyle = {
             position: 'absolute',
             transition: `opacity .5s ease`,
             borderRadius: 5,
-            background: getCurrentValue(background, CAROUSEL_COLOR_ONE, this.isFullscreenMode),
+            background: this.optionsLogic.modalBackgroundColor,
             maxHeight: maxHeight,
             overflowY: 'auto',
             overflowX: 'hidden',

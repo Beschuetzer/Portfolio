@@ -2457,7 +2457,7 @@ const viewingModeVideoControls = (
 			styling: {
 				modal: {
 					background: 'red',
-					textColor: 'yellow'
+					textColor: 'yellow',
 				},
 				itemViewerPreview: {
 					isVisibleInNonFullscreenMode: true,

@@ -31,7 +31,9 @@ import {
     CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT,
     AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT,
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
-    CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT
+    CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT,
+    CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT,
+    CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT
 } from "../constants";
 import { CarouselOptions } from "../types";
 import { convertHexToRgba, getCurrentValue } from "../utils";
@@ -211,6 +213,22 @@ export class OptionsLogic {
         return getCurrentValue(this.options.styling?.itemViewerPreview?.width, CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT, this.isFullscreenMode);
     }
 
+    get modalBackgroundColor() {
+        return getCurrentValue(
+            this.options.styling?.modal?.background,
+            CAROUSEL_COLOR_ONE,
+            this.isFullscreenMode
+        );
+    }
+
+    get modalFontSize() {
+        return getCurrentValue(
+            this.options.styling?.modal?.fontSize,
+            this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
+            this.isFullscreenMode
+        );
+    }
+
     get modalPadding() {
         const padding = getCurrentValue(this.options.styling?.modal?.padding, CAROUSEL_MODAL_PADDING_DEFAULT, this.isFullscreenMode);
         const paddingLeftStatic = (this.options.styling?.modal?.padding as any)?.left;
@@ -231,6 +249,22 @@ export class OptionsLogic {
                 paddingRightStatic :
                 getCurrentValue(padding.right, CAROUSEL_MODAL_PADDING_DEFAULT.right, this.isFullscreenMode),
         }
+    }
+
+    get modalTextColor() {
+        return getCurrentValue(
+            this.options.styling?.modal?.textColor,
+            CAROUSEL_COLOR_FIVE,
+            this.isFullscreenMode
+        );
+    }
+
+    get modalWidth() {
+        return getCurrentValue(
+            this.options.styling?.modal?.widthInPercent,
+            undefined,
+            this.isFullscreenMode
+        );
     }
 
     get navigationMaxClickThreshold() {
@@ -273,10 +307,10 @@ export class OptionsLogic {
         const top = getCurrentValue(this.options.styling?.toolbar?.progressBar?.hitSlop?.top, CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.5, this.isFullscreenMode);
         const bottom = getCurrentValue(this.options.styling?.toolbar?.progressBar?.hitSlop?.bottom, CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT / 2, this.isFullscreenMode);
 
-         return {
+        return {
             top,
             bottom,
-         }
+        }
     }
 
     get videoProgressBarScaleAmount() {
@@ -294,7 +328,7 @@ export class OptionsLogic {
             height: width * 9 / 16
         }
     }
-    
+
     get videoProgressBarSectionGap() {
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.sectionGap, CAROUSEL_PROGRESS_BAR_SECTION_GAP, this.isFullscreenMode);
     }
