@@ -25,14 +25,15 @@ export type UseBusinessLogicInput = {
     >
 >
 
-export const useBusinessLogic = ({
-    isCurrentItem,
-    itemRef,
-    itemViewerToolbarRef,
-    loadingSpinnerOptions,
-    options: optionsInput,
-    modalRef,
-}: UseBusinessLogicInput): UseBusinessLogicResponse => {
+export const useBusinessLogic = (input?: UseBusinessLogicInput): UseBusinessLogicResponse => {
+    const {
+        isCurrentItem,
+        itemRef,
+        itemViewerToolbarRef,
+        loadingSpinnerOptions,
+        options: optionsInput,
+        modalRef,
+    } = input || {};
     const {
         carouselContainerRef,
         currentItem,

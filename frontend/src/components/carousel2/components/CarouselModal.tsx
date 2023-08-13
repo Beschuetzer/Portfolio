@@ -43,16 +43,15 @@ const MODAL_HEIGHT_INITIAL = 0;
 export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
-    const { optionsLogic } = useBusinessLogic({});
-
+    
     const { children, isVideoPlaying, sections, isProgressBarMouseDownRef, itemViewerToolbarRef, itemRef } = props;
     const [isVisible, setIsVisible] = useState(true);
     const modalRef = useRef<HTMLElement>();
     const modalHeightRef = useRef<number>(MODAL_HEIGHT_INITIAL);
-
+    
     const { svgHref } = elementStylings?.closeButton || {};
     const isCustom = useMemo(() => !!children, [children]);
-    const { stylingLogic } = useBusinessLogic({ itemRef, modalRef, itemViewerToolbarRef })
+    const { optionsLogic, stylingLogic } = useBusinessLogic({ itemRef, modalRef, itemViewerToolbarRef });
     const closeButtonColor = useMemo(() => stylingLogic.carouselModalCloseButtonColor, [stylingLogic.carouselModalCloseButtonColor]);
     const [, setShouldRerender] = useState(false);
     useSetCustomCssProperties({

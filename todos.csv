@@ -1,10 +1,10 @@
 Carousel rework
   -work on progressbar rework:
+    --remove all empty objects from `useBusinessLogic({})` calls
     --move all instances of getCurrentValue calls from StylingLogic to OptionsLogic
     --need to remove cursor: none on body when a re-size occurs
     --bottom case for CarouselModal in correct spot
     --todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)
-    --figure out how to make useBusinessLogic not require an empty object to work right when nothing needs to be passed in
     --figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
     --add component in CarouselVideo to show the snapshot when changing percent via bar
     --add options for thubnail snapshot 
