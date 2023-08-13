@@ -1,6 +1,7 @@
 Carousel rework
   -work on progressbar rework:
     --remove all empty objects from `useBusinessLogic({})` calls
+    --moving mouse after using arrows to change item doesn't prevent toolbar from hiding when embedded
     --move all instances of getCurrentValue calls from StylingLogic to OptionsLogic
     --need to remove cursor: none on body when a re-size occurs
     --bottom case for CarouselModal in correct spot
