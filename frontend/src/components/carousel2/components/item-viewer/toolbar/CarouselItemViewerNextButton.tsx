@@ -20,7 +20,7 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
         stylingLogic,
         toolbarActionsLogic,
         toolbarLogic
-     } = useBusinessLogic({});
+     } = useBusinessLogic();
     const nextItemAction = toolbarActionsLogic.getNextItem();
     const fillColor = stylingLogic.getButtonColor(CarouselElement.nextButton);
 

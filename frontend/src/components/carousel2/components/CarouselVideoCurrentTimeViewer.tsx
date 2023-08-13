@@ -19,7 +19,7 @@ export const CarouselVideoCurrentTimeViewer = ({
     const { currentItem } = useCarouselContext();
     const { srcMain } = currentItem;
     const videoRef = useRef<HTMLVideoElement>();
-    const { stylingLogic } = useBusinessLogic({})
+    const { stylingLogic } = useBusinessLogic()
     useSetVideoCurrentTime({percent, video: videoRef?.current});
 
     return (

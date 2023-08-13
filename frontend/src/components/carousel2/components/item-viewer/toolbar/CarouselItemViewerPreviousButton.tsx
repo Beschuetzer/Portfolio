@@ -16,7 +16,7 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
 }, ref) => {
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.previousButton || {};
-    const { stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic({});
+    const { stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic();
     const previousItemAction = toolbarActionsLogic.getPreviousItem();
     const fillColor = stylingLogic.getButtonColor(CarouselElement.previousButton);
 

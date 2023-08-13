@@ -20,7 +20,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     onClick,
 }, ref) => {
     const { currentItemIndex, isFullscreenMode } = useCarouselContext();
-    const { stylingLogic, optionsLogic } = useBusinessLogic({});
+    const { stylingLogic, optionsLogic } = useBusinessLogic();
     const heightsRef = useRef<number[]>([]);
     const [height, setHeight] = useState(HEIGHT_INITIAL);
     const intervalRef = useRef<any>(-1);

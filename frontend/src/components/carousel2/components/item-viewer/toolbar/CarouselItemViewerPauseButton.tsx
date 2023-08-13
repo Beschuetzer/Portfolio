@@ -17,7 +17,7 @@ export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerP
 }, ref) => {
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.pauseButton || {};
-    const { stylingLogic, toolbarActionsLogic } = useBusinessLogic({});
+    const { stylingLogic, toolbarActionsLogic } = useBusinessLogic();
     const pauseAction = toolbarActionsLogic.getPause();
     const fillColor = stylingLogic.getButtonColor(CarouselElement.pauseButton);
 

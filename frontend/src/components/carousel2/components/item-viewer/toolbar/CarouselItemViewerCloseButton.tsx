@@ -23,7 +23,7 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
         stylingLogic,
         toolbarActionsLogic,
         toolbarLogic
-    } = useBusinessLogic({});
+    } = useBusinessLogic();
     const closeAction = toolbarActionsLogic.getClose();
     const { svgHref, style } = elementStylings?.closeButton || {};
     const fillColor = stylingLogic.getButtonColor(CarouselElement.closeButton);

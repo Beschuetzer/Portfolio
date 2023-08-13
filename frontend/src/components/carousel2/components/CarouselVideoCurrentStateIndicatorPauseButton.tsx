@@ -8,7 +8,7 @@ type CarouselVideoCurrentStateIndicatorPauseButtonProps = {};
 export const CarouselVideoCurrentStateIndicatorPauseButton = forwardRef<any, CarouselVideoCurrentStateIndicatorPauseButtonProps>((props, ref) => {
     const { options } = useCarouselContext();
     const { svgHref, style } = options.styling?.videoCurrentStateIndicator?.pauseIcon || {};
-    const { stylingLogic } = useBusinessLogic({});
+    const { stylingLogic } = useBusinessLogic();
     const fillColor = useMemo(() => stylingLogic.getVideoCurrentStateIndicatorForegroundColor(false),
         [stylingLogic]
     );

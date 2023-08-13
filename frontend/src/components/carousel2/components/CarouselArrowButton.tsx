@@ -23,7 +23,7 @@ export const CarouselArrowButton = ({
   const {
     optionsLogic,
     stylingLogic,
-  } = useBusinessLogic({});
+  } = useBusinessLogic();
   const isHidden = direction === ArrowButtonDirection.previous ? currentPage === 0 : currentPage === numberOfDots - 1;
   const shouldHide = optionsLogic.isWrappingDisabled;
   const defaultColor = optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;

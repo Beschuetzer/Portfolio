@@ -16,7 +16,7 @@ export const FullscreenButton = forwardRef<HTMLButtonElement, FullscreenButtonPr
   onClick = () => null,
   style = {},
 }, ref) => {
-  const { stylingLogic } = useBusinessLogic({});
+  const { stylingLogic } = useBusinessLogic();
   const fullScreenClassname = `${className}--fullscreen`
   const colorStyle = StylingLogic.getColorStyle(fillColor, 'backgroundColor', childStyle);
   const fillStyle = StylingLogic.getColorStyle(fillColor, 'fill', childStyle);

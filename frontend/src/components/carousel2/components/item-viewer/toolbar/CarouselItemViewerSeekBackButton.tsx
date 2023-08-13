@@ -16,7 +16,7 @@ export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemView
 }, ref) => {
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.seekBackButton || {};
-    const { optionsLogic, stylingLogic, toolbarActionsLogic } = useBusinessLogic({});
+    const { optionsLogic, stylingLogic, toolbarActionsLogic } = useBusinessLogic();
     const seekBackwardsAction = toolbarActionsLogic.getSeekBackwards();
     const fillColor = stylingLogic.getButtonColor(CarouselElement.seekBackButton);
     const actionNameToUse = useMemo(() => `${actionName} ${optionsLogic.videoSeekAmount} seconds`, [actionName, optionsLogic.videoSeekAmount]);

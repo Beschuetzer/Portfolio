@@ -16,7 +16,7 @@ export const CarouselItemViewerToolbarText = ({
     isVideo = false,
     timeStrings,
 }: CarouselItemViewerToolbarTextProps) => {
-    const { stylingLogic } = useBusinessLogic({});
+    const { stylingLogic } = useBusinessLogic();
 
     return (
         <span style={stylingLogic.carouselToolbarTextStyle} className={CLASSNAME_TOOLBAR_MIDDLE}>

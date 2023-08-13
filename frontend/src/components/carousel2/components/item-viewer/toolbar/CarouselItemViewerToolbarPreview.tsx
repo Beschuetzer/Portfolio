@@ -29,7 +29,7 @@ export const CarouselItemViewerToolbarPreview = ({
     show,
 }: CarouselItemViewerToolbarPreviewProps) => {
     //#region Init
-    const { optionsLogic, stylingLogic } = useBusinessLogic({});
+    const { optionsLogic, stylingLogic } = useBusinessLogic();
     const { description, srcMain, srcThumbnail } = itemToShow || {};
     //#endregion
 

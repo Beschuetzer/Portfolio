@@ -62,7 +62,7 @@ export const CarouselItemViewerProgressBar = ({
     const checkIsVideoLoadedTimoutRef = useRef<any>(-1);
     const [toolbarWidth, setToolbarWidth] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE)
     const [showDot, setShowDot] = useState(false);
-    const { stylingLogic, optionsLogic } = useBusinessLogic({});
+    const { stylingLogic, optionsLogic } = useBusinessLogic();
     //#endregion
 
     //#region Functions/Handlers

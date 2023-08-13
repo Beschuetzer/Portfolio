@@ -23,7 +23,7 @@ export const CarouselDots = ({
 }: CarouselDotsProps) => {
     //#region Init
     const { svgHref, style } = options?.styling?.elements?.dots || {};
-    const { optionsLogic, stylingLogic } = useBusinessLogic({});
+    const { optionsLogic, stylingLogic } = useBusinessLogic();
     const { isFullscreenMode } = useCarouselContext();
     const defaultColor = optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;
     const fillColor = stylingLogic.getButtonColor(CarouselElement.dots, defaultColor);

@@ -18,7 +18,7 @@ export const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(({
     const classNameToUse = `${className}--arrow-${direction}`;
     const leftClassName = `${classNameToUse}-one`;
     const rightClassName = `${classNameToUse}-two`;
-    const { stylingLogic } = useBusinessLogic({});
+    const { stylingLogic } = useBusinessLogic();
     const colorStyle = StylingLogic.getColorStyle(fillColor, 'backgroundColor', childStyle);
     const instanceWidth = parseInt(style.width as string, 10) || 0;
     const buttonName = direction === ArrowButtonDirection.next ? CarouselElement.arrowRight : CarouselElement.arrowLeft;

@@ -8,7 +8,7 @@ type CarouselVideoCurrentStateIndicatorPlayButtonProps = {};
 export const CarouselVideoCurrentStateIndicatorPlayButton = forwardRef<any, CarouselVideoCurrentStateIndicatorPlayButtonProps>((props, ref) => {
     const { options } = useCarouselContext();
     const { svgHref, style } = options.styling?.videoCurrentStateIndicator?.playIcon || {};
-    const { stylingLogic } = useBusinessLogic({});
+    const { stylingLogic } = useBusinessLogic();
     const fillColor = useMemo(() => stylingLogic.getVideoCurrentStateIndicatorForegroundColor(true),
         [stylingLogic]
     );

@@ -12,7 +12,7 @@ type CarouselVideoCurrentStateIndicatorProps = {
 export const CarouselVideoCurrentStateIndicator = ({
     isVideoPlaying,
 }: CarouselVideoCurrentStateIndicatorProps) => {
-    const { stylingLogic, optionsLogic } = useBusinessLogic({});
+    const { stylingLogic, optionsLogic } = useBusinessLogic();
     const [isAnimating, setIsAnimating] = useState(!isVideoPlaying);
     const timeoutRef = useRef<any>(-1);
 

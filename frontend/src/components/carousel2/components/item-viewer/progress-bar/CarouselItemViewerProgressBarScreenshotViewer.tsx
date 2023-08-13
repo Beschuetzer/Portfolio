@@ -35,7 +35,7 @@ export const CarouselVideoProgressBarScreenshotViewer = ({
     const { currentItem } = useCarouselContext();
     const { sections } = currentItem?.video || {};
 
-    const { stylingLogic } = useBusinessLogic({});
+    const { stylingLogic } = useBusinessLogic();
     const screenShotTextContainerRef = useRef<HTMLDivElement>();
     const textTranslateOffsetRef = useRef<TextTranslateOffset>({} as TextTranslateOffset);
     const textTranslationAmountRef = useRef<number>(TEXT_TRANSLATION_AMOUNT_REF_INITIAL);

@@ -101,7 +101,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const [showNextButtonPopup, setShowNextButtonPopup] = useState(false);
     const [showPreviousButtonPopup, setShowPreviousButtonPopup] = useState(false);
 
-    const { optionsLogic, stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic({});
+    const { optionsLogic, stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic();
     const isMobile = getIsMobile();
     useKeyboardShortcuts([
         {

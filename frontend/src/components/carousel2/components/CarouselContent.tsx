@@ -46,7 +46,7 @@ export const CarouselContent = ({
     const {
         optionsLogic,
         stylingLogic,
-    } = useBusinessLogic({});
+    } = useBusinessLogic();
     useOnSwipe({
         element: itemsContainerInnerRef.current as HTMLElement,
         isDisabled: optionsLogic.isNavigationSwipingDisabled,

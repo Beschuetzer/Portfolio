@@ -9,7 +9,7 @@ type CarouselItemViewerProps = {}
 export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps>((props, ref) => {
     //#region Init
     const { currentItem, isFullscreenMode } = useCarouselContext();
-    const { stylingLogic } = useBusinessLogic({});
+    const { stylingLogic } = useBusinessLogic();
     const isVisible = useMemo(() => Object.keys(currentItem || {})?.length > 0 && isFullscreenMode, [currentItem, isFullscreenMode]);
     const innerRef = useRef<HTMLElement>(null);
     useImperativeHandle(ref, () => innerRef.current);

@@ -17,7 +17,7 @@ export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPl
 }, ref) => {
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.playButton || {};
-    const { stylingLogic, toolbarActionsLogic } = useBusinessLogic({});
+    const { stylingLogic, toolbarActionsLogic } = useBusinessLogic();
     const playAction = toolbarActionsLogic.getPlay();
     const fillColor = stylingLogic.getButtonColor(CarouselElement.playButton);
 
