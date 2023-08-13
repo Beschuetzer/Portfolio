@@ -471,6 +471,11 @@ export class StylingLogic {
             overflowY: 'auto',
             overflowX: 'hidden',
         } as CSSProperties;
+        const hiddenStyle = {
+            opacity: shouldHide ? 0 : 1,
+            pointerEvents: shouldHide ? 'none' : 'auto',
+            visibility: shouldHide ? 'hidden' : 'visible',
+        } as CSSProperties;
 
         return {
             ...generalStyle,
@@ -479,6 +484,7 @@ export class StylingLogic {
             ...positionStyle,
             ...textStyle,
             ...this.fontFamilyItemViewerStyle,
+            ...hiddenStyle,
             zIndex: -1,
         } as CSSProperties;
     }

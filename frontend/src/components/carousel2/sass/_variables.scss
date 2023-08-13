@@ -40,7 +40,7 @@ $modalScrollbarForegroundColor: '#{$carouselClassname}-modal-scrollbar-foregroun
 :root {
     --#{$modalCustomButtonTopString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
     --#{$modalCustomButtonRightString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
-    --#{$modalScrollbarBackgroundColor}: '#000';
-    --#{$modalScrollbarForegroundColor}: '#fff';
+    --#{$modalScrollbarBackgroundColor}: #{$itemViewerBackgroundColor};
+    --#{$modalScrollbarForegroundColor}: #{$itemViewerButtonColor};
 }
 

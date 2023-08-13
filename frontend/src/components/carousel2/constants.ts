@@ -17,7 +17,7 @@ export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
 export const WINDOW_RESIZE_DEBOUNCE = 250;
 
 //#region ClassNames
-export const CLASSNAME__ROOT = 'thumbnail-carousel';
+export const CLASSNAME__ROOT = 'thumbnail-carousel'; //this has to match $carouselClassname in _variables.scss
 export const CLASSNAME__BUTTON = `${CLASSNAME__ROOT}-button`;
 export const CLASSNAME__BUTTON_SCALE_ON_HOVER = `${CLASSNAME__BUTTON}--scale-on-hover`
 export const CLASSNAME__CAROUSEL_ITEM = getClassname({ elementName: 'item' });
@@ -38,6 +38,11 @@ export const CLASSNAME__TOOLBAR_PROGRESS = getClassname({ elementName: `${CLASSN
 export const CLASSNAME__TOOLBAR_RIGHT = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-right` });
 export const CLASSNAME__VIDEO_SCREENSHOT_VIEWER = `${getClassname({elementName: 'video-screenshot-viewer'})}`;
 export const CLASSNAME__VIDEO_SCREENSHOT_VIEWER_TEXT_CONTAINER = `${CLASSNAME__VIDEO_SCREENSHOT_VIEWER}-text-container`;
+//#endregion
+
+//#region CSS Custom Property Names (see _variables.scss)
+export const CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR = `${CLASSNAME__ROOT}-modal-scrollbar-background-color`;
+export const CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR = `${CLASSNAME__ROOT}-modal-scrollbar-foreground-color`;
 //#endregion
 
 //#region Styling

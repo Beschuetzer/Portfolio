@@ -319,10 +319,10 @@
 
         &::-webkit-scrollbar {
             &-track {
-                background-color: red;
+                background-color: var(--#{$modalScrollbarBackgroundColor});
             }
             &-thumb {
-                background-color: yellow;
+                background-color: var(--#{$modalScrollbarForegroundColor});
             }
         }
     }
