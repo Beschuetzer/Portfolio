@@ -15,7 +15,7 @@ export const useBridgeSectionTransitionHiding = (skipCondition?: boolean) => {
 		timeout.current = setTimeout(() => {
 			setIsHidden(false);
 		}, ANIMATION_DURATION)
-	}, [currentBridgeSection])
+	}, [currentBridgeSection, skipCondition])
 
     return isHidden;
 }

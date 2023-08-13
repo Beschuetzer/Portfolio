@@ -44,7 +44,7 @@ export type OptionsConstructor = {
     items?: CarouselItemProps[];
 }
 /*
-*Logic related to options that are not style-related
+*Logic related to any option the user can specify
 */
 export class OptionsLogic {
     private options;

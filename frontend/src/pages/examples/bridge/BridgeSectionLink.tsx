@@ -102,7 +102,7 @@ export const BridgeSectionLink: React.FC<BridgeSectionLinkProps> = ({
 	useEffect(() => {
 		const isCurrentSection = currentBridgeSection === index;
 		setIsCurrentSection(isCurrentSection);
-	}, [currentBridgeSection])
+	}, [currentBridgeSection, index])
 	
 
 	//#region JSX

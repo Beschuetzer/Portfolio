@@ -1,9 +1,5 @@
-import React, { useState } from "react";
-import { useAppSelector } from "../hooks";
+import React from "react";
 import { useBridgeSectionTransitionHiding } from "../hooks/useBridgeSectionTransitionHiding";
-import { useGetBridgeSections } from "../hooks/useGetBridgeSections";
-import { BridgeSectionHidingLogic } from "../pages/examples/bridge/BridgeSectionHidingLogic";
-import { currentBridgeSectionSelector, clickedBridgeInfoButtonCountSelector } from "../slices";
 
 interface  SourceCodeLinkProps { 
   href: string,

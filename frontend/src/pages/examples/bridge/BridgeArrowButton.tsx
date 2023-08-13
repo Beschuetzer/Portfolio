@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector, setCurrentBridgeSection } from "../../../slices";
-import { ANIMATION_DURATION, BRIDGE_ARROW_BUTTON_LEFT_FILL_CUSTOM_PROPERTY_NAME, BRIDGE_ARROW_BUTTON_RIGHT_FILL_CUSTOM_PROPERTY_NAME, BRIDGE_LINK_SVG_FILL_CUSTOM_PROPERTY_NAME, BRIDGE_LINK_TEXT_COLOR_CUSTOM_PROPERTY_NAME, BRIDGE_SECTION_COLORS, PAGE_NAV_CLASSNAME, SLIDING_CLASSNAME } from "../../../components/constants";
+import { ANIMATION_DURATION } from "../../../components/constants";
 import { useGetBridgeSections } from "../../../hooks/useGetBridgeSections";
 import { useBridgeSectionTransitionHiding } from "../../../hooks/useBridgeSectionTransitionHiding";
 import { BridgeSectionHidingLogic } from "./BridgeSectionHidingLogic";
