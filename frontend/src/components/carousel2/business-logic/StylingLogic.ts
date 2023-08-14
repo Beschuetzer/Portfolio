@@ -1058,7 +1058,7 @@ export class StylingLogic {
         const nonDefaultItemDisplayStyle = {
             ...this.getToolbarBackgroundColorStyle(),
             ...paddingHorizontalStyle,
-            position: this.optionsLogic.isToolbarInVideo ? "absolute" : "relative",
+            position: this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? "absolute" : "relative",
             width: this.optionsLogic.isToolbarInVideo ? undefined : '100%',
             paddingTop: isItemVideo ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
             paddingBottom: this.toolbarPaddingBottom,
