@@ -430,7 +430,7 @@ export class StylingLogic {
         const centeredTopValue = minTopValue + centeringOffset;
         const top = this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue);
 
-        // console.log({carouselContainerRect, rectToUse, maxHeight, modalHeight: this.modalHeight});
+        console.log({carouselContainerRect, rectToUse, maxHeight, modalHeight: this.modalHeight});
         // console.log({ toolbar, minTopValue, centeredTopValue, centeringOffset, modalHeight: this.modalHeight, tooblarHeight: -(toolbarRect?.height || 0) / 2});
 
         const widthStyle = !this.isFullscreenMode || this.optionsLogic.isMobile ? {
