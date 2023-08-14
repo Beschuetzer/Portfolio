@@ -312,7 +312,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         e.stopPropagation();
     }
 
-    const handleVideoRefMouseLeave = useCallback((e: MouseEvent) => {
+    const handleMouseLeave = useCallback((e: MouseEvent) => {
         clearTimeout(showToolbarOnItemChangeTimeoutRef.current);
         if (isFullscreenMode) return;
         const point = getPoint(e);
@@ -322,7 +322,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         hideToolbar();
     }, [hideToolbar, isFullscreenMode, videoRef, imageRef])
 
-    const handleVideoRefMouseMove = useCallback((e: MouseEvent) => {
+    const handleMouseMove = useCallback((e: MouseEvent) => {
         clearTimeout(showToolbarOnItemChangeTimeoutRef.current);
         showToolbar();
     }, [showToolbar])
@@ -347,24 +347,26 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         const imageRefCopy = imageRef?.current;
         const innerRefCopy = innerRef?.current;
         if (optionsLogic.isToolbarInVideo) {
-            videoRef?.current?.addEventListener('mousemove', handleVideoRefMouseMove);
-            videoRef?.current?.addEventListener('mouseleave', handleVideoRefMouseLeave);
-            imageRef?.current?.addEventListener('mousemove', handleVideoRefMouseMove);
-            imageRef?.current?.addEventListener('mouseleave', handleVideoRefMouseLeave);
-            innerRef?.current?.addEventListener('mouseleave', handleVideoRefMouseLeave);
+            videoRef?.current?.addEventListener('mousemove', handleMouseMove);
+            videoRef?.current?.addEventListener('mouseleave', handleMouseLeave);
+            imageRef?.current?.addEventListener('mousemove', handleMouseMove);
+            imageRef?.current?.addEventListener('mouseleave', handleMouseLeave);
+            innerRef?.current?.addEventListener('mousemove', handleMouseMove);
+            innerRef?.current?.addEventListener('mouseleave', handleMouseLeave);
         }
 
         return () => {
-            videoRefCopy?.removeEventListener('mousemove', handleVideoRefMouseMove);
-            videoRefCopy?.removeEventListener('mouseleave', handleVideoRefMouseLeave);
-            imageRefCopy?.removeEventListener('mousemove', handleVideoRefMouseMove);
-            imageRefCopy?.removeEventListener('mouseleave', handleVideoRefMouseLeave);
-            innerRefCopy?.removeEventListener('mouseleave', handleVideoRefMouseLeave);
+            videoRefCopy?.removeEventListener('mousemove', handleMouseMove);
+            videoRefCopy?.removeEventListener('mouseleave', handleMouseLeave);
+            imageRefCopy?.removeEventListener('mousemove', handleMouseMove);
+            imageRefCopy?.removeEventListener('mouseleave', handleMouseLeave);
+            innerRefCopy?.removeEventListener('mousemove', handleMouseMove);
+            innerRefCopy?.removeEventListener('mouseleave', handleMouseLeave);
         }
     }, [
         handleAutoHide,
-        handleVideoRefMouseLeave,
-        handleVideoRefMouseMove,
+        handleMouseLeave,
+        handleMouseMove,
         hideToolbar,
         imageRef,
         isVideo,
