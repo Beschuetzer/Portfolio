@@ -51,7 +51,9 @@ export type OptionsConstructor = {
 *Logic related to any option the user can specify
 */
 export class OptionsLogic {
+    private bodyFontFamily;
     private currentItem;
+    private defaultFontFamily: string = 'sans-serif';
     private isFullscreenMode;
     private items;
     private numberOfPages;
@@ -64,11 +66,16 @@ export class OptionsLogic {
         this.items = items || [];
         this.numberOfPages = numberOfPages || 0;
         this.options = options;
+        this.bodyFontFamily = window.getComputedStyle(document?.body)?.fontFamily;
     }
 
     //#region Getters
     get allFillColor() {
         return getCurrentValue(this.options.styling?.elements?.all?.fillColor, undefined, this.isFullscreenMode);
+    }
+
+    get allFontFamily() {
+        return getCurrentValue(this.options.styling?.fontFamily?.all, undefined, this.isFullscreenMode);
     }
 
     get autoChangePage() {
@@ -137,6 +144,12 @@ export class OptionsLogic {
 
     get itemSpacingStrategy() {
         return getCurrentValue(this.options.thumbnail?.itemSpacingStrategy, 'min', this.isFullscreenMode);
+    }
+
+    get itemViewerFontFamily() {
+        const primary = this.allFontFamily;
+        const secondary = getCurrentValue(this.options.styling?.fontFamily?.itemViewer, undefined, this.isFullscreenMode)
+        return primary || secondary || this.bodyFontFamily || this.defaultFontFamily;
     }
 
     get itemViewerMaxClickThreshold() {
@@ -280,8 +293,18 @@ export class OptionsLogic {
         );
     }
 
+    get navigationFontFamily() {
+        const primary = this.allFontFamily;
+        const secondary = getCurrentValue(this.options.styling?.fontFamily?.navigation, undefined, this.isFullscreenMode)
+        return primary || secondary || this.bodyFontFamily || this.defaultFontFamily;
+    }
+
     get navigationMaxClickThreshold() {
         return getCurrentValue(this.options.navigation?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
+    }
+
+    get progressBarShouldSpanEntireWidth() {
+        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
     }
 
     get shouldDisableThumbnailOverlay() {
@@ -294,7 +317,7 @@ export class OptionsLogic {
 
     get toolbarTextColor() {
         const priorityColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined, this.isFullscreenMode);
-        const secondaryColor = getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode) 
+        const secondaryColor = getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode)
         return priorityColor || secondaryColor || this.allFillColor || CAROUSEL_COLOR_FIVE;
     }
 

@@ -56,7 +56,6 @@ export type GetToolbarButtonSizeStlye = {
 *Use this when extending styling options.  Many default styles are currently in _carousel.scss or _buttons_scss
 */
 export class StylingLogic {
-    private DEFAULT_FONT_FAMILY: string = 'sans-serif';
     private LAST_PAGE_CAROUSEL_AMOUNT_INITIAL = 0;
 
     private carouselContainerRef;
@@ -583,8 +582,7 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressContainerStyle() {
-        const shouldSpanWholeWidth = getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
-        const widthToUse = shouldSpanWholeWidth
+        const widthToUse = this.optionsLogic.progressBarShouldSpanEntireWidth
             ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})`
             : '100%';
         const heightToUse = this.optionsLogic.isToolbarInVideo ? 'auto' : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT;
@@ -929,19 +927,15 @@ export class StylingLogic {
     }
 
     get fontFamilyItemViewerStyle() {
-        const stylings = this.options?.styling;
-        const fontFamily = stylings?.fontFamily || {};
-        return fontFamily?.all || fontFamily?.itemViewer ? {
-            fontFamily: getCurrentValue(fontFamily?.all, undefined, this.isFullscreenMode) || getCurrentValue(fontFamily?.itemViewer, undefined, this.isFullscreenMode) || this.DEFAULT_FONT_FAMILY,
-        } : {};
+        return {
+            fontFamily: this.optionsLogic.itemViewerFontFamily,
+        } as CSSProperties;
     }
 
     get fontFamilyNavigationStyle() {
-        const stylings = this.options?.styling;
-        const fontFamily = stylings?.fontFamily || {};
-        return fontFamily?.all || fontFamily?.navigation ? {
-            fontFamily: getCurrentValue(fontFamily?.all, undefined, this.isFullscreenMode) || getCurrentValue(fontFamily?.navigation, undefined, this.isFullscreenMode) || this.DEFAULT_FONT_FAMILY,
-        } : {};
+        return {
+            fontFamily: this.optionsLogic.navigationFontFamily,
+        } as CSSProperties;
     }
 
     get itemViewerBackgroundColor() {

@@ -3269,7 +3269,6 @@ const sections: CSharpSection[] = SECTIONS
 		}
 	})
 
-
 export const ThumbnailCarouselTests = () => {
 	return (
 		<React.Fragment>
