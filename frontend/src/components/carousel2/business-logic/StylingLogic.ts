@@ -12,11 +12,7 @@ import {
     CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
     CAROUSEL_ITEM_SPACING_DEFAULT,
     CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
-    CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT,
-    CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
-    CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT,
-    CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
     CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
@@ -68,7 +64,6 @@ export class StylingLogic {
     private isCurrentItem: boolean | undefined;
     private isCurrentItemVideo: boolean;
     private optionsLogic: OptionsLogic;
-    private isMobile: boolean;
     private items;
     private itemViewerToolbarRef;
     private isFullscreenMode: boolean;
@@ -99,7 +94,6 @@ export class StylingLogic {
         this.currentItem = currentItem;
         this.isCurrentItem = isCurrentItem;
         this.isCurrentItemVideo = getIsVideo(currentItem);
-        this.isMobile = getIsMobile();
         this.isFullscreenMode = !!isFullscreenMode;
         this.items = items || [];
         this.loadingSpinnerOptions = loadingSpinnerOptions;
@@ -391,7 +385,7 @@ export class StylingLogic {
             top: getCurrentValue(paddingTop, 0, this.isFullscreenMode),
         } as CSSProperties : {};
         const widthStyle = {
-            width: !!sizeGiven ? getCurrentValue(sizeGiven, this.defaultButtonSize, this.isFullscreenMode) : this.isFullscreenMode ? undefined : CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
+            width: !!sizeGiven ? getCurrentValue(sizeGiven, this.optionsLogic.defaultButtonSize, this.isFullscreenMode) : this.isFullscreenMode ? undefined : CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
         } as CSSProperties;
 
         return areChildrenPresent ? {
@@ -408,7 +402,7 @@ export class StylingLogic {
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.modalPadding;
         const widthInPercent = this.optionsLogic.modalWidth;
         const customFontSize = this.optionsLogic.modalFontSize;
-        const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : this.isMobile ? "100%" : "75%";
+        const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : this.optionsLogic.isMobile ? "100%" : "75%";
         const itemViewerLeftPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer);
         const itemViewerRightPadding = this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
         const carouselContainerRect = this.carouselContainerRef?.current?.getBoundingClientRect();
@@ -439,7 +433,7 @@ export class StylingLogic {
         // console.log({carouselContainerRect, rectToUse, maxHeight, modalHeight: this.modalHeight});
         // console.log({ toolbar, minTopValue, centeredTopValue, centeringOffset, modalHeight: this.modalHeight, tooblarHeight: -(toolbarRect?.height || 0) / 2});
 
-        const widthStyle = !this.isFullscreenMode || this.isMobile ? {
+        const widthStyle = !this.isFullscreenMode || this.optionsLogic.isMobile ? {
             width: widthToUse,
             maxWidth: `calc(${widthToUse} - ${(itemViewerLeftPadding + itemViewerRightPadding) / 2}${CAROUSEL_SPACING_UNIT})`,
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
@@ -528,11 +522,7 @@ export class StylingLogic {
     }
 
     get carouselVideoCurrentStateIndicatorButtonStyle() {
-        const widthToUse = getCurrentValue(
-            this.options.styling?.videoCurrentStateIndicator?.size,
-            this.defaultButtonSize,
-            this.isFullscreenMode
-        );
+        const widthToUse = this.optionsLogic.videoCurrentStateIndicatorSize;
 
         return {
             height: widthToUse,
@@ -922,10 +912,6 @@ export class StylingLogic {
         };
     }
 
-    get defaultButtonSize() {
-        return this.isMobile ? CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT : CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT;
-    }
-
     get isCurrentItemSelected() {
         return !this.optionsLogic.isDefaultItemDisplayLocation && !!this.isCurrentItem;
     }
@@ -1157,7 +1143,7 @@ export class StylingLogic {
             case CarouselElement.arrowLeft:
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
-                sectionButtonSize = getCurrentValue(this.options.styling?.navigation?.elements?.size, this.defaultButtonSize, this.isFullscreenMode);
+                sectionButtonSize = getCurrentValue(this.options.styling?.navigation?.elements?.size, this.optionsLogic.defaultButtonSize, this.isFullscreenMode);
                 break;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
@@ -1167,11 +1153,11 @@ export class StylingLogic {
             case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
-                sectionButtonSize = getCurrentValue(this.options.styling?.toolbar?.elements?.size, this.defaultButtonSize, this.isFullscreenMode);
+                sectionButtonSize = getCurrentValue(this.options.styling?.toolbar?.elements?.size, this.optionsLogic.defaultButtonSize, this.isFullscreenMode);
                 break;
         }
 
-        const valueToUse = size || sectionButtonSize || this.defaultButtonSize;
+        const valueToUse = size || sectionButtonSize || this.optionsLogic.defaultButtonSize;
 
         return {
             width: valueToUse,

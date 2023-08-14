@@ -1,5 +1,6 @@
 Carousel rework
   -work on progressbar rework:
+    --item modal is not positioned correctly in fullscreen mode
     --move all instances of getCurrentValue calls from StylingLogic to OptionsLogic
     --need to remove cursor: none on body when a re-size occurs
     --bottom case for CarouselModal in correct spot

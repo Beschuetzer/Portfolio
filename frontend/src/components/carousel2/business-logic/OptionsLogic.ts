@@ -33,10 +33,12 @@ import {
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
     CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT,
     CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT,
-    CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT
+    CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT,
+    CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT
 } from "../constants";
 import { CarouselOptions } from "../types";
-import { convertHexToRgba, getCurrentValue } from "../utils";
+import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
 
 export type OptionsConstructor = {
     options: CarouselOptions;
@@ -49,19 +51,19 @@ export type OptionsConstructor = {
 *Logic related to any option the user can specify
 */
 export class OptionsLogic {
-    private options;
     private currentItem;
     private isFullscreenMode;
-    private numberOfPages;
     private items;
+    private numberOfPages;
+    private options;
 
     constructor(constructor: OptionsConstructor) {
         const { options, currentItem, numberOfPages, items, isFullscreenMode } = constructor;
-        this.options = options;
         this.currentItem = currentItem;
         this.isFullscreenMode = isFullscreenMode;
-        this.numberOfPages = numberOfPages || 0;
         this.items = items || [];
+        this.numberOfPages = numberOfPages || 0;
+        this.options = options;
     }
 
     //#region Getters
@@ -82,6 +84,10 @@ export class OptionsLogic {
             return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
         }
         return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
+    }
+
+    get defaultButtonSize() {
+        return this.isMobile ? CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT : CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT;
     }
 
     get isDefaultItemDisplayLocation() {
@@ -107,6 +113,10 @@ export class OptionsLogic {
 
     get isLastPageFlush() {
         return getCurrentValue(this.options?.navigation?.isLastPageFlush, true, this.isFullscreenMode);
+    }
+
+    get isMobile() {
+        return getIsMobile();
     }
 
     get isNavigationSwipingDisabled() {
@@ -290,6 +300,14 @@ export class OptionsLogic {
 
     get useDefaultVideoControls() {
         return getCurrentValue(this.options.layout?.useDefaultVideoControls, false, this.isFullscreenMode);
+    }
+
+    get videoCurrentStateIndicatorSize() {
+        return getCurrentValue(
+            this.options.styling?.videoCurrentStateIndicator?.size,
+            this.defaultButtonSize,
+            this.isFullscreenMode
+        );
     }
 
     get videoProgressBarBackgroundColor() {
