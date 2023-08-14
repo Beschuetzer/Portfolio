@@ -65,6 +65,10 @@ export class OptionsLogic {
     }
 
     //#region Getters
+    get allFillColor() {
+        return getCurrentValue(this.options.styling?.elements?.all?.fillColor, undefined, this.isFullscreenMode);
+    }
+
     get autoChangePage() {
         return getCurrentValue(this.options?.navigation?.autoChangePage, true, this.isFullscreenMode);
     }
@@ -220,7 +224,6 @@ export class OptionsLogic {
             this.isFullscreenMode
         );
     }
-
     get modalFontSize() {
         return getCurrentValue(
             this.options.styling?.modal?.fontSize,
@@ -277,6 +280,12 @@ export class OptionsLogic {
 
     get shouldHideThumbnailOverlay() {
         return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true, this.isFullscreenMode);
+    }
+
+    get toolbarTextColor() {
+        const priorityColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined, this.isFullscreenMode);
+        const secondaryColor = getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode) 
+        return priorityColor || secondaryColor || this.allFillColor || CAROUSEL_COLOR_FIVE;
     }
 
     get useDefaultVideoControls() {

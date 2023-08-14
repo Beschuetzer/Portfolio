@@ -499,9 +499,8 @@ export class StylingLogic {
     }
 
     get carouselToolbarTextStyle() {
-        const customTextColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode) || this.allFillColor;
         return {
-            color: customTextColor || CAROUSEL_COLOR_FIVE,
+            color: this.optionsLogic.toolbarTextColor,
         } as CSSProperties;
     }
 
@@ -1118,10 +1117,6 @@ export class StylingLogic {
     //#endregion
 
     //#region Private Getters
-    private get allFillColor() {
-        return getCurrentValue(this.options.styling?.elements?.all?.fillColor, undefined, this.isFullscreenMode);
-    }
-
     private get imageHeight() {
         const toolbarWidth = this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.width || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT;
         return this.isFullscreenMode ? '100%' : (toolbarWidth) * 9 / 16;
@@ -1137,7 +1132,7 @@ export class StylingLogic {
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
                 const navigationElementsColor = getCurrentValue(this.options.styling?.navigation?.elements?.color, undefined, this.isFullscreenMode);
-                return specificFillColor || navigationElementsColor || this.allFillColor || fallbackColor;
+                return specificFillColor || navigationElementsColor || this.optionsLogic.allFillColor || fallbackColor;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
             case CarouselElement.nextButton:
@@ -1147,9 +1142,9 @@ export class StylingLogic {
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
                 const toolbarElementsColor = getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode);
-                return specificFillColor || toolbarElementsColor || this.allFillColor || fallbackColor;
+                return specificFillColor || toolbarElementsColor || this.optionsLogic.allFillColor || fallbackColor;
             default:
-                return specificFillColor || this.allFillColor || fallbackColor;
+                return specificFillColor || this.optionsLogic.allFillColor || fallbackColor;
         }
     }
 
