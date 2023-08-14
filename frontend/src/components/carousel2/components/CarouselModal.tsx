@@ -48,7 +48,6 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
     const [isVisible, setIsVisible] = useState(true);
     const modalRef = useRef<HTMLElement>();
     const modalHeightRef = useRef<number>(MODAL_HEIGHT_INITIAL);
-    
     const { svgHref } = elementStylings?.closeButton || {};
     const isCustom = useMemo(() => !!children, [children]);
     const { optionsLogic, stylingLogic } = useBusinessLogic({ itemRef, modalRef, itemViewerToolbarRef });
