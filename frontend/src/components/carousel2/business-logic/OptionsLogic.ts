@@ -97,7 +97,7 @@ export class OptionsLogic {
         }
         return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
     }
-    
+
     get containerPadding() {
         const bottom = getCurrentValue(this.options?.styling?.container?.padding?.bottom, undefined, this.isFullscreenMode);
         const left = getCurrentValue(this.options?.styling?.container?.padding?.left, undefined, this.isFullscreenMode);
@@ -252,11 +252,12 @@ export class OptionsLogic {
     }
 
     get itemViewerPreviewTextContainerPadding() {
-        const padding = getCurrentValue(this.options.styling?.itemViewerPreview?.text?.container?.padding, CAROUSEL_PADDING_DEFAULT, this.isFullscreenMode);
-        const paddingLeftStatic = (this.options.styling?.itemViewerPreview?.text?.container?.padding as any)?.left;
-        const paddingRightStatic = (this.options.styling?.itemViewerPreview?.text?.container?.padding as any)?.right;
-        const paddingBottomStatic = (this.options.styling?.itemViewerPreview?.text?.container?.padding as any)?.bottom;
-        const paddingTopStatic = (this.options.styling?.itemViewerPreview?.text?.container?.padding as any)?.top;
+        const paddingStyle = this.options?.styling?.itemViewerPreview?.text?.container?.padding;
+        const padding = getCurrentValue(paddingStyle, CAROUSEL_PADDING_DEFAULT, this.isFullscreenMode);
+        const paddingLeftStatic = (paddingStyle as any)?.left;
+        const paddingRightStatic = (paddingStyle as any)?.right;
+        const paddingBottomStatic = (paddingStyle as any)?.bottom;
+        const paddingTopStatic = (paddingStyle as any)?.top;
         return {
             top: paddingTopStatic !== undefined ? paddingTopStatic : padding.top,
             bottom: paddingBottomStatic !== undefined ? paddingBottomStatic : padding.bottom,
@@ -289,24 +290,14 @@ export class OptionsLogic {
     }
 
     get modalPadding() {
-        const padding = getCurrentValue(this.options.styling?.modal?.padding, CAROUSEL_MODAL_PADDING_DEFAULT, this.isFullscreenMode);
-        const paddingLeftStatic = (this.options.styling?.modal?.padding as any)?.left;
-        const paddingRightStatic = (this.options.styling?.modal?.padding as any)?.right;
-        const paddingBottomStatic = (this.options.styling?.modal?.padding as any)?.bottom;
-        const paddingTopStatic = (this.options.styling?.modal?.padding as any)?.top;
+        const paddingStyle = (this.options.styling?.modal?.padding as any);
+        const padding = getCurrentValue(paddingStyle, CAROUSEL_MODAL_PADDING_DEFAULT, this.isFullscreenMode);
+        const { left, right, top, bottom } = paddingStyle || {};
         return {
-            top: paddingTopStatic !== undefined ?
-                paddingTopStatic :
-                getCurrentValue(padding.top, CAROUSEL_MODAL_PADDING_DEFAULT.top, this.isFullscreenMode),
-            bottom: paddingBottomStatic !== undefined ?
-                paddingBottomStatic :
-                getCurrentValue(padding.bottom, CAROUSEL_MODAL_PADDING_DEFAULT.bottom, this.isFullscreenMode),
-            left: paddingLeftStatic !== undefined ?
-                paddingLeftStatic :
-                getCurrentValue(padding.left, CAROUSEL_MODAL_PADDING_DEFAULT.left, this.isFullscreenMode),
-            right: paddingRightStatic !== undefined ?
-                paddingRightStatic :
-                getCurrentValue(padding.right, CAROUSEL_MODAL_PADDING_DEFAULT.right, this.isFullscreenMode),
+            top: getCurrentValue(top !== undefined ? top : padding.top, CAROUSEL_MODAL_PADDING_DEFAULT.top, this.isFullscreenMode),
+            bottom: getCurrentValue(bottom !== undefined ? bottom : padding.bottom, CAROUSEL_MODAL_PADDING_DEFAULT.bottom, this.isFullscreenMode),
+            left: getCurrentValue(left !== undefined ? left : padding.left, CAROUSEL_MODAL_PADDING_DEFAULT.left, this.isFullscreenMode),
+            right: getCurrentValue(right !== undefined ? right : padding.right, CAROUSEL_MODAL_PADDING_DEFAULT.right, this.isFullscreenMode),
         }
     }
 

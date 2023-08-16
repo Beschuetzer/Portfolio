@@ -1301,7 +1301,6 @@ export class StylingLogic {
         let translationAmountToUse = translationAmount;
         const isValidChange = translationAmountChangeRef.current !== TranslationAmountChange.swipe;
         if (isValidChange && isLastPage && !!translationAmountChangeRef.current) {
-            console.log({ isLastPage, translationAmount, lastPageCarouselTranslationAmount: this.lastPageCarouselTranslationAmount });
             if (translationAmount > 0 && this.lastPageCarouselTranslationAmount === this.LAST_PAGE_CAROUSEL_AMOUNT_INITIAL) {
                 this.lastPageCarouselTranslationAmount = translationAmount;
             }

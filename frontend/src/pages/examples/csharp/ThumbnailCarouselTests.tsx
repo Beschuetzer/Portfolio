@@ -774,9 +774,9 @@ const dynamicmodalPadding = (
 		styling: {
 			modal: {
 				padding: {
-					top: [[20], [5, 800]],
+					top: [[22], [7, 800]],
 					right: [[30], [10, 800]],
-					bottom: [[20], [5, 800]],
+					bottom: [[22], [7, 800]],
 					left: [[30], [10, 800]],
 				}
 			}
@@ -2240,7 +2240,6 @@ const viewingModeItemViewerPreview = (
 					},
 					progressBar: {
 						height: 15,
-						shouldSpanContainerWidth: true,
 					},
 				},
 				itemViewerPreview: {
@@ -3083,10 +3082,10 @@ const SECTIONS: Sections = [
 			// 	label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeVideoCurrentStateIndicator,
 			// },
-			// {
-			// 	label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
-			// 	jsx: viewingModeItemViewerPreview,
-			// },				
+			{
+				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
+				jsx: viewingModeItemViewerPreview,
+			},				
 			{
 				label: "Video Controls Change Dynamically based on Viewing Mode",
 				jsx: viewingModeVideoControls,
@@ -3246,12 +3245,12 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	// SectionNames.otherDynamicSettings,
+	SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,
-	// SectionNames.dynamicBasedOnViewingMode,
+	SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
-	...Object.values(SectionNames),
+	// ...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS
 	.filter((section) => ENABLED_SECTIONS.includes(section[0]))
