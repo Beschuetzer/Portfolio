@@ -3,47 +3,10 @@ import { CarouselItemViewerShortcutIndicatorProps } from "./components/item-view
 import { KeyboardShortcut } from "./hooks/useKeyboardShortcuts";
 import { LoadingSpinnerProps } from "./components/LoadingSpinner";
 
-//#region Prop Types
+//#region Enums
 export enum ArrowButtonDirection {
     next = 'next',
     previous = 'previous',
-}
-
-export enum CarouselSection {
-    container = 'container',
-    itemViewer = 'itemViewer',
-    itemViewerPreview = 'itemViewerPreview',
-    modal = 'modal',
-    navigation = 'navigation',
-    toolbar = 'toolbar',
-    videoCurrentStateIndicator = 'videoCurrentStateIndicator',
-}
-
-export enum CarouselVideoCurrentStateIndicatorButtonName {
-    playIcon = 'playIcon',
-    pauseIcon = 'pauseIcon',
-}
-
-export type ArrowProps = {
-    direction: ArrowButtonDirection;
-    options?: CarouselOptions;
-}
-
-export type ButtonProps = {
-    className?: string;
-    childStyle?: CSSProperties;
-    fillColor?: Color;
-    onClick: () => void;
-    style?: CSSProperties;
-}
-
-export type CarouselColorOptions = {
-    /**
-    *This can be any background string that the CSS property accepts
-    *https://developer.mozilla.org/en-US/docs/Web/CSS/background
-    **/
-    background?: CarouselElementValue<string>;
-    foregroundColor?: CarouselElementValue<Color>;
 }
 
 export enum CarouselElement {
@@ -71,6 +34,53 @@ export enum CarouselElement {
     previousButton = 'previousButton',
     seekBackButton = 'seekBackButton',
     seekForwardButton = 'seekForwardButton',
+}
+
+export enum CarouselSection {
+    container = 'container',
+    itemViewer = 'itemViewer',
+    itemViewerPreview = 'itemViewerPreview',
+    modal = 'modal',
+    navigation = 'navigation',
+    toolbar = 'toolbar',
+    videoCurrentStateIndicator = 'videoCurrentStateIndicator',
+}
+
+export enum CarouselVideoCurrentStateIndicatorButtonName {
+    playIcon = 'playIcon',
+    pauseIcon = 'pauseIcon',
+}
+
+export enum SpacingDirection {
+    bottom = 'bottom',
+    left = 'left',
+    right = 'right',
+    top = 'top',
+}
+//#endregion
+
+//#region Prop Types
+
+export type ArrowProps = {
+    direction: ArrowButtonDirection;
+    options?: CarouselOptions;
+}
+
+export type ButtonProps = {
+    className?: string;
+    childStyle?: CSSProperties;
+    fillColor?: Color;
+    onClick: () => void;
+    style?: CSSProperties;
+}
+
+export type CarouselColorOptions = {
+    /**
+    *This can be any background string that the CSS property accepts
+    *https://developer.mozilla.org/en-US/docs/Web/CSS/background
+    **/
+    background?: CarouselElementValue<string>;
+    foregroundColor?: CarouselElementValue<Color>;
 }
 
 export type CarouselElementValueType = "min-width" | "max-width";
@@ -409,13 +419,13 @@ export type CarouselFontFamilyOptions = Exclusive<
     }>
 
 export type CarouselHorizontalPaddingOptions = {
-    left?: CarouselElementValueTuple<number>;
-    right?: CarouselElementValueTuple<number>;
+    [SpacingDirection.left]?: CarouselElementValueTuple<number>;
+    [SpacingDirection.right]?: CarouselElementValueTuple<number>;
 }
 
 export type CarouselVerticalPaddingOptions = {
-    bottom?: CarouselElementValueTuple<number>;
-    top?: CarouselElementValueTuple<number>;
+    [SpacingDirection.bottom]?: CarouselElementValueTuple<number>;
+    [SpacingDirection.top]?: CarouselElementValueTuple<number>;
 }
 
 export type CarouselStylingOptions = {
