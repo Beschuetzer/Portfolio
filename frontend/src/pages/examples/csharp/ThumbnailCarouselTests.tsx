@@ -713,7 +713,7 @@ const dynamicDisablingOfThumbnailOverlayBelow800 = (
 		},
 	}} />
 );
-const dynamicThumbnailBackground = (
+const dynamicThumbnailOverlay = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			descriptionOverlay: {
@@ -728,7 +728,7 @@ const dynamicThumbnailBackground = (
 		},
 	}} />
 );
-const dynamicThumbnailBackgroundGradient = (
+const dynamicThumbnailOverlayGradient = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			descriptionOverlay: {
@@ -2880,15 +2880,15 @@ const SECTIONS: Sections = [
 				jsx: customSizeAndSpacingNonDefaultItemDisplayCase
 			},
 			{
-				label: "Given Thumbnail Size with Custom Solid Background",
+				label: "Given Thumbnail Size with Custom Solid Overlay",
 				jsx: customThumbnailSolid
 			},
 			{
-				label: "Given Thumbnail Size with Custom Gradient Background",
+				label: "Given Thumbnail Size with Custom Gradient Overlay",
 				jsx: customThumbnailGradient
 			},
 			{
-				label: "Given Thumbnail Size with Custom Gradient Background and Fallback",
+				label: "Given Thumbnail Size with Custom Gradient Overlay and Fallback",
 				jsx: customThumbnailGradientAndFallback
 			},
 			{
@@ -2962,12 +2962,12 @@ const SECTIONS: Sections = [
 				jsx: dynamicHidingOfThumbnailOverlay,
 			},
 			{
-				label: "Thumbnail Background Opacity and Color Change at 800px",
-				jsx: dynamicThumbnailBackground,
+				label: "Thumbnail Overlay Opacity and Color Change at 800px",
+				jsx: dynamicThumbnailOverlay,
 			},
 			{
-				label: "Thumbnail Background Gradient Change at 800px",
-				jsx: dynamicThumbnailBackgroundGradient,
+				label: "Thumbnail Overlay Gradient Change at 800px",
+				jsx: dynamicThumbnailOverlayGradient,
 			},
 			{
 				label: "Dots and Left Arrow Change Svgs and Color at 800px",
@@ -3245,12 +3245,12 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	SectionNames.otherDynamicSettings,
+	// SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,
-	SectionNames.dynamicBasedOnViewingMode,
+	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
-	// ...Object.values(SectionNames),
+	...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS
 	.filter((section) => ENABLED_SECTIONS.includes(section[0]))

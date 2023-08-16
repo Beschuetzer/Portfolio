@@ -963,29 +963,25 @@ export class StylingLogic {
     }
 
     get thumbnailOverlayBackgroundStyle() {
-        const thumbnail = this.options?.thumbnail;
-        const solid = thumbnail?.descriptionOverlay?.background?.solid;
-        const gradient = thumbnail?.descriptionOverlay?.background?.gradient;
-        const shouldHideOverlay = this.optionsLogic.shouldHideThumbnailOverlay;
-        const shouldDisableDescriptionOverlay = this.optionsLogic.shouldDisableThumbnailOverlay;
+        const isOverlayHidden = this.optionsLogic.thumbnailOverlayIsHidden;
+        const isOverlayDisabled = this.optionsLogic.thumbnailOverlayIsDisabled;
+        const { angle, startColor, startOpacity, endColor, endOpacity } = this.optionsLogic.thumbnailOverlayBackgroundGradient;
+        const { opacity, color} = this.optionsLogic.thumbnailOverlayBackgroundSolid;
 
-        const backgroundSolidStyle = !!solid ? {
+        const backgroundSolidStyle = !!this.options?.thumbnail?.descriptionOverlay?.background?.solid ? {
             background: 'none',
-            backgroundColor: convertHexToRgba(
-                getCurrentValue(solid?.color, CAROUSEL_COLOR_ONE, this.isFullscreenMode).trim(),
-                getCurrentValue(solid?.opacity, CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, this.isFullscreenMode),
-            ),
+            backgroundColor: convertHexToRgba(color, opacity),
         } as CSSProperties : {};
 
-        const disabledStyle = shouldDisableDescriptionOverlay ? {
+        const disabledStyle = isOverlayDisabled ? {
             display: 'none'
         } as CSSProperties : {};
 
-        const backgroundGradientStyle = gradient ? {
-            background: `linear-gradient(${getCurrentValue(gradient?.angle, 180, this.isFullscreenMode)}deg, ${convertHexToRgba(getCurrentValue(gradient.start?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode), getCurrentValue(gradient.start?.opacity, 0, this.isFullscreenMode))} 0%, ${convertHexToRgba(getCurrentValue(gradient.end?.color, CAROUSEL_COLOR_ONE, this.isFullscreenMode), getCurrentValue(gradient.end?.opacity, 1, this.isFullscreenMode))} 100%)`,
+        const backgroundGradientStyle = this.options?.thumbnail?.descriptionOverlay?.background?.gradient ? {
+            background: `linear-gradient(${angle}deg, ${convertHexToRgba(startColor, startOpacity)} 0%, ${convertHexToRgba(endColor, endOpacity)} 100%)`,
         } as CSSProperties : {};
 
-        const bottomStyle = shouldHideOverlay ? {
+        const bottomStyle = isOverlayHidden ? {
             bottom: '-100%',
         } as CSSProperties : {};
 

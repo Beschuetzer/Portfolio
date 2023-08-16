@@ -36,7 +36,11 @@ import {
     CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT,
     CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
-    CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
+    CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT,
+    CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
+    CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_ANGLE_DEFAULT,
+    CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_START_OPACITY_DEFAULT,
+    CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_END_OPACITY_DEFAULT
 } from "../constants";
 import { CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
@@ -331,11 +335,36 @@ export class OptionsLogic {
         return getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
     }
 
-    get shouldDisableThumbnailOverlay() {
-        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.isDisabled, !this.isDefaultItemDisplayLocation && this.shouldHideThumbnailOverlay, this.isFullscreenMode);
+    get thumbnailOverlayBackgroundSolid() {
+        const opacity = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.background?.solid?.opacity, CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, this.isFullscreenMode);
+        const color = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.background?.solid?.color, CAROUSEL_COLOR_ONE, this.isFullscreenMode).trim();
+        return {
+            opacity, 
+            color,
+        }
     }
 
-    get shouldHideThumbnailOverlay() {
+    get thumbnailOverlayBackgroundGradient() {
+        const gradient = this.options?.thumbnail?.descriptionOverlay?.background?.gradient;
+        const angle = getCurrentValue(gradient?.angle, CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_ANGLE_DEFAULT, this.isFullscreenMode)
+        const startColor = getCurrentValue(gradient?.start?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        const startOpacity = getCurrentValue(gradient?.start?.opacity, CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_START_OPACITY_DEFAULT, this.isFullscreenMode);
+        const endColor = getCurrentValue(gradient?.end?.color, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        const endOpacity = getCurrentValue(gradient?.end?.opacity, CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_END_OPACITY_DEFAULT, this.isFullscreenMode);
+        return {
+            angle,
+            endColor,
+            endOpacity,
+            startColor,
+            startOpacity,
+        }
+    }
+
+    get thumbnailOverlayIsDisabled() {
+        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.isDisabled, !this.isDefaultItemDisplayLocation && this.thumbnailOverlayIsHidden, this.isFullscreenMode);
+    }
+
+    get thumbnailOverlayIsHidden() {
         return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true, this.isFullscreenMode);
     }
 
