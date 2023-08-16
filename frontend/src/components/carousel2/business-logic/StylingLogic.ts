@@ -12,10 +12,8 @@ import {
     CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
     CAROUSEL_ITEM_SPACING_DEFAULT,
     CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
-    CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
     CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
-    CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT,
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
     CLASSNAME__TOOLBAR_PROGRESS,
@@ -966,12 +964,12 @@ export class StylingLogic {
         const isOverlayHidden = this.optionsLogic.thumbnailOverlayIsHidden;
         const isOverlayDisabled = this.optionsLogic.thumbnailOverlayIsDisabled;
         const { angle, startColor, startOpacity, endColor, endOpacity } = this.optionsLogic.thumbnailOverlayBackgroundGradient;
-        const { opacity, color} = this.optionsLogic.thumbnailOverlayBackgroundSolid;
+        const { opacity, color } = this.optionsLogic.thumbnailOverlayBackgroundSolid;
 
-        const backgroundSolidStyle = !!this.options?.thumbnail?.descriptionOverlay?.background?.solid ? {
+        const backgroundSolidStyle = {
             background: 'none',
             backgroundColor: convertHexToRgba(color, opacity),
-        } as CSSProperties : {};
+        } as CSSProperties;
 
         const disabledStyle = isOverlayDisabled ? {
             display: 'none'
@@ -1002,24 +1000,14 @@ export class StylingLogic {
     }
 
     get thumbnailOverlayTextStyle() {
-        const thumbnail = this.options?.thumbnail;
-        const fontSizeStyle = thumbnail ? {
-            fontSize: getCurrentValue(thumbnail?.descriptionOverlay?.fontSize, -1, this.isFullscreenMode),
-        } as React.CSSProperties : {};
-        const maxLineCountStyle = {
-            WebkitLineClamp: getCurrentValue(thumbnail?.descriptionOverlay?.maxLineCount, CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT, this.isFullscreenMode),
-        } as React.CSSProperties;
-
-        const textColorStyle = thumbnail?.descriptionOverlay?.textColor ? {
-            color: getCurrentValue(thumbnail?.descriptionOverlay?.textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode),
-        } as React.CSSProperties : {};
+        const { fontSize, maxLineCount, color } = this.optionsLogic.thumbnailOverlayText
 
         return {
-            ...maxLineCountStyle,
-            ...fontSizeStyle,
-            ...textColorStyle,
+            WebkitLineClamp: maxLineCount,
+            fontSize,
+            color,
             ...this.carouselItemCursorStyle,
-        }
+        } as CSSProperties
     }
 
     get toolbarHorizontalSpacing() {

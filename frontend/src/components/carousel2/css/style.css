@@ -816,18 +816,7 @@
   padding: 10px 20px;
   text-align: center;
   font-weight: 700;
-  font-size: 12px;
-  background-color: rgba(29, 14, 11, 0.66);
-  background: linear-gradient(180deg, rgba(255, 249, 245, 0) 0%, rgb(29, 14, 11) 100%);
   cursor: pointer;
-}
-.thumbnail-carousel__item > div * {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #fff9f5;
 }
 .thumbnail-carousel__item:hover {
   transform: translateY(-4px);

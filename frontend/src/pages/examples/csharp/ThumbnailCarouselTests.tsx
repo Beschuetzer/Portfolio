@@ -735,14 +735,14 @@ const dynamicThumbnailOverlayGradient = (
 				hideDescriptionOverlayUnlessHovered: false,
 				background: {
 					gradient: {
-						angle: [[270], [90, 800]],
+						angle: [[180], [90, 800]],
 						start: {
 							color: [[getComputedStyleCustom('--color-primary-4')], [getComputedStyleCustom('--color-primary-2'), 800]],
-							opacity: [[.25], [.1, 800]],
+							opacity: [[.1], [.25, 800]],
 						},
 						end: {
 							color: [[getComputedStyleCustom('--color-primary-1')], [getComputedStyleCustom('--color-primary-4'), 800]],
-							opacity: [[.75], [.5, 800]]
+							opacity: [[.75], [.9, 800]]
 						}
 					},
 				},
@@ -3245,12 +3245,12 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	// SectionNames.otherDynamicSettings,
+	SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,
 	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
-	...Object.values(SectionNames),
+	// ...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS
 	.filter((section) => ENABLED_SECTIONS.includes(section[0]))

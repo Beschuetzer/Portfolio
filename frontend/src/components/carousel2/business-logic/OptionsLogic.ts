@@ -40,7 +40,9 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
     CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_ANGLE_DEFAULT,
     CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_START_OPACITY_DEFAULT,
-    CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_END_OPACITY_DEFAULT
+    CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_END_OPACITY_DEFAULT,
+    CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT,
+    CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT
 } from "../constants";
 import { CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
@@ -339,7 +341,7 @@ export class OptionsLogic {
         const opacity = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.background?.solid?.opacity, CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, this.isFullscreenMode);
         const color = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.background?.solid?.color, CAROUSEL_COLOR_ONE, this.isFullscreenMode).trim();
         return {
-            opacity, 
+            opacity,
             color,
         }
     }
@@ -368,8 +370,15 @@ export class OptionsLogic {
         return getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true, this.isFullscreenMode);
     }
 
-    get thumbnailOverlayFontSize() {
-        return getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.fontSize, -1, this.isFullscreenMode);
+    get thumbnailOverlayText() {
+        const fontSize = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.fontSize, CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT, this.isFullscreenMode);
+        const color = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        const maxLineCount = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.maxLineCount, CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT, this.isFullscreenMode)
+        return {
+            color,
+            fontSize,
+            maxLineCount,
+        }
     }
 
     get toolbarBackgroundColor() {
