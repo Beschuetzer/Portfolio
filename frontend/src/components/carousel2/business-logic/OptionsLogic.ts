@@ -323,6 +323,11 @@ export class OptionsLogic {
         return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true, this.isFullscreenMode);
     }
 
+    get toolbarBackgroundColor() {
+        const primary = getCurrentValue(this.options.styling?.toolbar?.background, undefined, this.isFullscreenMode);
+        return primary || this.carouselContainerBackgroundColor;
+    }
+
     get toolbarTextColor() {
         const priorityColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined, this.isFullscreenMode);
         const secondaryColor = getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode)
