@@ -191,7 +191,7 @@ export class StylingLogic {
     get carouselItemViewerStyle() {
         return {
             display: this.isFullscreenMode ? 'flex' : 'none',
-            backgroundColor: this.itemViewerBackgroundColor,
+            backgroundColor: this.optionsLogic.itemViewerBackgroundColor,
         } as CSSProperties;
     }
 
@@ -938,10 +938,6 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get itemViewerBackgroundColor() {
-        return getCurrentValue(this.options.styling?.itemViewer?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
-    }
-
     getItemViewerHorizontalSpacing(fullscreenValue = CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT) {
         return {
             left: this.isFullscreenMode ? fullscreenValue : this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT),
@@ -1289,7 +1285,7 @@ export class StylingLogic {
             width: "100%",
             height: this.isFullscreenMode ? '100vh' : height,
             position: "relative",
-            backgroundColor: this.itemViewerBackgroundColor,
+            backgroundColor: this.optionsLogic.itemViewerBackgroundColor,
             justifyContent: this.isFullscreenMode ? 'center' : 'flex-end',
             overflow: "hidden",
         } as CSSProperties : {};

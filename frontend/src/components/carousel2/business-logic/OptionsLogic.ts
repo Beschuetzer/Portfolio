@@ -86,6 +86,10 @@ export class OptionsLogic {
         return getCurrentValue(this.options?.itemViewer?.autoHideToolbarDuration, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, this.isFullscreenMode);
     }
 
+    get carouselContainerBackgroundColor() {
+        return getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+    }
+
     get carouselItemSize() {
         if (this.isDefaultItemDisplayLocation) {
             return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
@@ -144,6 +148,10 @@ export class OptionsLogic {
 
     get itemSpacingStrategy() {
         return getCurrentValue(this.options.thumbnail?.itemSpacingStrategy, 'min', this.isFullscreenMode);
+    }
+
+    get itemViewerBackgroundColor() {
+        return getCurrentValue(this.options.styling?.itemViewer?.background, undefined, this.isFullscreenMode) || this.carouselContainerBackgroundColor;
     }
 
     get itemViewerFontFamily() {
