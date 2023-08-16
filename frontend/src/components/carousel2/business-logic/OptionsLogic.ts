@@ -287,6 +287,12 @@ export class OptionsLogic {
             this.isFullscreenMode
         );
     }
+
+    get modalCloseButtonColor() {
+        const defaultColor = getCurrentValue(this.options?.styling?.modal?.textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.modal?.closeButton?.fill, defaultColor, this.isFullscreenMode);
+    }
+
     get modalFontSize() {
         return getCurrentValue(
             this.options?.styling?.modal?.fontSize,

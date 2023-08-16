@@ -116,7 +116,7 @@ export type CarouselElementViewingMode<T> = {
 }
 export type CarouselElementValue<T> = CarouselElementViewingMode<T> | CarouselElementValueTuple<T>;
 export type CarouselElementValueTuple<T> = CarouselElementTuple<T> | T;
-export type CarouselElementTuple<T> = [T, number?, CarouselElementValueType?][];
+export type CarouselElementTuple<T> = [NonNullable<T> | undefined, number?, CarouselElementValueType?][];
 export type CarouselItemViewerOptions = {
     /**
     *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.

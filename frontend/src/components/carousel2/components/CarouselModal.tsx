@@ -51,7 +51,7 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
     const { svgHref } = elementStylings?.closeButton || {};
     const isCustom = useMemo(() => !!children, [children]);
     const { optionsLogic, stylingLogic } = useBusinessLogic({ itemRef, modalRef, itemViewerToolbarRef });
-    const closeButtonColor = useMemo(() => stylingLogic.carouselModalCloseButtonColor, [stylingLogic.carouselModalCloseButtonColor]);
+    const closeButtonColor = useMemo(() => optionsLogic.modalCloseButtonColor, [optionsLogic.modalCloseButtonColor]);
     const [, setShouldRerender] = useState(false);
     useSetCustomCssProperties({
         element: modalRef?.current as HTMLElement,

@@ -904,11 +904,11 @@ const dynamicmodal = (
 		},
 		styling: {
 			modal: {
-				widthInPercent: [[100], [50, 800]],
+				widthInPercent: [[50], [undefined, 800]],
 				textColor: [["red"], ['blue', 800]],
 				fontSize: [[14], [10, 800]],
 				closeButton: {
-					fill: [['red'], ['black', 800]]
+					fill: [['red'], [undefined, 800]]
 				}
 			},
 		},

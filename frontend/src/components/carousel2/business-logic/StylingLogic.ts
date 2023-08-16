@@ -5,7 +5,6 @@ import { convertColorNameToHex, convertHexToRgba, getCurrentValue, getIsVideo, g
 import {
     CAROUSEL_SPACING_UNIT,
     CAROUSEL_COLOR_FOUR,
-    CAROUSEL_COLOR_ONE,
     CAROUSEL_COLOR_FIVE,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
@@ -358,11 +357,6 @@ export class StylingLogic {
         return {
             color: customColor,
         } as CSSProperties;
-    }
-
-    get carouselModalCloseButtonColor() {
-        const defaultColor = getCurrentValue(this.options?.styling?.modal?.textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
-        return getCurrentValue(this.options?.styling?.modal?.closeButton?.fill, defaultColor, this.isFullscreenMode);
     }
 
     get carouselModalCloseButtonStyle() {
