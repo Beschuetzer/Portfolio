@@ -42,7 +42,8 @@ import {
     CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_START_OPACITY_DEFAULT,
     CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_END_OPACITY_DEFAULT,
     CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT,
-    CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT
+    CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
+    CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT
 } from "../constants";
 import { CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
@@ -291,6 +292,15 @@ export class OptionsLogic {
     get modalCloseButtonColor() {
         const defaultColor = getCurrentValue(this.options?.styling?.modal?.textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
         return getCurrentValue(this.options?.styling?.modal?.closeButton?.fill, defaultColor, this.isFullscreenMode);
+    }
+
+    get modalCloseButtonSize() {
+        return getCurrentValue(this.options?.styling?.modal?.closeButton?.size, this.defaultButtonSize, this.isFullscreenMode)
+    }
+
+    get modalCloseButtonWidth() {
+        const sizeGiven = this.options?.styling?.modal?.closeButton?.size;
+        return !!sizeGiven ? this.modalCloseButtonSize  : this.isFullscreenMode ? undefined : CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT;
     }
 
     get modalFontSize() {

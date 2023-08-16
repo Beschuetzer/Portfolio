@@ -360,17 +360,16 @@ export class StylingLogic {
     }
 
     get carouselModalCloseButtonStyle() {
-        const sizeGiven = this.options?.styling?.modal?.closeButton?.size;
         const areChildrenPresent = !!this.currentItem?.modal?.children;
         const { right: paddingRight, top: paddingTop } = this.optionsLogic.modalPadding;
         const rightStyle = paddingRight !== undefined ? {
-            right: getCurrentValue(paddingRight, 0, this.isFullscreenMode),
+            right: paddingRight,
         } as CSSProperties : {};
         const topStyle = paddingTop !== undefined ? {
-            top: getCurrentValue(paddingTop, 0, this.isFullscreenMode),
+            top: paddingTop,
         } as CSSProperties : {};
         const widthStyle = {
-            width: !!sizeGiven ? getCurrentValue(sizeGiven, this.optionsLogic.defaultButtonSize, this.isFullscreenMode) : this.isFullscreenMode ? undefined : CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
+            width: this.optionsLogic.modalCloseButtonWidth,
         } as CSSProperties;
 
         return areChildrenPresent ? {
