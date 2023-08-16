@@ -329,12 +329,20 @@ export class OptionsLogic {
         return primary || secondary || this.bodyFontFamily || this.defaultFontFamily;
     }
 
+    get navigationBackground() {
+        return getCurrentValue(this.options?.styling?.navigation?.background, undefined, this.isFullscreenMode) 
+    }
+
     get navigationMaxClickThreshold() {
         return getCurrentValue(this.options?.navigation?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
     }
 
     get progressBarShouldSpanEntireWidth() {
         return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
+    }
+
+    get thumbnailBorderString() {
+        return getCurrentValue(this.options?.thumbnail?.currentItemBorder, undefined, this.isFullscreenMode)
     }
 
     get thumbnailOverlayBackgroundSolid() {

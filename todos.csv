@@ -1,6 +1,7 @@
 Carousel rework
   -work on progressbar rework:
     --move all instances of getCurrentValue calls from StylingLogic to OptionsLogic
+    --rename getters in OptionsLogic so that carousel is no longer in any of them?
     --need to remove cursor: none on body when a re-size occurs
     --bottom case for CarouselModal in correct spot
     --todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)

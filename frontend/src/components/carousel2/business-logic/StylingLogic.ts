@@ -139,7 +139,7 @@ export class StylingLogic {
         } as CSSProperties;
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
-            background: getCurrentValue(this.options?.styling?.navigation?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options?.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode),
+            background: this.optionsLogic.navigationBackground || this.optionsLogic.carouselContainerBackgroundColor,
             borderRadius: 4,
             paddingRight: 0,
             paddingLeft: 0,
@@ -162,7 +162,7 @@ export class StylingLogic {
     }
 
     get carouselItemStyle() {
-        const customCurrenItemBorder = getCurrentValue(this.options?.thumbnail?.currentItemBorder, '', this.isFullscreenMode);
+        const customCurrenItemBorder = this.optionsLogic.thumbnailBorderString;
 
         const widthStyle = {
             width: this.optionsLogic.carouselItemSize,
