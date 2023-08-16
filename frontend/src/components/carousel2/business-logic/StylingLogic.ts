@@ -1431,30 +1431,25 @@ export class StylingLogic {
                     : this.optionsLogic.isDefaultItemDisplayLocation
                         ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
                         : this.optionsLogic.isItemDisplayLocationBelow ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                return this.optionsLogic.getCustomPadding(item, defaultPadding).bottom;
+                break;
             }
-            case SpacingDirection.left: {
-                defaultPadding = defaultOverride !== undefined && defaultOverride >= 0 ? defaultOverride
-                    : this.optionsLogic.isDefaultItemDisplayLocation
-                        ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
-                        : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                return this.optionsLogic.getCustomPadding(item, defaultPadding).left;
-            }
+            case SpacingDirection.left:
             case SpacingDirection.right: {
                 defaultPadding = defaultOverride !== undefined && defaultOverride >= 0 ? defaultOverride
                     : this.optionsLogic.isDefaultItemDisplayLocation
                         ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
                         : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                return this.optionsLogic.getCustomPadding(item, defaultPadding).right;
+                break;
             }
             case SpacingDirection.top: {
                 defaultPadding = defaultOverride !== undefined && defaultOverride >= 0 ? defaultOverride
                     : this.optionsLogic.isDefaultItemDisplayLocation
                         ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
                         : this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                return this.optionsLogic.getCustomPadding(item, defaultPadding).top;
+                break;
             }
         }
-        //#endregion
+        return this.optionsLogic.getCustomPadding(item, direction, defaultPadding);
     }
+    //#endregion
 }

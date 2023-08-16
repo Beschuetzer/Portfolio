@@ -38,7 +38,7 @@ import {
     CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
 } from "../constants";
-import { CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName } from "../types";
+import { CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
 
 export type OptionsConstructor = {
@@ -79,19 +79,6 @@ export class OptionsLogic {
         return getCurrentValue(this.options.styling?.fontFamily?.all, undefined, this.isFullscreenMode);
     }
 
-    get allPadding() {
-        const bottom = getCurrentValue(this.options.styling?.container?.padding?.bottom, undefined, this.isFullscreenMode);
-        const left = getCurrentValue(this.options.styling?.container?.padding?.left, undefined, this.isFullscreenMode);
-        const right = getCurrentValue(this.options.styling?.container?.padding?.right, undefined, this.isFullscreenMode);
-        const top = getCurrentValue(this.options.styling?.container?.padding?.top, undefined, this.isFullscreenMode);
-        return {
-            bottom,
-            left,
-            right,
-            top,
-        }
-    }
-
     get autoChangePage() {
         return getCurrentValue(this.options?.navigation?.autoChangePage, true, this.isFullscreenMode);
     }
@@ -110,50 +97,29 @@ export class OptionsLogic {
         }
         return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
     }
-
-    getCustomPadding(item: CarouselSection, defaultPadding = CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT) {
-        //bottom
-        const allPaddingBottom = this.allPadding.bottom;
-        const specificElementPaddingFullscreenBottom = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.bottom, undefined, this.isFullscreenMode);
-        const specificElementPaddingNonFullscreenBottom = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.bottom, undefined, this.isFullscreenMode);
-        const specificElementPaddingBothBottom = getCurrentValue((this.options.styling?.[item] as any)?.padding?.bottom, undefined, this.isFullscreenMode);
-        const specificElementPaddingToUseBottom = this.isFullscreenMode ? (specificElementPaddingFullscreenBottom || specificElementPaddingBothBottom) : (specificElementPaddingNonFullscreenBottom || specificElementPaddingBothBottom);
-        const customPaddingBottom = specificElementPaddingToUseBottom || allPaddingBottom;
-        const bottom = customPaddingBottom !== undefined ? customPaddingBottom : defaultPadding
-
-        //left
-        const allPaddingLeft = this.allPadding.left;
-        const specificElementPaddingFullscreenLeft = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.left, undefined, this.isFullscreenMode);
-        const specificElementPaddingNonFullscreenLeft = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.left, undefined, this.isFullscreenMode);
-        const specificElementPaddingBothLeft = getCurrentValue((this.options.styling?.[item] as any)?.padding?.left, undefined, this.isFullscreenMode);
-        const specificElementPaddingToUseLeft = this.isFullscreenMode ? (specificElementPaddingFullscreenLeft || specificElementPaddingBothLeft) : (specificElementPaddingNonFullscreenLeft || specificElementPaddingBothLeft);
-        const customPaddingLeft = specificElementPaddingToUseLeft || allPaddingLeft;
-        const left = customPaddingLeft !== undefined ? customPaddingLeft : defaultPadding
-
-        //right
-        const allPaddingRight = this.allPadding.right;
-        const specificElementPaddingBothRight = getCurrentValue((this.options.styling?.[item] as any)?.padding?.right, undefined, this.isFullscreenMode);
-        const specificElementPaddingFullscreenRight = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.right, undefined, this.isFullscreenMode);
-        const specificElementPaddingNonFullscreenRight = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.right, undefined, this.isFullscreenMode);
-        const specificElementPaddingToUseRight = this.isFullscreenMode ? (specificElementPaddingFullscreenRight || specificElementPaddingBothRight) : (specificElementPaddingNonFullscreenRight || specificElementPaddingBothRight);
-        const customPaddingRight = specificElementPaddingToUseRight || allPaddingRight;
-        const right = customPaddingRight !== undefined ? customPaddingRight : defaultPadding;
-
-        //top
-        const allPaddingTop = this.allPadding.top;
-        const specificElementPaddingFullscreenTop = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.top, undefined, this.isFullscreenMode);
-        const specificElementPaddingNonFullscreenTop = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.top, undefined, this.isFullscreenMode);
-        const specificElementPaddingBothTop = getCurrentValue((this.options.styling?.[item] as any)?.padding?.top, undefined, this.isFullscreenMode);
-        const specificElementPaddingToUseTop = this.isFullscreenMode ? (specificElementPaddingFullscreenTop || specificElementPaddingBothTop) : (specificElementPaddingNonFullscreenTop || specificElementPaddingBothTop);
-        const customPaddingTop = specificElementPaddingToUseTop || allPaddingTop;
-        const top = customPaddingTop !== undefined ? customPaddingTop : defaultPadding;
-
+    
+    get containerPadding() {
+        const bottom = getCurrentValue(this.options.styling?.container?.padding?.bottom, undefined, this.isFullscreenMode);
+        const left = getCurrentValue(this.options.styling?.container?.padding?.left, undefined, this.isFullscreenMode);
+        const right = getCurrentValue(this.options.styling?.container?.padding?.right, undefined, this.isFullscreenMode);
+        const top = getCurrentValue(this.options.styling?.container?.padding?.top, undefined, this.isFullscreenMode);
         return {
-            bottom,
-            left,
-            right,
-            top,
+            [SpacingDirection.bottom]: bottom,
+            [SpacingDirection.left]: left,
+            [SpacingDirection.right]: right,
+            [SpacingDirection.top]: top,
         }
+    }
+
+    getCustomPadding(item: CarouselSection, direction: SpacingDirection, defaultPadding = CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT) {
+        const containerPadding = this.containerPadding?.[direction];
+        const itemPadding = (this.options.styling?.[item] as any)?.padding;
+        const itemPaddingFullscreen = getCurrentValue(itemPadding?.fullscreen?.[direction], undefined, this.isFullscreenMode);
+        const itemPaddingNonFullscreen = getCurrentValue(itemPadding?.nonFullscreen?.[direction], undefined, this.isFullscreenMode);
+        const itemPaddingAll = getCurrentValue(itemPadding?.[direction], undefined, this.isFullscreenMode);
+        const itemPaddingToUse = this.isFullscreenMode ? (itemPaddingFullscreen || itemPaddingAll) : (itemPaddingNonFullscreen || itemPaddingAll);
+        const customPadding = itemPaddingToUse || containerPadding;
+        return customPadding !== undefined ? customPadding : defaultPadding;
     }
 
     get defaultButtonSize() {
