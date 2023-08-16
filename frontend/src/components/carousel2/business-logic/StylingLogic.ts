@@ -141,7 +141,7 @@ export class StylingLogic {
         } as CSSProperties;
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
-            background: getCurrentValue(this.options?.styling?.navigation?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode),
+            background: getCurrentValue(this.options?.styling?.navigation?.background, undefined, this.isFullscreenMode) || getCurrentValue(this.options?.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode),
             borderRadius: 4,
             paddingRight: 0,
             paddingLeft: 0,
@@ -164,7 +164,7 @@ export class StylingLogic {
     }
 
     get carouselItemStyle() {
-        const customCurrenItemBorder = getCurrentValue(this.options.thumbnail?.currentItemBorder, '', this.isFullscreenMode);
+        const customCurrenItemBorder = getCurrentValue(this.options?.thumbnail?.currentItemBorder, '', this.isFullscreenMode);
 
         const widthStyle = {
             width: this.optionsLogic.carouselItemSize,
@@ -363,12 +363,12 @@ export class StylingLogic {
     }
 
     get carouselModalCloseButtonColor() {
-        const defaultColor = getCurrentValue(this.options.styling?.modal?.textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
-        return getCurrentValue(this.options.styling?.modal?.closeButton?.fill, defaultColor, this.isFullscreenMode);
+        const defaultColor = getCurrentValue(this.options?.styling?.modal?.textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.modal?.closeButton?.fill, defaultColor, this.isFullscreenMode);
     }
 
     get carouselModalCloseButtonStyle() {
-        const sizeGiven = this.options.styling?.modal?.closeButton?.size;
+        const sizeGiven = this.options?.styling?.modal?.closeButton?.size;
         const areChildrenPresent = !!this.currentItem?.modal?.children;
         const { right: paddingRight, top: paddingTop } = this.optionsLogic.modalPadding;
         const rightStyle = paddingRight !== undefined ? {
@@ -1003,7 +1003,6 @@ export class StylingLogic {
 
     get thumbnailOverlayTextStyle() {
         const thumbnail = this.options?.thumbnail;
-
         const fontSizeStyle = thumbnail ? {
             fontSize: getCurrentValue(thumbnail?.descriptionOverlay?.fontSize, -1, this.isFullscreenMode),
         } as React.CSSProperties : {};
@@ -1102,13 +1101,13 @@ export class StylingLogic {
 
     //#region Public Methods
     getButtonColor(buttonName: CarouselElement, fallbackColor = CAROUSEL_COLOR_FIVE) {
-        const specificFillColor = getCurrentValue(this.options.styling?.elements?.[buttonName]?.fillColor, undefined, this.isFullscreenMode);
+        const specificFillColor = getCurrentValue(this.options?.styling?.elements?.[buttonName]?.fillColor, undefined, this.isFullscreenMode);
 
         switch (buttonName) {
             case CarouselElement.arrowLeft:
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
-                const navigationElementsColor = getCurrentValue(this.options.styling?.navigation?.elements?.color, undefined, this.isFullscreenMode);
+                const navigationElementsColor = getCurrentValue(this.options?.styling?.navigation?.elements?.color, undefined, this.isFullscreenMode);
                 return specificFillColor || navigationElementsColor || this.optionsLogic.allFillColor || fallbackColor;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
@@ -1118,7 +1117,7 @@ export class StylingLogic {
             case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
-                const toolbarElementsColor = getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode);
+                const toolbarElementsColor = getCurrentValue(this.options?.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode);
                 return specificFillColor || toolbarElementsColor || this.optionsLogic.allFillColor || fallbackColor;
             default:
                 return specificFillColor || this.optionsLogic.allFillColor || fallbackColor;
@@ -1134,7 +1133,7 @@ export class StylingLogic {
             case CarouselElement.arrowLeft:
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
-                sectionButtonSize = getCurrentValue(this.options.styling?.navigation?.elements?.size, this.optionsLogic.defaultButtonSize, this.isFullscreenMode);
+                sectionButtonSize = getCurrentValue(this.options?.styling?.navigation?.elements?.size, this.optionsLogic.defaultButtonSize, this.isFullscreenMode);
                 break;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
@@ -1144,7 +1143,7 @@ export class StylingLogic {
             case CarouselElement.previousButton:
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
-                sectionButtonSize = getCurrentValue(this.options.styling?.toolbar?.elements?.size, this.optionsLogic.defaultButtonSize, this.isFullscreenMode);
+                sectionButtonSize = getCurrentValue(this.options?.styling?.toolbar?.elements?.size, this.optionsLogic.defaultButtonSize, this.isFullscreenMode);
                 break;
         }
 
@@ -1313,7 +1312,7 @@ export class StylingLogic {
         // console.log({
         //     numberOfItemsToUse,
         //     containerWidth,
-        //     givenItemSpacing: this.options.thumbnail?.itemSpacing,
+        //     givenItemSpacing: this.options?.thumbnail?.itemSpacing,
         //     itemPositioning,
         //     widthOfItems,
         //     widthOfInterItemSpacing, interItemSpacing, numberOfSpaces

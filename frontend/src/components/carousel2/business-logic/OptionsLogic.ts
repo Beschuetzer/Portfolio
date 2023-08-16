@@ -76,11 +76,11 @@ export class OptionsLogic {
 
     //#region Getters
     get allFillColor() {
-        return getCurrentValue(this.options.styling?.elements?.all?.fillColor, undefined, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.elements?.all?.fillColor, undefined, this.isFullscreenMode);
     }
 
     get allFontFamily() {
-        return getCurrentValue(this.options.styling?.fontFamily?.all, undefined, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.fontFamily?.all, undefined, this.isFullscreenMode);
     }
 
     get autoChangePage() {
@@ -92,7 +92,7 @@ export class OptionsLogic {
     }
 
     get carouselContainerBackgroundColor() {
-        return getCurrentValue(this.options.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
     }
 
     get carouselItemSize() {
@@ -164,95 +164,95 @@ export class OptionsLogic {
     }
 
     get isToolbarInVideo() {
-        return getCurrentValue(this.options.layout?.isToolbarPositionedInVideo, true, this.isFullscreenMode);
+        return getCurrentValue(this.options?.layout?.isToolbarPositionedInVideo, true, this.isFullscreenMode);
     }
 
     get isWrappingDisabled() {
-        return getCurrentValue(this.options.navigation?.disableWrapping, false, this.isFullscreenMode);
+        return getCurrentValue(this.options?.navigation?.disableWrapping, false, this.isFullscreenMode);
     }
 
     get itemPositioning() {
-        return getCurrentValue(this.options.layout?.itemPositioning, undefined, this.isFullscreenMode);
+        return getCurrentValue(this.options?.layout?.itemPositioning, undefined, this.isFullscreenMode);
     }
 
     get itemSpacingStrategy() {
-        return getCurrentValue(this.options.thumbnail?.itemSpacingStrategy, 'min', this.isFullscreenMode);
+        return getCurrentValue(this.options?.thumbnail?.itemSpacingStrategy, 'min', this.isFullscreenMode);
     }
 
     get itemViewerBackgroundColor() {
-        return getCurrentValue(this.options.styling?.itemViewer?.background, undefined, this.isFullscreenMode) || this.carouselContainerBackgroundColor;
+        return getCurrentValue(this.options?.styling?.itemViewer?.background, undefined, this.isFullscreenMode) || this.carouselContainerBackgroundColor;
     }
 
     get itemViewerFontFamily() {
         const primary = this.allFontFamily;
-        const secondary = getCurrentValue(this.options.styling?.fontFamily?.itemViewer, undefined, this.isFullscreenMode)
+        const secondary = getCurrentValue(this.options?.styling?.fontFamily?.itemViewer, undefined, this.isFullscreenMode)
         return primary || secondary || this.bodyFontFamily || this.defaultFontFamily;
     }
 
     get itemViewerMaxClickThreshold() {
-        return getCurrentValue(this.options.itemViewer?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.itemViewer?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewBackground() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
     }
 
     get itemViewerPreviewBorder() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.border, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.border, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewBorderRadius() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.borderRadius, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.borderRadius, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewHeight() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.height, CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT / 2, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.height, CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT / 2, this.isFullscreenMode);
     }
 
     get itemViewerPreviewImageFit() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.image?.fit, CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_FIT_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.image?.fit, CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_FIT_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewImagePosition() {
         const defaultToUse = this.itemViewerPreviewSwapImageAndText ? CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_POSITION_WHEN_SWAP_DEFAULT : CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_POSITION_WHEN_NO_SWAP_DEFAULT;
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.image?.position, defaultToUse, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.image?.position, defaultToUse, this.isFullscreenMode);
     }
 
     get itemViewerPreviewIsVisible() {
-        const value = getCurrentValue(this.options.styling?.itemViewerPreview?.isVisibleInNonFullscreenMode, CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT, this.isFullscreenMode);
+        const value = getCurrentValue(this.options?.styling?.itemViewerPreview?.isVisibleInNonFullscreenMode, CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT, this.isFullscreenMode);
         return this.isFullscreenMode ? true : value;
     }
 
     get itemViewerPreviewOpacity() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.opacity, CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.opacity, CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewSwapImageAndText() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.swapImageAndText, CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.swapImageAndText, CAROUSEL_ITEM_VIEWER_PREVIEW_SWAP_IMAGE_AND_TEXT_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewTextBodyColor() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.body?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.text?.body?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
     }
 
     get itemViewerPreviewTextBodyFontFamily() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.body?.fontFamily, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.text?.body?.fontFamily, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewTextBodySize() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.body?.size, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_SIZE_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.text?.body?.size, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_SIZE_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewTextHeaderColor() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.header?.color, CAROUSEL_COLOR_GREY_ONE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.text?.header?.color, CAROUSEL_COLOR_GREY_ONE, this.isFullscreenMode);
     }
 
     get itemViewerPreviewTextHeaderFontFamily() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.header?.fontFamily, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.text?.header?.fontFamily, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_FONT_FAMILY_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewTextHeaderSize() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.header?.size, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_SIZE_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.text?.header?.size, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_SIZE_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewTextContainerPadding() {
@@ -271,30 +271,30 @@ export class OptionsLogic {
     }
 
     get itemViewerPreviewTextContainerVerticalAlignment() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.text?.container?.verticalAlignment, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.text?.container?.verticalAlignment, CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerPreviewWidth() {
-        return getCurrentValue(this.options.styling?.itemViewerPreview?.width, CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.width, CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT, this.isFullscreenMode);
     }
 
     get modalBackgroundColor() {
         return getCurrentValue(
-            this.options.styling?.modal?.background,
+            this.options?.styling?.modal?.background,
             CAROUSEL_COLOR_ONE,
             this.isFullscreenMode
         );
     }
     get modalFontSize() {
         return getCurrentValue(
-            this.options.styling?.modal?.fontSize,
+            this.options?.styling?.modal?.fontSize,
             this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
             this.isFullscreenMode
         );
     }
 
     get modalPadding() {
-        const paddingStyle = (this.options.styling?.modal?.padding as any);
+        const paddingStyle = (this.options?.styling?.modal?.padding as any);
         const padding = getCurrentValue(paddingStyle, CAROUSEL_MODAL_PADDING_DEFAULT, this.isFullscreenMode);
         const { left, right, top, bottom } = paddingStyle || {};
         return {
@@ -307,7 +307,7 @@ export class OptionsLogic {
 
     get modalTextColor() {
         return getCurrentValue(
-            this.options.styling?.modal?.textColor,
+            this.options?.styling?.modal?.textColor,
             CAROUSEL_COLOR_FIVE,
             this.isFullscreenMode
         );
@@ -315,7 +315,7 @@ export class OptionsLogic {
 
     get modalWidth() {
         return getCurrentValue(
-            this.options.styling?.modal?.widthInPercent,
+            this.options?.styling?.modal?.widthInPercent,
             undefined,
             this.isFullscreenMode
         );
@@ -323,16 +323,16 @@ export class OptionsLogic {
 
     get navigationFontFamily() {
         const primary = this.allFontFamily;
-        const secondary = getCurrentValue(this.options.styling?.fontFamily?.navigation, undefined, this.isFullscreenMode)
+        const secondary = getCurrentValue(this.options?.styling?.fontFamily?.navigation, undefined, this.isFullscreenMode)
         return primary || secondary || this.bodyFontFamily || this.defaultFontFamily;
     }
 
     get navigationMaxClickThreshold() {
-        return getCurrentValue(this.options.navigation?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.navigation?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
     }
 
     get progressBarShouldSpanEntireWidth() {
-        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
     }
 
     get thumbnailOverlayBackgroundSolid() {
@@ -361,31 +361,35 @@ export class OptionsLogic {
     }
 
     get thumbnailOverlayIsDisabled() {
-        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.isDisabled, !this.isDefaultItemDisplayLocation && this.thumbnailOverlayIsHidden, this.isFullscreenMode);
+        return getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.isDisabled, !this.isDefaultItemDisplayLocation && this.thumbnailOverlayIsHidden, this.isFullscreenMode);
     }
 
     get thumbnailOverlayIsHidden() {
-        return getCurrentValue(this.options.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true, this.isFullscreenMode);
+        return getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true, this.isFullscreenMode);
+    }
+
+    get thumbnailOverlayFontSize() {
+        return getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.fontSize, -1, this.isFullscreenMode);
     }
 
     get toolbarBackgroundColor() {
-        const primary = getCurrentValue(this.options.styling?.toolbar?.background, undefined, this.isFullscreenMode);
+        const primary = getCurrentValue(this.options?.styling?.toolbar?.background, undefined, this.isFullscreenMode);
         return primary || this.carouselContainerBackgroundColor;
     }
 
     get toolbarTextColor() {
-        const priorityColor = getCurrentValue(this.options.styling?.toolbar?.textColor, undefined, this.isFullscreenMode);
-        const secondaryColor = getCurrentValue(this.options.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode)
+        const priorityColor = getCurrentValue(this.options?.styling?.toolbar?.textColor, undefined, this.isFullscreenMode);
+        const secondaryColor = getCurrentValue(this.options?.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode)
         return priorityColor || secondaryColor || this.allFillColor || CAROUSEL_COLOR_FIVE;
     }
 
     get useDefaultVideoControls() {
-        return getCurrentValue(this.options.layout?.useDefaultVideoControls, false, this.isFullscreenMode);
+        return getCurrentValue(this.options?.layout?.useDefaultVideoControls, false, this.isFullscreenMode);
     }
 
     get videoCurrentStateIndicatorSize() {
         return getCurrentValue(
-            this.options.styling?.videoCurrentStateIndicator?.size,
+            this.options?.styling?.videoCurrentStateIndicator?.size,
             this.defaultButtonSize,
             this.isFullscreenMode
         );
@@ -393,13 +397,13 @@ export class OptionsLogic {
 
     get videoProgressBarBackgroundColor() {
         const backgroundColorToUse = this.isToolbarInVideo ? convertHexToRgba(CAROUSEL_COLOR_GREY_ONE, .25) : CAROUSEL_COLOR_GREY_ONE;
-        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
     }
 
     get videoProgressBarDotSettings() {
-        const diameter = getCurrentValue(this.options.styling?.toolbar?.progressBar?.dot?.diameter, CAROUSEL_PROGRESS_BAR_DOT_DIAMETER, this.isFullscreenMode);
-        const isAlwaysVisible = getCurrentValue(this.options.styling?.toolbar?.progressBar?.dot?.isAlwaysVisible, CAROUSEL_PROGRESS_BAR_DOT_IS_ALWAYS_VISIBLE, this.isFullscreenMode);
-        const transitionDuration = getCurrentValue(this.options.styling?.toolbar?.progressBar?.dot?.transitionDuration, CAROUSEL_PROGRESS_BAR_DOT_TRANSITION_DURATION, this.isFullscreenMode);
+        const diameter = getCurrentValue(this.options?.styling?.toolbar?.progressBar?.dot?.diameter, CAROUSEL_PROGRESS_BAR_DOT_DIAMETER, this.isFullscreenMode);
+        const isAlwaysVisible = getCurrentValue(this.options?.styling?.toolbar?.progressBar?.dot?.isAlwaysVisible, CAROUSEL_PROGRESS_BAR_DOT_IS_ALWAYS_VISIBLE, this.isFullscreenMode);
+        const transitionDuration = getCurrentValue(this.options?.styling?.toolbar?.progressBar?.dot?.transitionDuration, CAROUSEL_PROGRESS_BAR_DOT_TRANSITION_DURATION, this.isFullscreenMode);
         return {
             diameter,
             isAlwaysVisible,
@@ -408,12 +412,12 @@ export class OptionsLogic {
     }
 
     get videoProgressBarForegroundColor() {
-        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_THREE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_THREE, this.isFullscreenMode);
     }
 
     get videoProgressBarHitSlop() {
-        const top = getCurrentValue(this.options.styling?.toolbar?.progressBar?.hitSlop?.top, CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.5, this.isFullscreenMode);
-        const bottom = getCurrentValue(this.options.styling?.toolbar?.progressBar?.hitSlop?.bottom, CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT / 2, this.isFullscreenMode);
+        const top = getCurrentValue(this.options?.styling?.toolbar?.progressBar?.hitSlop?.top, CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.5, this.isFullscreenMode);
+        const bottom = getCurrentValue(this.options?.styling?.toolbar?.progressBar?.hitSlop?.bottom, CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT / 2, this.isFullscreenMode);
 
         return {
             top,
@@ -425,11 +429,11 @@ export class OptionsLogic {
         const isToolbarInVideo = this.isToolbarInVideo;
         const sections = this.currentItem?.video?.sections;
         const defaultToUse = isToolbarInVideo && sections && sections?.length > 1 ? CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT : CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT;
-        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.scaleAmount, defaultToUse, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.scaleAmount, defaultToUse, this.isFullscreenMode);
     }
 
     get videoProgressBarScreenshotViewer() {
-        const width = getCurrentValue(this.options.styling?.toolbar?.progressBar?.screenshotViewer?.thumbnailWidth, CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT, this.isFullscreenMode);
+        const width = getCurrentValue(this.options?.styling?.toolbar?.progressBar?.screenshotViewer?.thumbnailWidth, CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT, this.isFullscreenMode);
 
         return {
             width,
@@ -438,16 +442,16 @@ export class OptionsLogic {
     }
 
     get videoProgressBarSectionGap() {
-        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.sectionGap, CAROUSEL_PROGRESS_BAR_SECTION_GAP, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.sectionGap, CAROUSEL_PROGRESS_BAR_SECTION_GAP, this.isFullscreenMode);
     }
 
     get videoProgressBarSeekColor() {
-        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.seekColor, convertHexToRgba(CAROUSEL_COLOR_FIVE, .5), this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.seekColor, convertHexToRgba(CAROUSEL_COLOR_FIVE, .5), this.isFullscreenMode);
     }
 
     get videoProgressBarHeight() {
         const isEmbedded = this.isToolbarInVideo;
-        return getCurrentValue(this.options.styling?.toolbar?.progressBar?.height, isEmbedded ? CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED : CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.height, isEmbedded ? CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED : CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED, this.isFullscreenMode);
     }
 
     get videoSeekAmount() {
@@ -455,12 +459,12 @@ export class OptionsLogic {
     }
 
     get videoCurrentStateIndicatorBackgroundColor() {
-        return getCurrentValue(this.options.styling?.videoCurrentStateIndicator?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.videoCurrentStateIndicator?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
     }
 
     getVideoCurrentStateIndicatorButtonColor(buttonName: CarouselVideoCurrentStateIndicatorButtonName) {
         return getCurrentValue(
-            this.options.styling?.videoCurrentStateIndicator?.[buttonName]?.fillColor,
+            this.options?.styling?.videoCurrentStateIndicator?.[buttonName]?.fillColor,
             undefined,
             this.isFullscreenMode
         );
@@ -468,7 +472,7 @@ export class OptionsLogic {
 
     get videoCurrentStateIndicatorForegroundColor() {
         return getCurrentValue(
-            this.options.styling?.videoCurrentStateIndicator?.foregroundColor,
+            this.options?.styling?.videoCurrentStateIndicator?.foregroundColor,
             CAROUSEL_COLOR_FIVE,
             this.isFullscreenMode
         );
@@ -477,7 +481,7 @@ export class OptionsLogic {
 
     //#region Methods
     getItemSpacing(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SPACING_DEFAULT / 2) {
-        const currentItemSpacing = getCurrentValue(this.options.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT / 2, this.isFullscreenMode);
+        const currentItemSpacing = getCurrentValue(this.options?.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT / 2, this.isFullscreenMode);
         return this.itemPositioning !== undefined ? currentItemSpacing : valueToUseIfNoPositioningGiven;
     }
     //#endregion
