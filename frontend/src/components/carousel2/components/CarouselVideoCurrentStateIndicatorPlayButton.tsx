@@ -3,13 +3,14 @@ import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { PlayButton } from './buttons/PlayButton';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
+import { CarouselVideoCurrentStateIndicatorButtonName } from '../types';
 
 type CarouselVideoCurrentStateIndicatorPlayButtonProps = {};
 export const CarouselVideoCurrentStateIndicatorPlayButton = forwardRef<any, CarouselVideoCurrentStateIndicatorPlayButtonProps>((props, ref) => {
     const { options } = useCarouselContext();
     const { svgHref, style } = options.styling?.videoCurrentStateIndicator?.playIcon || {};
     const { stylingLogic } = useBusinessLogic();
-    const fillColor = useMemo(() => stylingLogic.getVideoCurrentStateIndicatorForegroundColor(true),
+    const fillColor = useMemo(() => stylingLogic.getVideoCurrentStateIndicatorForegroundColor(CarouselVideoCurrentStateIndicatorButtonName.playIcon),
         [stylingLogic]
     );
     const onClick = useCallback(() => null, []);

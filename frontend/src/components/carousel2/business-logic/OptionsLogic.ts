@@ -37,7 +37,7 @@ import {
     CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT,
     CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT
 } from "../constants";
-import { CarouselOptions } from "../types";
+import { CarouselOptions, CarouselVideoCurrentStateIndicatorButtonName } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
 
 export type OptionsConstructor = {
@@ -411,6 +411,22 @@ export class OptionsLogic {
 
     get videoCurrentStateIndicatorBackgroundColor() {
         return getCurrentValue(this.options.styling?.videoCurrentStateIndicator?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+    }
+
+    getVideoCurrentStateIndicatorButtonColor(buttonName: CarouselVideoCurrentStateIndicatorButtonName) {
+        return getCurrentValue(
+            this.options.styling?.videoCurrentStateIndicator?.[buttonName]?.fillColor,
+            undefined,
+            this.isFullscreenMode
+        );
+    }
+
+    get videoCurrentStateIndicatorForegroundColor() {
+        return getCurrentValue(
+            this.options.styling?.videoCurrentStateIndicator?.foregroundColor,
+            CAROUSEL_COLOR_FIVE,
+            this.isFullscreenMode
+        );
     }
     //#endregion
 

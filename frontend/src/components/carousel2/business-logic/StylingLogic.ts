@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { CarouselElement, CarouselSection, CarouselOptions } from "../types";
+import { CarouselElement, CarouselSection, CarouselOptions, CarouselVideoCurrentStateIndicatorButtonName } from "../types";
 import { OptionsLogic } from "./OptionsLogic";
 import { convertColorNameToHex, convertHexToRgba, getCurrentValue, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
 import {
@@ -1396,17 +1396,9 @@ export class StylingLogic {
         } as CSSProperties
     }
 
-    getVideoCurrentStateIndicatorForegroundColor(isPlayButton: boolean) {
-        const foregroundColor = getCurrentValue(
-            this.options.styling?.videoCurrentStateIndicator?.foregroundColor,
-            CAROUSEL_COLOR_FIVE,
-            this.isFullscreenMode
-        );
-        const buttonColor = getCurrentValue(
-            this.options.styling?.videoCurrentStateIndicator?.[isPlayButton ? 'playIcon' : 'pauseIcon']?.fillColor,
-            undefined,
-            this.isFullscreenMode
-        );
+    getVideoCurrentStateIndicatorForegroundColor(buttonName: CarouselVideoCurrentStateIndicatorButtonName) {
+        const foregroundColor = this.optionsLogic.videoCurrentStateIndicatorForegroundColor;
+        const buttonColor = this.optionsLogic.getVideoCurrentStateIndicatorButtonColor(buttonName);
         return buttonColor || foregroundColor;
     }
 

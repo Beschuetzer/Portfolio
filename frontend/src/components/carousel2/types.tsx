@@ -8,6 +8,22 @@ export enum ArrowButtonDirection {
     next = 'next',
     previous = 'previous',
 }
+
+export enum CarouselSection {
+    container = 'container',
+    itemViewer = 'itemViewer',
+    itemViewerPreview = 'itemViewerPreview',
+    modal = 'modal',
+    navigation = 'navigation',
+    toolbar = 'toolbar',
+    videoCurrentStateIndicator = 'videoCurrentStateIndicator',
+}
+
+export enum CarouselVideoCurrentStateIndicatorButtonName {
+    playIcon = 'playIcon',
+    pauseIcon = 'pauseIcon',
+}
+
 export type ArrowProps = {
     direction: ArrowButtonDirection;
     options?: CarouselOptions;
@@ -111,15 +127,6 @@ export type CarouselItemViewerButtonProps = {
     options?: CarouselOptions;
 } & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children' | 'shortcuts'>>
 
-export enum CarouselSection {
-    container = 'container',
-    itemViewer = 'itemViewer',
-    itemViewerPreview = 'itemViewerPreview',
-    modal = 'modal',
-    navigation = 'navigation',
-    toolbar = 'toolbar',
-    videoCurrentStateIndicator = 'videoCurrentStateIndicator',
-}
 export type CarouselSections = {
     [CarouselSection.container]?: {
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
@@ -213,7 +220,7 @@ export type CarouselSections = {
                 /**
                 *Default is 12px
                 **/
-                diameter?: CarouselElementValue<number>;              
+                diameter?: CarouselElementValue<number>;
                 /**
                 *Default is `false`
                 **/
@@ -283,8 +290,8 @@ export type CarouselSections = {
         /**
         *The button to indicate that a video is paused
         **/
-        pauseIcon?: CarouselElementCustomization;
-        playIcon?: CarouselElementCustomization;
+        [CarouselVideoCurrentStateIndicatorButtonName.pauseIcon]?: CarouselElementCustomization;
+        [CarouselVideoCurrentStateIndicatorButtonName.playIcon]?: CarouselElementCustomization;
     } & Partial<CarouselColorOptions> & Partial<CarouselElementSize>;
     /**
     *This is the the modal that displays when an item is paused, allowing for more info about the item
