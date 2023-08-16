@@ -1439,7 +1439,7 @@ export class StylingLogic {
                     : this.optionsLogic.isDefaultItemDisplayLocation
                         ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
                         : this.optionsLogic.isItemDisplayLocationBelow ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = getCurrentValue(this.options.styling?.container?.padding?.bottom, undefined, this.isFullscreenMode);
+                allPadding = this.optionsLogic.allPadding.bottom;
                 const specificElementPaddingFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.bottom, undefined, this.isFullscreenMode);
                 const specificElementPaddingNonFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.bottom, undefined, this.isFullscreenMode);
                 const specificElementPaddingBoth = getCurrentValue((this.options.styling?.[item] as any)?.padding?.bottom, undefined, this.isFullscreenMode);
@@ -1452,7 +1452,7 @@ export class StylingLogic {
                     : this.optionsLogic.isDefaultItemDisplayLocation
                         ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
                         : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = getCurrentValue(this.options.styling?.container?.padding?.left, undefined, this.isFullscreenMode);
+                allPadding = this.optionsLogic.allPadding.left;
                 const specificElementPaddingFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.left, undefined, this.isFullscreenMode);
                 const specificElementPaddingNonFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.left, undefined, this.isFullscreenMode);
                 const specificElementPaddingBoth = getCurrentValue((this.options.styling?.[item] as any)?.padding?.left, undefined, this.isFullscreenMode);
@@ -1465,7 +1465,7 @@ export class StylingLogic {
                     : this.optionsLogic.isDefaultItemDisplayLocation
                         ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
                         : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = getCurrentValue(this.options.styling?.container?.padding?.right, undefined, this.isFullscreenMode);
+                allPadding = this.optionsLogic.allPadding.right;
                 const specificElementPaddingBoth = getCurrentValue((this.options.styling?.[item] as any)?.padding?.right, undefined, this.isFullscreenMode);
                 const specificElementPaddingFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.right, undefined, this.isFullscreenMode);
                 const specificElementPaddingNonFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.right, undefined, this.isFullscreenMode);
@@ -1478,7 +1478,7 @@ export class StylingLogic {
                     : this.optionsLogic.isDefaultItemDisplayLocation
                         ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
                         : this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                allPadding = getCurrentValue(this.options.styling?.container?.padding?.top, undefined, this.isFullscreenMode);
+                allPadding = this.optionsLogic.allPadding.top;
                 const specificElementPaddingFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.fullscreen?.top, undefined, this.isFullscreenMode);
                 const specificElementPaddingNonFullscreen = getCurrentValue((this.options.styling?.[item] as any)?.padding?.nonFullscreen?.top, undefined, this.isFullscreenMode);
                 const specificElementPaddingBoth = getCurrentValue((this.options.styling?.[item] as any)?.padding?.top, undefined, this.isFullscreenMode);

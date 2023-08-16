@@ -78,6 +78,19 @@ export class OptionsLogic {
         return getCurrentValue(this.options.styling?.fontFamily?.all, undefined, this.isFullscreenMode);
     }
 
+    get allPadding() {
+        const bottom = getCurrentValue(this.options.styling?.container?.padding?.bottom, undefined, this.isFullscreenMode);
+        const left = getCurrentValue(this.options.styling?.container?.padding?.left, undefined, this.isFullscreenMode);
+        const right = getCurrentValue(this.options.styling?.container?.padding?.right, undefined, this.isFullscreenMode);
+        const top = getCurrentValue(this.options.styling?.container?.padding?.top, undefined, this.isFullscreenMode);
+        return {
+            bottom,
+            left,
+            right,
+            top,
+        }
+    }
+
     get autoChangePage() {
         return getCurrentValue(this.options?.navigation?.autoChangePage, true, this.isFullscreenMode);
     }
