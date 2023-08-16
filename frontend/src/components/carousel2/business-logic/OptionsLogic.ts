@@ -99,10 +99,10 @@ export class OptionsLogic {
     }
     
     get containerPadding() {
-        const bottom = getCurrentValue(this.options.styling?.container?.padding?.bottom, undefined, this.isFullscreenMode);
-        const left = getCurrentValue(this.options.styling?.container?.padding?.left, undefined, this.isFullscreenMode);
-        const right = getCurrentValue(this.options.styling?.container?.padding?.right, undefined, this.isFullscreenMode);
-        const top = getCurrentValue(this.options.styling?.container?.padding?.top, undefined, this.isFullscreenMode);
+        const bottom = getCurrentValue(this.options?.styling?.container?.padding?.bottom, undefined, this.isFullscreenMode);
+        const left = getCurrentValue(this.options?.styling?.container?.padding?.left, undefined, this.isFullscreenMode);
+        const right = getCurrentValue(this.options?.styling?.container?.padding?.right, undefined, this.isFullscreenMode);
+        const top = getCurrentValue(this.options?.styling?.container?.padding?.top, undefined, this.isFullscreenMode);
         return {
             [SpacingDirection.bottom]: bottom,
             [SpacingDirection.left]: left,
@@ -113,7 +113,7 @@ export class OptionsLogic {
 
     getCustomPadding(item: CarouselSection, direction: SpacingDirection, defaultPadding = CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT) {
         const containerPadding = this.containerPadding?.[direction];
-        const itemPadding = (this.options.styling?.[item] as any)?.padding;
+        const itemPadding = (this.options?.styling?.[item] as any)?.padding;
         const itemPaddingFullscreen = getCurrentValue(itemPadding?.fullscreen?.[direction], undefined, this.isFullscreenMode);
         const itemPaddingNonFullscreen = getCurrentValue(itemPadding?.nonFullscreen?.[direction], undefined, this.isFullscreenMode);
         const itemPaddingAll = getCurrentValue(itemPadding?.[direction], undefined, this.isFullscreenMode);

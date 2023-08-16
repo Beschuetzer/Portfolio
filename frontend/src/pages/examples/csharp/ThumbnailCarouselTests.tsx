@@ -3248,10 +3248,10 @@ const SECTIONS: Sections = [
 const ENABLED_SECTIONS: SectionNames[] = [
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,
-	SectionNames.dynamicBasedOnViewingMode,
+	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
-	// ...Object.values(SectionNames),
+	...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS
 	.filter((section) => ENABLED_SECTIONS.includes(section[0]))
