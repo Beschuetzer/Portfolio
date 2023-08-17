@@ -1,6 +1,6 @@
 Carousel rework
   -work on progressbar rework:
-    --issue with last page and default value for isLastPageFlush (true); may have to do with the useEffect added/modified
+    --issue with showing last page when itemDisplayLocation is 'none' and isLastPageFlush is true; may have to do with the useEffect added/modified
     --move all instances of getCurrentValue calls from StylingLogic to OptionsLogic
     --rename getters in OptionsLogic so that carousel is no longer in any of them?
     --need to remove cursor: none on body when a re-size occurs

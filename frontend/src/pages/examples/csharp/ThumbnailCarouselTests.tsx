@@ -1091,7 +1091,51 @@ const customThumbnailGradientAndFallback = (
 		}
 	}} />
 );
-
+const isLastPageFlushTrueDisplayNone = (
+	<Carousel items={items} />
+);
+const isLastPageFlushTrueDisplayAbove = (
+	<Carousel items={items} options={{ layout: { itemDisplayLocation: 'above' } }} />
+);
+const isLastPageFlushTrueDisplayBelow = (
+	<Carousel items={items} options={{ layout: { itemDisplayLocation: 'below' } }} />
+);
+const isLastPageFlushFalseDisplayNone = (
+	<Carousel
+		items={items}
+		options={{
+			navigation: {
+				isLastPageFlush: false,
+			},
+		}}
+	/>
+);
+const isLastPageFlushFalseDisplayAbove = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayLocation: 'above',
+			},
+			navigation: {
+				isLastPageFlush: false,
+			},
+		}}
+	/>
+);
+const isLastPageFlushFalseDisplayBelow = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayLocation: 'below',
+			},
+			navigation: {
+				isLastPageFlush: false,
+			},
+		}}
+	/>
+);
 const itemViewerDefaultOverlayOnLoad = (
 	<Carousel items={items.slice(1, 2)} />
 );
@@ -1258,7 +1302,7 @@ const layoutAboveDefaultItemHeight = (
 		options={{
 			layout: {
 				itemDisplayLocation: 'above',
-			}
+			},
 		}}
 	/>
 );
@@ -2494,6 +2538,7 @@ enum SectionNames {
 	dynamicBasedOnViewingMode = "Dynamic based on Viewing Mode",
 	dynamicLayout = "Dynamic Layout Settings",
 	itemPositioning = "Item Positioning",
+	isLastPageFlush = "Last Page Flush",
 	itemViewer = "Item Viewer",
 	layouts = "Layouts",
 	navigationOptions = "Navigation Options",
@@ -3085,7 +3130,7 @@ const SECTIONS: Sections = [
 			{
 				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
 				jsx: viewingModeItemViewerPreview,
-			},				
+			},
 			{
 				label: "Video Controls Change Dynamically based on Viewing Mode",
 				jsx: viewingModeVideoControls,
@@ -3179,6 +3224,35 @@ const SECTIONS: Sections = [
 		]
 	],
 	[
+		SectionNames.isLastPageFlush,
+		[
+			{
+				label: "Last Page is Flush - Display Location None",
+				jsx: isLastPageFlushTrueDisplayNone
+			},
+			{
+				label: "Last Page is Flush - Display Location Above",
+				jsx: isLastPageFlushTrueDisplayAbove
+			},
+			{
+				label: "Last Page is Flush - Display Location Below",
+				jsx: isLastPageFlushTrueDisplayBelow
+			},
+			{
+				label: "Last Page is not Flush - Display Location None",
+				jsx: isLastPageFlushFalseDisplayNone
+			},
+			{
+				label: "Last Page is not Flush - Display Location Above",
+				jsx: isLastPageFlushFalseDisplayAbove
+			},
+			{
+				label: "Last Page is not Flush - Display Location Below",
+				jsx: isLastPageFlushFalseDisplayBelow
+			},
+		]
+	],
+	[
 		SectionNames.customWidth,
 		[
 			{
@@ -3250,7 +3324,8 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
-	...Object.values(SectionNames),
+	SectionNames.isLastPageFlush,
+	// ...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS
 	.filter((section) => ENABLED_SECTIONS.includes(section[0]))
