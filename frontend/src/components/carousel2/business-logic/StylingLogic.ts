@@ -1235,7 +1235,7 @@ export class StylingLogic {
             if (translationAmount > 0 && this.lastPageCarouselTranslationAmount === this.LAST_PAGE_CAROUSEL_AMOUNT_INITIAL) {
                 this.lastPageCarouselTranslationAmount = translationAmount;
             }
-            translationAmountToUse = this.lastPageCarouselTranslationAmount;
+            translationAmountToUse = Math.max(this.lastPageCarouselTranslationAmount, translationAmount);
         }
 
         const itemPositioning = this.optionsLogic.itemPositioning;
