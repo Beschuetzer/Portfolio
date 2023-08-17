@@ -1084,28 +1084,8 @@ export class StylingLogic {
     //todo: this is currently setup with the assumption that givenButtonSize comes from toolbar.buttonSize
     //need to generalize for other cases (think individual button options)
     //this is used on the button container for each button and the dots
-    getCarouselElementSizeStlye(buttonName: CarouselElement, size = 0) {
-        let sectionButtonSize;
-        switch (buttonName) {
-            case CarouselElement.arrowLeft:
-            case CarouselElement.arrowRight:
-            case CarouselElement.dots:
-                sectionButtonSize = getCurrentValue(this.options?.styling?.navigation?.elements?.size, this.optionsLogic.defaultButtonSize, this.isFullscreenMode);
-                break;
-            case CarouselElement.closeButton:
-            case CarouselElement.fullscreenButton:
-            case CarouselElement.nextButton:
-            case CarouselElement.pauseButton:
-            case CarouselElement.playButton:
-            case CarouselElement.previousButton:
-            case CarouselElement.seekBackButton:
-            case CarouselElement.seekForwardButton:
-                sectionButtonSize = getCurrentValue(this.options?.styling?.toolbar?.elements?.size, this.optionsLogic.defaultButtonSize, this.isFullscreenMode);
-                break;
-        }
-
-        const valueToUse = size || sectionButtonSize || this.optionsLogic.defaultButtonSize;
-
+    getCarouselElementSizeStlye(buttonName: CarouselElement, defaultSize = 0) {
+        const valueToUse = this.optionsLogic.getButtonSize(buttonName, defaultSize);
         return {
             width: valueToUse,
             height: valueToUse,

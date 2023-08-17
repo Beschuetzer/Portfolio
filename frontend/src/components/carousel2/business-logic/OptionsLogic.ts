@@ -118,6 +118,30 @@ export class OptionsLogic {
         }
     }
 
+    getButtonSize(buttonName: CarouselElement, defaultOverride = 0) {
+        let sectionButtonSize;
+        switch (buttonName) {
+            case CarouselElement.arrowLeft:
+            case CarouselElement.arrowRight:
+            case CarouselElement.dots:
+                sectionButtonSize = getCurrentValue(this.options?.styling?.navigation?.elements?.size, this.defaultButtonSize, this.isFullscreenMode);
+                break;
+            case CarouselElement.closeButton:
+            case CarouselElement.fullscreenButton:
+            case CarouselElement.nextButton:
+            case CarouselElement.pauseButton:
+            case CarouselElement.playButton:
+            case CarouselElement.previousButton:
+            case CarouselElement.seekBackButton:
+            case CarouselElement.seekForwardButton:
+                sectionButtonSize = getCurrentValue(this.options?.styling?.toolbar?.elements?.size, this.defaultButtonSize, this.isFullscreenMode);
+                break;
+        }
+        const valueToUse = defaultOverride || sectionButtonSize || this.defaultButtonSize;
+
+        return valueToUse;
+    }
+
     get carouselContainerBackgroundColor() {
         return getCurrentValue(this.options?.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
     }
