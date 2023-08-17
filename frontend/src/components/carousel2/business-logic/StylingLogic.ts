@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { CarouselElement, CarouselSection, CarouselOptions, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { OptionsLogic } from "./OptionsLogic";
-import { convertColorNameToHex, convertHexToRgba, getCurrentValue, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
+import { convertColorNameToHex, convertHexToRgba, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
 import {
     CAROUSEL_SPACING_UNIT,
     CAROUSEL_COLOR_FOUR,
@@ -11,7 +11,6 @@ import {
     CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
     CAROUSEL_ITEM_SPACING_DEFAULT,
     CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
-    CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT,
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,

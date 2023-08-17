@@ -226,6 +226,10 @@ export class OptionsLogic {
         return getCurrentValue(this.options?.layout?.itemPositioning, undefined, this.isFullscreenMode);
     }
 
+    get itemSpacing() {
+        return getCurrentValue(this.options?.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT, this.isFullscreenMode)
+    }
+
     get itemSpacingStrategy() {
         return getCurrentValue(this.options?.thumbnail?.itemSpacingStrategy, 'min', this.isFullscreenMode);
     }

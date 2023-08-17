@@ -31,6 +31,10 @@ export const CarouselContent = ({
 }: CarouselContentProps) => {
     //#region Init
     const { currentItemIndex, numberOfPages, setNumberOfPages, isFullscreenMode, setIsFullscreenMode, currentPage, setCurrentPage } = useCarouselContext();
+    const {
+        optionsLogic,
+        stylingLogic,
+    } = useBusinessLogic();
     const hasCalculatedNumberOfDotsRef = useRef(false);
     const hasCalculatedItemSpacingRef = useRef(false);
     const resizeWindowDebounceRef = useRef<any>();
@@ -41,12 +45,8 @@ export const CarouselContent = ({
     const translationAmountChangeRef = useRef<TranslationAmountChange>(TranslationAmountChange.none);
     const isLastPage = useMemo(() => currentPage + 1 === numberOfPages, [currentPage, numberOfPages]);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
-    const [interItemSpacing, setInterItemSpacing] = useState(getCurrentValue(options?.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT, isFullscreenMode));
+    const [interItemSpacing, setInterItemSpacing] = useState(optionsLogic.itemSpacing);
     const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
-    const {
-        optionsLogic,
-        stylingLogic,
-    } = useBusinessLogic();
     useOnSwipe({
         element: itemsContainerInnerRef.current as HTMLElement,
         isDisabled: optionsLogic.isNavigationSwipingDisabled,
