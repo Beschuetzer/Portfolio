@@ -103,7 +103,7 @@ export class StylingLogic {
         return {
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-end",
+            justifyContent: "center",
             alignItems: "center",
             width: '100%',
             height: '100%',
@@ -124,7 +124,7 @@ export class StylingLogic {
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: '100%',
             height: this.imageHeight,
-            objectPosition: this.isFullscreenMode ? 'center' : 'bottom',
+            objectPosition: this.isFullscreenMode ? 'center' : 'top',
             // ...cursorStyle,
         } as CSSProperties : {
         } as CSSProperties;
