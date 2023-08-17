@@ -20,13 +20,13 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
 }, ref) => {
     const { elementStylings, setIsFullscreenMode, isFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
     const {
-        stylingLogic,
+        optionsLogic,
         toolbarActionsLogic,
         toolbarLogic
     } = useBusinessLogic();
     const closeAction = toolbarActionsLogic.getClose();
     const { svgHref, style } = elementStylings?.closeButton || {};
-    const fillColor = stylingLogic.getButtonColor(CarouselElement.closeButton);
+    const fillColor = optionsLogic.getButtonColor(CarouselElement.closeButton);
     useKeyboardShortcuts([
         {
             keys: closeAction.keys,

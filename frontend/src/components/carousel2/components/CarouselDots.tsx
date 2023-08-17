@@ -26,7 +26,7 @@ export const CarouselDots = ({
     const { optionsLogic, stylingLogic } = useBusinessLogic();
     const { isFullscreenMode } = useCarouselContext();
     const defaultColor = optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;
-    const fillColor = stylingLogic.getButtonColor(CarouselElement.dots, defaultColor);
+    const fillColor = optionsLogic.getButtonColor(CarouselElement.dots, defaultColor);
     //#endregion
 
     //#region Handlers/Functions

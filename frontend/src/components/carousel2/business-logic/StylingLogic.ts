@@ -1081,30 +1081,6 @@ export class StylingLogic {
     //#endregion
 
     //#region Public Methods
-    getButtonColor(buttonName: CarouselElement, fallbackColor = CAROUSEL_COLOR_FIVE) {
-        const specificFillColor = getCurrentValue(this.options?.styling?.elements?.[buttonName]?.fillColor, undefined, this.isFullscreenMode);
-
-        switch (buttonName) {
-            case CarouselElement.arrowLeft:
-            case CarouselElement.arrowRight:
-            case CarouselElement.dots:
-                const navigationElementsColor = getCurrentValue(this.options?.styling?.navigation?.elements?.color, undefined, this.isFullscreenMode);
-                return specificFillColor || navigationElementsColor || this.optionsLogic.allFillColor || fallbackColor;
-            case CarouselElement.closeButton:
-            case CarouselElement.fullscreenButton:
-            case CarouselElement.nextButton:
-            case CarouselElement.pauseButton:
-            case CarouselElement.playButton:
-            case CarouselElement.previousButton:
-            case CarouselElement.seekBackButton:
-            case CarouselElement.seekForwardButton:
-                const toolbarElementsColor = getCurrentValue(this.options?.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode);
-                return specificFillColor || toolbarElementsColor || this.optionsLogic.allFillColor || fallbackColor;
-            default:
-                return specificFillColor || this.optionsLogic.allFillColor || fallbackColor;
-        }
-    }
-
     //todo: this is currently setup with the assumption that givenButtonSize comes from toolbar.buttonSize
     //need to generalize for other cases (think individual button options)
     //this is used on the button container for each button and the dots

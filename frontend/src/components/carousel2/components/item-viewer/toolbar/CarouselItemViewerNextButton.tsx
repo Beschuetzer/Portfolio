@@ -17,12 +17,12 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.nextButton || {};
     const { 
-        stylingLogic,
+        optionsLogic,
         toolbarActionsLogic,
         toolbarLogic
      } = useBusinessLogic();
     const nextItemAction = toolbarActionsLogic.getNextItem();
-    const fillColor = stylingLogic.getButtonColor(CarouselElement.nextButton);
+    const fillColor = optionsLogic.getButtonColor(CarouselElement.nextButton);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={nextItemAction.keys} position={position} isShortcutVisible={isShortcutVisible}>

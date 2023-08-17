@@ -45,7 +45,7 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
     CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT
 } from "../constants";
-import { CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
+import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
 
 export type OptionsConstructor = {
@@ -92,6 +92,30 @@ export class OptionsLogic {
 
     get autoHideToolbarDuration() {
         return getCurrentValue(this.options?.itemViewer?.autoHideToolbarDuration, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, this.isFullscreenMode);
+    }
+
+    getButtonColor(buttonName: CarouselElement, fallbackColor = CAROUSEL_COLOR_FIVE) {
+        const specificFillColor = getCurrentValue(this.options?.styling?.elements?.[buttonName]?.fillColor, undefined, this.isFullscreenMode);
+
+        switch (buttonName) {
+            case CarouselElement.arrowLeft:
+            case CarouselElement.arrowRight:
+            case CarouselElement.dots:
+                const navigationElementsColor = getCurrentValue(this.options?.styling?.navigation?.elements?.color, undefined, this.isFullscreenMode);
+                return specificFillColor || navigationElementsColor || this.allFillColor || fallbackColor;
+            case CarouselElement.closeButton:
+            case CarouselElement.fullscreenButton:
+            case CarouselElement.nextButton:
+            case CarouselElement.pauseButton:
+            case CarouselElement.playButton:
+            case CarouselElement.previousButton:
+            case CarouselElement.seekBackButton:
+            case CarouselElement.seekForwardButton:
+                const toolbarElementsColor = getCurrentValue(this.options?.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode);
+                return specificFillColor || toolbarElementsColor || this.allFillColor || fallbackColor;
+            default:
+                return specificFillColor || this.allFillColor || fallbackColor;
+        }
     }
 
     get carouselContainerBackgroundColor() {

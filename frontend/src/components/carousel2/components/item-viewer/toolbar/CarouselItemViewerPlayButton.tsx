@@ -17,9 +17,9 @@ export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPl
 }, ref) => {
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.playButton || {};
-    const { stylingLogic, toolbarActionsLogic } = useBusinessLogic();
+    const { optionsLogic, toolbarActionsLogic } = useBusinessLogic();
     const playAction = toolbarActionsLogic.getPlay();
-    const fillColor = stylingLogic.getButtonColor(CarouselElement.playButton);
+    const fillColor = optionsLogic.getButtonColor(CarouselElement.playButton);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={playAction.keys} position={position} isShortcutVisible={isShortcutVisible} isVisible={isVisible}>

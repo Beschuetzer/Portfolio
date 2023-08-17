@@ -16,9 +16,9 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
 }, ref) => {
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.previousButton || {};
-    const { stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic();
+    const { optionsLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic();
     const previousItemAction = toolbarActionsLogic.getPreviousItem();
-    const fillColor = stylingLogic.getButtonColor(CarouselElement.previousButton);
+    const fillColor = optionsLogic.getButtonColor(CarouselElement.previousButton);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={previousItemAction.keys} position={position} isShortcutVisible={isShortcutVisible}>

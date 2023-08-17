@@ -20,9 +20,9 @@ export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemVi
     videoRef,
 }, ref) => {
     const { elementStylings, setIsFullscreenMode, isFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
-    const { stylingLogic } = useBusinessLogic();
+    const { optionsLogic } = useBusinessLogic();
     const { svgHref, style: buttonStyle } = elementStylings?.fullscreenButton || {};
-    const fillColor = stylingLogic.getButtonColor(CarouselElement.fullscreenButton);
+    const fillColor = optionsLogic.getButtonColor(CarouselElement.fullscreenButton);
 
     const onClickLocal = useCallback(async () => {
         onClick && onClick();
