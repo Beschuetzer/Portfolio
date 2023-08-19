@@ -457,28 +457,28 @@ export type CarouselColorTheme = {
     *This is the darkest color in the default theme.  
     Default is `#1d0e0b`
     **/
-    colorOne?: Color; 
+    colorOne?: CarouselElementValue<Color>; 
     /**
     *Default is `#774023`
     **/
-    colorTwo?: Color; 
+    colorTwo?: CarouselElementValue<Color>; 
      /**
     *Default is `#d88c51`
     **/
-    colorThree?: Color; 
+    colorThree?: CarouselElementValue<Color>; 
      /**
     *Default is `#f3e7c9`
     **/
-    colorFour?: Color; 
+    colorFour?: CarouselElementValue<Color>; 
     /**
     *This is the lightest color in default theme
     Default is `#fff9f5`
     **/
-    colorFive?: Color;
+    colorFive?: CarouselElementValue<Color>;
      /**
     *Default is `#9b9b9b`
     **/
-    colorGreyOne?: Color;
+    colorGreyOne?: CarouselElementValue<Color>;
 }
 
 //#region Actions

@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { CAROUSEL_COLOR_ONE, CLASSNAME__BUTTON } from "../../constants";
+import { CLASSNAME__BUTTON } from "../../constants";
 import { ArrowButtonDirection, ArrowProps, ButtonProps, CarouselElement } from "../../types";
 import { StylingLogic } from "../../business-logic/StylingLogic";
 import { useBusinessLogic } from "../../hooks/useBusinessLogic";
@@ -9,17 +9,18 @@ type ArrowButtonProps = {
 
 export const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(({
     className = CLASSNAME__BUTTON,
-    fillColor = CAROUSEL_COLOR_ONE,
+    fillColor,
     direction,
     onClick = () => null,
     childStyle = {},
     style = {},
 }, ref) => {
+    const { stylingLogic, optionsLogic } = useBusinessLogic();
     const classNameToUse = `${className}--arrow-${direction}`;
     const leftClassName = `${classNameToUse}-one`;
     const rightClassName = `${classNameToUse}-two`;
-    const { stylingLogic } = useBusinessLogic();
-    const colorStyle = StylingLogic.getColorStyle(fillColor, 'backgroundColor', childStyle);
+    const fillColorToUse = fillColor || optionsLogic.theme.colorOne;
+    const colorStyle = StylingLogic.getColorStyle(fillColorToUse, 'backgroundColor', childStyle);
     const instanceWidth = parseInt(style.width as string, 10) || 0;
     const buttonName = direction === ArrowButtonDirection.next ? CarouselElement.arrowRight : CarouselElement.arrowLeft;
 

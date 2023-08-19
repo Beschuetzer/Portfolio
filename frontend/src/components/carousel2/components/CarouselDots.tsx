@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react'
 import { CarouselItemProps } from './CarouselItem';
 import { getClassname, getCurrentValue } from '../utils';
-import { CAROUSEL_COLOR_FIVE, CAROUSEL_COLOR_ONE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_DOT_HEIGHT_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS, CAROUSEL_DOT_WIDTH_DEFAULT } from '../constants';
+import { CAROUSEL_COLOR_FIVE, CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_DOT_HEIGHT_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS, CAROUSEL_DOT_WIDTH_DEFAULT } from '../constants';
 import { ArrowProps, CarouselElement, CarouselNavigationProps } from '../types';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
@@ -25,7 +25,7 @@ export const CarouselDots = ({
     const { svgHref, style } = options?.styling?.elements?.dots || {};
     const { optionsLogic, stylingLogic } = useBusinessLogic();
     const { isFullscreenMode } = useCarouselContext();
-    const defaultColor = optionsLogic.isDefaultItemDisplayLocation ? CAROUSEL_COLOR_ONE : CAROUSEL_COLOR_FIVE;
+    const defaultColor = optionsLogic.isDefaultItemDisplayLocation ? optionsLogic.theme.colorOne : CAROUSEL_COLOR_FIVE;
     const fillColor = optionsLogic.getButtonColor(CarouselElement.dots, defaultColor);
     //#endregion
 
@@ -61,7 +61,7 @@ export const CarouselDots = ({
             const currentDotStyle = isCurrentPage && !!svgToUse ? {
                 opacity: 1,
             } : isCurrentPage ? {
-                backgroundColor: fillColor || CAROUSEL_COLOR_ONE,
+                backgroundColor: fillColor || optionsLogic.theme.colorOne,
                 opacity: 1,
             } : {};
 
@@ -93,6 +93,7 @@ export const CarouselDots = ({
         isFullscreenMode,
         numberOfDots,
         onDotClick,
+        optionsLogic,
         style,
         svgHref,
         useStyles

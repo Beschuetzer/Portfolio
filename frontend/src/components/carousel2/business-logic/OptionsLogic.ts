@@ -43,7 +43,9 @@ import {
     CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_END_OPACITY_DEFAULT,
     CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
-    CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT
+    CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_COLOR_FOUR,
+    CAROUSEL_COLOR_TWO
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
@@ -143,7 +145,7 @@ export class OptionsLogic {
     }
 
     get carouselContainerBackgroundColor() {
-        return getCurrentValue(this.options?.styling?.container?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.container?.background, this.theme.colorOne, this.isFullscreenMode);
     }
 
     get carouselItemSize() {
@@ -249,7 +251,7 @@ export class OptionsLogic {
     }
 
     get itemViewerPreviewBackground() {
-        return getCurrentValue(this.options?.styling?.itemViewerPreview?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.background, this.theme.colorOne, this.isFullscreenMode);
     }
 
     get itemViewerPreviewBorder() {
@@ -336,7 +338,7 @@ export class OptionsLogic {
     get modalBackgroundColor() {
         return getCurrentValue(
             this.options?.styling?.modal?.background,
-            CAROUSEL_COLOR_ONE,
+            this.theme.colorOne,
             this.isFullscreenMode
         );
     }
@@ -409,13 +411,30 @@ export class OptionsLogic {
         return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
     }
 
+    get theme() {
+        const colorOne = getCurrentValue(this.options?.styling?.colorTheme?.colorOne, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        const colorTwo = getCurrentValue(this.options?.styling?.colorTheme?.colorTwo, CAROUSEL_COLOR_TWO, this.isFullscreenMode);
+        const colorThree = getCurrentValue(this.options?.styling?.colorTheme?.colorThree, CAROUSEL_COLOR_THREE, this.isFullscreenMode);
+        const colorFour = getCurrentValue(this.options?.styling?.colorTheme?.colorFour, CAROUSEL_COLOR_FOUR, this.isFullscreenMode);
+        const colorFive = getCurrentValue(this.options?.styling?.colorTheme?.colorFive, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        const colorGreyOne = getCurrentValue(this.options?.styling?.colorTheme?.colorGreyOne, CAROUSEL_COLOR_GREY_ONE, this.isFullscreenMode);
+        return {
+            colorOne,
+            colorTwo,
+            colorThree,
+            colorFour,
+            colorFive,
+            colorGreyOne
+        }
+    }
+
     get thumbnailBorderString() {
         return getCurrentValue(this.options?.thumbnail?.currentItemBorder, undefined, this.isFullscreenMode)
     }
 
     get thumbnailOverlayBackgroundSolid() {
         const opacity = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.background?.solid?.opacity, CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT, this.isFullscreenMode);
-        const color = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.background?.solid?.color, CAROUSEL_COLOR_ONE, this.isFullscreenMode).trim();
+        const color = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.background?.solid?.color, this.theme.colorOne, this.isFullscreenMode).trim();
         return {
             opacity,
             color,
@@ -427,7 +446,7 @@ export class OptionsLogic {
         const angle = getCurrentValue(gradient?.angle, CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_ANGLE_DEFAULT, this.isFullscreenMode)
         const startColor = getCurrentValue(gradient?.start?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
         const startOpacity = getCurrentValue(gradient?.start?.opacity, CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_START_OPACITY_DEFAULT, this.isFullscreenMode);
-        const endColor = getCurrentValue(gradient?.end?.color, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        const endColor = getCurrentValue(gradient?.end?.color, this.theme.colorOne, this.isFullscreenMode);
         const endOpacity = getCurrentValue(gradient?.end?.opacity, CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_END_OPACITY_DEFAULT, this.isFullscreenMode);
         return {
             angle,
@@ -544,7 +563,7 @@ export class OptionsLogic {
     }
 
     get videoCurrentStateIndicatorBackgroundColor() {
-        return getCurrentValue(this.options?.styling?.videoCurrentStateIndicator?.background, CAROUSEL_COLOR_ONE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.videoCurrentStateIndicator?.background, this.theme.colorOne, this.isFullscreenMode);
     }
 
     getVideoCurrentStateIndicatorButtonColor(buttonName: CarouselVideoCurrentStateIndicatorButtonName) {
