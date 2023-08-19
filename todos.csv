@@ -1,16 +1,16 @@
 Carousel rework
-  -work on progressbar rework:
-    --none and bottom case (itemDisplayLocation) for CarouselModal not in correct spot
-    --add option to specify image positioning when fullscreen and non-fulscreen (only applies when itemDisplayLocation is not 'none'); default should be top non-fullscreen and centered in fullscreen; add three options in enum (top, center, bottom) then convert to right value for each case
-    --move all instances of getCurrentValue calls from StylingLogic to OptionsLogic
-    --rename getters in OptionsLogic so that carousel is no longer in any of them?
-    --need to remove cursor: none on body when a re-size occurs
-    --todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)
-    --figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
-    --add component in CarouselVideo to show the snapshot when changing percent via bar
-    --add options for thubnail snapshot 
-    --figure out why swipe handler gets trigger sometimes
-    --verify all of the progress bar customization options still work when done 
+  -add options.theme with five color options then replace all color instance with the value in options logic
+  -none and bottom case (itemDisplayLocation) for CarouselModal not in correct spot
+  -add option to specify image positioning when fullscreen and non-fulscreen (only applies when itemDisplayLocation is not 'none'); default should be top non-fullscreen and centered in fullscreen; add three options in enum (top, center, bottom) then convert to right value for each case
+  -move all instances of getCurrentValue calls from StylingLogic to OptionsLogic
+  -rename getters in OptionsLogic so that carousel is no longer in any of them?
+  -need to remove cursor: none on body when a re-size occurs
+  -todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)
+  -figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
+  -add component in CarouselVideo to show the snapshot when changing percent via bar
+  -add options for thubnail snapshot 
+  -figure out why swipe handler gets trigger sometimes
+  -verify all of the progress bar customization options still work when done 
 
   -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -check how fullscreen looks on phone (should rotate)
@@ -44,7 +44,7 @@ React best practices re-work (branch = sitenav_rework)
   -add onPress handler to ArrowButton to be able to hide the elements on bridge page when switching left/right 
   -add more complext logic in SkillPopup sort to weight created date?
 
-JOB STUFF------------------------------------
+JOB STUFF-----------------------------------
   -Add section about contributing to enterprise-wide aggregation service (EGP) and SABER backend for Retail Employee Selling Tools
   -Portoflio repo is Private so make Public when the search starts
   -add to resume/portfolio "Identified multiple inefficiencies and proposed and implemented optimizations (backend interaction running through each action every time a new action is triggered even though the current state of the interaction was available; frontend added caching to various features reducing the number of calls needed)"

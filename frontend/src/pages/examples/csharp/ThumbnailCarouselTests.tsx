@@ -3322,6 +3322,7 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,
 	// SectionNames.dynamicBasedOnViewingMode,
+	SectionNames.dynamicLayout,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
 	SectionNames.isLastPageFlush,

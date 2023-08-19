@@ -1356,13 +1356,7 @@ export class StylingLogic {
         let defaultPadding: number;
 
         switch (direction) {
-            case SpacingDirection.bottom: {
-                defaultPadding = defaultOverride !== undefined && defaultOverride >= 0 ? defaultOverride
-                    : this.optionsLogic.isDefaultItemDisplayLocation
-                        ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
-                        : this.optionsLogic.isItemDisplayLocationBelow ? 0 : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                break;
-            }
+            case SpacingDirection.bottom:
             case SpacingDirection.left:
             case SpacingDirection.right: {
                 defaultPadding = defaultOverride !== undefined && defaultOverride >= 0 ? defaultOverride
