@@ -429,8 +429,18 @@ export type CarouselVerticalPaddingOptions = {
 }
 
 export type CarouselStylingOptions = {
+    /**
+    *Adjust individual element colors, styles, and svgHrefs
+    **/
     elements?: CarouselElementStyles;
+    /**
+    *Change the font either for the entire Carousel or by section
+    **/
     fontFamily?: CarouselFontFamilyOptions;
+    /**
+    *Adjust the color values of the entire Carousel in one fell swoop.
+    **/
+    colorTheme?: CarouselColorTheme;
 } & CarouselSections;
 
 export type CarouselOptions = {
@@ -440,6 +450,35 @@ export type CarouselOptions = {
     shortcuts?: CarouselActions;
     styling?: CarouselStylingOptions
     thumbnail?: CarouselThumbnailOptions;
+}
+
+export type CarouselColorTheme = {
+    /**
+    *This is the darkest color in the default theme.  
+    Default is `#1d0e0b`
+    **/
+    colorOne?: Color; 
+    /**
+    *Default is `#774023`
+    **/
+    colorTwo?: Color; 
+     /**
+    *Default is `#d88c51`
+    **/
+    colorThree?: Color; 
+     /**
+    *Default is `#f3e7c9`
+    **/
+    colorFour?: Color; 
+    /**
+    *This is the lightest color in default theme
+    Default is `#fff9f5`
+    **/
+    colorFive?: Color;
+     /**
+    *Default is `#9b9b9b`
+    **/
+    colorGreyOne?: Color;
 }
 
 //#region Actions
