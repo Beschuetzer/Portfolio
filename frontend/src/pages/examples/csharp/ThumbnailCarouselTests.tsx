@@ -2180,6 +2180,60 @@ const noThumbnailDescriptionOverlay = (
 		}
 	}} />
 );
+const themeAllValuesChangedDisplayNone = (
+	<Carousel
+		items={items}
+		options={{
+			styling: {
+				colorTheme: {
+					colorOne:  getComputedStyleCustom("--color-primary-1"),
+					colorTwo:  getComputedStyleCustom("--color-primary-2"),
+					colorThree:  getComputedStyleCustom("--color-primary-2"),
+					colorFour:  getComputedStyleCustom("--color-primary-3"),
+					colorFive:  getComputedStyleCustom("--color-primary-4"),
+				}
+			}
+		}}
+	/>
+)
+const themeAllValuesChangedDisplayAbove = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayLocation: 'above'
+			},
+			styling: {
+				colorTheme: {
+					colorOne:  getComputedStyleCustom("--color-primary-4"),
+					colorTwo:  getComputedStyleCustom("--color-primary-2"),
+					colorThree:  getComputedStyleCustom("--color-primary-2"),
+					colorFour:  getComputedStyleCustom("--color-primary-3"),
+					colorFive:  getComputedStyleCustom("--color-primary-1"),
+				}
+			}
+		}}
+	/>
+)
+const themeAllValuesChangedDisplayBelow = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayLocation: 'below'
+			},
+			styling: {
+				colorTheme: {
+					colorOne:  getComputedStyleCustom("--color-primary-4"),
+					colorTwo:  getComputedStyleCustom("--color-primary-2"),
+					colorThree:  getComputedStyleCustom("--color-primary-2"),
+					colorFour:  getComputedStyleCustom("--color-primary-3"),
+					colorFive:  getComputedStyleCustom("--color-primary-1"),
+				}
+			}
+		}}
+	/>
+)
 const viewingModeToolbarButtons = (
 	<Carousel
 		items={items.slice(0, 3)}
@@ -2543,6 +2597,7 @@ enum SectionNames {
 	layouts = "Layouts",
 	navigationOptions = "Navigation Options",
 	otherDynamicSettings = "Other Dynamic Settings",
+	theme = 'Theme',
 	thumbnailOptions = "Thumbnail Options",
 }
 const SECTIONS: Sections = [
@@ -3304,6 +3359,23 @@ const SECTIONS: Sections = [
 		]
 	],
 	[
+		SectionNames.theme,
+		[
+			{
+				label: "Change All theme Values - Default Display Location",
+				jsx: themeAllValuesChangedDisplayNone
+			},
+			{
+				label: "Change All theme Values - Above Display Location",
+				jsx: themeAllValuesChangedDisplayAbove
+			},
+			{
+				label: "Change All theme Values - Below Display Location",
+				jsx: themeAllValuesChangedDisplayBelow
+			},
+		]
+	],
+	[
 		SectionNames.custom,
 		[
 			{
@@ -3325,7 +3397,7 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	SectionNames.dynamicLayout,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
-	SectionNames.isLastPageFlush,
+	SectionNames.theme,
 	// ...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS

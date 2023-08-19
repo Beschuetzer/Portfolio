@@ -1,5 +1,5 @@
 Carousel rework
-  -add options.theme with five color options then replace all color instance with the value in options logic
+  -check for things that aren't hooked up to the theme (e.g. popups and text)
   -none and bottom case (itemDisplayLocation) for CarouselModal not in correct spot
   -add option to specify image positioning when fullscreen and non-fulscreen (only applies when itemDisplayLocation is not 'none'); default should be top non-fullscreen and centered in fullscreen; add three options in enum (top, center, bottom) then convert to right value for each case
   -move all instances of getCurrentValue calls from StylingLogic to OptionsLogic
