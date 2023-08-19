@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { CAROUSEL_COLOR_FIVE, CLASSNAME__BUTTON } from "../../constants";
+import { CLASSNAME__BUTTON } from "../../constants";
 import { ButtonProps, CarouselElement } from "../../types";
 import { StylingLogic } from '../../business-logic/StylingLogic';
 import { useBusinessLogic } from '../../hooks/useBusinessLogic';
@@ -8,13 +8,14 @@ type SeekBackButtonProps = {} & ButtonProps;
 
 export const SeekBackButton = forwardRef<HTMLButtonElement, SeekBackButtonProps>(({
   className = CLASSNAME__BUTTON,
-  fillColor = CAROUSEL_COLOR_FIVE,
+  fillColor,
   onClick = () => null,
   childStyle = {},
   style = {},
 }, ref) => {
-  const { stylingLogic } = useBusinessLogic();
-  const colorStyle = StylingLogic.getColorStyle(fillColor, 'borderLeftColor', childStyle);
+  const { stylingLogic, optionsLogic } = useBusinessLogic();
+  const fillColorToUse = fillColor || optionsLogic.theme.colorFive;
+  const colorStyle = StylingLogic.getColorStyle(fillColorToUse, 'borderLeftColor', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
   const buttonName = CarouselElement.seekBackButton;
 

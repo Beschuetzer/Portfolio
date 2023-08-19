@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { CAROUSEL_COLOR_FIVE, CLASSNAME__BUTTON, CLASSNAME__HIDDEN } from "../../constants";
+import { CLASSNAME__BUTTON, CLASSNAME__HIDDEN } from "../../constants";
 import { ButtonProps, CarouselElement } from "../../types";
 import { StylingLogic } from "../../business-logic/StylingLogic";
 import { useBusinessLogic } from "../../hooks/useBusinessLogic";
@@ -10,15 +10,16 @@ type PreviousButtonProps = {
 
 export const PreviousButton = forwardRef<HTMLButtonElement, PreviousButtonProps>(({
   className = CLASSNAME__BUTTON,
-  fillColor = CAROUSEL_COLOR_FIVE,
+  fillColor,
   onClick = () => null,
   showButton = true,
   childStyle = {},
   style = {},
 }, ref) => {
-  const { stylingLogic } = useBusinessLogic();
-  const firstStyle = StylingLogic.getColorStyle(fillColor, 'background', childStyle);
-  const secondStyle = StylingLogic.getColorStyle(fillColor, 'borderRightColor', childStyle);
+  const { stylingLogic, optionsLogic } = useBusinessLogic();
+  const fillColorToUse = fillColor || optionsLogic.theme.colorFive;
+  const firstStyle = StylingLogic.getColorStyle(fillColorToUse, 'background', childStyle);
+  const secondStyle = StylingLogic.getColorStyle(fillColorToUse, 'borderRightColor', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
   const buttonName = CarouselElement.previousButton;
 

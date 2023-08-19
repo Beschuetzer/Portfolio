@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { CAROUSEL_COLOR_FIVE, CLASSNAME__BUTTON } from "../../constants";
+import { CLASSNAME__BUTTON } from "../../constants";
 import { ButtonProps, CarouselElement } from "../../types";
 import { StylingLogic } from "../../business-logic/StylingLogic";
 import { useBusinessLogic } from "../../hooks/useBusinessLogic";
@@ -12,17 +12,18 @@ export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(({
   childStyle = {},
   className = CLASSNAME__BUTTON,
   classNameModifier = '',
-  fillColor = CAROUSEL_COLOR_FIVE,
+  fillColor,
   onClick = () => null,
   style = {},
 }, ref) => {
+  const { stylingLogic, optionsLogic } = useBusinessLogic();
+  const fillColorToUse = fillColor || optionsLogic.theme.colorFive;
   const classModifierName = `${className}--${classNameModifier}`;
   const leftClassName = `${className}--close-left`;
   const leftModifierClassname = `${leftClassName}-${classNameModifier}`;
   const rightClassName = `${className}--close-right`;
   const rightModifierClassname = `${rightClassName}-${classNameModifier}`;
-  const { stylingLogic } = useBusinessLogic();
-  const colorStyle = StylingLogic.getColorStyle(fillColor, 'backgroundColor', childStyle);
+  const colorStyle = StylingLogic.getColorStyle(fillColorToUse, 'backgroundColor', childStyle);
   const instanceWidth = parseInt(style.width as string, 10) || 0;
   const buttonName = CarouselElement.closeButton;
 

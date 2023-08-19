@@ -6,7 +6,6 @@ import {
     CAROUSEL_ITEM_SIZE_DEFAULT,
     CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_SPACING_DEFAULT,
-    CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_FIT_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_IMAGE_POSITION_WHEN_NO_SWAP_DEFAULT,
@@ -96,7 +95,8 @@ export class OptionsLogic {
         return getCurrentValue(this.options?.itemViewer?.autoHideToolbarDuration, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, this.isFullscreenMode);
     }
 
-    getButtonColor(buttonName: CarouselElement, fallbackColor = CAROUSEL_COLOR_FIVE) {
+    getButtonColor(buttonName: CarouselElement, fallbackColor?: string) {
+        const fallbackColorToUse = fallbackColor || this.theme.colorFive;
         const specificFillColor = getCurrentValue(this.options?.styling?.elements?.[buttonName]?.fillColor, undefined, this.isFullscreenMode);
 
         switch (buttonName) {
@@ -104,7 +104,7 @@ export class OptionsLogic {
             case CarouselElement.arrowRight:
             case CarouselElement.dots:
                 const navigationElementsColor = getCurrentValue(this.options?.styling?.navigation?.elements?.color, undefined, this.isFullscreenMode);
-                return specificFillColor || navigationElementsColor || this.allFillColor || fallbackColor;
+                return specificFillColor || navigationElementsColor || this.allFillColor || fallbackColorToUse;
             case CarouselElement.closeButton:
             case CarouselElement.fullscreenButton:
             case CarouselElement.nextButton:
@@ -114,9 +114,9 @@ export class OptionsLogic {
             case CarouselElement.seekBackButton:
             case CarouselElement.seekForwardButton:
                 const toolbarElementsColor = getCurrentValue(this.options?.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode);
-                return specificFillColor || toolbarElementsColor || this.allFillColor || fallbackColor;
+                return specificFillColor || toolbarElementsColor || this.allFillColor || fallbackColorToUse;
             default:
-                return specificFillColor || this.allFillColor || fallbackColor;
+                return specificFillColor || this.allFillColor || fallbackColorToUse;
         }
     }
 
@@ -255,7 +255,8 @@ export class OptionsLogic {
     }
 
     get itemViewerPreviewBorder() {
-        return getCurrentValue(this.options?.styling?.itemViewerPreview?.border, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_DEFAULT, this.isFullscreenMode);
+        const defaultBorder = `1px solid ${this.theme.colorFive}`;
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.border, defaultBorder, this.isFullscreenMode);
     }
 
     get itemViewerPreviewBorderRadius() {
@@ -289,7 +290,7 @@ export class OptionsLogic {
     }
 
     get itemViewerPreviewTextBodyColor() {
-        return getCurrentValue(this.options?.styling?.itemViewerPreview?.text?.body?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.text?.body?.color, this.theme.colorFive, this.isFullscreenMode);
     }
 
     get itemViewerPreviewTextBodyFontFamily() {
@@ -301,7 +302,7 @@ export class OptionsLogic {
     }
 
     get itemViewerPreviewTextHeaderColor() {
-        return getCurrentValue(this.options?.styling?.itemViewerPreview?.text?.header?.color, CAROUSEL_COLOR_GREY_ONE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.itemViewerPreview?.text?.header?.color, this.theme.colorGreyOne, this.isFullscreenMode);
     }
 
     get itemViewerPreviewTextHeaderFontFamily() {
@@ -344,7 +345,7 @@ export class OptionsLogic {
     }
 
     get modalCloseButtonColor() {
-        const defaultColor = getCurrentValue(this.options?.styling?.modal?.textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        const defaultColor = getCurrentValue(this.options?.styling?.modal?.textColor,  this.theme.colorFive, this.isFullscreenMode);
         return getCurrentValue(this.options?.styling?.modal?.closeButton?.fill, defaultColor, this.isFullscreenMode);
     }
 
@@ -354,7 +355,7 @@ export class OptionsLogic {
 
     get modalCloseButtonWidth() {
         const sizeGiven = this.options?.styling?.modal?.closeButton?.size;
-        return !!sizeGiven ? this.modalCloseButtonSize  : this.isFullscreenMode ? undefined : CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT;
+        return !!sizeGiven ? this.modalCloseButtonSize : this.isFullscreenMode ? undefined : CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT;
     }
 
     get modalFontSize() {
@@ -380,7 +381,7 @@ export class OptionsLogic {
     get modalTextColor() {
         return getCurrentValue(
             this.options?.styling?.modal?.textColor,
-            CAROUSEL_COLOR_FIVE,
+            this.theme.colorFive,
             this.isFullscreenMode
         );
     }
@@ -400,7 +401,7 @@ export class OptionsLogic {
     }
 
     get navigationBackground() {
-        return getCurrentValue(this.options?.styling?.navigation?.background, undefined, this.isFullscreenMode) 
+        return getCurrentValue(this.options?.styling?.navigation?.background, undefined, this.isFullscreenMode)
     }
 
     get navigationMaxClickThreshold() {
@@ -444,7 +445,7 @@ export class OptionsLogic {
     get thumbnailOverlayBackgroundGradient() {
         const gradient = this.options?.thumbnail?.descriptionOverlay?.background?.gradient;
         const angle = getCurrentValue(gradient?.angle, CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_ANGLE_DEFAULT, this.isFullscreenMode)
-        const startColor = getCurrentValue(gradient?.start?.color, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        const startColor = getCurrentValue(gradient?.start?.color,  this.theme.colorFive, this.isFullscreenMode);
         const startOpacity = getCurrentValue(gradient?.start?.opacity, CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_START_OPACITY_DEFAULT, this.isFullscreenMode);
         const endColor = getCurrentValue(gradient?.end?.color, this.theme.colorOne, this.isFullscreenMode);
         const endOpacity = getCurrentValue(gradient?.end?.opacity, CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_END_OPACITY_DEFAULT, this.isFullscreenMode);
@@ -467,7 +468,7 @@ export class OptionsLogic {
 
     get thumbnailOverlayText() {
         const fontSize = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.fontSize, CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT, this.isFullscreenMode);
-        const color = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.textColor, CAROUSEL_COLOR_FIVE, this.isFullscreenMode);
+        const color = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.textColor,  this.theme.colorFive, this.isFullscreenMode);
         const maxLineCount = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.maxLineCount, CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT, this.isFullscreenMode)
         return {
             color,
@@ -484,7 +485,7 @@ export class OptionsLogic {
     get toolbarTextColor() {
         const priorityColor = getCurrentValue(this.options?.styling?.toolbar?.textColor, undefined, this.isFullscreenMode);
         const secondaryColor = getCurrentValue(this.options?.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode)
-        return priorityColor || secondaryColor || this.allFillColor || CAROUSEL_COLOR_FIVE;
+        return priorityColor || secondaryColor || this.allFillColor ||  this.theme.colorFive;
     }
 
     get useDefaultVideoControls() {
@@ -500,7 +501,7 @@ export class OptionsLogic {
     }
 
     get videoProgressBarBackgroundColor() {
-        const backgroundColorToUse = this.isToolbarInVideo ? convertHexToRgba(CAROUSEL_COLOR_GREY_ONE, .25) : CAROUSEL_COLOR_GREY_ONE;
+        const backgroundColorToUse = this.isToolbarInVideo ? convertHexToRgba(this.theme.colorGreyOne, .25) : this.theme.colorGreyOne;
         return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.background, backgroundColorToUse, this.isFullscreenMode);
     }
 
@@ -550,7 +551,7 @@ export class OptionsLogic {
     }
 
     get videoProgressBarSeekColor() {
-        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.seekColor, convertHexToRgba(CAROUSEL_COLOR_FIVE, .5), this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.seekColor, convertHexToRgba( this.theme.colorFive, .5), this.isFullscreenMode);
     }
 
     get videoProgressBarHeight() {
@@ -577,7 +578,7 @@ export class OptionsLogic {
     get videoCurrentStateIndicatorForegroundColor() {
         return getCurrentValue(
             this.options?.styling?.videoCurrentStateIndicator?.foregroundColor,
-            CAROUSEL_COLOR_FIVE,
+             this.theme.colorFive,
             this.isFullscreenMode
         );
     }

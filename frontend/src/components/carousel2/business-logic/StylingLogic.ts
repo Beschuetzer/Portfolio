@@ -4,7 +4,6 @@ import { OptionsLogic } from "./OptionsLogic";
 import { convertColorNameToHex, convertHexToRgba, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
 import {
     CAROUSEL_SPACING_UNIT,
-    CAROUSEL_COLOR_FIVE,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
@@ -194,7 +193,7 @@ export class StylingLogic {
         const isRgb = lastBorderElement?.match(RegexpPattern.rgbColor);
         const isRgba = lastBorderElement?.match(RegexpPattern.rgbaColor);
         const color = isHex || isRgb || isRgba ? lastBorderElement : convertColorNameToHex(lastBorderElement);
-        const borderToUse = `1px solid ${convertHexToRgba(color || CAROUSEL_COLOR_FIVE, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT)}`;
+        const borderToUse = `1px solid ${convertHexToRgba(color || this.optionsLogic.theme.colorFive, CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT)}`;
 
         return {
             width: width / 2,
@@ -332,7 +331,7 @@ export class StylingLogic {
         } as React.CSSProperties : {}
         const divSizeStyle = width || containerLength ? {
             margin: width ? width : isContainerLengthLessThanRadius ? containerLength / 4 : 4,
-            border: `${width ? width : isContainerLengthLessThanRadius ? containerLength / 4 : 4}${CAROUSEL_SPACING_UNIT} solid ${CAROUSEL_COLOR_FIVE}`,
+            border: `${width ? width : isContainerLengthLessThanRadius ? containerLength / 4 : 4}${CAROUSEL_SPACING_UNIT} solid ${this.optionsLogic.theme.colorFive}`,
         } as React.CSSProperties : {}
 
         const colorStyle = {
