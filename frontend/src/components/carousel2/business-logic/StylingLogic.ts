@@ -4,7 +4,6 @@ import { OptionsLogic } from "./OptionsLogic";
 import { convertColorNameToHex, convertHexToRgba, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
 import {
     CAROUSEL_SPACING_UNIT,
-    CAROUSEL_COLOR_FOUR,
     CAROUSEL_COLOR_FIVE,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
@@ -1346,7 +1345,7 @@ export class StylingLogic {
     *Currently there is no keyword recognition so something like 'thickest double #000' will be considered valid.
     *If the border isn't showing up, check your string to make sure it is valid.
     */
-    private getBorderStringToUse(borderStr: CSSProperties['border'], defaultValue = `1${CAROUSEL_SPACING_UNIT} solid ${CAROUSEL_COLOR_FOUR}`) {
+    private getBorderStringToUse(borderStr: CSSProperties['border'], defaultValue = `1${CAROUSEL_SPACING_UNIT} solid ${this.optionsLogic.theme.colorFour}`) {
         const borderStrToUse = borderStr?.toString();
         const isValid = borderStr && borderStrToUse?.trim()?.split(/(\s+|rgb.+\))/)?.filter(item => !!item && item?.match(/\w+/))?.length === 3;
         return isValid ? borderStr : defaultValue;

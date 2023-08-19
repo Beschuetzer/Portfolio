@@ -516,7 +516,7 @@ export class OptionsLogic {
     }
 
     get videoProgressBarForegroundColor() {
-        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.foregroundColor, CAROUSEL_COLOR_THREE, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.foregroundColor, this.theme.colorThree, this.isFullscreenMode);
     }
 
     get videoProgressBarHitSlop() {
