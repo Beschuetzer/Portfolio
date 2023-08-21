@@ -547,10 +547,12 @@ export class OptionsLogic {
 
     get videoProgressBarScreenshotViewer() {
         const width = getCurrentValue(this.options?.styling?.toolbar?.progressBar?.screenshotViewer?.thumbnailWidth, CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT, this.isFullscreenMode);
+        const textColor = getCurrentValue(this.options?.styling?.toolbar?.progressBar?.textOrForegroundColor, this.theme.colorFive, this.isFullscreenMode);
 
         return {
             width,
-            height: width * 9 / 16
+            height: width * 9 / 16,
+            textColor
         }
     }
 

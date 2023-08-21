@@ -262,7 +262,7 @@ export type CarouselSections = {
                 *Height is .5625 of this value (16:9 aspect ratio)
                 **/
                 thumbnailWidth?: number;
-            }
+            } & Pick<CarouselColorOptions, 'textOrForegroundColor'>
             /**
             *The amount of space between each video section. 
             *Only applicable if `CarouselItemProps.video.sections` is given.
