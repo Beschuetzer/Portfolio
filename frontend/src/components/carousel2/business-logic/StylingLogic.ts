@@ -122,7 +122,7 @@ export class StylingLogic {
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: '100%',
             height: this.imageHeight,
-            objectPosition: this.isFullscreenMode ? 'center' : 'top',
+            objectPosition: this.optionsLogic.imagePosition,
             // ...cursorStyle,
         } as CSSProperties : {
         } as CSSProperties;
@@ -1204,14 +1204,22 @@ export class StylingLogic {
 
     //This is a function rather than a getter to allow for setting of itemContainer height manually which prevent "jumping" when switching between item types
     getCarouselItemContainerStyle(height: number | string = 'auto') {
+        const imagePosition = this.optionsLogic.imagePosition;
+        const contentJustification: CSSProperties['justifyContent'] = imagePosition === 'bottom' ? 'flex-end' : imagePosition === 'top' ? 'flex-start' : 'center';
+        const imagePositionStyle = {
+            justifyContent: contentJustification,
+        } as CSSProperties
+
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             height: this.isFullscreenMode ? '100vh' : height,
             position: "relative",
             backgroundColor: this.optionsLogic.itemViewerBackgroundColor,
-            justifyContent: this.isFullscreenMode ? 'center' : 'flex-end',
             overflow: "hidden",
-        } as CSSProperties : {};
+            ...imagePositionStyle
+        } as CSSProperties : {
+            ...imagePositionStyle
+        };
     }
 
     getCarouselItemsInnerContainerStyle(

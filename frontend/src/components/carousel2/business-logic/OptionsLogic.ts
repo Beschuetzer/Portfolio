@@ -183,6 +183,10 @@ export class OptionsLogic {
         return this.isMobile ? CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT : CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT;
     }
 
+    get imagePosition() {
+        return getCurrentValue(this.options.layout?.imagePosition, "center", this.isFullscreenMode);
+    }
+
     get isDefaultItemDisplayLocation() {
         return this.itemDisplayLocation === 'none';
     }

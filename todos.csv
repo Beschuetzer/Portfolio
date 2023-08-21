@@ -1,6 +1,6 @@
 Carousel rework
+  -clicking on the left/right arrow to navigate items doesn't prevent hiding of toolbar (sit in one spot and click a lot)
   -none and bottom case (itemDisplayLocation) for CarouselModal not in correct spot
-  -add option to specify image positioning when fullscreen and non-fulscreen (only applies when itemDisplayLocation is not 'none'); default should be top non-fullscreen and centered in fullscreen; add three options in enum (top, center, bottom) then convert to right value for each case
   -move all instances of getCurrentValue calls from StylingLogic to OptionsLogic
   -rename getters in OptionsLogic so that carousel is no longer in any of them?
   -need to remove cursor: none on body when a re-size occurs

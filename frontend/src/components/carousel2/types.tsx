@@ -135,6 +135,8 @@ export type CarouselItemViewerOptions = {
     seekAmount?: CarouselElementValue<number>;
 } & CarouselSwipingOptions
 
+export type CarouselImagePosition = 'bottom' | 'center' | 'top';
+
 export type CarouselItemViewerButtonProps = {
     onClick?: () => void;
     options?: CarouselOptions;
@@ -331,6 +333,12 @@ export type CarouselSections = {
 }
 
 export type CarouselLayoutOptions = {
+    /**
+    *Where the image is display in the `itemViewer`.  The nonfullscreen value only applies when `layout.itemDisplayLocation` is not `none`.
+    *Default is `center` when fullscreen mode and `top` when nonfullscreen mode.
+    *Only noticable when the image width is greater than the width of the `itemViewer`, and the image height is less than the height of the `itemViewer`
+    **/
+    imagePosition?: CarouselElementValue<CarouselImagePosition>;
     /***
     *If `none`, then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
     *Otherwise the the item is displayed above or below the carousel.
