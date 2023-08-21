@@ -92,10 +92,8 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#endregion
 
     //#region JSX
-    const visibilityStyle = useMemo(() => isVideoPlaying || !isVisible ? getClassname({ modifiedName: "hidden" }) : '', [isVideoPlaying, isVisible]);
-    const classNameToUse = useMemo(() => `${CLASSNAME__MODAL} ${isCustom ? CLASSNAME__MODAL_CUSTOM : ''} ${visibilityStyle}`, [
+    const classNameToUse = useMemo(() => `${CLASSNAME__MODAL} ${isCustom ? CLASSNAME__MODAL_CUSTOM : ''}`, [
         isCustom,
-        visibilityStyle
     ]);
     const button = useMemo(() => !!svgHref ? (
         <CarouselItemViewerCustomButton
@@ -151,7 +149,7 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
             ref={modalRef as any}
             className={classNameToUse}
             onClick={stopPropagation as any}
-            style={stylingLogic.getCarouselModalStyle(!!isProgressBarMouseDownRef?.current, modalHeightRef.current)}
+            style={stylingLogic.getCarouselModalStyle(isVideoPlaying || !isVisible || !!isProgressBarMouseDownRef?.current, modalHeightRef.current)}
         >
             {renderChildren()}
         </div>
