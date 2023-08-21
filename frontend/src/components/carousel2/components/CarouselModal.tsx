@@ -1,5 +1,4 @@
 import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { getClassname } from '../utils';
 import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
@@ -31,6 +30,7 @@ export type CarouselModalProps = Exclusive<{
 }>
 
 export type CarouselModalInternalProps = {
+    isProgressBarBeingHoveredRef?: React.MutableRefObject<boolean>;
     /**
     *This is used internally and determines when the overlay is shown
     **/
@@ -43,8 +43,16 @@ const MODAL_HEIGHT_INITIAL = 0;
 export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
-    
-    const { children, isVideoPlaying, sections, isProgressBarMouseDownRef, itemViewerToolbarRef, itemRef } = props;
+
+    const {
+        children,
+        isVideoPlaying,
+        sections,
+        isProgressBarMouseDownRef,
+        isProgressBarBeingHoveredRef,
+        itemViewerToolbarRef,
+        itemRef
+    } = props;
     const [isVisible, setIsVisible] = useState(true);
     const modalRef = useRef<HTMLElement>();
     const modalHeightRef = useRef<number>(MODAL_HEIGHT_INITIAL);
@@ -149,7 +157,12 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
             ref={modalRef as any}
             className={classNameToUse}
             onClick={stopPropagation as any}
-            style={stylingLogic.getCarouselModalStyle(isVideoPlaying || !isVisible || !!isProgressBarMouseDownRef?.current, modalHeightRef.current)}
+            style={
+                stylingLogic.getCarouselModalStyle(
+                    isVideoPlaying || !isVisible || !!isProgressBarMouseDownRef?.current || !!isProgressBarBeingHoveredRef?.current,
+                    modalHeightRef.current
+                )
+            }
         >
             {renderChildren()}
         </div>

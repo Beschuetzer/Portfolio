@@ -20,6 +20,7 @@ import { VideoTimeStrings } from '../../../types';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
 import { useCarouselContext } from '../../../context';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
+import { CarouselModalInternalProps } from '../../CarouselModal';
 
 type SectionToProgressBarValueMapping = {
     [number: number]: SectionToProgressBarValueMappingValue;
@@ -36,7 +37,8 @@ type CarouselItemViewerProgressBarProps = {
     & Required<Pick<
         CarouselItemViewerToolbarProps,
         'setIsVideoPlaying' | 'currentVideoSection' | 'setCurrentVideoSection' | 'seekPercent' | 'setSeekPercent' | 'percent' | 'setPercent'
-    >>;
+    >>
+    & Pick<CarouselModalInternalProps, 'isProgressBarBeingHoveredRef'>
 
 const MAP_SECTION_INTERVAL = 100;
 const NEXT_SECTION_OFFSET = .0000000000000001;
@@ -44,6 +46,7 @@ export const PROGRESS_BAR_PERCENT_INITIAL_VALUE = -1;
 export const CarouselItemViewerProgressBar = ({
     currentVideoSection,
     isMouseDownRef,
+    isProgressBarBeingHoveredRef,
     percent,
     seekPercent,
     setCurrentVideoSection,
@@ -164,11 +167,17 @@ export const CarouselItemViewerProgressBar = ({
         if (isMouseDownRef?.current) {
             return;
         };
+        if (isProgressBarBeingHoveredRef?.current !== undefined) {
+            isProgressBarBeingHoveredRef.current = false;
+        }
         setShowDot(false);
         setSeekPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
-    }, [isMouseDownRef, setSeekPercent])
+    }, [isMouseDownRef, isProgressBarBeingHoveredRef, setSeekPercent])
 
     const onMouseMove = useCallback((e: MouseEvent) => {
+        if (isProgressBarBeingHoveredRef?.current !== undefined) {
+            isProgressBarBeingHoveredRef.current = true;
+        }
         setShowDot(true);
         const percent = getPercent(e);
         setCurrentVideoSection && setCurrentVideoSection(areSectionsGiven ? getCurrentSection(percent) : 0);
@@ -178,7 +187,16 @@ export const CarouselItemViewerProgressBar = ({
         } else {
             setSeekPercent(percent);
         }
-    }, [areSectionsGiven, getCurrentSection, getPercent, isMouseDownRef, setCurrentVideoSection, setPercent, setSeekPercent])
+    }, [
+        areSectionsGiven,
+        getCurrentSection,
+        getPercent,
+        isMouseDownRef,
+        isProgressBarBeingHoveredRef,
+        setCurrentVideoSection,
+        setPercent,
+        setSeekPercent
+    ])
 
     const onMouseMoveGlobal = useCallback((e: MouseEvent) => {
         if (!isMouseDownRef?.current) return;

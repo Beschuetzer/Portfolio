@@ -70,6 +70,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 }, ref) => {
     //#region Init
     const { options, items, currentItemIndex, setCurrentItemIndex, currentItem, isFullscreenMode, hiddenInputRef } = useCarouselContext();
+    const isProgressBarBeingHoveredRef = useRef<boolean>(false);
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);
     const nextButtonRef = useRef<any>(null);
@@ -546,6 +547,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                             <CarouselItemViewerProgressBar
                                 currentVideoSection={currentVideoSection === undefined ? CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL : currentVideoSection}
                                 isMouseDownRef={isProgressBarMouseDownRef}
+                                isProgressBarBeingHoveredRef={isProgressBarBeingHoveredRef}
                                 percent={percent}
                                 setCurrentVideoSection={setCurrentVideoSection || doNothing}
                                 setIsVideoPlaying={setIsVideoPlaying}
@@ -662,6 +664,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                             itemRef={isVideo ? videoRef as any : imageRef as any}
                             isVideoPlaying={isVideoPlaying}
                             isProgressBarMouseDownRef={isProgressBarMouseDownRef}
+                            isProgressBarBeingHoveredRef={isProgressBarBeingHoveredRef}
                             {...currentItem?.modal}
                         />
                     ) : null}
