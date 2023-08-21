@@ -79,8 +79,11 @@ export type CarouselColorOptions = {
     *This can be any background string that the CSS property accepts
     *https://developer.mozilla.org/en-US/docs/Web/CSS/background
     **/
-    background?: CarouselElementValue<string>;
-    foregroundColor?: CarouselElementValue<Color>;
+    backgroundColor?: CarouselElementValue<string>;
+    /**
+    *For some elements this is the text color and for others it is the foreground color (e.g. progress bar)
+    **/
+    textOrForegroundColor?: CarouselElementValue<Color>;
 }
 
 export type CarouselElementValueType = "min-width" | "max-width";
@@ -140,14 +143,14 @@ export type CarouselItemViewerButtonProps = {
 export type CarouselSections = {
     [CarouselSection.container]?: {
         padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
-    } & Partial<Pick<CarouselColorOptions, 'background'>>;
+    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
     /**
     *This is the container in which the currently viewing item sits
     **/
     [CarouselSection.itemViewer]?: {
         loadingSpinner?: Partial<Omit<LoadingSpinnerProps, 'description' | 'show'>>;
         padding?: CarouselHorizontalPaddingOptions;
-    } & Partial<Pick<CarouselColorOptions, 'background'>>;
+    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
     /**
     *This is the popup that you see when you hover over the next/previous buttons when in fullscreen mode
     *This element is only visible in fullscreen mode by default
@@ -203,7 +206,7 @@ export type CarouselSections = {
         *Width in px.  Default is 400px.
         **/
         width?: CarouselElementValue<number>;
-    } & Partial<Pick<CarouselColorOptions, 'background'>>;
+    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
     /**
     *This is the where the dots, arrows, and thumbanils sit
     **/
@@ -213,7 +216,7 @@ export type CarouselSections = {
         **/
         elements?: CarouselElementSize & CarouselElementColor;
         padding?: CarouselHorizontalPaddingOptions;
-    } & Partial<Pick<CarouselColorOptions, 'background'>>;
+    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
     /**
     *This is where the buttons, progress bar, and item description sit
     **/
@@ -288,11 +291,15 @@ export type CarouselSections = {
         *This changes all of the button colors as well as the text.  To change individual ones, use `styling.elements.buttonNameHere`
         **/
         elements?: CarouselElementSize & CarouselElementColor;
+          /**
+        *This is the popup that displays when hovering a button in the toolbar
+        **/
+        shortcutIndicator?: CarouselColorOptions;
         /**
         *This overrides any value given in `toolbar.elements.color` above
         **/
         textColor?: CarouselElementValue<Color>;
-    } & Partial<Pick<CarouselColorOptions, 'background'>>;
+    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
     /**
     *This is the the button that appears when changing play/pause state
     **/
@@ -320,7 +327,7 @@ export type CarouselSections = {
         *this is a percent of the item container width when the `itemDisplayLocation` is not `none`.  It has no effect otherwise.
         **/
         widthInPercent?: CarouselElementValue<number>;
-    } & Partial<Pick<CarouselColorOptions, 'background'>>;
+    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
 }
 
 export type CarouselLayoutOptions = {
@@ -457,27 +464,27 @@ export type CarouselColorTheme = {
     *This is the darkest color in the default theme.  
     Default is `#1d0e0b`
     **/
-    colorOne?: CarouselElementValue<Color>; 
+    colorOne?: CarouselElementValue<Color>;
     /**
     *Default is `#774023`
     **/
-    colorTwo?: CarouselElementValue<Color>; 
-     /**
-    *Default is `#d88c51`
-    **/
-    colorThree?: CarouselElementValue<Color>; 
-     /**
-    *Default is `#f3e7c9`
-    **/
-    colorFour?: CarouselElementValue<Color>; 
+    colorTwo?: CarouselElementValue<Color>;
+    /**
+   *Default is `#d88c51`
+   **/
+    colorThree?: CarouselElementValue<Color>;
+    /**
+   *Default is `#f3e7c9`
+   **/
+    colorFour?: CarouselElementValue<Color>;
     /**
     *This is the lightest color in default theme
     Default is `#fff9f5`
     **/
     colorFive?: CarouselElementValue<Color>;
-     /**
-    *Default is `#9b9b9b`
-    **/
+    /**
+   *Default is `#9b9b9b`
+   **/
     colorGreyOne?: CarouselElementValue<Color>;
 }
 

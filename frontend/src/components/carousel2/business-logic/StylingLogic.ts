@@ -1283,6 +1283,7 @@ export class StylingLogic {
     getCarouselShortcutIndicatorTextStlye(position: CarouselItemViewerShortcutIndicatorPosition) {
         const isVideo = getIsVideo(this.currentItem);
         const { paddingTop: hitSlopTop, paddingBottom: hitSlopBottom } = this.getCarouselVideoProgressHitSlop();
+        const { backgroundColor, textColor } = this.optionsLogic.toolbarShortcutIndicator;
         const topStyle = {
             top: this.optionsLogic.isToolbarInVideo ? -hitSlopTop - hitSlopBottom + (!isVideo ? CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT : 0) : -hitSlopBottom - (isVideo ? 2 : .5) * CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT
         };
@@ -1304,9 +1305,14 @@ export class StylingLogic {
             ...commonStyle,
             transform: 'translate(-50%, -100%)',
         };
+        const colorStyle = {
+            color: textColor,
+            backgroundColor,
+        } as CSSProperties;
 
         return {
-            ...shortcutStyle
+            ...shortcutStyle,
+            ...colorStyle
         } as CSSProperties;
     }
 

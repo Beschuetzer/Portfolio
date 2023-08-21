@@ -884,12 +884,9 @@
   padding: 4px 8px;
   position: absolute;
   left: 50%;
-  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #28292f;
-  color: #fff9f5;
   border-radius: 4px;
   font-size: 12px;
   white-space: nowrap;
