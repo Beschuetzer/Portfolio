@@ -3532,7 +3532,7 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	SectionNames.imagePosition,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
-	// SectionNames.theme,
+	SectionNames.thumbnailOptions,
 	// ...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS

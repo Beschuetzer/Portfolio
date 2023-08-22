@@ -233,10 +233,6 @@ export class OptionsLogic {
         return getCurrentValue(this.options?.layout?.itemPositioning, undefined, this.isFullscreenMode);
     }
 
-    get itemSpacing() {
-        return getCurrentValue(this.options?.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT, this.isFullscreenMode)
-    }
-
     get itemSpacingStrategy() {
         return getCurrentValue(this.options?.thumbnail?.itemSpacingStrategy, 'min', this.isFullscreenMode);
     }
@@ -604,9 +600,13 @@ export class OptionsLogic {
     //#endregion
 
     //#region Methods
-    getItemSpacing(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SPACING_DEFAULT / 2) {
+    getItemSpacingRelativeToItemPositioning(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SPACING_DEFAULT / 2) {
         const currentItemSpacing = getCurrentValue(this.options?.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT / 2, this.isFullscreenMode);
         return this.itemPositioning !== undefined ? currentItemSpacing : valueToUseIfNoPositioningGiven;
+    }
+    
+    getItemSpacing(defaultValue = CAROUSEL_ITEM_SPACING_DEFAULT) {
+        return getCurrentValue(this.options?.thumbnail?.itemSpacing, defaultValue, this.isFullscreenMode)
     }
     //#endregion
 }

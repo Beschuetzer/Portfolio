@@ -6,7 +6,7 @@ import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { CarouselContextInputProps, useCarouselContext } from '../context';
 import { ArrowButtonDirection } from '../types';
-import { getNumberOfItemsThatCanFit, getClassname, getNumberOfPages, onArrowButtonClick, getCurrentValue } from '../utils';
+import { getNumberOfItemsThatCanFit, getClassname, getNumberOfPages, onArrowButtonClick } from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 import { CarouselItemToRender } from './CarouselItemToRender';
@@ -45,7 +45,7 @@ export const CarouselContent = ({
     const translationAmountChangeRef = useRef<TranslationAmountChange>(TranslationAmountChange.none);
     const isLastPage = useMemo(() => currentPage + 1 === numberOfPages, [currentPage, numberOfPages]);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
-    const [interItemSpacing, setInterItemSpacing] = useState(optionsLogic.itemSpacing);
+    const [interItemSpacing, setInterItemSpacing] = useState(optionsLogic.getItemSpacing());
     const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     useOnSwipe({
         element: itemsContainerInnerRef.current as HTMLElement,
@@ -105,7 +105,7 @@ export const CarouselContent = ({
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
         if (options?.thumbnail?.itemSpacing !== undefined) {
-            const currentItemSpacing = getCurrentValue(options?.thumbnail?.itemSpacing, GET_CURRENT_VALUE_DEFAULT, isFullscreenMode);
+            const currentItemSpacing = optionsLogic.getItemSpacing(GET_CURRENT_VALUE_DEFAULT);
             if (currentItemSpacing >= GET_CURRENT_VALUE_DEFAULT) return currentItemSpacing;
         }
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
@@ -116,10 +116,10 @@ export const CarouselContent = ({
         //numberOfGaps logic needed to prevent crashing at smaller viewport, since divide by <= 0 
         const newInterItemSpacing = (remainingSpace / (numberOfGaps <= 0 ? 1 : numberOfGaps));
         return newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT;
-    }, [options?.thumbnail?.itemSpacing, items.length, carouselContainerRef, stylingLogic, optionsLogic, isFullscreenMode]);
+    }, [options?.thumbnail?.itemSpacing, items.length, carouselContainerRef, stylingLogic, optionsLogic]);
 
     const doTranslationAmountCommon = useCallback(() => {
-        const interItemSpacingToUse = optionsLogic.getItemSpacing(interItemSpacing);
+        const interItemSpacingToUse = optionsLogic.getItemSpacingRelativeToItemPositioning(interItemSpacing);
         const isDefaultCase = options?.thumbnail?.itemSpacing === undefined && optionsLogic.itemPositioning === undefined;
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
             items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
@@ -156,7 +156,7 @@ export const CarouselContent = ({
         if (numberOfPages > 1 && currentPage === numberOfPages - 1 && items?.length > 0) {
             const numberOfAlreadyDisplayedItems = currentPage * numberOfWholeItemsThatCanFit;
             const numberOfRemainingItems = items.length - numberOfAlreadyDisplayedItems;
-            const widthOfRemainingSpaces = numberOfRemainingItems * optionsLogic.getItemSpacing(interItemSpacing);
+            const widthOfRemainingSpaces = numberOfRemainingItems * optionsLogic.getItemSpacingRelativeToItemPositioning(interItemSpacing);
             const widthOfRemainingItems = numberOfRemainingItems * itemSize;
             offset = (translationAmountDifferenceRef.current - (widthOfRemainingSpaces + widthOfRemainingItems))
         }
