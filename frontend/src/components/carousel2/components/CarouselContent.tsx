@@ -45,7 +45,7 @@ export const CarouselContent = ({
     const translationAmountChangeRef = useRef<TranslationAmountChange>(TranslationAmountChange.none);
     const isLastPage = useMemo(() => currentPage + 1 === numberOfPages, [currentPage, numberOfPages]);
     const [hasForcedRender, setHasForcedRender] = useState(false); //used to force layout calculation initially
-    const [interItemSpacing, setInterItemSpacing] = useState(optionsLogic.getItemSpacing());
+    const [interItemSpacing, setInterItemSpacing] = useState(optionsLogic.getThumbnailSpacing());
     const [translationAmount, setTranslationAmount] = useState(TRANSLATION_AMOUNT_INITIAL);
     useOnSwipe({
         element: itemsContainerInnerRef.current as HTMLElement,
@@ -104,8 +104,8 @@ export const CarouselContent = ({
     //#region Functions/Handlers
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
-        if (options?.thumbnail?.itemSpacing !== undefined) {
-            const currentItemSpacing = optionsLogic.getItemSpacing(GET_CURRENT_VALUE_DEFAULT);
+        if (options?.thumbnail?.spacing !== undefined) {
+            const currentItemSpacing = optionsLogic.getThumbnailSpacing(GET_CURRENT_VALUE_DEFAULT);
             if (currentItemSpacing >= GET_CURRENT_VALUE_DEFAULT) return currentItemSpacing;
         }
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
@@ -116,11 +116,11 @@ export const CarouselContent = ({
         //numberOfGaps logic needed to prevent crashing at smaller viewport, since divide by <= 0 
         const newInterItemSpacing = (remainingSpace / (numberOfGaps <= 0 ? 1 : numberOfGaps));
         return newInterItemSpacing || CAROUSEL_ITEM_SPACING_DEFAULT;
-    }, [options?.thumbnail?.itemSpacing, items.length, carouselContainerRef, stylingLogic, optionsLogic]);
+    }, [options?.thumbnail?.spacing, items.length, carouselContainerRef, stylingLogic, optionsLogic]);
 
     const doTranslationAmountCommon = useCallback(() => {
-        const interItemSpacingToUse = optionsLogic.getItemSpacingRelativeToItemPositioning(interItemSpacing);
-        const isDefaultCase = options?.thumbnail?.itemSpacing === undefined && optionsLogic.itemPositioning === undefined;
+        const interItemSpacingToUse = optionsLogic.getThumbnailSpacingBasedOnThumbnailPositioning(interItemSpacing);
+        const isDefaultCase = options?.thumbnail?.spacing === undefined && optionsLogic.thumbnailPositioning === undefined;
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
             items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
         );
@@ -146,7 +146,7 @@ export const CarouselContent = ({
         carouselContainerRef,
         interItemSpacing,
         items.length,
-        options?.thumbnail?.itemSpacing,
+        options?.thumbnail?.spacing,
         optionsLogic,
         stylingLogic
     ])
@@ -156,7 +156,7 @@ export const CarouselContent = ({
         if (numberOfPages > 1 && currentPage === numberOfPages - 1 && items?.length > 0) {
             const numberOfAlreadyDisplayedItems = currentPage * numberOfWholeItemsThatCanFit;
             const numberOfRemainingItems = items.length - numberOfAlreadyDisplayedItems;
-            const widthOfRemainingSpaces = numberOfRemainingItems * optionsLogic.getItemSpacingRelativeToItemPositioning(interItemSpacing);
+            const widthOfRemainingSpaces = numberOfRemainingItems * optionsLogic.getThumbnailSpacingBasedOnThumbnailPositioning(interItemSpacing);
             const widthOfRemainingItems = numberOfRemainingItems * itemSize;
             offset = (translationAmountDifferenceRef.current - (widthOfRemainingSpaces + widthOfRemainingItems))
         }

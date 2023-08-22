@@ -403,7 +403,7 @@ const allCustomSettings = (
 			},
 			thumbnail: {
 				size: 200,
-				itemSpacing: [[2.5]],
+				spacing: [[2.5]],
 				descriptionOverlay: {
 					background: {
 						solid: {
@@ -440,7 +440,7 @@ const noItemDisplayedThreeItemsMaxSpacing = (
 		items={items.slice(0, 3)}
 		options={{
 			thumbnail: {
-				itemSpacingStrategy: 'max',
+				spacingStrategy: 'max',
 			}
 		}}
 	/>
@@ -494,7 +494,7 @@ const noItemDisplayedMultiplePagesCustomItemViewerColors = (
 const multiplePagesNoItemSpacing = (
 	<Carousel items={items} options={{
 		thumbnail: {
-			itemSpacing: [[0]],
+			spacing: [[0]],
 		}
 	}} />
 );
@@ -502,7 +502,7 @@ const dynamicSpacingOnly = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			// itemSpacing: 4,
-			itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+			spacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
 		}
 	}} />
 );
@@ -521,7 +521,7 @@ const dynamicSizeAndSpacing = (
 		options={{
 			thumbnail: {
 				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
-				itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+				spacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
 			}
 		}}
 		items={items}
@@ -531,7 +531,7 @@ const dynamicSpacingOnlyDisplayAbove = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			// itemSpacing: 4,
-			itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+			spacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
 		},
 		layout: {
 			itemDisplayLocation: 'above',
@@ -556,7 +556,7 @@ const dynamicSizeAndSpacingDisplayAbove = (
 		options={{
 			thumbnail: {
 				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
-				itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+				spacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
 			},
 			layout: {
 				itemDisplayLocation: 'above',
@@ -570,11 +570,11 @@ const dynamicSizeAndSpacingDisplayAbovePositionedLeft = (
 		options={{
 			thumbnail: {
 				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
-				itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+				spacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
 			},
 			layout: {
 				itemDisplayLocation: 'above',
-				itemPositioning: 'left',
+				thumbnailPositioning: 'left',
 			},
 		}}
 		items={items}
@@ -585,11 +585,11 @@ const dynamicSizeAndSpacingDisplayAbovePositionedCenter = (
 		options={{
 			thumbnail: {
 				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
-				itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+				spacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
 			},
 			layout: {
 				itemDisplayLocation: 'above',
-				itemPositioning: 'center',
+				thumbnailPositioning: 'center',
 			},
 		}}
 		items={items}
@@ -600,11 +600,11 @@ const dynamicSizeAndSpacingDisplayAbovePositionedRight = (
 		options={{
 			thumbnail: {
 				size: [[200], [180], [110, 1100], [150, 1500, 'min-width'], [180, 800, 'max-width'], [160, 600, 'max-width'], [140, 400, 'max-width'], [220, 1200, 'min-width']],
-				itemSpacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
+				spacing: [[9], [5], [11, 1100], [15, 1500, 'min-width'], [8, 800, 'max-width'], [6, 600, 'max-width'], [4, 400, 'max-width'], [12, 1200, 'min-width']],
 			},
 			layout: {
 				itemDisplayLocation: 'above',
-				itemPositioning: 'right',
+				thumbnailPositioning: 'right',
 			},
 		}}
 		items={items}
@@ -639,7 +639,7 @@ const dynamicItemSpacingStrategy = (
 	<Carousel
 		options={{
 			thumbnail: {
-				itemSpacingStrategy: [['min'], ['max', 800]]
+				spacingStrategy: [['min'], ['max', 800]]
 			},
 			layout: {
 				itemDisplayLocation: 'above',
@@ -663,7 +663,7 @@ const dynamicPoistioning = (
 	<Carousel
 		options={{
 			layout: {
-				itemPositioning: [['center'], ['right', 800]],
+				thumbnailPositioning: [['center'], ['right', 800]],
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
@@ -880,7 +880,7 @@ const dynamicDisablingOfSwiping = (
 const dynamicItemPositioning = (
 	<Carousel items={items} options={{
 		layout: {
-			itemPositioning: [["center"], ["right", 800]]
+			thumbnailPositioning: [["center"], ["right", 800]]
 		},
 		thumbnail: {
 			size: 200,
@@ -1006,7 +1006,7 @@ const customSizeAndSpacingNonDefaultItemDisplayCase = (
 		options={{
 			thumbnail: {
 				size: 200,
-				itemSpacing: 5,
+				spacing: 5,
 			},
 			layout: {
 				itemDisplayLocation: "above",
@@ -1390,7 +1390,7 @@ const layoutAboveWithMaxSpacingStrategy = (
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
-				itemSpacingStrategy: 'max',
+				spacingStrategy: 'max',
 			},
 		}}
 	/>
@@ -2006,7 +2006,7 @@ const layoutThumbnailPositioningCenter = (
 		items={items}
 		options={{
 			layout: {
-				itemPositioning: 'center',
+				thumbnailPositioning: 'center',
 			},
 			thumbnail: {
 				size: 175,
@@ -2022,14 +2022,14 @@ const layoutThumbnailPositioningLeftWithCustomItemSizeAndLastPageNotFlush = (
 		items={items}
 		options={{
 			layout: {
-				itemPositioning: 'left',
+				thumbnailPositioning: 'left',
 			},
 			navigation: {
 				isLastPageFlush: false,
 			},
 			thumbnail: {
 				size: 175,
-				itemSpacing: 10,
+				spacing: 10,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -2042,14 +2042,14 @@ const layoutThumbnailPositioningCenterWithCustomItemSizeAndLastPageNotFlush = (
 		items={items}
 		options={{
 			layout: {
-				itemPositioning: 'center',
+				thumbnailPositioning: 'center',
 			},
 			navigation: {
 				isLastPageFlush: false,
 			},
 			thumbnail: {
 				size: 175,
-				itemSpacing: 10,
+				spacing: 10,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -2062,14 +2062,14 @@ const layoutThumbnailPositioningRightWithCustomItemSizeAndLastPageNotFlush = (
 		items={items}
 		options={{
 			layout: {
-				itemPositioning: 'right',
+				thumbnailPositioning: 'right',
 			},
 			navigation: {
 				isLastPageFlush: false,
 			},
 			thumbnail: {
 				size: 175,
-				itemSpacing: 10,
+				spacing: 10,
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -2082,11 +2082,11 @@ const layoutThumbnailPositioningCenterWithItemSpacingGiven = (
 		items={items}
 		options={{
 			layout: {
-				itemPositioning: 'center',
+				thumbnailPositioning: 'center',
 			},
 			thumbnail: {
 				size: 175,
-				itemSpacing: [[10]],
+				spacing: [[10]],
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -2099,7 +2099,7 @@ const layoutThumbnailPositioningLeftNonDefaultCaseOnePage = (
 		items={items.slice(3)}
 		options={{
 			layout: {
-				itemPositioning: 'left',
+				thumbnailPositioning: 'left',
 				itemDisplayLocation: "above",
 			},
 		}}
@@ -2110,7 +2110,7 @@ const layoutThumbnailPositioningCenterNonDefaultCaseOnePage = (
 		items={items.slice(3)}
 		options={{
 			layout: {
-				itemPositioning: 'center',
+				thumbnailPositioning: 'center',
 				itemDisplayLocation: "above",
 			},
 		}}
@@ -2121,7 +2121,7 @@ const layoutThumbnailPositioningRightNonDefaultCaseOnePage = (
 		items={items.slice(3)}
 		options={{
 			layout: {
-				itemPositioning: 'right',
+				thumbnailPositioning: 'right',
 				itemDisplayLocation: "above",
 			},
 		}}
@@ -2132,7 +2132,7 @@ const layoutThumbnailPositioningLeft = (
 		items={items}
 		options={{
 			layout: {
-				itemPositioning: 'left',
+				thumbnailPositioning: 'left',
 			},
 			thumbnail: {
 				size: 175,
@@ -2148,11 +2148,11 @@ const layoutThumbnailPositioningLeftWithItemSpacingGiven = (
 		items={items}
 		options={{
 			layout: {
-				itemPositioning: 'left',
+				thumbnailPositioning: 'left',
 			},
 			thumbnail: {
 				size: 175,
-				itemSpacing: [[10]],
+				spacing: [[10]],
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -2165,7 +2165,7 @@ const layoutThumbnailPositioningRight = (
 		items={items}
 		options={{
 			layout: {
-				itemPositioning: 'right',
+				thumbnailPositioning: 'right',
 			},
 			thumbnail: {
 				size: 175,
@@ -2181,11 +2181,11 @@ const layoutThumbnailPositioningRightWithItemSpacingGiven = (
 		items={items}
 		options={{
 			layout: {
-				itemPositioning: 'right',
+				thumbnailPositioning: 'right',
 			},
 			thumbnail: {
 				size: 175,
-				itemSpacing: [[10]],
+				spacing: [[10]],
 				descriptionOverlay: {
 					isDisabled: false,
 				},
@@ -3529,11 +3529,11 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,
 	// SectionNames.dynamicBasedOnViewingMode,
-	SectionNames.imagePosition,
+	// SectionNames.imagePosition,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
-	SectionNames.thumbnailOptions,
-	// ...Object.values(SectionNames),
+	// SectionNames.thumbnailOptions,
+	...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS
 	.filter((section) => ENABLED_SECTIONS.includes(section[0]))

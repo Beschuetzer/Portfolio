@@ -353,13 +353,13 @@ export type CarouselLayoutOptions = {
     isToolbarPositionedInVideo?: CarouselElementValueTuple<boolean>;
     /**
     *Default is `left`
-    *Overrides any value given in `thumbnail.itemSpacingStrategy`
+    *Overrides any value given in `thumbnail.spacingStrategy`
     *@example
     *`left` => the left-most thumbnail item on a given page is positioned flush to the container
     *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the navigation containers ends
     *`right` => the right-most thumbnail item on a given page is positioned flush to the container
     **/
-    itemPositioning?: CarouselElementValueTuple<'left' | 'center' | 'right'>;
+    thumbnailPositioning?: CarouselElementValueTuple<'left' | 'center' | 'right'>;
     /**
     *If true, then the default, embedded controls will be used for video items.
     *Default is false.
@@ -646,22 +646,22 @@ export type CarouselThumbnailOptions = {
     **/
     descriptionOverlay?: CarouselThumbnailDescriptionOverlayOptions;
     /**
-    *The value in px that the thumbnails are spaced apart.  
-    *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible
-    **/
-    itemSpacing?: CarouselElementValueTuple<number>;
-    /**
-    *Default is `min`
-    *Determines how the thumbnails are spaced out if there is only one page and `itemSpacing` is not given (i.e. dynamic spacing is active)
-    *`min` means that the `itemSpacing` will be reduced to a value that would allow for the most number of thumbnails to fit within the container with even spacing
-    *`max` means that the `itemSpacing` will be maximized such that the thumbnails will span the entire width of the container when there is only one page
-    *If `layout.itemPositioning` is given, then this value is ignored
-    **/
-    itemSpacingStrategy?: CarouselElementValueTuple<'min' | 'max'>;
-    /**
     *The size of the thumbnails in px.  Default is 150px.
     **/
     size?: CarouselElementValueTuple<number>;
+    /**
+    *The value in px that the thumbnails are spaced apart.  
+    *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible
+    **/
+    spacing?: CarouselElementValueTuple<number>;
+    /**
+    *Default is `min`
+    *Determines how the thumbnails are spaced out if there is only one page and `spacing` is not given (i.e. dynamic spacing is active)
+    *`min` means that the `spacing` will be reduced to a value that would allow for the most number of thumbnails to fit within the container with even spacing
+    *`max` means that the `spacing` will be maximized such that the thumbnails will span the entire width of the container when there is only one page
+    *If `layout.itemPositioning` is given, then this value is ignored
+    **/
+    spacingStrategy?: CarouselElementValueTuple<'min' | 'max'>;
 }
 
 export type CarouselItemViewerPreviewTextOptions = {

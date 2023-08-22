@@ -96,64 +96,8 @@ export class OptionsLogic {
         return getCurrentValue(this.options?.itemViewer?.autoHideToolbarDuration, AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT, this.isFullscreenMode);
     }
 
-    getButtonColor(buttonName: CarouselElement, fallbackColor?: string) {
-        const fallbackColorToUse = fallbackColor || this.theme.colorFive;
-        const specificFillColor = getCurrentValue(this.options?.styling?.elements?.[buttonName]?.fillColor, undefined, this.isFullscreenMode);
-
-        switch (buttonName) {
-            case CarouselElement.arrowLeft:
-            case CarouselElement.arrowRight:
-            case CarouselElement.dots:
-                const navigationElementsColor = getCurrentValue(this.options?.styling?.navigation?.elements?.color, undefined, this.isFullscreenMode);
-                return specificFillColor || navigationElementsColor || this.allFillColor || fallbackColorToUse;
-            case CarouselElement.closeButton:
-            case CarouselElement.fullscreenButton:
-            case CarouselElement.nextButton:
-            case CarouselElement.pauseButton:
-            case CarouselElement.playButton:
-            case CarouselElement.previousButton:
-            case CarouselElement.seekBackButton:
-            case CarouselElement.seekForwardButton:
-                const toolbarElementsColor = getCurrentValue(this.options?.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode);
-                return specificFillColor || toolbarElementsColor || this.allFillColor || fallbackColorToUse;
-            default:
-                return specificFillColor || this.allFillColor || fallbackColorToUse;
-        }
-    }
-
-    getButtonSize(buttonName: CarouselElement, defaultOverride = 0) {
-        let sectionButtonSize;
-        switch (buttonName) {
-            case CarouselElement.arrowLeft:
-            case CarouselElement.arrowRight:
-            case CarouselElement.dots:
-                sectionButtonSize = getCurrentValue(this.options?.styling?.navigation?.elements?.size, this.defaultButtonSize, this.isFullscreenMode);
-                break;
-            case CarouselElement.closeButton:
-            case CarouselElement.fullscreenButton:
-            case CarouselElement.nextButton:
-            case CarouselElement.pauseButton:
-            case CarouselElement.playButton:
-            case CarouselElement.previousButton:
-            case CarouselElement.seekBackButton:
-            case CarouselElement.seekForwardButton:
-                sectionButtonSize = getCurrentValue(this.options?.styling?.toolbar?.elements?.size, this.defaultButtonSize, this.isFullscreenMode);
-                break;
-        }
-        const valueToUse = defaultOverride || sectionButtonSize || this.defaultButtonSize;
-
-        return valueToUse;
-    }
-
-    get carouselContainerBackgroundColor() {
+    get containerBackgroundColor() {
         return getCurrentValue(this.options?.styling?.container?.backgroundColor, this.theme.colorOne, this.isFullscreenMode);
-    }
-
-    get carouselItemSize() {
-        if (this.isDefaultItemDisplayLocation) {
-            return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
-        }
-        return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
     }
 
     get containerPadding() {
@@ -167,17 +111,6 @@ export class OptionsLogic {
             [SpacingDirection.right]: right,
             [SpacingDirection.top]: top,
         }
-    }
-
-    getCustomPadding(item: CarouselSection, direction: SpacingDirection, defaultPadding = CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT) {
-        const containerPadding = this.containerPadding?.[direction];
-        const itemPadding = (this.options?.styling?.[item] as any)?.padding;
-        const itemPaddingFullscreen = getCurrentValue(itemPadding?.fullscreen?.[direction], undefined, this.isFullscreenMode);
-        const itemPaddingNonFullscreen = getCurrentValue(itemPadding?.nonFullscreen?.[direction], undefined, this.isFullscreenMode);
-        const itemPaddingAll = getCurrentValue(itemPadding?.[direction], undefined, this.isFullscreenMode);
-        const itemPaddingToUse = this.isFullscreenMode ? (itemPaddingFullscreen || itemPaddingAll) : (itemPaddingNonFullscreen || itemPaddingAll);
-        const customPadding = itemPaddingToUse || containerPadding;
-        return customPadding !== undefined ? customPadding : defaultPadding;
     }
 
     get defaultButtonSize() {
@@ -229,16 +162,8 @@ export class OptionsLogic {
         return getCurrentValue(this.options?.navigation?.disableWrapping, false, this.isFullscreenMode);
     }
 
-    get itemPositioning() {
-        return getCurrentValue(this.options?.layout?.itemPositioning, undefined, this.isFullscreenMode);
-    }
-
-    get itemSpacingStrategy() {
-        return getCurrentValue(this.options?.thumbnail?.itemSpacingStrategy, 'min', this.isFullscreenMode);
-    }
-
     get itemViewerBackgroundColor() {
-        return getCurrentValue(this.options?.styling?.itemViewer?.backgroundColor, undefined, this.isFullscreenMode) || this.carouselContainerBackgroundColor;
+        return getCurrentValue(this.options?.styling?.itemViewer?.backgroundColor, undefined, this.isFullscreenMode) || this.containerBackgroundColor;
     }
 
     get itemViewerFontFamily() {
@@ -477,10 +402,25 @@ export class OptionsLogic {
             maxLineCount,
         }
     }
+    
+    get thumbnailPositioning() {
+        return getCurrentValue(this.options?.layout?.thumbnailPositioning, undefined, this.isFullscreenMode);
+    }
+
+    get thumbnailSize() {
+        if (this.isDefaultItemDisplayLocation) {
+            return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
+        }
+        return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
+    }
+
+    get thumbnailSpacingStrategy() {
+        return getCurrentValue(this.options?.thumbnail?.spacingStrategy, 'min', this.isFullscreenMode);
+    }
 
     get toolbarBackgroundColor() {
         const primary = getCurrentValue(this.options?.styling?.toolbar?.backgroundColor, undefined, this.isFullscreenMode);
-        return primary || this.carouselContainerBackgroundColor;
+        return primary || this.containerBackgroundColor;
     }
 
     get toolbarShortcutIndicator() {
@@ -500,7 +440,19 @@ export class OptionsLogic {
     get useDefaultVideoControls() {
         return getCurrentValue(this.options?.layout?.useDefaultVideoControls, false, this.isFullscreenMode);
     }
+    
+    get videoCurrentStateIndicatorBackgroundColor() {
+        return getCurrentValue(this.options?.styling?.videoCurrentStateIndicator?.backgroundColor, this.theme.colorOne, this.isFullscreenMode);
+    }
 
+    get videoCurrentStateIndicatorForegroundColor() {
+        return getCurrentValue(
+            this.options?.styling?.videoCurrentStateIndicator?.textOrForegroundColor,
+            this.theme.colorFive,
+            this.isFullscreenMode
+        );
+    }
+    
     get videoCurrentStateIndicatorSize() {
         return getCurrentValue(
             this.options?.styling?.videoCurrentStateIndicator?.size,
@@ -573,9 +525,76 @@ export class OptionsLogic {
     get videoSeekAmount() {
         return getCurrentValue(this.options?.itemViewer?.seekAmount, SEEK_AMOUNT_DEFAULT, this.isFullscreenMode) / 1000;
     }
+    //#endregion
 
-    get videoCurrentStateIndicatorBackgroundColor() {
-        return getCurrentValue(this.options?.styling?.videoCurrentStateIndicator?.backgroundColor, this.theme.colorOne, this.isFullscreenMode);
+    //#region Methods
+    getButtonColor(buttonName: CarouselElement, fallbackColor?: string) {
+        const fallbackColorToUse = fallbackColor || this.theme.colorFive;
+        const specificFillColor = getCurrentValue(this.options?.styling?.elements?.[buttonName]?.fillColor, undefined, this.isFullscreenMode);
+
+        switch (buttonName) {
+            case CarouselElement.arrowLeft:
+            case CarouselElement.arrowRight:
+            case CarouselElement.dots:
+                const navigationElementsColor = getCurrentValue(this.options?.styling?.navigation?.elements?.color, undefined, this.isFullscreenMode);
+                return specificFillColor || navigationElementsColor || this.allFillColor || fallbackColorToUse;
+            case CarouselElement.closeButton:
+            case CarouselElement.fullscreenButton:
+            case CarouselElement.nextButton:
+            case CarouselElement.pauseButton:
+            case CarouselElement.playButton:
+            case CarouselElement.previousButton:
+            case CarouselElement.seekBackButton:
+            case CarouselElement.seekForwardButton:
+                const toolbarElementsColor = getCurrentValue(this.options?.styling?.toolbar?.elements?.color, undefined, this.isFullscreenMode);
+                return specificFillColor || toolbarElementsColor || this.allFillColor || fallbackColorToUse;
+            default:
+                return specificFillColor || this.allFillColor || fallbackColorToUse;
+        }
+    }
+
+    getButtonSize(buttonName: CarouselElement, defaultOverride = 0) {
+        let sectionButtonSize;
+        switch (buttonName) {
+            case CarouselElement.arrowLeft:
+            case CarouselElement.arrowRight:
+            case CarouselElement.dots:
+                sectionButtonSize = getCurrentValue(this.options?.styling?.navigation?.elements?.size, this.defaultButtonSize, this.isFullscreenMode);
+                break;
+            case CarouselElement.closeButton:
+            case CarouselElement.fullscreenButton:
+            case CarouselElement.nextButton:
+            case CarouselElement.pauseButton:
+            case CarouselElement.playButton:
+            case CarouselElement.previousButton:
+            case CarouselElement.seekBackButton:
+            case CarouselElement.seekForwardButton:
+                sectionButtonSize = getCurrentValue(this.options?.styling?.toolbar?.elements?.size, this.defaultButtonSize, this.isFullscreenMode);
+                break;
+        }
+        const valueToUse = defaultOverride || sectionButtonSize || this.defaultButtonSize;
+
+        return valueToUse;
+    }
+
+    getCustomPadding(item: CarouselSection, direction: SpacingDirection, defaultPadding = CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT) {
+        const containerPadding = this.containerPadding?.[direction];
+        const itemPadding = (this.options?.styling?.[item] as any)?.padding;
+        const itemPaddingFullscreen = getCurrentValue(itemPadding?.fullscreen?.[direction], undefined, this.isFullscreenMode);
+        const itemPaddingNonFullscreen = getCurrentValue(itemPadding?.nonFullscreen?.[direction], undefined, this.isFullscreenMode);
+        const itemPaddingAll = getCurrentValue(itemPadding?.[direction], undefined, this.isFullscreenMode);
+        const itemPaddingToUse = this.isFullscreenMode ? (itemPaddingFullscreen || itemPaddingAll) : (itemPaddingNonFullscreen || itemPaddingAll);
+        const customPadding = itemPaddingToUse || containerPadding;
+        return customPadding !== undefined ? customPadding : defaultPadding;
+    }
+
+    getThumbnailSpacingBasedOnThumbnailPositioning(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SPACING_DEFAULT / 2) {
+        const currentItemSpacing = this.getThumbnailSpacing(CAROUSEL_ITEM_SPACING_DEFAULT / 2);
+        return this.thumbnailPositioning !== undefined ? currentItemSpacing : valueToUseIfNoPositioningGiven;
+    }
+    
+    getThumbnailSpacing(defaultValue = CAROUSEL_ITEM_SPACING_DEFAULT) {
+        return getCurrentValue(this.options?.thumbnail?.spacing, defaultValue, this.isFullscreenMode)
     }
 
     getVideoCurrentStateIndicatorButtonColor(buttonName: CarouselVideoCurrentStateIndicatorButtonName) {
@@ -585,28 +604,9 @@ export class OptionsLogic {
             this.isFullscreenMode
         );
     }
-
-    get videoCurrentStateIndicatorForegroundColor() {
-        return getCurrentValue(
-            this.options?.styling?.videoCurrentStateIndicator?.textOrForegroundColor,
-            this.theme.colorFive,
-            this.isFullscreenMode
-        );
-    }
-
+    
     getXlinkHref(xlinkHref: CarouselItemViewerCustomButtonProps['xlinkHref']) {
         return getCurrentValue(xlinkHref, undefined, this.isFullscreenMode);
-    }
-    //#endregion
-
-    //#region Methods
-    getItemSpacingRelativeToItemPositioning(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SPACING_DEFAULT / 2) {
-        const currentItemSpacing = getCurrentValue(this.options?.thumbnail?.itemSpacing, CAROUSEL_ITEM_SPACING_DEFAULT / 2, this.isFullscreenMode);
-        return this.itemPositioning !== undefined ? currentItemSpacing : valueToUseIfNoPositioningGiven;
-    }
-    
-    getItemSpacing(defaultValue = CAROUSEL_ITEM_SPACING_DEFAULT) {
-        return getCurrentValue(this.options?.thumbnail?.itemSpacing, defaultValue, this.isFullscreenMode)
     }
     //#endregion
 }

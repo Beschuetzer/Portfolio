@@ -1,6 +1,5 @@
 Carousel rework
   -none and bottom case (itemDisplayLocation) for CarouselModal not in correct spot
-  -rename getters in OptionsLogic so that carousel is no longer in any of them?
   -need to remove cursor: none on body when a re-size occurs
   -todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)
   -figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)

@@ -135,7 +135,7 @@ export class StylingLogic {
         } as CSSProperties;
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
-            background: this.optionsLogic.navigationBackground || this.optionsLogic.carouselContainerBackgroundColor,
+            background: this.optionsLogic.navigationBackground || this.optionsLogic.containerBackgroundColor,
             borderRadius: 4,
             paddingRight: 0,
             paddingLeft: 0,
@@ -161,8 +161,8 @@ export class StylingLogic {
         const customCurrenItemBorder = this.optionsLogic.thumbnailBorderString;
 
         const widthStyle = {
-            width: this.optionsLogic.carouselItemSize,
-            height: this.optionsLogic.carouselItemSize,
+            width: this.optionsLogic.thumbnailSize,
+            height: this.optionsLogic.thumbnailSize,
         } as CSSProperties;
         const selectionStyle = this.isCurrentItemSelected ? {
             border: this.getBorderStringToUse(customCurrenItemBorder),
@@ -973,7 +973,7 @@ export class StylingLogic {
         } as CSSProperties : {};
 
         const paddingStyle = {
-            padding: this.optionsLogic.carouselItemSize * 0.06666667
+            padding: this.optionsLogic.thumbnailSize * 0.06666667
         } as CSSProperties
 
         const thumbnailBackgroundStyle = {
@@ -1243,10 +1243,10 @@ export class StylingLogic {
             translationAmountToUse = Math.max(this.lastPageCarouselTranslationAmount, translationAmount);
         }
 
-        const itemPositioning = this.optionsLogic.itemPositioning;
+        const itemPositioning = this.optionsLogic.thumbnailPositioning;
         const numberOfItemsToUse = Math.min(numberOfWholeItemsThatCanFit, (this.items?.length || Number.MAX_SAFE_INTEGER));
         const numberOfSpaces = numberOfItemsToUse - 1;
-        const itemSpacing = this.optionsLogic.getItemSpacingRelativeToItemPositioning(interItemSpacing);
+        const itemSpacing = this.optionsLogic.getThumbnailSpacingBasedOnThumbnailPositioning(interItemSpacing);
         const widthOfInterItemSpacing = numberOfSpaces * itemSpacing;
         const widthOfItems = numberOfItemsToUse * itemSize;
 

@@ -176,11 +176,11 @@ export function getNumberOfItemsThatCanFit(
     optionsLogic: OptionsLogic
 ) {
     const containerWidth = getContainerWidth(htmlElement, stylingLogic);
-    const itemSize = optionsLogic.carouselItemSize;
-    const itemSpacing = optionsLogic.getItemSpacingRelativeToItemPositioning();
+    const itemSize = optionsLogic.thumbnailSize;
+    const itemSpacing = optionsLogic.getThumbnailSpacingBasedOnThumbnailPositioning();
     const numberOfItemsThatCanFitWithZeroSpacing = containerWidth / itemSize;
     let calculatedNumberOfWholeItemsThatCanFitWithZeroSpacing = Math.floor(numberOfItemsThatCanFitWithZeroSpacing);
-    const itemSpacingStrategy = optionsLogic.itemSpacingStrategy;
+    const itemSpacingStrategy = optionsLogic.thumbnailSpacingStrategy;
 
     //logic needed for cases when itemSpacing is given and can't be 0
     const numberOfSpaces = calculatedNumberOfWholeItemsThatCanFitWithZeroSpacing - 1;
