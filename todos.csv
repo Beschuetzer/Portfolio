@@ -1,5 +1,4 @@
 Carousel rework
-  -clicking on the left/right arrow to navigate items doesn't prevent hiding of toolbar (sit in one spot and click a lot)
   -none and bottom case (itemDisplayLocation) for CarouselModal not in correct spot
   -move all instances of getCurrentValue calls from StylingLogic to OptionsLogic
   -rename getters in OptionsLogic so that carousel is no longer in any of them?

@@ -193,12 +193,12 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     }, [itemContainerRef])
 
     const handleAutoHide = useCallback((e?: MouseEvent) => {
+        clearTimeout(shouldHideTimoutRef.current);
         if (!optionsLogic.isToolbarInVideo) {
             showToolbar();
             return;
         }
         stopPropagation(e);
-        clearTimeout(shouldHideTimoutRef.current);
         document.body.style.removeProperty('cursor');
 
         if ((!isFullscreenMode && isVideo && !isVideoPlaying) || optionsLogic.autoHideToolbarDuration === AUTO_HIDE_DISABLED_VALUE) return;
@@ -210,6 +210,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             showToolbar();
 
         }
+        
         shouldHideTimoutRef.current = setTimeout(() => {
             hideToolbar();
             document.body.style.setProperty('cursor', 'none', 'important');
@@ -320,7 +321,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         const isInVideoBox = getIsPointInsideElement(point, (videoRef?.current || imageRef?.current) as HTMLElement);
         const isVideoPlaying = !!imageRef?.current ? true : getIsVideoPlaying(videoRef?.current);
         if (isInVideoBox || !isVideoPlaying) return;
-        hideToolbar();
+            hideToolbar();
     }, [hideToolbar, isFullscreenMode, videoRef, imageRef])
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
@@ -340,6 +341,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         return () => {
             window.removeEventListener('mousemove', handleAutoHide);
             window.removeEventListener('click', handleAutoHide);
+            clearTimeout(shouldHideTimoutRef.current);
         }
     }, [handleAutoHide]);
 
