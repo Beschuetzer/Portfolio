@@ -1,4 +1,5 @@
 import { CarouselItemProps } from "../components/CarouselItem";
+import { CarouselItemViewerCustomButtonProps } from "../components/item-viewer/toolbar/CarouselItemViewerCustomButton";
 import {
     CAROUSEL_COLOR_FIVE,
     CAROUSEL_COLOR_GREY_ONE,
@@ -181,10 +182,6 @@ export class OptionsLogic {
 
     get defaultButtonSize() {
         return this.isMobile ? CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT : CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT;
-    }
-
-    get dotSvgHref() {
-        return getCurrentValue(this.options.styling?.elements?.dots?.svgHref, undefined, this.isFullscreenMode);
     }
 
     get imagePosition() {
@@ -599,6 +596,10 @@ export class OptionsLogic {
             this.theme.colorFive,
             this.isFullscreenMode
         );
+    }
+
+    getXlinkHref(xlinkHref: CarouselItemViewerCustomButtonProps['xlinkHref']) {
+        return getCurrentValue(xlinkHref, undefined, this.isFullscreenMode);
     }
     //#endregion
 

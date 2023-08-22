@@ -1,11 +1,10 @@
 import { CSSProperties, forwardRef, useMemo } from "react";
 import { CLASSNAME__HIDDEN, CLASSNAME__ITEM_VIEWER_BUTTON } from "../../../constants";
 import { StylingLogic } from "../../../business-logic/StylingLogic";
-import { getCurrentValue } from "../../../utils";
 import { CarouselElementCustomization } from "../../../types";
-import { useCarouselContext } from "../../../context";
+import { useBusinessLogic } from "../../../hooks/useBusinessLogic";
 
-type CarouselItemViewerCustomButtonProps = {
+export type CarouselItemViewerCustomButtonProps = {
     classNamesToInclude?: string[];
     fillColor?: string;
     onClick?: () => void;
@@ -24,18 +23,19 @@ export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, Carousel
     useElementStyle = {},
     xlinkHref,
 }, ref) => {
-    const { isFullscreenMode } = useCarouselContext();
+    const { optionsLogic } = useBusinessLogic();
     const classNamesToIncludeClassname = useMemo(() => classNamesToInclude.join(' '), [classNamesToInclude]);
     const defaultStyles = useMemo(() => StylingLogic.getColorStyle(fillColor, 'fill', {
         transformOrigin: 'center',
     }), [fillColor]);
+    const xlinkHrefToUse = optionsLogic.getXlinkHref(xlinkHref);
 
     return (
         <svg style={style} ref={ref} onClick={onClick} className={`${CLASSNAME__ITEM_VIEWER_BUTTON} ${classNamesToIncludeClassname} ${!showButton ? CLASSNAME__HIDDEN : ''}`}>
             <use
                 style={{ ...useElementStyle, ...defaultStyles }}
-                xlinkHref={getCurrentValue(xlinkHref, undefined, isFullscreenMode)}
-                href={getCurrentValue(xlinkHref, undefined, isFullscreenMode)}
+                xlinkHref={xlinkHrefToUse}
+                href={xlinkHrefToUse}
             />
         </svg>
     );

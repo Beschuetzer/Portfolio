@@ -21,7 +21,7 @@ export const CarouselDots = ({
     setCurrentPage,
 }: CarouselDotsProps) => {
     //#region Init
-    const { style } = options?.styling?.elements?.dots || {};
+    const { style, svgHref } = options?.styling?.elements?.dots || {};
     const { optionsLogic, stylingLogic } = useBusinessLogic();
     const defaultColor = optionsLogic.isDefaultItemDisplayLocation ? optionsLogic.theme.colorOne : optionsLogic.theme.colorFive;
     const fillColor = optionsLogic.getButtonColor(CarouselElement.dots, defaultColor);
@@ -54,7 +54,7 @@ export const CarouselDots = ({
         const dots = [];
         for (let index = 0; index < numberOfDots; index++) {
             const isCurrentPage = index === currentPage;
-            const svgToUse = optionsLogic.dotSvgHref;
+            const svgToUse = optionsLogic.getXlinkHref(svgHref);
 
             const currentDotStyle = isCurrentPage && !!svgToUse ? {
                 opacity: 1,
