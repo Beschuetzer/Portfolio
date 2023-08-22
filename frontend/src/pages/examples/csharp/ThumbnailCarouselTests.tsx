@@ -3533,7 +3533,7 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
 	// SectionNames.thumbnailOptions,
-	...Object.values(SectionNames),
+	// ...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS
 	.filter((section) => ENABLED_SECTIONS.includes(section[0]))

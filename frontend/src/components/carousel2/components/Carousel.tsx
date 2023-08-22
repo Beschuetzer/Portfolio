@@ -22,7 +22,10 @@ export const Carousel = (props: CarouselProps) => {
 	const hiddenInputRef = useRef<HTMLInputElement>();
 	const { stylingLogic } = useBusinessLogic({ options }); //need to pass in options here since it is outside of context
 	const [, setShouldRerender] = useState(false);
-	useOnResize(() => setShouldRerender((current) => !current));
+	useOnResize(() => {
+		setShouldRerender((current) => !current);
+		document.body?.style?.removeProperty('cursor');
+	});
 	//#endregion
 
 	//#region JSX
@@ -33,7 +36,7 @@ export const Carousel = (props: CarouselProps) => {
 			hiddenInputRef={hiddenInputRef as any}
 			options={options || {}}
 		>
-			<input ref={hiddenInputRef as any} style={stylingLogic.carouselHiddenInputStyle}/>
+			<input ref={hiddenInputRef as any} style={stylingLogic.carouselHiddenInputStyle} />
 			<div
 				ref={carouselContainerRef as any}
 				className={getClassname({ elementName: "" })}
