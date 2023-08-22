@@ -155,7 +155,7 @@ export class OptionsLogic {
     }
 
     get isToolbarInVideo() {
-        return getCurrentValue(this.options?.layout?.isToolbarPositionedInVideo, true, this.isFullscreenMode);
+        return getCurrentValue(this.options?.layout?.isToolbarPositionedInVideo, this.isMobile ? false : true, this.isFullscreenMode);
     }
 
     get isWrappingDisabled() {
