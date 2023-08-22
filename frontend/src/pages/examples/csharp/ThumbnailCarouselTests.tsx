@@ -738,7 +738,7 @@ const dynamicThumbnailOverlayGradient = (
 						angle: [[180], [90, 800]],
 						start: {
 							color: [[getComputedStyleCustom('--color-primary-4')], [getComputedStyleCustom('--color-primary-2'), 800]],
-							opacity: [[.1], [.25, 800]],
+							opacity: [[.3], [.25, 800]],
 						},
 						end: {
 							color: [[getComputedStyleCustom('--color-primary-1')], [getComputedStyleCustom('--color-primary-4'), 800]],
@@ -3526,7 +3526,7 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	// SectionNames.otherDynamicSettings,
+	SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,
 	// SectionNames.dynamicBasedOnViewingMode,
 	SectionNames.imagePosition,

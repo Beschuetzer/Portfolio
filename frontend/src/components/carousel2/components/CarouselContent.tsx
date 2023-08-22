@@ -105,7 +105,7 @@ export const CarouselContent = ({
     const getInterItemSpacing = useCallback(() => {
         //if there is itemSpacing is defined, the dynamic behavior is disabled
         if (options?.thumbnail?.itemSpacing !== undefined) {
-            const currentItemSpacing = getCurrentValue(options.thumbnail.itemSpacing, GET_CURRENT_VALUE_DEFAULT, isFullscreenMode);
+            const currentItemSpacing = getCurrentValue(options?.thumbnail?.itemSpacing, GET_CURRENT_VALUE_DEFAULT, isFullscreenMode);
             if (currentItemSpacing >= GET_CURRENT_VALUE_DEFAULT) return currentItemSpacing;
         }
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(

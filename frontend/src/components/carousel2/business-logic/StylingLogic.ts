@@ -957,8 +957,7 @@ export class StylingLogic {
         const { opacity, color } = this.optionsLogic.thumbnailOverlayBackgroundSolid;
 
         const backgroundSolidStyle = {
-            background: 'none',
-            backgroundColor: convertHexToRgba(color, opacity),
+            background: convertHexToRgba(color, opacity),
         } as CSSProperties;
 
         const disabledStyle = isOverlayDisabled ? {

@@ -1,11 +1,10 @@
 import React, { useCallback, useMemo } from 'react'
 import { CarouselItemProps } from './CarouselItem';
-import { getClassname, getCurrentValue } from '../utils';
+import { getClassname } from '../utils';
 import { CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_DOT_HEIGHT_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS, CAROUSEL_DOT_WIDTH_DEFAULT } from '../constants';
 import { ArrowProps, CarouselElement, CarouselNavigationProps } from '../types';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
-import { useCarouselContext } from '../context';
 
 type CarouselDotsProps = {
     items: CarouselItemProps[];
@@ -22,9 +21,8 @@ export const CarouselDots = ({
     setCurrentPage,
 }: CarouselDotsProps) => {
     //#region Init
-    const { svgHref, style } = options?.styling?.elements?.dots || {};
+    const { style } = options?.styling?.elements?.dots || {};
     const { optionsLogic, stylingLogic } = useBusinessLogic();
-    const { isFullscreenMode } = useCarouselContext();
     const defaultColor = optionsLogic.isDefaultItemDisplayLocation ? optionsLogic.theme.colorOne : optionsLogic.theme.colorFive;
     const fillColor = optionsLogic.getButtonColor(CarouselElement.dots, defaultColor);
     //#endregion
@@ -56,7 +54,7 @@ export const CarouselDots = ({
         const dots = [];
         for (let index = 0; index < numberOfDots; index++) {
             const isCurrentPage = index === currentPage;
-            const svgToUse = getCurrentValue(svgHref, undefined, isFullscreenMode);
+            const svgToUse = optionsLogic.dotSvgHref;
 
             const currentDotStyle = isCurrentPage && !!svgToUse ? {
                 opacity: 1,
@@ -90,12 +88,10 @@ export const CarouselDots = ({
         dotContainerSizeStyle,
         dotSizeStyle,
         fillColor,
-        isFullscreenMode,
         numberOfDots,
         onDotClick,
         optionsLogic,
         style,
-        svgHref,
         useStyles
     ]);
 
