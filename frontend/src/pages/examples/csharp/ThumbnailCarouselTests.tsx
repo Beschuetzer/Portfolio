@@ -153,6 +153,91 @@ const items = [
 						2&clubs;. In one of the filtered games, she does and in the
 						other one she doesn't.
 					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
+					<CSharpCardSection title="Two Filters = Double the Filtering">
+						The second filter applied requires 'Ann' to have the
+						2&clubs;. In one of the filtered games, she does and in the
+						other one she doesn't.
+					</CSharpCardSection>
 				</>
 			),
 		},
@@ -332,6 +417,62 @@ const items = [
 		description: "Item with no Thumbnail (Overlay overflow)",
 		modal: {
 			sections: [
+				{
+					title: "Section 1",
+					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+				},
+				{
+					title: "Section 2",
+					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
+				},
+				{
+					title: "Section 3",
+					text: "The modal box should still be displayed nicely inside the video frame."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 1",
+					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+				},
+				{
+					title: "Section 2",
+					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
+				},
+				{
+					title: "Section 3",
+					text: "The modal box should still be displayed nicely inside the video frame."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
 				{
 					title: "Section 1",
 					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
@@ -3526,8 +3667,8 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	SectionNames.otherDynamicSettings,
-	// SectionNames.layouts,
+	// SectionNames.otherDynamicSettings,
+	SectionNames.layouts,
 	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.imagePosition,
 	// SectionNames.navigationOptions,
