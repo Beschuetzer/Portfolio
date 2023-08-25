@@ -41,6 +41,7 @@ export const useBusinessLogic = (input?: UseBusinessLogicInput): UseBusinessLogi
         // elementStylings,
         isFullscreenMode,
         items,
+        itemViewerRef,
         numberOfPages,
         options: optionsGlobal,
     } = useCarouselContext();
@@ -65,6 +66,7 @@ export const useBusinessLogic = (input?: UseBusinessLogicInput): UseBusinessLogi
         isCurrentItem,
         isFullscreenMode,
         items,
+        itemViewerRef,
         itemViewerToolbarRef,
         loadingSpinnerOptions,
         numberOfPages,
@@ -88,6 +90,7 @@ export const useBusinessLogic = (input?: UseBusinessLogicInput): UseBusinessLogi
             isCurrentItem,
             isFullscreenMode,
             items,
+            itemViewerRef,
             itemViewerToolbarRef,
             loadingSpinnerOptions,
             numberOfPages,
@@ -106,11 +109,12 @@ export const useBusinessLogic = (input?: UseBusinessLogicInput): UseBusinessLogi
         isFullscreenMode,
         itemRef,
         items,
+        itemViewerRef,
+        itemViewerToolbarRef,
+        loadingSpinnerOptions,
         modalRef,
         numberOfPages,
         options,
-        itemViewerToolbarRef,
-        loadingSpinnerOptions,
     ])
 
     useEffect(() => {

@@ -21,6 +21,7 @@ export type CarouselContextOutputProps = {
     currentVideoCurrentTime: number;
     elementStylings: CarouselElementStyles | undefined;
     isFullscreenMode: boolean;
+    itemViewerRef: React.RefObject<HTMLElement>;
     numberOfPages: number;
     setCurrentItemIndex: React.Dispatch<React.SetStateAction<number>>;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
@@ -73,6 +74,7 @@ export const CarouselProvider = ({
                 elementStylings: options.styling?.elements,
                 hiddenInputRef,
                 isFullscreenMode,
+                itemViewerRef,
                 items,
                 numberOfPages,
                 options,                
