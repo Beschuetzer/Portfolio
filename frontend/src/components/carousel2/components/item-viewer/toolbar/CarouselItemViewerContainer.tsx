@@ -3,6 +3,7 @@ import { getClassname } from '../../../utils'
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { useCarouselContext } from '../../../context';
 import { useRenderCount } from '../../../hooks/useRenderCountRef';
+import { CLASSNAME__ITEM_CONTAINER } from '../../../constants';
 
 type CarouselItemViewerContainerProps = {
     children: ReactNode | ReactNode[];
@@ -115,7 +116,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         <div
             ref={itemContainerRef}
             style={stylingLogic.getCarouselItemContainerStyle(height || 'auto')}
-            className={getClassname({ elementName: 'item-container' })}
+            className={CLASSNAME__ITEM_CONTAINER}
             onClick={onClick} >
             {children}
         </div>

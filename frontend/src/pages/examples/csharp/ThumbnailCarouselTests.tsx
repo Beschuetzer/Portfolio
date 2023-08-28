@@ -2766,7 +2766,7 @@ const viewingModeVideoControls = (
 	<Carousel
 		options={{
 			layout: {
-				itemDisplayLocation: 'above',
+				itemDisplayLocation: 'below',
 				useDefaultVideoControls: [[false], [true, 800]],
 				isToolbarPositionedInVideo: [[true], [false, 1200, 'max-width']]
 			},
@@ -3416,10 +3416,10 @@ const SECTIONS: Sections = [
 			// 	label: "Video Current State Indicator Changes Dynamically based on Viewing Mode",
 			// 	jsx: viewingModeVideoCurrentStateIndicator,
 			// },
-			{
-				label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
-				jsx: viewingModeItemViewerPreview,
-			},
+			// {
+			// 	label: "Item Viewer Preview Changes Dynamically based on Viewing Mode",
+			// 	jsx: viewingModeItemViewerPreview,
+			// },
 			{
 				label: "Video Controls Change Dynamically based on Viewing Mode",
 				jsx: viewingModeVideoControls,
@@ -3668,8 +3668,8 @@ const SECTIONS: Sections = [
 
 const ENABLED_SECTIONS: SectionNames[] = [
 	// SectionNames.otherDynamicSettings,
-	SectionNames.layouts,
-	// SectionNames.dynamicBasedOnViewingMode,
+	// SectionNames.layouts,
+	SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.imagePosition,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,

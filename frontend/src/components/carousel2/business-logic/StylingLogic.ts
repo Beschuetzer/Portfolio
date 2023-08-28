@@ -14,6 +14,7 @@ import {
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
     CLASSNAME__TOOLBAR_PROGRESS,
     CLASSNAME__ITEM_VIEWER_TOOLBAR,
+    CLASSNAME__ITEM_CONTAINER,
 } from "../constants";
 import { CarouselModalInternalProps } from "../components/CarouselModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -410,36 +411,45 @@ export class StylingLogic {
             } else {
                 const toolbar = itemViewer?.querySelector(`.${CLASSNAME__ITEM_VIEWER_TOOLBAR}`);
                 const toolbarFirstDiv = toolbar?.querySelector('div');
-                // const toolbarRect = toolbar?.getBoundingClientRect();
                 const toolbarFirstDivRect = toolbarFirstDiv?.getBoundingClientRect();
-                console.log({toolbar, toolbarFirstDivRect, toolbarPaddingBottom});
-                
                 heightBetweenItemTopAndToolbarBarTop = Math.abs((toolbarFirstDivRect?.top || window.innerHeight * .925) + toolbarPaddingBottom);
             }
 
             maxHeight = heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 4;
             top = -heightBetweenItemTopAndToolbarBarTop + window.innerHeight / 2 - this.modalHeight / 2;
-            console.log({itemViewer, progressBarRect, heightBetweenItemTopAndToolbarBarTop, maxHeight, progressBarPaddingTop});
+            // console.log({itemViewer, progressBarRect, heightBetweenItemTopAndToolbarBarTop, maxHeight, progressBarPaddingTop});
             
-        } else {
+        } else if (this.optionsLogic.itemDisplayLocation !== 'none') {
             const carouselContainerRect = this.carouselContainerRef?.current?.getBoundingClientRect();
             const toolbarProgress = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`);
             const itemViewerToolbar = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_VIEWER_TOOLBAR}`);
+            const itemContainer = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_CONTAINER}`);
             const elementToUse = this.isCurrentItemVideo && isToolbarEmbedded ? toolbarProgress : itemViewerToolbar;
             const elementToUseRect = elementToUse?.getBoundingClientRect();
             const elementFirstDiv = elementToUse?.querySelector(`div`);
             const elementFirstDivRect = elementFirstDiv?.getBoundingClientRect();
+            const rectToUse = this.isCurrentItemVideo ? elementToUseRect : elementFirstDivRect;
+            let minTopValue = -(Math.abs((rectToUse?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndItemTop;
             
             // console.log({container: this?.carouselContainerRef?.current, carouselContainerRect, elementToUseRect, elementFirstDivRect, elementToUse, toolbarProgress});
             if (carouselContainerRect && elementToUseRect && elementFirstDivRect) {
-                    const toolbarTop = this.isCurrentItemVideo ? (elementToUseRect.y + progressBarPaddingTop) : (elementFirstDivRect.y + toolbarPaddingBottom)
-                    heightBetweenItemTopAndToolbarBarTop = Math.abs((carouselContainerRect.y + carouselPaddingTop) - toolbarTop);
+                const toolbarTop = this.isCurrentItemVideo ? (elementToUseRect.y + progressBarPaddingTop) : (elementFirstDivRect.y + toolbarPaddingBottom)
+                heightBetweenItemTopAndToolbarBarTop = Math.abs(carouselContainerRect.y + carouselPaddingTop - toolbarTop);
+
+                if (this.optionsLogic.isItemDisplayLocationBelow) {
+                    const itemContainerRect = itemContainer?.getBoundingClientRect();
+                   
+                    if (itemContainerRect) {
+                        heightBetweenItemTopAndToolbarBarTop = Math.abs(itemContainerRect?.top - toolbarTop);
+                        minTopValue = -heightBetweenItemTopAndToolbarBarTop;
+                    }
+                    console.log({heightBetweenItemTopAndToolbarBarTop, itemContainerRect, toolbarTop, spaceBetweenModalTopAndItemTop});
+                }
+                
             }
     
-            const rectToUse = this.isCurrentItemVideo ? elementToUseRect : elementFirstDivRect;
             const embeddedOffset = isToolbarEmbedded && this.isCurrentItemVideo ? 0 : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * (this.isCurrentItemVideo ? 1.33 : 2);
             const nonFullscreenCenteringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((rectToUse?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndItemTop)) / 2 - embeddedOffset / 2;
-            const minTopValue = -(Math.abs((rectToUse?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndItemTop;
             const containerHeightsIsEmbedded = (elementFirstDivRect ? elementFirstDivRect?.height : 74) + toolbarPaddingBottom + this.toolbarInnerContainerMarginTop;
             const containerHeightsNotEmbedded = elementToUseRect ? elementToUseRect?.height : 60;
             const containerHeights = isToolbarEmbedded || this.isFullscreenMode ? containerHeightsIsEmbedded : containerHeightsNotEmbedded;
@@ -450,7 +460,7 @@ export class StylingLogic {
             
             // console.log({heightBetweenItemTopAndToolbarBarTop,rectToUse, maxHeight, modalHeight: this.modalHeight});
             // console.log({heightBetweenItemTopAndToolbarBarTop, carouselContainerRect, rectToUse, maxHeight, modalHeight: this.modalHeight});
-            console.log({ containerHeights, toolbarPaddingBottom, top, maxHeight, modalHeigt: this.modalHeight, minTopValue, centeredTopValue});
+            console.log({ heightBetweenItemTopAndToolbarBarTop, containerHeights, toolbarPaddingBottom, top, maxHeight, modalHeigt: this.modalHeight, minTopValue, centeredTopValue});
         }
 
         const widthStyle = !this.isFullscreenMode || this.optionsLogic.isMobile ? {
