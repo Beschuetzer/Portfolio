@@ -432,9 +432,6 @@ export class StylingLogic {
             const embeddedOffset = isToolbarEmbedded && this.isCurrentItemVideo ? 0 : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * (this.isCurrentItemVideo ? 1.33 : 2);
             let minTopValue = -(Math.abs((rectToUse?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndItemTop;
             let nonFullscreenCenteringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((rectToUse?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndItemTop)) / 2 - embeddedOffset / 2;
-            const containerHeightsIsEmbedded = (elementFirstDivRect ? elementFirstDivRect?.height : 74) + toolbarPaddingBottom + this.toolbarInnerContainerMarginTop;
-            const containerHeightsNotEmbedded = elementToUseRect ? elementToUseRect?.height : 60;
-            const containerHeights = isToolbarEmbedded || this.isFullscreenMode ? containerHeightsIsEmbedded : containerHeightsNotEmbedded;
 
             if (carouselContainerRect && elementToUseRect && elementFirstDivRect) {
                 const toolbarTop = this.isCurrentItemVideo ? (elementToUseRect.y + progressBarPaddingTop) : (elementFirstDivRect.y + toolbarPaddingBottom)
@@ -458,7 +455,7 @@ export class StylingLogic {
 
             // console.log({heightBetweenItemTopAndToolbarBarTop,rectToUse, maxHeight, modalHeight: this.modalHeight});
             // console.log({heightBetweenItemTopAndToolbarBarTop, carouselContainerRect, rectToUse, maxHeight, modalHeight: this.modalHeight});
-            console.log({ heightBetweenItemTopAndToolbarBarTop, containerHeights, toolbarPaddingBottom, top, maxHeight, modalHeigt: this.modalHeight, minTopValue });
+            // console.log({ heightBetweenItemTopAndToolbarBarTop, toolbarPaddingBottom, top, maxHeight, modalHeigt: this.modalHeight, minTopValue });
         }
 
         const widthStyle = !this.isFullscreenMode || this.optionsLogic.isMobile ? {

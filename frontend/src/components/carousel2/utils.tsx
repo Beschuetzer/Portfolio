@@ -217,10 +217,11 @@ export function getNumberOfPages(
     return numberOfPages;
 }
 
-export function getPoint(e: MouseEvent | undefined) {
+export function getPoint(e: Event | MouseEvent | undefined) {
+    const mouseEvent = e as MouseEvent;
     return {
-        x: e?.x || e?.clientX || 0,
-        y: e?.y || e?.clientY || 0,
+        x: mouseEvent?.x || mouseEvent?.clientX || 0,
+        y: mouseEvent?.y || mouseEvent?.clientY || 0,
     } as Point;
 }
 
