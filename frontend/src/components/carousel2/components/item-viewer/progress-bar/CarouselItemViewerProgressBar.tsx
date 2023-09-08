@@ -198,12 +198,21 @@ export const CarouselItemViewerProgressBar = ({
         setSeekPercent
     ])
 
-    const onMouseMoveGlobal = useCallback((e: MouseEvent) => {
-        if (!isMouseDownRef?.current) return;
-        const xMovement = e.movementX;
-        const toolbarRect = progressBarRef?.current?.getBoundingClientRect();
-        if (!toolbarRect) return;
-        const movementAmount = xMovement / (toolbarRect.right - toolbarRect.left);
+    const onMouseMoveGlobal = useCallback((e: MouseEvent | TouchEvent) => {
+        const xMovementMouse = (e as MouseEvent)?.movementX;
+        let movementAmount: number;
+
+        if (isMouseDownRef?.current && xMovementMouse !== undefined) {
+            const toolbarRect = progressBarRef?.current?.getBoundingClientRect();
+            if (!toolbarRect) return;
+            movementAmount = xMovementMouse / (toolbarRect.right - toolbarRect.left);
+        } else if (xMovementMouse === undefined) {
+            //todo what is TouchEvent equivalent of e.movementX?
+            //assume MouseEvent if xMovementMouse is truthy
+            console.log({ firstTouch: (e as TouchEvent)?.changedTouches?.[0]?.pageX });
+            movementAmount = 1;
+        }
+
         setPercent((current) => {
             const newValue = current + movementAmount;
             if (newValue >= 1) return 1;
@@ -380,6 +389,8 @@ export const CarouselItemViewerProgressBar = ({
     useEffect(() => {
         document.addEventListener('mousemove', onMouseMoveGlobal);
         document.addEventListener('mouseup', onMouseUpGlobal);
+        document.addEventListener('touchmove', onMouseMoveGlobal);
+
 
         return () => {
             document.removeEventListener('mousemove', onMouseMoveGlobal);

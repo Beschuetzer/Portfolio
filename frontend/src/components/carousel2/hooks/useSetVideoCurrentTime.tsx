@@ -20,7 +20,7 @@ export const useSetVideoCurrentTime = ({
     const lastDrawTimeRef = useRef<number>(0);
 
     const drawSnapshot = useCallback((duration: number) => {
-        if (!video || percent === undefined || percent < 0 || !isFinite(duration)) return;
+        if (!video || percent === undefined || percent < 0 || !isFinite(duration) || !isFinite(percent)) return;
         video.currentTime = percent * duration;
     }, [percent, video])
 
