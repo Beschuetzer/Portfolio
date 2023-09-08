@@ -210,7 +210,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             showToolbar();
 
         }
-        
+
         shouldHideTimoutRef.current = setTimeout(() => {
             hideToolbar();
             document.body.style?.setProperty('cursor', 'none', 'important');
@@ -321,7 +321,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         const isInVideoBox = getIsPointInsideElement(point, (videoRef?.current || imageRef?.current) as HTMLElement);
         const isVideoPlaying = !!imageRef?.current ? true : getIsVideoPlaying(videoRef?.current);
         if (isInVideoBox || !isVideoPlaying) return;
-            hideToolbar();
+        hideToolbar();
     }, [hideToolbar, isFullscreenMode, videoRef, imageRef])
 
     const handleMouseMove = useCallback((e: MouseEvent) => {
@@ -568,7 +568,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                             <div className={CLASSNAME__TOOLBAR_LEFT}>
                                 <CarouselItemViewerPlayButton
                                     actionName='Play'
-                                    isShortcutVisible={showPlayButtonPopup}
+                                    isShortcutVisible={showPlayButtonPopup && !isProgressBarMouseDownRef?.current}
                                     isVisible={!isVideoPlaying}
                                     onClick={onPlayClick}
                                     options={options}
@@ -577,7 +577,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                 />
                                 <CarouselItemViewerPauseButton
                                     actionName='Pause'
-                                    isShortcutVisible={showPauseButtonPopup}
+                                    isShortcutVisible={showPauseButtonPopup && !isProgressBarMouseDownRef?.current}
                                     isVisible={isVideoPlaying}
                                     onClick={onPauseClick}
                                     options={options}
@@ -586,7 +586,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                 />
                                 <CarouselItemViewerSeekBackButton
                                     actionName='Seek Back'
-                                    isShortcutVisible={showSeekBackwardButtonPopup}
+                                    isShortcutVisible={showSeekBackwardButtonPopup && !isProgressBarMouseDownRef?.current}
                                     onClick={onSeekBackClick}
                                     options={options}
                                     ref={seekBackwardButtonRef}
@@ -594,7 +594,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                 />
                                 <CarouselItemViewerSeekForwardButton
                                     actionName='Seek Forward'
-                                    isShortcutVisible={showSeekForwardButtonPopup}
+                                    isShortcutVisible={showSeekForwardButtonPopup && !isProgressBarMouseDownRef?.current}
                                     onClick={onSeekForwardClick}
                                     options={options}
                                     ref={seekForwardButtonRef}
@@ -606,21 +606,21 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                         <div className={CLASSNAME__TOOLBAR_RIGHT}>
                             <CarouselItemViewerPreviousButton
                                 actionName='Previous'
-                                isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showPreviousButtonPopup}
+                                isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showPreviousButtonPopup && !isProgressBarMouseDownRef?.current}
                                 onClick={onPreviousItemClickLocal}
                                 options={options}
                                 ref={previousButtonRef}
                             />
                             <CarouselItemViewerNextButton
                                 actionName='Next'
-                                isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showNextButtonPopup}
+                                isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showNextButtonPopup && !isProgressBarMouseDownRef?.current}
                                 onClick={onNextItemClickLocal}
                                 options={options}
                                 ref={nextButtonRef}
                             />
                             <CarouselItemViewerFullscreenButton
                                 actionName='Fullscreen'
-                                isShortcutVisible={!isFullscreenMode && showFullscreenButtonPopup}
+                                isShortcutVisible={!isFullscreenMode && showFullscreenButtonPopup && !isProgressBarMouseDownRef?.current}
                                 onClick={() => null}
                                 options={options}
                                 ref={fullscreenButtonRef}
@@ -631,7 +631,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                             />
                             <CarouselItemViewerCloseButton
                                 actionName='Exit'
-                                isShortcutVisible={isFullscreenMode && showCloseButtonPopup}
+                                isShortcutVisible={isFullscreenMode && showCloseButtonPopup && !isProgressBarMouseDownRef?.current}
                                 onClick={onClose}
                                 options={options}
                                 ref={closeButtonRef}

@@ -1,5 +1,4 @@
 Carousel rework
-  -while scrolling the progress bar, hovering buttons displays the shortcut
   -when mouse is let up after scrolling on the progress bar, the screenshot viewer re-renders (glitchly)
   -todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)
   -figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
