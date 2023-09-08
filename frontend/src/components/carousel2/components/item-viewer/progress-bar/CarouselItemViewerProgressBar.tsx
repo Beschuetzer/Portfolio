@@ -9,7 +9,6 @@ import {
     CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL,
     CAROUSEL_VIDEO_SECTION_MIN_LENGTH,
     CLASSNAME__TOOLBAR_PROGRESS,
-    CURRENT_VIDEO_SECTION_INITIAL,
     NUMBER_OF_MS_IN_A_SECOND
 } from '../../../constants';
 import {
@@ -102,7 +101,12 @@ export const CarouselItemViewerProgressBar = ({
     const getCurrentSection = useCallback((percent: number) => {
         if (percent === undefined || percent === null) return CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL;
         for (const [index, sectionRange] of Object.entries(sectionToProgressBarValueMapping.current)) {
-            if (percent >= sectionRange.start && percent <= sectionRange.end) return Number(index);
+            const indexAsNumber = Number(index);
+            const isFirstIndex = indexAsNumber === 0;
+            const isLastIndex = indexAsNumber === Object.keys(sectionToProgressBarValueMapping || {}).length + 1;
+            if (isLastIndex && percent > 1) return indexAsNumber;
+            if (isFirstIndex && percent < 0) return 0;
+            if (percent >= sectionRange.start && percent <= sectionRange.end) return indexAsNumber;
         }
         return CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL;
     }, [])
@@ -181,7 +185,7 @@ export const CarouselItemViewerProgressBar = ({
         }
         setShowDot(true);
         const percent = getPercent(e);
-        setCurrentVideoSection && setCurrentVideoSection(areSectionsGiven ? getCurrentSection(percent) : CURRENT_VIDEO_SECTION_INITIAL);
+        setCurrentVideoSection && setCurrentVideoSection(areSectionsGiven ? getCurrentSection(percent) : 0);
 
         if (isMouseDownRef?.current) {
             setPercent(percent)
