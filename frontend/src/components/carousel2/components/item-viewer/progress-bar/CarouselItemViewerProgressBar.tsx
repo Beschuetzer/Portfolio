@@ -63,6 +63,8 @@ export const CarouselItemViewerProgressBar = ({
     const progressBarRef = useRef<HTMLDivElement>();
     const sectionToProgressBarValueMapping = useRef<SectionToProgressBarValueMapping>({});
     const checkIsVideoLoadedTimoutRef = useRef<any>(-1);
+    //this is used to prevent the the seekPercent from being reset then immediately set to a value when moving the triggering onMouseMove
+    const wasMouseUpJustTriggeredRef = useRef(false);
     const [toolbarWidth, setToolbarWidth] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE)
     const [showDot, setShowDot] = useState(false);
     const { stylingLogic, optionsLogic } = useBusinessLogic();
@@ -131,6 +133,7 @@ export const CarouselItemViewerProgressBar = ({
     }, [])
 
     const onMouseUp = useCallback((e: MouseEvent) => {
+        wasMouseUpJustTriggeredRef.current = true;
         if (isMouseDownRef) {
             isMouseDownRef.current = false;
         }
@@ -151,6 +154,7 @@ export const CarouselItemViewerProgressBar = ({
     }, [isMouseDownRef, percent, setCurrentVideoSection, setIsVideoPlaying, setSeekPercent, videoRef]);
 
     const onMouseDown = useCallback((e: MouseEvent) => {
+        wasMouseUpJustTriggeredRef.current = false;
         if (isMouseDownRef) {
             isMouseDownRef.current = true;
         }
@@ -190,7 +194,11 @@ export const CarouselItemViewerProgressBar = ({
         if (isMouseDownRef?.current) {
             setPercent(percent)
         } else {
-            setSeekPercent(percent);
+            if (wasMouseUpJustTriggeredRef.current) {
+                wasMouseUpJustTriggeredRef.current = false;
+            } else {
+                setSeekPercent(percent);
+            }
         }
     }, [
         areSectionsGiven,
@@ -204,10 +212,11 @@ export const CarouselItemViewerProgressBar = ({
     ])
 
     const onMouseMoveGlobal = useCallback((e: MouseEvent | TouchEvent) => {
+        if (!isMouseDownRef?.current) return;
         const xMovementMouse = (e as MouseEvent)?.movementX;
         let movementAmount: number;
 
-        if (isMouseDownRef?.current && xMovementMouse !== undefined) {
+        if (xMovementMouse !== undefined) {
             const toolbarRect = progressBarRef?.current?.getBoundingClientRect();
             if (!toolbarRect) return;
             movementAmount = xMovementMouse / (toolbarRect.right - toolbarRect.left);
