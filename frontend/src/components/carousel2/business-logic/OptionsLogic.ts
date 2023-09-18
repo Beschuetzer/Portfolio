@@ -45,7 +45,10 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
     CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_COLOR_FOUR,
-    CAROUSEL_COLOR_TWO
+    CAROUSEL_COLOR_TWO,
+    CAROUSEL_PROGRESS_BAR_HEIGHT_MAX,
+    CAROUSEL_PROGRESS_BAR_HEIGHT_MIN,
+    CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
@@ -335,7 +338,7 @@ export class OptionsLogic {
     }
 
     get progressBarShouldSpanEntireWidth() {
-        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, undefined, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.shouldSpanContainerWidth, CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT, this.isFullscreenMode);
     }
 
     get theme() {
@@ -402,7 +405,7 @@ export class OptionsLogic {
             maxLineCount,
         }
     }
-    
+
     get thumbnailPositioning() {
         return getCurrentValue(this.options?.layout?.thumbnailPositioning, undefined, this.isFullscreenMode);
     }
@@ -440,7 +443,7 @@ export class OptionsLogic {
     get useDefaultVideoControls() {
         return getCurrentValue(this.options?.layout?.useDefaultVideoControls, false, this.isFullscreenMode);
     }
-    
+
     get videoCurrentStateIndicatorBackgroundColor() {
         return getCurrentValue(this.options?.styling?.videoCurrentStateIndicator?.backgroundColor, this.theme.colorOne, this.isFullscreenMode);
     }
@@ -452,7 +455,7 @@ export class OptionsLogic {
             this.isFullscreenMode
         );
     }
-    
+
     get videoCurrentStateIndicatorSize() {
         return getCurrentValue(
             this.options?.styling?.videoCurrentStateIndicator?.size,
@@ -519,7 +522,16 @@ export class OptionsLogic {
 
     get videoProgressBarHeight() {
         const isEmbedded = this.isToolbarInVideo;
-        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.height, isEmbedded ? CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED : CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED, this.isFullscreenMode);
+        const heightGiven = getCurrentValue(this.options?.styling?.toolbar?.progressBar?.height, undefined, this.isFullscreenMode);
+        const defaultBasedOnEmbedded = isEmbedded ? CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED : CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED;
+        const isGivenGreaterThanMax = heightGiven !== undefined && heightGiven > CAROUSEL_PROGRESS_BAR_HEIGHT_MAX;
+        const isGivenLessThanMin = heightGiven !== undefined && heightGiven < CAROUSEL_PROGRESS_BAR_HEIGHT_MIN;
+        return isGivenGreaterThanMax
+            ? CAROUSEL_PROGRESS_BAR_HEIGHT_MAX
+            : isGivenLessThanMin
+                ? CAROUSEL_PROGRESS_BAR_HEIGHT_MIN
+                : defaultBasedOnEmbedded;
+
     }
 
     get videoSeekAmount() {
@@ -592,7 +604,7 @@ export class OptionsLogic {
         const currentItemSpacing = this.getThumbnailSpacing(CAROUSEL_ITEM_SPACING_DEFAULT / 2);
         return this.thumbnailPositioning !== undefined ? currentItemSpacing : valueToUseIfNoPositioningGiven;
     }
-    
+
     getThumbnailSpacing(defaultValue = CAROUSEL_ITEM_SPACING_DEFAULT) {
         return getCurrentValue(this.options?.thumbnail?.spacing, defaultValue, this.isFullscreenMode)
     }
@@ -604,7 +616,7 @@ export class OptionsLogic {
             this.isFullscreenMode
         );
     }
-    
+
     getXlinkHref(xlinkHref: CarouselItemViewerCustomButtonProps['xlinkHref']) {
         return getCurrentValue(xlinkHref, undefined, this.isFullscreenMode);
     }

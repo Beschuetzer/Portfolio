@@ -1,7 +1,27 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CSSProperties } from "react";
 import { CarouselItemViewerShortcutIndicatorProps } from "./components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
 import { KeyboardShortcut } from "./hooks/useKeyboardShortcuts";
 import { LoadingSpinnerProps } from "./components/LoadingSpinner";
+import {
+    CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
+    MOBILE_PIXEL_WIDTH,
+    CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT,
+    CAROUSEL_ITEM_SIZE_DEFAULT,
+    CAROUSEL_PADDING_DEFAULT,
+    CAROUSEL_ITEM_SPACING_DEFAULT,
+    AUTO_HIDE_DISABLED_VALUE,
+    AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT,
+    SEEK_AMOUNT_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT,
+    CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED,
+    CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED,
+    CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT,
+} from './constants';
+import { OptionsLogic } from './business-logic/OptionsLogic';
+import { CarouselVideoOptions } from "./components/CarouselVideo";
+
 
 //#region Enums
 export enum ArrowButtonDirection {
@@ -11,7 +31,7 @@ export enum ArrowButtonDirection {
 
 export enum CarouselElement {
     /**
-    *Setting this will change all the items below.  `elementColor` specified in a given section will override this value
+    *Setting this will change all the items below.  Any {@link CarouselElementColor color} specified in a given section will override this value
     **/
     all = 'all',
     /**
@@ -96,24 +116,24 @@ export type CarouselElementColor = {
 }
 export type CarouselElementSize = {
     /**
-    *Default buttonSize is 24px above 655px and 18px otherwise
-    *A tuple where the first element is the size of the button in px, the second element is the breakpoint in px, and the third element is the breakpoint type (default is max-width)
+    *Default buttonSize is {@link CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT} pixels above the mobile {@link MOBILE_PIXEL_WIDTH breakpoint} and {@link CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT} pixels otherwise
+    *A tuple where the first element is the size of the button in pixels, the second element is the breakpoint in pixels, and the third element is the breakpoint type (default is max-width)
     *`max-width` is equal to <= and `min-width` is equal to >= the 2nd element's number
     *Default 2nd element and 3rd element are positive infinity and `max-width`, so giving only a number will result in that size always being used.
     *@example
-    *   `[[18, 400, "max-width"]]` => when window.innerWidth <= 400 then the button size is set to 18
-    *   `[[18, 400, "max-width"], [30, 1600, "min-width"]]` => when window.innerWidth <= 400 then the button size is set to 18, when window.innerWidth >= 1600 then button size is 30, otherwise button size is default of 24px.
+    *   [[18, 400, "max-width"]] => when window.innerWidth <= 400 then the button size is set to 18
+    *   [[18, 400, "max-width"], [30, 1600, "min-width"]]` => when window.innerWidth <= 400 then the button size is set to 18, when window.innerWidth >= 1600 then button size is 30, otherwise button size is default value for any given viewport width.
     **/
     size?: CarouselElementValue<number>;
 }
 export type CarouselElementViewingMode<T> = {
     /**
-    *These setting only apply when in fullscreen mode.  Otherwise default settings are used
+    *These setting only apply when in fullscreen mode.  Otherwise default settings are used.
     **/
     fullscreen?: CarouselElementValueTuple<T>;
     /**
-    *These setting only apply when not in fullscreen mode.  Otherwise default settings are used
-    *Elements only visible when `layout.itemDisplayLocation` is not `none`, will not be affected by this unless `itemDisplayLocation` is also set.
+    *These setting only apply when not in fullscreen mode.  Otherwise default settings are used.
+    *Elements only visible when {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link  CarouselLayoutOptions.itemDisplayLocation['none']}, will not be affected by this unless {@link  CarouselLayoutOptions.itemDisplayLocation} is also set.
     **/
     nonFullscreen?: CarouselElementValueTuple<T>;
 }
@@ -122,14 +142,15 @@ export type CarouselElementValueTuple<T> = CarouselElementTuple<T> | T;
 export type CarouselElementTuple<T> = [NonNullable<T> | undefined, number?, CarouselElementValueType?][];
 export type CarouselItemViewerOptions = {
     /**
-    *If this is falsy or < 0 then auto-hiding of the toolbar is disabled for videos.
-    *Otherwise, auto-hide occurs when there is no mouse input for this amount of time in milliseconds.  Default is 2.5 seconds.
-    *Only applies when in fullscreen mode
+    *If this is falsy or <= {@link AUTO_HIDE_DISABLED_VALUE} then auto-hiding of the toolbar is disabled for videos.
+    *Otherwise, auto-hide occurs when there is no mouse input for this amount of time in milliseconds.  
+    *Only applies when in fullscreen mode or the toolbar is embedded in non-fullscreen mode.
+    *Default is {@link AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT} ms.
     **/
     autoHideToolbarDuration?: CarouselElementValueTuple<number>;
     /**
     *How for forward/backward the seek buttons move a video.  
-    *Default is 5 seconds.
+    *Default is {@link SEEK_AMOUNT_DEFAULT} ms.
     *Only applies when in fullscreen mode
     **/
     seekAmount?: CarouselElementValue<number>;
@@ -163,11 +184,12 @@ export type CarouselSections = {
         **/
         border?: CarouselElementValue<CSSProperties['border']>;
         /**
-        *Default is 5px
+        *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT} pixels
         **/
         borderRadius?: CarouselElementValue<CSSProperties['borderRadius']>;
         /**
-        *Height in px.  If left blank, then it is half of the width
+        *Height in pixels.  If left blank, then it is half of the width.
+        *Default would be {@link CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT} / 2 pixels.
         **/
         height?: CarouselElementValue<number>;
         image?: {
@@ -205,7 +227,8 @@ export type CarouselSections = {
             header?: CarouselItemViewerPreviewTextOptions;
         };
         /**
-        *Width in px.  Default is 400px.
+        *Width of the item viewer in pixels. 
+        *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT} pixels.
         **/
         width?: CarouselElementValue<number>;
     } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
@@ -224,31 +247,34 @@ export type CarouselSections = {
     **/
     [CarouselSection.toolbar]?: {
         /**
-        This sets the size of the buttons in the toolbar in px.  The default is 24px
+        This sets the padding for the toolbar in pixels.  The default is {@link CAROUSEL_PADDING_DEFAULT} pixels when not embedded and {@link CAROUSEL_ITEM_SPACING_DEFAULT} pixels for left and right otherwise. 
         **/
         padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
         progressBar?: {
             /**
             *This is the dot at the end of the progress bar, which is only visible on when hovering the progress bar.  
+            *Defaults for these are {@link OptionsLogic.videoProgressBarDotSettings here}.
             **/
             dot?: {
                 /**
-                *Default is 12px
+                 * Default is {@link OptionsLogic.videoProgressBarDotSettings here}.
                 **/
                 diameter?: CarouselElementValue<number>;
                 /**
-                *Default is `false`
+                 * Whether the dot is always visible for the progress bar.
+                 * Default is {@link OptionsLogic.videoProgressBarDotSettings here}.
                 **/
                 isAlwaysVisible?: CarouselElementValue<boolean>;
                 /**
-                *The amount of time (in seconds) it takes to show the dot on hovering of the progress bar
-                *Default is .25 and only applicable if `isAlwaysVisible` is `false`
+                 *The amount of time (in seconds) it takes to show the dot on hovering of the progress bar.
+                 *Default is {{@link OptionsLogic.videoProgressBarDotSettings here}.
+                 *Only applicable if the `isAlwaysVisible` is `false`
                 **/
                 transitionDuration?: CarouselElementValue<number>;
             }
             /**
             *The amount of space above the actual progress bar that counts as the a registered hover event 
-            *Default is 20px for both `top` and `bottom`
+            *Defaults can be found {@link OptionsLogic.videoProgressBarHitSlop here}.
             **/
             hitSlop?: {
                 top?: number;
@@ -259,46 +285,46 @@ export type CarouselSections = {
             **/
             screenshotViewer?: {
                 /**
-                *Width of the thumbnail in px.  
-                *Default is 150px.  
-                *Height is .5625 of this value (16:9 aspect ratio)
+                *Width of the thumbnail in pixels.  
+                *Default is {@link CAROUSEL_ITEM_SIZE_DEFAULT} pixels.  
+                *Height is `.5625 * thisValue` to maintain a 16:9 aspect ratio ({@link OptionsLogic.videoProgressBarScreenshotViewer Details})
                 **/
                 thumbnailWidth?: number;
             } & Pick<CarouselColorOptions, 'textOrForegroundColor'>
             /**
             *The amount of space between each video section. 
-            *Only applicable if `CarouselItemProps.video.sections` is given.
+            *Only applicable if the length of {@link CarouselVideoOptions.sections sections} is > 1.
             **/
             sectionGap?: CarouselElementValue<number>;
             /**
             *The amount the progress bar scales on the Y axis when hovered
-            *Default is `5`
+            *Default is {@link OptionsLogic.videoProgressBarScaleAmount here}.
             **/
             scaleAmount?: CarouselElementValue<number>
             /**
             *If true, the progress bar spans the entire width of the carousel itemViewer,
             *otherwise it only spans the inner width of the toolbar container.
-            *Default is false
+            *Default is {@link CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT}
             **/
             shouldSpanContainerWidth?: CarouselElementValue<boolean>;
             /**
-            *Height in px.  Default is 5px. Min is 1px and max is 13px.  
-            *Any number given smaller than 1px will be set to 1px.
-            *Any number given larger than 13px will be set to 13px.
+            *Height in pixels.  
+            *Default is {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED} when embedded otherwise {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED}.
+            *See logic {@link OptionsLogic.videoProgressBarHeight here}.
             **/
             height?: CarouselElementValue<number>;
             seekColor?: CarouselElementValue<string>;
         } & CarouselColorOptions;
         /**
-        *This changes all of the button colors as well as the text.  To change individual ones, use `styling.elements.buttonNameHere`
+        *This changes all of the button colors as well as the text.  To change individual ones, use `styling.elements.buttonNameHere`.
         **/
         elements?: CarouselElementSize & CarouselElementColor;
-          /**
-        *This is the popup that displays when hovering a button in the toolbar
-        **/
+        /**
+        *This is the popup that displays when hovering a button in the toolbar.
+        **/ 
         shortcutIndicator?: CarouselColorOptions;
         /**
-        *This overrides any value given in `toolbar.elements.color` above
+        *This overrides any value given in `toolbar.elements.color`.
         **/
         textColor?: CarouselElementValue<Color>;
     } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
@@ -320,13 +346,14 @@ export type CarouselSections = {
             fill?: CarouselElementValue<Color>;
         } & CarouselElementSize;
         /**
-        *This is in px
+        *This is in pixels
         **/
         fontSize?: CarouselElementValue<number>;
         padding?: CarouselElementValue<CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions>;
         textColor?: CarouselElementValue<Color>;
         /**
-        *this is a percent of the item container width when the `itemDisplayLocation` is not `none`.  It has no effect otherwise.
+        *this is a percent of the item container width when the {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link  CarouselLayoutOptions.itemDisplayLocation['none']}.  
+        *It has no effect otherwise.
         **/
         widthInPercent?: CarouselElementValue<number>;
     } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
@@ -334,19 +361,19 @@ export type CarouselSections = {
 
 export type CarouselLayoutOptions = {
     /**
-    *Where the image is display in the `itemViewer`.  The nonfullscreen value only applies when `layout.itemDisplayLocation` is not `none`.
+    *Where the image is display in the `itemViewer`.  The nonfullscreen value only applies when {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link  CarouselLayoutOptions.itemDisplayLocation['none']}.
     *Default is `center` when fullscreen mode and `top` when nonfullscreen mode.
     *Only noticable when the image width is greater than the width of the `itemViewer`, and the image height is less than the height of the `itemViewer`
     **/
     imagePosition?: CarouselElementValue<CarouselImagePosition>;
     /***
-    *If `none`, then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
+    *If {@link  CarouselLayoutOptions.itemDisplayLocation['none']}, then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
     *Otherwise the the item is displayed above or below the carousel.
-    *Default is `none`.
+    *Default is {@link  CarouselLayoutOptions.itemDisplayLocation['none']}.
     ***/
     itemDisplayLocation?: CarouselElementValueTuple<'none' | 'above' | 'below'>;
     /**
-    *Default is true.  If true, the toolbar will sit within the video element when `itemDisplayLocation` is not `none` and 
+    *Default is true.  If true, the toolbar will sit within the video element when {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link CarouselLayoutOptions.itemDisplayLocation['none']} and 
     *the auto-hide behavior will change to hide the toolbar when the video is playing and the mouse leaves the video element.
     *Does not affect fullscreen mode.
     **/
@@ -363,7 +390,7 @@ export type CarouselLayoutOptions = {
     /**
     *If true, then the default, embedded controls will be used for video items.
     *Default is false.
-    *Only applicable when `itemDisplayLocation` is not `none` and the carousel is in non-fullscreen mode
+    *Only applicable when {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link CarouselLayoutOptions.itemDisplayLocation['none']} and the carousel is in non-fullscreen mode
     *Issue when in fullscreen mode and this is true where play/pause indicator and modal don't appear anymore
     **/
     useDefaultVideoControls?: CarouselElementValueTuple<boolean>
@@ -605,11 +632,11 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
     **/
     background?: CarouselThumbnailBackgroundOptions;
     /**
-    *If true the description is disabled in the thumbnail.  Default is false is `layout.itemDisplayLocation` is 'none' otherwise true.
+    *If true the description is disabled in the thumbnail.  Default is false is {@link  CarouselLayoutOptions.itemDisplayLocation} is {@link CarouselLayoutOptions.itemDisplayLocation['none']} otherwise true.
     **/
     isDisabled?: CarouselElementValueTuple<boolean>;
     /**
-    *The size of the font in px of the thumbnail description;  Default is 12px;
+    *The size of the font in pixels of the thumbnail description;  Default is 12 pixels;
     **/
     fontSize?: CarouselElementValueTuple<number>;
     /**
@@ -635,7 +662,7 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
 **/
 export type CarouselThumbnailOptions = {
     /**
-    *This is the border used to indicate which thumbnail is active when `layout.itemDisplayLocation` is not `none`.  
+    *This is the border used to indicate which thumbnail is active when {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link CarouselLayoutOptions.itemDisplayLocation['none']}.  
     *Must be in the CSS border property format (e.g. `1px solid #000`). https://developer.mozilla.org/en-US/docs/Web/CSS/border.
     *
     *Will use default if the value provided is deemed invalid.
@@ -646,11 +673,11 @@ export type CarouselThumbnailOptions = {
     **/
     descriptionOverlay?: CarouselThumbnailDescriptionOverlayOptions;
     /**
-    *The size of the thumbnails in px.  Default is 150px.
+    *The size of the thumbnails in pixels.  Default is 150 pixels.
     **/
     size?: CarouselElementValueTuple<number>;
     /**
-    *The value in px that the thumbnails are spaced apart.  
+    *The value in pixels that the thumbnails are spaced apart.  
     *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible
     **/
     spacing?: CarouselElementValueTuple<number>;
