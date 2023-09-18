@@ -1,59 +1,6 @@
 import { useEffect } from "react";
 import { stopPropagation } from "../utils";
-
-export enum ModifierKey {
-    ctrl = 'ctrl',
-    alt = 'alt',
-    shift = 'shift',
-
-}
-export enum ValidKey {
-    a = 'a',
-    b = 'b',
-    c = 'c',
-    d = 'd',
-    e = 'e',
-    f = 'f',
-    g = 'g',
-    h = 'h',
-    i = 'i',
-    j = 'j',
-    k = 'k',
-    l = 'l',
-    m = 'm',
-    n = 'n',
-    o = 'o',
-    p = 'p',
-    q = 'q',
-    r = 'r',
-    s = 's',
-    t = 't',
-    u = 'u',
-    v = 'v',
-    w = 'w',
-    x = 'x',
-    y = 'y',
-    z = 'z',
-    arrowLeft = 'arrowLeft',
-    arrowUp = 'arrowUp',
-    arrowDown = 'arrowDown',
-    arrowRight = 'arrowRight',
-    escape = 'escape',
-    spacebar = ' ',
-}
-
-type KeyCombination = [ModifierKey, ValidKey];
-export type KeyInput = ValidKey | KeyCombination;
-export type KeyboardShortcut = {
-    /**
-    *This is what happens when you press any one of the key/key combinations specified in the 'keys' field
-    **/
-    action: () => void;
-    /**
-    *An example of a multi-key shortcut: [ValidKey.a, [ModifierKey.shift, ValidKey.arrowDown]].  The first is a ValidKey and the second a KeyCombination
-    **/
-    keys: KeyInput[];
-}
+import { KeyCombination, KeyboardShortcut, ModifierKey } from "../types";
 
 /**
 *If `skipCondition` resolves to true, then the listener is not added for that render cycle

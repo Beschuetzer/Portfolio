@@ -1,20 +1,26 @@
+import { KeyInput, ValidKey, ModifierKey } from "./types";
 import { getClassname } from "./utils";
-import { KeyInput, ModifierKey, ValidKey } from "./hooks/useKeyboardShortcuts";
 
+export const AUTO_CHANGE_PAGE_DEFAULT = true;
 export const AUTO_HIDE_DISABLED_VALUE = 0;
 export const AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT = 2500;
 export const CURRENT_ITEM_INDEX_INITIAL = 0;
 export const CURRENT_PAGE_INITIAL = 0;
-export const GET_CURRENT_VALUE_DEFAULT = 0;
+export const DISABLE_WRAPPING_DEFAULT = false;
 export const EMPTY_STRING = "";
+export const GET_CURRENT_VALUE_DEFAULT = 0;
+export const IS_LAST_PAGE_FLUSH_DEFAULT = true;
 export const MAX_CLICK_THRESHOLD_DEFAULT = 15;
 export const NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS = 2;
 export const NUMBER_OF_MS_IN_A_SECOND = 1000;
 export const NUMBER_OF_PAGES_INITIAL = 0;
 export const SEEK_AMOUNT_DEFAULT = 5000;
+export const THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT = true;
 export const TRANSLATION_AMOUNT_INITIAL = 0;
+export const USE_DEFAULT_VIDEO_CONTROLS_DEFAULT = false;
 export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
 export const WINDOW_RESIZE_DEBOUNCE = 250;
+
 
 //#region ClassNames
 export const CLASSNAME__ROOT = 'thumbnail-carousel'; //this has to match $carouselClassname in _variables.scss

@@ -1,7 +1,7 @@
 Carousel rework
 
   -refactor comments to use {@link} and other conventions 
-      -on line 381
+      -on line 727
   -refactor to conform to SOLID principles (https://www.youtube.com/watch?v=MSq_DCRxOxw)
   -grabbing the progress bar and dragging sometimes causes the screenshot viewer to render where it was when grabbed (just one frame?)
   -todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)

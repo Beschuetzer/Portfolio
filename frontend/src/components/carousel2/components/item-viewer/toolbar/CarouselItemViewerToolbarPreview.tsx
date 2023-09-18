@@ -2,8 +2,7 @@ import { getClassname, getShortcutsString } from '../../../utils'
 import { LoadingSpinner } from '../../LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../../../constants';
 import { CarouselItemProps } from '../../CarouselItem';
-import { CarouselItemViewerButtonProps } from '../../../types';
-import { KeyInput } from '../../../hooks/useKeyboardShortcuts';
+import { CarouselItemViewerButtonProps, KeyInput } from '../../../types';
 import { useMemo } from 'react';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 

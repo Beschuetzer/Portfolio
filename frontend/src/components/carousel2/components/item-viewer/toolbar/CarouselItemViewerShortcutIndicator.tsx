@@ -1,8 +1,8 @@
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { capitalize, getClassname, getIsMobile, getShortcutsString } from '../../../utils'
-import { KeyInput } from '../../../hooks/useKeyboardShortcuts';
 import { CLASSNAME__DISPLAY_NONE } from '../../../constants';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
+import { KeyInput } from '../../../types';
 
 export type CarouselItemViewerShortcutIndicatorPosition = 'left' | 'center' | 'right';
 export type CarouselItemViewerShortcutIndicatorProps = {

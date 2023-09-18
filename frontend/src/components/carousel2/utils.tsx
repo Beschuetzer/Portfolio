@@ -10,7 +10,6 @@ import {
     NUMBER_OF_PAGES_INITIAL,
     VIDEO_EXTENSIONS
 } from "./constants";
-import { KeyInput, ValidKey } from "./hooks/useKeyboardShortcuts";
 import {
     Coordinate,
     Point,
@@ -19,7 +18,9 @@ import {
     CarouselElementValueType,
     CarouselElementViewingMode,
     CarouselElementTuple,
-    CarouselElementValueTuple
+    CarouselElementValueTuple,
+    KeyInput,
+    ValidKey
 } from "./types";
 
 type GetClassname = {

@@ -48,7 +48,12 @@ import {
     CAROUSEL_COLOR_TWO,
     CAROUSEL_PROGRESS_BAR_HEIGHT_MAX,
     CAROUSEL_PROGRESS_BAR_HEIGHT_MIN,
-    CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT
+    CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT,
+    USE_DEFAULT_VIDEO_CONTROLS_DEFAULT,
+    AUTO_CHANGE_PAGE_DEFAULT,
+    DISABLE_WRAPPING_DEFAULT,
+    IS_LAST_PAGE_FLUSH_DEFAULT,
+    THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
@@ -92,7 +97,7 @@ export class OptionsLogic {
     }
 
     get autoChangePage() {
-        return getCurrentValue(this.options?.navigation?.autoChangePage, true, this.isFullscreenMode);
+        return getCurrentValue(this.options?.navigation?.autoChangePage, AUTO_CHANGE_PAGE_DEFAULT, this.isFullscreenMode);
     }
 
     get autoHideToolbarDuration() {
@@ -146,7 +151,7 @@ export class OptionsLogic {
     }
 
     get isLastPageFlush() {
-        return getCurrentValue(this.options?.navigation?.isLastPageFlush, true, this.isFullscreenMode);
+        return getCurrentValue(this.options?.navigation?.isLastPageFlush, IS_LAST_PAGE_FLUSH_DEFAULT, this.isFullscreenMode);
     }
 
     get isMobile() {
@@ -162,7 +167,7 @@ export class OptionsLogic {
     }
 
     get isWrappingDisabled() {
-        return getCurrentValue(this.options?.navigation?.disableWrapping, false, this.isFullscreenMode);
+        return getCurrentValue(this.options?.navigation?.disableWrapping, DISABLE_WRAPPING_DEFAULT, this.isFullscreenMode);
     }
 
     get itemViewerBackgroundColor() {
@@ -392,7 +397,7 @@ export class OptionsLogic {
     }
 
     get thumbnailOverlayIsHidden() {
-        return getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, true, this.isFullscreenMode);
+        return getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.hideDescriptionOverlayUnlessHovered, THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT, this.isFullscreenMode);
     }
 
     get thumbnailOverlayText() {
@@ -441,7 +446,7 @@ export class OptionsLogic {
     }
 
     get useDefaultVideoControls() {
-        return getCurrentValue(this.options?.layout?.useDefaultVideoControls, false, this.isFullscreenMode);
+        return getCurrentValue(this.options?.layout?.useDefaultVideoControls, USE_DEFAULT_VIDEO_CONTROLS_DEFAULT, this.isFullscreenMode);
     }
 
     get videoCurrentStateIndicatorBackgroundColor() {

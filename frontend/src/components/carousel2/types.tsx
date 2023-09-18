@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { CSSProperties } from "react";
 import { CarouselItemViewerShortcutIndicatorProps } from "./components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
-import { KeyboardShortcut } from "./hooks/useKeyboardShortcuts";
 import { LoadingSpinnerProps } from "./components/LoadingSpinner";
 import {
     CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT,
@@ -21,9 +20,33 @@ import {
     MAX_CLICK_THRESHOLD_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT,
+    USE_DEFAULT_VIDEO_CONTROLS_DEFAULT,
+    AUTO_CHANGE_PAGE_DEFAULT,
+    DISABLE_WRAPPING_DEFAULT,
+    IS_LAST_PAGE_FLUSH_DEFAULT,
+    CAROUSEL_COLOR_ONE,
+    CAROUSEL_COLOR_TWO,
+    CAROUSEL_COLOR_THREE,
+    CAROUSEL_COLOR_FOUR,
+    CAROUSEL_COLOR_FIVE,
+    CAROUSEL_COLOR_GREY_ONE,
+    ITEM_VIEWER_CLOSE_SHORTCUTS,
+    ITEM_VIEWER_PLAY_SHORTCUTS,
+    ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS,
+    ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS,
+    CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
+    ITEM_VIEWER_NEXT_ITEM_SHORTCUTS,
+    ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS,
+    CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT,
+    THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT,
 } from './constants';
 import { OptionsLogic } from './business-logic/OptionsLogic';
+import { ToolbarActionsLogic } from './business-logic/ToolbarActionsLogic';
 import { CarouselVideoOptions } from "./components/CarouselVideo";
+import { CarouselItemViewer } from './components/item-viewer/CarouselItemViewer';
+import { CarouselContent } from './components/CarouselContent';
+import { CarouselItemProps } from './components/CarouselItem';
+import { CarouselItemViewerToolbar } from './components/item-viewer/toolbar/CarouselItemViewerToolbar'
 
 
 //#region Enums
@@ -119,10 +142,11 @@ export type CarouselElementColor = {
 }
 export type CarouselElementSize = {
     /**
-    *Default buttonSize is {@link CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT} pixels above the mobile {@link MOBILE_PIXEL_WIDTH breakpoint} and {@link CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT} pixels otherwise
-    *A tuple where the first element is the size of the button in pixels, the second element is the breakpoint in pixels, and the third element is the breakpoint type (default is max-width)
-    *`max-width` is equal to <= and `min-width` is equal to >= the 2nd element's number
-    *Default 2nd element and 3rd element are positive infinity and `max-width`, so giving only a number will result in that size always being used.
+     *A tuple where the first element is the size of the button in pixels, the second element is the breakpoint in pixels, and the third element is the breakpoint type (default is max-width)
+     *`max-width` is equal to <= and `min-width` is equal to >= the 2nd element's number
+     *Default 2nd element and 3rd element are positive infinity and `max-width`, so giving only a number will result in that size always being used.
+     *Default when above the mobile {@link MOBILE_PIXEL_WIDTH breakpoint} is {@link CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT here} in pixels.
+     *Otherwise {@link CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT here} in pixels.
     *@example
     *   [[18, 400, "max-width"]] => when window.innerWidth <= 400 then the button size is set to 18
     *   [[18, 400, "max-width"], [30, 1600, "min-width"]]` => when window.innerWidth <= 400 then the button size is set to 18, when window.innerWidth >= 1600 then button size is 30, otherwise button size is default value for any given viewport width.
@@ -145,15 +169,15 @@ export type CarouselElementValueTuple<T> = CarouselElementTuple<T> | T;
 export type CarouselElementTuple<T> = [NonNullable<T> | undefined, number?, CarouselElementValueType?][];
 export type CarouselItemViewerOptions = {
     /**
-    *If this is falsy or <= {@link AUTO_HIDE_DISABLED_VALUE} then auto-hiding of the toolbar is disabled for videos.
+    *If this is falsy or <= {@link AUTO_HIDE_DISABLED_VALUE default} then auto-hiding of the toolbar is disabled for videos.
     *Otherwise, auto-hide occurs when there is no mouse input for this amount of time in milliseconds.  
     *Only applies when in fullscreen mode or the toolbar is embedded in non-fullscreen mode.
-    *Default is {@link AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT} ms.
+    *Default is {@link AUTO_HIDE_VIDEO_TOOLBAR_DURATION_DEFAULT here} in milliseconds.
     **/
     autoHideToolbarDuration?: CarouselElementValueTuple<number>;
     /**
     *How for forward/backward the seek buttons move a video.  
-    *Default is {@link SEEK_AMOUNT_DEFAULT} ms.
+    *Default is {@link SEEK_AMOUNT_DEFAULT here} in milliseconds.
     *Only applies when in fullscreen mode
     **/
     seekAmount?: CarouselElementValue<number>;
@@ -206,16 +230,16 @@ export type CarouselSectionsItemViewer = {
 } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
 export type CarouselSectionsItemViewerPreview = {
     /**
-    *Will use default {@link OptionsLogic.theme colorFive} value ({@link CAROUSEL_COLOR_FIVE}), if the value provided is deemed invalid.
+    *Will use default {@link OptionsLogic.theme colorFive} {@link CAROUSEL_COLOR_FIVE value}, if the value provided is deemed invalid.
     **/
     border?: CarouselElementValue<CSSProperties['border']>;
     /**
-    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT} pixels.
+    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT here} in pixels.
     **/
     borderRadius?: CarouselElementValue<CSSProperties['borderRadius']>;
     /**
     *Height in pixels.  If left blank, then it is half of the width.
-    *Default would be {@link CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT} / 2 pixels.
+    *Default would be ({@link CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT this} / 2) in pixels.
     **/
     height?: CarouselElementValue<number>;
     image?: {
@@ -223,12 +247,12 @@ export type CarouselSectionsItemViewerPreview = {
         position?: CarouselElementValue<CSSProperties['objectPosition']>;
     }
     /**
-    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT}.
+    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT here}.
     **/
     isVisibleInNonFullscreenMode?: CarouselElementValueTuple<boolean>;
     /**
     *The opacity of the background.
-    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT}
+    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT here}.
     **/
     opacity?: CarouselElementValue<CSSProperties['opacity']>
     /**
@@ -255,7 +279,7 @@ export type CarouselSectionsItemViewerPreview = {
     };
     /**
     *Width of the item viewer in pixels. 
-    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT} pixels.
+    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT here}.
     **/
     width?: CarouselElementValue<number>;
 } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
@@ -284,7 +308,7 @@ export type CarouselSectionsNavigation = {
 } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
 export type CarouselSectionsToolbar = {
     /**
-    This sets the padding for the toolbar in pixels.  The default is {@link CAROUSEL_PADDING_DEFAULT} pixels when not embedded and {@link CAROUSEL_ITEM_SPACING_DEFAULT} pixels for left and right otherwise. 
+    This sets the padding for the {@link CarouselItemViewerToolbar toolbar} in pixels.  When {@link CarouselLayoutOptions.isToolbarPositionedInVideo isToolbarPositionedInVideo} is `true` (default), the default is {@link CAROUSEL_PADDING_DEFAULT this}, otherwise it is {@link CAROUSEL_ITEM_SPACING_DEFAULT this} in pixels for left and right. 
     **/
     padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
     progressBar?: CarouselProgressBar;
@@ -293,7 +317,7 @@ export type CarouselSectionsToolbar = {
     **/
     elements?: CarouselElementSize & CarouselElementColor;
     /**
-    *This is the popup that displays when hovering a button in the toolbar.
+    *This is the popup that displays when hovering a button in the {@link CarouselItemViewerToolbar toolbar}.
     **/
     shortcutIndicator?: CarouselColorOptions;
     /**
@@ -331,7 +355,7 @@ export type CarouselProgressBar = {
         /**
         *Width of the thumbnail in pixels.  
         *Default is {@link CAROUSEL_ITEM_SIZE_DEFAULT} pixels.  
-        *Height is `.5625 * thisValue` to maintain a 16:9 aspect ratio ({@link OptionsLogic.videoProgressBarScreenshotViewer Details})
+        *Height is `.5625 * thisValue` to maintain a 16:9 aspect ratio ({@link OptionsLogic.videoProgressBarScreenshotViewer details})
         **/
         thumbnailWidth?: number;
     } & Pick<CarouselColorOptions, 'textOrForegroundColor'>
@@ -348,12 +372,12 @@ export type CarouselProgressBar = {
     /**
     *If true, the progress bar spans the entire width of the carousel itemViewer,
     *otherwise it only spans the inner width of the toolbar container.
-    *Default is {@link CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT}.
+    *Default is {@link CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT here}.
     **/
     shouldSpanContainerWidth?: CarouselElementValue<boolean>;
     /**
     *Height in pixels.  
-    *Default is {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED} when embedded otherwise {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED}.
+    *Default is {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED this} when embedded otherwise {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED this}.
     *See logic {@link OptionsLogic.videoProgressBarHeight here}.
     **/
     height?: CarouselElementValue<number>;
@@ -380,20 +404,20 @@ export type CarouselProgressBarDot = {
 
 export type CarouselLayoutOptions = {
     /**
-    *Where the image is display in the `itemViewer`.  The nonfullscreen value only applies when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}.
-    *Default is {@link CarouselImagePosition center} when fullscreen mode and {@link CarouselImagePosition top} when nonfullscreen mode.
-    *Only noticable when the image width is greater than the width of the `itemViewer`, and the image height is less than the height of the `itemViewer`.
+    *Where the image is display in the {@link CarouselItemViewer itemViewer}.  The non-fullscreen value only applies when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}.
+    *Default is {@link CarouselImagePosition center} when fullscreen mode and {@link CarouselImagePosition top} when non-fullscreen mode.
+    *Only noticable when the image width is greater than the width of the {@link CarouselItemViewer itemViewer}, and the image height is less than the height of the {@link CarouselItemViewer itemViewer}.
     **/
     imagePosition?: CarouselElementValue<CarouselImagePosition>;
     /***
-    *If `none`, then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
-    *Otherwise the the item is displayed above or below the carousel.
+    *If `none`, then the item is only displayed when clicking a thumbnail.  It is then displayed in fullscreen mode.
+    *Otherwise the the item is displayed above or below the carousel and viewing the item in fullscreen mode requires pressing the fullscreen button when the item is selected.
     *Default is `none`.
     ***/
     itemDisplayLocation?: CarouselElementValueTuple<CarouselItemDisplayLocation>;
     /**
-    *Default is true if not mobile otherwise false.  
-    *If true, the toolbar will sit within the video element when {@link CarouselLayoutOptions.itemDisplayLocation} is not {@link CarouselItemDisplayLocation none} and 
+    *Default is `true` if not mobile otherwise `false`.  
+    *If `true`, the toolbar will sit within the video element when {@link CarouselLayoutOptions.itemDisplayLocation} is not {@link CarouselItemDisplayLocation none} and 
     *the auto-hide behavior will change to hide the toolbar when the video is playing and the mouse leaves the video element.
     *Does not affect fullscreen mode.
     **/
@@ -409,20 +433,21 @@ export type CarouselLayoutOptions = {
     thumbnailPositioning?: CarouselElementValueTuple<CarouselItemThumbnailPositioning>;
     /**
     *If true, then the default, embedded controls will be used for video items.
-    *Default is false.
-    *Only applicable when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none} and the carousel is in non-fullscreen mode
-    *Issue when in fullscreen mode and this is true where play/pause indicator and modal don't appear anymore
+    *Only applicable when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none} and the carousel is in non-fullscreen mode.
+    *Issue when in fullscreen mode and this is true where play/pause indicator and modal don't appear anymore.
+    *Default is {@link USE_DEFAULT_VIDEO_CONTROLS_DEFAULT this}.
     **/
     useDefaultVideoControls?: CarouselElementValueTuple<boolean>
 }
 
 export type CarouselSwipingOptions = {
     /**
-    *If true, then swiping will be disabled.  For {@link CarouselSections.navigation navigation}, this means grabbing a thumbnail
+    *If `true`, then swiping will be disabled.  For {@link CarouselSections.navigation navigation}, this means grabbing a thumbnail
     *and swiping will not change the page (non-fullscreen mode).  
     *For {@link CarouselSections.itemViewer itemViewer}, this means that grabbing and swiping will not change the currently viewing item (fullscreen mode).
-    *Default is `true` when {@link CarouselLayoutOptions.isToolbarPositionedInVideo isToolbarPositionedInVideo} is `true` and not fullscreen otherwise default is `false`.
     *Swiping only occurs if mouseup and mousedown coordinate distances are greater than {@link CarouselSwipingOptions.maxClickThreshold maxClickThreshold}. 
+    *Default is `true` when {@link CarouselLayoutOptions.isToolbarPositionedInVideo isToolbarPositionedInVideo} is `true` and not fullscreen, otherwise default is `false`.
+    *See {@link OptionsLogic.isItemViewerSwipingDisabled ItemViewer Logic} and {@link OptionsLogic.isNavigationSwipingDisabled Navigation Logic}. 
     **/
     disableSwiping?: CarouselElementValueTuple<boolean>;
     /**
@@ -430,29 +455,29 @@ export type CarouselSwipingOptions = {
     *This is used to prevent opening of an item when mousedown and mouseup targets are the same.
     *Higher values mean the user can move the cursor more and still open the item.
     *0 would mean if the user moved the cursor at all between mouseup and mousedown then the item would not open.
-    *Default is {@link MAX_CLICK_THRESHOLD_DEFAULT} when swiping is enabled to allow for slight movement (swiping is disabled if only 1 page or {@link CarouselSwipingOptions.disableSwiping disableSwiping} is `false`).
+    *Default is {@link MAX_CLICK_THRESHOLD_DEFAULT this} when swiping is enabled to allow for slight movement (swiping is disabled if only 1 page or {@link CarouselSwipingOptions.disableSwiping disableSwiping} is `false`).
     **/
     maxClickThreshold?: CarouselElementValueTuple<number>;
 }
 
 export type CarouselNavigationOptions = {
     /**
-    *If true, the navigation automatically changes pages based on the current item being viewed.
-    *Default is true.
+    *If `true`, the {@link CarouselContent navigation} automatically changes pages based on the current item being viewed.
+    *Default is {@link AUTO_CHANGE_PAGE_DEFAULT this}.
     **/
     autoChangePage?: CarouselElementValue<boolean>;
     /**
-    *When true, the carousel can not go from beginning to end directly.
-    *When false, the right arrow button navigates to the first page when the `currentPage` is the final page
-    *and the left arrow button navigates to the last page when the `currentPage` is the first page.
-    *Default is false.
+    *When `true`, the carousel {@link CarouselContent navigation} can not go from beginning to end directly.
+    *When `false`, the right arrow button navigates to the first page when the {@link CarouselNavigationProps.currentPage currentPage} is the final page
+    *and the left arrow button navigates to the last page when the {@link CarouselNavigationProps.currentPage currentPage} is the first page.
     *Only applicable when not in fullscreen mode.
+    *Default is {@link DISABLE_WRAPPING_DEFAULT this}.
     **/
     disableWrapping?: CarouselElementValueTuple<boolean>;
     /**
-    *If true, the last page ends with the last item in the list otherwise there may be blank space after the last item.
-    *Default is true.
+    *If `true`, the last page ends with the last item in the list otherwise there may be blank space after the last item.
     *Only applicable when not in fullscreen mode.
+    *Default is {@link IS_LAST_PAGE_FLUSH_DEFAULT this}.
     **/
     isLastPageFlush?: CarouselElementValueTuple<boolean>;
 } & CarouselSwipingOptions
@@ -465,17 +490,17 @@ export type CarouselNavigationProps = {
 export type CarouselFontFamilyOptions = Exclusive<
     {
         /**
-        *Setting the font-family for text in the item-viewer
+        *Setting the font-family for text in the {@link CarouselItemViewer itemViewer}
         **/
         itemViewer?: CarouselElementValue<string>;
         /**
-        *Setting the font-family for the navigation items and the carousel itself
+        *Setting the font-family for the {@link CarouselContent navigation} items and the carousel itself
         **/
         navigation?: CarouselElementValue<string>;
     },
     {
         /**
-        *Setting this sets both itemViewer and navigation to the same font-family
+        *Setting this sets both {@link CarouselItemViewer itemViewer} and {@link CarouselContent navigation} to the same font-family
         **/
         all?: CarouselElementValue<string>;
     }>
@@ -517,38 +542,39 @@ export type CarouselOptions = {
 export type CarouselColorTheme = {
     /**
     *This is the darkest color in the default theme.  
-    Default is `#1d0e0b`
+    Default is {@link CAROUSEL_COLOR_ONE this}.
     **/
     colorOne?: CarouselElementValue<Color>;
     /**
-    *Default is `#774023`
+    *Default is  {@link CAROUSEL_COLOR_TWO this}.
     **/
     colorTwo?: CarouselElementValue<Color>;
     /**
-   *Default is `#d88c51`
-   **/
+    *Default is  {@link CAROUSEL_COLOR_THREE this}.
+    **/
     colorThree?: CarouselElementValue<Color>;
     /**
-   *Default is `#f3e7c9`
-   **/
+    *Default is  {@link CAROUSEL_COLOR_FOUR this}.
+    **/
     colorFour?: CarouselElementValue<Color>;
     /**
     *This is the lightest color in default theme
-    Default is `#fff9f5`
+    *Default is  {@link CAROUSEL_COLOR_FIVE this}.
     **/
     colorFive?: CarouselElementValue<Color>;
     /**
-   *Default is `#9b9b9b`
-   **/
+    *Default is {@link CAROUSEL_COLOR_GREY_ONE this}.
+    **/
     colorGreyOne?: CarouselElementValue<Color>;
 }
 
 //#region Actions
-//Any new additions here need to be added to `ToolbarActionLogic` as well
+/**
+* Any new additions here need to be added to {@link ToolbarActionsLogic} as well
+**/
 export type CarouselAction = {
     /**
     *Runs after the the action's default action has been executed.  
-    *The 'play' field is called after pressing a shortcut for the play button or pressing the play button
     **/
     onActionCompleted?: CarouselActionOnActionCompleted;
 } & Required<Pick<KeyboardShortcut, 'keys'>>
@@ -556,56 +582,69 @@ export type CarouselActionOnActionCompleted = () => void;
 
 export type CarouselItemViewerActions = {
     /**
-    *Additional shortcuts for closing the item-viewer (full-screen mode).  The `esc` key is a hard-coded value here.
+    *Additional shortcuts for closing the item-viewer (fullscreen mode).  The `esc` key is a hard-coded value here.
+    *Default is {@link ITEM_VIEWER_CLOSE_SHORTCUTS this}.
     **/
     [CarouselElement.closeButton]?: CarouselAction;
     /**
-    *Shortcuts for moving to the next item item in the item-viewer (full-screen mode).  Overrides defaults.
+    *Shortcuts for moving to the next item item in the item-viewer (fullscreen mode).  Overrides defaults.
+    *Default is {@link ITEM_VIEWER_NEXT_ITEM_SHORTCUTS this}.
     **/
     [CarouselElement.nextButton]?: CarouselAction;
     /**
-    *Shortcuts for pausing a video in the item-viewer (full-screen mode).  Overrides defaults.
+    *Shortcuts for pausing a video in the item-viewer (fullscreen mode).  Overrides defaults.
+    *Default is the same as {@link ITEM_VIEWER_PLAY_SHORTCUTS play} button.
     **/
     [CarouselElement.pauseButton]?: CarouselAction;
     /**
-    *Shortcuts for playing a video in the item-viewer (full-screen mode).  Overrides defaults.
+    *Shortcuts for playing a video in the item-viewer (fullscreen mode).  Overrides defaults.
+    *Default is {@link ITEM_VIEWER_PLAY_SHORTCUTS this}.
     **/
     [CarouselElement.playButton]?: CarouselAction;
     /**
-    *Shortcuts for moving to the previous item item in the item-viewer (full-screen mode).  Overrides defaults.
+    *Shortcuts for moving to the previous item item in the item-viewer (fullscreen mode).  Overrides defaults.
+    *Default is {@link ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS this}.
     **/
     [CarouselElement.previousButton]?: CarouselAction;
     /**
-    *Shortcuts for seeking a video backward in the item-viewer (full-screen mode).  Overrides defaults.
+    *Shortcuts for seeking a video backward in the item-viewer (fullscreen mode).  Overrides defaults.
+    *Default is {@link ITEM_VIEWER_SEEK_BACKWARDS_SHORTCUTS this}.
     **/
     [CarouselElement.seekBackButton]?: CarouselAction;
     /**
-    *Shortcuts for seeking a video forward in the item-viewer (full-screen mode).  Overrides defaults.
+    *Shortcuts for seeking a video forward in the item-viewer (fullscreen mode).  Overrides defaults.
+    *Default is {@link ITEM_VIEWER_SEEK_FORWARDS_SHORTCUTS this}.
     **/
     [CarouselElement.seekForwardButton]?: CarouselAction;
 }
 
+/**
+*The available actions broken down by each section.  
+**/
 export type CarouselActions = {
-    itemViewer?: CarouselItemViewerActions;
+    [CarouselSection.itemViewer]: CarouselItemViewerActions;
 }
 //#endregion
 
 export type CarouselElementCustomization = {
     /**
-    *Default is `#000`
+    *The color to use for a given element in the carousel.
     **/
     fillColor?: CarouselElementValue<Color>;
     /**
-    *Href of the svg element
+    *Href of the svg element.
     **/
     svgHref?: CarouselElementValue<string>;
     /**
     *Styles passed directly to the underlying use element of the svg (for rotation purposes mainly).
-    *It's best to make changes to the svg element directly though
+    *It's best to make changes to the svg element directly though.
     **/
     style?: CSSProperties;
 }
 
+/**
+*Creating available options for each element.
+**/
 export type CarouselElementStyles = {
     [button in CarouselElement]?: button extends CarouselElement.all ? Pick<CarouselElementCustomization, 'fillColor'> : CarouselElementCustomization;
 }
@@ -615,7 +654,9 @@ export type CarouselElementStyles = {
 **/
 export type CarouselThumbnailBackgroundOptions = {
     /**
-    *Specify what you want the gradient to be for browswers that support it.  The gradient starts at the top and goes down by default (180deg angle)
+    *Specify what you want the gradient to be for browswers that support it.  
+    *The gradient starts at the top and goes down by default (180deg angle).
+    *Default is {@link OptionsLogic.thumbnailOverlayBackgroundGradient this}.
     **/
     gradient?: {
         angle?: CarouselElementValueTuple<number>;
@@ -623,7 +664,8 @@ export type CarouselThumbnailBackgroundOptions = {
         start: CarouselThumbnailBackground;
     }
     /**
-    *The hexadecimal value for the thumbnail's fallback background
+    *The hexadecimal value for the thumbnail's fallback background.
+    *Default is {@link OptionsLogic.thumbnailOverlayBackgroundSolid this}.
     **/
     solid?: CarouselThumbnailBackground;
 }
@@ -633,11 +675,11 @@ export type CarouselThumbnailBackgroundOptions = {
 **/
 export type CarouselThumbnailBackground = {
     /**
-    *This is a hexadecimal color
+    *This is a hexadecimal color value.
     **/
     color?: CarouselElementValueTuple<Color>;
     /**
-    *Valid values are 0-1 inclusive
+    *Valid values are 0-1 inclusive.
     **/
     opacity?: CarouselElementValueTuple<number>;
 }
@@ -652,26 +694,30 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
     **/
     background?: CarouselThumbnailBackgroundOptions;
     /**
-    *If true the description is disabled in the thumbnail.  Default is false is {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is {@link CarouselItemDisplayLocation none}} otherwise true.
+    *If true the description is disabled in the thumbnail.  
+    *Default is `false` is {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is {@link CarouselItemDisplayLocation none}} otherwise `true`.
+    *Default is {@link OptionsLogic.thumbnailOverlayIsDisabled this}.
     **/
     isDisabled?: CarouselElementValueTuple<boolean>;
     /**
-    *The size of the font in pixels of the thumbnail description;  Default is 12 pixels;
+    *The size of the font in pixels of the thumbnail description;  Default is {@link CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT this} in pixels.
     **/
     fontSize?: CarouselElementValueTuple<number>;
     /**
-    *If false, the overlay with the description is always present.  
-    *If true, the overlay only shows when item is hovered.
-    *No overlay is shown if `item.description` is falsy
-    *Default is true
+    *If `false`, the overlay with the description is always present.  
+    *If `true`, the overlay only shows when item is hovered.
+    *No overlay is shown if the item's {@link CarouselItemProps.description description} is falsy.
+    *Default is {@link THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT this}.
     **/
     hideDescriptionOverlayUnlessHovered?: CarouselElementValueTuple<boolean>;
     /**
-    *The number of lines to show before an ellipsis is inserted.  Default is 2.
+    *The number of lines to show before an ellipsis is inserted. 
+    *Default is {@link CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT this}.
     **/
     maxLineCount?: CarouselElementValueTuple<number>;
     /**
-    *The hexadecimal value for the thumbnail background's text
+    *The hexadecimal value for the thumbnail background's text.
+    *Default is the theme's {@link CAROUSEL_COLOR_FIVE colorFive} value.
     **/
     textColor?: CarouselElementValueTuple<Color>;
 
@@ -724,6 +770,61 @@ export type Point = {
 export type VideoTimeStrings = {
     durationStr: string;
     currentTimeStr: string;
+}
+//#endregion
+
+//#region Keyboard Shortcuts
+export enum ModifierKey {
+    ctrl = 'ctrl',
+    alt = 'alt',
+    shift = 'shift',
+
+}
+export enum ValidKey {
+    a = 'a',
+    b = 'b',
+    c = 'c',
+    d = 'd',
+    e = 'e',
+    f = 'f',
+    g = 'g',
+    h = 'h',
+    i = 'i',
+    j = 'j',
+    k = 'k',
+    l = 'l',
+    m = 'm',
+    n = 'n',
+    o = 'o',
+    p = 'p',
+    q = 'q',
+    r = 'r',
+    s = 's',
+    t = 't',
+    u = 'u',
+    v = 'v',
+    w = 'w',
+    x = 'x',
+    y = 'y',
+    z = 'z',
+    arrowLeft = 'arrowLeft',
+    arrowUp = 'arrowUp',
+    arrowDown = 'arrowDown',
+    arrowRight = 'arrowRight',
+    escape = 'escape',
+    spacebar = ' ',
+}
+export type KeyCombination = [ModifierKey, ValidKey];
+export type KeyInput = ValidKey | KeyCombination;
+export type KeyboardShortcut = {
+    /**
+    *This is what happens when you press any one of the key/key combinations specified in the 'keys' field
+    **/
+    action: () => void;
+    /**
+    *An example of a multi-key shortcut: [ValidKey.a, [ModifierKey.shift, ValidKey.arrowDown]].  The first is a ValidKey and the second a KeyCombination
+    **/
+    keys: KeyInput[];
 }
 //#endregion
 
