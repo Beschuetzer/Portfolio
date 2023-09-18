@@ -41,6 +41,7 @@ import {
     THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT,
 } from './constants';
 import { OptionsLogic } from './business-logic/OptionsLogic';
+import { StylingLogic } from './business-logic/StylingLogic';
 import { ToolbarActionsLogic } from './business-logic/ToolbarActionsLogic';
 import { CarouselVideoOptions } from "./components/CarouselVideo";
 import { CarouselItemViewer } from './components/item-viewer/CarouselItemViewer';
@@ -730,29 +731,29 @@ export type CarouselThumbnailOptions = {
     /**
     *This is the border used to indicate which thumbnail is active when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}}.  
     *Must be in the CSS border property format (e.g. `1px solid #000`). https://developer.mozilla.org/en-US/docs/Web/CSS/border.
-    *
-    *Will use default if the value provided is deemed invalid.
+    *Will use {@link StylingLogic.getBorderStringToUse default} if the value provided is deemed invalid.
     **/
     currentItemBorder?: CarouselElementValueTuple<CSSProperties['border']>;
     /**
-    *This is the background and text that displays with the description text when hovering a thumbnail
+    *This is the background and text that displays with the description text when hovering a thumbnail.
     **/
     descriptionOverlay?: CarouselThumbnailDescriptionOverlayOptions;
     /**
-    *The size of the thumbnails in pixels.  Default is 150 pixels.
+    *The size of the thumbnails in pixels.  
+    *Default logic is {@link OptionsLogic.thumbnailSize here}.
     **/
     size?: CarouselElementValueTuple<number>;
     /**
     *The value in pixels that the thumbnails are spaced apart.  
-    *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible
+    *If not given, the spacing dynamically adjusts to neatly fit as many items inside the container as possible.
     **/
     spacing?: CarouselElementValueTuple<number>;
     /**
-    *Default is `min`
-    *Determines how the thumbnails are spaced out if there is only one page and `spacing` is not given (i.e. dynamic spacing is active)
-    *`min` means that the `spacing` will be reduced to a value that would allow for the most number of thumbnails to fit within the container with even spacing
-    *`max` means that the `spacing` will be maximized such that the thumbnails will span the entire width of the container when there is only one page
-    *If `layout.itemPositioning` is given, then this value is ignored
+    *Default is `min`.
+    *Determines how the thumbnails are spaced out if there is only one page and {@link CarouselThumbnailOptions.spacing spacing} is not given (i.e. dynamic spacing is active).
+    *`min` means that the {@link CarouselThumbnailOptions.spacing spacing} will be reduced to a value that would allow for the most number of thumbnails to fit within the container with even spacing.
+    *`max` means that the {@link CarouselThumbnailOptions.spacing spacing} will be maximized such that the thumbnails will span the entire width of the container when there is only one page.
+    *If {@link CarouselLayoutOptions.thumbnailPositioning thumbnailPositioning} is given, then this value is ignored.
     **/
     spacingStrategy?: CarouselElementValueTuple<'min' | 'max'>;
 }
@@ -818,11 +819,12 @@ export type KeyCombination = [ModifierKey, ValidKey];
 export type KeyInput = ValidKey | KeyCombination;
 export type KeyboardShortcut = {
     /**
-    *This is what happens when you press any one of the key/key combinations specified in the 'keys' field
+    *This is what happens when you press any one of the key/key combinations specified in the {@link KeyboardShortcut.keys keys} field.
     **/
     action: () => void;
     /**
-    *An example of a multi-key shortcut: [ValidKey.a, [ModifierKey.shift, ValidKey.arrowDown]].  The first is a ValidKey and the second a KeyCombination
+    *An example of a multi-key shortcut: `[ValidKey.a, [ModifierKey.shift, ValidKey.arrowDown]]`.
+    *The first is a {@link ValidKey} and the second a {@link KeyCombination}
     **/
     keys: KeyInput[];
 }
