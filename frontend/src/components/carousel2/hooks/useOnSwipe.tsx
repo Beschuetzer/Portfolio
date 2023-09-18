@@ -1,6 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Coordinate, CarouselSwipingOptions } from "../types";
 import { useCallback, useEffect, useRef } from "react"
 import { getAncestorContainsClassname, getCoordinateDifference, getIsMobile, stopPropagation } from "../utils";
-import { Coordinate } from "../types";
 
 export type StylingCase = 'start' | 'end';
 
@@ -15,7 +16,7 @@ export type UseOnSwipeHandlerDirection = {
     callback: (e: Event) => void;
     /**
     *If the `mouseDownSourceElement` is a child node of a node with any of the given classnames, then the callback will be skipped.
-    *Needed in order to prevent the swipes starting on the toolbar from changing items
+    *Needed in order to prevent the swipes starting on the toolbar from changing items.
     **/
     skipCallbackParentClassnames?: string[];
 }
@@ -23,17 +24,17 @@ export type UseOnSwipeHandlers = {
     [direction in SwipeDirection]?: UseOnSwipeHandlerDirection;
 } & {
     /**
-    *see types.ts for description on how this works
+    *See {@link CarouselSwipingOptions.maxClickThreshold maxClickThreshold} for a description on how this works.
     **/
     maxClickThreshold?: number;
     /**
-    *The minimum number of pixels in the given direction that must be made to register a valid swipe event
+    *The minimum number of pixels in the given direction that must be made to register a valid swipe event.
     **/
     minSwipeThreshold?: number;
     /**
     *This event is triggered whenever the mouse moves after the initial mousedown event.  
-    *Positive `xDiff` means the cursor is to the right of where the mousedown event occured
-    *Positive `yDiff` means the cursor is below where the mousedown event occured
+    *Positive `xDiff` means the cursor is to the right of where the mousedown event occured.
+    *Positive `yDiff` means the cursor is below where the mousedown event occured.
     **/
     onMoveWhenGrabbing?: (xDiff: number, yDiff: number) => void;
 }

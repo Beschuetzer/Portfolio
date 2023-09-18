@@ -3,7 +3,7 @@ import { stopPropagation } from "../utils";
 import { KeyCombination, KeyboardShortcut, ModifierKey } from "../types";
 
 /**
-*If `skipCondition` resolves to true, then the listener is not added for that render cycle
+*If `skipCondition` resolves to `true`, then the listener is not added for that render cycle.
 **/
 export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skipCondition?: () => boolean) => {
     const shouldSkip = skipCondition && skipCondition();

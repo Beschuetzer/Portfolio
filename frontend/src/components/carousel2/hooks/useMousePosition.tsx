@@ -3,7 +3,7 @@ import { Point } from "../types";
 import { stopPropagation } from "../utils";
 
 /**
-*Returns a ref that tracks the mouse position as it moves
+*Returns a ref that tracks the mouse position as it moves.
 **/
 export const useMousePosition = () => {
     const mousePositionRef = useRef<Point>({} as Point);

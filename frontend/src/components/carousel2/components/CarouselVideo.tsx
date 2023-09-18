@@ -14,15 +14,15 @@ import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from './item-viewer/progress-bar/C
 import { CarouselVideoCurrentTimeViewer } from './CarouselVideoCurrentTimeViewer';
 
 /**
-*Each section is comprised of a description string and a duration (in ms)
-*Each section starts 1ms after the previous section ended
-*The last section goes to the end by default
+*Each section is comprised of a description string and a duration (in ms).
+*Each section starts 1ms after the previous section ended.
+*The last section goes to the end by default.
 **/
 export type CarouselVideoSection = [string, number] | [string, string];
 export type CarouselVideoOptions = {
     /**
-    * If true and muted is `undefined` or `true`, the video will start playing when it first comes into focus 
-    * e.g. when user scrolls down to it or when the user clicks the thumbnail to load it
+    * If `true` and `muted` is `undefined` or `true`, the video will start playing when it first comes into focus.
+    * e.g. when user scrolls down to it or when the user clicks the thumbnail to load it.
     **/
     autoPlay?: boolean;
     loop?: boolean;

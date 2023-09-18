@@ -6,7 +6,7 @@ import { CarouselModalProps } from './CarouselModal';
 
 export type CarouselItemProps = {
   /**
-  *This is displayed in the thumbnail and in the item viewer
+  *A summary of the item.  This is displayed in the thumbnail and in the item viewer.
   **/
   description: string | undefined;
   /**
@@ -15,19 +15,19 @@ export type CarouselItemProps = {
   **/
   index?: number;
   /**
-  *Props used to modify the modal displayed for this item.  If undefined, then modal is not displayed
+  *Props used to modify the modal displayed for this item.  If undefined, then modal is not displayed.
   **/
   modal?: CarouselModalProps;
   /**
-  * This is the source of the image to be used in full-size viewing as well as thumbnail viewing if no thumbnail is provided
+  * This is the source of the image to be used in full-size viewing as well as thumbnail viewing if no thumbnail is provided.
   **/
   srcMain: string | undefined;
   /**
-  * This is the source of the thumbnail image to be used when viewing thumbnails only
+  * This is the source of the thumbnail image to be used when viewing thumbnails only.
   **/
   srcThumbnail?: string | undefined;
   /**
-  *How to set options for video items
+  *The options for video items.
   **/
   video?: CarouselVideoOptions;
 }

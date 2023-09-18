@@ -2,20 +2,26 @@ import { useEffect, useRef } from "react";
 import { getIsVideo, getFormattedTimeString } from "../utils";
 import { CarouselItemProps } from "../components/CarouselItem";
 import { VideoTimeStrings } from "../types";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { CarouselVideoOptions} from '../components/CarouselVideo';
 
 const TIME_STRING_UPDATE_INTERVAL_DURATION = 100;
 const NUMBER_TIME_STRING_UPDATE_CHECKS = 200;
+
+/**
+*updating time string on item change when {@link CarouselVideoOptions.autoPlay autoPlay} is `false`.
+**/
 export const useUpdateTimeString = (
     currentItemInInstance: CarouselItemProps | undefined,
-    setTimeStrings:  React.Dispatch<React.SetStateAction<VideoTimeStrings>>,
+    setTimeStrings: React.Dispatch<React.SetStateAction<VideoTimeStrings>>,
     videoRef: React.MutableRefObject<HTMLVideoElement | undefined> | null | undefined,
 ) => {
     const checkVideoTimeStringIntervalRef = useRef<any>();
     const checkVideoTimeStringCountRef = useRef<any>(0);
-     //updating time string on item change when autoplay is false
-     useEffect(() => {
+
+    useEffect(() => {
         clearInterval(checkVideoTimeStringIntervalRef.current);
-        
+
         if (!getIsVideo(currentItemInInstance)) return;
         const isAutoPlay = currentItemInInstance?.video?.autoPlay;
         if (isAutoPlay) return;
@@ -35,5 +41,5 @@ export const useUpdateTimeString = (
                 checkVideoTimeStringCountRef.current = 0;
             }
         }, TIME_STRING_UPDATE_INTERVAL_DURATION)
-    }, [currentItemInInstance, videoRef])
+    }, [currentItemInInstance, setTimeStrings, videoRef])
 }

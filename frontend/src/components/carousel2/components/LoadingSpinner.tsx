@@ -5,19 +5,22 @@ import { useCarouselContext } from "../context";
 
 export type LoadingSpinnerOptions = {
 	/**
-	*Changes both text and spinner color
+	*Changes both text and spinner color.
 	**/
 	color?: string;
 	/**
-	*default is 8px; The margin of the container
+	*The margin of the container.
+	*Default is 8px;
 	**/
 	containerMargin?: number | string;
 	/**
-	*default is 100px; The length and width of the container
+	*The length and width of the container.
+	*Default is 100px;
 	**/
 	containerLength?: number;
 	/**
-	*Default is 64px; How big the circle is
+	*How big the circle is.
+	*Default is 64px;
 	**/
 	radius?: number;
 	/**
@@ -29,7 +32,8 @@ export type LoadingSpinnerOptions = {
 	**/
 	textColor?: string;
 	/**
-	*Default is 8px;  How thick the line is
+	*How thick the line is.
+	*Default is 8px;
 	**/
 	width?: number;
 }

@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { ArrowButtonDirection, CarouselNavigationOptions } from '../types';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
@@ -5,14 +7,14 @@ import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_
 import { CarouselArrowButton } from './CarouselArrowButton';
 import { CarouselDots } from './CarouselDots';
 import { CarouselContextInputProps, useCarouselContext } from '../context';
-import { ArrowButtonDirection } from '../types';
 import { getNumberOfItemsThatCanFit, getClassname, getNumberOfPages, onArrowButtonClick } from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 import { CarouselItemToRender } from './CarouselItemToRender';
 
 /**
-*Tracks why the translation amount changed.  Used to fix issue with translation amount when `isLastPageFlush` is `true`
+*Tracks why the translation amount changed.  
+*Used to fix issue with translation amount when {@link CarouselNavigationOptions.isLastPageFlush isLastPageFlush} is `true`.
 **/
 export enum TranslationAmountChange {
     currentItemIndex,

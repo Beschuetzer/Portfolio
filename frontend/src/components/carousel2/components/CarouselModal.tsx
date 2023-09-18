@@ -22,17 +22,20 @@ export type CarouselModalSection = {
 }
 export type CarouselModalProps = Exclusive<{
     /**
-    *Use this prop in order to specify a customer overlay layout
+    *Use this when you want to use a custom modal layout.
     **/
     children?: ReactNode | ReactNode[]
 }, {
+    /**
+    *Use this when you want to use the default modal layout
+    **/
     sections?: CarouselModalSection[];
 }>
 
 export type CarouselModalInternalProps = {
     isProgressBarBeingHoveredRef?: React.MutableRefObject<boolean>;
     /**
-    *This is used internally and determines when the overlay is shown
+    *This is used internally and determines when the modal is shown
     **/
     isVideoPlaying?: boolean;
     itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
