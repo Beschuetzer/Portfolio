@@ -18,6 +18,9 @@ import {
     CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED,
     CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED,
     CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT,
+    MAX_CLICK_THRESHOLD_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT,
+    CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT,
 } from './constants';
 import { OptionsLogic } from './business-logic/OptionsLogic';
 import { CarouselVideoOptions } from "./components/CarouselVideo";
@@ -133,7 +136,7 @@ export type CarouselElementViewingMode<T> = {
     fullscreen?: CarouselElementValueTuple<T>;
     /**
     *These setting only apply when not in fullscreen mode.  Otherwise default settings are used.
-    *Elements only visible when {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link  CarouselLayoutOptions.itemDisplayLocation['none']}, will not be affected by this unless {@link  CarouselLayoutOptions.itemDisplayLocation} is also set.
+    *Elements only visible when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}, will not be affected by this unless {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is also set.
     **/
     nonFullscreen?: CarouselElementValueTuple<T>;
 }
@@ -157,6 +160,8 @@ export type CarouselItemViewerOptions = {
 } & CarouselSwipingOptions
 
 export type CarouselImagePosition = 'bottom' | 'center' | 'top';
+export type CarouselItemDisplayLocation = 'none' | 'above' | 'below';
+export type CarouselItemThumbnailPositioning = 'left' | 'center' | 'right';
 
 export type CarouselItemViewerButtonProps = {
     onClick?: () => void;
@@ -164,233 +169,248 @@ export type CarouselItemViewerButtonProps = {
 } & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children' | 'shortcuts'>>
 
 export type CarouselSections = {
-    [CarouselSection.container]?: {
-        padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
-    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+    [CarouselSection.container]?: CarouselSectionsContainer;
     /**
-    *This is the container in which the currently viewing item sits
+    *This is the container in which the currently viewing item sits.
     **/
-    [CarouselSection.itemViewer]?: {
-        loadingSpinner?: Partial<Omit<LoadingSpinnerProps, 'description' | 'show'>>;
-        padding?: CarouselHorizontalPaddingOptions;
-    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+    [CarouselSection.itemViewer]?: CarouselSectionsItemViewer;
     /**
-    *This is the popup that you see when you hover over the next/previous buttons when in fullscreen mode
+    *This is the popup that you see when you hover over the next/previous buttons when in fullscreen mode.
     *This element is only visible in fullscreen mode by default
     **/
-    [CarouselSection.itemViewerPreview]?: {
+    [CarouselSection.itemViewerPreview]?: CarouselSectionsItemViewerPreview;
+    /**
+    *This is the the modal that displays when an item is paused, allowing for more info about the item.
+    **/
+    [CarouselSection.modal]?: CarouselSectionsModal;
+    /**
+    *This is the where the dots, arrows, and thumbnails sit.
+    **/
+    [CarouselSection.navigation]?: CarouselSectionsNavigation;
+    /**
+    *This is where the buttons, progress bar, and item description sit.
+    **/
+    [CarouselSection.toolbar]?: CarouselSectionsToolbar;
+    /**
+    *This is the the button that appears when changing play/pause state.
+    **/
+    [CarouselSection.videoCurrentStateIndicator]?: CarouselSectionsVideoCurrentStateIndicator;
+}
+
+export type CarouselSectionsContainer = {
+    padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
+} & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+export type CarouselSectionsItemViewer = {
+    loadingSpinner?: Partial<Omit<LoadingSpinnerProps, 'description' | 'show'>>;
+    padding?: CarouselHorizontalPaddingOptions;
+} & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+export type CarouselSectionsItemViewerPreview = {
+    /**
+    *Will use default {@link OptionsLogic.theme colorFive} value ({@link CAROUSEL_COLOR_FIVE}), if the value provided is deemed invalid.
+    **/
+    border?: CarouselElementValue<CSSProperties['border']>;
+    /**
+    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT} pixels.
+    **/
+    borderRadius?: CarouselElementValue<CSSProperties['borderRadius']>;
+    /**
+    *Height in pixels.  If left blank, then it is half of the width.
+    *Default would be {@link CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT} / 2 pixels.
+    **/
+    height?: CarouselElementValue<number>;
+    image?: {
+        fit?: CarouselElementValue<CSSProperties['objectFit']>
+        position?: CarouselElementValue<CSSProperties['objectPosition']>;
+    }
+    /**
+    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT}.
+    **/
+    isVisibleInNonFullscreenMode?: CarouselElementValueTuple<boolean>;
+    /**
+    *The opacity of the background.
+    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT}
+    **/
+    opacity?: CarouselElementValue<CSSProperties['opacity']>
+    /**
+    *This changes which side the image and text are on.
+    *Default is image on left and text on right.
+    **/
+    swapImageAndText?: CarouselElementValue<boolean>
+    text?: {
         /**
-        *Will use default white value, if the value provided is deemed invalid.
+        *These affect only the text body.
         **/
-        border?: CarouselElementValue<CSSProperties['border']>;
+        body?: CarouselItemViewerPreviewTextOptions;
         /**
-        *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_RADIUS_DEFAULT} pixels
+        *These affect the layout of the entire text block.
         **/
-        borderRadius?: CarouselElementValue<CSSProperties['borderRadius']>;
-        /**
-        *Height in pixels.  If left blank, then it is half of the width.
-        *Default would be {@link CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT} / 2 pixels.
-        **/
-        height?: CarouselElementValue<number>;
-        image?: {
-            fit?: CarouselElementValue<CSSProperties['objectFit']>
-            position?: CarouselElementValue<CSSProperties['objectPosition']>;
+        container?: {
+            padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
+            verticalAlignment?: CarouselElementValue<CSSProperties['alignItems']>
         }
         /**
-        *Default is false
+        *The header text displaying the action and its shortcuts.
         **/
-        isVisibleInNonFullscreenMode?: CarouselElementValueTuple<boolean>;
-        /**
-        *The opacity of the background
-        **/
-        opacity?: CarouselElementValue<CSSProperties['opacity']>
-        /**
-        *This changes which side the image and text are on
-        *Default is image on left and text on right
-        **/
-        swapImageAndText?: CarouselElementValue<boolean>
-        text?: {
-            /**
-            *These affect only the text body
-            **/
-            body?: CarouselItemViewerPreviewTextOptions;
-            /**
-            *These affect the layout of the entire text block
-            **/
-            container?: {
-                padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
-                verticalAlignment?: CarouselElementValue<CSSProperties['alignItems']>
-            }
-            /**
-            *The header text displaying the action and its shortcuts
-            **/
-            header?: CarouselItemViewerPreviewTextOptions;
-        };
-        /**
-        *Width of the item viewer in pixels. 
-        *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT} pixels.
-        **/
-        width?: CarouselElementValue<number>;
-    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+        header?: CarouselItemViewerPreviewTextOptions;
+    };
     /**
-    *This is the where the dots, arrows, and thumbanils sit
+    *Width of the item viewer in pixels. 
+    *Default is {@link CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT} pixels.
     **/
-    [CarouselSection.navigation]?: {
-        /**
-        *This changes the dots and arrows
-        **/
-        elements?: CarouselElementSize & CarouselElementColor;
-        padding?: CarouselHorizontalPaddingOptions;
-    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+    width?: CarouselElementValue<number>;
+} & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+export type CarouselSectionsModal = {
+    closeButton?: {
+        fill?: CarouselElementValue<Color>;
+    } & CarouselElementSize;
     /**
-    *This is where the buttons, progress bar, and item description sit
+    *This is in pixels
     **/
-    [CarouselSection.toolbar]?: {
-        /**
-        This sets the padding for the toolbar in pixels.  The default is {@link CAROUSEL_PADDING_DEFAULT} pixels when not embedded and {@link CAROUSEL_ITEM_SPACING_DEFAULT} pixels for left and right otherwise. 
-        **/
-        padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
-        progressBar?: {
-            /**
-            *This is the dot at the end of the progress bar, which is only visible on when hovering the progress bar.  
-            *Defaults for these are {@link OptionsLogic.videoProgressBarDotSettings here}.
-            **/
-            dot?: {
-                /**
-                 * Default is {@link OptionsLogic.videoProgressBarDotSettings here}.
-                **/
-                diameter?: CarouselElementValue<number>;
-                /**
-                 * Whether the dot is always visible for the progress bar.
-                 * Default is {@link OptionsLogic.videoProgressBarDotSettings here}.
-                **/
-                isAlwaysVisible?: CarouselElementValue<boolean>;
-                /**
-                 *The amount of time (in seconds) it takes to show the dot on hovering of the progress bar.
-                 *Default is {{@link OptionsLogic.videoProgressBarDotSettings here}.
-                 *Only applicable if the `isAlwaysVisible` is `false`
-                **/
-                transitionDuration?: CarouselElementValue<number>;
-            }
-            /**
-            *The amount of space above the actual progress bar that counts as the a registered hover event 
-            *Defaults can be found {@link OptionsLogic.videoProgressBarHitSlop here}.
-            **/
-            hitSlop?: {
-                top?: number;
-                bottom?: number;
-            }
-            /**
-            *This is the popup that shows a screenshot of the video at a given time (on hover/seek)
-            **/
-            screenshotViewer?: {
-                /**
-                *Width of the thumbnail in pixels.  
-                *Default is {@link CAROUSEL_ITEM_SIZE_DEFAULT} pixels.  
-                *Height is `.5625 * thisValue` to maintain a 16:9 aspect ratio ({@link OptionsLogic.videoProgressBarScreenshotViewer Details})
-                **/
-                thumbnailWidth?: number;
-            } & Pick<CarouselColorOptions, 'textOrForegroundColor'>
-            /**
-            *The amount of space between each video section. 
-            *Only applicable if the length of {@link CarouselVideoOptions.sections sections} is > 1.
-            **/
-            sectionGap?: CarouselElementValue<number>;
-            /**
-            *The amount the progress bar scales on the Y axis when hovered
-            *Default is {@link OptionsLogic.videoProgressBarScaleAmount here}.
-            **/
-            scaleAmount?: CarouselElementValue<number>
-            /**
-            *If true, the progress bar spans the entire width of the carousel itemViewer,
-            *otherwise it only spans the inner width of the toolbar container.
-            *Default is {@link CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT}
-            **/
-            shouldSpanContainerWidth?: CarouselElementValue<boolean>;
-            /**
-            *Height in pixels.  
-            *Default is {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED} when embedded otherwise {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED}.
-            *See logic {@link OptionsLogic.videoProgressBarHeight here}.
-            **/
-            height?: CarouselElementValue<number>;
-            seekColor?: CarouselElementValue<string>;
-        } & CarouselColorOptions;
-        /**
-        *This changes all of the button colors as well as the text.  To change individual ones, use `styling.elements.buttonNameHere`.
-        **/
-        elements?: CarouselElementSize & CarouselElementColor;
-        /**
-        *This is the popup that displays when hovering a button in the toolbar.
-        **/ 
-        shortcutIndicator?: CarouselColorOptions;
-        /**
-        *This overrides any value given in `toolbar.elements.color`.
-        **/
-        textColor?: CarouselElementValue<Color>;
-    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+    fontSize?: CarouselElementValue<number>;
+    padding?: CarouselElementValue<CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions>;
+    textColor?: CarouselElementValue<Color>;
     /**
-    *This is the the button that appears when changing play/pause state
+    *this is a percent of the item container width when the {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}.  
+    *It has no effect otherwise.
     **/
-    [CarouselSection.videoCurrentStateIndicator]?: {
-        /**
-        *The button to indicate that a video is paused
-        **/
-        [CarouselVideoCurrentStateIndicatorButtonName.pauseIcon]?: CarouselElementCustomization;
-        [CarouselVideoCurrentStateIndicatorButtonName.playIcon]?: CarouselElementCustomization;
-    } & Partial<CarouselColorOptions> & Partial<CarouselElementSize>;
+    widthInPercent?: CarouselElementValue<number>;
+} & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+export type CarouselSectionsNavigation = {
     /**
-    *This is the the modal that displays when an item is paused, allowing for more info about the item
+    *This changes the dots and arrows
     **/
-    [CarouselSection.modal]?: {
-        closeButton?: {
-            fill?: CarouselElementValue<Color>;
-        } & CarouselElementSize;
+    elements?: CarouselElementSize & CarouselElementColor;
+    padding?: CarouselHorizontalPaddingOptions;
+} & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+export type CarouselSectionsToolbar = {
+    /**
+    This sets the padding for the toolbar in pixels.  The default is {@link CAROUSEL_PADDING_DEFAULT} pixels when not embedded and {@link CAROUSEL_ITEM_SPACING_DEFAULT} pixels for left and right otherwise. 
+    **/
+    padding?: CarouselElementValue<CarouselHorizontalPaddingOptions & CarouselVerticalPaddingOptions>;
+    progressBar?: CarouselProgressBar;
+    /**
+    *This changes all of the button colors as well as the text.  To change individual ones, use {@link CarouselStylingOptions.elements element stylings}.
+    **/
+    elements?: CarouselElementSize & CarouselElementColor;
+    /**
+    *This is the popup that displays when hovering a button in the toolbar.
+    **/
+    shortcutIndicator?: CarouselColorOptions;
+    /**
+    *This overrides any value given in {@link CarouselSectionsToolbar.elements toolbar.elements.color}.
+    *See logic {@link OptionsLogic.toolbarTextColor here}.
+    **/
+    textColor?: CarouselElementValue<Color>;
+} & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+export type CarouselSectionsVideoCurrentStateIndicator = {
+    /**
+    *The button to indicate that a video is paused.
+    **/
+    [CarouselVideoCurrentStateIndicatorButtonName.pauseIcon]?: CarouselElementCustomization;
+    [CarouselVideoCurrentStateIndicatorButtonName.playIcon]?: CarouselElementCustomization;
+} & Partial<CarouselColorOptions> & Partial<CarouselElementSize>;
+
+export type CarouselProgressBar = {
+    /**
+    *This is the dot at the end of the progress bar, which is only visible on when hovering the progress bar.  
+    *Defaults for these are {@link OptionsLogic.videoProgressBarDotSettings here}.
+    **/
+    dot?: CarouselProgressBarDot;
+    /**
+    *The amount of space above the actual progress bar that counts as the a registered hover event.
+    *Defaults can be found {@link OptionsLogic.videoProgressBarHitSlop here}.
+    **/
+    hitSlop?: {
+        top?: number;
+        bottom?: number;
+    }
+    /**
+    *This is the popup that shows a screenshot of the video at a given time (on hover/seek)
+    **/
+    screenshotViewer?: {
         /**
-        *This is in pixels
+        *Width of the thumbnail in pixels.  
+        *Default is {@link CAROUSEL_ITEM_SIZE_DEFAULT} pixels.  
+        *Height is `.5625 * thisValue` to maintain a 16:9 aspect ratio ({@link OptionsLogic.videoProgressBarScreenshotViewer Details})
         **/
-        fontSize?: CarouselElementValue<number>;
-        padding?: CarouselElementValue<CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions>;
-        textColor?: CarouselElementValue<Color>;
-        /**
-        *this is a percent of the item container width when the {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link  CarouselLayoutOptions.itemDisplayLocation['none']}.  
-        *It has no effect otherwise.
-        **/
-        widthInPercent?: CarouselElementValue<number>;
-    } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
+        thumbnailWidth?: number;
+    } & Pick<CarouselColorOptions, 'textOrForegroundColor'>
+    /**
+    *The amount of space between each video section. 
+    *Only applicable if the length of {@link CarouselVideoOptions.sections sections} is > 1.
+    **/
+    sectionGap?: CarouselElementValue<number>;
+    /**
+    *The amount the progress bar scales on the Y axis when hovered.
+    *Default is {@link OptionsLogic.videoProgressBarScaleAmount here}.
+    **/
+    scaleAmount?: CarouselElementValue<number>
+    /**
+    *If true, the progress bar spans the entire width of the carousel itemViewer,
+    *otherwise it only spans the inner width of the toolbar container.
+    *Default is {@link CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT}.
+    **/
+    shouldSpanContainerWidth?: CarouselElementValue<boolean>;
+    /**
+    *Height in pixels.  
+    *Default is {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED} when embedded otherwise {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED}.
+    *See logic {@link OptionsLogic.videoProgressBarHeight here}.
+    **/
+    height?: CarouselElementValue<number>;
+    seekColor?: CarouselElementValue<string>;
+} & CarouselColorOptions;
+
+export type CarouselProgressBarDot = {
+    /**
+     * Default is {@link OptionsLogic.videoProgressBarDotSettings here}.
+    **/
+    diameter?: CarouselElementValue<number>;
+    /**
+     * Whether the dot is always visible for the progress bar.
+     * Default is {@link OptionsLogic.videoProgressBarDotSettings here}.
+    **/
+    isAlwaysVisible?: CarouselElementValue<boolean>;
+    /**
+     *The amount of time (in seconds) it takes to show the dot on hovering of the progress bar.
+     *Default is {{@link OptionsLogic.videoProgressBarDotSettings here}.
+     *Only applicable if {@link CarouselProgressBarDot.isAlwaysVisible isAlwaysVisible} is `false`.
+    **/
+    transitionDuration?: CarouselElementValue<number>;
 }
 
 export type CarouselLayoutOptions = {
     /**
-    *Where the image is display in the `itemViewer`.  The nonfullscreen value only applies when {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link  CarouselLayoutOptions.itemDisplayLocation['none']}.
-    *Default is `center` when fullscreen mode and `top` when nonfullscreen mode.
-    *Only noticable when the image width is greater than the width of the `itemViewer`, and the image height is less than the height of the `itemViewer`
+    *Where the image is display in the `itemViewer`.  The nonfullscreen value only applies when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}.
+    *Default is {@link CarouselImagePosition center} when fullscreen mode and {@link CarouselImagePosition top} when nonfullscreen mode.
+    *Only noticable when the image width is greater than the width of the `itemViewer`, and the image height is less than the height of the `itemViewer`.
     **/
     imagePosition?: CarouselElementValue<CarouselImagePosition>;
     /***
-    *If {@link  CarouselLayoutOptions.itemDisplayLocation['none']}, then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
+    *If `none`, then the item is only displayed when clicking a thumbnail.  It is then displayed in full-screen mode.
     *Otherwise the the item is displayed above or below the carousel.
-    *Default is {@link  CarouselLayoutOptions.itemDisplayLocation['none']}.
+    *Default is `none`.
     ***/
-    itemDisplayLocation?: CarouselElementValueTuple<'none' | 'above' | 'below'>;
+    itemDisplayLocation?: CarouselElementValueTuple<CarouselItemDisplayLocation>;
     /**
-    *Default is true.  If true, the toolbar will sit within the video element when {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link CarouselLayoutOptions.itemDisplayLocation['none']} and 
+    *Default is true if not mobile otherwise false.  
+    *If true, the toolbar will sit within the video element when {@link CarouselLayoutOptions.itemDisplayLocation} is not {@link CarouselItemDisplayLocation none} and 
     *the auto-hide behavior will change to hide the toolbar when the video is playing and the mouse leaves the video element.
     *Does not affect fullscreen mode.
     **/
     isToolbarPositionedInVideo?: CarouselElementValueTuple<boolean>;
     /**
-    *Default is `left`
-    *Overrides any value given in `thumbnail.spacingStrategy`
+    *Default is {@link CarouselItemThumbnailPositioning left}.
+    *Overrides any value given in {@link CarouselThumbnailOptions.spacingStrategy spacingStrategy}.
     *@example
     *`left` => the left-most thumbnail item on a given page is positioned flush to the container
     *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the navigation containers ends
     *`right` => the right-most thumbnail item on a given page is positioned flush to the container
     **/
-    thumbnailPositioning?: CarouselElementValueTuple<'left' | 'center' | 'right'>;
+    thumbnailPositioning?: CarouselElementValueTuple<CarouselItemThumbnailPositioning>;
     /**
     *If true, then the default, embedded controls will be used for video items.
     *Default is false.
-    *Only applicable when {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link CarouselLayoutOptions.itemDisplayLocation['none']} and the carousel is in non-fullscreen mode
+    *Only applicable when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none} and the carousel is in non-fullscreen mode
     *Issue when in fullscreen mode and this is true where play/pause indicator and modal don't appear anymore
     **/
     useDefaultVideoControls?: CarouselElementValueTuple<boolean>
@@ -398,11 +418,11 @@ export type CarouselLayoutOptions = {
 
 export type CarouselSwipingOptions = {
     /**
-    *If true, then swiping will be disabled.  For `navigation`, this means grabbing a thumbnail
+    *If true, then swiping will be disabled.  For {@link CarouselSections.navigation navigation}, this means grabbing a thumbnail
     *and swiping will not change the page (non-fullscreen mode).  
-    *For `itemViewer`, this means that grabbing and swiping will not change the currently viewing item (fullscreen mode).
-    *Default is `true` when `layout.isToolbarPositionedInVideo` is `true` and not fullscreen otherwise default is `false`.
-    *Swiping only occurs if mouseup and mousedown coordinate distances are greater than `maxClickThreshold`. 
+    *For {@link CarouselSections.itemViewer itemViewer}, this means that grabbing and swiping will not change the currently viewing item (fullscreen mode).
+    *Default is `true` when {@link CarouselLayoutOptions.isToolbarPositionedInVideo isToolbarPositionedInVideo} is `true` and not fullscreen otherwise default is `false`.
+    *Swiping only occurs if mouseup and mousedown coordinate distances are greater than {@link CarouselSwipingOptions.maxClickThreshold maxClickThreshold}. 
     **/
     disableSwiping?: CarouselElementValueTuple<boolean>;
     /**
@@ -410,7 +430,7 @@ export type CarouselSwipingOptions = {
     *This is used to prevent opening of an item when mousedown and mouseup targets are the same.
     *Higher values mean the user can move the cursor more and still open the item.
     *0 would mean if the user moved the cursor at all between mouseup and mousedown then the item would not open.
-    *Default is 15 when swiping is enabled to allow for slight movement (swiping is disabled if only 1 page or `disableSwiping` is false).
+    *Default is {@link MAX_CLICK_THRESHOLD_DEFAULT} when swiping is enabled to allow for slight movement (swiping is disabled if only 1 page or {@link CarouselSwipingOptions.disableSwiping disableSwiping} is `false`).
     **/
     maxClickThreshold?: CarouselElementValueTuple<number>;
 }
@@ -632,7 +652,7 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
     **/
     background?: CarouselThumbnailBackgroundOptions;
     /**
-    *If true the description is disabled in the thumbnail.  Default is false is {@link  CarouselLayoutOptions.itemDisplayLocation} is {@link CarouselLayoutOptions.itemDisplayLocation['none']} otherwise true.
+    *If true the description is disabled in the thumbnail.  Default is false is {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is {@link CarouselItemDisplayLocation none}} otherwise true.
     **/
     isDisabled?: CarouselElementValueTuple<boolean>;
     /**
@@ -662,7 +682,7 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
 **/
 export type CarouselThumbnailOptions = {
     /**
-    *This is the border used to indicate which thumbnail is active when {@link  CarouselLayoutOptions.itemDisplayLocation} is not {@link CarouselLayoutOptions.itemDisplayLocation['none']}.  
+    *This is the border used to indicate which thumbnail is active when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}}.  
     *Must be in the CSS border property format (e.g. `1px solid #000`). https://developer.mozilla.org/en-US/docs/Web/CSS/border.
     *
     *Will use default if the value provided is deemed invalid.
