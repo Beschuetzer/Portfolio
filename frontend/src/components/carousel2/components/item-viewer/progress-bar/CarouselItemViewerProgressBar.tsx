@@ -23,7 +23,6 @@ import { useCarouselContext } from '../../../context';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { CarouselModalInternalProps } from '../../CarouselModal';
 import { useSectionToValueMapping } from '../../../hooks/useSectionToValueMapping';
-import { useSetToolbarWidth } from '../../../hooks/useSetToolbarWidth';
 
 type CarouselItemViewerProgressBarProps = {
     isMouseDownRef: React.MutableRefObject<boolean | undefined> | undefined;
@@ -244,7 +243,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
 
     useEffect(() => {
         setPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
-    }, [currentItem, setPercent])    
+    }, [currentItem, setPercent])
 
     //use sectionToProgressBarValueMapping to set currentVideoSection on progressBarValue change
     useEffect(() => {
@@ -365,11 +364,13 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             backgroundDivs.push(getBackgroundDiv(percentToUse, backgroundLeft, index));
 
             //seek stuff
-            if (seekPercent !== PROGRESS_BAR_PERCENT_INITIAL_VALUE && index < currentVideoSection) {
-                seekDivs.push(getSeekDiv(percentToUse, backgroundLeft, index))
-            } else if (seekPercent !== PROGRESS_BAR_PERCENT_INITIAL_VALUE && index === currentVideoSection) {
-                const percentAcrossCurrentSectionFactor = (seekPercent - currentSectionTime?.start) / (currentSectionTime?.end - currentSectionTime?.start)
-                foregroundDivs.push(getSeekDiv(percentToUse * percentAcrossCurrentSectionFactor, backgroundLeft, index))
+            if (!isMouseDownRef?.current) {
+                if (seekPercent !== PROGRESS_BAR_PERCENT_INITIAL_VALUE && index < currentVideoSection) {
+                    seekDivs.push(getSeekDiv(percentToUse, backgroundLeft, index))
+                } else if (seekPercent !== PROGRESS_BAR_PERCENT_INITIAL_VALUE && index === currentVideoSection) {
+                    const percentAcrossCurrentSectionFactor = (seekPercent - currentSectionTime?.start) / (currentSectionTime?.end - currentSectionTime?.start)
+                    foregroundDivs.push(getSeekDiv(percentToUse * percentAcrossCurrentSectionFactor, backgroundLeft, index))
+                }
             }
 
             //foreground stuff
