@@ -70,7 +70,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         setSeekPercent = () => null,
         videoRef,
     } = props;
-    const { options, items, currentItemIndex, setCurrentItemIndex, currentItem, isFullscreenMode, hiddenInputRef } = useCarouselContext();
+    const { items, currentItemIndex, setCurrentItemIndex, currentItem, isFullscreenMode, hiddenInputRef } = useCarouselContext();
     const isProgressBarBeingHoveredRef = useRef<boolean>(false);
     const shouldHideTimoutRef = useRef<any>(-1);
     const previousButtonRef = useRef<any>(null);

@@ -217,7 +217,9 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             if (!videoElement) return;
             const percent = videoElement.currentTime / videoElement.duration;
             if (percent >= 0 && percent <= 1) {
-                setPercent(percent);
+                if (!isMouseDownRef?.current) {
+                    setPercent(percent);
+                }
                 updateTimeStrings(videoElement);
             }
         }
