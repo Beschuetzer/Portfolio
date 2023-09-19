@@ -10,6 +10,7 @@ Carousel rework
   -figure out why swipe handler gets trigger sometimes
   -verify all of the progress bar customization options still work when done 
 
+  -adjust PageNav to be scrollable when too large; also adjust the padding inline to style better
   -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons

@@ -117,12 +117,10 @@ export const useSectionToValueMapping = (input: UseSectionToValueMappingInput) =
             const videoDuration = (videoRef?.current?.duration || 0) * NUMBER_OF_MS_IN_A_SECOND
             if (!videoDuration || isNaN(videoDuration)) {
                 checkIsVideoLoadedTimoutRef.current = setTimeout(() => {
-                    console.log("1");
                     checkIfVideoLoaded();
                 }, MAP_SECTION_INTERVAL)
                 return;
             } else {
-                console.log("2");
                 mapSectionRanges();
                 validateSections();
             }

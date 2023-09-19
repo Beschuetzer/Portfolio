@@ -3,13 +3,13 @@ import React, {
     useState,
     useEffect,
     useRef,
-    useLayoutEffect,
     useMemo
 } from 'react'
 import {
     CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL,
     CLASSNAME__TOOLBAR_PROGRESS,
-    NUMBER_OF_MS_IN_A_SECOND
+    NUMBER_OF_MS_IN_A_SECOND,
+    PROGRESS_BAR_PERCENT_INITIAL_VALUE
 } from '../../../constants';
 import {
     convertTimeStringToMilliseconds,
@@ -23,6 +23,7 @@ import { useCarouselContext } from '../../../context';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { CarouselModalInternalProps } from '../../CarouselModal';
 import { useSectionToValueMapping } from '../../../hooks/useSectionToValueMapping';
+import { useSetToolbarWidth } from '../../../hooks/useSetToolbarWidth';
 
 type CarouselItemViewerProgressBarProps = {
     isMouseDownRef: React.MutableRefObject<boolean | undefined> | undefined;
@@ -35,7 +36,6 @@ type CarouselItemViewerProgressBarProps = {
     & Pick<CarouselModalInternalProps, 'isProgressBarBeingHoveredRef'>
 
 
-export const PROGRESS_BAR_PERCENT_INITIAL_VALUE = -1;
 export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressBarProps) => {
     //#region Init
     const {
@@ -57,12 +57,14 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     const progressBarRef = useRef<HTMLDivElement>();
     //this is used to prevent the the seekPercent from being reset then immediately set to a value when moving the triggering onMouseMove
     const wasMouseUpJustTriggeredRef = useRef(false);
-    const [toolbarWidth, setToolbarWidth] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE)
     const [showDot, setShowDot] = useState(false);
     const { stylingLogic, optionsLogic } = useBusinessLogic();
     const sectionToValueMappingRef = useSectionToValueMapping({
         videoRef,
     });
+
+    //this appears to be dead code
+    // const toolbarWidth = useSetToolbarWidth({progressBarRef});
     //#endregion
 
     //#region Functions/Handlers
@@ -242,19 +244,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
 
     useEffect(() => {
         setPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
-    }, [currentItem, setPercent])
-
-    useLayoutEffect(() => {
-        if (toolbarWidth !== undefined && toolbarWidth <= PROGRESS_BAR_PERCENT_INITIAL_VALUE) {
-            const newWidth = progressBarRef?.current?.getBoundingClientRect().width;
-            if (newWidth !== undefined && newWidth > 0 && toolbarWidth !== undefined) {
-                setToolbarWidth(newWidth);
-            }
-        }
-    }, [setToolbarWidth, toolbarWidth])
-
-    //calculate the sectionToProgressBarValueMapping
-    
+    }, [currentItem, setPercent])    
 
     //use sectionToProgressBarValueMapping to set currentVideoSection on progressBarValue change
     useEffect(() => {

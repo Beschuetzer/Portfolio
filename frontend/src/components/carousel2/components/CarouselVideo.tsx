@@ -3,14 +3,13 @@ import { getClassname, getIsVideoPlaying } from '../utils';
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselItemViewerToolbar, CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';
-import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL, CLASSNAME__HIDDEN, CLASSNAME__TOOLBAR_PROGRESS, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from '../constants';
+import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL, CLASSNAME__HIDDEN, CLASSNAME__TOOLBAR_PROGRESS, CURRENT_VIDEO_CURRENT_TIME_DEFAULT, PROGRESS_BAR_PERCENT_INITIAL_VALUE } from '../constants';
 import { CarouselVideoCurrentStateIndicator } from './CarouselVideoCurrentStateIndicator';
 import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 import { useResetCarouselVideoCurrentSection } from '../hooks/useResetCarouselVideoCurrentSection';
 import { CarouselVideoProgressBarScreenshotViewer } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer';
-import { PROGRESS_BAR_PERCENT_INITIAL_VALUE } from './item-viewer/progress-bar/CarouselItemViewerProgressBar';
 import { CarouselVideoCurrentTimeViewer } from './CarouselVideoCurrentTimeViewer';
 
 /**

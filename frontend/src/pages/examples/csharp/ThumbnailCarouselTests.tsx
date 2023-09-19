@@ -3666,14 +3666,14 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
+	// ...Object.values(SectionNames),
+	SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,
-	SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.imagePosition,
 	// SectionNames.navigationOptions,
 	// SectionNames.itemPositioning,
 	// SectionNames.thumbnailOptions,
-	// ...Object.values(SectionNames),
 ];
 const sections: CSharpSection[] = SECTIONS
 	.filter((section) => ENABLED_SECTIONS.includes(section[0]))
