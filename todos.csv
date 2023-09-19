@@ -1,4 +1,5 @@
 Carousel rework
+  -make the right side of the toolbar margin-right be 1 less the current value (isn't going to the end)
   -finish getCarouselVideoTimeTextBlockStyle in StylingLogic
   -fix issue with current position indiciator being too big in the progress bar
   -refactor to conform to SOLID principles (https://www.youtube.com/watch?v=MSq_DCRxOxw)
