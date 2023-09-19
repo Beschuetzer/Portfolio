@@ -3,15 +3,16 @@ import React, {
     useState,
     useEffect,
     useRef,
-    useLayoutEffect
+    useLayoutEffect,
+    useMemo
 } from 'react'
 import {
     CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL,
-    CAROUSEL_VIDEO_SECTION_MIN_LENGTH,
     CLASSNAME__TOOLBAR_PROGRESS,
     NUMBER_OF_MS_IN_A_SECOND
 } from '../../../constants';
 import {
+    convertTimeStringToMilliseconds,
     getFormattedTimeString,
     getIsPointInsideElement,
     getPoint
@@ -21,14 +22,7 @@ import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToo
 import { useCarouselContext } from '../../../context';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { CarouselModalInternalProps } from '../../CarouselModal';
-
-type SectionToProgressBarValueMapping = {
-    [number: number]: SectionToProgressBarValueMappingValue;
-}
-type SectionToProgressBarValueMappingValue = {
-    start: number;
-    end: number;
-}
+import { useSectionToValueMapping } from '../../../hooks/useSectionToValueMapping';
 
 type CarouselItemViewerProgressBarProps = {
     isMouseDownRef: React.MutableRefObject<boolean | undefined> | undefined;
@@ -40,8 +34,7 @@ type CarouselItemViewerProgressBarProps = {
     >>
     & Pick<CarouselModalInternalProps, 'isProgressBarBeingHoveredRef'>
 
-const MAP_SECTION_INTERVAL = 100;
-const NEXT_SECTION_OFFSET = .0000000000000001;
+
 export const PROGRESS_BAR_PERCENT_INITIAL_VALUE = -1;
 export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressBarProps) => {
     //#region Init
@@ -60,59 +53,31 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     } = props;
     const { currentItem } = useCarouselContext();
     const { sections } = currentItem?.video || {};
-    const areSectionsGiven = sections && sections.length > 0;
+    const areSectionsGiven = useMemo(() => sections && sections.length > 0, [sections]);
     const progressBarRef = useRef<HTMLDivElement>();
-    const sectionToProgressBarValueMapping = useRef<SectionToProgressBarValueMapping>({});
-    const checkIsVideoLoadedTimoutRef = useRef<any>(-1);
     //this is used to prevent the the seekPercent from being reset then immediately set to a value when moving the triggering onMouseMove
     const wasMouseUpJustTriggeredRef = useRef(false);
     const [toolbarWidth, setToolbarWidth] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE)
     const [showDot, setShowDot] = useState(false);
     const { stylingLogic, optionsLogic } = useBusinessLogic();
+    const sectionToValueMappingRef = useSectionToValueMapping({
+        videoRef,
+    });
     //#endregion
 
     //#region Functions/Handlers
-    /**
-    *Takes a time stamp that uses the following format `mm:ss:ms`.  
-    *E.g. `1:23:920` would mean at 1 minute 23 seconds and 920 milliseconds
-    *`1:23` would mean at 1 second and 23 milleseconds
-    *Will throw an alert if any of the sections are > 60 or <= 0
-    *@returns a number representing the number of ms at which the section begins
-    **/
-    const convertTimeStringToMilliseconds = useCallback((timestamp: string) => {
-        if (!timestamp) {
-            return 0;
-        }
-
-        const split = timestamp.split(':');
-        const milliseconds = parseInt(split[split?.length - 1], 10) || 0;
-        const seconds = parseInt(split[split?.length - 2], 10) || 0;
-        const minutes = parseInt(split[split?.length - 3], 10) || 0;
-
-        if (milliseconds >= 1000 || milliseconds < 0) {
-            alert(`The number of milliseconds must be between 0 and 999.  ${timestamp} has ${milliseconds}`);
-        } else if (seconds >= 60 || seconds < 0) {
-            alert(`The number of seconds must be between 0 and 59.  ${timestamp} has ${seconds}`);
-        } else if (minutes >= 60 || minutes < 0) {
-            alert(`The number of seconds must be between 0 and 59.  ${timestamp} has ${minutes}`);
-        }
-
-        const toReturn = minutes * NUMBER_OF_MS_IN_A_SECOND * NUMBER_OF_MS_IN_A_SECOND + seconds * NUMBER_OF_MS_IN_A_SECOND + milliseconds;
-        return toReturn;
-    }, [])
-
     const getCurrentSection = useCallback((percent: number) => {
         if (percent === undefined || percent === null) return CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL;
-        for (const [index, sectionRange] of Object.entries(sectionToProgressBarValueMapping.current)) {
+        for (const [index, sectionRange] of Object.entries(sectionToValueMappingRef.current)) {
             const indexAsNumber = Number(index);
             const isFirstIndex = indexAsNumber === 0;
-            const isLastIndex = indexAsNumber === Object.keys(sectionToProgressBarValueMapping || {}).length + 1;
+            const isLastIndex = indexAsNumber === Object.keys(sectionToValueMappingRef || {}).length + 1;
             if (isLastIndex && percent > 1) return indexAsNumber;
             if (isFirstIndex && percent < 0) return 0;
             if (percent >= sectionRange.start && percent <= sectionRange.end) return indexAsNumber;
         }
         return CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL;
-    }, [])
+    }, [sectionToValueMappingRef])
 
     const getIsInCurrentSection = useCallback((percent: number) => {
         return getCurrentSection(percent) === currentVideoSection;
@@ -289,116 +254,16 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     }, [setToolbarWidth, toolbarWidth])
 
     //calculate the sectionToProgressBarValueMapping
-    useEffect(() => {
-        function mapSectionRanges() {
-            if (!sections || sections.length <= 0 || !videoRef?.current) {
-                sectionToProgressBarValueMapping.current = {};
-                return;
-            }
-            if (Object.values(sectionToProgressBarValueMapping.current).length > 0) return;
-
-            let amountBefore = 0;
-            const videoDuration = (videoRef?.current?.duration || 0) * NUMBER_OF_MS_IN_A_SECOND
-            const isUsingNumberedSections = typeof sections[0][1] === 'number';
-            let indexToUse = 0;
-
-            for (let index = 0; index < sections.length; index++) {
-                indexToUse = index;
-                if (isUsingNumberedSections) {
-                    const section = sections[index];
-                    const sectionDuration = section[1] as number;
-                    amountBefore += sectionDuration as number;
-
-                } else {
-                    const nextSection = sections[index + 1];
-
-                    //all sections but the last one
-                    if (nextSection !== undefined) {
-                        const nextSectionTimestamp = nextSection?.[1] as string;
-                        const nextConverted = convertTimeStringToMilliseconds(nextSectionTimestamp);
-                        const sectionDiff = Math.abs(nextConverted - amountBefore);
-                        amountBefore += sectionDiff;
-                    }
-                }
-
-                const start = indexToUse === 0 ? 0 : sectionToProgressBarValueMapping.current[indexToUse - 1]?.end + NEXT_SECTION_OFFSET;
-                const end = indexToUse === sections.length - 1 ? 1 : amountBefore / videoDuration;
-                sectionToProgressBarValueMapping.current[indexToUse] = {
-                    start,
-                    end
-                }
-            }
-            // console.log({ sectionToProgressBarValueMapping: sectionToProgressBarValueMapping.current });
-        }
-
-        function validateSections() {
-            if (sections && sections?.length <= 0) return;
-            const isString = typeof sections?.[0]?.[1] === 'string' || typeof sections?.[0]?.[1] === 'undefined';
-            const videoDuration = videoRef?.current?.duration || 0;
-            let sum = 0;
-
-            if (isString && sections) {
-                for (let index = 0; index < sections.length; index++) {
-                    const currentSection = sections[index];
-                    const nextSection = sections[index + 1];
-
-                    if (nextSection !== undefined) {
-                        const currentSectionStart = convertTimeStringToMilliseconds(currentSection[1] as string);
-                        const nextSectionStart = convertTimeStringToMilliseconds(nextSection[1] as string);
-
-                        if (!currentSectionStart || !nextSectionStart) continue;
-                        if (currentSectionStart >= nextSectionStart) {
-                            alert("Developer warning: Check your section values for this video.  One section starts before the next one ends.");
-                            throw new Error();
-                        }
-                        else if (Math.abs(currentSectionStart - nextSectionStart) < CAROUSEL_VIDEO_SECTION_MIN_LENGTH) {
-                            alert(`Developer warning: The length of the section titled '${currentSection?.[0]}' does not exceed the minimum length of ${CAROUSEL_VIDEO_SECTION_MIN_LENGTH}ms`)
-                            throw new Error();
-                        }
-                    }
-                }
-            }
-
-            if (!isString && sections) {
-                sum = sections?.map(section => section[1]).reduce((a, b) => {
-                    if (b === undefined) return a as number;
-                    return ((a as number) + (b as number));
-                }, 0) as number / NUMBER_OF_MS_IN_A_SECOND;
-            }
-
-            if (sum > videoDuration) alert("The sum of the sections is greater than the video duration")
-        }
-
-        function checkIfVideoLoaded() {
-            clearTimeout(checkIsVideoLoadedTimoutRef.current);
-
-            const videoDuration = (videoRef?.current?.duration || 0) * NUMBER_OF_MS_IN_A_SECOND
-            if (!videoDuration || isNaN(videoDuration)) {
-                checkIsVideoLoadedTimoutRef.current = setTimeout(() => {
-                    checkIfVideoLoaded();
-                }, MAP_SECTION_INTERVAL)
-                return;
-            } else {
-                mapSectionRanges();
-                validateSections();
-            }
-        }
-
-        checkIfVideoLoaded();
-
-        return () => {
-            sectionToProgressBarValueMapping.current = {};
-        }
-    }, [convertTimeStringToMilliseconds, sections, videoRef])
+    
 
     //use sectionToProgressBarValueMapping to set currentVideoSection on progressBarValue change
     useEffect(() => {
         if (
             !isMouseDownRef?.current ||
-            Object.keys(sectionToProgressBarValueMapping.current || {}).length <= 0
+            Object.keys(sectionToValueMappingRef.current || {}).length <= 0
         ) return;
         setCurrentSectionFromPercent(percent);
-    }, [isMouseDownRef, percent, setCurrentSectionFromPercent])
+    }, [isMouseDownRef, percent, sectionToValueMappingRef, setCurrentSectionFromPercent])
 
     //setup global listeners
     useEffect(() => {
@@ -503,7 +368,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             //rendering the divs
             const percentPlayedAlready = videoRef.current.currentTime / videoRef.current.duration;
             const percentToUse = isLastSection ? 1 - backgroundLeft : percentAcross
-            const currentSectionTime = sectionToProgressBarValueMapping.current[index];
+            const currentSectionTime = sectionToValueMappingRef.current[index];
             const itemToTrack = isMouseDownRef?.current ? percent : percentPlayedAlready;
 
             //background stuff

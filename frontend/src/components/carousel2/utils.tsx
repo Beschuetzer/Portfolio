@@ -7,6 +7,7 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
     CLASSNAME__ROOT,
     MOBILE_PIXEL_WIDTH,
+    NUMBER_OF_MS_IN_A_SECOND,
     NUMBER_OF_PAGES_INITIAL,
     VIDEO_EXTENSIONS
 } from "./constants";
@@ -87,6 +88,35 @@ export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_
 
     return hexToUse;
 }
+
+/**
+    *Takes a time stamp that uses the following format `mm:ss:ms`.  
+    *E.g. `1:23:920` would mean at 1 minute 23 seconds and 920 milliseconds
+    *`1:23` would mean at 1 second and 23 milleseconds
+    *Will throw an alert if any of the sections are > 60 or <= 0
+    *@returns a number representing the number of ms at which the section begins
+    **/
+    export function convertTimeStringToMilliseconds(timestamp: string) {
+        if (!timestamp) {
+            return 0;
+        }
+
+        const split = timestamp.split(':');
+        const milliseconds = parseInt(split[split?.length - 1], 10) || 0;
+        const seconds = parseInt(split[split?.length - 2], 10) || 0;
+        const minutes = parseInt(split[split?.length - 3], 10) || 0;
+
+        if (milliseconds >= 1000 || milliseconds < 0) {
+            alert(`The number of milliseconds must be between 0 and 999.  ${timestamp} has ${milliseconds}`);
+        } else if (seconds >= 60 || seconds < 0) {
+            alert(`The number of seconds must be between 0 and 59.  ${timestamp} has ${seconds}`);
+        } else if (minutes >= 60 || minutes < 0) {
+            alert(`The number of seconds must be between 0 and 59.  ${timestamp} has ${minutes}`);
+        }
+
+        const toReturn = minutes * NUMBER_OF_MS_IN_A_SECOND * NUMBER_OF_MS_IN_A_SECOND + seconds * NUMBER_OF_MS_IN_A_SECOND + milliseconds;
+        return toReturn;
+    }
 
 /**
 *Checks whether any nodes above `elementToCheck` contain `classname`.  Stops when node matches `stoppingElementType`, which defaults to `body`.

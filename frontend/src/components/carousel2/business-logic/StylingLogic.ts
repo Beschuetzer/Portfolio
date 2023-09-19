@@ -935,7 +935,6 @@ export class StylingLogic {
     }
 
     getCarouselVideoTimeTextBlockStyle(timeString: string) {
-        console.log({timeString});
         //todo: if the time string has two ':' then figure out how long the width should be otherwise 42
         
         return {
