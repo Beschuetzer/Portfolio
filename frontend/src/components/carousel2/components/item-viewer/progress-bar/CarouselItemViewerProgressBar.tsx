@@ -241,7 +241,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
                 videoRefCopy.removeEventListener('timeupdate', onVideoTimeUpdate);
             }
         }
-    }, [setPercent, setTimeStrings, videoRef])
+    }, [isMouseDownRef, setPercent, setTimeStrings, videoRef])
 
     useEffect(() => {
         setPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
