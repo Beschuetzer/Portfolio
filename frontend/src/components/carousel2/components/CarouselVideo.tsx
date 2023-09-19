@@ -54,13 +54,13 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     const type = useMemo(() => srcMain?.slice(srcMain?.lastIndexOf('.') + 1), [srcMain]);
     const { stylingLogic, optionsLogic } = useBusinessLogic({ itemViewerToolbarRef });
     useRerenderOnExitFullscreenMode();
-    useResetCarouselVideoCurrentSection(
-        itemContainerRef?.current,
-        itemContainerRef?.current?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`),
-        currentVideoSection,
-        setCurrentVideoSection,
-        isProgressBarMouseDownRef
-    );
+    useResetCarouselVideoCurrentSection({
+        element: itemContainerRef?.current,
+        progressBarElement: itemContainerRef?.current?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`),
+        currentSection: currentVideoSection,
+        setCurrentSection: setCurrentVideoSection,
+        isMouseDownRef: isProgressBarMouseDownRef,
+    });
     //#endregion
 
     //#region Functions/Handlers
@@ -192,7 +192,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 >
                     <source src={srcMain} type={`video/${type}`} />
                     Your browser does not support the HTML5 video tag. Try using a different browser.
-                </video>               
+                </video>
             </div>
             <CarouselItemViewerToolbar
                 currentVideoSection={currentVideoSection}

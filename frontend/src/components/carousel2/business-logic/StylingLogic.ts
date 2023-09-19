@@ -927,12 +927,21 @@ export class StylingLogic {
             userSelect: 'none',
         } as CSSProperties;
         return !this.optionsLogic.isDefaultItemDisplayLocation && !this.isFullscreenMode ? {
-            paddingInline: CAROUSEL_ITEM_SPACING_DEFAULT / 2,
             flexGrow: 0,
             ...selectStyle,
         } as CSSProperties : {
             ...selectStyle
         };
+    }
+
+    getCarouselVideoTimeTextBlockStyle(timeString: string) {
+        console.log({timeString});
+        //todo: if the time string has two ':' then figure out how long the width should be otherwise 42
+        
+        return {
+            display: 'inline-block',
+            width: 42, //adjusting this based on length of timeString to fix the jumpiness during playback
+        } as CSSProperties;
     }
 
     get isCurrentItemSelected() {

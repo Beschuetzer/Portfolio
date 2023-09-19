@@ -46,7 +46,6 @@ const MODAL_HEIGHT_INITIAL = 0;
 export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
-
     const {
         children,
         isVideoPlaying,

@@ -923,12 +923,6 @@
   justify-content: space-between;
   column-gap: 0.75vw;
 }
-.thumbnail-carousel__item-viewer-toolbar-middle {
-  justify-content: flex-start;
-  width: 100%;
-  font-size: 1.5rem;
-  color: #fff9f5;
-}
 .thumbnail-carousel__item-viewer-toolbar-preview {
   position: absolute;
   bottom: auto;
@@ -978,6 +972,10 @@
   appearance: none;
   border: none;
   z-index: 100;
+}
+.thumbnail-carousel__item-viewer-toolbar-text {
+  justify-content: flex-start;
+  width: 100%;
 }
 .thumbnail-carousel__navigation {
   display: flex;

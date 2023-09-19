@@ -26,12 +26,13 @@ export enum TranslationAmountChange {
 type CarouselContentProps = {} & Omit<CarouselProps, 'style' | 'onItemChange'> & Pick<CarouselContextInputProps, 'carouselContainerRef'>;
 
 const WINDOW_RESIZE_DEBOUNCE_INTERVAL = 100;
-export const CarouselContent = ({
-    carouselContainerRef,
-    items,
-    options,
-}: CarouselContentProps) => {
+export const CarouselContent = (props: CarouselContentProps) => {
     //#region Init
+    const {
+        carouselContainerRef,
+        items,
+        options,
+    } = props;
     const { currentItemIndex, numberOfPages, setNumberOfPages, isFullscreenMode, setIsFullscreenMode, currentPage, setCurrentPage } = useCarouselContext();
     const {
         optionsLogic,

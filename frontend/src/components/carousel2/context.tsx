@@ -32,14 +32,14 @@ export type CarouselContextOutputProps = {
     setOptions: React.Dispatch<React.SetStateAction<CarouselOptions>>;
 } & Required<Omit<CarouselContextInputProps, 'children'>>
 
-export const CarouselProvider = ({
-    carouselContainerRef,
-    children,
-    hiddenInputRef,
-    items: itemsInput,
-    options: optionsInput,
-
-}: CarouselContextInputProps) => {
+export const CarouselProvider = (props: CarouselContextInputProps) => {
+    const {
+        carouselContainerRef,
+        children,
+        hiddenInputRef,
+        items: itemsInput,
+        options: optionsInput,
+    } = props;
     const [currentItem, setCurrentItem] = useState(itemsInput[0]);
     const [currentItemIndex, setCurrentItemIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);

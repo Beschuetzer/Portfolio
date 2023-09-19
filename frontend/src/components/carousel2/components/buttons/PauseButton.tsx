@@ -6,13 +6,14 @@ import { useBusinessLogic } from '../../hooks/useBusinessLogic';
 
 type PauseButtonProps = {} & ButtonProps;
 
-export const PauseButton = forwardRef<HTMLButtonElement, PauseButtonProps>(({
-  className = CLASSNAME__BUTTON,
-  onClick = () => null,
-  fillColor,
-  childStyle = {},
-  style = {},
-}, ref) => {
+export const PauseButton = forwardRef<HTMLButtonElement, PauseButtonProps>((props, ref) => {
+  const {
+    className = CLASSNAME__BUTTON,
+    onClick = () => null,
+    fillColor,
+    childStyle = {},
+    style = {},
+  } = props;
   const { stylingLogic, optionsLogic } = useBusinessLogic();
   const fillColorToUse = fillColor || optionsLogic.theme.colorFive;
   const colorStyle = StylingLogic.getColorStyle(fillColorToUse, 'backgroundColor', childStyle);

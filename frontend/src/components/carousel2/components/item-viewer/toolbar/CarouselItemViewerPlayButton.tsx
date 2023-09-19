@@ -7,14 +7,14 @@ import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcu
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 type CarouselItemViewerPlayButtonProps = {} & CarouselItemViewerButtonProps;
-export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPlayButtonProps>(({
-    actionName = '',
-    isShortcutVisible = false,
-    isVisible = true,
-    onClick = () => null,
-    options = {},
-    position = 'center',
-}, ref) => {
+export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPlayButtonProps>((props, ref) => {
+    const {
+        actionName = '',
+        isShortcutVisible = false,
+        isVisible = true,
+        onClick = () => null,
+        position = 'center',
+    } = props;
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.playButton || {};
     const { optionsLogic, toolbarActionsLogic } = useBusinessLogic();

@@ -8,14 +8,15 @@ type CloseButtonProps = {
   classNameModifier?: string;
 } & ButtonProps;
 
-export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>(({
-  childStyle = {},
-  className = CLASSNAME__BUTTON,
-  classNameModifier = '',
-  fillColor,
-  onClick = () => null,
-  style = {},
-}, ref) => {
+export const CloseButton = forwardRef<HTMLButtonElement, CloseButtonProps>((props, ref) => {
+  const {
+    childStyle = {},
+    className = CLASSNAME__BUTTON,
+    classNameModifier = '',
+    fillColor,
+    onClick = () => null,
+    style = {},
+  } = props;
   const { stylingLogic, optionsLogic } = useBusinessLogic();
   const fillColorToUse = fillColor || optionsLogic.theme.colorFive;
   const classModifierName = `${className}--${classNameModifier}`;

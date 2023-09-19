@@ -24,6 +24,7 @@ export const WINDOW_RESIZE_DEBOUNCE = 250;
 
 //#region ClassNames
 export const CLASSNAME__ROOT = 'thumbnail-carousel'; //this has to match $carouselClassname in _variables.scss
+export const CLASSNAME__DOTS = getClassname({ elementName: 'dots' });
 export const CLASSNAME__BUTTON = `${CLASSNAME__ROOT}-button`;
 export const CLASSNAME__BUTTON_SCALE_ON_HOVER = `${CLASSNAME__BUTTON}--scale-on-hover`
 export const CLASSNAME__CAROUSEL_ITEM = getClassname({ elementName: 'item' });
@@ -35,7 +36,10 @@ export const CLASSNAME__ITEM_CONTAINER = getClassname({ elementName: `item-conta
 export const CLASSNAME__ITEM_CONTAINER_NO_TOOLBAR = `${CLASSNAME__ITEM_CONTAINER}--no-toolbar`;
 export const CLASSNAME__ITEM_VIEWER = 'item-viewer';
 export const CLASSNAME__ITEM_VIEWER_BUTTON = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-button` });
+export const CLASSNAME__ITEM_VIEWER_SHORTCUT_INDICATOR = getClassname({ elementName: 'item-viewer-shortcut-indicator' });
 export const CLASSNAME__ITEM_VIEWER_TOOLBAR = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar` });
+export const CLASSNAME__ITEM_VIEWER_TOOLBAR_TEXT = `${CLASSNAME__ITEM_VIEWER_TOOLBAR}-text`;
+export const CLASSNAME__LOADING_SPINNER = getClassname({ elementName: 'loading' });
 export const CLASSNAME__MODAL = getClassname({ elementName: 'modal' })
 export const CLASSNAME__MODAL_CUSTOM = `${CLASSNAME__MODAL}-custom`;
 export const CLASSNAME__MODAL_HEADER = `${CLASSNAME__MODAL}-header`

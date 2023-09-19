@@ -11,10 +11,11 @@ const LAST_DRAW_INTERVAL = 100;
 /**
 *Used to "seek" video items 
 **/
-export const useSetVideoCurrentTime = ({
-    percent,
-    video,
-}: UseSetVideoCurrentTimeInput) => {
+export const useSetVideoCurrentTime = (input: UseSetVideoCurrentTimeInput) => {
+    const {
+        percent,
+        video,
+    } = input;
     const { currentItemIndex } = useCarouselContext();
     const lastRenderTimeoutRef = useRef<any>();
     const lastDrawTimeRef = useRef<number>(0);

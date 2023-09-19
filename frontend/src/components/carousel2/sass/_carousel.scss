@@ -202,13 +202,6 @@
                 }
             }
 
-            &-middle {
-                justify-content: flex-start;
-                width: 100%;
-                font-size: 1.5rem;
-                color: $itemViewerButtonColor;
-            }
-
             &-preview {
                 @include positionAbsolute(
                     $left: auto,
@@ -260,6 +253,11 @@
                 appearance: none;
                 border: none;
                 z-index: $zIndexProgressBar;
+            }
+            
+            &-text {
+                justify-content: flex-start;
+                width: 100%;
             }
         }
     }

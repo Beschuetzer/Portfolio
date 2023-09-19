@@ -10,14 +10,14 @@ import { CarouselItemViewerToolbarProps } from './CarouselItemViewerToolbar';
 import { CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from '../../../constants';
 
 type CarouselItemViewerCloseButtonProps = {} & CarouselItemViewerButtonProps & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
-export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps>(({
-    actionName = '',
-    isShortcutVisible = false,
-    onClick = () => null,
-    options = {},
-    position: shortcutPosition = 'center',
-    videoRef,
-}, ref) => {
+export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerCloseButtonProps>((props, ref) => {
+    const {
+        actionName = '',
+        isShortcutVisible = false,
+        onClick = () => null,
+        position: shortcutPosition = 'center',
+        videoRef,
+    } = props;
     const { elementStylings, setIsFullscreenMode, isFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
     const {
         optionsLogic,
@@ -27,14 +27,17 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     const closeAction = toolbarActionsLogic.getClose();
     const { svgHref, style } = elementStylings?.closeButton || {};
     const fillColor = optionsLogic.getButtonColor(CarouselElement.closeButton);
-    useKeyboardShortcuts([
-        {
-            keys: closeAction.keys,
-            action: () => {
-                onClickLocal();
+    useKeyboardShortcuts({
+        keyboardShortcuts: [
+            {
+                keys: closeAction.keys,
+                action: () => {
+                    onClickLocal();
+                },
             },
-        },
-    ], () => toolbarLogic?.getShouldSkipKeyboardShortcuts());
+        ],
+        skipCondition: () => toolbarLogic?.getShouldSkipKeyboardShortcuts(),
+    });
 
     const onClickLocal = useCallback(async () => {
         onClick && onClick()

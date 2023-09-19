@@ -50,25 +50,26 @@ export type CarouselItemViewerToolbarProps = {
     videoRef?: React.MutableRefObject<HTMLVideoElement | undefined> | null;
 };
 
-export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemViewerToolbarProps>(({
-    currentVideoSection,
-    description,
-    imageRef,
-    isProgressBarMouseDownRef,
-    isVideo,
-    itemContainerRef,
-    onClose = () => null,
-    onNextItemClick = () => null,
-    onPreviousItemClick = () => null,
-    percent = 0,
-    seekPercent = 0,
-    setCurrentVideoSection,
-    setIsVideoPlaying = () => null,
-    setPercent = () => null,
-    setSeekPercent = () => null,
-    videoRef,
-}, ref) => {
+export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemViewerToolbarProps>((props, ref) => {
     //#region Init
+    const {
+        currentVideoSection,
+        description,
+        imageRef,
+        isProgressBarMouseDownRef,
+        isVideo,
+        itemContainerRef,
+        onClose = () => null,
+        onNextItemClick = () => null,
+        onPreviousItemClick = () => null,
+        percent = 0,
+        seekPercent = 0,
+        setCurrentVideoSection,
+        setIsVideoPlaying = () => null,
+        setPercent = () => null,
+        setSeekPercent = () => null,
+        videoRef,
+    } = props;
     const { options, items, currentItemIndex, setCurrentItemIndex, currentItem, isFullscreenMode, hiddenInputRef } = useCarouselContext();
     const isProgressBarBeingHoveredRef = useRef<boolean>(false);
     const shouldHideTimoutRef = useRef<any>(-1);
@@ -104,32 +105,35 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
 
     const { optionsLogic, stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic();
     const isMobile = getIsMobile();
-    useKeyboardShortcuts([
-        {
-            keys: toolbarActionsLogic.getPlay().keys,
-            action: toolbarActionsLogic.isPauseSeparate ? handleKeyboardPlay : handlePlayPauseUnited,
-        },
-        {
-            keys: toolbarActionsLogic.getPause().keys,
-            action: handleKeyboardPause,
-        },
-        {
-            keys: toolbarActionsLogic.getSeekBackwards().keys,
-            action: handleKeyboardSeekBackward,
-        },
-        {
-            keys: toolbarActionsLogic.getSeekForwards().keys,
-            action: handleKeyboardSeekForward,
-        },
-        {
-            keys: toolbarActionsLogic.getNextItem().keys,
-            action: () => onNextItemClickLocal(),
-        },
-        {
-            keys: toolbarActionsLogic.getPreviousItem().keys,
-            action: () => onPreviousItemClickLocal(),
-        },
-    ], () => toolbarLogic.getShouldSkipKeyboardShortcuts());
+    useKeyboardShortcuts({
+        keyboardShortcuts: [
+            {
+                keys: toolbarActionsLogic.getPlay().keys,
+                action: toolbarActionsLogic.isPauseSeparate ? handleKeyboardPlay : handlePlayPauseUnited,
+            },
+            {
+                keys: toolbarActionsLogic.getPause().keys,
+                action: handleKeyboardPause,
+            },
+            {
+                keys: toolbarActionsLogic.getSeekBackwards().keys,
+                action: handleKeyboardSeekBackward,
+            },
+            {
+                keys: toolbarActionsLogic.getSeekForwards().keys,
+                action: handleKeyboardSeekForward,
+            },
+            {
+                keys: toolbarActionsLogic.getNextItem().keys,
+                action: () => onNextItemClickLocal(),
+            },
+            {
+                keys: toolbarActionsLogic.getPreviousItem().keys,
+                action: () => onPreviousItemClickLocal(),
+            },
+        ],
+        skipCondition: () => toolbarLogic.getShouldSkipKeyboardShortcuts()
+    });
     useOnSwipe({
         element: itemContainerRef?.current as HTMLElement,
         maxClickThreshold: optionsLogic.itemViewerMaxClickThreshold,
@@ -159,7 +163,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             }
         }
     })
-    useUpdateTimeString(currentItem, setTimeStrings, videoRef);
+    useUpdateTimeString({ currentItemInInstance: currentItem, setTimeStrings, videoRef });
 
     const isVideoPlaying = getIsVideoPlaying(videoRef?.current);
     //#endregion
@@ -571,7 +575,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                     isShortcutVisible={showPlayButtonPopup && !isProgressBarMouseDownRef?.current}
                                     isVisible={!isVideoPlaying}
                                     onClick={onPlayClick}
-                                    options={options}
                                     ref={playButtonRef}
                                     position='left'
                                 />
@@ -580,7 +583,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                     isShortcutVisible={showPauseButtonPopup && !isProgressBarMouseDownRef?.current}
                                     isVisible={isVideoPlaying}
                                     onClick={onPauseClick}
-                                    options={options}
                                     ref={pauseButtonRef}
                                     position='left'
                                 />
@@ -588,7 +590,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                     actionName='Seek Back'
                                     isShortcutVisible={showSeekBackwardButtonPopup && !isProgressBarMouseDownRef?.current}
                                     onClick={onSeekBackClick}
-                                    options={options}
                                     ref={seekBackwardButtonRef}
                                     position='left'
                                 />
@@ -596,7 +597,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                     actionName='Seek Forward'
                                     isShortcutVisible={showSeekForwardButtonPopup && !isProgressBarMouseDownRef?.current}
                                     onClick={onSeekForwardClick}
-                                    options={options}
                                     ref={seekForwardButtonRef}
                                     position='left'
                                 />
@@ -608,21 +608,18 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                 actionName='Previous'
                                 isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showPreviousButtonPopup && !isProgressBarMouseDownRef?.current}
                                 onClick={onPreviousItemClickLocal}
-                                options={options}
                                 ref={previousButtonRef}
                             />
                             <CarouselItemViewerNextButton
                                 actionName='Next'
                                 isShortcutVisible={!optionsLogic.itemViewerPreviewIsVisible && showNextButtonPopup && !isProgressBarMouseDownRef?.current}
                                 onClick={onNextItemClickLocal}
-                                options={options}
                                 ref={nextButtonRef}
                             />
                             <CarouselItemViewerFullscreenButton
                                 actionName='Fullscreen'
                                 isShortcutVisible={!isFullscreenMode && showFullscreenButtonPopup && !isProgressBarMouseDownRef?.current}
                                 onClick={() => null}
-                                options={options}
                                 ref={fullscreenButtonRef}
                                 videoRef={videoRef}
                                 style={{
@@ -633,7 +630,6 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                 actionName='Exit'
                                 isShortcutVisible={isFullscreenMode && showCloseButtonPopup && !isProgressBarMouseDownRef?.current}
                                 onClick={onClose}
-                                options={options}
                                 ref={closeButtonRef}
                                 position='right'
                                 videoRef={videoRef}

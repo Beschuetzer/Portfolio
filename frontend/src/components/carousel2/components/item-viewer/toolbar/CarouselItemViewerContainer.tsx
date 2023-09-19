@@ -1,5 +1,4 @@
 import { ReactNode, forwardRef, useEffect, useRef, useState, useImperativeHandle, useCallback, useLayoutEffect } from 'react'
-import { getClassname } from '../../../utils'
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { useCarouselContext } from '../../../context';
 import { useRenderCount } from '../../../hooks/useRenderCountRef';
@@ -16,10 +15,11 @@ const HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL = false;
 const HEIGHT_INITIAL = 0;
 const LAST_VIEWPORT_WIDTH_REF_INITIAL = 0;
 const NUMBER_OF_DATA_POINTS = 25;
-export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerContainerProps>(({
-    children,
-    onClick,
-}, ref) => {
+export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerContainerProps>((props, ref) => {
+    const {
+        children,
+        onClick,
+    } = props;
     const { currentItemIndex, isFullscreenMode } = useCarouselContext();
     const { stylingLogic, optionsLogic } = useBusinessLogic();
     const heightsRef = useRef<number[]>([]);

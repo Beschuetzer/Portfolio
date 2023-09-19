@@ -1,4 +1,6 @@
 Carousel rework
+  -finish getCarouselVideoTimeTextBlockStyle in StylingLogic
+  -fix issue with current position indiciator being too big in the progress bar
   -refactor to conform to SOLID principles (https://www.youtube.com/watch?v=MSq_DCRxOxw)
   -grabbing the progress bar and dragging sometimes causes the screenshot viewer to render where it was when grabbed (just one frame?)
   -todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)

@@ -2,10 +2,20 @@ import { useEffect } from "react";
 import { stopPropagation } from "../utils";
 import { KeyCombination, KeyboardShortcut, ModifierKey } from "../types";
 
+export type UseKeyboardShortcutsInput = {
+    keyboardShortcuts: KeyboardShortcut[];
+    skipCondition: () => boolean;
+}
+
 /**
-*If `skipCondition` resolves to `true`, then the listener is not added for that render cycle.
+ *Creates keyboard shortcuts for a component.
+ *If {@link UseKeyboardShortcutsInput.skipCondition skipCondition} resolves to `true`, then the listener is not added for that render cycle.
 **/
-export const useKeyboardShortcuts = (keyboardShortcuts: KeyboardShortcut[], skipCondition?: () => boolean) => {
+export const useKeyboardShortcuts = (input: UseKeyboardShortcutsInput) => {
+    const {
+        keyboardShortcuts, 
+        skipCondition,
+    } = input;
     const shouldSkip = skipCondition && skipCondition();
 
     useEffect(() => {

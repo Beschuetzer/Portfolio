@@ -8,13 +8,14 @@ import { useBusinessLogic } from '../hooks/useBusinessLogic';
 type CarouselArrowButtonProps = {
   onClick: () => void;
 } & ArrowProps & CarouselNavigationProps
-export const CarouselArrowButton = ({
-  currentPage,
-  direction,
-  numberOfDots,
-  options = {},
-  onClick,
-}: CarouselArrowButtonProps) => {
+export const CarouselArrowButton = (props: CarouselArrowButtonProps) => {
+  const {
+    currentPage,
+    direction,
+    numberOfDots,
+    options = {},
+    onClick,
+  } = props;
   let customButton = options?.styling?.elements?.arrowRight || {};
   if (direction === ArrowButtonDirection.previous) {
     customButton = options?.styling?.elements?.arrowLeft || {}

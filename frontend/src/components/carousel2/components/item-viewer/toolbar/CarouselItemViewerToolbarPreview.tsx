@@ -19,15 +19,16 @@ type CarouselItemViewerToolbarPreviewProps = {
     show: boolean;
 } & Partial<Pick<CarouselItemViewerButtonProps, 'actionName'>>
 
-export const CarouselItemViewerToolbarPreview = ({
-    actionName = '',
-    isLoaded,
-    itemToShow,
-    setIsLoaded,
-    shortcuts = [],
-    show,
-}: CarouselItemViewerToolbarPreviewProps) => {
+export const CarouselItemViewerToolbarPreview = (props: CarouselItemViewerToolbarPreviewProps) => {
     //#region Init
+    const {
+        actionName = '',
+        isLoaded,
+        itemToShow,
+        setIsLoaded,
+        shortcuts = [],
+        show,
+    } = props;
     const { optionsLogic, stylingLogic } = useBusinessLogic();
     const { description, srcMain, srcThumbnail } = itemToShow || {};
     //#endregion
@@ -73,6 +74,7 @@ export const CarouselItemViewerToolbarPreview = ({
         stylingLogic.carouselItemViewerPreviewImageContainerStyle,
         stylingLogic.carouselItemViewerPreviewImageStyle
     ]);
+    
     const textJSX = useMemo(() => (
         <div
             style={stylingLogic.carouselItemViewerPreviewImageDescriptionContainerStyle}
@@ -105,6 +107,7 @@ export const CarouselItemViewerToolbarPreview = ({
         stylingLogic.carouselItemViewerPreviewImageDescriptionContainerStyle,
         stylingLogic.carouselItemViewerPreviewImageDescriptionHeaderStyle,
     ]);
+
     return (
         <div
             style={stylingLogic.carouselItemViewerPreviewStyle}

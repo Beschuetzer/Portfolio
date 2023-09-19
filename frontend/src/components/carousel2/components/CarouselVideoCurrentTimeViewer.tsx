@@ -10,12 +10,13 @@ type CarouselVideoCurrentTimeViewerPropsProps = {
 } &
     Pick<CarouselItemViewerProgressBarScreenshotPreviewProps, 'percent' | 'type' | 'srcMain'> &
     Pick<CarouselItemViewerToolbarProps, 'isProgressBarMouseDownRef'>
-export const CarouselVideoCurrentTimeViewer = ({
-    isProgressBarMouseDownRef,
-    isVideoPlaying,
-    percent = 0,
-    type,
-}: CarouselVideoCurrentTimeViewerPropsProps) => {
+export const CarouselVideoCurrentTimeViewer = (props: CarouselVideoCurrentTimeViewerPropsProps) => {
+    const {
+        isProgressBarMouseDownRef,
+        isVideoPlaying,
+        percent = 0,
+        type,
+    } = props;
     const { currentItem } = useCarouselContext();
     const { srcMain } = currentItem;
     const videoRef = useRef<HTMLVideoElement>();

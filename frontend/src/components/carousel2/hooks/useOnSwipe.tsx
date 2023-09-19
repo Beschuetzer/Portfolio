@@ -39,7 +39,7 @@ export type UseOnSwipeHandlers = {
     onMoveWhenGrabbing?: (xDiff: number, yDiff: number) => void;
 }
 
-export type UseOnSwipeProps = {
+export type UseOnSwipeInput = {
     element: HTMLElement;
     isDisabled?: boolean;
     handleStyleChanges: (stylingCase: StylingCase, element: HTMLElement) => void;
@@ -49,13 +49,14 @@ export type UseOnSwipeProps = {
 
 const ON_MOVE_WHEN_GRABBING_SHORT_CIRCUIT_AMOUNT = 100;
 //positive horizontal diff means right and positive vertical diff means down
-export const useOnSwipe = ({
-    element,
-    isDisabled = false,
-    maxClickThreshold = 0,
-    swipeHandlers = {},
-    handleStyleChanges,
-}: UseOnSwipeProps) => {
+export const useOnSwipe = (input: UseOnSwipeInput) => {
+    const {
+        element,
+        isDisabled = false,
+        maxClickThreshold = 0,
+        swipeHandlers = {},
+        handleStyleChanges,
+    } = input;
     const lastCoordinateRef = useRef<Coordinate>();
     const currentCoordinateRef = useRef<Coordinate>();
     const startCoordinateRef = useRef<Coordinate>();

@@ -7,14 +7,14 @@ import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcu
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 type CarouselItemViewerPauseButtonProps = {} & CarouselItemViewerButtonProps;
-export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerPauseButtonProps>(({
-    actionName = '',
-    isShortcutVisible = false,
-    isVisible = true,
-    onClick = () => null,
-    options = {},
-    position = 'center',
-}, ref) => {
+export const CarouselItemViewerPauseButton = forwardRef<any, CarouselItemViewerPauseButtonProps>((props, ref) => {
+    const {
+        actionName = '',
+        isShortcutVisible = false,
+        isVisible = true,
+        onClick = () => null,
+        position = 'center',
+    } = props;
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.pauseButton || {};
     const { optionsLogic, toolbarActionsLogic } = useBusinessLogic();

@@ -6,13 +6,14 @@ import { useBusinessLogic } from '../../hooks/useBusinessLogic';
 
 type SeekBackButtonProps = {} & ButtonProps;
 
-export const SeekBackButton = forwardRef<HTMLButtonElement, SeekBackButtonProps>(({
-  className = CLASSNAME__BUTTON,
-  fillColor,
-  onClick = () => null,
-  childStyle = {},
-  style = {},
-}, ref) => {
+export const SeekBackButton = forwardRef<HTMLButtonElement, SeekBackButtonProps>((props, ref) => {
+  const {
+    className = CLASSNAME__BUTTON,
+    fillColor,
+    onClick = () => null,
+    childStyle = {},
+    style = {},
+  } = props;
   const { stylingLogic, optionsLogic } = useBusinessLogic();
   const fillColorToUse = fillColor || optionsLogic.theme.colorFive;
   const colorStyle = StylingLogic.getColorStyle(fillColorToUse, 'borderLeftColor', childStyle);

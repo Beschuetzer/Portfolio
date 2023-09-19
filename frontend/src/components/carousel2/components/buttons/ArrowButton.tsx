@@ -7,14 +7,15 @@ import { useBusinessLogic } from "../../hooks/useBusinessLogic";
 type ArrowButtonProps = {
 } & ButtonProps & ArrowProps;
 
-export const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(({
-    className = CLASSNAME__BUTTON,
-    fillColor,
-    direction,
-    onClick = () => null,
-    childStyle = {},
-    style = {},
-}, ref) => {
+export const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>((props, ref) => {
+    const {
+        className = CLASSNAME__BUTTON,
+        fillColor,
+        direction,
+        onClick = () => null,
+        childStyle = {},
+        style = {},
+    } = props;
     const { stylingLogic, optionsLogic } = useBusinessLogic();
     const classNameToUse = `${className}--arrow-${direction}`;
     const leftClassName = `${classNameToUse}-one`;

@@ -6,13 +6,14 @@ import { useBusinessLogic } from '../../hooks/useBusinessLogic';
 
 type PlayButtonProps = {} & ButtonProps;
 
-export const PlayButton = forwardRef<HTMLButtonElement, PlayButtonProps>(({
-  className = CLASSNAME__BUTTON,
-  onClick = () => null,
-  fillColor,
-  childStyle = {},
-  style = {},
-}, ref) => {
+export const PlayButton = forwardRef<HTMLButtonElement, PlayButtonProps>((props, ref) => {
+  const {
+    className = CLASSNAME__BUTTON,
+    onClick = () => null,
+    fillColor,
+    childStyle = {},
+    style = {},
+  } = props;
   const { stylingLogic, optionsLogic } = useBusinessLogic();
   const fillColorToUse = fillColor || optionsLogic.theme.colorFive;
   const colorStyle = StylingLogic.getColorStyle(fillColorToUse, 'borderLeftColor', childStyle);

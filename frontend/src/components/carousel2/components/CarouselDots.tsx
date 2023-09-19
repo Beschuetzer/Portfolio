@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import { CarouselItemProps } from './CarouselItem';
-import { getClassname } from '../utils';
-import { CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_DOT_HEIGHT_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS, CAROUSEL_DOT_WIDTH_DEFAULT } from '../constants';
+import { CAROUSEL_DOT_OPACITY_DEFAULT, CAROUSEL_DOT_HEIGHT_DEFAULT, NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS, CAROUSEL_DOT_WIDTH_DEFAULT, CLASSNAME__DOTS } from '../constants';
 import { ArrowProps, CarouselElement, CarouselNavigationProps } from '../types';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
@@ -12,15 +11,15 @@ type CarouselDotsProps = {
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 } & CarouselNavigationProps & Pick<ArrowProps, 'options'>
 
-const DOTS_CLASSNAME = getClassname({ elementName: 'dots' });
-export const CarouselDots = ({
-    currentPage,
-    items,
-    numberOfDots = items?.length || NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS - 1,
-    options = {},
-    setCurrentPage,
-}: CarouselDotsProps) => {
+export const CarouselDots = (props: CarouselDotsProps) => {
     //#region Init
+    const {
+        currentPage,
+        items,
+        numberOfDots = items?.length || NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS - 1,
+        options = {},
+        setCurrentPage,
+    } = props;
     const { style, svgHref } = options?.styling?.elements?.dots || {};
     const { optionsLogic, stylingLogic } = useBusinessLogic();
     const defaultColor = optionsLogic.isDefaultItemDisplayLocation ? optionsLogic.theme.colorOne : optionsLogic.theme.colorFive;
@@ -63,7 +62,7 @@ export const CarouselDots = ({
                 opacity: 1,
             } : {};
 
-            const currentPageClassname = isCurrentPage ? `${DOTS_CLASSNAME}-current` : '';
+            const currentPageClassname = isCurrentPage ? `${CLASSNAME__DOTS}-current` : '';
 
             dots.push((
                 !!svgToUse ? (
@@ -92,12 +91,13 @@ export const CarouselDots = ({
         onDotClick,
         optionsLogic,
         style,
+        svgHref,
         useStyles
     ]);
 
     if (numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return null;
     return (
-        <div className={DOTS_CLASSNAME}>
+        <div className={CLASSNAME__DOTS}>
             {renderDots()}
         </div>
     )

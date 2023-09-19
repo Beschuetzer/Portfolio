@@ -7,13 +7,13 @@ import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcu
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 type CarouselItemViewerSeekBackButtonProps = {} & CarouselItemViewerButtonProps;
-export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemViewerSeekBackButtonProps>(({
-    actionName = '',
-    isShortcutVisible = false,
-    onClick = () => null,
-    options = {},
-    position = 'center',
-}, ref) => {
+export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemViewerSeekBackButtonProps>((props, ref) => {
+    const {
+        actionName = '',
+        isShortcutVisible = false,
+        onClick = () => null,
+        position = 'center',
+    } = props;
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.seekBackButton || {};
     const { optionsLogic, toolbarActionsLogic } = useBusinessLogic();

@@ -10,10 +10,11 @@ export type UseSetCustomCssPropertyInput = {
 
 const PROPERTY_TUPLE_EXPECTED_MIN_LENGTH = 2;
 const PROPERTY_TUPLE_EXPECTED_MAX_LENGTH = 3;
-export const useSetCustomCssProperties = ({
-    element,
-    properties,
-}: UseSetCustomCssPropertyInput) => {
+export const useSetCustomCssProperties = (input: UseSetCustomCssPropertyInput) => {
+    const {
+        element,
+        properties,
+    } = input;
     useEffect(() => {
         if (element && properties?.length > 0) {
             for (const property of properties) {

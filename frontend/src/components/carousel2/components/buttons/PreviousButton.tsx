@@ -8,14 +8,15 @@ type PreviousButtonProps = {
   showButton?: boolean;
 } & ButtonProps;
 
-export const PreviousButton = forwardRef<HTMLButtonElement, PreviousButtonProps>(({
-  className = CLASSNAME__BUTTON,
-  fillColor,
-  onClick = () => null,
-  showButton = true,
-  childStyle = {},
-  style = {},
-}, ref) => {
+export const PreviousButton = forwardRef<HTMLButtonElement, PreviousButtonProps>((props, ref) => {
+  const {
+    className = CLASSNAME__BUTTON,
+    fillColor,
+    onClick = () => null,
+    showButton = true,
+    childStyle = {},
+    style = {},
+  } = props;
   const { stylingLogic, optionsLogic } = useBusinessLogic();
   const fillColorToUse = fillColor || optionsLogic.theme.colorFive;
   const firstStyle = StylingLogic.getColorStyle(fillColorToUse, 'background', childStyle);

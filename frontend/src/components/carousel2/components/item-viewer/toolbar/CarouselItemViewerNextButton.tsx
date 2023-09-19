@@ -7,13 +7,13 @@ import { CarouselItemViewerShortcutIndicator } from './CarouselItemViewerShortcu
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 
 type CarouselItemViewerNextButtonProps = {} & CarouselItemViewerButtonProps;
-export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNextButtonProps>(({
-    actionName = '',
-    isShortcutVisible,
-    onClick = () => null,
-    options = {},
-    position = 'center',
-}, ref) => {
+export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNextButtonProps>((props, ref) => {
+    const {
+        actionName = '',
+        isShortcutVisible,
+        onClick = () => null,
+        position = 'center',
+    } = props;
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.nextButton || {};
     const { 

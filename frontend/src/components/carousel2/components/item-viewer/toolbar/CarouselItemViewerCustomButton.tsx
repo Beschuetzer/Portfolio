@@ -14,15 +14,16 @@ export type CarouselItemViewerCustomButtonProps = {
     useElementStyle?: CSSProperties;
 }
 
-export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, CarouselItemViewerCustomButtonProps>(({
-    classNamesToInclude = [],
-    fillColor = '',
-    onClick = () => null,
-    showButton = true,
-    style = {},
-    useElementStyle = {},
-    xlinkHref,
-}, ref) => {
+export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, CarouselItemViewerCustomButtonProps>((props, ref) => {
+    const {
+        classNamesToInclude = [],
+        fillColor = '',
+        onClick = () => null,
+        showButton = true,
+        style = {},
+        useElementStyle = {},
+        xlinkHref,
+    } = props;
     const { optionsLogic } = useBusinessLogic();
     const classNamesToIncludeClassname = useMemo(() => classNamesToInclude.join(' '), [classNamesToInclude]);
     const defaultStyles = useMemo(() => StylingLogic.getColorStyle(fillColor, 'fill', {

@@ -1,7 +1,6 @@
-import { CLASSNAME__ITEM_VIEWER } from "../../../constants";
+import { CLASSNAME__ITEM_VIEWER_TOOLBAR_TEXT } from "../../../constants";
 import { useBusinessLogic } from "../../../hooks/useBusinessLogic";
 import { VideoTimeStrings } from "../../../types";
-import { getClassname } from "../../../utils";
 
 export type CarouselItemViewerToolbarTextProps = {
     description: string;
@@ -9,23 +8,26 @@ export type CarouselItemViewerToolbarTextProps = {
     timeStrings: VideoTimeStrings;
 }
 
-const CLASSNAME_TOOLBAR_MIDDLE = getClassname({ elementName: `${CLASSNAME__ITEM_VIEWER}-toolbar-middle` });
-
-export const CarouselItemViewerToolbarText = ({
-    description,
-    isVideo = false,
-    timeStrings,
-}: CarouselItemViewerToolbarTextProps) => {
+export const CarouselItemViewerToolbarText = (props: CarouselItemViewerToolbarTextProps) => {
+    const {
+        description,
+        isVideo = false,
+        timeStrings,
+    } = props;
     const { stylingLogic } = useBusinessLogic();
 
     return (
-        <span style={stylingLogic.carouselToolbarTextStyle} className={CLASSNAME_TOOLBAR_MIDDLE}>
+        <span style={stylingLogic.carouselToolbarTextStyle} className={CLASSNAME__ITEM_VIEWER_TOOLBAR_TEXT}>
             {isVideo ? (
                 <>
                     <div style={stylingLogic.carouselVideoTimeTextStyle}>
-                        <span>{timeStrings.currentTimeStr}</span>
+                        <span style={stylingLogic.getCarouselVideoTimeTextBlockStyle(timeStrings.currentTimeStr)}>
+                            {timeStrings.currentTimeStr}
+                        </span>
                         <span style={stylingLogic.carouselVideoTimeTextDividierStyle}>/</span>
-                        <span>{timeStrings.durationStr}</span>
+                        <span style={stylingLogic.getCarouselVideoTimeTextBlockStyle(timeStrings.durationStr)}>
+                            {timeStrings.durationStr}
+                        </span>
                     </div>
                     <span>&#x2022;</span>
                 </>

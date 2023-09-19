@@ -3,13 +3,23 @@ import { getIsPointInsideElement, getPoint } from "../utils";
 import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL } from "../constants";
 
 type ElementToUse = Element | undefined | null;
-export const useResetCarouselVideoCurrentSection = (
-    element: ElementToUse,
-    progressBarElement: ElementToUse,
-    currentSection: number,
-    setCurrentSection: React.Dispatch<React.SetStateAction<number>>,
-    isMouseDownRef: React.MutableRefObject<boolean>,
-) => {
+
+export type UseResetCarouselVideoCurrentSectionInput = {
+    element: ElementToUse;
+    progressBarElement: ElementToUse;
+    currentSection: number;
+    setCurrentSection: React.Dispatch<React.SetStateAction<number>>;
+    isMouseDownRef: React.MutableRefObject<boolean>;
+}
+
+export const useResetCarouselVideoCurrentSection = (input: UseResetCarouselVideoCurrentSectionInput) => {
+    const {
+        element,
+        progressBarElement,
+        currentSection,
+        setCurrentSection,
+        isMouseDownRef,
+    } = input;
     const handleMove = useCallback((e: MouseEvent) => {
         if (currentSection === CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL || isMouseDownRef.current) return;
         const point = getPoint(e);

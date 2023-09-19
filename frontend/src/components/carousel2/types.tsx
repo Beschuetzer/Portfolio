@@ -190,7 +190,7 @@ export type CarouselItemThumbnailPositioning = 'left' | 'center' | 'right';
 
 export type CarouselItemViewerButtonProps = {
     onClick?: () => void;
-    options?: CarouselOptions;
+    // options?: CarouselOptions;
 } & Partial<Omit<CarouselItemViewerShortcutIndicatorProps, 'children' | 'shortcuts'>>
 
 export type CarouselSections = {

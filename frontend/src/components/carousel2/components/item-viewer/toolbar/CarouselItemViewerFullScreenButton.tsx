@@ -10,15 +10,15 @@ import { CarouselItemViewerToolbarProps } from './CarouselItemViewerToolbar';
 
 //note: Full-screen button doesn't have any shortcuts since it is only visible when itemDisplayLocation is not 'none'
 type CarouselItemViewerFullscreenButtonProps = {} & CarouselItemViewerButtonProps & Pick<CarouselItemViewerToolbarProps, 'videoRef'>;
-export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemViewerFullscreenButtonProps>(({
-    actionName = '',
-    isShortcutVisible = false,
-    onClick = () => null,
-    options = {},
-    position = 'right',
-    style = {},
-    videoRef,
-}, ref) => {
+export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemViewerFullscreenButtonProps>((props, ref) => {
+    const {
+        actionName = '',
+        isShortcutVisible = false,
+        onClick = () => null,
+        position = 'right',
+        style = {},
+        videoRef,
+    } = props;
     const { elementStylings, setIsFullscreenMode, isFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
     const { optionsLogic } = useBusinessLogic();
     const { svgHref, style: buttonStyle } = elementStylings?.fullscreenButton || {};

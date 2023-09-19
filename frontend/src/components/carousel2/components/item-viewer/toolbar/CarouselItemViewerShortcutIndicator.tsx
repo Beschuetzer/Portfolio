@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
-import { capitalize, getClassname, getIsMobile, getShortcutsString } from '../../../utils'
-import { CLASSNAME__DISPLAY_NONE } from '../../../constants';
+import { capitalize, getIsMobile, getShortcutsString } from '../../../utils'
+import { CLASSNAME__DISPLAY_NONE, CLASSNAME__ITEM_VIEWER_SHORTCUT_INDICATOR } from '../../../constants';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { KeyInput } from '../../../types';
 
@@ -21,17 +21,17 @@ export type CarouselItemViewerShortcutIndicatorProps = {
 }
 
 const TIMEOUT_DURATION = 1000;
-const className = getClassname({ elementName: 'item-viewer-shortcut-indicator' });
-export const CarouselItemViewerShortcutIndicator = ({
-    actionName = '',
-    children,
-    isShortcutVisible = false,
-    isVisible = true,
-    position = 'center',
-    shortcuts = [],
-    showButton = true,
-    style = {},
-}: CarouselItemViewerShortcutIndicatorProps) => {
+export const CarouselItemViewerShortcutIndicator = (props: CarouselItemViewerShortcutIndicatorProps) => {
+    const {
+        actionName = '',
+        children,
+        isShortcutVisible = false,
+        isVisible = true,
+        position = 'center',
+        shortcuts = [],
+        showButton = true,
+        style = {},
+    } = props;
     const { stylingLogic } = useBusinessLogic();
     const timeoutRef = useRef<any>(null);
     const [hideShortcut, setHideShortcut] = useState(!isShortcutVisible || !actionName)
@@ -51,7 +51,7 @@ export const CarouselItemViewerShortcutIndicator = ({
     const hiddenClassName = useMemo(() => isVisible ? "" : CLASSNAME__DISPLAY_NONE, [isVisible]);
     return (
         <div
-            className={`${className} ${hiddenClassName}`}
+            className={`${CLASSNAME__ITEM_VIEWER_SHORTCUT_INDICATOR} ${hiddenClassName}`}
             style={{ ...stylingLogic.getCarouselShortcutIndicatorContainerStlye(showButton), ...style }}
         >
             {hideShortcut ? null : (

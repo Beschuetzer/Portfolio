@@ -1,7 +1,7 @@
 import { ReactNode, useCallback } from "react";
-import { getClassname } from "../utils";
 import { StylingLogic } from "../business-logic/StylingLogic";
 import { useCarouselContext } from "../context";
+import { CLASSNAME__LOADING_SPINNER } from "../constants";
 
 export type LoadingSpinnerOptions = {
 	/**
@@ -56,13 +56,13 @@ export type LoadingSpinnerProps = {
 	options?: LoadingSpinnerOptions;
 } & LoadingSpinnerCommonProps
 
-const CLASSNAME__LOADING = getClassname({ elementName: 'loading' });
-export const LoadingSpinner = ({
-	description = '',
-	options = {},
-	show = false,
-	type = 'ring',
-}: LoadingSpinnerProps) => {
+export const LoadingSpinner = (props: LoadingSpinnerProps) => {
+	const {
+		description = '',
+		options = {},
+		show = false,
+		type = 'ring',
+	} = props;
 	//note: using useBusinessLogic here causes infinite re-render loop with videos
 	const { options: carouselOptions } = useCarouselContext();
 	const stylingLogic = new StylingLogic({ options: carouselOptions, loadingSpinnerOptions: options });
@@ -74,7 +74,7 @@ export const LoadingSpinner = ({
 				return (
 					<>
 						{content}
-						<div className={`${CLASSNAME__LOADING}-roller`}>
+						<div className={`${CLASSNAME__LOADING_SPINNER}-roller`}>
 							<div />
 							<div />
 							<div />
@@ -90,7 +90,7 @@ export const LoadingSpinner = ({
 				return (
 					<>
 						{content}
-						<div className={`${CLASSNAME__LOADING}-ring`} style={stylingLogic.carouselLoadingSpinnerRingContainerStyle}>
+						<div className={`${CLASSNAME__LOADING_SPINNER}-ring`} style={stylingLogic.carouselLoadingSpinnerRingContainerStyle}>
 							<div style={stylingLogic.carouselLoadingSpinnerRingItemStyle} />
 							<div style={stylingLogic.carouselLoadingSpinnerRingItemStyle} />
 							<div style={stylingLogic.carouselLoadingSpinnerRingItemStyle} />
@@ -102,7 +102,7 @@ export const LoadingSpinner = ({
 				return (
 					<>
 						{content}
-						<div style={stylingLogic.carouselLoadingSpinnerRingContainerStyle} className={`${CLASSNAME__LOADING}-circle`}>
+						<div style={stylingLogic.carouselLoadingSpinnerRingContainerStyle} className={`${CLASSNAME__LOADING_SPINNER}-circle`}>
 							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
 							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
 							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
@@ -123,7 +123,7 @@ export const LoadingSpinner = ({
 				return (
 					<>
 						{content}
-						<div className={`${CLASSNAME__LOADING}-grid`}>
+						<div className={`${CLASSNAME__LOADING_SPINNER}-grid`}>
 							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
 							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
 							<div style={stylingLogic.carouselLoadingSpinnerBackgroundColorStyle} />
@@ -146,9 +146,9 @@ export const LoadingSpinner = ({
 	]);
 
 	return (
-		<div className={`${CLASSNAME__LOADING}-container`}>
+		<div className={`${CLASSNAME__LOADING_SPINNER}-container`}>
 			{renderContent((
-				<div style={stylingLogic.carouselLoadingSpinnerTextStyle} className={`${CLASSNAME__LOADING}-text`}>
+				<div style={stylingLogic.carouselLoadingSpinnerTextStyle} className={`${CLASSNAME__LOADING_SPINNER}-text`}>
 					{description ? <h2>Loading '{description}'</h2> : null}
 				</div>
 			))}

@@ -2569,7 +2569,7 @@ const viewingModeItemViewerPreview = (
 						// },
 					},
 					progressBar: {
-						height: 15,
+						// height: 15,
 					},
 				},
 				itemViewerPreview: {

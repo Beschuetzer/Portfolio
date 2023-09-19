@@ -25,6 +25,9 @@ export type UseBusinessLogicInput = {
     >
 >
 
+/**
+*Handles creation of all business logic that is not static.
+**/
 export const useBusinessLogic = (input?: UseBusinessLogicInput): UseBusinessLogicResponse => {
     const {
         isCurrentItem,

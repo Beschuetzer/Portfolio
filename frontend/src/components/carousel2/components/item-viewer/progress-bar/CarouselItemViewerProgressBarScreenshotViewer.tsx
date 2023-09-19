@@ -22,15 +22,16 @@ export type TextTranslateOffset = {
 
 
 export const TEXT_TRANSLATION_AMOUNT_REF_INITIAL = 0;
-export const CarouselVideoProgressBarScreenshotViewer = ({
-    currentVideoSection,
-    percent = 0,
-    srcMain,
-    toolbarRef,
-    type,
-    videoRef,
-}: CarouselItemViewerProgressBarScreenshotPreviewProps) => {
+export const CarouselVideoProgressBarScreenshotViewer = (props: CarouselItemViewerProgressBarScreenshotPreviewProps) => {
     //#region Init
+    const {
+        currentVideoSection,
+        percent = 0,
+        srcMain,
+        toolbarRef,
+        type,
+        videoRef,
+    } = props;
     const { currentItem } = useCarouselContext();
     const { sections } = currentItem?.video || {};
 

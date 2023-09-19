@@ -89,7 +89,7 @@ export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_
 }
 
 /**
-*Checks whether any nodes above `elementToCheck` contain `classname`.  Stops when node matches `stoppingElementType`.
+*Checks whether any nodes above `elementToCheck` contain `classname`.  Stops when node matches `stoppingElementType`, which defaults to `body`.
 **/
 export function getAncestorContainsClassname(elementToCheck: HTMLElement | null, classname: string, stoppingElementType = 'body'): boolean {
     try {

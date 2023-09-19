@@ -43,20 +43,21 @@ type CarouselItemViewerProgressBarProps = {
 const MAP_SECTION_INTERVAL = 100;
 const NEXT_SECTION_OFFSET = .0000000000000001;
 export const PROGRESS_BAR_PERCENT_INITIAL_VALUE = -1;
-export const CarouselItemViewerProgressBar = ({
-    currentVideoSection,
-    isMouseDownRef,
-    isProgressBarBeingHoveredRef,
-    percent,
-    seekPercent,
-    setCurrentVideoSection,
-    setIsVideoPlaying,
-    setPercent,
-    setSeekPercent,
-    setTimeStrings,
-    videoRef,
-}: CarouselItemViewerProgressBarProps) => {
+export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressBarProps) => {
     //#region Init
+    const {
+        currentVideoSection,
+        isMouseDownRef,
+        isProgressBarBeingHoveredRef,
+        percent,
+        seekPercent,
+        setCurrentVideoSection,
+        setIsVideoPlaying,
+        setPercent,
+        setSeekPercent,
+        setTimeStrings,
+        videoRef,
+    } = props;
     const { currentItem } = useCarouselContext();
     const { sections } = currentItem?.video || {};
     const areSectionsGiven = sections && sections.length > 0;
