@@ -9,6 +9,7 @@ import {
     MOBILE_PIXEL_WIDTH,
     NUMBER_OF_MS_IN_A_SECOND,
     NUMBER_OF_PAGES_INITIAL,
+    TOOLBAR_TIME_STRING_SECTION_DIVIDER,
     VIDEO_EXTENSIONS
 } from "./constants";
 import {
@@ -101,7 +102,7 @@ export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_
             return 0;
         }
 
-        const split = timestamp.split(':');
+        const split = timestamp?.split(TOOLBAR_TIME_STRING_SECTION_DIVIDER);
         const milliseconds = parseInt(split[split?.length - 1], 10) || 0;
         const seconds = parseInt(split[split?.length - 2], 10) || 0;
         const minutes = parseInt(split[split?.length - 3], 10) || 0;

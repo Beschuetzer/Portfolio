@@ -15,6 +15,7 @@ import {
     CLASSNAME__TOOLBAR_PROGRESS,
     CLASSNAME__ITEM_VIEWER_TOOLBAR,
     CLASSNAME__ITEM_CONTAINER,
+    TOOLBAR_TIME_STRING_SECTION_DIVIDER,
 } from "../constants";
 import { CarouselModalInternalProps } from "../components/CarouselModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -935,11 +936,16 @@ export class StylingLogic {
     }
 
     getCarouselVideoTimeTextBlockStyle(timeString: string) {
-        //todo: if the time string has two ':' then figure out how long the width should be otherwise 42
+        const sectionCountToWidthMapping: {[key: string]: number} = {
+            "1": 42,
+            "2": 64,
+            "3": 86,
+        }
+        const sectionCount = timeString?.split(TOOLBAR_TIME_STRING_SECTION_DIVIDER).length - 1 || 1;
         
         return {
             display: 'inline-block',
-            width: 42, //adjusting this based on length of timeString to fix the jumpiness during playback
+            width: sectionCountToWidthMapping[sectionCount.toString()] , //adjusting this based on length of timeString to fix the jumpiness during playback
         } as CSSProperties;
     }
 
