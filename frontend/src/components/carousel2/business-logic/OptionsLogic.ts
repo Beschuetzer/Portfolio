@@ -54,7 +54,9 @@ import {
     DISABLE_WRAPPING_DEFAULT,
     IS_LAST_PAGE_FLUSH_DEFAULT,
     THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT,
-    PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT
+    PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT,
+    CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_MOBILE,
+    CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MOBILE
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
@@ -491,8 +493,16 @@ export class OptionsLogic {
     }
 
     get videoProgressBarHitSlop() {
-        const top = getCurrentValue(this.options?.styling?.toolbar?.progressBar?.hitSlop?.top, CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.5, this.isFullscreenMode);
-        const bottom = getCurrentValue(this.options?.styling?.toolbar?.progressBar?.hitSlop?.bottom, CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT / 2, this.isFullscreenMode);
+        const top = getCurrentValue(
+            this.options?.styling?.toolbar?.progressBar?.hitSlop?.top,
+            CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.5,
+            this.isFullscreenMode
+        );
+        const bottom = getCurrentValue(
+            this.options?.styling?.toolbar?.progressBar?.hitSlop?.bottom,
+            CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT / 2,
+            this.isFullscreenMode
+        );
 
         return {
             top,
@@ -503,7 +513,11 @@ export class OptionsLogic {
     get videoProgressBarScaleAmount() {
         const isToolbarInVideo = this.isToolbarInVideo;
         const sections = this.currentItem?.video?.sections;
-        const defaultToUse = isToolbarInVideo && sections && sections?.length > 1 ? CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT : CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT;
+        const defaultToUse = this.isMobile
+            ? CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MOBILE
+            : isToolbarInVideo && sections && sections?.length > 1
+                ? CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MULTIPLE_SECTIONS_DEFAULT
+                : CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_ONE_SECTION_DEFAULT;
         return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.scaleAmount, defaultToUse, this.isFullscreenMode);
     }
 
@@ -527,7 +541,7 @@ export class OptionsLogic {
     }
 
     get videoProgressBarShowCurrentPosition() {
-        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.showCurrentPositionOnChange, PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT , this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.showCurrentPositionOnChange, PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT, this.isFullscreenMode);
     }
 
     get videoProgressBarHeight() {
@@ -540,7 +554,9 @@ export class OptionsLogic {
             ? CAROUSEL_PROGRESS_BAR_HEIGHT_MAX
             : isGivenLessThanMin
                 ? CAROUSEL_PROGRESS_BAR_HEIGHT_MIN
-                : defaultBasedOnEmbedded;
+                : this.isMobile
+                    ? CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_MOBILE
+                    : defaultBasedOnEmbedded;
 
     }
 

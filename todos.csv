@@ -1,5 +1,5 @@
 Carousel rework
-  -todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)
+  -issues with touching events (may just be emulator)?
   -refactor to conform to SOLID principles (https://www.youtube.com/watch?v=MSq_DCRxOxw)
   -figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
   -add component in CarouselVideo to show the snapshot when changing percent via bar

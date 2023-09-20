@@ -661,6 +661,7 @@ export class StylingLogic {
             backfaceVisibility: 'hidden',
             transition: `transform .125s ease`,
             transformOrigin: isToolbarInVideo ? 'center' : 'top',
+            touchAction: 'none',
             // ...(isToolbarInVideo ? this.getCarouselVideoProgressHitSlop(isCurrentSection) : {}),
             ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength, true),
         } as CSSProperties;
@@ -669,14 +670,18 @@ export class StylingLogic {
             return {
                 width: '100%',
                 position: 'absolute',
-                transform: isCurrentSection ? `${this.carouselVideoProgressPositioningStyle.transform} scaleY(${scaleAmount})` : this.carouselVideoProgressPositioningStyle.transform,
+                transform: isCurrentSection
+                    ? `${this.carouselVideoProgressPositioningStyle.transform} scaleY(${scaleAmount})`
+                    : this.carouselVideoProgressPositioningStyle.transform,
                 ...common,
             } as CSSProperties;
         }
         return {
             ...this.carouselVideoProgressPositioningStyle,
             background: 'transparent',
-            transform: isCurrentSection ? `${this.carouselVideoProgressPositioningStyle.transform || ''} scaleY(${scaleAmount})` : this.carouselVideoProgressPositioningStyle.transform,
+            transform: isCurrentSection
+                ? `${this.carouselVideoProgressPositioningStyle.transform || ''} scaleY(${scaleAmount})`
+                : this.carouselVideoProgressPositioningStyle.transform,
             ...common,
         } as CSSProperties;
     }
@@ -703,7 +708,8 @@ export class StylingLogic {
             ...this.carouselVideoProgressPositioningStyle,
             ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength),
             zIndex: 2,
-        }
+            touchAction: 'none',
+        } as CSSProperties;
     }
 
     getCarouselVideoProgressSeekDotStyle(percentWidthDecimal: number, isVisible: boolean, isInCurrentSection: boolean) {
@@ -719,6 +725,7 @@ export class StylingLogic {
             transform: `translate(0, -50%) scale(${(isVisible || isAlwaysVisible) ? (isInCurrentSection ? scaleAmount / 2 : '1') : '0'})`,
             transition: `opacity ${transitionDuration} ease, transform ${transitionDuration} ease`,
             zIndex: 10,
+            touchAction: 'none',
         } as CSSProperties;
     }
 
@@ -734,6 +741,7 @@ export class StylingLogic {
             position: 'absolute',
             background: this.optionsLogic.videoProgressBarSeekColor,
             height: this.optionsLogic.videoProgressBarHeight * (isCurrent ? this.optionsLogic.videoProgressBarScaleAmount : 1),
+            touchAction: 'none',
             ...this.carouselVideoProgressPositioningStyle,
             ...this.getCarouselVideoProgressSectionCommonStyle(percent, left, index, sectionsLength),
         } as CSSProperties;
@@ -936,16 +944,16 @@ export class StylingLogic {
     }
 
     getCarouselVideoTimeTextBlockStyle(timeString: string) {
-        const sectionCountToWidthMapping: {[key: string]: number} = {
+        const sectionCountToWidthMapping: { [key: string]: number } = {
             "1": 42,
             "2": 64,
             "3": 86,
         }
         const sectionCount = timeString?.split(TOOLBAR_TIME_STRING_SECTION_DIVIDER).length - 1 || 1;
-        
+
         return {
             display: 'inline-block',
-            width: sectionCountToWidthMapping[sectionCount.toString()] , //adjusting this based on length of timeString to fix the jumpiness during playback
+            width: sectionCountToWidthMapping[sectionCount.toString()], //adjusting this based on length of timeString to fix the jumpiness during playback
         } as CSSProperties;
     }
 

@@ -3700,8 +3700,8 @@ const SECTIONS: Sections = [
 
 const ENABLED_SECTIONS: SectionNames[] = [
 	// ...Object.values(SectionNames),
-	SectionNames.aboveCustomization,
-	SectionNames.belowCustomization,
+	// SectionNames.aboveCustomization,
+	// SectionNames.belowCustomization,
 	SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,

@@ -108,7 +108,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         return amountPastLeft / (progressBarRightX - progressBarLeftX);
     }, [])
 
-    const onMouseUp = useCallback((e: MouseEvent) => {
+    const onMouseUp = useCallback((e: MouseEvent | TouchEvent) => {
         wasMouseUpJustTriggeredRef.current = true;
         if (isMouseDownRef) {
             isMouseDownRef.current = false;
@@ -149,7 +149,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         }
     }, [getPercent, isMouseDownRef, setIsVideoPlaying, setPercent, setSeekPercent, videoRef]);
 
-    const onMouseLeave = useCallback((index: number, e: MouseEvent) => {
+    const onMouseLeave = useCallback((e: MouseEvent | TouchEvent) => {
         if (isMouseDownRef?.current) {
             return;
         };
@@ -170,6 +170,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         setCurrentVideoSection && setCurrentVideoSection(areSectionsGiven ? getCurrentSection(percent) : 0);
         
         if (isMouseDownRef?.current || optionsLogic.isMobile) {
+        // console.log({percent});
             setPercent(percent)
         } else {
             if (wasMouseUpJustTriggeredRef.current) {
@@ -193,7 +194,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     const onMouseMoveGlobal = useCallback((e: MouseEvent | TouchEvent) => {
         if (!isMouseDownRef?.current) return;
         const xMovementMouse = (e as MouseEvent)?.movementX;
-        let movementAmount: number;
+        let movementAmount = 0;
 
         if (xMovementMouse !== undefined) {
             const toolbarRect = progressBarRef?.current?.getBoundingClientRect();
@@ -201,12 +202,14 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             movementAmount = xMovementMouse / (toolbarRect.right - toolbarRect.left);
         } else if (xMovementMouse === undefined) {
             // console.log({ firstTouch: (e as TouchEvent)?.changedTouches?.[0]?.pageX });
-            movementAmount = 1;
+            // movementAmount = .01;
         }
 
         updateTimeStrings(videoRef?.current)
+        
         setPercent((current) => {
             const newValue = current + movementAmount;
+            // console.log({newValue});
             if (newValue >= 1) return 1;
             else if (newValue <= 0) return 0;
             return newValue;
@@ -217,6 +220,37 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         if (!isMouseDownRef?.current) return;
         onMouseUp(e);
     }, [isMouseDownRef, onMouseUp])
+
+    const onTouchStart = useCallback((e: TouchEvent) => {
+        console.log({start: e});
+        e.stopPropagation();
+        if (!isMouseDownRef?.current) {
+            onMouseDown(e);
+        }
+    }, [isMouseDownRef, onMouseDown])
+
+    const onTouchEnd = useCallback((e: TouchEvent) => {
+        console.log({end: e});
+        e.stopPropagation();
+        if (isMouseDownRef?.current) {
+            isMouseDownRef.current = false;
+        }
+        onMouseUp(e);
+        setCurrentVideoSection(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
+    }, [isMouseDownRef, onMouseUp, setCurrentVideoSection])
+
+    const onTouchMove = useCallback((e: TouchEvent) => {
+        console.log({move: e});
+        e.stopPropagation();
+        onMouseMove(e);
+    }, [onMouseMove])
+
+    // const onTouchMoveGlobal = useCallback((e: TouchEvent) => {
+    //     console.log({move: e});
+    //     if (!isMouseDownRef?.current) return;
+    //     onMouseMove(e);
+    // }, [isMouseDownRef, onMouseMove])
+
     //#endregion
 
     //#region Side FX
@@ -229,6 +263,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             const percent = videoElement.currentTime / videoElement.duration;
             if (percent >= 0 && percent <= 1) {
                 if (!isMouseDownRef?.current) {
+                    // console.log({percent});
                     setPercent(percent);
                 }
                 updateTimeStrings(videoElement);
@@ -265,12 +300,13 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     useEffect(() => {
         document.addEventListener('mousemove', onMouseMoveGlobal);
         document.addEventListener('mouseup', onMouseUpGlobal);
-        document.addEventListener('touchmove', onMouseMoveGlobal);
+        // document.addEventListener('touchmove', onTouchMoveGlobal);
 
 
         return () => {
             document.removeEventListener('mousemove', onMouseMoveGlobal);
             document.removeEventListener('mouseup', onMouseUpGlobal);
+            // document.removeEventListener('touchmove', onTouchMoveGlobal);
         }
     }, [onMouseMoveGlobal, onMouseUpGlobal])
     //#endregion
@@ -410,7 +446,9 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             onMouseUp={onMouseUp as any}
             onMouseMoveCapture={onMouseMove as any}
             onMouseLeave={onMouseLeave as any}
-            onTouchMove={onMouseMove as any}
+            onTouchStartCapture={onTouchStart as any}
+            onTouchMove={onTouchMove as any}
+            onTouchEndCapture={onTouchEnd as any}
         >
             {optionsLogic.isToolbarInVideo ?
                 <div style={stylingLogic.getCarouselVideoProgressSeekDotStyle(percent, showDot, getIsInCurrentSection(percent))} /> :
