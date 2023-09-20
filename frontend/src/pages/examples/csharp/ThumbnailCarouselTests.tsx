@@ -1762,6 +1762,23 @@ const layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole = (
 		}}
 	/>
 );
+const layoutAboveProgressShowGrabLocation = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				itemDisplayLocation: 'above',
+			},
+			styling: {
+				toolbar: {
+					progressBar: {
+						showCurrentPositionOnChange: true
+					}
+				}
+			}
+		}}
+	/>
+)
 const layoutAboveCompletelyFlushAndSameBackgroundColorAll = (
 	<Carousel
 		items={items}
@@ -2976,6 +2993,10 @@ const SECTIONS: Sections = [
 				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole,
 			},
 			{
+				label: "Defaults with Progress Bar showing previous location on change",
+				jsx: layoutAboveProgressShowGrabLocation,
+			},
+			{
 				label: "Display Above Flush and Same Background Color using All option",
 				jsx: layoutAboveCompletelyFlushAndSameBackgroundColorAll,
 			},
@@ -3106,6 +3127,18 @@ const SECTIONS: Sections = [
 						...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options,
 						layout: {
 							...layoutAboveCompletelyFlushAndSameBackgroundColorProgressSpanWhole.props.options.layout,
+							itemDisplayLocation: 'below',
+						}
+					}
+				}),
+			},
+			{
+				label: "Defaults with Progress Bar showing previous location on change",
+				jsx: React.cloneElement(layoutAboveProgressShowGrabLocation, {
+					options: {
+						...layoutAboveProgressShowGrabLocation.props.options,
+						layout: {
+							...layoutAboveProgressShowGrabLocation.props.options.layout,
 							itemDisplayLocation: 'below',
 						}
 					}
@@ -3667,6 +3700,8 @@ const SECTIONS: Sections = [
 
 const ENABLED_SECTIONS: SectionNames[] = [
 	// ...Object.values(SectionNames),
+	SectionNames.aboveCustomization,
+	SectionNames.belowCustomization,
 	SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,

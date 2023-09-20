@@ -39,6 +39,7 @@ import {
     ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS,
     CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT,
     THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT,
+    PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT,
 } from './constants';
 import { OptionsLogic } from './business-logic/OptionsLogic';
 import { StylingLogic } from './business-logic/StylingLogic';
@@ -335,6 +336,9 @@ export type CarouselSectionsVideoCurrentStateIndicator = {
     [CarouselVideoCurrentStateIndicatorButtonName.playIcon]?: CarouselElementCustomization;
 } & Partial<CarouselColorOptions> & Partial<CarouselElementSize>;
 
+/**
+*This is only relevant to video items
+**/
 export type CarouselProgressBar = {
     /**
     *This is the dot at the end of the progress bar, which is only visible on when hovering the progress bar.  
@@ -376,6 +380,11 @@ export type CarouselProgressBar = {
     *Default is {@link CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT here}.
     **/
     shouldSpanContainerWidth?: CarouselElementValue<boolean>;
+    /**
+    *If `true`, there will be an indicator showing the position of the video before the progress bar change occurred.
+    *Default is {@link PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT here}.
+    **/
+    showCurrentPositionOnChange?: CarouselElementValue<boolean>;
     /**
     *Height in pixels.  
     *Default is {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_EMBEDDED this} when embedded otherwise {@link CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_NOT_EMBEDDED this}.

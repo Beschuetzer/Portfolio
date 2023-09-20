@@ -53,7 +53,8 @@ import {
     AUTO_CHANGE_PAGE_DEFAULT,
     DISABLE_WRAPPING_DEFAULT,
     IS_LAST_PAGE_FLUSH_DEFAULT,
-    THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT
+    THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT,
+    PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
@@ -523,6 +524,10 @@ export class OptionsLogic {
 
     get videoProgressBarSeekColor() {
         return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.seekColor, convertHexToRgba(this.theme.colorFive, .5), this.isFullscreenMode);
+    }
+
+    get videoProgressBarShowCurrentPosition() {
+        return getCurrentValue(this.options?.styling?.toolbar?.progressBar?.showCurrentPositionOnChange, PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT , this.isFullscreenMode);
     }
 
     get videoProgressBarHeight() {

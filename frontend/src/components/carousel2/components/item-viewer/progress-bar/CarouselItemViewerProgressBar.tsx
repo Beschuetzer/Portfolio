@@ -323,7 +323,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             return (
                 <>
                     {getBackgroundDiv(1)}
-                    {/* {getSeekDiv(seekPercent)} */}
+                    {optionsLogic.videoProgressBarShowCurrentPosition ? getSeekDiv(seekPercent) : null}
                     {getForegroundDiv(percent)}
                 </>
             );
@@ -371,7 +371,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             backgroundDivs.push(getBackgroundDiv(percentToUse, backgroundLeft, index));
 
             //seek stuff
-            if (!isMouseDownRef?.current) {
+            if (!isMouseDownRef?.current || optionsLogic.videoProgressBarShowCurrentPosition) {
                 if (seekPercent !== PROGRESS_BAR_PERCENT_INITIAL_VALUE && index < currentVideoSection) {
                     seekDivs.push(getSeekDiv(percentToUse, backgroundLeft, index))
                 } else if (seekPercent !== PROGRESS_BAR_PERCENT_INITIAL_VALUE && index === currentVideoSection) {

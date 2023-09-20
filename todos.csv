@@ -1,5 +1,4 @@
 Carousel rework
-  -add option to show current position when scrolling in progressbar
   -todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)
   -refactor to conform to SOLID principles (https://www.youtube.com/watch?v=MSq_DCRxOxw)
   -figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
@@ -24,6 +23,7 @@ Carousel rework
   -update all custom test case
   -figure out how to test and implement accessability
   -write jest tests for utils and other functions?
+  -restructure the options object to make things like the progressbar options more accesible (currently in styling.toolbar.progressBar)?  Mabye have an options.elements where all elements are listed?
 
 Known Issues with Carousel rework:
   -progress bar for non-embedded case a bit sloppy (try changing widths to flat px amount (width of middle section, non embedded case grows on hover))
