@@ -97,10 +97,11 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         });
     }, [isMouseDownRef, percent, setTimeStrings])
 
-    const getPercent = useCallback((e: MouseEvent) => {
+    const getPercent = useCallback((e: MouseEvent | TouchEvent) => {
         const progressbarRect = progressBarRef?.current?.getBoundingClientRect();
         if (!e || !progressbarRect) return 0;
-        const clientX = e.clientX;
+        const touchClientX = (e as TouchEvent)?.changedTouches?.[0].clientX;
+        const clientX = touchClientX || (e as MouseEvent)?.clientX;
         const progressBarLeftX = progressbarRect.left;
         const progressBarRightX = progressbarRect.right;
         const amountPastLeft = (clientX - progressBarLeftX);
@@ -128,7 +129,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         }
     }, [isMouseDownRef, percent, setCurrentVideoSection, setIsVideoPlaying, setSeekPercent, videoRef]);
 
-    const onMouseDown = useCallback((e: MouseEvent) => {
+    const onMouseDown = useCallback((e: MouseEvent | TouchEvent) => {
         wasMouseUpJustTriggeredRef.current = false;
         if (isMouseDownRef) {
             isMouseDownRef.current = true;
@@ -139,6 +140,8 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         const progressBar = e.currentTarget as HTMLDivElement;
         if (!progressBar) return;
         const percent = getPercent(e);
+        console.log({percent});
+        
         setPercent(percent);
         if (videoRef?.current) {
             const video = videoRef?.current;
@@ -158,15 +161,17 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         setSeekPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     }, [isMouseDownRef, isProgressBarBeingHoveredRef, setSeekPercent])
 
-    const onMouseMove = useCallback((e: MouseEvent) => {
+    const onMouseMove = useCallback((e: MouseEvent | TouchEvent) => {
         if (isProgressBarBeingHoveredRef?.current !== undefined) {
             isProgressBarBeingHoveredRef.current = true;
         }
         setShowDot(true);
         const percent = getPercent(e);
+        
         setCurrentVideoSection && setCurrentVideoSection(areSectionsGiven ? getCurrentSection(percent) : 0);
-
-        if (isMouseDownRef?.current) {
+        
+        if (isMouseDownRef?.current || optionsLogic.isMobile) {
+            console.log({percent});
             setPercent(percent)
         } else {
             if (wasMouseUpJustTriggeredRef.current) {
@@ -181,6 +186,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         getPercent,
         isMouseDownRef,
         isProgressBarBeingHoveredRef,
+        optionsLogic,
         setCurrentVideoSection,
         setPercent,
         setSeekPercent
@@ -202,9 +208,13 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             movementAmount = 1;
         }
 
+        console.log({xMovementMouse});
+        
         updateTimeStrings(videoRef?.current)
         setPercent((current) => {
+            
             const newValue = current + movementAmount;
+            console.log({current, newValue});
             if (newValue >= 1) return 1;
             else if (newValue <= 0) return 0;
             return newValue;
@@ -227,6 +237,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             const percent = videoElement.currentTime / videoElement.duration;
             if (percent >= 0 && percent <= 1) {
                 if (!isMouseDownRef?.current) {
+                    console.log({percent});
                     setPercent(percent);
                 }
                 updateTimeStrings(videoElement);
@@ -247,6 +258,8 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     }, [isMouseDownRef, setPercent, setTimeStrings, updateTimeStrings, videoRef])
 
     useEffect(() => {
+        console.log({percent});
+
         setPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     }, [currentItem, setPercent])
 
@@ -363,7 +376,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             const percentPlayedAlready = videoRef.current.currentTime / videoRef.current.duration;
             const percentToUse = isLastSection ? 1 - backgroundLeft : percentAcross
             const currentSectionTime = sectionToValueMappingRef.current[index];
-            const itemToTrack = isMouseDownRef?.current ? percent : percentPlayedAlready;
+            const itemToTrack = isMouseDownRef?.current || optionsLogic.isMobile ? percent : percentPlayedAlready;
 
             //background stuff
             backgroundDivs.push(getBackgroundDiv(percentToUse, backgroundLeft, index));
@@ -379,6 +392,8 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             }
 
             //foreground stuff
+            console.log({itemToTrack, currentSectionTime});
+            
             if (itemToTrack >= currentSectionTime?.end) {
                 foregroundDivs.push(getForegroundDiv(percentToUse, backgroundLeft, index))
             } else if (itemToTrack >= currentSectionTime?.start && itemToTrack <= currentSectionTime?.end) {
@@ -408,6 +423,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             onMouseUp={onMouseUp as any}
             onMouseMoveCapture={onMouseMove as any}
             onMouseLeave={onMouseLeave as any}
+            onTouchMove={onMouseMove as any}
         >
             {optionsLogic.isToolbarInVideo ?
                 <div style={stylingLogic.getCarouselVideoProgressSeekDotStyle(percent, showDot, getIsInCurrentSection(percent))} /> :

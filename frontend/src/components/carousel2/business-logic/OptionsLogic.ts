@@ -146,7 +146,7 @@ export class OptionsLogic {
     }
 
     get isItemViewerSwipingDisabled() {
-        const defaultToUse = this.isToolbarInVideo && !this.isFullscreenMode ? true : false;
+        const defaultToUse = (this.isToolbarInVideo || this.isMobile) && !this.isFullscreenMode ? true : false;
         return this.items.length <= 1 || getCurrentValue(this.options?.itemViewer?.disableSwiping, defaultToUse, this.isFullscreenMode);
     }
 
