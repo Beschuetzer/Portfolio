@@ -89,6 +89,14 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         setCurrentVideoSection && setCurrentVideoSection(getCurrentSection(percent));
     }, [getCurrentSection, setCurrentVideoSection]);
 
+    const updateTimeStrings = useCallback((video?: HTMLVideoElement) =>{
+        if (!video) return;
+        setTimeStrings({
+            currentTimeStr: getFormattedTimeString(isMouseDownRef?.current ? percent * video.duration : video.currentTime || -1),
+            durationStr: getFormattedTimeString(video.duration || -1),
+        });
+    }, [isMouseDownRef, percent, setTimeStrings])
+
     const getPercent = useCallback((e: MouseEvent) => {
         const progressbarRect = progressBarRef?.current?.getBoundingClientRect();
         if (!e || !progressbarRect) return 0;
@@ -194,13 +202,14 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             movementAmount = 1;
         }
 
+        updateTimeStrings(videoRef?.current)
         setPercent((current) => {
             const newValue = current + movementAmount;
             if (newValue >= 1) return 1;
             else if (newValue <= 0) return 0;
             return newValue;
         });
-    }, [isMouseDownRef, setPercent])
+    }, [isMouseDownRef, setPercent, updateTimeStrings, videoRef])
 
     const onMouseUpGlobal = useCallback((e: MouseEvent) => {
         if (!isMouseDownRef?.current) return;
@@ -224,13 +233,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             }
         }
 
-        function updateTimeStrings(video: HTMLVideoElement) {
-            if (!video) return;
-            setTimeStrings({
-                currentTimeStr: getFormattedTimeString(video.currentTime || -1),
-                durationStr: getFormattedTimeString(video.duration || -1),
-            });
-        }
+        
 
         if (videoRef?.current) {
             videoRef.current.addEventListener('timeupdate', onVideoTimeUpdate);
@@ -241,7 +244,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
                 videoRefCopy.removeEventListener('timeupdate', onVideoTimeUpdate);
             }
         }
-    }, [isMouseDownRef, setPercent, setTimeStrings, videoRef])
+    }, [isMouseDownRef, setPercent, setTimeStrings, updateTimeStrings, videoRef])
 
     useEffect(() => {
         setPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);

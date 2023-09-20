@@ -1,5 +1,4 @@
 Carousel rework
-  -update time strings to match CarouselScreenshotViewer when isMouseDownRef is true
   -refactor to conform to SOLID principles (https://www.youtube.com/watch?v=MSq_DCRxOxw)
   -todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)
   -figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
