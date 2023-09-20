@@ -140,7 +140,6 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         const progressBar = e.currentTarget as HTMLDivElement;
         if (!progressBar) return;
         const percent = getPercent(e);
-        console.log({percent});
         
         setPercent(percent);
         if (videoRef?.current) {
@@ -171,7 +170,6 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         setCurrentVideoSection && setCurrentVideoSection(areSectionsGiven ? getCurrentSection(percent) : 0);
         
         if (isMouseDownRef?.current || optionsLogic.isMobile) {
-            console.log({percent});
             setPercent(percent)
         } else {
             if (wasMouseUpJustTriggeredRef.current) {
@@ -202,19 +200,13 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             if (!toolbarRect) return;
             movementAmount = xMovementMouse / (toolbarRect.right - toolbarRect.left);
         } else if (xMovementMouse === undefined) {
-            //todo what is TouchEvent equivalent of e.movementX?
-            //assume MouseEvent if xMovementMouse is truthy
-            console.log({ firstTouch: (e as TouchEvent)?.changedTouches?.[0]?.pageX });
+            // console.log({ firstTouch: (e as TouchEvent)?.changedTouches?.[0]?.pageX });
             movementAmount = 1;
         }
 
-        console.log({xMovementMouse});
-        
         updateTimeStrings(videoRef?.current)
         setPercent((current) => {
-            
             const newValue = current + movementAmount;
-            console.log({current, newValue});
             if (newValue >= 1) return 1;
             else if (newValue <= 0) return 0;
             return newValue;
@@ -237,7 +229,6 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             const percent = videoElement.currentTime / videoElement.duration;
             if (percent >= 0 && percent <= 1) {
                 if (!isMouseDownRef?.current) {
-                    console.log({percent});
                     setPercent(percent);
                 }
                 updateTimeStrings(videoElement);
@@ -258,8 +249,6 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     }, [isMouseDownRef, setPercent, setTimeStrings, updateTimeStrings, videoRef])
 
     useEffect(() => {
-        console.log({percent});
-
         setPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     }, [currentItem, setPercent])
 
@@ -334,7 +323,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             return (
                 <>
                     {getBackgroundDiv(1)}
-                    {getSeekDiv(seekPercent)}
+                    {/* {getSeekDiv(seekPercent)} */}
                     {getForegroundDiv(percent)}
                 </>
             );
@@ -392,8 +381,6 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             }
 
             //foreground stuff
-            console.log({itemToTrack, currentSectionTime});
-            
             if (itemToTrack >= currentSectionTime?.end) {
                 foregroundDivs.push(getForegroundDiv(percentToUse, backgroundLeft, index))
             } else if (itemToTrack >= currentSectionTime?.start && itemToTrack <= currentSectionTime?.end) {

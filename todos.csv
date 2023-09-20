@@ -1,4 +1,5 @@
 Carousel rework
+  -add option to show current position when scrolling in progressbar
   -todo need to add listners for progress bar and screenshot viewer when mobile (touchstart and touchend?)
   -refactor to conform to SOLID principles (https://www.youtube.com/watch?v=MSq_DCRxOxw)
   -figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)

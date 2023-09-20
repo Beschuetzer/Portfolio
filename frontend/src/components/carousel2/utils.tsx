@@ -167,7 +167,10 @@ export function getCoordinateDifference(mostRecentCoordinate: Coordinate, previo
 }
 
 export function getIsMobile() {
-    return window.innerWidth <= MOBILE_PIXEL_WIDTH;
+    const hasTouchEvent = (('ontouchstart' in window) ||
+        (navigator?.maxTouchPoints > 0) ||
+        ((navigator as any)?.msMaxTouchPoints > 0));
+    return hasTouchEvent && window.innerWidth <= MOBILE_PIXEL_WIDTH;
 }
 
 export function getFormattedTimeString(seconds: number) {
