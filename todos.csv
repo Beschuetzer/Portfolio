@@ -32,6 +32,7 @@ Known Issues with Carousel rework:
   -swipe handler gets trigger sometimes when it shouldn't?
 
 React best practices re-work (branch = sitenav_rework)
+  -figure out issue with SiteNav showing all items when touch device and around 1101px viewport width
   -refactor to conform to SOLID principles (https://www.youtube.com/watch?v=MSq_DCRxOxw)
   -convert backend to an apollo server?
   -pages with audio need to know when player is open and adjust padding bottom

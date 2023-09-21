@@ -24,30 +24,30 @@ import { isMobileSelector, setIsMobile, setViewPortWidth } from "../slices/gener
 import { useSetHeaderCssStyle } from "../hooks/useSetHeaderCssStyle";
 import { keypressHandler } from "../helpers";
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
+import { getIsMobile } from "./Carousel/util";
 
 type AppProps = {}
 
 export const App: React.FC<AppProps> = () => {
 	const dispatch = useAppDispatch();
 	const isMobile = useAppSelector(isMobileSelector);
-	const mobileBreakPointWidth = MOBILE_BREAK_POINT_WIDTH;
 
 	useSetHeaderCssStyle();
 	useEffect(() => {
-		dispatch(setIsMobile({isMobile: window.innerWidth <= mobileBreakPointWidth, viewPortWidth: window.innerWidth}));
-	}, [dispatch, mobileBreakPointWidth])
+		dispatch(setIsMobile({ isMobile: getIsMobile(), viewPortWidth: window.innerWidth }));
+	}, [dispatch])
 
 	//setup window resize listener
 	useEffect(() => {
 		const windowResize = (e: Event) => {
-			if (window.innerWidth <= mobileBreakPointWidth && !isMobile) {
+			if (window.innerWidth <= MOBILE_BREAK_POINT_WIDTH && !isMobile) {
 				const newValue = `${BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME}: to bottom`;
 				document.documentElement.style.cssText += newValue;
-				return dispatch(setIsMobile({isMobile: true, viewPortWidth: window.innerWidth}));
-			} else if (window.innerWidth > mobileBreakPointWidth && isMobile) {
+				return dispatch(setIsMobile({ isMobile: getIsMobile(), viewPortWidth: window.innerWidth }));
+			} else if (window.innerWidth > MOBILE_BREAK_POINT_WIDTH && isMobile) {
 				const newValue = `${BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME}: to right`;
 				document.documentElement.style.cssText += newValue;
-				return dispatch(setIsMobile({isMobile: false,viewPortWidth:  window.innerWidth}));
+				return dispatch(setIsMobile({ isMobile: getIsMobile(), viewPortWidth: window.innerWidth }));
 			}
 			dispatch(setViewPortWidth(window.innerWidth));
 			return;
@@ -60,7 +60,7 @@ export const App: React.FC<AppProps> = () => {
 			window.removeEventListener("resize", windowResize);
 			window.removeEventListener("keydown", keypressHandler);
 		};
-	}, [dispatch, isMobile, mobileBreakPointWidth]);
+	}, [dispatch, isMobile]);
 
 	// //Loading Sounds, etc
 	// useEffect(() => {

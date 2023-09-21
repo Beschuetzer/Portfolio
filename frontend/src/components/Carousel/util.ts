@@ -14,6 +14,7 @@ import {
 	CONTAINS_CAROUSEL_CLASSNAME,
 	FULLSCREEN_PARENT_CLASSNAME,
 	HIDDEN_CLASSNAME,
+	MOBILE_BREAK_POINT_WIDTH,
 	PLAYING_CLASSNAME,
 	TRANSFORM_REMOVED_CLASSNAME,
 } from "../constants";
@@ -424,4 +425,11 @@ export function getArrangedItems(
 	}
 
 	return [...front, ...back];
+}
+
+export function getIsMobile() {
+    const hasTouchEvent = (('ontouchstart' in window) ||
+        (navigator?.maxTouchPoints > 0) ||
+        ((navigator as any)?.msMaxTouchPoints > 0));
+    return hasTouchEvent && window.innerWidth <= MOBILE_BREAK_POINT_WIDTH;
 }
