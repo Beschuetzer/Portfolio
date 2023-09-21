@@ -323,11 +323,11 @@ export class OptionsLogic {
     }
 
     get modalWidth() {
-        return getCurrentValue(
+        return `${getCurrentValue(
             this.options?.styling?.modal?.widthInPercent,
-            undefined,
+            100,
             this.isFullscreenMode
-        );
+        )}%`;
     }
 
     get navigationFontFamily() {

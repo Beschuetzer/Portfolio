@@ -43,6 +43,8 @@ export type CarouselModalInternalProps = {
 } & CarouselModalProps & Pick<CarouselItemViewerToolbarProps, 'isProgressBarMouseDownRef'>;
 
 const MODAL_HEIGHT_INITIAL = 0;
+const IS_VISIBLE_INITIAL = true;
+const IS_MINIMIZED_INITIAL = false;
 export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
@@ -55,7 +57,8 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
         itemViewerToolbarRef,
         itemRef
     } = props;
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(IS_VISIBLE_INITIAL);
+    const [isMinimized, setIsMinimized] = useState(IS_MINIMIZED_INITIAL);
     const modalRef = useRef<HTMLElement>();
     const modalHeightRef = useRef<number>(MODAL_HEIGHT_INITIAL);
     const { svgHref } = elementStylings?.closeButton || {};
@@ -73,19 +76,23 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#endregion
 
     //#region Handlers/Functions
-    const onCloseClick = useCallback((e: MouseEvent) => {
-        stopPropagation(e)
-        setIsVisible(false);
-    }, [setIsVisible])
-
-    function stopPropagation(e: MouseEvent) {
+    const onClick = useCallback((e: MouseEvent) => {
         e.stopPropagation();
-    }
+        if (isMinimized) {
+            setIsMinimized(false);
+        }
+    }, [isMinimized])
+
+    const onCloseClick = useCallback((e: MouseEvent) => {
+        onClick(e)
+        setIsMinimized(true);
+    }, [onClick])
     //#endregion
 
     //#region Side Fx
     useEffect(() => {
-        setIsVisible(true);
+        setIsVisible(IS_VISIBLE_INITIAL);
+        setIsMinimized(IS_MINIMIZED_INITIAL)
     }, [currentItem, currentItemIndex])
 
     useEffect(() => {
@@ -131,6 +138,14 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
         ]);
 
     const renderChildren = useCallback(() => {
+        if (isMinimized) {
+            return (
+                <div>
+                    Details
+                </div>
+            )
+        }
+
         if (isCustom) {
             return (
                 <div>
@@ -152,13 +167,13 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
                 ) : null}
             </div>
         ));
-    }, [button, children, isCustom, isVideoPlaying, sections]);
+    }, [button, children, isCustom, isMinimized, isVideoPlaying, sections]);
 
     return (
         <div
             ref={modalRef as any}
             className={classNameToUse}
-            onClick={stopPropagation as any}
+            onClick={onClick as any}
             style={
                 stylingLogic.getCarouselModalStyle(
                     isVideoPlaying || !isVisible || !!isProgressBarMouseDownRef?.current || !!isProgressBarBeingHoveredRef?.current,

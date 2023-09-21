@@ -297,6 +297,7 @@ export type CarouselSectionsModal = {
     /**
     *this is a percent of the item container width when the {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}.  
     *It has no effect otherwise.
+    *Default is {@link OptionsLogic.modalWidth here}.
     **/
     widthInPercent?: CarouselElementValue<number>;
 } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;

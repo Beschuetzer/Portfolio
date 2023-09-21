@@ -388,9 +388,8 @@ export class StylingLogic {
         this.modalHeight = Math.max(this.modalHeight, modalHeight);
         const isToolbarEmbedded = this.optionsLogic.isToolbarInVideo;
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.modalPadding;
-        const widthInPercent = this.optionsLogic.modalWidth;
+        const widthToUse = this.optionsLogic.modalWidth;
         const customFontSize = this.optionsLogic.modalFontSize;
-        const widthToUse = widthInPercent !== undefined ? `${widthInPercent}%` : this.optionsLogic.isMobile ? "100%" : "75%";
         const itemViewerLeftPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer);
         const itemViewerRightPadding = this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
         const carouselPaddingTop = this.getPaddingAmount(SpacingDirection.top, CarouselSection.container);
@@ -461,7 +460,7 @@ export class StylingLogic {
 
         const widthStyle = !this.isFullscreenMode || this.optionsLogic.isMobile ? {
             width: widthToUse,
-            maxWidth: `calc(${widthToUse} - ${(itemViewerLeftPadding + itemViewerRightPadding) / 2}${CAROUSEL_SPACING_UNIT})`,
+            maxWidth: `calc(${widthToUse} - ${(itemViewerLeftPadding / 2 + itemViewerRightPadding / 2) / 2}${CAROUSEL_SPACING_UNIT})`,
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
         const paddingStyle = {
