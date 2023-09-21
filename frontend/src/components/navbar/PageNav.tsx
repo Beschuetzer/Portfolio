@@ -10,12 +10,16 @@ import { BridgeSectionLink } from "../../pages";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../slices/bridgeSlice";
 import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../slices/generalSlice";
 import { Match } from "../../types";
-import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAME, BRIDGE_PAGE_NAV_LINK_COLOR_CUSTOM_PROPERTY_NAME, BRIDGE_SECTION_COLORS, PAGE_NAV_ACTIVE_CLASSNAME, PAGE_NAV_CLASSNAME } from "../constants";
+import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAME, PAGE_NAV_ACTIVE_CLASSNAME, PAGE_NAV_CLASSNAME } from "../constants";
 
 type PageNavProps = {
 	match: { url: string };
 }
 
+/**
+*This seems to fix the issue where clicking an item and then scrolling to it starts off with a small amount already viewed.
+**/
+const AMOUNT_PROGRESSED_OFFSET = 62;
 export const PageNav: React.FC<PageNavProps> = ({
 	match,
 }) => {
@@ -32,7 +36,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 	const cssClass = "page-nav";	
 	const isBridgePage = match.url.match(/bridge$/i);
 	const docStyle = getComputedStyle(document.documentElement);
-	let previousSectionBottom: number | null = 0;
+	const previousSectionBottomRef = useRef<number | null>(0);
 	const pageNavElement = document.querySelector(`.${PAGE_NAV_CLASSNAME}`) as HTMLElement;
 	const maxScrollOffsetPercent = 1;
 	const scrollRefreshLimit = browser?.os?.match(/mac/i) ? 50 : isMobile ? 10 : 1;
@@ -182,7 +186,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 			let percentThroughSection = 0;
 
 			//Reseting the top to 0
-			if (scrollY < 10) previousSectionBottom = 0;
+			if (scrollY < 10) previousSectionBottomRef.current = 0;
 
 			for (let i = 0; i < sections.length; i++) {
 				const section = sections[i];
@@ -263,34 +267,44 @@ export const PageNav: React.FC<PageNavProps> = ({
 			boundingRectToUse: DOMRect,
 			boundingRects: DOMRect[],
 		) {
-			let percentThroughSection = 0;
+			let percentThroughSection = 0; //as an integer (not decimal)
 			let currentSection = null;
+			let amountProgressed = 0;
 
 			if (
 				(boundingRectToUse.bottom <= scrollSectionDelimiterOffset && i > 0) ||
 				i === 0
 			) {
-				currentSection = sections[indexOfCurrentSection + 1];
-				if (!previousSectionBottom) previousSectionBottom = window.scrollY;
-
-				let boundingRectNext =
-					boundingRects[i < 1 ? 0 : indexOfCurrentSection + 1];
-
-				const addedPercent =
-					(scrollSectionDelimiterOffset /
-						Math.abs(boundingRectNext.bottom - boundingRectNext.top)) *
-					100;
-
-				const amountProgressed = window.scrollY - previousSectionBottom;
-				const endAmount = scrollSectionDelimiterOffset;
-
-				percentThroughSection = (amountProgressed / endAmount) * addedPercent;
-
-				// console.log('percentThroughSection =', percentThroughSection);
-				if (percentThroughSection >= addedPercent)
-					percentThroughSection = addedPercent;
+				if (sections.length === 1) {
+					amountProgressed = window.scrollY - AMOUNT_PROGRESSED_OFFSET;
+					const boundingRectCurrent = boundingRects[0];
+					const endScrollAmount = boundingRectCurrent.height - window.innerHeight + AMOUNT_PROGRESSED_OFFSET * 2; 
+					percentThroughSection = amountProgressed <= 0 ? 0 : Math.abs(amountProgressed / endScrollAmount * 100);
+				} else {
+					currentSection = sections[indexOfCurrentSection + 1];
+					if (!previousSectionBottomRef?.current) previousSectionBottomRef.current = window.scrollY;
+	
+					let boundingRectNext =
+						boundingRects[i < 1 ? 0 : indexOfCurrentSection + 1];
+	
+					const addedPercent =
+						(scrollSectionDelimiterOffset /
+							Math.abs(boundingRectNext.bottom - boundingRectNext.top)) *
+						100;
+	
+					amountProgressed = window.scrollY - previousSectionBottomRef?.current - AMOUNT_PROGRESSED_OFFSET;
+					const endAmount = scrollSectionDelimiterOffset;
+	
+					percentThroughSection = amountProgressed <= 0 ? 0 : (amountProgressed / endAmount) * addedPercent;
+	
+					// console.log('percentThroughSection =', percentThroughSection);
+					if (percentThroughSection >= addedPercent) {
+						percentThroughSection = addedPercent;
+					}
+				}
+				
 			} else {
-				previousSectionBottom = null;
+				previousSectionBottomRef.current = null;
 				const addedPercent =
 					(scrollSectionDelimiterOffset /
 						Math.abs(boundingRectToUse.bottom - boundingRectToUse.top)) *
