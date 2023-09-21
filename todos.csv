@@ -1,15 +1,9 @@
 Carousel rework
-  -adjust mobile stuff
-    --
-  -issues with touching events (may just be emulator)?
-  -refactor to conform to SOLID principles (https://www.youtube.com/watch?v=MSq_DCRxOxw)
-  -figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
-  -add component in CarouselVideo to show the snapshot when changing percent via bar
-  -add options for thubnail snapshot 
-  -figure out why swipe handler gets trigger sometimes
-  -verify all of the progress bar customization options still work when done 
 
-  -adjust PageNav to be scrollable when too large; also adjust the padding inline to style better
+  -PageNav changes:
+      --when only one item, the scroll fill doesn't work
+      --to be scrollable when too large;
+      
   -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
@@ -25,6 +19,7 @@ Carousel rework
   -update all custom test case
   -figure out how to test and implement accessability
   -write jest tests for utils and other functions?
+  -verify all of the progress bar customization options still work when done 
   -restructure the options object to make things like the progressbar options more accesible (currently in styling.toolbar.progressBar)?  Mabye have an options.elements where all elements are listed?
 
 Known Issues with Carousel rework:
@@ -34,8 +29,11 @@ Known Issues with Carousel rework:
   -CarouselElementValue only updates when CarouselContent re-renders; if dynamic spacing is on, then re-renders occur much more often
   -cursor only changes properly after going into full screen once
   -having more than 10 instance on the same page can cause issues (need to benchmark this)?
+  -figure out why CarouselVideoCurrentTimeViewer doesn't seems to work at some spots in some videos (e.g. 1st video middle area)
+  -swipe handler gets trigger sometimes when it shouldn't?
 
 React best practices re-work (branch = sitenav_rework)
+  -refactor to conform to SOLID principles (https://www.youtube.com/watch?v=MSq_DCRxOxw)
   -convert backend to an apollo server?
   -pages with audio need to know when player is open and adjust padding bottom
   -bridge links move after clicking buttons (as opposed to github link)

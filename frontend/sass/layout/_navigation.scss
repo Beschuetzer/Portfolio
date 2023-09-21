@@ -774,7 +774,6 @@ $scale-y-amount: .25;
 
 	&__section {
 		backface-visibility: hidden;
-		line-break: anywhere;
 		cursor: pointer;
 		width: 100%;
 		text-align: center;
@@ -803,7 +802,7 @@ $scale-y-amount: .25;
 
 		&-group {
 			font-size: min(#{$font-size-four}, 1vw);
-			padding: $default-font-size * 0.25 0;
+			padding: $default-font-size * 0.25 $default-font-size * 2;
 			display: flex;
 			justify-content: center;
 			align-items: center;

@@ -1430,7 +1430,6 @@ body {
 }
 .page-nav__section {
   backface-visibility: hidden;
-  line-break: anywhere;
   cursor: pointer;
   width: 100%;
   text-align: center;
@@ -1460,7 +1459,7 @@ body {
 }
 .page-nav__section-group {
   font-size: min(1.4rem, 1vw);
-  padding: 0.35rem 0;
+  padding: 0.35rem 2.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
