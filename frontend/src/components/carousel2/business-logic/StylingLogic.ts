@@ -16,6 +16,7 @@ import {
     CLASSNAME__ITEM_VIEWER_TOOLBAR,
     CLASSNAME__ITEM_CONTAINER,
     TOOLBAR_TIME_STRING_SECTION_DIVIDER,
+    FONT_WEIGHT_DEFAULT,
 } from "../constants";
 import { CarouselModalInternalProps } from "../components/CarouselModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -384,14 +385,16 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselModalStyle(shouldHide: boolean, modalHeight: number) {
+    getCarouselModalStyle(shouldHide: boolean, modalHeight: number, isMinimized = false) {
         this.modalHeight = Math.max(this.modalHeight, modalHeight);
         const isToolbarEmbedded = this.optionsLogic.isToolbarInVideo;
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.modalPadding;
-        const widthToUse = this.optionsLogic.modalWidth;
+        const widthToUse = this.optionsLogic.getModalWidth(isMinimized);
         const customFontSize = this.optionsLogic.modalFontSize;
-        const itemViewerLeftPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer);
-        const itemViewerRightPadding = this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
+        const toolbarInnerContainerPaddingLeft = Number(this.toolbarInnerContainerStyle?.paddingLeft || 0);
+        const toolbarInnerContainerPaddingRight = Number(this.toolbarInnerContainerStyle?.paddingRight || 0);
+        const toolbarLeftPadding = Math.max(this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar), toolbarInnerContainerPaddingLeft);
+        const toolbarRightPadding = Math.max(this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar), toolbarInnerContainerPaddingRight);
         const carouselPaddingTop = this.getPaddingAmount(SpacingDirection.top, CarouselSection.container);
         const progressBarPaddingTop = this.getCarouselVideoProgressHitSlop().paddingTop;
         const toolbarPaddingBottom = this.getPaddingAmount(SpacingDirection.bottom, CarouselSection.toolbar);
@@ -401,92 +404,98 @@ export class StylingLogic {
         let heightBetweenItemTopAndToolbarBarTop = 270;
 
         //todo: how to make this more readable?  Seaparate by fullscreen vs not fullscreen?
-        if (this.isFullscreenMode) {
-            const itemViewer = this.itemViewerRef?.current;
-            const progressBar = itemViewer?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`);
-            const progressBarRect = progressBar?.getBoundingClientRect();
+        if (!isMinimized) {
+            if (this.isFullscreenMode) {
+                const itemViewer = this.itemViewerRef?.current;
+                const progressBar = itemViewer?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`);
+                const progressBarRect = progressBar?.getBoundingClientRect();
 
-            if (this.isCurrentItemVideo) {
-                heightBetweenItemTopAndToolbarBarTop = Math.abs((progressBarRect?.top || window.innerHeight * .9));
-            } else {
-                const toolbar = itemViewer?.querySelector(`.${CLASSNAME__ITEM_VIEWER_TOOLBAR}`);
-                const toolbarFirstDiv = toolbar?.querySelector('div');
-                const toolbarFirstDivRect = toolbarFirstDiv?.getBoundingClientRect();
-                heightBetweenItemTopAndToolbarBarTop = Math.abs((toolbarFirstDivRect?.top || window.innerHeight * .925) + toolbarPaddingBottom);
-            }
-
-            maxHeight = heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 4;
-            top = -heightBetweenItemTopAndToolbarBarTop + window.innerHeight / 2 - this.modalHeight / 2;
-            // console.log({itemViewer, progressBarRect, heightBetweenItemTopAndToolbarBarTop, maxHeight, progressBarPaddingTop});
-
-        } else if (this.optionsLogic.itemDisplayLocation !== 'none') {
-            const carouselContainerRect = this.carouselContainerRef?.current?.getBoundingClientRect();
-            const toolbarProgress = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`);
-            const itemViewerToolbar = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_VIEWER_TOOLBAR}`);
-            const itemContainer = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_CONTAINER}`);
-            const elementToUse = this.isCurrentItemVideo && isToolbarEmbedded ? toolbarProgress : itemViewerToolbar;
-            const elementToUseRect = elementToUse?.getBoundingClientRect();
-            const elementFirstDiv = elementToUse?.querySelector(`div`);
-            const elementFirstDivRect = elementFirstDiv?.getBoundingClientRect();
-            const rectToUse = this.isCurrentItemVideo ? elementToUseRect : elementFirstDivRect;
-            const embeddedOffset = isToolbarEmbedded && this.isCurrentItemVideo ? 0 : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * (this.isCurrentItemVideo ? 1.33 : 2);
-            let minTopValue = -(Math.abs((rectToUse?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndItemTop;
-            let nonFullscreenCenteringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((rectToUse?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndItemTop)) / 2 - embeddedOffset / 2;
-
-            if (carouselContainerRect && elementToUseRect && elementFirstDivRect) {
-                const toolbarTop = this.isCurrentItemVideo ? (elementToUseRect.y + progressBarPaddingTop) : (elementFirstDivRect.y + toolbarPaddingBottom)
-                heightBetweenItemTopAndToolbarBarTop = Math.abs(carouselContainerRect.y + carouselPaddingTop - toolbarTop);
-
-                if (this.optionsLogic.isItemDisplayLocationBelow) {
-                    const itemContainerRect = itemContainer?.getBoundingClientRect();
-                    if (itemContainerRect) {
-                        heightBetweenItemTopAndToolbarBarTop = Math.abs(itemContainerRect?.top - toolbarTop);
-                        minTopValue = -(heightBetweenItemTopAndToolbarBarTop - progressBarPaddingTop - spaceBetweenModalTopAndItemTop);
-                        maxHeight = Math.floor(heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 2) - embeddedOffset;
-                        nonFullscreenCenteringOffset = Math.abs(this.modalHeight - maxHeight) / 2;
-                    }
+                if (this.isCurrentItemVideo) {
+                    heightBetweenItemTopAndToolbarBarTop = Math.abs((progressBarRect?.top || window.innerHeight * .9));
                 } else {
-                    maxHeight = Math.floor(heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 2) - embeddedOffset;
+                    const toolbar = itemViewer?.querySelector(`.${CLASSNAME__ITEM_VIEWER_TOOLBAR}`);
+                    const toolbarFirstDiv = toolbar?.querySelector('div');
+                    const toolbarFirstDivRect = toolbarFirstDiv?.getBoundingClientRect();
+                    heightBetweenItemTopAndToolbarBarTop = Math.abs((toolbarFirstDivRect?.top || window.innerHeight * .925) + toolbarPaddingBottom);
                 }
 
-                const centeredTopValue = minTopValue + nonFullscreenCenteringOffset;
-                top = this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue);
-            }
+                maxHeight = heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 4;
+                top = -heightBetweenItemTopAndToolbarBarTop + window.innerHeight / 2 - this.modalHeight / 2;
+                // console.log({itemViewer, progressBarRect, heightBetweenItemTopAndToolbarBarTop, maxHeight, progressBarPaddingTop});
 
-            // console.log({heightBetweenItemTopAndToolbarBarTop,rectToUse, maxHeight, modalHeight: this.modalHeight});
-            // console.log({heightBetweenItemTopAndToolbarBarTop, carouselContainerRect, rectToUse, maxHeight, modalHeight: this.modalHeight});
-            // console.log({ heightBetweenItemTopAndToolbarBarTop, toolbarPaddingBottom, top, maxHeight, modalHeigt: this.modalHeight, minTopValue });
+            } else if (this.optionsLogic.itemDisplayLocation !== 'none') {
+                const carouselContainerRect = this.carouselContainerRef?.current?.getBoundingClientRect();
+                const toolbarProgress = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__TOOLBAR_PROGRESS}`);
+                const itemViewerToolbar = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_VIEWER_TOOLBAR}`);
+                const itemContainer = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_CONTAINER}`);
+                const elementToUse = this.isCurrentItemVideo && isToolbarEmbedded ? toolbarProgress : itemViewerToolbar;
+                const elementToUseRect = elementToUse?.getBoundingClientRect();
+                const elementFirstDiv = elementToUse?.querySelector(`div`);
+                const elementFirstDivRect = elementFirstDiv?.getBoundingClientRect();
+                const rectToUse = this.isCurrentItemVideo ? elementToUseRect : elementFirstDivRect;
+                const embeddedOffset = isToolbarEmbedded && this.isCurrentItemVideo ? 0 : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * (this.isCurrentItemVideo ? 1.33 : 2);
+                let minTopValue = -(Math.abs((rectToUse?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndItemTop;
+                let nonFullscreenCenteringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((rectToUse?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndItemTop)) / 2 - embeddedOffset / 2;
+
+                if (carouselContainerRect && elementToUseRect && elementFirstDivRect) {
+                    const toolbarTop = this.isCurrentItemVideo ? (elementToUseRect.y + progressBarPaddingTop) : (elementFirstDivRect.y + toolbarPaddingBottom)
+                    heightBetweenItemTopAndToolbarBarTop = Math.abs(carouselContainerRect.y + carouselPaddingTop - toolbarTop);
+
+                    if (this.optionsLogic.isItemDisplayLocationBelow) {
+                        const itemContainerRect = itemContainer?.getBoundingClientRect();
+                        if (itemContainerRect) {
+                            heightBetweenItemTopAndToolbarBarTop = Math.abs(itemContainerRect?.top - toolbarTop);
+                            minTopValue = -(heightBetweenItemTopAndToolbarBarTop - progressBarPaddingTop - spaceBetweenModalTopAndItemTop);
+                            maxHeight = Math.floor(heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 2) - embeddedOffset;
+                            nonFullscreenCenteringOffset = Math.abs(this.modalHeight - maxHeight) / 2;
+                        }
+                    } else {
+                        maxHeight = Math.floor(heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 2) - embeddedOffset;
+                    }
+
+                    const centeredTopValue = minTopValue + nonFullscreenCenteringOffset;
+                    top = this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue);
+                }
+
+                // console.log({heightBetweenItemTopAndToolbarBarTop,rectToUse, maxHeight, modalHeight: this.modalHeight});
+                // console.log({heightBetweenItemTopAndToolbarBarTop, carouselContainerRect, rectToUse, maxHeight, modalHeight: this.modalHeight});
+                // console.log({ heightBetweenItemTopAndToolbarBarTop, toolbarPaddingBottom, top, maxHeight, modalHeigt: this.modalHeight, minTopValue });
+            }
         }
 
         const widthStyle = !this.isFullscreenMode || this.optionsLogic.isMobile ? {
             width: widthToUse,
-            maxWidth: `calc(${widthToUse} - ${(itemViewerLeftPadding / 2 + itemViewerRightPadding / 2) / 2}${CAROUSEL_SPACING_UNIT})`,
+            maxWidth: `calc(${widthToUse} - ${(toolbarLeftPadding / 2 + toolbarRightPadding / 2) / 2}${CAROUSEL_SPACING_UNIT})`,
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
-        const paddingStyle = {
+        const paddingStyle = isMinimized ? {
+            padding: `${CAROUSEL_ITEM_SPACING_DEFAULT / 2}${CAROUSEL_SPACING_UNIT} ${CAROUSEL_ITEM_SPACING_DEFAULT * 1}${CAROUSEL_SPACING_UNIT}`,
+        } as CSSProperties : {
             paddingTop,
             paddingBottom,
             paddingLeft,
             paddingRight,
         } as CSSProperties;
         const positionStyle = {
-            top,
-            bottom: 'auto',
-            left: 'auto',
+            top: isMinimized ? 'auto' : top,
+            bottom: isMinimized ? Math.abs(this.carouselShortcutIndicatorTextTop) + 24 : 'auto',
+            left: isMinimized ? `${toolbarInnerContainerPaddingLeft}${CAROUSEL_SPACING_UNIT}` : 'auto',
             right: 'auto',
         } as CSSProperties;
         const textStyle = {
             color: this.optionsLogic.modalTextColor,
             fontSize: customFontSize,
+            fontWeight: isMinimized ? 'bold' : FONT_WEIGHT_DEFAULT,
         } as CSSProperties;
         const generalStyle = {
             position: 'absolute',
             transition: `opacity .25s ease`,
             borderRadius: 5,
             background: this.optionsLogic.modalBackgroundColor,
-            maxHeight: maxHeight,
-            overflowY: 'auto',
+            maxHeight: isMinimized ? 'auto' : maxHeight,
             overflowX: 'hidden',
+            overflowY: isMinimized ? 'hidden' : 'auto',
+            cursor: isMinimized ? 'pointer' : 'auto',
         } as CSSProperties;
         const hiddenStyle = {
             opacity: shouldHide ? 0 : 1,
@@ -1344,12 +1353,16 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselShortcutIndicatorTextStlye(position: CarouselItemViewerShortcutIndicatorPosition) {
+    get carouselShortcutIndicatorTextTop() {
         const isVideo = getIsVideo(this.currentItem);
         const { paddingTop: hitSlopTop, paddingBottom: hitSlopBottom } = this.getCarouselVideoProgressHitSlop();
+        return this.optionsLogic.isToolbarInVideo ? -CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.5 - hitSlopBottom + (!isVideo ? CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT : 0) : -hitSlopBottom - (isVideo ? 2 : .5) * CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT
+    }
+
+    getCarouselShortcutIndicatorTextStlye(position: CarouselItemViewerShortcutIndicatorPosition) {
         const { backgroundColor, textColor } = this.optionsLogic.toolbarShortcutIndicator;
         const topStyle = {
-            top: this.optionsLogic.isToolbarInVideo ? -hitSlopTop - hitSlopBottom + (!isVideo ? CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT : 0) : -hitSlopBottom - (isVideo ? 2 : .5) * CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT
+            top: this.carouselShortcutIndicatorTextTop,
         };
         const commonStyle = {
             zIndex: 1000000000000,

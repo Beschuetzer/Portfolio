@@ -8,6 +8,7 @@ export const CURRENT_ITEM_INDEX_INITIAL = 0;
 export const CURRENT_PAGE_INITIAL = 0;
 export const DISABLE_WRAPPING_DEFAULT = false;
 export const EMPTY_STRING = "";
+export const FONT_WEIGHT_DEFAULT = 400;
 export const GET_CURRENT_VALUE_DEFAULT = 0;
 export const IS_LAST_PAGE_FLUSH_DEFAULT = true;
 export const MAX_CLICK_THRESHOLD_DEFAULT = 15;

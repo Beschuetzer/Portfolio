@@ -40,6 +40,7 @@ export type CarouselModalInternalProps = {
     isVideoPlaying?: boolean;
     itemViewerToolbarRef?: React.MutableRefObject<HTMLElement | undefined>;
     itemRef?: React.MutableRefObject<HTMLElement | undefined>;
+    shouldHideWhenMinimized?: boolean;
 } & CarouselModalProps & Pick<CarouselItemViewerToolbarProps, 'isProgressBarMouseDownRef'>;
 
 const MODAL_HEIGHT_INITIAL = 0;
@@ -55,7 +56,8 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
         isProgressBarMouseDownRef,
         isProgressBarBeingHoveredRef,
         itemViewerToolbarRef,
-        itemRef
+        itemRef,
+        shouldHideWhenMinimized = false,
     } = props;
     const [isVisible, setIsVisible] = useState(IS_VISIBLE_INITIAL);
     const [isMinimized, setIsMinimized] = useState(IS_MINIMIZED_INITIAL);
@@ -141,7 +143,7 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
         if (isMinimized) {
             return (
                 <div>
-                    Details
+                    Description
                 </div>
             )
         }
@@ -176,8 +178,9 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
             onClick={onClick as any}
             style={
                 stylingLogic.getCarouselModalStyle(
-                    isVideoPlaying || !isVisible || !!isProgressBarMouseDownRef?.current || !!isProgressBarBeingHoveredRef?.current,
-                    modalHeightRef.current
+                    (shouldHideWhenMinimized && isMinimized) || isVideoPlaying || !isVisible || !!isProgressBarMouseDownRef?.current || !!isProgressBarBeingHoveredRef?.current,
+                    modalHeightRef.current,
+                    isMinimized,
                 )
             }
         >

@@ -663,6 +663,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                             isVideoPlaying={isVideoPlaying}
                             isProgressBarMouseDownRef={isProgressBarMouseDownRef}
                             isProgressBarBeingHoveredRef={isProgressBarBeingHoveredRef}
+                            shouldHideWhenMinimized={showPauseButtonPopup || showPlayButtonPopup || showSeekBackwardButtonPopup || showSeekForwardButtonPopup}
                             {...currentItem?.modal}
                         />
                     ) : null}

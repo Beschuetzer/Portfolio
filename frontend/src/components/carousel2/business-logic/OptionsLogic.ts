@@ -275,7 +275,7 @@ export class OptionsLogic {
     get modalBackgroundColor() {
         return getCurrentValue(
             this.options?.styling?.modal?.backgroundColor,
-            this.theme.colorOne,
+            this.theme.colorFour,
             this.isFullscreenMode
         );
     }
@@ -317,12 +317,13 @@ export class OptionsLogic {
     get modalTextColor() {
         return getCurrentValue(
             this.options?.styling?.modal?.textColor,
-            this.theme.colorFive,
+            this.theme.colorOne,
             this.isFullscreenMode
         );
     }
 
-    get modalWidth() {
+    getModalWidth(isMinimized: boolean) {
+        if (isMinimized) return `auto`;
         return `${getCurrentValue(
             this.options?.styling?.modal?.widthInPercent,
             100,
@@ -494,7 +495,7 @@ export class OptionsLogic {
     get videoProgressBarHitSlop() {
         const top = getCurrentValue(
             this.options?.styling?.toolbar?.progressBar?.hitSlop?.top,
-            CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1.5,
+            CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * 1,
             this.isFullscreenMode
         );
         const bottom = getCurrentValue(
