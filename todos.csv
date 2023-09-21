@@ -1,7 +1,6 @@
 Carousel rework
 
   -PageNav changes:
-      --to be scrollable when too large;
       
   -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -check how fullscreen looks on phone (should rotate)
