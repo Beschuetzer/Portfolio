@@ -222,7 +222,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     }, [isMouseDownRef, onMouseUp])
 
     const onTouchStart = useCallback((e: TouchEvent) => {
-        console.log({start: e});
+        // console.log({start: e});
         e.stopPropagation();
         if (!isMouseDownRef?.current) {
             onMouseDown(e);
@@ -230,7 +230,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     }, [isMouseDownRef, onMouseDown])
 
     const onTouchEnd = useCallback((e: TouchEvent) => {
-        console.log({end: e});
+        // console.log({end: e});
         e.stopPropagation();
         if (isMouseDownRef?.current) {
             isMouseDownRef.current = false;
@@ -240,7 +240,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     }, [isMouseDownRef, onMouseUp, setCurrentVideoSection])
 
     const onTouchMove = useCallback((e: TouchEvent) => {
-        console.log({move: e});
+        // console.log({move: e});
         e.stopPropagation();
         onMouseMove(e);
     }, [onMouseMove])
@@ -359,7 +359,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             return (
                 <>
                     {getBackgroundDiv(1)}
-                    {optionsLogic.videoProgressBarShowCurrentPosition ? getSeekDiv(seekPercent) : null}
+                    {optionsLogic.videoProgressBarShowCurrentPosition || !isMouseDownRef?.current ? getSeekDiv(seekPercent) : null}
                     {getForegroundDiv(percent)}
                 </>
             );

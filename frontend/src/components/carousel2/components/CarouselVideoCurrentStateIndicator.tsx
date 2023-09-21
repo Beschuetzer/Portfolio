@@ -27,7 +27,9 @@ export const CarouselVideoCurrentStateIndicator = (props: CarouselVideoCurrentSt
 
     //#region JSX
     const className = `${CLASSNAME__BUTTON}--video-state-indicator`;
-    const isAnimatingClassName = isAnimating ? `${CLASSNAME__BUTTON}--video-state-indicator-is-animating` : '';
+    const isAnimatingClassName = isAnimating && !optionsLogic.useDefaultVideoControls
+        ? `${CLASSNAME__BUTTON}--video-state-indicator-is-animating`
+        : '';
     const backgroundColorStyle = useMemo(() => StylingLogic.getColorStyle(
         optionsLogic.videoCurrentStateIndicatorBackgroundColor,
         'backgroundColor'
