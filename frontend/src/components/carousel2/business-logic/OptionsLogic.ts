@@ -49,7 +49,6 @@ import {
     CAROUSEL_PROGRESS_BAR_HEIGHT_MAX,
     CAROUSEL_PROGRESS_BAR_HEIGHT_MIN,
     CAROUSEL_PROGRESS_BAR_SHOULD_SPAN_ENTIRE_WIDTH_DEFAULT,
-    USE_DEFAULT_VIDEO_CONTROLS_DEFAULT,
     AUTO_CHANGE_PAGE_DEFAULT,
     DISABLE_WRAPPING_DEFAULT,
     IS_LAST_PAGE_FLUSH_DEFAULT,
@@ -449,7 +448,7 @@ export class OptionsLogic {
     }
 
     get useDefaultVideoControls() {
-        return getCurrentValue(this.options?.layout?.useDefaultVideoControls, USE_DEFAULT_VIDEO_CONTROLS_DEFAULT, this.isFullscreenMode);
+        return getCurrentValue(this.options?.layout?.useDefaultVideoControls, this.isMobile ? true : false, this.isFullscreenMode);
     }
 
     get videoCurrentStateIndicatorBackgroundColor() {

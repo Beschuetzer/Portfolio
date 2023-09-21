@@ -20,7 +20,6 @@ import {
     MAX_CLICK_THRESHOLD_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_IS_VISIBLE_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_OPACITY_DEFAULT,
-    USE_DEFAULT_VIDEO_CONTROLS_DEFAULT,
     AUTO_CHANGE_PAGE_DEFAULT,
     DISABLE_WRAPPING_DEFAULT,
     IS_LAST_PAGE_FLUSH_DEFAULT,
@@ -445,7 +444,7 @@ export type CarouselLayoutOptions = {
     *If true, then the default, embedded controls will be used for video items.
     *Only applicable when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none} and the carousel is in non-fullscreen mode.
     *Issue when in fullscreen mode and this is true where play/pause indicator and modal don't appear anymore.
-    *Default is {@link USE_DEFAULT_VIDEO_CONTROLS_DEFAULT this}.
+    *Default is {@link OptionsLogic.useDefaultVideoControls here}.
     **/
     useDefaultVideoControls?: CarouselElementValueTuple<boolean>
 }

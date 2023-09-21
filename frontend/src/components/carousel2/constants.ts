@@ -20,7 +20,6 @@ export const SEEK_AMOUNT_DEFAULT = 5000;
 export const TOOLBAR_TIME_STRING_SECTION_DIVIDER = ':';
 export const THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT = true;
 export const TRANSLATION_AMOUNT_INITIAL = 0;
-export const USE_DEFAULT_VIDEO_CONTROLS_DEFAULT = false;
 export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
 export const WINDOW_RESIZE_DEBOUNCE = 250;
 
