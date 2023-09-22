@@ -41,7 +41,7 @@ export const useSectionToValueMapping = (input: UseSectionToValueMappingInput) =
 
         let amountBefore = 0;
         const videoDuration = (videoRef?.current?.duration || 0) * NUMBER_OF_MS_IN_A_SECOND
-        const isUsingNumberedSections = typeof sections[0][1] === 'number';
+        const isUsingNumberedSections = typeof sections?.[0]?.[1] === 'number';
         let indexToUse = 0;
 
         for (let index = 0; index < sections.length; index++) {
@@ -62,14 +62,18 @@ export const useSectionToValueMapping = (input: UseSectionToValueMappingInput) =
                     amountBefore += sectionDiff;
                 }
             }
-
+            
             const start = indexToUse === 0 ? 0 : sectionToValueMappingRef.current[indexToUse - 1]?.end + NEXT_SECTION_OFFSET;
             const end = indexToUse === sections.length - 1 ? 1 : amountBefore / videoDuration;
+
+            if (end > 1) alert(`Section ${index + 1} ends after the video's end.  Please check the sections object for this video.`);
+
             sectionToValueMappingRef.current[indexToUse] = {
                 start,
                 end
             }
         }
+        // console.log({sectionToValueMappingRef});
     }, [sections, videoRef]);
 
     const validateSections = useCallback(() => {

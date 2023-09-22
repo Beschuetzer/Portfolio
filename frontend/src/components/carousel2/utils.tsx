@@ -9,6 +9,7 @@ import {
     MOBILE_PIXEL_WIDTH,
     NUMBER_OF_MS_IN_A_SECOND,
     NUMBER_OF_PAGES_INITIAL,
+    NUMBER_OF_SECONDS_IN_A_MINUTE,
     TOOLBAR_TIME_STRING_SECTION_DIVIDER,
     VIDEO_EXTENSIONS
 } from "./constants";
@@ -91,33 +92,38 @@ export function convertHexToRgba(hex: string, opacity = CAROUSEL_ITEM_THUMBNAIL_
 }
 
 /**
-    *Takes a time stamp that uses the following format `mm:ss:ms`.  
-    *E.g. `1:23:920` would mean at 1 minute 23 seconds and 920 milliseconds
-    *`1:23` would mean at 1 second and 23 milleseconds
-    *Will throw an alert if any of the sections are > 60 or <= 0
-    *@returns a number representing the number of ms at which the section begins
-    **/
-    export function convertTimeStringToMilliseconds(timestamp: string) {
-        if (!timestamp) {
-            return 0;
-        }
-
-        const split = timestamp?.split(TOOLBAR_TIME_STRING_SECTION_DIVIDER);
-        const milliseconds = parseInt(split[split?.length - 1], 10) || 0;
-        const seconds = parseInt(split[split?.length - 2], 10) || 0;
-        const minutes = parseInt(split[split?.length - 3], 10) || 0;
-
-        if (milliseconds >= 1000 || milliseconds < 0) {
-            alert(`The number of milliseconds must be between 0 and 999.  ${timestamp} has ${milliseconds}`);
-        } else if (seconds >= 60 || seconds < 0) {
-            alert(`The number of seconds must be between 0 and 59.  ${timestamp} has ${seconds}`);
-        } else if (minutes >= 60 || minutes < 0) {
-            alert(`The number of seconds must be between 0 and 59.  ${timestamp} has ${minutes}`);
-        }
-
-        const toReturn = minutes * NUMBER_OF_MS_IN_A_SECOND * NUMBER_OF_MS_IN_A_SECOND + seconds * NUMBER_OF_MS_IN_A_SECOND + milliseconds;
-        return toReturn;
+*Takes a time stamp that uses the following format `mm:ss:ms`.  
+*Will display an alert if the value for that section is invalid
+*@returns a number representing the number of ms that a time string represents
+*@example
+*'999' // => 999 milliseconds
+*'23:920' // => 23 seconds and 920 milliseconds
+*'1:23:920' // => 1 minute 23 seconds and 920 milliseconds
+*'01:23:920' // => 1 minute 23 seconds and 920 milliseconds
+*'01:63:920' // throws since 63 seconds is larger than 59 (max for seconds)
+*'01:59:1000' // throws since 1000 seconds is larger than 999 (max for milliseconds)
+**/
+export function convertTimeStringToMilliseconds(timestamp: string) {
+    if (!timestamp) {
+        return 0;
     }
+
+    const split = timestamp?.split(TOOLBAR_TIME_STRING_SECTION_DIVIDER);
+    const milliseconds = parseInt(split[split?.length - 1], 10) || 0;
+    const seconds = parseInt(split[split?.length - 2], 10) || 0;
+    const minutes = parseInt(split[split?.length - 3], 10) || 0;
+
+    if (milliseconds >= 1000 || milliseconds < 0) {
+        alert(`The number of milliseconds must be between 0 and 999.  ${timestamp} has ${milliseconds}`);
+    } else if (seconds >= 60 || seconds < 0) {
+        alert(`The number of seconds must be between 0 and 59.  ${timestamp} has ${seconds}`);
+    } else if (minutes >= 60 || minutes < 0) {
+        alert(`The number of minutes must be between 0 and 59.  ${timestamp} has ${minutes}`);
+    }
+
+    const toReturn = minutes * NUMBER_OF_MS_IN_A_SECOND * NUMBER_OF_SECONDS_IN_A_MINUTE + seconds * NUMBER_OF_MS_IN_A_SECOND + milliseconds;
+    return toReturn;
+}
 
 /**
 *Checks whether any nodes above `elementToCheck` contain `classname`.  Stops when node matches `stoppingElementType`, which defaults to `body`.
@@ -255,7 +261,7 @@ export function getNumberOfPages(
 export function getPoint(e: TouchEvent | MouseEvent | undefined) {
     const mouseEvent = e as MouseEvent;
     const touchEvent = e as TouchEvent;
-    
+
     return {
         x: touchEvent?.changedTouches?.[0]?.clientX || mouseEvent?.x || mouseEvent?.clientX || 0,
         y: touchEvent?.changedTouches?.[0]?.clientY || mouseEvent?.y || mouseEvent?.clientY || 0,

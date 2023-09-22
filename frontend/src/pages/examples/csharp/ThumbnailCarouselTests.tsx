@@ -244,9 +244,9 @@ const items = [
 			autoPlay: false,
 			muted: true,
 			sections: [
-				['Search Section that is also a really long title', 4400],
-				['Filter Section', 2000],
-				['Options Section that is also a really long title'],
+				['Searching Users', 2000],
+				['Filtering Results', 5000],
+				['Hiding Filters'],
 			]
 		}
 	},
@@ -274,9 +274,9 @@ const items = [
 			autoPlay: false,
 			muted: true,
 			sections: [
-				['Search Section'],
-				['Filter Section', "0:02:00"],
-				['Options Section', "0:08:550"],
+				['Searching Users'],
+				['Filtering Results', "2:00"],
+				['Hiding Filters', "7:00"],
 			]
 		}
 	},

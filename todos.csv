@@ -8,6 +8,7 @@ Carousel rework
   -when done with buttonSize stuff, clean up css styles
   -add volume button for videos?
   -how to intelligently add themes or default colors?
+  
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -figure out how to memoize options and styling logic (e.g. when playing a video, the styling getters run each time)
   -add lazy loading of items (only render the items up to the furtherst currentPage)?

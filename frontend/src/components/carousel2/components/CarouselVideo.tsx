@@ -11,12 +11,11 @@ import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFulls
 import { useResetCarouselVideoCurrentSection } from '../hooks/useResetCarouselVideoCurrentSection';
 import { CarouselVideoProgressBarScreenshotViewer } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer';
 import { CarouselVideoCurrentTimeViewer } from './CarouselVideoCurrentTimeViewer';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { useSectionToValueMapping } from '../hooks/useSectionToValueMapping';
 
-/**
-*Each section is comprised of a description string and a duration (in ms).
-*Each section starts 1ms after the previous section ended.
-*The last section goes to the end by default.
-**/
+
+
 export type CarouselVideoSection = [string, number] | [string, string];
 export type CarouselVideoOptions = {
     /**
@@ -28,6 +27,27 @@ export type CarouselVideoOptions = {
     muted?: boolean;
     objectFit?: React.CSSProperties["objectFit"];
     objectPosition?: React.CSSProperties["objectPosition"];
+    
+    /**
+    *Each section is comprised of a description string and a duration (in ms).
+    *Each section starts 1ms after the previous section ended.
+    *See {@link useSectionToValueMapping useSectionToValueMapping} for details.
+    *@example
+    *When using strings, the first item always starts at zero, so it can be omitted.
+    *sections: [
+    *    ['Starting Section'], //starts at 0 and goes to 2 seconds
+    *    ['Section Two', "02:00"], //starts at 2 seconds and goes to 7 seconds
+    *    ['Section Three', "07:00"], //starts at 7 seconds and goes to the end
+    *]
+    *
+    *When using numbers, the value specifies the length of the section rather than the start time.
+    *The last item may be omittted since it will start after the previous sections end and end at the end of the video.
+    *sections: [
+    *    ['Starting Section', 2000], //this section is 2 seconds (starts at 0 and ends at 2 seconds)
+    *    ['Section Two', 5000], //this section is 5 seconds (starts at the previous section's end and lasts 5 seconds)
+    *    ['Section Three'], //this section fills up the remaining space
+    *]
+    **/
     sections?: CarouselVideoSection[];
 };
 
