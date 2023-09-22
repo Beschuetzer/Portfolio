@@ -1,10 +1,4 @@
 Carousel rework
-  -change how the modal works:
-      --Make wider by default
-      --clicking the close X should create a small box in the lower left that says ("Details"), which when clicked re-opens the full modal.  
-      --The box and modal should still be hidden when video is playing.
-      --How to handle box with images?
-      
   -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
