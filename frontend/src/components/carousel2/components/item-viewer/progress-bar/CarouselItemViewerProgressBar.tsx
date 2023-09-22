@@ -384,6 +384,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
                 //all sections but the last one
                 if (nextSection !== undefined) {
                     const nextSectionTimestamp = nextSection?.[1] as string;
+                    if (typeof nextSectionTimestamp !== 'string') continue;
                     const nextConverted = convertTimeStringToMilliseconds(nextSectionTimestamp);
                     sectionDiff = Math.abs(nextConverted - amountBeforeCurrent);
                 }

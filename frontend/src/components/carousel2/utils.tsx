@@ -108,6 +108,14 @@ export function convertTimeStringToMilliseconds(timestamp: string) {
         return 0;
     }
 
+    if (typeof timestamp !== 'string') {
+        try {
+            return parseInt(timestamp, 10)
+        } catch (error) {
+            return 0;
+        }
+    }
+    
     const split = timestamp?.split(TOOLBAR_TIME_STRING_SECTION_DIVIDER);
     const milliseconds = parseInt(split[split?.length - 1], 10) || 0;
     const seconds = parseInt(split[split?.length - 2], 10) || 0;

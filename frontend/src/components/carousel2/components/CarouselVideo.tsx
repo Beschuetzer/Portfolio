@@ -15,7 +15,9 @@ import { CarouselVideoCurrentTimeViewer } from './CarouselVideoCurrentTimeViewer
 import { useSectionToValueMapping } from '../hooks/useSectionToValueMapping';
 
 
-
+/**
+*The first value is the description of the section and second value is either the duration or the start time (respectively).
+**/
 export type CarouselVideoSection = [string, number] | [string, string];
 export type CarouselVideoOptions = {
     /**
@@ -35,17 +37,18 @@ export type CarouselVideoOptions = {
     *@example
     *When using strings, the first item always starts at zero, so it can be omitted.
     *sections: [
-    *    ['Starting Section'], //starts at 0 and goes to 2 seconds
-    *    ['Section Two', "02:00"], //starts at 2 seconds and goes to 7 seconds
-    *    ['Section Three', "07:00"], //starts at 7 seconds and goes to the end
+    *    ['Starting Section'], //starts at 0 and goes to 1 minute 59 seconds and 999 milliseconds
+    *    ['Section Two', "02:00"], //starts at 2 seconds and goes to 6 minutes 59 seconds and 999 milliseconds
+    *    ['Section Three', "07:00"], //starts at 7 seconds and ends at 1 minute 18 seconds and 999 milliseconds
+    *    ['Section Four', "01:19:00"], //starts at 1 minute and 19 seconds and goes to the end
     *]
     *
     *When using numbers, the value specifies the length of the section rather than the start time.
     *The last item may be omittted since it will start after the previous sections end and end at the end of the video.
     *sections: [
-    *    ['Starting Section', 2000], //this section is 2 seconds (starts at 0 and ends at 2 seconds)
-    *    ['Section Two', 5000], //this section is 5 seconds (starts at the previous section's end and lasts 5 seconds)
-    *    ['Section Three'], //this section fills up the remaining space
+    *    ['Starting Section', 2000], //section is 2 seconds long (starts at 0 and ends at 2 seconds)
+    *    ['Section Two', 5000], //section is 5 seconds long (starts at the previous section's end - 1 millisecond and lasts 5 seconds, so would stop at 7 seconds in this case)
+    *    ['Section Three'], //section fills up the remaining space (starts at 7 seconds and 1 millesecond and goes to end of video)
     *]
     **/
     sections?: CarouselVideoSection[];
