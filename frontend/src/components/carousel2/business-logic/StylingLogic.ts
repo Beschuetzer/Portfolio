@@ -462,11 +462,11 @@ export class StylingLogic {
             }
         }
 
-        const widthStyle = !this.isFullscreenMode || this.optionsLogic.isMobile ? {
+        const widthStyle = {
             width: widthToUse,
             maxWidth: `calc(${widthToUse} - ${(toolbarInnerContainerPaddingLeft + toolbarInnerContainerPaddingRight + 5)}${CAROUSEL_SPACING_UNIT})`,
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
-        } as CSSProperties : {};
+        } as CSSProperties;
         const paddingStyle = isMinimized ? {
             padding: `${CAROUSEL_ITEM_SPACING_DEFAULT / 2}${CAROUSEL_SPACING_UNIT} ${CAROUSEL_ITEM_SPACING_DEFAULT * 1}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties : {
@@ -492,8 +492,7 @@ export class StylingLogic {
             borderRadius: 5,
             background: this.optionsLogic.modalBackgroundColor,
             maxHeight: isMinimized ? 'auto' : maxHeight,
-            overflowX: 'hidden',
-            overflowY: isMinimized ? 'hidden' : 'auto',
+            overflow: 'auto',
             cursor: isMinimized ? 'pointer' : 'auto',
         } as CSSProperties;
         const hiddenStyle = {
