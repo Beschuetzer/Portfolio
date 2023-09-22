@@ -497,7 +497,7 @@ export class StylingLogic {
             cursor: isMinimized ? 'pointer' : 'auto',
         } as CSSProperties;
         const hiddenStyle = {
-            opacity: shouldHide ? 0 : 1,
+            visibility: shouldHide ? 'hidden' : 'visible',
             pointerEvents: shouldHide ? 'none' : 'auto',
         } as CSSProperties;
 

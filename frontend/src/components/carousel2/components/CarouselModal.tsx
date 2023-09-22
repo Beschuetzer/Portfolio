@@ -3,7 +3,7 @@ import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
 import { Exclusive } from '../types';
-import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__MODAL, CLASSNAME__MODAL_CUSTOM, CLASSNAME__MODAL_HEADER, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR } from '../constants';
+import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__MODAL, CLASSNAME__MODAL_CUSTOM, CLASSNAME__MODAL_HEADER, CLASSNAME__MODAL_MINIMIZED, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR } from '../constants';
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
@@ -122,9 +122,7 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#endregion
 
     //#region JSX
-    const classNameToUse = useMemo(() => `${CLASSNAME__MODAL} ${isCustom ? CLASSNAME__MODAL_CUSTOM : ''}`, [
-        isCustom,
-    ]);
+    const classNameToUse = useMemo(() => `${CLASSNAME__MODAL} ${isCustom ? CLASSNAME__MODAL_CUSTOM : ''} ${isMinimized ? CLASSNAME__MODAL_MINIMIZED : ''}`, [isCustom, isMinimized]);
     const button = useMemo(() => !!svgHref ? (
         <CarouselItemViewerCustomButton
             onClick={onCloseClick as any}
@@ -153,9 +151,7 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
     const renderChildren = useCallback(() => {
         if (isMinimized) {
             return (
-                <div>
-                    Description
-                </div>
+                <span>Description</span>
             )
         }
 

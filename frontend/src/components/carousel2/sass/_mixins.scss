@@ -8,16 +8,12 @@
     overflow: hidden;
     height: $height;
     width: $width;
-    opacity: $opacity;
     border: none;
     position: relative;
     background-color: transparent;
     display: flex;
 
-    &:hover {
-        opacity: $opacityHover;
-        cursor: pointer;
-    }
+    @include increaseOpacityOnHover($opacity, $opacityHover);
 
     & * {
         background-color: $backgroundColor;
@@ -70,6 +66,17 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+@mixin increaseOpacityOnHover(
+    $opacityStart: $itemViewerButtonOpacityNormal,    
+    $opacityHover: $itemViewerButtonOpacityHover,
+) {
+    opacity: $opacityStart !important;
+    &:hover {
+        opacity: $opacityHover !important;
+        cursor: pointer !important;
+    }
 }
 
 @mixin positionButton(

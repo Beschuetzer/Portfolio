@@ -311,6 +311,10 @@
                 background-color: var(--#{$modalScrollbarForegroundColor});
             }
         }
+
+        &-minimized {
+            @include increaseOpacityOnHover(.4, 1);
+        }
     }
 
     &--d-none {

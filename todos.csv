@@ -1,5 +1,5 @@
 Carousel rework
-  -add css class to make hovering an item increase opacity a bit
+  -add option to specify opacity when minimized for modal.
   -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
