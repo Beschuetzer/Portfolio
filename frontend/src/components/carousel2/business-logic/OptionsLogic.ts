@@ -275,14 +275,13 @@ export class OptionsLogic {
     get modalBackgroundColor() {
         return getCurrentValue(
             this.options?.styling?.modal?.backgroundColor,
-            this.theme.colorFour,
+            this.theme.colorOne,
             this.isFullscreenMode
         );
     }
 
     get modalCloseButtonColor() {
-        const defaultColor = getCurrentValue(this.options?.styling?.modal?.textColor, this.theme.colorFive, this.isFullscreenMode);
-        return getCurrentValue(this.options?.styling?.modal?.closeButton?.fill, defaultColor, this.isFullscreenMode);
+        return getCurrentValue(this.options?.styling?.modal?.closeButton?.fill, this.modalTextColor, this.isFullscreenMode);
     }
 
     get modalCloseButtonSize() {
@@ -317,7 +316,7 @@ export class OptionsLogic {
     get modalTextColor() {
         return getCurrentValue(
             this.options?.styling?.modal?.textColor,
-            this.theme.colorOne,
+            this.theme.colorFive,
             this.isFullscreenMode
         );
     }

@@ -27,7 +27,18 @@ export type CarouselModalProps = Exclusive<{
     children?: ReactNode | ReactNode[]
 }, {
     /**
-    *Use this when you want to use the default modal layout
+    *Use this when you want to use the default modal layout.
+    *@example
+    *sections: [
+    *    {
+    *        title: "Section 1 Title",
+    *        text: "Section 1 description."
+    *    },
+    *    {
+    *        title: "Section 2 Title",
+    *        text: "Section 2 description."
+    *    }
+    *],
     **/
     sections?: CarouselModalSection[];
 }>

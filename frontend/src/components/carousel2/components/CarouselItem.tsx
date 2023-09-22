@@ -19,7 +19,7 @@ export type CarouselItemProps = {
   **/
   modal?: CarouselModalProps;
   /**
-  * This is the source of the image to be used in full-size viewing as well as thumbnail viewing if no thumbnail is provided.
+  * This is the source of the image/video.  If item is a video, then adding a {@link CarouselItemProps.srcThumbnail thumbnail} is needed.  Otherwise the main image will be used as a thumbnail.
   **/
   srcMain: string | undefined;
   /**

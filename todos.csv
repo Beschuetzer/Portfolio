@@ -1,4 +1,5 @@
 Carousel rework
+  -add css class to make hovering an item increase opacity a bit
   -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
@@ -8,7 +9,7 @@ Carousel rework
   -when done with buttonSize stuff, clean up css styles
   -add volume button for videos?
   -how to intelligently add themes or default colors?
-  
+
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
   -figure out how to memoize options and styling logic (e.g. when playing a video, the styling getters run each time)
   -add lazy loading of items (only render the items up to the furtherst currentPage)?

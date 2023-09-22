@@ -6,10 +6,12 @@ import maui04 from "../../../imgs/about/maui-04.jpg";
 import maui05 from "../../../imgs/about/maui-05.jpg";
 import maui06 from "../../../imgs/about/maui-06.jpg";
 import maui07 from "../../../imgs/about/maui-07.jpg";
+import minuteLongVideo from "../../../clips/minute-long-video.mp4";
 import clipFilters from "../../../clips/replay-viewer/filters.mp4";
 import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
 import clipAnimations from "../../../clips/replay-viewer/animations.mp4";
 import clipAnimationsThumbnail from "../../../clips/replay-viewer/thumbnails/animations-thumbnail.png";
+import minuteLongVideoThumbnail from "../../../clips/replay-viewer/thumbnails/minute-long-video-thumbnail.png";
 
 import maui01Thumbnail from "../../../imgs/about/thumbnails/maui-01-thumbnail.jpg";
 import maui04Thumbnail from "../../../imgs/about/thumbnails/maui-04-thumbnail.jpg";
@@ -277,6 +279,27 @@ const items = [
 				['Searching Users'],
 				['Filtering Results', "2:00"],
 				['Hiding Filters', "7:00"],
+			]
+		}
+	},
+	{
+		description: "Minute Long Video",
+		srcMain: minuteLongVideo,
+		srcThumbnail: minuteLongVideoThumbnail,
+		modal: {
+			sections: [
+				{
+					title: 'Longer Clip',
+					text: 'This video highlights how to create sections for videos longer than 1 minute'
+				}
+			]
+		},
+		video: {
+			autoPlay: false,
+			muted: true,
+			sections: [
+				['Section 1'],
+				['Section 2', '1:00:01'],
 			]
 		}
 	},
