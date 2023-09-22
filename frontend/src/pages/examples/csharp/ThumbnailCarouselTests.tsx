@@ -185,6 +185,26 @@ const items = [
 		}
 	},
 	{
+		description: "Video - No Thumbnail Given",
+		srcMain: minuteLongVideo,
+		modal: {
+			sections: [
+				{
+					title: 'Longer Clip',
+					text: 'This video highlights how to create sections for videos longer than 1 minute'
+				}
+			]
+		},
+		video: {
+			autoPlay: false,
+			muted: true,
+			sections: [
+				['Section 1'],
+				['Section 2', '1:00:01'],
+			]
+		}
+	},
+	{
 		description: "Custom Modal with auto play",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
@@ -201,6 +221,98 @@ const items = [
 			autoPlay: true,
 			muted: true,
 		}
+	},
+	{
+		srcMain: maui03,
+		description: "Image - No Thumbnail Specified and Modal overflow",
+		modal: {
+			sections: [
+				{
+					title: "Section 1",
+					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+				},
+				{
+					title: "Section 2",
+					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
+				},
+				{
+					title: "Section 3",
+					text: "The modal box should still be displayed nicely inside the video frame."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 1",
+					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+				},
+				{
+					title: "Section 2",
+					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
+				},
+				{
+					title: "Section 3",
+					text: "The modal box should still be displayed nicely inside the video frame."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 1",
+					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+				},
+				{
+					title: "Section 2",
+					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
+				},
+				{
+					title: "Section 3",
+					text: "The modal box should still be displayed nicely inside the video frame."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				},
+				{
+					title: "Section 4",
+					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+				}
+			],
+		},
 	},
 	{
 		description: "No Modal with auto play",
@@ -271,12 +383,12 @@ const items = [
 		}
 	},
 	{
+		description: "Default Image",
 		srcMain: maui05,
 		srcThumbnail: maui05Thumbnail,
-		description: "Haleakalā Sunset",
 	},
 	{
-		description: "Custom Modal on Load (no auto play)",
+		description: "Custom Modal (no auto play)",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
 		modal: {
@@ -301,7 +413,7 @@ const items = [
 		}
 	},
 	{
-		description: "Close up Turtle Encounter (Modal centered) ",
+		description: "Image - Default Section Layout",
 		srcMain: maui02,
 		modal: {
 			sections: [
@@ -317,116 +429,24 @@ const items = [
 		},
 	},
 	{
-		srcMain: maui03,
-		description: "Item with no Thumbnail (Modal overflow)",
-		modal: {
-			sections: [
-				{
-					title: "Section 1",
-					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
-				},
-				{
-					title: "Section 2",
-					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
-				},
-				{
-					title: "Section 3",
-					text: "The modal box should still be displayed nicely inside the video frame."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 1",
-					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
-				},
-				{
-					title: "Section 2",
-					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
-				},
-				{
-					title: "Section 3",
-					text: "The modal box should still be displayed nicely inside the video frame."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 1",
-					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
-				},
-				{
-					title: "Section 2",
-					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
-				},
-				{
-					title: "Section 3",
-					text: "The modal box should still be displayed nicely inside the video frame."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				}
-			],
-		},
-	},
-	{
 		srcMain: maui01,
 		srcThumbnail: maui01Thumbnail,
-		description: "Cliff Jumping"
+		description: "Image - Filler"
 	},
 	{
 		srcMain: maui06,
 		srcThumbnail: maui06Thumbnail,
-		description: "Haleakalā Backside",
+		description: "Image - Filler",
 	},
 	{
 		srcMain: maui07,
 		srcThumbnail: maui07Thumbnail,
-		description: "Haleakalā Backside 2",
+		description: "Image - Filler",
 	},
 	{
 		srcMain: maui04,
 		srcThumbnail: maui04Thumbnail,
-		description: "Stunning Beach, Less than Ideal Sand",
+		description: "Image - Filler",
 	},
 ] as CarouselItemProps[];
 //#endregion
