@@ -393,17 +393,16 @@ export class StylingLogic {
         const customFontSize = this.optionsLogic.modalFontSize;
         const toolbarInnerContainerPaddingLeft = Number(this.toolbarInnerContainerStyle?.paddingLeft || 0);
         const toolbarInnerContainerPaddingRight = Number(this.toolbarInnerContainerStyle?.paddingRight || 0);
-        const toolbarLeftPadding = Math.max(this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar), toolbarInnerContainerPaddingLeft);
-        const toolbarRightPadding = Math.max(this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar), toolbarInnerContainerPaddingRight);
+        // const toolbarLeftPadding = Math.max(this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar), toolbarInnerContainerPaddingLeft);
+        // const toolbarRightPadding = Math.max(this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar), toolbarInnerContainerPaddingRight);
         const carouselPaddingTop = this.getPaddingAmount(SpacingDirection.top, CarouselSection.container);
         const progressBarPaddingTop = this.getCarouselVideoProgressHitSlop().paddingTop;
         const toolbarPaddingBottom = this.getPaddingAmount(SpacingDirection.bottom, CarouselSection.toolbar);
         const spaceBetweenModalTopAndItemTop = CAROUSEL_ITEM_SPACING_DEFAULT * 2;
-        let top = 0;
+        // let top = 0;
         let maxHeight = 0;
         let heightBetweenItemTopAndToolbarBarTop = 270;
 
-        //todo: how to make this more readable?  Seaparate by fullscreen vs not fullscreen?
         if (!isMinimized) {
             if (this.isFullscreenMode) {
                 const itemViewer = this.itemViewerRef?.current;
@@ -420,7 +419,7 @@ export class StylingLogic {
                 }
 
                 maxHeight = heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 4;
-                top = -heightBetweenItemTopAndToolbarBarTop + window.innerHeight / 2 - this.modalHeight / 2;
+                // top = -heightBetweenItemTopAndToolbarBarTop + window.innerHeight / 2 - this.modalHeight / 2;
                 // console.log({itemViewer, progressBarRect, heightBetweenItemTopAndToolbarBarTop, maxHeight, progressBarPaddingTop});
 
             } else if (this.optionsLogic.itemDisplayLocation !== 'none') {
@@ -432,10 +431,10 @@ export class StylingLogic {
                 const elementToUseRect = elementToUse?.getBoundingClientRect();
                 const elementFirstDiv = elementToUse?.querySelector(`div`);
                 const elementFirstDivRect = elementFirstDiv?.getBoundingClientRect();
-                const rectToUse = this.isCurrentItemVideo ? elementToUseRect : elementFirstDivRect;
+                // const rectToUse = this.isCurrentItemVideo ? elementToUseRect : elementFirstDivRect;
                 const embeddedOffset = isToolbarEmbedded && this.isCurrentItemVideo ? 0 : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT * (this.isCurrentItemVideo ? 1.33 : 2);
-                let minTopValue = -(Math.abs((rectToUse?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndItemTop;
-                let nonFullscreenCenteringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((rectToUse?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndItemTop)) / 2 - embeddedOffset / 2;
+                // let minTopValue = -(Math.abs((rectToUse?.y || 300) - (carouselContainerRect?.y || 0))) + carouselPaddingTop + spaceBetweenModalTopAndItemTop;
+                // let nonFullscreenCenteringOffset = Math.abs(((carouselContainerRect?.y || 100) + carouselPaddingTop + modalHeight) - ((rectToUse?.y || 100) - progressBarPaddingTop + spaceBetweenModalTopAndItemTop)) / 2 - embeddedOffset / 2;
 
                 if (carouselContainerRect && elementToUseRect && elementFirstDivRect) {
                     const toolbarTop = this.isCurrentItemVideo ? (elementToUseRect.y + progressBarPaddingTop) : (elementFirstDivRect.y + toolbarPaddingBottom)
@@ -445,16 +444,16 @@ export class StylingLogic {
                         const itemContainerRect = itemContainer?.getBoundingClientRect();
                         if (itemContainerRect) {
                             heightBetweenItemTopAndToolbarBarTop = Math.abs(itemContainerRect?.top - toolbarTop);
-                            minTopValue = -(heightBetweenItemTopAndToolbarBarTop - progressBarPaddingTop - spaceBetweenModalTopAndItemTop);
+                            // minTopValue = -(heightBetweenItemTopAndToolbarBarTop - progressBarPaddingTop - spaceBetweenModalTopAndItemTop);
                             maxHeight = Math.floor(heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 2) - embeddedOffset;
-                            nonFullscreenCenteringOffset = Math.abs(this.modalHeight - maxHeight) / 2;
+                            // nonFullscreenCenteringOffset = Math.abs(this.modalHeight - maxHeight) / 2;
                         }
                     } else {
                         maxHeight = Math.floor(heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 2) - embeddedOffset;
                     }
 
-                    const centeredTopValue = minTopValue + nonFullscreenCenteringOffset;
-                    top = this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue);
+                    // const centeredTopValue = minTopValue + nonFullscreenCenteringOffset;
+                    // top = this.modalHeight >= maxHeight ? minTopValue : Math.max(minTopValue, centeredTopValue);
                 }
 
                 // console.log({heightBetweenItemTopAndToolbarBarTop,rectToUse, maxHeight, modalHeight: this.modalHeight});
@@ -465,7 +464,7 @@ export class StylingLogic {
 
         const widthStyle = !this.isFullscreenMode || this.optionsLogic.isMobile ? {
             width: widthToUse,
-            maxWidth: `calc(${widthToUse} - ${(toolbarLeftPadding / 2 + toolbarRightPadding / 2) / 2}${CAROUSEL_SPACING_UNIT})`,
+            maxWidth: `calc(${widthToUse} - ${(toolbarInnerContainerPaddingLeft + toolbarInnerContainerPaddingRight + 5)}${CAROUSEL_SPACING_UNIT})`,
             boxShadow: `0 10px 15px -3px rgba(0,0,0,.25)`,
         } as CSSProperties : {};
         const paddingStyle = isMinimized ? {
@@ -477,9 +476,9 @@ export class StylingLogic {
             paddingRight,
         } as CSSProperties;
         const positionStyle = {
-            top: isMinimized ? 'auto' : top,
-            bottom: isMinimized ? Math.abs(this.carouselShortcutIndicatorTextTop) + 24 : 'auto',
-            left: isMinimized ? `${toolbarInnerContainerPaddingLeft}${CAROUSEL_SPACING_UNIT}` : 'auto',
+            top: 'auto',
+            bottom: Math.abs(this.carouselShortcutIndicatorTextTop) + 24,
+            left: `${toolbarInnerContainerPaddingLeft + 1}${CAROUSEL_SPACING_UNIT}`,
             right: 'auto',
         } as CSSProperties;
         const textStyle = {
