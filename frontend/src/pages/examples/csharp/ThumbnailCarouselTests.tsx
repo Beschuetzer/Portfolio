@@ -212,6 +212,42 @@ const items = [
 		}
 	},
 	{
+		description: "Default Modal with Sections (no auto play)",
+		srcMain: clipFilters,
+		srcThumbnail: clipFiltersThumbnail,
+		modal: {
+			sections: [
+				{
+					title: "Section 1",
+					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+				},
+				{
+					title: "Section 2",
+					text: "This is where the second section text goes."
+				}
+			],
+		},
+		video: {
+			autoPlay: false,
+			muted: true,
+			objectFit: 'cover',
+			objectPosition: 'top',
+			sections: [
+				['Login', '02:00'],
+				['Finding Games where Contract is 1 club', '3:00'],
+				['Opening First 1st Club Game', "13:00"],
+				['Viewing 5th Deal of 1st Game', "16:00"],
+				['Noticing Adam has 2 of Clubs in First Game', "19:00"],
+				['Opening Second 1 Club Game', "22:500"],
+				['Viewing 6th Deal of 2nd Game', "25:00"],
+				['Noticing Ann has 2 of Clubs in Second Game', "29:00"],
+				['Adding Filter for Ann Having 2 of Clubs', "32:00"],
+				['Only One Game Remains', "39:500"],
+				['Proving Remaining Game is the One Where Ann has 2 of Clubs', "43:00"],
+			]
+		}
+	},
+	{
 		description: "Custom video fit and position",
 		srcMain: clipFilters,
 		srcThumbnail: clipFiltersThumbnail,
@@ -235,40 +271,12 @@ const items = [
 		}
 	},
 	{
-		description: "Default Modal with Sections (no auto play)",
-		srcMain: clipFilters,
-		srcThumbnail: clipFiltersThumbnail,
-		modal: {
-			sections: [
-				{
-					title: "Section 1",
-					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
-				},
-				{
-					title: "Section 2",
-					text: "This is where the second section text goes."
-				}
-			],
-		},
-		video: {
-			autoPlay: false,
-			muted: true,
-			objectFit: 'cover',
-			objectPosition: 'top',
-			sections: [
-				['Login'],
-				['Finding Games where Contract is 1 club', 8000],
-				['Options Section that is also a really long title'],
-			]
-		}
-	},
-	{
 		srcMain: maui05,
 		srcThumbnail: maui05Thumbnail,
 		description: "Haleakalā Sunset",
 	},
 	{
-		description: "Custom Overlay on Load (no auto play)",
+		description: "Custom Modal on Load (no auto play)",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
 		modal: {
@@ -293,7 +301,7 @@ const items = [
 		}
 	},
 	{
-		description: "Close up Turtle Encounter (Overlay centered) ",
+		description: "Close up Turtle Encounter (Modal centered) ",
 		srcMain: maui02,
 		modal: {
 			sections: [
@@ -310,7 +318,7 @@ const items = [
 	},
 	{
 		srcMain: maui03,
-		description: "Item with no Thumbnail (Overlay overflow)",
+		description: "Item with no Thumbnail (Modal overflow)",
 		modal: {
 			sections: [
 				{
@@ -721,7 +729,7 @@ const dynamicMaxLineCount = (
 		}
 	}} />
 );
-const dynamicHidingOfThumbnailOverlay = (
+const dynamicHidingOfThumbnailModal = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			descriptionOverlay: {
@@ -740,7 +748,7 @@ const dynamicHidingOfThumbnailFontSize = (
 		}
 	}} />
 );
-const dynamicDisablingOfThumbnailOverlayBelow800 = (
+const dynamicDisablingOfThumbnailModalBelow800 = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			descriptionOverlay: {
@@ -750,7 +758,7 @@ const dynamicDisablingOfThumbnailOverlayBelow800 = (
 		},
 	}} />
 );
-const dynamicThumbnailOverlay = (
+const dynamicThumbnailModal = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			descriptionOverlay: {
@@ -765,7 +773,7 @@ const dynamicThumbnailOverlay = (
 		},
 	}} />
 );
-const dynamicThumbnailOverlayGradient = (
+const dynamicThumbnailModalGradient = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			descriptionOverlay: {
@@ -1173,7 +1181,7 @@ const isLastPageFlushFalseDisplayBelow = (
 		}}
 	/>
 );
-const itemViewerDefaultOverlayOnLoad = (
+const itemViewerDefaultModalOnLoad = (
 	<Carousel items={items.slice(1, 2)} />
 );
 const itemViewerCustomButtons = (
@@ -1224,7 +1232,7 @@ const itemViewerMaxClickThresholdZero = (
 		}
 	}} />
 );
-const itemViewerCustomOverlayOnLoad = (
+const itemViewerCustomModalOnLoad = (
 	<Carousel items={items.slice(2, 3)} />
 );
 const itemViewerNoToolbarHide = (
@@ -1900,7 +1908,7 @@ const layoutAboveButtonsAllWithSpecificFillColors = (
 		}}
 	/>
 );
-const layoutAboveCustomOverlayAndSpinner = (
+const layoutAboveCustomModalAndSpinner = (
 	<Carousel
 		items={items}
 		options={{
@@ -2286,7 +2294,7 @@ const customThumbnailCurrentItemBorderThree = (
 		}
 	}} />
 )
-const noThumbnailDescriptionOverlay = (
+const noThumbnailDescriptionModal = (
 	<Carousel items={items} options={{
 		thumbnail: {
 			descriptionOverlay: {
@@ -2854,7 +2862,7 @@ const SECTIONS: Sections = [
 		SectionNames.aboveCustomization,
 		[
 			{
-				label: "Display Current Item Above Default itemHeight and No Overlay Video First",
+				label: "Display Current Item Above Default itemHeight and No Modal Video First",
 				jsx: layoutAboveDefaultItemHeight,
 			},
 			{
@@ -2910,8 +2918,8 @@ const SECTIONS: Sections = [
 				jsx: layoutAboveButtonsAllWithSpecificFillColors,
 			},
 			{
-				label: "Display Above Custom Overlay Style and Loading Spinner",
-				jsx: layoutAboveCustomOverlayAndSpinner,
+				label: "Display Above Custom Modal Style and Loading Spinner",
+				jsx: layoutAboveCustomModalAndSpinner,
 			},
 			{
 				label: "Display Above No Tracking Current Item",
@@ -3090,12 +3098,12 @@ const SECTIONS: Sections = [
 				}),
 			},
 			{
-				label: "Display Below Custom Overlay Style and Loading Spinner",
-				jsx: React.cloneElement(layoutAboveCustomOverlayAndSpinner, {
+				label: "Display Below Custom Modal Style and Loading Spinner",
+				jsx: React.cloneElement(layoutAboveCustomModalAndSpinner, {
 					options: {
-						...layoutAboveCustomOverlayAndSpinner.props.options,
+						...layoutAboveCustomModalAndSpinner.props.options,
 						layout: {
-							...layoutAboveCustomOverlayAndSpinner.props.options.layout,
+							...layoutAboveCustomModalAndSpinner.props.options.layout,
 							itemDisplayLocation: 'below',
 						}
 					}
@@ -3123,12 +3131,12 @@ const SECTIONS: Sections = [
 				jsx: noItemDisplayedMultiplePagesAllDefaults,
 			},
 			{
-				label: "Description Overlay Always Shown",
+				label: "Description Modal Always Shown",
 				jsx: noThumbnailHoverEffect
 			},
 			{
-				label: "Description Overlay Disabled",
-				jsx: noThumbnailDescriptionOverlay
+				label: "Description Modal Disabled",
+				jsx: noThumbnailDescriptionModal
 			},
 			{
 				label: "0 Item Spacing",
@@ -3143,15 +3151,15 @@ const SECTIONS: Sections = [
 				jsx: customSizeAndSpacingNonDefaultItemDisplayCase
 			},
 			{
-				label: "Given Thumbnail Size with Custom Solid Overlay",
+				label: "Given Thumbnail Size with Custom Solid Modal",
 				jsx: customThumbnailSolid
 			},
 			{
-				label: "Given Thumbnail Size with Custom Gradient Overlay",
+				label: "Given Thumbnail Size with Custom Gradient Modal",
 				jsx: customThumbnailGradient
 			},
 			{
-				label: "Given Thumbnail Size with Custom Gradient Overlay and Fallback",
+				label: "Given Thumbnail Size with Custom Gradient Modal and Fallback",
 				jsx: customThumbnailGradientAndFallback
 			},
 			{
@@ -3213,24 +3221,24 @@ const SECTIONS: Sections = [
 		SectionNames.otherDynamicSettings,
 		[
 			{
-				label: "Thumbnail Overlay Disabled <= 800px",
-				jsx: dynamicDisablingOfThumbnailOverlayBelow800,
+				label: "Thumbnail Modal Disabled <= 800px",
+				jsx: dynamicDisablingOfThumbnailModalBelow800,
 			},
 			{
-				label: "Thumbnail Overlay Font Size Changes at 800px",
+				label: "Thumbnail Modal Font Size Changes at 800px",
 				jsx: dynamicHidingOfThumbnailFontSize,
 			},
 			{
-				label: "Thumbnail Overlay Always Shown > 800px",
-				jsx: dynamicHidingOfThumbnailOverlay,
+				label: "Thumbnail Modal Always Shown > 800px",
+				jsx: dynamicHidingOfThumbnailModal,
 			},
 			{
-				label: "Thumbnail Overlay Opacity and Color Change at 800px",
-				jsx: dynamicThumbnailOverlay,
+				label: "Thumbnail Modal Opacity and Color Change at 800px",
+				jsx: dynamicThumbnailModal,
 			},
 			{
-				label: "Thumbnail Overlay Gradient Change at 800px",
-				jsx: dynamicThumbnailOverlayGradient,
+				label: "Thumbnail Modal Gradient Change at 800px",
+				jsx: dynamicThumbnailModalGradient,
 			},
 			{
 				label: "Dots and Left Arrow Change Svgs and Color at 800px",
@@ -3429,16 +3437,16 @@ const SECTIONS: Sections = [
 		SectionNames.itemViewer,
 		[
 			{
-				label: "Default Overlay Displayed on Load",
-				jsx: itemViewerDefaultOverlayOnLoad
+				label: "Default Modal Displayed on Load",
+				jsx: itemViewerDefaultModalOnLoad
 			},
 			{
-				label: "Default Overlay Displayed on Load with Custom Toolbar Buttons",
+				label: "Default Modal Displayed on Load with Custom Toolbar Buttons",
 				jsx: itemViewerCustomButtons
 			},
 			{
-				label: "Custom Overlay Displayed on Load",
-				jsx: itemViewerCustomOverlayOnLoad
+				label: "Custom Modal Displayed on Load",
+				jsx: itemViewerCustomModalOnLoad
 			},
 			{
 				label: "Toolbar doesn't hide on inactivity (Click item to view)",
