@@ -3,7 +3,7 @@ import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
 import { Exclusive } from '../types';
-import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__MODAL, CLASSNAME__MODAL_CUSTOM, CLASSNAME__MODAL_HEADER, CLASSNAME__MODAL_MINIMIZED, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR } from '../constants';
+import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__MODAL, CLASSNAME__MODAL_CUSTOM, CLASSNAME__MODAL_HEADER, CLASSNAME__MODAL_MINIMIZED, CSS_CUSTOM_PROPERTY_MODAL_OPACITY_MINIMIZED, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR } from '../constants';
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
@@ -83,7 +83,8 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
         element: modalRef?.current as HTMLElement,
         properties: [
             [CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR, optionsLogic?.modalBackgroundColor],
-            [CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR, optionsLogic?.modalTextColor]
+            [CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR, optionsLogic?.modalTextColor],
+            [CSS_CUSTOM_PROPERTY_MODAL_OPACITY_MINIMIZED, optionsLogic?.modalOpacityWhenMinimized]
         ]
     })
     //#endregion

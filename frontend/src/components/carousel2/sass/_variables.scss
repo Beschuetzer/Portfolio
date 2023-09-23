@@ -33,6 +33,7 @@ $zShortcutPreviewImage: 1000000;
 
 $classname__grabbing: 'grabbing';
 
+$modalMinimzedOpacity: '#{$carouselClassname}-modal-opacity-minimized';
 $modalCustomButtonTopString: '#{$carouselClassname}-modal-custom-button-top';
 $modalCustomButtonRightString: '#{$carouselClassname}-modal-custom-button-right';
 $modalScrollbarBackgroundColor: '#{$carouselClassname}-modal-scrollbar-background-color';
@@ -42,5 +43,6 @@ $modalScrollbarForegroundColor: '#{$carouselClassname}-modal-scrollbar-foregroun
     --#{$modalCustomButtonRightString}: calc(#{$itemViewerToolbarMarginHorizontal} * .5);
     --#{$modalScrollbarBackgroundColor}: #{$itemViewerBackgroundColor};
     --#{$modalScrollbarForegroundColor}: #{$itemViewerButtonColor};
+    --#{$modalMinimzedOpacity}: #{$itemViewerButtonOpacityNormal};
 }
 

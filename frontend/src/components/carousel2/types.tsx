@@ -292,6 +292,10 @@ export type CarouselSectionsModal = {
     *This is in pixels
     **/
     fontSize?: CarouselElementValue<number>;
+    /**
+    *The opacity of modals when they are minimized.  Valid values are 0 <= x <= 1.
+    **/
+    opacityWhenMinimized?: CarouselElementValue<number>;
     padding?: CarouselElementValue<CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions>;
     textColor?: CarouselElementValue<Color>;
     /**

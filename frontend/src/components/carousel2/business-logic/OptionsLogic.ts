@@ -55,7 +55,8 @@ import {
     THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT,
     PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT,
     CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_MOBILE,
-    CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MOBILE
+    CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MOBILE,
+    CAROUSEL_MODAL_MINIMIZED_OPACITY_DEFAULT
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
@@ -311,6 +312,14 @@ export class OptionsLogic {
             left: getCurrentValue(left !== undefined ? left : padding.left, CAROUSEL_MODAL_PADDING_DEFAULT.left, this.isFullscreenMode),
             right: getCurrentValue(right !== undefined ? right : padding.right, CAROUSEL_MODAL_PADDING_DEFAULT.right, this.isFullscreenMode),
         }
+    }
+
+    get modalOpacityWhenMinimized() {
+        return getCurrentValue(
+            this.options?.styling?.modal?.opacityWhenMinimized,
+            CAROUSEL_MODAL_MINIMIZED_OPACITY_DEFAULT,
+            this.isFullscreenMode
+        ).toString();
     }
 
     get modalTextColor() {

@@ -313,7 +313,7 @@
         }
 
         &-minimized {
-            @include increaseOpacityOnHover(.4, 1);
+            @include increaseOpacityOnHover(var(--#{$modalMinimzedOpacity}), 1);
         }
     }
 

@@ -59,6 +59,7 @@ export const CLASSNAME__VIDEO_SCREENSHOT_VIEWER_TEXT_CONTAINER = `${CLASSNAME__V
 //#region CSS Custom Property Names (see _variables.scss)
 export const CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR = `${CLASSNAME__ROOT}-modal-scrollbar-background-color`;
 export const CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR = `${CLASSNAME__ROOT}-modal-scrollbar-foreground-color`;
+export const CSS_CUSTOM_PROPERTY_MODAL_OPACITY_MINIMIZED = `${CLASSNAME__ROOT}-modal-opacity-minimized`;
 //#endregion
 
 //#region Styling
@@ -94,6 +95,7 @@ export const CAROUSEL_ITEM_VIEWER_PREVIEW_TEXT_VERTICAL_ALIGNMENT_DEFAULT = 'fle
 export const CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT = 300;
 export const CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT = 18;
 export const CAROUSEL_MODAL_PADDING_DEFAULT = {top: 20, bottom: 20, left: 20, right: 20};
+export const CAROUSEL_MODAL_MINIMIZED_OPACITY_DEFAULT = .875;
 export const CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT = 14;  //in px
 export const CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT = 12;  //in px
 export const CAROUSEL_OVERLAY_ITEM_PADDING_TOP = 10;  //in px

@@ -3,6 +3,7 @@
   --thumbnail-carousel-modal-custom-button-right: calc(20px * .5);
   --thumbnail-carousel-modal-scrollbar-background-color: #1d0e0b;
   --thumbnail-carousel-modal-scrollbar-foreground-color: #fff9f5;
+  --thumbnail-carousel-modal-opacity-minimized: 0.875;
 }
 
 .thumbnail-carousel--hidden, .thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__item-viewer-toolbar, .thumbnail-carousel__item-container--no-toolbar .thumbnail-carousel__video-screenshot-viewer {
@@ -1035,7 +1036,7 @@
   background-color: var(--thumbnail-carousel-modal-scrollbar-foreground-color);
 }
 .thumbnail-carousel__modal-minimized {
-  opacity: 0.4 !important;
+  opacity: var(--thumbnail-carousel-modal-opacity-minimized) !important;
 }
 .thumbnail-carousel__modal-minimized:hover {
   opacity: 1 !important;

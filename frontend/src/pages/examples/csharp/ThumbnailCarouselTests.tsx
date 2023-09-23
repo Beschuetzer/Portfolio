@@ -1252,6 +1252,18 @@ const itemViewerMaxClickThresholdZero = (
 		}
 	}} />
 );
+const itemViewerModalMinimizedOpacity = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: 'above',
+		},
+		styling: {
+			modal: {
+				opacityWhenMinimized: -1,
+			}
+		}
+	}}/>
+)
 const itemViewerCustomModalOnLoad = (
 	<Carousel items={items.slice(2, 3)} />
 );
@@ -3504,6 +3516,10 @@ const SECTIONS: Sections = [
 				label: "Full-screen Max Click Threshold 0",
 				jsx: itemViewerMaxClickThresholdZero
 			},
+			{
+				label: "Modal Minimized Opacity is .15",
+				jsx: itemViewerModalMinimizedOpacity
+			},
 		]
 	],
 	[
@@ -3627,6 +3643,7 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	// ...Object.values(SectionNames),
 	// SectionNames.aboveCustomization,
 	// SectionNames.belowCustomization,
+	SectionNames.itemViewer,
 	SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,
