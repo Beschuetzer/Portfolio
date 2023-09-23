@@ -35,6 +35,9 @@ const customButtons = {
 	fullScreenButton: {
 		svgHref: "./sprite.svg#icon-fullscreen",
 		fillColor: getComputedStyleCustom('--color-primary-1'),
+		style: {
+			transform: `translate(25%, 25%) scale(1.25)`,
+		},
 	},
 	nextButton: {
 		svgHref: "./sprite.svg#icon-skip-forward",
@@ -1342,8 +1345,8 @@ const customButtonSizesWithCustomIcons = (
 			elements: {
 				...customButtons,
 				fullscreenButton: {
+					style: customButtons.fullScreenButton.style,
 					svgHref: customButtons.fullScreenButton.svgHref,
-					fillColor: getComputedStyleCustom('--color-primary-4')
 				}
 			}
 		},
