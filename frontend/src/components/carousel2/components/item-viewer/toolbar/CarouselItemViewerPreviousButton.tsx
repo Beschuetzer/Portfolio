@@ -16,15 +16,34 @@ export const CarouselItemViewerPreviousButton = forwardRef<any, CarouselItemView
     } = props;
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.previousButton || {};
-    const { optionsLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic();
+    const { optionsLogic, stylingLogic, toolbarActionsLogic, toolbarLogic } = useBusinessLogic();
     const previousItemAction = toolbarActionsLogic.getPreviousItem();
     const fillColor = optionsLogic.getButtonColor(CarouselElement.previousButton);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={previousItemAction.keys} position={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator
+            actionName={actionName}
+            shortcuts={previousItemAction.keys}
+            position={position}
+            isShortcutVisible={isShortcutVisible}
+        >
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} useElementStyle={style} fillColor={fillColor} /> :
-                <PreviousButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} childStyle={style} fillColor={fillColor} />}
+                <CarouselItemViewerCustomButton
+                    ref={ref}
+                    onClick={onClick}
+                    xlinkHref={svgHref}
+                    style={stylingLogic.getCarouselElementChildSizeStlye({ buttonName: CarouselElement.previousButton, subElementName: null })}
+                    showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}
+                    useElementStyle={style}
+                    fillColor={fillColor}
+                /> :
+                <PreviousButton
+                    ref={ref}
+                    onClick={onClick}
+                    showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}
+                    childStyle={style}
+                    fillColor={fillColor}
+                />}
         </CarouselItemViewerShortcutIndicator>
     )
 })

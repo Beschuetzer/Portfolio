@@ -32,7 +32,12 @@ export const CarouselItemViewerCustomButton = forwardRef<SVGSVGElement, Carousel
     const xlinkHrefToUse = optionsLogic.getXlinkHref(xlinkHref);
 
     return (
-        <svg style={style} ref={ref} onClick={onClick} className={`${CLASSNAME__ITEM_VIEWER_BUTTON} ${classNamesToIncludeClassname} ${!showButton ? CLASSNAME__HIDDEN : ''}`}>
+        <svg
+            style={style}
+            ref={ref}
+            onClick={onClick}
+            className={`${CLASSNAME__ITEM_VIEWER_BUTTON} ${classNamesToIncludeClassname} ${!showButton ? CLASSNAME__HIDDEN : ''}`}
+        >
             <use
                 style={{ ...useElementStyle, ...defaultStyles }}
                 xlinkHref={xlinkHrefToUse}

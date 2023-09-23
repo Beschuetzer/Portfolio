@@ -26,7 +26,12 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
     const fillColor = optionsLogic.getButtonColor(CarouselElement.nextButton);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={nextItemAction.keys} position={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator
+            actionName={actionName}
+            shortcuts={nextItemAction.keys}
+            position={position}
+            isShortcutVisible={isShortcutVisible}
+        >
             {!!svgHref ?
                 <CarouselItemViewerCustomButton
                     ref={ref}

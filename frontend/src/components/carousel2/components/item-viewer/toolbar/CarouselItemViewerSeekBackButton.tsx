@@ -16,16 +16,33 @@ export const CarouselItemViewerSeekBackButton = forwardRef<any, CarouselItemView
     } = props;
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.seekBackButton || {};
-    const { optionsLogic, toolbarActionsLogic } = useBusinessLogic();
+    const { optionsLogic, stylingLogic, toolbarActionsLogic } = useBusinessLogic();
     const seekBackwardsAction = toolbarActionsLogic.getSeekBackwards();
     const fillColor = optionsLogic.getButtonColor(CarouselElement.seekBackButton);
     const actionNameToUse = useMemo(() => `${actionName} ${optionsLogic.videoSeekAmount} seconds`, [actionName, optionsLogic.videoSeekAmount]);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionNameToUse} shortcuts={seekBackwardsAction.keys} position={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator
+            actionName={actionNameToUse}
+            shortcuts={seekBackwardsAction.keys}
+            position={position}
+            isShortcutVisible={isShortcutVisible}
+        >
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
-                <SeekBackButton ref={ref} onClick={onClick} childStyle={style} fillColor={fillColor} />}
+                <CarouselItemViewerCustomButton
+                    ref={ref}
+                    onClick={onClick}
+                    style={stylingLogic.getCarouselElementChildSizeStlye({ buttonName: CarouselElement.seekBackButton, subElementName: null })}
+                    xlinkHref={svgHref}
+                    useElementStyle={style}
+                    fillColor={fillColor}
+                /> :
+                <SeekBackButton
+                    ref={ref}
+                    onClick={onClick}
+                    childStyle={style}
+                    fillColor={fillColor}
+                />}
         </CarouselItemViewerShortcutIndicator>
     )
 })

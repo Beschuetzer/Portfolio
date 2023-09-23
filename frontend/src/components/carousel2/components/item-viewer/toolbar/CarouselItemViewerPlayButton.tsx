@@ -17,15 +17,33 @@ export const CarouselItemViewerPlayButton = forwardRef<any, CarouselItemViewerPl
     } = props;
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.playButton || {};
-    const { optionsLogic, toolbarActionsLogic } = useBusinessLogic();
+    const { optionsLogic, stylingLogic, toolbarActionsLogic } = useBusinessLogic();
     const playAction = toolbarActionsLogic.getPlay();
     const fillColor = optionsLogic.getButtonColor(CarouselElement.playButton);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={playAction.keys} position={position} isShortcutVisible={isShortcutVisible} isVisible={isVisible}>
+        <CarouselItemViewerShortcutIndicator
+            actionName={actionName}
+            shortcuts={playAction.keys}
+            position={position}
+            isShortcutVisible={isShortcutVisible}
+            isVisible={isVisible}
+        >
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
-                <PlayButton ref={ref} onClick={onClick} childStyle={style} fillColor={fillColor} />
+                <CarouselItemViewerCustomButton
+                    ref={ref}
+                    onClick={onClick}
+                    style={stylingLogic.getCarouselElementChildSizeStlye({ buttonName: CarouselElement.playButton, subElementName: null })}
+                    xlinkHref={svgHref}
+                    useElementStyle={style}
+                    fillColor={fillColor}
+                /> :
+                <PlayButton
+                    ref={ref}
+                    onClick={onClick}
+                    childStyle={style}
+                    fillColor={fillColor}
+                />
             }
         </CarouselItemViewerShortcutIndicator>
     )

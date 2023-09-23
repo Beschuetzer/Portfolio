@@ -16,16 +16,32 @@ export const CarouselItemViewerSeekForwardButton = forwardRef<any, CarouselItemV
     } = props;
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.seekForwardButton || {};
-    const { optionsLogic, toolbarActionsLogic } = useBusinessLogic();
+    const { optionsLogic, stylingLogic, toolbarActionsLogic } = useBusinessLogic();
     const seekForwardAction = toolbarActionsLogic.getSeekForwards();
     const fillColor = optionsLogic.getButtonColor(CarouselElement.seekForwardButton);
     const actionNameToUse = useMemo(() => `${actionName} ${optionsLogic.videoSeekAmount} seconds`, [actionName, optionsLogic.videoSeekAmount]);
 
     return (
-        <CarouselItemViewerShortcutIndicator actionName={actionNameToUse} shortcuts={seekForwardAction.keys} position={position} isShortcutVisible={isShortcutVisible}>
+        <CarouselItemViewerShortcutIndicator
+            actionName={actionNameToUse}
+            shortcuts={seekForwardAction.keys}
+            position={position}
+            isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
-                <SeekForwardButton ref={ref} onClick={onClick} childStyle={style} fillColor={fillColor} />}
+                <CarouselItemViewerCustomButton
+                    ref={ref}
+                    onClick={onClick}
+                    style={stylingLogic.getCarouselElementChildSizeStlye({ buttonName: CarouselElement.seekForwardButton, subElementName: null })}
+                    xlinkHref={svgHref}
+                    useElementStyle={style}
+                    fillColor={fillColor}
+                /> :
+                <SeekForwardButton
+                    ref={ref}
+                    onClick={onClick}
+                    childStyle={style}
+                    fillColor={fillColor}
+                />}
         </CarouselItemViewerShortcutIndicator>
     )
 })
