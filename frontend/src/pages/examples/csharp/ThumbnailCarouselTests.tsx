@@ -1262,7 +1262,7 @@ const itemViewerModalMinimizedOpacity = (
 				opacityWhenMinimized: -1,
 			}
 		}
-	}}/>
+	}} />
 )
 const itemViewerCustomModalOnLoad = (
 	<Carousel items={items.slice(2, 3)} />
@@ -1314,6 +1314,37 @@ const customButtonSizes = (
 				// 	fillColor: 'red',
 				// },
 				dots: {}
+			}
+		},
+		layout: {
+			itemDisplayLocation: "above",
+		}
+	}} />
+);
+const customButtonSizesWithCustomIcons = (
+	<Carousel items={items} options={{
+		thumbnail: {
+			size: 150,
+		},
+		styling: {
+			navigation: {
+				elements: {
+					size: [[18, 550, "max-width"], [20, 655, "max-width"], [30, 900, "min-width"]],
+					color: getComputedStyleCustom('--color-primary-3'),
+				},
+			},
+			toolbar: {
+				elements: {
+					size: [[18, 550, "max-width"], [20, 655, "max-width"], [30, 900, "min-width"]],
+					color: getComputedStyleCustom('--color-primary-4'),
+				}
+			},
+			elements: {
+				...customButtons,
+				fullscreenButton: {
+					svgHref: customButtons.fullScreenButton.svgHref,
+					fillColor: getComputedStyleCustom('--color-primary-4')
+				}
 			}
 		},
 		layout: {
@@ -2341,11 +2372,11 @@ const themeAllValuesChangedDisplayNone = (
 		options={{
 			styling: {
 				colorTheme: {
-					colorOne:  getComputedStyleCustom("--color-primary-1"),
-					colorTwo:  getComputedStyleCustom("--color-primary-2"),
-					colorThree:  getComputedStyleCustom("--color-primary-2"),
-					colorFour:  getComputedStyleCustom("--color-primary-3"),
-					colorFive:  getComputedStyleCustom("--color-primary-4"),
+					colorOne: getComputedStyleCustom("--color-primary-1"),
+					colorTwo: getComputedStyleCustom("--color-primary-2"),
+					colorThree: getComputedStyleCustom("--color-primary-2"),
+					colorFour: getComputedStyleCustom("--color-primary-3"),
+					colorFive: getComputedStyleCustom("--color-primary-4"),
 				}
 			}
 		}}
@@ -2360,13 +2391,13 @@ const themeAllValuesChangedDisplayAbove = (
 			},
 			styling: {
 				colorTheme: {
-					colorOne:  getComputedStyleCustom("--color-primary-4"),
-					colorTwo:  getComputedStyleCustom("--color-primary-2"),
-					colorThree:  getComputedStyleCustom("--color-primary-2"),
-					colorFour:  getComputedStyleCustom("--color-primary-3"),
-					colorFive:  getComputedStyleCustom("--color-primary-1"),
+					colorOne: getComputedStyleCustom("--color-primary-4"),
+					colorTwo: getComputedStyleCustom("--color-primary-2"),
+					colorThree: getComputedStyleCustom("--color-primary-2"),
+					colorFour: getComputedStyleCustom("--color-primary-3"),
+					colorFive: getComputedStyleCustom("--color-primary-1"),
 				},
-				
+
 
 			}
 		}}
@@ -2381,11 +2412,11 @@ const themeAllValuesChangedDisplayBelow = (
 			},
 			styling: {
 				colorTheme: {
-					colorOne:  getComputedStyleCustom("--color-primary-4"),
-					colorTwo:  getComputedStyleCustom("--color-primary-2"),
-					colorThree:  getComputedStyleCustom("--color-primary-2"),
-					colorFour:  getComputedStyleCustom("--color-primary-3"),
-					colorFive:  getComputedStyleCustom("--color-primary-1"),
+					colorOne: getComputedStyleCustom("--color-primary-4"),
+					colorTwo: getComputedStyleCustom("--color-primary-2"),
+					colorThree: getComputedStyleCustom("--color-primary-2"),
+					colorFour: getComputedStyleCustom("--color-primary-3"),
+					colorFive: getComputedStyleCustom("--color-primary-1"),
 				}
 			}
 		}}
@@ -2400,19 +2431,19 @@ const themeAllValuesChangedDisplayAboveDefaultForFullscreen = (
 			},
 			styling: {
 				colorTheme: {
-					colorOne:  {
+					colorOne: {
 						nonFullscreen: getComputedStyleCustom("--color-primary-4"),
 					},
-					colorTwo:  {
+					colorTwo: {
 						nonFullscreen: getComputedStyleCustom("--color-primary-2"),
 					},
-					colorThree:  {
+					colorThree: {
 						nonFullscreen: getComputedStyleCustom("--color-primary-2"),
 					},
-					colorFour:  {
+					colorFour: {
 						nonFullscreen: getComputedStyleCustom("--color-primary-3"),
 					},
-					colorFive:  {
+					colorFive: {
 						nonFullscreen: getComputedStyleCustom("--color-primary-1"),
 					},
 				}
@@ -3621,19 +3652,23 @@ const SECTIONS: Sections = [
 				label: "Change All theme Values but Default when Fullscreen - Above Display Location",
 				jsx: themeAllValuesChangedDisplayAboveDefaultForFullscreen
 			},
-			
+
 		]
 	],
 	[
 		SectionNames.custom,
 		[
+			// {
+			// 	label: "All Custom Settings",
+			// 	jsx: allCustomSettings,
+			// },
+			// {
+			// 	label: "Custom Button Sizes",
+			// 	jsx: customButtonSizes
+			// },
 			{
-				label: "All Custom Settings",
-				jsx: allCustomSettings,
-			},
-			{
-				label: "Custom Button Sizes",
-				jsx: customButtonSizes
+				label: "Custom Button Sizes with Custom Icons",
+				jsx: customButtonSizesWithCustomIcons
 			},
 		]
 	]
@@ -3643,8 +3678,9 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	// ...Object.values(SectionNames),
 	// SectionNames.aboveCustomization,
 	// SectionNames.belowCustomization,
-	SectionNames.itemViewer,
-	SectionNames.dynamicBasedOnViewingMode,
+	// SectionNames.itemViewer,
+	// SectionNames.dynamicBasedOnViewingMode,
+	SectionNames.custom,
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,
 	// SectionNames.imagePosition,

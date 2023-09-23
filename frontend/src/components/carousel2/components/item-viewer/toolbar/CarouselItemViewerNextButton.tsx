@@ -14,21 +14,36 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
         onClick = () => null,
         position = 'center',
     } = props;
+    const { stylingLogic } = useBusinessLogic();
     const { elementStylings } = useCarouselContext();
     const { svgHref, style } = elementStylings?.nextButton || {};
-    const { 
+    const {
         optionsLogic,
         toolbarActionsLogic,
         toolbarLogic
-     } = useBusinessLogic();
+    } = useBusinessLogic();
     const nextItemAction = toolbarActionsLogic.getNextItem();
     const fillColor = optionsLogic.getButtonColor(CarouselElement.nextButton);
 
     return (
         <CarouselItemViewerShortcutIndicator actionName={actionName} shortcuts={nextItemAction.keys} position={position} isShortcutVisible={isShortcutVisible}>
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClick} xlinkHref={svgHref} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} useElementStyle={style} fillColor={fillColor} /> :
-                <NextButton ref={ref} onClick={onClick} showButton={toolbarLogic.getShouldDisplayNextAndBackButton()} childStyle={style} fillColor={fillColor} />}
+                <CarouselItemViewerCustomButton
+                    ref={ref}
+                    onClick={onClick}
+                    xlinkHref={svgHref}
+                    showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}
+                    style={stylingLogic.getCarouselElementChildSizeStlye({ buttonName: CarouselElement.nextButton })}
+                    useElementStyle={style}
+                    fillColor={fillColor}
+                /> :
+                <NextButton
+                    ref={ref}
+                    onClick={onClick}
+                    showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}
+                    childStyle={style}
+                    fillColor={fillColor}
+                />}
         </CarouselItemViewerShortcutIndicator>
     )
 })
