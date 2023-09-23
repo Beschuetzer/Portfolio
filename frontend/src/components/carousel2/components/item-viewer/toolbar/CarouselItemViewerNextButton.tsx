@@ -33,7 +33,7 @@ export const CarouselItemViewerNextButton = forwardRef<any, CarouselItemViewerNe
                     onClick={onClick}
                     xlinkHref={svgHref}
                     showButton={toolbarLogic.getShouldDisplayNextAndBackButton()}
-                    style={stylingLogic.getCarouselElementChildSizeStlye({ buttonName: CarouselElement.nextButton })}
+                    style={stylingLogic.getCarouselElementChildSizeStlye({ buttonName: CarouselElement.nextButton, subElementName: null })}
                     useElementStyle={style}
                     fillColor={fillColor}
                 /> :

@@ -22,7 +22,8 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
     const {
         optionsLogic,
         toolbarActionsLogic,
-        toolbarLogic
+        toolbarLogic,
+        stylingLogic,
     } = useBusinessLogic();
     const closeAction = toolbarActionsLogic.getClose();
     const { svgHref, style } = elementStylings?.closeButton || {};
@@ -54,8 +55,20 @@ export const CarouselItemViewerCloseButton = forwardRef<any, CarouselItemViewerC
             showButton={isFullscreenMode}
         >
             {!!svgHref ?
-                <CarouselItemViewerCustomButton ref={ref} onClick={onClickLocal} xlinkHref={svgHref} useElementStyle={style} fillColor={fillColor} /> :
-                <CloseButton ref={ref} onClick={onClickLocal} fillColor={fillColor} childStyle={style} />
+                <CarouselItemViewerCustomButton
+                    ref={ref}
+                    onClick={onClickLocal}
+                    xlinkHref={svgHref}
+                    style={stylingLogic.getCarouselElementChildSizeStlye({ buttonName: CarouselElement.closeButton, subElementName: null })}
+                    useElementStyle={style}
+                    fillColor={fillColor}
+                /> :
+                <CloseButton
+                    ref={ref}
+                    onClick={onClickLocal}
+                    fillColor={fillColor}
+                    childStyle={style}
+                />
             }
         </CarouselItemViewerShortcutIndicator>
     )

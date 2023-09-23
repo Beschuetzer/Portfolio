@@ -20,7 +20,7 @@ export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemVi
         videoRef,
     } = props;
     const { elementStylings, setIsFullscreenMode, isFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
-    const { optionsLogic } = useBusinessLogic();
+    const { optionsLogic, stylingLogic } = useBusinessLogic();
     const { svgHref, style: buttonStyle } = elementStylings?.fullscreenButton || {};
     const fillColor = optionsLogic.getButtonColor(CarouselElement.fullscreenButton);
 
@@ -43,6 +43,7 @@ export const CarouselItemViewerFullscreenButton = forwardRef<any, CarouselItemVi
                     ref={ref}
                     onClick={onClickLocal}
                     xlinkHref={svgHref}
+                    style={stylingLogic.getCarouselElementChildSizeStlye({ buttonName: CarouselElement.fullscreenButton, subElementName: null })}
                     useElementStyle={buttonStyle}
                     fillColor={fillColor}
                     classNamesToInclude={[CLASSNAME__BUTTON_SCALE_ON_HOVER]}

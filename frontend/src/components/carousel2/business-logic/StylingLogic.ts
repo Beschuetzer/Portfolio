@@ -25,6 +25,8 @@ import { RegexpPattern } from "./RegexpPattern";
 import { CarouselItemViewerShortcutIndicatorPosition } from "../components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
 import { TEXT_TRANSLATION_AMOUNT_REF_INITIAL, TextTranslateOffset } from "../components/item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer";
 import { TranslationAmountChange } from "../components/CarouselContent";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { CarouselItemViewerCloseButton } from '../components/item-viewer/toolbar/CarouselItemViewerCloseButton'
 
 export type StylingLogicConstructor = {
     isCurrentItem?: boolean;
@@ -40,7 +42,7 @@ export type StylingLogicConstructor = {
 
 export type GetToolbarButtonSizeStlye = {
     buttonName: CarouselElement;
-    subElementName?: string;
+    subElementName?: string | null;
     style?: CSSProperties;
 }
 
@@ -1152,9 +1154,17 @@ export class StylingLogic {
         } as CSSProperties
     }
 
-    //this is used on the individual divs within a given button
+    /**
+    *Use this to get the size for a button.
+    *Custom icon buttons should set {@link GetToolbarButtonSizeStlye.subElementName subElementName} to `null`.
+    *See the usage of `CarouselItemViewerCustomButton` in {@link CarouselItemViewerCloseButton} for an example.
+    **/
     getCarouselElementChildSizeStlye({ buttonName, subElementName, style }: GetToolbarButtonSizeStlye) {
         const buttonSizeStyle = this.getCarouselElementSizeStlye(buttonName, parseInt(style?.width as string, 10) || 0);
+
+        //If no subElementName is used, then it's a custom icon and we just want the buttonSizeStyle
+        if (subElementName === null) return buttonSizeStyle;
+
         const parsedWidth = parseInt(buttonSizeStyle.width as string, 10);
         const maxHeightFactor = .8333333;
 
@@ -1185,7 +1195,8 @@ export class StylingLogic {
                             ...commonArrowButtonStyle,
                             ...arrowButtonTopTwoStlye,
                         }
-                    default: return {};
+                    default:
+                        return buttonSizeStyle;
                 }
             case CarouselElement.arrowRight:
                 switch (subElementName) {
@@ -1199,7 +1210,8 @@ export class StylingLogic {
                             ...commonArrowButtonStyle,
                             ...arrowButtonTopOneStlye,
                         }
-                    default: return {};
+                    default:
+                        return buttonSizeStyle;
                 }
             case CarouselElement.closeButton:
                 return {

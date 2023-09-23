@@ -3658,14 +3658,14 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.custom,
 		[
-			// {
-			// 	label: "All Custom Settings",
-			// 	jsx: allCustomSettings,
-			// },
-			// {
-			// 	label: "Custom Button Sizes",
-			// 	jsx: customButtonSizes
-			// },
+			{
+				label: "All Custom Settings",
+				jsx: allCustomSettings,
+			},
+			{
+				label: "Custom Button Sizes",
+				jsx: customButtonSizes
+			},
 			{
 				label: "Custom Button Sizes with Custom Icons",
 				jsx: customButtonSizesWithCustomIcons
