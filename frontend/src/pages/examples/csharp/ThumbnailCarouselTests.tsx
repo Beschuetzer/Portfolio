@@ -3753,12 +3753,12 @@ const SECTIONS: Sections = [
 ];
 
 const ENABLED_SECTIONS: SectionNames[] = [
-	...Object.values(SectionNames),
+	// ...Object.values(SectionNames),
 	// SectionNames.aboveCustomization,
 	// SectionNames.belowCustomization,
 	// SectionNames.itemViewer,
 	// SectionNames.dynamicBasedOnViewingMode,
-	// SectionNames.custom,
+	SectionNames.custom,
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.layouts,
 	// SectionNames.imagePosition,

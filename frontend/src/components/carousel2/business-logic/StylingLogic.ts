@@ -17,6 +17,7 @@ import {
     CLASSNAME__ITEM_CONTAINER,
     TOOLBAR_TIME_STRING_SECTION_DIVIDER,
     FONT_WEIGHT_DEFAULT,
+    TOOLBAR_MARGIN_RIGHT_OFFSET,
 } from "../constants";
 import { CarouselModalInternalProps } from "../components/modal/CarouselModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -607,7 +608,7 @@ export class StylingLogic {
     get carouselVideoProgressContainerStyle() {
         const widthToUse = this.optionsLogic.progressBarShouldSpanEntireWidth
             ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})`
-            : '100%';
+            : `calc(100% - ${TOOLBAR_MARGIN_RIGHT_OFFSET}${CAROUSEL_SPACING_UNIT}`;
         const heightToUse = this.optionsLogic.isToolbarInVideo ? 'auto' : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT;
 
         const common = {
@@ -1078,7 +1079,7 @@ export class StylingLogic {
             paddingLeft: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : leftSpacing,
             paddingRight: this.optionsLogic.isToolbarInVideo && !this.isFullscreenMode ? 0 : rightSpacing,
             marginLeft: !this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? 0 : leftSpacing,
-            marginRight: !this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? 0 : rightSpacing,
+            marginRight: (!this.optionsLogic.isToolbarInVideo || this.isFullscreenMode ? 0 : rightSpacing) - TOOLBAR_MARGIN_RIGHT_OFFSET,
         } as CSSProperties;
         const nonDefaultItemDisplayStyle = {
             ...this.getToolbarBackgroundColorStyle(),

@@ -27,6 +27,7 @@ export const PROGRESS_BAR_PERCENT_INITIAL_VALUE = -1;
 export const PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT = false;
 export const SEEK_AMOUNT_DEFAULT = 5000;
 export const TOOLBAR_TIME_STRING_SECTION_DIVIDER = ':';
+export const TOOLBAR_MARGIN_RIGHT_OFFSET = 1;
 export const THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT = true;
 export const TRANSLATION_AMOUNT_INITIAL = 0;
 export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
