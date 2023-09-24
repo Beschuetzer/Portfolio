@@ -791,7 +791,7 @@ export type VideoTimeStrings = {
 //#endregion
 
 //#region Modal
-export type CarouselModalSection = {
+export type CarouselModalSection = Exclusive<{
     /**
     *Use this to specify what the text tag should be.  Default is a {@link MODAL_TEXT_TAG_DEFAULT here}.
     **/
@@ -818,6 +818,12 @@ export type CarouselModalSection = {
     *By default, the padding is set to {@link CAROUSEL_OVERLAY_ITEM_PADDING_TOP this}.
     **/
     textStyles?: CSSProperties;
+}, {
+    codeSection?: CarouselModalCodeSection;
+}>
+
+export type CarouselModalCodeSection = {
+
 }
 //#endregion
 
