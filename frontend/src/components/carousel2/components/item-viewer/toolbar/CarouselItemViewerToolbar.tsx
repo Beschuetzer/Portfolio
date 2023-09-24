@@ -44,9 +44,9 @@ export type CarouselItemViewerToolbarProps = {
     percent?: number;
     seekPercent?: number;
     setCurrentVideoSection?: React.Dispatch<React.SetStateAction<number>>;
-    setIsVideoPlaying?: React.Dispatch<React.SetStateAction<boolean>>;
     setPercent?: React.Dispatch<React.SetStateAction<number>>;
     setSeekPercent?: React.Dispatch<React.SetStateAction<number>>;
+    toggleIsVideoPlaying?: (state?: boolean) => void;
     videoRef?: React.MutableRefObject<HTMLVideoElement | undefined> | null;
 };
 
@@ -65,7 +65,7 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
         percent = 0,
         seekPercent = 0,
         setCurrentVideoSection,
-        setIsVideoPlaying = () => null,
+        toggleIsVideoPlaying = () => null,
         setPercent = () => null,
         setSeekPercent = () => null,
         videoRef,
@@ -279,20 +279,20 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
     const onPauseClick = useCallback(() => {
         if (videoRef?.current) {
             videoRef?.current.pause();
-            setIsVideoPlaying(false);
+            toggleIsVideoPlaying(false);
         }
         handleAutoHide();
         toolbarActionsLogic.getPause().onActionCompleted();
-    }, [videoRef, setIsVideoPlaying, handleAutoHide, toolbarActionsLogic]);
+    }, [videoRef, toggleIsVideoPlaying, handleAutoHide, toolbarActionsLogic]);
 
     const onPlayClick = useCallback(() => {
         if (videoRef?.current) {
             videoRef?.current.play();
-            setIsVideoPlaying(true);
+            toggleIsVideoPlaying(true);
         }
         handleAutoHide();
         toolbarActionsLogic.getPlay().onActionCompleted();
-    }, [videoRef, handleAutoHide, toolbarActionsLogic, setIsVideoPlaying]);
+    }, [videoRef, handleAutoHide, toolbarActionsLogic, toggleIsVideoPlaying]);
 
     const onSeekBackClick = useCallback(() => {
         if (videoRef?.current) {
@@ -307,12 +307,12 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
             videoRef.current.currentTime += optionsLogic.videoSeekAmount;
 
             if (videoRef.current.currentTime >= videoRef.current.duration) {
-                setIsVideoPlaying(false);
+                toggleIsVideoPlaying(false);
             }
         }
         handleAutoHide();
         toolbarActionsLogic.getSeekForwards().onActionCompleted();
-    }, [videoRef, handleAutoHide, toolbarActionsLogic, optionsLogic.videoSeekAmount, setIsVideoPlaying])
+    }, [videoRef, handleAutoHide, toolbarActionsLogic, optionsLogic.videoSeekAmount, toggleIsVideoPlaying])
 
     function onToolbarClick(e: MouseEvent) {
         e.stopPropagation();
@@ -556,11 +556,11 @@ export const CarouselItemViewerToolbar = forwardRef<HTMLElement, CarouselItemVie
                                 isProgressBarBeingHoveredRef={isProgressBarBeingHoveredRef}
                                 percent={percent}
                                 setCurrentVideoSection={setCurrentVideoSection || doNothing}
-                                setIsVideoPlaying={setIsVideoPlaying}
                                 setTimeStrings={setTimeStrings}
                                 setSeekPercent={setSeekPercent}
                                 seekPercent={seekPercent}
                                 setPercent={setPercent}
+                                toggleIsVideoPlaying={toggleIsVideoPlaying}
                                 videoRef={videoRef}
                             /> : null
                     }

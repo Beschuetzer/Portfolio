@@ -30,7 +30,7 @@ type CarouselItemViewerProgressBarProps = {
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef'>
     & Required<Pick<
         CarouselItemViewerToolbarProps,
-        'setIsVideoPlaying' | 'currentVideoSection' | 'setCurrentVideoSection' | 'seekPercent' | 'setSeekPercent' | 'percent' | 'setPercent'
+        'toggleIsVideoPlaying' | 'currentVideoSection' | 'setCurrentVideoSection' | 'seekPercent' | 'setSeekPercent' | 'percent' | 'setPercent'
     >>
     & Pick<CarouselModalInternalProps, 'isProgressBarBeingHoveredRef'>
 
@@ -44,7 +44,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         percent,
         seekPercent,
         setCurrentVideoSection,
-        setIsVideoPlaying,
+        toggleIsVideoPlaying,
         setPercent,
         setSeekPercent,
         setTimeStrings,
@@ -121,20 +121,20 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         }
 
         setSeekPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
-        setIsVideoPlaying && setIsVideoPlaying(true);
+        toggleIsVideoPlaying && toggleIsVideoPlaying(true);
 
         if (videoRef?.current && isFinite(videoRef.current.duration)) {
             videoRef.current.currentTime = percent * videoRef.current.duration;
             videoRef?.current?.play();
         }
-    }, [isMouseDownRef, percent, setCurrentVideoSection, setIsVideoPlaying, setSeekPercent, videoRef]);
+    }, [isMouseDownRef, percent, setCurrentVideoSection, toggleIsVideoPlaying, setSeekPercent, videoRef]);
 
     const onMouseDown = useCallback((e: MouseEvent | TouchEvent) => {
         wasMouseUpJustTriggeredRef.current = false;
         if (isMouseDownRef) {
             isMouseDownRef.current = true;
         }
-        setIsVideoPlaying && setIsVideoPlaying(false);
+        toggleIsVideoPlaying && toggleIsVideoPlaying(false);
         videoRef?.current?.pause();
 
         const progressBar = e.currentTarget as HTMLDivElement;
@@ -147,7 +147,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             setSeekPercent(video.currentTime / video.duration);
             video.currentTime = percent * video.duration;
         }
-    }, [getPercent, isMouseDownRef, setIsVideoPlaying, setPercent, setSeekPercent, videoRef]);
+    }, [getPercent, isMouseDownRef, toggleIsVideoPlaying, setPercent, setSeekPercent, videoRef]);
 
     const onMouseLeave = useCallback((e: MouseEvent | TouchEvent) => {
         if (isMouseDownRef?.current) {

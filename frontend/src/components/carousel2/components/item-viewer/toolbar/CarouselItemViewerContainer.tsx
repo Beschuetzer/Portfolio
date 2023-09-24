@@ -6,7 +6,7 @@ import { CLASSNAME__ITEM_CONTAINER } from '../../../constants';
 
 type CarouselItemViewerContainerProps = {
     children: ReactNode | ReactNode[];
-    onClick?: () => void;
+    onClick?: (e: MouseEvent) => void;
 }
 
 const CURRENT_INTERVAL_INITIAL = 0;
@@ -117,7 +117,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
             ref={itemContainerRef}
             style={stylingLogic.getCarouselItemContainerStyle(height || 'auto')}
             className={CLASSNAME__ITEM_CONTAINER}
-            onClick={onClick} >
+            onClick={onClick as any} >
             {children}
         </div>
     )

@@ -29,7 +29,7 @@ export type CarouselVideoOptions = {
     muted?: boolean;
     objectFit?: React.CSSProperties["objectFit"];
     objectPosition?: React.CSSProperties["objectPosition"];
-    
+
     /**
     *Each section is comprised of a description string and a duration (in ms).
     *Each section starts 1ms after the previous section ended.
@@ -54,21 +54,29 @@ export type CarouselVideoOptions = {
     sections?: CarouselVideoSection[];
 };
 
-export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewerToolbarProps, 'itemContainerRef'>) => {
+export type CarouselVideoProps = {
+    isVideoPlaying: boolean;
+    isVideoStateChangeInitiatedInternallyRef: React.MutableRefObject<boolean>;
+    setIsVideoPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pick<CarouselItemViewerToolbarProps, 'itemContainerRef'>) => {
     //#region Init
     const {
         description,
+        isVideoPlaying,
+        isVideoStateChangeInitiatedInternallyRef,
         itemContainerRef,
+        setIsVideoPlaying,
         srcMain,
         video: videoProps,
     } = props;
-    const { options, currentItemIndex, currentVideoCurrentTime, isFullscreenMode, setIsFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
+    const { options, currentItemIndex, currentVideoCurrentTime, isFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
 
     const { autoPlay, loop, muted } = videoProps || {};
     const [isLoaded, setIsLoaded] = useState(false);
     const [percent, setPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     const [seekPercent, setSeekPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
-    const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [currentVideoSection, setCurrentVideoSection] = useState(CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL);
     const videoRef = useRef<HTMLVideoElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
@@ -86,6 +94,27 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     //#endregion
 
     //#region Functions/Handlers
+    const toggleIsVideoPlaying = useCallback((state?: boolean) => {
+        isVideoStateChangeInitiatedInternallyRef.current = true;
+        if (state) {
+            setIsVideoPlaying(state);
+        } else {
+            setIsVideoPlaying((current) => current);
+        }
+    }, [isVideoStateChangeInitiatedInternallyRef, setIsVideoPlaying]);
+
+    const playVideo = useCallback(() => {
+        if (videoRef.current) {
+            if (getIsVideoPlaying(videoRef.current)) {
+                videoRef.current?.pause();
+                toggleIsVideoPlaying(false);
+            } else {
+                videoRef.current?.play();
+                toggleIsVideoPlaying(true);
+            }
+        }
+    }, [toggleIsVideoPlaying])
+
     const handleItemNavigation = useCallback(() => {
         setIsLoaded(false);
 
@@ -100,32 +129,8 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
 
     const handleOnLoadedData = useCallback(() => {
         setIsLoaded(true);
-        setIsVideoPlaying(false);
-    }, [])
-
-    const onVideoClick = useCallback((e: MouseEvent) => {
-        if (optionsLogic.useDefaultVideoControls) {
-            if (videoRef.current) {
-                //note: this doesn't seem to work when in fullscreen mode
-                setIsVideoPlaying(current => !current)
-            }
-            return;
-        }
-
-        if (e.detail === 2) {
-            setIsFullscreenMode((current) => !current);
-            setCurrentVideoCurrentTime(videoRef.current?.currentTime || CURRENT_VIDEO_CURRENT_TIME_DEFAULT);
-        }
-        if (videoRef.current) {
-            if (getIsVideoPlaying(videoRef.current)) {
-                videoRef.current?.pause();
-                setIsVideoPlaying(false);
-            } else {
-                videoRef.current?.play();
-                setIsVideoPlaying(true);
-            }
-        }
-    }, [optionsLogic.useDefaultVideoControls, setCurrentVideoCurrentTime, setIsFullscreenMode]);
+        toggleIsVideoPlaying(false);
+    }, [toggleIsVideoPlaying])
     //#endregion
 
     //#region Side Fx
@@ -141,10 +146,11 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
     //triggering a load event (https://stackoverflow.com/questions/41303012/updating-source-url-on-html5-video-with-react)
     useEffect(() => {
         setIsLoaded(false);
+        setCurrentVideoCurrentTime(CURRENT_VIDEO_CURRENT_TIME_DEFAULT);
         if (videoRef.current?.load) {
             videoRef.current.load();
         }
-    }, [currentItemIndex, srcMain, videoRef, videoProps?.autoPlay])
+    }, [currentItemIndex, srcMain, videoRef, videoProps?.autoPlay, setCurrentVideoCurrentTime])
 
     useEffect(() => {
         if (videoRef.current) {
@@ -154,16 +160,9 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
 
     useEffect(() => {
         function handleFullscreenChange(e: Event) {
+            setCurrentVideoCurrentTime(videoRef.current?.currentTime || CURRENT_VIDEO_CURRENT_TIME_DEFAULT);
             if (!isFullscreenMode) return;
-            if (videoRef.current) {
-                if (getIsVideoPlaying(videoRef.current)) {
-                    videoRef.current?.pause();
-                    setIsVideoPlaying(false);
-                } else {
-                    videoRef.current?.play();
-                    setIsVideoPlaying(true);
-                }
-            }
+            playVideo();
         }
 
         document.addEventListener('fullscreenchange', handleFullscreenChange);
@@ -177,7 +176,12 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
             document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
             document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
         }
-    }, [isFullscreenMode])
+    }, [isFullscreenMode, playVideo, setCurrentVideoCurrentTime, setIsVideoPlaying])
+
+    useEffect(() => {
+        if (isVideoStateChangeInitiatedInternallyRef.current) return;
+        playVideo();
+    }, [isVideoPlaying, isVideoStateChangeInitiatedInternallyRef, playVideo])
     //#endregion
 
     //#region JSX   
@@ -207,10 +211,9 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                     autoPlay={!!autoPlay}
                     muted={!!muted}
                     loop={!!loop}
-                    onClick={onVideoClick as any}
                     onLoadedData={handleOnLoadedData}
-                    onPlay={() => setIsVideoPlaying(true)}
-                    onEnded={() => setIsVideoPlaying(false)}
+                    onPlay={() => toggleIsVideoPlaying(true)}
+                    onEnded={() => toggleIsVideoPlaying(false)}
                 >
                     <source src={srcMain} type={`video/${type}`} />
                     Your browser does not support the HTML5 video tag. Try using a different browser.
@@ -229,7 +232,7 @@ export const CarouselVideo = (props: CarouselItemProps & Pick<CarouselItemViewer
                 setPercent={setPercent}
                 seekPercent={seekPercent}
                 setCurrentVideoSection={setCurrentVideoSection}
-                setIsVideoPlaying={setIsVideoPlaying}
+                toggleIsVideoPlaying={toggleIsVideoPlaying}
                 setSeekPercent={setSeekPercent}
                 videoRef={videoRef}
             />

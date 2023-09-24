@@ -1,5 +1,5 @@
 Carousel rework
-  -clicking in the container when a video is full-screen, doesn't stop the video (may need a callback passed into Video from container?)
+  -add option to reset isModalMinimized state on item change (default to true)
   -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
