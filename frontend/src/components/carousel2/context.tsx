@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { CarouselItemProps } from "./components/CarouselItem";
-import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, CURRENT_VIDEO_CURRENT_TIME_DEFAULT } from "./constants";
+import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, CURRENT_VIDEO_CURRENT_TIME_DEFAULT, MODAL_IS_MINIMIZED_INITIAL } from "./constants";
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
 import { CarouselOptions, CarouselElementStyles } from "./types";
@@ -21,12 +21,14 @@ export type CarouselContextOutputProps = {
     currentVideoCurrentTime: number;
     elementStylings: CarouselElementStyles | undefined;
     isFullscreenMode: boolean;
+    isModalMinimized: boolean;
     itemViewerRef: React.RefObject<HTMLElement>;
     numberOfPages: number;
     setCurrentItemIndex: React.Dispatch<React.SetStateAction<number>>;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
     setCurrentVideoCurrentTime: React.Dispatch<React.SetStateAction<number>>;
     setIsFullscreenMode: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsModalMinimized: React.Dispatch<React.SetStateAction<boolean>>;
     setItems: React.Dispatch<React.SetStateAction<CarouselItemProps[]>>;
     setNumberOfPages: React.Dispatch<React.SetStateAction<number>>;
     setOptions: React.Dispatch<React.SetStateAction<CarouselOptions>>;
@@ -45,6 +47,7 @@ export const CarouselProvider = (props: CarouselContextInputProps) => {
     const [currentPage, setCurrentPage] = useState(CURRENT_PAGE_INITIAL);
     const [currentVideoCurrentTime, setCurrentVideoCurrentTime] = useState(CURRENT_VIDEO_CURRENT_TIME_DEFAULT);
     const [isFullscreenMode, setIsFullscreenMode] = useState(false);
+    const [isModalMinimized, setIsModalMinimized] = useState(MODAL_IS_MINIMIZED_INITIAL)
     const [items, setItems] = useState(itemsInput);
     const [numberOfPages, setNumberOfPages] = useState(0);
     const [options, setOptions] = useState<CarouselOptions>(optionsInput || {});
@@ -74,6 +77,7 @@ export const CarouselProvider = (props: CarouselContextInputProps) => {
                 elementStylings: options.styling?.elements,
                 hiddenInputRef,
                 isFullscreenMode,
+                isModalMinimized,
                 itemViewerRef,
                 items,
                 numberOfPages,
@@ -82,6 +86,7 @@ export const CarouselProvider = (props: CarouselContextInputProps) => {
                 setCurrentPage,
                 setCurrentVideoCurrentTime,
                 setIsFullscreenMode,
+                setIsModalMinimized,
                 setItems,
                 setNumberOfPages,
                 setOptions,

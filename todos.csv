@@ -1,5 +1,4 @@
 Carousel rework
-  -modal minimized state doesn't carry across screen sizes.
   -clicking in the container when a video is full-screen, doesn't stop the video (may need a callback passed into Video from container?)
   -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -check how fullscreen looks on phone (should rotate)
