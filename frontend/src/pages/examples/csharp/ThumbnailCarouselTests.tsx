@@ -430,89 +430,81 @@ const items = [
 		modal: {
 			sections: [
 				{
-					title: "Section 1",
-					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+					title: "Overflow: Scroll",
+					text: "Modals that exceed the max height will display a scroll bar."
 				},
 				{
-					title: "Section 2",
-					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 3",
-					text: "The modal box should still be displayed nicely inside the video frame."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 1",
-					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 2",
-					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 3",
-					text: "The modal box should still be displayed nicely inside the video frame."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 1",
-					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 2",
-					text: "This is where the second section text goes. This could get really long for some cases so need to be able to scroll it."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 3",
-					text: "The modal box should still be displayed nicely inside the video frame."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
 				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
+					title: "Filler",
+					text: "This is where the section text goes. This could get really long for some cases so need to be able to scroll it."
 				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				},
-				{
-					title: "Section 4",
-					text: "Scrolling up and down within the box adjust the height of the modal allowing users to see the rest of the modal."
-				}
 			],
 		},
 	},
@@ -596,16 +588,21 @@ const items = [
 		modal: {
 			children: (
 				<>
-					<CSharpCardSection title="Contract is 1&clubs;">
-						The first part of the video highlights the process of
-						applying the contract matching filter.&nbsp; There are two
-						matches found.
-					</CSharpCardSection>
-					<CSharpCardSection title="Two Filters = Double the Filtering">
-						The second filter applied requires 'Ann' to have the
-						2&clubs;. In one of the filtered games, she does and in the
-						other one she doesn't.
-					</CSharpCardSection>
+					<section>
+						<h4 style={{
+							color: 'white',
+							fontSize: 18,
+							padding: '0 30px 10px 0',
+						}}>
+							Using JSX to Create a Modal (No Auto Play on this Video)
+						</h4>
+						<div
+						style={{
+							fontFamily: "Open Sans, sans-serif",
+						}}>
+							This means that the video will not start immediately after you have clicked it.
+						</div>
+					</section>
 				</>
 			),
 		},
