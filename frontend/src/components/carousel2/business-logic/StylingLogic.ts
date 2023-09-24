@@ -582,6 +582,9 @@ export class StylingLogic {
             objectPosition: this.currentItem?.video?.objectPosition || 'bottom',
         } as CSSProperties;
 
+        console.log({currentItem: this.currentItem, objectStyles});
+        
+
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
             ...objectStyles,

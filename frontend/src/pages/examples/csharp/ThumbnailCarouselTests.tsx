@@ -518,21 +518,9 @@ const items = [
 		}
 	},
 	{
-		description: "Default Modal with Sections (no auto play)",
+		description: "Many Sections (No Modal)",
 		srcMain: clipFilters,
 		srcThumbnail: clipFiltersThumbnail,
-		modal: {
-			sections: [
-				{
-					title: "Section 1",
-					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
-				},
-				{
-					title: "Section 2",
-					text: "This is where the second section text goes."
-				}
-			],
-		},
 		video: {
 			autoPlay: false,
 			muted: true,
@@ -560,13 +548,9 @@ const items = [
 		modal: {
 			sections: [
 				{
-					title: "Section 1",
-					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+					title: "Object Fit",
+					text: "The object fit for this video is set to <strong>scale-down</strong>.  The difference is most noticable in fullscreen when changing viewports though."
 				},
-				{
-					title: "Section 2",
-					text: "This is where the second section text goes."
-				}
 			],
 		},
 		video: {

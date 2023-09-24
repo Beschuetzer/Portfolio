@@ -73,7 +73,7 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
     } = props;
     const { options, currentItemIndex, currentVideoCurrentTime, isFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
 
-    const { autoPlay, loop, muted } = videoProps || {};
+    const { autoPlay = false, loop = false, muted = true } = videoProps || {};
     const [isLoaded, setIsLoaded] = useState(false);
     const [percent, setPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
     const [seekPercent, setSeekPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
@@ -161,7 +161,7 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
     useEffect(() => {
         function handleFullscreenChange(e: Event) {
             setCurrentVideoCurrentTime(videoRef.current?.currentTime || CURRENT_VIDEO_CURRENT_TIME_DEFAULT);
-            // if (!isFullscreenMode) return;
+            if (!isFullscreenMode) return;
             playVideo();
         }
 
@@ -208,9 +208,9 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
                     className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
                     style={stylingLogic.getCarouselVideoStyle(!!isProgressBarMouseDownRef.current)}
                     ref={videoRef as any}
-                    autoPlay={!!autoPlay}
-                    muted={!!muted}
-                    loop={!!loop}
+                    autoPlay={autoPlay}
+                    muted={muted}
+                    loop={loop}
                     onLoadedData={handleOnLoadedData}
                     onPlay={() => toggleIsVideoPlaying(true)}
                     onEnded={() => toggleIsVideoPlaying(false)}

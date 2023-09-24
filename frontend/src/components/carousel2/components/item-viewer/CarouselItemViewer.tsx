@@ -17,7 +17,7 @@ export const CarouselItemViewer = forwardRef<any, CarouselItemViewerProps>((prop
 
     //#region JSX
     const visibilityStyle = isVisible ? getClassname({ modifiedName: 'visible' }) : getClassname({ modifiedName: 'hidden' });
-    const containerClassname = `${getClassname({ elementName: CLASSNAME__ITEM_VIEWER })} ${visibilityStyle}`;
+    const containerClassname = `${CLASSNAME__ITEM_VIEWER} ${visibilityStyle}`;
 
     return (
         <div ref={innerRef as any} className={containerClassname} style={stylingLogic.carouselItemViewerStyle}>
