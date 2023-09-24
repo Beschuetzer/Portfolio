@@ -128,12 +128,18 @@ export class StylingLogic {
         //     cursor: "zoom-in",
         // }as CSSProperties;
 
+        const userDefinedStyles = {
+            ...this.optionsLogic.itemStyles,
+        }
+
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: '100%',
             height: this.imageHeight,
             objectPosition: this.optionsLogic.imagePosition,
+            ...userDefinedStyles,
             // ...cursorStyle,
         } as CSSProperties : {
+            ...userDefinedStyles,
         } as CSSProperties;
     }
 
@@ -577,21 +583,16 @@ export class StylingLogic {
     }
 
     getCarouselVideoStyle(shouldHide: boolean) {
-        const objectStyles = {
-            objectFit: this.currentItem?.video?.objectFit || 'contain',
-            objectPosition: this.currentItem?.video?.objectPosition || 'bottom',
-        } as CSSProperties;
-
-        const common = {
-            ...objectStyles,
+        const userDefinedStyles = {
+            ...this.optionsLogic.itemStyles,
         } as CSSProperties
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            ...common,
+            ...userDefinedStyles,
             zIndex: shouldHide ? -1 : 1,
         } as CSSProperties : {
-            ...common
+            ...userDefinedStyles
         };
     }
 

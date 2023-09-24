@@ -141,94 +141,14 @@ const items = [
 					titleElementType: 'h2',
 					text: "One can use an integer representing the duration in milliseconds that the section should span:",
 				},
-				{
-					textElementType: 'code',
-					text: `sections: [`,
-					textStyles: {
-						fontWeight: 800,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `5px 0 0 10px`,
-					}
-				},
-				{
-					textElementType: 'code',
-					text: `// lasts 2 seconds, so from 0 - 2.`,
-					textStyles: {
-						fontWeight: 400,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					},
-				},
-				{
-					textElementType: 'code',
-					text: `['Searching Users', 2000],`,
-					textStyles: {
-						fontWeight: 800,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					}
-				},
-				{
-					textElementType: 'code',
-					text: `// lasts 5 seconds, so from 2 - 7.`,
-					textStyles: {
-						fontWeight: 400,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					},
-				},
-				{
-					textElementType: 'code',
-					text: `['Filtering Results', 5000],`,
-					textStyles: {
-						fontWeight: 800,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					}
-				},
-				{
-					textElementType: 'code',
-					text: `// takes up the remaining space, so from from 7 - videoEnd.`,
-					textStyles: {
-						fontWeight: 400,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					},
-				},
-				{
-					textElementType: 'code',
-					text: `['Hiding Filters'],`,
-					textStyles: {
-						fontWeight: 800,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					},
-				},
-				{
-					textElementType: 'code',
-					text: ']',
-					textStyles: {
-						fontWeight: 800,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: '0 0 0 10px',
-					},
-				}
+				getCodeSection({ text: `sections: [`, marginTop: 5, tabCount: 0 }),
+				getCodeSection({ text: `// lasts 2 seconds, so from 0 seconds to 2 seconds.`, isComment: true }),
+				getCodeSection({ text: `['Searching Users', 2000],` }),
+				getCodeSection({ text: `// lasts 5 seconds, so from 2 seconds to 7 seconds.`, isComment: true }),
+				getCodeSection({ text: `['Filtering Results', 5000],` }),
+				getCodeSection({ text: `// takes up the remaining space, so from from 7 seconds to videoEnd.`, isComment: true }),
+				getCodeSection({ text: `['Hiding Filters'],` }),
+				getCodeSection({ text: `]`, tabCount: 0 }),
 			]
 		},
 		video: {
@@ -252,94 +172,14 @@ const items = [
 					titleElementType: 'h2',
 					text: "One can use strings to create the video sections in the previous video that uses integers.  In this case, the second value is the <strong>start time</strong> rather than the <strong>duration</strong>.",
 				},
-				{
-					textElementType: 'code',
-					text: `sections: [`,
-					textStyles: {
-						fontWeight: 800,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `5px 0 0 10px`,
-					}
-				},
-				{
-					textElementType: 'code',
-					text: `// when using strings, the first seconds will automatically start a 0, so can be omitted.`,
-					textStyles: {
-						fontWeight: 400,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					},
-				},
-				{
-					textElementType: 'code',
-					text: `['Searching Users'],`,
-					textStyles: {
-						fontWeight: 800,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					}
-				},
-				{
-					textElementType: 'code',
-					text: `// starts at second 2, so goes from 2 - 7.`,
-					textStyles: {
-						fontWeight: 400,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					},
-				},
-				{
-					textElementType: 'code',
-					text: `['Filtering Results', '02:00'],`,
-					textStyles: {
-						fontWeight: 800,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					}
-				},
-				{
-					textElementType: 'code',
-					text: `// starts at second 7 and is last item, so goes to the end of video.`,
-					textStyles: {
-						fontWeight: 400,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					},
-				},
-				{
-					textElementType: 'code',
-					text: `['Hiding Filters', '07:00'], `,
-					textStyles: {
-						fontWeight: 800,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: `0 0 0 20px`,
-					},
-				},
-				{
-					textElementType: 'code',
-					text: ']',
-					textStyles: {
-						fontWeight: 800,
-						fontStyle: 'italic',
-					},
-					textContainerStyles: {
-						padding: '0 0 0 10px',
-					},
-				}
+				getCodeSection({ text: `sections: [`, marginTop: 5, tabCount: 0 }),
+				getCodeSection({ text: `// when using strings, the first seconds will automatically start a 0, so can be omitted.`, isComment: true }),
+				getCodeSection({ text: `['Searching Users'],` }),
+				getCodeSection({ text: `// starts at second 2, so goes from 2 seconds to 7 seconds.`, isComment: true }),
+				getCodeSection({ text: `['Filtering Results', "02:00"],` }),
+				getCodeSection({ text: `// starts at second 7 and is last item, so goes to the end of video.`, isComment: true }),
+				getCodeSection({ text: `['Hiding Filters', '07:00'],` }),
+				getCodeSection({ text: `]`, tabCount: 0 }),
 			]
 		},
 		video: {
@@ -410,9 +250,9 @@ const items = [
 							Using JSX to Create a Modal (Avoiding Conflicts with Button by Adding 30px Padding to the Right of Title Div)
 						</h4>
 						<div
-						style={{
-							fontFamily: "Open Sans, sans-serif",
-						}}>
+							style={{
+								fontFamily: "Open Sans, sans-serif",
+							}}>
 							You can use the <strong>modal.children</strong> field to pass in your own JSX for the modal.
 						</div>
 					</section>
@@ -524,8 +364,6 @@ const items = [
 		video: {
 			autoPlay: false,
 			muted: true,
-			objectFit: 'cover',
-			objectPosition: 'top',
 			sections: [
 				['Login', '02:00'],
 				['Finding Games where Contract is 1 club', '3:00'],
@@ -539,6 +377,10 @@ const items = [
 				['Only One Game Remains', "39:500"],
 				['Proving Remaining Game is the One Where Ann has 2 of Clubs', "43:00"],
 			]
+		},
+		itemStyles: {
+			objectFit: 'cover',
+			objectPosition: 'top',
 		}
 	},
 	{
@@ -556,6 +398,8 @@ const items = [
 		video: {
 			autoPlay: false,
 			muted: true,
+		},
+		itemStyles: {
 			objectFit: 'scale-down',
 			objectPosition: 'top',
 		}
@@ -576,9 +420,9 @@ const items = [
 							Using JSX to Create a Modal (No Auto Play on this Video)
 						</h4>
 						<div
-						style={{
-							fontFamily: "Open Sans, sans-serif",
-						}}>
+							style={{
+								fontFamily: "Open Sans, sans-serif",
+							}}>
 							This means that the video will not start immediately after you have clicked it.
 						</div>
 					</section>
@@ -596,22 +440,36 @@ const items = [
 		srcThumbnail: maui05Thumbnail,
 	},
 	{
-		description: "Image - With Default Section Layout",
+		description: "Image - Fullscreen vs Non-Fullscreen Object Stylings",
 		srcMain: maui02,
 		modal: {
 			sections: [
 				{
-					title: "Section 1",
-					text: "The first part of the video highlights the process of applying the contract matching filter.&nbsp; There are two matches found."
+					title: "Specifying Custom Styles for an Item Based on Viewing Mode",
+					text: "This item illustrates how to specify custom styles for an item based on whether the current viewing mode is fullscreen or not.  Here is the object used:"
 				},
-				{
-					title: "Section 2",
-					text: "This is where the second section text goes."
-				}
+				getCodeSection({ text: `itemStyles: {`, marginTop: 5, tabCount: 0 }),
+				getCodeSection({ text: `// these styles only apply when not in fullscreen mode`, isComment: true }),
+				getCodeSection({ text: `nonFullscreen: {` }),
+				getCodeSection({ text: `objectFit: 'cover',`, tabCount: 2 }),
+				getCodeSection({ text: `objectPosition: 'top',`, tabCount: 2 }),
+				getCodeSection({ text: `},` }),
+				getCodeSection({ text: `fullscreen: {` }),
+				getCodeSection({ text: `objectFit: 'scale-down',`, tabCount: 2 }),
+				getCodeSection({ text: `objectPosition: 'left',`, tabCount: 2 }),
+				getCodeSection({ text: `}` }),
+				getCodeSection({ text: `}`, tabCount: 0 }),
 			],
 		},
-		video: {
-			
+		itemStyles: {
+			nonFullscreen: {
+				objectFit: 'cover',
+				objectPosition: 'top',
+			},
+			fullscreen: {
+				objectFit: 'scale-down',
+				objectPosition: 'left',
+			},
 		}
 	},
 	{
@@ -3897,4 +3755,36 @@ export const ThumbnailCarouselTests = () => {
 			<LoadingSpinner forceShow={false} />
 		</React.Fragment>
 	);
+}
+
+
+type GetCodeSectionInput = {
+	text: string;
+	marginTop?: number;
+	tabCount?: number;
+	tabSpacing?: number;
+	isComment?: boolean;
+}
+function getCodeSection(input: GetCodeSectionInput) {
+	const {
+		text,
+		tabCount = 1,
+		tabSpacing = 10,
+		marginTop = 0,
+		isComment = false,
+	} = input
+
+	console.log({ text, tabCount, tabSpacing, marginTop, isComment });
+
+	return {
+		textElementType: 'code',
+		text: text,
+		textStyles: {
+			fontWeight: isComment ? 400 : 800,
+			fontStyle: 'italic',
+		},
+		textContainerStyles: {
+			padding: `${marginTop}px 0 0 ${tabCount * tabSpacing}px`,
+		},
+	}
 }

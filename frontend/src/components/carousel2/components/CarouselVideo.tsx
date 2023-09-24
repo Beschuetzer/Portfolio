@@ -27,8 +27,6 @@ export type CarouselVideoOptions = {
     autoPlay?: boolean;
     loop?: boolean;
     muted?: boolean;
-    objectFit?: React.CSSProperties["objectFit"];
-    objectPosition?: React.CSSProperties["objectPosition"];
 
     /**
     *Each section is comprised of a description string and a duration (in ms).

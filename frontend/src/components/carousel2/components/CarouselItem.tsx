@@ -3,8 +3,17 @@ import { CarouselVideoOptions } from './CarouselVideo';
 import { CLASSNAME__CAROUSEL_ITEM, CLASSNAME__CAROUSEL_ITEM_THUMBNAIL } from '../constants';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { CarouselModalProps } from './CarouselModal';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { OptionsLogic } from '../business-logic/OptionsLogic';
+import { CarouselElementValue } from '../types';
 
 export type CarouselItemProps = {
+  /**
+  *These stylings are passed to the underlying item tag (e.g. <img> and <video>).
+  *Most useful for setting an item's {@link React.CSSProperties.objectFit objectFit} and {@link React.CSSProperties.objectPosition objectPosition} styles.
+  *See {@link OptionsLogic.itemStyles} for details.
+  **/
+  itemStyles?: CarouselElementValue<React.CSSProperties>;
   /**
   *A summary of the item.  This is displayed in the thumbnail and in the item viewer.
   **/
@@ -46,11 +55,11 @@ export const CarouselItem = (props: CarouselItemProps) => {
 
   //#region Functions/Handlers
   async function onPress(e: MouseEvent) {
-      setCurrentItemIndex(index as any);
+    setCurrentItemIndex(index as any);
 
-      if (optionsLogic.isDefaultItemDisplayLocation) {
-        setIsFullscreenMode(true);
-      }
+    if (optionsLogic.isDefaultItemDisplayLocation) {
+      setIsFullscreenMode(true);
+    }
   }
   //#endregion
 

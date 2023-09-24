@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import { CarouselItemProps } from "../components/CarouselItem";
 import { CarouselItemViewerCustomButtonProps } from "../components/item-viewer/toolbar/CarouselItemViewerCustomButton";
 import {
@@ -56,7 +57,8 @@ import {
     PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT,
     CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_MOBILE,
     CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MOBILE,
-    CAROUSEL_MODAL_MINIMIZED_OPACITY_DEFAULT
+    CAROUSEL_MODAL_MINIMIZED_OPACITY_DEFAULT,
+    ITEM_STYLES_DEFAULT
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
@@ -171,6 +173,13 @@ export class OptionsLogic {
 
     get isWrappingDisabled() {
         return getCurrentValue(this.options?.navigation?.disableWrapping, DISABLE_WRAPPING_DEFAULT, this.isFullscreenMode);
+    }
+  
+    get itemStyles() {
+        return {
+            ...ITEM_STYLES_DEFAULT,
+            ...getCurrentValue(this.currentItem?.itemStyles, undefined, this.isFullscreenMode),
+        } as CSSProperties;
     }
 
     get itemViewerBackgroundColor() {
