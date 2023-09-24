@@ -123,7 +123,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         setSeekPercent(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
         setIsVideoPlaying && setIsVideoPlaying(true);
 
-        if (videoRef?.current) {
+        if (videoRef?.current && isFinite(videoRef.current.duration)) {
             videoRef.current.currentTime = percent * videoRef.current.duration;
             videoRef?.current?.play();
         }

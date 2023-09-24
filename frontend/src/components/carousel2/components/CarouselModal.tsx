@@ -12,10 +12,12 @@ import {
     CSS_CUSTOM_PROPERTY_MODAL_OPACITY_MINIMIZED,
     CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR,
     CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
     MODAL_TITLE_TAG_DEFAULT,
     MODAL_TEXT_TAG_DEFAULT,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    CAROUSEL_MODAL_PADDING_DEFAULT,
 } from '../constants';
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
@@ -43,7 +45,12 @@ export type CarouselModalProps = Exclusive<{
     *],
     **/
     sections?: CarouselModalSection[];
-}>
+}> & {
+    /**
+    *The amount of pixels that the close button is from the top.  Default is {@link CAROUSEL_MODAL_PADDING_DEFAULT.top here}.
+    **/
+    closeButtonTop?: number
+}
 
 export type CarouselModalInternalProps = {
     isProgressBarBeingHoveredRef?: React.MutableRefObject<boolean>;
@@ -73,6 +80,8 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
         itemRef,
         shouldHideWhenMinimized = false,
     } = props;
+    const { modal } = currentItem;
+    const { closeButtonTop } = modal || {};
     const [isVisible, setIsVisible] = useState(IS_VISIBLE_INITIAL);
     const [isMinimized, setIsMinimized] = useState(IS_MINIMIZED_INITIAL);
     const modalRef = useRef<HTMLElement>();
@@ -133,7 +142,7 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
             xlinkHref={svgHref}
             classNamesToInclude={[`${CLASSNAME__ITEM_VIEWER_BUTTON}-inverse`]}
             fillColor={closeButtonColor}
-            style={stylingLogic.carouselModalCloseButtonStyle}
+            style={{ ...stylingLogic.carouselModalCloseButtonStyle, ...(closeButtonTop ? { top: closeButtonTop } : {}) }}
         />
     ) : (
         <CloseButton
@@ -141,15 +150,16 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
             className={isCustom ? CLASSNAME__ITEM_VIEWER_BUTTON : undefined}
             classNameModifier='inverse'
             fillColor={closeButtonColor}
-            style={stylingLogic.carouselModalCloseButtonStyle}
+            style={{ ...stylingLogic.carouselModalCloseButtonStyle, ...(closeButtonTop ? { top: closeButtonTop } : {}) }}
         />
     ),
         [
             closeButtonColor,
+            closeButtonTop,
             isCustom,
             onCloseClick,
             stylingLogic.carouselModalCloseButtonStyle,
-            svgHref
+            svgHref,
         ]);
 
     const renderChildren = useCallback(() => {

@@ -143,7 +143,7 @@ const items = [
 				},
 				{
 					textElementType: 'code',
-					text: `sections: [`,					
+					text: `sections: [`,
 					textStyles: {
 						fontWeight: 800,
 						fontStyle: 'italic',
@@ -151,7 +151,7 @@ const items = [
 					textContainerStyles: {
 						padding: `5px 0 0 10px`,
 					}
-				}, 
+				},
 				{
 					textElementType: 'code',
 					text: `// lasts 2 seconds, so from 0 - 2.`,
@@ -254,7 +254,7 @@ const items = [
 				},
 				{
 					textElementType: 'code',
-					text: `sections: [`,					
+					text: `sections: [`,
 					textStyles: {
 						fontWeight: 800,
 						fontStyle: 'italic',
@@ -262,7 +262,7 @@ const items = [
 					textContainerStyles: {
 						padding: `5px 0 0 10px`,
 					}
-				}, 
+				},
 				{
 					textElementType: 'code',
 					text: `// when using strings, the first seconds will automatically start a 0, so can be omitted.`,
@@ -360,7 +360,7 @@ const items = [
 			sections: [
 				{
 					title: 'Longer Clip',
-					text: 'This video highlights how to create sections for videos longer than 1 minute'
+					text: 'This video is used to test sections with a video greate than 1 minute.'
 				}
 			]
 		},
@@ -379,8 +379,8 @@ const items = [
 		modal: {
 			sections: [
 				{
-					title: 'Longer Clip',
-					text: 'This video highlights how to create sections for videos longer than 1 minute'
+					title: 'No Thumbnail Given',
+					text: 'This video illustrates how a video with no thumbnail is displayed.'
 				}
 			]
 		},
@@ -398,11 +398,24 @@ const items = [
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
 		modal: {
+			closeButtonTop: 25,
 			children: (
 				<>
-					<CSharpCardSection title="Custom Modal Content">
-						This is what the custom modal content can look like.
-					</CSharpCardSection>
+					<section>
+						<h4 style={{
+							color: 'white',
+							fontSize: 18,
+							padding: '0 30px 10px 0',
+						}}>
+							Using JSX to Create a Modal (Avoiding Conflicts with Button by Adding 30px Padding to the Right of Title Div)
+						</h4>
+						<div
+						style={{
+							fontFamily: "Open Sans, sans-serif",
+						}}>
+							You can use the <strong>modal.children</strong> field to pass in your own JSX for the modal.
+						</div>
+					</section>
 				</>
 			),
 		},
