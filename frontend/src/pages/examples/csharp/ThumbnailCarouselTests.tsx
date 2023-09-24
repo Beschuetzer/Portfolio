@@ -137,8 +137,97 @@ const items = [
 		modal: {
 			sections: [
 				{
-					title: 'Modal Title',
-					text: 'Presumably some more useful text about the item would go here.'
+					title: "Using Strings To Specify Sections",
+					titleElementType: 'h2',
+					text: "One can use an integer representing the duration in milliseconds that the section should span:",
+				},
+				{
+					textElementType: 'code',
+					text: `sections: [`,					
+					textStyles: {
+						fontWeight: 800,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `5px 0 0 10px`,
+					}
+				}, 
+				{
+					textElementType: 'code',
+					text: `// lasts 2 seconds, so from 0 - 2.`,
+					textStyles: {
+						fontWeight: 400,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					},
+				},
+				{
+					textElementType: 'code',
+					text: `['Searching Users', 2000],`,
+					textStyles: {
+						fontWeight: 800,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					}
+				},
+				{
+					textElementType: 'code',
+					text: `// lasts 5 seconds, so from 2 - 7.`,
+					textStyles: {
+						fontWeight: 400,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					},
+				},
+				{
+					textElementType: 'code',
+					text: `['Filtering Results', 5000],`,
+					textStyles: {
+						fontWeight: 800,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					}
+				},
+				{
+					textElementType: 'code',
+					text: `// takes up the remaining space, so from from 7 - videoEnd.`,
+					textStyles: {
+						fontWeight: 400,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					},
+				},
+				{
+					textElementType: 'code',
+					text: `['Hiding Filters'],`,
+					textStyles: {
+						fontWeight: 800,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					},
+				},
+				{
+					textElementType: 'code',
+					text: ']',
+					textStyles: {
+						fontWeight: 800,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: '0 0 0 10px',
+					},
 				}
 			]
 		},
@@ -161,7 +250,7 @@ const items = [
 				{
 					title: "Using Strings To Specify Sections",
 					titleElementType: 'h2',
-					text: "The following object was used to create the video sections:",
+					text: "One can use strings to create the video sections in the previous video that uses integers.  In this case, the second value is the <strong>start time</strong> rather than the <strong>duration</strong>.",
 				},
 				{
 					textElementType: 'code',
@@ -176,6 +265,17 @@ const items = [
 				}, 
 				{
 					textElementType: 'code',
+					text: `// when using strings, the first seconds will automatically start a 0, so can be omitted.`,
+					textStyles: {
+						fontWeight: 400,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					},
+				},
+				{
+					textElementType: 'code',
 					text: `['Searching Users'],`,
 					textStyles: {
 						fontWeight: 800,
@@ -184,6 +284,17 @@ const items = [
 					textContainerStyles: {
 						padding: `0 0 0 20px`,
 					}
+				},
+				{
+					textElementType: 'code',
+					text: `// starts at second 2, so goes from 2 - 7.`,
+					textStyles: {
+						fontWeight: 400,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					},
 				},
 				{
 					textElementType: 'code',
@@ -198,7 +309,18 @@ const items = [
 				},
 				{
 					textElementType: 'code',
-					text: `['Hiding Filters', '07:00'],`,
+					text: `// starts at second 7 and is last item, so goes to the end of video.`,
+					textStyles: {
+						fontWeight: 400,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					},
+				},
+				{
+					textElementType: 'code',
+					text: `['Hiding Filters', '07:00'], `,
 					textStyles: {
 						fontWeight: 800,
 						fontStyle: 'italic',
