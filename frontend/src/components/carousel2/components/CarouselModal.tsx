@@ -23,6 +23,8 @@ import { StylingLogic } from '../business-logic/StylingLogic';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { useSetCustomCssProperties } from '../hooks/useSetCustomCssProperties';
+import { getCodeSections } from '../utils';
+import { CarouselModalChildContainer } from './CarouselModalChildContainer';
 
 export type CarouselModalProps = Exclusive<{
     /**
@@ -178,24 +180,50 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
         if (!sections || sections.length === 0 || isVideoPlaying) return null;
         return sections.map((
             {
+                codeSection,
                 title,
                 titleElementType: TitleTag = MODAL_TITLE_TAG_DEFAULT,
                 text,
                 textElementType: Tag = MODAL_TEXT_TAG_DEFAULT,
                 textStyles,
-                textContainerStyles
+                textContainerStyles,
             },
-            index) => {
+            index,
+        ) => {
+            const isCodeSection = codeSection?.lines && codeSection.lines.length > 0;
+
+            if (isCodeSection) {
+
+                const codeSectionObjs = getCodeSections(codeSection);
+                console.log({ isCodeSection, codeSectionObjs });
+                return codeSectionObjs.map((codeSectionObj, index2) => {
+                    return (
+                        <CarouselModalChildContainer
+                            uniqueKey={}
+                            index={index}
+                            textContainerStyles={textContainerStyles}
+                        >
+                            {codeSectionObj.text}
+                        </CarouselModalChildContainer>
+                    )
+                })
+            }
+
             return (
-                <div key={index} style={{ ...StylingLogic.getCarouselModalChildStyle(index), ...textContainerStyles }}>
+                <CarouselModalChildContainer
+                    index={index}
+                    textContainerStyles={textContainerStyles}
+                >
                     <div className={CLASSNAME__MODAL_HEADER}>
                         <TitleTag dangerouslySetInnerHTML={{ __html: title || '' }} />
                         {index === 0 ? button : null}
                     </div>
-                    {text ? (
-                        <Tag style={textStyles} dangerouslySetInnerHTML={{ __html: text || '' }} />
-                    ) : null}
-                </div>
+                    {
+                        text ? (
+                            <Tag style={textStyles} dangerouslySetInnerHTML={{ __html: text || '' }} />
+                        ) : null
+                    }
+                </CarouselModalChildContainer>
             )
         });
     }, [button, children, isCustom, isModalMinimized, isVideoPlaying, sections]);

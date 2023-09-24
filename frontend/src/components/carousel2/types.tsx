@@ -51,6 +51,7 @@ import { CarouselItemViewer } from './components/item-viewer/CarouselItemViewer'
 import { CarouselContent } from './components/CarouselContent';
 import { CarouselItemProps } from './components/CarouselItem';
 import { CarouselItemViewerToolbar } from './components/item-viewer/toolbar/CarouselItemViewerToolbar'
+import { getCodeSections } from './utils';
 
 
 //#region Enums
@@ -819,11 +820,48 @@ export type CarouselModalSection = Exclusive<{
     **/
     textStyles?: CSSProperties;
 }, {
-    codeSection?: CarouselModalCodeSection;
+    /**
+    *This is mutually exclusive with the other options and overrides then if given.
+    *Use this if you want to specify a coding block.
+    *The number of spaces at the beginning of each string corresponds to the number of tabs (see {@link getCodeSections this} for details).
+    @example
+    codeSection: {
+        texts: [
+           `itemStyles: {`,
+            ` // these styles only apply when not in fullscreen mode`, => has one space at front so one tab
+            ` nonFullscreen: {`,
+            `  objectFit: 'cover',`, => has two spaces at front so two tabs
+            `  objectPosition: 'top',`,
+            ` },`,
+            ` // these styles only apply when in fullscreen mode`,
+            ` fullscreen: {`,
+            `  objectFit: 'scale-down',`,
+            `  objectPosition: 'left',`,
+            ` }`,
+            `}`,
+        ],
+        marginTop: 5,
+        startTabCount: 0,
+    }
+    **/
+    codeSection: CarouselModalGetCodeSectionsInput;
 }>
 
-export type CarouselModalCodeSection = {
+export type CarouselModalGetCodeSectionsInput = {
+    /**
+    *The lines
+    *Each space at the beginning of the string in {@link CarouselModalGetCodeSectionsInput.lines texts} specifies how many tabs to use.
+    **/
+    lines: CarouselModalGetCodeSectionInput['text'][];
+    startTabCount?: number;
+} & Pick<CarouselModalGetCodeSectionInput, 'tabSpacing' | 'marginTop'>
 
+export type CarouselModalGetCodeSectionInput = {
+    text: string;
+    marginTop?: number;
+    tabCount?: number;
+    tabSpacing?: number;
+    isComment?: boolean;
 }
 //#endregion
 

@@ -23,8 +23,14 @@ import {
     CarouselElementTuple,
     CarouselElementValueTuple,
     KeyInput,
-    ValidKey
+    ValidKey,
+    CarouselModalGetCodeSectionInput,
+    CarouselModalGetCodeSectionsInput,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    CarouselModalSection,
 } from "./types";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { CarouselModal } from './components/CarouselModal';
 
 type GetClassname = {
     elementName?: string;
@@ -115,7 +121,7 @@ export function convertTimeStringToMilliseconds(timestamp: string) {
             return 0;
         }
     }
-    
+
     const split = timestamp?.split(TOOLBAR_TIME_STRING_SECTION_DIVIDER);
     const milliseconds = parseInt(split[split?.length - 1], 10) || 0;
     const seconds = parseInt(split[split?.length - 2], 10) || 0;
@@ -151,6 +157,59 @@ export function getAncestorContainsClassname(elementToCheck: HTMLElement | null,
 
 export function getClassname({ elementName, modifiedName }: GetClassname) {
     return `${CLASSNAME__ROOT}${elementName ? `__${elementName}` : ``}${modifiedName ? `--${modifiedName}` : ``}`;
+}
+
+/**
+*This is used to convert the {@link CarouselModalSection.codeSection codeSections} object 
+*into a code block/section inside the {@link CarouselModal}.
+**/
+export function getCodeSections(input: CarouselModalGetCodeSectionsInput): CarouselModalGetCodeSectionInput[] {
+    const {
+        marginTop = undefined,
+        lines,
+        startTabCount = 0,
+        tabSpacing = undefined,
+    } = input;
+
+    if (!lines || lines.length === 0) return [];
+
+    const toReturn = [];
+    for (let index = 0; index < lines.length; index++) {
+        const text = lines[index];
+        const isComment = !!text.match(/^\s*\/\/.*/); //checks for '//' at the beginning
+        const numberOfInitialSpaces = text.search(/\S|$/) || 0;
+        toReturn.push(getCodeSection({
+            text: text.trim(),
+            isComment,
+            marginTop,
+            tabCount: numberOfInitialSpaces + startTabCount,
+            tabSpacing
+        }))
+    }
+
+    return toReturn;
+}
+
+export function getCodeSection(input: CarouselModalGetCodeSectionInput) {
+    const {
+        text,
+        tabCount = 0,
+        tabSpacing = 10,
+        marginTop = 0,
+        isComment = false,
+    } = input
+
+    return {
+        textElementType: 'code',
+        text,
+        textStyles: {
+            fontWeight: isComment ? 400 : 800,
+            fontStyle: 'italic',
+        },
+        textContainerStyles: {
+            padding: `${marginTop}px 0 0 ${tabCount * tabSpacing}px`,
+        },
+    }
 }
 
 export function getContainerWidth(htmlElement: HTMLElement | undefined, stylingLogic: StylingLogic) {

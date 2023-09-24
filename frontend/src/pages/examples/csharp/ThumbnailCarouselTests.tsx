@@ -141,20 +141,22 @@ const items = [
 					titleElementType: 'h2',
 					text: "One can use an integer representing the duration in milliseconds that the section should span:",
 				},
-				...getCodeSections({
-					texts: [
-						`sections: [`,
-						` // lasts 2 seconds, so from 0 seconds to 2 seconds.`,
-						` ['Searching Users', 2000],`,
-						` // lasts 5 seconds, so from 2 seconds to 7 seconds.`,
-						` ['Filtering Results', 5000],`,
-						` // takes up the remaining space, so from from 7 seconds to videoEnd.`,
-						` ['Hiding Filters'],`,
-						`]`,
-					],
-					marginTop: 5,
-					startTabCount: 0,
-				}),
+				{
+					codeSection: {
+						texts: [
+							`sections: [`,
+							` // lasts 2 seconds, so from 0 seconds to 2 seconds.`,
+							` ['Searching Users', 2000],`,
+							` // lasts 5 seconds, so from 2 seconds to 7 seconds.`,
+							` ['Filtering Results', 5000],`,
+							` // takes up the remaining space, so from from 7 seconds to videoEnd.`,
+							` ['Hiding Filters'],`,
+							`]`,
+						],
+						marginTop: 5,
+						startTabCount: 0,
+					}
+				},
 			]
 		},
 		video: {
@@ -178,20 +180,22 @@ const items = [
 					titleElementType: 'h2',
 					text: "One can use strings to create the video sections in the previous video that uses integers.  In this case, the second value is the <strong>start time</strong> rather than the <strong>duration</strong>.",
 				},
-				...getCodeSections({
-					texts: [
-						`sections: [`,
-						` // when using strings, the first seconds will automatically start a 0, so can be omitted.`,
-						` ['Searching Users'],`,
-						` // starts at second 2, so goes from 2 seconds to 7 seconds.`,
-						` ['Filtering Results', "02:00"],`,
-						` // starts at second 7 and is last item, so goes to the end of video.`,
-						` ['Hiding Filters', '07:00'],`,
-						`]`,
-					],
-					marginTop: 5,
-					startTabCount: 0,
-				}),
+				{
+					codeSection: {
+						texts: [
+							`sections: [`,
+							` // when using strings, the first seconds will automatically start a 0, so can be omitted.`,
+							` ['Searching Users'],`,
+							` // starts at second 2, so goes from 2 seconds to 7 seconds.`,
+							` ['Filtering Results', "02:00"],`,
+							` // starts at second 7 and is last item, so goes to the end of video.`,
+							` ['Hiding Filters', '07:00'],`,
+							`]`,
+						],
+						marginTop: 5,
+						startTabCount: 0,
+					}
+				},
 			]
 		},
 		video: {
@@ -460,24 +464,26 @@ const items = [
 					title: "Specifying Custom Styles for an Item Based on Viewing Mode",
 					text: "This item illustrates how to specify custom styles for an item based on whether the current viewing mode is fullscreen or not.  Here is the object used:"
 				},
-				...getCodeSections({
-					texts: [
-						`itemStyles: {`,
-						` // these styles only apply when not in fullscreen mode`,
-						` nonFullscreen: {`,
-						`  objectFit: 'cover',`,
-						`  objectPosition: 'top',`,
-						` },`,
-						` // these styles only apply when in fullscreen mode`,
-						` fullscreen: {`,
-						`  objectFit: 'scale-down',`,
-						`  objectPosition: 'left',`,
-						` }`,
-						`}`,
-					],
-					marginTop: 5,
-					startTabCount: 0,
-				}),
+				{
+					codeSection: {
+						texts: [
+							`itemStyles: {`,
+							` // these styles only apply when not in fullscreen mode`,
+							` nonFullscreen: {`,
+							`  objectFit: 'cover',`,
+							`  objectPosition: 'top',`,
+							` },`,
+							` // these styles only apply when in fullscreen mode`,
+							` fullscreen: {`,
+							`  objectFit: 'scale-down',`,
+							`  objectPosition: 'left',`,
+							` }`,
+							`}`,
+						],
+						marginTop: 5,
+						startTabCount: 0,
+					}
+				}
 			],
 		},
 		itemStyles: {
@@ -3775,72 +3781,3 @@ export const ThumbnailCarouselTests = () => {
 		</React.Fragment>
 	);
 }
-
-
-//#region Helpers
-type GetCodeSectionsInput = {
-	texts: GetCodeSectionInput['text'][];
-	startTabCount?: number;
-} & Pick<GetCodeSectionInput, 'tabSpacing' | 'marginTop'>
-
-type GetCodeSectionInput = {
-	text: string;
-	marginTop?: number;
-	tabCount?: number;
-	tabSpacing?: number;
-	isComment?: boolean;
-}
-
-/**
-*Each space at the beginning of the string in {@link GetCodeSectionsInput.texts texts} specifies how many tabs to use.
-**/
-function getCodeSections(input: GetCodeSectionsInput): GetCodeSectionInput[] {
-	const {
-		marginTop = undefined,
-		texts,
-		startTabCount = 0,
-		tabSpacing = undefined,
-	} = input;
-
-	if (!texts) return [];
-
-	const toReturn = [];
-	for (let index = 0; index < texts.length; index++) {
-		const text = texts[index];
-		const isComment = !!text.match(/^\s*\/\/.*/);
-		const numberOfTabs = text.search(/\S|$/) || 0;
-		console.log({ text, isComment, numberOfTabs, startTabCount });
-		toReturn.push(getCodeSection({
-			text: text.trim(),
-			isComment,
-			marginTop,
-			tabCount: numberOfTabs + startTabCount,
-			tabSpacing
-		}))
-	}
-
-	return toReturn;
-}
-
-function getCodeSection(input: GetCodeSectionInput) {
-	const {
-		text,
-		tabCount = 0,
-		tabSpacing = 10,
-		marginTop = 0,
-		isComment = false,
-	} = input
-
-	return {
-		textElementType: 'code',
-		text: text,
-		textStyles: {
-			fontWeight: isComment ? 400 : 800,
-			fontStyle: 'italic',
-		},
-		textContainerStyles: {
-			padding: `${marginTop}px 0 0 ${tabCount * tabSpacing}px`,
-		},
-	}
-}
-//#endregion
