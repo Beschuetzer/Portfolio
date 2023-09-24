@@ -561,11 +561,6 @@ const items = [
 		}
 	},
 	{
-		description: "Default Image",
-		srcMain: maui05,
-		srcThumbnail: maui05Thumbnail,
-	},
-	{
 		description: "Custom Modal (no auto play)",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
@@ -596,7 +591,12 @@ const items = [
 		}
 	},
 	{
-		description: "Image - Default Section Layout",
+		description: "Image - Defaults and Thumbnail",
+		srcMain: maui05,
+		srcThumbnail: maui05Thumbnail,
+	},
+	{
+		description: "Image - With Default Section Layout",
 		srcMain: maui02,
 		modal: {
 			sections: [
@@ -610,6 +610,9 @@ const items = [
 				}
 			],
 		},
+		video: {
+			
+		}
 	},
 	{
 		srcMain: maui01,

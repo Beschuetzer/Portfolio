@@ -1,4 +1,5 @@
 Carousel rework
+  -need a common way to set position and fit for items (currently images are set in carousel options and video is set in the item itself)
   -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -all custom test - dots are not centered.  Is this something that needs a custom style or can it be handle differently?
   -add option to minimize carousel modal by clicking anywhere in the full modal (default to true);
