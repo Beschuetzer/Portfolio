@@ -549,7 +549,7 @@ const items = [
 			sections: [
 				{
 					title: "Object Fit",
-					text: "The object fit for this video is set to <strong>scale-down</strong>.  The difference is most noticable in fullscreen when changing viewports though."
+					text: "The object fit for this video is set to <strong>scale-down</strong>.  The difference is only really noticable in fullscreen though.  Try changing the viewport width when in fullscreen mode to see the difference clearly."
 				},
 			],
 		},

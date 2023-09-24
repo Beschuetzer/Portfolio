@@ -72,7 +72,6 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
         video: videoProps,
     } = props;
     const { options, currentItemIndex, currentVideoCurrentTime, isFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
-
     const { autoPlay = false, loop = false, muted = true } = videoProps || {};
     const [isLoaded, setIsLoaded] = useState(false);
     const [percent, setPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);

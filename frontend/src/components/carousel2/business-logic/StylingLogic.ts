@@ -582,14 +582,17 @@ export class StylingLogic {
             objectPosition: this.currentItem?.video?.objectPosition || 'bottom',
         } as CSSProperties;
 
-        console.log({currentItem: this.currentItem, objectStyles});
-        
+        const common = {
+            ...objectStyles,
+        } as CSSProperties
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            ...objectStyles,
+            ...common,
             zIndex: shouldHide ? -1 : 1,
-        } as CSSProperties : {};
+        } as CSSProperties : {
+            ...common
+        };
     }
 
     getCarouselVideoProgressHitSlop() {
