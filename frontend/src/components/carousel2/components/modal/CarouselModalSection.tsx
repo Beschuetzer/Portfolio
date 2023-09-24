@@ -26,12 +26,12 @@ export const CarouselModalSection = (props: CarouselModalSectionProps & Props) =
     if (isCodeSection) {
         const codeSections = getCodeSections(codeSection);
         //using recursion to render each code section
-        return codeSections?.map((codeSectionObj, index) => {
+        return codeSections?.map((codeSectionObj, index2) => {
             //need to only apply the marginTop value to the first item in the section
             const currentPadding = codeSectionObj?.textContainerStyles?.padding;
             const splitPadding = currentPadding?.toString().split(' ');
             const paddingTop = splitPadding?.shift();
-            const newPadding = `${index === 0 ? paddingTop : 0} ${splitPadding?.join(' ')}`;
+            const newPadding = `${index2 === 0 ? paddingTop : 0} ${splitPadding?.join(' ')}`;
             const codeSectionObjToUse = {
                 ...codeSectionObj,
                 textContainerStyles: {
@@ -40,7 +40,7 @@ export const CarouselModalSection = (props: CarouselModalSectionProps & Props) =
             }
 
             //@ts-ignore
-            return <CarouselModalSection button={button} index={index} {...codeSectionObjToUse} />
+            return <CarouselModalSection key={`${index}-${index2}`} button={button} index={index2} {...codeSectionObjToUse} />
         });
     }
 
