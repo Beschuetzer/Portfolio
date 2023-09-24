@@ -312,7 +312,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     //#endregion
 
     //#region JSX
-    const getBackgroundDiv = useCallback((percent: number, left = 0, index = 0) => {
+    const getBackgroundDiv = useCallback(({percent = 1, left = 0, index = 0, isLast = false}) => {
         if (isNaN(percent)) return null;
         return (
             <div
@@ -326,7 +326,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
                 )}
             >
                 <div
-                    style={stylingLogic.carouselVideoProgressBackgroundSectionStyle}
+                    style={stylingLogic.getCarouselVideoProgressBackgroundSectionStyle(isLast)}
                 />
             </div>
         )
@@ -358,7 +358,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
         if (!sections || sections.length <= 1 || !videoRef?.current) {
             return (
                 <>
-                    {getBackgroundDiv(1)}
+                    {getBackgroundDiv({isLast: true})}
                     {optionsLogic.videoProgressBarShowCurrentPosition || !isMouseDownRef?.current ? getSeekDiv(seekPercent) : null}
                     {getForegroundDiv(percent)}
                 </>
@@ -405,7 +405,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
             const itemToTrack = isMouseDownRef?.current || optionsLogic.isMobile ? percent : percentPlayedAlready;
 
             //background stuff
-            backgroundDivs.push(getBackgroundDiv(percentToUse, backgroundLeft, index));
+            backgroundDivs.push(getBackgroundDiv({percent: percentToUse, left: backgroundLeft, index}));
 
             //seek stuff
             if (!isMouseDownRef?.current || optionsLogic.videoProgressBarShowCurrentPosition) {

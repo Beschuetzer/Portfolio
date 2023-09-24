@@ -608,7 +608,7 @@ export class StylingLogic {
     get carouselVideoProgressContainerStyle() {
         const widthToUse = this.optionsLogic.progressBarShouldSpanEntireWidth
             ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})`
-            : `calc(100% - ${TOOLBAR_MARGIN_RIGHT_OFFSET}${CAROUSEL_SPACING_UNIT}`;
+            : `100%`;
         const heightToUse = this.optionsLogic.isToolbarInVideo ? 'auto' : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT;
 
         const common = {
@@ -691,10 +691,10 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselVideoProgressBackgroundSectionStyle() {
+    getCarouselVideoProgressBackgroundSectionStyle(isLast = false) {
         return {
             ...this.carouselVideoProgressBackgroundCommon,
-            width: '100%',
+            width: `calc(100% - ${isLast ? TOOLBAR_MARGIN_RIGHT_OFFSET : 0}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties;
     }
 
