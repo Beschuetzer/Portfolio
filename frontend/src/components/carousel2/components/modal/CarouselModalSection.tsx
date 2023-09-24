@@ -27,20 +27,18 @@ export const CarouselModalSection = (props: CarouselModalSectionProps & Props) =
         const codeSections = getCodeSections(codeSection);
         //using recursion to render each code section
         return codeSections?.map((codeSectionObj, index) => {
+            //need to only apply the marginTop value to the first item in the section
             const currentPadding = codeSectionObj?.textContainerStyles?.padding;
             const splitPadding = currentPadding?.toString().split(' ');
             const paddingTop = splitPadding?.shift();
             const newPadding = `${index === 0 ? paddingTop : 0} ${splitPadding?.join(' ')}`;
-            console.log({currentPadding, splitPadding, newPadding});
-            
             const codeSectionObjToUse = {
                 ...codeSectionObj,
                 textContainerStyles: {
                     padding: newPadding,
-                } 
+                }
             }
-            console.log({codeSectionObj, codeSectionObjToUse, index});
-            
+
             //@ts-ignore
             return <CarouselModalSection button={button} index={index} {...codeSectionObjToUse} />
         });
@@ -48,21 +46,19 @@ export const CarouselModalSection = (props: CarouselModalSectionProps & Props) =
 
     return (
         <div style={{ ...StylingLogic.getCarouselModalChildStyle(index), ...textContainerStyles }}>
-            <>
-                {
-                    title ? (
-                        <div className={CLASSNAME__MODAL_HEADER}>
-                            <TitleTag dangerouslySetInnerHTML={{ __html: title || '' }} />
-                            {index === 0 ? button : null}
-                        </div>
-                    ) : null
-                }
-                {
-                    text ? (
-                        <Tag style={textStyles} dangerouslySetInnerHTML={{ __html: text || '' }} />
-                    ) : null
-                }
-            </>
+            {
+                title ? (
+                    <div className={CLASSNAME__MODAL_HEADER}>
+                        <TitleTag dangerouslySetInnerHTML={{ __html: title || '' }} />
+                        {index === 0 ? button : null}
+                    </div>
+                ) : null
+            }
+            {
+                text ? (
+                    <Tag style={textStyles} dangerouslySetInnerHTML={{ __html: text || '' }} />
+                ) : null
+            }
         </div>
     );
 }
