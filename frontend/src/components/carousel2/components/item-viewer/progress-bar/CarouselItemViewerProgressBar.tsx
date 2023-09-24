@@ -21,7 +21,7 @@ import { VideoTimeStrings } from '../../../types';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
 import { useCarouselContext } from '../../../context';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
-import { CarouselModalInternalProps } from '../../CarouselModal';
+import { CarouselModalInternalProps } from '../../modal/CarouselModal';
 import { useSectionToValueMapping } from '../../../hooks/useSectionToValueMapping';
 
 type CarouselItemViewerProgressBarProps = {

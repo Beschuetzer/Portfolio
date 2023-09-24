@@ -1,30 +1,23 @@
 import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { CloseButton } from './buttons/CloseButton';
-import { useCarouselContext } from '../context';
-import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
-import { CarouselModalSection, Exclusive } from '../types';
+import { CloseButton } from '../buttons/CloseButton';
+import { useCarouselContext } from '../../context';
+import { CarouselItemViewerCustomButton } from '../item-viewer/toolbar/CarouselItemViewerCustomButton';
+import { CarouselModalSectionProps, Exclusive } from '../../types';
 import {
     CLASSNAME__ITEM_VIEWER_BUTTON,
     CLASSNAME__MODAL,
     CLASSNAME__MODAL_CUSTOM,
-    CLASSNAME__MODAL_HEADER,
     CLASSNAME__MODAL_MINIMIZED,
     CSS_CUSTOM_PROPERTY_MODAL_OPACITY_MINIMIZED,
     CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR,
     CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR,
-    MODAL_TITLE_TAG_DEFAULT,
-    MODAL_TEXT_TAG_DEFAULT,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     CAROUSEL_MODAL_PADDING_DEFAULT,
-} from '../constants';
-import { StylingLogic } from '../business-logic/StylingLogic';
-import { useBusinessLogic } from '../hooks/useBusinessLogic';
-import { CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
-import { useSetCustomCssProperties } from '../hooks/useSetCustomCssProperties';
-import { getCodeSections } from '../utils';
-import { CarouselModalChildContainer } from './CarouselModalChildContainer';
+} from '../../constants';
+import { useBusinessLogic } from '../../hooks/useBusinessLogic';
+import { CarouselItemViewerToolbarProps } from '../item-viewer/toolbar/CarouselItemViewerToolbar';
+import { useSetCustomCssProperties } from '../../hooks/useSetCustomCssProperties';
+import { CarouselModalSection } from './CarouselModalSection';
 
 export type CarouselModalProps = Exclusive<{
     /**
@@ -46,7 +39,7 @@ export type CarouselModalProps = Exclusive<{
     *    }
     *],
     **/
-    sections?: CarouselModalSection[];
+    sections?: CarouselModalSectionProps[];
 }> & {
     /**
     *The amount of pixels that the close button is from the top.  Default is {@link CAROUSEL_MODAL_PADDING_DEFAULT.top here}.
@@ -135,7 +128,7 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
 
     //#region JSX
     const classNameToUse = useMemo(() => `${CLASSNAME__MODAL} ${isCustom ? CLASSNAME__MODAL_CUSTOM : ''} ${isModalMinimized ? CLASSNAME__MODAL_MINIMIZED : ''}`, [isCustom, isModalMinimized]);
-    const button = useMemo(() => !!svgHref ? (
+    const buttonJSX = useMemo(() => !!svgHref ? (
         <CarouselItemViewerCustomButton
             onClick={onCloseClick as any}
             xlinkHref={svgHref}
@@ -172,61 +165,22 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
             return (
                 <div>
                     {children}
-                    {button}
+                    {buttonJSX}
                 </div>
             )
         }
 
         if (!sections || sections.length === 0 || isVideoPlaying) return null;
-        return sections.map((
-            {
-                codeSection,
-                title,
-                titleElementType: TitleTag = MODAL_TITLE_TAG_DEFAULT,
-                text,
-                textElementType: Tag = MODAL_TEXT_TAG_DEFAULT,
-                textStyles,
-                textContainerStyles,
-            },
-            index,
-        ) => {
-            const isCodeSection = codeSection?.lines && codeSection.lines.length > 0;
 
-            if (isCodeSection) {
-
-                const codeSectionObjs = getCodeSections(codeSection);
-                console.log({ isCodeSection, codeSectionObjs });
-                return codeSectionObjs.map((codeSectionObj, index2) => {
-                    return (
-                        <CarouselModalChildContainer
-                            uniqueKey={}
-                            index={index}
-                            textContainerStyles={textContainerStyles}
-                        >
-                            {codeSectionObj.text}
-                        </CarouselModalChildContainer>
-                    )
-                })
-            }
-
-            return (
-                <CarouselModalChildContainer
-                    index={index}
-                    textContainerStyles={textContainerStyles}
-                >
-                    <div className={CLASSNAME__MODAL_HEADER}>
-                        <TitleTag dangerouslySetInnerHTML={{ __html: title || '' }} />
-                        {index === 0 ? button : null}
-                    </div>
-                    {
-                        text ? (
-                            <Tag style={textStyles} dangerouslySetInnerHTML={{ __html: text || '' }} />
-                        ) : null
-                    }
-                </CarouselModalChildContainer>
-            )
-        });
-    }, [button, children, isCustom, isModalMinimized, isVideoPlaying, sections]);
+        return sections.map((section, index) =>
+            //@ts-ignore
+            <CarouselModalSection
+                key={index}
+                index={index}
+                button={buttonJSX}
+                {...section}
+            />);
+    }, [buttonJSX, children, isCustom, isModalMinimized, isVideoPlaying, sections]);
 
     return (
         <div

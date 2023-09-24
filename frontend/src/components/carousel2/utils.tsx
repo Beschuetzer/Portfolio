@@ -27,10 +27,10 @@ import {
     CarouselModalGetCodeSectionInput,
     CarouselModalGetCodeSectionsInput,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    CarouselModalSection,
+    CarouselModalSectionProps,
 } from "./types";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { CarouselModal } from './components/CarouselModal';
+import { CarouselModal } from './components/modal/CarouselModal';
 
 type GetClassname = {
     elementName?: string;
@@ -160,10 +160,10 @@ export function getClassname({ elementName, modifiedName }: GetClassname) {
 }
 
 /**
-*This is used to convert the {@link CarouselModalSection.codeSection codeSections} object 
+*This is used to convert the {@link CarouselModalSectionProps.codeSection codeSections} object 
 *into a code block/section inside the {@link CarouselModal}.
 **/
-export function getCodeSections(input: CarouselModalGetCodeSectionsInput): CarouselModalGetCodeSectionInput[] {
+export function getCodeSections(input: CarouselModalGetCodeSectionsInput) {
     const {
         marginTop = undefined,
         lines,
@@ -209,7 +209,7 @@ export function getCodeSection(input: CarouselModalGetCodeSectionInput) {
         textContainerStyles: {
             padding: `${marginTop}px 0 0 ${tabCount * tabSpacing}px`,
         },
-    }
+    } as CarouselModalSectionProps
 }
 
 export function getContainerWidth(htmlElement: HTMLElement | undefined, stylingLogic: StylingLogic) {

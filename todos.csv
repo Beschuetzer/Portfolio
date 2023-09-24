@@ -1,7 +1,5 @@
 Carousel rework
-  -add getCodeSectionsHelper();
   -need to figure out how to handle layout.imagePosition (do we need anymore?)
-  -go through the video items and add appropriate overlay text and sections (when approrpriate for that item)
   -all custom test - dots are not centered.  Is this something that needs a custom style or can it be handle differently?
   -add option to minimize carousel modal by clicking anywhere in the full modal (default to true);
   -add option to reset isModalMinimized state on item change (default to true)

@@ -792,7 +792,7 @@ export type VideoTimeStrings = {
 //#endregion
 
 //#region Modal
-export type CarouselModalSection = Exclusive<{
+export type CarouselModalSectionProps = Exclusive<{
     /**
     *Use this to specify what the text tag should be.  Default is a {@link MODAL_TEXT_TAG_DEFAULT here}.
     **/

@@ -18,7 +18,7 @@ import {
     TOOLBAR_TIME_STRING_SECTION_DIVIDER,
     FONT_WEIGHT_DEFAULT,
 } from "../constants";
-import { CarouselModalInternalProps } from "../components/CarouselModal";
+import { CarouselModalInternalProps } from "../components/modal/CarouselModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
 import { CarouselContextInputProps, CarouselContextOutputProps } from "../context";
 import { RegexpPattern } from "./RegexpPattern";

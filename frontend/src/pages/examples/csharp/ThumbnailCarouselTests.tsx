@@ -139,11 +139,14 @@ const items = [
 				{
 					title: "Using Strings To Specify Sections",
 					titleElementType: 'h2',
-					text: "One can use an integer representing the duration in milliseconds that the section should span:",
+					text: "One can use an integer representing the duration in milliseconds that the section should span.",
+				},
+				{
+					text: "Example: ",
 				},
 				{
 					codeSection: {
-						texts: [
+						lines: [
 							`sections: [`,
 							` // lasts 2 seconds, so from 0 seconds to 2 seconds.`,
 							` ['Searching Users', 2000],`,
@@ -153,8 +156,8 @@ const items = [
 							` ['Hiding Filters'],`,
 							`]`,
 						],
-						marginTop: 5,
-						startTabCount: 0,
+						startTabCount: 1,
+						tabSpacing: 15,
 					}
 				},
 			]
@@ -181,8 +184,11 @@ const items = [
 					text: "One can use strings to create the video sections in the previous video that uses integers.  In this case, the second value is the <strong>start time</strong> rather than the <strong>duration</strong>.",
 				},
 				{
+					text: "Example: ",
+				},
+				{
 					codeSection: {
-						texts: [
+						lines: [
 							`sections: [`,
 							` // when using strings, the first seconds will automatically start a 0, so can be omitted.`,
 							` ['Searching Users'],`,
@@ -192,8 +198,8 @@ const items = [
 							` ['Hiding Filters', '07:00'],`,
 							`]`,
 						],
-						marginTop: 5,
-						startTabCount: 0,
+						startTabCount: 1,
+						tabSpacing: 15,
 					}
 				},
 			]
@@ -465,8 +471,11 @@ const items = [
 					text: "This item illustrates how to specify custom styles for an item based on whether the current viewing mode is fullscreen or not.  Here is the object used:"
 				},
 				{
+					text: "Example: ",
+				},
+				{
 					codeSection: {
-						texts: [
+						lines: [
 							`itemStyles: {`,
 							` // these styles only apply when not in fullscreen mode`,
 							` nonFullscreen: {`,
@@ -480,8 +489,8 @@ const items = [
 							` }`,
 							`}`,
 						],
-						marginTop: 5,
-						startTabCount: 0,
+						startTabCount: 1,
+						tabSpacing: 15,
 					}
 				}
 			],
@@ -500,22 +509,22 @@ const items = [
 	{
 		srcMain: maui01,
 		srcThumbnail: maui01Thumbnail,
-		description: "Image - Filler"
+		description: "Image - Filler 1"
 	},
 	{
 		srcMain: maui06,
 		srcThumbnail: maui06Thumbnail,
-		description: "Image - Filler",
+		description: "Image - Filler 2",
 	},
 	{
 		srcMain: maui07,
 		srcThumbnail: maui07Thumbnail,
-		description: "Image - Filler",
+		description: "Image - Filler 2",
 	},
 	{
 		srcMain: maui04,
 		srcThumbnail: maui04Thumbnail,
-		description: "Image - Filler",
+		description: "Image - Filler 2",
 	},
 ] as CarouselItemProps[];
 //#endregion

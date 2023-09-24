@@ -29,7 +29,7 @@ import { useCarouselContext } from '../../../context'
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic'
 import { useOnSwipe, StylingCase } from '../../../hooks/useOnSwipe'
 import { getIsPointInsideElement } from '../../../utils'
-import { CarouselModal } from '../../CarouselModal'
+import { CarouselModal } from '../../modal/CarouselModal'
 
 export type CarouselItemViewerToolbarProps = {
     currentVideoSection?: number;
