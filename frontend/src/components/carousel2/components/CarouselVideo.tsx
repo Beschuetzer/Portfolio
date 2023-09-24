@@ -161,7 +161,7 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
     useEffect(() => {
         function handleFullscreenChange(e: Event) {
             setCurrentVideoCurrentTime(videoRef.current?.currentTime || CURRENT_VIDEO_CURRENT_TIME_DEFAULT);
-            if (!isFullscreenMode) return;
+            // if (!isFullscreenMode) return;
             playVideo();
         }
 
