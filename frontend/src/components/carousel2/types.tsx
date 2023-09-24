@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { CSSProperties } from "react";
+import { CSSProperties, ElementType } from "react";
 import { CarouselItemViewerShortcutIndicatorProps } from "./components/item-viewer/toolbar/CarouselItemViewerShortcutIndicator";
 import { LoadingSpinnerProps } from "./components/LoadingSpinner";
 import {
@@ -39,6 +39,9 @@ import {
     CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT,
     THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT,
     PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT,
+    CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
+    MODAL_TEXT_TAG_DEFAULT,
+    MODAL_TITLE_TAG_DEFAULT,
 } from './constants';
 import { OptionsLogic } from './business-logic/OptionsLogic';
 import { StylingLogic } from './business-logic/StylingLogic';
@@ -784,6 +787,37 @@ export type Point = {
 export type VideoTimeStrings = {
     durationStr: string;
     currentTimeStr: string;
+}
+//#endregion
+
+//#region Modal
+export type CarouselModalSection = {
+    /**
+    *Use this to specify what the text tag should be.  Default is a {@link MODAL_TEXT_TAG_DEFAULT here}.
+    **/
+    textElementType?: ElementType;
+    /**
+    * This only shows when the video is paused and is an `<h3>` tag under the hood.
+    **/
+    title?: string | undefined;
+    /**
+    *Use this to specify what the title tag should be.  Default is a {@link MODAL_TITLE_TAG_DEFAULT here}.
+    **/
+    titleElementType?: ElementType;
+    /**
+    * This only shows when the video is paused and is a `<p>` tag under the hood.
+    **/
+    text?: string | undefined;
+    /**
+    *These styles are passed into the div that makes up the paragraph.  
+    *By default, the padding is set to {@link CAROUSEL_OVERLAY_ITEM_PADDING_TOP this}.
+    **/
+    textContainerStyles?: CSSProperties;
+    /**
+    *These styles are passed into the div that makes up the paragraph.  
+    *By default, the padding is set to {@link CAROUSEL_OVERLAY_ITEM_PADDING_TOP this}.
+    **/
+    textStyles?: CSSProperties;
 }
 //#endregion
 

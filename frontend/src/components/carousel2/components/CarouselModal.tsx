@@ -2,24 +2,26 @@ import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 're
 import { CloseButton } from './buttons/CloseButton';
 import { useCarouselContext } from '../context';
 import { CarouselItemViewerCustomButton } from './item-viewer/toolbar/CarouselItemViewerCustomButton';
-import { Exclusive } from '../types';
-import { CLASSNAME__ITEM_VIEWER_BUTTON, CLASSNAME__MODAL, CLASSNAME__MODAL_CUSTOM, CLASSNAME__MODAL_HEADER, CLASSNAME__MODAL_MINIMIZED, CSS_CUSTOM_PROPERTY_MODAL_OPACITY_MINIMIZED, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR, CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR } from '../constants';
+import { CarouselModalSection, Exclusive } from '../types';
+import {
+    CLASSNAME__ITEM_VIEWER_BUTTON,
+    CLASSNAME__MODAL,
+    CLASSNAME__MODAL_CUSTOM,
+    CLASSNAME__MODAL_HEADER,
+    CLASSNAME__MODAL_MINIMIZED,
+    CSS_CUSTOM_PROPERTY_MODAL_OPACITY_MINIMIZED,
+    CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_BACKGROUND_COLOR,
+    CSS_CUSTOM_PROPERTY_MODAL_SCROLLBAR_FOREGROUND_COLOR,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
+    MODAL_TITLE_TAG_DEFAULT,
+    MODAL_TEXT_TAG_DEFAULT,
+} from '../constants';
 import { StylingLogic } from '../business-logic/StylingLogic';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { useSetCustomCssProperties } from '../hooks/useSetCustomCssProperties';
 
-export type CarouselModalSection = {
-    /**
-    * This only shows when the video is paused and is an `<h3>` tag under the hood.
-    **/
-    title?: string | undefined;
-
-    /**
-    * This only shows when the video is paused and is a `<p>` tag under the hood.
-    **/
-    text?: string | undefined;
-}
 export type CarouselModalProps = Exclusive<{
     /**
     *Use this when you want to use a custom modal layout.
@@ -54,9 +56,10 @@ export type CarouselModalInternalProps = {
     shouldHideWhenMinimized?: boolean;
 } & CarouselModalProps & Pick<CarouselItemViewerToolbarProps, 'isProgressBarMouseDownRef'>;
 
-const MODAL_HEIGHT_INITIAL = 0;
-const IS_VISIBLE_INITIAL = true;
 const IS_MINIMIZED_INITIAL = false;
+const IS_VISIBLE_INITIAL = true;
+const MODAL_HEIGHT_INITIAL = 0;
+
 export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#region Init
     const { elementStylings, currentItemIndex, currentItem } = useCarouselContext();
@@ -166,17 +169,28 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
         }
 
         if (!sections || sections.length === 0 || isVideoPlaying) return null;
-        return sections.map(({ text, title }, index) => (
-            <div key={index} style={StylingLogic.getCarouselModalChildStyle(index)}>
-                <div className={CLASSNAME__MODAL_HEADER}>
-                    <h3 dangerouslySetInnerHTML={{ __html: title || '' }} />
-                    {index === 0 ? button : null}
+        return sections.map((
+            {
+                title,
+                titleElementType: TitleTag = MODAL_TITLE_TAG_DEFAULT,
+                text,
+                textElementType: Tag = MODAL_TEXT_TAG_DEFAULT,
+                textStyles,
+                textContainerStyles
+            },
+            index) => {
+            return (
+                <div key={index} style={{ ...StylingLogic.getCarouselModalChildStyle(index), ...textContainerStyles }}>
+                    <div className={CLASSNAME__MODAL_HEADER}>
+                        <TitleTag dangerouslySetInnerHTML={{ __html: title || '' }} />
+                        {index === 0 ? button : null}
+                    </div>
+                    {text ? (
+                        <Tag style={textStyles} dangerouslySetInnerHTML={{ __html: text || '' }} />
+                    ) : null}
                 </div>
-                {text ? (
-                    <p dangerouslySetInnerHTML={{ __html: text || '' }} />
-                ) : null}
-            </div>
-        ));
+            )
+        });
     }, [button, children, isCustom, isMinimized, isVideoPlaying, sections]);
 
     return (

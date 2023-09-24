@@ -156,6 +156,70 @@ const items = [
 		description: "Video Sub-sections using strings",
 		srcMain: clipAnimations,
 		srcThumbnail: clipAnimationsThumbnail,
+		modal: {
+			sections: [
+				{
+					title: "Using Strings To Specify Sections",
+					titleElementType: 'h2',
+					text: "The following object was used to create the video sections:",
+				},
+				{
+					textElementType: 'code',
+					text: `sections: [`,					
+					textStyles: {
+						fontWeight: 800,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `5px 0 0 10px`,
+					}
+				}, 
+				{
+					textElementType: 'code',
+					text: `['Searching Users'],`,
+					textStyles: {
+						fontWeight: 800,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					}
+				},
+				{
+					textElementType: 'code',
+					text: `['Filtering Results', '02:00'],`,
+					textStyles: {
+						fontWeight: 800,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					}
+				},
+				{
+					textElementType: 'code',
+					text: `['Hiding Filters', '07:00'],`,
+					textStyles: {
+						fontWeight: 800,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: `0 0 0 20px`,
+					},
+				},
+				{
+					textElementType: 'code',
+					text: ']',
+					textStyles: {
+						fontWeight: 800,
+						fontStyle: 'italic',
+					},
+					textContainerStyles: {
+						padding: '0 0 0 10px',
+					},
+				}
+			]
+		},
 		video: {
 			autoPlay: false,
 			muted: true,
