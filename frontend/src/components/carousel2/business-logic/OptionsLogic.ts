@@ -58,7 +58,6 @@ import {
     CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_MOBILE,
     CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MOBILE,
     CAROUSEL_MODAL_MINIMIZED_OPACITY_DEFAULT,
-    ITEM_STYLES_DEFAULT
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
@@ -173,13 +172,17 @@ export class OptionsLogic {
 
     get itemContainerContentJustification() {
         const objectPosition = this.itemStyles?.objectPosition;
-        if (this.isFullscreenMode) return 'center';
         return objectPosition === 'bottom' ? 'flex-end' : objectPosition === 'top' ? 'flex-start' : 'center';
     }
 
     get itemStyles() {
+        const defaultObjectStyles = {
+            objectFit: 'contain',
+            objectPosition: this.isFullscreenMode ? 'center' : this.isItemDisplayLocationBelow ? 'top' : 'bottom',
+        } as React.CSSProperties;
+
         return {
-            ...ITEM_STYLES_DEFAULT,
+            ...defaultObjectStyles,
             ...getCurrentValue(this.currentItem?.itemStyles, undefined, this.isFullscreenMode),
         } as CSSProperties;
     }

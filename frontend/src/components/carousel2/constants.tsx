@@ -11,10 +11,6 @@ export const EMPTY_STRING = "";
 export const FONT_WEIGHT_DEFAULT = 400;
 export const GET_CURRENT_VALUE_DEFAULT = 0;
 export const IS_LAST_PAGE_FLUSH_DEFAULT = true;
-export const ITEM_STYLES_DEFAULT = {
-    objectFit: 'contain',
-    objectPosition: 'bottom',
-} as React.CSSProperties;
 export const MAX_CLICK_THRESHOLD_DEFAULT = 15;
 export const MODAL_IS_MINIMIZED_INITIAL = false;
 export const MODAL_TEXT_TAG_DEFAULT = 'p';

@@ -501,8 +501,8 @@ const items = [
 				objectPosition: 'top',
 			},
 			fullscreen: {
-				objectFit: 'scale-down',
-				objectPosition: 'left',
+				objectFit: 'contain',
+				objectPosition: 'bottom',
 			},
 		}
 	},
@@ -2262,7 +2262,7 @@ const layoutThumbnailPositioningCenterNonDefaultCaseOnePage = (
 );
 const layoutThumbnailPositioningRightNonDefaultCaseOnePage = (
 	<Carousel
-		items={items.slice(3)}
+		items={items.slice(5)}
 		options={{
 			layout: {
 				thumbnailPositioning: 'right',
@@ -3664,7 +3664,6 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	SectionNames.custom,
 	// SectionNames.otherDynamicSettings,
 	SectionNames.layouts,
-	// SectionNames.imagePosition,
 	// SectionNames.navigationOptions,
 	SectionNames.itemPositioning,
 	// SectionNames.thumbnailOptions,
