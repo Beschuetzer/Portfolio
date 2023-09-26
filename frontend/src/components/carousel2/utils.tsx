@@ -277,6 +277,36 @@ export function getIsVideoPlaying(video: HTMLVideoElement | undefined) {
     return !video.paused && !video.ended && video.currentTime > 0
 }
 
+export function getMostFrequentItem(numbers: number[]) {
+    console.log({numbers});
+    
+    if (!numbers || numbers.length === 0) return null;
+    const counts: {[key: string]: number} = {};
+
+    for (const item of numbers) {
+        const currentCount = counts?.[item.toString()];
+        if (!currentCount) {
+            counts[item] = 1;
+        } else {
+            counts[item]++;
+        }
+    }
+    
+    let toReturn = -1;
+    let highestCount = Number.MIN_SAFE_INTEGER;
+    for (const [key, count] of Object.entries(counts)) {
+        if (count >= highestCount) {
+            highestCount = count;
+            const number = Number(key);
+            if (number > toReturn) {
+                toReturn = number;
+            }
+        }
+    }
+    return toReturn;
+}
+
+
 export function getNumberOfItemsThatCanFit(
     itemsLength: number,
     htmlElement: HTMLElement | undefined,

@@ -170,15 +170,17 @@ export class OptionsLogic {
         return getCurrentValue(this.options?.navigation?.disableWrapping, DISABLE_WRAPPING_DEFAULT, this.isFullscreenMode);
     }
 
-    get itemContainerContentJustification() {
+    get itemContainerContentJustification(): CSSProperties['justifyContent'] {
         const objectPosition = this.itemStyles?.objectPosition;
-        return objectPosition === 'bottom' ? 'flex-end' : objectPosition === 'top' ? 'flex-start' : 'center';
+        return objectPosition === 'bottom' ? 'flex-end' : objectPosition === 'center' ? 'center' : 'flex-start';
     }
 
     get itemStyles() {
         const defaultObjectStyles = {
             objectFit: 'contain',
-            objectPosition: this.isFullscreenMode ? 'center' : this.isItemDisplayLocationBelow ? 'top' : 'bottom',
+            // objectPosition: this.isFullscreenMode ? 'center' : this.isItemDisplayLocationBelow ? 'top' : 'bottom',
+            objectPosition: this.isFullscreenMode ? 'center' : 'top',
+            // objectPosition: 'center',
         } as React.CSSProperties;
 
         return {

@@ -1133,8 +1133,10 @@ export class StylingLogic {
 
     //#region Private Getters
     private get imageHeight() {
-        const toolbarWidth = this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.width || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT;
-        return this.isFullscreenMode ? '100%' : (toolbarWidth) * 9 / 16;
+        // const toolbarWidth = this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.width || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT;
+        // return this.isFullscreenMode ? '100%' : (toolbarWidth) * 9 / 16;
+        const itemContainerHeight = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_CONTAINER}`)?.getBoundingClientRect()?.height || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT;
+        return this.isFullscreenMode ? '100%' : itemContainerHeight;
     }
     //#endregion
 

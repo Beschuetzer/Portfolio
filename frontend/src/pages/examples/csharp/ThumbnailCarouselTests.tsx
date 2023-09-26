@@ -522,6 +522,15 @@ const items = [
 		description: "Image - Filler 2",
 	},
 	{
+		description: "Video Filler",
+		srcMain: clipAnimations,
+		srcThumbnail: clipAnimationsThumbnail,
+		video: {
+			autoPlay: true,
+			muted: true,
+		}
+	},
+	{
 		srcMain: maui04,
 		srcThumbnail: maui04Thumbnail,
 		description: "Image - Filler 2",
@@ -2244,14 +2253,14 @@ const layoutThumbnailPositioningLeftNonDefaultCaseOnePage = (
 		options={{
 			layout: {
 				// thumbnailPositioning: 'left',
-				itemDisplayLocation: "above",
+				itemDisplayLocation: "below",
 			},
 		}}
 	/>
 );
 const layoutThumbnailPositioningCenterNonDefaultCaseOnePage = (
 	<Carousel
-		items={items.slice(3)}
+		items={items.slice(10)}
 		options={{
 			layout: {
 				thumbnailPositioning: 'center',
@@ -2889,42 +2898,42 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.itemPositioning,
 		[
-			{
-				label: "Thumbnails Positioned Left in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningLeft,
-			},
-			{
-				label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
-			},
-			{
-				label: "Thumbnails Positioned Left in Container with Custom Item Spacing and Last Page not Flush",
-				jsx: layoutThumbnailPositioningLeftWithCustomItemSizeAndLastPageNotFlush,
-			},
-			{
-				label: "Thumbnails Positioned Center in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningCenter,
-			},
-			{
-				label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
-			},
-			{
-				label: "Thumbnails Positioned Center in Container with Custom Item Spacing and Last Page not Flush",
-				jsx: layoutThumbnailPositioningCenterWithCustomItemSizeAndLastPageNotFlush,
-			},
-			{
-				label: "Thumbnails Positioned Right in Container with Default Spacing",
-				jsx: layoutThumbnailPositioningRight,
-			},
-			{
-				label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
-				jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
-			},
-			{
-				label: "Thumbnails Positioned Right in Container with Custom Item Spacing and Last Page not Flush",
-				jsx: layoutThumbnailPositioningRightWithCustomItemSizeAndLastPageNotFlush,
-			},
+			// {
+			// 	label: "Thumbnails Positioned Left in Container with Default Spacing",
+			// 	jsx: layoutThumbnailPositioningLeft,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
+			// 	jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Left in Container with Custom Item Spacing and Last Page not Flush",
+			// 	jsx: layoutThumbnailPositioningLeftWithCustomItemSizeAndLastPageNotFlush,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Center in Container with Default Spacing",
+			// 	jsx: layoutThumbnailPositioningCenter,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
+			// 	jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Center in Container with Custom Item Spacing and Last Page not Flush",
+			// 	jsx: layoutThumbnailPositioningCenterWithCustomItemSizeAndLastPageNotFlush,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Right in Container with Default Spacing",
+			// 	jsx: layoutThumbnailPositioningRight,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
+			// 	jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
+			// },
+			// {
+			// 	label: "Thumbnails Positioned Right in Container with Custom Item Spacing and Last Page not Flush",
+			// 	jsx: layoutThumbnailPositioningRightWithCustomItemSizeAndLastPageNotFlush,
+			// },
 			{
 				label: "Thumbnails Positioned Left in Container One Page",
 				jsx: layoutThumbnailPositioningLeftNonDefaultCaseOnePage
@@ -2933,10 +2942,10 @@ const SECTIONS: Sections = [
 				label: "Thumbnails Positioned Center in Container One Page",
 				jsx: layoutThumbnailPositioningCenterNonDefaultCaseOnePage
 			},
-			{
-				label: "Thumbnails Positioned Right in Container One Page",
-				jsx: layoutThumbnailPositioningRightNonDefaultCaseOnePage
-			},
+			// {
+			// 	label: "Thumbnails Positioned Right in Container One Page",
+			// 	jsx: layoutThumbnailPositioningRightNonDefaultCaseOnePage
+			// },
 		]
 	],
 	[
@@ -3657,13 +3666,13 @@ const SECTIONS: Sections = [
 
 const ENABLED_SECTIONS: SectionNames[] = [
 	// ...Object.values(SectionNames),
-	SectionNames.aboveCustomization,
+	// SectionNames.aboveCustomization,
 	// SectionNames.belowCustomization,
 	// SectionNames.itemViewer,
 	// SectionNames.dynamicBasedOnViewingMode,
-	SectionNames.custom,
+	// SectionNames.custom,
 	// SectionNames.otherDynamicSettings,
-	SectionNames.layouts,
+	// SectionNames.layouts,
 	// SectionNames.navigationOptions,
 	SectionNames.itemPositioning,
 	// SectionNames.thumbnailOptions,

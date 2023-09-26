@@ -3,6 +3,7 @@ import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { useCarouselContext } from '../../../context';
 import { useRenderCount } from '../../../hooks/useRenderCountRef';
 import { CLASSNAME__ITEM_CONTAINER } from '../../../constants';
+import { getMostFrequentItem } from '../../../utils';
 
 type CarouselItemViewerContainerProps = {
     children: ReactNode | ReactNode[];
@@ -35,7 +36,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     //#region Functions
     const setCurrentMaxHeight = useCallback(() => {
         if (heightsRef?.current?.length === 0) return;
-        setHeight(Math.max(...heightsRef.current));
+        setHeight(getMostFrequentItem(heightsRef.current) || HEIGHT_INITIAL);
         clearInterval(intervalRef.current)
     }, [])
 
@@ -53,7 +54,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
             currentInvervalRef.current++;
             const heightLocal = itemContainerRef.current?.getBoundingClientRect().height || HEIGHT_INITIAL;
             if (heightLocal === HEIGHT_INITIAL) return;
-            heightsRef.current.push(heightLocal);
+            heightsRef.current.push(Math.ceil(heightLocal));
         }, DATA_POINT_COLLECTION_INTERVAL)
     }, [setCurrentMaxHeight])
 
