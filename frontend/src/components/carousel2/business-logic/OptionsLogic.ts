@@ -130,10 +130,6 @@ export class OptionsLogic {
         return this.isMobile ? CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT : CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT;
     }
 
-    get imagePosition() {
-        return getCurrentValue(this.options.layout?.imagePosition, "center", this.isFullscreenMode);
-    }
-
     get isDefaultItemDisplayLocation() {
         return this.itemDisplayLocation === 'none';
     }
@@ -174,7 +170,13 @@ export class OptionsLogic {
     get isWrappingDisabled() {
         return getCurrentValue(this.options?.navigation?.disableWrapping, DISABLE_WRAPPING_DEFAULT, this.isFullscreenMode);
     }
-  
+
+    get itemContainerContentJustification() {
+        const objectPosition = this.itemStyles?.objectPosition;
+        if (this.isFullscreenMode) return 'center';
+        return objectPosition === 'bottom' ? 'flex-end' : objectPosition === 'top' ? 'flex-start' : 'center';
+    }
+
     get itemStyles() {
         return {
             ...ITEM_STYLES_DEFAULT,

@@ -1484,65 +1484,6 @@ const itemViewerCustomShortcuts = (
 const imagePositionDefaultDisplayNone = (
 	<Carousel items={items} />
 );
-const imagePositionTopDisplayNone = (
-	<Carousel items={items} options={{
-		layout: {
-			imagePosition: "top",
-		}
-	}} />
-);
-const imagePositionBottomDisplayNone = (
-	<Carousel items={items} options={{
-		layout: {
-			imagePosition: "bottom",
-		}
-	}} />
-);
-const imagePositionDifferentValuesDisplayNone = (
-	<Carousel items={items} options={{
-		layout: {
-			imagePosition: {
-				fullscreen: "top",
-				nonFullscreen: 'center',
-			},
-		}
-	}} />
-);
-const imagePositionDifferentValuesDisplayBelow = (
-	<Carousel items={items} options={{
-		layout: {
-			imagePosition: {
-				fullscreen: "top",
-				nonFullscreen: 'center',
-			},
-			itemDisplayLocation: 'below',
-		}
-	}} />
-)
-const imagePositionTopDisplayAbove = (
-	<Carousel items={items} options={{
-		layout: {
-			imagePosition: "top",
-			itemDisplayLocation: 'above',
-		}
-	}} />
-);;
-const imagePositionBottomDisplayAbove = (
-	<Carousel items={items} options={{
-		layout: {
-			imagePosition: "bottom",
-			itemDisplayLocation: 'above',
-		}
-	}} />
-);
-const imagePositionCenterDisplayBelow = (
-	<Carousel items={items} options={{
-		layout: {
-			imagePosition: "center",
-			itemDisplayLocation: 'below',
-		}
-	}} />
-);
 const layoutAboveDefaultItemHeight = (
 	<Carousel
 		items={items.slice(1)}
@@ -2302,7 +2243,7 @@ const layoutThumbnailPositioningLeftNonDefaultCaseOnePage = (
 		items={items.slice(3)}
 		options={{
 			layout: {
-				thumbnailPositioning: 'left',
+				// thumbnailPositioning: 'left',
 				itemDisplayLocation: "above",
 			},
 		}}
@@ -2886,7 +2827,6 @@ enum SectionNames {
 	customWidth = "Custom Width",
 	dynamicBasedOnViewingMode = "Dynamic based on Viewing Mode",
 	dynamicLayout = "Dynamic Layout Settings",
-	imagePosition = "Image Position",
 	itemPositioning = "Item Positioning",
 	isLastPageFlush = "Last Page Flush",
 	itemViewer = "Item Viewer",
@@ -3505,43 +3445,6 @@ const SECTIONS: Sections = [
 		]
 	],
 	[
-		SectionNames.imagePosition,
-		[
-			{
-				label: "Position Default - Display None",
-				jsx: imagePositionDefaultDisplayNone
-			},
-			{
-				label: "Position Top - Display None",
-				jsx: imagePositionTopDisplayNone
-			},
-			{
-				label: "Position Bottom - Display None",
-				jsx: imagePositionBottomDisplayNone
-			},
-			{
-				label: "Position Top - Display Above",
-				jsx: imagePositionTopDisplayAbove
-			},
-			{
-				label: "Position Bottom - Display Above",
-				jsx: imagePositionBottomDisplayAbove
-			},
-			{
-				label: "Position Center - Display Below",
-				jsx: imagePositionCenterDisplayBelow
-			},
-			{
-				label: "Different Values - Display None - Top in fullscreen",
-				jsx: imagePositionDifferentValuesDisplayNone
-			},
-			{
-				label: "Different Values - Display Below - Top fullscreen center nonfullscreen",
-				jsx: imagePositionDifferentValuesDisplayBelow
-			},
-		]
-	],
-	[
 		SectionNames.navigationOptions,
 		[
 			{
@@ -3754,16 +3657,16 @@ const SECTIONS: Sections = [
 
 const ENABLED_SECTIONS: SectionNames[] = [
 	// ...Object.values(SectionNames),
-	// SectionNames.aboveCustomization,
+	SectionNames.aboveCustomization,
 	// SectionNames.belowCustomization,
 	// SectionNames.itemViewer,
 	// SectionNames.dynamicBasedOnViewingMode,
 	SectionNames.custom,
 	// SectionNames.otherDynamicSettings,
-	// SectionNames.layouts,
+	SectionNames.layouts,
 	// SectionNames.imagePosition,
 	// SectionNames.navigationOptions,
-	// SectionNames.itemPositioning,
+	SectionNames.itemPositioning,
 	// SectionNames.thumbnailOptions,
 ];
 const sections: CSharpSection[] = SECTIONS

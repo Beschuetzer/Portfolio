@@ -421,12 +421,6 @@ export type CarouselProgressBarDot = {
 }
 
 export type CarouselLayoutOptions = {
-    /**
-    *Where the image is display in the {@link CarouselItemViewer itemViewer}.  The non-fullscreen value only applies when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}.
-    *Default is {@link CarouselImagePosition center} when fullscreen mode and {@link CarouselImagePosition top} when non-fullscreen mode.
-    *Only noticable when the image width is greater than the width of the {@link CarouselItemViewer itemViewer}, and the image height is less than the height of the {@link CarouselItemViewer itemViewer}.
-    **/
-    imagePosition?: CarouselElementValue<CarouselImagePosition>;
     /***
     *If `none`, then the item is only displayed when clicking a thumbnail.  It is then displayed in fullscreen mode.
     *Otherwise the the item is displayed above or below the carousel and viewing the item in fullscreen mode requires pressing the fullscreen button when the item is selected.
