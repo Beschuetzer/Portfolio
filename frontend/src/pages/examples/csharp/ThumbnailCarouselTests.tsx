@@ -2267,7 +2267,7 @@ const layoutThumbnailPositioningCenterNonDefaultCaseOnePage = (
 				itemDisplayLocation: "above",
 			},
 			thumbnail: {
-				size: 100,
+				size: 150,
 			}
 		}}
 	/>

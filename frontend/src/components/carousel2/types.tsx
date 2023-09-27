@@ -36,7 +36,6 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
     ITEM_VIEWER_NEXT_ITEM_SHORTCUTS,
     ITEM_VIEWER_PREVIOUS_ITEM_SHORTCUTS,
-    CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT,
     THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT,
     PROGRESS_BAR_SHOW_CURRENT_POSITION_ON_CHANGE_DEFAULT,
     CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
@@ -726,7 +725,7 @@ export type CarouselThumbnailDescriptionOverlayOptions = {
     **/
     isDisabled?: CarouselElementValueTuple<boolean>;
     /**
-    *The size of the font in pixels of the thumbnail description;  Default is {@link CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT this} in pixels.
+    *The size of the font in pixels of the thumbnail description;  Default logic is {@link OptionsLogic.thumbnailOverlayText here}.
     **/
     fontSize?: CarouselElementValueTuple<number>;
     /**

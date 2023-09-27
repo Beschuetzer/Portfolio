@@ -511,11 +511,7 @@ export class StylingLogic {
 
     get carouselToolbarTextDescriptionStyle() {
         return {
-            display: "-webkit-box",
-            WebkitLineClamp: 1,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
+            ...this.getMaxLineCountStyle(1),
             flex: 1,
         } as CSSProperties;
     }
@@ -990,6 +986,16 @@ export class StylingLogic {
         }
     }
 
+    getMaxLineCountStyle(maxLineCount: number) {
+        return {
+            display: '-webkit-box',
+            WebkitBoxOrient: 'vertical',
+            WebkitLineClamp: maxLineCount,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+        } as CSSProperties
+    }
+
     get navigationContainerHorizontalPadding() {
         const navigationPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation);
         return navigationPadding;
@@ -1057,9 +1063,9 @@ export class StylingLogic {
         const { fontSize, maxLineCount, color } = this.optionsLogic.thumbnailOverlayText
 
         return {
-            WebkitLineClamp: maxLineCount,
             fontSize,
             color,
+            ...this.getMaxLineCountStyle(maxLineCount),
             ...this.carouselItemCursorStyle,
         } as CSSProperties
     }

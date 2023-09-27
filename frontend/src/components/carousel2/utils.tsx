@@ -155,6 +155,14 @@ export function getAncestorContainsClassname(elementToCheck: HTMLElement | null,
     }
 }
 
+/**
+*Returns a value that is within the min and max values.
+**/
+export function getBoundValue(value: NonNullable<number>, min: NonNullable<number>, max: NonNullable<number>) {
+    if (value === undefined || min === undefined || max === undefined) return value;
+    return value >= max ? max : value <= min ? min : value;
+}
+
 export function getClassname({ elementName, modifiedName }: GetClassname) {
     return `${CLASSNAME__ROOT}${elementName ? `__${elementName}` : ``}${modifiedName ? `--${modifiedName}` : ``}`;
 }
@@ -278,8 +286,6 @@ export function getIsVideoPlaying(video: HTMLVideoElement | undefined) {
 }
 
 export function getMostFrequentItem(numbers: number[]) {
-    console.log({numbers});
-    
     if (!numbers || numbers.length === 0) return null;
     const counts: {[key: string]: number} = {};
 

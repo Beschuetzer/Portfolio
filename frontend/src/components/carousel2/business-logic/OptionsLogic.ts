@@ -42,7 +42,6 @@ import {
     CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_ANGLE_DEFAULT,
     CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_START_OPACITY_DEFAULT,
     CAROUSEL_THUMBNAIL_OVERLAY_BACKGROUND_GRADIENT_END_OPACITY_DEFAULT,
-    CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT,
     CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT,
     CAROUSEL_MODAL_CLOSE_BUTTON_SIZE_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_COLOR_FOUR,
@@ -58,9 +57,12 @@ import {
     CAROUSEL_PROGRESS_BAR_HEIGHT_DEFAULT_MOBILE,
     CAROUSEL_PROGRESS_BAR_SCALE_AMOUNT_MOBILE,
     CAROUSEL_MODAL_MINIMIZED_OPACITY_DEFAULT,
+    CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_MIN_THESHOLD,
+    CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_MAX_DEFAULT,
+    CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_MIN_DEFAULT,
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
-import { convertHexToRgba, getCurrentValue, getIsMobile } from "../utils";
+import { convertHexToRgba, getBoundValue, getCurrentValue, getIsMobile } from "../utils";
 
 export type OptionsConstructor = {
     options: CarouselOptions;
@@ -420,7 +422,9 @@ export class OptionsLogic {
     }
 
     get thumbnailOverlayIsDisabled() {
-        return getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.isDisabled, !this.isDefaultItemDisplayLocation && this.thumbnailOverlayIsHidden, this.isFullscreenMode);
+        const isThumbnailTooSmall = this.thumbnailSize < CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_MIN_THESHOLD;
+        const defaultValue = !this.isDefaultItemDisplayLocation && this.thumbnailOverlayIsHidden && isThumbnailTooSmall;
+        return getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.isDisabled, defaultValue, this.isFullscreenMode);
     }
 
     get thumbnailOverlayIsHidden() {
@@ -428,9 +432,10 @@ export class OptionsLogic {
     }
 
     get thumbnailOverlayText() {
-        const fontSize = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.fontSize, CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_DEFAULT, this.isFullscreenMode);
         const color = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.textColor, this.theme.colorFive, this.isFullscreenMode);
         const maxLineCount = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.maxLineCount, CAROUSEL_ITEM_THUMBNAIL_DESCRIPTION_OVERLAY_MAX_LINE_COUNT_DEFAULT, this.isFullscreenMode)
+        const fontSizeDefault = Math.floor(getBoundValue(this.thumbnailSize / 10, CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_MIN_DEFAULT, CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_MAX_DEFAULT));
+        const fontSize = getCurrentValue(this.options?.thumbnail?.descriptionOverlay?.fontSize, fontSizeDefault, this.isFullscreenMode);
         return {
             color,
             fontSize,
