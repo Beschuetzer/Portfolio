@@ -1,7 +1,9 @@
 Carousel rework
   -make the thumbnail overlay display by default if the size of the thumbnail is >= 100 (have the font-size be 1/10 that with a min of 10 and max of 12)
   -refactor navigation stuff to CarouselNavigation component
-  -add option to set max height of container (adjust the value for StylingLogic.imageHeight default [CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT])
+
+  -add option to set max height of container (adjust the value for StylingLogic.imageHeight default [CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT]) 
+      --delete maxHeight type if this doesn't work out.
 
   -all custom test - dots are not centered.  Is this something that needs a custom style or can it be handle differently?
   -add option to minimize carousel modal by clicking anywhere in the full modal (default to true);
