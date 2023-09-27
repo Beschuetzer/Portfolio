@@ -1,6 +1,8 @@
 Carousel rework
+  -need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body
   -make the thumbnail overlay display by default if the size of the thumbnail is >= 100 (have the font-size be 1/10 that with a min of 10 and max of 12)
   -refactor navigation stuff to CarouselNavigation component
+  -some videos when played cause changing the navigation page to be less smooth?
 
   -add option to set max height of container (adjust the value for StylingLogic.imageHeight default [CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT]) 
       --delete maxHeight type if this doesn't work out.
