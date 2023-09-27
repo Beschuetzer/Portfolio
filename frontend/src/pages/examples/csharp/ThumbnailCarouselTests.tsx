@@ -2266,6 +2266,9 @@ const layoutThumbnailPositioningCenterNonDefaultCaseOnePage = (
 				thumbnailPositioning: 'center',
 				itemDisplayLocation: "above",
 			},
+			thumbnail: {
+				size: 150,
+			}
 		}}
 	/>
 );
@@ -2898,10 +2901,10 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.itemPositioning,
 		[
-			// {
-			// 	label: "Thumbnails Positioned Left in Container with Default Spacing",
-			// 	jsx: layoutThumbnailPositioningLeft,
-			// },
+			{
+				label: "Thumbnails Positioned Left in Container with Default Spacing",
+				jsx: layoutThumbnailPositioningLeft,
+			},
 			// {
 			// 	label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
 			// 	jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,

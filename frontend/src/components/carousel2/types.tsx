@@ -42,6 +42,7 @@ import {
     CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
     MODAL_TEXT_TAG_DEFAULT,
     MODAL_TITLE_TAG_DEFAULT,
+    CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
 } from './constants';
 import { OptionsLogic } from './business-logic/OptionsLogic';
 import { StylingLogic } from './business-logic/StylingLogic';
@@ -435,8 +436,20 @@ export type CarouselLayoutOptions = {
     **/
     isToolbarPositionedInVideo?: CarouselElementValueTuple<boolean>;
     /**
-    *Default is {@link CarouselItemThumbnailPositioning left}.
+    *This will limit the maximum height of the entire carousel.
+    *Since the height of the itemViewer is calculated based on the first image (maximizes height to fit the width),
+    *the first image may not fit perfectly in the itemViewer. 
+    *If the {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is {@link CarouselItemDisplayLocation none}, 
+    *the {@link CarouselThumbnailOptions.size thumbnail size} will be reduced if need be.  
+    *Otherwise the height of the {@link CarouselItemViewer} will be reduced.
+    *
+    *Default is {@link CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT here}.
+    **/
+    maxHeight?: CarouselElementValue<number>;
+    /**
     *Overrides any value given in {@link CarouselThumbnailOptions.spacingStrategy spacingStrategy}.
+    *
+    *Default is {@link CarouselItemThumbnailPositioning left}.
     *@example
     *`left` => the left-most thumbnail item on a given page is positioned flush to the container
     *`center` => the left-most and right-most thumbnail on a given page are equi-distant from the navigation containers ends
@@ -456,7 +469,7 @@ export type CarouselSwipingOptions = {
     /**
     *If `true`, then swiping will be disabled.  For {@link CarouselSections.navigation navigation}, this means grabbing a thumbnail
     *and swiping will not change the page (non-fullscreen mode).  
-    *For {@link CarouselSections.itemViewer itemViewer}, this means that grabbing and swiping will not change the currently viewing item (fullscreen mode).
+    *For {@link CarouselSections.itemViewer itemViewer}, this means that grabbing and swiping will not change the currently viewing item (fullscreen mode only).
     *Swiping only occurs if mouseup and mousedown coordinate distances are greater than {@link CarouselSwipingOptions.maxClickThreshold maxClickThreshold}. 
     *Default is `true` when {@link CarouselLayoutOptions.isToolbarPositionedInVideo isToolbarPositionedInVideo} is `true` and not fullscreen, otherwise default is `false`.
     *See {@link OptionsLogic.isItemViewerSwipingDisabled ItemViewer Logic} and {@link OptionsLogic.isNavigationSwipingDisabled Navigation Logic}. 
@@ -467,7 +480,8 @@ export type CarouselSwipingOptions = {
     *This is used to prevent opening of an item when mousedown and mouseup targets are the same.
     *Higher values mean the user can move the cursor more and still open the item.
     *0 would mean if the user moved the cursor at all between mouseup and mousedown then the item would not open.
-    *Default is {@link MAX_CLICK_THRESHOLD_DEFAULT this} when swiping is enabled to allow for slight movement (swiping is disabled if only 1 page or {@link CarouselSwipingOptions.disableSwiping disableSwiping} is `false`).
+    *Default is {@link MAX_CLICK_THRESHOLD_DEFAULT this} when swiping is enabled to allow for slight movement 
+    *(swiping is disabled if only 1 page, {@link CarouselSwipingOptions.disableSwiping disableSwiping} is `false`, or in non-fullscreen mode).
     **/
     maxClickThreshold?: CarouselElementValueTuple<number>;
 }

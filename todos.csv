@@ -1,6 +1,6 @@
 Carousel rework
   -add option to set max height of container (adjust the value for StylingLogic.imageHeight default [CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT])
-    --The height of the itemViewer is calculated based on the first image (maximizes height to fit the width).  This option will limit the height of the entire carousel.  The trade-off is that the first image may not fit perfectly in the itemViewer.  Only applied if the 
+    --
 
   -all custom test - dots are not centered.  Is this something that needs a custom style or can it be handle differently?
   -add option to minimize carousel modal by clicking anywhere in the full modal (default to true);
