@@ -91,7 +91,6 @@
         &>div {
             @include positionAbsolute($top: auto);
             transition: bottom $carouselAnimationDuration ease;
-            padding: calc($itemViewerToolbarMarginHorizontal / 2) $itemViewerToolbarMarginHorizontal;
             text-align: center;
             font-weight: 700;
             cursor: pointer;

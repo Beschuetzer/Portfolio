@@ -1018,6 +1018,8 @@ export class StylingLogic {
         const isOverlayDisabled = this.optionsLogic.thumbnailOverlayIsDisabled;
         const { angle, startColor, startOpacity, endColor, endOpacity } = this.optionsLogic.thumbnailOverlayBackgroundGradient;
         const { opacity, color } = this.optionsLogic.thumbnailOverlayBackgroundSolid;
+        const paddingHorizontal = this.optionsLogic.thumbnailSize * 0.06666667;
+        const paddingVertical = paddingHorizontal / 2;
 
         const backgroundSolidStyle = {
             background: convertHexToRgba(color, opacity),
@@ -1036,7 +1038,7 @@ export class StylingLogic {
         } as CSSProperties : {};
 
         const paddingStyle = {
-            padding: this.optionsLogic.thumbnailSize * 0.06666667
+            padding: `${paddingVertical}${CAROUSEL_SPACING_UNIT} ${paddingHorizontal}${CAROUSEL_SPACING_UNIT}`
         } as CSSProperties
 
         const thumbnailBackgroundStyle = {
