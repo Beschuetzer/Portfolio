@@ -1,7 +1,6 @@
 Carousel rework
-  -since the height is calculated by the first item in the carousel, need to figure out how to handle cases like itemPositioning tests where first item is not the same dimension as the other items:
-      --images now take the height of the container on load (add option to adjust the value for StylingLogic.imageHeight default [CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT]?)
-      --videos need to take on the height of the container if the container height has been set (add POS in context for this?)
+  -add option to set max height of container (adjust the value for StylingLogic.imageHeight default [CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT])
+    --The height of the itemViewer is calculated based on the first image (maximizes height to fit the width).  This option will limit the height of the entire carousel.  The trade-off is that the first image may not fit perfectly in the itemViewer.  Only applied if the 
 
   -all custom test - dots are not centered.  Is this something that needs a custom style or can it be handle differently?
   -add option to minimize carousel modal by clicking anywhere in the full modal (default to true);

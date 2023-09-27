@@ -69,7 +69,7 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
         srcMain,
         video: videoProps,
     } = props;
-    const { options, currentItemIndex, currentVideoCurrentTime, isFullscreenMode, setCurrentVideoCurrentTime } = useCarouselContext();
+    const { options, currentItemIndex, currentVideoCurrentTime, isFullscreenMode, setCurrentVideoCurrentTime, itemContainerHeight } = useCarouselContext();
     const { autoPlay = false, loop = false, muted = true } = videoProps || {};
     const [isLoaded, setIsLoaded] = useState(false);
     const [percent, setPercent] = useState(PROGRESS_BAR_PERCENT_INITIAL_VALUE);
@@ -203,7 +203,7 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
                     controls={optionsLogic.useDefaultVideoControls}
                     draggable={false}
                     className={`${getClassname({ elementName: 'video' })} ${isLoaded ? '' : CLASSNAME__HIDDEN}`}
-                    style={stylingLogic.getCarouselVideoStyle(!!isProgressBarMouseDownRef.current)}
+                    style={stylingLogic.getCarouselVideoStyle(!!isProgressBarMouseDownRef.current, itemContainerHeight)}
                     ref={videoRef as any}
                     autoPlay={autoPlay}
                     muted={muted}

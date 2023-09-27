@@ -582,13 +582,14 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoStyle(shouldHide: boolean) {
+    getCarouselVideoStyle(shouldHide: boolean, height: CarouselContextOutputProps['itemContainerHeight']) {
         const userDefinedStyles = {
             ...this.optionsLogic.itemStyles,
         } as CSSProperties
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
+            height,
             ...userDefinedStyles,
             zIndex: shouldHide ? -1 : 1,
         } as CSSProperties : {

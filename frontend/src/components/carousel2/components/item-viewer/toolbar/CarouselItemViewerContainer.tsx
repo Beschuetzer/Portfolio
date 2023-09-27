@@ -2,7 +2,7 @@ import { ReactNode, forwardRef, useEffect, useRef, useState, useImperativeHandle
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { useCarouselContext } from '../../../context';
 import { useRenderCount } from '../../../hooks/useRenderCountRef';
-import { CLASSNAME__ITEM_CONTAINER } from '../../../constants';
+import { CLASSNAME__ITEM_CONTAINER, ITEM_CONTAINER_HEIGHT_INITIAL } from '../../../constants';
 import { getMostFrequentItem } from '../../../utils';
 
 type CarouselItemViewerContainerProps = {
@@ -13,7 +13,6 @@ type CarouselItemViewerContainerProps = {
 const CURRENT_INTERVAL_INITIAL = 0;
 const DATA_POINT_COLLECTION_INTERVAL = 200;
 const HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL = false;
-const HEIGHT_INITIAL = 0;
 const LAST_VIEWPORT_WIDTH_REF_INITIAL = 0;
 const NUMBER_OF_DATA_POINTS = 25;
 export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerContainerProps>((props, ref) => {
@@ -21,10 +20,9 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         children,
         onClick,
     } = props;
-    const { currentItemIndex, isFullscreenMode } = useCarouselContext();
+    const { currentItemIndex, isFullscreenMode, itemContainerHeight, setItemContainerHeight } = useCarouselContext();
     const { stylingLogic, optionsLogic } = useBusinessLogic();
     const heightsRef = useRef<number[]>([]);
-    const [height, setHeight] = useState(HEIGHT_INITIAL);
     const intervalRef = useRef<any>(-1);
     const hasCurrentItemIndexChangedRef = useRef(HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL);
     const currentInvervalRef = useRef(CURRENT_INTERVAL_INITIAL);
@@ -36,9 +34,9 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     //#region Functions
     const setCurrentMaxHeight = useCallback(() => {
         if (heightsRef?.current?.length === 0) return;
-        setHeight(getMostFrequentItem(heightsRef.current) || HEIGHT_INITIAL);
+        setItemContainerHeight(getMostFrequentItem(heightsRef.current) || ITEM_CONTAINER_HEIGHT_INITIAL);
         clearInterval(intervalRef.current)
-    }, [])
+    }, [setItemContainerHeight])
 
     const startInterval = useCallback(() => {
         return setInterval(() => {
@@ -52,8 +50,8 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
                 return;
             }
             currentInvervalRef.current++;
-            const heightLocal = itemContainerRef.current?.getBoundingClientRect().height || HEIGHT_INITIAL;
-            if (heightLocal === HEIGHT_INITIAL) return;
+            const heightLocal = itemContainerRef.current?.getBoundingClientRect().height || ITEM_CONTAINER_HEIGHT_INITIAL;
+            if (heightLocal === ITEM_CONTAINER_HEIGHT_INITIAL) return;
             heightsRef.current.push(Math.ceil(heightLocal));
         }, DATA_POINT_COLLECTION_INTERVAL)
     }, [setCurrentMaxHeight])
@@ -62,8 +60,8 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         heightsRef.current = [];
         currentInvervalRef.current = CURRENT_INTERVAL_INITIAL;
         hasCurrentItemIndexChangedRef.current = HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL;
-        setHeight(HEIGHT_INITIAL);
-    }, [])
+        setItemContainerHeight(ITEM_CONTAINER_HEIGHT_INITIAL);
+    }, [setItemContainerHeight])
 
     const setLastViewportWidth = useCallback(() => {
         lastViewportWidthRef.current = window.innerWidth;
@@ -116,7 +114,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     return (
         <div
             ref={itemContainerRef}
-            style={stylingLogic.getCarouselItemContainerStyle(height || 'auto')}
+            style={stylingLogic.getCarouselItemContainerStyle(itemContainerHeight)}
             className={CLASSNAME__ITEM_CONTAINER}
             onClick={onClick as any} >
             {children}
