@@ -97,10 +97,12 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#region Handlers/Functions
     const onClick = useCallback((e: MouseEvent) => {
         e.stopPropagation();
-        if (isModalMinimized) {
-            setIsModalMinimized(false);
+        if (optionsLogic.modalMinimizeOnClick) {
+            setIsModalMinimized(current => !current);
+            return;
         }
-    }, [isModalMinimized, setIsModalMinimized])
+        setIsModalMinimized(false);
+    }, [optionsLogic.modalMinimizeOnClick, setIsModalMinimized])
 
     const onCloseClick = useCallback((e: MouseEvent) => {
         onClick(e)

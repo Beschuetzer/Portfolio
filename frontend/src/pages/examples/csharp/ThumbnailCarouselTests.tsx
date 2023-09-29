@@ -1346,8 +1346,18 @@ const itemViewerModalMinimizedOpacity = (
 		},
 		styling: {
 			modal: {
-				opacityWhenMinimized: -1,
+				opacityWhenMinimized: .15,
 			}
+		}
+	}} />
+)
+const itemViewerModalMinimizeOnlyViaCloseButton = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: 'below',
+		},
+		modal: {
+			minimizeOnClick: false,
 		}
 	}} />
 )
@@ -2550,6 +2560,7 @@ const viewingModeItemViewerPreview = (
 			},
 			styling: {
 				modal: {
+
 					padding: {
 						top: 40,
 						fullscreen: {
@@ -3544,6 +3555,10 @@ const SECTIONS: Sections = [
 				label: "Modal Minimized Opacity is .15",
 				jsx: itemViewerModalMinimizedOpacity
 			},
+			{
+				label: "Modal only Minimized via Close Button",
+				jsx: itemViewerModalMinimizeOnlyViaCloseButton
+			},
 		]
 	],
 	[
@@ -3671,13 +3686,13 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	// ...Object.values(SectionNames),
 	// SectionNames.aboveCustomization,
 	// SectionNames.belowCustomization,
-	// SectionNames.itemViewer,
-	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.custom,
-	// SectionNames.otherDynamicSettings,
+	// SectionNames.dynamicBasedOnViewingMode,
+	// SectionNames.itemPositioning,
+	SectionNames.itemViewer,
 	// SectionNames.layouts,
 	// SectionNames.navigationOptions,
-	SectionNames.itemPositioning,
+	// SectionNames.otherDynamicSettings,
 	// SectionNames.thumbnailOptions,
 ];
 const sections: CSharpSection[] = SECTIONS

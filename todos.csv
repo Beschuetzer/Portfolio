@@ -1,13 +1,12 @@
 Carousel rework
+  -add option to reset isModalMinimized state on item change (default to true)
   -need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body
-  -some videos when played cause changing the navigation page to be less smooth?
 
   -add option to set max height of container (adjust the value for StylingLogic.imageHeight default [CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT]) 
       --delete maxHeight type if this doesn't work out.
 
   -all custom test - dots are not centered.  Is this something that needs a custom style or can it be handle differently?
-  -add option to minimize carousel modal by clicking anywhere in the full modal (default to true);
-  -add option to reset isModalMinimized state on item change (default to true)
+ 
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
   -make CarouselElementCustomization.style a CarouselElementValue?
@@ -25,6 +24,7 @@ Carousel rework
   -restructure the options object to make things like the progressbar options more accesible (currently in styling.toolbar.progressBar)?  Mabye have an options.elements where all elements are listed?
 
 Known Issues with Carousel rework:
+  -some videos when played cause changing the navigation page to be less smooth?
   -progress bar for non-embedded case a bit sloppy (try changing widths to flat px amount (width of middle section, non embedded case grows on hover))
   -small gap at bottom of toolbar (only appears a smaller viewports around 845px)
   -changing items with mid-tier and below setting is sluggish

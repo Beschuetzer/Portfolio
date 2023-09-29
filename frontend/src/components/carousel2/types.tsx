@@ -42,6 +42,7 @@ import {
     MODAL_TEXT_TAG_DEFAULT,
     MODAL_TITLE_TAG_DEFAULT,
     CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
+    MODAL_MINIMIZE_ON_CLICK_DEFAULT,
 } from './constants';
 import { OptionsLogic } from './business-logic/OptionsLogic';
 import { StylingLogic } from './business-logic/StylingLogic';
@@ -485,6 +486,14 @@ export type CarouselSwipingOptions = {
     maxClickThreshold?: CarouselElementValueTuple<number>;
 }
 
+export type CarouselModalOptions = {
+    /**
+    *This option allows you to specify whether clicking anywhere in modal will minimize it.  
+    *The default is {@link MODAL_MINIMIZE_ON_CLICK_DEFAULT here}.
+    **/
+    minimizeOnClick?: CarouselElementValue<boolean>;
+}
+
 export type CarouselNavigationOptions = {
     /**
     *If `true`, the {@link CarouselContent navigation} automatically changes pages based on the current item being viewed.
@@ -558,6 +567,7 @@ export type CarouselStylingOptions = {
 export type CarouselOptions = {
     itemViewer?: CarouselItemViewerOptions;
     layout?: CarouselLayoutOptions;
+    modal?: CarouselModalOptions;
     navigation?: CarouselNavigationOptions;
     shortcuts?: CarouselActions;
     styling?: CarouselStylingOptions

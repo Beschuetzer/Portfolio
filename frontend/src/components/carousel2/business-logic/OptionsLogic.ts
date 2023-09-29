@@ -60,6 +60,7 @@ import {
     CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_MIN_THESHOLD,
     CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_MAX_DEFAULT,
     CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_MIN_DEFAULT,
+    MODAL_MINIMIZE_ON_CLICK_DEFAULT,
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getBoundValue, getCurrentValue, getIsMobile } from "../utils";
@@ -316,6 +317,14 @@ export class OptionsLogic {
         return getCurrentValue(
             this.options?.styling?.modal?.fontSize,
             this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
+            this.isFullscreenMode
+        );
+    }
+
+    get modalMinimizeOnClick() {
+        return getCurrentValue(
+            this.options?.modal?.minimizeOnClick,
+            MODAL_MINIMIZE_ON_CLICK_DEFAULT,
             this.isFullscreenMode
         );
     }

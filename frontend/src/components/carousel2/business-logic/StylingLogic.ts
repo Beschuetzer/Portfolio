@@ -393,8 +393,13 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselModalStyle(shouldHide: boolean, modalHeight: number, isMinimized = false) {
+    getCarouselModalStyle(
+        shouldHide: boolean,
+        modalHeight: number,
+        isMinimized = false,
+    ) {
         this.modalHeight = Math.max(this.modalHeight, modalHeight);
+        const minimizeOnClick = this.optionsLogic.modalMinimizeOnClick;
         const isToolbarEmbedded = this.optionsLogic.isToolbarInVideo;
         const { bottom: paddingBottom, left: paddingLeft, right: paddingRight, top: paddingTop } = this.optionsLogic.modalPadding;
         const widthToUse = this.optionsLogic.getModalWidth(isMinimized);
@@ -422,7 +427,7 @@ export class StylingLogic {
                     const toolbarFirstDivRect = toolbarFirstDiv?.getBoundingClientRect();
                     heightBetweenItemTopAndToolbarBarTop = Math.abs((toolbarFirstDivRect?.top || window.innerHeight * .925) + toolbarPaddingBottom);
                 }
-                
+
                 maxHeight = heightBetweenItemTopAndToolbarBarTop - spaceBetweenModalTopAndItemTop * 4;
 
             } else if (this.optionsLogic.itemDisplayLocation !== 'none') {
@@ -440,7 +445,7 @@ export class StylingLogic {
                     const imageMaxHeightOffset = this.isCurrentItemVideo ? 0 : elementFirstDivRect?.height || 30;
                     const toolbarTop = this.isCurrentItemVideo ? (elementToUseRect.y + progressBarPaddingTop) : (elementFirstDivRect.y + toolbarPaddingBottom)
                     heightBetweenItemTopAndToolbarBarTop = Math.abs(carouselContainerRect.y + carouselPaddingTop - toolbarTop);
-                    
+
                     if (this.optionsLogic.isItemDisplayLocationBelow) {
                         const itemContainerRect = itemContainer?.getBoundingClientRect();
                         if (itemContainerRect) {
@@ -490,7 +495,7 @@ export class StylingLogic {
             background: this.optionsLogic.modalBackgroundColor,
             maxHeight: isMinimized ? 'auto' : maxHeight,
             overflow: 'auto',
-            cursor: isMinimized ? 'pointer' : 'auto',
+            cursor: isMinimized || minimizeOnClick ? 'pointer' : 'auto',
         } as CSSProperties;
         const hiddenStyle = {
             visibility: shouldHide ? 'hidden' : 'visible',
