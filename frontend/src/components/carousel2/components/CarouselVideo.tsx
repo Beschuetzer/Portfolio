@@ -195,6 +195,7 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
                 <CarouselVideoCurrentTimeViewer
                     isProgressBarMouseDownRef={isProgressBarMouseDownRef}
                     isVideoPlaying={isVideoPlaying}
+                    itemContainerHeight={itemContainerHeight}
                     percent={percent}
                     srcMain={srcMain}
                     type={type}

@@ -7,6 +7,7 @@ import { useSetVideoCurrentTime } from '../hooks/useSetVideoCurrentTime';
 
 type CarouselVideoCurrentTimeViewerPropsProps = {
     isVideoPlaying: boolean;
+    itemContainerHeight: string | number;
 } &
     Pick<CarouselItemViewerProgressBarScreenshotPreviewProps, 'percent' | 'type' | 'srcMain'> &
     Pick<CarouselItemViewerToolbarProps, 'isProgressBarMouseDownRef'>
@@ -14,6 +15,7 @@ export const CarouselVideoCurrentTimeViewer = (props: CarouselVideoCurrentTimeVi
     const {
         isProgressBarMouseDownRef,
         isVideoPlaying,
+        itemContainerHeight,
         percent = 0,
         type,
     } = props;
@@ -25,7 +27,7 @@ export const CarouselVideoCurrentTimeViewer = (props: CarouselVideoCurrentTimeVi
 
     return (
         <video
-            style={stylingLogic.getCarouselVideoCurrentTimeViewerStyle(!!isProgressBarMouseDownRef?.current)}
+            style={stylingLogic.getCarouselVideoCurrentTimeViewerStyle(!!isProgressBarMouseDownRef?.current, itemContainerHeight)}
             ref={videoRef as any}
             autoPlay={false}
             muted={true}

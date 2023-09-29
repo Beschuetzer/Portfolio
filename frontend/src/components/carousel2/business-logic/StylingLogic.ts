@@ -562,7 +562,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoCurrentTimeViewerStyle(shouldShow: boolean) {
+    getCarouselVideoCurrentTimeViewerStyle(shouldShow: boolean, itemContainerHeight: string | number) {
         if (!shouldShow) return {
             display: 'none',
         } as CSSProperties;
@@ -573,6 +573,7 @@ export class StylingLogic {
             right: 0,
             bottom: 0,
             width: '100%',
+            height: itemContainerHeight,
             paddingLeft: this.carouselVideoContainerStyle.paddingLeft,
             paddingRight: this.carouselVideoContainerStyle.paddingRight,
         } as CSSProperties;

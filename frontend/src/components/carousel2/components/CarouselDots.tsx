@@ -5,10 +5,10 @@ import { ArrowProps, CarouselElement, CarouselNavigationProps } from '../types';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingLogic } from '../business-logic/StylingLogic';
 
-type CarouselDotsProps = {
+export type CarouselDotsProps = {
     items: CarouselItemProps[];
-    style?: React.CSSProperties;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+    style?: React.CSSProperties;
 } & CarouselNavigationProps & Pick<ArrowProps, 'options'>
 
 export const CarouselDots = (props: CarouselDotsProps) => {

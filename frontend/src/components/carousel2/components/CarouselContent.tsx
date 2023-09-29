@@ -1,15 +1,28 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ArrowButtonDirection, CarouselNavigationOptions } from '../types';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, GET_CURRENT_VALUE_DEFAULT, TRANSLATION_AMOUNT_INITIAL } from '../constants';
-import { CarouselContextInputProps, useCarouselContext } from '../context';
-import { getNumberOfItemsThatCanFit, getClassname, getNumberOfPages, onArrowButtonClick } from '../utils';
+import {
+    CAROUSEL_ITEM_SPACING_DEFAULT,
+    CLASSNAME__GRABBING,
+    CURRENT_ITEM_INDEX_INITIAL,
+    GET_CURRENT_VALUE_DEFAULT,
+    TRANSLATION_AMOUNT_INITIAL
+} from '../constants';
+import {
+    CarouselContextInputProps,
+    useCarouselContext
+} from '../context';
+import {
+    getNumberOfItemsThatCanFit,
+    getNumberOfPages,
+    onArrowButtonClick
+} from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 import { CarouselItemToRender } from './CarouselItemToRender';
 import { CarouselNavigationMemoized } from './CarouselNavigation';
+import { CarouselItems } from './CarouselItems';
 
 /**
 *Tracks why the translation amount changed.  
@@ -41,7 +54,6 @@ export const CarouselContent = (props: CarouselContentProps) => {
     const hasCalculatedItemSpacingRef = useRef(false);
     const resizeWindowDebounceRef = useRef<any>();
     const translationAmountDifferenceRef = useRef(0);
-    const itemsContainerOuterRef = useRef<HTMLDivElement>(null);
     const itemsContainerInnerRef = useRef<HTMLDivElement>(null);
     const previousCurrentItemIndexRef = useRef(CURRENT_ITEM_INDEX_INITIAL);
     const translationAmountChangeRef = useRef<TranslationAmountChange>(TranslationAmountChange.none);
@@ -343,28 +355,20 @@ export const CarouselContent = (props: CarouselContentProps) => {
             {optionsLogic.isItemDisplayLocationAbove ? (
                 <CarouselItemToRender />
             ) : null}
-            <div ref={itemsContainerOuterRef}
-                style={{
-                    ...stylingLogic.carouselItemsOuterContainerStyle,
-                    ...stylingLogic.fontFamilyNavigationStyle,
-                }}
-            >
-                <div ref={itemsContainerInnerRef}
-                    style={stylingLogic.getCarouselItemsInnerContainerStyle(interItemSpacing, translationAmount, isLastPage, translationAmountChangeRef)}
-                    className={getClassname({ elementName: "items" })}
-                >
-                    {
-                        items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)
-                    }
-                </div>
-            </div>
+            <CarouselItems
+                ref={itemsContainerInnerRef}
+                interItemSpacing={interItemSpacing}
+                translationAmount={translationAmount}
+                isLastPage={isLastPage}
+                translationAmountChangeRef={translationAmountChangeRef}
+                items={items}
+            />
             <CarouselNavigationMemoized
                 currentPage={currentPage}
                 numberOfPages={numberOfPages}
                 options={options || {}}
                 setCurrentPage={setCurrentPage}
-                items={items}
-            />
+                items={items} numberOfDots={0} />
             {optionsLogic.isItemDisplayLocationBelow ? (
                 <CarouselItemToRender />
             ) : null}

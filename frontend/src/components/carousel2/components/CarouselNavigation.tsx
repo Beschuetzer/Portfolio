@@ -1,21 +1,16 @@
 import React from 'react'
 import { CLASSNAME__NAVIGATION } from '../constants'
-import { ArrowButtonDirection, CarouselOptions } from '../types'
+import { ArrowButtonDirection, CarouselNavigationProps } from '../types'
 import { onArrowButtonClick } from '../utils'
 import { CarouselArrowButton } from './CarouselArrowButton'
-import { CarouselDots } from './CarouselDots'
+import { CarouselDots, CarouselDotsProps } from './CarouselDots'
 import { useBusinessLogic } from '../hooks/useBusinessLogic'
-import { CarouselItemProps } from './CarouselItem'
 
-type CarouselNaviagtionProps = {
-    currentPage: number;
-    items?: CarouselItemProps[];
+type Props = {
     numberOfPages: number;
-    options: CarouselOptions;
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-}
+} & CarouselNavigationProps & Pick<CarouselDotsProps, 'currentPage' | 'items' | 'options' | 'setCurrentPage'>
 
-export const CarouselNavigation = (props: CarouselNaviagtionProps) => {
+export const CarouselNavigation = (props: Props) => {
     const {
         currentPage,
         items,
