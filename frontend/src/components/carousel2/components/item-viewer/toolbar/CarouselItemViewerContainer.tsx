@@ -2,8 +2,9 @@ import { ReactNode, forwardRef, useEffect, useRef, useImperativeHandle, useCallb
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { useCarouselContext } from '../../../context';
 import { useRenderCount } from '../../../hooks/useRenderCountRef';
-import { CLASSNAME__ITEM_CONTAINER, ITEM_CONTAINER_HEIGHT_INITIAL, ITEM_CONTAINER_MIN_DEFAULT } from '../../../constants';
+import { CLASSNAME__ITEM_CONTAINER, ITEM_CONTAINER_HEIGHT_INITIAL, ITEM_CONTAINER_MIN_DEFAULT, ITEM_CONTAINER_PRE_EMPTIVE_HEIGHT_SET_DEFAULT } from '../../../constants';
 import { getBoundValue, getMostFrequentItem } from '../../../utils';
+import { useOnResize } from '../../../hooks/useOnResize';
 
 type CarouselItemViewerContainerProps = {
     children: ReactNode | ReactNode[];
@@ -11,7 +12,7 @@ type CarouselItemViewerContainerProps = {
 }
 
 const CURRENT_INTERVAL_INITIAL = 0;
-const DATA_POINT_COLLECTION_INTERVAL = 200;
+const DATA_POINT_COLLECTION_INTERVAL = 50;
 const HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL = false;
 const LAST_VIEWPORT_WIDTH_REF_INITIAL = 0;
 const NUMBER_OF_DATA_POINTS = 25;
@@ -20,7 +21,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         children,
         onClick,
     } = props;
-    const { currentItemIndex, isFullscreenMode, itemContainerHeight, setItemContainerHeight } = useCarouselContext();
+    const { currentItemIndex, isFullscreenMode, itemContainerHeight, setItemContainerHeight, } = useCarouselContext();
     const { stylingLogic, optionsLogic } = useBusinessLogic();
     const heightsRef = useRef<number[]>([]);
     const intervalRef = useRef<any>(-1);
@@ -32,19 +33,20 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     useImperativeHandle(ref, () => itemContainerRef.current)
 
     //#region Functions
-    const setCurrentMaxHeight = useCallback(() => {
-        if (Number(itemContainerHeight) > 0 || heightsRef?.current?.length === 0) return;
+    const setCurrentMaxHeight = useCallback((shouldClearInterval = true) => {
+        if (heightsRef?.current?.length === 0) return;
+        // console.log({ newHEight: getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight) });
         setItemContainerHeight(getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight));
-        clearInterval(intervalRef.current)
-    }, [itemContainerHeight, optionsLogic.maxHeight, setItemContainerHeight])
+        if (shouldClearInterval) clearInterval(intervalRef.current);
+    }, [optionsLogic.maxHeight, setItemContainerHeight])
 
     const startInterval = useCallback(() => {
-        if (Number(itemContainerHeight) > 0) return;
         return setInterval(() => {
-            // console.log({isFullscreenMode, itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current, test: 'test' });
+            console.log({ itemContainerHeight, itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current, test: 'test' });
             if (currentInvervalRef.current > NUMBER_OF_DATA_POINTS || hasCurrentItemIndexChangedRef.current) {
                 clearInterval(intervalRef.current);
 
+                // if (Number(itemContainerHeight) > 0) return;
                 if (!hasCurrentItemIndexChangedRef.current) {
                     setCurrentMaxHeight();
                 }
@@ -54,15 +56,17 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
             const heightLocal = itemContainerRef.current?.getBoundingClientRect().height || ITEM_CONTAINER_HEIGHT_INITIAL;
             if (heightLocal === ITEM_CONTAINER_HEIGHT_INITIAL) return;
             heightsRef.current.push(Math.ceil(heightLocal));
+            if (heightsRef.current.length > ITEM_CONTAINER_PRE_EMPTIVE_HEIGHT_SET_DEFAULT) setCurrentMaxHeight(false);
         }, DATA_POINT_COLLECTION_INTERVAL)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [itemContainerHeight, setCurrentMaxHeight])
 
-    // const reset = useCallback(() => {
-    //     heightsRef.current = [];
-    //     currentInvervalRef.current = CURRENT_INTERVAL_INITIAL;
-    //     hasCurrentItemIndexChangedRef.current = HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL;
-    //     setItemContainerHeight(ITEM_CONTAINER_HEIGHT_INITIAL);
-    // }, [setItemContainerHeight])
+    const reset = useCallback(() => {
+        heightsRef.current = [];
+        currentInvervalRef.current = CURRENT_INTERVAL_INITIAL;
+        hasCurrentItemIndexChangedRef.current = HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL;
+        setItemContainerHeight(ITEM_CONTAINER_HEIGHT_INITIAL);
+    }, [setItemContainerHeight])
 
     const setLastViewportWidth = useCallback(() => {
         lastViewportWidthRef.current = window.innerWidth;
@@ -79,13 +83,9 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
 
     useLayoutEffect(() => {
         function onResize() {
+            // if (Number(itemContainerHeight) > 0) return;
             setLastViewportWidth();
-            if (isFullscreenMode) {
-                clearInterval(intervalRef.current);
-                return;
-            }
             clearInterval(intervalRef.current);
-            intervalRef.current = startInterval();
         }
 
         window.addEventListener('resize', onResize);
@@ -93,21 +93,29 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         if (
             optionsLogic.isDefaultItemDisplayLocation ||
             renderCountRef.current < 0 ||
-            window.innerWidth === lastViewportWidthRef.current
-        ) return;
+            window.innerWidth === lastViewportWidthRef.current ||
+            isFullscreenMode
+        ) {
+            clearInterval(intervalRef.current);
+            return;
+        };
         onResize();
 
         return () => {
             window.removeEventListener('resize', onResize);
             clearInterval(intervalRef.current);
         }
-    }, [
-        isFullscreenMode,
-        optionsLogic.isDefaultItemDisplayLocation,
-        renderCountRef,
-        setLastViewportWidth,
-        startInterval,
-    ]) //need innerwidth as dep here
+    }, [isFullscreenMode, itemContainerHeight, optionsLogic.isDefaultItemDisplayLocation, renderCountRef, setLastViewportWidth])
+
+    useOnResize(() => {
+        if (isFullscreenMode) return;
+        reset();
+    })
+
+    useEffect(() => {
+        intervalRef.current = startInterval();
+        return () => clearInterval(intervalRef.current);
+    }, [startInterval])
     //#endregion
 
     return (
