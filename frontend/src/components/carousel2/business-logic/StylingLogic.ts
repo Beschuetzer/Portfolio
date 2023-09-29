@@ -258,7 +258,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselItemViewerPreviewStyle() {
+    getCarouselItemViewerPreviewStyle(shouldShowImageJSX: boolean) {
         const background = this.optionsLogic.itemViewerPreviewBackground;
         const border = this.optionsLogic.itemViewerPreviewBorder;
         const borderRadius = this.optionsLogic.itemViewerPreviewBorderRadius;
@@ -275,7 +275,7 @@ export class StylingLogic {
         const translateYAmount = this.optionsLogic.isToolbarInVideo && isVideo ? `calc(-100% + ${hitSlopTop}${CAROUSEL_SPACING_UNIT} + ${translateYSpacing})` : `calc(-100% + ${translateYSpacing})`;
 
         return {
-            width,
+            width: !shouldShowImageJSX ? width / 2 : width,
             height,
             top,
             right,

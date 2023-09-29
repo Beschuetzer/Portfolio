@@ -1,4 +1,4 @@
-import { getClassname, getShortcutsString } from '../../../utils'
+import { getClassname, getIsVideo, getShortcutsString } from '../../../utils'
 import { LoadingSpinner } from '../../LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../../../constants';
 import { CarouselItemProps } from '../../CarouselItem';
@@ -31,6 +31,7 @@ export const CarouselItemViewerToolbarPreview = (props: CarouselItemViewerToolba
     } = props;
     const { optionsLogic, stylingLogic } = useBusinessLogic();
     const { description, srcMain, srcThumbnail } = itemToShow || {};
+    const shouldShowImageJSX = useMemo(() => !!(!getIsVideo(itemToShow) || srcThumbnail), [itemToShow]);
     //#endregion
 
     //#region JSX
@@ -74,7 +75,7 @@ export const CarouselItemViewerToolbarPreview = (props: CarouselItemViewerToolba
         stylingLogic.carouselItemViewerPreviewImageContainerStyle,
         stylingLogic.carouselItemViewerPreviewImageStyle
     ]);
-    
+
     const textJSX = useMemo(() => (
         <div
             style={stylingLogic.carouselItemViewerPreviewImageDescriptionContainerStyle}
@@ -110,17 +111,17 @@ export const CarouselItemViewerToolbarPreview = (props: CarouselItemViewerToolba
 
     return (
         <div
-            style={stylingLogic.carouselItemViewerPreviewStyle}
+            style={stylingLogic.getCarouselItemViewerPreviewStyle(shouldShowImageJSX)}
             className={`${className} ${show && isVisible ? '' : CLASSNAME__HIDDEN}`}
         >
             {optionsLogic.itemViewerPreviewSwapImageAndText ? (
                 <>
                     {textJSX}
-                    {imageJSX}
+                    {shouldShowImageJSX ? imageJSX : null}
                 </>
             ) : (
                 <>
-                    {imageJSX}
+                    {shouldShowImageJSX ? imageJSX : null}
                     {textJSX}
                 </>
             )}
