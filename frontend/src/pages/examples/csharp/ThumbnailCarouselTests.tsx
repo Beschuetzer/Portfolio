@@ -1361,6 +1361,18 @@ const itemViewerModalMinimizeOnlyViaCloseButton = (
 		}
 	}} />
 )
+const itemViewerModalMaintainsMinimizedState = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: 'below',
+		},
+		modal: {
+			maintainMinimizedStateAcrossItems: {
+				nonFullscreen: true,
+			},
+		}
+	}} />
+)
 const itemViewerCustomModalOnLoad = (
 	<Carousel items={items.slice(2, 3)} />
 );
@@ -3558,6 +3570,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Modal only Minimized via Close Button",
 				jsx: itemViewerModalMinimizeOnlyViaCloseButton
+			},
+			{
+				label: "Modal Remains Closed When Switching Items in Nonfullscreen but Not Fullscreen",
+				jsx: itemViewerModalMaintainsMinimizedState
 			},
 		]
 	],

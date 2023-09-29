@@ -5,6 +5,7 @@ import { StylingLogic } from "./business-logic/StylingLogic";
 import { CarouselItemProps } from "./components/CarouselItem";
 import {
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
+    CAROUSEL_MAX_HEIGHT_DEFAULT,
     CLASSNAME__ROOT,
     MOBILE_PIXEL_WIDTH,
     NUMBER_OF_MS_IN_A_SECOND,
@@ -285,8 +286,8 @@ export function getIsVideoPlaying(video: HTMLVideoElement | undefined) {
     return !video.paused && !video.ended && video.currentTime > 0
 }
 
-export function getMostFrequentItem(numbers: number[]) {
-    if (!numbers || numbers.length === 0) return null;
+export function getMostFrequentItem(numbers: number[], defaultToUse = CAROUSEL_MAX_HEIGHT_DEFAULT) {
+    if (!numbers || numbers.length === 0) return defaultToUse;
     const counts: {[key: string]: number} = {};
 
     for (const item of numbers) {

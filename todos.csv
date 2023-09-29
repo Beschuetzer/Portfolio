@@ -1,7 +1,6 @@
 Carousel rework
-  -add option to reset isModalMinimized state on item change (default to true)
+  -figure out how to handle viewport width resizing and recalculating itemContainerHeight but not having it affect fullscreen mode change
   -need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body
-
   -add option to set max height of container (adjust the value for StylingLogic.imageHeight default [CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT]) 
       --delete maxHeight type if this doesn't work out.
 

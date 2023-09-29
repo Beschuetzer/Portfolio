@@ -61,6 +61,8 @@ import {
     CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_MAX_DEFAULT,
     CAROUSEL_THUMBNAIL_OVERLAY_FONT_SIZE_MIN_DEFAULT,
     MODAL_MINIMIZE_ON_CLICK_DEFAULT,
+    MODAL_MAINTAIN_MINIMIZED_STATE_DEFAULT,
+    CAROUSEL_MAX_HEIGHT_DEFAULT,
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getBoundValue, getCurrentValue, getIsMobile } from "../utils";
@@ -292,6 +294,14 @@ export class OptionsLogic {
         return getCurrentValue(this.options?.styling?.itemViewerPreview?.width, CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT, this.isFullscreenMode);
     }
 
+    get maxHeight() {
+        return getCurrentValue(
+            this.options?.layout?.maxHeight,
+            CAROUSEL_MAX_HEIGHT_DEFAULT,
+            this.isFullscreenMode
+        );
+    }
+
     get modalBackgroundColor() {
         return getCurrentValue(
             this.options?.styling?.modal?.backgroundColor,
@@ -319,6 +329,14 @@ export class OptionsLogic {
             this.isFullscreenMode ? CAROUSEL_OVERLAY_FONT_SIZE_DEFAULT : CAROUSEL_OVERLAY_FONT_SIZE_NON_ITEM_VIEWER_DEFAULT,
             this.isFullscreenMode
         );
+    }
+
+    get modalMaintainMinimizedStateAcrossItems() {
+        return getCurrentValue(
+            this.options?.modal?.maintainMinimizedStateAcrossItems,
+            MODAL_MAINTAIN_MINIMIZED_STATE_DEFAULT,
+            this.isFullscreenMode
+        )
     }
 
     get modalMinimizeOnClick() {

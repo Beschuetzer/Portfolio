@@ -9,7 +9,7 @@ import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFulls
 
 const RE_RENDER_DURATION = 1;
 export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewerToolbarProps, 'itemContainerRef'>) => {
-    const { options, setIsFullscreenMode, currentItemIndex } = useCarouselContext();
+    const { options, setIsFullscreenMode, currentItemIndex, itemContainerHeight } = useCarouselContext();
     const [isLoaded, setIsLoaded] = useState(false);
     const [, setShouldRerender] = useState(false);
     const imageRef = useRef<HTMLImageElement>();
@@ -51,7 +51,7 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
                     ref={imageRef as any}
                     onClick={onImageClick as any}
                     draggable={false}
-                    style={stylingLogic.carouselImageStlye}
+                    style={stylingLogic.getCarouselImageStlye(itemContainerHeight)}
                     className={isLoaded ? '' : CLASSNAME__HIDDEN}
                     src={srcMain}
                     alt={description}

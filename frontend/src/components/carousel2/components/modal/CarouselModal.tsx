@@ -113,7 +113,10 @@ export const CarouselModal = (props: CarouselModalInternalProps) => {
     //#region Side Fx
     useEffect(() => {
         setIsVisible(IS_VISIBLE_INITIAL);
-    }, [currentItem, currentItemIndex])
+        if (!optionsLogic.modalMaintainMinimizedStateAcrossItems) {
+            setIsModalMinimized(false);
+        }
+    }, [currentItem, currentItemIndex, optionsLogic.modalMaintainMinimizedStateAcrossItems, setIsModalMinimized])
 
     useEffect(() => {
         const height = modalRef.current?.getBoundingClientRect().height;

@@ -41,8 +41,9 @@ import {
     CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
     MODAL_TEXT_TAG_DEFAULT,
     MODAL_TITLE_TAG_DEFAULT,
-    CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_MAX_HEIGHT_DEFAULT,
     MODAL_MINIMIZE_ON_CLICK_DEFAULT,
+    MODAL_MAINTAIN_MINIMIZED_STATE_DEFAULT,
 } from './constants';
 import { OptionsLogic } from './business-logic/OptionsLogic';
 import { StylingLogic } from './business-logic/StylingLogic';
@@ -442,8 +443,9 @@ export type CarouselLayoutOptions = {
     *If the {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is {@link CarouselItemDisplayLocation none}, 
     *the {@link CarouselThumbnailOptions.size thumbnail size} will be reduced if need be.  
     *Otherwise the height of the {@link CarouselItemViewer} will be reduced.
+    *Only applies when in non-fullscreen mode.
     *
-    *Default is {@link CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT here}.
+    *Default is {@link CAROUSEL_MAX_HEIGHT_DEFAULT here}.
     **/
     maxHeight?: CarouselElementValue<number>;
     /**
@@ -488,10 +490,15 @@ export type CarouselSwipingOptions = {
 
 export type CarouselModalOptions = {
     /**
-    *This option allows you to specify whether clicking anywhere in modal will minimize it.  
+    *Allows you to specify whether clicking anywhere in modal will minimize it.  
     *The default is {@link MODAL_MINIMIZE_ON_CLICK_DEFAULT here}.
     **/
     minimizeOnClick?: CarouselElementValue<boolean>;
+    /**
+    *When `true`, minimizing the modal for one item will cause it top be minimized when changing items.
+    *Default is {@link MODAL_MAINTAIN_MINIMIZED_STATE_DEFAULT here}.
+    **/
+    maintainMinimizedStateAcrossItems?: CarouselElementValue<boolean>;
 }
 
 export type CarouselNavigationOptions = {

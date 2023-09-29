@@ -9,7 +9,6 @@ import {
     CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
     CAROUSEL_ITEM_SPACING_DEFAULT,
     CAROUSEL_OVERLAY_ITEM_PADDING_TOP,
-    CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_VIEWER_PREVIEW_BORDER_CENTER_LINE_OPACITY_DEFAULT,
     CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT,
     CLASSNAME__TOOLBAR_PROGRESS,
@@ -120,7 +119,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    get carouselImageStlye() {
+    getCarouselImageStlye(height: CSSProperties['height']) {
         // const cursorStyle = this.isFullscreenMode ?  {
         //     zIndex: 0,
         //     cursor: "zoom-out",
@@ -135,12 +134,18 @@ export class StylingLogic {
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: '100%',
-            height: this.imageHeight,
+            ...this.getCarouselItemHeightStyle(height),
             ...userDefinedStyles,
             // ...cursorStyle,
         } as CSSProperties : {
             ...userDefinedStyles,
         } as CSSProperties;
+    }
+
+    getCarouselItemHeightStyle(height: CSSProperties['height']) { 
+        return {
+            height: this.isFullscreenMode ? 'auto' : height,
+        }
     }
 
     get carouselStyle() {
@@ -567,7 +572,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselVideoCurrentTimeViewerStyle(shouldShow: boolean, itemContainerHeight: string | number) {
+    getCarouselVideoCurrentTimeViewerStyle(shouldShow: boolean, itemContainerHeight: CSSProperties['height']) {
         if (!shouldShow) return {
             display: 'none',
         } as CSSProperties;
@@ -591,7 +596,7 @@ export class StylingLogic {
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            height,
+            ...this.getCarouselItemHeightStyle(height),
             ...userDefinedStyles,
             zIndex: shouldHide ? -1 : 1,
         } as CSSProperties : {
@@ -1143,15 +1148,6 @@ export class StylingLogic {
 
     get toolbarPaddingBottom() {
         return this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - (this.optionsLogic.isToolbarInVideo ? 0 : CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT);
-    }
-    //#endregion
-
-    //#region Private Getters
-    private get imageHeight() {
-        // const toolbarWidth = this.itemViewerToolbarRef?.current?.getBoundingClientRect()?.width || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT;
-        // return this.isFullscreenMode ? '100%' : (toolbarWidth) * 9 / 16;
-        const itemContainerHeight = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_CONTAINER}`)?.getBoundingClientRect()?.height || CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT;
-        return this.isFullscreenMode ? '100%' : itemContainerHeight;
     }
     //#endregion
 
