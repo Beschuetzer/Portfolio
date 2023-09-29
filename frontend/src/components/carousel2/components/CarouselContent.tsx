@@ -3,14 +3,13 @@ import { ArrowButtonDirection, CarouselNavigationOptions } from '../types';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { CarouselItem } from './CarouselItem'
 import { CarouselProps } from './Carousel';
-import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__GRABBING, CLASSNAME__NAVIGATION, CURRENT_ITEM_INDEX_INITIAL, GET_CURRENT_VALUE_DEFAULT, TRANSLATION_AMOUNT_INITIAL } from '../constants';
-import { CarouselArrowButton } from './CarouselArrowButton';
-import { CarouselDots } from './CarouselDots';
+import { CAROUSEL_ITEM_SPACING_DEFAULT, CLASSNAME__GRABBING, CURRENT_ITEM_INDEX_INITIAL, GET_CURRENT_VALUE_DEFAULT, TRANSLATION_AMOUNT_INITIAL } from '../constants';
 import { CarouselContextInputProps, useCarouselContext } from '../context';
 import { getNumberOfItemsThatCanFit, getClassname, getNumberOfPages, onArrowButtonClick } from '../utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 import { CarouselItemToRender } from './CarouselItemToRender';
+import { CarouselNavigationMemoized } from './CarouselNavigation';
 
 /**
 *Tracks why the translation amount changed.  
@@ -359,39 +358,13 @@ export const CarouselContent = (props: CarouselContentProps) => {
                     }
                 </div>
             </div>
-            {numberOfPages > 1 ? (
-                <div style={stylingLogic.navigationStyle} className={CLASSNAME__NAVIGATION}>
-                    <CarouselArrowButton
-                        options={options}
-                        currentPage={currentPage}
-                        numberOfDots={numberOfPages}
-                        direction={ArrowButtonDirection.previous}
-                        onClick={() => onArrowButtonClick(
-                            ArrowButtonDirection.previous,
-                            currentPage,
-                            numberOfPages,
-                            setCurrentPage,
-                        )} />
-                    <CarouselDots
-                        items={items || []}
-                        numberOfDots={numberOfPages}
-                        setCurrentPage={setCurrentPage}
-                        currentPage={currentPage}
-                        options={options}
-                    />
-                    <CarouselArrowButton
-                        options={options}
-                        currentPage={currentPage}
-                        numberOfDots={numberOfPages}
-                        direction={ArrowButtonDirection.next}
-                        onClick={() => onArrowButtonClick(
-                            ArrowButtonDirection.next,
-                            currentPage,
-                            numberOfPages,
-                            setCurrentPage,
-                        )} />
-                </div>
-            ) : null}
+            <CarouselNavigationMemoized
+                currentPage={currentPage}
+                numberOfPages={numberOfPages}
+                options={options || {}}
+                setCurrentPage={setCurrentPage}
+                items={items}
+            />
             {optionsLogic.isItemDisplayLocationBelow ? (
                 <CarouselItemToRender />
             ) : null}
