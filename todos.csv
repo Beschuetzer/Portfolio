@@ -1,5 +1,4 @@
 Carousel rework
-  -figure out why logic not right for cases when item viewer height is specified
   -modify useRecommendedAspectRatio to check for an image and only count it in the total if it is either an image (srcMain) or has a thumbnail.  Prefer srcMain for images and srcThumbnail for everything else
   -add option to itemViewer to adjust how many points to use for auto height picking (should have )
   -need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body

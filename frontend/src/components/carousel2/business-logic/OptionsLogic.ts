@@ -66,7 +66,7 @@ import {
     ITEM_VIEWER_HEIGHT_DEFAULT,
     ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues,
 } from "../constants";
-import { CarouselElement, CarouselItemViewerHeightCustom, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
+import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getBoundValue, getIsMobile } from "../utils/utils";
 import { getCurrentValue } from "../utils/getCurrentValue";
 
@@ -303,10 +303,8 @@ export class OptionsLogic {
     }
 
     get itemViewerUseRecommendedAspectRatio() {
-        const defaultHeightValue = ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues[ITEM_VIEWER_HEIGHT_DEFAULT];
-        const defaultValue =  defaultHeightValue === this.itemViewerHeight;
-        // console.log({height: this.itemViewerHeight, defaultValue, defaultHeightValue});
-        return getCurrentValue(this.options?.itemViewer?.useRecommendedAspectRatio, defaultValue, this.isFullscreenMode);
+        const hasUserSpecifiedHeight = this.options?.itemViewer?.height !== undefined;
+        return getCurrentValue(this.options?.itemViewer?.useRecommendedAspectRatio, !hasUserSpecifiedHeight, this.isFullscreenMode);
     }
 
     get maxHeight() {
