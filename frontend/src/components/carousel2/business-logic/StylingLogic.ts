@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { CarouselElement, CarouselSection, CarouselOptions, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { OptionsLogic } from "./OptionsLogic";
-import { convertColorNameToHex, convertHexToRgba, getIsVideo, getNumberOfItemsThatCanFit } from "../utils";
+import { convertColorNameToHex, convertHexToRgba, getIsVideo, getNumberOfItemsThatCanFit } from "../utils/utils";
 import {
     CAROUSEL_SPACING_UNIT,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT,

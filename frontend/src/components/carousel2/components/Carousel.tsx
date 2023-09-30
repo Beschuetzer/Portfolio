@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { CarouselProvider } from '../context';
-import { getClassname } from '../utils';
+import { getClassname } from '../utils/utils';
 import { CarouselItemProps } from './CarouselItem';
 import { CarouselOptions } from '../types';
 import { CarouselContent } from './CarouselContent';

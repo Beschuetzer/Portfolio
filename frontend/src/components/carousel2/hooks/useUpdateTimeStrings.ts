@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { getIsVideo, getFormattedTimeString } from "../utils";
+import { getIsVideo, getFormattedTimeString } from "../utils/utils";
 import { CarouselItemProps } from "../components/CarouselItem";
 import { VideoTimeStrings } from "../types";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

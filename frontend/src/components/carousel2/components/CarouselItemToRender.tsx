@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { CarouselItemViewerContainer } from './item-viewer/toolbar/CarouselItemViewerContainer';
 import { useCarouselContext } from '../context';
-import { getIsVideo } from '../utils';
+import { getIsVideo } from '../utils/utils';
 import { CarouselVideo } from './CarouselVideo';
 import { CarouselImage } from './CarouselImage';
 

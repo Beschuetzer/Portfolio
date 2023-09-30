@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef } from 'react'
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
-import { getFormattedTimeString } from '../../../utils';
+import { getFormattedTimeString } from '../../../utils/utils';
 import { useCarouselContext } from '../../../context';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
 import { CLASSNAME__VIDEO_SCREENSHOT_VIEWER, CLASSNAME__VIDEO_SCREENSHOT_VIEWER_TEXT_CONTAINER } from '../../../constants';

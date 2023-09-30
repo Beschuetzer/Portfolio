@@ -1,7 +1,7 @@
 import React from 'react'
 import { CLASSNAME__NAVIGATION } from '../constants'
 import { ArrowButtonDirection, CarouselNavigationProps } from '../types'
-import { onArrowButtonClick } from '../utils'
+import { onArrowButtonClick } from '../utils/utils'
 import { CarouselArrowButton } from './CarouselArrowButton'
 import { CarouselDots, CarouselDotsProps } from './CarouselDots'
 import { useBusinessLogic } from '../hooks/useBusinessLogic'

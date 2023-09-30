@@ -1,4 +1,4 @@
-import { getClassname, getIsVideo, getShortcutsString } from '../../../utils'
+import { getClassname, getIsVideo, getShortcutsString } from '../../../utils/utils'
 import { LoadingSpinner } from '../../LoadingSpinner';
 import { CLASSNAME__HIDDEN } from '../../../constants';
 import { CarouselItemProps } from '../../CarouselItem';

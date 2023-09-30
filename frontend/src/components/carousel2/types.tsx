@@ -53,7 +53,7 @@ import { CarouselItemViewer } from './components/item-viewer/CarouselItemViewer'
 import { CarouselContent } from './components/CarouselContent';
 import { CarouselItemProps } from './components/CarouselItem';
 import { CarouselItemViewerToolbar } from './components/item-viewer/toolbar/CarouselItemViewerToolbar'
-import { getCodeSections } from './utils';
+import { getCodeSections } from './utils/utils';
 
 
 //#region Enums

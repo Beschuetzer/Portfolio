@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { stopPropagation } from "../utils";
+import { stopPropagation } from "../utils/utils";
 import { KeyCombination, KeyboardShortcut, ModifierKey } from "../types";
 
 export type UseKeyboardShortcutsInput = {

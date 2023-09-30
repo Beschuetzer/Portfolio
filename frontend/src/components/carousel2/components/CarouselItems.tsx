@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef } from 'react'
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
-import { getClassname } from '../utils';
+import { getClassname } from '../utils/utils';
 import { CarouselItem } from './CarouselItem';
 import { CarouselDotsProps } from './CarouselDots';
 

@@ -16,7 +16,7 @@ import {
     getFormattedTimeString,
     getIsPointInsideElement,
     getPoint
-} from '../../../utils';
+} from '../../../utils/utils';
 import { VideoTimeStrings } from '../../../types';
 import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToolbar';
 import { useCarouselContext } from '../../../context';

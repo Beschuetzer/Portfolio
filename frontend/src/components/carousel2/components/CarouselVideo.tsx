@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { getClassname, getIsVideoPlaying } from '../utils';
+import { getClassname, getIsVideoPlaying } from '../utils/utils';
 import { CarouselItemProps } from './CarouselItem'
 import { CarouselItemViewerToolbar, CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
 import { LoadingSpinner } from './LoadingSpinner';

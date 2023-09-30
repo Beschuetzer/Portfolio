@@ -65,7 +65,7 @@ import {
     CAROUSEL_MAX_HEIGHT_DEFAULT,
 } from "../constants";
 import { CarouselElement, CarouselItemViewerHeightCustom, CarouselItemViewerOptions, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
-import { convertHexToRgba, getBoundValue, getCurrentValue, getIsMobile } from "../utils";
+import { convertHexToRgba, getBoundValue, getCurrentValue, getIsMobile } from "../utils/utils";
 import { CarouselItemViewer } from "../components/item-viewer/CarouselItemViewer";
 
 export type OptionsConstructor = {

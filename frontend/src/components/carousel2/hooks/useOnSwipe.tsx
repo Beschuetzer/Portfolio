@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Coordinate, CarouselSwipingOptions } from "../types";
 import { useCallback, useEffect, useRef } from "react"
-import { getAncestorContainsClassname, getCoordinateDifference, getIsMobile, stopPropagation } from "../utils";
+import { getAncestorContainsClassname, getCoordinateDifference, getIsMobile, stopPropagation } from "../utils/utils";
 
 export type StylingCase = 'start' | 'end';
 

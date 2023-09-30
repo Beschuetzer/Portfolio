@@ -17,7 +17,7 @@ import {
     getNumberOfItemsThatCanFit,
     getNumberOfPages,
     onArrowButtonClick
-} from '../utils';
+} from '../utils/utils';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { StylingCase, useOnSwipe } from '../hooks/useOnSwipe';
 import { CarouselItemToRender } from './CarouselItemToRender';

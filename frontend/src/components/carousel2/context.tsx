@@ -4,7 +4,7 @@ import { CURRENT_ITEM_INDEX_INITIAL, CURRENT_PAGE_INITIAL, CURRENT_VIDEO_CURRENT
 import { CarouselItemViewer } from "./components/item-viewer/CarouselItemViewer";
 import './css/style.css';
 import { CarouselOptions, CarouselElementStyles } from "./types";
-import { enterFullScreen, exitFullScreen } from "./utils";
+import { enterFullScreen, exitFullScreen } from "./utils/utils";
 
 export type CarouselContextInputProps = {
     carouselContainerRef: React.MutableRefObject<HTMLDivElement>;

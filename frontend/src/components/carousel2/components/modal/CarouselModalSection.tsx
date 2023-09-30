@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { CarouselModalSectionProps } from '../../types';
 import { StylingLogic } from '../../business-logic/StylingLogic';
 import { MODAL_TITLE_TAG_DEFAULT, MODAL_TEXT_TAG_DEFAULT, CLASSNAME__MODAL_HEADER } from '../../constants';
-import { getCodeSections } from '../../utils';
+import { getCodeSections } from '../../utils/utils';
 
 type Props = {
     button: ReactNode | ReactNode[]

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Point } from "../types";
-import { stopPropagation } from "../utils";
+import { stopPropagation } from "../utils/utils";
 
 /**
 *Returns a ref that tracks the mouse position as it moves.

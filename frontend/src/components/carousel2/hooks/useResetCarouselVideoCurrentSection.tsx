@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react"
-import { getIsPointInsideElement, getPoint } from "../utils";
+import { getIsPointInsideElement, getPoint } from "../utils/utils";
 import { CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL } from "../constants";
 
 type ElementToUse = Element | undefined | null;

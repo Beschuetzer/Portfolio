@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
-import { capitalize, getIsMobile, getShortcutsString } from '../../../utils'
+import { capitalize, getIsMobile, getShortcutsString } from '../../../utils/utils'
 import { CLASSNAME__DISPLAY_NONE, CLASSNAME__ITEM_VIEWER_SHORTCUT_INDICATOR } from '../../../constants';
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { KeyInput } from '../../../types';

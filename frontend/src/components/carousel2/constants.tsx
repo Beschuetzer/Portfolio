@@ -1,5 +1,5 @@
 import { KeyInput, ValidKey, ModifierKey } from "./types";
-import { getClassname } from "./utils";
+import { getClassname } from "./utils/utils";
 
 export const AUTO_CHANGE_PAGE_DEFAULT = true;
 export const AUTO_HIDE_DISABLED_VALUE = 0;

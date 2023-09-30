@@ -2,7 +2,7 @@ import { useRef, useEffect, useCallback } from "react";
 import { NUMBER_OF_MS_IN_A_SECOND, CAROUSEL_VIDEO_SECTION_MIN_LENGTH } from "../constants";
 import { useCarouselContext } from "../context";
 import { CarouselItemViewerToolbarProps } from "../components/item-viewer/toolbar/CarouselItemViewerToolbar";
-import { convertTimeStringToMilliseconds } from "../utils";
+import { convertTimeStringToMilliseconds } from "../utils/utils";
 
 const MAP_SECTION_INTERVAL = 100;
 const NEXT_SECTION_OFFSET = .0000000000000001;

@@ -3,7 +3,7 @@ import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { useCarouselContext } from '../../../context';
 import { useRenderCount } from '../../../hooks/useRenderCountRef';
 import { CLASSNAME__ITEM_CONTAINER, ITEM_CONTAINER_HEIGHT_INITIAL, ITEM_CONTAINER_MIN_DEFAULT } from '../../../constants';
-import { getBoundValue, getMostFrequentItem } from '../../../utils';
+import { getBoundValue, getMostFrequentItem } from '../../../utils/utils';
 import { useOnResize } from '../../../hooks/useOnResize';
 
 type CarouselItemViewerContainerProps = {

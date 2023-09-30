@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import { getFormattedTimeString, getIsMobile, getIsVideoPlaying, getPoint, stopPropagation } from '../../../utils'
+import { getFormattedTimeString, getIsMobile, getIsVideoPlaying, getPoint, stopPropagation } from '../../../utils/utils'
 import { CarouselItemViewerCloseButton } from './CarouselItemViewerCloseButton'
 import { CarouselItemViewerToolbarText } from './CarouselItemViewerToolbarText'
 import { CarouselItemViewerProgressBar } from '../progress-bar/CarouselItemViewerProgressBar'
@@ -28,7 +28,7 @@ import { CarouselItemViewerFullscreenButton } from './CarouselItemViewerFullScre
 import { useCarouselContext } from '../../../context'
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic'
 import { useOnSwipe, StylingCase } from '../../../hooks/useOnSwipe'
-import { getIsPointInsideElement } from '../../../utils'
+import { getIsPointInsideElement } from '../../../utils/utils'
 import { CarouselModal } from '../../modal/CarouselModal'
 
 export type CarouselItemViewerToolbarProps = {
