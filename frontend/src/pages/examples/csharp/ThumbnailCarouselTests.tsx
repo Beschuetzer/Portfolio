@@ -3611,10 +3611,10 @@ const SECTIONS: Sections = [
 			// 	label: "Modal only Minimized via Close Button",
 			// 	jsx: itemViewerModalMinimizeOnlyViaCloseButton
 			// },
-			// {
-			// 	label: "Modal Remains Closed When Switching Items in Nonfullscreen but Not Fullscreen",
-			// 	jsx: itemViewerModalMaintainsMinimizedState
-			// },
+			{
+				label: "Modal Remains Closed When Switching Items in Nonfullscreen but Not Fullscreen",
+				jsx: itemViewerModalMaintainsMinimizedState
+			},
 			{
 				label: "Item Viewer Height is Auto",
 				jsx: itemViewerHeightAuto

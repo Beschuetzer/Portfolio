@@ -13,10 +13,10 @@ type CarouselItemViewerContainerProps = {
 }
 
 const CURRENT_INTERVAL_INITIAL = 0;
-const DATA_POINT_COLLECTION_INTERVAL = 50;
+const DATA_POINT_COLLECTION_INTERVAL = 25;
 const HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL = false;
 const LAST_VIEWPORT_WIDTH_REF_INITIAL = 0;
-const NUMBER_OF_DATA_POINTS = 5;
+const NUMBER_OF_DATA_POINTS = 10;
 export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerContainerProps>((props, ref) => {
     const {
         children,
@@ -33,12 +33,11 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     const renderCountRef = useRenderCount();
     useImperativeHandle(ref, () => itemContainerRef.current)
 	const recommendedAspectRatio = useRecommendedAspectRatio(items);
-    console.log({recommendedAspectRatio});
     
     //#region Functions
     const setHeightAuto = useCallback(() => {
         if (heightsRef?.current?.length === 0) return;
-        console.log({ newHEight: getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight) });
+        // console.log({heightsRef: heightsRef.current, newHEight: getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight) });
         setItemContainerHeight(getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight));
         clearInterval(intervalRef.current);
     }, [optionsLogic.maxHeight, setItemContainerHeight])
@@ -85,8 +84,6 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         heightsRef.current = [];
         currentInvervalRef.current = CURRENT_INTERVAL_INITIAL;
         hasCurrentItemIndexChangedRef.current = HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL;
-        console.log("3");
-        
         setItemContainerHeight(ITEM_CONTAINER_HEIGHT_INITIAL);
     }, [setItemContainerHeight])
 

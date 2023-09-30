@@ -195,6 +195,7 @@ export type CarouselItemViewerOptions = {
     *`auto` is the second best option if you're unsure.
     *If the widest item is 1.85:1, then you would want to use 1/1.85 or ~0.54 as the `height`.
     *Default is {@link OptionsLogic.itemViewerHeight here}.
+    *If {@link CarouselItemViewerOptions.useRecommendedAspectRatio} is given, this value is ignored.
     **/
     height?: 'auto' | number | CarouselItemViewerHeightCustom;
     /**
@@ -207,6 +208,7 @@ export type CarouselItemViewerOptions = {
     *If `true`, the item container height is calculated based on the lowest aspect ratio of the thumbnails given.  
     *For this to work properly, the aspect ratio of thumbnails should be the same as that of the item.
     *For image items, the actual image is used for the calcuation otherwise the thumbnail is used.
+    *If {@link CarouselItemViewerOptions.height} is given, this defaults to `false` otherwise `true`.
     **/
     useRecommendedAspectRatio?: CarouselElementValue<boolean>;
 } & CarouselSwipingOptions

@@ -305,7 +305,7 @@ export class OptionsLogic {
     get itemViewerUseRecommendedAspectRatio() {
         const defaultHeightValue = ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues[ITEM_VIEWER_HEIGHT_DEFAULT];
         const defaultValue =  defaultHeightValue === this.itemViewerHeight;
-        console.log({height: this.itemViewerHeight, defaultValue, defaultHeightValue});
+        // console.log({height: this.itemViewerHeight, defaultValue, defaultHeightValue});
         return getCurrentValue(this.options?.itemViewer?.useRecommendedAspectRatio, defaultValue, this.isFullscreenMode);
     }
 
