@@ -132,11 +132,14 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     })
 
     useEffect(() => {        
-        if (optionsLogic.itemViewerUseRecommendedAspectRatio && recommendedAspectRatio < USE_RECOMMENDEDED_ASPECT_RATIO_INITIAL) {
-            setHeightBasedOnRatio(recommendedAspectRatio);
-            return;
+        if (optionsLogic.itemViewerUseRecommendedAspectRatio) {
+            if (recommendedAspectRatio < USE_RECOMMENDEDED_ASPECT_RATIO_INITIAL) {
+                setHeightBasedOnRatio(recommendedAspectRatio);
+                return;
+            }
+        } else {
+            intervalRef.current = startAutoHeightInterval();
         }
-        intervalRef.current = startAutoHeightInterval();
         return () => clearInterval(intervalRef.current);
     }, [setHeightBasedOnRatio, optionsLogic.itemViewerUseRecommendedAspectRatio, recommendedAspectRatio, setItemContainerHeight, startAutoHeightInterval])
     //#endregion

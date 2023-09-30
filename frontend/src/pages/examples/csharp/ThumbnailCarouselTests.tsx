@@ -3611,26 +3611,26 @@ const SECTIONS: Sections = [
 			// 	label: "Modal only Minimized via Close Button",
 			// 	jsx: itemViewerModalMinimizeOnlyViaCloseButton
 			// },
+			// {
+			// 	label: "Modal Remains Closed When Switching Items in Nonfullscreen but Not Fullscreen",
+			// 	jsx: itemViewerModalMaintainsMinimizedState
+			// },
+			// {
+			// 	label: "Item Viewer Height is Auto",
+			// 	jsx: itemViewerHeightAuto
+			// },
 			{
-				label: "Modal Remains Closed When Switching Items in Nonfullscreen but Not Fullscreen",
-				jsx: itemViewerModalMaintainsMinimizedState
+				label: "Item Viewer Height is 16:9",
+				jsx: itemViewerHeightFullscreen
 			},
 			{
-				label: "Item Viewer Height is Auto",
-				jsx: itemViewerHeightAuto
+				label: "Item Viewer Height is 4:3",
+				jsx: itemViewerHeightFullscreen
 			},
-			// {
-			// 	label: "Item Viewer Height is 16:9",
-			// 	jsx: itemViewerHeightFullscreen
-			// },
-			// {
-			// 	label: "Item Viewer Height is 4:3",
-			// 	jsx: itemViewerHeightFullscreen
-			// },
-			// {
-			// 	label: "Item Viewer Aspect Ratio is 2.0571:1",
-			// 	jsx: itemViewerHeightCustomNumber
-			// },
+			{
+				label: "Item Viewer Aspect Ratio is 2.0571:1",
+				jsx: itemViewerHeightCustomNumber
+			},
 		]
 	],
 	[
