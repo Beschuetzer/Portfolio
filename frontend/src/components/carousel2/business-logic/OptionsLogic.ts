@@ -64,9 +64,9 @@ import {
     MODAL_MAINTAIN_MINIMIZED_STATE_DEFAULT,
     CAROUSEL_MAX_HEIGHT_DEFAULT,
 } from "../constants";
-import { CarouselElement, CarouselItemViewerHeightCustom, CarouselItemViewerOptions, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
-import { convertHexToRgba, getBoundValue, getCurrentValue, getIsMobile } from "../utils/utils";
-import { CarouselItemViewer } from "../components/item-viewer/CarouselItemViewer";
+import { CarouselElement, CarouselItemViewerHeightCustom, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
+import { convertHexToRgba, getBoundValue, getIsMobile } from "../utils/utils";
+import { getCurrentValue } from "../utils/getCurrentValue";
 
 export type OptionsConstructor = {
     options: CarouselOptions;
