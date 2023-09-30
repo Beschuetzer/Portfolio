@@ -12,7 +12,6 @@ export type CarouselContextInputProps = {
     hiddenInputRef: React.MutableRefObject<HTMLInputElement>;
     items: CarouselItemProps[];
     options: CarouselOptions;
-    recommendedAspectRatio: number;
 }
 
 export type CarouselContextOutputProps = {
@@ -44,7 +43,6 @@ export const CarouselProvider = (props: CarouselContextInputProps) => {
         hiddenInputRef,
         items: itemsInput,
         options: optionsInput,
-        recommendedAspectRatio,
     } = props;
     const [currentItem, setCurrentItem] = useState(itemsInput[0]);
     const [currentItemIndex, setCurrentItemIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
@@ -88,7 +86,6 @@ export const CarouselProvider = (props: CarouselContextInputProps) => {
                 items,
                 numberOfPages,
                 options,            
-                recommendedAspectRatio,
                 setCurrentItemIndex,
                 setCurrentPage,
                 setCurrentVideoCurrentTime,

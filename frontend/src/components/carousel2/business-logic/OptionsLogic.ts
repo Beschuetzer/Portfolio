@@ -63,6 +63,7 @@ import {
     MODAL_MINIMIZE_ON_CLICK_DEFAULT,
     MODAL_MAINTAIN_MINIMIZED_STATE_DEFAULT,
     CAROUSEL_MAX_HEIGHT_DEFAULT,
+    ITEM_VIEWER_USE_RECOMMENDED_ASPECT_RATIO as ITEM_VIEWER_USE_RECOMMENDED_ASPECT_RATIO_DEFAULT,
 } from "../constants";
 import { CarouselElement, CarouselItemViewerHeightCustom, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getBoundValue, getIsMobile } from "../utils/utils";
@@ -302,6 +303,10 @@ export class OptionsLogic {
 
     get itemViewerPreviewWidth() {
         return getCurrentValue(this.options?.styling?.itemViewerPreview?.width, CAROUSEL_ITEM_VIEWER_PREVIEW_WIDTH_DEFAULT, this.isFullscreenMode);
+    }
+
+    get itemViewerUseRecommendedAspectRatio() {
+        return getCurrentValue(this.options?.itemViewer?.useRecommendedAspectRatio, ITEM_VIEWER_USE_RECOMMENDED_ASPECT_RATIO_DEFAULT, this.isFullscreenMode);
     }
 
     get maxHeight() {

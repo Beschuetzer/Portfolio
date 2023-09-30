@@ -13,6 +13,7 @@ export const GET_CURRENT_VALUE_DEFAULT = 0;
 export const IS_LAST_PAGE_FLUSH_DEFAULT = true;
 export const ITEM_CONTAINER_HEIGHT_INITIAL = 'auto';
 export const ITEM_CONTAINER_MIN_DEFAULT = 125;
+export const ITEM_VIEWER_USE_RECOMMENDED_ASPECT_RATIO = true;
 export const MAX_CLICK_THRESHOLD_DEFAULT = 15;
 export const MODAL_IS_MINIMIZED_INITIAL = false;
 export const MODAL_TEXT_TAG_DEFAULT = 'p';
@@ -31,6 +32,7 @@ export const TOOLBAR_MARGIN_RIGHT_OFFSET = 1;
 export const THUMBNAIL_OVERLAY_IS_HIDDEN_DEFAULT = true;
 export const TRANSLATION_AMOUNT_INITIAL = 0;
 export const VIDEO_EXTENSIONS = ["mp4", "ogv", "webm", "ogg"];
+export const USE_RECOMMENDEDED_ASPECT_RATIO_INITIAL = Number.MAX_SAFE_INTEGER;
 export const WINDOW_RESIZE_DEBOUNCE = 250;
 
 

@@ -203,6 +203,12 @@ export type CarouselItemViewerOptions = {
     *Only applies when in fullscreen mode
     **/
     seekAmount?: CarouselElementValue<number>;
+    /**
+    *If `true`, the item container height is calculated based on the lowest aspect ratio of the thumbnails given.  
+    *For this to work properly, the aspect ratio of thumbnails should be the same as that of the item.
+    *For image items, the actual image is used for the calcuation otherwise the thumbnail is used.
+    **/
+    useRecommendedAspectRatio?: CarouselElementValue<boolean>;
 } & CarouselSwipingOptions
 
 export type CarouselItemViewerHeightCustom = 'widescreen' | 'fullscreen';

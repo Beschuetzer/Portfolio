@@ -6,7 +6,6 @@ import { CarouselOptions } from '../types';
 import { CarouselContent } from './CarouselContent';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useOnResize } from '../hooks/useOnResize';
-import { useOptimalAspectRatio as useRecommendedAspectRatio } from '../hooks/useOptimalAspectRatio';
 
 export type CarouselProps = {
 	items: CarouselItemProps[];
@@ -23,7 +22,6 @@ export const Carousel = (props: CarouselProps) => {
 	const hiddenInputRef = useRef<HTMLInputElement>();
 	const { stylingLogic } = useBusinessLogic({ options }); //need to pass in options here since it is outside of context
 	const [, setShouldRerender] = useState(false);
-	const recommendedAspectRatio = useRecommendedAspectRatio(items);
 	useOnResize(() => {
 		setShouldRerender((current) => !current);
 		document.body?.style?.removeProperty('cursor');
@@ -37,7 +35,6 @@ export const Carousel = (props: CarouselProps) => {
 			carouselContainerRef={carouselContainerRef as any}
 			hiddenInputRef={hiddenInputRef as any}
 			options={options || {}}
-			recommendedAspectRatio={recommendedAspectRatio}
 		>
 			<input ref={hiddenInputRef as any} style={stylingLogic.carouselHiddenInputStyle} />
 			<div
