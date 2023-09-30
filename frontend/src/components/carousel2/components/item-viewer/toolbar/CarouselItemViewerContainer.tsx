@@ -41,6 +41,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     }, [optionsLogic.maxHeight, setItemContainerHeight])
 
     const startInterval = useCallback(() => {
+        if (optionsLogic.itemViewerHeight !== 'auto') return;
         return setInterval(() => {
             // console.log({ itemContainerHeight, itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current, test: 'test' });
             if (currentInvervalRef.current >= NUMBER_OF_DATA_POINTS || hasCurrentItemIndexChangedRef.current) {

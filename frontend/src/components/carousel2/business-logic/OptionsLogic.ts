@@ -64,8 +64,9 @@ import {
     MODAL_MAINTAIN_MINIMIZED_STATE_DEFAULT,
     CAROUSEL_MAX_HEIGHT_DEFAULT,
 } from "../constants";
-import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
+import { CarouselElement, CarouselItemViewerHeightCustom, CarouselItemViewerOptions, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getBoundValue, getCurrentValue, getIsMobile } from "../utils";
+import { CarouselItemViewer } from "../components/item-viewer/CarouselItemViewer";
 
 export type OptionsConstructor = {
     options: CarouselOptions;
@@ -206,6 +207,15 @@ export class OptionsLogic {
 
     get itemViewerMaxClickThreshold() {
         return getCurrentValue(this.options?.itemViewer?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
+    }
+
+    get itemViewerHeight() {
+        const ratioValues: {[key in CarouselItemViewerHeightCustom]: number} = {
+            widescreen: .5625, //16:9
+            fullscreen: .75, //4:3
+        }
+        const value = getCurrentValue(this.options?.itemViewer?.height, "widescreen", this.isFullscreenMode);
+        return typeof value === 'string' && value !== 'auto' ? ratioValues[value] : value;
     }
 
     get itemViewerPreviewBackground() {

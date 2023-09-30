@@ -1373,6 +1373,36 @@ const itemViewerModalMaintainsMinimizedState = (
 		}
 	}} />
 )
+const itemViewerHeightAuto = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: 'below',
+		},
+		itemViewer: {
+			height: 'auto',
+		}
+	}} />
+)
+const itemViewerHeightFullscreen = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: 'below',
+		},
+		itemViewer: {
+			height: 'fullscreen',
+		}
+	}} />
+)
+const itemViewerHeightCustomNumber = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: 'below',
+		},
+		itemViewer: {
+			height: 1.5,
+		}
+	}} />
+)
 const itemViewerCustomModalOnLoad = (
 	<Carousel items={items.slice(2, 3)} />
 );
@@ -3574,6 +3604,18 @@ const SECTIONS: Sections = [
 			{
 				label: "Modal Remains Closed When Switching Items in Nonfullscreen but Not Fullscreen",
 				jsx: itemViewerModalMaintainsMinimizedState
+			},
+			{
+				label: "Item Viewer Height is Auto",
+				jsx: itemViewerHeightAuto
+			},
+			{
+				label: "Item Viewer Height is Fullscreen",
+				jsx: itemViewerHeightFullscreen
+			},
+			{
+				label: "Item Viewer Height is 1.5x",
+				jsx: itemViewerHeightCustomNumber
 			},
 		]
 	],

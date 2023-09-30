@@ -183,12 +183,24 @@ export type CarouselItemViewerOptions = {
     **/
     autoHideToolbarDuration?: CarouselElementValueTuple<number>;
     /**
+    *`auto` sets the height based on the item loaded on load or when the viewport width changes
+    *`widescreen` is 16:9
+    *`fullscreen` is 4:3
+    *using a number will set the height as a multiple of the width
+    *Only applicable if the height is less than {@link OptionsLogic.maxHeight maxHeight} of carousel.
+    *Otherwise `maxHeight` will be used.
+    *Default is {@link OptionsLogic.itemViewerHeight here}.
+    **/
+    height?: 'auto' | number | CarouselItemViewerHeightCustom;
+    /**
     *How for forward/backward the seek buttons move a video.  
     *Default is {@link SEEK_AMOUNT_DEFAULT here} in milliseconds.
     *Only applies when in fullscreen mode
     **/
     seekAmount?: CarouselElementValue<number>;
 } & CarouselSwipingOptions
+
+export type CarouselItemViewerHeightCustom = 'widescreen' | 'fullscreen';
 
 export type CarouselImagePosition = 'bottom' | 'center' | 'top';
 export type CarouselItemDisplayLocation = 'none' | 'above' | 'below';
