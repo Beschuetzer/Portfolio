@@ -41,7 +41,16 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     }, [optionsLogic.maxHeight, setItemContainerHeight])
 
     const startInterval = useCallback(() => {
-        if (optionsLogic.itemViewerHeight !== 'auto') return;
+        const itemViewerHeightOptionValue = optionsLogic.itemViewerHeight;
+        const itemContainerWidth = itemContainerRef.current?.getBoundingClientRect().width;
+        if (itemViewerHeightOptionValue !== 'auto' && itemContainerWidth) {
+            const subContainer = itemContainerRef.current?.querySelector('div');
+            const paddingLeft = parseInt(subContainer?.style.paddingLeft || '20', 10);
+            const paddingRight = parseInt(subContainer?.style.paddingRight || '20', 10);
+            setItemContainerHeight((itemContainerWidth - paddingLeft - paddingRight) * itemViewerHeightOptionValue );
+            return;
+        }
+
         return setInterval(() => {
             // console.log({ itemContainerHeight, itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current, test: 'test' });
             if (currentInvervalRef.current >= NUMBER_OF_DATA_POINTS || hasCurrentItemIndexChangedRef.current) {
@@ -58,7 +67,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
             if (heightLocal === ITEM_CONTAINER_HEIGHT_INITIAL) return;
             heightsRef.current.push(Math.ceil(heightLocal));
         }, DATA_POINT_COLLECTION_INTERVAL)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [itemContainerHeight, setCurrentMaxHeight])
 
     const reset = useCallback(() => {

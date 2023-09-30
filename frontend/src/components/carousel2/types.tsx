@@ -189,6 +189,11 @@ export type CarouselItemViewerOptions = {
     *using a number will set the height as a multiple of the width
     *Only applicable if the height is less than {@link OptionsLogic.maxHeight maxHeight} of carousel.
     *Otherwise `maxHeight` will be used.
+    *Setting this to the aspect ratio of you widest item in the carousel will yield the best results 
+    *(this way the widest item will fit perfectly into the item viewer and less wide items will be full height). 
+    *Any other approach risks leaving vertical space between the viewer and the items in some cases
+    *`auto` is the second best option if you're unsure.
+    *If the widest item is 1.85:1, then you would want to use 1/1.85 or ~0.54 as the `height`.
     *Default is {@link OptionsLogic.itemViewerHeight here}.
     **/
     height?: 'auto' | number | CarouselItemViewerHeightCustom;

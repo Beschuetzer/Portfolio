@@ -1,5 +1,5 @@
 Carousel rework
-  -add option to maintain a specific aspect ratio for the itemViewer (either 4:3 or 16:9).  The idea here is that the itemViewerHeight calc stuff would be bypassed and just figure out the width of the item in itemviewer and set height based on ratio.
+  -is it possible to calculate the widest aspect ratio from all the thumbnails given? if so add option to CarouselItemViewerOptions.height.
   -add option to itemViewer to adjust how many points to use for auto height picking (should have )
   -need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body
   -add option to set max height of container (adjust the value for StylingLogic.imageHeight default [CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT]) 

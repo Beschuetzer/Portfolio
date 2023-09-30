@@ -1383,6 +1383,16 @@ const itemViewerHeightAuto = (
 		}
 	}} />
 )
+const itemViewerHeightWidescreen = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: 'below',
+		},
+		itemViewer: {
+			height: 'widescreen',
+		}
+	}} />
+)
 const itemViewerHeightFullscreen = (
 	<Carousel items={items} options={{
 		layout: {
@@ -1399,7 +1409,7 @@ const itemViewerHeightCustomNumber = (
 			itemDisplayLocation: 'below',
 		},
 		itemViewer: {
-			height: 1.5,
+			height: .4859375,
 		}
 	}} />
 )
@@ -3545,62 +3555,62 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.itemViewer,
 		[
-			{
-				label: "Default Modal Displayed on Load",
-				jsx: itemViewerDefaultModalOnLoad
-			},
-			{
-				label: "Default Modal Displayed on Load with Custom Toolbar Buttons",
-				jsx: itemViewerCustomButtons
-			},
-			{
-				label: "Custom Modal Displayed on Load",
-				jsx: itemViewerCustomModalOnLoad
-			},
-			{
-				label: "Toolbar doesn't hide on inactivity (Click item to view)",
-				jsx: itemViewerNoToolbarHide
-			},
-			{
-				label: "Toolbar hides after 500ms of inactivity (Click item to view)",
-				jsx: itemViewerHideAfter500ms
-			},
-			{
-				label: "Seek amount 2 sec (Click item to view)",
-				jsx: itemViewerSeekAmount2Sec
-			},
-			{
-				label: "All custom keyboard shortcuts",
-				jsx: itemViewerCustomShortcuts,
-			},
-			{
-				label: "Custom Item Viewer Font",
-				jsx: itemViewerCustomItemViewerFont,
-			},
-			{
-				label: "Custom Navigation Font",
-				jsx: itemViewerCustomNavigationFont,
-			},
-			{
-				label: "Custom Navigation and Item Viewer Fonts",
-				jsx: itemViewerCustomFontBoth,
-			},
-			{
-				label: "Full-screen Swiping Disabled",
-				jsx: itemViewerSwipingDisabled
-			},
-			{
-				label: "Full-screen Max Click Threshold 0",
-				jsx: itemViewerMaxClickThresholdZero
-			},
-			{
-				label: "Modal Minimized Opacity is .15",
-				jsx: itemViewerModalMinimizedOpacity
-			},
-			{
-				label: "Modal only Minimized via Close Button",
-				jsx: itemViewerModalMinimizeOnlyViaCloseButton
-			},
+			// {
+			// 	label: "Default Modal Displayed on Load",
+			// 	jsx: itemViewerDefaultModalOnLoad
+			// },
+			// {
+			// 	label: "Default Modal Displayed on Load with Custom Toolbar Buttons",
+			// 	jsx: itemViewerCustomButtons
+			// },
+			// {
+			// 	label: "Custom Modal Displayed on Load",
+			// 	jsx: itemViewerCustomModalOnLoad
+			// },
+			// {
+			// 	label: "Toolbar doesn't hide on inactivity (Click item to view)",
+			// 	jsx: itemViewerNoToolbarHide
+			// },
+			// {
+			// 	label: "Toolbar hides after 500ms of inactivity (Click item to view)",
+			// 	jsx: itemViewerHideAfter500ms
+			// },
+			// {
+			// 	label: "Seek amount 2 sec (Click item to view)",
+			// 	jsx: itemViewerSeekAmount2Sec
+			// },
+			// {
+			// 	label: "All custom keyboard shortcuts",
+			// 	jsx: itemViewerCustomShortcuts,
+			// },
+			// {
+			// 	label: "Custom Item Viewer Font",
+			// 	jsx: itemViewerCustomItemViewerFont,
+			// },
+			// {
+			// 	label: "Custom Navigation Font",
+			// 	jsx: itemViewerCustomNavigationFont,
+			// },
+			// {
+			// 	label: "Custom Navigation and Item Viewer Fonts",
+			// 	jsx: itemViewerCustomFontBoth,
+			// },
+			// {
+			// 	label: "Full-screen Swiping Disabled",
+			// 	jsx: itemViewerSwipingDisabled
+			// },
+			// {
+			// 	label: "Full-screen Max Click Threshold 0",
+			// 	jsx: itemViewerMaxClickThresholdZero
+			// },
+			// {
+			// 	label: "Modal Minimized Opacity is .15",
+			// 	jsx: itemViewerModalMinimizedOpacity
+			// },
+			// {
+			// 	label: "Modal only Minimized via Close Button",
+			// 	jsx: itemViewerModalMinimizeOnlyViaCloseButton
+			// },
 			{
 				label: "Modal Remains Closed When Switching Items in Nonfullscreen but Not Fullscreen",
 				jsx: itemViewerModalMaintainsMinimizedState
@@ -3610,11 +3620,15 @@ const SECTIONS: Sections = [
 				jsx: itemViewerHeightAuto
 			},
 			{
-				label: "Item Viewer Height is Fullscreen",
+				label: "Item Viewer Height is 16:9",
 				jsx: itemViewerHeightFullscreen
 			},
 			{
-				label: "Item Viewer Height is 1.5x",
+				label: "Item Viewer Height is 4:3",
+				jsx: itemViewerHeightFullscreen
+			},
+			{
+				label: "Item Viewer Aspect Ratio is 2.0571:1",
 				jsx: itemViewerHeightCustomNumber
 			},
 		]
