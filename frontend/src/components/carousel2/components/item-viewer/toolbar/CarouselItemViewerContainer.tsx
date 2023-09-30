@@ -36,26 +36,29 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     console.log({recommendedAspectRatio});
     
     //#region Functions
-    const getAvailableWidth = useCallback(() => {
-        const itemContainerWidth = itemContainerRef.current?.getBoundingClientRect().width || 0;
-        const subContainer = itemContainerRef.current?.querySelector('div');
-        const paddingLeft = parseInt(subContainer?.style.paddingLeft || '20', 10);
-        const paddingRight = parseInt(subContainer?.style.paddingRight || '20', 10);
-        return itemContainerWidth - paddingLeft - paddingRight;
-    }, [])
-
-    const setCurrentMaxHeight = useCallback(() => {
+    const setHeightAuto = useCallback(() => {
         if (heightsRef?.current?.length === 0) return;
         console.log({ newHEight: getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight) });
         setItemContainerHeight(getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight));
         clearInterval(intervalRef.current);
     }, [optionsLogic.maxHeight, setItemContainerHeight])
 
-    const startInterval = useCallback(() => {
+    const setHeightBasedOnRatio = useCallback((ratio: number) => {
+        const itemContainerWidth = itemContainerRef.current?.getBoundingClientRect().width || 0;
+        
+        const subContainer = itemContainerRef.current?.querySelector('div');
+        const paddingLeft = parseInt(subContainer?.style.paddingLeft || '20', 10);
+        const paddingRight = parseInt(subContainer?.style.paddingRight || '20', 10);
+        const availableWidth = itemContainerWidth - paddingLeft - paddingRight;
+        if (availableWidth < 0) return false;
+        setItemContainerHeight(availableWidth * ratio);
+        return true;
+    }, [setItemContainerHeight])
+
+    const startAutoHeightInterval = useCallback(() => {
         const itemViewerHeightOptionValue = optionsLogic.itemViewerHeight;
         if (!optionsLogic.itemViewerUseRecommendedAspectRatio && itemViewerHeightOptionValue !== 'auto') {
-            console.log("2");
-            setItemContainerHeight((getAvailableWidth()) * itemViewerHeightOptionValue );
+            setHeightBasedOnRatio(itemViewerHeightOptionValue)
             return;
         }
 
@@ -66,7 +69,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
 
                 // if (Number(itemContainerHeight) > 0) return;
                 if (!hasCurrentItemIndexChangedRef.current) {
-                    setCurrentMaxHeight();
+                    setHeightAuto();
                 }
                 return;
             }
@@ -76,9 +79,9 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
             heightsRef.current.push(Math.ceil(heightLocal));
         }, DATA_POINT_COLLECTION_INTERVAL)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [itemContainerHeight, setCurrentMaxHeight])
+    }, [itemContainerHeight, setHeightAuto])
 
-    const reset = useCallback(() => {
+    const resetAutoHeight = useCallback(() => {
         heightsRef.current = [];
         currentInvervalRef.current = CURRENT_INTERVAL_INITIAL;
         hasCurrentItemIndexChangedRef.current = HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL;
@@ -96,9 +99,9 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     useEffect(() => {
         if (currentItemIndex !== 0 && !hasCurrentItemIndexChangedRef.current) {
             hasCurrentItemIndexChangedRef.current = true;
-            setCurrentMaxHeight();
+            setHeightAuto();
         }
-    }, [currentItemIndex, setCurrentMaxHeight])
+    }, [currentItemIndex, setHeightAuto])
 
     useLayoutEffect(() => {
         function onResize() {
@@ -128,19 +131,17 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
 
     useOnResize(() => {
         if (isFullscreenMode) return;
-        reset();
+        resetAutoHeight();
     })
 
     useEffect(() => {        
         if (optionsLogic.itemViewerUseRecommendedAspectRatio && recommendedAspectRatio < USE_RECOMMENDEDED_ASPECT_RATIO_INITIAL) {
-            console.log({recommendedAspectRatio});
-            const availableWidth = getAvailableWidth();
-            setItemContainerHeight(availableWidth * recommendedAspectRatio);
+            setHeightBasedOnRatio(recommendedAspectRatio);
             return;
         }
-        intervalRef.current = startInterval();
+        intervalRef.current = startAutoHeightInterval();
         return () => clearInterval(intervalRef.current);
-    }, [getAvailableWidth, optionsLogic.itemViewerUseRecommendedAspectRatio, recommendedAspectRatio, setItemContainerHeight, startInterval])
+    }, [setHeightBasedOnRatio, optionsLogic.itemViewerUseRecommendedAspectRatio, recommendedAspectRatio, setItemContainerHeight, startAutoHeightInterval])
     //#endregion
 
     return (

@@ -63,7 +63,8 @@ import {
     MODAL_MINIMIZE_ON_CLICK_DEFAULT,
     MODAL_MAINTAIN_MINIMIZED_STATE_DEFAULT,
     CAROUSEL_MAX_HEIGHT_DEFAULT,
-    ITEM_VIEWER_USE_RECOMMENDED_ASPECT_RATIO as ITEM_VIEWER_USE_RECOMMENDED_ASPECT_RATIO_DEFAULT,
+    ITEM_VIEWER_HEIGHT_DEFAULT,
+    ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues,
 } from "../constants";
 import { CarouselElement, CarouselItemViewerHeightCustom, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getBoundValue, getIsMobile } from "../utils/utils";
@@ -211,12 +212,8 @@ export class OptionsLogic {
     }
 
     get itemViewerHeight() {
-        const ratioValues: {[key in CarouselItemViewerHeightCustom]: number} = {
-            widescreen: .5625, //16:9
-            fullscreen: .75, //4:3
-        }
-        const value = getCurrentValue(this.options?.itemViewer?.height, "widescreen", this.isFullscreenMode);
-        return typeof value === 'string' && value !== 'auto' ? ratioValues[value] : value;
+        const value = getCurrentValue(this.options?.itemViewer?.height, ITEM_VIEWER_HEIGHT_DEFAULT, this.isFullscreenMode);
+        return typeof value === 'string' && value !== 'auto' ? ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues[value] : value;
     }
 
     get itemViewerPreviewBackground() {
@@ -306,7 +303,10 @@ export class OptionsLogic {
     }
 
     get itemViewerUseRecommendedAspectRatio() {
-        return getCurrentValue(this.options?.itemViewer?.useRecommendedAspectRatio, ITEM_VIEWER_USE_RECOMMENDED_ASPECT_RATIO_DEFAULT, this.isFullscreenMode);
+        const defaultHeightValue = ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues[ITEM_VIEWER_HEIGHT_DEFAULT];
+        const defaultValue =  defaultHeightValue === this.itemViewerHeight;
+        console.log({height: this.itemViewerHeight, defaultValue, defaultHeightValue});
+        return getCurrentValue(this.options?.itemViewer?.useRecommendedAspectRatio, defaultValue, this.isFullscreenMode);
     }
 
     get maxHeight() {
