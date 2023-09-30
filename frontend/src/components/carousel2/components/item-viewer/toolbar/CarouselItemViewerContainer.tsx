@@ -21,7 +21,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         children,
         onClick,
     } = props;
-    const { currentItemIndex, isFullscreenMode, itemContainerHeight, setItemContainerHeight, } = useCarouselContext();
+    const { currentItemIndex, isFullscreenMode, itemContainerHeight, setItemContainerHeight, recommendedAspectRatio} = useCarouselContext();
     const { stylingLogic, optionsLogic } = useBusinessLogic();
     const heightsRef = useRef<number[]>([]);
     const intervalRef = useRef<any>(-1);
@@ -47,7 +47,11 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
             const subContainer = itemContainerRef.current?.querySelector('div');
             const paddingLeft = parseInt(subContainer?.style.paddingLeft || '20', 10);
             const paddingRight = parseInt(subContainer?.style.paddingRight || '20', 10);
-            setItemContainerHeight((itemContainerWidth - paddingLeft - paddingRight) * itemViewerHeightOptionValue );
+            const availableWidth = itemContainerWidth - paddingLeft - paddingRight;
+            
+            console.log({recommendedAspectRatio, itemViewerHeightOptionValue});
+            setItemContainerHeight(availableWidth * recommendedAspectRatio); //use itemViewerHeightOptionValue in some cases
+            // setItemContainerHeight((itemContainerWidth - paddingLeft - paddingRight) * itemViewerHeightOptionValue );
             return;
         }
 

@@ -12,6 +12,7 @@ export type CarouselContextInputProps = {
     hiddenInputRef: React.MutableRefObject<HTMLInputElement>;
     items: CarouselItemProps[];
     options: CarouselOptions;
+    recommendedAspectRatio: number;
 }
 
 export type CarouselContextOutputProps = {
@@ -43,6 +44,7 @@ export const CarouselProvider = (props: CarouselContextInputProps) => {
         hiddenInputRef,
         items: itemsInput,
         options: optionsInput,
+        recommendedAspectRatio,
     } = props;
     const [currentItem, setCurrentItem] = useState(itemsInput[0]);
     const [currentItemIndex, setCurrentItemIndex] = useState(CURRENT_ITEM_INDEX_INITIAL);
@@ -55,7 +57,7 @@ export const CarouselProvider = (props: CarouselContextInputProps) => {
     const [numberOfPages, setNumberOfPages] = useState(0);
     const [options, setOptions] = useState<CarouselOptions>(optionsInput || {});
     const itemViewerRef = useRef<HTMLElement>(null);
-    const currentItemToUse = useMemo(() => Object.keys(currentItem || {}).length > 0 ? currentItem : items[0], [currentItem, items]);
+    const currentItemToUse = useMemo(() => Object.keys(currentItem || {}).length > 0 ? currentItem : items[0], [currentItem, items]);    
 
     useEffect(() => {
         setCurrentItem(items?.[currentItemIndex]);
@@ -85,7 +87,8 @@ export const CarouselProvider = (props: CarouselContextInputProps) => {
                 itemContainerHeight,
                 items,
                 numberOfPages,
-                options,                
+                options,            
+                recommendedAspectRatio,
                 setCurrentItemIndex,
                 setCurrentPage,
                 setCurrentVideoCurrentTime,
