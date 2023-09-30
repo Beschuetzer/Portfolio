@@ -2,7 +2,7 @@ import { ReactNode, forwardRef, useEffect, useRef, useImperativeHandle, useCallb
 import { useBusinessLogic } from '../../../hooks/useBusinessLogic';
 import { useCarouselContext } from '../../../context';
 import { useRenderCount } from '../../../hooks/useRenderCountRef';
-import { CLASSNAME__ITEM_CONTAINER, ITEM_CONTAINER_HEIGHT_INITIAL, ITEM_CONTAINER_MIN_DEFAULT, ITEM_CONTAINER_PRE_EMPTIVE_HEIGHT_SET_DEFAULT } from '../../../constants';
+import { CLASSNAME__ITEM_CONTAINER, ITEM_CONTAINER_HEIGHT_INITIAL, ITEM_CONTAINER_MIN_DEFAULT } from '../../../constants';
 import { getBoundValue, getMostFrequentItem } from '../../../utils';
 import { useOnResize } from '../../../hooks/useOnResize';
 
@@ -15,7 +15,7 @@ const CURRENT_INTERVAL_INITIAL = 0;
 const DATA_POINT_COLLECTION_INTERVAL = 50;
 const HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL = false;
 const LAST_VIEWPORT_WIDTH_REF_INITIAL = 0;
-const NUMBER_OF_DATA_POINTS = 25;
+const NUMBER_OF_DATA_POINTS = 5;
 export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerContainerProps>((props, ref) => {
     const {
         children,
@@ -33,17 +33,17 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     useImperativeHandle(ref, () => itemContainerRef.current)
 
     //#region Functions
-    const setCurrentMaxHeight = useCallback((shouldClearInterval = true) => {
+    const setCurrentMaxHeight = useCallback(() => {
         if (heightsRef?.current?.length === 0) return;
         // console.log({ newHEight: getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight) });
         setItemContainerHeight(getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight));
-        if (shouldClearInterval) clearInterval(intervalRef.current);
+        clearInterval(intervalRef.current);
     }, [optionsLogic.maxHeight, setItemContainerHeight])
 
     const startInterval = useCallback(() => {
         return setInterval(() => {
-            console.log({ itemContainerHeight, itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current, test: 'test' });
-            if (currentInvervalRef.current > NUMBER_OF_DATA_POINTS || hasCurrentItemIndexChangedRef.current) {
+            // console.log({ itemContainerHeight, itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current, test: 'test' });
+            if (currentInvervalRef.current >= NUMBER_OF_DATA_POINTS || hasCurrentItemIndexChangedRef.current) {
                 clearInterval(intervalRef.current);
 
                 // if (Number(itemContainerHeight) > 0) return;
@@ -56,7 +56,6 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
             const heightLocal = itemContainerRef.current?.getBoundingClientRect().height || ITEM_CONTAINER_HEIGHT_INITIAL;
             if (heightLocal === ITEM_CONTAINER_HEIGHT_INITIAL) return;
             heightsRef.current.push(Math.ceil(heightLocal));
-            if (heightsRef.current.length > ITEM_CONTAINER_PRE_EMPTIVE_HEIGHT_SET_DEFAULT) setCurrentMaxHeight(false);
         }, DATA_POINT_COLLECTION_INTERVAL)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [itemContainerHeight, setCurrentMaxHeight])
