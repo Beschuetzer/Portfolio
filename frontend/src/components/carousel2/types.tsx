@@ -456,10 +456,10 @@ export type CarouselLayoutOptions = {
     ***/
     itemDisplayLocation?: CarouselElementValueTuple<CarouselItemDisplayLocation>;
     /**
-    *Default is `true` if not mobile otherwise `false`.  
-    *If `true`, the toolbar will sit within the video element when {@link CarouselLayoutOptions.itemDisplayLocation} is not {@link CarouselItemDisplayLocation none} and 
-    *the auto-hide behavior will change to hide the toolbar when the video is playing and the mouse leaves the video element.
-    *Does not affect fullscreen mode.
+     *If `true`, the toolbar will sit within the video element when {@link CarouselLayoutOptions.itemDisplayLocation} is not {@link CarouselItemDisplayLocation none} and 
+     *the auto-hide behavior will change to hide the toolbar when the video is playing and the mouse leaves the video element.
+     *Default is `true` if not mobile otherwise `false`.  
+     *Does not affect fullscreen mode.
     **/
     isToolbarPositionedInVideo?: CarouselElementValueTuple<boolean>;
     /**

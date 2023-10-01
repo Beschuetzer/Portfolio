@@ -813,21 +813,17 @@ export class StylingLogic {
             const cursorLeftPosition = videoRect.left + videoRect.width * percent;
             const minCursorLeftValue = videoRect.left + (screenShotCanvasRect.width / 2);
             const maxCursorLeftValue = videoRect.right - (screenShotCanvasRect.width / 2);
-            const viewerLeft = screenShotCanvasRect.left;
-            const viewerRight = screenShotCanvasRect.right;
-            const leftBound = progressBarRect?.left;
-            const rightBound = progressBarRect?.right;
 
             //handling right-bound case
-            if ((viewerRight && viewerRight > rightBound) || cursorLeftPosition >= maxCursorLeftValue) {
+            if (cursorLeftPosition >= maxCursorLeftValue) {
                 left = 'auto';
                 right = `0${CAROUSEL_SPACING_UNIT}`;
                 translateX = `${-paddingBetweenContainerAndVideoRight}${CAROUSEL_SPACING_UNIT}`;
             }
 
-            //handling left-bound case
             // console.log({ leftBound, viewerLeft, cursorLeftPosition, minCursorLeftValue });
-            if ((viewerLeft && viewerLeft < leftBound) || cursorLeftPosition <= minCursorLeftValue) {
+            //handling left-bound case
+            if (cursorLeftPosition <= minCursorLeftValue) {
                 left = `0${CAROUSEL_SPACING_UNIT}`;
                 translateX = `${paddingBetweenContainerAndVideoLeft}${CAROUSEL_SPACING_UNIT}`;
             }

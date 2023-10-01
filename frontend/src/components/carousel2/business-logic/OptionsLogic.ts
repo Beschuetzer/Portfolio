@@ -195,6 +195,7 @@ export class OptionsLogic {
     }
 
     get isToolbarInVideo() {
+        if (this.isFullscreenMode) return true;
         return getCurrentValue(this.options?.layout?.isToolbarPositionedInVideo, this.isMobile ? false : true, this.isFullscreenMode);
     }
 
