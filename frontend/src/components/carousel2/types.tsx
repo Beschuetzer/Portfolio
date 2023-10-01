@@ -477,8 +477,8 @@ export type CarouselLayoutOptions = {
     *and a sub-optimal {@link CarouselItemViewerOptions.aspectRatio aspectRatio} may be used.
     *
     * If the {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is {@link CarouselItemDisplayLocation none}, 
-    *the {@link CarouselThumbnailOptions.size thumbnail size} will be reduced if need be.  
-    *Otherwise the height of the {@link CarouselItemViewer} will be reduced.
+    *the {@link CarouselThumbnailOptions.size thumbnailSize} will be reduced if need be.  
+    *Otherwise the height of the {@link CarouselItemViewer} will be reduced and the thumbnail size will be maintained.
     *
     *Note:  Only applies when in non-fullscreen mode.
     *

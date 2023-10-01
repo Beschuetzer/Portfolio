@@ -155,8 +155,8 @@ export class StylingLogic {
     get carouselStyle() {
         const { top: marginTop, bottom: marginBottom, left: marginLeft, right: marginRight } = this.optionsLogic.containerMargin;
         const common = {
-            paddingTop: this.getPaddingAmount(SpacingDirection.top, CarouselSection.itemViewer),
-            paddingBottom: this.getPaddingAmount(SpacingDirection.bottom, CarouselSection.itemViewer),
+            paddingTop: this.optionsLogic.getPaddingAmount(SpacingDirection.top, CarouselSection.itemViewer),
+            paddingBottom: this.optionsLogic.getPaddingAmount(SpacingDirection.bottom, CarouselSection.itemViewer),
             marginTop,
             marginBottom,
             marginLeft,
@@ -312,8 +312,8 @@ export class StylingLogic {
 
     get carouselItemsOuterContainerStyle() {
         const common = {
-            marginLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
-            marginRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            marginLeft: `${this.optionsLogic.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            marginRight: `${this.optionsLogic.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
             overflow: 'hidden',
         } as CSSProperties;
 
@@ -425,9 +425,9 @@ export class StylingLogic {
         const customFontSize = this.optionsLogic.modalFontSize;
         const toolbarInnerContainerPaddingLeft = Number(this.toolbarInnerContainerStyle?.paddingLeft || 0);
         const toolbarInnerContainerPaddingRight = Number(this.toolbarInnerContainerStyle?.paddingRight || 0);
-        const carouselPaddingTop = this.getPaddingAmount(SpacingDirection.top, CarouselSection.container);
+        const carouselPaddingTop = this.optionsLogic.getPaddingAmount(SpacingDirection.top, CarouselSection.container);
         const progressBarPaddingTop = this.getCarouselVideoProgressHitSlop().paddingTop;
-        const toolbarPaddingBottom = this.getPaddingAmount(SpacingDirection.bottom, CarouselSection.toolbar);
+        const toolbarPaddingBottom = this.optionsLogic.getPaddingAmount(SpacingDirection.bottom, CarouselSection.toolbar);
         const spaceBetweenModalTopAndItemTop = CAROUSEL_ITEM_SPACING_DEFAULT * 2;
         let maxHeight = 0;
         let heightBetweenItemTopAndToolbarBarTop = 270;
@@ -630,7 +630,7 @@ export class StylingLogic {
 
     get carouselVideoProgressContainerStyle() {
         const widthToUse = this.optionsLogic.progressBarShouldSpanEntireWidth
-            ? `calc(100% + ${this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})`
+            ? `calc(100% + ${this.optionsLogic.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar) + this.optionsLogic.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar)}${CAROUSEL_SPACING_UNIT})`
             : `100%`;
         const heightToUse = this.optionsLogic.isToolbarInVideo ? 'auto' : CAROUSEL_PROGRESS_BAR_CONTAINER_HEIGHT_DEFAULT;
 
@@ -986,7 +986,7 @@ export class StylingLogic {
     }
 
     get itemViewerContainerHorizontalPadding() {
-        const padding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
+        const padding = this.optionsLogic.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer) + this.optionsLogic.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer);
         return padding;
     }
 
@@ -1004,8 +1004,8 @@ export class StylingLogic {
 
     getItemViewerHorizontalSpacing(fullscreenValue = CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT) {
         return {
-            left: this.isFullscreenMode ? fullscreenValue : this.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT),
-            right: this.isFullscreenMode ? fullscreenValue : this.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT),
+            left: this.isFullscreenMode ? fullscreenValue : this.optionsLogic.getPaddingAmount(SpacingDirection.left, CarouselSection.itemViewer, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT),
+            right: this.isFullscreenMode ? fullscreenValue : this.optionsLogic.getPaddingAmount(SpacingDirection.right, CarouselSection.itemViewer, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT),
         }
     }
 
@@ -1020,14 +1020,14 @@ export class StylingLogic {
     }
 
     get navigationContainerHorizontalPadding() {
-        const navigationPadding = this.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation) + this.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation);
+        const navigationPadding = this.optionsLogic.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation) + this.optionsLogic.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation);
         return navigationPadding;
     }
 
     get navigationStyle() {
         const common = {
-            paddingLeft: `${this.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
-            paddingRight: `${this.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            paddingLeft: `${this.optionsLogic.getPaddingAmount(SpacingDirection.left, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
+            paddingRight: `${this.optionsLogic.getPaddingAmount(SpacingDirection.right, CarouselSection.navigation)}${CAROUSEL_SPACING_UNIT}`,
         } as CSSProperties;
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
@@ -1093,8 +1093,8 @@ export class StylingLogic {
     }
 
     get toolbarHorizontalSpacing() {
-        const left = this.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT);
-        const right = this.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT);
+        const left = this.optionsLogic.getPaddingAmount(SpacingDirection.left, CarouselSection.toolbar, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT);
+        const right = this.optionsLogic.getPaddingAmount(SpacingDirection.right, CarouselSection.toolbar, CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT);
         return {
             left,
             right
@@ -1459,30 +1459,6 @@ export class StylingLogic {
         const borderStrToUse = borderStr?.toString();
         const isValid = borderStr && borderStrToUse?.trim()?.split(/(\s+|rgb.+\))/)?.filter(item => !!item && item?.match(/\w+/))?.length === 3;
         return isValid ? borderStr : defaultValue;
-    }
-
-    private getPaddingAmount(direction: SpacingDirection, item: CarouselSection, defaultOverride?: number) {
-        let defaultPadding: number;
-
-        switch (direction) {
-            case SpacingDirection.bottom:
-            case SpacingDirection.left:
-            case SpacingDirection.right: {
-                defaultPadding = defaultOverride !== undefined && defaultOverride >= 0 ? defaultOverride
-                    : this.optionsLogic.isDefaultItemDisplayLocation
-                        ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
-                        : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                break;
-            }
-            case SpacingDirection.top: {
-                defaultPadding = defaultOverride !== undefined && defaultOverride >= 0 ? defaultOverride
-                    : this.optionsLogic.isDefaultItemDisplayLocation
-                        ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
-                        : this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
-                break;
-            }
-        }
-        return this.optionsLogic.getCustomPadding(item, direction, defaultPadding);
     }
     //#endregion
 }

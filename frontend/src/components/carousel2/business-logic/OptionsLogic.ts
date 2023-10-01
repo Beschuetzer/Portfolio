@@ -66,9 +66,8 @@ import {
     ITEM_VIEWER_HEIGHT_DEFAULT,
     ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues,
     CLASSNAME__NAVIGATION,
-    CLASSNAME__ITEM_CONTAINER,
-    CLASSNAME__CAROUSEL_ITEMS_CONTAINER,
-    CLASSNAME__ITEM_VIEWER,
+    CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
+    CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getBoundValue, getIsMobile } from "../utils/utils";
@@ -87,7 +86,7 @@ export type OptionsConstructor = {
 */
 export class OptionsLogic {
     private bodyFontFamily;
-    private carouselContainerRef;
+    public carouselContainerRef;
     private currentItem;
     private defaultFontFamily: string = 'sans-serif';
     private isFullscreenMode;
@@ -525,36 +524,14 @@ export class OptionsLogic {
         const navigationMarginBottom = parseFloat(navigationDiv?.style?.marginBottom) || 0;
         if (this.isDefaultItemDisplayLocation) {
             const thumbnailSizeGiven = getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
-            const maxThumbnailSize = maxHeight - navigationHeight -navigationMarginBottom;
+            const maxThumbnailSize = maxHeight - navigationHeight - navigationMarginBottom;
             if (thumbnailSizeGiven > maxThumbnailSize && navigationHeight > 0) {
-                return maxHeight - navigationHeight -navigationMarginBottom;
+                return maxHeight - navigationHeight - navigationMarginBottom;
             }
             return thumbnailSizeGiven;
         }
 
-        const itemViewerAspectRatio = this.itemViewerAspectRatio;
         const thumbnailSizeGiven = getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
-
-        if (itemViewerAspectRatio === 'auto') return thumbnailSizeGiven;
-
-        //todo: need to use this.isItemViewerHeightGiven to determine which aspect ratio to use
-        const rect = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_VIEWER}`)?.getBoundingClientRect();
-        console.log({rect});
-        
-        const itemContainerHeight = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_CONTAINER}`)?.getBoundingClientRect().height || 0;
-        const itemsHeight = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__CAROUSEL_ITEMS_CONTAINER}`)?.getBoundingClientRect().height || 0;
-        const proposedTotalHeight = navigationHeight + navigationMarginBottom + itemContainerHeight + itemsHeight;
-        
-        const maxThumbnailSize = maxHeight - navigationHeight - navigationMarginBottom;
-
-
-        console.log({thumbnailSize: thumbnailSizeGiven, maxHeight, proposedTotalHeight, navigationHeight, navigationMarginBottom, itemContainerHeight, itemsHeight});
-        if (proposedTotalHeight > maxHeight && navigationHeight > 0 && itemsHeight > 0 && itemContainerHeight > 0){
-            const excess = proposedTotalHeight - maxHeight;
-            console.log({excess});
-            return thumbnailSizeGiven;
-        }
-
         return thumbnailSizeGiven;
     }
 
@@ -758,15 +735,28 @@ export class OptionsLogic {
         return valueToUse;
     }
 
-    getCustomPadding(item: CarouselSection, direction: SpacingDirection, defaultPadding = CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT) {
-        const containerPadding = this.containerPadding?.[direction];
-        const itemPadding = (this.options?.styling?.[item] as any)?.padding;
-        const itemPaddingFullscreen = getCurrentValue(itemPadding?.fullscreen?.[direction], undefined, this.isFullscreenMode);
-        const itemPaddingNonFullscreen = getCurrentValue(itemPadding?.nonFullscreen?.[direction], undefined, this.isFullscreenMode);
-        const itemPaddingAll = getCurrentValue(itemPadding?.[direction], undefined, this.isFullscreenMode);
-        const itemPaddingToUse = this.isFullscreenMode ? (itemPaddingFullscreen || itemPaddingAll) : (itemPaddingNonFullscreen || itemPaddingAll);
-        const customPadding = itemPaddingToUse || containerPadding;
-        return customPadding !== undefined ? customPadding : defaultPadding;
+    getPaddingAmount(direction: SpacingDirection, item: CarouselSection, defaultOverride?: number) {
+        let defaultPadding: number;
+
+        switch (direction) {
+            case SpacingDirection.bottom:
+            case SpacingDirection.left:
+            case SpacingDirection.right: {
+                defaultPadding = defaultOverride !== undefined && defaultOverride >= 0 ? defaultOverride
+                    : this.isDefaultItemDisplayLocation
+                        ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
+                        : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+                break;
+            }
+            case SpacingDirection.top: {
+                defaultPadding = defaultOverride !== undefined && defaultOverride >= 0 ? defaultOverride
+                    : this.isDefaultItemDisplayLocation
+                        ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT
+                        : this.isItemDisplayLocationBelow ? CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT : CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT;
+                break;
+            }
+        }
+        return this.getCustomPadding(direction, item, defaultPadding);
     }
 
     getThumbnailSpacingBasedOnThumbnailPositioning(valueToUseIfNoPositioningGiven = CAROUSEL_ITEM_SPACING_DEFAULT / 2) {
@@ -790,4 +780,17 @@ export class OptionsLogic {
         return getCurrentValue(xlinkHref, undefined, this.isFullscreenMode);
     }
     //#endregion
+
+    //#region Private Methods
+    private getCustomPadding(direction: SpacingDirection, item: CarouselSection, defaultPadding = CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT) {
+        const containerPadding = this.containerPadding?.[direction];
+        const itemPadding = (this.options?.styling?.[item] as any)?.padding;
+        const itemPaddingFullscreen = getCurrentValue(itemPadding?.fullscreen?.[direction], undefined, this.isFullscreenMode);
+        const itemPaddingNonFullscreen = getCurrentValue(itemPadding?.nonFullscreen?.[direction], undefined, this.isFullscreenMode);
+        const itemPaddingAll = getCurrentValue(itemPadding?.[direction], undefined, this.isFullscreenMode);
+        const itemPaddingToUse = this.isFullscreenMode ? (itemPaddingFullscreen || itemPaddingAll) : (itemPaddingNonFullscreen || itemPaddingAll);
+        const customPadding = itemPaddingToUse || containerPadding;
+        return customPadding !== undefined ? customPadding : defaultPadding;
+    }
+    //#endregion    
 }
