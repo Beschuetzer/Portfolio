@@ -380,7 +380,7 @@ const items = [
 		}
 	},
 	{
-		description: "Many Sections (No Modal)",
+		description: "Many Sections (No Modal) - Cover Object Fit",
 		srcMain: clipFilters,
 		srcThumbnail: clipFiltersThumbnail,
 		video: {
@@ -2243,11 +2243,11 @@ const layoutMaxHeightLessThanThumbnailItemDisplayLocationAbove = (
 		items={items}
 		options={{
 			layout: {
-				// maxHeight: 425,
+				maxHeight: 340,
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
-				size: 100,
+				size: 40,
 			},
 		}}
 	/>

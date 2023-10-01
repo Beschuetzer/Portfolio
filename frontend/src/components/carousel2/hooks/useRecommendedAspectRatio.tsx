@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { CarouselItemProps } from "../components/CarouselItem";
-import { CAROUSEL_MAX_HEIGHT_DEFAULT, CLASSNAME__CAROUSEL_ITEMS_CONTAINER, CLASSNAME__ITEM_CONTAINER, CLASSNAME__NAVIGATION, USE_RECOMMENDEDED_ASPECT_RATIO_INITIAL } from "../constants";
+import { CAROUSEL_MAX_HEIGHT_DEFAULT, CLASSNAME__CAROUSEL_ITEM, CLASSNAME__CAROUSEL_ITEMS_CONTAINER, CLASSNAME__NAVIGATION, USE_RECOMMENDEDED_ASPECT_RATIO_INITIAL } from "../constants";
 import { useBusinessLogic } from "./useBusinessLogic";
 import { getIsItemOfType } from "../utils/getIsItemOfType";
 import { SpacingDirection, CarouselSection } from "../types";
@@ -34,25 +34,30 @@ export const useRecommendedAspectRatio = (items: CarouselItemProps[]) => {
     }, [])
 
     useEffect(() => {
-        if (!optionsLogic.itemViewerUseRecommendedAspectRatio) return;
+        if (hasStartedRef.current || !optionsLogic.itemViewerUseRecommendedAspectRatio) return;
         if (optionsLogic.maxHeight !== CAROUSEL_MAX_HEIGHT_DEFAULT) {
             const navigationContainer = optionsLogic.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__NAVIGATION}`);
             const navigationHeight = navigationContainer?.getBoundingClientRect().height || 0;
-
             const itemsContainer = optionsLogic.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__CAROUSEL_ITEMS_CONTAINER}`) as HTMLElement;
             const itemsContainerHeight = itemsContainer.getBoundingClientRect().height || 0;
+            const carouselItem = (optionsLogic.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__CAROUSEL_ITEM}`) as HTMLElement);
+            const carouselItemMarginTop = parseInt(getComputedStyle(carouselItem)?.marginTop, 10) || 0;
+            
+            if (!navigationHeight || !itemsContainerHeight || !carouselItemMarginTop) return;
+            // console.log({ navigationHeight, itemsContainerHeight, carouselItem, carouselItemMarginTop });
+            
             const paddingTop = optionsLogic.getPaddingAmount(SpacingDirection.top, CarouselSection.container);
             const paddingBottom = optionsLogic.getPaddingAmount(SpacingDirection.bottom, CarouselSection.container);
-            // const proposedTotalHeight = navigationHeight + navigationMarginBottom + itemContainerHeight + itemsHeight;
-    
-            const maxItemHeight = optionsLogic.maxHeight - navigationHeight - paddingBottom - paddingTop -itemsContainerHeight - 4;
+            const containerWidth = optionsLogic.carouselContainerRef?.current?.getBoundingClientRect().width || 0;
+            const paddingLeft = optionsLogic.getPaddingAmount(SpacingDirection.left, CarouselSection.container);
+            const paddingRight = optionsLogic.getPaddingAmount(SpacingDirection.right, CarouselSection.container);
+            const maxItemHeight = optionsLogic.maxHeight - navigationHeight - paddingBottom - paddingTop - itemsContainerHeight - carouselItemMarginTop;
 
-            console.log({maxItemHeight, maxHeight: optionsLogic.maxHeight, paddingTop, paddingBottom, itemsContainerHeight});
-
-
+            hasStartedRef.current = true;
+            setRecommendedAspectRatio(maxItemHeight / (containerWidth - paddingLeft - paddingRight));
             return;
         }
-        if (hasStartedRef.current) return;
+
         hasStartedRef.current = true;
 
         //load the images

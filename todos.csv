@@ -1,9 +1,6 @@
 Carousel rework
   
-  -add option to set max height of container (adjust the value for StylingLogic.imageHeight default [CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT]) 
-      --finish OptionsLogic.thumbnailSize (non default itemViewerLocation cases)
-      --finish options for adjusting the itemViewer if need be (thumbnail size should go down to some amount first like 50?  then can adjust itemViewer height)
-      --delete maxHeight type if this doesn't work out.
+  -test maxHeight a bit more (seems solid though)
   -issues with body grabbing style:
       --need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body
       --in fullscreen: changing items via swipe, then using drag seek doesn't reset cursor.
