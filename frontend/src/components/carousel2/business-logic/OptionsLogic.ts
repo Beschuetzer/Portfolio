@@ -68,6 +68,7 @@ import {
     CLASSNAME__NAVIGATION,
     CLASSNAME__ITEM_CONTAINER,
     CLASSNAME__CAROUSEL_ITEMS_CONTAINER,
+    CLASSNAME__ITEM_VIEWER,
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getBoundValue, getIsMobile } from "../utils/utils";
@@ -540,11 +541,17 @@ export class OptionsLogic {
         if (itemViewerAspectRatio === 'auto') return thumbnailSizeGiven;
 
         //todo: need to use this.isItemViewerHeightGiven to determine which aspect ratio to use
-        const itemsHeight = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__CAROUSEL_ITEMS_CONTAINER}`)?.getBoundingClientRect().height || 0;
-        const proposedTotalHeight = thumbnailSizeGiven + navigationHeight + navigationMarginBottom + itemViewerAspectRatio + itemsHeight;
+        const rect = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_VIEWER}`)?.getBoundingClientRect();
+        console.log({rect});
         
-        console.log({thumbnailSize: thumbnailSizeGiven, maxHeight, proposedTotalHeight, navigationHeight, navigationMarginBottom, itemViewerHeight: itemViewerAspectRatio, itemsHeight});
-        if (proposedTotalHeight > maxHeight && navigationHeight > 0 && itemsHeight > 0){
+        const itemContainerHeight = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__ITEM_CONTAINER}`)?.getBoundingClientRect().height || 0;
+        const itemsHeight = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__CAROUSEL_ITEMS_CONTAINER}`)?.getBoundingClientRect().height || 0;
+        const proposedTotalHeight = navigationHeight + navigationMarginBottom + itemContainerHeight + itemsHeight;
+        
+        console.log({thumbnailSize: thumbnailSizeGiven, maxHeight, proposedTotalHeight, navigationHeight, navigationMarginBottom, itemContainerHeight, itemsHeight});
+        if (proposedTotalHeight > maxHeight && navigationHeight > 0 && itemsHeight > 0 && itemContainerHeight > 0){
+            const excess = proposedTotalHeight - maxHeight;
+            console.log({excess});
             return thumbnailSizeGiven;
         }
 
