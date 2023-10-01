@@ -22,7 +22,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         children,
         onClick,
     } = props;
-    const { currentItemIndex, isFullscreenMode, itemContainerHeight, setItemContainerHeight, items} = useCarouselContext();
+    const { currentItemIndex, isFullscreenMode, itemContainerHeight, setItemContainerHeight, items } = useCarouselContext();
     const { stylingLogic, optionsLogic } = useBusinessLogic();
     const heightsRef = useRef<number[]>([]);
     const intervalRef = useRef<any>(-1);
@@ -32,25 +32,25 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     const lastViewportWidthRef = useRef(LAST_VIEWPORT_WIDTH_REF_INITIAL);
     const renderCountRef = useRenderCount();
     useImperativeHandle(ref, () => itemContainerRef.current)
-	const recommendedAspectRatio = useRecommendedAspectRatio(items);
-    
+    const recommendedAspectRatio = useRecommendedAspectRatio(items);
+
     //#region Functions
     const setHeightAuto = useCallback(() => {
         if (heightsRef?.current?.length === 0) return;
         // console.log({heightsRef: heightsRef.current, newHEight: getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight) });
-        setItemContainerHeight(getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight));
+        setItemContainerHeight(Math.ceil(getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight)));
         clearInterval(intervalRef.current);
     }, [optionsLogic.maxHeight, setItemContainerHeight])
 
     const setHeightBasedOnRatio = useCallback((ratio: number) => {
         const itemContainerWidth = itemContainerRef.current?.getBoundingClientRect().width || 0;
-        
+
         const subContainer = itemContainerRef.current?.querySelector('div');
         const paddingLeft = parseInt(subContainer?.style.paddingLeft || '20', 10);
         const paddingRight = parseInt(subContainer?.style.paddingRight || '20', 10);
         const availableWidth = itemContainerWidth - paddingLeft - paddingRight;
         if (availableWidth < 0) return false;
-        setItemContainerHeight(availableWidth * ratio);
+        setItemContainerHeight(Math.ceil(availableWidth * ratio));
         return true;
     }, [setItemContainerHeight])
 
@@ -131,7 +131,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         resetAutoHeight();
     })
 
-    useEffect(() => {        
+    useEffect(() => {
         if (optionsLogic.itemViewerUseRecommendedAspectRatio) {
             if (recommendedAspectRatio < USE_RECOMMENDEDED_ASPECT_RATIO_INITIAL) {
                 setHeightBasedOnRatio(recommendedAspectRatio);

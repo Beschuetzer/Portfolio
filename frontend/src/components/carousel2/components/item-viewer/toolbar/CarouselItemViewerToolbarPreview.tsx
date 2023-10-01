@@ -31,7 +31,7 @@ export const CarouselItemViewerToolbarPreview = (props: CarouselItemViewerToolba
     } = props;
     const { optionsLogic, stylingLogic } = useBusinessLogic();
     const { description, srcMain, srcThumbnail } = itemToShow || {};
-    const shouldShowImageJSX = useMemo(() => !!(!getIsVideo(itemToShow) || srcThumbnail), [itemToShow]);
+    const shouldShowImageJSX = useMemo(() => !!(!getIsVideo(itemToShow) || srcThumbnail), [itemToShow, srcThumbnail]);
     //#endregion
 
     //#region JSX

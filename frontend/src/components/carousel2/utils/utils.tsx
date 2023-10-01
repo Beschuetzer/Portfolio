@@ -7,6 +7,7 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
     CAROUSEL_MAX_HEIGHT_DEFAULT,
     CLASSNAME__ROOT,
+    IMAGE_EXTENSIONS,
     MOBILE_PIXEL_WIDTH,
     NUMBER_OF_MS_IN_A_SECOND,
     NUMBER_OF_PAGES_INITIAL,
@@ -18,11 +19,6 @@ import {
     Coordinate,
     Point,
     ArrowButtonDirection,
-    CarouselElementValue,
-    CarouselElementValueType,
-    CarouselElementViewingMode,
-    CarouselElementTuple,
-    CarouselElementValueTuple,
     KeyInput,
     ValidKey,
     CarouselModalGetCodeSectionInput,
@@ -32,6 +28,7 @@ import {
 } from "../types";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CarouselModal } from '../components/modal/CarouselModal';
+import { getIsItemOfType } from "./getIsItemOfType";
 
 type GetClassname = {
     elementName?: string;
@@ -275,11 +272,9 @@ export function getIsPointInsideElement(point: Point, element: Element | null | 
 }
 
 export function getIsVideo(item: CarouselItemProps | undefined) {
-    const currentItemSrc = item?.srcMain || '';
-    return !!currentItemSrc?.match(
-        getRegexStringFromStringArray(VIDEO_EXTENSIONS),
-    );
+    return getIsItemOfType(item, 'video');
 }
+
 
 export function getIsVideoPlaying(video: HTMLVideoElement | undefined) {
     if (!video) return false;
@@ -370,16 +365,6 @@ export function getPoint(e: TouchEvent | MouseEvent | undefined) {
         x: touchEvent?.changedTouches?.[0]?.clientX || mouseEvent?.x || mouseEvent?.clientX || 0,
         y: touchEvent?.changedTouches?.[0]?.clientY || mouseEvent?.y || mouseEvent?.clientY || 0,
     } as Point;
-}
-
-export function getRegexStringFromStringArray(fileExtensions: string[]) {
-    const mapped = fileExtensions.map((ext, index) => {
-        let orChar = "|";
-        if (index === 0) orChar = "";
-        return `${orChar}(.${ext})`;
-    });
-    const result = ".+" + mapped.join("") + "$";
-    return result;
 }
 
 export function getShortcutsString(shortcuts: KeyInput[]) {

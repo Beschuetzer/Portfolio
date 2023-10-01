@@ -10,12 +10,25 @@ export const DISABLE_WRAPPING_DEFAULT = false;
 export const EMPTY_STRING = "";
 export const FONT_WEIGHT_DEFAULT = 400;
 export const GET_CURRENT_VALUE_DEFAULT = 0;
+export const IMAGE_EXTENSIONS = [
+    "apng",
+    "avif",
+    "gif",
+    "jpg",
+    "jpeg",
+    "jfif",
+    "pjpeg",
+    "pjp",
+    "png",
+    "svg",
+    "webp",
+];
 export const IS_LAST_PAGE_FLUSH_DEFAULT = true;
 export const ITEM_CONTAINER_HEIGHT_INITIAL = 'auto';
 export const ITEM_CONTAINER_MIN_DEFAULT = 125;
 export const ITEM_VIEWER_USE_RECOMMENDED_ASPECT_RATIO = true;
 export const ITEM_VIEWER_HEIGHT_DEFAULT = "widescreen";
-export const ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues: {[key in CarouselItemViewerHeightCustom]: number} = {
+export const ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues: { [key in CarouselItemViewerHeightCustom]: number } = {
     widescreen: .5625, //16:9
     fullscreen: .75, //4:3
 }
