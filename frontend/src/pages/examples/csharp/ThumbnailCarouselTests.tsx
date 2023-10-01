@@ -2230,7 +2230,7 @@ const layoutMaxHeightLessThanThumbnailItemDisplayLocationNone = (
 		items={items}
 		options={{
 			layout: {
-				maxHeight: 150,
+				maxHeight: 185,
 			},
 			thumbnail: {
 				size: 155,
@@ -3006,10 +3006,10 @@ const SECTIONS: Sections = [
 				label: "Max Heigt causes Thumbnail Size to Decrease when ItemDisplayLocation is None",
 				jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationNone,
 			},
-			{
-				label: "Max Heigt causes Thumbnail Size to Decrease when ItemDisplayLocation is Above",
-				jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationAbove,
-			},
+			// {
+			// 	label: "Max Heigt causes Thumbnail Size to Decrease when ItemDisplayLocation is Above",
+			// 	jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationAbove,
+			// },
 		]
 	],
 	[

@@ -190,6 +190,9 @@ export class StylingLogic {
     get carouselItemStyle() {
         const customCurrenItemBorder = this.optionsLogic.thumbnailBorderString;
 
+        const marginStyle = this.optionsLogic.isDefaultItemDisplayLocation ? {
+            margin: 0,
+        } as CSSProperties : {};
         const widthStyle = {
             width: this.optionsLogic.thumbnailSize,
             height: this.optionsLogic.thumbnailSize,
@@ -203,6 +206,7 @@ export class StylingLogic {
         return {
             ...selectionStyle,
             ...widthStyle,
+            ...marginStyle,
         } as CSSProperties;
     }
 

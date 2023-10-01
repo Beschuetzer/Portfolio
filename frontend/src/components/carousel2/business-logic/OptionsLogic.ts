@@ -525,12 +525,9 @@ export class OptionsLogic {
         const navigationMarginBottom = parseFloat(navigationDiv?.style?.marginBottom) || 0;
         if (this.isDefaultItemDisplayLocation) {
             const thumbnailSizeGiven = getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
-            const proposedTotalHeight = thumbnailSizeGiven + navigationHeight + navigationMarginBottom;
-            console.log({thumbnailSize: thumbnailSizeGiven, maxHeight, proposedTotalHeight, navigationHeight, navigationMarginBottom});
-            if (proposedTotalHeight > maxHeight && navigationHeight > 0) {
-                const excess = proposedTotalHeight - maxHeight;
-                console.log({excess});
-                return maxHeight - excess;
+            const maxThumbnailSize = maxHeight - navigationHeight -navigationMarginBottom;
+            if (thumbnailSizeGiven > maxThumbnailSize && navigationHeight > 0) {
+                return maxHeight - navigationHeight -navigationMarginBottom;
             }
             return thumbnailSizeGiven;
         }
@@ -548,6 +545,9 @@ export class OptionsLogic {
         const itemsHeight = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__CAROUSEL_ITEMS_CONTAINER}`)?.getBoundingClientRect().height || 0;
         const proposedTotalHeight = navigationHeight + navigationMarginBottom + itemContainerHeight + itemsHeight;
         
+        const maxThumbnailSize = maxHeight - navigationHeight - navigationMarginBottom;
+
+
         console.log({thumbnailSize: thumbnailSizeGiven, maxHeight, proposedTotalHeight, navigationHeight, navigationMarginBottom, itemContainerHeight, itemsHeight});
         if (proposedTotalHeight > maxHeight && navigationHeight > 0 && itemsHeight > 0 && itemContainerHeight > 0){
             const excess = proposedTotalHeight - maxHeight;
