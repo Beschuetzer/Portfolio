@@ -514,7 +514,6 @@ export class OptionsLogic {
     get thumbnailSize() {
         const maxHeight = this.maxHeight;
         if (this.isDefaultItemDisplayLocation) {
-            // const carouselHeight = this.carouselContainerRef?.current?.getBoundingClientRect().height || 0;
             const thumbnailSize = getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
             const navigationDiv = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__NAVIGATION}`) as HTMLElement;
             const navigationHeight = navigationDiv?.getBoundingClientRect().height || 0;

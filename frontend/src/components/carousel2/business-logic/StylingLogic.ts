@@ -1031,7 +1031,6 @@ export class StylingLogic {
         } as CSSProperties;
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
-            marginBottom: 0,
             paddingTop: CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
             paddingBottom: this.optionsLogic.isItemDisplayLocationBelow ? CAROUSEL_ITEM_SPACING_DEFAULT * 2 : 0,
             ...common,
@@ -1306,7 +1305,7 @@ export class StylingLogic {
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            height: this.isFullscreenMode ? '100vh' : height,
+            height: this.isFullscreenMode ? '100vh' : this.optionsLogic.isToolbarInVideo ? height : 'auto',
             position: "relative",
             backgroundColor: this.optionsLogic.itemViewerBackgroundColor,
             overflow: "hidden",

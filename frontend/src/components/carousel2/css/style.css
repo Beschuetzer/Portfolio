@@ -980,7 +980,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 4px;
 }
 .thumbnail-carousel__video {
   width: 100vw;
