@@ -255,6 +255,7 @@ export type CarouselSections = {
 
 export type CarouselSectionsContainer = {
     padding?: CarouselVerticalPaddingOptions & CarouselHorizontalPaddingOptions;
+    margin?: CarouselVerticalMarginOptions & CarouselHorizontalMarginOptions;
 } & Partial<Pick<CarouselColorOptions, 'backgroundColor'>>;
 export type CarouselSectionsItemViewer = {
     loadingSpinner?: Partial<Omit<LoadingSpinnerProps, 'description' | 'show'>>;
@@ -572,13 +573,23 @@ export type CarouselFontFamilyOptions = Exclusive<
     }>
 
 export type CarouselHorizontalPaddingOptions = {
-    [SpacingDirection.left]?: CarouselElementValueTuple<number>;
-    [SpacingDirection.right]?: CarouselElementValueTuple<number>;
+    [SpacingDirection.left]?: CarouselElementValueTuple<CSSProperties['padding']>;
+    [SpacingDirection.right]?: CarouselElementValueTuple<CSSProperties['padding']>;
 }
 
 export type CarouselVerticalPaddingOptions = {
-    [SpacingDirection.bottom]?: CarouselElementValueTuple<number>;
-    [SpacingDirection.top]?: CarouselElementValueTuple<number>;
+    [SpacingDirection.bottom]?: CarouselElementValueTuple<CSSProperties['padding']>;
+    [SpacingDirection.top]?: CarouselElementValueTuple<CSSProperties['padding']>;
+}
+
+export type CarouselHorizontalMarginOptions = {
+    [SpacingDirection.left]?: CarouselElementValueTuple<CSSProperties['margin']>;
+    [SpacingDirection.right]?: CarouselElementValueTuple<CSSProperties['margin']>;
+}
+
+export type CarouselVerticalMarginOptions = {
+    [SpacingDirection.bottom]?: CarouselElementValueTuple<CSSProperties['margin']>;
+    [SpacingDirection.top]?: CarouselElementValueTuple<CSSProperties['margin']>;
 }
 
 export type CarouselStylingOptions = {

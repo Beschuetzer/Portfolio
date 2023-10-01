@@ -600,16 +600,18 @@ const noItemDisplayedThreeItemsMaxSpacing = (
 const noItemDisplayedMultiplePagesAllDefaults = (
 	<Carousel items={items} />
 );
-const multiplePagesCustomPadding = (
+const multiplePagesCustomPaddingAndMargin = (
 	<Carousel items={items} options={{
 		styling: {
 			container: {
 				padding: {
 					left: 40,
 					right: 40,
-					bottom: 40,
 					top: 40,
-				}
+				},
+				margin: {
+					bottom: 40,
+				},
 			}
 		}
 	}} />
@@ -2216,6 +2218,19 @@ const layoutToolbarNotEmbedded = (
 		}}
 	/>
 )
+const layoutMaxHeightLessThanThumbnailItemDisplayLocationNone = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				maxHeight: 150,
+			},
+			thumbnail: {
+				size: 155,
+			},
+		}}
+	/>
+)
 const layoutThumbnailPositioningCenter = (
 	<Carousel
 		items={items}
@@ -2906,6 +2921,7 @@ enum SectionNames {
 	isLastPageFlush = "Last Page Flush",
 	itemViewer = "Item Viewer",
 	layouts = "Layouts",
+	maxHeight = "Max Height",
 	navigationOptions = "Navigation Options",
 	otherDynamicSettings = "Other Dynamic Settings",
 	theme = 'Theme',
@@ -2936,8 +2952,8 @@ const SECTIONS: Sections = [
 				jsx: noItemDisplayedMultiplePagesAllDefaults
 			},
 			{
-				label: "Multiple Pages - Custom Padding",
-				jsx: multiplePagesCustomPadding
+				label: "Multiple Pages - Custom Padding and Margin",
+				jsx: multiplePagesCustomPaddingAndMargin
 			},
 			{
 				label: "Multiple Pages - Custom Item Viewer Colors",
@@ -2962,44 +2978,53 @@ const SECTIONS: Sections = [
 		]
 	],
 	[
+		SectionNames.maxHeight,
+		[
+			{
+				label: "Max Heigt less than Thumbnail Size when ItemDisplayLocation is None",
+				jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationNone,
+			},
+		]
+	],
+	[
 		SectionNames.itemPositioning,
 		[
 			{
 				label: "Thumbnails Positioned Left in Container with Default Spacing",
 				jsx: layoutThumbnailPositioningLeft,
 			},
-			// {
-			// 	label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
-			// 	jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Left in Container with Custom Item Spacing and Last Page not Flush",
-			// 	jsx: layoutThumbnailPositioningLeftWithCustomItemSizeAndLastPageNotFlush,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Center in Container with Default Spacing",
-			// 	jsx: layoutThumbnailPositioningCenter,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
-			// 	jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Center in Container with Custom Item Spacing and Last Page not Flush",
-			// 	jsx: layoutThumbnailPositioningCenterWithCustomItemSizeAndLastPageNotFlush,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Right in Container with Default Spacing",
-			// 	jsx: layoutThumbnailPositioningRight,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
-			// 	jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
-			// },
-			// {
-			// 	label: "Thumbnails Positioned Right in Container with Custom Item Spacing and Last Page not Flush",
-			// 	jsx: layoutThumbnailPositioningRightWithCustomItemSizeAndLastPageNotFlush,
-			// },
+			{
+				label: "Thumbnails Positioned Left in Container with Custom Item Spacing",
+				jsx: layoutThumbnailPositioningLeftWithItemSpacingGiven,
+			},
+			{
+				label: "Thumbnails Positioned Left in Container with Custom Item Spacing and Last Page not Flush",
+				jsx: layoutThumbnailPositioningLeftWithCustomItemSizeAndLastPageNotFlush,
+			},
+			{
+				label: "Thumbnails Positioned Center in Container with Default Spacing",
+				jsx: layoutThumbnailPositioningCenter,
+			},
+			{
+				label: "Thumbnails Positioned Center in Container with Custom Item Spacing",
+				jsx: layoutThumbnailPositioningCenterWithItemSpacingGiven,
+			},
+			{
+				label: "Thumbnails Positioned Center in Container with Custom Item Spacing and Last Page not Flush",
+				jsx: layoutThumbnailPositioningCenterWithCustomItemSizeAndLastPageNotFlush,
+			},
+			{
+				label: "Thumbnails Positioned Right in Container with Default Spacing",
+				jsx: layoutThumbnailPositioningRight,
+			},
+			{
+				label: "Thumbnails Positioned Right in Container with Custom Item Spacing",
+				jsx: layoutThumbnailPositioningRightWithItemSpacingGiven,
+			},
+			{
+				label: "Thumbnails Positioned Right in Container with Custom Item Spacing and Last Page not Flush",
+				jsx: layoutThumbnailPositioningRightWithCustomItemSizeAndLastPageNotFlush,
+			},
 			{
 				label: "Thumbnails Positioned Left in Container One Page",
 				jsx: layoutThumbnailPositioningLeftNonDefaultCaseOnePage
@@ -3008,10 +3033,10 @@ const SECTIONS: Sections = [
 				label: "Thumbnails Positioned Center in Container One Page",
 				jsx: layoutThumbnailPositioningCenterNonDefaultCaseOnePage
 			},
-			// {
-			// 	label: "Thumbnails Positioned Right in Container One Page",
-			// 	jsx: layoutThumbnailPositioningRightNonDefaultCaseOnePage
-			// },
+			{
+				label: "Thumbnails Positioned Right in Container One Page",
+				jsx: layoutThumbnailPositioningRightNonDefaultCaseOnePage
+			},
 		]
 	],
 	[
@@ -3555,62 +3580,62 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.itemViewer,
 		[
-			// {
-			// 	label: "Default Modal Displayed on Load",
-			// 	jsx: itemViewerDefaultModalOnLoad
-			// },
-			// {
-			// 	label: "Default Modal Displayed on Load with Custom Toolbar Buttons",
-			// 	jsx: itemViewerCustomButtons
-			// },
-			// {
-			// 	label: "Custom Modal Displayed on Load",
-			// 	jsx: itemViewerCustomModalOnLoad
-			// },
-			// {
-			// 	label: "Toolbar doesn't hide on inactivity (Click item to view)",
-			// 	jsx: itemViewerNoToolbarHide
-			// },
-			// {
-			// 	label: "Toolbar hides after 500ms of inactivity (Click item to view)",
-			// 	jsx: itemViewerHideAfter500ms
-			// },
-			// {
-			// 	label: "Seek amount 2 sec (Click item to view)",
-			// 	jsx: itemViewerSeekAmount2Sec
-			// },
-			// {
-			// 	label: "All custom keyboard shortcuts",
-			// 	jsx: itemViewerCustomShortcuts,
-			// },
-			// {
-			// 	label: "Custom Item Viewer Font",
-			// 	jsx: itemViewerCustomItemViewerFont,
-			// },
-			// {
-			// 	label: "Custom Navigation Font",
-			// 	jsx: itemViewerCustomNavigationFont,
-			// },
-			// {
-			// 	label: "Custom Navigation and Item Viewer Fonts",
-			// 	jsx: itemViewerCustomFontBoth,
-			// },
-			// {
-			// 	label: "Full-screen Swiping Disabled",
-			// 	jsx: itemViewerSwipingDisabled
-			// },
-			// {
-			// 	label: "Full-screen Max Click Threshold 0",
-			// 	jsx: itemViewerMaxClickThresholdZero
-			// },
-			// {
-			// 	label: "Modal Minimized Opacity is .15",
-			// 	jsx: itemViewerModalMinimizedOpacity
-			// },
-			// {
-			// 	label: "Modal only Minimized via Close Button",
-			// 	jsx: itemViewerModalMinimizeOnlyViaCloseButton
-			// },
+			{
+				label: "Default Modal Displayed on Load",
+				jsx: itemViewerDefaultModalOnLoad
+			},
+			{
+				label: "Default Modal Displayed on Load with Custom Toolbar Buttons",
+				jsx: itemViewerCustomButtons
+			},
+			{
+				label: "Custom Modal Displayed on Load",
+				jsx: itemViewerCustomModalOnLoad
+			},
+			{
+				label: "Toolbar doesn't hide on inactivity (Click item to view)",
+				jsx: itemViewerNoToolbarHide
+			},
+			{
+				label: "Toolbar hides after 500ms of inactivity (Click item to view)",
+				jsx: itemViewerHideAfter500ms
+			},
+			{
+				label: "Seek amount 2 sec (Click item to view)",
+				jsx: itemViewerSeekAmount2Sec
+			},
+			{
+				label: "All custom keyboard shortcuts",
+				jsx: itemViewerCustomShortcuts,
+			},
+			{
+				label: "Custom Item Viewer Font",
+				jsx: itemViewerCustomItemViewerFont,
+			},
+			{
+				label: "Custom Navigation Font",
+				jsx: itemViewerCustomNavigationFont,
+			},
+			{
+				label: "Custom Navigation and Item Viewer Fonts",
+				jsx: itemViewerCustomFontBoth,
+			},
+			{
+				label: "Full-screen Swiping Disabled",
+				jsx: itemViewerSwipingDisabled
+			},
+			{
+				label: "Full-screen Max Click Threshold 0",
+				jsx: itemViewerMaxClickThresholdZero
+			},
+			{
+				label: "Modal Minimized Opacity is .15",
+				jsx: itemViewerModalMinimizedOpacity
+			},
+			{
+				label: "Modal only Minimized via Close Button",
+				jsx: itemViewerModalMinimizeOnlyViaCloseButton
+			},
 			{
 				label: "Modal Remains Closed When Switching Items in Nonfullscreen but Not Fullscreen",
 				jsx: itemViewerModalMaintainsMinimizedState
@@ -3761,8 +3786,9 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	// SectionNames.custom,
 	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.itemPositioning,
-	SectionNames.itemViewer,
-	// SectionNames.layouts,
+	// SectionNames.itemViewer,
+	SectionNames.layouts,
+	SectionNames.maxHeight,
 	// SectionNames.navigationOptions,
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.thumbnailOptions,

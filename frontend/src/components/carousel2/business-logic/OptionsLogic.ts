@@ -65,6 +65,7 @@ import {
     CAROUSEL_MAX_HEIGHT_DEFAULT,
     ITEM_VIEWER_HEIGHT_DEFAULT,
     ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues,
+    CLASSNAME__NAVIGATION,
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getBoundValue, getIsMobile } from "../utils/utils";
@@ -128,6 +129,19 @@ export class OptionsLogic {
 
     get containerBackgroundColor() {
         return getCurrentValue(this.options?.styling?.container?.backgroundColor, this.theme.colorOne, this.isFullscreenMode);
+    }
+
+    get containerMargin() {
+        const bottom = getCurrentValue(this.options?.styling?.container?.margin?.bottom, undefined, this.isFullscreenMode);
+        const left = getCurrentValue(this.options?.styling?.container?.margin?.left, undefined, this.isFullscreenMode);
+        const right = getCurrentValue(this.options?.styling?.container?.margin?.right, undefined, this.isFullscreenMode);
+        const top = getCurrentValue(this.options?.styling?.container?.margin?.top, undefined, this.isFullscreenMode);
+        return {
+            [SpacingDirection.bottom]: bottom,
+            [SpacingDirection.left]: left,
+            [SpacingDirection.right]: right,
+            [SpacingDirection.top]: top,
+        }
     }
 
     get containerPadding() {
@@ -498,11 +512,34 @@ export class OptionsLogic {
     }
 
     get thumbnailSize() {
+        const maxHeight = this.maxHeight;
         if (this.isDefaultItemDisplayLocation) {
-            return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
+            // const carouselHeight = this.carouselContainerRef?.current?.getBoundingClientRect().height || 0;
+            const thumbnailSize = getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
+            const navigationDiv = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__NAVIGATION}`) as HTMLElement;
+            const navigationHeight = navigationDiv?.getBoundingClientRect().height || 0;
+            const navigationMarginBottom = parseFloat(navigationDiv?.style?.marginBottom) || 0;
+            const proposedTotalHeight = thumbnailSize + navigationHeight + navigationMarginBottom;
+            console.log({thumbnailSize, maxHeight, proposedTotalHeight, navigationHeight, navigationMarginBottom});
+            if (proposedTotalHeight > maxHeight && navigationHeight > 0) {
+                const excess = proposedTotalHeight - maxHeight;
+                console.log({excess});
+                return maxHeight - excess;
+            }
+            return thumbnailSize;
         }
         return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
     }
+
+    //todo: is this needed?
+    // get thumbnailSizeAvailableSpace() {
+    //     const maxHeight = this.maxHeight;
+    //     const carouselHeight = this.carouselContainerRef?.current?.getBoundingClientRect().height;
+
+    //     console.log({maxHeight, carouselHeight});
+    //     if (!carouselHeight) return 0;
+    //     return 0;
+    // }
 
     get thumbnailSpacingStrategy() {
         return getCurrentValue(this.options?.thumbnail?.spacingStrategy, 'min', this.isFullscreenMode);

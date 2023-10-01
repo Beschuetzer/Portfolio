@@ -153,9 +153,15 @@ export class StylingLogic {
     }
 
     get carouselStyle() {
+        const { top: marginTop, bottom: marginBottom, left: marginLeft, right: marginRight } = this.optionsLogic.containerMargin;
         const common = {
             paddingTop: this.getPaddingAmount(SpacingDirection.top, CarouselSection.itemViewer),
             paddingBottom: this.getPaddingAmount(SpacingDirection.bottom, CarouselSection.itemViewer),
+            marginTop,
+            marginBottom,
+            marginLeft,
+            marginRight,
+            maxHeight: this.optionsLogic.maxHeight,
         } as CSSProperties;
 
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
