@@ -1375,43 +1375,50 @@ const itemViewerModalMaintainsMinimizedState = (
 		}
 	}} />
 )
-const itemViewerHeightAuto = (
+const itemViewerAspectRatioDefault = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: 'above',
+		},
+	}} />
+)
+const itemViewerAspectRatioAuto = (
 	<Carousel items={items} options={{
 		layout: {
 			itemDisplayLocation: 'below',
 		},
 		itemViewer: {
-			height: 'auto',
+			aspectRatio: 'auto',
 		}
 	}} />
 )
-const itemViewerHeightWidescreen = (
+const itemViewerAspectRatioWidescreen = (
 	<Carousel items={items} options={{
 		layout: {
 			itemDisplayLocation: 'below',
 		},
 		itemViewer: {
-			height: 'widescreen',
+			aspectRatio: 'widescreen',
 		}
 	}} />
 )
-const itemViewerHeightFullscreen = (
+const itemViewerAspectRatioFullscreen = (
 	<Carousel items={items} options={{
 		layout: {
 			itemDisplayLocation: 'below',
 		},
 		itemViewer: {
-			height: 'fullscreen',
+			aspectRatio: 'fullscreen',
 		}
 	}} />
 )
-const itemViewerHeightCustomNumber = (
+const itemViewerAspectRatioCustomNumber = (
 	<Carousel items={items} options={{
 		layout: {
 			itemDisplayLocation: 'below',
 		},
 		itemViewer: {
-			height: .33,
+			aspectRatio: .33,
 		}
 	}} />
 )
@@ -2231,6 +2238,20 @@ const layoutMaxHeightLessThanThumbnailItemDisplayLocationNone = (
 		}}
 	/>
 )
+const layoutMaxHeightLessThanThumbnailItemDisplayLocationAbove = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				maxHeight: 425,
+				itemDisplayLocation: 'above',
+			},
+			thumbnail: {
+				size: 155,
+			},
+		}}
+	/>
+)
 const layoutThumbnailPositioningCenter = (
 	<Carousel
 		items={items}
@@ -2920,6 +2941,7 @@ enum SectionNames {
 	itemPositioning = "Item Positioning",
 	isLastPageFlush = "Last Page Flush",
 	itemViewer = "Item Viewer",
+	itemViewerAspectRatio = 'ItemViewer Aspect Ratio',
 	layouts = "Layouts",
 	maxHeight = "Max Height",
 	navigationOptions = "Navigation Options",
@@ -2980,9 +3002,13 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.maxHeight,
 		[
+			// {
+			// 	label: "Max Heigt causes Thumbnail Size to Decrease when ItemDisplayLocation is None",
+			// 	jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationNone,
+			// },
 			{
-				label: "Max Heigt less than Thumbnail Size when ItemDisplayLocation is None",
-				jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationNone,
+				label: "Max Heigt causes Thumbnail Size to Decrease when ItemDisplayLocation is Above",
+				jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationAbove,
 			},
 		]
 	],
@@ -3640,21 +3666,30 @@ const SECTIONS: Sections = [
 				label: "Modal Remains Closed When Switching Items in Nonfullscreen but Not Fullscreen",
 				jsx: itemViewerModalMaintainsMinimizedState
 			},
+		]
+	],
+	[
+		SectionNames.itemViewerAspectRatio,
+		[
 			{
-				label: "Setting Height to Auto",
-				jsx: itemViewerHeightAuto
+				label: "Using Recommended Aspect Ratio (default)",
+				jsx: itemViewerAspectRatioDefault
 			},
 			{
-				label: "Setting Height to 16:9 Aspect Ratio",
-				jsx: itemViewerHeightWidescreen
+				label: "Setting Aspect Ratio to Auto",
+				jsx: itemViewerAspectRatioAuto
 			},
 			{
-				label: "Setting Height to 4:3 Aspect Ratio",
-				jsx: itemViewerHeightFullscreen
+				label: "Setting Aspect Ratio to 16:9",
+				jsx: itemViewerAspectRatioWidescreen
 			},
 			{
-				label: "Setting Height to 3:1 Aspect Ratio",
-				jsx: itemViewerHeightCustomNumber
+				label: "Setting Aspect Ratio to 4:3",
+				jsx: itemViewerAspectRatioFullscreen
+			},
+			{
+				label: "Setting Aspect Ratio to 3:1",
+				jsx: itemViewerAspectRatioCustomNumber
 			},
 		]
 	],
@@ -3787,7 +3822,8 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.itemPositioning,
 	// SectionNames.itemViewer,
-	SectionNames.layouts,
+	// SectionNames.itemViewerAspectRatio,
+	// SectionNames.layouts,
 	SectionNames.maxHeight,
 	// SectionNames.navigationOptions,
 	// SectionNames.otherDynamicSettings,

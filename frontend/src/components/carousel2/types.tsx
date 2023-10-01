@@ -176,6 +176,28 @@ export type CarouselElementValueTuple<T> = CarouselElementTuple<T> | T;
 export type CarouselElementTuple<T> = [NonNullable<T> | undefined, number?, CarouselElementValueType?][];
 export type CarouselItemViewerOptions = {
     /**
+    *`auto` sets the aspectRatio based on the first item in carousel.
+    *`widescreen` is 16:9 (9/16 => .5625).
+    *`fullscreen` is 4:3 (i.e. 3/4 => .75).
+    *To set the ratio to something else like 16:10, calculate the decimal value by taking the right number divided by the left number (e.g. 10/16)
+    *The aspectRatio will then be calcuated with that decimal (e.g. width * decimal)
+    *
+    *The ratio can only be guaranteed if {@link CarouselLayoutOptions.maxHeight maxHeight} is not specified,
+    *otherwise the itemViewer height may be reduced to meet the {@link CarouselLayoutOptions.maxHeight maxHeight} constraint.
+    *
+    * Setting this to the aspect ratio of you widest item in the carousel will yield the best results 
+    *(this way the widest item will fit perfectly into the item viewer and less wide items will be full aspectRatio). 
+    *Any other approach risks leaving vertical space between the viewer and the items in some cases
+    *
+    * `auto` is the second best option if you're unsure.
+    *If the widest item is 1.85:1, then you would want to use 1/1.85 or ~0.54 as the `aspectRatio`.
+    *
+    *Default is {@link OptionsLogic.itemViewerAspectRatio here}.
+    *
+    *Note: Using this option will disabled {@link CarouselItemViewerOptions.useRecommendedAspectRatio} (not recommended).
+    **/
+    aspectRatio?: 'auto' | number | CarouselItemViewerHeightCustom;
+    /**
     *If this is falsy or <= {@link AUTO_HIDE_DISABLED_VALUE default} then auto-hiding of the toolbar is disabled for videos.
     *Otherwise, auto-hide occurs when there is no mouse input for this amount of time in milliseconds.  
     *Only applies when in fullscreen mode or the toolbar is embedded in non-fullscreen mode.
@@ -183,32 +205,17 @@ export type CarouselItemViewerOptions = {
     **/
     autoHideToolbarDuration?: CarouselElementValueTuple<number>;
     /**
-    *`auto` sets the height based on the item loaded on load or when the viewport width changes
-    *`widescreen` is 16:9
-    *`fullscreen` is 4:3
-    *using a number will set the height as a multiple of the width
-    *Only applicable if the height is less than {@link OptionsLogic.maxHeight maxHeight} of carousel.
-    *Otherwise `maxHeight` will be used.
-    *Setting this to the aspect ratio of you widest item in the carousel will yield the best results 
-    *(this way the widest item will fit perfectly into the item viewer and less wide items will be full height). 
-    *Any other approach risks leaving vertical space between the viewer and the items in some cases
-    *`auto` is the second best option if you're unsure.
-    *If the widest item is 1.85:1, then you would want to use 1/1.85 or ~0.54 as the `height`.
-    *Default is {@link OptionsLogic.itemViewerHeight here}.
-    *If {@link CarouselItemViewerOptions.useRecommendedAspectRatio} is given, this value is ignored.
-    **/
-    height?: 'auto' | number | CarouselItemViewerHeightCustom;
-    /**
     *How for forward/backward the seek buttons move a video.  
     *Default is {@link SEEK_AMOUNT_DEFAULT here} in milliseconds.
     *Only applies when in fullscreen mode
     **/
     seekAmount?: CarouselElementValue<number>;
     /**
-    *If `true`, the item container height is calculated based on the lowest aspect ratio of the thumbnails given.  
-    *For this to work properly, the aspect ratio of thumbnails should be the same as that of the item.
-    *For image items, the actual image is used for the calcuation otherwise the thumbnail is used.
-    *If {@link CarouselItemViewerOptions.height} is given, this defaults to `false` otherwise `true`.
+    *If `true`, the item container height is calculated based on the lowest aspect ratio of the items given
+    *(for images the {@link CarouselItemProps.srcMain srcMain} is used, for videos {@link CarouselItemProps.srcThumbnail srcThumbnail} is used).  
+    *
+    *For this to work properly with videos, the aspect ratio of the video's thumbnail should be the same as that of the video.
+    *If {@link CarouselItemViewerOptions.aspectRatio} is given, this defaults to `false` otherwise `true`.
     **/
     useRecommendedAspectRatio?: CarouselElementValue<boolean>;
 } & CarouselSwipingOptions
@@ -463,13 +470,20 @@ export type CarouselLayoutOptions = {
     **/
     isToolbarPositionedInVideo?: CarouselElementValueTuple<boolean>;
     /**
+    *It is not advised to use this option if it can be avoided.
     *This will limit the maximum height of the entire carousel.
-    *Since the height of the itemViewer is calculated based on the first image (maximizes height to fit the width),
-    *the first image may not fit perfectly in the itemViewer. 
-    *If the {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is {@link CarouselItemDisplayLocation none}, 
+    *
+    *Since the height of the itemViewer is calculated based on the items, specifying a value here may reduce the itemViewer size
+    *and a sub-optimal {@link CarouselItemViewerOptions.aspectRatio aspectRatio} may be used.
+    *
+    * If the {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is {@link CarouselItemDisplayLocation none}, 
     *the {@link CarouselThumbnailOptions.size thumbnail size} will be reduced if need be.  
     *Otherwise the height of the {@link CarouselItemViewer} will be reduced.
-    *Only applies when in non-fullscreen mode.
+    *
+    *Note:  Only applies when in non-fullscreen mode.
+    *
+    *Note:  If {@link CarouselItemViewerOptions.aspectRatio} is set to `auto`, this setting is ignored 
+    *when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}.
     *
     *Default is {@link CAROUSEL_MAX_HEIGHT_DEFAULT here}.
     **/
@@ -486,7 +500,8 @@ export type CarouselLayoutOptions = {
     thumbnailPositioning?: CarouselElementValueTuple<CarouselItemThumbnailPositioning>;
     /**
     *If true, then the default, embedded controls will be used for video items.
-    *Only applicable when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none} and the carousel is in non-fullscreen mode.
+    *Only applicable when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none} 
+    *and the carousel is in non-fullscreen mode.
     *Issue when in fullscreen mode and this is true where play/pause indicator and modal don't appear anymore.
     *Default is {@link OptionsLogic.useDefaultVideoControls here}.
     **/

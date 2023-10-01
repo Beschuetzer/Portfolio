@@ -16,7 +16,7 @@ const CURRENT_INTERVAL_INITIAL = 0;
 const DATA_POINT_COLLECTION_INTERVAL = 25;
 const HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL = false;
 const LAST_VIEWPORT_WIDTH_REF_INITIAL = 0;
-const NUMBER_OF_DATA_POINTS = 10;
+const NUMBER_OF_DATA_POINTS = 15;
 export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerContainerProps>((props, ref) => {
     const {
         children,
@@ -37,12 +37,15 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     //#region Functions
     const setHeightAuto = useCallback(() => {
         if (heightsRef?.current?.length === 0) return;
-        // console.log({heightsRef: heightsRef.current, newHEight: getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight) });
+        // console.log({ heightsRef: heightsRef.current, newHEight: getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight) });
         setItemContainerHeight(Math.ceil(getBoundValue(getMostFrequentItem(heightsRef.current), ITEM_CONTAINER_MIN_DEFAULT, optionsLogic.maxHeight)));
         clearInterval(intervalRef.current);
     }, [optionsLogic.maxHeight, setItemContainerHeight])
 
-    const setHeightBasedOnRatio = useCallback((ratio: number) => {
+    /**
+    *@param aspectRatio - a decimal value representing an aspect ratio (e.g. 4:3 => 3/4 => .75)
+    **/
+    const setHeightBasedOnAspectRatio = useCallback((aspectRatio: number) => {
         const itemContainerWidth = itemContainerRef.current?.getBoundingClientRect().width || 0;
 
         const subContainer = itemContainerRef.current?.querySelector('div');
@@ -50,14 +53,14 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         const paddingRight = parseInt(subContainer?.style.paddingRight || '20', 10);
         const availableWidth = itemContainerWidth - paddingLeft - paddingRight;
         if (availableWidth < 0) return false;
-        setItemContainerHeight(Math.ceil(availableWidth * ratio));
+        setItemContainerHeight(Math.ceil(availableWidth * aspectRatio));
         return true;
     }, [setItemContainerHeight])
 
     const startAutoHeightInterval = useCallback(() => {
-        const itemViewerHeightOptionValue = optionsLogic.itemViewerHeight;
-        if (!optionsLogic.itemViewerUseRecommendedAspectRatio && itemViewerHeightOptionValue !== 'auto') {
-            setHeightBasedOnRatio(itemViewerHeightOptionValue)
+        const itemViewerAspectRatio = optionsLogic.itemViewerAspectRatio;
+        if (!optionsLogic.itemViewerUseRecommendedAspectRatio && itemViewerAspectRatio !== 'auto') {
+            setHeightBasedOnAspectRatio(itemViewerAspectRatio)
             return;
         }
 
@@ -77,8 +80,12 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
             if (heightLocal === ITEM_CONTAINER_HEIGHT_INITIAL) return;
             heightsRef.current.push(Math.ceil(heightLocal));
         }, DATA_POINT_COLLECTION_INTERVAL)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [itemContainerHeight, setHeightAuto])
+    }, [
+        optionsLogic.itemViewerAspectRatio,
+        optionsLogic.itemViewerUseRecommendedAspectRatio,
+        setHeightAuto,
+        setHeightBasedOnAspectRatio
+    ])
 
     const resetAutoHeight = useCallback(() => {
         heightsRef.current = [];
@@ -134,14 +141,14 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     useEffect(() => {
         if (optionsLogic.itemViewerUseRecommendedAspectRatio) {
             if (recommendedAspectRatio < USE_RECOMMENDEDED_ASPECT_RATIO_INITIAL) {
-                setHeightBasedOnRatio(recommendedAspectRatio);
+                setHeightBasedOnAspectRatio(recommendedAspectRatio);
                 return;
             }
         } else {
             intervalRef.current = startAutoHeightInterval();
         }
         return () => clearInterval(intervalRef.current);
-    }, [setHeightBasedOnRatio, optionsLogic.itemViewerUseRecommendedAspectRatio, recommendedAspectRatio, setItemContainerHeight, startAutoHeightInterval])
+    }, [setHeightBasedOnAspectRatio, optionsLogic.itemViewerUseRecommendedAspectRatio, recommendedAspectRatio, setItemContainerHeight, startAutoHeightInterval])
     //#endregion
 
     return (

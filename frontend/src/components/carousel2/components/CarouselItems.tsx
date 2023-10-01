@@ -3,6 +3,7 @@ import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { getClassname } from '../utils/utils';
 import { CarouselItem } from './CarouselItem';
 import { CarouselDotsProps } from './CarouselDots';
+import { CLASSNAME__CAROUSEL_ITEMS, CLASSNAME__CAROUSEL_ITEMS_CONTAINER } from '../constants';
 
 type CarouselItemsProps = {
     interItemSpacing:  number;
@@ -28,10 +29,11 @@ export const CarouselItems = forwardRef<HTMLDivElement, CarouselItemsProps>((pro
                 ...stylingLogic.carouselItemsOuterContainerStyle,
                 ...stylingLogic.fontFamilyNavigationStyle,
             }}
+            className={CLASSNAME__CAROUSEL_ITEMS_CONTAINER}
         >
             <div ref={ref}
                 style={stylingLogic.getCarouselItemsInnerContainerStyle(interItemSpacing, translationAmount, isLastPage, translationAmountChangeRef)}
-                className={getClassname({ elementName: "items" })}
+                className={CLASSNAME__CAROUSEL_ITEMS}
             >
                 {
                     items.map((item, index) => <CarouselItem key={index} index={index} {...item} />)

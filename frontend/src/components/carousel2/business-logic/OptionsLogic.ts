@@ -66,6 +66,8 @@ import {
     ITEM_VIEWER_HEIGHT_DEFAULT,
     ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues,
     CLASSNAME__NAVIGATION,
+    CLASSNAME__ITEM_CONTAINER,
+    CLASSNAME__CAROUSEL_ITEMS_CONTAINER,
 } from "../constants";
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getBoundValue, getIsMobile } from "../utils/utils";
@@ -177,6 +179,10 @@ export class OptionsLogic {
         return this.itemDisplayLocation === 'below';
     }
 
+    get isItemVierAspectRatioGiven() {
+        return this.options?.itemViewer?.aspectRatio !== undefined;
+    }
+
     get isItemViewerSwipingDisabled() {
         const defaultToUse = (this.isToolbarInVideo || this.isMobile) && !this.isFullscreenMode ? true : false;
         return this.items.length <= 1 || getCurrentValue(this.options?.itemViewer?.disableSwiping, defaultToUse, this.isFullscreenMode);
@@ -236,8 +242,8 @@ export class OptionsLogic {
         return getCurrentValue(this.options?.itemViewer?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
     }
 
-    get itemViewerHeight() {
-        const value = getCurrentValue(this.options?.itemViewer?.height, ITEM_VIEWER_HEIGHT_DEFAULT, this.isFullscreenMode);
+    get itemViewerAspectRatio() {
+        const value = getCurrentValue(this.options?.itemViewer?.aspectRatio, ITEM_VIEWER_HEIGHT_DEFAULT, this.isFullscreenMode);
         return typeof value === 'string' && value !== 'auto' ? ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues[value] : value;
     }
 
@@ -328,8 +334,7 @@ export class OptionsLogic {
     }
 
     get itemViewerUseRecommendedAspectRatio() {
-        const hasUserSpecifiedHeight = this.options?.itemViewer?.height !== undefined;
-        return getCurrentValue(this.options?.itemViewer?.useRecommendedAspectRatio, !hasUserSpecifiedHeight, this.isFullscreenMode);
+        return getCurrentValue(this.options?.itemViewer?.useRecommendedAspectRatio, !this.isItemVierAspectRatioGiven, this.isFullscreenMode);
     }
 
     get maxHeight() {
@@ -514,21 +519,36 @@ export class OptionsLogic {
 
     get thumbnailSize() {
         const maxHeight = this.maxHeight;
+        const navigationDiv = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__NAVIGATION}`) as HTMLElement;
+        const navigationHeight = navigationDiv?.getBoundingClientRect().height || 0;
+        const navigationMarginBottom = parseFloat(navigationDiv?.style?.marginBottom) || 0;
         if (this.isDefaultItemDisplayLocation) {
-            const thumbnailSize = getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
-            const navigationDiv = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__NAVIGATION}`) as HTMLElement;
-            const navigationHeight = navigationDiv?.getBoundingClientRect().height || 0;
-            const navigationMarginBottom = parseFloat(navigationDiv?.style?.marginBottom) || 0;
-            const proposedTotalHeight = thumbnailSize + navigationHeight + navigationMarginBottom;
-            console.log({thumbnailSize, maxHeight, proposedTotalHeight, navigationHeight, navigationMarginBottom});
+            const thumbnailSizeGiven = getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DEFAULT, this.isFullscreenMode);
+            const proposedTotalHeight = thumbnailSizeGiven + navigationHeight + navigationMarginBottom;
+            console.log({thumbnailSize: thumbnailSizeGiven, maxHeight, proposedTotalHeight, navigationHeight, navigationMarginBottom});
             if (proposedTotalHeight > maxHeight && navigationHeight > 0) {
                 const excess = proposedTotalHeight - maxHeight;
                 console.log({excess});
                 return maxHeight - excess;
             }
-            return thumbnailSize;
+            return thumbnailSizeGiven;
         }
-        return getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
+
+        const itemViewerAspectRatio = this.itemViewerAspectRatio;
+        const thumbnailSizeGiven = getCurrentValue(this.options?.thumbnail?.size, CAROUSEL_ITEM_SIZE_DISPLAY_NON_ITEM_VIEWER_DEFAULT, this.isFullscreenMode);
+
+        if (itemViewerAspectRatio === 'auto') return thumbnailSizeGiven;
+
+        //todo: need to use this.isItemViewerHeightGiven to determine which aspect ratio to use
+        const itemsHeight = this.carouselContainerRef?.current?.querySelector(`.${CLASSNAME__CAROUSEL_ITEMS_CONTAINER}`)?.getBoundingClientRect().height || 0;
+        const proposedTotalHeight = thumbnailSizeGiven + navigationHeight + navigationMarginBottom + itemViewerAspectRatio + itemsHeight;
+        
+        console.log({thumbnailSize: thumbnailSizeGiven, maxHeight, proposedTotalHeight, navigationHeight, navigationMarginBottom, itemViewerHeight: itemViewerAspectRatio, itemsHeight});
+        if (proposedTotalHeight > maxHeight && navigationHeight > 0 && itemsHeight > 0){
+            return thumbnailSizeGiven;
+        }
+
+        return thumbnailSizeGiven;
     }
 
     //todo: is this needed?
