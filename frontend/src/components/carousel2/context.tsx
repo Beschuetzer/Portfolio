@@ -7,7 +7,7 @@ import { CarouselOptions, CarouselElementStyles } from "./types";
 import { enterFullScreen, exitFullScreen } from "./utils/utils";
 
 export type CarouselContextInputProps = {
-    carouselContainerRef: React.MutableRefObject<HTMLDivElement>;
+    carouselContainerRef: React.MutableRefObject<HTMLDivElement> | undefined;
     children: ReactNode | ReactNode[];
     hiddenInputRef: React.MutableRefObject<HTMLInputElement>;
     items: CarouselItemProps[];

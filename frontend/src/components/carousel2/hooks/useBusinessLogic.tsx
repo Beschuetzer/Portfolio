@@ -34,8 +34,8 @@ export const useBusinessLogic = (input?: UseBusinessLogicInput): UseBusinessLogi
         itemRef,
         itemViewerToolbarRef,
         loadingSpinnerOptions,
-        options: optionsInput,
         modalRef,
+        options: optionsInput,
     } = input || {};
     const {
         carouselContainerRef,
@@ -50,11 +50,12 @@ export const useBusinessLogic = (input?: UseBusinessLogicInput): UseBusinessLogi
     } = useCarouselContext();
     const options = optionsInput || optionsGlobal;
     const [optionsLogic, setOptionsLogic] = useState<OptionsLogic>(getOptionsLogic({
-        options,
+        carouselContainerRef,
         currentItem,
         isFullscreenMode,
-        numberOfPages,
         items,
+        numberOfPages,
+        options,
     }));
     const [toolbarLogic, setToolbarLogic] = useState<ToolbarLogic>(getToolbarLogic({
         items,
@@ -68,24 +69,25 @@ export const useBusinessLogic = (input?: UseBusinessLogicInput): UseBusinessLogi
         currentItem,
         isCurrentItem,
         isFullscreenMode,
+        itemRef,
         items,
         itemViewerRef,
         itemViewerToolbarRef,
         loadingSpinnerOptions,
+        modalRef,
         numberOfPages,
         options,
         optionsLogic,
-        modalRef,
-        itemRef
     }));
 
     useEffect(() => {
         const newOptionsLogic = getOptionsLogic({
-            options,
+            carouselContainerRef,
             currentItem,
             isFullscreenMode,
-            numberOfPages,
             items,
+            numberOfPages,
+            options,
         })
         const newStylingLogic = getStylingLogic({
             carouselContainerRef,

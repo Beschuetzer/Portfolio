@@ -69,6 +69,7 @@ import {
 import { CarouselElement, CarouselOptions, CarouselSection, CarouselVideoCurrentStateIndicatorButtonName, SpacingDirection } from "../types";
 import { convertHexToRgba, getBoundValue, getIsMobile } from "../utils/utils";
 import { getCurrentValue } from "../utils/getCurrentValue";
+import { CarouselContextInputProps } from "../context";
 
 export type OptionsConstructor = {
     options: CarouselOptions;
@@ -76,12 +77,13 @@ export type OptionsConstructor = {
     isFullscreenMode: boolean;
     numberOfPages?: number;
     items?: CarouselItemProps[];
-}
+} & Pick<CarouselContextInputProps, 'carouselContainerRef'>
 /*
 *Logic related to any option the user can specify
 */
 export class OptionsLogic {
     private bodyFontFamily;
+    private carouselContainerRef;
     private currentItem;
     private defaultFontFamily: string = 'sans-serif';
     private isFullscreenMode;
@@ -90,8 +92,16 @@ export class OptionsLogic {
     private options;
 
     constructor(constructor: OptionsConstructor) {
-        const { options, currentItem, numberOfPages, items, isFullscreenMode } = constructor;
+        const {
+            carouselContainerRef,
+            options,
+            currentItem,
+            numberOfPages,
+            items,
+            isFullscreenMode
+        } = constructor;
         this.currentItem = currentItem;
+        this.carouselContainerRef = carouselContainerRef;
         this.isFullscreenMode = isFullscreenMode;
         this.items = items || [];
         this.numberOfPages = numberOfPages || 0;

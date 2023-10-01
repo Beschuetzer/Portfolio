@@ -1,7 +1,9 @@
 Carousel rework
-  -need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body
   -add option to set max height of container (adjust the value for StylingLogic.imageHeight default [CAROUSEL_ITEM_CONTAINER_NON_ITEM_VIEWER_DEFAULT]) 
       --delete maxHeight type if this doesn't work out.
+  -issues with body grabbing style:
+      --need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body
+      --in fullscreen: changing items via swipe, then using drag seek doesn't reset cursor.
 
   -all custom test - dots are not centered.  Is this something that needs a custom style or can it be handle differently?
   -add text sizing for modal header and item-viewer-toolbar-container (the width of the spans will need to adjust accordingly too) so that mobile looks more like fullscreen (a fixed ratio with a min of 8 or something?)

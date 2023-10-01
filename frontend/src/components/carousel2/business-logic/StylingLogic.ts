@@ -100,7 +100,11 @@ export class StylingLogic {
         this.modalRef = modalRef;
         this.modalHeight = 0;
         this.options = options || {};
-        this.optionsLogic = optionsLogic || new OptionsLogic({ options: this.options, isFullscreenMode: false });
+        this.optionsLogic = optionsLogic || new OptionsLogic({
+            options: this.options,
+            isFullscreenMode: false,
+            carouselContainerRef,
+        });
     }
 
     //#region Public Getters
@@ -142,7 +146,7 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
-    getCarouselItemHeightStyle(height: CSSProperties['height']) { 
+    getCarouselItemHeightStyle(height: CSSProperties['height']) {
         return {
             height: this.isFullscreenMode ? 'auto' : height,
         }
@@ -572,6 +576,13 @@ export class StylingLogic {
         } as CSSProperties;
     }
 
+    getCarouselVideoCommonStyles(itemContainerHeight: CSSProperties['height']) {
+        return {
+            ...this.getCarouselItemHeightStyle(itemContainerHeight),
+            ...this.optionsLogic.itemStyles,
+        } as CSSProperties
+    }
+
     getCarouselVideoCurrentTimeViewerStyle(shouldShow: boolean, itemContainerHeight: CSSProperties['height']) {
         if (!shouldShow) return {
             display: 'none',
@@ -583,24 +594,19 @@ export class StylingLogic {
             right: 0,
             bottom: 0,
             width: '100%',
-            height: itemContainerHeight,
             paddingLeft: this.carouselVideoContainerStyle.paddingLeft,
             paddingRight: this.carouselVideoContainerStyle.paddingRight,
+            ...this.getCarouselVideoCommonStyles(itemContainerHeight),
         } as CSSProperties;
     }
 
-    getCarouselVideoStyle(shouldHide: boolean, height: CarouselContextOutputProps['itemContainerHeight']) {
-        const userDefinedStyles = {
-            ...this.optionsLogic.itemStyles,
-        } as CSSProperties
-
+    getCarouselVideoStyle(shouldHide: boolean, itemContainerHeight: CarouselContextOutputProps['itemContainerHeight']) {
         return !this.optionsLogic.isDefaultItemDisplayLocation ? {
             width: "100%",
-            ...this.getCarouselItemHeightStyle(height),
-            ...userDefinedStyles,
+            ...this.getCarouselVideoCommonStyles(itemContainerHeight),
             zIndex: shouldHide ? -1 : 1,
         } as CSSProperties : {
-            ...userDefinedStyles
+            ...this.optionsLogic.itemStyles,
         };
     }
 

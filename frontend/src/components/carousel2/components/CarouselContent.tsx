@@ -123,7 +123,7 @@ export const CarouselContent = (props: CarouselContentProps) => {
             if (currentItemSpacing >= GET_CURRENT_VALUE_DEFAULT) return currentItemSpacing;
         }
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
-            items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
+            items.length, carouselContainerRef?.current as HTMLElement, stylingLogic, optionsLogic
         );
         const numberOfGaps = numberOfWholeItemsThatCanFit - 1;
         const remainingSpace = containerWidth - (numberOfWholeItemsThatCanFit * itemSize);
@@ -136,7 +136,7 @@ export const CarouselContent = (props: CarouselContentProps) => {
         const interItemSpacingToUse = optionsLogic.getThumbnailSpacingBasedOnThumbnailPositioning(interItemSpacing);
         const isDefaultCase = options?.thumbnail?.spacing === undefined && optionsLogic.thumbnailPositioning === undefined;
         const { numberOfWholeItemsThatCanFit, containerWidth, itemSize } = getNumberOfItemsThatCanFit(
-            items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
+            items.length, carouselContainerRef?.current as HTMLElement, stylingLogic, optionsLogic
         );
         const defaultAmount = interItemSpacingToUse + containerWidth;
 
@@ -191,7 +191,7 @@ export const CarouselContent = (props: CarouselContentProps) => {
 
     const setNumberOfDotsToDisplay = useCallback(() => {
         const newNumberOfPages = getNumberOfPages(
-            carouselContainerRef.current as HTMLElement, items.length, stylingLogic, optionsLogic
+            carouselContainerRef?.current as HTMLElement, items.length, stylingLogic, optionsLogic
         );
         setNumberOfPages && setNumberOfPages(newNumberOfPages);
         if (currentPage >= newNumberOfPages) {
@@ -249,7 +249,7 @@ export const CarouselContent = (props: CarouselContentProps) => {
         }
 
         const { numberOfWholeItemsThatCanFit } = getNumberOfItemsThatCanFit(
-            items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
+            items.length, carouselContainerRef?.current as HTMLElement, stylingLogic, optionsLogic
         );
         const currentNthItem = currentItemIndex + 1;
         const isNextItemClick = getIsNextItemClick();
@@ -339,7 +339,7 @@ export const CarouselContent = (props: CarouselContentProps) => {
     useEffect(() => {
         if (!optionsLogic.isLastPageFlush) return;
         const { numberOfWholeItemsThatCanFit, itemSize } = getNumberOfItemsThatCanFit(
-            items.length, carouselContainerRef.current as HTMLElement, stylingLogic, optionsLogic
+            items.length, carouselContainerRef?.current as HTMLElement, stylingLogic, optionsLogic
         );
         let offset = getLastPageOffset(numberOfWholeItemsThatCanFit, itemSize);
         if (offset > 0) {

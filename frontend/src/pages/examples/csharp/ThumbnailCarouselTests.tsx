@@ -222,7 +222,7 @@ const items = [
 			sections: [
 				{
 					title: 'Longer Clip',
-					text: 'This video is used to test sections with a video greate than 1 minute.'
+					text: 'This video is used to test sections with a video greater than 1 minute.'
 				}
 			]
 		},
@@ -3616,19 +3616,19 @@ const SECTIONS: Sections = [
 				jsx: itemViewerModalMaintainsMinimizedState
 			},
 			{
-				label: "Item Viewer Height is Auto",
+				label: "Setting Height to Auto",
 				jsx: itemViewerHeightAuto
 			},
 			{
-				label: "Item Viewer Height is 16:9",
+				label: "Setting Height to 16:9 Aspect Ratio",
 				jsx: itemViewerHeightWidescreen
 			},
 			{
-				label: "Item Viewer Height is 4:3",
+				label: "Setting Height to 4:3 Aspect Ratio",
 				jsx: itemViewerHeightFullscreen
 			},
 			{
-				label: "Item Viewer Aspect Ratio is 3:1",
+				label: "Setting Height to 3:1 Aspect Ratio",
 				jsx: itemViewerHeightCustomNumber
 			},
 		]
