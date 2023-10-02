@@ -1,4 +1,5 @@
 Carousel rework
+  -on fullscreen then non-fullscreen, the items resize (check resizing stuff in CarouselItemVierContainer)
   -all custom test - dots are not centered.  Is this something that needs a custom style or can it be handle differently?
   
   -issues with body grabbing style:
