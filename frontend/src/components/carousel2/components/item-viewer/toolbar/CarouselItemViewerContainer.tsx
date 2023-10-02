@@ -124,7 +124,10 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
                     !optionsLogic.itemViewerUseRecommendedAspectRatio
                 ) {
                     intervalRef.current = startAutoHeightInterval();
-                } else if (optionsLogic.itemViewerUseRecommendedAspectRatio || optionsLogic.itemViewerAspectRatio !== 'auto') {
+                } else if (
+                    !isFullscreenMode &&
+                    (optionsLogic.itemViewerUseRecommendedAspectRatio || optionsLogic.itemViewerAspectRatio !== 'auto')
+                ) {
                     setHeightBasedOnAspectRatio(optionsLogic.itemViewerUseRecommendedAspectRatio ? recommendedAspectRatio : optionsLogic.itemViewerAspectRatio as number);
                 }
                 setLastViewportWidth();
