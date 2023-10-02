@@ -625,13 +625,34 @@ export type CarouselStylingOptions = {
 } & CarouselSections;
 
 export type CarouselOptions = {
+    container?: CarouselTitleOptions;
     itemViewer?: CarouselItemViewerOptions;
     layout?: CarouselLayoutOptions;
     modal?: CarouselModalOptions;
     navigation?: CarouselNavigationOptions;
     shortcuts?: CarouselActions;
-    styling?: CarouselStylingOptions
+    styling?: CarouselStylingOptions;
     thumbnail?: CarouselThumbnailOptions;
+}
+
+export type CarouselTitleOptions = {
+    /**
+    *When {@link CarouselTitleOptions.text text} is truthy, a text element is displayed above the carousel using the element specified in {@link CarouselTitleOptions.tag tag}.
+    *Use {@link CarouselTitleOptions.style style} to change the styling of the surrounding `div`.
+    **/
+    text?: string;
+    /**
+    *This is passed to the text element.
+    **/
+    textStyle?: CSSProperties;
+    /**
+    *This is the tag to use for the text element
+    **/
+    tag?: ElementType;
+    /**
+    *This is passed to the div surrounding everything if {@link CarouselTitleOptions.text text} is truthy.
+    **/
+    style?: CSSProperties;
 }
 
 export type CarouselColorTheme = {

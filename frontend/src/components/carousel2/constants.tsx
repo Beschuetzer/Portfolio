@@ -59,6 +59,7 @@ export const CLASSNAME__ROOT = 'thumbnail-carousel'; //this has to match $carous
 export const CLASSNAME__DOTS = getClassname({ elementName: 'dots' });
 export const CLASSNAME__BUTTON = `${CLASSNAME__ROOT}-button`;
 export const CLASSNAME__BUTTON_SCALE_ON_HOVER = `${CLASSNAME__BUTTON}--scale-on-hover`
+export const CLASSNAME__CAROUSEL_CONTAINER = `${CLASSNAME__ROOT}-container`; //this has to match $carouselClassname in _variables.scss
 export const CLASSNAME__CAROUSEL_ITEM = getClassname({ elementName: 'item' });
 export const CLASSNAME__CAROUSEL_ITEMS = getClassname({ elementName: "items" });
 export const CLASSNAME__CAROUSEL_ITEMS_CONTAINER = `${CLASSNAME__CAROUSEL_ITEMS}-container`

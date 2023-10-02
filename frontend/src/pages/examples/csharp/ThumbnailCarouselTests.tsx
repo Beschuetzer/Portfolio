@@ -1380,6 +1380,14 @@ const itemViewerAspectRatioDefault = (
 		layout: {
 			itemDisplayLocation: 'above',
 		},
+		container: {
+			text: 'Test title here',
+			tag: 'h2',
+			// style: {
+			// 	width: '50%',
+			// 	margin: '0 auto'
+			// },
+		}
 	}} />
 )
 const itemViewerAspectRatioUseRecommendedAspectRatioSameAsAuto = (

@@ -2,14 +2,16 @@ import { useRef, useState } from 'react'
 import { CarouselProvider } from '../context';
 import { getClassname } from '../utils/utils';
 import { CarouselItemProps } from './CarouselItem';
-import { CarouselOptions } from '../types';
+import { CarouselOptions, CarouselTitleOptions } from '../types';
 import { CarouselContent } from './CarouselContent';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useOnResize } from '../hooks/useOnResize';
+import { CarouselContainer } from './CarouselContainer';
 
 export type CarouselProps = {
 	items: CarouselItemProps[];
 	options?: CarouselOptions;
+	title?: CarouselTitleOptions;
 }
 
 export const Carousel = (props: CarouselProps) => {
@@ -37,17 +39,19 @@ export const Carousel = (props: CarouselProps) => {
 			options={options || {}}
 		>
 			<input ref={hiddenInputRef as any} style={stylingLogic.carouselHiddenInputStyle} />
-			<div
-				ref={carouselContainerRef as any}
-				className={getClassname({ elementName: "" })}
-				style={
-					{
-						...stylingLogic.carouselStyle,
+			<CarouselContainer container={options?.container}>
+				<div
+					ref={carouselContainerRef as any}
+					className={getClassname({ elementName: "" })}
+					style={
+						{
+							...stylingLogic.carouselStyle,
+						}
 					}
-				}
-			>
-				<CarouselContent {...props} carouselContainerRef={carouselContainerRef as any} />
-			</div>
+				>
+					<CarouselContent {...props} carouselContainerRef={carouselContainerRef as any} />
+				</div>
+			</CarouselContainer>
 		</CarouselProvider>
 	)
 	//#endregion
