@@ -1,4 +1,4 @@
-import { KeyInput, ValidKey, ModifierKey, CarouselItemViewerHeightCustom } from "./types";
+import { KeyInput, ValidKey, ModifierKey, CarouselItemViewerAspectRatioPreset } from "./types";
 import { getClassname } from "./utils/utils";
 
 export const AUTO_CHANGE_PAGE_DEFAULT = true;
@@ -28,7 +28,7 @@ export const ITEM_CONTAINER_HEIGHT_INITIAL = 'auto';
 export const ITEM_CONTAINER_MIN_DEFAULT = 125;
 export const ITEM_VIEWER_USE_RECOMMENDED_ASPECT_RATIO = true;
 export const ITEM_VIEWER_HEIGHT_DEFAULT = "widescreen";
-export const ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues: { [key in CarouselItemViewerHeightCustom]: number } = {
+export const ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues: { [key in CarouselItemViewerAspectRatioPreset]: number } = {
     widescreen: .5625, //16:9
     fullscreen: .75, //4:3
 }

@@ -227,6 +227,11 @@ export class OptionsLogic {
             ...getCurrentValue(this.currentItem?.itemStyles, undefined, this.isFullscreenMode),
         } as CSSProperties;
     }
+    
+    get itemViewerAspectRatio() {
+        const value = getCurrentValue(this.options?.itemViewer?.aspectRatio, this.useDefaultVideoControls ? ITEM_VIEWER_HEIGHT_DEFAULT : 'auto', this.isFullscreenMode);
+        return typeof value === 'string' && value !== 'auto' ? ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues[value] : value;
+    }
 
     get itemViewerBackgroundColor() {
         return getCurrentValue(this.options?.styling?.itemViewer?.backgroundColor, undefined, this.isFullscreenMode) || this.containerBackgroundColor;
@@ -240,11 +245,6 @@ export class OptionsLogic {
 
     get itemViewerMaxClickThreshold() {
         return getCurrentValue(this.options?.itemViewer?.maxClickThreshold, MAX_CLICK_THRESHOLD_DEFAULT, this.isFullscreenMode);
-    }
-
-    get itemViewerAspectRatio() {
-        const value = getCurrentValue(this.options?.itemViewer?.aspectRatio, ITEM_VIEWER_HEIGHT_DEFAULT, this.isFullscreenMode);
-        return typeof value === 'string' && value !== 'auto' ? ITEM_VIEWER_ASPECT_RATIOS_TO_DECIMAL_MAPPINGratioValues[value] : value;
     }
 
     get itemViewerPreviewBackground() {

@@ -17,6 +17,7 @@ const DATA_POINT_COLLECTION_INTERVAL = 25;
 const HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL = false;
 const LAST_VIEWPORT_WIDTH_REF_INITIAL = 0;
 const NUMBER_OF_DATA_POINTS = 15;
+const RESIZE_TIMEOUT_DURATION = 500;
 export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerContainerProps>((props, ref) => {
     const {
         children,
@@ -26,6 +27,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     const { stylingLogic, optionsLogic } = useBusinessLogic();
     const heightsRef = useRef<number[]>([]);
     const intervalRef = useRef<any>(-1);
+    const resizeTimeOutRef = useRef<any>();
     const hasCurrentItemIndexChangedRef = useRef(HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL);
     const currentInvervalRef = useRef(CURRENT_INTERVAL_INITIAL);
     const itemContainerRef = useRef<HTMLDivElement>(null);
@@ -65,7 +67,7 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
         }
 
         return setInterval(() => {
-            // console.log({ itemContainerHeight, itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current, test: 'test' });
+            // console.log({ itemContainerRef: itemContainerRef.current?.getBoundingClientRect(), currentInvervalRef: currentInvervalRef.current, test: 'test' });
             if (currentInvervalRef.current >= NUMBER_OF_DATA_POINTS || hasCurrentItemIndexChangedRef.current) {
                 clearInterval(intervalRef.current);
 
@@ -88,11 +90,15 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
     ])
 
     const resetAutoHeight = useCallback(() => {
+        if (
+            optionsLogic.itemViewerAspectRatio !== 'auto' ||
+            optionsLogic.itemViewerUseRecommendedAspectRatio
+        ) return;
         heightsRef.current = [];
         currentInvervalRef.current = CURRENT_INTERVAL_INITIAL;
         hasCurrentItemIndexChangedRef.current = HAS_CURRENT_ITEM_INDEX_CHANGED_INITIAL;
         setItemContainerHeight(ITEM_CONTAINER_HEIGHT_INITIAL);
-    }, [setItemContainerHeight])
+    }, [optionsLogic.itemViewerAspectRatio, optionsLogic.itemViewerUseRecommendedAspectRatio, setItemContainerHeight])
 
     const setLastViewportWidth = useCallback(() => {
         lastViewportWidthRef.current = window.innerWidth;
@@ -109,9 +115,20 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
 
     useLayoutEffect(() => {
         function onResize() {
-            // if (Number(itemContainerHeight) > 0) return;
-            setLastViewportWidth();
-            clearInterval(intervalRef.current);
+            clearTimeout(resizeTimeOutRef.current);
+            resizeTimeOutRef.current = setTimeout(() => {
+                clearInterval(intervalRef.current);
+                if (
+                    window.innerWidth !== lastViewportWidthRef.current &&
+                    optionsLogic.itemViewerAspectRatio === 'auto' &&
+                    !optionsLogic.itemViewerUseRecommendedAspectRatio
+                ) {
+                    intervalRef.current = startAutoHeightInterval();
+                } else if (optionsLogic.itemViewerUseRecommendedAspectRatio || optionsLogic.itemViewerAspectRatio !== 'auto') {
+                    setHeightBasedOnAspectRatio(optionsLogic.itemViewerUseRecommendedAspectRatio ? recommendedAspectRatio : optionsLogic.itemViewerAspectRatio as number);
+                }
+                setLastViewportWidth();
+            }, RESIZE_TIMEOUT_DURATION)
         }
 
         window.addEventListener('resize', onResize);
@@ -131,7 +148,18 @@ export const CarouselItemViewerContainer = forwardRef<any, CarouselItemViewerCon
             window.removeEventListener('resize', onResize);
             clearInterval(intervalRef.current);
         }
-    }, [isFullscreenMode, itemContainerHeight, optionsLogic.isDefaultItemDisplayLocation, renderCountRef, setLastViewportWidth])
+    }, [
+        isFullscreenMode,
+        itemContainerHeight,
+        optionsLogic.isDefaultItemDisplayLocation,
+        optionsLogic.itemViewerAspectRatio,
+        optionsLogic.itemViewerUseRecommendedAspectRatio,
+        recommendedAspectRatio,
+        renderCountRef,
+        setHeightBasedOnAspectRatio,
+        setLastViewportWidth,
+        startAutoHeightInterval
+    ])
 
     useOnResize(() => {
         if (isFullscreenMode) return;

@@ -1382,6 +1382,16 @@ const itemViewerAspectRatioDefault = (
 		},
 	}} />
 )
+const itemViewerAspectRatioUseRecommendedAspectRatioSameAsAuto = (
+	<Carousel items={items} options={{
+		layout: {
+			itemDisplayLocation: 'above',
+		},
+		itemViewer: {
+			useRecommendedAspectRatio: false,
+		}
+	}} />
+)
 const itemViewerAspectRatioAuto = (
 	<Carousel items={items} options={{
 		layout: {
@@ -2247,7 +2257,21 @@ const layoutMaxHeightLessThanThumbnailItemDisplayLocationAbove = (
 				itemDisplayLocation: 'above',
 			},
 			thumbnail: {
-				size: 40,
+				// size: 40,
+			},
+		}}
+	/>
+)
+const layoutMaxHeightLessThanThumbnailItemDisplayLocationBelow = (
+	<Carousel
+		items={items}
+		options={{
+			layout: {
+				maxHeight: 410,
+				itemDisplayLocation: 'below',
+			},
+			thumbnail: {
+				size: 75,
 			},
 		}}
 	/>
@@ -3002,14 +3026,19 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.maxHeight,
 		[
-			// {
-			// 	label: "Max Heigt causes Thumbnail Size to Decrease when ItemDisplayLocation is None",
-			// 	jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationNone,
-			// },
+			{
+				label: "Max Heigt causes Thumbnail Size to Decrease when ItemDisplayLocation is None",
+				jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationNone,
+			},
 			{
 				label: "Max Heigt causes Thumbnail Size to Decrease when ItemDisplayLocation is Above",
 				jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationAbove,
 			},
+			{
+				label: "Max Heigt causes Thumbnail Size to Decrease when ItemDisplayLocation is Below",
+				jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationBelow,
+			},
+			
 		]
 	],
 	[
@@ -3676,6 +3705,10 @@ const SECTIONS: Sections = [
 				jsx: itemViewerAspectRatioDefault
 			},
 			{
+				label: "Setting useRecommendedAspectRatio to False is Same as Auto",
+				jsx: itemViewerAspectRatioUseRecommendedAspectRatioSameAsAuto
+			},
+			{
 				label: "Setting Aspect Ratio to Auto",
 				jsx: itemViewerAspectRatioAuto
 			},
@@ -3822,9 +3855,9 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.itemPositioning,
 	// SectionNames.itemViewer,
-	// SectionNames.itemViewerAspectRatio,
+	SectionNames.itemViewerAspectRatio,
 	// SectionNames.layouts,
-	SectionNames.maxHeight,
+	// SectionNames.maxHeight,
 	// SectionNames.navigationOptions,
 	// SectionNames.otherDynamicSettings,
 	// SectionNames.thumbnailOptions,

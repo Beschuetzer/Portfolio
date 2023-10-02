@@ -196,7 +196,7 @@ export type CarouselItemViewerOptions = {
     *
     *Note: Using this option will disabled {@link CarouselItemViewerOptions.useRecommendedAspectRatio} (not recommended).
     **/
-    aspectRatio?: 'auto' | number | CarouselItemViewerHeightCustom;
+    aspectRatio?: 'auto' | number | CarouselItemViewerAspectRatioPreset;
     /**
     *If this is falsy or <= {@link AUTO_HIDE_DISABLED_VALUE default} then auto-hiding of the toolbar is disabled for videos.
     *Otherwise, auto-hide occurs when there is no mouse input for this amount of time in milliseconds.  
@@ -212,7 +212,9 @@ export type CarouselItemViewerOptions = {
     seekAmount?: CarouselElementValue<number>;
     /**
     *If `true`, the item container height is calculated based on the lowest aspect ratio of the items given
-    *(for images the {@link CarouselItemProps.srcMain srcMain} is used, for videos {@link CarouselItemProps.srcThumbnail srcThumbnail} is used).  
+    *(for images the {@link CarouselItemProps.srcMain srcMain} is used, for videos {@link CarouselItemProps.srcThumbnail srcThumbnail} is used). 
+    *
+    *If `false`, the {@link CarouselItemViewerOptions.aspectRatio aspectRatio} defaults to `auto` instead of {@link CarouselItemViewerAspectRatioPreset.widescreen widescreen}.
     *
     *For this to work properly with videos, the aspect ratio of the video's thumbnail should be the same as that of the video.
     *If {@link CarouselItemViewerOptions.aspectRatio} is given, this defaults to `false` otherwise `true`.
@@ -220,7 +222,7 @@ export type CarouselItemViewerOptions = {
     useRecommendedAspectRatio?: CarouselElementValue<boolean>;
 } & CarouselSwipingOptions
 
-export type CarouselItemViewerHeightCustom = 'widescreen' | 'fullscreen';
+export type CarouselItemViewerAspectRatioPreset = 'widescreen' | 'fullscreen';
 
 export type CarouselImagePosition = 'bottom' | 'center' | 'top';
 export type CarouselItemDisplayLocation = 'none' | 'above' | 'below';
