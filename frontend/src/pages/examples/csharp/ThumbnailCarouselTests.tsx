@@ -65,7 +65,7 @@ const customButtons = {
 	},
 	dots: {
 		style: {
-			transform: 'scale(2)',
+			transform: 'scale(1.75)',
 		},
 		svgHref: "./sprite.svg#icon-dot-single",
 		fillColor: getComputedStyleCustom('--color-primary-1'),
@@ -3046,7 +3046,7 @@ const SECTIONS: Sections = [
 				label: "Max Heigt causes Thumbnail Size to Decrease when ItemDisplayLocation is Below",
 				jsx: layoutMaxHeightLessThanThumbnailItemDisplayLocationBelow,
 			},
-			
+
 		]
 	],
 	[
@@ -3859,11 +3859,11 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	// ...Object.values(SectionNames),
 	// SectionNames.aboveCustomization,
 	// SectionNames.belowCustomization,
-	// SectionNames.custom,
+	SectionNames.custom,
 	// SectionNames.dynamicBasedOnViewingMode,
 	// SectionNames.itemPositioning,
 	// SectionNames.itemViewer,
-	SectionNames.itemViewerAspectRatio,
+	// SectionNames.itemViewerAspectRatio,
 	// SectionNames.layouts,
 	// SectionNames.maxHeight,
 	// SectionNames.navigationOptions,

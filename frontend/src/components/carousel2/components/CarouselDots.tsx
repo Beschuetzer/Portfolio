@@ -66,7 +66,7 @@ export const CarouselDots = (props: CarouselDotsProps) => {
 
             dots.push((
                 !!svgToUse ? (
-                    <svg key={index} onClick={() => onDotClick(index)} className={currentPageClassname} style={style}>
+                    <svg key={index} onClick={() => onDotClick(index)} className={currentPageClassname}>
                         <use
                             style={{ ...useStyles, ...currentDotStyle }}
                             xlinkHref={svgToUse}
@@ -90,14 +90,13 @@ export const CarouselDots = (props: CarouselDotsProps) => {
         numberOfDots,
         onDotClick,
         optionsLogic,
-        style,
         svgHref,
         useStyles
     ]);
 
     if (numberOfDots < NUMBER_OF_DOTS_MINIMUM_TO_DISPLAY_NAV_ITEMS) return null;
     return (
-        <div className={CLASSNAME__DOTS}>
+        <div className={CLASSNAME__DOTS} style={style}>
             {renderDots()}
         </div>
     )

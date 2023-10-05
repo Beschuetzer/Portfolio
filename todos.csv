@@ -1,6 +1,4 @@
-Carousel rework
-  -all custom test - dots are not centered.  Is this something that needs a custom style or can it be handle differently?
-  
+Carousel rework  
   -issues with body grabbing style:
       --need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body
       --in fullscreen: changing items via swipe, then using drag seek doesn't reset cursor.
