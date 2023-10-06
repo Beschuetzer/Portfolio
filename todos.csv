@@ -1,4 +1,5 @@
-Carousel rework  
+Carousel rework
+  -issue in fullscreen where the progress sometimes doesn't allow drag seeking (click down, hold, the move left/right);  maybe an eventlistener issue?  
   -issues with body grabbing style:
       --need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body
       --in fullscreen: changing items via swipe, then using drag seek doesn't reset cursor.
