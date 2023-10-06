@@ -117,9 +117,9 @@
         backface-visibility: hidden;
         
         &.#{$classname__grabbing} {
-            cursor: grabbing;
+            cursor: grabbing !important;
             & img {
-                cursor: grabbing;
+                cursor: grabbing !important;
             }
         }
     }
@@ -328,7 +328,7 @@
 }
 
 body {
-    &.#{$classname__grabbing} * {
-        cursor: grabbing;
+    &.#{$classname__grabbing} {
+        cursor: grabbing !important;
     }
 }

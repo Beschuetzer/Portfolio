@@ -833,10 +833,10 @@
   backface-visibility: hidden;
 }
 .thumbnail-carousel__items.grabbing {
-  cursor: grabbing;
+  cursor: grabbing !important;
 }
 .thumbnail-carousel__items.grabbing img {
-  cursor: grabbing;
+  cursor: grabbing !important;
 }
 .thumbnail-carousel__item-viewer {
   display: none;
@@ -1042,8 +1042,8 @@
 .thumbnail-carousel--d-none {
   display: none;
 }
-body.grabbing * {
-  cursor: grabbing;
+body.grabbing {
+  cursor: grabbing !important;
 }
 
 /*# sourceMappingURL=style.css.map */
