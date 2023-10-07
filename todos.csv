@@ -1,7 +1,4 @@
 Carousel rework
-  -issues with body grabbing style:
-      --need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body
-  
   -replace the laggy video with another video (like a demo of how to use the carousel features)
   -replace all inline styles with classname variables (heavy lift)?
   -add text sizing for modal header and item-viewer-toolbar-container (the width of the spans will need to adjust accordingly too) so that mobile looks more like fullscreen (a fixed ratio with a min of 8 or something?)
