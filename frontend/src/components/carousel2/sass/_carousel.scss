@@ -248,10 +248,12 @@
             }
 
             &-progress {
-                cursor: pointer;
                 appearance: none;
                 border: none;
                 z-index: $zIndexProgressBar;
+                &:not(.grabbing):hover {
+                    cursor: pointer;
+                }
             }
             
             &-text {

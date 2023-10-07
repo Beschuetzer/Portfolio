@@ -968,10 +968,12 @@
   }
 }
 .thumbnail-carousel__item-viewer-toolbar-progress {
-  cursor: pointer;
   appearance: none;
   border: none;
   z-index: 100;
+}
+.thumbnail-carousel__item-viewer-toolbar-progress:not(.grabbing):hover {
+  cursor: pointer;
 }
 .thumbnail-carousel__item-viewer-toolbar-text {
   justify-content: flex-start;
