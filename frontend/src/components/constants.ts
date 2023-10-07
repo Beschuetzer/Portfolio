@@ -32,10 +32,12 @@ export const ABOUT_URL = `/${ABOUT_PAGE_NAME}`;
 export const AUTO_BID_URL = `/examples/${AUTO_BID_PAGE_NAME}`;
 export const BRIDGE_DEMO_URL = `/${BRIDGE_DEMO_PAGE_NAME}`;
 export const BRIDGE_URL = `/examples/${BRIDGE_PAGE_NAME}`;
+export const BRIDGE_LIVE_URL = `/${BRIDGE_PAGE_NAME}`;
 export const DOWNLOADER_URL = `/examples/${DOWNLOADER_PAGE_NAME}`;
 export const PERSONALITY_URL = `/${BIG_FIVE_PAGE_NAME}`;
 export const PLAYLIST_SYNCER_URL = `/examples/${PLAYLIST_SYNCER_PAGE_NAME}`;
 export const REPLAY_VIEWER_URL = `/examples/${REPLAY_PAGE_NAME}`;
+export const REPLAY_LIVE_URL = `/${REPLAY_PAGE_NAME}`;
 export const RESUME_URL = `/${RESUME_PAGE_NAME}`;
 //#endregion
 
@@ -51,7 +53,7 @@ export const HUBB_CENTER_URL = "https://www.spps.org/hubbs";
 export const ISD_622_URL = "https://www.isd622.org/";
 export const KH_INSIDER_URL = "https://downloads.khinsider.com";
 export const KUALAPUU_URL = "https://www.kualapuucharterschool.org/";
-export const LIVE_BRIDGE_URL = "https://still-bayou-51404.herokuapp.com";
+export const LIVE_BRIDGE_URL = "https://adammajorbridge-fd17369edc04.herokuapp.com/";
 export const LIVE_REPLAYS_URL = "https://amajreplays.herokuapp.com";
 export const OC_REMIX_URL = "https://www.ocremix.org";
 export const ODIN_PROJECT_URL = "https://www.theodinproject.com/";

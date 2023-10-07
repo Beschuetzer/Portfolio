@@ -7,9 +7,12 @@ import {
 	AUTO_BID_URL,
 	BRIDGE_DEMO_URL,
 	BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME,
+	BRIDGE_LIVE_URL,
 	BRIDGE_URL,
 	DOWNLOADER_URL,
-	MOBILE_BREAK_POINT_WIDTH, PERSONALITY_URL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL,
+	LIVE_BRIDGE_URL,
+	LIVE_REPLAYS_URL,
+	MOBILE_BREAK_POINT_WIDTH, PERSONALITY_URL, PLAYLIST_SYNCER_URL, REPLAY_LIVE_URL, REPLAY_VIEWER_URL, RESUME_URL,
 } from "./constants";
 
 import { SiteNav } from "./navbar/SiteNav";
@@ -26,16 +29,15 @@ import { keypressHandler } from "../helpers";
 
 type AppProps = {}
 
-export const App: React.FC<AppProps> = ({
-}) => {
+export const App: React.FC<AppProps> = (props) => {
 	const dispatch = useAppDispatch();
 	const isMobile = useAppSelector(isMobileSelector);
 	const mobileBreakPointWidth = MOBILE_BREAK_POINT_WIDTH;
 
 	useSetHeaderCssStyle();
 	useEffect(() => {
-		dispatch(setIsMobile({isMobile: window.innerWidth <= mobileBreakPointWidth, viewPortWidth: window.innerWidth}));
-	}, [dispatch, setIsMobile, mobileBreakPointWidth])
+		dispatch(setIsMobile({ isMobile: window.innerWidth <= mobileBreakPointWidth, viewPortWidth: window.innerWidth }));
+	}, [dispatch, mobileBreakPointWidth])
 
 	//setup window resize listener
 	useEffect(() => {
@@ -43,11 +45,11 @@ export const App: React.FC<AppProps> = ({
 			if (window.innerWidth <= mobileBreakPointWidth && !isMobile) {
 				const newValue = `${BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME}: to bottom`;
 				document.documentElement.style.cssText += newValue;
-				return dispatch(setIsMobile({isMobile: true, viewPortWidth: window.innerWidth}));
+				return dispatch(setIsMobile({ isMobile: true, viewPortWidth: window.innerWidth }));
 			} else if (window.innerWidth > mobileBreakPointWidth && isMobile) {
 				const newValue = `${BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME}: to right`;
 				document.documentElement.style.cssText += newValue;
-				return dispatch(setIsMobile({isMobile: false,viewPortWidth:  window.innerWidth}));
+				return dispatch(setIsMobile({ isMobile: false, viewPortWidth: window.innerWidth }));
 			}
 			dispatch(setViewPortWidth(window.innerWidth));
 			return;
@@ -60,13 +62,7 @@ export const App: React.FC<AppProps> = ({
 			window.removeEventListener("resize", windowResize);
 			window.removeEventListener("keydown", keypressHandler);
 		};
-	}, [
-		dispatch,
-		isMobile,
-		setIsMobile,
-		mobileBreakPointWidth,
-		setViewPortWidth,
-	]);
+	}, [dispatch, isMobile, mobileBreakPointWidth]);
 
 	// //Loading Sounds, etc
 	// useEffect(() => {
@@ -88,6 +84,14 @@ export const App: React.FC<AppProps> = ({
 		<Router history={history}>
 			<Switch>
 				<Route path="/" exact component={Home} />
+				<Route path={BRIDGE_LIVE_URL} component={() => {
+					window.location.href = LIVE_BRIDGE_URL;
+					return null;
+				}} />
+				<Route path={REPLAY_LIVE_URL} component={() => {
+					window.location.href = LIVE_REPLAYS_URL;
+					return null;
+				}} />
 				<Route path={BRIDGE_URL} exact component={Bridge} />
 				<Route path={BRIDGE_DEMO_URL} exact component={BridgeDemo} />
 				<Route path={DOWNLOADER_URL} exact component={Downloader} />
@@ -111,4 +115,5 @@ export const App: React.FC<AppProps> = ({
 			{/* <Footer/> */}
 		</Router>
 	);
+
 };
