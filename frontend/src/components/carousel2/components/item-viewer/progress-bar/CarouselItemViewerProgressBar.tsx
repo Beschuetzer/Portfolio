@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 import {
     CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL,
+    CLASSNAME__GRABBING,
     CLASSNAME__TOOLBAR_PROGRESS,
     NUMBER_OF_MS_IN_A_SECOND,
     PROGRESS_BAR_PERCENT_INITIAL_VALUE
@@ -109,6 +110,7 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     }, [])
 
     const onMouseUp = useCallback((e: MouseEvent | TouchEvent) => {
+        document.body.classList.remove(CLASSNAME__GRABBING);
         wasMouseUpJustTriggeredRef.current = true;
         if (isMouseDownRef) {
             isMouseDownRef.current = false;
@@ -130,6 +132,8 @@ export const CarouselItemViewerProgressBar = (props: CarouselItemViewerProgressB
     }, [isMouseDownRef, percent, setCurrentVideoSection, toggleIsVideoPlaying, setSeekPercent, videoRef]);
 
     const onMouseDown = useCallback((e: MouseEvent | TouchEvent) => {
+        e.stopPropagation();
+        document.body.classList.remove(CLASSNAME__GRABBING);
         wasMouseUpJustTriggeredRef.current = false;
         if (isMouseDownRef) {
             isMouseDownRef.current = true;

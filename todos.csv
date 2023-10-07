@@ -1,7 +1,6 @@
 Carousel rework
   -issues with body grabbing style:
       --need to adjust the hover style for Carousel items such that the overlay doesn't display when the grabbing style is on the body
-      --in fullscreen: changing items via swipe, then using drag seek doesn't reset cursor.
   
   -replace the laggy video with another video (like a demo of how to use the carousel features)
   -replace all inline styles with classname variables (heavy lift)?
