@@ -34,6 +34,8 @@ import { useSetHeaderCssStyle } from "../hooks/useSetHeaderCssStyle";
 import { keypressHandler } from "../helpers";
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 import { getIsMobile } from "./Carousel/util";
+import { LoadingSpinner } from "./loading/LoadingSpinner";
+import { Redirect } from "../pages/Redirect";
 
 type AppProps = {}
 
@@ -93,12 +95,20 @@ export const App: React.FC<AppProps> = (props) => {
 				<Route path="/" exact component={Home} />
 				<Route path={THUMBNAIL_CAROUSEL_URL} exact component={ThumbnailCarouselTests} />
 				<Route path={BRIDGE_LIVE_URL} component={() => {
-					window.location.href = LIVE_BRIDGE_URL;
-					return null;
+					return (
+						<Redirect
+							texts={[`Waking the heroku container at`, LIVE_BRIDGE_URL]}
+							url={LIVE_BRIDGE_URL}
+						/>
+					)
 				}} />
 				<Route path={REPLAY_LIVE_URL} component={() => {
-					window.location.href = LIVE_REPLAYS_URL;
-					return null;
+					return (
+						<Redirect
+							texts={[`Waking the heroku container at`, LIVE_REPLAYS_URL]}
+							url={LIVE_REPLAYS_URL}
+						/>
+					)
 				}} />
 				<Route path={BRIDGE_URL} exact component={Bridge} />
 				<Route path={BRIDGE_DEMO_URL} exact component={BridgeDemo} />
