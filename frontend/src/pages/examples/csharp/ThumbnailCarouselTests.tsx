@@ -14,6 +14,14 @@ import clipNavigationThumbnail from "../../../clips/replay-viewer/thumbnails/nav
 import clipDealPlayer from "../../../clips/replay-viewer/deal-player.mp4";
 import clipDealPlayerThumbnail from "../../../clips/replay-viewer/thumbnails/deal-player-thumbnail.png";
 import minuteLongVideoThumbnail from "../../../clips/replay-viewer/thumbnails/minute-long-video-thumbnail.png";
+import clipBridgeResizing from "../../../clips/bridge/resizing.mp4";
+import clipBridgeResizingThumbnail from "../../../clips/bridge/thumbnails/resizing.png";
+import clipBridgeDealSummary from "../../../clips/bridge/dealSummary.mp4";
+import clipBridgeDealSummaryThumbnail from "../../../clips/bridge/thumbnails/deal-summary.png";
+import clipBridgeAnimationRoundEnd from "../../../clips/bridge/animation-roundEnd.mp4";
+import clipBridgeAnimationRoundEndThumbnail from "../../../clips/bridge/thumbnails/animation-round-end.png";
+import clipBridgeSaveGame from "../../../clips/bridge/saveGame.mp4";
+import clipBridgeSaveGameThumbnail from "../../../clips/bridge/thumbnails/save-game.png";
 
 import maui01Thumbnail from "../../../imgs/about/thumbnails/maui-01-thumbnail.jpg";
 import maui04Thumbnail from "../../../imgs/about/thumbnails/maui-04-thumbnail.jpg";
@@ -374,8 +382,8 @@ const items = [
 	},
 	{
 		description: "No Modal with auto play",
-		srcMain: clipNavigation,
-		srcThumbnail: clipNavigationThumbnail,
+		srcMain: clipBridgeResizing,
+		srcThumbnail: clipBridgeResizingThumbnail,
 		video: {
 			autoPlay: true,
 			muted: true,
@@ -409,8 +417,8 @@ const items = [
 	},
 	{
 		description: "Custom video fit and position",
-		srcMain: clipFilters,
-		srcThumbnail: clipFiltersThumbnail,
+		srcMain: clipBridgeDealSummary,
+		srcThumbnail: clipBridgeDealSummaryThumbnail,
 		modal: {
 			sections: [
 				{
@@ -430,8 +438,8 @@ const items = [
 	},
 	{
 		description: "Custom Modal (no auto play)",
-		srcMain: clipNavigation,
-		srcThumbnail: clipNavigationThumbnail,
+		srcMain: clipBridgeAnimationRoundEnd,
+		srcThumbnail: clipBridgeAnimationRoundEndThumbnail,
 		modal: {
 			children: (
 				<>
@@ -525,8 +533,8 @@ const items = [
 	},
 	{
 		description: "Video Filler",
-		srcMain: clipNavigation,
-		srcThumbnail: clipNavigationThumbnail,
+		srcMain: clipBridgeSaveGame,
+		srcThumbnail: clipBridgeSaveGameThumbnail,
 		video: {
 			autoPlay: true,
 			muted: true,
