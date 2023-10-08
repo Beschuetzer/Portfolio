@@ -480,8 +480,6 @@ export const OceanSky = () => {
   const [cubeRotationSpeed, setCubeRotationSpeed] =
     useState<number>(POS_INITIAL_VALUE);
   const currentCameraZLookAt = useRef<number>(cameraLookAtZStart);
-  console.log({ screenRefreshRate });
-
   //#endregion
 
   //Setting screen refresh rate and dependent POS
