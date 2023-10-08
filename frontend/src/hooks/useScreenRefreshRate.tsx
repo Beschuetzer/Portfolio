@@ -69,7 +69,6 @@ export const useScreenRefreshRate = () => {
 					const newScreenRefreshRate = Math.max(...fpsReturned.current);
                     
                     if (Math.abs(lastRefreshRateRef.current - newScreenRefreshRate) < newScreenRefreshRate * PERCENT_DIFFERENCE_ALLOWED) return;
-                    console.log({newScreenRefreshRate, screenRefreshRate});
                     lastRefreshRateRef.current = newScreenRefreshRate;
 					setScreenRefreshRate(newScreenRefreshRate);
 				}
