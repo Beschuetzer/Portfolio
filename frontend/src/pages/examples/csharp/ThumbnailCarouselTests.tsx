@@ -9,8 +9,8 @@ import maui07 from "../../../imgs/about/maui-07.jpg";
 import minuteLongVideo from "../../../clips/minute-long-video.mp4";
 import clipFilters from "../../../clips/replay-viewer/filters.mp4";
 import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
-import clipAnimations from "../../../clips/replay-viewer/animations.mp4";
-import clipAnimationsThumbnail from "../../../clips/replay-viewer/thumbnails/animations-thumbnail.png";
+import clipNavigation from "../../../clips/replay-viewer/navigation.mp4";
+import clipNavigationThumbnail from "../../../clips/replay-viewer/thumbnails/navigation-thumbnail.png";
 import minuteLongVideoThumbnail from "../../../clips/replay-viewer/thumbnails/minute-long-video-thumbnail.png";
 
 import maui01Thumbnail from "../../../imgs/about/thumbnails/maui-01-thumbnail.jpg";
@@ -132,8 +132,8 @@ const carouselShortcuts = {
 const items = [
 	{
 		description: "Video Sub-sections using numbers",
-		srcMain: clipAnimations,
-		srcThumbnail: clipAnimationsThumbnail,
+		srcMain: clipNavigation,
+		srcThumbnail: clipNavigationThumbnail,
 		modal: {
 			sections: [
 				{
@@ -166,16 +166,16 @@ const items = [
 			autoPlay: false,
 			muted: true,
 			sections: [
-				['Searching Users', 2000],
-				['Filtering Results', 5000],
-				['Hiding Filters'],
+				['Loggin in', 5000],
+				['Left Pane', 7000],
+				['Right Pane'],
 			]
 		}
 	},
 	{
 		description: "Video Sub-sections using strings",
-		srcMain: clipAnimations,
-		srcThumbnail: clipAnimationsThumbnail,
+		srcMain: clipNavigation,
+		srcThumbnail: clipNavigationThumbnail,
 		modal: {
 			sections: [
 				{
@@ -208,9 +208,9 @@ const items = [
 			autoPlay: false,
 			muted: true,
 			sections: [
-				['Searching Users'],
-				['Filtering Results', "2:00"],
-				['Hiding Filters', "7:00"],
+				['Loggin in', ],
+				['Left Pane', "5:00"],
+				['Right Pane', "7:00"],
 			]
 		}
 	},
@@ -257,8 +257,8 @@ const items = [
 	},
 	{
 		description: "Custom Modal with auto play",
-		srcMain: clipAnimations,
-		srcThumbnail: clipAnimationsThumbnail,
+		srcMain: clipNavigation,
+		srcThumbnail: clipNavigationThumbnail,
 		modal: {
 			closeButtonTop: 25,
 			children: (
@@ -372,8 +372,8 @@ const items = [
 	},
 	{
 		description: "No Modal with auto play",
-		srcMain: clipAnimations,
-		srcThumbnail: clipAnimationsThumbnail,
+		srcMain: clipNavigation,
+		srcThumbnail: clipNavigationThumbnail,
 		video: {
 			autoPlay: true,
 			muted: true,
@@ -428,8 +428,8 @@ const items = [
 	},
 	{
 		description: "Custom Modal (no auto play)",
-		srcMain: clipAnimations,
-		srcThumbnail: clipAnimationsThumbnail,
+		srcMain: clipNavigation,
+		srcThumbnail: clipNavigationThumbnail,
 		modal: {
 			children: (
 				<>
@@ -523,8 +523,8 @@ const items = [
 	},
 	{
 		description: "Video Filler",
-		srcMain: clipAnimations,
-		srcThumbnail: clipAnimationsThumbnail,
+		srcMain: clipNavigation,
+		srcThumbnail: clipNavigationThumbnail,
 		video: {
 			autoPlay: true,
 			muted: true,
