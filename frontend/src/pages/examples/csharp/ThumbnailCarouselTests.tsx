@@ -11,6 +11,8 @@ import clipFilters from "../../../clips/replay-viewer/filters.mp4";
 import clipFiltersThumbnail from "../../../clips/replay-viewer/thumbnails/filters-thumbnail.png";
 import clipNavigation from "../../../clips/replay-viewer/navigation.mp4";
 import clipNavigationThumbnail from "../../../clips/replay-viewer/thumbnails/navigation-thumbnail.png";
+import clipDealPlayer from "../../../clips/replay-viewer/deal-player.mp4";
+import clipDealPlayerThumbnail from "../../../clips/replay-viewer/thumbnails/deal-player-thumbnail.png";
 import minuteLongVideoThumbnail from "../../../clips/replay-viewer/thumbnails/minute-long-video-thumbnail.png";
 
 import maui01Thumbnail from "../../../imgs/about/thumbnails/maui-01-thumbnail.jpg";
@@ -87,43 +89,43 @@ const carouselShortcuts = {
 		closeButton: {
 			keys: [ValidKey.l, [ModifierKey.alt, ValidKey.l]],
 			onActionCompleted() {
-				console.log('close - it works as method')
+				console.log('closeButton - custom onActionCompleted')
 			},
 		},
 		nextButton: {
 			keys: [ValidKey.e, [ModifierKey.alt, ValidKey.e]],
 			onActionCompleted() {
-				console.log('next - after')
+				console.log('nextButton - custom onActionCompleted')
 			},
 		},
 		pauseButton: {
 			keys: [ValidKey.a, [ModifierKey.alt, ValidKey.a]],
 			onActionCompleted() {
-				console.log('pause - after')
+				console.log('pauseButton - custom onActionCompleted')
 			},
 		},
 		playButton: {
 			keys: [ValidKey.p, [ModifierKey.alt, ValidKey.p]],
 			onActionCompleted() {
-				console.log('play - after')
+				console.log('playButton - custom onActionCompleted')
 			},
 		},
 		previousButton: {
 			keys: [ValidKey.r, [ModifierKey.alt, ValidKey.r]],
 			onActionCompleted() {
-				console.log('previous - after')
+				console.log('previousButton - custom onActionCompleted')
 			},
 		},
 		seekBackButton: {
 			keys: [ValidKey.k, [ModifierKey.alt, ValidKey.k]],
 			onActionCompleted: () => {
-				console.log('backward - it works as field')
+				console.log('backButton - custom onActionCompleted')
 			},
 		},
 		seekForwardButton: {
 			keys: [ValidKey.w, [ModifierKey.alt, ValidKey.w]],
 			onActionCompleted: () => {
-				console.log('forward - it works as field')
+				console.log('forwardButton - custom onActionCompleted')
 			},
 		},
 	}
@@ -257,8 +259,8 @@ const items = [
 	},
 	{
 		description: "Custom Modal with auto play",
-		srcMain: clipNavigation,
-		srcThumbnail: clipNavigationThumbnail,
+		srcMain: clipDealPlayer,
+		srcThumbnail: clipDealPlayerThumbnail,
 		modal: {
 			closeButtonTop: 25,
 			children: (
