@@ -564,6 +564,7 @@ export const OceanSky = () => {
 				}
 			}
 		}, true);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	useEffect(() => {
@@ -868,6 +869,7 @@ export const OceanSky = () => {
 			if (canvasElement) document.body?.removeChild(canvasElement);
 			resetAnimations();
 		})
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
 		screenRefreshRate,
 		cameraPositionYFactor,
