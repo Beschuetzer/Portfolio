@@ -2775,6 +2775,20 @@ body {
   position: fixed;
   transition: opacity 0.25s ease;
 }
+.lds-spinner-container .text-container {
+  text-align: center;
+  font-size: 2.734375rem;
+  font-weight: 800;
+  color: var(--color-primary-4);
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.lds-spinner-container .text-container h3:last-child {
+  padding-bottom: 80px;
+}
 
 .lds-spinner {
   color: var(--color-primary-2);
