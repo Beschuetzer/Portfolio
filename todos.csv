@@ -1,11 +1,11 @@
 Carousel rework
-  -replace all inline styles with classname variables (heavy lift)?
+  -add volume button for videos?
   -add text sizing for modal header and item-viewer-toolbar-container (the width of the spans will need to adjust accordingly too) so that mobile looks more like fullscreen (a fixed ratio with a min of 8 or something?)
+  -replace all inline styles with classname variables (heavy lift)?
   -check how fullscreen looks on phone (should rotate)
   -add a single option for full width single item per page with only circular buttons
   -make CarouselElementCustomization.style a CarouselElementValue?
   -when done with buttonSize stuff, clean up css styles
-  -add volume button for videos?
   -how to intelligently add themes or default colors?
 
   -add a colors.scss and pick an actual color design and refactor all colors to use it (use custom properties too to make customizable?); name `color1`, `color2`, etc?
