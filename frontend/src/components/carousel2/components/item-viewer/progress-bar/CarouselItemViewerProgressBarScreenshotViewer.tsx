@@ -22,7 +22,7 @@ export type TextTranslateOffset = {
 
 
 export const TEXT_TRANSLATION_AMOUNT_REF_INITIAL = 0;
-export const CarouselVideoProgressBarScreenshotViewer = (props: CarouselItemViewerProgressBarScreenshotPreviewProps) => {
+const CarouselVideoProgressBarScreenshotViewer = (props: CarouselItemViewerProgressBarScreenshotPreviewProps) => {
     //#region Init
     const {
         currentVideoSection,
@@ -102,3 +102,5 @@ export const CarouselVideoProgressBarScreenshotViewer = (props: CarouselItemView
     )
     //#endregion
 }
+
+export const CarouselVideoProgressBarScreenshotViewerMemoized = React.memo(CarouselVideoProgressBarScreenshotViewer);

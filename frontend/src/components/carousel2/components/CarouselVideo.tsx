@@ -9,7 +9,7 @@ import { useCarouselContext } from '../context';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { useRerenderOnExitFullscreenMode } from '../hooks/useRerenderOnExitFullscreenMode';
 import { useResetCarouselVideoCurrentSection } from '../hooks/useResetCarouselVideoCurrentSection';
-import { CarouselVideoProgressBarScreenshotViewer } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer';
+import { CarouselVideoProgressBarScreenshotViewerMemoized } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer';
 import { CarouselVideoCurrentTimeViewer } from './CarouselVideoCurrentTimeViewer';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useSectionToValueMapping } from '../hooks/useSectionToValueMapping';
@@ -234,7 +234,7 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
                 setSeekPercent={setSeekPercent}
                 videoRef={videoRef}
             />
-            <CarouselVideoProgressBarScreenshotViewer
+            <CarouselVideoProgressBarScreenshotViewerMemoized
                 currentVideoSection={currentVideoSection}
                 percent={isProgressBarMouseDownRef.current ? percent : seekPercent}
                 toolbarRef={itemViewerToolbarRef as any}
