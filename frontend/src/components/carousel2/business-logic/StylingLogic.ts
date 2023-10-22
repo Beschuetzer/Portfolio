@@ -4,7 +4,6 @@ import { OptionsLogic } from "./OptionsLogic";
 import { convertColorNameToHex, convertHexToRgba, getIsVideo, getNumberOfItemsThatCanFit } from "../utils/utils";
 import {
     CAROUSEL_SPACING_UNIT,
-    CAROUSEL_ITEMS_MARGIN_HORIZONTAL_DEFAULT,
     CAROUSEL_ITEMS_MARGIN_HORIZONTAL_NON_ITEM_VIEWER_DEFAULT,
     CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
     CAROUSEL_ITEM_SPACING_DEFAULT,
@@ -17,6 +16,7 @@ import {
     TOOLBAR_TIME_STRING_SECTION_DIVIDER,
     FONT_WEIGHT_DEFAULT,
     TOOLBAR_MARGIN_RIGHT_OFFSET,
+    CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT,
 } from "../constants";
 import { CarouselModalInternalProps } from "../components/modal/CarouselModal";
 import { LoadingSpinnerProps, LoadingSpinnerOptions } from "../components/LoadingSpinner";
@@ -856,7 +856,7 @@ export class StylingLogic {
             color: this.optionsLogic.videoProgressBarScreenshotViewer.textColor,
             position: 'absolute',
             width: '10000px', //this is a hack to align this centered since translateX(-50%) doesn't work
-            transform: `translateX(calc(-4903${CAROUSEL_SPACING_UNIT})`, //this is a hack to align this centered since translateX(-50%) doesn't work
+            transform: `translateX(calc(-${4988 - CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT / 2}${CAROUSEL_SPACING_UNIT})`, //this is a hack to align this centered since translateX(-50%) doesn't work
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',

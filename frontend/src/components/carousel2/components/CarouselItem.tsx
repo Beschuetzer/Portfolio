@@ -34,8 +34,9 @@ export type CarouselItemProps = {
   /**
   * This is an optional argument that can be used to optimize the performance of the preview element for videos.  
   * As the resolution of a video increase (specified by {@link CarouselItemProps.srcMain srcMain}), the performance of the preview may get choppy.
+  * This manifests in two ways: 1) the previews don't update as frequently and 2) the smoothness of rendering the previewer is dimished.
   * Passing in a lower resolution version of the video here will fix this.
-  * See this {@link https://www.veed.io/tools/video-compressor/mp4-compressor compressor} for a free option.
+  * See this {@link https://www.veed.io/tools/video-compressor/mp4-compressor compressor} for a free video compression option.
   **/
   srcScreenshotPreviewer?: string | undefined;
   /**

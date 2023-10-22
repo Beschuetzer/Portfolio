@@ -1,4 +1,6 @@
 import { KeyInput, ValidKey, ModifierKey, CarouselItemViewerAspectRatioPreset } from "./types";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { StylingLogic } from './business-logic/StylingLogic';
 import { getClassname } from "./utils/utils";
 
 export const AUTO_CHANGE_PAGE_DEFAULT = true;
@@ -158,7 +160,7 @@ export const CAROUSEL_TOOLBAR_BUTTON_SIZE_DEFAULT = 24;
 export const CAROUSEL_TOOLBAR_BUTTON_SIZE_MOBILE_DEFAULT = 18;
 export const CAROUSEL_VIDEO_CURRENT_SECTION_INITIAL = -1;
 export const CAROUSEL_VIDEO_SECTION_MIN_LENGTH = 500;
-export const CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT = 175;
+export const CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT = 250;
 export const CURRENT_VIDEO_CURRENT_TIME_DEFAULT = 0;
 export const MOBILE_PIXEL_WIDTH = 655;
 //#endregion
