@@ -1,5 +1,5 @@
 Carousel rework
-  -add optional Screenshot viewer clip for each video item (the 420p seems to be the sweet spot).  Make sure the details of why this is there (optimization reasons).
+  -make the screenshot viewer bigger.
   -add volume button for videos?
   -add text sizing for modal header and item-viewer-toolbar-container (the width of the spans will need to adjust accordingly too) so that mobile looks more like fullscreen (a fixed ratio with a min of 8 or something?)
   -replace all inline styles with classname variables (heavy lift)?

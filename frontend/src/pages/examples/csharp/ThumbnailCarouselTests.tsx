@@ -22,6 +22,8 @@ import clipBridgeAnimationRoundEnd from "../../../clips/bridge/animation-roundEn
 import clipBridgeAnimationRoundEndThumbnail from "../../../clips/bridge/thumbnails/animation-round-end.png";
 import clipBridgeSaveGame from "../../../clips/bridge/saveGame.mp4";
 import clipBridgeSaveGameThumbnail from "../../../clips/bridge/thumbnails/save-game.png";
+import clipHighRes from "../../../clips/high-res.mp4";
+import clipLowRes from "../../../clips/low-res.mp4";
 
 import maui01Thumbnail from "../../../imgs/about/thumbnails/maui-01-thumbnail.jpg";
 import maui04Thumbnail from "../../../imgs/about/thumbnails/maui-04-thumbnail.jpg";
@@ -222,6 +224,25 @@ const items = [
 				['Left Pane', "5:00"],
 				['Right Pane', "7:00"],
 			]
+		}
+	},
+	{
+		description: "High-res video with Low-res Screenshot Preview",
+		srcMain: clipHighRes,
+		srcScreenshotPreviewer: clipLowRes,
+		srcThumbnail: clipNavigationThumbnail,
+		modal: {
+			sections: [
+				{
+					title: "High Resolution Video",
+					titleElementType: 'h2',
+					text: "This video is 1080p, but the screenshot viewer that appears when hovering the progress bar is a 480p version of the video.  This improves the \"smoothness\" of the preview.",
+				},
+			]
+		},
+		video: {
+			autoPlay: false,
+			muted: true,
 		}
 	},
 	{

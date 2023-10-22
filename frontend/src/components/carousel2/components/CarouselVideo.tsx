@@ -67,6 +67,7 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
         itemContainerRef,
         setIsVideoPlaying,
         srcMain,
+        srcScreenshotPreviewer,
         video: videoProps,
     } = props;
     const { options, currentItemIndex, currentVideoCurrentTime, isFullscreenMode, setCurrentVideoCurrentTime, itemContainerHeight } = useCarouselContext();
@@ -237,10 +238,11 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
             <CarouselVideoProgressBarScreenshotViewerMemoized
                 currentVideoSection={currentVideoSection}
                 percent={isProgressBarMouseDownRef.current ? percent : seekPercent}
-                toolbarRef={itemViewerToolbarRef as any}
-                videoRef={videoRef}
                 srcMain={srcMain}
+                srcScreenshotPreviewer={srcScreenshotPreviewer}
+                toolbarRef={itemViewerToolbarRef as any}
                 type={type}
+                videoRef={videoRef}
             />
         </>
     );
