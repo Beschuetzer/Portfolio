@@ -852,11 +852,12 @@ export class StylingLogic {
     }
 
     get carouselVideoProgressScreenshotViewerTextContainerStyle() {
+        const { width } = this.optionsLogic.videoProgressBarScreenshotViewer;
         return {
             color: this.optionsLogic.videoProgressBarScreenshotViewer.textColor,
             position: 'absolute',
             width: '10000px', //this is a hack to align this centered since translateX(-50%) doesn't work
-            transform: `translateX(calc(-${4988 - CAROUSEL_VIDEO_SCREENSHOT_VIEWER_WIDTH_DEFAULT / 2}${CAROUSEL_SPACING_UNIT})`, //this is a hack to align this centered since translateX(-50%) doesn't work
+            transform: `translateX(calc(-${4988 - width / 2}${CAROUSEL_SPACING_UNIT})`, //this is a hack to align this centered since translateX(-50%) doesn't work
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',

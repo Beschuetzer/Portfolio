@@ -2991,6 +2991,29 @@ const viewingModeVideoControls = (
 		items={items}
 	/>
 );
+const smallerScreenShotViewer = (
+	<Carousel
+		options={{
+			layout: {
+				itemDisplayLocation: 'below',
+
+			},
+			styling: {
+				itemViewerPreview: {
+					isVisibleInNonFullscreenMode: true,
+				},
+				toolbar: {
+					progressBar: {
+						screenshotViewer: {
+							thumbnailWidth: 200,
+						},
+					},
+				},
+			}
+		}}
+		items={items}
+	/>
+);
 //#endregion
 
 type Sections = [SectionNames, { label: string, jsx: ReactNode | ReactNode[] }[]][];
@@ -3059,6 +3082,10 @@ const SECTIONS: Sections = [
 			{
 				label: "Video Toolbar not Embedded Inside Video",
 				jsx: layoutToolbarNotEmbedded,
+			},
+			{
+				label: "Smaller Screenshot Viewer",
+				jsx: smallerScreenShotViewer,
 			},
 		]
 	],
@@ -3895,7 +3922,7 @@ const ENABLED_SECTIONS: SectionNames[] = [
 	// SectionNames.itemPositioning,
 	// SectionNames.itemViewer,
 	// SectionNames.itemViewerAspectRatio,
-	// SectionNames.layouts,
+	SectionNames.layouts,
 	// SectionNames.maxHeight,
 	// SectionNames.navigationOptions,
 	// SectionNames.otherDynamicSettings,
