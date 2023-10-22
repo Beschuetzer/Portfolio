@@ -638,10 +638,10 @@ const multiplePagesCustomPaddingAndMargin = (
 				padding: {
 					left: 40,
 					right: 40,
-					top: 40,
 				},
 				margin: {
 					bottom: 40,
+					top: 40,
 				},
 			}
 		}

@@ -157,7 +157,7 @@ export class StylingLogic {
         const common = {
             paddingTop: this.optionsLogic.getPaddingAmount(SpacingDirection.top, CarouselSection.itemViewer),
             paddingBottom: this.optionsLogic.getPaddingAmount(SpacingDirection.bottom, CarouselSection.itemViewer),
-            marginTop,
+            marginTop: parseInt(marginTop as string || '0', 10) - CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
             marginBottom,
             marginLeft,
             marginRight,
@@ -1369,6 +1369,7 @@ export class StylingLogic {
             ...interItemSpacingStyle,
             ...translationStyle,
             ...positioningStyle,
+            marginTop: CAROUSEL_ITEM_HOVER_TRANSLATE_UP_AMOUNT,
         } as CSSProperties
     }
 
