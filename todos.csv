@@ -1,6 +1,7 @@
 Carousel rework
-  -add logic to only render the items on the current page + next page?
   -display lo-res video for the itemDisplayLocation not none cases if available?
+  -srcScreenshotPreviewer is no longer needed since can use loRes || hiRes
+  -add logic to only render the items on the current page + next page?
   -add volume button for videos?
   -add text sizing for modal header and item-viewer-toolbar-container (the width of the spans will need to adjust accordingly too) so that mobile looks more like fullscreen (a fixed ratio with a min of 8 or something?)
   -replace all inline styles with classname variables (heavy lift)?

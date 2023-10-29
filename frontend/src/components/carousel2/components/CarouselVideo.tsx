@@ -13,8 +13,24 @@ import { CarouselVideoProgressBarScreenshotViewerMemoized } from './item-viewer/
 import { CarouselVideoCurrentTimeViewer } from './CarouselVideoCurrentTimeViewer';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useSectionToValueMapping } from '../hooks/useSectionToValueMapping';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { CarouselLayoutOptions, CarouselItemDisplayLocation } from '../types';
 
-
+/**
+*A video item can be composed of a low resolution and high resolution video.  This is isn't necessary, but can optimize load times for th
+**/
+export type CarouselVideo = {
+    /**
+    *This version will be used when the video is fullscreen if given.  If no {@link CarouselVideo.loRes low resolution} version is given,
+    this will be used when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}.
+    **/
+    hiRes?: string;
+    /**
+    *This version will be used in fullscreen mode if no {@link CarouselVideo.hiRes high resolution} version is given.
+    *This version will be preferred when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}.
+    **/
+    loRes?: string;
+}
 /**
 *The first value is the description of the section and second value is either the duration or the start time (respectively).
 **/

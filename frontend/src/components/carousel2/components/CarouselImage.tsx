@@ -53,7 +53,7 @@ export const CarouselImage = (props: CarouselItemProps & Pick<CarouselItemViewer
                     draggable={false}
                     style={stylingLogic.getCarouselImageStlye(itemContainerHeight)}
                     className={isLoaded ? '' : CLASSNAME__HIDDEN}
-                    src={srcMain}
+                    src={srcMain as string}
                     alt={description}
                     onLoad={() => setIsLoaded(true)}
                 />

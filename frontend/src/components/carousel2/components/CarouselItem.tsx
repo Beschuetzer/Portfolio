@@ -1,5 +1,5 @@
 import { useCarouselContext } from '../context';
-import { CarouselVideoOptions } from './CarouselVideo';
+import { CarouselVideo, CarouselVideoOptions } from './CarouselVideo';
 import { CLASSNAME__CAROUSEL_ITEM, CLASSNAME__CAROUSEL_ITEM_THUMBNAIL } from '../constants';
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { CarouselModalProps } from './modal/CarouselModal';
@@ -30,7 +30,7 @@ export type CarouselItemProps = {
   /**
   * This is the source of the image/video.  If item is a video, then adding a {@link CarouselItemProps.srcThumbnail thumbnail} is needed.  Otherwise the main image will be used as a thumbnail.
   **/
-  srcMain: string | undefined;
+  srcMain: string | CarouselVideo | undefined;
   /**
   * This is an optional argument that can be used to optimize the performance of the preview element for videos.  
   * As the resolution of a video increase (specified by {@link CarouselItemProps.srcMain srcMain}), the performance of the preview may get choppy.
