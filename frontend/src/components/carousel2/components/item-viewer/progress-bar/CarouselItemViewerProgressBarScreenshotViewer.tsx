@@ -6,12 +6,13 @@ import { CarouselItemViewerToolbarProps } from '../toolbar/CarouselItemViewerToo
 import { CLASSNAME__VIDEO_SCREENSHOT_VIEWER, CLASSNAME__VIDEO_SCREENSHOT_VIEWER_TEXT_CONTAINER } from '../../../constants';
 import { CarouselItemProps } from '../../CarouselItem';
 import { useSetVideoCurrentTime } from '../../../hooks/useSetVideoCurrentTime';
+import { resolveSrcMain } from '../../../utils/getCarouselVideo';
 
 export type CarouselItemViewerProgressBarScreenshotPreviewProps = {
     toolbarRef: React.MutableRefObject<HTMLDivElement>;
     type: string | undefined;
 } & Pick<CarouselItemViewerToolbarProps, 'videoRef' | 'currentVideoSection' | 'percent'>
-& Pick<CarouselItemProps, 'srcMain' | 'srcScreenshotPreviewer'>
+& Pick<CarouselItemProps, 'srcMain'>
 
 export type TextTranslateOffset = {
     left: number;
@@ -28,7 +29,6 @@ const CarouselVideoProgressBarScreenshotViewer = (props: CarouselItemViewerProgr
         currentVideoSection,
         percent = 0,
         srcMain,
-        srcScreenshotPreviewer,
         toolbarRef,
         type,
         videoRef,
@@ -76,7 +76,7 @@ const CarouselVideoProgressBarScreenshotViewer = (props: CarouselItemViewerProgr
                 muted={true}
                 loop={false}
             >
-                <source src={srcScreenshotPreviewer || srcMain} type={`video/${type}`} />
+                <source src={resolveSrcMain(srcMain)} type={`video/${type}`} />
             </video>
             <div
                 ref={screenShotTextContainerRef as any}

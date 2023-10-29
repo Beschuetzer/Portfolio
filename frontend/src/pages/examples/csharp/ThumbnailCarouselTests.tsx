@@ -228,8 +228,10 @@ const items = [
 	},
 	{
 		description: "High-res video with Low-res Screenshot Preview",
-		srcMain: clipHighRes,
-		srcScreenshotPreviewer: clipLowRes,
+		srcMain: {
+			hiRes: clipHighRes,
+			loRes: clipLowRes,
+		},
 		srcThumbnail: clipNavigationThumbnail,
 		modal: {
 			sections: [

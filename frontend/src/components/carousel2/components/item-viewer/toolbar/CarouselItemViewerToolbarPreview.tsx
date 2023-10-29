@@ -57,7 +57,7 @@ export const CarouselItemViewerToolbarPreview = (props: CarouselItemViewerToolba
             <img
                 style={stylingLogic.carouselItemViewerPreviewImageStyle}
                 className={show ? '' : CLASSNAME__HIDDEN}
-                src={srcThumbnail || srcMain}
+                src={srcThumbnail || srcMain as string}
                 alt={description}
                 onLoad={() => setIsLoaded(true)}
                 onAbort={() => setIsLoaded(false)}

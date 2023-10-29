@@ -2,8 +2,8 @@ import React, { useRef } from 'react'
 import { CarouselItemViewerProgressBarScreenshotPreviewProps } from './item-viewer/progress-bar/CarouselItemViewerProgressBarScreenshotViewer'
 import { useBusinessLogic } from '../hooks/useBusinessLogic';
 import { CarouselItemViewerToolbarProps } from './item-viewer/toolbar/CarouselItemViewerToolbar';
-import { useCarouselContext } from '../context';
 import { useSetVideoCurrentTime } from '../hooks/useSetVideoCurrentTime';
+import { resolveSrcMain } from '../utils/getCarouselVideo';
 
 type CarouselVideoCurrentTimeViewerPropsProps = {
     isVideoPlaying: boolean;
@@ -17,10 +17,9 @@ export const CarouselVideoCurrentTimeViewer = (props: CarouselVideoCurrentTimeVi
         isVideoPlaying,
         itemContainerHeight,
         percent = 0,
+        srcMain,
         type,
     } = props;
-    const { currentItem } = useCarouselContext();
-    const { srcMain } = currentItem;
     const videoRef = useRef<HTMLVideoElement>();
     const { stylingLogic } = useBusinessLogic()
     useSetVideoCurrentTime({percent, video: videoRef?.current});
@@ -33,7 +32,7 @@ export const CarouselVideoCurrentTimeViewer = (props: CarouselVideoCurrentTimeVi
             muted={true}
             loop={false}
         >
-            <source src={srcMain} type={`video/${type}`} />
+            <source src={resolveSrcMain(srcMain)} type={`video/${type}`} />
         </video>
     )
 }

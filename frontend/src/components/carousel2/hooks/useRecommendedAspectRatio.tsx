@@ -64,7 +64,7 @@ export const useRecommendedAspectRatio = (items: CarouselItemProps[]) => {
         for (const item of items) {
             try {
                 const isImage = getIsItemOfType(item, 'image');
-                const imageSrc = (isImage ? item.srcMain : item.srcThumbnail) || '';
+                const imageSrc = (isImage ? item.srcMain as string : item.srcThumbnail) || '';
                 const image = new Image();
                 image.src = imageSrc;
                 image.onload = () => {

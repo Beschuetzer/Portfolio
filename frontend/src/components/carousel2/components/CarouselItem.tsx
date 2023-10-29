@@ -6,7 +6,9 @@ import { CarouselModalProps } from './modal/CarouselModal';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { OptionsLogic } from '../business-logic/OptionsLogic';
 import { CarouselElementValue } from '../types';
+import { resolveSrcMain } from '../utils/getCarouselVideo';
 
+export type CarouselItemSourceMain = string | CarouselVideo;
 export type CarouselItemProps = {
   /**
   *These stylings are passed to the underlying item tag (e.g. <img> and <video>).
@@ -30,15 +32,7 @@ export type CarouselItemProps = {
   /**
   * This is the source of the image/video.  If item is a video, then adding a {@link CarouselItemProps.srcThumbnail thumbnail} is needed.  Otherwise the main image will be used as a thumbnail.
   **/
-  srcMain: string | CarouselVideo | undefined;
-  /**
-  * This is an optional argument that can be used to optimize the performance of the preview element for videos.  
-  * As the resolution of a video increase (specified by {@link CarouselItemProps.srcMain srcMain}), the performance of the preview may get choppy.
-  * This manifests in two ways: 1) the previews don't update as frequently and 2) the smoothness of rendering the previewer is dimished.
-  * Passing in a lower resolution version of the video here will fix this.
-  * See this {@link https://www.veed.io/tools/video-compressor/mp4-compressor compressor} for a free video compression option.
-  **/
-  srcScreenshotPreviewer?: string | undefined;
+  srcMain: CarouselItemSourceMain;
   /**
   * This is the source of the thumbnail image to be used when viewing thumbnails only.
   **/
@@ -84,7 +78,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
         draggable={false}
         style={stylingLogic.carouselItemCursorStyle}
         className={CLASSNAME__CAROUSEL_ITEM_THUMBNAIL}
-        src={srcThumbnail || srcMain}
+        src={srcThumbnail || resolveSrcMain(srcMain)}
         alt={description || 'user picture or video'}
       />
     </div>

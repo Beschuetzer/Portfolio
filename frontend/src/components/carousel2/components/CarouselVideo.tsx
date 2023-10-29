@@ -15,6 +15,7 @@ import { CarouselVideoCurrentTimeViewer } from './CarouselVideoCurrentTimeViewer
 import { useSectionToValueMapping } from '../hooks/useSectionToValueMapping';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CarouselLayoutOptions, CarouselItemDisplayLocation } from '../types';
+import { resolveSrcMain } from '../utils/getCarouselVideo';
 
 /**
 *A video item can be composed of a low resolution and high resolution video.  This is isn't necessary, but can optimize load times for th
@@ -28,6 +29,11 @@ export type CarouselVideo = {
     /**
     *This version will be used in fullscreen mode if no {@link CarouselVideo.hiRes high resolution} version is given.
     *This version will be preferred when {@link CarouselLayoutOptions.itemDisplayLocation itemDisplayLocation} is not {@link CarouselItemDisplayLocation none}.
+    *
+    * As the resolution of a video increase (specified by {@link CarouselItemProps.srcMain srcMain}), the performance of the preview may get choppy.
+    * This manifests in two ways: 1) the previews don't update as frequently and 2) the smoothness of rendering the previewer is dimished.
+    * Passing in a lower resolution version of the video here will fix this.
+    * See this {@link https://www.veed.io/tools/video-compressor/mp4-compressor compressor} for a free video compression option.
     **/
     loRes?: string;
 }
@@ -83,7 +89,6 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
         itemContainerRef,
         setIsVideoPlaying,
         srcMain,
-        srcScreenshotPreviewer,
         video: videoProps,
     } = props;
     const { options, currentItemIndex, currentVideoCurrentTime, isFullscreenMode, setCurrentVideoCurrentTime, itemContainerHeight } = useCarouselContext();
@@ -95,7 +100,8 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
     const videoRef = useRef<HTMLVideoElement>();
     const itemViewerToolbarRef = useRef<HTMLElement>();
     const isProgressBarMouseDownRef = useRef(false);
-    const type = useMemo(() => srcMain?.slice(srcMain?.lastIndexOf('.') + 1), [srcMain]);
+    const srcMainToUse = resolveSrcMain(srcMain, true);
+    const type = useMemo(() => srcMainToUse?.slice(srcMainToUse?.lastIndexOf('.') + 1), [srcMainToUse]);
     const { stylingLogic, optionsLogic } = useBusinessLogic({ itemViewerToolbarRef });
     useRerenderOnExitFullscreenMode();
     useResetCarouselVideoCurrentSection({
@@ -230,7 +236,7 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
                     onPlay={() => toggleIsVideoPlaying(true)}
                     onEnded={() => toggleIsVideoPlaying(false)}
                 >
-                    <source src={srcMain} type={`video/${type}`} />
+                    <source src={srcMainToUse} type={`video/${type}`} />
                     Your browser does not support the HTML5 video tag. Try using a different browser.
                 </video>
             </div>
@@ -255,7 +261,6 @@ export const CarouselVideo = (props: CarouselVideoProps & CarouselItemProps & Pi
                 currentVideoSection={currentVideoSection}
                 percent={isProgressBarMouseDownRef.current ? percent : seekPercent}
                 srcMain={srcMain}
-                srcScreenshotPreviewer={srcScreenshotPreviewer}
                 toolbarRef={itemViewerToolbarRef as any}
                 type={type}
                 videoRef={videoRef}
