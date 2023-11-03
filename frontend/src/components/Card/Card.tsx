@@ -50,7 +50,6 @@ export const Card: React.FC<CardProps> = ({
 	const isMobile = useAppSelector(isMobileSelector);
 	const viewPortWidth  = useAppSelector(viewPortWidthSelector);
 	const [showChildren, setShowChildren] = useState<boolean>(false);
-	const [isOpen, setIsOpen] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const titleRef = useRef<HTMLHeadingElement>(null);
 	const cardRef = useRef<HTMLElement>(null);
