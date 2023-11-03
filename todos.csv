@@ -1,5 +1,5 @@
 Bridge page: 
-  -closing any card should reset all cards
+  -adjust card margins as viewport shrinks
   -figure out issue with own phone scrolling to section 2.
 
 React best practices re-working

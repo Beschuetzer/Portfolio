@@ -1,4 +1,9 @@
-import React, { MouseEventHandler, RefObject, useState } from "react";
+import React, {
+  MouseEventHandler,
+  RefObject,
+  useCallback,
+  useState,
+} from "react";
 import { useRef } from "react";
 
 import {
@@ -183,7 +188,7 @@ export const Card: React.FC<CardProps> = ({
 
     if (cardCenterYOriginal < containerCenterY)
       translateUpAmount = -translateUpAmount;
-	
+
     // console.log("------------------------------------------------");
     // console.log("card =", card);
     // console.log("card.parentNode =", card.parentNode);
@@ -206,27 +211,37 @@ export const Card: React.FC<CardProps> = ({
 		scale(${Math.min(scaleXFactor)})
 	  `;
 
-
     const newValue = `--card-playing-transform: ${newTransform}`;
     document.documentElement.style.cssText += newValue;
   };
 
-  const closeCard = (
-    video: HTMLVideoElement,
-    card: HTMLElement,
-    titleRef: Reference
-  ) => {
+  const closeCard = useCallback(
+    (video: HTMLVideoElement, card: HTMLElement, titleRef: Reference) => {
+      closeVideo(video);
+
+      if (!titleRef) return;
+      changeSectionTitle(titleRef, false);
+      dispatch(setIsCardVideoOpen(false));
+
+      if (!card) return;
+      card.classList.remove(CARD_OPEN_CLASSNAME);
+      card.classList.remove(CARD_DONE_CLASSNAME);
+      card.classList.remove(CARD_STOPPED_CLASSNAME);
+    },
+    [dispatch]
+  );
+
+  const closeAllOtherOpenCards = useCallback((video: HTMLVideoElement  | null, cardToIgnore: HTMLElement) => {
     closeVideo(video);
-
-    if (!titleRef) return;
-    changeSectionTitle(titleRef, false);
-    dispatch(setIsCardVideoOpen(false));
-
-    if (!card) return;
-    card.classList.remove(CARD_OPEN_CLASSNAME);
-    card.classList.remove(CARD_DONE_CLASSNAME);
-    card.classList.remove(CARD_STOPPED_CLASSNAME);
-  };
+    const openCards = document.querySelectorAll(`.${CARD_OPEN_CLASSNAME}`);
+    openCards.forEach((card) => {
+      if (card !== cardToIgnore) {
+        card.classList.remove(CARD_OPEN_CLASSNAME);
+        card.classList.remove(CARD_DONE_CLASSNAME);
+        card.classList.remove(CARD_STOPPED_CLASSNAME);
+      }
+    });
+  }, []);
 
   const getCardCoordinates = (
     card: HTMLElement,
@@ -373,7 +388,9 @@ export const Card: React.FC<CardProps> = ({
   };
 
   const handleVideoEnd = (e: Event) => {
-    cardRef.current?.classList.add(CARD_DONE_CLASSNAME);
+    if (cardRef.current?.classList.contains(CARD_OPEN_CLASSNAME)) {
+      cardRef.current?.classList.add(CARD_DONE_CLASSNAME);
+    }
     cardRef.current?.classList.remove(CARD_PLAYING_CLASSNAME);
     const video = e.currentTarget;
     if (video) video.removeEventListener("ended", handleVideoEnd);
@@ -382,11 +399,13 @@ export const Card: React.FC<CardProps> = ({
   const handleCardClick = (e: MouseEventHandler<HTMLElement>) => {
     (e as any).stopPropagation();
     const clickedCard = cardRef.current as HTMLElement;
+    closeAllOtherOpenCards(videoRef?.current, clickedCard);
     if (
       clickedCard?.classList.contains(CARD_DONE_CLASSNAME) ||
       clickedCard?.classList.contains(CARD_OPEN_CLASSNAME)
-    )
+    ) {
       return [null, null, null, null];
+    }
 
     clickedCard?.classList.add(Z_INDEX_HIGHEST_CLASSNAME);
     const initialCardSize = clickedCard?.getBoundingClientRect();
