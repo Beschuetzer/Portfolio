@@ -1827,19 +1827,9 @@ body {
   transform: scale(var(--card-scale-amount));
   transition: transform 0.1666666667s ease;
 }
-@media only screen and (max-width: 52.6875em) {
+@media only screen and (max-width: 68.75em) {
   .card {
-    margin: 1.4rem 0;
-  }
-}
-@media only screen and (max-width: 40.9375em) {
-  .card {
-    margin: 2.1rem 0;
-  }
-}
-@media only screen and (max-width: 29.3125em) {
-  .card {
-    margin: 4.2rem 0;
+    margin: 0.25vw 0;
   }
 }
 .card * {
@@ -3945,7 +3935,7 @@ body {
   flex-direction: row;
   transition: transform 0.5s ease;
 }
-@media only screen and (max-width: 40.9375em) {
+@media only screen and (max-width: 68.75em) {
   .bridge__section-container {
     flex-direction: column;
   }

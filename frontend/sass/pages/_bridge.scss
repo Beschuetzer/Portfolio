@@ -84,7 +84,7 @@
 			flex-direction: row;
 			transition: transform $animation-duration ease;
 
-			@include respond(phone) {
+			@include respond(nav-switch) {
 				flex-direction: column;
 			}
 		}
