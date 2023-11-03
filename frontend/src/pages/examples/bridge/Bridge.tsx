@@ -44,7 +44,6 @@ import { setHasClickedALink, setClickedBridgeInfoButtonCount, setCurrentBridgeSe
 import { RootState } from "../../../store";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { isMobileSelector } from "../../../slices/generalSlice";
-import { Reference } from "../../../types";
 import { setLinearGradientCssCustomProp, resetBridgeHero } from "./utils";
 
 const sectionContents = [
@@ -490,10 +489,10 @@ export const Bridge: React.FC<BridgeProps> = () => {
 	useEffect(() => {
 		setLinearGradientCssCustomProp();
 		dispatch(setHasClickedALink(false));
-	}, [setHasClickedALink, dispatch]);
+	}, [dispatch]);
 
 	useEffect(() => {
-		resetBridgeHero({ current: heroMore } as Reference);
+		resetBridgeHero(bridgeHeroRef);
 		dispatch(setClickedBridgeInfoButtonCount(0));
 		dispatch(setCurrentBridgeSection(0));
 
@@ -501,7 +500,7 @@ export const Bridge: React.FC<BridgeProps> = () => {
 			dispatch(setClickedBridgeInfoButtonCount(0));
 			dispatch(setCurrentBridgeSection(0));
 		};
-	}, [dispatch, setClickedBridgeInfoButtonCount, setCurrentBridgeSection]);
+	}, [dispatch]);
 
 	//adding scroll listener
 	useEffect(() => {
@@ -531,7 +530,7 @@ export const Bridge: React.FC<BridgeProps> = () => {
 		return () => {
 			window.removeEventListener("scroll", handleScroll as any);
 		};
-	}, [isMobile, dispatch, setClickedBridgeInfoButtonCount]);
+	}, [isMobile, dispatch, hero, heroMore?.classList]);
 
 	const renderSections = () => {
 		return sectionContents.map((item, index) => {

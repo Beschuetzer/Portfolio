@@ -1,6 +1,7 @@
 import {
   ANIMATION_DURATION,
   BODY_BACKGROUND_CUSTOM_PROPERTY_NAME,
+  BRIDGE_HERO_CLASSNAME,
   BRIDGE_HERO_CLICKED_CLASSNAME,
   BRIDGE_HERO_MORE__CLICKED_CLASSNAME,
   BRIDGE_SECTION_HEIGHT_CUSTOM_PROPERTY_NAME,
@@ -30,7 +31,6 @@ export const handleBridgeNavigation = (checkBox: HTMLInputElement, background: H
     const remToPixelFactor = 10;
     const offset = 13; //this is needed to get the exact lining up to work
     const navbarLogoWidth = parseFloat(replaceCharacters(navbarLogoWidthProp, [['rem', '']])) * remToPixelFactor - offset;
-    console.log({navbarLogoWidth});
     const heightOffset = isMobile ? navbarLogoWidth : -100000;
     scrollToSection(document.getElementById(bridgeSectionNames[0].toLowerCase()) as HTMLElement, -heightOffset);
     if (background)  {
@@ -40,13 +40,16 @@ export const handleBridgeNavigation = (checkBox: HTMLInputElement, background: H
   }
 }
 
-export const resetBridgeHero = (heroMore: Reference) => {
+export const resetBridgeHero = (bridgeHeroRef: React.RefObject<Element>) => {
+  const heroMore = bridgeHeroRef.current?.querySelector(
+		`.${BRIDGE_HERO_CLASSNAME}__more`,
+	);
   document.querySelector(PAGE_NAV_CLASSNAME)?.classList?.add(HIDDEN_CLASSNAME);
   document.documentElement.style.setProperty(BRIDGE_SECTION_HEIGHT_CUSTOM_PROPERTY_NAME, getComputedStyleCustom(BRIDGE_SECTION_HEIGHT_CUSTOM_PROPERTY_NAME));
   document.documentElement.style.setProperty(BRIDGE_SECTION_PADDING_CUSTOM_PROPERTY_NAME, getComputedStyleCustom(BRIDGE_SECTION_PADDING_CUSTOM_PROPERTY_NAME));
 
-  heroMore.current?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
-  (heroMore.current?.parentNode as HTMLElement)?.classList.remove(BRIDGE_HERO_CLICKED_CLASSNAME);
+  heroMore?.classList.remove(BRIDGE_HERO_MORE__CLICKED_CLASSNAME);
+  (heroMore?.parentNode as HTMLElement)?.classList.remove(BRIDGE_HERO_CLICKED_CLASSNAME);
 }
 
 export const setLinearGradientCssCustomProp = () => {

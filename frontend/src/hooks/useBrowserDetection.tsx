@@ -5,7 +5,6 @@ export const useBroswerDetection = () => {
     const [browser, setBrowser] = useState<BrowserInfo | SearchBotDeviceInfo | BotInfo | NodeInfo | ReactNativeInfo | null>(null);
     useEffect(() => {
         const browser = detect();
-        console.log({browser});
         setBrowser(browser);
     }, [])
 
