@@ -4178,6 +4178,7 @@ body {
 }
 .bridge__page-nav-link {
   cursor: pointer;
+  width: auto;
   opacity: 0.75;
   color: var(--bridge-page-nav-link-color);
   transition: color 0.25s ease, transform 0.25s ease;
