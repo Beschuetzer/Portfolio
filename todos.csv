@@ -1,3 +1,8 @@
+Bridge page: 
+  -try creating a single container that contains the multiple sections (then that is what translates)
+  -figure out issue with own phone scrolling to section 2.
+  -own phone has issues with bridge cards
+
 React best practices re-working
   -use lazy loading (https://www.youtube.com/watch?v=JU6sl_yyZqs) for images in carousel?
   -pages with audio need to know when player is open and adjust padding bottom
