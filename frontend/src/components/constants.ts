@@ -85,6 +85,7 @@ export const BRIDGE_HERO_CLICKED_CLASSNAME = "hero--clicked";
 export const BRIDGE_HERO_MORE__CLICKED_CLASSNAME = "hero__more--clicked";
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAME = `${BRIDGE_CLASSNAME}__page-nav-link`;
 export const BRIDGE_PAGE_NAV_LINK_CLASSNAMES = `${BRIDGE_PAGE_NAV_LINK_CLASSNAME} page-nav__section`;
+export const BRIDGE_SECTION_CONTAINER_CLASSNAME = `${BRIDGE_CLASSNAME}__section-container`;
 export const BRIDGE_SECTION_TITLES_CLASSNAME = `${BRIDGE_CLASSNAME}__section-titles`;
 export const C_SHARP_CLASSNAME = "csharp";
 export const C_SHARP_CARD_SECTION_CLASSNAME = `${C_SHARP_CLASSNAME}__card-section`

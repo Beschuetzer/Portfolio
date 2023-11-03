@@ -46,7 +46,7 @@ export const BridgeArrowButton: React.FC<BridgeArrowButtonProps> = ({
 		};
 
 		handleDisplay();
-	}, [currentBridgeSection, bridgeSections, clickedBridgeInfoButtonCount]);
+	}, [currentBridgeSection, bridgeSections, clickedBridgeInfoButtonCount, direction, bridgeTransitionHidingLogic.leftDisplayCondition, bridgeTransitionHidingLogic.rightDisplayCondition]);
 
 	const handleClick = (e: MouseEvent) => {
 		const MAX_BRIDGE_SECTION = 3;
