@@ -755,7 +755,7 @@ $scale-y-amount: .25;
 	justify-items: center;
 	align-items: center;
 	grid-auto-rows: min-content;
-	height: calc(100vh - $page-nav-top);
+	max-height: calc(100vh - $page-nav-top);
 	transition: opacity $animation-duration * 2.5 $animation-easing-standard;
 	overflow-y: auto;
 	padding-bottom: $default-font-size * 2;

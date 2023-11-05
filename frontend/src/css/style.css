@@ -1414,7 +1414,7 @@ body {
   justify-items: center;
   align-items: center;
   grid-auto-rows: min-content;
-  height: calc(100vh - (6.6752rem + 1.4rem * 1));
+  max-height: calc(100vh - (6.6752rem + 1.4rem * 1));
   transition: opacity 1.25s ease;
   overflow-y: auto;
   padding-bottom: 2.8rem;
@@ -4448,7 +4448,7 @@ body {
   cursor: pointer;
   position: absolute;
   bottom: 2.1rem;
-  z-index: 10;
+  z-index: 10000;
   border-radius: 50%;
   width: calc((6.6752rem + 0.29vw) / var(--bridge-arrow-hover-scale-amount));
   height: calc((6.6752rem + 0.29vw) / var(--bridge-arrow-hover-scale-amount));
