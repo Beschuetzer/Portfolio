@@ -399,7 +399,6 @@ export const Card: React.FC<CardProps> = ({
   const handleCardClick = (e: MouseEventHandler<HTMLElement>) => {
     (e as any).stopPropagation();
         const clickedCard = cardRef.current as HTMLElement;
-    closeAllOtherOpenCards(videoRef?.current, clickedCard);
     if (
       clickedCard?.classList.contains(CARD_DONE_CLASSNAME) ||
       clickedCard?.classList.contains(CARD_OPEN_CLASSNAME)
@@ -419,6 +418,7 @@ export const Card: React.FC<CardProps> = ({
 
     setTimeout(() => {
       changeSectionTitle(titleRef);
+      closeAllOtherOpenCards(videoRef?.current, clickedCard);
       openCard(
         video as HTMLVideoElement,
         clickedCard as HTMLElement,

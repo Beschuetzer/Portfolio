@@ -56,9 +56,7 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
         );
         const video = innerRef.current;
         if (video) {
-          // console.log({ time: percent * video.duration });
           video.currentTime = percent * video.duration;
-          //   console.log({ videoTime: video.currentTime });
         }
         progressBarOnClick && progressBarOnClick(percent);
         setProgressBarValue(percent);
