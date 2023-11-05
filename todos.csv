@@ -1,6 +1,3 @@
-Bridge page: 
-  -figure out issue with own phone scrolling to section 2.
-
 React best practices re-working
   -use lazy loading (https://www.youtube.com/watch?v=JU6sl_yyZqs) for images in carousel?
   -pages with audio need to know when player is open and adjust padding bottom

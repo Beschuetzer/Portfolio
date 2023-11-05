@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import { useEffect } from "react";
 import {
 	DISPLAY_NONE_CLASSNAME,
@@ -26,10 +26,10 @@ export const Bridge: React.FC<BridgeProps> = () => {
 	const bridgeHeroRef = useRef<HTMLDivElement>(null);
 	const dispatch = useAppDispatch();
 	const isMobile = useAppSelector(isMobileSelector);
-	const hero = bridgeHeroRef.current?.querySelector(`.${BRIDGE_HERO_CLASSNAME}`);
-	const heroMore = bridgeHeroRef.current?.querySelector(
+	const hero = useMemo(() => bridgeHeroRef.current?.querySelector(`.${BRIDGE_HERO_CLASSNAME}`), []);
+	const heroMore = useMemo(() => bridgeHeroRef.current?.querySelector(
 		`.${BRIDGE_HERO_CLASSNAME}__more`,
-	);
+	), []);
 
 	useEffect(() => {
 		setLinearGradientCssCustomProp();

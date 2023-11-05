@@ -71,6 +71,7 @@ export const YORK_B2E_URL = "https://yorksolutions.net/b2e-career-seekers/"
 //#region Globally-relevant Constants
 export const ANIMATION_DURATION = 500;
 export const ANIMATION_DURATION_WAIT_FACTOR = 1.1;
+export const BRIDGE_INFO_BUTTON_CLICK_COUNT_MAX = 2;
 export const MOBILE_BREAK_POINT_WIDTH = 1100;
 export const PAGE_NAV_WIDTH_AT_SWITCH_OFFSET = 192;
 //#endregion
