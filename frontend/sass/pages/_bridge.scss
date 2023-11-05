@@ -50,14 +50,12 @@
 
 	&__section {
 		backface-visibility: hidden;
+		width: 100vw;
 		height: var(--bridge-section-height);
 		padding: var(--bridge-section-padding);
 		z-index: 2;
-		position: relative;
-		width: 100vw;
 		background-color: var(--color-primary-3);
 		color: rgba($color-primary-bridge-1, $resume-color-opacity);
-		// left: 100vw;
 		transition: transform $animation-duration * 0.5 linear;
 
 		@include respond(nav-switch) {
@@ -78,6 +76,16 @@
 			text-align: center;
 			@include respond(small-font) {
 				font-size: $font-size-nine;
+			}
+		}
+
+		&-container {
+			display: flex;
+			flex-direction: row;
+			transition: transform $animation-duration ease;
+
+			@include respond(nav-switch) {
+				flex-direction: column;
 			}
 		}
 
@@ -119,12 +127,12 @@
 
 		&:nth-of-type(1) {
 			// left: 0;
-			background-image: $bridge-card-section-1-gradient,
-				url(getSvgBackground(
-					bridge-section-1,
-					$color-bridge-section-svg-1,
-					$color-primary-bridge-2
-				));
+			background-image: $bridge-card-section-1-gradient;
+				// url(getSvgBackground(
+				// 	bridge-section-1,
+				// 	$color-bridge-section-svg-1,
+				// 	$color-primary-bridge-2
+				// ));
 			@include respond(tab-land) {
 				background-image: $bridge-card-section-1-gradient;
 			}
@@ -160,12 +168,12 @@
 		}
 
 		&:nth-of-type(2) {
-			background-image: $bridge-card-section-2-gradient,
-				url(getSvgBackground(
-					bridge-section-2,
-					$color-bridge-section-svg-1,
-					$color-bridge-section-svg-1
-				));
+			background-image: $bridge-card-section-2-gradient;
+				// url(getSvgBackground(
+				// 	bridge-section-2,
+				// 	$color-bridge-section-svg-1,
+				// 	$color-bridge-section-svg-1
+				// ));
 			background-size: cover;
 
 			@include respond(tab-land) {
@@ -219,12 +227,12 @@
 		}
 
 		&:nth-of-type(3) {
-			background-image: $bridge-card-section-3-gradient,
-				url(getSvgBackground(
-					bridge-section-3,
-					$color-bridge-section-svg-3,
-					$color-primary-bridge-1
-				));
+			background-image: $bridge-card-section-3-gradient;
+			// url(getSvgBackground(
+			// 	bridge-section-1,
+			// 	$color-bridge-section-svg-1,
+			// 	$color-primary-bridge-2
+			// ));
 
 			@include respond(nav-switch) {
 				background-image: $bridge-card-section-3-gradient;
@@ -264,13 +272,13 @@
 		}
 
 		&:nth-of-type(4) {
-			// left: 0;
-			background-image: $bridge-card-section-1-gradient,
-				url(getSvgBackground(
-					bridge-section-1,
-					$color-bridge-section-svg-1,
-					$color-primary-bridge-2
-				));
+			background-image: $bridge-card-section-1-gradient;
+				// url(getSvgBackground(
+				// 	bridge-section-3,
+				// 	$color-bridge-section-svg-3,
+				// 	$color-primary-bridge-1
+				// ));
+			
 			@include respond(tab-land) {
 				background-image: $bridge-card-section-1-gradient;
 			}
@@ -302,20 +310,6 @@
 					rgba(var(--color-primary-4-rgb), 0.5) 75%,
 					rgba(var(--color-primary-3-rgb), 0.5) 100%
 				);
-			}
-		}
-
-		&:nth-of-type(n + 2) {
-			position: absolute;
-			// top: 100vh;
-			left: 0;
-			transform: translateX(100vw);
-
-			@include respond(nav-switch) {
-				position: relative;
-				top: 0;
-				left: 0;
-				transform: translateX(0);
 			}
 		}
 	}
@@ -369,6 +363,7 @@
 	&__page-nav-link {
 		// @include link-animating;
 		cursor: pointer;
+		width: auto;
 		opacity: 0.75;
 		color: var(--bridge-page-nav-link-color);
 		transition: color $animation-duration / 2 $animation-easing-standard,
@@ -835,25 +830,6 @@ $padding-nav-switch: $default-font-size * 0.5;
 }
 
 .page-nav-bridge {
-}
-
-.slide-left {
-	transform: translateX(-100vw) !important;
-	@include respond(nav-switch) {
-		transform: translateX(0) !important;
-	}
-}
-
-.slide-right {
-	transform: translateX(100vw) !important;
-	@include respond(nav-switch) {
-		transform: translateX(0) !important;
-	}
-}
-
-.current-section {
-	transform: translateX(0) !important;
-	z-index: $navbar-full-z-index - 1;
 }
 
 // .bridge-page,

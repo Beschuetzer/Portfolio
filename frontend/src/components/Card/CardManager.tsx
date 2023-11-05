@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 import { useEffect, useCallback } from "react";
 import { checkForParentOfType } from "../../helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks";
@@ -59,7 +59,7 @@ export const CardManager: React.FC<CardManagerProps> = ({
 		if (secondRowCardNumber !== lastSecondRowCardNumber) {
 			if (secondRowCardNumber) dispatch(setLastSecondRowCardNumber(secondRowCardNumber));
 		}
-	}, [lastSecondRowCardNumber, setLastSecondRowCardNumber, dispatch, bridgeCards]);
+	}, [lastSecondRowCardNumber, dispatch, bridgeCards]);
 	//#endregion
 	
 	//#region Side FXs
@@ -176,7 +176,7 @@ export const CardManager: React.FC<CardManagerProps> = ({
 		return () => {
 			window.removeEventListener("click", handleClick);
 		};
-	}, [isCardVideoOpen, setIsCardVideoOpen, dispatch]);
+	}, [isCardVideoOpen, dispatch]);
 	//#endregion
 
 	return <React.Fragment>{children}</React.Fragment>;

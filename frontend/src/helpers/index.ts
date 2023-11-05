@@ -85,7 +85,7 @@ export function closeCarouselItem(
 	resetArrowButtonClassnames();
 }
 
-export const closeVideo = (video: HTMLVideoElement) => {
+export const closeVideo = (video: HTMLVideoElement | null) => {
 	if (!video) return;
 	video.pause();
 	video.currentTime = 0;

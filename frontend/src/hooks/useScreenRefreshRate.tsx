@@ -74,6 +74,10 @@ export const useScreenRefreshRate = () => {
 				}
 			}
 		}, true);
+
+		return () => {
+			fpsReturned.current = [];
+		}
 	}, [screenRefreshRate])
 
     return [screenRefreshRate, setScreenRefreshRate] as [number, React.Dispatch<React.SetStateAction<number>>];

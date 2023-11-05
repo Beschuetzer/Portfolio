@@ -11,9 +11,9 @@ interface BridgeCardProps {
 	titleSubtitle?: string,
 }
 
-export const BridgeSection: React.FC<BridgeCardProps> = ({
+const BridgeSectionComponent: React.FC<BridgeCardProps> = ({
 	children,
-	selectorToUseForSubtitle: selectorToUseForSubtitle = () => '',
+	selectorToUseForSubtitle = () => '',
 	titleSize = "two",
 	titleContent,
 	titleSubtitle = "",
@@ -33,3 +33,5 @@ export const BridgeSection: React.FC<BridgeCardProps> = ({
 		</div>
 	);
 };
+
+export const BridgeSection = React.memo(BridgeSectionComponent);

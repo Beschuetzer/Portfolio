@@ -16,21 +16,19 @@ import { BridgeSectionHidingLogic } from "./BridgeSectionHidingLogic";
 
 type BridgeHeroProps = {}
 
-export const BridgeHero = forwardRef<HTMLDivElement, BridgeHeroProps> (({
-
-}, ref) => {
+export const BridgeHero = forwardRef<HTMLDivElement, BridgeHeroProps> ((props, ref) => {
 	//#region Init
-	const [isVisible, setIsVisible] = useState(true);
+	const clickedBridgeInfoButtonCount = useAppSelector(clickedBridgeInfoButtonCountSelector);
+	const isMobile = useAppSelector(isMobileSelector);
+	const [isVisible, setIsVisible] = useState(!isMobile);
 	const dispatch = useAppDispatch();
 	const sounds = useAppSelector(loadedSoundsSelector);
-	const isMobile = useAppSelector(isMobileSelector);
-	const clickedBridgeInfoButtonCount = useAppSelector(clickedBridgeInfoButtonCountSelector);
 	const checkBoxRef = useRef<any>(null);
 	const backgroundRef = useRef<any>(null);
 	const hero = useRef<any>(null);
 	const heroMore = useRef<any>(null);
 	const displayNoneTimeoutRef = useRef<any>(null);
-	const bridgeSectionHidingLogic = new BridgeSectionHidingLogic(clickedBridgeInfoButtonCount, 0, 0);
+	const bridgeSectionHidingLogic = new BridgeSectionHidingLogic(clickedBridgeInfoButtonCount, 0, 0, isMobile);
 	//#endregion
 
 	//#region Functions/Handlers
@@ -57,7 +55,7 @@ export const BridgeHero = forwardRef<HTMLDivElement, BridgeHeroProps> (({
 		displayNoneTimeoutRef.current = setTimeout(() => {
 			setIsVisible(bridgeSectionHidingLogic.isBridgeHeroVisible);
 		}, ANIMATION_DURATION * 1.25)
-	}, [clickedBridgeInfoButtonCount])
+	}, [bridgeSectionHidingLogic.isBridgeHeroVisible, clickedBridgeInfoButtonCount])
 	//#endregion
 
 	//#region JSX

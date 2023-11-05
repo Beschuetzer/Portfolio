@@ -20,14 +20,8 @@
 	transform: scale(var(--card-scale-amount));
 	transition: transform $animation-duration / 3 $animation-easing-standard;
 
-	@include respond(tab-port) {
-		margin: $default-font-size 0;
-	}
-	@include respond(phone) {
-		margin: $default-font-size * 1.5 0;
-	}
-	@include respond(small-font) {
-		margin: $default-font-size * 3 0;
+	@include respond(nav-switch) {
+		margin: .25vw 0;
 	}
 
 	& * {
