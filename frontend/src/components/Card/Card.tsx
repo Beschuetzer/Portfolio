@@ -398,7 +398,7 @@ export const Card: React.FC<CardProps> = ({
 
   const handleCardClick = (e: MouseEventHandler<HTMLElement>) => {
     (e as any).stopPropagation();
-    const clickedCard = cardRef.current as HTMLElement;
+        const clickedCard = cardRef.current as HTMLElement;
     closeAllOtherOpenCards(videoRef?.current, clickedCard);
     if (
       clickedCard?.classList.contains(CARD_DONE_CLASSNAME) ||
@@ -445,36 +445,24 @@ export const Card: React.FC<CardProps> = ({
     // }, CARD_MOUSE_LEAVE_INDEX_SWITCH_DURATION);
   };
 
-  const handleProgressBarClick = (
-    videoRef: RefObject<HTMLVideoElement>,
-    cardRef: RefObject<HTMLElement>,
-    e: () => void
-  ) => {
-    const clientX = (e as any).clientX;
-    const progressBar = (e as any).currentTarget;
-    if (!progressBar) return;
-
-    const percent = getPercentOfProgressBar(progressBar, clientX);
-
-    const video = videoRef.current;
-    if (!video) return;
-    video.currentTime = percent * video.duration;
-
-    const card = cardRef.current;
-    if (!card) return;
-    if (!card.classList.contains(CARD_PLAYING_CLASSNAME))
-      card.classList.add(CARD_STOPPED_CLASSNAME);
-    if (percent < 1) card.classList.remove(CARD_DONE_CLASSNAME);
-    else card.classList.add(CARD_DONE_CLASSNAME);
-  };
-
   const onCloseChildren = () => {
     setShowChildren(false);
   };
 
-  const onProgressBarClick = (e: MouseEventHandler<HTMLElement>) => {
-    handleProgressBarClick(videoRef, cardRef, e as any);
-  };
+  const onProgressBarClick = useCallback((percent: number) => {
+    const card = cardRef.current;
+    if (!card) return;
+    if (!card.classList.contains(CARD_PLAYING_CLASSNAME)) {
+      card.classList.add(CARD_STOPPED_CLASSNAME);
+    }
+
+    if (percent !== undefined && percent < 1) {
+      card.classList.remove(CARD_DONE_CLASSNAME);
+    }
+    else {
+      card.classList.add(CARD_DONE_CLASSNAME);
+    }
+  }, []);
 
   const openCard = (
     video: HTMLVideoElement,
@@ -603,12 +591,12 @@ export const Card: React.FC<CardProps> = ({
           {title}
         </h4>
         <Video
+          ref={videoRef}
           className={FOREGROUND_VIDEO_CLASSNAME}
           type="mp4"
           src={video}
           autoPlay={false}
           loop={false}
-          reference={videoRef}
           progressBarRef={progressBarRef}
           progressBarOnClick={onProgressBarClick}
         >
