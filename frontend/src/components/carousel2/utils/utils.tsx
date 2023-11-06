@@ -1,4 +1,3 @@
-import { replaceCharacters } from "../../../helpers";
 import { OptionsLogic } from "../business-logic/OptionsLogic";
 import { RegexpPattern } from "../business-logic/RegexpPattern";
 import { StylingLogic } from "../business-logic/StylingLogic";
@@ -7,13 +6,11 @@ import {
     CAROUSEL_ITEM_THUMBNAIL_BACKGROUND_OPACITY_DEFAULT,
     CAROUSEL_MAX_HEIGHT_DEFAULT,
     CLASSNAME__ROOT,
-    IMAGE_EXTENSIONS,
     MOBILE_PIXEL_WIDTH,
     NUMBER_OF_MS_IN_A_SECOND,
     NUMBER_OF_PAGES_INITIAL,
     NUMBER_OF_SECONDS_IN_A_MINUTE,
     TOOLBAR_TIME_STRING_SECTION_DIVIDER,
-    VIDEO_EXTENSIONS
 } from "../constants";
 import {
     Coordinate,
@@ -432,6 +429,27 @@ export function onArrowButtonClick(
         setCurrentPage(currentPage >= numberOfPages - 1 ? 0 : currentPage + 1);
     }
 }
+
+export const replaceCharacters = (
+    str: string,
+    characterMappings: [string, string][] = []
+  ) => {
+    const replacements = [
+      ["-", " "],
+      ["_", " "],
+    ];
+  
+    let strToUse = str;
+    let replacementsToUse = replacements;
+    if (characterMappings.length > 0) replacementsToUse = characterMappings;
+  
+    for (let i = 0; i < replacementsToUse.length; i++) {
+      const characterMapping = replacementsToUse[i];
+      const splitStr = strToUse.split(characterMapping[0]);
+      strToUse = splitStr.join(characterMapping[1]);
+    }
+    return strToUse;
+  };
 
 export function setCssCustomProperty(propertyName: string, newValue: string) {
     document.documentElement.style.setProperty(
