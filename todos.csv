@@ -1,4 +1,4 @@
--merge carousel_rework_final_2 branch into main after the package is up and running
+-merge carousel_rework_final_2 branch into main after the package is up and running (use pr)
 
 Carousel rework
   -add logic to only render the items on the current page + next page?
