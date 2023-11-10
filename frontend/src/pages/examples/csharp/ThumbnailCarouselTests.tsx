@@ -36,14 +36,14 @@ import { getComputedStyleCustom } from "../../../helpers";
 import { CSharpSection } from "../../../types";
 import { CSharpCardSection, CSharpLayout } from "..";
 
-import { Carousel } from "../../../components/carousel2/components/Carousel";
-import {
-  CarouselActions,
-  ModifierKey,
-  ValidKey,
-} from "../../../components/carousel2/types";
-import { CarouselItemProps } from "../../../components/carousel2/components/CarouselItem";
-// import { Carousel, CarouselActions, CarouselItemProps, ModifierKey, ValidKey } from "react-thumbnail-carousel";
+// import { Carousel } from "../../../components/carousel2/components/Carousel";
+// import {
+//   CarouselActions,
+//   ModifierKey,
+//   ValidKey,
+// } from "../../../components/carousel2/types";
+// import { CarouselItemProps } from "../../../components/carousel2/components/CarouselItem";
+import { Carousel, CarouselActions, CarouselItemProps, ModifierKey, ValidKey } from "react-thumbnail-carousel";
 
 //#region Carousel Items
 const customButtons = {
@@ -1635,6 +1635,9 @@ const layoutAboveWithItemHeightAndFontFamily = (
 	<Carousel
 		items={items}
 		options={{
+			thumbnail: {
+				size: 150,
+			},
 			layout: {
 				itemDisplayLocation: 'above',
 			},
