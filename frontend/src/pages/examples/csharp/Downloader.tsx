@@ -86,6 +86,11 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                 layout: {
                   itemDisplayLocation: "above",
                 },
+                container: {
+                  style: {
+                    borderRadius: 0,
+                  },
+                },
                 thumbnail: {
                   size: 200,
                   descriptionOverlay: {
@@ -99,15 +104,28 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                     colorTwo: getComputedStyleCustom("--color-primary-2"),
                     colorThree: getComputedStyleCustom("--color-primary-3"),
                     colorFour: getComputedStyleCustom("--color-primary-3"),
-                    colorFive: getComputedStyleCustom("--color-primary-1"),
+                    colorFive: getComputedStyleCustom("--color-primary-4"),
+                    colorGreyOne: "#ddd",
                   },
                   container: {
-                    backgroundColor: "white",
+                    backgroundColor: "#f9f7f7",
                   },
                   modal: {
                     backgroundColor:
                       getComputedStyleCustom("--color-primary-1"),
                     textColor: getComputedStyleCustom("--color-primary-3"),
+                  },
+                  toolbar: {
+                    progressBar: {
+                      screenshotViewer: {
+                        textOrForegroundColor: getComputedStyleCustom("--color-primary-1"),
+                      }
+                    },
+                  },
+                  elements: {
+                    all: {
+                      fillColor: getComputedStyleCustom("--color-primary-1"),
+                    },
                   },
                 },
               }}

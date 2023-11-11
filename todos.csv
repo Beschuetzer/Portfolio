@@ -1,3 +1,5 @@
+-download is done (use as template for the others) (need to re-test the finished ones)
+-figure out how to prevent the issue where changing pages doesn't cause carousel to grab the correct colors
 -finish integrating Carousel from npm in
 -delete old carousel and carousel2
 -merge carousel_rework_final_2 into main
