@@ -6,9 +6,6 @@ navigate to root and run `npm start`
 
 navigate to ./frontend and run `npm start`
 
-# Running Carousel Sass
-
-navigate to ./frontend and run `npm run carousel:sass`
 
 # Getting Started with Create React App
 
