@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
 import { capitalize, replaceCharacters, scrollToSection } from "../../helpers";
@@ -10,11 +10,18 @@ import { BridgeSectionLink } from "../../pages";
 import { clickedBridgeInfoButtonCountSelector, currentBridgeSectionSelector } from "../../slices/bridgeSlice";
 import { isMobileSelector, previousUrlSelector, setPreviousUrl } from "../../slices/generalSlice";
 import { Match } from "../../types";
-import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAME, BRIDGE_PAGE_NAV_LINK_COLOR_CUSTOM_PROPERTY_NAME, BRIDGE_SECTION_COLORS, PAGE_NAV_ACTIVE_CLASSNAME, PAGE_NAV_CLASSNAME } from "../constants";
+import { bridgeSectionNames, BRIDGE_CURRENT_SECTION_CLASSNAME, BRIDGE_PAGE_NAV_LINK_CLASSNAME, PAGE_NAV_ACTIVE_CLASSNAME, PAGE_NAV_CLASSNAME } from "../constants";
 
 type PageNavProps = {
 	match: { url: string };
 }
+
+/**
+*This seems to fix the issue where clicking an item and then scrolling to it starts off with a small amount already viewed.
+**/
+const AMOUNT_PROGRESSED_OFFSET = 62;
+const MAX_SCROLL_OFFSET_PERCENT = 1;
+const CSS_CLASS = "page-nav";
 
 export const PageNav: React.FC<PageNavProps> = ({
 	match,
@@ -23,36 +30,46 @@ export const PageNav: React.FC<PageNavProps> = ({
 	const dispatch = useAppDispatch();
 	const browser = useBroswerDetection();
 	const location = useLocation();
-	const previousUrl  = useAppSelector(previousUrlSelector);
-	const isMobile  = useAppSelector(isMobileSelector);
-	const clickedBridgeInfoButtonCount  = useAppSelector(clickedBridgeInfoButtonCountSelector);
-	const currentBridgeSection  = useAppSelector(currentBridgeSectionSelector);
+	const previousUrl = useAppSelector(previousUrlSelector);
+	const isMobile = useAppSelector(isMobileSelector);
+	const clickedBridgeInfoButtonCount = useAppSelector(clickedBridgeInfoButtonCountSelector);
+	const currentBridgeSection = useAppSelector(currentBridgeSectionSelector);
 	const shouldHandleScroll = useRef(true);
 	const [sectionsToRender, setsectionsToRender] = useState<NodeListOf<Element> | any[]>([]);
-	const cssClass = "page-nav";	
-	const isBridgePage = match.url.match(/bridge$/i);
-	const docStyle = getComputedStyle(document.documentElement);
-	let previousSectionBottom: number | null = 0;
-	const pageNavElement = document.querySelector(`.${PAGE_NAV_CLASSNAME}`) as HTMLElement;
-	const maxScrollOffsetPercent = 1;
-	const scrollRefreshLimit = browser?.os?.match(/mac/i) ? 50 : isMobile ? 10 : 1;
-	const scrollSectionDelimiterOffset = window.innerHeight / 6;
+	const isBridgePage = useMemo(() => match.url.match(/bridge$/i), [match.url]);
+	const docStyle = useMemo(() => getComputedStyle(document.documentElement), []);
+	const previousSectionBottomRef = useRef<number | null>(0);
+	const pageNavElement = useMemo(() => document.querySelector(`.${PAGE_NAV_CLASSNAME}`) as HTMLElement, []);
+	const scrollRefreshLimit = useMemo(() => browser?.os?.match(/mac/i) ? 50 : isMobile ? 10 : 1, [browser?.os, isMobile]);
+	const scrollSectionDelimiterOffset = useMemo(() => window.innerHeight / 6, []);
 	//#endregion
 
 	//#region Functions
-	const activateElement = (element: HTMLElement, percent: number) => {
+	const getLinearGradient = useCallback((percent: number) => {
+		const mainColor = docStyle.getPropertyValue("--color-primary-4");
+		const progressColor = docStyle.getPropertyValue("--color-primary-2").trim();
+
+		return `
+		linear-gradient(to right, 
+		  ${progressColor.trim()} 0%, 
+		  ${progressColor.trim()} ${percent}%,
+		  ${mainColor} ${percent}%,
+		  ${mainColor} 100%)`;
+	}, [docStyle])
+
+	const activateElement = useCallback((element: HTMLElement, percent: number) => {
 		if (!element) return;
 		(element.parentNode as any).classList.add(PAGE_NAV_ACTIVE_CLASSNAME);
 		element.style.backgroundImage = getLinearGradient(percent);
-	}
+	}, [getLinearGradient])
 
-	const deactivateElement = (element: HTMLElement) => {
+	const deactivateElement = useCallback((element: HTMLElement) => {
 		if (!element) return;
 		(element.parentNode as any).classList.remove(PAGE_NAV_ACTIVE_CLASSNAME);
 		element.style.backgroundImage = getLinearGradient(0);
-	}
+	}, [getLinearGradient])
 
-	const checkShouldSetPreviousUrl = (
+	const checkShouldSetPreviousUrl = useCallback((
 		match: Match,
 		previousUrl: string,
 	) => {
@@ -64,21 +81,10 @@ export const PageNav: React.FC<PageNavProps> = ({
 				dispatch(setPreviousUrl(currentUrl));
 			}, 1)
 		}
-	};
+	}, [dispatch])
 
-	const getLinearGradient = (percent: number) => {
-		const mainColor = docStyle.getPropertyValue("--color-primary-4");
-		const progressColor = docStyle.getPropertyValue("--color-primary-2").trim();
-	
-		return `
-		linear-gradient(to right, 
-		  ${progressColor.trim()} 0%, 
-		  ${progressColor.trim()} ${percent}%,
-		  ${mainColor} ${percent}%,
-		  ${mainColor} 100%)`;
-	};
 
-	const getSectionNames = () => {
+	const getSectionNames = useCallback(() => {
 		const sectionNames = [];
 		if (!sectionsToRender) return [];
 		for (let i = 0; i < sectionsToRender?.length; i++) {
@@ -87,9 +93,9 @@ export const PageNav: React.FC<PageNavProps> = ({
 			sectionNames.push(capitalized);
 		}
 		return sectionNames;
-	};
-	
-	const resetGradientPercents = (
+	}, [sectionsToRender]);
+
+	const resetGradientPercents = useCallback((
 		sections: any,
 	) => {
 		for (let i = 0; i < sections.length; i++) {
@@ -98,14 +104,14 @@ export const PageNav: React.FC<PageNavProps> = ({
 			const pageNavSectionElement = document.querySelector(
 				`.page-nav__section-${pageNavSectionName.toLowerCase()}`,
 			) as HTMLElement;
-	
+
 			if (!pageNavSectionElement) return;
-	
+
 			pageNavSectionElement.style.removeProperty('background-image');
 		}
-	}
-	
-	const setGradientPercent = (
+	}, []);
+
+	const setGradientPercent = useCallback((
 		sections: any,
 		currentSection: Element | null,
 		percentThroughSection: number,
@@ -123,10 +129,10 @@ export const PageNav: React.FC<PageNavProps> = ({
 				deactivateElement(pageNavSectionElement);
 				continue;
 			}
-			
+
 			if (!pageNavSectionElement || !pageNavSectionElement.parentNode) {
 				return;
-			} 
+			}
 			else if (
 				!currentSection?.className.match(new RegExp(pageNavSectionName, "ig"))
 			) {
@@ -135,9 +141,9 @@ export const PageNav: React.FC<PageNavProps> = ({
 				activateElement(pageNavSectionElement, percentThroughSection);
 			}
 		}
-	};
-	
-	const setBridgeColors = (
+	}, [activateElement, deactivateElement]);
+
+	const setBridgeColors = useCallback((
 		currentBridgeSection: number,
 		clickedBridgeInfoButtonCount: number,
 	) => {
@@ -145,12 +151,12 @@ export const PageNav: React.FC<PageNavProps> = ({
 		const sectionNames = document.querySelectorAll(
 			`.${BRIDGE_PAGE_NAV_LINK_CLASSNAME}`,
 		);
-	
+
 		//Setting BRIDGE_CURRENT_SECTION_CLASSNAME CSS class
 		for (let i = 0; i < sectionNames.length; i++) {
 			const sectionName = sectionNames[i];
 			if (!sectionName) return;
-	
+
 			if (clickedBridgeInfoButtonCount >= 2) {
 				sectionName.classList.remove("full-opacity");
 				if (i === currentBridgeSection)
@@ -159,8 +165,8 @@ export const PageNav: React.FC<PageNavProps> = ({
 			} else {
 				sectionName.classList.add("full-opacity");
 			}
-		}		
-	};
+		}
+	}, []);
 	//#endregion
 
 	//#region Side FX
@@ -182,7 +188,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 			let percentThroughSection = 0;
 
 			//Reseting the top to 0
-			if (scrollY < 10) previousSectionBottom = 0;
+			if (scrollY < 10) previousSectionBottomRef.current = 0;
 
 			for (let i = 0; i < sections.length; i++) {
 				const section = sections[i];
@@ -242,7 +248,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 
 		function getIsScrollEnd(scrollY: number) {
 			//note: assumes that first child of main is page content
-	
+
 			let scrollHeight = document.body.scrollHeight;
 			if (scrollHeight === 0) {
 				const main = document.querySelector('main') as HTMLElement;
@@ -251,8 +257,8 @@ export const PageNav: React.FC<PageNavProps> = ({
 			}
 			const maxScrollY = scrollHeight - window.innerHeight;
 			const maxScrollOffset =
-				(scrollHeight * maxScrollOffsetPercent) / 100;
-	
+				(scrollHeight * MAX_SCROLL_OFFSET_PERCENT) / 100;
+
 			return scrollY >= maxScrollY - maxScrollOffset;
 		}
 
@@ -263,34 +269,44 @@ export const PageNav: React.FC<PageNavProps> = ({
 			boundingRectToUse: DOMRect,
 			boundingRects: DOMRect[],
 		) {
-			let percentThroughSection = 0;
+			let percentThroughSection = 0; //as an integer (not decimal)
 			let currentSection = null;
+			let amountProgressed = 0;
 
 			if (
 				(boundingRectToUse.bottom <= scrollSectionDelimiterOffset && i > 0) ||
 				i === 0
 			) {
-				currentSection = sections[indexOfCurrentSection + 1];
-				if (!previousSectionBottom) previousSectionBottom = window.scrollY;
+				if (sections.length === 1) {
+					amountProgressed = window.scrollY - AMOUNT_PROGRESSED_OFFSET;
+					const boundingRectCurrent = boundingRects[0];
+					const endScrollAmount = boundingRectCurrent.height - window.innerHeight + AMOUNT_PROGRESSED_OFFSET * 2;
+					percentThroughSection = amountProgressed <= 0 ? 0 : Math.abs(amountProgressed / endScrollAmount * 100);
+				} else {
+					currentSection = sections[indexOfCurrentSection + 1];
+					if (!previousSectionBottomRef?.current) previousSectionBottomRef.current = window.scrollY;
 
-				let boundingRectNext =
-					boundingRects[i < 1 ? 0 : indexOfCurrentSection + 1];
+					let boundingRectNext =
+						boundingRects[i < 1 ? 0 : indexOfCurrentSection + 1];
 
-				const addedPercent =
-					(scrollSectionDelimiterOffset /
-						Math.abs(boundingRectNext.bottom - boundingRectNext.top)) *
-					100;
+					const addedPercent =
+						(scrollSectionDelimiterOffset /
+							Math.abs(boundingRectNext.bottom - boundingRectNext.top)) *
+						100;
 
-				const amountProgressed = window.scrollY - previousSectionBottom;
-				const endAmount = scrollSectionDelimiterOffset;
+					amountProgressed = window.scrollY - previousSectionBottomRef?.current - AMOUNT_PROGRESSED_OFFSET;
+					const endAmount = scrollSectionDelimiterOffset;
 
-				percentThroughSection = (amountProgressed / endAmount) * addedPercent;
+					percentThroughSection = amountProgressed <= 0 ? 0 : (amountProgressed / endAmount) * addedPercent;
 
-				// console.log('percentThroughSection =', percentThroughSection);
-				if (percentThroughSection >= addedPercent)
-					percentThroughSection = addedPercent;
+					// console.log('percentThroughSection =', percentThroughSection);
+					if (percentThroughSection >= addedPercent) {
+						percentThroughSection = addedPercent;
+					}
+				}
+
 			} else {
-				previousSectionBottom = null;
+				previousSectionBottomRef.current = null;
 				const addedPercent =
 					(scrollSectionDelimiterOffset /
 						Math.abs(boundingRectToUse.bottom - boundingRectToUse.top)) *
@@ -312,16 +328,16 @@ export const PageNav: React.FC<PageNavProps> = ({
 		return () => {
 			document.removeEventListener("scroll", handleScroll);
 		};
-	}, []);
-	
+	}, [scrollRefreshLimit, scrollSectionDelimiterOffset, setGradientPercent]);
+
 	useEffect(() => {
 		const sections = document.querySelectorAll("[data-section]");
-		
+
 		setTimeout(() => {
 			resetGradientPercents(sections);
 		}, 100)
 		setsectionsToRender(sections);
-	}, [location])
+	}, [location, resetGradientPercents])
 	//#endregion
 
 	//#region JSX
@@ -359,16 +375,16 @@ export const PageNav: React.FC<PageNavProps> = ({
 
 		return sectionNames.map((sectionName, index, array) => {
 			return (
-				<li key={index} className={`${cssClass}__section-group`}>
+				<li key={index} className={`${CSS_CLASS}__section-group`}>
 					<h2
-						onClick={(e: any) => {				
+						onClick={(e: any) => {
 							scrollToSection(
 								document.getElementById(
 									replaceCharacters((e.currentTarget as any)?.textContent.toLowerCase(), [[' ', '-']]),
 								) as HTMLElement
 							);
 						}}
-						className={`${cssClass}__section ${cssClass}__section-${sectionName}`}>
+						className={`${CSS_CLASS}__section ${CSS_CLASS}__section-${sectionName}`}>
 						{capitalize(replaceCharacters(sectionName, [['-', ' ']]))}
 					</h2>
 				</li>
@@ -377,7 +393,7 @@ export const PageNav: React.FC<PageNavProps> = ({
 	};
 
 	//hide if bridge page initial or landing page	
-	if (match.url === '/' || match.url?.match(/bridge$/i) && !isMobile && clickedBridgeInfoButtonCount <= 0) {
+	if ((match.url === '/' || match.url?.match(/bridge$/i)) && !isMobile && clickedBridgeInfoButtonCount <= 0) {
 		return null;
 	}
 	return ReactDOM.createPortal(

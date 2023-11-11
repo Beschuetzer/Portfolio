@@ -1,11 +1,13 @@
-React best practices re-working
+React best practices re-work (branch = sitenav_rework)
   -use lazy loading (https://www.youtube.com/watch?v=JU6sl_yyZqs) for images in carousel?
+  -figure out issue with SiteNav showing all items when touch device and around 1101px viewport width
+  -refactor to conform to SOLID principles (https://www.youtube.com/watch?v=MSq_DCRxOxw)
+  -convert backend to an apollo server?
   -pages with audio need to know when player is open and adjust padding bottom
   -bridge links move after clicking buttons (as opposed to github link)
   -replace as many document.querySelector calls with refs
   -add onPress handler to ArrowButton to be able to hide the elements on bridge page when switching left/right 
   -add more complext logic in SkillPopup sort to weight created date?
-  -re-work Carousel (should be pure re-useable component)
 
 
 JOB STUFF------------------------------------

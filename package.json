@@ -22,14 +22,20 @@
   "homepage": "https://github.com/Beschuetzer/Portfolio#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "debug": "^4.3.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
-    "graphql-request": "^3.4.0",
-    "debug": "^4.3.4"
+    "graphql-request": "^3.4.0"
   },
   "devDependencies": {
-    "@welldone-software/why-did-you-render": "^6.1.4"
+    "@welldone-software/why-did-you-render": "^6.1.4",
+    "eslint": "^8.40.0",
+    "eslint-config-semistandard": "^17.0.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1"
   },
   "engines": {
     "node": "16.x"

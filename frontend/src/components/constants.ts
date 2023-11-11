@@ -11,6 +11,7 @@ export const DOWNLOADER_PAGE_NAME = "downloader";
 export const PLAYLIST_SYNCER_PAGE_NAME = "playlist-syncer";
 export const REPLAY_PAGE_NAME = "replay";
 export const RESUME_PAGE_NAME = "resume";
+export const THUMBNAIL_CAROUSEL_NAME = "thumbnail-carousel";
 
 //note: and here
 export const PAGE_NAMES = [
@@ -39,6 +40,7 @@ export const PLAYLIST_SYNCER_URL = `/examples/${PLAYLIST_SYNCER_PAGE_NAME}`;
 export const REPLAY_VIEWER_URL = `/examples/${REPLAY_PAGE_NAME}`;
 export const REPLAY_LIVE_URL = `/${REPLAY_PAGE_NAME}`;
 export const RESUME_URL = `/${RESUME_PAGE_NAME}`;
+export const THUMBNAIL_CAROUSEL_URL = `/${THUMBNAIL_CAROUSEL_NAME}`;
 //#endregion
 
 //#region External URLs
@@ -213,6 +215,62 @@ export const bridgeSectionNames = [
 //#endregion
 
 //#region Misc
+/**
+*These should match the colors in _colors.scss
+**/
+export enum CarouselPages {
+  about = "about",
+  bridgeDemo = "bridgeDemo",
+  downloader = "downloader",
+  playlistSyncer = "playlistSyncer",
+  replayViewer = "replayViewer",
+}
+
+export const CAROUSEL_COLORS: {
+  [key in CarouselPages]: {
+    primary1: string;
+    primary2: string;
+    primary3: string;
+    primary4: string;
+    greyOne: string;
+  };
+} = {
+  about: {
+    primary1: "#161616",
+    primary2: "#c84b31",
+    primary3: "#31C9B0",
+    primary4: "#ecdbba",
+    greyOne: "#ddd",
+  },
+  bridgeDemo: {
+    primary1: "#28537b",
+    primary2: "#8ac5d0",
+    primary3: "#f4d262",
+    primary4: "#fbeeac",
+    greyOne: "#333",
+  },
+  downloader: {
+    primary1: "#f9f7f7",
+    primary2: "#dbe2ef",
+    primary3: "#3f72af",
+    primary4: "#112d4e",
+    greyOne: "#333",
+  },
+  playlistSyncer: {
+    primary1: "#ffc996",
+    primary2: "#ff8474",
+    primary3: "#9f5f80",
+    primary4: "#583d72",
+    greyOne: "#333",
+  },
+  replayViewer: {
+    primary1: "#28537b",
+    primary2: "#8ac6d0",
+    primary3: "#f4d262",
+    primary4: "#fbeeac",
+    greyOne: "#333",
+  },
+};
 export const BRIDGE_SECTION_COLORS: BridgeSectionColors = {
   0: {
     arrowNormal: {

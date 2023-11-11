@@ -1,7 +1,5 @@
 import { RefObject } from "react";
 import { closeVideo, removeClassFromAllChildren } from "../../helpers";
-import {
-} from "../Carousel/CarouselItem";
 import { FULLSCREEN_PARENT_CLASSNAME, CAROUSEL_ITEM_CLASSNAME, FULLSCREEN_CLASSNAME } from "../constants";
 
 interface CloseControlProps {
