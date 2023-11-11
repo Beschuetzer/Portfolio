@@ -1,5 +1,0 @@
-@use "sass:string";
-
-@function GetCustomPropertyValueFromVariable($customPropertyName) {
-    @return string.unquote(var(string.unquote('--#{$customPropertyName}')))
-}
