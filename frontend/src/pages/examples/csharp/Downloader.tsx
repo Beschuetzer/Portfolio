@@ -23,6 +23,7 @@ import img6Thumbnail from "../../../imgs/downloader/thumbnails/img6-thumbnail.pn
 
 import { CSharpCardSection } from "./CSharpCardSection";
 import {
+  CAROUSEL_COLORS,
   C_SHARP_CLASSNAME,
   DOWNLOADER_PAGE_NAME,
   GITHUB_URL,
@@ -31,13 +32,14 @@ import {
   PLAYLIST_SYNCER_URL,
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
-import { getComputedStyleCustom } from "../../../helpers";
 
 const sectionNames = ["Description", "Media", "Notes"];
 
 interface DownloaderProps {}
 
 export const Downloader: React.FC<DownloaderProps> = () => {
+
+
   return (
     <CSharpLayout
       sections={[
@@ -95,37 +97,31 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                   size: 200,
                   descriptionOverlay: {
                     hideDescriptionOverlayUnlessHovered: false,
-                    textColor: getComputedStyleCustom("--color-primary-4"),
+                    textColor: CAROUSEL_COLORS.downloader.primary4,
+                    background: {
+                      gradient: {
+                        start: {
+                          opacity: .9,
+                          color: CAROUSEL_COLORS.downloader.primary1,
+                        },
+                        end: {
+                          opacity: .9,
+                          color: CAROUSEL_COLORS.downloader.primary2,
+                        },
+                        angle: 270,
+                      },
+                    },
                   },
+                  currentItemBorder: `thick double ${CAROUSEL_COLORS.downloader.primary4}`,
                 },
                 styling: {
                   colorTheme: {
-                    colorOne: getComputedStyleCustom("--color-primary-1"),
-                    colorTwo: getComputedStyleCustom("--color-primary-2"),
-                    colorThree: getComputedStyleCustom("--color-primary-3"),
-                    colorFour: getComputedStyleCustom("--color-primary-3"),
-                    colorFive: getComputedStyleCustom("--color-primary-4"),
+                    colorOne: CAROUSEL_COLORS.downloader.primary1,
+                    colorTwo: CAROUSEL_COLORS.downloader.primary2,
+                    colorThree: CAROUSEL_COLORS.downloader.primary3,
+                    colorFour: CAROUSEL_COLORS.downloader.primary3,
+                    colorFive: CAROUSEL_COLORS.downloader.primary4,
                     colorGreyOne: "#ddd",
-                  },
-                  container: {
-                    backgroundColor: "#f9f7f7",
-                  },
-                  modal: {
-                    backgroundColor:
-                      getComputedStyleCustom("--color-primary-1"),
-                    textColor: getComputedStyleCustom("--color-primary-3"),
-                  },
-                  toolbar: {
-                    progressBar: {
-                      screenshotViewer: {
-                        textOrForegroundColor: getComputedStyleCustom("--color-primary-1"),
-                      }
-                    },
-                  },
-                  elements: {
-                    all: {
-                      fillColor: getComputedStyleCustom("--color-primary-1"),
-                    },
                   },
                 },
               }}

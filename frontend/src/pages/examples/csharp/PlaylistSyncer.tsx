@@ -16,9 +16,11 @@ import img3Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img3-thumbna
 import img4Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img4-thumbnail.png";
 
 import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
+import demoVideoThumbnail from "../../../clips/playlist-syncer/demo-thumbnail.png";
 import { CSharpCardSection } from "./CSharpCardSection";
 import Paragraph from "../../../typography/Paragraph";
 import {
+	CAROUSEL_COLORS,
   C_SHARP_CLASSNAME,
   DOWNLOADER_URL,
   GITHUB_URL,
@@ -28,7 +30,6 @@ import {
   WIKIPEDIA_MTP_URL,
 } from "../../../components/constants";
 import { Quote } from "../../../components/Quote";
-import { getComputedStyleCustom } from "../../../helpers";
 
 const sectionNames = ["Background", "Media", "Problem", "Approach"];
 
@@ -78,29 +79,40 @@ export const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
                 layout: {
                   itemDisplayLocation: "above",
                 },
+                container: {
+                  style: {
+                    borderRadius: 0,
+                  },
+                },
                 thumbnail: {
                   size: 200,
                   descriptionOverlay: {
                     hideDescriptionOverlayUnlessHovered: false,
-                    textColor: getComputedStyleCustom("--color-primary-4"),
+                    textColor: CAROUSEL_COLORS.playlistSyncer.primary4,
+                    background: {
+                      gradient: {
+                        start: {
+                          opacity: 0.9,
+                          color: CAROUSEL_COLORS.playlistSyncer.primary1,
+                        },
+                        end: {
+                          opacity: 0.9,
+                          color: CAROUSEL_COLORS.playlistSyncer.primary2,
+                        },
+                        angle: 270,
+                      },
+                    },
                   },
+                  currentItemBorder: `2px dotted ${CAROUSEL_COLORS.playlistSyncer.primary4}`,
                 },
                 styling: {
                   colorTheme: {
-                    colorOne: getComputedStyleCustom("--color-primary-1"),
-                    colorTwo: getComputedStyleCustom("--color-primary-2"),
-                    colorThree: getComputedStyleCustom("--color-primary-3"),
-                    colorFour: getComputedStyleCustom("--color-primary-3"),
-                    colorFive: getComputedStyleCustom("--color-primary-4"),
-                  },
-                  container: {
-                    backgroundColor:
-                      getComputedStyleCustom("--color-primary-1"),
-                  },
-                  modal: {
-                    backgroundColor:
-                      getComputedStyleCustom("--color-primary-1"),
-                    textColor: getComputedStyleCustom("--color-primary-3"),
+                    colorOne: CAROUSEL_COLORS.playlistSyncer.primary1,
+                    colorTwo: CAROUSEL_COLORS.playlistSyncer.primary2,
+                    colorThree: CAROUSEL_COLORS.playlistSyncer.primary3,
+                    colorFour: CAROUSEL_COLORS.playlistSyncer.primary3,
+                    colorFive: CAROUSEL_COLORS.playlistSyncer.primary4,
+                    colorGreyOne: "#ddd",
                   },
                 },
               }}
@@ -112,6 +124,7 @@ export const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
                 },
                 {
                   srcMain: demoVideo,
+                  srcThumbnail: demoVideoThumbnail,
                   description: "Video Demonstration",
                   modal: {
                     children: (

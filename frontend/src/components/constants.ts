@@ -215,6 +215,35 @@ export const bridgeSectionNames = [
 //#endregion
 
 //#region Misc
+/**
+*These should match the colors in _colors.scss
+**/
+export enum CarouselPages {
+  downloader = "downloader",
+  playlistSyncer = "playlistSyncer",
+}
+
+export const CAROUSEL_COLORS: {
+  [key in CarouselPages]: {
+    primary1: string;
+    primary2: string;
+    primary3: string;
+    primary4: string;
+  };
+} = {
+  downloader: {
+    primary1: "#f9f7f7",
+    primary2: "#dbe2ef",
+    primary3: "#3f72af",
+    primary4: "#112d4e",
+  },
+  playlistSyncer: {
+    primary1: "#ffc996",
+    primary2: "#ff8474",
+    primary3: "#9f5f80",
+    primary4: "#583d72",
+  },
+};
 export const BRIDGE_SECTION_COLORS: BridgeSectionColors = {
   0: {
     arrowNormal: {
