@@ -94,18 +94,18 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                   },
                 },
                 thumbnail: {
-                  size: 200,
+                  size: [[200], [100, 1200, "max-width"]],
                   descriptionOverlay: {
                     hideDescriptionOverlayUnlessHovered: false,
                     textColor: CAROUSEL_COLORS.downloader.primary4,
                     background: {
                       gradient: {
                         start: {
-                          opacity: .9,
+                          opacity: 0.9,
                           color: CAROUSEL_COLORS.downloader.primary1,
                         },
                         end: {
-                          opacity: .9,
+                          opacity: 0.9,
                           color: CAROUSEL_COLORS.downloader.primary2,
                         },
                         angle: 270,

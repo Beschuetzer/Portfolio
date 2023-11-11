@@ -85,7 +85,7 @@ export const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
                   },
                 },
                 thumbnail: {
-                  size: 200,
+                  size: [[200], [100, 1200, "max-width"]],
                   descriptionOverlay: {
                     hideDescriptionOverlayUnlessHovered: false,
                     textColor: CAROUSEL_COLORS.playlistSyncer.primary4,

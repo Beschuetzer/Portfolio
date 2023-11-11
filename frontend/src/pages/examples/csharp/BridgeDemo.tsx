@@ -119,7 +119,7 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
                   },
                 },
                 thumbnail: {
-                  size: 200,
+                  size: [[200], [100, 1200, "max-width"]],
                   descriptionOverlay: {
                     hideDescriptionOverlayUnlessHovered: false,
                     textColor: CAROUSEL_COLORS.bridgeDemo.primary4,
@@ -137,7 +137,7 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
                       },
                     },
                   },
-                  spacingStrategy: 'max',
+                  spacingStrategy: "max",
                   currentItemBorder: `2px solid ${CAROUSEL_COLORS.bridgeDemo.primary1}`,
                 },
                 styling: {

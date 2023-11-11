@@ -111,11 +111,11 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                 layout: {
                   itemDisplayLocation: "above",
                 },
-				itemViewer: {
-					aspectRatio: "widescreen",
-				},
+                itemViewer: {
+                  aspectRatio: "widescreen",
+                },
                 thumbnail: {
-                  size: 200,
+                  size: [[200], [100, 1200, "max-width"]],
                   descriptionOverlay: {
                     hideDescriptionOverlayUnlessHovered: false,
                     textColor: CAROUSEL_COLORS.replayViewer.primary4,
@@ -144,10 +144,10 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                     colorFive: CAROUSEL_COLORS.replayViewer.primary1,
                     colorGreyOne: CAROUSEL_COLORS.replayViewer.greyOne,
                   },
-				  modal: {
-					backgroundColor: CAROUSEL_COLORS.replayViewer.primary3,
-					textColor: CAROUSEL_COLORS.replayViewer.primary1,
-				  }
+                  modal: {
+                    backgroundColor: CAROUSEL_COLORS.replayViewer.primary3,
+                    textColor: CAROUSEL_COLORS.replayViewer.primary1,
+                  },
                 },
               }}
               items={[
@@ -265,7 +265,7 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                   srcThumbnail: imgGameThumbnail,
                   description: "Example of a game cached in local storage",
                 },
-				//todo: figure out why these cause a crash?
+                //todo: figure out why these cause a crash?
                 // {
                 //   srcMain: imgDeal,
                 //   srcThumbnail: imgDealThumbnail,
