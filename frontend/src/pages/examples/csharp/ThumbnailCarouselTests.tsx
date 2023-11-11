@@ -3050,54 +3050,54 @@ const SECTIONS: Sections = [
 	[
 		SectionNames.layouts,
 		[
-			// {
-			// 	label: "One Item - All Defaults",
-			// 	jsx: noItemDisplayedOneItemAllDefaults
-			// },
-			// {
-			// 	label: "Two Items - All Defaults",
-			// 	jsx: noItemDisplayedTwoItemsAllDefaults
-			// },
-			// {
-			// 	label: "Three Items - All Defaults",
-			// 	jsx: noItemDisplayedThreeItemsAllDefaults
-			// },
-			// {
-			// 	label: "Three Items - Max Spacing Strategy",
-			// 	jsx: noItemDisplayedThreeItemsMaxSpacing
-			// },
-			// {
-			// 	label: "Multiple Pages - All Defaults",
-			// 	jsx: noItemDisplayedMultiplePagesAllDefaults
-			// },
-			// {
-			// 	label: "Multiple Pages - Custom Padding and Margin",
-			// 	jsx: multiplePagesCustomPaddingAndMargin
-			// },
-			// {
-			// 	label: "Multiple Pages - Custom Item Viewer Colors",
-			// 	jsx: noItemDisplayedMultiplePagesCustomItemViewerColors
-			// },
+			{
+				label: "One Item - All Defaults",
+				jsx: noItemDisplayedOneItemAllDefaults
+			},
+			{
+				label: "Two Items - All Defaults",
+				jsx: noItemDisplayedTwoItemsAllDefaults
+			},
+			{
+				label: "Three Items - All Defaults",
+				jsx: noItemDisplayedThreeItemsAllDefaults
+			},
+			{
+				label: "Three Items - Max Spacing Strategy",
+				jsx: noItemDisplayedThreeItemsMaxSpacing
+			},
+			{
+				label: "Multiple Pages - All Defaults",
+				jsx: noItemDisplayedMultiplePagesAllDefaults
+			},
+			{
+				label: "Multiple Pages - Custom Padding and Margin",
+				jsx: multiplePagesCustomPaddingAndMargin
+			},
+			{
+				label: "Multiple Pages - Custom Item Viewer Colors",
+				jsx: noItemDisplayedMultiplePagesCustomItemViewerColors
+			},
 			{
 				label: "Display Current Item Above with Custom itemHeight and Font Family",
 				jsx: layoutAboveWithItemHeightAndFontFamily,
 			},
-			// {
-			// 	label: "Display Current Item Above with Max Spacing Strategy",
-			// 	jsx: layoutAboveWithMaxSpacingStrategy,
-			// },
-			// {
-			// 	label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
-			// 	jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
-			// },
-			// {
-			// 	label: "Video Toolbar not Embedded Inside Video",
-			// 	jsx: layoutToolbarNotEmbedded,
-			// },
-			// {
-			// 	label: "Smaller Screenshot Viewer",
-			// 	jsx: smallerScreenShotViewer,
-			// },
+			{
+				label: "Display Current Item Above with Max Spacing Strategy",
+				jsx: layoutAboveWithMaxSpacingStrategy,
+			},
+			{
+				label: "Display Current Item Below with Custom Thumbnail Size, Height, and Font-size",
+				jsx: layoutBelowWithCustomThumbnailSizeAndHeight,
+			},
+			{
+				label: "Video Toolbar not Embedded Inside Video",
+				jsx: layoutToolbarNotEmbedded,
+			},
+			{
+				label: "Smaller Screenshot Viewer",
+				jsx: smallerScreenShotViewer,
+			},
 		]
 	],
 	[

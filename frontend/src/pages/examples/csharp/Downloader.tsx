@@ -90,6 +90,7 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                   size: 200,
                   descriptionOverlay: {
                     hideDescriptionOverlayUnlessHovered: false,
+                    textColor: getComputedStyleCustom("--color-primary-4"),
                   },
                 },
                 styling: {
@@ -98,21 +99,15 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                     colorTwo: getComputedStyleCustom("--color-primary-2"),
                     colorThree: getComputedStyleCustom("--color-primary-3"),
                     colorFour: getComputedStyleCustom("--color-primary-3"),
-                    colorFive: getComputedStyleCustom("--color-primary-4"),
+                    colorFive: getComputedStyleCustom("--color-primary-1"),
                   },
                   container: {
-                    padding: {
-                      top: 14,
-                      bottom: 14,
-                      left: 28,
-                      right: 28,
-                    },
                     backgroundColor: "white",
                   },
-                  elements: {
-                    all: {
-                      fillColor: getComputedStyleCustom("--color-primary-1"),
-                    },
+                  modal: {
+                    backgroundColor:
+                      getComputedStyleCustom("--color-primary-1"),
+                    textColor: getComputedStyleCustom("--color-primary-3"),
                   },
                 },
               }}

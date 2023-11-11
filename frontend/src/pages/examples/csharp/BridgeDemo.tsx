@@ -110,6 +110,11 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
           children: [
             <Carousel
               options={{
+                container: {
+                  style: {
+                    borderRadius: 0,
+                  },
+                },
                 thumbnail: {
                   size: 200,
                   descriptionOverlay: {
@@ -122,8 +127,8 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
                         },
                         end: {
                           color: getComputedStyleCustom("--color-primary-1"),
-                          opacity: 1
-                        } ,
+                          opacity: 1,
+                        },
                         angle: 270,
                       },
                     },
@@ -140,14 +145,6 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
                     colorThree: getComputedStyleCustom("--color-primary-3"),
                     colorFour: getComputedStyleCustom("--color-primary-3"),
                     colorFive: getComputedStyleCustom("--color-primary-4"),
-                  },
-                  container: {
-                    padding: {
-                      top: 14,
-                      bottom: 14,
-                      left: 28,
-                      right: 28,
-                    },
                   },
                 },
               }}

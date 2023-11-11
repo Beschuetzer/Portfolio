@@ -4504,11 +4504,11 @@ body {
   z-index: 5;
   position: relative;
 }
-.csharp__content > *:not(.thumbnail-carousel-container, .thumbnail-carousel__item-viewer) {
+.csharp__content > *:not(.thumbnail-carousel__container, .thumbnail-carousel__item-viewer) {
   padding: 0 2.8rem 0 2.8rem;
 }
 @media only screen and (max-width: 40.9375em) {
-  .csharp__content > *:not(.thumbnail-carousel-container, .thumbnail-carousel__item-viewer) {
+  .csharp__content > *:not(.thumbnail-carousel__container, .thumbnail-carousel__item-viewer) {
     padding: 0.7rem 1.4rem;
   }
 }
