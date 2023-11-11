@@ -14,6 +14,8 @@ import {
   LIVE_BRIDGE_URL,
   BRIDGE_DEMO_PAGE_NAME,
   C_SHARP_CLASSNAME,
+  CAROUSEL_COLORS,
+  DEFAULT_FONT_SIZE,
 } from "../../../components/constants";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { CSharpCardSection } from "./CSharpCardSection";
@@ -110,6 +112,9 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
           children: [
             <Carousel
               options={{
+                layout: {
+                  itemDisplayLocation: "above",
+                },
                 container: {
                   style: {
                     borderRadius: 0,
@@ -119,32 +124,32 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
                   size: 200,
                   descriptionOverlay: {
                     hideDescriptionOverlayUnlessHovered: false,
+                    textColor: CAROUSEL_COLORS.bridgeDemo.primary4,
                     background: {
                       gradient: {
                         start: {
-                          color: getComputedStyleCustom("--color-primary-3"),
-                          opacity: 1,
+                          opacity: 0.9,
+                          color: CAROUSEL_COLORS.bridgeDemo.primary1,
                         },
                         end: {
-                          color: getComputedStyleCustom("--color-primary-1"),
-                          opacity: 1,
+                          opacity: 0.9,
+                          color: CAROUSEL_COLORS.bridgeDemo.primary2,
                         },
                         angle: 270,
                       },
                     },
                   },
-                  spacingStrategy: "max",
-                },
-                layout: {
-                  itemDisplayLocation: "above",
+                  spacingStrategy: 'max',
+                  currentItemBorder: `2px solid ${CAROUSEL_COLORS.bridgeDemo.primary1}`,
                 },
                 styling: {
                   colorTheme: {
-                    colorOne: getComputedStyleCustom("--color-primary-1"),
-                    colorTwo: getComputedStyleCustom("--color-primary-2"),
-                    colorThree: getComputedStyleCustom("--color-primary-3"),
-                    colorFour: getComputedStyleCustom("--color-primary-3"),
-                    colorFive: getComputedStyleCustom("--color-primary-4"),
+                    colorOne: CAROUSEL_COLORS.bridgeDemo.primary4,
+                    colorTwo: CAROUSEL_COLORS.bridgeDemo.primary3,
+                    colorThree: CAROUSEL_COLORS.bridgeDemo.primary2,
+                    colorFour: CAROUSEL_COLORS.bridgeDemo.primary2,
+                    colorFive: CAROUSEL_COLORS.bridgeDemo.primary1,
+                    colorGreyOne: "#333",
                   },
                 },
               }}

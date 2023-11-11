@@ -219,6 +219,7 @@ export const bridgeSectionNames = [
 *These should match the colors in _colors.scss
 **/
 export enum CarouselPages {
+  bridgeDemo = "bridgeDemo",
   downloader = "downloader",
   playlistSyncer = "playlistSyncer",
 }
@@ -231,6 +232,12 @@ export const CAROUSEL_COLORS: {
     primary4: string;
   };
 } = {
+  bridgeDemo: {
+    primary1: "#28537b",
+    primary2: "#8ac5d0",
+    primary3: "#f4d262",
+    primary4: "#fbeeac",
+  },
   downloader: {
     primary1: "#f9f7f7",
     primary2: "#dbe2ef",
