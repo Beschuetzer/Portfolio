@@ -17,7 +17,7 @@ import {
 } from "../../../components/constants";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { CSharpCardSection } from "./CSharpCardSection";
-import { CSharpSection } from "../../../types";
+import { getComputedStyleCustom } from "../../../helpers";
 
 const sectionNames = [
   "Requirements",
@@ -25,7 +25,10 @@ const sectionNames = [
   "Video Instructions",
 ];
 
-const sections: CSharpSection[] = [
+interface BridgeDemoProps {}
+
+export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
+  return <CSharpLayout sections={[
   {
     name: sectionNames[0],
     pageName: C_SHARP_CLASSNAME,
@@ -102,6 +105,16 @@ const sections: CSharpSection[] = [
       <Carousel
         options={{
           thumbnail: {
+            descriptionOverlay: {
+              hideDescriptionOverlayUnlessHovered: false,
+              background: {
+                solid: {
+                  color: getComputedStyleCustom("--color-primary-2"),
+                  opacity: 0.9,
+                },
+              },
+              textColor: getComputedStyleCustom("--color-primary-4"),
+            },
             spacingStrategy: "max",
           },
           styling: {
@@ -187,10 +200,6 @@ const sections: CSharpSection[] = [
       />,
     ],
   },
-];
-
-interface BridgeDemoProps {}
-
-export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
-  return <CSharpLayout sections={sections} pageName={BRIDGE_DEMO_PAGE_NAME} />;
+]} 
+pageName={BRIDGE_DEMO_PAGE_NAME} />;
 };

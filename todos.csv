@@ -1,4 +1,7 @@
--merge carousel_rework_final_2 branch into main after the package is up and running (use pr)
+-finish integrating Carousel from npm in
+-delete old carousel and carousel2
+-copy over below stuff to thumbnail-carousel repo
+-merge carousel_rework_final_2 into main
 
 Carousel rework
   -add logic to only render the items on the current page + next page?
