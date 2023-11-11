@@ -223,6 +223,7 @@ export enum CarouselPages {
   bridgeDemo = "bridgeDemo",
   downloader = "downloader",
   playlistSyncer = "playlistSyncer",
+  replayViewer = "replayViewer",
 }
 
 export const CAROUSEL_COLORS: {
@@ -231,6 +232,7 @@ export const CAROUSEL_COLORS: {
     primary2: string;
     primary3: string;
     primary4: string;
+    greyOne: string;
   };
 } = {
   about: {
@@ -238,24 +240,35 @@ export const CAROUSEL_COLORS: {
     primary2: "#c84b31",
     primary3: "#31C9B0",
     primary4: "#ecdbba",
+    greyOne: "#ddd",
   },
   bridgeDemo: {
     primary1: "#28537b",
     primary2: "#8ac5d0",
     primary3: "#f4d262",
     primary4: "#fbeeac",
+    greyOne: "#333",
   },
   downloader: {
     primary1: "#f9f7f7",
     primary2: "#dbe2ef",
     primary3: "#3f72af",
     primary4: "#112d4e",
+    greyOne: "#333",
   },
   playlistSyncer: {
     primary1: "#ffc996",
     primary2: "#ff8474",
     primary3: "#9f5f80",
     primary4: "#583d72",
+    greyOne: "#333",
+  },
+  replayViewer: {
+    primary1: "#28537b",
+    primary2: "#8ac6d0",
+    primary3: "#f4d262",
+    primary4: "#fbeeac",
+    greyOne: "#333",
   },
 };
 export const BRIDGE_SECTION_COLORS: BridgeSectionColors = {

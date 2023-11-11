@@ -121,7 +121,7 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                     colorThree: CAROUSEL_COLORS.downloader.primary3,
                     colorFour: CAROUSEL_COLORS.downloader.primary3,
                     colorFive: CAROUSEL_COLORS.downloader.primary4,
-                    colorGreyOne: "#ddd",
+                    colorGreyOne: CAROUSEL_COLORS.downloader.greyOne,
                   },
                 },
               }}

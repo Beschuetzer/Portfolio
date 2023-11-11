@@ -147,7 +147,7 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
                     colorThree: CAROUSEL_COLORS.bridgeDemo.primary2,
                     colorFour: CAROUSEL_COLORS.bridgeDemo.primary2,
                     colorFive: CAROUSEL_COLORS.bridgeDemo.primary1,
-                    colorGreyOne: "#333",
+                    colorGreyOne: CAROUSEL_COLORS.bridgeDemo.greyOne,
                   },
                 },
               }}

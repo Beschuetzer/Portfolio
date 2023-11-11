@@ -112,7 +112,7 @@ export const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
                     colorThree: CAROUSEL_COLORS.playlistSyncer.primary3,
                     colorFour: CAROUSEL_COLORS.playlistSyncer.primary3,
                     colorFive: CAROUSEL_COLORS.playlistSyncer.primary4,
-                    colorGreyOne: "#ddd",
+                    colorGreyOne: CAROUSEL_COLORS.playlistSyncer.greyOne,
                   },
                 },
               }}

@@ -204,7 +204,7 @@ const travelCarousel = (
           colorThree: CAROUSEL_COLORS.about.primary3,
           colorFour: CAROUSEL_COLORS.about.primary3,
           colorFive: CAROUSEL_COLORS.about.primary4,
-          colorGreyOne: "#ddd",
+          colorGreyOne: CAROUSEL_COLORS.about.greyOne,
         },
         container: {
           margin: {
