@@ -15,11 +15,9 @@ import {
   BRIDGE_DEMO_PAGE_NAME,
   C_SHARP_CLASSNAME,
   CAROUSEL_COLORS,
-  DEFAULT_FONT_SIZE,
 } from "../../../components/constants";
 import { EmbeddedLink } from "../../../components/EmbeddedLink";
 import { CSharpCardSection } from "./CSharpCardSection";
-import { getComputedStyleCustom } from "../../../helpers";
 
 const sectionNames = [
   "Requirements",
