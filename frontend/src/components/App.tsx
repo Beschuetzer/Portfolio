@@ -33,9 +33,8 @@ import { isMobileSelector, setIsMobile, setViewPortWidth } from "../slices/gener
 import { useSetHeaderCssStyle } from "../hooks/useSetHeaderCssStyle";
 import { keypressHandler } from "../helpers";
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
-import { getIsMobile } from "./Carousel/util";
-import { LoadingSpinner } from "./loading/LoadingSpinner";
 import { Redirect } from "../pages/Redirect";
+import { getIsMobile } from "../utils";
 
 type AppProps = {}
 
