@@ -266,10 +266,8 @@ export const About: React.FC<AboutProps> = () => {
                 </CSharpCardSection>
               </React.Fragment>,
             ],
-            hasCarousel: true,
           },
           {
-            hasCarousel: true,
             name: ABOUT_SECTION_NAMES[1],
             pageName: C_SHARP_CLASSNAME,
             children: [
@@ -306,7 +304,9 @@ export const About: React.FC<AboutProps> = () => {
                   Here are some photos of enjoyable experiences:
                   <Carousel
                     options={{
-                      layout: {},
+                      modal: {
+                        maintainMinimizedStateAcrossItems: true,
+                      },
                       container: {
                         style: {
                           borderRadius: `${DEFAULT_FONT_SIZE}rem`,
@@ -345,6 +345,13 @@ export const About: React.FC<AboutProps> = () => {
                         container: {
                           margin: {
                             top: 8,
+                          },
+                        },
+                        itemViewer: {
+                          loadingSpinner: {
+                            options: {
+                              color: CAROUSEL_COLORS.downloader.primary1,
+                            },
                           },
                         },
                       },
@@ -755,7 +762,6 @@ export const About: React.FC<AboutProps> = () => {
           // 			</CSharpCardSection>
           // 		</React.Fragment>,
           // 	],
-          // 	hasCarousel: false,
           // },
         ]}
         pageName={ABOUT_PAGE_NAME}

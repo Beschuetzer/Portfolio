@@ -104,7 +104,6 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
           ],
         },
         {
-          hasCarousel: false,
           name: sectionNames[2],
           pageName: C_SHARP_CLASSNAME,
           children: [
@@ -112,6 +111,9 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
               options={{
                 layout: {
                   itemDisplayLocation: "above",
+                },
+                modal: {
+                  maintainMinimizedStateAcrossItems: true,
                 },
                 container: {
                   style: {
@@ -148,6 +150,13 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
                     colorFour: CAROUSEL_COLORS.bridgeDemo.primary2,
                     colorFive: CAROUSEL_COLORS.bridgeDemo.primary1,
                     colorGreyOne: CAROUSEL_COLORS.bridgeDemo.greyOne,
+                  },
+                  itemViewer: {
+                    loadingSpinner: {
+                      options: {
+                        color: CAROUSEL_COLORS.downloader.primary4,
+                      },
+                    },
                   },
                 },
               }}

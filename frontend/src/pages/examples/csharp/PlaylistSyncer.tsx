@@ -79,6 +79,9 @@ export const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
                 layout: {
                   itemDisplayLocation: "above",
                 },
+                modal: {
+                  maintainMinimizedStateAcrossItems: true,
+                },
                 container: {
                   style: {
                     borderRadius: 0,
@@ -113,6 +116,13 @@ export const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
                     colorFour: CAROUSEL_COLORS.playlistSyncer.primary3,
                     colorFive: CAROUSEL_COLORS.playlistSyncer.primary4,
                     colorGreyOne: CAROUSEL_COLORS.playlistSyncer.greyOne,
+                  },
+                  itemViewer: {
+                    loadingSpinner: {
+                      options: {
+                        color: CAROUSEL_COLORS.downloader.primary4,
+                      },
+                    },
                   },
                 },
               }}

@@ -111,6 +111,9 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                 layout: {
                   itemDisplayLocation: "above",
                 },
+                modal: {
+                  maintainMinimizedStateAcrossItems: true,
+                },
                 itemViewer: {
                   aspectRatio: "widescreen",
                 },
@@ -147,6 +150,13 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                   modal: {
                     backgroundColor: CAROUSEL_COLORS.replayViewer.primary3,
                     textColor: CAROUSEL_COLORS.replayViewer.primary1,
+                  },
+                  itemViewer: {
+                    loadingSpinner: {
+                      options: {
+                        color: CAROUSEL_COLORS.downloader.primary4,
+                      },
+                    },
                   },
                 },
               }}

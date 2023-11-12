@@ -1,3 +1,5 @@
+-create low-res version of every video?
+
 React best practices re-work (branch = sitenav_rework)
   -use lazy loading (https://www.youtube.com/watch?v=JU6sl_yyZqs) for images in carousel?
   -figure out issue with SiteNav showing all items when touch device and around 1101px viewport width

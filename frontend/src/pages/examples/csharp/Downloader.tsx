@@ -88,6 +88,9 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                 layout: {
                   itemDisplayLocation: "above",
                 },
+                modal: {
+                  maintainMinimizedStateAcrossItems: true,
+                },
                 container: {
                   style: {
                     borderRadius: 0,
@@ -123,6 +126,13 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                     colorFive: CAROUSEL_COLORS.downloader.primary4,
                     colorGreyOne: CAROUSEL_COLORS.downloader.greyOne,
                   },
+                  itemViewer: {
+                    loadingSpinner: {
+                      options: {
+                        color: CAROUSEL_COLORS.downloader.primary4,
+                      }
+                    }
+                  }
                 },
               }}
               items={[
