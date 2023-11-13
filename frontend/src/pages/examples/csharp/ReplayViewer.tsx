@@ -192,6 +192,25 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                       </div>
                     ),
                   },
+                  video: {
+                    autoPlay: false,
+                    sections: [
+                      ["Login", "02:00"],
+                      ["Finding Games where Contract is 1 club", "3:00"],
+                      ["Opening First 1st Club Game", "13:00"],
+                      ["Viewing 5th Deal of 1st Game", "16:00"],
+                      ["Noticing Adam has 2 of Clubs in First Game", "19:00"],
+                      ["Opening Second 1 Club Game", "22:500"],
+                      ["Viewing 6th Deal of 2nd Game", "25:00"],
+                      ["Noticing Ann has 2 of Clubs in Second Game", "29:00"],
+                      ["Adding Filter for Ann Having 2 of Clubs", "32:00"],
+                      ["Only One Game Remains", "39:500"],
+                      [
+                        "Proving Remaining Game is the One Where Ann has 2 of Clubs",
+                        "43:00",
+                      ],
+                    ],
+                  },
                 },
                 {
                   srcMain: {
@@ -223,6 +242,18 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                       </div>
                     ),
                   },
+                  video: {
+                    autoPlay: false,
+                    sections: [
+                      ["Viewing a Game with Filter Match", ""],
+                      ["Viewing the Replay", "3:650"],
+                      [
+                        "Adjusting the Playback Speed and Card Positioning",
+                        "6:00",
+                      ],
+                      ["Using the Buttons", "12:00"],
+                    ],
+                  },
                 },
                 {
                   srcMain: {
@@ -230,7 +261,7 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                     loRes: clipNavigations_480p,
                   },
                   srcThumbnail: clipNavigationsThumbnail,
-                  description: "Misc. Animations",
+                  description: "Animations and Settings",
                   modal: {
                     children: (
                       <div>
@@ -240,6 +271,16 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                         </CSharpCardSection>
                       </div>
                     ),
+                  },
+                  video: {
+                    autoPlay: false,
+                    sections: [
+                      ["Logging In", ""],
+                      ["Left Pane Animations", "4:250"],
+                      ["Right Pane Animations", "12:00"],
+                      ["Adjusting the Item Settings", "14:666"],
+                      ["Adjusting the Page Enumeration Settings", "19:750"],
+                    ],
                   },
                 },
                 {
