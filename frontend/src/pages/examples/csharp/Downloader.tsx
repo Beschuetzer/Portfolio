@@ -40,8 +40,6 @@ const sectionNames = ["Description", "Media", "Notes"];
 interface DownloaderProps {}
 
 export const Downloader: React.FC<DownloaderProps> = () => {
-
-
   return (
     <CSharpLayout
       sections={[
@@ -162,6 +160,14 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                       </div>
                     ),
                   },
+                  video: {
+                    sections: [
+                      ["Navigating to First File's Page", ""],
+                      ["Selecting the Server", "4:00"],
+                      ["Selecting the Save Location", "6:00"],
+                    ],
+                    autoPlay: false,
+                  },
                 },
                 {
                   srcMain: {
@@ -184,6 +190,22 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                         </CSharpCardSection>
                       </div>
                     ),
+                  },
+                  video: {
+                    sections: [
+                      ["Ensuring Options are Correct", ""],
+                      [
+                        "Selecting the Regular Expression to Use for the Site",
+                        "5:00",
+                      ],
+                      ["Selecting the Save Location", "10:00"],
+                      [
+                        "Downloading the All Files Recursively since Last Download Date",
+                        "13:00",
+                      ],
+                      ["Verifying the Downloaded Files", "43:00"],
+                    ],
+                    autoPlay: false,
                   },
                 },
                 {
