@@ -16,8 +16,11 @@ import imgUser from "../../../imgs/replay-viewer/img-user-1.png";
 import imgMobile1 from "../../../imgs/replay-viewer/img-mobile-1.png";
 import imgMobile2 from "../../../imgs/replay-viewer/img-mobile-2.png";
 import clipNavigations from "../../../clips/replay-viewer/navigation.mp4";
+import clipNavigations_480p from "../../../clips/replay-viewer/navigation-480p.mp4";
 import clipDealPlayer from "../../../clips/replay-viewer/deal-player.mp4";
+import clipDealPlayer_480p from "../../../clips/replay-viewer/deal-player-480p.mp4";
 import clipFilters from "../../../clips/replay-viewer/filters.mp4";
+import clipFilters_480p from "../../../clips/replay-viewer/filters-480p.mp4";
 import img1Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-1-thumbnail.png";
 import img2Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-2-thumbnail.png";
 import img3Thumbnail from "../../../imgs/replay-viewer/thumbnails/img-3-thumbnail.png";
@@ -167,7 +170,10 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                   description: "First impressions matter.",
                 },
                 {
-                  srcMain: clipFilters,
+                  srcMain: {
+                    hiRes: clipFilters,
+                    loRes: clipFilters_480p,
+                  },
                   srcThumbnail: clipFiltersThumbnail,
                   description: "Applying Filters",
                   modal: {
@@ -188,7 +194,10 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                   },
                 },
                 {
-                  srcMain: clipDealPlayer,
+                  srcMain: {
+                    hiRes: clipDealPlayer,
+                    loRes: clipDealPlayer_480p,
+                  },
                   srcThumbnail: clipDealPlayerThumbnail,
                   description: "Using the deal player",
                   modal: {
@@ -216,7 +225,10 @@ export const ReplayViewer: React.FC<ReplayViewerProps> = () => {
                   },
                 },
                 {
-                  srcMain: clipNavigations,
+                  srcMain: {
+                    hiRes: clipNavigations,
+                    loRes: clipNavigations_480p,
+                  },
                   srcThumbnail: clipNavigationsThumbnail,
                   description: "Misc. Animations",
                   modal: {
