@@ -10,7 +10,9 @@ import img4 from "../../../imgs/downloader/img4.png";
 import img5 from "../../../imgs/downloader/img5.png";
 import img6 from "../../../imgs/downloader/img6.png";
 import problemVideo from "../../../clips/downloader/problem.mp4";
+import problemVideo_480p from "../../../clips/downloader/problem-480p.mp4";
 import demoVideo from "../../../clips/downloader/demo.mp4";
+import demoVideo_480p from "../../../clips/downloader/demo-480p.mp4";
 import problemVideoThumbnail from "../../../clips/downloader/problem-thumbnail.png";
 import demoVideoThumbnail from "../../../clips/downloader/demo-thumbnail.png";
 
@@ -130,14 +132,17 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                     loadingSpinner: {
                       options: {
                         color: CAROUSEL_COLORS.downloader.primary4,
-                      }
-                    }
-                  }
+                      },
+                    },
+                  },
                 },
               }}
               items={[
                 {
-                  srcMain: problemVideo,
+                  srcMain: {
+                    hiRes: problemVideo,
+                    loRes: problemVideo_480p,
+                  },
                   srcThumbnail: problemVideoThumbnail,
                   description: "The manual way of downloading",
                   modal: {
@@ -159,7 +164,10 @@ export const Downloader: React.FC<DownloaderProps> = () => {
                   },
                 },
                 {
-                  srcMain: demoVideo,
+                  srcMain: {
+                    hiRes: demoVideo,
+                    loRes: demoVideo_480p,
+                  },
                   srcThumbnail: demoVideoThumbnail,
                   description: "The automated way of downloading",
                   modal: {
