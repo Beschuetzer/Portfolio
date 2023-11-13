@@ -154,6 +154,22 @@ export const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
                       </div>
                     ),
                   },
+                  video: {
+                    sections: [
+                      ["Showing the Source Files", ""],
+                      [
+                        "Selecting the Playlist with the Source Files in It",
+                        "2:500",
+                      ],
+                      ["Showing the Source Files", "9:00"],
+                      [
+                        "Transferring the Files to the Destination 'KostetZuViel'",
+                        "14:00",
+                      ],
+                      ["Verifying the Downloaded Files are on 'KostetZuViel'", "27:100"],
+                    ],
+                    autoPlay: false,
+                  },
                 },
                 {
                   srcMain: img1,
