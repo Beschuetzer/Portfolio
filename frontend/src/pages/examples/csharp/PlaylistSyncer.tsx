@@ -16,6 +16,7 @@ import img3Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img3-thumbna
 import img4Thumbnail from "../../../imgs/playlist-syncer/thumbnails/img4-thumbnail.png";
 
 import demoVideo from "../../../clips/playlist-syncer/demo.mp4";
+import demoVideo_480p from "../../../clips/playlist-syncer/demo-480p.mp4";
 import demoVideoThumbnail from "../../../clips/playlist-syncer/demo-thumbnail.png";
 import { CSharpCardSection } from "./CSharpCardSection";
 import Paragraph from "../../../typography/Paragraph";
@@ -133,7 +134,10 @@ export const PlaylistSyncer: React.FC<PlaylistSyncerProps> = () => {
                   description: "156 songs transferred but an empty playlist...",
                 },
                 {
-                  srcMain: demoVideo,
+                  srcMain: {
+                    hiRes: demoVideo,
+                    loRes: demoVideo_480p,
+                  },
                   srcThumbnail: demoVideoThumbnail,
                   description: "Video Demonstration",
                   modal: {
