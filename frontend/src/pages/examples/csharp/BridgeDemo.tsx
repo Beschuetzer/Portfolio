@@ -4,8 +4,11 @@ import { Carousel } from "react-thumbnail-carousel";
 import { CSharpLayout } from "./CSharpLayout";
 
 import video1 from "../../../clips/bridge-demo/1.mp4";
+import video1_480p from "../../../clips/bridge-demo/1-480p.mp4";
 import video2 from "../../../clips/bridge-demo/2.mp4";
+import video2_480p from "../../../clips/bridge-demo/2-480p.mp4";
 import video3 from "../../../clips/bridge-demo/3.mp4";
+import video3_480p from "../../../clips/bridge-demo/3-480p.mp4";
 import video1Thumbnail from "../../../clips/bridge-demo/1-thumbnail.png";
 import video2Thumbnail from "../../../clips/bridge-demo/2-thumbnail.png";
 import video3Thumbnail from "../../../clips/bridge-demo/3-thumbnail.png";
@@ -162,7 +165,10 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
               }}
               items={[
                 {
-                  srcMain: video1,
+                  srcMain: {
+                    hiRes: video1,
+                    loRes: video1_480p,
+                  },
                   srcThumbnail: video1Thumbnail,
                   description: "Setting Up",
                   modal: {
@@ -184,7 +190,10 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
                   },
                 },
                 {
-                  srcMain: video2,
+                  srcMain: {
+                    hiRes: video2,
+                    loRes: video2_480p,
+                  },
                   srcThumbnail: video2Thumbnail,
                   description: "Logging In",
                   modal: {
@@ -206,7 +215,10 @@ export const BridgeDemo: React.FC<BridgeDemoProps> = () => {
                   },
                 },
                 {
-                  srcMain: video3,
+                  srcMain: {
+                    hiRes: video3,
+                    loRes: video3_480p,
+                  },
                   srcThumbnail: video3Thumbnail,
                   description: "Starting a Game",
                   modal: {
