@@ -112,89 +112,82 @@ import { CSharpCardSection } from "./CSharpCardSection";
 
 export const ABOUT_SECTION_NAMES = ["Overview", "Interests", "Music"];
 const germanyCarousel = (
-  <section className="csharp__carousel margin-top-0 padding-bottom-0">
-    <Carousel
-      items={[
-        {
-          srcMain: germany06,
-          srcThumbnail: germany06Thumbnail,
-          description: "Residence and its caretaker",
-        },
-        {
-          srcMain: germany01,
-          srcThumbnail: germany01Thumbnail,
-          description: "A Family I had the pleasure of meeting",
-        },
-        {
-          srcMain: germany02,
-          srcThumbnail: germany02Thumbnail,
-          description: "Learning is never-ending Path",
-        },
-        {
-          srcMain: germany03,
-          srcThumbnail: germany03Thumbnail,
-          description: "Sunset in Hungary on the Balaton See",
-        },
-        {
-          srcMain: germany04,
-          srcThumbnail: germany04Thumbnail,
-          description: "Morning in South Tirol, Italy",
-        },
-        {
-          srcMain: germany05,
-          srcThumbnail: germany05Thumbnail,
-          description: "Not much left of the old city in Nuernberg",
-        },
-        {
-          srcMain: germany07,
-          srcThumbnail: germany07Thumbnail,
-          description: "The pain is real even if the equipment is not",
-        },
-        {
-          srcMain: germany09,
-          srcThumbnail: germany09Thumbnail,
-          description: "Shields only work if you know how to use them",
-        },
-        {
-          srcMain: germany08,
-          srcThumbnail: germany08Thumbnail,
-          description: "WanderTag!  (Learn by doing)",
-        },
-      ]}
-    />
-  </section>
+  <Carousel
+    items={[
+      {
+        srcMain: germany06,
+        srcThumbnail: germany06Thumbnail,
+        description: "Residence and its caretaker",
+      },
+      {
+        srcMain: germany01,
+        srcThumbnail: germany01Thumbnail,
+        description: "A Family I had the pleasure of meeting",
+      },
+      {
+        srcMain: germany02,
+        srcThumbnail: germany02Thumbnail,
+        description: "Learning is never-ending Path",
+      },
+      {
+        srcMain: germany03,
+        srcThumbnail: germany03Thumbnail,
+        description: "Sunset in Hungary on the Balaton See",
+      },
+      {
+        srcMain: germany04,
+        srcThumbnail: germany04Thumbnail,
+        description: "Morning in South Tirol, Italy",
+      },
+      {
+        srcMain: germany05,
+        srcThumbnail: germany05Thumbnail,
+        description: "Not much left of the old city in Nuernberg",
+      },
+      {
+        srcMain: germany07,
+        srcThumbnail: germany07Thumbnail,
+        description: "The pain is real even if the equipment is not",
+      },
+      {
+        srcMain: germany09,
+        srcThumbnail: germany09Thumbnail,
+        description: "Shields only work if you know how to use them",
+      },
+      {
+        srcMain: germany08,
+        srcThumbnail: germany08Thumbnail,
+        description: "WanderTag!  (Learn by doing)",
+      },
+    ]}
+  />
 );
 
 const peopleToPeopleCarousel = (
-  <section
-    id="p2p-carousel"
-    className={`${DISPLAY_NONE_CLASSNAME} csharp__carousel padding-top-0`}
-  >
-    <Carousel
-      items={[
-        {
-          srcMain: p2p01,
-          srcThumbnail: p2p01Thumbnail,
-          description: "Abseiling an English Castle",
-        },
-        {
-          srcMain: p2p02,
-          srcThumbnail: p2p02Thumbnail,
-          description: "Team Building Exercise",
-        },
-        {
-          srcMain: p2p03,
-          srcThumbnail: p2p03Thumbnail,
-          description: "Roman Infantry Training",
-        },
-        {
-          srcMain: p2p04,
-          srcThumbnail: p2p04Thumbnail,
-          description: "The Training Commences",
-        },
-      ]}
-    />
-  </section>
+  <Carousel
+    items={[
+      {
+        srcMain: p2p01,
+        srcThumbnail: p2p01Thumbnail,
+        description: "Abseiling an English Castle",
+      },
+      {
+        srcMain: p2p02,
+        srcThumbnail: p2p02Thumbnail,
+        description: "Team Building Exercise",
+      },
+      {
+        srcMain: p2p03,
+        srcThumbnail: p2p03Thumbnail,
+        description: "Roman Infantry Training",
+      },
+      {
+        srcMain: p2p04,
+        srcThumbnail: p2p04Thumbnail,
+        description: "The Training Commences",
+      },
+    ]}
+  />
 );
 
 const regretQuote = (
@@ -313,7 +306,7 @@ export const About: React.FC<AboutProps> = () => {
                         },
                       },
                       thumbnail: {
-                        size: [[250], [100, 1200, "max-width"]],
+                        size: [[166], [100, 1200, "max-width"]],
                         descriptionOverlay: {
                           hideDescriptionOverlayUnlessHovered: false,
                           textColor: CAROUSEL_COLORS.about.primary4,
