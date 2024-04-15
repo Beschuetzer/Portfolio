@@ -15,11 +15,14 @@ React best practices re-work (branch = sitenav_rework)
 
 JOB STUFF------------------------------------
   -Add section about contributing to enablers team starting labor day 2023:
-      -- build fetch sdk (wrapper for native fetch that adds caching, circuit breaker logic, token management, and retring) which decreased dropped calls by 5%
+      -- built fetch sdk (wrapper for native fetch that adds caching, call de-duplication, circuit breaker logic, token management, and auto-retring) which decreased dropped calls by 5%
+      -- built express js authentication library for Blue Shirt Logon (BSL)
+      -- built js authorization library for simplifying interaction with the Omnichannel Policy Server (OPS)
+      -- worked on the push to integrate Module Federation into existing projects
   -Add section about contributing to enterprise-wide aggregation service (EGP):
     --consolidated the existing queries for location lookup into one query which also included various other location lookup data sources
   -Add sub-section about contributing to Saber:
-    --Add auto-adding of protection plans which lead to a 33% increase in protection plans being sold by employees
+    --Add feature to handle auto-adding of protection plans to the basket which lead to a 33% increase in protection plans being sold by employees
   Add section on frontend (SSK):
     --created quantity selector monorepo component
     --created recommendations component which allowed employees to view 
