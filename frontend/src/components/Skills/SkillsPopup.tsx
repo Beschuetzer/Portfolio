@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { SkillsPopupName } from "./SkillsPopupName";
@@ -19,40 +19,6 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 	const isMobile = useAppSelector(isMobileSelector);
 	const skillsPopupDiv = document.querySelector("#skillsPopup") as HTMLElement;
 	const resetReposDelay = 500;
-
-	//on initial load
-	useEffect(() => {
-		const handleClickBody = (e: MouseEvent) => {
-			e.stopPropagation();
-			const isBodyClick = !checkForParentOfType(
-				e.target as HTMLElement,
-				"div",
-				`${SKILLS_CLASSNAME}-popup`,
-			);
-			if (isBodyClick) {
-				skillsPopupDiv?.classList?.remove(`${SKILLS_CLASSNAME}-popup--active`);
-				setTimeout(() => {
-					dispatch(clickSkill(""));
-					dispatch(addRepoToReposToDisplay([]));
-				}, resetReposDelay);
-			}
-		};
-		skillsPopupDiv.addEventListener("click", handleClickBody);
-	}, [dispatch, clickSkill, skillsPopupDiv, addRepoToReposToDisplay]);
-
-	//when clickedSkillUpdate
-	useEffect(() => {
-		for (let i = 0; i < repos?.length; i++) {
-			const repo = repos[i];
-			for (let j = 0; j < repo.repositoryTopics.nodes?.length; j++) {
-				const node = repo.repositoryTopics.nodes[j];
-				if (clickedSkill && node?.topic?.name === replaceCharacters(clickedSkill?.trim(), [[' ', '-']])) {
-					dispatch(addRepoToReposToDisplay(repos[i]));
-					break;
-				}
-			}
-		}
-	}, [dispatch, clickedSkill, repos, addRepoToReposToDisplay]);
 
 	// const getIndexOfItem = (target, items) => {
 	// 	for (let i = 0; i < items.length; i++) {
@@ -131,14 +97,44 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 		// }
 	// };
 
-	const onCloseClick = (e: MouseEvent) => {
+	const onCloseClick = useCallback(() => {
 		skillsPopupDiv?.classList?.remove(`${SKILLS_CLASSNAME}-popup--active`);
 		toggleScrollability();
 		setTimeout(() => {
 			dispatch(clickSkill(""));
 			dispatch(addRepoToReposToDisplay([]));
 		}, resetReposDelay);
-	};
+	}, [dispatch, skillsPopupDiv?.classList]);
+
+	//on initial load
+	useEffect(() => {
+		const handleClickBody = (e: MouseEvent) => {
+			e.stopPropagation();
+			const isBodyClick = !checkForParentOfType(
+				e.target as HTMLElement,
+				"div",
+				`${SKILLS_CLASSNAME}-popup`,
+			);
+			if (isBodyClick) {
+				onCloseClick()
+			}
+		};
+		skillsPopupDiv.addEventListener("click", handleClickBody);
+	}, [dispatch, onCloseClick, skillsPopupDiv]);
+
+	//when clickedSkillUpdate
+	useEffect(() => {
+		for (let i = 0; i < repos?.length; i++) {
+			const repo = repos[i];
+			for (let j = 0; j < repo.repositoryTopics.nodes?.length; j++) {
+				const node = repo.repositoryTopics.nodes[j];
+				if (clickedSkill && node?.topic?.name === replaceCharacters(clickedSkill?.trim(), [[' ', '-']])) {
+					dispatch(addRepoToReposToDisplay(repos[i]));
+					break;
+				}
+			}
+		}
+	}, [dispatch, clickedSkill, repos]);
 
 	const returnDate = (key: string, repo: any, title: string, onlySpans = false) => {
 		const date = new Date(repo[key]).toLocaleString();
@@ -304,7 +300,7 @@ export const SkillsPopup: React.FC<SkillsPopupProps> = () => {
 				<span className={`${SKILLS_CLASSNAME}-popup__header-text`}>
 					<span className={`${SKILLS_CLASSNAME}-popup__header-skill`}>{capitalize(clickedSkill)}</span> Projects:
 				</span>
-				<svg onClick={(e: any) => onCloseClick(e)} className={`${SKILLS_CLASSNAME}-popup__close`}>
+				<svg onClick={(e: any) => onCloseClick()} className={`${SKILLS_CLASSNAME}-popup__close`}>
 					<use xlinkHref="/sprite.svg#icon-close"></use>
 				</svg>
 				<h5 className={`${SKILLS_CLASSNAME}-popup__hint`}>* click the project name to view a working demo (when possible)</h5>
