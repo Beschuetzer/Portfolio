@@ -8,4 +8,4 @@ navigate to ./frontend and run `npm start`
 
 # Running Carousel Sass
 
-navigate to ./frontend and run `npm run carousel:sass`
+navigate to ./frontend and run `npm run carousel:sass` 
