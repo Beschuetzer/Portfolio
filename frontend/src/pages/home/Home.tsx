@@ -41,7 +41,9 @@ export const Home: React.FC<HomeProps> = () => {
 	useClasslistAdder(classListsToSet);
 
 	useEffect(() => {
-		async function fetchQuote() {
+		(async () => {
+			if (hasFetchedQuoteRef.current) return;
+
 			const quote = await getRandomQuote({
 				authors: [
 					QuoteableAuthors.abrahamLincoln,
@@ -56,11 +58,7 @@ export const Home: React.FC<HomeProps> = () => {
 			});
 			hasFetchedQuoteRef.current = true;
 			setQuoteResult(quote || {} as Quote);
-		}
-
-		if (!hasFetchedQuoteRef.current) {
-			fetchQuote();
-		}
+		})();
 	}, [])
 
 	function getQuoteJSX() {

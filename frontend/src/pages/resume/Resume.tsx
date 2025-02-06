@@ -791,7 +791,7 @@ export const Resume: React.FC<ResumeProps> = () => {
 				</h2>
 				{renderSections()}
 			</PageWrapper>
-			<SkillsPopup />
+			{/* <SkillsPopup /> */}
 		</React.Fragment>
 	);
 };

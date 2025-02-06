@@ -11,7 +11,7 @@ export const useSetHeaderCssStyle = () => {
         setTimeout(() => {
             setHeaderHeightCSSPropertyValue();
         }, 1);
-	}, [viewPortWidth, setHeaderHeightCSSPropertyValue])
+	}, [viewPortWidth])
 }
 
 export function setHeaderHeightCSSPropertyValue(valueToUse = -1) {
