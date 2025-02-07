@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-import { ColorScheme } from "../../../styles/constants";
+import { ColorScheme, defaultFontSize, fontSizeEleven } from "../../../styles/constants";
 
 import aboutImage from "../../imgs/site-nav/about.jpg";
 import autoBidImage from "../../imgs/site-nav/autobid.jpg";
@@ -25,11 +25,12 @@ import about3 from "../../imgs/site-nav/music.jpg";
 import about4 from "../../imgs/site-nav/personality.jpg";
 import { styled } from "styled-components";
 import { SiteNavButton } from "./SiteNavButton";
+import { SiteNavContent } from "./SiteNavContent";
 
 const SiteNavContainer = styled.header`
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: ${defaultFontSize};
+  left: ${fontSizeEleven};
 `;
 
 export type SiteNavProps = {
@@ -45,6 +46,7 @@ export function SiteNav() {
   return (
     <SiteNavContainer>
       <SiteNavButton />
+      <SiteNavContent />
     </SiteNavContainer>
   );
 }

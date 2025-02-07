@@ -9,9 +9,7 @@ import {
 import { ColorSchemeProp, SiteNavProps } from "./SiteNav";
 
 const StyledNav = styled.button<ColorSchemeProp>`
-  position: absolute;
-  top: ${defaultFontSize};
-  left: ${fontSizeEleven};
+  
   background-color: ${(props) => props.colorScheme.primary4};
   z-index: 1000;
   width: ${fontSizeEleven};
