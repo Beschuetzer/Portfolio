@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { respond } from "../../../styles/breakpoints";
 
 interface SiteNavProps {
-    onClick: () => void;
+  onClick: () => void;
 }
 
 const StyledNav = styled.button`
@@ -28,6 +29,10 @@ const StyledNav = styled.button`
   &:hover .menu {
     display: block;
   }
+
+  ${respond.phone`
+    background-color: #000;
+  `}
 `;
 
 const Hamburger = styled.div`
@@ -71,7 +76,7 @@ const Menu = styled.div`
 `;
 
 export const SiteNavOpen: React.FC<SiteNavProps> = (props: SiteNavProps) => {
-    const { onClick } = props;
+  const { onClick } = props;
 
   return (
     <StyledNav onClick={() => onClick && onClick()}>
