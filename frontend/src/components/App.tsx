@@ -50,6 +50,7 @@ import { keypressHandler } from "../helpers";
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 import { Redirect } from "../pages/Redirect";
 import { getIsMobile } from "../utils";
+import { NavbarHeader } from "./navbar/NavbarHeader";
 
 type AppProps = {};
 
@@ -118,7 +119,12 @@ export const App: React.FC<AppProps> = (props) => {
   return (
     <>
       <Router history={history}>
-	  	<SiteNav />
+		<NavbarHeader>
+			<SiteNav />
+			{/* <NavToggler /> */}
+			{/* <PageNav /> */}
+			{/* <GithubButton /> */}
+		</NavbarHeader>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route
@@ -159,11 +165,9 @@ export const App: React.FC<AppProps> = (props) => {
           <Route path={PERSONALITY_URL} exact component={BigFive} />
           <Route path="*" exact component={Home} />
         </Switch>
-        {/* <NavToggler /> */}
-		{/* <PageNav /> */}
+       
 		
 		{/* <AudioPlayer /> */}
-		{/* <GithubButton /> */}
         {/* <Footer/> */}
       </Router>
     </>

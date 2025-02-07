@@ -13,13 +13,16 @@ export const sizes: { [key: string]: string } = {
   largerThanNavSwitch: '1100px',
 };
 
+type Sizes = typeof sizes;
+type SizeKeys = keyof Sizes;
+
 type RespondType = {
-  [key: string]: (...args: any[]) => any;
+  [key in SizeKeys]: (...args: [TemplateStringsArray, ...any[]]) => any;
 };
 
 export const respond: RespondType = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (...args: [TemplateStringsArray, ...any[]]) => css`
-    @media (max-width: ${sizes[label]}) {
+  acc[label as SizeKeys] = (...args) => css`
+    @media (max-width: ${sizes[label as SizeKeys]}) {
       ${css(...args)}
     }
   `;
