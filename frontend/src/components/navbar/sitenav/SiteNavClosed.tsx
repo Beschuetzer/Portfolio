@@ -1,21 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import { useColorScheme } from "../../../hooks/useColorScheme";
-import { ColorScheme, defaultFontSize, fontSizeEleven, fontSizeFive } from "../../../styles/constants";
+import {
+  ColorScheme,
+  defaultFontSize,
+  fontSizeEleven,
+  getFontSizeCustom,
+} from "../../../styles/constants";
 
 type SiteNavProps = {
-    onClick: () => void;
-}
+  onClick: () => void;
+};
 
 type ColorSchemeProp = {
-    colorScheme: ColorScheme;
-}
+  colorScheme: ColorScheme;
+};
 
 const StyledNav = styled.button<ColorSchemeProp>`
   position: absolute;
   top: ${defaultFontSize};
-  left: 4.27rem;
-  background-color: ${props => props.colorScheme.primary4};
+  left: ${fontSizeEleven};
+  background-color: ${(props) => props.colorScheme.primary4};
   z-index: 1000;
   width: ${fontSizeEleven};
   height: ${fontSizeEleven};
@@ -37,30 +42,33 @@ const StyledNav = styled.button<ColorSchemeProp>`
 `;
 
 const Hamburger = styled.div<ColorSchemeProp>`
-  width: 1.6rem;
-  height: 0.4rem;
-  background-color: ${props => props.colorScheme.primary1};
+  width: ${getFontSizeCustom(0.5, fontSizeEleven)};
+  height: ${getFontSizeCustom(0.5)};
+  background-color: ${(props) => props.colorScheme.primary1};
   position: relative;
   transition: all 0.3s ease-in-out;
 
   &::before,
   &::after {
     content: "";
-    width: 1.6rem;
-    height: 0.4rem;
-    background-color: ${props => props.colorScheme.primary1};
+    width: ${getFontSizeCustom(0.5, fontSizeEleven)};
+    height: ${getFontSizeCustom(0.5)};
+    background-color: ${(props) => props.colorScheme.primary1};
     position: absolute;
     transition: all 0.3s ease-in-out;
   }
 
+  &::before,
+  &::after {
+    left: 0;
+  }
+
   &::before {
-    top: -0.6rem;
-    left: -0rem;
+    top: ${getFontSizeCustom(-.75)};
   }
 
   &::after {
-    top: 0.6rem;
-    left: -0rem;
+    top: ${getFontSizeCustom(0.75)};
   }
 `;
 
@@ -77,8 +85,8 @@ const Menu = styled.div`
 `;
 
 export const SiteNavClosed: React.FC<SiteNavProps> = (props: SiteNavProps) => {
-    const { onClick } = props;
-    const colorScheme = useColorScheme();
+  const { onClick } = props;
+  const colorScheme = useColorScheme();
 
   return (
     <StyledNav onClick={() => onClick && onClick()} colorScheme={colorScheme}>
