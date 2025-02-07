@@ -26,8 +26,8 @@ export const fontSizeTwelve = `calc(${defaultFontSize} * 5.96)`;
 export const fontSizeThirteen = `calc(${defaultFontSize} * 7.451)`;
 export const fontSizeFourteen = `calc(${defaultFontSize} * 9.313)`;
 
-export function getFontSizeCustom(size: number) {
-  return `calc(${defaultFontSize} * ${size})`;
+export function getFontSizeCustom(factor: number, startingFontSize = defaultFontSize) {
+  return `calc(${startingFontSize} * ${factor})`;
 }
 
 export const lineHeight = 1.5;

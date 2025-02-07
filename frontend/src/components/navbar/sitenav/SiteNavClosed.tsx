@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useColorScheme } from "../../../hooks/useColorScheme";
-import { ColorScheme } from "../../../styles/constants";
+import { ColorScheme, defaultFontSize, fontSizeEleven, fontSizeFive } from "../../../styles/constants";
 
 type SiteNavProps = {
     onClick: () => void;
@@ -13,12 +13,12 @@ type ColorSchemeProp = {
 
 const StyledNav = styled.button<ColorSchemeProp>`
   position: absolute;
-  top: 4.27rem;
+  top: ${defaultFontSize};
   left: 4.27rem;
   background-color: ${props => props.colorScheme.primary4};
   z-index: 1000;
-  width: 4.27rem;
-  height: 4.27rem;
+  width: ${fontSizeEleven};
+  height: ${fontSizeEleven};
   border-radius: 50%;
   border: none;
   cursor: pointer;
