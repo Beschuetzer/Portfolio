@@ -27,7 +27,6 @@ const StyledNav = styled.button<ColorSchemeProp>`
 
   &:hover .hamburger {
     &::before {
-      transform: translateY(-33%);
       transform: rotate(135deg) translate(1.134784rem, 1.134784rem);
     }
     &::after {
@@ -37,7 +36,7 @@ const StyledNav = styled.button<ColorSchemeProp>`
 `;
 
 const Hamburger = styled.div<ColorSchemeProp>`
-  width: ${getFontSizeCustom(0.5, fontSizeEleven)};
+  width: ${getFontSizeCustom(0.2, fontSizeEleven)};
   height: ${getFontSizeCustom(0.5)};
   background-color: ${(props) => props.colorScheme.primary1};
   position: relative;
@@ -51,6 +50,7 @@ const Hamburger = styled.div<ColorSchemeProp>`
     background-color: ${(props) => props.colorScheme.primary1};
     position: absolute;
     transition: all 0.3s ease-in-out;
+
   }
 
   &::before,
@@ -60,10 +60,12 @@ const Hamburger = styled.div<ColorSchemeProp>`
 
   &::before {
     top: ${getFontSizeCustom(-0.75)};
+    transform: rotate(105deg) translate(1.253786rem, 1.536576rem);
   }
 
   &::after {
     top: ${getFontSizeCustom(0.75)};
+    transform: rotate(-105deg) translate(1.253786rem);
   }
 `;
 
