@@ -1,7 +1,11 @@
 import React from "react";
 import { useState } from "react";
 
-import { ColorScheme, defaultFontSize, fontSizeEleven } from "../../../styles/constants";
+import {
+  ColorScheme,
+  defaultFontSize,
+  fontSizeEleven,
+} from "../../../styles/constants";
 
 import aboutImage from "../../imgs/site-nav/about.jpg";
 import autoBidImage from "../../imgs/site-nav/autobid.jpg";
@@ -31,6 +35,10 @@ const SiteNavContainer = styled.header`
   position: absolute;
   top: ${defaultFontSize};
   left: ${fontSizeEleven};
+  right: ${fontSizeEleven};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export type SiteNavProps = {
