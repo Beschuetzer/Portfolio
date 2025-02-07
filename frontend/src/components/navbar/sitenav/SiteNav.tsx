@@ -1,11 +1,9 @@
 import React from "react";
-import { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
-import {
-  NavListItem,
-  NavListItemImage,
-  NavListItemProps,
-} from "../NavListItem";
+import { useState } from "react";
+
+import { SiteNavOpen } from "./SiteNavOpen";
+import { SiteNavClosed } from "./SiteNavClosed";
+import { ColorScheme } from "../../../styles/constants";
 
 import aboutImage from "../../imgs/site-nav/about.jpg";
 import autoBidImage from "../../imgs/site-nav/autobid.jpg";
@@ -28,134 +26,29 @@ import about2 from "../../imgs/site-nav/interests.jpg";
 import about3 from "../../imgs/site-nav/music.jpg";
 import about4 from "../../imgs/site-nav/personality.jpg";
 
-import {
-  ABOUT_PAGE_NAME,
-  ABOUT_URL,
-  AUTO_BID_PAGE_NAME,
-  AUTO_BID_URL,
-  BRIDGE_PAGE_NAME,
-  BRIDGE_URL,
-  DOWNLOADER_PAGE_NAME,
-  DOWNLOADER_URL,
-  EMAIL,
-  PLAYLIST_SYNCER_URL,
-  REPLAY_VIEWER_URL,
-  RESUME_PAGE_NAME,
-  RESUME_URL,
-  OVERFLOW_HIDDEN_CLASSNAME,
-  ANIMATION_DURATION,
-  UNCLICKABLE_CLASSNAME,
-  Z_INDEX_HIGHEST_CLASSNAME,
-  HEADER_ID,
-  SITE_NAV_CLASSNAME,
-  SITE_NAV_MINIMAL_CLASSNAME,
-  SITE_NAV_CLOSE_DELAY,
-  PERSONALITY_URL,
-  NAVBAR_ACTIVE_CLASSNAME,
-  NAVBAR_CLASSNAME,
-  NAVBAR_DEFAULT_CLASSNAME,
-  NAVBAR_DONE_CLASSNAME,
-  NAVBAR_IS_ANIMATING_CLASSNAME,
-} from "../../constants";
-import { useLocation } from "react-router-dom";
-import {
-  currentlyViewingImageSelector,
-  isMobileSelector,
-  isSiteNavMinimizedSelector,
-  setHeaderHeight,
-} from "../../../slices/generalSlice";
-import { capitalize, replaceCharacters } from "../../../helpers";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { useHandleChangePage } from "../../../hooks/useHandleChangePage";
-import { Match } from "../../../types";
-import { ABOUT_SECTION_NAMES, RESUME_SECTION_TITLES } from "../../../pages";
-import { useRenderCount } from "../../../hooks/CssClassCreater/useRenderCount";
-import { setHeaderHeightCSSPropertyValue } from "../../../hooks/useSetHeaderCssStyle";
-import { useBroswerDetection } from "../../../hooks/useBrowserDetection";
-import styled from "styled-components";
-import { SiteNavOpen } from "./SiteNavOpen";
-import { SiteNavClosed } from "./SiteNavClosed";
 
-//created a styled div that floats on the top left of the screen
+export type SiteNavProps = {
+  onClick?: () => void;
+};
 
-const StyledNav = styled.button`
-  position: absolute;
-  top: 4.27rem;
-  left: 4.27rem;
-  background-color: #fff;
-  z-index: 1000;
-  width: 4.27rem;
-  height: 4.27rem;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease-in-out;
+export type ColorSchemeProp = {
+  colorScheme: ColorScheme;
+};
 
-  &:hover .hamburger {
-    transform: rotate(90deg);
-  }
-
-  &:hover .menu {
-    display: block;
-  }
-`;
-
-const Hamburger = styled.div`
-  width: 1.6rem;
-  height: 0.4rem;
-  background-color: #333;
-  position: relative;
-  transition: all 0.3s ease-in-out;
-
-  &::before,
-  &::after {
-    content: "";
-    width: 1.6rem;
-    height: 0.4rem;
-    background-color: #333;
-    position: absolute;
-    transition: all 0.3s ease-in-out;
-  }
-
-  &::before {
-    top: -0.6rem;
-    left: -0rem;
-  }
-
-  &::after {
-    top: 0.6rem;
-    left: -0rem;
-  }
-`;
-
-const Menu = styled.div`
-  display: none;
-  position: absolute;
-  top: 4.27rem;
-  left: 4.27rem;
-  background-color: #fff;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  z-index: 999;
-`;
-
-type SiteNavProps = {};
 
 export function SiteNav(props: SiteNavProps) {
+  const { onClick } = props;
   const [isOpen, setIsOpen] = useState(false);
 
-  const onClick = () => {
+  const onClickLocal = () => {
+    onClick && onClick();
     setIsOpen((current) => !current);
   };
 
   return isOpen ? (
-    <SiteNavOpen onClick={onClick} />
+    <SiteNavOpen onClick={onClickLocal} />
   ) : (
-    <SiteNavClosed onClick={onClick} />
+    <SiteNavClosed onClick={onClickLocal} />
   );
 }
 

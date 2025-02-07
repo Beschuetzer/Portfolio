@@ -1,19 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import { respond } from "../../../styles/breakpoints";
+import { useColorScheme } from "../../../hooks/useColorScheme";
+import {
+  defaultFontSize,
+  fontSizeEleven,
+  getFontSizeCustom,
+} from "../../../styles/constants";
+import { ColorSchemeProp, SiteNavProps } from "./SiteNav";
+import { NavListItem } from "../NavListItem";
 
-interface SiteNavProps {
-  onClick: () => void;
-}
-
-const StyledNav = styled.button`
+const StyledNav = styled.button<ColorSchemeProp>`
   position: absolute;
-  top: 4.27rem;
-  left: 4.27rem;
-  background-color: #fff;
+  top: ${defaultFontSize};
+  left: ${fontSizeEleven};
+  background-color: ${(props) => props.colorScheme.primary4};
   z-index: 1000;
-  width: 4.27rem;
-  height: 4.27rem;
+  width: ${fontSizeEleven};
+  height: ${fontSizeEleven};
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -23,43 +26,44 @@ const StyledNav = styled.button`
   transition: all 0.3s ease-in-out;
 
   &:hover .hamburger {
-    transform: scale(1.1);
+    &::before {
+      transform: translateY(-33%);
+      transform: rotate(135deg) translate(1.134784rem, 1.134784rem);
+    }
+    &::after {
+        transform: rotate(-135deg) translate(1.134784rem, -1.134784rem);
+    }
   }
-
-  &:hover .menu {
-    display: block;
-  }
-
-  ${respond.phone`
-    background-color: #000;
-  `}
 `;
 
-const Hamburger = styled.div`
-  width: 1.6rem;
-  height: 0.4rem;
-  background-color: #333;
+const Hamburger = styled.div<ColorSchemeProp>`
+  width: ${getFontSizeCustom(0.5, fontSizeEleven)};
+  height: ${getFontSizeCustom(0.5)};
+  background-color: ${(props) => props.colorScheme.primary1};
   position: relative;
   transition: all 0.3s ease-in-out;
 
   &::before,
   &::after {
     content: "";
-    width: 1.6rem;
-    height: 0.4rem;
-    background-color: #333;
+    width: ${getFontSizeCustom(0.5, fontSizeEleven)};
+    height: ${getFontSizeCustom(0.5)};
+    background-color: ${(props) => props.colorScheme.primary1};
     position: absolute;
     transition: all 0.3s ease-in-out;
   }
 
+  &::before,
+  &::after {
+    left: 0;
+  }
+
   &::before {
-    top: -0.6rem;
-    left: -0rem;
+    top: ${getFontSizeCustom(-0.75)};
   }
 
   &::after {
-    top: 0.6rem;
-    left: -0rem;
+    top: ${getFontSizeCustom(0.75)};
   }
 `;
 
@@ -77,25 +81,12 @@ const Menu = styled.div`
 
 export const SiteNavOpen: React.FC<SiteNavProps> = (props: SiteNavProps) => {
   const { onClick } = props;
+  const colorScheme = useColorScheme();
 
   return (
-    <StyledNav onClick={() => onClick && onClick()}>
-      <Hamburger />
-      <Menu>
-        <ul>
-          <li>
-            <a href="#home">Home</a>
-          </li>
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#services">Services</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
+    <StyledNav onClick={() => onClick && onClick()} colorScheme={colorScheme}>
+      <Hamburger colorScheme={colorScheme} className="hamburger" />
+      <Menu className="menu">
       </Menu>
     </StyledNav>
   );

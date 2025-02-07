@@ -2,19 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import {
-  ColorScheme,
   defaultFontSize,
   fontSizeEleven,
   getFontSizeCustom,
 } from "../../../styles/constants";
+import { ColorSchemeProp, SiteNavProps } from "./SiteNav";
 
-type SiteNavProps = {
-  onClick: () => void;
-};
-
-type ColorSchemeProp = {
-  colorScheme: ColorScheme;
-};
 
 const StyledNav = styled.button<ColorSchemeProp>`
   position: absolute;
