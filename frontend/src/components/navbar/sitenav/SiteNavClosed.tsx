@@ -1,16 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import { useColorScheme } from "../../../hooks/useColorScheme";
+import { ColorScheme } from "../../../styles/constants";
 
-interface SiteNavProps {
+type SiteNavProps = {
     onClick: () => void;
 }
 
-const StyledNav = styled.button`
+type ColorSchemeProp = {
+    colorScheme: ColorScheme;
+}
+
+const StyledNav = styled.button<ColorSchemeProp>`
   position: absolute;
   top: 4.27rem;
   left: 4.27rem;
-  background-color: #abc;
+  background-color: ${props => props.colorScheme.primary4};
   z-index: 1000;
   width: 4.27rem;
   height: 4.27rem;
@@ -31,10 +36,10 @@ const StyledNav = styled.button`
   }
 `;
 
-const Hamburger = styled.div`
+const Hamburger = styled.div<ColorSchemeProp>`
   width: 1.6rem;
   height: 0.4rem;
-  background-color: #333;
+  background-color: ${props => props.colorScheme.primary1};
   position: relative;
   transition: all 0.3s ease-in-out;
 
@@ -43,7 +48,7 @@ const Hamburger = styled.div`
     content: "";
     width: 1.6rem;
     height: 0.4rem;
-    background-color: #333;
+    background-color: ${props => props.colorScheme.primary1};
     position: absolute;
     transition: all 0.3s ease-in-out;
   }
@@ -76,8 +81,8 @@ export const SiteNavClosed: React.FC<SiteNavProps> = (props: SiteNavProps) => {
     const colorScheme = useColorScheme();
 
   return (
-    <StyledNav onClick={() => onClick && onClick()} style={{ backgroundColor: colorScheme.primary4 }}>
-      <Hamburger style={{backgroundColor: colorScheme.primary1}} />
+    <StyledNav onClick={() => onClick && onClick()} colorScheme={colorScheme}>
+      <Hamburger colorScheme={colorScheme} />
       <Menu>
         <ul>
           <li>
