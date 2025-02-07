@@ -1,3 +1,14 @@
+import {
+  ABOUT_URL,
+  AUTO_BID_URL,
+  BRIDGE_URL,
+  DOWNLOADER_URL,
+  PERSONALITY_URL,
+  PLAYLIST_SYNCER_URL,
+  REPLAY_VIEWER_URL,
+  RESUME_URL,
+} from "../components/constants";
+
 //#region Font Sizes and Text Stuff
 export const defaultFontSize = "1.4rem";
 export const fontSizeOne = `calc(${defaultFontSize} * 0.511875)`;
@@ -39,28 +50,28 @@ export const bigDesktopMinWidth = "112.5em";
 
 //#region Colors
 export const colors = {
-  about: {
+  [ABOUT_URL]: {
     primary1: "#161616",
     primary2: "#c84b31",
     primary3: "#31C9B0",
     primary4: "#ecdbba",
     primaryRed: "#c84b31",
   },
-  autoBid: {
+  [AUTO_BID_URL]: {
     primary1: "#e6e6e6",
     primary2: "#c5a880",
     primary3: "#532e1c",
     primary4: "#0f0f0f",
     primaryRed: "#541c2f",
   },
-  bigFive: {
+  [PERSONALITY_URL]: {
     primary1: "#7D5A50",
     primary2: "#B4846C",
     primary3: "#E5B299",
     primary4: "#FCDEC0",
     primaryRed: "#111111", // Assuming $color-black is #111111
   },
-  bridge: {
+  [BRIDGE_URL]: {
     primary1: "#00406b",
     primary2: "#f59229",
     primary3: "#e4e0c9",
@@ -71,7 +82,7 @@ export const colors = {
     sectionSvg3: "#00406b80",
     sectionSvg4: "#23f5f1db",
   },
-  downloader: {
+  [DOWNLOADER_URL]: {
     primary1: "#f9f7f7",
     primary2: "#dbe2ef",
     primary3: "#3f72af",
@@ -102,21 +113,21 @@ export const colors = {
     primaryRed: "#7B2853",
     resumeColorOpacity: 0.95,
   },
-  playlistSyncher: {
+  [PLAYLIST_SYNCER_URL]: {
     primary1: "#ffc996",
     primary2: "#ff8474",
     primary3: "#9f5f80",
     primary4: "#583d72",
     primaryRed: "#ff8474",
   },
-  replay: {
+  [REPLAY_VIEWER_URL]: {
     primary1: "#28537b",
     primary2: "#8ac6d0",
     primary3: "#f4d262",
     primary4: "#fbeeac",
     primaryRed: "#7B5028",
   },
-  resume: {
+  [RESUME_URL]: {
     primary1: "#28537b",
     primary2: "#8ac5d0",
     primary3: "#f4d262",

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { respond } from "../../styles/breakpoints";
-import { fontSizeOne } from "../../styles/constants";
+import { useColorScheme } from "../../hooks/useColorScheme";
 
 type NavbarHeaderProps = {
   children?: React.ReactNode | React.ReactNode[];
@@ -14,9 +14,8 @@ const NavbarHeaderNav = styled.nav`
   width: 100%;
 
   ${respond.navSwitch`
-        box-shadow: 0 1.4rem 2.8rem hsla(0, 0%, 7%, .33);
-        padding: ${fontSizeOne};
-        top: 0;    
+            top: 0;
+            z-index: 1000000;   
         `}
 `;
 export function NavbarHeader(props: NavbarHeaderProps) {
