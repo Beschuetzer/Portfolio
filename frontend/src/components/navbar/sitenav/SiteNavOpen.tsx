@@ -16,7 +16,7 @@ const StyledNav = styled.button<ColorSchemeProp>`
   z-index: 1000;
   width: ${fontSizeEleven};
   height: ${fontSizeEleven};
-  border-radius: 50%;
+  border-radius: 14rem 0 0 14rem;
   border: none;
   cursor: pointer;
   display: flex;
