@@ -49,7 +49,36 @@ export const bigDesktopMinWidth = "112.5em";
 //#endregion
 
 //#region Colors
-export const colors = {
+export type ColorScheme = {
+    primary1: string;
+    primary2: string;
+    primary3: string;
+    primary4: string;
+    primaryRed: string;
+    sectionSvg1?: string;
+    sectionSvg2?: string;
+    sectionSvg3?: string;
+    sectionSvg4?: string;
+  }
+  
+  // Define the Colors type
+  export type Colors = {
+    [key: string]: ColorScheme | {
+      greyLight1: string;
+      greyLight2: string;
+      greyLight3: string;
+      primary1Light: string;
+      resumeColorOpacity: number;
+      black: string;
+      grey20: string;
+      grey40: string;
+      grey60: string;
+      grey80: string;
+      white: string;
+    } & ColorScheme;
+  };
+
+export const colors: Colors = {
   [ABOUT_URL]: {
     primary1: "#161616",
     primary2: "#c84b31",

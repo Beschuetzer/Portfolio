@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useColorScheme } from "../../../hooks/useColorScheme";
 
 interface SiteNavProps {
     onClick: () => void;
@@ -72,10 +73,11 @@ const Menu = styled.div`
 
 export const SiteNavClosed: React.FC<SiteNavProps> = (props: SiteNavProps) => {
     const { onClick } = props;
+    const colorScheme = useColorScheme();
 
   return (
-    <StyledNav onClick={() => onClick && onClick()}>
-      <Hamburger />
+    <StyledNav onClick={() => onClick && onClick()} style={{ backgroundColor: colorScheme.primary4 }}>
+      <Hamburger style={{backgroundColor: colorScheme.primary1}} />
       <Menu>
         <ul>
           <li>
