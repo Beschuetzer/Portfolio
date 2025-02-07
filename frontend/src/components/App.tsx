@@ -45,7 +45,6 @@ import {
   setIsMobile,
   setViewPortWidth,
 } from "../slices/generalSlice";
-import { useSetHeaderCssStyle } from "../hooks/useSetHeaderCssStyle";
 import { keypressHandler } from "../helpers";
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 import { Redirect } from "../pages/Redirect";
@@ -58,7 +57,6 @@ export const App: React.FC<AppProps> = (props) => {
   const dispatch = useAppDispatch();
   const isMobile = useAppSelector(isMobileSelector);
 
-  useSetHeaderCssStyle();
   useEffect(() => {
     dispatch(
       setIsMobile({ isMobile: getIsMobile(), viewPortWidth: window.innerWidth })
