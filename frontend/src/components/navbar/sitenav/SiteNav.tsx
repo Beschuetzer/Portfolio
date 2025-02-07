@@ -30,6 +30,7 @@ import about4 from "../../imgs/site-nav/personality.jpg";
 import { styled } from "styled-components";
 import { SiteNavButton } from "./SiteNavButton";
 import { SiteNavContent } from "./SiteNavContent";
+import { SiteNavProvider } from "./SiteNavContext";
 
 const SiteNavContainer = styled.header`
   position: absolute;
@@ -39,6 +40,16 @@ const SiteNavContainer = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const SiteNavBackground = styled.div`
+  height: 200vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  visibility: hidden;
+  width: 200vw;
+  z-index: -1;
 `;
 
 export type SiteNavProps = {
@@ -52,10 +63,13 @@ export type ColorSchemeProp = {
 
 export function SiteNav() {
   return (
-    <SiteNavContainer>
-      <SiteNavButton />
-      <SiteNavContent />
-    </SiteNavContainer>
+    <SiteNavProvider>
+      <SiteNavContainer>
+        <SiteNavButton />
+        <SiteNavContent />
+        <SiteNavBackground />
+      </SiteNavContainer>
+    </SiteNavProvider>
   );
 }
 

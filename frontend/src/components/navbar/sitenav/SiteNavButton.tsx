@@ -7,6 +7,7 @@ import {
   getFontSizeCustom,
 } from "../../../styles/constants";
 import { ColorSchemeProp, SiteNavProps } from "./SiteNav";
+import { useSiteNav } from "./SiteNavContext";
 
 const StyledNav = styled.button<ColorSchemeProp>`
   
@@ -94,12 +95,12 @@ const Menu = styled.div`
 
 export const SiteNavButton: React.FC<SiteNavProps> = (props: SiteNavProps) => {
   const { onClick } = props;
+  const { isOpen, toggleIsOpen} = useSiteNav();
   const colorScheme = useColorScheme();
-  const [isOpen, setIsOpen] = useState(false);
 
   const onClickLocal = () => {
     onClick && onClick();
-    setIsOpen((current) => !current);
+    toggleIsOpen();
   };
 
   return (

@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components'
+import { useSiteNav } from './SiteNavContext';
 
 type SiteNavContentProps = {}
 
@@ -13,9 +14,11 @@ const ContentContainer = styled.div`
     `
 
 export function SiteNavContent(props: SiteNavContentProps) {
+      const { isOpen} = useSiteNav();
+    
   return (
     <ContentContainer>
-        <div>Testing</div>
+        <div>isOpen: {isOpen.toString()}</div>
     </ContentContainer>
   )
 }
