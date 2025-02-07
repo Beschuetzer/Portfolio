@@ -23,7 +23,6 @@ import {
 
 import { SiteNav } from "./navbar/sitenav/SiteNav";
 import { PageNav } from "./navbar/PageNav";
-import { NavToggler } from "./navbar/NavToggler";
 import "../css/style.css";
 import { GithubButton } from "./GithubButton";
 import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
@@ -119,7 +118,6 @@ export const App: React.FC<AppProps> = (props) => {
       <Router history={history}>
 		<NavbarHeader>
 			<SiteNav />
-			{/* <NavToggler /> */}
 			{/* <PageNav /> */}
 			{/* <GithubButton /> */}
 		</NavbarHeader>

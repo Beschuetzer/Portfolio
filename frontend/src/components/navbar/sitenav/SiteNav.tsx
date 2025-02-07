@@ -50,8 +50,8 @@ export type SiteNavProps = {
 };
 
 export type SiteNavStyledProps = {
-  colorScheme?: ColorScheme;
-  isOpen?: boolean;
+  colorscheme?: ColorScheme;
+  isopen?: boolean;
 };
 
 export function SiteNav() {
