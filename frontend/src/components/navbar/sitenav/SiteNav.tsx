@@ -31,6 +31,7 @@ import { styled } from "styled-components";
 import { SiteNavButton } from "./SiteNavButton";
 import { SiteNavContent } from "./SiteNavContent";
 import { SiteNavProvider } from "./SiteNavContext";
+import SiteNavBackground from "./SiteNavBackground";
 
 const SiteNavContainer = styled.header`
   position: absolute;
@@ -42,22 +43,14 @@ const SiteNavContainer = styled.header`
   align-items: center;
 `;
 
-const SiteNavBackground = styled.div`
-  height: 200vh;
-  left: 0;
-  position: fixed;
-  top: 0;
-  visibility: hidden;
-  width: 200vw;
-  z-index: -1;
-`;
+
 
 export type SiteNavProps = {
   onClick?: () => void;
 };
 
-export type ColorSchemeProp = {
-  colorScheme: ColorScheme;
+export type SiteNavStyledProps = {
+  colorScheme?: ColorScheme;
   isOpen?: boolean;
 };
 

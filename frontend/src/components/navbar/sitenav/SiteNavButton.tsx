@@ -6,12 +6,12 @@ import {
   fontSizeEleven,
   getFontSizeCustom,
 } from "../../../styles/constants";
-import { ColorSchemeProp, SiteNavProps } from "./SiteNav";
+import { SiteNavStyledProps, SiteNavProps } from "./SiteNav";
 import { useSiteNav } from "./SiteNavContext";
 
-const StyledNav = styled.button<ColorSchemeProp>`
+const StyledNav = styled.button<SiteNavStyledProps>`
   
-  background-color: ${(props) => props.colorScheme.primary4};
+  background-color: ${(props) => props.colorScheme?.primary4};
   z-index: 1000;
   width: ${fontSizeEleven};
   height: ${fontSizeEleven};
@@ -41,11 +41,11 @@ const StyledNav = styled.button<ColorSchemeProp>`
   }
 `;
 
-const Hamburger = styled.div<ColorSchemeProp>`
+const Hamburger = styled.div<SiteNavStyledProps>`
   width: ${(props) =>
     getFontSizeCustom(props.isOpen ? 0.2 : 0.5, fontSizeEleven)};
   height: ${getFontSizeCustom(0.5)};
-  background-color: ${(props) => props.colorScheme.primary1};
+  background-color: ${(props) => props.colorScheme?.primary1};
   position: relative;
   transition: all 0.3s ease-in-out;
 
@@ -54,7 +54,7 @@ const Hamburger = styled.div<ColorSchemeProp>`
     content: "";
     width: ${getFontSizeCustom(0.5, fontSizeEleven)};
     height: ${getFontSizeCustom(0.5)};
-    background-color: ${(props) => props.colorScheme.primary1};
+    background-color: ${(props) => props.colorScheme?.primary1};
     position: absolute;
     transition: all 0.3s ease-in-out;
   }

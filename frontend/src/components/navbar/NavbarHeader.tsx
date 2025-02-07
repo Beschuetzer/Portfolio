@@ -10,10 +10,10 @@ const NavbarHeaderNav = styled.nav`
   position: fixed;
   top: 2.1rem;
   width: 100%;
+  z-index: 1000000;   
 
   ${respond.navSwitch`
             top: 0;
-            z-index: 1000000;   
         `}
 `;
 export function NavbarHeader(props: NavbarHeaderProps) {
