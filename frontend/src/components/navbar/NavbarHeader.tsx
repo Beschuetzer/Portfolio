@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { respond } from "../../styles/breakpoints";
-import { useColorScheme } from "../../hooks/useColorScheme";
 
 type NavbarHeaderProps = {
   children?: React.ReactNode | React.ReactNode[];
 };
 
 const NavbarHeaderNav = styled.nav`
-  pointer-events: none;
   position: fixed;
   top: 2.1rem;
   width: 100%;
