@@ -33,11 +33,12 @@ const StyledNav = styled.button<ColorSchemeProp>`
   transition: all 0.3s ease-in-out;
 
   &:hover .hamburger {
-    transform: rotate(90deg);
-  }
-
-  &:hover .menu {
-    display: block;
+    &::before {
+      transform: translateY(-33%);
+    }
+    &::after {
+      transform: translateY(33%);
+    }
   }
 `;
 
@@ -64,7 +65,7 @@ const Hamburger = styled.div<ColorSchemeProp>`
   }
 
   &::before {
-    top: ${getFontSizeCustom(-.75)};
+    top: ${getFontSizeCustom(-0.75)};
   }
 
   &::after {
@@ -90,22 +91,9 @@ export const SiteNavClosed: React.FC<SiteNavProps> = (props: SiteNavProps) => {
 
   return (
     <StyledNav onClick={() => onClick && onClick()} colorScheme={colorScheme}>
-      <Hamburger colorScheme={colorScheme} />
-      <Menu>
-        <ul>
-          <li>
-            <a href="#home">Home</a>
-          </li>
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#services">Services</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-        </ul>
+      <Hamburger colorScheme={colorScheme} className="hamburger" />
+      <Menu className="menu">
+        
       </Menu>
     </StyledNav>
   );
