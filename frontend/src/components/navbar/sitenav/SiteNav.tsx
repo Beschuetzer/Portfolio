@@ -1,8 +1,6 @@
 import React from "react";
 import { useState } from "react";
 
-import { SiteNavOpen } from "./SiteNavOpen";
-import { SiteNavClosed } from "./SiteNavClosed";
 import { ColorScheme } from "../../../styles/constants";
 
 import aboutImage from "../../imgs/site-nav/about.jpg";
@@ -25,7 +23,14 @@ import about1 from "../../imgs/site-nav/overview-2.jpg";
 import about2 from "../../imgs/site-nav/interests.jpg";
 import about3 from "../../imgs/site-nav/music.jpg";
 import about4 from "../../imgs/site-nav/personality.jpg";
+import { styled } from "styled-components";
+import { SiteNavButton } from "./SiteNavButton";
 
+const SiteNavContainer = styled.header`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
 
 export type SiteNavProps = {
   onClick?: () => void;
@@ -33,22 +38,14 @@ export type SiteNavProps = {
 
 export type ColorSchemeProp = {
   colorScheme: ColorScheme;
+  isOpen?: boolean;
 };
 
-
-export function SiteNav(props: SiteNavProps) {
-  const { onClick } = props;
-  const [isOpen, setIsOpen] = useState(false);
-
-  const onClickLocal = () => {
-    onClick && onClick();
-    setIsOpen((current) => !current);
-  };
-
-  return isOpen ? (
-    <SiteNavOpen onClick={onClickLocal} />
-  ) : (
-    <SiteNavClosed onClick={onClickLocal} />
+export function SiteNav() {
+  return (
+    <SiteNavContainer>
+      <SiteNavButton />
+    </SiteNavContainer>
   );
 }
 

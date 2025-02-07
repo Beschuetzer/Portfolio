@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import {
@@ -16,7 +16,8 @@ const StyledNav = styled.button<ColorSchemeProp>`
   z-index: 1000;
   width: ${fontSizeEleven};
   height: ${fontSizeEleven};
-  border-radius: 14rem 0 0 14rem;
+  border-radius: 50%;
+  border-radius: ${(props) => (props.isOpen ? "14rem 0 0 14rem" : "50%")};
   border: none;
   cursor: pointer;
   display: flex;
@@ -25,18 +26,25 @@ const StyledNav = styled.button<ColorSchemeProp>`
   transition: all 0.3s ease-in-out;
 
   &:hover .hamburger {
-    background-color: transparent;
+    ${props => props.isOpen ? "background-color: transparent;" : ""}
     &::before {
-      transform: rotate(135deg) translate(${defaultFontSize}, -0.1rem);
+      transform: ${(props) =>
+        props.isOpen
+          ? `rotate(135deg) translate(${defaultFontSize}, -0.1rem)`
+          : "translateY(-33%)"};
     }
     &::after {
-      transform: rotate(-135deg) translate(${defaultFontSize}, 0.05rem);
+      transform: ${(props) =>
+        props.isOpen
+          ? `rotate(-135deg) translate(${defaultFontSize}, 0.05rem)`
+          : "translateY(33%)"};
     }
   }
 `;
 
 const Hamburger = styled.div<ColorSchemeProp>`
-  width: ${getFontSizeCustom(0.2, fontSizeEleven)};
+  width: ${(props) =>
+    getFontSizeCustom(props.isOpen ? 0.2 : 0.5, fontSizeEleven)};
   height: ${getFontSizeCustom(0.5)};
   background-color: ${(props) => props.colorScheme.primary1};
   position: relative;
@@ -59,12 +67,18 @@ const Hamburger = styled.div<ColorSchemeProp>`
 
   &::before {
     top: ${getFontSizeCustom(-0.75)};
-    transform: rotate(105deg) translate(1.253786rem, 1.536576rem);
+    ${(props) =>
+      props.isOpen
+        ? ` transform: rotate(105deg) translate(1.253786rem, 1.536576rem);`
+        : ""}
   }
 
   &::after {
     top: ${getFontSizeCustom(0.75)};
-    transform: rotate(-105deg) translate(1.353786rem);
+    ${(props) =>
+      props.isOpen
+        ? ` transform: rotate(-105deg) translate(1.353786rem);`
+        : ""}
   }
 `;
 
@@ -80,14 +94,24 @@ const Menu = styled.div`
   z-index: 999;
 `;
 
-export const SiteNavOpen: React.FC<SiteNavProps> = (props: SiteNavProps) => {
+export const SiteNavButton: React.FC<SiteNavProps> = (props: SiteNavProps) => {
   const { onClick } = props;
   const colorScheme = useColorScheme();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onClickLocal = () => {
+    onClick && onClick();
+    setIsOpen((current) => !current);
+  };
 
   return (
-    <StyledNav onClick={() => onClick && onClick()} colorScheme={colorScheme}>
-      <Hamburger colorScheme={colorScheme} className="hamburger" />
-      <Menu className="menu"></Menu>
+    <StyledNav onClick={onClickLocal} colorScheme={colorScheme} isOpen={isOpen}>
+      <Hamburger
+        colorScheme={colorScheme}
+        className="hamburger"
+        isOpen={isOpen}
+      />
+      {/* <Menu className="menu"></Menu> */}
     </StyledNav>
   );
   //#endregion
