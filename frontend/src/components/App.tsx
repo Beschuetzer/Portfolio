@@ -21,7 +21,7 @@ import {
   THUMBNAIL_CAROUSEL_URL,
 } from "./constants";
 
-import { SiteNav } from "./navbar/SiteNav";
+import { SiteNav } from "./navbar/sitenav/SiteNav";
 import { PageNav } from "./navbar/PageNav";
 import { NavToggler } from "./navbar/NavToggler";
 import "../css/style.css";
