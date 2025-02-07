@@ -1,4 +1,4 @@
-import { css, FlattenSimpleInterpolation } from 'styled-components';
+import { css } from 'styled-components';
 
 export const sizes: { [key: string]: string } = {
   navListBreak: '370px',
@@ -14,11 +14,11 @@ export const sizes: { [key: string]: string } = {
 };
 
 type RespondType = {
-  [key: string]: (...args: any[]) => FlattenSimpleInterpolation;
+  [key: string]: (...args: any[]) => any;
 };
 
 export const respond: RespondType = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (...args) => css`
+  acc[label] = (...args: [TemplateStringsArray, ...any[]]) => css`
     @media (max-width: ${sizes[label]}) {
       ${css(...args)}
     }
