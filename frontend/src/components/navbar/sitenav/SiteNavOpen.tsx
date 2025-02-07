@@ -7,7 +7,6 @@ import {
   getFontSizeCustom,
 } from "../../../styles/constants";
 import { ColorSchemeProp, SiteNavProps } from "./SiteNav";
-import { NavListItem } from "../NavListItem";
 
 const StyledNav = styled.button<ColorSchemeProp>`
   position: absolute;
@@ -26,11 +25,12 @@ const StyledNav = styled.button<ColorSchemeProp>`
   transition: all 0.3s ease-in-out;
 
   &:hover .hamburger {
+    background-color: transparent;
     &::before {
-      transform: rotate(135deg) translate(1.134784rem, 1.134784rem);
+      transform: rotate(135deg) translate(${defaultFontSize}, -0.1rem);
     }
     &::after {
-        transform: rotate(-135deg) translate(1.134784rem, -1.134784rem);
+      transform: rotate(-135deg) translate(${defaultFontSize}, 0.05rem);
     }
   }
 `;
@@ -50,7 +50,6 @@ const Hamburger = styled.div<ColorSchemeProp>`
     background-color: ${(props) => props.colorScheme.primary1};
     position: absolute;
     transition: all 0.3s ease-in-out;
-
   }
 
   &::before,
@@ -65,7 +64,7 @@ const Hamburger = styled.div<ColorSchemeProp>`
 
   &::after {
     top: ${getFontSizeCustom(0.75)};
-    transform: rotate(-105deg) translate(1.253786rem);
+    transform: rotate(-105deg) translate(1.353786rem);
   }
 `;
 
@@ -88,8 +87,7 @@ export const SiteNavOpen: React.FC<SiteNavProps> = (props: SiteNavProps) => {
   return (
     <StyledNav onClick={() => onClick && onClick()} colorScheme={colorScheme}>
       <Hamburger colorScheme={colorScheme} className="hamburger" />
-      <Menu className="menu">
-      </Menu>
+      <Menu className="menu"></Menu>
     </StyledNav>
   );
   //#endregion
