@@ -15,7 +15,7 @@ export type SiteNavItemProps = {
   href?: string;
   image?: string;
   isLast?: boolean;
-  orientation?: SiteNaveItemOrientation
+  orientation?: SiteNaveItemOrientation;
   text: string;
   to?: string;
   isDropDownItem?: boolean;
@@ -30,6 +30,29 @@ const Item = styled.div<
   }
 
   ${itemStyles}
+
+  ${(props) =>
+    props.orientation === SiteNaveItemOrientation.vertical
+      ? `
+      border-top: 1px solid ${props.colorscheme?.primary1};
+      transition: background .1666666667s ease, transform .25s ease,box-shadow .25s ease,-webkit-transform .25s ease;
+      &:hover {
+        box-shadow: -10px 0 10px hsla(0, 0%, 7%, 0.5);
+        /* -webkit-transform: translateX(.56rem) !important; */
+        transform: translateX(0.56rem) !important;
+        background-color: ${props.colorscheme?.primary1};
+
+
+        & .item-link {
+          color: ${props.colorscheme?.primary4};
+        }
+
+        & + div {
+          border-top: none;
+        }
+      }
+    `
+      : ""}
 `;
 
 const Image = styled.img<SiteNavStyledProps>`
@@ -77,11 +100,11 @@ export default function SiteNavItem(props: SiteNavItemProps) {
     <Item {...propsToAdd} isdropdownitem={isDropDownItem} image={image}>
       <Image {...propsToAdd} src={image} alt={text} className="image" />
       {href ? (
-        <ExternalLink {...propsToAdd} href={href || ""}>
+        <ExternalLink {...propsToAdd} href={href || ""} className="item-link">
           {text}
         </ExternalLink>
       ) : (
-        <StyledLink {...propsToAdd} to={to || ""}>
+        <StyledLink {...propsToAdd} to={to || ""} className="item-link">
           {text}
         </StyledLink>
       )}
