@@ -1,10 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
+  BUTTON_RADIUS,
   ColorScheme,
-  defaultFontSize,
   fontSizeEight,
   getFontSizeCustom,
+  SCROLL_BAR_WIDTH_IN_REM,
+  SECTION_WIDTH_IN_PIXELS,
 } from "../../../styles/constants";
 
 import { styled } from "styled-components";
@@ -13,18 +15,13 @@ import { SiteNavContent } from "./SiteNavContent";
 import { SiteNavProvider } from "./SiteNavContext";
 import SiteNavBackground from "./SiteNavBackground";
 import { useLocation } from "react-router-dom";
-import { useOnWindowResize } from "../../../hooks/useOnWindowResize";
 
-const SECTION_WIDTH = 750;
-
-const SiteNavContainer = styled.header<{sitenavleft: string}>`
+const SiteNavContainer = styled.header<{ sitenavleft: string }>`
   position: absolute;
   top: ${fontSizeEight};
-  left: ${props => props.sitenavleft};
+  left: ${(props) => props.sitenavleft};
   display: flex;
 `;
-
-
 
 export type SiteNavProps = {
   onClick?: () => void;
@@ -38,9 +35,18 @@ export type SiteNavStyledProps = {
   orientation?: "horizontal" | "vertical";
 };
 
+function getAbsoluteLeft() {
+  return `calc(((calc(${
+    window.innerWidth
+  }px + ${SCROLL_BAR_WIDTH_IN_REM}rem) - ${SECTION_WIDTH_IN_PIXELS}px) / 4) - ${getFontSizeCustom(
+    0.5,
+    BUTTON_RADIUS
+  )})`;
+}
+
 export function SiteNav() {
   const location = useLocation();
-  const [siteNavleft, setSiteNavleft] = useState(getFontSizeCustom(2.25));
+  const [siteNavleft, setSiteNavleft] = useState(getAbsoluteLeft());
 
   useEffect(() => {
     if (!location?.hash) return;
@@ -49,18 +55,22 @@ export function SiteNav() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-  }, [location?.hash])
+  }, [location?.hash]);
 
-  // const onResize = useMemo(() => {
-  //   const middleOfScreen = windowWidth / 2;
-  // const middlePosition =(middleOfScreen - SECTION_WIDTH) / 2 - buss;
-  // }, [])
+  useEffect(() => {
+    function onResize() {
+      setSiteNavleft(getAbsoluteLeft());
+    }
 
-
-  // useOnWindowResize(onResize)
+    window.addEventListener("resize", onResize);
+    onResize();
+    return () => {
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
 
   return (
-    <SiteNavProvider>
+    <SiteNavProvider buttonRadius={BUTTON_RADIUS}>
       <SiteNavContainer sitenavleft={siteNavleft}>
         <SiteNavButton />
         <SiteNavContent />

@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { fontSizeEleven } from "../../../styles/constants";
 
 interface SiteNavContextProps {
   buttonRadius: string;
@@ -11,9 +10,10 @@ const SiteNavContext = createContext<SiteNavContextProps | undefined>(
   undefined
 );
 
-export const SiteNavProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export const SiteNavProvider: React.FC<{
+  buttonRadius: string;
+  children: ReactNode;
+}> = ({ buttonRadius, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleIsOpenLocal = () => {
@@ -23,7 +23,7 @@ export const SiteNavProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <SiteNavContext.Provider
       value={{
-        buttonRadius: fontSizeEleven,
+        buttonRadius,
         isOpen,
         toggleIsOpen: toggleIsOpenLocal,
       }}
