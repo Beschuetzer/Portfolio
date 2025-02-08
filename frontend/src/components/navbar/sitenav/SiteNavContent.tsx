@@ -24,7 +24,7 @@ import about2 from "../../../imgs/site-nav/interests.jpg";
 import about3 from "../../../imgs/site-nav/music.jpg";
 import about4 from "../../../imgs/site-nav/personality.jpg";
 import { EMAIL } from '../../constants';
-import { SiteNavDropDown } from './SiteNavDropDown';
+import { SiteNavDropDownItem } from './SiteNavDropDownItem';
 import { SiteNavStyledProps } from './SiteNav';
 
 type SiteNavContentProps = {}
@@ -47,9 +47,9 @@ export function SiteNavContent(props: SiteNavContentProps) {
     
   return (
     <ContentContainer {...propsToAdd}>
-        <SiteNavDropDown text='Résumé' />
-        <SiteNavDropDown text='About' />
-        <SiteNavDropDown text='Projects' />
+        <SiteNavDropDownItem text='Résumé' />
+        <SiteNavDropDownItem text='About' />
+        <SiteNavDropDownItem text='Projects' />
         <SiteNavItem text='Contact' href={`mailto:${EMAIL}`} image={contactImage} isLast />
     </ContentContainer>
   )

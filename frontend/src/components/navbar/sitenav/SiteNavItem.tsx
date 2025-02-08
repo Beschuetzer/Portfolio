@@ -4,7 +4,7 @@ import { SiteNavStyledProps } from "./SiteNav";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { Link } from "react-router-dom";
 import { useSiteNav } from "./SiteNavContext";
-import { linkStyles } from "./styles";
+import { itemStyles, linkStyles } from "./styles";
 
 export type SiteNavItemProps = {
   href?: string;
@@ -18,22 +18,12 @@ export type SiteNavItemProps = {
 const Item = styled.div<
   SiteNavStyledProps & { image: string; isdropdownitem: boolean }
 >`
-  background-color: ${(props) => props.colorscheme?.primary4};
-  border-left: 0.28rem solid ${(props) => props.colorscheme?.primary1};
-  ${(props) => (props.isdropdownitem ? "" : "cursor: pointer;")}
-  height: 100%;
-  position: relative;
-  width: 100%;
-  border-radius: ${(props) => (props.islast ? "0 14rem 14rem 0" : "0")};
-  overflow: hidden;
-
+  cursor: pointer;
   &:hover .image {
     ${(props) => (props.image ? "opacity: .1;" : "")}
   }
 
-  &:hover .triangle {
-    transform: rotate(90deg);
-  }
+  ${itemStyles}
 `;
 
 const Image = styled.img<SiteNavStyledProps>`
@@ -49,28 +39,12 @@ const Image = styled.img<SiteNavStyledProps>`
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
-const DropDownItem = styled.div<SiteNavStyledProps>`
-  cursor: default;
-  ${linkStyles}
-`;
-
 const StyledLink = styled(Link)<SiteNavStyledProps>`
   ${linkStyles}
 `;
 
 const ExternalLink = styled.a<SiteNavStyledProps>`
   ${linkStyles}
-`;
-
-const SiteNavTriangle = styled.div<SiteNavStyledProps>`
-  border-color: transparent transparent transparent
-    ${(props) => props.colorscheme?.primary1};
-  border-style: solid;
-  border-width: 0.462rem 0 0.462rem 1.05rem;
-  height: 0;
-  margin-left: 0.7rem;
-  width: 0;
-  transition: transform 0.25s ease, -webkit-transform 0.25s ease;
 `;
 
 export default function SiteNavItem(props: SiteNavItemProps) {
@@ -94,14 +68,7 @@ export default function SiteNavItem(props: SiteNavItemProps) {
   return (
     <Item {...propsToAdd} isdropdownitem={isDropDownItem} image={image}>
       <Image {...propsToAdd} src={image} alt={text} className="image" />
-      {isDropDownItem ? (
-        <>
-          <DropDownItem {...propsToAdd}>
-            {text}
-            <SiteNavTriangle {...propsToAdd} className="triangle" />
-          </DropDownItem>
-        </>
-      ) : href ? (
+      {href ? (
         <ExternalLink {...propsToAdd} href={href || ""}>
           {text}
         </ExternalLink>
