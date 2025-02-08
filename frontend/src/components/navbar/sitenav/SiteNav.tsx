@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect } from "react";
 
 import {
   ColorScheme,
@@ -12,6 +11,7 @@ import { SiteNavButton } from "./SiteNavButton";
 import { SiteNavContent } from "./SiteNavContent";
 import { SiteNavProvider } from "./SiteNavContext";
 import SiteNavBackground from "./SiteNavBackground";
+import { useLocation } from "react-router-dom";
 
 const SiteNavContainer = styled.header`
   position: absolute;
@@ -36,6 +36,16 @@ export type SiteNavStyledProps = {
 };
 
 export function SiteNav() {
+  const location = useLocation();
+  useEffect(() => {
+    if (!location?.hash) return;
+    console.log({ locationHash: location.hash });
+    const element = document.getElementById(location.hash?.replace("#", ""));
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [location?.hash])
+
   return (
     <SiteNavProvider>
       <SiteNavContainer>

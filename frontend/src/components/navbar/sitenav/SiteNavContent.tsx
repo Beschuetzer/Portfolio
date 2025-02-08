@@ -120,7 +120,7 @@ export function SiteNavContent(props: SiteNavContentProps) {
             to: BRIDGE_URL
           },
           {
-            text: "Bridge Replay Viewer",
+            text: "Replay Viewer",
             image: replayImage,
             to: REPLAY_VIEWER_URL,
           },
