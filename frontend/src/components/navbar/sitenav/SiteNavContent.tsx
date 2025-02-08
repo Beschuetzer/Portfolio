@@ -35,6 +35,7 @@ import {
 type SiteNavContentProps = {};
 
 const ContentContainer = styled.div<SiteNavStyledProps>`
+  text-align: center;
   display: flex;
   flex-direction: row;
   transition: all 0.3s ease-in-out;
@@ -74,17 +75,17 @@ export function SiteNavContent(props: SiteNavContentProps) {
           },
           {
             text: "Work History",
-            image: resume2,
+            image: resume3,
             to: "/resume#work-history",
           },
           {
             text: "Education",
-            image: resume2,
+            image: resume4,
             to: "/resume#education",
           },
           {
             text: "References",
-            image: resume2,
+            image: resume5,
             to: "/resume#references",
           },
         ]}
@@ -111,6 +112,31 @@ export function SiteNavContent(props: SiteNavContentProps) {
             text: "Personality",
             image: about4,
             to: "/about#personality",
+          },
+        ]}
+      />
+      <SiteNavDropDown
+        text="Projects"
+        items={[
+          {
+            text: "A# Maj Bridge",
+            image: bridgeImage,
+            to: "/bridge",
+          },
+          {
+            text: "Bridge Replay Viewer",
+            image: replayImage,
+            to: "/examples/replay",
+          },
+          {
+            text: "Bridge Replay Viewer",
+            image: replayImage,
+            to: "/examples/replay",
+          },
+          {
+            text: "Bridge Replay Viewer",
+            image: replayImage,
+            to: "/examples/replay",
           },
         ]}
       />
