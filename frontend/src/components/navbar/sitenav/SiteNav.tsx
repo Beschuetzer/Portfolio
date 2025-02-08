@@ -39,8 +39,6 @@ const SiteNavContainer = styled.header`
   left: ${fontSizeEleven};
   right: ${fontSizeEleven};
   display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 

@@ -1,16 +1,13 @@
 import React from 'react'
 import { styled } from 'styled-components'
 import { useSiteNav } from './SiteNavContext';
+import SiteNavItem from './SiteNavItem';
 
 type SiteNavContentProps = {}
 
 const ContentContainer = styled.div`
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
+    flex-direction: row;
     `
 
 export function SiteNavContent(props: SiteNavContentProps) {
@@ -18,7 +15,12 @@ export function SiteNavContent(props: SiteNavContentProps) {
     
   return (
     <ContentContainer>
-        <div>isOpen: {isOpen.toString()}</div>
+        <SiteNavItem />
+        <SiteNavItem />
+        <SiteNavItem />
+        <SiteNavItem />
+        <SiteNavItem />
+        <SiteNavItem />
     </ContentContainer>
   )
 }
