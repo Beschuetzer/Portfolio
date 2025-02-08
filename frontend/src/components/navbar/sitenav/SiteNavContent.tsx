@@ -3,13 +3,9 @@ import { styled } from "styled-components";
 import { useSiteNav } from "./SiteNavContext";
 import SiteNavItem from "./SiteNavItem";
 
-import aboutImage from "../../../imgs/site-nav/about.jpg";
-import autoBidImage from "../../../imgs/site-nav/autobid.jpg";
 import bridgeImage from "../../../imgs/site-nav/bridge.jpg";
 import contactImage from "../../../imgs/site-nav/contact.jpg";
 import downloaderImage from "../../../imgs/site-nav/downloader.jpg";
-import examplesImage from "../../../imgs/site-nav/examples.jpg";
-import resumeImage from "../../../imgs/site-nav/resume.jpg";
 import syncerImage from "../../../imgs/site-nav/syncer.jpg";
 import replayImage from "../../../imgs/site-nav/replay.jpg";
 
@@ -23,7 +19,7 @@ import about1 from "../../../imgs/site-nav/overview-2.jpg";
 import about2 from "../../../imgs/site-nav/interests.jpg";
 import about3 from "../../../imgs/site-nav/music.jpg";
 import about4 from "../../../imgs/site-nav/personality.jpg";
-import { EMAIL } from "../../constants";
+import { ABOUT_URL, BRIDGE_URL, DOWNLOADER_URL, EMAIL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL } from "../../constants";
 import { SiteNavStyledProps } from "./SiteNav";
 import { SiteNavDropDown } from "./SiteNavDropDown";
 import { useColorScheme } from "../../../hooks/useColorScheme";
@@ -66,27 +62,27 @@ export function SiteNavContent(props: SiteNavContentProps) {
           {
             text: "Overview",
             image: resume1,
-            to: "/resume#overview",
+            to: `${RESUME_URL}#overview`,
           },
           {
             text: "Skills",
             image: resume2,
-            to: "/resume#skills",
+            to: `${RESUME_URL}#skills`,
           },
           {
             text: "Work History",
             image: resume3,
-            to: "/resume#work-history",
+            to: `${RESUME_URL}#work-history`,
           },
           {
             text: "Education",
             image: resume4,
-            to: "/resume#education",
+            to: `${RESUME_URL}#education`,
           },
           {
             text: "References",
             image: resume5,
-            to: "/resume#references",
+            to: `${RESUME_URL}#references`,
           },
         ]}
       />
@@ -96,22 +92,22 @@ export function SiteNavContent(props: SiteNavContentProps) {
           {
             text: "Overview",
             image: about1,
-            to: "/about#overview",
+            to: `${ABOUT_URL}#overview`,
           },
           {
             text: "Interests",
             image: about2,
-            to: "/about#interests",
+            to: `${ABOUT_URL}#interests`,
           },
           {
             text: "Music",
             image: about3,
-            to: "/about#music",
+            to: `${ABOUT_URL}#music`,
           },
           {
             text: "Personality",
             image: about4,
-            to: "/about#personality",
+            to: `${ABOUT_URL}#personality`,
           },
         ]}
       />
@@ -121,22 +117,22 @@ export function SiteNavContent(props: SiteNavContentProps) {
           {
             text: "A# Maj Bridge",
             image: bridgeImage,
-            to: "/bridge",
+            to: BRIDGE_URL
           },
           {
             text: "Bridge Replay Viewer",
             image: replayImage,
-            to: "/examples/replay",
+            to: REPLAY_VIEWER_URL,
           },
           {
-            text: "Bridge Replay Viewer",
-            image: replayImage,
-            to: "/examples/replay",
+            text: "Downloader",
+            image: downloaderImage,
+            to: DOWNLOADER_URL,
           },
           {
-            text: "Bridge Replay Viewer",
-            image: replayImage,
-            to: "/examples/replay",
+            text: "Syncer",
+            image: syncerImage,
+            to: PLAYLIST_SYNCER_URL,
           },
         ]}
       />
