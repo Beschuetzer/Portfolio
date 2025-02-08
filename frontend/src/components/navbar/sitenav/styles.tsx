@@ -35,3 +35,7 @@ export const itemStyles = css<SiteNavStyledProps>`
       : "0"};
   overflow: hidden;
 `;
+
+export const triangleRotateStyle = css<SiteNavStyledProps>`
+  transform: rotate(90deg);
+`;

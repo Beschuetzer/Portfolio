@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { HTMLAttributes, useCallback, useMemo } from "react";
 import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./SiteNav";
 import { useColorScheme } from "../../../hooks/useColorScheme";
@@ -15,6 +15,7 @@ export type SiteNavItemProps = {
   href?: string;
   image?: string;
   isLast?: boolean;
+  itemProps?: Partial<HTMLAttributes<HTMLDivElement>>;
   orientation?: SiteNaveItemOrientation;
   text: string;
   to?: string;
@@ -82,6 +83,7 @@ export default function SiteNavItem(props: SiteNavItemProps) {
   const {
     isDropDownItem = false,
     isLast = false,
+    itemProps,
     orientation = SiteNaveItemOrientation.horizontal,
     text,
     to = "",
@@ -101,7 +103,7 @@ export default function SiteNavItem(props: SiteNavItemProps) {
   }, [toggleIsOpen]);
 
   return (
-    <Item {...propsToAdd} isdropdownitem={isDropDownItem} image={image}>
+    <Item {...propsToAdd} isdropdownitem={isDropDownItem} image={image} {...itemProps}>
       <Image {...propsToAdd} src={image} alt={text} className="image" />
       {href ? (
         <ExternalLink {...propsToAdd} href={href || ""} className="item-link" onClick={onClickLocal}>

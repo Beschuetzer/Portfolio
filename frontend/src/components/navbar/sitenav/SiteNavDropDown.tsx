@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { SiteNavStyledProps } from "./SiteNav";
 import SiteNavItem, { SiteNaveItemOrientation, SiteNavItemProps } from "./SiteNavItem";
@@ -43,6 +43,7 @@ export function SiteNavDropDown(props: SiteNavDropDownProps) {
   const colorScheme = useColorScheme();
   const { isOpen, buttonRadius } = useSiteNav();
   const { isLast, items, text } = props;
+  const [isHovering, setIsHovering] = useState(false);
 
   const propsToAdd: SiteNavStyledProps = {
     colorscheme: colorScheme !== null ? colorScheme : undefined,
@@ -53,11 +54,14 @@ export function SiteNavDropDown(props: SiteNavDropDownProps) {
 
   return (
     <DropDownContainer {...propsToAdd}>
-      <SiteNavDropDownItem {...propsToAdd} text={text}/>
+      <SiteNavDropDownItem {...propsToAdd} text={text} isHovering={isHovering}/>
       <DropDownItems {...propsToAdd} className="item-container">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
-          return <SiteNavItem key={index} {...item} isLast={isLast} orientation={SiteNaveItemOrientation.vertical}/>
+          return <SiteNavItem key={index} {...item} isLast={isLast} orientation={SiteNaveItemOrientation.vertical} itemProps={{
+            onMouseEnter: () => setIsHovering(true),
+            onMouseLeave: () => setIsHovering(false),
+          }}/>
         })}
       </DropDownItems>
     </DropDownContainer>
