@@ -1,10 +1,12 @@
 import { css } from "styled-components";
 import { SiteNavStyledProps } from "./SiteNav";
 import {
+  defaultFontSize,
   fontSizeFive,
   fontSizeSeven,
   fontSizeSix,
 } from "../../../styles/constants";
+import { SiteNaveItemOrientation } from "./SiteNavItem";
 
 export const linkStyles = css<SiteNavStyledProps>`
   display: flex;
@@ -25,6 +27,11 @@ export const itemStyles = css<SiteNavStyledProps>`
   height: 100%;
   position: relative;
   width: 100%;
-  border-radius: ${(props) => (props.islast ? "0 14rem 14rem 0" : "0")};
+  border-radius: ${(props) =>
+    props.islast
+      ? props.orientation === SiteNaveItemOrientation.horizontal
+        ? `0 14rem 14rem 0`
+        : `0 0 ${defaultFontSize} ${defaultFontSize}`
+      : "0"};
   overflow: hidden;
 `;

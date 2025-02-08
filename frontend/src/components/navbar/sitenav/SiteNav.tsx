@@ -32,6 +32,7 @@ export type SiteNavStyledProps = {
   colorscheme?: ColorScheme;
   isopen?: boolean;
   islast?: boolean;
+  orientation?: "horizontal" | "vertical";
 };
 
 export function SiteNav() {

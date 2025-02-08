@@ -6,10 +6,16 @@ import { Link } from "react-router-dom";
 import { useSiteNav } from "./SiteNavContext";
 import { itemStyles, linkStyles } from "./styles";
 
+export enum SiteNaveItemOrientation {
+  horizontal = "horizontal",
+  vertical = "vertical",
+}
+
 export type SiteNavItemProps = {
   href?: string;
   image?: string;
   isLast?: boolean;
+  orientation?: SiteNaveItemOrientation
   text: string;
   to?: string;
   isDropDownItem?: boolean;
@@ -53,6 +59,7 @@ export default function SiteNavItem(props: SiteNavItemProps) {
   const {
     isDropDownItem = false,
     isLast = false,
+    orientation = SiteNaveItemOrientation.horizontal,
     text,
     to = "",
     href = "",
@@ -63,6 +70,7 @@ export default function SiteNavItem(props: SiteNavItemProps) {
     colorscheme: colorScheme !== null ? colorScheme : undefined,
     isopen: isOpen,
     islast: isLast,
+    orientation: orientation,
   };
 
   return (

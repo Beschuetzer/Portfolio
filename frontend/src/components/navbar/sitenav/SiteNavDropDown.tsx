@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { SiteNavStyledProps } from "./SiteNav";
-import SiteNavItem, { SiteNavItemProps } from "./SiteNavItem";
+import SiteNavItem, { SiteNaveItemOrientation, SiteNavItemProps } from "./SiteNavItem";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { useSiteNav } from "./SiteNavContext";
 import { SiteNavDropDownItem } from "./SiteNavDropDownItem";
@@ -12,6 +12,7 @@ const DropDownContainer = styled.div<SiteNavStyledProps>`
 
   &:hover > .item-container {
     transform: translateY(0) scaleY(1);
+    opacity: 1;
   }
 `;
 
@@ -27,7 +28,8 @@ const DropDownItems = styled.div<SiteNavStyledProps>`
   right: 0;
   transform: translateY(-100%) scaleY(1);
   transform-origin: bottom;
-  transition: transform .125s ease-in, -webkit-transform .125s ease-in;
+  opacity: 0;
+  transition: transform .125s ease-in, -webkit-transform .125s ease-in, opacity .125s ease-in;
 `;
 
 type SiteNavDropDownProps = {
@@ -51,9 +53,10 @@ export function SiteNavDropDown(props: SiteNavDropDownProps) {
     <DropDownContainer {...propsToAdd}>
       <SiteNavDropDownItem {...props} text={text}/>
       <DropDownItems {...propsToAdd} className="item-container">
-        {items.map((item, index) => (
-          <SiteNavItem key={index} {...item} />
-        ))}
+        {items.map((item, index) => {
+          const isLast = index === items.length - 1;
+          return <SiteNavItem key={index} {...item} isLast={isLast} orientation={SiteNaveItemOrientation.vertical}/>
+        })}
       </DropDownItems>
     </DropDownContainer>
   );
