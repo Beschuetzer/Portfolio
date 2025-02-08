@@ -22,7 +22,6 @@ export const linkStyles = css<SiteNavStyledProps>`
 
 export const itemStyles = css<SiteNavStyledProps>`
   background-color: ${(props) => props.colorscheme?.primary4};
-  border-left: 0.28rem solid ${(props) => props.colorscheme?.primary1};
   height: 100%;
   position: relative;
   width: 100%;

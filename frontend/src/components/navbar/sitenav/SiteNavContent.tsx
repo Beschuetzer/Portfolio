@@ -26,6 +26,11 @@ import about4 from "../../../imgs/site-nav/personality.jpg";
 import { EMAIL } from "../../constants";
 import { SiteNavStyledProps } from "./SiteNav";
 import { SiteNavDropDown } from "./SiteNavDropDown";
+import { useColorScheme } from "../../../hooks/useColorScheme";
+import {
+  getFontSizeCustom,
+} from "../../../styles/constants";
+
 
 type SiteNavContentProps = {};
 
@@ -34,16 +39,22 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
   flex-direction: row;
   transition: all 0.3s ease-in-out;
   transform: ${(props) =>
-    props.isopen ? "translateX(0) scaleX(1)" : "translateX(-33px) scaleX(0)"};
+    props.isopen ? "translateX(0) scaleX(1)" : `translateX(${getFontSizeCustom(-.5, props.buttonradius)}) scaleX(0)`};
   transform-origin: left;
+  border-left: 1px solid ${(props) => props.colorscheme?.primary1};
+  column-gap: 1px;
+  border-radius: 0 14rem 14rem 0;
+  background-color: ${(props) => props.colorscheme?.primary1};
 `;
 
 export function SiteNavContent(props: SiteNavContentProps) {
   const { isOpen, buttonRadius } = useSiteNav();
+  const colorScheme = useColorScheme();
 
   const propsToAdd: SiteNavStyledProps = {
-    buttonradius: buttonRadius,
-    isopen: isOpen,
+    buttonradius: buttonRadius !== null ? buttonRadius : undefined,
+    isopen: isOpen !== null ? isOpen : undefined,
+    colorscheme: colorScheme !== null ? colorScheme : undefined,
   };
 
   return (

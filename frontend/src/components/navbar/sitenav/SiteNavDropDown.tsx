@@ -8,19 +8,26 @@ import { SiteNavDropDownItem } from "./SiteNavDropDownItem";
 
 const DropDownContainer = styled.div<SiteNavStyledProps>`
   display: flex;
-  flex-direction: column;
   position: relative;
+
+  &:hover > .item-container {
+    transform: translateY(0) scaleY(1);
+  }
 `;
 
 const DropDownItems = styled.div<SiteNavStyledProps>`
-  display: flex;
   position: absolute;
+  top: 100%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: -1;
   left: 0;
   right: 0;
-  z-index: -1;
+  transform: translateY(-100%) scaleY(1);
+  transform-origin: bottom;
+  transition: transform .125s ease-in, -webkit-transform .125s ease-in;
 `;
 
 type SiteNavDropDownProps = {
@@ -43,7 +50,7 @@ export function SiteNavDropDown(props: SiteNavDropDownProps) {
   return (
     <DropDownContainer {...propsToAdd}>
       <SiteNavDropDownItem {...props} text={text}/>
-      <DropDownItems {...propsToAdd}>
+      <DropDownItems {...propsToAdd} className="item-container">
         {items.map((item, index) => (
           <SiteNavItem key={index} {...item} />
         ))}
