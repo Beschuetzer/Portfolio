@@ -1,7 +1,7 @@
-import React from 'react'
-import { styled } from 'styled-components'
-import { useSiteNav } from './SiteNavContext';
-import SiteNavItem from './SiteNavItem';
+import React from "react";
+import { styled } from "styled-components";
+import { useSiteNav } from "./SiteNavContext";
+import SiteNavItem from "./SiteNavItem";
 
 import aboutImage from "../../../imgs/site-nav/about.jpg";
 import autoBidImage from "../../../imgs/site-nav/autobid.jpg";
@@ -23,34 +23,52 @@ import about1 from "../../../imgs/site-nav/overview-2.jpg";
 import about2 from "../../../imgs/site-nav/interests.jpg";
 import about3 from "../../../imgs/site-nav/music.jpg";
 import about4 from "../../../imgs/site-nav/personality.jpg";
-import { EMAIL } from '../../constants';
-import { SiteNavDropDownItem } from './SiteNavDropDownItem';
-import { SiteNavStyledProps } from './SiteNav';
+import { EMAIL } from "../../constants";
+import { SiteNavStyledProps } from "./SiteNav";
+import { SiteNavDropDown } from "./SiteNavDropDown";
 
-type SiteNavContentProps = {}
+type SiteNavContentProps = {};
 
 const ContentContainer = styled.div<SiteNavStyledProps>`
-    display: flex;
-    flex-direction: row;
-    transition: all 0.3s ease-in-out;
-    transform: ${props => props.isopen ? "translateX(0) scaleX(1)" : "translateX(-33px) scaleX(0)"};
-    transform-origin: left;
-    `
+  display: flex;
+  flex-direction: row;
+  transition: all 0.3s ease-in-out;
+  transform: ${(props) =>
+    props.isopen ? "translateX(0) scaleX(1)" : "translateX(-33px) scaleX(0)"};
+  transform-origin: left;
+`;
 
 export function SiteNavContent(props: SiteNavContentProps) {
-      const { isOpen, buttonRadius } = useSiteNav();
+  const { isOpen, buttonRadius } = useSiteNav();
 
-      const propsToAdd: SiteNavStyledProps = {
-        buttonradius: buttonRadius,
-        isopen: isOpen
-      }
-    
+  const propsToAdd: SiteNavStyledProps = {
+    buttonradius: buttonRadius,
+    isopen: isOpen,
+  };
+
   return (
     <ContentContainer {...propsToAdd}>
-        <SiteNavDropDownItem text='Résumé' />
-        <SiteNavDropDownItem text='About' />
-        <SiteNavDropDownItem text='Projects' />
-        <SiteNavItem text='Contact' href={`mailto:${EMAIL}`} image={contactImage} isLast />
+      <SiteNavDropDown
+        text="Résumé"
+        items={[
+          {
+            text: "AutoBid",
+            image: autoBidImage,
+            to: "/autobid",
+          },
+          {
+            text: "Bridge",
+            image: bridgeImage,
+            to: "/bridge",
+          },
+        ]}
+      />
+      <SiteNavItem
+        text="Contact"
+        href={`mailto:${EMAIL}`}
+        image={contactImage}
+        isLast
+      />
     </ContentContainer>
-  )
+  );
 }
