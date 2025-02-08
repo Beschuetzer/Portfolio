@@ -30,6 +30,10 @@ const Item = styled.div<
   &:hover .image {
     ${(props) => (props.image ? "opacity: .1;" : "")}
   }
+
+  &:hover .triangle {
+    transform: rotate(90deg);
+  }
 `;
 
 const Image = styled.img<SiteNavStyledProps>`
@@ -59,12 +63,14 @@ const ExternalLink = styled.a<SiteNavStyledProps>`
 `;
 
 const SiteNavTriangle = styled.div<SiteNavStyledProps>`
-  border-color: transparent transparent transparent ${(props) => props.colorscheme?.primary1};
+  border-color: transparent transparent transparent
+    ${(props) => props.colorscheme?.primary1};
   border-style: solid;
   border-width: 0.462rem 0 0.462rem 1.05rem;
   height: 0;
   margin-left: 0.7rem;
   width: 0;
+  transition: transform 0.25s ease, -webkit-transform 0.25s ease;
 `;
 
 export default function SiteNavItem(props: SiteNavItemProps) {
@@ -92,7 +98,7 @@ export default function SiteNavItem(props: SiteNavItemProps) {
         <>
           <DropDownItem {...propsToAdd}>
             {text}
-            <SiteNavTriangle {...propsToAdd} />
+            <SiteNavTriangle {...propsToAdd} className="triangle" />
           </DropDownItem>
         </>
       ) : href ? (
