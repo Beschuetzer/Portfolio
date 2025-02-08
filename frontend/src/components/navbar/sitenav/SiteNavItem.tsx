@@ -59,11 +59,11 @@ const ExternalLink = styled.a<SiteNavStyledProps>`
 `;
 
 const SiteNavTriangle = styled.div<SiteNavStyledProps>`
-  border-left: 0.28rem solid ${(props) => props.colorscheme?.primary1};
-  border-top: 0.28rem solid transparent;
-  border-bottom: 0.28rem solid transparent;
+  border-color: transparent transparent transparent ${(props) => props.colorscheme?.primary1};
+  border-style: solid;
+  border-width: 0.462rem 0 0.462rem 1.05rem;
   height: 0;
-  margin-left: 0.5rem;
+  margin-left: 0.7rem;
   width: 0;
 `;
 
@@ -90,8 +90,10 @@ export default function SiteNavItem(props: SiteNavItemProps) {
       <Image {...propsToAdd} src={image} alt={text} className="image" />
       {isDropDownItem ? (
         <>
-          <DropDownItem {...propsToAdd}>{text}</DropDownItem>
-          <SiteNavTriangle {...propsToAdd} />
+          <DropDownItem {...propsToAdd}>
+            {text}
+            <SiteNavTriangle {...propsToAdd} />
+          </DropDownItem>
         </>
       ) : href ? (
         <ExternalLink {...propsToAdd} href={href || ""}>

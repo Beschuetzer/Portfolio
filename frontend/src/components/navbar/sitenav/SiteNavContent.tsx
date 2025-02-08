@@ -47,7 +47,7 @@ export function SiteNavContent(props: SiteNavContentProps) {
     
   return (
     <ContentContainer {...propsToAdd}>
-        <SiteNavDropDown text='Resume' />
+        <SiteNavDropDown text='Résumé' />
         <SiteNavDropDown text='About' />
         <SiteNavDropDown text='Projects' />
         <SiteNavItem text='Contact' href={`mailto:${EMAIL}`} image={contactImage} isLast />
