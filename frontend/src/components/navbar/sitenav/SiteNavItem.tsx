@@ -92,9 +92,9 @@ export default function SiteNavItem(props: SiteNavItemProps) {
   } = props;
 
   const propsToAdd: SiteNavStyledProps = {
-    colorscheme: colorScheme !== null ? colorScheme : undefined,
-    isopen: isOpen,
-    islast: isLast,
+    colorscheme: colorScheme != null ? colorScheme : undefined,
+    isopen: isOpen != null ? isOpen : undefined,
+    islast: isLast != null ? isLast : undefined,
     orientation: orientation,
   };
 

@@ -8,7 +8,7 @@ type NavbarHeaderProps = {
 
 const NavbarHeaderNav = styled.nav`
   position: fixed;
-  top: 2.1rem;
+  top: 0;
   width: 100%;
   z-index: 1000000;   
 

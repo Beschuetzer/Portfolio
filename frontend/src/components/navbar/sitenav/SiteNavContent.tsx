@@ -49,9 +49,9 @@ export function SiteNavContent(props: SiteNavContentProps) {
   const colorScheme = useColorScheme();
 
   const propsToAdd: SiteNavStyledProps = {
-    buttonradius: buttonRadius !== null ? buttonRadius : undefined,
-    isopen: isOpen !== null ? isOpen : undefined,
-    colorscheme: colorScheme !== null ? colorScheme : undefined,
+    buttonradius: buttonRadius != null ? buttonRadius : undefined,
+    isopen: isOpen != null ? isOpen : undefined,
+    colorscheme: colorScheme != null ? colorScheme : undefined,
   };
 
   return (

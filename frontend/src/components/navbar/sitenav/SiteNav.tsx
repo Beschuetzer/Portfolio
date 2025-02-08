@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 
 import {
   ColorScheme,
-  defaultFontSize,
-  fontSizeEleven,
+  fontSizeEight,
 } from "../../../styles/constants";
 
 import { styled } from "styled-components";
@@ -15,9 +14,8 @@ import { useLocation } from "react-router-dom";
 
 const SiteNavContainer = styled.header`
   position: absolute;
-  top: ${defaultFontSize};
-  left: ${fontSizeEleven};
-  right: ${fontSizeEleven};
+  top: ${fontSizeEight};
+  left: ${fontSizeEight};
   display: flex;
 `;
 

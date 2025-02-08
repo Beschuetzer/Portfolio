@@ -24,7 +24,7 @@ const DropDownItem = styled.div<SiteNavStyledProps>`
   }
 `;
 
-const SiteNavTriangle = styled.div<SiteNavStyledProps & { isHovering?: boolean }>`
+const SiteNavTriangle = styled.div<SiteNavStyledProps & { ishovering?: boolean }>`
   border-color: transparent transparent transparent
     ${(props) => props.colorscheme?.primary1};
   border-style: solid;
@@ -33,7 +33,7 @@ const SiteNavTriangle = styled.div<SiteNavStyledProps & { isHovering?: boolean }
   margin-left: 0.7rem;
   width: 0;
   transition: transform 0.25s ease, -webkit-transform 0.25s ease;
-  ${(props) => (props.isHovering ? triangleRotateStyle : "")}
+  ${(props) => (props.ishovering ? triangleRotateStyle : "")}
 `;
 
 export function SiteNavDropDownItem(props: SiteNavDropDownProps) {
@@ -41,15 +41,15 @@ export function SiteNavDropDownItem(props: SiteNavDropDownProps) {
   const { isOpen } = useSiteNav();
   const colorScheme = useColorScheme();
   const propsToAdd: SiteNavStyledProps = {
-    colorscheme: colorScheme,
-    isopen: isOpen,
+    colorscheme: colorScheme != null ? colorScheme : undefined,
+    isopen: isOpen != null ? isOpen : undefined,
   };
 
   return (
     <DropdownContainer {...propsToAdd}>
       <DropDownItem {...propsToAdd}>
         {text}
-        <SiteNavTriangle {...propsToAdd} isHovering={isHovering} className="triangle" />
+        <SiteNavTriangle {...propsToAdd} ishovering={isHovering != null ? isHovering : undefined} className="triangle" />
       </DropDownItem>
     </DropdownContainer>
   );

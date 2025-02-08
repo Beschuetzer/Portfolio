@@ -46,10 +46,10 @@ export function SiteNavDropDown(props: SiteNavDropDownProps) {
   const [isHovering, setIsHovering] = useState(false);
 
   const propsToAdd: SiteNavStyledProps = {
-    colorscheme: colorScheme !== null ? colorScheme : undefined,
-    isopen: isOpen,
-    islast: isLast,
-    buttonradius: buttonRadius !== null ? buttonRadius : undefined,
+    colorscheme: colorScheme != null ? colorScheme : undefined,
+    isopen: isOpen != null ? isOpen : undefined,
+    islast: isLast != null ? isLast : undefined,
+    buttonradius: buttonRadius != null ? buttonRadius : undefined,
   };
 
   return (

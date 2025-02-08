@@ -101,9 +101,9 @@ export const SiteNavButton: React.FC<SiteNavProps> = (props: SiteNavProps) => {
   };
 
   const propsToAdd = {
-    colorscheme: colorScheme !== null ? colorScheme : undefined,
-    isopen: isOpen !== null ? isOpen : undefined,
-    buttonradius: buttonRadius !== null ? buttonRadius : undefined,
+    colorscheme: colorScheme != null ? colorScheme : undefined,
+    isopen: isOpen != null ? isOpen : undefined,
+    buttonradius: buttonRadius != null ? buttonRadius : undefined,
   };
 
   return (
