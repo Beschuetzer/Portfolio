@@ -33,7 +33,8 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
     display: flex;
     flex-direction: row;
     transition: all 0.3s ease-in-out;
-    transform: ${props => props.isopen ? "translateX(0)" : "translateX(-33px)"};
+    transform: ${props => props.isopen ? "translateX(0) scaleX(1)" : "translateX(-33px) scaleX(0)"};
+    transform-origin: left;
     `
 
 export function SiteNavContent(props: SiteNavContentProps) {

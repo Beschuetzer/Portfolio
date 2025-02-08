@@ -8,6 +8,7 @@ import {
   fontSizeSix,
 } from "../../../styles/constants";
 import { Link } from "react-router-dom";
+import { useSiteNav } from "./SiteNavContext";
 
 export type SiteNavItemProps = {
   href?: string;
@@ -17,14 +18,14 @@ export type SiteNavItemProps = {
   isDropDownItem?: boolean;
 };
 
-const Item = styled.div<SiteNavStyledProps & { image: string, isdropdownitem: boolean }>`
+const Item = styled.div<
+  SiteNavStyledProps & { image: string; isdropdownitem: boolean }
+>`
   background-color: ${(props) => props.colorscheme?.primary4};
   border-left: 0.28rem solid ${(props) => props.colorscheme?.primary1};
-  ${props => props.isdropdownitem ? "" : "cursor: pointer;"}
+  ${(props) => (props.isdropdownitem ? "" : "cursor: pointer;")}
   height: 100%;
   position: relative;
-  transition: transform 0.125s ease, background-color 0.125s ease,
-    -webkit-transform 0.125s ease;
   width: 100%;
 
   &:hover .image {
@@ -33,7 +34,7 @@ const Item = styled.div<SiteNavStyledProps & { image: string, isdropdownitem: bo
 `;
 
 const Image = styled.img<SiteNavStyledProps>`
-   left: 0;
+  left: 0;
   opacity: 0;
   pointer-events: none;
   position: absolute;
@@ -41,7 +42,7 @@ const Image = styled.img<SiteNavStyledProps>`
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensures the image covers the entire container */
-  object-position: top  ; /* Centers the image within the container */
+  object-position: top; /* Centers the image within the container */
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
@@ -61,16 +62,23 @@ const StyledLink = styled(Link)<SiteNavStyledProps>`
 
 export default function SiteNavItem(props: SiteNavItemProps) {
   const colorScheme = useColorScheme();
-  const { isDropDownItem = false, text, to = "", href = "", image = "" } = props;
+  const { isOpen } = useSiteNav();
+  const {
+    isDropDownItem = false,
+    text,
+    to = "",
+    href = "",
+    image = "",
+  } = props;
 
   const propsToAdd = {
     colorscheme: colorScheme !== null ? colorScheme : undefined,
     image,
-    isdropdownitem: isDropDownItem
+    isopen: isOpen,
   };
 
   return (
-    <Item {...propsToAdd} >
+    <Item {...propsToAdd} isdropdownitem={isDropDownItem}>
       <Image {...propsToAdd} src={image} alt={text} className="image" />
       <StyledLink {...propsToAdd} to={href || ""} href={href || ""}>
         {text}
