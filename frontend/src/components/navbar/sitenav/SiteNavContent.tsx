@@ -25,19 +25,27 @@ import about3 from "../../../imgs/site-nav/music.jpg";
 import about4 from "../../../imgs/site-nav/personality.jpg";
 import { EMAIL } from '../../constants';
 import { SiteNavDropDown } from './SiteNavDropDown';
+import { SiteNavStyledProps } from './SiteNav';
 
 type SiteNavContentProps = {}
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.div<SiteNavStyledProps>`
     display: flex;
     flex-direction: row;
+    transition: all 0.3s ease-in-out;
+    transform: ${props => props.isopen ? "translateX(0)" : "translateX(-33px)"};
     `
 
 export function SiteNavContent(props: SiteNavContentProps) {
-      const { isOpen} = useSiteNav();
+      const { isOpen, buttonRadius } = useSiteNav();
+
+      const propsToAdd: SiteNavStyledProps = {
+        buttonradius: buttonRadius,
+        isopen: isOpen
+      }
     
   return (
-    <ContentContainer>
+    <ContentContainer {...propsToAdd}>
         <SiteNavDropDown text='Resume' />
         <SiteNavDropDown text='About' />
         <SiteNavDropDown text='Projects' />

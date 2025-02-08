@@ -3,17 +3,15 @@ import styled from "styled-components";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import {
   defaultFontSize,
-  fontSizeEleven,
   getFontSizeCustom,
 } from "../../../styles/constants";
 import { SiteNavStyledProps, SiteNavProps } from "./SiteNav";
 import { useSiteNav } from "./SiteNavContext";
 
 const StyledNav = styled.button<SiteNavStyledProps>`
-  
   background-color: ${(props) => props.colorscheme?.primary4};
   z-index: 1000;
-  width: ${fontSizeEleven};
+  width: ${props => props.buttonradius};
   border-radius: 50%;
   border-radius: ${(props) => (props.isopen ? "14rem 0 0 14rem" : "50%")};
   border: none;
@@ -42,7 +40,7 @@ const StyledNav = styled.button<SiteNavStyledProps>`
 
 const Hamburger = styled.div<SiteNavStyledProps>`
   width: ${(props) =>
-    getFontSizeCustom(props.isopen ? 0.2 : 0.5, fontSizeEleven)};
+    getFontSizeCustom(props.isopen ? 0.2 : 0.5, props.buttonradius)};
   height: ${getFontSizeCustom(0.5)};
   background-color: ${(props) => props.colorscheme?.primary1};
   position: relative;
@@ -51,7 +49,7 @@ const Hamburger = styled.div<SiteNavStyledProps>`
   &::before,
   &::after {
     content: "";
-    width: ${getFontSizeCustom(0.5, fontSizeEleven)};
+    width: ${(props) => getFontSizeCustom(0.5, props.buttonradius)};
     height: ${getFontSizeCustom(0.5)};
     background-color: ${(props) => props.colorscheme?.primary1};
     position: absolute;
@@ -94,7 +92,7 @@ const Menu = styled.div`
 
 export const SiteNavButton: React.FC<SiteNavProps> = (props: SiteNavProps) => {
   const { onClick } = props;
-  const { isOpen, toggleIsOpen} = useSiteNav();
+  const { isOpen, toggleIsOpen, buttonRadius} = useSiteNav();
   const colorScheme = useColorScheme();
 
   const onClickLocal = () => {
@@ -102,15 +100,18 @@ export const SiteNavButton: React.FC<SiteNavProps> = (props: SiteNavProps) => {
     toggleIsOpen();
   };
 
+  const propsToAdd = {
+    colorscheme: colorScheme !== null ? colorScheme : undefined,
+    isopen: isOpen !== null ? isOpen : undefined,
+    buttonradius: buttonRadius !== null ? buttonRadius : undefined,
+  };
+
   return (
-    <StyledNav onClick={onClickLocal} colorscheme={colorScheme != null ? colorScheme : undefined} isopen={isOpen != null ? isOpen : undefined}>
+    <StyledNav onClick={onClickLocal} {...propsToAdd}>
       <Hamburger 
-        colorscheme={colorScheme != null ? colorScheme : undefined}
+        {...propsToAdd}
         className="hamburger"
-        isopen={isOpen != null ? isOpen : undefined}
       />
-      {/* <Menu className="menu"></Menu> */}
     </StyledNav>
   );
-  //#endregion
 };

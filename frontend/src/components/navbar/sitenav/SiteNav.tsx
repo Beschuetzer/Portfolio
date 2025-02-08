@@ -28,6 +28,7 @@ export type SiteNavProps = {
 };
 
 export type SiteNavStyledProps = {
+  buttonradius?: string;
   colorscheme?: ColorScheme;
   isopen?: boolean;
 };
