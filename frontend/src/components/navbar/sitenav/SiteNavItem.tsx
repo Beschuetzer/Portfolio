@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./SiteNav";
 import { useColorScheme } from "../../../hooks/useColorScheme";
@@ -48,7 +48,7 @@ const Item = styled.div<
         }
 
         & + div {
-          border-top: none;
+          border-top: 1px solid transparent;
         }
       }
     `
@@ -78,7 +78,7 @@ const ExternalLink = styled.a<SiteNavStyledProps>`
 
 export default function SiteNavItem(props: SiteNavItemProps) {
   const colorScheme = useColorScheme();
-  const { isOpen } = useSiteNav();
+  const { isOpen, toggleIsOpen } = useSiteNav();
   const {
     isDropDownItem = false,
     isLast = false,
@@ -96,15 +96,19 @@ export default function SiteNavItem(props: SiteNavItemProps) {
     orientation: orientation,
   };
 
+  const onClickLocal = useCallback(() => {
+    toggleIsOpen();
+  }, [toggleIsOpen]);
+
   return (
     <Item {...propsToAdd} isdropdownitem={isDropDownItem} image={image}>
       <Image {...propsToAdd} src={image} alt={text} className="image" />
       {href ? (
-        <ExternalLink {...propsToAdd} href={href || ""} className="item-link">
+        <ExternalLink {...propsToAdd} href={href || ""} className="item-link" onClick={onClickLocal}>
           {text}
         </ExternalLink>
       ) : (
-        <StyledLink {...propsToAdd} to={to || ""} className="item-link">
+        <StyledLink {...propsToAdd} to={to || ""} className="item-link" onClick={onClickLocal}>
           {text}
         </StyledLink>
       )}

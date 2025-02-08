@@ -63,14 +63,54 @@ export function SiteNavContent(props: SiteNavContentProps) {
         text="Résumé"
         items={[
           {
-            text: "AutoBid",
-            image: autoBidImage,
-            to: "/autobid",
+            text: "Overview",
+            image: resume1,
+            to: "/resume#overview",
           },
           {
-            text: "Bridge",
-            image: bridgeImage,
-            to: "/bridge",
+            text: "Skills",
+            image: resume2,
+            to: "/resume#skills",
+          },
+          {
+            text: "Work History",
+            image: resume2,
+            to: "/resume#work-history",
+          },
+          {
+            text: "Education",
+            image: resume2,
+            to: "/resume#education",
+          },
+          {
+            text: "References",
+            image: resume2,
+            to: "/resume#references",
+          },
+        ]}
+      />
+      <SiteNavDropDown
+        text="About"
+        items={[
+          {
+            text: "Overview",
+            image: about1,
+            to: "/about#overview",
+          },
+          {
+            text: "Interests",
+            image: about2,
+            to: "/about#interests",
+          },
+          {
+            text: "Music",
+            image: about3,
+            to: "/about#music",
+          },
+          {
+            text: "Personality",
+            image: about4,
+            to: "/about#personality",
           },
         ]}
       />
