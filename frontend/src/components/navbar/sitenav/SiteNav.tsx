@@ -31,6 +31,7 @@ export type SiteNavStyledProps = {
   buttonradius?: string;
   colorscheme?: ColorScheme;
   isopen?: boolean;
+  islast?: boolean;
 };
 
 export function SiteNav() {

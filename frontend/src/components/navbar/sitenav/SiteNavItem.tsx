@@ -13,6 +13,7 @@ import { useSiteNav } from "./SiteNavContext";
 export type SiteNavItemProps = {
   href?: string;
   image?: string;
+  isLast?: boolean;
   text: string;
   to?: string;
   isDropDownItem?: boolean;
@@ -27,6 +28,8 @@ const Item = styled.div<
   height: 100%;
   position: relative;
   width: 100%;
+  border-radius: ${(props) => props.islast ? "0 14rem 14rem 0" : "0"};
+  overflow: hidden;
 
   &:hover .image {
     ${(props) => (props.image ? "opacity: .1;" : "")}
@@ -65,20 +68,21 @@ export default function SiteNavItem(props: SiteNavItemProps) {
   const { isOpen } = useSiteNav();
   const {
     isDropDownItem = false,
+    isLast = false,
     text,
     to = "",
     href = "",
     image = "",
   } = props;
 
-  const propsToAdd = {
+  const propsToAdd: SiteNavStyledProps = {
     colorscheme: colorScheme !== null ? colorScheme : undefined,
-    image,
     isopen: isOpen,
+    islast: isLast
   };
 
   return (
-    <Item {...propsToAdd} isdropdownitem={isDropDownItem}>
+    <Item {...propsToAdd} isdropdownitem={isDropDownItem} image={image}>
       <Image {...propsToAdd} src={image} alt={text} className="image" />
       <StyledLink {...propsToAdd} to={href || ""} href={href || ""}>
         {text}
