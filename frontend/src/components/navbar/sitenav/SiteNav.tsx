@@ -7,26 +7,6 @@ import {
   fontSizeEleven,
 } from "../../../styles/constants";
 
-import aboutImage from "../../imgs/site-nav/about.jpg";
-import autoBidImage from "../../imgs/site-nav/autobid.jpg";
-import bridgeImage from "../../imgs/site-nav/bridge.jpg";
-import contactImage from "../../imgs/site-nav/contact.jpg";
-import downloaderImage from "../../imgs/site-nav/downloader.jpg";
-import examplesImage from "../../imgs/site-nav/examples.jpg";
-import resumeImage from "../../imgs/site-nav/resume.jpg";
-import syncerImage from "../../imgs/site-nav/syncer.jpg";
-import replayImage from "../../imgs/site-nav/replay.jpg";
-
-import resume1 from "../../imgs/site-nav/overview.jpg";
-import resume2 from "../../imgs/site-nav/skills.jpg";
-import resume3 from "../../imgs/site-nav/work-history.jpg";
-import resume4 from "../../imgs/site-nav/education.jpg";
-import resume5 from "../../imgs/site-nav/references.jpg";
-
-import about1 from "../../imgs/site-nav/overview-2.jpg";
-import about2 from "../../imgs/site-nav/interests.jpg";
-import about3 from "../../imgs/site-nav/music.jpg";
-import about4 from "../../imgs/site-nav/personality.jpg";
 import { styled } from "styled-components";
 import { SiteNavButton } from "./SiteNavButton";
 import { SiteNavContent } from "./SiteNavContent";

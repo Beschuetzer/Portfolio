@@ -2,31 +2,50 @@ import React from "react";
 import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./SiteNav";
 import { useColorScheme } from "../../../hooks/useColorScheme";
-import { colors, fontSizeEleven, fontSizeFive, fontSizeSeven, fontSizeSix } from "../../../styles/constants";
+import {
+  fontSizeFive,
+  fontSizeSeven,
+  fontSizeSix,
+} from "../../../styles/constants";
+import { Link } from "react-router-dom";
 
-type SiteNavItemProps = {};
+export type SiteNavItemProps = {
+  href?: string;
+  image?: string;
+  text: string;
+  to?: string;
+  isDropDownItem?: boolean;
+};
 
-const Item = styled.div<SiteNavStyledProps>`
+const Item = styled.div<SiteNavStyledProps & { image: string, isdropdownitem: boolean }>`
   background-color: ${(props) => props.colorscheme?.primary4};
   border-left: 0.28rem solid ${(props) => props.colorscheme?.primary1};
-  cursor: pointer;
+  ${props => props.isdropdownitem ? "" : "cursor: pointer;"}
   height: 100%;
   position: relative;
   transition: transform 0.125s ease, background-color 0.125s ease,
     -webkit-transform 0.125s ease;
   width: 100%;
+
+  &:hover .image {
+    ${(props) => (props.image ? "opacity: .1;" : "")}
+  }
 `;
 
 const Image = styled.img<SiteNavStyledProps>`
-  left: 0;
+   left: 0;
   opacity: 0;
   pointer-events: none;
   position: absolute;
   top: 0;
   width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire container */
+  object-position: top  ; /* Centers the image within the container */
+  transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
-const Link = styled.a<SiteNavStyledProps>`
+const StyledLink = styled(Link)<SiteNavStyledProps>`
   display: flex;
   align-items: center;
   color: ${(props) => props.colorscheme?.primary1};
@@ -42,20 +61,20 @@ const Link = styled.a<SiteNavStyledProps>`
 
 export default function SiteNavItem(props: SiteNavItemProps) {
   const colorScheme = useColorScheme();
+  const { isDropDownItem = false, text, to = "", href = "", image = "" } = props;
 
   const propsToAdd = {
     colorscheme: colorScheme !== null ? colorScheme : undefined,
+    image,
+    isdropdownitem: isDropDownItem
   };
+
   return (
-    <Item {...propsToAdd}>
-      <Image
-        {...propsToAdd}
-        src="https://via.placeholder.com/150"
-        alt="placeholder"
-      />
-      <Link {...propsToAdd} href="#">
-        Link
-      </Link>
+    <Item {...propsToAdd} >
+      <Image {...propsToAdd} src={image} alt={text} className="image" />
+      <StyledLink {...propsToAdd} to={href || ""} href={href || ""}>
+        {text}
+      </StyledLink>
     </Item>
   );
 }
