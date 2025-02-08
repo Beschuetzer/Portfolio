@@ -5,6 +5,7 @@ import SiteNavItem, { SiteNaveItemOrientation, SiteNavItemProps } from "./SiteNa
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { useSiteNav } from "./SiteNavContext";
 import { SiteNavDropDownItem } from "./SiteNavDropDownItem";
+import { getFontSizeCustom } from "../../../styles/constants";
 
 const DropDownContainer = styled.div<SiteNavStyledProps>`
   display: flex;
@@ -26,8 +27,8 @@ const DropDownItems = styled.div<SiteNavStyledProps>`
   z-index: -1;
   left: 0;
   right: 0;
-  transform: translateY(-100%) scaleY(1);
-  transform-origin: bottom;
+  transform: translateY(${props => getFontSizeCustom(-1, props.buttonradius)}) scaleY(0);
+  transform-origin: top;
   opacity: 0;
   transition: transform .125s ease-in, -webkit-transform .125s ease-in, opacity .125s ease-in;
 `;
@@ -40,18 +41,19 @@ type SiteNavDropDownProps = {
 
 export function SiteNavDropDown(props: SiteNavDropDownProps) {
   const colorScheme = useColorScheme();
-  const { isOpen } = useSiteNav();
+  const { isOpen, buttonRadius } = useSiteNav();
   const { isLast, items, text } = props;
 
   const propsToAdd: SiteNavStyledProps = {
     colorscheme: colorScheme !== null ? colorScheme : undefined,
     isopen: isOpen,
     islast: isLast,
+    buttonradius: buttonRadius !== null ? buttonRadius : undefined,
   };
 
   return (
     <DropDownContainer {...propsToAdd}>
-      <SiteNavDropDownItem {...props} text={text}/>
+      <SiteNavDropDownItem {...propsToAdd} text={text}/>
       <DropDownItems {...propsToAdd} className="item-container">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
