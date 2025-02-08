@@ -2,7 +2,6 @@ import React from "react";
 import SiteNavItem, { SiteNavItemProps } from "./SiteNavItem";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { styled } from "styled-components";
-import { translateItemStyles } from "./styles";
 import { SiteNavStyledProps } from "./SiteNav";
 import { useSiteNav } from "./SiteNavContext";
 

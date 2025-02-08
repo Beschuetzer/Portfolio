@@ -2,13 +2,9 @@ import React from "react";
 import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./SiteNav";
 import { useColorScheme } from "../../../hooks/useColorScheme";
-import {
-  fontSizeFive,
-  fontSizeSeven,
-  fontSizeSix,
-} from "../../../styles/constants";
 import { Link } from "react-router-dom";
 import { useSiteNav } from "./SiteNavContext";
+import { linkStyles } from "./styles";
 
 export type SiteNavItemProps = {
   href?: string;
@@ -28,7 +24,7 @@ const Item = styled.div<
   height: 100%;
   position: relative;
   width: 100%;
-  border-radius: ${(props) => props.islast ? "0 14rem 14rem 0" : "0"};
+  border-radius: ${(props) => (props.islast ? "0 14rem 14rem 0" : "0")};
   overflow: hidden;
 
   &:hover .image {
@@ -49,18 +45,26 @@ const Image = styled.img<SiteNavStyledProps>`
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
+const DropDownItem = styled.div<SiteNavStyledProps>`
+  cursor: default;
+  ${linkStyles}
+`;
+
 const StyledLink = styled(Link)<SiteNavStyledProps>`
-  display: flex;
-  align-items: center;
-  color: ${(props) => props.colorscheme?.primary1};
-  font-size: ${fontSizeSix};
-  font-weight: 300;
-  height: 100%;
-  justify-content: center;
-  padding: ${fontSizeFive} ${fontSizeSeven};
-  text-decoration: none;
-  transition: padding 0.5s ease, opacity 0.25s ease 0.25s;
-  width: 100%;
+  ${linkStyles}
+`;
+
+const ExternalLink = styled.a<SiteNavStyledProps>`
+  ${linkStyles}
+`;
+
+const SiteNavTriangle = styled.div<SiteNavStyledProps>`
+  border-left: 0.28rem solid ${(props) => props.colorscheme?.primary1};
+  border-top: 0.28rem solid transparent;
+  border-bottom: 0.28rem solid transparent;
+  height: 0;
+  margin-left: 0.5rem;
+  width: 0;
 `;
 
 export default function SiteNavItem(props: SiteNavItemProps) {
@@ -78,15 +82,26 @@ export default function SiteNavItem(props: SiteNavItemProps) {
   const propsToAdd: SiteNavStyledProps = {
     colorscheme: colorScheme !== null ? colorScheme : undefined,
     isopen: isOpen,
-    islast: isLast
+    islast: isLast,
   };
 
   return (
     <Item {...propsToAdd} isdropdownitem={isDropDownItem} image={image}>
       <Image {...propsToAdd} src={image} alt={text} className="image" />
-      <StyledLink {...propsToAdd} to={href || ""} href={href || ""}>
-        {text}
-      </StyledLink>
+      {isDropDownItem ? (
+        <>
+          <DropDownItem {...propsToAdd}>{text}</DropDownItem>
+          <SiteNavTriangle {...propsToAdd} />
+        </>
+      ) : href ? (
+        <ExternalLink {...propsToAdd} href={href || ""}>
+          {text}
+        </ExternalLink>
+      ) : (
+        <StyledLink {...propsToAdd} to={to || ""}>
+          {text}
+        </StyledLink>
+      )}
     </Item>
   );
 }
