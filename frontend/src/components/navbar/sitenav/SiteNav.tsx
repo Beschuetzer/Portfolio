@@ -4,9 +4,6 @@ import {
   BUTTON_RADIUS,
   ColorScheme,
   fontSizeEight,
-  getFontSizeCustom,
-  SCROLL_BAR_WIDTH_IN_REM,
-  SECTION_WIDTH_IN_PIXELS,
 } from "../../../styles/constants";
 
 import { styled } from "styled-components";
@@ -15,6 +12,7 @@ import { SiteNavContent } from "./SiteNavContent";
 import { SiteNavProvider } from "./SiteNavContext";
 import SiteNavBackground from "./SiteNavBackground";
 import { useLocation } from "react-router-dom";
+import { getAbsoluteLeftPosition } from "./helpers";
 
 const SiteNavContainer = styled.header<{ sitenavleft: string }>`
   position: absolute;
@@ -35,18 +33,9 @@ export type SiteNavStyledProps = {
   orientation?: "horizontal" | "vertical";
 };
 
-function getAbsoluteLeft() {
-  return `calc(((calc(${
-    window.innerWidth
-  }px + ${SCROLL_BAR_WIDTH_IN_REM}rem) - ${SECTION_WIDTH_IN_PIXELS}px) / 4) - ${getFontSizeCustom(
-    0.5,
-    BUTTON_RADIUS
-  )})`;
-}
-
 export function SiteNav() {
   const location = useLocation();
-  const [siteNavleft, setSiteNavleft] = useState(getAbsoluteLeft());
+  const [siteNavleft, setSiteNavleft] = useState(getAbsoluteLeftPosition());
 
   useEffect(() => {
     if (!location?.hash) return;
@@ -59,7 +48,7 @@ export function SiteNav() {
 
   useEffect(() => {
     function onResize() {
-      setSiteNavleft(getAbsoluteLeft());
+      setSiteNavleft(getAbsoluteLeftPosition());
     }
 
     window.addEventListener("resize", onResize);
