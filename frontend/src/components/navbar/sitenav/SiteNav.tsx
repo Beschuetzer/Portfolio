@@ -17,6 +17,13 @@ import { getAbsoluteLeftPosition } from "./helpers";
 import { respond } from "../../../styles/breakpoints";
 import { SiteNavDrawer } from "./SiteNavDrawer";
 
+//todo: create a data structure to hold the site nav items and save them in the context
+//todo: finish the site nav drawer
+//todo: finish github button
+//todo: start ExampleLayout (use grid and have left column house the page nav)
+//todo: start ResumeLayout?
+//todo: start BridgeLayout?
+
 const SiteNavContainer = styled.header<{ sitenavleft: string }>`
   position: absolute;
   top: ${fontSizeEight};
