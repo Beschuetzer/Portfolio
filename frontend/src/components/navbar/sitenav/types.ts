@@ -2,6 +2,7 @@ import { ColorScheme } from "../../../styles/constants";
 import { SiteNavItemProps } from "./SiteNavItem";
 
 export type SiteNavStyledProps = {
+  sitenavnavswitchtop?: string;
   buttonradius?: string;
   colorscheme?: ColorScheme;
   isopen?: boolean;

@@ -17,6 +17,8 @@ import { respond } from "../../../styles/breakpoints";
 import { SiteNavDrawer } from "./drawer/SiteNavDrawer";
 import { SiteNavItem } from "./types";
 
+export const SITE_NAV_NAV_SWITCH_TOP = defaultFontSize;
+
 const SiteNavContainer = styled.header<{ sitenavleft: string }>`
   position: absolute;
   top: ${fontSizeEight};
@@ -24,8 +26,8 @@ const SiteNavContainer = styled.header<{ sitenavleft: string }>`
   display: flex;
 
   ${respond.navSwitch`
-    top: ${defaultFontSize};
-    left: ${defaultFontSize};
+    top: ${SITE_NAV_NAV_SWITCH_TOP};
+    left: ${SITE_NAV_NAV_SWITCH_TOP};
     `}
 `;
 

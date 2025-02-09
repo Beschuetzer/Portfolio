@@ -51,11 +51,11 @@ export function SiteNavContent(props: SiteNavContentProps) {
     });
   }, [items]);
 
-  const propsToAdd: SiteNavStyledProps = {
+  const propsToAdd: SiteNavStyledProps = useMemo(() => ({
     buttonradius: buttonRadius != null ? buttonRadius : undefined,
     isopen: isOpen != null ? isOpen && isRelevant : undefined,
     colorscheme: colorScheme != null ? colorScheme : undefined,
-  };
+  }), [buttonRadius, colorScheme, isOpen, isRelevant]);
 
   return (
     <ContentContainer {...propsToAdd}>

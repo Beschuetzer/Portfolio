@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { SiteNavItemProps } from "./SiteNavItem";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { styled } from "styled-components";
@@ -40,10 +40,10 @@ export function SiteNavDropDownItem(props: SiteNavDropDownProps) {
   const { isHovering, text } = props;
   const { isOpen } = useSiteNav();
   const colorScheme = useColorScheme();
-  const propsToAdd: SiteNavStyledProps = {
+  const propsToAdd: SiteNavStyledProps = useMemo(() => ({
     colorscheme: colorScheme != null ? colorScheme : undefined,
     isopen: isOpen != null ? isOpen : undefined,
-  };
+  }), [colorScheme, isOpen]);
 
   return (
     <DropdownContainer {...propsToAdd}>

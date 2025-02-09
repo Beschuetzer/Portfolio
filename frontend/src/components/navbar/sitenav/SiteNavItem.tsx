@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useCallback } from "react";
+import React, { HTMLAttributes, useCallback, useMemo } from "react";
 import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./types";
 import { useColorScheme } from "../../../hooks/useColorScheme";
@@ -91,12 +91,12 @@ export default function SiteNavItem(props: SiteNavItemProps) {
     image = "",
   } = props;
 
-  const propsToAdd: SiteNavStyledProps = {
+  const propsToAdd: SiteNavStyledProps = useMemo(() => ({
     colorscheme: colorScheme != null ? colorScheme : undefined,
     isopen: isOpen != null ? isOpen : undefined,
     islast: isLast != null ? isLast : undefined,
     orientation: orientation,
-  };
+  }), [colorScheme, isOpen, isLast, orientation]);
 
   const onClickLocal = useCallback(() => {
     toggleIsOpen();

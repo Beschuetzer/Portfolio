@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
 import { SiteNavStyledProps } from "../types";
 import { useSiteNav } from "../SiteNavContext";
 import { BREAK_POINTS } from "../../../../styles/breakpoints";
-import { SiteNavContent } from "../SiteNavContent";
+import SiteNavDrawerContent from "./SiteNavDrawerContent";
 
 type SiteNavDrawerProps = {};
 
@@ -26,8 +26,8 @@ const Drawer = styled.div<SiteNavStyledProps>`
   &::before {
     content: "A";
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     font-size: 10rem; /* Adjust the size as needed */
     color: rgba(0, 0, 0, 0.025); /* Semi-transparent black color */
@@ -39,14 +39,17 @@ export function SiteNavDrawer(props: SiteNavDrawerProps) {
   const colorScheme = useColorScheme();
   const { isOpen } = useSiteNav();
   const isRelevant = window.innerWidth <= parseInt(BREAK_POINTS.navSwitch, 10);
-  const propsToAdd: SiteNavStyledProps = {
-    colorscheme: colorScheme != null ? colorScheme : undefined,
-    isopen: isOpen != null ? isOpen && isRelevant : undefined,
-  };
+  const propsToAdd: SiteNavStyledProps = useMemo(
+    () => ({
+      colorscheme: colorScheme != null ? colorScheme : undefined,
+      isopen: isOpen != null ? isOpen && isRelevant : undefined,
+    }),
+    [colorScheme, isOpen, isRelevant]
+  );
 
   return (
     <Drawer {...propsToAdd}>
-      <SiteNavContent />
+      <SiteNavDrawerContent />
     </Drawer>
   );
 }

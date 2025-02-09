@@ -1,10 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useColorScheme } from "../../../hooks/useColorScheme";
-import {
-  defaultFontSize,
-  getFontSizeCustom,
-} from "../../../styles/constants";
+import { defaultFontSize, getFontSizeCustom } from "../../../styles/constants";
 import { SiteNavStyledProps } from "./types";
 import { useSiteNav } from "./SiteNavContext";
 import { respond } from "../../../styles/breakpoints";
@@ -12,7 +9,7 @@ import { respond } from "../../../styles/breakpoints";
 const StyledNav = styled.button<SiteNavStyledProps>`
   background-color: ${(props) => props.colorscheme?.primary4};
   z-index: 1000;
-  width: ${props => props.buttonradius};
+  width: ${(props) => props.buttonradius};
   border-radius: 50%;
   border-radius: ${(props) => (props.isopen ? "14rem 0 0 14rem" : "50%")};
   border: none;
@@ -23,7 +20,7 @@ const StyledNav = styled.button<SiteNavStyledProps>`
   transition: all 0.3s ease-in-out;
 
   &:hover .hamburger {
-    ${props => props.isopen ? "background-color: transparent;" : ""}
+    ${(props) => (props.isopen ? "background-color: transparent;" : "")}
     &::before {
       transform: ${(props) =>
         props.isopen
@@ -77,9 +74,7 @@ const Hamburger = styled.div<SiteNavStyledProps>`
   &::after {
     top: ${getFontSizeCustom(0.75)};
     ${(props) =>
-      props.isopen
-        ? ` transform: rotate(-105deg) translate(1.353786rem);`
-        : ""}
+      props.isopen ? ` transform: rotate(-105deg) translate(1.353786rem);` : ""}
   }
 `;
 
@@ -87,9 +82,11 @@ type SiteNavButtonProps = {
   onClick?: () => void;
 };
 
-export const SiteNavButton: React.FC<SiteNavButtonProps> = (props: SiteNavButtonProps) => {
+export const SiteNavButton: React.FC<SiteNavButtonProps> = (
+  props: SiteNavButtonProps
+) => {
   const { onClick } = props;
-  const { isOpen, toggleIsOpen, buttonRadius} = useSiteNav();
+  const { isOpen, toggleIsOpen, buttonRadius } = useSiteNav();
   const colorScheme = useColorScheme();
 
   const onClickLocal = () => {
@@ -97,18 +94,18 @@ export const SiteNavButton: React.FC<SiteNavButtonProps> = (props: SiteNavButton
     toggleIsOpen();
   };
 
-  const propsToAdd = {
-    colorscheme: colorScheme != null ? colorScheme : undefined,
-    isopen: isOpen != null ? isOpen : undefined,
-    buttonradius: buttonRadius != null ? buttonRadius : undefined,
-  };
+  const propsToAdd = useMemo(
+    () => ({
+      colorscheme: colorScheme != null ? colorScheme : undefined,
+      isopen: isOpen != null ? isOpen : undefined,
+      buttonradius: buttonRadius != null ? buttonRadius : undefined,
+    }),
+    [colorScheme, isOpen, buttonRadius]
+  );
 
   return (
     <StyledNav onClick={onClickLocal} {...propsToAdd}>
-      <Hamburger 
-        {...propsToAdd}
-        className="hamburger"
-      />
+      <Hamburger {...propsToAdd} className="hamburger" />
     </StyledNav>
   );
 };

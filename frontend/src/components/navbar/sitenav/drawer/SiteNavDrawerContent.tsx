@@ -1,55 +1,43 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useSiteNav } from "../SiteNavContext";
 import { useColorScheme } from "../../../../hooks/useColorScheme";
-import { SiteNavDropDown } from "../SiteNavDropDown";
-import SiteNavItem from "../SiteNavItem";
 import { SiteNavStyledProps } from "../types";
 import { styled } from "styled-components";
-import { getFontSizeCustom } from "../../../../styles/constants";
+import { SiteNavDrawerContentDropDown } from "./SiteNavDrawerContentDropDown";
+import { SITE_NAV_NAV_SWITCH_TOP } from "../SiteNav";
 
 const ContentContainer = styled.div<SiteNavStyledProps>`
   text-align: center;
   display: flex;
-  flex-direction: row;
-  transition: all 0.3s ease-in-out;
-  transform: ${(props) =>
-    props.isopen
-      ? "translateX(0) scaleX(1)"
-      : `translateX(${getFontSizeCustom(-0.5, props.buttonradius)}) scaleX(0)`};
-  transform-origin: left;
-  border-left: 1px solid ${(props) => props.colorscheme?.primary1};
-  column-gap: 1px;
-  border-radius: 0 14rem 14rem 0;
-  background-color: ${(props) => props.colorscheme?.primary1};
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  padding-top: calc(${(props) => props.sitenavnavswitchtop} + ${(props) => `calc(${props.buttonradius} * 2)`}});
 `;
 
 type SiteNavDrawerContentProps = {};
 
 export default function SiteNavDrawerContent(props: SiteNavDrawerContentProps) {
   const colorScheme = useColorScheme();
-  const { items } = useSiteNav();
+  const { items, buttonRadius } = useSiteNav();
 
-  const propsToAdd: SiteNavStyledProps = {
+  const propsToAdd: SiteNavStyledProps = useMemo(() => ({
+    buttonradius: buttonRadius != null ? buttonRadius : undefined,
     colorscheme: colorScheme != null ? colorScheme : undefined,
-  };
+    sitenavnavswitchtop: SITE_NAV_NAV_SWITCH_TOP
+  }), [buttonRadius, colorScheme]);
 
   const itemsToRender = useMemo(() => {
     return items.map((item, index) => {
       console.log({ item, index });
-      const isLast = index === items.length - 1;
-      if (item.isDropdownItem && item.drownDownItems) {
-        return (
-          <SiteNavDropDown
-            key={index}
-            {...item}
-            items={item.drownDownItems}
-            isLast={isLast}
-          />
-        );
-      }
-      return <SiteNavItem key={index} {...item} isLast={isLast} />;
+      return <SiteNavDrawerContentDropDown {...item} />
     });
   }, [items]);
 
+  console.log({propsToAdd})
   return <ContentContainer {...propsToAdd}>{itemsToRender}</ContentContainer>;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 import { SiteNavStyledProps } from "./types";
 import SiteNavItem, { SiteNaveItemOrientation, SiteNavItemProps } from "./SiteNavItem";
@@ -45,12 +45,12 @@ export function SiteNavDropDown(props: SiteNavDropDownProps) {
   const { isLast, items, text } = props;
   const [isHovering, setIsHovering] = useState(false);
 
-  const propsToAdd: SiteNavStyledProps = {
+  const propsToAdd: SiteNavStyledProps = useMemo(() => ({
     colorscheme: colorScheme != null ? colorScheme : undefined,
     isopen: isOpen != null ? isOpen : undefined,
     islast: isLast != null ? isLast : undefined,
     buttonradius: buttonRadius != null ? buttonRadius : undefined,
-  };
+  }), [buttonRadius, colorScheme, isOpen, isLast]);
 
   return (
     <DropDownContainer {...propsToAdd}>
