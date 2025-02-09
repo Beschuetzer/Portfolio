@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import {
   BUTTON_RADIUS,
   ColorScheme,
+  defaultFontSize,
   fontSizeEight,
 } from "../../../styles/constants";
 
@@ -13,12 +14,18 @@ import { SiteNavProvider } from "./SiteNavContext";
 import SiteNavBackground from "./SiteNavBackground";
 import { useLocation } from "react-router-dom";
 import { getAbsoluteLeftPosition } from "./helpers";
+import { respond } from "../../../styles/breakpoints";
 
 const SiteNavContainer = styled.header<{ sitenavleft: string }>`
   position: absolute;
   top: ${fontSizeEight};
   left: ${(props) => props.sitenavleft};
   display: flex;
+
+  ${respond.navSwitch`
+    top: ${defaultFontSize};
+    left: ${defaultFontSize};
+    `}
 `;
 
 export type SiteNavProps = {

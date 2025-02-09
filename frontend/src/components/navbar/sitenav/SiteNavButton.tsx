@@ -7,6 +7,7 @@ import {
 } from "../../../styles/constants";
 import { SiteNavStyledProps, SiteNavProps } from "./SiteNav";
 import { useSiteNav } from "./SiteNavContext";
+import { respond } from "../../../styles/breakpoints";
 
 const StyledNav = styled.button<SiteNavStyledProps>`
   background-color: ${(props) => props.colorscheme?.primary4};
@@ -36,6 +37,10 @@ const StyledNav = styled.button<SiteNavStyledProps>`
           : "translateY(33%)"};
     }
   }
+
+  ${respond.navSwitch`
+      border-radius: ${defaultFontSize};
+      `}
 `;
 
 const Hamburger = styled.div<SiteNavStyledProps>`
@@ -76,18 +81,6 @@ const Hamburger = styled.div<SiteNavStyledProps>`
         ? ` transform: rotate(-105deg) translate(1.353786rem);`
         : ""}
   }
-`;
-
-const Menu = styled.div`
-  display: none;
-  position: absolute;
-  top: 4.27rem;
-  left: 4.27rem;
-  background-color: #fff;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  z-index: 999;
 `;
 
 export const SiteNavButton: React.FC<SiteNavProps> = (props: SiteNavProps) => {
