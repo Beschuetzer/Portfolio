@@ -26,6 +26,7 @@ import { useColorScheme } from "../../../hooks/useColorScheme";
 import {
   getFontSizeCustom,
 } from "../../../styles/constants";
+import { BREAK_POINTS } from "../../../styles/breakpoints";
 
 
 type SiteNavContentProps = {};
@@ -47,10 +48,11 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
 export function SiteNavContent(props: SiteNavContentProps) {
   const { isOpen, buttonRadius } = useSiteNav();
   const colorScheme = useColorScheme();
+  const isRelevant = window.innerWidth > parseInt(BREAK_POINTS.navSwitch, 10);
 
   const propsToAdd: SiteNavStyledProps = {
     buttonradius: buttonRadius != null ? buttonRadius : undefined,
-    isopen: isOpen != null ? isOpen : undefined,
+    isopen: isOpen != null ? isOpen && isRelevant : undefined,
     colorscheme: colorScheme != null ? colorScheme : undefined,
   };
 

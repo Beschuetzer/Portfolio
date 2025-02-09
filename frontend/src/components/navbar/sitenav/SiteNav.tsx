@@ -15,6 +15,7 @@ import SiteNavBackground from "./SiteNavBackground";
 import { useLocation } from "react-router-dom";
 import { getAbsoluteLeftPosition } from "./helpers";
 import { respond } from "../../../styles/breakpoints";
+import { SiteNavDrawer } from "./SiteNavDrawer";
 
 const SiteNavContainer = styled.header<{ sitenavleft: string }>`
   position: absolute;
@@ -71,6 +72,7 @@ export function SiteNav() {
         <SiteNavButton />
         <SiteNavContent />
         <SiteNavBackground />
+        <SiteNavDrawer />
       </SiteNavContainer>
     </SiteNavProvider>
   );
