@@ -1,4 +1,5 @@
 import { ColorScheme } from "../../../styles/constants";
+import { SiteNavItemProps } from "./SiteNavItem";
 
 export type SiteNavStyledProps = {
   buttonradius?: string;
@@ -6,4 +7,13 @@ export type SiteNavStyledProps = {
   isopen?: boolean;
   islast?: boolean;
   orientation?: "horizontal" | "vertical";
+};
+
+export type SiteNavItem = {
+  drownDownItems?: SiteNavItemProps[];
+  href?: string;
+  isDropdownItem: boolean;
+  text: string
+  to?: string;
+  image?: string;
 };

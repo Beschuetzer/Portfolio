@@ -1,19 +1,22 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
+import { SiteNavProps } from "./SiteNav";
 
-interface SiteNavContextProps {
+type SiteNavContextProps ={
   buttonRadius: string;
   isOpen: boolean;
   toggleIsOpen: () => void;
-}
+} & SiteNavProps;
 
 const SiteNavContext = createContext<SiteNavContextProps | undefined>(
   undefined
 );
 
-export const SiteNavProvider: React.FC<{
+type SiteNavProviderProps = {
   buttonRadius: string;
   children: ReactNode;
-}> = ({ buttonRadius, children }) => {
+} & SiteNavProps;
+
+export const SiteNavProvider: React.FC<SiteNavProviderProps> = ({ items, buttonRadius, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleIsOpenLocal = () => {
@@ -23,6 +26,7 @@ export const SiteNavProvider: React.FC<{
   return (
     <SiteNavContext.Provider
       value={{
+        items,
         buttonRadius,
         isOpen,
         toggleIsOpen: toggleIsOpenLocal,

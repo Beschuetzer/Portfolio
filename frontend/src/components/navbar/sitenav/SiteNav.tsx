@@ -15,7 +15,7 @@ import { useLocation } from "react-router-dom";
 import { getAbsoluteLeftPosition } from "./helpers";
 import { respond } from "../../../styles/breakpoints";
 import { SiteNavDrawer } from "./SiteNavDrawer";
-
+import { SiteNavItem } from "./types";
 
 const SiteNavContainer = styled.header<{ sitenavleft: string }>`
   position: absolute;
@@ -30,11 +30,11 @@ const SiteNavContainer = styled.header<{ sitenavleft: string }>`
 `;
 
 export type SiteNavProps = {
-
+  items: SiteNavItem[]
 };
 
 export function SiteNav(props: SiteNavProps) {
-  const {  } = props;
+  const { items } = props;
   const location = useLocation();
   const [siteNavleft, setSiteNavleft] = useState(getAbsoluteLeftPosition());
 
@@ -60,7 +60,7 @@ export function SiteNav(props: SiteNavProps) {
   }, []);
 
   return (
-    <SiteNavProvider buttonRadius={BUTTON_RADIUS}>
+    <SiteNavProvider buttonRadius={BUTTON_RADIUS} items={items}>
       <SiteNavContainer sitenavleft={siteNavleft}>
         <SiteNavButton />
         <SiteNavContent />

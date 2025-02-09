@@ -10,6 +10,7 @@ import {
   BRIDGE_LIVE_URL,
   BRIDGE_URL,
   DOWNLOADER_URL,
+  EMAIL,
   LIVE_BRIDGE_URL,
   LIVE_REPLAYS_URL,
   MOBILE_BREAK_POINT_WIDTH,
@@ -20,6 +21,23 @@ import {
   RESUME_URL,
   THUMBNAIL_CAROUSEL_URL,
 } from "./constants";
+
+import bridgeImage from "../imgs/site-nav/bridge.jpg";
+import contactImage from "../imgs/site-nav/contact.jpg";
+import downloaderImage from "../imgs/site-nav/downloader.jpg";
+import syncerImage from "../imgs/site-nav/syncer.jpg";
+import replayImage from "../imgs/site-nav/replay.jpg";
+
+import resume1 from "../imgs/site-nav/overview.jpg";
+import resume2 from "../imgs/site-nav/skills.jpg";
+import resume3 from "../imgs/site-nav/work-history.jpg";
+import resume4 from "../imgs/site-nav/education.jpg";
+import resume5 from "../imgs/site-nav/references.jpg";
+
+import about1 from "../imgs/site-nav/overview-2.jpg";
+import about2 from "../imgs/site-nav/interests.jpg";
+import about3 from "../imgs/site-nav/music.jpg";
+import about4 from "../imgs/site-nav/personality.jpg";
 
 import { SiteNav } from "./navbar/sitenav/SiteNav";
 import { PageNav } from "./navbar/PageNav";
@@ -117,7 +135,47 @@ export const App: React.FC<AppProps> = (props) => {
     <>
       <Router history={history}>
 		<NavbarHeader>
-			<SiteNav />
+			<SiteNav 
+        items={[
+          {
+            text: "Résumé",
+            isDropdownItem: true,
+            drownDownItems: [
+              { text: "Overview", to: `${RESUME_URL}#overview`, image: resume1 },
+              { text: "Skills", to: `${RESUME_URL}#skills`, image: resume2 },
+              { text: "Work History", to: `${RESUME_URL}#work-history`, image: resume3 },
+              { text: "Education", to: `${RESUME_URL}#education`, image: resume4 },
+              { text: "References", to: `${RESUME_URL}#references`, image: resume5 },
+            ],
+          },
+          {
+            text: "About",
+            isDropdownItem: true,
+            drownDownItems: [
+              { text: "Overview", to: `${ABOUT_URL}#overview`, image: about1 },
+              { text: "Interests", to: `${ABOUT_URL}#interests`, image: about2 },
+              { text: "Music", to: `${ABOUT_URL}#music`, image: about3 },
+              { text: "Personality", to: `${PERSONALITY_URL}`, image: about4 },
+            ],
+          },
+          {
+           text: "Projects",
+            isDropdownItem: true,
+            drownDownItems: [
+              { text: "A# Maj Bridge", to: BRIDGE_URL, image: bridgeImage },
+              { text: "Replay Viewer", to: REPLAY_VIEWER_URL, image: replayImage },
+              { text: "Downloader", to: DOWNLOADER_URL, image: downloaderImage },
+              { text: "Syncer", to: PLAYLIST_SYNCER_URL, image: syncerImage },
+            ], 
+          },
+          {
+            text: "Contact",
+            href: `mailto:${EMAIL}`,
+            isDropdownItem: false,
+            image: contactImage,
+          }
+        ]}
+      />
 			{/* <PageNav /> */}
 			{/* <GithubButton /> */}
 		</NavbarHeader>
