@@ -47,6 +47,7 @@ export function SiteNavDrawer(props: SiteNavDrawerProps) {
     [colorScheme, isOpen, isRelevant]
   );
 
+  if (!isRelevant) return null;
   return (
     <Drawer {...propsToAdd}>
       <SiteNavDrawerContent />

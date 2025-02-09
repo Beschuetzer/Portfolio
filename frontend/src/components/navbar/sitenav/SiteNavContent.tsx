@@ -35,7 +35,6 @@ export function SiteNavContent(props: SiteNavContentProps) {
 
   const itemsToRender = useMemo(() => {
     return items.map((item, index) => {
-      console.log({ item, index });
       const isLast = index === items.length - 1;
       if (item.isDropdownItem && item.drownDownItems) {
         return (
