@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 
@@ -6,14 +6,12 @@ import {
   ABOUT_URL,
   AUTO_BID_URL,
   BRIDGE_DEMO_URL,
-  BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME,
   BRIDGE_LIVE_URL,
   BRIDGE_URL,
   DOWNLOADER_URL,
   EMAIL,
   LIVE_BRIDGE_URL,
   LIVE_REPLAYS_URL,
-  MOBILE_BREAK_POINT_WIDTH,
   PERSONALITY_URL,
   PLAYLIST_SYNCER_URL,
   REPLAY_LIVE_URL,
@@ -40,10 +38,7 @@ import about3 from "../imgs/site-nav/music.jpg";
 import about4 from "../imgs/site-nav/personality.jpg";
 
 import { SiteNav } from "./navbar/sitenav/SiteNav";
-import { PageNav } from "./navbar/PageNav";
 import "../css/style.css";
-import { GithubButton } from "./GithubButton";
-import { AudioPlayer } from "./AudioPlayer/AudioPlayer";
 import {
   BigFive,
   AutoBid,
@@ -56,64 +51,13 @@ import {
   Home,
   Resume,
 } from "../pages";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import {
-  isMobileSelector,
-  setIsMobile,
-  setViewPortWidth,
-} from "../slices/generalSlice";
-import { keypressHandler } from "../helpers";
 import { ThumbnailCarouselTests } from "../pages/examples/csharp/ThumbnailCarouselTests";
 import { Redirect } from "../pages/Redirect";
-import { getIsMobile } from "../utils";
 import { NavbarHeader } from "./navbar/NavbarHeader";
 
 type AppProps = {};
 
 export const App: React.FC<AppProps> = (props) => {
-  const dispatch = useAppDispatch();
-  const isMobile = useAppSelector(isMobileSelector);
-
-  useEffect(() => {
-    dispatch(
-      setIsMobile({ isMobile: getIsMobile(), viewPortWidth: window.innerWidth })
-    );
-  }, [dispatch]);
-
-  //setup window resize listener
-  useEffect(() => {
-    const windowResize = (e: Event) => {
-      if (window.innerWidth <= MOBILE_BREAK_POINT_WIDTH && !isMobile) {
-        const newValue = `${BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME}: to bottom`;
-        document.documentElement.style.cssText += newValue;
-        return dispatch(
-          setIsMobile({
-            isMobile: getIsMobile(),
-            viewPortWidth: window.innerWidth,
-          })
-        );
-      } else if (window.innerWidth > MOBILE_BREAK_POINT_WIDTH && isMobile) {
-        const newValue = `${BRIDGE_GRADIENT_DIRECTION_CUSTOM_PROPERTY_NAME}: to right`;
-        document.documentElement.style.cssText += newValue;
-        return dispatch(
-          setIsMobile({
-            isMobile: getIsMobile(),
-            viewPortWidth: window.innerWidth,
-          })
-        );
-      }
-      dispatch(setViewPortWidth(window.innerWidth));
-      return;
-    };
-
-    window.addEventListener("resize", windowResize);
-    window.addEventListener("keydown", keypressHandler);
-
-    return () => {
-      window.removeEventListener("resize", windowResize);
-      window.removeEventListener("keydown", keypressHandler);
-    };
-  }, [dispatch, isMobile]);
 
   // //Loading Sounds, etc
   // useEffect(() => {
