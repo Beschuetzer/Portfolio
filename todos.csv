@@ -1,3 +1,13 @@
+
+refactor stuff:
+  -create a data structure to hold the site nav items and save them in the context
+  -finish the site nav drawer
+  -finish github button
+  -start ExampleLayout (use grid and have left column house the page nav)
+  -start ResumeLayout?
+  -start BridgeLayout?
+
+
 -create low-res version of every video?
 -create sections for each video (in the progress bar)
 
