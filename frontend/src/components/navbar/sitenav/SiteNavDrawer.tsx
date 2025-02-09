@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useColorScheme } from "../../../hooks/useColorScheme";
-import { SiteNavStyledProps } from "./SiteNav";
+import { SiteNavStyledProps } from "./types";
 import { useSiteNav } from "./SiteNavContext";
 import { BREAK_POINTS } from "../../../styles/breakpoints";
 

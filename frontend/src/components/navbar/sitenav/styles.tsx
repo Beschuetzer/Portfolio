@@ -1,5 +1,4 @@
 import { css } from "styled-components";
-import { SiteNavStyledProps } from "./SiteNav";
 import {
   defaultFontSize,
   fontSizeFive,
@@ -7,6 +6,7 @@ import {
   fontSizeSix,
 } from "../../../styles/constants";
 import { SiteNaveItemOrientation } from "./SiteNavItem";
+import { SiteNavStyledProps } from "./types";
 
 export const linkStyles = css<SiteNavStyledProps>`
   display: flex;

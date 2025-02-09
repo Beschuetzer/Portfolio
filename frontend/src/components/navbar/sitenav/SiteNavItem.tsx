@@ -1,6 +1,6 @@
-import React, { HTMLAttributes, useCallback, useMemo } from "react";
+import React, { HTMLAttributes, useCallback } from "react";
 import { styled } from "styled-components";
-import { SiteNavStyledProps } from "./SiteNav";
+import { SiteNavStyledProps } from "./types";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { Link } from "react-router-dom";
 import { useSiteNav } from "./SiteNavContext";

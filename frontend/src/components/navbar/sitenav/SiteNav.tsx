@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import {
   BUTTON_RADIUS,
-  ColorScheme,
   defaultFontSize,
   fontSizeEight,
 } from "../../../styles/constants";
@@ -37,18 +36,11 @@ const SiteNavContainer = styled.header<{ sitenavleft: string }>`
 `;
 
 export type SiteNavProps = {
-  onClick?: () => void;
+
 };
 
-export type SiteNavStyledProps = {
-  buttonradius?: string;
-  colorscheme?: ColorScheme;
-  isopen?: boolean;
-  islast?: boolean;
-  orientation?: "horizontal" | "vertical";
-};
-
-export function SiteNav() {
+export function SiteNav(props: SiteNavProps) {
+  const {  } = props;
   const location = useLocation();
   const [siteNavleft, setSiteNavleft] = useState(getAbsoluteLeftPosition());
 

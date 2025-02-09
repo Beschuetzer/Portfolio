@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from 'styled-components';
 import { useSiteNav } from './SiteNavContext';
-import { SiteNavStyledProps } from './SiteNav';
+import { SiteNavStyledProps } from "./types";
 
 const SiteNavBackgroundStyled = styled.div<SiteNavStyledProps>`
   height: 200vh;

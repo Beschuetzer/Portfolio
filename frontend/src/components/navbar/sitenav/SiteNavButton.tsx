@@ -5,7 +5,7 @@ import {
   defaultFontSize,
   getFontSizeCustom,
 } from "../../../styles/constants";
-import { SiteNavStyledProps, SiteNavProps } from "./SiteNav";
+import { SiteNavStyledProps } from "./types";
 import { useSiteNav } from "./SiteNavContext";
 import { respond } from "../../../styles/breakpoints";
 
@@ -83,7 +83,11 @@ const Hamburger = styled.div<SiteNavStyledProps>`
   }
 `;
 
-export const SiteNavButton: React.FC<SiteNavProps> = (props: SiteNavProps) => {
+type SiteNavButtonProps = {
+  onClick?: () => void;
+};
+
+export const SiteNavButton: React.FC<SiteNavButtonProps> = (props: SiteNavButtonProps) => {
   const { onClick } = props;
   const { isOpen, toggleIsOpen, buttonRadius} = useSiteNav();
   const colorScheme = useColorScheme();

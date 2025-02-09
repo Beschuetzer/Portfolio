@@ -20,7 +20,7 @@ import about2 from "../../../imgs/site-nav/interests.jpg";
 import about3 from "../../../imgs/site-nav/music.jpg";
 import about4 from "../../../imgs/site-nav/personality.jpg";
 import { ABOUT_URL, BRIDGE_URL, DOWNLOADER_URL, EMAIL, PLAYLIST_SYNCER_URL, REPLAY_VIEWER_URL, RESUME_URL } from "../../constants";
-import { SiteNavStyledProps } from "./SiteNav";
+import { SiteNavStyledProps } from "./types";
 import { SiteNavDropDown } from "./SiteNavDropDown";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import {

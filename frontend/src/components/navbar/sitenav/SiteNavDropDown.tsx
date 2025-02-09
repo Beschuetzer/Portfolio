@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { SiteNavStyledProps } from "./SiteNav";
+import { SiteNavStyledProps } from "./types";
 import SiteNavItem, { SiteNaveItemOrientation, SiteNavItemProps } from "./SiteNavItem";
 import { useColorScheme } from "../../../hooks/useColorScheme";
 import { useSiteNav } from "./SiteNavContext";
