@@ -16,7 +16,8 @@ const ContentContainer = styled.div<SiteNavStyledProps>`
   right: 0;
   bottom: 0;
   background-color: transparent;
-  padding-top: calc(${(props) => props.sitenavnavswitchtop} + ${(props) => `calc(${props.buttonradius} * 2)`}});
+  padding-top: calc(calc(${(props) => props.sitenavnavswitchtop} * 2) + ${(props) => `${props.buttonradius}`});
+  padding-left: ${(props) => props.sitenavnavswitchtop};
 `;
 
 type SiteNavDrawerContentProps = {};
