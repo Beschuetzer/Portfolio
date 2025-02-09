@@ -14,7 +14,7 @@ import SiteNavBackground from "./SiteNavBackground";
 import { useLocation } from "react-router-dom";
 import { getAbsoluteLeftPosition } from "./helpers";
 import { respond } from "../../../styles/breakpoints";
-import { SiteNavDrawer } from "./SiteNavDrawer";
+import { SiteNavDrawer } from "./drawer/SiteNavDrawer";
 import { SiteNavItem } from "./types";
 
 const SiteNavContainer = styled.header<{ sitenavleft: string }>`

@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { useColorScheme } from "../../../hooks/useColorScheme";
-import { SiteNavStyledProps } from "./types";
-import { useSiteNav } from "./SiteNavContext";
-import { BREAK_POINTS } from "../../../styles/breakpoints";
+import { useColorScheme } from "../../../../hooks/useColorScheme";
+import { SiteNavStyledProps } from "../types";
+import { useSiteNav } from "../SiteNavContext";
+import { BREAK_POINTS } from "../../../../styles/breakpoints";
+import { SiteNavContent } from "../SiteNavContent";
 
 type SiteNavDrawerProps = {};
 
@@ -16,9 +17,22 @@ const Drawer = styled.div<SiteNavStyledProps>`
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   transform: translateX(${(props) => (props.isopen ? "0" : "-100%")});
   transition: transform 0.3s ease-in-out;
+
+  &::before {
+    content: "A";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    font-size: 10rem; /* Adjust the size as needed */
+    color: rgba(0, 0, 0, 0.025); /* Semi-transparent black color */
+    z-index: 2; /* Ensure it is on top of the glass */
+  }
 `;
 
 export function SiteNavDrawer(props: SiteNavDrawerProps) {
@@ -32,9 +46,7 @@ export function SiteNavDrawer(props: SiteNavDrawerProps) {
 
   return (
     <Drawer {...propsToAdd}>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
+      <SiteNavContent />
     </Drawer>
   );
 }
