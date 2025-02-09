@@ -4,6 +4,7 @@ import {
   fontSizeFive,
   fontSizeSeven,
   fontSizeSix,
+  getFontSizeCustom,
 } from "../../../styles/constants";
 import { SiteNaveItemOrientation } from "./SiteNavItem";
 import { SiteNavStyledProps } from "./types";
@@ -36,6 +37,11 @@ export const itemStyles = css<SiteNavStyledProps>`
   overflow: hidden;
 `;
 
-export const triangleRotateStyle = css<SiteNavStyledProps>`
+export const triangleRotateStyles = css<SiteNavStyledProps>`
   transform: rotate(90deg);
+`;
+
+export const dropDownContainerItemStyles = css<SiteNavStyledProps>`
+  padding: ${getFontSizeCustom()} 0;
+  width: calc(100% - calc(${(props) => props.scrollbarwidth} * 2));
 `;

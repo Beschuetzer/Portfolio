@@ -26,7 +26,7 @@ export const fontSizeTwelve = `calc(${defaultFontSize} * 5.96)`;
 export const fontSizeThirteen = `calc(${defaultFontSize} * 7.451)`;
 export const fontSizeFourteen = `calc(${defaultFontSize} * 9.313)`;
 
-export function getFontSizeCustom(factor: number, startingFontSize = defaultFontSize) {
+export function getFontSizeCustom(factor = 1, startingFontSize = defaultFontSize) {
   return `calc(${startingFontSize} * ${factor})`;
 }
 

@@ -2,12 +2,13 @@ import { ColorScheme } from "../../../styles/constants";
 import { SiteNavItemProps } from "./SiteNavItem";
 
 export type SiteNavStyledProps = {
-  sitenavnavswitchtop?: string;
   buttonradius?: string;
   colorscheme?: ColorScheme;
   isopen?: boolean;
   islast?: boolean;
   orientation?: "horizontal" | "vertical";
+  scrollbarwidth?: string;
+  sitenavnavswitchtop?: string;
 };
 
 export type SiteNavItem = {

@@ -4,7 +4,7 @@ import { useColorScheme } from "../../../hooks/useColorScheme";
 import { styled } from "styled-components";
 import { SiteNavStyledProps } from "./types";
 import { useSiteNav } from "./SiteNavContext";
-import { itemStyles, linkStyles, triangleRotateStyle } from "./styles";
+import { itemStyles, linkStyles, triangleRotateStyles } from "./styles";
 
 type SiteNavDropDownProps = Pick<SiteNavItemProps, "text"> & {
   isHovering?: boolean;
@@ -20,7 +20,7 @@ const DropDownItem = styled.div<SiteNavStyledProps>`
   ${itemStyles}
   ${linkStyles}
    &:hover .triangle {
-    ${triangleRotateStyle}
+    ${triangleRotateStyles}
   }
 `;
 
@@ -33,7 +33,7 @@ const SiteNavTriangle = styled.div<SiteNavStyledProps & { ishovering?: boolean }
   margin-left: 0.7rem;
   width: 0;
   transition: transform 0.25s ease, -webkit-transform 0.25s ease;
-  ${(props) => (props.ishovering ? triangleRotateStyle : "")}
+  ${(props) => (props.ishovering ? triangleRotateStyles : "")}
 `;
 
 export function SiteNavDropDownItem(props: SiteNavDropDownProps) {
