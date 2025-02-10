@@ -12,6 +12,7 @@ import { SITE_NAV_NAV_SWITCH_TOP } from "../../styles/constants";
 import { buttonPlacementStyles } from "./sitenav/styles";
 import { GITHUB_URL } from "../constants";
 import { respond } from "../../styles/breakpoints";
+import { useSiteNav } from "./sitenav/SiteNavContext";
 
 type GithubButtonProps = {};
 
@@ -37,7 +38,8 @@ const Container = styled.a<SiteNavStyledProps & { sitenavright: string }>`
       top: ${SITE_NAV_NAV_SWITCH_TOP};
       left: auto;
       right: ${SITE_NAV_NAV_SWITCH_TOP};
-      opacity: .5;
+
+      ${(props: SiteNavStyledProps) => props.isopen ? '' :  `opacity: .5;`}
       &:hover {
         opacity: 1;
       }
@@ -60,14 +62,16 @@ const Use = styled.use``;
 
 export function GithubButton(props: GithubButtonProps) {
   const [siteNavRight, setSiteNavRight] = useState(getAbsoluteRightPosition());
+  const { isOpen } = useSiteNav();
   const colorScheme = useColorScheme();
   const propsToAdd = useMemo(
     () => ({
       colorscheme: colorScheme != null ? colorScheme : undefined,
       sitenavnavswitchtop: SITE_NAV_NAV_SWITCH_TOP,
       sitenavright: siteNavRight,
+      isopen: isOpen != null ? isOpen : undefined,
     }),
-    [colorScheme, siteNavRight]
+    [colorScheme, isOpen, siteNavRight]
   );
 
   useEffect(() => {
